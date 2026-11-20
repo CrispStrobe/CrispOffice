@@ -11,6 +11,11 @@ This report supplements [the earlier incoming Office report](incoming-office.md)
 Its **137 passing cases replace the overlapping 116-case acceptance selection**;
 they are not added to that earlier total. No hosted CI was queried or awaited.
 
+This is a historical stage receipt. The subsequent concurrent-main
+reconciliation is qualified in [the 300-case Office gate](main-office.md), which
+replaces this overlapping selection and adds support for an omitted circle
+focus as the default center.
+
 ## Defects found and corrections
 
 The incoming picture painter emitted PDF `/GS… gs` operators, but Office

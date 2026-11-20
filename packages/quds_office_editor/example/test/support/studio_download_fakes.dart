@@ -1,10 +1,11 @@
 import 'package:flutter/widgets.dart';
 import 'package:quds_arabic_morph/quds_arabic_morph.dart';
-import 'package:quds_office_engine/quds_office_engine.dart';
+import 'package:quds_office_editor/quds_office_editor.dart';
 import 'package:quds_proofing_hunspell/quds_proofing_hunspell.dart';
 import 'package:quds_proofing_spacy/quds_proofing_spacy.dart';
 import 'package:quds_office_studio/studio_arabic_morph_host.dart';
 import 'package:quds_office_studio/studio_downloads_manager.dart';
+import 'package:quds_office_studio/studio_font_pack_host.dart';
 import 'package:quds_office_studio/studio_hunspell_host.dart';
 import 'package:quds_office_studio/studio_spacy_host.dart';
 import 'package:quds_office_studio/studio_strings.dart';
@@ -162,6 +163,29 @@ class FakeModels extends StudioSpacyHost {
   Future<SpacyTransport> openTransport() async => throw UnimplementedError();
 }
 
+/// Font pack host with the core pack installed and the visual pack missing.
+class FakeFontPacks extends StudioFontPackHost {
+  final calls = <String>[];
+  bool coreInstalled = true;
+  @override
+  List<OfficeFontPackStatus> get statuses => <OfficeFontPackStatus>[
+    OfficeFontPackStatus(
+      pack: officeCoreFontPack,
+      installed: coreInstalled,
+      bytesOnDisk: coreInstalled ? officeCoreFontPack.bytes : 0,
+    ),
+    const OfficeFontPackStatus(pack: officeVisualFontPack),
+  ];
+  @override
+  Future<void> refresh() async => calls.add('refresh');
+  @override
+  Future<void> remove(OfficeFontPack pack) async {
+    calls.add('remove-${pack.id}');
+    coreInstalled = false;
+    notifyListeners();
+  }
+}
+
 typedef CaptureVariant = ({
   String name,
   Size size,
@@ -227,6 +251,7 @@ Widget buildCaptureManager(CaptureVariant variant) => StudioDownloadsManager(
   hunspell: FakeDictionaries(),
   morphology: FakeMorphology(),
   spacy: FakeModels(frenchProblem: 'Verification failed: tok2vec.gguf'),
+  fontPacks: FakeFontPacks(),
   language: variant.language,
   languages: const <String>{'ar-SA'},
   openLicence: (_) async {},

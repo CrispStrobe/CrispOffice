@@ -83,7 +83,7 @@ and next ceiling. A new view fixes its first UID ceiling. Arrivals above that
 ceiling appear after Refresh; later pages do not silently expand the snapshot.
 Newest means greatest UID, not a re-sort by the sender-authored Date header.
 
-Each operation performs one bounded UID SEARCH and at most one header FETCH.
+Each browse request performs at most one bounded UID SEARCH and one header FETCH.
 Its discovery width respects the existing maximum discovered-UID count,
 protocol-line length and aggregate response-byte quota. The response allocation
 leaves headroom for control responses and headers; the original connection-wide

@@ -29,6 +29,12 @@ import 'package:flutter/services.dart';
 /// the user downloads.
 void registerStudioLicenses() {
   LicenseRegistry.addLicense(() async* {
+    yield LicenseEntryWithLineBreaks(
+      const ['CrispOffice open font pack (SIL Open Font License 1.1)'],
+      await rootBundle.loadString('assets/licenses/open_font_pack/LICENSE.txt'),
+    );
+  });
+  LicenseRegistry.addLicense(() async* {
     const base = 'assets/licenses/hunspell';
     final notice = await rootBundle.loadString('$base/license.hunspell');
     final myspell = await rootBundle.loadString('$base/license.myspell');

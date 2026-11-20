@@ -7,6 +7,8 @@ import 'package:url_launcher/url_launcher.dart';
 import 'studio_arabic_morph_host.dart';
 import 'studio_download_catalog.dart';
 import 'studio_download_strings.dart';
+import 'studio_font_pack_host.dart';
+import 'studio_font_pack_setup.dart';
 import 'studio_hunspell_host.dart';
 import 'studio_hunspell_setup.dart';
 import 'studio_spacy_host.dart';
@@ -36,6 +38,7 @@ Future<void> showStudioDownloadsManager(
         hunspell: studioHunspellHost,
         morphology: studioArabicMorphHost,
         spacy: studioSpacyHost,
+        fontPacks: studioFontPackHost,
       ),
     ),
   );
@@ -52,6 +55,7 @@ class StudioDownloadsManager extends StatefulWidget {
     required this.spacy,
     this.languages = const <String>{},
     this.language = StudioLanguage.en,
+    this.fontPacks,
     this.activity,
     this.openLicence,
   });
@@ -59,6 +63,9 @@ class StudioDownloadsManager extends StatefulWidget {
   final StudioArabicMorphHost morphology;
   final StudioSpacyHost spacy;
   final Set<String> languages;
+
+  /// Optional open font packs; null keeps the manager language-only (tests).
+  final StudioFontPackHost? fontPacks;
 
   /// The UI language of the dialog's own text.
   final StudioLanguage language;
@@ -91,6 +98,7 @@ class _StudioDownloadsManagerState extends State<StudioDownloadsManager> {
     widget.hunspell.addListener(_changed);
     widget.morphology.addListener(_changed);
     widget.spacy.addListener(_changed);
+    widget.fontPacks?.addListener(_changed);
     _activity.addListener(_changed);
     unawaited(
       _run(() async {
@@ -98,6 +106,7 @@ class _StudioDownloadsManagerState extends State<StudioDownloadsManager> {
           widget.hunspell.refresh(),
           widget.morphology.refresh(),
           widget.spacy.refresh(),
+          if (widget.fontPacks case final packs?) packs.refresh(),
         ]);
       }),
     );
@@ -108,6 +117,7 @@ class _StudioDownloadsManagerState extends State<StudioDownloadsManager> {
     widget.hunspell.removeListener(_changed);
     widget.morphology.removeListener(_changed);
     widget.spacy.removeListener(_changed);
+    widget.fontPacks?.removeListener(_changed);
     _activity.removeListener(_changed);
     _scroll.dispose();
     super.dispose();
@@ -144,6 +154,12 @@ class _StudioDownloadsManagerState extends State<StudioDownloadsManager> {
           ),
           StudioDownloadReview.analysis => StudioSpacySetupDialog(
             host: widget.spacy,
+          ),
+          StudioDownloadReview.fontPack => StudioFontPackSetupDialog(
+            status: widget.fontPacks!.statuses.firstWhere(
+              (status) => status.pack.id == item.id,
+            ),
+            host: widget.fontPacks!,
           ),
         },
       ),
@@ -238,6 +254,7 @@ class _StudioDownloadsManagerState extends State<StudioDownloadsManager> {
       hunspell: widget.hunspell,
       morphology: widget.morphology,
       spacy: widget.spacy,
+      fontPacks: widget.fontPacks,
       activity: _activity,
     );
     final titles = <String, String>{
@@ -257,6 +274,9 @@ class _StudioDownloadsManagerState extends State<StudioDownloadsManager> {
       (groups[item.language] ??= <StudioDownloadItem>[]).add(item);
     }
     int rank(String code) {
+      if (code == studioFontGroup) {
+        return studioDownloadLanguageOrder.length + 1;
+      }
       final index = studioDownloadLanguageOrder.indexOf(code);
       return index < 0 ? studioDownloadLanguageOrder.length : index;
     }
@@ -365,6 +385,11 @@ class _StudioDownloadsManagerState extends State<StudioDownloadsManager> {
               onLicence: () => _openLicence(item.licenceUrl),
             ),
           ),
+      ],
+      if (widget.fontPacks case final packs?
+          when packs.statuses.isEmpty) ...<Widget>[
+        _section(strings.languageName(studioFontGroup)),
+        Text(packs.error ?? strings.fontsUnavailable, style: muted),
       ],
     ];
 
@@ -505,6 +530,7 @@ class StudioDownloadTile extends StatelessWidget {
     StudioDownloadKind.contextModel => Icons.hub_outlined,
     StudioDownloadKind.analysis => Icons.manage_search,
     StudioDownloadKind.entities => Icons.label_outline,
+    StudioDownloadKind.fonts => Icons.font_download_outlined,
   };
 
   Widget _leading(ColorScheme scheme) {

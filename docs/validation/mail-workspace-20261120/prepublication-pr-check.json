@@ -1,0 +1,31 @@
+{
+  "checked_at_utc": "2026-11-20 09:25:10 UTC",
+  "open_pr_numbers": [
+    234,
+    236,
+    227
+  ],
+  "prs": [
+    {
+      "number": 227,
+      "state": "open",
+      "draft": true,
+      "head": "codex/vba-variant-conversions-20261120",
+      "head_sha": "1ceae221d37e733f0195d35622a05f896a2d13a1",
+      "base_sha": "5e38de19ab5af8d6811d601c7317cba7f69d516b",
+      "updated_at": "2026-11-20T09:04:02Z"
+    },
+    {
+      "number": 236,
+      "state": "open",
+      "draft": false,
+      "head": "feat/android-spacy-grammar-20261120",
+      "head_sha": "67a4917b33dcd578333adabac1c50db0fc2a62b6",
+      "base_sha": "5e38de19ab5af8d6811d601c7317cba7f69d516b",
+      "updated_at": "2026-11-20T09:07:45Z"
+    }
+  ],
+  "main": "5e38de19ab5af8d6811d601c7317cba7f69d516b",
+  "actions_checks_or_commit_status_queried": false,
+  "scope": "Read open PR metadata and fetch main; source readiness is separate from GitHub mergeability. PRs 234 and 236 are already integrated with original ancestry; 227 remains draft."
+}

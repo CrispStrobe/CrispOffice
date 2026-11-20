@@ -1383,11 +1383,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
                         ListTile(
                           leading: const Icon(Icons.download_outlined),
                           title: Text(
-                            _t(
-                              'Language downloads',
-                              'Sprachdownloads',
-                              'تنزيلات اللغة',
-                            ),
+                            _t('Downloads', 'Downloads', 'التنزيلات'),
                           ),
                           onTap: () {
                             Navigator.pop(dialogContext);
@@ -4270,7 +4266,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
           ),
           _cmd(
             Icons.download_for_offline_outlined,
-            _t('Language downloads', 'Sprachdownloads', 'تنزيلات اللغة'),
+            _t('Downloads', 'Downloads', 'التنزيلات'),
             _showLanguageDownloads,
           ),
           _cmd(

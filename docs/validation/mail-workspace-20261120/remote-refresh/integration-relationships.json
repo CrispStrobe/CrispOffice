@@ -1,0 +1,56 @@
+{
+  "captured_at_utc": "2026-11-20T09:11:35.818387+00:00",
+  "working_head": "49e854d6b80ae00c8883c866f34bdeecd21fb93a",
+  "relationships": [
+    {
+      "ancestor": "1fe093a217741d228c86bad4e6a5a13f777ed851",
+      "descendant": "b9e4f1d4bc691714f68e3685dbf729b09ccb0449",
+      "is_ancestor": true
+    },
+    {
+      "ancestor": "1ceae221d37e733f0195d35622a05f896a2d13a1",
+      "descendant": "b9e4f1d4bc691714f68e3685dbf729b09ccb0449",
+      "is_ancestor": false
+    },
+    {
+      "ancestor": "3100725d07a715f230c263f640dbd588c7c75660",
+      "descendant": "b9e4f1d4bc691714f68e3685dbf729b09ccb0449",
+      "is_ancestor": true
+    },
+    {
+      "ancestor": "aa51b5700a4791db088a2d47b66ff521540b42e0",
+      "descendant": "b9e4f1d4bc691714f68e3685dbf729b09ccb0449",
+      "is_ancestor": true
+    },
+    {
+      "ancestor": "5e38de19ab5af8d6811d601c7317cba7f69d516b",
+      "descendant": "b9e4f1d4bc691714f68e3685dbf729b09ccb0449",
+      "is_ancestor": true
+    },
+    {
+      "ancestor": "5e38de19ab5af8d6811d601c7317cba7f69d516b",
+      "descendant": "49e854d6b80ae00c8883c866f34bdeecd21fb93a",
+      "is_ancestor": true
+    },
+    {
+      "ancestor": "67a4917b33dcd578333adabac1c50db0fc2a62b6",
+      "descendant": "49e854d6b80ae00c8883c866f34bdeecd21fb93a",
+      "is_ancestor": true
+    },
+    {
+      "ancestor": "afc3524eb896c496475d6763ab4b37dddfe68932",
+      "descendant": "49e854d6b80ae00c8883c866f34bdeecd21fb93a",
+      "is_ancestor": true
+    },
+    {
+      "ancestor": "20573cabfd4dcae091e4c705fd58277cc6372075",
+      "descendant": "49e854d6b80ae00c8883c866f34bdeecd21fb93a",
+      "is_ancestor": true
+    }
+  ],
+  "new_word_powerpoint_first_parent_commits": [
+    "b9e4f1d4bc691714f68e3685dbf729b09ccb0449 54d07bc32fb35a7aa4445971b3cd3604b7c5cf7f 7ac3d3be4a62bf9d2e0ab8a67f0e122568691b22 Reconcile optional Android grammar replay workflow [skip ci]",
+    "54d07bc32fb35a7aa4445971b3cd3604b7c5cf7f c224a66a4c1913690aff5273ab584621487305d1 20573cabfd4dcae091e4c705fd58277cc6372075 Integrate PPTX radial and alpha work with current layout [skip ci]",
+    "c224a66a4c1913690aff5273ab584621487305d1 aa51b5700a4791db088a2d47b66ff521540b42e0 6fea99ed24d7cfeeefca67f139505091de36c1f6 Reconcile incoming Mail workspace and presentation autofit [skip ci]"
+  ]
+}

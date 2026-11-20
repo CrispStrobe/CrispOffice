@@ -1,0 +1,2614 @@
+{
+  "schema_version": 1,
+  "reviewed_at": "2026-11-20T09:42:21.091144+00:00",
+  "accepted": true,
+  "errors": [],
+  "source_head": "01290ceed6f9163023ce8f27bb74033f088b62e4",
+  "source_tree": "413a8ebc8f66c5b95584710aab7d8bb6fcc431fc",
+  "reviewer": "independent mail-design subagent",
+  "carried_mail_cases": 514,
+  "carried_native_path_cases": 2,
+  "mail_cohorts": [
+    {
+      "name": "core",
+      "passed": 54,
+      "selected_suites": 6,
+      "source_attempt": "final-740f3e24"
+    },
+    {
+      "name": "transport",
+      "passed": 402,
+      "selected_suites": 19,
+      "source_attempt": "final-740f3e24"
+    },
+    {
+      "name": "transport-node",
+      "passed": 6,
+      "selected_suites": 3,
+      "source_attempt": "final-740f3e24"
+    },
+    {
+      "name": "ui",
+      "passed": 52,
+      "selected_suites": 5,
+      "source_attempt": "final-740f3e24"
+    }
+  ],
+  "native_paths": {
+    "source_attempt": "studio-44abcfa1",
+    "passed": 2,
+    "local_import_chain": [
+      "test/studio_native_paths_test.dart -> lib/studio_native_paths.dart",
+      "lib/studio_native_paths.dart -> lib/studio_data_root.dart",
+      "lib/studio_data_root.dart -> Flutter foundation and external path_provider"
+    ],
+    "captured_input_count": 9,
+    "input_paths": [
+      ".fvmrc",
+      "analysis_options.yaml",
+      "packages/quds_office_editor/example/analysis_options.yaml",
+      "packages/quds_office_editor/example/lib/studio_data_root.dart",
+      "packages/quds_office_editor/example/lib/studio_native_paths.dart",
+      "packages/quds_office_editor/example/pubspec.yaml",
+      "packages/quds_office_editor/example/test/studio_native_paths_test.dart",
+      "pubspec.lock",
+      "pubspec.yaml"
+    ]
+  },
+  "mail_dependency_closure": {
+    "entry_packages": [
+      "quds_mail_core",
+      "quds_mail_transport",
+      "quds_mail_ui"
+    ],
+    "local_packages": {
+      "enough_mail": "third_party/enough_mail",
+      "quds_mail_core": "packages/quds_mail_core",
+      "quds_mail_mime": "packages/quds_mail_mime",
+      "quds_mail_reader_example": "packages/quds_mail_ui/example",
+      "quds_mail_store": "packages/quds_mail_store",
+      "quds_mail_transport": "packages/quds_mail_transport",
+      "quds_mail_ui": "packages/quds_mail_ui"
+    },
+    "external_packages": [
+      "_fe_analyzer_shared",
+      "analyzer",
+      "archive",
+      "args",
+      "asn1lib",
+      "async",
+      "basic_utils",
+      "boolean_selector",
+      "characters",
+      "cli_config",
+      "cli_util",
+      "clock",
+      "code_assets",
+      "collection",
+      "convert",
+      "coverage",
+      "crypto",
+      "drift",
+      "encrypter_plus",
+      "enough_convert",
+      "fake_async",
+      "ffi",
+      "file",
+      "flutter",
+      "flutter_lints",
+      "flutter_test",
+      "frontend_server_client",
+      "glob",
+      "hooks",
+      "http",
+      "http_multi_server",
+      "http_parser",
+      "intl",
+      "io",
+      "json_annotation",
+      "leak_tracker",
+      "leak_tracker_flutter_testing",
+      "leak_tracker_testing",
+      "lints",
+      "logging",
+      "matcher",
+      "material_color_utilities",
+      "meta",
+      "mime",
+      "native_toolchain_c",
+      "node_preamble",
+      "package_config",
+      "path",
+      "petitparser",
+      "platform",
+      "pointycastle",
+      "pool",
+      "posix",
+      "process",
+      "pub_semver",
+      "record_use",
+      "shelf",
+      "shelf_packages_handler",
+      "shelf_static",
+      "shelf_web_socket",
+      "sky_engine",
+      "source_map_stack_trace",
+      "source_maps",
+      "source_span",
+      "sqlite3",
+      "stack_trace",
+      "stream_channel",
+      "string_scanner",
+      "synchronized",
+      "term_glyph",
+      "test",
+      "test_api",
+      "test_core",
+      "typed_data",
+      "vector_math",
+      "vm_service",
+      "watcher",
+      "web",
+      "web_socket",
+      "web_socket_channel",
+      "webkit_inspection_protocol",
+      "xml",
+      "yaml"
+    ],
+    "captured_input_count": 475,
+    "added_inputs": [],
+    "removed_inputs": [],
+    "rule": "Resolve normal and dev dependencies of test entry packages, then recursive normal dependencies. Compare every captured file under the resolved local package roots plus four root configuration files. Reader example is included under Mail UI."
+  },
+  "unique_repository_inputs_verified": 480,
+  "input_verification": {
+    ".fvmrc": {
+      "sha256": "90bf8f8884c05a407f51d6ef651ba033fef99a656010f8bfcb65951e921f4294",
+      "git_blob": "4e46fba09bb9c1d654a226b7285b55b6949b3767",
+      "matches_tested_input_and_commit": true
+    },
+    "analysis_options.yaml": {
+      "sha256": "2605ddd3559825e867cab2f5c4536f4172d6ba3514cb10da19f17d7dbe7179e4",
+      "git_blob": "e40c961c5eda58a8470527fb768f093aa7dbbfff",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_core/CHANGELOG.md": {
+      "sha256": "d0b73a1beb58030296658d55a76615dc747eacce276641a9c50143cd23c91711",
+      "git_blob": "d3f5c8abed2514bb1389b727f7e42eaf60b3b6ad",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_core/LICENSE": {
+      "sha256": "ddce111598e179ca6118a86ec7d1a62aaaab6fb007df49d7236b78d9085f3641",
+      "git_blob": "d2c25674e883f1006ac85cf45912f851a2b5ef0e",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_core/README.md": {
+      "sha256": "de547d7be326a3f2e9419b932e0c3ad379af44b6845ccc70c105993e4d65d90d",
+      "git_blob": "1a7138939d8b3aef22c3e5cfedd74532a0d9b2b9",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_core/lib/quds_mail_core.dart": {
+      "sha256": "a267689f20c72cb704a67bd3a765bd1b2c005f64d3f3e2e61261f5ab87f8201c",
+      "git_blob": "dc1556fc51380e73782e535466e268e6523dd7e4",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_core/lib/src/model/bytes.dart": {
+      "sha256": "288ae314d41494a908abfa1cfa43d1b54fcfd74be40a39fe298f0c1ad8567b40",
+      "git_blob": "d3694b4e79a684ce66cee4eda6811801f012fcf7",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_core/lib/src/model/capabilities.dart": {
+      "sha256": "840c77977499b652ae72dd76135ab11fd562f16d5e62cb8822533938404cdaee",
+      "git_blob": "337c2204d09d5f7f158a01cf1ce21bc5f2abaa10",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_core/lib/src/model/identity.dart": {
+      "sha256": "abbd10b9dbad23e8041cd07fb84b395acb0c7aabab70effc9e4778b99d440ddf",
+      "git_blob": "b472a3e3d98d5f7d2a9a7396bbabcb546053c932",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_core/lib/src/model/message.dart": {
+      "sha256": "71894fedfb3947725668124d4064483e8a7198da142d767bd64faaf6d55916ac",
+      "git_blob": "31aa37df663c14ee068e124520f5c59477bd3532",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_core/lib/src/model/parse.dart": {
+      "sha256": "5743f25c4ec78d0720e0d645ad1e33ab9fa2c982cb81cdad4f84853fa6045beb",
+      "git_blob": "f097ec41fc028a8c462d7c484c88e99753343402",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_core/lib/src/model/result.dart": {
+      "sha256": "07c88caadaed7e290f2c8bb8eef3bce1bad84653bef9cb32a1128d603dd9435c",
+      "git_blob": "262653344f46c5fee1107b4d6ae92e69ddf513ce",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_core/lib/src/ports/codec.dart": {
+      "sha256": "09c862fe046c8de38fcf0d5b349fdf609641f3ff73cf6edbd3b0d405efdcbadd",
+      "git_blob": "11f3e7deeeb947ab3d62c86b5f657c34bff14449",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_core/lib/src/ports/hosts.dart": {
+      "sha256": "106b86d9dceb23a36adf3b38906607fc87cd1e2a800c9bf0780b33b8e3597744",
+      "git_blob": "9731e0ad8b371fdeb5dd9c19d282aa3e0cc0d361",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_core/lib/src/ports/provider.dart": {
+      "sha256": "b9210a795eee1253d1e66b3422ab3e7004dc64231aa178f99959f3f70c28a3be",
+      "git_blob": "c51ffe74e6aeb75f9da9f4d6f4b6a2988acf606f",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_core/lib/src/ports/repository.dart": {
+      "sha256": "86ee03c6b3933accd93751ce821fc420e1ac08d165c5dfc23f1f5e2cee93cd42",
+      "git_blob": "f89d199a16a19c68401c959230ddc2fb40ebd8cf",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_core/lib/src/sync/cancellation.dart": {
+      "sha256": "53cf1637c652760ae141168243179ac27468516495e3dade9d3dff25b4c0052b",
+      "git_blob": "f8f57791f5c63e5ee566bb5e4c8a71a0784dcf97",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_core/lib/src/sync/coordinator.dart": {
+      "sha256": "cf78285369ed23d732b939fd1ceb22754c9c81d8a219e7ca9cd9db68eb274ecc",
+      "git_blob": "8fd17fee6fc05b0784ed9fd748c52e526972e94a",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_core/lib/src/sync/outbox.dart": {
+      "sha256": "371308f6d9deebd2ab5d72bd6f7a10425f510a5541c1bde3731ea8661d7faf5d",
+      "git_blob": "7dc43d0178cec7d100249ce917d113ec10ba79d6",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_core/pubspec.yaml": {
+      "sha256": "9ecb33312a62c29481def03efd177e8da0186b9627fe2d804d38c9d5db05fb21",
+      "git_blob": "055f9ff8de9a13fc10ccb12b034bac26e908984c",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_core/test/cancellation_test.dart": {
+      "sha256": "e7c750b3b5c37ac97b5a8221979df7eb45348bd5f53061073e02c4c46212c594",
+      "git_blob": "49546b3389595356366b2577945050852e7ad12e",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_core/test/compile/portable_import.dart": {
+      "sha256": "e02d97935d936dc7552121fc45d4f0c2e1415471071a2d85bb6f01b93d6ae59d",
+      "git_blob": "3e1a204c69bf9122ae23c992585ac7ffba2dfef1",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_core/test/ews_identity_test.dart": {
+      "sha256": "d521126b245db1c740f96408afac0f8b6e730d6a49d01be8d8ae0a170c3bc203",
+      "git_blob": "7af5c971c9eae4680dbf43d1ac8dc6dae515270b",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_core/test/imap_sync_range_test.dart": {
+      "sha256": "9db64b688c32e0f1e0c7650d74dda671e3839df702c27c7bdceae0afdff854dc",
+      "git_blob": "23c704ecb57a03e991b543a7440183fcbd3cc572",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_core/test/models_test.dart": {
+      "sha256": "5e75bad48d82ac454af5d48cccb2350054a5a8a58ce0746cdeb077f5db9a9834",
+      "git_blob": "dd9172e8aed55f976baf698ce9e5ed52d8cc0c02",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_core/test/outbox_test.dart": {
+      "sha256": "40708733f223bbd5630f63ab9ebd77faddf9b3922aad77fdfbbcf233e17d48bb",
+      "git_blob": "e45bc1e3c0d7c8ece14b565f1d68dd94dabfaced",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_core/test/sync_coordinator_test.dart": {
+      "sha256": "c5adc6adc9186e911bf56331f6b9f3a6cc12c9266fae83e52e304eec156772e2",
+      "git_blob": "621492c6e8d086a873f1ea2aa50422a2d8d21db0",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_mime/CHANGELOG.md": {
+      "sha256": "015f78b8e0dcdb0f5cd24bf6bc20ad68eb13c64efbbebc3a08625db4eba1ad12",
+      "git_blob": "9b4e94848ef0e10eb51a668c3471631aec8bb787",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_mime/LICENSE": {
+      "sha256": "ddce111598e179ca6118a86ec7d1a62aaaab6fb007df49d7236b78d9085f3641",
+      "git_blob": "d2c25674e883f1006ac85cf45912f851a2b5ef0e",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_mime/README.md": {
+      "sha256": "f97af74b3de9accea692ed2fd516a9b8f5db10edbba89c6395137aadabd7107b",
+      "git_blob": "13ec616b860c85e0f49c67084ab516681aa94a4f",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_mime/lib/quds_mail_mime.dart": {
+      "sha256": "f06caeb561c738a91d522a51c7389968a43d4fc69af06845c819a2a425547541",
+      "git_blob": "92595ea691fa2e57aa35e6460244c31f096fdd13",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_mime/lib/src/codec.dart": {
+      "sha256": "0ec385035465ecf57d859fd02fc0660d467a11db6709bd896454c312e0035fd0",
+      "git_blob": "1cf156fb90276f42ecece825930ec6cf7152df88",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_mime/lib/src/mbox.dart": {
+      "sha256": "35c99725d10e1ef48ad232cb0de78f32ae13dae8b03c6f86afcc7f52e51912d6",
+      "git_blob": "c1712faa6e20c59a9cf86cb2c361cb1f7bd59f22",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_mime/lib/src/scan.dart": {
+      "sha256": "27b4ca82a97beee03de040bffe146b22ac507a9a48ffc2b07262540e91ebe399",
+      "git_blob": "86c29767b63328295bde225f10a20dc115c01894",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_mime/lib/src/transfer.dart": {
+      "sha256": "a499683822abef9c7bb571732d1909581f25bbc1db15dfbff0b1a4fff07dc2f8",
+      "git_blob": "68fc3196d84c26d655e9f8915fb933391f01f70d",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_mime/pubspec.yaml": {
+      "sha256": "7a2d759c76e945e6e7503ce62c7a32bfae0473ae6ac58d249f40910fc3124b81",
+      "git_blob": "77463f51b8c60a9c7c9a644877d0458ee611309f",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_mime/test/compile/memory_probe.dart": {
+      "sha256": "0706fa5c13e631b5b256c40019ced5276c166d0456a4fcc6a9b257b5ba313f53",
+      "git_blob": "4c2a3b6dc21b28b15f47dee0afb0556923a5f29f",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_mime/test/compile/portable_import.dart": {
+      "sha256": "556eac1007ee48c482f7fd2facae13131b930c24d6eb458db13d8e16cde62e06",
+      "git_blob": "5f04aef8f668b273e732de93a1365c74aa4514fd",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_mime/test/eml_bytes_test.dart": {
+      "sha256": "29f691ae6927a30ccd4c32528af5f13554c0a91fd050d449832e86e2c42f0f6f",
+      "git_blob": "01a9ca9b90cfddeaa5193be7a64971f523f317eb",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_mime/test/fixtures/messages.dart": {
+      "sha256": "44d61a8cf5eb93a5efde085769084a5be4af36391ea0d84446361ea2183841a6",
+      "git_blob": "544d123817c508abd7955224551a2dfb7d9033b3",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_mime/test/mbox_test.dart": {
+      "sha256": "1f025b6149c7df830df3173db7bb2e90e5ecbb9f5e3e4d98fe325b31d5b08285",
+      "git_blob": "b18bc7b3ea302f3e3da99e84ea3b1f25a359b1e8",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_mime/test/mime_encodings_test.dart": {
+      "sha256": "b3da83a6801a951b2a29504862cd415cbbf0ddbc10314f908036b6cced78db4d",
+      "git_blob": "35565ecbfea874b512bd2a2dc751e822ccbfa1a6",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_mime/test/mime_limits_test.dart": {
+      "sha256": "84aa224312b520d60f9c9a575e5623b3c792134b3ef2721447f85233f8c34060",
+      "git_blob": "7fd6503702826e7a118629de3427066298b405ea",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_mime/test/mime_parts_test.dart": {
+      "sha256": "1e40c1838b8ede031f82b1bb8ad910dfa52b56738d161a4457e59911e29544c8",
+      "git_blob": "fcfcb5683edc9f5723d41db5157b14eddab95118",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_mime/test/mime_review_regressions_test.dart": {
+      "sha256": "8940a9601c5c16c39e10b53b391bbbeaacd12a5215e2a9f224aa681e60ddbb9c",
+      "git_blob": "47c7c031e705ea455c46be810cc9c3eb6939f758",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_mime/test/portable_import_test.dart": {
+      "sha256": "1c5472ec5a255c6b4acefd00abb77ead75dde5893ae9b9ed90328b01d448c979",
+      "git_blob": "967055c6c69e7352f485fc34542bdc1d9eecee39",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_store/CHANGELOG.md": {
+      "sha256": "6d50f9cca2c8a897c6d49d32aa246ebcafb725eca7b63cc5336cc0c1fe6ebeae",
+      "git_blob": "3dfc9353d98ee836a3f8f8f9fa3cb90f76f59586",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_store/DEPENDENCIES.json": {
+      "sha256": "24ce9b4035dc600bd7aa42dc773e906d671907f8f4642d2964018eab418f604a",
+      "git_blob": "5c135eea6cedff31623310fcb8ab32982f6879b4",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_store/LICENSE": {
+      "sha256": "ddce111598e179ca6118a86ec7d1a62aaaab6fb007df49d7236b78d9085f3641",
+      "git_blob": "d2c25674e883f1006ac85cf45912f851a2b5ef0e",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_store/README.md": {
+      "sha256": "7fb9745737298a949c7fbb8d4f8c9dbadb51aa586db4cb1615010fca269b1358",
+      "git_blob": "687185a0a9a750f709078412e4c835132b36c69b",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_store/THIRD_PARTY_NOTICES.md": {
+      "sha256": "2e4e2316246f8d63844e73a5580b7a9881f990d4988f35253d32d1d66e46049f",
+      "git_blob": "733fc3981cd3ef88fd197e899fa980538ec5853d",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_store/lib/quds_mail_archive_native.dart": {
+      "sha256": "b33a719078671c0d5b51276b0574bbc81a8ecf7bc22173605e85a6a8882a4605",
+      "git_blob": "8ad62076ef618731ea33d3c19a734536d5953a86",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_store/lib/quds_mail_store.dart": {
+      "sha256": "deb30668472506cbd79de7344dc12dc3d61a444bb5cd1f70db832bfa7a2d1c5c",
+      "git_blob": "1de0ad31f16fdb76f1c24c45b0c81184dfa59d5d",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_store/lib/quds_mail_store_native.dart": {
+      "sha256": "fdfb2da155740d1cd752b0d14dc0a548accdc11244482ad513191ecec4871ba3",
+      "git_blob": "a7f9c24dcf4adfe6111b58096120f03ace9aa17b",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_store/lib/quds_mail_store_web.dart": {
+      "sha256": "636b47b22b7c056b1a71c802b763940d42b3687eb1b19a2fa03bd8c7aedb07d7",
+      "git_blob": "9c84f65ab52620ac9dca50112a6c21be62a9d795",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_store/lib/src/archive_database.dart": {
+      "sha256": "3f029f9394a2f44199aa5afb5458ad2469e55988a4ee2d0eb8e888a7c44dff14",
+      "git_blob": "320abe6053370b50c5346caa7c44fb9ce0ffa646",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_store/lib/src/archive_directory_native.dart": {
+      "sha256": "ff65647b0f53d30b78839ef8f69dcb82035007a21d89bc6e911845f11f686b58",
+      "git_blob": "3f8455dc824c5a13a4bfa285a547e918a12af0e4",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_store/lib/src/archive_export_models.dart": {
+      "sha256": "a270ccb5415a42918621a7ea0b4de286a912e21a7efa56879873295a2a7eabd3",
+      "git_blob": "3564c4a2fd0a586e88e989d5f30f78609041d5cd",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_store/lib/src/archive_export_native.dart": {
+      "sha256": "909d8af170470d6d35d2fc54626fc0511f08fa6d7316c61415c0c5ca1d2599fc",
+      "git_blob": "9082571c9c5f77561599f7a57f40915476e0cf9c",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_store/lib/src/archive_export_plan.dart": {
+      "sha256": "2783251213c328b756aa27342ea1bd76a3f5172837dc9bba7589d9125b007db3",
+      "git_blob": "d5ea2a807584fd212159dcb6174fcac65855b14c",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_store/lib/src/archive_maintenance.dart": {
+      "sha256": "24d4870789c8a419ce6e14764628b5158ba1afc312d3dcfde838bd651f014b47",
+      "git_blob": "0cc27aeb8b3e0301d8ba0f86b975fe9fbf96247f",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_store/lib/src/archive_models.dart": {
+      "sha256": "289157f231d43a33532d411569bcd6e51c19ba341c7654577511805129ec60b8",
+      "git_blob": "7d0d2cce436a9bd58e890a0dbd28143ab714bd3c",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_store/lib/src/archive_query.dart": {
+      "sha256": "9568f47b41f668c5e0c199c28a08b10273ebc31a2ddaf8495db1fdb975fb7060",
+      "git_blob": "677035a8764196e03673546475a3ee82c518b42f",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_store/lib/src/archive_repository.dart": {
+      "sha256": "a716eba4d9d3a256e2f7db50aa46246bb1ec80800de1f475e5cdab8fe2008e03",
+      "git_blob": "10a8f51cefb081d1a3077d4c34f7bac52c05c36a",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_store/lib/src/archive_restore_checkpoint_models.dart": {
+      "sha256": "9c1ce6f5b6604fd4cb1e32d04d0ec85e60221941a78686b40be156a0b9d03d64",
+      "git_blob": "55a9513645d9be8b105a08a052c2fae053e33bf8",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_store/lib/src/archive_restore_checkpoints.dart": {
+      "sha256": "7d082e7c9529bdf3b6449df523d54cd7dd83d47622d131a6d7197a6cef6dccc0",
+      "git_blob": "532692c6e822ab97848871b62731c7d865e16815",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_store/lib/src/archive_restore_models.dart": {
+      "sha256": "dbc5917710d786ce8b6627121fa86ab12fd73f091d621b18396b5821dc90eb5d",
+      "git_blob": "dbde7ecfb9971c591edd16a5c7c4324c7ab0c61d",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_store/lib/src/archive_restore_native.dart": {
+      "sha256": "c18db01c1381ce7d4dac7abd46365460da85521f8d266e728aad349f25171f9e",
+      "git_blob": "317b9f5676346c3560733ad0036a8acac3ca8427",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_store/lib/src/archive_runner.dart": {
+      "sha256": "26244e29d36333f14f2482b3162fa8b85d86f6d1b78c4eff2b4d154384553872",
+      "git_blob": "a3a73cd792c44a341fd3b2717e364aa2eeac9dcf",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_store/lib/src/archive_settings.dart": {
+      "sha256": "4b29322462afece00f0eb1262371eb74db2c19da48bee6c63d30100bd81ee374",
+      "git_blob": "194c879fd6da03328b4db4b5da3b03c90a286997",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_store/lib/src/archive_text.dart": {
+      "sha256": "06f4b2d8552f9f2077a1ccbbea0e9a7a0b3a42c4d49fec9818438f5833951814",
+      "git_blob": "a1b278111c1a0f1bd94b867ffd4a9bd28670492c",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_store/lib/src/browser_problem.dart": {
+      "sha256": "4ff488225fe8e70909a4083c005570ef6b0af6b91d57d3448d06e1f3daa8b6a9",
+      "git_blob": "f192b41c685851592c86d0ac1d30fc66deaa8550",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_store/lib/src/browser_setup.dart": {
+      "sha256": "1fa582a0270bb2199c12d47eb6c8e43b645b94367e3390f41c89f0656432c719",
+      "git_blob": "2301833c4e0eea985562bb79e5425847d4a1e048",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_store/lib/src/codec.dart": {
+      "sha256": "847650111e33cee0b56d5d7d7c4a0d182dae7b84e23789080ddb9992a7ce8842",
+      "git_blob": "ff28acc45930fcea71c0f5c653532c02e5917e7c",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_store/lib/src/errors.dart": {
+      "sha256": "97cfa6c6eb1f4d5200ec83d93659a425399f0acdf46d7231aa46878a612aabbd",
+      "git_blob": "f5e2745bcbf6d8b085930ec179a19b4a0b23a347",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_store/lib/src/models.dart": {
+      "sha256": "f53a129e5e0cac6e07ccaa2f0204d57989663d58d91941ce4ead0208ef9502ab",
+      "git_blob": "cbc8a35aa2aeea43af4fbaf9814468ded8c203e9",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_store/lib/src/owner_locked_executor.dart": {
+      "sha256": "2aeb6eed9854637eab2459ebed2dcf27aa79bd5f150d60e77d610259c02c357a",
+      "git_blob": "4ea4ab0830adb3caa058958076c456acaf26f43e",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_store/lib/src/platform_configuration.dart": {
+      "sha256": "be6b5f9815dbb260e2303a54d262800f420b69703cbfedabd18f27e238eaa6cc",
+      "git_blob": "670f9890720312dac75bed48ded93a2da76c1bc0",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_store/lib/src/repository.dart": {
+      "sha256": "264bb8cf7a8dbbe4bb45ea259c9d0246a2771ccdcb0ac352996b767f6b4f4a74",
+      "git_blob": "b023704793339083f259830aa88d5c3cf591f2e0",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_store/lib/src/schema/database.dart": {
+      "sha256": "bec032d0a1d758ada2987a240b5ce8294aaf7bb3111ab8e957cb67c511a31483",
+      "git_blob": "a7ca98c4cb4fc2525ac637f7939f56ad57b86c62",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_store/lib/src/search_journal.dart": {
+      "sha256": "bb6984e4c4623f425a89930418789714125b1791f4014dcfb2d9dfde85441d36",
+      "git_blob": "df0b0501bcf6d2af11326b3ca71f459d689f7a6d",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_store/pubspec.yaml": {
+      "sha256": "c19f88e29dc3f530505d992e9f79c287336f9ee0310b081c6cfa0017a5c626b6",
+      "git_blob": "4529099ff0aa052d780d77fd1b9f35b9ae80ea94",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_store/test/adversarial_store_test.dart": {
+      "sha256": "f837ebe27cb107c44867783cda85b53a538fc9c374fbf2c1d4d565ba3589750a",
+      "git_blob": "02acbe90f575dcd413303095df226e68ba266cdb",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_store/test/archive_directory_native_test.dart": {
+      "sha256": "cbb4449d2ef6ba9764b97c67cace81b2a55589e0d2b9d4be82188e70169fab86",
+      "git_blob": "955bfa243e8695ea387e4246d51d3c5169ded04a",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_store/test/archive_export_manifest_test.dart": {
+      "sha256": "bd7bc49ed1a7f87333445b2d3db10d650d08fadf1ac323f835623d8b6c6f5a3c",
+      "git_blob": "91dfa2443293dfc31fc01ac2ccd2d4ff8f21bfe2",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_store/test/archive_export_native_test.dart": {
+      "sha256": "2626b49e45c9339a3c7282c06805ed25aff3a1f9219295020483c76a09c33ed1",
+      "git_blob": "46afb44814c89d634c4ba9e316e02959fb995bb3",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_store/test/archive_export_plan_test.dart": {
+      "sha256": "2b6ec40b345d73bbe4ab6ec5480c8397aedd467f18e2f8bbb06b741fa4446786",
+      "git_blob": "0e45641efce630fb86ee9020509c5d2a3da14e0d",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_store/test/archive_multi_origin_test.dart": {
+      "sha256": "c28d5209a5e78dec16fe56498bac189c06b10bf5822e66ea247fbcb3b5d7d41e",
+      "git_blob": "84c7fdf22449df470b5f5c19f1b958060457a57b",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_store/test/archive_native_test.dart": {
+      "sha256": "c0da5ebe70401deadba4d89c23678b18a7108df9185a440be1a3a844e6501209",
+      "git_blob": "17d26fe2f02c19a6b2d3f4c76223ad6a9dc5754c",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_store/test/archive_query_test.dart": {
+      "sha256": "e7d702766fbe8bf813667b19cf4c3e91f149be574847689de11a6e656b08f3e8",
+      "git_blob": "638d85c471ad9dcbbf544a1abd24717411a43cc7",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_store/test/archive_repository_test.dart": {
+      "sha256": "0734bfee2891b65d70f662ede6132e7f8374aae77a5e064d66b8655025a1d22d",
+      "git_blob": "3b5493a75e3923c6006e58a043dfeb7e1a73ae16",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_store/test/archive_restore_adversarial_test.dart": {
+      "sha256": "43d22351e0aa9a019018dc4af0e5d4c2aa8fa9ae559c280275df7cf072b71352",
+      "git_blob": "6d7ec429c91c7d47cef7262cde1e5008ea54bc1f",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_store/test/archive_restore_checkpoint_test.dart": {
+      "sha256": "dc99b59d6fd8a9ec7adda99a44cea241b5d7bcbdea697e294a9a896716cfd5cf",
+      "git_blob": "a8482d9d81aab2cd3e7bcca326c9ce60fa814cf5",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_store/test/archive_restore_native_test.dart": {
+      "sha256": "406afdd45c7bb1fcba0b004c5c63bc1d125132667f63ea5fe5dab78b5574f8ad",
+      "git_blob": "356f9ca14c625767863e5457ae4ab6ca9bc2c711",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_store/test/archive_restore_resume_test.dart": {
+      "sha256": "52d561200b591a09551e25cb913834eed3f1ba97c758909fe0b920c55fc3ebaf",
+      "git_blob": "eeae8f401f73abf70d406db59200f75ce28e8ea7",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_store/test/archive_runner_test.dart": {
+      "sha256": "c9863d0aa0509cad127ecb1fa860359ae6d6744b970d78f9519de7cb1d850f34",
+      "git_blob": "03cd0a560f9f7b3f1a35e76aded5c5e37dc51388",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_store/test/browser_problem_test.dart": {
+      "sha256": "4968b5407fe0c2f0322bdc96275a10ab29676ac489faacff3cc95c3b897b833c",
+      "git_blob": "0e3d9f8611482157b93b1636050808d7b59ae95d",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_store/test/codec_test.dart": {
+      "sha256": "307d152ed5bd4792c1290168328b8ff6243c7487b71485a3b3db6fdec09e237c",
+      "git_blob": "0a810d49252e81ec4aee244e43e17c1721a487be",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_store/test/crash_recovery_test.dart": {
+      "sha256": "14478047dc76ce9e97533b7f11edf7322d7536e3989169a28d5464395b791010",
+      "git_blob": "afd4997169f6d3329d7ce9cbb13925fcdcf3e68c",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_store/test/draft_editor_state_test.dart": {
+      "sha256": "a30b64bd71f0b5b2b565002dfa64309cb6d086305c306497625f028d1b9435b7",
+      "git_blob": "134a424fb87756da73f58ece276cb78543f3bbbc",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_store/test/ews_store_test.dart": {
+      "sha256": "466e689d334fe267a313f1e157bf3cdb1ae26d799504510f2bd05e6fd004ef5b",
+      "git_blob": "e15ca31efd86490b1d786ff801d318b1daf097e1",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_store/test/imap_sync_range_test.dart": {
+      "sha256": "df223404305f681667a4363a38d8495c8d3d4ea84fe82a191172f13bf9ea4e16",
+      "git_blob": "f22e64b010fa4b43f98aa4097810df4d7c3ae38e",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_store/test/migration_test.dart": {
+      "sha256": "bc02b376969a42b57871acb55f75ad44546f6ed65070b6386d6c440839228063",
+      "git_blob": "9c389a99fd24a64d2e4a5a892dd84aafa5c7e4f1",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_store/test/native_platform_test.dart": {
+      "sha256": "75fe4a64db6658bde5314d9b1b5c6bb06f875a82078fc3ca4637adfe591285a5",
+      "git_blob": "8d20c983ad2dbc62e8fd27af531343fb13e8e67e",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_store/test/platform_configuration_test.dart": {
+      "sha256": "f07dac727f3c3aaaf86fdcf5c89539165fb3ab6a83ec729012ffaea9e4192684",
+      "git_blob": "30fadd8f1569935d44efa9e539c3c34a10e1e5de",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_store/test/repository_test.dart": {
+      "sha256": "7341ce5ee76481e020ff3253a22bf3a9cd2344fa5972c3d39db0c80bc0be7a50",
+      "git_blob": "b12ba07cfb29df826929b155f3488c459386bf7f",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_store/tool/archive_crash_fixture.dart": {
+      "sha256": "7271e0a7c829d0bed84281775fe72299b281e93f54a6859d470973477b1cc508",
+      "git_blob": "1f6e85ed2cbbfd7f05affae69e9ce9a927372883",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_store/tool/archive_export_crash_fixture.dart": {
+      "sha256": "cc1e8c9de0902d3a37b0ac59a1e53a19df791879e4649e1dcd0b7c93553aca80",
+      "git_blob": "d7dca5ba4b07b18ccc02d2b58d854d34a4c136fc",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_store/tool/archive_restore_crash_fixture.dart": {
+      "sha256": "e3a60b529c1dcca3c92a168cb35c0553139280225236a85cc241e08d574f2e20",
+      "git_blob": "3cf9ba84512fd92c97e5c6c46a089d2ae2930d1f",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_store/tool/browser_compile_probe.dart": {
+      "sha256": "842abf0fafd1e01ea1919216a0324d480dce8419cb4fd26f505ab952385ab6bd",
+      "git_blob": "3b629f2b40ec7ba2c248b9a42e9a02f41fe7acfd",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_store/tool/mail_store_worker.dart": {
+      "sha256": "d4d5331ea7e527885502ee43f0dc7e0425f5414fc17139146d1343aaf583b9ab",
+      "git_blob": "4aa84891c0e5848c1438571f4605d89a0318380d",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_store/tool/native_crash_fixture.dart": {
+      "sha256": "bd50c2328fad9cd5a6ae082bc1b07f2e8f6f83481bad9b754b6ee6f08d806289",
+      "git_blob": "51d48fa746a82603b20120a2c0ccaf39de77c247",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_store/tool/transaction_crash_fixture.dart": {
+      "sha256": "c61004dbeaf6b87bcfaccb774c807251ef2479a0040d1adc3cf08f722745c5c7",
+      "git_blob": "9516719281f98b2f4dfb912c2722fa33f1f65cf9",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_transport/CHANGELOG.md": {
+      "sha256": "1e159e3556277dc659b6a5f22470b2161d9e2e8efd10889fc4ec2de17a2ea273",
+      "git_blob": "c603f29318b1d09f36c73e396613fb567e569484",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_transport/LICENSE": {
+      "sha256": "1126322e2cc8d165adc4c792eeb195717de2bcc7b39be1ce77959d78e87ef685",
+      "git_blob": "14fac913ccf80234b1848540089a3bbcb6e5283d",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_transport/README.md": {
+      "sha256": "266fa209cfd1ceb1a77157be8a1e075fae361fe3d427337490c94933d974f1a5",
+      "git_blob": "c6117d7d1dfdd13efd64fc69a4c9a3b108a8b09f",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_transport/analysis_options.yaml": {
+      "sha256": "4f81df7733df22a4734e70a7af950dea7547c134fad68d5b7cdafa435d337d00",
+      "git_blob": "d04adaf90938aaa1a97dd6b05391823376154428",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_transport/example/cloud_probe.dart": {
+      "sha256": "8aabb5978717c7908bf77288d8786a4f4aa3afd9373fe8a006c94fee824d0328",
+      "git_blob": "2707f342c3c1945ed52995cd3e0aa7fba3c81e07",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_transport/example/ews_probe.dart": {
+      "sha256": "b3751cba72f94f6f8b155ab01b04b48e263c0be5f97dab195e8da19a15c4e9b4",
+      "git_blob": "a0ba13ddcac15ee0700a9dd758ba92a26bedd69b",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_transport/lib/quds_mail_transport.dart": {
+      "sha256": "8bcb5e37a72800030bc7cbe338b20b5560529b1ccf91c7a17a9d281a5c0d37b1",
+      "git_blob": "3cb5950dee476bb05baf2c98ff48ad03b7a4d75e",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_transport/lib/src/cloud/configuration.dart": {
+      "sha256": "f15665e39e8dbbf50ef88428153dd50caa349574dcca6114ede56a34bb79a4c1",
+      "git_blob": "27a22eb3aea1b3c9e0676828db584d7c72aa6c06",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_transport/lib/src/cloud/cursor.dart": {
+      "sha256": "dc51261ba663f8b03d14e7238203a2c570d46eda1f6b6f763fec566443bfae39",
+      "git_blob": "fa36ac88c167a00b064875e983b99d4680df118e",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_transport/lib/src/cloud/http.dart": {
+      "sha256": "b6cab282f3c006b22273f40ebdb9092f8234173ae641ed614d23692de694b372",
+      "git_blob": "33ae02b5c5f94faddb315045256bccd2c17b945b",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_transport/lib/src/cloud/native/authorization.dart": {
+      "sha256": "b6369951ffb223f1c773dc133cb86cf4c6023fedd026aea838ab738cdc400caa",
+      "git_blob": "20ef038eb3015913ef86ba2bafcd6872732f3840",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_transport/lib/src/cloud/native/factory.dart": {
+      "sha256": "be02b0c962032905e35ac503f218b678113fb5f469f21413e7c73817dd13614e",
+      "git_blob": "f41d2218a4028a54ecc7333720e231d4f1bc3f32",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_transport/lib/src/cloud/native/http.dart": {
+      "sha256": "a4f1812600a499009cc116502450f664c8dc9b236280caf1fce310316459a046",
+      "git_blob": "9150c2a8cac8db4d5d8d1caf54cb27f480325e19",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_transport/lib/src/cloud/oauth.dart": {
+      "sha256": "eaad06da1d506ad30fb370b0ff2c21651d037654d2e29fdaec1957db5b159b70",
+      "git_blob": "bb1c0e35cddb7233ab9f49d30a4a5e7002a58199",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_transport/lib/src/cloud/provider.dart": {
+      "sha256": "bc90d3c93c232beda8e620d405685441b35dd9bb8d18624d115d310bcaa1a450",
+      "git_blob": "2a1210b182fc9d6a7a4af348c9f39025938284df",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_transport/lib/src/cloud/unsupported.dart": {
+      "sha256": "00c6b3d8bee656f978d60e599d19db9a51d1893aeb0f3138d9f3bdf5a5bbb498",
+      "git_blob": "4a4807377f83ae84a9f0eae61605187d5f47424d",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_transport/lib/src/configuration.dart": {
+      "sha256": "1eac0dd491ac016389f6af8b63c34b7cc34ce652213f67b5b2d8131342230f33",
+      "git_blob": "e2a4cc67ec3064d8fdf31bf7120ccea393a07f77",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_transport/lib/src/cursor.dart": {
+      "sha256": "8a75a9bcc7a95e3fb745af3345ba25c1e7433b1a5d71f42424a658522a5bab88",
+      "git_blob": "b6c9c60ba3689041ce0d4e6e3b2845f9d4b51dbf",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_transport/lib/src/ews/configuration.dart": {
+      "sha256": "f56513487f51a4080572765efa76a996e9962d42143ce0a26c4cf5ae3f89ebeb",
+      "git_blob": "4777d68e0af07715ff75e3c54d0af4ebdccad68e",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_transport/lib/src/ews/cursor.dart": {
+      "sha256": "8b8fdd96b1308efcf87e9bcb0abbb7502313e6917bd65f10026cb3cd4f9dc9a2",
+      "git_blob": "44cd6edb1102f8a12ce7a7ba19d74e8c26b84cac",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_transport/lib/src/ews/errors.dart": {
+      "sha256": "abe67c9289dad88072c25b6953c6a35c16ecad6b34f9b49d8f8a683531c34b87",
+      "git_blob": "3ca8ef8440e84a7022c03162dc8c09ecb9f488bb",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_transport/lib/src/ews/native/factory.dart": {
+      "sha256": "67f6acc12ed77f9ca82cf49e6a5c5040395e9b4f23996c8f869fdf76048d3e14",
+      "git_blob": "216ee00ea3258aaf6a3ab258ed0ad24945b3c431",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_transport/lib/src/ews/native/http_client.dart": {
+      "sha256": "1529b46450dad66ab4722086f854ceb9901ae92fb2ce2842e01733383dfc4370",
+      "git_blob": "066eed80c6542507c9f6732a529afdaadab9dfaf",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_transport/lib/src/ews/native/ntlm.dart": {
+      "sha256": "1859b1a31092de16a59392dd518ea53b5b579934f48bf3c0a9333b4e616fc45a",
+      "git_blob": "441c1e8a77ec1d0a3bb1664cc9298df07416d3ab",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_transport/lib/src/ews/native/provider.dart": {
+      "sha256": "0c479a7723369324683179e1789f88b9a02950d7f64a25929922bf7ffda795ed",
+      "git_blob": "5d9a6be7a6d3453461ef382ad94a7a3a2f888942",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_transport/lib/src/ews/soap.dart": {
+      "sha256": "d6c43bccd26f4747633a2aead150d4a656904215f5df240da35882b06153feb9",
+      "git_blob": "d7d84192c4a7cc9a34536cde7b02da2030e319a6",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_transport/lib/src/ews/unsupported.dart": {
+      "sha256": "7d3aed61a820eadbc842352ceab716c3bff348a90c14ee2765e55e1a9121574d",
+      "git_blob": "4c2ddbeb82f1817f635fdc04f305b9c0dec00857",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_transport/lib/src/native/factory.dart": {
+      "sha256": "65e51c3621f980b4c5134992becebc35b9dc6afc9566bde8873337593fcad44f",
+      "git_blob": "b446ae6dff1fde7766527b3475e257c3f85e9cda",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_transport/lib/src/native/provider.dart": {
+      "sha256": "52a44b05be583726d9e0033fdd704ee99fb03c96f1c07fdf3e090a2f0fa9f843",
+      "git_blob": "70fd8fe66d480caa420e77071a1b260c07af080a",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_transport/lib/src/unsupported/provider.dart": {
+      "sha256": "a6ff0c704076e52aa33a3d488af7333311a8ec3c9c96a436a551ccfb0a35be56",
+      "git_blob": "4e5d17aa1495661a72ea657bf95828a4080f8442",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_transport/pubspec.yaml": {
+      "sha256": "c470b33a51a06e9a4366cf0e4000d48b495fd069c43752acb5346057c3252ba2",
+      "git_blob": "bc2cc7ecf7a8230b4f94d4f9a943a4ea923aebe0",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_transport/test/cloud_http_test.dart": {
+      "sha256": "28ef590af5bca10954caa05bbfde7e5af7f102fb79b06b2bae9860c29e0b8618",
+      "git_blob": "e17c808af82c424b52df4f50f26aaf6c40b22487",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_transport/test/cloud_oauth_loopback_test.dart": {
+      "sha256": "ada6fc8576d8698621f8859a527bf2d8f483e3fd4031187da9589d45ab592381",
+      "git_blob": "b420728077650b2d6fd5abfe2d67a22a3208ef79",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_transport/test/cloud_oauth_test.dart": {
+      "sha256": "f2af4803c39e8a23378e6391e2e97d1d0b81f45a333cc9de078942e5fcf22477",
+      "git_blob": "6a63ac89cc99c5ebb7ec20b2d9b949d5cffa5ccc",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_transport/test/cloud_provider_test.dart": {
+      "sha256": "fd4c79a9cf56299b7f21e22b2f257085b3306ccb7a17c6b4d64b287f6920222a",
+      "git_blob": "8ee1e2dd5718d867c6a641a9e7ef5626862e417c",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_transport/test/cloud_store_test.dart": {
+      "sha256": "7455f07977c0ba9b62bb3f4151fb693bab35aac93e15d4330ba2ec834f5e06db",
+      "git_blob": "c7f1d4ce57f1f83a305069ce9a11cc6b5691d17b",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_transport/test/cloud_unsupported_test.dart": {
+      "sha256": "cd09bdb912aebf86ceb411b7ef54420af33a2146c8860a87818e7f8539fd8881",
+      "git_blob": "9bc7bf9dde9100a99d1ab9ff47d20fa5179d4046",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_transport/test/configuration_test.dart": {
+      "sha256": "0dc7e2d0de93a1b0f082678175eeabb991b034f38f046a322835dc22a55f3768",
+      "git_blob": "59b8bb17ec764dd66879cfef1b6192b0933f915f",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_transport/test/cursor_test.dart": {
+      "sha256": "e9da5d71253a48fb7b0c5f1aa53d2e536713efb03261237d467a535e5d2c6316",
+      "git_blob": "4664c0b60e09df3a66d3a50e828af2dc5d3541ac",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_transport/test/ews_configuration_test.dart": {
+      "sha256": "0f2a0f7d3c8023eb3b0a05dd1e7b12469bb5dca635990b849ff69ffd7434e949",
+      "git_blob": "2ffea44047829c5734564c952731ffedfdb21d70",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_transport/test/ews_http_test.dart": {
+      "sha256": "af7cfcff2512ca3488304fa370996c5e92ffd3d199fc09900b9fb4a6e897acd6",
+      "git_blob": "c36a0f9ce12625d492f5887ac1b09ce977fbbfc9",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_transport/test/ews_ntlm_test.dart": {
+      "sha256": "bfd236c9e7ca42417cb9953e44529b698efab0760389df3ae2d58233205c7041",
+      "git_blob": "90c3cad74f3c367cbf2f628f0d334def4ead635f",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_transport/test/ews_provider_test.dart": {
+      "sha256": "3f8249e54d18febd604cabd710e735e563a4b840a4f063d0d472eb2abd8c7aaf",
+      "git_blob": "aaab256a4db635f91443449b4ce6cc9fdcf68580",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_transport/test/ews_soap_test.dart": {
+      "sha256": "0b11558918707e06ac0ca3ce0890dd3f8b4c17b5a8b59eff9d35a03f06710843",
+      "git_blob": "f54baeacd1727ce97618634eff0d5a664a79f308",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_transport/test/ews_unsupported_test.dart": {
+      "sha256": "ba5ffaf89a934b5e62dc8dd619777297e65dbe76deabe8258b9aaa433d533d72",
+      "git_blob": "e3c4d6625eb56e4466c2bf044f0d6e231e6bd6d3",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_transport/test/fixtures/tls/README.md": {
+      "sha256": "85fb609005362517696252725cbddf062b412a3cfcca248f6dd526035bfe0579",
+      "git_blob": "b7c4159fac0a05cba2b2eaa0df60df44e9d7d998",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_transport/test/fixtures/tls/loopback-cert.pem": {
+      "sha256": "543a871246369fd7a102d4141a1bf87dbfbb331c087613efaf6ea64d13b4d586",
+      "git_blob": "dd7912ff5a96056f4f1298ad091aa9da4b227b8d",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_transport/test/fixtures/tls/loopback-key.pem": {
+      "sha256": "5b4612de534322c88b096f656e2035c88d559206ddef97720e9f352775551074",
+      "git_blob": "ff7250436bab8665f879e702fa60e6839115b4f8",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_transport/test/host_store_integration_test.dart": {
+      "sha256": "4237e7d0df8972b3f1057a1176028a76931cb66deccfcd4a9afa7305d923a8ef",
+      "git_blob": "25539871c7c6e40c5dbb3514adfd93cbd56af923",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_transport/test/native_browse_test.dart": {
+      "sha256": "029b9f966d4af560085282f80f9d0f25fb399b2c577dda908799742613b86ddd",
+      "git_blob": "a97d5ae7434b8909196cb31252ade26ddbeb3936",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_transport/test/native_provider_test.dart": {
+      "sha256": "ed402859381d33138a1f8a1b20b4f217f23d000595ae19c354dd17c8212f81cf",
+      "git_blob": "41ddf705dadec23776c20c15e971adb339a0b3ea",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_transport/test/native_tls_cancellation_test.dart": {
+      "sha256": "95f834e0d0927f2e6fc13efdceaee4d8ac00f9174a95ed4b982b46764f13dc17",
+      "git_blob": "4d1ce6f8df7383144937ba442ba624dc713295b8",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_transport/test/native_tls_round_trip_test.dart": {
+      "sha256": "160629605c10a07e28e24317794231c389634aae8d23fd53bd5df350551b4b21",
+      "git_blob": "9bd37e825627d4b2b13d48ab2ab8dda8d7c7beff",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_transport/test/native_tls_test.dart": {
+      "sha256": "7f14585950394c1f326b8653e842f78da6078dfdecf1d3c0a41cca5fb817e9b3",
+      "git_blob": "ea7d9c8814c6e15dddc35b85ea08b61af96693d7",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_transport/test/support/imap_fixture.dart": {
+      "sha256": "33e7b27be7214a8c7d3831aa7889cf4fc5a69e2f7e74e4a4a75a68746bd7b37a",
+      "git_blob": "06879e31f4a4635855add993994dc57d36c0f566",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_transport/test/support/tls/README.md": {
+      "sha256": "9a64bcd08459e9e779d597c406d4a3826bc4305ff90f299ce6029bcbc45cd259",
+      "git_blob": "e854ababb4e842309d294eebbc108abcf7fe2b5b",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_transport/test/support/tls/public-test-ca.pem": {
+      "sha256": "5eebead5c4c193eeace0a635398a305ab768b9fff1257235ec8b063cde55f94f",
+      "git_blob": "86a836246ff1a9f0688d13e21b01e5bff885f599",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_transport/test/support/tls/public-test-server-key.pem": {
+      "sha256": "a1513697cebd55d6823c836a2a4a50d605572ba413e73ad3df5b3f6d5d9dc787",
+      "git_blob": "75d7e648b273e08f14c3ebc92cbde8eca24d691e",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_transport/test/support/tls/public-test-server.pem": {
+      "sha256": "d698b3fdfd9bbf19c328dbe5edea880ba50cf547837b7dc188a95828421f260d",
+      "git_blob": "5a584b3282af3ba18aa215a237d7fcf631cbe72f",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_transport/test/support/tls_server.dart": {
+      "sha256": "7478e9366b7d41a1ea7b2261e9a59f7fb09490af1575d39a3e92757bed3dc3a3",
+      "git_blob": "cc52a3fcaa58579ad10aa933b5f5d83a7eed4b70",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_transport/test/uid_discovery_test.dart": {
+      "sha256": "3eb6733199f568412c333c1cd98d9b1b9270009d948144a715d8a98cabfb21b2",
+      "git_blob": "d05e1136c08bbab556a32ba4fecb2fbbccecf428",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_transport/test/unsupported_test.dart": {
+      "sha256": "77879713ab23606721713684b38671951cc7fbea41f7acb6cfccc7fd8f172a6d",
+      "git_blob": "021c7e6bc230b36229078397aab734cb15b21be6",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_ui/CHANGELOG.md": {
+      "sha256": "818c7e5709a2e1ed628a370c1aa36497af93e476753cf6f351478f42cb5cde0d",
+      "git_blob": "4f94bcdb6e4a6bfee010e98d44cf64154d0931f9",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_ui/LICENSE": {
+      "sha256": "ddce111598e179ca6118a86ec7d1a62aaaab6fb007df49d7236b78d9085f3641",
+      "git_blob": "d2c25674e883f1006ac85cf45912f851a2b5ef0e",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_ui/README.md": {
+      "sha256": "24b1ca4dae6db043ca9003268a19b457f3bfcee9d3e49bb583c32939afd95d08",
+      "git_blob": "6351085044755aac679c959d08221459a33e421d",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_ui/analysis_options.yaml": {
+      "sha256": "c3daa85e07661bf968765b6c240860e8bd24a196213c192a63f7a530f8150cfb",
+      "git_blob": "9aa1de6477f7db767dc57ba5152626516ba1625d",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_ui/example/lib/main.dart": {
+      "sha256": "78d68c50f869006f8e47aa7d1106b532912459f33b9fb5819cadf6cb3fa5536a",
+      "git_blob": "e93949500c66d7362b7a393f42f95ad98344f3ff",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_ui/example/pubspec.yaml": {
+      "sha256": "215440d5c99478c7bfe1d5aa37d57e36471f7613c76f75619867ad1e006fd1f3",
+      "git_blob": "1afef10aeb337b84d2af357497002105d25f9756",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_ui/example/web/flutter_bootstrap.js": {
+      "sha256": "4b80491deac58aa1c9481def90b57b45faea7748cbede28ad6cb66fa31a307d9",
+      "git_blob": "add708b06fad7015ad5d8cf9d63b16be9086d252",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_ui/example/web/index.html": {
+      "sha256": "391e2369258438ad1701333aa73b3b11edccd14ae8b50a60282aaaf1e7f2c82e",
+      "git_blob": "66ace5a4ec2f20107fdd040bc9f6ca3b715eba5e",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_ui/lib/quds_mail_ui.dart": {
+      "sha256": "f73705601eef1d371cddb3b19538d3721f2272984fdc01ab22851e12cbf4486a",
+      "git_blob": "5bb230717c189285534407f4c160c6821891aca6",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_ui/lib/src/reader/controller.dart": {
+      "sha256": "8b5afcd3e6208ea240d0b1d2ddb5735c17705f61f528c230234c81264be21510",
+      "git_blob": "d9c8314fe4da812f91e44418c2eb03e89868fb9c",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_ui/lib/src/reader/message_view.dart": {
+      "sha256": "f0edc368afebb3b3171324020ac7fc92858d3217ab41bc62f131276336a9806b",
+      "git_blob": "c67f7f84aa617c936962fa4ebf6c9578cf8667f1",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_ui/lib/src/reader/presentation.dart": {
+      "sha256": "11c816d2e2d77c3d23e3b4a5f156997c6021d16fc7e80027c3267dd3373e1e09",
+      "git_blob": "cd43ad431eca0e766f7d21f514fb0c7cb90e24cf",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_ui/lib/src/reader/selection_surface.dart": {
+      "sha256": "e54987fe69ae8a896805a3d310524170767591bc224aa2533eea75d0a083a480",
+      "git_blob": "2c78f74f950127a14bcec62c522b92445d2e8adc",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_ui/lib/src/workspace/message_list.dart": {
+      "sha256": "7e6105317f1a2bb39d5b2e103ae94ddc55d30ba3b46b05f9444e472b3c6d6f9b",
+      "git_blob": "8b4076183c0561df6b5551a591cd982c7af77de5",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_ui/pubspec.yaml": {
+      "sha256": "1ae476502a8b02982d63954494c1eb4165f697fe27a7f1962c946b7f449c7653",
+      "git_blob": "74ed9197395cde312e8e47c5705d0d076b9cd262",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_ui/test/controller_test.dart": {
+      "sha256": "b4f5db7814c18f7188d6d75a7a786e69e46f46b80f106511593672d47c581fd0",
+      "git_blob": "15276fa1ca36613ec5c4badcaac926ae63fb28e6",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_ui/test/example_test.dart": {
+      "sha256": "f96c4e19f853591eaea5afbf4cd5fd9d5e17c19ae39dc077cffb3e30c8a82acb",
+      "git_blob": "70d24f653a5e4c447837117398182abd30030b9b",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_ui/test/fixtures/mail_fixture.dart": {
+      "sha256": "a2b720b1ad69e7fac37bfc7d47647ed3cf9185fabc3bae2d3b964ba62bbdae35",
+      "git_blob": "7668fe1c3fa7d3f7da94f9019b5330afa6901d17",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_ui/test/message_list_test.dart": {
+      "sha256": "fd709bd0589968b75179b21d72ed16a5026b4ad71128f73b6126decc2b1022c9",
+      "git_blob": "e5a959f19dc4b338074a38520301ebdd944e2edf",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_ui/test/message_view_test.dart": {
+      "sha256": "eccaf662ab0368202ff97ce0f5080aade723c734faff81b7e609d93742eca6b0",
+      "git_blob": "2b93a097dad8ab471638859e93154055853189d0",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_ui/test/presentation_test.dart": {
+      "sha256": "f2f71b89f0283fda06002a2a103ba958bf911fc364110a202de29a4ca8a9bff9",
+      "git_blob": "ad25d86372e45965869c4c1f75fecee21cd75135",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_ui/test/support/runtime_network_guard.dart": {
+      "sha256": "336866b68c3e05357e8a569c2aae34eb89676e6b31aeb899e869d87c756d707d",
+      "git_blob": "89664dad0173c3e8ba0b661e6d657ad52ffd7806",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_ui/test/support/runtime_network_guard_native.dart": {
+      "sha256": "19fd0c505b75a2cf785448a562ad0853e52dd768087d21a556013f51a929b850",
+      "git_blob": "80f4458f73c526a5d2515dae7e91485a43fa5daa",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_ui/test/support/runtime_network_guard_web.dart": {
+      "sha256": "7c340c6f825fb3e57c6416f07dae0aa87542fdcc83fedf4917fb3420209ad63c",
+      "git_blob": "883c813ce185a65fd3785e9ff4c9810b5c9c1fe6",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_ui/tool/reader_visual_test.dart": {
+      "sha256": "c28dd77570497d278bf732ed6c22e9e076f653e8a567675c753fbb5f2928cc0f",
+      "git_blob": "617830d2fd0d5647f754e66c4030ebd30b6adcf7",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_mail_ui/tool/web_guard_compile.dart": {
+      "sha256": "a753c1899d86075fd4874bdedc8a544b89ddaae1d97e0232ee746ffa005d8666",
+      "git_blob": "551cb786065f4ac0afa4798b314e3b2ef4e5465f",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_office_editor/example/analysis_options.yaml": {
+      "sha256": "23c7037f65bce027616f5953474e41aac06c2981feda7f8dbab94b3509949ed3",
+      "git_blob": "6be99ebf1c04294573572bb9c075e7ca2953ca88",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_office_editor/example/lib/studio_data_root.dart": {
+      "sha256": "9a04d2b668edb11e62eb952478c5acd1a28ddab81e28aa2f391968c9826e2849",
+      "git_blob": "c1d149a52777da75672289b104af115c77653e30",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_office_editor/example/lib/studio_native_paths.dart": {
+      "sha256": "139c9fa9b2923ffb90047dff7e2b8acdca3d9260c54584c496c9df38b18f7229",
+      "git_blob": "a78e73e682cb96c52929fc799b87d4cd9ebc146d",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_office_editor/example/pubspec.yaml": {
+      "sha256": "4a15ff2b3d745da18dffc9e207e8362eb74b6553d6ac12398073c213b2683573",
+      "git_blob": "522fda7838c3a33a9d9f500e636f50ce4f4ee993",
+      "matches_tested_input_and_commit": true
+    },
+    "packages/quds_office_editor/example/test/studio_native_paths_test.dart": {
+      "sha256": "6c2edeb2097b15afbc384314a97618d83d96375eff51ee4b8a65bfdbc1b1d19d",
+      "git_blob": "2a7838ae9ebdf5053a7c32ee3f7810b7e2cb0992",
+      "matches_tested_input_and_commit": true
+    },
+    "pubspec.lock": {
+      "sha256": "df9ff88b4df699b2420954d0ddc0dd7a1c40dbca8d9e3af3f25bec7e66700e7e",
+      "git_blob": "1283d840c60c469bbadf2a133a13086c443a0488",
+      "matches_tested_input_and_commit": true
+    },
+    "pubspec.yaml": {
+      "sha256": "453a1f8ab62db1c5577c424b058b50033a8d3b49b99c83862ab58a7e1108f74f",
+      "git_blob": "ba34bf9e2c1b0eb583e5f9e2d9ba9f236a660f96",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/.github/workflows/dart.yml": {
+      "sha256": "107770de2373021c050443afcdb358172744a4fc3a37a290f190f5e79ead93e5",
+      "git_blob": "47cc43b61a039cba4cc7ecb6a1e21424498d4324",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/.gitignore": {
+      "sha256": "d7a68747c51cc8a80cd88863a080030931adc91c065dfe51a19a41bb875deb0f",
+      "git_blob": "7e65bb7d716c36b5853909a068cfe8e8ac51ab7c",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/CHANGELOG.md": {
+      "sha256": "6e76f176c8d6fb10aeb7fc819e707fe8bc5a892d65eae3d219630e1ba9a5944c",
+      "git_blob": "124eff5208b23a6dbab1bd179cb894c91585599f",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/DEPENDENCIES.json": {
+      "sha256": "285d067c0cb99e64d7a9bbe772468b555c65d07382384ed4eaa17789f8a7385c",
+      "git_blob": "6f5e7e1fdf79b0eebe8887fc99bd5be150fb7056",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/LICENSE": {
+      "sha256": "1f256ecad192880510e84ad60474eab7589218784b9a50bc7ceee34c2b91f1d5",
+      "git_blob": "a612ad9813b006ce81d1ee438dd784da99a54007",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/PORTABLE_CLOSURE.json": {
+      "sha256": "7df9cc38e2089fd7787c06dd0adeb607ecfbdc6583d78d1b0d967ad6675c1232",
+      "git_blob": "ee60fd9c1fde2b9bcb9979c598c95f044fe5f452",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/QUDS_PATCHES.md": {
+      "sha256": "9936bea9c1a57a29c3e991e76135bc70f746756a4bbabf701b43846b62f8402d",
+      "git_blob": "0b0192ff27ef9af443028f33605f92ca1187e4b9",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/README.md": {
+      "sha256": "524e3d1f28e9d1fd8912effae2262fb7b5eb0ab0b596291153946678982d1e0f",
+      "git_blob": "39218fb856d2efcb4be78da374bc9d0aa7cc4602",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/UPSTREAM.json": {
+      "sha256": "aa4746123855b09d129cc1884c83de36f0bcc941b1c0412672c90d40cbdcc355",
+      "git_blob": "fc7f1041b4bac90b89a109157b1687537a937734",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/analysis_options.yaml": {
+      "sha256": "cbcd99e298d94b53dd500283ea7eb3a7957da04c586b5283914e0125b6c426d8",
+      "git_blob": "2aec7ae796ecf1a39e7971050ed6111761706fd3",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/build.yaml": {
+      "sha256": "0f89c475ed5c9f35e0da0acf57fb80c5da45070e5067f1771215906e501fc02b",
+      "git_blob": "bdff77dbc6bf98896cd0bfac2f913dbe994b934f",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/example/discover.dart": {
+      "sha256": "31461bccf500c12284201cd5cf9053d9ae03cfe9b4310aafde2410c64b3e2937",
+      "git_blob": "450f29356803b97f527b0c8019ca51338bcbdc1c",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/example/enough_mail_example.dart": {
+      "sha256": "219e16cade754bb6cb5b4548871663a145a60ae8daf5976b6033e075094558e0",
+      "git_blob": "09c0084f3e274eeb35bd0643bd22e87bd20e36ff",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/example/example.dart": {
+      "sha256": "c7ddcb9d033fef41e95e64755fa6d98d1929f08bfbf5810feeb38d20533a5d40",
+      "git_blob": "010da4df33fbf270175dd97ea773679a6e673b21",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/codecs.dart": {
+      "sha256": "76dc937ce12229dc09f10352117dca1cdc2c1e3b2889da6ea4f5d49be008eff9",
+      "git_blob": "3c646d77c0b32c3a47ab152442b9cd6bd6896a4e",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/discover.dart": {
+      "sha256": "9cab3c5239a35f84c4010854212f83c9d76562782e79a010ac8e862a48bd2c8e",
+      "git_blob": "9896f74bb7e03f613bcebd94bd959ada1b0b3237",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/enough_mail.dart": {
+      "sha256": "70dcdf4a9d6a0757fca3440044ab36dd6f840af1a9f774faa6684f535c4cca89",
+      "git_blob": "5d4a585cc5e71052694d7602baca845e4779f56b",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/highlevel.dart": {
+      "sha256": "3ecd0a3754a50c7883b70faf87b2893c86a5ccf82d1013a34d6cd9e2195c3cbb",
+      "git_blob": "79bb5e5b8f3ce209e6f580275d99cb7ba52f0458",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/imap.dart": {
+      "sha256": "293f6c4bb5a2feaff9c03faaf3d61071d24d52c20432a55a41cf66320d413eb3",
+      "git_blob": "98e7acf7cb2671aa9427985d2046e41b05ce7582",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/mime.dart": {
+      "sha256": "2d168d95f525b227fe413b2267f84901169098658bfdf94697eacf1b593da6ff",
+      "git_blob": "aaf6c6ce49aa6c19243c527c5bef46588a5e15c7",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/mime_core.dart": {
+      "sha256": "60148aceb2f472a268eb5798365c8c68d9bd5fd013d169c4d5128ddd7360a332",
+      "git_blob": "3c7336684062fc8cd040ee6dbf92215a12210fb6",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/pop.dart": {
+      "sha256": "a73fb01ac816c89143c70433035bddd372f659730236f4b12346ab265f8c61da",
+      "git_blob": "83fc26ce70a8d04768561dbaef4a18aa94a086bf",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/smtp.dart": {
+      "sha256": "509bd3a86ed9a0a84034da636ca06ebe8b1ad4e79e7c264219557998c1bb63a9",
+      "git_blob": "3ada666f8762c1c128197a035083f4c5330d5fa1",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/src/codecs/base64_mail_codec.dart": {
+      "sha256": "00735e26d11d9d898a9a75fc432c9055e9ede091f48347ac84da7c2da3959bf2",
+      "git_blob": "244e4184796694540c245b6baa76755334f40904",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/src/codecs/date_codec.dart": {
+      "sha256": "3ad1929ee49f3f6aee7d895ace39a50d205b669d728df3d3c264b5c3a792e2a9",
+      "git_blob": "0ec74f31532137a0fffe19e8eb127c2f6fc910f0",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/src/codecs/mail_codec.dart": {
+      "sha256": "35f0ed3646441a54613729207af58f45c2ad2172a31601a33ccf0ffbec82b635",
+      "git_blob": "5c3cc64f61bda1e7c8c9c97490ffd1b2869f0353",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/src/codecs/modified_utf7_codec.dart": {
+      "sha256": "4cf223a8668a58036ab9dce30fa08cc209ed645cf7eceda466fd5ac542eba556",
+      "git_blob": "387b5cc76670adec1690e08b8342767e93774195",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/src/codecs/quoted_printable_mail_codec.dart": {
+      "sha256": "bc6fb6ffff7460a9fff4be6abfb28f93dbb8feb1dab5a6caefdc309ac0ec6ded",
+      "git_blob": "1d9d2759569e50bd806e2f4bdda9f29f34cf3d67",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/src/discover/client_config.dart": {
+      "sha256": "0d4267385bd02caf04cf6561c723ec9554f4a38b150f513e25a20c7ffb324303",
+      "git_blob": "174acb8daec22b6f27666c5387ca6540718449b1",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/src/discover/client_config.g.dart": {
+      "sha256": "059c4be6e04215848638bd76d861ecba9906d1bb74facf273ca8bf9fd9aeee64",
+      "git_blob": "29b0acffa169fee3124305b102fa4e15c0563947",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/src/discover/discover.dart": {
+      "sha256": "802d0b157eded22db8123c77040adbb588898f3b7f358144ef2be2cab96b765d",
+      "git_blob": "01d66fc08383e3cc84426f17eee0617b68cf11dc",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/src/exception.dart": {
+      "sha256": "9d302e1a61fe9e067543f5c457d7b479cf2903eacd0a930af3f985e57765d27d",
+      "git_blob": "2975a4fc5832b1b232f806af45bb3cc005f7ccc0",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/src/imap/extended_data.dart": {
+      "sha256": "19f87095d7b09855739479ecd0c1e78f79f09fd7f98eca19cba5f8800103aab4",
+      "git_blob": "2a8a5402892bc329f57d8a320f4bfc8b4709fe5c",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/src/imap/id.dart": {
+      "sha256": "a5d54bde0a84865e7a0906b2b0bfc8fa63fc6f22fd4f18beca00cef6c7e7c6c7",
+      "git_blob": "a9a6f184559bab3aec5a33c896dd6d3726512c0e",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/src/imap/imap_client.dart": {
+      "sha256": "eef74aaa5d4f7942452527b56c9b66b868c83053a7aa1c4b8759a3123424083d",
+      "git_blob": "10de98881487ed6384b5b32e42042b44b3c43ac0",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/src/imap/imap_client.g.dart": {
+      "sha256": "01290247fa20ea23b3b35d3f0466ac5f07d61afb225db7c7e72db70503f27b5e",
+      "git_blob": "6527f786daf965fc7a811350946869f2c3cedbbd",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/src/imap/imap_events.dart": {
+      "sha256": "4246c419037f6463e668f31527a8dbb37eb0ef03eb34c7ffe822414f40ccfff9",
+      "git_blob": "42469e32ea105c46e43a67b57387a552506d6816",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/src/imap/imap_exception.dart": {
+      "sha256": "e0502b925aeb64667b457a0fe52daedc07690d3ab4970be48ce77bd15b582e77",
+      "git_blob": "4e54bcc037839b9dc627aa38e9af605b638b5f78",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/src/imap/imap_search.dart": {
+      "sha256": "a76978f9f7461b67920fd9fb9efabb8d81cb395fb754153f7a61700480be0a0b",
+      "git_blob": "55cd82e55179077aa01193db1431bad6c8376d61",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/src/imap/mailbox.dart": {
+      "sha256": "491e346ee0efec763ce221954115f41ce6b883fce5ad69b8ec37cbfa43ec07e6",
+      "git_blob": "2bd7317b7fe28658c1982c150a2194404f3fb2f0",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/src/imap/message_sequence.dart": {
+      "sha256": "d31880648a67a60a42b0b7d19f83f836416dfacf9109611dc4f03ea4d843a0ac",
+      "git_blob": "8870ee15cb8bb8d6be4aaf15499eda681649288d",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/src/imap/message_sequence.g.dart": {
+      "sha256": "814907c12dd8ba1d22bb8dfa62e97c4e697fc6e4cd77f04dd3ee0274368c5043",
+      "git_blob": "298e60452456623d62e36e1be52f91c03dd2d66f",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/src/imap/metadata.dart": {
+      "sha256": "8ca22accf28ea88807180c5cf62e2d4932881bbab07e83df3d2c4ae4597e479e",
+      "git_blob": "961f7af0ff143ea0000f9e705c2453331decf8a7",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/src/imap/namespace.dart": {
+      "sha256": "e53c5e23d0e13762a308d62a5501028ff3e924528a5108f1ea8ab5aa77ac51af",
+      "git_blob": "09c4938e7e4d7658c5971603697d6136201cf4d8",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/src/imap/qresync.dart": {
+      "sha256": "9303ce63defe2f544a9fbd5cc3b23a1bc84fb9614b7c86837236d876b43f7495",
+      "git_blob": "6b4ead9f28250fbc0b39760a7a402f01a4499ad0",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/src/imap/raw_fetch.dart": {
+      "sha256": "e9a5621ed125bfdf95483a04eef6fcc6b050e9a1f138ef8dffdaf47b5346b58c",
+      "git_blob": "b0d8d246ae4cbd221cc1bede1d39b8d90a18e811",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/src/imap/resource_limit.dart": {
+      "sha256": "42a29fce75898d7261b70d49f2c702d44c793e80c21028e3f0267bba7c58b446",
+      "git_blob": "d44d1fa164c58bd0053afc09a8b693a8d24ded67",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/src/imap/response.dart": {
+      "sha256": "b4151b105acd2b25f64da025a251d9576ddde8920090e8f7d917d9ceffc2ceaa",
+      "git_blob": "6cf0acebbfaf8dca6bc1286dc1bb7a974de86daa",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/src/imap/return_option.dart": {
+      "sha256": "5daebc26b6eaecda26000ea4cf75b6ea4777e42f7fdab452be11a69ba38fb3a6",
+      "git_blob": "7f661871a42c2dfee3af14f34c045c382f11c368",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/src/imap/selection_options.dart": {
+      "sha256": "dda0524a4c4ff23e0fb0de1a114bc5fa3e17eb94c1b0a1ba7b37f730f71eb57f",
+      "git_blob": "71a6e0928fb2712c1517666b6b28153bccec8072",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/src/mail/mail_account.dart": {
+      "sha256": "7e859c12649d6557ea8daea549c888351026120fbd227af3799bc73508d10aa5",
+      "git_blob": "7c70e0c9f376eec396577b115e30e8c95653086e",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/src/mail/mail_account.g.dart": {
+      "sha256": "e15c532e061ab19bbdc04d25778418c78d570f75871aed363b716cc41dd2992f",
+      "git_blob": "679d033104e16eacadc709b2d916db835021cf8e",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/src/mail/mail_authentication.dart": {
+      "sha256": "6ed62dc8761e099e7f8cdc3f4e9c7a06c464cac1355062d516cde1fc9f40bd5f",
+      "git_blob": "45de6fb1b916d41d32cad360b0fdafe42660488f",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/src/mail/mail_authentication.g.dart": {
+      "sha256": "a473cac9c6f4a3d91b6f80a3dc3917045ca41eb31def59a2ed875366521a407b",
+      "git_blob": "a613ffb6459137c744b2c24e9626648881a2c2c8",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/src/mail/mail_client.dart": {
+      "sha256": "c509f3485f4a2119ca46a81760d6ebd06967f9068a3afd5d0d41d741010ea47f",
+      "git_blob": "46113996c4b26c03507566d0eef3af1afe793589",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/src/mail/mail_events.dart": {
+      "sha256": "53e807031c82e93eba1a143b7f905f5c3eb40c4d6ba8ec17025a318eb82c408d",
+      "git_blob": "c2652afae40e0a4797fee8c34ef96e6d652cc8a0",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/src/mail/mail_exception.dart": {
+      "sha256": "4fb16b585c44d116c1399862b13cd7be37d2014053651c6d99ac5133f02ede97",
+      "git_blob": "00844f59b07ed59a746282b4d70c9a83c7f76e8e",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/src/mail/mail_search.dart": {
+      "sha256": "ba0e715bc268131f5d4540f9c22d6534bf9af8a6bd49ac52f078b3252d39e304",
+      "git_blob": "d11dd41d400a07c83f6b5e411236a4ba52c20f6f",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/src/mail/results.dart": {
+      "sha256": "5bd0fe02d1a3d67a8125dc390c19a4a60d134916f940693744c93a33aabb0a9b",
+      "git_blob": "f8ddaa04b2493ef2073b47e014c5d881007a8f00",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/src/mail/tree.dart": {
+      "sha256": "1369bebae288e59a35a5486f5238e8f8db195d56be60c07b1b2b2a4ec5a8bb5c",
+      "git_blob": "28a242cf7937e4fe2e3045915277704fa1764355",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/src/mail_address.dart": {
+      "sha256": "ac60bef5c178c025b0ff2356545f686190fea582b9e9f4f4e13b7c2c07d78ee9",
+      "git_blob": "d3a89d2a93926c2355d94ccd5c1d1d7be17ed43a",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/src/mail_address.g.dart": {
+      "sha256": "9c0d571bbf85b971c8a9d7f904dfe29055ea478b1f96f41185d15811b7b12eeb",
+      "git_blob": "27f3a3537d2b8480e39e10e03d33e9bbd1ec32dd",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/src/mail_conventions.dart": {
+      "sha256": "e17abbd1654e650aaae89c4729dcb9da7de74b123eab61b29582ff08942574b5",
+      "git_blob": "bd3a464ed5bd7dbe190671c123f81c7c72b89917",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/src/media_type.dart": {
+      "sha256": "a3217f742fa8a658617bbf070d9037f8f477dcf37bf41df85ed414c500d403bf",
+      "git_blob": "f7a126d6cb6f72d78abf219aa66b8941c6c9930b",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/src/message_builder.dart": {
+      "sha256": "30f0c775e459a2eb055c8a539edf3a0de4a7af96ef6d9e7a258755b284ecb6c9",
+      "git_blob": "49311940115f2300a894a872bce2be2d23a5230d",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/src/message_flags.dart": {
+      "sha256": "ed84ab72ec823cb23be9ea2df363a1848d6a3186e149d5984d5b8a34737066d0",
+      "git_blob": "1024bc4194958f555d7eb17ac741daaa2c1646f7",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/src/mime_data.dart": {
+      "sha256": "99f8b076ae93ce692f1319e542b8ddd86d2dedccc935842e1dbd9159fd05d42f",
+      "git_blob": "ca8d59184ec4ae56cdae4cf3ce83a43a3b8a6d14",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/src/mime_diagnostics.dart": {
+      "sha256": "a16072b7a242a1c338e89a33f8f900419968685c09f34c6ce808c71c547b06ca",
+      "git_blob": "ade9284cf7e8dc3daee74e26bde7724fbdca3b65",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/src/mime_message.dart": {
+      "sha256": "0a687232552e031d6265e6bb14a0d26d90a7cbf07b0843a808caaa3f5d03fdf3",
+      "git_blob": "6f2d822d38f49e4ae7144b2a7c2a187e1210700e",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/src/pop/pop_client.dart": {
+      "sha256": "4004c947a847418aa5b9867c8597b152f715931ca40f414c0c7d5fd451fb89b2",
+      "git_blob": "cf65898bec5650540b564b95dcde59e3352df629",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/src/pop/pop_events.dart": {
+      "sha256": "35967ec466a541e08fa1fe546237529e4eeace2e8f270ea9986c80181bd64eae",
+      "git_blob": "3124a6a947bcd9fdfa8f50d8304d9267dbaca17e",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/src/pop/pop_exception.dart": {
+      "sha256": "51bd37243df7b5d9e9e63fa3610317c36bb0c29d98793dc2da359fe48a4018a7",
+      "git_blob": "31b1011fa3e202789490ec709d8f3678d54e7cc4",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/src/pop/pop_response.dart": {
+      "sha256": "11614e01ffd46ee8597a50560c0bc23490cca5c3aa15d6039dc7e63b7a319b5f",
+      "git_blob": "68ce2dd4f3c6c5e558ec2458ebc3d47139a4defd",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/src/private/imap/all_parsers.dart": {
+      "sha256": "4d71fd95165eda86063f5fbd1d2e3d59bc029209230083372a0de26ef294b5f8",
+      "git_blob": "078618bd6fd234c2829bcd682959557439471fb1",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/src/private/imap/capability_parser.dart": {
+      "sha256": "fe2fbf4dc374de340ece42e8c7088197eee99e26cae4eb8ea121c312857248b3",
+      "git_blob": "1b845a1b49f1f5a8c15d2e0de7417e5e88373796",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/src/private/imap/command.dart": {
+      "sha256": "bf959f76cf79e9abd5f7ef4eb0b438a404cfae8a0b1537e741b774ec173997a3",
+      "git_blob": "ce7fd069eea282046bd665f62532e92bc6127528",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/src/private/imap/enable_parser.dart": {
+      "sha256": "b6583d94c8bd6d168414739ec6f98fd090627cae2a8296df6f69aea559e24873",
+      "git_blob": "ae3e58aed3838e9f1220edac0a5a9be3110756f1",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/src/private/imap/fetch_parser.dart": {
+      "sha256": "7f0dba37e191cbd2f01e4495c1d0bb3786af73e180f3571d3bd5c49074ecddb0",
+      "git_blob": "1760ecb40a8b48a49f94d5b61ccf10b69ddc1a34",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/src/private/imap/generic_parser.dart": {
+      "sha256": "ba4ab0e4e17ce3e369def1f41a92b09bfef39ce0e7da95ffdc03e24944f5f29a",
+      "git_blob": "4d377d037fba66f2734dc7ed2d2405a31e1fd7f3",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/src/private/imap/id_parser.dart": {
+      "sha256": "40c3110ccbbc5d2b7db48b716d138a7153dea54b70cc2bcf00930692b8f4d399",
+      "git_blob": "a66fed8ecab387d937df2b238031cfa60b8e3615",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/src/private/imap/imap_response.dart": {
+      "sha256": "c1827d2455240dbdad01e6be1735901256a73af8001deb6cc0e08d9b10f0ad1e",
+      "git_blob": "531c23f1ebaccafb76fffbe90b950f66c211eadc",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/src/private/imap/imap_response_line.dart": {
+      "sha256": "24827b5075922c3d7a26c7b9525142b704c9ae0117713ab41102ea87df6af00a",
+      "git_blob": "3d06a053ce862d754f9e01903ccaf32c1c842615",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/src/private/imap/imap_response_reader.dart": {
+      "sha256": "f355e1e5788d58b5c877f0916b2d07af74efcc88137b96af9a558a5c6feb005d",
+      "git_blob": "f283fb7fa73cc9a890b41de512dc869bfc745c67",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/src/private/imap/list_parser.dart": {
+      "sha256": "a3cc56246750ff4413d21819812a51407c88d180870df56d4386a7b4b8d5f323",
+      "git_blob": "a98c75af2f8d3ca5bbfd4e150927cb4803741331",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/src/private/imap/logout_parser.dart": {
+      "sha256": "8689c2f01294528dc4742b499381411601a4393d79fcb085af72e0690034a699",
+      "git_blob": "123ab6a3fc4604e65ce5116a25eff35d0a27fde7",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/src/private/imap/meta_data_parser.dart": {
+      "sha256": "1f8b89142adbf048f0683f66f7385d09cee68ab8548c83d857bbc3bc3b14491c",
+      "git_blob": "b41c765fa87b563ca35647d4843a68ec552d6f54",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/src/private/imap/namespace_parser.dart": {
+      "sha256": "84a30f00519f03339ce5c63c1cc817898f055f272301c7fa6710c363f5e5748a",
+      "git_blob": "3ebaa6bb97259cd8410c8b6c1d0cddeb868cec17",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/src/private/imap/no_response_parser.dart": {
+      "sha256": "14870825aff0b09c1d72fca9ae15a9f41fff9d02105b440de3089e22980f7a14",
+      "git_blob": "a8b33ee4e0632fbb3034407f6d1063a72221c9d6",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/src/private/imap/noop_parser.dart": {
+      "sha256": "e0c6c2c4af6c0f07b17f07cfd75564d6e90362cac8215d3501352699e36e953e",
+      "git_blob": "1db55f3010a1ba3a7a68262bea406c34edc7fe6f",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/src/private/imap/parser_helper.dart": {
+      "sha256": "2de130370bd0f53c9bdabd8f549a32292e34de39be3f105f476a09f84185d5e8",
+      "git_blob": "dc124fdb0e47834fd72e959be58bc93461208947",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/src/private/imap/quota_parser.dart": {
+      "sha256": "dfd3808fa8683548fab7e0e04844e0d98b9c73cc42f47a258c6d27a71d959d4c",
+      "git_blob": "1ee1124146878bcb0de94892da7fbf27805d28c1",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/src/private/imap/raw_fetch_parser.dart": {
+      "sha256": "bf66f6d6e3c885359604e988618883647c8b5c4de558f377b2b4a64aa86562aa",
+      "git_blob": "62891fe3c1e19bb21294a585f0b25a97d8b67a45",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/src/private/imap/raw_uid_search_parser.dart": {
+      "sha256": "fb731b0b46ea63f14e2b2cc5c146bdeffb217fd68807628fa99de896aa4023d2",
+      "git_blob": "7c10229df65eb77118363ef139e5315be226ce90",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/src/private/imap/response_parser.dart": {
+      "sha256": "ceca6d26a798b60d2e2167eb948b963c6304767dad2b5279f544b6f76a543f38",
+      "git_blob": "5aaf50d6559bf5ff9c3c8c802b49902f8efd5eec",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/src/private/imap/search_parser.dart": {
+      "sha256": "c76289dfcc3d7078bc160b941ea5523ab3b4a1e5cd89aedb5155aa57da3de04f",
+      "git_blob": "1fba7de6edf7f55005e878f90943c42447d66a99",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/src/private/imap/select_parser.dart": {
+      "sha256": "83d2b0c74a17c6d50ee61658f6fe9d96df8a221f2c28cc4e015e870fb4b3b5d9",
+      "git_blob": "0bab288a0e8012561de0230ef6fc6e5a60672fdd",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/src/private/imap/sort_parser.dart": {
+      "sha256": "d04525acfcb21cf6e9196f753d7a22febe84fb5d6940930764f60d398a8f09e9",
+      "git_blob": "2748dffbc79d6e17dece53540edb04635d263ef7",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/src/private/imap/status_parser.dart": {
+      "sha256": "a9f55babfb83a42194d987303580ec4d9595d8838c1ba0e827fb4d8ef02d1a50",
+      "git_blob": "c2ea9c7bfc0c74f50064ab1ea1523846b0bee09c",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/src/private/imap/thread_parser.dart": {
+      "sha256": "b2a1210349f65fae113d251f3d5a97c1900302d933305cf5228caa93296767d9",
+      "git_blob": "75c04e9f543544ce37e07fa427a0af239b47c889",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/src/private/mail/send_message_transaction.dart": {
+      "sha256": "2eeedd9d0df5f63ab4ba6c9722eddf32375042666d22a7c5a71952ef8a9d6666",
+      "git_blob": "74e4151dcd2f844fa750e95f107c1f3e242f136b",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/src/private/pop/commands/all_commands.dart": {
+      "sha256": "3688053d7bd25cd180dfd73b99ce1532b56b6837eb69234f36e7997eb4e4dc76",
+      "git_blob": "aa386b5af4d076cd4749e60e593f85bd899be224",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/src/private/pop/commands/pop_apop_command.dart": {
+      "sha256": "62ca086e758e1fb6b96cfb4e612610ee4d0d6a4109cafa1a7c6a354adb3693a6",
+      "git_blob": "7cccf7bf2a0fb6044d64b1fd476f702ed2015142",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/src/private/pop/commands/pop_auth_xoauth2_command.dart": {
+      "sha256": "386747feaf29acc95368451b0984b8c73daa855913428598b2698ea1b0ebf777",
+      "git_blob": "3d078e9ff009e73890a25c6ec040c821ca54f555",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/src/private/pop/commands/pop_delete_command.dart": {
+      "sha256": "ab89c4cd3bafdcccd4043161042f1836dd275964084fd3be783e5d98055eb144",
+      "git_blob": "235252f00becea8ca4ced0b60aa56615cc964a6d",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/src/private/pop/commands/pop_list_command.dart": {
+      "sha256": "0ada1e34996d36aac71e37be20a5c998e05312e6d92fb9c61d16208359528bda",
+      "git_blob": "2a0ef37b715f13aca5452653e9670d161082d5e6",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/src/private/pop/commands/pop_noop_command.dart": {
+      "sha256": "687aada72b2dde806c8f39ab9bfd8fd6989a00294b7a246ec08fbda6a395294b",
+      "git_blob": "3fc19a1c4c13a89d144455fe0bff5685fc67a98f",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/src/private/pop/commands/pop_pass_command.dart": {
+      "sha256": "1dd48fb1c148ca93aa0254911f892547512de1cbaf3be70c782b68362dcd2740",
+      "git_blob": "104eed0cea4d4db35632141e75fcca7c237be310",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/src/private/pop/commands/pop_quit_command.dart": {
+      "sha256": "13122a16cf3b24cb8228cce2c87fb0cd072878ab4dac7b2f55f00378fc587490",
+      "git_blob": "750418645e093293941d3f17c2019432c3863bc3",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/src/private/pop/commands/pop_reset_command.dart": {
+      "sha256": "2e9e6f82a84b8be16cfed07d5de12d156b27a1f4c33a743511517555a325cb69",
+      "git_blob": "da470fd271af85584b955deef928869a7db97ee2",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/src/private/pop/commands/pop_retrieve_command.dart": {
+      "sha256": "08c3f85d775d17f4f4292f80c2740906a12516953b8679f4e4a7a0a5a22827db",
+      "git_blob": "2c43fb6f9aa9f4dc298cd3c9c9083d094926f769",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/src/private/pop/commands/pop_starttls_command.dart": {
+      "sha256": "29108ad67bbaf66b51ae5153ab901afd63a67aa5e6cb9d0ac245a36f3bee4016",
+      "git_blob": "ba491a54d59eaef75c89f17b6ca4ecb1d01cc262",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/src/private/pop/commands/pop_status_command.dart": {
+      "sha256": "91cfde56221aac701c995910628492089d3f4571459b2f69970dc5468b8260ec",
+      "git_blob": "944fb3ab8e76b8760847a7e3086ed1a7923b4e52",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/src/private/pop/commands/pop_top_command.dart": {
+      "sha256": "aa4050b0786b9e06638977058df50aa8f0e9c20682a8b2e5599d414325c3438a",
+      "git_blob": "a41f55f9c5d11697994142191fd0a146ae98e59b",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/src/private/pop/commands/pop_uidl_command.dart": {
+      "sha256": "5b46708bf6e8dddb0d20a85a0c7900403479d7ab2f0e2b8456d3d1c3c500e5ed",
+      "git_blob": "c10aee8034bc2bc6e4d1527a66cf723e18c41cca",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/src/private/pop/commands/pop_user_command.dart": {
+      "sha256": "733edb27507a10a9dc07157a0289f2bd4aa1c5f4f3a380c07e106298dc7bcb83",
+      "git_blob": "a21362d6305848a91a12c8e12eb05b5e6b2dabb7",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/src/private/pop/parsers/all_parsers.dart": {
+      "sha256": "ebcb95e0e437a6b4b36606d04e488b816fa34cd18a14c49dd7770fc7f19a1457",
+      "git_blob": "b5855328d92b99bd2a6efea1c2d3778a692000e1",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/src/private/pop/parsers/pop_list_parser.dart": {
+      "sha256": "5d8a947a5f6067392bb0a5e15eb42713bc8a1e367d0bdd38c47bdc9ce9f548bb",
+      "git_blob": "0cdf3170fe94b790082d140b9d6a9daa9679219d",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/src/private/pop/parsers/pop_retrieve_parser.dart": {
+      "sha256": "0d6184a85a5c0ce5f714c78d17085b135fe6073f856e3530610e63af3b38728d",
+      "git_blob": "308885d01918b63abcacc4db2cc23b731741f177",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/src/private/pop/parsers/pop_standard_parser.dart": {
+      "sha256": "5807a834837e63b25792243bf05f9323bdcf1619bc121a5b073d19218883ecd3",
+      "git_blob": "4b94b0bd8c509737338a67ded1c1b604a162516b",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/src/private/pop/parsers/pop_status_parser.dart": {
+      "sha256": "be558371c3295432bd28eb8ab8e139122004341d875844c38ec5faa308df3be0",
+      "git_blob": "6bdce65118b19eb7cad14716b3af22b74045f6ca",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/src/private/pop/parsers/pop_uidl_parser.dart": {
+      "sha256": "0903b9f249ed1c297853d78a33a044237b53e1433ef38355f7159ed8117a27f8",
+      "git_blob": "a2f40b61463a68fdca6e39db51c0890b991f0787",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/src/private/pop/pop_command.dart": {
+      "sha256": "da342e7c9419c3664c7e3e2263d046a627db03a6693a9d2c20917af8dbf3d3c7",
+      "git_blob": "8d04fc950a6e0579ca5e5416fb43131904faf653",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/src/private/pop/pop_response_parser.dart": {
+      "sha256": "0bd2114ee11a59dce7700470c5abf15f6ed9eb4a3956bd41b478cfb6aa5cce90",
+      "git_blob": "c7dda0fff5a60266b749a11404f6868c88214105",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/src/private/smtp/commands/all_commands.dart": {
+      "sha256": "71918b9cfa8db5ba8469e43852ca84335d216bb57a81bddded9451b62c509ed1",
+      "git_blob": "1abf0fd79eb659cb5cca59a04a487b1bd0336d46",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/src/private/smtp/commands/smtp_auth_cram_md5_command.dart": {
+      "sha256": "655cfed6d581760a7f60ed185127b76fa2a9b6123f5b6138d64405c6732b1b74",
+      "git_blob": "ea3d002ea0d264ea86083fc7e3bbef2172529549",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/src/private/smtp/commands/smtp_auth_login_command.dart": {
+      "sha256": "35ef57965da264a96f23794440360e0f50bb30a22ade411d0fe851ef9afe01cb",
+      "git_blob": "9275a2291f22b4325ffba3d8d7d2ec048ebefca3",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/src/private/smtp/commands/smtp_auth_plain_command.dart": {
+      "sha256": "3f2bd3f7f912e37112ada068cfc9fb7d7bcc50b396cb874307a4af8a26de194f",
+      "git_blob": "bc676a899e52dfb6bf03cb06cd8108f181054e66",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/src/private/smtp/commands/smtp_auth_xoauth2_command.dart": {
+      "sha256": "f12124603561637221e667a85054a6b608b7cb2446b4cbe59c4d58382fa5482a",
+      "git_blob": "55678221d9dd9d3ee12132bc94770408b680ff06",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/src/private/smtp/commands/smtp_ehlo_command.dart": {
+      "sha256": "ce2d48a67838ca66fcc4a16bb40edd488a498c449928069569c3786ae4f5b950",
+      "git_blob": "88fd1c8cb6d244d25ea607dbba69a1ab04ffe762",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/src/private/smtp/commands/smtp_quit_command.dart": {
+      "sha256": "c877093b8f411b079fa00bab901149c173860fcbe28c960a12e1b109d6cd7275",
+      "git_blob": "48974e5a4c1d01b4af7163ea1839f805e709c0ac",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/src/private/smtp/commands/smtp_send_bdat_command.dart": {
+      "sha256": "050d2c08bfa6eb6e2349ad5abc2bcc608720ad2600ca7a796d7a7dbeba11cc05",
+      "git_blob": "02c37cbc1e7dedb438e32be6952a350f823a281f",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/src/private/smtp/commands/smtp_sendmail_command.dart": {
+      "sha256": "5a620bf527ebf95970c0ca75cd5d4cad47a2b1c416ee8683b1b61c417e06910f",
+      "git_blob": "d80d222063d1bcc168f1d3e63f06c1d158b97e91",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/src/private/smtp/commands/smtp_starttls_command.dart": {
+      "sha256": "37812683b8415fe9b4afa683b5a524113f1a57c780f5a128e04198546f602239",
+      "git_blob": "60f742a5a1eceedeef6c900876d3ff2d118423b7",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/src/private/smtp/smtp_command.dart": {
+      "sha256": "03ba0c37dae726c0a1a3ca1dae1198ad569377ca65e489494e3400ee5d23e060",
+      "git_blob": "572a5ed7914bd8c97700f9e6c8c5bbcd421517f7",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/src/private/util/ascii_runes.dart": {
+      "sha256": "c33343ccf8ebc9b9560ba99567093f25db60a9a073b8c4acb689e3bb083cab9e",
+      "git_blob": "a4d0f07f4befbfc1d71ce82c229c250994e3dfe9",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/src/private/util/byte_utils.dart": {
+      "sha256": "0567286bb985963a3d5779c212a0ca7591e1e09f8269747963d818a942f62afc",
+      "git_blob": "1d943f4fb8b42e0f847ffd1d273b0558c58c7c61",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/src/private/util/cancellable_socket.dart": {
+      "sha256": "8d444dfb5af02330051839938b8477f1c01b3455418d9b910881a8d41e357fa8",
+      "git_blob": "249bbbd8c8f78fbb303af10d687215e7c3ea8ac7",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/src/private/util/client_base.dart": {
+      "sha256": "660c7780730a1621934fa529840c6158cfbe8dea8d86ba1fc9aa9412e5baf286",
+      "git_blob": "302aacaf249d66a2da6b3c633bef20cd2adbd9df",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/src/private/util/discover_helper.dart": {
+      "sha256": "4c258aaa907b6bc75ebcc15acd9eca9467063872410eae0cc9b60668c1a33b80",
+      "git_blob": "fe096a057fc8f13ae350b774d647b84421c3c4de",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/src/private/util/http_helper.dart": {
+      "sha256": "0f53583f4c06f4296ea6271e703b681884b836e464d90025545f5ebfee60f179",
+      "git_blob": "d552281e1cedbc7043c20a0a8eafa23ab3d56673",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/src/private/util/mail_address_parser.dart": {
+      "sha256": "91b9db98ff30967b635a69d99dd01ca69ce5dda1ce05bfbceaa6f8b785bd5e64",
+      "git_blob": "28030d3d23104094bdcac393740f23ae4a805366",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/src/private/util/mail_signature.dart": {
+      "sha256": "6311814e2d989c29e24ae0a0add49716cf4495312f6aae63d4f7928c464afa03",
+      "git_blob": "de52b18cef01f0aab6371bd448fee9a06521eec1",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/src/private/util/non_nullable.dart": {
+      "sha256": "a53657bf0f1a79fe72de4651f33f13086ca6f2efcfd845988b5f5474574879cd",
+      "git_blob": "b5291c787c63340923b938e84d70e9ac899d11ac",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/src/private/util/protocol_resource_limit.dart": {
+      "sha256": "b1570fdb1c0cc7bfb58507cafccbc2c8cc60a44fedc9a20a96a047089687339c",
+      "git_blob": "ec03a316582b6b1e09525ae73e69e69cda5b3d67",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/src/private/util/stack_list.dart": {
+      "sha256": "70241a53065aa86b30c9592a64f6005b7efe807925a088a2e174d678e0aaae56",
+      "git_blob": "a6e81d462f62babc540061792aa0fc8ba6b06151",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/src/private/util/uint8_list_reader.dart": {
+      "sha256": "f56b2399361666a0842dc7ead69f5c5d70296e868acd87ed0610c3482ef3a9a2",
+      "git_blob": "e844f12c35f8b33129f12f40d54b366263bb146c",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/src/private/util/word.dart": {
+      "sha256": "4f468dcee5b196f9c744a60eae8d720050da7f268faa36f57de4c71d2df7be63",
+      "git_blob": "b627c51932bdf2efaf70d46597e3f6f0bd140848",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/src/smtp/smtp_client.dart": {
+      "sha256": "2337b3531f923027c6f425d5bfe6d8cbd66188bae4aa19930509617ee43fbf76",
+      "git_blob": "dad79ae980a6a669c1bcb7288c8f63a9f29cf685",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/src/smtp/smtp_events.dart": {
+      "sha256": "4735697ec7140e05da97e5ea57d99a8f190d9a5d54a111b336e862b927d85bca",
+      "git_blob": "90414963805c3ccb0b8b58b9a5a36e9049abd903",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/src/smtp/smtp_exception.dart": {
+      "sha256": "2c9bf8e1f5106377156c2449d7bad0dc2c0342da5c014da55d20a51c0702c968",
+      "git_blob": "8521df9d03db9d5503cc98d8249f616722460e69",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/lib/src/smtp/smtp_response.dart": {
+      "sha256": "6a1275f82993a64ed85cf56f9bdeba7d06abb36c8bf8affd9f830b62d3a2b8c5",
+      "git_blob": "29d898649325526fac700585cf48927d45732f9d",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/migration.md": {
+      "sha256": "90ac4010b37f52566c6a8138aeb0828139e9f403edf4ab59d947ac0d03bd9166",
+      "git_blob": "d9f2ebea396fe84d4ecd02515b9a3fcc9a9eebf4",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/notices/archive/LICENSE": {
+      "sha256": "32f97d332eae7453ec4079858e6f1d74be85beeb6d3881068b47d02a379cccea",
+      "git_blob": "1c466c4a02ce2907b79484fd6e6273b5a83a94de",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/notices/archive/LICENSE-other.md": {
+      "sha256": "b8861b258b8eedd1605f5203b0f51e8022c5c156cb97da1c465e4e355672738b",
+      "git_blob": "929ba3bdcdb11f21311d26b7f83a14450492de54",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/notices/args/LICENSE": {
+      "sha256": "dfb09c74e29386cd3e2719f32d4995d59526179753931d31840757c77fbf2791",
+      "git_blob": "ab3bfa0144c520d26162f64353b53a5ebe447a44",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/notices/asn1lib/LICENSE": {
+      "sha256": "8d2c61936a79c1561a92c0c4813411f10279b81e0c1bd49bd2f86a90f7538f9b",
+      "git_blob": "93cba3d7bd35b1e40ea11b50fa6d0a440e1a7d16",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/notices/async/LICENSE": {
+      "sha256": "ff15faa32a2e638107b7789592b14426162a75ba620044ee2340a20ec6ce5e73",
+      "git_blob": "dbd2843a0836fceb711af626fe2de67878efc9ed",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/notices/basic_utils/LICENSE": {
+      "sha256": "d5d127e78b906bb0f77820bc1f01f8804075ecfcbc6954fbf2ed011f51e112a1",
+      "git_blob": "a080303094cbee6c322f3ff83424611b85816122",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/notices/clock/LICENSE": {
+      "sha256": "58d1e17ffe5109a7ae296caafcadfdbe6a7d176f0bc4ab01e12a689b0499d8bd",
+      "git_blob": "7a4a3ea2424c09fbe48d455aed1eaa94d9124835",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/notices/collection/LICENSE": {
+      "sha256": "ff15faa32a2e638107b7789592b14426162a75ba620044ee2340a20ec6ce5e73",
+      "git_blob": "dbd2843a0836fceb711af626fe2de67878efc9ed",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/notices/convert/LICENSE": {
+      "sha256": "ad6a71997da90924b2cfb1fb47ec46537f70faf469efe016168794ae45ed6888",
+      "git_blob": "633672ab360986e44d724c3633d3e032368994e2",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/notices/crypto/LICENSE": {
+      "sha256": "ad6a71997da90924b2cfb1fb47ec46537f70faf469efe016168794ae45ed6888",
+      "git_blob": "633672ab360986e44d724c3633d3e032368994e2",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/notices/crypto/third_party/wycheproof/LICENSE": {
+      "sha256": "58d1e17ffe5109a7ae296caafcadfdbe6a7d176f0bc4ab01e12a689b0499d8bd",
+      "git_blob": "7a4a3ea2424c09fbe48d455aed1eaa94d9124835",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/notices/encrypter_plus/LICENSE": {
+      "sha256": "1e315d9d3fa23e3730ef31eedeed503f6731208f2624a53ae85eeaa703ae2f34",
+      "git_blob": "4e7dedd4bc1217d5fd5a113d1d906121dd4fe2da",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/notices/enough_convert/LICENSE": {
+      "sha256": "1f256ecad192880510e84ad60474eab7589218784b9a50bc7ceee34c2b91f1d5",
+      "git_blob": "a612ad9813b006ce81d1ee438dd784da99a54007",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/notices/enough_mail/LICENSE": {
+      "sha256": "1f256ecad192880510e84ad60474eab7589218784b9a50bc7ceee34c2b91f1d5",
+      "git_blob": "a612ad9813b006ce81d1ee438dd784da99a54007",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/notices/ffi/LICENSE": {
+      "sha256": "0371d1da6a57fb791db29d29b95333429205f51f3cb2eb3a0c12d91838a38744",
+      "git_blob": "767000764bc79eb8bf4f6fce6ad173d21a052a81",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/notices/http/LICENSE": {
+      "sha256": "3c32b53167c7dae9190c38dab5dd9fe1789c53623ebc7d1babcb29914c5b3f16",
+      "git_blob": "000cd7becadd0c8369478f825174e164de9b8f91",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/notices/http_parser/LICENSE": {
+      "sha256": "3c32b53167c7dae9190c38dab5dd9fe1789c53623ebc7d1babcb29914c5b3f16",
+      "git_blob": "000cd7becadd0c8369478f825174e164de9b8f91",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/notices/intl/LICENSE": {
+      "sha256": "7e124af6a556f045cb3a20cafbdaa31602ac2c82cbcb3c3b15faaaf514b06028",
+      "git_blob": "7efe25f9e24bee123c8fc4c0d12ed507f6a17ec5",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/notices/json_annotation/LICENSE": {
+      "sha256": "143839f62c9b7f88143ea9f688361c27050888acde7696b34e04414bd254fafc",
+      "git_blob": "389ce9856341060a86b921208098db2dee739375",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/notices/logging/LICENSE": {
+      "sha256": "dfb09c74e29386cd3e2719f32d4995d59526179753931d31840757c77fbf2791",
+      "git_blob": "ab3bfa0144c520d26162f64353b53a5ebe447a44",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/notices/meta/LICENSE": {
+      "sha256": "b71519245009a3b8f126196a5408ec031e216e8e0d985085958c6543f82a8a2a",
+      "git_blob": "ac7d7af0f54c4566d39d94a3108c0861a1a1840c",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/notices/path/LICENSE": {
+      "sha256": "3c32b53167c7dae9190c38dab5dd9fe1789c53623ebc7d1babcb29914c5b3f16",
+      "git_blob": "000cd7becadd0c8369478f825174e164de9b8f91",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/notices/petitparser/LICENSE": {
+      "sha256": "0be767174b97278f17da4923a74169e8645631f03ea3d8482ec3523c9b1a0dd3",
+      "git_blob": "8007d1dada3f902cd74360b1903d1639d90ba4c7",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/notices/pointycastle/LICENSE": {
+      "sha256": "3a7bb295473da049a1c6edd2f8c41b9e526a4e80f200c0200cc5600b2634df3f",
+      "git_blob": "5928ef30614634ad350d72cd7ced9f1f58b8a43d",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/notices/pointycastle/licenses/LICENSE-BouncyCastle.html": {
+      "sha256": "157c06d78dfb0eabe54164f569bb6af94d298852198c29c6dd61fd51c98a79e6",
+      "git_blob": "699a9c5c6421bea97eaf70bc7ca07c30fd306cc1",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/notices/pointycastle/licenses/LICENSE-scrypt.txt": {
+      "sha256": "0d542e0c8804e39aa7f37eb00da5a762149dc682d7829451287e11b938e94594",
+      "git_blob": "f433b1a53f5b830a205fd2df78e2b34974656c7b",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/notices/posix/LICENSE": {
+      "sha256": "aaf6271abd048deb3125828613f1797b7556472de6c7acd7103bd43e9cb6a84b",
+      "git_blob": "946e40980f264dac315199bcb7b3e4270614b204",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/notices/source_span/LICENSE": {
+      "sha256": "3c32b53167c7dae9190c38dab5dd9fe1789c53623ebc7d1babcb29914c5b3f16",
+      "git_blob": "000cd7becadd0c8369478f825174e164de9b8f91",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/notices/string_scanner/LICENSE": {
+      "sha256": "3c32b53167c7dae9190c38dab5dd9fe1789c53623ebc7d1babcb29914c5b3f16",
+      "git_blob": "000cd7becadd0c8369478f825174e164de9b8f91",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/notices/synchronized/LICENSE": {
+      "sha256": "6d07c6bb60afb906049d507e19fcc4c6b59e35c0dd0f8a7302e87b3fb0576900",
+      "git_blob": "cf8a000934f5cbc7a92967c750eb5616ed04a7d3",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/notices/term_glyph/LICENSE": {
+      "sha256": "ea97a7558a7bd7cee4e2355f7529e3cbebb0dcbb546ddb9a90f10c9eb6b08da5",
+      "git_blob": "03af64abe4ff04dc147d79b4ea9a6a81d996b628",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/notices/typed_data/LICENSE": {
+      "sha256": "ff15faa32a2e638107b7789592b14426162a75ba620044ee2340a20ec6ce5e73",
+      "git_blob": "dbd2843a0836fceb711af626fe2de67878efc9ed",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/notices/web/LICENSE": {
+      "sha256": "aa913ff50d7542eb8cc35b9f48a80928ac6819ba9057f85d424655e3e8dc271c",
+      "git_blob": "32e050b72f53a888627ec70aafbfe49bc74ac6f1",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/notices/xml/LICENSE": {
+      "sha256": "0be767174b97278f17da4923a74169e8645631f03ea3d8482ec3523c9b1a0dd3",
+      "git_blob": "8007d1dada3f902cd74360b1903d1639d90ba4c7",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/pubspec.yaml": {
+      "sha256": "d38d11b0aaf151286c8abec5f83b434aad91339a90113c46065f464ac48ee27e",
+      "git_blob": "9f3443eae80e78bf107d71feeef2b82713154295",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/test/codecs/base64_mail_codec_test.dart": {
+      "sha256": "05a68637c762862a0f18ba40a12288619c21ef01ddd4ed62cbaeb40485710eb5",
+      "git_blob": "89a3cd251824387a76c3da5f9a1ed30a0a58e0f5",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/test/codecs/date_codec_test.dart": {
+      "sha256": "cfe8088eee699a44eb0badbf3d5f2ebf380807b3a19c23d3264b2a88d83404c5",
+      "git_blob": "3df2cbb4f5c787bdd1a79527d47eedad72018ff2",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/test/codecs/encoding_correctness_test.dart": {
+      "sha256": "2f651dba1dacc29d4a8217372e5fbb9a09f3c9a813c874e6cd6d065d01c5d35d",
+      "git_blob": "5892b75a61cbe06c4a634b9ee3a68217e8b2c7e9",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/test/codecs/folding_test.dart": {
+      "sha256": "de9727503e52dbf8eb5d7a8f8b470ae80c08d94363f312b941a52d36b09441f7",
+      "git_blob": "eef7c4765383195bc78ccfe37233f9664d35a808",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/test/codecs/mail_codec_test.dart": {
+      "sha256": "d17386c051b129fc3cbc1808e2e9ef1b30a1f0a836c39147e0e28b1041ef97d7",
+      "git_blob": "bb549bef8fb5a5888c0599a6721728842be50a17",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/test/codecs/modified_utf7_codec_test.dart": {
+      "sha256": "dee4c43355179d4dca3ccb2c1d35c021fc7b7f992aa6af887912b79c644f0a39",
+      "git_blob": "04a992d107a80e0e127735f94a3bb992e8dd675c",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/test/codecs/quoted_printable_mail_codec_test.dart": {
+      "sha256": "ec4b87a5b3304ca2249fb529278b302aa0eb90cd735ee1dff5a5295fc3933782",
+      "git_blob": "0dc80028095a87d5b8276b50a660c85bc8d2fa09",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/test/connection_robustness_test.dart": {
+      "sha256": "6e2f328bd6d35b9ea4fdcbaaba4600fe2ba1617115f2d026b574f410ff15aac8",
+      "git_blob": "04090fe0250e15f7ef859415be23af214e36c8e6",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/test/folding_test.dart": {
+      "sha256": "e62a1a8cf5e16884f48a80e75c0048dc95e148ef39cb13d75cdba1d997c92893",
+      "git_blob": "5bea7adfc6b8308638321be47d37f59b3d96bbc1",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/test/header_injection_test.dart": {
+      "sha256": "516fe914c9f4cf8b32ce5568aeb3cc2ee2ea0c193aee8da0020b6962a558a7db",
+      "git_blob": "9358671e2236d576e967fb85a72276926c843bca",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/test/imap/imap_client_test.dart": {
+      "sha256": "e37a45f577cc666a8ab9ed7faad90ca7dba135412d621356137a4853c2129788",
+      "git_blob": "66235571e34baca6bfc76440725f40dac0c6b220",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/test/imap/imap_quoting_test.dart": {
+      "sha256": "c9ab536a51f9625c1eecd2d84be83add402e604f73879920972cb58d7de704b6",
+      "git_blob": "de73fdab17546e80b865bd5218b414983fc88e48",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/test/imap/imap_robustness_test.dart": {
+      "sha256": "eb2bc62f1975d18ba825ff98075f8e57ec6c5f818544db4a3707acf18696a8c7",
+      "git_blob": "540296612702ec052f5171638182e8a733cac0c5",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/test/imap/mailbox_test.dart": {
+      "sha256": "6fe4b1ea846137620ec45a2b94f9915aa7a0ba4e6e8660d3e2b66a92f98dddb3",
+      "git_blob": "3425644100890c607ea0821f32c5bfec8335655a",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/test/imap/message_sequence_test.dart": {
+      "sha256": "30523bd851ca06ab7c3335e59b3f0a699d5d85bf97f0f2cc09ccc44d6ff79eb7",
+      "git_blob": "1e46c1d27c9880d96aa87da13778875f0a3aa7b1",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/test/imap/mock_imap_server.dart": {
+      "sha256": "ca9d4caecdfda7193d68726c7e54e89d01ae53fe7e5f0107410539fa98f1f198",
+      "git_blob": "db3d3724e6e35c561f0604c17328f016f3be0736",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/test/imap/qresync_test.dart": {
+      "sha256": "b5f4864e411dce4c30a1d685e27508ffe0c2924d4771bdd08cc44806f05aadd7",
+      "git_blob": "2c63c15831e714dc57323d766200153eb6c21e89",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/test/imap/raw_uid_search_test.dart": {
+      "sha256": "f69041c49d1f52f7e68deb8bc16086097c14f8b2010a61df077e8699fc3589d5",
+      "git_blob": "2509585f1ba0ed9e7793f2e01ec19ebf86461985",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/test/imap/response_test.dart": {
+      "sha256": "6362c6f210907de7bc33d4e19d45de3311d82d53fb698e4c2c319b7fdde1416f",
+      "git_blob": "c9a9708a2ef9feaef2e17ac0d80274b6b2ba681b",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/test/mail/imap_loopback_server.dart": {
+      "sha256": "85366ad536b6a053c8db04b769ccaabee4158d3075bc7058bdb27211e2b989ab",
+      "git_blob": "e33fa85762983df3d7f9e2a85cdbcdcc07880f6a",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/test/mail/mail_account_test.dart": {
+      "sha256": "ff1ddf05752ff6f1fd94d23afa597bd9fc0fddd3f2b0af9da777a6a105470ae5",
+      "git_blob": "3bf6f26874764578c48f528094cb18543840f62e",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/test/mail/mail_client_delete_test.dart": {
+      "sha256": "2314a4862261239a1c5984ce22ff7b1d09cb813c941c01ed400a59ea2c5322b3",
+      "git_blob": "31cce477b188fa21bf472a14efe200decac27710",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/test/mail/mail_client_oauth_test.dart": {
+      "sha256": "39877eaada6b354a53423b318d5a746b61a3828cb6eb644d07741b0489019438",
+      "git_blob": "d14db1668f6a018a666a9ac4d874dc924fd3e8fd",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/test/mail/mail_client_pop_test.dart": {
+      "sha256": "1447c08acfe9e18c1eb43b85d2e4ff43bc8af7c79acff5b816e177ee879ac50a",
+      "git_blob": "f4b84dc925b71a1f997ecb1e0584aefce93c3e5d",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/test/mail/mail_client_reconnect_test.dart": {
+      "sha256": "dfa71c78fe374276093990de6fad6321767f88971810d73d5f654e10d4138468",
+      "git_blob": "4bbb2aa8b1978bdca7b52568e755204e139fd94a",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/test/mail/mail_client_send_test.dart": {
+      "sha256": "56091640deb44621bf621ee635ea3d0a1f4d8812d1d2e6e951c9e91bb9c57270",
+      "git_blob": "045641c73759da6718b879175eaed90efea3e575",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/test/mail/mail_client_starttls_test.dart": {
+      "sha256": "ff2a741bf1eb1e01ccc54202c4e913358f4e90dbd9d952a7ab2dec23281ff312",
+      "git_blob": "2aea8d9df20a60832266b72193aefa5c06db0e7d",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/test/mail/mail_send_transaction_test.dart": {
+      "sha256": "5af7a35048e25271e92634a8d1c5c0b621ddd2f1593603c06153fd6cfc03b291",
+      "git_blob": "bb27ea8aae02311298ea56e372ef205cfd627850",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/test/mail/mail_submission_acceptance_test.dart": {
+      "sha256": "9ccf7eb6d607d43cb7e42231254a3c5c2cecd0d8c13a32d894fe4927f9f95f72",
+      "git_blob": "78d4e0f3d4d896379189a44945896c10f9add809",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/test/mail/redaction_test.dart": {
+      "sha256": "b455654e6b65d5a45d8d2daae404c4751ed230b607d1c4b6544175dab3e20b98",
+      "git_blob": "14606c3711e71570a245ff0e25da701a1e28d74a",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/test/mail/results_test.dart": {
+      "sha256": "04cfe8032cdd478095f7803cda984a982285ebd02cbd2beecff4125a5b1eb043",
+      "git_blob": "f073036d3d759f849e9847f994b31e7b2899f8f4",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/test/mail_address_parser_test.dart": {
+      "sha256": "fa14a6585f6af330b38cbc8e0686a164a954ddd93ad760b5afe9c0ca58beb7c2",
+      "git_blob": "9999301a198ced08348de2d7519b6e4392acb4f9",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/test/mail_signature_test.dart": {
+      "sha256": "fbaeece54d17ee7d8fbf4f8a23c55ec28fed680b07cbdedcf8cee765d4485a99",
+      "git_blob": "7be267e43defeedf341b5626899b8714f98eec0c",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/test/message_builder_test.dart": {
+      "sha256": "4f9751409e6a33b338d99cf63688fb22ae16444df929cca17586e917396c42cc",
+      "git_blob": "d3460f69feff5520cd321bf61aef7708c50ea510",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/test/mime_bare_lf_test.dart": {
+      "sha256": "a79787fb0e63d5b3f6830964742be099cf12b7f5868ae7dbc13f61de76e869eb",
+      "git_blob": "4ce445856c60453e408ca72cd544efd65146ff9b",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/test/mime_boundary_test.dart": {
+      "sha256": "23d6ad61e10bbbd92761a21cc8906334e48b288446b35eec875b026090127ab9",
+      "git_blob": "799164219fed3af7e9483d431aecc5545e575ba6",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/test/mime_message_test.dart": {
+      "sha256": "ab250bd17370668998a5057263657bc7adb84fce88bec53576057944c5837204",
+      "git_blob": "ce64e57d958edc4d8a4d869062638fed3c90b7c8",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/test/mime_robustness_test.dart": {
+      "sha256": "fc6ee10f83f1c4ea6d2ca296123b20154e61b90009013ea77158b13e6ce11137",
+      "git_blob": "3448d6a9b0d7fe11ec57f231088927e7e883089d",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/test/mock_socket.dart": {
+      "sha256": "3072ada0a030cf52cacc3644e49277bc893285ce0d390cc108a1e188bc22fe46",
+      "git_blob": "ffc438b6a4d650620e422f04ed892c19f3a128b0",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/test/pop/mock_pop_server.dart": {
+      "sha256": "f161bb5f37916002b34ac71ab65f1683b96be97b6e5927ad8d1d70ee60981a0e",
+      "git_blob": "280d79e2c8cd96c2559fca274d9b07a8066a1c7e",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/test/pop/pop_client_test.dart": {
+      "sha256": "55868e940311318d345047703e88473f2482384f15dd05e3cae03b2b6a432f0f",
+      "git_blob": "cecce4b86074ae435e77d3e7e298f52db394c42b",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/test/pop/pop_framing_test.dart": {
+      "sha256": "e1e31d4d341acaec3cf88a3b5c473fc9d110eb53533dc1dcecd555ae00f2ad78",
+      "git_blob": "c196fb1fd4d29b8dc8aeed4fe9bbe0583d193fe0",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/test/quds_portable_mime_test.dart": {
+      "sha256": "0476d349a3a5acf5be8c6d59ab910e7e083463bb2927a59f167e46c500710ccf",
+      "git_blob": "54d3ba4467b12798ad3536edc456c68cb7e00005",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/test/reconnect_state_test.dart": {
+      "sha256": "11392a014c028f63ee3b6a6d0a2b1eb11dd1812db0a8d017b0daddc78661e7f3",
+      "git_blob": "fa952e3e2db03f9c0d686816221ed89a82294966",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/test/remove_header_test.dart": {
+      "sha256": "c4bb3ffa44c8efefd9be3a18a48fa4df5a2ab01fb978c63a23c285f6364cb865",
+      "git_blob": "216c0173dfd0b4aae031db6144d24ec65a4ca04f",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/test/smtp/mock_smtp_server.dart": {
+      "sha256": "37a48c9dd2196db4e77e710038af55fff33113c006cb6fc8c8f54b6c343688e6",
+      "git_blob": "17469078aab2fb86c17ea73066235a1cbe5ca7a9",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/test/smtp/remove_bcc_header_test.dart": {
+      "sha256": "c403aa779fe09c7037d75536678ebb08fb8bc64f4119074f0bc73dd1988afb8d",
+      "git_blob": "735cddcd76c23a9482e6a701d776b112c3c685e3",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/test/smtp/smtp_auth_encoding_test.dart": {
+      "sha256": "d2429decc322a7706f42473145d276ca2a74241a8385ba0fd6292cc3b099a9e9",
+      "git_blob": "4a848702cd80a54315def37100d18468b41dbaf7",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/test/smtp/smtp_client_test.dart": {
+      "sha256": "d6dd330675edde3f9dc51d071e2d814f3296b776faa7acda58d564ca7a8c2a42",
+      "git_blob": "ecd59e955ac9ebae6d2b593de811377944690d9e",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/test/smtp/smtp_framing_test.dart": {
+      "sha256": "81ab6bc8163704452dddf78199418681a80a7cfd91cf46b6fbd2fe0fad9e3740",
+      "git_blob": "7d319c700f27b1276584dc5d5c977715dff66e5c",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/test/smtp/smtp_send_state_test.dart": {
+      "sha256": "efd82908b1c166664e544559ccc6423ac1756cc204c9af0eda7f19daa250dba1",
+      "git_blob": "2920d67740d58460e641b0fb714fe0209d5136f3",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/test/smtp/smtp_sendmail_command_test.dart": {
+      "sha256": "76b2e791fac7c926faf95d41ad0ea8edddb2373655fb46419dc6af10147d225e",
+      "git_blob": "97385803d5b3a89a7c69916eec418266724bc22f",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/test/smtp/smtp_transparency_test.dart": {
+      "sha256": "74dd272291c1be4109ec2d795dda5e2b18a13c35b3dfcd6cf2a79596f7216f83",
+      "git_blob": "4b1450a84d4b49108a58f8f5ab94950bf27f6cdb",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/test/smtp/testimage-large.jpg": {
+      "sha256": "b11bbef5b4c15f0b970f05a929800a1f3e57420c71c4fef27bf7b5e0fec63c7c",
+      "git_blob": "4d3bf274c0307519d761ef38da8e4ced297ffcdd",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/test/smtp/testimage.jpg": {
+      "sha256": "9c0493eb8d5079ecb53501c45227bdb32ad74b1e30fbc8274371ff400c8aec48",
+      "git_blob": "d82bb80d37affe98326ab4d21ec175ccbd2b98bc",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/test/src/imap/fetch_parser_test.dart": {
+      "sha256": "7957ba8b0b2538b7cc136195009caa761453457cf984e41088004141119fc5c8",
+      "git_blob": "1d822ea009e4774d29d91f404a5aa8345b8a4120",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/test/src/imap/id_parser_test.dart": {
+      "sha256": "6fad1d05a21f877192f7c73e93f85bafc11ff2a938450672e580a3f718d13ba6",
+      "git_blob": "eb7d6d46399a841f153b2dd73f68efcfde173d72",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/test/src/imap/imap_response_line_test.dart": {
+      "sha256": "7d8d07b98ffaedea87af1438451a83fdf424e57e85c43c03535ac41e65dfc764",
+      "git_blob": "25f56a12cad695786effbae2668208df769488ec",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/test/src/imap/imap_response_reader_test.dart": {
+      "sha256": "d2e76b54c30bfeba4622fc862b5d3144723ab4f12f07cb1606c9b97fffe27541",
+      "git_blob": "adbe757eec7334d9f8461f73409e0accaf223b43",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/test/src/imap/imap_response_test.dart": {
+      "sha256": "f98f5ade08eeab9dac33401ac4f20cf25726cb174da801de7bec4c57821dee2b",
+      "git_blob": "143de1a5b054f2cb5d59f4d1b3ac6338a3dc59cc",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/test/src/imap/list_parser_test.dart": {
+      "sha256": "15fbfb3c06e43226c1719184352cdc8d23cd9b0631604161204a1c9eef2bd29f",
+      "git_blob": "41e91ca9cdd0474c2bb1e1a0dec65584121a4e7c",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/test/src/imap/namespace_parser_test.dart": {
+      "sha256": "f172fcb5e309f358aea7cd18bdc05da9d7ff1b28dddca2f0ad9ca567af73e72f",
+      "git_blob": "3f74a98ae3ab9137bebb785bd51d25b324f60a96",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/test/src/imap/parser_helper_test.dart": {
+      "sha256": "ca56602d45e553b5e2c27c2455c46a081d53378a172bf522d1dd8a4d2a1b9d66",
+      "git_blob": "1c2ed9aa35c1e2c17123c9773f09fe4119a36701",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/test/src/imap/raw_fetch_parser_test.dart": {
+      "sha256": "0457830a1302de146027335ecdfd07de37e8b53c7eb1d8e3cc13655136735b85",
+      "git_blob": "eb241d780d756f8bb775bb68409c9ed4f8d48244",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/test/src/imap/raw_uid_search_parser_test.dart": {
+      "sha256": "4c88271720952fcf16cb7e89dbde431d062c6edc7063fbbe6a03844bb0ccbfde",
+      "git_blob": "68fc73dc5747170d7bb5e58bdbe3df57d14b53e6",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/test/src/imap/search_parser_test.dart": {
+      "sha256": "6d8ed316a18737d41855e143df510ec912b5f058f7126159e97a0b4367b80818",
+      "git_blob": "41f3af4629fe2fb0735571d077bc930c973b1eed",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/test/src/imap/sort_parser_test.dart": {
+      "sha256": "b7abad12cf53e5f314e64c56a1f38ec64d67390d18acbd9261d6dbbd25c68c16",
+      "git_blob": "40a655722928c1eeb0f461c7b1009d9481a5ebf9",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/test/src/imap/status_parser_test.dart": {
+      "sha256": "81d11fdc899f8705b921aab155105f1414eef35a2e84e77ac8ed5657cace144d",
+      "git_blob": "89dc7ef2f5177f5c072134918774febb13c3f7f3",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/test/src/imap/thread_parser_test.dart": {
+      "sha256": "7bae514ac7f84c13fa91ce27cc4f8b9026b9a0ef8fefb5bad1b02390bbfa49e4",
+      "git_blob": "6138169696e5eebd7a625ebf1692c8f713d9f756",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/test/src/smtp/commands/smtp_auth_cram_md5_command_test.dart": {
+      "sha256": "3ddeb6792a13df3ad44710b99e0c1a9a182095f03fcc18bf2a2be782a8bbdf13",
+      "git_blob": "d3621429caa1ba4822e6d9889c9125d2bf69ff8e",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/test/src/smtp/smtp_response_test.dart": {
+      "sha256": "ad870f2c370a936e7675a03326c4f9106ccba816c48f7bb33d0f0c414ac73322",
+      "git_blob": "da9c0795076bde5b477f0f1ed89ca4d6083ef4f7",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/test/src/util/client_config_test.dart": {
+      "sha256": "69dec8c0661371ecf0a2ab0b2248544fe67a3169f22fcfd88c361eb5dcc715ad",
+      "git_blob": "871ba2499602eb324d0deabbfd0f95e5da9ccfa6",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/test/src/util/discover_helper_test.dart": {
+      "sha256": "029121e838a304b9e1d0d297ca8d2f3b464a16ab0933cb20e79eb5fa4b68cec4",
+      "git_blob": "161476466882a64d09cb2746c5fe6f52b8830b4f",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/test/src/util/http_helper_test.dart": {
+      "sha256": "d9f09e79145b9451a643f0658ce28bb634d7689c12f022c7fa945ed87eaa4e9f",
+      "git_blob": "138f68127e2976d802ca86566ebfc58bc2907c73",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/test/src/util/uint8_list_reader_test.dart": {
+      "sha256": "ea6725ac6972b37969273407774e6d4be2d8ac506a951b99c264127e9740a257",
+      "git_blob": "2c17335152c50bd2c59eb9e6b5fefab8a10c8c53",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/test/write_failure_test.dart": {
+      "sha256": "d66187add5969ac3180911b2d578fadeaf2126eb909dfeaeae7b95487cc87361",
+      "git_blob": "dc0a9e359b01a752c029700e8977d38bac774eaf",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/tool/portable_smoke.dart": {
+      "sha256": "3771ebebf410a1214cd52f94469d408d4b5282f7611792ba859c1ed40e4d2b75",
+      "git_blob": "70f73a916f71de47556ebfbed7f5dc62655e374f",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/verification/README.md": {
+      "sha256": "f7cb12f5f93f5ec68f9c615cea90197fb732b9711c9ed3bd91bc6f1345d2b010",
+      "git_blob": "71b8c07b440b1feb9f57bb92923c5389824e8221",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/verification/browser_attempt.txt": {
+      "sha256": "39f575b6f7aacd1b5151cf3614aec75b34d096a84c6ab3457cd8bfce9fde9cd6",
+      "git_blob": "4d507d946350092608fbc39362b416f58030478d",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/verification/native_analysis.txt": {
+      "sha256": "6b7a8871da280b2b7725a31509a42d0e66de8a6281e319414cfeb7d46b48d2ed",
+      "git_blob": "f75da975cf5ea4cde0f64bb009282c5884825056",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/verification/native_tests.txt": {
+      "sha256": "219215b6f328f8e81fc50c23c63a67006c470f008bf0213435c8d27036e22f41",
+      "git_blob": "5e9d5c72a6dc9a7c4bc8ecb411ca9bb3fe3615a4",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/verification/portable_js_compile.txt": {
+      "sha256": "345434ffb6125198b7d1b9cbbb48ad3d64e0a58ee77d106215ee3cdeabc013c4",
+      "git_blob": "92354e5aa8e764126572d457201cb0888e1444a9",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/verification/portable_native.json": {
+      "sha256": "9c2b06c6b38d5028e610831fc186c3d2f8db6dccaf8d0d21c5f3c5c73607bfcc",
+      "git_blob": "6844b04ea295f82feaba8c941f05e5c76a71a666",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/verification/portable_node.json": {
+      "sha256": "9c2b06c6b38d5028e610831fc186c3d2f8db6dccaf8d0d21c5f3c5c73607bfcc",
+      "git_blob": "6844b04ea295f82feaba8c941f05e5c76a71a666",
+      "matches_tested_input_and_commit": true
+    },
+    "third_party/enough_mail/verification/receipt.json": {
+      "sha256": "c2293735fc5f9674e4cc6f7c05f4ede156b3ce9a8abc547e9ed4d9271187768d",
+      "git_blob": "5e64dba2f9ccca7ffb963fb3f130f647fa2337e0",
+      "matches_tested_input_and_commit": true
+    }
+  },
+  "runtime_pins": {
+    "dart": {
+      "sha256": "01e869e4af277734b02ab8898b870c6b00c9bec61bbcf9c923cd14de7ed85fbb",
+      "bytes": 4835712,
+      "matches_both_accepted_attempts": true
+    },
+    "flutter_tester": {
+      "sha256": "800f4ca182df7dd2fb46a42dea5d76277b9dbc5e8cd2915e02bcbc978681b45f",
+      "bytes": 36051744,
+      "matches_both_accepted_attempts": true
+    },
+    "flutter_tools_snapshot": {
+      "sha256": "803f5eabe0f147bbd7cbfb5810d012f88d909d092d15de36a62be43c42af0da9",
+      "bytes": 47740368,
+      "matches_both_accepted_attempts": true
+    },
+    "sqlite3_native": {
+      "sha256": "0a65852703763619a7a34633b4959b3b86c4103804a4dfe4e8b27b5de1c0647b",
+      "bytes": 1823736,
+      "matches_both_accepted_attempts": true
+    },
+    "package_configuration": {
+      "sha256": "8eab41ca699dc7d09f48d2d845430dc09b57bf225cb202d67688c5da03d3edf2",
+      "bytes": 32782,
+      "matches_both_accepted_attempts": true
+    },
+    "package_graph": {
+      "sha256": "09b12d3718163b37c56c092d0d87d2f5a976bfb50f02009667efce07bd243c3e",
+      "bytes": 29965,
+      "matches_both_accepted_attempts": true
+    },
+    "package_test_entry": {
+      "sha256": "43c93a6773b13eecbf7e9d1c0511da4cb0b8b3cf55f051cf124f34d4843af008",
+      "bytes": 260,
+      "matches_both_accepted_attempts": true
+    }
+  },
+  "source_verification_method": "Each current input matches the accepted SHA-256/size/mode record and the blob/mode stored at the merged commit. Symlinks use their link text. All seven actual runtime/configuration files were rehashed.",
+  "previous_independent_review_sha256": "7cccdf55a5d6a87564096bc14a5aef5c0ec8a1c49bb5d4b4536cf61c90e7b55a",
+  "spacy_disposition": {
+    "previous_passed": 36,
+    "carried": false,
+    "reason": "The selected suites import quds_office_engine, whose PDF/font/slide dependency source changed. Rerun the 36-case cohort on merged source."
+  },
+  "qualification_boundary": "The external dependency resolution and seven runtime/configuration pins remain unchanged; this is not a full external-package-content or hermetic runtime snapshot. Studio Mail and new theme tests require fresh execution on merged Office source.",
+  "github_actions_queried_or_awaited": false,
+  "tests_rerun_for_comparison": false,
+  "product_source_modified_for_comparison": false
+}

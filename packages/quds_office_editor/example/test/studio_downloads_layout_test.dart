@@ -7,6 +7,7 @@ import 'package:quds_office_editor/quds_office_editor.dart';
 import 'package:quds_proofing_hunspell/quds_proofing_hunspell.dart';
 import 'package:quds_office_studio/studio_download_catalog.dart';
 import 'package:quds_office_studio/studio_downloads_manager.dart';
+import 'package:quds_office_studio/studio_font_pack_setup.dart';
 import 'package:quds_office_studio/studio_hunspell_setup.dart';
 import 'package:quds_office_studio/studio_material_theme.dart';
 import 'package:quds_office_studio/studio_spacy_setup.dart';
@@ -23,6 +24,8 @@ final _ids = <String>[
   studioSpacyNerId,
   'spacy-en',
   'spacy-fr',
+  officeCoreFontPack.id,
+  officeVisualFontPack.id,
 ];
 
 Finder _row(String id) => find.byKey(ValueKey<String>('download-$id'));
@@ -36,6 +39,7 @@ Future<void> _open(
   FakeDictionaries? dictionaries,
   FakeMorphology? morphology,
   FakeModels? models,
+  FakeFontPacks? fontPacks,
   StudioDownloadActivity? activity,
   Future<void> Function(Uri)? openLicence,
 }) async {
@@ -56,6 +60,7 @@ Future<void> _open(
           morphology: morphology ?? FakeMorphology(),
           spacy: models ?? FakeModels(frenchProblem: 'Verification failed: x'),
           language: language,
+          fontPacks: fontPacks ?? FakeFontPacks(),
           activity: activity ?? StudioDownloadActivity(),
           openLicence: openLicence ?? (_) async {},
         ),
@@ -197,7 +202,9 @@ void main() {
     expect(find.byKey(const ValueKey('download-spacy-fr-install')), findsOne);
     expect(find.byKey(const ValueKey('download-spacy-fr-remove')), findsOne);
     expect(find.byKey(const ValueKey('downloads-summary')), findsOneWidget);
-    expect(find.textContaining('3 of 7 packages installed'), findsOneWidget);
+    expect(find.textContaining('4 of 9 packages installed'), findsOneWidget);
+    expect(chip(officeVisualFontPack.id), 'Not installed');
+    expect(chip(officeCoreFontPack.id), startsWith('Installed · '));
   });
 
   testWidgets('a running download shows progress and can be cancelled', (
@@ -286,6 +293,7 @@ void main() {
     expect(find.text('CC BY-SA 4.0'), findsOneWidget);
     expect(find.text('MPL 1.1'), findsOneWidget);
     expect(find.text('LGPL-LR'), findsOneWidget);
+    expect(find.text('OFL 1.1'), findsNWidgets(2));
   });
 
   testWidgets('German and Arabic labels come from the Studio strings', (
@@ -380,5 +388,38 @@ void main() {
     await tester.pumpAndSettle();
     expect(find.byKey(const Key('spacy-setup-source')), findsOneWidget);
     expect(find.byKey(const Key('spacy-setup-install')), findsOneWidget);
+  });
+
+  testWidgets('font packs are listed last and reviewed before install', (
+    tester,
+  ) async {
+    final fonts = FakeFontPacks();
+    await _open(tester, fontPacks: fonts);
+    final sections = <String>[
+      for (final code in <String>['ar', 'de', 'en', 'fr', studioFontGroup])
+        'downloads-section-$code',
+    ];
+    final tops = <double>[
+      for (final key in sections)
+        tester.getTopLeft(find.byKey(ValueKey(key))).dy,
+    ];
+    expect(tops, orderedEquals(List<double>.of(tops)..sort()));
+    expect(find.text('Fonts'), findsOneWidget);
+    final install = find.byKey(
+      ValueKey('download-${officeVisualFontPack.id}-install'),
+    );
+    await tester.ensureVisible(install);
+    await tester.tap(install);
+    await tester.pumpAndSettle();
+    expect(find.byType(StudioFontPackSetupDialog), findsOneWidget);
+    Navigator.of(tester.element(find.byType(StudioFontPackSetupDialog))).pop();
+    await tester.pumpAndSettle();
+    final remove = find.byKey(
+      ValueKey('download-${officeCoreFontPack.id}-remove'),
+    );
+    await tester.ensureVisible(remove);
+    await tester.tap(remove);
+    await tester.pumpAndSettle();
+    expect(fonts.calls, <String>['refresh', 'remove-${officeCoreFontPack.id}']);
   });
 }

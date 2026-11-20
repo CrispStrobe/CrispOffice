@@ -1,0 +1,27 @@
+diff --git a/packages/quds_office_engine/lib/src/slide/serial/slide_serial.dart b/packages/quds_office_engine/lib/src/slide/serial/slide_serial.dart
+index a0761b32..03001be5 100644
+--- a/packages/quds_office_engine/lib/src/slide/serial/slide_serial.dart
++++ b/packages/quds_office_engine/lib/src/slide/serial/slide_serial.dart
+@@ -480,6 +480,8 @@ class SlideDeserializer {
+           pathDepth = reader.depth;
+           linear = false;
+           radial = reader.getAttribute('path') == 'circle';
++          // An omitted circle focus retains the default center point.
++          centered = true;
+         } else if (reader.localName == 'fillToRect' &&
+             pathDepth != null &&
+             reader.depth == pathDepth + 1) {
+diff --git a/packages/quds_office_engine/lib/src/slide/shapes/drawingml.dart b/packages/quds_office_engine/lib/src/slide/shapes/drawingml.dart
+index 1fbb02b0..95cf0ba9 100644
+--- a/packages/quds_office_engine/lib/src/slide/shapes/drawingml.dart
++++ b/packages/quds_office_engine/lib/src/slide/shapes/drawingml.dart
+@@ -449,6 +449,9 @@ List<PmlShape> parseSlideShapes(
+       gradientPathDepth = reader.depth;
+       gradientIsLinear = false;
+       gradientRadial = reader.getAttribute('path') == 'circle';
++      // Office's omitted focus rectangle is the center point. An explicit
++      // noncentral focus still requires geometry outside the bounded model.
++      gradientCentered = true;
+     } else if (reader.localName == 'fillToRect' &&
+         reader.namespaceUri == OfficeNamespaces.a &&
+         inGradFill &&
