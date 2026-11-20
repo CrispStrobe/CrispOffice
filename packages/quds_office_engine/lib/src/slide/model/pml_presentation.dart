@@ -516,8 +516,8 @@ class PmlShape {
   bool textAlignOverride;
   bool textDirectionOverride;
 
-  /// Native text assignments keep the replacement template available to live
-  /// renderers, while direct scalar edits retain their established behavior.
+  /// Explicit native text assignments replace imported runs even when the
+  /// scalar text is unchanged, using the same template for display and export.
   bool textReplacementRequested;
 
   bool get hasExplicitTextFormatting =>
@@ -604,7 +604,10 @@ class PmlShape {
     if (!explicit && (source == null || richText.isEmpty)) return richText;
     if (!explicit && source!.text != text) return const <PmlTextParagraph>[];
     final bool replace =
-        source == null || richText.isEmpty || source.text != text;
+        textReplacementRequested ||
+        source == null ||
+        richText.isEmpty ||
+        source.text != text;
     final bool fontChanged =
         textSizeOverride ||
         (source == null
@@ -682,7 +685,11 @@ class PmlShape {
   /// Whether the unmodified imported runs still match scalar text formatting.
   /// Renderers use [resolvedRichText] to apply edits while retaining run styles.
   bool get hasCurrentRichText {
-    if (richText.isEmpty || hasExplicitTextFormatting) return false;
+    if (richText.isEmpty ||
+        hasExplicitTextFormatting ||
+        textReplacementRequested) {
+      return false;
+    }
     final PmlTextSource? source = textSource;
     return source == null ||
         (source.text == text &&

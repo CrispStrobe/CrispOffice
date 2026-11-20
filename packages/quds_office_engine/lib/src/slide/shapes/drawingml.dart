@@ -1410,7 +1410,10 @@ void _writeShapeText(XmlWriter writer, PmlShape shape) {
     body.addChild(_textElement('lstStyle'));
   }
   _writeAutofit(body, shape);
-  final bool replace = source == null || source.text != shape.text;
+  final bool replace =
+      shape.textReplacementRequested ||
+      source == null ||
+      source.text != shape.text;
   if (replace) {
     final List<XmlElement> original = body.childrenNamed(
       'p',

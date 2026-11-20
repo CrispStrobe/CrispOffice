@@ -369,6 +369,77 @@ void main() {
     },
   );
 
+  for (final restoreOriginal in [false, true]) {
+    test(
+      restoreOriginal
+          ? 'replacement then original text cannot revive imported fields or runs'
+          : 'same-value native text assignment replaces imported fields and runs',
+      () {
+        const body =
+            '<p:txBody><a:bodyPr anchor="ctr"/><a:lstStyle/><a:p>'
+            '<a:pPr algn="r"/>'
+            '<a:fld id="{field}" type="slidenum">'
+            '<a:rPr sz="4000" i="1"/><a:t>7</a:t></a:fld>'
+            '<a:r><a:rPr sz="1000" i="0"/><a:t>Original</a:t></a:r>'
+            '<a:r><a:rPr sz="2000" i="1"><a:hlinkClick r:id="rIdLink"/>'
+            '</a:rPr><a:t> linked</a:t></a:r></a:p></p:txBody>';
+        var deck = _deck(shapes: _shape(2, 'Title', body: body));
+        final target = deck.slides.single.shapes.single;
+        final originalText = target.text;
+        final sourceSnapshot = target.textSource!.xml;
+        expect(originalText, '7Original linked');
+        expect(target.richText.single.runs, hasLength(3));
+        expect(target.hasCurrentRichText, isTrue);
+        if (restoreOriginal) {
+          applySlideStep(deck, {
+            'op': 'shapeText',
+            'shapeName': 'Title',
+            'topLevel': true,
+            'text': 'Temporary replacement',
+          });
+        }
+        applySlideStep(deck, {
+          'op': 'shapeText',
+          'shapeName': 'Title',
+          'topLevel': true,
+          'text': originalText,
+        });
+        final live = target.copy().resolvedRichText.single.runs.single;
+        expect(target.hasCurrentRichText, isFalse);
+        expect(
+          (live.text, live.fontSizePt, live.italic),
+          (originalText, 10.0, false),
+        );
+        expect(target.textSource!.xml, sourceSnapshot);
+        expect(target.richText.single.runs, hasLength(3));
+        for (var cycle = 0; cycle < 2; cycle++) {
+          final savedBody = _savedBody(deck);
+          expect(_descendants(savedBody, 'fld'), isEmpty);
+          expect(_descendants(savedBody, 'hlinkClick'), isEmpty);
+          expect(_descendants(savedBody, 'r'), hasLength(1));
+          expect(_descendants(savedBody, 't').single.text, originalText);
+          expect(
+            _descendants(savedBody, 'bodyPr').single.getAttribute('anchor'),
+            'ctr',
+          );
+          expect(
+            _descendants(savedBody, 'pPr').single.getAttribute('algn'),
+            'r',
+          );
+          deck = SlideDeserializer().readBytes(
+            SlideSerializer().writeBytes(deck),
+          );
+          final saved =
+              deck.slides.single.shapes.single.richText.single.runs.single;
+          expect(
+            (saved.text, saved.fontSizePt, saved.italic),
+            (live.text, live.fontSizePt, live.italic),
+          );
+        }
+      },
+    );
+  }
+
   test(
     'new and replaced text display overrides and save consecutive assignments',
     () {
