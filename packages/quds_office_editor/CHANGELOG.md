@@ -18,7 +18,8 @@ All notable changes to `quds_office_editor` are documented here.
   retain hidden-master flags and visible layout decorations through save/reopen,
   and include decoration backing in dark-display text contrast. Integrate block
   arrows, symbol/emoji fallback and flipped connectors while retaining imported
-  rich-text edits and anchored hit testing.
+  rich-text edits and anchored hit testing. Keep connector direction through
+  geometry editing, clipboard operations, morphs and slide duplication.
 
 - Keep painting and caret hit testing aligned for anchored slide text, apply
   current scalar formatting to imported rich text, and preserve inherited

@@ -1,0 +1,124 @@
+{
+  "fileCount": 29,
+  "files": {
+    "canonical-vba-corpus.json": {
+      "bytes": 60472,
+      "sha256": "a1f82c1931e78212fe9beddb47e5fcca098ffa09c133e91ab8d3819d268f9151"
+    },
+    "commands.json": {
+      "bytes": 164804,
+      "sha256": "e347949a4f5e04414ab25952e9abb21074ef8ed740343812405c6e81712996ad"
+    },
+    "dart-version.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "dart-version.stdout": {
+      "bytes": 82,
+      "sha256": "945e6a359e53647f8fd753347245ed78bc06c2808919b2d7749817181d010ff4"
+    },
+    "export_studio_mime.dart": {
+      "bytes": 1643,
+      "sha256": "1c8b5baeae06a5964e20d829dca4e83bf2e3fd9f8ad625b392ebf78d220a9058"
+    },
+    "inputs-after.json.gz": {
+      "bytes": 774495,
+      "sha256": "939d8700f0e8ad8f20793219db478f0b58d0b0bdf2bafecf96732a05e6ebfe79"
+    },
+    "inputs-before.json.gz": {
+      "bytes": 774496,
+      "sha256": "e2467cfef3c6f2bc34d3ed8e9af6db1f4645c22ab00ce154c8efa7ad9c90dde8"
+    },
+    "mime-fixture.json": {
+      "bytes": 5933,
+      "sha256": "2610a4eae310551c472cc598636d8c290066237ed4b9fc347d00836189806b9e"
+    },
+    "mime-inspection.json": {
+      "bytes": 4486,
+      "sha256": "75b866eb3e6aa533cb0fc63fb9ea09aab1c040a44b5a0b1b3993aa50d4e34b38"
+    },
+    "node-version.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "node-version.stdout": {
+      "bytes": 9,
+      "sha256": "4409d3bfa08b82f385bd424eeda65fc63b756129f0e89e82df77f1fecafccc14"
+    },
+    "receipt.json": {
+      "bytes": 3930,
+      "sha256": "cb82e8a51618ec9802aece9a2909a9d517f28bf21074915d21cda8ae52de1a9e"
+    },
+    "run_supplemental_validation.py": {
+      "bytes": 17797,
+      "sha256": "fd33d6f80c6b27cdad13bab3513a0e09ab4a688d8e0cc3d2f9aa8bd4f7b21860"
+    },
+    "run_validation.py": {
+      "bytes": 29772,
+      "sha256": "4d01ed59729abaa64e3ab643e8ebcb2f7136dd2d9f02cc4b07b81a06fbb919bf"
+    },
+    "source-matches-head.json": {
+      "bytes": 74,
+      "sha256": "36da38e0f16ef47277c5bf5eb476c84cb747d1011d201ed5b398f5936f6269a7"
+    },
+    "strings.js": {
+      "bytes": 624618,
+      "sha256": "d897bb9d523fd7fff206ebf012d4296b4cbc66a92f74442b0a0145f496793b93"
+    },
+    "strings.js.deps": {
+      "bytes": 133076,
+      "sha256": "31c47fa9be139be3e79372d101af95a416e8cc51e695df18956cc743dac916b2"
+    },
+    "strings.js.map": {
+      "bytes": 210411,
+      "sha256": "71da198a8cbbeeda9a907f743aff45cdf9a06e509155164fc73db56bae25acef"
+    },
+    "studio-attachment.eml": {
+      "bytes": 7129,
+      "sha256": "f8e5dfd5fb1a9ddb6705b407d0dc141799fb39337910225d83cc5356ecd130e8"
+    },
+    "studio-envelope.json": {
+      "bytes": 288,
+      "sha256": "715e9f6e5c3c6c3537cbadce9921786581c2f0e9ec94958bb06d2fa1d13c9406"
+    },
+    "studio-mime-export.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "studio-mime-export.stdout": {
+      "bytes": 56,
+      "sha256": "1b45e5ea81f75e958d17cd2a76402eaaf454ba2e7342e055ebe2e1d848b6be55"
+    },
+    "vba-dart2js.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "vba-dart2js.stdout": {
+      "bytes": 112,
+      "sha256": "02d70a133710fe28322a5af35f2de9745a978888efb685cce54babd6be5274e6"
+    },
+    "vba-node.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "vba-node.stdout": {
+      "bytes": 14758,
+      "sha256": "a873a66a08bd5632adaea09491476b48ae1dc71a7274c57101af71a6153357c4"
+    },
+    "vba-portable-parity.json": {
+      "bytes": 651,
+      "sha256": "c4a5d061aa16a222c9286dd2059789493a4f0ac216de88c6f8de22180acc9f8a"
+    },
+    "vba-vm.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "vba-vm.stdout": {
+      "bytes": 14758,
+      "sha256": "a873a66a08bd5632adaea09491476b48ae1dc71a7274c57101af71a6153357c4"
+    }
+  },
+  "reproduction": "Source the pinned toolchain env, then run run_supplemental_validation.py with --repo <checkout> --output <fresh-output-directory> --expected-head <qualified-source-head>. All three reproduction helper files are included beside this index.",
+  "supplementalOnly": true,
+  "additionalDistinctUnitTests": 0
+}

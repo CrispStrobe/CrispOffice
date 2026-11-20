@@ -1,0 +1,176 @@
+{
+  "application_timeouts_modified": false,
+  "artifacts": {
+    "events.jsonl.gz": {
+      "bytes": 764,
+      "git_blob_sha1": "15b8c0398a079d9b1fa7db60e4488e2d3044f610",
+      "sha256": "18550be7b5d385a2072ff75c7632961b116e62b9ebd098c5b61ed15c289d45ef"
+    },
+    "input-check.json": {
+      "bytes": 1248,
+      "git_blob_sha1": "088ad9a74f10e14856884fb312be4978d6bae51d",
+      "sha256": "d7f74695e8e4b8b0817a0a207b52350d2dcccc396991c57e76020ad024310c37"
+    },
+    "inputs.json.gz": {
+      "bytes": 487505,
+      "git_blob_sha1": "9023318431fefe0b5623dac35e6ac96058005e5e",
+      "sha256": "db40d17fade4e41bf71f9b2fa53f036142c8ebb895ea984c4322ba343cd46572"
+    },
+    "stderr.log.gz": {
+      "bytes": 31,
+      "git_blob_sha1": "87bfaf1cefef95e53a691da2269f30d7996d9c89",
+      "sha256": "b7368871ac9ce0ce08835c8c2fbf32d88bd56ee6bb93612434e3cc6bd4405e5e"
+    }
+  },
+  "cohort": "editor-docx",
+  "command": [
+    "/workspace/scratch/ee4fc9e59992/zotero-toolchain/flutter-sdk/bin/flutter",
+    "test",
+    "--no-pub",
+    "--reporter",
+    "json",
+    "--concurrency",
+    "1",
+    "test/word_extended_review_test.dart"
+  ],
+  "concurrency": 1,
+  "counting_scope": "Application test cases only. Loader and group-lifecycle events are excluded from the passing count but any failures in them still reject acceptance. Development runs and other cohorts are not included.",
+  "cwd": "/workspace/scratch/ee4fc9e59992/quds_office_suite/packages/quds_office_editor",
+  "elapsed_seconds": 6.074439157000597,
+  "exit_code": 0,
+  "external_dependency_file_count": 2365,
+  "fingerprints": {
+    "after_sha256": {
+      "dependencies": "901b869390617cb67a266c2e71f4dfadabfab0834edccebc97f48d512d5bdee1",
+      "host_fonts": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "runtime": "9c58c139ade21dc3073e27df7a4627814f2ddc40c2b7b684706d390d6d3c5aac",
+      "source": "f39450039b903bfced17893fb8f969b58739f01df21bad2c455b9819a2b421ef",
+      "workspace": "fcccb20167d94e2aff8a2e273e16d559c3ea222e6002fa83269d603c34cdd758"
+    },
+    "before_sha256": {
+      "dependencies": "901b869390617cb67a266c2e71f4dfadabfab0834edccebc97f48d512d5bdee1",
+      "host_fonts": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "runtime": "9c58c139ade21dc3073e27df7a4627814f2ddc40c2b7b684706d390d6d3c5aac",
+      "source": "f39450039b903bfced17893fb8f969b58739f01df21bad2c455b9819a2b421ef",
+      "workspace": "fcccb20167d94e2aff8a2e273e16d559c3ea222e6002fa83269d603c34cdd758"
+    },
+    "changed_paths": {
+      "dependencies": [],
+      "host_fonts": [],
+      "runtime": [],
+      "source": [],
+      "workspace": []
+    },
+    "source_matches_finish": {
+      "different_paths": [],
+      "matches": true,
+      "uncommitted_paths": []
+    },
+    "source_matches_start": {
+      "different_paths": [],
+      "matches": true,
+      "uncommitted_paths": []
+    }
+  },
+  "finished_at_utc": "2026-11-20T04:59:14.622292+00:00",
+  "guards": {
+    "all_requested_suites_executed_once": true,
+    "dependencies_unchanged": true,
+    "every_started_test_finished_once": true,
+    "final_event_success": true,
+    "host_fonts_unchanged": true,
+    "no_failures_skips_or_errors": true,
+    "runtime_unchanged": true,
+    "selection_unchanged": true,
+    "source_matches_finish_commit": true,
+    "source_matches_start_commit": true,
+    "source_unchanged": true,
+    "unique_application_test_names": true,
+    "workspace_unchanged": true
+  },
+  "head_unchanged": true,
+  "no_github_ci_or_status_endpoints": true,
+  "package": "packages/quds_office_editor",
+  "runner": "flutter",
+  "runtime": {
+    "dart_version": "Dart SDK version: 3.13.7 (stable) (Thu Oct 22 14:28:57 2026 -0700) on \"linux_x64\"",
+    "dart_version_command": [
+      "/workspace/scratch/ee4fc9e59992/zotero-toolchain/flutter-sdk/bin/cache/dart-sdk/bin/dart",
+      "--version"
+    ],
+    "flutter": {
+      "channel": "stable",
+      "dartSdkVersion": "3.13.7",
+      "devToolsVersion": "2.60.0",
+      "engineBuildDate": "2026-10-22 20:34:48.330",
+      "engineCommitDate": "2026-10-23 02:13:38.000Z",
+      "engineContentHash": "dfd2e6cb7d319db05e3bf1503f3e2ac60f6288a2",
+      "engineRevision": "cf636b1dfb818dd6a3ff16e390e93b1a036969c8",
+      "flutterVersion": "3.47.8",
+      "frameworkCommitDate": "2026-10-22 21:37:31 -0700",
+      "frameworkRevision": "737ba8f885dc774b53b442759999a312c9461e4e",
+      "frameworkVersion": "3.47.8",
+      "repositoryUrl": "https://github.com/flutter/flutter.git"
+    },
+    "flutter_root": "/workspace/scratch/ee4fc9e59992/zotero-toolchain/flutter-sdk",
+    "pub_cache": "/workspace/scratch/ee4fc9e59992/zotero-toolchain/pub-cache"
+  },
+  "selected_files": [
+    "test/word_extended_review_test.dart"
+  ],
+  "selected_repository_paths": [
+    "packages/quds_office_editor/test/word_extended_review_test.dart"
+  ],
+  "source_file_count": 3994,
+  "source_head_at_finish": "f0122cb5bff5b6cf6a6f69f043545dabc2930791",
+  "source_head_at_start": "f0122cb5bff5b6cf6a6f69f043545dabc2930791",
+  "started_at_utc": "2026-11-20T04:59:06.198433+00:00",
+  "status": "passed",
+  "tests": {
+    "application_cases": 6,
+    "duplicate_application_names": [],
+    "duplicate_suite_ids": false,
+    "error_events": [],
+    "every_started_test_finished_once": true,
+    "excluded_failures": [],
+    "excluded_pseudo_cases": 1,
+    "excluded_reasons": {
+      "hidden_lifecycle": 1
+    },
+    "failed": 0,
+    "final_events": [
+      {
+        "success": true,
+        "time": 4824,
+        "type": "done"
+      }
+    ],
+    "flutter_notification_envelopes": 0,
+    "layout_or_tap_diagnostics": [],
+    "missing_start_test_ids": [],
+    "parse_errors": [],
+    "passed": 6,
+    "skipped": 0,
+    "suite_count": 1,
+    "suites": [
+      {
+        "failed": 0,
+        "id": 0,
+        "passed": 6,
+        "path": "/workspace/scratch/ee4fc9e59992/quds_office_suite/packages/quds_office_editor/test/word_extended_review_test.dart",
+        "skipped": 0
+      }
+    ],
+    "test_done_events": 7,
+    "test_start_events": 7,
+    "unfinished_test_ids": []
+  },
+  "timed_out": false,
+  "validation_runner": {
+    "bytes": 29772,
+    "git_blob_sha1": "269eef52038d97ae307859439875a23f350e0b0a",
+    "path": "/workspace/scratch/ee4fc9e59992/final-validation/run_validation.py",
+    "sha256": "4d01ed59729abaa64e3ab643e8ebcb2f7136dd2d9f02cc4b07b81a06fbb919bf"
+  },
+  "watchdog_seconds": 1800
+}
