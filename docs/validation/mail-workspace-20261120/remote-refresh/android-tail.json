@@ -1,0 +1,15 @@
+{
+  "head": "67a4917b33dcd578333adabac1c50db0fc2a62b6",
+  "previous_integrated_head": "7ac3d3be4a62bf9d2e0ab8a67f0e122568691b22",
+  "unique_nonmerge_commits": [
+    "67a4917b33dcd578333adabac1c50db0fc2a62b6 Android grammar workflow: add the Rust target to Harper's pinned toolchain [skip ci]",
+    "cf5532b3978c074f96e2448c2f47773609a08c18 Android grammar evidence: iOS status and where each run ran [skip ci]"
+  ],
+  "changed_paths": [
+    ".github/workflows/android-spacy-grammar.yml",
+    "docs/validation/native-spacy-android-grammar-20261120/README.md",
+    "docs/validation/native-spacy-android-grammar-20261120/ios.md"
+  ],
+  "product_source_paths_changed": [],
+  "disposition": "Merged with original ancestry by parent during audit; exact reachability recorded in integration-relationships.json."
+}
