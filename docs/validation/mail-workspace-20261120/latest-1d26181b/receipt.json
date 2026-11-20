@@ -1,0 +1,632 @@
+{
+  "schema_version": 1,
+  "started_at": "2026-11-20T10:00:06.056572+00:00",
+  "head": "1d26181b0161d88abe5977f9848ffd4cd99e6259",
+  "git_tree": "c78f112031e101baa294753b6eb003d751b1ed32",
+  "initial_status": "?? docs/validation/mail-workspace-20261120/final-main-advance.json\n?? docs/validation/mail-workspace-20261120/final-main-advance.md\n?? docs/validation/mail-workspace-20261120/main-mail-continuity-1d26181b.json\n?? docs/validation/mail-workspace-20261120/main-office-latest/checkpoint-comparison.json\n?? docs/validation/mail-workspace-20261120/main-office-latest/editor.jsonl\n?? docs/validation/mail-workspace-20261120/main-office-latest/editor.jsonl.gz\n?? docs/validation/mail-workspace-20261120/main-office-latest/editor.stderr\n?? docs/validation/mail-workspace-20261120/main-office-latest/engine.jsonl\n?? docs/validation/mail-workspace-20261120/main-office-latest/engine.jsonl.gz\n?? docs/validation/mail-workspace-20261120/main-office-latest/engine.stderr\n?? docs/validation/mail-workspace-20261120/main-office-latest/incoming-main-product-diff.patch\n?? docs/validation/mail-workspace-20261120/main-office-latest/inputs-after.json\n?? docs/validation/mail-workspace-20261120/main-office-latest/inputs-before.json\n?? docs/validation/mail-workspace-20261120/main-office-latest/run-initial-counter.py\n?? docs/validation/mail-workspace-20261120/main-office-latest/run.py\n?? docs/validation/mail-workspace-20261120/main-office-latest/summary-initial-counter.json\n?? docs/validation/mail-workspace-20261120/main-office-latest/summary.json",
+  "runner_sha256": "19d5c7580efe526f3cdea8514b46e1e5c2d0b935b90a9ff1c6353a95d45e7fa4",
+  "platform": "Linux x64; Flutter VM and Node portable boundary",
+  "github_actions_used": false,
+  "runs": [
+    {
+      "name": "format",
+      "command": [
+        "/workspace/scratch/8e9460dcd580/runtime/bin/dart",
+        "format",
+        "--output=none",
+        "--set-exit-if-changed",
+        "packages/quds_mail_core/lib/src/ports/provider.dart",
+        "packages/quds_mail_transport/lib/src/cursor.dart",
+        "packages/quds_mail_transport/lib/src/native/provider.dart",
+        "packages/quds_mail_transport/test/native_browse_test.dart",
+        "packages/quds_mail_transport/test/support/imap_fixture.dart",
+        "packages/quds_mail_ui/lib/quds_mail_ui.dart",
+        "packages/quds_mail_ui/lib/src/workspace/message_list.dart",
+        "packages/quds_mail_ui/test/message_list_test.dart",
+        "packages/quds_office_editor/example/lib/studio_mail_ews.dart",
+        "packages/quds_office_editor/example/lib/studio_mail_message_loader.dart",
+        "packages/quds_office_editor/example/lib/studio_mail_native.dart",
+        "packages/quds_office_editor/example/lib/studio_mail_workspace_strings.dart",
+        "packages/quds_office_editor/example/test/studio_mail_cloud_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_ews_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_message_loader_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_workspace_test.dart"
+      ],
+      "cwd": ".",
+      "exit_code": 0,
+      "elapsed_seconds": 0.5155417770001804,
+      "stdout": "format.stdout",
+      "stderr": "format.stderr",
+      "stdout_sha256": "e68e2fc13b7acbd7a068141e7b94336abc53c6034c219b8c2be679ac393f51b5",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "accepted": true
+    },
+    {
+      "name": "studio-analyze",
+      "command": [
+        "/workspace/scratch/8e9460dcd580/runtime/bin/dart",
+        "analyze",
+        "--fatal-infos",
+        "lib/studio_mail_ews.dart",
+        "lib/studio_mail_message_loader.dart",
+        "lib/studio_mail_native.dart",
+        "lib/studio_mail_workspace_strings.dart",
+        "test/studio_mail_cloud_test.dart",
+        "test/studio_mail_ews_test.dart",
+        "test/studio_mail_message_loader_test.dart",
+        "test/studio_mail_test.dart",
+        "test/studio_mail_workspace_test.dart"
+      ],
+      "cwd": "packages/quds_office_editor/example",
+      "exit_code": 0,
+      "elapsed_seconds": 18.23194565599988,
+      "stdout": "studio-analyze.stdout",
+      "stderr": "studio-analyze.stderr",
+      "stdout_sha256": "64661736e5afa4c0137d348d1d219e4dbe54d3154af103893f30a7d20d0de059",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "accepted": true
+    },
+    {
+      "name": "studio",
+      "command": [
+        "/workspace/scratch/8e9460dcd580/runtime/bin/flutter",
+        "test",
+        "--no-pub",
+        "--reporter=json",
+        "--concurrency=1",
+        "test/studio_mail_archive_action_test.dart",
+        "test/studio_mail_archive_directory_import_test.dart",
+        "test/studio_mail_archive_folder_action_test.dart",
+        "test/studio_mail_archive_host_test.dart",
+        "test/studio_mail_archive_portability_visual_test.dart",
+        "test/studio_mail_archive_restore_native_test.dart",
+        "test/studio_mail_archive_restore_test.dart",
+        "test/studio_mail_archive_test.dart",
+        "test/studio_mail_attachment_compose_test.dart",
+        "test/studio_mail_attachment_loader_test.dart",
+        "test/studio_mail_attachment_test.dart",
+        "test/studio_mail_cloud_test.dart",
+        "test/studio_mail_compose_test.dart",
+        "test/studio_mail_credentials_test.dart",
+        "test/studio_mail_discovery_test.dart",
+        "test/studio_mail_draft_autosave_test.dart",
+        "test/studio_mail_draft_store_test.dart",
+        "test/studio_mail_ews_test.dart",
+        "test/studio_mail_lifecycle_test.dart",
+        "test/studio_mail_message_loader_test.dart",
+        "test/studio_mail_operation_test.dart",
+        "test/studio_mail_presets_test.dart",
+        "test/studio_mail_recipients_test.dart",
+        "test/studio_mail_reply_test.dart",
+        "test/studio_mail_session_test.dart",
+        "test/studio_mail_test.dart",
+        "test/studio_mail_threading_test.dart",
+        "test/studio_mail_web_test.dart",
+        "test/studio_mail_workspace_test.dart",
+        "test/studio_saved_mail_test.dart"
+      ],
+      "cwd": "packages/quds_office_editor/example",
+      "exit_code": 1,
+      "elapsed_seconds": 25.41244640500372,
+      "stdout": "studio.jsonl",
+      "stderr": "studio.stderr",
+      "stdout_sha256": "93fd615d0d46b40c32f6676b9b322546d3af60642ab9db67239b0d6f22ff8f99",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "accepted": false,
+      "tests": {
+        "completed": false,
+        "passed": 67,
+        "failed": 44,
+        "skipped": 0,
+        "hidden_skips": 0,
+        "selected_suites": 30,
+        "loaded_suites": 30,
+        "missing_suites": [],
+        "unexpected_suites": [],
+        "missing_case_metadata": [],
+        "errors": [
+          {
+            "testID": 70,
+            "error": "FileSystemException: Creation of temporary directory failed, path = '/workspace/scratch/8e9460dcd580/runtime/tmp' (OS Error: No space left on device, errno = 28)",
+            "stackTrace": "dart:io                                                  _Directory.createTemp\ntest/studio_mail_archive_folder_action_test.dart 677:52  main.<fn>\n",
+            "isFailure": false,
+            "type": "error",
+            "time": 14279
+          },
+          {
+            "testID": 71,
+            "error": "FileSystemException: Creation of temporary directory failed, path = '/workspace/scratch/8e9460dcd580/runtime/tmp' (OS Error: No space left on device, errno = 28)",
+            "stackTrace": "dart:io                                                  _Directory.createTemp\ntest/studio_mail_archive_folder_action_test.dart 740:52  main.<fn>\n",
+            "isFailure": false,
+            "type": "error",
+            "time": 14289
+          },
+          {
+            "testID": 75,
+            "error": "FileSystemException: Creation of temporary directory failed, path = '/workspace/scratch/8e9460dcd580/runtime/tmp' (OS Error: No space left on device, errno = 28)",
+            "stackTrace": "dart:io                                        _Directory.createTemp\ntest/studio_mail_archive_host_test.dart 67:48  main.<fn>\n",
+            "isFailure": false,
+            "type": "error",
+            "time": 14958
+          },
+          {
+            "testID": 75,
+            "error": "LateInitializationError: Local 'temporary' has not been initialized.",
+            "stackTrace": "dart:_internal                           LateError._throwLocalNotInitialized\ntest/studio_mail_archive_host_test.dart  main.<fn>\n",
+            "isFailure": false,
+            "type": "error",
+            "time": 14980
+          },
+          {
+            "testID": 76,
+            "error": "FileSystemException: Creation of temporary directory failed, path = '/workspace/scratch/8e9460dcd580/runtime/tmp' (OS Error: No space left on device, errno = 28)",
+            "stackTrace": "dart:io                                        _Directory.createTemp\ntest/studio_mail_archive_host_test.dart 67:48  main.<fn>\n",
+            "isFailure": false,
+            "type": "error",
+            "time": 14995
+          },
+          {
+            "testID": 76,
+            "error": "LateInitializationError: Local 'temporary' has not been initialized.",
+            "stackTrace": "dart:_internal                           LateError._throwLocalNotInitialized\ntest/studio_mail_archive_host_test.dart  main.<fn>\n",
+            "isFailure": false,
+            "type": "error",
+            "time": 15000
+          },
+          {
+            "testID": 77,
+            "error": "FileSystemException: Creation of temporary directory failed, path = '/workspace/scratch/8e9460dcd580/runtime/tmp' (OS Error: No space left on device, errno = 28)",
+            "stackTrace": "dart:io                                        _Directory.createTemp\ntest/studio_mail_archive_host_test.dart 67:48  main.<fn>\n",
+            "isFailure": false,
+            "type": "error",
+            "time": 15018
+          },
+          {
+            "testID": 77,
+            "error": "LateInitializationError: Local 'temporary' has not been initialized.",
+            "stackTrace": "dart:_internal                           LateError._throwLocalNotInitialized\ntest/studio_mail_archive_host_test.dart  main.<fn>\n",
+            "isFailure": false,
+            "type": "error",
+            "time": 15022
+          },
+          {
+            "testID": 78,
+            "error": "FileSystemException: Creation of temporary directory failed, path = '/workspace/scratch/8e9460dcd580/runtime/tmp' (OS Error: No space left on device, errno = 28)",
+            "stackTrace": "dart:io                                        _Directory.createTemp\ntest/studio_mail_archive_host_test.dart 67:48  main.<fn>\n",
+            "isFailure": false,
+            "type": "error",
+            "time": 15046
+          },
+          {
+            "testID": 78,
+            "error": "LateInitializationError: Local 'temporary' has not been initialized.",
+            "stackTrace": "dart:_internal                           LateError._throwLocalNotInitialized\ntest/studio_mail_archive_host_test.dart  main.<fn>\n",
+            "isFailure": false,
+            "type": "error",
+            "time": 15051
+          },
+          {
+            "testID": 79,
+            "error": "FileSystemException: Creation of temporary directory failed, path = '/workspace/scratch/8e9460dcd580/runtime/tmp' (OS Error: No space left on device, errno = 28)",
+            "stackTrace": "dart:io                                        _Directory.createTemp\ntest/studio_mail_archive_host_test.dart 67:48  main.<fn>\n",
+            "isFailure": false,
+            "type": "error",
+            "time": 15064
+          },
+          {
+            "testID": 79,
+            "error": "LateInitializationError: Local 'temporary' has not been initialized.",
+            "stackTrace": "dart:_internal                           LateError._throwLocalNotInitialized\ntest/studio_mail_archive_host_test.dart  main.<fn>\n",
+            "isFailure": false,
+            "type": "error",
+            "time": 15068
+          },
+          {
+            "testID": 80,
+            "error": "FileSystemException: Creation of temporary directory failed, path = '/workspace/scratch/8e9460dcd580/runtime/tmp' (OS Error: No space left on device, errno = 28)",
+            "stackTrace": "dart:io                                        _Directory.createTemp\ntest/studio_mail_archive_host_test.dart 67:48  main.<fn>\n",
+            "isFailure": false,
+            "type": "error",
+            "time": 15080
+          },
+          {
+            "testID": 80,
+            "error": "LateInitializationError: Local 'temporary' has not been initialized.",
+            "stackTrace": "dart:_internal                           LateError._throwLocalNotInitialized\ntest/studio_mail_archive_host_test.dart  main.<fn>\n",
+            "isFailure": false,
+            "type": "error",
+            "time": 15085
+          },
+          {
+            "testID": 81,
+            "error": "FileSystemException: Creation of temporary directory failed, path = '/workspace/scratch/8e9460dcd580/runtime/tmp' (OS Error: No space left on device, errno = 28)",
+            "stackTrace": "dart:io                                        _Directory.createTemp\ntest/studio_mail_archive_host_test.dart 67:48  main.<fn>\n",
+            "isFailure": false,
+            "type": "error",
+            "time": 15096
+          },
+          {
+            "testID": 81,
+            "error": "LateInitializationError: Local 'temporary' has not been initialized.",
+            "stackTrace": "dart:_internal                           LateError._throwLocalNotInitialized\ntest/studio_mail_archive_host_test.dart  main.<fn>\n",
+            "isFailure": false,
+            "type": "error",
+            "time": 15100
+          },
+          {
+            "testID": 82,
+            "error": "FileSystemException: Creation of temporary directory failed, path = '/workspace/scratch/8e9460dcd580/runtime/tmp' (OS Error: No space left on device, errno = 28)",
+            "stackTrace": "dart:io                                        _Directory.createTemp\ntest/studio_mail_archive_host_test.dart 67:48  main.<fn>\n",
+            "isFailure": false,
+            "type": "error",
+            "time": 15113
+          },
+          {
+            "testID": 82,
+            "error": "LateInitializationError: Local 'temporary' has not been initialized.",
+            "stackTrace": "dart:_internal                           LateError._throwLocalNotInitialized\ntest/studio_mail_archive_host_test.dart  main.<fn>\n",
+            "isFailure": false,
+            "type": "error",
+            "time": 15116
+          },
+          {
+            "testID": 83,
+            "error": "FileSystemException: Creation of temporary directory failed, path = '/workspace/scratch/8e9460dcd580/runtime/tmp' (OS Error: No space left on device, errno = 28)",
+            "stackTrace": "dart:io                                        _Directory.createTemp\ntest/studio_mail_archive_host_test.dart 67:48  main.<fn>\n",
+            "isFailure": false,
+            "type": "error",
+            "time": 15131
+          },
+          {
+            "testID": 83,
+            "error": "LateInitializationError: Local 'temporary' has not been initialized.",
+            "stackTrace": "dart:_internal                           LateError._throwLocalNotInitialized\ntest/studio_mail_archive_host_test.dart  main.<fn>\n",
+            "isFailure": false,
+            "type": "error",
+            "time": 15136
+          },
+          {
+            "testID": 84,
+            "error": "FileSystemException: Creation of temporary directory failed, path = '/workspace/scratch/8e9460dcd580/runtime/tmp' (OS Error: No space left on device, errno = 28)",
+            "stackTrace": "dart:io                                        _Directory.createTemp\ntest/studio_mail_archive_host_test.dart 67:48  main.<fn>\n",
+            "isFailure": false,
+            "type": "error",
+            "time": 15148
+          },
+          {
+            "testID": 84,
+            "error": "LateInitializationError: Local 'temporary' has not been initialized.",
+            "stackTrace": "dart:_internal                           LateError._throwLocalNotInitialized\ntest/studio_mail_archive_host_test.dart  main.<fn>\n",
+            "isFailure": false,
+            "type": "error",
+            "time": 15151
+          },
+          {
+            "testID": 85,
+            "error": "FileSystemException: Creation of temporary directory failed, path = '/workspace/scratch/8e9460dcd580/runtime/tmp' (OS Error: No space left on device, errno = 28)",
+            "stackTrace": "dart:io                                        _Directory.createTemp\ntest/studio_mail_archive_host_test.dart 67:48  main.<fn>\n",
+            "isFailure": false,
+            "type": "error",
+            "time": 15161
+          },
+          {
+            "testID": 85,
+            "error": "LateInitializationError: Local 'temporary' has not been initialized.",
+            "stackTrace": "dart:_internal                           LateError._throwLocalNotInitialized\ntest/studio_mail_archive_host_test.dart  main.<fn>\n",
+            "isFailure": false,
+            "type": "error",
+            "time": 15164
+          },
+          {
+            "testID": 86,
+            "error": "FileSystemException: Creation of temporary directory failed, path = '/workspace/scratch/8e9460dcd580/runtime/tmp' (OS Error: No space left on device, errno = 28)",
+            "stackTrace": "dart:io                                        _Directory.createTemp\ntest/studio_mail_archive_host_test.dart 67:48  main.<fn>\n",
+            "isFailure": false,
+            "type": "error",
+            "time": 15175
+          },
+          {
+            "testID": 86,
+            "error": "LateInitializationError: Local 'temporary' has not been initialized.",
+            "stackTrace": "dart:_internal                           LateError._throwLocalNotInitialized\ntest/studio_mail_archive_host_test.dart  main.<fn>\n",
+            "isFailure": false,
+            "type": "error",
+            "time": 15178
+          },
+          {
+            "testID": 87,
+            "error": "FileSystemException: Creation of temporary directory failed, path = '/workspace/scratch/8e9460dcd580/runtime/tmp' (OS Error: No space left on device, errno = 28)",
+            "stackTrace": "dart:io                                        _Directory.createTemp\ntest/studio_mail_archive_host_test.dart 67:48  main.<fn>\n",
+            "isFailure": false,
+            "type": "error",
+            "time": 15191
+          },
+          {
+            "testID": 87,
+            "error": "LateInitializationError: Local 'temporary' has not been initialized.",
+            "stackTrace": "dart:_internal                           LateError._throwLocalNotInitialized\ntest/studio_mail_archive_host_test.dart  main.<fn>\n",
+            "isFailure": false,
+            "type": "error",
+            "time": 15193
+          },
+          {
+            "testID": 88,
+            "error": "FileSystemException: Creation of temporary directory failed, path = '/workspace/scratch/8e9460dcd580/runtime/tmp' (OS Error: No space left on device, errno = 28)",
+            "stackTrace": "dart:io                                        _Directory.createTemp\ntest/studio_mail_archive_host_test.dart 67:48  main.<fn>\n",
+            "isFailure": false,
+            "type": "error",
+            "time": 15204
+          },
+          {
+            "testID": 88,
+            "error": "LateInitializationError: Local 'temporary' has not been initialized.",
+            "stackTrace": "dart:_internal                           LateError._throwLocalNotInitialized\ntest/studio_mail_archive_host_test.dart  main.<fn>\n",
+            "isFailure": false,
+            "type": "error",
+            "time": 15208
+          },
+          {
+            "testID": 89,
+            "error": "FileSystemException: Creation of temporary directory failed, path = '/workspace/scratch/8e9460dcd580/runtime/tmp' (OS Error: No space left on device, errno = 28)",
+            "stackTrace": "dart:io                                        _Directory.createTemp\ntest/studio_mail_archive_host_test.dart 67:48  main.<fn>\n",
+            "isFailure": false,
+            "type": "error",
+            "time": 15217
+          },
+          {
+            "testID": 89,
+            "error": "LateInitializationError: Local 'temporary' has not been initialized.",
+            "stackTrace": "dart:_internal                           LateError._throwLocalNotInitialized\ntest/studio_mail_archive_host_test.dart  main.<fn>\n",
+            "isFailure": false,
+            "type": "error",
+            "time": 15221
+          },
+          {
+            "testID": 90,
+            "error": "FileSystemException: Creation of temporary directory failed, path = '/workspace/scratch/8e9460dcd580/runtime/tmp' (OS Error: No space left on device, errno = 28)",
+            "stackTrace": "dart:io                                        _Directory.createTemp\ntest/studio_mail_archive_host_test.dart 67:48  main.<fn>\n",
+            "isFailure": false,
+            "type": "error",
+            "time": 15231
+          },
+          {
+            "testID": 90,
+            "error": "LateInitializationError: Local 'temporary' has not been initialized.",
+            "stackTrace": "dart:_internal                           LateError._throwLocalNotInitialized\ntest/studio_mail_archive_host_test.dart  main.<fn>\n",
+            "isFailure": false,
+            "type": "error",
+            "time": 15234
+          },
+          {
+            "testID": 91,
+            "error": "FileSystemException: Creation of temporary directory failed, path = '/workspace/scratch/8e9460dcd580/runtime/tmp' (OS Error: No space left on device, errno = 28)",
+            "stackTrace": "dart:io                                        _Directory.createTemp\ntest/studio_mail_archive_host_test.dart 67:48  main.<fn>\n",
+            "isFailure": false,
+            "type": "error",
+            "time": 15244
+          },
+          {
+            "testID": 91,
+            "error": "LateInitializationError: Local 'temporary' has not been initialized.",
+            "stackTrace": "dart:_internal                           LateError._throwLocalNotInitialized\ntest/studio_mail_archive_host_test.dart  main.<fn>\n",
+            "isFailure": false,
+            "type": "error",
+            "time": 15247
+          },
+          {
+            "testID": 104,
+            "error": "Failed to load \"/workspace/scratch/8e9460dcd580/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_archive_restore_native_test.dart\":\nFlutter failed to create a temporary directory with prefix \"flutter_test_listener.\". The target device is full.\nFileSystemException: Creation of temporary directory failed, path = '/workspace/scratch/8e9460dcd580/runtime/tmp/flutter_tools.HYTBAN/flutter_test_listener.' (OS Error: No space left on device, errno = 28)\nFree up space and try again.",
+            "stackTrace": "package:flutter_tools/src/base/common.dart 34:3               throwToolExit\npackage:flutter_tools/src/base/error_handling_io.dart 1502:3  _throwFileSystemException\npackage:flutter_tools/src/base/error_handling_io.dart 1400:3  _handlePosixException\npackage:flutter_tools/src/base/error_handling_io.dart 1336:5  _onFileSystemException\npackage:flutter_tools/src/base/error_handling_io.dart 1140:7  _runSync\npackage:flutter_tools/src/base/error_handling_io.dart 684:12  ErrorHandlingDirectory.createTempSync\npackage:flutter_tools/src/test/flutter_platform.dart 781:62   FlutterPlatform._createListenerDart\npackage:flutter_tools/src/test/flutter_platform.dart 647:20   FlutterPlatform._startTest\npackage:flutter_tools/src/test/flutter_platform.dart 439:36   FlutterPlatform.loadChannel\npackage:flutter_tools/src/test/flutter_platform.dart 395:44   FlutterPlatform.load\npackage:test_core/src/runner/loader.dart 249:40               Loader.loadFile.<fn>\n===== asynchronous gap ===========================\npackage:test_core/src/runner/load_suite.dart 95:21            new LoadSuite.<fn>.<fn>\n",
+            "isFailure": false,
+            "type": "error",
+            "time": 23577
+          },
+          {
+            "testID": 106,
+            "error": "Failed to load \"/workspace/scratch/8e9460dcd580/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_archive_restore_test.dart\":\nFlutter failed to create a temporary directory with prefix \"flutter_test_listener.\". The target device is full.\nFileSystemException: Creation of temporary directory failed, path = '/workspace/scratch/8e9460dcd580/runtime/tmp/flutter_tools.HYTBAN/flutter_test_listener.' (OS Error: No space left on device, errno = 28)\nFree up space and try again.",
+            "stackTrace": "package:flutter_tools/src/base/common.dart 34:3               throwToolExit\npackage:flutter_tools/src/base/error_handling_io.dart 1502:3  _throwFileSystemException\npackage:flutter_tools/src/base/error_handling_io.dart 1400:3  _handlePosixException\npackage:flutter_tools/src/base/error_handling_io.dart 1336:5  _onFileSystemException\npackage:flutter_tools/src/base/error_handling_io.dart 1140:7  _runSync\npackage:flutter_tools/src/base/error_handling_io.dart 684:12  ErrorHandlingDirectory.createTempSync\npackage:flutter_tools/src/test/flutter_platform.dart 781:62   FlutterPlatform._createListenerDart\npackage:flutter_tools/src/test/flutter_platform.dart 647:20   FlutterPlatform._startTest\npackage:flutter_tools/src/test/flutter_platform.dart 439:36   FlutterPlatform.loadChannel\npackage:flutter_tools/src/test/flutter_platform.dart 395:44   FlutterPlatform.load\npackage:test_core/src/runner/loader.dart 249:40               Loader.loadFile.<fn>\n===== asynchronous gap ===========================\npackage:test_core/src/runner/load_suite.dart 95:21            new LoadSuite.<fn>.<fn>\n",
+            "isFailure": false,
+            "type": "error",
+            "time": 23579
+          },
+          {
+            "testID": 108,
+            "error": "Failed to load \"/workspace/scratch/8e9460dcd580/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_archive_test.dart\":\nFlutter failed to create a temporary directory with prefix \"flutter_test_listener.\". The target device is full.\nFileSystemException: Creation of temporary directory failed, path = '/workspace/scratch/8e9460dcd580/runtime/tmp/flutter_tools.HYTBAN/flutter_test_listener.' (OS Error: No space left on device, errno = 28)\nFree up space and try again.",
+            "stackTrace": "package:flutter_tools/src/base/common.dart 34:3               throwToolExit\npackage:flutter_tools/src/base/error_handling_io.dart 1502:3  _throwFileSystemException\npackage:flutter_tools/src/base/error_handling_io.dart 1400:3  _handlePosixException\npackage:flutter_tools/src/base/error_handling_io.dart 1336:5  _onFileSystemException\npackage:flutter_tools/src/base/error_handling_io.dart 1140:7  _runSync\npackage:flutter_tools/src/base/error_handling_io.dart 684:12  ErrorHandlingDirectory.createTempSync\npackage:flutter_tools/src/test/flutter_platform.dart 781:62   FlutterPlatform._createListenerDart\npackage:flutter_tools/src/test/flutter_platform.dart 647:20   FlutterPlatform._startTest\npackage:flutter_tools/src/test/flutter_platform.dart 439:36   FlutterPlatform.loadChannel\npackage:flutter_tools/src/test/flutter_platform.dart 395:44   FlutterPlatform.load\npackage:test_core/src/runner/loader.dart 249:40               Loader.loadFile.<fn>\n===== asynchronous gap ===========================\npackage:test_core/src/runner/load_suite.dart 95:21            new LoadSuite.<fn>.<fn>\n",
+            "isFailure": false,
+            "type": "error",
+            "time": 23580
+          },
+          {
+            "testID": 110,
+            "error": "Failed to load \"/workspace/scratch/8e9460dcd580/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_attachment_compose_test.dart\":\nFlutter failed to create a temporary directory with prefix \"flutter_test_listener.\". The target device is full.\nFileSystemException: Creation of temporary directory failed, path = '/workspace/scratch/8e9460dcd580/runtime/tmp/flutter_tools.HYTBAN/flutter_test_listener.' (OS Error: No space left on device, errno = 28)\nFree up space and try again.",
+            "stackTrace": "package:flutter_tools/src/base/common.dart 34:3               throwToolExit\npackage:flutter_tools/src/base/error_handling_io.dart 1502:3  _throwFileSystemException\npackage:flutter_tools/src/base/error_handling_io.dart 1400:3  _handlePosixException\npackage:flutter_tools/src/base/error_handling_io.dart 1336:5  _onFileSystemException\npackage:flutter_tools/src/base/error_handling_io.dart 1140:7  _runSync\npackage:flutter_tools/src/base/error_handling_io.dart 684:12  ErrorHandlingDirectory.createTempSync\npackage:flutter_tools/src/test/flutter_platform.dart 781:62   FlutterPlatform._createListenerDart\npackage:flutter_tools/src/test/flutter_platform.dart 647:20   FlutterPlatform._startTest\npackage:flutter_tools/src/test/flutter_platform.dart 439:36   FlutterPlatform.loadChannel\npackage:flutter_tools/src/test/flutter_platform.dart 395:44   FlutterPlatform.load\npackage:test_core/src/runner/loader.dart 249:40               Loader.loadFile.<fn>\n===== asynchronous gap ===========================\npackage:test_core/src/runner/load_suite.dart 95:21            new LoadSuite.<fn>.<fn>\n",
+            "isFailure": false,
+            "type": "error",
+            "time": 23581
+          },
+          {
+            "testID": 112,
+            "error": "Failed to load \"/workspace/scratch/8e9460dcd580/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_attachment_loader_test.dart\":\nFlutter failed to create a temporary directory with prefix \"flutter_test_listener.\". The target device is full.\nFileSystemException: Creation of temporary directory failed, path = '/workspace/scratch/8e9460dcd580/runtime/tmp/flutter_tools.HYTBAN/flutter_test_listener.' (OS Error: No space left on device, errno = 28)\nFree up space and try again.",
+            "stackTrace": "package:flutter_tools/src/base/common.dart 34:3               throwToolExit\npackage:flutter_tools/src/base/error_handling_io.dart 1502:3  _throwFileSystemException\npackage:flutter_tools/src/base/error_handling_io.dart 1400:3  _handlePosixException\npackage:flutter_tools/src/base/error_handling_io.dart 1336:5  _onFileSystemException\npackage:flutter_tools/src/base/error_handling_io.dart 1140:7  _runSync\npackage:flutter_tools/src/base/error_handling_io.dart 684:12  ErrorHandlingDirectory.createTempSync\npackage:flutter_tools/src/test/flutter_platform.dart 781:62   FlutterPlatform._createListenerDart\npackage:flutter_tools/src/test/flutter_platform.dart 647:20   FlutterPlatform._startTest\npackage:flutter_tools/src/test/flutter_platform.dart 439:36   FlutterPlatform.loadChannel\npackage:flutter_tools/src/test/flutter_platform.dart 395:44   FlutterPlatform.load\npackage:test_core/src/runner/loader.dart 249:40               Loader.loadFile.<fn>\n===== asynchronous gap ===========================\npackage:test_core/src/runner/load_suite.dart 95:21            new LoadSuite.<fn>.<fn>\n",
+            "isFailure": false,
+            "type": "error",
+            "time": 23582
+          },
+          {
+            "testID": 114,
+            "error": "Failed to load \"/workspace/scratch/8e9460dcd580/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_attachment_test.dart\":\nFlutter failed to create a temporary directory with prefix \"flutter_test_listener.\". The target device is full.\nFileSystemException: Creation of temporary directory failed, path = '/workspace/scratch/8e9460dcd580/runtime/tmp/flutter_tools.HYTBAN/flutter_test_listener.' (OS Error: No space left on device, errno = 28)\nFree up space and try again.",
+            "stackTrace": "package:flutter_tools/src/base/common.dart 34:3               throwToolExit\npackage:flutter_tools/src/base/error_handling_io.dart 1502:3  _throwFileSystemException\npackage:flutter_tools/src/base/error_handling_io.dart 1400:3  _handlePosixException\npackage:flutter_tools/src/base/error_handling_io.dart 1336:5  _onFileSystemException\npackage:flutter_tools/src/base/error_handling_io.dart 1140:7  _runSync\npackage:flutter_tools/src/base/error_handling_io.dart 684:12  ErrorHandlingDirectory.createTempSync\npackage:flutter_tools/src/test/flutter_platform.dart 781:62   FlutterPlatform._createListenerDart\npackage:flutter_tools/src/test/flutter_platform.dart 647:20   FlutterPlatform._startTest\npackage:flutter_tools/src/test/flutter_platform.dart 439:36   FlutterPlatform.loadChannel\npackage:flutter_tools/src/test/flutter_platform.dart 395:44   FlutterPlatform.load\npackage:test_core/src/runner/loader.dart 249:40               Loader.loadFile.<fn>\n===== asynchronous gap ===========================\npackage:test_core/src/runner/load_suite.dart 95:21            new LoadSuite.<fn>.<fn>\n",
+            "isFailure": false,
+            "type": "error",
+            "time": 23583
+          },
+          {
+            "testID": 116,
+            "error": "Failed to load \"/workspace/scratch/8e9460dcd580/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_cloud_test.dart\":\nFlutter failed to create a temporary directory with prefix \"flutter_test_listener.\". The target device is full.\nFileSystemException: Creation of temporary directory failed, path = '/workspace/scratch/8e9460dcd580/runtime/tmp/flutter_tools.HYTBAN/flutter_test_listener.' (OS Error: No space left on device, errno = 28)\nFree up space and try again.",
+            "stackTrace": "package:flutter_tools/src/base/common.dart 34:3               throwToolExit\npackage:flutter_tools/src/base/error_handling_io.dart 1502:3  _throwFileSystemException\npackage:flutter_tools/src/base/error_handling_io.dart 1400:3  _handlePosixException\npackage:flutter_tools/src/base/error_handling_io.dart 1336:5  _onFileSystemException\npackage:flutter_tools/src/base/error_handling_io.dart 1140:7  _runSync\npackage:flutter_tools/src/base/error_handling_io.dart 684:12  ErrorHandlingDirectory.createTempSync\npackage:flutter_tools/src/test/flutter_platform.dart 781:62   FlutterPlatform._createListenerDart\npackage:flutter_tools/src/test/flutter_platform.dart 647:20   FlutterPlatform._startTest\npackage:flutter_tools/src/test/flutter_platform.dart 439:36   FlutterPlatform.loadChannel\npackage:flutter_tools/src/test/flutter_platform.dart 395:44   FlutterPlatform.load\npackage:test_core/src/runner/loader.dart 249:40               Loader.loadFile.<fn>\n===== asynchronous gap ===========================\npackage:test_core/src/runner/load_suite.dart 95:21            new LoadSuite.<fn>.<fn>\n",
+            "isFailure": false,
+            "type": "error",
+            "time": 23584
+          },
+          {
+            "testID": 118,
+            "error": "Failed to load \"/workspace/scratch/8e9460dcd580/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_compose_test.dart\":\nFlutter failed to create a temporary directory with prefix \"flutter_test_listener.\". The target device is full.\nFileSystemException: Creation of temporary directory failed, path = '/workspace/scratch/8e9460dcd580/runtime/tmp/flutter_tools.HYTBAN/flutter_test_listener.' (OS Error: No space left on device, errno = 28)\nFree up space and try again.",
+            "stackTrace": "package:flutter_tools/src/base/common.dart 34:3               throwToolExit\npackage:flutter_tools/src/base/error_handling_io.dart 1502:3  _throwFileSystemException\npackage:flutter_tools/src/base/error_handling_io.dart 1400:3  _handlePosixException\npackage:flutter_tools/src/base/error_handling_io.dart 1336:5  _onFileSystemException\npackage:flutter_tools/src/base/error_handling_io.dart 1140:7  _runSync\npackage:flutter_tools/src/base/error_handling_io.dart 684:12  ErrorHandlingDirectory.createTempSync\npackage:flutter_tools/src/test/flutter_platform.dart 781:62   FlutterPlatform._createListenerDart\npackage:flutter_tools/src/test/flutter_platform.dart 647:20   FlutterPlatform._startTest\npackage:flutter_tools/src/test/flutter_platform.dart 439:36   FlutterPlatform.loadChannel\npackage:flutter_tools/src/test/flutter_platform.dart 395:44   FlutterPlatform.load\npackage:test_core/src/runner/loader.dart 249:40               Loader.loadFile.<fn>\n===== asynchronous gap ===========================\npackage:test_core/src/runner/load_suite.dart 95:21            new LoadSuite.<fn>.<fn>\n",
+            "isFailure": false,
+            "type": "error",
+            "time": 23585
+          },
+          {
+            "testID": 120,
+            "error": "Failed to load \"/workspace/scratch/8e9460dcd580/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_credentials_test.dart\":\nFlutter failed to create a temporary directory with prefix \"flutter_test_listener.\". The target device is full.\nFileSystemException: Creation of temporary directory failed, path = '/workspace/scratch/8e9460dcd580/runtime/tmp/flutter_tools.HYTBAN/flutter_test_listener.' (OS Error: No space left on device, errno = 28)\nFree up space and try again.",
+            "stackTrace": "package:flutter_tools/src/base/common.dart 34:3               throwToolExit\npackage:flutter_tools/src/base/error_handling_io.dart 1502:3  _throwFileSystemException\npackage:flutter_tools/src/base/error_handling_io.dart 1400:3  _handlePosixException\npackage:flutter_tools/src/base/error_handling_io.dart 1336:5  _onFileSystemException\npackage:flutter_tools/src/base/error_handling_io.dart 1140:7  _runSync\npackage:flutter_tools/src/base/error_handling_io.dart 684:12  ErrorHandlingDirectory.createTempSync\npackage:flutter_tools/src/test/flutter_platform.dart 781:62   FlutterPlatform._createListenerDart\npackage:flutter_tools/src/test/flutter_platform.dart 647:20   FlutterPlatform._startTest\npackage:flutter_tools/src/test/flutter_platform.dart 439:36   FlutterPlatform.loadChannel\npackage:flutter_tools/src/test/flutter_platform.dart 395:44   FlutterPlatform.load\npackage:test_core/src/runner/loader.dart 249:40               Loader.loadFile.<fn>\n===== asynchronous gap ===========================\npackage:test_core/src/runner/load_suite.dart 95:21            new LoadSuite.<fn>.<fn>\n",
+            "isFailure": false,
+            "type": "error",
+            "time": 23586
+          },
+          {
+            "testID": 122,
+            "error": "Failed to load \"/workspace/scratch/8e9460dcd580/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_discovery_test.dart\":\nFlutter failed to create a temporary directory with prefix \"flutter_test_listener.\". The target device is full.\nFileSystemException: Creation of temporary directory failed, path = '/workspace/scratch/8e9460dcd580/runtime/tmp/flutter_tools.HYTBAN/flutter_test_listener.' (OS Error: No space left on device, errno = 28)\nFree up space and try again.",
+            "stackTrace": "package:flutter_tools/src/base/common.dart 34:3               throwToolExit\npackage:flutter_tools/src/base/error_handling_io.dart 1502:3  _throwFileSystemException\npackage:flutter_tools/src/base/error_handling_io.dart 1400:3  _handlePosixException\npackage:flutter_tools/src/base/error_handling_io.dart 1336:5  _onFileSystemException\npackage:flutter_tools/src/base/error_handling_io.dart 1140:7  _runSync\npackage:flutter_tools/src/base/error_handling_io.dart 684:12  ErrorHandlingDirectory.createTempSync\npackage:flutter_tools/src/test/flutter_platform.dart 781:62   FlutterPlatform._createListenerDart\npackage:flutter_tools/src/test/flutter_platform.dart 647:20   FlutterPlatform._startTest\npackage:flutter_tools/src/test/flutter_platform.dart 439:36   FlutterPlatform.loadChannel\npackage:flutter_tools/src/test/flutter_platform.dart 395:44   FlutterPlatform.load\npackage:test_core/src/runner/loader.dart 249:40               Loader.loadFile.<fn>\n===== asynchronous gap ===========================\npackage:test_core/src/runner/load_suite.dart 95:21            new LoadSuite.<fn>.<fn>\n",
+            "isFailure": false,
+            "type": "error",
+            "time": 23588
+          },
+          {
+            "testID": 124,
+            "error": "Failed to load \"/workspace/scratch/8e9460dcd580/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_draft_autosave_test.dart\":\nFlutter failed to create a temporary directory with prefix \"flutter_test_listener.\". The target device is full.\nFileSystemException: Creation of temporary directory failed, path = '/workspace/scratch/8e9460dcd580/runtime/tmp/flutter_tools.HYTBAN/flutter_test_listener.' (OS Error: No space left on device, errno = 28)\nFree up space and try again.",
+            "stackTrace": "package:flutter_tools/src/base/common.dart 34:3               throwToolExit\npackage:flutter_tools/src/base/error_handling_io.dart 1502:3  _throwFileSystemException\npackage:flutter_tools/src/base/error_handling_io.dart 1400:3  _handlePosixException\npackage:flutter_tools/src/base/error_handling_io.dart 1336:5  _onFileSystemException\npackage:flutter_tools/src/base/error_handling_io.dart 1140:7  _runSync\npackage:flutter_tools/src/base/error_handling_io.dart 684:12  ErrorHandlingDirectory.createTempSync\npackage:flutter_tools/src/test/flutter_platform.dart 781:62   FlutterPlatform._createListenerDart\npackage:flutter_tools/src/test/flutter_platform.dart 647:20   FlutterPlatform._startTest\npackage:flutter_tools/src/test/flutter_platform.dart 439:36   FlutterPlatform.loadChannel\npackage:flutter_tools/src/test/flutter_platform.dart 395:44   FlutterPlatform.load\npackage:test_core/src/runner/loader.dart 249:40               Loader.loadFile.<fn>\n===== asynchronous gap ===========================\npackage:test_core/src/runner/load_suite.dart 95:21            new LoadSuite.<fn>.<fn>\n",
+            "isFailure": false,
+            "type": "error",
+            "time": 23589
+          },
+          {
+            "testID": 126,
+            "error": "Failed to load \"/workspace/scratch/8e9460dcd580/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_draft_store_test.dart\":\nFlutter failed to create a temporary directory with prefix \"flutter_test_listener.\". The target device is full.\nFileSystemException: Creation of temporary directory failed, path = '/workspace/scratch/8e9460dcd580/runtime/tmp/flutter_tools.HYTBAN/flutter_test_listener.' (OS Error: No space left on device, errno = 28)\nFree up space and try again.",
+            "stackTrace": "package:flutter_tools/src/base/common.dart 34:3               throwToolExit\npackage:flutter_tools/src/base/error_handling_io.dart 1502:3  _throwFileSystemException\npackage:flutter_tools/src/base/error_handling_io.dart 1400:3  _handlePosixException\npackage:flutter_tools/src/base/error_handling_io.dart 1336:5  _onFileSystemException\npackage:flutter_tools/src/base/error_handling_io.dart 1140:7  _runSync\npackage:flutter_tools/src/base/error_handling_io.dart 684:12  ErrorHandlingDirectory.createTempSync\npackage:flutter_tools/src/test/flutter_platform.dart 781:62   FlutterPlatform._createListenerDart\npackage:flutter_tools/src/test/flutter_platform.dart 647:20   FlutterPlatform._startTest\npackage:flutter_tools/src/test/flutter_platform.dart 439:36   FlutterPlatform.loadChannel\npackage:flutter_tools/src/test/flutter_platform.dart 395:44   FlutterPlatform.load\npackage:test_core/src/runner/loader.dart 249:40               Loader.loadFile.<fn>\n===== asynchronous gap ===========================\npackage:test_core/src/runner/load_suite.dart 95:21            new LoadSuite.<fn>.<fn>\n",
+            "isFailure": false,
+            "type": "error",
+            "time": 23590
+          },
+          {
+            "testID": 128,
+            "error": "Failed to load \"/workspace/scratch/8e9460dcd580/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_ews_test.dart\":\nFlutter failed to create a temporary directory with prefix \"flutter_test_listener.\". The target device is full.\nFileSystemException: Creation of temporary directory failed, path = '/workspace/scratch/8e9460dcd580/runtime/tmp/flutter_tools.HYTBAN/flutter_test_listener.' (OS Error: No space left on device, errno = 28)\nFree up space and try again.",
+            "stackTrace": "package:flutter_tools/src/base/common.dart 34:3               throwToolExit\npackage:flutter_tools/src/base/error_handling_io.dart 1502:3  _throwFileSystemException\npackage:flutter_tools/src/base/error_handling_io.dart 1400:3  _handlePosixException\npackage:flutter_tools/src/base/error_handling_io.dart 1336:5  _onFileSystemException\npackage:flutter_tools/src/base/error_handling_io.dart 1140:7  _runSync\npackage:flutter_tools/src/base/error_handling_io.dart 684:12  ErrorHandlingDirectory.createTempSync\npackage:flutter_tools/src/test/flutter_platform.dart 781:62   FlutterPlatform._createListenerDart\npackage:flutter_tools/src/test/flutter_platform.dart 647:20   FlutterPlatform._startTest\npackage:flutter_tools/src/test/flutter_platform.dart 439:36   FlutterPlatform.loadChannel\npackage:flutter_tools/src/test/flutter_platform.dart 395:44   FlutterPlatform.load\npackage:test_core/src/runner/loader.dart 249:40               Loader.loadFile.<fn>\n===== asynchronous gap ===========================\npackage:test_core/src/runner/load_suite.dart 95:21            new LoadSuite.<fn>.<fn>\n",
+            "isFailure": false,
+            "type": "error",
+            "time": 23591
+          },
+          {
+            "testID": 130,
+            "error": "Failed to load \"/workspace/scratch/8e9460dcd580/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_lifecycle_test.dart\":\nFlutter failed to create a temporary directory with prefix \"flutter_test_listener.\". The target device is full.\nFileSystemException: Creation of temporary directory failed, path = '/workspace/scratch/8e9460dcd580/runtime/tmp/flutter_tools.HYTBAN/flutter_test_listener.' (OS Error: No space left on device, errno = 28)\nFree up space and try again.",
+            "stackTrace": "package:flutter_tools/src/base/common.dart 34:3               throwToolExit\npackage:flutter_tools/src/base/error_handling_io.dart 1502:3  _throwFileSystemException\npackage:flutter_tools/src/base/error_handling_io.dart 1400:3  _handlePosixException\npackage:flutter_tools/src/base/error_handling_io.dart 1336:5  _onFileSystemException\npackage:flutter_tools/src/base/error_handling_io.dart 1140:7  _runSync\npackage:flutter_tools/src/base/error_handling_io.dart 684:12  ErrorHandlingDirectory.createTempSync\npackage:flutter_tools/src/test/flutter_platform.dart 781:62   FlutterPlatform._createListenerDart\npackage:flutter_tools/src/test/flutter_platform.dart 647:20   FlutterPlatform._startTest\npackage:flutter_tools/src/test/flutter_platform.dart 439:36   FlutterPlatform.loadChannel\npackage:flutter_tools/src/test/flutter_platform.dart 395:44   FlutterPlatform.load\npackage:test_core/src/runner/loader.dart 249:40               Loader.loadFile.<fn>\n===== asynchronous gap ===========================\npackage:test_core/src/runner/load_suite.dart 95:21            new LoadSuite.<fn>.<fn>\n",
+            "isFailure": false,
+            "type": "error",
+            "time": 23592
+          },
+          {
+            "testID": 132,
+            "error": "Failed to load \"/workspace/scratch/8e9460dcd580/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_message_loader_test.dart\":\nFlutter failed to create a temporary directory with prefix \"flutter_test_listener.\". The target device is full.\nFileSystemException: Creation of temporary directory failed, path = '/workspace/scratch/8e9460dcd580/runtime/tmp/flutter_tools.HYTBAN/flutter_test_listener.' (OS Error: No space left on device, errno = 28)\nFree up space and try again.",
+            "stackTrace": "package:flutter_tools/src/base/common.dart 34:3               throwToolExit\npackage:flutter_tools/src/base/error_handling_io.dart 1502:3  _throwFileSystemException\npackage:flutter_tools/src/base/error_handling_io.dart 1400:3  _handlePosixException\npackage:flutter_tools/src/base/error_handling_io.dart 1336:5  _onFileSystemException\npackage:flutter_tools/src/base/error_handling_io.dart 1140:7  _runSync\npackage:flutter_tools/src/base/error_handling_io.dart 684:12  ErrorHandlingDirectory.createTempSync\npackage:flutter_tools/src/test/flutter_platform.dart 781:62   FlutterPlatform._createListenerDart\npackage:flutter_tools/src/test/flutter_platform.dart 647:20   FlutterPlatform._startTest\npackage:flutter_tools/src/test/flutter_platform.dart 439:36   FlutterPlatform.loadChannel\npackage:flutter_tools/src/test/flutter_platform.dart 395:44   FlutterPlatform.load\npackage:test_core/src/runner/loader.dart 249:40               Loader.loadFile.<fn>\n===== asynchronous gap ===========================\npackage:test_core/src/runner/load_suite.dart 95:21            new LoadSuite.<fn>.<fn>\n",
+            "isFailure": false,
+            "type": "error",
+            "time": 23593
+          },
+          {
+            "testID": 134,
+            "error": "Failed to load \"/workspace/scratch/8e9460dcd580/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_operation_test.dart\":\nFlutter failed to create a temporary directory with prefix \"flutter_test_listener.\". The target device is full.\nFileSystemException: Creation of temporary directory failed, path = '/workspace/scratch/8e9460dcd580/runtime/tmp/flutter_tools.HYTBAN/flutter_test_listener.' (OS Error: No space left on device, errno = 28)\nFree up space and try again.",
+            "stackTrace": "package:flutter_tools/src/base/common.dart 34:3               throwToolExit\npackage:flutter_tools/src/base/error_handling_io.dart 1502:3  _throwFileSystemException\npackage:flutter_tools/src/base/error_handling_io.dart 1400:3  _handlePosixException\npackage:flutter_tools/src/base/error_handling_io.dart 1336:5  _onFileSystemException\npackage:flutter_tools/src/base/error_handling_io.dart 1140:7  _runSync\npackage:flutter_tools/src/base/error_handling_io.dart 684:12  ErrorHandlingDirectory.createTempSync\npackage:flutter_tools/src/test/flutter_platform.dart 781:62   FlutterPlatform._createListenerDart\npackage:flutter_tools/src/test/flutter_platform.dart 647:20   FlutterPlatform._startTest\npackage:flutter_tools/src/test/flutter_platform.dart 439:36   FlutterPlatform.loadChannel\npackage:flutter_tools/src/test/flutter_platform.dart 395:44   FlutterPlatform.load\npackage:test_core/src/runner/loader.dart 249:40               Loader.loadFile.<fn>\n===== asynchronous gap ===========================\npackage:test_core/src/runner/load_suite.dart 95:21            new LoadSuite.<fn>.<fn>\n",
+            "isFailure": false,
+            "type": "error",
+            "time": 23595
+          },
+          {
+            "testID": 136,
+            "error": "Failed to load \"/workspace/scratch/8e9460dcd580/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_presets_test.dart\":\nFlutter failed to create a temporary directory with prefix \"flutter_test_listener.\". The target device is full.\nFileSystemException: Creation of temporary directory failed, path = '/workspace/scratch/8e9460dcd580/runtime/tmp/flutter_tools.HYTBAN/flutter_test_listener.' (OS Error: No space left on device, errno = 28)\nFree up space and try again.",
+            "stackTrace": "package:flutter_tools/src/base/common.dart 34:3               throwToolExit\npackage:flutter_tools/src/base/error_handling_io.dart 1502:3  _throwFileSystemException\npackage:flutter_tools/src/base/error_handling_io.dart 1400:3  _handlePosixException\npackage:flutter_tools/src/base/error_handling_io.dart 1336:5  _onFileSystemException\npackage:flutter_tools/src/base/error_handling_io.dart 1140:7  _runSync\npackage:flutter_tools/src/base/error_handling_io.dart 684:12  ErrorHandlingDirectory.createTempSync\npackage:flutter_tools/src/test/flutter_platform.dart 781:62   FlutterPlatform._createListenerDart\npackage:flutter_tools/src/test/flutter_platform.dart 647:20   FlutterPlatform._startTest\npackage:flutter_tools/src/test/flutter_platform.dart 439:36   FlutterPlatform.loadChannel\npackage:flutter_tools/src/test/flutter_platform.dart 395:44   FlutterPlatform.load\npackage:test_core/src/runner/loader.dart 249:40               Loader.loadFile.<fn>\n===== asynchronous gap ===========================\npackage:test_core/src/runner/load_suite.dart 95:21            new LoadSuite.<fn>.<fn>\n",
+            "isFailure": false,
+            "type": "error",
+            "time": 23596
+          },
+          {
+            "testID": 138,
+            "error": "Failed to load \"/workspace/scratch/8e9460dcd580/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_recipients_test.dart\":\nFlutter failed to create a temporary directory with prefix \"flutter_test_listener.\". The target device is full.\nFileSystemException: Creation of temporary directory failed, path = '/workspace/scratch/8e9460dcd580/runtime/tmp/flutter_tools.HYTBAN/flutter_test_listener.' (OS Error: No space left on device, errno = 28)\nFree up space and try again.",
+            "stackTrace": "package:flutter_tools/src/base/common.dart 34:3               throwToolExit\npackage:flutter_tools/src/base/error_handling_io.dart 1502:3  _throwFileSystemException\npackage:flutter_tools/src/base/error_handling_io.dart 1400:3  _handlePosixException\npackage:flutter_tools/src/base/error_handling_io.dart 1336:5  _onFileSystemException\npackage:flutter_tools/src/base/error_handling_io.dart 1140:7  _runSync\npackage:flutter_tools/src/base/error_handling_io.dart 684:12  ErrorHandlingDirectory.createTempSync\npackage:flutter_tools/src/test/flutter_platform.dart 781:62   FlutterPlatform._createListenerDart\npackage:flutter_tools/src/test/flutter_platform.dart 647:20   FlutterPlatform._startTest\npackage:flutter_tools/src/test/flutter_platform.dart 439:36   FlutterPlatform.loadChannel\npackage:flutter_tools/src/test/flutter_platform.dart 395:44   FlutterPlatform.load\npackage:test_core/src/runner/loader.dart 249:40               Loader.loadFile.<fn>\n===== asynchronous gap ===========================\npackage:test_core/src/runner/load_suite.dart 95:21            new LoadSuite.<fn>.<fn>\n",
+            "isFailure": false,
+            "type": "error",
+            "time": 23597
+          },
+          {
+            "testID": 140,
+            "error": "Failed to load \"/workspace/scratch/8e9460dcd580/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_reply_test.dart\":\nFlutter failed to create a temporary directory with prefix \"flutter_test_listener.\". The target device is full.\nFileSystemException: Creation of temporary directory failed, path = '/workspace/scratch/8e9460dcd580/runtime/tmp/flutter_tools.HYTBAN/flutter_test_listener.' (OS Error: No space left on device, errno = 28)\nFree up space and try again.",
+            "stackTrace": "package:flutter_tools/src/base/common.dart 34:3               throwToolExit\npackage:flutter_tools/src/base/error_handling_io.dart 1502:3  _throwFileSystemException\npackage:flutter_tools/src/base/error_handling_io.dart 1400:3  _handlePosixException\npackage:flutter_tools/src/base/error_handling_io.dart 1336:5  _onFileSystemException\npackage:flutter_tools/src/base/error_handling_io.dart 1140:7  _runSync\npackage:flutter_tools/src/base/error_handling_io.dart 684:12  ErrorHandlingDirectory.createTempSync\npackage:flutter_tools/src/test/flutter_platform.dart 781:62   FlutterPlatform._createListenerDart\npackage:flutter_tools/src/test/flutter_platform.dart 647:20   FlutterPlatform._startTest\npackage:flutter_tools/src/test/flutter_platform.dart 439:36   FlutterPlatform.loadChannel\npackage:flutter_tools/src/test/flutter_platform.dart 395:44   FlutterPlatform.load\npackage:test_core/src/runner/loader.dart 249:40               Loader.loadFile.<fn>\n===== asynchronous gap ===========================\npackage:test_core/src/runner/load_suite.dart 95:21            new LoadSuite.<fn>.<fn>\n",
+            "isFailure": false,
+            "type": "error",
+            "time": 23599
+          },
+          {
+            "testID": 142,
+            "error": "Failed to load \"/workspace/scratch/8e9460dcd580/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_session_test.dart\":\nFlutter failed to create a temporary directory with prefix \"flutter_test_listener.\". The target device is full.\nFileSystemException: Creation of temporary directory failed, path = '/workspace/scratch/8e9460dcd580/runtime/tmp/flutter_tools.HYTBAN/flutter_test_listener.' (OS Error: No space left on device, errno = 28)\nFree up space and try again.",
+            "stackTrace": "package:flutter_tools/src/base/common.dart 34:3               throwToolExit\npackage:flutter_tools/src/base/error_handling_io.dart 1502:3  _throwFileSystemException\npackage:flutter_tools/src/base/error_handling_io.dart 1400:3  _handlePosixException\npackage:flutter_tools/src/base/error_handling_io.dart 1336:5  _onFileSystemException\npackage:flutter_tools/src/base/error_handling_io.dart 1140:7  _runSync\npackage:flutter_tools/src/base/error_handling_io.dart 684:12  ErrorHandlingDirectory.createTempSync\npackage:flutter_tools/src/test/flutter_platform.dart 781:62   FlutterPlatform._createListenerDart\npackage:flutter_tools/src/test/flutter_platform.dart 647:20   FlutterPlatform._startTest\npackage:flutter_tools/src/test/flutter_platform.dart 439:36   FlutterPlatform.loadChannel\npackage:flutter_tools/src/test/flutter_platform.dart 395:44   FlutterPlatform.load\npackage:test_core/src/runner/loader.dart 249:40               Loader.loadFile.<fn>\n===== asynchronous gap ===========================\npackage:test_core/src/runner/load_suite.dart 95:21            new LoadSuite.<fn>.<fn>\n",
+            "isFailure": false,
+            "type": "error",
+            "time": 23600
+          },
+          {
+            "testID": 144,
+            "error": "Failed to load \"/workspace/scratch/8e9460dcd580/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_test.dart\":\nFlutter failed to create a temporary directory with prefix \"flutter_test_listener.\". The target device is full.\nFileSystemException: Creation of temporary directory failed, path = '/workspace/scratch/8e9460dcd580/runtime/tmp/flutter_tools.HYTBAN/flutter_test_listener.' (OS Error: No space left on device, errno = 28)\nFree up space and try again.",
+            "stackTrace": "package:flutter_tools/src/base/common.dart 34:3               throwToolExit\npackage:flutter_tools/src/base/error_handling_io.dart 1502:3  _throwFileSystemException\npackage:flutter_tools/src/base/error_handling_io.dart 1400:3  _handlePosixException\npackage:flutter_tools/src/base/error_handling_io.dart 1336:5  _onFileSystemException\npackage:flutter_tools/src/base/error_handling_io.dart 1140:7  _runSync\npackage:flutter_tools/src/base/error_handling_io.dart 684:12  ErrorHandlingDirectory.createTempSync\npackage:flutter_tools/src/test/flutter_platform.dart 781:62   FlutterPlatform._createListenerDart\npackage:flutter_tools/src/test/flutter_platform.dart 647:20   FlutterPlatform._startTest\npackage:flutter_tools/src/test/flutter_platform.dart 439:36   FlutterPlatform.loadChannel\npackage:flutter_tools/src/test/flutter_platform.dart 395:44   FlutterPlatform.load\npackage:test_core/src/runner/loader.dart 249:40               Loader.loadFile.<fn>\n===== asynchronous gap ===========================\npackage:test_core/src/runner/load_suite.dart 95:21            new LoadSuite.<fn>.<fn>\n",
+            "isFailure": false,
+            "type": "error",
+            "time": 23601
+          },
+          {
+            "testID": 146,
+            "error": "Failed to load \"/workspace/scratch/8e9460dcd580/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_threading_test.dart\":\nFlutter failed to create a temporary directory with prefix \"flutter_test_listener.\". The target device is full.\nFileSystemException: Creation of temporary directory failed, path = '/workspace/scratch/8e9460dcd580/runtime/tmp/flutter_tools.HYTBAN/flutter_test_listener.' (OS Error: No space left on device, errno = 28)\nFree up space and try again.",
+            "stackTrace": "package:flutter_tools/src/base/common.dart 34:3               throwToolExit\npackage:flutter_tools/src/base/error_handling_io.dart 1502:3  _throwFileSystemException\npackage:flutter_tools/src/base/error_handling_io.dart 1400:3  _handlePosixException\npackage:flutter_tools/src/base/error_handling_io.dart 1336:5  _onFileSystemException\npackage:flutter_tools/src/base/error_handling_io.dart 1140:7  _runSync\npackage:flutter_tools/src/base/error_handling_io.dart 684:12  ErrorHandlingDirectory.createTempSync\npackage:flutter_tools/src/test/flutter_platform.dart 781:62   FlutterPlatform._createListenerDart\npackage:flutter_tools/src/test/flutter_platform.dart 647:20   FlutterPlatform._startTest\npackage:flutter_tools/src/test/flutter_platform.dart 439:36   FlutterPlatform.loadChannel\npackage:flutter_tools/src/test/flutter_platform.dart 395:44   FlutterPlatform.load\npackage:test_core/src/runner/loader.dart 249:40               Loader.loadFile.<fn>\n===== asynchronous gap ===========================\npackage:test_core/src/runner/load_suite.dart 95:21            new LoadSuite.<fn>.<fn>\n",
+            "isFailure": false,
+            "type": "error",
+            "time": 23602
+          },
+          {
+            "testID": 148,
+            "error": "Failed to load \"/workspace/scratch/8e9460dcd580/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_web_test.dart\":\nFlutter failed to create a temporary directory with prefix \"flutter_test_listener.\". The target device is full.\nFileSystemException: Creation of temporary directory failed, path = '/workspace/scratch/8e9460dcd580/runtime/tmp/flutter_tools.HYTBAN/flutter_test_listener.' (OS Error: No space left on device, errno = 28)\nFree up space and try again.",
+            "stackTrace": "package:flutter_tools/src/base/common.dart 34:3               throwToolExit\npackage:flutter_tools/src/base/error_handling_io.dart 1502:3  _throwFileSystemException\npackage:flutter_tools/src/base/error_handling_io.dart 1400:3  _handlePosixException\npackage:flutter_tools/src/base/error_handling_io.dart 1336:5  _onFileSystemException\npackage:flutter_tools/src/base/error_handling_io.dart 1140:7  _runSync\npackage:flutter_tools/src/base/error_handling_io.dart 684:12  ErrorHandlingDirectory.createTempSync\npackage:flutter_tools/src/test/flutter_platform.dart 781:62   FlutterPlatform._createListenerDart\npackage:flutter_tools/src/test/flutter_platform.dart 647:20   FlutterPlatform._startTest\npackage:flutter_tools/src/test/flutter_platform.dart 439:36   FlutterPlatform.loadChannel\npackage:flutter_tools/src/test/flutter_platform.dart 395:44   FlutterPlatform.load\npackage:test_core/src/runner/loader.dart 249:40               Loader.loadFile.<fn>\n===== asynchronous gap ===========================\npackage:test_core/src/runner/load_suite.dart 95:21            new LoadSuite.<fn>.<fn>\n",
+            "isFailure": false,
+            "type": "error",
+            "time": 23603
+          },
+          {
+            "testID": 150,
+            "error": "Failed to load \"/workspace/scratch/8e9460dcd580/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_workspace_test.dart\":\nFlutter failed to create a temporary directory with prefix \"flutter_test_listener.\". The target device is full.\nFileSystemException: Creation of temporary directory failed, path = '/workspace/scratch/8e9460dcd580/runtime/tmp/flutter_tools.HYTBAN/flutter_test_listener.' (OS Error: No space left on device, errno = 28)\nFree up space and try again.",
+            "stackTrace": "package:flutter_tools/src/base/common.dart 34:3               throwToolExit\npackage:flutter_tools/src/base/error_handling_io.dart 1502:3  _throwFileSystemException\npackage:flutter_tools/src/base/error_handling_io.dart 1400:3  _handlePosixException\npackage:flutter_tools/src/base/error_handling_io.dart 1336:5  _onFileSystemException\npackage:flutter_tools/src/base/error_handling_io.dart 1140:7  _runSync\npackage:flutter_tools/src/base/error_handling_io.dart 684:12  ErrorHandlingDirectory.createTempSync\npackage:flutter_tools/src/test/flutter_platform.dart 781:62   FlutterPlatform._createListenerDart\npackage:flutter_tools/src/test/flutter_platform.dart 647:20   FlutterPlatform._startTest\npackage:flutter_tools/src/test/flutter_platform.dart 439:36   FlutterPlatform.loadChannel\npackage:flutter_tools/src/test/flutter_platform.dart 395:44   FlutterPlatform.load\npackage:test_core/src/runner/loader.dart 249:40               Loader.loadFile.<fn>\n===== asynchronous gap ===========================\npackage:test_core/src/runner/load_suite.dart 95:21            new LoadSuite.<fn>.<fn>\n",
+            "isFailure": false,
+            "type": "error",
+            "time": 23604
+          },
+          {
+            "testID": 152,
+            "error": "Failed to load \"/workspace/scratch/8e9460dcd580/quds_office_suite/packages/quds_office_editor/example/test/studio_saved_mail_test.dart\":\nFlutter failed to create a temporary directory with prefix \"flutter_test_listener.\". The target device is full.\nFileSystemException: Creation of temporary directory failed, path = '/workspace/scratch/8e9460dcd580/runtime/tmp/flutter_tools.HYTBAN/flutter_test_listener.' (OS Error: No space left on device, errno = 28)\nFree up space and try again.",
+            "stackTrace": "package:flutter_tools/src/base/common.dart 34:3               throwToolExit\npackage:flutter_tools/src/base/error_handling_io.dart 1502:3  _throwFileSystemException\npackage:flutter_tools/src/base/error_handling_io.dart 1400:3  _handlePosixException\npackage:flutter_tools/src/base/error_handling_io.dart 1336:5  _onFileSystemException\npackage:flutter_tools/src/base/error_handling_io.dart 1140:7  _runSync\npackage:flutter_tools/src/base/error_handling_io.dart 684:12  ErrorHandlingDirectory.createTempSync\npackage:flutter_tools/src/test/flutter_platform.dart 781:62   FlutterPlatform._createListenerDart\npackage:flutter_tools/src/test/flutter_platform.dart 647:20   FlutterPlatform._startTest\npackage:flutter_tools/src/test/flutter_platform.dart 439:36   FlutterPlatform.loadChannel\npackage:flutter_tools/src/test/flutter_platform.dart 395:44   FlutterPlatform.load\npackage:test_core/src/runner/loader.dart 249:40               Loader.loadFile.<fn>\n===== asynchronous gap ===========================\npackage:test_core/src/runner/load_suite.dart 95:21            new LoadSuite.<fn>.<fn>\n",
+            "isFailure": false,
+            "type": "error",
+            "time": 23606
+          }
+        ]
+      }
+    }
+  ],
+  "status": "failed",
+  "inputs_before_sha256": "6de30424a78efe050209b9da2701f537922663500761b26d4feb8c79037292ed",
+  "product_input_count": 4488,
+  "inputs_after_sha256": "6de30424a78efe050209b9da2701f537922663500761b26d4feb8c79037292ed",
+  "source_unchanged": true,
+  "changed_inputs": [],
+  "final_head": "1d26181b0161d88abe5977f9848ffd4cd99e6259",
+  "final_status": "?? docs/validation/mail-workspace-20261120/final-main-advance.json\n?? docs/validation/mail-workspace-20261120/final-main-advance.md\n?? docs/validation/mail-workspace-20261120/latest-1d26181b/\n?? docs/validation/mail-workspace-20261120/main-mail-continuity-1d26181b.json\n?? docs/validation/mail-workspace-20261120/main-office-latest/checkpoint-comparison.json\n?? docs/validation/mail-workspace-20261120/main-office-latest/editor.jsonl.gz\n?? docs/validation/mail-workspace-20261120/main-office-latest/editor.stderr\n?? docs/validation/mail-workspace-20261120/main-office-latest/engine.jsonl.gz\n?? docs/validation/mail-workspace-20261120/main-office-latest/engine.stderr\n?? docs/validation/mail-workspace-20261120/main-office-latest/incoming-main-product-diff.patch\n?? docs/validation/mail-workspace-20261120/main-office-latest/inputs-after.json\n?? docs/validation/mail-workspace-20261120/main-office-latest/inputs-before.json\n?? docs/validation/mail-workspace-20261120/main-office-latest/run-initial-counter.py\n?? docs/validation/mail-workspace-20261120/main-office-latest/run.py\n?? docs/validation/mail-workspace-20261120/main-office-latest/summary-initial-counter.json\n?? docs/validation/mail-workspace-20261120/main-office-latest/summary.json",
+  "finished_at": "2026-11-20T10:00:52.029113+00:00",
+  "passed_test_executions": 0,
+  "accepted": false
+}

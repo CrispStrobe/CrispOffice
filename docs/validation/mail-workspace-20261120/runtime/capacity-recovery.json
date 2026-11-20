@@ -1,0 +1,144 @@
+{
+  "captured_at_utc": "2026-11-20T10:21:05.811116+00:00",
+  "status": "cache_recovery_complete_directory_allocation_still_blocked",
+  "head": "1d26181b0161d88abe5977f9848ffd4cd99e6259",
+  "generated_and_auxiliary_allocated_file_bytes_removed": 820625408,
+  "promisor_pack_net_bytes_reclaimed": 267591967,
+  "combined_recorded_bytes": 1088217375,
+  "byte_count_caveat": "Allocated file-byte sums can include hard-linked/shared blocks; these are not an observed increase in global free space. Net Git pack-file size reduction is exact.",
+  "removed_scopes": [
+    "Completed Git-reconstructable baseline source copy, explicitly authorized.",
+    "Inactive untracked Mail UI generated test cache.",
+    "Unused DevTools browser UI resources or completed Git-reconstructable baseline source copy; no VM/analyzer/JS compiler or evidence logs removed.",
+    "Unused Flutter web compilation/rendering cache; native Flutter VM tests and pure-Dart Node compilation use retained Dart SDK and linux engine.",
+    "Unused generated test build cache; no tracked files and no active Flutter/test processes.",
+    "Pub package test/example/doc/benchmark directories; runtime lib/bin/hook/manifests retained.",
+    "Dart wasm-only compiler/platform assets; VM, analyzer, frontend and JavaScript compilers retained."
+  ],
+  "retained_dependency_compiler_files": 6706,
+  "retained_dependency_compiler_files_unchanged": true,
+  "refs_unchanged": true,
+  "metadata_object_count": 23242,
+  "all_commit_tree_tag_objects_unchanged": true,
+  "index_entries_unchanged_during_pack_and_sparse": true,
+  "retained_promisor_object_count": 6307,
+  "old_validation_blob_cache_retired": 8783,
+  "old_pack_retired_after_strict_in_memory_object_verification": true,
+  "new_disk_pack_verified": true,
+  "git_connectivity_exit_code": 0,
+  "remote_recovery_probe_objects": 3,
+  "remote_recovery_probe_all_object_hashes_matched": true,
+  "seven_pins": {
+    "dart": {
+      "path": "/workspace/scratch/8e9460dcd580/runtime/flutter/bin/cache/dart-sdk/bin/dart",
+      "before_sha256": "01e869e4af277734b02ab8898b870c6b00c9bec61bbcf9c923cd14de7ed85fbb",
+      "after_sha256": "01e869e4af277734b02ab8898b870c6b00c9bec61bbcf9c923cd14de7ed85fbb",
+      "unchanged": true
+    },
+    "flutter_tester": {
+      "path": "/workspace/scratch/8e9460dcd580/runtime/flutter/bin/cache/artifacts/engine/linux-x64/flutter_tester",
+      "before_sha256": "800f4ca182df7dd2fb46a42dea5d76277b9dbc5e8cd2915e02bcbc978681b45f",
+      "after_sha256": "800f4ca182df7dd2fb46a42dea5d76277b9dbc5e8cd2915e02bcbc978681b45f",
+      "unchanged": true
+    },
+    "flutter_tools_snapshot": {
+      "path": "/workspace/scratch/8e9460dcd580/runtime/flutter/bin/cache/flutter_tools.snapshot",
+      "before_sha256": "803f5eabe0f147bbd7cbfb5810d012f88d909d092d15de36a62be43c42af0da9",
+      "after_sha256": "803f5eabe0f147bbd7cbfb5810d012f88d909d092d15de36a62be43c42af0da9",
+      "unchanged": true
+    },
+    "sqlite3_native": {
+      "path": "/workspace/scratch/8e9460dcd580/quds_office_suite/.dart_tool/lib/libsqlite3.so",
+      "before_sha256": "0a65852703763619a7a34633b4959b3b86c4103804a4dfe4e8b27b5de1c0647b",
+      "after_sha256": "0a65852703763619a7a34633b4959b3b86c4103804a4dfe4e8b27b5de1c0647b",
+      "unchanged": true
+    },
+    "package_configuration": {
+      "path": "/workspace/scratch/8e9460dcd580/quds_office_suite/.dart_tool/package_config.json",
+      "before_sha256": "8eab41ca699dc7d09f48d2d845430dc09b57bf225cb202d67688c5da03d3edf2",
+      "after_sha256": "8eab41ca699dc7d09f48d2d845430dc09b57bf225cb202d67688c5da03d3edf2",
+      "unchanged": true
+    },
+    "package_graph": {
+      "path": "/workspace/scratch/8e9460dcd580/quds_office_suite/.dart_tool/package_graph.json",
+      "before_sha256": "09b12d3718163b37c56c092d0d87d2f5a976bfb50f02009667efce07bd243c3e",
+      "after_sha256": "09b12d3718163b37c56c092d0d87d2f5a976bfb50f02009667efce07bd243c3e",
+      "unchanged": true
+    },
+    "package_test_entry": {
+      "path": "/workspace/scratch/8e9460dcd580/runtime/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+      "before_sha256": "43c93a6773b13eecbf7e9d1c0511da4cb0b8b3cf55f051cf124f34d4843af008",
+      "after_sha256": "43c93a6773b13eecbf7e9d1c0511da4cb0b8b3cf55f051cf124f34d4843af008",
+      "unchanged": true
+    }
+  },
+  "tracked_file_hash_changes_during_parent_activity": [
+    {
+      "path": "docs/roadmaps/mail/README.md",
+      "before_sha256": "6159011171b0eaf917f0e933ba77fe562cee5c76975de3c753a4599d01a11743",
+      "after_sha256": "91999253e437759ab368b0f4743a273ea54be761c6de7749400e4f3f222a6b9f"
+    },
+    {
+      "path": "docs/roadmaps/mail/mailbox-workspace.md",
+      "before_sha256": "ec25426fc4c53bd941700e3d9dc3b1ef2d75ba4ae67912677a7c0323de516e5a",
+      "after_sha256": "1051c9a654af97ef767caddf06b8722c8540ca9a23a8b93f19eaa2cb5d9a025b"
+    }
+  ],
+  "product_file_hash_changes": [],
+  "parent_activity_note": "Parent reported editing two roadmap Markdown files during the freeze; cache operations never edited working-tree content. Source hash differences are listed without attributing them to cache cleanup.",
+  "sparse_reapply_exit_code": 0,
+  "sparse_removed_paths": [],
+  "available_bytes": 0,
+  "free_blocks_bytes": 3292729344,
+  "free_inode_count": 3274378,
+  "capacity_probe": {
+    "started_at_utc": "2026-11-20T10:15:25.405820+00:00",
+    "effective_uid": 1000,
+    "requested_bytes": 1073741824,
+    "available_before": 0,
+    "free_blocks_before": 3046318080,
+    "allocated": true,
+    "write_and_sync": true,
+    "allocated_file_bytes": 1073745920,
+    "finished_at_utc": "2026-11-20T10:15:25.414478+00:00",
+    "probe_removed": true,
+    "available_after": 0,
+    "free_blocks_after": 3046318080
+  },
+  "directory_location_checks": [
+    {
+      "parent": "/workspace/scratch/8e9460dcd580/runtime/tmp",
+      "created": false,
+      "errno": 28
+    },
+    {
+      "parent": "/workspace/scratch/8e9460dcd580/quds_office_suite",
+      "created": false,
+      "errno": 28
+    },
+    {
+      "parent": "/workspace/scratch/8e9460dcd580/runtime",
+      "created": false,
+      "errno": 28
+    }
+  ],
+  "pinned_dart_create_temp_smoke": {
+    "captured_at_utc": "2026-11-20T10:21:02.820926+00:00",
+    "command": [
+      "/workspace/scratch/8e9460dcd580/runtime/flutter/bin/cache/dart-sdk/bin/dart",
+      "--disable-dart-dev",
+      "/workspace/scratch/8e9460dcd580/runtime/capacity-recovery-2/create_temp_smoke.dart"
+    ],
+    "exit_code": 255,
+    "stdout": "{\"startedAtUtc\":\"2026-11-20T10:21:02.768870Z\",\"runtime\":\"3.13.7 (stable) (Thu Oct 22 14:28:57 2026 -0700) on \\\"linux_x64\\\"\",\"executable\":\"/workspace/scratch/8e9460dcd580/runtime/flutter/bin/cache/dart-sdk/bin/dart\",\"systemTemp\":\"/workspace/scratch/8e9460dcd580/runtime/tmp\",\"tmpdirEnvironment\":\"/workspace/scratch/8e9460dcd580/runtime/tmp\",\"effectiveUid\":\"1000\",\"temporaryDirectoryDeleted\":true,\"finishedAtUtc\":\"2026-11-20T10:21:02.792078Z\"}\n",
+    "stderr": "Unhandled exception:\nFileSystemException: Creation of temporary directory failed, path = '/workspace/scratch/8e9460dcd580/runtime/tmp/quds-capacity-' (OS Error: No space left on device, errno = 28)\n#0      _Directory.createTempSync (dart:io/directory_impl.dart:193:7)\n#1      main (file:///workspace/scratch/8e9460dcd580/runtime/capacity-recovery-2/create_temp_smoke.dart:19:38)\n#2      _delayEntrypointInvocation.<anonymous closure> (dart:isolate-patch/isolate_patch.dart:313:19)\n#3      _RawReceivePort._handleMessage (dart:isolate-patch/isolate_patch.dart:192:12)\n"
+  },
+  "flutter_or_product_suites_run": false,
+  "ci_queries": 0,
+  "operational_note": "The regular-file allocation probe succeeded, but does not establish directory creation capability; use the pinned Dart smoke outcome to decide whether Flutter tests can restart.",
+  "support_archive": {
+    "path": "docs/validation/mail-workspace-20261120/runtime/capacity-recovery-support.tar.gz",
+    "bytes": 1426968,
+    "sha256": "6251ad7e722599e958eaf06b5f5f36b098b441901f64dca1e2e3740714fbda5d"
+  }
+}
