@@ -1,0 +1,78 @@
+[
+  {
+    "head": "1ceae221d37e733f0195d35622a05f896a2d13a1",
+    "path": "docs/validation/office-vba-variant-conversions-20261120/README.md",
+    "blob": "0e8f664e52fc845951e0b9342cad50e35d7e0ed3",
+    "progress_markers": [
+      {
+        "line": 9,
+        "text": "## Work in progress"
+      },
+      {
+        "line": 14,
+        "text": "Independent review and reconciliation of new remote advances are still in"
+      },
+      {
+        "line": 15,
+        "text": "progress; these development results are not the final combined-source gate."
+      }
+    ]
+  },
+  {
+    "head": "b9e4f1d4bc691714f68e3685dbf729b09ccb0449",
+    "path": "docs/validation/office-vba-variant-conversions-20261120/README.md",
+    "blob": "0e8f664e52fc845951e0b9342cad50e35d7e0ed3",
+    "progress_markers": [
+      {
+        "line": 9,
+        "text": "## Work in progress"
+      },
+      {
+        "line": 14,
+        "text": "Independent review and reconciliation of new remote advances are still in"
+      },
+      {
+        "line": 15,
+        "text": "progress; these development results are not the final combined-source gate."
+      }
+    ]
+  },
+  {
+    "head": "3100725d07a715f230c263f640dbd588c7c75660",
+    "path": "docs/validation/zotero-note-images-20261120/README.md",
+    "blob": "7606f565d9ef62c4cce3934cca2135ce7150a60f",
+    "progress_markers": [
+      {
+        "line": 3,
+        "text": "## In progress"
+      }
+    ]
+  },
+  {
+    "head": "a4ed68f2c78e0f41013c2af160fe84e27d9d84ad",
+    "path": "docs/validation/zotero-parity-continuation-20261120/README.md",
+    "blob": "0b4401072e67a485360e4476bd2a5e9af8420ee3",
+    "progress_markers": [
+      {
+        "line": 3,
+        "text": "## In progress"
+      },
+      {
+        "line": 8,
+        "text": "`codex/zotero-parity-continuation-20261120`. Main has not yet been published by"
+      },
+      {
+        "line": 81,
+        "text": "mid-edit PDF compile error, now fixed. These development runs are not the final"
+      },
+      {
+        "line": 91,
+        "text": "## Remaining publication gate"
+      },
+      {
+        "line": 93,
+        "text": "Finish the focused repairs, run complete Zotero engine/editor and relevant"
+      }
+    ]
+  }
+]
