@@ -1,0 +1,9 @@
+{
+  "scope": "Audit schema/closure interpretation corrections; no application tests or receipts changed",
+  "observations": [
+    "The full static preflight stores SHA strings; the active-source receipt stores full byte/SHA/Git records. Both forms are now verified in full.",
+    "Effective package closures include development dependencies of the selected root only; transitive packages contribute production dependencies. Independent closure comparison now follows that declared scope."
+  ],
+  "product_source_changed": false,
+  "application_tests_rerun": false
+}

@@ -1,0 +1,7 @@
+{
+  "scope": "Audit-helper setup failure, not application execution",
+  "reason": "Dart analyzer node.endToken may be a distinct token object at the same source position; identity-based termination walked beyond the node. Use source offsets to delimit the complete node token stream.",
+  "failed_checker_sha256": "7cc459acb36a02f4b2eb027ff7e48b72adbfe4e47d158e7c32eb2a3dd0ed2a7c",
+  "product_source_changed": false,
+  "application_tests_run": false
+}

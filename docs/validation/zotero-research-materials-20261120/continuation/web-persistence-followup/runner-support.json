@@ -1,0 +1,51 @@
+{
+  "chrome_backend_is_deprecated_but_supported_by_pinned_sdk": true,
+  "chromium_wrapper": "chromium_wrapper.py records and preserves SDK flags, pins the ELF, and isolates generated profile/cache locations",
+  "flutter_or_browser_command_executed": false,
+  "inspected_local_sdk_sources": {
+    "packages/flutter_tools/lib/src/commands/test.dart": {
+      "bytes": 34519,
+      "sha256": "0b2956d87e54f51d702e3f316f49187d3c0e69e379657fbccbebc2fe07933dc7"
+    },
+    "packages/flutter_tools/lib/src/test/flutter_web_platform.dart": {
+      "bytes": 36008,
+      "sha256": "1c0084479c15a68b34cb2e9101af640310c6ea4dfa6cc159bb8e6d44ccdb9dae"
+    },
+    "packages/flutter_tools/lib/src/web/chrome.dart": {
+      "bytes": 23980,
+      "sha256": "11375b777cf6bc4b776891e38fbc93e6e74cff40f8c0c99b2f97a4e8c1efedcc"
+    }
+  },
+  "prepared_at_utc": "2026-11-20T06:21:19.581591+00:00",
+  "primary_runner": {
+    "bytes": 29772,
+    "path": "/workspace/scratch/2c6eaad19389/quds_office_suite/docs/validation/zotero-research-materials-20261120/run_validation.py",
+    "sha256": "4d01ed59729abaa64e3ab643e8ebcb2f7136dd2d9f02cc4b07b81a06fbb919bf"
+  },
+  "primary_runner_pin_matches": true,
+  "sdk": "/workspace/scratch/2c6eaad19389/zotero-toolchain/flutter-sdk",
+  "sdk_headless_launcher_supplies_no_sandbox": true,
+  "sdk_version": {
+    "channel": "stable",
+    "dartSdkVersion": "3.13.7",
+    "devToolsVersion": "2.60.0",
+    "engineBuildDate": "2026-10-22 20:34:48.330",
+    "engineCommitDate": "2026-10-23 02:13:38.000Z",
+    "engineContentHash": "dfd2e6cb7d319db05e3bf1503f3e2ac60f6288a2",
+    "engineRevision": "cf636b1dfb818dd6a3ff16e390e93b1a036969c8",
+    "flutterVersion": "3.47.8",
+    "frameworkCommitDate": "2026-10-22 21:37:31 -0700",
+    "frameworkRevision": "737ba8f885dc774b53b442759999a312c9461e4e",
+    "frameworkVersion": "3.47.8",
+    "repositoryUrl": "https://github.com/flutter/flutter.git"
+  },
+  "source_head_at_preparation": "214c4ed80bef0cb871f74e90c506d508679d3d6e",
+  "source_manifests_or_runtime_caches_modified": false,
+  "supported_arguments": {
+    "concurrency": true,
+    "file_reporter": true,
+    "platform_chrome": true,
+    "reporter_json": true
+  },
+  "tests_started": false
+}

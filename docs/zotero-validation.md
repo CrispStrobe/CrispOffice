@@ -3,20 +3,22 @@
 ## 20 November 2026 — browse reference notes and attachment metadata
 
 The [publication continuation](validation/zotero-research-materials-20261120/continuation/README.md)
-finishes this milestone after restoring and independently verifying its saved
-evidence. Following current Word, slide and host integration, **2,386
-distinct local cases pass across 157 files** at `214c4ed8`; all **102 changed
-Dart targets** pass strict analysis and formatting. This includes both complete
-Zotero suites, rendering, Word layout, Mail and Studio integration. Eight
-synthetic comparator controls pass separately. Incoming macOS Word evidence
-remains explicitly bounded at 20 of 24 pages meeting its layout threshold.
+finishes this milestone with current main and the qualified Mail/background
+checkpoint preserved. Its broad gate passes **2,386 distinct local cases in
+157 files** at `214c4ed8`; a separate final **356-case / 27-file** rendering and
+web-VM gate passes on `a45ee3bf`. All **108 active changed Dart targets**
+pass strict analysis and formatting. Two byte-preserved historical Mail harnesses
+have separate archived diagnostics and are explicitly outside that active gate.
+The fresh Chrome attempt is blocked before application cases by the workspace
+Unix-socket restriction; its failed launch receipt is retained.
 
-The earlier continuation at `f3f98987` separately passes 3,201 distinct cases
-in 129 files, including the new proofing/spaCy source. Eight identical existing
-proofing fixture repeats are counted once in an explicit accounting audit.
-These source-specific results overlap each other and the original acceptance
-below; they are not added together. The report preserves all raw evidence,
-source boundaries, later publication supplements and reproduction instructions.
+Eight synthetic Word-comparator controls pass separately. Incoming native Word
+evidence remains 20/24 pages above its threshold. The earlier proofing/spaCy
+integration separately passes 3,201 distinct cases in 129 files, with eight
+identical proofing repeats counted once in an explicit audit. These source-bound
+results overlap each other and the original milestone below; they are not added
+together. The report preserves raw evidence, every source boundary, conflict
+resolutions, known limitations, remote checkpoints and reproduction instructions.
 
 Qualified product source: **`f0122cb5bff5b6cf6a6f69f043545dabc2930791`**,
 followed by current-main integration

@@ -1,12 +1,14 @@
 # Zotero research materials — 20 November 2026
 
 **Publication continuation:** the [continuation report](continuation/README.md)
-records later main reconciliation and the source-specific fresh gates:
-**2,386 distinct passing cases / 157 files** after Word/slide/host integration,
-all **102 changed Dart static targets**, and a separate earlier **3,201 distinct
-cases / 129 files** for proofing/spaCy integration. The earlier eight identical
-proofing repeats have an explicit accounting record. The original evidence
-below retains its own source and totals; overlapping runs are not added together.
+records current main and qualified Mail reconciliation, **2,386 distinct cases /
+157 files** on the broad integration source, and **356 focused cases / 27 files**
+on the final combined source. Fresh Chrome is environment-blocked before any
+application case; its failed launch remains separate. All **108 active changed Dart targets** pass strict
+static checks; two preserved historical evidence harnesses have explicit separate
+diagnostics. An earlier **3,201-case / 129-file** proofing/spaCy gate retains its
+own source and duplicate-fixture accounting. These populations overlap and are
+not added to each other or to the original milestone evidence below.
 
 **Qualified product source:** `f0122cb5bff5b6cf6a6f69f043545dabc2930791`, on
 `codex/zotero-research-materials-20261120`,

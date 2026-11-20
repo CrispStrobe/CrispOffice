@@ -5,7 +5,8 @@ This continuation finishes [PR #223](https://github.com/CrispStrobe/quds_office_
 **Freshly tested source:** `f3f98987824e021ed22a4d909e38d6307495267b`.
 **Dart lint correction:** `3cba1810b41a2fff5b2cd1eb355137a46b09f225`.
 **macOS-only follow-up source:** `6b917be36d5d54aa8a55ef3c8b9ce649aa8bab82`.
-**Latest core qualification source:** `214c4ed80bef0cb871f74e90c506d508679d3d6e`.
+**Broad core qualification source:** `214c4ed80bef0cb871f74e90c506d508679d3d6e`.
+**Final combined source:** `a45ee3bf40dbb7e64a04f879fd6d574db7cb60b1`.
 The later Word/slide/host integration has its own fresh core qualification below; earlier results retain their exact original source attribution.
 The lint correction only adds braces to an existing `if` statement in the standalone grammar evaluation tool. At that step, application libraries, selected tests, fixtures, manifests and locks remain byte-identical to the fresh test source; [the publication audit](publication-audit.json) records that boundary. A subsequent main update changes the macOS build script and two documentation paths, including Dart documentation comments. Its separate [final follow-up audit](publication-followup/final-audit.json), one repeated pin test, ten controlled shell checks and fresh static analysis qualify that later delta without rewriting the earlier results.
 
@@ -148,8 +149,100 @@ author-attribution limits are recorded in the incoming review.
 Main's subsequent PR #229 is reviewed separately in
 [web-persistence-review.json](host-main-followup/web-persistence-review.json).
 It adds a narrow web data-store and host integration; it is not included in
-the `214c4ed8` execution source above. Its final reconciliation will require
-separate focused VM/Chrome qualification before publication.
+the `214c4ed8` execution source above. Its completed reconciliation, passing VM qualification and blocked Chrome
+launch are recorded in the final combined-source supplement below.
+
+### Final combined source: web persistence and qualified Mail reconciliation
+
+The final combined source is **`a45ee3bf40dbb7e64a04f879fd6d574db7cb60b1`**,
+tree `abb783deb0dcf32f5cd4a985818f040da6ac6229`. It preserves published main
+`43db439e1e605d6329a6eabe6817b04ca44ba1aa` (web persistence in PR #229 and
+the documentation-only GlotLID feasibility note in PR #230), plus the captured
+qualified Mail head `177f29d3f9450a58f41189b462b0814aad37e45c` as original
+merge ancestry. The source and every preceding completed evidence checkpoint
+were saved remotely with non-forced expected-head updates.
+
+The [Mail reconciliation](mail-qualification-followup/proposal.json) changes
+exactly three slide implementation files and two engine test files. It preserves
+authored and inherited slide backgrounds through copying and save/reopen,
+including picture relationship ownership, while retaining every current
+geometry enum/parser/writer addition and its regression. All current Word/font,
+Zotero, theme, renderer, PDF exporter, controller, workspace and web source
+remain exact. The 236-path merge also retains the incoming Mail documentation
+and historical evidence, separately attributed to its author. An explicit
+genuine common base and isolated index were used to resolve the recorded
+recursive virtual-base limitation; the resulting tree and every resolution are
+reviewable. This supplement supersedes the earlier deferred-Mail disposition.
+
+| Final focused cohort | Distinct passing cases | Files |
+| --- | ---: | ---: |
+| [Slide/PDF rendering and fonts](publication-final/accepted-engine-rendering/receipt.json) | 228 | 14 |
+| [Slide/editor rendering](publication-final/accepted-editor-rendering/receipt.json) | 109 | 10 |
+| [Web host/cancellation/downloads on VM](web-persistence-followup/accepted-web-vm/receipt.json) | 19 | 3 |
+| **Successful final focused total** | **356** | **27** |
+
+These three fresh selections run on the exact combined source above and pass
+their input, coverage, completion, no-skips and unique-case guards. They are
+not added to the overlapping **2,386-case core gate at `214c4ed8`**, the earlier
+3,201-case proofing integration gate, or the original 2,886-case milestone.
+The new engine rendering run contains the added background and picture-border
+assertions and supersedes the earlier rendering applicability. The final
+source and accounting audit is retained under [publication-final](publication-final/).
+
+**The fresh Chrome check is blocked by the execution environment.** The
+[preserved launch receipt](web-persistence-followup/accepted-web-chrome/receipt.json)
+correctly remains `failed`: Chromium cannot create its Unix process-singleton
+socket (`Operation not permitted`), and the SDK aborts after launch retries. **Zero browser application cases execute.** The real JSON loader
+error, complete process logs, launch arguments and before/after inventories
+remain intact; every recorded immutable input stays unchanged. The directory
+name is historical and does not override its failed receipt. No browser pass
+or successful Cache Storage execution is inferred from that attempt.
+
+PR #229's author reports three Chrome cases on the exact web source preserved
+here. Those remain separately attributed metadata, not independently recounted
+or freshly executed browser results. The three selected tests cover synthetic
+verified-byte restoration, removal and corruption handling; they do not prove
+live downloads, real morphology-model activation or an explicit partial-file
+case. The unchanged pinned runner can be repeated on a host that permits the
+required browser IPC. The browser receipt remains rejected, and its test source and acceptance
+guards remain unchanged.
+
+**All 108 active changed Dart application, test and tool targets pass strict
+analysis and formatting.** The
+[active-source static receipt](publication-final/static-product/receipt.json)
+preserves every source fingerprint and uses the unchanged strict flags. The
+initial [110-path diagnostic attempt](publication-final/static/receipt.json)
+remains failed: two newly imported historical Mail harnesses under `docs/`
+have 14 informational diagnostics in the current root package context, and
+one would be reformatted. Those exact two archived files are excluded only
+from the active-source selection, with pinned blobs, SHA-256 values, author
+artifact-index entries and original execution receipts. Their original bytes
+remain intact. No active code, test or tool receives an exception, and the
+report does not claim all 110 paths pass.
+
+The [dependency reuse proof](publication-final/dependency-reuse.json) verifies
+the actual new Studio manifest. Its direct `web: ^1.1.2` declaration uses the
+already locked and resolved `web` 1.1.2. All 152 effective package dependency
+closures, all 192 recorded web files, the lockfile and both saved configuration
+files are unchanged. The saved graph predates the new direct edge and is
+explicitly reused rather than claimed to have been regenerated. No package
+resolution, dependency replacement or configuration rewrite was required.
+
+The conservative VM import analysis preserves the original core receipts
+without pretending their broad source inventories are identical to this later
+source. The unchanged `dart.library.io` factories exclude the changed web
+hosts from all 157 earlier core roots. Direct web-host imports receive their
+own fresh VM run. Slide/background libraries remain reachable through engine
+exports; their changed behavior is confined to slide/PPTX operations and is
+covered by the fresh rendering gates. Word and Zotero implementations and
+selected tests remain exact. The review distinguishes compilation reachability
+from changed behavior and records the actual callsites and source delta.
+
+The captured newer VBA head remains explicitly unfinished at the bounded
+snapshot and is not imported as a completed increment. The known pentagon
+silhouette limitation and the incoming native Word result of **20/24 pages
+above the strict threshold** remain disclosed. No new live Zotero/Mail account,
+native macOS bundle, actual Word export or LibreOffice acceptance is claimed.
 
 ## Reproduction and publication
 
@@ -179,6 +272,12 @@ For the later core source, run all eight named selections in
 `--expected-head 214c4ed80bef0cb871f74e90c506d508679d3d6e`. The comparator
 controls have a separate `run_comparator_checks.py` runner. The independent
 auditor is `host-main-followup/audit_host_followup.py`.
+
+At the final combined source, repeat the two rendering selections with the
+same host adapter and `--expected-head a45ee3bf40dbb7e64a04f879fd6d574db7cb60b1`.
+Use the [web adapters](web-persistence-followup/README.md) for the separate VM
+and Chrome cases, and `publication-final/run_product_static.py` for the exact
+active-source static selection. All output directories must be fresh.
 
 Source and evidence checkpoints use non-forced remote updates with the expected previous head. Publication verifies the remote branch tree against the local candidate, refreshes main before merging, and verifies the resulting main tree and ancestry afterward. The PR description records the final merge identity.
 
