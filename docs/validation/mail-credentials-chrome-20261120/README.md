@@ -17,8 +17,12 @@ team/bundle requirement, including Debug's companion dylibs and entitlements.
 Existing native proofing libraries, notices and spaCy code qualification remain
 part of the build.
 
-The account repository stores independently keyed accounts in its selected
-secure backend. Setup offers saved-account selection and Add account. Forget
+The account repository stores up to 20 independently keyed accounts in its
+selected secure backend. The incoming remembered-account catalog and selectable
+stores now share one implementation; old v2 map records are validated and migrated
+to the bounded list representation. Every write is read back before success.
+Selection is captured once for each serialized operation, and settings are blocked
+while credential, connection or modal work is pending. Setup offers saved-account selection and Add account. Forget
 removes the active account while preserving others. Version-one records in the
 selected store are retained until a verified version-two write succeeds. The
 foreground IMAP/SMTP session still connects one account at a time; simultaneous
@@ -56,3 +60,23 @@ Validation so far:
   and unchanged user default/search-list settings.
 - Targeted Dart analysis reports no errors or warnings (style infos in ported
   sources are retained separately). Shell syntax checks pass.
+
+
+Final intake includes captured branch heads `b6d6a26d` (VBA reconciliation),
+`ef0231a3` (Zotero and credential selection safeguards), `bc90d2ef` (safe
+reply/forward actions), and `9730a43f` (EWS and host forwarding tests), alongside
+Downloads PR #242 and remembered accounts PR #243. Incremental-layout PR #247
+is still described as work in progress and is not treated as a qualified release
+input. Existing qualified native model pins remain unchanged.
+
+The expanded release pass found older account-free discovery/session tests using
+real OS preferences; those fixtures now explicitly inject session-only credentials.
+The 37 affected discovery/session tests pass, and the complete Mail UI package
+passes all 85 tests. The full combined host pass is recorded separately after
+completion. No live-provider delivery is claimed by those synthetic tests.
+
+The native-feature-complete build `885be697`, version 1.0.0 build 44, compiled
+and passed deep strict stable-signature verification. Its owned preview stopped
+in macOS sandbox initialization before Flutter startup while the desktop was
+locked. This is not counted as live UI, keychain-save or physical-flicker acceptance.
+No existing user app or document was closed or overwritten.

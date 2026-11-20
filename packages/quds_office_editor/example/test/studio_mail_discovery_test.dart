@@ -1,3 +1,4 @@
+import 'support/mail_credentials.dart';
 import 'dart:async';
 
 import 'package:enough_mail/enough_mail.dart' as mail;
@@ -118,6 +119,7 @@ Future<void> _open(
             onPressed: () => showDialog<void>(
               context: context,
               builder: (_) => StudioMailDialog(
+                credentialStore: SessionMailCredentials(),
                 draftStoreFactory: MemoryStudioMailDrafts().open,
                 strings: _strings,
                 accountDiscovery: discovery,
