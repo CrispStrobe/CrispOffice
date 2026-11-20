@@ -42,7 +42,9 @@ advanced. Refresh the list before making another removal attempt.
 ## Identity and persistence
 
 The directory stores provider, canonical endpoint, effective login, sender,
-last successful connection time and a monotonic connection revision. It uses
+last successful connection time and a monotonic connection revision allocated
+from a persistent profile counter. Removing and re-adding a shortcut cannot
+reuse an older revision, including after process restart. It uses
 the existing `StudioMailDraftAccount` fingerprint unchanged. For IMAP this
 includes the resolved scheme, custom port and effective discovery login. EWS
 retains its HTTPS endpoint, domain and user; Microsoft 365 retains its tenant

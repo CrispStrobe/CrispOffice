@@ -4,6 +4,10 @@ All notable changes to `quds_office_engine` are documented here.
 
 ## Unreleased
 
+- Preserve foreign namespace bindings and attributes whose names collide with
+  namespace prefixes during native Word list edits. Retain imported numbering
+  suppression source metadata through style refresh and repeated save/reopen.
+
 - Extend Word VBA with typed `Range.ListFormat` selectors, aliases, helpers and
   `With`; add `ApplyBulletDefault`, `ApplyNumberDefault`, and `RemoveNumbers`
   with named optional enum arguments. Resolve apply/remove toggles at native
