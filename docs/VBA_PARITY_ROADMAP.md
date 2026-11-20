@@ -35,7 +35,7 @@ and [the native macro contract](MACROS.md).
 | 6. Project interchange and authoring | Read/write project streams, explicit import/export, source editor, diagnostics, debugging and macro recording | Round-trip preservation, module/source provenance, source maps, breakpoints, consistent undo/history integration; successful Office open/edit/save checks |
 | 7. Host integration and qualification | Common Office workflows and explicit platform integrations | Real Word/Excel/PowerPoint differential runs, version/platform matrix, supported workflow corpus and documented residual gaps; external automation stays subject to host capability grants |
 
-Stage 1 is delivered in this increment. Its source, CLI/MCP transaction and
+Stage 1 was delivered in the prior array-lifecycle increment. Its source, CLI/MCP transaction and
 VM/JavaScript checks are recorded in the
 [local validation record](validation/office-vba-dynamic-arrays-20261119/README.md).
 This establishes the documented bounded dialect, not differential qualification
