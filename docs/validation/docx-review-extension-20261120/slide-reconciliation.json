@@ -1,0 +1,14 @@
+{
+  "wordSourceParent": "b5b32d247cd9ba9803b35175db8d60c8deeeac47",
+  "slideSourceParent": "9e647ae5cfbd494b51fe0928b57ed10c9a7a986a",
+  "enginePassed": 88,
+  "editorPassed": 21,
+  "analysisClean": true,
+  "resolution": [
+    "Retain inherited master background state and imported master/layout decorations",
+    "Retain authored paragraph/run font sizes and apply heading fit once",
+    "Retain arrows, flipped connectors, numeric LTR order and symbol/emoji fallback",
+    "Measure table ink contrast independently of font-sensitive opaque pixel count"
+  ],
+  "wordRevisionEngineChangedByReconciliation": false
+}

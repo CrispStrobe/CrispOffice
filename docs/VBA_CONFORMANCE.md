@@ -100,9 +100,11 @@ See the [dialect contract](VBA_MACROS.md#string-intrinsics) for precise limits.
 ## Run and compare the same corpus
 
 Resolve the repository's pinned dependencies first. From
-`packages/quds_office_engine`:
+`packages/quds_office_engine`, run the following as a Bash script so a failed
+execution cannot be mistaken for two matching empty receipts:
 
 ```bash
+set -e
 dart test test/office_vba_conformance_test.dart \
   test/office_vba_string_intrinsics_test.dart \
   test/office_vba_string_intrinsics_integration_test.dart \
