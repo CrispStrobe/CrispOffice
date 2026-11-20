@@ -1,0 +1,10 @@
+{
+  "archive": "final-integration-evidence.tar.xz",
+  "archive_sha256": "afb908afca716a5922344800516a47cf82fc146b6f9a7891a23d430110fc7e21",
+  "archive_bytes": 660536,
+  "manifest_sha256": "be6e3c7467ce0728551cc22903e827cd2f1a688ad606affe71b9265fda96aed8",
+  "verified_members": 86,
+  "errors": [],
+  "passed": true,
+  "scope": "Archive integrity only; raw-event replay and Git source continuity are separate."
+}

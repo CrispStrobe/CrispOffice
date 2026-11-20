@@ -61,9 +61,8 @@ class WebEncryptedStorage extends SecureStorage
   WebEncryptedStorage(
     this._backend, {
     WebCryptoProvider? cryptoProvider,
-    int newVaultIterations = _pbkdf2Iterations,
-  }) : _crypto = cryptoProvider ?? defaultWebCryptoProvider(),
-       _newVaultIterations = newVaultIterations;
+    this._newVaultIterations = _pbkdf2Iterations,
+  }) : _crypto = cryptoProvider ?? defaultWebCryptoProvider();
 
   bool get isInitialized => _cryptoKey != null;
 
@@ -245,10 +244,10 @@ class WebEncryptedStorage extends SecureStorage
         throw const FormatException('Invalid bound credential record');
       }
     }
-    final record = jsonDecode(
+    final Object? record = jsonDecode(
       utf8.decode(plaintext.sublist(_boundRecordMagic.length)),
     );
-    if (record is! Map ||
+    if (record is! Map<Object?, Object?> ||
         record.length != 2 ||
         record['key'] != storedKey ||
         record['value'] is! String) {

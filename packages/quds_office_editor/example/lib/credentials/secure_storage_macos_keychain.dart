@@ -96,7 +96,7 @@ class MacOsCustomKeychainStorage extends SecureStorage
     if (key != null && key.isEmpty) {
       throw ArgumentError.value(key, 'key', 'A credential key is required.');
     }
-    return {'path': path, if (key != null) 'key': key};
+    return {'path': path, 'key': ?key};
   }
 
   /// Merely viewing settings does not request an unlock. An explicit retry may.
@@ -139,7 +139,7 @@ class MacOsCustomKeychainStorage extends SecureStorage
   }) async {
     _checkPlatform();
     return (channel ?? _defaultChannel).invokeMethod<String>('chooseKeychain', {
-      if (initialPath != null) 'initialPath': initialPath,
+      'initialPath': ?initialPath,
     });
   }
 

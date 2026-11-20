@@ -1,15 +1,86 @@
+import 'dart:async';
 import 'dart:convert';
+import 'dart:io';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:quds_office_studio/credentials/secure_storage_macos_keychain.dart';
+import 'package:quds_office_studio/credentials/secure_storage_service.dart';
+import 'package:quds_office_studio/studio_credential_storage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../lib/studio_credential_storage.dart';
-import '../lib/credentials/secure_storage_macos_keychain.dart';
-import '../lib/credentials/secure_storage_service.dart';
+
+final class _PersistentMemoryStorage extends InMemorySecureStorage {
+  @override
+  bool get isPersistent => true;
+}
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
   setUp(() => SharedPreferences.setMockInitialValues({}));
+
+  test(
+    'slow system initialization cannot become the session backend',
+    () async {
+      final started = Completer<void>();
+      final pending = Completer<SecureStorage>();
+      final persistent = _PersistentMemoryStorage();
+      final manager = StudioCredentialStorage(
+        systemStorageFactory: () {
+          started.complete();
+          return pending.future;
+        },
+      );
+      final originalRequest = manager.storage;
+      await started.future;
+      await manager.select(StudioCredentialMode.session);
+      final session = await manager.storage;
+
+      pending.complete(persistent);
+      expect(await originalRequest, same(persistent));
+      expect(persistent.isPersistent, isTrue);
+      expect(session.isPersistent, isFalse);
+      expect(await manager.storage, same(session));
+      await (await manager.storage).write('session-secret', 'private');
+      expect(await session.read('session-secret'), 'private');
+      expect(await persistent.read('session-secret'), isNull);
+    },
+  );
+  test(
+    'old initialization cannot replace a newer instance of the same store',
+    () async {
+      final started = [Completer<void>(), Completer<void>()];
+      final pending = [Completer<SecureStorage>(), Completer<SecureStorage>()];
+      final original = _PersistentMemoryStorage();
+      final current = _PersistentMemoryStorage();
+      var attempts = 0;
+      final manager = StudioCredentialStorage(
+        systemStorageFactory: () {
+          final index = attempts++;
+          started[index].complete();
+          return pending[index].future;
+        },
+      );
+      final originalRequest = manager.storage;
+      await started[0].future;
+      await manager.select(StudioCredentialMode.session);
+      final session = await manager.storage;
+      await manager.select(StudioCredentialMode.system);
+      final currentRequest = manager.storage;
+      await started[1].future;
+      pending[1].complete(current);
+      expect(await currentRequest, same(current));
+      pending[0].complete(original);
+      expect(await originalRequest, same(original));
+
+      expect(await manager.storage, same(current));
+      await (await manager.storage).write('current-secret', 'private');
+      expect(await current.read('current-secret'), 'private');
+      expect(await original.read('current-secret'), isNull);
+      expect(await session.read('current-secret'), isNull);
+      expect(attempts, 2);
+    },
+  );
   test(
     'session selection persists only its mode, never account secrets',
     () async {
@@ -21,7 +92,8 @@ void main() {
       final raw = (await SharedPreferences.getInstance()).getString(
         StudioCredentialStorage.preferenceKey,
       )!;
-      expect(jsonDecode(raw)['mode'], 'session');
+      final value = jsonDecode(raw) as Map<String, Object?>;
+      expect(value['mode'], 'session');
       expect(raw, isNot(contains('private')));
       final restarted = StudioCredentialStorage();
       await restarted.loadSelection();
@@ -61,10 +133,8 @@ void main() {
     },
   );
   test(
-    'local macOS platform probe uses the file keychain and verifies read-back before deletion',
+    'platform probe verifies read-back before deletion with host options',
     () async {
-      debugDefaultTargetPlatformOverride = TargetPlatform.macOS;
-      addTearDown(() => debugDefaultTargetPlatformOverride = null);
       const channel = MethodChannel(
         'plugins.it_nomads.com/flutter_secure_storage',
       );
@@ -73,8 +143,13 @@ void main() {
       String? saved;
       final calls = <String>[];
       messenger.setMockMethodCallHandler(channel, (c) async {
-        final args = (c.arguments as Map);
-        expect((args['options'] as Map)['useDataProtectionKeyChain'], 'false');
+        final args = c.arguments as Map<Object?, Object?>;
+        final options = args['options'] as Map<Object?, Object?>;
+        // The plugin chooses options using dart:io Platform, independently
+        // of Flutter's visual platform override used by the custom-store test.
+        if (Platform.isMacOS) {
+          expect(options['useDataProtectionKeyChain'], 'false');
+        }
         calls.add(c.method);
         switch (c.method) {
           case 'write':

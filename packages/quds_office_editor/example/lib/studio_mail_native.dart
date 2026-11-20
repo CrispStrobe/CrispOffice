@@ -31,9 +31,10 @@ import 'studio_mail_submission.dart';
 import 'studio_saved_mail.dart';
 import 'studio_strings.dart';
 
-/// IMAP/SMTP client with optional selected-store account persistence.
+/// IMAP/SMTP client with optional host-managed account persistence.
 ///
-/// Account setup is explicit; remembered credentials use the selected secure store.
+/// Account setup is explicit. Remembered credentials use the selected backend;
+/// session-only storage keeps them in memory for the current process.
 /// Discovery and provider presets require verified encrypted transports. Every
 /// network operation reports its own failure instead of presenting an empty
 /// inbox.
@@ -46,6 +47,7 @@ class StudioMailDialog extends StatefulWidget {
     this.messageLoaderFactory,
     this.accountDiscovery,
     this.credentialStore,
+    this.credentialSettingsOpener,
     this.archiveWriter,
     this.archiveFolderWriter,
     this.draftStoreFactory,
@@ -56,6 +58,10 @@ class StudioMailDialog extends StatefulWidget {
 
   /// Tests supply the keychain boundary without reading a platform credential.
   final StudioMailCredentialStore? credentialStore;
+
+  /// Hosts can provide credential settings without accessing a platform store.
+  /// Returns true only when the selected backend changed.
+  final Future<bool> Function(BuildContext context)? credentialSettingsOpener;
   final StudioMailArchiveWriter? archiveWriter;
   final StudioMailArchiveFolderWriter? archiveFolderWriter;
   final StudioMailDraftStoreFactory? draftStoreFactory;
@@ -1545,8 +1551,11 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
     ),
   );
 
+  bool get _hasCredentialSettings =>
+      widget.credentialStore == null || widget.credentialSettingsOpener != null;
+
   bool get _canChangeCredentialStorage =>
-      widget.credentialStore == null &&
+      _hasCredentialSettings &&
       !_credentialPending &&
       !_credentialSettingsOpen &&
       !_connecting &&
@@ -1561,7 +1570,9 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
     });
     var changed = false;
     try {
-      changed = await showStudioCredentialSettings(context);
+      final open =
+          widget.credentialSettingsOpener ?? showStudioCredentialSettings;
+      changed = await open(context);
     } on Object {
       if (mounted) {
         setState(
@@ -1605,7 +1616,7 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
     children: [
       SubmenuButton(
         menuChildren: [
-          if (widget.credentialStore == null)
+          if (_hasCredentialSettings)
             MenuItemButton(
               onPressed: _canChangeCredentialStorage
                   ? _openCredentialStorage
@@ -1676,8 +1687,9 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
       automaticallyImplyLeading: false,
       title: Text(widget.strings.mailTitle, overflow: TextOverflow.ellipsis),
       actions: <Widget>[
-        if (widget.credentialStore == null)
+        if (_hasCredentialSettings)
           IconButton(
+            key: const ValueKey('studio-mail-credential-storage'),
             tooltip: 'Credential storage',
             icon: const Icon(Icons.key),
             onPressed: _canChangeCredentialStorage
@@ -1806,7 +1818,7 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
                   _rememberedAccounts(context),
                   const Divider(height: 24),
                 ],
-                if (widget.credentialStore == null)
+                if (_hasCredentialSettings)
                   TextButton.icon(
                     onPressed: _canChangeCredentialStorage
                         ? _openCredentialStorage
