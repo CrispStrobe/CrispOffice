@@ -690,6 +690,51 @@ void main() {
   );
 
   testWidgets(
+    'an incomplete MIME parse cannot silently forward only decoded attachments',
+    (tester) async {
+      final client = _Client();
+      final raw = Uint8List.fromList(
+        utf8.encode(
+          utf8.decode(_forwardWire()).replaceFirst(
+            'Content-Transfer-Encoding: base64',
+            'Content-Transfer-Encoding: x-private-transfer',
+          ),
+        ),
+      );
+      final parsed = const QudsMimeCodec().parse(raw);
+      expect(parsed.status, MailParseStatus.partial);
+      expect(parsed.message!.body.plainText, contains('The original body.'));
+      expect(parsed.message!.attachments, hasLength(1));
+      final loader = _Loader(client)..onFetch = (_, _) async => raw;
+      await _open(tester, (_) => client, loaderFactory: (_) => loader);
+      await _connect(tester);
+      await tester.tap(find.text('First message'));
+      await _pump(tester);
+      await tester.tap(find.byTooltip(_strings.mailForwardWithAttachments));
+      await _pump(tester);
+      expect(find.byType(StudioMailComposeDialog), findsNothing);
+      expect(
+        find.text(_strings.mailForwardAttachmentsUnavailable),
+        findsOneWidget,
+      );
+      expect(client.sent, isEmpty);
+      await tester.tap(find.byTooltip(_strings.forward));
+      await _pump(tester);
+      final draft = tester
+          .widget<StudioMailComposeDialog>(find.byType(StudioMailComposeDialog))
+          .initialDraft!;
+      expect(draft.attachments.isEmpty, isTrue);
+      expect(draft.body, contains('The original body.'));
+      expect(draft.body, contains(_strings.mailTextOnlyForward));
+      await tester.ensureVisible(find.text(_strings.mailDraftSaveClose));
+      await tester.tap(find.text(_strings.mailDraftSaveClose));
+      await _pump(tester);
+      expect(client.sent, isEmpty);
+      await _close(tester);
+    },
+  );
+
+  testWidgets(
     'too many forward attachments refuse the whole action and allow text only',
     (tester) async {
       final client = _Client();
