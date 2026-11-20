@@ -13,6 +13,11 @@ All notable changes to `quds_office_engine` are documented here.
   explicit omitted-Variant/IsMissing handling. These remain bounded adapters;
   named application-member arguments and live document reads are not added.
 
+- Invalidate Word paragraph break caches before dirty or full-layout paths,
+  including frame wrapping and empty paragraphs that do not replace the cache.
+  Prevent stale glyphs reappearing when later edits move an unchanged paragraph
+  into ordinary flow, while retaining break reuse for proven-clean paragraphs.
+
 - Continue the bounded Word/PowerPoint VBA adapters with Word document aliases,
   `Paragraphs.Item`, small caps, superscript/subscript and fixed-palette
   highlighting; add PowerPoint typed text-frame/formatting/transition helpers,

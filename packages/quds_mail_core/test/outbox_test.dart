@@ -271,6 +271,115 @@ void main() {
     },
   );
 
+  test(
+    'legacy draft uncertainty requires acknowledgement before queue send',
+    () {
+      final inherited = MailOutboxEntry.queued(
+        id: 'legacy',
+        prepared: prepared,
+        now: now,
+        priorSubmissionUncertain: true,
+      );
+      expect(inherited.canBeginAttempt, isFalse);
+      expect(inherited.canBeginAcknowledgedAttempt, isTrue);
+      expect(inherited.canCancel, isFalse);
+      expect(
+        () => inherited.beginAttempt(attemptId: 'a', now: now),
+        throwsStateError,
+      );
+      expect(() => inherited.cancel(now: now), throwsStateError);
+      final pending = inherited.beginAcknowledgedAttempt(
+        attemptId: 'a',
+        now: now,
+      );
+      expect(pending.priorSubmissionUncertain, isTrue);
+      expect(pending.attemptNumber, 1);
+      expect(pending.canBeginAcknowledgedAttempt, isFalse);
+    },
+  );
+
+  for (final outcome in MailSubmissionOutcome.values) {
+    test(
+      'acknowledged retry preserves older uncertainty after ${outcome.name}',
+      () {
+        final uncertain = queued
+            .beginAttempt(attemptId: 'a', now: now)
+            .recoverInterrupted(now: now);
+        final retry = uncertain.beginAcknowledgedAttempt(
+          attemptId: 'b',
+          now: now,
+        );
+        expect(retry.attemptNumber, 2);
+        expect(identical(retry.prepared, prepared), isTrue);
+        final completed = retry.complete(
+          MailSubmissionResult(attemptId: 'b', outcome: outcome),
+          now: now,
+        );
+        expect(completed.priorSubmissionUncertain, isTrue);
+        expect(completed.result!.outcome, outcome);
+        expect(completed.canBeginAttempt, isFalse);
+        expect(completed.canCancel, isFalse);
+        expect(() => completed.cancel(now: now), throwsStateError);
+        expect(
+          () => completed.beginAttempt(attemptId: 'c', now: now),
+          throwsStateError,
+        );
+        expect(
+          completed.canBeginAcknowledgedAttempt,
+          outcome != MailSubmissionOutcome.accepted,
+        );
+        if (completed.canBeginAcknowledgedAttempt) {
+          expect(
+            () => completed.beginAcknowledgedAttempt(attemptId: 'b', now: now),
+            throwsArgumentError,
+          );
+          final third = completed.beginAcknowledgedAttempt(
+            attemptId: 'c',
+            now: now,
+          );
+          expect(third.attemptNumber, 3);
+          expect(
+            third.recoverInterrupted(now: now).priorSubmissionUncertain,
+            isTrue,
+          );
+        }
+      },
+    );
+  }
+
+  test('acknowledgement cannot restart ordinary or accepted work', () {
+    expect(queued.canBeginAcknowledgedAttempt, isFalse);
+    expect(
+      () => queued.beginAcknowledgedAttempt(attemptId: 'a', now: now),
+      throwsStateError,
+    );
+    final accepted = queued
+        .beginAttempt(attemptId: 'a', now: now)
+        .complete(
+          MailSubmissionResult(
+            attemptId: 'a',
+            outcome: MailSubmissionOutcome.accepted,
+          ),
+          now: now,
+        );
+    expect(
+      () => accepted.beginAcknowledgedAttempt(attemptId: 'b', now: now),
+      throwsStateError,
+    );
+    expect(
+      () => MailOutboxEntry.restore(
+        id: queued.id,
+        prepared: prepared,
+        state: MailOutboxState.cancelled,
+        createdAt: now,
+        updatedAt: now,
+        attemptNumber: 0,
+        priorSubmissionUncertain: true,
+      ),
+      throwsArgumentError,
+    );
+  });
+
   test('undo send only cancels work before submission', () {
     expect(queued.cancel(now: now).state, MailOutboxState.cancelled);
     expect(

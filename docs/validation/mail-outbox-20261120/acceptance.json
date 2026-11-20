@@ -1,0 +1,142 @@
+{
+  "captured_at_utc": "2026-11-20T13:30:32.274649+00:00",
+  "accepted": true,
+  "source_checkpoint": "ce9ff1c8b155c03a0e2707d6fc8b41b52e611a93",
+  "source_tree": "49d07c3b264ed4b47cf3eb0999ac3f8c5c2ae01f",
+  "source_identity": "Every before-manifest source file matches the frozen Git checkpoint. All product/test inputs also match the current checkout. The sole changed manifested tool is check_store.py, corrected after the run for JSONL LF framing and qualified separately; its original hash remains in the preserved manifest.",
+  "combined_distinct_cases": 874,
+  "combined_distinct_suite_files": 52,
+  "cohorts": [
+    {
+      "name": "final-dart-core-store",
+      "cases": 172,
+      "suite_files": 13,
+      "strict_event_audit": {
+        "passed": 172,
+        "skipped": 0,
+        "failed": 0,
+        "errors": 0,
+        "all_failed": 0,
+        "all_skipped": 0,
+        "excluded_failed": 0,
+        "excluded_skipped": 0,
+        "terminal_success": true,
+        "start_events": 1,
+        "terminal_events": 1,
+        "incomplete": 0,
+        "protocol_errors": 0,
+        "protocol_issues": [],
+        "valid": true
+      }
+    },
+    {
+      "name": "final-dart-word-layout",
+      "cases": 20,
+      "suite_files": 3,
+      "strict_event_audit": {
+        "passed": 20,
+        "skipped": 0,
+        "failed": 0,
+        "errors": 0,
+        "all_failed": 0,
+        "all_skipped": 0,
+        "excluded_failed": 0,
+        "excluded_skipped": 0,
+        "terminal_success": true,
+        "start_events": 1,
+        "terminal_events": 1,
+        "incomplete": 0,
+        "protocol_errors": 0,
+        "protocol_issues": [],
+        "valid": true
+      }
+    },
+    {
+      "name": "final-dart-smtp",
+      "cases": 72,
+      "suite_files": 11,
+      "strict_event_audit": {
+        "passed": 72,
+        "skipped": 0,
+        "failed": 0,
+        "errors": 0,
+        "all_failed": 0,
+        "all_skipped": 0,
+        "excluded_failed": 0,
+        "excluded_skipped": 0,
+        "terminal_success": true,
+        "start_events": 1,
+        "terminal_events": 1,
+        "incomplete": 0,
+        "protocol_errors": 0,
+        "protocol_issues": [],
+        "valid": true
+      }
+    },
+    {
+      "name": "final-studio-mail",
+      "cases": 610,
+      "suite_files": 25,
+      "strict_event_audit": {
+        "passed": 610,
+        "skipped": 0,
+        "failed": 0,
+        "errors": 0,
+        "all_failed": 0,
+        "all_skipped": 0,
+        "excluded_failed": 0,
+        "excluded_skipped": 0,
+        "terminal_success": true,
+        "start_events": 1,
+        "terminal_events": 1,
+        "incomplete": 0,
+        "protocol_errors": 0,
+        "protocol_issues": [],
+        "valid": true
+      }
+    }
+  ],
+  "source_file_union": 2647,
+  "pure_source_fingerprint": "9efc8714efdbb28673f1aeb8858b587f2acb4f6e30719469230d4abc5498e318",
+  "studio_source_fingerprint": "fd798ee88f8c7da5050a40775392f0f977780d545f0c65faa90f6ebb959122fe",
+  "static_gate": {
+    "accepted": true,
+    "changed_dart_files": 24,
+    "format_changed": 0,
+    "strict_analysis": "No issues found",
+    "source_unchanged": true
+  },
+  "validator_source": [
+    {
+      "path": "tools/mail/check_store.py",
+      "sha256": "d56b7abce9d4693b21ea9d3f3cb81456a6712a4543323e58ac1c21169caed998",
+      "bytes": 20143
+    },
+    {
+      "path": "tools/mail/test_check_store.py",
+      "sha256": "f414de6e298fbc1a0c7dfb4e9a322f2a0a74f5489812da19405125f80584f7b6",
+      "bytes": 28191
+    }
+  ],
+  "validator_regression": {
+    "accepted": true,
+    "test_methods": 48,
+    "counted_separately_from_product_cases": true,
+    "receipt": "validator-fix/final-fix.result.json"
+  },
+  "studio_audit_correction": "Original JSONL bytes are unchanged. The original audit incorrectly split legal U+0085/U+2028/U+2029 within three test names; its false summary and driver exit1 are retained. A separate strict LF-framing audit admits all610 complete cases without suppressing any event checks.",
+  "runtime_boundary": "Pinned SDK and lockfile-verified hosted archives; selected runtime inventories. Actual Flutter SQLite map/library and engine frontend are additionally bound during/after the Studio run. This is not a complete transitive runtime-file inventory.",
+  "supporting_runs": "Focused passes and rejected development/probe runs remain in the separate archive; none are added to final case totals.",
+  "archives": [
+    {
+      "path": "evidence/accepted-runs.tar.gz",
+      "bytes": 548687,
+      "sha256": "a6cc5e41c6557a978052fe3909df5b74b286f8f41f07def1775067d640ddbea5"
+    },
+    {
+      "path": "evidence/development-and-supporting-runs.tar.gz",
+      "bytes": 47530,
+      "sha256": "0ff299c288a0b5316b59300625ddcedfc37d4c1c95d7bf64899f5e4e3e3c31ed"
+    }
+  ]
+}

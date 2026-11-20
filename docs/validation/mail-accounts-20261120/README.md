@@ -1,9 +1,16 @@
 # Remembered Mail accounts and integrated reply/forward workflows
 
+> **Follow-up integration:** [PR #251](https://github.com/CrispStrobe/quds_office_suite/pull/251)
+> incorporates later main `13be5046`, including durable Outbox workflows and
+> the Word frame-cache repair. Scoped checks for that combined source are in
+> progress. The 699-case record below remains bound to `625f4d76`; its
+> documentation-only publication was `e1fd2e14`.
+
+
 This report records the local qualification of committed source
 `625f4d76d10ddf2144220f25ae8d867452eeed61` and the documentation-only
 publication that preserves it. The original remembered-account implementation
-landed indirectly through PR #248; PR #243 completes the remaining ownership
+merged through PR #243; follow-up PR #251 completes the remaining ownership
 guards, injection boundary, regression fixtures and evidence.
 
 ## Delivered scope
@@ -135,7 +142,7 @@ committed trees; branch updates use non-forced expected-head leases.
 - Validation source: `625f4d76d10ddf2144220f25ae8d867452eeed61`.
 - Validation source tree: `8fef7e2e0621989e7e384f618e93a760594268ba`.
 - Final publication commit and source-continuity receipt: [source-continuity.json](source-continuity.json) and [verify_publication.py](verify_publication.py) bind the tested source to its documentation-only descendants.
-- Final remote main/PR merge verification: [PR #243](https://github.com/CrispStrobe/quds_office_suite/pull/243) records the final merge SHA; run the publication verifier against `origin/main` to verify ancestry and unchanged protected files.
+- Follow-up remote main/PR merge verification: [PR #251](https://github.com/CrispStrobe/quds_office_suite/pull/251) records the final merge SHA; run the publication verifier against `origin/main` to verify ancestry and unchanged protected files.
 
 ## Pinned local environment
 

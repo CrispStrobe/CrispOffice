@@ -1,10 +1,13 @@
 import 'dart:convert';
+import 'dart:math';
 
 import 'package:crypto/crypto.dart';
 import 'package:quds_mail_core/quds_mail_core.dart';
 import 'package:quds_mail_store/quds_mail_store.dart';
 
 import 'studio_mail_draft.dart';
+import 'studio_mail_outbox.dart';
+import 'studio_mail_submission.dart';
 import 'studio_mail_threading.dart';
 
 /// Stable non-secret identity for the local draft belonging to one connection.
@@ -126,12 +129,15 @@ abstract interface class StudioMailDraftStore {
 ///
 /// Native hosts use the app-container opener. The public repository seam also
 /// supports deterministic tests and other hosts with their own store lifetime.
-final class SqliteStudioMailDraftStore implements StudioMailDraftStore {
+final class SqliteStudioMailDraftStore
+    implements StudioMailDraftStore, StudioMailOutboxStore {
   SqliteStudioMailDraftStore({
     required SqliteMailRepository repository,
     required this.account,
     this.ownsRepository = false,
-  }) : _repository = repository {
+    DateTime Function()? clock,
+  }) : _repository = repository,
+       _clock = clock ?? DateTime.now {
     if (repository.profile != account.profile) {
       throw const StudioMailDraftStoreException(
         MailProblemCode.permissionDenied,
@@ -140,8 +146,11 @@ final class SqliteStudioMailDraftStore implements StudioMailDraftStore {
   }
 
   static const draftId = 'studio-foreground-compose';
+  static const maxOutboxEntries = 100;
 
   final SqliteMailRepository _repository;
+  final DateTime Function() _clock;
+  @override
   final MailAccountId account;
   final bool ownsRepository;
   Future<void> _pending = Future<void>.value();
@@ -150,6 +159,7 @@ final class SqliteStudioMailDraftStore implements StudioMailDraftStore {
   bool _submissionUncertain = false;
   int? _revision;
   Future<void>? _closeResult;
+  final Map<String, String> _activeOutboxAttempts = {};
 
   Future<T> _serialize<T>(Future<T> Function() action) {
     if (_closing) {
@@ -246,6 +256,207 @@ final class SqliteStudioMailDraftStore implements StudioMailDraftStore {
     _revision = revision;
     _submissionUncertain = uncertain;
   }
+
+  void _requireOutboxAccount(MailOutboxEntry entry) {
+    if (entry.prepared.account != account) {
+      throw const StudioMailDraftStoreException(
+        MailProblemCode.permissionDenied,
+      );
+    }
+  }
+
+  static Never _outboxConflict() =>
+      throw const StudioMailDraftStoreException(MailProblemCode.conflict);
+
+  static String _newOutboxIdentity(String prefix) {
+    final random = Random.secure();
+    final entropy = List<String>.generate(
+      24,
+      (_) => random.nextInt(256).toRadixString(16).padLeft(2, '0'),
+    ).join();
+    return '$prefix-$entropy';
+  }
+
+  DateTime _outboxTime([MailOutboxEntry? entry]) {
+    final now = _clock().toUtc();
+    return entry != null && now.isBefore(entry.updatedAt)
+        ? entry.updatedAt
+        : now;
+  }
+
+  Future<List<MailOutboxEntry>> _loadOutbox() async {
+    final entries = _value(await _repository.recoverOutbox(account));
+    final recovered = <MailOutboxEntry>[];
+    for (var entry in entries) {
+      _requireOutboxAccount(entry);
+      // The repository recovers interrupted attempts from an earlier owner.
+      // This owner can also lose a result commit while still open. Only its
+      // explicitly active transports remain in-flight during a refresh.
+      if (entry.state == MailOutboxState.submitting &&
+          _activeOutboxAttempts[entry.id] != entry.attemptId) {
+        final interrupted = entry.recoverInterrupted(now: _outboxTime(entry));
+        _value(
+          await _repository.saveOutbox(
+            interrupted,
+            expectedState: entry.state,
+            expectedAttemptId: entry.attemptId,
+          ),
+        );
+        entry = interrupted;
+      }
+      recovered.add(entry);
+    }
+    recovered.sort((a, b) {
+      final time = a.createdAt.compareTo(b.createdAt);
+      return time == 0 ? a.id.compareTo(b.id) : time;
+    });
+    return List.unmodifiable(recovered);
+  }
+
+  @override
+  Future<List<MailOutboxEntry>> loadOutbox() => _serialize(_loadOutbox);
+
+  @override
+  Future<MailOutboxEntry> enqueueOutbox(
+    StudioMailDraft draft,
+    String sender,
+  ) => _serialize(() async {
+    _requireLoaded();
+    // Save the exact editor snapshot before validation or queue admission, so
+    // even an invalid recipient or full queue leaves the user's work durable.
+    await _persistDraft(draft, uncertain: _submissionUncertain);
+    if (draft.problem != null || !StudioMailDraft.isSupportedAddress(sender)) {
+      throw const StudioMailDraftStoreException(MailProblemCode.invalidInput);
+    }
+    if ((await _loadOutbox()).length >= maxOutboxEntries) {
+      throw const StudioMailDraftStoreException(MailProblemCode.quotaExceeded);
+    }
+    final sourceRevision = _revision!;
+    // Generate Date, Message-ID, boundaries and attachment encodings once.
+    // Every later attempt uses this immutable wire/envelope pair.
+    final message = buildStudioMailMessage(draft, sender);
+    final prepared = MailPreparedMessage(
+      account: account,
+      draftId: draftId,
+      draftRevision: sourceRevision,
+      wire: MailBytes(utf8.encode(message.renderMessage())),
+      envelope: MailTransportEnvelope(
+        sender: sender,
+        recipients: draft.recipients.envelope,
+      ),
+    );
+    final queued = MailOutboxEntry.queued(
+      id: _newOutboxIdentity('outbox'),
+      prepared: prepared,
+      now: _outboxTime(),
+      priorSubmissionUncertain: _submissionUncertain,
+    );
+    _value(
+      await _repository.enqueueDraft(
+        queued,
+        expectedDraftRevision: sourceRevision,
+      ),
+    );
+    _revision = sourceRevision + 1;
+    _submissionUncertain = false;
+    return queued;
+  });
+
+  @override
+  Future<MailOutboxEntry> beginOutboxAttempt(
+    MailOutboxEntry entry, {
+    bool acknowledgeUncertain = false,
+  }) => _serialize(() async {
+    _requireOutboxAccount(entry);
+    final MailOutboxEntry attempt;
+    if (acknowledgeUncertain && entry.canBeginAcknowledgedAttempt) {
+      attempt = entry.beginAcknowledgedAttempt(
+        attemptId: _newOutboxIdentity('attempt'),
+        now: _outboxTime(entry),
+      );
+    } else if (entry.canBeginAttempt) {
+      attempt = entry.beginAttempt(
+        attemptId: _newOutboxIdentity('attempt'),
+        now: _outboxTime(entry),
+      );
+    } else {
+      _outboxConflict();
+    }
+    _value(
+      await _repository.saveOutbox(
+        attempt,
+        expectedState: entry.state,
+        expectedAttemptId: entry.attemptId,
+      ),
+    );
+    _activeOutboxAttempts[attempt.id] = attempt.attemptId!;
+    return attempt;
+  });
+
+  @override
+  Future<MailOutboxEntry> completeOutboxAttempt(
+    MailOutboxEntry entry,
+    MailSubmissionResult result,
+  ) => _serialize(() async {
+    _requireOutboxAccount(entry);
+    try {
+      if (entry.state != MailOutboxState.submitting ||
+          entry.attemptId != result.attemptId ||
+          _activeOutboxAttempts[entry.id] != entry.attemptId) {
+        _outboxConflict();
+      }
+      if (result.recipients.any(
+        (response) =>
+            !entry.prepared.envelope.recipients.contains(response.recipient),
+      )) {
+        throw const StudioMailDraftStoreException(MailProblemCode.invalidInput);
+      }
+      final completed = entry.complete(result, now: _outboxTime(entry));
+      _value(
+        await _repository.saveOutbox(
+          completed,
+          expectedState: entry.state,
+          expectedAttemptId: entry.attemptId,
+        ),
+      );
+      return completed;
+    } finally {
+      // A failure after provider acceptance must remain an uncertain recovery
+      // record, never an ordinary queued retry or a permanently busy UI.
+      if (_activeOutboxAttempts[entry.id] == entry.attemptId) {
+        _activeOutboxAttempts.remove(entry.id);
+      }
+    }
+  });
+
+  @override
+  Future<MailOutboxEntry> cancelOutbox(MailOutboxEntry entry) =>
+      _serialize(() async {
+        _requireOutboxAccount(entry);
+        if (!entry.canCancel) _outboxConflict();
+        final cancelled = entry.cancel(now: _outboxTime(entry));
+        _value(
+          await _repository.saveOutbox(
+            cancelled,
+            expectedState: entry.state,
+            expectedAttemptId: entry.attemptId,
+          ),
+        );
+        return cancelled;
+      });
+
+  @override
+  Future<void> removeOutbox(MailOutboxEntry entry) => _serialize(() async {
+    _requireOutboxAccount(entry);
+    _value(
+      await _repository.removeOutbox(
+        account,
+        entry.id,
+        expectedState: entry.state,
+        expectedAttemptId: entry.attemptId,
+      ),
+    );
+  });
 
   @override
   Future<void> clear() => _serialize(() async {
