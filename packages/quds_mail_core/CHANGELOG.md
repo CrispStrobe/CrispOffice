@@ -1,5 +1,7 @@
 ## Unreleased
 
+- Add explicit terminal `closedUncertain` Outbox state: stop retries locally while retaining possible acceptance, frozen content and attempt information. Expose guarded closure and terminal-cleanup eligibility.
+
 - Add explicitly acknowledged outbox retries with a durable earlier-uncertainty
   guard. A later definite rejection cannot enable ordinary retry or cancellation
   after a possibly accepted submission; inherited composer uncertainty is kept.

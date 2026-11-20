@@ -4,6 +4,8 @@ All notable changes to `quds_office_editor` are documented here.
 
 ## Unreleased
 
+- Add localized Outbox message review, byte-exact EML and private-envelope export, atomic edit-as-new-draft and explicit stop-retrying for unknown delivery. Preserve Bcc, attachments, threading and other drafts; refuse lossy projection. Keep account/session guards through file export and composer handoff.
+
 - Support independently identified local drafts through the Studio store's
   optional catalog API. Preserve legacy drafts, pin selection/deletion to
   account and revision, reject stale editor operations after draft changes,

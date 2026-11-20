@@ -307,8 +307,212 @@ Future<void> _compose(
   await tester.pump();
 }
 
+Future<(MailOutboxEntry, StudioMailDraft, StudioMailDraft)> _seedManagedOutbox(
+  WidgetTester tester,
+  SqliteOutboxFixture fixture,
+) async {
+  final seed = await awaitOutboxOperation(tester, fixture.openLoaded());
+  const sibling = StudioMailDraft(
+    to: 'sibling@example.test',
+    bcc: 'sibling-hidden@example.test',
+    subject: 'Keep the previous selected draft',
+    body: 'This unrelated unfinished message must survive.',
+  );
+  await awaitOutboxOperation(
+    tester,
+    seed.save(sibling, submissionUncertain: true),
+  );
+  final original = StudioMailDraft(
+    to: 'queued@example.test',
+    cc: 'queued-copy@example.test',
+    bcc: 'queued-hidden@example.test',
+    subject: 'Original queued message مرحبًا',
+    body: 'Frozen message <safe> & unchanged.',
+    attachments: StudioMailAttachments.from([
+      StudioMailAttachment(
+        name: 'résumé.bin',
+        bytes: Uint8List.fromList([0, 10, 13, 128, 255]),
+      ),
+    ]),
+  );
+  await awaitOutboxOperation(tester, seed.createDraft(original));
+  final queued = await awaitOutboxOperation(
+    tester,
+    seed.enqueueOutbox(original, _sender),
+  );
+  await awaitOutboxOperation(tester, seed.close());
+  return (queued, original, sibling);
+}
+
 void main() {
   for (final ews in [false, true]) {
+    testWidgets(
+      '${ews ? 'EWS' : 'IMAP'} edits queued copy into the correct draft and explicitly requeues new MIME',
+      (tester) async {
+        final fixture = await _fixture(tester, ews: ews);
+        final (originalEntry, original, sibling) = await _seedManagedOutbox(
+          tester,
+          fixture,
+        );
+        final client = _Client();
+        final provider = ews ? await _ews(tester, fixture) : null;
+        if (!ews) await _native(tester, fixture, client);
+        final store = fixture.adapters.last;
+        expect(store.selectedDraftId, SqliteStudioMailDraftStore.draftId);
+        final oldEpoch = store.selectionEpoch;
+        await _press(tester, _openOutbox);
+        await _press(tester, _action('edit', originalEntry));
+        expect(find.text(_strings.mailOutboxEditExplanation), findsOneWidget);
+        expect(find.byType(StudioMailComposeDialog), findsNothing);
+        await _press(
+          tester,
+          find.byKey(const ValueKey('studio-mail-outbox-confirm')),
+        );
+        expect(find.byType(StudioMailOutboxDialog), findsNothing);
+        final composer = tester.widget<StudioMailComposeDialog>(
+          find.byType(StudioMailComposeDialog),
+        );
+        expect(composer.initialDraft!.subject, original.subject);
+        expect(composer.initialDraft!.body, original.body);
+        expect(composer.initialDraft!.to, original.to);
+        expect(composer.initialDraft!.cc, original.cc);
+        expect(composer.initialDraft!.bcc, original.bcc);
+        expect(
+          composer.initialDraft!.attachments.items.single.content.bytes,
+          original.attachments.items.single.content.bytes,
+        );
+        expect(composer.previousSubmissionUncertain, isFalse);
+        final editedId = store.selectedDraftId;
+        expect(editedId, isNot(SqliteStudioMailDraftStore.draftId));
+        expect(editedId, isNot(originalEntry.prepared.draftId));
+        expect(store.selectionEpoch, greaterThan(oldEpoch));
+        expect(client.sent, isEmpty);
+        expect(provider?.submissions ?? [], isEmpty);
+        final retired = (await awaitOutboxOperation(
+          tester,
+          store.loadOutbox(),
+        )).single;
+        expect(retired.state, MailOutboxState.cancelled);
+        expect(retired.prepared.wire.bytes, originalEntry.prepared.wire.bytes);
+        final beforeQueue = await awaitOutboxOperation(
+          tester,
+          store.listDrafts(),
+        );
+        expect(beforeQueue.drafts, hasLength(2));
+        final kept = beforeQueue.drafts.singleWhere(
+          (entry) => entry.id == SqliteStudioMailDraftStore.draftId,
+        );
+        expect(kept.subject, sibling.subject);
+        expect(kept.submissionUncertain, isTrue);
+
+        await tester.enterText(
+          _field(_strings.subject),
+          'Explicitly edited message',
+        );
+        await _press(tester, _queue);
+        expect(find.byType(StudioMailComposeDialog), findsNothing);
+        final entries = await awaitOutboxOperation(tester, store.loadOutbox());
+        expect(entries, hasLength(2));
+        final edited = entries.singleWhere(
+          (entry) => entry.id != originalEntry.id,
+        );
+        expect(edited.state, MailOutboxState.queued);
+        expect(edited.attemptNumber, 0);
+        expect(edited.prepared.draftId, editedId);
+        expect(
+          edited.prepared.wireHash,
+          isNot(originalEntry.prepared.wireHash),
+        );
+        final originalMessage = const QudsMimeCodec()
+            .parse(originalEntry.prepared.wire.bytes)
+            .message!;
+        final newMessage = const QudsMimeCodec()
+            .parse(edited.prepared.wire.bytes)
+            .message!;
+        expect(newMessage.envelope.messageId, isNotNull);
+        expect(
+          newMessage.envelope.messageId,
+          isNot(originalMessage.envelope.messageId),
+        );
+        expect(newMessage.envelope.subject, 'Explicitly edited message');
+        expect(
+          newMessage.attachments.single.content.bytes,
+          original.attachments.items.single.content.bytes,
+        );
+        expect(
+          edited.prepared.envelope.recipients,
+          original.recipients.envelope,
+        );
+        final remaining = await awaitOutboxOperation(
+          tester,
+          store.listDrafts(),
+        );
+        expect(remaining.drafts.single.id, SqliteStudioMailDraftStore.draftId);
+        expect(remaining.drafts.single.subject, sibling.subject);
+        expect(remaining.drafts.single.submissionUncertain, isTrue);
+        await _press(tester, _openOutbox);
+        expect(client.sent, isEmpty);
+        expect(provider?.submissions ?? [], isEmpty);
+        expect(tester.takeException(), isNull);
+      },
+    );
+
+    testWidgets(
+      '${ews ? 'EWS' : 'IMAP'} failed edit keeps original queue and prior selected draft',
+      (tester) async {
+        final fixture = await _fixture(tester, ews: ews);
+        final (originalEntry, _, sibling) = await _seedManagedOutbox(
+          tester,
+          fixture,
+        );
+        final client = _Client();
+        final provider = ews ? await _ews(tester, fixture) : null;
+        if (!ews) await _native(tester, fixture, client);
+        final store = fixture.adapters.last;
+        final selectedId = store.selectedDraftId;
+        final originalEpoch = store.selectionEpoch;
+        await _press(tester, _openOutbox);
+        await _press(tester, _action('edit', originalEntry));
+        fixture.failNextCheckpoint = MailStoreCheckpoint.afterDraftBlobs;
+        await _press(
+          tester,
+          find.byKey(const ValueKey('studio-mail-outbox-confirm')),
+        );
+        expect(find.byType(StudioMailOutboxDialog), findsOneWidget);
+        expect(find.text(_strings.mailOutboxFailed), findsOneWidget);
+        expect(store.selectedDraftId, selectedId);
+        expect(store.selectionEpoch, originalEpoch);
+        expect(
+          (await awaitOutboxOperation(tester, store.loadOutbox())).single.state,
+          MailOutboxState.queued,
+        );
+        expect(
+          (await awaitOutboxOperation(
+            tester,
+            store.listDrafts(),
+          )).drafts.single.id,
+          selectedId,
+        );
+        await _press(tester, _outboxIcon(_strings.close));
+        await _press(
+          tester,
+          ews
+              ? find.byTooltip(_strings.compose)
+              : find.widgetWithText(TextButton, _strings.compose),
+        );
+        final composer = tester.widget<StudioMailComposeDialog>(
+          find.byType(StudioMailComposeDialog),
+        );
+        expect(composer.initialDraft!.subject, sibling.subject);
+        expect(composer.initialDraft!.body, sibling.body);
+        expect(composer.initialDraft!.bcc, sibling.bcc);
+        expect(composer.previousSubmissionUncertain, isTrue);
+        expect(client.sent, isEmpty);
+        expect(provider?.submissions ?? [], isEmpty);
+        expect(tester.takeException(), isNull);
+      },
+    );
+
     testWidgets(
       '${ews ? 'EWS' : 'IMAP'} keeps independent drafts when creating, resuming and queueing',
       (tester) async {

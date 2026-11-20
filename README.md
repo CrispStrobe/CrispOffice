@@ -568,8 +568,10 @@ nullable standard flags and cursors transactionally, with schema-v3 migration,
 local full-text search and explicit interrupted-send recovery. File-backed
 migration and Linux process-crash tests exercise data preservation. These are
 storage-layer capabilities; the foreground Studio composer now uses them for
-[durable local drafts](docs/roadmaps/mail/draft-recovery.md) and interrupted-send
-warnings. A queued outbox remains open. Its separately
+[multiple durable local drafts](docs/roadmaps/mail/multiple-drafts.md), a
+[durable Outbox](docs/roadmaps/mail/outbox.md), and
+[message review, export and safe editing](docs/roadmaps/mail/outbox-management.md),
+including explicit management of interrupted-send uncertainty. Its separately
 configured browser entry compiles, but actual
 browser storage, quota and reload behavior remain unqualified. The database is
 unencrypted, and process-crash tests do not establish power-loss durability.

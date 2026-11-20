@@ -192,7 +192,9 @@ void main() {
         find.byKey(const ValueKey('studio-mail-outbox-export-private-confirm')),
       );
       expect(exports, hasLength(2));
-      final json = jsonDecode(utf8.decode(exports.last.$2.bytes)) as Map;
+      final json =
+          jsonDecode(utf8.decode(exports.last.$2.bytes))
+              as Map<String, Object?>;
       expect(json['recipients'], queued.prepared.envelope.recipients);
       expect(json['messageSha256'], queued.prepared.wireHash);
       await _press(

@@ -1,0 +1,206 @@
+{
+  "schema": 1,
+  "recorded_utc": "2026-11-20T14:08:18.506538+00:00",
+  "scope": "Bounded reconciliation of two commits discovered after Mail PR253 merged; no further branch refresh.",
+  "accepted_main": "4df939eeed1bda9f9dbde8c8d2cbf0a4fe91b5b0",
+  "previously_integrated_zotero": "93dc987cf993787bd613018b3028e7ad60d5472a",
+  "incoming_head": "a2b87ee3f471da500423055e86ba2614fc053cae",
+  "incoming_commits": [
+    {
+      "sha": "70e69c8854ab30f83d8711d3f4bf270385ed27b4",
+      "parents": [
+        "93dc987cf993787bd613018b3028e7ad60d5472a",
+        "13be50464d1b43e9f2100fb9ccc12f8fe22eb55e"
+      ],
+      "subject": "Reconcile current Outbox main without changing qualified Word sources [skip ci]",
+      "classification": "Merge of already accepted main13be into already accepted Zotero93dc, with a new five-file Outbox acceptance-runner group and two new documentation/evidence records. Word sources retain older Zotero resolution."
+    },
+    {
+      "sha": "a2b87ee3f471da500423055e86ba2614fc053cae",
+      "parents": [
+        "70e69c8854ab30f83d8711d3f4bf270385ed27b4"
+      ],
+      "subject": "Preserve all completed combined-source replays and Outbox source continuity [skip ci]",
+      "classification": "Four new documentation/evidence files only.",
+      "changed_paths": [
+        "A\tdocs/validation/zotero-research-tables-20261120/checkpoint-231bd-replay-evidence.json",
+        "A\tdocs/validation/zotero-research-tables-20261120/checkpoint-231bd-replay-evidence.tar.xz",
+        "A\tdocs/validation/zotero-research-tables-20261120/checkpoint-231bd-replay-summary.json",
+        "A\tdocs/validation/zotero-research-tables-20261120/latest-main-outbox-preservation.json"
+      ]
+    }
+  ],
+  "merge_bases": [
+    "93dc987cf993787bd613018b3028e7ad60d5472a",
+    "13be50464d1b43e9f2100fb9ccc12f8fe22eb55e"
+  ],
+  "merge_preview": {
+    "tree": "1750041dd8297988ee17e0cc77a50a356f5aa388",
+    "exit_code": 1,
+    "conflict_paths": [
+      "packages/quds_office_editor/CHANGELOG.md",
+      "packages/quds_office_engine/lib/src/word/layout/word_incremental_layout.dart",
+      "packages/quds_office_engine/lib/src/word/layout/word_layout.dart"
+    ],
+    "all_delta_paths": [
+      {
+        "status": "A",
+        "path": "docs/validation/zotero-research-tables-20261120/checkpoint-231bd-replay-evidence.json"
+      },
+      {
+        "status": "A",
+        "path": "docs/validation/zotero-research-tables-20261120/checkpoint-231bd-replay-evidence.tar.xz"
+      },
+      {
+        "status": "A",
+        "path": "docs/validation/zotero-research-tables-20261120/checkpoint-231bd-replay-summary.json"
+      },
+      {
+        "status": "A",
+        "path": "docs/validation/zotero-research-tables-20261120/checkpoint-reconciled-engine-summary.json"
+      },
+      {
+        "status": "A",
+        "path": "docs/validation/zotero-research-tables-20261120/latest-main-outbox-preservation.json"
+      },
+      {
+        "status": "A",
+        "path": "docs/validation/zotero-research-tables-20261120/latest-main-outbox-reconciliation.json"
+      },
+      {
+        "status": "M",
+        "path": "packages/quds_office_editor/CHANGELOG.md"
+      },
+      {
+        "status": "M",
+        "path": "packages/quds_office_editor/example/tool/incoming_reconciliation_acceptance.dart"
+      },
+      {
+        "status": "M",
+        "path": "packages/quds_office_engine/lib/src/word/layout/word_incremental_layout.dart"
+      },
+      {
+        "status": "M",
+        "path": "packages/quds_office_engine/lib/src/word/layout/word_layout.dart"
+      }
+    ]
+  },
+  "resolutions": [
+    {
+      "path": "packages/quds_office_editor/CHANGELOG.md",
+      "resolution": "accepted main blob (ours)",
+      "accepted_main_blob": "7067a9c2491b78eaa7df1c1b1f8a0cede06688d2",
+      "incoming_blob": "0a5899f9a145bdfa37b51da956deaba2e6b9ef6d",
+      "rationale": "Keep accepted main verbatim. It already contains the Zotero entry and durable Outbox entry; incoming reorders Outbox and omits multiple-drafts and fuller account-store scope.",
+      "main_to_incoming_patch": "diff --git a/packages/quds_office_editor/CHANGELOG.md b/packages/quds_office_editor/CHANGELOG.md\nindex 7067a9c2..0a5899f9 100644\n--- a/packages/quds_office_editor/CHANGELOG.md\n+++ b/packages/quds_office_editor/CHANGELOG.md\n@@ -4,23 +4,6 @@ All notable changes to `quds_office_editor` are documented here.\n \n ## Unreleased\n \n-- Support independently identified local drafts through the Studio store's\n-  optional catalog API. Preserve legacy drafts, pin selection/deletion to\n-  account and revision, reject stale editor operations after draft changes,\n-  and transfer only the chosen draft into its durable Outbox entry.\n-- Add a localized Drafts chooser across IMAP/SMTP, EWS, Gmail and Microsoft 365,\n-  with new/resume/confirmed-delete actions and independent reply/forward drafts.\n-  Add save-only Local drafts before connecting remembered explicit-server or\n-  preset IMAP accounts; guard Send in both UI and action handling and await\n-  store ownership release before returning to connection setup.\n-\n-- Connect Studio Mail Send and Queue in Outbox to durable frozen messages across\n-  native SMTP, EWS, Gmail and Microsoft 365. Add a visible account-scoped queue,\n-  atomic draft transfer, restart recovery, explicitly acknowledged uncertain\n-  retries, cancellation before possible acceptance and local terminal cleanup.\n-  English, German and Arabic feedback distinguishes server acceptance from\n-  delivery. Queue inspection and reconnect never send automatically.\n-\n - Accept supported Zotero research tables through the existing Add Note and\n   Add Annotation commands, preserving active citations, surrounding prose and\n   the single undo/redo transaction. Keep authored-note markers before leading\n@@ -30,6 +13,13 @@ All notable changes to `quds_office_editor` are documented here.\n   [implementation and validation record](../../docs/validation/zotero-research-tables-20261120/README.md)\n   for source-specific checks and remaining application acceptance.\n \n+- Connect Studio Mail Send and Queue in Outbox to durable frozen messages across\n+  native SMTP, EWS, Gmail and Microsoft 365. Add a visible account-scoped queue,\n+  atomic draft transfer, restart recovery, explicitly acknowledged uncertain\n+  retries, cancellation before possible acceptance and local terminal cleanup.\n+  English, German and Arabic feedback distinguishes server acceptance from\n+  delivery. Queue inspection and reconnect never send automatically.\n+\n - Quote HTML-only messages through the bounded inert body projection in Reply,\n   Reply all and forwarding. Prefer authoritative plain text, keep Bcc and\n   attachment metadata out of quotes, and retain Unicode-safe truncation.\n@@ -39,15 +29,12 @@ All notable changes to `quds_office_editor` are documented here.\n   images as ordinary files, preserve exact bytes through drafts and sending,\n   and keep retained/uncertain drafts protected from replacement.\n \n-- Remember up to 20 native IMAP/SMTP accounts in a bounded catalog in the\n-  selected credential store, including temporary session memory. Restore the\n-  selected account, choose another account explicitly,\n+- Remember up to 20 native IMAP/SMTP accounts in a bounded platform-keychain\n+  catalog. Restore the selected account, choose another account explicitly,\n   and forget only that account. Migrate the previous single-account record\n   without losing credentials or resurrecting a forgotten account. Switch\n   connected accounts only after saving their retained local draft, preserving\n-  existing per-account draft ownership and delayed-operation guards. Keep\n-  catalog transactions and delayed initialization bound to their selected\n-  backend; clear the previous selection before loading another store.\n+  existing per-account draft ownership and delayed-operation guards.\n \n - Insert Zotero research notes and annotations at the active authored footnote\n   or endnote caret, and replace deliberate text selections within one paragraph."
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/layout/word_incremental_layout.dart",
+      "resolution": "accepted main blob (ours)",
+      "accepted_main_blob": "19643ad7627a00022c4478d7501764a4f414658b",
+      "incoming_blob": "93c7e51944395cd0e23c0801fd47b0e7f54eebb2",
+      "rationale": "Keep accepted main verbatim. Incoming omits the accepted prefix line/frame count convergence guards and changes only the cache-lifecycle comment otherwise. Equal vertical geometry cannot prove identical retained prefix slice lengths.",
+      "main_to_incoming_patch": "diff --git a/packages/quds_office_engine/lib/src/word/layout/word_incremental_layout.dart b/packages/quds_office_engine/lib/src/word/layout/word_incremental_layout.dart\nindex 19643ad7..93c7e519 100644\n--- a/packages/quds_office_engine/lib/src/word/layout/word_incremental_layout.dart\n+++ b/packages/quds_office_engine/lib/src/word/layout/word_incremental_layout.dart\n@@ -250,11 +250,6 @@ class _Recorder {\n         flow.columnTop != cp.columnTop ||\n         adjacentAfter != cp.adjacentAfter ||\n         flow.hasContent != cp.hasContent ||\n-        // Retained checkpoints address prefix slices on the partial page.\n-        // Equal vertical flow alone does not preserve those slice lengths\n-        // (for example, extra lines inside a fixed-height table row).\n-        flow.current.length != cp.lines ||\n-        flow.currentFrames.length != cp.frames ||\n         cp.wrapFrames ||\n         _hasWrapFrames(flow.currentFrames)) {\n       return false;\n@@ -306,9 +301,9 @@ class _Recorder {\n /// A paragraph's line breaks with the environment they were made for. The\n /// paragraph's own content (text, run and paragraph properties) is not part\n /// of the key: entries are read only for blocks an incremental layout proved\n-/// unchanged since the previous layout. Dirty blocks and full layouts discard\n-/// old entries before shaping, including empty and frame-wrapping paths that\n-/// do not produce replacement cache entries.\n+/// unchanged since the previous layout. Dirty or noncacheable layouts retire\n+/// old entries before returning, so wrapped or empty content cannot leave stale\n+/// unwrapped breaks behind.\n class _BreakCache {\n   _BreakCache(\n     this.lines, {"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/layout/word_layout.dart",
+      "resolution": "accepted main blob (ours)",
+      "accepted_main_blob": "182df2c9b54badd917b81bf2ae2098d84b3fac6a",
+      "incoming_blob": "b50ee59383518783106875edc853b071685ea3f3",
+      "rationale": "Keep accepted main verbatim. Both versions invalidate the paragraph cache before dirty/full-layout early paths and when wrapping frames; differences are comments and braced versus single-line if statements.",
+      "main_to_incoming_patch": "diff --git a/packages/quds_office_engine/lib/src/word/layout/word_layout.dart b/packages/quds_office_engine/lib/src/word/layout/word_layout.dart\nindex 182df2c9..b50ee593 100644\n--- a/packages/quds_office_engine/lib/src/word/layout/word_layout.dart\n+++ b/packages/quds_office_engine/lib/src/word/layout/word_layout.dart\n@@ -1751,13 +1751,10 @@ class WordLayoutEngine {\n     _Flow? flow,\n     bool allowBreak = true,\n   }) {\n-    if (!_breakCacheReadable) {\n-      // Dirty blocks and full layouts cannot retain breaks from an earlier\n-      // version of this paragraph. Clear before any empty or frame-wrapping\n-      // path, which may produce no replacement cache entry; otherwise a later\n-      // clean layout could resurrect those stale glyphs after the flow moves.\n-      _breakCache[paragraph] = null;\n-    }\n+    // Cached breaks belong to the previous layout's unchanged content.\n+    // A dirty or full layout must retire them even if it exits before the\n+    // ordinary breaker (empty text or wrapping frames).\n+    if (!_breakCacheReadable) _breakCache[paragraph] = null;\n     final WmlRunProps runProps = paragraph.inlines.isEmpty\n         ? paragraph.properties.importedParagraphMark ??\n               WmlRunEdit.propsAt(paragraph, 0)\n@@ -2056,12 +2053,9 @@ class WordLayoutEngine {\n         currentFrames.any(\n           (box) => box.frame != null && box.frame!.wrap != WmlFrameWrap.none,\n         );\n-    // Wrapping uses a separate breaker and does not replace the ordinary\n-    // paragraph cache. Discard an older entry: a dirty paragraph may change\n-    // its font or text while wrapping, then later move off the frame's page.\n-    if (wrapsFrames) {\n-      _breakCache[paragraph] = null;\n-    }\n+    // Wrapping is position dependent. If this layout cannot cache its new\n+    // breaks, an older unwrapped entry must not survive for a later page.\n+    if (wrapsFrames) _breakCache[paragraph] = null;\n     // Line breaks of a paragraph the caller proved unchanged since the last\n     // layout (incremental layout, clean block) are reused when the width\n     // environment is the same; shaping dominates layout cost."
+    }
+  ],
+  "automatic_nonconflicting_delta": [
+    {
+      "status": "A",
+      "path": "docs/validation/zotero-research-tables-20261120/checkpoint-231bd-replay-evidence.json"
+    },
+    {
+      "status": "A",
+      "path": "docs/validation/zotero-research-tables-20261120/checkpoint-231bd-replay-evidence.tar.xz"
+    },
+    {
+      "status": "A",
+      "path": "docs/validation/zotero-research-tables-20261120/checkpoint-231bd-replay-summary.json"
+    },
+    {
+      "status": "A",
+      "path": "docs/validation/zotero-research-tables-20261120/checkpoint-reconciled-engine-summary.json"
+    },
+    {
+      "status": "A",
+      "path": "docs/validation/zotero-research-tables-20261120/latest-main-outbox-preservation.json"
+    },
+    {
+      "status": "A",
+      "path": "docs/validation/zotero-research-tables-20261120/latest-main-outbox-reconciliation.json"
+    },
+    {
+      "status": "M",
+      "path": "packages/quds_office_editor/example/tool/incoming_reconciliation_acceptance.dart"
+    }
+  ],
+  "genuine_new_tool_change": {
+    "path": "packages/quds_office_editor/example/tool/incoming_reconciliation_acceptance.dart",
+    "accepted_main_blob": "1d0fe0c0aabf7b393b00af64dfa1d116c36abc20",
+    "incoming_blob": "55dc70ad3bd15b3cfb910c6a07e49f5c3dbb6534",
+    "patch": "diff --git a/packages/quds_office_editor/example/tool/incoming_reconciliation_acceptance.dart b/packages/quds_office_editor/example/tool/incoming_reconciliation_acceptance.dart\nindex 1d0fe0c0..55dc70ad 100644\n--- a/packages/quds_office_editor/example/tool/incoming_reconciliation_acceptance.dart\n+++ b/packages/quds_office_editor/example/tool/incoming_reconciliation_acceptance.dart\n@@ -59,6 +59,17 @@ Future<void> main(List<String> arguments) async {\n       directory: example,\n       tests: ['studio_mail_cloud_test.dart', 'studio_mail_forward_test.dart'],\n     ),\n+    (\n+      name: 'Mail Outbox',\n+      directory: example,\n+      tests: [\n+        'studio_mail_outbox_cloud_test.dart',\n+        'studio_mail_outbox_dialog_test.dart',\n+        'studio_mail_outbox_host_test.dart',\n+        'studio_mail_outbox_store_test.dart',\n+        'studio_mail_outbox_submission_test.dart',\n+      ],\n+    ),\n     (\n       name: 'Downloads and theme',\n       directory: example,",
+    "group_name": "Mail Outbox",
+    "existing_test_paths": [
+      {
+        "path": "packages/quds_office_editor/example/test/studio_mail_outbox_cloud_test.dart",
+        "accepted_main_blob": "39975403c5ff085f6731e67e8f8e33e0b85463fb",
+        "incoming_blob": "39975403c5ff085f6731e67e8f8e33e0b85463fb",
+        "exists_in_accepted_main": true,
+        "note": "Existing test selected by newly added runner group, not a new test implementation.",
+        "merged_preview_blob": "39975403c5ff085f6731e67e8f8e33e0b85463fb",
+        "accepted_main_body_preserved_by_automatic_merge": true
+      },
+      {
+        "path": "packages/quds_office_editor/example/test/studio_mail_outbox_dialog_test.dart",
+        "accepted_main_blob": "c0a5f057b454ee63061690e39fe0f6a18dab7bf5",
+        "incoming_blob": "c0a5f057b454ee63061690e39fe0f6a18dab7bf5",
+        "exists_in_accepted_main": true,
+        "note": "Existing test selected by newly added runner group, not a new test implementation.",
+        "merged_preview_blob": "c0a5f057b454ee63061690e39fe0f6a18dab7bf5",
+        "accepted_main_body_preserved_by_automatic_merge": true
+      },
+      {
+        "path": "packages/quds_office_editor/example/test/studio_mail_outbox_host_test.dart",
+        "accepted_main_blob": "34e047b05bc66d5af4292e71077f989bd3c40b78",
+        "incoming_blob": "ce29d115a770e03ecbf54d34d547ea2a8a02886a",
+        "exists_in_accepted_main": true,
+        "note": "Existing test selected by newly added runner group, not a new test implementation.",
+        "merged_preview_blob": "34e047b05bc66d5af4292e71077f989bd3c40b78",
+        "accepted_main_body_preserved_by_automatic_merge": true
+      },
+      {
+        "path": "packages/quds_office_editor/example/test/studio_mail_outbox_store_test.dart",
+        "accepted_main_blob": "aca841c9c5001e458106e98e72d49068afcfaf76",
+        "incoming_blob": "aca841c9c5001e458106e98e72d49068afcfaf76",
+        "exists_in_accepted_main": true,
+        "note": "Existing test selected by newly added runner group, not a new test implementation.",
+        "merged_preview_blob": "aca841c9c5001e458106e98e72d49068afcfaf76",
+        "accepted_main_body_preserved_by_automatic_merge": true
+      },
+      {
+        "path": "packages/quds_office_editor/example/test/studio_mail_outbox_submission_test.dart",
+        "accepted_main_blob": "2cd68bb53462203d344dfdff6ec45be97133e374",
+        "incoming_blob": "2cd68bb53462203d344dfdff6ec45be97133e374",
+        "exists_in_accepted_main": true,
+        "note": "Existing test selected by newly added runner group, not a new test implementation.",
+        "merged_preview_blob": "2cd68bb53462203d344dfdff6ec45be97133e374",
+        "accepted_main_body_preserved_by_automatic_merge": true
+      }
+    ],
+    "host_test_note": "The accepted main Outbox host test differs from the incoming older copy. The automatic merge preserves the accepted main blob34e047b05bc66d5af4292e71077f989bd3c40b78, so runner receipt matching must use the accepted main suite rather than incoming historical test bytes."
+  },
+  "preservation_result_expected": "Restore accepted main blobs for the three conflict paths, retain the six added documentation/evidence files and the new Outbox runner group. This yields no product-code or test-body changes relative to accepted main.",
+  "guard_regression_test": "packages/quds_office_engine/test/word_incremental_layout_prefix_test.dart",
+  "qualification_boundary": "Incoming archived replay records describe their own pinned sources; they do not replace accepted Mail multiple-drafts qualification. Root will analyze the changed runner and match its five test paths to already-passing receipts.",
+  "ci_queries_or_waits": false,
+  "source_index_or_ref_mutations": false,
+  "further_refresh": false,
+  "engine_source_since_previously_integrated_zotero": []
+}

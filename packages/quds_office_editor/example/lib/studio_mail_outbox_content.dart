@@ -107,7 +107,11 @@ final class StudioMailOutboxContent {
         cc: recipients.cc.join(', '),
         bcc: recipients.bcc.join(', '),
         subject: envelope.subject,
-        body: plain,
+        // MIME normalizes editor LF into CRLF. Restore editor line endings so
+        // a valid one-MiB draft does not exceed its original budget solely from
+        // transport line breaks. The parsed message and exact EML stay intact;
+        // literal standalone CR characters remain literal.
+        body: plain.replaceAll('\r\n', '\n'),
         thread: thread,
         attachments: StudioMailAttachments.forwarded(files),
       );

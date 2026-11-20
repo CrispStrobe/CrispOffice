@@ -1,7 +1,5 @@
 {
   "repository": "CrispStrobe/quds_office_suite",
-  "capturedAt": "2026-11-20T14:58:00Z",
-  "timestampNote": "Approximate session capture time; original provider timestamps retained per PR.",
   "main": "13be50464d1b43e9f2100fb9ccc12f8fe22eb55e",
   "branches": [
     {
@@ -624,5 +622,7 @@
       "updated_at": "2026-11-19T17:40:22Z",
       "url": "https://github.com/CrispStrobe/quds_office_suite/pull/197"
     }
-  ]
+  ],
+  "captureDate": "2026-11-20",
+  "captureBoundary": "Captured before remote scope checkpoint e18a10320e8fc44218a43f932deb7a7510349c21; exact provider fetch time was not recorded."
 }

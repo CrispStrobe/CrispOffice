@@ -1508,7 +1508,7 @@ void main() {
   });
 
   testWidgets(
-    'read-only capabilities disable submission, reply and move actions',
+    'read-only capabilities allow local drafts but disable sending and actions',
     (tester) async {
       late _Provider provider;
       await _show(
@@ -1523,8 +1523,27 @@ void main() {
       await _connect(tester);
       expect(
         tester.widget<IconButton>(_iconButton(_strings.compose)).onPressed,
+        isNotNull,
+      );
+      await tester.tap(_iconButton(_strings.compose));
+      await _pump(tester);
+      final composer = tester.widget<StudioMailComposeDialog>(
+        find.byType(StudioMailComposeDialog),
+      );
+      expect(composer.canSend, isFalse);
+      expect(composer.onQueueDraft, isNull);
+      expect(
+        tester
+            .widget<FilledButton>(
+              find.widgetWithText(FilledButton, _strings.send),
+            )
+            .onPressed,
         isNull,
       );
+      await tester.ensureVisible(find.text(_strings.mailDraftSaveClose));
+      await tester.tap(find.text(_strings.mailDraftSaveClose));
+      await _pump(tester);
+      expect(find.byType(StudioMailComposeDialog), findsNothing);
       await tester.tap(find.text('First Exchange message'));
       await _pump(tester);
       expect(
