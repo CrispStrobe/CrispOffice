@@ -57,6 +57,7 @@ final class MailReaderController extends ChangeNotifier {
   MailParseResult _result;
   late MailReaderPresentation _presentation;
   bool _preferHtml;
+  final List<MailInlineImage> _remoteImages = [];
   bool _disposed = false;
   int _revision = 0;
   TextSelection _selection = const TextSelection.collapsed(offset: 0);
@@ -83,12 +84,9 @@ final class MailReaderController extends ChangeNotifier {
   void replaceResult(MailParseResult value) {
     if (_disposed) return;
     _result = value;
+    _remoteImages.clear();
     _revision++;
-    _presentation = buildMailPresentation(
-      value,
-      budget: budget,
-      preferHtml: _preferHtml,
-    );
+    _presentation = _buildPresentation();
     _selection = const TextSelection.collapsed(offset: 0);
     _runSearch();
     notifyListeners();
@@ -98,40 +96,73 @@ final class MailReaderController extends ChangeNotifier {
     if (_disposed || _preferHtml == value) return;
     _preferHtml = value;
     _revision++;
-    _presentation = buildMailPresentation(
-      _result,
-      budget: budget,
-      preferHtml: value,
-    );
+    _presentation = _buildPresentation();
     _selection = const TextSelection.collapsed(offset: 0);
     _runSearch();
     notifyListeners();
   }
 
-  /// Appends host-loaded, already validated remote images. Nothing is fetched
-  /// here; the host performs the explicit user-approved request.
-  void addImages(Iterable<MailInlineImage> extra) {
-    if (_disposed) return;
-    final images = <MailInlineImage>[..._presentation.images, ...extra];
-    if (images.length == _presentation.images.length) return;
+  MailReaderPresentation _buildPresentation() {
+    final body = _result.message?.body;
+    final useHtml =
+        body?.html != null && (_preferHtml || body?.plainText == null);
+    return buildMailPresentation(
+      _result,
+      budget: budget,
+      preferHtml: _preferHtml,
+      externalImagePlaceholders: _remoteImages.isEmpty,
+      additionalImages: useHtml ? _remoteImages : const [],
+    );
+  }
+
+  /// Appends host-loaded remote images without fetching or changing the source.
+  ///
+  /// Returns the number of newly admitted images. A batch exceeding the reader's
+  /// cumulative limits or containing an invalid image leaves the presentation
+  /// unchanged. Previously admitted image identities are not counted again.
+  int addImages(Iterable<MailInlineImage> extra) {
+    if (_disposed || _presentation.rejected) return 0;
+    final allowed = {
+      for (final uri in _presentation.remoteImageUrls) 'remote:$uri',
+    };
+    final seen = {
+      for (final attachment
+          in _result.message?.attachments ?? <MailAttachment>[])
+        attachment.partPath,
+      for (final image in _remoteImages) image.attachment.partPath,
+    };
+    final pending = <MailInlineImage>[];
+    var inspected = 0;
+    for (final image in extra) {
+      if (++inspected > budget.maxAttachments) return 0;
+      final path = image.attachment.partPath;
+      if (!allowed.contains(path)) return 0;
+      if (seen.add(path)) pending.add(image);
+    }
+    if (pending.isEmpty) return 0;
+    final combined = [..._remoteImages, ...pending];
     final rebuilt = buildMailPresentation(
       _result,
       budget: budget,
       preferHtml: _preferHtml,
       externalImagePlaceholders: false,
+      additionalImages: combined,
     );
-    _presentation = MailReaderPresentation(
-      text: rebuilt.text,
-      bodyText: rebuilt.bodyText,
-      runs: rebuilt.runs,
-      images: <MailInlineImage>[...rebuilt.images, ...extra],
-      diagnostics: rebuilt.diagnostics,
-      rejected: rebuilt.rejected,
-      usedHtml: rebuilt.usedHtml,
-      blockedResourceCount: rebuilt.blockedResourceCount,
-    );
+    if (rebuilt.rejected) return 0;
+    final paths = {for (final image in combined) image.attachment.partPath};
+    _remoteImages
+      ..clear()
+      ..addAll(
+        rebuilt.images.where(
+          (image) => paths.contains(image.attachment.partPath),
+        ),
+      );
+    _presentation = rebuilt;
+    _selection = const TextSelection.collapsed(offset: 0);
+    _runSearch();
     _revision++;
     notifyListeners();
+    return pending.length;
   }
 
   /// Offsets use UTF-16 like Flutter. Selection snaps to grapheme boundaries.

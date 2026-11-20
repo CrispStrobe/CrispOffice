@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:enough_mail/enough_mail.dart' as mail;
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
 import 'package:quds_mail_core/quds_mail_core.dart';
 import 'package:quds_mail_mime/quds_mail_mime.dart';
 import 'package:quds_mail_store/quds_mail_store.dart';
@@ -35,6 +34,7 @@ import 'studio_mail_outbox.dart';
 import 'studio_mail_outbox_dialog.dart';
 import 'studio_mail_outbox_strings.dart';
 import 'studio_mail_presets.dart';
+import 'studio_mail_remote_images.dart';
 import 'studio_mail_reply.dart';
 import 'studio_mail_strings.dart';
 import 'studio_mail_workspace_strings.dart';
@@ -56,6 +56,7 @@ class StudioMailDialog extends StatefulWidget {
     this.chromeBuilder,
     this.clientFactory,
     this.messageLoaderFactory,
+    this.autoConnectSavedAccount,
     this.accountDiscovery,
     this.credentialStore,
     this.credentialSettingsOpener,
@@ -82,6 +83,10 @@ class StudioMailDialog extends StatefulWidget {
   /// Creates a fresh client for each connection attempt. Tests use this seam
   /// to control network completions without contacting an external account.
   final mail.MailClient Function(mail.MailAccount account)? clientFactory;
+
+  /// Connect after adopting remembered credentials. Built-in clients enable
+  /// this by default; hosts supplying their own factories can opt in explicitly.
+  final bool? autoConnectSavedAccount;
 
   /// Resolves endpoint settings only; credentials are supplied after the
   /// discovery origin and IMAP/SMTP server types have been checked.
@@ -135,7 +140,7 @@ class _StudioMailDialogState extends State<StudioMailDialog>
   bool _startTls = false;
   bool _hasSavedCredentials = false;
   bool _credentialPending = false;
-  bool _autoConnectScheduled = false;
+  Object? _autoConnectTicket;
   bool _remoteImagesLoading = false;
   bool _remoteImagesLoaded = false;
   int _settingsRevision = 0;
@@ -199,6 +204,7 @@ class _StudioMailDialogState extends State<StudioMailDialog>
 
   void _settingsEdited() {
     _settingsRevision++;
+    _autoConnectTicket = null;
     // Keep the offline action in sync with the effective saved-account route.
     // Password edits retain the route; endpoint/sender/login edits may not.
     if (mounted && _selectedSavedAccountId != null) setState(() {});
@@ -223,6 +229,7 @@ class _StudioMailDialogState extends State<StudioMailDialog>
         credentialGeneration != _credentialGeneration) {
       return;
     }
+    var adopted = false;
     setState(() {
       _hasSavedCredentials = saved != null;
       if (saved == null ||
@@ -232,30 +239,59 @@ class _StudioMailDialogState extends State<StudioMailDialog>
         return;
       }
       _applyCredentials(saved);
+      adopted = true;
     });
-    _scheduleAutoConnect();
+    if (adopted) _scheduleAutoConnect();
   }
 
+  bool get _autoConnectEnabled =>
+      widget.autoConnectSavedAccount ??
+      (widget.clientFactory == null && widget.messageLoaderFactory == null);
+
   void _scheduleAutoConnect() {
-    if (widget.clientFactory != null ||
-        widget.messageLoaderFactory != null ||
-        _autoConnectScheduled ||
+    if (!_autoConnectEnabled ||
+        _autoConnectTicket != null ||
+        !_hasSavedCredentials ||
+        _credentialPending ||
+        _credentialSettingsOpen ||
+        _credentialStoreChangePending ||
+        _showSavedMessages ||
         _client != null ||
         _connecting ||
         _busy ||
+        _dialogOpen ||
         _email.text.trim().isEmpty ||
         _password.text.isEmpty) {
       return;
     }
-    _autoConnectScheduled = true;
+    final ticket = Object();
+    _autoConnectTicket = ticket;
+    final settings = _settingsRevision;
+    final credentials = _credentialGeneration;
+    final store = _credentialStoreRevision;
+    final session = _sessionGeneration;
+    final account = _selectedSavedAccountId;
     WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!identical(_autoConnectTicket, ticket)) return;
+      _autoConnectTicket = null;
       if (!mounted ||
+          !_autoConnectEnabled ||
+          settings != _settingsRevision ||
+          credentials != _credentialGeneration ||
+          store != _credentialStoreRevision ||
+          session != _sessionGeneration ||
+          account != _selectedSavedAccountId ||
+          !_hasSavedCredentials ||
+          _credentialPending ||
+          _credentialSettingsOpen ||
+          _credentialStoreChangePending ||
+          _showSavedMessages ||
           _client != null ||
           _connecting ||
           _busy ||
+          _dialogOpen ||
           _email.text.trim().isEmpty ||
           _password.text.isEmpty) {
-        _autoConnectScheduled = false;
         return;
       }
       unawaited(_connect());
@@ -315,6 +351,7 @@ class _StudioMailDialogState extends State<StudioMailDialog>
       );
     }
     if (!mounted || generation != _credentialGeneration) return;
+    var adopted = false;
     setState(() {
       _credentialPending = false;
       final current =
@@ -330,10 +367,13 @@ class _StudioMailDialogState extends State<StudioMailDialog>
       if (current) {
         _credentialError = null;
         final saved = result.catalog!.selectedAccount;
-        if (saved != null) _applySavedAccount(saved);
+        if (saved != null) {
+          _applySavedAccount(saved);
+          adopted = true;
+        }
       }
     });
-    _scheduleAutoConnect();
+    if (adopted) _scheduleAutoConnect();
   }
 
   Future<void> _selectSavedAccount(String id) async {
@@ -1672,66 +1712,33 @@ class _StudioMailDialogState extends State<StudioMailDialog>
     }
   });
 
-  Iterable<String> get _remoteImageUrls {
-    final html = _reader?.result.message?.body.html;
-    if (html == null) return const <String>[];
-    final matches = RegExp(
-      r'''src\s*=\s*["'](https?://[^"']+)["']''',
-      caseSensitive: false,
-    ).allMatches(html);
-    return <String>{for (final match in matches) match.group(1)!}.take(8);
-  }
-
   Future<void> _loadRemoteImages() async {
     final reader = _reader;
     if (reader == null ||
+        reader.isDisposed ||
         _remoteImagesLoading ||
         _remoteImagesLoaded ||
-        reader.presentation.blockedResourceCount == 0) {
+        reader.presentation.remoteImageUrls.isEmpty) {
       return;
     }
-    final urls = _remoteImageUrls.toList(growable: false);
-    if (urls.isEmpty) return;
+    final generation = _sessionGeneration;
+    bool current() =>
+        mounted &&
+        identical(reader, _reader) &&
+        generation == _sessionGeneration &&
+        !reader.isDisposed;
     setState(() {
       _remoteImagesLoading = true;
       _error = null;
     });
-    final loaded = <MailInlineImage>[];
     try {
-      for (final url in urls) {
-        try {
-          final response = await http
-              .get(Uri.parse(url))
-              .timeout(const Duration(seconds: 15));
-          if (response.statusCode != 200 ||
-              response.bodyBytes.length > 4 * 1024 * 1024) {
-            continue;
-          }
-          final mediaType =
-              response.headers['content-type']?.split(';').first.trim() ??
-              'application/octet-stream';
-          final attachment = MailAttachment(
-            partPath: 'remote:$url',
-            mediaType: mediaType,
-            displayName: Uri.parse(url).pathSegments.lastOrNull ?? 'Image',
-            content: MailBytes(response.bodyBytes),
-          );
-          final dimensions = mailRasterDimensions(attachment);
-          if (dimensions == null) continue;
-          loaded.add(
-            MailInlineImage(
-              attachment: attachment,
-              width: dimensions.$1,
-              height: dimensions.$2,
-            ),
-          );
-        } on Object {
-          // A failed optional image never replaces the decoded message.
-        }
+      final admitted = await StudioMailRemoteImageLoader().load(
+        reader,
+        isCurrent: current,
+      );
+      if (current() && admitted > 0) {
+        setState(() => _remoteImagesLoaded = true);
       }
-      if (!mounted || !identical(reader, _reader)) return;
-      reader.addImages(loaded);
-      setState(() => _remoteImagesLoaded = true);
     } finally {
       if (mounted) setState(() => _remoteImagesLoading = false);
     }
