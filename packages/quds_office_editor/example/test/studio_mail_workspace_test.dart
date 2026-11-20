@@ -601,6 +601,40 @@ void main() {
   );
 
   testWidgets(
+    'IMAP stale bulk callback cannot reach a reconnected identical account adapter',
+    (tester) async {
+      final browser = _BulkBrowser();
+      await _show(tester, browser);
+      final stale = _bulkList(tester).onBulkAction!;
+      await tester.tap(_button(_strings.disconnect));
+      await _pump(tester);
+      await tester.enterText(_field(_strings.password), 'fixture-password');
+      await tester.ensureVisible(find.text(_strings.connect));
+      await tester.tap(find.text(_strings.connect));
+      await _pump(tester);
+      expect(find.byType(MailMessageList), findsOneWidget);
+      stale(MailBulkFlagAction.markRead, ['imap-message-91:300']);
+      await _pump(tester);
+      expect(browser.changes, isEmpty);
+      expect(_bulkList(tester).items.first.isRead, isFalse);
+      expect(browser.reads, 0);
+    },
+  );
+
+  testWidgets('IMAP disposed bulk callback never dispatches or changes state', (
+    tester,
+  ) async {
+    final browser = _BulkBrowser();
+    await _show(tester, browser);
+    final stale = _bulkList(tester).onBulkAction!;
+    await tester.pumpWidget(const SizedBox.shrink());
+    stale(MailBulkFlagAction.flag, ['imap-message-91:300']);
+    await _pump(tester);
+    expect(browser.changes, isEmpty);
+    expect(tester.takeException(), isNull);
+  });
+
+  testWidgets(
     'IMAP late bulk confirmation after disposal has no view side effects',
     (tester) async {
       final gate = Completer<void>();

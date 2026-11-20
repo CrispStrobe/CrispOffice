@@ -1833,7 +1833,8 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
     final client = _client;
     final loader = _messageLoader;
     final mailbox = _messageMailbox;
-    if (client == null ||
+    if (!mounted ||
+        client == null ||
         loader is! StudioMailMessageActions ||
         loader is! StudioMailMailboxRecords ||
         mailbox == null ||
@@ -2047,6 +2048,7 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
   }
 
   void _disconnect() {
+    _mailboxGeneration++;
     _bulkCancellation?.cancel(MailCancellationReason.accountChanged);
     _bulkCancellation = null;
     _sessionGeneration++;
@@ -3074,12 +3076,12 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
                   Expanded(
                     child: Semantics(
                       liveRegion: true,
-                      child: SelectableText(
-                        <String?>[
-                          _notice,
-                          _error,
-                        ].whereType<String>().join('\n'),
-                        maxLines: 4,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          if (_notice != null) SelectableText(_notice!),
+                          if (_error != null) SelectableText(_error!),
+                        ],
                       ),
                     ),
                   ),

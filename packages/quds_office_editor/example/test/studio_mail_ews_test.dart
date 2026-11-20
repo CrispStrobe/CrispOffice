@@ -660,6 +660,24 @@ void main() {
     },
   );
 
+  testWidgets('EWS disposed bulk callback never dispatches or changes state', (
+    tester,
+  ) async {
+    late _Provider provider;
+    await _show(
+      tester,
+      (configuration, credentials) =>
+          provider = _Provider(configuration, credentials),
+    );
+    await _connect(tester);
+    final stale = _bulkList(tester).onBulkAction!;
+    await tester.pumpWidget(const SizedBox.shrink());
+    stale(MailBulkFlagAction.flag, ['ews-message-one']);
+    await _pump(tester);
+    expect(provider.commands, isEmpty);
+    expect(tester.takeException(), isNull);
+  });
+
   testWidgets(
     'EWS bulk confirmation cannot enter a reconnected account or dispatch its tail',
     (tester) async {

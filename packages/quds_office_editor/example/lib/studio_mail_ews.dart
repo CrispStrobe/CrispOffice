@@ -539,6 +539,7 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
   }
 
   void _disconnect() {
+    _mailboxGeneration++;
     _bulkCancellation?.cancel(MailCancellationReason.accountChanged);
     _bulkCancellation = null;
     _mailboxCapture?.dispose();
@@ -1018,7 +1019,8 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
     final provider = _provider;
     final session = _session;
     final mailbox = _mailbox;
-    if (provider == null ||
+    if (!mounted ||
+        provider == null ||
         session == null ||
         mailbox == null ||
         _blocked ||
@@ -2138,8 +2140,12 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
                 Expanded(
                   child: Semantics(
                     liveRegion: true,
-                    child: Text(
-                      <String?>[_notice, _error].whereType<String>().join('\n'),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        if (_notice != null) Text(_notice!),
+                        if (_error != null) Text(_error!),
+                      ],
                     ),
                   ),
                 ),
