@@ -2,12 +2,14 @@ import 'dart:convert';
 import 'dart:ffi' show Abi;
 import 'dart:io';
 
+import 'package:crypto/crypto.dart' as crypto;
 import 'package:flutter/foundation.dart' show immutable;
 
 import 'package:quds_proofing_spacy/quds_proofing_spacy_grammar.dart'
     show SpacyGrammarFamily;
 import 'package:quds_proofing_spacy/quds_proofing_spacy_install.dart';
 
+import 'studio_native_paths.dart';
 import 'studio_spacy_host.dart';
 
 StudioSpacyHost createHost() => NativeStudioSpacyHost(
@@ -50,6 +52,9 @@ StudioSpacyBundledLibrary? detectBundledSpacyLibrary(
 }) {
   final gate = environment['QUDS_SPACY_BUNDLED'];
   if (gate != null && _offValues.contains(gate.toLowerCase())) return null;
+  if (executable == null && (Platform.isIOS || Platform.isAndroid)) {
+    return detectMobileBundledSpacyLibrary();
+  }
   if (!Platform.isMacOS && executable == null) return null;
   try {
     final contents = File(
@@ -82,6 +87,60 @@ StudioSpacyBundledLibrary? detectBundledSpacyLibrary(
   }
 }
 
+/// The library a mobile app ships inside its signed package:
+/// `Runner.app/Frameworks/crispembed_spacy.framework/crispembed_spacy`
+/// (iOS, embedded and signed by the app build) or `libcrispembed-spacy.so`
+/// in the APK's extracted native library directory (Android; the host must
+/// package jniLibs uncompressed-extracted, `useLegacyPackaging`, and keep the
+/// library unstripped so its bytes equal the build's).
+///
+/// The platform's app signature seals these files, and the app build signs
+/// them itself, so no digest can be recorded beforehand: the digest is
+/// measured here from the shipped bytes, re-verified before every load, and
+/// qualification is looked up by exact digest or, on iOS, by the
+/// signature-independent code digest. An unrecorded build gets analysis
+/// status "no recorded qualification" and the grammar planner refuses it.
+StudioSpacyBundledLibrary? detectMobileBundledSpacyLibrary({
+  String? libraryPath,
+}) {
+  try {
+    final path =
+        libraryPath ??
+        (Platform.isIOS
+            ? studioPackagedLibrary('crispembed_spacy')
+            : _androidNativeLibrary('libcrispembed-spacy.so'));
+    if (path == null) return null;
+    final file = File(path);
+    if (FileSystemEntity.typeSync(path, followLinks: false) !=
+        FileSystemEntityType.file) {
+      return null;
+    }
+    final bytes = file.readAsBytesSync();
+    return StudioSpacyBundledLibrary(
+      path: path,
+      sha256: crypto.sha256.convert(bytes).toString(),
+      codeSha256: Platform.isIOS ? machOCodeSha256(bytes) : null,
+    );
+  } on Object {
+    return null;
+  }
+}
+
+/// [name] in this Android app's extracted native library directory, found
+/// next to the already-mapped Flutter engine (`/proc/self/maps`). Null when
+/// the libraries are not extracted (loaded directly from the APK).
+String? _androidNativeLibrary(String name) {
+  for (final line in File('/proc/self/maps').readAsLinesSync()) {
+    final index = line.indexOf('/');
+    if (index < 0) continue;
+    final mapped = line.substring(index);
+    if (!mapped.endsWith('/libflutter.so') || mapped.contains('!')) continue;
+    final candidate = '${File(mapped).parent.path}/$name';
+    return File(candidate).existsSync() ? candidate : null;
+  }
+  return null;
+}
+
 SpacyPlatform? _currentPlatform() => switch (Abi.current()) {
   Abi.linuxX64 => SpacyPlatform.linuxX64,
   Abi.linuxArm64 => SpacyPlatform.linuxArm64,
@@ -95,19 +154,7 @@ SpacyPlatform? _currentPlatform() => switch (Abi.current()) {
 };
 
 /// Private per-user data directory; the app sandbox container on macOS.
-String studioSpacyDataDirectory() {
-  final env = Platform.environment;
-  final home = env['HOME'] ?? '';
-  const app = 'quds_office_studio';
-  if (Platform.isMacOS) {
-    return '$home/Library/Application Support/$app/spacy';
-  }
-  if (Platform.isWindows) {
-    return '${env['APPDATA'] ?? env['LOCALAPPDATA'] ?? '.'}\\$app\\spacy';
-  }
-  final data = env['XDG_DATA_HOME'];
-  return '${data == null || data.isEmpty ? '$home/.local/share' : data}/$app/spacy';
-}
+String studioSpacyDataDirectory() => '${studioPrivateDataDirectory()}/spacy';
 
 class NativeStudioSpacyHost extends StudioSpacyHost {
   NativeStudioSpacyHost({

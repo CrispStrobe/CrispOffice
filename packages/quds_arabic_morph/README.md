@@ -193,9 +193,13 @@ python3 tool/build.py --native \
   --install-licenses <App>.app/Contents/Resources/arabic-morph-licenses
 codesign --force --sign <identity> <App>.app/Contents/Frameworks/libquds_arabic_morph.dylib
 codesign --force --deep --sign <identity> --entitlements <Release.entitlements> <App>.app
-# Android: arm64-v8a with the NDK (static libc++) into jniLibs.
-python3 tool/build.py --android \
-  --install-android ../quds_office_editor/example/android/app/src/main/jniLibs/arm64-v8a
+# Android: arm64-v8a (devices) and x86_64 (emulator), NDK, static libc++,
+# 16 KB pages, one <abi>/ directory each under jniLibs.
+python3 tool/build.py --android --install-android ../quds_office_editor/example/android/app/src/main/jniLibs
+# iOS/iPadOS: dynamic frameworks (arm64 device; arm64+x86_64 simulator) in one
+# XCFramework, embedded and signed by the app (vendored CocoaPods framework);
+# run `pod install` in the host's ios/ after adding or removing one.
+python3 tool/build.py --ios --install-ios ../quds_office_editor/example/ios/QudsProofingNative/Frameworks
 # Licence-page assets of a Flutter host.
 python3 tool/build.py --install-licenses ../quds_office_editor/example/assets/licenses/arabic_morph
 ```

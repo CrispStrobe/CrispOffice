@@ -25,6 +25,18 @@ android {
         versionName = flutter.versionName
     }
 
+    packaging {
+        jniLibs {
+            // Optional native proofing backends (tool/build.py --android
+            // --install-android src/main/jniLibs). spaCy verifies the exact
+            // bytes of its library file before loading it, so the libraries
+            // are extracted to the native library directory and never
+            // stripped by the build.
+            useLegacyPackaging = true
+            keepDebugSymbols += setOf("**/libcrispembed-spacy.so")
+        }
+    }
+
     buildTypes {
         release {
             // TODO: Add your own signing config for the release build.

@@ -14,6 +14,30 @@ import sys
 
 PACKAGE = Path(__file__).resolve().parents[1]
 NATIVE = PACKAGE / "native"
+sys.path.insert(0, str(PACKAGE.parents[1] / "tools" / "proofing"))
+import mobile_native  # noqa: E402  (monorepo helper: iOS frameworks, Android ABIs)
+LIBRARY = "quds_proofing_harper"
+ANDROID_TRIPLES = {"arm64-v8a": "aarch64-linux-android", "x86_64": "x86_64-linux-android"}
+IOS_TRIPLES = {"ios-arm64": ("aarch64-apple-ios",),
+               "ios-arm64_x86_64-simulator": ("aarch64-apple-ios-sim", "x86_64-apple-ios")}
+
+
+def android_environment(abi: str) -> dict:
+    """Cargo linker/compiler settings for one ABI from the NDK (API 24)."""
+    ndk = mobile_native.android_ndk()
+    bins = sorted((ndk / "toolchains/llvm/prebuilt").glob("*/bin"))
+    if not bins:
+        raise SystemExit(f"no LLVM toolchain in {ndk}")
+    triple = ANDROID_TRIPLES[abi]
+    clang = bins[0] / f"{triple}{mobile_native.ANDROID_PLATFORM.split('-')[1]}-clang"
+    key = triple.upper().replace("-", "_")
+    environment = os.environ.copy()
+    environment[f"CARGO_TARGET_{key}_LINKER"] = str(clang)
+    environment[f"CC_{triple.replace('-', '_')}"] = str(clang)
+    environment[f"AR_{triple.replace('-', '_')}"] = str(bins[0] / "llvm-ar")
+    # 16 KB page alignment (required for new Play uploads since Nov 2025).
+    environment[f"CARGO_TARGET_{key}_RUSTFLAGS"] = "-C link-arg=-Wl,-z,max-page-size=16384"
+    return environment
 
 
 def run(args, **kwargs):
@@ -60,10 +84,13 @@ def main():
     parser.add_argument("--native", action="store_true")
     parser.add_argument("--web", action="store_true")
     parser.add_argument("--output", type=Path, default=PACKAGE / "build")
+    mobile_native.add_arguments(parser)
     parser.add_argument("--install-web", type=Path, help="Copy audited browser files and notices into this host asset directory (requires --web)")
     parser.add_argument("--install-native", type=Path, help="Copy audited library and notices into this host library directory (requires --native)")
     args = parser.parse_args()
-    if not args.native and not args.web: parser.error("Select --native, --web, or both")
+    if not (args.native or args.web or args.android or args.ios):
+        parser.error("Select --native, --web, --android and/or --ios")
+    mobile_native.check_arguments(parser, args)
     if args.install_web and not args.web: parser.error("--install-web requires --web")
     if args.install_native and not args.native: parser.error("--install-native requires --native")
     output = args.output.resolve()
@@ -98,6 +125,27 @@ def main():
         shutil.copyfile(PACKAGE / "web" / "harper_worker.mjs", web / "harper_worker.mjs")
         targets.append("wasm32-unknown-unknown")
         binaries.extend([web / "quds_proofing_harper_bg.wasm", web / "quds_proofing_harper.js", web / "harper_worker.mjs"])
+    if args.android:
+        for abi in mobile_native.abis(args):
+            triple = ANDROID_TRIPLES[abi]
+            run(["cargo", "build", "--release", "--locked", "--target", triple], env=android_environment(abi))
+            destination = output / "android" / abi / f"lib{LIBRARY}.so"
+            destination.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copyfile(target_root / triple / "release" / f"lib{LIBRARY}.so", destination)
+            targets.append(triple)
+            binaries.append(destination)
+    if args.ios:
+        environment = os.environ.copy()
+        environment["IPHONEOS_DEPLOYMENT_TARGET"] = mobile_native.IOS_DEPLOYMENT_TARGET
+        frameworks = []
+        for slice_name, triples in IOS_TRIPLES.items():
+            for triple in triples:
+                run(["cargo", "build", "--release", "--locked", "--target", triple], env=environment)
+                targets.append(triple)
+            frameworks.append(mobile_native.make_framework(
+                [target_root / triple / "release" / f"lib{LIBRARY}.dylib" for triple in triples], LIBRARY,
+                output / "frameworks" / slice_name, slice_name))
+        binaries.extend(mobile_native.make_xcframework(frameworks, output / "ios" / f"{LIBRARY}.xcframework"))
     license_command = [sys.executable, str(PACKAGE / "tool" / "license_bundle.py"), "--output", str(output / "licenses")]
     for target in targets: license_command.extend(["--target", target])
     run(license_command)
@@ -114,6 +162,7 @@ def main():
     installed = []
     if args.install_web: installed.append(install(output, "web", args.install_web))
     if args.install_native: installed.append(install(output, "native", args.install_native))
+    installed.extend(mobile_native.install_from_arguments(output, args, LIBRARY))
     print(json.dumps({"status": "passed", "output": str(output), "installed": installed}))
 
 
