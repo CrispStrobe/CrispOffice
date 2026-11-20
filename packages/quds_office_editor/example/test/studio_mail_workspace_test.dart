@@ -10,6 +10,7 @@ import 'package:quds_mail_core/quds_mail_core.dart';
 import 'package:quds_mail_ui/quds_mail_ui.dart';
 import 'package:quds_office_studio/studio_mail_message_loader.dart';
 import 'package:quds_office_studio/studio_mail_native.dart';
+import 'package:quds_office_studio/studio_mail_credentials.dart';
 import 'package:quds_office_studio/studio_mail_strings.dart';
 import 'package:quds_office_studio/studio_mail_workspace_strings.dart';
 import 'package:quds_office_studio/studio_strings.dart';
@@ -203,6 +204,16 @@ final class _Browser
   }
 }
 
+final class _SessionCredentials extends Fake
+    implements StudioMailCredentialStore {
+  @override
+  Future<StudioMailCredentials?> load() async => null;
+  @override
+  Future<bool> save(StudioMailCredentials credentials) async => true;
+  @override
+  Future<bool> clear() async => true;
+}
+
 Finder _key(String name) => find.byKey(ValueKey(name));
 Finder _field(String label) => find.byWidgetPredicate(
   (widget) => widget is TextField && widget.decoration?.labelText == label,
@@ -233,6 +244,7 @@ Future<_Client> _show(
     MaterialApp(
       home: StudioMailDialog(
         strings: _strings,
+        credentialStore: _SessionCredentials(),
         clientFactory: (_) => client,
         messageLoaderFactory: (_) => browser,
         draftStoreFactory: drafts.open,

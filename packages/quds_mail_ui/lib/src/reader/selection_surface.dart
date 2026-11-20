@@ -2,7 +2,7 @@ import 'dart:ui' as ui;
 
 import 'package:flutter/gestures.dart';
 import 'package:flutter/rendering.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 
 import 'controller.dart';
 import 'presentation.dart';
@@ -15,12 +15,9 @@ class MailSelectionSurface extends LeafRenderObjectWidget {
     super.key,
     required this.controller,
     required this.textDirection,
-    this.style = const TextStyle(
-      fontSize: 16,
-      color: Color(0xff202124),
-      height: 1.4,
-    ),
+    this.style = const TextStyle(fontSize: 16, height: 1.4),
     this.textScaler = TextScaler.noScaling,
+    this.linkColor,
     this.onLink,
     this.onCopy,
     this.onFocusRequest,
@@ -28,6 +25,7 @@ class MailSelectionSurface extends LeafRenderObjectWidget {
   final MailReaderController controller;
   final TextDirection textDirection;
   final TextStyle style;
+  final Color? linkColor;
   final TextScaler textScaler;
   final ValueChanged<Uri>? onLink;
   final VoidCallback? onCopy;
@@ -38,7 +36,10 @@ class MailSelectionSurface extends LeafRenderObjectWidget {
       RenderMailSelectionSurface(
         controller: controller,
         direction: textDirection,
-        style: style,
+        style: style.copyWith(
+          color: style.color ?? Theme.of(context).colorScheme.onSurface,
+        ),
+        linkColor: linkColor ?? Theme.of(context).colorScheme.primary,
         textScaler: textScaler,
         onLink: onLink,
         onCopy: onCopy,
@@ -53,7 +54,10 @@ class MailSelectionSurface extends LeafRenderObjectWidget {
     renderObject
       ..controller = controller
       ..direction = textDirection
-      ..style = style
+      ..style = style.copyWith(
+        color: style.color ?? Theme.of(context).colorScheme.onSurface,
+      )
+      ..linkColor = linkColor ?? Theme.of(context).colorScheme.primary
       ..textScaler = textScaler
       ..onLink = onLink
       ..onCopy = onCopy
@@ -66,11 +70,13 @@ class RenderMailSelectionSurface extends RenderBox {
     required this._controller,
     required TextDirection direction,
     required this._style,
+    Color linkColor = const Color(0xff1a57a8),
     required TextScaler textScaler,
     this.onLink,
     this.onCopy,
     this.onFocusRequest,
-  }) : _direction = direction,
+  }) : _linkColor = linkColor,
+       _direction = direction,
        _textScaler = textScaler,
        _painter = TextPainter(
          textDirection: direction,
@@ -104,6 +110,15 @@ class RenderMailSelectionSurface extends RenderBox {
   MailReaderController _controller;
   TextDirection _direction;
   TextStyle _style;
+  Color _linkColor;
+  Color get linkColor => _linkColor;
+  TextStyle get textStyle => _style;
+  set linkColor(Color value) {
+    if (value == _linkColor) return;
+    _linkColor = value;
+    markNeedsLayout();
+  }
+
   TextScaler _textScaler;
   final TextPainter _painter;
   late final TapGestureRecognizer _tap;
@@ -174,7 +189,7 @@ class RenderMailSelectionSurface extends RenderBox {
           style: TextStyle(
             fontWeight: run.bold ? FontWeight.bold : null,
             fontStyle: run.italic ? FontStyle.italic : null,
-            color: run.link == null ? null : const Color(0xff1a57a8),
+            color: run.link == null ? null : _linkColor,
             decoration: run.link == null ? null : TextDecoration.underline,
           ),
         ),

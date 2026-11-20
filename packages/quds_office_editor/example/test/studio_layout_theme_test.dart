@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:quds_office_editor/quds_office_editor.dart';
 import 'package:quds_office_studio/studio_chrome.dart';
+import 'package:quds_office_studio/studio_mail.dart';
 import 'package:quds_office_studio/studio_downloads_manager.dart';
 import 'package:quds_office_studio/studio_ribbon_preferences.dart';
 import 'package:quds_office_studio/suite_workspace.dart';
@@ -130,47 +131,45 @@ void _expectDark(WidgetTester tester, Finder finder) {
 }
 
 void main() {
-  testWidgets(
-    'Layout dropdown commands apply and Undo restores each setting',
-    (tester) async {
-      final word = await _studio(tester);
-      final originalWidth = word.pageSize.width;
-      final originalHeight = word.pageSize.height;
-      await _tab(tester, 'layout');
-      expect(find.widgetWithText(MenuItemButton, 'Narrow'), findsNothing);
+  testWidgets('Layout dropdown commands apply and Undo restores each setting', (
+    tester,
+  ) async {
+    final word = await _studio(tester);
+    final originalWidth = word.pageSize.width;
+    final originalHeight = word.pageSize.height;
+    await _tab(tester, 'layout');
+    expect(find.widgetWithText(MenuItemButton, 'Narrow'), findsNothing);
 
-      await _menu(tester, 'margins', 'Narrow');
-      expect(word.pageMargins.matches(WmlPageMargins.narrow), isTrue);
-      expect(
-        tester
-            .widget<StudioCommandMenu>(_key('ribbon-menu-word-layout-margins'))
-            .currentValue,
-        'Narrow',
-      );
-      await _undo(tester);
-      expect(word.pageMargins.matches(WmlPageMargins.normal), isTrue);
+    await _menu(tester, 'margins', 'Narrow');
+    expect(word.pageMargins.matches(WmlPageMargins.narrow), isTrue);
+    expect(
+      tester
+          .widget<StudioCommandMenu>(_key('ribbon-menu-word-layout-margins'))
+          .currentValue,
+      'Narrow',
+    );
+    await _undo(tester);
+    expect(word.pageMargins.matches(WmlPageMargins.normal), isTrue);
 
-      await _menu(tester, 'orientation', 'Landscape');
-      expect(word.pageSize.isLandscape, isTrue);
-      await _undo(tester);
-      expect(word.pageSize.width, originalWidth);
-      expect(word.pageSize.height, originalHeight);
+    await _menu(tester, 'orientation', 'Landscape');
+    expect(word.pageSize.isLandscape, isTrue);
+    await _undo(tester);
+    expect(word.pageSize.width, originalWidth);
+    expect(word.pageSize.height, originalHeight);
 
-      await _menu(tester, 'size', 'Legal');
-      expect(word.pageSize.portrait.matches(WmlPageSize.legal()), isTrue);
-      await _undo(tester);
-      expect(word.pageSize.width, originalWidth);
-      expect(word.pageSize.height, originalHeight);
+    await _menu(tester, 'size', 'Legal');
+    expect(word.pageSize.portrait.matches(WmlPageSize.legal()), isTrue);
+    await _undo(tester);
+    expect(word.pageSize.width, originalWidth);
+    expect(word.pageSize.height, originalHeight);
 
-      await _menu(tester, 'columns', 'Four');
-      expect(word.sectionAtCaret.columnCount, 4);
-      await _undo(tester);
-      expect(word.sectionAtCaret.columnCount, 1);
-      expect(word.document.paragraphs.single.text, 'Keep this paragraph.');
-      expect(tester.takeException(), isNull);
-    },
-    variant: TargetPlatformVariant.only(TargetPlatform.linux),
-  );
+    await _menu(tester, 'columns', 'Four');
+    expect(word.sectionAtCaret.columnCount, 4);
+    await _undo(tester);
+    expect(word.sectionAtCaret.columnCount, 1);
+    expect(word.document.paragraphs.single.text, 'Keep this paragraph.');
+    expect(tester.takeException(), isNull);
+  }, variant: TargetPlatformVariant.only(TargetPlatform.linux));
 
   testWidgets(
     'Paragraph presets switch exact spacing back to multiples without truncating custom spacing',
@@ -384,44 +383,42 @@ void main() {
     variant: TargetPlatformVariant.only(TargetPlatform.linux),
   );
 
-  testWidgets(
-    'Downloads inherits dark Studio appearance from Settings',
-    (tester) async {
-      final word = await _studio(tester);
-      expect(
-        Theme.of(tester.element(find.byType(SuiteWorkspace))).brightness,
-        Brightness.light,
-      );
-      await tester.tap(find.byTooltip('Settings'));
-      await _frames(tester);
-      final appearance = find.byType(DropdownButtonFormField<SuiteLook>);
-      await tester.ensureVisible(appearance);
-      await tester.tap(appearance);
-      await _frames(tester);
-      await tester.tap(find.text('Dark').last);
-      await _frames(tester);
-      _expectDark(tester, find.byType(AlertDialog));
-      expect(word.config.theme.adaptDocumentColors, isTrue);
+  testWidgets('Downloads inherits dark Studio appearance from Settings', (
+    tester,
+  ) async {
+    final word = await _studio(tester);
+    expect(
+      Theme.of(tester.element(find.byType(SuiteWorkspace))).brightness,
+      Brightness.light,
+    );
+    await tester.tap(find.byTooltip('Settings'));
+    await _frames(tester);
+    final appearance = find.byType(DropdownButtonFormField<SuiteLook>);
+    await tester.ensureVisible(appearance);
+    await tester.tap(appearance);
+    await _frames(tester);
+    await tester.tap(find.text('Dark').last);
+    await _frames(tester);
+    _expectDark(tester, find.byType(AlertDialog));
+    expect(word.config.theme.adaptDocumentColors, isTrue);
 
-      final downloads = find.widgetWithText(ListTile, 'Downloads');
-      expect(downloads, findsOneWidget);
-      await tester.ensureVisible(downloads);
-      await tester.tap(downloads);
-      await _frames(tester);
-      expect(find.byType(StudioDownloadsManager), findsOneWidget);
-      expect(find.byType(DropdownButtonFormField<SuiteLook>), findsNothing);
-      _expectDark(tester, find.byType(StudioDownloadsManager));
-      _expectDark(tester, find.byType(AlertDialog));
+    final downloads = find.widgetWithText(ListTile, 'Downloads');
+    expect(downloads, findsOneWidget);
+    await tester.ensureVisible(downloads);
+    await tester.tap(downloads);
+    await _frames(tester);
+    expect(find.byType(StudioDownloadsManager), findsOneWidget);
+    expect(find.byType(DropdownButtonFormField<SuiteLook>), findsNothing);
+    _expectDark(tester, find.byType(StudioDownloadsManager));
+    _expectDark(tester, find.byType(AlertDialog));
 
-      await tester.tap(find.widgetWithText(TextButton, 'Close'));
-      await _frames(tester);
-      expect(find.byType(StudioDownloadsManager), findsNothing);
-      expect(word.document.paragraphs.single.text, 'Keep this paragraph.');
-      expect(word.canUndo, isFalse);
-      expect(tester.takeException(), isNull);
-    },
-    variant: TargetPlatformVariant.only(TargetPlatform.linux),
-  );
+    await tester.tap(find.widgetWithText(TextButton, 'Close'));
+    await _frames(tester);
+    expect(find.byType(StudioDownloadsManager), findsNothing);
+    expect(word.document.paragraphs.single.text, 'Keep this paragraph.');
+    expect(word.canUndo, isFalse);
+    expect(tester.takeException(), isNull);
+  }, variant: TargetPlatformVariant.only(TargetPlatform.linux));
 
   testWidgets(
     'narrow Arabic Layout menus and dialog stay reachable at 160 percent',
@@ -484,5 +481,39 @@ void main() {
       expect(tester.takeException(), isNull);
     },
     variant: TargetPlatformVariant.only(TargetPlatform.linux),
+  );
+  testWidgets(
+    'Mail uses shared chrome without duplicate keys or traffic-light overlap',
+    (tester) async {
+      await _studio(tester);
+      final mail = find.byWidgetPredicate(
+        (w) => w is StudioAppSwitcher && w.label == 'Mail',
+      );
+      await tester.tap(mail);
+      await _frames(tester);
+      await tester.pump(const Duration(milliseconds: 600));
+      expect(tester.takeException(), isNull);
+      final selected = tester.widget<StudioAppSwitcher>(
+        find.byWidgetPredicate(
+          (w) => w is StudioAppSwitcher && w.label == 'Mail' && w.selected,
+        ),
+      );
+      expect(selected.selected, isTrue);
+      expect(
+        find.descendant(
+          of: find.byType(StudioMailDialog),
+          matching: find.byKey(const ValueKey('native-traffic-light-space')),
+        ),
+        findsOneWidget,
+      );
+      expect(find.text('Credential storage'), findsNothing);
+      expect(find.byType(MenuBar), findsWidgets);
+      await tester.tap(find.byTooltip('Close').last);
+      await _frames(tester);
+      await tester.pump(const Duration(milliseconds: 600));
+      expect(find.byType(QudsWordEditor), findsOneWidget);
+      expect(tester.takeException(), isNull);
+    },
+    variant: TargetPlatformVariant.only(TargetPlatform.macOS),
   );
 }

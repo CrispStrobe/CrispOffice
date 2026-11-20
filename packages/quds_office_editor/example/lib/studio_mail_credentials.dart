@@ -1,4 +1,7 @@
 import 'dart:convert';
+import 'credentials/secure_storage_service.dart';
+import 'credentials/utils/async_lock.dart';
+import 'studio_credential_storage.dart';
 
 import 'package:crypto/crypto.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -239,8 +242,10 @@ abstract interface class StudioMailAccountCatalogStore {
 /// platform implementation also offers [StudioMailAccountCatalogStore]. Writes
 /// report actual success. [clear] forgets only the selected remembered account.
 abstract interface class StudioMailCredentialStore {
-  factory StudioMailCredentialStore({FlutterSecureStorage? storage}) =
-      _PlatformStudioMailCredentialStore;
+  factory StudioMailCredentialStore({
+    FlutterSecureStorage? storage,
+    Future<SecureStorage> Function()? backend,
+  }) = _PlatformStudioMailCredentialStore;
 
   Future<StudioMailCredentials?> load();
 
@@ -254,23 +259,31 @@ abstract interface class StudioMailCredentialStore {
 
 final class _PlatformStudioMailCredentialStore
     implements StudioMailCredentialStore, StudioMailAccountCatalogStore {
-  _PlatformStudioMailCredentialStore({FlutterSecureStorage? storage})
-    : _storage = storage ?? const FlutterSecureStorage();
+  _PlatformStudioMailCredentialStore({
+    FlutterSecureStorage? storage,
+    Future<SecureStorage> Function()? backend,
+  }) : _storage = storage,
+       _backend = backend ?? (() => StudioCredentialStorage.instance.storage);
 
   static const _legacyKey = 'crispoffice.mail.account.v1';
   static const _catalogKey = 'crispoffice.mail.accounts.v2';
   static const _maxLegacyCodeUnits = 256 * 1024;
   static const _maxCatalogCodeUnits = 4 * 1024 * 1024;
-  static Future<void> _queue = Future<void>.value();
-  final FlutterSecureStorage _storage;
+  static final _operations = AsyncLock();
+  final FlutterSecureStorage? _storage;
+  final Future<SecureStorage> Function() _backend;
+  SecureStorage? _currentStorage;
+  Future<String?> _read(String key) =>
+      _storage != null ? _storage.read(key: key) : _currentStorage!.read(key);
+  Future<void> _write(String key, String value) => _storage != null
+      ? _storage.write(key: key, value: value)
+      : _currentStorage!.write(key, value);
+  Future<void> _delete(String key) => _storage != null
+      ? _storage.delete(key: key)
+      : _currentStorage!.delete(key);
 
-  // Serialize even across dialog instances. A later Forget must not be undone
-  // by an older slow keychain write, and a failed operation must release the queue.
-  Future<T> _ordered<T>(Future<T> Function() operation) {
-    final result = _queue.then((_) => operation());
-    _queue = result.then<void>((_) {}, onError: (Object _, StackTrace _) {});
-    return result;
-  }
+  Future<T> _ordered<T>(Future<T> Function() operation) =>
+      _operations.synchronized(operation);
 
   @override
   Future<StudioMailCredentials?> load() async =>
@@ -369,6 +382,9 @@ final class _PlatformStudioMailCredentialStore
     Future<StudioMailAccountCatalog> Function() operation,
   ) => _ordered(() async {
     try {
+      // Pin one explicitly selected backend for the whole account transaction.
+      // A Settings change cannot redirect a pending write to another store.
+      if (_storage == null) _currentStorage = await _backend();
       return StudioMailAccountCatalogResult.success(await operation());
     } on _CatalogFailure catch (failure) {
       return StudioMailAccountCatalogResult.failure(failure.problem);
@@ -376,20 +392,22 @@ final class _PlatformStudioMailCredentialStore
       return const StudioMailAccountCatalogResult.failure(
         StudioMailAccountCatalogProblem.unavailable,
       );
+    } finally {
+      _currentStorage = null;
     }
   });
 
   Future<StudioMailAccountCatalog> _readCatalog() async {
-    final raw = await _storage.read(key: _catalogKey);
+    final raw = await _read(_catalogKey);
     if (raw != null) {
       final catalog = _decodeCatalog(raw);
       // v2 is authoritative. Finish interrupted legacy cleanup before exposing
       // a successful operation, including after process restart. A failed
       // cleanup never falls back to or overwrites the obsolete record.
-      await _storage.delete(key: _legacyKey);
+      await _delete(_legacyKey);
       return catalog;
     }
-    final legacy = await _storage.read(key: _legacyKey);
+    final legacy = await _read(_legacyKey);
     if (legacy == null) return StudioMailAccountCatalog(accounts: const []);
     final value = _decodeObject(legacy, _maxLegacyCodeUnits);
     final credentials = StudioMailCredentials.fromJson(value);
@@ -405,7 +423,7 @@ final class _PlatformStudioMailCredentialStore
     // If either write or cleanup fails, the next operation re-reads actual
     // keychain state; it never trusts a partially updated in-memory catalog.
     await _writeCatalog(migrated);
-    await _storage.delete(key: _legacyKey);
+    await _delete(_legacyKey);
     return migrated;
   }
 
@@ -426,7 +444,10 @@ final class _PlatformStudioMailCredentialStore
     if (raw.length > _maxCatalogCodeUnits) {
       throw const _CatalogFailure(StudioMailAccountCatalogProblem.limitReached);
     }
-    await _storage.write(key: _catalogKey, value: raw);
+    await _write(_catalogKey, raw);
+    if (await _read(_catalogKey) != raw) {
+      throw const _CatalogFailure(StudioMailAccountCatalogProblem.unavailable);
+    }
     return catalog;
   }
 
