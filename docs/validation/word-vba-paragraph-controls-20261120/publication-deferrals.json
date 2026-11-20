@@ -1,0 +1,88 @@
+{
+  "schema": "quds-explicit-post-intake-deferrals/v1",
+  "recorded_at_utc": "2026-11-20T18:33:14.222957+00:00",
+  "decision": "Preserve these exact reviewed post-intake heads outside this Word publication; their separate qualification/owner decisions remain outstanding. Root publication-scope instruction explicitly adopts these deferrals.",
+  "matching_policy": "Exact kind/ref/SHA only. Advancing, additional or changed heads require a fresh review and decision; no wildcard branch exemption.",
+  "deferrals": [
+    {
+      "kind": "fork_branches",
+      "ref": "refs/heads/fix/main-green-20261120",
+      "sha": "01224376ee0e86703b6b4723e40c72de7629e50b",
+      "pull_request": "https://github.com/CrispStrobe/quds_office_suite/pull/264",
+      "classification": "defer_post_intake_draft",
+      "reason": "Captured PR remains draft and describes itself as WIP. No qualification evidence in captured body or changed paths. CLI runner changes require bounded real CLI validation before integration; root owns integration.",
+      "review_source": "source-review.json#post_intake_pr_review",
+      "title": "Make main CI green again"
+    },
+    {
+      "kind": "fork_pull_requests",
+      "ref": "refs/pull/264/head",
+      "sha": "01224376ee0e86703b6b4723e40c72de7629e50b",
+      "pull_request": "https://github.com/CrispStrobe/quds_office_suite/pull/264",
+      "classification": "defer_post_intake_draft",
+      "reason": "Captured PR remains draft and describes itself as WIP. No qualification evidence in captured body or changed paths. CLI runner changes require bounded real CLI validation before integration; root owns integration.",
+      "review_source": "source-review.json#post_intake_pr_review",
+      "title": "Make main CI green again"
+    },
+    {
+      "kind": "fork_branches",
+      "ref": "refs/heads/chore/macos-13-minimum-20261120",
+      "sha": "a51c20737b1932d9c6475ea6dddc33fbd50b2c17",
+      "pull_request": "https://github.com/CrispStrobe/quds_office_suite/pull/265",
+      "classification": "defer_post_intake_platform_change",
+      "reason": "Captured body reports local macOS library evidence and an uncompleted full app build. Current Linux environment cannot reproduce macOS packaging qualification. New version-comparison guard has a reproduced equivalent-version spelling defect.",
+      "review_source": "source-review.json#post_intake_pr_review",
+      "title": "macOS: require 13.0, pin Hunspell deployment target, guard library minimum OS"
+    },
+    {
+      "kind": "fork_pull_requests",
+      "ref": "refs/pull/265/head",
+      "sha": "a51c20737b1932d9c6475ea6dddc33fbd50b2c17",
+      "pull_request": "https://github.com/CrispStrobe/quds_office_suite/pull/265",
+      "classification": "defer_post_intake_platform_change",
+      "reason": "Captured body reports local macOS library evidence and an uncompleted full app build. Current Linux environment cannot reproduce macOS packaging qualification. New version-comparison guard has a reproduced equivalent-version spelling defect.",
+      "review_source": "source-review.json#post_intake_pr_review",
+      "title": "macOS: require 13.0, pin Hunspell deployment target, guard library minimum OS"
+    },
+    {
+      "kind": "fork_branches",
+      "ref": "refs/heads/docs/app-store-submission-20261120",
+      "sha": "f4c3d582711b923b41a8ab37f917bc1564ab1a55",
+      "pull_request": "https://github.com/CrispStrobe/quds_office_suite/pull/266",
+      "classification": "defer_post_intake_draft",
+      "reason": "Captured PR is draft. Document explicitly leaves owner URLs/contact/localization/export-distribution decisions open. No code changes or Word requirement.",
+      "review_source": "source-review.json#post_intake_pr_review",
+      "title": "docs: Mac App Store submission package (CrispOffice)"
+    },
+    {
+      "kind": "fork_pull_requests",
+      "ref": "refs/pull/266/head",
+      "sha": "f4c3d582711b923b41a8ab37f917bc1564ab1a55",
+      "pull_request": "https://github.com/CrispStrobe/quds_office_suite/pull/266",
+      "classification": "defer_post_intake_draft",
+      "reason": "Captured PR is draft. Document explicitly leaves owner URLs/contact/localization/export-distribution decisions open. No code changes or Word requirement.",
+      "review_source": "source-review.json#post_intake_pr_review",
+      "title": "docs: Mac App Store submission package (CrispOffice)"
+    },
+    {
+      "kind": "fork_branches",
+      "ref": "refs/heads/feat/arabic-web-context-20261120",
+      "sha": "368751862a2cb405249c8f91c0fa4e3e97ff3029",
+      "pull_request": "https://github.com/CrispStrobe/quds_office_suite/pull/267",
+      "classification": "defer_post_intake_unqualified_platform_feature",
+      "reason": "Non-draft metadata alone does not establish executed native/Wasm qualification. Captured changes introduce a workflow/test rather than a committed passing execution record; expected-choice golden is explicitly future work.",
+      "review_source": "source-review.json#post_intake_pr_review",
+      "title": "Arabic context model on web: bundle the Wasm worker, native/web parity CI"
+    },
+    {
+      "kind": "fork_pull_requests",
+      "ref": "refs/pull/267/head",
+      "sha": "368751862a2cb405249c8f91c0fa4e3e97ff3029",
+      "pull_request": "https://github.com/CrispStrobe/quds_office_suite/pull/267",
+      "classification": "defer_post_intake_unqualified_platform_feature",
+      "reason": "Non-draft metadata alone does not establish executed native/Wasm qualification. Captured changes introduce a workflow/test rather than a committed passing execution record; expected-choice golden is explicitly future work.",
+      "review_source": "source-review.json#post_intake_pr_review",
+      "title": "Arabic context model on web: bundle the Wasm worker, native/web parity CI"
+    }
+  ]
+}
