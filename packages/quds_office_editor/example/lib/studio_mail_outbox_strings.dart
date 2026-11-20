@@ -90,9 +90,9 @@ extension StudioMailOutboxStrings on StudioStrings {
       _outboxText('Attempts: $count', 'Versuche: $count', 'المحاولات: $count');
   String mailOutboxState(MailOutboxState state) => switch (state) {
     MailOutboxState.queued => _outboxText(
-      'Queued — not sent',
-      'Wartend — nicht gesendet',
-      'في الانتظار — لم تُرسل',
+      'Queued — awaiting explicit send',
+      'Wartend — ausdrückliches Senden erforderlich',
+      'في الانتظار — بانتظار إجراء إرسال صريح',
     ),
     MailOutboxState.submitting => _outboxText(
       'Sending — outcome pending',
@@ -105,14 +105,14 @@ extension StudioMailOutboxStrings on StudioStrings {
       'قبلها خادم الإرسال',
     ),
     MailOutboxState.retryableFailure => _outboxText(
-      'Not accepted — retry available',
-      'Nicht angenommen — erneuter Versuch möglich',
-      'لم تُقبل — يمكن إعادة المحاولة',
+      'Latest attempt not accepted — retry available',
+      'Letzter Versuch nicht angenommen — erneuter Versuch möglich',
+      'لم تُقبل المحاولة الأخيرة — يمكن إعادة المحاولة',
     ),
     MailOutboxState.permanentFailure => _outboxText(
-      'Rejected — review before composing again',
-      'Abgelehnt — vor erneutem Verfassen prüfen',
-      'مرفوضة — راجعها قبل إنشاء رسالة أخرى',
+      'Latest attempt rejected — review before composing again',
+      'Letzter Versuch abgelehnt — vor erneutem Verfassen prüfen',
+      'رُفضت المحاولة الأخيرة — راجعها قبل إنشاء رسالة أخرى',
     ),
     MailOutboxState.uncertain => _outboxText(
       'Uncertain — check delivery',

@@ -41,6 +41,7 @@ Future<MailOutboxEntry> submitStudioMailOutbox({
   required StudioMailOutboxSubmit submit,
   required bool Function() isCurrent,
   bool acknowledgeUncertain = false,
+  void Function(MailOutboxEntry attempt)? onAttemptPersisted,
 }) async {
   final attempt = await store.beginOutboxAttempt(
     entry,
@@ -48,14 +49,15 @@ Future<MailOutboxEntry> submitStudioMailOutbox({
   );
   final id = attempt.attemptId!;
   MailSubmissionResult result;
-  if (!isCurrent()) {
-    // No provider was called. Older uncertainty remains on the durable entry.
-    result = MailSubmissionResult(
-      attemptId: id,
-      outcome: MailSubmissionOutcome.retryableFailure,
-    );
-  } else {
-    try {
+  try {
+    onAttemptPersisted?.call(attempt);
+    if (!isCurrent()) {
+      // No provider was called. Older uncertainty remains on the durable entry.
+      result = MailSubmissionResult(
+        attemptId: id,
+        outcome: MailSubmissionOutcome.retryableFailure,
+      );
+    } else {
       result = await submit(attempt.prepared, attemptId: id);
       if (result.attemptId != id ||
           result.recipients.any(
@@ -68,12 +70,12 @@ Future<MailOutboxEntry> submitStudioMailOutbox({
           outcome: MailSubmissionOutcome.uncertain,
         );
       }
-    } on Object {
-      result = MailSubmissionResult(
-        attemptId: id,
-        outcome: MailSubmissionOutcome.uncertain,
-      );
     }
+  } on Object {
+    result = MailSubmissionResult(
+      attemptId: id,
+      outcome: MailSubmissionOutcome.uncertain,
+    );
   }
   // If this commit fails, the persisted submitting marker remains guarded and
   // is recovered as uncertain before any later explicit attempt.

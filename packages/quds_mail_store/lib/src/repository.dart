@@ -949,8 +949,10 @@ final class SqliteMailRepository implements MailRepository {
   });
 
   /// Removes a reviewed terminal local record and releases unreferenced bytes.
-  /// It never recalls a message. Queued, active, retryable and uncertain items,
-  /// including any record retaining earlier uncertainty, cannot be removed.
+  /// It never recalls a message or resolves the risk of an earlier duplicate.
+  /// Queued, active, retryable and uncertain items cannot be removed. A definite
+  /// rejection is removable only without older uncertainty; confirmed later
+  /// acceptance permits explicit local cleanup while ordinary retry stays off.
   /// Cleanup is allowed even when the account now exceeds a lowered quota.
   Future<MailResult<MailUnit>> removeOutbox(
     MailAccountId account,
@@ -964,12 +966,10 @@ final class SqliteMailRepository implements MailRepository {
     if (entry == null ||
         entry.state != expectedState ||
         entry.attemptId != expectedAttemptId ||
-        entry.priorSubmissionUncertain ||
-        !const {
-          MailOutboxState.submitted,
-          MailOutboxState.cancelled,
-          MailOutboxState.permanentFailure,
-        }.contains(entry.state)) {
+        !(entry.state == MailOutboxState.submitted ||
+            entry.state == MailOutboxState.cancelled ||
+            (entry.state == MailOutboxState.permanentFailure &&
+                !entry.priorSubmissionUncertain))) {
       _fail(MailProblemCode.conflict);
     }
     await _db.customStatement(

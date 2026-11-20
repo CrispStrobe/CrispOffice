@@ -427,7 +427,7 @@ void main() {
 
   for (final outcome in MailSubmissionOutcome.values) {
     test(
-      'earlier uncertainty remains stored and unremovable after ${outcome.name}',
+      'earlier uncertainty survives ${outcome.name} until accepted local cleanup',
       () async {
         final queued = _queued(uncertain: true);
         await _save(store, queued);
@@ -441,7 +441,9 @@ void main() {
           now: _now,
         );
         await _save(store, completed, active);
-        _problem(await _remove(store, completed), MailProblemCode.conflict);
+        if (outcome != MailSubmissionOutcome.accepted) {
+          _problem(await _remove(store, completed), MailProblemCode.conflict);
+        }
         await store.close();
         store = await _open(database);
         final recovered = _value(await store.recoverOutbox(_account)).single;
@@ -449,6 +451,11 @@ void main() {
         expect(recovered.canBeginAttempt, isFalse);
         expect(recovered.canCancel, isFalse);
         expect(recovered.result!.outcome, outcome);
+        if (outcome == MailSubmissionOutcome.accepted) {
+          _value(await _remove(store, recovered));
+          expect(_value(await store.recoverOutbox(_account)), isEmpty);
+          expect(database.select('SELECT * FROM blobs'), isEmpty);
+        }
       },
     );
   }

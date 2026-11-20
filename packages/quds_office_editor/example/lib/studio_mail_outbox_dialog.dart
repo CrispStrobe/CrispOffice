@@ -151,6 +151,16 @@ class _StudioMailOutboxDialogState extends State<StudioMailOutboxDialog> {
       submit: widget.submit,
       isCurrent: widget.isCurrent,
       acknowledgeUncertain: acknowledge,
+      onAttemptPersisted: (attempt) {
+        if (mounted && widget.isCurrent()) {
+          setState(
+            () => _entries = [
+              for (final item in _entries)
+                if (item.id == attempt.id) attempt else item,
+            ],
+          );
+        }
+      },
     );
   });
 
@@ -253,12 +263,11 @@ class _StudioMailOutboxDialogState extends State<StudioMailOutboxDialog> {
                           itemBuilder: (context, index) {
                             final entry = _entries[index];
                             final removable =
-                                !entry.priorSubmissionUncertain &&
-                                const {
-                                  MailOutboxState.submitted,
-                                  MailOutboxState.cancelled,
-                                  MailOutboxState.permanentFailure,
-                                }.contains(entry.state);
+                                entry.state == MailOutboxState.submitted ||
+                                entry.state == MailOutboxState.cancelled ||
+                                (entry.state ==
+                                        MailOutboxState.permanentFailure &&
+                                    !entry.priorSubmissionUncertain);
                             return Card(
                               key: ValueKey('studio-mail-outbox-${entry.id}'),
                               child: Padding(

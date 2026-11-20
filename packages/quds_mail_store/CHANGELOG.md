@@ -8,7 +8,8 @@
   version-one records. Enforce immutable payloads, fresh attempts and explicit
   acknowledged retry transitions through compare-and-set writes.
 - Add guarded removal of reviewed terminal outbox records, releasing only
-  unreferenced bytes and retaining every active or possibly accepted submission.
+  unreferenced bytes. Preserve active and uncertain work; permit explicit local
+  cleanup after confirmed later acceptance without implying recall or delivery.
 
 - Persist optional draft editor state in a versioned payload while continuing
   to read existing version-one drafts. Account quotas include raw editor text.
