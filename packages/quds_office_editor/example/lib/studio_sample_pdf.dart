@@ -136,7 +136,7 @@ void _cover(PdfDocument doc, _Face? latin, _Face? arabic) {
   c.fillRect(0, 0, 595.28, 841.89, '0B1F3A');
   c.fillRect(0, 0, 18, 841.89, 'C9A227');
   c.fillRect(40, 96, 515, 4, 'C9A227');
-  _run(c, latin, 48, 168, 14, 'QUDS OFFICE SUITE', 'C9A227', bold: true);
+  _run(c, latin, 48, 168, 14, 'CRISPOFFICE', 'C9A227', bold: true);
   _run(c, latin, 48, 230, 46, 'PDF Gallery', 'FFFFFF', bold: true);
   _run(
     c,

@@ -134,6 +134,19 @@ Studio then downloads only the verified model files: Review › Analysis setup
 Start the app with `QUDS_SPACY_BUNDLED=0` to ignore the bundled library and
 use the downloadable platform package instead.
 
+The result is `build/macos/Build/Products/Release/CrispOffice.app` (bundle id
+`com.crispstrobe.crispoffice`). Builds from before the CrispOffice rename were
+`quds_office_studio.app` with bundle id `com.quds.qudsOfficeStudio`, whose
+sandbox container is separate: re-download dictionaries, language data and
+spaCy models in the new app and re-enter saved mail accounts, or copy the old
+data once with both apps closed:
+
+```bash
+ditto "$HOME/Library/Containers/com.quds.qudsOfficeStudio/Data/Library/Application Support/quds_office_studio" "$HOME/Library/Containers/com.crispstrobe.crispoffice/Data/Library/Application Support/quds_office_studio"
+```
+
+Signing for release: [docs/release/macos-signing.md](../../../docs/release/macos-signing.md).
+
 `test/studio_macos_bundle_native_gate.dart` is an explicit acceptance gate for
 the built app: it boots Studio with the libraries inside the `.app` and the
 installed data and checks Arabic (rules, AyaSpell, morphology), German and

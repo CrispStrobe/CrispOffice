@@ -5,10 +5,10 @@ void main() {
   test('Android files directory comes from process name and user id', () {
     expect(
       androidFilesDirectory(
-        cmdline: 'com.quds.quds_office_studio\u0000',
+        cmdline: 'com.crispstrobe.crispoffice\u0000',
         status: 'Name:\tquds\nUid:\t10123\t10123\t10123\t10123\n',
       ),
-      '/data/user/0/com.quds.quds_office_studio/files',
+      '/data/user/0/com.crispstrobe.crispoffice/files',
     );
     // Secondary user 10, private worker process suffix ignored.
     expect(
