@@ -553,6 +553,20 @@ void main() {
     c.deleteSelectionOr(backward: true);
   });
 
+  test('Enter reflows the rest of the document from cached line breaks', () {
+    final WordEditorController c = WordEditorController(document: _mixedLong());
+    addTearDown(c.dispose);
+    _at(c, 30, 5);
+    c.insertText('x'); // seeds state after the constructor's full layout
+    WordIncrementalLayoutStats.reset();
+    c.insertParagraphBreak();
+    // Everything below moves by a line: no convergence, but every unchanged
+    // paragraph below reuses its line breaks.
+    expect(WordIncrementalLayoutStats.incremental, 1);
+    expect(WordIncrementalLayoutStats.breaksReused, greaterThan(80));
+    _expectEquivalent(c, 'enter', _Run());
+  });
+
   test('typing in one paragraph lays out a handful of blocks', () {
     WordIncrementalLayoutStats.reset();
     final WordEditorController c = WordEditorController(document: _mixedLong());
