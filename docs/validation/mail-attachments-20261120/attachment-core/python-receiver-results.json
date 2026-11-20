@@ -1,0 +1,141 @@
+[
+  {
+    "id": "unicode-binary",
+    "status": "passed",
+    "wireBytes": 9716,
+    "wireSha256": "c0a19b4f7f6955f0d90c2933cf53417fc3bc06a9b15ad739fb8d284cfd37b50d",
+    "maximumLineBytes": 783,
+    "outerBase64Bytes": 12956,
+    "privateRequestUpperEstimateBytes": 14020,
+    "parserDefects": [],
+    "attachments": [
+      {
+        "name": "سجل \"alpha\"; 100%😀.pdf",
+        "bytes": 4097,
+        "sha256": "f25daa99a291428d95e64a1c0718f65cd8ee8f20b3a73c3c16fd4b253d1a103f"
+      },
+      {
+        "name": "empty.bin",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "name": "legacy.txt",
+        "bytes": 4,
+        "sha256": "a27e1e2881c9ec65b5338ee1403211f4054dc4bec7c1411afa2723e9121f08b8"
+      },
+      {
+        "name": "duplicate.txt",
+        "bytes": 7,
+        "sha256": "757fba23ac7f448edd3a0cd526325bab26cea4fa7c4057d8b9452fb8e9d48091"
+      },
+      {
+        "name": "duplicate.txt",
+        "bytes": 8,
+        "sha256": "c6e8b352ddc2e85bdc9b48b87685207cd022cda020065d104d8602b25b3af057"
+      },
+      {
+        "name": "éééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééa.pdf",
+        "bytes": 8,
+        "sha256": "931534c0c145d0a99631a32025f23f88c67fc6b34a608a73d0410bc04cf7bdce"
+      }
+    ],
+    "plainBodySha256": "cccf24311eb8f6bb7055dc283ac3179c04d7cbd52dc20169c4462d686ff2e56c",
+    "htmlBodySha256": "dce8a8cf46c248611f1387b7a5d985f551c44a4cfbbfd7a55bce6f459dbb3d40",
+    "bodyBytes": [
+      97,
+      132
+    ],
+    "canonicalBccAbsent": true,
+    "threadHeadersPreserved": true
+  },
+  {
+    "id": "plain-control",
+    "status": "passed",
+    "wireBytes": 865,
+    "wireSha256": "88cf5ac05fc21813797b2af3dc9cebac50c7178e0931789d6144a8b56026b2be",
+    "maximumLineBytes": 76,
+    "outerBase64Bytes": 1156,
+    "privateRequestUpperEstimateBytes": 2216,
+    "parserDefects": [],
+    "attachments": [],
+    "plainBodySha256": "4e5cd665db73f168f7a5b0262f5db8df7714dd519de993c63fc01dceec5dd87e",
+    "htmlBodySha256": "807fc447936a615ff0e34c21ce6a79357adb94a081eb1283556af097f42156ed",
+    "bodyBytes": [
+      44,
+      71
+    ],
+    "canonicalBccAbsent": true,
+    "threadHeadersPreserved": true
+  },
+  {
+    "id": "maximum-bound",
+    "status": "passed",
+    "wireBytes": 21986572,
+    "wireSha256": "ecb34b1c882957c5b3db1550d821ac6cbe8244d3a1d84c6f833672688ad2e80c",
+    "maximumLineBytes": 84,
+    "outerBase64Bytes": 29315432,
+    "privateRequestUpperEstimateBytes": 29316492,
+    "parserDefects": [],
+    "attachments": [
+      {
+        "name": "payload-0-مرفق.bin",
+        "bytes": 1048576,
+        "sha256": "1c15b634397059fc8b634d6723502f0e5433e6c9f8d60e40d9128451a9f80c0f"
+      },
+      {
+        "name": "payload-1-مرفق.bin",
+        "bytes": 1048576,
+        "sha256": "042d84d3772b8cc9080a8f388c428c11d88f8566e5a38fda322fc8ea33492cfc"
+      },
+      {
+        "name": "payload-2-مرفق.bin",
+        "bytes": 1048576,
+        "sha256": "b22e0cf0068b8b039505cf6f1bfe8b7b4673a45b05a1b62c11a6de1bfe17febc"
+      },
+      {
+        "name": "payload-3-مرفق.bin",
+        "bytes": 1048576,
+        "sha256": "98cc1aaa34f5bb3369d5c721d8eb9b33c36c7ed9b6faa534825f7a754a54f315"
+      },
+      {
+        "name": "payload-4-مرفق.bin",
+        "bytes": 1048576,
+        "sha256": "0665ebb7bf22346b57db6535a38ac6bcd6d264c6c2d7bbaa0ce5f2cc02054e7a"
+      },
+      {
+        "name": "payload-5-مرفق.bin",
+        "bytes": 1048576,
+        "sha256": "eaff5dfdbcdfd66523ff2dca5166c95a3ea2b71946098aecf0285316561f6d47"
+      },
+      {
+        "name": "payload-6-مرفق.bin",
+        "bytes": 1048576,
+        "sha256": "2886bef9a63f7fbd42d533497b4c40fcddb6849ff50fbc4883d57c39c37cefb3"
+      },
+      {
+        "name": "payload-7-مرفق.bin",
+        "bytes": 1048576,
+        "sha256": "05ed96af22dff8fdb93fd5d85557038d4a3633ea1988787ca712926d8f61e826"
+      },
+      {
+        "name": "payload-8-مرفق.bin",
+        "bytes": 1048576,
+        "sha256": "a764814d502b7bcc24bae70e91e93d22a2309d28da0d59d5355644e0ab0db9a4"
+      },
+      {
+        "name": "payload-9-مرفق.bin",
+        "bytes": 1048576,
+        "sha256": "d4077fbb79fa3dfaab6f7424db78a2b13926b95df30e8faf53f6f98ec3a43cd5"
+      }
+    ],
+    "plainBodySha256": "afaff083335c0eb2e53795b0da1b1cea9f38358edae92e21ca3442e2e2a4f1d5",
+    "htmlBodySha256": "4f63f065e13b7ae66916511deb4ce10fee6c6cf151a380cd032b5991222a1280",
+    "bodyBytes": [
+      1048576,
+      6291463
+    ],
+    "canonicalBccAbsent": true,
+    "threadHeadersPreserved": true
+  }
+]

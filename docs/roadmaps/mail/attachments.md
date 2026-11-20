@@ -6,7 +6,7 @@ SMTP, on-premises Exchange EWS, Gmail and Microsoft 365 share the same immutable
 draft and MIME builder. This is the next foreground M07 increment toward Office
 document-to-mail workflows; it does not complete the durable outbox or M08.
 
-The [validation record](../../validation/mail-attachments-20261120/README.md)
+The [validation record](../../validation/zotero-research-materials-20261120/README.md)
 separates local qualification from live-provider and installed-platform tests.
 
 ## Using attachments
@@ -133,18 +133,18 @@ independent Python MIME inspection. Those receipts belong to their recorded
 source checkpoints; they are kept separate from the resumed mail runs below.
 
 The source-bound [attachment core evidence](../../validation/mail-attachments-20261120/attachment-core/README.md)
-contains 49 new model/MIME cases, the complete existing recipient/reply/threading
-cohort, vendor codec/builder regressions and an independent Python MIME receiver.
-It checks immutable ownership, empty and duplicate files, names and media-type
-admission, count/byte limits, exact attachment hashes, MIME structure, Bcc absence
-and reply threading. A maximum-size probe combines ten files totaling 10 MiB
+contains a new independent Python MIME receiver and production-codec comparison.
+The [overall record](../../validation/mail-attachments-20261120/README.md)
+adds the complete model/MIME, recipient/reply/threading, vendor codec/builder,
+file-reader, composer and provider-host suites. Together they check immutable
+ownership, empty and duplicate files, names and media-type admission, count/byte
+limits, exact attachment hashes, MIME structure, Bcc absence and reply threading.
+A maximum-size probe combines ten files totaling 10 MiB
 with a 1 MiB body of quotes, whose escaped HTML expands sixfold. Its complete
 message stays within the 22 MiB wire guard and the default 32 MiB cloud
 outer-base64 request budget, and the production codec recovers every file and
 the complete body. It is a bound probe, not a device-wide performance claim.
 
-The overall record adds the file-reader, composer, host, package and incoming
-Office qualification. Hosted CI is not an acceptance gate for this continuation.
 Live-provider delivery, actual native picker behavior on each installed OS and
 real browser persistence remain separate qualifications.
 

@@ -12,10 +12,11 @@ uncertain submissions retain the complete draft for the current session.
 MIME uses a mixed root containing the alternative body and base64 attachments,
 with ASCII-safe RFC 2231 filenames and no Bcc in the canonical wire. A scoped
 quoted-printable correction preserves terminal whitespace and bounds Unicode
-line wrapping. The [current local validation](../../validation/mail-attachments-20261120/README.md)
-uses the actual pinned Flutter/Dart workspace and resolved locked package graph;
-it supersedes the prior dependency-limited recipient qualification only for the
-specific cohorts freshly rerun there. Older receipts keep their original scope.
+line wrapping. The [current local validation](../../validation/zotero-research-materials-20261120/README.md)
+records the actual pinned Flutter/Dart workspace and resolved locked package
+graph for its captured source. The later narrow and right-to-left composer
+changes need their own combined-source validation; older receipts keep their
+original source and scope.
 
 This remains foreground, session-only composition: no local autosave, durable
 outbox, automatic attachment copying on forward, current-document/PDF attachment
@@ -85,9 +86,9 @@ Fetch the canonical repository's current refs before resuming.
 The source of product scope remains [README.md](README.md) and the ordered work
 remains [implementation-plan.md](implementation-plan.md).
 
-## Historical 19 November foreground-session checkpoint
+## Studio foreground-session follow-up
 
-The [19 November Studio continuation](../../validation/office-mail-continuation-20261119/README.md)
+The [current Studio continuation](../../validation/office-mail-continuation-20261119/README.md)
 reconciles the later `10bd0cc4` and `004b2ad6` branches and concurrent
 PRs #192–#194 with main `b070e228`.
 It preserves their independent source-bound evidence and restores saved EML
@@ -124,8 +125,7 @@ parent IDs leave the reply unthreaded, and an unsupported ancestor token drops
 the inherited chain. [Reply threading](reply-threading.md) records the supported
 identifier subset, limits and original source qualification. The later
 recipient continuation exercised a pure threading subset, while MIME and
-Flutter checks remained open at that checkpoint. The 20 November combined
-qualification above records the subsequently accepted local checks.
+Flutter checks remain open under the qualification boundary below.
 HTML-only quotation remains outside this increment. A retained uncertain draft
 cannot be silently replaced by a reply/forward; Compose resumes it, and an
 explicit confirmed discard removes only the session draft without cancelling
@@ -162,12 +162,9 @@ claimed for that earlier source. Its report retains exact source identities,
 attempts and replay instructions; the new attachment record above documents the
 freshly qualified cohorts, and previous totals below remain historical.
 
-## Historical M00–M06 baseline
+## Delivered code
 
-This matrix records the earlier foundation. The dated continuations above
-describe subsequent composer, provider and attachment work and its acceptance.
-
-| Area | Implementation at that baseline | Acceptance limits at that baseline |
+| Area | Current implementation | Acceptance limits |
 | --- | --- | --- |
 | M00 baseline | The reader foundation reconciled its captured Office heads; the M05 continuation captures and reconciles incoming main, branch and PR history separately before implementation | Capture-specific dispositions and subsequent changes belong to the dated reconciliation receipts; historical test reports are not new results |
 | M01 fork | Pinned enough_mail 3.0.0 source, retained MPL/provenance, supported public `mime_core.dart`, content-redacted diagnostics, strict charset admission, RFC2231 and date corrections, selected dependency/source inventory | Actual browser execution and per-product shipped dependency/notice clearance remain open |
@@ -177,7 +174,7 @@ describe subsequent composer, provider and attachment work and its acceptance.
 | M05 store | Drift/SQLite transactional repository, immutable drafts/outbox blobs, memberships/tombstones/cursor CAS, bounded FTS5, pending-operation and vault-cleanup journals, account/profile retirement, cache/editor pins and schema v3 with nullable durable flags | Schema v3 and the integrated flags/transport source passed local qualification; browser storage and power-loss durability are unqualified; the database is unencrypted |
 | M06 native foundation | Manual IMAP configuration, scoped host-vault lookup, selectable folders, bounded discovered-UID synchronization with atomic stored-range reconciliation, exact on-demand message literals, guarded UID flag/move commands and a conditional unsupported browser entry | Integrated qualification and real Linux TLS loopback checks passed; external-provider/other-OS interoperability, OAuth authorization hosts, discovery beyond the configured SEARCH budget, SMTP and the account-aware UI remain open |
 
-At that baseline M06 was partially implemented. M04W and M07–M13 still required the
+M06 is partially implemented, not complete. M04W and M07–M13 still require the
 mailbox workspace, composition/SMTP sending, Office attachment editing,
 standalone full Office host, CrispCloud migration, additional providers,
 Calendar/People and Apple distribution work. M14 evidence continues for each
