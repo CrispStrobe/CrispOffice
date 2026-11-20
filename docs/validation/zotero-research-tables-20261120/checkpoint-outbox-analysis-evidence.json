@@ -1,0 +1,126 @@
+{
+  "name": "checkpoint-outbox-analysis-evidence.tar.xz",
+  "bytes": 15392,
+  "sha256": "4a250b34638142502db78842a26f0936d4b7c247046153bf2b3272e66f2e2160",
+  "gitBlobSha": "4211f0d0dd100d871283db806f7795f857d487f2",
+  "source": "70e69c8854ab30f83d8711d3f4bf270385ed27b4",
+  "files": {
+    "analysis-70e69c88/memory-monitor.json": {
+      "sha256": "f6082e23e712c7ade666026cff6b7425bf1282fbe878e971166296f521c7aaf3",
+      "bytes": 14353
+    },
+    "analysis-70e69c88/responses.jsonl": {
+      "sha256": "22edc1134559b03af7239742682c87bb8c1d3d1c24dab7adfbfd4c357fa06e95",
+      "bytes": 13063
+    },
+    "analysis-70e69c88/analysis-options.json": {
+      "sha256": "5a9a58f11b55b7d77d4b39ed09d5c375e8df1df53bc396c1cb2a0131a725021e",
+      "bytes": 8048
+    },
+    "analysis-70e69c88/receipt.json": {
+      "sha256": "43a4f2976a584f03e46b54189bf99698c71b6d9aaf5bf70bfbccc00d7a36361a",
+      "bytes": 1322
+    },
+    "analysis-70e69c88/target-files.json": {
+      "sha256": "1f0082b2d429c6a8e4e04481a5ca708e8fb9d1818a14e9884f7b1e3edd2bd959",
+      "bytes": 1631
+    },
+    "analysis-70e69c88/source-before.json": {
+      "sha256": "5baec76e5341dac4bed36f4fa7f4a22b0fa51d3c32983502127829403b8b242b",
+      "bytes": 3195
+    },
+    "analysis-70e69c88/requests.jsonl": {
+      "sha256": "486a3dc225bab07a53a944a5dd6dc704610a2ce9e30694dcbe2e1051cc573c79",
+      "bytes": 7290
+    },
+    "analysis-70e69c88/diagnostics.json": {
+      "sha256": "ad78602cf093d87c3da3ff632cf60445bd8505708db528f1abbfc33531787a2f",
+      "bytes": 1723
+    },
+    "analysis-70e69c88/stderr.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "format-70e.json": {
+      "sha256": "557e81663df07ae38d891fe9cc3805fd76f619ecdb157514fbedc7673cfb3789",
+      "bytes": 5253
+    },
+    "analysis-targets-70e.json": {
+      "sha256": "1f0082b2d429c6a8e4e04481a5ca708e8fb9d1818a14e9884f7b1e3edd2bd959",
+      "bytes": 1631
+    },
+    "run-targeted-analysis.py": {
+      "sha256": "386d0a2f1c80d688d1a81246792c1548b9a176b8258b49b30fba062c6c8127fd",
+      "bytes": 7027
+    },
+    "audit-lf-jsonl.py": {
+      "sha256": "74411b5750719ab8851d36dfa25085337758995e00d4beaf28db9f20bfe7c4fd",
+      "bytes": 5036
+    },
+    "231bd-literal-lf-reaudit.json": {
+      "sha256": "71d447e9cb0918455acbe28721124ac599067560bde07d9e1807c85e89732805",
+      "bytes": 9053
+    },
+    "incoming-standalone-evidence/lf-audit.json": {
+      "sha256": "eabcab4f9c1750553687b815e5453f27348e7712ace31e5f764fdd69bf7b2b4d",
+      "bytes": 4897
+    },
+    "python-framing-local-imports.json": {
+      "sha256": "508a77ba909901cf7e7bde6d2ed0aec5dc714bb73e5f15964f216ab94b6f5746",
+      "bytes": 329
+    },
+    "python-framing-70e/receipt.json": {
+      "sha256": "7341f1c00709b3ea4fa089ac563b736f6f8de8ea96ec1ca607fa6b26f2ef6361",
+      "bytes": 838
+    },
+    "python-framing-70e/stderr.log": {
+      "sha256": "7f4249767ae593861cda06dafe01c743dec7f082883dd117456bd11534fad486",
+      "bytes": 422
+    },
+    "python-framing-70e/stdout.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "python-framing-70e-ready/receipt.json": {
+      "sha256": "0c4efe24941fb535813f2af6662d99fc889e09718aed47f0f90582f4384bcc3e",
+      "bytes": 1230
+    },
+    "python-framing-70e-ready/stderr.log": {
+      "sha256": "49792384699263b408f1921851029d0c7299ec072afc50d5209f00ccbdad3c23",
+      "bytes": 7406
+    },
+    "python-framing-70e-ready/stdout.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    }
+  },
+  "analysis": {
+    "requested": 23,
+    "completed": 23,
+    "errors": 0,
+    "warnings": 0,
+    "infos": 0,
+    "exit": 0
+  },
+  "format": {
+    "files": 23,
+    "changes": 0,
+    "exit": 0
+  },
+  "pythonToolingOnly": {
+    "tests": 48,
+    "exit": 0,
+    "priorImportOnlyAttemptPreserved": true
+  },
+  "old231bdLfAudit": {
+    "success": 1358,
+    "skip": 8,
+    "newSdkExecution": false
+  },
+  "incomingAuthorLfAudit": {
+    "source": "ce9ff1c8b155c03a0e2707d6fc8b41b52e611a93",
+    "coreStore": 172,
+    "smtp": 72,
+    "newSdkExecution": false
+  }
+}
