@@ -38,6 +38,7 @@ Future<void> _open(
   FakeModels? models,
   StudioDownloadActivity? activity,
   Future<void> Function(Uri)? openLicence,
+  FakeFontPacks? fontPacks,
 }) async {
   await tester.binding.setSurfaceSize(size);
   addTearDown(() => tester.binding.setSurfaceSize(null));
@@ -58,6 +59,7 @@ Future<void> _open(
           language: language,
           activity: activity ?? StudioDownloadActivity(),
           openLicence: openLicence ?? (_) async {},
+          fontPacks: fontPacks,
         ),
       ),
     ),
@@ -265,6 +267,21 @@ void main() {
     await tester.pumpAndSettle();
     expect(find.byType(StudioSpacySetupDialog), findsOneWidget);
     expect(models.calls, isNot(contains('install')));
+  });
+
+  testWidgets('open font packs use the grouped Downloads row', (tester) async {
+    final host = FakeFontPacks(<OfficeFontPackStatus>[
+      const OfficeFontPackStatus(
+        pack: officeCoreFontPack,
+        installed: false,
+        bytesOnDisk: 0,
+        directory: '/owned/fonts/office-core-v1',
+      ),
+    ]);
+    await _open(tester, fontPacks: host);
+    expect(_row(officeCoreFontPack.id), findsOneWidget);
+    expect(find.textContaining('Font pack'), findsWidgets);
+    expect(find.text('Fonts'), findsOneWidget);
   });
 
   testWidgets('licence link opens the licence page', (tester) async {

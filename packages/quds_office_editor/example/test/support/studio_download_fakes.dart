@@ -1,10 +1,12 @@
 import 'package:flutter/widgets.dart';
 import 'package:quds_arabic_morph/quds_arabic_morph.dart';
+import 'package:quds_office_editor/quds_office_editor.dart';
 import 'package:quds_office_engine/quds_office_engine.dart';
 import 'package:quds_proofing_hunspell/quds_proofing_hunspell.dart';
 import 'package:quds_proofing_spacy/quds_proofing_spacy.dart';
 import 'package:quds_office_studio/studio_arabic_morph_host.dart';
 import 'package:quds_office_studio/studio_downloads_manager.dart';
+import 'package:quds_office_studio/studio_font_pack_host.dart';
 import 'package:quds_office_studio/studio_hunspell_host.dart';
 import 'package:quds_office_studio/studio_spacy_host.dart';
 import 'package:quds_office_studio/studio_strings.dart';
@@ -231,3 +233,14 @@ Widget buildCaptureManager(CaptureVariant variant) => StudioDownloadsManager(
   languages: const <String>{'ar-SA'},
   openLicence: (_) async {},
 );
+
+/// Font-pack host with a fixed inventory; never reaches the filesystem.
+class FakeFontPacks extends StudioFontPackHost {
+  FakeFontPacks(this.items);
+  final List<OfficeFontPackStatus> items;
+  final calls = <String>[];
+  @override
+  List<OfficeFontPackStatus> get statuses => items;
+  @override
+  Future<void> refresh() async => calls.add('refresh');
+}
