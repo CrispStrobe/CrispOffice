@@ -602,6 +602,29 @@ void main() {
     _sameParagraphs(note);
   });
 
+  test('direct row groups stay separate across empty and populated bodies', () {
+    String pair(String text) => '<tr><td rowspan="2">$text</td></tr><tr/>';
+    final note = WordZoteroNoteText.fromHtml(
+      '<table><tbody>${pair('First')}</tbody>${pair('Second')}'
+      '<tbody>${pair('Third')}</tbody>${pair('Fourth')}'
+      '<tbody/>${pair('Fifth')}</table>',
+    );
+    final table = note.blocks.single as WmlTable;
+    expect(table.rows.map((row) => row.cells.single.vMerge), [
+      for (var group = 0; group < 5; group++) ...[
+        WmlVMerge.restart,
+        WmlVMerge.cont,
+      ],
+    ]);
+    expect(note.paragraphs.map((paragraph) => paragraph.text), [
+      for (final text in ['First', 'Second', 'Third', 'Fourth', 'Fifth']) ...[
+        text,
+        '',
+      ],
+    ]);
+    _sameParagraphs(note);
+  });
+
   test('widths reconcile after skipping vertically covered columns', () {
     final note = WordZoteroNoteText.fromHtml(
       _table(
@@ -667,6 +690,10 @@ void main() {
         '</table>',
     '<table><tbody><tr><td rowspan="2">Cross group</td></tr></tbody><tr/>'
         '</table>',
+    '<table><tr><td rowspan="2">Cross empty group</td></tr>'
+        '<tbody/><tr/></table>',
+    '<table><tr><td rowspan="2">Cross empty group</td></tr>'
+        '<tbody></tbody><tbody/><tr/></table>',
   ]) {
     test('a vertical merge cannot cross row-group ownership: $html', () {
       expect(() => WordZoteroNoteText.fromHtml(html), throwsUnsupportedError);

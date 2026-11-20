@@ -403,6 +403,7 @@ class LaidOutBox {
     this.tableRow,
     this.tableCol,
     this.tableGridCol,
+    this.tableRowGeometry,
     this.frame,
     this.strokeTop = true,
     this.strokeRight = true,
@@ -459,6 +460,12 @@ class LaidOutBox {
 
   /// tableGridCol API.
   int? tableGridCol;
+
+  /// Physical row bounds before vertically merged fragments are consolidated.
+  ///
+  /// Visible [tableRow] and paragraph ownership resolve to the merge origin;
+  /// row selection and insertion still need the actual row on this page.
+  ({int row, double y, double height})? tableRowGeometry;
 
   /// frame API.
   WmlFrame? frame;
@@ -2904,6 +2911,8 @@ class WordLayoutEngine {
     _Flow? flow,
     bool allowBreak = true,
   }) {
+    final firstPage = pages.length;
+    final firstFrame = currentFrames.length;
     final List<double> cols = _columnWidths(table, section, maxWidthOverride);
     var cursorY = y + 6;
     var idx = pageIndex;
@@ -3262,7 +3271,14 @@ class WordLayoutEngine {
       }
       para = rowParagraphEnd;
     }
-    _applyVerticalMerges(table, currentFrames);
+    // Pages copy the frame list, retaining the boxes. Normalize each physical
+    // page separately after all rows (including tall-row slices) have their
+    // original table identity. A later page may contain only continuations.
+    _applyVerticalMerges(table, [
+      for (var page = firstPage; page < pages.length; page++)
+        pages[page].frames.skip(page == firstPage ? firstFrame : 0),
+      currentFrames.skip(pages.length == firstPage ? firstFrame : 0),
+    ]);
     return (y: cursorY + 4, pageIndex: idx);
   }
 
@@ -3449,46 +3465,130 @@ class WordLayoutEngine {
     return frames;
   }
 
-  void _applyVerticalMerges(WmlTable table, List<LaidOutBox> frames) {
-    final List<LaidOutBox> mine = <LaidOutBox>[
-      for (final LaidOutBox box in frames)
-        if (identical(box.table, table) && box.kind == LaidOutBoxKind.tableCell)
-          box,
-    ];
-    for (final LaidOutBox box in mine) {
-      final int r = box.tableRow ?? 0;
-      final int c = box.tableCol ?? 0;
-      if (r >= table.rows.length || c >= table.rows[r].cells.length) {
+  void _applyVerticalMerges(
+    WmlTable table,
+    List<Iterable<LaidOutBox>> pageFrames,
+  ) {
+    // Resolve chains once by exact logical start and span. An orphan, shifted
+    // continuation or mismatched native span cannot consume a neighboring cell.
+    final origins =
+        <(int, int), ({int row, int col, int grid, WmlTableCell cell})>{};
+    var above = <int, ({int row, int col, int grid, WmlTableCell cell})>{};
+    for (var r = 0; r < table.rows.length; r++) {
+      final row = table.rows[r];
+      // Omitted grid positions are not yet placed by the table renderer.
+      // Do not infer a merge owner at a different physical x coordinate.
+      if (row.gridBefore != 0 ||
+          row.gridAfter != 0 ||
+          row.cells.any((cell) => cell.gridSpan < 1)) {
+        above = {};
         continue;
       }
-      final WmlTableCell cell = table.rows[r].cells[c];
-      if (cell.vMerge != WmlVMerge.restart) {
-        continue;
-      }
-      final int g0 = WordTable.gridStart(table.rows[r], c);
-      var bottom = box.y + box.height;
-      for (int rr = r + 1; rr < table.rows.length; rr++) {
-        final int? i = WordTable.cellIndexAtGrid(table.rows[rr], g0);
-        if (i == null || table.rows[rr].cells[i].vMerge != WmlVMerge.cont) {
-          break;
-        }
-        LaidOutBox? cont;
-        for (final LaidOutBox other in mine) {
-          if (other.tableRow == rr && other.tableCol == i) {
-            cont = other;
-            break;
+      final current =
+          <int, ({int row, int col, int grid, WmlTableCell cell})>{};
+      var grid = 0;
+      for (var c = 0; c < row.cells.length; c++) {
+        final cell = row.cells[c];
+        ({int row, int col, int grid, WmlTableCell cell})? origin;
+        if (cell.gridSpan > 0 && cell.vMerge == WmlVMerge.restart) {
+          origin = (row: r, col: c, grid: grid, cell: cell);
+        } else if (cell.gridSpan > 0 && cell.vMerge == WmlVMerge.cont) {
+          final previous = above[grid];
+          if (previous != null && previous.cell.gridSpan == cell.gridSpan) {
+            origin = previous;
           }
         }
-        if (cont == null) {
-          break;
+        if (origin != null) {
+          origins[(r, c)] = origin;
+          current[grid] = origin;
         }
-        bottom = math.max(bottom, cont.y + cont.height);
-        cont
-          ..height = 0
-          ..fillColor = null
-          ..strokeColor = '00000000';
+        grid += WordTable.spanOf(cell);
       }
-      box.height = bottom - box.y;
+      above = current;
+    }
+    if (origins.isEmpty) return;
+
+    final pages = [
+      for (final frames in pageFrames)
+        [
+          for (final box in frames)
+            if (identical(box.table, table) &&
+                box.kind == LaidOutBoxKind.tableCell &&
+                box.height > 0)
+              box,
+        ],
+    ];
+    final masters = <WmlTableCell, LaidOutBox>{};
+    for (final frames in pages) {
+      for (final box in frames) {
+        final origin = origins[(box.tableRow, box.tableCol)];
+        if (origin != null &&
+            box.tableRow == origin.row &&
+            box.tableCol == origin.col) {
+          masters.putIfAbsent(origin.cell, () => box);
+        }
+      }
+    }
+    for (final frames in pages) {
+      final groups = <WmlTableCell, List<LaidOutBox>>{};
+      for (final box in frames) {
+        final origin = origins[(box.tableRow, box.tableCol)];
+        if (origin != null && masters.containsKey(origin.cell)) {
+          groups.putIfAbsent(origin.cell, () => []).add(box);
+        }
+      }
+      for (final entry in groups.entries) {
+        final fragments = entry.value;
+        for (final fragment in fragments) {
+          fragment.tableRowGeometry ??= (
+            row: fragment.tableRow!,
+            y: fragment.y,
+            height: fragment.height,
+          );
+        }
+        final first = fragments.first;
+        final last = fragments.last;
+        final origin = origins[(first.tableRow, first.tableCol)]!;
+        final master = masters[entry.key]!;
+        final bottom = fragments
+            .map((box) => box.y + box.height)
+            .reduce(math.max);
+        final topEdge = first.strokeTop;
+        final bottomEdge = last.strokeBottom;
+        first
+          ..height = bottom - first.y
+          ..fillColor = origin.cell.fillColor
+          ..strokeColor = table.properties.borderColor ?? '000000'
+          ..strokeWidth = table.properties.borderWidth
+          ..strokeTop = _cellEdge(origin.cell.borderTop, inherit: topEdge)
+          ..strokeBottom = _cellEdge(
+            origin.cell.borderBottom,
+            inherit: bottomEdge,
+          )
+          ..strokeLeft = _cellEdge(
+            origin.cell.borderLeft,
+            inherit: table.properties.borders,
+          )
+          ..strokeRight = _cellEdge(
+            origin.cell.borderRight,
+            inherit: table.properties.borders,
+          )
+          ..tableRow = origin.row
+          ..tableCol = origin.col
+          ..tableGridCol = origin.grid
+          ..paragraphIndex = master.paragraphIndex
+          ..paragraphEnd = master.paragraphEnd;
+        for (final continuation in fragments.skip(1)) {
+          // Retain physical row geometry metadata for table handles, but a
+          // hidden continuation must never claim editable paragraph ownership.
+          continuation
+            ..height = 0
+            ..fillColor = null
+            ..strokeColor = '00000000'
+            ..paragraphIndex = null
+            ..paragraphEnd = null;
+        }
+      }
     }
   }
 

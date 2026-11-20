@@ -52,7 +52,8 @@ final class WordZoteroNoteText {
     final cells = <({WmlTable table, WmlTableCell cell})>[];
     final columnWidths = <WmlTableCell, List<double?>>{};
     final rowSpans = <WmlTableCell, int>{};
-    final rowGroups = <WmlTableRow, _NoteElement>{};
+    final rowGroups = <WmlTableRow, Object>{};
+    final directRowGroups = <WmlTable, Object>{};
     var nativeCells = 0;
     var listCount = 0;
     var activeLink = false;
@@ -206,6 +207,10 @@ final class WordZoteroNoteText {
               tables.add(table);
             } else if (tag == 'tbody') {
               if (parent?.table == null) throw _unsupportedTable();
+              // Each run of direct rows is a separate implicit group. Even
+              // an empty tbody ends that run and must block a rowspan from
+              // reaching a later direct row across the explicit group.
+              directRowGroups.remove(parent!.table);
             } else if (tag == 'tr') {
               if (activeTable == null ||
                   !const <String>{'table', 'tbody'}.contains(parent?.tag)) {
@@ -218,7 +223,9 @@ final class WordZoteroNoteText {
               }
               row = WmlTableRow();
               activeTable.rows.add(row);
-              rowGroups[row] = parent!;
+              rowGroups[row] = parent!.tag == 'tbody'
+                  ? parent
+                  : directRowGroups.putIfAbsent(activeTable, Object.new);
             } else if (_cellTags.contains(tag)) {
               final owner = parent?.row;
               if (owner == null || activeTable == null) {
@@ -776,7 +783,7 @@ final class WordZoteroNoteText {
     WmlTable table,
     Map<WmlTableCell, List<double?>> columnWidths,
     Map<WmlTableCell, int> rowSpans,
-    Map<WmlTableRow, _NoteElement> rowGroups, {
+    Map<WmlTableRow, Object> rowGroups, {
     required int remainingCells,
   }) {
     if (table.rows.isEmpty || table.rows.first.cells.isEmpty) {

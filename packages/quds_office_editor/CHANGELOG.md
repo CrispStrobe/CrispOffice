@@ -4,6 +4,13 @@ All notable changes to `quds_office_editor` are documented here.
 
 ## Unreleased
 
+- Accept vertical and combined row/column spans through Zotero Add Note and
+  Add Annotation in body, footnote and endnote targets. Preserve rich content,
+  active citations, one undo/redo transaction and repeated DOCX reopening.
+- Resolve continued merged-cell pointer/keyboard navigation to the originating
+  cell while retaining physical row handles; keep authored native continuation
+  content reachable and skip only validated structural empty placeholders.
+
 - Accept horizontally merged Zotero research-note and annotation tables through
   the existing native commands. Preserve cell-owned rich text, lists, pictures
   and active citations in body, footnote and endnote targets; retain span widths,

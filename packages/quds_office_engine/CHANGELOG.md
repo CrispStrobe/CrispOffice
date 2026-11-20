@@ -4,6 +4,14 @@ All notable changes to `quds_office_engine` are documented here.
 
 ## Unreleased
 
+- Preserve vertical and combined row/column merges in Zotero research tables.
+  Normalize a bounded logical grid into native restart/continuation cells and
+  remap citation/list indexes by paragraph identity. Count generated cells and
+  paragraphs against whole-note budgets and reject malformed or cross-group spans.
+- Keep native merged-table shading and borders on every occupied page, with
+  source paragraph ownership distinct from physical row geometry. Retain the
+  current conservative row-height allocation and reject invalid merge chains.
+
 - Preserve horizontal merged cells in Zotero Add Note/Add Annotation tables.
   Map bounded `colspan` to native `gridSpan`, reconcile `data-colwidth` vectors
   by logical column (including unspecified zero entries), and sum covered grid
