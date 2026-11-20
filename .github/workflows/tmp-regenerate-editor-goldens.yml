@@ -1,0 +1,38 @@
+# Temporary (removed before merge): regenerate Linux editor goldens on the CI
+# toolchain so the diffs can be reviewed.
+name: tmp regenerate editor goldens
+on:
+  push:
+    branches: [fix/main-green-20261120]
+jobs:
+  goldens:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: packages/quds_office_editor
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          flutter-version: 3.47.8
+      - name: Resolve workspace
+        working-directory: .
+        run: flutter pub get
+      - name: Regenerate
+        run: |
+          cp -r test/goldens /tmp/goldens-before
+          flutter test --update-goldens test/office_table_grid_golden_test.dart test/office_layout_goldens_test.dart test/office_structure_goldens_test.dart test/office_frame_wrap_golden_test.dart test/office_fidelity_golden_test.dart test/office_story_golden_test.dart test/office_nested_table_golden_test.dart || true
+          mkdir -p /tmp/out/after /tmp/out/before
+          git status --porcelain test/goldens
+          for f in $(git status --porcelain test/goldens | awk '{print $2}'); do
+            rel=${f#packages/quds_office_editor/}; rel=${rel#test/goldens/}
+            mkdir -p "/tmp/out/after/$(dirname "$rel")" "/tmp/out/before/$(dirname "$rel")"
+            cp "test/goldens/$rel" "/tmp/out/after/$rel"
+            [ -f "/tmp/goldens-before/$rel" ] && cp "/tmp/goldens-before/$rel" "/tmp/out/before/$rel" || true
+          done
+      - uses: actions/upload-artifact@v4
+        with:
+          name: regenerated-goldens
+          path: /tmp/out/
+          retention-days: 3
