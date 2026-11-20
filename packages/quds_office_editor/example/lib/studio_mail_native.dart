@@ -351,6 +351,12 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
           _accountCatalog = catalogResult.catalog!;
           if (_currentSession(client, sessionGeneration)) {
             _selectedSavedAccountId = remember ? credentials.accountId : null;
+          } else {
+            // The catalog write still belongs to the retired connection. Its
+            // completion must not make an older profile the form's Forget
+            // target after disconnect or newer account edits.
+            _selectedSavedAccountId = null;
+            _hasSavedCredentials = false;
           }
         }
       }

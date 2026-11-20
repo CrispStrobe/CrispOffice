@@ -564,6 +564,45 @@ void main() {
     },
   );
 
+  testWidgets(
+    'a retired save cannot leave an unrelated remembered account as the Forget target',
+    (tester) async {
+      final store = _Accounts()..saveGate = Completer<void>();
+      await _show(tester, store);
+      // Deliberately edit the selected account instead of using New account.
+      // The displayed selection still names A when connection B is created.
+      await tester.enterText(_field(_strings.emailAddress), _b.email);
+      await tester.enterText(_field(_strings.password), _b.password);
+      await tester.enterText(_field(_strings.imapHost), _b.imapHost);
+      await tester.enterText(_field(_strings.smtpHost), _b.smtpHost);
+      await _connect(tester);
+      expect(store.savedCredentials.single.accountId, _b.accountId);
+      await _tap(tester, find.byTooltip(_strings.disconnect));
+      await tester.enterText(
+        _field(_strings.emailAddress),
+        'newer@example.test',
+      );
+      await tester.enterText(_field(_strings.password), 'newer-password');
+      store.saveGate!.complete();
+      await _pump(tester);
+      expect(store.catalog.selectedAccountId, _b.accountId);
+      expect(_text(tester, _strings.emailAddress), 'newer@example.test');
+      expect(_text(tester, _strings.password), 'newer-password');
+      expect(
+        tester.widget<TextButton>(_key('studio-mail-forget')).onPressed,
+        isNull,
+      );
+      final chooser = find.descendant(
+        of: _key('studio-mail-saved-account'),
+        matching: find.byType(DropdownButtonFormField<String>),
+      );
+      expect(tester.state<FormFieldState<String>>(chooser).value, isNull);
+      expect(store.catalog.accounts, hasLength(2));
+      expect(store.forgottenIds, isEmpty);
+      expect(tester.takeException(), isNull);
+    },
+  );
+
   testWidgets('switching saves and restores each account draft independently', (
     tester,
   ) async {
