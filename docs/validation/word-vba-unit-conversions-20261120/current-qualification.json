@@ -1,0 +1,119 @@
+{
+  "schema_version": 1,
+  "status": "source_reviewed_runtime_unqualified",
+  "incorporated_main": {
+    "commit": "22cf73b816328cd5fe54ec1793c89f1cc322db3b",
+    "tree": "a566dec42ed55859563f0bb08f490d870e709c7e",
+    "word_measurement_parent": "b01cb23dc1b7bc94b691d68a2507b61dc6d48d7a",
+    "word_measurement_pull_request": 272
+  },
+  "previous_checkpoint": "c12ad8bc9c17f1849acdf92b2245e9198f1005b8",
+  "required_ordered_parents": [
+    "c12ad8bc9c17f1849acdf92b2245e9198f1005b8",
+    "22cf73b816328cd5fe54ec1793c89f1cc322db3b"
+  ],
+  "source_inputs": [
+    {
+      "path": "packages/quds_office_engine/lib/src/automation/office_vba_language.dart",
+      "blob": "07dc3c5737661abaf3b17db24439c71482de22ed",
+      "mode": "100644"
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_vba_word_unit_conversions_test.dart",
+      "blob": "d5caee5321cbf18e65466c2bf43fcec49397e725",
+      "mode": "100644"
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_vba_word_unit_conversions_integration_test.dart",
+      "blob": "d44ec892f13d9384ebed1e13b3f56e64c7959f2b",
+      "mode": "100644"
+    },
+    {
+      "path": "packages/quds_office_engine/example/macros/word_unit_conversions.bas",
+      "blob": "cf996b99e767d1742557f257599bf0edf61eefa0",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/VBA_WORD_MACROS.md",
+      "blob": "e1ba38ca57f2c997cb3d978a4f3e24b3946fb4d9",
+      "mode": "100644"
+    },
+    {
+      "path": "packages/quds_office_engine/CHANGELOG.md",
+      "blob": "966f0f26b3f608b8bf5bd50d6723c7d8f5dcc065",
+      "mode": "100644"
+    }
+  ],
+  "source_changes_from_incorporated_main": 0,
+  "test_delta_from_incorporated_main": "None; incoming main22cf73b8 already contains the202-case d5 suite, including this branch's large-scalar regression.",
+  "authored_unexecuted": {
+    "unit_conversion_compiler_cases": 202,
+    "unit_conversion_integration_cases": 6,
+    "additional_incoming_suites": "Retained unchanged; not counted as executed in this continuation"
+  },
+  "executed": {
+    "independent_source_review": {
+      "file": "source-review-main.json",
+      "result": "No blocking source finding; current named checker/evaluator, numeric behavior and retained test expectations reviewed",
+      "blob": "f2d33f4623d4844db8b5e530d9db636ce0018e11"
+    },
+    "remote_tree_readback": "Required after publication; final commit/tree hashes and comparisons recorded in PR #271",
+    "current_arithmetic_model": {
+      "file": "main-arithmetic-result.json",
+      "blob": "cb4bef8fd056971324eab19296d924ac866432d0",
+      "script": "check-main-arithmetic.mjs",
+      "script_blob": "53ae8838160899dd2eabd7d5adb75f01b92d6728",
+      "assertions": 246,
+      "passed": true,
+      "independent_root_replay_agreed": true,
+      "counting_rule": "The independent replay repeats the same246 assertions and is not added to the total. Supplemental21 overlapping receipt comparisons are not added.",
+      "scope": "Pure source-bound JavaScript core in functions.exec V8; exact checker/evaluator text and all ten metadata entries checked. No Dart execution. Standalone Node filesystem/hash wrapper was authored but not launched."
+    }
+  },
+  "not_executed": [
+    "dart test",
+    "dart analyze",
+    "dart format",
+    "Dart VM program",
+    "compiled Dart JavaScript",
+    "native document runtime",
+    "CLI",
+    "whole-engine regression",
+    "Microsoft Word differential execution"
+  ],
+  "blocker": "Local environment failed before command startup (sandbox ENOSPC, followed by unavailable exec service); see environment-blocker.json",
+  "historical_evidence": {
+    "compiler_blob": "a105ddd700c3822cb775d6a5ee9385bc380f4e8f",
+    "files": [
+      "arithmetic-result.json",
+      "check-arithmetic.mjs",
+      "source-review.json",
+      "qualification.json"
+    ],
+    "qualification": "Retained for their historical checkpoint; not current-source execution"
+  },
+  "inherited_reports": "Incoming branch commit-message Dart test totals and previous paragraph-spacing regression totals are not claimed as qualification of the adopted source",
+  "intake": {
+    "references": 311,
+    "actual_ancestor_references": 288,
+    "proven_equivalent_references": 23,
+    "initial_deferred": 0,
+    "initial_unclassified": 0,
+    "post_intake_heads": 4,
+    "post_intake_word_heads_incorporated": 2,
+    "post_intake_mail_heads_preserved_deferred": 2
+  },
+  "github_actions": {
+    "queried": false,
+    "waited": false
+  },
+  "publication_requirements": [
+    "Non-forced branch update with expected previous head",
+    "Fresh remote main read before normal PR merge",
+    "If main advances, preserve it before merging",
+    "Verify remote main tree equals checkpoint tree and required history is retained",
+    "Preserve the remote checkpoint branch",
+    "Record post-merge exact SHA/tree proof in PR #271"
+  ],
+  "test_changes_from_incorporated_main": 0
+}

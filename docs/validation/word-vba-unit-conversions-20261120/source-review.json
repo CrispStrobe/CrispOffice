@@ -1,0 +1,391 @@
+{
+  "schema_version": 1,
+  "reviewer": "independent intake/source review agent",
+  "reviewed_commit": "dd8e73a7d6252b336b2e7a437c4931addc42d491",
+  "reviewed_compiler": {
+    "path": "packages/quds_office_engine/lib/src/automation/office_vba_language.dart",
+    "initial_blob": "bc00a76840eb300b5f955c0cf119e70ad4ac5829",
+    "checkpoint_blob": "3558d0697bf8d9a9a1319e70fab339c754d6a17f",
+    "final_candidate_blob": "a105ddd700c3822cb775d6a5ee9385bc380f4e8f",
+    "candidate_delta": "After the reviewed checkpoint: one comment clarifies no epsilon rounding, and two comment lines plus .toDouble() explicitly promote the already-validated number before integral-grid scaling. All other executable source remains unchanged.",
+    "candidate_delta_verified": true,
+    "comment_only_candidate_blob": "fb86d1abc97f96e22adef19e0d8156745506d7af"
+  },
+  "reviewed_files": [
+    {
+      "path": "packages/quds_office_engine/test/office_vba_word_unit_conversions_test.dart",
+      "blob": "d5caee5321cbf18e65466c2bf43fcec49397e725",
+      "checkpoint_blob": "94d136ef0da9874f59611dbc42ef2f9b2a63fab8",
+      "candidate_delta": "Exactly one new large-scalar conversion test; existing test source is unchanged."
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_vba_word_unit_conversions_integration_test.dart",
+      "blob": "d44ec892f13d9384ebed1e13b3f56e64c7959f2b"
+    },
+    {
+      "path": "packages/quds_office_engine/example/macros/word_unit_conversions.bas",
+      "blob": "cf996b99e767d1742557f257599bf0edf61eefa0"
+    },
+    {
+      "path": "docs/VBA_WORD_MACROS.md",
+      "blob": "4528ae190a10e7241b9f1768a07f113b73089592",
+      "checkpoint_blob": "f715838929eb5aaf33a60468f9f361c52534deee",
+      "candidate_delta": "Only the verified Microsoft coordinate/unit references and physical-ratio explanation were appended."
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/automation/office_macro_runtime.dart",
+      "blob": "99e384ddfee93607af303211e2cf08c4124c78be"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/automation/office_macro_model.dart",
+      "blob": "11b40aa8dfe10bf43c5fb117f6c11d651fbcd8e6"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/automation/operations/word_steps.dart",
+      "blob": "94338d4b998aaa83f2ca6ccd0ef5af1c5cdc7b70"
+    }
+  ],
+  "status": "source_review_complete_no_blocking_findings",
+  "scope": "Independent source and test-expectation review plus JavaScript arithmetic probes. This is not a Dart compilation, analyzer, formatter, VBA execution, native document run or VM/compiled-JavaScript parity qualification.",
+  "patch_binding": {
+    "diff_hunks": 7,
+    "old_context_matches": true,
+    "whole_source_matches_published_patch": true
+  },
+  "source_findings": [
+    {
+      "area": "dispatch and host isolation",
+      "result": "The ten-name map has exactly the two existing line conversions and eight intended physical conversions. All five prior Set.contains sites become Map.containsKey. Word-only reservation/checker/evaluator guards remain in place; no stale Set.contains call remains."
+    },
+    {
+      "area": "arity, types and side effects",
+      "result": "Existing _count/_arguments and numeric-kind checks apply to every new name; named/omitted arguments and wrong receiver kinds remain refused. Evaluation still evaluates arguments once, in existing source order, with pending line-spacing guards and normal work limits."
+    },
+    {
+      "area": "arithmetic",
+      "result": "Integral pairs match 72 points/inch, 2.54 cm/inch, 25.4 mm/inch and 12 points/pica. The exact round-trip grid guard and finite output bound remain. Forward conversions multiply and inverse conversions divide by a forward factor; legacy PointsToLines therefore preserves its old /12 off-grid path."
+    },
+    {
+      "area": "native operations",
+      "result": "No native operation, serializer or session implementation changes in the reviewed increment. Converted values still pass the existing independent destination precision/range checks. The native session source confirms empty plans do not save or increment revision, and failed validation/playback do not publish partial edits."
+    },
+    {
+      "area": "authored compiler tests",
+      "result": "Read all source and enumerated 202 authored cases: the original 201 cases are unchanged, and one additional test covers two valid large scalar conversions with signed-64-overflow-sized grid intermediates. Its independent physical-ratio expectations remain within signed64 before division. None were executed."
+    },
+    {
+      "area": "authored integration tests",
+      "result": "Read all six tests. API calls match current runtime/model source; the BAS emits nine paragraphFormat writes; save/reopen assertions, rollback/recording checks, mutation policy checks and no-op revision expectations are consistent with inspected implementation. None were executed."
+    },
+    {
+      "area": "example and contract",
+      "result": "Exact BAS uses all eight physical functions, typed ByVal helper, named helper arguments, With Application and two body paragraphs. Documented final indents/spacing match its nine writes. Contract correctly separates exact physical ratios from unmeasured Word Single behavior and separates scalar conversion from native twip validation."
+    }
+  ],
+  "resolved_review_findings": [
+    {
+      "finding": "A generic multiply-by-reciprocal inverse fallback would alter legacy PointsToLines off-grid results.",
+      "resolution": "Published compiler uses division by exact factor 12 for PointsToLines; explicit high-range legacy regression was added. Independent probes also covered three fractional off-grid inputs."
+    },
+    {
+      "finding": "Ordinary IEEE arithmetic can round an adjacent off-grid input to an exact native value; an absolute no-neighbor-rounding claim would be false.",
+      "resolution": "User-facing contract explicitly acknowledges ordinary binary64 rounding, selected rejection probes remain genuinely off-grid, and the final candidate compiler comment now promises only no epsilon rounding or blanket snapping."
+    },
+    {
+      "finding": "Integer-valued conversion inputs could take an unnecessary signed64 grid-multiplication path on Dart VM while JavaScript uses binary64.",
+      "resolution": "Final candidate promotes the already-bounded number to double before scaling. Every permitted integer is exactly representable. On-grid safe products remain exact; products beyond the grid bound cannot pass the original input-round-trip guard after wrap. Existing multiplication/division fallbacks already use double factors, so their numeric behavior is retained."
+    }
+  ],
+  "arithmetic_probe": {
+    "method": "Extracted ten integral scale pairs from the actual committed Dart source; asserted reviewed guard/factor shape; executed the corresponding arithmetic in JavaScript. This does not execute Dart, parse VBA or run native document mutations.",
+    "compiler_blob": "3558d0697bf8d9a9a1319e70fab339c754d6a17f",
+    "final_candidate_executable_equivalence_verified": false,
+    "extracted_pairs": {
+      "linestopoints": [
+        240,
+        20
+      ],
+      "pointstolines": [
+        20,
+        240
+      ],
+      "inchestopoints": [
+        1440,
+        20
+      ],
+      "pointstoinches": [
+        20,
+        1440
+      ],
+      "centimeterstopoints": [
+        72000,
+        2540
+      ],
+      "pointstocentimeters": [
+        2540,
+        72000
+      ],
+      "millimeterstopoints": [
+        7200,
+        2540
+      ],
+      "pointstomillimeters": [
+        2540,
+        7200
+      ],
+      "picastopoints": [
+        240,
+        20
+      ],
+      "pointstopicas": [
+        20,
+        240
+      ]
+    },
+    "structural": {
+      "exact_names": true,
+      "lookup_count": 5,
+      "stale_set_lookup_count": 0,
+      "factor_direction": true,
+      "roundtrip_guard": true,
+      "output_bound": true,
+      "old_reverse_division_preserved": true
+    },
+    "exact_twip_numeric_comparisons": 200010,
+    "additional_comparisons": 32,
+    "results": [
+      {
+        "label": "linestopoints exact twip round trips 40002",
+        "ok": true
+      },
+      {
+        "label": "inchestopoints exact twip round trips 40002",
+        "ok": true
+      },
+      {
+        "label": "centimeterstopoints exact twip round trips 40002",
+        "ok": true
+      },
+      {
+        "label": "millimeterstopoints exact twip round trips 40002",
+        "ok": true
+      },
+      {
+        "label": "picastopoints exact twip round trips 40002",
+        "ok": true
+      },
+      {
+        "label": "inchestopoints rejects output beyond bound",
+        "ok": true
+      },
+      {
+        "label": "centimeterstopoints rejects output beyond bound",
+        "ok": true
+      },
+      {
+        "label": "millimeterstopoints rejects output beyond bound",
+        "ok": true
+      },
+      {
+        "label": "picastopoints rejects output beyond bound",
+        "ok": true
+      },
+      {
+        "label": "legacy PointsToLines off-grid 71.99999999999999",
+        "ok": true
+      },
+      {
+        "label": "legacy PointsToLines off-grid 1e-20",
+        "ok": true
+      },
+      {
+        "label": "legacy PointsToLines off-grid 0.00001",
+        "ok": true
+      },
+      {
+        "label": "legacy PointsToLines off-grid 9007199254740991",
+        "ok": true
+      },
+      {
+        "label": "inchestopoints reference value",
+        "ok": true
+      },
+      {
+        "label": "inchestopoints zero",
+        "ok": true
+      },
+      {
+        "label": "inchestopoints sign",
+        "ok": true
+      },
+      {
+        "label": "pointstoinches reference value",
+        "ok": true
+      },
+      {
+        "label": "pointstoinches zero",
+        "ok": true
+      },
+      {
+        "label": "pointstoinches sign",
+        "ok": true
+      },
+      {
+        "label": "centimeterstopoints reference value",
+        "ok": true
+      },
+      {
+        "label": "centimeterstopoints zero",
+        "ok": true
+      },
+      {
+        "label": "centimeterstopoints sign",
+        "ok": true
+      },
+      {
+        "label": "pointstocentimeters reference value",
+        "ok": true
+      },
+      {
+        "label": "pointstocentimeters zero",
+        "ok": true
+      },
+      {
+        "label": "pointstocentimeters sign",
+        "ok": true
+      },
+      {
+        "label": "millimeterstopoints reference value",
+        "ok": true
+      },
+      {
+        "label": "millimeterstopoints zero",
+        "ok": true
+      },
+      {
+        "label": "millimeterstopoints sign",
+        "ok": true
+      },
+      {
+        "label": "pointstomillimeters reference value",
+        "ok": true
+      },
+      {
+        "label": "pointstomillimeters zero",
+        "ok": true
+      },
+      {
+        "label": "pointstomillimeters sign",
+        "ok": true
+      },
+      {
+        "label": "picastopoints reference value",
+        "ok": true
+      },
+      {
+        "label": "picastopoints zero",
+        "ok": true
+      },
+      {
+        "label": "picastopoints sign",
+        "ok": true
+      },
+      {
+        "label": "pointstopicas reference value",
+        "ok": true
+      },
+      {
+        "label": "pointstopicas zero",
+        "ok": true
+      },
+      {
+        "label": "pointstopicas sign",
+        "ok": true
+      }
+    ],
+    "all_checks_passed": true,
+    "counting": "Independent arithmetic probes only. Do not add these to authored or executed Dart test counts; do not combine them with another reviewer's overlapping probes as unique coverage.",
+    "final_candidate_delta_verified": "Only exact promotion of bounded inputs was added; the JavaScript arithmetic model already uses binary64 for those inputs and the extracted table/guard/factor logic remains unchanged.",
+    "final_candidate_blob": "a105ddd700c3822cb775d6a5ee9385bc380f4e8f"
+  },
+  "primary_sources": [
+    {
+      "url": "https://learn.microsoft.com/en-us/office/vba/api/word.application.inchestopoints",
+      "supports": "Word method, Single input/result, 72 points/inch."
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/office/vba/api/word.application.pointstoinches",
+      "supports": "Inverse Word method, Single input/result."
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/office/vba/api/word.application.centimeterstopoints",
+      "supports": "Word method, Single input/result; prose metric factor is rounded."
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/office/vba/api/word.application.pointstocentimeters",
+      "supports": "Inverse Word method, Single input/result."
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/office/vba/api/word.application.millimeterstopoints",
+      "supports": "Word method, Single input/result; prose factor differs from reverse-method page and is not used as an exact ratio."
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/office/vba/api/word.application.pointstomillimeters",
+      "supports": "Inverse Word method, Single input/result."
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/office/vba/api/word.application.picastopoints",
+      "supports": "Word method, Single input/result, 12 points/pica."
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/office/vba/api/word.application.pointstopicas",
+      "supports": "Inverse Word method, Single input/result, 12 points/pica."
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/openspecs/office_standards/ms-oi29500/afb7e140-b259-4901-8af4-d4a514f50db9",
+      "supports": "Office coordinate ratios 914400 units/inch and 360000 units/cm; exact physical metric ratio is inferred from these unit definitions."
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/windows/win32/vml/basic-vml-types",
+      "supports": "12700 units/point and 635 units/twip, consistent with 20 twips/point."
+    }
+  ],
+  "unexecuted": {
+    "dart_compiler_tests": 202,
+    "dart_integration_tests": 6,
+    "dart_analyzer": true,
+    "dart_formatter": true,
+    "broader_office_regression": true,
+    "vm_and_compiled_javascript_parity": true,
+    "microsoft_word_runtime_comparison": true
+  },
+  "github_actions_queried": false,
+  "github_actions_waited": false,
+  "promotion_review": {
+    "number_validation_precedes_promotion": true,
+    "exact_integer_promotion_limit": "All accepted integers have magnitude <= 9007199254740991.",
+    "safe_grid_equivalence": "An integer grid product within the exact-integer bound is identical before and after promotion.",
+    "above_grid_equivalence": "A non-overflowing product above the guard bound is rejected by the grid predicate. If a wrapped product is small enough to satisfy the guard's magnitude check, its quotient cannot reconstruct the original larger input; fallback is selected.",
+    "fallback_equivalence": "The current map implementation's forward factor is already double, and reverse conversions already divide by that factor.",
+    "scope": "Source-level proof and JavaScript arithmetic only; no Dart VM execution or parity claim.",
+    "large_scalar_cases": [
+      {
+        "name": "CentimetersToPoints",
+        "input": 200000000000000,
+        "formula_result": 5669291338582677,
+        "independent_reference": 5669291338582677,
+        "tolerance": 1,
+        "within_tolerance": true
+      },
+      {
+        "name": "PointsToCentimeters",
+        "input": 9007199254740991,
+        "formula_result": 317753973708918.3,
+        "independent_reference": 317753973708918.3,
+        "tolerance": 0.125,
+        "within_tolerance": true
+      }
+    ]
+  },
+  "final_candidate_reviewed_at_utc": "2026-11-20T20:41:32.043Z"
+}
