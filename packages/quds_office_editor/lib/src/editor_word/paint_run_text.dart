@@ -28,6 +28,7 @@ abstract final class PaintRunText {
   /// latinFallbacks API.
   static const List<String> latinFallbacks = <String>[
     'Liberation Sans',
+    'DejaVu Sans',
     'Calibri',
     'Carlito',
     'Liberation Serif',
@@ -697,9 +698,8 @@ abstract final class PaintRunText {
             : glyph.x;
       }
     }
-    final List<List<LaidOutGlyph>> segments = paintSegments(
-      line,
-    ).toList(growable: false);
+    final List<List<LaidOutGlyph>> segments = paintSegments(line)
+        .toList(growable: false);
     for (int s = 0; s < segments.length; s++) {
       final List<LaidOutGlyph> run = segments[s];
       final LaidOutGlyph first = run.first;

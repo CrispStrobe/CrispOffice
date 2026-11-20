@@ -66,8 +66,7 @@ class SlideDeserializer {
             rel.targetMode == RelationshipTargetMode.external ||
             package.getPart(presentationRels.resolve(rel))?.contentType !=
                 OfficeContentTypes.slide) {
-          slideRelationshipIssue =
-              'Section membership requires modeled internal slide relationships.';
+          slideRelationshipIssue = 'Section membership requires modeled internal slide relationships.';
         }
         slideUris.add(
           rel != null && rel.type == RelationshipTypes.slide
@@ -130,6 +129,12 @@ class SlideDeserializer {
           _inheritPlaceholders(shapes, positioned, <List<PmlShape>>[
             layout.placeholders,
             layout.master?.placeholders ?? const <PmlShape>[],
+          ]);
+          pres.slides[i].backgroundShapes.addAll(<PmlShape>[
+            for (final PmlShape shape
+                in layout.master?.decorations ?? const <PmlShape>[])
+              shape.copy(),
+            for (final PmlShape shape in layout.decorations) shape.copy(),
           ]);
         }
         pres.slides[i].shapes.addAll(shapes);
@@ -304,7 +309,15 @@ class SlideDeserializer {
     OpcPackage package,
     RelationshipCollection rels,
   ) {
-    for (final PmlShape shape in slide.shapes) {
+    _bindShapeMedia(slide.shapes, package, rels);
+  }
+
+  static void _bindShapeMedia(
+    List<PmlShape> shapes,
+    OpcPackage package,
+    RelationshipCollection rels,
+  ) {
+    for (final PmlShape shape in shapes) {
       final String? rid = shape.embedRelId;
       if (rid == null || rid.isEmpty) {
         continue;
@@ -348,6 +361,7 @@ class _SlideTemplate {
     required this.name,
     required this.colors,
     required this.placeholders,
+    required this.decorations,
     this.background,
     this.inheritsMasterBackground = false,
     this.master,
@@ -356,6 +370,7 @@ class _SlideTemplate {
   final String name;
   final Map<String, String> colors;
   final List<PmlShape> placeholders;
+  final List<PmlShape> decorations;
   final String? background;
   final bool inheritsMasterBackground;
   final _SlideTemplate? master;
@@ -439,6 +454,7 @@ class _SlideTemplates {
         for (final PmlShape shape in shapes)
           if (shape.placeholder && positioned.contains(shape)) shape,
       ],
+      decorations: _decorations(shapes, package, uri),
       background: background ?? master?.background,
       inheritsMasterBackground: background == null,
       master: master,
@@ -472,8 +488,26 @@ class _SlideTemplates {
         for (final PmlShape shape in shapes)
           if (shape.placeholder && positioned.contains(shape)) shape,
       ],
+      decorations: _decorations(shapes, package, uri),
       background: SlideDeserializer._backgroundOf(xml, colors),
     );
+  }
+
+  static List<PmlShape> _decorations(
+    List<PmlShape> shapes,
+    OpcPackage package,
+    String uri,
+  ) {
+    final List<PmlShape> decorations = <PmlShape>[
+      for (final PmlShape shape in shapes)
+        if (!shape.placeholder) shape,
+    ];
+    SlideDeserializer._bindShapeMedia(
+      decorations,
+      package,
+      package.relationshipsFor(uri),
+    );
+    return decorations;
   }
 
   String? _target(String sourceUri, String type) {

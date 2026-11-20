@@ -273,6 +273,10 @@ List<PmlShape> parseSlideShapes(
         'roundRect' => PmlShapePreset.roundRect,
         'triangle' => PmlShapePreset.triangle,
         'straightConnector1' => PmlShapePreset.connector,
+        'downArrow' => PmlShapePreset.downArrow,
+        'upArrow' => PmlShapePreset.upArrow,
+        'leftArrow' => PmlShapePreset.leftArrow,
+        'rightArrow' => PmlShapePreset.rightArrow,
         _ => PmlShapePreset.rect,
       };
     } else if (reader.localName == 'bodyPr' && current != null) {
@@ -415,9 +419,8 @@ void _captureTextSources(
         reader.namespaceUri == OfficeNamespaces.p &&
         current != null) {
       final XmlElement body = XmlDocument.readElement(reader);
-      final String snapshot = XmlDocument(
-        root: body,
-      ).toXmlString(declaration: false);
+      final String snapshot = XmlDocument(root: body)
+          .toXmlString(declaration: false);
       current.textSource = PmlTextSource(
         xml: snapshot,
         text: current.text,
@@ -807,6 +810,10 @@ void _writeSlideShape(XmlWriter w, PmlShape shape) {
         PmlShapePreset.triangle => 'triangle',
         PmlShapePreset.connector => 'straightConnector1',
         PmlShapePreset.freeform => 'rect',
+        PmlShapePreset.downArrow => 'downArrow',
+        PmlShapePreset.upArrow => 'upArrow',
+        PmlShapePreset.leftArrow => 'leftArrow',
+        PmlShapePreset.rightArrow => 'rightArrow',
         PmlShapePreset.rect => 'rect',
       },
     },
