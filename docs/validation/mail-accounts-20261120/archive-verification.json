@@ -1,0 +1,10 @@
+{
+  "archive": "machine-evidence.tar.xz",
+  "archive_sha256": "bdcff7ce1ad55e7025803a8b0173df37dc38d314901e655a3981f91bd52e8b90",
+  "archive_bytes": 896648,
+  "manifest_sha256": "c1244e49ec0e1f82176ec134290fb3474ac39f14399437b61729fc5098bb378e",
+  "verified_members": 303,
+  "errors": [],
+  "passed": true,
+  "scope": "Archive integrity only; raw-event replay and Git source continuity are separate."
+}

@@ -1,0 +1,436 @@
+{
+  "schema": "quds.later-heads-bounded-intake.v1",
+  "reviewed_at_utc": "2026-11-20T12:10:30.458Z",
+  "repository": "CrispStrobe/quds_office_suite",
+  "integration": {
+    "commit": "630951d292b01bca787ee026d978c3e2f2422b82",
+    "tree": "95f7f5a3b978363afc2106a983a6fc57659fedd6"
+  },
+  "input_scope": "Seven immutable late head SHAs supplied by root from its final 25-head snapshot. Initial five heads and later main7e/perfe6 were already incorporated. No additional branch or PR refresh performed.",
+  "method": "Compare each exact late head to the exact integration commit. Inspect changed-path deltas and compare all 86 distinct candidate paths against the integration Git tree by immutable content blob. Diverged ancestry plus non-equivalent/new content is pending; isolated matching files do not establish whole-head equivalence.",
+  "summary": {
+    "ancestor": 0,
+    "equivalent": 0,
+    "pending": 7,
+    "critical_conflicts_requiring_scope_reopening": []
+  },
+  "heads": [
+    {
+      "label": "vba",
+      "head": "89910ff6363cd45ced5faf0e48b11cac46754b28",
+      "classification": "pending",
+      "comparison": {
+        "status": "diverged",
+        "head_only_commits": 15,
+        "integration_only_commits": 9,
+        "merge_base": "e6f70bffb3525b33616f0396e3d58c44432c5f7b"
+      },
+      "content_equivalence": {
+        "changed_paths_since_common_ancestor": 74,
+        "exact_content_blob_matches": 9,
+        "different_existing_blobs": 34,
+        "paths_absent_from_integration": 31,
+        "whole_changed_path_equivalence": false
+      },
+      "delta": "VBA optional/shared argument binding and Word paragraph layout, PowerPoint text margins/insets, rendering/export preservation, examples, regression suites and qualification records; also incorporates older Mail, Downloads, layout and Zotero checkpoints.",
+      "priority": "separate_feature_intake",
+      "overlap": "Includes older Zotero and layout sources. Future reconciliation must preserve the newer citation/table-target corrections and layout cache/engine-owner fixes already in the Zotero branch.",
+      "unique_commit_subjects": [
+        {
+          "sha": "9e0d8173fada4ae3f22ace5c5b896c21ab5191da",
+          "subject": "Integrate captured Word relayout and reconcile alternate Downloads history [skip ci]"
+        },
+        {
+          "sha": "5e64f48b092e7abaf6014c188ce8eb1057d30ec1",
+          "subject": "test(mail): cover forward payload integrity and all-or-none admission [skip ci]"
+        },
+        {
+          "sha": "8ea669f52dfe2ba8ee42b616ed81fb9381561d2a",
+          "subject": "Cover Gmail and Microsoft 365 forwarded-draft recovery [skip ci]"
+        },
+        {
+          "sha": "c2b4f17bfc4baa433e90bbcbf537e4e0cd250988",
+          "subject": "fix(mail): preserve attachment-only forwards and reject incomplete HTML quotes [skip ci]"
+        },
+        {
+          "sha": "feffbfa437ee466a74801276fbeb178b548845e0",
+          "subject": "Distinguish bodyless file forwards from unsafe HTML prefixes [skip ci]"
+        },
+        {
+          "sha": "58000866a6a36d7cc29e2a5677ef23c2f71dff51",
+          "subject": "Record complete intake and independent incremental-layout qualification [skip ci]"
+        },
+        {
+          "sha": "e538041f54487c1b8eb62cc4f8980dd37e26043f",
+          "subject": "test(mail): integrate provider-host forwarding and recovery coverage [skip ci]"
+        },
+        {
+          "sha": "09e0d0a0eb09411cef31ac98efd44dbd5a17fe72",
+          "subject": "docs(mail): advance parity roadmap with reply and forward contracts [skip ci]"
+        },
+        {
+          "sha": "d6de5ef4707004d000fcf00935197e88fb0a4c1d",
+          "subject": "style(mail): format reply-forward changes and resolve strict test lints [skip ci]"
+        },
+        {
+          "sha": "979cfa77c3bf7718664db7ecb4f62b656a58f187",
+          "subject": "Extend Word and PowerPoint VBA formatting and shared helper arguments [skip ci]"
+        },
+        {
+          "sha": "0c2f09faf32cf5bdd2222cf73d0412abf954e260",
+          "subject": "Merge current main and preserve reviewed Downloads resolutions [skip ci]"
+        },
+        {
+          "sha": "b2b7ec91e513b1773a8bd26775cde4fd87b738f8",
+          "subject": "style(mail): integrate pinned Dart formatting and clean test analysis [skip ci]"
+        },
+        {
+          "sha": "40572427fc7d62b0fb2423712fa79162814b53a9",
+          "subject": "Complete reviewed Word bindings and portable Office expansion examples [skip ci]"
+        },
+        {
+          "sha": "050ba58acad35f41803377b385ea22c833822845",
+          "subject": "Reconcile refreshed main, Mail, Zotero tables and Word layout before qualification [skip ci]"
+        },
+        {
+          "sha": "89910ff6363cd45ced5faf0e48b11cac46754b28",
+          "subject": "Qualify incoming Zotero fixtures and format layout regressions [skip ci]"
+        }
+      ],
+      "exact_matching_paths": [
+        {
+          "path": "docs/validation/zotero-research-tables-20261120/incoming-downloads-review.json",
+          "blob": "701f36aa25d467c7a69ea4b6077c4e2f454488ea"
+        },
+        {
+          "path": "docs/validation/zotero-research-tables-20261120/incoming-intake.json",
+          "blob": "f4d222a2635e1f4171f616c748bf90c2a6a73fd3"
+        },
+        {
+          "path": "docs/validation/zotero-research-tables-20261120/incoming-layout-review.json",
+          "blob": "dbee5d5cb9acdaa009c1f81c556a39b9f0c8c7fc"
+        },
+        {
+          "path": "packages/quds_mail_ui/lib/src/reader/presentation.dart",
+          "blob": "3db312a5572c78e9115a666ed5363eea467c28d5"
+        },
+        {
+          "path": "packages/quds_mail_ui/test/body_presentation_test.dart",
+          "blob": "d272c44557fa20b045824cbcd689377fdacb7100"
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/word/model/word_zotero_citing.dart",
+          "blob": "6b752df7f08107daf3976271ba2abbcd5afe526f"
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/word/model/word_zotero_note.dart",
+          "blob": "dcf54783928e8468e015195081b3d97f29e7b989"
+        },
+        {
+          "path": "packages/quds_office_engine/test/word_incremental_layout_prefix_test.dart",
+          "blob": "60845ddbfe2db7df70dec6ae02e9192f6fdd7c6e"
+        },
+        {
+          "path": "packages/quds_office_engine/test/word_zotero_add_note_test.dart",
+          "blob": "0b6b41ac5707c24431df761d791b233b108ce811"
+        }
+      ]
+    },
+    {
+      "label": "downloads",
+      "head": "e6737bc6bccd521660dff0425ca620525dc04a58",
+      "classification": "pending",
+      "comparison": {
+        "status": "diverged",
+        "head_only_commits": 1,
+        "integration_only_commits": 23,
+        "merge_base": "7e740a53d3fea4b6bd734537e89888b641a8b735"
+      },
+      "content_equivalence": {
+        "changed_paths_since_common_ancestor": 1,
+        "exact_content_blob_matches": 0,
+        "different_existing_blobs": 1,
+        "paths_absent_from_integration": 0,
+        "whole_changed_path_equivalence": false
+      },
+      "delta": "One file: studio_licenses.dart loads the open-font license as bytes and decodes UTF-8 in place, avoiding loadString compute-isolate work that its author reports hangs license-page widget tests.",
+      "priority": "small_followup",
+      "overlap": "Independent of the Zotero and Downloads-manager implementation.",
+      "unique_commit_subjects": [
+        {
+          "sha": "e6737bc6bccd521660dff0425ca620525dc04a58",
+          "subject": "Decode the open font pack licence without a compute isolate"
+        }
+      ],
+      "exact_matching_paths": []
+    },
+    {
+      "label": "performance",
+      "head": "9b581e8a125f89c1974952d628bfe6e111a44bf6",
+      "classification": "pending",
+      "comparison": {
+        "status": "diverged",
+        "head_only_commits": 1,
+        "integration_only_commits": 16,
+        "merge_base": "e6f70bffb3525b33616f0396e3d58c44432c5f7b"
+      },
+      "content_equivalence": {
+        "changed_paths_since_common_ancestor": 1,
+        "exact_content_blob_matches": 0,
+        "different_existing_blobs": 1,
+        "paths_absent_from_integration": 0,
+        "whole_changed_path_equivalence": false
+      },
+      "delta": "Documentation only: 22 lines recording local Studio chrome A/B measurements. No product or test source changed.",
+      "priority": "documentation_intake",
+      "overlap": "The e6f70bff implementation is already incorporated; these later benchmark observations are separate evidence and are not this branch validation.",
+      "unique_commit_subjects": [
+        {
+          "sha": "9b581e8a125f89c1974952d628bfe6e111a44bf6",
+          "subject": "Record local chrome A/B results [skip ci]"
+        }
+      ],
+      "exact_matching_paths": []
+    },
+    {
+      "label": "mail_accounts",
+      "head": "cb7f832590b77bd5be6e04814f1b64ae418b2b55",
+      "classification": "pending",
+      "comparison": {
+        "status": "diverged",
+        "head_only_commits": 4,
+        "integration_only_commits": 33,
+        "merge_base": "a71a7f19e7146a19ecf79122477210fd71afb51b"
+      },
+      "content_equivalence": {
+        "changed_paths_since_common_ancestor": 19,
+        "exact_content_blob_matches": 3,
+        "different_existing_blobs": 14,
+        "paths_absent_from_integration": 2,
+        "whole_changed_path_equivalence": false
+      },
+      "delta": "Additional credential/backend test seams and ownership guards, backend-switch fixtures, account documentation, and merges of older body-projection/Downloads/layout work.",
+      "priority": "separate_mail_intake",
+      "overlap": "Backend/native changes overlap our reviewed revision-fenced implementation. Preserve serialized selection, queue fencing and cross-dialog reload when reconciling; raw file replacement would lose newer safeguards.",
+      "unique_commit_subjects": [
+        {
+          "sha": "0c2f09faf32cf5bdd2222cf73d0412abf954e260",
+          "subject": "Merge current main and preserve reviewed Downloads resolutions [skip ci]"
+        },
+        {
+          "sha": "33b2eba965a58d09317ccdf060f1ae1704d735c3",
+          "subject": "Integrate captured credential-store and Mail chrome continuation [skip ci]"
+        },
+        {
+          "sha": "91645cd5da644a393f3827ed390b25b750b42c71",
+          "subject": "Integrate Mail body projection and guard credential-store ownership [skip ci]"
+        },
+        {
+          "sha": "cb7f832590b77bd5be6e04814f1b64ae418b2b55",
+          "subject": "Integrate captured incremental Word layout continuation [skip ci]"
+        }
+      ],
+      "exact_matching_paths": [
+        {
+          "path": "docs/validation/mail-reply-forward-20261120/README.md",
+          "blob": "182fdf5e8c7eec71592fca579af4114f44c5c514"
+        },
+        {
+          "path": "docs/validation/mail-reply-forward-20261120/intake.json",
+          "blob": "fad219108f67a0974922ce2f0f81800f7959c501"
+        },
+        {
+          "path": "packages/quds_mail_ui/CHANGELOG.md",
+          "blob": "a468416b39ee7d613dbfda3bdb24f3d6400c9b01"
+        }
+      ]
+    },
+    {
+      "label": "mail_host_tests",
+      "head": "feffbfa437ee466a74801276fbeb178b548845e0",
+      "classification": "pending",
+      "comparison": {
+        "status": "diverged",
+        "head_only_commits": 2,
+        "integration_only_commits": 42,
+        "merge_base": "9730a43ff2045ca43af7d5c6301a775562db1a77"
+      },
+      "content_equivalence": {
+        "changed_paths_since_common_ancestor": 3,
+        "exact_content_blob_matches": 0,
+        "different_existing_blobs": 3,
+        "paths_absent_from_integration": 0,
+        "whole_changed_path_equivalence": false
+      },
+      "delta": "Three host test files add Gmail/Microsoft 365 forwarded-draft recovery and distinguish attachment-only forwards from unsafe HTML prefixes.",
+      "priority": "mail_test_intake",
+      "overlap": "Also contained in the supplied reply-forward and VBA histories; not an independent product implementation.",
+      "unique_commit_subjects": [
+        {
+          "sha": "8ea669f52dfe2ba8ee42b616ed81fb9381561d2a",
+          "subject": "Cover Gmail and Microsoft 365 forwarded-draft recovery [skip ci]"
+        },
+        {
+          "sha": "feffbfa437ee466a74801276fbeb178b548845e0",
+          "subject": "Distinguish bodyless file forwards from unsafe HTML prefixes [skip ci]"
+        }
+      ],
+      "exact_matching_paths": []
+    },
+    {
+      "label": "mail_reply_forward",
+      "head": "4df7a148f156d9a697028994f14b171877d1d47c",
+      "classification": "pending",
+      "comparison": {
+        "status": "diverged",
+        "head_only_commits": 9,
+        "integration_only_commits": 23,
+        "merge_base": "7e740a53d3fea4b6bd734537e89888b641a8b735"
+      },
+      "content_equivalence": {
+        "changed_paths_since_common_ancestor": 13,
+        "exact_content_blob_matches": 2,
+        "different_existing_blobs": 9,
+        "paths_absent_from_integration": 2,
+        "whole_changed_path_equivalence": false
+      },
+      "delta": "Attachment-only forwarding admission; actual MIME parse status propagated into native/EWS HTML quotation; complete-parse refusal for truncated HTML; forwarded payload/recovery tests and roadmap updates.",
+      "priority": "mail_correctness_followup",
+      "overlap": "Two reader projection files already match our content exactly; host forwarding and quotation guards and additional tests remain pending.",
+      "unique_commit_subjects": [
+        {
+          "sha": "5e64f48b092e7abaf6014c188ce8eb1057d30ec1",
+          "subject": "test(mail): cover forward payload integrity and all-or-none admission [skip ci]"
+        },
+        {
+          "sha": "8ea669f52dfe2ba8ee42b616ed81fb9381561d2a",
+          "subject": "Cover Gmail and Microsoft 365 forwarded-draft recovery [skip ci]"
+        },
+        {
+          "sha": "c2b4f17bfc4baa433e90bbcbf537e4e0cd250988",
+          "subject": "fix(mail): preserve attachment-only forwards and reject incomplete HTML quotes [skip ci]"
+        },
+        {
+          "sha": "feffbfa437ee466a74801276fbeb178b548845e0",
+          "subject": "Distinguish bodyless file forwards from unsafe HTML prefixes [skip ci]"
+        },
+        {
+          "sha": "e538041f54487c1b8eb62cc4f8980dd37e26043f",
+          "subject": "test(mail): integrate provider-host forwarding and recovery coverage [skip ci]"
+        },
+        {
+          "sha": "09e0d0a0eb09411cef31ac98efd44dbd5a17fe72",
+          "subject": "docs(mail): advance parity roadmap with reply and forward contracts [skip ci]"
+        },
+        {
+          "sha": "d6de5ef4707004d000fcf00935197e88fb0a4c1d",
+          "subject": "style(mail): format reply-forward changes and resolve strict test lints [skip ci]"
+        },
+        {
+          "sha": "b2b7ec91e513b1773a8bd26775cde4fd87b738f8",
+          "subject": "style(mail): integrate pinned Dart formatting and clean test analysis [skip ci]"
+        },
+        {
+          "sha": "4df7a148f156d9a697028994f14b171877d1d47c",
+          "subject": "Reconcile current main credentials with completed reply-forward source [skip ci]"
+        }
+      ],
+      "exact_matching_paths": [
+        {
+          "path": "packages/quds_mail_ui/lib/src/reader/presentation.dart",
+          "blob": "3db312a5572c78e9115a666ed5363eea467c28d5"
+        },
+        {
+          "path": "packages/quds_mail_ui/test/body_presentation_test.dart",
+          "blob": "d272c44557fa20b045824cbcd689377fdacb7100"
+        }
+      ]
+    },
+    {
+      "label": "mail_validation",
+      "head": "d6de5ef4707004d000fcf00935197e88fb0a4c1d",
+      "classification": "pending",
+      "comparison": {
+        "status": "diverged",
+        "head_only_commits": 6,
+        "integration_only_commits": 38,
+        "merge_base": "bc90d2ef2f5fa04e80499add14976c7dbb20bd90"
+      },
+      "content_equivalence": {
+        "changed_paths_since_common_ancestor": 10,
+        "exact_content_blob_matches": 2,
+        "different_existing_blobs": 7,
+        "paths_absent_from_integration": 1,
+        "whole_changed_path_equivalence": false
+      },
+      "delta": "Shared reply-forward changes and host tests plus pinned formatting/lint cleanup; despite the branch label this is not exclusively evidence.",
+      "priority": "mail_correctness_followup",
+      "overlap": "Contained in the supplied reply-forward and VBA histories. Do not count as incorporated merely because some formatted reader files already match.",
+      "unique_commit_subjects": [
+        {
+          "sha": "5e64f48b092e7abaf6014c188ce8eb1057d30ec1",
+          "subject": "test(mail): cover forward payload integrity and all-or-none admission [skip ci]"
+        },
+        {
+          "sha": "8ea669f52dfe2ba8ee42b616ed81fb9381561d2a",
+          "subject": "Cover Gmail and Microsoft 365 forwarded-draft recovery [skip ci]"
+        },
+        {
+          "sha": "c2b4f17bfc4baa433e90bbcbf537e4e0cd250988",
+          "subject": "fix(mail): preserve attachment-only forwards and reject incomplete HTML quotes [skip ci]"
+        },
+        {
+          "sha": "feffbfa437ee466a74801276fbeb178b548845e0",
+          "subject": "Distinguish bodyless file forwards from unsafe HTML prefixes [skip ci]"
+        },
+        {
+          "sha": "e538041f54487c1b8eb62cc4f8980dd37e26043f",
+          "subject": "test(mail): integrate provider-host forwarding and recovery coverage [skip ci]"
+        },
+        {
+          "sha": "d6de5ef4707004d000fcf00935197e88fb0a4c1d",
+          "subject": "style(mail): format reply-forward changes and resolve strict test lints [skip ci]"
+        }
+      ],
+      "exact_matching_paths": [
+        {
+          "path": "packages/quds_mail_ui/lib/src/reader/presentation.dart",
+          "blob": "3db312a5572c78e9115a666ed5363eea467c28d5"
+        },
+        {
+          "path": "packages/quds_mail_ui/test/body_presentation_test.dart",
+          "blob": "d272c44557fa20b045824cbcd689377fdacb7100"
+        }
+      ]
+    }
+  ],
+  "related_histories": [
+    {
+      "ancestor_head": "feffbfa437ee466a74801276fbeb178b548845e0",
+      "included_in_supplied_heads": [
+        "4df7a148f156d9a697028994f14b171877d1d47c",
+        "89910ff6363cd45ced5faf0e48b11cac46754b28"
+      ],
+      "evidence": "Both immutable compare commit graphs include this commit and its parent chain."
+    },
+    {
+      "ancestor_head": "d6de5ef4707004d000fcf00935197e88fb0a4c1d",
+      "included_in_supplied_heads": [
+        "4df7a148f156d9a697028994f14b171877d1d47c",
+        "89910ff6363cd45ced5faf0e48b11cac46754b28"
+      ],
+      "evidence": "Both immutable compare commit graphs include this commit and its parent chain."
+    }
+  ],
+  "disposition": "Keep all seven late heads recorded as pending intake. No concrete critical conflict was identified in this bounded delta review that requires reopening the already reconciled Zotero scope. This does not certify all late code as safe or correct.",
+  "qualifications": {
+    "source_edits": false,
+    "commits_or_ref_writes": false,
+    "extra_branch_or_pr_refresh": false,
+    "ci_or_actions_queries": false,
+    "executable_validation": false,
+    "remote_mutation": "Evidence JSON blob only.",
+    "review_limit": "Targeted delta/overlap classification, not exhaustive review or acceptance of the late branches.",
+    "future_merge_note": "Use normal source reconciliation and preserve current reviewed guards; older captured sources in late aggregate branches are not replacement authority."
+  }
+}

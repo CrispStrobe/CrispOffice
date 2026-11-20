@@ -1,0 +1,63 @@
+{
+  "commit": "192ea2aedbf0b1494627953c79a7042037a63301",
+  "checks": [
+    {
+      "name": "format",
+      "command": [
+        "/workspace/scratch/f0616b02624b/toolchains/dart-sdk/bin/dart",
+        "format",
+        "--output=none",
+        "--set-exit-if-changed",
+        "packages/quds_office_editor/lib/src/editor_slide/render_slide_stage.dart",
+        "packages/quds_office_engine/lib/src/automation/office_vba_language.dart",
+        "packages/quds_office_engine/lib/src/automation/operations/slide_steps.dart",
+        "packages/quds_office_engine/lib/src/automation/operations/word_steps.dart",
+        "packages/quds_office_engine/lib/src/pdf/office_pdf_export.dart",
+        "packages/quds_office_engine/lib/src/slide/model/pml_presentation.dart",
+        "packages/quds_office_engine/lib/src/slide/shapes/drawingml.dart",
+        "packages/quds_office_engine/lib/src/word/layout/word_incremental_layout.dart",
+        "packages/quds_office_engine/lib/src/word/layout/word_layout.dart",
+        "packages/quds_office_engine/lib/src/word/model/word_zotero_citing.dart",
+        "packages/quds_office_engine/lib/src/word/model/word_zotero_note.dart",
+        "packages/quds_office_engine/lib/src/word/serial/word_deserializer.dart",
+        "packages/quds_office_engine/lib/src/word/serial/word_property_io.dart",
+        "packages/quds_office_engine/lib/src/word/serial/word_style_cascade.dart",
+        "packages/quds_office_engine/test/office_vba_arguments_integration_test.dart",
+        "packages/quds_office_engine/test/office_vba_arguments_test.dart",
+        "packages/quds_office_engine/test/office_vba_powerpoint_margins_integration_test.dart",
+        "packages/quds_office_engine/test/office_vba_powerpoint_margins_test.dart",
+        "packages/quds_office_engine/test/office_vba_procedure_boundaries_test.dart",
+        "packages/quds_office_engine/test/office_vba_string_intrinsics_test.dart",
+        "packages/quds_office_engine/test/office_vba_word_argument_shapes_test.dart",
+        "packages/quds_office_engine/test/office_vba_word_paragraph_layout_integration_test.dart",
+        "packages/quds_office_engine/test/office_vba_word_paragraph_layout_test.dart",
+        "packages/quds_office_engine/test/slide_text_insets_preservation_test.dart",
+        "packages/quds_office_engine/test/word_incremental_layout_differential_test.dart",
+        "packages/quds_office_engine/test/word_incremental_layout_prefix_test.dart",
+        "packages/quds_office_engine/test/word_incremental_layout_test.dart",
+        "packages/quds_office_engine/test/word_zotero_add_note_test.dart",
+        "packages/quds_office_engine/test/word_zotero_note_table_test.dart",
+        "packages/quds_office_engine/test/word_zotero_note_tables_integration_test.dart",
+        "packages/quds_office_engine/tool/macros/web_vba_arguments_smoke.dart",
+        "packages/quds_office_engine/tool/macros/web_vba_office_expansion_smoke.dart",
+        "packages/quds_office_engine/tool/zotero/research_target_acceptance.dart"
+      ],
+      "cwd": "/workspace/scratch/f0616b02624b/quds_office_suite",
+      "exit_code": 0,
+      "seconds": 0.769
+    },
+    {
+      "name": "analyze",
+      "command": [
+        "/workspace/scratch/f0616b02624b/toolchains/dart-sdk/bin/dart",
+        "analyze",
+        "--fatal-infos"
+      ],
+      "cwd": "/workspace/scratch/f0616b02624b/quds_office_suite/packages/quds_office_engine",
+      "exit_code": 0,
+      "seconds": 25.639
+    }
+  ],
+  "format_file_count": 33,
+  "source_unchanged": true
+}

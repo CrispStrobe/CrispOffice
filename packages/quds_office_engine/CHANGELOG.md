@@ -9,6 +9,8 @@ All notable changes to `quds_office_engine` are documented here.
   independent native spacing attributes and keep foreign/nested layout XML
   opaque on reopen. Add PowerPoint text-frame margins with exact EMU validation,
   per-side native ownership and matching inset placement in PDF/live models.
+  Compare margin edits with the imported baseline so unchanged native margins
+  preserve plain replacement behavior and direct edits back to defaults apply.
   Shared module helpers gain named arguments, optional scalar defaults and
   explicit omitted-Variant/IsMissing handling. These remain bounded adapters;
   named application-member arguments and live document reads are not added.
@@ -17,6 +19,16 @@ All notable changes to `quds_office_engine` are documented here.
   including frame wrapping and empty paragraphs that do not replace the cache.
   Prevent stale glyphs reappearing when later edits move an unchanged paragraph
   into ordinary flow, while retaining break reuse for proven-clean paragraphs.
+
+- Preserve bounded rectangular Zotero research-note and annotation tables as
+  native Word blocks, including rich cell content, pictures, independent lists
+  and active citations in row order. Map consistent column widths and supported
+  cell fills while sharing whole-note resource budgets. Preserve surrounding
+  prose, authored-note markers and a main-flow caret after trailing tables.
+  Refuse merged/nested tables, unsupported styling and table-cell destinations
+  for table payloads before publication. See the
+  [implementation and validation record](../../docs/validation/zotero-research-tables-20261120/README.md)
+  for the tested source and remaining application acceptance.
 
 - Continue the bounded Word/PowerPoint VBA adapters with Word document aliases,
   `Paragraphs.Item`, small caps, superscript/subscript and fixed-palette

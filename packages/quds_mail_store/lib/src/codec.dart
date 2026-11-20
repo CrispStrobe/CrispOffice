@@ -2,6 +2,8 @@ import 'dart:convert';
 
 import 'package:quds_mail_core/quds_mail_core.dart';
 
+import 'models.dart';
+
 typedef _JsonObject = Map<String, Object?>;
 
 /// Serialized metadata and the immutable, content-addressed bytes it owns.
@@ -182,6 +184,53 @@ abstract final class MailStoreCodec {
       _attachmentObject(value);
     }
     return _bodyFromJson(object['body']);
+  });
+
+  /// Validates the complete metadata shape without resolving attachment blobs.
+  /// Catalog navigation never needs to materialize retained file contents.
+  static MailDraftSummary decodeDraftSummary(
+    String data, {
+    required MailAccountId account,
+    required String id,
+    required int revision,
+  }) => _guard(() {
+    if (id.isEmpty || revision < 0) _invalid();
+    final object = _draftObject(_parse(data));
+    final envelope = _envelopeFromJson(object['envelope']);
+    final body = _bodyFromJson(object['body']);
+    final attachments = _list(object['attachments']);
+    for (final value in attachments) {
+      _attachmentObject(value);
+    }
+    final editor = object['version'] == 2
+        ? _editorStateFromJson(object['editorState'])
+        : null;
+    if (editor?.isCleared == true &&
+        (envelope.subject.isNotEmpty ||
+            envelope.from.isNotEmpty ||
+            envelope.to.isNotEmpty ||
+            envelope.cc.isNotEmpty ||
+            envelope.bcc.isNotEmpty ||
+            envelope.replyTo.isNotEmpty ||
+            envelope.sentAt != null ||
+            envelope.messageId != null ||
+            envelope.inReplyTo != null ||
+            envelope.references.isNotEmpty ||
+            body.plainText != null ||
+            body.html != null ||
+            body.plainPartPath != null ||
+            body.htmlPartPath != null ||
+            attachments.isNotEmpty)) {
+      _invalid();
+    }
+    return MailDraftSummary(
+      id: id,
+      account: account,
+      revision: revision,
+      envelope: envelope,
+      attachmentCount: attachments.length,
+      editorState: editor,
+    );
   });
 
   static MailStorePayload encodeOutbox(MailOutboxEntry entry) {

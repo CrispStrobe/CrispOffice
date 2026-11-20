@@ -1,8 +1,8 @@
 import 'dart:ui' as ui;
 
 import 'package:flutter/gestures.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 
 import 'controller.dart';
 import 'presentation.dart';
@@ -70,13 +70,12 @@ class RenderMailSelectionSurface extends RenderBox {
     required this._controller,
     required TextDirection direction,
     required this._style,
-    Color linkColor = const Color(0xff1a57a8),
+    this._linkColor = const Color(0xff1a57a8),
     required TextScaler textScaler,
     this.onLink,
     this.onCopy,
     this.onFocusRequest,
-  }) : _linkColor = linkColor,
-       _direction = direction,
+  }) : _direction = direction,
        _textScaler = textScaler,
        _painter = TextPainter(
          textDirection: direction,

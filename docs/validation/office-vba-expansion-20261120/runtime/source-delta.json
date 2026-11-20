@@ -1,0 +1,2811 @@
+{
+  "schema": "quds-vba-expansion-scoped-source-delta/v1",
+  "baseline_commit": "c9cbeb1248d6b5f088d1084a8c113a743aa7a77f",
+  "final_commit": "192ea2aedbf0b1494627953c79a7042037a63301",
+  "approved_input_changes": [
+    {
+      "path": "packages/quds_office_engine/CHANGELOG.md",
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "3ab6810b1d64fd842fa881af6c95ffe70e8351f8",
+        "sha256": "11ddffcf3d46b985762439b948f02e41e51e0435783f69edc825f679faa8e765"
+      },
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "9c8509eeaf61ee5bad41f7a55a725eeccd3b2924",
+        "sha256": "efe06ce2b89bbdcf56a6b792c97244151dda39622398ec78d910922e7126fbda"
+      }
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/slide/model/pml_presentation.dart",
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "f884406159ef20c22517bc7d1de1dbf285bbe0de",
+        "sha256": "6d58ff4c81a827d0d659c24687f9a423e93011e605c150653285ade8d1d5bf15"
+      },
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "77fcccefe69bd486d03f7a2bd600ed891f0cceb7",
+        "sha256": "4da4763d6f472b500fc5ff2dfae91c28ca067475fb2b0ad2b1dc2d6f0e62152e"
+      }
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/slide/shapes/drawingml.dart",
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "61ac74d03fa14313fa86684596514a9a530c88fc",
+        "sha256": "33ef58cfb1037d5e46cc655d863e23e5ee8dfd57c10cede9ccdc4bdd0cf2b1dc"
+      },
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "42fa88ca7cf68013f4bada4727640bf35a1daa38",
+        "sha256": "c07259e9298ffccca062b9b249f8f46ae4d553bf418f1c352df5b7b88aee1781"
+      }
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/layout/word_incremental_layout.dart",
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "34babd7b7878659c101a372ac617f5498ea4abc7",
+        "sha256": "182c9670d79c198321e5d0d969510ede0d027c00711366b8eb352f2f4703adba"
+      },
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "19643ad7627a00022c4478d7501764a4f414658b",
+        "sha256": "2efb0781a927247d37f21ef09e8fc97c4cdcf449fa6ec1399e08df382caaba2b"
+      }
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/layout/word_layout.dart",
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "2cd261354a87324ef6e8f7b1d775c5eda12ada5f",
+        "sha256": "55018615d47b75c1397c7443798f1db751a6910d1b4a1ab897409c3dd068dcb1"
+      },
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "182df2c9b54badd917b81bf2ae2098d84b3fac6a",
+        "sha256": "86c0f494b879fb91ec82048675dfc5ead65ba512f4a7b983ab2c7e7a7560e264"
+      }
+    },
+    {
+      "path": "packages/quds_office_engine/test/slide_text_insets_preservation_test.dart",
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "de031f4b6e8383912da137298e04e25aac135c62",
+        "sha256": "ada54a6bb1a432360335c28bd9675edbaeebe599ef4393ced51bce03535ffa73"
+      },
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "2b8fc5347cdfe9529ca86ea7cfc10adfea55bd1e",
+        "sha256": "5dde26ce4d81d722fda547519fc75a0aa054d4046522cc64529195342f861990"
+      }
+    },
+    {
+      "path": "packages/quds_office_engine/test/word_incremental_layout_test.dart",
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "0e9edc1f261daaa6f452ce883b7cea34394f5465",
+        "sha256": "ed5595fd5ca70f1aea315c18e49523bd2d9565bf31cc06b6a7df3fff252100e2"
+      },
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "e0129b6356a03aea83a66f9619d20b26a1a756cf",
+        "sha256": "43d06887ece205abbde06fb890bd565c57d48e59086950bcf159a24b96a7b502"
+      }
+    },
+    {
+      "path": "packages/quds_office_engine/tool/zotero/research_target_acceptance.dart",
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "48aab5a1b4220524a62768735110db17aad6cd88",
+        "sha256": "aabce652349f507a67798a1f015568a5259517f517877dfece256dc5344be3d5"
+      },
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "7c3e82c6396cac8978a9771982d65d1758e45b8d",
+        "sha256": "674af2839d545ef5a94c81991906c6eb5fa9ce5a2404818f364674e69e58ceaf"
+      }
+    }
+  ],
+  "input_changed_count": 8,
+  "input_unchanged_count": 1156,
+  "input_path_count": 1164,
+  "all_unlisted_inputs_exactly_unchanged": true,
+  "retained_test_file_count": 42,
+  "retained_test_mode_type_blob_sha256_unchanged": true,
+  "full_tree_change_count": 92,
+  "full_tree_changes": [
+    {
+      "path": "docs/performance/incremental-layout-20261120.md",
+      "status": "M",
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "d16433515712536f650780c42f5faaac3868e8ea"
+      },
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "04966ea41d55d0aeafe83177c2bafc5fb6eeda9a"
+      },
+      "before_sha256": "47dc0177bcaf7e33352c0f9db504163dfbcac8edd055cef8fecb5ff12688d166",
+      "after_sha256": "23908de1d67a2947ebe6d711f3ce34a838ec72478bd6070dbd44acb90581d6cc",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "docs/roadmaps/mail/README.md",
+      "status": "M",
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "ac0abac2be589eaac18054655c7d1e4666194321"
+      },
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "ed32bdd7e95a01794870204f17c68205a33cd50b"
+      },
+      "before_sha256": "06a4aaaa961c9a21796c618dabec4bbe262f257e73c9c59b3be7925329ce7736",
+      "after_sha256": "c0ae8be523bc057a3ceb3cfdcbdd8b6e7938cd05b1c784d62453b07ef20a9f8c",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "docs/roadmaps/mail/implementation-plan.md",
+      "status": "M",
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "1b128814fb5c8f820aa87cedda58fae654c5830c"
+      },
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "7203190668907f4457cb7a06270dd72266941b24"
+      },
+      "before_sha256": "fe95a21da17472f5332cd36bcbf7a62400c12409564b5cf936340a898493d33f",
+      "after_sha256": "f6ac1d299b46cf0494ab2f68e1e548dbec504ba4f8fcbe37a8ea6af3fcdce400",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "docs/roadmaps/mail/outbox.md",
+      "status": "A",
+      "before": null,
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "672ba412fc76d4f82ba799bd03bcf8a55d91554f"
+      },
+      "before_sha256": null,
+      "after_sha256": "6039d7f35f9f463cebdd9735ba0f06438ff6cccb803747bcc9c78a717dffbe1e",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "docs/roadmaps/mail/remembered-accounts.md",
+      "status": "M",
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "31220e15ba0c613825d406ada21806a45e7b4950"
+      },
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "b33c17f3554d0a7ec2f3256f29518a6dd1234518"
+      },
+      "before_sha256": "abfe4605ad4e4055ee4ae114c0bfa0fafe7e86de99bd62c3c5cc0e784215b13a",
+      "after_sha256": "29b19896b465cf9475def32f510b5d3d4fda39b013cb94114a5b363c690dc888",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "docs/roadmaps/mail/status.md",
+      "status": "M",
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "5bf7f99b0627970eb996dcc67fad6945620ee09d"
+      },
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "584fe10fe65b4e3e000747a0f448eb70f80eb954"
+      },
+      "before_sha256": "00dd6b50ac81c48c32c776a055aee12b25bd2572648c2c65b2430c07074ea59e",
+      "after_sha256": "a6e2ebbb66fa882ee1f31716743a8c927c36b96ae67293a647f173c30b8a909e",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "docs/roadmaps/zotero/word-processor-parity.md",
+      "status": "M",
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "bc121d7a965fb3ad5f9abeee6de5ad8de209998f"
+      },
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "dcc935de5d1d969aaf51b0fa7dbda59b87d89985"
+      },
+      "before_sha256": "72e4c00a75b887a034dd3885328eee95962f51534e83c2029b959cfd9208c355",
+      "after_sha256": "6d2bbe54def8a9b3beb326ec7b9773f26c0a05366e2e286f7f2ca301a4b0a07f",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "docs/validation/mail-accounts-20261120/main-refresh.json",
+      "status": "A",
+      "before": null,
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "26a432ca9e90678688a958c9f4580063c2711bc5"
+      },
+      "before_sha256": null,
+      "after_sha256": "e5e7d08ba99e25c45ff15ff883c3f54af6018c7c8efb093172e5142984c02ea5",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "docs/validation/mail-outbox-20261120/README.md",
+      "status": "A",
+      "before": null,
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "b9c99eb8a08350a94c59fc210911c42b44f3d653"
+      },
+      "before_sha256": null,
+      "after_sha256": "3556b9cebcc494452a94a16c34361a8a95213ed07a81e8b680ed9f4d070eccfb",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "docs/validation/mail-outbox-20261120/intake-dispositions.md",
+      "status": "A",
+      "before": null,
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "820636d886fd8f2123a8e3fc5bd117d72fef55c5"
+      },
+      "before_sha256": null,
+      "after_sha256": "44d95e3529f1825f644833e2958676d0971667ecc45de37d85a844caba4e3847",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "docs/validation/mail-outbox-20261120/intake-initial.json",
+      "status": "A",
+      "before": null,
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "9299effddba2e1709e10e7c897d75acef434c23b"
+      },
+      "before_sha256": null,
+      "after_sha256": "277348a94b5bb3e58e7326e4721ae66eaa90b4d6f7b79f7dc66857aa038d6c48",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "docs/validation/mail-reply-forward-20261120/README.md",
+      "status": "M",
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "182fdf5e8c7eec71592fca579af4114f44c5c514"
+      },
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "0bc9c8aa09a62d47643dd864fcbf25ac652d6387"
+      },
+      "before_sha256": "6ecf949fdd5cb263aadedfe27853405b6d46ce5f9732265fc3bf17187726d301",
+      "after_sha256": "a8065f981dbeb04fab6671e81ece9c462a3212a7f012e989114a19acb071330f",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "docs/validation/mail-reply-forward-20261120/final-intake.json",
+      "status": "A",
+      "before": null,
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "a19c5313423d8702f37b861745741a31d87dd8c7"
+      },
+      "before_sha256": null,
+      "after_sha256": "e4d7f8dd0df6db6f4b5155c43df3d684aebefc86457430e15e5ebf62954f2b51",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "docs/validation/mail-reply-forward-20261120/final-machine-logs.tar.gz",
+      "status": "A",
+      "before": null,
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "84e6d07458ef99da6fcd52b4659cc6d93e600b6a"
+      },
+      "before_sha256": null,
+      "after_sha256": "62dd55ab32df25a8a54af41b48ae76daec802b1778977288c866fefec5ed2584",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "docs/validation/mail-reply-forward-20261120/initial-machine-logs.tar.gz",
+      "status": "A",
+      "before": null,
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "b86fb57cee9178cfc5349f9d8db0333638112ba8"
+      },
+      "before_sha256": null,
+      "after_sha256": "552aca14a9e9868514943ee3842b81c4fd277eb2f9882f2ad3fa66061777ae1d",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "docs/validation/mail-reply-forward-20261120/integration-machine-logs.tar.gz",
+      "status": "A",
+      "before": null,
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "565313398b6a3af8b65a9d333ba52759748cc570"
+      },
+      "before_sha256": null,
+      "after_sha256": "322e1916fac9e31356b8fd15a36087c36a8294c0c83c1f16191bedc86779aaae",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "docs/validation/mail-reply-forward-20261120/integration-runtime-results.json",
+      "status": "A",
+      "before": null,
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "8caa98973522e90f2ad55afee2c10fddfec03fc5"
+      },
+      "before_sha256": null,
+      "after_sha256": "24288e7b00151b1bcafa0f5933d70c288aa920a4b24d33c1026142265d9d6763",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "docs/validation/mail-reply-forward-20261120/integration.json",
+      "status": "A",
+      "before": null,
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "723738e1c382a85afb78f3e92b8ec1134c09c3f4"
+      },
+      "before_sha256": null,
+      "after_sha256": "1da8af2f7a5d25b3c233b12d68ffc2b0e12e8d45d6e5f09ae1d476c5b58865d2",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "docs/validation/mail-reply-forward-20261120/runtime-results.json",
+      "status": "A",
+      "before": null,
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "103bc0e8803a2b39b810fdd3776ce239bae81c46"
+      },
+      "before_sha256": null,
+      "after_sha256": "2bc205a029df3caee71025afaea39137238155fd76273eee9b5814e1ac73e2b2",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "docs/validation/zotero-research-tables-20261120/README.md",
+      "status": "A",
+      "before": null,
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "7f4c67b8bfaa128fe54e0f2d7eae0bf084676636"
+      },
+      "before_sha256": null,
+      "after_sha256": "a47a34bb8b4911bd01318b93d48525c4e11d52d7185328528f2dec928cad5221",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "docs/validation/zotero-research-tables-20261120/checkpoint-editor-evidence.json",
+      "status": "A",
+      "before": null,
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "42ecc8dec3a5e69386e8896ba39ffb180158f0e2"
+      },
+      "before_sha256": null,
+      "after_sha256": "69d9eef7bd0d8787d1bdb44dbb62e1e8a96c4d201280bbe4cf111c78563b1bda",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "docs/validation/zotero-research-tables-20261120/checkpoint-editor-evidence.tar.xz",
+      "status": "A",
+      "before": null,
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "a1e4d91db60af8a2fd8029218ff04af8728913c8"
+      },
+      "before_sha256": null,
+      "after_sha256": "8374c1c102701c4cee838312de882690008edb73ac914873b9ff6ebdcb110071",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "docs/validation/zotero-research-tables-20261120/checkpoint-engine-evidence.json",
+      "status": "A",
+      "before": null,
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "826f1a61f83b1841fb873163986def0046dbf139"
+      },
+      "before_sha256": null,
+      "after_sha256": "be12c634d1eba14212ecf9514b55a25ed9d120c6e5c90af0f0281ea6c66f89a1",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "docs/validation/zotero-research-tables-20261120/checkpoint-engine-evidence.tar.xz",
+      "status": "A",
+      "before": null,
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "5b3d2910f4ef85028567939982becc2ab4530bbd"
+      },
+      "before_sha256": null,
+      "after_sha256": "fdfd1e504a4929b7e79c3201e2ac8dbf80ab1a1a5893274ef6624c3bfe67c308",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "docs/validation/zotero-research-tables-20261120/format-map.json",
+      "status": "A",
+      "before": null,
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "1cc30e5604ed866fd1fdb2fac5e8521e6c00747c"
+      },
+      "before_sha256": null,
+      "after_sha256": "b11cf077bc91ea87e256cb031840f1e2066d7e62e3e1231805f12898ad8b4503",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "docs/validation/zotero-research-tables-20261120/incoming-credential-review-v2.json",
+      "status": "A",
+      "before": null,
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "7e728ba1deb8a8954aafd6634788da6858d7e5b7"
+      },
+      "before_sha256": null,
+      "after_sha256": "44b91d7aab9546b7356773ead3e576739e18edcd15e2ccdc69364016436f8b3f",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "docs/validation/zotero-research-tables-20261120/incoming-final-review.json",
+      "status": "A",
+      "before": null,
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "3234fc7f5dd42a5d620c3f9a19e6968330b54878"
+      },
+      "before_sha256": null,
+      "after_sha256": "5a97a2fabe52c5edf33375c229a32156bf7bc1e35ae02d0cb105f7999dcdaa65",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "docs/validation/zotero-research-tables-20261120/incoming-followup-review.json",
+      "status": "A",
+      "before": null,
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "c0a1df9cfa873a83562bb15e6967540552c0db6d"
+      },
+      "before_sha256": null,
+      "after_sha256": "2011ab29121470adc576f93cca321fb8b48da3ee5498673b2a51ebfe2aadaf89",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "docs/validation/zotero-research-tables-20261120/independent-source-review.json",
+      "status": "A",
+      "before": null,
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "09934a5152351bada1b8c0296781baedc8edfbc4"
+      },
+      "before_sha256": null,
+      "after_sha256": "21507dade31b16be6c18e848cc38b1c4ed779e854d5c0090fe53a0c3078757db",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "docs/validation/zotero-research-tables-20261120/integration-integrity.json",
+      "status": "A",
+      "before": null,
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "32da86986b9539e34a2114f49fe32d37d2dc9a2a"
+      },
+      "before_sha256": null,
+      "after_sha256": "4c8e2a8fb9ce04de8767ac59ad74ec4feb343a92204dbe1046d49777c0456960",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "docs/validation/zotero-research-tables-20261120/late-head-assessment.json",
+      "status": "A",
+      "before": null,
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "b5345dbf6889b27240832f2697f2cc92aebf72c9"
+      },
+      "before_sha256": null,
+      "after_sha256": "a927b83f96cc5a8fdb30d70df0460b63f4ffe839e01121a54d8e884e4642a339",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "docs/validation/zotero-research-tables-20261120/runtime-host-fixture-review.json",
+      "status": "A",
+      "before": null,
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "654cb36cd9de91bb0caed15ce8d2af29a613f2f3"
+      },
+      "before_sha256": null,
+      "after_sha256": "e4430862bf7879068f4cd603ae034f4be0fc6b961c26e50fda31d38d6e4ac8a6",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "docs/validation/zotero-research-tables-20261120/runtime-race-fixture-review.json",
+      "status": "A",
+      "before": null,
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "a572e07b22d2807672ddb6cb1e3c036f05184750"
+      },
+      "before_sha256": null,
+      "after_sha256": "11aa467d197f15b16ffc7885d3df8a04f634b353a5d3b80b65992abf63fe572b",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "docs/zotero-support.md",
+      "status": "M",
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "ba7313bfe5e44643314fde9a92c5abdfe09113fd"
+      },
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "55bee0faf90206bc6c17643558f5eceeef0c10bb"
+      },
+      "before_sha256": "f8fcf90998adbf56299a551f586cb2bcc8867fde8e8a21c1638417e123efc8a8",
+      "after_sha256": "d1503dbcec78958075ceb0e2d478dda6064d99d06356ee182e314d6e16b37865",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "packages/quds_mail_core/CHANGELOG.md",
+      "status": "M",
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "d3f5c8abed2514bb1389b727f7e42eaf60b3b6ad"
+      },
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "d0eec0c0e15dc4e02f1d807d8037b4bc9dccf317"
+      },
+      "before_sha256": "d0b73a1beb58030296658d55a76615dc747eacce276641a9c50143cd23c91711",
+      "after_sha256": "1c829f5e4b9b1d58c6d64bae6b4e0009c76a58a4881932b033ff0ba9faa8c53c",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "packages/quds_mail_core/lib/src/sync/outbox.dart",
+      "status": "M",
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "7dc43d0178cec7d100249ce917d113ec10ba79d6"
+      },
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "70ccce29d3c4c119f7a719ee4101d0659c6bfbd2"
+      },
+      "before_sha256": "371308f6d9deebd2ab5d72bd6f7a10425f510a5541c1bde3731ea8661d7faf5d",
+      "after_sha256": "15efa0956379144ecdc20ffc8578258cbc8bc6a35e474c812b5e7b148aa7df26",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "packages/quds_mail_core/test/outbox_test.dart",
+      "status": "M",
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "e45bc1e3c0d7c8ece14b565f1d68dd94dabfaced"
+      },
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "2bd60f3b4ff489c3fce50100c6d2347aa8a68286"
+      },
+      "before_sha256": "40708733f223bbd5630f63ab9ebd77faddf9b3922aad77fdfbbcf233e17d48bb",
+      "after_sha256": "a056c40dbbf285bdc52e2a9ae79cb1d9bcf6e39cc12bffe45520d8f0bf12934f",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "packages/quds_mail_store/CHANGELOG.md",
+      "status": "M",
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "3dfc9353d98ee836a3f8f8f9fa3cb90f76f59586"
+      },
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "436a317a1892a74e46aff4bfdcb0277f8b82fbf7"
+      },
+      "before_sha256": "6d50f9cca2c8a897c6d49d32aa246ebcafb725eca7b63cc5336cc0c1fe6ebeae",
+      "after_sha256": "7b1748265e9a11fbfbf3e9fb96e0a5a82e5b29522f871da809cf12e13e10d572",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "packages/quds_mail_store/lib/src/codec.dart",
+      "status": "M",
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "ff28acc45930fcea71c0f5c653532c02e5917e7c"
+      },
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "aafd9b4a0a6f376c36160f2c7408635f2a3eef1b"
+      },
+      "before_sha256": "847650111e33cee0b56d5d7d7c4a0d182dae7b84e23789080ddb9992a7ce8842",
+      "after_sha256": "3b254d88cbfed07d20cf473445b11b1f42846fd5328f70d3417e38c9d0e64bfe",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "packages/quds_mail_store/lib/src/repository.dart",
+      "status": "M",
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "b023704793339083f259830aa88d5c3cf591f2e0"
+      },
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "a04340ba69b060d8ecff74f7fd92dc74f9428aa0"
+      },
+      "before_sha256": "264bb8cf7a8dbbe4bb45ea259c9d0246a2771ccdcb0ac352996b767f6b4f4a74",
+      "after_sha256": "b309f7beeea06aeb812e103c6a271f8389d9816cf3c432ffcfdf1a4917b6bd94",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "packages/quds_mail_store/test/codec_test.dart",
+      "status": "M",
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "0a810d49252e81ec4aee244e43e17c1721a487be"
+      },
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "e1244df927710dd971494c9b83b3e1908746d616"
+      },
+      "before_sha256": "307d152ed5bd4792c1290168328b8ff6243c7487b71485a3b3db6fdec09e237c",
+      "after_sha256": "5c56263e7345a0c68cc8af36c977a58c01460adbf6367ed0319683ae26f8470c",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "packages/quds_mail_store/test/outbox_draft_transfer_test.dart",
+      "status": "A",
+      "before": null,
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "142a6ce4679149b4dc4d7dd07620f255b77d1cb6"
+      },
+      "before_sha256": null,
+      "after_sha256": "7e02dd040e4705c8f9a275e0e930fbd102023283a75322de99b279a81ca9975a",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "packages/quds_mail_ui/lib/src/reader/selection_surface.dart",
+      "status": "M",
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "fc63c0013335d8d8c1ec4f55a12f85eeae9eeff0"
+      },
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "6a5e0880d73e12cc176d1b6681efaabc6e96079d"
+      },
+      "before_sha256": "f4a5665db6203ce1b139b07b1ea1214edf04ebea075d08ad330cddb444007e63",
+      "after_sha256": "ba75f9adc97973905e04ab489e5c10ad4d66e3525063349042e6cb717ff2a143",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "packages/quds_mail_ui/test/body_presentation_contract_test.dart",
+      "status": "A",
+      "before": null,
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "d6c46c26975c1c8687d4317e7d258d9f01d1bf89"
+      },
+      "before_sha256": null,
+      "after_sha256": "56b5109083c59be5af52664a0d4f9cfc498c551ffedee1d0bef06e5e52527c2f",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "packages/quds_mail_ui/test/reader_theme_scroll_test.dart",
+      "status": "M",
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "2f3f8a2574a270c36d66dfe378a0701a3b0b44c5"
+      },
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "73ef48341ef1a5b5a128ce4fed4ca3cf286c1a79"
+      },
+      "before_sha256": "72b23226d948feb006f87a749ed4f3dbb63b2f10093323108b2459b8fe2cb7c3",
+      "after_sha256": "39279b03e70d977f3fd177debdf1105a8e0d444fcad77c85b29fb3a4321036b2",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "packages/quds_office_editor/CHANGELOG.md",
+      "status": "M",
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "c391a3569cb83072deec6107acfbf34af6490558"
+      },
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "342bef26e2a30f0d58524783e7f52f5a83be80ee"
+      },
+      "before_sha256": "b5e75326617133fb6456c1b0d72d3ca85a684871c21d47c190191f934cdc1922",
+      "after_sha256": "ef873e0a067d03dc7337f9b535bf03909773facfa14c6b71797be5c0d07fff97",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/credentials/credential_storage_diagnostics.dart",
+      "status": "M",
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "fa9712686ba47b53c304ff4e3f65c90d150d1a2d"
+      },
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "bdb910d2a2c1a635e5e4da0dc69b009a13f228b2"
+      },
+      "before_sha256": "c95ede0987225954903a4611b32d9e020c89bf7a79fa2187c81ca1aa051467e2",
+      "after_sha256": "c94d7eebf74a1fb714b729d0566a3134aa936fb863600bedea3e7d62d6715c15",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/credentials/encryption_service.dart",
+      "status": "M",
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "3f8e997d2fa25e669fb8aa70a79fb4eeb12232ae"
+      },
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "495cdcbde315642071b86945801fe51cea8b4d2b"
+      },
+      "before_sha256": "54d4d52a93ce1b63f7e6f88a6740019d7bd6a15aacbd226c3adc7b14407f3696",
+      "after_sha256": "5f294a6041311692234b104c4bda324cf5e22e00150542b5a8bb7dee39b666cd",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/credentials/log_service.dart",
+      "status": "M",
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "8bf80d9f8990e69c05b77743412ff865bb0c3081"
+      },
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "ba55dc7be4b6ac38e697ba0d89e9a01325a2af5a"
+      },
+      "before_sha256": "98f583273e7c9a23578bddeca81e955749a851d2306f9749b4bba0418443c365",
+      "after_sha256": "b946e30f28cf9a4de5f53776279554569544eeb13894565e4025053aeefae004",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/credentials/secure_storage_file_io.dart",
+      "status": "M",
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "7d0f2738f27d51ded0239be6996a08fa8d3737f4"
+      },
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "6d7e1b5e3afc46d19c5b299a79c721c34a8fd807"
+      },
+      "before_sha256": "ff43a4bdb58a66f6bdc7a70bd9c09f3d3c9014d8b40f0b047abea62159360fdf",
+      "after_sha256": "0fc9ac427cff0a6da192de0b74392dd946cba25fbe1741a61b699b9ecda9d363",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/credentials/secure_storage_macos_keychain.dart",
+      "status": "M",
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "d39baf1aa600d9a0d2f6391858343dab7ea658fb"
+      },
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "a0fb6a17b7a65fae0ce005244d0eeb8a89cd697e"
+      },
+      "before_sha256": "e22a5e7bd050d1820b089e936f8b9a05e65924467733cb0b9405ebfb29d184d7",
+      "after_sha256": "0aad8cb9617afc23fa0d6ac005b2d5ac010910f5b314da0b57e8e0f644e7edd3",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/credentials/secure_storage_service.dart",
+      "status": "M",
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "756df92b80d93fd3f1383d535a81d9cd4444f795"
+      },
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "06975da04b4ebc9a4878a2aa4b412e571c5f6e39"
+      },
+      "before_sha256": "268be327d346f475c41a7102a464c4c4b6965808d03a2251906a53304cb50bc0",
+      "after_sha256": "6d260ef23fc3730115ea75872ecb7c7dac326078f7256ab16d69d94ed12cec95",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/credentials/secure_storage_web.dart",
+      "status": "M",
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "ec26e6d19778fb572fe050534426ff43856eab67"
+      },
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "2b26ad4fb0fe7e402bc2c7cdaa080f619903b9e6"
+      },
+      "before_sha256": "8aa7a1fe507e4e3273607df6c0dbb5004053541f436f62931658a0774098328f",
+      "after_sha256": "c908057ba49e6f91716431a1ea2920778bbbcbfe65c97ce076ecd8cc7a367d26",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_credential_storage.dart",
+      "status": "M",
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "222e1d292d8786296d0293a3af85acc192631d00"
+      },
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "88a22c6bcc21477b2a3b4e1d417567a21643bf41"
+      },
+      "before_sha256": "2c87775cee8600b42f5514a222c0352d1041a17f15f6b89965cf9a4602d9225c",
+      "after_sha256": "c69c52c4ae0031879344e4a335395756edff991676b8a6dba2fb2383e413e792",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_licenses.dart",
+      "status": "M",
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "f9f34861108486af7d38229c7df5309890b452cc"
+      },
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "d6912a9bea83fd979bd19c51a289b042420e3ec4"
+      },
+      "before_sha256": "90425db74d829278696b7807f7f2f08b49a0028f9ad2926b6f727b807cac37ac",
+      "after_sha256": "f75d954c9387537951f5866dcedbaffbd714a5f06f544d18e8ca120d7b6294d4",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_compose.dart",
+      "status": "M",
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "b0c641c97d4f338c3ef6fe086fe59e792f70df25"
+      },
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "266e42a140559e851a8ff65789c9ce777f79872f"
+      },
+      "before_sha256": "f0308bb4c8b91bc2a5a5b977663f8ee43487171f7f19860d23c0ce99771ee05e",
+      "after_sha256": "f73830e5d629ecb3e6adbb56523053c39a6fddf9506dc50ac5667b432d963954",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_credentials.dart",
+      "status": "M",
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "f533883c4c81d5880b0b1a086bca2f2b5fdd207b"
+      },
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "0d7d3a34d91637dab126915a4c55e8c07876f0c8"
+      },
+      "before_sha256": "f3af2aaaafb120e81c8de5242bd9a9571a59c3a78bfe265a28c7b738c6fa25b6",
+      "after_sha256": "5043419d5c4a302d1cc80f3da1a2884f633ffc2c9aa7a52a99922f43a45de168",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_draft_store.dart",
+      "status": "M",
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "2023e38bfb4476bf41df9aa83ec778934c9c49b6"
+      },
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "3a9bbe3fde952965f334b2d5d76f82152a54b326"
+      },
+      "before_sha256": "1e87a97324fe7a2d383e867eb23b240ae280d8f6487d1a849b56d71967ddb60c",
+      "after_sha256": "f54e092778d12d608e536c3ba6a6c78568f4b76a1eada30eb1b9ba130d4b69fc",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_ews.dart",
+      "status": "M",
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "83c050b588f6460ab6d7fcc0eb767828c00b0d24"
+      },
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "6c68dbffdb8cb3363dc2ce62a70bcbe9099214fa"
+      },
+      "before_sha256": "3c0f398093c3d062f049749e73657bbacd1bee2d37db8046c88f458872b65ba2",
+      "after_sha256": "5490c0d9de8850395cb34b77643d1f5621b0cbda01fd0a38077cb354b5e5c25a",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_native.dart",
+      "status": "M",
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "ecb7464b0b13927e7cb258951775a1975a91c29e"
+      },
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "e3f0ebb3722b9fcce2e0c7d6f902118e9cd90b8a"
+      },
+      "before_sha256": "182f3aecd11335dc6ee3db97c48e40cf5a7e1dbde3db7d5f94919084c34d766e",
+      "after_sha256": "5d49d98170bd64aa7725fa8760c7610398b08d8bbf8fed4045b6d17fa8ad5dc3",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_outbox.dart",
+      "status": "A",
+      "before": null,
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "c77b885d3bef42981e5769d703d98c34ae63e6b8"
+      },
+      "before_sha256": null,
+      "after_sha256": "09f52face56749588ae4fa92413adc50ac017b1cc9fe8d82657dab73e0ed974a",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_outbox_dialog.dart",
+      "status": "A",
+      "before": null,
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "1a91ce2b9f39848e404f86fedc3a78f1a5f4ac67"
+      },
+      "before_sha256": null,
+      "after_sha256": "0a2402814e63166cc12836c8b838b6ba87a67efdb6101a1eb9c1c6d0de1c5dae",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_outbox_strings.dart",
+      "status": "A",
+      "before": null,
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "a7c6e63f07233e419d17526940a810be37f742f5"
+      },
+      "before_sha256": null,
+      "after_sha256": "087f2010cc610f364af3f5779553b5982d19b492603b7ce553be360c69f22bda",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_submission.dart",
+      "status": "M",
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "be1ae08974998eface020d8ca0f6c321f67384a2"
+      },
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "9448ee331a244cd43b29390a19053a562fccfac5"
+      },
+      "before_sha256": "c4283d8780417fcbdd9a538675aef8f71faf84d82846a1f2b3939afb18de1eb2",
+      "after_sha256": "da84f31d81235575431c21d94e27ef95cdf95dc54086f356ae3e0d2993ea90e6",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/suite_workspace.dart",
+      "status": "M",
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "4595d8f638a1f9213ea229cf8f2aeaae0e2e7a5a"
+      },
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "780aeb41d872df31e19d7b4b8bb7df1835dfb6e2"
+      },
+      "before_sha256": "ae55f427e5b4254b28e2b155b16e9bb01d2103adf7b096ef838626ceb9ffe676",
+      "after_sha256": "6c226e850fc14bdef614ec1876f81fa32ec4779c352d128b6fcf1d2b66970219",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_credential_selection_race_test.dart",
+      "status": "M",
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "812a3d01656d29d6ef2811733d6dad2b18a3ee11"
+      },
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "b9994ef52fa04474d0ad2129b97abf316453c867"
+      },
+      "before_sha256": "dca22713844bee0bf43e0c0204c0c8420500f9b669d3c2021196bb7395e53706",
+      "after_sha256": "25148f1994f6bfea5eac9d718e8072d1870d28f971be6dfe772ed6a15180826d",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_credential_selection_test.dart",
+      "status": "M",
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "171f01f18da462890e1398af55fe9bd65f7206e4"
+      },
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "dd958222f69a3faefbd66d539e8cbe16b3e5e363"
+      },
+      "before_sha256": "3ba049e91ff3ffd21e63ea93c760cd93546c38480a483c0bf18b0b603cccb1d8",
+      "after_sha256": "9e443073aee14cffca1036ba9a2c3d0c0c499b700be3ec65028e35aa760f9cc3",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_layout_theme_test.dart",
+      "status": "M",
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "6c7931c62a0e14d471fb2ab040ea8db898c25471"
+      },
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "dc93101e99ef3c65e641b5eb937eaedd050ccd17"
+      },
+      "before_sha256": "02840c5916a1016a43d8fe7c3370d32742f9093ac4dadf6569d5082323a2e63d",
+      "after_sha256": "3ba12fb043abd0cb8459665d9964e40b39ea7d1ae6e2c9d6efafe93862345a95",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_account_stores_test.dart",
+      "status": "M",
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "c4384153c1e25e81d366a5dd2ebcbe39d7462bc3"
+      },
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "daea0102ff55314ca02144de5524222499539541"
+      },
+      "before_sha256": "929e92fac1ce79ead1f5529401899cc41f3f337e826b58bea8dbc3a68ec77452",
+      "after_sha256": "c20fc60f282e113250c2f6fe3954cf3e958623ca3129eacc08c1ddf41849515e",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_credential_backend_switch_test.dart",
+      "status": "A",
+      "before": null,
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "8741806b2ce2e7e9f6811a8bd33ae2f2f97f5855"
+      },
+      "before_sha256": null,
+      "after_sha256": "c9f2785bb87ed04c7668b6ce5134da25b7f7b8bc5b4975986493b8ab6633c9fe",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_outbox_dialog_test.dart",
+      "status": "A",
+      "before": null,
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "8e4e3ba95e85a392742981946385bac52af6b751"
+      },
+      "before_sha256": null,
+      "after_sha256": "559ca6736f456df40aa2b90f77bb9f749f1bb6fe1bd295c2451758a29936c2f8",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_outbox_host_test.dart",
+      "status": "A",
+      "before": null,
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "15cf312d534ce3a07981c9a831afb55465d3bf11"
+      },
+      "before_sha256": null,
+      "after_sha256": "8078baa4ed3ff0b74448593901bf8b5d762110e07c50c5c63458720dc53a7c61",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_outbox_store_test.dart",
+      "status": "A",
+      "before": null,
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "aca841c9c5001e458106e98e72d49068afcfaf76"
+      },
+      "before_sha256": null,
+      "after_sha256": "7486d4a8dd5714858cc403cafd05ab9c6a64e64afa591272807e510502980b3c",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_outbox_submission_test.dart",
+      "status": "A",
+      "before": null,
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "3e6f225544a303c120c2e24a31a354e66d803573"
+      },
+      "before_sha256": null,
+      "after_sha256": "5f61626d88bd6d96b402282a194d09bb34bdc513914a9f8d3cbb27330fc968c0",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_presets_test.dart",
+      "status": "M",
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "5d423130278779c400bb7fdeed9ab2c68fb90344"
+      },
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "33fb8919b69fd90ff32639f44b550c84e997751a"
+      },
+      "before_sha256": "aa2ede8ae28bad13aa8bc95975c600cb82f992b205568bdbabd099bc7cc9651d",
+      "after_sha256": "51b2d3df2bf754a2e3c9f3b768eec855bedc68a7dddac20268f07890d4752681",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_selected_store_integration_test.dart",
+      "status": "M",
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "96e8894eeadf8439869690e7bc3eb7a3758105be"
+      },
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "805f93c35c91e5648c5a7d19c81b7803e0f64c3a"
+      },
+      "before_sha256": "b593a60e9e049dbd2ed27ea8b18a06ee896a954b65524bcbd2a3317e2752475a",
+      "after_sha256": "7d27cb1c35015dc152872df002f0859e328fc56610380149edcb932495374eed",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_session_test.dart",
+      "status": "M",
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "c96a73ae8e1ddb63e1c264dde1db6bfc9fc0e4bb"
+      },
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "cea9c545da173a4d50b36871eed56e102fe955f0"
+      },
+      "before_sha256": "5e1a7038220ace81bc99cf2e67ceeee8d1c4a10dd892f61d7a40a36c8081eba7",
+      "after_sha256": "9202c4d5dc99781beb54753a05b4ad11a3836388f43b26d8939cf50f9be037ac",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_word_chrome_settle_test.dart",
+      "status": "A",
+      "before": null,
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "89e1d0d02cb084cecb3165cd2217a002b073cfbf"
+      },
+      "before_sha256": null,
+      "after_sha256": "a96df5f489229138e186cce2007ffdfa10022bc3abf034a85ece4b0eec925960",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/support/mail_credential_store.dart",
+      "status": "A",
+      "before": null,
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "84b8d69975548ad36cebdbd360dc4399e3724531"
+      },
+      "before_sha256": null,
+      "after_sha256": "546b2a1689f77b1d8b5d76b4d9faf30ec5645b25ba2b3e3e1d616eac73a0e98c",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/support/mail_outbox_store.dart",
+      "status": "A",
+      "before": null,
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "7a9f5dd02e895419e447500c560d4a9d16fe84fa"
+      },
+      "before_sha256": null,
+      "after_sha256": "9da98f699061d2ef3310c27f336160ee4f34c60210cd97cbdeafa16f269d2b3d",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "packages/quds_office_editor/example/tool/incoming_reconciliation_acceptance.dart",
+      "status": "A",
+      "before": null,
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "e844031d95714181128dc4df067cc4b0f221e3bf"
+      },
+      "before_sha256": null,
+      "after_sha256": "cdadc971e88f26942ca520461b081753def087602940832a92f0e7ac197ae855",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+      "status": "M",
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "e0f52cf8024bf52261d4b00e21d89cf4efb56a9f"
+      },
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "43e5b8137da90d4fe310e3ee74e4f035989e2e48"
+      },
+      "before_sha256": "d21668f61e78927e068ab00ac618f27876abe4afe1868e6ef8c2bf1c2d88604e",
+      "after_sha256": "38d47e3b24256eb4700d48737c51fcd1a5210e4fa441582f4c19a8a00959a660",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_zotero_note_image_controller_test.dart",
+      "status": "M",
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "c8c40a17a236b09b9e1352501aca1f1527786b81"
+      },
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "de621e71e753a350f89e9e8ff94a9037e90abff4"
+      },
+      "before_sha256": "e4a1f7edd6a7c2daa4924ee7961d4b4d753e87199550e5847c625d536c79cfdb",
+      "after_sha256": "93e6d77d1fbff88d64e2765e47b1d1e4d117a7569209bbf446037f8a49757bd3",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "packages/quds_office_editor/tool/zotero/research_target_acceptance.dart",
+      "status": "M",
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "d8e092a5ae90dead78eeeefce12235ba1d2187bb"
+      },
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "2df7783765165a99b13cfc22ad8c96f25834c4d6"
+      },
+      "before_sha256": "1708c2563847444ef9f2ca8782e90fe48aa10cea7787206df2a235b3e3bf160b",
+      "after_sha256": "f8c15339a76a0786fab3d383b8b33548050fbefab6e676833ddf31242cf44b6e",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "packages/quds_office_engine/CHANGELOG.md",
+      "status": "M",
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "3ab6810b1d64fd842fa881af6c95ffe70e8351f8"
+      },
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "9c8509eeaf61ee5bad41f7a55a725eeccd3b2924"
+      },
+      "before_sha256": "11ddffcf3d46b985762439b948f02e41e51e0435783f69edc825f679faa8e765",
+      "after_sha256": "efe06ce2b89bbdcf56a6b792c97244151dda39622398ec78d910922e7126fbda",
+      "in_baseline_gate_input_union": true
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/slide/model/pml_presentation.dart",
+      "status": "M",
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "f884406159ef20c22517bc7d1de1dbf285bbe0de"
+      },
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "77fcccefe69bd486d03f7a2bd600ed891f0cceb7"
+      },
+      "before_sha256": "6d58ff4c81a827d0d659c24687f9a423e93011e605c150653285ade8d1d5bf15",
+      "after_sha256": "4da4763d6f472b500fc5ff2dfae91c28ca067475fb2b0ad2b1dc2d6f0e62152e",
+      "in_baseline_gate_input_union": true
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/slide/shapes/drawingml.dart",
+      "status": "M",
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "61ac74d03fa14313fa86684596514a9a530c88fc"
+      },
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "42fa88ca7cf68013f4bada4727640bf35a1daa38"
+      },
+      "before_sha256": "33ef58cfb1037d5e46cc655d863e23e5ee8dfd57c10cede9ccdc4bdd0cf2b1dc",
+      "after_sha256": "c07259e9298ffccca062b9b249f8f46ae4d553bf418f1c352df5b7b88aee1781",
+      "in_baseline_gate_input_union": true
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/layout/word_incremental_layout.dart",
+      "status": "M",
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "34babd7b7878659c101a372ac617f5498ea4abc7"
+      },
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "19643ad7627a00022c4478d7501764a4f414658b"
+      },
+      "before_sha256": "182c9670d79c198321e5d0d969510ede0d027c00711366b8eb352f2f4703adba",
+      "after_sha256": "2efb0781a927247d37f21ef09e8fc97c4cdcf449fa6ec1399e08df382caaba2b",
+      "in_baseline_gate_input_union": true
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/layout/word_layout.dart",
+      "status": "M",
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "2cd261354a87324ef6e8f7b1d775c5eda12ada5f"
+      },
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "182df2c9b54badd917b81bf2ae2098d84b3fac6a"
+      },
+      "before_sha256": "55018615d47b75c1397c7443798f1db751a6910d1b4a1ab897409c3dd068dcb1",
+      "after_sha256": "86c0f494b879fb91ec82048675dfc5ead65ba512f4a7b983ab2c7e7a7560e264",
+      "in_baseline_gate_input_union": true
+    },
+    {
+      "path": "packages/quds_office_engine/test/slide_text_insets_preservation_test.dart",
+      "status": "M",
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "de031f4b6e8383912da137298e04e25aac135c62"
+      },
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "2b8fc5347cdfe9529ca86ea7cfc10adfea55bd1e"
+      },
+      "before_sha256": "ada54a6bb1a432360335c28bd9675edbaeebe599ef4393ced51bce03535ffa73",
+      "after_sha256": "5dde26ce4d81d722fda547519fc75a0aa054d4046522cc64529195342f861990",
+      "in_baseline_gate_input_union": true
+    },
+    {
+      "path": "packages/quds_office_engine/test/word_incremental_layout_test.dart",
+      "status": "M",
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "0e9edc1f261daaa6f452ce883b7cea34394f5465"
+      },
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "e0129b6356a03aea83a66f9619d20b26a1a756cf"
+      },
+      "before_sha256": "ed5595fd5ca70f1aea315c18e49523bd2d9565bf31cc06b6a7df3fff252100e2",
+      "after_sha256": "43d06887ece205abbde06fb890bd565c57d48e59086950bcf159a24b96a7b502",
+      "in_baseline_gate_input_union": true
+    },
+    {
+      "path": "packages/quds_office_engine/tool/zotero/research_target_acceptance.dart",
+      "status": "M",
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "48aab5a1b4220524a62768735110db17aad6cd88"
+      },
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "7c3e82c6396cac8978a9771982d65d1758e45b8d"
+      },
+      "before_sha256": "aabce652349f507a67798a1f015568a5259517f517877dfece256dc5344be3d5",
+      "after_sha256": "674af2839d545ef5a94c81991906c6eb5fa9ce5a2404818f364674e69e58ceaf",
+      "in_baseline_gate_input_union": true
+    }
+  ],
+  "outside_input_changes": [
+    {
+      "path": "docs/performance/incremental-layout-20261120.md",
+      "status": "M",
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "d16433515712536f650780c42f5faaac3868e8ea"
+      },
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "04966ea41d55d0aeafe83177c2bafc5fb6eeda9a"
+      },
+      "before_sha256": "47dc0177bcaf7e33352c0f9db504163dfbcac8edd055cef8fecb5ff12688d166",
+      "after_sha256": "23908de1d67a2947ebe6d711f3ce34a838ec72478bd6070dbd44acb90581d6cc",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "docs/roadmaps/mail/README.md",
+      "status": "M",
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "ac0abac2be589eaac18054655c7d1e4666194321"
+      },
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "ed32bdd7e95a01794870204f17c68205a33cd50b"
+      },
+      "before_sha256": "06a4aaaa961c9a21796c618dabec4bbe262f257e73c9c59b3be7925329ce7736",
+      "after_sha256": "c0ae8be523bc057a3ceb3cfdcbdd8b6e7938cd05b1c784d62453b07ef20a9f8c",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "docs/roadmaps/mail/implementation-plan.md",
+      "status": "M",
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "1b128814fb5c8f820aa87cedda58fae654c5830c"
+      },
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "7203190668907f4457cb7a06270dd72266941b24"
+      },
+      "before_sha256": "fe95a21da17472f5332cd36bcbf7a62400c12409564b5cf936340a898493d33f",
+      "after_sha256": "f6ac1d299b46cf0494ab2f68e1e548dbec504ba4f8fcbe37a8ea6af3fcdce400",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "docs/roadmaps/mail/outbox.md",
+      "status": "A",
+      "before": null,
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "672ba412fc76d4f82ba799bd03bcf8a55d91554f"
+      },
+      "before_sha256": null,
+      "after_sha256": "6039d7f35f9f463cebdd9735ba0f06438ff6cccb803747bcc9c78a717dffbe1e",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "docs/roadmaps/mail/remembered-accounts.md",
+      "status": "M",
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "31220e15ba0c613825d406ada21806a45e7b4950"
+      },
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "b33c17f3554d0a7ec2f3256f29518a6dd1234518"
+      },
+      "before_sha256": "abfe4605ad4e4055ee4ae114c0bfa0fafe7e86de99bd62c3c5cc0e784215b13a",
+      "after_sha256": "29b19896b465cf9475def32f510b5d3d4fda39b013cb94114a5b363c690dc888",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "docs/roadmaps/mail/status.md",
+      "status": "M",
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "5bf7f99b0627970eb996dcc67fad6945620ee09d"
+      },
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "584fe10fe65b4e3e000747a0f448eb70f80eb954"
+      },
+      "before_sha256": "00dd6b50ac81c48c32c776a055aee12b25bd2572648c2c65b2430c07074ea59e",
+      "after_sha256": "a6e2ebbb66fa882ee1f31716743a8c927c36b96ae67293a647f173c30b8a909e",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "docs/roadmaps/zotero/word-processor-parity.md",
+      "status": "M",
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "bc121d7a965fb3ad5f9abeee6de5ad8de209998f"
+      },
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "dcc935de5d1d969aaf51b0fa7dbda59b87d89985"
+      },
+      "before_sha256": "72e4c00a75b887a034dd3885328eee95962f51534e83c2029b959cfd9208c355",
+      "after_sha256": "6d2bbe54def8a9b3beb326ec7b9773f26c0a05366e2e286f7f2ca301a4b0a07f",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "docs/validation/mail-accounts-20261120/main-refresh.json",
+      "status": "A",
+      "before": null,
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "26a432ca9e90678688a958c9f4580063c2711bc5"
+      },
+      "before_sha256": null,
+      "after_sha256": "e5e7d08ba99e25c45ff15ff883c3f54af6018c7c8efb093172e5142984c02ea5",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "docs/validation/mail-outbox-20261120/README.md",
+      "status": "A",
+      "before": null,
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "b9c99eb8a08350a94c59fc210911c42b44f3d653"
+      },
+      "before_sha256": null,
+      "after_sha256": "3556b9cebcc494452a94a16c34361a8a95213ed07a81e8b680ed9f4d070eccfb",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "docs/validation/mail-outbox-20261120/intake-dispositions.md",
+      "status": "A",
+      "before": null,
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "820636d886fd8f2123a8e3fc5bd117d72fef55c5"
+      },
+      "before_sha256": null,
+      "after_sha256": "44d95e3529f1825f644833e2958676d0971667ecc45de37d85a844caba4e3847",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "docs/validation/mail-outbox-20261120/intake-initial.json",
+      "status": "A",
+      "before": null,
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "9299effddba2e1709e10e7c897d75acef434c23b"
+      },
+      "before_sha256": null,
+      "after_sha256": "277348a94b5bb3e58e7326e4721ae66eaa90b4d6f7b79f7dc66857aa038d6c48",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "docs/validation/mail-reply-forward-20261120/README.md",
+      "status": "M",
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "182fdf5e8c7eec71592fca579af4114f44c5c514"
+      },
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "0bc9c8aa09a62d47643dd864fcbf25ac652d6387"
+      },
+      "before_sha256": "6ecf949fdd5cb263aadedfe27853405b6d46ce5f9732265fc3bf17187726d301",
+      "after_sha256": "a8065f981dbeb04fab6671e81ece9c462a3212a7f012e989114a19acb071330f",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "docs/validation/mail-reply-forward-20261120/final-intake.json",
+      "status": "A",
+      "before": null,
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "a19c5313423d8702f37b861745741a31d87dd8c7"
+      },
+      "before_sha256": null,
+      "after_sha256": "e4d7f8dd0df6db6f4b5155c43df3d684aebefc86457430e15e5ebf62954f2b51",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "docs/validation/mail-reply-forward-20261120/final-machine-logs.tar.gz",
+      "status": "A",
+      "before": null,
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "84e6d07458ef99da6fcd52b4659cc6d93e600b6a"
+      },
+      "before_sha256": null,
+      "after_sha256": "62dd55ab32df25a8a54af41b48ae76daec802b1778977288c866fefec5ed2584",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "docs/validation/mail-reply-forward-20261120/initial-machine-logs.tar.gz",
+      "status": "A",
+      "before": null,
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "b86fb57cee9178cfc5349f9d8db0333638112ba8"
+      },
+      "before_sha256": null,
+      "after_sha256": "552aca14a9e9868514943ee3842b81c4fd277eb2f9882f2ad3fa66061777ae1d",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "docs/validation/mail-reply-forward-20261120/integration-machine-logs.tar.gz",
+      "status": "A",
+      "before": null,
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "565313398b6a3af8b65a9d333ba52759748cc570"
+      },
+      "before_sha256": null,
+      "after_sha256": "322e1916fac9e31356b8fd15a36087c36a8294c0c83c1f16191bedc86779aaae",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "docs/validation/mail-reply-forward-20261120/integration-runtime-results.json",
+      "status": "A",
+      "before": null,
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "8caa98973522e90f2ad55afee2c10fddfec03fc5"
+      },
+      "before_sha256": null,
+      "after_sha256": "24288e7b00151b1bcafa0f5933d70c288aa920a4b24d33c1026142265d9d6763",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "docs/validation/mail-reply-forward-20261120/integration.json",
+      "status": "A",
+      "before": null,
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "723738e1c382a85afb78f3e92b8ec1134c09c3f4"
+      },
+      "before_sha256": null,
+      "after_sha256": "1da8af2f7a5d25b3c233b12d68ffc2b0e12e8d45d6e5f09ae1d476c5b58865d2",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "docs/validation/mail-reply-forward-20261120/runtime-results.json",
+      "status": "A",
+      "before": null,
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "103bc0e8803a2b39b810fdd3776ce239bae81c46"
+      },
+      "before_sha256": null,
+      "after_sha256": "2bc205a029df3caee71025afaea39137238155fd76273eee9b5814e1ac73e2b2",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "docs/validation/zotero-research-tables-20261120/README.md",
+      "status": "A",
+      "before": null,
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "7f4c67b8bfaa128fe54e0f2d7eae0bf084676636"
+      },
+      "before_sha256": null,
+      "after_sha256": "a47a34bb8b4911bd01318b93d48525c4e11d52d7185328528f2dec928cad5221",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "docs/validation/zotero-research-tables-20261120/checkpoint-editor-evidence.json",
+      "status": "A",
+      "before": null,
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "42ecc8dec3a5e69386e8896ba39ffb180158f0e2"
+      },
+      "before_sha256": null,
+      "after_sha256": "69d9eef7bd0d8787d1bdb44dbb62e1e8a96c4d201280bbe4cf111c78563b1bda",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "docs/validation/zotero-research-tables-20261120/checkpoint-editor-evidence.tar.xz",
+      "status": "A",
+      "before": null,
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "a1e4d91db60af8a2fd8029218ff04af8728913c8"
+      },
+      "before_sha256": null,
+      "after_sha256": "8374c1c102701c4cee838312de882690008edb73ac914873b9ff6ebdcb110071",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "docs/validation/zotero-research-tables-20261120/checkpoint-engine-evidence.json",
+      "status": "A",
+      "before": null,
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "826f1a61f83b1841fb873163986def0046dbf139"
+      },
+      "before_sha256": null,
+      "after_sha256": "be12c634d1eba14212ecf9514b55a25ed9d120c6e5c90af0f0281ea6c66f89a1",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "docs/validation/zotero-research-tables-20261120/checkpoint-engine-evidence.tar.xz",
+      "status": "A",
+      "before": null,
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "5b3d2910f4ef85028567939982becc2ab4530bbd"
+      },
+      "before_sha256": null,
+      "after_sha256": "fdfd1e504a4929b7e79c3201e2ac8dbf80ab1a1a5893274ef6624c3bfe67c308",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "docs/validation/zotero-research-tables-20261120/format-map.json",
+      "status": "A",
+      "before": null,
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "1cc30e5604ed866fd1fdb2fac5e8521e6c00747c"
+      },
+      "before_sha256": null,
+      "after_sha256": "b11cf077bc91ea87e256cb031840f1e2066d7e62e3e1231805f12898ad8b4503",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "docs/validation/zotero-research-tables-20261120/incoming-credential-review-v2.json",
+      "status": "A",
+      "before": null,
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "7e728ba1deb8a8954aafd6634788da6858d7e5b7"
+      },
+      "before_sha256": null,
+      "after_sha256": "44b91d7aab9546b7356773ead3e576739e18edcd15e2ccdc69364016436f8b3f",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "docs/validation/zotero-research-tables-20261120/incoming-final-review.json",
+      "status": "A",
+      "before": null,
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "3234fc7f5dd42a5d620c3f9a19e6968330b54878"
+      },
+      "before_sha256": null,
+      "after_sha256": "5a97a2fabe52c5edf33375c229a32156bf7bc1e35ae02d0cb105f7999dcdaa65",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "docs/validation/zotero-research-tables-20261120/incoming-followup-review.json",
+      "status": "A",
+      "before": null,
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "c0a1df9cfa873a83562bb15e6967540552c0db6d"
+      },
+      "before_sha256": null,
+      "after_sha256": "2011ab29121470adc576f93cca321fb8b48da3ee5498673b2a51ebfe2aadaf89",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "docs/validation/zotero-research-tables-20261120/independent-source-review.json",
+      "status": "A",
+      "before": null,
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "09934a5152351bada1b8c0296781baedc8edfbc4"
+      },
+      "before_sha256": null,
+      "after_sha256": "21507dade31b16be6c18e848cc38b1c4ed779e854d5c0090fe53a0c3078757db",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "docs/validation/zotero-research-tables-20261120/integration-integrity.json",
+      "status": "A",
+      "before": null,
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "32da86986b9539e34a2114f49fe32d37d2dc9a2a"
+      },
+      "before_sha256": null,
+      "after_sha256": "4c8e2a8fb9ce04de8767ac59ad74ec4feb343a92204dbe1046d49777c0456960",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "docs/validation/zotero-research-tables-20261120/late-head-assessment.json",
+      "status": "A",
+      "before": null,
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "b5345dbf6889b27240832f2697f2cc92aebf72c9"
+      },
+      "before_sha256": null,
+      "after_sha256": "a927b83f96cc5a8fdb30d70df0460b63f4ffe839e01121a54d8e884e4642a339",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "docs/validation/zotero-research-tables-20261120/runtime-host-fixture-review.json",
+      "status": "A",
+      "before": null,
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "654cb36cd9de91bb0caed15ce8d2af29a613f2f3"
+      },
+      "before_sha256": null,
+      "after_sha256": "e4430862bf7879068f4cd603ae034f4be0fc6b961c26e50fda31d38d6e4ac8a6",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "docs/validation/zotero-research-tables-20261120/runtime-race-fixture-review.json",
+      "status": "A",
+      "before": null,
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "a572e07b22d2807672ddb6cb1e3c036f05184750"
+      },
+      "before_sha256": null,
+      "after_sha256": "11aa467d197f15b16ffc7885d3df8a04f634b353a5d3b80b65992abf63fe572b",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "docs/zotero-support.md",
+      "status": "M",
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "ba7313bfe5e44643314fde9a92c5abdfe09113fd"
+      },
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "55bee0faf90206bc6c17643558f5eceeef0c10bb"
+      },
+      "before_sha256": "f8fcf90998adbf56299a551f586cb2bcc8867fde8e8a21c1638417e123efc8a8",
+      "after_sha256": "d1503dbcec78958075ceb0e2d478dda6064d99d06356ee182e314d6e16b37865",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "packages/quds_mail_core/CHANGELOG.md",
+      "status": "M",
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "d3f5c8abed2514bb1389b727f7e42eaf60b3b6ad"
+      },
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "d0eec0c0e15dc4e02f1d807d8037b4bc9dccf317"
+      },
+      "before_sha256": "d0b73a1beb58030296658d55a76615dc747eacce276641a9c50143cd23c91711",
+      "after_sha256": "1c829f5e4b9b1d58c6d64bae6b4e0009c76a58a4881932b033ff0ba9faa8c53c",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "packages/quds_mail_core/lib/src/sync/outbox.dart",
+      "status": "M",
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "7dc43d0178cec7d100249ce917d113ec10ba79d6"
+      },
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "70ccce29d3c4c119f7a719ee4101d0659c6bfbd2"
+      },
+      "before_sha256": "371308f6d9deebd2ab5d72bd6f7a10425f510a5541c1bde3731ea8661d7faf5d",
+      "after_sha256": "15efa0956379144ecdc20ffc8578258cbc8bc6a35e474c812b5e7b148aa7df26",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "packages/quds_mail_core/test/outbox_test.dart",
+      "status": "M",
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "e45bc1e3c0d7c8ece14b565f1d68dd94dabfaced"
+      },
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "2bd60f3b4ff489c3fce50100c6d2347aa8a68286"
+      },
+      "before_sha256": "40708733f223bbd5630f63ab9ebd77faddf9b3922aad77fdfbbcf233e17d48bb",
+      "after_sha256": "a056c40dbbf285bdc52e2a9ae79cb1d9bcf6e39cc12bffe45520d8f0bf12934f",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "packages/quds_mail_store/CHANGELOG.md",
+      "status": "M",
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "3dfc9353d98ee836a3f8f8f9fa3cb90f76f59586"
+      },
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "436a317a1892a74e46aff4bfdcb0277f8b82fbf7"
+      },
+      "before_sha256": "6d50f9cca2c8a897c6d49d32aa246ebcafb725eca7b63cc5336cc0c1fe6ebeae",
+      "after_sha256": "7b1748265e9a11fbfbf3e9fb96e0a5a82e5b29522f871da809cf12e13e10d572",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "packages/quds_mail_store/lib/src/codec.dart",
+      "status": "M",
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "ff28acc45930fcea71c0f5c653532c02e5917e7c"
+      },
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "aafd9b4a0a6f376c36160f2c7408635f2a3eef1b"
+      },
+      "before_sha256": "847650111e33cee0b56d5d7d7c4a0d182dae7b84e23789080ddb9992a7ce8842",
+      "after_sha256": "3b254d88cbfed07d20cf473445b11b1f42846fd5328f70d3417e38c9d0e64bfe",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "packages/quds_mail_store/lib/src/repository.dart",
+      "status": "M",
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "b023704793339083f259830aa88d5c3cf591f2e0"
+      },
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "a04340ba69b060d8ecff74f7fd92dc74f9428aa0"
+      },
+      "before_sha256": "264bb8cf7a8dbbe4bb45ea259c9d0246a2771ccdcb0ac352996b767f6b4f4a74",
+      "after_sha256": "b309f7beeea06aeb812e103c6a271f8389d9816cf3c432ffcfdf1a4917b6bd94",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "packages/quds_mail_store/test/codec_test.dart",
+      "status": "M",
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "0a810d49252e81ec4aee244e43e17c1721a487be"
+      },
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "e1244df927710dd971494c9b83b3e1908746d616"
+      },
+      "before_sha256": "307d152ed5bd4792c1290168328b8ff6243c7487b71485a3b3db6fdec09e237c",
+      "after_sha256": "5c56263e7345a0c68cc8af36c977a58c01460adbf6367ed0319683ae26f8470c",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "packages/quds_mail_store/test/outbox_draft_transfer_test.dart",
+      "status": "A",
+      "before": null,
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "142a6ce4679149b4dc4d7dd07620f255b77d1cb6"
+      },
+      "before_sha256": null,
+      "after_sha256": "7e02dd040e4705c8f9a275e0e930fbd102023283a75322de99b279a81ca9975a",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "packages/quds_mail_ui/lib/src/reader/selection_surface.dart",
+      "status": "M",
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "fc63c0013335d8d8c1ec4f55a12f85eeae9eeff0"
+      },
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "6a5e0880d73e12cc176d1b6681efaabc6e96079d"
+      },
+      "before_sha256": "f4a5665db6203ce1b139b07b1ea1214edf04ebea075d08ad330cddb444007e63",
+      "after_sha256": "ba75f9adc97973905e04ab489e5c10ad4d66e3525063349042e6cb717ff2a143",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "packages/quds_mail_ui/test/body_presentation_contract_test.dart",
+      "status": "A",
+      "before": null,
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "d6c46c26975c1c8687d4317e7d258d9f01d1bf89"
+      },
+      "before_sha256": null,
+      "after_sha256": "56b5109083c59be5af52664a0d4f9cfc498c551ffedee1d0bef06e5e52527c2f",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "packages/quds_mail_ui/test/reader_theme_scroll_test.dart",
+      "status": "M",
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "2f3f8a2574a270c36d66dfe378a0701a3b0b44c5"
+      },
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "73ef48341ef1a5b5a128ce4fed4ca3cf286c1a79"
+      },
+      "before_sha256": "72b23226d948feb006f87a749ed4f3dbb63b2f10093323108b2459b8fe2cb7c3",
+      "after_sha256": "39279b03e70d977f3fd177debdf1105a8e0d444fcad77c85b29fb3a4321036b2",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "packages/quds_office_editor/CHANGELOG.md",
+      "status": "M",
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "c391a3569cb83072deec6107acfbf34af6490558"
+      },
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "342bef26e2a30f0d58524783e7f52f5a83be80ee"
+      },
+      "before_sha256": "b5e75326617133fb6456c1b0d72d3ca85a684871c21d47c190191f934cdc1922",
+      "after_sha256": "ef873e0a067d03dc7337f9b535bf03909773facfa14c6b71797be5c0d07fff97",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/credentials/credential_storage_diagnostics.dart",
+      "status": "M",
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "fa9712686ba47b53c304ff4e3f65c90d150d1a2d"
+      },
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "bdb910d2a2c1a635e5e4da0dc69b009a13f228b2"
+      },
+      "before_sha256": "c95ede0987225954903a4611b32d9e020c89bf7a79fa2187c81ca1aa051467e2",
+      "after_sha256": "c94d7eebf74a1fb714b729d0566a3134aa936fb863600bedea3e7d62d6715c15",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/credentials/encryption_service.dart",
+      "status": "M",
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "3f8e997d2fa25e669fb8aa70a79fb4eeb12232ae"
+      },
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "495cdcbde315642071b86945801fe51cea8b4d2b"
+      },
+      "before_sha256": "54d4d52a93ce1b63f7e6f88a6740019d7bd6a15aacbd226c3adc7b14407f3696",
+      "after_sha256": "5f294a6041311692234b104c4bda324cf5e22e00150542b5a8bb7dee39b666cd",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/credentials/log_service.dart",
+      "status": "M",
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "8bf80d9f8990e69c05b77743412ff865bb0c3081"
+      },
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "ba55dc7be4b6ac38e697ba0d89e9a01325a2af5a"
+      },
+      "before_sha256": "98f583273e7c9a23578bddeca81e955749a851d2306f9749b4bba0418443c365",
+      "after_sha256": "b946e30f28cf9a4de5f53776279554569544eeb13894565e4025053aeefae004",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/credentials/secure_storage_file_io.dart",
+      "status": "M",
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "7d0f2738f27d51ded0239be6996a08fa8d3737f4"
+      },
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "6d7e1b5e3afc46d19c5b299a79c721c34a8fd807"
+      },
+      "before_sha256": "ff43a4bdb58a66f6bdc7a70bd9c09f3d3c9014d8b40f0b047abea62159360fdf",
+      "after_sha256": "0fc9ac427cff0a6da192de0b74392dd946cba25fbe1741a61b699b9ecda9d363",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/credentials/secure_storage_macos_keychain.dart",
+      "status": "M",
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "d39baf1aa600d9a0d2f6391858343dab7ea658fb"
+      },
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "a0fb6a17b7a65fae0ce005244d0eeb8a89cd697e"
+      },
+      "before_sha256": "e22a5e7bd050d1820b089e936f8b9a05e65924467733cb0b9405ebfb29d184d7",
+      "after_sha256": "0aad8cb9617afc23fa0d6ac005b2d5ac010910f5b314da0b57e8e0f644e7edd3",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/credentials/secure_storage_service.dart",
+      "status": "M",
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "756df92b80d93fd3f1383d535a81d9cd4444f795"
+      },
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "06975da04b4ebc9a4878a2aa4b412e571c5f6e39"
+      },
+      "before_sha256": "268be327d346f475c41a7102a464c4c4b6965808d03a2251906a53304cb50bc0",
+      "after_sha256": "6d260ef23fc3730115ea75872ecb7c7dac326078f7256ab16d69d94ed12cec95",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/credentials/secure_storage_web.dart",
+      "status": "M",
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "ec26e6d19778fb572fe050534426ff43856eab67"
+      },
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "2b26ad4fb0fe7e402bc2c7cdaa080f619903b9e6"
+      },
+      "before_sha256": "8aa7a1fe507e4e3273607df6c0dbb5004053541f436f62931658a0774098328f",
+      "after_sha256": "c908057ba49e6f91716431a1ea2920778bbbcbfe65c97ce076ecd8cc7a367d26",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_credential_storage.dart",
+      "status": "M",
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "222e1d292d8786296d0293a3af85acc192631d00"
+      },
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "88a22c6bcc21477b2a3b4e1d417567a21643bf41"
+      },
+      "before_sha256": "2c87775cee8600b42f5514a222c0352d1041a17f15f6b89965cf9a4602d9225c",
+      "after_sha256": "c69c52c4ae0031879344e4a335395756edff991676b8a6dba2fb2383e413e792",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_licenses.dart",
+      "status": "M",
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "f9f34861108486af7d38229c7df5309890b452cc"
+      },
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "d6912a9bea83fd979bd19c51a289b042420e3ec4"
+      },
+      "before_sha256": "90425db74d829278696b7807f7f2f08b49a0028f9ad2926b6f727b807cac37ac",
+      "after_sha256": "f75d954c9387537951f5866dcedbaffbd714a5f06f544d18e8ca120d7b6294d4",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_compose.dart",
+      "status": "M",
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "b0c641c97d4f338c3ef6fe086fe59e792f70df25"
+      },
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "266e42a140559e851a8ff65789c9ce777f79872f"
+      },
+      "before_sha256": "f0308bb4c8b91bc2a5a5b977663f8ee43487171f7f19860d23c0ce99771ee05e",
+      "after_sha256": "f73830e5d629ecb3e6adbb56523053c39a6fddf9506dc50ac5667b432d963954",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_credentials.dart",
+      "status": "M",
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "f533883c4c81d5880b0b1a086bca2f2b5fdd207b"
+      },
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "0d7d3a34d91637dab126915a4c55e8c07876f0c8"
+      },
+      "before_sha256": "f3af2aaaafb120e81c8de5242bd9a9571a59c3a78bfe265a28c7b738c6fa25b6",
+      "after_sha256": "5043419d5c4a302d1cc80f3da1a2884f633ffc2c9aa7a52a99922f43a45de168",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_draft_store.dart",
+      "status": "M",
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "2023e38bfb4476bf41df9aa83ec778934c9c49b6"
+      },
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "3a9bbe3fde952965f334b2d5d76f82152a54b326"
+      },
+      "before_sha256": "1e87a97324fe7a2d383e867eb23b240ae280d8f6487d1a849b56d71967ddb60c",
+      "after_sha256": "f54e092778d12d608e536c3ba6a6c78568f4b76a1eada30eb1b9ba130d4b69fc",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_ews.dart",
+      "status": "M",
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "83c050b588f6460ab6d7fcc0eb767828c00b0d24"
+      },
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "6c68dbffdb8cb3363dc2ce62a70bcbe9099214fa"
+      },
+      "before_sha256": "3c0f398093c3d062f049749e73657bbacd1bee2d37db8046c88f458872b65ba2",
+      "after_sha256": "5490c0d9de8850395cb34b77643d1f5621b0cbda01fd0a38077cb354b5e5c25a",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_native.dart",
+      "status": "M",
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "ecb7464b0b13927e7cb258951775a1975a91c29e"
+      },
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "e3f0ebb3722b9fcce2e0c7d6f902118e9cd90b8a"
+      },
+      "before_sha256": "182f3aecd11335dc6ee3db97c48e40cf5a7e1dbde3db7d5f94919084c34d766e",
+      "after_sha256": "5d49d98170bd64aa7725fa8760c7610398b08d8bbf8fed4045b6d17fa8ad5dc3",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_outbox.dart",
+      "status": "A",
+      "before": null,
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "c77b885d3bef42981e5769d703d98c34ae63e6b8"
+      },
+      "before_sha256": null,
+      "after_sha256": "09f52face56749588ae4fa92413adc50ac017b1cc9fe8d82657dab73e0ed974a",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_outbox_dialog.dart",
+      "status": "A",
+      "before": null,
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "1a91ce2b9f39848e404f86fedc3a78f1a5f4ac67"
+      },
+      "before_sha256": null,
+      "after_sha256": "0a2402814e63166cc12836c8b838b6ba87a67efdb6101a1eb9c1c6d0de1c5dae",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_outbox_strings.dart",
+      "status": "A",
+      "before": null,
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "a7c6e63f07233e419d17526940a810be37f742f5"
+      },
+      "before_sha256": null,
+      "after_sha256": "087f2010cc610f364af3f5779553b5982d19b492603b7ce553be360c69f22bda",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_submission.dart",
+      "status": "M",
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "be1ae08974998eface020d8ca0f6c321f67384a2"
+      },
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "9448ee331a244cd43b29390a19053a562fccfac5"
+      },
+      "before_sha256": "c4283d8780417fcbdd9a538675aef8f71faf84d82846a1f2b3939afb18de1eb2",
+      "after_sha256": "da84f31d81235575431c21d94e27ef95cdf95dc54086f356ae3e0d2993ea90e6",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/suite_workspace.dart",
+      "status": "M",
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "4595d8f638a1f9213ea229cf8f2aeaae0e2e7a5a"
+      },
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "780aeb41d872df31e19d7b4b8bb7df1835dfb6e2"
+      },
+      "before_sha256": "ae55f427e5b4254b28e2b155b16e9bb01d2103adf7b096ef838626ceb9ffe676",
+      "after_sha256": "6c226e850fc14bdef614ec1876f81fa32ec4779c352d128b6fcf1d2b66970219",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_credential_selection_race_test.dart",
+      "status": "M",
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "812a3d01656d29d6ef2811733d6dad2b18a3ee11"
+      },
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "b9994ef52fa04474d0ad2129b97abf316453c867"
+      },
+      "before_sha256": "dca22713844bee0bf43e0c0204c0c8420500f9b669d3c2021196bb7395e53706",
+      "after_sha256": "25148f1994f6bfea5eac9d718e8072d1870d28f971be6dfe772ed6a15180826d",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_credential_selection_test.dart",
+      "status": "M",
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "171f01f18da462890e1398af55fe9bd65f7206e4"
+      },
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "dd958222f69a3faefbd66d539e8cbe16b3e5e363"
+      },
+      "before_sha256": "3ba049e91ff3ffd21e63ea93c760cd93546c38480a483c0bf18b0b603cccb1d8",
+      "after_sha256": "9e443073aee14cffca1036ba9a2c3d0c0c499b700be3ec65028e35aa760f9cc3",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_layout_theme_test.dart",
+      "status": "M",
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "6c7931c62a0e14d471fb2ab040ea8db898c25471"
+      },
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "dc93101e99ef3c65e641b5eb937eaedd050ccd17"
+      },
+      "before_sha256": "02840c5916a1016a43d8fe7c3370d32742f9093ac4dadf6569d5082323a2e63d",
+      "after_sha256": "3ba12fb043abd0cb8459665d9964e40b39ea7d1ae6e2c9d6efafe93862345a95",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_account_stores_test.dart",
+      "status": "M",
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "c4384153c1e25e81d366a5dd2ebcbe39d7462bc3"
+      },
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "daea0102ff55314ca02144de5524222499539541"
+      },
+      "before_sha256": "929e92fac1ce79ead1f5529401899cc41f3f337e826b58bea8dbc3a68ec77452",
+      "after_sha256": "c20fc60f282e113250c2f6fe3954cf3e958623ca3129eacc08c1ddf41849515e",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_credential_backend_switch_test.dart",
+      "status": "A",
+      "before": null,
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "8741806b2ce2e7e9f6811a8bd33ae2f2f97f5855"
+      },
+      "before_sha256": null,
+      "after_sha256": "c9f2785bb87ed04c7668b6ce5134da25b7f7b8bc5b4975986493b8ab6633c9fe",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_outbox_dialog_test.dart",
+      "status": "A",
+      "before": null,
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "8e4e3ba95e85a392742981946385bac52af6b751"
+      },
+      "before_sha256": null,
+      "after_sha256": "559ca6736f456df40aa2b90f77bb9f749f1bb6fe1bd295c2451758a29936c2f8",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_outbox_host_test.dart",
+      "status": "A",
+      "before": null,
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "15cf312d534ce3a07981c9a831afb55465d3bf11"
+      },
+      "before_sha256": null,
+      "after_sha256": "8078baa4ed3ff0b74448593901bf8b5d762110e07c50c5c63458720dc53a7c61",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_outbox_store_test.dart",
+      "status": "A",
+      "before": null,
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "aca841c9c5001e458106e98e72d49068afcfaf76"
+      },
+      "before_sha256": null,
+      "after_sha256": "7486d4a8dd5714858cc403cafd05ab9c6a64e64afa591272807e510502980b3c",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_outbox_submission_test.dart",
+      "status": "A",
+      "before": null,
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "3e6f225544a303c120c2e24a31a354e66d803573"
+      },
+      "before_sha256": null,
+      "after_sha256": "5f61626d88bd6d96b402282a194d09bb34bdc513914a9f8d3cbb27330fc968c0",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_presets_test.dart",
+      "status": "M",
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "5d423130278779c400bb7fdeed9ab2c68fb90344"
+      },
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "33fb8919b69fd90ff32639f44b550c84e997751a"
+      },
+      "before_sha256": "aa2ede8ae28bad13aa8bc95975c600cb82f992b205568bdbabd099bc7cc9651d",
+      "after_sha256": "51b2d3df2bf754a2e3c9f3b768eec855bedc68a7dddac20268f07890d4752681",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_selected_store_integration_test.dart",
+      "status": "M",
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "96e8894eeadf8439869690e7bc3eb7a3758105be"
+      },
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "805f93c35c91e5648c5a7d19c81b7803e0f64c3a"
+      },
+      "before_sha256": "b593a60e9e049dbd2ed27ea8b18a06ee896a954b65524bcbd2a3317e2752475a",
+      "after_sha256": "7d27cb1c35015dc152872df002f0859e328fc56610380149edcb932495374eed",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_session_test.dart",
+      "status": "M",
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "c96a73ae8e1ddb63e1c264dde1db6bfc9fc0e4bb"
+      },
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "cea9c545da173a4d50b36871eed56e102fe955f0"
+      },
+      "before_sha256": "5e1a7038220ace81bc99cf2e67ceeee8d1c4a10dd892f61d7a40a36c8081eba7",
+      "after_sha256": "9202c4d5dc99781beb54753a05b4ad11a3836388f43b26d8939cf50f9be037ac",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_word_chrome_settle_test.dart",
+      "status": "A",
+      "before": null,
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "89e1d0d02cb084cecb3165cd2217a002b073cfbf"
+      },
+      "before_sha256": null,
+      "after_sha256": "a96df5f489229138e186cce2007ffdfa10022bc3abf034a85ece4b0eec925960",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/support/mail_credential_store.dart",
+      "status": "A",
+      "before": null,
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "84b8d69975548ad36cebdbd360dc4399e3724531"
+      },
+      "before_sha256": null,
+      "after_sha256": "546b2a1689f77b1d8b5d76b4d9faf30ec5645b25ba2b3e3e1d616eac73a0e98c",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/support/mail_outbox_store.dart",
+      "status": "A",
+      "before": null,
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "7a9f5dd02e895419e447500c560d4a9d16fe84fa"
+      },
+      "before_sha256": null,
+      "after_sha256": "9da98f699061d2ef3310c27f336160ee4f34c60210cd97cbdeafa16f269d2b3d",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "packages/quds_office_editor/example/tool/incoming_reconciliation_acceptance.dart",
+      "status": "A",
+      "before": null,
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "e844031d95714181128dc4df067cc4b0f221e3bf"
+      },
+      "before_sha256": null,
+      "after_sha256": "cdadc971e88f26942ca520461b081753def087602940832a92f0e7ac197ae855",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+      "status": "M",
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "e0f52cf8024bf52261d4b00e21d89cf4efb56a9f"
+      },
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "43e5b8137da90d4fe310e3ee74e4f035989e2e48"
+      },
+      "before_sha256": "d21668f61e78927e068ab00ac618f27876abe4afe1868e6ef8c2bf1c2d88604e",
+      "after_sha256": "38d47e3b24256eb4700d48737c51fcd1a5210e4fa441582f4c19a8a00959a660",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_zotero_note_image_controller_test.dart",
+      "status": "M",
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "c8c40a17a236b09b9e1352501aca1f1527786b81"
+      },
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "de621e71e753a350f89e9e8ff94a9037e90abff4"
+      },
+      "before_sha256": "e4a1f7edd6a7c2daa4924ee7961d4b4d753e87199550e5847c625d536c79cfdb",
+      "after_sha256": "93e6d77d1fbff88d64e2765e47b1d1e4d117a7569209bbf446037f8a49757bd3",
+      "in_baseline_gate_input_union": false
+    },
+    {
+      "path": "packages/quds_office_editor/tool/zotero/research_target_acceptance.dart",
+      "status": "M",
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "d8e092a5ae90dead78eeeefce12235ba1d2187bb"
+      },
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "object": "2df7783765165a99b13cfc22ad8c96f25834c4d6"
+      },
+      "before_sha256": "1708c2563847444ef9f2ca8782e90fe48aa10cea7787206df2a235b3e3bf160b",
+      "after_sha256": "f8c15339a76a0786fab3d383b8b33548050fbefab6e676833ddf31242cf44b6e",
+      "in_baseline_gate_input_union": false
+    }
+  ],
+  "qualification_note": "Retention is a source-reviewed impact decision, not a new test execution. Every retained case keeps its baseline commit and raw provenance."
+}

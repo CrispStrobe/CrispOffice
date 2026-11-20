@@ -1,0 +1,47 @@
+{
+  "schema": 1,
+  "date": "2026-11-20",
+  "file": "checkpoint-reconciled-engine-evidence.tar.xz",
+  "bytes": 214820,
+  "sha256": "2a73a6a592bff7b8dc8859a008b49354c16ba9651422e5e1c29dfcdd2ebc38de",
+  "git_blob": "028e88ee2b725aade8b11e8428bf1c25b2050c88",
+  "members": 23,
+  "source": "231bd0403a3d2855dc23bf8dacefaedba01f2aab",
+  "source_hashes": {
+    "count": 2226,
+    "unchanged_during_each_run": true
+  },
+  "runtime": "Genuine Dart 3.13.7, package:test source compiler",
+  "accepted": {
+    "zotero_and_layout": {
+      "visible_tests": 399,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "exit": 0,
+      "terminal_json_success": true
+    },
+    "incoming_vba_and_differential": {
+      "visible_tests": 329,
+      "original_files": 11,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "exit": 0,
+      "terminal_json_success": true,
+      "timeout": "2m per test",
+      "seconds": 329.7
+    }
+  },
+  "failed_diagnostic": {
+    "visible_successes": 326,
+    "default_timeout_failures": 3,
+    "exit": 1,
+    "timeout": "30s per test",
+    "excluded_from_accepted_totals": true,
+    "source_bytes_unchanged": true
+  },
+  "timeout_diagnosis": "Each of the three CLI integration cases starts two sequential genuine Dart CLI processes. The six sampled child lifetimes were approximately 15–19 seconds each. All children had exited before the unchanged 2m replay; no assertions, test bodies or product sources were changed.",
+  "contents": "Raw accepted 399- and 329-case JSON/stderr streams and exit/terminal receipts; source hashes; per-original incoming-file counts; the failed default-timeout attempt; child-process timing and cleanup receipts; exact bounded replay commands.",
+  "qualification": "These are selected engine cohorts on the reconciled source, not a whole-repository test run. Final Flutter/editor and affected host results are recorded separately."
+}

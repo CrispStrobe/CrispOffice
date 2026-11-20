@@ -1,4 +1,3 @@
-import 'support/mail_credentials.dart';
 import 'package:enough_mail/enough_mail.dart' as mail;
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -7,6 +6,7 @@ import 'package:quds_office_studio/studio_mail_presets.dart';
 import 'package:quds_office_studio/studio_mail_strings.dart';
 import 'package:quds_office_studio/studio_strings.dart';
 
+import 'support/mail_credential_store.dart';
 import 'support/mail_draft_store.dart';
 
 const _strings = StudioStrings(StudioLanguage.en);
@@ -138,7 +138,7 @@ void main() {
         MaterialApp(
           home: StudioMailDialog(
             strings: _strings,
-            credentialStore: SessionMailCredentials(),
+            credentialStore: memoryStudioMailCredentialStore(),
           ),
         ),
       );
@@ -179,8 +179,8 @@ void main() {
     await tester.pumpWidget(
       MaterialApp(
         home: StudioMailDialog(
-          credentialStore: SessionMailCredentials(),
           draftStoreFactory: MemoryStudioMailDrafts().open,
+          credentialStore: memoryStudioMailCredentialStore(),
           strings: _strings,
           accountDiscovery: (_) async {
             discoveries++;
@@ -208,6 +208,7 @@ void main() {
     );
     final connect = find.widgetWithText(FilledButton, _strings.connect);
     await tester.ensureVisible(connect);
+    expect(tester.widget<FilledButton>(connect).onPressed, isNotNull);
     await tester.tap(connect);
     await tester.pumpAndSettle();
     expect(discoveries, 0);

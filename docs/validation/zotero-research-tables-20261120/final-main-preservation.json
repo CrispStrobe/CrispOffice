@@ -1,0 +1,310 @@
+{
+  "schema": 1,
+  "date": "2026-11-20",
+  "reviewed_by": "root",
+  "main_path_review": {
+    "feature": "06defcfef83e1b33215441c92531c9467d3f89f4",
+    "incoming": "b42eca1db058f0def247b86c2f15dea90c11b4e8",
+    "adopted": 74,
+    "identical": [
+      ".github/workflows/incremental-layout-benchmark.yml",
+      "docs/validation/zotero-research-tables-20261120/incoming-downloads-review.json",
+      "docs/validation/zotero-research-tables-20261120/incoming-intake.json",
+      "docs/validation/zotero-research-tables-20261120/incoming-layout-review.json",
+      "packages/quds_mail_ui/lib/src/reader/presentation.dart",
+      "packages/quds_mail_ui/test/body_presentation_test.dart",
+      "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+      "packages/quds_office_editor/test/word_incremental_layout_equivalence_test.dart",
+      "packages/quds_office_engine/lib/src/word/model/word_zotero_citing.dart",
+      "packages/quds_office_engine/lib/src/word/model/word_zotero_note.dart",
+      "packages/quds_office_engine/test/word_incremental_layout_prefix_test.dart",
+      "packages/quds_office_engine/test/word_zotero_add_note_test.dart"
+    ],
+    "retained_feature": [
+      {
+        "path": "packages/quds_office_editor/example/lib/suite_workspace.dart",
+        "ours": "780aeb41d872df31e19d7b4b8bb7df1835dfb6e2",
+        "theirs": "4595d8f638a1f9213ea229cf8f2aeaae0e2e7a5a"
+      },
+      {
+        "path": "packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+        "ours": "43e5b8137da90d4fe310e3ee74e4f035989e2e48",
+        "theirs": "e0f52cf8024bf52261d4b00e21d89cf4efb56a9f"
+      },
+      {
+        "path": "packages/quds_office_engine/lib/src/word/layout/word_incremental_layout.dart",
+        "ours": "93c7e51944395cd0e23c0801fd47b0e7f54eebb2",
+        "theirs": "ba43bc5555bb805e190e6f26e8a94f8cedd43837"
+      },
+      {
+        "path": "packages/quds_office_engine/lib/src/word/layout/word_layout.dart",
+        "ours": "b50ee59383518783106875edc853b071685ea3f3",
+        "theirs": "69c1d35b2ada46b6e6d24f6307e77faad68b5ed9"
+      },
+      {
+        "path": "packages/quds_office_engine/test/word_incremental_layout_test.dart",
+        "ours": "e0129b6356a03aea83a66f9619d20b26a1a756cf",
+        "theirs": "0e9edc1f261daaa6f452ce883b7cea34394f5465"
+      },
+      {
+        "path": "packages/quds_office_engine/tool/zotero/research_target_acceptance.dart",
+        "ours": "7c3e82c6396cac8978a9771982d65d1758e45b8d",
+        "theirs": "48aab5a1b4220524a62768735110db17aad6cd88"
+      }
+    ]
+  },
+  "preservation": {
+    "baseline": "2d617a31bce48a7312f31586f70f7472e3420406",
+    "combined": "231bd0403a3d2855dc23bf8dacefaedba01f2aab",
+    "tree": "fe67b5ddf50480db3815e1bf7bae75bfaab69f7c",
+    "parents": [
+      "dae988351b4a3694500f3d10a40162effbac830f",
+      "b42eca1db058f0def247b86c2f15dea90c11b4e8"
+    ],
+    "proofs": [
+      {
+        "path": "packages/quds_mail_ui",
+        "baseline": "6ab5a9d8e7f569dd11ab26840368be596e522b80",
+        "combined": "6ab5a9d8e7f569dd11ab26840368be596e522b80",
+        "identical": true
+      },
+      {
+        "path": "packages/quds_office_editor/example/lib/studio_mail_credentials.dart",
+        "baseline": "a1d46c62cb798a7b0d306d3b839e2692753e56fc",
+        "combined": "a1d46c62cb798a7b0d306d3b839e2692753e56fc",
+        "identical": true
+      },
+      {
+        "path": "packages/quds_office_editor/example/lib/studio_credential_storage.dart",
+        "baseline": "e6d159e45bfce3a76cb11c8d812ab3de1bc04c13",
+        "combined": "e6d159e45bfce3a76cb11c8d812ab3de1bc04c13",
+        "identical": true
+      },
+      {
+        "path": "packages/quds_office_editor/example/lib/studio_credential_settings.dart",
+        "baseline": "9bebe73783ebb49d138789cbd2abbef61186579d",
+        "combined": "9bebe73783ebb49d138789cbd2abbef61186579d",
+        "identical": true
+      },
+      {
+        "path": "packages/quds_office_editor/example/test/studio_credential_selection_test.dart",
+        "baseline": "4b8ed261a2733f3d4c1643857bb74e9cc90b03c6",
+        "combined": "4b8ed261a2733f3d4c1643857bb74e9cc90b03c6",
+        "identical": true
+      },
+      {
+        "path": "packages/quds_office_editor/example/test/studio_credential_selection_race_test.dart",
+        "baseline": "b9994ef52fa04474d0ad2129b97abf316453c867",
+        "combined": "b9994ef52fa04474d0ad2129b97abf316453c867",
+        "identical": true
+      },
+      {
+        "path": "packages/quds_office_editor/example/test/studio_mail_credentials_test.dart",
+        "baseline": "d40925027476951a258a234f49c5c393e6af541b",
+        "combined": "d40925027476951a258a234f49c5c393e6af541b",
+        "identical": true
+      },
+      {
+        "path": "packages/quds_office_editor/example/test/studio_mail_accounts_test.dart",
+        "baseline": "8b9d68326b6e5a7b60fbc75a6dbf0d70c0f53ead",
+        "combined": "8b9d68326b6e5a7b60fbc75a6dbf0d70c0f53ead",
+        "identical": true
+      },
+      {
+        "path": "packages/quds_office_editor/example/test/studio_mail_account_catalog_test.dart",
+        "baseline": "df9687b6dd0432a4ba414c19ddd657717552a57f",
+        "combined": "df9687b6dd0432a4ba414c19ddd657717552a57f",
+        "identical": true
+      },
+      {
+        "path": "packages/quds_office_editor/example/test/studio_mail_account_stores_test.dart",
+        "baseline": "c4384153c1e25e81d366a5dd2ebcbe39d7462bc3",
+        "combined": "c4384153c1e25e81d366a5dd2ebcbe39d7462bc3",
+        "identical": true
+      },
+      {
+        "path": "packages/quds_office_editor/example/test/studio_mail_selected_store_integration_test.dart",
+        "baseline": "805f93c35c91e5648c5a7d19c81b7803e0f64c3a",
+        "combined": "805f93c35c91e5648c5a7d19c81b7803e0f64c3a",
+        "identical": true
+      },
+      {
+        "path": "packages/quds_office_engine/lib/src/word/layout/word_layout.dart",
+        "baseline": "b50ee59383518783106875edc853b071685ea3f3",
+        "combined": "b50ee59383518783106875edc853b071685ea3f3",
+        "identical": true
+      },
+      {
+        "path": "packages/quds_office_engine/lib/src/word/layout/word_incremental_layout.dart",
+        "baseline": "93c7e51944395cd0e23c0801fd47b0e7f54eebb2",
+        "combined": "93c7e51944395cd0e23c0801fd47b0e7f54eebb2",
+        "identical": true
+      },
+      {
+        "path": "packages/quds_office_engine/test/word_incremental_layout_test.dart",
+        "baseline": "e0129b6356a03aea83a66f9619d20b26a1a756cf",
+        "combined": "e0129b6356a03aea83a66f9619d20b26a1a756cf",
+        "identical": true
+      },
+      {
+        "path": "packages/quds_office_editor/example/lib/suite_workspace.dart",
+        "baseline": "780aeb41d872df31e19d7b4b8bb7df1835dfb6e2",
+        "combined": "780aeb41d872df31e19d7b4b8bb7df1835dfb6e2",
+        "identical": true
+      },
+      {
+        "path": "packages/quds_office_engine/lib/src/word/model/word_zotero_citing.dart",
+        "baseline": "6b752df7f08107daf3976271ba2abbcd5afe526f",
+        "combined": "6b752df7f08107daf3976271ba2abbcd5afe526f",
+        "identical": true
+      },
+      {
+        "path": "packages/quds_office_engine/lib/src/word/model/word_zotero_note.dart",
+        "baseline": "dcf54783928e8468e015195081b3d97f29e7b989",
+        "combined": "dcf54783928e8468e015195081b3d97f29e7b989",
+        "identical": true
+      },
+      {
+        "path": "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+        "baseline": "e5742bf1911e7cbd8e5fb9ca201d7d5e57cc3297",
+        "combined": "e5742bf1911e7cbd8e5fb9ca201d7d5e57cc3297",
+        "identical": true
+      },
+      {
+        "path": "packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+        "baseline": "43e5b8137da90d4fe310e3ee74e4f035989e2e48",
+        "combined": "43e5b8137da90d4fe310e3ee74e4f035989e2e48",
+        "identical": true
+      },
+      {
+        "path": "packages/quds_office_editor/tool/zotero/research_target_acceptance.dart",
+        "baseline": "2df7783765165a99b13cfc22ad8c96f25834c4d6",
+        "combined": "2df7783765165a99b13cfc22ad8c96f25834c4d6",
+        "identical": true
+      },
+      {
+        "path": "pubspec.lock",
+        "baseline": "c677b8fbc9de6607a1c0af2608bec1c2d32fca6d",
+        "combined": "c677b8fbc9de6607a1c0af2608bec1c2d32fca6d",
+        "identical": true
+      }
+    ],
+    "qualification": "Exact subtree/blob identity for these preserved paths. This does not assert that every transitive dependency is unchanged; affected engine/editor/Mail integration replay is recorded separately."
+  },
+  "native_delta": [
+    {
+      "type": "insert",
+      "line": 1145,
+      "text": "              sourceStatus: result.status,"
+    },
+    {
+      "type": "insert",
+      "line": 1151,
+      "text": "              sourceStatus: result.status,"
+    }
+  ],
+  "table_test_cleanup_diffs": {
+    "parser": [
+      {
+        "line": 246,
+        "removed": [
+          "      final note = WordZoteroNoteText.fromHtml(",
+          "        _table(",
+          "              '<tr><td><ol start=\"4\"><li>First<p>Continuation</p>'",
+          "              '<ul><li>Deep $_one</li></ul></li></ol></td>'",
+          "              '<td><ol start=\"7\"><li>Other $_two</li></ol></td></tr>',",
+          "            ) +",
+          "            '<ol start=\"2\"><li>Tail</li></ol>',"
+        ],
+        "added": [
+          "      final table = _table(",
+          "        '<tr><td><ol start=\"4\"><li>First<p>Continuation</p>'",
+          "        '<ul><li>Deep $_one</li></ul></li></ol></td>'",
+          "        '<td><ol start=\"7\"><li>Other $_two</li></ol></td></tr>',",
+          "      );",
+          "      final note = WordZoteroNoteText.fromHtml(",
+          "        '$table<ol start=\"2\"><li>Tail</li></ol>',"
+        ]
+      }
+    ],
+    "insertion": [
+      {
+        "line": 174,
+        "removed": [
+          "    _start(session, _table('$_one', '$_two'));"
+        ],
+        "added": [
+          "    _start(session, _table(_one, _two));"
+        ]
+      },
+      {
+        "line": 206,
+        "removed": [
+          "    _start(",
+          "      session,",
+          "      '<p>Intro</p>' + _table('Cell one', 'Cell two') + '<p>End</p>',",
+          "    );"
+        ],
+        "added": [
+          "    _start(session, '<p>Intro</p>${_table('Cell one', 'Cell two')}<p>End</p>');"
+        ]
+      },
+      {
+        "line": 250,
+        "removed": [
+          "          _start(session, _table('$_one', '$_two'), type: type);"
+        ],
+        "added": [
+          "          _start(session, _table(_one, _two), type: type);"
+        ]
+      },
+      {
+        "line": 357,
+        "removed": [
+          "        _start(session, _table('$_one', ''), type: type);"
+        ],
+        "added": [
+          "        _start(session, _table(_one, ''), type: type);"
+        ]
+      },
+      {
+        "line": 425,
+        "removed": [
+          "              '<td data-colwidth=\"120\" style=\"background-color: #abcdef\">'",
+          "              '<ol start=\"3\"><li>First $_one</li><li>Next</li></ol></td>'",
+          "              '<td data-colwidth=\"240\"><p><img src=\"data:image/png;base64,' +",
+          "          base64Encode(png) +",
+          "          '\" width=\"24\" alt=\"Cell image\"/></p>'",
+          "              '<ol start=\"7\"><li>Second $_two</li></ol></td>'",
+          "              '</tr></tbody></table>';"
+        ],
+        "added": [
+          "          '<td data-colwidth=\"120\" style=\"background-color: #abcdef\">'",
+          "          '<ol start=\"3\"><li>First $_one</li><li>Next</li></ol></td>'",
+          "          '<td data-colwidth=\"240\"><p><img src=\"data:image/png;base64,'",
+          "          '${base64Encode(png)}\" width=\"24\" alt=\"Cell image\"/></p>'",
+          "          '<ol start=\"7\"><li>Second $_two</li></ol></td>'",
+          "          '</tr></tbody></table>';"
+        ]
+      },
+      {
+        "line": 531,
+        "removed": [
+          "        _start(session, _table('$_one', '$_two'));"
+        ],
+        "added": [
+          "        _start(session, _table(_one, _two));"
+        ]
+      }
+    ]
+  },
+  "helper": {
+    "original": "25d38f8f2cdcad7767702c3e3b20722d298017c4",
+    "final": "1d0fe0c0aabf7b393b00af64dfa1d116c36abc20",
+    "exact_single_group_addition": true,
+    "groups": 8,
+    "original_files": 18,
+    "completion_logic_unchanged": true
+  },
+  "qualification": "Independent exact-source, path and ancestry review. This is not a runtime result; final combined-source gates retain their own receipts."
+}

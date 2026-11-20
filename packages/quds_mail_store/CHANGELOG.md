@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+- Add bounded, account-scoped draft metadata pages without resolving attachment
+  blobs. Keep cleared revision markers out of normal pages and enforce an
+  optional active-draft limit atomically with draft writes and quota checks.
+
 - Atomically transfer a saved draft revision into a frozen outbox item and an
   empty next revision, closing the crash gap between enqueue and draft cleanup.
 - Persist sticky outbox uncertainty in version-two payloads while reading

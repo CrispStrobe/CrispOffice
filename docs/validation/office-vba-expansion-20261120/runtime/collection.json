@@ -1,0 +1,636 @@
+{
+  "schema": "quds-vba-expansion-scoped-collection/v1",
+  "collected_at_utc": "2026-11-20T13:43:45.577044+00:00",
+  "baseline_commit": "c9cbeb1248d6b5f088d1084a8c113a743aa7a77f",
+  "final_commit": "192ea2aedbf0b1494627953c79a7042037a63301",
+  "final_tree": "1b8e807cd76f2bbc599780170d2a2e993ea4da62",
+  "collector_sha256": "e6b8e48b3a5de20e3ad1736877d92206c1018b05a941f2e6a7a54ca89ceb87bb",
+  "reviewed_plan_sha256": "5d82f314a83d53e85999704b6eb96c764e75afbcab44e3c8d06149d35e0cd946",
+  "network_used": false,
+  "github_actions_queried_or_awaited": false,
+  "single_source_full_rerun_claimed": false,
+  "final_main_merge_claimed": false,
+  "checkpoints": [
+    {
+      "commit": "f761cfe6d25c27fede697943a18ab89c11353d8f",
+      "subject": "Reconcile captured Mail, Downloads and Zotero integration heads [skip ci]"
+    },
+    {
+      "commit": "b6d6a26d9fcb5602ad9bd65d451aa5273881c933",
+      "subject": "Reconcile native credential storage and Mail reader chrome [skip ci]"
+    },
+    {
+      "commit": "9e0d8173fada4ae3f22ace5c5b896c21ab5191da",
+      "subject": "Integrate captured Word relayout and reconcile alternate Downloads history [skip ci]"
+    },
+    {
+      "commit": "58000866a6a36d7cc29e2a5677ef23c2f71dff51",
+      "subject": "Record complete intake and independent incremental-layout qualification [skip ci]"
+    },
+    {
+      "commit": "979cfa77c3bf7718664db7ecb4f62b656a58f187",
+      "subject": "Extend Word and PowerPoint VBA formatting and shared helper arguments [skip ci]"
+    },
+    {
+      "commit": "40572427fc7d62b0fb2423712fa79162814b53a9",
+      "subject": "Complete reviewed Word bindings and portable Office expansion examples [skip ci]"
+    },
+    {
+      "commit": "050ba58acad35f41803377b385ea22c833822845",
+      "subject": "Reconcile refreshed main, Mail, Zotero tables and Word layout before qualification [skip ci]"
+    },
+    {
+      "commit": "89910ff6363cd45ced5faf0e48b11cac46754b28",
+      "subject": "Qualify incoming Zotero fixtures and format layout regressions [skip ci]"
+    },
+    {
+      "commit": "4a2607162199deedde0587b2cdb919bbf6435251",
+      "subject": "Invalidate stale Word breaks across frame-wrapping edits [skip ci]"
+    },
+    {
+      "commit": "c9cbeb1248d6b5f088d1084a8c113a743aa7a77f",
+      "subject": "Reconcile current main cache repair and credential packaging [skip ci]"
+    },
+    {
+      "commit": "dfa8407b54c98e6f5810413b56fcde4853627002",
+      "subject": "Preserve imported PowerPoint margin baselines during text edits [skip ci]"
+    },
+    {
+      "commit": "192ea2aedbf0b1494627953c79a7042037a63301",
+      "subject": "Reconcile final captured Zotero, layout, credential and Mail heads [skip ci]"
+    }
+  ],
+  "cohort_provenance": {
+    "retained_file_groups": [
+      {
+        "label": "expansion-shard01",
+        "files": [
+          "test/office_vba_arguments_test.dart"
+        ],
+        "retained_passed": 68,
+        "all_group_passed": 68,
+        "superseded_group_cases_excluded": 0,
+        "receipt": "validation-results/expansion-shard01.receipt.json",
+        "receipt_sha256": "78a9d180cd00af8ddbb190af33e29f30a9227651954bf2d1b72e78f6ab1fadfe",
+        "jsonl": "validation-results/expansion-shard01.jsonl",
+        "jsonl_sha256": "4cbdc2f5469504b37311b17093ed3cfe87b19a115c431745cd2f7dd5f49d7170"
+      },
+      {
+        "label": "expansion-shard03",
+        "files": [
+          "test/office_vba_word_argument_shapes_test.dart",
+          "test/office_vba_word_paragraph_layout_test.dart",
+          "test/office_vba_word_paragraph_layout_integration_test.dart"
+        ],
+        "retained_passed": 62,
+        "all_group_passed": 89,
+        "superseded_group_cases_excluded": 27,
+        "receipt": "validation-results/expansion-shard03.receipt.json",
+        "receipt_sha256": "8ac2ff7c7671ec789ea39842de2bf28b6b63c7c2d9637d980bee288e78b3ddd2",
+        "jsonl": "validation-results/expansion-shard03.jsonl",
+        "jsonl_sha256": "87d7d79d9ed7af354dbccddc3fea886b3ee52a94191368fe3b49e0ba7f8e4899"
+      },
+      {
+        "label": "expansion-shard05",
+        "files": [
+          "test/word_zotero_note_table_test.dart",
+          "test/word_zotero_note_tables_integration_test.dart",
+          "test/style_cascade_test.dart"
+        ],
+        "retained_passed": 103,
+        "all_group_passed": 105,
+        "superseded_group_cases_excluded": 2,
+        "receipt": "validation-results/expansion-shard05.receipt.json",
+        "receipt_sha256": "581452ff13c81b259c78f2b70d892a92ef13de0b1bee2f90e77c6f7098a6a617",
+        "jsonl": "validation-results/expansion-shard05.jsonl",
+        "jsonl_sha256": "bd6ce8f6eea7a4d6778d54f3fda5404c1d2b89d19cca0acaa8bf98b604983e13"
+      },
+      {
+        "label": "expansion-shard06",
+        "files": [
+          "test/word_referenced_styles_and_breaks_test.dart",
+          "test/word_zotero_research_target_test.dart"
+        ],
+        "retained_passed": 37,
+        "all_group_passed": 86,
+        "superseded_group_cases_excluded": 49,
+        "receipt": "validation-results/expansion-shard06.receipt.json",
+        "receipt_sha256": "5b1f82aaa149f492fda82bc650929a81395c374056e7c7ac554b006cd6f3a07c",
+        "jsonl": "validation-results/expansion-shard06.jsonl",
+        "jsonl_sha256": "a593119c8a9d784ebb9cb5aaf5cf593fec7adfc3008fd510dc0baf4379269261"
+      },
+      {
+        "label": "expansion-shard07",
+        "files": [
+          "test/word_zotero_note_list_test.dart"
+        ],
+        "retained_passed": 38,
+        "all_group_passed": 80,
+        "superseded_group_cases_excluded": 42,
+        "receipt": "validation-results/expansion-shard07.receipt.json",
+        "receipt_sha256": "5cfd247a64eec8faffb1c21153ae4d39365e208992301b8675f730e69a7c6ef1",
+        "jsonl": "validation-results/expansion-shard07.jsonl",
+        "jsonl_sha256": "7cc3c4da1b4f6066a52fb255e024c541f1b18e9dae6eedc2b084f480384e0b19"
+      },
+      {
+        "label": "expansion-shard09",
+        "files": [
+          "test/office_vba_word_cli_test.dart"
+        ],
+        "retained_passed": 5,
+        "all_group_passed": 5,
+        "superseded_group_cases_excluded": 0,
+        "receipt": "validation-results/expansion-shard09.receipt.json",
+        "receipt_sha256": "67099c8a5190b7c4f4b0aede35a818878d4e254c22c89cedf0e88513a3c20ea2",
+        "jsonl": "validation-results/expansion-shard09.jsonl",
+        "jsonl_sha256": "4abbf3392b888adc8fc68e685178bfdcad97dd27e36dfa41ceb8b449c71b5bc8"
+      },
+      {
+        "label": "expansion-shard11",
+        "files": [
+          "test/office_vba_arrays_integration_test.dart"
+        ],
+        "retained_passed": 11,
+        "all_group_passed": 11,
+        "superseded_group_cases_excluded": 0,
+        "receipt": "validation-results/expansion-shard11.receipt.json",
+        "receipt_sha256": "ff5691a84005273a7ba3bea60c0658d5f2146ccf3d58b5dee791db75b28cba2c",
+        "jsonl": "validation-results/expansion-shard11.jsonl",
+        "jsonl_sha256": "1f6ec6083c952781a76555a020d01ec4b77d17ccb1941b005a2b8f23bf0259f0"
+      },
+      {
+        "label": "expansion-shard12",
+        "files": [
+          "test/office_vba_control_flow_integration_test.dart"
+        ],
+        "retained_passed": 9,
+        "all_group_passed": 9,
+        "superseded_group_cases_excluded": 0,
+        "receipt": "validation-results/expansion-shard12.receipt.json",
+        "receipt_sha256": "05df2ccdefa34320bbe77528e5913bfcc94e946842bccbfb348c99ccc06e6746",
+        "jsonl": "validation-results/expansion-shard12.jsonl",
+        "jsonl_sha256": "b24cb9b76175389b709c27088fabdf8da925818e5d2032de67c7ff1d9129b526"
+      },
+      {
+        "label": "expansion-shard13",
+        "files": [
+          "test/office_vba_dynamic_arrays_integration_test.dart"
+        ],
+        "retained_passed": 11,
+        "all_group_passed": 11,
+        "superseded_group_cases_excluded": 0,
+        "receipt": "validation-results/expansion-shard13.receipt.json",
+        "receipt_sha256": "3f2ff21a9378ca15f1364daf1900984128a2abff40e5be3807ad0afc5f404e06",
+        "jsonl": "validation-results/expansion-shard13.jsonl",
+        "jsonl_sha256": "24f68db5e533deddee6b1c82cba68a3b806640fc9aa5402187419f92cf105518"
+      },
+      {
+        "label": "expansion-shard14",
+        "files": [
+          "test/office_vba_procedures_integration_test.dart"
+        ],
+        "retained_passed": 10,
+        "all_group_passed": 10,
+        "superseded_group_cases_excluded": 0,
+        "receipt": "validation-results/expansion-shard14.receipt.json",
+        "receipt_sha256": "6cd0c382028054d43c9c5765d7d32e875686a7a44a23044469f4c65262e52caa",
+        "jsonl": "validation-results/expansion-shard14.jsonl",
+        "jsonl_sha256": "514831557ddb7ca816e7b4706f0e4ae51a1d20e7131d5adf34a8de1c84374192"
+      },
+      {
+        "label": "expansion-shard15",
+        "files": [
+          "test/office_vba_string_intrinsics_integration_test.dart"
+        ],
+        "retained_passed": 11,
+        "all_group_passed": 11,
+        "superseded_group_cases_excluded": 0,
+        "receipt": "validation-results/expansion-shard15.receipt.json",
+        "receipt_sha256": "ddf42888022a1e0993801acef4ad840b76296158209608c6ce2b5945050a76dd",
+        "jsonl": "validation-results/expansion-shard15.jsonl",
+        "jsonl_sha256": "dd154701a3a383c998e7efde7efe9e47eff5ab2d7ca71c49d21dd2ec27d88466"
+      },
+      {
+        "label": "expansion-shard16",
+        "files": [
+          "test/office_vba_variant_conversions_integration_test.dart"
+        ],
+        "retained_passed": 9,
+        "all_group_passed": 9,
+        "superseded_group_cases_excluded": 0,
+        "receipt": "validation-results/expansion-shard16.receipt.json",
+        "receipt_sha256": "5c41070a45335a9583e6ec1d2350ea340b4206523007606c5eca3291879e9af3",
+        "jsonl": "validation-results/expansion-shard16.jsonl",
+        "jsonl_sha256": "55e95b519d6ffd6d0702ccfdcbef2fc0c5926d2b3513d0a6eada2f8ed7f3e86d"
+      },
+      {
+        "label": "expansion-shard17",
+        "files": [
+          "test/office_vba_integration_test.dart"
+        ],
+        "retained_passed": 12,
+        "all_group_passed": 12,
+        "superseded_group_cases_excluded": 0,
+        "receipt": "validation-results/expansion-shard17.receipt.json",
+        "receipt_sha256": "72cf514c455829d0162022bba7ef1a30fd96fc9dda7727b57c81fcc513b00786",
+        "jsonl": "validation-results/expansion-shard17.jsonl",
+        "jsonl_sha256": "6df58e8cd072caff138e9e35b58950837f08679c89224876b4eabb9bec0bed9b"
+      },
+      {
+        "label": "expansion-shard19",
+        "files": [
+          "test/office_vba_arrays_boundaries_test.dart",
+          "test/office_vba_arrays_test.dart",
+          "test/office_vba_conformance_test.dart",
+          "test/office_vba_control_flow_boundaries_test.dart"
+        ],
+        "retained_passed": 333,
+        "all_group_passed": 333,
+        "superseded_group_cases_excluded": 0,
+        "receipt": "validation-results/expansion-shard19.receipt.json",
+        "receipt_sha256": "7fb89a4f8eca0d483e124abbc82d22c13e188310e78f7d83bfaf6daed6224c06",
+        "jsonl": "validation-results/expansion-shard19.jsonl",
+        "jsonl_sha256": "b84609580a668489be1e844366ca943b5cd2bea77f02b8952bf6a9dbfe57af0b"
+      },
+      {
+        "label": "expansion-shard20",
+        "files": [
+          "test/office_vba_control_flow_test.dart",
+          "test/office_vba_dynamic_arrays_test.dart",
+          "test/office_vba_language_test.dart"
+        ],
+        "retained_passed": 140,
+        "all_group_passed": 164,
+        "superseded_group_cases_excluded": 24,
+        "receipt": "validation-results/expansion-shard20.receipt.json",
+        "receipt_sha256": "9ab3a26a75edfba1e64920125db3addb796d5776bf3ac235aeb964ddd75334f0",
+        "jsonl": "validation-results/expansion-shard20.jsonl",
+        "jsonl_sha256": "452afa0c8a3b0bca5ff15a7bada8cacc8d738862cbcffda82079ed246e63d61d"
+      },
+      {
+        "label": "expansion-shard21",
+        "files": [
+          "test/office_vba_procedure_boundaries_test.dart"
+        ],
+        "retained_passed": 19,
+        "all_group_passed": 130,
+        "superseded_group_cases_excluded": 111,
+        "receipt": "validation-results/expansion-shard21.receipt.json",
+        "receipt_sha256": "d03c41a74f5b20a760cf6bf48327545b531d0ad9bb0aed038b679592f6169ef7",
+        "jsonl": "validation-results/expansion-shard21.jsonl",
+        "jsonl_sha256": "2014032a959833ce2b9876e08da2e782539ca7d3659b9c9be1e717810a9d6171"
+      },
+      {
+        "label": "expansion-shard22",
+        "files": [
+          "test/office_vba_procedures_test.dart",
+          "test/office_vba_string_intrinsics_test.dart",
+          "test/office_vba_variant_conformance_test.dart",
+          "test/office_vba_variant_conversions_test.dart"
+        ],
+        "retained_passed": 529,
+        "all_group_passed": 529,
+        "superseded_group_cases_excluded": 0,
+        "receipt": "validation-results/expansion-shard22.receipt.json",
+        "receipt_sha256": "23c4cb090d3ee095e6f310e0488001d97df4e41d3c6d7230504c9ab99ad4d68a",
+        "jsonl": "validation-results/expansion-shard22.jsonl",
+        "jsonl_sha256": "8a85a65c46a06ba81a937b171f68d4a8298d444a7a89578097664e15b2226a21"
+      },
+      {
+        "label": "expansion-shard23",
+        "files": [
+          "test/office_vba_word_conformance_test.dart",
+          "test/office_vba_word_extensions_test.dart",
+          "test/office_vba_word_format_integration_test.dart",
+          "test/office_vba_word_integration_test.dart"
+        ],
+        "retained_passed": 92,
+        "all_group_passed": 92,
+        "superseded_group_cases_excluded": 0,
+        "receipt": "validation-results/expansion-shard23.receipt.json",
+        "receipt_sha256": "f23c04223c85daa18de1120c17a3bb90600d3706c08ac2cbf050f106c18986da",
+        "jsonl": "validation-results/expansion-shard23.jsonl",
+        "jsonl_sha256": "2d9cf8246e34601eccce2789684764f1096d17548978b8d4836c5989b08baed7"
+      },
+      {
+        "label": "expansion-shard24",
+        "files": [
+          "test/office_vba_word_language_test.dart",
+          "test/office_vba_word_typography_integration_test.dart",
+          "test/office_vba_word_typography_test.dart"
+        ],
+        "retained_passed": 234,
+        "all_group_passed": 261,
+        "superseded_group_cases_excluded": 27,
+        "receipt": "validation-results/expansion-shard24.receipt.json",
+        "receipt_sha256": "16764faa0d30cf2e1a4a3d99bc1a989e1c6cca84d46e2d3164bc0c4fa2804348",
+        "jsonl": "validation-results/expansion-shard24.jsonl",
+        "jsonl_sha256": "81ef450a2be693a6e077d4c79964898ec6d8d90f36d15d4124ebac3779e5fa23"
+      },
+      {
+        "label": "expansion-shard25",
+        "files": [
+          "test/office_steps_test.dart"
+        ],
+        "retained_passed": 6,
+        "all_group_passed": 55,
+        "superseded_group_cases_excluded": 49,
+        "receipt": "validation-results/expansion-shard25.receipt.json",
+        "receipt_sha256": "34741565fd31e45b936443075e081861fd52b53afdcfa826bdbba2260c88fad8",
+        "jsonl": "validation-results/expansion-shard25.jsonl",
+        "jsonl_sha256": "ce47840263a14088a3695787b0750e3ed722e2e3e78e196873b395d81587ca51"
+      },
+      {
+        "label": "expansion-shard26",
+        "files": [
+          "test/office_macro_word_revision_guard_test.dart",
+          "test/word_step_atomicity_test.dart",
+          "test/word_steps_vocabulary_test.dart"
+        ],
+        "retained_passed": 37,
+        "all_group_passed": 48,
+        "superseded_group_cases_excluded": 11,
+        "receipt": "validation-results/expansion-shard26.receipt.json",
+        "receipt_sha256": "943032a9eb54fbe43214174f17a29ef0f92edc5b8045668fdee66a9034919a5e",
+        "jsonl": "validation-results/expansion-shard26.jsonl",
+        "jsonl_sha256": "cbbfa6f2976a68eecb1b13bae37a98bcba6509cd2f318208b0c0d4a9bcc92d62"
+      },
+      {
+        "label": "expansion-shard27",
+        "files": [
+          "test/word_package_preservation_test.dart"
+        ],
+        "retained_passed": 32,
+        "all_group_passed": 69,
+        "superseded_group_cases_excluded": 37,
+        "receipt": "validation-results/expansion-shard27.receipt.json",
+        "receipt_sha256": "6b77f79aec14e5f647a5c1b351f626d004cf454628657866d31bc923355bbbf9",
+        "jsonl": "validation-results/expansion-shard27.jsonl",
+        "jsonl_sha256": "ed66cde18b7043809a1c45b7dd2e910be6605fe737ad272f7ba52c0d203310f9"
+      }
+    ],
+    "rerun_groups": [
+      {
+        "label": "scoped-shard01",
+        "files": [
+          "test/slide_text_fidelity_test.dart",
+          "test/slide_text_insets_preservation_test.dart",
+          "test/slide_rich_text_explicit_style_test.dart",
+          "test/office_vba_powerpoint_margins_integration_test.dart"
+        ],
+        "passed": 35,
+        "seconds": 64.338,
+        "receipt": "validation-results/scoped-shard01.receipt.json",
+        "receipt_sha256": "1523c44f07f4e29e509142dea2c06a6764a136118c36b855a8c33537d9ee7a6d",
+        "jsonl": "validation-results/scoped-shard01.jsonl",
+        "jsonl_sha256": "f0f65040fafaf8273657aca3ce1a7a96b1eaaa0fc514bc4d40f1ffc7a78bea86"
+      },
+      {
+        "label": "scoped-shard02",
+        "files": [
+          "test/office_vba_arguments_integration_test.dart"
+        ],
+        "passed": 16,
+        "seconds": 107.987,
+        "receipt": "validation-results/scoped-shard02.receipt.json",
+        "receipt_sha256": "ba15325c7a0bf711b21715ad5b249fbe274448bb36c3df6516eb932c8c166d2f",
+        "jsonl": "validation-results/scoped-shard02.jsonl",
+        "jsonl_sha256": "24e98fd63b91704b2f5e12036db3256053254de167b84f99994759a467fcd4cf"
+      },
+      {
+        "label": "scoped-shard03",
+        "files": [
+          "test/office_vba_powerpoint_margins_test.dart",
+          "test/word_incremental_layout_differential_test.dart",
+          "test/word_incremental_layout_test.dart",
+          "test/word_incremental_layout_prefix_test.dart"
+        ],
+        "passed": 50,
+        "seconds": 103.116,
+        "receipt": "validation-results/scoped-shard03.receipt.json",
+        "receipt_sha256": "bbc72e4c6d17b658028f8ec66d084a28c45db9aa8f6014bea6df66c64a8a4aa8",
+        "jsonl": "validation-results/scoped-shard03.jsonl",
+        "jsonl_sha256": "9bccf11f764e874c4c6925b00b40bcb766f16659f5a36067fb314dac521f6698"
+      },
+      {
+        "label": "scoped-shard04",
+        "files": [
+          "test/word_paragraph_mark_layout_test.dart",
+          "test/office_vba_powerpoint_layout_integration_test.dart",
+          "test/slide_test.dart",
+          "test/word_note_numbering_test.dart"
+        ],
+        "passed": 91,
+        "seconds": 59.835,
+        "receipt": "validation-results/scoped-shard04.receipt.json",
+        "receipt_sha256": "6452b6915720dfe01f39a1d347d574ab2498ce9f399f330879a2ecc9299f6aab",
+        "jsonl": "validation-results/scoped-shard04.jsonl",
+        "jsonl_sha256": "89edc57f31ea1fc341aa2cbcc63c8940a6722d63233fb85990a7bd66e59ecd16"
+      },
+      {
+        "label": "scoped-shard05",
+        "files": [
+          "test/office_macro_cli_test.dart"
+        ],
+        "passed": 5,
+        "seconds": 135.809,
+        "receipt": "validation-results/scoped-shard05.receipt.json",
+        "receipt_sha256": "e4251151a0cb45b1135066cd65f6b5441347f213bd450c19559f1139cc42e697",
+        "jsonl": "validation-results/scoped-shard05.jsonl",
+        "jsonl_sha256": "b3bb808bcdf52f31a3cdf6e16bee77bb7ac70e74e38cbe8fb819199fab0ebeb8"
+      },
+      {
+        "label": "scoped-shard06",
+        "files": [
+          "test/office_vba_powerpoint_cli_test.dart"
+        ],
+        "passed": 2,
+        "seconds": 142.759,
+        "receipt": "validation-results/scoped-shard06.receipt.json",
+        "receipt_sha256": "7e0940cdf9f428996058650ff0c3358799917ece328965d7a07a73a14b022c5c",
+        "jsonl": "validation-results/scoped-shard06.jsonl",
+        "jsonl_sha256": "76dac5aa9270ac7d54aca653c128fc8bbe008fd28d90fa3b53542ecb4111da59"
+      },
+      {
+        "label": "scoped-shard07",
+        "files": [
+          "test/office_macro_mcp_test.dart"
+        ],
+        "passed": 15,
+        "seconds": 99.121,
+        "receipt": "validation-results/scoped-shard07.receipt.json",
+        "receipt_sha256": "9a0a4c91aadc56ad5825d4a6e1031249b17e018c0c9abea01886efb25ee366e2",
+        "jsonl": "validation-results/scoped-shard07.jsonl",
+        "jsonl_sha256": "0b09783a3ea5a7fbc04889ba2b7f50f86630243ea3a3bf840c0bb887396c141a"
+      },
+      {
+        "label": "scoped-shard08",
+        "files": [
+          "test/office_vba_powerpoint_conformance_test.dart",
+          "test/office_vba_powerpoint_integration_test.dart",
+          "test/office_vba_powerpoint_layout_test.dart",
+          "test/office_vba_powerpoint_test.dart"
+        ],
+        "passed": 135,
+        "seconds": 76.884,
+        "receipt": "validation-results/scoped-shard08.receipt.json",
+        "receipt_sha256": "e52161cb11668dae1492047d152be988e48453f82a6443a0996cb64d3ef42db4",
+        "jsonl": "validation-results/scoped-shard08.jsonl",
+        "jsonl_sha256": "6170045fcd96be9f219fbef5aef773ef258a9a7f456ec2e5dda0722faa193cf2"
+      },
+      {
+        "label": "scoped-shard09",
+        "files": [
+          "test/office_operations_test.dart",
+          "test/office_macro_runtime_test.dart",
+          "test/office_macro_expansion_test.dart",
+          "test/office_macro_slide_format_test.dart"
+        ],
+        "passed": 76,
+        "seconds": 70.965,
+        "receipt": "validation-results/scoped-shard09.receipt.json",
+        "receipt_sha256": "b554cf88df1163a143e95068e76ff1922ac8504075ad4fa753b8ee7fd16a1c92",
+        "jsonl": "validation-results/scoped-shard09.jsonl",
+        "jsonl_sha256": "710cf51c8a030cd2da617c2909dcdb203a9ed4d59af55af12a5d08fdb2c8254d"
+      },
+      {
+        "label": "scoped-shard10",
+        "files": [
+          "test/office_macro_language_test.dart",
+          "test/word_small_caps_test.dart",
+          "test/word_run_fragment_fallback_test.dart",
+          "test/word_fidelity_test.dart"
+        ],
+        "passed": 48,
+        "seconds": 68.283,
+        "receipt": "validation-results/scoped-shard10.receipt.json",
+        "receipt_sha256": "f8b24f2adb1eae8644cad279fab97bbf07e48ed2de087f0f0569b2450fad079a",
+        "jsonl": "validation-results/scoped-shard10.jsonl",
+        "jsonl_sha256": "04547c9d62762c0e7d7f14a6f3d7963daaaddf67f61c8c4c0a8cb8768e969996"
+      },
+      {
+        "label": "scoped-shard11",
+        "files": [
+          "test/word_styles_layout_test.dart",
+          "test/word_complex_script_language_test.dart",
+          "test/slide_import_fidelity_test.dart",
+          "test/slide_normal_autofit_test.dart"
+        ],
+        "passed": 100,
+        "seconds": 87.977,
+        "receipt": "validation-results/scoped-shard11.receipt.json",
+        "receipt_sha256": "303683b93a4b46f501727f68f77bd2bdc5e15966e9e5c97cd83dd9c19b62ba5a",
+        "jsonl": "validation-results/scoped-shard11.jsonl",
+        "jsonl_sha256": "b375c1bf75905b6cc0b7934a2f6829a7f452d6f96ad1da60a1998bbb79dba8c5"
+      },
+      {
+        "label": "scoped-shard12",
+        "files": [
+          "test/slide_radial_opacity_test.dart",
+          "test/word_zotero_add_note_test.dart",
+          "test/fonts_test.dart",
+          "test/office_named_fonts_test.dart"
+        ],
+        "passed": 59,
+        "seconds": 70.519,
+        "receipt": "validation-results/scoped-shard12.receipt.json",
+        "receipt_sha256": "0e61959b8fd19c1e5b8a631f25d104cd4984da8791ca0d12fd0605262f64c8e7",
+        "jsonl": "validation-results/scoped-shard12.jsonl",
+        "jsonl_sha256": "02681c886408ef661b174e7244aecf8eb44c062774e79d37be2c6b3456a9318f"
+      },
+      {
+        "label": "scoped-shard13",
+        "files": [
+          "test/sfnt_cmap_validation_test.dart",
+          "test/office_pdf_export_test.dart"
+        ],
+        "passed": 82,
+        "seconds": 35.921,
+        "receipt": "validation-results/scoped-shard13.receipt.json",
+        "receipt_sha256": "1438f2345f712ca9908df4bfaea3e8dd99aefa73b4d3ee39ccaf109257d8a220",
+        "jsonl": "validation-results/scoped-shard13.jsonl",
+        "jsonl_sha256": "f489824dfa8b54af167e53bbaa7a454f93b588e1ab36fa8fde7981053de021d4"
+      }
+    ],
+    "unique_case_count": 2522,
+    "case_identity": [
+      "file",
+      "full_test_name",
+      "occurrence_ordinal_per_name"
+    ],
+    "case_identity_sha256": "fae00480ab3b20b553ad581d0470616efa67ce5c19e9e447b574b302137d2172",
+    "cohorts_disjoint": true,
+    "all_started_and_declared_cases_completed": true
+  },
+  "intake_summary": {
+    "branch_count": 16,
+    "branches": {
+      "historically_superseded_equivalent": 9,
+      "ancestor": 7
+    },
+    "pr_count": 249,
+    "prs": {
+      "ancestor": 235,
+      "historically_superseded_equivalent": 14
+    },
+    "upstream_count": 4,
+    "upstream": {
+      "ancestor": 4
+    },
+    "retained_deleted_branch_count": 9,
+    "retained_deleted_branches_all_ancestors": true,
+    "retained_advanced_branch_prior_head_count": 5,
+    "retained_advanced_pr_prior_head_count": 3,
+    "prior_capture_branch_count": 24,
+    "prior_capture_pr_count": 249,
+    "prior_capture_upstream_count": 4,
+    "historical_proof_count": 14,
+    "historical_whole_tree_equal_count": 13,
+    "all_historical_proofs_verified": true,
+    "uncovered_count": 0,
+    "all_required_new_heads_ancestors": true
+  },
+  "excluded_attempts": {
+    "pre_cache_fix": {
+      "receipt": "validation-results/pre-cache-fix/expansion-shard04.receipt.json",
+      "sha256": "b525312f34436ff9848e0d80ef2303233bf20aba20b7a360d628e46d79d875ca",
+      "included_in_accepted_total": false
+    },
+    "pre_main_refresh": {
+      "interruption": {
+        "process_exit_code": 130,
+        "reason": "Stopped by root before source changes to incorporate new remote main a652a205e6daf6b4b8e3baec04db1c1b52fabd0d. Completed groups are development evidence and are not included in final acceptance totals.",
+        "qualified_source_before_stop": "4a2607162199deedde0587b2cdb919bbf6435251"
+      },
+      "included_in_accepted_total": false
+    },
+    "C9_group28": {
+      "receipt": "validation-results/expansion-shard28.receipt.json",
+      "sha256": "bbe21fd8a749582613b1d4b14324370308a72829df26349700dc99a073a21fb2",
+      "jsonl": "validation-results/expansion-shard28.jsonl",
+      "jsonl_sha256": "da53117e627ee844eee4ad16a909d1e5ddd6cc2041f81da2817dfdaa7cfcb4f0",
+      "failed_case": "multiline text replacement retains first-run styling and paragraph boundaries",
+      "reported_prefix_passed": 87,
+      "all_group_cases_excluded": true,
+      "included_in_accepted_total": false,
+      "reason": "The entire unsuccessful group is excluded, including any passing prefix; final cases come from final-source reruns."
+    },
+    "superseded_C9_passes": "Passing baseline cases in rerun files are replaced by final-source evidence, never added twice.",
+    "development_and_other_attempts": "Preserved in the archive; excluded from accepted totals.",
+    "cache_negative_and_fixed_controls": "Supplemental source-specific reproduction; excluded from accepted totals."
+  },
+  "development_patterns": [
+    "arguments-*.log",
+    "word-*.log",
+    "incremental-layout-*.log",
+    "incremental-layout-*.json",
+    "ppt-*.log",
+    "review-ppt-*.jsonl",
+    "arguments-portable-results/*.json",
+    "arguments-portable-results/*.jsonl",
+    "arguments-portable-results/*.log",
+    "arguments-portable-results/*.stdout",
+    "arguments-portable-results/*.stderr"
+  ],
+  "historical_evidence_collector_preserved": "drivers/collect_expansion_evidence.py"
+}

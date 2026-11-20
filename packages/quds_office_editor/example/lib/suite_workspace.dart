@@ -263,6 +263,9 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
       _wordChromeTimer = Timer(_wordChromeSettle, () {
         _wordChromeTimer = null;
         _rebuild();
+        // The editor may already be idle. _rebuild queues a post-frame
+        // callback, which by itself does not request the frame it needs.
+        WidgetsBinding.instance.ensureVisualUpdate();
       });
       return;
     }

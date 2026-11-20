@@ -1,0 +1,40 @@
+{
+  "main": "c3df77d01ea9df4846e18131e69160d858f174ac",
+  "previous_mail_head": "7ef21fd1f6390ec46e89b1418eb7b06cc4c61224",
+  "merge_method": "Native git merge --no-commit --no-ff, recursive handling of four merge bases",
+  "conflict_resolutions": {
+    "body_presentation_test.dart": "Keep incoming31case suite and preserve previous11 contracts in separate file",
+    "credential_storage": "Combine serialized selection with captured generation, putIfAbsent cache and system factory",
+    "credential_settings": "Keep incoming modal/commit implementation exactly",
+    "mail_credentials": "Keep incoming canonical/alternate-v2 migration and compatibility APIs with typed boundary",
+    "mail_native": "Keep incoming reply/forward and modal ownership; preserve explicit settings opener and stable key",
+    "presets_and_session": "Keep real catalog per-fixture memory backend and enabled-Connect preconditions",
+    "changelog": "Preserve reply/forward entries and selected-store remembered-account scope"
+  },
+  "nonmail_preservation": {
+    "paths": 344,
+    "changed_from_previous_head": 45,
+    "mismatches": 0,
+    "receipt_sha256": "611ec26cf58a8e74582a04071e677fbc12a480ae6411a042c8410a8c84eb778d"
+  },
+  "dart_dependency_manifests_unchanged": 33,
+  "old_equivalence_trial": {
+    "qualified": false,
+    "source": "7ef21fd1f6390ec46e89b1418eb7b06cc4c61224",
+    "passed": 61,
+    "skipped": 8,
+    "model_errors": 1,
+    "accepted_count": 0,
+    "note": "Image-only fixtures and bookmark-model limitation documented in incoming performance report; fresh targeted engine equivalence/prefix/differential tests replace this broad trial as integration checks, without changing its strict rejection."
+  },
+  "validation": "Completed on 625f4d76:699 unique substantive cases across 35 suites (609 Mail/Studio, 90 engine), zero failures/skips; strict analysis of 19 delta Dart files. Historical 326 Mail passes remain excluded. See qualification.json and retained raw evidence.",
+  "ci": "No Actions/status/check requests or waiting",
+  "documentation_only_main_refresh": {
+    "commit": "b42eca1db058f0def247b86c2f15dea90c11b4e8",
+    "changed_paths": [
+      "docs/performance/incremental-layout-20261120.md"
+    ],
+    "product_test_dependency_changes": 0,
+    "native_merge_parent": true
+  }
+}

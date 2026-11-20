@@ -60,6 +60,36 @@ final class MailStoreAccount {
   final MailStoredAccountState state;
 }
 
+/// A draft's metadata and revision without its body or attachment payloads.
+/// Opening the draft separately verifies and loads its retained blob bytes.
+final class MailDraftSummary {
+  const MailDraftSummary({
+    required this.id,
+    required this.account,
+    required this.revision,
+    required this.envelope,
+    required this.attachmentCount,
+    this.editorState,
+  });
+
+  final String id;
+  final MailAccountId account;
+  final int revision;
+  final MailEnvelope envelope;
+  final int attachmentCount;
+  final MailDraftEditorState? editorState;
+}
+
+/// A bounded, stable-ID-ordered metadata page. A continuation explicitly
+/// exposes additional drafts instead of presenting a truncated catalog.
+final class MailDraftPage {
+  MailDraftPage({required List<MailDraftSummary> drafts, this.nextAfterId})
+    : drafts = List.unmodifiable(drafts);
+
+  final List<MailDraftSummary> drafts;
+  final String? nextAfterId;
+}
+
 final class MailSearchHit {
   const MailSearchHit({
     required this.header,

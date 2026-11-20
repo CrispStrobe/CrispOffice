@@ -1,0 +1,19 @@
+{
+  "schema": 1,
+  "date": "2026-11-20",
+  "repository": "CrispStrobe/quds_office_suite",
+  "scope": "Independent source review of selected-store revision safeguards and the later Word workspace chrome timer",
+  "credential_v2": {
+    "reviewed_base": "03de5b6ad9eff4666c8e0963d1a6b059417951ed",
+    "result": "No concrete behavior/type regression found in source review. Queued calls capture selection revision; checks surround backend resolution; a started transaction uses one backend. Native generations discard stale loads, connection completion fences persistence, and opt-out fences catalog load/Forget. Execution remains separate."
+  },
+  "workspace": {
+    "original": "4595d8f638a1f9213ea229cf8f2aeaae0e2e7a5a",
+    "fixed": "780aeb41d872df31e19d7b4b8bb7df1835dfb6e2",
+    "test": "c2f64a45d6ed23334c28ce61d1472569965e8d32",
+    "finding": "The new trailing 400 ms timer queued a post-frame callback through _rebuild without scheduling a frame. An idle workspace could defer the chrome refresh until unrelated activity. Request ensureVisualUpdate only from that timer callback.",
+    "regression": "Advance the real production timer's fake clock without pumping a frame, require the 400 ms timer to schedule a frame, then verify the outline's edited heading and disposal cancellation.",
+    "other_review": "Review and Notes panes retain their own controller listeners; selected proofing issue validation remains there. Timer and controller/proofing listener lifetimes are disposed consistently.",
+    "execution": "Authored/reviewed source only; the validation runner will record red/green and final cohort outcomes separately."
+  }
+}
