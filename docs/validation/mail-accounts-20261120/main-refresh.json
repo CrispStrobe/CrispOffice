@@ -27,6 +27,14 @@
     "accepted_count": 0,
     "note": "Image-only fixtures and bookmark-model limitation documented in incoming performance report; fresh targeted engine equivalence/prefix/differential tests replace this broad trial as integration checks, without changing its strict rejection."
   },
-  "validation": "Pending fresh merged-source checks; earlier326Mail/Studio successes remain source-specific historical evidence",
-  "ci": "No Actions/status/check requests or waiting"
+  "validation": "Completed on 625f4d76:699 unique substantive cases across 35 suites (609 Mail/Studio, 90 engine), zero failures/skips; strict analysis of 19 delta Dart files. Historical 326 Mail passes remain excluded. See qualification.json and retained raw evidence.",
+  "ci": "No Actions/status/check requests or waiting",
+  "documentation_only_main_refresh": {
+    "commit": "b42eca1db058f0def247b86c2f15dea90c11b4e8",
+    "changed_paths": [
+      "docs/performance/incremental-layout-20261120.md"
+    ],
+    "product_test_dependency_changes": 0,
+    "native_merge_parent": true
+  }
 }

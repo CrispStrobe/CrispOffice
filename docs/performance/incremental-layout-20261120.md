@@ -160,12 +160,57 @@ agree) for every document before editing.
 The remaining maximum is the first keystroke after the document was loaded
 (paint-fitted): one full layout that records state.
 
+### Studio chrome A/B, local (both with incremental layout)
+
+"off" is `suite_workspace.dart` from main (workspace rebuilds on every Word
+notification), "on" is the branch; alternated in two rounds, load average
+6–7 (1 min). Values are round 1 / round 2.
+
+| Metric | Chrome rebuild per keystroke (off) | Selector (on) |
+|---|---|---|
+| Keystroke handler p50 / p95 (ms) | 5.6 / 14.2 · 5.4 / 18.7 | 5.3 / 10.7 · 5.3 / 11.2 |
+| Frame after keystroke p50 / p95 (ms) | 8.8 / 22.5 · 9.6 / 25.9 | 8.3 / 18.8 · 8.8 / 19.8 |
+| UI-isolate work between keystrokes p50 / p95 (ms) | 31.6 / 80.2 · 34.9 / 80.1 | **0.5 / 6.5 · 0.5 / 5.5** |
+| Keystrokes over 16.7 ms (handler + frame) | 108 · 119 | 64 · 77 |
+| Rebuilds: workspace / ribbon | 310 / 310 | **13 / 13** |
+| Rebuilds: Word editor / status line | 601 / 310 | 313 / 313 |
+| Rebuilds: review strip status button | 311 | 19 |
+
+The workspace rebuild ran in a post-frame callback, so it showed up as work
+between keystrokes (~32 ms each), competing with the next keystroke and
+proofing; it is now gone except when the chrome's shown state changes.
+Proofing counters (passes, provider calls, detections, findings) are
+unchanged.
+
 ### Hosted runners
 
 Workflow `Incremental layout benchmark`
 (`.github/workflows/incremental-layout-benchmark.yml`): typing benchmark ×3 on
 macOS and Ubuntu, and editor/engine/Studio suites, each on the merge base
-("before") and the branch ("after"). Results: see below (pending).
+("before", `e59b8918`-era main at the merge base) and the branch ("after").
+Run 44730466515, three benchmark runs per job, each variant on its own VM.
+
+| Runner | Variant | Handler p50 / p95 (ms) | Frame p50 / p95 (ms) | Between keystrokes p50 (ms) | Over 16.7 ms |
+|---|---|---|---|---|---|
+| ubuntu-latest | before | 163.4 / 229.1 · 165.3 / 234.0 · 163.0 / 224.4 | 10.1 / 17.7 · 10.2 / 18.4 · 9.9 / 18.0 | 42.9 · 43.7 · 42.2 | 300 · 300 · 300 |
+| ubuntu-latest | after | **4.8 / 8.6 · 4.9 / 8.0 · 4.9 / 9.0** | 7.3 / 16.7 · 7.3 / 17.6 · 8.0 / 17.0 | **0.4 · 0.4 · 0.5** | **46 · 53 · 53** |
+| macos-latest | before | 227.8 / 387.6 · 268.7 / 424.0 · 205.4 / 351.3 | 14.9 / 40.1 · 15.5 / 39.2 · 13.0 / 31.7 | 55.5 · 60.1 · 47.9 | 300 · 300 · 300 |
+| macos-latest | after | **5.7 / 13.3 · 5.7 / 12.7 · 5.4 / 10.5** | 9.3 / 24.5 · 9.7 / 24.5 · 8.4 / 21.6 | **0.7 · 0.6 · 0.6** | **126 · 136 · 100** |
+
+Rebuilds per 300 keystrokes, identical on every hosted run: workspace and
+ribbon 310 → 13, Word editor 601 → 313, review-strip status button 311 → 19.
+Proofing counters unchanged (11 passes, 22 provider calls, 66 findings).
+The remaining keystrokes over budget are dominated by the debug-mode frame
+(build/paint of the editor, p95 17–25 ms) rather than the handler; the
+maximum handler time is the one full layout after the paint fit at load.
+
+Suites on the same run (failing test names compared, not counts):
+
+| Suite | Before | After |
+|---|---|---|
+| Editor (`flutter test`) | 22 failing (goldens, frame wrap, tab gap, bookmark history, Zotero guards) | the same 22 names; the new equivalence suite passes |
+| Engine (`dart test`) | 0 failing | 0 failing, incl. the new engine-level test |
+| Studio example (`flutter test`) | 7 failing (licence pages, keychain probes, gallery dump, saved mail) | the same 7 names |
 
 ## Remaining work
 
