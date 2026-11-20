@@ -1,0 +1,65 @@
+{
+  "note": "Incremental source checkpoints through final source reconciliation. Later evidence and publication commits are visible in Git history and the merged PR.",
+  "checkpoints": [
+    {
+      "sha": "4bfa7c4a9682fcf62f8c542a85c8f0fb7fa710bc",
+      "message": "Merge current PPTX branch before VBA string milestone [skip ci]",
+      "tree": "9eefaf7a5987846765adcf3614f0f077947fa84c"
+    },
+    {
+      "sha": "6167f4755ca3c8e4df8edfc04e6df3807089c477",
+      "message": "Add bounded VBA string intrinsics with typed UTF-16 semantics [skip ci]",
+      "tree": "25c7b2df29815a6afa8cd9bcd12432c7fafe3be8"
+    },
+    {
+      "sha": "5bf4301eb06937c05fc3088ee0101540c51bd9de",
+      "message": "Fix reconciled PPTX decorations, arrow strokes and text layout [skip ci]",
+      "tree": "5da57c70331ff9979ab20ad1e48e12bbae201b90"
+    },
+    {
+      "sha": "ee5d0da58e898dbb00ff49398f91dd8284fc6799",
+      "message": "Add versioned VBA corpus, portable receipts and transactional report [skip ci]",
+      "tree": "3592063c0f8d58db539d853e89a922e17a40740a"
+    },
+    {
+      "sha": "e4dc52e32469749f6597c414f4f0c3e4318ef764",
+      "message": "Refuse lossy UTF-16 workbook writes while preserving internal slices [skip ci]",
+      "tree": "ce87b058df968e05aef3d4c01ccc1ebfbb6b24a0"
+    },
+    {
+      "sha": "1c60f05f0d99e131eb3c0a42bcb7866c50b573b6",
+      "message": "Preserve concurrent DOCX qualification on main [skip ci]",
+      "tree": "bfd63c158115e972cc6901566b38dde39395d035"
+    },
+    {
+      "sha": "fd733f28aa14aad5e9556669caf434f051cd8e15",
+      "message": "Preserve authored numeric order across PDF wrapping and newlines [skip ci]",
+      "tree": "4c7c3330e8736c2948d3695cc8848db87ab7a6ec"
+    },
+    {
+      "sha": "403fec5f8b73752890a36579264ab010e6b12bc1",
+      "message": "Bring in current emoji fallback and connector rendering commits [skip ci]",
+      "tree": "32657803d961f4fa296d09e983a6833a33b45efe"
+    },
+    {
+      "sha": "478f3966139f20c0d1cc20a4c2835a4759c726e0",
+      "message": "Preserve connector direction through save, edits, morphs and slide copies [skip ci]",
+      "tree": "5ba91e594f077f10bfe77466b883f2869e71a7df"
+    },
+    {
+      "sha": "6b94e195ec4871d47c4ee0ffb81bcfe6ab8d7c74",
+      "message": "Preserve latest Word revision validation from main [skip ci]",
+      "tree": "cea8918344e5be7b6e7efb974e6e19e35a45ea8b"
+    },
+    {
+      "sha": "156811947aafdf5108fcc24ca35738c186e7f86f",
+      "message": "Qualify Word revision save guards across macro transactions [skip ci]",
+      "tree": "6b85c945acde5ccf04d9854b4958bbc4ee4d49e9"
+    },
+    {
+      "sha": "50fb2ded700ffd765c8379c7757cbd8f298fc160",
+      "message": "Reconcile concurrent main PPTX merge with qualified fidelity fixes [skip ci]",
+      "tree": "5c8143c91a0b855e4cc804b5c46f236df13d6a2a"
+    }
+  ]
+}

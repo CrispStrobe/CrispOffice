@@ -13,6 +13,8 @@ class PmlTransform {
     this.cx = 914400,
     this.cy = 914400,
     this.rot = 0,
+    this.flipH = false,
+    this.flipV = false,
   });
 
   /// Offsets and extents in EMUs (1 pt = 12,700 EMUs).
@@ -29,6 +31,31 @@ class PmlTransform {
 
   /// rot API.
   final int rot;
+
+  /// Horizontal flip from `a:xfrm/@flipH`.
+  final bool flipH;
+
+  /// Vertical flip from `a:xfrm/@flipV`.
+  final bool flipV;
+
+  /// Returns this geometry with only the supplied properties changed.
+  PmlTransform copyWith({
+    int? x,
+    int? y,
+    int? cx,
+    int? cy,
+    int? rot,
+    bool? flipH,
+    bool? flipV,
+  }) => PmlTransform(
+    x: x ?? this.x,
+    y: y ?? this.y,
+    cx: cx ?? this.cx,
+    cy: cy ?? this.cy,
+    rot: rot ?? this.rot,
+    flipH: flipH ?? this.flipH,
+    flipV: flipV ?? this.flipV,
+  );
 
   /// xPoints API.
   double get xPoints => x / 12700;
@@ -47,7 +74,24 @@ class PmlTransform {
 }
 
 /// Enum PmlShapePreset.
-enum PmlShapePreset { rect, roundRect, ellipse, triangle, connector, freeform }
+enum PmlShapePreset {
+  rect,
+  roundRect,
+  ellipse,
+  triangle,
+  connector,
+  freeform,
+  downArrow,
+  upArrow,
+  leftArrow,
+  rightArrow,
+  diamond,
+  hexagon,
+  pentagon,
+  chevron,
+  parallelogram,
+  trapezoid,
+}
 
 /// Enum PmlTextAlign.
 enum PmlTextAlign { left, center, right, justify }
@@ -542,6 +586,10 @@ class PmlSlide {
     this.masterName = 'Office Theme',
     String background = '',
     bool? inheritsMasterBackground,
+    List<PmlShape>? backgroundShapes,
+    bool? backgroundShapesResolved,
+    this.showMasterShapes = true,
+
     this.notes = '',
     this.sourcePartUri,
     this.transition = const PmlSlideTransition(),
@@ -554,6 +602,10 @@ class PmlSlide {
        inheritsMasterBackground =
            inheritsMasterBackground ?? background.isEmpty,
        shapes = shapes ?? <PmlShape>[],
+       backgroundShapes = backgroundShapes ?? <PmlShape>[],
+       backgroundShapesResolved =
+           backgroundShapesResolved ?? (backgroundShapes != null),
+
        animations = animations ?? <PmlShapeAnimation>[];
 
   /// id API.
@@ -561,6 +613,17 @@ class PmlSlide {
 
   /// shapes API.
   List<PmlShape> shapes;
+
+  /// Non-editable master/layout decorations painted behind [shapes].
+  /// Import resolves master visibility here while retaining layout shapes.
+  final List<PmlShape> backgroundShapes;
+
+  /// Whether this slide has its own resolved master/layout decorations.
+  /// A resolved empty list must not fall back to the presentation master.
+  final bool backgroundShapesResolved;
+
+  /// The slide's authored `showMasterSp` flag, retained when saving/copying.
+  bool showMasterShapes;
 
   /// layoutName API.
   String layoutName;
@@ -642,7 +705,12 @@ class PmlSlide {
       masterName: masterName,
       background: background,
       inheritsMasterBackground: inheritsMasterBackground,
+      showMasterShapes: showMasterShapes,
       notes: notes,
+      backgroundShapesResolved: backgroundShapesResolved,
+      backgroundShapes: <PmlShape>[
+        for (final PmlShape shape in backgroundShapes) shape.copy(),
+      ],
       sourcePartUri: id == null || id == this.id ? sourcePartUri : null,
       transition: transition,
       hidden: hidden,

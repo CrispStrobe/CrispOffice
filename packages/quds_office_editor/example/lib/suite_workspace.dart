@@ -1406,7 +1406,10 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
                             ),
                           ],
                           onChanged: (value) {
-                            if (value != null) changed(() => _language = value);
+                            if (value != null) {
+                              changed(() => _language = value);
+                              unawaited(_syncSpacyGrammar());
+                            }
                           },
                         ),
                         const SizedBox(height: 12),
@@ -1585,6 +1588,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
         StudioLanguage.ar => StudioLanguage.en,
       };
     });
+    unawaited(_syncSpacyGrammar());
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (!mounted) {
         return;
@@ -6850,7 +6854,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   Future<void> _syncSpacyGrammar() async {
     final status = studioSpacyHost.status;
     final key = status.grammarEnabled && status.grammarOffered
-        ? status.configurationKey
+        ? '${status.configurationKey}|${_language.name}'
         : null;
     if (key == _spacyGrammarKey) return;
     _spacyGrammarKey = key;
@@ -6872,6 +6876,12 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
               transport: transport,
               enabled: true,
               vocabulary: _word.proofing.vocabulary,
+              families: {
+                for (final id in status.grammarFamilies)
+                  ?SpacyGrammarFamily.byId(id),
+              },
+              // Explanations follow the UI; German for German UI, else English.
+              englishMessages: _language != StudioLanguage.de,
             ),
           ],
           timeout: const Duration(seconds: 30),
@@ -9176,34 +9186,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
 
   void _duplicateSlide() {
     final PmlSlide src = _slides.slide;
-    _slides.presentation.slides.add(
-      PmlSlide(
-        id: _nextSlideId(),
-        layoutName: src.layoutName,
-        notes: src.notes,
-        transition: src.transition,
-        animations: <PmlShapeAnimation>[
-          for (final PmlShapeAnimation anim in src.animations) anim.copyWith(),
-        ],
-        shapes: <PmlShape>[
-          for (final PmlShape shape in src.shapes)
-            PmlShape(
-              id: shape.id,
-              name: shape.name,
-              text: shape.text,
-              fillColor: shape.fillColor,
-              textColor: shape.textColor,
-              fontSizePt: shape.fontSizePt,
-              preset: shape.preset,
-              transform: shape.transform,
-              visual: shape.visual?.copy(),
-              table: shape.table?.copy(),
-              rightToLeft: shape.rightToLeft,
-              textAlign: shape.textAlign,
-            ),
-        ],
-      ),
-    );
+    _slides.presentation.slides.add(src.copy(id: _nextSlideId()));
     _slides.setActiveSlide(_slides.presentation.slides.length - 1);
   }
 
@@ -9307,10 +9290,8 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     final int nextY = y == null
         ? t.y
         : ((_slides.presentation.slideHeight - t.cy) * y).round();
-    _slides.applyTransform(
-      shape,
-      PmlTransform(x: nextX, y: nextY, cx: t.cx, cy: t.cy, rot: t.rot),
-    );
+    _slides.applyTransform(shape, t.copyWith(x: nextX, y: nextY));
+
     _slides.refresh();
   }
 

@@ -1,0 +1,34 @@
+00:00 +0: loading /workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/slide_render_fidelity_test.dart
+00:00 +0: /workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/slide_render_fidelity_test.dart: slide animation cannot hide an inherited decoration with the same id
+00:00 +1: /workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/office_dark_slide_test.dart: native and authored slide backgrounds retain readable ink
+00:00 +2: /workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/office_dark_slide_test.dart: native and authored slide backgrounds retain readable ink
+00:00 +3: /workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/office_dark_slide_test.dart: native and authored slide backgrounds retain readable ink
+00:00 +4: /workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/office_dark_slide_test.dart: native and authored slide backgrounds retain readable ink
+00:00 +5: /workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/office_dark_slide_test.dart: native and authored slide backgrounds retain readable ink
+00:00 +6: /workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/office_dark_slide_test.dart: native and authored slide backgrounds retain readable ink
+00:00 +7: /workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/office_dark_slide_test.dart: native and authored slide backgrounds retain readable ink
+00:00 +8: /workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/office_dark_slide_test.dart: rich slide formatting edits render before saving and reopening
+00:01 +9: /workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/paint_run_text_unicode_test.dart: (setUpAll)
+00:01 +10: /workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/paint_run_text_unicode_test.dart: (setUpAll)
+00:01 +10: /workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/office_dark_slide_test.dart: inherited white paper and rich ink honor dark and high contrast
+00:01 +11: /workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/office_dark_slide_test.dart: inherited white paper and rich ink honor dark and high contrast
+00:01 +12: /workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/office_dark_slide_test.dart: inherited white paper and rich ink honor dark and high contrast
+00:01 +13: /workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/office_dark_slide_test.dart: inherited white paper and rich ink honor dark and high contrast
+00:01 +14: /workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/office_dark_slide_test.dart: inherited white paper and rich ink honor dark and high contrast
+00:01 +15: /workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/office_dark_slide_test.dart: inherited white paper and rich ink honor dark and high contrast
+00:01 +16: /workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/paint_run_text_unicode_test.dart: short sparse runs do not borrow visible text or styled marks
+00:01 +17: /workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/office_dark_slide_test.dart: rich text painting follows font-size edits and undo
+00:01 +18: /workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/paint_run_text_unicode_test.dart: Latin ZWSP retain source offsets through paint and hit testing
+00:01 +19: /workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/office_dark_slide_test.dart: dark Slides adapt explicit ink and preserve automatic and exported colors
+00:01 +20: /workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/office_dark_slide_test.dart: dark Slides adapt explicit ink and preserve automatic and exported colors
+00:01 +21: /workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/office_dark_slide_test.dart: dark Slides adapt explicit ink and preserve automatic and exported colors
+00:01 +22: /workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/office_dark_slide_test.dart: dark Slides adapt explicit ink and preserve automatic and exported colors
+00:01 +23: /workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/office_dark_slide_test.dart: dark Slides adapt explicit ink and preserve automatic and exported colors
+00:01 +24: /workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/office_dark_slide_test.dart: dark Slides adapt explicit ink and preserve automatic and exported colors
+00:01 +25: /workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/office_dark_slide_test.dart: unfilled Slide text preserves authored ink over picture
+00:01 +26: /workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/office_dark_slide_test.dart: unfilled Slide text preserves authored ink over chart
+00:01 +27: /workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/office_dark_slide_test.dart: unfilled Slide text preserves authored ink over partial fill
+00:02 +28: /workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/office_dark_slide_test.dart: unfilled Slide text preserves authored ink over rotated fill
+00:02 +29: /workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/office_dark_slide_test.dart: dark Morph ink uses the interpolated fill instead of target fill
+00:02 +30: /workspace/scratch/ca5d3038a9b9/quds_office_suite/packages/quds_office_editor/test/office_dark_slide_test.dart: (tearDownAll)
+00:02 +30: All tests passed!

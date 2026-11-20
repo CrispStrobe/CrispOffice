@@ -18,6 +18,7 @@ import '../editor_word/table_history.dart';
 import '../editor_word/word_run_metrics.dart';
 import '../proofing/word_proofing.dart';
 import 'office_clipboard.dart';
+import 'office_host_fonts.dart';
 import 'office_theme.dart';
 import 'word_page_layout.dart';
 
@@ -908,6 +909,13 @@ class WordEditorController extends OfficeController {
       layoutEngine ??
       (_paintMetricsEngine ??= WordLayoutEngine(
         font: null,
+        measureFont: (codePoint, sizePoints, props) =>
+            OfficeHostFonts.wordMetrics(
+              codePoint,
+              sizePoints,
+              props,
+              themeFamily: config.theme.fontFamily,
+            ),
         measureRun: (text, sizePoints, props, bidiLevel) =>
             WordRunMetrics.measure(
               text,
@@ -14924,12 +14932,14 @@ class SlideEditorController extends OfficeController {
     }
     final Map<PmlShape, PmlTransform> next = <PmlShape, PmlTransform>{
       for (final PmlShape shape in targets)
-        shape: PmlTransform(
+        shape: shape.transform.copyWith(
           x: shape.transform.x + dxEmu,
           y: shape.transform.y + dyEmu,
           cx: shape.transform.cx,
           cy: shape.transform.cy,
           rot: shape.transform.rot,
+          flipH: shape.transform.flipH,
+          flipV: shape.transform.flipV,
         ),
     };
     applyTransforms(next);
@@ -15071,12 +15081,14 @@ class SlideEditorController extends OfficeController {
       for (final PmlShape mate in mates)
         mate: identical(mate, shape)
             ? next
-            : PmlTransform(
+            : mate.transform.copyWith(
                 x: mate.transform.x + dx,
                 y: mate.transform.y + dy,
                 cx: mate.transform.cx,
                 cy: mate.transform.cy,
                 rot: mate.transform.rot,
+                flipH: mate.transform.flipH,
+                flipV: mate.transform.flipV,
               ),
     };
     applyTransforms(nextByShape);
@@ -15522,7 +15534,9 @@ class SlideEditorController extends OfficeController {
           before.y != after.y ||
           before.cx != after.cx ||
           before.cy != after.cy ||
-          before.rot != after.rot) {
+          before.rot != after.rot ||
+          before.flipH != after.flipH ||
+          before.flipV != after.flipV) {
         changes[items[index]] = after;
       }
     }

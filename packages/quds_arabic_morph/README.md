@@ -39,7 +39,8 @@ default.
   The analyzer then checks the manifest against the pinned SHA-256, and every
   listed file against the manifest, before it parses anything. On the web,
   the host fetches the four files itself and passes them through
-  `MorphDatabaseBytes.verified`.
+  `MorphDatabaseBytes.verified`; the Studio web host keeps them in the
+  browser's Cache Storage and verifies them the same way on every later load.
 
 ## Why `noprob`, and why no ranking
 

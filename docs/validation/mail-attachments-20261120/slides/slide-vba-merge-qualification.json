@@ -1,0 +1,57 @@
+{
+  "recordedAtUtc": "2026-11-20T04:20:22.137389+00:00",
+  "headBeforeMerge": "ada910fa9f31c862bfc2c5282a4dccd16b13cd9c",
+  "incoming": "ee5d0da58e898dbb00ff49398f91dd8284fc6799",
+  "conflictsResolved": {
+    "files": 5,
+    "regions": 7
+  },
+  "resolution": [
+    "Keep master-only showMasterSp suppression and retain layout decorations, with copy and PPTX serialization.",
+    "Keep previous background/theme/rich-text fixes and all seven earlier regressions.",
+    "Keep numeric authored order for explicit lines that fit, preserving blank lines and Standard14 font rendering; use normal wrapping for wider numeric paragraphs.",
+    "Preserve incoming arrow outlines, non-rectangular backing handling and other clean-merged PPTX fixes.",
+    "Parse XML boolean 1/true for connector flipH/flipV, emit true flags on serialization, and cover five save/copy/reopen combinations."
+  ],
+  "commands": [
+    {
+      "cwd": "packages/quds_office_engine",
+      "command": "dart test test/slide_import_fidelity_test.dart test/slide_rich_text_explicit_style_test.dart test/slide_text_fidelity_test.dart test/slide_render_fidelity_test.dart test/slide_incoming_pptx_regression_test.dart test/office_pdf_export_test.dart test/pdf_logical_text_export_test.dart --reporter expanded",
+      "testsPassed": 87,
+      "exitCode": 0,
+      "log": "slide-vba-merge-engine-tests.log",
+      "logSha256": "5cdd6fbe91664c47cc4a4fede8f86ac96e90a7104ff37f51f9ca12ebce63142f"
+    },
+    {
+      "cwd": "packages/quds_office_editor",
+      "command": "flutter test --no-pub test/slide_render_fidelity_test.dart test/slide_incoming_pptx_regression_test.dart test/office_dark_slide_test.dart test/paint_run_text_unicode_test.dart --reporter expanded",
+      "testsPassed": 36,
+      "exitCode": 0,
+      "log": "slide-vba-merge-editor-tests.log",
+      "logSha256": "3847f07bc697448d91e4229046bffc0bc2245a3073cf14a465e8859aba47b14f"
+    }
+  ],
+  "totalTestsPassed": 123,
+  "newConnectorRoundtripCases": 5,
+  "sourceSha256": {
+    "packages/quds_office_editor/lib/src/editor_slide/render_slide_stage.dart": "da45e2e12677f63a66ec540b306d04c5813593d97ad65ab94833453fd7e04110",
+    "packages/quds_office_engine/lib/src/pdf/office_pdf_export.dart": "64b7feceb9e485250b8d760c6822e011fa01d40ee504cb02806ee749ad8ae34d",
+    "packages/quds_office_engine/lib/src/slide/model/pml_presentation.dart": "4ad35468952ffa3b2c4ee59e1213a2257297fb41b48f8b2ba5fb39886761a9f3",
+    "packages/quds_office_engine/lib/src/slide/serial/slide_serial.dart": "2fd3c011c033454b987df53f5cea8ce9e76e1a0f31cb993d2d9e21b3d729a0d5",
+    "packages/quds_office_engine/lib/src/slide/shapes/drawingml.dart": "2ba2f13eba3681d0ef3c7a8b9555c8de5080a15008ccaac4087d796f198bd835",
+    "packages/quds_office_engine/test/slide_import_fidelity_test.dart": "11455e1f88c6d2b7b0aef320bcedc63f119bc40470fe92c29fb2ab981f8c61a1",
+    "packages/quds_office_engine/test/slide_rich_text_explicit_style_test.dart": "d68a16cd7fea8ca3ff9bceccd453a4549db76a441d46f55a03260bb3a5693fff",
+    "packages/quds_office_engine/test/slide_text_fidelity_test.dart": "be1b167a1cd9c929f058c724f8c80d6138fb0bf1918f30cba0835381dadfea66",
+    "packages/quds_office_engine/test/slide_render_fidelity_test.dart": "f0fd88c706e618d70eda5e9b1b991aa50e9ce1188f93203e41a6c9720fc5ffb7",
+    "packages/quds_office_engine/test/slide_incoming_pptx_regression_test.dart": "da2826c382ff2a94fe1681a8f00b12e289fc06f70d3b59b82a27d254582b3be5",
+    "packages/quds_office_engine/test/office_pdf_export_test.dart": "c71fe312c59618b448d07bdbcd462508e7ba6d3b3a9d336472c9eb8b1bb23e70",
+    "packages/quds_office_engine/test/pdf_logical_text_export_test.dart": "30e15e5f6ff1f3b2b1c6729db728fbc12c55475a6f27674dd72ab7ed1ee7097d",
+    "packages/quds_office_editor/test/slide_render_fidelity_test.dart": "35538f364fbb6a28302cee83c6ba093c30f10996e79542a514f56f54b55a95db",
+    "packages/quds_office_editor/test/slide_incoming_pptx_regression_test.dart": "b8796b043c4425f3c33dd37c92c5be2e84477dc8eb7923a45b0a4643956f9a8c",
+    "packages/quds_office_editor/test/office_dark_slide_test.dart": "80d1e959bebc3a14296aa52496f343fa557bb35045767278c7fbc04120f4454a",
+    "packages/quds_office_editor/test/paint_run_text_unicode_test.dart": "48060e559c5c350551d2e7f2a781d9c3d8f9b845d67995f4aedee9dec12129eb"
+  },
+  "actionsQueriedOrAwaited": false,
+  "metadataCorrection": "Parent advanced checkout while this record was written; parent/incoming identities are pinned to the VBA merge actually qualified. Original log and source hashes are unchanged.",
+  "qualificationScope": "Historical intermediate source qualification only. This record is not final-tree acceptance; its exact source hashes and logs are retained separately from the final cohort."
+}

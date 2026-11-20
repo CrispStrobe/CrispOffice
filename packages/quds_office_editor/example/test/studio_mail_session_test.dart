@@ -3,14 +3,19 @@ import 'dart:convert';
 import 'dart:typed_data';
 
 import 'package:enough_mail/enough_mail.dart' as mail;
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:quds_mail_core/quds_mail_core.dart';
+import 'package:quds_mail_mime/quds_mail_mime.dart';
 import 'package:quds_office_editor/quds_office_editor.dart';
 import 'package:quds_office_studio/studio_mail_compose.dart';
 import 'package:quds_office_studio/studio_mail_message_loader.dart';
 import 'package:quds_office_studio/studio_mail_native.dart';
 import 'package:quds_office_studio/studio_mail_strings.dart';
 import 'package:quds_office_studio/studio_strings.dart';
+
+import 'support/mail_attachment_picker.dart';
 
 const _strings = StudioStrings(StudioLanguage.en);
 
@@ -435,6 +440,93 @@ void main() {
     _expectClosed(oldClient);
     expect(tester.takeException(), isNull);
   });
+
+  testWidgets(
+    'native attachment snapshots survive an uncertain send and acknowledged retry',
+    (tester) async {
+      final source = Uint8List.fromList([0, 255, 128, 13, 10, 42]);
+      final expected = Uint8List.fromList(source);
+      final picker = MailAttachmentPickerFixture(
+        () async => FilePickerResult([
+          PlatformFile(
+            name: 'Snapshot.xlsx',
+            size: source.length,
+            readStream: Stream<List<int>>.value(source),
+          ),
+          PlatformFile(name: 'Empty.txt', size: 0, bytes: Uint8List(0)),
+        ]),
+      );
+      FilePicker.platform = picker;
+      addTearDown(() => FilePicker.platform = FilePickerIO());
+      final client = _Client()..sendGate = Completer<void>();
+      await _connected(tester, client);
+      await _compose(tester);
+      await tester.tap(find.text(_strings.mailCopyRecipients));
+      await _pump(tester);
+      await tester.enterText(
+        _field(_strings.mailBcc),
+        'hidden@example.invalid',
+      );
+      final add = find.byKey(const ValueKey('studio-mail-add-attachments'));
+      await tester.ensureVisible(add);
+      await tester.tap(add);
+      await _pump(tester);
+      expect(find.text('Snapshot.xlsx'), findsOneWidget);
+      expect(find.text('Empty.txt'), findsOneWidget);
+      source.fillRange(0, source.length, 17);
+
+      final send = find.widgetWithIcon(FilledButton, Icons.send);
+      await tester.ensureVisible(send);
+      await tester.tap(send);
+      await _pump(tester);
+      expect(client.sends, 1);
+      client.sendGate!.completeError(StateError('connection lost after DATA'));
+      await _pump(tester);
+      expect(find.text(_strings.mailSubmissionUncertain), findsOneWidget);
+      await tester.pump(const Duration(minutes: 1));
+      expect(client.sends, 1);
+
+      await tester.tap(find.widgetWithIcon(TextButton, Icons.edit_outlined));
+      await _pump(tester);
+      expect(find.text('Snapshot.xlsx'), findsOneWidget);
+      expect(find.text('Empty.txt'), findsOneWidget);
+      expect(tester.widget<FilledButton>(send).onPressed, isNull);
+      expect(picker.calls, 1);
+      client.sendGate = null;
+      await tester.ensureVisible(find.byType(CheckboxListTile));
+      await tester.tap(find.byType(CheckboxListTile));
+      await _pump(tester);
+      await tester.ensureVisible(send);
+      await tester.tap(send);
+      await _pump(tester);
+      expect(client.sends, 2);
+      expect(client.sentAppendToSent, everyElement(isFalse));
+      for (final recipients in client.sentRecipients) {
+        expect(recipients, [
+          'recipient@example.invalid',
+          'hidden@example.invalid',
+        ]);
+      }
+      for (final message in client.sentMessages) {
+        expect(message.mediaType.text, 'multipart/mixed');
+        expect(message.parts!.first.mediaType.text, 'multipart/alternative');
+        final wire = message.renderMessage();
+        expect(wire, isNot(contains('hidden@example.invalid')));
+        final decoded = const QudsMimeCodec().parse(ascii.encode(wire));
+        expect(decoded.status, MailParseStatus.complete);
+        expect(decoded.message!.body.plainText, 'Draft body.');
+        expect(decoded.message!.body.html, contains('Draft body.'));
+        expect(decoded.message!.attachments, hasLength(2));
+        expect(decoded.message!.attachments.first.displayName, 'Snapshot.xlsx');
+        expect(decoded.message!.attachments.first.content.bytes, expected);
+        expect(decoded.message!.attachments.last.displayName, 'Empty.txt');
+        expect(decoded.message!.attachments.last.content.bytes, isEmpty);
+        expect(decoded.message!.envelope.bcc, isEmpty);
+      }
+      expect(find.text(_strings.mailSubmissionAccepted), findsOneWidget);
+      expect(tester.takeException(), isNull);
+    },
+  );
 
   testWidgets(
     'native composition submits To Cc and Bcc only in the explicit envelope',
