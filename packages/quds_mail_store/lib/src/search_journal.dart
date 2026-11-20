@@ -3,17 +3,64 @@ part of 'repository.dart';
 /// Local-only search/cache and a durable provider-intent journal. None of these
 /// methods holds a provider, HTTP client, credential value or network callback.
 extension MailStoreLocalOperations on SqliteMailRepository {
+  // The writer permits six encoded UTF-16 units per semantic metadata unit.
+  // UTF-8 uses at most three bytes per UTF-16 unit, so this preflight also
+  // preserves previously valid escaped/non-ASCII JSON. The exact character and
+  // decoded semantic budgets are checked after this bounded transfer.
+  Future<QueryRow?> _cachedMetadata(
+    MailAccountId account,
+    MailMessageId message, {
+    bool includeHeader = false,
+  }) async {
+    final columns = [
+      'c.data',
+      if (includeHeader) ...['c.raw_hash', 'm.envelope', 'm.remote'],
+    ];
+    final from =
+        'FROM cached_messages c '
+        '${includeHeader ? 'JOIN messages m ON m.account=c.account AND m.id=c.message ' : ''}'
+        'WHERE c.account=? AND c.message=?';
+    final args = [account.value, message.value];
+    final sizes = await _rows(
+      'SELECT ${[for (var i = 0; i < columns.length; i++) 'typeof(${columns[i]}) AS type_$i,length(CAST(${columns[i]} AS BLOB)) AS bytes_$i'].join(',')} $from',
+      args,
+    );
+    if (sizes.isEmpty) return null;
+    for (var i = 0; i < columns.length; i++) {
+      if (sizes.single.read<String>('type_$i') != 'text') {
+        SqliteMailRepository._fail(MailProblemCode.storageFailure);
+      }
+      final bytes = sizes.single.read<int>('bytes_$i');
+      if ((i == 1 && bytes != 64) || (i == 3 && bytes > 16384)) {
+        SqliteMailRepository._fail(MailProblemCode.storageFailure);
+      }
+      if ((i == 0 || i == 2) && bytes > limits.maxMetadataCodeUnits * 18) {
+        SqliteMailRepository._fail(MailProblemCode.quotaExceeded);
+      }
+    }
+    final row = (await _rows('SELECT ${columns.join(',')} $from', args)).single;
+    if (row.read<String>('data').length > limits.maxMetadataCodeUnits * 6 ||
+        (includeHeader &&
+            row.read<String>('envelope').length >
+                limits.maxMetadataCodeUnits * 6)) {
+      SqliteMailRepository._fail(MailProblemCode.quotaExceeded);
+    }
+    if (includeHeader &&
+        !RegExp(r'^[0-9a-f]{64}$').hasMatch(row.read<String>('raw_hash'))) {
+      SqliteMailRepository._fail(MailProblemCode.storageFailure);
+    }
+    return row;
+  }
+
   Future<String?> _cachedPlain(
     MailAccountId account,
     MailMessageId message,
   ) async {
-    final rows = await _rows(
-      'SELECT data FROM cached_messages WHERE account=? AND message=?',
-      [account.value, message.value],
-    );
-    if (rows.isEmpty) return null;
+    final row = await _cachedMetadata(account, message);
+    if (row == null) return null;
     return MailStoreCodec.decodeDraftBody(
-      rows.single.read<String>('data'),
+      row.read<String>('data'),
+      limits: limits,
     ).plainText;
   }
 
@@ -210,13 +257,15 @@ extension MailStoreLocalOperations on SqliteMailRepository {
   ) => _run(
     () => _db.transaction(() async {
       await _account(account);
-      final rows = await _rows(
-        'SELECT c.*,m.envelope,m.remote FROM cached_messages c JOIN messages m '
-        'ON m.account=c.account AND m.id=c.message WHERE c.account=? AND c.message=?',
-        [account.value, id.value],
+      final row = await _cachedMetadata(account, id, includeHeader: true);
+      if (row == null) return null;
+      MailStoreCodec.decodeDraftBody(row.read<String>('data'), limits: limits);
+      final envelope = MailStoreCodec.decodeEnvelope(
+        row.read<String>('envelope'),
       );
-      if (rows.isEmpty) return null;
-      final row = rows.single;
+      if (_envelopeUnits(envelope) > limits.maxMetadataCodeUnits) {
+        SqliteMailRepository._fail(MailProblemCode.quotaExceeded);
+      }
       final blobs = await _blobs(account, 'cache', id.value);
       final body = MailStoreCodec.decodeDraft(
         row.read<String>('data'),
@@ -231,7 +280,7 @@ extension MailStoreLocalOperations on SqliteMailRepository {
       }
       return MailMessage(
         raw: raw,
-        envelope: MailStoreCodec.decodeEnvelope(row.read<String>('envelope')),
+        envelope: envelope,
         body: body.body,
         attachments: body.attachments,
         localId: id,
@@ -287,15 +336,80 @@ extension MailStoreLocalOperations on SqliteMailRepository {
     if (limit < 1 || limit > limits.maxPageSize) {
       SqliteMailRepository._fail(MailProblemCode.invalidInput);
     }
-    final rows = await _rows(
-      'SELECT c.message,m.envelope FROM cached_messages c JOIN messages m '
-      'ON m.account=c.account AND m.id=c.message WHERE c.account=? AND NOT EXISTS '
-      "(SELECT 1 FROM blob_refs r JOIN blob_refs p ON p.account=r.account AND p.hash=r.hash AND p.owner_kind='pin' "
-      "WHERE r.account=c.account AND r.owner_kind='cache' AND r.owner_id=c.message) ORDER BY c.message LIMIT ?",
+    final count = await _evictCacheBodies(account, limit);
+    await _collectBlobs(account);
+    return count;
+  });
+
+  static const _cachePinned =
+      'EXISTS (SELECT 1 FROM blob_refs r JOIN blob_refs p '
+      "ON p.account=r.account AND p.hash=r.hash AND p.owner_kind='pin' "
+      "WHERE r.account=c.account AND r.owner_kind='cache' AND r.owner_id=c.message)";
+
+  static const _headerExpendable =
+      'NOT EXISTS (SELECT 1 FROM memberships s '
+      'WHERE s.account=m.account AND s.message=m.id) '
+      'AND NOT EXISTS (SELECT 1 FROM mailbox_view_members v '
+      'WHERE v.account=m.account AND v.message=m.id) '
+      'AND NOT EXISTS (SELECT 1 FROM cached_messages c '
+      'WHERE c.account=m.account AND c.message=m.id) '
+      'AND NOT EXISTS (SELECT 1 FROM blob_refs r WHERE r.account=m.account '
+      "AND r.owner_kind='cache' AND r.owner_id=m.id) "
+      'AND NOT EXISTS (SELECT 1 FROM pending_operations p '
+      'WHERE p.account=m.account AND p.remote=m.remote '
+      "AND p.state IN ('queued','applying','reconcile'))";
+
+  Future<List<String>> _boundedCacheIds(
+    String column,
+    String from,
+    List<Object?> args,
+  ) async {
+    final sizes = await _rows(
+      'SELECT typeof($column) AS type,length(CAST($column AS BLOB)) AS bytes $from',
+      args,
+    );
+    if (sizes.any(
+      (row) =>
+          row.read<String>('type') != 'text' || row.read<int>('bytes') > 4096,
+    )) {
+      SqliteMailRepository._fail(MailProblemCode.storageFailure);
+    }
+    return [
+      for (final row in await _rows('SELECT $column AS id $from', args))
+        row.read<String>('id'),
+    ];
+  }
+
+  Future<int> _evictCacheBodies(MailAccountId account, int limit) async {
+    final ids = await _boundedCacheIds(
+      'c.message',
+      'FROM cached_messages c WHERE c.account=? AND NOT $_cachePinned '
+          'ORDER BY c.message LIMIT ?',
       [account.value, limit],
     );
-    for (final row in rows) {
-      final id = row.read<String>('message');
+    for (final id in ids) {
+      // Read one bounded envelope at a time, never the body being discarded.
+      final size = (await _rows(
+        'SELECT typeof(envelope) AS type,length(CAST(envelope AS BLOB)) AS bytes '
+        'FROM messages WHERE account=? AND id=?',
+        [account.value, id],
+      )).single;
+      if (size.read<String>('type') != 'text') {
+        SqliteMailRepository._fail(MailProblemCode.storageFailure);
+      }
+      if (size.read<int>('bytes') > limits.maxMetadataCodeUnits * 18) {
+        SqliteMailRepository._fail(MailProblemCode.quotaExceeded);
+      }
+      final row = (await _rows(
+        'SELECT envelope FROM messages WHERE account=? AND id=?',
+        [account.value, id],
+      )).single;
+      final envelope = MailStoreCodec.decodeEnvelope(
+        row.read<String>('envelope'),
+      );
+      if (_envelopeUnits(envelope) > limits.maxMetadataCodeUnits) {
+        SqliteMailRepository._fail(MailProblemCode.quotaExceeded);
+      }
       await _db.customStatement(
         'DELETE FROM cached_messages WHERE account=? AND message=?',
         [account.value, id],
@@ -304,15 +418,68 @@ extension MailStoreLocalOperations on SqliteMailRepository {
         "DELETE FROM blob_refs WHERE account=? AND owner_kind='cache' AND owner_id=?",
         [account.value, id],
       );
-      await _index(
-        account,
-        MailMessageId(id),
-        MailStoreCodec.decodeEnvelope(row.read<String>('envelope')),
-        null,
+      await _index(account, MailMessageId(id), envelope, null);
+    }
+    return ids.length;
+  }
+
+  /// Explicit local recovery for an account whose automatic browse cache has
+  /// filled its quota. Each category removes at most [limit] rows, in one
+  /// transaction. No new quota admission is required to free existing space.
+  /// Folder definitions, sync cursors/memberships, active pending operations,
+  /// outgoing work and editor-pinned payloads remain intact.
+  Future<MailResult<MailCacheCleanupReport>> clearMailboxCache(
+    MailAccountId account, {
+    int limit = 1000,
+  }) => _write(() async {
+    await _account(account);
+    if (limit < 1 || limit > 1000 || limit > limits.maxPageSize) {
+      SqliteMailRepository._fail(MailProblemCode.invalidInput);
+    }
+    await _db.customStatement(
+      'DELETE FROM mailbox_views WHERE account=? AND mailbox IN '
+      '(SELECT mailbox FROM mailbox_views WHERE account=? ORDER BY mailbox LIMIT ?)',
+      [account.value, account.value, limit],
+    );
+    final removedViews = (await _rows(
+      'SELECT changes() AS n',
+    )).single.read<int>('n');
+    final evictedBodies = await _evictCacheBodies(account, limit);
+    final ids = await _boundedCacheIds(
+      'm.id',
+      'FROM messages m WHERE m.account=? AND $_headerExpendable ORDER BY m.id LIMIT ?',
+      [account.value, limit],
+    );
+    for (final id in ids) {
+      await _db.customStatement(
+        'DELETE FROM mail_fts WHERE account=? AND message=?',
+        [account.value, id],
+      );
+      await _db.customStatement(
+        'DELETE FROM messages WHERE account=? AND id=?',
+        [account.value, id],
       );
     }
     await _collectBlobs(account);
-    return rows.length;
+    final retainedBodies = (await _rows(
+      'SELECT count(*) AS n FROM cached_messages c WHERE c.account=? AND $_cachePinned',
+      [account.value],
+    )).single.read<int>('n');
+    final hasMore =
+        (await _rows(
+          'SELECT (EXISTS (SELECT 1 FROM mailbox_views WHERE account=?) '
+          'OR EXISTS (SELECT 1 FROM cached_messages c WHERE c.account=? AND NOT $_cachePinned) '
+          'OR EXISTS (SELECT 1 FROM messages m WHERE m.account=? AND $_headerExpendable)) AS n',
+          [account.value, account.value, account.value],
+        )).single.read<int>('n') !=
+        0;
+    return MailCacheCleanupReport(
+      removedViews: removedViews,
+      evictedBodies: evictedBodies,
+      removedHeaders: ids.length,
+      retainedBodies: retainedBodies,
+      hasMore: hasMore,
+    );
   });
 
   Future<MailResult<MailUnit>> enqueueOperation(

@@ -206,6 +206,9 @@ const schemaV4 = <String>[
 /// Foreground browse windows have their own ordering and revision. They never
 /// advance a provider sync cursor or claim authoritative server membership.
 const schemaV5 = <String>[
+  '''ALTER TABLE store_profile ADD COLUMN mailbox_view_revision INTEGER
+    NOT NULL DEFAULT 0 CHECK(typeof(mailbox_view_revision) = 'integer' AND
+    mailbox_view_revision BETWEEN 0 AND 9007199254740991)''',
   '''CREATE TABLE mailbox_views (
     account TEXT NOT NULL, mailbox TEXT NOT NULL,
     revision INTEGER NOT NULL CHECK(typeof(revision) = 'integer' AND

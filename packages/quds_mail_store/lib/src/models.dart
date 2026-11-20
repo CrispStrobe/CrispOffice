@@ -173,6 +173,25 @@ final class MailCachedMailboxView {
   );
 }
 
+/// The result of one bounded local mailbox-cache cleanup transaction.
+/// [hasMore] reports more eligible work; editor-pinned bodies are reported by
+/// [retainedBodies] instead, so repeating cleanup never loops on protected data.
+final class MailCacheCleanupReport {
+  const MailCacheCleanupReport({
+    required this.removedViews,
+    required this.evictedBodies,
+    required this.removedHeaders,
+    required this.retainedBodies,
+    required this.hasMore,
+  });
+
+  final int removedViews;
+  final int evictedBodies;
+  final int removedHeaders;
+  final int retainedBodies;
+  final bool hasMore;
+}
+
 /// A draft's metadata and revision without its body or attachment payloads.
 /// Opening the draft separately verifies and loads its retained blob bytes.
 final class MailDraftSummary {

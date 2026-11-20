@@ -18,8 +18,13 @@ and attachment bytes for later local reading.
 4. Choose a saved folder, filter its retained headers and open a cached
    message. The displayed capture time describes a saved view, not live server
    state. A partial-view notice explains that additional mail may exist.
-5. A header without retained content shows **Message not downloaded**. Close
-   the local workspace and reconnect to download it or refresh the folder.
+5. A header without retained content explains that the message was not saved
+   for offline reading. Close the local workspace and reconnect to download it
+   or refresh the folder.
+6. If local storage fills up, choose **Clear cached mail** in the local
+   workspace and confirm. Each bounded step removes saved views and eligible
+   downloaded copies; repeat when the result says more remain. Drafts, Outbox,
+   credentials, authoritative sync state and server mail are preserved.
 
 Cached access uses the verified non-secret account directory and the existing
 account-specific local database. It does not require passwords, OAuth tokens,
@@ -73,8 +78,14 @@ before completing close, preserving exclusive ownership.
 
 Removing an account shortcut preserves cached mail, drafts, Outbox,
 credentials and provider mail. Local files follow the host's existing
-unencrypted storage policy. This increment adds no automatic eviction or
-provider deletion; reaching a storage quota is explicit.
+unencrypted storage policy. There is no automatic eviction or provider
+deletion. Reaching a storage quota is explicit; confirmed **Clear cached mail**
+provides a local recovery path so replaceable downloads do not permanently
+block draft saving. Editor-pinned bodies and header identities needed by active
+local operations remain protected; the cleanup report distinguishes remaining
+work from bodies retained for open editors. Pending command records remain
+intact; their replaceable cached bodies follow the existing eviction policy.
+A failed cleanup rolls back its entire step.
 
 ## Transaction and synchronization boundary
 
@@ -83,7 +94,14 @@ existing content. Each view replacement compares its revision and checks the
 current account lease inside the transaction immediately before commit. A
 failed save, cancellation or interrupted precommit write leaves the prior
 view intact. A committed view remains recoverable after process termination.
-Body caching also checks an optional lease before its final commit.
+Body caching also checks an optional lease before its final commit. View
+revisions use a durable profile counter, so clearing and recreating a view
+cannot make a stale compare-and-swap revision valid again.
+
+Stored cached-body metadata is size/type checked in SQLite before it is
+transferred and decoded. Encoded JSON bounds include legitimate escaping
+overhead; semantic decoded limits remain authoritative. This bounds corrupt or
+previously larger cached rows when a profile is reopened under tighter limits.
 
 Browse views are independent of synchronization membership and cursors.
 Replacing a limited view does not declare absent server messages deleted,

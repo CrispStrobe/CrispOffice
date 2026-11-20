@@ -1,5 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -10,6 +12,7 @@ import 'package:quds_office_studio/studio_mail_cached_mail.dart';
 import 'package:quds_office_studio/studio_mail_cached_strings.dart';
 import 'package:quds_office_studio/studio_mail_draft.dart';
 import 'package:quds_office_studio/studio_mail_draft_store.dart';
+import 'package:quds_office_studio/studio_mail_draft_store_native.dart';
 import 'package:quds_office_studio/studio_mail_mailbox_store.dart';
 import 'package:quds_office_studio/studio_strings.dart';
 
@@ -79,8 +82,8 @@ MailCachedMailboxView _view(
   hasMore: hasMore,
 );
 
-/// Fakes expose only the local storage contracts. Any write or draft access is
-/// a test failure; there is no transport, OAuth or credential dependency here.
+/// Fakes expose only local storage. Any save or draft access is a test failure;
+/// explicit confirmed cleanup is separately counted. No transport is present.
 class _Mailbox implements StudioMailMailboxStore {
   _Mailbox(this.account);
   @override
@@ -91,8 +94,12 @@ class _Mailbox implements StudioMailMailboxStore {
   Completer<void>? bodyGate;
   bool failList = false;
   bool failBody = false;
+  bool failClear = false;
+  Completer<void>? clearGate;
+  MailCacheCleanupReport? cleanupReport;
   int listReads = 0;
   int bodyReads = 0;
+  int clearCalls = 0;
 
   @override
   Future<List<MailCachedMailboxSummary>> listViews() async {
@@ -128,6 +135,28 @@ class _Mailbox implements StudioMailMailboxStore {
     MailMessage message, {
     required MailOperationLease lease,
   }) => throw StateError('Offline UI must never save a message');
+
+  @override
+  Future<MailCacheCleanupReport> clearCache() async {
+    clearCalls++;
+    await clearGate?.future;
+    if (failClear) throw StateError('cleanup unavailable');
+    final report =
+        cleanupReport ??
+        MailCacheCleanupReport(
+          removedViews: views.length,
+          evictedBodies: bodies.length,
+          removedHeaders: views.values.fold(
+            0,
+            (count, view) => count + view.headers.length,
+          ),
+          hasMore: false,
+          retainedBodies: 0,
+        );
+    views.clear();
+    bodies.clear();
+    return report;
+  }
 }
 
 class _Owner implements StudioMailDraftStore, StudioMailMailboxStoreOwner {
@@ -226,6 +255,9 @@ Future<void> _tap(WidgetTester tester, Finder finder) async {
 
 Finder get _close => find.byKey(const ValueKey('studio-mail-cache-close'));
 Finder get _back => find.byKey(const ValueKey('studio-mail-cache-back'));
+Finder get _clear => find.byKey(const ValueKey('studio-mail-cache-clear'));
+Finder get _confirmClear =>
+    find.byKey(const ValueKey('studio-mail-cache-clear-confirm'));
 
 void main() {
   for (final provider in ['imap', 'ews', 'gmail', 'graph']) {
@@ -473,6 +505,12 @@ void main() {
       find.byKey(const ValueKey('studio-mail-cache-error')),
       findsOneWidget,
     );
+    expect(owner.closes, 0);
+    expect(
+      find.byKey(const ValueKey('studio-mail-cache-clear')),
+      findsOneWidget,
+    );
+    await _tap(tester, _close);
     expect(owner.closes, 1);
   });
 
@@ -506,6 +544,16 @@ void main() {
           size: const Size(420, 660),
         );
         expect(tester.takeException(), isNull);
+        await tester.scrollUntilVisible(
+          find.text('Saved message 2'),
+          100,
+          scrollable: find
+              .descendant(
+                of: find.byType(MailMessageList),
+                matching: find.byType(Scrollable),
+              )
+              .last,
+        );
         await _tap(tester, find.text('Saved message 2'));
         expect(
           find.text(StudioStrings(language).mailCacheMissingBody),
@@ -513,6 +561,14 @@ void main() {
         );
         expect(tester.takeException(), isNull);
         await _tap(tester, _back);
+        expect(tester.takeException(), isNull);
+        await _tap(tester, _clear);
+        expect(
+          find.text(StudioStrings(language).mailCacheClearHelp),
+          findsOneWidget,
+        );
+        expect(tester.takeException(), isNull);
+        await _tap(tester, find.text(StudioStrings(language).cancel));
         expect(tester.takeException(), isNull);
       },
     );
@@ -571,6 +627,250 @@ void main() {
       final check = await awaitOutboxOperation(tester, fixture.openLoaded());
       expect(await awaitOutboxOperation(tester, check.load()), isNull);
       expect(await awaitOutboxOperation(tester, check.loadOutbox()), isEmpty);
+    },
+  );
+
+  testWidgets(
+    'cache cleanup requires confirmation and cancel preserves the view',
+    (tester) async {
+      final identity = _identity();
+      final (owner, mailbox) = _fixture(identity);
+      await _show(tester, identity, (_) async => owner);
+      await _tap(tester, _clear);
+      expect(find.text(_strings.mailCacheClearHelp), findsOneWidget);
+      expect(mailbox.clearCalls, 0);
+      await _tap(tester, find.text(_strings.cancel));
+      expect(mailbox.clearCalls, 0);
+      expect(find.text('Saved message 1'), findsOneWidget);
+      expect(mailbox.bodies, hasLength(1));
+    },
+  );
+
+  testWidgets('confirmed cleanup clears loaded state and releases reader', (
+    tester,
+  ) async {
+    final identity = _identity();
+    final (owner, mailbox) = _fixture(identity);
+    await _show(tester, identity, (_) async => owner);
+    await _tap(tester, find.text('Saved message 1'));
+    final reader = tester
+        .widget<MailMessageView>(find.byType(MailMessageView))
+        .controller;
+    await _tap(tester, _clear);
+    await _tap(tester, _confirmClear);
+    expect(mailbox.clearCalls, 1);
+    expect(mailbox.listReads, 2);
+    expect(mailbox.views, isEmpty);
+    expect(mailbox.bodies, isEmpty);
+    expect(reader.isDisposed, isTrue);
+    expect(find.byType(MailMessageView), findsNothing);
+    expect(find.byType(MailMessageList), findsNothing);
+    expect(find.text(_strings.mailCacheEmpty), findsOneWidget);
+    expect(find.text(_strings.mailCacheCleared(1, 1, 2)), findsOneWidget);
+    expect(
+      tester
+          .widget<TextButton>(
+            find.widgetWithText(TextButton, _strings.mailCacheClear),
+          )
+          .onPressed,
+      isNotNull,
+    );
+  });
+
+  testWidgets(
+    'one confirmed cleanup reports more work without an automatic loop',
+    (tester) async {
+      final identity = _identity();
+      final (owner, mailbox) = _fixture(identity);
+      mailbox.cleanupReport = const MailCacheCleanupReport(
+        removedViews: 1,
+        evictedBodies: 1,
+        removedHeaders: 1,
+        hasMore: true,
+        retainedBodies: 3,
+      );
+      await _show(tester, identity, (_) async => owner);
+      await _tap(tester, _clear);
+      await _tap(tester, _confirmClear);
+      await pumpOutboxWidgets(tester);
+      expect(mailbox.clearCalls, 1);
+      expect(find.text(_strings.mailCacheClearMore), findsOneWidget);
+      expect(find.text(_strings.mailCacheProtected(3)), findsOneWidget);
+    },
+  );
+
+  testWidgets('cleanup failure retains the current view and reader', (
+    tester,
+  ) async {
+    final identity = _identity();
+    final (owner, mailbox) = _fixture(identity);
+    mailbox.failClear = true;
+    await _show(tester, identity, (_) async => owner);
+    await _tap(tester, find.text('Saved message 1'));
+    final reader = tester
+        .widget<MailMessageView>(find.byType(MailMessageView))
+        .controller;
+    await _tap(tester, _clear);
+    await _tap(tester, _confirmClear);
+    expect(mailbox.clearCalls, 1);
+    expect(reader.isDisposed, isFalse);
+    expect(find.byType(MailMessageView), findsOneWidget);
+    expect(find.text('Saved message 2'), findsOneWidget);
+    expect(find.text(_strings.mailCacheClearFailed), findsOneWidget);
+  });
+
+  testWidgets('valid owner offers cleanup after a failed catalog read', (
+    tester,
+  ) async {
+    final identity = _identity();
+    final (owner, mailbox) = _fixture(identity);
+    mailbox.failList = true;
+    await _show(tester, identity, (_) async => owner);
+    expect(owner.closes, 0);
+    mailbox.failList = false;
+    await _tap(tester, _clear);
+    await _tap(tester, _confirmClear);
+    expect(mailbox.clearCalls, 1);
+    expect(find.text(_strings.mailCacheEmpty), findsOneWidget);
+    expect(find.byKey(const ValueKey('studio-mail-cache-error')), findsNothing);
+  });
+
+  testWidgets('close waits for a pending confirmed cleanup', (tester) async {
+    final identity = _identity();
+    final (owner, mailbox) = _fixture(identity);
+    mailbox.clearGate = Completer<void>();
+    await _show(tester, identity, (_) async => owner);
+    await _tap(tester, _clear);
+    await _tap(tester, _confirmClear);
+    await _tap(tester, _close);
+    expect(owner.closes, 0);
+    mailbox.clearGate!.complete();
+    await pumpOutboxWidgets(tester);
+    expect(owner.closes, 1);
+    expect(find.byType(StudioMailCachedMailDialog), findsNothing);
+    expect(tester.takeException(), isNull);
+  });
+
+  testWidgets(
+    'confirmed native cleanup restores quota-blocked draft admission after reopen',
+    (tester) async {
+      final identity = _identity();
+      final directory = (await tester.runAsync(
+        () => Directory.systemTemp.createTemp('cached-mail-quota-'),
+      ))!;
+      final owners = <StudioMailDraftStore>[];
+      Future<StudioMailDraftStore> open(StudioMailDraftAccount account) async {
+        final owner = await openStudioMailDraftStore(
+          account,
+          appDirectory: directory,
+          limits: const MailStoreLimits(maxAccountBytes: 16384),
+        );
+        owners.add(owner);
+        return owner;
+      }
+
+      addTearDown(() async {
+        await tester.pumpWidget(const SizedBox.shrink());
+        await awaitOutboxOperation(tester, () async {
+          for (final owner in owners) {
+            await owner.close();
+          }
+          await directory.delete(recursive: true);
+        }());
+      });
+      final draft = StudioMailDraft(
+        to: '',
+        subject: 'Preserve new work',
+        body: 'x' * 5000,
+      );
+      final quotaFailure = await awaitOutboxOperation(tester, () async {
+        final seed = await open(identity);
+        final store = (seed as StudioMailMailboxStoreOwner).mailboxStore;
+        final view = _view(identity, headers: [_header(identity, 1)]);
+        final lease = MailAccountSession(identity.account).begin();
+        await store.saveView(
+          view.mailbox,
+          view.headers,
+          hasMore: false,
+          lease: lease,
+        );
+        final header = view.headers.single;
+        await store.cacheMessage(
+          header,
+          MailMessage(
+            raw: MailBytes(Uint8List.fromList(List<int>.filled(8000, 65))),
+            envelope: header.envelope,
+            body: MailBody(plainText: 'b' * 1000),
+            localId: header.id,
+            remoteIdentity: header.remote,
+          ),
+          lease: lease,
+        );
+        await seed.load();
+        MailProblemCode? failure;
+        try {
+          await seed.save(draft, submissionUncertain: false);
+        } on StudioMailDraftStoreException catch (error) {
+          failure = error.code;
+        }
+        await seed.close();
+        return failure;
+      }());
+      expect(quotaFailure, MailProblemCode.quotaExceeded);
+      await _show(tester, identity, open);
+      for (
+        var i = 0;
+        i < 200 && find.text('Saved message 1').evaluate().isEmpty;
+        i++
+      ) {
+        await tester.runAsync(
+          () => Future<void>.delayed(const Duration(milliseconds: 2)),
+        );
+        await tester.pump();
+      }
+      expect(find.text('Saved message 1'), findsOneWidget);
+      await _tap(tester, _clear);
+      await _tap(tester, _confirmClear);
+      for (
+        var i = 0;
+        i < 200 &&
+            find
+                .byKey(const ValueKey('studio-mail-cache-cleared'))
+                .evaluate()
+                .isEmpty;
+        i++
+      ) {
+        await tester.runAsync(
+          () => Future<void>.delayed(const Duration(milliseconds: 2)),
+        );
+        await tester.pump();
+      }
+      expect(
+        find.byKey(const ValueKey('studio-mail-cache-cleared')),
+        findsOneWidget,
+      );
+      await _tap(tester, _close);
+      for (
+        var i = 0;
+        i < 200 &&
+            find.byType(StudioMailCachedMailDialog).evaluate().isNotEmpty;
+        i++
+      ) {
+        await tester.runAsync(
+          () => Future<void>.delayed(const Duration(milliseconds: 2)),
+        );
+        await tester.pump(const Duration(milliseconds: 10));
+      }
+      expect(find.byType(StudioMailCachedMailDialog), findsNothing);
+      final reopenedBody = await awaitOutboxOperation(tester, () async {
+        final reopened = await open(identity);
+        await reopened.load();
+        await reopened.save(draft, submissionUncertain: false);
+        final body = (await reopened.load())!.draft.body;
+        await reopened.close();
+        return body;
+      }());
+      expect(reopenedBody, draft.body);
     },
   );
 }

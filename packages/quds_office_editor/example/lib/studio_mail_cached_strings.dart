@@ -10,6 +10,39 @@ extension StudioMailCachedStrings on StudioStrings {
   String get mailCachedMail =>
       _text('Cached mail', 'Gespeicherte E-Mails', 'البريد المحفوظ');
 
+  String get mailCacheClear =>
+      _text('Clear cached mail', 'Mail-Cache leeren', 'مسح البريد المحفوظ');
+
+  String get mailCacheClearHelp => _text(
+    'Remove saved folder views and unprotected downloaded mail from this device? Drafts, Outbox, server mail, saved credentials, pending operations and content pinned by open editors are kept. You can download mail again after reconnecting.',
+    'Gespeicherte Ordneransichten und ungeschützte heruntergeladene E-Mails von diesem Gerät entfernen? Entwürfe, Postausgang, Servernachrichten, Zugangsdaten, ausstehende Vorgänge und von offenen Editoren geschützte Inhalte bleiben erhalten. Nach dem Verbinden können Sie E-Mails erneut herunterladen.',
+    'هل تريد إزالة عروض المجلدات المحفوظة والبريد المحمّل غير المحمي من هذا الجهاز؟ تبقى المسودات والصادر وبريد الخادم وبيانات الاعتماد والعمليات المعلّقة والمحتوى الذي تحميه المحررات المفتوحة. يمكنك تنزيل البريد مجددًا بعد إعادة الاتصال.',
+  );
+
+  String mailCacheCleared(int views, int bodies, int headers) => _text(
+    'Removed $views saved folder views, $bodies downloaded messages and $headers cached headers.',
+    '$views gespeicherte Ordneransichten, $bodies heruntergeladene Nachrichten und $headers gespeicherte Kopfzeilen entfernt.',
+    'أُزيل $views من عروض المجلدات المحفوظة و$bodies من الرسائل المحمّلة و$headers من عناوين الرسائل المحفوظة.',
+  );
+
+  String get mailCacheClearMore => _text(
+    'More cached mail remains. Choose Clear cached mail again to remove the next batch.',
+    'Weitere gespeicherte E-Mails verbleiben. Wählen Sie erneut „Mail-Cache leeren“, um die nächste Gruppe zu entfernen.',
+    'يبقى بريد محفوظ آخر. اختر مسح البريد المحفوظ مجددًا لإزالة المجموعة التالية.',
+  );
+
+  String mailCacheProtected(int count) => _text(
+    '$count downloaded messages are protected by open editors. Close those editors before trying again.',
+    '$count heruntergeladene Nachrichten werden von offenen Editoren geschützt. Schließen Sie diese Editoren, bevor Sie es erneut versuchen.',
+    'تحمي المحررات المفتوحة $count من الرسائل المحمّلة. أغلق تلك المحررات قبل المحاولة مجددًا.',
+  );
+
+  String get mailCacheClearFailed => _text(
+    'Could not clear cached mail. The previous saved view is retained. Try again or close this workspace.',
+    'Der Mail-Cache konnte nicht geleert werden. Die zuvor gespeicherte Ansicht bleibt erhalten. Versuchen Sie es erneut oder schließen Sie diese Ansicht.',
+    'تعذر مسح البريد المحفوظ. يبقى العرض المحفوظ السابق محفوظًا. حاول مجددًا أو أغلق مساحة العمل هذه.',
+  );
+
   String get mailCachedAccountsHelp => _text(
     'Tap an account to edit drafts, or choose Cached mail to read its saved folder views offline.',
     'Tippen Sie zum Bearbeiten von Entwürfen auf ein Konto. Unter „Gespeicherte E-Mails“ lesen Sie dessen gespeicherte Ordneransichten offline.',
@@ -35,9 +68,9 @@ extension StudioMailCachedStrings on StudioStrings {
   );
 
   String get mailCachePartial => _text(
-    'More messages were available on the server when this view was saved. Reconnect to load them.',
-    'Beim Speichern dieser Ansicht waren weitere Nachrichten auf dem Server verfügbar. Verbinden Sie sich erneut, um sie zu laden.',
-    'كانت هناك رسائل أخرى على الخادم عند حفظ هذا العرض. أعد الاتصال لتحميلها.',
+    'This is a partial folder view. More messages may be available on the server. Reconnect to continue loading.',
+    'Dies ist eine unvollständige Ordneransicht. Weitere Nachrichten können auf dem Server verfügbar sein. Verbinden Sie sich erneut, um weiterzuladen.',
+    'هذا عرض جزئي للمجلد. قد تتوفر رسائل أخرى على الخادم. أعد الاتصال لمتابعة التحميل.',
   );
 
   String mailCacheSnapshot(DateTime capturedAt, int count) {

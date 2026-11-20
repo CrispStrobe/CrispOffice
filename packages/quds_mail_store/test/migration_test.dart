@@ -445,6 +445,14 @@ void main() {
         Map<String, List<List<Object?>>> original() {
           final database = sqlite.sqlite3.open(file.path);
           try {
+            if (database.userVersion >= 5) {
+              expect(
+                database
+                    .select('SELECT mailbox_view_revision FROM store_profile')
+                    .single['mailbox_view_revision'],
+                0,
+              );
+            }
             return {
               for (final table in [
                 'store_profile',
@@ -468,7 +476,10 @@ void main() {
               ])
                 table: [
                   for (final row in database.select(
-                    'SELECT * FROM $table ORDER BY rowid',
+                    table == 'store_profile'
+                        ? 'SELECT singleton,host_id,profile_id,removed,local_account_revision '
+                              'FROM store_profile ORDER BY rowid'
+                        : 'SELECT * FROM $table ORDER BY rowid',
                   ))
                     [
                       for (final Object? value in row.values)
@@ -856,6 +867,14 @@ Future<MailResult<SqliteMailRepository>> _open(
 Map<String, List<List<Object?>>> _snapshot(File file) {
   final database = sqlite.sqlite3.open(file.path);
   try {
+    if (database.userVersion >= 5) {
+      expect(
+        database
+            .select('SELECT mailbox_view_revision FROM store_profile')
+            .single['mailbox_view_revision'],
+        0,
+      );
+    }
     if (database.userVersion >= 4) {
       expect(
         database

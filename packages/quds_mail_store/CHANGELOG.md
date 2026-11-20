@@ -7,6 +7,10 @@
   browse references separate from synchronization cursors and authoritative
   memberships, preserve cached messages across synchronization pruning, and
   migrate existing databases additively to schema v5.
+- Add bounded explicit local mailbox-cache cleanup that preserves outgoing work,
+  sync state and editor pins while freeing quota. Retain a durable view revision
+  counter across cleanup/recreate, and preflight cached JSON before transferring
+  it from SQLite, with exact decoded metadata budgets on reads.
 
 - Add a bounded non-secret local account directory with additive schema-v4
   migration, immutable route identities, monotonic connection revisions and

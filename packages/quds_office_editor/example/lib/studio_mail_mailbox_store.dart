@@ -26,6 +26,9 @@ abstract interface class StudioMailMailboxStore {
     required MailOperationLease lease,
   });
   Future<MailMessage?> loadMessage(MailHeaderRecord header);
+
+  /// Explicit local recovery, bounded to one step. No provider is contacted.
+  Future<MailCacheCleanupReport> clearCache();
 }
 
 final class StudioMailMailboxStoreException implements Exception {
@@ -138,6 +141,18 @@ final class SqliteStudioMailMailboxStore implements StudioMailMailboxStore {
         }
         return message;
       });
+
+  @override
+  Future<MailCacheCleanupReport> clearCache() => _serialize(
+    () async => _value(
+      await _repository.clearMailboxCache(
+        account,
+        limit: _repository.limits.maxPageSize < 1000
+            ? _repository.limits.maxPageSize
+            : 1000,
+      ),
+    ),
+  );
 }
 
 /// One live connection's write authority into a stable account namespace.

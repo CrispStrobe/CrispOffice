@@ -269,6 +269,20 @@ extension MailCachedMailboxViews on SqliteMailRepository {
         if (currentRevision == _maxRevision) {
           SqliteMailRepository._fail(MailProblemCode.quotaExceeded);
         }
+        final counter = (await _rows(
+          'SELECT mailbox_view_revision,typeof(mailbox_view_revision) AS type '
+          'FROM store_profile',
+        )).single;
+        if (counter.read<String>('type') != 'integer') {
+          SqliteMailRepository._fail(MailProblemCode.storageFailure);
+        }
+        final previousRevision = counter.read<int>('mailbox_view_revision');
+        if (previousRevision < (currentRevision ?? 0) || previousRevision < 0) {
+          SqliteMailRepository._fail(MailProblemCode.storageFailure);
+        }
+        if (previousRevision >= _maxRevision) {
+          SqliteMailRepository._fail(MailProblemCode.quotaExceeded);
+        }
         if (existing.isEmpty) {
           final count = (await _rows(
             'SELECT count(*) AS n FROM mailbox_views WHERE account=?',
@@ -359,7 +373,13 @@ extension MailCachedMailboxViews on SqliteMailRepository {
             await _cachedPlain(account, header.id),
           );
         }
-        final revision = (currentRevision ?? 0) + 1;
+        // The durable profile counter survives explicit cache cleanup. A
+        // remove/recreate cycle cannot make an old per-folder CAS valid again.
+        final revision = previousRevision + 1;
+        await _db.customStatement(
+          'UPDATE store_profile SET mailbox_view_revision=?',
+          [revision],
+        );
         await _db.customStatement(
           'INSERT INTO mailbox_views(account,mailbox,revision,captured_at,header_count,has_more) '
           'VALUES(?,?,?,?,?,?) ON CONFLICT(account,mailbox) DO UPDATE SET '

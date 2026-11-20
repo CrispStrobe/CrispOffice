@@ -6,9 +6,10 @@ All notable changes to `quds_office_editor` are documented here.
 
 - Native Studio Mail saves dated ordered views of visited IMAP, EWS, Gmail and
   Microsoft 365 folders plus explicitly opened message bodies/attachments.
-  Verified accounts offer a separate read-only Cached mail entry without
-  credentials or provider construction. Preserve draft/Outbox ownership and
-  exact identities across reconnects; report missing bodies and storage errors.
+  Verified accounts offer a separate Cached mail entry without credentials or
+  provider construction, with confirmed local cleanup for quota recovery.
+  Preserve draft/Outbox ownership and exact identities across reconnects;
+  report missing bodies and storage errors.
 
 - Add localized **Drafts for connected accounts** for native IMAP (including
   discovery), EWS, Gmail and Microsoft 365. Persist verified non-secret routes

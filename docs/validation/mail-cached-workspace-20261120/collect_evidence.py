@@ -30,8 +30,10 @@ def main() -> None:
             if path.is_file() and not path.is_symlink() and '__pycache__' not in path.parts:
                 selected[str(path.relative_to(scratch))] = path
     for pattern in (
-        'mailbox-store-host-dev*', 'host-cache-analysis*', 'store-mailbox-focused*',
-        'cache_review_probe*', 'mail-cached-*-review.*', 'intake-api.json',
+        'mailbox-store-host-dev*', 'mailbox-store-host-cleanup*',
+        'host-cache-analysis*', 'store-mailbox-focused*', 'store-cache-review-*',
+        'cache_review_probe*', 'cache-independent-review.json',
+        'mail-cached-*-review.*', 'intake-api.json',
         'runtime/*receipt.json', 'runtime/runtime.json', 'runtime/env.sh',
         'runtime/sdk-release.json', 'runtime/prefetch_locked.py',
     ):

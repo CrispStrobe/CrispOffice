@@ -421,6 +421,32 @@ void main() {
     expect(await cache(await open(MailProviderKind.ews)).listViews(), isEmpty);
   });
 
+  test('cleanup respects a smaller configured page budget', () async {
+    final store = await open(
+      MailProviderKind.gmail,
+      limits: const MailStoreLimits(maxPageSize: 1),
+    );
+    final source = _session('small-pages');
+    final live = capture(store, MailProviderKind.gmail, source);
+    for (final value in ['first', 'second']) {
+      final header = _header(MailProviderKind.gmail, source, value: value);
+      await save(live, [header]);
+      await live.cacheMessage(header, _message(header));
+    }
+    live.dispose();
+    final first = await cache(store).clearCache();
+    expect(first.removedViews, 1);
+    expect(first.evictedBodies, 1);
+    expect(first.removedHeaders, 1);
+    expect(first.hasMore, isTrue);
+    final second = await cache(store).clearCache();
+    expect(second.removedViews, 0);
+    expect(second.evictedBodies, 1);
+    expect(second.removedHeaders, 1);
+    expect(second.hasMore, isFalse);
+    expect(await cache(store).listViews(), isEmpty);
+  });
+
   test(
     'closed shared owner rejects cache calls without affecting reopen',
     () async {

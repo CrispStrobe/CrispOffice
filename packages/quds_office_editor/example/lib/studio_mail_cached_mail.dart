@@ -12,9 +12,10 @@ import 'studio_mail_mailbox_store.dart';
 import 'studio_mail_workspace_strings.dart';
 import 'studio_strings.dart';
 
-/// A read-only, local mailbox owner. Opening it never constructs a provider,
-/// reads credentials, loads a draft, or issues a server operation. The caller
-/// awaits its result before acquiring another owner of the same profile.
+/// A local mailbox reader with explicit confirmed cleanup of expendable cache.
+/// Opening it never constructs a provider, reads credentials, loads a draft,
+/// or issues a server operation. The caller awaits its result before acquiring
+/// another owner of the same profile.
 class StudioMailCachedMailDialog extends StatefulWidget {
   const StudioMailCachedMailDialog({
     super.key,
@@ -50,10 +51,13 @@ class _StudioMailCachedMailDialogState
   bool _busy = true;
   bool _showMessage = false;
   bool _missingBody = false;
+  bool _confirmingCleanup = false;
   bool _closeRequested = false;
   bool _closingNavigation = false;
   bool _allowPop = false;
+  int _cleanupEpoch = 0;
   String? _error;
+  MailCacheCleanupReport? _cleanupReport;
 
   bool get _current =>
       mounted &&
@@ -90,6 +94,22 @@ class _StudioMailCachedMailDialogState
   static Never _invalid() =>
       throw const StudioMailMailboxStoreException(MailProblemCode.conflict);
 
+  Future<List<MailCachedMailboxSummary>> _listFolders(
+    StudioMailMailboxStore store,
+  ) async {
+    final folders = await store.listViews();
+    final ids = <MailMailboxId>{};
+    for (final folder in folders) {
+      if (folder.mailbox.id.account != store.account ||
+          !ids.add(folder.mailbox.id) ||
+          folder.revision < 0 ||
+          folder.headerCount < 0) {
+        _invalid();
+      }
+    }
+    return List.unmodifiable(folders);
+  }
+
   Future<void> _openStore() async {
     try {
       if (!widget.isCurrent()) _invalid();
@@ -108,32 +128,27 @@ class _StudioMailCachedMailDialogState
         await _releaseStore();
         return;
       }
-      final folders = await store.listViews();
+      final folders = await _listFolders(store);
       if (!_current) {
         await _releaseStore();
         return;
       }
-      final ids = <MailMailboxId>{};
-      for (final folder in folders) {
-        if (folder.mailbox.id.account != store.account ||
-            !ids.add(folder.mailbox.id) ||
-            folder.revision < 0 ||
-            folder.headerCount < 0) {
-          _invalid();
-        }
-      }
       setState(() {
-        _folders = List.unmodifiable(folders);
+        _folders = folders;
         _loaded = true;
       });
       if (folders.isNotEmpty) await _readFolder(folders.first);
       if (!_current) await _releaseStore();
     } on Object {
       var closeFailed = false;
-      try {
-        await _releaseStore();
-      } on Object {
-        closeFailed = true;
+      // A valid owner remains available for local cleanup even when reading
+      // an over-budget or corrupt catalog fails. Never retain a wrong owner.
+      if (_store == null || !_current) {
+        try {
+          await _releaseStore();
+        } on Object {
+          closeFailed = true;
+        }
       }
       if (mounted && !_closeRequested) {
         setState(
@@ -189,7 +204,10 @@ class _StudioMailCachedMailDialogState
     WidgetsBinding.instance.addPostFrameCallback((_) => reader.dispose());
   }
 
-  Future<void> _operate(Future<void> Function() read) async {
+  Future<void> _operate(
+    Future<void> Function() read, {
+    String? failureMessage,
+  }) async {
     if (!_current || _busy) return;
     setState(() {
       _busy = true;
@@ -202,7 +220,11 @@ class _StudioMailCachedMailDialogState
     try {
       await pending;
     } on Object {
-      if (_current) setState(() => _error = widget.strings.mailCacheReadFailed);
+      if (_current) {
+        setState(
+          () => _error = failureMessage ?? widget.strings.mailCacheReadFailed,
+        );
+      }
     } finally {
       if (mounted) setState(() => _busy = false);
     }
@@ -244,6 +266,69 @@ class _StudioMailCachedMailDialogState
     setState(() => _reader = reader);
   });
 
+  Future<void> _clearCache() async {
+    if (!_current || _busy || _confirmingCleanup) return;
+    setState(() => _confirmingCleanup = true);
+    var confirmed = false;
+    try {
+      confirmed =
+          await showDialog<bool>(
+            context: context,
+            builder: (context) => AlertDialog(
+              title: Text(widget.strings.mailCacheClear),
+              content: SingleChildScrollView(
+                child: Text(widget.strings.mailCacheClearHelp),
+              ),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.pop(context, false),
+                  child: Text(widget.strings.cancel),
+                ),
+                FilledButton(
+                  key: const ValueKey('studio-mail-cache-clear-confirm'),
+                  onPressed: () => Navigator.pop(context, true),
+                  child: Text(widget.strings.mailCacheClear),
+                ),
+              ],
+            ),
+          ) ??
+          false;
+    } finally {
+      if (mounted) setState(() => _confirmingCleanup = false);
+    }
+    if (!confirmed || !_current) return;
+    await _operate(() async {
+      final store = _store!;
+      final report = await store.clearCache();
+      if (!_current || !identical(store, _store)) return;
+      final previous = _reader;
+      setState(() {
+        _cleanupEpoch++;
+        _cleanupReport = report;
+        _folders = const [];
+        _view = null;
+        _reader = null;
+        _selected = null;
+        _missingBody = false;
+        _showMessage = false;
+        _loaded = true;
+      });
+      _retire(previous);
+      // Cleanup is already committed. A subsequent read failure is reported
+      // separately; it must not restore a stale view of removed local content.
+      try {
+        final folders = await _listFolders(store);
+        if (!_current || !identical(store, _store)) return;
+        setState(() => _folders = folders);
+        if (folders.isNotEmpty) await _readFolder(folders.first);
+      } on Object {
+        if (_current) {
+          setState(() => _error = widget.strings.mailCacheReadFailed);
+        }
+      }
+    }, failureMessage: widget.strings.mailCacheClearFailed);
+  }
+
   Future<void> _releaseStore() {
     if (_storeClosing case final pending?) return pending;
     final owner = _owner;
@@ -283,7 +368,7 @@ class _StudioMailCachedMailDialogState
 
   Widget _messages() => MailMessageList(
     key: _listKey,
-    scopeId: _view?.mailbox.id.value,
+    scopeId: '$_cleanupEpoch:${_view?.mailbox.id.value}',
     strings: widget.strings.mailMessageListStrings,
     selectedId: _selected?.id.value,
     busy: _busy || !_current,
@@ -363,7 +448,7 @@ class _StudioMailCachedMailDialogState
   Widget build(BuildContext context) => PopScope<void>(
     canPop: _allowPop,
     onPopInvokedWithResult: (didPop, _) {
-      if (!didPop) unawaited(_closeAndPop());
+      if (!didPop && !_confirmingCleanup) unawaited(_closeAndPop());
     },
     child: Dialog(
       insetPadding: const EdgeInsets.all(16),
@@ -389,12 +474,29 @@ class _StudioMailCachedMailDialogState
                     IconButton(
                       key: const ValueKey('studio-mail-cache-close'),
                       tooltip: widget.strings.close,
-                      onPressed: _closingNavigation ? null : _closeAndPop,
+                      onPressed: _closingNavigation || _confirmingCleanup
+                          ? null
+                          : _closeAndPop,
                       icon: const Icon(Icons.close),
                     ),
                   ],
                 ),
               ),
+              if (_store != null)
+                Align(
+                  alignment: AlignmentDirectional.centerStart,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8),
+                    child: TextButton.icon(
+                      key: const ValueKey('studio-mail-cache-clear'),
+                      onPressed: _busy || _confirmingCleanup || !_current
+                          ? null
+                          : _clearCache,
+                      icon: const Icon(Icons.delete_sweep_outlined),
+                      label: Text(widget.strings.mailCacheClear),
+                    ),
+                  ),
+                ),
               if (_busy || _closingNavigation) const LinearProgressIndicator(),
               ConstrainedBox(
                 constraints: BoxConstraints(
@@ -424,6 +526,36 @@ class _StudioMailCachedMailDialogState
                             style: TextStyle(
                               color: Theme.of(context).colorScheme.error,
                             ),
+                          ),
+                        ),
+                      if (_cleanupReport case final report?)
+                        Padding(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 16,
+                            vertical: 4,
+                          ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: [
+                              Text(
+                                widget.strings.mailCacheCleared(
+                                  report.removedViews,
+                                  report.evictedBodies,
+                                  report.removedHeaders,
+                                ),
+                                key: const ValueKey(
+                                  'studio-mail-cache-cleared',
+                                ),
+                              ),
+                              if (report.hasMore)
+                                Text(widget.strings.mailCacheClearMore),
+                              if (report.retainedBodies > 0)
+                                Text(
+                                  widget.strings.mailCacheProtected(
+                                    report.retainedBodies,
+                                  ),
+                                ),
+                            ],
                           ),
                         ),
                       if (_folders.isNotEmpty)

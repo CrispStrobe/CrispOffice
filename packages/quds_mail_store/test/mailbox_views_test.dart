@@ -665,6 +665,7 @@ void main() {
           [_account.value, 'folder-$i'],
         );
       }
+      database.execute('UPDATE store_profile SET mailbox_view_revision=1');
       database.execute('COMMIT');
       database.close();
       store = await open();

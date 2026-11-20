@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:quds_mail_core/quds_mail_core.dart';
 
+import 'errors.dart';
 import 'models.dart';
 
 typedef _JsonObject = Map<String, Object?>;
@@ -177,14 +178,20 @@ abstract final class MailStoreCodec {
   /// Local indexing validates all metadata and reference shapes, while actual
   /// byte integrity remains the responsibility of a full payload read. No blob
   /// bytes are needed merely to update a header or index decoded local text.
-  static MailBody decodeDraftBody(String data) => _guard(() {
-    final object = _draftObject(_parse(data));
-    _envelopeFromJson(object['envelope']);
-    for (final value in _list(object['attachments'])) {
-      _attachmentObject(value);
-    }
-    return _bodyFromJson(object['body']);
-  });
+  static MailBody decodeDraftBody(String data, {MailStoreLimits? limits}) =>
+      _guard(() {
+        final object = _draftObject(_parse(data));
+        final envelope = _envelopeFromJson(object['envelope']);
+        final body = _bodyFromJson(object['body']);
+        final attachments = [
+          for (final value in _list(object['attachments']))
+            _attachmentObject(value),
+        ];
+        if (limits != null) {
+          _draftMetadataBudget(object, envelope, body, attachments, limits);
+        }
+        return body;
+      });
 
   /// Validates the complete metadata shape without resolving attachment blobs.
   /// Catalog navigation never needs to materialize retained file contents.
@@ -469,6 +476,76 @@ MailBody _bodyFromJson(Object? value) {
     plainPartPath: _nullableString(body['plainPartPath']),
     htmlPartPath: _nullableString(body['htmlPartPath']),
   );
+}
+
+// Validate decoded work before any raw or attachment payload is read. This
+// mirrors the writer's semantic metadata/attachment budgets, including on a
+// store reopened with lower limits. JSON punctuation and escaping are excluded.
+void _draftMetadataBudget(
+  _JsonObject object,
+  MailEnvelope envelope,
+  MailBody body,
+  List<_JsonObject> attachments,
+  MailStoreLimits limits,
+) {
+  Never exceeded() =>
+      throw const MailStoreStorageException(MailProblemCode.quotaExceeded);
+  var units =
+      envelope.subject.length +
+      (envelope.messageId?.length ?? 0) +
+      (envelope.inReplyTo?.length ?? 0) +
+      (body.plainText?.length ?? 0) +
+      (body.html?.length ?? 0) +
+      (body.plainPartPath?.length ?? 0) +
+      (body.htmlPartPath?.length ?? 0);
+  var addresses = 0;
+  for (final group in [
+    envelope.from,
+    envelope.to,
+    envelope.cc,
+    envelope.bcc,
+    envelope.replyTo,
+  ]) {
+    addresses += group.length;
+    for (final address in group) {
+      units += address.address.length + (address.displayName?.length ?? 0);
+    }
+  }
+  for (final reference in envelope.references) {
+    units += reference.length;
+  }
+  if (object['version'] == 2) {
+    final editor = _editorStateFromJson(object['editorState']);
+    units += editor.to.length + editor.cc.length + editor.bcc.length;
+  }
+  if (addresses > 512 ||
+      envelope.references.length > 512 ||
+      attachments.length > 128) {
+    exceeded();
+  }
+  var bytes = 0;
+  final paths = <String>{};
+  for (final attachment in attachments) {
+    final path = _string(attachment['partPath']);
+    if (path.isEmpty ||
+        path.length > 1024 ||
+        RegExp(r'[\x00-\x1f\x7f]').hasMatch(path) ||
+        !paths.add(path)) {
+      _invalid();
+    }
+    units +=
+        path.length +
+        _string(attachment['mediaType']).length +
+        _string(attachment['displayName']).length +
+        (_nullableString(attachment['contentId'])?.length ?? 0);
+    final (_, size) = _blobReference(attachment['blob']);
+    bytes += size;
+    if (size > limits.maxBlobBytes) exceeded();
+  }
+  if (units > limits.maxMetadataCodeUnits ||
+      bytes > limits.maxTransactionBlobBytes) {
+    exceeded();
+  }
 }
 
 _JsonObject _attachmentObject(Object? value) {
