@@ -7,6 +7,7 @@ import 'package:quds_mail_ui/quds_mail_ui.dart';
 import 'fixtures/mail_fixture.dart';
 
 void main() {
+  _nestedWrapperWhitespaceTest();
   test(
     'existing presentation constructors default to an empty body projection',
     () {
@@ -327,5 +328,27 @@ void main() {
     expect(p.text, contains('plain'));
     expect(p.text, isNot(contains('rich')));
     expect(result.original!.bytes, [255, 0, 13, 10, 65]);
+  });
+}
+
+void _nestedWrapperWhitespaceTest() {
+  test('nested transactional HTML wrappers do not create blank lines', () {
+    const html = '''
+      <div>
+        <div>
+          <table><tr><td>
+            <div>Review of your submission is complete.</div>
+            <div>Congratulations!</div>
+          </td></tr></table>
+        </div>
+      </div>
+    ''';
+    final presentation = buildMailBodyPresentation(
+      const MailBody(html: html),
+      preferHtml: true,
+    );
+    expect(presentation.text, contains('Review of your submission'));
+    expect(presentation.text, contains('Congratulations!'));
+    expect(RegExp(r'\n\s*\n\s*\n').hasMatch(presentation.text), isFalse);
   });
 }
