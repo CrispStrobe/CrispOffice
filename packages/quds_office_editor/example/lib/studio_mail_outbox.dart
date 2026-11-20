@@ -27,6 +27,14 @@ abstract interface class StudioMailOutboxStore {
   Future<void> removeOutbox(MailOutboxEntry entry);
 }
 
+/// Optional local management on the same account owner. Editing atomically
+/// disables the original queue entry and selects a new durable draft. It is
+/// available only when no previous attempt may have been accepted.
+abstract interface class StudioMailOutboxManagementStore {
+  Future<StudioMailDraft> editOutboxAsDraft(MailOutboxEntry entry);
+  Future<MailOutboxEntry> closeUncertainOutbox(MailOutboxEntry entry);
+}
+
 typedef StudioMailOutboxSubmit =
     Future<MailSubmissionResult> Function(
       MailPreparedMessage message, {

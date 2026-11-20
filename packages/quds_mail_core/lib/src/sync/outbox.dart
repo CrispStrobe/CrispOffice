@@ -212,6 +212,9 @@ enum MailOutboxState {
   permanentFailure,
   uncertain,
   cancelled,
+
+  /// Sending has been stopped explicitly; earlier delivery remains unknown.
+  closedUncertain,
 }
 
 /// Immutable state transitions to persist transactionally before network work.
@@ -269,7 +272,9 @@ final class MailOutboxEntry {
       throw ArgumentError('Invalid persisted outbox attempt identity.');
     }
     final needsAttempt =
-        state != MailOutboxState.queued && state != MailOutboxState.cancelled;
+        state != MailOutboxState.queued &&
+        state != MailOutboxState.cancelled &&
+        state != MailOutboxState.closedUncertain;
     if ((needsAttempt && attemptNumber == 0) ||
         (state == MailOutboxState.queued && attemptNumber != 0) ||
         (state == MailOutboxState.submitting && result != null) ||
@@ -290,6 +295,13 @@ final class MailOutboxEntry {
             result != null &&
             result.outcome != MailSubmissionOutcome.retryableFailure)) {
       throw ArgumentError('Persisted outbox outcome contradicts its state.');
+    }
+    if (state == MailOutboxState.closedUncertain &&
+        ((!priorSubmissionUncertain &&
+                result?.outcome != MailSubmissionOutcome.uncertain) ||
+            (attemptNumber > 0 && result == null) ||
+            result?.outcome == MailSubmissionOutcome.accepted)) {
+      throw ArgumentError('A closed uncertain entry must retain uncertainty.');
     }
     if (result != null &&
         result.recipients.any(
@@ -340,6 +352,17 @@ final class MailOutboxEntry {
               state == MailOutboxState.permanentFailure));
 
   bool get canCancel => canBeginAttempt;
+
+  /// Explicitly stopping retries records no new provider result. This is also
+  /// available for a definite later failure with unresolved earlier acceptance.
+  bool get canCloseUncertain => canBeginAcknowledgedAttempt;
+
+  /// Local cleanup never recalls a message or proves delivery/non-delivery.
+  bool get canRemove =>
+      state == MailOutboxState.submitted ||
+      state == MailOutboxState.cancelled ||
+      state == MailOutboxState.closedUncertain ||
+      (state == MailOutboxState.permanentFailure && !priorSubmissionUncertain);
 
   MailOutboxEntry beginAttempt({
     required String attemptId,
@@ -442,6 +465,28 @@ final class MailOutboxEntry {
       id: id,
       prepared: prepared,
       state: MailOutboxState.cancelled,
+      createdAt: createdAt,
+      updatedAt: now,
+      attemptNumber: attemptNumber,
+      attemptId: attemptId,
+      result: result,
+      priorSubmissionUncertain: priorSubmissionUncertain,
+    );
+  }
+
+  /// Ends this local submission workflow without sending, cancelling a live
+  /// provider call, or claiming that an earlier message was or was not accepted.
+  /// Frozen bytes and the latest actual outcome remain available for review.
+  MailOutboxEntry closeUncertain({required DateTime now}) {
+    if (!canCloseUncertain) {
+      throw StateError(
+        'This outbox state has no unresolved delivery to close.',
+      );
+    }
+    return MailOutboxEntry._(
+      id: id,
+      prepared: prepared,
+      state: MailOutboxState.closedUncertain,
       createdAt: createdAt,
       updatedAt: now,
       attemptNumber: attemptNumber,

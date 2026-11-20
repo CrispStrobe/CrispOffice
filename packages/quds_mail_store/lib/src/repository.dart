@@ -1026,8 +1026,9 @@ final class SqliteMailRepository implements MailRepository {
 
   /// Removes a reviewed terminal local record and releases unreferenced bytes.
   /// It never recalls a message or resolves the risk of an earlier duplicate.
-  /// Queued, active, retryable and uncertain items cannot be removed. A definite
-  /// rejection is removable only without older uncertainty; confirmed later
+  /// Queued, active, retryable and open uncertain items cannot be removed. A
+  /// closed uncertain record may be removed after explicit local resolution.
+  /// A definite rejection is removable only without older uncertainty; later
   /// acceptance permits explicit local cleanup while ordinary retry stays off.
   /// Cleanup is allowed even when the account now exceeds a lowered quota.
   Future<MailResult<MailUnit>> removeOutbox(
@@ -1042,10 +1043,7 @@ final class SqliteMailRepository implements MailRepository {
     if (entry == null ||
         entry.state != expectedState ||
         entry.attemptId != expectedAttemptId ||
-        !(entry.state == MailOutboxState.submitted ||
-            entry.state == MailOutboxState.cancelled ||
-            (entry.state == MailOutboxState.permanentFailure &&
-                !entry.priorSubmissionUncertain))) {
+        !entry.canRemove) {
       _fail(MailProblemCode.conflict);
     }
     await _db.customStatement(
@@ -1058,6 +1056,69 @@ final class SqliteMailRepository implements MailRepository {
     ]);
     await _collectBlobs(account);
     await _db.fault(MailStoreCheckpoint.afterOutboxWrite);
+    return MailUnit.value;
+  });
+
+  /// Atomically retires one safely cancellable queued item and creates a new
+  /// editable draft. The caller reconstructs and validates the composer data
+  /// from [original]'s frozen bytes/envelope; this boundary never parses MIME.
+  ///
+  /// The complete source snapshot is compared, including its attempt and frozen
+  /// payload. A concurrent send or a second edit cannot leave two resendable
+  /// copies. The original remains cancelled with unchanged bytes for review.
+  /// Admission, blob ownership and cancellation all roll back together.
+  Future<MailResult<MailUnit>> editOutboxAsDraft(
+    MailOutboxEntry original,
+    MailDraft draft, {
+    required DateTime now,
+    int maxActiveDrafts = 100,
+  }) => _write(() async {
+    final account = original.prepared.account;
+    await _account(account);
+    if (draft.account != account) _fail(MailProblemCode.permissionDenied);
+    _outboxBudget(original);
+    _draftBudget(draft);
+    if (draft.revision != 0 ||
+        draft.editorState == null ||
+        draft.editorState!.isCleared ||
+        draft.editorState!.submissionUncertain ||
+        maxActiveDrafts < 1 ||
+        maxActiveDrafts > 1000) {
+      _fail(MailProblemCode.invalidInput);
+    }
+    final previous = await _outbox(account, original.id);
+    if (!original.canCancel ||
+        previous == null ||
+        previous.state != original.state ||
+        previous.attemptId != original.attemptId ||
+        !MailStoreCodec.validOutboxTransition(previous, original) ||
+        draft.id == original.prepared.draftId ||
+        (await _rows('SELECT id FROM drafts WHERE account=? AND id=?', [
+          account.value,
+          draft.id,
+        ])).isNotEmpty) {
+      _fail(MailProblemCode.conflict);
+    }
+    final cancelled = original.cancel(now: now);
+    if (!MailStoreCodec.validOutboxTransition(previous, cancelled)) {
+      _fail(MailProblemCode.conflict);
+    }
+    final count = (await _rows(
+      'SELECT count(*) AS n FROM drafts WHERE account=? AND data<>?',
+      [account.value, _clearedDraftData(account)],
+    )).single.read<int>('n');
+    if (count >= maxActiveDrafts) _fail(MailProblemCode.quotaExceeded);
+    await _putOutbox(cancelled);
+    await _db.fault(MailStoreCheckpoint.afterOutboxWrite);
+    final payload = MailStoreCodec.encodeDraft(draft);
+    await _storePayload(account, 'draft', draft.id, payload);
+    await _db.fault(MailStoreCheckpoint.afterDraftBlobs);
+    await _db.customStatement(
+      'INSERT INTO drafts(account,id,revision,data) VALUES(?,?,?,?)',
+      [account.value, draft.id, draft.revision, payload.data],
+    );
+    await _collectBlobs(account);
+    await _quota(account);
     return MailUnit.value;
   });
 
