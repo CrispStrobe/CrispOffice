@@ -22,6 +22,7 @@ def main() -> None:
         'mail-cached-store-full', 'mail-cached-store-final',
         'mail-cached-shared-full', 'mail-cached-shared-final',
         'mail-cached-studio-full', 'mail-cached-studio-final',
+        'mail-cached-studio-final-rtl',
         'runtime/logs',
     )
     selected: dict[str, Path] = {}

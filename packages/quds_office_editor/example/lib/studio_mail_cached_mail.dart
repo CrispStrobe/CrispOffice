@@ -269,27 +269,31 @@ class _StudioMailCachedMailDialogState
   Future<void> _clearCache() async {
     if (!_current || _busy || _confirmingCleanup) return;
     setState(() => _confirmingCleanup = true);
+    final direction = Directionality.of(context);
     var confirmed = false;
     try {
       confirmed =
           await showDialog<bool>(
             context: context,
-            builder: (context) => AlertDialog(
-              title: Text(widget.strings.mailCacheClear),
-              content: SingleChildScrollView(
-                child: Text(widget.strings.mailCacheClearHelp),
+            builder: (context) => Directionality(
+              textDirection: direction,
+              child: AlertDialog(
+                title: Text(widget.strings.mailCacheClear),
+                content: SingleChildScrollView(
+                  child: Text(widget.strings.mailCacheClearHelp),
+                ),
+                actions: [
+                  TextButton(
+                    onPressed: () => Navigator.pop(context, false),
+                    child: Text(widget.strings.cancel),
+                  ),
+                  FilledButton(
+                    key: const ValueKey('studio-mail-cache-clear-confirm'),
+                    onPressed: () => Navigator.pop(context, true),
+                    child: Text(widget.strings.mailCacheClear),
+                  ),
+                ],
               ),
-              actions: [
-                TextButton(
-                  onPressed: () => Navigator.pop(context, false),
-                  child: Text(widget.strings.cancel),
-                ),
-                FilledButton(
-                  key: const ValueKey('studio-mail-cache-clear-confirm'),
-                  onPressed: () => Navigator.pop(context, true),
-                  child: Text(widget.strings.mailCacheClear),
-                ),
-              ],
             ),
           ) ??
           false;

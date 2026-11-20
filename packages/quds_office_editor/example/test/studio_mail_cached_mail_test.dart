@@ -567,6 +567,10 @@ void main() {
           find.text(StudioStrings(language).mailCacheClearHelp),
           findsOneWidget,
         );
+        expect(
+          Directionality.of(tester.element(find.byType(AlertDialog))),
+          language == StudioLanguage.ar ? TextDirection.rtl : TextDirection.ltr,
+        );
         expect(tester.takeException(), isNull);
         await _tap(tester, find.text(StudioStrings(language).cancel));
         expect(tester.takeException(), isNull);
