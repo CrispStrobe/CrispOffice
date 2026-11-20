@@ -35,6 +35,8 @@ List<PmlShape> parseSlideShapes(
   double? gradientStopPosition;
   double gradientAngle = 0;
   var gradientRadial = false;
+  var gradientCentered = false;
+  var gradientDefaultTile = true;
   var gradientIsLinear = true;
 
   /// textFillPending API.
@@ -100,8 +102,14 @@ List<PmlShape> parseSlideShapes(
           final List<PmlGradientStop> stops = <PmlGradientStop>[
             ...gradientStops,
           ]..sort((a, b) => a.position.compareTo(b.position));
-          current.gradient = gradientIsLinear
-              ? PmlGradientFill(stops: stops, angleDegrees: gradientAngle)
+          current.gradient =
+              gradientIsLinear ||
+                  gradientRadial && gradientCentered && gradientDefaultTile
+              ? PmlGradientFill(
+                  stops: stops,
+                  angleDegrees: gradientAngle,
+                  radial: gradientRadial,
+                )
               : null;
           current.fillColor = stops.first.color;
         }
@@ -358,6 +366,9 @@ List<PmlShape> parseSlideShapes(
       gradientStops.clear();
       gradientStopPosition = null;
       gradientAngle = 0;
+      gradientRadial = false;
+      gradientCentered = false;
+      gradientDefaultTile = true;
       gradientIsLinear = true;
       fillPending = false;
       explicitFill = true;
@@ -392,11 +403,14 @@ List<PmlShape> parseSlideShapes(
           (int.tryParse(reader.getAttribute('pos') ?? '') ?? 0) / 100000;
     } else if (reader.localName == 'path' && inGradFill) {
       gradientIsLinear = false;
+      gradientRadial = reader.getAttribute('path') == 'circle';
+    } else if (reader.localName == 'fillToRect' && inGradFill) {
+      gradientCentered = isCenteredRadialFillToRect(reader);
+    } else if (reader.localName == 'tileRect' && inGradFill) {
+      gradientDefaultTile = isDefaultGradientTileRect(reader);
     } else if (reader.localName == 'lin' && inGradFill) {
       gradientAngle =
           (int.tryParse(reader.getAttribute('ang') ?? '') ?? 0) / 60000;
-    } else if (reader.localName == 'path' && inGradFill) {
-      gradientRadial = true;
     } else if (_colorElements.contains(reader.localName) && current != null) {
       final String? val = resolveDrawingmlColor(reader, colors);
       if (val != null && val.isNotEmpty) {
@@ -973,14 +987,30 @@ void _writeSlideShape(XmlWriter w, PmlShape shape) {
       w.writeEndElement();
     }
     w.writeEndElement();
-    w.writeEmptyElement(
-      'lin',
-      prefix: 'a',
-      attributes: <String, String>{
-        'ang': '${(gradient.angleDegrees * 60000).round()}',
-        'scaled': '0',
-      },
-    );
+    if (gradient.radial) {
+      w.writeStartElement('path', prefix: 'a');
+      w.writeAttribute('path', 'circle');
+      w.writeEmptyElement(
+        'fillToRect',
+        prefix: 'a',
+        attributes: const <String, String>{
+          'l': '50000',
+          't': '50000',
+          'r': '50000',
+          'b': '50000',
+        },
+      );
+      w.writeEndElement();
+    } else {
+      w.writeEmptyElement(
+        'lin',
+        prefix: 'a',
+        attributes: <String, String>{
+          'ang': '${(gradient.angleDegrees * 60000).round()}',
+          'scaled': '0',
+        },
+      );
+    }
     w.writeEndElement();
   } else if (shape.fillColor.isNotEmpty) {
     w.writeStartElement('solidFill', prefix: 'a');
@@ -1016,6 +1046,21 @@ void _writeSlideShape(XmlWriter w, PmlShape shape) {
 
 XmlElement _textElement(String name) =>
     XmlElement(localName: name, prefix: 'a', namespaceUri: OfficeNamespaces.a);
+
+/// Whether a DrawingML radial focus is the supported central point.
+bool isCenteredRadialFillToRect(XmlPullReader reader) => const <String>[
+  'l',
+  't',
+  'r',
+  'b',
+].every((name) => _fitPercent(reader.getAttribute(name), fallback: 0) == 0.5);
+
+/// Whether a gradient uses the unshifted shape bounds as its fill tile.
+bool isDefaultGradientTileRect(XmlPullReader reader) =>
+    const <String>['l', 't', 'r', 'b'].every((name) {
+      final String? value = reader.getAttribute(name);
+      return value == null || _fitPercent(value, fallback: double.nan) == 0;
+    });
 
 double _fitPercent(String? value, {required double fallback}) {
   if (value == null) return fallback;

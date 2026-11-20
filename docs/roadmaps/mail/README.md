@@ -18,7 +18,7 @@ plan rather than treating provider connectivity as full product parity.
 | Order | Workflow | Current position | Next acceptance boundary |
 | --- | --- | --- | --- |
 | 1 | Recoverable composition | Local autosave, attachment/reply recovery and interrupted-send warnings now connected to native hosts | Multiple drafts, offline draft entry and provider-side Drafts synchronization |
-| 2 | Everyday mailbox workspace (M04W/M06) | Reader and separate foreground hosts; durable repository already exists | Shared paginated repository-driven lists, account switching/unified inbox, consistent read/flag/move/delete, keyboard/focus and unread filters |
+| 2 | Everyday mailbox workspace (M04W/M06) | Shared foreground list across IMAP, EWS, Gmail and Microsoft 365: explicit pagination, loaded-message search, unread/flagged filters, stable selection, keyboard navigation and confirmed read/flag actions | Repository-driven account/folder workspace, persistent account switching/unified inbox, durable commands, consistent move/delete and bulk actions |
 | 3 | Sending and outbox (M07) | Foreground submission and durable draft safety; core outbox/store contracts exist | Visible queued messages, immutable prepared MIME/envelopes, crash recovery, explicit retry/cancel, then undo-send and scheduled send |
 | 4 | Efficient discovery and organization | Independent archive FTS, saved archive searches and bounded mailbox filtering | Full account search, conversations, tags/categories, bulk commands and ordered rule execution with preview/recovery |
 | 5 | Rich authoring and Office workflows (M07/M08) | Word-based plain text, To/Cc/Bcc, reply all, file attachments | Signatures/templates, HTML alternatives, inline images, attach current document/PDF and edit a copy of a received attachment |
@@ -28,6 +28,13 @@ Each increment needs an actual user path, typed failure/recovery behavior,
 focused local tests and a remote source checkpoint before the next. Reconcile
 current main/branches/PRs before final publication. GitHub Actions queue time is
 not an acceptance dependency; record the actual local commands and scope.
+
+The [foreground mailbox guide](mailbox-workspace.md) describes the delivered
+first workspace slice, including the 50-message pages, 1,000-loaded-message
+ceiling and loaded-only search boundary. M04W remains open: this reusable list
+does not yet provide the repository-driven, multi-account workspace required
+by the milestone. The [local qualification](../../validation/mail-workspace-20261120/README.md)
+records the exact accepted source and incoming-work dispositions.
 
 Comparison references checked 20 November 2026: Thunderbird's
 [quick filters](https://support.mozilla.org/en-US/kb/quick-filter-toolbar),

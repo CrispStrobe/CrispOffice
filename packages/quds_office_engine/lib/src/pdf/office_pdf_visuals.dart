@@ -138,6 +138,7 @@ abstract final class OfficePdfVisuals {
       canvas.fill();
     }
     if (adj.transparency > 0.001) {
+      canvas.save();
       canvas.setAlpha(1 - adj.transparency);
     }
     final double cropLeft = adj.cropLeft.clamp(0.0, 0.9);
@@ -162,12 +163,14 @@ abstract final class OfficePdfVisuals {
     } else {
       canvas.drawImage(name, x, y, w, h);
     }
+    if (adj.transparency > 0.001) {
+      // Picture transparency affects its pixels, not the authored border.
+      // Restore the caller's state rather than assuming it was fully opaque.
+      canvas.restore();
+    }
     if (adj.borderWidth > 0 && adj.borderColor.isNotEmpty) {
       canvas.setLineWidth(adj.borderWidth);
       canvas.strokeRect(x, y, w, h, adj.borderColor);
-    }
-    if (adj.transparency > 0.001) {
-      canvas.setAlpha(1);
     }
   }
 

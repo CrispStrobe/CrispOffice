@@ -359,10 +359,13 @@ class SlideDeserializer {
     var inGrad = false;
     double? position;
     double angle = 0;
+    var radial = false;
+    var centered = false;
     final List<PmlGradientStop> stops = <PmlGradientStop>[];
     while (reader.next()) {
       if (reader.eventType == XmlEventType.endElement) {
         if (reader.localName == 'gradFill') {
+          if (radial && !centered) return null;
           if (stops.length >= 2) {
             final List<PmlGradientStop> sorted = <PmlGradientStop>[...stops]
               ..sort((a, b) => a.position.compareTo(b.position));
@@ -370,7 +373,11 @@ class SlideDeserializer {
               id: 1,
               name: 'Background',
               fillColor: sorted.first.color,
-              gradient: PmlGradientFill(stops: sorted, angleDegrees: angle),
+              gradient: PmlGradientFill(
+                stops: sorted,
+                angleDegrees: angle,
+                radial: radial,
+              ),
               transform: PmlTransform(x: 0, y: 0, cx: width, cy: height),
             );
           }
@@ -390,7 +397,12 @@ class SlideDeserializer {
         position =
             (int.tryParse(reader.getAttribute('pos') ?? '') ?? 0) / 100000;
       } else if (inGrad && reader.localName == 'path') {
-        return null;
+        if (reader.getAttribute('path') != 'circle') return null;
+        radial = true;
+      } else if (inGrad && reader.localName == 'fillToRect') {
+        centered = isCenteredRadialFillToRect(reader);
+      } else if (inGrad && reader.localName == 'tileRect') {
+        if (radial && !isDefaultGradientTileRect(reader)) return null;
       } else if (inGrad && reader.localName == 'lin') {
         angle = (int.tryParse(reader.getAttribute('ang') ?? '') ?? 0) / 60000;
       } else if (inGrad &&

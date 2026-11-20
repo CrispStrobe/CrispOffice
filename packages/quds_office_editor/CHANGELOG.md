@@ -4,6 +4,14 @@ All notable changes to `quds_office_editor` are documented here.
 
 ## Unreleased
 
+- Share foreground mailbox navigation across IMAP/SMTP, EWS, Gmail and
+  Microsoft 365: search loaded subjects/senders, combine Unread and Flagged
+  filters, use keyboard navigation and preserve selection through compact
+  reader/Back transitions. Load explicit pages up to a 1,000-message ceiling,
+  reject invalid or cyclic continuations, and add confirmed IMAP read/unread
+  and flag/unflag controls while preserving independent unknown observations.
+  Browse large and sparse IMAP folders newest UID first within existing quotas.
+
 - Autosave one local Studio Mail draft per account across SMTP, EWS, Gmail and
   Microsoft 365. Restore incomplete recipients, reply headers and attachment
   snapshots after reconnect; flush close/send, expose storage failure and an

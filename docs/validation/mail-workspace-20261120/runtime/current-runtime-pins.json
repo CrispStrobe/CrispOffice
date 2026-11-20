@@ -1,0 +1,78 @@
+{
+  "captured_at": "2026-11-20T09:04:37.768280+00:00",
+  "pins": {
+    "bootstrap_script": {
+      "path": "/workspace/scratch/8e9460dcd580/runtime/bootstrap_runtime.py",
+      "bytes": 9171,
+      "sha256": "109f2306e27d0a2fdae40a7c69fb57b646af51be3ba08752f82ef3da452bd5a4",
+      "matches_initial_readiness_hash": true
+    },
+    "dart": {
+      "path": "/workspace/scratch/8e9460dcd580/runtime/flutter/bin/cache/dart-sdk/bin/dart",
+      "bytes": 4835712,
+      "sha256": "01e869e4af277734b02ab8898b870c6b00c9bec61bbcf9c923cd14de7ed85fbb",
+      "matches_initial_readiness_hash": true
+    },
+    "flutter_tester": {
+      "path": "/workspace/scratch/8e9460dcd580/runtime/flutter/bin/cache/artifacts/engine/linux-x64/flutter_tester",
+      "bytes": 36051744,
+      "sha256": "800f4ca182df7dd2fb46a42dea5d76277b9dbc5e8cd2915e02bcbc978681b45f",
+      "matches_initial_readiness_hash": true
+    },
+    "flutter_tools_snapshot": {
+      "path": "/workspace/scratch/8e9460dcd580/runtime/flutter/bin/cache/flutter_tools.snapshot",
+      "bytes": 47740368,
+      "sha256": "803f5eabe0f147bbd7cbfb5810d012f88d909d092d15de36a62be43c42af0da9",
+      "matches_initial_readiness_hash": true
+    },
+    "sqlite3_native": {
+      "path": "/workspace/scratch/8e9460dcd580/quds_office_suite/.dart_tool/lib/libsqlite3.so",
+      "bytes": 1823736,
+      "sha256": "0a65852703763619a7a34633b4959b3b86c4103804a4dfe4e8b27b5de1c0647b",
+      "matches_initial_readiness_hash": true
+    },
+    "package_configuration": {
+      "path": "/workspace/scratch/8e9460dcd580/quds_office_suite/.dart_tool/package_config.json",
+      "bytes": 32782,
+      "sha256": "8eab41ca699dc7d09f48d2d845430dc09b57bf225cb202d67688c5da03d3edf2",
+      "matches_initial_readiness_hash": true
+    },
+    "package_graph": {
+      "path": "/workspace/scratch/8e9460dcd580/quds_office_suite/.dart_tool/package_graph.json",
+      "bytes": 29965,
+      "sha256": "09b12d3718163b37c56c092d0d87d2f5a976bfb50f02009667efce07bd243c3e",
+      "matches_initial_readiness_hash": true
+    },
+    "package_test_entry": {
+      "path": "/workspace/scratch/8e9460dcd580/runtime/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+      "bytes": 260,
+      "sha256": "43c93a6773b13eecbf7e9d1c0511da4cb0b8b3cf55f051cf124f34d4843af008",
+      "matches_initial_readiness_hash": true
+    },
+    "workspace_manifest": {
+      "path": "/workspace/scratch/8e9460dcd580/quds_office_suite/pubspec.yaml",
+      "bytes": 1043,
+      "sha256": "453a1f8ab62db1c5577c424b058b50033a8d3b49b99c83862ab58a7e1108f74f",
+      "matches_initial_readiness_hash": true
+    },
+    "workspace_lock": {
+      "path": "/workspace/scratch/8e9460dcd580/quds_office_suite/pubspec.lock",
+      "bytes": 31364,
+      "sha256": "df9ff88b4df699b2420954d0ddc0dd7a1c40dbca8d9e3af3f25bec7e66700e7e",
+      "matches_initial_readiness_hash": true
+    },
+    "sqlite_probe": {
+      "path": "/workspace/scratch/8e9460dcd580/runtime/sqlite_probe.dart",
+      "bytes": 606,
+      "sha256": "a4b3477221f443491fab6ba4011e9248ff28e2fc2d703f3ca70bc60b38d4a3d3",
+      "matches_initial_readiness_hash": true
+    },
+    "sqlite_probe_log": {
+      "path": "/workspace/scratch/8e9460dcd580/runtime/logs/sqlite-readiness.log",
+      "bytes": 214,
+      "sha256": "1add0471127824f774b78a833845f3537efa2b35bb15ab4d851b2a8e15b3c16e",
+      "matches_initial_readiness_hash": true
+    }
+  },
+  "purpose": "Records runtime identity at evidence preparation; does not relabel earlier test execution as a frozen-source run."
+}
