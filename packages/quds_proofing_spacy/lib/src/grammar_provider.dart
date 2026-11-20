@@ -8,6 +8,18 @@ import 'bundle.dart';
 import 'grammar_planner.dart';
 import 'transport.dart';
 
+/// Families enabled when a host turns manual native German grammar on and
+/// selects nothing else. Only families that passed their sealed
+/// qualification belong here (grammar v2 record:
+/// docs/validation/native-spacy-grammar-v2-20261120).
+const spacyGrammarQualifiedFamilies = <SpacyGrammarFamily>{
+  SpacyGrammarFamily.nounVerb,
+};
+
+/// [spacyGrammarQualifiedFamilies] as stable [SpacyGrammarFamily.id]s, for
+/// host settings (a test keeps both sets equal).
+const spacyGrammarQualifiedFamilyIds = <String>{'noun-verb'};
+
 /// Explicitly enabled, manual-only native grammar provider.
 ///
 /// This provider owns its transport. Do not share that transport with another
@@ -18,12 +30,21 @@ final class SpacyGrammarProvider extends OfficeProofingProvider {
     required this._transport,
     this.enabled = false,
     OfficeProofingVocabulary? vocabulary,
-  }) : vocabulary = vocabulary ?? OfficeProofingVocabulary();
+    Set<SpacyGrammarFamily> families = spacyGrammarQualifiedFamilies,
+    bool englishMessages = false,
+  }) : vocabulary = vocabulary ?? OfficeProofingVocabulary(),
+       families = Set<SpacyGrammarFamily>.unmodifiable(families),
+       _planner = SpacyGermanGrammarPlanner(
+         families: Set<SpacyGrammarFamily>.unmodifiable(families),
+         englishMessages: englishMessages,
+       );
 
   static Future<SpacyGrammarProvider> load({
     required SpacyBackendFactory backendFactory,
     bool enabled = false,
     OfficeProofingVocabulary? vocabulary,
+    Set<SpacyGrammarFamily> families = spacyGrammarQualifiedFamilies,
+    bool englishMessages = false,
     Duration startupTimeout = const Duration(seconds: 60),
     Duration requestTimeout = const Duration(seconds: 30),
   }) async {
@@ -42,13 +63,18 @@ final class SpacyGrammarProvider extends OfficeProofingProvider {
       transport: transport,
       enabled: true,
       vocabulary: vocabulary,
+      families: families,
+      englishMessages: englishMessages,
     );
   }
 
   final bool enabled;
   final OfficeProofingVocabulary vocabulary;
   final SpacyTransport _transport;
-  final SpacyGermanGrammarPlanner _planner = SpacyGermanGrammarPlanner();
+
+  /// Enabled rule families; see [SpacyGrammarFamily].
+  final Set<SpacyGrammarFamily> families;
+  final SpacyGermanGrammarPlanner _planner;
   final Map<String, ({int generation, OfficeProofingRequest request})> _latest =
       {};
   int _generation = 0;
@@ -102,13 +128,16 @@ final class SpacyGrammarProvider extends OfficeProofingProvider {
           'The guarded German grammar policy supports de-DE only.',
         );
       }
-      if (request.ignoredRuleIds.contains('de.spacy.noun-verb') ||
-          request.ignoredRuleIds.contains('de.grammar.noun-verb')) {
+      if (families.every(
+        (family) => family.ignoredBy(request.ignoredRuleIds),
+      )) {
         _transport.cancel(key);
         return _result(
           request,
           OfficeProofingStatus.success,
-          'Noun/verb agreement is ignored for this request.',
+          families.length == 1 && families.single == SpacyGrammarFamily.nounVerb
+              ? 'Noun/verb agreement is ignored for this request.'
+              : 'Every enabled native grammar rule is ignored for this request.',
         );
       }
       final vocabularyRevision = vocabulary.revision;
@@ -126,7 +155,9 @@ final class SpacyGrammarProvider extends OfficeProofingProvider {
         startOffset: request.startOffset,
         generation: generation,
         configurationId: jsonEncode([
-          'spacy-grammar-v1',
+          families.length == 1 && families.single == SpacyGrammarFamily.nounVerb
+              ? 'spacy-grammar-v1'
+              : 'spacy-grammar-v2:${[for (final f in families) f.id].join(',')}',
           vocabularyRevision,
           ignored,
         ]),

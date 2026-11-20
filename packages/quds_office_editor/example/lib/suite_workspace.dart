@@ -1406,7 +1406,10 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
                             ),
                           ],
                           onChanged: (value) {
-                            if (value != null) changed(() => _language = value);
+                            if (value != null) {
+                              changed(() => _language = value);
+                              unawaited(_syncSpacyGrammar());
+                            }
                           },
                         ),
                         const SizedBox(height: 12),
@@ -1545,6 +1548,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
         StudioLanguage.ar => StudioLanguage.en,
       };
     });
+    unawaited(_syncSpacyGrammar());
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (!mounted) {
         return;
@@ -6807,7 +6811,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   Future<void> _syncSpacyGrammar() async {
     final status = studioSpacyHost.status;
     final key = status.grammarEnabled && status.grammarOffered
-        ? status.configurationKey
+        ? '${status.configurationKey}|${_language.name}'
         : null;
     if (key == _spacyGrammarKey) return;
     _spacyGrammarKey = key;
@@ -6829,6 +6833,12 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
               transport: transport,
               enabled: true,
               vocabulary: _word.proofing.vocabulary,
+              families: {
+                for (final id in status.grammarFamilies)
+                  ?SpacyGrammarFamily.byId(id),
+              },
+              // Explanations follow the UI; German for German UI, else English.
+              englishMessages: _language != StudioLanguage.de,
             ),
           ],
           timeout: const Duration(seconds: 30),
