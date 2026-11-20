@@ -260,10 +260,9 @@ abstract interface class StudioMailCredentialStore {
 final class _PlatformStudioMailCredentialStore
     implements StudioMailCredentialStore, StudioMailAccountCatalogStore {
   _PlatformStudioMailCredentialStore({
-    FlutterSecureStorage? storage,
+    this._storage,
     Future<SecureStorage> Function()? backend,
-  }) : _storage = storage,
-       _backend = backend ?? (() => StudioCredentialStorage.instance.storage);
+  }) : _backend = backend ?? (() => StudioCredentialStorage.instance.storage);
 
   static const _legacyKey = 'crispoffice.mail.account.v1';
   static const _catalogKey = 'crispoffice.mail.accounts.v2';

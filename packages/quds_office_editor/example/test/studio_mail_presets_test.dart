@@ -6,6 +6,7 @@ import 'package:quds_office_studio/studio_mail_presets.dart';
 import 'package:quds_office_studio/studio_mail_strings.dart';
 import 'package:quds_office_studio/studio_strings.dart';
 
+import 'support/mail_credential_store.dart';
 import 'support/mail_draft_store.dart';
 
 const _strings = StudioStrings(StudioLanguage.en);
@@ -134,7 +135,12 @@ void main() {
       await tester.binding.setSurfaceSize(const Size(1280, 1050));
       addTearDown(() => tester.binding.setSurfaceSize(null));
       await tester.pumpWidget(
-        const MaterialApp(home: StudioMailDialog(strings: _strings)),
+        MaterialApp(
+          home: StudioMailDialog(
+            strings: _strings,
+            credentialStore: memoryStudioMailCredentialStore(),
+          ),
+        ),
       );
       await tester.enterText(
         _input(_strings.password),
@@ -174,6 +180,7 @@ void main() {
       MaterialApp(
         home: StudioMailDialog(
           draftStoreFactory: MemoryStudioMailDrafts().open,
+          credentialStore: memoryStudioMailCredentialStore(),
           strings: _strings,
           accountDiscovery: (_) async {
             discoveries++;
@@ -201,6 +208,7 @@ void main() {
     );
     final connect = find.widgetWithText(FilledButton, _strings.connect);
     await tester.ensureVisible(connect);
+    expect(tester.widget<FilledButton>(connect).onPressed, isNotNull);
     await tester.tap(connect);
     await tester.pumpAndSettle();
     expect(discoveries, 0);

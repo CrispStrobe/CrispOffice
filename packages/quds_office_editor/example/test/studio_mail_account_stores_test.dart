@@ -1,8 +1,9 @@
 import 'dart:io';
+
 import 'package:flutter_test/flutter_test.dart';
-import '../lib/credentials/secure_storage_service.dart';
-import '../lib/credentials/secure_storage_file_io.dart';
-import '../lib/studio_mail_credentials.dart';
+import 'package:quds_office_studio/credentials/secure_storage_file_io.dart';
+import 'package:quds_office_studio/credentials/secure_storage_service.dart';
+import 'package:quds_office_studio/studio_mail_credentials.dart';
 
 StudioMailCredentials account(String email) => StudioMailCredentials(
   email: email,

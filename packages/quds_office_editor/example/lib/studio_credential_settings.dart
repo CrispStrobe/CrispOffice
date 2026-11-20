@@ -39,8 +39,9 @@ class _CredentialSettingsState extends State<_CredentialSettings> {
       final has = await manager.vaultExists();
       if (mounted) setState(() => existing = has);
     } catch (_) {
-      if (mounted)
+      if (mounted) {
         setState(() => error = 'The existing vault could not be inspected.');
+      }
     }
   }
 
@@ -59,18 +60,20 @@ class _CredentialSettingsState extends State<_CredentialSettings> {
     });
     try {
       if (mode == StudioCredentialMode.encryptedVault) {
-        if (!existing && password.text != confirmation.text)
+        if (!existing && password.text != confirmation.text) {
           throw StateError('Passwords do not match.');
+        }
         await manager.unlockVault(password.text, create: !existing);
       }
       await manager.select(mode, path: path.text.trim());
       if (mounted) Navigator.pop(context, true);
     } catch (_) {
-      if (mounted)
+      if (mounted) {
         setState(
           () => error =
               'Could not open the selected credential store. Check its access or password and try again.',
         );
+      }
     } finally {
       if (mounted) setState(() => busy = false);
     }
@@ -131,8 +134,9 @@ class _CredentialSettingsState extends State<_CredentialSettings> {
                             await MacOsCustomKeychainStorage.chooseKeychain(
                               initialPath: path.text,
                             );
-                        if (mounted && selected != null)
+                        if (mounted && selected != null) {
                           setState(() => path.text = selected);
+                        }
                       },
                 icon: const Icon(Icons.folder_open),
                 label: const Text('Browse…'),

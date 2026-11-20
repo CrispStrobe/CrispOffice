@@ -61,9 +61,8 @@ class WebEncryptedStorage extends SecureStorage
   WebEncryptedStorage(
     this._backend, {
     WebCryptoProvider? cryptoProvider,
-    int newVaultIterations = _pbkdf2Iterations,
-  }) : _crypto = cryptoProvider ?? defaultWebCryptoProvider(),
-       _newVaultIterations = newVaultIterations;
+    this._newVaultIterations = _pbkdf2Iterations,
+  }) : _crypto = cryptoProvider ?? defaultWebCryptoProvider();
 
   bool get isInitialized => _cryptoKey != null;
 

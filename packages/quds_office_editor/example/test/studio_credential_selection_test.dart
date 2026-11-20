@@ -1,14 +1,14 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:quds_office_studio/credentials/secure_storage_macos_keychain.dart';
+import 'package:quds_office_studio/credentials/secure_storage_service.dart';
+import 'package:quds_office_studio/studio_credential_storage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
-import '../lib/studio_credential_storage.dart';
-import '../lib/credentials/secure_storage_macos_keychain.dart';
-import '../lib/credentials/secure_storage_service.dart';
 
 final class _PersistentMemoryStorage extends InMemorySecureStorage {
   @override
@@ -133,10 +133,8 @@ void main() {
     },
   );
   test(
-    'local macOS platform probe uses the file keychain and verifies read-back before deletion',
+    'platform probe verifies read-back before deletion with host options',
     () async {
-      debugDefaultTargetPlatformOverride = TargetPlatform.macOS;
-      addTearDown(() => debugDefaultTargetPlatformOverride = null);
       const channel = MethodChannel(
         'plugins.it_nomads.com/flutter_secure_storage',
       );
@@ -147,7 +145,11 @@ void main() {
       messenger.setMockMethodCallHandler(channel, (c) async {
         final args = c.arguments as Map<Object?, Object?>;
         final options = args['options'] as Map<Object?, Object?>;
-        expect(options['useDataProtectionKeyChain'], 'false');
+        // The plugin chooses options using dart:io Platform, independently
+        // of Flutter's visual platform override used by the custom-store test.
+        if (Platform.isMacOS) {
+          expect(options['useDataProtectionKeyChain'], 'false');
+        }
         calls.add(c.method);
         switch (c.method) {
           case 'write':

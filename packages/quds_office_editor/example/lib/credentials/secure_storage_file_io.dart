@@ -28,11 +28,7 @@ import 'secure_storage_web.dart';
 /// private to the user: this is not a defense against another process running
 /// as that same user and modifying the application's directories or memory.
 class FileStorageBackend implements TransactionalWebStorageBackend {
-  FileStorageBackend(
-    this.file, {
-    @visibleForTesting
-    Future<void> Function(File staged, File destination)? replaceForTesting,
-  }) : _replaceForTesting = replaceForTesting;
+  FileStorageBackend(this.file, {@visibleForTesting this._replaceForTesting});
 
   final File file;
   final Future<void> Function(File, File)? _replaceForTesting;
@@ -292,8 +288,9 @@ class _PosixVaultLock {
     } finally {
       malloc.free(nativePath);
     }
-    if (fd < 0)
+    if (fd < 0) {
       throw FileSystemException('Could not safely open vault lock', path);
+    }
     if (_fchmod(fd, 0x180 /* 0600 */) != 0 ||
         _flock(fd, 2 /* LOCK_EX */ | 4 /* LOCK_NB */) != 0) {
       _close(fd);
