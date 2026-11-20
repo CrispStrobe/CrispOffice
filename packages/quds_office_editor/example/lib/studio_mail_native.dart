@@ -2008,8 +2008,9 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
       if (!currentHost()) return;
       if (!currentSelection()) {
         setState(() {
-          _bulkReport = null;
-          _bulkSubjects = const {};
+          // Keep evidence for the frozen identities even if their mailbox
+          // generation changed. Never project its flags into the new scope.
+          _bulkReport = report;
           _needsRefresh = true;
           _error = widget.strings.mailWorkspaceRefreshRequired;
         });

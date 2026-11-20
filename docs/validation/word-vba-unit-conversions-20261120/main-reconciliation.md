@@ -1,5 +1,8 @@
 # Reconciliation of incoming main after the reviewed checkpoint
 
+> Historical incoming PR #271 source-reconciliation record, retained from main `e975cec1`.
+> Statements about current review refer to that continuation; the executed local results are indexed in [README.md](README.md).
+
 ## Concrete resolution
 
 Remote main first advanced from `c954d00d2fc85604ae394674bca91ea8a1dede0e`
@@ -40,7 +43,7 @@ The original intake is already shared and remains unchanged.
 The exact manifests, exception and current later-head dispositions are in
 [main-reconciliation.json](main-reconciliation.json).
 [source-review-main.json](source-review-main.json) and
-[current-qualification.json](current-qualification.json) bind current review
+[historical qualification](incoming-pr271-main-qualification.json) bind current review
 to compiler `07dc3c57` and retained test blobs.
 
 The previous 210,069 JavaScript assertions and 60,144 BigInt/binary64 grid

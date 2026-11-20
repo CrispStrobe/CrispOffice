@@ -223,7 +223,7 @@ inspection receipt, not a complete dependency or runtime certification.
   filters, stable local sorting and localized help/errors. Preserve scope,
   IME input and stale-activation guards; never issue provider work from search.
   See [header-search.md](header-search.md). Full account search remains below.
-- [x] Add [foreground bulk read/flag](bulk-actions.md) with frozen visible
+- [x] Add [foreground bulk read/flag](bulk-flags.md) with frozen visible
   selections, exact account/provider/mailbox identities, sequential explicit
   assignments and confirmed/failed/uncertain/unattempted outcomes. Stop after
   the current request, require refresh after uncertainty, reject stale scopes

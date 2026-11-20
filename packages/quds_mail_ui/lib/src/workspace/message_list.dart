@@ -80,7 +80,8 @@ final class MailMessageListStrings {
     this.subjectAscending = 'Subject (A–Z)',
     this.searchError = _defaultSearchError,
     this.selectMessage = 'Select message',
-    this.selectShown = 'Select shown',
+    String? selectShown,
+    String? selectVisible,
     this.clearSelection = 'Clear selection',
     this.selectedCount = _defaultSelectedCount,
     this.bulkActions = 'Selected messages',
@@ -90,7 +91,12 @@ final class MailMessageListStrings {
     this.unflag = 'Remove flag',
     this.stopBulk = 'Stop after current message',
     this.bulkWorking = 'Applying changes…',
-  });
+  }) : assert(
+         selectShown == null ||
+             selectVisible == null ||
+             selectShown == selectVisible,
+       ),
+       selectShown = selectShown ?? selectVisible ?? 'Select shown';
 
   final String searchLoaded;
   final String unread;
@@ -115,6 +121,7 @@ final class MailMessageListStrings {
   final String Function(MailHeaderSearchError error) searchError;
   final String selectMessage;
   final String selectShown;
+  String get selectVisible => selectShown;
   final String clearSelection;
   final String Function(int selected) selectedCount;
   final String bulkActions;
@@ -180,11 +187,27 @@ class MailMessageList extends StatefulWidget {
     this.limitNotice,
     this.loadMoreKey,
     this.onBulkAction,
-    this.selectionScopeId,
-    this.bulkActionsEnabled = true,
+    Object? selectionScopeId,
+    Object? selectionRevision,
+    bool? bulkActionsEnabled,
+    bool? bulkEnabled,
     this.bulkStatus,
     this.onCancelBulk,
-  }) : items = List.unmodifiable(items) {
+  }) : items = List.unmodifiable(items),
+       selectionScopeId = selectionScopeId ?? selectionRevision,
+       bulkActionsEnabled = bulkActionsEnabled ?? bulkEnabled ?? true {
+    if (selectionScopeId != null &&
+        selectionRevision != null &&
+        selectionScopeId != selectionRevision) {
+      throw ArgumentError(
+        'Selection revision aliases must identify one scope.',
+      );
+    }
+    if (bulkActionsEnabled != null &&
+        bulkEnabled != null &&
+        bulkActionsEnabled != bulkEnabled) {
+      throw ArgumentError('Bulk enabled aliases must agree.');
+    }
     final identities = <String>{};
     for (final item in this.items) {
       if (item.id.isEmpty || !identities.add(item.id)) {
@@ -212,9 +235,11 @@ class MailMessageList extends StatefulWidget {
   /// Change after refresh or any host identity/session revision. This clears
   /// checked rows and invalidates already-open menus, even if row IDs overlap.
   final Object? selectionScopeId;
+  Object? get selectionRevision => selectionScopeId;
 
   /// Keep controls visible but unavailable when the host requires a refresh.
   final bool bulkActionsEnabled;
+  bool get bulkEnabled => bulkActionsEnabled;
 
   /// Optional host-owned progress/results, kept in the scrollable header.
   final Widget? bulkStatus;
@@ -567,7 +592,9 @@ class _MailMessageListState extends State<MailMessageList> {
         HardwareKeyboard.instance.isShiftPressed) {
       return KeyEventResult.ignored;
     }
-    if (key == LogicalKeyboardKey.escape && widget.onBulkAction != null) {
+    if (key == LogicalKeyboardKey.escape &&
+        widget.onBulkAction != null &&
+        _checkedIds.isNotEmpty) {
       if (event is KeyDownEvent) _clearSelection(_interactionGeneration);
       return KeyEventResult.handled;
     }

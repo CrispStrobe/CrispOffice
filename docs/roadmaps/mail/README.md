@@ -33,11 +33,12 @@ The [loaded-header search guide](header-search.md) describes the shared query
 language, sorting, loaded-only scope and ordered next steps for discovery and
 bulk triage. It covers connected and cached mail without extra provider work.
 
-The [foreground bulk guide](bulk-actions.md) describes checked visible selections,
+The [foreground bulk contract](bulk-flags.md) describes checked visible selections,
 explicit read/unread/flag/unflag commands, outcome counts, stop-after-current
 behavior and required refresh after uncertainty. Connected hosts share that
-contract; cached mail stays read-only. The next acceptance boundary is durable
-repository-driven sessions and a remote-command journal, followed by unified
+contract and one execution engine; cached mail stays read-only. Receipts remain
+in memory and do not guarantee persistent-cache updates. The next boundary is
+durable repository-driven sessions and a remote-command journal, followed by unified
 search and conversations.
 
 The [cached mailbox guide](cached-mailboxes.md) describes durable ordered views

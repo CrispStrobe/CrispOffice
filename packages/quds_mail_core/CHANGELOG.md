@@ -11,6 +11,17 @@
   contradicts mutation evidence, and require refresh after invalidated scopes.
   Stop the remaining selection on certified quota rejection without automatic
   retry, preserving provider retry guidance and requiring no uncertainty refresh.
+- Add bounded frozen foreground bulk read/flag plans and sequential execution
+  with confirmed, definite failed, uncertain and unattempted per-message results.
+  Stop on uncertain writes or stale/cancelled scope without retrying. Add explicit
+  optional mutation-boundary evidence to problems; unknown evidence stays uncertain.
+  Preserve the concurrent coordinator API through the same dispatch engine:
+  certified attempts, single-use coordination, optional provider validation,
+  public `operationAt`, operation-bearing receipts and typed stop reasons. Use
+  stable `planId:index` operation IDs and nonblank plan IDs up to 256 characters.
+  Uncertainty takes precedence over simultaneous stop or scope changes.
+  Expose `MailBulkFlagAttempt.fromResult` as the shared provider-evidence
+  adapter used by the runner and certified coordinator integrations.
 
 - Add bounded portable loaded-header search with field-scoped text, quoted
   phrases, observed read/flag states and strict local-calendar date predicates.

@@ -6,6 +6,8 @@
   explicit request, authorization, resource, precondition and documented rate
   limit rejections certify no mutation. Preserve rate-limit retry guidance while
   foreground bulk coordination stops later dispatches without automatic retry.
+- Preserve the separate submission rejection and Retry-After contract when
+  classifying foreground flag mutations.
 
 - Report explicit mutation-boundary evidence for failed IMAP, EWS, Gmail and
   Microsoft 365 operations. Foreground bulk commands can distinguish definite

@@ -1,197 +1,189 @@
-# Word VBA measurements: reconciled publication and qualification
+# Word macro measurement qualification — 2026-11-20
 
-## Current source and result
+This is the authoritative local qualification record for the reconciled Word
+measurement implementation. The incoming checkpoint reports in this directory
+are preserved as historical evidence; their earlier runtime limitations do not
+describe the executed results below.
 
-This continuation reconciles remote main
-`22cf73b816328cd5fe54ec1793c89f1cc322db3b` with this branch's checkpoint
-`c12ad8bc9c17f1849acdf92b2245e9198f1005b8`. These are required ordered
-parents of the reconciliation checkpoint: this branch first, incoming main
-second. Publication is through **PR #271**.
+## Latest-main native follow-up
 
-Incoming main retains **PR #272** at `b01cb23dc`, which consolidated the
-Word conversion and named-argument branches. Its subsequent merge also
-retains this branch's `8ca1958d` history, large-scalar regression case and
-six historical evidence files.
+The later intake of main at
+`e975cec13b289fe067ef406cd3044701ecc44744` changes native Word layout and
+deserialization, while the measurement compiler remains byte-identical. The
+integration also repairs header-picture identity/placement handling and preserves
+explicit table-header run color and bold-off formatting. Final qualification of
+those native changes is pending at this source checkpoint. The receipts below
+remain bound to their stated earlier source; they are not a claim that the two
+native files stayed unchanged through this later intake.
 
-The incoming main compiler is retained exactly as blob
-`07dc3c5737661abaf3b17db24439c71482de22ed`. It consolidates the eight physical
-conversion functions developed in the concurrent Word branches and adds
-official named arguments to all ten Word unit functions, including
-`LinesToPoints` and `PointsToLines`. The full current contract is
-[Physical measurement conversions](../../VBA_WORD_MACROS.md#physical-measurement-conversions).
+## Result and captured source
 
-| Functions | Named argument for the forward function | Named argument for the inverse function | Exact relation |
-| --- | --- | --- | --- |
-| InchesToPoints / PointsToInches | Inches | Points | 1 inch = 72 points |
-| CentimetersToPoints / PointsToCentimeters | Centimeters | Points | 2.54 cm = 72 points |
-| MillimetersToPoints / PointsToMillimeters | Millimeters | Points | 25.4 mm = 72 points |
-| PicasToPoints / PointsToPicas | Picas | Points | 1 pica = 12 points |
-| LinesToPoints / PointsToLines | Lines | Points | 1 line = 12 points in this adapter |
+The accepted VM regression corpus contains **3598 passing cases across
+69 suites**, with no failures or skips. This combines 62 unchanged
+baseline suites with the seven final measurement suites, without counting
+superseded runs twice. See [the accepted suite union](accepted-suite-union.json),
+[the final Word receipt](final-word-qualification.json), and the hashed raw
+receipts in [local-qualification.tar.gz](local-qualification.tar.gz).
 
-All functions support an unqualified call, `Application.Function(...)`, and
-a leading-dot call inside `With Application`. They accept one positional
-numeric expression or one correctly named numeric expression. Names are
-case insensitive. Argument expressions are evaluated once.
-
-The adapter retains its numeric type and finite-range restrictions. It does
-not implement general VBA `Single` coercion. A scalar conversion does not
-relax a destination property's native precision or range requirements.
-Exact native-grid canonicalization uses a round trip to the input double,
-without tolerance-based snapping. One centimeter is a valid fractional-point
-scalar; authors must choose rounding explicitly before an exact-twip property
-write. Native operation, document runtime and serializer implementations are
-unchanged by this continuation.
-
-## What the reconciliation preserves
-
-The complete incoming main tree is the base. Its compiler, contract, changelog,
-new named-conversion tests, prior line-spacing test updates, three BAS examples,
-two portable drivers and measurement validation folder are retained.
-
-Of the **30 paths changed by incoming main since the initial intake**,
-**29 keep exactly their incoming blobs and modes**. Only this evidence README
-is updated into a current index. No production source, test, example, driver,
-contract, changelog or other incoming documentation is changed.
-
-The incoming `office_vba_word_unit_conversions_test.dart` already contains
-this branch's large-scalar test. Its blob remains
-`d5caee5321cbf18e65466c2bf43fcec49397e725`, with **202 authored cases**.
-
-The six authored cases in
-`office_vba_word_unit_conversions_integration_test.dart` and the nine-operation
-`word_unit_conversions.bas` example retain their exact blobs. Both were
-already incorporated by PR #272 from this branch's earlier implementation
-checkpoint. The incoming `incoming-review.md` is also retained unchanged.
-
-[main-reconciliation.json](main-reconciliation.json) gives the exact incoming
-paths, preserved blobs, ordered parents and later-reference dispositions.
-[main-reconciliation.md](main-reconciliation.md) explains the resolution.
-Historical evidence remains intact and source-bound, as described below.
-
-## Validation status
-
-**This publication is source-reviewed and runtime-unqualified.**
-No Dart test, analyzer, formatter, VM program, compiled Dart JavaScript,
-native document runtime or CLI was executed by this continuation. The execution
-environment failed before command startup, initially with sandbox
-`No space left on device`, and subsequently with an unavailable exec service.
-[environment-blocker.json](environment-blocker.json) records the failures.
-
-The authored 202 compiler cases and six integration cases are **not passing-test
-counts**. Incoming branches' development test claims and earlier paragraph-spacing
-regression totals are not counted as qualification of this merged source.
-
-- [source-review-main.json](source-review-main.json) reviews the adopted
-  compiler, its official named-argument binding, numeric canonicalization,
-  evaluation order and the retained test expectations.
-- [current-qualification.json](current-qualification.json) binds the exact
-  current source and evidence. It records which checks ran and which did not.
-- [main-arithmetic-result.json](main-arithmetic-result.json) records **246
-  passing source-bound JavaScript checks** for the adopted compiler. Independent
-  replay produced the same result. These checks include canonical values,
-  native-precision refusals, large scalars, legacy fallbacks and boundaries.
-  They are not Dart execution. The [reproducer](check-main-arithmetic.mjs)
-  checks exact source identity; its standalone Node wrapper was not launched.
-- Remote readback verifies the committed source and tree. Post-merge proof is
-  recorded in PR #271 because a commit cannot contain its own final hash.
-
-No GitHub Actions runs, checks, statuses or queue endpoints were queried or
-awaited. Checkpoint ref updates are non-forced and require the previously
-observed branch head.
-
-## Complete initial intake
-
-Initial main `c954d00d2fc85604ae394674bca91ea8a1dede0e` contained 39 commits
-and 88 changed files beyond the preceding paragraph-spacing handoff
-`52c7f27fc7b6998e209e3ac8c815d6cf1ca6f867`.
-
-The frozen [intake.json](intake.json) covers **311 references**:
-33 fork branch heads, 270 fork PR heads, four upstream branches and four
-upstream PR heads. Independent review read the complete 2,786-commit initial
-main graph through 28 pages and verified parent closure.
-
-| Initial captured source | Actual ancestor references after reconciliation | Proven equivalent references | Total |
-| --- | ---: | ---: | ---: |
-| Fork branches | 24 | 9 | 33 |
-| Fork PR heads | 256 | 14 | 270 |
-| Upstream branches | 4 | 0 | 4 |
-| Upstream PR heads | 4 | 0 | 4 |
-| **Total** | **288** | **23** | **311** |
-
-There are **zero excluded or unclassified initial references**. Thirteen
-squashed PR heads have complete-tree equality with their ancestor squash
-commits. PR #140 has all 37 of its changed files preserved with identical
-blobs and modes; eight unrelated spreadsheet differences explain its
-whole-tree mismatch.
-
-The last initially unincorporated head,
-`fix/main-green-20261120` at `332d7b26a320ca560f4f2214e1e63da9392269ab`,
-became an actual second parent of checkpoint `8ca1958d`. The modify/delete
-resolution retains main's deletion of the temporary golden-regeneration
-workflow. The workflow directory stays unchanged. The historical initial
-snapshot's exclusion entry is superseded by
-[incoming-reconciliation.json](incoming-reconciliation.json) and
-[incoming-reconciliation.md](incoming-reconciliation.md); it is not silently
-rewritten.
-
-All work deferred in the previous handoff was reconciled at initial intake,
-including paragraph controls, App Store documentation, Arabic settings,
-bookmark/layout changes and the earlier Mail parity work.
-
-## Work appearing after the frozen intake
-
-The historical [late-scope.json](late-scope.json) and
-[late-scope.md](late-scope.md) captured four later active heads. Their current
-dispositions are:
-
-| Captured later head | Current disposition |
+| Input | Captured value |
 | --- | --- |
-| `codex/word-vba-measurements-20261120` at `4d0086ab` | Incorporated through PR #272 / main `b01cb23d` |
-| `codex/word-vba-unit-conversions-20261120` at `e08635b3` | Incorporated through PR #272 / main `b01cb23d` |
-| `work/mail-bulk-actions-20261120` at `69ab514b` | Preserved and deferred; active work appeared after initial intake |
-| `work/mail-bulk-flags-20261120` at `0cc6316c` | Preserved and deferred; active work appeared after initial intake |
+| Broad baseline commit | e08635b3f21c60ad21888821050dc97c2dbf7086 |
+| Broad baseline tree | d88010d76bc881ad4d4519c89472abcc9d0282e0 |
+| Final measurement commit | cb5909fefe6dd41db0f9c38207db83166072dcaf |
+| Final measurement tree | 3eca24612f32567d7312ae098d7b30c049bb6e3b |
+| Compiler SHA-256 | 41de865411b884d18c1097e9a80d68cd6bf1fb245e1844a46f72af05636f5ecd |
+| Engine runtime | Dart 3.14.1; 56 hosted dependency versions and archive hashes match the repository lock |
+| JavaScript runtime | v24.22.3 |
 
-The two Mail heads contain later bulk-action/coordinator or intake work and
-overlapping Word state. They have not been qualified by this Word continuation.
-No new Mail runtime run is claimed. Exact hashes and reasons are in the
-current reconciliation manifest. These later deferrals do not alter the
-complete initial inventory's result.
+The dependency archive proof is retained in the archive at
+historical-mail-core/hosted-dependencies.json. It records the same 56 hosted
+packages used by the Word harness, with cached hashes matching the repository
+lock. The captured Mail-core and Word lockfiles are byte-identical.
 
-## Historical evidence and exact source boundaries
+The Mail-only checkpoint `85f4ef96` retained all 986 of these Word inputs. The
+subsequent main intake is covered by the native follow-up described above.
+No GitHub Actions
+run, check status, or workflow result was awaited or used as a qualification
+gate. Workflow settings were not changed.
 
-The following files are retained as historical evidence for the checkpoint
-where they ran. Their old source identities and conclusions are not relabeled
-as current-source execution:
+## Capability covered
 
-| Evidence | Bound source / meaning |
+The Word source adapter adds InchesToPoints, PointsToInches,
+CentimetersToPoints, PointsToCentimeters, MillimetersToPoints,
+PointsToMillimeters, PicasToPoints, and PointsToPicas. Together with the existing
+LinesToPoints and PointsToLines functions, all ten accept either one positional
+argument or the official case-insensitive named argument. Global,
+Application-qualified, and leading-dot calls inside With Application are covered.
+
+Tests check numeric Variant inputs, explicit conversions, argument evaluation
+exactly once, invalid and omitted arguments, source work limits, unreachable
+call shapes and statically known types, host-specific name reservations,
+near-grid values, large scalar arithmetic, and native precision boundaries.
+A Variant's contents are checked when that value is evaluated. No implicit
+String, Boolean, Empty, Null, or omitted-Variant coercion is added.
+
+The source compiler still produces an immutable native operation plan without
+reading the live document. Execution retains detached transaction, cancellation,
+read-only, operation-allowlist, work-limit, rollback, revision, and recording
+behavior. The change does not add a native operation or alter the serializer.
+
+The [Word macro contract](../../VBA_WORD_MACROS.md) documents the complete
+supported subset and links all three retained examples:
+
+| Example | Native operations | Qualification |
+| --- | ---: | --- |
+| word_measurements.bas | 8 | Integration suite and actual file on VM and optimized JavaScript |
+| word_unit_conversions.bas | 9 | Independent integration suite, including explicit twip rounding |
+| word_named_measurements.bas | 13 | Integration suite and actual file on VM and optimized JavaScript |
+
+## Executed local gates
+
+| Gate | Observed result |
 | --- | --- |
-| `source-review-initial.json` | Initial implementation review before the final numeric promotion |
-| `source-review.json` | Compiler `a105ddd7`, 202-case suite `d5caee53`, six-case integration suite `d44ec892` |
-| `arithmetic-result.json` | 210,069 JavaScript arithmetic/source assertions and 60,144 separate BigInt/binary64 grid decisions for `a105ddd7` |
-| `check-arithmetic.mjs` | Reproducer requires the exact historical compiler `a105ddd7`; run against checkpoint `c12ad8bc`, not the adopted compiler |
-| `qualification.json` | Reviewed checkpoint `8ca1958d` and publication requirements before main advanced |
-| `late-scope.json` / `late-scope.md` | Earlier snapshot with four active later heads; superseded only by the explicit current dispositions above |
+| Broad macro/VBA baseline | 3,110 passed across 64 suites; zero failures or skips |
+| Final seven measurement suites | 645 passed; zero failures, skips, or reporter errors |
+| Accepted regression union | 3,598 cases across 69 suites; superseded runs excluded |
+| Incoming conversion suite on Node/dart2js | All 63 cases passed; same case identities as VM |
+| Strict whole-engine analysis | No issues found with --fatal-infos |
+| Formatting | All affected final Dart tests/drivers clean |
+| Actual eight-operation BAS | VM and optimized JavaScript results identical |
+| Actual thirteen-operation BAS | VM and optimized JavaScript results identical |
+| Nine-operation unit conversion BAS | Passed its independent integration suite |
+| Source and runtime seals | All 986 captured source inputs and runtime inputs unchanged during the final run; root package configuration unchanged |
 
-The JavaScript function bodies behind the historical arithmetic result ran in
-the tool runtime. Its Node filesystem wrapper was not executed. None of these
-checks substitutes for Dart test execution.
+The broad baseline completed all 3,110 cases in 64 macro/VBA suites on an
+unchanged source checkout. Its 147-case and 10-case measurement suites are
+superseded by the final seven suites. Thus the accepted count is
+3,110 − 157 + 645 = 3598. The earlier four-suite 378-case run and
+the extra Node run are useful corroboration, not additional VM corpus cases.
 
-The incoming measurement validation folder is also preserved verbatim. Its
-own source review distinguishes independent arithmetic from unexecuted Dart
-qualification. This continuation does not turn inherited reports into a new
-runtime result.
+Before/after source and runtime hashes accompany the raw receipts. The source
+retention comparison confirms that all production inputs, dependencies, and
+the 62 retained baseline suites are unchanged. A separate fixture-reference
+inspection confirms that those retained suites do not read the measurement
+examples or portable drivers that were reorganized during intake.
 
-## Incremental remote checkpoint ledger
+An independent actual-compiler probe also passed on both VM and JavaScript:
+610 native-grid round trips, ten just-outside-bound refusals, 60 other-host
+scope checks, and a side-effecting named argument evaluated once. Its source,
+results, and compiler hash are included in the archive.
 
-| Commit | Saved work |
-| --- | --- |
-| `e938eebba6ee1b52868acdcd3a1f9d69b5af6891` | Complete initial intake and classification |
-| `dd8e73a7d6252b336b2e7a437c4931addc42d491` | Physical-unit implementation, tests, example and contract |
-| `8ca1958d9eb737beb88269bb962a2418f7a3a44a` | Complete initial history reconciliation, final numeric promotion, larger-value test and evidence |
-| `c12ad8bc9c17f1849acdf92b2245e9198f1005b8` | Independent review, frozen late scope and source-bound qualification |
-| Reconciliation checkpoint containing this README | Incorporate incoming main `22cf73b8`, retain named conversions and preserve all prior checkpoint history |
+## Precision and document ownership
 
-The checkpoint branch is
-`codex/word-vba-compatibility-20261120-continuation`.
-The final PR records the reconciliation checkpoint and remote-main hashes,
-complete-tree equality, required ancestry and retained checkpoint branch.
+The contract is bounded binary64 Double arithmetic, not VBA Single emulation.
+Physical ratios use 72 points per inch, 3600/127 points per centimeter,
+360/127 points per millimeter, and 12 points per pica or line. Native-grid
+canonicalization requires exact inverse equality; it does not use a tolerance
+or round arbitrary dimensions automatically.
+
+CentimetersToPoints(1) is a valid scalar. Assigning that unrounded value to an
+exact-twip native property is refused. A macro author can explicitly request
+rounding with CLng(CentimetersToPoints(1) * 20) / 20, producing 28.35 points.
+Existing native property precision and range checks remain in force.
+
+DOCM tests save, reopen twice, and replay recorded plans. They verify the
+expected paragraph values, unrelated paragraph/style content, and opaque VBA
+bytes. The existing indentation serializer owns the edited w:ind group and
+replaces it, including foreign attributes inside that group. These tests do
+not claim byte-for-byte preservation of every edited XML group or validity of
+cryptographic signatures after modification. Embedded VBA remains inert. No
+installed Microsoft Word host, live COM object model, or full VBA compatibility
+is claimed by this engine qualification.
+
+## Intake and incremental persistence
+
+The [initial incoming review](incoming-review.md) and
+[reconciliation record](reconciliation.md) explain the captured main, branch,
+and PR heads, including verified historical squash equivalents. The bounded
+final inventory captured 38 branches and two open PRs. Current-main Word
+continuation, Zotero intake history, and the additional Word suite carried by
+the Mail branch were preserved. The overlapping Mail implementations are
+qualified separately in the final integration report.
+
+Implementation, examples/tests, and each reconciliation were saved incrementally
+on codex/word-vba-unit-conversions-20261120 with non-forced, expected-head ref
+updates. Every published tree was compared with its local staged tree. The
+final measurement run used the real remote commit identified above.
+
+## Earlier failed fixture and interrupted run
+
+The first run of the six restored measurement suites produced 573 passes and
+eight failures. All eight came from one parameterized incoming test that placed
+a declaration after an executable statement. Moving both declarations before
+the assignment allowed the fixture to reach its intended invalid-Variant
+check. Expected errors and production code were unchanged. The failed receipt
+and raw logs are retained in the archive. A separate attempt was interrupted during initial suite loading without a terminal result. Its log and interruption record are retained; no cases from it are counted as passes or failures. The fresh retry supplied the successful receipt above.
+
+## Reproduction
+
+The archive contains raw test events, analyzer and compiler output, case
+identities, source/runtime manifests, incoming historical receipts, and the
+exact qualification scripts. [receipt-manifest.json](receipt-manifest.json)
+lists the SHA-256 and size of every uncompressed archived file and the archive
+itself. Generated SDKs, package archives, kernels, and JavaScript outputs are
+not committed; rebuild them from the pinned inputs.
+
+For a fresh Linux checkout, first copy reproduce_runtime.py,
+qualify_main_reconciled_measurements.py, and environment.json from this
+directory to a directory outside that checkout. Check out the final measurement
+commit above, then run the following, substituting absolute paths:
+
+    python3 /path/to/scripts/reproduce_runtime.py \
+      --repo /path/to/fresh-checkout \
+      --runtime /path/to/new-runtime \
+      --record /path/to/scripts/environment.json
+    source /path/to/new-runtime/env.sh
+    python3 /path/to/scripts/qualify_main_reconciled_measurements.py \
+      --repo /path/to/fresh-checkout \
+      --root-repo /path/to/fresh-checkout \
+      --runtime /path/to/new-runtime \
+      --out /path/to/new-word-results
+
+The runtime bootstrap verifies the official SDK archive hash and resolves
+the recorded dependency versions in an isolated headless harness. It leaves
+tracked workspace manifests and the lockfile unchanged. Python 3, curl, and
+Node are required. To rerun the entire current macro/VBA corpus after setup,
+run the generated test wrapper from the engine directory with
+test/office_vba*_test.dart and test/office_macro*_test.dart as its file arguments.
+The original 64-suite baseline can be reproduced independently at its captured
+commit using qualify_measurements.py.

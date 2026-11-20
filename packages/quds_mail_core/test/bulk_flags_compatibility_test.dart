@@ -5,21 +5,20 @@ final _profile = MailProfileId('profile', hostId: 'bulk-compatibility');
 final _account = MailAccountId('account', profile: _profile);
 final _mailbox = MailMailboxId('inbox', account: _account);
 
-MailBulkFlagPlan _plan({MailProviderKind provider = MailProviderKind.graph}) =>
-    MailBulkFlagPlan(
-      id: 'compatibility',
-      mailbox: _mailbox,
-      provider: provider,
-      action: MailBulkFlagAction.markUnread,
-      messages: [
-        for (var index = 0; index < 3; index++)
-          MailOpaqueIdentity(
-            account: _account,
-            provider: MailProviderKind.graph,
-            value: '$index',
-          ),
-      ],
-    );
+MailBulkFlagPlan _plan({MailProviderKind? provider}) => MailBulkFlagPlan(
+  id: 'compatibility',
+  mailbox: _mailbox,
+  provider: provider,
+  action: MailBulkFlagAction.markUnread,
+  messages: [
+    for (var index = 0; index < 3; index++)
+      MailOpaqueIdentity(
+        account: _account,
+        provider: MailProviderKind.graph,
+        value: '$index',
+      ),
+  ],
+);
 
 void main() {
   test('explicit provider checks rather than changes the frozen namespace', () {
@@ -33,7 +32,7 @@ void main() {
   });
 
   for (final adapter in [false, true]) {
-    group(adapter ? 'certified coordinator' : 'provider result adapter', () {
+    group(adapter ? 'certified coordinator' : 'provider runner', () {
       Future<MailBulkFlagReport> run({
         required Future<MailBulkFlagAttempt> Function(MailOperation) apply,
         MailOperationLease? lease,
@@ -52,7 +51,7 @@ void main() {
             apply: (operation, lease) => apply(operation),
           );
         }
-        return MailBulkFlagCoordinator().run(
+        return const MailBulkFlagRunner().run(
           plan: _plan(),
           lease: actualLease,
           isScopeCurrent: isScopeCurrent ?? () => true,
@@ -61,13 +60,9 @@ void main() {
           apply: (operation, lease) async {
             final attempt = await apply(operation);
             if (attempt.outcome == MailBulkFlagOutcome.confirmed) {
-              return MailBulkFlagAttempt.fromResult(
-                const MailSuccess(MailUnit.value),
-              );
+              return const MailSuccess(MailUnit.value);
             }
-            return MailBulkFlagAttempt.fromResult(
-              MailFailure(attempt.problem!),
-            );
+            return MailFailure(attempt.problem!);
           },
         );
       }
@@ -95,11 +90,12 @@ void main() {
             'compatibility:1',
             'compatibility:2',
           ]);
+          expect(report.items, same(report.results));
           expect(() => report.items.clear(), throwsUnsupportedError);
           expect(report.confirmedCount, 2);
           expect(report.failedCount, 1);
-          expect(report.requiresRefresh, isFalse);
           expect(report.items[1].problem, same(denied));
+          expect(report.stopProblem, isNull);
           expect(report.stopReason, isNull);
           for (var index = 0; index < commands.length; index++) {
             expect(report.items[index].operation, same(commands[index]));
@@ -132,7 +128,7 @@ void main() {
         );
         expect(calls, 1);
         expect(report.stopReason, MailBulkFlagStopReason.uncertain);
-        expect(report.items.first.problem, same(lostReply));
+        expect(report.stopProblem, same(lostReply));
         expect(report.requiresRefresh, isTrue);
         expect(report.uncertainCount, 1);
         expect(report.unattemptedCount, 2);
@@ -170,6 +166,7 @@ void main() {
       for (final code in [
         MailProblemCode.cancelled,
         MailProblemCode.staleOperation,
+        MailProblemCode.quotaExceeded,
       ]) {
         test('certified $code failure still stops further dispatch', () async {
           var calls = 0;
@@ -183,17 +180,16 @@ void main() {
           expect(calls, 1);
           expect(report.failedCount, 1);
           expect(report.unattemptedCount, 2);
-          expect(report.items.first.problem, same(problem));
+          expect(report.stopProblem, same(problem));
           expect(
             report.requiresRefresh,
             code == MailProblemCode.staleOperation,
           );
-          expect(
-            report.stopReason,
-            code == MailProblemCode.cancelled
-                ? MailBulkFlagStopReason.cancelled
-                : MailBulkFlagStopReason.staleScope,
-          );
+          expect(report.stopReason, switch (code) {
+            MailProblemCode.cancelled => MailBulkFlagStopReason.cancelled,
+            MailProblemCode.staleOperation => MailBulkFlagStopReason.staleScope,
+            _ => MailBulkFlagStopReason.rateLimited,
+          });
         });
       }
 
@@ -245,7 +241,7 @@ void main() {
       expect(report.uncertainCount, 1);
       expect(report.unattemptedCount, 2);
       expect(report.stopReason, MailBulkFlagStopReason.uncertain);
-      expect(report.items.first.problem, same(problem));
+      expect(report.stopProblem, same(problem));
     },
   );
 
@@ -265,7 +261,6 @@ void main() {
       await expectLater(start(), throwsStateError);
     },
   );
-
   for (final reason in [
     MailBulkFlagStopReason.staleScope,
     MailBulkFlagStopReason.invalidScope,

@@ -1,23 +1,33 @@
-# Foreground bulk read and flag actions
+# Foreground bulk actions — compatibility entry
 
-This increment adds explicit multi-message triage to the connected IMAP, EWS,
-Gmail and Microsoft 365 hosts. It advances M04W without completing durable
-remote commands, offline mutations, unified mail or desktop-client parity.
+The executable contract for connected IMAP, EWS, Gmail and Microsoft 365 bulk
+read/unread/flag/unflag actions is [bulk-flags.md](bulk-flags.md). It defines the
+user path, loaded-visible selection, stop-after-current behavior, all four
+outcomes, scope guards, nullable flags and the foreground/cache boundary.
 
-## User path
+This path is retained from the concurrent `work/mail-bulk-actions-20261120`
+implementation. The integration consolidates that work with
+`work/mail-bulk-flags-20261120`; it does not maintain two dispatch algorithms or
+two sets of acceptance rules. The peer's `MailBulkFlagCoordinator`, certified
+attempts, provider validation, `operationAt` and receipt accessors remain
+available alongside `MailBulkFlagRunner`, using one private execution engine.
+`MailBulkFlagAttempt.fromResult` provides their shared provider-result mapping.
+See the [portable API](bulk-flags.md#portable-execution-api) and the
+[technical reconciliation record](../../validation/mail-bulk-flags-20261120/reconciliation.md)
+for exact compatibility choices and preserved tests.
 
-Check messages in the shared list, or choose **Select shown** to check the
-currently visible loaded rows. Choose **Actions for selected messages**, then
-**Mark read**, **Mark unread**, **Flag** or **Remove flag**. The open message and
-the checked selection are independent; checking a row never opens its body or
-changes its flags. The controls and outcome summary are localized in English,
-German and Arabic, including right-to-left menus and enlarged text.
+The original statement that every invoked provider failure must be uncertain
+is superseded by explicit `MailProblem.mutationMayHaveOccurred` evidence.
+For provider replies, `false` certifies no effect; `true` or absent evidence
+remain uncertain. A coordinator's explicit failed attempt is also a certificate,
+but contradictory possible-mutation evidence remains uncertain. Error codes
+alone never establish non-mutation.
 
-With focus in the message list, Space checks or unchecks the keyboard cursor,
-Ctrl+A or Command+A selects shown rows, Escape clears the selection, and Enter
-opens the cursor's message. The search field retains its own editing shortcuts.
-Reader-only and cached hosts retain their previous opening behavior and expose
-no bulk mutation controls.
+The [combined acceptance record](../../validation/mail-bulk-flags-20261120/README.md)
+owns source-bound qualification and publication results. Earlier
+[peer intake records](../../validation/mail-bulk-actions-20261120/intake-local.md)
+remain historical evidence of their captured source, not qualification of the
+combined runtime.
 
 Selection covers the current loaded window, whose connected-host ceiling is
 1,000 messages. Select shown respects the current query and quick filters. A

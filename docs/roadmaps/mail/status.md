@@ -2,20 +2,24 @@
 
 ## Foreground bulk read and flag triage
 
-The [bulk-action continuation](bulk-actions.md) adds checked visible selections,
+The [foreground bulk contract](bulk-flags.md) adds checked visible selections,
 explicit read/unread/flag/unflag commands, keyboard selection and localized
 progress, outcome summaries and per-message details to connected IMAP, EWS,
 Gmail and Microsoft 365. Plans freeze
 remote identities; sequential execution records confirmed, failed, uncertain
-and unattempted items. Unknown confirmation stops later dispatches and requires
-an explicit refresh. Stop waits for the current request without auto-retrying.
+and unattempted items. Explicit mutation evidence distinguishes definite failure
+from unknown acceptance; generic problem codes do not prove that no write
+occurred. Uncertainty stops later dispatches and requires an explicit refresh.
+Stop waits for the current request without auto-retrying. The provider runner
+and single-use certified coordinator share one dispatch engine.
 
 Only confirmed target flags update the original foreground view. Scope and
 refresh generations reject stale callbacks, including A → B → A, while a
 same-folder refresh preserves query/sort and clears checked rows. Cached mail
-remains read-only. Reports and intent are not durable across restart, so M04W
-and its repository-driven command journal remain open. The
-[local record](../../validation/mail-bulk-actions-20261120/README.md) separates
+remains read-only. Reports and intent are not durable across restart, and bulk
+confirmation does not guarantee an immediate persistent-cache update. M04W and
+its repository-driven command journal remain open. The
+[local record](../../validation/mail-bulk-flags-20261120/README.md) separates
 actual execution, source integration and remaining provider/platform gates.
 
 ## Structured loaded-header search and sorting
@@ -28,8 +32,8 @@ by newest/oldest, sender or subject while preserving stable row identities.
 English/German/Arabic help and controls describe the loaded-folder scope.
 Filtering, sorting and keyboard movement issue no provider/body/mutation work.
 
-This advances discovery within M04W. Account-wide search, durable commands,
-durable bulk commands, conversations and full offline synchronization remain open. The
+This advances discovery within M04W. Account-wide search, durable command
+recovery, conversations and full offline synchronization remain open. The
 [local record](../../validation/mail-header-search-20261120/README.md) separates
 fresh validation from inherited evidence and live-provider/platform gates.
 
@@ -847,21 +851,27 @@ harness, not the standalone Office application.
 1. Preserve the completed integrated qualification and its source/runtime
    identities. Rerun affected checks for subsequent source changes and retain
    their raw logs and remote checkpoints separately from earlier evidence.
-2. Continue the remaining M06 work: scalable discovery beyond the configured
+2. Build repository-driven foreground sessions and the durable remote-command
+   journal following the [bulk contract](bulk-flags.md). Persist intent before
+   dispatch; retain uncertainty across restart; qualify cancellation, conflicts,
+   UIDVALIDITY and offline/reconnect recovery. Account-wide/unified search,
+   conversations and broader archive/move/delete/rule workflows then build on
+   explicit cache completeness and the durable command boundary.
+3. Continue the remaining M06 work: scalable discovery beyond the configured
    simple-SEARCH count/byte budgets, host OAuth/refresh and lifecycle scheduling,
    other-OS TLS coverage and authorized disposable-account interoperability. Generic browser
    socket transport remains explicitly unsupported; no automatic retry is added
    without its own bounded policy and reconciliation checks.
-3. Build the next M07 increment as a durable pre-submission undo delay and
+4. Build the next M07 increment as a durable pre-submission undo delay and
    explicitly scheduled foreground send, with separate eligibility/intent,
    restart/time-change handling and cancel-before-attempt transactions. Keep
-   M04W's repository-driven workspace and provider-specific Sent reconciliation
-   as explicit subsequent boundaries; preserve unknown acceptance and the
-   all-or-abort recipient policy.
-4. Independently close reader/browser no-fetch and browser-store runtime gates,
+   provider-specific Sent reconciliation as an explicit boundary separate from
+   foreground flag commands; preserve unknown acceptance and the all-or-abort
+   recipient policy.
+5. Independently close reader/browser no-fetch and browser-store runtime gates,
    including quotas, reloads, tab contention and recovery. Qualify memory and
    rendering on the intended low-memory devices. Keep CrispCloud EML routing
    unchanged until CC parity tests pass in that repository.
-5. Continue the Office attachment bridge, standalone full Office host and
+6. Continue the Office attachment bridge, standalone full Office host and
    independent CrispCloud integration with the original dependency order and
    per-product release gates.

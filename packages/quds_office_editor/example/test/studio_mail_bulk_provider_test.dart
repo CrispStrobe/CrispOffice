@@ -9,6 +9,7 @@ import 'package:quds_mail_ui/quds_mail_ui.dart';
 import 'package:quds_office_studio/studio_mail_bulk_status.dart';
 import 'package:quds_office_studio/studio_mail_ews.dart';
 import 'package:quds_office_studio/studio_strings.dart';
+import 'package:quds_office_studio/studio_mail_workspace_strings.dart';
 
 import 'support/mail_draft_store.dart';
 
@@ -450,6 +451,39 @@ void main() {
         expect(harness.provider.bodyReads, 0);
         expect(harness.provider.headerReads, 1);
         expect(tester.takeException(), isNull);
+      },
+    );
+
+    testWidgets(
+      '${kind.name}: certified stale scope requires refresh before a new batch',
+      (tester) async {
+        final harness = _Harness(kind);
+        await _show(tester, harness);
+        harness.provider.respond = (_, _) => const MailFailure(
+          MailProblem(
+            MailProblemCode.staleOperation,
+            mutationMayHaveOccurred: false,
+          ),
+        );
+        await _start(tester, MailBulkFlagAction.flag);
+        _counts(tester, 0, 1, 0, 2);
+        expect(harness.provider.commands, hasLength(1));
+        expect(_list(tester).bulkEnabled, isFalse);
+        expect(
+          find.text(_strings.mailWorkspaceRefreshRequired),
+          findsOneWidget,
+        );
+        _list(tester).onBulkAction!(MailBulkFlagAction.markRead, _ids(tester));
+        await _pump(tester);
+        expect(harness.provider.commands, hasLength(1));
+        harness.provider.respond = (_, _) => _success;
+        await tester.tap(find.byTooltip(_strings.refresh));
+        await _pump(tester);
+        expect(_list(tester).bulkEnabled, isTrue);
+        await _start(tester, MailBulkFlagAction.markRead);
+        _counts(tester, 3, 0, 0, 0);
+        expect(harness.provider.headerReads, 2);
+        expect(harness.provider.bodyReads, 0);
       },
     );
 

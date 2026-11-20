@@ -21,8 +21,7 @@ MailMessageList(
 );
 ```
 
-The list searches loaded headers with structured sender, subject, visible
-recipient, state and local-date predicates without making requests. Unread
+The list searches loaded subjects and senders without making requests. Unread
 and Flagged filters combine; nullable unknown flags do not count as observed
 unread/flagged states. Counts distinguish visible and loaded rows. Load more
 remains available when filtering hides every loaded row. Rows are virtualized.
@@ -51,15 +50,14 @@ Connected hosts can opt in to checked-message actions:
 ```dart
 MailMessageList(
   scopeId: hostAccountAndFolderIdentity,
-  selectionScopeId: hostMailboxRevision,
+  selectionRevision: hostMailboxRevision,
   items: rows,
   strings: hostLocalizedListStrings,
   onOpen: hostOpenMessage,
   onBulkAction: hostRunForegroundFlagBatch,
-  bulkActionsEnabled: !refreshRequired,
+  bulkEnabled: !refreshRequired,
   busy: isFetchingOrChangingFlags,
   bulkStatus: hostBatchProgressOrResults,
-  onCancelBulk: isChangingFlags ? hostStopAfterCurrentMessage : null,
 );
 ```
 
@@ -74,16 +72,21 @@ The action menu exposes `markRead`, `markUnread`, `flag` and `unflag`. An explic
 choice forwards an unmodifiable ID list in visible order and immediately clears
 the checks. Pending menu and pointer callbacks are rejected after host updates,
 scope/revision/filter/sort/selection changes, or disposal. Changing `scopeId` or
-`selectionScopeId` clears the selection. The host must advance the revision
+`selectionRevision` clears the selection. The host must advance the revision
 when its account, provider session or mailbox identity observations change, and
 independently validate the submitted IDs before issuing provider commands.
 
-`busy` disables selection and mutation controls. `bulkActionsEnabled: false` clears
+`selectionScopeId` and `selectionRevision` name the same observation revision;
+`bulkActionsEnabled` and `bulkEnabled` name the same enablement flag. Supplying
+both aliases requires equal values. `selectVisible` remains a strings alias for
+`selectShown`. `onCancelBulk` exposes an optional stop control independently of
+the host-owned `bulkStatus` slot.
+
+`busy` disables selection and mutation controls. `bulkEnabled: false` clears
 checks and keeps controls unavailable while the host requires a refresh. Omit
 `onBulkAction` entirely for cached/read-only hosts; no mutable bulk controls are
 shown. Host-owned progress, cancellation and per-message outcomes can be supplied
-as `bulkStatus` within the compact scrollable header. `onCancelBulk` keeps a
-localized stop-after-current control available while busy blocks new work. This list does not queue,
+as `bulkStatus` within the compact scrollable header. This list does not queue,
 retry, persist or send commands by itself.
 
 ## Embed the same reader in either host
