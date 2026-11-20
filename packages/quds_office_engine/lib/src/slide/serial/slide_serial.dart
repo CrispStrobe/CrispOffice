@@ -871,6 +871,7 @@ class SlideSerializer {
     _normalizeChartAxisIds(package);
     pres.properties.writeToPackage(package);
     pres.package = package;
+    pres.master.setImportedBackground(pres.master.background);
     return package;
   }
 
@@ -977,6 +978,9 @@ class SlideSerializer {
     final String color = pres.master.background.isEmpty
         ? 'FFFFFF'
         : pres.master.background;
+    final bool changesAllColors = pres.master.changesNativeBackgroundColor;
+    final _SlideTemplates templates = _SlideTemplates(package);
+    final Map<String, String> resolvedByMaster = {};
     final RelationshipCollection presRels = package.relationshipsFor(
       _presentationUri,
     );
@@ -986,20 +990,44 @@ class SlideSerializer {
           presRels.resolve(rel),
     };
     for (final slide in pres.slides) {
+      final String resolved = changesAllColors
+          ? color
+          : slide.resolveBackground(color);
       final String? layoutUri = slide.sourceLayoutPartUri;
-      if (layoutUri != null) {
+      if (layoutUri != null &&
+          package.getPart(layoutUri)?.contentType ==
+              OfficeContentTypes.slideLayout) {
         final rels = package.relationshipsFor(layoutUri);
         for (final rel in rels.byType(RelationshipTypes.slideMaster)) {
           if (rel.targetMode == RelationshipTargetMode.internal) {
-            masterUris.add(rels.resolve(rel));
+            final String masterUri = rels.resolve(rel);
+            masterUris.add(masterUri);
+            if (slide.inheritsMasterBackground) {
+              resolvedByMaster[masterUri] = resolved;
+            }
           }
         }
       }
-      slide.updateMasterBackground(color);
+      if (slide.inheritsMasterBackground) {
+        slide.setInheritedBackground(resolved, masterBackground: color);
+        slide.backgroundShapes.removeWhere(
+          (shape) => shape.isBackgroundPicture,
+        );
+      }
     }
     for (final uri in masterUris) {
       final PackagePart? part = package.getPart(uri);
       if (part?.contentType != OfficeContentTypes.slideMaster) continue;
+      final String? nativeColor = templates._master(uri)?.background;
+      final String targetColor =
+          resolvedByMaster[uri] ??
+          (!changesAllColors && nativeColor != null ? nativeColor : color);
+      if (!changesAllColors &&
+          nativeColor != null &&
+          nativeColor.toUpperCase() == targetColor.toUpperCase() &&
+          targetColor.toUpperCase() != color.toUpperCase()) {
+        continue;
+      }
       final XmlDocument document = XmlDocument.parse(part!.readText());
       final XmlElement? root = document.root;
       final XmlElement? common = root?.firstChild(
@@ -1015,7 +1043,7 @@ class SlideSerializer {
       final XmlElement properties = element('bgPr', 'p', OfficeNamespaces.p);
       final XmlElement fill = element('solidFill', 'a', OfficeNamespaces.a);
       final XmlElement rgb = element('srgbClr', 'a', OfficeNamespaces.a)
-        ..setAttribute('val', color);
+        ..setAttribute('val', targetColor);
       fill.addChild(rgb);
       properties.addChild(fill);
       background.addChild(properties);

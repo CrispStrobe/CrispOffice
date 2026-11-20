@@ -813,6 +813,7 @@ class PmlMaster {
 
   String _background;
   bool _hasAuthoredBackground;
+  String? _nativeBackground;
 
   /// Resolved paper color. Assigning it authors a solid master fill, including
   /// when the color equals an imported picture's solid fallback.
@@ -826,10 +827,18 @@ class PmlMaster {
   /// Whether native master fills should be replaced by the authored color.
   bool get hasAuthoredBackground => _hasAuthoredBackground;
 
-  /// Loads the resolved import color without replacing the native master fill.
+  /// A changed primary color also changes inherited secondary-master colors.
+  /// An explicit assignment of the same color can still replace picture fills.
+  bool get changesNativeBackgroundColor =>
+      _nativeBackground == null ||
+      _nativeBackground !=
+          (_background.isEmpty ? 'FFFFFF' : _background.toUpperCase());
+
+  /// Records a resolved imported or published color without authoring a fill.
   void setImportedBackground(String value) {
     _background = value;
     _hasAuthoredBackground = false;
+    _nativeBackground = value.isEmpty ? 'FFFFFF' : value.toUpperCase();
   }
 
   /// Master shapes / placeholders.
