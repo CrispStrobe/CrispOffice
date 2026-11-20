@@ -165,25 +165,33 @@ class FakeModels extends StudioSpacyHost {
 
 /// Font pack host with the core pack installed and the visual pack missing.
 class FakeFontPacks extends StudioFontPackHost {
+  FakeFontPacks([this.items]);
+
+  /// An optional explicit inventory; may change without notifying to model
+  /// a row whose package disappeared between rendering and activation.
+  List<OfficeFontPackStatus>? items;
+
   final calls = <String>[];
   bool coreInstalled = true;
   @override
-  List<OfficeFontPackStatus> get statuses => <OfficeFontPackStatus>[
-    // Every argument is given: the native and web status classes differ in
-    // which parameters are required.
-    OfficeFontPackStatus(
-      pack: officeCoreFontPack,
-      installed: coreInstalled,
-      bytesOnDisk: coreInstalled ? officeCoreFontPack.bytes : 0,
-      directory: '/owned/fonts/${officeCoreFontPack.id}',
-    ),
-    const OfficeFontPackStatus(
-      pack: officeVisualFontPack,
-      installed: false,
-      bytesOnDisk: 0,
-      directory: '/owned/fonts/office-visual-v1',
-    ),
-  ];
+  List<OfficeFontPackStatus> get statuses =>
+      items ??
+      <OfficeFontPackStatus>[
+        // Every argument is given: the native and web status classes differ in
+        // which parameters are required.
+        OfficeFontPackStatus(
+          pack: officeCoreFontPack,
+          installed: coreInstalled,
+          bytesOnDisk: coreInstalled ? officeCoreFontPack.bytes : 0,
+          directory: '/owned/fonts/${officeCoreFontPack.id}',
+        ),
+        const OfficeFontPackStatus(
+          pack: officeVisualFontPack,
+          installed: false,
+          bytesOnDisk: 0,
+          directory: '/owned/fonts/office-visual-v1',
+        ),
+      ];
   @override
   Future<void> refresh() async => calls.add('refresh');
   @override

@@ -143,6 +143,17 @@ class _StudioDownloadsManagerState extends State<StudioDownloadsManager> {
   }
 
   Future<void> _review(StudioDownloadItem item) {
+    final fontHost = widget.fontPacks;
+    final fontStatus = item.review == StudioDownloadReview.fontPack
+        ? fontHost?.statuses
+              .where((candidate) => candidate.pack.id == item.id)
+              .firstOrNull
+        : null;
+    // The host can refresh its inventory after a row was rendered.
+    if (item.review == StudioDownloadReview.fontPack &&
+        (fontHost == null || fontStatus == null)) {
+      return Future<void>.value();
+    }
     final direction = Directionality.of(context);
     return showDialog<void>(
       context: context,
@@ -157,10 +168,8 @@ class _StudioDownloadsManagerState extends State<StudioDownloadsManager> {
             host: widget.spacy,
           ),
           StudioDownloadReview.fontPack => StudioFontPackSetupDialog(
-            status: widget.fontPacks!.statuses.firstWhere(
-              (status) => status.pack.id == item.id,
-            ),
-            host: widget.fontPacks!,
+            status: fontStatus!,
+            host: fontHost!,
           ),
         },
       ),

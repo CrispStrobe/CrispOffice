@@ -9,13 +9,13 @@ import 'package:quds_mail_store/quds_mail_store.dart';
 import 'package:quds_mail_transport/quds_mail_transport.dart';
 import 'package:quds_mail_ui/quds_mail_ui.dart';
 
+import 'studio_credential_settings.dart';
+import 'studio_credential_storage.dart';
 import 'studio_mail_archive_action.dart';
 import 'studio_mail_archive_folder_action.dart';
 import 'studio_mail_cloud.dart';
 import 'studio_mail_compose.dart';
 import 'studio_mail_credentials.dart';
-import 'studio_credential_storage.dart';
-import 'studio_credential_settings.dart';
 import 'studio_mail_draft_store.dart';
 import 'studio_mail_draft_store_native.dart';
 import 'studio_mail_ews.dart';
@@ -29,9 +29,9 @@ import 'studio_mail_submission.dart';
 import 'studio_saved_mail.dart';
 import 'studio_strings.dart';
 
-/// IMAP/SMTP client with optional platform-keychain account persistence.
+/// IMAP/SMTP client with optional selected-store account persistence.
 ///
-/// Account setup is explicit; remembered credentials use the platform keychain.
+/// Account setup is explicit; remembered credentials use the selected secure store.
 /// Discovery and provider presets require verified encrypted transports. Every
 /// network operation reports its own failure instead of presenting an empty
 /// inbox.
@@ -96,6 +96,7 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
   String? _selectedSavedAccountId;
   bool _remember = true;
   StudioMailCredentials? _lastCredentialSnapshot;
+  bool _credentialSettingsOpen = false;
   bool _startTls = false;
   bool _hasSavedCredentials = false;
   bool _credentialPending = false;
@@ -331,7 +332,9 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
     bool remember,
   ) async {
     if (!_currentSession(client, sessionGeneration)) return;
-    _lastCredentialSnapshot = remember ? credentials : null;
+    _lastCredentialSnapshot = remember
+        ? StudioMailCredentials.fromJson(credentials.toJson())
+        : null;
     final generation = ++_credentialGeneration;
     setState(() => _credentialPending = true);
     bool success;
@@ -1079,9 +1082,13 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
 
   Future<void> _forward() => _composeFromMessage(forward: true);
 
+  Future<void> _forwardWithAttachments() =>
+      _composeFromMessage(forward: true, includeAttachments: true);
+
   Future<void> _composeFromMessage({
     required bool forward,
     bool replyAll = false,
+    bool includeAttachments = false,
   }) => runStudioMailOperation(() async {
     final account = _account;
     if (_busy || _dialogOpen || _client == null || account == null) return;
@@ -1094,22 +1101,36 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
     }
     // The list item contains only an envelope. Quote the authoritative
     // bounded raw-message parse, never the reader's header presentation.
-    final message = _reader?.result.message;
-    if (message == null) return;
+    final result = _reader?.result;
+    final message = result?.message;
+    if (result == null || message == null) return;
     try {
-      final draft = replyAll
+      final draft = includeAttachments
+          ? buildStudioMailForwardWithAttachmentsDraft(
+              result,
+              truncationNotice: widget.strings.mailQuotedTextTruncated,
+              forwardNotice: widget.strings.mailAttachedForwardNotice,
+            )
+          : replyAll
           ? buildStudioMailReplyAllDraft(
               message,
               sender: account.email,
+              sourceStatus: result.status,
               truncationNotice: widget.strings.mailQuotedTextTruncated,
             )
           : buildStudioMailReplyDraft(
               message,
               forward: forward,
+              sourceStatus: result.status,
               truncationNotice: widget.strings.mailQuotedTextTruncated,
               forwardNotice: widget.strings.mailTextOnlyForward,
             );
       await _openComposer(draft);
+    } on StudioMailForwardAttachmentsUnavailable {
+      setState(() {
+        _error = widget.strings.mailForwardAttachmentsUnavailable;
+        _notice = null;
+      });
     } on StudioMailReplyRecipientsUnavailable {
       setState(() {
         _error = widget.strings.mailReplyRecipientsUnavailable;
@@ -1377,18 +1398,55 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
     ),
   );
 
+  bool get _canChangeCredentialStorage =>
+      widget.credentialStore == null &&
+      !_credentialPending &&
+      !_credentialSettingsOpen &&
+      !_connecting &&
+      !_busy &&
+      !_dialogOpen;
+
   Future<void> _openCredentialStorage() async {
-    if (await showStudioCredentialSettings(context) && mounted) {
-      _credentialGeneration++;
-      setState(() {
-        _credentialPending = false;
-        _credentialError = _client != null && _lastCredentialSnapshot != null
-            ? 'Save this connected account to the selected credential store.'
-            : null;
-        _accountCatalog = null;
-      });
-      await _loadCredentials();
+    if (!_canChangeCredentialStorage) return;
+    setState(() {
+      _credentialSettingsOpen = true;
+      _dialogOpen = true;
+    });
+    var changed = false;
+    try {
+      changed = await showStudioCredentialSettings(context);
+    } on Object {
+      if (mounted) {
+        setState(
+          () => _credentialError = widget.strings.mailAccountsLoadFailed,
+        );
+      }
+      return;
+    } finally {
+      if (mounted) {
+        setState(() {
+          _credentialSettingsOpen = false;
+          _dialogOpen = false;
+        });
+      }
     }
+    if (!changed || !mounted) return;
+    _credentialGeneration++;
+    setState(() {
+      _credentialPending = false;
+      _accountCatalog = null;
+      _selectedSavedAccountId = null;
+      _hasSavedCredentials = false;
+      if (_client == null) {
+        // An empty or unavailable newly selected store must never leave the
+        // previous store's password or Forget target in the account form.
+        _clearAccountSettings();
+      }
+      _credentialError = _client != null && _lastCredentialSnapshot != null
+          ? 'Save this connected account to the selected credential store.'
+          : null;
+    });
+    await _loadCredentials();
   }
 
   Widget _mailMenus(BuildContext context) => MenuBar(
@@ -1400,10 +1458,13 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
     children: [
       SubmenuButton(
         menuChildren: [
-          MenuItemButton(
-            onPressed: _openCredentialStorage,
-            child: const Text('Credential storage…'),
-          ),
+          if (widget.credentialStore == null)
+            MenuItemButton(
+              onPressed: _canChangeCredentialStorage
+                  ? _openCredentialStorage
+                  : null,
+              child: const Text('Credential storage…'),
+            ),
           MenuItemButton(
             onPressed: () => setState(() {
               _savedMessagesVisited = true;
@@ -1468,11 +1529,14 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
       automaticallyImplyLeading: false,
       title: Text(widget.strings.mailTitle, overflow: TextOverflow.ellipsis),
       actions: <Widget>[
-        IconButton(
-          tooltip: 'Credential storage',
-          icon: const Icon(Icons.key),
-          onPressed: _credentialPending ? null : _openCredentialStorage,
-        ),
+        if (widget.credentialStore == null)
+          IconButton(
+            tooltip: 'Credential storage',
+            icon: const Icon(Icons.key),
+            onPressed: _canChangeCredentialStorage
+                ? _openCredentialStorage
+                : null,
+          ),
         IconButton(
           onPressed: _busy || _connecting
               ? null
@@ -1589,13 +1653,16 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
                   _rememberedAccounts(context),
                   const Divider(height: 24),
                 ],
-                TextButton.icon(
-                  onPressed: _credentialPending ? null : _openCredentialStorage,
-                  icon: const Icon(Icons.key),
-                  label: Text(
-                    'Credential storage: ${StudioCredentialStorage.instance.label}',
+                if (widget.credentialStore == null)
+                  TextButton.icon(
+                    onPressed: _canChangeCredentialStorage
+                        ? _openCredentialStorage
+                        : null,
+                    icon: const Icon(Icons.key),
+                    label: Text(
+                      'Credential storage: ${StudioCredentialStorage.instance.label}',
+                    ),
                   ),
-                ),
                 for (final service in MailCloudService.values)
                   Padding(
                     padding: const EdgeInsets.only(bottom: 8),
@@ -1774,7 +1841,8 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
                   key: const ValueKey('studio-mail-remember'),
                   contentPadding: EdgeInsets.zero,
                   title: Text(
-                    StudioCredentialStorage.instance.persistent
+                    widget.credentialStore != null ||
+                            StudioCredentialStorage.instance.persistent
                         ? widget.strings.rememberAccount
                         : 'Remember this account for this session',
                   ),
@@ -2008,7 +2076,7 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
           ),
           if (_client != null && _lastCredentialSnapshot != null)
             TextButton.icon(
-              onPressed: _credentialPending
+              onPressed: _credentialPending || _credentialSettingsOpen
                   ? null
                   : () => _persistCredentials(
                       _client!,
@@ -2209,6 +2277,11 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
           onPressed: _busy ? null : _forward,
           tooltip: widget.strings.forward,
           icon: const Icon(Icons.forward_outlined),
+        ),
+        IconButton(
+          onPressed: _busy ? null : _forwardWithAttachments,
+          tooltip: widget.strings.mailForwardWithAttachments,
+          icon: const Icon(Icons.attach_email_outlined),
         ),
         if (_messageLoader is StudioMailMessageActions) ...[
           IconButton(

@@ -7,6 +7,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:path/path.dart' as p;
 
 import 'credentials/secure_storage_service.dart';
+import 'credentials/utils/async_lock.dart';
 import 'credentials/secure_storage_file_io.dart';
 import 'credentials/secure_storage_macos_keychain.dart';
 
@@ -19,6 +20,7 @@ class StudioCredentialStorage extends ChangeNotifier {
   StudioCredentialMode mode = StudioCredentialMode.system;
   String? customPath;
   final _stores = <String, SecureStorage>{};
+  final _selectionOperations = AsyncLock();
   bool _loaded = false;
   String get label => switch (mode) {
     StudioCredentialMode.system => 'System credential store',
@@ -26,7 +28,6 @@ class StudioCredentialStorage extends ChangeNotifier {
     StudioCredentialMode.encryptedVault => 'Encrypted credential vault',
     StudioCredentialMode.session => 'This session only',
   };
-  String get _identity => '${mode.name}:${customPath ?? ''}';
   bool get persistent => mode != StudioCredentialMode.session;
   Future<void> loadSelection() async {
     if (_loaded) return;
@@ -62,10 +63,15 @@ class StudioCredentialStorage extends ChangeNotifier {
 
   Future<SecureStorage> get storage async {
     await loadSelection();
-    final cached = _stores[_identity];
+    // Capture the selected identity before native capability checks or
+    // initialization yield. Another dialog may select a store meanwhile.
+    final selectedMode = mode;
+    final selectedPath = customPath;
+    final selectedIdentity = '${selectedMode.name}:${selectedPath ?? ''}';
+    final cached = _stores[selectedIdentity];
     if (cached != null) return cached;
     final SecureStorage result;
-    switch (mode) {
+    switch (selectedMode) {
       case StudioCredentialMode.system:
         // Use CrispCloud's capability check before reading any credential:
         // a missing Data Protection entitlement selects the OS file keychain.
@@ -75,7 +81,7 @@ class StudioCredentialStorage extends ChangeNotifier {
       case StudioCredentialMode.session:
         result = InMemorySecureStorage();
       case StudioCredentialMode.customKeychain:
-        final selected = MacOsCustomKeychainStorage(path: customPath!);
+        final selected = MacOsCustomKeychainStorage(path: selectedPath!);
         await selected.initialize();
         result = selected;
       case StudioCredentialMode.encryptedVault:
@@ -83,34 +89,35 @@ class StudioCredentialStorage extends ChangeNotifier {
           'Unlock the encrypted credential vault in Credential storage.',
         );
     }
-    _stores[_identity] = result;
+    _stores[selectedIdentity] = result;
     return result;
   }
 
-  Future<void> select(StudioCredentialMode next, {String? path}) async {
-    await loadSelection();
-    if (next == StudioCredentialMode.customKeychain) {
-      if (!Platform.isMacOS || path == null || path.trim().isEmpty) {
-        throw ArgumentError('Choose a macOS keychain file.');
-      }
-      final store = MacOsCustomKeychainStorage(path: path);
-      await store.initialize();
-      _stores['${next.name}:$path'] = store;
-    }
-    if (next == StudioCredentialMode.encryptedVault &&
-        !_stores.containsKey('${next.name}:')) {
-      throw StateError('Unlock or create the vault first.');
-    }
-    final record = jsonEncode({
-      'mode': next.name,
-      'path': next == StudioCredentialMode.customKeychain ? path : null,
-    });
-    final prefs = await SharedPreferences.getInstance();
-    if (!await prefs.setString(preferenceKey, record)) {
-      throw StateError('Could not save the credential-store selection.');
-    }
-    mode = next;
-    customPath = next == StudioCredentialMode.customKeychain ? path : null;
-    notifyListeners();
-  }
+  Future<void> select(StudioCredentialMode next, {String? path}) =>
+      _selectionOperations.synchronized(() async {
+        await loadSelection();
+        if (next == StudioCredentialMode.customKeychain) {
+          if (!Platform.isMacOS || path == null || path.trim().isEmpty) {
+            throw ArgumentError('Choose a macOS keychain file.');
+          }
+          final store = MacOsCustomKeychainStorage(path: path);
+          await store.initialize();
+          _stores['${next.name}:$path'] = store;
+        }
+        if (next == StudioCredentialMode.encryptedVault &&
+            !_stores.containsKey('${next.name}:')) {
+          throw StateError('Unlock or create the vault first.');
+        }
+        final record = jsonEncode({
+          'mode': next.name,
+          'path': next == StudioCredentialMode.customKeychain ? path : null,
+        });
+        final prefs = await SharedPreferences.getInstance();
+        if (!await prefs.setString(preferenceKey, record)) {
+          throw StateError('Could not save the credential-store selection.');
+        }
+        mode = next;
+        customPath = next == StudioCredentialMode.customKeychain ? path : null;
+        notifyListeners();
+      });
 }

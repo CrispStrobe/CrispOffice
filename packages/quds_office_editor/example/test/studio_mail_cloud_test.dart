@@ -1502,6 +1502,197 @@ void main() {
   );
 
   for (final service in MailCloudService.values) {
+    final serviceName = service.name;
+    testWidgets(
+      '$serviceName attachment forward recovers after reconnect and requires acknowledged retry',
+      (tester) async {
+        final drafts = MemoryStudioMailDrafts();
+        final harness = _Harness();
+        await _show(tester, harness, service: service, drafts: drafts);
+        await _connect(tester);
+        final original = harness.provider!
+          ..replyParticipants = true
+          ..outcome = MailSubmissionOutcome.uncertain;
+        final source = const QudsMimeCodec().parse(
+          original.message().raw.bytes,
+        );
+        expect(source.status, MailParseStatus.complete);
+        expect(source.message!.attachments, hasLength(1));
+        await tester.tap(find.text('Cloud message'));
+        await _pump(tester);
+        await tester.tap(find.byTooltip(_strings.mailForwardWithAttachments));
+        await _pump(tester);
+        final initial = tester
+            .widget<StudioMailComposeDialog>(
+              find.byType(StudioMailComposeDialog),
+            )
+            .initialDraft!;
+        expect(initial.to, isEmpty);
+        expect(initial.cc, isEmpty);
+        expect(initial.bcc, isEmpty);
+        expect(initial.thread.inReplyTo, isNull);
+        expect(initial.thread.references, isNull);
+        expect(initial.attachments.items.single.name, 'cloud.bin');
+        expect(initial.attachments.items.single.content.bytes, [
+          0,
+          1,
+          2,
+          255,
+          13,
+          10,
+        ]);
+        expect(initial.body, contains('Body from cloud provider.'));
+        expect(initial.body, isNot(contains(_strings.mailTextOnlyForward)));
+        expect(original.submissions, isEmpty);
+        await tester.enterText(
+          _composeField(_strings.to),
+          'forward@example.test',
+        );
+        final send = find.widgetWithText(FilledButton, _strings.send);
+        await tester.ensureVisible(send);
+        await tester.tap(send);
+        await _pump(tester);
+        expect(original.submissions, hasLength(1));
+        expect(find.text(_strings.mailSubmissionUncertain), findsOneWidget);
+        expect(drafts.records.values.single.submissionUncertain, isTrue);
+        expect(
+          drafts
+              .records
+              .values
+              .single
+              .draft
+              .attachments
+              .items
+              .single
+              .content
+              .bytes,
+          [0, 1, 2, 255, 13, 10],
+        );
+        await tester.tap(find.byTooltip(_strings.mailForwardWithAttachments));
+        await _pump(tester);
+        expect(find.text(_strings.mailRetainedDraft), findsOneWidget);
+        expect(find.byType(StudioMailComposeDialog), findsNothing);
+        expect(original.submissions, hasLength(1));
+        await tester.tap(find.byTooltip(_strings.close));
+        await _pump(tester);
+
+        await tester.tap(find.text('Open cloud'));
+        await _pump(tester);
+        await _connect(tester);
+        final reconnected = harness.provider!;
+        expect(identical(original, reconnected), isFalse);
+        expect(reconnected.submissions, isEmpty);
+        expect(find.text(_strings.mailSubmissionUncertain), findsOneWidget);
+        await tester.tap(find.byTooltip(_strings.compose));
+        await _pump(tester);
+        final recovered = tester
+            .widget<StudioMailComposeDialog>(
+              find.byType(StudioMailComposeDialog),
+            )
+            .initialDraft!;
+        expect(recovered.to, 'forward@example.test');
+        expect(recovered.attachments.items.single.name, 'cloud.bin');
+        expect(recovered.attachments.items.single.content.bytes, [
+          0,
+          1,
+          2,
+          255,
+          13,
+          10,
+        ]);
+        expect(recovered.body, initial.body);
+        expect(tester.widget<FilledButton>(send).onPressed, isNull);
+        expect(reconnected.submissions, isEmpty);
+        await tester.ensureVisible(find.byType(CheckboxListTile));
+        await tester.tap(find.byType(CheckboxListTile));
+        await _pump(tester);
+        await tester.ensureVisible(send);
+        await tester.tap(send);
+        await _pump(tester);
+        expect(original.submissions, hasLength(1));
+        expect(reconnected.submissions, hasLength(1));
+        for (final submission in [
+          original.submissions.single,
+          reconnected.submissions.single,
+        ]) {
+          final parsed = const QudsMimeCodec().parse(submission.wire.bytes);
+          expect(parsed.status, MailParseStatus.complete);
+          final message = parsed.message!;
+          expect(message.attachments.single.displayName, 'cloud.bin');
+          expect(message.attachments.single.content.bytes, [
+            0,
+            1,
+            2,
+            255,
+            13,
+            10,
+          ]);
+          expect(message.attachments.single.inline, isFalse);
+          expect(message.envelope.inReplyTo, isNull);
+          expect(message.envelope.references, isEmpty);
+          expect(message.envelope.bcc, isEmpty);
+          expect(submission.envelope.recipients, ['forward@example.test']);
+          expect(
+            utf8.decode(submission.wire.bytes),
+            isNot(contains('hidden@example.test')),
+          );
+        }
+        expect(drafts.records, isEmpty);
+        expect(find.text(_strings.mailCloudSubmissionAccepted), findsOneWidget);
+        expect(tester.takeException(), isNull);
+      },
+    );
+
+    testWidgets(
+      '$serviceName Reply all safely quotes an HTML-only provider message',
+      (tester) async {
+        final harness = _Harness();
+        await _show(tester, harness, service: service);
+        await _connect(tester);
+        final raw = Uint8List.fromList(
+          utf8.encode(
+            'From: writer@example.test\r\n'
+            'To: reader@example.test\r\n'
+            'Bcc: hidden@example.test\r\n'
+            'Subject: HTML cloud message\r\n'
+            'Message-ID: <html-parent@example.test>\r\n'
+            'Content-Type: text/html; charset=utf-8\r\n\r\n'
+            '<p>Quoted cloud HTML.</p>'
+            '<script>private-script-content</script>',
+          ),
+        );
+        final parsed = const QudsMimeCodec().parse(raw);
+        expect(parsed.status, MailParseStatus.complete);
+        expect(parsed.message!.body.plainText, isNull);
+        harness.provider!.messageGate = Completer<MailResult<MailMessage>>()
+          ..complete(MailSuccess(parsed.message!));
+        await tester.tap(find.text('Cloud message'));
+        await _pump(tester);
+        await tester.tap(find.byTooltip(_strings.replyAll));
+        await _pump(tester);
+        expect(find.byType(StudioMailComposeDialog), findsOneWidget);
+        final draft = tester
+            .widget<StudioMailComposeDialog>(
+              find.byType(StudioMailComposeDialog),
+            )
+            .initialDraft!;
+        expect(draft.to, 'writer@example.test');
+        expect(draft.bcc, isEmpty);
+        expect(draft.body, contains('Quoted cloud HTML.'));
+        expect(draft.body, isNot(contains('private-script-content')));
+        expect(draft.body, isNot(contains('hidden@example.test')));
+        expect(draft.thread.inReplyTo, '<html-parent@example.test>');
+        expect(draft.attachments.isEmpty, isTrue);
+        expect(harness.provider!.submissions, isEmpty);
+        await tester.ensureVisible(find.text(_strings.mailDraftSaveClose));
+        await tester.tap(find.text(_strings.mailDraftSaveClose));
+        await _pump(tester);
+        expect(tester.takeException(), isNull);
+      },
+    );
+  }
+
+  for (final service in MailCloudService.values) {
     testWidgets(
       '${service.name} Reply all submits visible groups and explicit Bcc with threading',
       (tester) async {
@@ -1556,6 +1747,7 @@ void main() {
         ]);
         expect(message.envelope.cc.single.address, 'copied@example.test');
         expect(message.envelope.bcc, isEmpty);
+        expect(message.attachments, isEmpty);
         expect(message.envelope.inReplyTo, '<parent@example.test>');
         expect(message.envelope.references, [
           '<root@example.test>',

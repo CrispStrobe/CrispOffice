@@ -9349,6 +9349,11 @@ class WordEditorController extends OfficeController {
   /// Current review selection, rebound after a check of unchanged text. A
   /// finding under the caret takes precedence, so the pane follows navigation
   /// without moving focus or interrupting typing.
+  /// The issue last chosen with [selectProofingIssue], without validating it
+  /// against the caret; cheap to read (no proofing capture), for change
+  /// detection by host chrome.
+  WordProofingIssue? get chosenProofingIssue => _selectedProofingIssue;
+
   WordProofingIssue? get selectedProofingIssue {
     final selected = _selectedProofingIssue;
     final atCaret = proofingIssuesAtCaret;

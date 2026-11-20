@@ -175,6 +175,9 @@ class _Recorder {
   _Convergence? convergence;
   _Splice? splice;
 
+  /// Top-level blocks an incremental layout must lay out from scratch.
+  Set<WmlBlock> dirtyBlocks = const <WmlBlock>{};
+
   /// Resumed sections keep the old records before the resume block.
   void begin(WmlSection section, int sectionIndex, {_SectionRecord? prefix}) {
     final _SectionRecord record = _SectionRecord(section);
@@ -245,6 +248,11 @@ class _Recorder {
         flow.columnTop != cp.columnTop ||
         adjacentAfter != cp.adjacentAfter ||
         flow.hasContent != cp.hasContent ||
+        // Retained checkpoints address prefix slices on the partial page.
+        // Equal vertical flow alone does not preserve those slice lengths
+        // (for example, extra lines inside a fixed-height table row).
+        flow.current.length != cp.lines ||
+        flow.currentFrames.length != cp.frames ||
         cp.wrapFrames ||
         _hasWrapFrames(flow.currentFrames)) {
       return false;
@@ -291,6 +299,36 @@ class _Recorder {
     (LaidOutBox box) =>
         box.frame != null && box.frame!.wrap != WmlFrameWrap.none,
   );
+}
+
+/// A paragraph's line breaks with the environment they were made for. The
+/// paragraph's own content (text, run and paragraph properties) is not part
+/// of the key: entries are read only for blocks an incremental layout proved
+/// unchanged since the previous layout; every layout rewrites them.
+class _BreakCache {
+  _BreakCache(
+    this.lines, {
+    required this.maxWidth,
+    required this.allowBreak,
+    required WmlDocument? document,
+  }) : autoHyphenation = document?.autoHyphenation,
+       proofingLanguage = document?.proofingLanguage;
+
+  final List<BrokenLine> lines;
+  final double maxWidth;
+  final bool allowBreak;
+  final bool? autoHyphenation;
+  final String? proofingLanguage;
+
+  bool matches({
+    required double maxWidth,
+    required bool allowBreak,
+    required WmlDocument? document,
+  }) =>
+      this.maxWidth == maxWidth &&
+      this.allowBreak == allowBreak &&
+      autoHyphenation == document?.autoHyphenation &&
+      proofingLanguage == document?.proofingLanguage;
 }
 
 /// Paragraph text of a block, as compared between layouts.
@@ -353,11 +391,15 @@ class WordIncrementalLayoutStats {
   /// Top-level blocks laid out by incremental layouts.
   static int blocksLaidOut = 0;
 
+  /// Paragraph line breaks reused from the previous layout.
+  static int breaksReused = 0;
+
   static void reset() {
     incremental = 0;
     converged = 0;
     fallbacks = 0;
     blocksLaidOut = 0;
+    breaksReused = 0;
   }
 }
 

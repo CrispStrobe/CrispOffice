@@ -280,6 +280,29 @@ void main() {
     expect(models.calls, isNot(contains('install')));
   });
 
+  testWidgets('open font packs use the grouped Downloads row', (tester) async {
+    final host = FakeFontPacks(<OfficeFontPackStatus>[
+      const OfficeFontPackStatus(
+        pack: officeCoreFontPack,
+        installed: false,
+        bytesOnDisk: 0,
+        directory: '/owned/fonts/office-core-v1',
+      ),
+    ]);
+    await _open(tester, fontPacks: host);
+    expect(_row(officeCoreFontPack.id), findsOneWidget);
+    expect(_row(officeVisualFontPack.id), findsNothing);
+    expect(find.textContaining('Font pack'), findsWidgets);
+    expect(find.text('Fonts'), findsOneWidget);
+    expect(
+      find.descendant(
+        of: _row(officeCoreFontPack.id),
+        matching: find.text(officeCoreFontPack.description),
+      ),
+      findsOneWidget,
+    );
+  });
+
   testWidgets('licence link opens the licence page', (tester) async {
     final opened = <Uri>[];
     await _open(tester, openLicence: (url) async => opened.add(url));
@@ -438,5 +461,44 @@ void main() {
     await tester.tap(remove);
     await tester.pumpAndSettle();
     expect(fonts.calls, <String>['refresh', 'remove-${officeCoreFontPack.id}']);
+  });
+
+  testWidgets('font review ignores an inventory item removed after rendering', (
+    tester,
+  ) async {
+    final fonts = FakeFontPacks();
+    await _open(tester, fontPacks: fonts);
+    final review = find.byKey(
+      ValueKey('download-${officeCoreFontPack.id}-review'),
+    );
+    await tester.ensureVisible(review);
+    fonts.items = const <OfficeFontPackStatus>[];
+    await tester.tap(review);
+    await tester.pumpAndSettle();
+    expect(tester.takeException(), isNull);
+    expect(find.byType(StudioFontPackSetupDialog), findsNothing);
+    expect(fonts.calls, <String>['refresh']);
+  });
+
+  testWidgets('font package review preserves the dialog RTL direction', (
+    tester,
+  ) async {
+    final fonts = FakeFontPacks();
+    await _open(
+      tester,
+      fontPacks: fonts,
+      language: StudioLanguage.ar,
+      rtl: true,
+    );
+    final install = find.byKey(
+      ValueKey('download-${officeVisualFontPack.id}-install'),
+    );
+    await tester.ensureVisible(install);
+    await tester.tap(install);
+    await tester.pumpAndSettle();
+    final review = find.byType(StudioFontPackSetupDialog);
+    expect(review, findsOneWidget);
+    expect(Directionality.of(tester.element(review)), TextDirection.rtl);
+    expect(fonts.calls, <String>['refresh']);
   });
 }
