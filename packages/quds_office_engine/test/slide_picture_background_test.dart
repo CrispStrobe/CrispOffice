@@ -348,6 +348,242 @@ void main() {
     });
   });
 
+  group('background integrity', () {
+    test(
+      'saving pictures never overwrites retained master or layout media',
+      () {
+        final source = _deck(master: _picture(), slide: _picture());
+        final package = source.package!;
+        for (final (owner, uri, bytes) in [
+          (
+            '/ppt/slideMasters/slideMaster1.xml',
+            '/ppt/media/slide1_image1.png',
+            _masterImage,
+          ),
+          (
+            '/ppt/slideLayouts/slideLayout1.xml',
+            '/ppt/media/slide1_image2.png',
+            _layoutImage,
+          ),
+        ]) {
+          package.createPart(uri, 'image/png', bytes);
+          final rels = package.relationshipsFor(owner);
+          rels.removeById('rImage');
+          rels.add(
+            type: RelationshipTypes.image,
+            id: 'rImage',
+            target: '../media/${uri.split('/').last}',
+          );
+        }
+        final retained = <String, Uint8List>{
+          for (final part in package.parts)
+            if (part.uri.startsWith('/ppt/media/')) part.uri: part.readBytes(),
+        };
+        final deck = SlideDeserializer().read(package);
+        deck.slides.single.shapes.add(
+          PmlShape(
+            id: 20,
+            name: 'Editable picture',
+            visual: OfficeVisual(
+              kind: OfficeVisualKind.picture,
+              imageBytes: _layoutImage,
+            ),
+          ),
+        );
+        int? mediaCount;
+        for (var save = 0; save < 2; save++) {
+          final saved = SlideSerializer().write(deck);
+          for (final entry in retained.entries) {
+            expect(
+              saved.getPart(entry.key)!.readBytes(),
+              entry.value,
+              reason: entry.key,
+            );
+          }
+          final reopened = SlideDeserializer().readBytes(saved.save());
+          expect(
+            _pictures(reopened.slides.single).single.visual!.imageBytes,
+            _slideImage,
+          );
+          expect(
+            reopened.slides.single.shapes.single.visual!.imageBytes,
+            _layoutImage,
+          );
+          expect(
+            saved
+                .relationshipsFor('/ppt/slideMasters/slideMaster1.xml')
+                .byId('rImage')!
+                .target,
+            '../media/slide1_image1.png',
+          );
+          final count = saved.parts
+              .where((part) => part.uri.startsWith('/ppt/media/'))
+              .length;
+          if (mediaCount != null) expect(count, mediaCount);
+          mediaCount = count;
+        }
+      },
+    );
+
+    for (final (name, crop, expected) in [
+      (
+        'deep and negative',
+        '<a:srcRect l="75000" t="-10000" r="5000" b="0"/>',
+        <double>[.75, -.1, .05, 0],
+      ),
+      (
+        'negative only',
+        '<a:srcRect l="-99000" t="0" r="0" b="-25000"/>',
+        <double>[-.99, 0, 0, -.25],
+      ),
+    ]) {
+      test('$name background crop survives repeated native saves', () {
+        var deck = _deck(slide: _picture(crop: crop));
+        for (var save = 0; save < 3; save++) {
+          final picture = _pictures(deck.slides.single).single.visual!.picture;
+          expect([
+            picture.cropLeft,
+            picture.cropTop,
+            picture.cropRight,
+            picture.cropBottom,
+          ], expected);
+          deck = _reopen(deck);
+        }
+      });
+    }
+
+    for (final color in ['112233', 'FFFFFF']) {
+      test(
+        'master solid $color replaces inherited pictures and stays inherited',
+        () {
+          var deck = _deck(master: _picture());
+          deck.master.background = color;
+          deck.slides.single.updateMasterBackground(color);
+          expect(_pictures(deck.slides.single), isEmpty);
+          expect(deck.slides.single.inheritsMasterBackground, isTrue);
+          for (var save = 0; save < 2; save++) {
+            deck = _reopen(deck);
+            expect(deck.master.background, color);
+            expect(deck.slides.single.background, color);
+            expect(deck.slides.single.inheritsMasterBackground, isTrue);
+            expect(_pictures(deck.slides.single), isEmpty);
+            expect(
+              deck.slides.single.backgroundShapes.map((shape) => shape.name),
+              ['Master decoration', 'Layout decoration'],
+            );
+          }
+        },
+      );
+    }
+
+    test(
+      'an unchanged master picture remains editable after save and copy',
+      () {
+        var deck = _reopen(_deck(master: _picture()));
+        expect(deck.slides.single.inheritsMasterBackground, isTrue);
+        deck.slides.add(deck.slides.single.copy(id: 257));
+        deck = _reopen(deck);
+        for (final slide in deck.slides) {
+          expect(slide.inheritsMasterBackground, isTrue);
+          expect(_pictures(slide).single.visual!.imageBytes, _masterImage);
+        }
+        deck.master.background = '445566';
+        for (final slide in deck.slides) {
+          slide.updateMasterBackground('445566');
+        }
+        deck = _reopen(deck);
+        for (final slide in deck.slides) {
+          expect(slide.inheritsMasterBackground, isTrue);
+          expect(slide.background, '445566');
+          expect(_pictures(slide), isEmpty);
+        }
+      },
+    );
+
+    test(
+      'copied secondary-master picture retains its layout and inheritance',
+      () {
+        final package = _deck(master: _picture()).package!;
+        const masterUri = '/ppt/slideMasters/slideMaster2.xml';
+        const layoutUri = '/ppt/slideLayouts/slideLayout2.xml';
+        package.createPart(
+          masterUri,
+          OfficeContentTypes.slideMaster,
+          utf8.encode(_part('sldMaster', _picture(), '')),
+        );
+        package.createPart(
+          layoutUri,
+          OfficeContentTypes.slideLayout,
+          utf8.encode(_part('sldLayout', '', '')),
+        );
+        package
+            .relationshipsFor(masterUri)
+            .add(
+              type: RelationshipTypes.image,
+              id: 'rImage',
+              target: '../media/layout.png',
+            );
+        package
+            .relationshipsFor(layoutUri)
+            .add(
+              type: RelationshipTypes.slideMaster,
+              target: '../slideMasters/slideMaster2.xml',
+            );
+        final slideRels = package.relationshipsFor('/ppt/slides/slide1.xml');
+        for (final rel
+            in slideRels.byType(RelationshipTypes.slideLayout).toList()) {
+          slideRels.removeById(rel.id);
+        }
+        slideRels.add(
+          type: RelationshipTypes.slideLayout,
+          target: '../slideLayouts/slideLayout2.xml',
+        );
+        var deck = SlideDeserializer().read(package);
+        deck.slides.add(deck.slides.single.copy(id: 257));
+        for (var save = 0; save < 2; save++) {
+          deck = _reopen(deck);
+          for (final slide in deck.slides) {
+            expect(_pictures(slide).single.visual!.imageBytes, _layoutImage);
+            expect(slide.inheritsMasterBackground, isTrue);
+            final rels = deck.package!.relationshipsFor(slide.sourcePartUri!);
+            expect(
+              rels.resolve(rels.firstByType(RelationshipTypes.slideLayout)!),
+              layoutUri,
+            );
+          }
+        }
+      },
+    );
+
+    for (final owner in ['slide', 'layout']) {
+      test('master edits preserve explicit $owner picture backgrounds', () {
+        var deck = _deck(
+          master: _picture(),
+          slide: owner == 'slide' ? _picture() : '',
+          layout: owner == 'layout' ? _picture() : '',
+        );
+        final expected = owner == 'slide' ? _slideImage : _layoutImage;
+        deck.master.background = '112233';
+        deck.slides.single.updateMasterBackground('112233');
+        deck = _reopen(deck);
+        expect(
+          _pictures(deck.slides.single).single.visual!.imageBytes,
+          expected,
+        );
+        expect(deck.slides.single.inheritsMasterBackground, isFalse);
+        expect(deck.master.background, '112233');
+      });
+    }
+
+    test('a newly authored master solid fill is saved natively', () {
+      final deck = PmlPresentation()..master.background = '123456';
+      final saved = _reopen(deck);
+      expect(saved.master.background, '123456');
+      expect(saved.slides.single.background, '123456');
+      expect(saved.slides.single.inheritsMasterBackground, isTrue);
+    });
+  });
+
   test(
     'PDF picture borders follow the image after its crop clip is restored',
     () {
@@ -385,4 +621,62 @@ void main() {
       );
     },
   );
+
+  for (final cropped in [false, true]) {
+    test(
+      'PDF picture border preserves caller graphics state crop=$cropped',
+      () {
+        final canvas = PdfCanvas(100, 100);
+        canvas.setLineWidth(.5);
+        canvas.setStrokeColor('00FF00');
+        OfficePdfVisuals.paint(
+          canvas,
+          0,
+          0,
+          20,
+          20,
+          OfficeVisual(
+            kind: OfficeVisualKind.picture,
+            imageBytes: _slideImage,
+            picture: PictureAdjust(
+              cropLeft: cropped ? .1 : 0,
+              borderColor: '123456',
+              borderWidth: 7,
+            ),
+          ),
+          <PdfEmbeddedImage>[],
+          drawText: (text, x, y, size, color) =>
+              fail('Unexpected image fallback'),
+        );
+        canvas.rect(30, 0, 20, 20);
+        canvas.stroke();
+        final states = _strokeStates(utf8.decode(canvas.toStream()));
+        expect(states.map((state) => state.$1), [7, .5]);
+        expect(states.last.$2, '0 1 0');
+      },
+    );
+  }
+}
+
+List<(double, String)> _strokeStates(String stream) {
+  var width = 1.0;
+  var color = '0 0 0';
+  final stack = <(double, String)>[];
+  final strokes = <(double, String)>[];
+  for (final line in stream.split('\n')) {
+    if (line == 'q') {
+      stack.add((width, color));
+    } else if (line == 'Q') {
+      final restored = stack.removeLast();
+      width = restored.$1;
+      color = restored.$2;
+    } else if (line.endsWith(' w')) {
+      width = double.parse(line.split(' ').first);
+    } else if (line.endsWith(' RG')) {
+      color = line.substring(0, line.length - 3);
+    } else if (line == 'S') {
+      strokes.add((width, color));
+    }
+  }
+  return strokes;
 }

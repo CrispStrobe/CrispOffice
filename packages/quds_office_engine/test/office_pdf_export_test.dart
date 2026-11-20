@@ -42,7 +42,7 @@ void main() {
         OfficePdfExport.presentation(deck),
       ).join();
       final int image = content.indexOf('/Im1 Do');
-      final int border = content.indexOf('2.5 w');
+      final int border = content.indexOf('2.500 w');
       expect(image, greaterThanOrEqualTo(0));
       expect(border, greaterThan(image));
       expect(content.substring(border), contains('0.800 0.200 0 RG'));

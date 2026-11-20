@@ -1212,6 +1212,7 @@ class RenderSlideStage extends RenderBox implements MouseTrackerAnnotation {
         case PmlShapePreset.diamond:
         case PmlShapePreset.hexagon:
         case PmlShapePreset.pentagon:
+        case PmlShapePreset.homePlate:
         case PmlShapePreset.chevron:
         case PmlShapePreset.parallelogram:
         case PmlShapePreset.trapezoid:
@@ -1289,6 +1290,7 @@ class RenderSlideStage extends RenderBox implements MouseTrackerAnnotation {
       case PmlShapePreset.diamond:
       case PmlShapePreset.hexagon:
       case PmlShapePreset.pentagon:
+      case PmlShapePreset.homePlate:
       case PmlShapePreset.chevron:
       case PmlShapePreset.parallelogram:
       case PmlShapePreset.trapezoid:
@@ -1322,13 +1324,22 @@ class RenderSlideStage extends RenderBox implements MouseTrackerAnnotation {
           ..lineTo(r.left + r.width * 0.25, r.bottom)
           ..lineTo(r.left, r.center.dy);
       case PmlShapePreset.pentagon:
+        // A regular pentagon normalized to its bounding rectangle.
+        final double inset = (3 - math.sqrt(5)) / 4;
+        path
+          ..moveTo(r.left, r.top + r.height * inset * 2)
+          ..lineTo(r.center.dx, r.top)
+          ..lineTo(r.right, r.top + r.height * inset * 2)
+          ..lineTo(r.right - r.width * inset, r.bottom)
+          ..lineTo(r.left + r.width * inset, r.bottom);
+      case PmlShapePreset.homePlate:
+        final double head = r.shortestSide / 2;
         path
           ..moveTo(r.left, r.top)
-          ..lineTo(r.left + r.width * 0.75, r.top)
+          ..lineTo(r.right - head, r.top)
           ..lineTo(r.right, r.center.dy)
-          ..lineTo(r.left + r.width * 0.75, r.bottom)
-          ..lineTo(r.left, r.bottom)
-          ..lineTo(r.left + r.width * 0.25, r.center.dy);
+          ..lineTo(r.right - head, r.bottom)
+          ..lineTo(r.left, r.bottom);
       case PmlShapePreset.chevron:
         path
           ..moveTo(r.left, r.top)

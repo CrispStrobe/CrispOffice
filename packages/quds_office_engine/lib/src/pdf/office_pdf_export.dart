@@ -1712,12 +1712,20 @@ abstract final class OfficePdfExport {
         canvas.lineTo(x + w * 0.25, y + h);
         canvas.lineTo(x, y + h / 2);
       case PmlShapePreset.pentagon:
+        // A regular pentagon normalized to its bounding rectangle.
+        final double inset = (3 - math.sqrt(5)) / 4;
+        canvas.moveTo(x, y + h * inset * 2);
+        canvas.lineTo(x + w / 2, y);
+        canvas.lineTo(x + w, y + h * inset * 2);
+        canvas.lineTo(x + w * (1 - inset), y + h);
+        canvas.lineTo(x + w * inset, y + h);
+      case PmlShapePreset.homePlate:
+        final double head = math.min(w, h) / 2;
         canvas.moveTo(x, y);
-        canvas.lineTo(x + w * 0.75, y);
+        canvas.lineTo(x + w - head, y);
         canvas.lineTo(x + w, y + h / 2);
-        canvas.lineTo(x + w * 0.75, y + h);
+        canvas.lineTo(x + w - head, y + h);
         canvas.lineTo(x, y + h);
-        canvas.lineTo(x + w * 0.25, y + h / 2);
       case PmlShapePreset.chevron:
         canvas.moveTo(x, y);
         canvas.lineTo(x + w * 0.75, y);
@@ -1856,6 +1864,7 @@ abstract final class OfficePdfExport {
       case PmlShapePreset.diamond:
       case PmlShapePreset.hexagon:
       case PmlShapePreset.pentagon:
+      case PmlShapePreset.homePlate:
       case PmlShapePreset.chevron:
       case PmlShapePreset.parallelogram:
       case PmlShapePreset.trapezoid:
@@ -1974,6 +1983,7 @@ abstract final class OfficePdfExport {
       case PmlShapePreset.diamond:
       case PmlShapePreset.hexagon:
       case PmlShapePreset.pentagon:
+      case PmlShapePreset.homePlate:
       case PmlShapePreset.chevron:
       case PmlShapePreset.parallelogram:
       case PmlShapePreset.trapezoid:

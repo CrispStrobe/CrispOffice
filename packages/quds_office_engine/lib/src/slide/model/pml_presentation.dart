@@ -91,6 +91,7 @@ enum PmlShapePreset {
   chevron,
   parallelogram,
   trapezoid,
+  homePlate,
 }
 
 /// Enum PmlTextAlign.
@@ -598,6 +599,7 @@ class PmlSlide {
     this.showMasterShapes = true,
     this.notes = '',
     this.sourcePartUri,
+    this.sourceLayoutPartUri,
     this.transition = const PmlSlideTransition(),
     List<PmlShapeAnimation>? animations,
     this.hidden = false,
@@ -686,11 +688,17 @@ class PmlSlide {
   void updateMasterBackground(String value) {
     if (inheritsMasterBackground) {
       setInheritedBackground(value, masterBackground: value);
+      backgroundShapes.removeWhere((shape) => shape.isBackgroundPicture);
     }
   }
 
   /// Original owning part, retained when slides are reordered.
   String? sourcePartUri;
+
+  /// Imported layout provenance, retained by copies within the same package.
+  /// It preserves native master-background inheritance when a copy gets a new
+  /// slide part rather than flattening an inherited picture into a local fill.
+  String? sourceLayoutPartUri;
 
   /// notes API.
   String notes;
@@ -719,6 +727,7 @@ class PmlSlide {
       ],
       showMasterShapes: showMasterShapes,
       sourcePartUri: id == null || id == this.id ? sourcePartUri : null,
+      sourceLayoutPartUri: sourceLayoutPartUri,
       transition: transition,
       hidden: hidden,
       animations: <PmlShapeAnimation>[
@@ -753,15 +762,35 @@ class PmlMaster {
   /// PmlMaster API.
   PmlMaster({
     required this.name,
-    this.background = 'FFFFFF',
+    String background = 'FFFFFF',
     List<PmlShape>? shapes,
-  }) : shapes = shapes ?? <PmlShape>[];
+  }) : shapes = shapes ?? <PmlShape>[] {
+    this.background = background;
+  }
 
   /// name API.
   String name;
 
-  /// background API.
-  String background;
+  String _background = 'FFFFFF';
+  bool _hasAuthoredBackground = true;
+
+  /// Resolved paper color. Assigning it authors a solid master fill, including
+  /// when the color equals an imported picture's solid fallback.
+  String get background => _background;
+
+  set background(String value) {
+    _background = value;
+    _hasAuthoredBackground = true;
+  }
+
+  /// Whether native master fills should be replaced by the authored color.
+  bool get hasAuthoredBackground => _hasAuthoredBackground;
+
+  /// Loads the resolved import color without replacing the native master fill.
+  void setImportedBackground(String value) {
+    _background = value;
+    _hasAuthoredBackground = false;
+  }
 
   /// Master shapes / placeholders.
   final List<PmlShape> shapes;

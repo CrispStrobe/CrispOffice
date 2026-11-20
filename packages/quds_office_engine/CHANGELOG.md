@@ -18,9 +18,15 @@ All notable changes to `quds_office_engine` are documented here.
   while preserving valid internal substring operations and transactional runs.
 
 - Preserve nearest authored PPTX picture-background ownership and gradient
-  fallback independently of master-shape visibility, with slide copies, cropping and repeated native
-  saves. Keep explicit solid fills authoritative and preserve PDF picture
-  outlines. Add focused ownership, package, copy and save regressions.
+  fallback independently of master-shape visibility through copies and repeated
+  native saves. Retain existing media bytes, deep and negative imported crops,
+  and native master inheritance after solid-background edits. Keep explicit
+  slide/layout fills authoritative and isolate PDF picture-border canvas state.
+  Add focused ownership, package, copy and save regressions.
+
+- Import and render geometric/flowchart presets with distinct convex pentagon
+  and home-plate silhouettes. Preserve home-plate identity through copy and
+  PPTX save/reopen, and match PDF fill and outline geometry.
 
 - Integrate inherited PPTX decorations, block arrows, short PDF heading fitting
   and authored LTR numeric text. Preserve hidden-master flags and resolved empty

@@ -291,7 +291,8 @@ List<PmlShape> parseSlideShapes(
         'rightArrow' => PmlShapePreset.rightArrow,
         'diamond' || 'flowChartDecision' => PmlShapePreset.diamond,
         'hexagon' => PmlShapePreset.hexagon,
-        'pentagon' || 'homePlate' => PmlShapePreset.pentagon,
+        'pentagon' => PmlShapePreset.pentagon,
+        'homePlate' => PmlShapePreset.homePlate,
         'chevron' => PmlShapePreset.chevron,
         'parallelogram' || 'flowChartData' => PmlShapePreset.parallelogram,
         'trapezoid' => PmlShapePreset.trapezoid,
@@ -626,7 +627,11 @@ OfficeVisual parseChartVisual(
 }
 
 /// slideToXml helper.
-String slideToXml(PmlSlide slide, {Map<PmlShape, String>? embedIds}) {
+String slideToXml(
+  PmlSlide slide, {
+  Map<PmlShape, String>? embedIds,
+  bool preserveBackgroundInheritance = false,
+}) {
   PmlArrange.validateGrouping(slide.shapes);
   // Group keys identify model membership. They need not be valid native
   // drawing IDs: the importer intentionally assigns compact local keys.
@@ -672,14 +677,15 @@ String slideToXml(PmlSlide slide, {Map<PmlShape, String>? embedIds}) {
   /// writeStartElement API.
   w.writeStartElement('cSld', prefix: 'p');
 
-  // Resolved background pictures are native fills, not editable slide shapes.
-  // Publish the selected image once so copied slides get their own media link
-  // and retained layout/master images cannot reappear over a local override.
+  // Keep native master inheritance when its source layout is retained. Other
+  // resolved pictures become one native fill, never editable slide shapes.
   PmlShape? backgroundPicture;
-  for (final shape in slide.backgroundShapes) {
-    if (shape.isBackgroundPicture && (shape.visual?.isPicture ?? false)) {
-      backgroundPicture = shape;
-      break;
+  if (!preserveBackgroundInheritance || !slide.inheritsMasterBackground) {
+    for (final shape in slide.backgroundShapes) {
+      if (shape.isBackgroundPicture && (shape.visual?.isPicture ?? false)) {
+        backgroundPicture = shape;
+        break;
+      }
     }
   }
   final String? backgroundEmbed = backgroundPicture == null
@@ -698,7 +704,23 @@ String slideToXml(PmlSlide slide, {Map<PmlShape, String>? embedIds}) {
         relationshipId: backgroundEmbed,
         adj: picture,
       );
-      DrawingmlVisualIo.writeSrcRect(w, picture);
+      // Imported backgrounds support deep crops and edge expansion. The shared
+      // editable-picture writer deliberately applies narrower UI limits.
+      final crop = <String, int>{
+        'l': (picture.cropLeft.clamp(-.99, .99) * 100000).round(),
+        't': (picture.cropTop.clamp(-.99, .99) * 100000).round(),
+        'r': (picture.cropRight.clamp(-.99, .99) * 100000).round(),
+        'b': (picture.cropBottom.clamp(-.99, .99) * 100000).round(),
+      };
+      if (crop.values.any((value) => value != 0)) {
+        w.writeEmptyElement(
+          'srcRect',
+          prefix: 'a',
+          attributes: <String, String>{
+            for (final entry in crop.entries) entry.key: '${entry.value}',
+          },
+        );
+      }
       w.writeStartElement('stretch', prefix: 'a');
       w.writeEmptyElement('fillRect', prefix: 'a');
       w.writeEndElement();
@@ -894,6 +916,7 @@ void _writeSlideShape(XmlWriter w, PmlShape shape) {
         PmlShapePreset.diamond => 'diamond',
         PmlShapePreset.hexagon => 'hexagon',
         PmlShapePreset.pentagon => 'pentagon',
+        PmlShapePreset.homePlate => 'homePlate',
         PmlShapePreset.chevron => 'chevron',
         PmlShapePreset.parallelogram => 'parallelogram',
         PmlShapePreset.trapezoid => 'trapezoid',

@@ -99,9 +99,9 @@ class SlideDeserializer {
       package,
       templates.defaultColors,
     );
-    if (masterBg != null && masterBg.isNotEmpty) {
-      pres.master.background = masterBg;
-    }
+    pres.master.setImportedBackground(
+      masterBg == null || masterBg.isEmpty ? pres.master.background : masterBg,
+    );
     for (int i = 0; i < pres.slides.length; i++) {
       final String uri = slideUris[i];
       pres.slides[i].sourcePartUri = uri;
@@ -110,6 +110,15 @@ class SlideDeserializer {
         final String slideXml = slidePart.readText();
         pres.slides[i].showMasterShapes = _showsMasterShapes(slideXml);
         final _SlideTemplate? layout = templates.layoutOf(uri);
+        final RelationshipCollection slideRels = package.relationshipsFor(uri);
+        final PackageRelationship? layoutRel = slideRels.firstByType(
+          RelationshipTypes.slideLayout,
+        );
+        if (layout != null &&
+            layoutRel != null &&
+            layoutRel.targetMode == RelationshipTargetMode.internal) {
+          pres.slides[i].sourceLayoutPartUri = slideRels.resolve(layoutRel);
+        }
         final Set<PmlShape> positioned = Set<PmlShape>.identity();
         final List<PmlShape> shapes = parseSlideShapes(
           slideXml,
@@ -391,10 +400,16 @@ class SlideDeserializer {
     OpcPackage package,
     Map<String, String> colors,
   ) {
-    for (final String uri in <String>[
+    final RelationshipCollection rels = package.relationshipsFor(
+      _presentationUri,
+    );
+    for (final String uri in <String>{
+      for (final rel in rels.byType(RelationshipTypes.slideMaster))
+        if (rel.targetMode == RelationshipTargetMode.internal)
+          rels.resolve(rel),
       '/ppt/slideMasters/slideMaster1.xml',
       '/ppt/slideMasters/slideMaster2.xml',
-    ]) {
+    }) {
       final String? xml = package.getPart(uri)?.readText();
       if (xml != null && _hasBackground(xml)) {
         return _backgroundOf(xml, colors) ?? 'FFFFFF';
@@ -751,6 +766,7 @@ class SlideSerializer {
       package,
       notes: pres.slides.any((s) => s.notes.trim().isNotEmpty),
     );
+    _syncAuthoredMasterBackground(pres, package);
     final List<String> slideRelIds = <String>[];
     final Set<String> used = <String>{};
     for (int i = 0; i < pres.slides.length; i++) {
@@ -768,11 +784,31 @@ class SlideSerializer {
       pres.slides[i].sourcePartUri = uri;
       final RelationshipCollection slideRels = package.relationshipsFor(uri);
       if (slideRels.firstByType(RelationshipTypes.slideLayout) == null) {
+        final String? sourceLayout = fresh
+            ? null
+            : pres.slides[i].sourceLayoutPartUri;
         slideRels.add(
           type: RelationshipTypes.slideLayout,
-          target: OpcUris.relativize(uri, layoutUri),
+          target: OpcUris.relativize(
+            uri,
+            sourceLayout != null &&
+                    package.getPart(sourceLayout)?.contentType ==
+                        OfficeContentTypes.slideLayout
+                ? sourceLayout
+                : layoutUri,
+          ),
         );
       }
+      final PackageRelationship? layoutRel = slideRels.firstByType(
+        RelationshipTypes.slideLayout,
+      );
+      final bool preserveBackgroundInheritance =
+          !fresh &&
+          pres.slides[i].inheritsMasterBackground &&
+          pres.slides[i].sourceLayoutPartUri != null &&
+          layoutRel != null &&
+          layoutRel.targetMode == RelationshipTargetMode.internal &&
+          slideRels.resolve(layoutRel) == pres.slides[i].sourceLayoutPartUri;
       if (package.getPart(uri) == null) {
         package.createPart(uri, OfficeContentTypes.slide, utf8.encode(''));
       }
@@ -793,10 +829,17 @@ class SlideSerializer {
         pres.slides[i],
         package,
         uri,
+        preserveBackgroundInheritance: preserveBackgroundInheritance,
       );
       package
           .getPart(uri)!
-          .writeText(slideToXml(pres.slides[i], embedIds: embedIds));
+          .writeText(
+            slideToXml(
+              pres.slides[i],
+              embedIds: embedIds,
+              preserveBackgroundInheritance: preserveBackgroundInheritance,
+            ),
+          );
       _syncNotesSlide(pres.slides[i], package, uri, i + 1);
     }
     for (final PackageRelationship rel
@@ -818,8 +861,9 @@ class SlideSerializer {
   static Map<PmlShape, String> _syncSlideVisuals(
     PmlSlide slide,
     OpcPackage package,
-    String slideUri,
-  ) {
+    String slideUri, {
+    required bool preserveBackgroundInheritance,
+  }) {
     final Map<PmlShape, String> ids = <PmlShape, String>{};
     final RelationshipCollection rels = package.relationshipsFor(slideUri);
     var mediaIndex = 1;
@@ -827,7 +871,7 @@ class SlideSerializer {
     final String owner = slideUri.split('/').last.replaceAll('.xml', '');
     for (final PmlShape shape in <PmlShape>[
       for (final shape in slide.backgroundShapes)
-        if (shape.isBackgroundPicture) shape,
+        if (shape.isBackgroundPicture && !preserveBackgroundInheritance) shape,
       ...slide.shapes,
     ]) {
       final OfficeVisual? visual = shape.visual;
@@ -866,19 +910,26 @@ class SlideSerializer {
       }
       final Uint8List bytes = PngBytes.fromVisual(visual);
       final String mime = WordLikeMedia.mimeOf(bytes);
-      final String uri =
-          '/ppt/media/${owner}_image$mediaIndex${WordLikeMedia.extensionOf(mime)}';
-      mediaIndex++;
-      final PackagePart? existing = package.getPart(uri);
-      if (existing == null) {
-        package.createPart(uri, mime, bytes);
-      } else {
-        existing.writeBytes(bytes);
+      late String uri;
+      while (true) {
+        uri =
+            '/ppt/media/${owner}_image${mediaIndex++}'
+            '${WordLikeMedia.extensionOf(mime)}';
+        final PackagePart? existing = package.getPart(uri);
+        if (existing == null) {
+          package.createPart(uri, mime, bytes);
+          break;
+        }
+        // Generated-looking names can belong to retained masters, layouts or
+        // another picture. Only reuse identical content; never overwrite it.
+        if (existing.contentType == mime && _sameMedia(existing, bytes)) break;
       }
       final String target = OpcUris.relativize(slideUri, uri);
       PackageRelationship? found;
       for (final PackageRelationship rel in rels.items) {
-        if (rel.target == target && rel.type == RelationshipTypes.image) {
+        if (rel.target == target &&
+            rel.type == RelationshipTypes.image &&
+            rel.targetMode == RelationshipTargetMode.internal) {
           found = rel;
           break;
         }
@@ -888,6 +939,76 @@ class SlideSerializer {
       shape.embedRelId = found.id;
     }
     return ids;
+  }
+
+  static bool _sameMedia(PackagePart part, Uint8List bytes) {
+    if (part.length != bytes.length) return false;
+    final Uint8List existing = part.bytesView;
+    for (var i = 0; i < bytes.length; i++) {
+      if (existing[i] != bytes[i]) return false;
+    }
+    return true;
+  }
+
+  static void _syncAuthoredMasterBackground(
+    PmlPresentation pres,
+    OpcPackage package,
+  ) {
+    if (!pres.master.hasAuthoredBackground) return;
+    final String color = pres.master.background.isEmpty
+        ? 'FFFFFF'
+        : pres.master.background;
+    final RelationshipCollection presRels = package.relationshipsFor(
+      _presentationUri,
+    );
+    final Set<String> masterUris = {
+      for (final rel in presRels.byType(RelationshipTypes.slideMaster))
+        if (rel.targetMode == RelationshipTargetMode.internal)
+          presRels.resolve(rel),
+    };
+    for (final slide in pres.slides) {
+      final String? layoutUri = slide.sourceLayoutPartUri;
+      if (layoutUri != null) {
+        final rels = package.relationshipsFor(layoutUri);
+        for (final rel in rels.byType(RelationshipTypes.slideMaster)) {
+          if (rel.targetMode == RelationshipTargetMode.internal) {
+            masterUris.add(rels.resolve(rel));
+          }
+        }
+      }
+      slide.updateMasterBackground(color);
+    }
+    for (final uri in masterUris) {
+      final PackagePart? part = package.getPart(uri);
+      if (part?.contentType != OfficeContentTypes.slideMaster) continue;
+      final XmlDocument document = XmlDocument.parse(part!.readText());
+      final XmlElement? root = document.root;
+      final XmlElement? common = root?.firstChild(
+        'cSld',
+        namespaceUri: OfficeNamespaces.p,
+      );
+      if (root == null || common == null) continue;
+      root.setAttribute('p', OfficeNamespaces.p, prefix: 'xmlns');
+      root.setAttribute('a', OfficeNamespaces.a, prefix: 'xmlns');
+      XmlElement element(String name, String prefix, String namespace) =>
+          XmlElement(localName: name, prefix: prefix, namespaceUri: namespace);
+      final XmlElement background = element('bg', 'p', OfficeNamespaces.p);
+      final XmlElement properties = element('bgPr', 'p', OfficeNamespaces.p);
+      final XmlElement fill = element('solidFill', 'a', OfficeNamespaces.a);
+      final XmlElement rgb = element('srgbClr', 'a', OfficeNamespaces.a)
+        ..setAttribute('val', color);
+      fill.addChild(rgb);
+      properties.addChild(fill);
+      background.addChild(properties);
+      common.children.removeWhere(
+        (node) =>
+            node is XmlElement &&
+            node.localName == 'bg' &&
+            node.namespaceUri == OfficeNamespaces.p,
+      );
+      common.children.insert(0, background..parent = common);
+      part.writeText(document.toXmlString());
+    }
   }
 
   // Some independent producers use signed or oversized chart axis IDs.

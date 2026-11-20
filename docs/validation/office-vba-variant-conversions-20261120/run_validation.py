@@ -37,7 +37,9 @@ def inputs(repo: Path) -> dict[str, dict[str, object]]:
         'git', 'ls-files', '-z', '--cached', '--others', '--exclude-standard',
         'packages', 'apps', 'third_party', 'pubspec.yaml', 'pubspec.lock', '.fvmrc',
     ], cwd=repo).decode().split('\0')
-    paths += ['.dart_tool/package_config.json']
+    paths += ['.dart_tool/package_config.json',
+              'docs/validation/office-vba-variant-conversions-20261120/run_validation.py',
+              'docs/validation/office-vba-variant-conversions-20261120/run_portable.py']
     result = {}
     for relative in sorted(set(paths)):
         if not relative:
@@ -156,10 +158,23 @@ def main() -> None:
             return record
 
     records = []
+    groups: dict[str, list[tuple[str, dict[str, object]]]] = {}
+    for name, cohort in selection.items():
+        # The Flutter wrapper updates SDK stamp files before its package lock.
+        # Serialize all Flutter launches, even for different packages, while
+        # independent pure-Dart package groups can still execute concurrently.
+        group_key = '__flutter_sdk__' if cohort['runner'] == 'flutter' else cohort['package']
+        groups.setdefault(group_key, []).append((name, cohort))
+
+    def run_package(group: list[tuple[str, dict[str, object]]]) -> list[dict[str, object]]:
+        # Keep each shared cache serial without occupying workers waiting on
+        # another cohort that uses the same SDK or package.
+        return [run(name, cohort) for name, cohort in group]
+
     with ThreadPoolExecutor(max_workers=args.workers) as executor:
-        futures = [executor.submit(run, name, cohort) for name, cohort in selection.items()]
+        futures = [executor.submit(run_package, group) for group in groups.values()]
         for future in as_completed(futures):
-            records.append(future.result())
+            records.extend(future.result())
     after = inputs(repo)
     changed = [path for path in sorted(before.keys() | after.keys()) if before.get(path) != after.get(path)]
     check = {'input_count': len(before), 'unchanged': not changed, 'changed': changed,
