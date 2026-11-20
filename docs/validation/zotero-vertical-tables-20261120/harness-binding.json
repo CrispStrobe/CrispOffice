@@ -1,0 +1,78 @@
+{
+  "earlierExecutionCommit": "e8edb90a2948af60f41e50795c049a0a4d1ed3e6",
+  "correctedExecutionCommit": "520d0ca8870c6a169e23603660f2cde96366f9b2",
+  "earlierTree": "371ed6defb1986e32fc2e0d516356ac934304e47",
+  "correctedTree": "464e3e7eb3b4186ebaa1f7a7ff530f41c506b445",
+  "allowedChangedPaths": [
+    "docs/validation/zotero-vertical-tables-20261120/audit_results.py",
+    "docs/validation/zotero-vertical-tables-20261120/run_acceptance.py",
+    "packages/quds_office_editor/tool/zotero/vertical_table_acceptance.dart",
+    "packages/quds_office_engine/tool/zotero/incoming_word_acceptance.dart",
+    "packages/quds_office_engine/tool/zotero/vertical_table_acceptance.dart"
+  ],
+  "actualChangedPaths": [
+    "docs/validation/zotero-vertical-tables-20261120/audit_results.py",
+    "docs/validation/zotero-vertical-tables-20261120/run_acceptance.py",
+    "packages/quds_office_editor/tool/zotero/vertical_table_acceptance.dart",
+    "packages/quds_office_engine/tool/zotero/incoming_word_acceptance.dart",
+    "packages/quds_office_engine/tool/zotero/vertical_table_acceptance.dart"
+  ],
+  "exactlyAllowedPathsChanged": true,
+  "fileModesUnchanged": true,
+  "allOtherTrackedFilesIdentical": true,
+  "unchangedTrackedFiles": 19291,
+  "originalTestFilesUnchanged": 1085,
+  "standaloneOriginalFlutterFiles": [
+    "test/embed_test.dart",
+    "test/word_header_footer_navigation_test.dart",
+    "test/office_system_fonts_test.dart"
+  ],
+  "files": [
+    {
+      "path": "docs/validation/zotero-vertical-tables-20261120/audit_results.py",
+      "beforeSha256": "999d881999f6f11b933e6d92e425c88a09d937453bc79cdd8fbc0f8c2b04ee65",
+      "afterSha256": "53b723ab1a1eaa4bb4166e939aa14e73700f9ef558fd0536889e160a624c16e8",
+      "oneSuiteNameFallbackReplaced": true,
+      "onlyExecutableChangeIsSuitePathNaming": true,
+      "passed": true
+    },
+    {
+      "path": "docs/validation/zotero-vertical-tables-20261120/run_acceptance.py",
+      "beforeSha256": "3c2c035b799f88eebfbd489f2e4f57c318d13484b57bf90b4bfaff86ce54561d",
+      "afterSha256": "b3c5b26bc7c53e56ddde7530ecba912e0410ee0f86252d5e28d7b4a51a2202ce",
+      "onlyExecutableChangeIsExactThreeFileEditorExtension": true,
+      "passed": true
+    },
+    {
+      "path": "packages/quds_office_editor/tool/zotero/vertical_table_acceptance.dart",
+      "beforeSha256": "a46e8f01917d7d7da586e735dcc7d37b21d75dfb4d914959ce66ee40b49c1bc8",
+      "afterSha256": "7bb8bee72b98f548d2863c9db47d06f4db346a8521df7d3b04ef8f43a9f47028",
+      "exactlyThreeOriginalSuiteImportsRemoved": true,
+      "allImportsParsed": true,
+      "mainUnchangedExceptThreeSuiteCalls": true,
+      "otherExecutablePrefixIdentical": true,
+      "passed": true
+    },
+    {
+      "path": "packages/quds_office_engine/tool/zotero/incoming_word_acceptance.dart",
+      "beforeSha256": "c8a3171fac4f0bcd431a4a43862644684ea6b50f2ece7b4b01c4907828666710",
+      "afterSha256": "15179c98a6cd17f8d8915442782097632c6c5c1a96305c1fc135a734cd97c29d",
+      "importsAndAliasesIdentical": true,
+      "allImportsParsed": true,
+      "entireMainBodyIdentical": true,
+      "otherExecutablePrefixIdentical": true,
+      "passed": true
+    },
+    {
+      "path": "packages/quds_office_engine/tool/zotero/vertical_table_acceptance.dart",
+      "beforeSha256": "75e3d536ecceb6d4478fbd5129a13b1663d44bc12d67023212455f7a887f3eec",
+      "afterSha256": "5c7917a78c06a835579076428b4f26182b2c4c015c2aa5a707d3e65ed09b051d",
+      "importsAndAliasesIdentical": true,
+      "allImportsParsed": true,
+      "entireMainBodyIdentical": true,
+      "otherExecutablePrefixIdentical": true,
+      "passed": true
+    }
+  ],
+  "passed": true
+}

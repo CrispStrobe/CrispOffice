@@ -1,0 +1,95 @@
+{
+  "base": "44f3f61fa7d812971e973f1763ac8e04eb39785a",
+  "ours": "520d0ca8870c6a169e23603660f2cde96366f9b2",
+  "newmain": "5e7e4d24284954603a0a5951699bea870ad1955f",
+  "paths": [
+    {
+      "path": "packages/quds_mail_ui/lib/src/reader/controller.dart",
+      "ours_equals_base": true,
+      "ours_equals_newmain": false,
+      "merge_exit_code": 0,
+      "conflict_count": 0
+    },
+    {
+      "path": "packages/quds_mail_ui/lib/src/reader/presentation.dart",
+      "ours_equals_base": true,
+      "ours_equals_newmain": false,
+      "merge_exit_code": 0,
+      "conflict_count": 0
+    },
+    {
+      "path": "packages/quds_mail_ui/test/presentation_test.dart",
+      "ours_equals_base": true,
+      "ours_equals_newmain": false,
+      "merge_exit_code": 0,
+      "conflict_count": 0
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_native.dart",
+      "ours_equals_base": false,
+      "ours_equals_newmain": false,
+      "merge_exit_code": 0,
+      "conflict_count": 0
+    }
+  ],
+  "parents": {
+    "5e7e4d24284954603a0a5951699bea870ad1955f": [
+      "f67c18574176d34f48ddab14918aee5a787c3843"
+    ],
+    "f67c18574176d34f48ddab14918aee5a787c3843": [
+      "0a2afc41bae4e719b77657a7e2d8d3e7ec02849b",
+      "bf0effdcc8f690972d762c5b53079e8847a5e65e"
+    ],
+    "bf0effdcc8f690972d762c5b53079e8847a5e65e": [
+      "44f3f61fa7d812971e973f1763ac8e04eb39785a"
+    ]
+  },
+  "new_work": {
+    "product": [
+      "Mail HTML source-whitespace collapse",
+      "Explicit remote-image loading and placeholder suppression",
+      "Saved-account auto-connect scheduling",
+      "Native Mail ribbon replaces menu/AppBar chrome"
+    ],
+    "test": "One added presentation_test.dart nested-wrapper whitespace case",
+    "word_zotero_product_changes_after_fixed_cutoff": false
+  },
+  "preserve": [
+    "Current native Mail immutable identity validation and typed bulk coordinator",
+    "Cancellation/generation/selection guards and legacy adapter compatibility",
+    "Current Zotero vertical-table source and native Word fixes; newmain adds no Word source after44f3"
+  ],
+  "read_only_review_findings": [
+    {
+      "priority": "high",
+      "area": "MailReaderController.addImages",
+      "finding": "Removes external-image placeholder text without updating selection or search; a prior selectAll can leave selection.end beyond the new decodedText length, so selectedText can throw. Existing replaceResult/setPreferHtml reset selection and rerun search."
+    },
+    {
+      "priority": "high",
+      "area": "_loadRemoteImages",
+      "finding": "http.get buffers the complete response before the4MiB check. The new host/controller path also admits remote raster images without existing MailReadBudget.maxImagePixels or cumulative decoded-byte accounting."
+    },
+    {
+      "priority": "high",
+      "area": "_scheduleAutoConnect",
+      "finding": "Both async credential loaders schedule even when stale settings or failed catalog load prevent applying saved credentials. The callback captures no settings/account/session revision and can connect edited form contents."
+    },
+    {
+      "priority": "medium",
+      "area": "_Projection.addHtmlText",
+      "finding": "Whitespace-only source nodes are dropped, removing meaningful separation in inline HTML such as <b>A</b> <i>B</i>."
+    },
+    {
+      "priority": "medium",
+      "area": "_remoteImageUrls",
+      "finding": "Regex accepts any src attribute, including script/iframe nodes, although the UI action promises remote images."
+    },
+    {
+      "priority": "medium",
+      "area": "MailReaderController.addImages",
+      "finding": "Rebuilding the presentation drops previously added remote images on subsequent addImages calls despite the append contract."
+    }
+  ],
+  "validation": "Read-only Git diff/ancestry and git merge-file -p against temporary files. No product tests, source edits, or remote refresh."
+}

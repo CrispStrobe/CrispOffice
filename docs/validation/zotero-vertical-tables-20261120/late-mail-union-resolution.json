@@ -1,0 +1,52 @@
+{
+  "baseline": "38dcd802ae79e22d9f84ad79db1a197c43f3ad70",
+  "premerge_head": "4544b9cf3f9d6bcb836c47b8ba34233f0230952c",
+  "incoming": "64da231816b1b3ddab35e0e12d50d885bf24f75f",
+  "bounded_followup": "44f3f61fa7d812971e973f1763ac8e04eb39785a",
+  "owned_paths_staged": [
+    "docs/roadmaps/mail/bulk-actions.md",
+    "docs/roadmaps/mail/bulk-flags.md",
+    "docs/roadmaps/mail/header-search.md",
+    "docs/roadmaps/mail/implementation-plan.md",
+    "docs/roadmaps/mail/status.md",
+    "packages/quds_mail_core/CHANGELOG.md",
+    "packages/quds_mail_core/lib/src/sync/bulk_flags.dart",
+    "packages/quds_mail_core/test/bulk_flags_compatibility_test.dart",
+    "packages/quds_mail_transport/CHANGELOG.md",
+    "packages/quds_mail_transport/lib/src/cloud/provider.dart",
+    "packages/quds_mail_ui/CHANGELOG.md",
+    "packages/quds_mail_ui/README.md",
+    "packages/quds_mail_ui/test/bulk_message_list_test.dart",
+    "packages/quds_office_editor/example/lib/studio_mail_bulk_status.dart",
+    "packages/quds_office_editor/example/lib/studio_mail_ews.dart",
+    "packages/quds_office_editor/example/lib/studio_mail_native.dart",
+    "packages/quds_office_editor/example/test/studio_mail_bulk_provider_test.dart",
+    "packages/quds_office_editor/example/test/studio_mail_bulk_visual_test.dart",
+    "packages/quds_office_editor/example/test/studio_mail_workspace_test.dart"
+  ],
+  "mail_paths_differing_from_baseline": {
+    "docs/roadmaps/mail/bulk-flags.md": "f11343ebebf74a18704ddc24e6f305b780ac6eda63e9da03a6029733abc316a8",
+    "packages/quds_mail_core/test/bulk_flags_compatibility_test.dart": "e4fba73ecd4d2a344e76960520bac7e8ae83d195e0e6effc972ec000ef5076e5",
+    "packages/quds_office_editor/example/lib/studio_mail_bulk_status.dart": "ab8a0d46321f82fb5a0248e9e2d42ad2c84af518d8120c47762159f3b08cfe41",
+    "packages/quds_office_editor/example/test/studio_mail_bulk_provider_test.dart": "3c692dc4ca3553633576fd64a9530af585ba540fa7b1abe35fdc0ec0fac76991",
+    "packages/quds_office_editor/example/test/studio_mail_bulk_visual_test.dart": "a4cebe49b5d5d897f98ec189f1b4c378a4dd99a3965f1465ea6c9a18ff68b2a6",
+    "packages/quds_office_editor/example/test/studio_mail_workspace_test.dart": "e7b3f6f8324b513f1cde21f8d82db802da5f6240786e88b43c71ee2647b2b38b"
+  },
+  "all_other_owned_paths_match_baseline": true,
+  "changes": {
+    "core_quota_evidence_cases_added": 6,
+    "native_quota_host_cases_added": 1,
+    "status_slot_visual_variants_added": 5,
+    "original_toolbar_visual_variants_retained": 5,
+    "original_receipt_visual_variants_retained": 3,
+    "stale_banner_dismiss_assertions_added": true,
+    "production_change": "Retry delay uses stopProblem first and skips quota entries without a delay."
+  },
+  "validation": {
+    "format_files": 5,
+    "format_exit_code": 0,
+    "scoped_analysis_fatal_infos": true,
+    "scoped_analysis_exit_code": 0,
+    "acceptance": "Held until combined frozen remote SHA"
+  }
+}

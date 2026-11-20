@@ -1,0 +1,39 @@
+{
+  "tested_word_source": "520d0ca8870c6a169e23603660f2cde96366f9b2",
+  "final_source": "fe2c57604c33c1ee5ef1e9f25121e99d66c74d9a",
+  "identical_trees": [
+    {
+      "path": "packages/quds_office_engine",
+      "before_tree": "0d5e3e91aec819f4c61fae99f0c992232fa6217c",
+      "final_tree": "0d5e3e91aec819f4c61fae99f0c992232fa6217c",
+      "identical": true
+    },
+    {
+      "path": "packages/quds_office_editor/lib",
+      "before_tree": "115157c523469a2d33fd538fdf954b2589a27ed4",
+      "final_tree": "115157c523469a2d33fd538fdf954b2589a27ed4",
+      "identical": true
+    },
+    {
+      "path": "packages/quds_office_editor/test",
+      "before_tree": "3bbaa339e4ad0df4838e143cd94377848552db36",
+      "final_tree": "3bbaa339e4ad0df4838e143cd94377848552db36",
+      "identical": true
+    },
+    {
+      "path": "packages/quds_office_editor/tool",
+      "before_tree": "66c7759e0c89969d26c8279585e3558a0814708e",
+      "final_tree": "66c7759e0c89969d26c8279585e3558a0814708e",
+      "identical": true
+    }
+  ],
+  "changed_example_paths": [
+    "packages/quds_office_editor/example/lib/studio_mail_native.dart",
+    "packages/quds_office_editor/example/lib/studio_mail_remote_images.dart",
+    "packages/quds_office_editor/example/test/studio_mail_autoconnect_test.dart",
+    "packages/quds_office_editor/example/test/studio_mail_credential_backend_switch_test.dart",
+    "packages/quds_office_editor/example/test/studio_mail_remote_images_test.dart"
+  ],
+  "all_changed_example_paths_are_mail": true,
+  "scope": "Direct Word/Zotero implementation, original assertions, fixtures and acceptance drivers retained exactly; this is not a claim that changed Mail transitive imports were re-executed in the original Word cohorts."
+}

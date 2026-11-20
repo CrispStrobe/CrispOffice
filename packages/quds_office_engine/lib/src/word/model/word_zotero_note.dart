@@ -4,6 +4,7 @@ import '../../xml/xml_reader.dart';
 import '../../zotero/zotero_formatted_text.dart';
 import '../properties/wml_properties.dart';
 import 'wml_document.dart';
+import 'word_tree.dart';
 import 'word_zotero_note_image.dart';
 
 /// A bounded, inert note fragment with citation placeholders kept separate.
@@ -21,6 +22,7 @@ final class WordZoteroNoteText {
 
   /// The same paragraph objects as [blocks], flattened in row-major order.
   /// Citation and list indexes address this view, never disconnected copies.
+  /// It includes the mandatory empty paragraphs of vertical continuations.
   final List<WmlParagraph> paragraphs;
   final Map<String, WordZoteroNotePlaceholder> placeholders;
 
@@ -49,6 +51,10 @@ final class WordZoteroNoteText {
     final tables = <WmlTable>[];
     final cells = <({WmlTable table, WmlTableCell cell})>[];
     final columnWidths = <WmlTableCell, List<double?>>{};
+    final rowSpans = <WmlTableCell, int>{};
+    final rowGroups = <WmlTableRow, Object>{};
+    final directRowGroups = <WmlTable, Object>{};
+    var nativeCells = 0;
     var listCount = 0;
     var activeLink = false;
     var elements = 0;
@@ -201,6 +207,10 @@ final class WordZoteroNoteText {
               tables.add(table);
             } else if (tag == 'tbody') {
               if (parent?.table == null) throw _unsupportedTable();
+              // Each run of direct rows is a separate implicit group. Even
+              // an empty tbody ends that run and must block a rowspan from
+              // reaching a later direct row across the explicit group.
+              directRowGroups.remove(parent!.table);
             } else if (tag == 'tr') {
               if (activeTable == null ||
                   !const <String>{'table', 'tbody'}.contains(parent?.tag)) {
@@ -213,6 +223,9 @@ final class WordZoteroNoteText {
               }
               row = WmlTableRow();
               activeTable.rows.add(row);
+              rowGroups[row] = parent!.tag == 'tbody'
+                  ? parent
+                  : directRowGroups.putIfAbsent(activeTable, Object.new);
             } else if (_cellTags.contains(tag)) {
               final owner = parent?.row;
               if (owner == null || activeTable == null) {
@@ -236,6 +249,7 @@ final class WordZoteroNoteText {
               }
               owner.cells.add(cell);
               columnWidths[cell] = parsedCell.widths;
+              rowSpans[cell] = parsedCell.rows;
               cellIndex = cells.length;
               cells.add((table: activeTable, cell: cell));
             }
@@ -410,7 +424,13 @@ final class WordZoteroNoteText {
               canonical.write('<p>\uE000/c\uE001</p>');
             }
             if (element.table != null) {
-              _finishTable(element.table!, columnWidths);
+              nativeCells += _finishTable(
+                element.table!,
+                columnWidths,
+                rowSpans,
+                rowGroups,
+                remainingCells: 4096 - nativeCells,
+              );
               canonical.write('<p>\uE000/t\uE001</p>');
             }
             if (element.tag == 'p' ||
@@ -642,14 +662,46 @@ final class WordZoteroNoteText {
       throw const FormatException('The selected Zotero note contains no text.');
     }
     if (listItems.length != items.length) throw _malformed();
-    return WordZoteroNoteText._(blocks, paragraphs, placeholders, listItems);
+    // HTML omits cells covered by a rowspan, while native Word retains an
+    // empty paragraph in each continuation cell. Address the final native
+    // tree, so cloning it in the citing session cannot shift later citations
+    // or list metadata onto one of those synthetic paragraphs.
+    final nativeParagraphs = WordTree.paragraphs(blocks).toList();
+    if (nativeParagraphs.length > 10000) {
+      throw const FormatException('The Zotero note has too many paragraphs.');
+    }
+    final indexes = Map<WmlParagraph, int>.identity();
+    for (var index = 0; index < nativeParagraphs.length; index++) {
+      indexes[nativeParagraphs[index]] = index;
+    }
+    return WordZoteroNoteText._(
+      blocks,
+      nativeParagraphs,
+      {
+        for (final entry in placeholders.entries)
+          entry.key: WordZoteroNotePlaceholder(
+            entry.value.id,
+            indexes[paragraphs[entry.value.paragraphIndex]]!,
+            entry.value.start,
+            entry.value.end,
+          ),
+      },
+      {
+        for (final entry in listItems.entries)
+          indexes[paragraphs[entry.key]]!: entry.value,
+      },
+    );
   }
 
-  static ({WmlTableCell cell, List<double?> widths}) _tableCell(
+  static ({WmlTableCell cell, int rows, List<double?> widths}) _tableCell(
     Map<String, String> attributes,
   ) {
-    final rowSpan = attributes['rowspan'];
-    if (rowSpan != null && rowSpan.trim() != '1') throw _unsupportedTable();
+    final rawRows = attributes['rowspan']?.trim();
+    if (rawRows != null && !RegExp(r'^[1-9][0-9]{0,2}$').hasMatch(rawRows)) {
+      throw _unsupportedTable();
+    }
+    final rows = rawRows == null ? 1 : int.parse(rawRows);
+    if (rows > 256) throw _unsupportedTable();
     final rawSpan = attributes['colspan']?.trim();
     if (rawSpan != null && !RegExp(r'^[1-9][0-9]?$').hasMatch(rawSpan)) {
       throw _unsupportedTable();
@@ -679,6 +731,7 @@ final class WordZoteroNoteText {
         gridSpan: span,
         fillColor: _cellFill(attributes['style']),
       ),
+      rows: rows,
       widths: widths,
     );
   }
@@ -726,10 +779,13 @@ final class WordZoteroNoteText {
     return fill;
   }
 
-  static void _finishTable(
+  static int _finishTable(
     WmlTable table,
     Map<WmlTableCell, List<double?>> columnWidths,
-  ) {
+    Map<WmlTableCell, int> rowSpans,
+    Map<WmlTableRow, Object> rowGroups, {
+    required int remainingCells,
+  }) {
     if (table.rows.isEmpty || table.rows.first.cells.isEmpty) {
       throw _unsupportedTable();
     }
@@ -737,42 +793,110 @@ final class WordZoteroNoteText {
       0,
       (sum, cell) => sum + cell.gridSpan,
     );
-    final widths = List<double?>.filled(columns, null);
+    // Bound the expanded native representation before allocating continuation
+    // cells. A small HTML payload can otherwise amplify through row spans.
+    var nativeCells = 0;
     for (final row in table.rows) {
-      var column = 0;
       for (final cell in row.cells) {
-        if (column + cell.gridSpan > columns) throw _unsupportedTable();
-        for (final width in columnWidths[cell]!) {
-          if (width != null) {
-            if (widths[column] != null && widths[column] != width) {
-              throw _unsupportedTable();
-            }
-            widths[column] = width;
-          }
-          column++;
+        nativeCells += rowSpans[cell]!;
+        if (nativeCells > remainingCells) {
+          throw const FormatException(
+            'The Zotero note exceeds the native table cell bounds.',
+          );
         }
       }
-      if (column != columns) throw _unsupportedTable();
+    }
+    final coverage = [
+      for (final _ in table.rows) List<WmlTableCell?>.filled(columns, null),
+    ];
+    final origins = <WmlTableCell, int>{};
+    final widths = List<double?>.filled(columns, null);
+    for (var rowIndex = 0; rowIndex < table.rows.length; rowIndex++) {
+      final row = table.rows[rowIndex];
+      var column = 0;
+      for (final cell in row.cells) {
+        while (column < columns && coverage[rowIndex][column] != null) {
+          column++;
+        }
+        final rows = rowSpans[cell]!;
+        if (column + cell.gridSpan > columns ||
+            rowIndex + rows > table.rows.length) {
+          throw _unsupportedTable();
+        }
+        for (
+          var coveredRow = rowIndex;
+          coveredRow < rowIndex + rows;
+          coveredRow++
+        ) {
+          // HTML row spans belong to a single row group. Do not silently
+          // extend a cell from one tbody (or direct-row group) into another.
+          if (!identical(rowGroups[row], rowGroups[table.rows[coveredRow]])) {
+            throw _unsupportedTable();
+          }
+          for (
+            var coveredColumn = column;
+            coveredColumn < column + cell.gridSpan;
+            coveredColumn++
+          ) {
+            if (coverage[coveredRow][coveredColumn] != null) {
+              throw _unsupportedTable();
+            }
+            coverage[coveredRow][coveredColumn] = cell;
+          }
+        }
+        origins[cell] = rowIndex;
+        cell.vMerge = rows > 1 ? WmlVMerge.restart : WmlVMerge.none;
+        for (var offset = 0; offset < cell.gridSpan; offset++) {
+          final width = columnWidths[cell]![offset];
+          final logicalColumn = column + offset;
+          if (width != null) {
+            if (widths[logicalColumn] != null &&
+                widths[logicalColumn] != width) {
+              throw _unsupportedTable();
+            }
+            widths[logicalColumn] = width;
+          }
+        }
+        column += cell.gridSpan;
+      }
+      if (coverage[rowIndex].any((cell) => cell == null)) {
+        throw _unsupportedTable();
+      }
     }
     final grid = [for (final width in widths) width ?? 120.0];
     if (grid.fold<double>(0, (sum, width) => sum + width) > 4000) {
       throw _unsupportedTable();
     }
     table.grid.addAll(grid);
-    for (final row in table.rows) {
+    for (var rowIndex = 0; rowIndex < table.rows.length; rowIndex++) {
+      final normalized = <WmlTableCell>[];
       var column = 0;
-      for (final cell in row.cells) {
+      while (column < columns) {
+        final origin = coverage[rowIndex][column]!;
+        final cell = origins[origin] == rowIndex
+            ? origin
+            : WmlTableCell(
+                blocks: [WmlParagraph()],
+                gridSpan: origin.gridSpan,
+                vMerge: WmlVMerge.cont,
+                fillColor: origin.fillColor,
+              );
         var width = 0.0;
         for (var offset = 0; offset < cell.gridSpan; offset++) {
           width += grid[column++];
         }
         cell.width = width;
+        normalized.add(cell);
       }
+      table.rows[rowIndex].cells
+        ..clear()
+        ..addAll(normalized);
     }
+    return nativeCells;
   }
 
   static UnsupportedError _unsupportedTable() => UnsupportedError(
-    'This Zotero note needs rectangular tables with supported column spans, widths and background colors. Vertical merges, nested tables and other table formatting are not supported. The document was kept unchanged.',
+    'This Zotero note needs rectangular tables with supported row and column spans, widths and background colors. Spans must stay within their row group. Nested tables and other table formatting are not supported. The document was kept unchanged.',
   );
 
   static const _tableContainers = <String>{'table', 'tbody', 'tr'};

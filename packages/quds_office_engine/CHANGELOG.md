@@ -4,22 +4,23 @@ All notable changes to `quds_office_engine` are documented here.
 
 ## Unreleased
 
-- Preserve distinct inline header/footer pictures and legitimate body frames
-  while reconciling the incoming Word renderer. Deduplicate repeated references
-  to one authored visual occurrence; retain distinct pictures even when content
-  and placement match. Include tall inline headers in body clearance and carry
-  only body frames across continuous sections so footer pictures cannot create
-  extra pages. Keep direct and inherited table formatting precedence, authored
-  border widths, inherited omitted widths and sparse spacing provenance through
-  save/reopen.
+- Preserve vertical and combined row/column merges in Zotero research tables.
+  Normalize a bounded logical grid into native restart/continuation cells and
+  remap citation/list indexes by paragraph identity. Count generated cells and
+  paragraphs against whole-note budgets and reject malformed or cross-group spans.
+- Keep native merged-table shading and borders on every occupied page, with
+  source paragraph ownership distinct from physical row geometry. Retain the
+  current conservative row-height allocation and reject invalid merge chains.
+- Preserve explicit per-cell border enable/disable overrides in DOCX export and
+  keep tall merged-cell page cuts open independently of inherited border style.
 
 - Preserve horizontal merged cells in Zotero Add Note/Add Annotation tables.
   Map bounded `colspan` to native `gridSpan`, reconcile `data-colwidth` vectors
   by logical column (including unspecified zero entries), and sum covered grid
   widths for each cell. Retain rich text, lists, pictures and active citations
   through body/note insertion, DOCX save/reopen and one undo/redo transaction.
-  Keep whole-note resource bounds and refuse vertical merges, nested tables,
-  unequal logical row widths and unsupported table groups/styles.
+  Keep whole-note resource bounds and reject malformed logical grids, nested
+  tables and unsupported table groups/styles.
 - Advertise native Zotero citation merging and report adjacency to the next
   enumerated field only for physically touching citation packets in the same
   paragraph/story/note. Let Zotero own order, deduplication and formatting;
@@ -28,6 +29,14 @@ All notable changes to `quds_office_engine` are documented here.
   a merge. See the
   [continuation validation record](../../docs/validation/zotero-merged-cells-20261120/README.md)
   for qualified local source checks and remaining installed-application acceptance.
+
+- Render inline header/footer pictures and retain distinct images when their
+  dimensions match. Keep continuous-section decoration separate from body
+  frames so incremental layout preserves the same pictures as full layout.
+  Resolve table-style header formatting through the existing cascade, preserving
+  direct run overrides and explicit border widths when style color fills an
+  automatic value. Keep imported compact spacing sparse on export so later style
+  changes remain effective. Retain the imported empty-paragraph border behavior.
 
 - Extend Word VBA with inches, centimeters, millimeters and picas conversions
   to/from points, plus official named arguments for all ten measurement

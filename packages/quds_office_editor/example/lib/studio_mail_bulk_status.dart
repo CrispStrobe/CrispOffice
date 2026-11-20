@@ -15,6 +15,7 @@ class StudioMailBulkStatus extends StatelessWidget {
     required this.running,
     required this.subjects,
     this.onStop,
+    this.showStop = true,
     this.onDismiss,
   });
 
@@ -23,6 +24,9 @@ class StudioMailBulkStatus extends StatelessWidget {
   final bool running;
   final Map<MailRemoteIdentity, String> subjects;
   final VoidCallback? onStop;
+
+  /// Hosts with a toolbar stop control hide the duplicate control here.
+  final bool showStop;
   final VoidCallback? onDismiss;
 
   String _text(String en, String de, String ar) => switch (strings.language) {
@@ -92,10 +96,6 @@ class StudioMailBulkStatus extends StatelessWidget {
     ),
   };
 
-  bool get _requiresRefresh =>
-      report.requiresRefresh ||
-      report.stopReason == MailBulkFlagStopReason.staleScope;
-
   String _retryDelay(Duration delay) {
     final rounded = (delay.inMilliseconds / 1000).ceil();
     final seconds = rounded < 1 ? 1 : rounded;
@@ -148,10 +148,10 @@ class StudioMailBulkStatus extends StatelessWidget {
                     child: ListView.separated(
                       shrinkWrap: true,
                       padding: const EdgeInsets.symmetric(horizontal: 16),
-                      itemCount: report.results.length,
+                      itemCount: report.items.length,
                       separatorBuilder: (_, _) => const Divider(),
                       itemBuilder: (context, index) {
-                        final result = report.results[index];
+                        final result = report.items[index];
                         final subject = subjects[result.message];
                         return Padding(
                           key: ValueKey('studio-mail-bulk-result-$index'),
@@ -206,10 +206,10 @@ class StudioMailBulkStatus extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final attempted = report.results.length - report.unattemptedCount;
+    final attempted = report.items.length - report.unattemptedCount;
     return Material(
       key: const ValueKey('studio-mail-bulk-status'),
-      color: _requiresRefresh
+      color: report.requiresRefresh
           ? Theme.of(context).colorScheme.errorContainer
           : Theme.of(context).colorScheme.secondaryContainer,
       child: Padding(
@@ -238,7 +238,7 @@ class StudioMailBulkStatus extends StatelessWidget {
             if (running) ...[
               const SizedBox(height: 8),
               LinearProgressIndicator(
-                value: attempted / report.results.length,
+                value: attempted / report.items.length,
                 semanticsLabel: _text(
                   'Messages completed',
                   'Abgeschlossene Nachrichten',
@@ -246,7 +246,7 @@ class StudioMailBulkStatus extends StatelessWidget {
                 ),
               ),
             ],
-            if (_requiresRefresh) ...[
+            if (report.requiresRefresh) ...[
               const SizedBox(height: 8),
               Text(
                 _text(
@@ -266,7 +266,7 @@ class StudioMailBulkStatus extends StatelessWidget {
                 ),
               ),
               if (_retryAfter case final delay?) Text(_retryDelay(delay)),
-            ] else if (!running && report.stopProblem != null) ...[
+            ] else if (!running && report.stopReason != null) ...[
               const SizedBox(height: 8),
               Text(
                 _text(
@@ -279,7 +279,7 @@ class StudioMailBulkStatus extends StatelessWidget {
             Wrap(
               spacing: 8,
               children: [
-                if (running)
+                if (running && showStop)
                   TextButton(
                     key: const ValueKey('studio-mail-bulk-stop'),
                     onPressed: onStop,
@@ -302,7 +302,7 @@ class StudioMailBulkStatus extends StatelessWidget {
                   onPressed: running ? null : () => _details(context),
                   child: Text(_text('Details', 'Einzelheiten', 'التفاصيل')),
                 ),
-                if (!running && !_requiresRefresh && onDismiss != null)
+                if (!running && !report.requiresRefresh && onDismiss != null)
                   TextButton(
                     key: const ValueKey('studio-mail-bulk-dismiss'),
                     onPressed: onDismiss,

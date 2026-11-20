@@ -107,27 +107,37 @@ extension StudioMailWorkspaceStrings on StudioStrings {
       'Nachricht auswählen',
       'تحديد الرسالة',
     ),
-    selectVisible: _text(
-      'Select visible',
-      'Sichtbare auswählen',
-      'تحديد الظاهرة',
+    selectShown: _text(
+      'Select shown',
+      'Angezeigte auswählen',
+      'تحديد المعروضة',
     ),
-    clearSelection: _text('Clear selection', 'Auswahl aufheben', 'مسح التحديد'),
+    clearSelection: _text(
+      'Clear selection',
+      'Auswahl aufheben',
+      'إلغاء التحديد',
+    ),
     selectedCount: (count) =>
         _text('$count selected', '$count ausgewählt', '$count محددة'),
     bulkActions: _text(
-      'Selected messages',
-      'Ausgewählte Nachrichten',
-      'الرسائل المحددة',
+      'Actions for selected messages',
+      'Aktionen für ausgewählte Nachrichten',
+      'إجراءات الرسائل المحددة',
     ),
-    markRead: _text('Mark as read', 'Als gelesen markieren', 'وضع كمقروءة'),
-    markUnread: _text(
-      'Mark as unread',
-      'Als ungelesen markieren',
-      'وضع كغير مقروءة',
-    ),
+    markRead: markRead,
+    markUnread: ewsMarkUnread,
     flag: _text('Flag', 'Kennzeichnen', 'وضع علامة'),
     unflag: _text('Remove flag', 'Kennzeichnung entfernen', 'إزالة العلامة'),
+    stopBulk: _text(
+      'Stop after current message',
+      'Nach aktueller Nachricht stoppen',
+      'التوقف بعد الرسالة الحالية',
+    ),
+    bulkWorking: _text(
+      'Applying changes…',
+      'Änderungen werden angewendet…',
+      'جارٍ تطبيق التغييرات…',
+    ),
   );
 
   String _mailHeaderSearchError(MailHeaderSearchError error) => switch (error) {
@@ -204,5 +214,14 @@ extension StudioMailWorkspaceStrings on StudioStrings {
     'The server confirmed the change.',
     'Der Server hat die Änderung bestätigt.',
     'أكد الخادم التغيير.',
+  );
+
+  String mailBulkSummary(MailBulkFlagReport report) => _text(
+    '${report.confirmedCount} confirmed · ${report.failedCount} failed · '
+        '${report.uncertainCount} uncertain · ${report.unattemptedCount} not attempted',
+    '${report.confirmedCount} bestätigt · ${report.failedCount} fehlgeschlagen · '
+        '${report.uncertainCount} ungewiss · ${report.unattemptedCount} nicht versucht',
+    '${report.confirmedCount} مؤكدة · ${report.failedCount} فاشلة · '
+        '${report.uncertainCount} غير مؤكدة · ${report.unattemptedCount} لم تُحاول',
   );
 }

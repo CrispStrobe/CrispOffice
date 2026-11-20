@@ -1,0 +1,14 @@
+{
+  "archive": {
+    "bytes": 1234042,
+    "sha256": "15187283e3420fc49561560da254c7f46b2a52aaccaa1962afe5b3ada5b39aed"
+  },
+  "index": {
+    "bytes": 5132,
+    "sha256": "4975590f8354404eaae734698e45d38f77a64cdb5a61aa87c7515960728e8768"
+  },
+  "members_verified": 31,
+  "replacement_passes": 95,
+  "combined_passed": 3644,
+  "combined_skipped": 8
+}

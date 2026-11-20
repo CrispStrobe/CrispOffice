@@ -4,7 +4,8 @@
 
 The [foreground bulk contract](bulk-flags.md) adds checked visible selections,
 explicit read/unread/flag/unflag commands, keyboard selection and localized
-outcome summaries to connected IMAP, EWS, Gmail and Microsoft 365. Plans freeze
+progress, outcome summaries and per-message details to connected IMAP, EWS,
+Gmail and Microsoft 365. Plans freeze
 remote identities; sequential execution records confirmed, failed, uncertain
 and unattempted items. Explicit mutation evidence distinguishes definite failure
 from unknown acceptance; generic problem codes do not prove that no write

@@ -1,0 +1,70 @@
+{
+  "frozen_final_source": "e8edb90a2948af60f41e50795c049a0a4d1ed3e6",
+  "tree": "371ed6defb1986e32fc2e0d516356ac934304e47",
+  "total_passed": 1173,
+  "skipped": 0,
+  "failed": 0,
+  "errors": 0,
+  "cohorts": {
+    "core": {
+      "passed": 219,
+      "receipt": "mail-final-core-receipt.json",
+      "source": "e8edb90a2948af60f41e50795c049a0a4d1ed3e6",
+      "suites": {
+        "test/bulk_flags_compatibility_test.dart": 28,
+        "test/bulk_flags_coordinator_test.dart": 31,
+        "test/bulk_flags_provider_results_test.dart": 36,
+        "test/bulk_flags_test.dart": 30,
+        "test/cancellation_test.dart": 3,
+        "test/ews_identity_test.dart": 5,
+        "test/header_search_test.dart": 27,
+        "test/imap_sync_range_test.dart": 18,
+        "test/models_test.dart": 9,
+        "test/outbox_management_test.dart": 7,
+        "test/outbox_test.dart": 16,
+        "test/sync_coordinator_test.dart": 9
+      }
+    },
+    "transport": {
+      "passed": 415,
+      "receipt": "mail-transport-accepted-receipt.json",
+      "source": "38dcd802ae79e22d9f84ad79db1a197c43f3ad70",
+      "current_source_applicability": "mail-final-source-applicability.json"
+    },
+    "shared_ui": {
+      "passed": 164,
+      "receipt": "mail-ui-final-receipt.json",
+      "source": "38dcd802ae79e22d9f84ad79db1a197c43f3ad70",
+      "current_source_applicability": "mail-final-source-applicability.json"
+    },
+    "hosts_and_visual": {
+      "passed": 375,
+      "six_host_suites": 362,
+      "visual_variants": 13,
+      "receipt": "mail-final-hosts-receipt.json",
+      "source": "e8edb90a2948af60f41e50795c049a0a4d1ed3e6",
+      "suites": {
+        "/workspace/scratch/37104639dddb/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_bulk_provider_test.dart": 39,
+        "/workspace/scratch/37104639dddb/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_bulk_visual_test.dart": 13,
+        "/workspace/scratch/37104639dddb/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_cached_mail_test.dart": 32,
+        "/workspace/scratch/37104639dddb/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_cloud_test.dart": 59,
+        "/workspace/scratch/37104639dddb/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_ews_test.dart": 77,
+        "/workspace/scratch/37104639dddb/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_message_loader_test.dart": 95,
+        "/workspace/scratch/37104639dddb/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_workspace_test.dart": 60
+      }
+    }
+  },
+  "source_stability": {
+    "core_inputs": 2656,
+    "host_inputs": 2656,
+    "both_unchanged": true,
+    "runtime_unchanged": true
+  },
+  "baseline_archive": {
+    "path": "mail-evidence.tar.gz",
+    "bytes": 497352,
+    "sha256": "e05975b60e7402bc94ee6742a48286b757293832e2c2bee7419b518fecffa5a2"
+  },
+  "count_policy": "Count the final core and host runs once. Earlier 213-case core and 361-case host runs remain historical evidence and are excluded from this total. Retain 415 transport and 164 shared-UI cases only with exact current-source applicability proofs.",
+  "scope": "Local runtime tests with controlled providers; no live mail accounts, actual sends, installed application interoperability or GitHub Actions acceptance claimed."
+}
