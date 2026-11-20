@@ -104,15 +104,15 @@ final class WebDataStoreStudioSettingsBackend implements StudioSettingsBackend {
 
 /// One setting's type, default and validation. Invalid stored values are
 /// replaced by the default; they never fail loading.
-sealed class _Spec {
-  const _Spec();
+sealed class StudioSettingSpec {
+  const StudioSettingSpec();
   Object get fallback;
 
   /// The validated value, or null when [value] is not acceptable.
   Object? accept(Object? value);
 }
 
-final class _Flag extends _Spec {
+final class _Flag extends StudioSettingSpec {
   const _Flag(this.fallback);
   @override
   final bool fallback;
@@ -120,7 +120,7 @@ final class _Flag extends _Spec {
   Object? accept(Object? value) => value is bool ? value : null;
 }
 
-final class _Choice extends _Spec {
+final class _Choice extends StudioSettingSpec {
   const _Choice(this.allowed, this.fallback);
   final List<String> allowed;
   @override
@@ -131,7 +131,7 @@ final class _Choice extends _Spec {
 }
 
 /// Personal dictionary words by proofing language (`de-DE`: [...]).
-final class _Words extends _Spec {
+final class _Words extends StudioSettingSpec {
   const _Words();
   static const maxLanguages = 32;
   static const maxWords = 10000;
@@ -210,43 +210,44 @@ final class StudioSettings {
   }, const <String, Object?>{});
 
   /// The schema of version [StudioSettingsStore.version].
-  static final Map<String, _Spec> specs = <String, _Spec>{
-    StudioSettingKeys.language: _Choice([
-      for (final value in StudioLanguage.values) value.name,
-    ], StudioLanguage.en.name),
-    StudioSettingKeys.look: const _Choice([
-      'light',
-      'dark',
-      'highContrast',
-    ], 'light'),
-    StudioSettingKeys.lengthUnit: _Choice([
-      for (final value in OfficeLengthUnit.values) value.name,
-    ], OfficeLengthUnit.millimeters.name),
-    StudioSettingKeys.wordRulers: const _Flag(true),
-    StudioSettingKeys.sheetGridlines: const _Flag(true),
-    StudioSettingKeys.sheetHeaders: const _Flag(true),
-    StudioSettingKeys.slideHandles: const _Flag(true),
-    StudioSettingKeys.showNotes: const _Flag(false),
-    StudioSettingKeys.showComments: const _Flag(false),
-    StudioSettingKeys.showOutline: const _Flag(false),
-    StudioSettingKeys.showAnimationPane: const _Flag(true),
-    StudioSettingKeys.showSheetNavigation: const _Flag(true),
-    StudioSettingKeys.showPasteOptions: const _Flag(false),
-    StudioSettingKeys.pdfNightMode: const _Flag(false),
-    StudioSettingKeys.pdfSwipeHorizontal: const _Flag(false),
-    StudioSettingKeys.pdfPageSnap: const _Flag(true),
-    StudioSettingKeys.pdfPageFling: const _Flag(true),
-    StudioSettingKeys.pdfEnableSwipe: const _Flag(true),
-    StudioSettingKeys.pdfShowScroll: const _Flag(true),
-    StudioSettingKeys.pdfPreventLinks: const _Flag(false),
-    StudioSettingKeys.pdfFitPolicy: _Choice([
-      for (final value in PdfFitPolicy.values) value.name,
-    ], PdfFitPolicy.width.name),
-    StudioSettingKeys.checkAsYouType: const _Flag(true),
-    StudioSettingKeys.detectLanguage: const _Flag(true),
-    StudioSettingKeys.arabicContext: const _Flag(true),
-    StudioSettingKeys.personalWords: const _Words(),
-  };
+  static final Map<String, StudioSettingSpec> specs =
+      <String, StudioSettingSpec>{
+        StudioSettingKeys.language: _Choice([
+          for (final value in StudioLanguage.values) value.name,
+        ], StudioLanguage.en.name),
+        StudioSettingKeys.look: const _Choice([
+          'light',
+          'dark',
+          'highContrast',
+        ], 'light'),
+        StudioSettingKeys.lengthUnit: _Choice([
+          for (final value in OfficeLengthUnit.values) value.name,
+        ], OfficeLengthUnit.millimeters.name),
+        StudioSettingKeys.wordRulers: const _Flag(true),
+        StudioSettingKeys.sheetGridlines: const _Flag(true),
+        StudioSettingKeys.sheetHeaders: const _Flag(true),
+        StudioSettingKeys.slideHandles: const _Flag(true),
+        StudioSettingKeys.showNotes: const _Flag(false),
+        StudioSettingKeys.showComments: const _Flag(false),
+        StudioSettingKeys.showOutline: const _Flag(false),
+        StudioSettingKeys.showAnimationPane: const _Flag(true),
+        StudioSettingKeys.showSheetNavigation: const _Flag(true),
+        StudioSettingKeys.showPasteOptions: const _Flag(false),
+        StudioSettingKeys.pdfNightMode: const _Flag(false),
+        StudioSettingKeys.pdfSwipeHorizontal: const _Flag(false),
+        StudioSettingKeys.pdfPageSnap: const _Flag(true),
+        StudioSettingKeys.pdfPageFling: const _Flag(true),
+        StudioSettingKeys.pdfEnableSwipe: const _Flag(true),
+        StudioSettingKeys.pdfShowScroll: const _Flag(true),
+        StudioSettingKeys.pdfPreventLinks: const _Flag(false),
+        StudioSettingKeys.pdfFitPolicy: _Choice([
+          for (final value in PdfFitPolicy.values) value.name,
+        ], PdfFitPolicy.width.name),
+        StudioSettingKeys.checkAsYouType: const _Flag(true),
+        StudioSettingKeys.detectLanguage: const _Flag(true),
+        StudioSettingKeys.arabicContext: const _Flag(true),
+        StudioSettingKeys.personalWords: const _Words(),
+      };
 
   final Map<String, Object> _values;
 
