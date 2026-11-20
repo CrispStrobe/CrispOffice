@@ -53,6 +53,7 @@ class StudioDownloadItem {
     required this.review,
     this.exactSizeOnDisk = true,
     this.note,
+    this.description,
     this.problem,
     this.unavailableReason,
     this.requires,
@@ -81,6 +82,9 @@ class StudioDownloadItem {
 
   /// One short qualifier shown under the metadata, translated by the dialog.
   final StudioDownloadNote? note;
+
+  /// The package's own one-line description (font packs), untranslated.
+  final String? description;
   final String? problem;
   final String? unavailableReason;
 
@@ -214,6 +218,7 @@ List<StudioDownloadItem> studioDownloadCatalog({
     bool prerequisiteMissing = false,
     bool exactSizeOnDisk = true,
     StudioDownloadNote? note,
+    String? description,
     Future<void> Function()? remove,
     Uri? licenceUrl,
   }) {
@@ -237,6 +242,7 @@ List<StudioDownloadItem> studioDownloadCatalog({
       ),
       exactSizeOnDisk: exactSizeOnDisk,
       note: note,
+      description: description,
       problem: problem,
       unavailableReason: unavailable,
       requires: requires,
@@ -393,6 +399,7 @@ List<StudioDownloadItem> studioDownloadCatalog({
         licence: pack.licence,
         licenceUrl: Uri.parse(pack.licenceUrl),
         review: StudioDownloadReview.fontPack,
+        description: pack.description,
         installed: status.installed,
         problem: status.problem,
         remove: () => fontPacks!.remove(pack),
