@@ -771,6 +771,29 @@ void main() {
       },
     );
 
+    test('common geometric presets survive import', () {
+      for (final (String prst, PmlShapePreset preset)
+          in <(String, PmlShapePreset)>[
+            ('diamond', PmlShapePreset.diamond),
+            ('hexagon', PmlShapePreset.hexagon),
+            ('pentagon', PmlShapePreset.pentagon),
+            ('chevron', PmlShapePreset.chevron),
+            ('parallelogram', PmlShapePreset.parallelogram),
+            ('trapezoid', PmlShapePreset.trapezoid),
+          ]) {
+        final PmlPresentation deck = _deck(<String>[
+          _sld(
+            '<p:sp><p:nvSpPr><p:cNvPr id="2" name="Shape"/>'
+            '<p:cNvSpPr/><p:nvPr/></p:nvSpPr><p:spPr>'
+            '${_xfrm(0, 0, 914400, 914400)}'
+            '<a:prstGeom prst="$prst"><a:avLst/></a:prstGeom>'
+            '</p:spPr></p:sp>',
+          ),
+        ]);
+        expect(deck.slides.single.shapes.single.preset, preset);
+      }
+    });
+
     test('master background resolves theme lumMod', () {
       final PmlPresentation deck = _deck(
         <String>[_sld(_textBox(2, 'Slide'))],
