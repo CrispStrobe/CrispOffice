@@ -1,0 +1,425 @@
+{
+  "captured_at_utc": "2026-11-20 16:09:33 UTC",
+  "branches": [
+    {
+      "name": "codex/odt-field-continuation-20261117",
+      "sha": "c34945761e7991f5fe49037d79529acdd260b31c"
+    },
+    {
+      "name": "codex/word-powerpoint-vba-expansion-20261120",
+      "sha": "0f6239396ff3328473a5f57c280b982d57e33a08"
+    },
+    {
+      "name": "codex/word-vba-compat-20261120-next",
+      "sha": "650afb7d117337bab943af05d63a250a7e90c058"
+    },
+    {
+      "name": "codex/word-vba-list-levels-20261120",
+      "sha": "46e98c8c7ec65e67e8f71dc386804693e8ef1163"
+    },
+    {
+      "name": "codex/word-vba-ranges-20261120",
+      "sha": "22e5960e99915e81a1b5997058cac44dac27ba1a"
+    },
+    {
+      "name": "codex/zotero-research-tables-20261120",
+      "sha": "34491bca22a2989dd89d9da3c853f5e57de5464f"
+    },
+    {
+      "name": "docs/ods-color-scale",
+      "sha": "58fdddfbcf198a8c0e38e32f6fcc9d6604e95283"
+    },
+    {
+      "name": "docs/ods-data-bar",
+      "sha": "69d14f84cabd3931b7640c1654b401c89faba766"
+    },
+    {
+      "name": "feat/ods-color-scale",
+      "sha": "74ce9ffb816c70c0d2ae50b91ec52a614f26d688"
+    },
+    {
+      "name": "feat/ods-data-bar",
+      "sha": "0a53b8a70128870f3e1df6d18cdb177bb64290ee"
+    },
+    {
+      "name": "feat/ods-dynamic-validation-links",
+      "sha": "68a0db23408e4c95d6d283219504c79aea33a6fe"
+    },
+    {
+      "name": "feat/ods-icon-sets",
+      "sha": "005c708e9f747cb46cf02e12c869b0a2f85ac824"
+    },
+    {
+      "name": "feat/ods-time-period-conditions",
+      "sha": "7ef09f2408f467c65427700e65907531ecb26acb"
+    },
+    {
+      "name": "fix/mail-credential-stores-chrome-20261120",
+      "sha": "a652a205e6daf6b4b8e3baec04db1c1b52fabd0d"
+    },
+    {
+      "name": "integrate/office-union-148",
+      "sha": "3abf8f43b0e79c10271bbd046f391e462b8fe6b9"
+    },
+    {
+      "name": "integrate/recent-pptx",
+      "sha": "4f5c153774ab7492430c2b68653c54e0c08dc2ad"
+    },
+    {
+      "name": "main",
+      "sha": "acca1cbcba2a322ad1ae2d7d9fb415110ce22554"
+    },
+    {
+      "name": "work/mail-accounts-20261120",
+      "sha": "86e44e87f829b0309ea7b84fd5d390f596fe7f26"
+    },
+    {
+      "name": "work/mail-multiple-drafts-20261120",
+      "sha": "b3abdf3b4628a8a703857d69b8f11cd21bc502e1"
+    },
+    {
+      "name": "work/mail-offline-accounts-20261120",
+      "sha": "46e98c8c7ec65e67e8f71dc386804693e8ef1163"
+    },
+    {
+      "name": "work/mail-outbox-20261120",
+      "sha": "9443612b024114c424ba2f8146e04050d6e049b0"
+    },
+    {
+      "name": "work/mail-outbox-management-20261120",
+      "sha": "79e11935e16ea1d2fa576ead0712c83f22e15c28"
+    }
+  ],
+  "recent_pull_requests": [
+    {
+      "number": 260,
+      "title": "Mail: finish offline account qualification and preserve Word metadata [skip ci]",
+      "state": "open",
+      "draft": true,
+      "head": "46e98c8c7ec65e67e8f71dc386804693e8ef1163",
+      "head_branch": "work/mail-offline-accounts-20261120",
+      "base": "acca1cbcba2a322ad1ae2d7d9fb415110ce22554",
+      "merged_at": null,
+      "merge_commit": "487f630812304a4980a4863fb8f07d592a9766d6"
+    },
+    {
+      "number": 258,
+      "title": "Mail: reopen local drafts across verified native accounts [skip ci]",
+      "state": "closed",
+      "draft": true,
+      "head": "fee58398c80ec811f4adfbbaef7ae08598abdda0",
+      "head_branch": "work/mail-offline-accounts-20261120",
+      "base": "5c48058bedc42dd8cbf3fb9d6f1fb492b2ac1eb8",
+      "merged_at": "2026-11-20T15:59:21Z",
+      "merge_commit": "fee58398c80ec811f4adfbbaef7ae08598abdda0"
+    },
+    {
+      "number": 254,
+      "title": "Mail: review, export and safely edit durable Outbox messages [skip ci]",
+      "state": "closed",
+      "draft": true,
+      "head": "79e11935e16ea1d2fa576ead0712c83f22e15c28",
+      "head_branch": "work/mail-outbox-management-20261120",
+      "base": "5c48058bedc42dd8cbf3fb9d6f1fb492b2ac1eb8",
+      "merged_at": "2026-11-20T15:59:21Z",
+      "merge_commit": "79e11935e16ea1d2fa576ead0712c83f22e15c28"
+    },
+    {
+      "number": 259,
+      "title": "Extend Word VBA paragraph ListFormat and qualify reconciled fork work",
+      "state": "closed",
+      "draft": false,
+      "head": "650afb7d117337bab943af05d63a250a7e90c058",
+      "head_branch": "codex/word-vba-compat-20261120-next",
+      "base": "5c48058bedc42dd8cbf3fb9d6f1fb492b2ac1eb8",
+      "merged_at": "2026-11-20T15:59:20Z",
+      "merge_commit": "acca1cbcba2a322ad1ae2d7d9fb415110ce22554"
+    },
+    {
+      "number": 257,
+      "title": "Extend Word VBA custom tab stops and reconcile recent fork work [skip ci]",
+      "state": "closed",
+      "draft": false,
+      "head": "22e5960e99915e81a1b5997058cac44dac27ba1a",
+      "head_branch": "codex/word-vba-ranges-20261120",
+      "base": "7f2d51a5206059478ea81965ccc95b89a9274ca6",
+      "merged_at": "2026-11-20T14:47:58Z",
+      "merge_commit": "5c48058bedc42dd8cbf3fb9d6f1fb492b2ac1eb8"
+    },
+    {
+      "number": 249,
+      "title": "Preserve Zotero research-note tables and active cell citations [skip ci]",
+      "state": "closed",
+      "draft": true,
+      "head": "a2b87ee3f471da500423055e86ba2614fc053cae",
+      "head_branch": "codex/zotero-research-tables-20261120",
+      "base": "13be50464d1b43e9f2100fb9ccc12f8fe22eb55e",
+      "merged_at": "2026-11-20T14:10:35Z",
+      "merge_commit": "b95f83db4f54b5e4e44e3bcb8c384ea7445e3970"
+    },
+    {
+      "number": 256,
+      "title": "Finalize Zotero table parity evidence and current-main qualification [skip ci]",
+      "state": "closed",
+      "draft": false,
+      "head": "34491bca22a2989dd89d9da3c853f5e57de5464f",
+      "head_branch": "codex/zotero-research-tables-20261120",
+      "base": "243b99a5ee56e591991f381533b2363586bd5dd0",
+      "merged_at": "2026-11-20T14:27:36Z",
+      "merge_commit": "7f2d51a5206059478ea81965ccc95b89a9274ca6"
+    },
+    {
+      "number": 255,
+      "title": "Reconcile final Zotero evidence after the Mail draft milestone",
+      "state": "closed",
+      "draft": false,
+      "head": "b3abdf3b4628a8a703857d69b8f11cd21bc502e1",
+      "head_branch": "work/mail-multiple-drafts-20261120",
+      "base": "4df939eeed1bda9f9dbde8c8d2cbf0a4fe91b5b0",
+      "merged_at": "2026-11-20T14:10:33Z",
+      "merge_commit": "243b99a5ee56e591991f381533b2363586bd5dd0"
+    },
+    {
+      "number": 252,
+      "title": "Extend Word and PowerPoint VBA helpers, paragraph layout and text margins [skip ci]",
+      "state": "closed",
+      "draft": false,
+      "head": "0f6239396ff3328473a5f57c280b982d57e33a08",
+      "head_branch": "codex/word-powerpoint-vba-expansion-20261120",
+      "base": "13be50464d1b43e9f2100fb9ccc12f8fe22eb55e",
+      "merged_at": "2026-11-20T14:05:18Z",
+      "merge_commit": "e7ed2efd4e661ef244a21dd2836525c8e1531b7e"
+    },
+    {
+      "number": 253,
+      "title": "Add multiple local mail drafts and offline composition",
+      "state": "closed",
+      "draft": false,
+      "head": "4b6bc01be2c95008c320b5a26615828191cf1d9e",
+      "head_branch": "work/mail-multiple-drafts-20261120",
+      "base": "ae32c69000a33c37770f522ea1d54627bcf09a6b",
+      "merged_at": "2026-11-20T14:05:16Z",
+      "merge_commit": "4df939eeed1bda9f9dbde8c8d2cbf0a4fe91b5b0"
+    },
+    {
+      "number": 251,
+      "title": "Mail: complete account ownership and Outbox integration",
+      "state": "closed",
+      "draft": false,
+      "head": "86e44e87f829b0309ea7b84fd5d390f596fe7f26",
+      "head_branch": "work/mail-accounts-20261120",
+      "base": "13be50464d1b43e9f2100fb9ccc12f8fe22eb55e",
+      "merged_at": "2026-11-20T14:02:54Z",
+      "merge_commit": "ae32c69000a33c37770f522ea1d54627bcf09a6b"
+    },
+    {
+      "number": 243,
+      "title": "Mail: add remembered native accounts and explicit switching",
+      "state": "closed",
+      "draft": true,
+      "head": "a059c0249a25bef602640c8b8d504bd8da41c619",
+      "head_branch": "work/mail-accounts-20261120",
+      "base": "c028baf2491f701735a53552b4b3674914a4f830",
+      "merged_at": "2026-11-20T11:46:32Z",
+      "merge_commit": "f7bf155337b0ba77dc20c6be548ef38ac06c5c65"
+    },
+    {
+      "number": 250,
+      "title": "Mail: durable foreground Outbox with explicit recovery [skip ci]",
+      "state": "closed",
+      "draft": false,
+      "head": "9443612b024114c424ba2f8146e04050d6e049b0",
+      "head_branch": "work/mail-outbox-20261120",
+      "base": "b42eca1db058f0def247b86c2f15dea90c11b4e8",
+      "merged_at": "2026-11-20T13:32:06Z",
+      "merge_commit": "13be50464d1b43e9f2100fb9ccc12f8fe22eb55e"
+    },
+    {
+      "number": 248,
+      "title": "Complete safe HTML replies and explicit attachment forwarding",
+      "state": "closed",
+      "draft": false,
+      "head": "56d5fdf15a20ced764561a1ac2429c2c37a6e780",
+      "head_branch": "work/mail-reply-forward-20261120",
+      "base": "a652a205e6daf6b4b8e3baec04db1c1b52fabd0d",
+      "merged_at": "2026-11-20T12:31:17Z",
+      "merge_commit": "c3df77d01ea9df4846e18131e69160d858f174ac"
+    },
+    {
+      "number": 238,
+      "title": "Complete Zotero image notes and structured lists; integrate incoming Office work",
+      "state": "closed",
+      "draft": false,
+      "head": "40a8f8eb76bd9bf51205fa0cb9f576ba497ad76b",
+      "head_branch": "codex/zotero-parity-continuation-20261120",
+      "base": "860c807bfd1385899eed130abfb8940f95bda113",
+      "merged_at": "2026-11-20T10:55:29Z",
+      "merge_commit": "50e33639c545164af9f693265494c28b4ec8c15e"
+    },
+    {
+      "number": 240,
+      "title": "Extend Zotero research insertion to authored notes and selected text [skip ci]",
+      "state": "closed",
+      "draft": false,
+      "head": "6c23d94472f741aceff6aef0de0e6ef847195afe",
+      "head_branch": "codex/zotero-note-targets-20261120",
+      "base": "d95e814af9556dcea448ba5673e0ba4dc81007d0",
+      "merged_at": "2026-11-20T10:55:27Z",
+      "merge_commit": "c028baf2491f701735a53552b4b3674914a4f830"
+    },
+    {
+      "number": 245,
+      "title": "Extend Word and PowerPoint VBA typography and slideshow support",
+      "state": "closed",
+      "draft": false,
+      "head": "d46d4ef394ed7cafd40bc266c793f8c0df6ec57f",
+      "head_branch": "codex/word-powerpoint-vba-continuation-20261120",
+      "base": "899df57d03e55bf73357136c5f21739c5c9b5719",
+      "merged_at": "2026-11-20T11:19:24Z",
+      "merge_commit": "3ffa599ff003a6e678260df1237b01887693e546"
+    },
+    {
+      "number": 247,
+      "title": "Incremental Word relayout for local edits (typing lag)",
+      "state": "closed",
+      "draft": false,
+      "head": "baf6d1bc53b611e9fb37082ca69c409e5f8d6381",
+      "head_branch": "perf/incremental-layout-20261120",
+      "base": "a652a205e6daf6b4b8e3baec04db1c1b52fabd0d",
+      "merged_at": "2026-11-20T13:09:31Z",
+      "merge_commit": "b42eca1db058f0def247b86c2f15dea90c11b4e8"
+    },
+    {
+      "number": 242,
+      "title": "Redesign the Downloads manager (uniform grouped package list)",
+      "state": "closed",
+      "draft": false,
+      "head": "84d02025fade09c80f3f58942b466f4522eb4434",
+      "head_branch": "feat/downloads-manager-redesign-20261120",
+      "base": "e59b8918db508da46039a943080dc4b7a5c7a0bb",
+      "merged_at": "2026-11-20T11:46:32Z",
+      "merge_commit": "7600f7fd71fdc7f01228155a22d600177f5afcb9"
+    },
+    {
+      "number": 246,
+      "title": "Fix analyze on main: font-pack stub signature, duplicate crypto dev dependency",
+      "state": "closed",
+      "draft": false,
+      "head": "d0c9007480ba518022836e017802875614e6205c",
+      "head_branch": "fix/font-pack-stub-packs-20261120",
+      "base": "e59b8918db508da46039a943080dc4b7a5c7a0bb",
+      "merged_at": "2026-11-20T11:17:02Z",
+      "merge_commit": "899df57d03e55bf73357136c5f21739c5c9b5719"
+    },
+    {
+      "number": 244,
+      "title": "Typing/proofing: record hosted benchmark and suite results [skip ci]",
+      "state": "closed",
+      "draft": false,
+      "head": "2fd61c3353dc22ee36ed1bc1a69df470a9423230",
+      "head_branch": "perf/typing-proofing-results-20261120",
+      "base": "c028baf2491f701735a53552b4b3674914a4f830",
+      "merged_at": "2026-11-20T11:01:51Z",
+      "merge_commit": "e59b8918db508da46039a943080dc4b7a5c7a0bb"
+    },
+    {
+      "number": 237,
+      "title": "Typing: coalesce as-you-type proofing and status chrome (+ benchmark)",
+      "state": "closed",
+      "draft": true,
+      "head": "712d0ea558a01cabff25a83294a29b8d57ec25d4",
+      "head_branch": "perf/typing-proofing-20261120",
+      "base": "d040c15a07f652d01e75363031d0efdee6357bda",
+      "merged_at": "2026-11-20T10:55:29Z",
+      "merge_commit": "e867ffaa1c434a019b9ea8ccdd8592918ada6c0d"
+    },
+    {
+      "number": 241,
+      "title": "Mail: shared foreground navigation and reconciled qualification",
+      "state": "closed",
+      "draft": false,
+      "head": "aad737dd79c034b831a8957daa4165c6c64e35e5",
+      "head_branch": "work/mail-workspace-20261120",
+      "base": "d040c15a07f652d01e75363031d0efdee6357bda",
+      "merged_at": "2026-11-20T10:28:08Z",
+      "merge_commit": "50b029b3747a6643df040dafb470e54fa8dd5466"
+    },
+    {
+      "number": 233,
+      "title": "Persist native Mail drafts and reconcile current Office work [skip ci]",
+      "state": "closed",
+      "draft": false,
+      "head": "20b2ecf572f8fd5663a728529da7bf5c7ebbda1d",
+      "head_branch": "work/mail-draft-recovery-20261120",
+      "base": "e06eb3a7e21b71c1d5d4b1d2cc9abde24774eb26",
+      "merged_at": "2026-11-20T08:01:59Z",
+      "merge_commit": "2f9bfd332b7f3dffc3190bb3b92d9c226e0f95bc"
+    },
+    {
+      "number": 221,
+      "title": "Add bounded mail attachments and reconcile current Office work",
+      "state": "closed",
+      "draft": true,
+      "head": "177f29d3f9450a58f41189b462b0814aad37e45c",
+      "head_branch": "work/mail-attachments-20261120",
+      "base": "3e5f44ae14926b8054b2e5c0558ce71477891a33",
+      "merged_at": "2026-11-20T07:24:05Z",
+      "merge_commit": "a45ee3bf40dbb7e64a04f879fd6d574db7cb60b1"
+    },
+    {
+      "number": 239,
+      "title": "Extend Word and PowerPoint VBA; integrate recent work [skip ci]",
+      "state": "closed",
+      "draft": false,
+      "head": "06f119566235aa3765445526f5ffab48832b1a31",
+      "head_branch": "codex/word-powerpoint-vba-20261120",
+      "base": "33190e50cae486be362eedb5fa687dd9c82b0c51",
+      "merged_at": "2026-11-20T09:46:52Z",
+      "merge_commit": "d040c15a07f652d01e75363031d0efdee6357bda"
+    },
+    {
+      "number": 227,
+      "title": "Extend Word and Excel VBA with explicit Variants and paragraph macros",
+      "state": "closed",
+      "draft": true,
+      "head": "1ceae221d37e733f0195d35622a05f896a2d13a1",
+      "head_branch": "codex/vba-variant-conversions-20261120",
+      "base": "5e38de19ab5af8d6811d601c7317cba7f69d516b",
+      "merged_at": "2026-11-20T09:32:04Z",
+      "merge_commit": "3d67261b7d6ad6fd3f6103fd651b57707137cdb3"
+    },
+    {
+      "number": 223,
+      "title": "Extend Zotero research-material browsing and reconcile recent work [skip ci]",
+      "state": "closed",
+      "draft": false,
+      "head": "a31616d3567a43307251e13a9728cf92fd8690c6",
+      "head_branch": "codex/zotero-research-materials-20261120",
+      "base": "88905c56547fa91206acbc306616c3ad10f9d77b",
+      "merged_at": "2026-11-20T07:24:03Z",
+      "merge_commit": "7501b604db23e2df3d765f2ea44f572b2ea43d97"
+    },
+    {
+      "number": 234,
+      "title": "Rename built app artifacts and platform identities to CrispOffice",
+      "state": "closed",
+      "draft": false,
+      "head": "228d13d949859c66c58cf51addfbb03b09c7365d",
+      "head_branch": "feat/crispoffice-rename-20261120",
+      "base": "5e38de19ab5af8d6811d601c7317cba7f69d516b",
+      "merged_at": "2026-11-20T09:46:53Z",
+      "merge_commit": "932d49a33cccaeedd7fcb41aa16cbfda95aeb4e4"
+    },
+    {
+      "number": 236,
+      "title": "Qualify manual German grammar on the Android arm64 spaCy library",
+      "state": "closed",
+      "draft": false,
+      "head": "7319b220ab2e64b440e6f63d299eb747366a24d3",
+      "head_branch": "feat/android-spacy-grammar-20261120",
+      "base": "5e38de19ab5af8d6811d601c7317cba7f69d516b",
+      "merged_at": "2026-11-20T09:31:28Z",
+      "merge_commit": "7c562b635f932372a310b78a78eb20bdb9df626d"
+    }
+  ]
+}
