@@ -1,0 +1,82 @@
+00:00 +0: loading /mnt/volume1/quds-word-layout-20261120/source/packages/quds_office_editor/test/word_selection_paint_test.dart
+00:00 +0: (setUpAll)
+00:00 +0: selection band geometry a line with mixed font sizes gets one even band
+00:00 +1: selection band geometry multi-line selection is seamless, stops at the text and adds a paragraph-mark block
+00:00 +2: selection band geometry a selection ending at the paragraph end leaves the mark out
+00:00 +3: selection band geometry paragraph spacing before and after is not highlighted
+00:00 +4: selection band geometry right-to-left paragraphs show the mark on the left
+00:00 +5: selection band geometry an empty paragraph shows only its mark block
+00:00 +6: selection colour defaults to Word's colour per platform and stays configurable
+00:00 +7: whole cells are filled; a selection inside one cell is not
+00:01 +8: Word-like selection golden (variant: TargetPlatform.macOS)
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following assertion was thrown while running async test code:
+Golden "goldens/linux/word_selection_macOS.png": Pixel test failed, 3.80%, 17432px diff detected.
+Failure feedback can be found at
+/mnt/volume1/quds-word-layout-20261120/source/packages/quds_office_editor/test/failures
+
+When the exception was thrown, this was the stack:
+#0      LocalFileComparator.compare (package:flutter_test/src/_goldens_io.dart:108:5)
+<asynchronous suspension>
+#1      MatchesGoldenFile.matchAsync.<anonymous closure> (package:flutter_test/src/_matchers_io.dart:124:32)
+<asynchronous suspension>
+<asynchronous suspension>
+#3      _expect.<anonymous closure> (package:matcher/src/expect/expect.dart:153:17)
+<asynchronous suspension>
+<asynchronous suspension>
+#5      expectLater.<anonymous closure> (package:flutter_test/src/widget_tester.dart:508:19)
+<asynchronous suspension>
+#6      main.<anonymous closure> (file:///mnt/volume1/quds-word-layout-20261120/source/packages/quds_office_editor/test/word_selection_paint_test.dart:376:5)
+<asynchronous suspension>
+#7      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#8      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1953:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided 3 frames from dart:async and package:stack_trace)
+
+The exception was caught asynchronously.
+════════════════════════════════════════════════════════════════════════════════════════════════════
+00:01 +8 -1: Word-like selection golden (variant: TargetPlatform.macOS) [E]
+  Test failed. See exception logs above.
+  The test description was: Word-like selection golden (variant: TargetPlatform.macOS)
+  
+00:01 +8 -1: Word-like selection golden (Windows grey) (variant: TargetPlatform.windows)
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following assertion was thrown while running async test code:
+Golden "goldens/linux/word_selection_windows.png": Pixel test failed, 3.80%, 17431px diff detected.
+Failure feedback can be found at
+/mnt/volume1/quds-word-layout-20261120/source/packages/quds_office_editor/test/failures
+
+When the exception was thrown, this was the stack:
+#0      LocalFileComparator.compare (package:flutter_test/src/_goldens_io.dart:108:5)
+<asynchronous suspension>
+#1      MatchesGoldenFile.matchAsync.<anonymous closure> (package:flutter_test/src/_matchers_io.dart:124:32)
+<asynchronous suspension>
+<asynchronous suspension>
+#3      _expect.<anonymous closure> (package:matcher/src/expect/expect.dart:153:17)
+<asynchronous suspension>
+<asynchronous suspension>
+#5      expectLater.<anonymous closure> (package:flutter_test/src/widget_tester.dart:508:19)
+<asynchronous suspension>
+#6      main.<anonymous closure> (file:///mnt/volume1/quds-word-layout-20261120/source/packages/quds_office_editor/test/word_selection_paint_test.dart:384:5)
+<asynchronous suspension>
+#7      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#8      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1953:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided 3 frames from dart:async and package:stack_trace)
+
+The exception was caught asynchronously.
+════════════════════════════════════════════════════════════════════════════════════════════════════
+00:01 +8 -2: Word-like selection golden (Windows grey) (variant: TargetPlatform.windows) [E]
+  Test failed. See exception logs above.
+  The test description was: Word-like selection golden (Windows grey) (variant: TargetPlatform.windows)
+  
+00:01 +8 -2: (tearDownAll)
+00:01 +8 -2: Some tests failed.
+
+Failing tests:
+  /mnt/volume1/quds-word-layout-20261120/source/packages/quds_office_editor/test/word_selection_paint_test.dart: Word-like selection golden (Windows grey) (variant: TargetPlatform.windows)
+  /mnt/volume1/quds-word-layout-20261120/source/packages/quds_office_editor/test/word_selection_paint_test.dart: Word-like selection golden (variant: TargetPlatform.macOS)

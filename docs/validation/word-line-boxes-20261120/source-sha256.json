@@ -9,6 +9,6 @@
   "packages/quds_office_engine/lib/src/word/properties/wml_properties.dart": "d4bce9af3b57f7bd8f6bf84c4631926e0708184ffb55bab73b5ac2cd546f69c9",
   "packages/quds_office_engine/lib/src/word/serial/word_deserializer.dart": "de7fbb73c576a2d882329e8cc7ac1d073ad0a3839b171063d13ea881657287f4",
   "packages/quds_office_engine/lib/src/word/serial/word_property_io.dart": "7ca6ffb50dfddf30d36dde82435e3c3ae61da99a24705f490f3a1702d5dd2e63",
-  "packages/quds_office_engine/lib/src/word/serial/word_serializer.dart": "c3c8e0e51c036154563b48bc070b02a0216fcfeb4d4d67cd8d99ae7a0fd0689b",
+  "packages/quds_office_engine/lib/src/word/serial/word_serializer.dart": "32feb8597fbc627a91300dec2cc2da89b0241b2cda3809361e333dc50454541b",
   "packages/quds_office_engine/lib/src/word/serial/word_style_cascade.dart": "52040c74cb2a5790cf32c1af240da5e8b9f40dcaebf213e3c4419efd9c7411af"
 }

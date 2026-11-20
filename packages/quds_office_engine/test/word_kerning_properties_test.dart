@@ -3,6 +3,39 @@ import 'package:quds_office_engine/quds_office_engine.dart';
 import 'package:test/test.dart';
 
 void main() {
+  test(
+    'adding a language to styleless imports preserves the kerning fallback',
+    () {
+      final package = OpcPackage.create(OpcPackageKind.word);
+      package
+          .getPart('/word/document.xml')!
+          .writeText(
+            '<w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main"><w:body><w:p><w:r><w:t>AVATAR To</w:t></w:r></w:p></w:body></w:document>',
+          );
+      final doc = WordDeserializer().read(package);
+      expect(
+        doc.paragraphs.first.inlines
+            .whereType<WmlRun>()
+            .first
+            .properties
+            .kerningHalfPoints,
+        1,
+      );
+      doc.proofingLanguage = 'en-GB';
+      final reread = WordDeserializer().readBytes(
+        WordSerializer().writeBytes(doc),
+      );
+      expect(
+        reread.paragraphs.first.inlines
+            .whereType<WmlRun>()
+            .first
+            .properties
+            .kerningHalfPoints,
+        1,
+      );
+    },
+  );
+
   test('inherited threshold stays sparse and direct edits survive save', () {
     final doc = WordDeserializer().readBytes(
       File(

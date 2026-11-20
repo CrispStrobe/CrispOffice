@@ -1,0 +1,33 @@
+00:00 +0: loading test/word_kerning_properties_test.dart
+00:00 +0: test/word_kerning_properties_test.dart: adding a language to styleless imports preserves the kerning fallback
+00:01 +1: test/word_kerning_properties_test.dart: adding a language to styleless imports preserves the kerning fallback
+00:01 +2: test/word_kerning_properties_test.dart: adding a language to styleless imports preserves the kerning fallback
+00:01 +3: test/word_kerning_properties_test.dart: adding a language to styleless imports preserves the kerning fallback
+00:01 +4: test/word_kerning_properties_test.dart: adding a language to styleless imports preserves the kerning fallback
+00:01 +5: test/word_kerning_properties_test.dart: adding a language to styleless imports preserves the kerning fallback
+00:01 +6: test/word_kerning_properties_test.dart: adding a language to styleless imports preserves the kerning fallback
+00:01 +7: test/word_kerning_properties_test.dart: adding a language to styleless imports preserves the kerning fallback
+00:01 +8: test/word_kerning_properties_test.dart: adding a language to styleless imports preserves the kerning fallback
+00:01 +9: test/word_kerning_properties_test.dart: adding a language to styleless imports preserves the kerning fallback
+00:01 +10: test/word_kerning_properties_test.dart: adding a language to styleless imports preserves the kerning fallback
+00:01 +11: test/word_kerning_properties_test.dart: adding a language to styleless imports preserves the kerning fallback
+00:01 +12: test/word_kerning_properties_test.dart: adding a language to styleless imports preserves the kerning fallback
+00:01 +13: test/word_kerning_properties_test.dart: adding a language to styleless imports preserves the kerning fallback
+00:01 +14: test/styleless_import_fidelity_test.dart: missing styles and direct properties remain absent after unrelated edits
+00:01 +15: test/styleless_import_fidelity_test.dart: missing styles and direct properties remain absent after unrelated edits
+00:01 +16: test/styleless_import_fidelity_test.dart: missing styles and direct properties remain absent after unrelated edits
+00:01 +17: test/style_cascade_test.dart: scripts apply character/table styles and edit table run definitions
+00:01 +18: test/style_cascade_test.dart: scripts apply character/table styles and edit table run definitions
+00:02 +19: test/style_cascade_test.dart: scripts apply character/table styles and edit table run definitions
+00:02 +20: test/style_cascade_test.dart: scripts apply character/table styles and edit table run definitions
+00:02 +21: test/style_cascade_test.dart: scripts apply character/table styles and edit table run definitions
+00:02 +22: test/style_cascade_test.dart: scripts apply character/table styles and edit table run definitions
+00:02 +23: test/word_style_introduction_test.dart: new TOC link appearance survives its first export
+00:03 +24: test/word_style_introduction_test.dart: new TOC link appearance survives its first export
+00:03 +25: test/word_style_introduction_test.dart: new TOC link appearance survives its first export
+00:03 +26: test/word_style_introduction_test.dart: new TOC link appearance survives its first export
+00:03 +27: test/word_style_introduction_test.dart: new TOC link appearance survives its first export
+00:04 +28: test/word_style_introduction_test.dart: unrelated style catalog false retains native paragraph defaults
+00:04 +29: test/word_style_introduction_test.dart: unrelated style catalog true retains native paragraph defaults
+00:05 +30: test/word_style_introduction_test.dart: declared defaults still cascade and explicit zero overrides them
+00:05 +31: All tests passed!
