@@ -135,7 +135,7 @@ final class ApiMailCloudProvider implements MailCloudProvider {
   );
 
   MailFailure<T> _failure<T>(MailProblemCode code) =>
-      MailFailure(MailProblem(code));
+      MailFailure(MailProblem(code, mutationMayHaveOccurred: false));
 
   bool _mailboxValid(MailMailboxId mailbox) =>
       mailbox.account == account && _validId(mailbox.value);
@@ -244,7 +244,13 @@ final class ApiMailCloudProvider implements MailCloudProvider {
             : MailCloudLogStage.failed,
         problem: reported,
       );
-      return MailFailure(reported);
+      return MailFailure(
+        MailProblem(
+          reported.code,
+          retryAfter: reported.retryAfter,
+          mutationMayHaveOccurred: operation.mutationPossible,
+        ),
+      );
     } finally {
       operation.stopped = true;
       poll?.cancel();

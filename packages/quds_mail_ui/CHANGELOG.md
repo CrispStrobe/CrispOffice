@@ -1,5 +1,10 @@
 ## 0.1.0
 
+- Add explicit visible-message selection and foreground read/flag action
+  callbacks, with immutable ordered snapshots, Ctrl/Cmd+A and Space selection,
+  hidden-row pruning, scope/revision resets and stale-menu rejection.
+- Keep bulk controls absent in read-only hosts and unavailable while busy or
+  refresh is required; expose a scrollable host-owned progress/results slot.
 - Add bounded structured search of loaded message headers with localized syntax
   errors, recipient/date/state predicates, explicit clear and accessible help.
   Technical examples keep their left-to-right order within Arabic help.

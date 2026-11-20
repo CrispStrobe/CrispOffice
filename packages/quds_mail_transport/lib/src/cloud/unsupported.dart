@@ -27,8 +27,9 @@ final class _UnsupportedCloudProvider implements MailCloudProvider {
   _UnsupportedCloudProvider(this.account);
   @override
   final MailAccountId account;
-  MailFailure<T> _failure<T>() =>
-      const MailFailure(MailProblem(MailProblemCode.unsupported));
+  MailFailure<T> _failure<T>() => const MailFailure(
+    MailProblem(MailProblemCode.unsupported, mutationMayHaveOccurred: false),
+  );
   @override
   Future<MailResult<MailCapabilities>> capabilities(
     MailOperationLease lease,

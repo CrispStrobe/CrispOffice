@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+- Report explicit mutation-boundary evidence for failed IMAP, EWS, Gmail and
+  Microsoft 365 operations. Foreground bulk commands can distinguish definite
+  no-write failures from uncertain writes without guessing from a problem code.
+
 - Add bounded newest-first IMAP header browsing with fixed initial UID ceilings,
   separately scoped descending cursors and explicit UIDVALIDITY conflicts.
   Ascending archive retrieval and durable synchronization remain independent.

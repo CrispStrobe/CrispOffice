@@ -71,9 +71,13 @@ final class NativeMailImapProvider
   @override
   MailAccountId get account => configuration.account;
 
-  MailResult<T> _failure<T>(MailProblemCode code) => MailFailure(
+  MailResult<T> _failure<T>(
+    MailProblemCode code, {
+    bool mutationMayHaveOccurred = false,
+  }) => MailFailure(
     MailProblem(
       code,
+      mutationMayHaveOccurred: mutationMayHaveOccurred,
       retryAfter:
           code == MailProblemCode.unavailable ||
               code == MailProblemCode.providerFailure
@@ -141,7 +145,12 @@ final class NativeMailImapProvider
       operation.check();
       return MailSuccess(result);
     } on MailCancelled catch (error) {
-      if (operation.mutationStarted) return _failure(MailProblemCode.conflict);
+      if (operation.mutationStarted) {
+        return _failure(
+          MailProblemCode.conflict,
+          mutationMayHaveOccurred: true,
+        );
+      }
       return _failure(
         error.reason == MailCancellationReason.user ||
                 error.reason == MailCancellationReason.budgetExpired
@@ -151,12 +160,14 @@ final class NativeMailImapProvider
     } on _Failure catch (error) {
       return _failure(
         operation.mutationStarted ? MailProblemCode.conflict : error.code,
+        mutationMayHaveOccurred: operation.mutationStarted,
       );
     } on TimeoutException {
       return _failure(
         operation.mutationStarted
             ? MailProblemCode.conflict
             : MailProblemCode.unavailable,
+        mutationMayHaveOccurred: operation.mutationStarted,
       );
     } on Object {
       return _failure(
@@ -167,6 +178,7 @@ final class NativeMailImapProvider
             : operation.authenticating
             ? MailProblemCode.authenticationRequired
             : MailProblemCode.providerFailure,
+        mutationMayHaveOccurred: operation.mutationStarted,
       );
     } finally {
       operation.stopped = true;
