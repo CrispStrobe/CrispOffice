@@ -12,13 +12,25 @@ import 'transport.dart';
 /// selects nothing else. Only families that passed their sealed
 /// qualification belong here (grammar v2 record:
 /// docs/validation/native-spacy-grammar-v2-20261120).
+///
+/// Grammar v2 (20 Nov 2026): np-agreement, preposition-case and
+/// verb-position passed every predeclared gate; subject-person failed (one
+/// finding on a valid control) and stays an opt-in experimental family.
 const spacyGrammarQualifiedFamilies = <SpacyGrammarFamily>{
   SpacyGrammarFamily.nounVerb,
+  SpacyGrammarFamily.nounPhraseAgreement,
+  SpacyGrammarFamily.prepositionCase,
+  SpacyGrammarFamily.verbPosition,
 };
 
 /// [spacyGrammarQualifiedFamilies] as stable [SpacyGrammarFamily.id]s, for
 /// host settings (a test keeps both sets equal).
-const spacyGrammarQualifiedFamilyIds = <String>{'noun-verb'};
+const spacyGrammarQualifiedFamilyIds = <String>{
+  'noun-verb',
+  'np-agreement',
+  'preposition-case',
+  'verb-position',
+};
 
 /// Explicitly enabled, manual-only native grammar provider.
 ///

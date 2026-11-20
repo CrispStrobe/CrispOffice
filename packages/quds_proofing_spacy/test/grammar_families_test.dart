@@ -290,7 +290,38 @@ const _heuteIch = <_Spec>[
   _Spec('.', 'PUNCT', r'$.', 'punct', 2),
 ];
 
+// Meine Kollegin und ich bereiten die Präsentation vor. (misparsed: only
+// "ich" is the subject of the coordinated verb)
+const _kolleginUndIch = <_Spec>[
+  _Spec('Meine', 'DET', 'PPOSAT', 'nk', 1),
+  _Spec('Kollegin', 'NOUN', 'NN', 'ROOT', 1),
+  _Spec('und', 'CCONJ', 'KON', 'cd', 1),
+  _Spec('ich', 'PRON', 'PPER', 'sb', 4, morph: _nom),
+  _Spec(
+    'bereiten',
+    'VERB',
+    'VVFIN',
+    'cj',
+    2,
+    lemma: 'bereiten',
+    morph: 'Mood=Ind|Number=Plur|Person=3|Tense=Pres|VerbForm=Fin',
+  ),
+  _Spec('die', 'DET', 'ART', 'nk', 6),
+  _Spec('Präsentation', 'NOUN', 'NN', 'oa', 4),
+  _Spec('vor', 'ADP', 'PTKVZ', 'svp', 4),
+  _Spec('.', 'PUNCT', r'$.', 'punct', 1),
+];
+
 void main() {
+  test('a coordinated "X und ich" subject is never adjudicated', () async {
+    final plan = await _plan(_kolleginUndIch);
+    expect(plan.result.findings, isEmpty);
+    expect(
+      plan.decisions.map((d) => d.reason),
+      contains('possible-coordinated-subject'),
+    );
+  });
+
   test(
     'the default planner keeps the original noun/verb family only',
     () async {

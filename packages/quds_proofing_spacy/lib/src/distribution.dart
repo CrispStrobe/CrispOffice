@@ -261,8 +261,11 @@ const spacyLinuxX64Package = SpacyPlatformPackage(
         'Manual de-DE only: sealed W6 panel (22/30 exact corrections vs 5/30 '
         'deterministic; no findings on 42 valid/10 guard controls) and the W7 '
         'extension panel (CrispEmbed run 44262982569: 24/40 exact, 0 valid or '
-        'guard findings) on this exact library. Not a general German grammar '
-        'quality claim.',
+        'guard findings) on this exact library. Grammar v2 families '
+        '(np-agreement, preposition-case, verb-position): sealed 244-case panel '
+        'and 977 UD German-GSD test sentences, replayed here identically to the '
+        'macOS bundled qualification (CrispEmbed run 44678018577, 0 of 1,221 '
+        'rows differ). Not a general German grammar quality claim.',
     limitations: [
       'Six declared external dependency builds only; not general Linux '
           'portability.',
@@ -381,8 +384,12 @@ const spacyRecordedBuilds = <SpacyBuildQualification>[
         '42 valid/10 guard controls) and the W7 extension panel (24/40 exact '
         'vs 14/40, 0 valid or guard findings) with annotations, planner '
         'decisions, arms and corrected rechecks identical case by case to the '
-        'qualified Linux build; native editor gate 10/10. Not a general German '
-        'grammar quality claim.',
+        'qualified Linux build; native editor gate 10/10. Grammar v2 families '
+        'np-agreement, preposition-case and verb-position qualified on these '
+        'bytes (sealed 244-case panel: 13/24, 18/24 and 9/24 exact native '
+        'corrections; 0 valid/guard findings; 977 UD German-GSD test '
+        'sentences: 2 findings, both genuine errors). subject-person failed '
+        'and is experimental. Not a general German grammar quality claim.',
     limitations: [
       'Valid only for these exact signed bytes inside an app bundle; a '
           'rebuild with another toolchain is a different, unqualified build.',

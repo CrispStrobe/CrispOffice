@@ -898,6 +898,18 @@ final class SpacyGrammarFamilyPlanner {
         subject.dependency == 'cj') {
       return abstain('coordinated-subject');
     }
+    // Post-qualification guard (grammar v2 record, sp-valid-07): the parser
+    // can attach "X und ich" so that only "ich" is the subject of a plural
+    // verb. A nominal directly before "und/oder ich" means coordination.
+    final subjectAt = _position[subject.index]!;
+    final conjunction = _at(subjectAt - 1);
+    final previous = _at(subjectAt - 2);
+    if (conjunction != null &&
+        conjunction.pos == 'CCONJ' &&
+        previous != null &&
+        const {'NOUN', 'PROPN', 'PRON'}.contains(previous.pos)) {
+      return abstain('possible-coordinated-subject');
+    }
     if (_personal([subject, verb])) return abstain('personal-vocabulary');
     final paradigms = spacyPresentParadigms(verb.text);
     evidence['paradigms'] = [for (final p in paradigms) p.toJson()];

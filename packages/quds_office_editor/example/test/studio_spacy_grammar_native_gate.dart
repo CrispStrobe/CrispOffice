@@ -357,14 +357,28 @@ void main() {
       final h = await _Harness.open();
       _oneNativeIssue(await h.check());
       for (final rule in [spacyNounVerbRuleId, 'de.grammar.noun-verb']) {
-        final count = h.transport.requests.length;
         h.controller.proofing.ignoreRule(rule);
+        // Other enabled grammar v2 families still analyze; the ignored
+        // noun/verb rule itself proposes nothing.
         expect(_nativeIssues(await h.check()), isEmpty);
-        expect(h.transport.requests, hasLength(count));
         h.controller.proofing.restoreRule(rule);
         _oneNativeIssue(await h.check());
-        expect(h.transport.requests, hasLength(count + 1));
       }
+      // Ignoring every enabled family makes no native call at all.
+      final everything = [
+        for (final family in h.provider.families) family.ruleId,
+      ];
+      final count = h.transport.requests.length;
+      for (final rule in everything) {
+        h.controller.proofing.ignoreRule(rule);
+      }
+      expect(_nativeIssues(await h.check()), isEmpty);
+      expect(h.transport.requests, hasLength(count));
+      for (final rule in everything) {
+        h.controller.proofing.restoreRule(rule);
+      }
+      _oneNativeIssue(await h.check());
+      expect(h.transport.requests, hasLength(count + 1));
       expect(h.paragraph.text, '$_prefix$_wrong');
       expect(h.controller.canUndo, isFalse);
     },
