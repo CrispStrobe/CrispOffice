@@ -1,0 +1,281 @@
+{
+  "snapshot_utc": "2026-11-20 13:54:23 UTC",
+  "source_feature_head": "e7ed2efd4e661ef244a21dd2836525c8e1531b7e",
+  "sources": [
+    {
+      "url": "https://api.github.com/repos/CrispStrobe/quds_office_suite/branches?per_page=100",
+      "type": "branches",
+      "data": [
+        {
+          "name": "codex/odt-field-continuation-20261117",
+          "sha": "c34945761e7991f5fe49037d79529acdd260b31c"
+        },
+        {
+          "name": "codex/word-powerpoint-vba-expansion-20261120",
+          "sha": "0f6239396ff3328473a5f57c280b982d57e33a08"
+        },
+        {
+          "name": "codex/zotero-research-tables-20261120",
+          "sha": "93dc987cf993787bd613018b3028e7ad60d5472a"
+        },
+        {
+          "name": "docs/ods-color-scale",
+          "sha": "58fdddfbcf198a8c0e38e32f6fcc9d6604e95283"
+        },
+        {
+          "name": "docs/ods-data-bar",
+          "sha": "69d14f84cabd3931b7640c1654b401c89faba766"
+        },
+        {
+          "name": "feat/ods-color-scale",
+          "sha": "74ce9ffb816c70c0d2ae50b91ec52a614f26d688"
+        },
+        {
+          "name": "feat/ods-data-bar",
+          "sha": "0a53b8a70128870f3e1df6d18cdb177bb64290ee"
+        },
+        {
+          "name": "feat/ods-dynamic-validation-links",
+          "sha": "68a0db23408e4c95d6d283219504c79aea33a6fe"
+        },
+        {
+          "name": "feat/ods-icon-sets",
+          "sha": "005c708e9f747cb46cf02e12c869b0a2f85ac824"
+        },
+        {
+          "name": "feat/ods-time-period-conditions",
+          "sha": "7ef09f2408f467c65427700e65907531ecb26acb"
+        },
+        {
+          "name": "fix/mail-credential-stores-chrome-20261120",
+          "sha": "a652a205e6daf6b4b8e3baec04db1c1b52fabd0d"
+        },
+        {
+          "name": "integrate/office-union-148",
+          "sha": "3abf8f43b0e79c10271bbd046f391e462b8fe6b9"
+        },
+        {
+          "name": "integrate/recent-pptx",
+          "sha": "4f5c153774ab7492430c2b68653c54e0c08dc2ad"
+        },
+        {
+          "name": "main",
+          "sha": "13be50464d1b43e9f2100fb9ccc12f8fe22eb55e"
+        },
+        {
+          "name": "work/mail-accounts-20261120",
+          "sha": "c20b41d9c7eed574c02e49f1fd96789843aec2e6"
+        },
+        {
+          "name": "work/mail-multiple-drafts-20261120",
+          "sha": "e7ed2efd4e661ef244a21dd2836525c8e1531b7e"
+        },
+        {
+          "name": "work/mail-outbox-20261120",
+          "sha": "9443612b024114c424ba2f8146e04050d6e049b0"
+        }
+      ]
+    },
+    {
+      "url": "https://api.github.com/repos/CrispStrobe/quds_office_suite/pulls?state=open&per_page=100",
+      "type": "pull_requests",
+      "data": [
+        {
+          "number": 252,
+          "title": "Extend Word and PowerPoint VBA helpers, paragraph layout and text margins [skip ci]",
+          "state": "open",
+          "draft": false,
+          "head": "codex/word-powerpoint-vba-expansion-20261120",
+          "head_repo": "CrispStrobe/quds_office_suite",
+          "sha": "0f6239396ff3328473a5f57c280b982d57e33a08",
+          "base": "main",
+          "baseSha": "13be50464d1b43e9f2100fb9ccc12f8fe22eb55e",
+          "updated_at": "2026-11-20T13:48:48Z",
+          "url": "https://github.com/CrispStrobe/quds_office_suite/pull/252"
+        },
+        {
+          "number": 251,
+          "title": "Mail: complete account ownership integration and local qualification",
+          "state": "open",
+          "draft": true,
+          "head": "work/mail-accounts-20261120",
+          "head_repo": "CrispStrobe/quds_office_suite",
+          "sha": "c20b41d9c7eed574c02e49f1fd96789843aec2e6",
+          "base": "main",
+          "baseSha": "13be50464d1b43e9f2100fb9ccc12f8fe22eb55e",
+          "updated_at": "2026-11-20T13:45:32Z",
+          "url": "https://github.com/CrispStrobe/quds_office_suite/pull/251"
+        },
+        {
+          "number": 249,
+          "title": "Preserve Zotero research-note tables and active cell citations [skip ci]",
+          "state": "open",
+          "draft": true,
+          "head": "codex/zotero-research-tables-20261120",
+          "head_repo": "CrispStrobe/quds_office_suite",
+          "sha": "93dc987cf993787bd613018b3028e7ad60d5472a",
+          "base": "main",
+          "baseSha": "b42eca1db058f0def247b86c2f15dea90c11b4e8",
+          "updated_at": "2026-11-20T13:49:28Z",
+          "url": "https://github.com/CrispStrobe/quds_office_suite/pull/249"
+        }
+      ]
+    },
+    {
+      "url": "https://api.github.com/repos/MohammedAsaadAsaad/quds_office_suite/branches?per_page=100",
+      "type": "branches",
+      "data": [
+        {
+          "name": "ci/flutter-workspace",
+          "sha": "aca2f66941832bd0b19b436baeab1656a1b7de98"
+        },
+        {
+          "name": "cursor/class-certificates-2db8",
+          "sha": "f45099688e7a3f67a1302efdb442830d052f2240"
+        },
+        {
+          "name": "cursor/cloud-agent-1790580069020-0rk1h",
+          "sha": "9930be8df44ffe117fb22778c514eea0ee73ce21"
+        },
+        {
+          "name": "main",
+          "sha": "15c5d29b63fb17a93c7fb3426a8fd4d95a32f1ba"
+        }
+      ]
+    },
+    {
+      "url": "https://api.github.com/repos/MohammedAsaadAsaad/quds_office_suite/pulls?state=open&per_page=100",
+      "type": "pull_requests",
+      "data": []
+    }
+  ],
+  "new_incoming": [
+    {
+      "ref": "codex/zotero-research-tables-20261120",
+      "sha": "93dc987cf993787bd613018b3028e7ad60d5472a",
+      "status": "ahead",
+      "ahead_by": 1,
+      "behind_by": 0,
+      "commits": [
+        {
+          "sha": "93dc987cf993787bd613018b3028e7ad60d5472a",
+          "subject": "Preserve clean reconciled engine and VBA regression evidence [skip ci]",
+          "parents": [
+            "7f363b99de00aaf576a4735e59363ed72a8235be"
+          ]
+        }
+      ],
+      "files": [
+        {
+          "path": "docs/validation/zotero-research-tables-20261120/checkpoint-reconciled-engine-evidence.json",
+          "status": "added",
+          "changes": 47,
+          "sha": "90bf96ab861d227429ca0118c855d8206e4d2c5e"
+        },
+        {
+          "path": "docs/validation/zotero-research-tables-20261120/checkpoint-reconciled-engine-evidence.tar.xz",
+          "status": "added",
+          "changes": 0,
+          "sha": "028e88ee2b725aade8b11e8428bf1c25b2050c88"
+        }
+      ],
+      "classification": "Documentation and archived engine/VBA regression evidence only; no product, test or tool source changes.",
+      "recommendation": "Merge pinned 93dc987cf993787bd613018b3028e7ad60d5472a into the feature before final publication."
+    }
+  ],
+  "open_pr_disposition": [
+    {
+      "number": 252,
+      "head": "0f6239396ff3328473a5f57c280b982d57e33a08",
+      "disposition": "Already integrated in feature e7ed2efd; newly opened PR does not add source."
+    },
+    {
+      "number": 251,
+      "head": "c20b41d9c7eed574c02e49f1fd96789843aec2e6",
+      "disposition": "Already integrated in feature e7ed2efd."
+    },
+    {
+      "number": 249,
+      "head": "93dc987cf993787bd613018b3028e7ad60d5472a",
+      "disposition": "One newly discovered documentation-only evidence commit remains to integrate at cutoff."
+    }
+  ],
+  "upstream_disposition": "All four branch heads unchanged from initial audited snapshot, all previously verified ancestors of fork main; zero open PRs.",
+  "historical_disposition": "Nine unchanged historical branches retain initial documented exact-tree/changed-path equivalence proofs; no new source.",
+  "ci_queries_or_waits": false,
+  "refresh_policy": "One bounded inventory refresh plus one comparison of the newly advanced branch; no periodic polling, fetch, ref/index or worktree mutation.",
+  "ancestor_checks": [
+    {
+      "repository": "fork",
+      "branch": "codex/word-powerpoint-vba-expansion-20261120",
+      "sha": "0f6239396ff3328473a5f57c280b982d57e33a08",
+      "feature_head": "e7ed2efd4e661ef244a21dd2836525c8e1531b7e",
+      "is_ancestor": true,
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "repository": "fork",
+      "branch": "main",
+      "sha": "13be50464d1b43e9f2100fb9ccc12f8fe22eb55e",
+      "feature_head": "e7ed2efd4e661ef244a21dd2836525c8e1531b7e",
+      "is_ancestor": true,
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "repository": "fork",
+      "branch": "work/mail-accounts-20261120",
+      "sha": "c20b41d9c7eed574c02e49f1fd96789843aec2e6",
+      "feature_head": "e7ed2efd4e661ef244a21dd2836525c8e1531b7e",
+      "is_ancestor": true,
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "repository": "fork",
+      "branch": "work/mail-outbox-20261120",
+      "sha": "9443612b024114c424ba2f8146e04050d6e049b0",
+      "feature_head": "e7ed2efd4e661ef244a21dd2836525c8e1531b7e",
+      "is_ancestor": true,
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "repository": "upstream",
+      "branch": "ci/flutter-workspace",
+      "sha": "aca2f66941832bd0b19b436baeab1656a1b7de98",
+      "feature_head": "e7ed2efd4e661ef244a21dd2836525c8e1531b7e",
+      "is_ancestor": true,
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "repository": "upstream",
+      "branch": "cursor/class-certificates-2db8",
+      "sha": "f45099688e7a3f67a1302efdb442830d052f2240",
+      "feature_head": "e7ed2efd4e661ef244a21dd2836525c8e1531b7e",
+      "is_ancestor": true,
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "repository": "upstream",
+      "branch": "cursor/cloud-agent-1790580069020-0rk1h",
+      "sha": "9930be8df44ffe117fb22778c514eea0ee73ce21",
+      "feature_head": "e7ed2efd4e661ef244a21dd2836525c8e1531b7e",
+      "is_ancestor": true,
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "repository": "upstream",
+      "branch": "main",
+      "sha": "15c5d29b63fb17a93c7fb3426a8fd4d95a32f1ba",
+      "feature_head": "e7ed2efd4e661ef244a21dd2836525c8e1531b7e",
+      "is_ancestor": true,
+      "exit_code": 0,
+      "stderr": ""
+    }
+  ]
+}

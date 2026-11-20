@@ -1,0 +1,147 @@
+{
+  "reviewer": "mail_gap_audit",
+  "created_at": "2026-11-20T13:50:04.753717+00:00",
+  "source_commit": "bbd5dfc20208eba0210410bc4b4348bacec56c52",
+  "status": "No unresolved blocking findings in reviewed draft lifecycle, account isolation, selected draft callbacks, or reply/forward preservation.",
+  "scope": "Independent review of root-authored native/EWS hosts, draft chooser and offline integration. Storage catalog was authored by this reviewer; its independent review and comprehensive validation are recorded separately by validation_setup.",
+  "findings": [
+    {
+      "id": "draft-host-reload-failure",
+      "severity": "high",
+      "status": "fixed and regression tested",
+      "paths": [
+        "packages/quds_office_editor/example/lib/studio_mail_native.dart",
+        "packages/quds_office_editor/example/lib/studio_mail_ews.dart"
+      ],
+      "problem": "A redundant load after selecting a draft could fail while the host retained the old draft, allowing a later autosave to overwrite the newly selected draft. Closing after deleting the selected draft had the corresponding resurrection risk.",
+      "fix": "Hosts adopt the chooser-returned snapshot directly. A post-dialog restore failure invalidates the owner and in-memory draft, then awaits close before controls resume. Failure before opening the chooser keeps the current in-memory draft.",
+      "tests": "Both native and EWS: selected snapshot bypasses injected next-read failure; selected draft deletion followed by read failure closes owner and next compose reopens safely."
+    },
+    {
+      "id": "catalog-only-account-ownership",
+      "severity": "high",
+      "status": "fixed and regression tested",
+      "paths": [
+        "packages/quds_office_editor/example/lib/studio_mail_native.dart",
+        "packages/quds_office_editor/example/lib/studio_mail_ews.dart"
+      ],
+      "problem": "Restore validated account only for the optional Outbox capability. A catalog-only implementation could be adopted for a different account.",
+      "fix": "Validate StudioMailDraftCatalog.account independently before load or adoption, and close rejected owners.",
+      "tests": "Both native and EWS use a real-SQLite catalog-only proxy with a foreign reported account; load count remains zero and retained drafts stay intact."
+    }
+  ],
+  "additional_verified_behaviors": [
+    "Retained autosave callbacks are rejected after selected draft A to B to A transitions in both hosts.",
+    "Reply and attachment-forward preserve two existing drafts, isolate submission uncertainty, and create a third independently persisted draft in both hosts.",
+    "Attachment forwarding preserves exact bytes and starts with empty recipients and no inherited reply thread.",
+    "Read-only EWS providers can edit and save local drafts; send and queue controls remain unavailable.",
+    "Legacy single-store interface is unchanged; no multi-draft requirement is imposed on old test fakes.",
+    "Selected-draft Outbox transfer remains bound to source draft ID/revision; clear and enqueue retire the selection epoch."
+  ],
+  "source_sha256_at_final_review": {
+    "packages/quds_office_editor/example/lib/studio_mail_native.dart": "6b00115c2a5a33294f7b419c25d6f5de41ca9dc5f3539e9b801cbceba6a52891",
+    "packages/quds_office_editor/example/lib/studio_mail_ews.dart": "009675484690a592f364ed4f1b8298bf1b367b370939c703d8e96bdd7eb3ddc2",
+    "packages/quds_office_editor/example/lib/studio_mail_drafts_dialog.dart": "082290eb78716630b34a98615c947fdf9e8e29cb647d3f15bfc284be9cd6f2a8",
+    "packages/quds_office_editor/example/lib/studio_mail_local_drafts.dart": "6585915182fab6566bcb254ed61bb74a4b11b181b4908f7d5a85c80e4790d6f8",
+    "packages/quds_office_editor/example/lib/studio_mail_compose.dart": "91f3ba0f7e1daeaa81aa4a3b7ac9f888aed2d589ae2b707256d7f2592ba111bc",
+    "packages/quds_office_editor/example/lib/studio_mail_draft_store.dart": "4d15076ecbfe10300d143797514a62833b2a8fc3d90006780eab339644be63b1",
+    "packages/quds_office_editor/example/lib/studio_mail_draft_store_native.dart": "9a97bf3df8e12ac9a47fc4f514eef92ba212dd41e966cd94c15482dfa810a391",
+    "packages/quds_office_editor/example/test/studio_mail_draft_host_recovery_test.dart": "f6c85ac522fe27c83cdf795c237f09baf9c85566126b0601d7424628f6754139",
+    "packages/quds_office_editor/example/test/studio_mail_draft_catalog_test.dart": "c3821b2f831b29a71930335b76243696bcd63808276d2e3d6b880c4f76756cc9",
+    "packages/quds_mail_store/lib/src/models.dart": "78f61e2cd43c2f3f5bd6988adc952a83e56df34711e61d56ecf63e4d007bfe6d",
+    "packages/quds_mail_store/lib/src/codec.dart": "167e3ad9ca3714c18f5828b9503f7b432351ff79e459921c3148e91773cfd0eb",
+    "packages/quds_mail_store/lib/src/repository.dart": "2b464f71a3fb8f159aed3b4d1626b717a45af2ce67d6863948fffa0e7165ae3a",
+    "packages/quds_mail_store/test/draft_catalog_test.dart": "459872ea06561a529f22286ef571ffb4d3b0f8167357450dbcec9b00c5d2836e"
+  },
+  "focused_checks": [
+    {
+      "name": "host-recovery",
+      "passed": 13,
+      "failed": 0,
+      "exit_code": 0,
+      "exec_session_id": 59903,
+      "cwd": "/workspace/scratch/b56a923051a9/quds_office_suite/packages/quds_office_editor/example",
+      "command": [
+        "flutter",
+        "test",
+        "--no-pub",
+        "test/studio_mail_draft_host_recovery_test.dart",
+        "--reporter",
+        "expanded"
+      ],
+      "raw_log_path": null,
+      "evidence_note": "Observed expanded tool output only; no raw log file was captured. Included again in full Studio cohort raw JSON events."
+    },
+    {
+      "name": "host-recovery-analysis",
+      "exit_code": 0,
+      "exec_session_id": 77372,
+      "cwd": "/workspace/scratch/b56a923051a9/quds_office_suite/packages/quds_office_editor/example",
+      "command": [
+        "dart",
+        "analyze",
+        "--fatal-infos",
+        "test/studio_mail_draft_host_recovery_test.dart"
+      ],
+      "result": "No issues found. git diff --check also returned exit 0.",
+      "raw_log_path": null
+    },
+    {
+      "name": "catalog-and-legacy-studio-storage",
+      "passed": 48,
+      "failed": 0,
+      "exit_code": 0,
+      "cwd": "/workspace/scratch/b56a923051a9/quds_office_suite/packages/quds_office_editor/example",
+      "command": [
+        "flutter",
+        "test",
+        "--no-pub",
+        "test/studio_mail_draft_catalog_test.dart",
+        "test/studio_mail_draft_store_test.dart",
+        "test/studio_mail_outbox_store_test.dart",
+        "--reporter",
+        "expanded"
+      ],
+      "raw_log_path": null,
+      "evidence_note": "Observed expanded tool output only; no raw log file was captured. Included again in full Studio cohort."
+    },
+    {
+      "name": "catalog-and-legacy-repository",
+      "passed": 35,
+      "failed": 0,
+      "exit_code": 0,
+      "exec_session_id": 57043,
+      "cwd": "/workspace/scratch/b56a923051a9/quds_office_suite/packages/quds_mail_store",
+      "command": [
+        "dart",
+        "--disable-dart-dev",
+        "--packages=/workspace/scratch/b56a923051a9/quds_office_suite/.dart_tool/package_config.json",
+        "/workspace/scratch/b56a923051a9/toolchains/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+        "--compiler=kernel",
+        "--reporter=expanded",
+        "test/draft_catalog_test.dart",
+        "test/draft_editor_state_test.dart",
+        "test/repository_test.dart"
+      ],
+      "raw_log_path": null,
+      "evidence_note": "Observed expanded tool output only; no raw log file was captured. All 35 included again in complete 596-case native store cohort."
+    }
+  ],
+  "environment_setup": "source /workspace/scratch/b56a923051a9/toolchains/env.sh",
+  "persisted_full_gate_evidence": {
+    "store_receipt": "/workspace/scratch/b56a923051a9/validation/mail-draft-store-regression/receipt.json",
+    "store_native_raw_events": "/workspace/scratch/b56a923051a9/validation/mail-draft-store-regression/store-vm.jsonl",
+    "store_native_status": "596 passed, no failures (verified completed receipt)",
+    "store_node_raw_events": "/workspace/scratch/b56a923051a9/validation/mail-draft-store-regression/portable-node.jsonl",
+    "store_node_status": "46 passed, no failures (verified completed receipt)",
+    "shared_mail_ui_raw_events": "/workspace/scratch/b56a923051a9/validation/mail-draft-ui-regression/shared-mail-ui.jsonl",
+    "studio_mail_raw_events": "/workspace/scratch/b56a923051a9/validation/mail-draft-ui-regression/studio-mail.jsonl",
+    "studio_mail_receipt": "/workspace/scratch/b56a923051a9/validation/mail-draft-ui-regression/receipt.json",
+    "ui_status_at_review": "Shared mail UI 96 passed per validation_setup; Studio cohort still running, including this 13-case test file. Use final receipt for final result."
+  },
+  "limitations": [
+    "No live provider credentials or real message transmission used.",
+    "Browser compilation and Node portability do not certify actual browser IndexedDB/OPFS behavior.",
+    "Current source hashes identify reviewed content; prior focused 48/35 runs were not separately hash-bound. Comprehensive validation receipts provide source-bound checks."
+  ]
+}

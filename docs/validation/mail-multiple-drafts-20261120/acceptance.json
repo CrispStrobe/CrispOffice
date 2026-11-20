@@ -1,0 +1,114 @@
+{
+  "schema": 1,
+  "status": "accepted_with_disclosed_targeted_reruns",
+  "recorded_at_utc": "2026-11-20T14:02:25.449317+00:00",
+  "tested_source_checkpoint": "2a775500aa31b5e8426df54c3f68f4ceadec0790",
+  "tested_source_tree": "2d49b52caa501c10d7d28746f3254c3dc0bb9dfd",
+  "github_actions_used_or_awaited": false,
+  "incoming_heads_verified_ancestors": {
+    "main_at_intake_refresh": "13be50464d1b43e9f2100fb9ccc12f8fe22eb55e",
+    "work/mail-outbox-20261120": "9443612b024114c424ba2f8146e04050d6e049b0",
+    "work/mail-accounts-20261120": "c20b41d9c7eed574c02e49f1fd96789843aec2e6",
+    "codex/word-powerpoint-vba-expansion-20261120": "0f6239396ff3328473a5f57c280b982d57e33a08",
+    "codex/zotero-research-tables-20261120": "93dc987cf993787bd613018b3028e7ad60d5472a"
+  },
+  "source_continuity": {
+    "unchanged_from_intake": [
+      "quds_mail_core",
+      "quds_mail_mime",
+      "quds_mail_transport",
+      "quds_mail_ui",
+      "quds_office_engine"
+    ],
+    "intake_checkpoint": "d4787143856f83ca80a1928f86ce010a64822268",
+    "ui_product_source_unchanged_since_broad_run": true,
+    "ui_current_hashes_match_accepted_receipt": true,
+    "ui_test_changes": {
+      "packages/quds_office_editor/example/test/studio_mail_ews_test.dart": "Updated old capability expectation: read-only account may edit locally; canSend is false, no queue callback, Send disabled; original reply/forward/move prohibitions retained. Entire EWS file passes61 tests.",
+      "packages/quds_office_editor/example/test/studio_saved_mail_test.dart": "Pre-existing failure reproduced on clean intake d4787143. Pinned page route reverses over450ms while old helper waited350ms. Bounded configured-transition pumps retain the route-removal and same-sheet-controller assertions. Entire saved-mail file passes14 tests.",
+      "packages/quds_office_editor/example/test/studio_mail_drafts_dialog_test.dart": "Formatter-only delta: the initial source was independently formatted with the pinned Dart formatter and exactly matches the accepted source bytes."
+    },
+    "ui_formatter_proof": {
+      "path": "packages/quds_office_editor/example/test/studio_mail_drafts_dialog_test.dart",
+      "before_sha256": "22cf6b723d442f6a91e3f42456ceaae4704ec1a11b857ca1083ce4900ca3cc47",
+      "after_sha256": "b3e203fdd9486c2305fecfa646a34df86e0bd123f5d6e2e4cbdea808eec5dae3",
+      "command": [
+        "/workspace/scratch/b56a923051a9/toolchains/bin/dart",
+        "format",
+        "/workspace/scratch/b56a923051a9/validation/mail-draft-ui-regression/formatter-proof-input.dart"
+      ],
+      "stdout": "Formatted /workspace/scratch/b56a923051a9/validation/mail-draft-ui-regression/formatter-proof-input.dart\nFormatted 1 file (1 changed) in 0.02 seconds.\n",
+      "verified": true
+    },
+    "store_unchanged_files": 84,
+    "store_format_only_delta": {
+      "path": "packages/quds_mail_store/test/draft_catalog_test.dart",
+      "tested_sha256": "81534c3dc6ef44bfc97f3ef3bdbf70e92a28172d0834490d9aac5ab1b5514f48",
+      "current_sha256": "459872ea06561a529f22286ef571ffb4d3b0f8167357450dbcec9b00c5d2836e",
+      "proof": "Changing only the indentation of the four-byte Uint8List corruption fixture from eight spaces to six exactly reproduces the tested hash."
+    }
+  },
+  "accepted_checks": [
+    {
+      "scope": "intake core/MIME/transport and three engine files",
+      "passed": 579,
+      "receipt": "validation/mail-intake-baseline/final-receipt.json"
+    },
+    {
+      "scope": "full native store",
+      "passed": 596,
+      "receipt": "validation/mail-draft-store-regression/receipt.json"
+    },
+    {
+      "scope": "Node portability cohort",
+      "passed": 46,
+      "receipt": "validation/mail-draft-store-regression/receipt.json"
+    },
+    {
+      "scope": "shared mail UI",
+      "passed": 96,
+      "receipt": "validation/mail-draft-ui-regression/accepted-receipt.json"
+    },
+    {
+      "scope": "Studio mail/saved-mail/credential files, composed acceptance",
+      "passed": 964,
+      "initial_broad_result": {
+        "passed": 962,
+        "failed": 2
+      },
+      "complete_file_reruns": {
+        "studio_mail_ews_test.dart": 61,
+        "studio_saved_mail_test.dart": 14
+      },
+      "receipt": "validation/mail-draft-ui-regression/accepted-receipt.json"
+    },
+    {
+      "scope": "strict analysis and format of 19 changed Dart files",
+      "status": "passed",
+      "receipt": "validation/mail-draft-static-accepted/receipt.json"
+    },
+    {
+      "scope": "store strict analysis and browser entry/worker compilation",
+      "status": "passed",
+      "receipt": "validation/mail-draft-store-regression/receipt.json"
+    },
+    {
+      "scope": "incoming evidence-checker Python suite",
+      "passed": 48,
+      "command": "python3 tools/mail/test_check_store.py",
+      "log": "final-intake-check-store-test.log"
+    }
+  ],
+  "counting_note": "Do not add focused suites or cross-platform runs as unique tests. The initial failed Studio run is retained, not rewritten as passing.",
+  "evidence_index": "evidence-index.json",
+  "evidence_archive_sha256": "a235dd8ab02781582dc1335795eec516457ae734283d8bc8fad27e242de87c4c",
+  "limitations": [
+    "Multiple local drafts; no provider-side draft synchronization or offline inbox.",
+    "Offline entry limited to reproducible remembered explicit-server/preset IMAP identities.",
+    "Node/JS compilation does not certify IndexedDB/OPFS execution.",
+    "No installed-platform packaging, real-provider delivery or full Office-suite qualification.",
+    "Draft selection is session state; admission cap is 100 active drafts per account.",
+    "Existing unencrypted native-store policy remains; unsaved edits are not guaranteed durable.",
+    "Advances recoverable composition; does not claim full desktop-client parity."
+  ]
+}
