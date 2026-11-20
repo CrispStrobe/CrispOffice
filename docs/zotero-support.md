@@ -1149,7 +1149,10 @@ to each new client. Clients sharing that state must use the same clock.
 
 ## Previous continuation evidence and current qualification
 
-The embedded-image increment has a [separate local qualification report](validation/zotero-note-images-20261120/README.md).
+Embedded pictures and structured research lists have [completed local qualification](validation/zotero-parity-continuation-20261120/README.md)
+on the combined source at `708f2821`, including incoming Office and Mail
+regressions. The [earlier image checkpoint](validation/zotero-note-images-20261120/README.md)
+is retained with its original development status and attribution.
 The [Word/LibreOffice parity roadmap](roadmaps/zotero/word-processor-parity.md)
 separates implemented workflows, current content boundaries and remaining live
 interoperability acceptance. Earlier results below retain their original sources.
@@ -1158,7 +1161,8 @@ The research-note insertion, reference-navigation and direct-command continuatio
 has a [separate status report](validation/zotero-word-parity-20261118/README.md).
 Its implementation and incoming branch integration are saved remotely. The report
 separates completed development checks from the final exact-source run that was
-blocked by shared executor disk exhaustion; it has no final passing total yet.
+blocked by shared executor disk exhaustion. That historical source has no
+final passing total; the current combined source is qualified separately above.
 
 The previous continuation started from Quds
 `dc5f93b673e6087cccc6d66b33dfbfd099668f77` and CrispCloud
