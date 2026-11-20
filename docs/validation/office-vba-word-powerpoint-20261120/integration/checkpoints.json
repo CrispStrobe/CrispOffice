@@ -1,7 +1,7 @@
 {
   "repository": "CrispStrobe/quds_office_suite",
   "branch": "codex/word-powerpoint-vba-20261120",
-  "current_product_commit": "55e52def1b964a85764eb9c4fcf8163fbdcee625",
+  "current_product_commit": "a6068b4d46421e8a0c5921ba0b5cc24b4873ca12",
   "non_forced_expected_head_updates": true,
   "local_to_remote_commits": {
     "e32b95a2fcfefe57f9ad6e77dbcffd8a54ff41ca": "c224a66a4c1913690aff5273ab584621487305d1",
@@ -18,6 +18,8 @@
     "fb30f020034db943885603d993115640badd0b85": "932d49a33cccaeedd7fcb41aa16cbfda95aeb4e4",
     "fffe59420e25a049a74a83d3a0e987d54b23bffe": "db514badc72f15aafa07fad081e7a810eb8ad3f7",
     "9c4d397063541f3085f57ce7e8b0715077d17250": "fb09a29b70e469c2858bde48c8977590791b6ba7",
-    "b2e7da01448aa33b756b730201f9819bd6eb1a0b": "55e52def1b964a85764eb9c4fcf8163fbdcee625"
+    "b2e7da01448aa33b756b730201f9819bd6eb1a0b": "55e52def1b964a85764eb9c4fcf8163fbdcee625",
+    "71cdffc9fe54b59b2b367ad491cfff2f9b54764b": "230b0abdaacda2e178e8740fed5cf0dcb6f7281f",
+    "beaf8f4e88054d26a3b31577c25de4f242acd3f8": "a6068b4d46421e8a0c5921ba0b5cc24b4873ca12"
   }
 }

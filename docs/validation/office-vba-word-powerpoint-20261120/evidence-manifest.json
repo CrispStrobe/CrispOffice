@@ -1,7 +1,7 @@
 {
   "README.md": {
-    "sha256": "74edf15ac50b63a0776e69b015fe1bee10be44e86c4dbe9edb777e3045bb3749",
-    "bytes": 11800
+    "sha256": "4e450f9051445e8f315fe18bffac7c6c78b1ac7ba174bb4440c97a5fa6c58eea",
+    "bytes": 12519
   },
   "development/vba-adapters-font-boundary.log.gz": {
     "sha256": "c13644d981e0d4c1589d65ace094725018ce91ba6581f0fabd4b943b46eb3843",
@@ -40,12 +40,16 @@
     "bytes": 5357
   },
   "integration/checkpoints.json": {
-    "sha256": "c05bbc6c29246f08f383e217ac0cf7db60287106ca89eb4fe326955dba9c0c32",
-    "bytes": 1633
+    "sha256": "543cc50923ebb4eea3fa316c4b594253bd243cbe798e646a3a4c04da65ca83b2",
+    "bytes": 1817
   },
   "integration/inclusion-receipt.json": {
     "sha256": "f09698d4460d6fb64eefcadea9ba82c61d356485b47d9d5b58b5d9287e9bd514",
     "bytes": 64017
+  },
+  "integration/latest-main-reconciliation.json": {
+    "sha256": "adc404c8c4fc9fa521282ed082d50838ee09d69713f59ab31a55f5b3683ba1b9",
+    "bytes": 5223
   },
   "integration-reconciliation.md": {
     "sha256": "7a0b8334bb12ec77a49f167ff3febc7edb563e11f6f9a9bbbf7358f32df6d0b7",
@@ -198,6 +202,10 @@
   "runtime/environment.json": {
     "sha256": "ee17655c87eaf339344abecaf7fe28d68f9ecb4cfceed463f288cc126888e45c",
     "bytes": 1565
+  },
+  "runtime/record_latest_main_reconciliation.executed.py": {
+    "sha256": "010abfc3fa26a2f579489204202d010884346657a3f1c3125ef6e312f8363d34",
+    "bytes": 4679
   },
   "runtime/run_final_macro_gate.py": {
     "sha256": "c1936f30f8e01e5a5914e79eaf033b78141f10495a292031caa912124a84daaa",

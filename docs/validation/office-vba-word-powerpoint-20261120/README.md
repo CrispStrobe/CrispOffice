@@ -91,9 +91,10 @@ small batches against a frozen source, with exit codes and receipts retained.
 
 ## Final source and captured-ref coverage
 
-The final product source is `55e52def1b964a85764eb9c4fcf8163fbdcee625`. The engine gate began at
-`fb09a29b70e469c2858bde48c8977590791b6ba7`; the subsequent proofing/UI ancestry merge
-left the entire engine tree unchanged: `aabb48ef7ab6a79904a889c50dc3756eab116e7c`.
+The final product source is `a6068b4d46421e8a0c5921ba0b5cc24b4873ca12`. The engine gate began at
+`fb09a29b70e469c2858bde48c8977590791b6ba7` and finished at `55e52def` before the
+latest-main reconciliation. Both the proofing/UI and latest-main merges left
+the entire engine tree unchanged: `aabb48ef7ab6a79904a889c50dc3756eab116e7c`.
 All **1,041** source, test, tool, fixture and manifest inputs were
 hashed before and after qualification and checked again while bundling evidence.
 The final evidence commit changes only this validation directory.
@@ -116,6 +117,15 @@ checkpoints and local-to-remote commit mappings are recorded in
 verified against its local tree before a non-forced expected-head update.
 The exact snapshot cutoff is recorded in
 [captured-refs.json](integration/captured-refs.json).
+
+Remote main subsequently advanced to `33190e50cae486be362eedb5fa687dd9c82b0c51`. Its exact head
+was integrated at `a6068b4d46421e8a0c5921ba0b5cc24b4873ca12`, retaining the new installed-font
+fixes and evidence. All 1,041 qualified inputs were checked again and remain
+identical. The original captured-ref audit remains applicable by ancestry.
+[The latest-main receipt](integration/latest-main-reconciliation.json) records
+all seven incoming commits, their merge-resolution inspection, the seven net
+changed paths, and the retained Mail regression assertions. No additional
+engine test execution was needed because its entire source tree is unchanged.
 
 See [integration-reconciliation.md](integration-reconciliation.md) for the
 PDF/autofit/radial merge decisions. Final review additionally repaired explicit
