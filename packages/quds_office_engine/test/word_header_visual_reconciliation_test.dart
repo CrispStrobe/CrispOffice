@@ -1,0 +1,181 @@
+import 'dart:typed_data';
+
+import 'package:quds_office_engine/quds_office_engine.dart';
+import 'package:test/test.dart';
+
+WmlParagraph _paragraph(String text) =>
+    WmlParagraph(inlines: [WmlRun(text: text)]);
+
+OfficeVisual _picture(int byte, {double x = 80, double y = 20}) => OfficeVisual(
+  kind: OfficeVisualKind.picture,
+  imageBytes: Uint8List.fromList([byte, 2, 3, 4]),
+  width: 32,
+  height: 16,
+  offsetX: x,
+  offsetY: y,
+);
+
+WmlParagraph _inline(OfficeVisual visual) => WmlParagraph(
+  inlines: [
+    WmlRun(
+      text: '\uFFFC',
+      inlineVisual: WmlVisual(visual: visual),
+    ),
+  ],
+);
+
+List<LaidOutBox> _pictures(LaidOutPage page) =>
+    page.frames.where((frame) => frame.kind == LaidOutBoxKind.picture).toList();
+
+LaidOutPage _page({
+  List<WmlParagraph> header = const [],
+  List<OfficeVisual> visuals = const [],
+  List<OfficeVisual> footerVisuals = const [],
+}) => WordLayoutEngine(font: null)
+    .layout(
+      WmlDocument(
+        sections: [
+          WmlSection(
+            blocks: [_paragraph('Body')],
+            header: header,
+            headerVisuals: [
+              for (final visual in visuals) WmlVisual(visual: visual),
+            ],
+            footerVisuals: [
+              for (final visual in footerVisuals) WmlVisual(visual: visual),
+            ],
+          ),
+        ],
+      ),
+      updateFields: false,
+    )
+    .pages
+    .single;
+
+void main() {
+  test('one visual represented inline and separately paints once', () {
+    final visual = _picture(1, x: 92, y: 22);
+    final frames = _pictures(
+      _page(header: [_inline(visual)], visuals: [visual]),
+    );
+    expect(frames, hasLength(1));
+    expect(frames.single.visual, same(visual));
+    expect((frames.single.x, frames.single.y), (92, 22));
+  });
+
+  test('same-size inline and separate pictures retain both identities', () {
+    final inline = _picture(1, x: 0, y: 0);
+    final separate = _picture(9, x: 130, y: 35);
+    final frames = _pictures(
+      _page(header: [_inline(inline)], visuals: [separate]),
+    );
+    expect(frames.map((frame) => frame.visual), [inline, separate]);
+  });
+
+  test(
+    'equal byte counts and placement do not equate distinct picture content',
+    () {
+      final first = _picture(1);
+      final second = _picture(9);
+      final frames = _pictures(_page(visuals: [first, second]));
+      expect(frames.map((frame) => frame.visual), [first, second]);
+    },
+  );
+
+  test(
+    'matching image content at distinct vertical placements remains visible',
+    () {
+      final first = _picture(1);
+      final second = first.copy()..offsetY = 50;
+      final frames = _pictures(_page(visuals: [first, second]));
+      expect(frames.map((frame) => frame.y), [20, 50]);
+      expect(frames.map((frame) => frame.visual), [first, second]);
+    },
+  );
+
+  test('an exact chrome picture duplicate at one placement paints once', () {
+    final first = _picture(1);
+    final second = first.copy();
+    final frames = _pictures(_page(visuals: [first, second]));
+    expect(frames, hasLength(1));
+    expect(frames.single.visual, same(first));
+  });
+
+  test('same content and placement preserve different picture adjustments', () {
+    final first = _picture(1);
+    final second = first.copy()..picture.rotationDeg = 90;
+    final frames = _pictures(_page(visuals: [first, second]));
+    expect(frames.map((frame) => frame.visual), [first, second]);
+  });
+
+  test(
+    'header duplicate suppression never removes body frames or their reuse',
+    () {
+      final first = _picture(1, x: 80, y: 80)
+        ..picture.wrap = PictureWrap.inFront;
+      final second = _picture(9, x: 80, y: 100)
+        ..picture.wrap = PictureWrap.inFront;
+      final paragraphs = [
+        for (var index = 0; index < 20; index++) _paragraph('Body $index'),
+      ];
+      final document = WmlDocument(
+        sections: [
+          WmlSection(
+            blocks: [
+              WmlVisual(visual: first),
+              WmlVisual(visual: second),
+              ...paragraphs,
+            ],
+          ),
+        ],
+      );
+      final engine = WordLayoutEngine(font: null);
+      final initial = engine.layout(document, updateFields: false);
+      expect(_pictures(initial.pages.first).map((frame) => frame.visual), [
+        first,
+        second,
+      ]);
+      paragraphs[3].inlines.whereType<WmlRun>().single.text += ' edited';
+      final incremental = engine.layout(
+        document,
+        updateFields: false,
+        reuse: initial,
+        dirtyParagraphs: {paragraphs[3]},
+      );
+      final full = WordLayoutEngine(
+        font: null,
+      ).layout(document, updateFields: false);
+      expect(wordLayoutFingerprint(incremental), wordLayoutFingerprint(full));
+      expect(_pictures(incremental.pages.first).map((frame) => frame.visual), [
+        first,
+        second,
+      ]);
+    },
+  );
+
+  test('header and footer preserve independent copies of one image', () {
+    final first = _picture(1);
+    final second = first.copy();
+    final frames = _pictures(_page(visuals: [first], footerVisuals: [second]));
+    expect(frames.map((frame) => frame.visual), [first, second]);
+    expect(frames.last.y, greaterThan(frames.first.y));
+  });
+
+  test('inline header pictures render without changing the authored story', () {
+    final visual = _picture(1, x: 0, y: 0);
+    final paragraph = WmlParagraph(
+      inlines: [
+        WmlRun(text: 'Before '),
+        WmlRun(
+          text: '\uFFFC',
+          inlineVisual: WmlVisual(visual: visual),
+        ),
+        WmlRun(text: ' after'),
+      ],
+    );
+    final page = _page(header: [paragraph]);
+    expect(_pictures(page).single.visual, same(visual));
+    expect(paragraph.text, 'Before \uFFFC after');
+    expect(page.header.single.text, 'Before   after');
+  });
+}
