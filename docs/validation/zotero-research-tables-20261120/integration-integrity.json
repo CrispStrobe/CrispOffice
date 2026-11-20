@@ -1,0 +1,648 @@
+{
+  "schema": "quds.frozen-incoming-integrity.v1",
+  "reviewed_at_utc": "2026-11-20T12:02:37.454Z",
+  "repository": "CrispStrobe/quds_office_suite",
+  "status": "passed_bounded_source_tree_integrity",
+  "frozen": {
+    "commit": "b5463074086004219627dca938d650adc42aaafc",
+    "tree": "e9519d5ff52f3537f1a6e4c1ca53bdaa7a7c5b9d",
+    "parents": [
+      "19a840f79e92a4547c15173966842187a7b517e8"
+    ],
+    "stage": "Preformat semantic-tree intake checkpoint"
+  },
+  "compared_refs": {
+    "main": {
+      "commit": "7e740a53d3fea4b6bd734537e89888b641a8b735",
+      "tree": "7b122b2c95c442e05dd8af1372256250338f34a6"
+    },
+    "performance": {
+      "commit": "e6f70bffb3525b33616f0396e3d58c44432c5f7b",
+      "tree": "34c583c5e5df4b0d6f3337cc7320f11cbcd4d741"
+    }
+  },
+  "ancestry": [
+    {
+      "label": "downloads",
+      "head": "84d02025fade09c80f3f58942b466f4522eb4434",
+      "status": "ahead",
+      "ahead_by": 80,
+      "behind_by": 0,
+      "merge_base": "84d02025fade09c80f3f58942b466f4522eb4434",
+      "isAncestor": true
+    },
+    {
+      "label": "mail_accounts",
+      "head": "a059c0249a25bef602640c8b8d504bd8da41c619",
+      "status": "ahead",
+      "ahead_by": 62,
+      "behind_by": 0,
+      "merge_base": "a059c0249a25bef602640c8b8d504bd8da41c619",
+      "isAncestor": true
+    },
+    {
+      "label": "credential_stores",
+      "head": "95bf6340400d8e16c4ef318ca6873f06fa300bc6",
+      "status": "ahead",
+      "ahead_by": 106,
+      "behind_by": 0,
+      "merge_base": "95bf6340400d8e16c4ef318ca6873f06fa300bc6",
+      "isAncestor": true
+    },
+    {
+      "label": "parallel_downloads",
+      "head": "4f5c153774ab7492430c2b68653c54e0c08dc2ad",
+      "status": "ahead",
+      "ahead_by": 82,
+      "behind_by": 0,
+      "merge_base": "4f5c153774ab7492430c2b68653c54e0c08dc2ad",
+      "isAncestor": true
+    },
+    {
+      "label": "initial_incremental_layout",
+      "head": "d661e024cf7607bd0c87d0c5b9f5dd581b02625e",
+      "status": "ahead",
+      "ahead_by": 86,
+      "behind_by": 0,
+      "merge_base": "d661e024cf7607bd0c87d0c5b9f5dd581b02625e",
+      "isAncestor": true
+    },
+    {
+      "label": "main",
+      "head": "7e740a53d3fea4b6bd734537e89888b641a8b735",
+      "status": "ahead",
+      "ahead_by": 21,
+      "behind_by": 0,
+      "merge_base": "7e740a53d3fea4b6bd734537e89888b641a8b735",
+      "isAncestor": true
+    },
+    {
+      "label": "perf",
+      "head": "e6f70bffb3525b33616f0396e3d58c44432c5f7b",
+      "status": "ahead",
+      "ahead_by": 14,
+      "behind_by": 0,
+      "merge_base": "e6f70bffb3525b33616f0396e3d58c44432c5f7b",
+      "isAncestor": true
+    }
+  ],
+  "preserved_merge_edges": [
+    {
+      "sha": "7600f7fd71fdc7f01228155a22d600177f5afcb9",
+      "parents": [
+        "3ffa599ff003a6e678260df1237b01887693e546",
+        "84d02025fade09c80f3f58942b466f4522eb4434"
+      ]
+    },
+    {
+      "sha": "f7bf155337b0ba77dc20c6be548ef38ac06c5c65",
+      "parents": [
+        "7600f7fd71fdc7f01228155a22d600177f5afcb9",
+        "a059c0249a25bef602640c8b8d504bd8da41c619"
+      ]
+    },
+    {
+      "sha": "ef0231a3e166b3235f450d1878e4f7031d04a26f",
+      "parents": [
+        "f7bf155337b0ba77dc20c6be548ef38ac06c5c65",
+        "95bf6340400d8e16c4ef318ca6873f06fa300bc6"
+      ]
+    },
+    {
+      "sha": "ba309839dd0bde04d057c84de8367ad6e4e2bd0f",
+      "parents": [
+        "ef0231a3e166b3235f450d1878e4f7031d04a26f",
+        "4f5c153774ab7492430c2b68653c54e0c08dc2ad"
+      ]
+    },
+    {
+      "sha": "824a2ca640aeb431e7276e21bfd7df545e647753",
+      "parents": [
+        "ba309839dd0bde04d057c84de8367ad6e4e2bd0f",
+        "d661e024cf7607bd0c87d0c5b9f5dd581b02625e"
+      ]
+    },
+    {
+      "sha": "e6f70bffb3525b33616f0396e3d58c44432c5f7b",
+      "parents": [
+        "0300bddcf1a97b9bab72e3beee841a7314c602cb",
+        "7e740a53d3fea4b6bd734537e89888b641a8b735"
+      ]
+    },
+    {
+      "sha": "ab8d42ec19639ec29a429f4d307952574eb447ce",
+      "parents": [
+        "71243862159d0134b42a06b7e723ed5d5c2a20c9",
+        "e6f70bffb3525b33616f0396e3d58c44432c5f7b"
+      ]
+    }
+  ],
+  "tree_integrity": {
+    "method": "Read Git tree objects by immutable SHA. Descend all differing directory pairs; identical tree hashes preserve every descendant path, blob, mode and type. Cross-check exact resulting changed-path sets against immutable compare responses.",
+    "unique_tree_objects": 83,
+    "all_nonrecursive_tree_responses_complete": true,
+    "results": [
+      {
+        "base": "main",
+        "tree_pairs": 35,
+        "unchanged_subtrees_by_exact_sha": 237,
+        "unchanged_direct_leaf_entries": 906,
+        "added": 17,
+        "modified": 26,
+        "deleted": [],
+        "mode_changes": [],
+        "type_changes": [],
+        "compare_changed_path_inventory_exact": true
+      },
+      {
+        "base": "perf",
+        "tree_pairs": 29,
+        "unchanged_subtrees_by_exact_sha": 228,
+        "unchanged_direct_leaf_entries": 850,
+        "added": 12,
+        "modified": 27,
+        "deleted": [],
+        "mode_changes": [],
+        "type_changes": [],
+        "compare_changed_path_inventory_exact": true
+      }
+    ],
+    "all_new_leaf_entries": {
+      "mode": "100644",
+      "type": "blob"
+    },
+    "conclusion": "No deletion, type replacement or permission-mode change relative to either captured baseline."
+  },
+  "retained_exact_sources": [
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_credential_settings.dart",
+      "baseline": "main and perf",
+      "blob": "9bebe73783ebb49d138789cbd2abbef61186579d"
+    },
+    {
+      "path": "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+      "baseline": "perf",
+      "blob": "e5742bf1911e7cbd8e5fb9ca201d7d5e57cc3297"
+    },
+    {
+      "path": "packages/quds_office_editor/example/macos",
+      "baseline": "main",
+      "tree": "8efd3d1195c8736fcfd04d1a0064aced3d14f940"
+    },
+    {
+      "path": "pubspec.lock",
+      "baseline": "main and perf",
+      "blob": "c677b8fbc9de6607a1c0af2608bec1c2d32fca6d"
+    },
+    {
+      "path": "pubspec.yaml",
+      "baseline": "main and perf",
+      "blob": "ba34bf9e2c1b0eb583e5f9e2d9ba9f236a660f96"
+    }
+  ],
+  "required_sources_and_tests": [
+    {
+      "path": "packages/quds_office_engine/lib/src/word/model/word_zotero_note.dart",
+      "blob": "dcf54783928e8468e015195081b3d97f29e7b989",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/model/word_zotero_citing.dart",
+      "blob": "2fbf06b7d13eed44a65b64d8bad879881654c46d",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "packages/quds_office_engine/test/word_zotero_note_table_test.dart",
+      "blob": "53bd2a620c07134397286df59ebfb13e29de3d0c",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "packages/quds_office_engine/test/word_zotero_note_tables_integration_test.dart",
+      "blob": "da919adf7faca2ec9a2c60d3fe4de75847d028ad",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "packages/quds_office_engine/test/word_zotero_add_note_test.dart",
+      "blob": "c46acf97fa7a13a625dc10bda2c91841d4b158a2",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+      "blob": "69d371124d7fadaa7685a9a08dba1098cfd03e68",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "packages/quds_office_engine/tool/zotero/research_target_acceptance.dart",
+      "blob": "7c3e82c6396cac8978a9771982d65d1758e45b8d",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "packages/quds_office_editor/tool/zotero/research_target_acceptance.dart",
+      "blob": "2df7783765165a99b13cfc22ad8c96f25834c4d6",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "packages/quds_office_engine/test/word_incremental_layout_prefix_test.dart",
+      "blob": "3d29f91ca4d850743a041dddc8c098e8667956a1",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+      "blob": "e5742bf1911e7cbd8e5fb9ca201d7d5e57cc3297",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_credential_settings.dart",
+      "blob": "9bebe73783ebb49d138789cbd2abbef61186579d",
+      "mode": "100644",
+      "type": "blob"
+    }
+  ],
+  "changed_source_screen": {
+    "dart_files": 29,
+    "all_nonempty": true,
+    "merge_conflict_markers": [],
+    "scope": "Content read by exact blob SHA; this screen is not a parser, analyzer or runtime test."
+  },
+  "intent_review": {
+    "unexplained_semantic_differences": [],
+    "basis": [
+      "Zotero support, roadmap and validation README describe native rectangular table parsing/insertion, active citations and target preservation; both implementation files and the parser/integration/controller tests and replay registrations are present.",
+      "Combined credential and Downloads sources match the already reviewed final blobs exactly.",
+      "Layout sources and regressions match the reviewed cache-invalidating and engine-owner blobs exactly; the two prefix regression cases remain in their separate test file.",
+      "The workspace differs from perf by the three-line documented idle-timer frame request and includes its regression.",
+      "Seven remaining source/test patches were inspected and contain formatting/import-group changes only; no changed test condition or product behavior was found."
+    ],
+    "documentation_blobs": [
+      "7f4c67b8bfaa128fe54e0f2d7eae0bf084676636",
+      "3234fc7f5dd42a5d620c3f9a19e6968330b54878",
+      "09934a5152351bada1b8c0296781baedc8edfbc4",
+      "701f36aa25d467c7a69ea4b6077c4e2f454488ea"
+    ]
+  },
+  "change_inventory_vs_main": [
+    {
+      "path": ".github/workflows/incremental-layout-benchmark.yml",
+      "kind": "added",
+      "old": null,
+      "new": "255b4072dc4b03205e3e8b56851087402842d998",
+      "mode": "100644",
+      "intent": "incoming_perf_exact"
+    },
+    {
+      "path": "docs/performance/incremental-layout-20261120.md",
+      "kind": "added",
+      "old": null,
+      "new": "d16433515712536f650780c42f5faaac3868e8ea",
+      "mode": "100644",
+      "intent": "incoming_perf_exact"
+    },
+    {
+      "path": "docs/roadmaps/zotero/word-processor-parity.md",
+      "kind": "modified",
+      "old": "bc121d7a965fb3ad5f9abeee6de5ad8de209998f",
+      "new": "dcc935de5d1d969aaf51b0fa7dbda59b87d89985",
+      "mode": "100644",
+      "intent": "zotero_scope_documentation"
+    },
+    {
+      "path": "docs/validation/zotero-research-tables-20261120/incoming-credential-review-v2.json",
+      "kind": "added",
+      "old": null,
+      "new": "7e728ba1deb8a8954aafd6634788da6858d7e5b7",
+      "mode": "100644",
+      "intent": "checkpoint_evidence"
+    },
+    {
+      "path": "docs/validation/zotero-research-tables-20261120/incoming-downloads-review.json",
+      "kind": "added",
+      "old": null,
+      "new": "701f36aa25d467c7a69ea4b6077c4e2f454488ea",
+      "mode": "100644",
+      "intent": "checkpoint_evidence"
+    },
+    {
+      "path": "docs/validation/zotero-research-tables-20261120/incoming-final-review.json",
+      "kind": "added",
+      "old": null,
+      "new": "3234fc7f5dd42a5d620c3f9a19e6968330b54878",
+      "mode": "100644",
+      "intent": "checkpoint_evidence"
+    },
+    {
+      "path": "docs/validation/zotero-research-tables-20261120/incoming-followup-review.json",
+      "kind": "added",
+      "old": null,
+      "new": "c0a1df9cfa873a83562bb15e6967540552c0db6d",
+      "mode": "100644",
+      "intent": "checkpoint_evidence"
+    },
+    {
+      "path": "docs/validation/zotero-research-tables-20261120/incoming-intake.json",
+      "kind": "added",
+      "old": null,
+      "new": "f4d222a2635e1f4171f616c748bf90c2a6a73fd3",
+      "mode": "100644",
+      "intent": "checkpoint_evidence"
+    },
+    {
+      "path": "docs/validation/zotero-research-tables-20261120/incoming-layout-review.json",
+      "kind": "added",
+      "old": null,
+      "new": "dbee5d5cb9acdaa009c1f81c556a39b9f0c8c7fc",
+      "mode": "100644",
+      "intent": "checkpoint_evidence"
+    },
+    {
+      "path": "docs/validation/zotero-research-tables-20261120/independent-source-review.json",
+      "kind": "added",
+      "old": null,
+      "new": "09934a5152351bada1b8c0296781baedc8edfbc4",
+      "mode": "100644",
+      "intent": "checkpoint_evidence"
+    },
+    {
+      "path": "docs/validation/zotero-research-tables-20261120/README.md",
+      "kind": "added",
+      "old": null,
+      "new": "7f4c67b8bfaa128fe54e0f2d7eae0bf084676636",
+      "mode": "100644",
+      "intent": "checkpoint_evidence"
+    },
+    {
+      "path": "docs/zotero-support.md",
+      "kind": "modified",
+      "old": "ba7313bfe5e44643314fde9a92c5abdfe09113fd",
+      "new": "55bee0faf90206bc6c17643558f5eceeef0c10bb",
+      "mode": "100644",
+      "intent": "zotero_scope_documentation"
+    },
+    {
+      "path": "packages/quds_mail_ui/lib/src/reader/message_view.dart",
+      "kind": "modified",
+      "old": "bbfedc796817cdb4383020aabe974f042f657cbb",
+      "new": "2f63d87e92dcaf00a4c61310befbcc67fdfd41a7",
+      "mode": "100644",
+      "intent": "format_only_reviewed_patch"
+    },
+    {
+      "path": "packages/quds_mail_ui/test/reader_theme_scroll_test.dart",
+      "kind": "modified",
+      "old": "2f3f8a2574a270c36d66dfe378a0701a3b0b44c5",
+      "new": "2cd795e4b9d27713e591758a841827495536a8f1",
+      "mode": "100644",
+      "intent": "format_only_reviewed_patch"
+    },
+    {
+      "path": "packages/quds_office_editor/CHANGELOG.md",
+      "kind": "modified",
+      "old": "c391a3569cb83072deec6107acfbf34af6490558",
+      "new": "6ffea91e04b53f3d17e2e59b199da2a037a79a1b",
+      "mode": "100644",
+      "intent": "zotero_scope_documentation"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/credentials/encryption_service.dart",
+      "kind": "modified",
+      "old": "3f8e997d2fa25e669fb8aa70a79fb4eeb12232ae",
+      "new": "495cdcbde315642071b86945801fe51cea8b4d2b",
+      "mode": "100644",
+      "intent": "format_only_reviewed_patch"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/credentials/log_service.dart",
+      "kind": "modified",
+      "old": "8bf80d9f8990e69c05b77743412ff865bb0c3081",
+      "new": "f9cb2665f7280d3a9d659b2c0ce4669eb1c1372b",
+      "mode": "100644",
+      "intent": "format_only_reviewed_patch"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/credentials/native_system_io.dart",
+      "kind": "modified",
+      "old": "0844caca16ae23ea0bc3a8eeeeaea7255d77c039",
+      "new": "03018e5328c1c390871fc1973bfcf00e57c1516c",
+      "mode": "100644",
+      "intent": "format_only_reviewed_patch"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_credential_storage.dart",
+      "kind": "modified",
+      "old": "222e1d292d8786296d0293a3af85acc192631d00",
+      "new": "e6d159e45bfce3a76cb11c8d812ab3de1bc04c13",
+      "mode": "100644",
+      "intent": "reviewed_selected_store_hardening"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_downloads_manager.dart",
+      "kind": "modified",
+      "old": "ef180774c1cec8a7a55e8141ee519280b1985011",
+      "new": "926e85320a6622cd0f16effe5a7f7ed1bdb05054",
+      "mode": "100644",
+      "intent": "reviewed_downloads_override_and_guard"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_credentials.dart",
+      "kind": "modified",
+      "old": "f533883c4c81d5880b0b1a086bca2f2b5fdd207b",
+      "new": "65b1f48fea758d1b0f5ebcddaba1acc3d5e1b304",
+      "mode": "100644",
+      "intent": "reviewed_selected_store_hardening"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_native.dart",
+      "kind": "modified",
+      "old": "437bd7bf22fa71afc0a75768402dce25bde2c44a",
+      "new": "97ec1e703fe95b0eda334dbe9c909cdf22d4d1bc",
+      "mode": "100644",
+      "intent": "reviewed_selected_store_hardening"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/suite_workspace.dart",
+      "kind": "modified",
+      "old": "8fa1212ae1f07d0f5d13cc365476b69482ab8c29",
+      "new": "780aeb41d872df31e19d7b4b8bb7df1835dfb6e2",
+      "mode": "100644",
+      "intent": "incoming_perf_plus_idle_frame_fix"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_credential_selection_race_test.dart",
+      "kind": "modified",
+      "old": "812a3d01656d29d6ef2811733d6dad2b18a3ee11",
+      "new": "416ff884cb906f9c1d926cb245b6185aebd646d8",
+      "mode": "100644",
+      "intent": "selected_store_regressions"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_credential_selection_test.dart",
+      "kind": "modified",
+      "old": "171f01f18da462890e1398af55fe9bd65f7206e4",
+      "new": "6c9f2fe6e7f15f68f4b704fce6864de07524cdf2",
+      "mode": "100644",
+      "intent": "format_only_reviewed_patch"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_layout_theme_test.dart",
+      "kind": "modified",
+      "old": "6c7931c62a0e14d471fb2ab040ea8db898c25471",
+      "new": "1fe073de40be616b39b1e82d4376856b20b0173c",
+      "mode": "100644",
+      "intent": "format_only_reviewed_patch"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_selected_store_integration_test.dart",
+      "kind": "modified",
+      "old": "96e8894eeadf8439869690e7bc3eb7a3758105be",
+      "new": "f860b00aad609af68af90f6b8ca6a9d4c31d3465",
+      "mode": "100644",
+      "intent": "selected_store_regressions"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_word_chrome_settle_test.dart",
+      "kind": "added",
+      "old": null,
+      "new": "c2f64a45d6ed23334c28ce61d1472569965e8d32",
+      "mode": "100644",
+      "intent": "idle_frame_regression"
+    },
+    {
+      "path": "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+      "kind": "modified",
+      "old": "59b93ad137d8be8b811ae52ee154f23ce8efe1a5",
+      "new": "e5742bf1911e7cbd8e5fb9ca201d7d5e57cc3297",
+      "mode": "100644",
+      "intent": "incoming_perf_exact"
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_incremental_layout_equivalence_test.dart",
+      "kind": "added",
+      "old": null,
+      "new": "e83209e2daad1084c94498be96d5421b164c4b88",
+      "mode": "100644",
+      "intent": "incoming_perf_exact"
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+      "kind": "modified",
+      "old": "a3b5c737f16751de3d348f7b811eb69cb0b5e96f",
+      "new": "69d371124d7fadaa7685a9a08dba1098cfd03e68",
+      "mode": "100644",
+      "intent": "zotero_table_and_target_regressions"
+    },
+    {
+      "path": "packages/quds_office_editor/tool/zotero/research_target_acceptance.dart",
+      "kind": "modified",
+      "old": "d8e092a5ae90dead78eeeefce12235ba1d2187bb",
+      "new": "2df7783765165a99b13cfc22ad8c96f25834c4d6",
+      "mode": "100644",
+      "intent": "zotero_replay_cohort_registration"
+    },
+    {
+      "path": "packages/quds_office_engine/CHANGELOG.md",
+      "kind": "modified",
+      "old": "75e5021ae080143c75c876662d83d5d5334f8caa",
+      "new": "13262af9b0ae951f7b5f897bd47c134c10393cae",
+      "mode": "100644",
+      "intent": "zotero_scope_documentation"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/layout/word_incremental_layout.dart",
+      "kind": "added",
+      "old": null,
+      "new": "93c7e51944395cd0e23c0801fd47b0e7f54eebb2",
+      "mode": "100644",
+      "intent": "incoming_layout_plus_reviewed_cache_owner_fixes"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/layout/word_layout.dart",
+      "kind": "modified",
+      "old": "bcfad7a6a725bfc19495204e069260e14e11e4ba",
+      "new": "90b5e974acae4a050aae4b18f5bf6491320b2d9a",
+      "mode": "100644",
+      "intent": "incoming_layout_plus_reviewed_cache_owner_fixes"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/model/word_zotero_citing.dart",
+      "kind": "modified",
+      "old": "db516b1cf783b5f738c7ef5264c45ea01a9ca529",
+      "new": "2fbf06b7d13eed44a65b64d8bad879881654c46d",
+      "mode": "100644",
+      "intent": "zotero_native_table_sources"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/model/word_zotero_note.dart",
+      "kind": "modified",
+      "old": "ae0732b80ed439cda983214783cb40df8f68b3c5",
+      "new": "dcf54783928e8468e015195081b3d97f29e7b989",
+      "mode": "100644",
+      "intent": "zotero_native_table_sources"
+    },
+    {
+      "path": "packages/quds_office_engine/test/word_incremental_layout_prefix_test.dart",
+      "kind": "added",
+      "old": null,
+      "new": "3d29f91ca4d850743a041dddc8c098e8667956a1",
+      "mode": "100644",
+      "intent": "preserved_prefix_regressions"
+    },
+    {
+      "path": "packages/quds_office_engine/test/word_incremental_layout_test.dart",
+      "kind": "added",
+      "old": null,
+      "new": "4426fd6457d8e6c68b4f0a962ed59f2d1afc3ed5",
+      "mode": "100644",
+      "intent": "incoming_layout_plus_cache_owner_regressions"
+    },
+    {
+      "path": "packages/quds_office_engine/test/word_zotero_add_note_test.dart",
+      "kind": "modified",
+      "old": "b27764c4c0242749cace58dfa49f637ac5cc64b3",
+      "new": "c46acf97fa7a13a625dc10bda2c91841d4b158a2",
+      "mode": "100644",
+      "intent": "zotero_table_and_target_regressions"
+    },
+    {
+      "path": "packages/quds_office_engine/test/word_zotero_note_table_test.dart",
+      "kind": "added",
+      "old": null,
+      "new": "53bd2a620c07134397286df59ebfb13e29de3d0c",
+      "mode": "100644",
+      "intent": "zotero_table_and_target_regressions"
+    },
+    {
+      "path": "packages/quds_office_engine/test/word_zotero_note_tables_integration_test.dart",
+      "kind": "added",
+      "old": null,
+      "new": "da919adf7faca2ec9a2c60d3fe4de75847d028ad",
+      "mode": "100644",
+      "intent": "zotero_table_and_target_regressions"
+    },
+    {
+      "path": "packages/quds_office_engine/tool/zotero/research_target_acceptance.dart",
+      "kind": "modified",
+      "old": "f2535ef1bfd9f36473e8bc0fe8ddac8326869245",
+      "new": "7c3e82c6396cac8978a9771982d65d1758e45b8d",
+      "mode": "100644",
+      "intent": "zotero_replay_cohort_registration"
+    }
+  ],
+  "qualification": {
+    "checked_only": "Frozen b5463074086004219627dca938d650adc42aaafc, main7e740a53 and perfe6f70bff, plus five exact initial heads.",
+    "branches_or_pull_requests_refreshed": false,
+    "github_ci_or_actions_queried": false,
+    "formatter_changes_after_checkpoint": "Outside this report; root must record final source hashes and continuity.",
+    "tests_or_analyzer_executed_by_this_review": false,
+    "repository_mutations": "Evidence blob creation only; no source, commit or reference writes.",
+    "result": "Intake ancestry and source-tree integrity passed. Runtime correctness and application interoperability require separate evidence."
+  }
+}
