@@ -37,7 +37,11 @@ void applyDefaultWordOutline(WmlDocument document, WmlParagraph paragraph) {
   }
   _checkInheritedLevelGeometry(document);
   final prepared = numbering.outlineDefinition();
-  final properties = edit.prepareDefault(prepared.id, true);
+  final properties = edit.prepareDefault(
+    prepared.id,
+    true,
+    preserveRightInheritance: true,
+  );
   prepared.publish();
   paragraph.properties = properties;
 }
@@ -339,7 +343,11 @@ class _ListEdit {
     _publish(props);
   }
 
-  WmlParagraphProps prepareDefault(int id, bool numbered) {
+  WmlParagraphProps prepareDefault(
+    int id,
+    bool numbered, {
+    bool preserveRightInheritance = false,
+  }) {
     final props = paragraph.properties.copy()
       ..numId = id
       ..numberingSuppressed = false
@@ -347,6 +355,7 @@ class _ListEdit {
       ..listLabel = numbered ? '1. ' : '• '
       ..listRestart = null;
     _writeNumber(id);
+    if (preserveRightInheritance) _preserveUneditedRightInheritance();
     _writeIndent(props, const WmlIndent(left: 18, hanging: 9));
     _finish(props);
     return props;
@@ -361,6 +370,7 @@ class _ListEdit {
       // Invalidate it; ordinary save/reopen resolves the authored definition.
       ..listLabel = null;
     _writeNumber(id, level: level);
+    _preserveUneditedRightInheritance();
     _writeIndent(props, geometry);
     _finish(props);
     return props;
@@ -399,6 +409,43 @@ class _ListEdit {
         hanging: geometry.hanging,
       )
       ..explicitIndent = true;
+  }
+
+  void _preserveUneditedRightInheritance() {
+    final props = paragraph.properties;
+    final snapshot = props.importedValues?['ind']?.split('|');
+    final original = props.sourcePropertiesXml;
+    if (snapshot == null ||
+        snapshot.length != 4 ||
+        original == null ||
+        snapshot[1] != '${props.indent.right}') {
+      return;
+    }
+    // Numbering projection can change left/hanging after the import snapshot,
+    // making the ordinary serializer materialize the whole effective indent.
+    // Retain only right-side attributes actually present in direct source.
+    // A prior explicit indent operation removes the snapshot and keeps its
+    // own ownership, so this never undoes an earlier right-indent write.
+    final source = original.isEmpty
+        ? null
+        : _one(_parseProperties(original), 'ind');
+    final generated = _one(direct, 'ind');
+    generated?.attributes.removeWhere(
+      (attribute) =>
+          attribute.namespaceUri == _w &&
+          const {
+            'right',
+            'end',
+            'rightChars',
+            'endChars',
+          }.contains(attribute.localName) &&
+          !(source?.attributes.any(
+                (old) =>
+                    old.namespaceUri == _w &&
+                    old.localName == attribute.localName,
+              ) ??
+              false),
+    );
   }
 
   void _writeNumber(int id, {int level = 0}) {

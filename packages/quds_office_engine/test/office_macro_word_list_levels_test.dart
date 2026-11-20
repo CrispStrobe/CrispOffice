@@ -42,6 +42,7 @@ Uint8List _fixture({
   String? numbering,
   String? styles,
   String? body,
+  bool saveBaseline = false,
 }) {
   final package = OpcPackage.openBytes(
     (DocxDocumentBuilder()..paragraph('Template')).build(),
@@ -78,7 +79,8 @@ Uint8List _fixture({
         .getPart('/word/styles.xml')!
         .writeText('<w:styles xmlns:w="$_w" xmlns:x="$_x">$styles</w:styles>');
   }
-  return package.save();
+  final bytes = package.save();
+  return saveBaseline ? WordSerializer().writeBytes(_read(bytes)) : bytes;
 }
 
 WmlDocument _read(Uint8List bytes) => WordDeserializer().readBytes(bytes);
@@ -166,17 +168,36 @@ void main() {
           );
         }
         final root = XmlDocument.parse(_numbering(bytes)).root!;
+        final outlines = root
+            .childrenNamed('abstractNum', namespaceUri: _w)
+            .where(
+              (node) =>
+                  node
+                      .firstChild('name', namespaceUri: _w)
+                      ?.getAttribute('val', namespaceUri: _w) ==
+                  'Quds-VBA-decimal-outline-v1',
+            )
+            .toList();
+        expect(outlines, hasLength(1));
         expect(
-          root.childrenNamed('abstractNum', namespaceUri: _w),
-          hasLength(1),
+          outlines.single.childrenNamed('lvl', namespaceUri: _w),
+          hasLength(9),
         );
         expect(
           root
-              .firstChild('abstractNum', namespaceUri: _w)!
-              .childrenNamed('lvl', namespaceUri: _w),
-          hasLength(9),
+              .childrenNamed('num', namespaceUri: _w)
+              .where(
+                (node) =>
+                    node
+                        .firstChild('abstractNumId', namespaceUri: _w)
+                        ?.getAttribute('val', namespaceUri: _w) ==
+                    outlines.single.getAttribute(
+                      'abstractNumId',
+                      namespaceUri: _w,
+                    ),
+              ),
+          hasLength(1),
         );
-        expect(root.childrenNamed('num', namespaceUri: _w), hasLength(1));
         bytes = WordSerializer().writeBytes(document);
       }
     },
@@ -192,6 +213,7 @@ void main() {
                 '<w:pStyle w:val="Heading1"/><w:numPr><w:ilvl w:val="$level"/>'
                 '<w:numId w:val="71"/></w:numPr><w:ind w:left="900" w:right="240"/>',
             numbering: _definition(type: type),
+            saveBaseline: true,
           );
           final session = OfficeMacroSession(
             input,
@@ -268,6 +290,7 @@ void main() {
     'level changes preserve numbering bytes, explicit right indent and unrelated metadata',
     () async {
       final input = _fixture(
+        saveBaseline: true,
         properties:
             '$_list<w:ind w:left="1440" w:right="240" x:keep="indent"/>'
             '<w:spacing w:before="120"/><x:opaque x:keep="yes"/>',
@@ -329,6 +352,7 @@ void main() {
 
   test('complete target override owns its geometry, format and start', () async {
     final input = _fixture(
+      saveBaseline: true,
       numbering: _definition(
         levels: '${_level(0, format: 'upperRoman')}${_level(1)}',
         overrides:
@@ -521,6 +545,7 @@ void main() {
                 .firstChild('ind', namespaceUri: _w)!
                 .getAttribute(collision, namespaceUri: _x),
             'indent',
+              reason: 'Reopen cycle $cycle: ${XmlDocument(root: saved.copy()).toXmlString()}',
           );
           if (foreignWordPrefix) {
             expect(
@@ -676,6 +701,106 @@ void main() {
     _refuses(document, {'op': 'listLevel', 'paragraph': 0, 'level': 1});
     expect(document.paragraphs.single.properties.listRestart, 7);
   });
+
+  test(
+    'direct relative level moves preserve every package part and list identity',
+    () {
+      final document = _read(_fixture());
+      final parts = _parts(document);
+      native.applyStep(document, {
+        'op': 'listLevel',
+        'paragraph': 0,
+        'delta': 1,
+      });
+      expect(document.paragraphs.single.properties.numId, 71);
+      expect(document.paragraphs.single.properties.ilvl, 1);
+      expect(_parts(document), parts);
+      native.applyStep(document, {
+        'op': 'listLevel',
+        'paragraph': 0,
+        'delta': -1,
+      });
+      expect(document.paragraphs.single.properties.ilvl, 0);
+      expect(_parts(document), parts);
+    },
+  );
+
+  test(
+    'a preceding explicit right-indent write remains direct after level edit',
+    () async {
+      final session = OfficeMacroSession(
+        _fixture(
+          properties: '<w:pStyle w:val="P"/>',
+          styles:
+              '<w:style w:type="paragraph" w:styleId="P"><w:pPr>$_list'
+              '<w:ind w:right="240"/></w:pPr></w:style>',
+        ),
+        format: OfficeMacroFormat.docx,
+      );
+      await session.run(
+        _plan([
+          OfficeMacroStep(
+            tool: 'docx.paragraphFormat',
+            arguments: {'paragraph': 0, 'right': 33},
+          ),
+          _select(2),
+        ]),
+      );
+      expect(
+        _val(
+          _properties(session.bytes).firstChild('ind', namespaceUri: _w)!,
+          'right',
+        ),
+        '660',
+      );
+      expect(
+        _read(session.bytes).paragraphs.single.properties.indent.right,
+        33,
+      );
+    },
+  );
+
+  test(
+    'new outline geometry preserves inherited right against later style edits',
+    () async {
+      final session = OfficeMacroSession(
+        _fixture(
+          properties: '<w:pStyle w:val="P"/>',
+          numbering: _definition(type: 'singleLevel', levels: _level(0)),
+          styles:
+              '<w:style w:type="paragraph" w:styleId="P"><w:pPr>$_list'
+              '<w:ind w:right="240"/></w:pPr></w:style>',
+        ),
+        format: OfficeMacroFormat.docx,
+      );
+      await session.run(_plan([_outline()]));
+      expect(
+        _val(
+          _properties(session.bytes).firstChild('ind', namespaceUri: _w)!,
+          'right',
+        ),
+        isNull,
+      );
+      await session.run(
+        _plan([
+          OfficeMacroStep(
+            tool: 'docx.styleDefinition',
+            arguments: {
+              'style': 'P',
+              'pPr': {
+                'numPr': null,
+                'ind': {'right': '400'},
+              },
+            },
+          ),
+        ]),
+      );
+      final properties = _read(session.bytes).paragraphs.single.properties;
+      expect(properties.indent.right, 20);
+      expect(properties.indent.left, 18);
+      expect(properties.numId, isNot(71));
+    },
+  );
 
   for (final attribute in [
     'leftChars',
