@@ -148,6 +148,7 @@ class PmlTransitionSource {
     required this.xml,
     required this.value,
     this.isOpaqueContainer = false,
+    this.unsupportedContext,
   });
 
   final String xml;
@@ -157,6 +158,10 @@ class PmlTransitionSource {
   /// projected into the editable transition model. Preserve it on unrelated
   /// saves, and refuse explicit transition changes.
   final bool isOpaqueContainer;
+
+  /// An inherited compatibility context that cannot be reproduced faithfully.
+  /// Saving must refuse instead of dropping or reinterpreting those directives.
+  final String? unsupportedContext;
 }
 
 /// Class PmlShapeAnimation.

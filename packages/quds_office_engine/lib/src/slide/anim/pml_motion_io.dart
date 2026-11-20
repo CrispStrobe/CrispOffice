@@ -197,20 +197,10 @@ void parseSlideMotion(String xml, PmlSlide slide) {
             advanceAfterMs: advAfter,
           );
     String? source;
+    String? unsupportedContext;
     if (sourceElement != null) {
       final copy = sourceElement.copy();
-      // A detached fragment still needs inherited declarations, including
-      // prefixes used only in mc:Choice@Requires or other QName-valued data.
-      for (final attribute in root!.attributes) {
-        if ((attribute.prefix == 'xmlns' ||
-                attribute.qualifiedName == 'xmlns' ||
-                attribute.namespaceUri == OfficeNamespaces.mc) &&
-            !copy.attributes.any(
-              (own) => own.qualifiedName == attribute.qualifiedName,
-            )) {
-          copy.attributes.add(attribute.copy());
-        }
-      }
+      unsupportedContext = _inheritTransitionContext(root!, copy);
       source = XmlDocument(root: copy).toXmlString(declaration: false);
     }
     slide.transition = PmlSlideTransition(
@@ -225,9 +215,92 @@ void parseSlideMotion(String xml, PmlSlide slide) {
               xml: source,
               value: value,
               isOpaqueContainer: opaqueContainer,
+              unsupportedContext: unsupportedContext,
             ),
     );
   }
+}
+
+// Preserve the root namespace scope even when prefixes occur only in values,
+// such as mc:Choice@Requires. Ignorable is cumulative, and its prefixes must
+// retain the namespace meaning they had at the parent rather than a child
+// rebinding. More complex inherited directives are explicitly unsupported.
+String? _inheritTransitionContext(XmlElement root, XmlElement fragment) {
+  for (final attribute in root.attributes) {
+    if ((attribute.prefix == 'xmlns' || attribute.qualifiedName == 'xmlns') &&
+        !fragment.attributes.any(
+          (own) => own.qualifiedName == attribute.qualifiedName,
+        )) {
+      fragment.attributes.add(attribute.copy());
+    }
+  }
+  for (final inherited in root.attributes) {
+    if (inherited.namespaceUri != OfficeNamespaces.mc) continue;
+    if (inherited.localName != 'Ignorable') {
+      return 'Inherited markup-compatibility directives other than Ignorable '
+          'are not supported for transition serialization';
+    }
+    final own = fragment.attributes.where(
+      (attribute) =>
+          attribute.namespaceUri == OfficeNamespaces.mc &&
+          attribute.localName == 'Ignorable',
+    );
+    if (own.length > 1) {
+      return 'Duplicate markup-compatibility Ignorable attributes';
+    }
+    final prefixes = <String>{
+      if (own.isNotEmpty)
+        ...own.single.value.split(RegExp(r'\s+')).where((token) => token.isNotEmpty),
+    };
+    for (final token in inherited.value.split(RegExp(r'\s+'))) {
+      if (token.isEmpty) continue;
+      final declarations = root.attributes.where(
+        (attribute) => attribute.qualifiedName == 'xmlns:$token',
+      );
+      if (declarations.length != 1 || declarations.single.value.isEmpty) {
+        return 'Inherited Ignorable prefix has no unique namespace binding';
+      }
+      prefixes.add(
+        _transitionContextPrefix(fragment, token, declarations.single.value),
+      );
+    }
+    if (own.isNotEmpty) {
+      own.single.value = prefixes.join(' ');
+    } else {
+      fragment.attributes.add(
+        XmlAttribute(
+          localName: 'Ignorable',
+          prefix: _transitionContextPrefix(
+            fragment,
+            inherited.prefix,
+            OfficeNamespaces.mc,
+          ),
+          namespaceUri: OfficeNamespaces.mc,
+          value: prefixes.join(' '),
+        ),
+      );
+    }
+  }
+  return null;
+}
+
+String _transitionContextPrefix(XmlElement fragment, String preferred, String uri) {
+  for (final declaration in fragment.attributes) {
+    if (declaration.prefix == 'xmlns' && declaration.value == uri) {
+      return declaration.localName;
+    }
+  }
+  var prefix = preferred.isEmpty ? 'qudsContext' : preferred;
+  var suffix = 0;
+  while (fragment.attributes.any(
+    (attribute) => attribute.qualifiedName == 'xmlns:$prefix',
+  )) {
+    prefix = 'qudsContext${suffix++}';
+  }
+  fragment.attributes.add(
+    XmlAttribute(localName: prefix, prefix: 'xmlns', value: uri),
+  );
+  return prefix;
 }
 
 bool _containsTransitionBranch(XmlElement container) {
@@ -289,6 +362,8 @@ void _setTransitionDuration(XmlElement element, int milliseconds) {
 bool _writePreservedTransition(XmlWriter writer, PmlSlideTransition transition) {
   final source = transition.source;
   if (source == null) return false;
+  final contextIssue = source.unsupportedContext;
+  if (contextIssue != null) throw UnsupportedError(contextIssue);
   final body = XmlDocument.parse(source.xml).root;
   if (body == null) {
     throw const FormatException('Imported slide transition is empty');

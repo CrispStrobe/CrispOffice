@@ -157,6 +157,10 @@ void applySlideStep(
       final at = s.integer('to', max: deck.slides.length - 1);
       PmlSections.reorderSlide(deck, deck.slides.indexOf(slide), at);
     case 'slideTransition':
+      final transitionIssue = slide.transition.source?.unsupportedContext;
+      if (transitionIssue != null) {
+        throw UnsupportedError(transitionIssue);
+      }
       if (slide.transition.source?.isOpaqueContainer ?? false) {
         throw UnsupportedError(
           'Transition changes do not support markup-compatibility containers',

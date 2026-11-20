@@ -86,6 +86,7 @@ Uint8List _nativeBytes({
   String body = _richBody,
   String transition = _transition,
   String extraShapes = '',
+  String rootCompatibility = '',
 }) {
   final package = OpcPackage.openBytes(_authoredBytes());
   package.getPart(_slidePart)!.writeText('''
@@ -93,7 +94,8 @@ Uint8List _nativeBytes({
     xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships"
     xmlns:mc="$_compatibility" xmlns:p14="$_powerPoint2010"
     xmlns:q="$_powerPoint2010" xmlns:x="$_foreign"
-    xmlns:unused="urn:quds:test:requires-only" mc:Ignorable="p14 q x unused">
+    xmlns:unused="urn:quds:test:requires-only" mc:Ignorable="p14 q x unused"
+    $rootCompatibility>
   <p:cSld>
     <p:spTree>
       <p:nvGrpSpPr><p:cNvPr id="1" name=""/><p:cNvGrpSpPr/><p:nvPr/></p:nvGrpSpPr>
@@ -451,6 +453,66 @@ End With
     final reopened = SlideDeserializer().readBytes(session.bytes).slides.first.transition;
     expect(reopened.durationMs, 900);
     expect(reopened.advanceOnClick, isTrue);
+  });
+
+  test('inherited Ignorable merges by expanded name and original namespace meaning', () async {
+    final transition = _transition.replaceFirst(
+      '<p:transition ',
+      '<p:transition xmlns:m="$_compatibility" xmlns:local="urn:quds:test:local" m:Ignorable="local" ',
+    );
+    final session = _session(_nativeBytes(transition: transition));
+    await session.run(_plan('selected.SlideShowTransition.Duration = 1.25'));
+    final motion = _motion(session.bytes);
+    final ignorable = motion.attributes.where((attribute) =>
+        attribute.localName == 'Ignorable' &&
+        attribute.namespaceUri == _compatibility);
+    expect(ignorable, hasLength(1));
+    expect(ignorable.single.prefix, 'm');
+    final reader = XmlPullReader(
+      OpcPackage.openBytes(session.bytes).getPart(_slidePart)!.readText(),
+    );
+    var sawTransition = false;
+    while (reader.next()) {
+      if (reader.eventType == XmlEventType.startElement &&
+          reader.namespaceUri == _presentation &&
+          reader.localName == 'transition' &&
+          reader.depth == 2) {
+        sawTransition = true;
+        final prefixes = reader.getAttribute('Ignorable', namespaceUri: _compatibility)!
+            .split(RegExp(r'\s+'));
+        final namespaces = prefixes.map(reader.lookupNamespace).toSet();
+        expect(namespaces, <String>{
+          'urn:quds:test:local',
+          _powerPoint2010,
+          _foreign,
+          'urn:quds:test:requires-only',
+        });
+        expect(namespaces, isNot(contains('urn:quds:test:occupied')));
+      }
+    }
+    expect(sawTransition, isTrue);
+  });
+
+  test('unsupported inherited MC directives refuse save before publication', () async {
+    final bytes = _nativeBytes(rootCompatibility: 'mc:ProcessContent="x:payload"');
+    final deck = SlideDeserializer().readBytes(bytes);
+    expect(deck.slides.first.transition.source!.unsupportedContext, isNotNull);
+    expect(() => SlideSerializer().writeBytes(deck), throwsUnsupportedError);
+    final session = _session(bytes);
+    final plan = _plan('selected.SlideShowTransition.Hidden = True');
+    await expectLater(session.validate(plan), throwsA(_error('document_error')));
+    await expectLater(session.run(plan), throwsA(_error('document_error')));
+    expect(session.bytes, bytes);
+    expect(session.revision, 0);
+    expect(
+      () => applySlideStep(deck, <String, Object?>{
+        'op': 'slideTransition',
+        'slide': 0,
+        'durationMs': 1250,
+      }),
+      throwsUnsupportedError,
+    );
+    expect(deck.slides.first.transition.durationMs, 900);
   });
 
   test('direct native advance-after removal retains foreign attribute', () {

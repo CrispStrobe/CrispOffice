@@ -2,6 +2,7 @@ import 'dart:typed_data';
 
 import 'package:quds_office_engine/quds_office_automation.dart';
 import 'package:quds_office_engine/quds_office_engine.dart';
+import 'package:quds_office_engine/src/word/serial/word_property_io.dart';
 import 'package:test/test.dart';
 
 OfficeMacro _compile(String body) => OfficeMacroLanguages().compile(
@@ -301,6 +302,98 @@ void main() {
       }
     });
   }
+
+  test('property ownership accepts Word namespace aliases and internal w fragments', () {
+    const extensionNamespace = 'urn:word-typography-test';
+    for (final (prefix, declaration) in <(String, String)>[
+      ('w', 'xmlns:w="${OfficeNamespaces.w}"'),
+      ('a', 'xmlns:a="${OfficeNamespaces.w}"'),
+      ('w', ''),
+    ]) {
+      final source = '<$prefix:rPr $declaration xmlns:x="$extensionNamespace">'
+          '<x:smallCaps x:token="keep"/><$prefix:smallCaps $prefix:val="0"/>'
+          '</$prefix:rPr>';
+      final result = WordPropertyIo.preserve(
+        WordPropertyIo.parse(
+          '<w:rPr xmlns:w="${OfficeNamespaces.w}">'
+          '<w:smallCaps w:val="1"/></w:rPr>',
+          'rPr',
+        ),
+        source,
+        {'smallCaps': 'false'},
+        {'smallCaps': 'true'},
+      );
+      final children = result.childElements.where(
+        (element) => element.localName == 'smallCaps',
+      ).toList();
+      expect(children, hasLength(2));
+      expect(
+        children.singleWhere(
+          (element) => element.namespaceUri == extensionNamespace,
+        ).getAttribute('token', namespaceUri: extensionNamespace),
+        'keep',
+      );
+      expect(
+        _val(children.singleWhere(
+          (element) => element.namespaceUri == OfficeNamespaces.w,
+        )),
+        '1',
+      );
+    }
+  });
+
+  test('typography edits preserve foreign same-name properties across saves', () async {
+    const extensionNamespace = 'urn:word-typography-test';
+    const compatibilityNamespace =
+        'http://schemas.openxmlformats.org/markup-compatibility/2006';
+    final session = OfficeMacroSession(
+      _fixture(
+        '<w:r><w:rPr xmlns:x="$extensionNamespace" '
+        'xmlns:mc="$compatibilityNamespace" mc:Ignorable="x">'
+        '<x:smallCaps x:token="small"/><w:smallCaps w:val="0"/>'
+        '<x:highlight x:token="color"/><w:highlight w:val="yellow"/>'
+        '<x:vertAlign x:token="script"/><w:vertAlign w:val="superscript"/>'
+        '</w:rPr><w:t>Owned properties</w:t></w:r>',
+      ),
+      format: OfficeMacroFormat.docx,
+    );
+    final plan = _compile('''
+.Font.SmallCaps = True
+.Font.Superscript = False
+.HighlightColorIndex = wdNoHighlight
+''');
+    // Focus on source-property ownership: native edits must preserve foreign
+    // payloads with the same local names through a later reopen and save.
+    for (var repeat = 0; repeat < 2; repeat++) {
+      await session.run(plan);
+      final properties = _elements(_xml(session.bytes), 'rPr').single;
+      expect(
+        properties.childElements.where(
+          (element) => element.namespaceUri == extensionNamespace,
+        ).map((element) => (
+          element.localName,
+          element.getAttribute('token', namespaceUri: extensionNamespace),
+        )),
+        unorderedEquals(<(String, String?)>[
+          ('smallCaps', 'small'),
+          ('highlight', 'color'),
+          ('vertAlign', 'script'),
+        ]),
+      );
+      expect(
+        properties.getAttribute('Ignorable', namespaceUri: compatibilityNamespace),
+        'x',
+      );
+      expect(_elements(properties, 'smallCaps'), hasLength(1));
+      expect(_elements(properties, 'vertAlign').map(_val), ['baseline']);
+      expect(_elements(properties, 'highlight').map(_val), ['none']);
+      final run = _runs(session.bytes).single;
+      expect(run.text, 'Owned properties');
+      expect(run.properties.smallCaps, isTrue);
+      expect(run.properties.vertAlign, WmlVertAlign.baseline);
+      expect(run.properties.highlight, isNull);
+    }
+  });
 
   test('typography changes roll back when a later explicit paragraph is absent', () async {
     final bytes = _fixture(_mixedRuns, styles: _mixedStyles);
