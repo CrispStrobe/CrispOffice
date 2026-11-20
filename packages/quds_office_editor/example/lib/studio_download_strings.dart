@@ -189,8 +189,8 @@ final class StudioDownloadStrings {
     ),
   };
 
-  String requires(String title) =>
-      _t('Requires $title', 'Benötigt $title', 'يتطلب $title');
+  /// Precedes the required package's (Latin) title.
+  String get requires => _t('Requires', 'Benötigt', 'يتطلب');
 
   /// What is already covered for a document language and what is optional.
   String coverage(String language) {

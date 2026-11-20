@@ -710,9 +710,25 @@ class StudioDownloadTile extends StatelessWidget {
             requires != null)
           Padding(
             padding: const EdgeInsets.only(top: 2),
-            child: Text(
-              strings.requires(_isolate(context, requires)),
-              style: muted,
+            // The Latin title is its own left-to-right run, so its
+            // brackets stay in order inside Arabic text.
+            child: Text.rich(
+              TextSpan(
+                style: muted,
+                children: <InlineSpan>[
+                  TextSpan(text: '${strings.requires} '),
+                  WidgetSpan(
+                    alignment: PlaceholderAlignment.baseline,
+                    baseline: TextBaseline.alphabetic,
+                    child: Text(
+                      requires,
+                      key: ValueKey('download-${item.id}-requires'),
+                      textDirection: TextDirection.ltr,
+                      style: muted,
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         if (item.state == StudioDownloadState.unavailable &&

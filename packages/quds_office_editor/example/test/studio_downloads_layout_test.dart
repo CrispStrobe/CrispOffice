@@ -183,7 +183,13 @@ void main() {
     expect(chip(camelMorphMsaProofingBin.id), 'Not installed');
     expect(chip(camelMorphMsaDisambig.id), 'Needs base package');
     expect(
-      find.text('Requires ${camelMorphMsaProofingBin.displayName}'),
+      find.descendant(
+        of: find.byKey(
+          ValueKey('download-${camelMorphMsaDisambig.id}-requires'),
+        ),
+        matching: find.text(camelMorphMsaProofingBin.displayName),
+        matchRoot: true,
+      ),
       findsOneWidget,
     );
     expect(chip('spacy-fr'), 'Needs repair');
