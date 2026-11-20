@@ -103,6 +103,7 @@ class SlideDeserializer {
       final slidePart = package.getPart(uri);
       if (slidePart != null) {
         final String slideXml = slidePart.readText();
+        pres.slides[i].showMasterShapes = _showsMasterShapes(slideXml);
         final _SlideTemplate? layout = templates.layoutOf(uri);
         final Set<PmlShape> positioned = Set<PmlShape>.identity();
         final List<PmlShape> shapes = parseSlideShapes(
@@ -130,6 +131,13 @@ class SlideDeserializer {
           _inheritPlaceholders(shapes, positioned, <List<PmlShape>>[
             layout.placeholders,
             layout.master?.placeholders ?? const <PmlShape>[],
+          ]);
+          pres.slides[i].backgroundShapes.addAll(<PmlShape>[
+            if (pres.slides[i].showMasterShapes && layout.showsMasterShapes)
+              for (final PmlShape shape
+                  in layout.master?.decorations ?? const <PmlShape>[])
+                shape.copy(),
+            for (final PmlShape shape in layout.decorations) shape.copy(),
           ]);
         }
         pres.slides[i].shapes.addAll(shapes);
@@ -222,6 +230,19 @@ class SlideDeserializer {
     return RegExp(r'''\bshow\s*=\s*["'](?:0|false)["']''').hasMatch(attrs);
   }
 
+  /// `showMasterSp` hides master decorations without hiding layout shapes or
+  /// the editable slide content. XML Schema booleans default to true here.
+  static bool _showsMasterShapes(String xml) {
+    final XmlPullReader reader = XmlPullReader(xml);
+    while (reader.next()) {
+      if (reader.eventType == XmlEventType.startElement) {
+        final String? value = reader.getAttribute('showMasterSp')?.trim();
+        return value != '0' && value != 'false';
+      }
+    }
+    return true;
+  }
+
   /// Resolves a solid `p:bg` fill to `RRGGBB`, honoring theme variants.
   static String? _backgroundOf(String xml, Map<String, String> colors) {
     final XmlPullReader reader = XmlPullReader(xml);
@@ -304,7 +325,15 @@ class SlideDeserializer {
     OpcPackage package,
     RelationshipCollection rels,
   ) {
-    for (final PmlShape shape in slide.shapes) {
+    _bindShapeMedia(slide.shapes, package, rels);
+  }
+
+  static void _bindShapeMedia(
+    List<PmlShape> shapes,
+    OpcPackage package,
+    RelationshipCollection rels,
+  ) {
+    for (final PmlShape shape in shapes) {
       final String? rid = shape.embedRelId;
       if (rid == null || rid.isEmpty) {
         continue;
@@ -348,16 +377,20 @@ class _SlideTemplate {
     required this.name,
     required this.colors,
     required this.placeholders,
+    required this.decorations,
     this.background,
     this.inheritsMasterBackground = false,
+    this.showsMasterShapes = true,
     this.master,
   });
 
   final String name;
   final Map<String, String> colors;
   final List<PmlShape> placeholders;
+  final List<PmlShape> decorations;
   final String? background;
   final bool inheritsMasterBackground;
+  final bool showsMasterShapes;
   final _SlideTemplate? master;
 }
 
@@ -439,8 +472,10 @@ class _SlideTemplates {
         for (final PmlShape shape in shapes)
           if (shape.placeholder && positioned.contains(shape)) shape,
       ],
+      decorations: _decorations(shapes, package, uri),
       background: background ?? master?.background,
       inheritsMasterBackground: background == null,
+      showsMasterShapes: SlideDeserializer._showsMasterShapes(xml),
       master: master,
     );
   }
@@ -472,8 +507,26 @@ class _SlideTemplates {
         for (final PmlShape shape in shapes)
           if (shape.placeholder && positioned.contains(shape)) shape,
       ],
+      decorations: _decorations(shapes, package, uri),
       background: SlideDeserializer._backgroundOf(xml, colors),
     );
+  }
+
+  static List<PmlShape> _decorations(
+    List<PmlShape> shapes,
+    OpcPackage package,
+    String uri,
+  ) {
+    final List<PmlShape> decorations = <PmlShape>[
+      for (final PmlShape shape in shapes)
+        if (!shape.placeholder) shape,
+    ];
+    SlideDeserializer._bindShapeMedia(
+      decorations,
+      package,
+      package.relationshipsFor(uri),
+    );
+    return decorations;
   }
 
   String? _target(String sourceUri, String type) {

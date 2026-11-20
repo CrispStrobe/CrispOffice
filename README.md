@@ -27,7 +27,9 @@ and scalar functions, fixed and dynamic scalar arrays, `For`/`For Each`/`Do`/`Wh
 `Select Case`, worksheet/range bindings, cell writes, formulas, and formatting.
 Arrays support indexed access, `LBound`/`UBound`, `ReDim`/`Preserve`, `Erase`,
 and `Option Base`; explicit ranges support
-cell enumeration and read-only row/column coordinates. Source logic uses values
+cell enumeration and read-only row/column coordinates. String intrinsics
+`Len`, `Left$`, `Right$`, and `Mid$` use strict types and UTF-16 units, with
+[versioned conformance cases](docs/VBA_CONFORMANCE.md) shared across VM and JavaScript. Source logic uses values
 known during compilation; worksheet formulas run against the detached workbook.
 VBA projects remain inert and preserved; full VBA execution and macro ribbon
 UI are not included. The [VBA parity roadmap](docs/VBA_PARITY_ROADMAP.md) tracks
