@@ -1,0 +1,363 @@
+{
+  "schema_version": 1,
+  "audit_date": "2026-11-20",
+  "repository": "CrispStrobe/quds_office_suite",
+  "snapshot_main": "b42eca1db058f0def247b86c2f15dea90c11b4e8",
+  "fork_branches": [
+    {
+      "name": "codex/odt-field-continuation-20261117",
+      "head": "c34945761e7991f5fe49037d79529acdd260b31c",
+      "protected": false,
+      "comparison_to_snapshot_main": {
+        "status": "diverged",
+        "ahead": 2,
+        "behind": 1437,
+        "merge_base": "e3a38789359adaa33b2da1345c952fa1c2d8aebb"
+      }
+    },
+    {
+      "name": "codex/word-powerpoint-vba-expansion-20261120",
+      "head": "192ea2aedbf0b1494627953c79a7042037a63301",
+      "protected": false,
+      "comparison_to_snapshot_main": {
+        "status": "ahead",
+        "ahead": 35,
+        "behind": 0,
+        "merge_base": "b42eca1db058f0def247b86c2f15dea90c11b4e8"
+      }
+    },
+    {
+      "name": "codex/zotero-research-tables-20261120",
+      "head": "231bd0403a3d2855dc23bf8dacefaedba01f2aab",
+      "protected": false,
+      "comparison_to_snapshot_main": {
+        "status": "ahead",
+        "ahead": 23,
+        "behind": 0,
+        "merge_base": "b42eca1db058f0def247b86c2f15dea90c11b4e8"
+      }
+    },
+    {
+      "name": "docs/ods-color-scale",
+      "head": "58fdddfbcf198a8c0e38e32f6fcc9d6604e95283",
+      "protected": false,
+      "comparison_to_snapshot_main": {
+        "status": "diverged",
+        "ahead": 1,
+        "behind": 1436,
+        "merge_base": "4584d5f319aab198f1d705f48b4d6647e6cbabea"
+      }
+    },
+    {
+      "name": "docs/ods-data-bar",
+      "head": "69d14f84cabd3931b7640c1654b401c89faba766",
+      "protected": false,
+      "comparison_to_snapshot_main": {
+        "status": "diverged",
+        "ahead": 1,
+        "behind": 1432,
+        "merge_base": "b3f41eb4b4bca8ca13676b4114891ea6d9185043"
+      }
+    },
+    {
+      "name": "feat/ods-color-scale",
+      "head": "74ce9ffb816c70c0d2ae50b91ec52a614f26d688",
+      "protected": false,
+      "comparison_to_snapshot_main": {
+        "status": "diverged",
+        "ahead": 1,
+        "behind": 1437,
+        "merge_base": "e3a38789359adaa33b2da1345c952fa1c2d8aebb"
+      }
+    },
+    {
+      "name": "feat/ods-data-bar",
+      "head": "0a53b8a70128870f3e1df6d18cdb177bb64290ee",
+      "protected": false,
+      "comparison_to_snapshot_main": {
+        "status": "diverged",
+        "ahead": 2,
+        "behind": 1434,
+        "merge_base": "d754bf15b07a24c8a86c8dce339ca749fecd9531"
+      }
+    },
+    {
+      "name": "feat/ods-dynamic-validation-links",
+      "head": "68a0db23408e4c95d6d283219504c79aea33a6fe",
+      "protected": false,
+      "comparison_to_snapshot_main": {
+        "status": "diverged",
+        "ahead": 1,
+        "behind": 1435,
+        "merge_base": "4eaca83b192897edad82658107dfeb5bcbed0920"
+      }
+    },
+    {
+      "name": "feat/ods-icon-sets",
+      "head": "005c708e9f747cb46cf02e12c869b0a2f85ac824",
+      "protected": false,
+      "comparison_to_snapshot_main": {
+        "status": "diverged",
+        "ahead": 1,
+        "behind": 1421,
+        "merge_base": "16e2477ff93f7a1ec5c6ed78491f2716ce4d1658"
+      }
+    },
+    {
+      "name": "feat/ods-time-period-conditions",
+      "head": "7ef09f2408f467c65427700e65907531ecb26acb",
+      "protected": false,
+      "comparison_to_snapshot_main": {
+        "status": "diverged",
+        "ahead": 1,
+        "behind": 1417,
+        "merge_base": "4b2b4e78839d2997a583b7ab1346e2fa537a8ac4"
+      }
+    },
+    {
+      "name": "fix/mail-credential-stores-chrome-20261120",
+      "head": "a652a205e6daf6b4b8e3baec04db1c1b52fabd0d",
+      "protected": false,
+      "comparison_to_snapshot_main": {
+        "status": "behind",
+        "ahead": 0,
+        "behind": 15,
+        "merge_base": "a652a205e6daf6b4b8e3baec04db1c1b52fabd0d"
+      }
+    },
+    {
+      "name": "integrate/office-union-148",
+      "head": "3abf8f43b0e79c10271bbd046f391e462b8fe6b9",
+      "protected": false,
+      "comparison_to_snapshot_main": {
+        "status": "diverged",
+        "ahead": 1,
+        "behind": 1233,
+        "merge_base": "e3831cdde529aa0c2368845cd72c1b9b65154665"
+      }
+    },
+    {
+      "name": "integrate/recent-pptx",
+      "head": "4f5c153774ab7492430c2b68653c54e0c08dc2ad",
+      "protected": false,
+      "comparison_to_snapshot_main": {
+        "status": "behind",
+        "ahead": 0,
+        "behind": 107,
+        "merge_base": "4f5c153774ab7492430c2b68653c54e0c08dc2ad"
+      }
+    },
+    {
+      "name": "main",
+      "head": "b42eca1db058f0def247b86c2f15dea90c11b4e8",
+      "protected": false,
+      "comparison_to_snapshot_main": null
+    },
+    {
+      "name": "work/mail-accounts-20261120",
+      "head": "625f4d76d10ddf2144220f25ae8d867452eeed61",
+      "protected": false,
+      "comparison_to_snapshot_main": {
+        "status": "diverged",
+        "ahead": 7,
+        "behind": 4,
+        "merge_base": "c3df77d01ea9df4846e18131e69160d858f174ac"
+      }
+    },
+    {
+      "name": "work/mail-outbox-20261120",
+      "head": "ce9ff1c8b155c03a0e2707d6fc8b41b52e611a93",
+      "protected": false,
+      "comparison_to_snapshot_main": {
+        "status": "ahead",
+        "ahead": 7,
+        "behind": 0,
+        "merge_base": "b42eca1db058f0def247b86c2f15dea90c11b4e8"
+      }
+    }
+  ],
+  "open_pull_requests": [
+    {
+      "number": 249,
+      "title": "Preserve Zotero research-note tables and active cell citations [skip ci]",
+      "draft": true,
+      "head": "codex/zotero-research-tables-20261120",
+      "head_sha": "231bd0403a3d2855dc23bf8dacefaedba01f2aab",
+      "base": "main",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/249"
+    }
+  ],
+  "recent_pull_requests_scanned": 100,
+  "historical_whole_tree_equivalence": [
+    {
+      "branch": "docs/ods-color-scale",
+      "head": "58fdddfbcf198a8c0e38e32f6fcc9d6604e95283",
+      "equivalent": "4eaca83b192897edad82658107dfeb5bcbed0920",
+      "trees": [
+        "3d828f3e1779b08ae84dc526e0c7236882d69a26",
+        "3d828f3e1779b08ae84dc526e0c7236882d69a26"
+      ],
+      "equal": true
+    },
+    {
+      "branch": "docs/ods-data-bar",
+      "head": "69d14f84cabd3931b7640c1654b401c89faba766",
+      "equivalent": "52c73ae4dbadf2ca00a5d619144350ccc353b31a",
+      "trees": [
+        "fcceef2418d7463f2a566623f22f8f0862dd1d01",
+        "fcceef2418d7463f2a566623f22f8f0862dd1d01"
+      ],
+      "equal": true
+    },
+    {
+      "branch": "feat/ods-color-scale",
+      "head": "74ce9ffb816c70c0d2ae50b91ec52a614f26d688",
+      "equivalent": "4584d5f319aab198f1d705f48b4d6647e6cbabea",
+      "trees": [
+        "8eaa993960d6fb6b6b484326d825a550f969ea0a",
+        "8eaa993960d6fb6b6b484326d825a550f969ea0a"
+      ],
+      "equal": true
+    },
+    {
+      "branch": "feat/ods-data-bar",
+      "head": "0a53b8a70128870f3e1df6d18cdb177bb64290ee",
+      "equivalent": "b3f41eb4b4bca8ca13676b4114891ea6d9185043",
+      "trees": [
+        "b3345f76c2e3cd8e1bad13b554f2d24555aea9ce",
+        "b3345f76c2e3cd8e1bad13b554f2d24555aea9ce"
+      ],
+      "equal": true
+    },
+    {
+      "branch": "feat/ods-dynamic-validation-links",
+      "head": "68a0db23408e4c95d6d283219504c79aea33a6fe",
+      "equivalent": "d754bf15b07a24c8a86c8dce339ca749fecd9531",
+      "trees": [
+        "aea95c000855820c5ecf205d3833298539f01753",
+        "aea95c000855820c5ecf205d3833298539f01753"
+      ],
+      "equal": true
+    },
+    {
+      "branch": "feat/ods-icon-sets",
+      "head": "005c708e9f747cb46cf02e12c869b0a2f85ac824",
+      "equivalent": "c84d5e16024c502f6c451fd04b9807b1e65f20d3",
+      "trees": [
+        "097bb5511b2ddf2e00a398da7055b310693fe054",
+        "097bb5511b2ddf2e00a398da7055b310693fe054"
+      ],
+      "equal": true
+    },
+    {
+      "branch": "feat/ods-time-period-conditions",
+      "head": "7ef09f2408f467c65427700e65907531ecb26acb",
+      "equivalent": "34dc6b6806869570e9ec342e4d7ee0d6951c0ba6",
+      "trees": [
+        "072bded0da30965ac975f9a8a3c08c7a46829460",
+        "072bded0da30965ac975f9a8a3c08c7a46829460"
+      ],
+      "equal": true
+    },
+    {
+      "branch": "integrate/office-union-148",
+      "head": "3abf8f43b0e79c10271bbd046f391e462b8fe6b9",
+      "equivalent": "4b2b4e78839d2997a583b7ab1346e2fa537a8ac4",
+      "trees": [
+        "e3adc9e259c6120b4b1e3e03177391f880243e13",
+        "e3adc9e259c6120b4b1e3e03177391f880243e13"
+      ],
+      "equal": true
+    }
+  ],
+  "historical_changed_path_equivalence": {
+    "branch": "codex/odt-field-continuation-20261117",
+    "head": "c34945761e7991f5fe49037d79529acdd260b31c",
+    "equivalent_main_ancestor": "b5b1fa99228f6f1862af0bc4efba6e527c2bec43",
+    "paths": 37,
+    "compared_fields": [
+      "sha",
+      "mode",
+      "type"
+    ],
+    "all_equal": true,
+    "trees_truncated": false
+  },
+  "upstream": {
+    "repository": "MohammedAsaadAsaad/quds_office_suite",
+    "open_pull_requests": 0,
+    "branches": [
+      {
+        "name": "ci/flutter-workspace",
+        "head": "aca2f66941832bd0b19b436baeab1656a1b7de98",
+        "already_ancestor_of_main": true
+      },
+      {
+        "name": "cursor/class-certificates-2db8",
+        "head": "f45099688e7a3f67a1302efdb442830d052f2240",
+        "already_ancestor_of_main": true
+      },
+      {
+        "name": "cursor/cloud-agent-1790580069020-0rk1h",
+        "head": "9930be8df44ffe117fb22778c514eea0ee73ce21",
+        "already_ancestor_of_main": true
+      },
+      {
+        "name": "main",
+        "head": "15c5d29b63fb17a93c7fb3426a8fd4d95a32f1ba",
+        "already_ancestor_of_main": true
+      }
+    ]
+  },
+  "closed_unmerged_recent_pr": {
+    "number": 202,
+    "head": "d98c8ae020a60715fbb02f5332b2f3414fb6805b",
+    "already_ancestor_of_main": true
+  },
+  "selected_integration": [
+    {
+      "branch": "codex/word-powerpoint-vba-expansion-20261120",
+      "head": "192ea2aedbf0b1494627953c79a7042037a63301",
+      "action": "Base new integration on union; includes captured main, remembered accounts and most Zotero/Outbox changes."
+    },
+    {
+      "branch": "work/mail-outbox-20261120",
+      "head": "ce9ff1c8b155c03a0e2707d6fc8b41b52e611a93",
+      "unique_commits_vs_union": 1,
+      "action": "Merge latest continuation; merge-tree clean."
+    },
+    {
+      "branch": "codex/zotero-research-tables-20261120",
+      "head": "231bd0403a3d2855dc23bf8dacefaedba01f2aab",
+      "unique_commits_vs_union": 3,
+      "action": "Merge continuation; preserve newer union cache comments and VBA changelog details."
+    }
+  ],
+  "merge_resolution": {
+    "edited_files": [
+      "packages/quds_office_engine/CHANGELOG.md",
+      "packages/quds_office_engine/lib/src/word/layout/word_layout.dart"
+    ],
+    "result": "Resolved contents equal union/HEAD for both paths. Redundant semantic cache invalidation differed only in comments/bracing; retained full newer VBA entry once.",
+    "preserved": [
+      "early dirty/full invalidation",
+      "empty paragraph invalidation",
+      "wrapping invalidation",
+      "layout-engine provenance",
+      "prefix line/frame convergence guards"
+    ],
+    "diff_check": "passed",
+    "tests_executed_by_auditor": false
+  },
+  "ci": {
+    "queried": false,
+    "awaited": false
+  },
+  "sources": [
+    "https://api.github.com/repos/CrispStrobe/quds_office_suite/branches?per_page=100",
+    "https://api.github.com/repos/CrispStrobe/quds_office_suite/pulls?state=all&sort=updated&direction=desc&per_page=100",
+    "https://api.github.com/repos/CrispStrobe/quds_office_suite/commits?sha=main&per_page=30",
+    "https://api.github.com/repos/MohammedAsaadAsaad/quds_office_suite/branches?per_page=100",
+    "https://api.github.com/repos/MohammedAsaadAsaad/quds_office_suite/pulls?state=open&per_page=100"
+  ]
+}

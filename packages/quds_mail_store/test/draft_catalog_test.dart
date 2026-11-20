@@ -121,7 +121,7 @@ void main() {
         ),
       );
       await executor.runCustom('UPDATE blobs SET data=?', [
-        Uint8List.fromList([42]),
+        Uint8List.fromList([42, 42, 42, 42]),
       ]);
       final summary = _value(await store.listDrafts(_account)).drafts.single;
       expect(summary.attachmentCount, 1);

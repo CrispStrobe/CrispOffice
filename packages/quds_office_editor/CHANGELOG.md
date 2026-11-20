@@ -8,6 +8,11 @@ All notable changes to `quds_office_editor` are documented here.
   optional catalog API. Preserve legacy drafts, pin selection/deletion to
   account and revision, reject stale editor operations after draft changes,
   and transfer only the chosen draft into its durable Outbox entry.
+- Add a localized Drafts chooser across IMAP/SMTP, EWS, Gmail and Microsoft 365,
+  with new/resume/confirmed-delete actions and independent reply/forward drafts.
+  Add save-only Local drafts before connecting remembered explicit-server or
+  preset IMAP accounts; guard Send in both UI and action handling and await
+  store ownership release before returning to connection setup.
 
 - Connect Studio Mail Send and Queue in Outbox to durable frozen messages across
   native SMTP, EWS, Gmail and Microsoft 365. Add a visible account-scoped queue,

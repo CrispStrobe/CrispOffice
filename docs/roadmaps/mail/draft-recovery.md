@@ -1,5 +1,10 @@
 # Durable Studio drafts and interrupted-send recovery
 
+The original single-draft milestone below is retained as historical scope.
+The later [multiple-draft continuation](multiple-drafts.md) adds independent
+draft selection/deletion and a limited offline entry path; the
+[Outbox continuation](outbox.md) supplies the visible durable queue.
+
 This continuation advances M07 in the existing [implementation plan](implementation-plan.md).
 It provides one recoverable local composer per account across native IMAP/SMTP,
 Exchange EWS, Gmail and Microsoft 365. It builds on the existing transactional

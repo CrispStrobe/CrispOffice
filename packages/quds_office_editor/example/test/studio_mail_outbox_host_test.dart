@@ -12,6 +12,8 @@ import 'package:quds_office_editor/quds_office_editor.dart';
 import 'package:quds_office_studio/studio_mail_compose.dart';
 import 'package:quds_office_studio/studio_mail_credentials.dart';
 import 'package:quds_office_studio/studio_mail_draft_store.dart';
+import 'package:quds_office_studio/studio_mail_drafts_dialog.dart';
+import 'package:quds_office_studio/studio_mail_drafts_strings.dart';
 import 'package:quds_office_studio/studio_mail_ews.dart';
 import 'package:quds_office_studio/studio_mail_message_loader.dart';
 import 'package:quds_office_studio/studio_mail_native.dart';
@@ -306,6 +308,104 @@ Future<void> _compose(
 }
 
 void main() {
+  for (final ews in [false, true]) {
+    testWidgets(
+      '${ews ? 'EWS' : 'IMAP'} keeps independent drafts when creating, resuming and queueing',
+      (tester) async {
+        final fixture = await _fixture(tester, ews: ews);
+        final seed = await awaitOutboxOperation(tester, fixture.openLoaded());
+        final legacy = StudioMailDraft(
+          to: 'first@example.test',
+          bcc: 'first-hidden@example.test',
+          subject: 'First retained draft',
+          body: 'Keep this unfinished message.',
+          attachments: StudioMailAttachments.from([
+            StudioMailAttachment(
+              name: 'first.txt',
+              bytes: Uint8List.fromList(utf8.encode('first attachment')),
+            ),
+          ]),
+        );
+        await awaitOutboxOperation(
+          tester,
+          seed.save(legacy, submissionUncertain: true),
+        );
+        await awaitOutboxOperation(tester, seed.close());
+        final client = _Client();
+        final provider = ews ? await _ews(tester, fixture) : null;
+        if (!ews) await _native(tester, fixture, client);
+        final store = fixture.adapters.last;
+        final openDrafts = find.byKey(
+          const ValueKey('studio-mail-open-drafts'),
+        );
+        await _press(tester, openDrafts);
+        expect(find.byType(StudioMailDraftsDialog), findsOneWidget);
+        expect(find.text('First retained draft'), findsOneWidget);
+        expect(find.text(_strings.mailDraftUncertain), findsOneWidget);
+        await _press(
+          tester,
+          find.byKey(const ValueKey('studio-mail-new-draft')),
+        );
+        expect(find.byType(StudioMailComposeDialog), findsOneWidget);
+        expect(
+          tester.widget<TextField>(_field(_strings.subject)).controller!.text,
+          isEmpty,
+        );
+        await tester.enterText(_field(_strings.to), 'second@example.test');
+        await tester.enterText(_field(_strings.subject), 'Second draft');
+        tester
+            .widget<QudsWordEditor>(find.byType(QudsWordEditor))
+            .controller
+            .insertText('Independent second body.');
+        await _press(tester, find.text(_strings.mailDraftSaveClose));
+        final page = await awaitOutboxOperation(tester, store.listDrafts());
+        expect(page.drafts, hasLength(2));
+        final first = page.drafts.singleWhere(
+          (entry) => entry.subject == 'First retained draft',
+        );
+        final second = page.drafts.singleWhere(
+          (entry) => entry.subject == 'Second draft',
+        );
+        expect(first.id, SqliteStudioMailDraftStore.draftId);
+        expect(first.submissionUncertain, isTrue);
+        expect(first.attachmentCount, 1);
+        expect(second.id, isNot(first.id));
+        expect(second.submissionUncertain, isFalse);
+        await _press(tester, openDrafts);
+        await _press(tester, find.text('First retained draft'));
+        final composer = tester.widget<StudioMailComposeDialog>(
+          find.byType(StudioMailComposeDialog),
+        );
+        expect(composer.previousSubmissionUncertain, isTrue);
+        expect(
+          composer.initialDraft!.attachments.items.single.name,
+          'first.txt',
+        );
+        expect(composer.initialDraft!.bcc, 'first-hidden@example.test');
+        await _press(tester, find.text(_strings.mailDraftSaveClose));
+        await _press(tester, openDrafts);
+        await _press(tester, find.text('Second draft'));
+        await _press(tester, _queue);
+        expect(find.byType(StudioMailComposeDialog), findsNothing);
+        final remaining = await awaitOutboxOperation(
+          tester,
+          store.listDrafts(),
+        );
+        expect(remaining.drafts.single.id, first.id);
+        expect(remaining.drafts.single.submissionUncertain, isTrue);
+        final queued = (await awaitOutboxOperation(
+          tester,
+          store.loadOutbox(),
+        )).single;
+        expect(queued.prepared.draftId, second.id);
+        expect(queued.priorSubmissionUncertain, isFalse);
+        expect(client.sent, isEmpty);
+        expect(provider?.submissions ?? [], isEmpty);
+        expect(tester.takeException(), isNull);
+      },
+    );
+  }
+
   testWidgets(
     'native queue freezes attachments and envelope across explicit retry',
     (tester) async {
