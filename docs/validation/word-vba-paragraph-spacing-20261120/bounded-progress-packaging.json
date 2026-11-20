@@ -1,0 +1,37 @@
+{
+  "source_commit": "0201b549d0dc3f601c50e36255d557034cb01699",
+  "final_gate_complete": false,
+  "publication_acceptance": false,
+  "accepted_batches": [
+    {
+      "batch": "batch-01",
+      "passing_cases": 335,
+      "exit_code": 0
+    },
+    {
+      "batch": "batch-02",
+      "passing_cases": 497,
+      "exit_code": 0
+    },
+    {
+      "batch": "batch-07",
+      "passing_cases": 140,
+      "exit_code": 0
+    },
+    {
+      "batch": "batch-08",
+      "passing_cases": 40,
+      "exit_code": 0
+    }
+  ],
+  "accepted_subset_cases": 1012,
+  "additional_regression_cases": 0,
+  "failed_attempts_contribution": 0,
+  "github_actions": "not queried or awaited",
+  "archive": "bounded-progress-evidence.tar.xz",
+  "bytes": 401756,
+  "sha256": "c88bd97f9b7d74e4e995461b768323402fc16420d7129896a8706479fd341801",
+  "member_count": 67,
+  "member_index_sha256": "3a08ab0163dad992a9f59807db78960cbeb5774c35b92634d815f4f4a1454066",
+  "all_member_hashes_verified": true
+}

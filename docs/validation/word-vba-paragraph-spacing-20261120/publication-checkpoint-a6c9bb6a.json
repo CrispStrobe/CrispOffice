@@ -1,0 +1,204 @@
+{
+  "schema": "quds-independent-final-checkpoint-review/v1",
+  "status": "EVIDENCE_PROVENANCE_FINDING",
+  "reviewed_utc": "2026-11-20T19:10:22.478457+00:00",
+  "target": "a6c9bb6a6c71e50ff949241b1d5359f329c685aa",
+  "tree": "a916b6b66ab7e279c6f2c170192df260e3a487f8",
+  "actual_parents": [
+    "ed750f1f6b8acab88406fd506e0dd511adcc4485"
+  ],
+  "reviewed_late_integration": "ed750f1f6b8acab88406fd506e0dd511adcc4485",
+  "final_evidence_commit_chain": [
+    "a6c9bb6a6c71e50ff949241b1d5359f329c685aa"
+  ],
+  "all_changes_since_integration_limited_to_validation_directory": true,
+  "changed_evidence_paths": [
+    "docs/validation/word-vba-paragraph-spacing-20261120/README.md",
+    "docs/validation/word-vba-paragraph-spacing-20261120/analysis-format.json",
+    "docs/validation/word-vba-paragraph-spacing-20261120/audit_batched_regression.py",
+    "docs/validation/word-vba-paragraph-spacing-20261120/audit_bounded_progress_archive.py",
+    "docs/validation/word-vba-paragraph-spacing-20261120/audit_checkpoint_archives.py",
+    "docs/validation/word-vba-paragraph-spacing-20261120/audit_publication_refs.py",
+    "docs/validation/word-vba-paragraph-spacing-20261120/audit_publication_scope.py",
+    "docs/validation/word-vba-paragraph-spacing-20261120/bounded-progress-archive-review.json",
+    "docs/validation/word-vba-paragraph-spacing-20261120/bounded-timeout-diagnostics-review.json",
+    "docs/validation/word-vba-paragraph-spacing-20261120/build_word_spacing_delivery.py",
+    "docs/validation/word-vba-paragraph-spacing-20261120/checkpoint-archives-review.json",
+    "docs/validation/word-vba-paragraph-spacing-20261120/checkpoints.json",
+    "docs/validation/word-vba-paragraph-spacing-20261120/development-attempts.json",
+    "docs/validation/word-vba-paragraph-spacing-20261120/development-review-README.md",
+    "docs/validation/word-vba-paragraph-spacing-20261120/environment.json",
+    "docs/validation/word-vba-paragraph-spacing-20261120/evidence-review.json",
+    "docs/validation/word-vba-paragraph-spacing-20261120/evidence-review.md",
+    "docs/validation/word-vba-paragraph-spacing-20261120/late-integration-review.json",
+    "docs/validation/word-vba-paragraph-spacing-20261120/late-integration-review.md",
+    "docs/validation/word-vba-paragraph-spacing-20261120/latest-captured-fork-refs.txt",
+    "docs/validation/word-vba-paragraph-spacing-20261120/latest-captured-upstream-refs.txt",
+    "docs/validation/word-vba-paragraph-spacing-20261120/latest-scope-fork-refs.txt",
+    "docs/validation/word-vba-paragraph-spacing-20261120/latest-scope-upstream-refs.txt",
+    "docs/validation/word-vba-paragraph-spacing-20261120/portable-result.json",
+    "docs/validation/word-vba-paragraph-spacing-20261120/portable.json",
+    "docs/validation/word-vba-paragraph-spacing-20261120/publication-files.json",
+    "docs/validation/word-vba-paragraph-spacing-20261120/publication-fork-refs.txt",
+    "docs/validation/word-vba-paragraph-spacing-20261120/publication-intake.json",
+    "docs/validation/word-vba-paragraph-spacing-20261120/publication-scope-review.json",
+    "docs/validation/word-vba-paragraph-spacing-20261120/publication-scope-review.md",
+    "docs/validation/word-vba-paragraph-spacing-20261120/publication-upstream-refs.txt",
+    "docs/validation/word-vba-paragraph-spacing-20261120/qualification.json",
+    "docs/validation/word-vba-paragraph-spacing-20261120/recovery-scope-fork-refs.txt",
+    "docs/validation/word-vba-paragraph-spacing-20261120/recovery-scope-upstream-refs.txt",
+    "docs/validation/word-vba-paragraph-spacing-20261120/regression-evidence.tar.xz",
+    "docs/validation/word-vba-paragraph-spacing-20261120/regression-members.json",
+    "docs/validation/word-vba-paragraph-spacing-20261120/regression-packaging.json",
+    "docs/validation/word-vba-paragraph-spacing-20261120/regression-reproduction.md",
+    "docs/validation/word-vba-paragraph-spacing-20261120/regression.json",
+    "docs/validation/word-vba-paragraph-spacing-20261120/source-consistency.json.gz",
+    "docs/validation/word-vba-paragraph-spacing-20261120/stage_word_spacing_evidence.py",
+    "docs/validation/word-vba-paragraph-spacing-20261120/verify_final_evidence.py",
+    "docs/validation/word-vba-paragraph-spacing-20261120/verify_late_integration.py",
+    "docs/validation/word-vba-paragraph-spacing-20261120/verify_word_spacing_publication.py"
+  ],
+  "qualified_source": "0201b549d0dc3f601c50e36255d557034cb01699",
+  "qualified_source_paths": 1131,
+  "exact_selected_modes_types_objects_bytes_verified": true,
+  "all_ten_reviewed_sources_and_contract_unchanged": true,
+  "word_contract": {
+    "bytes": 56226,
+    "sha256": "8d8dc1449d0e30dd6087142b1390c1c73b49c3330e28f005a0e1cf33e2aa5516",
+    "mode": "100644",
+    "type": "blob",
+    "blob": "9f71bee8cd5d8155fbebe4b62130490ed9e3daa2"
+  },
+  "macos_correction": {
+    "bytes": 26739,
+    "sha256": "8592dd41fb59da7fa3ead05287005cfa06d90c02bb5de495e9f985062ffff904",
+    "mode": "100755",
+    "type": "blob",
+    "blob": "3b7cffe6852a4d9f68aacdc6014dc96ea11c7f1f"
+  },
+  "artifact_index": {
+    "files": 76,
+    "bytes": 11440,
+    "sha256": "a6312c71e9ebdab81e17417698b97157fabbe5861ce586df274712121379f7fa",
+    "all_indexed_bytes_verified": true
+  },
+  "archive_copies": {
+    "regression-evidence.tar.xz": {
+      "members": 158,
+      "bytes": 997460,
+      "sha256": "bc691608884ad4e3a28c67dcf90acd1898352707d95fbea488b792668a6fa422"
+    },
+    "portable-static-evidence.tar.xz": {
+      "members": 60,
+      "bytes": 940356,
+      "sha256": "d4d48a757e34ae1c3e3aa8c1c2113b6f52bf229e86dae40c3c50c3461742c41a"
+    },
+    "development-review-evidence.tar.xz": {
+      "members": 110,
+      "bytes": 933452,
+      "sha256": "7fbfbd9b62133c114ce5ea402e61d502d8ade49608140b52545f3cdc6ed81df4"
+    },
+    "interrupted-regression-evidence.tar.xz": {
+      "members": 17,
+      "bytes": 598024,
+      "sha256": "6cdd05e5f627041cfa076c3251a93700e727f8ec705c6b5cbcc491177a99a481"
+    },
+    "late-intake-evidence.tar.xz": {
+      "members": 249,
+      "bytes": 36952,
+      "sha256": "d223283dae6098b89b4c0dce96ad036486fe993ddd687673ec7ae9abe8556b81"
+    },
+    "bounded-progress-evidence.tar.xz": {
+      "members": 67,
+      "bytes": 401756,
+      "sha256": "c88bd97f9b7d74e4e995461b768323402fc16420d7129896a8706479fd341801"
+    }
+  },
+  "exact_scope_captures": [
+    {
+      "repository_role": "fork",
+      "path": "intake-review/latest-scope-fork-refs.txt",
+      "bytes": 18819,
+      "sha256": "8f4e41287b03583951114adb9e0de2225b9746614cf2c36dfd7dbfc940ec1d1f"
+    },
+    {
+      "repository_role": "upstream",
+      "path": "intake-review/latest-scope-upstream-refs.txt",
+      "bytes": 536,
+      "sha256": "4ec8ea774f24cc95ac64579341b63a6b86e734cc6bd9f319b170ab29dd7e6cac"
+    }
+  ],
+  "scope_counts": {
+    "fork_branches": {
+      "captured": 33,
+      "incorporated_or_equivalent": 25,
+      "selected_pending": 0,
+      "explicitly_deferred": 8,
+      "unclassified": 0
+    },
+    "fork_pull_requests": {
+      "captured": 270,
+      "incorporated_or_equivalent": 264,
+      "selected_pending": 0,
+      "explicitly_deferred": 6,
+      "unclassified": 0
+    },
+    "upstream_branches": {
+      "captured": 4,
+      "incorporated_or_equivalent": 4,
+      "selected_pending": 0,
+      "explicitly_deferred": 0,
+      "unclassified": 0
+    },
+    "upstream_pull_requests": {
+      "captured": 4,
+      "incorporated_or_equivalent": 4,
+      "selected_pending": 0,
+      "explicitly_deferred": 0,
+      "unclassified": 0
+    }
+  },
+  "deferred_references": 14,
+  "deferred_unique_heads": 8,
+  "unclassified_references": 0,
+  "initial_review_payload_resolution": {
+    "publication-scope-review.json": {
+      "initial_review_sha256": "6a01e8165781ff327ca7171073125f429a7ee39436f1ca81e4484c1dbd700b86",
+      "matching_indexed_files": []
+    },
+    "publication-intake.json": {
+      "initial_review_sha256": "b46095a0be7d5435984d9e18cbaa396b042ccea0e26776d5283e113bd273e0c6",
+      "matching_indexed_files": [
+        "incoming-review.json"
+      ]
+    },
+    "publication-intake-before-reconciliation.json": {
+      "initial_review_sha256": "b46095a0be7d5435984d9e18cbaa396b042ccea0e26776d5283e113bd273e0c6",
+      "matching_indexed_files": [
+        "incoming-review.json"
+      ]
+    }
+  },
+  "local_head": "a6c9bb6a6c71e50ff949241b1d5359f329c685aa",
+  "local_branch": "codex/word-vba-paragraph-spacing-20261120",
+  "local_worktree_clean": true,
+  "outstanding_findings": [
+    {
+      "severity": "evidence_provenance",
+      "report": "publication-scope-review.json",
+      "finding": "Referenced initial-review SHA256 has no exact indexed payload",
+      "sha256": "6a01e8165781ff327ca7171073125f429a7ee39436f1ca81e4484c1dbd700b86"
+    }
+  ],
+  "scope_report": {
+    "path": "intake-review/publication-scope-a6c9bb6a.json",
+    "sha256": "caf6fc9f566160677d48d0eef6cab5645f6f15ae121adf1d25015c6e2cdf2897"
+  },
+  "verifier_sha256": "3376fc00406a89cd66b3d4446860bd5c07a2270100e2aa8c6c6390549c11c6b9",
+  "github_actions_queried_or_awaited": false,
+  "limits": [
+    "This verifies a frozen checkpoint and its previously qualified evidence; no tests were rerun.",
+    "Remote main publication remains a separate subsequent verification.",
+    "Explicit later-head deferrals remain outside Word publication qualification."
+  ]
+}

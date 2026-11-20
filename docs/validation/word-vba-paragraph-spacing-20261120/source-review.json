@@ -1,0 +1,215 @@
+{
+  "schema": "quds-word-spacing-independent-source-review/v1",
+  "status": "ACCEPTED",
+  "reviewed_at_utc": "2026-11-20T17:54:39.521451+00:00",
+  "reviewed_source_commit": "0201b549d0dc3f601c50e36255d557034cb01699",
+  "reviewed_source_tree": "86531c002a6b1d6e748849f7370a87072a5fa768",
+  "source_files": {
+    "packages/quds_office_engine/lib/src/automation/office_vba_language.dart": {
+      "bytes": 190877,
+      "sha256": "d1bac27a703519b81cea41d47ada534afeb18bdba468b6060ff680dacb732dcc",
+      "git_blob": "125820ec567b656d7751eb6650dcafd20d75a450",
+      "git_mode": "100644"
+    },
+    "packages/quds_office_engine/lib/src/automation/operations/word_spacing_steps.dart": {
+      "bytes": 5198,
+      "sha256": "783c782ef28d9e7e62202291e17cd8e5f8747b2aa5188e02891e51fc92225f25",
+      "git_blob": "8c5e4cf0a5de0bcc41c62d90a335b6aedb72d633",
+      "git_mode": "100644"
+    },
+    "packages/quds_office_engine/lib/src/automation/operations/word_steps.dart": {
+      "bytes": 31957,
+      "sha256": "02417ab3271a94f399c5fe7fb5b99fde9ca6bef93f618864d3ceaafe7a9b9476",
+      "git_blob": "fe0443e63bfcfb1e62153d8d0981c3afc423065a",
+      "git_mode": "100644"
+    },
+    "packages/quds_office_engine/lib/src/word/serial/word_style_cascade.dart": {
+      "bytes": 38823,
+      "sha256": "1ed6e37351eb0f9b0074ca70de3e8ed389bf8278d20ff2d73fd5ac6a8b3f8644",
+      "git_blob": "b6b43275b29411753e8a6a7d38c6c453a4ea6967",
+      "git_mode": "100644"
+    },
+    "packages/quds_office_engine/test/office_macro_word_line_spacing_test.dart": {
+      "bytes": 26193,
+      "sha256": "ca9ab4e691b5803d3f36466c63c9446e66407c6eeb9d011891d37d9682f9511d",
+      "git_blob": "4a294df09259bd1202862f1b2edec4b6b4cca710",
+      "git_mode": "100644"
+    },
+    "packages/quds_office_engine/test/office_vba_word_line_spacing_test.dart": {
+      "bytes": 12662,
+      "sha256": "aeaa9dfa5f332be8ec4349cc7efe5ebbba62c91af34a425a93139cd47977a7de",
+      "git_blob": "13a1c0cc60a70ce14a64bc409b9589d7be796dea",
+      "git_mode": "100644"
+    },
+    "packages/quds_office_engine/test/office_vba_word_line_spacing_integration_test.dart": {
+      "bytes": 17311,
+      "sha256": "4ab49bdd4633be2b66ddc6fd6385413c557516441e145f1930a78bd6bab96b80",
+      "git_blob": "ec3138a1eae1d48d7391881e27932c1152a40b92",
+      "git_mode": "100644"
+    },
+    "packages/quds_office_engine/tool/macros/web_vba_word_line_spacing_smoke.dart": {
+      "bytes": 25042,
+      "sha256": "b5f3a757b44623c78331109203314f325de0139afd785ee3a2f58451deebddaa",
+      "git_blob": "12d3d716304aefb82439c6eb1073d82cbc91baad",
+      "git_mode": "100644"
+    },
+    "packages/quds_office_engine/example/macros/word_line_spacing.bas": {
+      "bytes": 1243,
+      "sha256": "ea112b9e3b3f9e8eb71540c0d98e0a9a1849d229d11ebc9d1ef8df71d0d5b3f9",
+      "git_blob": "7c322062fc4e306967054e6b99592a3a64b02a0e",
+      "git_mode": "100644"
+    },
+    "docs/VBA_WORD_MACROS.md": {
+      "bytes": 56226,
+      "sha256": "8d8dc1449d0e30dd6087142b1390c1c73b49c3330e28f005a0e1cf33e2aa5516",
+      "git_blob": "9f71bee8cd5d8155fbebe4b62130490ed9e3daa2",
+      "git_mode": "100644"
+    }
+  },
+  "all_ten_reviewed_inputs_match_committed_objects": true,
+  "findings": [
+    {
+      "id": "spacing-method-call-forms",
+      "priority": "P2",
+      "status": "corrected and verified",
+      "problem": "The checker used a property-only argument helper, rejecting bare normalized method calls and parenthesized Space1/Space15/Space2 forms. Only Call without parentheses passed.",
+      "resolution": "Zero-argument methods now use checked empty argument lists rather than property getter validation; named, omitted and nonempty arguments remain forbidden.",
+      "initial_probe": "word-spacing-review-probe-initial.jsonl",
+      "final_evidence": "All 12 independent method forms and two helper/With probes pass in final replay."
+    },
+    {
+      "id": "common-decimal-line-conversion",
+      "priority": "P2",
+      "status": "corrected and verified",
+      "problem": "Ordinary multiplication introduced last-bit residue for common line values 1.1/1.15/1.2/1.3/1.4/1.6, refusing equivalent exact native point values.",
+      "resolution": "Conversions canonicalize through integer native units only when the input exactly round-trips on its unit grid within safe numeric bounds. Off-grid inputs retain ordinary arithmetic; raw LineSpacing validation is unchanged.",
+      "initial_probe": "word-spacing-conversion-probe-initial.jsonl",
+      "final_evidence": "All 18 conversion samples and near-grid boundaries pass. Adjacent line input 1.1500000000000001 naturally yields exactly 13.8 under ordinary arithmetic; this preexisting result remains accepted and is not epsilon snapping."
+    },
+    {
+      "id": "preset-native-source-guard-bypass",
+      "priority": "P1",
+      "status": "corrected and verified",
+      "problem": "Preset operations bypassed source validation. Duplicate spacing changed native model to 1.0 but reopened as 2.0, and spacing alternatives could be discarded during successful serialization.",
+      "resolution": "The shared source guard runs before copy/snapshot removal for both custom lineSpacing and paragraphFormat writes containing lineSpacing or lineSpacingRule. Before/after-only writes retain prior behavior.",
+      "initial_probe": "word-spacing-native-review-probe-initial.jsonl",
+      "final_evidence": "All six original custom/preset duplicate-spacing, spacing-alternative and native-attribute refusal checks pass."
+    },
+    {
+      "id": "unrelated-property-alternative-loss",
+      "priority": "P2",
+      "status": "corrected and verified",
+      "problem": "Non-spacing MC AlternateContent inside pPr still accepted line edits; save retained the fallback but discarded the wrapper and untouched choice metadata.",
+      "resolution": "Native validation now refuses any MC AlternateContent within or wrapping native pPr, including nested foreign extensions and style property packets. The contract explicitly bounds ordinary serialization of unrelated body drawing alternatives.",
+      "initial_probe": "word-spacing-unrelated-metadata-probe-initial.jsonl",
+      "final_evidence": "Both original custom and preset metadata-loss fixtures now refuse before publication."
+    }
+  ],
+  "outstanding_findings": [],
+  "review_topics": [
+    "Parser/checker arity and receiver shape; dead helper/branch shape rejection",
+    "One bounded pending spacing slot; completion/refusal and helper/control-flow lifetime",
+    "Right-hand-first assignment evaluation and method receiver capture",
+    "Typed aliases, retained targets and required ByVal helper rebinding",
+    "Actual-number/Variant checks, precise enum values, exact twips, numeric and work/step limits",
+    "Namespace identity and sparse before/after ownership across line edits",
+    "Native pre-mutation guards for duplicate containers/attributes, MC property alternatives and field spans",
+    "Plan/session transaction and recording publication boundaries covered by integration sources",
+    "Actual BAS fixture, independently stated expected native plan/state and portable smoke reporting"
+  ],
+  "supplemental_probe_receipt": "source-review-probes-final.json",
+  "accepted_supplemental_expectations": 56,
+  "regression_total_contribution": 0,
+  "recorded_runtime_inputs": 38,
+  "source_and_recorded_runtime_unchanged": true,
+  "development_evidence_policy": "All initial and intermediate fixed streams are retained separately. Only the final 56-expectation replay has current before/after source and recorded-runtime binding. Development streams are not final regression acceptance.",
+  "limits": [
+    "This is independent source review plus supplemental VM probes; the parent complete regression/static/compiled-JavaScript gates remain separate.",
+    "The adapter remains explicit body-paragraph source lowering, without live spacing reads, arbitrary ranges or VBA project execution.",
+    "Original DOCM VBA payloads remain inert. Unrelated body drawing alternatives retain ordinary serializer behavior; whole-package byte identity is not claimed.",
+    "The recorded runtime fingerprint set is explicit and finite, not a claim to fingerprint every possible environment input."
+  ],
+  "probe_record_manifest": {
+    "word-spacing-all-probes-final.jsonl": {
+      "bytes": 9593,
+      "sha256": "41e76c4da2a120a356ab8fbeb0b84aedc4bed8bf900d0799ebf3b990870de15a"
+    },
+    "word-spacing-all-probes-final.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "word-spacing-all-probes-fixed.jsonl": {
+      "bytes": 9297,
+      "sha256": "70bf31c374a38ddcb045ac9ccf373285d0331061527e38d617f7d6af98432fb4"
+    },
+    "word-spacing-all-probes-fixed.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "word-spacing-all-probes.dart": {
+      "bytes": 403,
+      "sha256": "41c04cfad2ba645592bf2033ff912c1abc78514c38d1fe7ef10fbd74b636cb61"
+    },
+    "word-spacing-boundary-probe.dart": {
+      "bytes": 4108,
+      "sha256": "8e10f78cb63456ca49bfbaa5f694e61151ad67b231c42aa2635b9b83fab6d8c0"
+    },
+    "word-spacing-conversion-probe-initial.jsonl": {
+      "bytes": 2660,
+      "sha256": "126e16c9105e93dce6b526457598712b5aaad45026088f24af62860b7bc8663c"
+    },
+    "word-spacing-conversion-probe-initial.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "word-spacing-conversion-probe.dart": {
+      "bytes": 1124,
+      "sha256": "752841d87299a8e961507661b8685fc4adb9bea3df0d25fc750b623a3c540b59"
+    },
+    "word-spacing-native-review-probe-initial.jsonl": {
+      "bytes": 4841,
+      "sha256": "4c51d9584a3373177932b6f99907159c39db6a4832503ef13ba85a915a83481f"
+    },
+    "word-spacing-native-review-probe-initial.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "word-spacing-native-review-probe.dart": {
+      "bytes": 2111,
+      "sha256": "cda0a04c185d091a821f7542e2e1ac15c69d0bc5df2c971f3de1316f281089d0"
+    },
+    "word-spacing-review-probe-initial.jsonl": {
+      "bytes": 2238,
+      "sha256": "b7a19bb20699bb61b56e57ddb173bd1791b933ec3cf104639cba55da84ab9b5b"
+    },
+    "word-spacing-review-probe-initial.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "word-spacing-review-probe.dart": {
+      "bytes": 1541,
+      "sha256": "c83207bebb3c35389ac2136d22648c5cca6cf5520839ff06ec8346dec370a128"
+    },
+    "word-spacing-unrelated-metadata-probe-initial.jsonl": {
+      "bytes": 2837,
+      "sha256": "a169c8626238eae2e8a6c919f549d5762f9d7e568d8cebeeca07e023c4cdfca4"
+    },
+    "word-spacing-unrelated-metadata-probe-initial.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "word-spacing-unrelated-metadata-probe.dart": {
+      "bytes": 1489,
+      "sha256": "baa22d450dd5f026154339c666f2d58e0be92d8110f1a4a4393bbe13b23d22d0"
+    },
+    "run_final_source_review.py": {
+      "bytes": 4619,
+      "sha256": "eb17a35a53eb9b10a9a3ee87c9c7ee6cdea60f7f1201d983d4282bfc869144fa"
+    },
+    "source-review-probes-final.json": {
+      "bytes": 28678,
+      "sha256": "e102242ef844699c6a69c6deebee3d6d13fa99573bb1b465ab8fea04fd3914d4"
+    }
+  },
+  "github_actions": "NOT QUERIED OR AWAITED"
+}

@@ -1,0 +1,72 @@
+{
+  "schema": "quds-independent-late-integration-verification/v1",
+  "status": "PASS",
+  "reviewed_utc": "2026-11-20T18:53:24.352663+00:00",
+  "commit": "ed750f1f6b8acab88406fd506e0dd511adcc4485",
+  "tree": "9259de52b948a5edf0bbc86cad697a79ab38a08a",
+  "actual_parents": [
+    "d906a2d3c930b404571a223f4addc3e00ccf84e0",
+    "a51c20737b1932d9c6475ea6dddc33fbd50b2c17",
+    "5a73a056f7c757a64d56345c31eabdd6de6eb18a",
+    "3bbd414d8f1129bd802b33c3af961d5c12489da2"
+  ],
+  "delta_proofs": [
+    {
+      "head": "a51c20737b1932d9c6475ea6dddc33fbd50b2c17",
+      "merge_base": "5ad4461a93c835479bf67acab63623944b3900a3",
+      "paths": [
+        "docs/release/macos-signing.md",
+        "packages/quds_office_editor/example/macos/Podfile",
+        "packages/quds_office_editor/example/macos/Runner.xcodeproj/project.pbxproj",
+        "packages/quds_office_editor/example/tool/build_macos_app.sh",
+        "packages/quds_proofing_hunspell/tool/build.py"
+      ],
+      "all_before_and_imported_objects_verified": true
+    },
+    {
+      "head": "5a73a056f7c757a64d56345c31eabdd6de6eb18a",
+      "merge_base": "5ad4461a93c835479bf67acab63623944b3900a3",
+      "paths": [
+        "packages/quds_office_editor/lib/src/embed/pdf_controller.dart"
+      ],
+      "all_before_and_imported_objects_verified": true
+    },
+    {
+      "head": "3bbd414d8f1129bd802b33c3af961d5c12489da2",
+      "merge_base": "0201b549d0dc3f601c50e36255d557034cb01699",
+      "paths": [
+        "docs/validation/word-vba-paragraph-controls-20261120/fork-remote-refs.txt",
+        "docs/validation/word-vba-paragraph-controls-20261120/incoming-github-metadata.json",
+        "docs/validation/word-vba-paragraph-controls-20261120/incoming-review.json",
+        "docs/validation/word-vba-paragraph-controls-20261120/incoming-review.md",
+        "docs/validation/word-vba-paragraph-controls-20261120/upstream-remote-refs.txt",
+        "docs/validation/word-vba-paragraph-controls-20261120/verify_intake.py"
+      ],
+      "all_before_and_imported_objects_verified": true
+    }
+  ],
+  "whole_tree_exactly_reconciled": true,
+  "imported_delta_paths": 12,
+  "additional_evidence_paths": [
+    "docs/validation/word-vba-paragraph-spacing-20261120/late-integration-binding.json",
+    "docs/validation/word-vba-paragraph-spacing-20261120/prepare_external_reconciliation.py"
+  ],
+  "qualified_word_inputs": 1131,
+  "qualified_word_selection_modes_types_blobs_unchanged": true,
+  "word_contract_unchanged": true,
+  "macos_correction": {
+    "path": "packages/quds_office_editor/example/tool/build_macos_app.sh",
+    "mode": "100755",
+    "blob": "3b7cffe6852a4d9f68aacdc6014dc96ea11c7f1f",
+    "bytes": 26739,
+    "sha256": "8592dd41fb59da7fa3ead05287005cfa06d90c02bb5de495e9f985062ffff904",
+    "producer_isolated_checks": 61,
+    "independent_expectations": 36,
+    "actual_macos_build": false,
+    "actual_bash3_execution": false
+  },
+  "binding_record_sha256": "9f80582f5fd29133f7c2985f149d3363321ad46a808acc59493aaea94a94d301",
+  "local_gate_head_and_worktree_unchanged": true,
+  "scope": "Source/ancestry integration proof only. This does not claim completion of the still-running Word regression or a real macOS/Bash3 execution.",
+  "github_actions_queried_or_awaited": false
+}

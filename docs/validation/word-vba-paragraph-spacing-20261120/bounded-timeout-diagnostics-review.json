@@ -1,0 +1,30 @@
+[
+  {
+    "batch_id": 2,
+    "classification": "FAILED_DIAGNOSTIC",
+    "visible_completed_cases": 299,
+    "visible_successful_cases": 297,
+    "visible_failed_cases": 2,
+    "reporter_timeout_errors": 2,
+    "accepted_case_contribution": 0,
+    "source_and_recorded_runtime_unchanged": true,
+    "original_payloads_unchanged_through_relocation": true,
+    "normal_execution_receipt_present": false,
+    "recorded_tool_exit_code": 130,
+    "cause_claim": "Resource contention remains an inference; the review verifies concrete timeout evidence and separately accepted retries."
+  },
+  {
+    "batch_id": 3,
+    "classification": "FAILED_DIAGNOSTIC",
+    "visible_completed_cases": 41,
+    "visible_successful_cases": 40,
+    "visible_failed_cases": 1,
+    "reporter_timeout_errors": 1,
+    "accepted_case_contribution": 0,
+    "source_and_recorded_runtime_unchanged": true,
+    "original_payloads_unchanged_through_relocation": true,
+    "normal_execution_receipt_present": true,
+    "recorded_tool_exit_code": 1,
+    "cause_claim": "Resource contention remains an inference; the review verifies concrete timeout evidence and separately accepted retries."
+  }
+]

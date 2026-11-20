@@ -102,6 +102,21 @@ installation and loaded by path; no runtime digest is pinned to their signed
 bytes. The CLD3 model and other assets are data inside the sealed bundle and
 are not changed by signing.
 
+## Minimum macOS
+
+CrispOffice requires macOS 13 (Ventura) or newer: `MACOSX_DEPLOYMENT_TARGET`
+in the Runner project, the Podfile platform and therefore
+`LSMinimumSystemVersion` are 13.0. The bundled spaCy library is built for
+macOS 13; the other native libraries pin a lower target (10.15 requested,
+11.0 effective on Apple silicon).
+
+`build_macos_app.sh` checks every bundled library with `vtool -show-build`
+and fails when a library's `minos` exceeds the app's `LSMinimumSystemVersion`.
+A native build that does not pin its deployment target inherits the host
+SDK's version (the Hunspell library built with Xcode 26 declared macOS 26 and
+would not have loaded on any older system); the check prevents that from
+shipping.
+
 ## Data location after the bundle id change
 
 A sandboxed app's data lives in `~/Library/Containers/<bundle id>`. Every

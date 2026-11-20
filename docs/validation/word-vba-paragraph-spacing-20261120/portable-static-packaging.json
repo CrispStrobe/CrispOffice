@@ -1,0 +1,17 @@
+{
+  "accepted": true,
+  "all_archived_member_hashes_verified": true,
+  "analysis_format_qualified": true,
+  "archive": "/workspace/scratch/16bd38fb2cfb/runtime/line-spacing-portable-static-final.tar.xz",
+  "bytes": 940356,
+  "member_count": 60,
+  "member_index_sha256": "c5f56f916b220f1395ee090c5f9810ceb85a85e96867aa643100b217f97f07b8",
+  "member_index_verified_separately": true,
+  "members_manifest": "/workspace/scratch/16bd38fb2cfb/runtime/line-spacing-portable-static-members.json",
+  "portable_qualified": true,
+  "sha256": "d4d48a757e34ae1c3e3aa8c1c2113b6f52bf229e86dae40c3c50c3461742c41a",
+  "source_commit": "0201b549d0dc3f601c50e36255d557034cb01699",
+  "source_input_count": 1131,
+  "source_inputs_unchanged_through_packaging": true,
+  "source_tree": "86531c002a6b1d6e748849f7370a87072a5fa768"
+}

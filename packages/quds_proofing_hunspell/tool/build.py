@@ -134,7 +134,10 @@ def build(root: Path, output: Path, kind: str, jobs: int, abis=mobile_native.AND
         return mobile_native.build_cmake_ios(
             NATIVE, output, "quds_proofing_hunspell", [f"-DHUNSPELL_SOURCE_DIR={root}"], output, jobs)
     if kind == "native":
-        run(["cmake", "-S", NATIVE, "-B", build_dir, "-DCMAKE_BUILD_TYPE=Release", f"-DHUNSPELL_SOURCE_DIR={root}"])
+        # Pin the macOS floor; otherwise CMake inherits the host SDK version
+        # (a library built with Xcode 26 would refuse to load before macOS 26).
+        extra = ["-DCMAKE_OSX_DEPLOYMENT_TARGET=10.15"] if platform.system() == "Darwin" else []
+        run(["cmake", "-S", NATIVE, "-B", build_dir, "-DCMAKE_BUILD_TYPE=Release", f"-DHUNSPELL_SOURCE_DIR={root}", *extra])
         run(["cmake", "--build", build_dir, "--config", "Release", "--parallel", str(jobs)])
         found = [p for p in build_dir.rglob(library_name()) if p.is_file()]
         if len(found) != 1:

@@ -1,0 +1,27 @@
+{
+  "different_top_level_keys": [
+    "reviewed_at_utc"
+  ],
+  "historical_incoming_review": {
+    "bytes": 137762,
+    "path": "incoming-review.json",
+    "reviewed_at_utc": "2026-11-20T17:40:28.638189+00:00",
+    "sha256": "b46095a0be7d5435984d9e18cbaa396b042ccea0e26776d5283e113bd273e0c6"
+  },
+  "historical_payload_preserved": true,
+  "only_timestamp_bytes_differ": true,
+  "schema": "quds-word-spacing-scope-source-bindings/v1",
+  "scope_incoming_review": {
+    "bytes": 137762,
+    "path": "scope-incoming-review.json",
+    "reviewed_at_utc": "2026-11-20T17:41:07.887500+00:00",
+    "sha256": "6a01e8165781ff327ca7171073125f429a7ee39436f1ca81e4484c1dbd700b86"
+  },
+  "scope_report": {
+    "bytes": 70835,
+    "initial_review_sha256": "6a01e8165781ff327ca7171073125f429a7ee39436f1ca81e4484c1dbd700b86",
+    "path": "publication-scope-review.json",
+    "sha256": "377fceaf7755846008663477371580a6486ac118fefe34929fa8f780faa711ca"
+  },
+  "substantive_contents_identical": true
+}

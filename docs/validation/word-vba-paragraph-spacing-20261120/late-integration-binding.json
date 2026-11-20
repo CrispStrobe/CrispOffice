@@ -1,0 +1,188 @@
+{
+  "schema": "quds-word-spacing-late-integration/v1",
+  "accepted_for_checkpoint": true,
+  "parent_checkpoint": "d906a2d3c930b404571a223f4addc3e00ccf84e0",
+  "qualified_word_source": "0201b549d0dc3f601c50e36255d557034cb01699",
+  "additional_actual_parents": [
+    "a51c20737b1932d9c6475ea6dddc33fbd50b2c17",
+    "5a73a056f7c757a64d56345c31eabdd6de6eb18a",
+    "3bbd414d8f1129bd802b33c3af961d5c12489da2"
+  ],
+  "delta_proofs": [
+    {
+      "head": "a51c20737b1932d9c6475ea6dddc33fbd50b2c17",
+      "merge_base": "5ad4461a93c835479bf67acab63623944b3900a3",
+      "changed_path_count": 5,
+      "paths": [
+        {
+          "path": "docs/release/macos-signing.md",
+          "before": {
+            "mode": "100644",
+            "type": "blob",
+            "blob": "724651c1b8775de4131e72ace4785024b4214a60"
+          },
+          "imported": {
+            "mode": "100644",
+            "type": "blob",
+            "blob": "f74a5ec804789da636629597928bb3aed44b85fa"
+          }
+        },
+        {
+          "path": "packages/quds_office_editor/example/macos/Podfile",
+          "before": {
+            "mode": "100644",
+            "type": "blob",
+            "blob": "167132a2fb51b9dfad31d6b61f0f1788d3e13154"
+          },
+          "imported": {
+            "mode": "100644",
+            "type": "blob",
+            "blob": "65543e28bb532423ad23c40d693e38aac329badf"
+          }
+        },
+        {
+          "path": "packages/quds_office_editor/example/macos/Runner.xcodeproj/project.pbxproj",
+          "before": {
+            "mode": "100644",
+            "type": "blob",
+            "blob": "41950b100ec1c3a9ad6da90083666dceb29c669d"
+          },
+          "imported": {
+            "mode": "100644",
+            "type": "blob",
+            "blob": "e63b9d9fdc48202e29aecd0f52db32b3d2fd21bd"
+          }
+        },
+        {
+          "path": "packages/quds_office_editor/example/tool/build_macos_app.sh",
+          "before": {
+            "mode": "100755",
+            "type": "blob",
+            "blob": "db475dfe95ead38b1fe395b452ef10419c04bb3f"
+          },
+          "imported": {
+            "mode": "100755",
+            "type": "blob",
+            "blob": "09836881aab89216033cdd4d8251941432931a7d"
+          }
+        },
+        {
+          "path": "packages/quds_proofing_hunspell/tool/build.py",
+          "before": {
+            "mode": "100644",
+            "type": "blob",
+            "blob": "2876305ed72ec3bf9b1b1400dde10135b27a038d"
+          },
+          "imported": {
+            "mode": "100644",
+            "type": "blob",
+            "blob": "1bfc03ad92173f8714165d4f304ae530ac58ccb0"
+          }
+        }
+      ],
+      "all_delta_paths_were_unmodified_at_destination": true
+    },
+    {
+      "head": "5a73a056f7c757a64d56345c31eabdd6de6eb18a",
+      "merge_base": "5ad4461a93c835479bf67acab63623944b3900a3",
+      "changed_path_count": 1,
+      "paths": [
+        {
+          "path": "packages/quds_office_editor/lib/src/embed/pdf_controller.dart",
+          "before": {
+            "mode": "100644",
+            "type": "blob",
+            "blob": "d8fc012960a9edeb54aabfae3050aaf423196fce"
+          },
+          "imported": {
+            "mode": "100644",
+            "type": "blob",
+            "blob": "ee32ba50ac13547340cdd13e1c6834175342c59b"
+          }
+        }
+      ],
+      "all_delta_paths_were_unmodified_at_destination": true
+    },
+    {
+      "head": "3bbd414d8f1129bd802b33c3af961d5c12489da2",
+      "merge_base": "0201b549d0dc3f601c50e36255d557034cb01699",
+      "changed_path_count": 6,
+      "paths": [
+        {
+          "path": "docs/validation/word-vba-paragraph-controls-20261120/fork-remote-refs.txt",
+          "before": null,
+          "imported": {
+            "mode": "100644",
+            "type": "blob",
+            "blob": "275c72947629ecb77f97a1bc40c72fef213000a1"
+          }
+        },
+        {
+          "path": "docs/validation/word-vba-paragraph-controls-20261120/incoming-github-metadata.json",
+          "before": null,
+          "imported": {
+            "mode": "100644",
+            "type": "blob",
+            "blob": "f26ecae5fd26c59c12836b48f84ce069df2cbc93"
+          }
+        },
+        {
+          "path": "docs/validation/word-vba-paragraph-controls-20261120/incoming-review.json",
+          "before": null,
+          "imported": {
+            "mode": "100644",
+            "type": "blob",
+            "blob": "ee299f563f96787295c5487dc14b23b4be752454"
+          }
+        },
+        {
+          "path": "docs/validation/word-vba-paragraph-controls-20261120/incoming-review.md",
+          "before": null,
+          "imported": {
+            "mode": "100644",
+            "type": "blob",
+            "blob": "33fa4a58da79d3dc2162a67bfc2b9a081b1fe1b7"
+          }
+        },
+        {
+          "path": "docs/validation/word-vba-paragraph-controls-20261120/upstream-remote-refs.txt",
+          "before": null,
+          "imported": {
+            "mode": "100644",
+            "type": "blob",
+            "blob": "37fe987db91c27a3d43b35c9c93797051b34278b"
+          }
+        },
+        {
+          "path": "docs/validation/word-vba-paragraph-controls-20261120/verify_intake.py",
+          "before": null,
+          "imported": {
+            "mode": "100644",
+            "type": "blob",
+            "blob": "1b16d6415bd207aede8945c2c121ca3909cb8b14"
+          }
+        }
+      ],
+      "all_delta_paths_were_unmodified_at_destination": true
+    }
+  ],
+  "all_selected_deltas_disjoint": true,
+  "word_source_input_count": 1131,
+  "exact_word_input_selection_preserved": true,
+  "all_qualified_word_modes_types_blobs_unchanged": true,
+  "reviewed_word_contract_unchanged": true,
+  "macos_correction": {
+    "path": "packages/quds_office_editor/example/tool/build_macos_app.sh",
+    "mode": "100755",
+    "blob": "3b7cffe6852a4d9f68aacdc6014dc96ea11c7f1f",
+    "bytes": 26739,
+    "sha256": "8592dd41fb59da7fa3ead05287005cfa06d90c02bb5de495e9f985062ffff904",
+    "producer_isolated_checks": 61,
+    "independent_expectations": 36,
+    "actual_macos_build": false,
+    "actual_bash3_execution": false
+  },
+  "word_runtime_status": "Bounded regression remains in progress at this checkpoint; final acceptance will be recorded separately.",
+  "local_head_and_tracked_worktree_unchanged": true,
+  "github_actions": "not queried or awaited"
+}
