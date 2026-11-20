@@ -1,0 +1,45 @@
+{
+  "status": "PASS",
+  "qualified_source": "3c87debcd4d50cac88981ec39255c3c6890fe8fa",
+  "qualified_tree": "9bd6e399e689cc12d6ff51090c038c72f4901d05",
+  "source_input_count": 2957,
+  "accepted_regression": {
+    "receipt": "word-qualification/receipt.json",
+    "check": "word-regression",
+    "passed": 679,
+    "files": 19,
+    "new_cases": {
+      "compiler": 88,
+      "native": 101,
+      "integration": 44
+    },
+    "all_source_and_runtime_guards_pass": true
+  },
+  "accepted_portable_static": {
+    "receipt": "word-portable-final/receipt.json",
+    "status": "PASS",
+    "vm_node_bytes_equal": true,
+    "canonical_json_equal": true,
+    "result_sha256": "afb450d1cfd4dba6ee2b0fc8b1ca0dc639b410dd70a16c3eff1bb17fbe08bea8",
+    "bas_operations": 13
+  },
+  "retained_failure": {
+    "receipt": "word-qualification/receipt.json",
+    "reason": "Direct Node invocation omitted the established globalThis.self bootstrap and exited 0 without executing the async driver to a JSON result. The byte/JSON equality guard rejected the aggregate. Its successful test check is selected explicitly with unchanged source/runtime guards; the failed portable attempt is not accepted."
+  },
+  "source_review": "word-source-review.md",
+  "independent_raw_recount": "word-raw-recount.json",
+  "fingerprints": {
+    "word-qualification/receipt.json": "1c498b3448673f4d158d06fcc1ddd89b77c2fdb2ae3c11b72ae80960ee11bf23",
+    "word-portable-final/receipt.json": "53959e2c9810ffbb5abeec7dad911e3aba7c2ddc1e046d1e1c30f7db9910b0c6",
+    "word-raw-recount.json": "262a0157c13509c9431ebeb89e574ad73eefd7fe091440989fd297c4b53c3b0b",
+    "qualify_word.py": "381d3c6f0ae242a07e4745ff8d2545fcc4cc1b46b7b7bfcd75a2d8c3b9bff180",
+    "qualify_word-initial.py": "c117de547ba7af9fa3bca8ccaa57d4acf0ce20b2d766827f5cb2e3edcd40898f"
+  },
+  "github_actions": "NOT QUERIED OR AWAITED",
+  "limits": [
+    "No Word/COM host execution",
+    "No actual browser application execution",
+    "Incoming mail/provider/platform qualification remains separate"
+  ]
+}

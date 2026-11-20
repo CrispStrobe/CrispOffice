@@ -1,0 +1,658 @@
+{
+  "captured_at_utc": "2026-11-20T16:33:17.330694+00:00",
+  "target": "3c87debcd4d50cac88981ec39255c3c6890fe8fa",
+  "target_tree": "9bd6e399e689cc12d6ff51090c038c72f4901d05",
+  "github_actions": "NOT QUERIED OR AWAITED",
+  "fork_branch_count": 22,
+  "recent_pr_count": 40,
+  "upstream_ref_count": 8,
+  "entries": [
+    {
+      "kind": "fork_branch",
+      "sha": "c34945761e7991f5fe49037d79529acdd260b31c",
+      "ref": "refs/heads/codex/odt-field-continuation-20261117",
+      "disposition": "changed-path equivalent",
+      "equivalent_ancestor": "b5b1fa99228f6f1862af0bc4efba6e527c2bec43",
+      "comparison_base": "e3a38789359adaa33b2da1345c952fa1c2d8aebb",
+      "changed_paths": [
+        "docs/odf-export-fidelity.md",
+        "docs/validation/german-proofing-recovery-20261117/README.md",
+        "docs/validation/odt-field-continuation-20261117/README.md",
+        "docs/validation/odt-field-continuation-20261117/audit-portability.json",
+        "docs/validation/odt-field-continuation-20261117/audit_recovery.py",
+        "docs/validation/odt-field-continuation-20261117/evidence-index.json",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-analysis.inputs.json.gz",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-analysis.json",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-analysis.stderr.gz",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-analysis.stdout.gz",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-baseline.inputs.json.gz",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-baseline.json",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-baseline.stderr.gz",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-baseline.stdout.gz",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-node.inputs.json.gz",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-node.json",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-node.stderr.gz",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-node.stdout.gz",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-vm.inputs.json.gz",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-vm.json",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-vm.stderr.gz",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-vm.stdout.gz",
+        "docs/validation/odt-field-continuation-20261117/package-config.json",
+        "docs/validation/odt-field-continuation-20261117/pull-request-draft.md",
+        "docs/validation/odt-field-continuation-20261117/recovered-original-source.commit",
+        "docs/validation/odt-field-continuation-20261117/recovery-audit.json",
+        "docs/validation/odt-field-continuation-20261117/resolved-pubspec.lock",
+        "docs/validation/odt-field-continuation-20261117/run_logged.py",
+        "docs/validation/odt-field-continuation-20261117/runtime.json",
+        "docs/validation/odt-field-continuation-20261117/source-recovery.json",
+        "docs/validation/odt-field-continuation-20261117/test-workspace-pubspec.yaml",
+        "docs/validation/odt-field-continuation-20261117/verification.json",
+        "docs/validation/odt-field-continuation-20261117/verify_evidence.py",
+        "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart",
+        "packages/quds_office_engine/lib/src/word/serial/word_deserializer.dart",
+        "packages/quds_office_engine/test/odt_imported_field_fidelity_test.dart",
+        "packages/quds_office_engine/test/odt_page_field_fidelity_test.dart"
+      ],
+      "verified_equal": true
+    },
+    {
+      "kind": "fork_branch",
+      "sha": "0f6239396ff3328473a5f57c280b982d57e33a08",
+      "ref": "refs/heads/codex/word-powerpoint-vba-expansion-20261120",
+      "disposition": "ancestor"
+    },
+    {
+      "kind": "fork_branch",
+      "sha": "650afb7d117337bab943af05d63a250a7e90c058",
+      "ref": "refs/heads/codex/word-vba-compat-20261120-next",
+      "disposition": "ancestor"
+    },
+    {
+      "kind": "fork_branch",
+      "sha": "3c87debcd4d50cac88981ec39255c3c6890fe8fa",
+      "ref": "refs/heads/codex/word-vba-list-levels-20261120",
+      "disposition": "ancestor"
+    },
+    {
+      "kind": "fork_branch",
+      "sha": "22e5960e99915e81a1b5997058cac44dac27ba1a",
+      "ref": "refs/heads/codex/word-vba-ranges-20261120",
+      "disposition": "ancestor"
+    },
+    {
+      "kind": "fork_branch",
+      "sha": "34491bca22a2989dd89d9da3c853f5e57de5464f",
+      "ref": "refs/heads/codex/zotero-research-tables-20261120",
+      "disposition": "ancestor"
+    },
+    {
+      "kind": "fork_branch",
+      "sha": "58fdddfbcf198a8c0e38e32f6fcc9d6604e95283",
+      "ref": "refs/heads/docs/ods-color-scale",
+      "disposition": "exact-tree equivalent",
+      "equivalent_ancestor": "4eaca83b192897edad82658107dfeb5bcbed0920",
+      "tree": "3d828f3e1779b08ae84dc526e0c7236882d69a26",
+      "verified_equal": true
+    },
+    {
+      "kind": "fork_branch",
+      "sha": "69d14f84cabd3931b7640c1654b401c89faba766",
+      "ref": "refs/heads/docs/ods-data-bar",
+      "disposition": "exact-tree equivalent",
+      "equivalent_ancestor": "52c73ae4dbadf2ca00a5d619144350ccc353b31a",
+      "tree": "fcceef2418d7463f2a566623f22f8f0862dd1d01",
+      "verified_equal": true
+    },
+    {
+      "kind": "fork_branch",
+      "sha": "74ce9ffb816c70c0d2ae50b91ec52a614f26d688",
+      "ref": "refs/heads/feat/ods-color-scale",
+      "disposition": "exact-tree equivalent",
+      "equivalent_ancestor": "4584d5f319aab198f1d705f48b4d6647e6cbabea",
+      "tree": "8eaa993960d6fb6b6b484326d825a550f969ea0a",
+      "verified_equal": true
+    },
+    {
+      "kind": "fork_branch",
+      "sha": "0a53b8a70128870f3e1df6d18cdb177bb64290ee",
+      "ref": "refs/heads/feat/ods-data-bar",
+      "disposition": "exact-tree equivalent",
+      "equivalent_ancestor": "b3f41eb4b4bca8ca13676b4114891ea6d9185043",
+      "tree": "b3345f76c2e3cd8e1bad13b554f2d24555aea9ce",
+      "verified_equal": true
+    },
+    {
+      "kind": "fork_branch",
+      "sha": "68a0db23408e4c95d6d283219504c79aea33a6fe",
+      "ref": "refs/heads/feat/ods-dynamic-validation-links",
+      "disposition": "exact-tree equivalent",
+      "equivalent_ancestor": "d754bf15b07a24c8a86c8dce339ca749fecd9531",
+      "tree": "aea95c000855820c5ecf205d3833298539f01753",
+      "verified_equal": true
+    },
+    {
+      "kind": "fork_branch",
+      "sha": "005c708e9f747cb46cf02e12c869b0a2f85ac824",
+      "ref": "refs/heads/feat/ods-icon-sets",
+      "disposition": "exact-tree equivalent",
+      "equivalent_ancestor": "c84d5e16024c502f6c451fd04b9807b1e65f20d3",
+      "tree": "097bb5511b2ddf2e00a398da7055b310693fe054",
+      "verified_equal": true
+    },
+    {
+      "kind": "fork_branch",
+      "sha": "7ef09f2408f467c65427700e65907531ecb26acb",
+      "ref": "refs/heads/feat/ods-time-period-conditions",
+      "disposition": "exact-tree equivalent",
+      "equivalent_ancestor": "34dc6b6806869570e9ec342e4d7ee0d6951c0ba6",
+      "tree": "072bded0da30965ac975f9a8a3c08c7a46829460",
+      "verified_equal": true
+    },
+    {
+      "kind": "fork_branch",
+      "sha": "a652a205e6daf6b4b8e3baec04db1c1b52fabd0d",
+      "ref": "refs/heads/fix/mail-credential-stores-chrome-20261120",
+      "disposition": "ancestor"
+    },
+    {
+      "kind": "fork_branch",
+      "sha": "3abf8f43b0e79c10271bbd046f391e462b8fe6b9",
+      "ref": "refs/heads/integrate/office-union-148",
+      "disposition": "exact-tree equivalent",
+      "equivalent_ancestor": "4b2b4e78839d2997a583b7ab1346e2fa537a8ac4",
+      "tree": "e3adc9e259c6120b4b1e3e03177391f880243e13",
+      "verified_equal": true
+    },
+    {
+      "kind": "fork_branch",
+      "sha": "4f5c153774ab7492430c2b68653c54e0c08dc2ad",
+      "ref": "refs/heads/integrate/recent-pptx",
+      "disposition": "ancestor"
+    },
+    {
+      "kind": "fork_branch",
+      "sha": "bb5320a50f288d95844a6d60cfd72eab13a9befc",
+      "ref": "refs/heads/main",
+      "disposition": "ancestor"
+    },
+    {
+      "kind": "fork_branch",
+      "sha": "86e44e87f829b0309ea7b84fd5d390f596fe7f26",
+      "ref": "refs/heads/work/mail-accounts-20261120",
+      "disposition": "ancestor"
+    },
+    {
+      "kind": "fork_branch",
+      "sha": "b3abdf3b4628a8a703857d69b8f11cd21bc502e1",
+      "ref": "refs/heads/work/mail-multiple-drafts-20261120",
+      "disposition": "ancestor"
+    },
+    {
+      "kind": "fork_branch",
+      "sha": "44855ab24c2c7fd34953e879fba571381cce0bc3",
+      "ref": "refs/heads/work/mail-offline-accounts-20261120",
+      "disposition": "ancestor"
+    },
+    {
+      "kind": "fork_branch",
+      "sha": "9443612b024114c424ba2f8146e04050d6e049b0",
+      "ref": "refs/heads/work/mail-outbox-20261120",
+      "disposition": "ancestor"
+    },
+    {
+      "kind": "fork_branch",
+      "sha": "79e11935e16ea1d2fa576ead0712c83f22e15c28",
+      "ref": "refs/heads/work/mail-outbox-management-20261120",
+      "disposition": "ancestor"
+    },
+    {
+      "kind": "recent_pr",
+      "number": 261,
+      "sha": "3c87debcd4d50cac88981ec39255c3c6890fe8fa",
+      "branch": "codex/word-vba-list-levels-20261120",
+      "state": "open",
+      "draft": true,
+      "merged": false,
+      "disposition": "ancestor"
+    },
+    {
+      "kind": "recent_pr",
+      "number": 260,
+      "sha": "44855ab24c2c7fd34953e879fba571381cce0bc3",
+      "branch": "work/mail-offline-accounts-20261120",
+      "state": "closed",
+      "draft": false,
+      "merged": true,
+      "disposition": "ancestor"
+    },
+    {
+      "kind": "recent_pr",
+      "number": 259,
+      "sha": "650afb7d117337bab943af05d63a250a7e90c058",
+      "branch": "codex/word-vba-compat-20261120-next",
+      "state": "closed",
+      "draft": false,
+      "merged": true,
+      "disposition": "ancestor"
+    },
+    {
+      "kind": "recent_pr",
+      "number": 258,
+      "sha": "fee58398c80ec811f4adfbbaef7ae08598abdda0",
+      "branch": "work/mail-offline-accounts-20261120",
+      "state": "closed",
+      "draft": true,
+      "merged": true,
+      "disposition": "ancestor"
+    },
+    {
+      "kind": "recent_pr",
+      "number": 257,
+      "sha": "22e5960e99915e81a1b5997058cac44dac27ba1a",
+      "branch": "codex/word-vba-ranges-20261120",
+      "state": "closed",
+      "draft": false,
+      "merged": true,
+      "disposition": "ancestor"
+    },
+    {
+      "kind": "recent_pr",
+      "number": 256,
+      "sha": "34491bca22a2989dd89d9da3c853f5e57de5464f",
+      "branch": "codex/zotero-research-tables-20261120",
+      "state": "closed",
+      "draft": false,
+      "merged": true,
+      "disposition": "ancestor"
+    },
+    {
+      "kind": "recent_pr",
+      "number": 255,
+      "sha": "b3abdf3b4628a8a703857d69b8f11cd21bc502e1",
+      "branch": "work/mail-multiple-drafts-20261120",
+      "state": "closed",
+      "draft": false,
+      "merged": true,
+      "disposition": "ancestor"
+    },
+    {
+      "kind": "recent_pr",
+      "number": 254,
+      "sha": "79e11935e16ea1d2fa576ead0712c83f22e15c28",
+      "branch": "work/mail-outbox-management-20261120",
+      "state": "closed",
+      "draft": true,
+      "merged": true,
+      "disposition": "ancestor"
+    },
+    {
+      "kind": "recent_pr",
+      "number": 253,
+      "sha": "4b6bc01be2c95008c320b5a26615828191cf1d9e",
+      "branch": "work/mail-multiple-drafts-20261120",
+      "state": "closed",
+      "draft": false,
+      "merged": true,
+      "disposition": "ancestor"
+    },
+    {
+      "kind": "recent_pr",
+      "number": 252,
+      "sha": "0f6239396ff3328473a5f57c280b982d57e33a08",
+      "branch": "codex/word-powerpoint-vba-expansion-20261120",
+      "state": "closed",
+      "draft": false,
+      "merged": true,
+      "disposition": "ancestor"
+    },
+    {
+      "kind": "recent_pr",
+      "number": 251,
+      "sha": "86e44e87f829b0309ea7b84fd5d390f596fe7f26",
+      "branch": "work/mail-accounts-20261120",
+      "state": "closed",
+      "draft": false,
+      "merged": true,
+      "disposition": "ancestor"
+    },
+    {
+      "kind": "recent_pr",
+      "number": 250,
+      "sha": "9443612b024114c424ba2f8146e04050d6e049b0",
+      "branch": "work/mail-outbox-20261120",
+      "state": "closed",
+      "draft": false,
+      "merged": true,
+      "disposition": "ancestor"
+    },
+    {
+      "kind": "recent_pr",
+      "number": 249,
+      "sha": "a2b87ee3f471da500423055e86ba2614fc053cae",
+      "branch": "codex/zotero-research-tables-20261120",
+      "state": "closed",
+      "draft": true,
+      "merged": true,
+      "disposition": "ancestor"
+    },
+    {
+      "kind": "recent_pr",
+      "number": 248,
+      "sha": "56d5fdf15a20ced764561a1ac2429c2c37a6e780",
+      "branch": "work/mail-reply-forward-20261120",
+      "state": "closed",
+      "draft": false,
+      "merged": true,
+      "disposition": "ancestor"
+    },
+    {
+      "kind": "recent_pr",
+      "number": 247,
+      "sha": "baf6d1bc53b611e9fb37082ca69c409e5f8d6381",
+      "branch": "perf/incremental-layout-20261120",
+      "state": "closed",
+      "draft": false,
+      "merged": true,
+      "disposition": "ancestor"
+    },
+    {
+      "kind": "recent_pr",
+      "number": 246,
+      "sha": "d0c9007480ba518022836e017802875614e6205c",
+      "branch": "fix/font-pack-stub-packs-20261120",
+      "state": "closed",
+      "draft": false,
+      "merged": true,
+      "disposition": "ancestor"
+    },
+    {
+      "kind": "recent_pr",
+      "number": 245,
+      "sha": "d46d4ef394ed7cafd40bc266c793f8c0df6ec57f",
+      "branch": "codex/word-powerpoint-vba-continuation-20261120",
+      "state": "closed",
+      "draft": false,
+      "merged": true,
+      "disposition": "ancestor"
+    },
+    {
+      "kind": "recent_pr",
+      "number": 244,
+      "sha": "2fd61c3353dc22ee36ed1bc1a69df470a9423230",
+      "branch": "perf/typing-proofing-results-20261120",
+      "state": "closed",
+      "draft": false,
+      "merged": true,
+      "disposition": "ancestor"
+    },
+    {
+      "kind": "recent_pr",
+      "number": 243,
+      "sha": "a059c0249a25bef602640c8b8d504bd8da41c619",
+      "branch": "work/mail-accounts-20261120",
+      "state": "closed",
+      "draft": true,
+      "merged": true,
+      "disposition": "ancestor"
+    },
+    {
+      "kind": "recent_pr",
+      "number": 242,
+      "sha": "84d02025fade09c80f3f58942b466f4522eb4434",
+      "branch": "feat/downloads-manager-redesign-20261120",
+      "state": "closed",
+      "draft": false,
+      "merged": true,
+      "disposition": "ancestor"
+    },
+    {
+      "kind": "recent_pr",
+      "number": 241,
+      "sha": "aad737dd79c034b831a8957daa4165c6c64e35e5",
+      "branch": "work/mail-workspace-20261120",
+      "state": "closed",
+      "draft": false,
+      "merged": true,
+      "disposition": "ancestor"
+    },
+    {
+      "kind": "recent_pr",
+      "number": 240,
+      "sha": "6c23d94472f741aceff6aef0de0e6ef847195afe",
+      "branch": "codex/zotero-note-targets-20261120",
+      "state": "closed",
+      "draft": false,
+      "merged": true,
+      "disposition": "ancestor"
+    },
+    {
+      "kind": "recent_pr",
+      "number": 239,
+      "sha": "06f119566235aa3765445526f5ffab48832b1a31",
+      "branch": "codex/word-powerpoint-vba-20261120",
+      "state": "closed",
+      "draft": false,
+      "merged": true,
+      "disposition": "ancestor"
+    },
+    {
+      "kind": "recent_pr",
+      "number": 238,
+      "sha": "40a8f8eb76bd9bf51205fa0cb9f576ba497ad76b",
+      "branch": "codex/zotero-parity-continuation-20261120",
+      "state": "closed",
+      "draft": false,
+      "merged": true,
+      "disposition": "ancestor"
+    },
+    {
+      "kind": "recent_pr",
+      "number": 237,
+      "sha": "712d0ea558a01cabff25a83294a29b8d57ec25d4",
+      "branch": "perf/typing-proofing-20261120",
+      "state": "closed",
+      "draft": true,
+      "merged": true,
+      "disposition": "ancestor"
+    },
+    {
+      "kind": "recent_pr",
+      "number": 236,
+      "sha": "7319b220ab2e64b440e6f63d299eb747366a24d3",
+      "branch": "feat/android-spacy-grammar-20261120",
+      "state": "closed",
+      "draft": false,
+      "merged": true,
+      "disposition": "ancestor"
+    },
+    {
+      "kind": "recent_pr",
+      "number": 235,
+      "sha": "596fb68f64c447177ed202a40f890c20205a0270",
+      "branch": "ci/android-spacy-grammar-workflow",
+      "state": "closed",
+      "draft": false,
+      "merged": true,
+      "disposition": "ancestor"
+    },
+    {
+      "kind": "recent_pr",
+      "number": 234,
+      "sha": "228d13d949859c66c58cf51addfbb03b09c7365d",
+      "branch": "feat/crispoffice-rename-20261120",
+      "state": "closed",
+      "draft": false,
+      "merged": true,
+      "disposition": "ancestor"
+    },
+    {
+      "kind": "recent_pr",
+      "number": 233,
+      "sha": "20b2ecf572f8fd5663a728529da7bf5c7ebbda1d",
+      "branch": "work/mail-draft-recovery-20261120",
+      "state": "closed",
+      "draft": false,
+      "merged": true,
+      "disposition": "ancestor"
+    },
+    {
+      "kind": "recent_pr",
+      "number": 232,
+      "sha": "8b09e0ca6667c00db81b613c40b6d275bc20471a",
+      "branch": "feat/mobile-proofing-native-20261120",
+      "state": "closed",
+      "draft": false,
+      "merged": true,
+      "disposition": "ancestor"
+    },
+    {
+      "kind": "recent_pr",
+      "number": 231,
+      "sha": "754d30d199b6f7dfd52b2772a27cc37a3f8d3dd8",
+      "branch": "feat/arabic-morph-disambig-20261120",
+      "state": "closed",
+      "draft": false,
+      "merged": true,
+      "disposition": "ancestor"
+    },
+    {
+      "kind": "recent_pr",
+      "number": 230,
+      "sha": "3c137a66e8a434f5a90e80f5094bfaa25354067a",
+      "branch": "docs/glotlid-feasibility-20261120",
+      "state": "closed",
+      "draft": false,
+      "merged": true,
+      "disposition": "ancestor"
+    },
+    {
+      "kind": "recent_pr",
+      "number": 229,
+      "sha": "0c12d087e1d21b710c9fe224a06a93d526f0721e",
+      "branch": "feat/web-proofing-persistence-20261120",
+      "state": "closed",
+      "draft": false,
+      "merged": true,
+      "disposition": "ancestor"
+    },
+    {
+      "kind": "recent_pr",
+      "number": 228,
+      "sha": "f3ed8d74a016bc1e826dbaf056397e887d765b43",
+      "branch": "fix/macos-ci-portable-20261120",
+      "state": "closed",
+      "draft": false,
+      "merged": true,
+      "disposition": "ancestor"
+    },
+    {
+      "kind": "recent_pr",
+      "number": 227,
+      "sha": "1ceae221d37e733f0195d35622a05f896a2d13a1",
+      "branch": "codex/vba-variant-conversions-20261120",
+      "state": "closed",
+      "draft": true,
+      "merged": true,
+      "disposition": "ancestor"
+    },
+    {
+      "kind": "recent_pr",
+      "number": 226,
+      "sha": "a56397df5f53b991f5016f3cc8e1ab53b7ce12f1",
+      "branch": "fix/comment-draft-language-test-20261120",
+      "state": "closed",
+      "draft": false,
+      "merged": true,
+      "disposition": "ancestor"
+    },
+    {
+      "kind": "recent_pr",
+      "number": 225,
+      "sha": "4973e712045bdcf45fd36dcfe37d380c52265d3c",
+      "branch": "feat/spacy-grammar-v2-20261120",
+      "state": "closed",
+      "draft": false,
+      "merged": true,
+      "disposition": "ancestor"
+    },
+    {
+      "kind": "recent_pr",
+      "number": 224,
+      "sha": "38c9c297c12fca3422b8f758e7b1afbdabbf064c",
+      "branch": "feat/macos-signing-ci-20261120",
+      "state": "closed",
+      "draft": false,
+      "merged": true,
+      "disposition": "ancestor"
+    },
+    {
+      "kind": "recent_pr",
+      "number": 223,
+      "sha": "a31616d3567a43307251e13a9728cf92fd8690c6",
+      "branch": "codex/zotero-research-materials-20261120",
+      "state": "closed",
+      "draft": false,
+      "merged": true,
+      "disposition": "ancestor"
+    },
+    {
+      "kind": "recent_pr",
+      "number": 222,
+      "sha": "7be53768501bb6df426eeb9d05c921e393ded02f",
+      "branch": "codex/vba-string-conformance-20261120",
+      "state": "closed",
+      "draft": false,
+      "merged": true,
+      "disposition": "ancestor"
+    },
+    {
+      "kind": "upstream_ref",
+      "sha": "aca2f66941832bd0b19b436baeab1656a1b7de98",
+      "ref": "refs/heads/ci/flutter-workspace",
+      "disposition": "ancestor"
+    },
+    {
+      "kind": "upstream_ref",
+      "sha": "f45099688e7a3f67a1302efdb442830d052f2240",
+      "ref": "refs/heads/cursor/class-certificates-2db8",
+      "disposition": "ancestor"
+    },
+    {
+      "kind": "upstream_ref",
+      "sha": "9930be8df44ffe117fb22778c514eea0ee73ce21",
+      "ref": "refs/heads/cursor/cloud-agent-1790580069020-0rk1h",
+      "disposition": "ancestor"
+    },
+    {
+      "kind": "upstream_ref",
+      "sha": "15c5d29b63fb17a93c7fb3426a8fd4d95a32f1ba",
+      "ref": "refs/heads/main",
+      "disposition": "ancestor"
+    },
+    {
+      "kind": "upstream_ref",
+      "sha": "48c5156f459597ce3f8ec486b3c9a20fc5543807",
+      "ref": "refs/pull/1/head",
+      "disposition": "ancestor"
+    },
+    {
+      "kind": "upstream_ref",
+      "sha": "9930be8df44ffe117fb22778c514eea0ee73ce21",
+      "ref": "refs/pull/5/head",
+      "disposition": "ancestor"
+    },
+    {
+      "kind": "upstream_ref",
+      "sha": "aca2f66941832bd0b19b436baeab1656a1b7de98",
+      "ref": "refs/pull/6/head",
+      "disposition": "ancestor"
+    },
+    {
+      "kind": "upstream_ref",
+      "sha": "f45099688e7a3f67a1302efdb442830d052f2240",
+      "ref": "refs/pull/7/head",
+      "disposition": "ancestor"
+    }
+  ],
+  "unmerged": []
+}

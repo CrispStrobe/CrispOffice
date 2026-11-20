@@ -35,3 +35,26 @@ Word/compiler/style/native-preservation checks performed in this continuation.
 Incremental remote branch: `work/mail-cached-workspace-20261120`. Publication
 uses expected-head, non-forced branch updates and verifies Git tree identity.
 The final acceptance and publication records will be added after actual checks.
+
+## Retained first qualification checkpoint
+
+The first complete store gate passed 686 native store cases, 67 core cases on
+the VM and 67 on Node, 46 portable store cases on Node, strict analysis/format,
+48 evidence-runner controls, and browser entry/worker compilation. The first
+shared cohort passed 96 Mail UI cases and 486 MIME/transport cases. Focused
+native account-bridge and offline UI/chooser checks also passed. These are
+recorded baseline runs, not final acceptance of subsequent review corrections.
+
+Independent review then demonstrated two concrete issues: automatic cached
+content can consume shared quota and block a later draft save without a local
+recovery action; cached-body JSON needs a type/size preflight before transfer
+and decode. The probe, original runs and review findings are preserved. Bounded
+explicit cache cleanup and metadata preflight are being added and will receive
+fresh qualification before merge. Host review also tightened account-owner and
+fetched-message identity checks and separated view/body persistence warnings.
+
+The current [evidence archive](evidence.tar.xz) is an incremental checkpoint of
+raw runs, failures, runtime receipts, source manifests and independent Word
+qualification. [evidence-files.json](evidence-files.json) records the size and
+SHA-256 of every verified member. Final publication will replace it with the
+complete indexed archive while Git history retains this earlier checkpoint.
