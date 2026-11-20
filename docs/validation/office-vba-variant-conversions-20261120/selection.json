@@ -1,0 +1,178 @@
+{
+  "schema": 1,
+  "capturedMain": "85c019cd8fda1a735a727bff98c2a56fb25a368e",
+  "purpose": "Fresh focused validation of the combined incoming work before final publication. Inherited source-bound qualification remains separately attributed.",
+  "cohorts": {
+    "macros": {
+      "package": "packages/quds_office_engine",
+      "runner": "dart",
+      "tests": [
+        "test/office_operations_test.dart",
+        "test/office_macro_runtime_test.dart",
+        "test/office_macro_word_revision_guard_test.dart",
+        "test/office_macro_language_test.dart",
+        "test/office_vba_language_test.dart",
+        "test/office_vba_integration_test.dart",
+        "test/office_vba_procedures_test.dart",
+        "test/office_vba_procedure_boundaries_test.dart",
+        "test/office_vba_procedures_integration_test.dart",
+        "test/office_vba_control_flow_test.dart",
+        "test/office_vba_control_flow_boundaries_test.dart",
+        "test/office_vba_control_flow_integration_test.dart",
+        "test/office_vba_arrays_test.dart",
+        "test/office_vba_arrays_boundaries_test.dart",
+        "test/office_vba_arrays_integration_test.dart",
+        "test/office_vba_dynamic_arrays_test.dart",
+        "test/office_vba_dynamic_arrays_integration_test.dart",
+        "test/office_vba_string_intrinsics_test.dart",
+        "test/office_vba_string_intrinsics_integration_test.dart",
+        "test/office_vba_conformance_test.dart",
+        "test/office_vba_variant_conversions_test.dart",
+        "test/office_vba_variant_conformance_test.dart",
+        "test/office_vba_variant_conversions_integration_test.dart",
+        "test/office_macro_expansion_test.dart",
+        "test/office_macro_mcp_test.dart",
+        "test/office_macro_cli_test.dart",
+        "test/office_steps_test.dart",
+        "test/word_step_atomicity_test.dart",
+        "test/word_steps_vocabulary_test.dart",
+        "test/word_structure_steps_test.dart",
+        "test/table_grid_steps_test.dart",
+        "test/word_table_grid_addressing_test.dart",
+        "test/sheet_macro_preservation_test.dart"
+      ]
+    },
+    "incoming-zotero-engine": {
+      "package": "packages/quds_office_engine",
+      "runner": "dart",
+      "tests": [
+        "test/zotero_item_children_test.dart",
+        "test/zotero_item_details_test.dart",
+        "test/zotero_identity_client_test.dart",
+        "test/zotero_backoff_state_test.dart"
+      ]
+    },
+    "incoming-zotero-editor": {
+      "package": "packages/quds_office_editor",
+      "runner": "flutter",
+      "tests": [
+        "test/word_zotero_note_preview_test.dart",
+        "test/word_zotero_children_dialog_test.dart",
+        "test/word_zotero_children_test.dart",
+        "test/word_zotero_library_details_test.dart",
+        "test/word_zotero_stored_details_dialog_test.dart"
+      ]
+    },
+    "incoming-rendering-engine": {
+      "package": "packages/quds_office_engine",
+      "runner": "dart",
+      "tests": [
+        "test/slide_test.dart",
+        "test/slide_arrange_fidelity_test.dart",
+        "test/slide_import_fidelity_test.dart",
+        "test/slide_incoming_pptx_regression_test.dart",
+        "test/slide_render_fidelity_test.dart",
+        "test/slide_rich_text_explicit_style_test.dart",
+        "test/slide_section_fidelity_test.dart",
+        "test/slide_table_cell_color_test.dart",
+        "test/slide_text_fidelity_test.dart",
+        "test/slide_transform_orientation_test.dart",
+        "test/office_pdf_export_test.dart",
+        "test/slide_picture_background_test.dart"
+      ],
+      "additionalRequiredCoverage": "Add focused regression file for picture-background ownership, display order, master-shape visibility independence, missing layout, and repeated save/reopen, plus picture-border PDF output. The incoming background commit adds one basic import test; the PDF border commit adds no test."
+    },
+    "incoming-rendering-editor": {
+      "package": "packages/quds_office_editor",
+      "runner": "flutter",
+      "tests": [
+        "test/office_dark_slide_test.dart",
+        "test/slide_arrange_history_test.dart",
+        "test/slide_incoming_pptx_regression_test.dart",
+        "test/slide_notes_history_test.dart",
+        "test/slide_render_fidelity_test.dart",
+        "test/slide_section_reorder_test.dart",
+        "test/slide_transform_orientation_test.dart"
+      ]
+    },
+    "incoming-mail-host": {
+      "package": "packages/quds_office_editor/example",
+      "runner": "flutter",
+      "tests": [
+        "test/studio_mail_attachment_test.dart",
+        "test/studio_mail_attachment_loader_test.dart",
+        "test/studio_mail_attachment_compose_test.dart",
+        "test/studio_mail_cloud_test.dart",
+        "test/studio_mail_ews_test.dart",
+        "test/studio_mail_session_test.dart",
+        "test/studio_mail_compose_test.dart",
+        "test/studio_mail_recipients_test.dart",
+        "test/studio_mail_reply_test.dart",
+        "test/studio_mail_threading_test.dart",
+        "test/studio_mail_test.dart"
+      ]
+    },
+    "incoming-mail-mime": {
+      "package": "third_party/enough_mail",
+      "runner": "dart",
+      "tests": [
+        "test/codecs/quoted_printable_mail_codec_test.dart",
+        "test/message_builder_test.dart",
+        "test/quds_portable_mime_test.dart",
+        "test/mail/mail_send_transaction_test.dart",
+        "test/mail/mail_submission_acceptance_test.dart",
+        "test/smtp/smtp_transparency_test.dart"
+      ]
+    },
+    "incoming-mail-transport": {
+      "package": "packages/quds_mail_transport",
+      "runner": "dart",
+      "tests": [
+        "test/cloud_provider_test.dart",
+        "test/ews_provider_test.dart"
+      ]
+    },
+    "incoming-spacy": {
+      "package": "packages/quds_proofing_spacy",
+      "runner": "dart",
+      "tests": [
+        "test/analysis_test.dart",
+        "test/bundle_test.dart",
+        "test/distribution_test.dart",
+        "test/grammar_evaluation_harness_test.dart",
+        "test/grammar_families_test.dart",
+        "test/grammar_planner_test.dart",
+        "test/grammar_provider_test.dart",
+        "test/language_catalog_test.dart",
+        "test/macho_code_identity_test.dart",
+        "test/ner_removal_test.dart",
+        "test/worker_test.dart"
+      ]
+    },
+    "incoming-spacy-engine": {
+      "package": "packages/quds_office_engine",
+      "runner": "dart",
+      "tests": [
+        "test/proofing/german_agreement_facts_test.dart"
+      ]
+    },
+    "incoming-spacy-studio": {
+      "package": "packages/quds_office_editor/example",
+      "runner": "flutter",
+      "tests": [
+        "test/studio_spacy_setup_test.dart",
+        "test/studio_spacy_pin_test.dart"
+      ]
+    }
+  },
+  "runtime": "Use repository-pinned Flutter 3.47.8 / Dart 3.13.7 with the unchanged locked workspace. Run genuine Dart VM tests through dart, widget suites through flutter test --no-pub --concurrency=1. Record source head, selected files, raw machine events and exit status; do not count loader/setup events as tests.",
+  "static": "Strict analyzer over affected engine/editor/Studio/spacy source and tests, formatting for changed Dart files, git diff --check. Whole-engine analysis also covers new macros.",
+  "caveats": [
+    "No GitHub CI, workflow, check-run or commit-status queries; no waiting.",
+    "Full Studio example suite has an incoming documented baseline failure: studio_comment_draft_proofing_test: language changes invalidate existing draft suggestions. It is not part of this focused selection; do not present the selection as the full Studio suite.",
+    "Spacy tests above use synthetic annotations/backends and validate lifecycle/planner behavior. Fresh native model qualification is not implied. Preserve the original native receipts and their source/runtime attribution.",
+    "Do not rerun the consumed native qualification seal or rewrite its protocol/panel/results. No accepted native binary is needed for the selected synthetic tests.",
+    "Mail/Zotero controlled transports exercise request and response behavior without sending real mail or writing to connected accounts.",
+    "New PPTX picture-background import requires fresh regressions; existing solid-background and decoration tests alone do not cover its ownership bugs."
+  ]
+}

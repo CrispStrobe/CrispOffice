@@ -23,6 +23,8 @@ Dynamic local arrays add `ReDim`, `ReDim Preserve`, and `Erase`; module
 `Option Base` controls omitted lower bounds for both fixed and dynamic arrays.
 String expressions can use `Len`, `Left$`, `Right$`, and `Mid$` with explicit
 UTF-16 indexing, strict argument types, and the shared compilation work budget.
+Scalar Variants now distinguish `Empty` and `Null`, with state predicates,
+explicit bounded conversions, and an explicit native-publication contract.
 
 This increment targets the spreadsheet family (`xlsx`, including macro-enabled
 and template workbook packages admitted by the existing runtime). Embedded VBA
@@ -148,9 +150,9 @@ Individual scalar array elements can be passed to scalar `ByVal` parameters.
 Functions return one supported scalar, using assignment to their own name.
 An omitted return type means scalar `Variant`; object return types are not
 supported. Typed functions begin with the same default value as typed local
-variables: zero, an empty string, or `False`. A `Variant` function whose result
-is consumed must assign that result before returning, because `Empty` remains
-unsupported. Statement calls may discard an unassigned result. A function's
+variables: zero, an empty string, or `False`. An unassigned `Variant` function
+returns `Empty`; its return slot can be read before assignment. Statement calls
+may discard a result, including `Empty` or `Null`. A function's
 return variable may be read after initialization or assignment; its name with
 parentheses denotes a call and is subject to recursion checking.
 
@@ -192,8 +194,9 @@ dart run tool/macros/office_macro.dart run-vba \
 ## Conditional loops and Select Case
 
 Conditional loops recheck a Boolean expression built from source values.
-The body can update local variables used by the next check. Numeric or string
-truthiness, `Null`, and reading a condition from the workbook are unsupported.
+The body can update local variables used by the next check. `Empty` and `Null`
+conditions are false. Other conditions require actual Booleans; numeric or
+string truthiness and reading a condition from the workbook remain unsupported.
 
 | Loop form | Condition timing |
 | --- | --- |
@@ -240,8 +243,11 @@ before a comparison is optional. Ranges accept matching numeric or string
 values, use binary string ordering, and evaluate both endpoints even if the
 lower comparison fails. Reversed ranges do not match. Boolean equality and
 relational cases retain the dialect's `True`-before-`False` ordering, but
-Boolean ranges are unsupported. Scalar types must match; no implicit
-string/number/Boolean conversion is introduced.
+Boolean ranges are unsupported. `Empty` compares as zero against numbers,
+`False` against Booleans, or `""` against Strings. `Null` comparisons do not
+match, including `Case Null` against a `Null` selector. A range still evaluates
+both endpoints when a comparison yields `Null`. Other scalar types must match;
+no implicit string/number/Boolean conversion is introduced.
 
 Static checking visits every condition, Case expression, and body, including
 unselected clauses and code after an exit. Unsupported calls, object reads,
@@ -314,8 +320,8 @@ allowed. An omitted lower bound is zero unless the module specifies
 `Option Base 1`; an explicit `lower To upper` always takes precedence.
 
 Every typed element starts with its scalar default: zero, an empty string, or
-`False`. Each `Variant` element must be assigned before it is read or visited
-by `For Each`, because `Empty` is not implemented. Reads and writes use one
+`False`. Each `Variant` element starts as `Empty` and can be read or visited
+by `For Each` without a prior assignment. Reads and writes use one
 integer index, as in `amounts(row)`; fractional indices and out-of-bounds
 indices produce structured compiler diagnostics. Element assignments retain
 the scalar type, finite-number, `Long`, and string limits. `Let` is optional.
@@ -408,8 +414,9 @@ slots to their defaults, and discards values outside a smaller upper bound.
 Regrowing the array does not restore discarded values. Once allocated, the
 lower bound must stay the same with `Preserve`; changing it produces
 `vba_subscript_out_of_range`. `Preserve` on an unallocated array allocates it.
-Variant slots that have not been assigned remain unsupported `Empty` values,
-including after growth, reset, or fixed-array erasure.
+Variant slots that have not been assigned contain `Empty`, including after
+growth, reset, or fixed-array erasure. Existing `Empty` and `Null` values are
+preserved at their indices by `ReDim Preserve`.
 
 Bounds are evaluated once, from left to right, and may use variables, bound
 intrinsics, or supported scalar functions. A comma-separated `ReDim` list
@@ -469,7 +476,7 @@ operations** through the same compile/validate/run CLI and MCP paths.
 | `worksheet.Range("A1")` | One cell in A1 notation |
 | `worksheet.Range("A1:B3")` | Contiguous rectangle, expanded into bounded per-cell operations |
 | `worksheet.Cells(row, column)` | One-based integer coordinates converted to A1 notation |
-| `range.Value2 = scalar` or `range.Value = scalar` | `xlsx.cellValue`; supported scalar values only |
+| `range.Value2 = scalar` or `range.Value = scalar` | `xlsx.cellValue`; Strings, numbers and Booleans; `Empty` clears and `Null` is refused |
 | `range.Formula = "=..."` | `xlsx.cellFormula` |
 | `range.Font.Bold = True` | `xlsx.cellFormat` with `bold` |
 | `range.Font.Size = 14` | `xlsx.cellFormat` with `size` |
@@ -537,7 +544,9 @@ preserved through the native plan and workbook round trip.
 
 This slice keeps the dialect's strict conversion rules. Numeric/Boolean text
 arguments, numeric `Len`, fractional counts, String-to-number conversion,
-`Empty`, and `Null` remain unsupported. Full VBA also gives `Len` storage-size
+`Empty`, and `Null` are refused by these strict String signatures. Use
+`CStr` or a numeric conversion explicitly where appropriate; `CStr(Null)` is
+itself an error. Full VBA also gives `Len` storage-size
 semantics for typed non-String variables and applies numeric Let-coercion;
 those behaviors are not approximated here. Negative counts, zero/negative
 starts, and values outside signed Long bounds produce `vba_type_error` when
@@ -575,6 +584,149 @@ behavior, intentional dialect restrictions, and separately recorded Office
 host observations. The current string corpus has no Office host execution
 provenance; VM/JavaScript agreement establishes portability of this subset.
 
+## Variant states and explicit conversions
+
+`Empty` and `Null` are distinct source scalar values. `Empty` is the default of
+an unassigned Variant; `Null` represents intentionally missing data. Neither
+is an unbound object, an empty String, zero, or `False`. A scalar Variant can
+hold either state, and a `ByVal` Variant parameter or Variant function result
+preserves it. `IsEmpty(value)` is true only for `Empty`; `IsNull(value)` is true
+only for `Null`. All seven intrinsics below require exactly one scalar argument,
+evaluated once, and their names cannot be shadowed.
+
+```vb
+Dim value As Variant
+Worksheets(1).Range("A1").Value2 = IsEmpty(value) ' True
+value = Null
+If IsNull(value) Then
+    Worksheets(1).Range("A2").Value2 = "Missing"
+End If
+value = "12.5"
+Worksheets(1).Range("A3").Value2 = CLng(value)    ' 12: nearest even
+```
+
+### Defaults, assignment, and arrays
+
+Fixed/newly allocated Variant array slots start as `Empty`. `ReDim Preserve`
+keeps existing states and gives new slots `Empty`; fixed-array `Erase` resets
+all slots to `Empty`. Dynamic-array `Erase` still releases allocation: indexing
+or enumerating an erased dynamic array remains a subscript error. `For Each`
+visits Empty and Null slots normally. Unassigned Variant functions return
+`Empty`, including an early `Exit Function`.
+
+Assigning `Empty` to `Long`, `Double`, `String`, or `Boolean` produces `0`,
+`0.0`, `""`, or `False`, respectively. This applies to locals, array elements,
+function-result assignments, and typed `ByVal` parameters. Assigning `Null`
+to any of those typed scalars produces positioned `vba_invalid_use_of_null`.
+A Variant assignment preserves either state. Object bindings still require
+`Set` and an actual supported object. State literals in `Const` expressions
+and fixed-array constant bounds remain explicitly unsupported in this slice.
+
+### Explicit conversion signatures
+
+| Signature | Supported behavior |
+| --- | --- |
+| `IsEmpty(value)` | Whether the evaluated scalar is `Empty` |
+| `IsNull(value)` | Whether the evaluated scalar is `Null` |
+| `CVar(value)` | Preserve a supported scalar, including either state; no objects or whole arrays |
+| `CBool(value)` | Boolean identity; numeric zero is `False`, other numbers are `True`; `Empty` is `False`; accepted numeric Strings or case-insensitive `True`/`False` Strings |
+| `CDbl(value)` | Supported numeric value as binary64; Boolean `True` becomes `-1`, `False` becomes `0`; `Empty` becomes `0`; accepted numeric String parsing |
+| `CLng(value)` | The same numeric inputs as `CDbl`, rounded to nearest integer with ties to even, then checked against signed 32-bit bounds |
+| `CStr(value)` | String identity; `True`/`False` text for Booleans; `""` for `Empty`; the invariant numeric format described below |
+
+`CBool`, `CDbl`, `CLng`, and `CStr` reject `Null` with
+`vba_invalid_use_of_null`. `IsEmpty(Null)` and `IsNull(Empty)` are both false.
+Ordinary implicit String/number/Boolean conversion remains unsupported:
+`Dim n As Long: n = "12"` fails, whereas `n = CLng("12")` succeeds.
+Ordinary Long assignment still requires an exact integer; only explicit
+`CLng` adds rounding. For example, `CLng(2.5) = 2`, `CLng(3.5) = 4`,
+`CLng(-2.5) = -2`, and `CLng(-3.5) = -4`.
+
+String numeric conversion is deliberately **locale independent**. It trims
+only ASCII space and code units 9–13, then accepts an optional sign, ASCII
+decimal digits with optional `.`, and an optional `e`/`E` exponent with sign.
+At least one mantissa digit is required. Examples include `"  -12.5  "`,
+`".25"`, `"12."`, and `"1.25e2"`. Empty Strings, grouping separators, decimal
+commas, currencies, dates, hexadecimal/octal prefixes, type suffixes, non-ASCII
+digits, `NaN`, and infinity text fail with `vba_type_error`. Finite binary64
+results must stay within the dialect's existing absolute `2^53−1` bound;
+exceeding it produces `vba_limit_exceeded`. Binary64 parsing can round decimal
+text or underflow very small magnitudes to zero. This is not full VBA locale
+or Decimal/Currency conversion.
+
+Numeric `CStr` uses a deterministic invariant format for the stored binary64
+value: integers have no `.0`, negative zero is `"0"`, and fractional values
+use the fewest significant digits that round-trip. Magnitudes at least `1e-6`
+use fixed notation; smaller nonzero magnitudes use lowercase `e`, with no plus
+sign or padded exponent. Thus `CStr(CDbl("12.500")) = "12.5"` and
+`CStr(CDbl("1E-7")) = "1e-7"`. It does not preserve the input's decimal spelling
+or reproduce an Office locale's formatting. Existing `&` numeric text behavior
+is unchanged; use explicit `CStr` for this canonical representation.
+
+### Operators, conditions, and missing values
+
+Within the existing numeric arithmetic domain, `Empty` acts as zero and
+`Null` propagates through unary `+`/`-` and binary `+`, `-`, `*`, `/`.
+Non-Null operands must still satisfy the numeric contract; Null cannot hide
+unsupported String/Boolean arithmetic. Both expressions are evaluated before
+validation or propagation, so a failing helper or `1/0` expression still fails.
+String addition and broader implicit arithmetic coercion remain unsupported.
+
+All six comparisons return `Null` if either scalar is Null, including
+`Null = Null` and `Null <> Null`. Use `IsNull` to inspect the state. Empty
+compares as `0` against numbers, `False` against Booleans, or `""` against
+Strings; two Empty values compare equal. Other scalar types must still match.
+
+For `&`, Empty contributes `""`. One Null operand also contributes `""`,
+but `Null & Null` returns Null. This exception is deliberate.
+
+| Left | Right | `And` | `Or` | `Xor` |
+| --- | --- | --- | --- | --- |
+| `True` | `Null` | `Null` | `True` | `Null` |
+| `False` | `Null` | `False` | `Null` | `Null` |
+| `Null` | `True` | `Null` | `True` | `Null` |
+| `Null` | `False` | `False` | `Null` | `Null` |
+| `Null` | `Null` | `Null` | `Null` | `Null` |
+
+`Not Null` returns Null. Logical operands are eager and restricted to actual
+Booleans or Null. Numeric and Empty bitwise forms remain unsupported; write
+`Not CBool(Empty)` when Boolean intent is wanted. Full VBA's numeric effective
+types for Empty logical operations are not approximated.
+
+In `If`, `Do`, and `While` conditions, Empty and Null are false. Numeric/String
+truthiness is still unsupported. This condition rule does not turn typed
+Boolean assignment or `CBool(Null)` into a successful conversion. A Null
+comparison never matches a `Select Case` clause; range endpoints remain eager.
+
+### Native publication and resource limits
+
+`.Value` and `.Value2 = Empty` emit `xlsx.cellValue` with native JSON null,
+clearing both a value and a formula while retaining formatting. `.Value` or
+`.Value2 = Null` fails before any native plan is returned. Internal state
+objects never appear in native JSON. This is an explicit dialect boundary;
+no new installed Excel-host observation is claimed.
+
+Worksheet/range selectors, indices, formatting inputs, RGB and String
+intrinsics retain their strict actual-type rules. State values in those
+positions produce the existing type diagnostics; convert explicitly where
+appropriate. All emitted text still requires well-formed UTF-16. Conversion
+work shares the existing 100,000-work limit and never increases the String,
+array, operation or encoded-plan bounds.
+
+The runnable [Variant report](../packages/quds_office_engine/example/macros/variant_report.bas)
+processes four synthetic records, distinguishing missing from unassigned
+amounts. It uses all seven new intrinsics, emits **38 native operations**, clears
+four output cells, calculates matching source and worksheet totals of
+**375.75**, and demonstrates ties-to-even rounding and reallocated Empty slots.
+Its workbook must contain a sheet named `Summary`:
+
+```bash
+dart run tool/macros/office_macro.dart compile-vba \
+  example/macros/variant_report.bas variant-report.qudsmacro.json
+dart run tool/macros/office_macro.dart run-vba \
+  input.xlsx example/macros/variant_report.bas output.xlsx
+```
+
 ## Supported language constructs
 
 | Construct | Supported behavior and restrictions |
@@ -589,36 +741,38 @@ provenance; VM/JavaScript agreement establishes portability of this subset.
 | Dynamic local arrays | `Dim name()`, `ReDim` with source-expression bounds, upper-bound-only `ReDim Preserve`, and the same element/index/bound intrinsics |
 | Array lifecycle | `Erase` resets fixed arrays and deallocates dynamic arrays; active `For Each` collections cannot be resized or erased |
 | Collection loops | `For Each` over a local array with a `Variant` control variable, or an explicit rectangular range with a `Range` control variable |
-| Scalar types | `Long`, `Double`, `String`, `Boolean`, and scalar `Variant`; omitted `As` means `Variant` |
+| Scalar types | `Long`, `Double`, `String`, `Boolean`, and scalar `Variant`; omitted `As` means `Variant`, whose default is `Empty` |
+| Variant states and conversions | `Empty`, `Null`, `IsEmpty`, `IsNull`, `CVar`, `CBool`, `CDbl`, `CLng`, and `CStr`; bounded explicit conversion rules below |
 | Object types | `Worksheet` and `Range` variables, assigned with `Set`; object default members are unsupported |
 | Constants | Literals, supported unary/binary expressions, and previously declared constants; function calls in constant initializers are unsupported |
 | Assignment | Scalar assignment, optional `Let`, and explicitly supported writable object properties |
 | Arithmetic | Decimal/exponent literals, parentheses, unary `+`/`-`, and binary `+`, `-`, `*`, `/` |
 | Text | Double-quoted literals with doubled embedded quotes and `&` concatenation of scalar values |
 | String intrinsics | `Len`, `Left$`, `Right$`, and `Mid$` on actual Strings; UTF-16 units, exact integral signed-Long arguments, no implicit coercion |
-| Comparisons | `=`, `<>`, `<`, `>`, `<=`, `>=` between matching scalar types; string comparisons use binary ordering |
-| Boolean logic | `Not`, `And`, `Or`, `Xor` on Boolean values; operands are evaluated eagerly |
-| Conditions | Block `If … Then`, `ElseIf`, `Else`, `End If`; conditions must be Boolean and known from source |
+| Comparisons | `=`, `<>`, `<`, `>`, `<=`, `>=` between matching scalar types, contextual `Empty`, or propagating `Null`; strings use binary ordering |
+| Boolean logic | `Not`, `And`, `Or`, `Xor` on Boolean/Null values; operands are evaluated eagerly; numeric/Empty bitwise forms are unsupported |
+| Conditions | Block `If … Then`, `ElseIf`, `Else`, `End If`; actual Booleans or false `Empty`/`Null`, known from source |
 | Selection | `Select Case` with scalar alternatives, inclusive numeric/string `To` ranges, `[Is]` comparisons, and an optional final `Case Else`; first match wins |
 | Counted loops | Integer `For … To … [Step …]` and `Next [counter]`; bounds are inclusive, default step is `1`, negative steps are supported |
-| Conditional loops | `Do`/`Loop` with an optional `While` or `Until` condition at either end, and `While … Wend`; conditions are Boolean and evaluation is budgeted |
+| Conditional loops | `Do`/`Loop` with an optional `While` or `Until` condition at either end, and `While … Wend`; Boolean/Empty/Null conditions and budgeted evaluation |
 | Object context | Nested `With` blocks for worksheets or ranges; leading `.` refers to the innermost context |
 | Source formatting | Apostrophe/`Rem` comments, colon statement separators, whitespace-underscore line continuation, CRLF/LF, and an optional UTF-8 BOM |
 
-Typed variables start at `0`, `0.0`, `""`, or `False`. An uninitialized
-`Variant`, `Worksheet`, or `Range` cannot be read; assign it first. With
-`Option Explicit`, undeclared variables are errors. Without it, assignment
-targets and loop counters can introduce scalar Variant variables, but an
-undeclared read still fails. Multidimensional arrays, `Empty`, `Null`, and `Nothing` are not
-implemented.
+Typed variables start at `0`, `0.0`, `""`, or `False`; scalar Variants start as
+`Empty`. An unbound `Worksheet` or `Range` cannot be read; bind it with `Set`
+first. With `Option Explicit`, undeclared variables are errors. Without it,
+assignment targets and loop counters can introduce scalar Variant variables,
+but an undeclared read still fails. Multidimensional arrays and `Nothing` are
+not implemented.
 
 Assignments and operations use strict types. Arithmetic uses finite binary64
 intermediates within the portable numeric bound; integral results are normalized
 back to exact integers. This dialect does not emulate every VBA intermediate
 numeric subtype overflow rule. `Long` bounds are enforced at assignment and
 loop-counter increment. There is no implicit conversion
-between strings, numbers, and Booleans, no fractional-to-integer rounding, and
-no Date/Currency behavior. `&` deliberately supports scalar-to-text conversion;
+between ordinary strings, numbers, and Booleans, no implicit fractional-to-
+integer rounding, and no Date/Currency behavior. Explicit conversion functions
+and the documented `Empty`/`Null` rules are separate. `&` deliberately supports scalar-to-text conversion;
 numeric text uses invariant Dart formatting and Boolean text is `True`/`False`.
 Cell strings remain strings rather than using Excel's locale/format-driven
 type guessing. Strings beginning with `=` require an explicit `.Formula`
@@ -664,7 +818,7 @@ The compiler has its own limits before the native runtime receives a plan:
 | Procedure frames, including the selected entry | 32 |
 | String literal / concatenation / intrinsic result length | 32,767 UTF-16 code units |
 | Absolute numeric magnitude | 9,007,199,254,740,991 (`2^53 − 1`) |
-| Evaluation/statement visits, array work, and substring-copy units | 100,000 |
+| Evaluation/statement visits, array work, substring copies and explicit conversion work | 100,000 |
 | Emitted native operations | 10,000 |
 | Encoded native plan | 1 MiB |
 
@@ -675,6 +829,9 @@ operation is charged against the aggregate encoded byte budget, and compilation
 work is charged even for loops with empty bodies. Strings are bounded before
 concatenation allocates a larger result. Substring copies charge their clamped
 result length before allocating, even when their result is subsequently discarded.
+Explicit conversions charge String input scans/copies before parsing or case
+folding. Numeric `CStr` formatting charges each bounded precision candidate
+and its result; repeated conversions cannot reset the work budget.
 
 Conditional loops and `Select Case` do not increase these limits. Every loop
 attempt and Case alternative consumes work in addition to its expressions and
@@ -781,6 +938,13 @@ The supported mappings are based on Microsoft's documented VBA behavior:
 - [MS-VBAL Left$](https://learn.microsoft.com/en-us/openspecs/microsoft_general_purpose_programming_languages/ms-vbal/5f10a9e1-b6ba-4a92-bd94-c4c99da74ef2)
 - [MS-VBAL numeric Let-coercion](https://learn.microsoft.com/en-us/openspecs/microsoft_general_purpose_programming_languages/ms-vbal/56fb78c3-a0ea-4bf0-8ee4-eb5f89bda4f7)
 - [MS-VBAL value types and nominal String representation](https://learn.microsoft.com/en-us/openspecs/microsoft_general_purpose_programming_languages/ms-vbal/c86480b2-aef2-4488-b177-f55e13cc51f2)
+- [Variant values and Empty/Null](https://learn.microsoft.com/en-us/office/vba/language/reference/user-interface-help/variant-data-type)
+- [IsEmpty](https://learn.microsoft.com/en-us/office/vba/language/reference/user-interface-help/isempty-function) and [IsNull](https://learn.microsoft.com/en-us/office/vba/language/reference/user-interface-help/isnull-function)
+- [Explicit type conversions and ties-to-even rounding](https://learn.microsoft.com/en-us/office/vba/language/concepts/getting-started/type-conversion-functions)
+- [MS-VBAL Empty assignment](https://learn.microsoft.com/en-us/openspecs/microsoft_general_purpose_programming_languages/ms-vbal/e2637723-3010-449d-bead-9f17533dc105)
+- [Null/Empty concatenation](https://learn.microsoft.com/en-us/office/vba/language/reference/user-interface-help/ampersand-operator)
+- [Boolean and Null logic](https://learn.microsoft.com/en-us/office/vba/language/reference/user-interface-help/and-operator)
+- [MS-VBAL logical effective types](https://learn.microsoft.com/en-us/openspecs/microsoft_general_purpose_programming_languages/ms-vbal/2d70780d-6e99-47d6-9759-2b3a46b8e862)
 - [Operator precedence](https://learn.microsoft.com/en-us/office/vba/language/reference/user-interface-help/operator-precedence)
 - [Sub declarations and ByVal/ByRef defaults](https://learn.microsoft.com/en-us/office/vba/language/reference/user-interface-help/sub-statement)
 - [Function declarations and return values](https://learn.microsoft.com/en-us/office/vba/language/reference/user-interface-help/function-statement)

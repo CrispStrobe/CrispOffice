@@ -14,7 +14,10 @@ The subset includes reusable in-module procedures, scalar functions, explicit
 `For`/`For Each`/`Do`/`While` loops, `Select Case`, and early exits. Its compiler evaluates those constructs before execution; workbook
 values are not available to source logic.
 Dynamic arrays support `ReDim`/`Preserve` and `Erase`, and `Option Base` sets
-omitted lower bounds. The [parity roadmap](VBA_PARITY_ROADMAP.md) records the
+omitted lower bounds. String intrinsics, explicit Variant `Empty`/`Null`,
+state predicates and bounded conversions operate on source values. Empty cell
+writes clear values/formulas; Null publication fails before a plan is returned.
+The [parity roadmap](VBA_PARITY_ROADMAP.md) records the
 remaining language, runtime, and Word/PowerPoint object-model stages.
 It does not add a ribbon editor, a full VBA interpreter, document-open events,
 or editor undo integration. Existing opaque VBA project bytes remain inert and

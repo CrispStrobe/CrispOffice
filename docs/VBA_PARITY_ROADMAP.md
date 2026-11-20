@@ -13,7 +13,9 @@ bounded, document-independent subset: scalar expressions, typed locals,
 explicit worksheet/range bindings, reusable `ByVal` procedures and scalar
 functions, conditions, loops, fixed and dynamic one-dimensional arrays, `ReDim`/`Preserve`,
 `Erase`, module `Option Base`, `For Each`, and the bounded String intrinsics
-`Len`, `Left$`, `Right$`, and `Mid$`.
+`Len`, `Left$`, `Right$`, and `Mid$`. Scalar Variants now support explicit
+`Empty`/`Null`, state predicates and bounded `CVar`/`CBool`/`CDbl`/`CLng`/`CStr`
+conversions, including default array/function behavior and native Empty clears.
 It generates an immutable native plan; runtime policy, detached validation,
 and atomic publication apply after compilation. Embedded VBA projects are
 preserved as opaque package parts and are never executed on document open.
@@ -39,26 +41,32 @@ Stage 1 was delivered in the prior array-lifecycle increment. Its source, CLI/MC
 VM/JavaScript checks are recorded in the
 [local validation record](validation/office-vba-dynamic-arrays-20261119/README.md).
 This establishes the documented bounded dialect, not differential qualification
-against an installed Microsoft Office host. Stage 2 now has its first bounded
-slice: a [versioned conformance format](VBA_CONFORMANCE.md) and these four
+against an installed Microsoft Office host. Stage 2 now has two bounded
+slices: a [versioned conformance format](VBA_CONFORMANCE.md) and these four
 String intrinsics, with explicit type restrictions, UTF-16 units, copy-work
-accounting, transactional integration, and VM/JavaScript agreement. Remaining
+accounting, transactional integration, and VM/JavaScript agreement; followed
+by explicit Variant states and conversions with independently authored
+conformance expectations, shared budgets, and the same transaction boundary.
+Locale-sensitive coercions, numeric subtype identity, `Nothing`, and remaining
 Stage 2 semantics and Stages 3–7 remain planned work.
 Small tested adapter slices may run alongside shared language work when their
 prerequisites exist.
 
 ### Next increment
 
-Add explicit Variant `Empty`/`Null` states and conversion rules before
-claiming default Variant behavior or accepting broader array/value coercion.
-Use the delivered versioned conformance format to distinguish specification
-expectations from intentional dialect restrictions. Record actual Office
-host/version/platform provenance separately when differential fixtures become
-available; the delivered corpus does not claim Office host qualification.
+Add named arguments and optional parameters as a separate procedure milestone,
+with explicit omitted-argument/Missing semantics, declaration-time defaults,
+source-order evaluation, duplicate/unknown-name diagnostics, and conformance
+cases. Do not equate an omitted argument with explicit Empty or Null.
+
 Keep multidimensional arrays and array parameter passing as separate increments
-with their own shape, ownership, aliasing and resource tests. Stage 3 is the
-architectural prerequisite for macros that branch on existing workbook data;
-additional source-only syntax does not supply that capability.
+with their own shape, ownership, aliasing and resource tests. Broader implicit
+coercions, locale handling and numeric subtype reporting also need explicit
+contracts; this increment's invariant conversions do not establish those.
+Continue distinguishing specification-derived expectations, dialect restrictions
+and actual Office-host observations in the versioned corpus. Stage 3 remains
+the architectural prerequisite for macros that branch on existing workbook
+data; additional source-only syntax does not supply that capability.
 
 ## Architecture decisions
 

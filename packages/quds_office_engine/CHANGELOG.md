@@ -4,10 +4,23 @@ All notable changes to `quds_office_engine` are documented here.
 
 ## Unreleased
 
+- Add explicit VBA Variant `Empty`/`Null` states, default Variant lifecycle,
+  `IsEmpty`/`IsNull` and bounded `CVar`/`CBool`/`CDbl`/`CLng`/`CStr` conversions.
+  Preserve eager Null logic, ties-to-even rounding, invariant numeric text,
+  shared work limits, and strict unsupported coercions. Empty cell writes clear
+  values/formulas while retaining formatting; Null publication fails before a
+  plan is returned. Add independent conformance cases and a runnable Variant
+  report with native runtime, MCP, CLI and rollback coverage.
+
 - Add bounded VBA `Len`, `Left$`, `Right$`, and `Mid$` string intrinsics with
   explicit UTF-16 semantics, a versioned conformance corpus, and portable
   VM/JavaScript receipts. Refuse malformed UTF-16 at workbook-write boundaries
   while preserving valid internal substring operations and transactional runs.
+
+- Preserve nearest authored PPTX picture-background ownership independently
+  of master-shape visibility, with slide copies, cropping and repeated native
+  saves. Keep explicit solid fills authoritative and preserve PDF picture
+  outlines. Add focused ownership, package, copy and save regressions.
 
 - Integrate inherited PPTX decorations, block arrows, short PDF heading fitting
   and authored LTR numeric text. Preserve hidden-master flags and resolved empty
