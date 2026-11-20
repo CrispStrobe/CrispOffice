@@ -1,0 +1,48 @@
+{
+  "accepted": true,
+  "additional_existing_layout_cases": 12,
+  "generated_utc": "2026-11-20T19:06:10.661928+00:00",
+  "github_actions": "not queried or awaited",
+  "incoming_mail": "Exact c7e721b7 evidence/source verified; no fresh Mail runtime execution claimed. The qualified spacing increment changes Word engine/tests and documentation. Later intake reconciliation is recorded separately and retains every qualified source input.",
+  "independent_final_evidence_review": "Stored separately in evidence-review.json before publication.",
+  "installed_word_host_executed": false,
+  "new_feature_cases": 218,
+  "prior_exact_case_identities": 2569,
+  "prior_unchanged_modules": 70,
+  "publication_scope": {
+    "all_current_captured_heads_incorporated": false,
+    "all_initial_captured_work_included": true,
+    "all_selected_late_heads_integrated": true,
+    "explicitly_deferred_references": 14,
+    "report": "publication-scope-review.json",
+    "unclassified_references": 0
+  },
+  "regression_cases": 2799,
+  "regression_modules": 75,
+  "runtime_input_counts": {
+    "analysis_format": 19,
+    "portable": 20,
+    "regression": 3489,
+    "source_review": 38
+  },
+  "runtime_overlap": {
+    "portable vs analysis-format": {
+      "identical": true,
+      "shared_recorded_inputs": 16
+    },
+    "regression vs analysis-format": {
+      "identical": true,
+      "shared_recorded_inputs": 17
+    },
+    "regression vs portable": {
+      "identical": true,
+      "shared_recorded_inputs": 16
+    }
+  },
+  "schema": "quds-word-spacing-qualified-source/v1",
+  "source_commit": "0201b549d0dc3f601c50e36255d557034cb01699",
+  "source_inputs": 1131,
+  "source_tree": "86531c002a6b1d6e748849f7370a87072a5fa768",
+  "supplemental_contribution_to_regression_total": 0,
+  "supplemental_review_expectations": 56
+}

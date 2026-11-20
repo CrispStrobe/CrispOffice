@@ -1,0 +1,787 @@
+{
+  "quds_office_suite/.dart_tool/package_config.json": {
+    "bytes": 12850,
+    "mode": "100644",
+    "sha256": "6983ed96dad2af572e80bc2c8e7711f037e387664baae3078c4c32f3bd64c444"
+  },
+  "quds_office_suite/.dart_tool/package_graph.json": {
+    "bytes": 9353,
+    "mode": "100644",
+    "sha256": "9f8290c011c131f53fe4f6e12c40f4a5d7281c6fe94bccb6adcf93c9d8a803d4"
+  },
+  "runtime/package_word_spacing_batched_regression.py": {
+    "bytes": 14422,
+    "mode": "100644",
+    "sha256": "8255303d75514ed83bbed47d89934656ca368207f89df40989671d269323c7be"
+  },
+  "runtime/prior/runtime/reproduce_runtime.py": {
+    "bytes": 5527,
+    "mode": "100644",
+    "sha256": "00728e6a81b989672e659eb40564df972bb3e4be2e403beafb1e8cdcad9bcb50"
+  },
+  "runtime/run_word_spacing_batched_gate.py": {
+    "bytes": 14388,
+    "mode": "100644",
+    "sha256": "b1dbca0cdecf01f782943d50d55bc4fed7d836dc011f851eece6c0c8c3c7772d"
+  },
+  "runtime/run_word_spacing_full_gate.py": {
+    "bytes": 24931,
+    "mode": "100644",
+    "sha256": "ed4252a042e7804de9b92f4158818b63106e7ac921aba81a103232d46c402440"
+  },
+  "runtime/setup-receipt.json": {
+    "bytes": 915,
+    "mode": "100644",
+    "sha256": "3bc3f9eb0d2cf5d70c18406d0b9bc6bde26cfb1aed7b290f58c8708b1a109c4b"
+  },
+  "runtime/setup.stderr": {
+    "bytes": 0,
+    "mode": "100644",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "runtime/setup.stdout": {
+    "bytes": 2705,
+    "mode": "100644",
+    "sha256": "0402eab90b4ef270da70b856349b4f615809db827c00f091f22d058e3efdf987"
+  },
+  "runtime/toolchain/engine-validation/packages/legacy_doc_parser/pubspec.yaml": {
+    "bytes": 426,
+    "mode": "100644",
+    "sha256": "9c7e076de0d9c36c12a7fe6e1ba546355a20087e0e6483a0bc0fb9804d422cf3"
+  },
+  "runtime/toolchain/engine-validation/packages/quds_office_engine/pubspec.lock": {
+    "bytes": 13609,
+    "mode": "100644",
+    "sha256": "02715ff258655dd186f1682400c589f7d2f7ae4c0e876407ac3e4fe14deb9ea6"
+  },
+  "runtime/toolchain/engine-validation/packages/quds_office_engine/pubspec.yaml": {
+    "bytes": 3625,
+    "mode": "100644",
+    "sha256": "c594402727082d68aba1d1991d87552609c87b5c5ba30f802a3a88b0d04b5bd8"
+  },
+  "runtime/toolchain/env.sh": {
+    "bytes": 538,
+    "mode": "100644",
+    "sha256": "33fd96982107e685e6dd9bbe5112c77aa4dc10f42549b4818f47cc9e2485fd13"
+  },
+  "runtime/toolchain/environment.json": {
+    "bytes": 2242,
+    "mode": "100644",
+    "sha256": "abee33ba3d1ad92a883f780d2bae53529e7fefa3fd96e7cc3f4f57e6ebad12e1"
+  },
+  "runtime/toolchain/reproduction-command.json": {
+    "bytes": 442,
+    "mode": "100644",
+    "sha256": "65467f496de4e90ab024bb2ca6599b9385b8758f4749b614d1ba15a97f7f2002"
+  },
+  "runtime/toolchain/run-engine-tests.sh": {
+    "bytes": 422,
+    "mode": "100755",
+    "sha256": "a4e4bff28dc7ac52f1e4e8305c0c690ef8a0b2847caa053d24b09dadbcc4f2f1"
+  },
+  "runtime/word-spacing-batch-01-launch.stderr": {
+    "bytes": 0,
+    "mode": "100644",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "runtime/word-spacing-batch-01-launch.stdout": {
+    "bytes": 247,
+    "mode": "100644",
+    "sha256": "5c3b233bed9a1465aa850c7a3ccf5ea60fde4fb9de8c9601aee4e69e1bd9e483"
+  },
+  "runtime/word-spacing-batch-02-launch.stderr": {
+    "bytes": 0,
+    "mode": "100644",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "runtime/word-spacing-batch-02-launch.stdout": {
+    "bytes": 247,
+    "mode": "100644",
+    "sha256": "ed0402fb834a8bcf6789c9fe6b16015ca130fd267e12e518fbfeab398b8a734b"
+  },
+  "runtime/word-spacing-batch-02-timeout-launch.stderr": {
+    "bytes": 0,
+    "mode": "100644",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "runtime/word-spacing-batch-02-timeout-launch.stdout": {
+    "bytes": 116,
+    "mode": "100644",
+    "sha256": "ec857d50d3f2101ce2db421b7a60cf0d6c5076dee65de472b71f4ad0aba14441"
+  },
+  "runtime/word-spacing-batch-03-launch.stderr": {
+    "bytes": 0,
+    "mode": "100644",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "runtime/word-spacing-batch-03-launch.stdout": {
+    "bytes": 247,
+    "mode": "100644",
+    "sha256": "cc6b027321106670a93e0cda001fe0794806e47ad36f4e7bf06f0f4ea7353451"
+  },
+  "runtime/word-spacing-batch-03-timeout-launch.stderr": {
+    "bytes": 0,
+    "mode": "100644",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "runtime/word-spacing-batch-03-timeout-launch.stdout": {
+    "bytes": 1810,
+    "mode": "100644",
+    "sha256": "64bfe14dcbb832116691e3c64f2fd866d4b2efda13effd17df2e33f64cd31179"
+  },
+  "runtime/word-spacing-batch-04-launch.stderr": {
+    "bytes": 0,
+    "mode": "100644",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "runtime/word-spacing-batch-04-launch.stdout": {
+    "bytes": 247,
+    "mode": "100644",
+    "sha256": "8e3dfbafe0cb4a30350afc3d5cbe9b6d5a20864a767b53865f94a1a3df2fe269"
+  },
+  "runtime/word-spacing-batch-05-launch.stderr": {
+    "bytes": 0,
+    "mode": "100644",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "runtime/word-spacing-batch-05-launch.stdout": {
+    "bytes": 247,
+    "mode": "100644",
+    "sha256": "4802b9dcaae0ea4621679bf71c4d750c9feb5801cd4e107e9d52d9fe47bbe15d"
+  },
+  "runtime/word-spacing-batch-06-launch.stderr": {
+    "bytes": 0,
+    "mode": "100644",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "runtime/word-spacing-batch-06-launch.stdout": {
+    "bytes": 247,
+    "mode": "100644",
+    "sha256": "a3edf61d11aeadcc4e69e887f661b6c80def213de2a681617d7453d4db21ad37"
+  },
+  "runtime/word-spacing-batch-07-launch.stderr": {
+    "bytes": 0,
+    "mode": "100644",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "runtime/word-spacing-batch-07-launch.stdout": {
+    "bytes": 247,
+    "mode": "100644",
+    "sha256": "a7401d5b42ab970556f6eeecf9b3f3931c212f2ec2801c229a1447af4b5410de"
+  },
+  "runtime/word-spacing-batch-08-launch.stderr": {
+    "bytes": 0,
+    "mode": "100644",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "runtime/word-spacing-batch-08-launch.stdout": {
+    "bytes": 243,
+    "mode": "100644",
+    "sha256": "1a20aacd174627fce96eba2567b16a7264c04f3b343b7894e688fdb67e2d38b4"
+  },
+  "runtime/word-spacing-batched-audit-command.json": {
+    "bytes": 478,
+    "mode": "100644",
+    "sha256": "23f476bdc3e7ab65a26d9040ac2f1d28ae8f6abe1a9239752a587fdc387f095e"
+  },
+  "runtime/word-spacing-batched-audit.stderr": {
+    "bytes": 0,
+    "mode": "100644",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "runtime/word-spacing-batched-audit.stdout": {
+    "bytes": 133,
+    "mode": "100644",
+    "sha256": "2b9c863832fbc296700bcf5291ac58a69b83c1a574ae3058e54da051ae33990c"
+  },
+  "runtime/word-spacing-batched-final-0201b549/batch-01/cases.json.gz": {
+    "bytes": 8038,
+    "mode": "100644",
+    "sha256": "c125ad30a9da95d09f730fe981728bbafd20f20b49566683ef3ea222e8a6b966"
+  },
+  "runtime/word-spacing-batched-final-0201b549/batch-01/command.json": {
+    "bytes": 920,
+    "mode": "100644",
+    "sha256": "9dbd4b229b40f4ded2db7fb1b331be7ff3a1de941a1ac6fb160d774a841d4af6"
+  },
+  "runtime/word-spacing-batched-final-0201b549/batch-01/execution.json": {
+    "bytes": 97,
+    "mode": "100644",
+    "sha256": "41b7466194be16f642bf96a769780d506740658089a9b71aa642c60a3a303a81"
+  },
+  "runtime/word-spacing-batched-final-0201b549/batch-01/inputs-after.json.gz": {
+    "bytes": 282363,
+    "mode": "100644",
+    "sha256": "a45cd2bb54566bb667a769131a3304a8c51bb07acca86fb6e32d88140ee43daa"
+  },
+  "runtime/word-spacing-batched-final-0201b549/batch-01/inputs-before.json.gz": {
+    "bytes": 282363,
+    "mode": "100644",
+    "sha256": "a45cd2bb54566bb667a769131a3304a8c51bb07acca86fb6e32d88140ee43daa"
+  },
+  "runtime/word-spacing-batched-final-0201b549/batch-01/stderr.log": {
+    "bytes": 0,
+    "mode": "100644",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "runtime/word-spacing-batched-final-0201b549/batch-01/stdout.jsonl": {
+    "bytes": 160149,
+    "mode": "100644",
+    "sha256": "40b2085cb7e4b4d7e8e6ccee3df8b3338d24b5d2c277c8a584caf99ced6904f1"
+  },
+  "runtime/word-spacing-batched-final-0201b549/batch-01/summary.json": {
+    "bytes": 8439,
+    "mode": "100644",
+    "sha256": "2e389890d69b8321795ba2653828109df7ce67e8b7a048e5866b3062dfacf908"
+  },
+  "runtime/word-spacing-batched-final-0201b549/batch-02/cases.json.gz": {
+    "bytes": 13516,
+    "mode": "100644",
+    "sha256": "f5df168b2cc1a21769eeb8389abc000f0f6cd09f27c5695410128bce35cb0e11"
+  },
+  "runtime/word-spacing-batched-final-0201b549/batch-02/command.json": {
+    "bytes": 943,
+    "mode": "100644",
+    "sha256": "784d936de78c56e8386a7b2f4e2cbb35eb6b31815ae90cadcd2da64f91ae13da"
+  },
+  "runtime/word-spacing-batched-final-0201b549/batch-02/execution.json": {
+    "bytes": 97,
+    "mode": "100644",
+    "sha256": "d0b62e51a683380aa79990f7a3112d6f8436a1b69bf3395c58ecf9c85b9b66e2"
+  },
+  "runtime/word-spacing-batched-final-0201b549/batch-02/inputs-after.json.gz": {
+    "bytes": 282363,
+    "mode": "100644",
+    "sha256": "a45cd2bb54566bb667a769131a3304a8c51bb07acca86fb6e32d88140ee43daa"
+  },
+  "runtime/word-spacing-batched-final-0201b549/batch-02/inputs-before.json.gz": {
+    "bytes": 282363,
+    "mode": "100644",
+    "sha256": "a45cd2bb54566bb667a769131a3304a8c51bb07acca86fb6e32d88140ee43daa"
+  },
+  "runtime/word-spacing-batched-final-0201b549/batch-02/stderr.log": {
+    "bytes": 0,
+    "mode": "100644",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "runtime/word-spacing-batched-final-0201b549/batch-02/stdout.jsonl": {
+    "bytes": 253645,
+    "mode": "100644",
+    "sha256": "7801fffca1a701ad5722997858a38e94412f89bc840fd0fb4cef3fb60dd09159"
+  },
+  "runtime/word-spacing-batched-final-0201b549/batch-02/summary.json": {
+    "bytes": 11401,
+    "mode": "100644",
+    "sha256": "af85beba4ed4795a10a7c44c3e5b42291b0ed44be451213db8c03d6a8b217330"
+  },
+  "runtime/word-spacing-batched-final-0201b549/batch-03/cases.json.gz": {
+    "bytes": 9244,
+    "mode": "100644",
+    "sha256": "71faff9b8d051eb2fd3b44bc8c60252504bd9ae20f5b0c1b6a7afa9f51cd8df5"
+  },
+  "runtime/word-spacing-batched-final-0201b549/batch-03/command.json": {
+    "bytes": 977,
+    "mode": "100644",
+    "sha256": "3e0c42b3127ee2fbc6c556e5af0d7fb4d666c898eb212b6e8ed9fcce20722473"
+  },
+  "runtime/word-spacing-batched-final-0201b549/batch-03/execution.json": {
+    "bytes": 97,
+    "mode": "100644",
+    "sha256": "fd9c7890b5bcc7039ec4b5eba014450a7a3a1b65377d17ae703a18c67761cc46"
+  },
+  "runtime/word-spacing-batched-final-0201b549/batch-03/inputs-after.json.gz": {
+    "bytes": 282363,
+    "mode": "100644",
+    "sha256": "a45cd2bb54566bb667a769131a3304a8c51bb07acca86fb6e32d88140ee43daa"
+  },
+  "runtime/word-spacing-batched-final-0201b549/batch-03/inputs-before.json.gz": {
+    "bytes": 282363,
+    "mode": "100644",
+    "sha256": "a45cd2bb54566bb667a769131a3304a8c51bb07acca86fb6e32d88140ee43daa"
+  },
+  "runtime/word-spacing-batched-final-0201b549/batch-03/stderr.log": {
+    "bytes": 0,
+    "mode": "100644",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "runtime/word-spacing-batched-final-0201b549/batch-03/stdout.jsonl": {
+    "bytes": 133784,
+    "mode": "100644",
+    "sha256": "f48d6bb1754574f87e9abea9bbefa9396c8d8ac7d7afb0766271276e514095f9"
+  },
+  "runtime/word-spacing-batched-final-0201b549/batch-03/summary.json": {
+    "bytes": 7045,
+    "mode": "100644",
+    "sha256": "658bc983a8208fe96fd36413ca6055383aa89bd9d926b5f200791efbeb1befde"
+  },
+  "runtime/word-spacing-batched-final-0201b549/batch-04/cases.json.gz": {
+    "bytes": 11518,
+    "mode": "100644",
+    "sha256": "a7cc392435336e4476e811beac9cec3b5d544ea99bc3236bfd7d724b7bdc2808"
+  },
+  "runtime/word-spacing-batched-final-0201b549/batch-04/command.json": {
+    "bytes": 987,
+    "mode": "100644",
+    "sha256": "04b4a61ac1321015dde8cfd82978f096d113656b96507df15f7d5a36d872cbea"
+  },
+  "runtime/word-spacing-batched-final-0201b549/batch-04/execution.json": {
+    "bytes": 97,
+    "mode": "100644",
+    "sha256": "3dc84df220476148078f01b545650d82d33ff93b98ebd8fcf94cd190be0ad4bf"
+  },
+  "runtime/word-spacing-batched-final-0201b549/batch-04/inputs-after.json.gz": {
+    "bytes": 282363,
+    "mode": "100644",
+    "sha256": "a45cd2bb54566bb667a769131a3304a8c51bb07acca86fb6e32d88140ee43daa"
+  },
+  "runtime/word-spacing-batched-final-0201b549/batch-04/inputs-before.json.gz": {
+    "bytes": 282363,
+    "mode": "100644",
+    "sha256": "a45cd2bb54566bb667a769131a3304a8c51bb07acca86fb6e32d88140ee43daa"
+  },
+  "runtime/word-spacing-batched-final-0201b549/batch-04/stderr.log": {
+    "bytes": 0,
+    "mode": "100644",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "runtime/word-spacing-batched-final-0201b549/batch-04/stdout.jsonl": {
+    "bytes": 239876,
+    "mode": "100644",
+    "sha256": "116cf035b5ac8dcaf9820b91b04fd1287c2ba4bdbeb746819bdb1d0b1967e013"
+  },
+  "runtime/word-spacing-batched-final-0201b549/batch-04/summary.json": {
+    "bytes": 11119,
+    "mode": "100644",
+    "sha256": "dc10b1598613635b08e3e080ed964bf519224ef8854d6a836b6546b5bb3cc26b"
+  },
+  "runtime/word-spacing-batched-final-0201b549/batch-05/cases.json.gz": {
+    "bytes": 11186,
+    "mode": "100644",
+    "sha256": "5f6ea5d4c9a173e98b8da3d2777fe61ed81dde8f35ce47856c1a90003ad7cf61"
+  },
+  "runtime/word-spacing-batched-final-0201b549/batch-05/command.json": {
+    "bytes": 985,
+    "mode": "100644",
+    "sha256": "f5be61c2dc367a77243d4d2aae4d6e73ddb711c96b54baf30e03fd486e437258"
+  },
+  "runtime/word-spacing-batched-final-0201b549/batch-05/execution.json": {
+    "bytes": 97,
+    "mode": "100644",
+    "sha256": "45ceb4663a2ea68bd93d1d24d0dea167e9cb33b3abde2dfae0b73a42976de9af"
+  },
+  "runtime/word-spacing-batched-final-0201b549/batch-05/inputs-after.json.gz": {
+    "bytes": 282363,
+    "mode": "100644",
+    "sha256": "a45cd2bb54566bb667a769131a3304a8c51bb07acca86fb6e32d88140ee43daa"
+  },
+  "runtime/word-spacing-batched-final-0201b549/batch-05/inputs-before.json.gz": {
+    "bytes": 282363,
+    "mode": "100644",
+    "sha256": "a45cd2bb54566bb667a769131a3304a8c51bb07acca86fb6e32d88140ee43daa"
+  },
+  "runtime/word-spacing-batched-final-0201b549/batch-05/stderr.log": {
+    "bytes": 0,
+    "mode": "100644",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "runtime/word-spacing-batched-final-0201b549/batch-05/stdout.jsonl": {
+    "bytes": 261357,
+    "mode": "100644",
+    "sha256": "505ecafa9e54a85c814adf4be3f3b92bd04e1520d0faae44fbcc0cba2a2ba394"
+  },
+  "runtime/word-spacing-batched-final-0201b549/batch-05/summary.json": {
+    "bytes": 12095,
+    "mode": "100644",
+    "sha256": "50efcfadf163a13842f87a415ea0b8ed7ba43f5c0575d2a2f7d613826deca93f"
+  },
+  "runtime/word-spacing-batched-final-0201b549/batch-06/cases.json.gz": {
+    "bytes": 10794,
+    "mode": "100644",
+    "sha256": "2621c058b06ad2ab2d22c9a4d596b4c059cba28c88f2912e0d2a9f5e2e9881af"
+  },
+  "runtime/word-spacing-batched-final-0201b549/batch-06/command.json": {
+    "bytes": 1007,
+    "mode": "100644",
+    "sha256": "0f20ed1af0e5bb6664a5dd53b0dac57709908ce8ab15d78c7d2da64bf442c661"
+  },
+  "runtime/word-spacing-batched-final-0201b549/batch-06/execution.json": {
+    "bytes": 97,
+    "mode": "100644",
+    "sha256": "0dbcea6e9ce1db1f78d4bc6fda073a8738c75d86f444ecc4035677f1ab8b82ca"
+  },
+  "runtime/word-spacing-batched-final-0201b549/batch-06/inputs-after.json.gz": {
+    "bytes": 282363,
+    "mode": "100644",
+    "sha256": "a45cd2bb54566bb667a769131a3304a8c51bb07acca86fb6e32d88140ee43daa"
+  },
+  "runtime/word-spacing-batched-final-0201b549/batch-06/inputs-before.json.gz": {
+    "bytes": 282363,
+    "mode": "100644",
+    "sha256": "a45cd2bb54566bb667a769131a3304a8c51bb07acca86fb6e32d88140ee43daa"
+  },
+  "runtime/word-spacing-batched-final-0201b549/batch-06/stderr.log": {
+    "bytes": 0,
+    "mode": "100644",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "runtime/word-spacing-batched-final-0201b549/batch-06/stdout.jsonl": {
+    "bytes": 249404,
+    "mode": "100644",
+    "sha256": "a5becf577b4b77ccc179472a36bedddc7ef703d77f3b8130cf6aba10244a4783"
+  },
+  "runtime/word-spacing-batched-final-0201b549/batch-06/summary.json": {
+    "bytes": 12043,
+    "mode": "100644",
+    "sha256": "203d683e99b0cb9d5f83957fa6d16c5142ff4012b3ed46beb56e7e2531c71dd8"
+  },
+  "runtime/word-spacing-batched-final-0201b549/batch-07/cases.json.gz": {
+    "bytes": 4612,
+    "mode": "100644",
+    "sha256": "d3d81ac214a382624e26f20685768abff339dc3c0ceb42c8d98ba325e2271017"
+  },
+  "runtime/word-spacing-batched-final-0201b549/batch-07/command.json": {
+    "bytes": 912,
+    "mode": "100644",
+    "sha256": "8153e9a8f26b3fef9c334a1b2c0b2ab0630db4d235f4ad6b8fc3ff7fdbc9d1be"
+  },
+  "runtime/word-spacing-batched-final-0201b549/batch-07/execution.json": {
+    "bytes": 97,
+    "mode": "100644",
+    "sha256": "590a9ba663925f746eeccc66923589e27866dc4b1c4fa4de68e4c2133c800c17"
+  },
+  "runtime/word-spacing-batched-final-0201b549/batch-07/inputs-after.json.gz": {
+    "bytes": 282363,
+    "mode": "100644",
+    "sha256": "a45cd2bb54566bb667a769131a3304a8c51bb07acca86fb6e32d88140ee43daa"
+  },
+  "runtime/word-spacing-batched-final-0201b549/batch-07/inputs-before.json.gz": {
+    "bytes": 282363,
+    "mode": "100644",
+    "sha256": "a45cd2bb54566bb667a769131a3304a8c51bb07acca86fb6e32d88140ee43daa"
+  },
+  "runtime/word-spacing-batched-final-0201b549/batch-07/stderr.log": {
+    "bytes": 0,
+    "mode": "100644",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "runtime/word-spacing-batched-final-0201b549/batch-07/stdout.jsonl": {
+    "bytes": 70019,
+    "mode": "100644",
+    "sha256": "9fa3c1576b830c5a515d2c000d35a9c2985c75f00b2c5c6591f94c5fd7c1215c"
+  },
+  "runtime/word-spacing-batched-final-0201b549/batch-07/summary.json": {
+    "bytes": 4893,
+    "mode": "100644",
+    "sha256": "747b9aac28a9a11af777fc879546a2714971a429d07b25375c10a56f6080ba49"
+  },
+  "runtime/word-spacing-batched-final-0201b549/batch-08/cases.json.gz": {
+    "bytes": 1849,
+    "mode": "100644",
+    "sha256": "845a5f99872425443ed8d871002c0e3650c730695001bba3e9c2f39c0269b55e"
+  },
+  "runtime/word-spacing-batched-final-0201b549/batch-08/command.json": {
+    "bytes": 690,
+    "mode": "100644",
+    "sha256": "c7685e3ae78e4f1a9c9573dd4c09e4161844f6e4cd32f412177829d3979eeb73"
+  },
+  "runtime/word-spacing-batched-final-0201b549/batch-08/execution.json": {
+    "bytes": 96,
+    "mode": "100644",
+    "sha256": "194a9a55d1bf33cade72db6c2c7a2e8cdda4bb0c13cac93a17612bab7b792d29"
+  },
+  "runtime/word-spacing-batched-final-0201b549/batch-08/inputs-after.json.gz": {
+    "bytes": 282363,
+    "mode": "100644",
+    "sha256": "a45cd2bb54566bb667a769131a3304a8c51bb07acca86fb6e32d88140ee43daa"
+  },
+  "runtime/word-spacing-batched-final-0201b549/batch-08/inputs-before.json.gz": {
+    "bytes": 282363,
+    "mode": "100644",
+    "sha256": "a45cd2bb54566bb667a769131a3304a8c51bb07acca86fb6e32d88140ee43daa"
+  },
+  "runtime/word-spacing-batched-final-0201b549/batch-08/stderr.log": {
+    "bytes": 0,
+    "mode": "100644",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "runtime/word-spacing-batched-final-0201b549/batch-08/stdout.jsonl": {
+    "bytes": 22324,
+    "mode": "100644",
+    "sha256": "62fb0d08b96c856071c2644a04d75c620aba9aa1d60ef44aad034cfcb4d8a0fb"
+  },
+  "runtime/word-spacing-batched-final-0201b549/batch-08/summary.json": {
+    "bytes": 2657,
+    "mode": "100644",
+    "sha256": "d80c9b10387fec945c2af653962faaddeac23e614dd37c011f26086d38e4378d"
+  },
+  "runtime/word-spacing-batched-final-0201b549/batches.json": {
+    "bytes": 4110,
+    "mode": "100644",
+    "sha256": "2c66ba9eda56a88567e628af1eacadd7b398df2af797907598a3b3662ad7a381"
+  },
+  "runtime/word-spacing-batched-final-0201b549/case-identity-comparison.json": {
+    "bytes": 12937,
+    "mode": "100644",
+    "sha256": "d2e2e4e233b952f0280eae5751e1c669ab207895ae6a7c9e8ae207483af7b78e"
+  },
+  "runtime/word-spacing-batched-final-0201b549/cases.json.gz": {
+    "bytes": 68296,
+    "mode": "100644",
+    "sha256": "93d2fe5ec4d1ad800463ba8220f6fbaed0243e17f80242e50f805874017cf811"
+  },
+  "runtime/word-spacing-batched-final-0201b549/diagnostics/attempts.json": {
+    "bytes": 5722,
+    "mode": "100644",
+    "sha256": "cdb659962a9b4e24d8f765d1044035748dfc9970abedd69eed92552c2649ba07"
+  },
+  "runtime/word-spacing-batched-final-0201b549/diagnostics/batch-02-timeout/cli-temporary-artifact-preservation.json": {
+    "bytes": 750,
+    "mode": "100644",
+    "sha256": "f746e037898736e1d4fb99552044db50a53296a399671480a0342cfce5b473d2"
+  },
+  "runtime/word-spacing-batched-final-0201b549/diagnostics/batch-02-timeout/cli-temporary-artifact/helpers.bas": {
+    "bytes": 210,
+    "mode": "100644",
+    "sha256": "343740c77258063be4f5f6ed41626d75b8fa4e2957aff74951b98e09274c377a"
+  },
+  "runtime/word-spacing-batched-final-0201b549/diagnostics/batch-02-timeout/cli-temporary-artifact/input.xlsx": {
+    "bytes": 2595,
+    "mode": "100644",
+    "sha256": "9172a224f43e768927b3bb4b2236e636e2ece0f603c358c78508748839fdffb9"
+  },
+  "runtime/word-spacing-batched-final-0201b549/diagnostics/batch-02-timeout/cli-temporary-artifact/output.xlsx": {
+    "bytes": 3610,
+    "mode": "100644",
+    "sha256": "6de89d7382d96d864ddada4518dd97bcd6ca4a05542cc3a6b4b785f6bd5d0d69"
+  },
+  "runtime/word-spacing-batched-final-0201b549/diagnostics/batch-02-timeout/command.json": {
+    "bytes": 943,
+    "mode": "100644",
+    "sha256": "ede7d7a20aee154d5c6fa70e8ca1ec45ab94ed35c846d794cf44facec81bd6a5"
+  },
+  "runtime/word-spacing-batched-final-0201b549/diagnostics/batch-02-timeout/inputs-at-termination-observation.json.gz": {
+    "bytes": 282363,
+    "mode": "100644",
+    "sha256": "a45cd2bb54566bb667a769131a3304a8c51bb07acca86fb6e32d88140ee43daa"
+  },
+  "runtime/word-spacing-batched-final-0201b549/diagnostics/batch-02-timeout/inputs-before.json.gz": {
+    "bytes": 282363,
+    "mode": "100644",
+    "sha256": "a45cd2bb54566bb667a769131a3304a8c51bb07acca86fb6e32d88140ee43daa"
+  },
+  "runtime/word-spacing-batched-final-0201b549/diagnostics/batch-02-timeout/relocation-and-observation.json": {
+    "bytes": 2686,
+    "mode": "100644",
+    "sha256": "366d5c7241276e95d9a930538130efa8bd083fe0625dbc385a69db7e00b65818"
+  },
+  "runtime/word-spacing-batched-final-0201b549/diagnostics/batch-02-timeout/stderr.log": {
+    "bytes": 0,
+    "mode": "100644",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "runtime/word-spacing-batched-final-0201b549/diagnostics/batch-02-timeout/stdout.jsonl": {
+    "bytes": 157316,
+    "mode": "100644",
+    "sha256": "b3c554a8de7202af0647cd2003443d6b293b600b70ce1d9747b3d2f901568b74"
+  },
+  "runtime/word-spacing-batched-final-0201b549/diagnostics/batch-03-timeout/cases.json.gz": {
+    "bytes": 1819,
+    "mode": "100644",
+    "sha256": "8e1b44a8b8ce6b950947704887e13b9147374099a73ca79a22f6cf6aac8f4e1e"
+  },
+  "runtime/word-spacing-batched-final-0201b549/diagnostics/batch-03-timeout/command.json": {
+    "bytes": 977,
+    "mode": "100644",
+    "sha256": "8749118949a22564f83eae5b0a58ff75bfba01af75840474dfae783d8a2970a1"
+  },
+  "runtime/word-spacing-batched-final-0201b549/diagnostics/batch-03-timeout/execution.json": {
+    "bytes": 97,
+    "mode": "100644",
+    "sha256": "f943ef49e52e662100bb27436b041d4717ff2b2ced3f87057de493907d6d89b0"
+  },
+  "runtime/word-spacing-batched-final-0201b549/diagnostics/batch-03-timeout/inputs-after.json.gz": {
+    "bytes": 282363,
+    "mode": "100644",
+    "sha256": "a45cd2bb54566bb667a769131a3304a8c51bb07acca86fb6e32d88140ee43daa"
+  },
+  "runtime/word-spacing-batched-final-0201b549/diagnostics/batch-03-timeout/inputs-before.json.gz": {
+    "bytes": 282363,
+    "mode": "100644",
+    "sha256": "a45cd2bb54566bb667a769131a3304a8c51bb07acca86fb6e32d88140ee43daa"
+  },
+  "runtime/word-spacing-batched-final-0201b549/diagnostics/batch-03-timeout/relocation-and-observation.json": {
+    "bytes": 2773,
+    "mode": "100644",
+    "sha256": "bb0df5cb76358756467a83ff4ea0dcac095ddb4eff5a12006749a1849025851f"
+  },
+  "runtime/word-spacing-batched-final-0201b549/diagnostics/batch-03-timeout/stderr.log": {
+    "bytes": 0,
+    "mode": "100644",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "runtime/word-spacing-batched-final-0201b549/diagnostics/batch-03-timeout/stdout.jsonl": {
+    "bytes": 25832,
+    "mode": "100644",
+    "sha256": "de5145cb81772f3fe37d9943f3521ee4c3f4c6cbf4107dec252e98a06f2f3f4c"
+  },
+  "runtime/word-spacing-batched-final-0201b549/diagnostics/batch-03-timeout/summary.json": {
+    "bytes": 4834,
+    "mode": "100644",
+    "sha256": "67bd5bc22d62d7c3786b16f4e52859be05abd93a4b3dce57e18d482d7876f488"
+  },
+  "runtime/word-spacing-batched-final-0201b549/inputs-after.json.gz": {
+    "bytes": 282363,
+    "mode": "100644",
+    "sha256": "a45cd2bb54566bb667a769131a3304a8c51bb07acca86fb6e32d88140ee43daa"
+  },
+  "runtime/word-spacing-batched-final-0201b549/inputs-before.json.gz": {
+    "bytes": 282363,
+    "mode": "100644",
+    "sha256": "a45cd2bb54566bb667a769131a3304a8c51bb07acca86fb6e32d88140ee43daa"
+  },
+  "runtime/word-spacing-batched-final-0201b549/inputs-final.json.gz": {
+    "bytes": 282363,
+    "mode": "100644",
+    "sha256": "a45cd2bb54566bb667a769131a3304a8c51bb07acca86fb6e32d88140ee43daa"
+  },
+  "runtime/word-spacing-batched-final-0201b549/plan.json": {
+    "bytes": 12679,
+    "mode": "100644",
+    "sha256": "362139b881ba769b72e985f6e3c9126192f1dc53961c2c013a6a8649682d8972"
+  },
+  "runtime/word-spacing-batched-final-0201b549/prior-cases.json.gz": {
+    "bytes": 49617,
+    "mode": "100644",
+    "sha256": "fd156808dba32ae43330da1cd82d4be72cfa886cedaf48a37256133e8c094828"
+  },
+  "runtime/word-spacing-batched-final-0201b549/prior-evidence-audit.json": {
+    "bytes": 56597,
+    "mode": "100644",
+    "sha256": "e5e3f318b07d3b7a7a7bc1d1651562a9c47354158baf73330ffd4b7069935106"
+  },
+  "runtime/word-spacing-batched-final-0201b549/prior-inputs-before.json.gz": {
+    "bytes": 97889,
+    "mode": "100644",
+    "sha256": "38562a55089c2a541699082a8aa078b0f7dac6b98f452c1cf8763aeca7e01060"
+  },
+  "runtime/word-spacing-batched-final-0201b549/prior-report.json": {
+    "bytes": 16035,
+    "mode": "100644",
+    "sha256": "1eedba2558e02b43ac1185ebd580ed25b3a2fe63603e76acf0520018a0c66dc4"
+  },
+  "runtime/word-spacing-batched-final-0201b549/prior-stdout.jsonl.gz": {
+    "bytes": 95177,
+    "mode": "100644",
+    "sha256": "f297c1c5a3066bd72e80fdd5c3b909d0f17a0d7ed6cd2e9583092b6139eff475"
+  },
+  "runtime/word-spacing-batched-final-0201b549/root-binding-aliases.json": {
+    "bytes": 330,
+    "mode": "100644",
+    "sha256": "73e6cdd1f5f05d7241b6288a9d5b58e2253e6f70e0714c093944d1570e636653"
+  },
+  "runtime/word-spacing-batched-final-0201b549/summary.json": {
+    "bytes": 216099,
+    "mode": "100644",
+    "sha256": "c3bb038e4e9d830e0841944e01e150a9c333004b97c0a8fd5b74b7b97bf7a0fd"
+  },
+  "runtime/word-spacing-concurrency-probe.dart": {
+    "bytes": 239,
+    "mode": "100644",
+    "sha256": "06ae90aea2020b1c46d766d5f6d15ffd0a55d9f5d1f95882b8e14e7677a7c816"
+  },
+  "runtime/word-spacing-concurrency-probe.stderr": {
+    "bytes": 0,
+    "mode": "100644",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "runtime/word-spacing-concurrency-probe.stdout": {
+    "bytes": 2,
+    "mode": "100644",
+    "sha256": "53c234e5e8472b6ac51c1ae1cab3fe06fad053beb8ebfd8977b010655bfdd3c3"
+  },
+  "runtime/word-spacing-final-0201b549/command.json": {
+    "bytes": 4228,
+    "mode": "100644",
+    "sha256": "29f931fcd7a7eb97cef59eb5eb548876f5174918001d6de3a36e13eabbb3ce2a"
+  },
+  "runtime/word-spacing-final-0201b549/inputs-before.json.gz": {
+    "bytes": 282252,
+    "mode": "100644",
+    "sha256": "8ba988e8945a3b5c5848cd830ccd05addbb694955340a2c2db5d983ff7948841"
+  },
+  "runtime/word-spacing-final-0201b549/plan.json": {
+    "bytes": 11806,
+    "mode": "100644",
+    "sha256": "ba6165c29a73380150c6b364fbf545e732f85a109b0bc5c92a5d9ea6c8a5a634"
+  },
+  "runtime/word-spacing-final-0201b549/prior-cases.json.gz": {
+    "bytes": 49617,
+    "mode": "100644",
+    "sha256": "fd156808dba32ae43330da1cd82d4be72cfa886cedaf48a37256133e8c094828"
+  },
+  "runtime/word-spacing-final-0201b549/prior-evidence-audit.json": {
+    "bytes": 56597,
+    "mode": "100644",
+    "sha256": "e5e3f318b07d3b7a7a7bc1d1651562a9c47354158baf73330ffd4b7069935106"
+  },
+  "runtime/word-spacing-final-0201b549/prior-inputs-before.json.gz": {
+    "bytes": 97889,
+    "mode": "100644",
+    "sha256": "38562a55089c2a541699082a8aa078b0f7dac6b98f452c1cf8763aeca7e01060"
+  },
+  "runtime/word-spacing-final-0201b549/prior-report.json": {
+    "bytes": 16035,
+    "mode": "100644",
+    "sha256": "1eedba2558e02b43ac1185ebd580ed25b3a2fe63603e76acf0520018a0c66dc4"
+  },
+  "runtime/word-spacing-final-0201b549/prior-stdout.jsonl.gz": {
+    "bytes": 95177,
+    "mode": "100644",
+    "sha256": "f297c1c5a3066bd72e80fdd5c3b909d0f17a0d7ed6cd2e9583092b6139eff475"
+  },
+  "runtime/word-spacing-final-0201b549/stderr.log": {
+    "bytes": 0,
+    "mode": "100644",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "runtime/word-spacing-final-0201b549/stdout.jsonl": {
+    "bytes": 1344682,
+    "mode": "100644",
+    "sha256": "71e399799ecdf6cfb389cf2664f8e3d4f2c2682de3c277c6a25841d51761c502"
+  },
+  "runtime/word-spacing-final-launch.stderr": {
+    "bytes": 0,
+    "mode": "100644",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "runtime/word-spacing-final-launch.stdout": {
+    "bytes": 240,
+    "mode": "100644",
+    "sha256": "cc4e20a8d80e5e1657f34f0e1766697276ed8f39931d95ae659a1c3059acd4c0"
+  },
+  "runtime/word-spacing-gate-runner-help.stderr": {
+    "bytes": 0,
+    "mode": "100644",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "runtime/word-spacing-gate-runner-help.txt": {
+    "bytes": 6533,
+    "mode": "100644",
+    "sha256": "23c711166086711d6321ba13ee83724bfb8e4084e60f2871941aa57908c43b8e"
+  },
+  "runtime/word-spacing-interrupted-observation/inputs-at-observation.json.gz": {
+    "bytes": 282252,
+    "mode": "100644",
+    "sha256": "8ba988e8945a3b5c5848cd830ccd05addbb694955340a2c2db5d983ff7948841"
+  },
+  "runtime/word-spacing-interrupted-observation/observation.json": {
+    "bytes": 2351,
+    "mode": "100644",
+    "sha256": "8bca4ef39cb3cf7917aec1b1a0ba8a27174e5a3c79ac5fd6199c0a07389edea2"
+  },
+  "runtime/word-spacing-regression-reproduction.md": {
+    "bytes": 6542,
+    "mode": "100644",
+    "sha256": "21380571921b14914e60e12a53dfdde89aca720e0997eff0bdefba243e6f4d3a"
+  }
+}

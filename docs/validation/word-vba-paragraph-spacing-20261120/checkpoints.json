@@ -1,0 +1,85 @@
+{
+  "schema": "quds-word-spacing-checkpoints/v1",
+  "branch": "codex/word-vba-paragraph-spacing-20261120",
+  "pr": 263,
+  "source_qualification_commit": "0201b549d0dc3f601c50e36255d557034cb01699",
+  "captured_main": "3ee4e3622c9a2198d384ed1cb296ab092a8838d0",
+  "checkpoints": [
+    {
+      "commit": "c7e721b7703766491fd4459b69de30bf68d9010d",
+      "tree": "322a74bcdf309f6834296bdcc8cf856882a6a834",
+      "committed_at": "2026-11-20T18:28:37+01:00",
+      "subject": "Seal cached-mail qualification, independent reviews and final intake [skip ci]",
+      "parents": [
+        "2c0c9bed091eb6bfa5a2aed153f48fc79569a433"
+      ],
+      "preservation": "remote branch point"
+    },
+    {
+      "commit": "27b39fa983c4875e3074e07b9430d503ebb4994e",
+      "tree": "559356156f1a4fb9d133f54aea1ae9ae6dca61c8",
+      "committed_at": "2026-11-20T18:41:37+01:00",
+      "subject": "Reconcile all captured heads and record Word spacing implementation contract [skip ci]",
+      "parents": [
+        "c7e721b7703766491fd4459b69de30bf68d9010d"
+      ],
+      "preservation": "created and confirmed by non-forced expected-head update"
+    },
+    {
+      "commit": "5ad4461a93c835479bf67acab63623944b3900a3",
+      "tree": "cd4bb681ccb543a79f6234e0c5ace2c507c2cd57",
+      "committed_at": "2026-11-20T18:48:39+01:00",
+      "subject": "Implement guarded Word VBA custom spacing, presets and line-point conversions [skip ci]",
+      "parents": [
+        "27b39fa983c4875e3074e07b9430d503ebb4994e"
+      ],
+      "preservation": "created and confirmed by non-forced expected-head update"
+    },
+    {
+      "commit": "0201b549d0dc3f601c50e36255d557034cb01699",
+      "tree": "86531c002a6b1d6e748849f7370a87072a5fa768",
+      "committed_at": "2026-11-20T18:53:01+01:00",
+      "subject": "Close Word spacing preservation review findings and expand portable regressions [skip ci]",
+      "parents": [
+        "5ad4461a93c835479bf67acab63623944b3900a3"
+      ],
+      "preservation": "created and confirmed by non-forced expected-head update"
+    },
+    {
+      "commit": "07860e6b5dbad983523d857bd9de4e13eadced7b",
+      "tree": "07faa04d00a58a45e33656bdc93dd2bf6fc5553a",
+      "committed_at": "2026-11-20T19:26:23+01:00",
+      "subject": "Preserve completed Word spacing evidence and interrupted regression diagnostics [skip ci]",
+      "parents": [
+        "0201b549d0dc3f601c50e36255d557034cb01699"
+      ],
+      "preservation": "created and confirmed by non-forced expected-head update while local source remained frozen"
+    },
+    {
+      "commit": "d906a2d3c930b404571a223f4addc3e00ccf84e0",
+      "tree": "b5cedef8acbdd6be61d848c78777fca0f8cbcb3f",
+      "committed_at": "2026-11-20T19:42:01+01:00",
+      "subject": "Checkpoint accepted Word regression batches and retain timeout diagnostics [skip ci]",
+      "parents": [
+        "07860e6b5dbad983523d857bd9de4e13eadced7b"
+      ],
+      "preservation": "created and confirmed by non-forced expected-head update while local source remained frozen"
+    },
+    {
+      "commit": "ed750f1f6b8acab88406fd506e0dd511adcc4485",
+      "tree": "9259de52b948a5edf0bbc86cad697a79ab38a08a",
+      "committed_at": "2026-11-20T19:47:55+01:00",
+      "subject": "Reconcile reviewed late heads and correct macOS deployment guard [skip ci]",
+      "parents": [
+        "d906a2d3c930b404571a223f4addc3e00ccf84e0",
+        "a51c20737b1932d9c6475ea6dddc33fbd50b2c17",
+        "5a73a056f7c757a64d56345c31eabdd6de6eb18a",
+        "3bbd414d8f1129bd802b33c3af961d5c12489da2"
+      ],
+      "preservation": "actual late-head merge parents; non-forced expected-head update; local tested source stayed frozen"
+    }
+  ],
+  "force_updates": false,
+  "github_actions": "not queried or awaited",
+  "later_evidence_checkpoints": "Later reconciliation and final qualification commits are recorded in Git history and retain the qualified source and remote checkpoints as ancestors."
+}
