@@ -180,8 +180,8 @@ class LaidOutLine {
       ? null
       : proofingOffsets![layoutOffset];
 
-  /// Inner left/right pad for table-cell text (`tblCellMar` 108 twips).
-  static const double tableCellPad = 5.4;
+  /// Inner left/right pad for table-cell text (85 twips).
+  static const double tableCellPad = 4.25;
 
   /// Inner pad for absolutely placed [WmlFrame] text.
   static const double framePad = 8;
@@ -1698,8 +1698,13 @@ class WordLayoutEngine {
       if (continuous && pages.isNotEmpty) {
         final LaidOutPage last = pages.removeLast();
         flow.current.addAll(last.lines);
+        // Page chrome is regenerated below for the active section. Carry only
+        // the recorded body frames; copying header/footer pictures into the
+        // body required lossy visual guesses to remove them again afterward.
         flow.currentFrames.addAll(
-          last.frames.where((LaidOutBox b) => !b.isNoteContent),
+          last.frames
+              .take(last._origin?.bodyFrames ?? last.frames.length)
+              .where((LaidOutBox b) => !b.isNoteContent),
         );
         flow.pageIndex = last.index;
         flow.y = _contentBottom(last, fallback: _bodyTopClearingLogo(section));
@@ -3348,7 +3353,15 @@ class WordLayoutEngine {
             pageNumber,
             firstInSection: firstInSection,
           );
-    if (visuals.isEmpty) {
+    final List<WmlParagraph> story = isFooter
+        ? section.footerForPage(pageNumber, firstInSection: firstInSection)
+        : section.headerForPage(pageNumber, firstInSection: firstInSection);
+    final List<WmlVisual> inlineVisuals = <WmlVisual>[
+      for (final WmlParagraph paragraph in story)
+        for (final WmlRun run in paragraph.inlines.whereType<WmlRun>())
+          if (run.inlineVisual != null) run.inlineVisual!,
+    ];
+    if (visuals.isEmpty && inlineVisuals.isEmpty) {
       return const <LaidOutBox>[];
     }
     final double bandTop = isFooter
@@ -3357,6 +3370,32 @@ class WordLayoutEngine {
         : section.margins.header;
     final List<LaidOutBox> frames = <LaidOutBox>[];
     var x = section.margins.left;
+    // Header/footer tables are flattened to their paragraphs by the source
+    // model. Keep their inline pictures (typically the organisation logo)
+    // instead of painting U+FFFC as a row of missing-glyph boxes.
+    var inlineX = section.margins.left;
+    for (final WmlVisual item in inlineVisuals) {
+      final OfficeVisual visual = item.visual;
+      final double width = visual.width.clamp(16, section.contentWidth);
+      final double height = visual.height.clamp(12, 120);
+      frames.add(
+        LaidOutBox(
+          x: inlineX,
+          y: bandTop,
+          width: width,
+          height: height,
+          fillColor: null,
+          strokeColor: '00000000',
+          kind: LaidOutBoxKind.picture,
+          visual: visual,
+          strokeTop: false,
+          strokeRight: false,
+          strokeBottom: false,
+          strokeLeft: false,
+        ),
+      );
+      inlineX += width + 8;
+    }
     for (final WmlVisual item in visuals) {
       final OfficeVisual visual = item.visual;
       final double width = visual.width.clamp(16, section.pageSize.width);
@@ -3371,6 +3410,20 @@ class WordLayoutEngine {
                       visual.offsetY
                 : visual.offsetY)
           : bandTop;
+      // One model visual can be projected into both story collections. Only
+      // the same visual at the exact same placement is redundant. Different
+      // images, matching byte lengths, and separate placements all survive.
+      if (frames.any(
+        (frame) =>
+            identical(frame.visual, visual) &&
+            frame.x == vx &&
+            frame.y == vy &&
+            frame.width == width &&
+            frame.height == height,
+      )) {
+        x = vx + width + 8;
+        continue;
+      }
       frames.add(
         LaidOutBox(
           x: vx,
@@ -3958,7 +4011,7 @@ class WordLayoutEngine {
       final WmlParagraph paragraph = story[i];
       final WmlRunProps run = WmlRunEdit.propsAt(paragraph, 0);
       final WmlDocument? doc = _layoutDoc;
-      final String source = paragraph.text;
+      final String source = paragraph.text.replaceAll('\uFFFC', ' ');
       final String raw = source.trim();
       final int rawStart = source.length - source.trimLeft().length;
       final String text;

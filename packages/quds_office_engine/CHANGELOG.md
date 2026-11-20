@@ -13,6 +13,15 @@ All notable changes to `quds_office_engine` are documented here.
   examples under distinct filenames. Document the Single-precision and native
   ownership limits.
 
+- Preserve distinct header/footer pictures and separate placements when
+  projecting inline and anchored visuals. Suppress only the same visual at
+  the same placement, and regenerate header/footer frames across continuous
+  sections without treating them as body content.
+
+- Preserve explicitly authored table-header run colors and bold-off values
+  when applying first-row table styles, while retaining the style defaults
+  for runs without those direct properties.
+
 - Fall back to full Word layout for changed footnote/endnote paragraphs,
   including nested note tables, so formatting edits cannot reuse stale note
   geometry. Keep incremental body edits when note content is unchanged and

@@ -5,6 +5,17 @@ measurement implementation. The incoming checkpoint reports in this directory
 are preserved as historical evidence; their earlier runtime limitations do not
 describe the executed results below.
 
+## Latest-main native follow-up
+
+The later intake of main at
+`e975cec13b289fe067ef406cd3044701ecc44744` changes native Word layout and
+deserialization, while the measurement compiler remains byte-identical. The
+integration also repairs header-picture identity/placement handling and preserves
+explicit table-header run color and bold-off formatting. Final qualification of
+those native changes is pending at this source checkpoint. The receipts below
+remain bound to their stated earlier source; they are not a claim that the two
+native files stayed unchanged through this later intake.
+
 ## Result and captured source
 
 The accepted VM regression corpus contains **3598 passing cases across
@@ -29,8 +40,9 @@ historical-mail-core/hosted-dependencies.json. It records the same 56 hosted
 packages used by the Word harness, with cached hashes matching the repository
 lock. The captured Mail-core and Word lockfiles are byte-identical.
 
-Later evidence and Mail integration commits retain these Word inputs; the
-integration report records the final source identity check. No GitHub Actions
+The Mail-only checkpoint `85f4ef96` retained all 986 of these Word inputs. The
+subsequent main intake is covered by the native follow-up described above.
+No GitHub Actions
 run, check status, or workflow result was awaited or used as a qualification
 gate. Workflow settings were not changed.
 

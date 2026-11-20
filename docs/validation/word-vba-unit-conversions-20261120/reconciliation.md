@@ -201,3 +201,31 @@ Variant flow, side-effect ordering, near-grid rejection and large-scalar
 cases are included in the same Word test gate. Only canonical Dart formatting
 is applied to the captured file; its expected behavior is retained. Full
 Mail branch ancestry and product integration remain a separate reconciliation.
+
+
+## Latest main intake after the Mail checkpoint
+
+Remote main advanced to the fixed head
+`e975cec13b289fe067ef406cd3044701ecc44744` after the captured Mail union was
+saved at `85f4ef96ab4def73b68eccbc82105d89ae5f943b`. The merge preserves all
+incoming main changes. Its additional production paths are:
+
+- `packages/quds_office_engine/lib/src/word/layout/word_layout.dart`
+- `packages/quds_office_engine/lib/src/word/serial/word_deserializer.dart`
+- `packages/quds_office_editor/lib/src/embed/office_system_fonts_io.dart`
+
+These changes affect table padding/styles, header/footer pictures, empty
+paragraph borders, and alternate macOS font filenames. The Word source
+compiler, measurement fixtures/examples, and reconciled Mail implementation
+are retained. The existing executed qualification remains correctly bound to
+its recorded earlier source; it does not by itself qualify these newly
+arriving Word layout/deserializer changes. A separately source-bound affected
+Word/native gate and final identity report are required.
+
+The incoming PR #271 README is retained under
+[incoming-pr271-main-e975-checkpoint.md](incoming-pr271-main-e975-checkpoint.md).
+Its `current-qualification.json` is preserved byte-for-byte under
+[incoming-pr271-main-qualification.json](incoming-pr271-main-qualification.json).
+The authoritative executed README and all existing receipt/archive bytes are
+kept. Incoming arithmetic, source-review, and reconciliation JSON remain
+historical source evidence; no unexecuted checks are relabeled as local passes.
