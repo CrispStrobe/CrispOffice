@@ -1,0 +1,937 @@
+diff --git a/packages/quds_office_engine/lib/src/slide/model/pml_presentation.dart b/packages/quds_office_engine/lib/src/slide/model/pml_presentation.dart
+index 0ca0af3d9..e9ebe1a5e 100644
+--- a/packages/quds_office_engine/lib/src/slide/model/pml_presentation.dart
++++ b/packages/quds_office_engine/lib/src/slide/model/pml_presentation.dart
+@@ -589,7 +589,6 @@ class PmlSlide {
+     List<PmlShape>? backgroundShapes,
+     bool? backgroundShapesResolved,
+     this.showMasterShapes = true,
+-
+     this.notes = '',
+     this.sourcePartUri,
+     this.transition = const PmlSlideTransition(),
+@@ -605,7 +604,6 @@ class PmlSlide {
+        backgroundShapes = backgroundShapes ?? <PmlShape>[],
+        backgroundShapesResolved =
+            backgroundShapesResolved ?? (backgroundShapes != null),
+-
+        animations = animations ?? <PmlShapeAnimation>[];
+ 
+   /// id API.
+@@ -614,8 +612,9 @@ class PmlSlide {
+   /// shapes API.
+   List<PmlShape> shapes;
+ 
+-  /// Non-editable master/layout decorations painted behind [shapes].
+-  /// Import resolves master visibility here while retaining layout shapes.
++  /// The selected background picture and non-editable master/layout decorations
++  /// painted behind [shapes]. Import resolves master-shape visibility while
++  /// retaining the selected background fill and layout shapes.
+   final List<PmlShape> backgroundShapes;
+ 
+   /// Whether this slide has its own resolved master/layout decorations.
+@@ -633,12 +632,45 @@ class PmlSlide {
+ 
+   String _background;
+   String? _primaryMasterBackground;
++  XmlElement? _sourceBackground;
++  PmlShape? _backgroundPicture;
++  bool _backgroundFromSource = false;
++
++  /// Authored slide fill retained with its namespace bindings for serialization.
++  /// Layout/master fills remain in their owning package parts.
++  XmlElement? get sourceBackground => _sourceBackground;
++
++  /// The selected imported picture, also present first in [backgroundShapes].
++  PmlShape? get backgroundPicture => _backgroundPicture;
++
++  /// A direct solid-color assignment must be serialized as an authored fill.
++  bool get writesSolidBackground =>
++      !_backgroundFromSource &&
++      !inheritsMasterBackground &&
++      _background.isNotEmpty;
++
++  /// Retains an imported fill after its displayed color and image are resolved.
++  void retainSourceBackground(XmlElement? source, {PmlShape? picture}) {
++    _clearSourceBackground();
++    _sourceBackground = source?.copy();
++    _backgroundFromSource = true;
++    _backgroundPicture = picture;
++    if (picture != null) backgroundShapes.insert(0, picture);
++  }
++
++  void _clearSourceBackground() {
++    if (_backgroundPicture != null) backgroundShapes.remove(_backgroundPicture);
++    _sourceBackground = null;
++    _backgroundPicture = null;
++    _backgroundFromSource = false;
++  }
+ 
+   /// Resolved solid background (`RRGGBB`); empty uses the current master.
+   /// Assigning a nonempty color records an explicit slide override.
+   String get background => _background;
+ 
+   set background(String value) {
++    _clearSourceBackground();
+     _background = value;
+     inheritsMasterBackground = value.isEmpty;
+     _primaryMasterBackground = null;
+@@ -654,6 +686,7 @@ class PmlSlide {
+     String value, {
+     required String masterBackground,
+   }) {
++    _clearSourceBackground();
+     _background = value;
+     inheritsMasterBackground = true;
+     _primaryMasterBackground = masterBackground.isEmpty
+@@ -699,18 +732,18 @@ class PmlSlide {
+ 
+   /// copy API.
+   PmlSlide copy({int? id}) {
+-    return PmlSlide(
++    final PmlSlide result = PmlSlide(
+       id: id ?? this.id,
+       layoutName: layoutName,
+       masterName: masterName,
+       background: background,
+       inheritsMasterBackground: inheritsMasterBackground,
+-      showMasterShapes: showMasterShapes,
+       notes: notes,
+       backgroundShapesResolved: backgroundShapesResolved,
+       backgroundShapes: <PmlShape>[
+         for (final PmlShape shape in backgroundShapes) shape.copy(),
+       ],
++      showMasterShapes: showMasterShapes,
+       sourcePartUri: id == null || id == this.id ? sourcePartUri : null,
+       transition: transition,
+       hidden: hidden,
+@@ -719,6 +752,15 @@ class PmlSlide {
+       ],
+       shapes: <PmlShape>[for (final PmlShape shape in shapes) shape.copy()],
+     ).._primaryMasterBackground = _primaryMasterBackground;
++    result._sourceBackground = _sourceBackground?.copy();
++    result._backgroundFromSource = _backgroundFromSource;
++    if (_backgroundPicture != null) {
++      final int index = backgroundShapes.indexOf(_backgroundPicture!);
++      if (index >= 0) {
++        result._backgroundPicture = result.backgroundShapes[index];
++      }
++    }
++    return result;
+   }
+ }
+ 
+diff --git a/packages/quds_office_engine/lib/src/slide/serial/slide_serial.dart b/packages/quds_office_engine/lib/src/slide/serial/slide_serial.dart
+index a795c4a6e..ad33531bf 100644
+--- a/packages/quds_office_engine/lib/src/slide/serial/slide_serial.dart
++++ b/packages/quds_office_engine/lib/src/slide/serial/slide_serial.dart
+@@ -119,10 +119,11 @@ class SlideDeserializer {
+           slideXml,
+           layout?.colors ?? templates.defaultColors,
+         );
++        final XmlElement? sourceBackground = _sourceBackgroundOf(slideXml);
++        final bool hasSlideBackground = sourceBackground != null;
+         final String resolvedBackground =
+             slideBackground ?? layout?.background ?? pres.master.background;
+-        if (slideBackground == null &&
+-            (layout?.inheritsMasterBackground ?? true)) {
++        if (!hasSlideBackground && (layout?.inheritsMasterBackground ?? true)) {
+           pres.slides[i].setInheritedBackground(
+             resolvedBackground,
+             masterBackground: pres.master.background,
+@@ -130,22 +131,28 @@ class SlideDeserializer {
+         } else {
+           pres.slides[i].background = resolvedBackground;
+         }
++        // Background inheritance is independent of master-shape visibility.
++        // Select one fill before painting ordinary master/layout decorations;
++        // an authored solid, gradient, or no-fill also overrides their images.
++        final PmlShape? backgroundImage = hasSlideBackground
++            ? _backgroundImageShape(
++                slideXml,
++                package,
++                package.relationshipsFor(uri),
++                pres.slideWidth,
++                pres.slideHeight,
++              )
++            : layout?.backgroundImage;
++        pres.slides[i].retainSourceBackground(
++          sourceBackground,
++          picture: backgroundImage?.copy(),
++        );
+         if (layout != null) {
+           pres.slides[i].layoutName = layout.name;
+           _inheritPlaceholders(shapes, positioned, <List<PmlShape>>[
+             layout.placeholders,
+             layout.master?.placeholders ?? const <PmlShape>[],
+           ]);
+-          final PmlShape? slideBackgroundImage = _backgroundImageShape(
+-            slideXml,
+-            package,
+-            package.relationshipsFor(uri),
+-            pres.slideWidth,
+-            pres.slideHeight,
+-          );
+-          if (slideBackgroundImage != null) {
+-            pres.slides[i].backgroundShapes.insert(0, slideBackgroundImage);
+-          }
+           pres.slides[i].backgroundShapes.addAll(<PmlShape>[
+             if (pres.slides[i].showMasterShapes && layout.showsMasterShapes)
+               for (final PmlShape shape
+@@ -233,7 +240,6 @@ class SlideDeserializer {
+ 
+   /// `showMasterSp` hides master decorations without hiding layout shapes or
+   /// the editable slide content. XML Schema booleans default to true here.
+-
+   static bool _showsMasterShapes(String xml) {
+     final XmlPullReader reader = XmlPullReader(xml);
+     while (reader.next()) {
+@@ -260,6 +266,19 @@ class SlideDeserializer {
+     return RegExp(r'''\bshow\s*=\s*["'](?:0|false)["']''').hasMatch(attrs);
+   }
+ 
++  /// An explicit background overrides inheritance even without a solid color.
++  static XmlElement? _sourceBackgroundOf(String xml) {
++    final XmlPullReader reader = XmlPullReader(xml);
++    while (reader.next()) {
++      if (reader.eventType == XmlEventType.startElement &&
++          reader.namespaceUri == OfficeNamespaces.p &&
++          reader.localName == 'bg') {
++        return XmlDocument.readElement(reader);
++      }
++    }
++    return null;
++  }
++
+   /// Converts a `p:bg/a:blipFill` into a full-slide picture decoration.
+   static PmlShape? _backgroundImageShape(
+     String xml,
+@@ -290,13 +309,18 @@ class SlideDeserializer {
+         final String? rid =
+             reader.getAttribute('embed') ?? reader.getAttribute('id');
+         final PackageRelationship? rel = rid == null ? null : rels.byId(rid);
+-        if (rel == null) continue;
++        if (rel == null ||
++            rel.type != RelationshipTypes.image ||
++            rel.targetMode != RelationshipTargetMode.internal) {
++          continue;
++        }
+         final PackagePart? part = package.getPart(rels.resolve(rel));
+         if (part == null) continue;
+         return PmlShape(
+           id: 1,
+           name: 'Background',
+           fillColor: '',
++          embedRelId: rid,
+           transform: PmlTransform(x: 0, y: 0, cx: width, cy: height),
+           visual: OfficeVisual(
+             kind: OfficeVisualKind.picture,
+@@ -312,14 +336,20 @@ class SlideDeserializer {
+     return null;
+   }
+ 
+-  /// Resolves a solid `p:bg` fill to `RRGGBB`, honoring theme variants.
++  /// Resolves solid fills, or the first gradient stop as a solid fallback,
++  /// to `RRGGBB`, honoring theme variants. Gradient rendering remains partial.
+   static String? _backgroundOf(String xml, Map<String, String> colors) {
+     final XmlPullReader reader = XmlPullReader(xml);
+     var inBg = false;
++    var fillPending = false;
+     while (reader.next()) {
+       if (reader.eventType == XmlEventType.endElement) {
+         if (reader.localName == 'bg' || reader.localName == 'bgPr') {
+           inBg = false;
++          fillPending = false;
++        } else if (reader.localName == 'solidFill' ||
++            reader.localName == 'gradFill') {
++          fillPending = false;
+         }
+         continue;
+       }
+@@ -327,6 +357,9 @@ class SlideDeserializer {
+       if (reader.localName == 'bg' || reader.localName == 'bgPr') {
+         inBg = true;
+       } else if (inBg &&
++          (reader.localName == 'solidFill' || reader.localName == 'gradFill')) {
++        fillPending = true;
++      } else if (fillPending &&
+           const <String>{
+             'srgbClr',
+             'schemeClr',
+@@ -352,32 +385,8 @@ class SlideDeserializer {
+       if (part == null) {
+         continue;
+       }
+-      final XmlPullReader reader = XmlPullReader(part.readText());
+-      var inBg = false;
+-      while (reader.next()) {
+-        if (reader.eventType == XmlEventType.endElement) {
+-          if (reader.localName == 'bg' || reader.localName == 'bgPr') {
+-            inBg = false;
+-          }
+-          continue;
+-        }
+-        if (reader.eventType != XmlEventType.startElement) {
+-          continue;
+-        }
+-        if (reader.localName == 'bg' || reader.localName == 'bgPr') {
+-          inBg = true;
+-        } else if (reader.localName == 'solidFill' && inBg) {
+-        } else if (inBg &&
+-            const <String>{
+-              'srgbClr',
+-              'schemeClr',
+-              'sysClr',
+-              'prstClr',
+-            }.contains(reader.localName)) {
+-          final String? val = resolveDrawingmlColor(reader, colors);
+-          if (val != null && val.isNotEmpty) return val;
+-        }
+-      }
++      final String? color = _backgroundOf(part.readText(), colors);
++      if (color != null) return color;
+     }
+     return null;
+   }
+@@ -441,9 +450,9 @@ class _SlideTemplate {
+     required this.placeholders,
+     required this.decorations,
+     this.background,
++    this.backgroundImage,
+     this.inheritsMasterBackground = false,
+     this.showsMasterShapes = true,
+-
+     this.master,
+   });
+ 
+@@ -452,9 +461,9 @@ class _SlideTemplate {
+   final List<PmlShape> placeholders;
+   final List<PmlShape> decorations;
+   final String? background;
++  final PmlShape? backgroundImage;
+   final bool inheritsMasterBackground;
+   final bool showsMasterShapes;
+-
+   final _SlideTemplate? master;
+ }
+ 
+@@ -534,6 +543,8 @@ class _SlideTemplates {
+       );
+     }
+     final String? background = SlideDeserializer._backgroundOf(xml, colors);
++    final bool hasBackground =
++        SlideDeserializer._sourceBackgroundOf(xml) != null;
+     return _layouts[uri] = _SlideTemplate(
+       name: _cSldName(xml) ?? 'Layout',
+       colors: colors,
+@@ -541,11 +552,19 @@ class _SlideTemplates {
+         for (final PmlShape shape in shapes)
+           if (shape.placeholder && positioned.contains(shape)) shape,
+       ],
+-      decorations: _decorations(shapes, package, uri, background: background),
++      decorations: _decorations(shapes, package, uri),
+       background: background ?? master?.background,
+-      inheritsMasterBackground: background == null,
++      backgroundImage: hasBackground
++          ? SlideDeserializer._backgroundImageShape(
++              xml,
++              package,
++              package.relationshipsFor(uri),
++              slideWidth,
++              slideHeight,
++            )
++          : master?.backgroundImage,
++      inheritsMasterBackground: !hasBackground,
+       showsMasterShapes: SlideDeserializer._showsMasterShapes(xml),
+-
+       master: master,
+     );
+   }
+@@ -577,39 +596,29 @@ class _SlideTemplates {
+         for (final PmlShape shape in shapes)
+           if (shape.placeholder && positioned.contains(shape)) shape,
+       ],
+-      decorations: _decorations(
+-        shapes,
++      decorations: _decorations(shapes, package, uri),
++      background: SlideDeserializer._backgroundOf(xml, colors),
++      backgroundImage: SlideDeserializer._backgroundImageShape(
++        xml,
+         package,
+-        uri,
+-        background: SlideDeserializer._backgroundOf(xml, colors),
++        package.relationshipsFor(uri),
++        slideWidth,
++        slideHeight,
+       ),
+-      background: SlideDeserializer._backgroundOf(xml, colors),
+     );
+   }
+ 
+-  List<PmlShape> _decorations(
++  static List<PmlShape> _decorations(
+     List<PmlShape> shapes,
+     OpcPackage package,
+-    String uri, {
+-    String? background,
+-  }) {
++    String uri,
++  ) {
+     final List<PmlShape> decorations = <PmlShape>[
+       for (final PmlShape shape in shapes)
+         if (!shape.placeholder) shape,
+     ];
+     final RelationshipCollection rels = package.relationshipsFor(uri);
+     SlideDeserializer._bindShapeMedia(decorations, package, rels);
+-    final String? xml = package.getPart(uri)?.readText();
+-    if (xml != null) {
+-      final PmlShape? image = SlideDeserializer._backgroundImageShape(
+-        xml,
+-        package,
+-        rels,
+-        slideWidth,
+-        slideHeight,
+-      );
+-      if (image != null) decorations.insert(0, image);
+-    }
+     return decorations;
+   }
+ 
+@@ -805,7 +814,11 @@ class SlideSerializer {
+     var mediaIndex = 1;
+     var chartIndex = 1;
+     final String owner = slideUri.split('/').last.replaceAll('.xml', '');
+-    for (final PmlShape shape in slide.shapes) {
++    for (final PmlShape shape in <PmlShape>[
++      if (slide.sourceBackground != null && slide.backgroundPicture != null)
++        slide.backgroundPicture!,
++      ...slide.shapes,
++    ]) {
+       final OfficeVisual? visual = shape.visual;
+       if (visual == null) {
+         continue;
+diff --git a/packages/quds_office_engine/lib/src/slide/shapes/drawingml.dart b/packages/quds_office_engine/lib/src/slide/shapes/drawingml.dart
+index a15e18af3..03ae14b35 100644
+--- a/packages/quds_office_engine/lib/src/slide/shapes/drawingml.dart
++++ b/packages/quds_office_engine/lib/src/slide/shapes/drawingml.dart
+@@ -672,6 +672,39 @@ String slideToXml(PmlSlide slide, {Map<PmlShape, String>? embedIds}) {
+   /// writeStartElement API.
+   w.writeStartElement('cSld', prefix: 'p');
+ 
++  final XmlElement? sourceBackground = slide.sourceBackground?.copy();
++  if (sourceBackground != null) {
++    final PmlShape? picture = slide.backgroundPicture;
++    final String? embed = picture == null
++        ? null
++        : embedIds?[picture] ?? picture.embedRelId;
++    if (embed != null) {
++      sourceBackground
++          .firstChild('bgPr', namespaceUri: OfficeNamespaces.p)
++          ?.firstChild('blipFill', namespaceUri: OfficeNamespaces.a)
++          ?.firstChild('blip', namespaceUri: OfficeNamespaces.a)
++          ?.setAttribute(
++            'embed',
++            embed,
++            prefix: 'r',
++            namespaceUri: OfficeNamespaces.r,
++          );
++    }
++    sourceBackground.writeTo(w);
++  } else if (slide.writesSolidBackground) {
++    w.writeStartElement('bg', prefix: 'p');
++    w.writeStartElement('bgPr', prefix: 'p');
++    w.writeStartElement('solidFill', prefix: 'a');
++    w.writeEmptyElement(
++      'srgbClr',
++      prefix: 'a',
++      attributes: <String, String>{'val': slide.background},
++    );
++    w.writeEndElement();
++    w.writeEndElement();
++    w.writeEndElement();
++  }
++
+   /// writeStartElement API.
+   w.writeStartElement('spTree', prefix: 'p');
+ 
+diff --git a/packages/quds_office_engine/test/office_pdf_export_test.dart b/packages/quds_office_engine/test/office_pdf_export_test.dart
+index f9198d9c0..af2e02b40 100644
+--- a/packages/quds_office_engine/test/office_pdf_export_test.dart
++++ b/packages/quds_office_engine/test/office_pdf_export_test.dart
+@@ -7,6 +7,74 @@ import 'package:test/test.dart';
+ void main() {
+   final SfntFont? font = _tryFont();
+ 
++  for (final bool cropped in <bool>[false, true]) {
++    test('PPT PDF draws the authored picture border after crop=$cropped', () {
++      final OfficeVisual picture = OfficeVisual(
++        kind: OfficeVisualKind.picture,
++        imageBytes: PngBytes.studioCard(width: 8, height: 8),
++      );
++      picture.picture
++        ..cropLeft = cropped ? 0.25 : 0
++        ..cropBottom = cropped ? 0.1 : 0
++        ..borderColor = 'CC3300'
++        ..borderWidth = 2.5;
++      final PmlPresentation deck = PmlPresentation(
++        slides: <PmlSlide>[
++          PmlSlide(
++            id: 256,
++            shapes: <PmlShape>[
++              PmlShape(
++                id: 2,
++                name: 'Bordered picture',
++                transform: const PmlTransform(
++                  x: 10 * 12700,
++                  y: 20 * 12700,
++                  cx: 100 * 12700,
++                  cy: 50 * 12700,
++                ),
++                visual: picture,
++              ),
++            ],
++          ),
++        ],
++      );
++      final String content = _inflated(
++        OfficePdfExport.presentation(deck),
++      ).join();
++      final int image = content.indexOf('/Im1 Do');
++      final List<RegExpMatch> borders = RegExp(r'([0-9.]+) w\n')
++          .allMatches(content)
++          .where((match) => double.parse(match.group(1)!) == 2.5)
++          .toList();
++      expect(image, greaterThanOrEqualTo(0));
++      expect(borders, hasLength(1));
++      final int border = borders.single.start;
++      expect(border, greaterThan(image));
++      expect(content.substring(border), contains('0.800 0.200 0 RG'));
++      expect(
++        content.substring(border),
++        matches(RegExp(r'10 20 100 50 re\s+S')),
++      );
++      if (cropped) {
++        // The border follows restoration of the crop clip, so it outlines
++        // the visible picture frame rather than the full expanded image.
++        expect(
++          RegExp(
++            r'^Q$',
++            multiLine: true,
++          ).allMatches(content.substring(image, border)),
++          hasLength(2),
++        );
++      }
++      picture.picture.borderWidth = 0;
++      final String borderless = _inflated(
++        OfficePdfExport.presentation(deck),
++      ).join();
++      expect(borderless, contains('/Im1 Do'));
++      expect(borderless, isNot(contains('0.800 0.200 0 RG')));
++    });
++  }
++
+   test(
+     'PPT PDF inherits the master background and honors a slide override',
+     () {
+diff --git a/packages/quds_office_engine/test/slide_import_fidelity_test.dart b/packages/quds_office_engine/test/slide_import_fidelity_test.dart
+index 30241bbf8..7425dbf87 100644
+--- a/packages/quds_office_engine/test/slide_import_fidelity_test.dart
++++ b/packages/quds_office_engine/test/slide_import_fidelity_test.dart
+@@ -1,6 +1,7 @@
+ import 'dart:convert';
+ import 'dart:typed_data';
+ 
++import 'package:image/image.dart' as image;
+ import 'package:quds_office_engine/quds_office_engine.dart';
+ import 'package:test/test.dart';
+ 
+@@ -66,6 +67,26 @@ const String _theme =
+     '<a:accent2><a:srgbClr val="ED7D31"/></a:accent2>'
+     '</a:clrScheme></a:themeElements></a:theme>';
+ 
++const String _pictureBackground =
++    '<p:bg><p:bgPr><a:blipFill><a:blip r:embed="rId99"/>'
++    '<a:stretch><a:fillRect/></a:stretch></a:blipFill></p:bgPr></p:bg>';
++
++String _solidBackground(String color) =>
++    '<p:bg><p:bgPr><a:solidFill><a:srgbClr val="$color"/>'
++    '</a:solidFill></p:bgPr></p:bg>';
++
++String _gradientBackground(String first, String second) =>
++    '<p:bg><p:bgPr><a:gradFill><a:gsLst>'
++    '<a:gs pos="0"><a:srgbClr val="$first"/></a:gs>'
++    '<a:gs pos="100000"><a:srgbClr val="$second"/></a:gs>'
++    '</a:gsLst><a:lin ang="0" scaled="1"/></a:gradFill></p:bgPr></p:bg>';
++
++Uint8List _backgroundPng(int red, int green, int blue) => Uint8List.fromList(
++  image.encodePng(
++    image.Image(width: 1, height: 1)..setPixelRgba(0, 0, red, green, blue, 255),
++  ),
++);
++
+ /// A deck with a primary master/layout and an optional second-slide master.
+ PmlPresentation _deck(
+   List<String> slides, {
+@@ -77,6 +98,9 @@ PmlPresentation _deck(
+   String masterShapes = '',
+   String? layoutShowMasterShapes,
+   Uint8List? backgroundImage,
++  Uint8List? layoutBackgroundImage,
++  Uint8List? masterBackgroundImage,
++  bool linkSlideLayout = true,
+ }) {
+   final OpcPackage package = OpcPackage.create(OpcPackageKind.slide);
+   final RelationshipCollection presRels = package.relationshipsFor(
+@@ -188,6 +212,28 @@ PmlPresentation _deck(
+       backgroundImage,
+     );
+   }
++  for (final entry in <(String, String, Uint8List?)>[
++    (
++      '/ppt/slideLayouts/slideLayout1.xml',
++      'layout-background.png',
++      layoutBackgroundImage,
++    ),
++    (
++      '/ppt/slideMasters/slideMaster1.xml',
++      'master-background.png',
++      masterBackgroundImage,
++    ),
++  ]) {
++    if (entry.$3 == null) continue;
++    package.createPart('/ppt/media/${entry.$2}', 'image/png', entry.$3!);
++    package
++        .relationshipsFor(entry.$1)
++        .add(
++          type: RelationshipTypes.image,
++          id: 'rId99',
++          target: '../media/${entry.$2}',
++        );
++  }
+   final List<String> ids = <String>[];
+   for (int i = 0; i < slides.length; i++) {
+     final String uri = '/ppt/slides/slide${i + 1}.xml';
+@@ -196,12 +242,14 @@ PmlPresentation _deck(
+     }
+     package.getPart(uri)!.writeText(slides[i]);
+     final RelationshipCollection slideRels = package.relationshipsFor(uri);
+-    slideRels.add(
+-      type: RelationshipTypes.slideLayout,
+-      target: secondaryMasterBackground != null && i == 1
+-          ? '../slideLayouts/slideLayout2.xml'
+-          : '../slideLayouts/slideLayout1.xml',
+-    );
++    if (linkSlideLayout) {
++      slideRels.add(
++        type: RelationshipTypes.slideLayout,
++        target: secondaryMasterBackground != null && i == 1
++            ? '../slideLayouts/slideLayout2.xml'
++            : '../slideLayouts/slideLayout1.xml',
++      );
++    }
+     if (backgroundImage != null) {
+       slideRels.add(
+         type: RelationshipTypes.image,
+@@ -588,6 +636,302 @@ void main() {
+       }
+     });
+ 
++    test(
++      'authored slide image replaces inherited images behind decorations',
++      () {
++        final Uint8List slidePng = _backgroundPng(255, 0, 0);
++        final PmlPresentation deck = _deck(
++          <String>[_sld(_textBox(2, 'Slide'), background: _pictureBackground)],
++          backgroundImage: slidePng,
++          masterBackground: _pictureBackground,
++          masterBackgroundImage: _backgroundPng(0, 255, 0),
++          layoutBackground: _pictureBackground,
++          layoutBackgroundImage: _backgroundPng(0, 0, 255),
++          masterShapes: _textBox(8, 'Master decoration'),
++          layoutShapes: _textBox(9, 'Layout decoration'),
++        );
++        for (final PmlSlide slide in <PmlSlide>[
++          deck.slides.single,
++          deck.slides.single.copy(),
++          SlideDeserializer()
++              .readBytes(SlideSerializer().writeBytes(deck))
++              .slides
++              .single,
++        ]) {
++          expect(slide.backgroundShapes.map((shape) => shape.name), <String>[
++            'Background',
++            'TextBox 8',
++            'TextBox 9',
++          ]);
++          expect(slide.backgroundShapes.first.visual?.imageBytes, slidePng);
++          expect(slide.inheritsMasterBackground, isFalse);
++        }
++      },
++    );
++
++    test(
++      'copied authored background gets a valid new slide image relationship',
++      () {
++        final Uint8List png = _backgroundPng(240, 120, 20);
++        final PmlPresentation deck = _deck(<String>[
++          _sld('', background: _pictureBackground),
++        ], backgroundImage: png);
++        final PmlSlide original = deck.slides.single;
++        final PmlSlide copy = original.copy(id: 999);
++        expect(copy.sourcePartUri, isNull);
++        expect(
++          identical(copy.sourceBackground, original.sourceBackground),
++          isFalse,
++        );
++        expect(
++          identical(copy.backgroundPicture, original.backgroundPicture),
++          isFalse,
++        );
++        deck.slides.add(copy);
++
++        final PmlPresentation reopened = SlideDeserializer().readBytes(
++          SlideSerializer().writeBytes(deck),
++        );
++        expect(reopened.slides, hasLength(2));
++        expect(
++          reopened.slides.map((slide) => slide.sourcePartUri).toSet(),
++          hasLength(2),
++        );
++        for (final PmlSlide slide in reopened.slides) {
++          expect(slide.backgroundPicture?.visual?.imageBytes, png);
++          final RelationshipCollection rels = reopened.package!
++              .relationshipsFor(slide.sourcePartUri!);
++          final PackageRelationship? rel = rels.byId(
++            slide.backgroundPicture!.embedRelId!,
++          );
++          expect(rel?.type, RelationshipTypes.image);
++          expect(rel?.targetMode, RelationshipTargetMode.internal);
++          expect(
++            reopened.package!.getPart(rels.resolve(rel!))?.readBytes(),
++            png,
++          );
++        }
++      },
++    );
++
++    test(
++      'explicit background edits clear imported fill and keep decorations',
++      () {
++        final PmlPresentation deck = _deck(
++          <String>[_sld('', background: _pictureBackground)],
++          backgroundImage: _backgroundPng(240, 120, 20),
++          layoutBackground: _pictureBackground,
++          layoutBackgroundImage: _backgroundPng(20, 120, 240),
++          masterShapes: _textBox(8, 'Master decoration'),
++        );
++        final PmlSlide slide = deck.slides.single;
++        final PmlSlide untouched = slide.copy();
++        slide.background = '112233';
++        expect(slide.sourceBackground, isNull);
++        expect(slide.backgroundPicture, isNull);
++        expect(slide.backgroundShapes.map((shape) => shape.text), <String>[
++          'Master decoration',
++        ]);
++        expect(untouched.backgroundPicture, isNotNull);
++        final PmlSlide saved = SlideDeserializer()
++            .readBytes(SlideSerializer().writeBytes(deck))
++            .slides
++            .single;
++        expect(saved.background, '112233');
++        expect(saved.backgroundPicture, isNull);
++        expect(saved.inheritsMasterBackground, isFalse);
++
++        slide.background = '';
++        final PmlSlide inherited = SlideDeserializer()
++            .readBytes(SlideSerializer().writeBytes(deck))
++            .slides
++            .single;
++        expect(inherited.sourceBackground, isNull);
++        expect(
++          inherited.backgroundPicture?.visual?.imageBytes,
++          _backgroundPng(20, 120, 240),
++        );
++      },
++    );
++
++    test(
++      'authored gradient retains all stops and inherited namespace bindings',
++      () {
++        final String xml = _sld(
++          '',
++          background: _gradientBackground(
++            '123456',
++            '654321',
++          ).replaceAll('a:', 'ink:'),
++        ).replaceFirst('<p:sld ', '<p:sld xmlns:ink="${OfficeNamespaces.a}" ');
++        final PmlPresentation reopened = SlideDeserializer().readBytes(
++          SlideSerializer().writeBytes(_deck(<String>[xml])),
++        );
++        final PmlSlide slide = reopened.slides.single;
++        expect(slide.background, '123456');
++        final XmlElement? stops = slide.sourceBackground
++            ?.firstChild('bgPr', namespaceUri: OfficeNamespaces.p)
++            ?.firstChild('gradFill', namespaceUri: OfficeNamespaces.a)
++            ?.firstChild('gsLst', namespaceUri: OfficeNamespaces.a);
++        expect(stops, isNotNull);
++        expect(
++          stops!.childElements.map(
++            (stop) => stop
++                .firstChild('srgbClr', namespaceUri: OfficeNamespaces.a)
++                ?.getAttribute('val'),
++          ),
++          <String>['123456', '654321'],
++        );
++      },
++    );
++
++    test('authored noFill survives saving and suppresses inherited images', () {
++      final PmlPresentation deck = _deck(
++        <String>[
++          _sld('', background: '<p:bg><p:bgPr><a:noFill/></p:bgPr></p:bg>'),
++        ],
++        masterBackground: _pictureBackground,
++        masterBackgroundImage: _backgroundPng(20, 120, 240),
++      );
++      final PmlSlide slide = SlideDeserializer()
++          .readBytes(SlideSerializer().writeBytes(deck))
++          .slides
++          .single;
++      expect(slide.backgroundShapes, isEmpty);
++      expect(slide.inheritsMasterBackground, isFalse);
++      expect(
++        slide.sourceBackground
++            ?.firstChild('bgPr', namespaceUri: OfficeNamespaces.p)
++            ?.firstChild('noFill', namespaceUri: OfficeNamespaces.a),
++        isNotNull,
++      );
++    });
++
++    for (final bool local in <bool>[true, false]) {
++      test(
++        '${local ? 'slide' : 'layout'} solid background suppresses inherited images',
++        () {
++          final PmlPresentation deck = _deck(
++            <String>[
++              _sld(
++                _textBox(2, 'Slide'),
++                background: local ? _solidBackground('FFFFFF') : '',
++              ),
++            ],
++            masterBackground: _pictureBackground,
++            masterBackgroundImage: _backgroundPng(0, 255, 0),
++            layoutBackground: local
++                ? _pictureBackground
++                : _solidBackground('FFFFFF'),
++            layoutBackgroundImage: local ? _backgroundPng(0, 0, 255) : null,
++            masterShapes: _textBox(8, 'Master decoration'),
++            layoutShapes: _textBox(9, 'Layout decoration'),
++          );
++          expect(deck.slides.single.background, 'FFFFFF');
++          expect(deck.slides.single.inheritsMasterBackground, isFalse);
++          expect(
++            deck.slides.single.backgroundShapes.map((shape) => shape.text),
++            <String>['Master decoration', 'Layout decoration'],
++          );
++        },
++      );
++    }
++
++    test('layout image replaces master image below ordinary decorations', () {
++      final Uint8List layoutPng = _backgroundPng(0, 0, 255);
++      final PmlSlide slide = _deck(
++        <String>[_sld(_textBox(2, 'Slide'))],
++        masterBackground: _pictureBackground,
++        masterBackgroundImage: _backgroundPng(0, 255, 0),
++        layoutBackground: _pictureBackground,
++        layoutBackgroundImage: layoutPng,
++        masterShapes: _textBox(8, 'Master decoration'),
++        layoutShapes: _textBox(9, 'Layout decoration'),
++      ).slides.single;
++      expect(slide.backgroundShapes.map((shape) => shape.name), <String>[
++        'Background',
++        'TextBox 8',
++        'TextBox 9',
++      ]);
++      expect(slide.backgroundShapes.first.visual?.imageBytes, layoutPng);
++      expect(slide.inheritsMasterBackground, isFalse);
++    });
++
++    for (final bool hideAtSlide in <bool>[true, false]) {
++      test(
++        '${hideAtSlide ? 'slide' : 'layout'} showMasterSp hides decorations but keeps background image',
++        () {
++          final Uint8List masterPng = _backgroundPng(0, 255, 0);
++          final PmlSlide slide = _deck(
++            <String>[
++              _sld(
++                _textBox(2, 'Slide'),
++                showMasterShapes: hideAtSlide ? '0' : null,
++              ),
++            ],
++            layoutShowMasterShapes: hideAtSlide ? null : 'false',
++            masterBackground: _pictureBackground,
++            masterBackgroundImage: masterPng,
++            masterShapes: _textBox(8, 'Master decoration'),
++            layoutShapes: _textBox(9, 'Layout decoration'),
++          ).slides.single;
++          expect(slide.backgroundShapes.map((shape) => shape.name), <String>[
++            'Background',
++            'TextBox 9',
++          ]);
++          expect(slide.backgroundShapes.first.visual?.imageBytes, masterPng);
++          expect(slide.inheritsMasterBackground, isTrue);
++        },
++      );
++    }
++
++    test('authored image background does not need a layout relationship', () {
++      final Uint8List png = _backgroundPng(255, 0, 0);
++      final PmlSlide slide = _deck(
++        <String>[_sld(_textBox(2, 'Slide'), background: _pictureBackground)],
++        backgroundImage: png,
++        linkSlideLayout: false,
++      ).slides.single;
++      expect(slide.backgroundShapes.single.visual?.imageBytes, png);
++      expect(slide.inheritsMasterBackground, isFalse);
++    });
++
++    test(
++      'gradient fallback follows slide layout and secondary master scope',
++      () {
++        final PmlPresentation masters = _deck(
++          <String>[_sld(''), _sld('')],
++          masterBackground: _gradientBackground('112233', '445566'),
++          secondaryMasterBackground: _gradientBackground('778899', 'AABBCC'),
++        );
++        expect(masters.master.background, '112233');
++        expect(masters.slides.map((slide) => slide.background), <String>[
++          '112233',
++          '778899',
++        ]);
++        final PmlPresentation overrides = _deck(
++          <String>[
++            _sld('', background: _gradientBackground('123456', '654321')),
++          ],
++          masterBackground: _pictureBackground,
++          masterBackgroundImage: _backgroundPng(0, 255, 0),
++          layoutBackground: _gradientBackground('ABCDEF', 'FEDCBA'),
++        );
++        expect(overrides.slides.single.background, '123456');
++        expect(overrides.slides.single.backgroundShapes, isEmpty);
++        expect(overrides.slides.single.inheritsMasterBackground, isFalse);
++        final PmlPresentation layout = _deck(
++          <String>[_sld('')],
++          masterBackground: _pictureBackground,
++          masterBackgroundImage: _backgroundPng(0, 255, 0),
++          layoutBackground: _gradientBackground('ABCDEF', 'FEDCBA'),
++        );
++        expect(layout.slides.single.background, 'ABCDEF');
++        expect(layout.slides.single.backgroundShapes, isEmpty);
++        expect(layout.slides.single.inheritsMasterBackground, isFalse);
++      },
++    );
++
+     test('master background resolves theme lumMod', () {
+       final PmlPresentation deck = _deck(
+         <String>[_sld(_textBox(2, 'Slide'))],

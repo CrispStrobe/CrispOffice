@@ -1,0 +1,61 @@
+{
+  "acceptance_scope": "All complete-package controlled cases; the optional real qualified macOS dylib digest check was declared skipped because its artifact path was not supplied. No real macOS native model or installed application qualification is claimed. Original test declarations, process environment and application timeouts were unchanged.",
+  "checks": {
+    "all_other_inherited_guards_pass": true,
+    "exact_predeclared_optional_skip_only": true,
+    "no_other_failures_errors_or_diagnostics": true,
+    "raw_audit_reports_exactly_one_skip": true,
+    "raw_process_succeeded": true,
+    "strict_raw_result_retained": true
+  },
+  "failed": 0,
+  "passed": 113,
+  "raw_receipt_sha256": "856455450ab2f88b84e768908ab4c70c9eacb406e12750d92cd2a49add4549a7",
+  "skipped": 1,
+  "skipped_cases": [
+    {
+      "hidden": false,
+      "name": "the qualified macOS library has the recorded code digest",
+      "reason": "set QUDS_SPACY_MACOS_LIBRARY to the qualified library",
+      "result": "success",
+      "suite": "test/macho_code_identity_test.dart"
+    }
+  ],
+  "source_fingerprints": {
+    "after_sha256": {
+      "dependencies": "ae80abdf73d3be1b0d83aa29cfc28a1059aac0b9f5080d2e3ba3017fac56fadf",
+      "host_fonts": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "runtime": "9c58c139ade21dc3073e27df7a4627814f2ddc40c2b7b684706d390d6d3c5aac",
+      "source": "88bcfd0a686f6fafb56045095bb2fc5ad6fefef61b64cbc76518ef9b64e590b6",
+      "workspace": "7644370dd7b9d63170b84e5574dd5375ef6dc58d9183c3750940259f50d8f722"
+    },
+    "before_sha256": {
+      "dependencies": "ae80abdf73d3be1b0d83aa29cfc28a1059aac0b9f5080d2e3ba3017fac56fadf",
+      "host_fonts": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "runtime": "9c58c139ade21dc3073e27df7a4627814f2ddc40c2b7b684706d390d6d3c5aac",
+      "source": "88bcfd0a686f6fafb56045095bb2fc5ad6fefef61b64cbc76518ef9b64e590b6",
+      "workspace": "7644370dd7b9d63170b84e5574dd5375ef6dc58d9183c3750940259f50d8f722"
+    },
+    "changed_paths": {
+      "dependencies": [],
+      "host_fonts": [],
+      "runtime": [],
+      "source": [],
+      "workspace": []
+    },
+    "source_matches_finish": {
+      "different_paths": [],
+      "matches": true,
+      "uncommitted_paths": []
+    },
+    "source_matches_start": {
+      "different_paths": [],
+      "matches": true,
+      "uncommitted_paths": []
+    }
+  },
+  "source_head_at_finish": "58c6962ec3ea82811bfcafec42981385f216f892",
+  "source_head_at_start": "58c6962ec3ea82811bfcafec42981385f216f892",
+  "status": "passed_controlled_suite_with_declared_optional_native_skip",
+  "suites": 11
+}

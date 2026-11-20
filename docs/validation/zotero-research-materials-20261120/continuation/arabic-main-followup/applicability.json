@@ -1,0 +1,779 @@
+{
+  "audited_at_utc": "2026-11-20T06:55:36.989077+00:00",
+  "auditor_record": {
+    "bytes": 10114,
+    "git_blob_sha1": "8bcac385cf3c4b18c92784c2fdacc4cced627713",
+    "sha256": "f1d214fd73eade5f0f182849b64e53fc342752fec192ac0c3d364a49adc0e2cc"
+  },
+  "author_base": "43db439e1e605d6329a6eabe6817b04ca44ba1aa",
+  "author_source": "754d30d199b6f7dfd52b2772a27cc37a3f8d3dd8",
+  "browser_limit": "The failed Chrome attempt remains bound to a45 with0 application cases. The new Arabic web source receives no fresh browser pass; older PR229 nine-path author equivalence is not restated for this source.",
+  "changed_dart_path_count": 23,
+  "changed_path_count": 38,
+  "changed_paths": {
+    "docs/roadmaps/arabic-proofing.md": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "9c0ebfe98262b6ad3e9c10f5c45ee74983e71a57"
+      },
+      "before": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "f96c6ce8c4792539c479fbf693395e62e2b080b1"
+      },
+      "record": {
+        "bytes": 56930,
+        "git_blob_sha1": "9c0ebfe98262b6ad3e9c10f5c45ee74983e71a57",
+        "sha256": "2c7b8a19883b19acfed400a857e35272baaf254c722ffb24fa42a824d0ff906b"
+      }
+    },
+    "packages/quds_arabic_morph/CHANGELOG.md": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "84d2665d4f10e950eb56187150730b57bf933382"
+      },
+      "before": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "feb9770d27bfcbafc4437d0366a2aa59db37f288"
+      },
+      "record": {
+        "bytes": 2274,
+        "git_blob_sha1": "84d2665d4f10e950eb56187150730b57bf933382",
+        "sha256": "1bc4ce040fc04f3ff071fe2d9695ad4d2d9f49723f937d1a6ce241a31d05a596"
+      }
+    },
+    "packages/quds_arabic_morph/README.md": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "85a220550d21eb2d6295eb3f630d8a98888a4410"
+      },
+      "before": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "711b2e284407296908c20eee20f5c5f2571b75c6"
+      },
+      "record": {
+        "bytes": 13698,
+        "git_blob_sha1": "85a220550d21eb2d6295eb3f630d8a98888a4410",
+        "sha256": "da272f70de8bbae749139d5fed32b181b704ce905ffb840cf4c0713188a82d41"
+      }
+    },
+    "packages/quds_arabic_morph/lib/src/camel_arabic_morphology.dart": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "a442237d0b6d093e9cc1095fe78fcad1f6ca1180"
+      },
+      "before": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "6dbbfddd6ca421628d2bc3945fa649fe6722a384"
+      },
+      "record": {
+        "bytes": 10376,
+        "git_blob_sha1": "a442237d0b6d093e9cc1095fe78fcad1f6ca1180",
+        "sha256": "e602c3f57c950f451cc4212194b2eca1cf249563b8bd8c8bf262ad0b2263f9d7"
+      }
+    },
+    "packages/quds_arabic_morph/lib/src/morph_analysis.dart": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "5d56dc0ac92209d795b72b42268fee4c36d82f4e"
+      },
+      "before": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "30618c6d3b7e37776075ceac8a06e2d94ae70d73"
+      },
+      "record": {
+        "bytes": 12194,
+        "git_blob_sha1": "5d56dc0ac92209d795b72b42268fee4c36d82f4e",
+        "sha256": "e754b80d01f9c3ad209b56550cf9e0fa118346c828d7278d59d0dfa9207e79c4"
+      }
+    },
+    "packages/quds_arabic_morph/lib/src/morph_catalog.dart": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "ad1fb766b27f24377da0661d185f74e4ba77476d"
+      },
+      "before": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "ce0ef4f8d572b1547963fb7bb6fc775e2eaf2678"
+      },
+      "record": {
+        "bytes": 9602,
+        "git_blob_sha1": "ad1fb766b27f24377da0661d185f74e4ba77476d",
+        "sha256": "98d375cc3912ff4ab917defbf8e4cb2e3357492d3973caacbc9499352e7c9b1d"
+      }
+    },
+    "packages/quds_arabic_morph/lib/src/morph_installer_io.dart": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "ca5f8518bd4560ace206b26d1aa8e07f8522eb51"
+      },
+      "before": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "e0ba02f173035dc90fa79a279415beca57007f93"
+      },
+      "record": {
+        "bytes": 8734,
+        "git_blob_sha1": "ca5f8518bd4560ace206b26d1aa8e07f8522eb51",
+        "sha256": "ab672a3fa52064a793c837d547f0ee7b5119616f90e6366d808c1ee78f788880"
+      }
+    },
+    "packages/quds_arabic_morph/lib/src/morph_transport.dart": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "f928abfbadc981909fe0c91dbf778b503f16c508"
+      },
+      "before": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "b733cf31366f0788e4852a5f25b86a332047b28c"
+      },
+      "record": {
+        "bytes": 1380,
+        "git_blob_sha1": "f928abfbadc981909fe0c91dbf778b503f16c508",
+        "sha256": "c2a8fa921679d52a9d013020f4e62519b7c4255bb8cef9b8833ea197b5048418"
+      }
+    },
+    "packages/quds_arabic_morph/lib/src/morph_transport_native.dart": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "bdad68afc065e37b538341ade4f5820902137678"
+      },
+      "before": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "6bdc50d1e67747b870d0e182d67753427783f7af"
+      },
+      "record": {
+        "bytes": 26585,
+        "git_blob_sha1": "bdad68afc065e37b538341ade4f5820902137678",
+        "sha256": "3152bd125ee486f0ef706df474e67baf21dc4289cf626706bf3780425585d0fa"
+      }
+    },
+    "packages/quds_arabic_morph/lib/src/morph_transport_stub.dart": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "9ac14934c6a9fb3a8dc629afc752ad91abfb659a"
+      },
+      "before": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "6a49ecd61bbabb9d99f22a67bbbf7ed2b057735a"
+      },
+      "record": {
+        "bytes": 939,
+        "git_blob_sha1": "9ac14934c6a9fb3a8dc629afc752ad91abfb659a",
+        "sha256": "d7bb742c7f1160e28878fe57c187df0b5b21e6f89b8104d22015417f4424aac2"
+      }
+    },
+    "packages/quds_arabic_morph/lib/src/morph_transport_web.dart": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "6f85cda65e4ef22e75c733c045905318a84ba8dd"
+      },
+      "before": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "799385797abd7e3d4e99ceb7d249ad9e601de97d"
+      },
+      "record": {
+        "bytes": 9265,
+        "git_blob_sha1": "6f85cda65e4ef22e75c733c045905318a84ba8dd",
+        "sha256": "d661b6e1bf5cb752eff761f2882124d80485d39bb7d3b8885bb7b2bc39f839ca"
+      }
+    },
+    "packages/quds_arabic_morph/licenses/data/camel-morph-msa-disambig-LICENSE": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "3d81e2028382972c6d96a802e8490e8e2c468339"
+      },
+      "before": null,
+      "record": {
+        "bytes": 363,
+        "git_blob_sha1": "3d81e2028382972c6d96a802e8490e8e2c468339",
+        "sha256": "ef2c6367af269181d259bbda4b6167684f85242bb04b28923f91e2861be4c695"
+      }
+    },
+    "packages/quds_arabic_morph/licenses/data/camel-morph-msa-disambig-NOTICE": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "e21a4c615ebc383c2a8a8bf5e177b3d0414061fd"
+      },
+      "before": null,
+      "record": {
+        "bytes": 1484,
+        "git_blob_sha1": "e21a4c615ebc383c2a8a8bf5e177b3d0414061fd",
+        "sha256": "12f44e5787019e5eb5595663cb7275408d961f430b74d108fa77006235e2638b"
+      }
+    },
+    "packages/quds_arabic_morph/licenses/manifest.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "f6c3dab50d838cc5dc156036803441549fd73b50"
+      },
+      "before": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "8612abbc6b5a81dc90298749a0531935b15bc435"
+      },
+      "record": {
+        "bytes": 5104,
+        "git_blob_sha1": "f6c3dab50d838cc5dc156036803441549fd73b50",
+        "sha256": "9fb7d8ee44458c4b8d1dfd9038da46c1530b4b1ebb3c5c38b552c762ac08f899"
+      }
+    },
+    "packages/quds_arabic_morph/native/CMakeLists.txt": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "8d17e40a4f5411fbbbed2a65e3f08f48c39c20f9"
+      },
+      "before": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "a7f9f0cbbd0fa5d90b61103a2411df957b39d314"
+      },
+      "record": {
+        "bytes": 2757,
+        "git_blob_sha1": "8d17e40a4f5411fbbbed2a65e3f08f48c39c20f9",
+        "sha256": "14aa1611ea151aec68dcb2654260ba55bbe73935398bd5642e04f73a17fd3ef4"
+      }
+    },
+    "packages/quds_arabic_morph/native/src/quds_arabic_morph.cpp": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "75de1d1364e308b77e333d7fdb898cb31fd4ab58"
+      },
+      "before": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "9389515b7416617ce530b3ec088833addac78995"
+      },
+      "record": {
+        "bytes": 1937,
+        "git_blob_sha1": "75de1d1364e308b77e333d7fdb898cb31fd4ab58",
+        "sha256": "cfc838229f134903d6dd59bd2074667117bdc036d9b01d19e02acfeec5bc9cf1"
+      }
+    },
+    "packages/quds_arabic_morph/pubspec.yaml": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "6309deb778d8ee14eba53749c5bf659dcf9d9e7a"
+      },
+      "before": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "327db5434786f32b868c8e6117635afd8026cf57"
+      },
+      "record": {
+        "bytes": 427,
+        "git_blob_sha1": "6309deb778d8ee14eba53749c5bf659dcf9d9e7a",
+        "sha256": "fc88256a998232198ac4e8e2f6daa9fb2a2d14a27f3df7ae4560019153efab2c"
+      }
+    },
+    "packages/quds_arabic_morph/test/arabic_morph_native_test.dart": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "cb92e4e77bfa2bbee0a94703e7993a2c61570b26"
+      },
+      "before": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "74e1e13c1dd3208f2682a30edce85f12e8c911f0"
+      },
+      "record": {
+        "bytes": 19639,
+        "git_blob_sha1": "cb92e4e77bfa2bbee0a94703e7993a2c61570b26",
+        "sha256": "a893170ad20585b98af4348d38adfb16acc4c29be2f4b92d4dd11f48283cdda4"
+      }
+    },
+    "packages/quds_arabic_morph/test/arabic_morph_unit_test.dart": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "c19cbf247036b1b973cd92749137b2795031d9d8"
+      },
+      "before": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "55f5702c5c24709bfb3a8af12ee65b10ee36ea78"
+      },
+      "record": {
+        "bytes": 17541,
+        "git_blob_sha1": "c19cbf247036b1b973cd92749137b2795031d9d8",
+        "sha256": "817f0b9e7e6548213997afa9c1962fafd8d49f4a24fce34c5d1ffb697079bd1e"
+      }
+    },
+    "packages/quds_arabic_morph/tool/build.py": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "956e526c741b02f6a5459b66dac3dec4bd6a0122"
+      },
+      "before": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "9dc63a4784f45e55895d94cb05a7f4791b98fbc0"
+      },
+      "record": {
+        "bytes": 18900,
+        "git_blob_sha1": "956e526c741b02f6a5459b66dac3dec4bd6a0122",
+        "sha256": "f1f4226943a95395ccd3641c05d9fa2aeb17cbf6232b6477414fc882554dd59e"
+      }
+    },
+    "packages/quds_arabic_morph/tool/pud_rule_findings.dart": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "e2eb5f56bc4c1c09fc84d822c2cefa49e4766f76"
+      },
+      "before": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "668da5c6a4c08bdfa3cf3575f4eb578caefdafac"
+      },
+      "record": {
+        "bytes": 4823,
+        "git_blob_sha1": "e2eb5f56bc4c1c09fc84d822c2cefa49e4766f76",
+        "sha256": "e037fb0013be8e79233cc33bf4ebc52b1c05dde8e96fdbd66603d458a32c0148"
+      }
+    },
+    "packages/quds_arabic_morph/tool/web_smoke.mjs": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "383f66734813565768d18b648c62daa278cdbcf0"
+      },
+      "before": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "a6ecbf4b74f3879624689a45929e8c83f0c60857"
+      },
+      "record": {
+        "bytes": 7494,
+        "git_blob_sha1": "383f66734813565768d18b648c62daa278cdbcf0",
+        "sha256": "310912e46d09414d06998b3b95204c7aab9d803bec646a0c3fbf1c595efe3fd1"
+      }
+    },
+    "packages/quds_arabic_morph/web/arabic_morph_worker.mjs": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "a7e00cc75ff2572990c4a1b70f14ba736b241379"
+      },
+      "before": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "c9c28993c62d46cdf447cc70dc9b1d1ff9d7a0cd"
+      },
+      "record": {
+        "bytes": 9099,
+        "git_blob_sha1": "a7e00cc75ff2572990c4a1b70f14ba736b241379",
+        "sha256": "321b17494c8757d1ce4a9a88716da5a53be5961ed5ac0ca6f6c9a012cb6fe63e"
+      }
+    },
+    "packages/quds_office_editor/example/assets/licenses/arabic_morph/camel-morph-msa-disambig-LICENSE": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "3d81e2028382972c6d96a802e8490e8e2c468339"
+      },
+      "before": null,
+      "record": {
+        "bytes": 363,
+        "git_blob_sha1": "3d81e2028382972c6d96a802e8490e8e2c468339",
+        "sha256": "ef2c6367af269181d259bbda4b6167684f85242bb04b28923f91e2861be4c695"
+      }
+    },
+    "packages/quds_office_editor/example/assets/licenses/arabic_morph/camel-morph-msa-disambig-NOTICE": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "e21a4c615ebc383c2a8a8bf5e177b3d0414061fd"
+      },
+      "before": null,
+      "record": {
+        "bytes": 1484,
+        "git_blob_sha1": "e21a4c615ebc383c2a8a8bf5e177b3d0414061fd",
+        "sha256": "12f44e5787019e5eb5595663cb7275408d961f430b74d108fa77006235e2638b"
+      }
+    },
+    "packages/quds_office_editor/example/assets/licenses/arabic_morph/manifest.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "f6c3dab50d838cc5dc156036803441549fd73b50"
+      },
+      "before": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "8612abbc6b5a81dc90298749a0531935b15bc435"
+      },
+      "record": {
+        "bytes": 5104,
+        "git_blob_sha1": "f6c3dab50d838cc5dc156036803441549fd73b50",
+        "sha256": "9fb7d8ee44458c4b8d1dfd9038da46c1530b4b1ebb3c5c38b552c762ac08f899"
+      }
+    },
+    "packages/quds_office_editor/example/lib/studio_arabic_morph_host.dart": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "cfd98f5dfc6d467c49f4e617b6fe9d82f041d1e1"
+      },
+      "before": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "fc258ac2b6be56a4b20a5d60c4ed6071a7d13cfb"
+      },
+      "record": {
+        "bytes": 4286,
+        "git_blob_sha1": "cfd98f5dfc6d467c49f4e617b6fe9d82f041d1e1",
+        "sha256": "fc858fcf6006454cbb67a55072c8481e627d68fd08cb9debc5154126ca916dd2"
+      }
+    },
+    "packages/quds_office_editor/example/lib/studio_arabic_morph_host_native.dart": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "78edc63763dfec72077854a8f303a0804ebbc9c5"
+      },
+      "before": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "7a64a361155d179844fc16cb8eb425f0b954010c"
+      },
+      "record": {
+        "bytes": 8345,
+        "git_blob_sha1": "78edc63763dfec72077854a8f303a0804ebbc9c5",
+        "sha256": "af646a6e825997c9eaa28a5040a557483051b629071b297fa79d31d246c0c154"
+      }
+    },
+    "packages/quds_office_editor/example/lib/studio_arabic_morph_host_web.dart": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "738008f948712bc19642f2fa1672beb23b08ef09"
+      },
+      "before": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "bf27346e87c34fca4214ae05ff066692779e8f25"
+      },
+      "record": {
+        "bytes": 10669,
+        "git_blob_sha1": "738008f948712bc19642f2fa1672beb23b08ef09",
+        "sha256": "2fc00873314a18b20de8a94dce32a62e5c34574954de36eb0a1ca91c8f7021a9"
+      }
+    },
+    "packages/quds_office_editor/example/lib/studio_de_strings.dart": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "dd04605a2a73bfc5f937118cf67efaa24c4d45d3"
+      },
+      "before": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "2370b0d1c1c8569eb265c77373aa474e6a11bf0a"
+      },
+      "record": {
+        "bytes": 13978,
+        "git_blob_sha1": "dd04605a2a73bfc5f937118cf67efaa24c4d45d3",
+        "sha256": "5b21ab7c261ce7a434911f7a7a57c95e11bb196a7c0c60c0e465f16ac2166b95"
+      }
+    },
+    "packages/quds_office_editor/example/lib/studio_hunspell_setup.dart": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "45482ba679f09fba0b70ef68886ec7b2fa8e1d17"
+      },
+      "before": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "0d644f920fe5b4f00536a27716201bba89030920"
+      },
+      "record": {
+        "bytes": 15638,
+        "git_blob_sha1": "45482ba679f09fba0b70ef68886ec7b2fa8e1d17",
+        "sha256": "a86775eef856a2e6d7b1805fbd5d1fab7acb34549aa7ac5d19240ff98e340d5c"
+      }
+    },
+    "packages/quds_office_editor/example/lib/studio_licenses.dart": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "9e2c46517bbfb54f824a7cd32f0df0da6bc225b5"
+      },
+      "before": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "c3c2f61f4fde61804599c390d5776ff3d38f4f7d"
+      },
+      "record": {
+        "bytes": 6670,
+        "git_blob_sha1": "9e2c46517bbfb54f824a7cd32f0df0da6bc225b5",
+        "sha256": "af647c64ecf91aca87d64eba06e802fc4e2dc65b5f4c0530601e154d04dbd518"
+      }
+    },
+    "packages/quds_office_editor/example/lib/suite_workspace.dart": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "995a30e44c5d3b09591cea8dd5ae2b9f1bec0cdc"
+      },
+      "before": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "e9ea54c1bfc4003b2f39582c223dca003c089b3e"
+      },
+      "record": {
+        "bytes": 432522,
+        "git_blob_sha1": "995a30e44c5d3b09591cea8dd5ae2b9f1bec0cdc",
+        "sha256": "244f747213e65285ba57a6ee53dd1a2c69b728e803e84d16adf703f93bf9f9a9"
+      }
+    },
+    "packages/quds_office_editor/example/test/studio_arabic_morph_setup_test.dart": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "baf90c62c3bd62b87f78b6f8c284e2a15bef628c"
+      },
+      "before": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "83ae075ff1dd713e8f1a6dc6213c967d77ee1d54"
+      },
+      "record": {
+        "bytes": 10172,
+        "git_blob_sha1": "baf90c62c3bd62b87f78b6f8c284e2a15bef628c",
+        "sha256": "cebb4715bbc4a3fb2ca1f5c3dc95278f2b7ae7026664e6af8e6bf60b921c5b61"
+      }
+    },
+    "packages/quds_office_engine/lib/src/proofing/arabic_grammar_rules.dart": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "628de2235e9e0ed582c276b300e38ce567e81e59"
+      },
+      "before": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "05e7d071bc011b71d1db8ffa0ccd8207431f64a8"
+      },
+      "record": {
+        "bytes": 60738,
+        "git_blob_sha1": "628de2235e9e0ed582c276b300e38ce567e81e59",
+        "sha256": "f22861ac8c1ba0626dc800f084223109edf2c0f381fbc59ce05350ac073d99e4"
+      }
+    },
+    "packages/quds_office_engine/lib/src/proofing/arabic_morphology.dart": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "d78eaeedf756df37904500bc5d2db1604e4c52b0"
+      },
+      "before": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "f2073caec2974448823635a06116e798e24584d4"
+      },
+      "record": {
+        "bytes": 6315,
+        "git_blob_sha1": "d78eaeedf756df37904500bc5d2db1604e4c52b0",
+        "sha256": "00ea2f931fb5168acd5cf4b0390eef0d5724ba49d2e3197f444501a33fd5d129"
+      }
+    },
+    "packages/quds_office_engine/lib/src/proofing/arabic_writing_rules.dart": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "0d7691897d5ad3ffcd33cef1123bfb65dc130518"
+      },
+      "before": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "fbf5a8061455c96c6f6bcb2363d4ada8dac81f72"
+      },
+      "record": {
+        "bytes": 34115,
+        "git_blob_sha1": "0d7691897d5ad3ffcd33cef1123bfb65dc130518",
+        "sha256": "c40974c51b2edc9d4fa44bf510db58ab499589463d24affb3d6a409645c05963"
+      }
+    },
+    "packages/quds_office_engine/test/proofing/arabic_grammar_context_test.dart": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "ab0f208d4a78d07adc92492077d746db924a3860"
+      },
+      "before": null,
+      "record": {
+        "bytes": 9051,
+        "git_blob_sha1": "ab0f208d4a78d07adc92492077d746db924a3860",
+        "sha256": "727836bb81b5ae90f581995976521dcf3d1323cca490595ae4142e6b7de1f110"
+      }
+    }
+  },
+  "changed_previous_recorded_inputs": [
+    "packages/quds_arabic_morph/lib/src/camel_arabic_morphology.dart",
+    "packages/quds_arabic_morph/lib/src/morph_analysis.dart",
+    "packages/quds_arabic_morph/lib/src/morph_catalog.dart",
+    "packages/quds_arabic_morph/lib/src/morph_installer_io.dart",
+    "packages/quds_arabic_morph/lib/src/morph_transport.dart",
+    "packages/quds_arabic_morph/lib/src/morph_transport_native.dart",
+    "packages/quds_arabic_morph/lib/src/morph_transport_stub.dart",
+    "packages/quds_arabic_morph/lib/src/morph_transport_web.dart",
+    "packages/quds_arabic_morph/pubspec.yaml",
+    "packages/quds_arabic_morph/test/arabic_morph_native_test.dart",
+    "packages/quds_arabic_morph/test/arabic_morph_unit_test.dart",
+    "packages/quds_arabic_morph/tool/build.py",
+    "packages/quds_arabic_morph/tool/pud_rule_findings.dart",
+    "packages/quds_arabic_morph/tool/web_smoke.mjs",
+    "packages/quds_office_editor/example/assets/licenses/arabic_morph/manifest.json",
+    "packages/quds_office_editor/example/lib/studio_arabic_morph_host.dart",
+    "packages/quds_office_editor/example/lib/studio_arabic_morph_host_native.dart",
+    "packages/quds_office_editor/example/lib/studio_arabic_morph_host_web.dart",
+    "packages/quds_office_editor/example/lib/studio_de_strings.dart",
+    "packages/quds_office_editor/example/lib/studio_hunspell_setup.dart",
+    "packages/quds_office_editor/example/lib/studio_licenses.dart",
+    "packages/quds_office_editor/example/lib/suite_workspace.dart",
+    "packages/quds_office_editor/example/test/studio_arabic_morph_setup_test.dart",
+    "packages/quds_office_engine/lib/src/proofing/arabic_grammar_rules.dart",
+    "packages/quds_office_engine/lib/src/proofing/arabic_morphology.dart",
+    "packages/quds_office_engine/lib/src/proofing/arabic_writing_rules.dart"
+  ],
+  "counting": "Prior2386/157,3201/129,356/27 and original2886 results remain immutable and source-attributed. No older execution is counted as a fresh Arabic-source execution.",
+  "delta_paths_outside_previous_recorded_input_set": [
+    "docs/roadmaps/arabic-proofing.md",
+    "packages/quds_arabic_morph/CHANGELOG.md",
+    "packages/quds_arabic_morph/README.md",
+    "packages/quds_arabic_morph/licenses/data/camel-morph-msa-disambig-LICENSE",
+    "packages/quds_arabic_morph/licenses/data/camel-morph-msa-disambig-NOTICE",
+    "packages/quds_arabic_morph/licenses/manifest.json",
+    "packages/quds_arabic_morph/native/CMakeLists.txt",
+    "packages/quds_arabic_morph/native/src/quds_arabic_morph.cpp",
+    "packages/quds_arabic_morph/web/arabic_morph_worker.mjs",
+    "packages/quds_office_editor/example/assets/licenses/arabic_morph/camel-morph-msa-disambig-LICENSE",
+    "packages/quds_office_editor/example/assets/licenses/arabic_morph/camel-morph-msa-disambig-NOTICE",
+    "packages/quds_office_engine/test/proofing/arabic_grammar_context_test.dart"
+  ],
+  "exact_author_delta_paths_and_postimages": true,
+  "fresh_native_or_browser_execution_claimed": false,
+  "github_actions_queried": false,
+  "imported_helper_sha256": "55418e615c35d0add37b14edc2370074a288a0be6b194c7ac11d63f8175924b5",
+  "parents": [
+    "a3373021b6cbe6ae333217417bd1615e88019f7d",
+    "098412152fa1d64796eb3fb9c06699ced0f0c44d"
+  ],
+  "preserved_main": "098412152fa1d64796eb3fb9c06699ced0f0c44d",
+  "previous_evidence_checkpoint": "a3373021b6cbe6ae333217417bd1615e88019f7d",
+  "previous_qualified_source": "a45ee3bf40dbb7e64a04f879fd6d574db7cb60b1",
+  "previous_receipts_and_reports_modified": false,
+  "previous_recorded_source_paths": 4016,
+  "previous_zotero_evidence_paths_preserved": 352,
+  "prior_selections": {
+    "final-editor-rendering": {
+      "execution_relabelled_to_new_source": false,
+      "files": 10,
+      "receipt": {
+        "bytes": 17976,
+        "git_blob_sha1": "5961fa90232004d377e8441d6b043ac17b9669e1",
+        "sha256": "e01bdd7d521a3e660ff3a0ba5cf45c5138907aab8c0fba57687f4c17df098dae"
+      },
+      "source": "a45ee3bf40dbb7e64a04f879fd6d574db7cb60b1",
+      "test_file_bytes_unchanged": true
+    },
+    "final-engine-rendering": {
+      "execution_relabelled_to_new_source": false,
+      "files": 14,
+      "receipt": {
+        "bytes": 19624,
+        "git_blob_sha1": "5a71f03a1ff99e91617dedaa2b1e0b08fbe99bae",
+        "sha256": "b9beba511cf43c00200c873833d38c61ff8cce68f8eeea6939049d39feecee26"
+      },
+      "source": "a45ee3bf40dbb7e64a04f879fd6d574db7cb60b1",
+      "test_file_bytes_unchanged": true
+    },
+    "final-web-chrome-blocked": {
+      "execution_relabelled_to_new_source": false,
+      "files": 1,
+      "receipt": {
+        "bytes": 20055,
+        "git_blob_sha1": "7946d5d6840ffb8419d1341d2a91f8cee1e58b4a",
+        "sha256": "7e535d0c8003e52c8c2ce5215b74fcbd1f67547d832c4fc6889de78ad6ef0ff1"
+      },
+      "source": "a45ee3bf40dbb7e64a04f879fd6d574db7cb60b1",
+      "test_file_bytes_unchanged": true
+    },
+    "final-web-vm": {
+      "execution_relabelled_to_new_source": false,
+      "files": 3,
+      "receipt": {
+        "bytes": 13941,
+        "git_blob_sha1": "e96711746648474259785189a343740d07829dd0",
+        "sha256": "856dba48f1c4e8731f1f5c2e2afa9693f35e694bd4923a1a6270aa47a727ddb9"
+      },
+      "source": "a45ee3bf40dbb7e64a04f879fd6d574db7cb60b1",
+      "test_file_bytes_unchanged": true
+    }
+  },
+  "prior_web_equivalence_superseded_paths": [
+    "packages/quds_arabic_morph/README.md",
+    "packages/quds_office_editor/example/lib/studio_arabic_morph_host_web.dart"
+  ],
+  "product_files_modified": false,
+  "root_lockfile_unchanged": true,
+  "scope_review": [
+    "New behavior belongs to optional Arabic context disambiguation, Arabic grammar reading selection, host installation/model state and the Studio Arabic settings/setup flow.",
+    "The shared suite_workspace changes add the Arabic context toggle and pass grammarReading into the Arabic provider; Word, Zotero, slide rendering and Mail composition implementations remain byte-identical to the preceding source.",
+    "Existing broad compile/import reachability is not a proof that every old runtime result applies unchanged. Fresh selected Arabic package, Arabic rule and Studio gates qualify the changed behavior separately.",
+    "Native ABI3 and web adapter2 changes affect compatibility even without a loaded context model. VM/mock results do not establish newly compiled native or Wasm execution, real-model ranking or live downloads."
+  ],
+  "source": "f69e774fbb32a103260541e4a28fb17600bfc17e",
+  "source_delta_patch": {
+    "bytes": 150864,
+    "git_blob_sha1": "8e2032c044f441ec3a3c7989b5dc30c1cf12892d",
+    "sha256": "eb9137a890b128d8f12983665628c90488dae26d9c637b26a4525e4105610e46"
+  },
+  "status": "verified_bounded_arabic_main_applicability",
+  "tree": "1a45545ffa7f4c8548853a30c95bdb38309e3da9",
+  "unchanged_implementation_prefixes": {
+    "packages/quds_mail_transport/": 61,
+    "packages/quds_office_editor/example/lib/studio_mail": 32,
+    "packages/quds_office_editor/lib/": 94,
+    "packages/quds_office_engine/lib/src/automation/": 13,
+    "packages/quds_office_engine/lib/src/fonts/": 9,
+    "packages/quds_office_engine/lib/src/pdf/": 75,
+    "packages/quds_office_engine/lib/src/slide/": 10,
+    "packages/quds_office_engine/lib/src/word/": 64,
+    "packages/quds_office_engine/lib/src/zotero/": 4,
+    "packages/quds_proofing_spacy/": 63,
+    "third_party/enough_mail/": 272
+  },
+  "unchanged_previous_recorded_inputs": 3990,
+  "whole_previous_input_inventory_preserved": false
+}

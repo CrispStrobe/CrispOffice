@@ -1,0 +1,106 @@
+{
+  "adapter_command": [
+    "docs/validation/zotero-research-materials-20261120/continuation/web-persistence-followup/run_web_vm.py",
+    "--repo",
+    ".",
+    "--output",
+    "docs/validation/zotero-research-materials-20261120/continuation/web-persistence-followup/accepted-web-vm",
+    "--expected-head",
+    "a45ee3bf40dbb7e64a04f879fd6d574db7cb60b1"
+  ],
+  "application_timeouts_modified": false,
+  "code_after": {
+    "/workspace/scratch/2c6eaad19389/quds_office_suite/docs/validation/zotero-research-materials-20261120/continuation/web-persistence-followup/chromium-baseline.json": {
+      "bytes": 71563,
+      "sha256": "1381b12113a09d3dabbdd86814f4f407f0abb799c20514c6ceae5c8830f24c65"
+    },
+    "/workspace/scratch/2c6eaad19389/quds_office_suite/docs/validation/zotero-research-materials-20261120/continuation/web-persistence-followup/chromium_wrapper.py": {
+      "bytes": 1838,
+      "sha256": "670ee75c18805c666ee47939e319766c85f32cade2ded45161ab6feebb0704e2"
+    },
+    "/workspace/scratch/2c6eaad19389/quds_office_suite/docs/validation/zotero-research-materials-20261120/continuation/web-persistence-followup/prepare_web_environment.py": {
+      "bytes": 3229,
+      "sha256": "dcfa2928a2eaee08c89a956fa167817f2e75fffc2f1bdcf4efe639338a104dfa"
+    },
+    "/workspace/scratch/2c6eaad19389/quds_office_suite/docs/validation/zotero-research-materials-20261120/continuation/web-persistence-followup/run_web_chrome.py": {
+      "bytes": 13313,
+      "sha256": "2e80bd5f858d5d9beb3a1a438f424cb793e9e491443d3eaadf55f289969a9c58"
+    },
+    "/workspace/scratch/2c6eaad19389/quds_office_suite/docs/validation/zotero-research-materials-20261120/continuation/web-persistence-followup/run_web_vm.py": {
+      "bytes": 3658,
+      "sha256": "cee353a7107a97e3ba0bdd268da130f330f55feed9f3ff891bbed69cdb390440"
+    },
+    "/workspace/scratch/2c6eaad19389/quds_office_suite/docs/validation/zotero-research-materials-20261120/continuation/web-persistence-followup/runner-support.json": {
+      "bytes": 2203,
+      "sha256": "4acb7c7b43e9f51ffa1943fbe2446dc7a05c49178af01f938ed0eee9e453bb0c"
+    },
+    "/workspace/scratch/2c6eaad19389/quds_office_suite/docs/validation/zotero-research-materials-20261120/continuation/web-persistence-followup/web_runner_support.py": {
+      "bytes": 5503,
+      "sha256": "f0ffcde25881dac2b885c0782766ab9bf0ff4d44ea379743808fba42b76b590c"
+    },
+    "/workspace/scratch/2c6eaad19389/quds_office_suite/docs/validation/zotero-research-materials-20261120/run_validation.py": {
+      "bytes": 29772,
+      "sha256": "4d01ed59729abaa64e3ab643e8ebcb2f7136dd2d9f02cc4b07b81a06fbb919bf"
+    }
+  },
+  "code_before": {
+    "/workspace/scratch/2c6eaad19389/quds_office_suite/docs/validation/zotero-research-materials-20261120/continuation/web-persistence-followup/chromium-baseline.json": {
+      "bytes": 71563,
+      "sha256": "1381b12113a09d3dabbdd86814f4f407f0abb799c20514c6ceae5c8830f24c65"
+    },
+    "/workspace/scratch/2c6eaad19389/quds_office_suite/docs/validation/zotero-research-materials-20261120/continuation/web-persistence-followup/chromium_wrapper.py": {
+      "bytes": 1838,
+      "sha256": "670ee75c18805c666ee47939e319766c85f32cade2ded45161ab6feebb0704e2"
+    },
+    "/workspace/scratch/2c6eaad19389/quds_office_suite/docs/validation/zotero-research-materials-20261120/continuation/web-persistence-followup/prepare_web_environment.py": {
+      "bytes": 3229,
+      "sha256": "dcfa2928a2eaee08c89a956fa167817f2e75fffc2f1bdcf4efe639338a104dfa"
+    },
+    "/workspace/scratch/2c6eaad19389/quds_office_suite/docs/validation/zotero-research-materials-20261120/continuation/web-persistence-followup/run_web_chrome.py": {
+      "bytes": 13313,
+      "sha256": "2e80bd5f858d5d9beb3a1a438f424cb793e9e491443d3eaadf55f289969a9c58"
+    },
+    "/workspace/scratch/2c6eaad19389/quds_office_suite/docs/validation/zotero-research-materials-20261120/continuation/web-persistence-followup/run_web_vm.py": {
+      "bytes": 3658,
+      "sha256": "cee353a7107a97e3ba0bdd268da130f330f55feed9f3ff891bbed69cdb390440"
+    },
+    "/workspace/scratch/2c6eaad19389/quds_office_suite/docs/validation/zotero-research-materials-20261120/continuation/web-persistence-followup/runner-support.json": {
+      "bytes": 2203,
+      "sha256": "4acb7c7b43e9f51ffa1943fbe2446dc7a05c49178af01f938ed0eee9e453bb0c"
+    },
+    "/workspace/scratch/2c6eaad19389/quds_office_suite/docs/validation/zotero-research-materials-20261120/continuation/web-persistence-followup/web_runner_support.py": {
+      "bytes": 5503,
+      "sha256": "f0ffcde25881dac2b885c0782766ab9bf0ff4d44ea379743808fba42b76b590c"
+    },
+    "/workspace/scratch/2c6eaad19389/quds_office_suite/docs/validation/zotero-research-materials-20261120/run_validation.py": {
+      "bytes": 29772,
+      "sha256": "4d01ed59729abaa64e3ab643e8ebcb2f7136dd2d9f02cc4b07b81a06fbb919bf"
+    }
+  },
+  "counting": "Fresh execution count; overlapping downloads-manager cases must not be added twice to distinct totals",
+  "delegated_arguments": [
+    "/workspace/scratch/2c6eaad19389/quds_office_suite/docs/validation/zotero-research-materials-20261120/run_validation.py",
+    "web-persistence-vm",
+    "--repo",
+    "/workspace/scratch/2c6eaad19389/quds_office_suite",
+    "--timeout",
+    "1800",
+    "--output",
+    "/workspace/scratch/2c6eaad19389/quds_office_suite/docs/validation/zotero-research-materials-20261120/continuation/web-persistence-followup/accepted-web-vm",
+    "--expected-head",
+    "a45ee3bf40dbb7e64a04f879fd6d574db7cb60b1"
+  ],
+  "expected_count_source": "Three unchanged author-selected VM files; PR229 reports 19 cases",
+  "original_primary_guard_logic_unchanged": true,
+  "selection": {
+    "additional": [
+      "studio_hunspell_web_host_test.dart",
+      "studio_hunspell_web_cancellation_test.dart",
+      "studio_downloads_manager_test.dart"
+    ],
+    "package": "packages/quds_office_editor/example",
+    "patterns": [],
+    "runner": "flutter"
+  },
+  "shared_validation_lock_unchanged": true
+}

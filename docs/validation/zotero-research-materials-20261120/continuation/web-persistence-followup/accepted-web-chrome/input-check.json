@@ -1,0 +1,47 @@
+{
+  "after_sha256": {
+    "chromium": "288a51c54abcd0c97e52ad3554de83285ed9bc94af5d3d25ce20245fb5ce879f",
+    "dependencies": "3522c0e00ac142cc945a15dd4243afc938196806a38ddb9c89f372bdfcc6f846",
+    "host_fonts": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+    "qualification_tools": "744a560563fce35e8c3803261751a665e9639220a36dd563a716dc009733229a",
+    "runtime": "9c58c139ade21dc3073e27df7a4627814f2ddc40c2b7b684706d390d6d3c5aac",
+    "source": "373bf394f06212ad1196c694905a39d4d249cd4412ad91ff9a20b9f0b29ff38a",
+    "web_sdk_cache": "d6f5510e393739c62ad0f453e9acc34c16b8c3a8faaca17f5dee4850ace2c280",
+    "workspace": "796c78924feaafc1773c00298a709fab93ec8388ecbc4a64d56c585279913b5c"
+  },
+  "before_sha256": {
+    "chromium": "288a51c54abcd0c97e52ad3554de83285ed9bc94af5d3d25ce20245fb5ce879f",
+    "dependencies": "3522c0e00ac142cc945a15dd4243afc938196806a38ddb9c89f372bdfcc6f846",
+    "host_fonts": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+    "qualification_tools": "744a560563fce35e8c3803261751a665e9639220a36dd563a716dc009733229a",
+    "runtime": "9c58c139ade21dc3073e27df7a4627814f2ddc40c2b7b684706d390d6d3c5aac",
+    "source": "373bf394f06212ad1196c694905a39d4d249cd4412ad91ff9a20b9f0b29ff38a",
+    "web_sdk_cache": "d6f5510e393739c62ad0f453e9acc34c16b8c3a8faaca17f5dee4850ace2c280",
+    "workspace": "796c78924feaafc1773c00298a709fab93ec8388ecbc4a64d56c585279913b5c"
+  },
+  "changed_paths": {
+    "chromium": [],
+    "dependencies": [],
+    "host_fonts": [],
+    "qualification_tools": [],
+    "runtime": [],
+    "source": [],
+    "web_sdk_cache": [],
+    "workspace": []
+  },
+  "mutable_cache_manifests": {
+    "after_sha256": "2bc284fa5bb06989d26350dc2aa3e4eedef10e44ca37e8514723521605447175",
+    "before_sha256": "c7ba85c339aaf030a56bc7f7ba6c06b1255c059653fe658a68cb934a81dbb862",
+    "interpretation": "Compiler output, browser profile and Cache Storage are expected mutable outputs, not immutable executable-input equality guards"
+  },
+  "source_matches_finish": {
+    "different_paths": [],
+    "matches": true,
+    "uncommitted_paths": []
+  },
+  "source_matches_start": {
+    "different_paths": [],
+    "matches": true,
+    "uncommitted_paths": []
+  }
+}

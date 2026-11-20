@@ -1,0 +1,639 @@
+{
+  "schema": 1,
+  "status": "incoming_main_preserved_source_review",
+  "prior_main": "098412152fa1d64796eb3fb9c06699ced0f0c44d",
+  "incoming_main": "88905c56547fa91206acbc306616c3ad10f9d77b",
+  "source": "65ea4c3095ff5d821c57d4dced0ba50bdd9387e7",
+  "tree": "f1500a15749ec6cbb8556d852f22bcedf70afd83",
+  "parents": [
+    "2e4516e4924e0e13de0736f67aa8beb010a9023b",
+    "88905c56547fa91206acbc306616c3ad10f9d77b"
+  ],
+  "upstream_pull_request": 232,
+  "changed_paths": 88,
+  "dart_paths": 18,
+  "all_incoming_postimages_match": true,
+  "all_product_delta_paths_from_incoming_main": true,
+  "rows": [
+    {
+      "path": "docs/validation/native-proofing-mobile-20261120/README.md",
+      "main_blob": "c49d80578a5091628c78a6d04214619241e39e78",
+      "source_blob": "c49d80578a5091628c78a6d04214619241e39e78",
+      "sha256": "07b5bfed108e8b9dc3c910699f5b5bc84cd8946a0f1fd8f3732cc5c6f82d3593",
+      "bytes": 6358
+    },
+    {
+      "path": "docs/validation/native-proofing-mobile-20261120/android-emulator-gate.json",
+      "main_blob": "e1dc76470e26494a609a1de5e31655328d38fde5",
+      "source_blob": "e1dc76470e26494a609a1de5e31655328d38fde5",
+      "sha256": "4bfc8b7aef52dc5f8a2a1d1b188a5552f45a9f3c98ff891bf916395c80e1af94",
+      "bytes": 1946
+    },
+    {
+      "path": "docs/validation/native-proofing-mobile-20261120/ios-simulator-gate.json",
+      "main_blob": "0746336ccc96ba4adc74b3a39a3a206a921b18da",
+      "source_blob": "0746336ccc96ba4adc74b3a39a3a206a921b18da",
+      "sha256": "67ff11b87590bade7cca9b6a961708208a267bb92e7082f93088ed95d37f3173",
+      "bytes": 1645
+    },
+    {
+      "path": "docs/validation/native-proofing-mobile-20261120/receipts/crispembed-spacy-mobile.json",
+      "main_blob": "9bd907e4c63cab61019c9dd9b61c6ec5e092478c",
+      "source_blob": "9bd907e4c63cab61019c9dd9b61c6ec5e092478c",
+      "sha256": "1987b21bfceca46f304bc40041a7ad75c6824b61ce8c0bee79fdea3a280215cb",
+      "bytes": 2085
+    },
+    {
+      "path": "docs/validation/native-proofing-mobile-20261120/receipts/quds_arabic_morph.json",
+      "main_blob": "57b4bf19e519d913eb9b16ce579a7eb7e641de51",
+      "source_blob": "57b4bf19e519d913eb9b16ce579a7eb7e641de51",
+      "sha256": "dfc7e0522e3a49678df0d0f0e70a8a770e685485b8312ee712b4ffe82053ca85",
+      "bytes": 1827
+    },
+    {
+      "path": "docs/validation/native-proofing-mobile-20261120/receipts/quds_language_id.json",
+      "main_blob": "5e46a47d81229ef92e99a70fdc34bc34c426f691",
+      "source_blob": "5e46a47d81229ef92e99a70fdc34bc34c426f691",
+      "sha256": "4bed9217a57bdaa32da0b195b7948b01406ce78b8a097e8240c4cb5b42c208c7",
+      "bytes": 2798
+    },
+    {
+      "path": "docs/validation/native-proofing-mobile-20261120/receipts/quds_proofing_harper.json",
+      "main_blob": "f4b950aec7c32c6c584aca77e2c7ae513cabb076",
+      "source_blob": "f4b950aec7c32c6c584aca77e2c7ae513cabb076",
+      "sha256": "2f94316e8ceec70aad728edf30563e5d96047c6edbf67f90f8abe20e1e0baa78",
+      "bytes": 6069
+    },
+    {
+      "path": "docs/validation/native-proofing-mobile-20261120/receipts/quds_proofing_hunspell.json",
+      "main_blob": "466cae1edb4e2e46037f8281e9c064b8fc0f1ded",
+      "source_blob": "466cae1edb4e2e46037f8281e9c064b8fc0f1ded",
+      "sha256": "15af7d21c03ff2e387c63bb1d1c65626bc4196d6bca324097ab9535d431447ee",
+      "bytes": 1990
+    },
+    {
+      "path": "packages/quds_arabic_morph/README.md",
+      "main_blob": "d76e237b7d3e60a4db2a5dcf99fcb24e6fa9f809",
+      "source_blob": "d76e237b7d3e60a4db2a5dcf99fcb24e6fa9f809",
+      "sha256": "969fc476034e4b90cbc7d87970da08f7330cc13ecc67ff5d3a51f0da19158944",
+      "bytes": 14082
+    },
+    {
+      "path": "packages/quds_arabic_morph/lib/src/morph_transport_native.dart",
+      "main_blob": "b9460ae80720421aa7129c8fbed610b147a93c78",
+      "source_blob": "b9460ae80720421aa7129c8fbed610b147a93c78",
+      "sha256": "a6395ac4a3abd7d659c5760c2e547bcb56fc78e51d500544048489f4628346e9",
+      "bytes": 26718
+    },
+    {
+      "path": "packages/quds_arabic_morph/tool/build.py",
+      "main_blob": "4a973f95775de9b70d46b28e4c2028f93a253448",
+      "source_blob": "4a973f95775de9b70d46b28e4c2028f93a253448",
+      "sha256": "2c73a601bd6ac86cada65024fb8f51d26897d639f8a42d2e53942aa61dc36c4a",
+      "bytes": 17929
+    },
+    {
+      "path": "packages/quds_language_id/README.md",
+      "main_blob": "5b6e5d79a5778a494e84c4c44c59606a8cdbd7c9",
+      "source_blob": "5b6e5d79a5778a494e84c4c44c59606a8cdbd7c9",
+      "sha256": "fa2ff90c4c6a6437ddd886a7ab63693e9df168394043e6b88a1d835064e63c0f",
+      "bytes": 5787
+    },
+    {
+      "path": "packages/quds_language_id/lib/src/language_id_transport_native.dart",
+      "main_blob": "812bcc60da180405104bf1498583bf04b3be9af7",
+      "source_blob": "812bcc60da180405104bf1498583bf04b3be9af7",
+      "sha256": "b2a0196b9602032e4b6a43f5f3f6cb543359856cf859470acb0494a61bba130a",
+      "bytes": 12131
+    },
+    {
+      "path": "packages/quds_language_id/tool/build.py",
+      "main_blob": "5dc7bea227b6f63400c35f35bdd1a454de624455",
+      "source_blob": "5dc7bea227b6f63400c35f35bdd1a454de624455",
+      "sha256": "f1f8ef2ed4538d348d22109d006cd758bcfbf9334c286d42f69c4ba5f99ed999",
+      "bytes": 15413
+    },
+    {
+      "path": "packages/quds_office_editor/example/analysis_options.yaml",
+      "main_blob": "6be99ebf1c04294573572bb9c075e7ca2953ca88",
+      "source_blob": "6be99ebf1c04294573572bb9c075e7ca2953ca88",
+      "sha256": "23c7037f65bce027616f5953474e41aac06c2981feda7f8dbab94b3509949ed3",
+      "bytes": 1546
+    },
+    {
+      "path": "packages/quds_office_editor/example/android/app/build.gradle.kts",
+      "main_blob": "dcbea5690f0854b01d208708dd191fed4a7fad5e",
+      "source_blob": "dcbea5690f0854b01d208708dd191fed4a7fad5e",
+      "sha256": "d7d50b25be791945feca68c229ab289b121b2af60543c590c7325a12edc19d8c",
+      "bytes": 1898
+    },
+    {
+      "path": "packages/quds_office_editor/example/integration_test/mobile_native_proofing_test.dart",
+      "main_blob": "4bbfed63a3de87a64738373ce47707d611086bef",
+      "source_blob": "4bbfed63a3de87a64738373ce47707d611086bef",
+      "sha256": "e3f30d768f2098d53a1cda9e68631fcbd5044b9e59778bfb26e1f369dc3f94ea",
+      "bytes": 10050
+    },
+    {
+      "path": "packages/quds_office_editor/example/integration_test/spacy_development_cases.g.dart",
+      "main_blob": "4cff0c80d437e3ceb733600afe6b80f8c582742d",
+      "source_blob": "4cff0c80d437e3ceb733600afe6b80f8c582742d",
+      "sha256": "e7587e38d032b0a85c6e83474cbd56d0acd9467a0160c3cbde56a623a7b6a7f5",
+      "bytes": 53610
+    },
+    {
+      "path": "packages/quds_office_editor/example/ios/.gitignore",
+      "main_blob": "7a7f9873ad7dceb4dc17087fb06c800fa0191376",
+      "source_blob": "7a7f9873ad7dceb4dc17087fb06c800fa0191376",
+      "sha256": "37380775aeb2499662b7aca80f4ac4c95ae827c3ba2bfa179aa3e9af4812c623",
+      "bytes": 569
+    },
+    {
+      "path": "packages/quds_office_editor/example/ios/Flutter/AppFrameworkInfo.plist",
+      "main_blob": "391a902b2bebe1a3df1b090312fd85029dd99308",
+      "source_blob": "391a902b2bebe1a3df1b090312fd85029dd99308",
+      "sha256": "da12038f9b2688a8a26160fea2609fa8fcb11421448c109f09c0f573efe7698d",
+      "bytes": 720
+    },
+    {
+      "path": "packages/quds_office_editor/example/ios/Flutter/Debug.xcconfig",
+      "main_blob": "ec97fc6f30212d34d53ab17751bcabdfab1891d4",
+      "source_blob": "ec97fc6f30212d34d53ab17751bcabdfab1891d4",
+      "sha256": "690b8a8b1ae15ddd29b241429963e971bbc6720ab22f154cf8cf6b085b6d4925",
+      "bytes": 107
+    },
+    {
+      "path": "packages/quds_office_editor/example/ios/Flutter/Release.xcconfig",
+      "main_blob": "c4855bfe2000b73c8a50783b40073676021cbb68",
+      "source_blob": "c4855bfe2000b73c8a50783b40073676021cbb68",
+      "sha256": "75abb819a9de1e0e41c835e7307bc64a506cac25a9a5c0b0d8253fa1c3d5d422",
+      "bytes": 109
+    },
+    {
+      "path": "packages/quds_office_editor/example/ios/Podfile",
+      "main_blob": "6f45a53bdbe7c2e3e4d8394bedac2ab6ebafe68c",
+      "source_blob": "6f45a53bdbe7c2e3e4d8394bedac2ab6ebafe68c",
+      "sha256": "cf38d984a8c028725d7f3fb072ea41c33fb1d4a9160f6ea62a33fcd3667705bd",
+      "bytes": 1525
+    },
+    {
+      "path": "packages/quds_office_editor/example/ios/Podfile.lock",
+      "main_blob": "6802c1ae56b69e2d5078d585b4827181a6e9b41d",
+      "source_blob": "6802c1ae56b69e2d5078d585b4827181a6e9b41d",
+      "sha256": "1ba54e81a304f30dc4af2ed79c2e8a8da57a2c6adf7fd9ef596c3bd0d063acc1",
+      "bytes": 2887
+    },
+    {
+      "path": "packages/quds_office_editor/example/ios/QudsProofingNative/.gitignore",
+      "main_blob": "ff247883fea62305ba4f46229085889aa67d41ce",
+      "source_blob": "ff247883fea62305ba4f46229085889aa67d41ce",
+      "sha256": "ae5304986c49748dc35b1a1041185065779f0ad5e9674fe8ff024eac0fdc275a",
+      "bytes": 12
+    },
+    {
+      "path": "packages/quds_office_editor/example/ios/QudsProofingNative/QudsProofingNative.podspec",
+      "main_blob": "68fadc06333a15ff59e72f47c2a9706ffc8131b5",
+      "source_blob": "68fadc06333a15ff59e72f47c2a9706ffc8131b5",
+      "sha256": "32da23c51c1cb4ef51df3dba8ac8aea8d2a25df865c767ffbab0e7fd71718bcc",
+      "bytes": 1214
+    },
+    {
+      "path": "packages/quds_office_editor/example/ios/QudsProofingNative/Sources/QudsProofingNative.m",
+      "main_blob": "64691101e6b4f3e9a8e1a3d4c2d6a500a20381ad",
+      "source_blob": "64691101e6b4f3e9a8e1a3d4c2d6a500a20381ad",
+      "sha256": "12278b7af909ff66597344575cf1973e35650995a6e82bfbc073a21a56748730",
+      "bytes": 81
+    },
+    {
+      "path": "packages/quds_office_editor/example/ios/Runner.xcodeproj/project.pbxproj",
+      "main_blob": "79d10f8af53675bb5aa6178618b1baab1c13c456",
+      "source_blob": "79d10f8af53675bb5aa6178618b1baab1c13c456",
+      "sha256": "ca8df3df083a892de8c9dd25d95013503c1cd4bc4ba5428607e68bc217ca07d7",
+      "bytes": 31195
+    },
+    {
+      "path": "packages/quds_office_editor/example/ios/Runner.xcodeproj/project.xcworkspace/contents.xcworkspacedata",
+      "main_blob": "919434a6254f0e9651f402737811be6634a03e9c",
+      "source_blob": "919434a6254f0e9651f402737811be6634a03e9c",
+      "sha256": "7f3b00b5c3fdb45242d7b87e1e5c4e25d1fa8129a16c94295ecc4e8ea2235c5f",
+      "bytes": 135
+    },
+    {
+      "path": "packages/quds_office_editor/example/ios/Runner.xcodeproj/project.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist",
+      "main_blob": "18d981003d68d0546c4804ac2ff47dd97c6e7921",
+      "source_blob": "18d981003d68d0546c4804ac2ff47dd97c6e7921",
+      "sha256": "dfa0f9bb85b95ccba9c6811adadf8cb407fb5d52088e89db83ebc308ec448542",
+      "bytes": 238
+    },
+    {
+      "path": "packages/quds_office_editor/example/ios/Runner.xcodeproj/project.xcworkspace/xcshareddata/WorkspaceSettings.xcsettings",
+      "main_blob": "f9b0d7c5ea15f194be85eb6ee8e6721a87ff4644",
+      "source_blob": "f9b0d7c5ea15f194be85eb6ee8e6721a87ff4644",
+      "sha256": "11b247bc6796892d67c9a821d18604db4dd6a880981b34f38460b9866e6b247f",
+      "bytes": 226
+    },
+    {
+      "path": "packages/quds_office_editor/example/ios/Runner.xcodeproj/xcshareddata/xcschemes/Runner.xcscheme",
+      "main_blob": "e3773d42e24c8bb3b9070fc9d10d62032787035e",
+      "source_blob": "e3773d42e24c8bb3b9070fc9d10d62032787035e",
+      "sha256": "2dd28b879e66081e28a3324cf2bee7ab2f70be9a3e50e08926b7366dadff7d6e",
+      "bytes": 3833
+    },
+    {
+      "path": "packages/quds_office_editor/example/ios/Runner.xcworkspace/contents.xcworkspacedata",
+      "main_blob": "21a3cc14c74e969ab1548274a8512ebfecc40f78",
+      "source_blob": "21a3cc14c74e969ab1548274a8512ebfecc40f78",
+      "sha256": "465e6de5660384eb6832e8078920ba6cd5305c445cb29a24a86a2fda4aa6b67e",
+      "bytes": 224
+    },
+    {
+      "path": "packages/quds_office_editor/example/ios/Runner.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist",
+      "main_blob": "18d981003d68d0546c4804ac2ff47dd97c6e7921",
+      "source_blob": "18d981003d68d0546c4804ac2ff47dd97c6e7921",
+      "sha256": "dfa0f9bb85b95ccba9c6811adadf8cb407fb5d52088e89db83ebc308ec448542",
+      "bytes": 238
+    },
+    {
+      "path": "packages/quds_office_editor/example/ios/Runner.xcworkspace/xcshareddata/WorkspaceSettings.xcsettings",
+      "main_blob": "f9b0d7c5ea15f194be85eb6ee8e6721a87ff4644",
+      "source_blob": "f9b0d7c5ea15f194be85eb6ee8e6721a87ff4644",
+      "sha256": "11b247bc6796892d67c9a821d18604db4dd6a880981b34f38460b9866e6b247f",
+      "bytes": 226
+    },
+    {
+      "path": "packages/quds_office_editor/example/ios/Runner/AppDelegate.swift",
+      "main_blob": "c30b367ec0a99a3f38e09477c49ba6b5adeb352d",
+      "source_blob": "c30b367ec0a99a3f38e09477c49ba6b5adeb352d",
+      "sha256": "451c6d9ba0a2b3ff43092ea349c60fa79a91f1158b915eb29dbdd357cb95d7b8",
+      "bytes": 539
+    },
+    {
+      "path": "packages/quds_office_editor/example/ios/Runner/Assets.xcassets/AppIcon.appiconset/Contents.json",
+      "main_blob": "d36b1fab2d9dea668a4f83df94d525897d9e68dd",
+      "source_blob": "d36b1fab2d9dea668a4f83df94d525897d9e68dd",
+      "sha256": "3b1e214f466ffedff74baa5598ad5c4421130eea6bc8d57b8fe23435e8280ae4",
+      "bytes": 2519
+    },
+    {
+      "path": "packages/quds_office_editor/example/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-1024x1024@1x.png",
+      "main_blob": "dc9ada4725e9b0ddb1deab583e5b5102493aa332",
+      "source_blob": "dc9ada4725e9b0ddb1deab583e5b5102493aa332",
+      "sha256": "7770183009e914112de7d8ef1d235a6a30c5834424858e0d2f8253f6b8d31926",
+      "bytes": 10932
+    },
+    {
+      "path": "packages/quds_office_editor/example/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-20x20@1x.png",
+      "main_blob": "7353c41ecf9ca08017312dc233d9830079b50717",
+      "source_blob": "7353c41ecf9ca08017312dc233d9830079b50717",
+      "sha256": "cab10a0d391ec5bc09ef50ce49e8ad401cee7ef03707ec0923a222c5c2b3d212",
+      "bytes": 295
+    },
+    {
+      "path": "packages/quds_office_editor/example/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-20x20@2x.png",
+      "main_blob": "797d452e458972bab9d994556c8305db4c827017",
+      "source_blob": "797d452e458972bab9d994556c8305db4c827017",
+      "sha256": "b9ad02cf6576a04d1b6806ac02a2431481b448dd0c2e505ce25842d1f7c4730b",
+      "bytes": 406
+    },
+    {
+      "path": "packages/quds_office_editor/example/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-20x20@3x.png",
+      "main_blob": "6ed2d933e1120817fe9182483a228007b18ab6ae",
+      "source_blob": "6ed2d933e1120817fe9182483a228007b18ab6ae",
+      "sha256": "c6e6d3b215ae744a9c391f4c4d44157eff5e739d6ad6c39f9bfa5df66dddd267",
+      "bytes": 450
+    },
+    {
+      "path": "packages/quds_office_editor/example/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-29x29@1x.png",
+      "main_blob": "4cd7b0099ca80c806f8fe495613e8d6c69460d76",
+      "source_blob": "4cd7b0099ca80c806f8fe495613e8d6c69460d76",
+      "sha256": "5dee24dc104ac76dc162e42ae0beb163d426bf365562ee28ba7b3ad368559a60",
+      "bytes": 282
+    },
+    {
+      "path": "packages/quds_office_editor/example/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-29x29@2x.png",
+      "main_blob": "fe730945a01f64a61e2235dbe3f45b08f7729182",
+      "source_blob": "fe730945a01f64a61e2235dbe3f45b08f7729182",
+      "sha256": "a9b21eb6f4271385655a8771f76e29eef8c1107d7879cbcfc567e6619d1f716a",
+      "bytes": 462
+    },
+    {
+      "path": "packages/quds_office_editor/example/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-29x29@3x.png",
+      "main_blob": "321773cd857a8a0f0c9c7d3dc3f5ff4fb298dc10",
+      "source_blob": "321773cd857a8a0f0c9c7d3dc3f5ff4fb298dc10",
+      "sha256": "e677d701ffe4af7bc2935098d6b3984cc9ab7ace573e6900955a5535b12410cf",
+      "bytes": 704
+    },
+    {
+      "path": "packages/quds_office_editor/example/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-40x40@1x.png",
+      "main_blob": "797d452e458972bab9d994556c8305db4c827017",
+      "source_blob": "797d452e458972bab9d994556c8305db4c827017",
+      "sha256": "b9ad02cf6576a04d1b6806ac02a2431481b448dd0c2e505ce25842d1f7c4730b",
+      "bytes": 406
+    },
+    {
+      "path": "packages/quds_office_editor/example/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-40x40@2x.png",
+      "main_blob": "502f463a9bc882b461c96aadf492d1729e49e725",
+      "source_blob": "502f463a9bc882b461c96aadf492d1729e49e725",
+      "sha256": "7c61c42fc7b657d9cf314d32a4ec458f0647c3aaf360be1b9377857266ec2499",
+      "bytes": 586
+    },
+    {
+      "path": "packages/quds_office_editor/example/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-40x40@3x.png",
+      "main_blob": "0ec303439225b78712f49115768196d8d76f6790",
+      "source_blob": "0ec303439225b78712f49115768196d8d76f6790",
+      "sha256": "19be171481dc71a0b2803ebcd01dd8b0c5fd5778dee34c0a3cabc948c225f24e",
+      "bytes": 862
+    },
+    {
+      "path": "packages/quds_office_editor/example/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-60x60@2x.png",
+      "main_blob": "0ec303439225b78712f49115768196d8d76f6790",
+      "source_blob": "0ec303439225b78712f49115768196d8d76f6790",
+      "sha256": "19be171481dc71a0b2803ebcd01dd8b0c5fd5778dee34c0a3cabc948c225f24e",
+      "bytes": 862
+    },
+    {
+      "path": "packages/quds_office_editor/example/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-60x60@3x.png",
+      "main_blob": "e9f5fea27c705180eb716271f41b582e76dcbd90",
+      "source_blob": "e9f5fea27c705180eb716271f41b582e76dcbd90",
+      "sha256": "4209a49e44a92ec40a327d3455eb1b1c153ee83d75de1c2be0a12ab18b2ff9de",
+      "bytes": 1674
+    },
+    {
+      "path": "packages/quds_office_editor/example/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-76x76@1x.png",
+      "main_blob": "84ac32ae7d989f82d5e46a60405adcc8279e8001",
+      "source_blob": "84ac32ae7d989f82d5e46a60405adcc8279e8001",
+      "sha256": "836c918cb613249eba0483a6b02fa3df3c1c0a89a315ee4d3b88509b83c7ab73",
+      "bytes": 762
+    },
+    {
+      "path": "packages/quds_office_editor/example/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-76x76@2x.png",
+      "main_blob": "8953cba09064923c5daf2d37e7c3c836ccdd794b",
+      "source_blob": "8953cba09064923c5daf2d37e7c3c836ccdd794b",
+      "sha256": "41c7d42f6e61f8fe7f30b1ffa2256aecbc9682be06d18c4a3062043e1a2e547c",
+      "bytes": 1226
+    },
+    {
+      "path": "packages/quds_office_editor/example/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-83.5x83.5@2x.png",
+      "main_blob": "0467bf12aa4d28f374bb26596605a46dcbb3e7c8",
+      "source_blob": "0467bf12aa4d28f374bb26596605a46dcbb3e7c8",
+      "sha256": "5d7e5bdf01b93802bc973345b3a78c038907147625035952a08a115a563b7f81",
+      "bytes": 1418
+    },
+    {
+      "path": "packages/quds_office_editor/example/ios/Runner/Assets.xcassets/LaunchImage.imageset/Contents.json",
+      "main_blob": "0bedcf2fd46788ae3a01a423467513ff59b5c120",
+      "source_blob": "0bedcf2fd46788ae3a01a423467513ff59b5c120",
+      "sha256": "ccc7950fd5f5b82067c85f667940a9d59189151460761ece8098ca78daa19469",
+      "bytes": 391
+    },
+    {
+      "path": "packages/quds_office_editor/example/ios/Runner/Assets.xcassets/LaunchImage.imageset/LaunchImage.png",
+      "main_blob": "9da19eacad3b03bb08bbddbbf4ac48dd78b3d838",
+      "source_blob": "9da19eacad3b03bb08bbddbbf4ac48dd78b3d838",
+      "sha256": "93ae7d494fad0fb30cbf3ae746a39c4bc7a0f8bbf87fbb587a3f3c01f3c5ce20",
+      "bytes": 68
+    },
+    {
+      "path": "packages/quds_office_editor/example/ios/Runner/Assets.xcassets/LaunchImage.imageset/LaunchImage@2x.png",
+      "main_blob": "9da19eacad3b03bb08bbddbbf4ac48dd78b3d838",
+      "source_blob": "9da19eacad3b03bb08bbddbbf4ac48dd78b3d838",
+      "sha256": "93ae7d494fad0fb30cbf3ae746a39c4bc7a0f8bbf87fbb587a3f3c01f3c5ce20",
+      "bytes": 68
+    },
+    {
+      "path": "packages/quds_office_editor/example/ios/Runner/Assets.xcassets/LaunchImage.imageset/LaunchImage@3x.png",
+      "main_blob": "9da19eacad3b03bb08bbddbbf4ac48dd78b3d838",
+      "source_blob": "9da19eacad3b03bb08bbddbbf4ac48dd78b3d838",
+      "sha256": "93ae7d494fad0fb30cbf3ae746a39c4bc7a0f8bbf87fbb587a3f3c01f3c5ce20",
+      "bytes": 68
+    },
+    {
+      "path": "packages/quds_office_editor/example/ios/Runner/Assets.xcassets/LaunchImage.imageset/README.md",
+      "main_blob": "89c2725b70f1882be97f5214fafe22d27a0ec01e",
+      "source_blob": "89c2725b70f1882be97f5214fafe22d27a0ec01e",
+      "sha256": "a985b626c4f7546a8ba392d135e9226c3547c8e2b46895f5f2bdf40d7b14ef9f",
+      "bytes": 336
+    },
+    {
+      "path": "packages/quds_office_editor/example/ios/Runner/Base.lproj/LaunchScreen.storyboard",
+      "main_blob": "f2e259c7c9390ff69a6bbe1e0907e6dc366848e7",
+      "source_blob": "f2e259c7c9390ff69a6bbe1e0907e6dc366848e7",
+      "sha256": "857e61203b3deafb05766d8fcda898b86a7cb6f3d5e385ecc9926c4d698215e9",
+      "bytes": 2377
+    },
+    {
+      "path": "packages/quds_office_editor/example/ios/Runner/Base.lproj/Main.storyboard",
+      "main_blob": "f3c28516fb38e64d88cfcf5fb1791175df078f2f",
+      "source_blob": "f3c28516fb38e64d88cfcf5fb1791175df078f2f",
+      "sha256": "fd367b6c43006d61b730f674970dd48b9f662c8f2264e52ffc1558102a2c9f2d",
+      "bytes": 1605
+    },
+    {
+      "path": "packages/quds_office_editor/example/ios/Runner/Info.plist",
+      "main_blob": "860ecd76e5ebe645236907cb2821cce08b8d397a",
+      "source_blob": "860ecd76e5ebe645236907cb2821cce08b8d397a",
+      "sha256": "26aff8706a36b5915cfb40cfe0fa79adeb14109fd130c554ca35625c3846de24",
+      "bytes": 2234
+    },
+    {
+      "path": "packages/quds_office_editor/example/ios/Runner/Runner-Bridging-Header.h",
+      "main_blob": "308a2a560b42f17aaf3c36e4e9c8cd07182fbb7e",
+      "source_blob": "308a2a560b42f17aaf3c36e4e9c8cd07182fbb7e",
+      "sha256": "1a8d11d01d1cc92c650c9c9ed35299240052d4683a15a719a2315ef44185e074",
+      "bytes": 38
+    },
+    {
+      "path": "packages/quds_office_editor/example/ios/Runner/SceneDelegate.swift",
+      "main_blob": "b9ce8ea2b2adb8d8061af09c75d2480999773ac3",
+      "source_blob": "b9ce8ea2b2adb8d8061af09c75d2480999773ac3",
+      "sha256": "add68b905971dedfcc0d0b5b7118030de5925ba8c081ad9815463699e3a444ad",
+      "bytes": 76
+    },
+    {
+      "path": "packages/quds_office_editor/example/ios/RunnerTests/RunnerTests.swift",
+      "main_blob": "86a7c3b1b6119f7dbdb8cec74f1b5b3e076bf949",
+      "source_blob": "86a7c3b1b6119f7dbdb8cec74f1b5b3e076bf949",
+      "sha256": "5e8f4908dacea6f29b2a790e4d38bf5fded69096063f9a27a2f21584d62b30c0",
+      "bytes": 285
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/main.dart",
+      "main_blob": "99c15448edb6286fd0b317e3ab166cfb39450ca7",
+      "source_blob": "99c15448edb6286fd0b317e3ab166cfb39450ca7",
+      "sha256": "fb23b427dabcc58674d49341ae59dc1c9d1b4011462daf86d9af1bf46faf8570",
+      "bytes": 1176
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_arabic_morph_host_native.dart",
+      "main_blob": "ab4507235b615a8f6d3364c6c785b0dec718f5e6",
+      "source_blob": "ab4507235b615a8f6d3364c6c785b0dec718f5e6",
+      "sha256": "5bd13fd7c32662e5fb3d772ef3551ba34b47b8aff4c2e085e30f9adb067fe90d",
+      "bytes": 7985
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_data_root.dart",
+      "main_blob": "c1d149a52777da75672289b104af115c77653e30",
+      "source_blob": "c1d149a52777da75672289b104af115c77653e30",
+      "sha256": "9a04d2b668edb11e62eb952478c5acd1a28ddab81e28aa2f391968c9826e2849",
+      "bytes": 929
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_hunspell_host_native.dart",
+      "main_blob": "658d74fcbaeec4630e2517a0b373a2e0f4d7e88a",
+      "source_blob": "658d74fcbaeec4630e2517a0b373a2e0f4d7e88a",
+      "sha256": "e4c6d4473ce7fb26660708bcb154a6053a0e313bd31fd3c71d14e12c898e0333",
+      "bytes": 4146
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_language_id_host_native.dart",
+      "main_blob": "6ae726f7d445a2428e6e672f837eb1087fad0fea",
+      "source_blob": "6ae726f7d445a2428e6e672f837eb1087fad0fea",
+      "sha256": "2324eff0bb7e78b6b461b72c9b7b2b7ea7f7b0304d66aadb49f9e614541b1193",
+      "bytes": 982
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_native_paths.dart",
+      "main_blob": "a78e73e682cb96c52929fc799b87d4cd9ebc146d",
+      "source_blob": "a78e73e682cb96c52929fc799b87d4cd9ebc146d",
+      "sha256": "139c9fa9b2923ffb90047dff7e2b8acdca3d9260c54584c496c9df38b18f7229",
+      "bytes": 3500
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_spacy_host_native.dart",
+      "main_blob": "32a8a692d45e9d78c52cb443184c4d1fcbb309be",
+      "source_blob": "32a8a692d45e9d78c52cb443184c4d1fcbb309be",
+      "sha256": "8948ff89f941525e3a5a0b20fb25444265d67ffca4b3ef332a976421162167ef",
+      "bytes": 27279
+    },
+    {
+      "path": "packages/quds_office_editor/example/pubspec.yaml",
+      "main_blob": "522fda7838c3a33a9d9f500e636f50ce4f4ee993",
+      "source_blob": "522fda7838c3a33a9d9f500e636f50ce4f4ee993",
+      "sha256": "4a15ff2b3d745da18dffc9e207e8362eb74b6553d6ac12398073c213b2683573",
+      "bytes": 1491
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/spacy_development_cases_test.dart",
+      "main_blob": "00ab30e027a54a80de47e4aeeedeb8f9061c6804",
+      "source_blob": "00ab30e027a54a80de47e4aeeedeb8f9061c6804",
+      "sha256": "af3aad9e45a049f31b36f2f3baf4a8be02e43a90add64ff93f90c82488c3d4d5",
+      "bytes": 1473
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_native_paths_test.dart",
+      "main_blob": "5d49cf260ef5408129e913bd42021f4e6aef58d5",
+      "source_blob": "5d49cf260ef5408129e913bd42021f4e6aef58d5",
+      "sha256": "4ed8c3ccf0357d788fd45bdbdd50a9defa66c74dfc4c175c83149f79085245d6",
+      "bytes": 986
+    },
+    {
+      "path": "packages/quds_proofing_harper/README.md",
+      "main_blob": "3ee6a43b9efe85da64941e75c2cab5094518a8cd",
+      "source_blob": "3ee6a43b9efe85da64941e75c2cab5094518a8cd",
+      "sha256": "310eb365c4f271ca5a8630c7516ab1179be8f16e0009c7bd19a06b3614226700",
+      "bytes": 11844
+    },
+    {
+      "path": "packages/quds_proofing_harper/lib/src/harper_transport_native.dart",
+      "main_blob": "f46603566239187585373ed9f446bbfe8e15e994",
+      "source_blob": "f46603566239187585373ed9f446bbfe8e15e994",
+      "sha256": "199abfe9b6ea2cbab068e84c58cefd414193cd4491a88760a6d9689d762d8ac8",
+      "bytes": 6964
+    },
+    {
+      "path": "packages/quds_proofing_harper/tool/build.py",
+      "main_blob": "3f7d06ada1e571bf5ebb67f5db7c96d45e1bd1d4",
+      "source_blob": "3f7d06ada1e571bf5ebb67f5db7c96d45e1bd1d4",
+      "sha256": "29d975617e475726daaf0e872f4d31635c1b739443aee01c8f5105c64c208719",
+      "bytes": 9619
+    },
+    {
+      "path": "packages/quds_proofing_hunspell/README.md",
+      "main_blob": "44d8711f5f3b438890e337949f8502b04b315e8b",
+      "source_blob": "44d8711f5f3b438890e337949f8502b04b315e8b",
+      "sha256": "016ecf55b3369bcb40bc35ad0e9cc2ed5d9d9939cfc54ee1a1593f5d66747809",
+      "bytes": 10693
+    },
+    {
+      "path": "packages/quds_proofing_hunspell/lib/src/hunspell_transport_native.dart",
+      "main_blob": "45b8d13ba52fc08c701010767e82f3b05bc6906b",
+      "source_blob": "45b8d13ba52fc08c701010767e82f3b05bc6906b",
+      "sha256": "e5b8fa957588769e342cd980928aa4c5473c9593109f5e6c1bd0c68ef4dcfde5",
+      "bytes": 13817
+    },
+    {
+      "path": "packages/quds_proofing_hunspell/tool/build.py",
+      "main_blob": "2876305ed72ec3bf9b1b1400dde10135b27a038d",
+      "source_blob": "2876305ed72ec3bf9b1b1400dde10135b27a038d",
+      "sha256": "566828443f443198fc2d692d7565242bce89bc6881e2f3ff9c3b2882452d8ef8",
+      "bytes": 13053
+    },
+    {
+      "path": "packages/quds_proofing_spacy/README.md",
+      "main_blob": "3756c746c07b9f41c9ac12e840602d4a5048d544",
+      "source_blob": "3756c746c07b9f41c9ac12e840602d4a5048d544",
+      "sha256": "9fe414b5c0c869b8a6bea611720a26005b47a5f4a85be9449a4ebb242966e435",
+      "bytes": 18650
+    },
+    {
+      "path": "packages/quds_proofing_spacy/lib/src/distribution.dart",
+      "main_blob": "6d7afa6c0d1611ba729227b8d46c859777218d46",
+      "source_blob": "6d7afa6c0d1611ba729227b8d46c859777218d46",
+      "sha256": "ba6fcd20c2176a76f1604055947e530fefc4a76645604d316ce2e10d0cb425b0",
+      "bytes": 29236
+    },
+    {
+      "path": "packages/quds_proofing_spacy/lib/src/native_backend.dart",
+      "main_blob": "f17f3baf9d168876a1b4fcfa3f471441b8f81e4c",
+      "source_blob": "f17f3baf9d168876a1b4fcfa3f471441b8f81e4c",
+      "sha256": "73d398a1912209b0921c32c139328cf919c920a0b0e0143915ed088fd285a27b",
+      "bytes": 27723
+    },
+    {
+      "path": "packages/quds_proofing_spacy/test/distribution_test.dart",
+      "main_blob": "f35e845de99f800a7cf4824264a12b28f1b4c6fb",
+      "source_blob": "f35e845de99f800a7cf4824264a12b28f1b4c6fb",
+      "sha256": "b62a67a7cef4dbf5fc47e2e585d575db61e6c5490dca7290d1f4f92b661ea9a5",
+      "bytes": 13378
+    },
+    {
+      "path": "packages/quds_proofing_spacy/tool/build.py",
+      "main_blob": "f31c1a6fa63042fc3002d25494c319e4f123cec6",
+      "source_blob": "f31c1a6fa63042fc3002d25494c319e4f123cec6",
+      "sha256": "127cb4d2ff3f09d07e3cfe205462c87ae0a7f73960d9ab71544a825d9912da47",
+      "bytes": 18574
+    },
+    {
+      "path": "pubspec.lock",
+      "main_blob": "1283d840c60c469bbadf2a133a13086c443a0488",
+      "source_blob": "1283d840c60c469bbadf2a133a13086c443a0488",
+      "sha256": "df9ff88b4df699b2420954d0ddc0dd7a1c40dbca8d9e3af3f25bec7e66700e7e",
+      "bytes": 31364
+    },
+    {
+      "path": "tools/proofing/mobile_native.py",
+      "main_blob": "3e993180d1439ea063753b432161d0e0b0a1e280",
+      "source_blob": "3e993180d1439ea063753b432161d0e0b0a1e280",
+      "sha256": "13143d06ab85cb92e2699bbf209ade3b844182376e5c5461d7994454d7caea7c",
+      "bytes": 14548
+    },
+    {
+      "path": "tools/proofing/spacy/mobile_development_cases.py",
+      "main_blob": "3a1447b9d9107a8d6f360e743dfb65c8fa45ba81",
+      "source_blob": "3a1447b9d9107a8d6f360e743dfb65c8fa45ba81",
+      "sha256": "694b9f28776cba8eb5a2609ce6a107c6286bfb18fd42b86844e49d8c1d5b8c47",
+      "bytes": 2694
+    },
+    {
+      "path": "tools/proofing/test_mobile_native.py",
+      "main_blob": "037558e87a7e2fc7f023f4f998b3876596db05ca",
+      "source_blob": "037558e87a7e2fc7f023f4f998b3876596db05ca",
+      "sha256": "853b3ac0370ec72eb11dd93568e6f5618b52f3739e39158d4335ab2e05c94be9",
+      "bytes": 3808
+    }
+  ],
+  "scope": "Native iOS/Android packaging and build helpers, Studio startup/private data/native host paths, native proofing loaders, mobile spaCy analysis catalog and integration-test support. No Zotero engine/editor, Word, slide, Mail or web host/transport implementation changed.",
+  "qualification_boundary": "Earlier receipts keep their original source and dependency attribution. Focused host/VM tests at this source do not qualify iOS, Android, native libraries, mobile models or device execution. Dependency resolution and the preliminary command's metadata transition are recorded separately.",
+  "dependencies": "Adds integration_test SDK dev dependency, three SDK lock entries and sync_http 0.3.1/webdriver 3.2.0. Existing lock entries/versions unchanged.",
+  "ci": "GitHub Actions, workflow runs, checks and commit statuses neither queried nor awaited."
+}

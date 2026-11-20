@@ -1,0 +1,16 @@
+diff --git a/packages/quds_office_editor/example/test/studio_native_paths_test.dart b/packages/quds_office_editor/example/test/studio_native_paths_test.dart
+index 5d49cf260..a4b62ea26 100644
+--- a/packages/quds_office_editor/example/test/studio_native_paths_test.dart
++++ b/packages/quds_office_editor/example/test/studio_native_paths_test.dart
+@@ -21,7 +21,10 @@ void main() {
+   });
+ 
+   test('unparseable process information yields no directory', () {
+-    expect(androidFilesDirectory(cmdline: '/system/bin/sh', status: ''), isNull);
++    expect(
++      androidFilesDirectory(cmdline: '/system/bin/sh', status: ''),
++      isNull,
++    );
+     expect(
+       androidFilesDirectory(cmdline: '../evil\u0000', status: 'Uid:\t1\n'),
+       isNull,

@@ -1,0 +1,159 @@
+{
+  "archive": "run-01.tar.gz",
+  "archiveBytes": 202849,
+  "archiveSha256": "68a5a72f1d311f8cd41c0afc72c464eb8a92cf6653ab331f40f2980e9987c93c",
+  "fileCount": 30,
+  "uncompressedBytes": 33601231,
+  "files": [
+    {
+      "path": "run-01/dart-results.json",
+      "bytes": 1812,
+      "sha256": "e3fc422fef56669dfcbc9dfdbb795be5c091bad763a46869416f4a34126bc063"
+    },
+    {
+      "path": "run-01/dart-stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "run-01/dart-stdout.log",
+      "bytes": 1812,
+      "sha256": "e3fc422fef56669dfcbc9dfdbb795be5c091bad763a46869416f4a34126bc063"
+    },
+    {
+      "path": "run-01/fixtures/fixtures.json",
+      "bytes": 4747,
+      "sha256": "bf15e4f1bb3b83c4b9de3aea6f769358c35af06d82fec8bd576e4d7d529c9440"
+    },
+    {
+      "path": "run-01/fixtures/maximum-bound-0.bin",
+      "bytes": 1048576,
+      "sha256": "1c15b634397059fc8b634d6723502f0e5433e6c9f8d60e40d9128451a9f80c0f"
+    },
+    {
+      "path": "run-01/fixtures/maximum-bound-1.bin",
+      "bytes": 1048576,
+      "sha256": "042d84d3772b8cc9080a8f388c428c11d88f8566e5a38fda322fc8ea33492cfc"
+    },
+    {
+      "path": "run-01/fixtures/maximum-bound-2.bin",
+      "bytes": 1048576,
+      "sha256": "b22e0cf0068b8b039505cf6f1bfe8b7b4673a45b05a1b62c11a6de1bfe17febc"
+    },
+    {
+      "path": "run-01/fixtures/maximum-bound-3.bin",
+      "bytes": 1048576,
+      "sha256": "98cc1aaa34f5bb3369d5c721d8eb9b33c36c7ed9b6faa534825f7a754a54f315"
+    },
+    {
+      "path": "run-01/fixtures/maximum-bound-4.bin",
+      "bytes": 1048576,
+      "sha256": "0665ebb7bf22346b57db6535a38ac6bcd6d264c6c2d7bbaa0ce5f2cc02054e7a"
+    },
+    {
+      "path": "run-01/fixtures/maximum-bound-5.bin",
+      "bytes": 1048576,
+      "sha256": "eaff5dfdbcdfd66523ff2dca5166c95a3ea2b71946098aecf0285316561f6d47"
+    },
+    {
+      "path": "run-01/fixtures/maximum-bound-6.bin",
+      "bytes": 1048576,
+      "sha256": "2886bef9a63f7fbd42d533497b4c40fcddb6849ff50fbc4883d57c39c37cefb3"
+    },
+    {
+      "path": "run-01/fixtures/maximum-bound-7.bin",
+      "bytes": 1048576,
+      "sha256": "05ed96af22dff8fdb93fd5d85557038d4a3633ea1988787ca712926d8f61e826"
+    },
+    {
+      "path": "run-01/fixtures/maximum-bound-8.bin",
+      "bytes": 1048576,
+      "sha256": "a764814d502b7bcc24bae70e91e93d22a2309d28da0d59d5355644e0ab0db9a4"
+    },
+    {
+      "path": "run-01/fixtures/maximum-bound-9.bin",
+      "bytes": 1048576,
+      "sha256": "d4077fbb79fa3dfaab6f7424db78a2b13926b95df30e8faf53f6f98ec3a43cd5"
+    },
+    {
+      "path": "run-01/fixtures/maximum-bound-body.txt",
+      "bytes": 1048576,
+      "sha256": "afaff083335c0eb2e53795b0da1b1cea9f38358edae92e21ca3442e2e2a4f1d5"
+    },
+    {
+      "path": "run-01/fixtures/plain-control-body.txt",
+      "bytes": 44,
+      "sha256": "4e5cd665db73f168f7a5b0262f5db8df7714dd519de993c63fc01dceec5dd87e"
+    },
+    {
+      "path": "run-01/fixtures/unicode-binary-0.bin",
+      "bytes": 4097,
+      "sha256": "f25daa99a291428d95e64a1c0718f65cd8ee8f20b3a73c3c16fd4b253d1a103f"
+    },
+    {
+      "path": "run-01/fixtures/unicode-binary-1.bin",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "run-01/fixtures/unicode-binary-2.bin",
+      "bytes": 4,
+      "sha256": "a27e1e2881c9ec65b5338ee1403211f4054dc4bec7c1411afa2723e9121f08b8"
+    },
+    {
+      "path": "run-01/fixtures/unicode-binary-3.bin",
+      "bytes": 7,
+      "sha256": "757fba23ac7f448edd3a0cd526325bab26cea4fa7c4057d8b9452fb8e9d48091"
+    },
+    {
+      "path": "run-01/fixtures/unicode-binary-4.bin",
+      "bytes": 8,
+      "sha256": "c6e8b352ddc2e85bdc9b48b87685207cd022cda020065d104d8602b25b3af057"
+    },
+    {
+      "path": "run-01/fixtures/unicode-binary-5.bin",
+      "bytes": 8,
+      "sha256": "931534c0c145d0a99631a32025f23f88c67fc6b34a608a73d0410bc04cf7bdce"
+    },
+    {
+      "path": "run-01/fixtures/unicode-binary-body.txt",
+      "bytes": 94,
+      "sha256": "3295cfe3a55a98859f8178b07edcef45e1383f9a0c3646e07b8340a39909a9c9"
+    },
+    {
+      "path": "run-01/maximum-bound.eml",
+      "bytes": 21986572,
+      "sha256": "ecb34b1c882957c5b3db1550d821ac6cbe8244d3a1d84c6f833672688ad2e80c"
+    },
+    {
+      "path": "run-01/plain-control.eml",
+      "bytes": 865,
+      "sha256": "88cf5ac05fc21813797b2af3dc9cebac50c7178e0931789d6144a8b56026b2be"
+    },
+    {
+      "path": "run-01/python-receiver-results.json",
+      "bytes": 4764,
+      "sha256": "ad9af508a03f7815de8e1c8fe60b7fccf36d76bb08c2af82cd63ce09df9b9d34"
+    },
+    {
+      "path": "run-01/receipt.json",
+      "bytes": 1103,
+      "sha256": "18743327c9298c4d2d791b19faf85480663e29e0eb5461eb806e74fa751fff41"
+    },
+    {
+      "path": "run-01/source-inputs-after.json",
+      "bytes": 25621,
+      "sha256": "3ddf07f22bb3848591b73253ffea88d1717decd0244452d607e4eeac9fa1462d"
+    },
+    {
+      "path": "run-01/source-inputs-before.json",
+      "bytes": 25621,
+      "sha256": "3ddf07f22bb3848591b73253ffea88d1717decd0244452d607e4eeac9fa1462d"
+    },
+    {
+      "path": "run-01/unicode-binary.eml",
+      "bytes": 9716,
+      "sha256": "c0a19b4f7f6955f0d90c2933cf53417fc3bc06a9b15ad739fb8d284cfd37b50d"
+    }
+  ]
+}

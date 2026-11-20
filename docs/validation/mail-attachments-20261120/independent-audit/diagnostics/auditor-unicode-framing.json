@@ -1,0 +1,143 @@
+{
+  "kind": "independent-auditor correction; no product/test execution or evidence mutation",
+  "raw_events_file": "flutter-cohorts/mail-host/events.jsonl.gz",
+  "raw_events_sha256": "a3ffaddb5784880b6317546e98876b43d307d2454b52b12699c70ad2022afbe7",
+  "observed_intermediate_summary": {
+    "status": "failed",
+    "distinct_passed_application_cases": 1715,
+    "accepted_final_cohorts": 13,
+    "reason": "All319 mail-host cases were excluded because three valid test-start records were incorrectly split by the audit reader."
+  },
+  "intermediate_summary_provenance": "Recorded tool output; the intermediate report file was replaced by the corrected audit and was not retained byte-for-byte.",
+  "cause": "str.splitlines() treats Unicode NEL U+0085, line separator U+2028, and paragraph separator U+2029 as separators. These characters are valid JSON string data in three unsafe-filename test names. JSONL records must be split only on LF.",
+  "reproduced_old_parser_errors": [
+    {
+      "line": 97,
+      "error": "Unterminated string starting at: line 1 column 25 (char 24)",
+      "text": "{\"test\":{\"id\":50,\"name\":\"rejects unsafe filename \\\"next"
+    },
+    {
+      "line": 98,
+      "error": "Expecting value: line 1 column 1 (char 0)",
+      "text": "line.txt\\\" before snapshotting\",\"suiteID\":30,\"groupIDs\":[32],\"metadata\":{\"skip\":false,\"skipReason\":null},\"line\":159,\"column\":5,\"url\":\"file:///workspace/scratch/75dc9d25dfaf/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_attachment_test.dart\"},\"type\":\"testStart\",\"time\":26825}"
+    },
+    {
+      "line": 100,
+      "error": "Unterminated string starting at: line 1 column 25 (char 24)",
+      "text": "{\"test\":{\"id\":51,\"name\":\"rejects unsafe filename \\\"separator"
+    },
+    {
+      "line": 101,
+      "error": "Expecting value: line 1 column 1 (char 0)",
+      "text": ".txt\\\" before snapshotting\",\"suiteID\":30,\"groupIDs\":[32],\"metadata\":{\"skip\":false,\"skipReason\":null},\"line\":159,\"column\":5,\"url\":\"file:///workspace/scratch/75dc9d25dfaf/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_attachment_test.dart\"},\"type\":\"testStart\",\"time\":26827}"
+    },
+    {
+      "line": 103,
+      "error": "Unterminated string starting at: line 1 column 25 (char 24)",
+      "text": "{\"test\":{\"id\":52,\"name\":\"rejects unsafe filename \\\"paragraph"
+    },
+    {
+      "line": 104,
+      "error": "Expecting value: line 1 column 1 (char 0)",
+      "text": ".txt\\\" before snapshotting\",\"suiteID\":30,\"groupIDs\":[32],\"metadata\":{\"skip\":false,\"skipReason\":null},\"line\":159,\"column\":5,\"url\":\"file:///workspace/scratch/75dc9d25dfaf/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_attachment_test.dart\"},\"type\":\"testStart\",\"time\":26829}"
+    }
+  ],
+  "affected_complete_events": [
+    {
+      "start": {
+        "test": {
+          "id": 50,
+          "name": "rejects unsafe filename \"next\u0085line.txt\" before snapshotting",
+          "suiteID": 30,
+          "groupIDs": [
+            32
+          ],
+          "metadata": {
+            "skip": false,
+            "skipReason": null
+          },
+          "line": 159,
+          "column": 5,
+          "url": "file:///workspace/scratch/75dc9d25dfaf/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_attachment_test.dart"
+        },
+        "type": "testStart",
+        "time": 26825
+      },
+      "completion": {
+        "testID": 50,
+        "result": "success",
+        "skipped": false,
+        "hidden": false,
+        "type": "testDone",
+        "time": 26827
+      }
+    },
+    {
+      "start": {
+        "test": {
+          "id": 51,
+          "name": "rejects unsafe filename \"separator\u2028.txt\" before snapshotting",
+          "suiteID": 30,
+          "groupIDs": [
+            32
+          ],
+          "metadata": {
+            "skip": false,
+            "skipReason": null
+          },
+          "line": 159,
+          "column": 5,
+          "url": "file:///workspace/scratch/75dc9d25dfaf/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_attachment_test.dart"
+        },
+        "type": "testStart",
+        "time": 26827
+      },
+      "completion": {
+        "testID": 51,
+        "result": "success",
+        "skipped": false,
+        "hidden": false,
+        "type": "testDone",
+        "time": 26829
+      }
+    },
+    {
+      "start": {
+        "test": {
+          "id": 52,
+          "name": "rejects unsafe filename \"paragraph\u2029.txt\" before snapshotting",
+          "suiteID": 30,
+          "groupIDs": [
+            32
+          ],
+          "metadata": {
+            "skip": false,
+            "skipReason": null
+          },
+          "line": 159,
+          "column": 5,
+          "url": "file:///workspace/scratch/75dc9d25dfaf/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_attachment_test.dart"
+        },
+        "type": "testStart",
+        "time": 26829
+      },
+      "completion": {
+        "testID": 52,
+        "result": "success",
+        "skipped": false,
+        "hidden": false,
+        "type": "testDone",
+        "time": 26831
+      }
+    }
+  ],
+  "corrected_lf_only_parse": {
+    "all_start_events": 330,
+    "all_completion_events": 330,
+    "all_ids_complete": true,
+    "json_parse_errors": 0,
+    "affected_cases_passed": 3
+  },
+  "correction": "The independent auditor now uses split(\"\\n\"); the original evidence files and test receipts were not edited. Re-audit reports319 mail-host passes and2034 distinct passes overall, plus1 native NOT RUN.",
+  "raw_events_path_base": "final-validation evidence root"
+}

@@ -1,0 +1,2699 @@
+{
+  "source_head": "65ea4c3095ff5d821c57d4dced0ba50bdd9387e7",
+  "reason": "Direct dart test performed an implicit resolver refresh before its event stream. This was unintended; it is not represented as unchanged saved configuration.",
+  "before_hashes": {
+    ".dart_tool/package_config.json": "0011318979bdc29c9637b857a5122ffea96d185f3d2dc50c5503904a9059d6a7",
+    ".dart_tool/package_graph.json": "c4cf87e3f8b546649a30f1ad117cbb820b3757ba5b731af3b274a2e103585714"
+  },
+  "after_hashes": {
+    ".dart_tool/package_config.json": "ddfca5fc7d08d7d38377e1b31c1a11fd4a7f589d41322c776a09e36ae55b6ff3",
+    ".dart_tool/package_graph.json": "09b12d3718163b37c56c092d0d87d2f5a976bfb50f02009667efce07bd243c3e"
+  },
+  "locked_source_unchanged": true,
+  "exact_webdriver_now_present": true,
+  "webdriver_archive_hash": "28b82ec894fed45dd71c23ba62d1af973ed97dd59a4f5790a4d38b0b13e5657e",
+  "package_names_after": [
+    "_fe_analyzer_shared",
+    "analyzer",
+    "archive",
+    "args",
+    "asn1lib",
+    "async",
+    "barcode",
+    "basic_utils",
+    "bidi",
+    "boolean_selector",
+    "characters",
+    "cli_config",
+    "cli_util",
+    "clock",
+    "code_assets",
+    "collection",
+    "convert",
+    "coverage",
+    "cross_file",
+    "crypto",
+    "dbus",
+    "drift",
+    "encrypter_plus",
+    "enough_convert",
+    "enough_mail",
+    "fake_async",
+    "ffi",
+    "file",
+    "file_picker",
+    "flutter",
+    "flutter_driver",
+    "flutter_lints",
+    "flutter_localizations",
+    "flutter_plugin_android_lifecycle",
+    "flutter_secure_storage",
+    "flutter_secure_storage_linux",
+    "flutter_secure_storage_macos",
+    "flutter_secure_storage_platform_interface",
+    "flutter_secure_storage_web",
+    "flutter_secure_storage_windows",
+    "flutter_test",
+    "flutter_web_plugins",
+    "frontend_server_client",
+    "fuchsia_remote_debug_protocol",
+    "glob",
+    "hooks",
+    "http",
+    "http_multi_server",
+    "http_parser",
+    "image",
+    "integration_test",
+    "intl",
+    "io",
+    "jni",
+    "jni_flutter",
+    "jni_util",
+    "js",
+    "json_annotation",
+    "leak_tracker",
+    "leak_tracker_flutter_testing",
+    "leak_tracker_testing",
+    "legacy_doc_parser",
+    "lints",
+    "logging",
+    "matcher",
+    "material_color_utilities",
+    "meta",
+    "mime",
+    "native_toolchain_c",
+    "node_preamble",
+    "objective_c",
+    "package_config",
+    "path",
+    "path_parsing",
+    "path_provider",
+    "path_provider_android",
+    "path_provider_foundation",
+    "path_provider_linux",
+    "path_provider_platform_interface",
+    "path_provider_windows",
+    "pdf",
+    "pdf_widget_wrapper",
+    "petitparser",
+    "platform",
+    "plugin_platform_interface",
+    "pointycastle",
+    "pool",
+    "posix",
+    "printing",
+    "process",
+    "pub_semver",
+    "qr",
+    "quds_arabic_morph",
+    "quds_language_id",
+    "quds_mail_core",
+    "quds_mail_mime",
+    "quds_mail_reader_example",
+    "quds_mail_store",
+    "quds_mail_transport",
+    "quds_mail_ui",
+    "quds_office_editor",
+    "quds_office_engine",
+    "quds_office_engine_example",
+    "quds_office_studio",
+    "quds_office_suite",
+    "quds_proofing_gector",
+    "quds_proofing_harper",
+    "quds_proofing_hunspell",
+    "quds_proofing_spacy",
+    "quds_report_studio",
+    "quds_reports",
+    "record_use",
+    "screen_retriever",
+    "screen_retriever_linux",
+    "screen_retriever_macos",
+    "screen_retriever_platform_interface",
+    "screen_retriever_windows",
+    "shelf",
+    "shelf_packages_handler",
+    "shelf_static",
+    "shelf_web_socket",
+    "sky_engine",
+    "source_map_stack_trace",
+    "source_maps",
+    "source_span",
+    "sqlite3",
+    "stack_trace",
+    "stream_channel",
+    "string_scanner",
+    "sync_http",
+    "synchronized",
+    "term_glyph",
+    "test",
+    "test_api",
+    "test_core",
+    "typed_data",
+    "url_launcher",
+    "url_launcher_android",
+    "url_launcher_ios",
+    "url_launcher_linux",
+    "url_launcher_macos",
+    "url_launcher_platform_interface",
+    "url_launcher_web",
+    "url_launcher_windows",
+    "vector_math",
+    "vm_service",
+    "watcher",
+    "web",
+    "web_socket",
+    "web_socket_channel",
+    "webdriver",
+    "webkit_inspection_protocol",
+    "win32",
+    "window_manager",
+    "xdg_directories",
+    "xml",
+    "yaml"
+  ],
+  "configured_packages_after": {
+    "configVersion": 2,
+    "packages": [
+      {
+        "name": "_fe_analyzer_shared",
+        "rootUri": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/_fe_analyzer_shared-103.0.0",
+        "packageUri": "lib/",
+        "languageVersion": "3.11"
+      },
+      {
+        "name": "analyzer",
+        "rootUri": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/analyzer-13.3.0",
+        "packageUri": "lib/",
+        "languageVersion": "3.11"
+      },
+      {
+        "name": "archive",
+        "rootUri": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/archive-4.7.1",
+        "packageUri": "lib/",
+        "languageVersion": "3.0"
+      },
+      {
+        "name": "args",
+        "rootUri": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/args-2.7.0",
+        "packageUri": "lib/",
+        "languageVersion": "3.3"
+      },
+      {
+        "name": "asn1lib",
+        "rootUri": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/asn1lib-1.6.8",
+        "packageUri": "lib/",
+        "languageVersion": "3.0"
+      },
+      {
+        "name": "async",
+        "rootUri": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/async-2.13.1",
+        "packageUri": "lib/",
+        "languageVersion": "3.4"
+      },
+      {
+        "name": "barcode",
+        "rootUri": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/barcode-2.2.9",
+        "packageUri": "lib/",
+        "languageVersion": "2.12"
+      },
+      {
+        "name": "basic_utils",
+        "rootUri": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/basic_utils-5.8.2",
+        "packageUri": "lib/",
+        "languageVersion": "2.18"
+      },
+      {
+        "name": "bidi",
+        "rootUri": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/bidi-2.0.13",
+        "packageUri": "lib/",
+        "languageVersion": "2.12"
+      },
+      {
+        "name": "boolean_selector",
+        "rootUri": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/boolean_selector-2.1.2",
+        "packageUri": "lib/",
+        "languageVersion": "3.1"
+      },
+      {
+        "name": "characters",
+        "rootUri": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/characters-1.4.1",
+        "packageUri": "lib/",
+        "languageVersion": "3.4"
+      },
+      {
+        "name": "cli_config",
+        "rootUri": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/cli_config-0.2.0",
+        "packageUri": "lib/",
+        "languageVersion": "3.0"
+      },
+      {
+        "name": "cli_util",
+        "rootUri": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/cli_util-0.6.0",
+        "packageUri": "lib/",
+        "languageVersion": "3.7"
+      },
+      {
+        "name": "clock",
+        "rootUri": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/clock-1.1.3",
+        "packageUri": "lib/",
+        "languageVersion": "3.4"
+      },
+      {
+        "name": "code_assets",
+        "rootUri": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/code_assets-2.2.0",
+        "packageUri": "lib/",
+        "languageVersion": "3.10"
+      },
+      {
+        "name": "collection",
+        "rootUri": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/collection-1.19.1",
+        "packageUri": "lib/",
+        "languageVersion": "3.4"
+      },
+      {
+        "name": "convert",
+        "rootUri": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/convert-3.1.2",
+        "packageUri": "lib/",
+        "languageVersion": "3.4"
+      },
+      {
+        "name": "coverage",
+        "rootUri": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/coverage-1.16.1",
+        "packageUri": "lib/",
+        "languageVersion": "3.9"
+      },
+      {
+        "name": "cross_file",
+        "rootUri": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/cross_file-0.3.5+5",
+        "packageUri": "lib/",
+        "languageVersion": "3.10"
+      },
+      {
+        "name": "crypto",
+        "rootUri": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/crypto-3.0.8",
+        "packageUri": "lib/",
+        "languageVersion": "3.4"
+      },
+      {
+        "name": "dbus",
+        "rootUri": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/dbus-0.7.15",
+        "packageUri": "lib/",
+        "languageVersion": "2.17"
+      },
+      {
+        "name": "drift",
+        "rootUri": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/drift-2.35.4",
+        "packageUri": "lib/",
+        "languageVersion": "3.10"
+      },
+      {
+        "name": "encrypter_plus",
+        "rootUri": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/encrypter_plus-5.1.0",
+        "packageUri": "lib/",
+        "languageVersion": "3.0"
+      },
+      {
+        "name": "enough_convert",
+        "rootUri": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/enough_convert-1.7.1",
+        "packageUri": "lib/",
+        "languageVersion": "3.11"
+      },
+      {
+        "name": "enough_mail",
+        "rootUri": "../third_party/enough_mail",
+        "packageUri": "lib/",
+        "languageVersion": "3.11"
+      },
+      {
+        "name": "fake_async",
+        "rootUri": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/fake_async-1.3.3",
+        "packageUri": "lib/",
+        "languageVersion": "3.3"
+      },
+      {
+        "name": "ffi",
+        "rootUri": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/ffi-2.2.0",
+        "packageUri": "lib/",
+        "languageVersion": "3.7"
+      },
+      {
+        "name": "file",
+        "rootUri": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/file-7.0.1",
+        "packageUri": "lib/",
+        "languageVersion": "3.0"
+      },
+      {
+        "name": "file_picker",
+        "rootUri": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/file_picker-10.3.10",
+        "packageUri": "lib/",
+        "languageVersion": "3.4"
+      },
+      {
+        "name": "flutter",
+        "rootUri": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/flutter-sdk/packages/flutter",
+        "packageUri": "lib/",
+        "languageVersion": "3.11"
+      },
+      {
+        "name": "flutter_driver",
+        "rootUri": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/flutter-sdk/packages/flutter_driver",
+        "packageUri": "lib/",
+        "languageVersion": "3.11"
+      },
+      {
+        "name": "flutter_lints",
+        "rootUri": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/flutter_lints-6.0.0",
+        "packageUri": "lib/",
+        "languageVersion": "3.8"
+      },
+      {
+        "name": "flutter_localizations",
+        "rootUri": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/flutter-sdk/packages/flutter_localizations",
+        "packageUri": "lib/",
+        "languageVersion": "3.11"
+      },
+      {
+        "name": "flutter_plugin_android_lifecycle",
+        "rootUri": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/flutter_plugin_android_lifecycle-2.0.35",
+        "packageUri": "lib/",
+        "languageVersion": "3.10"
+      },
+      {
+        "name": "flutter_secure_storage",
+        "rootUri": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/flutter_secure_storage-9.2.4",
+        "packageUri": "lib/",
+        "languageVersion": "2.12"
+      },
+      {
+        "name": "flutter_secure_storage_linux",
+        "rootUri": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/flutter_secure_storage_linux-1.2.3",
+        "packageUri": "lib/",
+        "languageVersion": "2.12"
+      },
+      {
+        "name": "flutter_secure_storage_macos",
+        "rootUri": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/flutter_secure_storage_macos-3.1.3",
+        "packageUri": "lib/",
+        "languageVersion": "2.12"
+      },
+      {
+        "name": "flutter_secure_storage_platform_interface",
+        "rootUri": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/flutter_secure_storage_platform_interface-1.1.2",
+        "packageUri": "lib/",
+        "languageVersion": "2.12"
+      },
+      {
+        "name": "flutter_secure_storage_web",
+        "rootUri": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/flutter_secure_storage_web-1.2.1",
+        "packageUri": "lib/",
+        "languageVersion": "2.12"
+      },
+      {
+        "name": "flutter_secure_storage_windows",
+        "rootUri": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/flutter_secure_storage_windows-3.1.2",
+        "packageUri": "lib/",
+        "languageVersion": "2.12"
+      },
+      {
+        "name": "flutter_test",
+        "rootUri": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/flutter-sdk/packages/flutter_test",
+        "packageUri": "lib/",
+        "languageVersion": "3.11"
+      },
+      {
+        "name": "flutter_web_plugins",
+        "rootUri": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/flutter-sdk/packages/flutter_web_plugins",
+        "packageUri": "lib/",
+        "languageVersion": "3.11"
+      },
+      {
+        "name": "frontend_server_client",
+        "rootUri": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/frontend_server_client-4.2.0",
+        "packageUri": "lib/",
+        "languageVersion": "3.13"
+      },
+      {
+        "name": "fuchsia_remote_debug_protocol",
+        "rootUri": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/flutter-sdk/packages/fuchsia_remote_debug_protocol",
+        "packageUri": "lib/",
+        "languageVersion": "3.11"
+      },
+      {
+        "name": "glob",
+        "rootUri": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/glob-2.2.0",
+        "packageUri": "lib/",
+        "languageVersion": "3.3"
+      },
+      {
+        "name": "hooks",
+        "rootUri": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/hooks-2.2.0",
+        "packageUri": "lib/",
+        "languageVersion": "3.10"
+      },
+      {
+        "name": "http",
+        "rootUri": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/http-1.6.0",
+        "packageUri": "lib/",
+        "languageVersion": "3.4"
+      },
+      {
+        "name": "http_multi_server",
+        "rootUri": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/http_multi_server-3.2.3",
+        "packageUri": "lib/",
+        "languageVersion": "3.2"
+      },
+      {
+        "name": "http_parser",
+        "rootUri": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/http_parser-4.1.2",
+        "packageUri": "lib/",
+        "languageVersion": "3.4"
+      },
+      {
+        "name": "image",
+        "rootUri": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/image-4.13.1",
+        "packageUri": "lib/",
+        "languageVersion": "3.0"
+      },
+      {
+        "name": "integration_test",
+        "rootUri": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/flutter-sdk/packages/integration_test",
+        "packageUri": "lib/",
+        "languageVersion": "3.11"
+      },
+      {
+        "name": "intl",
+        "rootUri": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/intl-0.20.3",
+        "packageUri": "lib/",
+        "languageVersion": "3.9"
+      },
+      {
+        "name": "io",
+        "rootUri": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/io-1.1.0",
+        "packageUri": "lib/",
+        "languageVersion": "3.4"
+      },
+      {
+        "name": "jni",
+        "rootUri": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/jni-1.1.2",
+        "packageUri": "lib/",
+        "languageVersion": "3.3"
+      },
+      {
+        "name": "jni_flutter",
+        "rootUri": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/jni_flutter-1.0.4+1",
+        "packageUri": "lib/",
+        "languageVersion": "3.3"
+      },
+      {
+        "name": "jni_util",
+        "rootUri": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/jni_util-1.0.0",
+        "packageUri": "lib/",
+        "languageVersion": "3.3"
+      },
+      {
+        "name": "js",
+        "rootUri": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/js-0.6.7",
+        "packageUri": "lib/",
+        "languageVersion": "2.19"
+      },
+      {
+        "name": "json_annotation",
+        "rootUri": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/json_annotation-4.12.0",
+        "packageUri": "lib/",
+        "languageVersion": "3.9"
+      },
+      {
+        "name": "leak_tracker",
+        "rootUri": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/leak_tracker-11.0.2",
+        "packageUri": "lib/",
+        "languageVersion": "3.2"
+      },
+      {
+        "name": "leak_tracker_flutter_testing",
+        "rootUri": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/leak_tracker_flutter_testing-3.0.10",
+        "packageUri": "lib/",
+        "languageVersion": "3.2"
+      },
+      {
+        "name": "leak_tracker_testing",
+        "rootUri": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/leak_tracker_testing-3.0.2",
+        "packageUri": "lib/",
+        "languageVersion": "3.2"
+      },
+      {
+        "name": "lints",
+        "rootUri": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/lints-6.1.0",
+        "packageUri": "lib/",
+        "languageVersion": "3.8"
+      },
+      {
+        "name": "logging",
+        "rootUri": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/logging-1.3.0",
+        "packageUri": "lib/",
+        "languageVersion": "3.4"
+      },
+      {
+        "name": "matcher",
+        "rootUri": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/matcher-0.12.20",
+        "packageUri": "lib/",
+        "languageVersion": "3.10"
+      },
+      {
+        "name": "material_color_utilities",
+        "rootUri": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/material_color_utilities-0.13.0",
+        "packageUri": "lib/",
+        "languageVersion": "3.5"
+      },
+      {
+        "name": "meta",
+        "rootUri": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/meta-1.19.0",
+        "packageUri": "lib/",
+        "languageVersion": "3.5"
+      },
+      {
+        "name": "mime",
+        "rootUri": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/mime-2.1.0",
+        "packageUri": "lib/",
+        "languageVersion": "3.2"
+      },
+      {
+        "name": "native_toolchain_c",
+        "rootUri": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/native_toolchain_c-0.19.6",
+        "packageUri": "lib/",
+        "languageVersion": "3.10"
+      },
+      {
+        "name": "node_preamble",
+        "rootUri": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/node_preamble-2.0.2",
+        "packageUri": "lib/",
+        "languageVersion": "2.12"
+      },
+      {
+        "name": "objective_c",
+        "rootUri": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/objective_c-9.6.4",
+        "packageUri": "lib/",
+        "languageVersion": "3.10"
+      },
+      {
+        "name": "package_config",
+        "rootUri": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/package_config-2.2.0",
+        "packageUri": "lib/",
+        "languageVersion": "3.4"
+      },
+      {
+        "name": "path",
+        "rootUri": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/path-1.9.1",
+        "packageUri": "lib/",
+        "languageVersion": "3.4"
+      },
+      {
+        "name": "path_parsing",
+        "rootUri": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/path_parsing-1.1.0",
+        "packageUri": "lib/",
+        "languageVersion": "3.3"
+      },
+      {
+        "name": "path_provider",
+        "rootUri": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/path_provider-2.1.6",
+        "packageUri": "lib/",
+        "languageVersion": "3.10"
+      },
+      {
+        "name": "path_provider_android",
+        "rootUri": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/path_provider_android-2.3.1",
+        "packageUri": "lib/",
+        "languageVersion": "3.9"
+      },
+      {
+        "name": "path_provider_foundation",
+        "rootUri": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/path_provider_foundation-2.6.0",
+        "packageUri": "lib/",
+        "languageVersion": "3.10"
+      },
+      {
+        "name": "path_provider_linux",
+        "rootUri": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/path_provider_linux-2.2.2",
+        "packageUri": "lib/",
+        "languageVersion": "3.10"
+      },
+      {
+        "name": "path_provider_platform_interface",
+        "rootUri": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/path_provider_platform_interface-2.1.3",
+        "packageUri": "lib/",
+        "languageVersion": "3.10"
+      },
+      {
+        "name": "path_provider_windows",
+        "rootUri": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/path_provider_windows-2.3.0",
+        "packageUri": "lib/",
+        "languageVersion": "3.2"
+      },
+      {
+        "name": "pdf",
+        "rootUri": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/pdf-3.13.1",
+        "packageUri": "lib/",
+        "languageVersion": "3.12"
+      },
+      {
+        "name": "pdf_widget_wrapper",
+        "rootUri": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/pdf_widget_wrapper-1.0.4",
+        "packageUri": "lib/",
+        "languageVersion": "2.18"
+      },
+      {
+        "name": "petitparser",
+        "rootUri": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/petitparser-7.1.0",
+        "packageUri": "lib/",
+        "languageVersion": "3.13"
+      },
+      {
+        "name": "platform",
+        "rootUri": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/platform-3.2.0",
+        "packageUri": "lib/",
+        "languageVersion": "3.10"
+      },
+      {
+        "name": "plugin_platform_interface",
+        "rootUri": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/plugin_platform_interface-2.1.8",
+        "packageUri": "lib/",
+        "languageVersion": "3.0"
+      },
+      {
+        "name": "pointycastle",
+        "rootUri": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/pointycastle-4.0.0",
+        "packageUri": "lib/",
+        "languageVersion": "3.2"
+      },
+      {
+        "name": "pool",
+        "rootUri": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/pool-1.5.3",
+        "packageUri": "lib/",
+        "languageVersion": "3.4"
+      },
+      {
+        "name": "posix",
+        "rootUri": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/posix-6.5.4",
+        "packageUri": "lib/",
+        "languageVersion": "3.0"
+      },
+      {
+        "name": "printing",
+        "rootUri": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/printing-5.15.1",
+        "packageUri": "lib/",
+        "languageVersion": "3.12"
+      },
+      {
+        "name": "process",
+        "rootUri": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/process-5.0.6",
+        "packageUri": "lib/",
+        "languageVersion": "3.5"
+      },
+      {
+        "name": "pub_semver",
+        "rootUri": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/pub_semver-2.2.1",
+        "packageUri": "lib/",
+        "languageVersion": "3.4"
+      },
+      {
+        "name": "qr",
+        "rootUri": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/qr-3.0.3",
+        "packageUri": "lib/",
+        "languageVersion": "3.4"
+      },
+      {
+        "name": "record_use",
+        "rootUri": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/record_use-1.1.1",
+        "packageUri": "lib/",
+        "languageVersion": "3.10"
+      },
+      {
+        "name": "screen_retriever",
+        "rootUri": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/screen_retriever-0.2.2",
+        "packageUri": "lib/",
+        "languageVersion": "3.0"
+      },
+      {
+        "name": "screen_retriever_linux",
+        "rootUri": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/screen_retriever_linux-0.2.2",
+        "packageUri": "lib/",
+        "languageVersion": "3.0"
+      },
+      {
+        "name": "screen_retriever_macos",
+        "rootUri": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/screen_retriever_macos-0.2.2",
+        "packageUri": "lib/",
+        "languageVersion": "3.0"
+      },
+      {
+        "name": "screen_retriever_platform_interface",
+        "rootUri": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/screen_retriever_platform_interface-0.2.2",
+        "packageUri": "lib/",
+        "languageVersion": "3.0"
+      },
+      {
+        "name": "screen_retriever_windows",
+        "rootUri": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/screen_retriever_windows-0.2.2",
+        "packageUri": "lib/",
+        "languageVersion": "3.0"
+      },
+      {
+        "name": "shelf",
+        "rootUri": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/shelf-1.4.3",
+        "packageUri": "lib/",
+        "languageVersion": "3.9"
+      },
+      {
+        "name": "shelf_packages_handler",
+        "rootUri": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/shelf_packages_handler-3.0.2",
+        "packageUri": "lib/",
+        "languageVersion": "2.17"
+      },
+      {
+        "name": "shelf_static",
+        "rootUri": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/shelf_static-1.2.0",
+        "packageUri": "lib/",
+        "languageVersion": "3.9"
+      },
+      {
+        "name": "shelf_web_socket",
+        "rootUri": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/shelf_web_socket-3.0.0",
+        "packageUri": "lib/",
+        "languageVersion": "3.5"
+      },
+      {
+        "name": "sky_engine",
+        "rootUri": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/flutter-sdk/bin/cache/pkg/sky_engine",
+        "packageUri": "lib/",
+        "languageVersion": "3.11"
+      },
+      {
+        "name": "source_map_stack_trace",
+        "rootUri": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/source_map_stack_trace-2.1.2",
+        "packageUri": "lib/",
+        "languageVersion": "3.3"
+      },
+      {
+        "name": "source_maps",
+        "rootUri": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/source_maps-0.10.14",
+        "packageUri": "lib/",
+        "languageVersion": "3.3"
+      },
+      {
+        "name": "source_span",
+        "rootUri": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/source_span-1.10.2",
+        "packageUri": "lib/",
+        "languageVersion": "3.1"
+      },
+      {
+        "name": "sqlite3",
+        "rootUri": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/sqlite3-3.9.1",
+        "packageUri": "lib/",
+        "languageVersion": "3.10"
+      },
+      {
+        "name": "stack_trace",
+        "rootUri": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/stack_trace-1.12.2",
+        "packageUri": "lib/",
+        "languageVersion": "3.4"
+      },
+      {
+        "name": "stream_channel",
+        "rootUri": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/stream_channel-2.1.4",
+        "packageUri": "lib/",
+        "languageVersion": "3.3"
+      },
+      {
+        "name": "string_scanner",
+        "rootUri": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/string_scanner-1.4.1",
+        "packageUri": "lib/",
+        "languageVersion": "3.1"
+      },
+      {
+        "name": "sync_http",
+        "rootUri": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/sync_http-0.3.1",
+        "packageUri": "lib/",
+        "languageVersion": "2.12"
+      },
+      {
+        "name": "synchronized",
+        "rootUri": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/synchronized-3.6.1+1",
+        "packageUri": "lib/",
+        "languageVersion": "3.12"
+      },
+      {
+        "name": "term_glyph",
+        "rootUri": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/term_glyph-1.2.2",
+        "packageUri": "lib/",
+        "languageVersion": "3.1"
+      },
+      {
+        "name": "test",
+        "rootUri": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/test-1.31.1",
+        "packageUri": "lib/",
+        "languageVersion": "3.10"
+      },
+      {
+        "name": "test_api",
+        "rootUri": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/test_api-0.7.12",
+        "packageUri": "lib/",
+        "languageVersion": "3.10"
+      },
+      {
+        "name": "test_core",
+        "rootUri": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/test_core-0.6.18",
+        "packageUri": "lib/",
+        "languageVersion": "3.10"
+      },
+      {
+        "name": "typed_data",
+        "rootUri": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/typed_data-1.4.0",
+        "packageUri": "lib/",
+        "languageVersion": "3.5"
+      },
+      {
+        "name": "url_launcher",
+        "rootUri": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/url_launcher-6.3.3",
+        "packageUri": "lib/",
+        "languageVersion": "3.11"
+      },
+      {
+        "name": "url_launcher_android",
+        "rootUri": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/url_launcher_android-6.3.35",
+        "packageUri": "lib/",
+        "languageVersion": "3.12"
+      },
+      {
+        "name": "url_launcher_ios",
+        "rootUri": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/url_launcher_ios-6.4.2",
+        "packageUri": "lib/",
+        "languageVersion": "3.10"
+      },
+      {
+        "name": "url_launcher_linux",
+        "rootUri": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/url_launcher_linux-3.2.3",
+        "packageUri": "lib/",
+        "languageVersion": "3.10"
+      },
+      {
+        "name": "url_launcher_macos",
+        "rootUri": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/url_launcher_macos-3.2.6",
+        "packageUri": "lib/",
+        "languageVersion": "3.10"
+      },
+      {
+        "name": "url_launcher_platform_interface",
+        "rootUri": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/url_launcher_platform_interface-2.3.2",
+        "packageUri": "lib/",
+        "languageVersion": "3.1"
+      },
+      {
+        "name": "url_launcher_web",
+        "rootUri": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/url_launcher_web-2.4.3",
+        "packageUri": "lib/",
+        "languageVersion": "3.10"
+      },
+      {
+        "name": "url_launcher_windows",
+        "rootUri": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/url_launcher_windows-3.1.6",
+        "packageUri": "lib/",
+        "languageVersion": "3.10"
+      },
+      {
+        "name": "vector_math",
+        "rootUri": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/vector_math-2.4.4",
+        "packageUri": "lib/",
+        "languageVersion": "3.10"
+      },
+      {
+        "name": "vm_service",
+        "rootUri": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/vm_service-15.4.0",
+        "packageUri": "lib/",
+        "languageVersion": "3.5"
+      },
+      {
+        "name": "watcher",
+        "rootUri": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/watcher-1.2.1",
+        "packageUri": "lib/",
+        "languageVersion": "3.4"
+      },
+      {
+        "name": "web",
+        "rootUri": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/web-1.1.2",
+        "packageUri": "lib/",
+        "languageVersion": "3.13"
+      },
+      {
+        "name": "web_socket",
+        "rootUri": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/web_socket-1.0.1",
+        "packageUri": "lib/",
+        "languageVersion": "3.4"
+      },
+      {
+        "name": "web_socket_channel",
+        "rootUri": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/web_socket_channel-3.0.3",
+        "packageUri": "lib/",
+        "languageVersion": "3.3"
+      },
+      {
+        "name": "webdriver",
+        "rootUri": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/webdriver-3.2.0",
+        "packageUri": "lib/",
+        "languageVersion": "3.4"
+      },
+      {
+        "name": "webkit_inspection_protocol",
+        "rootUri": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/webkit_inspection_protocol-1.2.1",
+        "packageUri": "lib/",
+        "languageVersion": "3.0"
+      },
+      {
+        "name": "win32",
+        "rootUri": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/win32-5.15.0",
+        "packageUri": "lib/",
+        "languageVersion": "3.8"
+      },
+      {
+        "name": "window_manager",
+        "rootUri": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/window_manager-0.5.2",
+        "packageUri": "lib/",
+        "languageVersion": "3.0"
+      },
+      {
+        "name": "xdg_directories",
+        "rootUri": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/xdg_directories-1.1.0",
+        "packageUri": "lib/",
+        "languageVersion": "3.3"
+      },
+      {
+        "name": "xml",
+        "rootUri": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/xml-7.1.0",
+        "packageUri": "lib/",
+        "languageVersion": "3.13"
+      },
+      {
+        "name": "yaml",
+        "rootUri": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/yaml-3.1.4",
+        "packageUri": "lib/",
+        "languageVersion": "3.4"
+      },
+      {
+        "name": "quds_office_suite",
+        "rootUri": "../",
+        "packageUri": "lib/",
+        "languageVersion": "3.12"
+      },
+      {
+        "name": "quds_mail_core",
+        "rootUri": "../packages/quds_mail_core",
+        "packageUri": "lib/",
+        "languageVersion": "3.12"
+      },
+      {
+        "name": "quds_mail_mime",
+        "rootUri": "../packages/quds_mail_mime",
+        "packageUri": "lib/",
+        "languageVersion": "3.12"
+      },
+      {
+        "name": "quds_mail_store",
+        "rootUri": "../packages/quds_mail_store",
+        "packageUri": "lib/",
+        "languageVersion": "3.12"
+      },
+      {
+        "name": "quds_mail_transport",
+        "rootUri": "../packages/quds_mail_transport",
+        "packageUri": "lib/",
+        "languageVersion": "3.12"
+      },
+      {
+        "name": "quds_mail_ui",
+        "rootUri": "../packages/quds_mail_ui",
+        "packageUri": "lib/",
+        "languageVersion": "3.12"
+      },
+      {
+        "name": "quds_mail_reader_example",
+        "rootUri": "../packages/quds_mail_ui/example",
+        "packageUri": "lib/",
+        "languageVersion": "3.12"
+      },
+      {
+        "name": "legacy_doc_parser",
+        "rootUri": "../packages/legacy_doc_parser",
+        "packageUri": "lib/",
+        "languageVersion": "3.8"
+      },
+      {
+        "name": "quds_office_engine",
+        "rootUri": "../packages/quds_office_engine",
+        "packageUri": "lib/",
+        "languageVersion": "3.12"
+      },
+      {
+        "name": "quds_proofing_harper",
+        "rootUri": "../packages/quds_proofing_harper",
+        "packageUri": "lib/",
+        "languageVersion": "3.12"
+      },
+      {
+        "name": "quds_proofing_gector",
+        "rootUri": "../packages/quds_proofing_gector",
+        "packageUri": "lib/",
+        "languageVersion": "3.12"
+      },
+      {
+        "name": "quds_proofing_spacy",
+        "rootUri": "../packages/quds_proofing_spacy",
+        "packageUri": "lib/",
+        "languageVersion": "3.12"
+      },
+      {
+        "name": "quds_proofing_hunspell",
+        "rootUri": "../packages/quds_proofing_hunspell",
+        "packageUri": "lib/",
+        "languageVersion": "3.12"
+      },
+      {
+        "name": "quds_arabic_morph",
+        "rootUri": "../packages/quds_arabic_morph",
+        "packageUri": "lib/",
+        "languageVersion": "3.12"
+      },
+      {
+        "name": "quds_language_id",
+        "rootUri": "../packages/quds_language_id",
+        "packageUri": "lib/",
+        "languageVersion": "3.12"
+      },
+      {
+        "name": "quds_office_engine_example",
+        "rootUri": "../packages/quds_office_engine/example",
+        "packageUri": "lib/",
+        "languageVersion": "3.12"
+      },
+      {
+        "name": "quds_reports",
+        "rootUri": "../packages/quds_reports",
+        "packageUri": "lib/",
+        "languageVersion": "3.12"
+      },
+      {
+        "name": "quds_office_editor",
+        "rootUri": "../packages/quds_office_editor",
+        "packageUri": "lib/",
+        "languageVersion": "3.12"
+      },
+      {
+        "name": "quds_office_studio",
+        "rootUri": "../packages/quds_office_editor/example",
+        "packageUri": "lib/",
+        "languageVersion": "3.12"
+      },
+      {
+        "name": "quds_report_studio",
+        "rootUri": "../apps/quds_report_studio",
+        "packageUri": "lib/",
+        "languageVersion": "3.12"
+      }
+    ],
+    "generator": "pub",
+    "generatorVersion": "3.13.7",
+    "flutterRoot": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/flutter-sdk",
+    "flutterVersion": "3.47.8",
+    "pubCache": "file:///workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache"
+  },
+  "package_graph_after": {
+    "roots": [
+      "legacy_doc_parser",
+      "quds_arabic_morph",
+      "quds_language_id",
+      "quds_mail_core",
+      "quds_mail_mime",
+      "quds_mail_reader_example",
+      "quds_mail_store",
+      "quds_mail_transport",
+      "quds_mail_ui",
+      "quds_office_editor",
+      "quds_office_engine",
+      "quds_office_engine_example",
+      "quds_office_studio",
+      "quds_office_suite",
+      "quds_proofing_gector",
+      "quds_proofing_harper",
+      "quds_proofing_hunspell",
+      "quds_proofing_spacy",
+      "quds_report_studio",
+      "quds_reports"
+    ],
+    "packages": [
+      {
+        "name": "quds_office_suite",
+        "version": "0.0.0",
+        "dependencies": [],
+        "devDependencies": []
+      },
+      {
+        "name": "quds_mail_core",
+        "version": "0.1.0",
+        "dependencies": [
+          "crypto"
+        ],
+        "devDependencies": [
+          "lints",
+          "test"
+        ]
+      },
+      {
+        "name": "quds_mail_mime",
+        "version": "0.1.0",
+        "dependencies": [
+          "enough_mail",
+          "quds_mail_core"
+        ],
+        "devDependencies": [
+          "lints",
+          "test"
+        ]
+      },
+      {
+        "name": "quds_mail_store",
+        "version": "0.1.0",
+        "dependencies": [
+          "crypto",
+          "drift",
+          "path",
+          "quds_mail_core",
+          "sqlite3",
+          "web"
+        ],
+        "devDependencies": [
+          "lints",
+          "test"
+        ]
+      },
+      {
+        "name": "quds_mail_transport",
+        "version": "0.1.0",
+        "dependencies": [
+          "crypto",
+          "enough_mail",
+          "pointycastle",
+          "quds_mail_core",
+          "quds_mail_mime",
+          "xml"
+        ],
+        "devDependencies": [
+          "drift",
+          "lints",
+          "quds_mail_store",
+          "test"
+        ]
+      },
+      {
+        "name": "quds_mail_ui",
+        "version": "0.1.0",
+        "dependencies": [
+          "characters",
+          "flutter",
+          "quds_mail_core"
+        ],
+        "devDependencies": [
+          "flutter_lints",
+          "flutter_test",
+          "quds_mail_mime",
+          "quds_mail_reader_example"
+        ]
+      },
+      {
+        "name": "quds_mail_reader_example",
+        "version": "0.1.0",
+        "dependencies": [
+          "flutter",
+          "quds_mail_core",
+          "quds_mail_mime",
+          "quds_mail_ui"
+        ],
+        "devDependencies": []
+      },
+      {
+        "name": "legacy_doc_parser",
+        "version": "0.1.0-dev.1",
+        "dependencies": [
+          "archive"
+        ],
+        "devDependencies": [
+          "lints",
+          "test",
+          "xml"
+        ]
+      },
+      {
+        "name": "quds_office_engine",
+        "version": "1.5.0",
+        "dependencies": [
+          "characters",
+          "crypto",
+          "image",
+          "legacy_doc_parser"
+        ],
+        "devDependencies": [
+          "archive",
+          "lints",
+          "test"
+        ]
+      },
+      {
+        "name": "quds_proofing_harper",
+        "version": "0.1.0",
+        "dependencies": [
+          "quds_office_engine",
+          "web"
+        ],
+        "devDependencies": [
+          "lints",
+          "test"
+        ]
+      },
+      {
+        "name": "quds_proofing_gector",
+        "version": "0.1.0",
+        "dependencies": [
+          "characters",
+          "crypto",
+          "ffi",
+          "quds_office_engine"
+        ],
+        "devDependencies": [
+          "fake_async",
+          "lints",
+          "test"
+        ]
+      },
+      {
+        "name": "quds_proofing_spacy",
+        "version": "0.1.0",
+        "dependencies": [
+          "crypto",
+          "ffi",
+          "quds_office_engine"
+        ],
+        "devDependencies": [
+          "lints",
+          "test"
+        ]
+      },
+      {
+        "name": "quds_proofing_hunspell",
+        "version": "0.1.0",
+        "dependencies": [
+          "crypto",
+          "quds_office_engine",
+          "web"
+        ],
+        "devDependencies": [
+          "lints",
+          "test"
+        ]
+      },
+      {
+        "name": "quds_arabic_morph",
+        "version": "0.3.0",
+        "dependencies": [
+          "crypto",
+          "quds_office_engine",
+          "web"
+        ],
+        "devDependencies": [
+          "lints",
+          "test"
+        ]
+      },
+      {
+        "name": "quds_language_id",
+        "version": "0.1.0",
+        "dependencies": [
+          "crypto",
+          "quds_office_engine",
+          "web"
+        ],
+        "devDependencies": [
+          "lints",
+          "test"
+        ]
+      },
+      {
+        "name": "quds_office_engine_example",
+        "version": "0.0.0",
+        "dependencies": [
+          "quds_office_engine"
+        ],
+        "devDependencies": []
+      },
+      {
+        "name": "quds_reports",
+        "version": "1.5.0",
+        "dependencies": [
+          "quds_office_engine"
+        ],
+        "devDependencies": [
+          "lints",
+          "test"
+        ]
+      },
+      {
+        "name": "quds_office_editor",
+        "version": "1.6.0",
+        "dependencies": [
+          "flutter",
+          "quds_office_engine",
+          "quds_reports",
+          "url_launcher"
+        ],
+        "devDependencies": [
+          "crypto",
+          "flutter_lints",
+          "flutter_test"
+        ]
+      },
+      {
+        "name": "quds_office_studio",
+        "version": "1.0.0+1",
+        "dependencies": [
+          "crypto",
+          "enough_mail",
+          "file_picker",
+          "flutter",
+          "flutter_secure_storage",
+          "http",
+          "path",
+          "path_provider",
+          "quds_arabic_morph",
+          "quds_language_id",
+          "quds_mail_core",
+          "quds_mail_mime",
+          "quds_mail_store",
+          "quds_mail_transport",
+          "quds_mail_ui",
+          "quds_office_editor",
+          "quds_office_engine",
+          "quds_proofing_harper",
+          "quds_proofing_hunspell",
+          "quds_proofing_spacy",
+          "url_launcher",
+          "web",
+          "window_manager"
+        ],
+        "devDependencies": [
+          "flutter_lints",
+          "flutter_test",
+          "integration_test"
+        ]
+      },
+      {
+        "name": "quds_report_studio",
+        "version": "1.5.0+1",
+        "dependencies": [
+          "file_picker",
+          "flutter",
+          "flutter_localizations",
+          "pdf",
+          "printing",
+          "quds_office_editor",
+          "quds_office_engine",
+          "window_manager"
+        ],
+        "devDependencies": [
+          "flutter_lints",
+          "flutter_test"
+        ]
+      },
+      {
+        "name": "flutter_test",
+        "version": "0.0.0",
+        "dependencies": [
+          "clock",
+          "collection",
+          "fake_async",
+          "flutter",
+          "leak_tracker_flutter_testing",
+          "matcher",
+          "meta",
+          "path",
+          "stack_trace",
+          "stream_channel",
+          "test_api",
+          "vector_math"
+        ]
+      },
+      {
+        "name": "flutter_lints",
+        "version": "6.0.0",
+        "dependencies": [
+          "lints"
+        ]
+      },
+      {
+        "name": "window_manager",
+        "version": "0.5.2",
+        "dependencies": [
+          "flutter",
+          "path",
+          "screen_retriever"
+        ]
+      },
+      {
+        "name": "printing",
+        "version": "5.15.1",
+        "dependencies": [
+          "flutter",
+          "flutter_web_plugins",
+          "http",
+          "image",
+          "meta",
+          "pdf",
+          "pdf_widget_wrapper",
+          "plugin_platform_interface",
+          "web"
+        ]
+      },
+      {
+        "name": "pdf",
+        "version": "3.13.1",
+        "dependencies": [
+          "archive",
+          "barcode",
+          "bidi",
+          "crypto",
+          "image",
+          "meta",
+          "path_parsing",
+          "vector_math",
+          "xml"
+        ]
+      },
+      {
+        "name": "flutter_localizations",
+        "version": "0.0.0",
+        "dependencies": [
+          "flutter",
+          "intl",
+          "path"
+        ]
+      },
+      {
+        "name": "flutter",
+        "version": "0.0.0",
+        "dependencies": [
+          "characters",
+          "collection",
+          "material_color_utilities",
+          "meta",
+          "sky_engine",
+          "vector_math"
+        ]
+      },
+      {
+        "name": "file_picker",
+        "version": "10.3.10",
+        "dependencies": [
+          "cross_file",
+          "dbus",
+          "ffi",
+          "flutter",
+          "flutter_plugin_android_lifecycle",
+          "flutter_web_plugins",
+          "path",
+          "plugin_platform_interface",
+          "web",
+          "win32"
+        ]
+      },
+      {
+        "name": "integration_test",
+        "version": "0.0.0",
+        "dependencies": [
+          "flutter",
+          "flutter_driver",
+          "flutter_test",
+          "path",
+          "vm_service"
+        ]
+      },
+      {
+        "name": "flutter_secure_storage",
+        "version": "9.2.4",
+        "dependencies": [
+          "flutter",
+          "flutter_secure_storage_linux",
+          "flutter_secure_storage_macos",
+          "flutter_secure_storage_platform_interface",
+          "flutter_secure_storage_web",
+          "flutter_secure_storage_windows",
+          "meta"
+        ]
+      },
+      {
+        "name": "url_launcher",
+        "version": "6.3.3",
+        "dependencies": [
+          "flutter",
+          "url_launcher_android",
+          "url_launcher_ios",
+          "url_launcher_linux",
+          "url_launcher_macos",
+          "url_launcher_platform_interface",
+          "url_launcher_web",
+          "url_launcher_windows"
+        ]
+      },
+      {
+        "name": "enough_mail",
+        "version": "3.0.0",
+        "dependencies": [
+          "basic_utils",
+          "collection",
+          "crypto",
+          "encrypter_plus",
+          "enough_convert",
+          "intl",
+          "json_annotation",
+          "pointycastle",
+          "synchronized",
+          "xml"
+        ]
+      },
+      {
+        "name": "path",
+        "version": "1.9.1",
+        "dependencies": []
+      },
+      {
+        "name": "path_provider",
+        "version": "2.1.6",
+        "dependencies": [
+          "flutter",
+          "path_provider_android",
+          "path_provider_foundation",
+          "path_provider_linux",
+          "path_provider_platform_interface",
+          "path_provider_windows"
+        ]
+      },
+      {
+        "name": "web",
+        "version": "1.1.2",
+        "dependencies": []
+      },
+      {
+        "name": "http",
+        "version": "1.6.0",
+        "dependencies": [
+          "async",
+          "http_parser",
+          "meta",
+          "web"
+        ]
+      },
+      {
+        "name": "crypto",
+        "version": "3.0.8",
+        "dependencies": []
+      },
+      {
+        "name": "test",
+        "version": "1.31.1",
+        "dependencies": [
+          "analyzer",
+          "async",
+          "boolean_selector",
+          "collection",
+          "coverage",
+          "http_multi_server",
+          "io",
+          "matcher",
+          "node_preamble",
+          "package_config",
+          "path",
+          "pool",
+          "shelf",
+          "shelf_packages_handler",
+          "shelf_static",
+          "shelf_web_socket",
+          "source_span",
+          "stack_trace",
+          "stream_channel",
+          "test_api",
+          "test_core",
+          "typed_data",
+          "web_socket_channel",
+          "webkit_inspection_protocol",
+          "yaml"
+        ]
+      },
+      {
+        "name": "lints",
+        "version": "6.1.0",
+        "dependencies": []
+      },
+      {
+        "name": "ffi",
+        "version": "2.2.0",
+        "dependencies": []
+      },
+      {
+        "name": "fake_async",
+        "version": "1.3.3",
+        "dependencies": [
+          "clock",
+          "collection"
+        ]
+      },
+      {
+        "name": "characters",
+        "version": "1.4.1",
+        "dependencies": []
+      },
+      {
+        "name": "archive",
+        "version": "4.7.1",
+        "dependencies": [
+          "path",
+          "posix"
+        ]
+      },
+      {
+        "name": "image",
+        "version": "4.13.1",
+        "dependencies": [
+          "archive"
+        ]
+      },
+      {
+        "name": "xml",
+        "version": "7.1.0",
+        "dependencies": [
+          "args",
+          "collection",
+          "meta",
+          "petitparser"
+        ]
+      },
+      {
+        "name": "drift",
+        "version": "2.35.4",
+        "dependencies": [
+          "async",
+          "collection",
+          "convert",
+          "meta",
+          "path",
+          "sqlite3",
+          "stack_trace",
+          "stream_channel",
+          "web"
+        ]
+      },
+      {
+        "name": "pointycastle",
+        "version": "4.0.0",
+        "dependencies": [
+          "collection",
+          "convert"
+        ]
+      },
+      {
+        "name": "sqlite3",
+        "version": "3.9.1",
+        "dependencies": [
+          "code_assets",
+          "collection",
+          "crypto",
+          "ffi",
+          "hooks",
+          "meta",
+          "native_toolchain_c",
+          "path",
+          "typed_data",
+          "web"
+        ]
+      },
+      {
+        "name": "stream_channel",
+        "version": "2.1.4",
+        "dependencies": [
+          "async"
+        ]
+      },
+      {
+        "name": "meta",
+        "version": "1.19.0",
+        "dependencies": []
+      },
+      {
+        "name": "collection",
+        "version": "1.19.1",
+        "dependencies": []
+      },
+      {
+        "name": "leak_tracker_flutter_testing",
+        "version": "3.0.10",
+        "dependencies": [
+          "flutter",
+          "leak_tracker",
+          "leak_tracker_testing",
+          "matcher",
+          "meta"
+        ]
+      },
+      {
+        "name": "vector_math",
+        "version": "2.4.4",
+        "dependencies": []
+      },
+      {
+        "name": "stack_trace",
+        "version": "1.12.2",
+        "dependencies": [
+          "path"
+        ]
+      },
+      {
+        "name": "clock",
+        "version": "1.1.3",
+        "dependencies": []
+      },
+      {
+        "name": "matcher",
+        "version": "0.12.20",
+        "dependencies": [
+          "async",
+          "meta",
+          "stack_trace",
+          "term_glyph",
+          "test_api"
+        ]
+      },
+      {
+        "name": "test_api",
+        "version": "0.7.12",
+        "dependencies": [
+          "async",
+          "boolean_selector",
+          "collection",
+          "meta",
+          "source_span",
+          "stack_trace",
+          "stream_channel",
+          "string_scanner",
+          "term_glyph"
+        ]
+      },
+      {
+        "name": "screen_retriever",
+        "version": "0.2.2",
+        "dependencies": [
+          "flutter",
+          "screen_retriever_linux",
+          "screen_retriever_macos",
+          "screen_retriever_platform_interface",
+          "screen_retriever_windows"
+        ]
+      },
+      {
+        "name": "plugin_platform_interface",
+        "version": "2.1.8",
+        "dependencies": [
+          "meta"
+        ]
+      },
+      {
+        "name": "pdf_widget_wrapper",
+        "version": "1.0.4",
+        "dependencies": [
+          "flutter",
+          "pdf"
+        ]
+      },
+      {
+        "name": "flutter_web_plugins",
+        "version": "0.0.0",
+        "dependencies": [
+          "flutter"
+        ]
+      },
+      {
+        "name": "path_parsing",
+        "version": "1.1.0",
+        "dependencies": [
+          "meta",
+          "vector_math"
+        ]
+      },
+      {
+        "name": "bidi",
+        "version": "2.0.13",
+        "dependencies": []
+      },
+      {
+        "name": "barcode",
+        "version": "2.2.9",
+        "dependencies": [
+          "meta",
+          "qr"
+        ]
+      },
+      {
+        "name": "intl",
+        "version": "0.20.3",
+        "dependencies": [
+          "clock",
+          "meta",
+          "path"
+        ]
+      },
+      {
+        "name": "sky_engine",
+        "version": "0.0.0",
+        "dependencies": []
+      },
+      {
+        "name": "material_color_utilities",
+        "version": "0.13.0",
+        "dependencies": [
+          "collection"
+        ]
+      },
+      {
+        "name": "dbus",
+        "version": "0.7.15",
+        "dependencies": [
+          "args",
+          "ffi",
+          "meta",
+          "xml"
+        ]
+      },
+      {
+        "name": "cross_file",
+        "version": "0.3.5+5",
+        "dependencies": [
+          "meta",
+          "web"
+        ]
+      },
+      {
+        "name": "win32",
+        "version": "5.15.0",
+        "dependencies": [
+          "ffi"
+        ]
+      },
+      {
+        "name": "flutter_plugin_android_lifecycle",
+        "version": "2.0.35",
+        "dependencies": [
+          "flutter"
+        ]
+      },
+      {
+        "name": "vm_service",
+        "version": "15.4.0",
+        "dependencies": []
+      },
+      {
+        "name": "flutter_driver",
+        "version": "0.0.0",
+        "dependencies": [
+          "file",
+          "flutter",
+          "flutter_test",
+          "fuchsia_remote_debug_protocol",
+          "matcher",
+          "meta",
+          "path",
+          "vm_service",
+          "webdriver"
+        ]
+      },
+      {
+        "name": "flutter_secure_storage_windows",
+        "version": "3.1.2",
+        "dependencies": [
+          "ffi",
+          "flutter",
+          "flutter_secure_storage_platform_interface",
+          "path",
+          "path_provider",
+          "win32"
+        ]
+      },
+      {
+        "name": "flutter_secure_storage_web",
+        "version": "1.2.1",
+        "dependencies": [
+          "flutter",
+          "flutter_secure_storage_platform_interface",
+          "flutter_web_plugins",
+          "js"
+        ]
+      },
+      {
+        "name": "flutter_secure_storage_platform_interface",
+        "version": "1.1.2",
+        "dependencies": [
+          "flutter",
+          "plugin_platform_interface"
+        ]
+      },
+      {
+        "name": "flutter_secure_storage_macos",
+        "version": "3.1.3",
+        "dependencies": [
+          "flutter",
+          "flutter_secure_storage_platform_interface"
+        ]
+      },
+      {
+        "name": "flutter_secure_storage_linux",
+        "version": "1.2.3",
+        "dependencies": [
+          "flutter",
+          "flutter_secure_storage_platform_interface"
+        ]
+      },
+      {
+        "name": "url_launcher_windows",
+        "version": "3.1.6",
+        "dependencies": [
+          "flutter",
+          "meta",
+          "url_launcher_platform_interface"
+        ]
+      },
+      {
+        "name": "url_launcher_web",
+        "version": "2.4.3",
+        "dependencies": [
+          "flutter",
+          "flutter_web_plugins",
+          "url_launcher_platform_interface",
+          "web"
+        ]
+      },
+      {
+        "name": "url_launcher_platform_interface",
+        "version": "2.3.2",
+        "dependencies": [
+          "flutter",
+          "plugin_platform_interface"
+        ]
+      },
+      {
+        "name": "url_launcher_macos",
+        "version": "3.2.6",
+        "dependencies": [
+          "flutter",
+          "meta",
+          "url_launcher_platform_interface"
+        ]
+      },
+      {
+        "name": "url_launcher_linux",
+        "version": "3.2.3",
+        "dependencies": [
+          "flutter",
+          "meta",
+          "url_launcher_platform_interface"
+        ]
+      },
+      {
+        "name": "url_launcher_ios",
+        "version": "6.4.2",
+        "dependencies": [
+          "flutter",
+          "meta",
+          "url_launcher_platform_interface"
+        ]
+      },
+      {
+        "name": "url_launcher_android",
+        "version": "6.3.35",
+        "dependencies": [
+          "flutter",
+          "meta",
+          "url_launcher_platform_interface"
+        ]
+      },
+      {
+        "name": "synchronized",
+        "version": "3.6.1+1",
+        "dependencies": []
+      },
+      {
+        "name": "json_annotation",
+        "version": "4.12.0",
+        "dependencies": [
+          "meta"
+        ]
+      },
+      {
+        "name": "enough_convert",
+        "version": "1.7.1",
+        "dependencies": []
+      },
+      {
+        "name": "encrypter_plus",
+        "version": "5.1.0",
+        "dependencies": [
+          "args",
+          "asn1lib",
+          "clock",
+          "collection",
+          "crypto",
+          "pointycastle"
+        ]
+      },
+      {
+        "name": "basic_utils",
+        "version": "5.8.2",
+        "dependencies": [
+          "archive",
+          "http",
+          "json_annotation",
+          "logging",
+          "pointycastle"
+        ]
+      },
+      {
+        "name": "path_provider_windows",
+        "version": "2.3.0",
+        "dependencies": [
+          "ffi",
+          "flutter",
+          "path",
+          "path_provider_platform_interface"
+        ]
+      },
+      {
+        "name": "path_provider_platform_interface",
+        "version": "2.1.3",
+        "dependencies": [
+          "flutter",
+          "platform",
+          "plugin_platform_interface"
+        ]
+      },
+      {
+        "name": "path_provider_linux",
+        "version": "2.2.2",
+        "dependencies": [
+          "ffi",
+          "flutter",
+          "path",
+          "path_provider_platform_interface",
+          "xdg_directories"
+        ]
+      },
+      {
+        "name": "path_provider_foundation",
+        "version": "2.6.0",
+        "dependencies": [
+          "ffi",
+          "flutter",
+          "objective_c",
+          "path_provider_platform_interface"
+        ]
+      },
+      {
+        "name": "path_provider_android",
+        "version": "2.3.1",
+        "dependencies": [
+          "flutter",
+          "jni",
+          "jni_flutter",
+          "path_provider_platform_interface"
+        ]
+      },
+      {
+        "name": "http_parser",
+        "version": "4.1.2",
+        "dependencies": [
+          "collection",
+          "source_span",
+          "string_scanner",
+          "typed_data"
+        ]
+      },
+      {
+        "name": "async",
+        "version": "2.13.1",
+        "dependencies": [
+          "collection",
+          "meta"
+        ]
+      },
+      {
+        "name": "yaml",
+        "version": "3.1.4",
+        "dependencies": [
+          "collection",
+          "source_span",
+          "string_scanner"
+        ]
+      },
+      {
+        "name": "webkit_inspection_protocol",
+        "version": "1.2.1",
+        "dependencies": [
+          "logging"
+        ]
+      },
+      {
+        "name": "web_socket_channel",
+        "version": "3.0.3",
+        "dependencies": [
+          "async",
+          "crypto",
+          "stream_channel",
+          "web",
+          "web_socket"
+        ]
+      },
+      {
+        "name": "typed_data",
+        "version": "1.4.0",
+        "dependencies": [
+          "collection"
+        ]
+      },
+      {
+        "name": "test_core",
+        "version": "0.6.18",
+        "dependencies": [
+          "analyzer",
+          "args",
+          "async",
+          "boolean_selector",
+          "collection",
+          "coverage",
+          "frontend_server_client",
+          "glob",
+          "io",
+          "meta",
+          "package_config",
+          "path",
+          "pool",
+          "source_map_stack_trace",
+          "source_maps",
+          "source_span",
+          "stack_trace",
+          "stream_channel",
+          "test_api",
+          "vm_service",
+          "yaml"
+        ]
+      },
+      {
+        "name": "source_span",
+        "version": "1.10.2",
+        "dependencies": [
+          "collection",
+          "path",
+          "term_glyph"
+        ]
+      },
+      {
+        "name": "shelf_web_socket",
+        "version": "3.0.0",
+        "dependencies": [
+          "shelf",
+          "stream_channel",
+          "web_socket_channel"
+        ]
+      },
+      {
+        "name": "shelf_static",
+        "version": "1.2.0",
+        "dependencies": [
+          "convert",
+          "http_parser",
+          "mime",
+          "path",
+          "shelf"
+        ]
+      },
+      {
+        "name": "shelf_packages_handler",
+        "version": "3.0.2",
+        "dependencies": [
+          "path",
+          "shelf",
+          "shelf_static"
+        ]
+      },
+      {
+        "name": "shelf",
+        "version": "1.4.3",
+        "dependencies": [
+          "async",
+          "collection",
+          "http_parser",
+          "path",
+          "stack_trace",
+          "stream_channel"
+        ]
+      },
+      {
+        "name": "pool",
+        "version": "1.5.3",
+        "dependencies": [
+          "async",
+          "stack_trace"
+        ]
+      },
+      {
+        "name": "package_config",
+        "version": "2.2.0",
+        "dependencies": [
+          "path"
+        ]
+      },
+      {
+        "name": "node_preamble",
+        "version": "2.0.2",
+        "dependencies": []
+      },
+      {
+        "name": "io",
+        "version": "1.1.0",
+        "dependencies": [
+          "meta",
+          "path",
+          "string_scanner"
+        ]
+      },
+      {
+        "name": "http_multi_server",
+        "version": "3.2.3",
+        "dependencies": [
+          "async"
+        ]
+      },
+      {
+        "name": "coverage",
+        "version": "1.16.1",
+        "dependencies": [
+          "args",
+          "cli_config",
+          "cli_util",
+          "glob",
+          "logging",
+          "meta",
+          "package_config",
+          "path",
+          "source_maps",
+          "stack_trace",
+          "vm_service",
+          "yaml"
+        ]
+      },
+      {
+        "name": "boolean_selector",
+        "version": "2.1.2",
+        "dependencies": [
+          "source_span",
+          "string_scanner"
+        ]
+      },
+      {
+        "name": "analyzer",
+        "version": "13.3.0",
+        "dependencies": [
+          "_fe_analyzer_shared",
+          "collection",
+          "convert",
+          "crypto",
+          "glob",
+          "meta",
+          "package_config",
+          "path",
+          "pub_semver",
+          "source_span",
+          "watcher",
+          "yaml"
+        ]
+      },
+      {
+        "name": "posix",
+        "version": "6.5.4",
+        "dependencies": [
+          "ffi",
+          "meta",
+          "path"
+        ]
+      },
+      {
+        "name": "petitparser",
+        "version": "7.1.0",
+        "dependencies": [
+          "collection",
+          "meta"
+        ]
+      },
+      {
+        "name": "args",
+        "version": "2.7.0",
+        "dependencies": []
+      },
+      {
+        "name": "convert",
+        "version": "3.1.2",
+        "dependencies": [
+          "typed_data"
+        ]
+      },
+      {
+        "name": "native_toolchain_c",
+        "version": "0.19.6",
+        "dependencies": [
+          "code_assets",
+          "file",
+          "glob",
+          "hooks",
+          "logging",
+          "meta",
+          "process",
+          "pub_semver"
+        ]
+      },
+      {
+        "name": "code_assets",
+        "version": "2.2.0",
+        "dependencies": [
+          "collection",
+          "hooks",
+          "logging"
+        ]
+      },
+      {
+        "name": "hooks",
+        "version": "2.2.0",
+        "dependencies": [
+          "collection",
+          "crypto",
+          "logging",
+          "pub_semver",
+          "record_use",
+          "yaml"
+        ]
+      },
+      {
+        "name": "leak_tracker_testing",
+        "version": "3.0.2",
+        "dependencies": [
+          "leak_tracker",
+          "matcher",
+          "meta"
+        ]
+      },
+      {
+        "name": "leak_tracker",
+        "version": "11.0.2",
+        "dependencies": [
+          "clock",
+          "collection",
+          "meta",
+          "path",
+          "vm_service"
+        ]
+      },
+      {
+        "name": "term_glyph",
+        "version": "1.2.2",
+        "dependencies": []
+      },
+      {
+        "name": "string_scanner",
+        "version": "1.4.1",
+        "dependencies": [
+          "source_span"
+        ]
+      },
+      {
+        "name": "screen_retriever_windows",
+        "version": "0.2.2",
+        "dependencies": [
+          "flutter",
+          "screen_retriever_platform_interface"
+        ]
+      },
+      {
+        "name": "screen_retriever_platform_interface",
+        "version": "0.2.2",
+        "dependencies": [
+          "flutter",
+          "json_annotation",
+          "plugin_platform_interface"
+        ]
+      },
+      {
+        "name": "screen_retriever_macos",
+        "version": "0.2.2",
+        "dependencies": [
+          "flutter",
+          "screen_retriever_platform_interface"
+        ]
+      },
+      {
+        "name": "screen_retriever_linux",
+        "version": "0.2.2",
+        "dependencies": [
+          "flutter",
+          "screen_retriever_platform_interface"
+        ]
+      },
+      {
+        "name": "qr",
+        "version": "3.0.3",
+        "dependencies": [
+          "meta"
+        ]
+      },
+      {
+        "name": "webdriver",
+        "version": "3.2.0",
+        "dependencies": [
+          "matcher",
+          "path",
+          "stack_trace",
+          "sync_http",
+          "web"
+        ]
+      },
+      {
+        "name": "fuchsia_remote_debug_protocol",
+        "version": "0.0.0",
+        "dependencies": [
+          "meta",
+          "process",
+          "vm_service"
+        ]
+      },
+      {
+        "name": "file",
+        "version": "7.0.1",
+        "dependencies": [
+          "meta",
+          "path"
+        ]
+      },
+      {
+        "name": "js",
+        "version": "0.6.7",
+        "dependencies": [
+          "meta"
+        ]
+      },
+      {
+        "name": "asn1lib",
+        "version": "1.6.8",
+        "dependencies": []
+      },
+      {
+        "name": "logging",
+        "version": "1.3.0",
+        "dependencies": []
+      },
+      {
+        "name": "platform",
+        "version": "3.2.0",
+        "dependencies": [
+          "meta"
+        ]
+      },
+      {
+        "name": "xdg_directories",
+        "version": "1.1.0",
+        "dependencies": [
+          "meta",
+          "path"
+        ]
+      },
+      {
+        "name": "objective_c",
+        "version": "9.6.4",
+        "dependencies": [
+          "code_assets",
+          "collection",
+          "ffi",
+          "hooks",
+          "logging",
+          "meta",
+          "pub_semver"
+        ]
+      },
+      {
+        "name": "jni_flutter",
+        "version": "1.0.4+1",
+        "dependencies": [
+          "flutter",
+          "jni"
+        ]
+      },
+      {
+        "name": "jni",
+        "version": "1.1.2",
+        "dependencies": [
+          "args",
+          "collection",
+          "ffi",
+          "jni_util",
+          "meta",
+          "package_config",
+          "path",
+          "plugin_platform_interface"
+        ]
+      },
+      {
+        "name": "web_socket",
+        "version": "1.0.1",
+        "dependencies": [
+          "web"
+        ]
+      },
+      {
+        "name": "source_maps",
+        "version": "0.10.14",
+        "dependencies": [
+          "source_span"
+        ]
+      },
+      {
+        "name": "source_map_stack_trace",
+        "version": "2.1.2",
+        "dependencies": [
+          "path",
+          "source_maps",
+          "stack_trace"
+        ]
+      },
+      {
+        "name": "glob",
+        "version": "2.2.0",
+        "dependencies": [
+          "async",
+          "collection",
+          "file",
+          "path",
+          "string_scanner"
+        ]
+      },
+      {
+        "name": "frontend_server_client",
+        "version": "4.2.0",
+        "dependencies": [
+          "async",
+          "package_config",
+          "path"
+        ]
+      },
+      {
+        "name": "mime",
+        "version": "2.1.0",
+        "dependencies": []
+      },
+      {
+        "name": "cli_util",
+        "version": "0.6.0",
+        "dependencies": [
+          "ffi",
+          "meta",
+          "path"
+        ]
+      },
+      {
+        "name": "cli_config",
+        "version": "0.2.0",
+        "dependencies": [
+          "args",
+          "yaml"
+        ]
+      },
+      {
+        "name": "watcher",
+        "version": "1.2.1",
+        "dependencies": [
+          "async",
+          "path"
+        ]
+      },
+      {
+        "name": "pub_semver",
+        "version": "2.2.1",
+        "dependencies": [
+          "collection"
+        ]
+      },
+      {
+        "name": "_fe_analyzer_shared",
+        "version": "103.0.0",
+        "dependencies": [
+          "meta"
+        ]
+      },
+      {
+        "name": "process",
+        "version": "5.0.6",
+        "dependencies": [
+          "file",
+          "path",
+          "platform"
+        ]
+      },
+      {
+        "name": "record_use",
+        "version": "1.1.1",
+        "dependencies": [
+          "collection",
+          "meta",
+          "pub_semver"
+        ]
+      },
+      {
+        "name": "sync_http",
+        "version": "0.3.1",
+        "dependencies": []
+      },
+      {
+        "name": "jni_util",
+        "version": "1.0.0",
+        "dependencies": [
+          "path"
+        ]
+      }
+    ],
+    "configVersion": 1
+  },
+  "full_mobile_graph_acceptance_claimed": false
+}

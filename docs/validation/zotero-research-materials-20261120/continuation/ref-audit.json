@@ -1,0 +1,2009 @@
+{
+  "schema_version": 1,
+  "repository": "CrispStrobe/quds_office_suite",
+  "recorded_at_utc": "2026-11-20T05:36:15.369382+00:00",
+  "audited_head": "f3f98987824e021ed22a4d909e38d6307495267b",
+  "audited_tree": "6e4afd543376f3c5cc965e4b143bb453da71518e",
+  "qualification_note": "Ancestry and identity audit only; no tests are asserted by this receipt. Three newer work-in-progress heads are explicitly retained outside this milestone.",
+  "intake_sha256": "dcf8bb594bd77efd5a83d4aad1b8dc0555369955516ae363f024ed1c1b51106d",
+  "prior_audit_sha256": "01262cb121f96354a504e01c130dcbc0a75e2d0291469d9d92057e0e378d265b",
+  "verifier_sha256": "8db68e996708daeb7429f74b3ad82f68d34cde03d90e287086788551ca87248b",
+  "summary": {
+    "historical_equivalence_proofs": 14,
+    "historical_equivalence_proofs_passed": 14,
+    "freshly_checked_original_delta_paths": 480,
+    "selected_fork_branches": 16,
+    "branch_dispositions": {
+      "included by freshly verified historical equivalence": 9,
+      "retain separate: feature qualification not complete": 1,
+      "included by ancestry": 4,
+      "retain separate: new unqualified rendering work": 1,
+      "retain separate: explicitly incomplete": 1
+    },
+    "historical_and_refreshed_pr_heads": 225,
+    "pr_dispositions": {
+      "included by ancestry": 210,
+      "included by freshly verified historical equivalence": 14,
+      "retain separate: explicitly incomplete draft": 1
+    },
+    "recent_pr_observations": 20,
+    "retained_upstream_heads": 8,
+    "unaccounted_branches": [],
+    "unaccounted_pr_heads": []
+  },
+  "historical_equivalence_proofs": [
+    {
+      "original": "c34945761e7991f5fe49037d79529acdd260b31c",
+      "equivalent": "2c47165d01d01cc883135a434ac9f6591ce6e770",
+      "common_base": "e3a38789359adaa33b2da1345c952fa1c2d8aebb",
+      "fresh_common_base_matches": true,
+      "complete_original_delta_paths": 37,
+      "saved_path_detail_available": true,
+      "complete_delta_matches_saved_path_set": true,
+      "delta_paths_sha256": "58ae1de61c8ce74cb986fb5b3ebb8d55f3eb1d4fbc8f3a68816a63161d917906",
+      "mode_type_blob_identities_sha256": "c4ae968958518183c1cad937232784280ec4e6783c0142aec2451e563026e850",
+      "identity_failures": [],
+      "equivalent_is_ancestor": true,
+      "passed": true
+    },
+    {
+      "original": "58fdddfbcf198a8c0e38e32f6fcc9d6604e95283",
+      "equivalent": "1ec0a81bc43dc444872fbffffa36a8affce307a5",
+      "common_base": "4584d5f319aab198f1d705f48b4d6647e6cbabea",
+      "fresh_common_base_matches": true,
+      "complete_original_delta_paths": 1,
+      "saved_path_detail_available": true,
+      "complete_delta_matches_saved_path_set": true,
+      "delta_paths_sha256": "c104d3535d03b040ba8d3da93faf365d667b9b37b5adf5f5f95af4d8dff98cd4",
+      "mode_type_blob_identities_sha256": "236937807a672872c8edc7fd976d94de772ea55f5e72fe0aeaf7efda3e776250",
+      "identity_failures": [],
+      "equivalent_is_ancestor": true,
+      "passed": true
+    },
+    {
+      "original": "69d14f84cabd3931b7640c1654b401c89faba766",
+      "equivalent": "38abbbb744d1d5dab1eb9162d584370d661fef24",
+      "common_base": "b3f41eb4b4bca8ca13676b4114891ea6d9185043",
+      "fresh_common_base_matches": true,
+      "complete_original_delta_paths": 1,
+      "saved_path_detail_available": true,
+      "complete_delta_matches_saved_path_set": true,
+      "delta_paths_sha256": "c104d3535d03b040ba8d3da93faf365d667b9b37b5adf5f5f95af4d8dff98cd4",
+      "mode_type_blob_identities_sha256": "9eae0fc8d0ad1a40f18197e3019ed12f3cfb3a4361b9394630b1281d6d2aa7d5",
+      "identity_failures": [],
+      "equivalent_is_ancestor": true,
+      "passed": true
+    },
+    {
+      "original": "74ce9ffb816c70c0d2ae50b91ec52a614f26d688",
+      "equivalent": "4584d5f319aab198f1d705f48b4d6647e6cbabea",
+      "common_base": "e3a38789359adaa33b2da1345c952fa1c2d8aebb",
+      "fresh_common_base_matches": true,
+      "complete_original_delta_paths": 7,
+      "saved_path_detail_available": true,
+      "complete_delta_matches_saved_path_set": true,
+      "delta_paths_sha256": "139eb6756d49d8d30ea65b0f755a86ae0b6b767f2bedfb57b96b784195ed3449",
+      "mode_type_blob_identities_sha256": "f280939f1dd46edcb115a815c776560cfb2f2ca3ef492a97214bda69e79a3d26",
+      "identity_failures": [],
+      "equivalent_is_ancestor": true,
+      "passed": true
+    },
+    {
+      "original": "0a53b8a70128870f3e1df6d18cdb177bb64290ee",
+      "equivalent": "b3f41eb4b4bca8ca13676b4114891ea6d9185043",
+      "common_base": "d754bf15b07a24c8a86c8dce339ca749fecd9531",
+      "fresh_common_base_matches": true,
+      "complete_original_delta_paths": 8,
+      "saved_path_detail_available": true,
+      "complete_delta_matches_saved_path_set": true,
+      "delta_paths_sha256": "15594e6653cad376dc4e6cb669aded659d9ccf62c2cbb39535f95dc2809cc68c",
+      "mode_type_blob_identities_sha256": "6b6d1b5bcca89a908a9ec6fce010d0010f390d65b80fca34f33c4031714675ac",
+      "identity_failures": [],
+      "equivalent_is_ancestor": true,
+      "passed": true
+    },
+    {
+      "original": "68a0db23408e4c95d6d283219504c79aea33a6fe",
+      "equivalent": "e87494ada0729878981dc0cc60fdb07bcd5116d4",
+      "common_base": "4eaca83b192897edad82658107dfeb5bcbed0920",
+      "fresh_common_base_matches": true,
+      "complete_original_delta_paths": 4,
+      "saved_path_detail_available": true,
+      "complete_delta_matches_saved_path_set": true,
+      "delta_paths_sha256": "736ff1b09d01f556f931039a081ba8be7eb34259d0b77d74db2999df6bf56720",
+      "mode_type_blob_identities_sha256": "cd99e5a8dcc519d709a6393474de84661b506f1446d4c3b13ca09f3bf02bc457",
+      "identity_failures": [],
+      "equivalent_is_ancestor": true,
+      "passed": true
+    },
+    {
+      "original": "005c708e9f747cb46cf02e12c869b0a2f85ac824",
+      "equivalent": "c84d5e16024c502f6c451fd04b9807b1e65f20d3",
+      "common_base": "16e2477ff93f7a1ec5c6ed78491f2716ce4d1658",
+      "fresh_common_base_matches": true,
+      "complete_original_delta_paths": 7,
+      "saved_path_detail_available": true,
+      "complete_delta_matches_saved_path_set": true,
+      "delta_paths_sha256": "139eb6756d49d8d30ea65b0f755a86ae0b6b767f2bedfb57b96b784195ed3449",
+      "mode_type_blob_identities_sha256": "4d48d2deab9dc1bc2a2bfe38b9b051dbd29ac18940e1331fdaf5582f113749bc",
+      "identity_failures": [],
+      "equivalent_is_ancestor": true,
+      "passed": true
+    },
+    {
+      "original": "7ef09f2408f467c65427700e65907531ecb26acb",
+      "equivalent": "6f40365ae7708172c58e9aee38bc363d99327355",
+      "common_base": "4b2b4e78839d2997a583b7ab1346e2fa537a8ac4",
+      "fresh_common_base_matches": true,
+      "complete_original_delta_paths": 7,
+      "saved_path_detail_available": true,
+      "complete_delta_matches_saved_path_set": true,
+      "delta_paths_sha256": "139eb6756d49d8d30ea65b0f755a86ae0b6b767f2bedfb57b96b784195ed3449",
+      "mode_type_blob_identities_sha256": "2e687015d3155a2cbda99948407fdc353b3c09c4c27d3c21e512f13e96358e86",
+      "identity_failures": [],
+      "equivalent_is_ancestor": true,
+      "passed": true
+    },
+    {
+      "original": "3abf8f43b0e79c10271bbd046f391e462b8fe6b9",
+      "equivalent": "4b2b4e78839d2997a583b7ab1346e2fa537a8ac4",
+      "common_base": "bb5556e8cc4cb73e2c668b5319a2844a20c6c50c",
+      "fresh_common_base_matches": true,
+      "complete_original_delta_paths": 221,
+      "saved_path_detail_available": false,
+      "complete_delta_matches_saved_path_set": null,
+      "delta_paths_sha256": "bb3f5abf3d67553e602e0caccea4de8dcd1dcd7bb14b0144da04b9c839ef1391",
+      "mode_type_blob_identities_sha256": "d54b56c5d05e2aaeaa63a58740e8f6b266c279da4423e51677fd0143885aa157",
+      "identity_failures": [],
+      "equivalent_is_ancestor": true,
+      "passed": true
+    },
+    {
+      "original": "128a187d69555db80890c2a1945a442b951f9c74",
+      "equivalent": "d790bca444eef0e160a75ce3d8cb555af541004f",
+      "common_base": "fdec8c24fde94fbffee212a7541b0cb236f682e4",
+      "fresh_common_base_matches": true,
+      "complete_original_delta_paths": 1,
+      "saved_path_detail_available": true,
+      "complete_delta_matches_saved_path_set": true,
+      "delta_paths_sha256": "36d63d4e7c9a1b02689136db00ab4e3397e4bbf14c3954f98b8b7498278a43b4",
+      "mode_type_blob_identities_sha256": "56367e7b1d74dbbd1953be154617a6e74d14c681c758f2549abef5026aa10ee8",
+      "identity_failures": [],
+      "equivalent_is_ancestor": true,
+      "passed": true
+    },
+    {
+      "original": "b8ddaaeb581e010467de304c828764d353149102",
+      "equivalent": "e87494ada0729878981dc0cc60fdb07bcd5116d4",
+      "common_base": "d754bf15b07a24c8a86c8dce339ca749fecd9531",
+      "fresh_common_base_matches": true,
+      "complete_original_delta_paths": 1,
+      "saved_path_detail_available": true,
+      "complete_delta_matches_saved_path_set": true,
+      "delta_paths_sha256": "c104d3535d03b040ba8d3da93faf365d667b9b37b5adf5f5f95af4d8dff98cd4",
+      "mode_type_blob_identities_sha256": "084a94ff8efea38a462014e1964f183cc3099aa8f533470439b5a20e38e2e0b8",
+      "identity_failures": [],
+      "equivalent_is_ancestor": true,
+      "passed": true
+    },
+    {
+      "original": "a7f144cc983f2df7c16d88f8644ad67a9254c3d0",
+      "equivalent": "c08fdc703acd986850ce6d1c079a0576fd438046",
+      "common_base": "c84d5e16024c502f6c451fd04b9807b1e65f20d3",
+      "fresh_common_base_matches": true,
+      "complete_original_delta_paths": 1,
+      "saved_path_detail_available": true,
+      "complete_delta_matches_saved_path_set": true,
+      "delta_paths_sha256": "c104d3535d03b040ba8d3da93faf365d667b9b37b5adf5f5f95af4d8dff98cd4",
+      "mode_type_blob_identities_sha256": "b1045c6be843175b30d722856f48cb037633e134deec4f6e22f487d25c5b72b7",
+      "identity_failures": [],
+      "equivalent_is_ancestor": true,
+      "passed": true
+    },
+    {
+      "original": "cee6e2632f891a3fe21c5c02d6bf508805973051",
+      "equivalent": "bb5556e8cc4cb73e2c668b5319a2844a20c6c50c",
+      "common_base": "0ff7d23929e4640af6c1d57f87c7ac71b73d2ed4",
+      "fresh_common_base_matches": true,
+      "complete_original_delta_paths": 105,
+      "saved_path_detail_available": false,
+      "complete_delta_matches_saved_path_set": null,
+      "delta_paths_sha256": "a4fc62d461dae5826f48e90664e668f7cd3e524b19acb4cd62ccc34fcd8be306",
+      "mode_type_blob_identities_sha256": "a3d241ab8fe643a1417beaaf697a5daf3d2a7063a2930a9cb9d8ab46f2f102b8",
+      "identity_failures": [],
+      "equivalent_is_ancestor": true,
+      "passed": true
+    },
+    {
+      "original": "da9c956ec5d65c0e5a9f9ea84c2b0bca98e824a0",
+      "equivalent": "23f3b4204fce45d38a103e3159bdc7f1e8d37c4e",
+      "common_base": "34dc6b6806869570e9ec342e4d7ee0d6951c0ba6",
+      "fresh_common_base_matches": true,
+      "complete_original_delta_paths": 79,
+      "saved_path_detail_available": false,
+      "complete_delta_matches_saved_path_set": null,
+      "delta_paths_sha256": "ffe03bae48cffffb2ece8796286f3e5288768ab539681392afca0ec38a5427eb",
+      "mode_type_blob_identities_sha256": "181e1a60e00f6fd2c404839dfb91d938fe2a2e7cfa1dc7370df7f34f5bd5509b",
+      "identity_failures": [],
+      "equivalent_is_ancestor": true,
+      "passed": true
+    }
+  ],
+  "branches": [
+    {
+      "name": "codex/odt-field-continuation-20261117",
+      "sha": "c34945761e7991f5fe49037d79529acdd260b31c",
+      "ancestry_disposition": "included by freshly verified historical equivalence",
+      "accounted": true,
+      "disposition": "included by freshly verified historical equivalence"
+    },
+    {
+      "name": "codex/vba-variant-conversions-20261120",
+      "sha": "034776797223ef4c49c1ce9520e7d93364966494",
+      "ancestry_disposition": "outside selected target",
+      "reviewed_disposition": "retain separate: feature qualification not complete",
+      "reason": "The captured head explicitly labels its validation README Work in progress: independent review and reconciliation remain underway, and the recorded development results are not the final combined-source gate. It adds new Variant states/conversions and picture-background changes beyond the accepted Zotero source.",
+      "accounted": true,
+      "disposition": "retain separate: feature qualification not complete"
+    },
+    {
+      "name": "codex/zotero-research-materials-20261120",
+      "sha": "e79c32e77f1990e303527e477e4909df993c1b9b",
+      "ancestry_disposition": "included by ancestry",
+      "accounted": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "name": "docs/ods-color-scale",
+      "sha": "58fdddfbcf198a8c0e38e32f6fcc9d6604e95283",
+      "ancestry_disposition": "included by freshly verified historical equivalence",
+      "accounted": true,
+      "disposition": "included by freshly verified historical equivalence"
+    },
+    {
+      "name": "docs/ods-data-bar",
+      "sha": "69d14f84cabd3931b7640c1654b401c89faba766",
+      "ancestry_disposition": "included by freshly verified historical equivalence",
+      "accounted": true,
+      "disposition": "included by freshly verified historical equivalence"
+    },
+    {
+      "name": "feat/ods-color-scale",
+      "sha": "74ce9ffb816c70c0d2ae50b91ec52a614f26d688",
+      "ancestry_disposition": "included by freshly verified historical equivalence",
+      "accounted": true,
+      "disposition": "included by freshly verified historical equivalence"
+    },
+    {
+      "name": "feat/ods-data-bar",
+      "sha": "0a53b8a70128870f3e1df6d18cdb177bb64290ee",
+      "ancestry_disposition": "included by freshly verified historical equivalence",
+      "accounted": true,
+      "disposition": "included by freshly verified historical equivalence"
+    },
+    {
+      "name": "feat/ods-dynamic-validation-links",
+      "sha": "68a0db23408e4c95d6d283219504c79aea33a6fe",
+      "ancestry_disposition": "included by freshly verified historical equivalence",
+      "accounted": true,
+      "disposition": "included by freshly verified historical equivalence"
+    },
+    {
+      "name": "feat/ods-icon-sets",
+      "sha": "005c708e9f747cb46cf02e12c869b0a2f85ac824",
+      "ancestry_disposition": "included by freshly verified historical equivalence",
+      "accounted": true,
+      "disposition": "included by freshly verified historical equivalence"
+    },
+    {
+      "name": "feat/ods-time-period-conditions",
+      "sha": "7ef09f2408f467c65427700e65907531ecb26acb",
+      "ancestry_disposition": "included by freshly verified historical equivalence",
+      "accounted": true,
+      "disposition": "included by freshly verified historical equivalence"
+    },
+    {
+      "name": "fix/comment-draft-language-test-20261120",
+      "sha": "a56397df5f53b991f5016f3cc8e1ab53b7ce12f1",
+      "ancestry_disposition": "included by ancestry",
+      "reviewed_disposition": "integrate",
+      "reason": "Seven-line test correction atop current main: asserts and declines the language-download modal before rechecking the draft language; original expectations unchanged.",
+      "accounted": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "name": "fix/macos-ci-portable-20261120",
+      "sha": "bf606aa08f8905ceef35342772df91630840a9b2",
+      "ancestry_disposition": "included by ancestry",
+      "reviewed_disposition": "integrate",
+      "reason": "Focused portability repair atop PR224 merge: artifact/log/cache paths and same-tool stripped-library comparison; pinned code digest remains enforced.",
+      "accounted": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "name": "integrate/office-union-148",
+      "sha": "3abf8f43b0e79c10271bbd046f391e462b8fe6b9",
+      "ancestry_disposition": "included by freshly verified historical equivalence",
+      "accounted": true,
+      "disposition": "included by freshly verified historical equivalence"
+    },
+    {
+      "name": "integrate/recent-pptx",
+      "sha": "e7ba3544b17817fa1769688c56ed395bf627e63e",
+      "ancestry_disposition": "outside selected target",
+      "reviewed_disposition": "retain separate: new unqualified rendering work",
+      "reason": "New picture-background/rendering changes overlap the regression explicitly recorded in the latest Mail checkpoint. Later commits add Mail setup theming and geometric/flowchart presets; no final acceptance record for this expanded head was observed.",
+      "accounted": true,
+      "disposition": "retain separate: new unqualified rendering work"
+    },
+    {
+      "name": "main",
+      "sha": "6b2f392c7301d4b19f16d6ccf150258f14bf7ad7",
+      "ancestry_disposition": "included by ancestry",
+      "reviewed_disposition": "integrate",
+      "reason": "Published main preserves merged PR224 macOS signing and PR225 grammar v2; author qualification remains separate from continuation validation.",
+      "accounted": true,
+      "disposition": "included by ancestry"
+    },
+    {
+      "name": "work/mail-attachments-20261120",
+      "sha": "e12910204ef77644c12bf06ef7030c11268ada86",
+      "ancestry_disposition": "outside selected target",
+      "reviewed_disposition": "retain separate: explicitly incomplete",
+      "reason": "Latest commit explicitly states a save/reopen background regression still requires completion and is not an acceptance checkpoint. PR221 remains draft. Earlier independently qualified Mail source already preserved in Zotero milestone.",
+      "accounted": true,
+      "disposition": "retain separate: explicitly incomplete"
+    }
+  ],
+  "pull_requests": [
+    {
+      "number": 1,
+      "sha": "54f0f8de01416640560519aa9d732f668f603709",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 2,
+      "sha": "08b09485588d2b6270f594a07c983689c087587d",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 3,
+      "sha": "e550723b0f2a7cd849970f58820d260c36857502",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 4,
+      "sha": "09f5ec4b8eba290ff4d65678179854fb6ff6a468",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 5,
+      "sha": "da0979a5c6c4273ea68f360ce9a079bfa747384f",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 6,
+      "sha": "78ed85f5fd19d44f672dee11420fed261c974f4a",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 7,
+      "sha": "e82c997b6df8746fe86fb83b9f416a89bb3e3b80",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 8,
+      "sha": "a86a360bf9bd45c729e00b31dd9a97492e23f2e7",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 9,
+      "sha": "58de54567d45e38c05dd77064b7607c577374b9d",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 10,
+      "sha": "1b1bac125f426b05f868d482e9fbd657d4ffb73a",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 11,
+      "sha": "5c1ab430c6911bb11f71d29efa35027ead5ac1d5",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 12,
+      "sha": "579f2105cf7fca61536f7e3f9b59004929bdb6c5",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 13,
+      "sha": "73b354efdf0f2e7fbe0e87bc67f332a9dfb4903e",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 14,
+      "sha": "d4e2a0fcf1fe18e0e5158ac7d86b1f71bf3b70da",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 15,
+      "sha": "448eff5aac55054a34eccd4f8a1e79e754909a05",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 16,
+      "sha": "78a7b6f4e613c7d18d4bcc6434cda12b50ed184e",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 17,
+      "sha": "89c7f06c592edde0c67774e9c7e087d96f52184b",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 18,
+      "sha": "f31cf308013ceb4527e3f4de677785894bb1bfc0",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 19,
+      "sha": "e8227569a3b90fb21db598483690bd13fe74ddef",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 20,
+      "sha": "5278aafd512640608fe06b8f7d357c4cffe8520a",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 21,
+      "sha": "1f30a823b30678e3684c98fee6a2cd5c4945c4f2",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 22,
+      "sha": "4637ddce4154f4b50105c7322fedc1c75fd02193",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 23,
+      "sha": "e002b9584bead9761fac8c7cf818431966d1b1c3",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 24,
+      "sha": "9cc8c6e91ff9acf0f52a68aea7c0da69934a2661",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 25,
+      "sha": "b6d27c84a72d622f670a7e646e36ba4bd920cfc8",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 26,
+      "sha": "5b9ac71db1934252c4b8ae48ac03d4cd976e15ae",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 27,
+      "sha": "cde05b85bcd00c26d519d43283fcc6b55a1884e7",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 28,
+      "sha": "a8cd28d8af8ca966e8c4259862587ecc9aade2f4",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 29,
+      "sha": "7fe296e29e2e1b173580f6854507fc060cb4f080",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 30,
+      "sha": "49b447324159595c59e64d8425b54a09f79ec736",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 31,
+      "sha": "912f26f21446ef9bdbf4f542535438dae0ded9a9",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 32,
+      "sha": "46850ae47e0241733750decb22417a0150e4b0e4",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 33,
+      "sha": "4c8036bbf16ac224c3fc102b5c44d8913a512b18",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 34,
+      "sha": "09a05d7d60d2a2e1d2547487ad4545c50472834b",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 35,
+      "sha": "e59751246a200e7477657d0e4835bf77b153422c",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 36,
+      "sha": "21de3c3963b0334068b87fb1c25c787660cb17cf",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 37,
+      "sha": "b0efe6c661009ffa463f2bf6d7945216ce1dae4c",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 38,
+      "sha": "752a94dfddf69522429f3025f9d25702499cb6da",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 39,
+      "sha": "b85501b2810e537e21040d82528d8dbaa6fdcf15",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 40,
+      "sha": "8855b88a96b5c94349e3b5278c339228a1688c3e",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 41,
+      "sha": "b69bad50fb235118a5334b325683cd1524b3e3d1",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 42,
+      "sha": "8fc3d06be36da5c2176feb107c14245f61650d75",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 43,
+      "sha": "20681b8658392212c128f51b4c91f0b638942448",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 44,
+      "sha": "866c14f0b3a876e11732bc544dc25a05d8f10524",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 45,
+      "sha": "0a26be7f136ad3e57dbe894b0bc4cdb0602addd0",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 46,
+      "sha": "e6fdd16849aaf7ccbaf50f2593d7a92b6a82e630",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 47,
+      "sha": "fc37658c907edf6687eccb9564d3046283b49a3a",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 48,
+      "sha": "d6d6866c0f4ddbbaa196e1a5eb7ff9e31007fdea",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 49,
+      "sha": "a5febc3362d2fccdb979f012a5296af72e465797",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 50,
+      "sha": "428679a33381f943a8ae63117d4207f01dd15462",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 51,
+      "sha": "8769019fb8be5483939edd4655dd88005e2515c4",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 52,
+      "sha": "01f62eb1812ca54827cc14e074e03abd82f963d7",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 53,
+      "sha": "2e3074c8e1860f9503b059a87870911afc3eee7d",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 54,
+      "sha": "49ba086251ba61032f15b3e7b726fc921874fd12",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 55,
+      "sha": "f5b67cc296b7d27e4f3a480dc46160f472d78694",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 56,
+      "sha": "ca9e4f052d988d77f9ded3a6b13f840f76a26159",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 57,
+      "sha": "0dd9dd9763c2eb6bdc4f6b6e30fb7726035e7d4b",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 58,
+      "sha": "864e674795eb422855df2b26ccc375d3255e61a2",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 59,
+      "sha": "e5daa20587e10971e8cb97d82a5495584b5c1553",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 60,
+      "sha": "988f423b9b95037d8f5273ee368b58ceedab0667",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 61,
+      "sha": "b23ee557ea121774833c7a188a49189e4f80ce70",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 62,
+      "sha": "089e53fce443ca2169fc44f3700e1b23780d2c95",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 63,
+      "sha": "2480f0988167068d9aeddf6573b9c2c6871a8481",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 64,
+      "sha": "4a122b3b71ddc539f8ffda5541b7e6ab0f1dce8f",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 65,
+      "sha": "3bb505ce5fea00236238e37c450ace8b18e4e34e",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 66,
+      "sha": "379fa8663c81f32b4328415f56c776746ccc23bc",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 67,
+      "sha": "0ee0a8320875248adac9718cae2e67875b6b932c",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 68,
+      "sha": "82215309dc64ef8c473fec3c4892cf0c9884bc91",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 69,
+      "sha": "ec94795114d11c73bd8fc689fde364cc110b5cd3",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 70,
+      "sha": "9ad9ba92133932b0a3824619168f07dd218c2b26",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 71,
+      "sha": "108b4087c15f5640dbc906ad243f3030b7592f3f",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 72,
+      "sha": "57bc0f98eb94997b73f22cc267bd8d61dccaee59",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 73,
+      "sha": "8a0107cbca4b00766a2a76d43a1db244c006e976",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 74,
+      "sha": "1675bbbb7c03090a87b6df783e3741e2cbc1768f",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 75,
+      "sha": "f27e9b0e7ee9b1db8f6b7393abd752dab67d1ca5",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 76,
+      "sha": "1deb61cf78add61f5d26bea36ff596d769d06a87",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 77,
+      "sha": "bb9866d25bf98e5aa42c10ce4679835dbc8617f1",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 78,
+      "sha": "27137499f8cc1a946bfcdd7446f43945ea81d2be",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 79,
+      "sha": "06828a5e63365495c86a4a0e1c68ecd113f891e5",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 80,
+      "sha": "5aa16674e64cc01b89aec017c85afd3899cd96d5",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 81,
+      "sha": "eb95211e4d82933ba5b1db23ea7b79938b77909f",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 82,
+      "sha": "4497c737623c1339d2422487d53941c20472bac9",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 83,
+      "sha": "331be9688e2de1feb52635490b534042dea10c27",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 84,
+      "sha": "846c15f0de92a17bb2720e295b9a40412ebcb6fb",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 85,
+      "sha": "9f2dbd81c2289a2285521e1491a9c860c4b59646",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 86,
+      "sha": "001367e89cb0034cf33467783d7258bb0800deb9",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 87,
+      "sha": "7dfcfe9fcbf7e6d0d0abc14de7ed1ed901fa99c2",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 88,
+      "sha": "5fb8762e771fe68be8bc8025fe26e159d14eda8e",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 89,
+      "sha": "31a26383639dc7f751cfb0ea543ec7454a537ff6",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 90,
+      "sha": "6da74faa9160275df9c10a864c758033c92f114d",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 91,
+      "sha": "5cff80ce4ba85e645f21a31efb4fa4d9043b7e79",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 92,
+      "sha": "e8cb60efc2360be9bb72db7af8e4c675edf5b76f",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 93,
+      "sha": "5088f3ab7e81f353593f16fcaa86d1467d4e1af9",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 94,
+      "sha": "8221b0081b02af33101ca7f58438e69e487d2bf6",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 95,
+      "sha": "f862fe550bc8b7d3afcdb74016ccfefd7477fd20",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 96,
+      "sha": "a733c9f3367b9833f242100fcda0cff9e92767ff",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 97,
+      "sha": "8e94cf878cfbdeb13482f37f7848ef5a400425f3",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 98,
+      "sha": "a920b13aef776e0fb8a2ce3cc32848c2e7c0166a",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 99,
+      "sha": "434a26933501eb288a1b16ffd9f971a5fe3b3bc7",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 100,
+      "sha": "946942a1e30332892aaf19a068ca5a29470d682a",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 101,
+      "sha": "cf60a17bcd825dc9b4ecdf840d54e6a0271d3647",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 102,
+      "sha": "1549a9c7884eb688732262398b5d9859a68103eb",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 103,
+      "sha": "e15205c97f0fe0c7fcc5c3441e72cb0e9a3bdc01",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 104,
+      "sha": "2a6f3a94ce1d4a5ba6cddc1687a075191448da3d",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 105,
+      "sha": "6f1abf273bd10d7ebe5641661dd307c492f897c2",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 106,
+      "sha": "7686ec52876288e6799023fd686af79228236826",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 107,
+      "sha": "8471633ed09e2a49ba35ff162a2bac5eb04073c9",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 108,
+      "sha": "3ec638bd7de5cb6648774abbf14da1c315f5e418",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 109,
+      "sha": "b842ae4b4df892ec5f058f6207589953f3e9dae9",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 110,
+      "sha": "35ae6328a884975c23d2aa5001bf0df05a436f91",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 111,
+      "sha": "d1738017afd3696adbd2e895678b1fa7d26065ec",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 112,
+      "sha": "12601a41b6785dcd1d617adba8e13297d9af4bc0",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 113,
+      "sha": "93c832f53982a9f5956f19ae0cb9418f55fac8c0",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 114,
+      "sha": "867df7f257eac69adfe3355c051cdb2f773c53ac",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 115,
+      "sha": "b54ef7d2955f44266a87d9067d0e4c332e868c54",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 116,
+      "sha": "6a32a919325d71c121c63e3879cfd1b28d64312e",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 117,
+      "sha": "8b19ead89800f81ed9743ffbaf3279ac88fdd06d",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 118,
+      "sha": "4391669c881cbcba372c742d2300c24cdc465a2f",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 119,
+      "sha": "2c7d58d2e83e542655db7e9bbcc04b6bade44902",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 120,
+      "sha": "e37ccdb47c047f6a0250585cf5cb20efc17573b4",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 121,
+      "sha": "a86a4ec6a231ed66cd868ea1ece3acc3aea2bb8f",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 122,
+      "sha": "54a3a8593bdb34dd7c1f737960aa732d401fc2da",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 123,
+      "sha": "1138cffdc4a1c909b2b149db80312037c21909d8",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 124,
+      "sha": "b005a46b32c8b3ec92d60bb99147f2aa3af51f06",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 125,
+      "sha": "af2a61862d23572b108bd7ef7719c7f575348d83",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 126,
+      "sha": "8fae38da39c3c45344e723abca92c9330f15a791",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 127,
+      "sha": "8b70fdb42fb2d974587c75437b3adb5018190159",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 128,
+      "sha": "814f165cb24a5b719dde65495f64d85f86563328",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 129,
+      "sha": "bb5a97a8d7c5f9ffa261e64753f53a3c044b610f",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 130,
+      "sha": "84076f8ec8e4604a631cbaad9b88b030e508f0bc",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 131,
+      "sha": "f965fce6a54141b753a22f1e1b6c2fabba44e389",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 132,
+      "sha": "0ecd1615b96d7b90156c1e913e105d467efe9a39",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 133,
+      "sha": "f87533cdbf9f98e5cfc11d21d8903f8501212ab8",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 134,
+      "sha": "128a187d69555db80890c2a1945a442b951f9c74",
+      "observation": "retained historical immutable head",
+      "disposition": "included by freshly verified historical equivalence",
+      "accounted": true
+    },
+    {
+      "number": 135,
+      "sha": "74ce9ffb816c70c0d2ae50b91ec52a614f26d688",
+      "observation": "retained historical immutable head",
+      "disposition": "included by freshly verified historical equivalence",
+      "accounted": true
+    },
+    {
+      "number": 136,
+      "sha": "58fdddfbcf198a8c0e38e32f6fcc9d6604e95283",
+      "observation": "retained historical immutable head",
+      "disposition": "included by freshly verified historical equivalence",
+      "accounted": true
+    },
+    {
+      "number": 137,
+      "sha": "68a0db23408e4c95d6d283219504c79aea33a6fe",
+      "observation": "retained historical immutable head",
+      "disposition": "included by freshly verified historical equivalence",
+      "accounted": true
+    },
+    {
+      "number": 138,
+      "sha": "b8ddaaeb581e010467de304c828764d353149102",
+      "observation": "retained historical immutable head",
+      "disposition": "included by freshly verified historical equivalence",
+      "accounted": true
+    },
+    {
+      "number": 139,
+      "sha": "6df76a0dff0051312faa04317af41d479dd94162",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 140,
+      "sha": "c34945761e7991f5fe49037d79529acdd260b31c",
+      "observation": "retained historical immutable head",
+      "disposition": "included by freshly verified historical equivalence",
+      "accounted": true
+    },
+    {
+      "number": 141,
+      "sha": "0a53b8a70128870f3e1df6d18cdb177bb64290ee",
+      "observation": "retained historical immutable head",
+      "disposition": "included by freshly verified historical equivalence",
+      "accounted": true
+    },
+    {
+      "number": 142,
+      "sha": "69d14f84cabd3931b7640c1654b401c89faba766",
+      "observation": "retained historical immutable head",
+      "disposition": "included by freshly verified historical equivalence",
+      "accounted": true
+    },
+    {
+      "number": 143,
+      "sha": "83f8c380f9271b6bf34a300c3aedc19442cb61f1",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 144,
+      "sha": "a1e026b496f91b54bbd3017aae54717bf25a5586",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 145,
+      "sha": "005c708e9f747cb46cf02e12c869b0a2f85ac824",
+      "observation": "retained historical immutable head",
+      "disposition": "included by freshly verified historical equivalence",
+      "accounted": true
+    },
+    {
+      "number": 146,
+      "sha": "a7f144cc983f2df7c16d88f8644ad67a9254c3d0",
+      "observation": "retained historical immutable head",
+      "disposition": "included by freshly verified historical equivalence",
+      "accounted": true
+    },
+    {
+      "number": 147,
+      "sha": "cee6e2632f891a3fe21c5c02d6bf508805973051",
+      "observation": "retained historical immutable head",
+      "disposition": "included by freshly verified historical equivalence",
+      "accounted": true
+    },
+    {
+      "number": 148,
+      "sha": "e3831cdde529aa0c2368845cd72c1b9b65154665",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 149,
+      "sha": "3abf8f43b0e79c10271bbd046f391e462b8fe6b9",
+      "observation": "retained historical immutable head",
+      "disposition": "included by freshly verified historical equivalence",
+      "accounted": true
+    },
+    {
+      "number": 150,
+      "sha": "6d97fedccde17244a917ee7d3372adebe5494089",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 151,
+      "sha": "7ef09f2408f467c65427700e65907531ecb26acb",
+      "observation": "retained historical immutable head",
+      "disposition": "included by freshly verified historical equivalence",
+      "accounted": true
+    },
+    {
+      "number": 152,
+      "sha": "da9c956ec5d65c0e5a9f9ea84c2b0bca98e824a0",
+      "observation": "retained historical immutable head",
+      "disposition": "included by freshly verified historical equivalence",
+      "accounted": true
+    },
+    {
+      "number": 153,
+      "sha": "2e013f26c7d4db54ecabe2c955117cbce5379408",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 154,
+      "sha": "295752ff93b24bafc510e60197b62faa647e2aa3",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 155,
+      "sha": "536ee2086ce46ab629d4d77144d1ca22a43e3c19",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 156,
+      "sha": "f4aa218c87293527b3e2b7514500a28d13bd8f70",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 157,
+      "sha": "9fc211f6c72be9495767bd7cacfd8df51abf2fad",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 158,
+      "sha": "5dd3eb7c1434f0c1063290d5698fa5c760c201e2",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 159,
+      "sha": "2292548eb69de2dbb5240ab9da59256f362137c6",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 160,
+      "sha": "8cbdb9d9a05ff7f0e795efe0ee7848b196f424a3",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 161,
+      "sha": "acfa3c2bf543debd2fff518304ab514ab677418b",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 162,
+      "sha": "4600c0ebc9ac5e6acabd92935821d1c15315f2c1",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 163,
+      "sha": "ce4d3d19a21eae96a473291ffb9f47ac3be6a74c",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 164,
+      "sha": "fb1fd4dc3edda824c3e043c035dbfad1f0fe0869",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 165,
+      "sha": "8d74db5da2992e60c7f17b58cd354b874a1ce33a",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 166,
+      "sha": "3668ed92829dfa012ec5b129943a86738ebb7992",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 167,
+      "sha": "a40a26663f7a2c6b7fb8de91540fd04b9875ed9c",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 168,
+      "sha": "6c993f7406037ba462c6aea32e7e6afeebd28c03",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 169,
+      "sha": "4600c0ebc9ac5e6acabd92935821d1c15315f2c1",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 170,
+      "sha": "ff1518517dd9f67e214ff56fe7eef06349f5223a",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 171,
+      "sha": "637b67c58482e40a3244c590ce77c08b9fc2740e",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 172,
+      "sha": "0dc05c17844249b479357ea0ec5f8f02252a530f",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 173,
+      "sha": "b0a9bd3f1b46ac89021d1b7e49c32980ca4d181e",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 174,
+      "sha": "59e0a7c232e7380021a8bda4477999205da0f8ae",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 175,
+      "sha": "c320f28347f1cd292b848be2cf72998d41f8a6ac",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 176,
+      "sha": "16cbbebdcf7781564658cc7636473c7d04846b38",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 177,
+      "sha": "3f0277c8c4d317c3607e3bd6a2bf0e9aaf73bd3d",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 178,
+      "sha": "2122066f0eccf06a6f2c3c523c5715a7233bb95d",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 179,
+      "sha": "5ec15bdd4c5016b320f0fe8edff36b1da69fa44f",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 180,
+      "sha": "8717d8515f0f07875e0d7ed7a0ad73fa319cb594",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 181,
+      "sha": "906296bad785daaf7be85ec838361bee18ca88a9",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 182,
+      "sha": "0cee7ea9701e2d75e1385f5e16ded69cbaf0e387",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 183,
+      "sha": "f2b0769cf5533fd4e7ee335adab532c98c677857",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 184,
+      "sha": "c19ac32d1e443ce277ccc80f7c80107e33fb40c3",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 185,
+      "sha": "e42ca64ba0dd4c687a56947ba0122cf53a15b843",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 186,
+      "sha": "98f7044252015e1d6a3bcddeb4e0133f6c88dbc6",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 187,
+      "sha": "217f2abb07eb690d52fd0d4cc513032aaa7f4105",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 188,
+      "sha": "d2ec54dbfc6e42ea929b872fd0b36c751d4a7a33",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 189,
+      "sha": "37b8a738d7701b5e61ed282c0d9a25e6a73f97f9",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 190,
+      "sha": "13d87f0f151a1f20e81402788c54beb9ada8f030",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 191,
+      "sha": "1d762d4c369795175b55a4ecb9c44efd29f041b1",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 192,
+      "sha": "0601d2790c7636bc02d53430f6e99f471e8ac83e",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 193,
+      "sha": "4cf5831d01ace0ae804a176ec82ff2d27ce7fac3",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 194,
+      "sha": "e77d0dab229bc0ea4c195a164771d3c44809f0f0",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 195,
+      "sha": "d42626a4c0742a955ab27b700c7138fd69d99298",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 196,
+      "sha": "555fc99fdeb8ef7f3043513203cb16b243a4a9d7",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 197,
+      "sha": "f20b3c61d28918cd75526c64852c41fae943acf3",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 198,
+      "sha": "623057111a9179552eb02b21a753a1728de9905d",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 199,
+      "sha": "107155216505590e2eabfb93fc67cb908ad6173d",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 200,
+      "sha": "4b2ad7995c1ddff052232c21749d847701d77f96",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 201,
+      "sha": "3c1764f5ff8bf9f89e090ef4e04e3142c4ccf90a",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 202,
+      "sha": "d98c8ae020a60715fbb02f5332b2f3414fb6805b",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 203,
+      "sha": "aa9fb9de14347ed69182be90f13c99a443a0ecbb",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 204,
+      "sha": "3db248be978b24d0693d1133505d9be200fd1256",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 205,
+      "sha": "82b20dc8b52d0b95efeff590c6023ed84704fa7a",
+      "observation": "retained historical immutable head",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 206,
+      "sha": "bba11ff1b23b2e8c0cdc0d872ce31394ada83bf2",
+      "observation": "recent API head refreshed this continuation",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 207,
+      "sha": "dde2b56066746223b2b313cbfb0ce8dba55dc6bd",
+      "observation": "recent API head refreshed this continuation",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 208,
+      "sha": "de9d21f9014060c14263ce17fe323d5fdb063d11",
+      "observation": "recent API head refreshed this continuation",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 209,
+      "sha": "6275d21246040e03f6264b27171992c88d1474a2",
+      "observation": "recent API head refreshed this continuation",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 210,
+      "sha": "3abffb94dcf33a2766a4579d296d0ef09c9e35cd",
+      "observation": "recent API head refreshed this continuation",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 211,
+      "sha": "cacae8569814e4cb81f58d358734d31431f102be",
+      "observation": "recent API head refreshed this continuation",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 212,
+      "sha": "482fbd99dd8d3d5aff7d773fa87454f4d324028d",
+      "observation": "recent API head refreshed this continuation",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 213,
+      "sha": "0e03878b028ec25ed3d84a790633433eafc3bede",
+      "observation": "recent API head refreshed this continuation",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 214,
+      "sha": "dc93a176f8efc98feff9c25565fb036175793a54",
+      "observation": "recent API head refreshed this continuation",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 215,
+      "sha": "cc061e72bd167cdaf4a99d3c0b714f27cb93b2c8",
+      "observation": "recent API head refreshed this continuation",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 216,
+      "sha": "ab833975409abfb207f3a6a1a146183a4a5198fd",
+      "observation": "recent API head refreshed this continuation",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 217,
+      "sha": "fd17f6c4e0ffc22b71e52dcc7859fd95f72f30c7",
+      "observation": "recent API head refreshed this continuation",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 218,
+      "sha": "6626ad430a54122e4514cc2870fdcee18760682f",
+      "observation": "recent API head refreshed this continuation",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 219,
+      "sha": "3003272fc2bc1f77bdb1355aa7cb27356dfbc61b",
+      "observation": "recent API head refreshed this continuation",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 220,
+      "sha": "1441665236401e94ccf03ffa694c7434bb227ef3",
+      "observation": "recent API head refreshed this continuation",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 221,
+      "sha": "e12910204ef77644c12bf06ef7030c11268ada86",
+      "observation": "recent API head refreshed this continuation",
+      "disposition": "retain separate: explicitly incomplete draft",
+      "accounted": true
+    },
+    {
+      "number": 222,
+      "sha": "7be53768501bb6df426eeb9d05c921e393ded02f",
+      "observation": "recent API head refreshed this continuation",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 223,
+      "sha": "e79c32e77f1990e303527e477e4909df993c1b9b",
+      "observation": "recent API head refreshed this continuation",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 224,
+      "sha": "38c9c297c12fca3422b8f758e7b1afbdabbf064c",
+      "observation": "recent API head refreshed this continuation",
+      "disposition": "included by ancestry",
+      "accounted": true
+    },
+    {
+      "number": 225,
+      "sha": "4973e712045bdcf45fd36dcfe37d380c52265d3c",
+      "observation": "recent API head refreshed this continuation",
+      "disposition": "included by ancestry",
+      "accounted": true
+    }
+  ],
+  "upstream": [
+    {
+      "kind": "branches",
+      "name": "ci/flutter-workspace",
+      "number": null,
+      "sha": "aca2f66941832bd0b19b436baeab1656a1b7de98",
+      "observation": "retained historical immutable upstream head; no new upstream capture",
+      "disposition": "included by ancestry"
+    },
+    {
+      "kind": "branches",
+      "name": "cursor/class-certificates-2db8",
+      "number": null,
+      "sha": "f45099688e7a3f67a1302efdb442830d052f2240",
+      "observation": "retained historical immutable upstream head; no new upstream capture",
+      "disposition": "included by ancestry"
+    },
+    {
+      "kind": "branches",
+      "name": "cursor/cloud-agent-1790580069020-0rk1h",
+      "number": null,
+      "sha": "9930be8df44ffe117fb22778c514eea0ee73ce21",
+      "observation": "retained historical immutable upstream head; no new upstream capture",
+      "disposition": "included by ancestry"
+    },
+    {
+      "kind": "branches",
+      "name": "main",
+      "number": null,
+      "sha": "15c5d29b63fb17a93c7fb3426a8fd4d95a32f1ba",
+      "observation": "retained historical immutable upstream head; no new upstream capture",
+      "disposition": "included by ancestry"
+    },
+    {
+      "kind": "pullRequests",
+      "name": null,
+      "number": 7,
+      "sha": "f45099688e7a3f67a1302efdb442830d052f2240",
+      "observation": "retained historical immutable upstream head; no new upstream capture",
+      "disposition": "included by ancestry"
+    },
+    {
+      "kind": "pullRequests",
+      "name": null,
+      "number": 6,
+      "sha": "aca2f66941832bd0b19b436baeab1656a1b7de98",
+      "observation": "retained historical immutable upstream head; no new upstream capture",
+      "disposition": "included by ancestry"
+    },
+    {
+      "kind": "pullRequests",
+      "name": null,
+      "number": 5,
+      "sha": "9930be8df44ffe117fb22778c514eea0ee73ce21",
+      "observation": "retained historical immutable upstream head; no new upstream capture",
+      "disposition": "included by ancestry"
+    },
+    {
+      "kind": "pullRequests",
+      "name": null,
+      "number": 1,
+      "sha": "48c5156f459597ce3f8ec486b3c9a20fc5543807",
+      "observation": "retained historical immutable upstream head; no new upstream capture",
+      "disposition": "included by ancestry"
+    }
+  ],
+  "complete_for_bounded_intake": true,
+  "policy": {
+    "github_actions_queried": false,
+    "github_actions_awaited": false,
+    "checks_or_status_endpoints_queried": false,
+    "remote_refs_mutated": false,
+    "product_source_mutated": false
+  }
+}

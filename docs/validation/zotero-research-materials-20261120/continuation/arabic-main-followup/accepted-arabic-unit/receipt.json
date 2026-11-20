@@ -1,0 +1,283 @@
+{
+  "application_timeouts_modified": false,
+  "artifacts": {
+    "events.jsonl.gz": {
+      "bytes": 1391,
+      "git_blob_sha1": "bed1f49c6ef89cda021b3b1d1f2e1da2e39e7de0",
+      "sha256": "34b1e5df8b26e5d6605f85cc26958efe0dd14ed843f969a72ce923f164a6fd17"
+    },
+    "input-check.json": {
+      "bytes": 1248,
+      "git_blob_sha1": "8229b9d98a780b103f89d16eb5fdf36d67b344e2",
+      "sha256": "cfd34aa7bbb58306e91dba7c2604f2588d773c873075bd37e9973980ed3ce5fc"
+    },
+    "inputs.json.gz": {
+      "bytes": 470845,
+      "git_blob_sha1": "5af11b4dd5ac8fccad5ce3a96f72c5de415fd60a",
+      "sha256": "a28dbd0c6ea342cb132bbaccf1bf67609825d9266e04b04437d41a68c66dde59"
+    },
+    "selection-adapter.json": {
+      "bytes": 3871,
+      "git_blob_sha1": "61b23284174276e1ffde32c2596f8692be908cae",
+      "sha256": "444f7cb1068d412d9a00ffaae539d6620d9207f76ef0f209a0ea5ab2e4d4ee75"
+    },
+    "stderr.log.gz": {
+      "bytes": 31,
+      "git_blob_sha1": "87bfaf1cefef95e53a691da2269f30d7996d9c89",
+      "sha256": "b7368871ac9ce0ce08835c8c2fbf32d88bd56ee6bb93612434e3cc6bd4405e5e"
+    }
+  },
+  "cohort": "arabic-unit",
+  "command": [
+    "/workspace/scratch/2c6eaad19389/zotero-toolchain/flutter-sdk/bin/cache/dart-sdk/bin/dart",
+    "--packages=/workspace/scratch/2c6eaad19389/quds_office_suite/.dart_tool/package_config.json",
+    "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+    "--reporter",
+    "json",
+    "--concurrency",
+    "1",
+    "test/arabic_morph_unit_test.dart"
+  ],
+  "concurrency": 1,
+  "counting_scope": "Application test cases only. Loader and group-lifecycle events are excluded from the passing count but any failures in them still reject acceptance. Development runs and other cohorts are not included.",
+  "cwd": "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/quds_arabic_morph",
+  "elapsed_seconds": 18.615239297003427,
+  "exit_code": 0,
+  "external_dependency_file_count": 2113,
+  "fingerprints": {
+    "after_sha256": {
+      "dependencies": "91ac38791512b4feb6a8bf14b45b2e2890162fff93bb6384f1aec356bddcc245",
+      "host_fonts": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "runtime": "9c58c139ade21dc3073e27df7a4627814f2ddc40c2b7b684706d390d6d3c5aac",
+      "source": "b3728e384a4343025942075558b058acf7218aa9be8634b7feb4f8905bb9621f",
+      "workspace": "796c78924feaafc1773c00298a709fab93ec8388ecbc4a64d56c585279913b5c"
+    },
+    "before_sha256": {
+      "dependencies": "91ac38791512b4feb6a8bf14b45b2e2890162fff93bb6384f1aec356bddcc245",
+      "host_fonts": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "runtime": "9c58c139ade21dc3073e27df7a4627814f2ddc40c2b7b684706d390d6d3c5aac",
+      "source": "b3728e384a4343025942075558b058acf7218aa9be8634b7feb4f8905bb9621f",
+      "workspace": "796c78924feaafc1773c00298a709fab93ec8388ecbc4a64d56c585279913b5c"
+    },
+    "changed_paths": {
+      "dependencies": [],
+      "host_fonts": [],
+      "runtime": [],
+      "source": [],
+      "workspace": []
+    },
+    "source_matches_finish": {
+      "different_paths": [],
+      "matches": true,
+      "uncommitted_paths": []
+    },
+    "source_matches_start": {
+      "different_paths": [],
+      "matches": true,
+      "uncommitted_paths": []
+    }
+  },
+  "finished_at_utc": "2026-11-20T06:57:47.215417+00:00",
+  "guards": {
+    "all_requested_suites_executed_once": true,
+    "dependencies_unchanged": true,
+    "every_started_test_finished_once": true,
+    "exact_published_head_unchanged": true,
+    "final_event_success": true,
+    "host_fonts_unchanged": true,
+    "no_failures_skips_or_errors": true,
+    "runtime_unchanged": true,
+    "selection_adapter_and_primary_runner_unchanged": true,
+    "selection_unchanged": true,
+    "source_matches_finish_commit": true,
+    "source_matches_start_commit": true,
+    "source_unchanged": true,
+    "unique_application_test_names": true,
+    "workspace_unchanged": true
+  },
+  "head_unchanged": true,
+  "no_github_ci_or_status_endpoints": true,
+  "package": "packages/quds_arabic_morph",
+  "runner": "dart",
+  "runtime": {
+    "dart_version": "Dart SDK version: 3.13.7 (stable) (Thu Oct 22 14:28:57 2026 -0700) on \"linux_x64\"",
+    "dart_version_command": [
+      "/workspace/scratch/2c6eaad19389/zotero-toolchain/flutter-sdk/bin/cache/dart-sdk/bin/dart",
+      "--version"
+    ],
+    "flutter": {
+      "channel": "stable",
+      "dartSdkVersion": "3.13.7",
+      "devToolsVersion": "2.60.0",
+      "engineBuildDate": "2026-10-22 20:34:48.330",
+      "engineCommitDate": "2026-10-23 02:13:38.000Z",
+      "engineContentHash": "dfd2e6cb7d319db05e3bf1503f3e2ac60f6288a2",
+      "engineRevision": "cf636b1dfb818dd6a3ff16e390e93b1a036969c8",
+      "flutterVersion": "3.47.8",
+      "frameworkCommitDate": "2026-10-22 21:37:31 -0700",
+      "frameworkRevision": "737ba8f885dc774b53b442759999a312c9461e4e",
+      "frameworkVersion": "3.47.8",
+      "repositoryUrl": "https://github.com/flutter/flutter.git"
+    },
+    "flutter_root": "/workspace/scratch/2c6eaad19389/zotero-toolchain/flutter-sdk",
+    "pub_cache": "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache"
+  },
+  "selected_files": [
+    "test/arabic_morph_unit_test.dart"
+  ],
+  "selected_repository_paths": [
+    "packages/quds_arabic_morph/test/arabic_morph_unit_test.dart"
+  ],
+  "selection_adapter": {
+    "adapter_command": [
+      "docs/validation/zotero-research-materials-20261120/continuation/arabic-main-followup/run_arabic_followup.py",
+      "arabic-unit",
+      "--repo",
+      "/workspace/scratch/2c6eaad19389/quds_office_suite",
+      "--output",
+      "docs/validation/zotero-research-materials-20261120/continuation/arabic-main-followup/accepted-arabic-unit",
+      "--expected-head",
+      "f69e774fbb32a103260541e4a28fb17600bfc17e"
+    ],
+    "catalog_disjointness_check_unchanged": true,
+    "code_after": {
+      "adapter": {
+        "bytes": 5691,
+        "path": "/workspace/scratch/2c6eaad19389/quds_office_suite/docs/validation/zotero-research-materials-20261120/continuation/arabic-main-followup/run_arabic_followup.py",
+        "sha256": "c35ea5371e02ac0ccef93a5fccb9d500e3096a5718ed773574cad1fb6f608877"
+      },
+      "primary_runner": {
+        "bytes": 29772,
+        "path": "/workspace/scratch/2c6eaad19389/quds_office_suite/docs/validation/zotero-research-materials-20261120/run_validation.py",
+        "sha256": "4d01ed59729abaa64e3ab643e8ebcb2f7136dd2d9f02cc4b07b81a06fbb919bf"
+      }
+    },
+    "code_before": {
+      "adapter": {
+        "bytes": 5691,
+        "path": "/workspace/scratch/2c6eaad19389/quds_office_suite/docs/validation/zotero-research-materials-20261120/continuation/arabic-main-followup/run_arabic_followup.py",
+        "sha256": "c35ea5371e02ac0ccef93a5fccb9d500e3096a5718ed773574cad1fb6f608877"
+      },
+      "primary_runner": {
+        "bytes": 29772,
+        "path": "/workspace/scratch/2c6eaad19389/quds_office_suite/docs/validation/zotero-research-materials-20261120/run_validation.py",
+        "sha256": "4d01ed59729abaa64e3ab643e8ebcb2f7136dd2d9f02cc4b07b81a06fbb919bf"
+      }
+    },
+    "code_unchanged": true,
+    "cohort": "arabic-unit",
+    "delegated_arguments": [
+      "/workspace/scratch/2c6eaad19389/quds_office_suite/docs/validation/zotero-research-materials-20261120/run_validation.py",
+      "arabic-unit",
+      "--repo",
+      "/workspace/scratch/2c6eaad19389/quds_office_suite",
+      "--timeout",
+      "1800",
+      "--output",
+      "/workspace/scratch/2c6eaad19389/quds_office_suite/docs/validation/zotero-research-materials-20261120/continuation/arabic-main-followup/accepted-arabic-unit",
+      "--expected-head",
+      "f69e774fbb32a103260541e4a28fb17600bfc17e"
+    ],
+    "native_and_live_download_suites_excluded": true,
+    "primary_runner_exit_code": 0,
+    "primary_test_audit_and_fingerprint_logic_unchanged": true,
+    "prior_milestone_and_continuation_counts_are_separate": true,
+    "purpose": "Qualify PR231 with synthetic/unit Arabic and Studio integration tests; no native qualification",
+    "selection": {
+      "additional": [
+        "arabic_morph_unit_test.dart"
+      ],
+      "package": "packages/quds_arabic_morph",
+      "patterns": [],
+      "runner": "dart"
+    },
+    "selection_catalog": {
+      "arabic-unit": {
+        "additional": [
+          "arabic_morph_unit_test.dart"
+        ],
+        "package": "packages/quds_arabic_morph",
+        "patterns": [],
+        "runner": "dart"
+      },
+      "engine-arabic": {
+        "additional": [
+          "proofing/arabic_grammar_context_test.dart",
+          "proofing/arabic_grammar_rules_test.dart",
+          "proofing/arabic_writing_rules_test.dart",
+          "proofing/arabic_extended_rules_test.dart"
+        ],
+        "package": "packages/quds_office_engine",
+        "patterns": [],
+        "runner": "dart"
+      },
+      "studio-integration": {
+        "additional": [
+          "studio_arabic_morph_setup_test.dart",
+          "studio_downloads_manager_test.dart",
+          "studio_settings_test.dart",
+          "studio_linguistic_analysis_test.dart",
+          "studio_comment_draft_proofing_test.dart",
+          "studio_zotero_shortcuts_test.dart",
+          "studio_zotero_citing_transport_test.dart"
+        ],
+        "package": "packages/quds_office_editor/example",
+        "patterns": [],
+        "runner": "flutter"
+      }
+    },
+    "shared_sdk_validation_lock_unchanged": true
+  },
+  "source_file_count": 4019,
+  "source_head_at_finish": "f69e774fbb32a103260541e4a28fb17600bfc17e",
+  "source_head_at_start": "f69e774fbb32a103260541e4a28fb17600bfc17e",
+  "started_at_utc": "2026-11-20T06:57:26.264919+00:00",
+  "status": "passed",
+  "tests": {
+    "application_cases": 17,
+    "duplicate_application_names": [],
+    "duplicate_suite_ids": false,
+    "error_events": [],
+    "every_started_test_finished_once": true,
+    "excluded_failures": [],
+    "excluded_pseudo_cases": 1,
+    "excluded_reasons": {
+      "hidden_lifecycle": 1
+    },
+    "failed": 0,
+    "final_events": [
+      {
+        "success": true,
+        "time": 7246,
+        "type": "done"
+      }
+    ],
+    "flutter_notification_envelopes": 0,
+    "layout_or_tap_diagnostics": [],
+    "missing_start_test_ids": [],
+    "parse_errors": [],
+    "passed": 17,
+    "skipped": 0,
+    "suite_count": 1,
+    "suites": [
+      {
+        "failed": 0,
+        "id": 0,
+        "passed": 17,
+        "path": "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/quds_arabic_morph/test/arabic_morph_unit_test.dart",
+        "skipped": 0
+      }
+    ],
+    "test_done_events": 18,
+    "test_start_events": 18,
+    "unfinished_test_ids": []
+  },
+  "timed_out": false,
+  "validation_runner": {
+    "bytes": 29772,
+    "git_blob_sha1": "269eef52038d97ae307859439875a23f350e0b0a",
+    "path": "/workspace/scratch/2c6eaad19389/quds_office_suite/docs/validation/zotero-research-materials-20261120/run_validation.py",
+    "sha256": "4d01ed59729abaa64e3ab643e8ebcb2f7136dd2d9f02cc4b07b81a06fbb919bf"
+  },
+  "watchdog_seconds": 1800
+}

@@ -1,0 +1,93 @@
+{
+  "phase": "incoming",
+  "startedAtUtc": "2026-11-20T05:21:38.861663+00:00",
+  "command": [
+    "/workspace/scratch/75dc9d25dfaf/runtime/flutter/bin/cache/dart-sdk/bin/dart",
+    "--packages=/workspace/scratch/75dc9d25dfaf/quds_office_suite/.dart_tool/package_config.json",
+    "/workspace/scratch/75dc9d25dfaf/runtime/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+    "packages/quds_office_engine/test/slide_import_fidelity_test.dart",
+    "--reporter=json",
+    "--concurrency=2"
+  ],
+  "exitCode": 1,
+  "elapsedSeconds": 13.058621381998819,
+  "inputCount": 416,
+  "inputsUnchanged": true,
+  "changedInputs": [],
+  "passed": 30,
+  "failed": 8,
+  "skipped": 0,
+  "failures": [
+    {
+      "testID": 24,
+      "error": "Expected: ['Background', 'TextBox 8', 'TextBox 9']\n  Actual: MappedListIterable<PmlShape, String>:[\n            'Background',\n            'Background',\n            'TextBox 8',\n            'Background',\n            'TextBox 9'\n          ]\n   Which: at location [1] is 'Background' instead of 'TextBox 8'\n",
+      "stackTrace": "package:matcher                                                         expect\npackages/quds_office_engine/test/slide_import_fidelity_test.dart 634:9  main.<fn>.<fn>\n",
+      "isFailure": true,
+      "type": "error",
+      "time": 2975
+    },
+    {
+      "testID": 25,
+      "error": "Expected: ['Master decoration', 'Layout decoration']\n  Actual: MappedListIterable<PmlShape, String>:[\n            '',\n            'Master decoration',\n            '',\n            'Layout decoration'\n          ]\n   Which: at location [0] is '' instead of 'Master decoration'\n",
+      "stackTrace": "package:matcher                                                         expect\npackages/quds_office_engine/test/slide_import_fidelity_test.dart 663:9  main.<fn>.<fn>\n",
+      "isFailure": true,
+      "type": "error",
+      "time": 2980
+    },
+    {
+      "testID": 26,
+      "error": "Expected: ['Master decoration', 'Layout decoration']\n  Actual: MappedListIterable<PmlShape, String>:[\n            '',\n            'Master decoration',\n            'Layout decoration'\n          ]\n   Which: at location [0] is '' instead of 'Master decoration'\n",
+      "stackTrace": "package:matcher                                                         expect\npackages/quds_office_engine/test/slide_import_fidelity_test.dart 663:9  main.<fn>.<fn>\n",
+      "isFailure": true,
+      "type": "error",
+      "time": 2982
+    },
+    {
+      "testID": 27,
+      "error": "Expected: ['Background', 'TextBox 8', 'TextBox 9']\n  Actual: MappedListIterable<PmlShape, String>:[\n            'Background',\n            'TextBox 8',\n            'Background',\n            'TextBox 9'\n          ]\n   Which: at location [2] is 'Background' instead of 'TextBox 9'\n",
+      "stackTrace": "package:matcher                                                         expect\npackages/quds_office_engine/test/slide_import_fidelity_test.dart 681:7  main.<fn>.<fn>\n",
+      "isFailure": true,
+      "type": "error",
+      "time": 2985
+    },
+    {
+      "testID": 28,
+      "error": "Expected: ['Background', 'TextBox 9']\n  Actual: MappedListIterable<PmlShape, String>:['TextBox 9']\n   Which: at location [0] is 'TextBox 9' instead of 'Background'\n",
+      "stackTrace": "package:matcher                                                         expect\npackages/quds_office_engine/test/slide_import_fidelity_test.dart 705:9  main.<fn>.<fn>\n",
+      "isFailure": true,
+      "type": "error",
+      "time": 2988
+    },
+    {
+      "testID": 29,
+      "error": "Expected: ['Background', 'TextBox 9']\n  Actual: MappedListIterable<PmlShape, String>:['TextBox 9']\n   Which: at location [0] is 'TextBox 9' instead of 'Background'\n",
+      "stackTrace": "package:matcher                                                         expect\npackages/quds_office_engine/test/slide_import_fidelity_test.dart 705:9  main.<fn>.<fn>\n",
+      "isFailure": true,
+      "type": "error",
+      "time": 2991
+    },
+    {
+      "testID": 30,
+      "error": "Bad state: No element",
+      "stackTrace": "dart:core                                                                List.single\npackages/quds_office_engine/test/slide_import_fidelity_test.dart 721:37  main.<fn>.<fn>\n",
+      "isFailure": false,
+      "type": "error",
+      "time": 2993
+    },
+    {
+      "testID": 31,
+      "error": "Expected: ['112233', '778899']\n  Actual: MappedListIterable<PmlSlide, String>:['112233', '112233']\n   Which: at location [1] is '112233' instead of '778899'\n",
+      "stackTrace": "package:matcher                                                         expect\npackages/quds_office_engine/test/slide_import_fidelity_test.dart 732:7  main.<fn>.<fn>\n",
+      "isFailure": true,
+      "type": "error",
+      "time": 2999
+    }
+  ],
+  "done": [
+    {
+      "success": false,
+      "type": "done",
+      "time": 3165
+    }
+  ]
+}

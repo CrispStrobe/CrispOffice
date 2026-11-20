@@ -1,0 +1,116 @@
+{
+  "all_recorded_source_inputs_unchanged": false,
+  "all_tracked_application_library_paths_unchanged": 894,
+  "all_tracked_manifests_locks_analysis_settings_unchanged": 43,
+  "audited_at_utc": "2026-11-20T05:48:08.471969+00:00",
+  "candidate_parents": [
+    "3cba1810b41a2fff5b2cd1eb355137a46b09f225",
+    "b0b79d90b0f4ca0036483d73095b4821efddcc8e"
+  ],
+  "changed_recorded_source_inputs": [
+    "packages/quds_proofing_spacy/tool/evaluate_grammar_v2.dart"
+  ],
+  "dart_token_check": {
+    "after_tokens": 4441,
+    "before_tokens": 4439,
+    "helper_sha256": "f18f72e7897be8a21757a63fbadcfac4388b9d31fc73e81beffd00d6c6fe49ff",
+    "operations": [
+      {
+        "added": [
+          "{"
+        ],
+        "before_token_index": 3955,
+        "operation": "insert",
+        "removed": []
+      },
+      {
+        "added": [
+          "}"
+        ],
+        "before_token_index": 3972,
+        "operation": "insert",
+        "removed": []
+      }
+    ],
+    "parser_command": [
+      "/workspace/scratch/2c6eaad19389/zotero-toolchain/flutter-sdk/bin/cache/dart-sdk/bin/dart",
+      "--packages=/workspace/scratch/2c6eaad19389/quds_office_suite/.dart_tool/package_config.json",
+      "/workspace/scratch/2c6eaad19389/zotero-toolchain/tmp/publication-tokens-u13wc0tf/tokens.dart",
+      "/workspace/scratch/2c6eaad19389/zotero-toolchain/tmp/publication-tokens-u13wc0tf/before.dart",
+      "/workspace/scratch/2c6eaad19389/zotero-toolchain/tmp/publication-tokens-u13wc0tf/after.dart",
+      "/workspace/scratch/2c6eaad19389/zotero-toolchain/tmp/publication-tokens-u13wc0tf/tokens.json"
+    ],
+    "scope": "Only two brace tokens are inserted around one unchanged if-return branch. The condition and return expression are unchanged.",
+    "status": "passed"
+  },
+  "exact_approved_if_return_block_text_replacement": true,
+  "final_static": {
+    "accepted": true,
+    "analysis_log_sha256": "4a5cb5dcfa69f3f0ed7b483cc83e616a867eba866335978f3bdfbaa2a5773b1a",
+    "format_log_sha256": "e1bda76464c23a1f42884f0474d1fb3168cfc83d5dd30a6c2298b7637c55ce01",
+    "head": "3cba1810b41a2fff5b2cd1eb355137a46b09f225",
+    "receipt_sha256": "07ace791e82510fef36b1fd8c4cc635f62825d9c47537c55ddebc625d5ba4720",
+    "target_count": 83
+  },
+  "fresh_validation": {
+    "distinct_cases": 3201,
+    "path": "evidence-audit/fresh-validation.json",
+    "proofing_accounting_exception_preserved": true,
+    "sha256": "be404bafc453cad6010c6dd91630d7711429d693a4c4833ad9b647a549e299ee",
+    "successful_executions": 3209,
+    "test_files": 129
+  },
+  "import_graph": {
+    "compressed_graph_sha256": "b51652db58df1243a0581fe3894e8a26b11b7af6917d1d7b4b48b3c66b50f303",
+    "external_source_files_rehashed": 3141,
+    "reachable_files_with_literal_target_filename": 0,
+    "receipt_sha256": "469f5321e1bf4d2d7123e0ea599428b7667e873df8494b644e5564c72037587e",
+    "runtime_boundaries": [
+      "dart:async",
+      "dart:collection",
+      "dart:convert",
+      "dart:core",
+      "dart:developer",
+      "dart:ffi",
+      "dart:io",
+      "dart:isolate",
+      "dart:js_interop",
+      "dart:js_interop_unsafe",
+      "dart:math",
+      "dart:typed_data",
+      "dart:ui",
+      "dart:ui_web"
+    ],
+    "target_unreachable_from_every_selected_cohort": true,
+    "workspace_files_bound_to_both_sources": 974
+  },
+  "limits": [
+    "No application tests are rerun by this audit.",
+    "The standalone evaluator was not executed by the selected tests; static import proof also checks literal filename references, but cannot rule out arbitrary dynamic path construction.",
+    "The primary proofing name-uniqueness rejection remains preserved; eight verified identical fixture repeats are counted once.",
+    "The original 2,886 historical cases retain their earlier source attribution and are not added to the fresh count.",
+    "No native macOS, live-account or Office interoperability acceptance is claimed."
+  ],
+  "lint_correction_source": "3cba1810b41a2fff5b2cd1eb355137a46b09f225",
+  "lint_tree": "f7d9d4a3f77483e3bfdcdc11e30227ac725bd21c",
+  "only_changed_path_from_tests_to_publication": "packages/quds_proofing_spacy/tool/evaluate_grammar_v2.dart",
+  "publication_candidate_tree": "f7d9d4a3f77483e3bfdcdc11e30227ac725bd21c",
+  "publication_history_merge_has_identical_complete_tree": true,
+  "publication_source_candidate": "b1c8c8e534c41914b934defd6023839b851b28a2",
+  "recorded_source_inputs": 4004,
+  "selected_test_files_unchanged": 129,
+  "status": "verified_final_source_preservation_with_isolated_tool_correction",
+  "test_source": "f3f98987824e021ed22a4d909e38d6307495267b",
+  "tool_after": {
+    "bytes": 23753,
+    "git_blob_sha1": "8f27ae90b81c3cf3698341c46eee736c4fb140ad",
+    "sha256": "42b66d7e4fd1f81122245f4735f1fcfd4d18056c50a1d4fabe1ffae307b5d6e0"
+  },
+  "tool_before": {
+    "bytes": 23747,
+    "git_blob_sha1": "a4a37fb85d1787b3b581726b634d5b42d197511b",
+    "sha256": "ccd67cee89f72718259504e5f7fdccee786d8b290b02e19453eda3ce1b241735"
+  },
+  "unchanged_recorded_source_inputs": 4003,
+  "verifier_sha256": "e5cb85c70fd255888bb1b7780a66e07cb733107669ce3869d224cb08619f3bae"
+}

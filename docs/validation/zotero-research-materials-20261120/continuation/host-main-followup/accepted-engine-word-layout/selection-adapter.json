@@ -1,0 +1,219 @@
+{
+  "adapter_command": [
+    "docs/validation/zotero-research-materials-20261120/continuation/host-main-followup/run_host_followup.py",
+    "engine-word-layout",
+    "--repo",
+    "/workspace/scratch/2c6eaad19389/quds_office_suite",
+    "--output",
+    "docs/validation/zotero-research-materials-20261120/continuation/host-main-followup/accepted-engine-word-layout",
+    "--expected-head",
+    "214c4ed80bef0cb871f74e90c506d508679d3d6e"
+  ],
+  "catalog_disjointness_check_unchanged": true,
+  "code_after": {
+    "adapter": {
+      "bytes": 8943,
+      "path": "/workspace/scratch/2c6eaad19389/quds_office_suite/docs/validation/zotero-research-materials-20261120/continuation/host-main-followup/run_host_followup.py",
+      "sha256": "6a2aeba352f43a8d3e1712b11c329eb35b4ba5a9495197b97de6df3b347a2b39"
+    },
+    "primary_runner": {
+      "bytes": 29772,
+      "path": "/workspace/scratch/2c6eaad19389/quds_office_suite/docs/validation/zotero-research-materials-20261120/run_validation.py",
+      "sha256": "4d01ed59729abaa64e3ab643e8ebcb2f7136dd2d9f02cc4b07b81a06fbb919bf"
+    }
+  },
+  "code_before": {
+    "adapter": {
+      "bytes": 8943,
+      "path": "/workspace/scratch/2c6eaad19389/quds_office_suite/docs/validation/zotero-research-materials-20261120/continuation/host-main-followup/run_host_followup.py",
+      "sha256": "6a2aeba352f43a8d3e1712b11c329eb35b4ba5a9495197b97de6df3b347a2b39"
+    },
+    "primary_runner": {
+      "bytes": 29772,
+      "path": "/workspace/scratch/2c6eaad19389/quds_office_suite/docs/validation/zotero-research-materials-20261120/run_validation.py",
+      "sha256": "4d01ed59729abaa64e3ab643e8ebcb2f7136dd2d9f02cc4b07b81a06fbb919bf"
+    }
+  },
+  "code_unchanged": true,
+  "cohort": "engine-word-layout",
+  "delegated_arguments": [
+    "/workspace/scratch/2c6eaad19389/quds_office_suite/docs/validation/zotero-research-materials-20261120/run_validation.py",
+    "engine-word-layout",
+    "--repo",
+    "/workspace/scratch/2c6eaad19389/quds_office_suite",
+    "--timeout",
+    "1800",
+    "--output",
+    "/workspace/scratch/2c6eaad19389/quds_office_suite/docs/validation/zotero-research-materials-20261120/continuation/host-main-followup/accepted-engine-word-layout",
+    "--expected-head",
+    "214c4ed80bef0cb871f74e90c506d508679d3d6e"
+  ],
+  "host_font_inputs_captured_by_original_engine_rendering_guard": true,
+  "primary_runner_exit_code": 0,
+  "primary_test_audit_and_fingerprint_logic_unchanged": true,
+  "prior_milestone_and_continuation_counts_are_separate": true,
+  "purpose": "Qualify the bounded Word, slide and Mail host integration delta",
+  "selection": {
+    "additional": [
+      "office_named_fonts_test.dart",
+      "word_font_line_metrics_test.dart",
+      "word_paragraph_mark_layout_test.dart",
+      "word_layout_test.dart",
+      "word_styles_layout_test.dart",
+      "style_cascade_test.dart",
+      "word_referenced_styles_and_breaks_test.dart",
+      "word_run_measure_test.dart",
+      "word_run_measure_boundaries_test.dart",
+      "word_contained_text_wrap_test.dart",
+      "word_frame_wrap_test.dart",
+      "word_inline_picture_test.dart",
+      "word_picture_distance_fidelity_test.dart",
+      "word_table_nested_layout_test.dart",
+      "word_table_tall_frame_layout_test.dart",
+      "word_table_tall_toc_layout_test.dart",
+      "word_table_picture_pagination_test.dart",
+      "word_footnote_reference_test.dart",
+      "word_note_numbering_test.dart",
+      "word_note_script_break_test.dart",
+      "word_fidelity_test.dart",
+      "word_section_clone_fidelity_test.dart"
+    ],
+    "package": "packages/quds_office_engine",
+    "patterns": [],
+    "runner": "dart"
+  },
+  "selection_catalog": {
+    "editor-rendering": {
+      "additional": [
+        "office_dark_slide_test.dart",
+        "paint_run_text_unicode_test.dart",
+        "word_small_caps_test.dart",
+        "word_tab_stops_editor_test.dart"
+      ],
+      "package": "packages/quds_office_editor",
+      "patterns": [
+        "slide*_test.dart"
+      ],
+      "runner": "flutter"
+    },
+    "editor-word-layout": {
+      "additional": [
+        "host_fonts_test.dart",
+        "word_shaped_wrap_test.dart",
+        "word_underline_paint_test.dart",
+        "paint_font_fallback_test.dart",
+        "word_hyphenation_caret_test.dart",
+        "word_keyboard_context_geometry_test.dart",
+        "word_selection_paint_test.dart",
+        "word_proofing_geometry_test.dart",
+        "word_page_layout_test.dart",
+        "word_notes_editing_test.dart",
+        "word_note_numbering_test.dart",
+        "word_inline_picture_history_test.dart",
+        "office_dark_document_test.dart",
+        "office_chrome_theme_test.dart"
+      ],
+      "package": "packages/quds_office_editor",
+      "patterns": [],
+      "runner": "flutter"
+    },
+    "editor-zotero": {
+      "additional": [],
+      "package": "packages/quds_office_editor",
+      "patterns": [
+        "*zotero*_test.dart"
+      ],
+      "runner": "flutter"
+    },
+    "engine-rendering": {
+      "additional": [
+        "office_pdf_export_test.dart",
+        "word_small_caps_test.dart",
+        "fonts_test.dart",
+        "word_pdf_test.dart"
+      ],
+      "package": "packages/quds_office_engine",
+      "patterns": [
+        "slide*_test.dart"
+      ],
+      "runner": "dart"
+    },
+    "engine-word-layout": {
+      "additional": [
+        "office_named_fonts_test.dart",
+        "word_font_line_metrics_test.dart",
+        "word_paragraph_mark_layout_test.dart",
+        "word_layout_test.dart",
+        "word_styles_layout_test.dart",
+        "style_cascade_test.dart",
+        "word_referenced_styles_and_breaks_test.dart",
+        "word_run_measure_test.dart",
+        "word_run_measure_boundaries_test.dart",
+        "word_contained_text_wrap_test.dart",
+        "word_frame_wrap_test.dart",
+        "word_inline_picture_test.dart",
+        "word_picture_distance_fidelity_test.dart",
+        "word_table_nested_layout_test.dart",
+        "word_table_tall_frame_layout_test.dart",
+        "word_table_tall_toc_layout_test.dart",
+        "word_table_picture_pagination_test.dart",
+        "word_footnote_reference_test.dart",
+        "word_note_numbering_test.dart",
+        "word_note_script_break_test.dart",
+        "word_fidelity_test.dart",
+        "word_section_clone_fidelity_test.dart"
+      ],
+      "package": "packages/quds_office_engine",
+      "patterns": [],
+      "runner": "dart"
+    },
+    "engine-zotero": {
+      "additional": [],
+      "package": "packages/quds_office_engine",
+      "patterns": [
+        "*zotero*_test.dart"
+      ],
+      "runner": "dart"
+    },
+    "mail-host": {
+      "additional": [
+        "studio_mail_attachment_test.dart",
+        "studio_mail_attachment_loader_test.dart",
+        "studio_mail_attachment_compose_test.dart",
+        "studio_mail_cloud_test.dart",
+        "studio_mail_ews_test.dart",
+        "studio_mail_session_test.dart",
+        "studio_mail_compose_test.dart",
+        "studio_mail_recipients_test.dart",
+        "studio_mail_reply_test.dart",
+        "studio_mail_threading_test.dart",
+        "studio_mail_test.dart"
+      ],
+      "package": "packages/quds_office_editor/example",
+      "patterns": [],
+      "runner": "flutter"
+    },
+    "studio-integration": {
+      "additional": [
+        "studio_spacy_pin_test.dart",
+        "studio_spacy_setup_test.dart",
+        "studio_downloads_manager_test.dart",
+        "studio_linguistic_analysis_test.dart",
+        "studio_settings_test.dart",
+        "studio_language_id_test.dart",
+        "studio_comment_draft_proofing_test.dart",
+        "studio_zotero_shortcuts_test.dart",
+        "studio_zotero_citing_transport_test.dart",
+        "studio_layout_theme_test.dart",
+        "studio_mail_presets_test.dart",
+        "studio_mail_lifecycle_test.dart",
+        "studio_page_layout_dialog_test.dart",
+        "studio_paragraph_dialog_test.dart"
+      ],
+      "package": "packages/quds_office_editor/example",
+      "patterns": [],
+      "runner": "flutter"
+    }
+  },
+  "shared_sdk_validation_lock_unchanged": true
+}

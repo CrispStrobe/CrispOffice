@@ -1,0 +1,40 @@
+{
+  "retrieval": "GitHub pull-request metadata tool; no Actions, workflow, check-run or commit-status endpoint",
+  "retrieved_on_utc": "2026-11-20",
+  "repository": "CrispStrobe/quds_office_suite",
+  "url": "https://github.com/CrispStrobe/quds_office_suite/pull/229",
+  "number": 229,
+  "title": "Persist verified web dictionaries and morphology data across sessions",
+  "state": "closed",
+  "merged": true,
+  "draft": false,
+  "base_sha": "64f977ab003031d560c6564cf8895b1250d120d9",
+  "head_sha": "0c12d087e1d21b710c9fe224a06a93d526f0721e",
+  "merge_commit_sha": "dbfbbd28caa064f4850dc81860a68de14d48fb35",
+  "merged_at": "2026-11-20T06:01:58Z",
+  "updated_at": "2026-11-20T06:03:05Z",
+  "changed_files": 9,
+  "additions": 453,
+  "deletions": 13,
+  "author_validation_claims": [
+    {
+      "command": "flutter test --platform chrome test/studio_web_persistence_test.dart",
+      "passed": 3,
+      "total": 3,
+      "scope_as_claimed": "restore without network, removal, tampered and incomplete stored data for both hosts"
+    },
+    {
+      "command": "flutter test test/studio_hunspell_web_host_test.dart test/studio_hunspell_web_cancellation_test.dart test/studio_downloads_manager_test.dart",
+      "passed": 19,
+      "total": 19
+    },
+    {
+      "command": "dart analyze packages apps",
+      "errors": 0,
+      "warnings": 0
+    }
+  ],
+  "attribution": "These are statements in the PR body, not independently recounted source-bound execution receipts.",
+  "test_source_scope_qualification": "The three actual browser cases exercise dictionary restore/removal, corrupt dictionary deletion, and morphology restore/removal/corrupt database deletion. There is no explicit partial-file test case despite the broader prose claim. The morphology test checks installed status, not successful real-model execution.",
+  "github_actions_queried": false
+}

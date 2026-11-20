@@ -1,0 +1,182 @@
+{
+  "schema": "quds.reconciliation.historical-mappings.v1",
+  "note": "Only immutable original/equivalent pairs are reused. Identity and ancestry must be recomputed from Git. All pairs independently appear in both listed ledgers.",
+  "mappings": [
+    {
+      "original": "c34945761e7991f5fe49037d79529acdd260b31c",
+      "equivalent": "2c47165d01d01cc883135a434ac9f6591ce6e770",
+      "expectedCommonBase": "e3a38789359adaa33b2da1345c952fa1c2d8aebb",
+      "expectedCompleteOriginalDeltaPathCount": 37,
+      "provenance": [
+        {
+          "path": "docs/validation/zotero-research-materials-20261120/initial-reconciliation.json",
+          "sha256": "a348908ccd806ff433145ee1f0186521f9b643a286061f27a27aa82297aea2fd"
+        },
+        {
+          "path": "docs/validation/office-vba-dynamic-arrays-20261119/initial-reconciliation.json",
+          "sha256": "737313cb4b8dd967e14dc5483597c027775fc4c62a4e2dc29319dc94ff07a9d1"
+        }
+      ]
+    },
+    {
+      "original": "58fdddfbcf198a8c0e38e32f6fcc9d6604e95283",
+      "equivalent": "1ec0a81bc43dc444872fbffffa36a8affce307a5",
+      "expectedCommonBase": "4584d5f319aab198f1d705f48b4d6647e6cbabea",
+      "expectedCompleteOriginalDeltaPathCount": 1,
+      "provenance": [
+        {
+          "path": "docs/validation/zotero-research-materials-20261120/initial-reconciliation.json",
+          "sha256": "a348908ccd806ff433145ee1f0186521f9b643a286061f27a27aa82297aea2fd"
+        },
+        {
+          "path": "docs/validation/office-vba-dynamic-arrays-20261119/initial-reconciliation.json",
+          "sha256": "737313cb4b8dd967e14dc5483597c027775fc4c62a4e2dc29319dc94ff07a9d1"
+        }
+      ]
+    },
+    {
+      "original": "69d14f84cabd3931b7640c1654b401c89faba766",
+      "equivalent": "38abbbb744d1d5dab1eb9162d584370d661fef24",
+      "expectedCommonBase": "b3f41eb4b4bca8ca13676b4114891ea6d9185043",
+      "expectedCompleteOriginalDeltaPathCount": 1,
+      "provenance": [
+        {
+          "path": "docs/validation/zotero-research-materials-20261120/initial-reconciliation.json",
+          "sha256": "a348908ccd806ff433145ee1f0186521f9b643a286061f27a27aa82297aea2fd"
+        },
+        {
+          "path": "docs/validation/office-vba-dynamic-arrays-20261119/initial-reconciliation.json",
+          "sha256": "737313cb4b8dd967e14dc5483597c027775fc4c62a4e2dc29319dc94ff07a9d1"
+        }
+      ]
+    },
+    {
+      "original": "74ce9ffb816c70c0d2ae50b91ec52a614f26d688",
+      "equivalent": "4584d5f319aab198f1d705f48b4d6647e6cbabea",
+      "expectedCommonBase": "e3a38789359adaa33b2da1345c952fa1c2d8aebb",
+      "expectedCompleteOriginalDeltaPathCount": 7,
+      "provenance": [
+        {
+          "path": "docs/validation/zotero-research-materials-20261120/initial-reconciliation.json",
+          "sha256": "a348908ccd806ff433145ee1f0186521f9b643a286061f27a27aa82297aea2fd"
+        },
+        {
+          "path": "docs/validation/office-vba-dynamic-arrays-20261119/initial-reconciliation.json",
+          "sha256": "737313cb4b8dd967e14dc5483597c027775fc4c62a4e2dc29319dc94ff07a9d1"
+        }
+      ]
+    },
+    {
+      "original": "0a53b8a70128870f3e1df6d18cdb177bb64290ee",
+      "equivalent": "b3f41eb4b4bca8ca13676b4114891ea6d9185043",
+      "expectedCommonBase": "d754bf15b07a24c8a86c8dce339ca749fecd9531",
+      "expectedCompleteOriginalDeltaPathCount": 8,
+      "provenance": [
+        {
+          "path": "docs/validation/zotero-research-materials-20261120/initial-reconciliation.json",
+          "sha256": "a348908ccd806ff433145ee1f0186521f9b643a286061f27a27aa82297aea2fd"
+        },
+        {
+          "path": "docs/validation/office-vba-dynamic-arrays-20261119/initial-reconciliation.json",
+          "sha256": "737313cb4b8dd967e14dc5483597c027775fc4c62a4e2dc29319dc94ff07a9d1"
+        }
+      ]
+    },
+    {
+      "original": "68a0db23408e4c95d6d283219504c79aea33a6fe",
+      "equivalent": "e87494ada0729878981dc0cc60fdb07bcd5116d4",
+      "expectedCommonBase": "4eaca83b192897edad82658107dfeb5bcbed0920",
+      "expectedCompleteOriginalDeltaPathCount": 4,
+      "provenance": [
+        {
+          "path": "docs/validation/zotero-research-materials-20261120/initial-reconciliation.json",
+          "sha256": "a348908ccd806ff433145ee1f0186521f9b643a286061f27a27aa82297aea2fd"
+        },
+        {
+          "path": "docs/validation/office-vba-dynamic-arrays-20261119/initial-reconciliation.json",
+          "sha256": "737313cb4b8dd967e14dc5483597c027775fc4c62a4e2dc29319dc94ff07a9d1"
+        }
+      ]
+    },
+    {
+      "original": "005c708e9f747cb46cf02e12c869b0a2f85ac824",
+      "equivalent": "c84d5e16024c502f6c451fd04b9807b1e65f20d3",
+      "expectedCommonBase": "16e2477ff93f7a1ec5c6ed78491f2716ce4d1658",
+      "expectedCompleteOriginalDeltaPathCount": 7,
+      "provenance": [
+        {
+          "path": "docs/validation/zotero-research-materials-20261120/initial-reconciliation.json",
+          "sha256": "a348908ccd806ff433145ee1f0186521f9b643a286061f27a27aa82297aea2fd"
+        },
+        {
+          "path": "docs/validation/office-vba-dynamic-arrays-20261119/initial-reconciliation.json",
+          "sha256": "737313cb4b8dd967e14dc5483597c027775fc4c62a4e2dc29319dc94ff07a9d1"
+        }
+      ]
+    },
+    {
+      "original": "7ef09f2408f467c65427700e65907531ecb26acb",
+      "equivalent": "6f40365ae7708172c58e9aee38bc363d99327355",
+      "expectedCommonBase": "4b2b4e78839d2997a583b7ab1346e2fa537a8ac4",
+      "expectedCompleteOriginalDeltaPathCount": 7,
+      "provenance": [
+        {
+          "path": "docs/validation/zotero-research-materials-20261120/initial-reconciliation.json",
+          "sha256": "a348908ccd806ff433145ee1f0186521f9b643a286061f27a27aa82297aea2fd"
+        },
+        {
+          "path": "docs/validation/office-vba-dynamic-arrays-20261119/initial-reconciliation.json",
+          "sha256": "737313cb4b8dd967e14dc5483597c027775fc4c62a4e2dc29319dc94ff07a9d1"
+        }
+      ]
+    },
+    {
+      "original": "3abf8f43b0e79c10271bbd046f391e462b8fe6b9",
+      "equivalent": "4b2b4e78839d2997a583b7ab1346e2fa537a8ac4",
+      "expectedCommonBase": "bb5556e8cc4cb73e2c668b5319a2844a20c6c50c",
+      "expectedCompleteOriginalDeltaPathCount": 221,
+      "provenance": [
+        {
+          "path": "docs/validation/zotero-research-materials-20261120/initial-reconciliation.json",
+          "sha256": "a348908ccd806ff433145ee1f0186521f9b643a286061f27a27aa82297aea2fd"
+        },
+        {
+          "path": "docs/validation/office-vba-dynamic-arrays-20261119/initial-reconciliation.json",
+          "sha256": "737313cb4b8dd967e14dc5483597c027775fc4c62a4e2dc29319dc94ff07a9d1"
+        }
+      ]
+    },
+    {
+      "original": "cee6e2632f891a3fe21c5c02d6bf508805973051",
+      "equivalent": "bb5556e8cc4cb73e2c668b5319a2844a20c6c50c",
+      "expectedCommonBase": "0ff7d23929e4640af6c1d57f87c7ac71b73d2ed4",
+      "expectedCompleteOriginalDeltaPathCount": 105,
+      "provenance": [
+        {
+          "path": "docs/validation/zotero-research-materials-20261120/initial-reconciliation.json",
+          "sha256": "a348908ccd806ff433145ee1f0186521f9b643a286061f27a27aa82297aea2fd"
+        },
+        {
+          "path": "docs/validation/office-vba-dynamic-arrays-20261119/initial-reconciliation.json",
+          "sha256": "737313cb4b8dd967e14dc5483597c027775fc4c62a4e2dc29319dc94ff07a9d1"
+        }
+      ]
+    },
+    {
+      "original": "da9c956ec5d65c0e5a9f9ea84c2b0bca98e824a0",
+      "equivalent": "23f3b4204fce45d38a103e3159bdc7f1e8d37c4e",
+      "expectedCommonBase": "34dc6b6806869570e9ec342e4d7ee0d6951c0ba6",
+      "expectedCompleteOriginalDeltaPathCount": 79,
+      "provenance": [
+        {
+          "path": "docs/validation/zotero-research-materials-20261120/initial-reconciliation.json",
+          "sha256": "a348908ccd806ff433145ee1f0186521f9b643a286061f27a27aa82297aea2fd"
+        },
+        {
+          "path": "docs/validation/office-vba-dynamic-arrays-20261119/initial-reconciliation.json",
+          "sha256": "737313cb4b8dd967e14dc5483597c027775fc4c62a4e2dc29319dc94ff07a9d1"
+        }
+      ]
+    }
+  ]
+}

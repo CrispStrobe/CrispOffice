@@ -1,0 +1,1 @@
+{"status": "passed", "guards": {"bash_syntax_passed": true, "dart_delta_doc_comments_only": true, "workflow_unchanged_from_captured_candidate": true, "scoped_inputs_unchanged": true, "head_unchanged": true, "all_controlled_scenarios_passed": true}, "scenario_count": 8}

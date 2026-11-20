@@ -1,0 +1,58 @@
+01de9791a4c3420b17bd5ae90258349da4435440
+100644 b0f128a057041b6d34ed446cd97b57265525747c 2	docs/roadmaps/mail/attachments.md
+100644 8fc721646e90d8ea48a93d852f2645ddf6704e9f 3	docs/roadmaps/mail/attachments.md
+100644 ed20fef5a85a635ea50f988bb083d220563b9e9f 1	docs/roadmaps/mail/status.md
+100644 45333c423de8cc2e2cbc1d2d30061c81f100ab0f 2	docs/roadmaps/mail/status.md
+100644 89a8dc7317c4f69c200a2ffa436f3fb1218cd6b8 3	docs/roadmaps/mail/status.md
+100644 5a52f17b0fbf6074cf8a376309e686c16b1232f9 2	docs/validation/zotero-research-materials-20261120/README.md
+100644 8584ef8dcb3289209a421891939e56b3857bbd35 3	docs/validation/zotero-research-materials-20261120/README.md
+100644 f6909de5faf39da2601562adc6fdc4cb478bfeec 1	docs/zotero-validation.md
+100644 33acaa37f198e6d408d127e6d20ff930cca12b7b 2	docs/zotero-validation.md
+100644 1cad6f97e18b7289fc95663dc95c22cd4ae57c80 3	docs/zotero-validation.md
+100644 1283248c06d1c4890614d153b1be7d8e4f4378e6 1	packages/quds_office_editor/example/lib/suite_workspace.dart
+100644 e9ea54c1bfc4003b2f39582c223dca003c089b3e 2	packages/quds_office_editor/example/lib/suite_workspace.dart
+100644 cddbe90139062c773e4dfb582d199cd258e20c77 3	packages/quds_office_editor/example/lib/suite_workspace.dart
+100644 dc584e5416b5a14a136c4727bc2e7f20eaea149e 1	packages/quds_office_editor/lib/src/editor_slide/render_slide_stage.dart
+100644 2001dd86d8cdc0a58c6b13d8430c160b29a51af3 2	packages/quds_office_editor/lib/src/editor_slide/render_slide_stage.dart
+100644 cd4d7a2b05e311a31aceb23e396c623a08438190 3	packages/quds_office_editor/lib/src/editor_slide/render_slide_stage.dart
+100644 aeea8d768fdb32346bb56e81de5b788367611ba1 1	packages/quds_office_engine/CHANGELOG.md
+100644 5674c0e738bf600160e001311101bfffcb3a554d 2	packages/quds_office_engine/CHANGELOG.md
+100644 14fa3aea54818cd583e00ac9ff15401ef3aba2ed 3	packages/quds_office_engine/CHANGELOG.md
+100644 55eb8decd9eac1ba7b356dec16b8e39efc3635cb 1	packages/quds_office_engine/lib/src/pdf/office_pdf_export.dart
+100644 83c91afbe6405705a56bdb36977098215c809a06 2	packages/quds_office_engine/lib/src/pdf/office_pdf_export.dart
+100644 b79e6adec410302d215d6c053497b48be96a21c9 3	packages/quds_office_engine/lib/src/pdf/office_pdf_export.dart
+100644 308b78f5e5e5347e1ca7e403e01da52801541556 1	packages/quds_office_engine/lib/src/slide/model/pml_presentation.dart
+100644 0ca0af3d981852c3300aea6b75246f33e874da03 2	packages/quds_office_engine/lib/src/slide/model/pml_presentation.dart
+100644 c9c54624381006227c1018d56dc95cf09d38fee4 3	packages/quds_office_engine/lib/src/slide/model/pml_presentation.dart
+100644 28eccbee98d6f9e33e18fc6ab6321d9b1d8c1afe 1	packages/quds_office_engine/lib/src/slide/serial/slide_serial.dart
+100644 a795c4a6e2e1618be70ac9a65917b4daa3d08c70 2	packages/quds_office_engine/lib/src/slide/serial/slide_serial.dart
+100644 ad33531bfe788d7507e595dd8d0e7e7193c44cec 3	packages/quds_office_engine/lib/src/slide/serial/slide_serial.dart
+100644 d7efd2cee6c575dcb44b2decc6b99945eada2704 1	packages/quds_office_engine/test/slide_import_fidelity_test.dart
+100644 30241bbf882bb97af933194d0ae65ea92d0c030e 2	packages/quds_office_engine/test/slide_import_fidelity_test.dart
+100644 c92693951be80bec41c6dcf12c8d1ccab66a3eb9 3	packages/quds_office_engine/test/slide_import_fidelity_test.dart
+
+Auto-merging docs/roadmaps/mail/attachments.md
+CONFLICT (add/add): Merge conflict in docs/roadmaps/mail/attachments.md
+Auto-merging docs/roadmaps/mail/status.md
+CONFLICT (content): Merge conflict in docs/roadmaps/mail/status.md
+Auto-merging docs/validation/zotero-research-materials-20261120/README.md
+CONFLICT (add/add): Merge conflict in docs/validation/zotero-research-materials-20261120/README.md
+Auto-merging docs/zotero-validation.md
+CONFLICT (content): Merge conflict in docs/zotero-validation.md
+Auto-merging packages/quds_office_editor/example/lib/suite_workspace.dart
+CONFLICT (content): Merge conflict in packages/quds_office_editor/example/lib/suite_workspace.dart
+Auto-merging packages/quds_office_editor/lib/src/editor_slide/render_slide_stage.dart
+CONFLICT (content): Merge conflict in packages/quds_office_editor/lib/src/editor_slide/render_slide_stage.dart
+Auto-merging packages/quds_office_editor/lib/src/embed/office_controller.dart
+Auto-merging packages/quds_office_engine/CHANGELOG.md
+CONFLICT (content): Merge conflict in packages/quds_office_engine/CHANGELOG.md
+Auto-merging packages/quds_office_engine/lib/src/pdf/office_pdf_export.dart
+CONFLICT (content): Merge conflict in packages/quds_office_engine/lib/src/pdf/office_pdf_export.dart
+Auto-merging packages/quds_office_engine/lib/src/slide/model/pml_presentation.dart
+CONFLICT (content): Merge conflict in packages/quds_office_engine/lib/src/slide/model/pml_presentation.dart
+Auto-merging packages/quds_office_engine/lib/src/slide/serial/slide_serial.dart
+CONFLICT (content): Merge conflict in packages/quds_office_engine/lib/src/slide/serial/slide_serial.dart
+Auto-merging packages/quds_office_engine/lib/src/slide/shapes/drawingml.dart
+Auto-merging packages/quds_office_engine/test/office_pdf_export_test.dart
+Auto-merging packages/quds_office_engine/test/slide_import_fidelity_test.dart
+CONFLICT (content): Merge conflict in packages/quds_office_engine/test/slide_import_fidelity_test.dart
