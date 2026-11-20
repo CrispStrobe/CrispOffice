@@ -6,60 +6,62 @@ the connected IMAP, EWS, Gmail and Microsoft 365 hosts. The
 identity, cancellation, provider evidence, outcomes and the remaining scope.
 The durable remote-command journal remains the next milestone.
 
-## Acceptance boundary
+## Publication acceptance
 
-The completed source intake is bound to published checkpoint
-`4772d52492076241c39fdee0990c950c92367b1f`. The evidence archive binds the exact
-qualified working files, including the subsequently committed import ordering
-in the visual test. No mail production source changed after its accepted runs.
+The final accepted product/test source is published at
+`79e10ef8375aa9950d624eb9702ba1ff19a19e8c`. It incorporates the latest captured
+main `698209aa`, the completed foreground Mail feature and the corrected Word
+rendering/font update from `e975cec1`. Final evidence-only checkpoints and the
+remote merge/tree consistency checks are recorded on
+[PR #273](https://github.com/CrispStrobe/quds_office_suite/pull/273).
 
-The publication check subsequently found main commit
-`e975cec13b289fe067ef406cd3044701ecc44744`, which changes Word layout,
-deserialization and system-font filename aliases. That separate reconciliation
-must be qualified and recorded before merge; the original acceptance archive
-will remain immutable. It is not a claim that an unseen later main is tested.
+The [publication reconciliation](publication-reconciliation.md) and
+[source applicability proof](publication-source-applicability.json) distinguish
+fresh combined-source gates from retained unchanged scopes. All 222 tracked
+Mail package files and the overlapping 211 Mail Dart feature files retain
+identical paths, modes and blobs through both later main reconciliations.
 
 GitHub Actions, workflow runs, checks and status endpoints were **neither queried
 nor awaited**. The user authorized local acceptance, incremental remote saves
-and the final merge to main.
+and the final consistent merge to main.
 
-## Accepted cohorts
+## Qualification used for publication
 
-| Cohort | Accepted result | Evidence within the archive |
+| Cohort | Accepted result | Source/applicability record |
 | --- | ---: | --- |
-| Mail core, Dart VM | 181 passed | `core-converged-tests-vm.log` |
-| All three portable bulk suites, JavaScript/Node | 87 passed | `core-converged-tests-node.log` |
-| Mail transport, Dart VM | 415 passed | `transport-converged-tests-vm.log` |
-| Portable cloud/unsupported-provider tests, Node | 107 passed | `transport-converged-tests-node.log` |
-| Complete shared mail UI package | 161 passed | `ui-converged-receipt.json` |
-| Six complete Studio mail host suites | 352 qualified, no failures/skips | `host-consolidated-validation.json` |
-| Localized visual probes | 8 passed; 21 inspected PNGs | `visual-final-receipt.json`, `visual-inspection.json` |
-| Reconciled Word suites, VM | 771 qualified, no failures/skips | `intake-local-word-combined-cohorts.json` |
-| Reconciled portable Word suites, Node | 725 qualified, no failures/skips | Same combined cohort record |
-| Three committed BAS examples | VM/Node passed; parsed JSON equal | `intake-local-word-final-validation.json` |
+| Mail core, Dart VM | 181 passed | Original receipt; all 268 core/transport inputs unchanged |
+| All three portable bulk suites, JavaScript/Node | 87 passed | Same unchanged core scope |
+| Mail transport, Dart VM | 415 passed | Same unchanged transport scope |
+| Portable cloud/unsupported-provider tests, Node | 107 passed | Same unchanged transport scope |
+| Complete shared mail UI package | 161 passed | All 59 inputs unchanged |
+| Six complete Studio mail host suites | 352 passed, no failures/skips | Fresh publication run; 1,002 stable inputs |
+| Two complete Zotero editor/controller suites | 114 passed, no failures/skips | Fresh publication run; 1,011 stable inputs |
+| Six Zotero engine suites | 282 qualified, no failures/skips | Five unchanged suites plus clean protocol rerun; 431 inputs |
+| Localized visual probes | 8 passed; 21 PNGs | Fresh run; 1,006 stable inputs; exact image identity |
+| Font loader/aliases | 9 passed | All 28 scoped inputs unchanged |
+| Word rendering/VBA at corrected e975 checkpoint | 961 VM / 758 Node passed | Fresh 26-suite VM / seven-suite Node runs at `3f9d3647` |
+| Three committed BAS examples at that checkpoint | VM/Node passed; semantic JSON equal | Source-bound Word receipt |
 
-These cohorts overlap. They must not be added into a unique-test total.
-Core/transport and UI strict analysis and formatting passed. Eight distinct
-host analyzer targets and the visual test passed strict analysis. Word strict
-analysis/formatting and the focused captured-tip reruns passed as recorded.
+These cohorts overlap and must not be added into a unique-test total. All
+required scoped strict analysis and formatting gates are clean.
 
-The host total is an explicit consolidation: four unchanged complete green
-suites from a mixed run (263 cases), plus clean complete reruns of both corrected
-fixture suites (89 cases). The mixed run remains a failed run with 348 passes
-and four failures. One test tapped before a filter rebuild; three incoming
-tests used a retired selection key. The two fixture-only changes preserve the
-intended assertions and leave product source unchanged. All 1,002 qualified
-inputs were checked against the final acceptance snapshot.
+The final Zotero engine total retains 234 cases from five unchanged complete
+suites and replaces the protocol suite with a clean 48-case rerun after a
+braces-only test correction. The exact transformation and identical case names
+are verified. The earlier analyzer and receipt-parser failures remain historical.
 
-The Word totals are assembled from the broad 757-case VM and 712-case Node
-runs, replacing the prior named-suite results with complete expanded reruns
-(171 VM and 160 Node). The captured Word branch adds thirteen compiler cases
-and one integration case. Only those two test files changed; the other 367
-scoped inputs were identical. The
-[Word reconciliation summary](intake-local-reconciliation-summary.md) and
-[combined cohort record](intake-local-word-combined-cohorts.json) give the exact
-case names and published-source proof. These totals do not describe single
-771-case or 725-case invocations.
+The complete Word runs occurred before the final Zotero merge. Of their 492
+inputs, 488 remain identical; exactly four Zotero libraries changed and are
+qualified by the fresh engine/editor gates. The corrected layout/deserializer,
+VBA parser, selected Word tests and BAS/portable drivers are unchanged. The old
+full Word map is not relabeled as current, and no full 961/758 rerun after Zotero
+is claimed. See the [rendering reconciliation](main-reconciliation.md),
+[Word summary](final-main-word-summary.md) and
+[final publication explanation](publication-reconciliation.md).
+
+The earlier assembled 771 VM / 725 Node Word cohorts and consolidated 352-case
+host cohort remain in the original archive, with their diagnostic history.
+They were superseded by the later fresh runs, not added to them.
 
 ## What the mail checks establish
 
@@ -93,7 +95,8 @@ German/Arabic compact probes use 320×260. Five list variants each produce
 selected, action-menu and working captures. Three completed-receipt variants
 each produce a summary and details capture, for 21 PNGs.
 
-Every PNG was directly inspected. Action labels, checked/busy states, one
+Every original PNG was directly inspected; both later sets match those bytes
+exactly. Action labels, checked/busy states, one
 reachable Stop control, translated outcomes, refresh guidance and RTL placement
 were legible, with no overflow/error indicators or missing glyphs. Compact
 headers intentionally scroll, long message text uses ellipsis, and receipt
@@ -119,13 +122,24 @@ files; no additional Zotero runtime run is claimed here.
 
 ## Reproducible evidence
 
-[evidence.tar.gz](evidence.tar.gz) contains 264 files (3,021,830 bytes), including
-raw logs, receipts, source reviews, validation runners, 21 PNGs, bootstrap
-receipts and runtime configuration. Its SHA-256 is
-`5ff4d171e28d83ea8804b5e112efe31725b7e9c83c2b81230223c09b3bfa6121`.
-The [manifest](evidence-manifest.json) records every member hash/size and 1,107
-unique qualified source/configuration paths. Its groups overlap: 268
-core/transport, 1,002 host, 59 UI, 1,006 visual and 369 Word paths.
+Three immutable archives preserve each completed acceptance boundary:
+
+| Evidence | Members | Bytes | Manifest |
+| --- | ---: | ---: | --- |
+| [Original mail acceptance](evidence.tar.gz) | 264 | 3,021,830 | [Member hashes and original bindings](evidence-manifest.json) |
+| [Word rendering/font reconciliation](evidence-final-main.tar.gz) | 121 | 2,614,173 | [Member hashes and corrected-source bindings](evidence-final-main-manifest.json) |
+| [Final Zotero/publication reconciliation](evidence-publication.tar.gz) | 70 | 1,143,658 | [Member hashes and 1,244 current bindings](evidence-publication-manifest.json) |
+
+The archive SHA-256 values are respectively:
+
+- `5ff4d171e28d83ea8804b5e112efe31725b7e9c83c2b81230223c09b3bfa6121`
+- `ed060f4d17229239a05c64d33c7b14a4fdab134175af97d1823bcde4440ba205`
+- `ac2606e994cb91ca4d37eb099fb374d6a0d76902542f47a37d8c910837f3e814`
+
+The compact final archive references the original 21 PNG members after proving
+all fresh images are byte-identical, avoiding duplicate image data. Each pack
+contains its actual logs, receipts, source decisions and reproduction runners.
+The original archives and historical failures are never overwritten.
 
 All accepted execution used Flutter 3.47.8 / Dart 3.13.7 and 202 verified locked
 dependency archives. The workspace lock SHA-256 remained
@@ -137,7 +151,7 @@ are retained; no library, dependency or SDK substitution was used.
 
 Exact commands, working directories, exit codes, terminal test events and
 source hashes are in the receipts. Each runner is included. To inspect or
-rebuild the archive from the same runtime evidence directory:
+rebuild an archive from its exact accepted source and runtime evidence directory:
 
 ```bash
 python3 docs/validation/mail-bulk-actions-20261120/build_evidence.py \
@@ -146,8 +160,11 @@ python3 docs/validation/mail-bulk-actions-20261120/build_evidence.py \
   --runtime /absolute/path/to/quds-mail-work-20261120/runtime
 ```
 
-The builder rejects missing/unfinished acceptance, changed qualified files,
-image-hash mismatch, or concurrent edits during packing. Archive ordering and
+The builders reject missing/unfinished acceptance, changed qualified files,
+image-hash mismatch, or concurrent edits during packing. Use the corresponding
+`build_final_main_evidence.py` or `build_publication_evidence.py` for the later
+boundaries. Earlier builders deliberately reject subsequently changed sources.
+Archive ordering and
 metadata are deterministic, and every member is reopened and verified.
 Inherited previous-milestone receipts, SDK/cache content, native binaries and
 compiled JavaScript are excluded.
