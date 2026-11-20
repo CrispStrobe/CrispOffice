@@ -1,0 +1,105 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-20",
+  "repository": "CrispStrobe/quds_office_suite",
+  "source_commit": "4df7a148f156d9a697028994f14b171877d1d47c",
+  "source_tree": "4c13111ca189109e8f3ddf05e8f4012c3d03adab",
+  "ordered_parents": [
+    "b2b7ec91e513b1773a8bd26775cde4fd87b738f8",
+    "7e740a53d3fea4b6bd734537e89888b641a8b735"
+  ],
+  "common_bases": [
+    "bc90d2ef2f5fa04e80499add14976c7dbb20bd90",
+    "9730a43ff2045ca43af7d5c6301a775562db1a77"
+  ],
+  "method": "Native git merge-tree --write-tree; no conflicts. Published Git tree equals native merge result.",
+  "verification": {
+    "audited_tree_paths": 18597,
+    "lost_one_sided_changes": 0,
+    "altered_shared_paths": 0,
+    "diff_check": "clean",
+    "overlapping_production_file": "packages/quds_office_editor/example/lib/studio_mail_native.dart",
+    "overlapping_production_result": "Retains main credential/storage/chrome implementation plus exactly the two feature sourceStatus arguments.",
+    "overlapping_test_result": "Native and EWS host suites preserve both branches' distinct changes without duplicate shared additions.",
+    "main_lockfile_and_platform_changes_preserved": true
+  },
+  "evidence_policy": "Runtime acceptance is bound to exact product source4df7 and its manifest; later evidence/report commits change documentation only. GitHub Actions are not used or awaited.",
+  "additional_main_intake": {
+    "main": "a652a205e6daf6b4b8e3baec04db1c1b52fabd0d",
+    "main_tree": "1311efdc547a2274f439b5fcc421c9942e1429e1",
+    "comparison_feature_checkpoint": "76247b2d96b817a8c2b8d3c4616f901c0536191b",
+    "common_bases": [
+      "b2b7ec91e513b1773a8bd26775cde4fd87b738f8",
+      "7e740a53d3fea4b6bd734537e89888b641a8b735"
+    ],
+    "included_external_work": [
+      "Word incremental layout",
+      "Word/PowerPoint VBA expansion",
+      "Zotero research tables",
+      "Downloads integration",
+      "macOS credential identity packaging"
+    ],
+    "mail_production_directory_files_identical": 39,
+    "mail_host_test_directory_files_identical": 37,
+    "reader_and_mail_ui_tests_identical": true,
+    "lockfile_blob_unchanged": "c677b8fbc9de6607a1c0af2608bec1c2d32fca6d",
+    "feature_only_paths_at_comparison": [
+      "docs/validation/mail-reply-forward-20261120/final-machine-logs.tar.gz",
+      "docs/validation/mail-reply-forward-20261120/initial-machine-logs.tar.gz",
+      "docs/validation/mail-reply-forward-20261120/runtime-results.json"
+    ],
+    "merge_policy": "Preserve incoming main wholesale, overlay only the unique validation evidence, retain both parents.",
+    "independent_post_main_fix": {
+      "commit": "e6737bc6bccd521660dff0425ca620525dc04a58",
+      "parent": "7e740a53d3fea4b6bd734537e89888b641a8b735",
+      "path": "packages/quds_office_editor/example/lib/studio_licenses.dart",
+      "preimage_blob": "f9f34861108486af7d38229c7df5309890b452cc",
+      "fixed_blob": "d6912a9bea83fd979bd19c51a289b042420e3ec4",
+      "reason": "Decode the bundled open-font license bytes without a compute-isolate dependency under widget-test fake clocks.",
+      "focused_checks": [
+        "strict studio_licenses.dart analysis",
+        "Hunspell license-registry widget fixture",
+        "Arabic morphology license-registry widget fixture"
+      ]
+    },
+    "direct_tree_audit": {
+      "feature_tree": "acc1b38b389f1f6fc1db75d78df0b19a446a4871",
+      "main_tree": "1311efdc547a2274f439b5fcc421c9942e1429e1",
+      "tree_reads": 84,
+      "max_levels": 7,
+      "truncated_responses": 0,
+      "actual_leaf_differences": 73,
+      "incoming_main_paths": 70,
+      "feature_evidence_additions": 3,
+      "production_or_mode_collisions": 0
+    },
+    "main_reconcile_commit": "f475589eef691695535d280fe76bb492f2e89aa0",
+    "license_reconcile_commit": "081f337475b76e0b13a513fb95bc3c9ef766f6f4"
+  },
+  "final_product_head": "081f337475b76e0b13a513fb95bc3c9ef766f6f4",
+  "final_product_tree": "4d1d20bdd3145ee692d9bd4d09476a1954b51e0d",
+  "final_integration_qualification": {
+    "source_head": "081f337475b76e0b13a513fb95bc3c9ef766f6f4",
+    "source_tree": "4d1d20bdd3145ee692d9bd4d09476a1954b51e0d",
+    "evidence_commit": "bc9dbe395f38cebef3d1b33b77b66699f2086eb5",
+    "passed": 107,
+    "failed": 0,
+    "skipped": 0,
+    "commands_completed": 3,
+    "mail_manifest_entries_unchanged": 36,
+    "receipt": "integration-runtime-results.json",
+    "source_worktree_clean": true
+  },
+  "full_mail_qualification": {
+    "source_head": "4df7a148f156d9a697028994f14b171877d1d47c",
+    "evidence_commit": "170622d85f62df1803700fc9db2fc9838466c02a",
+    "passed": 648,
+    "failed": 0,
+    "skipped": 0,
+    "commands_completed": 21,
+    "unique_test_files": 27,
+    "strict_analyzer_files": 12,
+    "formatter_files": 12,
+    "receipt": "runtime-results.json"
+  }
+}

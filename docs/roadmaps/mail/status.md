@@ -6,8 +6,9 @@ The [reply/forward continuation](reply-forward.md) completes two existing
 composition paths across native IMAP/SMTP, EWS, Gmail and Microsoft 365.
 Reply, Reply all and both forward choices can quote HTML-only mail through a
 bounded inert body projection. An explicitly empty plain-text alternative stays
-authoritative. Envelope headers, Bcc and attachment names never become quoted
-text; source-status and strict HTML admission refuse incomplete quotations.
+authoritative. The body projection excludes envelope headers, Bcc and attachment
+metadata; forwards add explicit From/Date/Subject attribution. Source-status and
+strict HTML admission refuse incomplete HTML quotations.
 
 **Forward text only** retains its attachment-free behavior. **Forward with
 attachments** requires a complete MIME parse and admits every decoded attachment
