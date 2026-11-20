@@ -1,0 +1,538 @@
+{
+  "all_captured_incoming_heads_reconciled": false,
+  "analysis_clean": true,
+  "archive": {
+    "file": "word-gates-checkpoint.tar.xz",
+    "identity": {
+      "bytes": 1052552,
+      "sha256": "0c02c2facb3f0cb44f3c14bce5117ed1e6d78030e66a54369d5d72483de7e494"
+    },
+    "member_count": 83,
+    "members": [
+      {
+        "bytes": 12280,
+        "mode": "0644",
+        "path": "quds_office_suite/.dart_tool/package_config.json",
+        "sha256": "95cebd9285a40b73a44e399f6c1d802338942eb445e34d4668d4beb181ccf771"
+      },
+      {
+        "bytes": 9353,
+        "mode": "0644",
+        "path": "quds_office_suite/.dart_tool/package_graph.json",
+        "sha256": "9f8290c011c131f53fe4f6e12c40f4a5d7281c6fe94bccb6adcf93c9d8a803d4"
+      },
+      {
+        "bytes": 2257,
+        "mode": "0644",
+        "path": "quds_office_suite/docs/validation/word-vba-lists-20261120/environment.json",
+        "sha256": "ecd54326a51a7167ae4bed2c36964f7193a89790da4dcf90cf9e942b13956677"
+      },
+      {
+        "bytes": 18330,
+        "mode": "0644",
+        "path": "quds_office_suite/docs/validation/word-vba-lists-20261120/regression.json",
+        "sha256": "09292056f9d4291df3723b7c93897b0743b495e1e351939ce74661e21045f9bd"
+      },
+      {
+        "bytes": 1287,
+        "mode": "0644",
+        "path": "quds_office_suite/packages/quds_office_engine/example/macros/word_list_levels.bas",
+        "sha256": "c9f4cb3e07d65a103cc75a4bb308be51ac5aaebf1f9cf5b468c09d74301398a6"
+      },
+      {
+        "bytes": 26727,
+        "mode": "0644",
+        "path": "quds_office_suite/packages/quds_office_engine/tool/macros/web_vba_word_list_levels_smoke.dart",
+        "sha256": "bd7abf65cbd9891fed5a0ed870f0b25ef9cb6920c10e04d87226a0fe1605561d"
+      },
+      {
+        "bytes": 426,
+        "mode": "0644",
+        "path": "runtime/engine-validation/packages/legacy_doc_parser/pubspec.yaml",
+        "sha256": "9c7e076de0d9c36c12a7fe6e1ba546355a20087e0e6483a0bc0fb9804d422cf3"
+      },
+      {
+        "bytes": 12139,
+        "mode": "0644",
+        "path": "runtime/engine-validation/packages/quds_office_engine/.dart_tool/package_config.json",
+        "sha256": "89bdd49a496f97cd638b37ac23bec6b2a7e4776f1d58a65eee2fab7fb7007cd6"
+      },
+      {
+        "bytes": 9353,
+        "mode": "0644",
+        "path": "runtime/engine-validation/packages/quds_office_engine/.dart_tool/package_graph.json",
+        "sha256": "9f8290c011c131f53fe4f6e12c40f4a5d7281c6fe94bccb6adcf93c9d8a803d4"
+      },
+      {
+        "bytes": 13609,
+        "mode": "0644",
+        "path": "runtime/engine-validation/packages/quds_office_engine/pubspec.lock",
+        "sha256": "02715ff258655dd186f1682400c589f7d2f7ae4c0e876407ac3e4fe14deb9ea6"
+      },
+      {
+        "bytes": 3625,
+        "mode": "0644",
+        "path": "runtime/engine-validation/packages/quds_office_engine/pubspec.yaml",
+        "sha256": "c594402727082d68aba1d1991d87552609c87b5c5ba30f802a3a88b0d04b5bd8"
+      },
+      {
+        "bytes": 488,
+        "mode": "0644",
+        "path": "runtime/env.sh",
+        "sha256": "b4d7cb0669e75a5dbfb439ac2c72cc8b0a375e15629845a10fe270f67783b866"
+      },
+      {
+        "bytes": 2222,
+        "mode": "0644",
+        "path": "runtime/environment.json",
+        "sha256": "6e4b23ad60dd9768e9073b60c5e70965a2f71721a2063d089e92027836e775b0"
+      },
+      {
+        "bytes": 0,
+        "mode": "0644",
+        "path": "runtime/final-analysis-format.stderr",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "bytes": 294,
+        "mode": "0644",
+        "path": "runtime/final-analysis-format.stdout",
+        "sha256": "59ed2c19a9fd3ffa4b6ee6b49d6418c5046e8350d74af4a43dae96854ff525ff"
+      },
+      {
+        "bytes": 2135,
+        "mode": "0644",
+        "path": "runtime/final-gates-invocation.json",
+        "sha256": "5732e6a64ed900f5df07e11703cf31f11d669cd0f739b8d311fd871c4e9aa9df"
+      },
+      {
+        "bytes": 1632,
+        "mode": "0644",
+        "path": "runtime/final-gates-small-summary.json",
+        "sha256": "682680ee21fa5ad4162e6daf2d892e62a85936ad4650781c07ec2709cc2fcec4"
+      },
+      {
+        "bytes": 0,
+        "mode": "0644",
+        "path": "runtime/final-portable.stderr",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "bytes": 453,
+        "mode": "0644",
+        "path": "runtime/final-portable.stdout",
+        "sha256": "29cfcb316e5fb069df554c160e2303198b79bb2272f724bad4e71dd00284af93"
+      },
+      {
+        "bytes": 0,
+        "mode": "0644",
+        "path": "runtime/final-regression.stderr",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "bytes": 185,
+        "mode": "0644",
+        "path": "runtime/final-regression.stdout",
+        "sha256": "e8356f43a0e24b3e8c23b177e139f62ad8e334119b5e0ad56c4ab31025896237"
+      },
+      {
+        "bytes": 688,
+        "mode": "0644",
+        "path": "runtime/list-level-final-checks/analysis.json",
+        "sha256": "26d102daab86a758b511c9e59405fe780269ca4a221b191729a40e14054f267f"
+      },
+      {
+        "bytes": 0,
+        "mode": "0644",
+        "path": "runtime/list-level-final-checks/analysis.stderr",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "bytes": 49,
+        "mode": "0644",
+        "path": "runtime/list-level-final-checks/analysis.stdout",
+        "sha256": "c557a0c697cdb937104f1423d3c02d6a1062917cb0bcb2830d91db8cf6192af0"
+      },
+      {
+        "bytes": 2170,
+        "mode": "0644",
+        "path": "runtime/list-level-final-checks/format.json",
+        "sha256": "8475b9402678d4f844dce5a3ff58cb74e25cb9fdba5f501717c49b3bf606a6cd"
+      },
+      {
+        "bytes": 0,
+        "mode": "0644",
+        "path": "runtime/list-level-final-checks/format.stderr",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "bytes": 47,
+        "mode": "0644",
+        "path": "runtime/list-level-final-checks/format.stdout",
+        "sha256": "42f9616538a1449a9e89b48755f5160514bb392fd5dfe5089ecde7d581891654"
+      },
+      {
+        "bytes": 15865,
+        "mode": "0644",
+        "path": "runtime/list-level-final-checks/gate-helper.py",
+        "sha256": "20f639dce2fa0b1e423deea4d74b86be0a8eb000988920617f9c61665114f124"
+      },
+      {
+        "bytes": 98443,
+        "mode": "0644",
+        "path": "runtime/list-level-final-checks/inputs-after.json.gz",
+        "sha256": "1af2cbecd2989174bb3a6e9b86e744ef18d5ac39dc8e99d58da7df2436d258a5"
+      },
+      {
+        "bytes": 98444,
+        "mode": "0644",
+        "path": "runtime/list-level-final-checks/inputs-before.json.gz",
+        "sha256": "99ae720a5ff66b52d267a9ab82df157aa9d454756b927f69b51bfa8d3154061d"
+      },
+      {
+        "bytes": 2515,
+        "mode": "0644",
+        "path": "runtime/list-level-final-checks/plan.json",
+        "sha256": "5255affaf3e84bb8662265313e4764d49723809e26eff62d1c0af892380c0494"
+      },
+      {
+        "bytes": 9095,
+        "mode": "0644",
+        "path": "runtime/list-level-final-checks/runner.py",
+        "sha256": "6151fb49c2e1892702c72450a5974f454d4c4430be89bedede19dde220dfe235"
+      },
+      {
+        "bytes": 6017,
+        "mode": "0644",
+        "path": "runtime/list-level-final-checks/summary.json",
+        "sha256": "659781a304b0604df24b36d5a3c8421c3b5f7d815caff6dc7aecdb581eeb42fa"
+      },
+      {
+        "bytes": 1287,
+        "mode": "0644",
+        "path": "runtime/list-level-portable-final/actual-example.bas",
+        "sha256": "c9f4cb3e07d65a103cc75a4bb308be51ac5aaebf1f9cf5b468c09d74301398a6"
+      },
+      {
+        "bytes": 5237,
+        "mode": "0644",
+        "path": "runtime/list-level-portable-final/commands.json",
+        "sha256": "df53cd319989c4276a09d2d30e4dea6f8a51b3b6d1a8b3aa4a3a00cdeedcb7b6"
+      },
+      {
+        "bytes": 0,
+        "mode": "0644",
+        "path": "runtime/list-level-portable-final/compile-js.stderr",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "bytes": 114,
+        "mode": "0644",
+        "path": "runtime/list-level-portable-final/compile-js.stdout",
+        "sha256": "cd6548ab14d243e4116b5e4c22754abc0b7f0ab319aa56fa5678d70b2daf9021"
+      },
+      {
+        "bytes": 15865,
+        "mode": "0644",
+        "path": "runtime/list-level-portable-final/gate-helper.py",
+        "sha256": "20f639dce2fa0b1e423deea4d74b86be0a8eb000988920617f9c61665114f124"
+      },
+      {
+        "bytes": 98390,
+        "mode": "0644",
+        "path": "runtime/list-level-portable-final/inputs-after.json.gz",
+        "sha256": "3ccd1ca6cf63ed45498f2f4319da8dd2409e5be2960784f525907d42cf9a34af"
+      },
+      {
+        "bytes": 98391,
+        "mode": "0644",
+        "path": "runtime/list-level-portable-final/inputs-before.json.gz",
+        "sha256": "31a78c186f9184571f8f87131976e0b615a5cc56e41dd12a678bcf8976e844e3"
+      },
+      {
+        "bytes": 0,
+        "mode": "0644",
+        "path": "runtime/list-level-portable-final/node.stderr",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "bytes": 1553,
+        "mode": "0644",
+        "path": "runtime/list-level-portable-final/node.stdout",
+        "sha256": "afb450d1cfd4dba6ee2b0fc8b1ca0dc639b410dd70a16c3eff1bb17fbe08bea8"
+      },
+      {
+        "bytes": 1553,
+        "mode": "0644",
+        "path": "runtime/list-level-portable-final/result.json",
+        "sha256": "7a9ec647658d5ee448107d9f358e15a75b16aa6bdd46f9465407043149d8a27c"
+      },
+      {
+        "bytes": 6504,
+        "mode": "0644",
+        "path": "runtime/list-level-portable-final/runner.py",
+        "sha256": "2790594787fb7773f8d9514b892c39f457bfab9eab927623bb19aa4d40fb4e5e"
+      },
+      {
+        "bytes": 6316,
+        "mode": "0644",
+        "path": "runtime/list-level-portable-final/summary.json",
+        "sha256": "c901a02a29cc3ad2a024029995cd89c71b8ff9fc82a312b77b43aeca67aceff1"
+      },
+      {
+        "bytes": 0,
+        "mode": "0644",
+        "path": "runtime/list-level-portable-final/vm.stderr",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "bytes": 1553,
+        "mode": "0644",
+        "path": "runtime/list-level-portable-final/vm.stdout",
+        "sha256": "afb450d1cfd4dba6ee2b0fc8b1ca0dc639b410dd70a16c3eff1bb17fbe08bea8"
+      },
+      {
+        "bytes": 3120376,
+        "mode": "0644",
+        "path": "runtime/list-level-portable-final/word-list-levels.js",
+        "sha256": "5a33132c777a630ba60860ee7390eb3cc69b7ed11bd099e85dc5e324fbd1e419"
+      },
+      {
+        "bytes": 128352,
+        "mode": "0644",
+        "path": "runtime/list-level-portable-final/word-list-levels.js.deps",
+        "sha256": "138bb303d79d00225242fe4e167b84ed9ba78d85b5c53d93d9971963addcb826"
+      },
+      {
+        "bytes": 1085968,
+        "mode": "0644",
+        "path": "runtime/list-level-portable-final/word-list-levels.js.map",
+        "sha256": "b0c1c790a23b11f1a178edd704a7770604d23a520675ec8d25f2daefa313ea52"
+      },
+      {
+        "bytes": 28816,
+        "mode": "0644",
+        "path": "runtime/list-level-review/audit_final_evidence.py",
+        "sha256": "f746a379379f35bb78c4b3773eb05cda853f759716c0cf2045336c509f06e0f6"
+      },
+      {
+        "bytes": 37959,
+        "mode": "0644",
+        "path": "runtime/list-level-review/evidence-review.json",
+        "sha256": "a1e3c783ad9bd4eb50090e0fce4370b52083a51e86ae91bc162075911dce294b"
+      },
+      {
+        "bytes": 136174,
+        "mode": "0644",
+        "path": "runtime/list-level-review/probe-final-receipt.json",
+        "sha256": "36392ec1f999fc3ecfc8d65199a7d05e1176e8907f2814a5337c78b016bd51cc"
+      },
+      {
+        "bytes": 15201,
+        "mode": "0644",
+        "path": "runtime/list-level-review/probe-final.json",
+        "sha256": "3555881d1253f5ae2aa9cbc64070d4e5dc1b5fceac05190c0b7198c02e553aee"
+      },
+      {
+        "bytes": 0,
+        "mode": "0644",
+        "path": "runtime/list-level-review/probe-final.stderr",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "bytes": 12819,
+        "mode": "0644",
+        "path": "runtime/list-level-review/probe.dart",
+        "sha256": "b37f7646f897016e3677083cc59a0b6f0b6741b735f845b67fc0c6f833415cb4"
+      },
+      {
+        "bytes": 2601,
+        "mode": "0644",
+        "path": "runtime/list-level-review/run_probe.py",
+        "sha256": "452986a32e402a79d7e04aaec5b7ddf4893dddbd783799726771771435167423"
+      },
+      {
+        "bytes": 8434,
+        "mode": "0644",
+        "path": "runtime/list-level-review/source-review.json",
+        "sha256": "1d80d38110051092362126e022c797fef4e0c5c9672df1a2ada141c1ad72c4b2"
+      },
+      {
+        "bytes": 8617,
+        "mode": "0644",
+        "path": "runtime/list-level-review/write_review.py",
+        "sha256": "ff996610b10d0e0179ad81ae457b51c96504359060492578ed7cb4bdad786f45"
+      },
+      {
+        "bytes": 2565,
+        "mode": "0644",
+        "path": "runtime/list-level-runtime-verification.json",
+        "sha256": "6067fb56640bf1b09657543d6f809167f68eba82e5022ace5bd4f3f0549de2f5"
+      },
+      {
+        "bytes": 40153,
+        "mode": "0644",
+        "path": "runtime/package_list_level_evidence.py",
+        "sha256": "835c66bfa52c81d54a7d0ad4d2cadcc474dff23fe007a602c38df1b1f6de0a6e"
+      },
+      {
+        "bytes": 5527,
+        "mode": "0644",
+        "path": "runtime/reproduce_runtime.py",
+        "sha256": "00728e6a81b989672e659eb40564df972bb3e4be2e403beafb1e8cdcad9bcb50"
+      },
+      {
+        "bytes": 412,
+        "mode": "0644",
+        "path": "runtime/reproduction-command.json",
+        "sha256": "7e50b470a728ac0c1228af87309b720c5637188a1dc11968e90d357a680bd1f9"
+      },
+      {
+        "bytes": 402,
+        "mode": "0755",
+        "path": "runtime/run-engine-tests.sh",
+        "sha256": "15bdcde6cb893b228214ffe61c7b26e897f71d1ad782574664e1d69b70a52555"
+      },
+      {
+        "bytes": 9095,
+        "mode": "0644",
+        "path": "runtime/run_word_list_levels_checks.py",
+        "sha256": "6151fb49c2e1892702c72450a5974f454d4c4430be89bedede19dde220dfe235"
+      },
+      {
+        "bytes": 6504,
+        "mode": "0644",
+        "path": "runtime/run_word_list_levels_portable.py",
+        "sha256": "2790594787fb7773f8d9514b892c39f457bfab9eab927623bb19aa4d40fb4e5e"
+      },
+      {
+        "bytes": 0,
+        "mode": "0644",
+        "path": "runtime/runtime-setup.stderr",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "bytes": 2645,
+        "mode": "0644",
+        "path": "runtime/runtime-setup.stdout",
+        "sha256": "de26e0ca97d8bb312132aec6b9d3cbe141711a13cb097091804d3010cac34069"
+      },
+      {
+        "bytes": 562,
+        "mode": "0644",
+        "path": "runtime/setup-receipt.json",
+        "sha256": "2075b923f28e3c1a6912f1473e19983af1f88086d8631eeb0071057337a66b0c"
+      },
+      {
+        "bytes": 595,
+        "mode": "0644",
+        "path": "runtime/setup-smoke-summary.json",
+        "sha256": "9e267b25e64021448738cfa5a4f374b73162896f1eb38eb552dd422a186ea793"
+      },
+      {
+        "bytes": 6304,
+        "mode": "0644",
+        "path": "runtime/setup-smoke.jsonl",
+        "sha256": "41ba823bbac259f902d40a7b78fff5dd4c8ae732b2fec9a5dbdcb6c4a3f10153"
+      },
+      {
+        "bytes": 0,
+        "mode": "0644",
+        "path": "runtime/setup-smoke.stderr",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "bytes": 49617,
+        "mode": "0644",
+        "path": "runtime/word-office-final/cases.json.gz",
+        "sha256": "fd156808dba32ae43330da1cd82d4be72cfa886cedaf48a37256133e8c094828"
+      },
+      {
+        "bytes": 521,
+        "mode": "0644",
+        "path": "runtime/word-office-final/command.json",
+        "sha256": "bf404c7f4faf9c3e67bf33b824802c1f3e9890bd9a272bf74c20cc2fa3e7fe9b"
+      },
+      {
+        "bytes": 97888,
+        "mode": "0644",
+        "path": "runtime/word-office-final/inputs-after.json.gz",
+        "sha256": "bb9ae68a457ba7cb644389f3e6fc2ff29f14e78b741a9ccf99b4e2638303fe13"
+      },
+      {
+        "bytes": 97889,
+        "mode": "0644",
+        "path": "runtime/word-office-final/inputs-before.json.gz",
+        "sha256": "38562a55089c2a541699082a8aa078b0f7dac6b98f452c1cf8763aeca7e01060"
+      },
+      {
+        "bytes": 23525,
+        "mode": "0644",
+        "path": "runtime/word-office-final/plan.json",
+        "sha256": "b87e923a8b17cc11e045ad3981165641e3323f543e99e0d8795d8bfc8df1b62c"
+      },
+      {
+        "bytes": 0,
+        "mode": "0644",
+        "path": "runtime/word-office-final/stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "bytes": 1737038,
+        "mode": "0644",
+        "path": "runtime/word-office-final/stdout.jsonl",
+        "sha256": "38e057162390e31a12c2009e454c0421c8220dfa276ff240956ce7b6ed81c75b"
+      },
+      {
+        "bytes": 16035,
+        "mode": "0644",
+        "path": "runtime/word-office-final/summary.json",
+        "sha256": "1eedba2558e02b43ac1185ebd580ed25b3a2fe63603e76acf0520018a0c66dc4"
+      },
+      {
+        "bytes": 542,
+        "mode": "0644",
+        "path": "runtime/word-office-final/word_office_gate_test.bootstrap.isolate.dart",
+        "sha256": "21f750d807d97c2111684a35453d51f94ee7d635191e077546114a86e9a05e2b"
+      },
+      {
+        "bytes": 14989,
+        "mode": "0644",
+        "path": "runtime/word-office-final/word_office_gate_test.dart",
+        "sha256": "ad850f046047c9c7e7a9e89fcf1f82a297244fc4979bc3c4fb866fc98ba035f6"
+      },
+      {
+        "bytes": 15865,
+        "mode": "0644",
+        "path": "runtime/word_office_gate.py",
+        "sha256": "20f639dce2fa0b1e423deea4d74b86be0a8eb000988920617f9c61665114f124"
+      }
+    ]
+  },
+  "canonical_sha256": "7a9ec647658d5ee448107d9f358e15a75b16aa6bdd46f9465407043149d8a27c",
+  "formatted_files": 9,
+  "formatting_changes": 0,
+  "github_actions_queried_or_awaited": false,
+  "independent_evidence_review_accepted": true,
+  "pending_incoming": {
+    "head": "2d3799af2d9b32e115fee4ba2f8326795fc6b29f",
+    "known_findings": [
+      "No exposed cache cleanup/recovery when cached content consumes draft quota",
+      "Cached-body metadata needs storage type/size preflight before transfer/decode"
+    ],
+    "pr": 262,
+    "scope": "Mail cached workspace; outside the 1,123 qualified Word inputs"
+  },
+  "raw_output_bytes": 1553,
+  "regression": {
+    "failures": 0,
+    "modules": 70,
+    "passing_cases": 2569,
+    "skips": 0
+  },
+  "schema": "quds-word-list-level-accepted-gates-checkpoint/v1",
+  "scope": "Accepted Word final gates and independent evidence review only. Incoming source reconciliation and final publication remain pending.",
+  "source_commit": "3c87debcd4d50cac88981ec39255c3c6890fe8fa",
+  "source_tree": "9bd6e399e689cc12d6ff51090c038c72f4901d05",
+  "vm_js_raw_outputs_equal": true
+}
