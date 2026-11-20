@@ -152,8 +152,8 @@ final class _EwsProvider extends Fake implements MailEwsProvider {
     required String attemptId,
     required MailOperationLease lease,
   }) async {
-    expect(message.account, account);
-    expect(lease.isCurrent, isTrue);
+    expectSync(message.account, account);
+    expectSync(lease.isCurrent, isTrue);
     submissions.add(message);
     attempts.add(attemptId);
     await onSubmit?.call();
@@ -171,17 +171,31 @@ Finder _action(String action, MailOutboxEntry entry) =>
     find.byKey(ValueKey('studio-mail-outbox-$action-${entry.id}'));
 Finder get _openOutbox => find.byKey(const ValueKey('studio-mail-open-outbox'));
 Finder get _queue => find.byKey(const ValueKey('studio-mail-queue'));
+Finder _outboxIcon(String tooltip) => find.descendant(
+  of: find.byType(StudioMailOutboxDialog),
+  matching: find.byWidgetPredicate(
+    (widget) => widget is IconButton && widget.tooltip == tooltip,
+  ),
+);
 
-Future<void> _pump(WidgetTester tester) => pumpNativeOutboxWidgets(tester);
+Future<void> _press(WidgetTester tester, Finder control) async {
+  await tester.ensureVisible(control);
+  await _pump(tester);
+  await tester.tap(control);
+  await _pump(tester);
+}
 
-Future<NativeOutboxFixture> _fixture(
+Future<void> _pump(WidgetTester tester) => pumpOutboxWidgets(tester);
+
+Future<SqliteOutboxFixture> _fixture(
   WidgetTester tester, {
   bool ews = false,
 }) async {
-  final fixture = (await tester.runAsync(
-    () => NativeOutboxFixture.create(_identity(ews: ews)),
-  ))!;
-  addTearDown(fixture.close);
+  final fixture = await awaitOutboxOperation(
+    tester,
+    SqliteOutboxFixture.create(_identity(ews: ews)),
+  );
+  addTearDown(() => awaitOutboxOperation(tester, fixture.close()));
   await tester.binding.setSurfaceSize(const Size(1440, 1050));
   addTearDown(() => tester.binding.setSurfaceSize(null));
   return fixture;
@@ -207,7 +221,7 @@ Future<void> _mountHost(WidgetTester tester, Widget host) async {
 
 Future<void> _native(
   WidgetTester tester,
-  NativeOutboxFixture fixture,
+  SqliteOutboxFixture fixture,
   _Client client,
 ) async {
   await _mountHost(
@@ -236,7 +250,7 @@ Future<void> _native(
 
 Future<_EwsProvider> _ews(
   WidgetTester tester,
-  NativeOutboxFixture fixture,
+  SqliteOutboxFixture fixture,
 ) async {
   late _EwsProvider provider;
   await _mountHost(
@@ -296,11 +310,11 @@ void main() {
     'native queue freezes attachments and envelope across explicit retry',
     (tester) async {
       final fixture = await _fixture(tester);
-      final seed = await nativeOutboxIo(tester, fixture.openLoaded);
+      final seed = await awaitOutboxOperation(tester, fixture.openLoaded());
       final attachment = Uint8List.fromList([0, 10, 13, 128, 255]);
-      await nativeOutboxIo(
+      await awaitOutboxOperation(
         tester,
-        () => seed.save(
+        seed.save(
           StudioMailDraft(
             to: 'to@example.test',
             cc: 'copy@example.test',
@@ -314,18 +328,21 @@ void main() {
           submissionUncertain: false,
         ),
       );
-      await nativeOutboxIo(tester, seed.close);
+      await awaitOutboxOperation(tester, seed.close());
       final client = _Client();
       await _native(tester, fixture, client);
       final store = fixture.adapters.last;
       await _compose(tester);
       await tester.ensureVisible(_queue);
-      await tester.tap(_queue);
+      await _press(tester, _queue);
       await _pump(tester);
       expect(find.byType(StudioMailComposeDialog), findsNothing);
       expect(client.sent, isEmpty);
-      expect(await nativeOutboxIo(tester, store.load), isNull);
-      final frozen = (await nativeOutboxIo(tester, store.loadOutbox)).single;
+      expect(await awaitOutboxOperation(tester, store.load()), isNull);
+      final frozen = (await awaitOutboxOperation(
+        tester,
+        store.loadOutbox(),
+      )).single;
       expect(frozen.state, MailOutboxState.queued);
       expect(frozen.prepared.envelope.recipients, [
         'to@example.test',
@@ -341,16 +358,16 @@ void main() {
       expect(parsed.attachments.single.displayName, 'résumé.bin');
       await tester.tap(_openOutbox);
       await _pump(tester);
-      await tester.tap(find.byTooltip(_strings.refresh));
+      await tester.tap(_outboxIcon(_strings.refresh));
       await _pump(tester);
       expect(client.sent, isEmpty);
-      await tester.tap(find.byTooltip(_strings.close).last);
+      await tester.tap(_outboxIcon(_strings.close));
       await _pump(tester);
       await _compose(tester, subject: 'A later independent draft');
-      await tester.tap(find.text(_strings.mailDraftSaveClose));
+      await _press(tester, find.text(_strings.mailDraftSaveClose));
       await _pump(tester);
       expect(
-        (await nativeOutboxIo(tester, store.load))!.draft.subject,
+        (await awaitOutboxOperation(tester, store.load()))!.draft.subject,
         'A later independent draft',
       );
       await tester.tap(_openOutbox);
@@ -362,7 +379,7 @@ void main() {
       await _pump(tester);
       expect(client.sent, hasLength(1));
       expect(
-        (await nativeOutboxIo(tester, store.loadOutbox)).single.state,
+        (await awaitOutboxOperation(tester, store.loadOutbox())).single.state,
         MailOutboxState.uncertain,
       );
       client.onSend = null;
@@ -392,11 +409,11 @@ void main() {
       expect(client.senders, everyElement(_sender));
       expect(client.appendRequests, everyElement(isFalse));
       expect(
-        (await nativeOutboxIo(tester, store.loadOutbox)).single.state,
+        (await awaitOutboxOperation(tester, store.loadOutbox())).single.state,
         MailOutboxState.submitted,
       );
       expect(
-        (await nativeOutboxIo(tester, store.load))!.draft.subject,
+        (await awaitOutboxOperation(tester, store.load()))!.draft.subject,
         'A later independent draft',
       );
       expect(tester.takeException(), isNull);
@@ -413,25 +430,25 @@ void main() {
     var observedDurableAttempt = false;
     client.onSend = () async {
       final entry = (await store.loadOutbox()).single;
-      expect(entry.state, MailOutboxState.submitting);
-      expect(entry.attemptNumber, 1);
-      expect(await store.load(), isNull);
-      expect(
+      expectSync(entry.state, MailOutboxState.submitting);
+      expectSync(entry.attemptNumber, 1);
+      expectSync(await store.load(), isNull);
+      expectSync(
         client.sent.single.renderMessage(),
         ascii.decode(entry.prepared.wire.bytes),
       );
       observedDurableAttempt = true;
     };
     await _compose(tester, subject: 'Immediate durable send');
-    await tester.tap(find.widgetWithText(FilledButton, _strings.send));
+    await _press(tester, find.widgetWithText(FilledButton, _strings.send));
     await _pump(tester);
     expect(observedDurableAttempt, isTrue);
     expect(client.sent, hasLength(1));
     expect(
-      (await nativeOutboxIo(tester, store.loadOutbox)).single.state,
+      (await awaitOutboxOperation(tester, store.loadOutbox())).single.state,
       MailOutboxState.submitted,
     );
-    expect(await nativeOutboxIo(tester, store.load), isNull);
+    expect(await awaitOutboxOperation(tester, store.load()), isNull);
     expect(tester.takeException(), isNull);
   });
 
@@ -444,24 +461,27 @@ void main() {
       final store = fixture.adapters.single;
       await _compose(tester, subject: 'Retain on queue failure');
       fixture.failNextCheckpoint = MailStoreCheckpoint.afterOutboxWrite;
-      await tester.tap(_queue);
+      await _press(tester, _queue);
       await _pump(tester);
       expect(find.byType(StudioMailComposeDialog), findsOneWidget);
       expect(find.text(_strings.mailQueueFailed), findsOneWidget);
       expect(client.sent, isEmpty);
-      expect(await nativeOutboxIo(tester, store.loadOutbox), isEmpty);
-      final retained = (await nativeOutboxIo(tester, store.load))!.draft;
+      expect(await awaitOutboxOperation(tester, store.loadOutbox()), isEmpty);
+      final retained = (await awaitOutboxOperation(
+        tester,
+        store.load(),
+      ))!.draft;
       expect(retained.subject, 'Retain on queue failure');
       expect(retained.bcc, 'hidden@example.test');
       expect(retained.body, contains('Written in the composer.'));
-      await tester.tap(_queue);
+      await _press(tester, _queue);
       await _pump(tester);
       expect(find.byType(StudioMailComposeDialog), findsNothing);
       expect(
-        (await nativeOutboxIo(tester, store.loadOutbox)).single.state,
+        (await awaitOutboxOperation(tester, store.loadOutbox())).single.state,
         MailOutboxState.queued,
       );
-      expect(await nativeOutboxIo(tester, store.load), isNull);
+      expect(await awaitOutboxOperation(tester, store.load()), isNull);
       expect(client.sent, isEmpty);
       expect(tester.takeException(), isNull);
     },
@@ -474,13 +494,13 @@ void main() {
       final firstProvider = await _ews(tester, fixture);
       final firstStore = fixture.adapters.single;
       await _compose(tester, ews: true, subject: 'Survive Exchange reconnect');
-      await tester.tap(_queue);
+      await _press(tester, _queue);
       await _pump(tester);
       expect(firstProvider.submissions, isEmpty);
-      expect(await nativeOutboxIo(tester, firstStore.load), isNull);
-      final frozen = (await nativeOutboxIo(
+      expect(await awaitOutboxOperation(tester, firstStore.load()), isNull);
+      final frozen = (await awaitOutboxOperation(
         tester,
-        firstStore.loadOutbox,
+        firstStore.loadOutbox(),
       )).single;
       expect(frozen.prepared.account, fixture.identity.account);
       expect(frozen.prepared.account, isNot(firstProvider.account));
@@ -491,9 +511,9 @@ void main() {
       expect(secondProvider.account, isNot(firstProvider.account));
       expect(secondProvider.submissions, isEmpty);
       expect(
-        (await nativeOutboxIo(
+        (await awaitOutboxOperation(
           tester,
-          secondStore.loadOutbox,
+          secondStore.loadOutbox(),
         )).single.prepared.wire.bytes,
         frozen.prepared.wire.bytes,
       );
@@ -502,7 +522,7 @@ void main() {
       expect(find.byType(StudioMailOutboxDialog), findsOneWidget);
       expect(secondProvider.submissions, isEmpty);
       secondProvider.onSubmit = () async {
-        expect(
+        expectSync(
           (await secondStore.loadOutbox()).single.state,
           MailOutboxState.submitting,
         );
@@ -523,7 +543,10 @@ void main() {
         frozen.prepared.envelope.recipients,
       );
       expect(
-        (await nativeOutboxIo(tester, secondStore.loadOutbox)).single.state,
+        (await awaitOutboxOperation(
+          tester,
+          secondStore.loadOutbox(),
+        )).single.state,
         MailOutboxState.submitted,
       );
       expect(tester.takeException(), isNull);
@@ -539,23 +562,23 @@ void main() {
       var observedDurableAttempt = false;
       provider.onSubmit = () async {
         final entry = (await store.loadOutbox()).single;
-        expect(entry.state, MailOutboxState.submitting);
-        expect(entry.prepared.account, fixture.identity.account);
-        expect(provider.submissions.single.account, provider.account);
-        expect(
+        expectSync(entry.state, MailOutboxState.submitting);
+        expectSync(entry.prepared.account, fixture.identity.account);
+        expectSync(provider.submissions.single.account, provider.account);
+        expectSync(
           provider.submissions.single.wire.bytes,
           entry.prepared.wire.bytes,
         );
-        expect(await store.load(), isNull);
+        expectSync(await store.load(), isNull);
         observedDurableAttempt = true;
       };
       await _compose(tester, ews: true, subject: 'Immediate Exchange send');
-      await tester.tap(find.widgetWithText(FilledButton, _strings.send));
+      await _press(tester, find.widgetWithText(FilledButton, _strings.send));
       await _pump(tester);
       expect(observedDurableAttempt, isTrue);
       expect(provider.submissions, hasLength(1));
       expect(
-        (await nativeOutboxIo(tester, store.loadOutbox)).single.state,
+        (await awaitOutboxOperation(tester, store.loadOutbox())).single.state,
         MailOutboxState.submitted,
       );
       expect(tester.takeException(), isNull);

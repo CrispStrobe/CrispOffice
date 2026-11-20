@@ -1,0 +1,92 @@
+{
+  "old_production_commit": "89910ff6363cd45ced5faf0e48b11cac46754b28",
+  "fixed_commit": "4a2607162199deedde0587b2cdb919bbf6435251",
+  "old_failed_cases": 2,
+  "fixed_passed_cases": 2,
+  "restored_sources": true,
+  "fixed_source_sha256": {
+    "packages/quds_office_engine/lib/src/word/layout/word_layout.dart": "77fc4af1d87be3ad27f41788a9b366f8613066dfaea93c118fc7a9ee7e7eee4c",
+    "packages/quds_office_engine/lib/src/word/layout/word_incremental_layout.dart": "182c9670d79c198321e5d0d969510ede0d027c00711366b8eb352f2f4703adba"
+  },
+  "included_in_acceptance_totals": false,
+  "negative_control": {
+    "command": [
+      "/workspace/scratch/f0616b02624b/toolchains/dart-sdk/bin/dart",
+      "--old_gen_heap_size=512",
+      "--packages=/workspace/scratch/f0616b02624b/validation-workspace/.dart_tool/package_config.json",
+      "/workspace/scratch/f0616b02624b/toolchains/test-runner/test-runner.dill",
+      "--compiler",
+      "source",
+      "--concurrency=1",
+      "--timeout=4x",
+      "--reporter=json",
+      "--name",
+      "edits while wrapping invalidate older unwrapped breaks",
+      "test/word_incremental_layout_differential_test.dart"
+    ],
+    "cwd": "/workspace/scratch/f0616b02624b/quds_office_suite/packages/quds_office_engine",
+    "commit": "4a2607162199deedde0587b2cdb919bbf6435251",
+    "exit_code": 1,
+    "duration_seconds": 20.493,
+    "source_unchanged": true,
+    "passed": 0,
+    "failed": 2,
+    "skipped": 0,
+    "errors": [
+      {
+        "test": "text edits while wrapping invalidate older unwrapped breaks",
+        "error": "clean target after frame removal: incremental/full geometry differs at character 3274\nactual: ,0.0,8,\"000000\",11.0,\"Arial\",false,false,\"none\",true,false,null,\"baseline\",null,0,null,null,[],null,null]],[24.0,73.56,357.5,14.520000000000001,0,3,\"left\",0.0,24.0,372.0,null,0.0,true,false,\"Inserted English words, deutsche Wörter, العربية للتخطيط, emoji 😀, soft­hyphen and tabs\\there. Original cached paragraph English words, deutsche Wörter, العربية للتخطيط\nfresh:  ,0.0,8,\"000000\",11.0,\"Arial\",false,false,\"none\",true,false,null,\"baseline\",null,0,null,null,[],null,null]],[24.0,73.56,363.0,14.520000000000001,0,3,\"left\",0.0,24.0,372.0,null,0.0,true,false,\"Inserted English words, deutsche Wörter, العربية للتخطيط, emoji 😀, soft­hyphen and tabs\\there. Original cached paragraph English words, deutsche Wörter, العربية للتخطيط",
+        "stackTrace": "package:matcher                                            fail\ntest/word_incremental_layout_differential_test.dart 122:3  _equivalent\ntest/word_incremental_layout_differential_test.dart 311:9  main.<fn>\n"
+      },
+      {
+        "test": "font edits while wrapping invalidate older unwrapped breaks",
+        "error": "clean target after frame removal: incremental/full geometry differs at character 3274\nactual: ,0.0,8,\"000000\",11.0,\"Arial\",false,false,\"none\",true,false,null,\"baseline\",null,0,null,null,[],null,null]],[24.0,73.56,357.5,20.46,0,3,\"left\",0.0,24.0,372.0,null,0.0,true,false,\"Original cached paragraph English words, deutsche Wörter, العربية للتخطيط, emoji 😀, soft­hyphen and tabs\\there. \",\"Original cached paragraph English words, deutsche Wörter, العربية \nfresh:  ,0.0,8,\"000000\",11.0,\"Arial\",false,false,\"none\",true,false,null,\"baseline\",null,0,null,null,[],null,null]],[24.0,73.56,310.0,20.46,0,3,\"left\",0.0,24.0,372.0,null,0.0,true,false,\"Original cached paragraph English words, deutsche Wörter, العربية للتخطيط, emoji 😀, soft­hyphen and tabs\\there. \",\"Original cached paragraph English words, deutsche Wörter, العربية ",
+        "stackTrace": "package:matcher                                            fail\ntest/word_incremental_layout_differential_test.dart 122:3  _equivalent\ntest/word_incremental_layout_differential_test.dart 311:9  main.<fn>\n"
+      }
+    ],
+    "runner_done": [
+      {
+        "success": false,
+        "type": "done",
+        "time": 19146
+      }
+    ]
+  },
+  "fixed_control": {
+    "command": [
+      "/workspace/scratch/f0616b02624b/toolchains/dart-sdk/bin/dart",
+      "--old_gen_heap_size=512",
+      "--packages=/workspace/scratch/f0616b02624b/validation-workspace/.dart_tool/package_config.json",
+      "/workspace/scratch/f0616b02624b/toolchains/test-runner/test-runner.dill",
+      "--compiler",
+      "source",
+      "--concurrency=1",
+      "--timeout=4x",
+      "--reporter=json",
+      "--name",
+      "edits while wrapping invalidate older unwrapped breaks",
+      "test/word_incremental_layout_differential_test.dart"
+    ],
+    "cwd": "/workspace/scratch/f0616b02624b/quds_office_suite/packages/quds_office_engine",
+    "commit": "4a2607162199deedde0587b2cdb919bbf6435251",
+    "exit_code": 0,
+    "duration_seconds": 18.134,
+    "source_unchanged": true,
+    "passed": 2,
+    "failed": 0,
+    "skipped": 0,
+    "errors": [],
+    "runner_done": [
+      {
+        "success": true,
+        "type": "done",
+        "time": 17444
+      }
+    ]
+  },
+  "current_source_sha256": {
+    "packages/quds_office_engine/lib/src/word/layout/word_layout.dart": "86c0f494b879fb91ec82048675dfc5ead65ba512f4a7b983ab2c7e7a7560e264",
+    "packages/quds_office_engine/lib/src/word/layout/word_incremental_layout.dart": "2efb0781a927247d37f21ef09e8fc97c4cdcf449fa6ec1399e08df382caaba2b"
+  },
+  "interpretation": "Supplemental two-failure/two-pass reproduction on the recorded old/fixed sources; final coverage comes from the final gate."
+}

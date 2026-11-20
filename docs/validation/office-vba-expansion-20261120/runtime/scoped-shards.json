@@ -1,0 +1,118 @@
+[
+  {
+    "label": "scoped-shard01",
+    "files": [
+      "test/slide_text_fidelity_test.dart",
+      "test/slide_text_insets_preservation_test.dart",
+      "test/slide_rich_text_explicit_style_test.dart",
+      "test/office_vba_powerpoint_margins_integration_test.dart"
+    ],
+    "process_spawn_isolated": false
+  },
+  {
+    "label": "scoped-shard02",
+    "files": [
+      "test/office_vba_arguments_integration_test.dart"
+    ],
+    "process_spawn_isolated": true
+  },
+  {
+    "label": "scoped-shard03",
+    "files": [
+      "test/office_vba_powerpoint_margins_test.dart",
+      "test/word_incremental_layout_differential_test.dart",
+      "test/word_incremental_layout_test.dart",
+      "test/word_incremental_layout_prefix_test.dart"
+    ],
+    "process_spawn_isolated": false
+  },
+  {
+    "label": "scoped-shard04",
+    "files": [
+      "test/word_paragraph_mark_layout_test.dart",
+      "test/office_vba_powerpoint_layout_integration_test.dart",
+      "test/slide_test.dart",
+      "test/word_note_numbering_test.dart"
+    ],
+    "process_spawn_isolated": false
+  },
+  {
+    "label": "scoped-shard05",
+    "files": [
+      "test/office_macro_cli_test.dart"
+    ],
+    "process_spawn_isolated": true
+  },
+  {
+    "label": "scoped-shard06",
+    "files": [
+      "test/office_vba_powerpoint_cli_test.dart"
+    ],
+    "process_spawn_isolated": true
+  },
+  {
+    "label": "scoped-shard07",
+    "files": [
+      "test/office_macro_mcp_test.dart"
+    ],
+    "process_spawn_isolated": true
+  },
+  {
+    "label": "scoped-shard08",
+    "files": [
+      "test/office_vba_powerpoint_conformance_test.dart",
+      "test/office_vba_powerpoint_integration_test.dart",
+      "test/office_vba_powerpoint_layout_test.dart",
+      "test/office_vba_powerpoint_test.dart"
+    ],
+    "process_spawn_isolated": false
+  },
+  {
+    "label": "scoped-shard09",
+    "files": [
+      "test/office_operations_test.dart",
+      "test/office_macro_runtime_test.dart",
+      "test/office_macro_expansion_test.dart",
+      "test/office_macro_slide_format_test.dart"
+    ],
+    "process_spawn_isolated": false
+  },
+  {
+    "label": "scoped-shard10",
+    "files": [
+      "test/office_macro_language_test.dart",
+      "test/word_small_caps_test.dart",
+      "test/word_run_fragment_fallback_test.dart",
+      "test/word_fidelity_test.dart"
+    ],
+    "process_spawn_isolated": false
+  },
+  {
+    "label": "scoped-shard11",
+    "files": [
+      "test/word_styles_layout_test.dart",
+      "test/word_complex_script_language_test.dart",
+      "test/slide_import_fidelity_test.dart",
+      "test/slide_normal_autofit_test.dart"
+    ],
+    "process_spawn_isolated": false
+  },
+  {
+    "label": "scoped-shard12",
+    "files": [
+      "test/slide_radial_opacity_test.dart",
+      "test/word_zotero_add_note_test.dart",
+      "test/fonts_test.dart",
+      "test/office_named_fonts_test.dart"
+    ],
+    "process_spawn_isolated": false
+  },
+  {
+    "label": "scoped-shard13",
+    "files": [
+      "test/sfnt_cmap_validation_test.dart",
+      "test/office_pdf_export_test.dart"
+    ],
+    "process_spawn_isolated": false
+  }
+]

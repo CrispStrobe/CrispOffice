@@ -1,0 +1,29 @@
+{
+  "pre_cache_fix": {
+    "receipt": "validation-results/pre-cache-fix/expansion-shard04.receipt.json",
+    "sha256": "b525312f34436ff9848e0d80ef2303233bf20aba20b7a360d628e46d79d875ca",
+    "included_in_accepted_total": false
+  },
+  "pre_main_refresh": {
+    "interruption": {
+      "process_exit_code": 130,
+      "reason": "Stopped by root before source changes to incorporate new remote main a652a205e6daf6b4b8e3baec04db1c1b52fabd0d. Completed groups are development evidence and are not included in final acceptance totals.",
+      "qualified_source_before_stop": "4a2607162199deedde0587b2cdb919bbf6435251"
+    },
+    "included_in_accepted_total": false
+  },
+  "C9_group28": {
+    "receipt": "validation-results/expansion-shard28.receipt.json",
+    "sha256": "bbe21fd8a749582613b1d4b14324370308a72829df26349700dc99a073a21fb2",
+    "jsonl": "validation-results/expansion-shard28.jsonl",
+    "jsonl_sha256": "da53117e627ee844eee4ad16a909d1e5ddd6cc2041f81da2817dfdaa7cfcb4f0",
+    "failed_case": "multiline text replacement retains first-run styling and paragraph boundaries",
+    "reported_prefix_passed": 87,
+    "all_group_cases_excluded": true,
+    "included_in_accepted_total": false,
+    "reason": "The entire unsuccessful group is excluded, including any passing prefix; final cases come from final-source reruns."
+  },
+  "superseded_C9_passes": "Passing baseline cases in rerun files are replaced by final-source evidence, never added twice.",
+  "development_and_other_attempts": "Preserved in the archive; excluded from accepted totals.",
+  "cache_negative_and_fixed_controls": "Supplemental source-specific reproduction; excluded from accepted totals."
+}

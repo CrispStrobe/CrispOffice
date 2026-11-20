@@ -1,0 +1,18 @@
+{
+  "qualified_commit": "192ea2aedbf0b1494627953c79a7042037a63301",
+  "qualified_tree": "1b8e807cd76f2bbc599780170d2a2e993ea4da62",
+  "included_cutoff_main": "b42eca1db058f0def247b86c2f15dea90c11b4e8",
+  "included_main_is_ancestor": true,
+  "recorded_prospective_tree": "1b8e807cd76f2bbc599780170d2a2e993ea4da62",
+  "whole_tree_unchanged_for_captured_main": true,
+  "complete_input_count": 1164,
+  "exact_input_mode_type_blob_sha256_match": true,
+  "review": "docs/validation/office-vba-expansion-20261120/integration/final-cutoff-main-review.json",
+  "review_sha256": "31b47a700fb31bf121921cacef4893a3ed83dabd879aec0ef79564a02c4db6d9",
+  "locally_fetched_main_at_collection": "13be50464d1b43e9f2100fb9ccc12f8fe22eb55e",
+  "locally_fetched_main_is_ancestor_of_final": false,
+  "newer_main_needs_separate_review_before_merge": true,
+  "remote_checkpoint_ref_checked_locally": "refs/remotes/origin/codex/word-powerpoint-vba-expansion-20261120",
+  "network_used": false,
+  "final_main_merge_claimed": false
+}

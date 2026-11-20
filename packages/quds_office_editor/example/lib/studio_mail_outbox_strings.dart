@@ -31,9 +31,14 @@ extension StudioMailOutboxStrings on StudioStrings {
     'صندوق الصادر فارغ.',
   );
   String get mailOutboxFailed => _outboxText(
-    'The Outbox operation could not be saved. Refresh to check its state before trying again.',
-    'Der Vorgang konnte nicht gespeichert werden. Aktualisieren Sie den Postausgang und prüfen Sie den Status vor einem weiteren Versuch.',
-    'تعذر حفظ إجراء صندوق الصادر. حدّث العرض للتحقق من الحالة قبل المحاولة مجددًا.',
+    'The Outbox operation could not be saved. Open or refresh Outbox to check its state before trying again.',
+    'Der Vorgang konnte nicht gespeichert werden. Öffnen oder aktualisieren Sie den Postausgang und prüfen Sie den Status vor einem weiteren Versuch.',
+    'تعذر حفظ إجراء صندوق الصادر. افتح صندوق الصادر أو حدّثه للتحقق من الحالة قبل المحاولة مجددًا.',
+  );
+  String get mailOutboxInspect => _outboxText(
+    'Open Outbox to review the saved message.',
+    'Öffnen Sie den Postausgang, um die gespeicherte Nachricht zu prüfen.',
+    'افتح صندوق الصادر لمراجعة الرسالة المحفوظة.',
   );
   String get mailQueueFailed => _outboxText(
     'Could not queue the message. Your saved draft is retained. The local Outbox holds up to 100 entries within the account storage limit.',
