@@ -48,10 +48,17 @@ Sub Main()
 End Sub
 ```
 
-`Document`, `Paragraph`, and `Range` declarations support explicit `Set`
-bindings and `ByVal` helper parameters. `With` may target these supported
-objects or the range's `Font` and `ParagraphFormat`. All bindings remain
+`Document`, `Paragraph`, `Range`, `Font`, and `ParagraphFormat` declarations
+support explicit `Set` bindings and `ByVal` helper parameters. `With` may target
+these supported objects or the range's `Font` and `ParagraphFormat`. All bindings remain
 document-independent selectors; they never expose text or formatting reads.
+
+`Paragraph.Format` returns the same formatting selector as
+`Paragraph.Range.ParagraphFormat`. A typed alias retains its selected paragraph
+when the caller or a helper rebinds another variable. Rebinding a `ByVal`
+parameter changes only that helper's local selector. Unbound objects, incompatible
+object types, `New Font`, `New ParagraphFormat`, `Duplicate`, whole-object format
+assignment, and property reads remain unsupported.
 
 `ActiveDocument` and `Application.ActiveDocument` both bind the document
 explicitly supplied to the macro session, as does `ThisDocument`. They do not
@@ -94,6 +101,8 @@ header, footer, note, or comment story selector.
 | `range.ParagraphFormat.FirstLineIndent = value` | `docx.paragraphFormat` | nonnegative `firstLine`/`hanging` in points, always clearing the opposite value |
 | `range.ParagraphFormat.KeepTogether = value` | `docx.paragraphFormat` | `keepTogether: value` |
 | `range.ParagraphFormat.PageBreakBefore = value` | `docx.paragraphFormat` | `pageBreakBefore: value` |
+| `range.ParagraphFormat.ReadingOrder = value` | `docx.paragraphFormat` | `rtl: true` for RTL, `false` for LTR |
+| `range.ParagraphFormat.LineSpacingRule = value` | `docx.paragraphFormat` | `lineSpacingRule: auto`, `lineSpacing: 1`, `1.5`, or `2` |
 
 For example, `ThisDocument.Paragraphs(2).Range.InsertBefore "Ready: "` emits:
 
@@ -171,6 +180,8 @@ Paragraph-format operations can target an empty paragraph.
 | `Range.HighlightColorIndex` | Exact integer `0..16`, including the named `WdColorIndex` constants; `0` removes highlighting |
 | `SpaceBefore`, `SpaceAfter` | Nonnegative finite number in exact `0.05`-point increments; the resulting twentieth-point integer must not exceed `2147483647` |
 | `LeftIndent`, `RightIndent`, `FirstLineIndent` | Signed finite number in exact `0.05`-point increments; absolute twentieth-point value must not exceed `2147483647` |
+| `ParagraphFormat.ReadingOrder` | Exact integer `0` (RTL) or `1` (LTR), including the named `WdReadingOrder` constants |
+| `ParagraphFormat.LineSpacingRule` | Exact integer `0`, `1`, or `2`, including the single, 1.5-line, and double-line constants below |
 
 The named alignment constants are `wdAlignParagraphLeft = 0`,
 `wdAlignParagraphCenter = 1`, `wdAlignParagraphRight = 2`, and
@@ -188,6 +199,48 @@ For example, `wdUnderlineDotDashHeavy = 25` writes `w:u w:val="dashDotHeavy"`.
 first-line indent. A later positive or zero value clears the hanging indent.
 The left and right indent values remain independent. `KeepTogether` controls
 the paragraph's keep-lines property; it does not imply keep-with-next.
+
+### Paragraph reading order and line spacing
+
+`ReadingOrder` changes the paragraph's base reading direction without changing
+its alignment. `wdReadingOrderRtl = 0` writes native RTL; `wdReadingOrderLtr = 1`
+writes an explicit LTR override, including against a right-to-left paragraph
+style. These enum values are not Boolean values. Numeric Strings, Booleans,
+fractions, and other enum values are refused. Reading-order writes preserve
+unrelated attributes on the native `w:bidi` element and other paragraph properties.
+
+The supported `LineSpacingRule` presets set both native line attributes in one
+operation:
+
+| Word constant | Value | Native line multiplier | DOCX `w:spacing` attributes |
+| --- | ---: | ---: | --- |
+| `wdLineSpaceSingle` | 0 | 1 | `w:line="240" w:lineRule="auto"` |
+| `wdLineSpace1pt5` | 1 | 1.5 | `w:line="360" w:lineRule="auto"` |
+| `wdLineSpaceDouble` | 2 | 2 | `w:line="480" w:lineRule="auto"` |
+
+These preset writes replace an existing exact, minimum, or automatic line rule.
+They own only `w:line` and `w:lineRule`: existing before/after spacing, their
+automatic or line-unit metadata, and foreign attributes survive. When before/after
+spacing is inherited, a line-spacing write does not copy those effective values
+into direct formatting. An explicit same-value preset still becomes direct
+formatting, so changing the paragraph style later cannot undo it.
+The native engine displays the selected line multiplier; matching an installed
+Word host's precise line-box metrics is outside this headless qualification.
+
+`wdLineSpaceAtLeast = 3`, `wdLineSpaceExactly = 4`, and
+`wdLineSpaceMultiple = 5` are recognized constants but are refused as writes.
+Their interaction with the point-based `LineSpacing` property needs a separate
+compatibility contract. `LineSpacing`, arbitrary line multiples, automatic
+before/after setters, and the `Space1`/`Space15`/`Space2` methods are not introduced
+by this slice. Preserving existing source metadata does not add live rendering
+or editing support for those unmodeled spacing modes.
+
+Paragraph formatting accepts empty paragraphs. `Font` aliases retain the
+existing nonempty paragraph-text requirement and never include paragraph marks.
+[`word_paragraph_layout.bas`](../packages/quds_office_engine/example/macros/word_paragraph_layout.bas)
+demonstrates typed font and paragraph helpers, the direct `Paragraph.Format`
+binding, RTL and LTR reading order, and all three line-spacing presets. It needs
+three existing paragraphs, with nonempty text in the first paragraph.
 
 ### Typography and highlighting
 
@@ -371,6 +424,9 @@ the explicit restrictions above. They do not certify this implementation:
 
 - [Paragraphs object](https://learn.microsoft.com/en-us/office/vba/api/word.paragraphs): indexed paragraph access and main-story collection scope.
 - [Paragraphs.Item](https://learn.microsoft.com/en-us/office/vba/api/word.paragraphs.item) and [Application.ActiveDocument](https://learn.microsoft.com/en-us/office/vba/api/word.application.activedocument): source vocabulary; the Quds session binding is explicitly scoped above.
+- [Paragraph.Format](https://learn.microsoft.com/en-us/office/vba/api/word.paragraph.format), [Font](https://learn.microsoft.com/en-us/office/vba/api/word.font), and [ParagraphFormat](https://learn.microsoft.com/en-us/office/vba/api/word.paragraphformat): typed formatting objects; this dialect binds explicit paragraph selectors only.
+- [ParagraphFormat.ReadingOrder](https://learn.microsoft.com/en-us/office/vba/api/word.paragraphformat.readingorder) and [WdReadingOrder](https://learn.microsoft.com/en-us/office/vba/api/word.wdreadingorder): reading direction independently of alignment, with exact RTL/LTR numeric identities.
+- [ParagraphFormat.LineSpacingRule](https://learn.microsoft.com/en-us/office/vba/api/word.paragraphformat.linespacingrule) and [WdLineSpacing](https://learn.microsoft.com/en-us/office/vba/api/word.wdlinespacing): line-spacing presets and the separate point-based spacing property required by the remaining rules.
 - [Range.InsertBefore](https://learn.microsoft.com/en-us/office/vba/api/word.range.insertbefore): insertion before a range and range expansion; full Word also supports structural characters excluded here.
 - [Range.InsertAfter](https://learn.microsoft.com/en-us/office/vba/api/word.range.insertafter): the ending paragraph mark and insertion boundary.
 - [Font.Size](https://learn.microsoft.com/en-us/office/vba/api/word.font.size) and [Font.Name](https://learn.microsoft.com/en-us/office/vba/api/word.font.name): point units and the named font property.
