@@ -1,0 +1,17 @@
+{
+  "accepted_source_commit": "586e53502701d2f568f38bdcfb4aa5fd64a53142",
+  "accepted_source_tree": "242f8c111a21cb5baeeed3d6d73902a3821e739c",
+  "recorded_engine_inputs": 359,
+  "unchanged": 358,
+  "changed": [
+    {
+      "path": "packages/quds_office_engine/tool/zotero/research_target_acceptance.dart",
+      "tested_sha256": "abd38866997ff855fa9c5a23fce5cfb5f36f1e75f52d1e5bd9b2530374218241",
+      "current_sha256": "6c621c5d000834505334bd135703276a37b391b8d48a718c8e13107630936bda"
+    }
+  ],
+  "only_change": "Alphabetical import ordering in the aggregation harness; all aliases and main/group registration statements are unchanged. All product sources and original tests remain byte-identical to the accepted engine run.",
+  "import_declarations_identical_as_sets": true,
+  "main_body_identical": true,
+  "extra_test_replay": false
+}

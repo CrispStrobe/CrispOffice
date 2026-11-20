@@ -1,0 +1,22 @@
+{
+  "checked_at": "2026-11-20T09:44:00.706725+00:00",
+  "checkpoint": "01290ceed6f9163023ce8f27bb74033f088b62e4",
+  "tree": "413a8ebc8f66c5b95584710aab7d8bb6fcc431fc",
+  "qualified_inputs": 2204,
+  "git_tracked_inputs": 2203,
+  "checkpoint_mismatches": [],
+  "local_runtime_inputs": {
+    ".dart_tool/package_config.json": "8eab41ca699dc7d09f48d2d845430dc09b57bf225cb202d67688c5da03d3edf2"
+  },
+  "incoming_main": "860c807bfd1385899eed130abfb8940f95bda113",
+  "selected_incoming_sources_preserved_byte_for_byte": {
+    "packages/quds_office_engine/lib/src/automation/office_vba_language.dart": true,
+    "packages/quds_office_engine/lib/src/word/model/word_zotero_note.dart": true,
+    "packages/quds_office_engine/lib/src/word/model/word_zotero_note_image.dart": true,
+    "packages/quds_office_engine/lib/src/word/serial/word_deserializer.dart": true,
+    "packages/quds_office_editor/lib/src/embed/office_host_fonts.dart": true,
+    "packages/quds_office_editor/lib/src/embed/office_system_fonts_io.dart": true,
+    "packages/quds_office_editor/lib/src/editor_word/paint_run_text.dart": true
+  },
+  "status": "pass"
+}

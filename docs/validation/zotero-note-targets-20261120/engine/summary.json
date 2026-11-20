@@ -1,0 +1,80 @@
+{
+  "total_visible": 294,
+  "counts": {
+    "word_zotero_research_target_test.dart": {
+      "success": 33,
+      "failure": 0,
+      "error": 0,
+      "skipped": 0
+    },
+    "word_zotero_add_note_test.dart": {
+      "success": 35,
+      "failure": 0,
+      "error": 0,
+      "skipped": 0
+    },
+    "word_zotero_note_insertion_test.dart": {
+      "success": 41,
+      "failure": 0,
+      "error": 0,
+      "skipped": 0
+    },
+    "word_zotero_citing_test.dart": {
+      "success": 59,
+      "failure": 0,
+      "error": 0,
+      "skipped": 0
+    },
+    "word_zotero_rich_edit_test.dart": {
+      "success": 30,
+      "failure": 0,
+      "error": 0,
+      "skipped": 0
+    },
+    "word_zotero_note_list_test.dart": {
+      "success": 38,
+      "failure": 0,
+      "error": 0,
+      "skipped": 0
+    },
+    "word_zotero_note_images_integration_test.dart": {
+      "success": 10,
+      "failure": 0,
+      "error": 0,
+      "skipped": 0
+    },
+    "word_zotero_bibliography_layout_test.dart": {
+      "success": 14,
+      "failure": 0,
+      "error": 0,
+      "skipped": 0
+    },
+    "word_zotero_preference_flow_test.dart": {
+      "success": 11,
+      "failure": 0,
+      "error": 0,
+      "skipped": 0
+    },
+    "word_zotero_style_preferences_review_test.dart": {
+      "success": 9,
+      "failure": 0,
+      "error": 0,
+      "skipped": 0
+    },
+    "slide_radial_opacity_test.dart": {
+      "success": 14,
+      "failure": 0,
+      "error": 0,
+      "skipped": 0
+    }
+  },
+  "done": [
+    {
+      "success": true,
+      "type": "done",
+      "time": 8897
+    }
+  ],
+  "errors": [],
+  "log_sha256": "140102321231dac2c98870916b9e7858e0de85c0b597f9e4f45ec29099ce4c63"
+}

@@ -1,0 +1,14 @@
+{
+  "command": [
+    "dart",
+    "analyze",
+    "--fatal-infos",
+    "--fatal-warnings",
+    "packages/quds_office_engine/lib/src/pdf/office_pdf_export.dart",
+    "packages/quds_office_engine/lib/src/slide/serial/slide_serial.dart",
+    "packages/quds_office_engine/lib/src/slide/shapes/drawingml.dart",
+    "packages/quds_office_engine/lib/src/slide/model/pml_presentation.dart",
+    "packages/quds_office_engine/test/slide_radial_opacity_test.dart"
+  ],
+  "exit_code": 0
+}

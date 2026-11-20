@@ -21,7 +21,8 @@ REPO = Path(__file__).resolve().parents[3]
 HERE = Path(__file__).resolve().parent
 BASELINE = 'c16e121365b7c52c0b66371381c8c58f592e1d8e'
 KINDS = ['format', 'core-analyze', 'transport-analyze', 'ui-analyze', 'studio-analyze',
-         'core', 'transport', 'transport-node', 'ui', 'studio', 'incoming-spacy', 'studio-paths']
+         'core', 'transport', 'transport-node', 'ui', 'studio', 'incoming-spacy', 'studio-paths',
+         'studio-theme']
 
 
 def now():
@@ -201,6 +202,7 @@ def main():
     studio_tests += ['test/studio_saved_mail_test.dart']
     spacy_tests = ['test/distribution_test.dart', 'test/grammar_planner_test.dart']
     path_tests = ['test/studio_native_paths_test.dart']
+    theme_tests = ['test/studio_material_theme_test.dart']
     prefix = [str(dart), '--packages=' + str(configuration), str(runner)]
     flutter_prefix = [str(flutter), 'test', '--no-pub', '--reporter=json', '--concurrency=1']
     jobs = {
@@ -222,6 +224,7 @@ def main():
         'incoming-spacy': (spacy, [*prefix, '--reporter=json', '--concurrency=2',
                                  *spacy_tests], spacy_tests),
         'studio-paths': (studio, [*flutter_prefix, *path_tests], path_tests),
+        'studio-theme': (studio, [*flutter_prefix, *theme_tests], theme_tests),
     }
     selected_jobs = args.only or KINDS
     write_json(out / 'selection.json', {
