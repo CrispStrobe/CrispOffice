@@ -114,6 +114,15 @@ documents executed qualification separately from inherited or unexecuted work.
 
 ### Next shared-language increments
 
+The Word tab-stop increment adds typed `TabStops` selectors and required
+`ByVal` helpers, statement `Add` with named/optional arguments, and `ClearAll`.
+Native edits preserve untouched direct/inherited stops and opaque XML, and
+clear inherited custom stops with position-specific overrides. This remains a
+source-to-plan slice: no collection reads, `TabStop` return objects, arbitrary
+Word ranges or live execution were added. See the
+[exact contract](VBA_WORD_MACROS.md#custom-paragraph-tab-stops) and
+[source-bound local qualification](validation/word-vba-tabstops-20261120/README.md).
+
 Keep multidimensional arrays and array parameter passing as separate increments
 with their own shape, ownership, aliasing and resource tests. Broader implicit
 coercions, locale handling and numeric subtype reporting also need explicit

@@ -217,6 +217,18 @@ mode. `smallCaps: true` writes an explicit AllCaps-off override. Highlighting
 uses the existing `highlight` field with a palette RGB color or `null` to clear.
 These operations retain the ordinary nonempty text-range requirement.
 
+Native `docx.tabStop` upserts one custom stop on an explicit `paragraph`, with
+required `position` in points and optional `alignment` (`left`, `center`,
+`right`, `decimal`; default `left`) and `leader` (`none`, `dot`, `hyphen`,
+`underscore`; default `none`). Positions must be finite exact twentieth-points
+in `-1584..1584`. Native `docx.clearTabStops` clears the selected paragraph's
+currently effective explicit custom-tab definitions, including inherited stops,
+using native position-specific clear records. It preserves default-tab interval
+settings and indentation. Both operations accept the usual explicit story
+selectors; `vba-word` emits only body-paragraph selectors. Partial tab edits
+preserve unrelated source XML and inheritance. Ambiguous source definitions
+are rejected before mutation; see the [Word contract](VBA_WORD_MACROS.md#custom-paragraph-tab-stops).
+
 The `example/macros/procedural_report.bas` example demonstrates shared heading
 and row helpers, `Worksheet`/`Range` arguments, and nested scalar functions.
 The `example/macros/control_flow_report.bas` example combines conditional loops
@@ -421,7 +433,8 @@ cannot read document values; [the complete dialect contract](VBA_MACROS.md)
 documents supported types, syntax, members, and limits.
 
 The Word adapter lowers explicit `ThisDocument.Paragraphs(i).Range` operations
-to `docx.replaceText`, `docx.runFormat` and `docx.paragraphFormat`. `InsertBefore`
+to `docx.replaceText`, `docx.runFormat` and `docx.paragraphFormat`, and custom-tab
+selectors to `docx.tabStop` and `docx.clearTabStops`. `InsertBefore`
 uses the empty range at paragraph offset zero, preserving the paragraph mark.
 Word and Excel retain separate typed object members and native output formats;
 neither adapter receives a live document during compilation. Inactive branches

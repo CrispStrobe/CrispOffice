@@ -48,7 +48,7 @@ Sub Main()
 End Sub
 ```
 
-`Document`, `Paragraph`, `Range`, `Font`, and `ParagraphFormat` declarations
+`Document`, `Paragraph`, `Range`, `Font`, `ParagraphFormat`, and `TabStops` declarations
 support explicit `Set` bindings and `ByVal` helper parameters. `With` may target
 these supported objects or the range's `Font` and `ParagraphFormat`. All bindings remain
 document-independent selectors; they never expose text or formatting reads.
@@ -69,8 +69,9 @@ readable `Count` and cannot be enumerated.
 
 The shared [argument contract](VBA_ARGUMENTS.md) supports named calls and
 optional scalar ByVal parameters on declared module helpers. Required Word
-object parameters may be passed by name; optional object parameters and
-named/omitted arguments on Word members remain unsupported.
+object parameters may be passed by name; optional object parameters remain
+unsupported. `TabStops.Add` also accepts named and omitted optional arguments
+as described below; other Word members retain their positional-only contract.
 
 The common source language includes the existing local procedures and scalar
 functions, bounded control flow, typed arrays, string intrinsics, and explicit
@@ -108,6 +109,8 @@ header, footer, note, or comment story selector.
 | `range.ParagraphFormat.PageBreakBefore = value` | `docx.paragraphFormat` | `pageBreakBefore: value` |
 | `range.ParagraphFormat.ReadingOrder = value` | `docx.paragraphFormat` | `rtl: true` for RTL, `false` for LTR |
 | `range.ParagraphFormat.LineSpacingRule = value` | `docx.paragraphFormat` | `lineSpacingRule: auto`, `lineSpacing: 1`, `1.5`, or `2` |
+| `paragraph.TabStops.Add position, alignment, leader` | `docx.tabStop` | `position` in points, `alignment`, and `leader` |
+| `paragraph.TabStops.ClearAll` | `docx.clearTabStops` | No additional arguments |
 
 For example, `ThisDocument.Paragraphs(2).Range.InsertBefore "Ready: "` emits:
 
@@ -127,6 +130,93 @@ Each source write emits one native operation, in evaluation order. Repeated
 `InsertBefore` calls act on the paragraph as it exists at each step: inserting
 `"A"` and then `"B"` before `"tail"` produces `"BAtail"`. A later font operation
 formats the paragraph's current text, including text inserted by earlier steps.
+
+### Custom paragraph tab stops
+
+`Paragraph.TabStops`, `Paragraph.Format.TabStops`, and
+`Paragraph.Range.ParagraphFormat.TabStops` select one paragraph's custom stops.
+They support `Dim stops As TabStops`, `Set`, nested `With`, and required `ByVal`
+helper parameters. Aliases retain their selected paragraph when another alias
+or a helper parameter is rebound. Empty paragraphs are valid targets.
+
+```vb
+Sub Main()
+    Dim stops As TabStops
+    Set stops = ActiveDocument.Paragraphs(1).TabStops
+    With stops
+        .ClearAll
+        .Add Position:=72
+        .Add Leader:=wdTabLeaderDots, Position:=432, Alignment:=wdAlignTabRight
+        .Add 216, , wdTabLeaderDashes
+    End With
+End Sub
+```
+
+`Add(Position, Alignment, Leader)` requires `Position`; its optional arguments
+default to `wdAlignTabLeft` and `wdTabLeaderSpaces`. Bare statements,
+parenthesized statements and `Call stops.Add(...)` are accepted. Argument names
+are case-insensitive. Positional arguments and comma holes must precede named
+arguments. A hole skips only an optional position; it cannot replace the
+required `Position`. Unknown names, duplicate bindings, and extra arguments
+are rejected before evaluation, including in unused helpers and dead branches.
+The receiver is resolved first; supplied expressions then execute exactly once
+in their written order, even if named arguments use a different parameter order.
+
+| Argument | Supported values |
+| --- | --- |
+| `Position` | Actual finite numeric points from `-1584` through `1584`, in exact `0.05`-point increments; zero and negative positions are allowed |
+| `Alignment` | `wdAlignTabLeft = 0`, `wdAlignTabCenter = 1`, `wdAlignTabRight = 2`, `wdAlignTabDecimal = 3` |
+| `Leader` | `wdTabLeaderSpaces = 0`, `wdTabLeaderDots = 1`, `wdTabLeaderDashes = 2`, `wdTabLeaderLines = 3`; native `none`, `dot`, `hyphen`, `underscore` |
+
+Positions are relative to the left margin. This exact-twip contract avoids
+silent rounding and stays within Word's documented signed 31,680-twip native
+position bound. It does not emulate VBA `Single` coercion. Strings, Booleans,
+Empty, Null, and an unhandled omitted Variant are not numeric arguments. Bar
+and list alignment and heavy/middle-dot leaders are recognized enum constants
+but refused as new writes because their rendering is outside this slice.
+
+`Add` changes the stop at one position, preserving other direct and inherited
+stops. An explicit same-value write still becomes direct formatting. Unedited
+inherited stops continue to follow later style edits. Existing source records
+for bar/start/end/numbering tabs and unmodeled leaders remain native source;
+preserving them does not add their missing live rendering behavior.
+
+`ClearAll`, `ClearAll()`, `Call stops.ClearAll`, and `Call stops.ClearAll()`
+accept no arguments. They clear the currently effective **explicit native
+custom-tab definitions**, including those inherited from document defaults,
+table formatting and paragraph styles. Position-specific native `clear`
+records keep those stops suppressed after style refresh and repeated save/reopen.
+Document default-tab interval settings and paragraph indentation are preserved;
+implicit hanging-indent behavior is not redefined. New custom positions added
+to a style after the operation are not preemptively suppressed.
+
+Both operations retain unrelated native properties, extension attributes and
+children, foreign namespace lookalikes, and opaque macro-project parts through
+the ordinary detached transaction. Ambiguous source is refused before mutation:
+duplicate native tab containers or positions in one layer, missing/noninteger
+or out-of-signed-32-bit source positions, unknown native alignment values, and
+misbound native property namespaces. Tab-bearing markup-compatibility alternatives
+anywhere in the stored Word XML parts cause a conservative document-level
+refusal, including alternatives wrapped around an entire style or paragraph
+property block. The adapter does not infer which hidden tab branch Word would edit.
+The existing native `paragraphFormat.tabs` operation retains replacement of the
+whole effective collection, including inherited stops, under the corrected
+position-wise style cascade.
+
+This slice supports statements whose `Add` return value is discarded. It does
+not introduce `TabStop` objects, indexing, `Count`, enumeration, collection-copy
+assignment, default-tab setters, `Selection`, unit-conversion intrinsics or live
+document reads. The actual [word_tabstops.bas](../packages/quds_office_engine/example/macros/word_tabstops.bas)
+example requires three existing body paragraphs and is exercised on the Dart VM
+and compiled JavaScript by the portable regression driver. See the
+[qualification record](validation/word-vba-tabstops-20261120/README.md) for executed
+results and remaining host boundaries.
+
+Primary contracts: Microsoft's [TabStops.Add](https://learn.microsoft.com/en-us/office/vba/api/word.tabstops.add),
+[TabStops.ClearAll](https://learn.microsoft.com/en-us/office/vba/api/word.tabstops.clearall),
+[WdTabAlignment](https://learn.microsoft.com/en-us/office/vba/api/word.wdtabalignment),
+[WdTabLeader](https://learn.microsoft.com/en-us/office/vba/api/word.wdtableader), and
+[native tab-position bounds](https://learn.microsoft.com/en-us/openspecs/office_standards/ms-oe376/bca28b4c-9ef6-4eb4-b749-f5ea55b22dc4).
 
 ### Paragraph selectors
 
