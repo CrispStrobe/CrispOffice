@@ -89,9 +89,119 @@ small batches against a frozen source, with exit codes and receipts retained.
   explicit dialect restrictions. No Microsoft Office host was executed, and
   test counts are not a percentage of VBA compatibility.
 
-## Final qualification
+## Final source and captured-ref coverage
 
-Final source, command receipts and publication reconciliation will be recorded
-here after the native formatting and transaction checks complete. No full
-Flutter/native application build, Microsoft Office execution, hosted CI result,
-or editor macro ribbon/undo integration is implied by the engine checks.
+The final product source is `55e52def1b964a85764eb9c4fcf8163fbdcee625`. The engine gate began at
+`fb09a29b70e469c2858bde48c8977590791b6ba7`; the subsequent proofing/UI ancestry merge
+left the entire engine tree unchanged: `aabb48ef7ab6a79904a889c50dc3756eab116e7c`.
+All **1,041** source, test, tool, fixture and manifest inputs were
+hashed before and after qualification and checked again while bundling evidence.
+The final evidence commit changes only this validation directory.
+
+The captured snapshot contains **24 live branch heads**. The final inclusion
+audit accounts for all of them: **15 true ancestors and 9 historical equivalents**.
+All three captured open PR heads (#227, #234 and #236) are true ancestors.
+Of all 236 fetched PR head refs, 222 are ancestors and 14 older refs have proven
+accepted equivalents; those 14 are not described as ancestor commits.
+Thirteen of those historical PR equivalents have identical full trees, and the
+remaining ODT PR has identical mode/type/blob entries on all 37 changed paths.
+See [the complete inclusion receipt](integration/inclusion-receipt.json).
+
+The final captured additions include Zotero `708f2821`, window focus `b8f4a7be`,
+Mail `44abcfa1`, presentation controls `1eddb914`, rename/workflow `228d13d9`,
+Android `67a4917b`, Variants/Word `1ceae221`, and proofing `604e5f1a`.
+Original branch parents are retained by merge commits. Incremental remote
+checkpoints and local-to-remote commit mappings are recorded in
+[checkpoints.json](integration/checkpoints.json); each published tree was
+verified against its local tree before a non-forced expected-head update.
+The exact snapshot cutoff is recorded in
+[captured-refs.json](integration/captured-refs.json).
+
+See [integration-reconciliation.md](integration-reconciliation.md) for the
+PDF/autofit/radial merge decisions. Final review additionally repaired explicit
+same-value PowerPoint text replacement, preventing old fields/mixed runs from
+being resurrected, and kept existing native-menu callers compatible with the
+incoming optional View groups.
+
+## Final local qualification
+
+**Strict analysis of the whole engine passed with `--fatal-infos`.**
+The frozen macro selection passed **1,221 test cases
+across 32 files**, with zero failures and zero skips. Test IDs, exact command
+arguments, exit codes, source hashes, durations and local resource limits are
+retained in the [summary](macro-gate/summary.json) and
+[full raw receipt](macro-gate/receipt.json.gz).
+
+There are 1,221 distinct runner execution IDs and 1,220 display labels because
+the empty-group and populated-group guard fixtures share an existing test title.
+[Case identifiers](macro-gate/case-identifiers.json.gz) distinguish those inputs.
+
+| Local test batch | Passed | Failed | Skipped |
+| --- | ---: | ---: | ---: |
+| operations-runtime | 63 | 0 | 0 |
+| format-and-word-guards | 56 | 0 | 0 |
+| word-structure-and-sheet | 90 | 0 | 0 |
+| word-powerpoint-transactions | 75 | 0 | 0 |
+| slide-fidelity-and-variant | 257 | 0 | 0 |
+| conformance-and-word-format | 215 | 0 | 0 |
+| compiler-host-boundaries | 438 | 0 | 0 |
+| mcp-cli-bridge | 15 | 0 | 0 |
+| native-macro-cli | 5 | 0 | 0 |
+| word-vba-cli | 5 | 0 | 0 |
+| powerpoint-vba-cli | 2 | 0 | 0 |
+
+The selection includes all 93 new compiler cases, actual DOCX/PPTX operations,
+validation without publication, permissions and work budgets, strict shape
+selection, late-failure rollback, exact XML units, explicit false/same-value
+formatting, imported fields/hyperlinks, empty/authored rich text, repeated saves,
+opaque macro-project preservation, MCP and real CLI subprocesses.
+
+The separate PDF/import reconciliation gate passed **213 tests in 10 files**
+across three bounded processes (39 + 119 + 55). Its tested source hashes match
+the frozen engine commit. It covers finite/zero autofit, shared paragraph layout,
+shape geometry and anchors, scoped picture opacity, alpha resources, radial
+guards and ring colors, backgrounds and import preservation.
+See [its receipt](pdf-gate/final-pdf-results.json). These selections overlap;
+their counts are not added into a claimed unique grand total.
+
+### Portability and runnable example
+
+- The 20-case independently authored PowerPoint conformance corpus passed on
+  both Dart VM and compiled JavaScript, with byte-identical canonical receipts
+  and unchanged inputs.
+- The native PowerPoint transaction smoke passed on both runtimes with
+  byte-identical receipts, including real save/readback, MCP, strict selectors,
+  read-only refusal, validation without publication and rollback.
+- The committed `example/macros/powerpoint_report.bas` compiled through the
+  public default `Main` entrypoint into exactly 18 independently specified
+  operations. Native PPTX readback verified both formatted shapes, an unchanged
+  third shape, and the computed body text `Source records: 3; total units: 14`.
+
+Portable source/command receipts are retained in
+[conformance](macro-gate/portable-conformance-receipt.json) and
+[native smoke](macro-gate/portable-smoke-receipt.json). Raw VM/JS outputs are in
+`portable/`; the runnable example receipt is in the macro summary.
+
+### Reproduction and evidence boundaries
+
+Use the repository's pinned environment and the exact test-file selections and
+arguments in `macro-gate/summary.json` and `pdf-gate/final-pdf-results.json`.
+All final test commands use `--concurrency=1 --timeout=4x`; CLI-containing suites
+run alone. The executed local drivers and runtime receipt are preserved under
+`runtime/`. Their absolute workspace paths describe the original run and must
+be adjusted when reproducing elsewhere. Raw logs and large JSON manifests use
+gzip compression; `evidence-manifest.json` records their SHA-256 hashes.
+
+Earlier source-only shared compiler and Word/Variant regression logs are kept
+under `development/` for traceability and are not added to the final-source
+execution count. The same-value text regressions were observed failing before
+their fix and passing afterward. Earlier disk-exhausted or default-timeout CLI
+attempts were development failures, not qualification; the final isolated CLI
+batches above supersede them.
+
+No GitHub Actions run, check, status, or queued job was used as an acceptance
+gate. No Flutter UI/native application build or Microsoft Office host execution
+was performed. The inherited editor/proofing integration received source and
+call-site review; its Flutter runtime behavior is not qualified by these engine
+tests. No full VBA runtime, COM, live object-property reads, embedded-project
+execution, or editor macro ribbon/undo integration is implied.

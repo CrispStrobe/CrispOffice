@@ -1,0 +1,210 @@
+{
+  "README.md": {
+    "sha256": "74edf15ac50b63a0776e69b015fe1bee10be44e86c4dbe9edb777e3045bb3749",
+    "bytes": 11800
+  },
+  "development/vba-adapters-font-boundary.log.gz": {
+    "sha256": "c13644d981e0d4c1589d65ace094725018ce91ba6581f0fabd4b943b46eb3843",
+    "bytes": 1765
+  },
+  "development/vba-adapters-shared-regression.log.gz": {
+    "sha256": "1d458ca29692c33e5d8d05d50636588051143c721856375bcfa4dce76fa09946",
+    "bytes": 7445
+  },
+  "development/vba-adapters-word-regression.log.gz": {
+    "sha256": "4ec8693c2fc9ae8722f2be5ccf7a0889e705ac87cf48c9665d8e9d6e2babddf4",
+    "bytes": 5103
+  },
+  "development/vba-same-text-analysis.log.gz": {
+    "sha256": "b3f162e93880d6922e540af9c3b0a1dcd93ea23ffb67f840f917917c5880670f",
+    "bytes": 107
+  },
+  "development/vba-same-text-before-fix.log.gz": {
+    "sha256": "9cc1121d859b23639a25e975dc3d1bb26eba72a123f4fb2527ec99dcccdce685",
+    "bytes": 343
+  },
+  "development/vba-same-text-native-regression.log.gz": {
+    "sha256": "0d4f747b6de4280045fc00d789a42482dcf135ebf493d6c6187a38404ceef7d7",
+    "bytes": 909
+  },
+  "development/vba-same-text-source.json": {
+    "sha256": "8fb72add80058a178ca14ff605e8e9680bb01563d0e053af889d7d2ef2656d67",
+    "bytes": 1159
+  },
+  "development/vba-same-text.patch": {
+    "sha256": "a3539b9dca3287eefa224f0d32814d0677c169ad2ce0bf71d0b0b63a8ad7d5cc",
+    "bytes": 5998
+  },
+  "integration/captured-refs.json": {
+    "sha256": "e1a3b601b944fb2dd6f1853a080c4c54475827f9c45096ed710cc28b591f4cb5",
+    "bytes": 5357
+  },
+  "integration/checkpoints.json": {
+    "sha256": "c05bbc6c29246f08f383e217ac0cf7db60287106ca89eb4fe326955dba9c0c32",
+    "bytes": 1633
+  },
+  "integration/inclusion-receipt.json": {
+    "sha256": "f09698d4460d6fb64eefcadea9ba82c61d356485b47d9d5b58b5d9287e9bd514",
+    "bytes": 64017
+  },
+  "integration-reconciliation.md": {
+    "sha256": "7a0b8334bb12ec77a49f167ff3febc7edb563e11f6f9a9bbbf7358f32df6d0b7",
+    "bytes": 2914
+  },
+  "macro-gate/01-operations-runtime.log.gz": {
+    "sha256": "204b5a8f581bcfc6c602c34a105e49f599081614889740b92473b1e7eed38965",
+    "bytes": 3907
+  },
+  "macro-gate/02-format-and-word-guards.log.gz": {
+    "sha256": "19d9869d9a50d0fcddf056d2175765c2c2af3d28dcde2bab7bd77d3b0e01323b",
+    "bytes": 3162
+  },
+  "macro-gate/03-word-structure-and-sheet.log.gz": {
+    "sha256": "25800d51b27e383124cb00ad765be3977f6839d85c1b65c3af8be67bf19ff504",
+    "bytes": 3992
+  },
+  "macro-gate/04-word-powerpoint-transactions.log.gz": {
+    "sha256": "ce86587adf30689aa8af48ed438df0a5bf5b3b87dfa3fba04490ed71fc3cca46",
+    "bytes": 4161
+  },
+  "macro-gate/05-slide-fidelity-and-variant.log.gz": {
+    "sha256": "80151b1bdfb4e1974cbd2fe61b244e8908ace85037b08d011a36939564734956",
+    "bytes": 7728
+  },
+  "macro-gate/06-conformance-and-word-format.log.gz": {
+    "sha256": "79278b3a5b805615a373ad395f9f4be59f5e64b4ef1a67fb8ebb43b41b1c5bab",
+    "bytes": 7534
+  },
+  "macro-gate/07-compiler-host-boundaries.log.gz": {
+    "sha256": "14b4e53c6cae6eb189bf2f66e44e26bd651480ca6f5f9bb3bfdd31f711b2cb5f",
+    "bytes": 14094
+  },
+  "macro-gate/08-mcp-cli-bridge.log.gz": {
+    "sha256": "0082548efedc33a1bb24e21a779f815060f84881ce8ad7ac24d5f6f323d34b40",
+    "bytes": 1340
+  },
+  "macro-gate/09-native-macro-cli.log.gz": {
+    "sha256": "a953d993cf140188a2092028a00a00d07d63894c178eb9ff4cf72f19acfb4adb",
+    "bytes": 736
+  },
+  "macro-gate/10-word-vba-cli.log.gz": {
+    "sha256": "92277288632338f71ba1053f908cf04ce6cd548cc947841bac3821d5f9cd7294",
+    "bytes": 761
+  },
+  "macro-gate/11-powerpoint-vba-cli.log.gz": {
+    "sha256": "6c8ca3a4ed5685af9330e5b1bc09c4b1a192babb6bfd541d6af9dcdf70eb553f",
+    "bytes": 577
+  },
+  "macro-gate/case-identifiers.json.gz": {
+    "sha256": "e809f444726f6ab8c83173ced258ae4e58c8f46eb6d9c2365787e12ccd6ee1f1",
+    "bytes": 35857
+  },
+  "macro-gate/engine-analysis.log.gz": {
+    "sha256": "7ebbd8664f346a74eb817ae88e3b30f2d91550e9cc7799bdf2e5d2694c1c1c5d",
+    "bytes": 69
+  },
+  "macro-gate/inputs-after.json.gz": {
+    "sha256": "0ee41ea69e67d24d7c5a813eecb307485d98101a084f37e73acd746a16be4d44",
+    "bytes": 50879
+  },
+  "macro-gate/inputs-before.json.gz": {
+    "sha256": "0ee41ea69e67d24d7c5a813eecb307485d98101a084f37e73acd746a16be4d44",
+    "bytes": 50879
+  },
+  "macro-gate/portable-conformance-receipt.json": {
+    "sha256": "7bc02af05a0e92fbea4a8e4a7ed7380aac352eeaaa53701aa9004ce5f8b32dd0",
+    "bytes": 15948
+  },
+  "macro-gate/portable-conformance.log.gz": {
+    "sha256": "240b909039c2e771d5267eca7a69d27e69d0363130b19212754422a1ce8dfc5b",
+    "bytes": 477
+  },
+  "macro-gate/portable-smoke-receipt.json": {
+    "sha256": "ed0479b9d0823a270c1a895d627b4b7bd685b285dc875aa33901758d018652c8",
+    "bytes": 4512
+  },
+  "macro-gate/portable-smoke.log.gz": {
+    "sha256": "608ceca967f954ea0670ee0da696435767925df3351b803b9f40e11f7c71aa8b",
+    "bytes": 408
+  },
+  "macro-gate/powerpoint-report-example.log.gz": {
+    "sha256": "f6e85fa0fa35c3402acb9a07d4828bd8c61f2bfc077d0b0bb6ba4756cb070f64",
+    "bytes": 495
+  },
+  "macro-gate/receipt.json.gz": {
+    "sha256": "bc18ec7c2997ea242c5d419ca7f77d2785b5d671fa581ec1afcc6e22b5bf0d44",
+    "bytes": 37208
+  },
+  "macro-gate/summary.json": {
+    "sha256": "0cd979c39680fa147dee8a39c7887ae0356a236e927b3679a8b9d031991ad9a0",
+    "bytes": 22946
+  },
+  "pdf-gate/final-pdf-import-batch3.log.gz": {
+    "sha256": "3d044fb269182b40f70d9ff52c37dd92dde73e73e4e735e435592ae4cd180cc5",
+    "bytes": 1490
+  },
+  "pdf-gate/final-pdf-incoming-batch1.log.gz": {
+    "sha256": "44a998ae868d9f8b5cc1715d308db65ba04baa6e2e6ecb7c76843fbb75ada2ed",
+    "bytes": 1228
+  },
+  "pdf-gate/final-pdf-results.json": {
+    "sha256": "e42841129fda7fc975b935ac0a65eaac1e07cc1f1228e35620e385821cc73039",
+    "bytes": 3244
+  },
+  "pdf-gate/final-pdf-retained-batch2.log.gz": {
+    "sha256": "2b273a46e5f75474662926eea94dd5464e583bbbba46cebd41c6b4f63bf94204",
+    "bytes": 2983
+  },
+  "pdf-gate/final-pdf-source-snapshot.json": {
+    "sha256": "1517ee719a2d9688f000193b7f253d1cc38ff9832d22a24cbfc12ec6486ab712",
+    "bytes": 1186
+  },
+  "portable/powerpoint-conformance-compile-js.log.gz": {
+    "sha256": "e5eb625dbf7428a428d5e64e38ba6646df49757b246407811362f935f5e9d989",
+    "bytes": 118
+  },
+  "portable/powerpoint-conformance-js.log.gz": {
+    "sha256": "533f10a97551c4de904311f1e8bf919abcf4d91798299b4feca457e81ac736e1",
+    "bytes": 1323
+  },
+  "portable/powerpoint-conformance-vm.log.gz": {
+    "sha256": "533f10a97551c4de904311f1e8bf919abcf4d91798299b4feca457e81ac736e1",
+    "bytes": 1323
+  },
+  "portable/powerpoint-smoke-compile-js.log.gz": {
+    "sha256": "259210179259ccc376586273d1c28fc20d1a259b992f9f504210ed113f31f34a",
+    "bytes": 119
+  },
+  "portable/powerpoint-smoke-js.log.gz": {
+    "sha256": "e20b661d5d69d7ac91d4db5b3049cfada31add6ecae7d60825e49b6c9d4aafe3",
+    "bytes": 272
+  },
+  "portable/powerpoint-smoke-vm.log.gz": {
+    "sha256": "e20b661d5d69d7ac91d4db5b3049cfada31add6ecae7d60825e49b6c9d4aafe3",
+    "bytes": 272
+  },
+  "runtime/audit_inclusion.executed.py": {
+    "sha256": "bd618bf615b3fc46acae8a311d5d05045f8154dbf10252a6cf0c0247d4dcb3cb",
+    "bytes": 10880
+  },
+  "runtime/bundle_evidence.executed.py": {
+    "sha256": "5a75130d72da75f5341223495e0052a1d58fa2d89b285cf592bb3fc46310151b",
+    "bytes": 11450
+  },
+  "runtime/check_powerpoint_report_example.dart": {
+    "sha256": "557b5a6f094f3e46a5973a1c4e742f04d328353dd8dba8edc087daee38665fc6",
+    "bytes": 4871
+  },
+  "runtime/environment.json": {
+    "sha256": "ee17655c87eaf339344abecaf7fe28d68f9ecb4cfceed463f288cc126888e45c",
+    "bytes": 1565
+  },
+  "runtime/run_final_macro_gate.py": {
+    "sha256": "c1936f30f8e01e5a5914e79eaf033b78141f10495a292031caa912124a84daaa",
+    "bytes": 13145
+  },
+  "runtime/run_powerpoint_portable.py": {
+    "sha256": "f683b90afb954827bac2d84826334930ffb53e06b941d759510f0d3b28f5dec7",
+    "bytes": 3502
+  }
+}
