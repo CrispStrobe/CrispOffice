@@ -1,0 +1,87 @@
+{
+  "head": "79e11935e16ea1d2fa576ead0712c83f22e15c28",
+  "historical": [
+    {
+      "branch": "docs/ods-color-scale",
+      "head": "58fdddfbcf198a8c0e38e32f6fcc9d6604e95283",
+      "equivalent_ancestor": "4eaca83b192897edad82658107dfeb5bcbed0920",
+      "tree_equal": true
+    },
+    {
+      "branch": "docs/ods-data-bar",
+      "head": "69d14f84cabd3931b7640c1654b401c89faba766",
+      "equivalent_ancestor": "52c73ae4dbadf2ca00a5d619144350ccc353b31a",
+      "tree_equal": true
+    },
+    {
+      "branch": "feat/ods-color-scale",
+      "head": "74ce9ffb816c70c0d2ae50b91ec52a614f26d688",
+      "equivalent_ancestor": "4584d5f319aab198f1d705f48b4d6647e6cbabea",
+      "tree_equal": true
+    },
+    {
+      "branch": "feat/ods-data-bar",
+      "head": "0a53b8a70128870f3e1df6d18cdb177bb64290ee",
+      "equivalent_ancestor": "b3f41eb4b4bca8ca13676b4114891ea6d9185043",
+      "tree_equal": true
+    },
+    {
+      "branch": "feat/ods-dynamic-validation-links",
+      "head": "68a0db23408e4c95d6d283219504c79aea33a6fe",
+      "equivalent_ancestor": "d754bf15b07a24c8a86c8dce339ca749fecd9531",
+      "tree_equal": true
+    },
+    {
+      "branch": "feat/ods-icon-sets",
+      "head": "005c708e9f747cb46cf02e12c869b0a2f85ac824",
+      "equivalent_ancestor": "c84d5e16024c502f6c451fd04b9807b1e65f20d3",
+      "tree_equal": true
+    },
+    {
+      "branch": "feat/ods-time-period-conditions",
+      "head": "7ef09f2408f467c65427700e65907531ecb26acb",
+      "equivalent_ancestor": "34dc6b6806869570e9ec342e4d7ee0d6951c0ba6",
+      "tree_equal": true
+    },
+    {
+      "branch": "integrate/office-union-148",
+      "head": "3abf8f43b0e79c10271bbd046f391e462b8fe6b9",
+      "equivalent_ancestor": "4b2b4e78839d2997a583b7ab1346e2fa537a8ac4",
+      "tree_equal": true
+    },
+    {
+      "branch": "codex/odt-field-continuation-20261117",
+      "head": "c34945761e7991f5fe49037d79529acdd260b31c",
+      "equivalent_ancestor": "b5b1fa99228f6f1862af0bc4efba6e527c2bec43",
+      "changed_paths": 37,
+      "all_equal": true
+    }
+  ],
+  "upstream": [
+    {
+      "ref": "upstream",
+      "sha": "15c5d29b63fb17a93c7fb3426a8fd4d95a32f1ba",
+      "ancestor": true
+    },
+    {
+      "ref": "upstream/ci/flutter-workspace",
+      "sha": "aca2f66941832bd0b19b436baeab1656a1b7de98",
+      "ancestor": true
+    },
+    {
+      "ref": "upstream/cursor/class-certificates-2db8",
+      "sha": "f45099688e7a3f67a1302efdb442830d052f2240",
+      "ancestor": true
+    },
+    {
+      "ref": "upstream/cursor/cloud-agent-1790580069020-0rk1h",
+      "sha": "9930be8df44ffe117fb22778c514eea0ee73ce21",
+      "ancestor": true
+    },
+    {
+      "ref": "upstream/main",
+      "sha": "15c5d29b63fb17a93c7fb3426a8fd4d95a32f1ba",
+      "ancestor": true
+    }
+  ]
+}
