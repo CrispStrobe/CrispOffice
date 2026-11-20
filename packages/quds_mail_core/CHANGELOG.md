@@ -4,6 +4,9 @@
   coordination. Every frozen identity has a confirmed, definitely failed,
   uncertain or unattempted outcome. Stop on uncertainty, cancellation or stale
   scope; preserve in-flight receipts without authorizing stale publication.
+  Preserve immutable progress snapshots and optional stop-after-current checks.
+  Add explicit optional mutation-boundary evidence to problems and map provider
+  results conservatively: only certified no-mutation failures are definite.
 
 - Add bounded portable loaded-header search with field-scoped text, quoted
   phrases, observed read/flag states and strict local-calendar date predicates.

@@ -102,7 +102,7 @@ ActiveDocument.Paragraphs(1).Range.InsertBefore CStr($name(value))
     test('$name rejects nonnumeric Variant contents at evaluation', () {
       _reject(
         'Dim value As Variant\nvalue = "1"\n'
-        'Dim result As Double\nresult = $name(value)',
+            'Dim result As Double\nresult = $name(value)',
         'vba_type_error',
       );
     });

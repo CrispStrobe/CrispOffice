@@ -97,9 +97,15 @@ typedef StudioMailProviderFactory =
 
 /// Fixed explanations never include server replies, message data or secrets.
 final class StudioMailMessageLoadException implements Exception {
-  const StudioMailMessageLoadException(this.code);
+  const StudioMailMessageLoadException(
+    this.code, {
+    this.mutationMayHaveOccurred,
+  });
 
   final MailProblemCode code;
+
+  /// Only false certifies no remote mutation. Missing evidence stays unknown.
+  final bool? mutationMayHaveOccurred;
 
   String get message => switch (code) {
     MailProblemCode.unsupported =>
@@ -261,6 +267,7 @@ final class NativeStudioMailMessageLoader
     if (_session.isDisposed) {
       throw const StudioMailMessageLoadException(
         MailProblemCode.staleOperation,
+        mutationMayHaveOccurred: false,
       );
     }
     try {
@@ -274,11 +281,15 @@ final class NativeStudioMailMessageLoader
           validity > 0xffffffff) {
         throw const StudioMailMessageLoadException(
           MailProblemCode.invalidInput,
+          mutationMayHaveOccurred: false,
         );
       }
       return (MailMailboxId(path, account: _configuration.account), validity);
     } on ArgumentError {
-      throw const StudioMailMessageLoadException(MailProblemCode.invalidInput);
+      throw const StudioMailMessageLoadException(
+        MailProblemCode.invalidInput,
+        mutationMayHaveOccurred: false,
+      );
     }
   }
 
@@ -293,6 +304,7 @@ final class NativeStudioMailMessageLoader
       if (uid == null) {
         throw const StudioMailMessageLoadException(
           MailProblemCode.invalidInput,
+          mutationMayHaveOccurred: false,
         );
       }
       identity = MailImapIdentity(
@@ -302,7 +314,10 @@ final class NativeStudioMailMessageLoader
       );
       final bound = _browsedIdentities[header];
       if (bound != null && bound != identity) {
-        throw const StudioMailMessageLoadException(MailProblemCode.conflict);
+        throw const StudioMailMessageLoadException(
+          MailProblemCode.conflict,
+          mutationMayHaveOccurred: false,
+        );
       }
       // This optional high-level-client hint can reject an obvious stale list;
       // its XOR collisions mean it is never used instead of the full identity.
@@ -314,10 +329,16 @@ final class NativeStudioMailMessageLoader
                 mailboxUidValidity: uidValidity,
                 messageUid: uid,
               )) {
-        throw const StudioMailMessageLoadException(MailProblemCode.conflict);
+        throw const StudioMailMessageLoadException(
+          MailProblemCode.conflict,
+          mutationMayHaveOccurred: false,
+        );
       }
     } on ArgumentError {
-      throw const StudioMailMessageLoadException(MailProblemCode.invalidInput);
+      throw const StudioMailMessageLoadException(
+        MailProblemCode.invalidInput,
+        mutationMayHaveOccurred: false,
+      );
     }
     return identity;
   }
@@ -611,6 +632,7 @@ final class NativeStudioMailMessageLoader
     final operation = _MessageOperation();
     _active = operation;
     final lease = _session.begin(cancellation: operation.cancellation.token);
+    var actionInvoked = false;
     try {
       final provider = _providerFactory(
         configuration: _configuration,
@@ -620,9 +642,11 @@ final class NativeStudioMailMessageLoader
       if (provider.account != _configuration.account) {
         throw const StudioMailMessageLoadException(
           MailProblemCode.invalidInput,
+          mutationMayHaveOccurred: false,
         );
       }
       lease.checkCurrent();
+      actionInvoked = true;
       final result = await Future.any<MailResult<T>>([
         action(provider, lease),
         operation.cancelled.future.then(
@@ -631,7 +655,10 @@ final class NativeStudioMailMessageLoader
       ]);
       lease.checkCurrent();
       if (result case MailFailure<T>(:final problem)) {
-        throw StudioMailMessageLoadException(problem.code);
+        throw StudioMailMessageLoadException(
+          problem.code,
+          mutationMayHaveOccurred: problem.mutationMayHaveOccurred,
+        );
       }
       return (result as MailSuccess<T>).value;
     } on StudioMailMessageLoadException {
@@ -641,10 +668,12 @@ final class NativeStudioMailMessageLoader
         error.reason == MailCancellationReason.user
             ? MailProblemCode.cancelled
             : MailProblemCode.staleOperation,
+        mutationMayHaveOccurred: actionInvoked ? null : false,
       );
     } on Object {
-      throw const StudioMailMessageLoadException(
+      throw StudioMailMessageLoadException(
         MailProblemCode.providerFailure,
+        mutationMayHaveOccurred: actionInvoked ? null : false,
       );
     } finally {
       if (identical(_active, operation)) _active = null;

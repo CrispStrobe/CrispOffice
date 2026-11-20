@@ -480,6 +480,101 @@ void main() {
     },
   );
 
+  for (final problem in [
+    MailProblemCode.permissionDenied,
+    MailProblemCode.cancelled,
+    MailProblemCode.staleOperation,
+  ]) {
+    testWidgets(
+      'IMAP bulk distinguishes explicit no-mutation $problem evidence',
+      (tester) async {
+        final stops = problem != MailProblemCode.permissionDenied;
+        final refreshRequired = problem == MailProblemCode.staleOperation;
+        final browser = _BulkBrowser()
+          ..mutationHandler = (index) async {
+            if (index == 1) {
+              throw StudioMailMessageLoadException(
+                problem,
+                mutationMayHaveOccurred: false,
+              );
+            }
+          }
+          ..pages = (mailbox, cursor, limit) async =>
+              StudioMailHeaderPage(messages: _bulkHeaders());
+        await _show(tester, browser);
+        _bulkList(tester).onBulkAction!(MailBulkFlagAction.markRead, [
+          'imap-message-91:300',
+          'imap-message-91:200',
+          'imap-message-91:100',
+        ]);
+        await _pump(tester);
+        expect(browser.changes, hasLength(stops ? 1 : 3));
+        expect(_bulkList(tester).items.map((item) => item.isRead), [
+          false,
+          !stops,
+          !stops,
+        ]);
+        expect(_bulkList(tester).bulkActionsEnabled, !refreshRequired);
+        expect(
+          find.text(
+            stops
+                ? '0 confirmed · 1 failed · 0 uncertain · 2 not attempted'
+                : '2 confirmed · 1 failed · 0 uncertain · 0 not attempted',
+          ),
+          findsOneWidget,
+        );
+        expect(
+          find.text(_strings.mailWorkspaceRefreshRequired),
+          refreshRequired ? findsOneWidget : findsNothing,
+        );
+        expect(browser.reads, 0);
+        expect(browser.requests, hasLength(1));
+        expect(_bulkList(tester).busy, isFalse);
+        expect(tester.takeException(), isNull);
+      },
+    );
+  }
+
+  for (final mayHaveOccurred in <bool?>[null, true]) {
+    testWidgets(
+      'IMAP typed failure with mutation certainty $mayHaveOccurred remains uncertain',
+      (tester) async {
+        final browser = _BulkBrowser()
+          ..mutationHandler = (_) async {
+            throw StudioMailMessageLoadException(
+              MailProblemCode.permissionDenied,
+              mutationMayHaveOccurred: mayHaveOccurred,
+            );
+          }
+          ..pages = (mailbox, cursor, limit) async =>
+              StudioMailHeaderPage(messages: _bulkHeaders());
+        await _show(tester, browser);
+        _bulkList(tester).onBulkAction!(MailBulkFlagAction.flag, [
+          'imap-message-91:300',
+          'imap-message-91:200',
+          'imap-message-91:100',
+        ]);
+        await _pump(tester);
+        expect(browser.changes, hasLength(1));
+        expect(
+          _bulkList(tester).items.every((item) => !item.isFlagged!),
+          isTrue,
+        );
+        expect(_bulkList(tester).bulkActionsEnabled, isFalse);
+        expect(
+          find.text('0 confirmed · 0 failed · 1 uncertain · 2 not attempted'),
+          findsOneWidget,
+        );
+        expect(
+          find.text(_strings.mailWorkspaceRefreshRequired),
+          findsOneWidget,
+        );
+        expect(browser.reads, 0);
+        expect(browser.requests, hasLength(1));
+      },
+    );
+  }
+
   testWidgets(
     'IMAP bulk cancellation waits for the in-flight confirmation without cancelling transport',
     (tester) async {

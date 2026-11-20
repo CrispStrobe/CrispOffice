@@ -1071,16 +1071,10 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
         lease: lease,
         cancellation: cancellation.token,
         isScopeCurrent: currentScope,
-        apply: (operation, operationLease) async {
-          // MailResult cannot prove non-delivery after an unsuccessful reply.
-          // Keep every generic failure uncertain, including cancellation.
-          final result = await provider.apply(operation, operationLease);
-          return switch (result) {
-            MailSuccess<MailUnit>() => const MailBulkFlagAttempt.confirmed(),
-            MailFailure<MailUnit>(:final problem) =>
-              MailBulkFlagAttempt.uncertain(problem),
-          };
-        },
+        apply: (operation, operationLease) async =>
+            MailBulkFlagAttempt.fromResult(
+              await provider.apply(operation, operationLease),
+            ),
       );
       if (!currentScope()) return;
       setState(() {
@@ -1122,7 +1116,10 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
           _selected = updates[opened.remote] ?? opened;
         }
         _notice = widget.strings.mailBulkSummary(report);
-        if (report.uncertainCount > 0) {
+        if (report.uncertainCount > 0 ||
+            report.stopReason == MailBulkFlagStopReason.staleScope ||
+            report.stopReason == MailBulkFlagStopReason.invalidScope ||
+            report.stopReason == MailBulkFlagStopReason.scopeCheckFailed) {
           _needsRefresh = true;
           _error = widget.strings.mailWorkspaceRefreshRequired;
         }

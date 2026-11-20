@@ -261,9 +261,7 @@ void main() {
       expect(tester.widget<Checkbox>(checkbox).onChanged, isNull);
       expect(
         tester
-            .widget<PopupMenuButton<MailBulkFlagAction>>(
-              _key('mail-list-bulk-actions'),
-            )
+            .widget<PopupMenuButton<Object>>(_key('mail-list-bulk-actions'))
             .enabled,
         isFalse,
       );

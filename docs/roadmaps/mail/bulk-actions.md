@@ -23,6 +23,9 @@ Selection covers the current loaded window, whose connected-host ceiling is
 1,000 messages. Select shown respects the current query and quick filters. A
 filter removes hidden rows from the selection; an invalid query clears it.
 Sorting retains checked identities, and commands use their displayed order.
+An action clears the checked set as it hands its immutable snapshot to the host.
+Menu choices carry their original selection and generation even if Flutter
+rebuilds the button while its popup remains open.
 Loading another page does not check new rows automatically. No selection or
 bulk action loads a body, requests another page, or sends mail.
 
@@ -45,12 +48,14 @@ selection order. The host displays all four outcome counts. Uncertainty stops
 the batch immediately; later messages are not attempted. Another mutation
 requires an explicit folder refresh, and there is no automatic retry.
 
-The existing generic provider `MailFailure` result cannot prove whether a write
-was dispatched. Therefore the current connected adapters classify every such
-failure after invocation conservatively as uncertain. A thrown native action
-is treated the same way. The portable coordinator supports a definite failed
-receipt for adapters that can establish non-mutation; it does not infer that
-certainty from an error code, including cancellation or authentication errors.
+Provider failures carry an optional `mutationMayHaveOccurred` receipt. Only an
+explicit `false` certifies that no remote mutation happened and becomes
+**failed**. `true`, missing evidence, and unexpected exceptions become
+**uncertain**. The native loader preserves this receipt rather than discarding
+it while translating provider errors. A certified cancellation or stale-scope
+failure still stops later requests; a certified ordinary rejection can allow
+the next selected message. Timeouts, throttled dispatched requests and server
+failures retain uncertainty until an ordinary refresh reconciles observations.
 
 While a batch runs, the ordinary busy guards prevent new message operations,
 folder/account switches and another batch. **Stop after current message**
@@ -63,7 +68,8 @@ request already sent. No detached future or background replay is introduced.
 `MailBulkFlagPlan` copies and validates 1–1,000 unique remote identities in one
 account/provider/mailbox. IMAP additionally requires a single UIDVALIDITY and
 uses exact UIDs, never sequence numbers. Opaque provider IDs retain account and
-provider namespaces. The coordinator is single-use, and a consumed menu
+provider namespaces. The coordinator is single-use. Optional immutable progress snapshots preserve the full original
+order; observer failures do not rewrite provider outcomes. A consumed menu
 callback cannot dispatch the same selection again after completion.
 
 The hosts retain the original account session, provider/loader, folder

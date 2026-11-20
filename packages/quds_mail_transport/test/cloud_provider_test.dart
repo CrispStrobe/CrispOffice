@@ -275,6 +275,119 @@ final class _Harness {
 
 void main() {
   for (final service in MailCloudService.values) {
+    for (final status in [429, 499]) {
+      test(
+        '${service.name} dispatched HTTP $status stops bulk work as uncertain',
+        () async {
+          final h = _Harness(service);
+          h.transport.handler = (_) => _error(status);
+          final report = await MailBulkFlagCoordinator().run(
+            plan: MailBulkFlagPlan(
+              id: 'ambiguous-cloud-response',
+              mailbox: _mailbox,
+              provider: h.identity().provider,
+              action: MailBulkFlagAction.flag,
+              messages: [h.identity('one'), h.identity('two')],
+            ),
+            lease: h.lease,
+            apply: (operation, lease) async => MailBulkFlagAttempt.fromResult(
+              await h.provider.apply(operation, lease),
+            ),
+            isScopeCurrent: () => true,
+          );
+          expect(report.uncertainCount, 1);
+          expect(report.failedCount, 0);
+          expect(report.unattemptedCount, 1);
+          expect(report.items.first.problem?.mutationMayHaveOccurred, isTrue);
+          expect(report.requiresRefresh, isTrue);
+          expect(h.transport.mailRequests, hasLength(1));
+        },
+      );
+    }
+
+    test(
+      '${service.name} bulk distinguishes explicit rejection and uncertain write',
+      () async {
+        final h = _Harness(service);
+        var calls = 0;
+        h.transport.handler = (request) {
+          calls++;
+          if (calls == 1) return _error(409);
+          if (calls == 3) return _error(503);
+          return _json(
+            service == MailCloudService.gmail
+                ? {
+                    'id': 'two',
+                    'labelIds': ['INBOX'],
+                  }
+                : {'id': 'two', 'isRead': true},
+          );
+        };
+        final report = await MailBulkFlagCoordinator().run(
+          plan: MailBulkFlagPlan(
+            id: 'cloud-bulk',
+            mailbox: _mailbox,
+            provider: h.identity().provider,
+            action: MailBulkFlagAction.markRead,
+            messages: [
+              h.identity('one'),
+              h.identity('two'),
+              h.identity('three'),
+              h.identity('four'),
+            ],
+          ),
+          lease: h.lease,
+          apply: (operation, lease) async => MailBulkFlagAttempt.fromResult(
+            await h.provider.apply(operation, lease),
+          ),
+          isScopeCurrent: () => true,
+        );
+        expect(report.items.map((result) => result.outcome), [
+          MailBulkFlagOutcome.failed,
+          MailBulkFlagOutcome.confirmed,
+          MailBulkFlagOutcome.uncertain,
+          MailBulkFlagOutcome.unattempted,
+        ]);
+        expect(report.items.first.problem?.code, MailProblemCode.conflict);
+        expect(report.items.first.problem?.mutationMayHaveOccurred, isFalse);
+        expect(report.items[2].problem?.code, MailProblemCode.conflict);
+        expect(report.items[2].problem?.mutationMayHaveOccurred, isTrue);
+        expect(calls, 3);
+        expect(h.transport.mailRequests, hasLength(3));
+        expect(report.requiresRefresh, isTrue);
+      },
+    );
+
+    for (final possible in [false, true]) {
+      test(
+        '${service.name} transport failure preserves mutation evidence $possible',
+        () async {
+          final h = _Harness(service);
+          h.transport.handler = (_) => throw MailCloudException(
+            const MailProblem(MailProblemCode.unavailable),
+            requestMayHaveReachedServer: possible,
+          );
+          final result = await h.provider.apply(
+            MailSetFlagged(
+              id: 'failed-dispatch',
+              message: h.identity(),
+              flagged: true,
+            ),
+            h.lease,
+          );
+          final problem = (result as MailFailure<MailUnit>).problem;
+          expect(problem.mutationMayHaveOccurred, possible);
+          expect(
+            problem.code,
+            possible ? MailProblemCode.conflict : MailProblemCode.unavailable,
+          );
+          expect(h.transport.mailRequests, hasLength(1));
+        },
+      );
+    }
+  }
+
+  for (final service in MailCloudService.values) {
     group(service.name, () {
       test(
         'capabilities verifies mailbox and reports only implemented operations',

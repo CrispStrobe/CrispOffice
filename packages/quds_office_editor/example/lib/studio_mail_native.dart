@@ -1946,20 +1946,35 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
         isScopeCurrent: currentSelection,
         apply: (operation, lease) async {
           final message = byRemote[operation.message]!;
-          if (operation is MailSetRead) {
-            await actions.setRead(frozenMailbox, message, read: operation.read);
-          } else if (operation is MailSetFlagged) {
-            await actions.setFlagged(
-              frozenMailbox,
-              message,
-              flagged: operation.flagged,
-            );
-          } else {
-            return const MailBulkFlagAttempt.failed(
-              MailProblem(MailProblemCode.unsupported),
+          try {
+            if (operation is MailSetRead) {
+              await actions.setRead(
+                frozenMailbox,
+                message,
+                read: operation.read,
+              );
+            } else if (operation is MailSetFlagged) {
+              await actions.setFlagged(
+                frozenMailbox,
+                message,
+                flagged: operation.flagged,
+              );
+            } else {
+              return const MailBulkFlagAttempt.failed(
+                MailProblem(MailProblemCode.unsupported),
+              );
+            }
+            return const MailBulkFlagAttempt.confirmed();
+          } on StudioMailMessageLoadException catch (error) {
+            return MailBulkFlagAttempt.fromResult(
+              MailFailure<MailUnit>(
+                MailProblem(
+                  error.code,
+                  mutationMayHaveOccurred: error.mutationMayHaveOccurred,
+                ),
+              ),
             );
           }
-          return const MailBulkFlagAttempt.confirmed();
         },
       );
       if (!currentHost()) return;
@@ -1991,7 +2006,10 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
           }
         }
         _notice = widget.strings.mailBulkSummary(report);
-        if (report.uncertainCount > 0) {
+        if (report.uncertainCount > 0 ||
+            report.stopReason == MailBulkFlagStopReason.staleScope ||
+            report.stopReason == MailBulkFlagStopReason.invalidScope ||
+            report.stopReason == MailBulkFlagStopReason.scopeCheckFailed) {
           _needsRefresh = true;
           _error = widget.strings.mailWorkspaceRefreshRequired;
         }

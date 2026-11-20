@@ -76,17 +76,21 @@ final class NativeMailEwsProvider implements MailEwsProvider {
   @override
   MailAccountId get account => configuration.account;
 
-  MailFailure<T> _failure<T>(MailProblemCode code, {Duration? retryAfter}) =>
-      MailFailure(
-        MailProblem(
-          code,
-          retryAfter:
-              code == MailProblemCode.unavailable ||
-                  code == MailProblemCode.providerFailure
-              ? retryAfter ?? limits.retryAfter
-              : null,
-        ),
-      );
+  MailFailure<T> _failure<T>(
+    MailProblemCode code, {
+    Duration? retryAfter,
+    bool mutationMayHaveOccurred = false,
+  }) => MailFailure(
+    MailProblem(
+      code,
+      mutationMayHaveOccurred: mutationMayHaveOccurred,
+      retryAfter:
+          code == MailProblemCode.unavailable ||
+              code == MailProblemCode.providerFailure
+          ? retryAfter ?? limits.retryAfter
+          : null,
+    ),
+  );
 
   bool _validId(String value) =>
       value.isNotEmpty &&
@@ -184,7 +188,10 @@ final class NativeMailEwsProvider implements MailEwsProvider {
       return MailSuccess(result);
     } on MailCancelled catch (error) {
       if (client?.mutationStarted ?? false) {
-        return _failure(MailProblemCode.conflict);
+        return _failure(
+          MailProblemCode.conflict,
+          mutationMayHaveOccurred: true,
+        );
       }
       return _failure(
         error.reason == MailCancellationReason.user ||
@@ -194,7 +201,10 @@ final class NativeMailEwsProvider implements MailEwsProvider {
       );
     } on EwsException catch (error) {
       if (client?.mutationStarted ?? false) {
-        return _failure(MailProblemCode.conflict);
+        return _failure(
+          MailProblemCode.conflict,
+          mutationMayHaveOccurred: true,
+        );
       }
       return _failure(error.code, retryAfter: error.retryAfter);
     } on TimeoutException {
@@ -202,12 +212,14 @@ final class NativeMailEwsProvider implements MailEwsProvider {
         (client?.mutationStarted ?? false)
             ? MailProblemCode.conflict
             : MailProblemCode.unavailable,
+        mutationMayHaveOccurred: client?.mutationStarted ?? false,
       );
     } on Object {
       return _failure(
         (client?.mutationStarted ?? false)
             ? MailProblemCode.conflict
             : MailProblemCode.providerFailure,
+        mutationMayHaveOccurred: client?.mutationStarted ?? false,
       );
     } finally {
       operation.stopped = true;

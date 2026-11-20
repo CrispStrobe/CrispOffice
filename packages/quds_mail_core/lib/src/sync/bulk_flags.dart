@@ -116,6 +116,17 @@ final class MailBulkFlagPlan {
 /// cancellation, a stale lease, or a lost reply may follow remote acceptance.
 /// An adapter without definite rejection evidence must return [uncertain].
 final class MailBulkFlagAttempt {
+  /// Only explicit no-mutation evidence makes a provider failure definite.
+  /// Codes such as permission denied or cancelled cannot establish delivery.
+  factory MailBulkFlagAttempt.fromResult(MailResult<MailUnit> result) =>
+      switch (result) {
+        MailSuccess<MailUnit>() => const MailBulkFlagAttempt.confirmed(),
+        MailFailure<MailUnit>(:final problem) =>
+          problem.mutationMayHaveOccurred == false
+              ? MailBulkFlagAttempt.failed(problem)
+              : MailBulkFlagAttempt.uncertain(problem),
+      };
+
   const MailBulkFlagAttempt.confirmed()
     : outcome = MailBulkFlagOutcome.confirmed,
       problem = null;
@@ -169,6 +180,10 @@ final class MailBulkFlagReport {
   int get failedCount => count(MailBulkFlagOutcome.failed);
   int get uncertainCount => count(MailBulkFlagOutcome.uncertain);
   int get unattemptedCount => count(MailBulkFlagOutcome.unattempted);
+
+  /// Unknown remote outcomes require a fresh observation before another write.
+  /// Hosts must also reject publication into a retired account/folder scope.
+  bool get requiresRefresh => uncertainCount != 0;
 }
 
 /// A single-use, sequential foreground batch with no retry or background work.
@@ -183,6 +198,10 @@ final class MailBulkFlagReport {
 /// generation (and IMAP UIDVALIDITY), not just an account/folder name that can
 /// return after an A-to-B-to-A transition. A separate cancellation token lets
 /// the user stop later dispatches without cancelling the transport's lease.
+/// The optional `shouldStop` predicate offers the same foreground stop boundary;
+/// an exception in that predicate stops dispatch without erasing prior receipts.
+/// Progress observers receive immutable, full-order snapshots and cannot cause
+/// a retry or erase a settled result if they throw.
 final class MailBulkFlagCoordinator {
   bool _started = false;
 
@@ -192,12 +211,33 @@ final class MailBulkFlagCoordinator {
     required bool Function() isScopeCurrent,
     required MailBulkFlagApply apply,
     MailCancellationToken? cancellation,
+    bool Function()? shouldStop,
+    void Function(MailBulkFlagReport report)? onProgress,
   }) async {
     if (_started) throw StateError('A bulk coordinator can run only once.');
     _started = true;
 
-    final items = <MailBulkFlagItemResult>[];
+    final items = [
+      for (var index = 0; index < plan.messages.length; index++)
+        MailBulkFlagItemResult._(
+          plan.operationAt(index),
+          MailBulkFlagOutcome.unattempted,
+          null,
+        ),
+    ];
     MailBulkFlagStopReason? stopReason;
+
+    MailBulkFlagReport snapshot() =>
+        MailBulkFlagReport._(plan, items, stopReason);
+
+    void publish() {
+      if (onProgress == null) return;
+      try {
+        onProgress(snapshot());
+      } catch (_) {
+        // Display failures must not change delivery evidence or replay work.
+      }
+    }
 
     MailBulkFlagStopReason? interruption() {
       if (lease.account != plan.mailbox.account) {
@@ -216,14 +256,22 @@ final class MailBulkFlagCoordinator {
       } catch (_) {
         return MailBulkFlagStopReason.scopeCheckFailed;
       }
+      try {
+        if (shouldStop?.call() ?? false) {
+          return MailBulkFlagStopReason.cancelled;
+        }
+      } catch (_) {
+        return MailBulkFlagStopReason.cancelled;
+      }
       return null;
     }
 
+    publish();
     for (var index = 0; index < plan.messages.length; index++) {
       stopReason = interruption();
       if (stopReason != null) break;
 
-      final operation = plan.operationAt(index);
+      final operation = items[index].operation;
       MailBulkFlagAttempt attempt;
       try {
         attempt = await apply(operation, lease);
@@ -234,26 +282,28 @@ final class MailBulkFlagCoordinator {
           MailProblem(MailProblemCode.providerFailure),
         );
       }
-      items.add(
-        MailBulkFlagItemResult._(operation, attempt.outcome, attempt.problem),
+      items[index] = MailBulkFlagItemResult._(
+        operation,
+        attempt.outcome,
+        attempt.problem,
       );
       if (attempt.outcome == MailBulkFlagOutcome.uncertain) {
         stopReason = MailBulkFlagStopReason.uncertain;
-        break;
+      } else if (attempt.outcome == MailBulkFlagOutcome.failed) {
+        stopReason = switch (attempt.problem?.code) {
+          MailProblemCode.cancelled => MailBulkFlagStopReason.cancelled,
+          MailProblemCode.staleOperation => MailBulkFlagStopReason.staleScope,
+          _ => null,
+        };
       }
-      stopReason = interruption();
+      stopReason ??= interruption();
+      publish();
       if (stopReason != null) break;
     }
 
-    for (var index = items.length; index < plan.messages.length; index++) {
-      items.add(
-        MailBulkFlagItemResult._(
-          plan.operationAt(index),
-          MailBulkFlagOutcome.unattempted,
-          null,
-        ),
-      );
-    }
-    return MailBulkFlagReport._(plan, items, stopReason);
+    // A progress observer can retire the scope after any result, including the
+    // last one. Keep its receipt but never present that as a current-scope batch.
+    stopReason ??= interruption();
+    return snapshot();
   }
 }
