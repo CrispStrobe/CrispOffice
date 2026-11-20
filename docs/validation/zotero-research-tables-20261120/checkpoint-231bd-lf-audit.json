@@ -1,0 +1,283 @@
+{
+  "purpose": "Independent literal-LF re-audit of closed, unchanged raw streams; no SDK test rerun",
+  "accepted": true,
+  "gateCount": 6,
+  "visibleCounts": {
+    "success": 1358,
+    "skip": 8
+  },
+  "gates": {
+    "downloads-theme": {
+      "rawSha256": "96f0da06181a8f4d4a76d5d730f96b030529b8af35f27bb407e4ebbde4d06676",
+      "rawBytes": 28303,
+      "framing": "UTF-8 NDJSON split on literal U+000A only",
+      "startCount": 1,
+      "terminalCount": 1,
+      "terminalSuccess": true,
+      "eventCount": 115,
+      "startedCount": 52,
+      "completedCount": 52,
+      "duplicateIds": {
+        "start": [],
+        "done": []
+      },
+      "incompleteIds": [],
+      "unstartedIds": [],
+      "malformedJsonLines": [],
+      "nonJsonProgressLines": [],
+      "errorEvents": [],
+      "failedCompletions": [],
+      "visibleCounts": {
+        "success": 46
+      },
+      "perOriginalSuite": {
+        "/workspace/scratch/a17412353cf6/quds_office_suite/packages/quds_office_editor/example/test/studio_layout_theme_test.dart": {
+          "success": 9
+        },
+        "/workspace/scratch/a17412353cf6/quds_office_suite/packages/quds_office_editor/example/test/studio_downloads_capture_test.dart": {
+          "success": 7
+        },
+        "/workspace/scratch/a17412353cf6/quds_office_suite/packages/quds_office_editor/example/test/studio_downloads_layout_test.dart": {
+          "success": 19
+        },
+        "/workspace/scratch/a17412353cf6/quds_office_suite/packages/quds_office_editor/example/test/studio_downloads_manager_test.dart": {
+          "success": 11
+        }
+      },
+      "unicodeSeparatorNames": [],
+      "protocolComplete": true,
+      "acceptedProtocol": true,
+      "processExit": 0,
+      "source": "231bd0403a3d2855dc23bf8dacefaedba01f2aab",
+      "sourceHashesUnchanged": true,
+      "matchesPublishedCounts": true,
+      "accepted": true
+    },
+    "editor-zotero-layout": {
+      "rawSha256": "961d5b6ae289bc1321f3f9c49db6dfd62f6eb500b8c42b6762ce1d286c55129d",
+      "rawBytes": 233815,
+      "framing": "UTF-8 NDJSON split on literal U+000A only",
+      "startCount": 1,
+      "terminalCount": 1,
+      "terminalSuccess": true,
+      "eventCount": 722,
+      "startedCount": 347,
+      "completedCount": 347,
+      "duplicateIds": {
+        "start": [],
+        "done": []
+      },
+      "incompleteIds": [],
+      "unstartedIds": [],
+      "malformedJsonLines": [],
+      "nonJsonProgressLines": [],
+      "errorEvents": [],
+      "failedCompletions": [],
+      "visibleCounts": {
+        "success": 332,
+        "skip": 8
+      },
+      "perOriginalSuite": {
+        "/workspace/scratch/a17412353cf6/quds_office_suite/packages/quds_office_editor/tool/zotero/research_target_acceptance.dart": {
+          "success": 332,
+          "skip": 8
+        }
+      },
+      "unicodeSeparatorNames": [],
+      "protocolComplete": true,
+      "acceptedProtocol": true,
+      "processExit": 0,
+      "source": "231bd0403a3d2855dc23bf8dacefaedba01f2aab",
+      "sourceHashesUnchanged": true,
+      "matchesPublishedCounts": true,
+      "accepted": true
+    },
+    "engine-incoming-timeout120": {
+      "rawSha256": "f2f3ee444f8b7bafa8deb5adab578f77aee0d7a827b466cdca07da00ef595d38",
+      "rawBytes": 165487,
+      "framing": "UTF-8 NDJSON split on literal U+000A only",
+      "startCount": 1,
+      "terminalCount": 1,
+      "terminalSuccess": true,
+      "eventCount": 720,
+      "startedCount": 340,
+      "completedCount": 340,
+      "duplicateIds": {
+        "start": [],
+        "done": []
+      },
+      "incompleteIds": [],
+      "unstartedIds": [],
+      "malformedJsonLines": [],
+      "nonJsonProgressLines": [],
+      "errorEvents": [],
+      "failedCompletions": [],
+      "visibleCounts": {
+        "success": 329
+      },
+      "perOriginalSuite": {
+        "test/office_vba_arguments_integration_test.dart": {
+          "success": 16
+        },
+        "test/office_vba_arguments_test.dart": {
+          "success": 68
+        },
+        "test/office_vba_powerpoint_margins_integration_test.dart": {
+          "success": 16
+        },
+        "test/office_vba_powerpoint_margins_test.dart": {
+          "success": 27
+        },
+        "test/office_vba_procedure_boundaries_test.dart": {
+          "success": 19
+        },
+        "test/office_vba_string_intrinsics_test.dart": {
+          "success": 102
+        },
+        "test/office_vba_word_argument_shapes_test.dart": {
+          "success": 8
+        },
+        "test/office_vba_word_paragraph_layout_integration_test.dart": {
+          "success": 17
+        },
+        "test/office_vba_word_paragraph_layout_test.dart": {
+          "success": 37
+        },
+        "test/slide_text_insets_preservation_test.dart": {
+          "success": 9
+        },
+        "test/word_incremental_layout_differential_test.dart": {
+          "success": 10
+        }
+      },
+      "unicodeSeparatorNames": [],
+      "protocolComplete": true,
+      "acceptedProtocol": true,
+      "processExit": 0,
+      "source": "231bd0403a3d2855dc23bf8dacefaedba01f2aab",
+      "sourceHashesUnchanged": true,
+      "matchesPublishedCounts": true,
+      "accepted": true
+    },
+    "engine-zotero": {
+      "rawSha256": "58a8a944396162dac46c4349043683172e404691ae6f3e00a3b6d4080914e5bf",
+      "rawBytes": 272564,
+      "framing": "UTF-8 NDJSON split on literal U+000A only",
+      "startCount": 1,
+      "terminalCount": 1,
+      "terminalSuccess": true,
+      "eventCount": 820,
+      "startedCount": 400,
+      "completedCount": 400,
+      "duplicateIds": {
+        "start": [],
+        "done": []
+      },
+      "incompleteIds": [],
+      "unstartedIds": [],
+      "malformedJsonLines": [],
+      "nonJsonProgressLines": [],
+      "errorEvents": [],
+      "failedCompletions": [],
+      "visibleCounts": {
+        "success": 399
+      },
+      "perOriginalSuite": {
+        "tool/zotero/research_target_acceptance.dart": {
+          "success": 399
+        }
+      },
+      "unicodeSeparatorNames": [],
+      "protocolComplete": true,
+      "acceptedProtocol": true,
+      "processExit": 0,
+      "source": "231bd0403a3d2855dc23bf8dacefaedba01f2aab",
+      "sourceHashesUnchanged": true,
+      "matchesPublishedCounts": true,
+      "accepted": true
+    },
+    "mail-ews-reply": {
+      "rawSha256": "b1cb6a6fddb7074ea32c1bcf23ea5bad2363359f1f5f066f11fbfffbadf4c85e",
+      "rawBytes": 53734,
+      "framing": "UTF-8 NDJSON split on literal U+000A only",
+      "startCount": 1,
+      "terminalCount": 1,
+      "terminalSuccess": true,
+      "eventCount": 219,
+      "startedCount": 106,
+      "completedCount": 106,
+      "duplicateIds": {
+        "start": [],
+        "done": []
+      },
+      "incompleteIds": [],
+      "unstartedIds": [],
+      "malformedJsonLines": [],
+      "nonJsonProgressLines": [],
+      "errorEvents": [],
+      "failedCompletions": [],
+      "visibleCounts": {
+        "success": 104
+      },
+      "perOriginalSuite": {
+        "/workspace/scratch/a17412353cf6/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_ews_test.dart": {
+          "success": 61
+        },
+        "/workspace/scratch/a17412353cf6/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_reply_test.dart": {
+          "success": 43
+        }
+      },
+      "unicodeSeparatorNames": [],
+      "protocolComplete": true,
+      "acceptedProtocol": true,
+      "processExit": 0,
+      "source": "231bd0403a3d2855dc23bf8dacefaedba01f2aab",
+      "sourceHashesUnchanged": true,
+      "matchesPublishedCounts": true,
+      "accepted": true
+    },
+    "mail-native-cloud-forward": {
+      "rawSha256": "4cc9f137540ec09928b6b568c0d5d1695825a6be9269a15b2a135874ff143fa2",
+      "rawBytes": 81002,
+      "framing": "UTF-8 NDJSON split on literal U+000A only",
+      "startCount": 1,
+      "terminalCount": 1,
+      "terminalSuccess": true,
+      "eventCount": 311,
+      "startedCount": 151,
+      "completedCount": 151,
+      "duplicateIds": {
+        "start": [],
+        "done": []
+      },
+      "incompleteIds": [],
+      "unstartedIds": [],
+      "malformedJsonLines": [],
+      "nonJsonProgressLines": [],
+      "errorEvents": [],
+      "failedCompletions": [],
+      "visibleCounts": {
+        "success": 148
+      },
+      "perOriginalSuite": {
+        "/workspace/scratch/a17412353cf6/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_test.dart": {
+          "success": 81
+        },
+        "/workspace/scratch/a17412353cf6/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_cloud_test.dart": {
+          "success": 57
+        },
+        "/workspace/scratch/a17412353cf6/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_forward_test.dart": {
+          "success": 10
+        }
+      },
+      "unicodeSeparatorNames": [],
+      "protocolComplete": true,
+      "acceptedProtocol": true,
+      "processExit": 0,
+      "source": "231bd0403a3d2855dc23bf8dacefaedba01f2aab",
+      "sourceHashesUnchanged": true,
+      "matchesPublishedCounts": true,
+      "accepted": true
+    }
+  }
+}
