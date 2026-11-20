@@ -222,11 +222,15 @@ PmlShape cloneClipboardShape(
       cx: source.transform.cx,
       cy: source.transform.cy,
       rot: source.transform.rot,
+      flipH: source.transform.flipH,
+      flipV: source.transform.flipV,
     ),
     text: source.text,
     fillColor: source.fillColor,
     textColor: source.textColor,
     fontSizePt: source.fontSizePt,
+    strokeColor: source.strokeColor,
+    strokeWidth: source.strokeWidth,
     path: <PmlPathPoint>[
       for (final PmlPathPoint point in source.path)
         PmlPathPoint(point.x, point.y),

@@ -33,6 +33,24 @@ PmlShape _shape(
   ),
 );
 
+PmlShape _connector({
+  int id = 2,
+  bool flipH = false,
+  bool flipV = false,
+  bool fillOnly = false,
+}) => _shape(id, fill: fillOnly ? 'FF0000' : '')
+  ..preset = PmlShapePreset.connector
+  ..strokeColor = fillOnly ? '' : 'FF0000'
+  ..strokeWidth = 2
+  ..transform = PmlTransform(
+    x: 30 * 12700,
+    y: 30 * 12700,
+    cx: 100 * 12700,
+    cy: 40 * 12700,
+    flipH: flipH,
+    flipV: flipV,
+  );
+
 class _Raster {
   _Raster(this.width, this.height, this.bytes);
   final int width;
@@ -71,6 +89,7 @@ Future<_Raster> _render(
   Map<int, PmlAnimSample>? samples,
   OfficeTheme theme = OfficeTheme.light,
   PmlSlide? outgoing,
+  double progress = 0.5,
 }) async {
   await tester.pumpWidget(
     Directionality(
@@ -88,7 +107,7 @@ Future<_Raster> _render(
               presenting: samples != null || outgoing != null,
               animSamples: samples,
               outgoingSlide: outgoing,
-              transitionProgress: 0.5,
+              transitionProgress: progress,
               playingTransition: outgoing == null
                   ? null
                   : const PmlSlideTransition(kind: PmlTransitionKind.morph),
@@ -122,7 +141,42 @@ Future<_Raster> _render(
 }
 
 void main() {
-  testWidgets('hidden master flag retains resolved layout decorations', (
+  for (final (bool flipH, bool flipV) in [
+    (false, false),
+    (true, false),
+    (false, true),
+    (true, true),
+  ]) {
+    testWidgets('connector H=$flipH V=$flipV paints its authored diagonal', (
+      tester,
+    ) async {
+      final _Raster raster = await _render(
+        tester,
+        PmlSlide(
+          id: 256,
+          background: 'FFFFFF',
+          shapes: [_connector(flipH: flipH, flipV: flipV)],
+        ),
+      );
+      final bool ascending = flipH != flipV;
+      expect(
+        raster.count(
+          0xFF0000,
+          area: Rect.fromLTWH(ascending ? 115 : 35, 28, 15, 15),
+        ),
+        greaterThan(10),
+      );
+      expect(
+        raster.count(
+          0xFF0000,
+          area: Rect.fromLTWH(ascending ? 35 : 115, 28, 15, 15),
+        ),
+        0,
+      );
+    });
+  }
+
+  testWidgets('legacy fill-only connectors remain visible in the editor', (
     tester,
   ) async {
     final _Raster raster = await _render(
@@ -130,13 +184,140 @@ void main() {
       PmlSlide(
         id: 256,
         background: 'FFFFFF',
-        showMasterShapes: false,
-        backgroundShapes: [_shape(2)],
-        shapes: [_shape(3, x: 220, fill: '0000FF')],
+        shapes: [_connector(flipH: true, fillOnly: true)],
       ),
     );
-    expect(raster.count(0xFF0000), greaterThan(3000));
-    expect(raster.count(0x0000FF), greaterThan(3000));
+    expect(
+      raster.count(0xFF0000, area: const Rect.fromLTWH(115, 28, 15, 15)),
+      greaterThan(0),
+    );
+    expect(
+      raster.count(0xFF0000, area: const Rect.fromLTWH(35, 28, 15, 15)),
+      0,
+    );
+  });
+
+  testWidgets('rotated single-axis connector keeps its authored diagonal', (
+    tester,
+  ) async {
+    final PmlShape shape = _connector(flipH: true)
+      ..transform = const PmlTransform(
+        x: 80 * 12700,
+        y: 80 * 12700,
+        cx: 100 * 12700,
+        cy: 40 * 12700,
+        rot: 90 * 60000,
+        flipH: true,
+      );
+    final _Raster raster = await _render(
+      tester,
+      PmlSlide(id: 256, background: 'FFFFFF', shapes: [shape]),
+    );
+    expect(
+      raster.count(0xFF0000, area: const Rect.fromLTWH(142, 135, 15, 15)),
+      greaterThan(10),
+    );
+    expect(
+      raster.count(0xFF0000, area: const Rect.fromLTWH(105, 135, 15, 15)),
+      0,
+    );
+  });
+
+  test('clipboard clones preserve connector flips, stroke and geometry', () {
+    final PmlShape source = _connector(flipH: true);
+    final PmlShape copied = cloneClipboardShape(source, id: 9, nudgeEmu: 12700);
+    expect(copied.id, 9);
+    expect((copied.transform.flipH, copied.transform.flipV), (true, false));
+    expect(copied.transform.x, source.transform.x + 12700);
+    expect(copied.transform.y, source.transform.y + 12700);
+    expect(copied.strokeColor, source.strokeColor);
+    expect(copied.strokeWidth, source.strokeWidth);
+    expect(copied.preset, PmlShapePreset.connector);
+  });
+
+  test('nudge, grouped edits and undo retain independent connector flips', () {
+    final PmlShape first = _connector(flipH: true)..groupId = 1;
+    final PmlShape mate = _connector(id: 3, flipV: true)..groupId = 1;
+    final SlideEditorController controller = SlideEditorController(
+      presentation: PmlPresentation(
+        slides: [
+          PmlSlide(id: 256, shapes: [first, mate]),
+        ],
+      ),
+    );
+    addTearDown(controller.dispose);
+    void expectFlips() {
+      expect((first.transform.flipH, first.transform.flipV), (true, false));
+      expect((mate.transform.flipH, mate.transform.flipV), (false, true));
+    }
+
+    controller.selectShape(first);
+    controller.nudgeSelected(12700, 25400);
+    expect(first.transform.xPoints, 31);
+    expectFlips();
+    controller.undo();
+    expect(first.transform.xPoints, 30);
+    expectFlips();
+    controller.redo();
+    expect(first.transform.xPoints, 31);
+    expectFlips();
+    controller.applyTransform(
+      first,
+      const PmlTransform(
+        x: 35 * 12700,
+        y: 36 * 12700,
+        cx: 100 * 12700,
+        cy: 40 * 12700,
+        flipH: true,
+      ),
+    );
+    expect(mate.transform.xPoints, 35);
+    expectFlips();
+    controller.undo();
+    expectFlips();
+  });
+
+  testWidgets('morph paints sampled connector flips rather than target flags', (
+    tester,
+  ) async {
+    final PmlSlide outgoing = PmlSlide(
+      id: 256,
+      background: 'FFFFFF',
+      shapes: [_connector(flipH: true)],
+    );
+    final PmlSlide incoming = PmlSlide(
+      id: 257,
+      background: 'FFFFFF',
+      shapes: [_connector()],
+    );
+    final _Raster before = await _render(
+      tester,
+      incoming,
+      outgoing: outgoing,
+      progress: 0.25,
+    );
+    final _Raster after = await _render(
+      tester,
+      incoming,
+      outgoing: outgoing,
+      progress: 0.75,
+    );
+    expect(
+      before.count(0xFF0000, area: const Rect.fromLTWH(115, 28, 15, 15)),
+      greaterThan(10),
+    );
+    expect(
+      before.count(0xFF0000, area: const Rect.fromLTWH(35, 28, 15, 15)),
+      0,
+    );
+    expect(
+      after.count(0xFF0000, area: const Rect.fromLTWH(35, 28, 15, 15)),
+      greaterThan(10),
+    );
+    expect(
+      after.count(0xFF0000, area: const Rect.fromLTWH(115, 28, 15, 15)),
+      0,
+    );
   });
 
   testWidgets('foreground animation IDs never hide master decorations', (

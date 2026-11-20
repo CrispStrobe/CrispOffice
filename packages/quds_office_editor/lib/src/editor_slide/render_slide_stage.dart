@@ -624,6 +624,8 @@ class RenderSlideStage extends RenderBox implements MouseTrackerAnnotation {
       cx: start.cx,
       cy: start.cy,
       rot: (deg * 60000).round(),
+      flipH: start.flipH,
+      flipV: start.flipV,
     );
   }
 
@@ -632,7 +634,9 @@ class RenderSlideStage extends RenderBox implements MouseTrackerAnnotation {
         a.y == b.y &&
         a.cx == b.cx &&
         a.cy == b.cy &&
-        a.rot == b.rot;
+        a.rot == b.rot &&
+        a.flipH == b.flipH &&
+        a.flipV == b.flipV;
   }
 
   MouseCursor _cursorFor(Offset? local) {
@@ -1143,19 +1147,31 @@ class RenderSlideStage extends RenderBox implements MouseTrackerAnnotation {
   static bool _growsWithText(Rect r) => r.height < 24;
 
   /// Fill of a shape, or nothing when [PmlShape.fillColor] is empty (no fill).
-  void _paintShapeFill(Canvas canvas, PmlShape shape, Rect r, String hex) {
-    if (shape.preset == PmlShapePreset.connector &&
-        shape.strokeColor.isNotEmpty) {
-      final int? stroke = int.tryParse(shape.strokeColor, radix: 16);
+  void _paintShapeFill(
+    Canvas canvas,
+    PmlShape shape,
+    Rect r,
+    String hex, {
+    PmlTransform? transform,
+  }) {
+    if (shape.preset == PmlShapePreset.connector) {
+      final bool hasStroke = shape.strokeColor.isNotEmpty;
+      final int? stroke = int.tryParse(
+        hasStroke ? shape.strokeColor : hex,
+        radix: 16,
+      );
       if (stroke != null) {
-        final bool flipH = shape.transform.flipH;
-        final bool flipV = shape.transform.flipV;
+        final PmlTransform geometry = transform ?? shape.transform;
+        final bool flipH = geometry.flipH;
+        final bool flipV = geometry.flipV;
         canvas.drawLine(
           Offset(flipH ? r.right : r.left, flipV ? r.bottom : r.top),
           Offset(flipH ? r.left : r.right, flipV ? r.top : r.bottom),
           Paint()
             ..color = Color(0xFF000000 | stroke)
-            ..strokeWidth = shape.strokeWidth <= 0 ? 1 : shape.strokeWidth,
+            ..strokeWidth = hasStroke
+                ? (shape.strokeWidth <= 0 ? 1 : shape.strokeWidth)
+                : 1.6,
         );
       }
       return;
@@ -1660,6 +1676,7 @@ class RenderSlideStage extends RenderBox implements MouseTrackerAnnotation {
       r,
       text: frame.text,
       fillColor: frame.fillColor,
+      transform: frame.transform,
     );
     canvas.restore();
   }
@@ -1670,6 +1687,7 @@ class RenderSlideStage extends RenderBox implements MouseTrackerAnnotation {
     Rect r, {
     String? text,
     String? fillColor,
+    PmlTransform? transform,
   }) {
     canvas.save();
     if (shape.table != null) {
@@ -1686,7 +1704,7 @@ class RenderSlideStage extends RenderBox implements MouseTrackerAnnotation {
     } else {
       final String paintedFill = fillColor ?? shape.fillColor;
       final int? fill = int.tryParse(paintedFill, radix: 16);
-      _paintShapeFill(canvas, shape, r, paintedFill);
+      _paintShapeFill(canvas, shape, r, paintedFill, transform: transform);
       // Morph can change the fill independently of the model shape. Resolve
       // against that painted fill; unfilled morph backing remains unknown.
       _paintShapeText(
@@ -1846,6 +1864,8 @@ class RenderSlideStage extends RenderBox implements MouseTrackerAnnotation {
       cx: (rect.width * 12700).round().clamp(12700, 100000000),
       cy: (rect.height * 12700).round().clamp(12700, 100000000),
       rot: shape.transform.rot,
+      flipH: shape.transform.flipH,
+      flipV: shape.transform.flipV,
     );
   }
 
@@ -1964,6 +1984,8 @@ class RenderSlideStage extends RenderBox implements MouseTrackerAnnotation {
         cx: start.cx,
         cy: start.cy,
         rot: start.rot + (delta * 60000).round(),
+        flipH: start.flipH,
+        flipV: start.flipV,
       );
     }
   }
