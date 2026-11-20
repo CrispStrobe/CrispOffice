@@ -478,7 +478,6 @@ void main() {
       );
       await _pump(tester);
       expect(bodyCancelled, isTrue);
-      await lateBody.close();
       expect(current.presentation.images, isEmpty);
       expect(current.decodedText, contains('Message 50'));
       expect(current.decodedText, contains('[External image blocked: Remote]'));
