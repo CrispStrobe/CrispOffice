@@ -13,6 +13,12 @@ All notable changes to `quds_office_engine` are documented here.
   pending after workspace disk exhaustion; see the continuation validation
   record for exact completed checks and remaining gates.
 
+- Extend staged Zotero research-content insertion to authored footnotes/endnotes
+  and explicit single-paragraph replacement ranges. Preserve citation order,
+  note ownership, rich content and leading note markers without creating nested
+  notes. Revalidate ranges before application and retain atomic field, structure,
+  Unicode-boundary and protection guards.
+
 - Add the bounded `vba-powerpoint` adapter on the shared VBA compiler: explicit
   slide/shape/text-range bindings, indexed or exact-name selectors, text,
   font/alignment and geometry writes, with strict collection guards for
