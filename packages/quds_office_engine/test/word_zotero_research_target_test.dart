@@ -168,8 +168,9 @@ void main() {
             WordNotes.editableText(note),
           );
           expect(
-            WordZotero.fields(reopened)
-                .map((field) => field.citation!.citationId),
+            WordZotero.fields(
+              reopened,
+            ).map((field) => field.citation!.citationId),
             ['before', 'one', 'two', 'after'],
           );
           final next = _session(reopened, restored.paragraphs.first);
@@ -183,63 +184,77 @@ void main() {
       );
     }
 
-    test('$label list counters stay separate from body and other note stories', () {
-      var document = WmlDocument.empty(text: 'Body one');
-      document.sections.single.blocks.add(
-        WmlParagraph(inlines: <WmlInline>[WmlRun(text: 'Body two')]),
-      );
-      for (final paragraph in document.paragraphs) {
-        WordLists.applyLevel(paragraph, numbered: true, document: document);
-      }
-      final sharedId = document.paragraphs.first.properties.numId;
-      final noteIds = <int>[];
-      for (var index = 0; index < 3; index++) {
-        final note = WordNotes.insert(
-          document,
-          document.paragraphs.first,
-          endnote: endnote,
-          text: 'Note $index first',
+    test(
+      '$label list counters stay separate from body and other note stories',
+      () {
+        var document = WmlDocument.empty(text: 'Body one');
+        document.sections.single.blocks.add(
+          WmlParagraph(inlines: <WmlInline>[WmlRun(text: 'Body two')]),
         );
-        noteIds.add(note.id);
-        note.blocks.add(
-          WmlParagraph(inlines: <WmlInline>[WmlRun(text: 'Note $index second')]),
-        );
-        for (final paragraph in note.allParagraphs) {
+        for (final paragraph in document.paragraphs) {
           WordLists.applyLevel(paragraph, numbered: true, document: document);
-          expect(paragraph.properties.numId, sharedId);
         }
-        note.paragraphs.first.inlines.insert(
-          0,
-          WmlNoteMarker(endnote: endnote, properties: WmlRunProps(bold: true)),
-        );
-      }
-      final originalNotes = endnote ? document.endnotes : document.footnotes;
-      WordLists.restart(originalNotes.first.paragraphs.first, at: 3);
-      // Match the existing writer's per-story restart scope. A shared native
-      // numId must not consume the body's or another note's counter.
-      for (var cycle = 0; cycle < 2; cycle++) {
-        document = _reopen(document);
-        expect(
-          document.paragraphs.map((paragraph) => paragraph.properties.listLabel),
-          ['1. ', '2. '],
-        );
-        final notes = endnote ? document.endnotes : document.footnotes;
-        for (final (index, id) in noteIds.indexed) {
-          final note = notes.singleWhere((candidate) => candidate.id == id);
-          expect(
-            note.allParagraphs.map((paragraph) => paragraph.properties.listLabel),
-            index == 0 ? ['3. ', '4. '] : ['1. ', '2. '],
+        final sharedId = document.paragraphs.first.properties.numId;
+        final noteIds = <int>[];
+        for (var index = 0; index < 3; index++) {
+          final note = WordNotes.insert(
+            document,
+            document.paragraphs.first,
+            endnote: endnote,
+            text: 'Note $index first',
           );
-          final markers = note.allParagraphs
-              .expand((paragraph) => paragraph.inlines.whereType<WmlNoteMarker>())
-              .toList();
-          expect(markers, hasLength(1));
-          expect(note.paragraphs.first.inlines.first, same(markers.single));
-          expect(markers.single.endnote, endnote);
-          expect(markers.single.properties.bold, isTrue);
+          noteIds.add(note.id);
+          note.blocks.add(
+            WmlParagraph(
+              inlines: <WmlInline>[WmlRun(text: 'Note $index second')],
+            ),
+          );
+          for (final paragraph in note.allParagraphs) {
+            WordLists.applyLevel(paragraph, numbered: true, document: document);
+            expect(paragraph.properties.numId, sharedId);
+          }
+          note.paragraphs.first.inlines.insert(
+            0,
+            WmlNoteMarker(
+              endnote: endnote,
+              properties: WmlRunProps(bold: true),
+            ),
+          );
         }
-      }
-    });
+        final originalNotes = endnote ? document.endnotes : document.footnotes;
+        WordLists.restart(originalNotes.first.paragraphs.first, at: 3);
+        // Match the existing writer's per-story restart scope. A shared native
+        // numId must not consume the body's or another note's counter.
+        for (var cycle = 0; cycle < 2; cycle++) {
+          document = _reopen(document);
+          expect(
+            document.paragraphs.map(
+              (paragraph) => paragraph.properties.listLabel,
+            ),
+            ['1. ', '2. '],
+          );
+          final notes = endnote ? document.endnotes : document.footnotes;
+          for (final (index, id) in noteIds.indexed) {
+            final note = notes.singleWhere((candidate) => candidate.id == id);
+            expect(
+              note.allParagraphs.map(
+                (paragraph) => paragraph.properties.listLabel,
+              ),
+              index == 0 ? ['3. ', '4. '] : ['1. ', '2. '],
+            );
+            final markers = note.allParagraphs
+                .expand(
+                  (paragraph) => paragraph.inlines.whereType<WmlNoteMarker>(),
+                )
+                .toList();
+            expect(markers, hasLength(1));
+            expect(note.paragraphs.first.inlines.first, same(markers.single));
+            expect(markers.single.endnote, endnote);
+            expect(markers.single.properties.bold, isTrue);
+          }
+        }
+      },
+    );
 
     test(
       '$label headings lists and images retain the leading reference marker',
@@ -293,8 +308,9 @@ void main() {
               .toList();
           expect(pictures, hasLength(1));
           expect(
-            WordZotero.fields(result)
-                .map((field) => field.citation!.citationId),
+            WordZotero.fields(
+              result,
+            ).map((field) => field.citation!.citationId),
             ['one', 'two'],
           );
           expect(result.footnotes.length + result.endnotes.length, 1);
@@ -317,10 +333,7 @@ void main() {
         final paragraph = note.paragraphs.single;
         paragraph.inlines.insert(
           0,
-          WmlNoteMarker(
-            endnote: endnote,
-            properties: WmlRunProps(bold: true),
-          ),
+          WmlNoteMarker(endnote: endnote, properties: WmlRunProps(bold: true)),
         );
         expect(WordNotes.editableText(note), 'Trailing prose');
         final session = _session(document, paragraph, start: 1);
@@ -430,35 +443,48 @@ void main() {
     );
   }
 
-  test('body selection replaces only ordinary selected text and adjusts earlier fields', () {
-    final document = WmlDocument.empty(text: 'Before target after');
-    final paragraph = document.paragraphs.single;
-    WordZotero.insertCitation(paragraph, _citation('before', '(B)'), index: 0);
-    WordZotero.insertCitation(
-      paragraph,
-      _citation('after', '(A)'),
-      index: paragraph.text.length,
-    );
-    final start = paragraph.text.indexOf('target');
-    final session = _session(document, paragraph, start: start, end: start + 6);
-    final originals = _fields(session);
-    _start(session, '<p>First $_one</p><p>Second</p>');
-    final inserted = _convert(session, ['FIRST1']).single;
-    _set(session, inserted, 'one', '(One)');
-    _set(session, originals.first, 'before', '(Expanded before)');
-    _set(session, originals.last, 'after', '(Expanded after)');
-    _finish(session);
-    expect(document.paragraphs.map((p) => p.text), [
-      '(Expanded before)Before First (One)',
-      'Second after(Expanded after)',
-    ]);
-    expect(session.caretAfter!.offset, 'Second'.length);
-    expect(
-      WordZotero.fields(_reopen(document))
-          .map((field) => field.citation!.citationId),
-      ['before', 'one', 'after'],
-    );
-  });
+  test(
+    'body selection replaces only ordinary selected text and adjusts earlier fields',
+    () {
+      final document = WmlDocument.empty(text: 'Before target after');
+      final paragraph = document.paragraphs.single;
+      WordZotero.insertCitation(
+        paragraph,
+        _citation('before', '(B)'),
+        index: 0,
+      );
+      WordZotero.insertCitation(
+        paragraph,
+        _citation('after', '(A)'),
+        index: paragraph.text.length,
+      );
+      final start = paragraph.text.indexOf('target');
+      final session = _session(
+        document,
+        paragraph,
+        start: start,
+        end: start + 6,
+      );
+      final originals = _fields(session);
+      _start(session, '<p>First $_one</p><p>Second</p>');
+      final inserted = _convert(session, ['FIRST1']).single;
+      _set(session, inserted, 'one', '(One)');
+      _set(session, originals.first, 'before', '(Expanded before)');
+      _set(session, originals.last, 'after', '(Expanded after)');
+      _finish(session);
+      expect(document.paragraphs.map((p) => p.text), [
+        '(Expanded before)Before First (One)',
+        'Second after(Expanded after)',
+      ]);
+      expect(session.caretAfter!.offset, 'Second'.length);
+      expect(
+        WordZotero.fields(
+          _reopen(document),
+        ).map((field) => field.citation!.citationId),
+        ['before', 'one', 'after'],
+      );
+    },
+  );
 
   test(
     'selection containing a field or note reference is refused as a whole',
@@ -555,8 +581,10 @@ void main() {
     () {
       final document = WmlDocument.empty(text: 'Result');
       final paragraph = document.paragraphs.single;
-      paragraph.properties.fieldInstruction =
-          _citation('old', 'Result').fieldInstruction;
+      paragraph.properties.fieldInstruction = _citation(
+        'old',
+        'Result',
+      ).fieldInstruction;
       final session = _session(
         document,
         paragraph,
@@ -571,27 +599,34 @@ void main() {
     },
   );
 
-  test('changed selection content or deleted note refuses completed research content', () {
-    for (final remove in [false, true]) {
-      final document = WmlDocument.empty(text: 'Body');
-      final note = WordNotes.insert(
-        document,
-        document.paragraphs.single,
-        endnote: false,
-        text: 'Replace',
-      );
-      final paragraph = note.paragraphs.single;
-      final session = _session(document, paragraph, end: paragraph.text.length);
-      _start(session, '<p>Research</p>');
-      _call(session, 'Document.complete');
-      if (remove) {
-        WordNotes.delete(document, note.id, endnote: false);
-      } else {
-        paragraph.inlines.add(WmlRun(text: ' changed'));
+  test(
+    'changed selection content or deleted note refuses completed research content',
+    () {
+      for (final remove in [false, true]) {
+        final document = WmlDocument.empty(text: 'Body');
+        final note = WordNotes.insert(
+          document,
+          document.paragraphs.single,
+          endnote: false,
+          text: 'Replace',
+        );
+        final paragraph = note.paragraphs.single;
+        final session = _session(
+          document,
+          paragraph,
+          end: paragraph.text.length,
+        );
+        _start(session, '<p>Research</p>');
+        _call(session, 'Document.complete');
+        if (remove) {
+          WordNotes.delete(document, note.id, endnote: false);
+        } else {
+          paragraph.inlines.add(WmlRun(text: ' changed'));
+        }
+        expect(session.apply, throwsStateError);
+        if (!remove) expect(note.text, 'Replace changed');
+        expect(WordZotero.fields(document), isEmpty);
       }
-      expect(session.apply, throwsStateError);
-      if (!remove) expect(note.text, 'Replace changed');
-      expect(WordZotero.fields(document), isEmpty);
-    }
-  });
+    },
+  );
 }

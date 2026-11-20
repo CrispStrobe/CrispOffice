@@ -792,103 +792,148 @@ End With
     final namespace = entry.$1;
     final name = entry.$2;
     final effect = entry.$3;
-    test('direct Office $name projects and survives partial transition writes', () async {
-      final bytes = _nativeBytes(transition: '''
+    test(
+      'direct Office $name projects and survives partial transition writes',
+      () async {
+        final bytes = _nativeBytes(
+          transition:
+              '''
 <p:transition xmlns:effect="$namespace" q:dur="900" advClick="1" advTm="2500">
   $effect
   <p:sndAc><p:endSnd/></p:sndAc>
   <p:extLst><p:ext uri="{fixture}"><x:payload keep="yes"/></p:ext></p:extLst>
 </p:transition>
-''');
-      expect(
-        SlideDeserializer().readBytes(bytes).slides.first.transition.kind,
-        entry.$4,
-      );
-      final session = _session(bytes);
-      await session.run(_plan('''
+''',
+        );
+        expect(
+          SlideDeserializer().readBytes(bytes).slides.first.transition.kind,
+          entry.$4,
+        );
+        final session = _session(bytes);
+        await session.run(
+          _plan('''
 selected.SlideShowTransition.Duration = 1.25
 selected.SlideShowTransition.AdvanceOnClick = False
-'''));
-      var reopened = SlideDeserializer().readBytes(session.bytes).slides.first.transition;
-      expect(reopened.kind, entry.$4);
-      expect(reopened.durationMs, 1250);
-      expect(reopened.advanceOnClick, isFalse);
-      expect(reopened.advanceAfterMs, 2500);
-      expect(_motion(session.bytes).firstChild(name, namespaceUri: namespace), isNotNull);
-      for (final replacement in <String, PmlTransitionKind>{
-        'ppEffectNone': PmlTransitionKind.none,
-        'ppEffectCut': PmlTransitionKind.cut,
-      }.entries) {
-        final edited = _session(session.bytes);
-        final constant = replacement.key;
-        await edited.run(_plan('selected.SlideShowTransition.EntryEffect = $constant'));
-        reopened = SlideDeserializer().readBytes(edited.bytes).slides.first.transition;
-        expect(reopened.kind, replacement.value);
+'''),
+        );
+        var reopened = SlideDeserializer()
+            .readBytes(session.bytes)
+            .slides
+            .first
+            .transition;
+        expect(reopened.kind, entry.$4);
         expect(reopened.durationMs, 1250);
         expect(reopened.advanceOnClick, isFalse);
         expect(reopened.advanceAfterMs, 2500);
-        final motion = _motion(edited.bytes);
-        expect(motion.firstChild(name, namespaceUri: namespace), isNull);
-        expect(motion.firstChild('sndAc', namespaceUri: _presentation), isNotNull);
-        expect(motion.firstChild('extLst', namespaceUri: _presentation), isNotNull);
         expect(
-          motion.firstChild('cut', namespaceUri: _presentation) != null,
-          replacement.value == PmlTransitionKind.cut,
+          _motion(session.bytes).firstChild(name, namespaceUri: namespace),
+          isNotNull,
         );
-      }
-    });
+        for (final replacement in <String, PmlTransitionKind>{
+          'ppEffectNone': PmlTransitionKind.none,
+          'ppEffectCut': PmlTransitionKind.cut,
+        }.entries) {
+          final edited = _session(session.bytes);
+          final constant = replacement.key;
+          await edited.run(
+            _plan('selected.SlideShowTransition.EntryEffect = $constant'),
+          );
+          reopened = SlideDeserializer()
+              .readBytes(edited.bytes)
+              .slides
+              .first
+              .transition;
+          expect(reopened.kind, replacement.value);
+          expect(reopened.durationMs, 1250);
+          expect(reopened.advanceOnClick, isFalse);
+          expect(reopened.advanceAfterMs, 2500);
+          final motion = _motion(edited.bytes);
+          expect(motion.firstChild(name, namespaceUri: namespace), isNull);
+          expect(
+            motion.firstChild('sndAc', namespaceUri: _presentation),
+            isNotNull,
+          );
+          expect(
+            motion.firstChild('extLst', namespaceUri: _presentation),
+            isNotNull,
+          );
+          expect(
+            motion.firstChild('cut', namespaceUri: _presentation) != null,
+            replacement.value == PmlTransitionKind.cut,
+          );
+        }
+      },
+    );
   }
 
-  test('Morph projection rejects foreign namespaces and nested effect lookalikes', () {
-    for (final effect in <String>[
-      '<x:morph option="byObject"/>',
-      '<x:prstTrans prst="morph"/>',
-      '<p:extLst><p:ext uri="{fixture}"><effect:morph option="byObject"/></p:ext></p:extLst>',
-    ]) {
-      final bytes = _nativeBytes(transition: '''
+  test(
+    'Morph projection rejects foreign namespaces and nested effect lookalikes',
+    () {
+      for (final effect in <String>[
+        '<x:morph option="byObject"/>',
+        '<x:prstTrans prst="morph"/>',
+        '<p:extLst><p:ext uri="{fixture}"><effect:morph option="byObject"/></p:ext></p:extLst>',
+      ]) {
+        final bytes = _nativeBytes(
+          transition:
+              '''
 <p:transition xmlns:effect="http://schemas.microsoft.com/office/powerpoint/2015/09/main">
   $effect
 </p:transition>
-''');
-      expect(
-        SlideDeserializer().readBytes(bytes).slides.first.transition.kind,
-        PmlTransitionKind.none,
-      );
-    }
-  });
+''',
+        );
+        expect(
+          SlideDeserializer().readBytes(bytes).slides.first.transition.kind,
+          PmlTransitionKind.none,
+        );
+      }
+    },
+  );
 
-  test('legacy motion fragments do not override explicit foreign prefix bindings', () {
-    for (final xml in <String>[
-      '<p:sld xmlns:p="$_foreign"><p:transition><p14:prstTrans prst="morph"/></p:transition></p:sld>',
-      '<p:sld xmlns:p14="$_foreign"><p:transition><p14:prstTrans prst="morph"/></p:transition></p:sld>',
-      '<x:sld><p:transition><p14:prstTrans prst="morph"/></p:transition></x:sld>',
-    ]) {
-      final slide = PmlSlide(id: 256);
-      parseSlideMotion(xml, slide);
-      expect(slide.transition.kind, PmlTransitionKind.none);
-    }
-  });
+  test(
+    'legacy motion fragments do not override explicit foreign prefix bindings',
+    () {
+      for (final xml in <String>[
+        '<p:sld xmlns:p="$_foreign"><p:transition><p14:prstTrans prst="morph"/></p:transition></p:sld>',
+        '<p:sld xmlns:p14="$_foreign"><p:transition><p14:prstTrans prst="morph"/></p:transition></p:sld>',
+        '<x:sld><p:transition><p14:prstTrans prst="morph"/></p:transition></x:sld>',
+      ]) {
+        final slide = PmlSlide(id: 256);
+        parseSlideMotion(xml, slide);
+        expect(slide.transition.kind, PmlTransitionKind.none);
+      }
+    },
+  );
 
-  test('a recognized Morph inside root AlternateContent remains opaque', () async {
-    final bytes = _nativeBytes(transition: '''
+  test(
+    'a recognized Morph inside root AlternateContent remains opaque',
+    () async {
+      final bytes = _nativeBytes(
+        transition: '''
 <mc:AlternateContent xmlns:effect="http://schemas.microsoft.com/office/powerpoint/2015/09/main">
   <mc:Choice Requires="effect">
     <p:transition><effect:morph option="byObject"/></p:transition>
   </mc:Choice>
   <mc:Fallback><p:transition><p:fade/></p:transition></mc:Fallback>
 </mc:AlternateContent>
-''');
-    final transition = SlideDeserializer().readBytes(bytes).slides.first.transition;
-    expect(transition.kind, PmlTransitionKind.none);
-    expect(transition.source!.isOpaqueContainer, isTrue);
-    final session = _session(bytes);
-    await expectLater(
-      session.run(_plan('selected.SlideShowTransition.Duration = 1.25')),
-      throwsA(_error('operation_failed')),
-    );
-    expect(session.bytes, bytes);
-    expect(session.revision, 0);
-  });
+''',
+      );
+      final transition = SlideDeserializer()
+          .readBytes(bytes)
+          .slides
+          .first
+          .transition;
+      expect(transition.kind, PmlTransitionKind.none);
+      expect(transition.source!.isOpaqueContainer, isTrue);
+      final session = _session(bytes);
+      await expectLater(
+        session.run(_plan('selected.SlideShowTransition.Duration = 1.25')),
+        throwsA(_error('operation_failed')),
+      );
+      expect(session.bytes, bytes);
+      expect(session.revision, 0);
+    },
+  );
 
   test('nested and foreign transition elements are not slide transitions', () {
     final bytes = _nativeBytes(
