@@ -7,6 +7,9 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:quds_office_studio/credentials/secure_storage_service.dart';
 import 'package:quds_office_studio/studio_credential_settings.dart';
 import 'package:quds_office_studio/studio_credential_storage.dart';
+import 'package:quds_office_studio/studio_mail_credentials.dart';
+import 'package:quds_office_studio/studio_mail_native.dart';
+import 'package:quds_office_studio/studio_strings.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 final class _DelayedSelection extends StudioCredentialStorage {
@@ -93,6 +96,23 @@ void main() {
     expect(manager.mode, StudioCredentialMode.session);
   });
 
+  test('only committed choices advance the selection revision', () async {
+    final manager = StudioCredentialStorage();
+    addTearDown(manager.dispose);
+    await manager.loadSelection();
+    expect(manager.revision, 0);
+    await manager.select(StudioCredentialMode.session);
+    expect(manager.revision, 1);
+    await expectLater(
+      manager.select(StudioCredentialMode.encryptedVault),
+      throwsStateError,
+    );
+    expect(manager.revision, 1);
+    expect(manager.mode, StudioCredentialMode.session);
+    await manager.select(StudioCredentialMode.system);
+    expect(manager.revision, 2);
+  });
+
   testWidgets('selection stays open across barrier and back until committed',
       (tester) async {
     final manager = _DelayedSelection();
@@ -161,4 +181,74 @@ void main() {
     await tester.pumpAndSettle();
     expect(result, isFalse);
   });
+  testWidgets('an open Mail dialog reloads an externally selected empty store',
+      (tester) async {
+    const channel = MethodChannel(
+      'plugins.it_nomads.com/flutter_secure_storage',
+    );
+    final messenger =
+        TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger;
+    final systemReads = <String>[];
+    messenger.setMockMethodCallHandler(channel, (call) async {
+      // No native credential service is touched by this test.
+      expect(call.method, 'read');
+      systemReads.add((call.arguments as Map)['key'] as String);
+      return null;
+    });
+    final manager = StudioCredentialStorage.instance;
+    await manager.select(StudioCredentialMode.session);
+    final session = await manager.storage;
+    expect(session, isA<InMemorySecureStorage>());
+    await session.deleteAll();
+    await tester.binding.setSurfaceSize(const Size(1280, 1500));
+    addTearDown(() async {
+      await tester.pumpWidget(const SizedBox.shrink());
+      await manager.select(StudioCredentialMode.session);
+      await session.deleteAll();
+      messenger.setMockMethodCallHandler(channel, null);
+      await tester.binding.setSurfaceSize(null);
+    });
+    const saved = StudioMailCredentials(
+      email: 'session-only@example.test',
+      password: 'synthetic-session-password',
+      imapHost: 'imap.example.test',
+      smtpHost: 'smtp.example.test',
+      manual: true,
+      startTls: false,
+    );
+    expect(await StudioMailAccountsStore().save(saved), isTrue);
+    await tester.pumpWidget(const MaterialApp(
+      home: StudioMailDialog(strings: StudioStrings(StudioLanguage.en)),
+    ));
+    await tester.pumpAndSettle();
+    Finder field(String hint) => find.byWidgetPredicate(
+      (widget) => widget is TextField &&
+          widget.autofillHints?.contains(hint) == true,
+    );
+    String text(String hint) =>
+        tester.widget<TextField>(field(hint)).controller!.text;
+    final savedAccount = find.descendant(
+      of: find.byKey(const ValueKey('studio-mail-saved-account')),
+      matching: find.byType(DropdownButtonFormField<String>),
+    );
+    expect(text(AutofillHints.email), saved.email);
+    expect(text(AutofillHints.password), saved.password);
+    expect(tester.state<FormFieldState<String>>(savedAccount).value,
+        saved.accountId);
+
+    // Model another window committing its app-wide storage choice.
+    await manager.select(StudioCredentialMode.system);
+    await tester.pumpAndSettle();
+    expect(systemReads,
+        ['crispoffice.mail.accounts.v2', 'crispoffice.mail.account.v1']);
+    expect(text(AutofillHints.email), isEmpty);
+    expect(text(AutofillHints.password), isEmpty);
+    expect(tester.state<FormFieldState<String>>(savedAccount).value, isNull);
+    final original = await StudioMailAccountsStore(
+      storage: () async => session,
+    ).loadAccounts();
+    expect(original.catalog!.selectedAccountId, saved.accountId);
+    expect(tester.takeException(), isNull);
+  });
+
 }

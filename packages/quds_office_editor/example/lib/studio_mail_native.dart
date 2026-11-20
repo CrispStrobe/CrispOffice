@@ -97,6 +97,8 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
   bool _remember = true;
   StudioMailCredentials? _lastCredentialSnapshot;
   bool _credentialSettingsOpen = false;
+  bool _credentialStoreChangePending = false;
+  int _credentialStoreRevision = 0;
   bool _startTls = false;
   bool _hasSavedCredentials = false;
   bool _credentialPending = false;
@@ -145,6 +147,9 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
       _primaryLogin,
     ]) {
       controller.addListener(_settingsEdited);
+    }
+    if (widget.credentialStore == null) {
+      StudioCredentialStorage.instance.addListener(_credentialStorageChanged);
     }
     unawaited(_loadCredentials());
   }
@@ -315,7 +320,13 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
     if (remember) return store.saveAccount(credentials);
     // Opting out belongs to the account that actually connected. A new account
     // must not erase an unrelated profile that happened to be selected earlier.
+    final revision = _credentialStoreRevision;
     final loaded = await store.loadAccounts();
+    if (revision != _credentialStoreRevision) {
+      return const StudioMailAccountCatalogResult.failure(
+        StudioMailAccountCatalogProblem.unavailable,
+      );
+    }
     if (!loaded.isSuccess ||
         !loaded.catalog!.accounts.any(
           (entry) => entry.id == credentials.accountId,
@@ -329,12 +340,21 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
     mail.MailClient client,
     int sessionGeneration,
     StudioMailCredentials credentials,
-    bool remember,
-  ) async {
+    bool remember, {
+    int? storeRevision,
+  }) async {
     if (!_currentSession(client, sessionGeneration)) return;
     _lastCredentialSnapshot = remember
         ? StudioMailCredentials.fromJson(credentials.toJson())
         : null;
+    if (storeRevision != null && storeRevision != _credentialStoreRevision) {
+      setState(() {
+        _credentialError = remember
+            ? widget.strings.mailKeychainSaveFailed
+            : widget.strings.mailKeychainClearFailed;
+      });
+      return;
+    }
     final generation = ++_credentialGeneration;
     setState(() => _credentialPending = true);
     bool success;
@@ -453,6 +473,9 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
 
   @override
   void dispose() {
+    if (widget.credentialStore == null) {
+      StudioCredentialStorage.instance.removeListener(_credentialStorageChanged);
+    }
     _sessionGeneration++;
     _credentialGeneration++;
     _email.dispose();
@@ -581,6 +604,7 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
       return;
     }
     final generation = ++_sessionGeneration;
+    final storeRevision = _credentialStoreRevision;
     setState(() {
       _connecting = true;
       _error = null;
@@ -745,6 +769,7 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
           icloudFullAddressLogin: icloudFullAddressLogin,
         ),
         remember,
+        storeRevision: storeRevision,
       );
     } on Object {
       if (!_currentAttempt(generation)) return;
@@ -1388,29 +1413,18 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
       !_busy &&
       !_dialogOpen;
 
-  Future<void> _openCredentialStorage() async {
-    if (!_canChangeCredentialStorage) return;
-    setState(() {
-      _credentialSettingsOpen = true;
-      _dialogOpen = true;
-    });
-    var changed = false;
-    try {
-      changed = await showStudioCredentialSettings(context);
-    } on Object {
-      if (mounted) {
-        setState(() => _credentialError = widget.strings.mailAccountsLoadFailed);
-      }
+  void _credentialStorageChanged() {
+    if (!mounted) return;
+    _credentialStoreRevision++;
+    if (_credentialSettingsOpen) {
+      _credentialStoreChangePending = true;
       return;
-    } finally {
-      if (mounted) {
-        setState(() {
-          _credentialSettingsOpen = false;
-          _dialogOpen = false;
-        });
-      }
     }
-    if (!changed || !mounted) return;
+    unawaited(_reloadSelectedCredentialStore());
+  }
+
+  Future<void> _reloadSelectedCredentialStore() async {
+    if (!mounted) return;
     _credentialGeneration++;
     setState(() {
       _credentialPending = false;
@@ -1427,6 +1441,32 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
           : null;
     });
     await _loadCredentials();
+  }
+
+  Future<void> _openCredentialStorage() async {
+    if (!_canChangeCredentialStorage) return;
+    setState(() {
+      _credentialSettingsOpen = true;
+      _dialogOpen = true;
+    });
+    var changed = false;
+    try {
+      changed = await showStudioCredentialSettings(context);
+    } on Object {
+      if (mounted) {
+        setState(() => _credentialError = widget.strings.mailAccountsLoadFailed);
+      }
+    } finally {
+      if (mounted) {
+        setState(() {
+          _credentialSettingsOpen = false;
+          _dialogOpen = false;
+        });
+      }
+    }
+    if (!mounted || !changed && !_credentialStoreChangePending) return;
+    _credentialStoreChangePending = false;
+    await _reloadSelectedCredentialStore();
   }
 
   Widget _mailMenus(BuildContext context) => MenuBar(

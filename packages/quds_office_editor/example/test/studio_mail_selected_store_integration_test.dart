@@ -232,6 +232,107 @@ void main() {
       expect(current.catalog!.accounts, isEmpty);
     });
 
+    test('a queued save cannot move to a newly selected backend', () async {
+      final first = _Storage()
+        ..enteredRead = Completer<void>()
+        ..releaseRead = Completer<void>();
+      final second = _Storage();
+      SecureStorage selected = first;
+      var revision = 0;
+      var resolutions = 0;
+      final store = StudioMailAccountsStore(
+        storage: () async {
+          resolutions++;
+          return selected;
+        },
+        selectionRevision: () => revision,
+      );
+      final accepted = _account();
+      final firstSave = store.saveAccount(accepted);
+      await first.enteredRead!.future;
+      final queuedSave = store.saveAccount(
+        _account(email: 'queued@example.test'),
+      );
+      selected = second;
+      revision++;
+      first.releaseRead!.complete();
+      expect((await firstSave).isSuccess, isTrue);
+      expect((await queuedSave).problem,
+          StudioMailAccountCatalogProblem.unavailable);
+      expect(resolutions, 1);
+      expect(second.calls, isEmpty);
+      final persisted = await StudioMailAccountsStore(
+        storage: () async => first,
+      ).loadAccounts();
+      expect(persisted.catalog!.accounts.map((account) => account.id),
+          [accepted.accountId]);
+      expect(await second.read(_catalogKey), isNull);
+    });
+
+    test('a backend resolved after its accepted revision changed is refused',
+        () async {
+      final first = _Storage();
+      final second = _Storage();
+      final entered = Completer<void>();
+      final release = Completer<SecureStorage>();
+      var revision = 0;
+      final store = StudioMailAccountsStore(
+        storage: () {
+          entered.complete();
+          return release.future;
+        },
+        selectionRevision: () => revision,
+      );
+      final pending = store.saveAccount(_account());
+      await entered.future;
+      revision++;
+      release.complete(second);
+      expect((await pending).problem,
+          StudioMailAccountCatalogProblem.unavailable);
+      expect(first.calls, isEmpty);
+      expect(second.calls, isEmpty);
+    });
+
+    test('a queued Forget cannot erase the matching account in another store',
+        () async {
+      final first = _Storage();
+      final second = _Storage();
+      final credentials = _account();
+      for (final storage in [first, second]) {
+        final result = await StudioMailAccountsStore(
+          storage: () async => storage,
+        ).saveAccount(credentials);
+        expect(result.isSuccess, isTrue);
+      }
+      final firstBytes = await first.read(_catalogKey);
+      final secondBytes = await second.read(_catalogKey);
+      first
+        ..enteredRead = Completer<void>()
+        ..releaseRead = Completer<void>();
+      SecureStorage selected = first;
+      var revision = 0;
+      var resolutions = 0;
+      final store = StudioMailAccountsStore(
+        storage: () async {
+          resolutions++;
+          return selected;
+        },
+        selectionRevision: () => revision,
+      );
+      final acceptedLoad = store.loadAccounts();
+      await first.enteredRead!.future;
+      final queuedForget = store.forgetAccount(credentials.accountId);
+      selected = second;
+      revision++;
+      first.releaseRead!.complete();
+      expect((await acceptedLoad).isSuccess, isTrue);
+      expect((await queuedForget).problem,
+          StudioMailAccountCatalogProblem.unavailable);
+      expect(resolutions, 1);
+      expect(await first.read(_catalogKey), firstBytes);
+      expect(await second.read(_catalogKey), secondBytes);
+    });
+
     test('the selected backend retains the canonical twenty-account bound',
         () async {
       final storage = _Storage();

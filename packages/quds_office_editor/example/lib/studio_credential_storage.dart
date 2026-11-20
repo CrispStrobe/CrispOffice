@@ -22,6 +22,10 @@ class StudioCredentialStorage extends ChangeNotifier {
   final _stores = <String, SecureStorage>{};
   final _selectionOperations = AsyncLock();
   bool _loaded = false;
+  int _revision = 0;
+
+  /// Changes only after a selected backend is successfully committed.
+  int get revision => _revision;
   String get label => switch (mode) {
     StudioCredentialMode.system => 'System credential store',
     StudioCredentialMode.customKeychain => 'Custom macOS keychain',
@@ -62,7 +66,7 @@ class StudioCredentialStorage extends ChangeNotifier {
   }
 
   Future<SecureStorage> get storage async {
-    await loadSelection();
+    if (!_loaded) await loadSelection();
     // Capture the selected identity before native capability checks or
     // initialization yield. Another dialog may select a store meanwhile.
     final selectedMode = mode;
@@ -118,6 +122,7 @@ class StudioCredentialStorage extends ChangeNotifier {
         }
         mode = next;
         customPath = next == StudioCredentialMode.customKeychain ? path : null;
+        _revision++;
         notifyListeners();
       });
 }
