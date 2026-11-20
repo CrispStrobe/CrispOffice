@@ -72,13 +72,16 @@ final class _Provider extends Fake implements MailEwsProvider {
     String id,
     String subject, {
     MailMessageFlags? flags = const MailMessageFlags(),
+    MailEnvelope? envelope,
   }) => MailHeaderRecord(
     id: MailMessageId(id),
     remote: identity(id),
-    envelope: MailEnvelope(
-      subject: subject,
-      from: [const MailAddress('writer@example.test')],
-    ),
+    envelope:
+        envelope ??
+        MailEnvelope(
+          subject: subject,
+          from: [const MailAddress('writer@example.test')],
+        ),
     flags: flags,
   );
 
@@ -340,6 +343,70 @@ MailArchiveRunReport _folderReport() => MailArchiveRunReport(
 );
 
 void main() {
+  testWidgets(
+    'EWS searches recipients and dates without fetching or mutating',
+    (tester) async {
+      late _Provider provider;
+      final date = DateTime(2026, 11, 20, 12);
+      await _show(tester, (configuration, credentials) {
+        provider = _Provider(configuration, credentials);
+        provider.headerPage = (mailbox, cursor) => MailHeaderPage(
+          messages: [
+            provider.header(
+              'one',
+              'Quarterly report',
+              flags: const MailMessageFlags(isFlagged: true),
+              envelope: MailEnvelope(
+                subject: 'Quarterly report',
+                from: const [
+                  MailAddress('writer@example.test', displayName: 'Writer'),
+                ],
+                to: const [
+                  MailAddress('team@example.test', displayName: 'Project Team'),
+                ],
+                cc: const [
+                  MailAddress('reviewer@example.test', displayName: 'Reviewer'),
+                ],
+                bcc: const [MailAddress('hidden@example.test')],
+                sentAt: date,
+              ),
+            ),
+            provider.header('two', 'Quarterly report', flags: null),
+          ],
+        );
+        return provider;
+      });
+      await _connect(tester);
+      final rows = tester
+          .widget<MailMessageList>(find.byType(MailMessageList))
+          .items;
+      expect(rows.first.date, date);
+      expect(rows.first.to, contains('Project Team <team@example.test>'));
+      expect(rows.first.cc, contains('reviewer@example.test'));
+      await tester.enterText(
+        _field('mail-list-search'),
+        'from:writer to:"Project Team" cc:reviewer subject:"Quarterly report" '
+        'after:2026-11-19 before:2026-11-21 is:unread is:flagged',
+      );
+      await _pump(tester);
+      expect(_field('ews-message-one'), findsOneWidget);
+      expect(_field('ews-message-two'), findsNothing);
+      await tester.enterText(
+        _field('mail-list-search'),
+        'to:hidden@example.test',
+      );
+      await _pump(tester);
+      expect(
+        find.text(_strings.mailMessageListStrings.noMatches),
+        findsOneWidget,
+      );
+      expect(provider.cursors, hasLength(1));
+      expect(provider.reads, 0);
+      expect(provider.commands, isEmpty);
+      expect(tester.takeException(), isNull);
+    },
+  );
+
   testWidgets(
     'EWS confirms a previously unknown flag without inventing unread',
     (tester) async {

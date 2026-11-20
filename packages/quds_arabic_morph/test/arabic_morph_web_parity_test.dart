@@ -45,8 +45,11 @@ String upos(String? pos) => switch (pos) {
   'noun_num' || 'adj_num' || 'digit' => 'NUM',
   'adj' || 'adj_comp' => 'ADJ',
   'adv' || 'adv_interrog' || 'adv_rel' => 'ADV',
-  'pron' || 'pron_dem' || 'pron_exclam' || 'pron_interrog' || 'pron_rel' =>
-    'PRON',
+  'pron' ||
+  'pron_dem' ||
+  'pron_exclam' ||
+  'pron_interrog' ||
+  'pron_rel' => 'PRON',
   'verb' => 'VERB',
   'verb_pseudo' => 'AUX',
   'prep' => 'ADP',
@@ -71,95 +74,104 @@ Map<String, String> choice(String word, ArabicContextReading reading) {
 }
 
 void main() {
-  test('the Wasm worker ranks the panel exactly like the native library', () async {
-    final panel =
-        (jsonDecode(File(_panelPath).readAsStringSync())
-                as Map<String, Object?>)['sentences']!
-            as List;
-    final sentences = [
-      for (final s in panel) [for (final w in s as List) w as String],
-    ];
-    final words = [for (final s in sentences) ...s];
+  test(
+    'the Wasm worker ranks the panel exactly like the native library',
+    () async {
+      final panel =
+          (jsonDecode(File(_panelPath).readAsStringSync())
+                  as Map<String, Object?>)['sentences']!
+              as List<Object?>;
+      final sentences = [
+        for (final s in panel)
+          [for (final w in s! as List<Object?>) w! as String],
+      ];
+      final words = [for (final s in sentences) ...s];
 
-    final web = jsonDecode(File(_web!).readAsStringSync()) as Map;
-    expect(web['words'], words.length);
-    expect(web['sentence_lengths'], [for (final s in sentences) s.length]);
-    expect(web['model_format'], 'crispembed-camel-morph-disambig-v1');
-    final webReadings = CompactAnalysisDecoder(
-      (web['keys'] as List).cast<String>(),
-    ).decodeReadings(
-      Uint8List.fromList(base64Decode(web['buffer_base64'] as String)),
-      words.length,
-    );
+      final web =
+          jsonDecode(File(_web!).readAsStringSync()) as Map<String, Object?>;
+      expect(web['words'], words.length);
+      expect(web['sentence_lengths'], [for (final s in sentences) s.length]);
+      expect(web['model_format'], 'crispembed-camel-morph-disambig-v1');
+      final webReadings =
+          CompactAnalysisDecoder(
+            (web['keys']! as List<Object?>).cast<String>(),
+          ).decodeReadings(
+            Uint8List.fromList(base64Decode(web['buffer_base64'] as String)),
+            words.length,
+          );
 
-    final morphology = CamelArabicMorphology(
-      database: MorphDatabaseFiles(
-        camelMorphMsaProofingBin,
-        manifestPath: '$_bundle/manifest.json',
-      ),
-      disambiguator: MorphDatabaseFiles(
-        camelMorphMsaDisambig,
-        manifestPath: '$_model/manifest.json',
-      ),
-      nativeLibraryPath: _library,
-    );
-    addTearDown(morphology.dispose);
-    await morphology.load();
-    expect(morphology.canDisambiguate, isTrue);
-    final nativeReadings = [
-      for (final s in await morphology.disambiguate(sentences)) ...s,
-    ];
-    expect(nativeReadings, hasLength(words.length));
+      final morphology = CamelArabicMorphology(
+        database: MorphDatabaseFiles(
+          camelMorphMsaProofingBin,
+          manifestPath: '$_bundle/manifest.json',
+        ),
+        disambiguator: MorphDatabaseFiles(
+          camelMorphMsaDisambig,
+          manifestPath: '$_model/manifest.json',
+        ),
+        nativeLibraryPath: _library,
+      );
+      addTearDown(morphology.dispose);
+      await morphology.load();
+      expect(morphology.canDisambiguate, isTrue);
+      final nativeReadings = [
+        for (final s in await morphology.disambiguate(sentences)) ...s,
+      ];
+      expect(nativeReadings, hasLength(words.length));
 
-    var analyses = 0;
-    final choices = <Map<String, String>>[];
-    for (var i = 0; i < words.length; i++) {
-      final n = nativeReadings[i];
-      final w = webReadings[i];
-      final where = 'token $i (${words[i]})';
-      expect(w.analyses.length, n.analyses.length, reason: where);
-      for (var a = 0; a < n.analyses.length; a++) {
-        expect(
-          Map<String, String>.of(w.analyses[a]),
-          Map<String, String>.of(n.analyses[a]),
-          reason: '$where analysis $a',
+      var analyses = 0;
+      final choices = <Map<String, String>>[];
+      for (var i = 0; i < words.length; i++) {
+        final n = nativeReadings[i];
+        final w = webReadings[i];
+        final where = 'token $i (${words[i]})';
+        expect(w.analyses.length, n.analyses.length, reason: where);
+        for (var a = 0; a < n.analyses.length; a++) {
+          expect(
+            Map<String, String>.of(w.analyses[a]),
+            Map<String, String>.of(n.analyses[a]),
+            reason: '$where analysis $a',
+          );
+        }
+        // Scores travel as float32 in both buffers: compare exactly.
+        expect(w.scores, n.scores, reason: '$where scores');
+        expect(w.ranks, n.ranks, reason: '$where ranks');
+        final native = choice(words[i], n);
+        expect(choice(words[i], w), native, reason: where);
+        choices.add(native);
+        analyses += n.analyses.length;
+      }
+      // The panel exercises ambiguity, not only unambiguous tokens.
+      expect(analyses, greaterThan(words.length * 2));
+
+      final report = {
+        'panel': _panelPath,
+        'model':
+            '${camelMorphMsaDisambig.repository}@'
+            '${camelMorphMsaDisambig.revision}/${camelMorphMsaDisambig.directory}',
+        'tokens': words.length,
+        'analyses': analyses,
+        'web_buffer_sha256': web['buffer_sha256'],
+        'choices': choices,
+      };
+      final out = _env['QUDS_ARABIC_MORPH_PARITY_REPORT'];
+      if (out != null) {
+        File(out).writeAsStringSync(
+          '${const JsonEncoder.withIndent('  ').convert(report)}\n',
         );
       }
-      // Scores travel as float32 in both buffers: compare exactly.
-      expect(w.scores, n.scores, reason: '$where scores');
-      expect(w.ranks, n.ranks, reason: '$where ranks');
-      final native = choice(words[i], n);
-      expect(choice(words[i], w), native, reason: where);
-      choices.add(native);
-      analyses += n.analyses.length;
-    }
-    // The panel exercises ambiguity, not only unambiguous tokens.
-    expect(analyses, greaterThan(words.length * 2));
-
-    final report = {
-      'panel': _panelPath,
-      'model': '${camelMorphMsaDisambig.repository}@'
-          '${camelMorphMsaDisambig.revision}/${camelMorphMsaDisambig.directory}',
-      'tokens': words.length,
-      'analyses': analyses,
-      'web_buffer_sha256': web['buffer_sha256'],
-      'choices': choices,
-    };
-    final out = _env['QUDS_ARABIC_MORPH_PARITY_REPORT'];
-    if (out != null) {
-      File(out).writeAsStringSync(
-        '${const JsonEncoder.withIndent('  ').convert(report)}\n',
-      );
-    }
-    final expected = File(_expectedPath);
-    if (expected.existsSync()) {
-      final golden =
-          (jsonDecode(expected.readAsStringSync()) as Map)['choices'] as List;
-      expect(
-        choices,
-        [for (final c in golden) Map<String, String>.from(c as Map)],
-        reason: 'both paths must keep the recorded panel choices',
-      );
-    }
-  }, skip: _skip);
+      final expected = File(_expectedPath);
+      if (expected.existsSync()) {
+        final golden =
+            (jsonDecode(expected.readAsStringSync())
+                    as Map<String, Object?>)['choices']!
+                as List<Object?>;
+        expect(choices, [
+          for (final c in golden)
+            (c! as Map<String, Object?>).cast<String, String>(),
+        ], reason: 'both paths must keep the recorded panel choices');
+      }
+    },
+    skip: _skip,
+  );
 }

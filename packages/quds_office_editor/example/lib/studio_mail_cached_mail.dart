@@ -388,6 +388,21 @@ class _StudioMailCachedMailDialogState
                     : address.address,
               )
               .join(', '),
+          to: header.envelope.to
+              .map(
+                (address) => address.displayName?.isNotEmpty == true
+                    ? '${address.displayName} <${address.address}>'
+                    : address.address,
+              )
+              .join(', '),
+          cc: header.envelope.cc
+              .map(
+                (address) => address.displayName?.isNotEmpty == true
+                    ? '${address.displayName} <${address.address}>'
+                    : address.address,
+              )
+              .join(', '),
+          date: header.envelope.sentAt,
           dateLabel: header.envelope.sentAt?.toLocal().toString(),
           isRead: header.flags?.isRead,
           isFlagged: header.flags?.isFlagged,

@@ -10,6 +10,10 @@
 //   * proofing passes, paragraphs sent to providers, language detections,
 //   * rebuild counts of the Studio status line, review strip, workspace,
 //     ribbon and Word editor, and the number of status label changes.
+// A second test prints `TYPING_BENCHMARK_KEYS {json}`: controller-level
+// keystroke cost (insertText, layout included) for the first keystroke after
+// paint fitting, the first after a formatting change, and typing in the same
+// document with footnotes and endnotes.
 // Widget tests run in debug JIT with fake time; absolute numbers are higher
 // than a release build, so compare runs made under similar machine load.
 import 'dart:convert';
@@ -414,9 +418,90 @@ void main() {
   );
 
   test(
+    'controller keystroke cost after fitting, formatting, with notes '
+    '(QUDS_TYPING_BENCHMARK=1)',
+    skip: !_enabled,
+    timeout: const Timeout(Duration(minutes: 20)),
+    _controllerKeystrokeCost,
+  );
+
+  test(
     'session keystroke cost (QUDS_TYPING_BENCHMARK=1)',
     skip: !_enabled,
     _sessionKeystrokeCost,
+  );
+}
+
+/// insertText with the controller's real layout path (no widgets).
+Future<void> _controllerKeystrokeCost() async {
+  TestWidgetsFlutterBinding.ensureInitialized();
+  double time(void Function() edit) {
+    final watch = Stopwatch()..start();
+    edit();
+    return watch.elapsedMicroseconds / 1000;
+  }
+
+  void at(WordEditorController c, int paragraph) {
+    c.caret
+      ..paragraphIndex = paragraph
+      ..logicalIndex = c.document.paragraphs.elementAt(paragraph).text.length
+      ..collapseSelection();
+  }
+
+  final c = WordEditorController(document: _document());
+  final afterFit = <double>[];
+  final afterFormat = <double>[];
+  final warm = <double>[];
+  for (var round = 0; round < 10; round++) {
+    final paragraph = 20 + round * 15;
+    c.fitPaintMetrics(themeFamily: c.config.theme.fontFamily);
+    at(c, paragraph);
+    afterFit.add(time(() => c.insertText('x')));
+    for (var i = 0; i < 5; i++) {
+      warm.add(time(() => c.insertText('y')));
+    }
+    c.caret
+      ..selectionAnchorParagraph = paragraph
+      ..selectionAnchor = 0
+      ..paragraphIndex = paragraph
+      ..logicalIndex = 6;
+    c.applyRunFormat((props) => props.bold = !props.bold);
+    at(c, paragraph);
+    afterFormat.add(time(() => c.insertText('z')));
+  }
+  c.dispose();
+
+  final notes = WordEditorController(document: _document());
+  for (final (paragraph, endnote) in <(int, bool)>[
+    (10, false),
+    (40, false),
+    (41, false),
+    (88, false),
+    (95, false),
+    (130, false),
+    (60, true),
+    (150, true),
+  ]) {
+    at(notes, paragraph);
+    notes.insertFootnote(
+      text: endnote
+          ? 'Endnote zu Absatz $paragraph.'
+          : 'Fußnote zu Absatz $paragraph mit einer kurzen Erläuterung.',
+      endnote: endnote,
+    );
+    notes.commitPendingEdits();
+  }
+  notes.fitPaintMetrics(themeFamily: notes.config.theme.fontFamily);
+  at(notes, 90);
+  final noteKeys = <double>[];
+  for (var i = 0; i < 100; i++) {
+    noteKeys.add(time(() => notes.insertText(i % 7 == 6 ? ' ' : 'n')));
+  }
+  final pages = notes.pageCount;
+  notes.dispose();
+  // ignore: avoid_print
+  print(
+    'TYPING_BENCHMARK_KEYS ${jsonEncode({'firstAfterFitMs': _distribution(afterFit), 'firstAfterFormatMs': _distribution(afterFormat), 'followingMs': _distribution(warm), 'notesDocumentMs': _distribution(noteKeys.skip(1).toList()), 'notesFirstMs': noteKeys.first, 'notesPages': pages})}',
   );
 }
 

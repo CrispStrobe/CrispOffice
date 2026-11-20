@@ -20,7 +20,7 @@ plan rather than treating provider connectivity as full product parity.
 | 1 | Recoverable composition | Multiple account-scoped local drafts, independent reply/forward drafts, attachment/reply recovery and interrupted-send warnings; offline draft entry for verified IMAP (including discovery), EWS, Gmail and Microsoft 365 accounts | Provider-side Drafts synchronization with explicit conflicts and repository-backed offline sessions |
 | 2 | Everyday mailbox workspace (M04W/M06) | Shared foreground list and dated cached views of visited folders across IMAP, EWS, Gmail and Microsoft 365; explicitly opened bodies/attachments remain readable offline | Repository-driven foreground streams, durable synchronization and remote commands, unified inbox, consistent move/delete and bulk actions |
 | 3 | Sending and outbox (M07) | Visible native durable Outbox, atomic draft transfer/edit-copy, frozen MIME/envelopes, review/exact export, restart recovery, explicit send/retry/cancel and local uncertain closure across SMTP/EWS/Gmail/Microsoft 365 | Durable undo-send delay and explicit scheduling, then background execution and provider-specific Sent reconciliation |
-| 4 | Efficient discovery and organization | Independent archive FTS, saved archive searches and bounded mailbox filtering | Full account search, conversations, tags/categories, bulk commands and ordered rule execution with preview/recovery |
+| 4 | Efficient discovery and organization | Independent archive FTS, saved archive searches, structured loaded-header fields/phrases/dates/states and stable local mailbox sorting | Full account search, conversations, tags/categories, bulk commands and ordered rule execution with preview/recovery |
 | 5 | Rich authoring and Office workflows (M07/M08) | Word-based plain text, To/Cc/Bcc, reply all, inert HTML-only text quotes, file attachments and explicit complete attachment forwarding | Signatures/templates, HTML alternatives, inline images, attach current document/PDF and edit a copy of a received attachment |
 | 6 | Integrated productivity and release (M09–M13) | Provider adapters and shared foundations available | Calendar/People, invitation workflows, provider-specific shared mailboxes, encryption/signatures where supported, installed-platform and live-provider qualification |
 
@@ -28,6 +28,10 @@ Each increment needs an actual user path, typed failure/recovery behavior,
 focused local tests and a remote source checkpoint before the next. Reconcile
 current main/branches/PRs before final publication. GitHub Actions queue time is
 not an acceptance dependency; record the actual local commands and scope.
+
+The [loaded-header search guide](header-search.md) describes the shared query
+language, sorting, loaded-only scope and ordered next steps for discovery and
+bulk triage. It covers connected and cached mail without extra provider work.
 
 The [cached mailbox guide](cached-mailboxes.md) describes durable ordered views
 of visited folders, explicit body/attachment retention and credential-free

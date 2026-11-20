@@ -1,0 +1,14 @@
+$ python3 packages/quds_office_editor/example/tool/test_macos_minimum_version.py -v
+test_complete_release_script_parses (__main__.MinimumMacOSVersionTest.test_complete_release_script_parses) ... ok
+test_each_universal_architecture_must_fit_the_app (__main__.MinimumMacOSVersionTest.test_each_universal_architecture_must_fit_the_app) ... ok
+test_malformed_versions_fail_closed (__main__.MinimumMacOSVersionTest.test_malformed_versions_fail_closed) ... ok
+test_missing_invalid_or_unreadable_minimum_is_rejected (__main__.MinimumMacOSVersionTest.test_missing_invalid_or_unreadable_minimum_is_rejected) ... ok
+test_numeric_order_and_equivalent_zero_components (__main__.MinimumMacOSVersionTest.test_numeric_order_and_equivalent_zero_components) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.696s
+
+OK
+exit_code=0
+$ bash -n packages/quds_office_editor/example/tool/build_macos_app.sh
+exit_code=0

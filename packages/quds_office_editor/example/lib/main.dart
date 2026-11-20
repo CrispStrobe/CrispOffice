@@ -18,7 +18,10 @@ Future<void> main() async {
 }
 
 class QudsOfficeStudioApp extends StatelessWidget {
-  const QudsOfficeStudioApp({super.key});
+  const QudsOfficeStudioApp({super.key, this.home});
+
+  /// The workspace to show; defaults to the ordinary [SuiteWorkspace].
+  final Widget? home;
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +37,7 @@ class QudsOfficeStudioApp extends StatelessWidget {
       builder: (BuildContext context, Widget? child) {
         return StudioWindow.wrap(child ?? const SizedBox.shrink());
       },
-      home: const SuiteWorkspace(),
+      home: home ?? const SuiteWorkspace(),
     );
   }
 }

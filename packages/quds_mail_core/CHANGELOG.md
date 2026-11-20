@@ -1,5 +1,10 @@
 ## Unreleased
 
+- Add bounded portable loaded-header search with field-scoped text, quoted
+  phrases, observed read/flag states and strict local-calendar date predicates.
+  Queries are conjunctive, reject unsupported syntax explicitly and never fetch
+  bodies or infer unknown observations.
+
 - Add explicit terminal `closedUncertain` Outbox state: stop retries locally while retaining possible acceptance, frozen content and attempt information. Expose guarded closure and terminal-cleanup eligibility.
 
 - Add explicitly acknowledged outbox retries with a durable earlier-uncertainty
