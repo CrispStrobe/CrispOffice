@@ -3,17 +3,20 @@
 ## 20 November 2026 — browse reference notes and attachment metadata
 
 The [publication continuation](validation/zotero-research-materials-20261120/continuation/README.md)
-finishes this milestone after restoring and independently verifying the saved
-evidence. It preserves current main through PR #228, macOS portability and the
-comment-language test repair. Fresh local runs cover **3,201 distinct passing
-cases in 129 files**, including both complete Zotero suites; all **83 final
-changed Dart targets** pass strict analysis and formatting. Eight identical
-pre-existing proofing fixture repeats are counted once in a separate explicit
-accounting audit. These fresh counts overlap the original acceptance below and
-are kept separate. A lint-only block in an evaluation tool is isolated from
-the selected tests' imports. A later published macOS build-script correction
-has separate qualification: the repeated pin test, ten controlled shell
-checks and fresh full static analysis, without adding repeated case counts.
+finishes this milestone after restoring and independently verifying its saved
+evidence. Following current Word, slide and host integration, **2,386
+distinct local cases pass across 157 files** at `214c4ed8`; all **102 changed
+Dart targets** pass strict analysis and formatting. This includes both complete
+Zotero suites, rendering, Word layout, Mail and Studio integration. Eight
+synthetic comparator controls pass separately. Incoming macOS Word evidence
+remains explicitly bounded at 20 of 24 pages meeting its layout threshold.
+
+The earlier continuation at `f3f98987` separately passes 3,201 distinct cases
+in 129 files, including the new proofing/spaCy source. Eight identical existing
+proofing fixture repeats are counted once in an explicit accounting audit.
+These source-specific results overlap each other and the original acceptance
+below; they are not added together. The report preserves all raw evidence,
+source boundaries, later publication supplements and reproduction instructions.
 
 Qualified product source: **`f0122cb5bff5b6cf6a6f69f043545dabc2930791`**,
 followed by current-main integration
