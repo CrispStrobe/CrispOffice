@@ -163,6 +163,7 @@ and [combined-source qualification](validation/zotero-merged-cells-20261120/inta
 The incoming Mail continuation additionally qualified the named-argument
 example and original eight-, nine- and thirteen-operation examples on the
 VM and JavaScript; see its [source-specific record](validation/mail-bulk-actions-20261120/intake-local-word-final.md).
+Later publication evidence remains available in the [Mail/Word main record](validation/mail-bulk-actions-20261120/final-main-word-summary.md) and [Word main integration record](validation/word-main-integration-20261120/README.md).
 
 ### Next shared-language increments
 

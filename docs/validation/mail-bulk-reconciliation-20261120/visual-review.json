@@ -1,0 +1,138 @@
+{
+  "reviewed_utc": "2026-11-20T21:40:00.760759+00:00",
+  "source_head": "cdd98460c2eed261719c660351f11adc962e2ca5",
+  "scope": "Visual review of the 20 original Flutter-rendered PNGs from the frozen Mail gate; this adds no automated test cases.",
+  "status": "No blocking issue in the reconciled bulk controls.",
+  "reviews": [
+    {
+      "reviewer": "runtime_setup",
+      "files": [
+        "screenshots/studio/en-portrait-selected.png",
+        "screenshots/studio/en-portrait-actions.png",
+        "screenshots/studio/en-portrait-working.png",
+        "screenshots/studio/de-portrait-selected.png",
+        "screenshots/studio/de-portrait-actions.png",
+        "screenshots/studio/de-portrait-working.png",
+        "screenshots/studio/ar-portrait-selected.png",
+        "screenshots/studio/ar-portrait-actions.png",
+        "screenshots/studio/ar-portrait-working.png"
+      ],
+      "findings": [
+        "English, German and Arabic portrait menus show all four actions without clipping.",
+        "Arabic labels shape correctly; menu alignment and selection checkboxes follow RTL layout.",
+        "Working states disable ordinary selection/actions while keeping stop-after-current readable and available.",
+        "No missing-glyph boxes or Flutter overflow bands appear."
+      ]
+    },
+    {
+      "reviewer": "integration_audit",
+      "files": [
+        "screenshots/ui/bulk-en-selected.png",
+        "screenshots/ui/bulk-de-selected.png",
+        "screenshots/ui/bulk-ar-selected.png",
+        "screenshots/ui/bulk-de-compact-menu.png",
+        "screenshots/ui/bulk-ar-compact-menu.png",
+        "screenshots/studio/de-compact-selected.png",
+        "screenshots/studio/de-compact-actions.png",
+        "screenshots/studio/de-compact-working.png",
+        "screenshots/studio/ar-compact-selected.png",
+        "screenshots/studio/ar-compact-actions.png",
+        "screenshots/studio/ar-compact-working.png"
+      ],
+      "findings": [
+        "All 5 UI harness PNGs and all 6 compact Studio PNGs were independently inspected.",
+        "Arabic letters shape correctly and RTL controls/checkboxes/actions mirror coherently.",
+        "All four localized menu actions remain readable; stop-after-current is visible in both compact working states.",
+        "Bounded header scrolling, ellipsized subjects/senders/search hints, and disabled working-state controls match intended behavior.",
+        "No missing-glyph boxes or overflow warnings were observed."
+      ]
+    }
+  ],
+  "nonblocking_existing_observation": {
+    "detail": "In Arabic portrait rows, Latin sender/address punctuation follows the inherited RTL paragraph direction. The sender Text widget is identical in the pre-reconciliation 467dcaffe baseline and the qualified tree; this is existing row rendering, not a new bulk-control behavior.",
+    "source": "packages/quds_mail_ui/lib/src/workspace/message_list.dart"
+  },
+  "screenshots": {
+    "screenshots/studio/ar-compact-actions.png": {
+      "bytes": 30632,
+      "sha256": "63023447447e55745bfcb5072a28f70a606e88343bf8b7778db76d1824ab789c"
+    },
+    "screenshots/studio/ar-compact-selected.png": {
+      "bytes": 36748,
+      "sha256": "7caf8bbafb9547c3f24a18a049b882e2045ea3e8484bf2f9861a97b0011783f6"
+    },
+    "screenshots/studio/ar-compact-working.png": {
+      "bytes": 30099,
+      "sha256": "e5adc7d1fff2b5984e63e2bdd9723056f4d0afa32ae2238237d2ee26528a8c9b"
+    },
+    "screenshots/studio/ar-portrait-actions.png": {
+      "bytes": 97364,
+      "sha256": "4db21d932768a3c652bba7645acd87661c0719b3bbdb373842af82acd36e11fe"
+    },
+    "screenshots/studio/ar-portrait-selected.png": {
+      "bytes": 105856,
+      "sha256": "442b31e713c1707891ae7b3d3027122d770c55e669391c06a5f8cf49cdef8334"
+    },
+    "screenshots/studio/ar-portrait-working.png": {
+      "bytes": 110020,
+      "sha256": "eb7d46e80fe62d625d7d1097fd3d0de040c25a31c681e7ed2ceb7a386b76e95c"
+    },
+    "screenshots/studio/de-compact-actions.png": {
+      "bytes": 32553,
+      "sha256": "4e8bdef2adc8b30010141f77216b69e495691650fd73bdeba4a48e25d60d82c8"
+    },
+    "screenshots/studio/de-compact-selected.png": {
+      "bytes": 39566,
+      "sha256": "fdc88b04d3ea4e9436e2504dbcc2e898727d4e588ce0970226db76b448cd85fe"
+    },
+    "screenshots/studio/de-compact-working.png": {
+      "bytes": 35364,
+      "sha256": "3d86eb5101e3b8fc3d8a9da6d31b130852e90fdd0f48ea566002981b10d3eac2"
+    },
+    "screenshots/studio/de-portrait-actions.png": {
+      "bytes": 129448,
+      "sha256": "7ecf673804688e1e67bb0b9c8d6696e4e6d98bcf1e9ec89967d4a39df2b60c03"
+    },
+    "screenshots/studio/de-portrait-selected.png": {
+      "bytes": 144667,
+      "sha256": "23cc46d0162a7fea6179b2a1ea600ed2b816e932504d167ab5401cbfceb21387"
+    },
+    "screenshots/studio/de-portrait-working.png": {
+      "bytes": 150240,
+      "sha256": "96ed1f4bed9868d4ddf5e9e7e35dab8d9a16bd6d7eba32a93b9ff044c7c39405"
+    },
+    "screenshots/studio/en-portrait-actions.png": {
+      "bytes": 119855,
+      "sha256": "3a3276365ab83e85de04e474753a3078c79a364fc69f218a61c9cf482bf0a7c8"
+    },
+    "screenshots/studio/en-portrait-selected.png": {
+      "bytes": 122964,
+      "sha256": "a0f347bb40cc06f8d139b285d5e3113028f99834911e16dc837ae0d17c243d87"
+    },
+    "screenshots/studio/en-portrait-working.png": {
+      "bytes": 128949,
+      "sha256": "4cf81ca5fb56b7c51709d03b7fde71f35e36f1b0c7616b16631a6618c8a5be35"
+    },
+    "screenshots/ui/bulk-ar-compact-menu.png": {
+      "bytes": 26947,
+      "sha256": "4a1f6a1874f8e3cffcbe74b964105f52aefb3a3ed41a2e71a8f2ca6ffd257f3f"
+    },
+    "screenshots/ui/bulk-ar-selected.png": {
+      "bytes": 61637,
+      "sha256": "2586febbbd83472af3c454d6647dddc8f0a5b1a9094c228bf61344851bc68dbd"
+    },
+    "screenshots/ui/bulk-de-compact-menu.png": {
+      "bytes": 27827,
+      "sha256": "451a241ba7238774a4ca5928730ab807047492f281176b4d12686ef822ef7d3c"
+    },
+    "screenshots/ui/bulk-de-selected.png": {
+      "bytes": 76922,
+      "sha256": "bca23db4d9df4cde054e0da2f5b6224228b3a7e37338fb9a635ce714cf4a75cc"
+    },
+    "screenshots/ui/bulk-en-selected.png": {
+      "bytes": 66752,
+      "sha256": "33bcee5c6a755e26f0dd4608ea3c0f3286faaec15d2b8680a31bca21b9ebc6a5"
+    }
+  },
+  "no_source_edits": true
+}

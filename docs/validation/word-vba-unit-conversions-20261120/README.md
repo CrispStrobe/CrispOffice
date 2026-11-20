@@ -10,11 +10,26 @@ describe the executed results below.
 The later intake of main at
 `e975cec13b289fe067ef406cd3044701ecc44744` changes native Word layout and
 deserialization, while the measurement compiler remains byte-identical. The
-integration also repairs header-picture identity/placement handling and preserves
-explicit table-header run color and bold-off formatting. Final qualification of
-those native changes is pending at this source checkpoint. The receipts below
-remain bound to their stated earlier source; they are not a claim that the two
-native files stayed unchanged through this later intake.
+integration repairs header-picture identity/placement handling and preserves
+explicit table-header run color and bold-off formatting. The accepted
+[latest-main qualification](../word-main-integration-20261120/README.md) binds
+the frozen run at `cdd98460c2eed261719c660351f11adc962e2ca5` and the test-only
+correction at `cf25a0a3d80ee18d2550161af182bacc4e49d18f`.
+
+That follow-up refreshes 709 macro cases already contained in the historical
+3,598-case corpus; they are not added to that count. It accepts 312 native/layout
+passes across 26 files by retaining 271 unchanged cases and replacing the
+41-case contained-text suite after its geometry correction. Editor checks
+passed 103 cases, with eight explicitly documented image-only fixtures skipped
+because they have no editable paragraphs. Strict analysis and both actual
+BAS examples on VM and optimized JavaScript passed. The eight lowercase font
+filename aliases were source-reviewed and statically analyzed only.
+
+The linked report preserves the initial false receipt, the successful focused
+correction, exact case identities, source/runtime seals and coverage limits.
+The historical numbers and receipts below remain bound to their stated earlier
+source; they do not claim that native Word files stayed unchanged through this
+later intake.
 
 ## Result and captured source
 

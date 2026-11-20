@@ -17,8 +17,8 @@ All notable changes to `quds_office_engine` are documented here.
   by logical column (including unspecified zero entries), and sum covered grid
   widths for each cell. Retain rich text, lists, pictures and active citations
   through body/note insertion, DOCX save/reopen and one undo/redo transaction.
-  Keep whole-note resource bounds and refuse vertical merges, nested tables,
-  unequal logical row widths and unsupported table groups/styles.
+  Keep whole-note resource bounds and reject malformed logical grids, nested
+  tables and unsupported table groups/styles.
 - Advertise native Zotero citation merging and report adjacency to the next
   enumerated field only for physically touching citation packets in the same
   paragraph/story/note. Let Zotero own order, deduplication and formatting;

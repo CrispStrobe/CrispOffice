@@ -1,0 +1,142 @@
+{
+  "accepted_scope": {
+    "editor": {
+      "evidence_retained_from": "cdd98460c2eed261719c660351f11adc962e2ca5",
+      "failed": 0,
+      "files": 5,
+      "passed": 103,
+      "skip_reason": "Eight existing image-only floating DOCX fixtures have no editable paragraphs; not counted as passes.",
+      "skipped": 8
+    },
+    "macro_rerun": {
+      "additional_cases_to_add_to_historical_macro_corpus": 0,
+      "evidence_retained_from": "cdd98460c2eed261719c660351f11adc962e2ca5",
+      "files": 23,
+      "passed": 709
+    },
+    "native_layout": {
+      "failed": 0,
+      "files": 26,
+      "passed": 312,
+      "retained_case_count": 271,
+      "skipped": 0,
+      "superseding_case_count": 41
+    },
+    "retained_analyzers": [
+      "engine-analysis",
+      "editor-delta-analysis"
+    ],
+    "retained_portable_examples": [
+      "measurements",
+      "named-measurements"
+    ]
+  },
+  "captured_source_count": 1117,
+  "changed_captured_inputs": [
+    "packages/quds_office_engine/test/word_contained_text_wrap_test.dart"
+  ],
+  "commands": [
+    {
+      "command": [
+        "/workspace/scratch/03cd41fa0e7e/runtime/toolchain/dart-sdk/bin/dart",
+        "--old_gen_heap_size=768",
+        "--packages=/workspace/scratch/03cd41fa0e7e/quds_mail_integration/.dart_tool/package_config.json",
+        "/workspace/scratch/03cd41fa0e7e/runtime/toolchain/test-runner/test-runner.dill",
+        "--compiler",
+        "source",
+        "--concurrency=1",
+        "--timeout=4x",
+        "--reporter=json",
+        "test/word_contained_text_wrap_test.dart"
+      ],
+      "cwd": "/workspace/scratch/03cd41fa0e7e/quds_mail_integration/packages/quds_office_engine",
+      "exit_code": 0,
+      "finished_utc": "2026-11-20T21:52:02.694817+00:00",
+      "name": "contained-text-suite",
+      "seconds": 8.671,
+      "started_utc": "2026-11-20T21:51:54.023951+00:00",
+      "stderr": "contained-text-suite.stderr.log",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "contained-text-suite.stdout.log",
+      "stdout_sha256": "7e059ac1be493e36c761b72a1f14f4d737cb11fcabba01dd1ff20e29a2d94868"
+    },
+    {
+      "command": [
+        "/workspace/scratch/03cd41fa0e7e/runtime/toolchain/dart-sdk/bin/dart",
+        "analyze",
+        "--fatal-infos",
+        "test/word_contained_text_wrap_test.dart"
+      ],
+      "cwd": "/workspace/scratch/03cd41fa0e7e/quds_mail_integration/packages/quds_office_engine",
+      "exit_code": 0,
+      "finished_utc": "2026-11-20T21:52:06.733122+00:00",
+      "name": "fixture-analysis",
+      "seconds": 4.038,
+      "started_utc": "2026-11-20T21:52:02.695072+00:00",
+      "stderr": "fixture-analysis.stderr.log",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "fixture-analysis.stdout.log",
+      "stdout_sha256": "213bea4560958ce302c55e31d991dde8fcad4a00b0a3b276094df70d85fed918"
+    },
+    {
+      "command": [
+        "/workspace/scratch/03cd41fa0e7e/runtime/toolchain/dart-sdk/bin/dart",
+        "format",
+        "--output=none",
+        "--set-exit-if-changed",
+        "test/word_contained_text_wrap_test.dart"
+      ],
+      "cwd": "/workspace/scratch/03cd41fa0e7e/quds_mail_integration/packages/quds_office_engine",
+      "exit_code": 0,
+      "finished_utc": "2026-11-20T21:52:06.770380+00:00",
+      "name": "fixture-format",
+      "seconds": 0.037,
+      "started_utc": "2026-11-20T21:52:06.733378+00:00",
+      "stderr": "fixture-format.stderr.log",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "fixture-format.stdout.log",
+      "stdout_sha256": "1685974b88bd671112e17334bdc2abb8ef350e01ae026547459ec7a8307375ec"
+    }
+  ],
+  "dart_version": "Dart SDK version: 3.14.1 (stable) (Tue Nov 17 00:01:24 2026 -0800) on \"linux_x64\"",
+  "engine_editor_changed_paths": [
+    "packages/quds_office_editor/example/test/studio_mail_cached_mail_test.dart",
+    "packages/quds_office_engine/test/word_contained_text_wrap_test.dart"
+  ],
+  "engine_editor_production_changed_paths": [],
+  "finished_utc": "2026-11-20T21:52:06.912040+00:00",
+  "focused_suite": {
+    "case_identities_unique": true,
+    "failed": 0,
+    "passed": 41,
+    "prior_replaced_cases": 41,
+    "prior_replaced_failed_cases": [
+      {
+        "file": "test/word_contained_text_wrap_test.dart",
+        "name": "Indic cell clusters keep their owners through direct and isolate saves",
+        "occurrence": 1,
+        "result": "failure",
+        "skipped": false
+      }
+    ],
+    "reporter_errors": 0,
+    "same_case_identities_as_prior_file": true,
+    "skipped": 0,
+    "terminal_success": true
+  },
+  "head_unchanged": true,
+  "original_failure_receipt_unchanged": true,
+  "prior_receipt": "/workspace/scratch/03cd41fa0e7e/runtime/word-main-qualification/qualification.json",
+  "prior_receipt_sha256": "66edc44f8ced980ece429fd630a717202938248944bb511af3f7410bcca4ef6f",
+  "prior_receipt_success": false,
+  "prior_source_head": "cdd98460c2eed261719c660351f11adc962e2ca5",
+  "runtime_unchanged": true,
+  "selection_rationale": "Only the contained-text wrapping fixture geometry changed. Rerun its whole 41-case suite; retain prior passing results only where production and test inputs are unchanged. Keep all original failures and editor skips visible.",
+  "source_head": "cf25a0a3d80ee18d2550161af182bacc4e49d18f",
+  "source_tree": "0780f20f27df62004404496d8e5c529c4bdccd87",
+  "source_unchanged": true,
+  "started_utc": "2026-11-20T21:51:54.019913+00:00",
+  "success": true,
+  "success_scope": "This success flag qualifies the focused native fixture correction and unchanged-input retention. It does not turn the eight editor skips into passes or supersede the raw historical success=false receipt.",
+  "worktree_clean": true
+}
