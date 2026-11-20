@@ -1,0 +1,115 @@
+{
+  "commands": [
+    {
+      "command": [
+        "/workspace/scratch/03cd41fa0e7e/runtime/toolchain/dart-sdk/bin/dart",
+        "--old_gen_heap_size=768",
+        "--packages=/workspace/scratch/03cd41fa0e7e/quds_delivery/.dart_tool/package_config.json",
+        "/workspace/scratch/03cd41fa0e7e/runtime/toolchain/test-runner/test-runner.dill",
+        "--compiler",
+        "source",
+        "--concurrency=1",
+        "--timeout=4x",
+        "--reporter=json",
+        "test/word_header_picture_identity_test.dart",
+        "test/word_styles_layout_test.dart",
+        "test/word_contained_text_wrap_test.dart"
+      ],
+      "cwd": "/workspace/scratch/03cd41fa0e7e/quds_delivery/packages/quds_office_engine",
+      "exit_code": 0,
+      "finished_utc": "2026-11-20T22:46:13.266349+00:00",
+      "name": "word-bridge",
+      "seconds": 22.013,
+      "started_utc": "2026-11-20T22:45:51.253297+00:00",
+      "stderr": "word-bridge.stderr.log",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "word-bridge.stdout.log",
+      "stdout_sha256": "07d21ec218cd0afd6a206f3163038d1d48131e37c7580b39758300154100fc96"
+    },
+    {
+      "command": [
+        "/workspace/scratch/03cd41fa0e7e/runtime/toolchain/dart-sdk/bin/dart",
+        "analyze",
+        "--fatal-infos"
+      ],
+      "cwd": "/workspace/scratch/03cd41fa0e7e/quds_delivery/packages/quds_office_engine",
+      "exit_code": 0,
+      "finished_utc": "2026-11-20T22:46:24.953264+00:00",
+      "name": "engine-analysis",
+      "seconds": 11.685,
+      "started_utc": "2026-11-20T22:46:13.268124+00:00",
+      "stderr": "engine-analysis.stderr.log",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "engine-analysis.stdout.log",
+      "stdout_sha256": "c557a0c697cdb937104f1423d3c02d6a1062917cb0bcb2830d91db8cf6192af0"
+    },
+    {
+      "command": [
+        "/workspace/scratch/03cd41fa0e7e/runtime/flutter-toolchain/flutter/bin/cache/dart-sdk/bin/dart",
+        "format",
+        "--output=none",
+        "--set-exit-if-changed",
+        "packages/quds_office_engine/lib/src/word/layout/word_layout.dart",
+        "packages/quds_office_engine/lib/src/word/serial/word_deserializer.dart",
+        "packages/quds_office_engine/test/word_contained_text_wrap_test.dart",
+        "packages/quds_office_engine/test/word_header_picture_identity_test.dart",
+        "packages/quds_office_engine/test/word_header_visual_reconciliation_test.dart",
+        "packages/quds_office_engine/test/word_styles_layout_test.dart",
+        "packages/quds_office_engine/test/word_table_style_import_regression_test.dart"
+      ],
+      "cwd": "/workspace/scratch/03cd41fa0e7e/quds_delivery",
+      "exit_code": 0,
+      "finished_utc": "2026-11-20T22:46:25.118508+00:00",
+      "name": "format",
+      "seconds": 0.165,
+      "started_utc": "2026-11-20T22:46:24.954013+00:00",
+      "stderr": "format.stderr.log",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "format.stdout.log",
+      "stdout_sha256": "858b3cab8736f24db5bfcd48ac07f1b2386e6ef57b8e4fb3e17a3af062d5d8aa"
+    }
+  ],
+  "compiler_unchanged_from_c623_and_historical_corpus": true,
+  "dart_version": "Dart SDK version: 3.14.1 (stable) (Tue Nov 17 00:01:24 2026 -0800) on \"linux_x64\"",
+  "finished_utc": "2026-11-20T22:46:25.285714+00:00",
+  "head_unchanged": true,
+  "incoming_audit_sha256": "f828d114b18b8760916407cf818d2ad0cae200f45cbd36ef03e89c90e205b56b",
+  "incoming_selected_source_hashes_verified": {
+    "packages/quds_office_engine/lib/src/word/layout/word_layout.dart": "145e4a217a3be912e39ba15c4563662537daed2906d1b0c9f52a44855338b0e2",
+    "packages/quds_office_engine/lib/src/word/serial/word_deserializer.dart": "f497d871548a813fbb399370930b105696e43980801e283dcad86b8be16a9286",
+    "packages/quds_office_engine/test/word_contained_text_wrap_test.dart": "dd9f84c89839d3033e8c262e233beabf27d5c1624f0523ff7108761005fc5ed5",
+    "packages/quds_office_engine/test/word_header_picture_identity_test.dart": "afae2a679af7095c68d86d028472cc6a13fd80eed1952fece3553d2f4b5be3d3",
+    "packages/quds_office_engine/test/word_header_visual_reconciliation_test.dart": "ce5eeff6a26217e7465aa9fcfa25c2accca2592f6665a104452db76fe5d0ed93",
+    "packages/quds_office_engine/test/word_styles_layout_test.dart": "b96fa31bfebba2773007600923de80371d1dd4e95f760e4029387a696fb610a3",
+    "packages/quds_office_engine/test/word_table_style_import_regression_test.dart": "3c0b8d76a20fae56a2a40e6cc7111a391be09f6f857fbac817ce0d1b59cb5cb8"
+  },
+  "runtime_unchanged": true,
+  "selection": {
+    "packages/quds_office_engine/test/word_contained_text_wrap_test.dart": 41,
+    "packages/quds_office_engine/test/word_header_picture_identity_test.dart": 13,
+    "packages/quds_office_engine/test/word_styles_layout_test.dart": 17
+  },
+  "selection_rationale": "Fresh bridge of the independent 13-case visual-node identity, 17-case direct-format precedence and 41-case contained-text suites against the reconciled incoming Word production. Incoming executions retain separate source/runtime attribution.",
+  "source_files_hashed": 2859,
+  "source_head": "52eace9e151cff88c5908a049b0a51ade4c20b00",
+  "source_tree": "a86b3c847e981c8eec2ad71d781afb7d1887985d",
+  "source_unchanged": true,
+  "started_utc": "2026-11-20T22:45:51.250854+00:00",
+  "success": true,
+  "tests": {
+    "every_started_test_completed_once": true,
+    "exact_selected_population": true,
+    "failed": 0,
+    "malformed_reporter_lines": [],
+    "passed": 71,
+    "per_file_passed": {
+      "packages/quds_office_engine/test/word_contained_text_wrap_test.dart": 41,
+      "packages/quds_office_engine/test/word_header_picture_identity_test.dart": 13,
+      "packages/quds_office_engine/test/word_styles_layout_test.dart": 17
+    },
+    "reporter_errors": 0,
+    "skipped": 0,
+    "terminal_success": true
+  },
+  "worktree_clean": true
+}
