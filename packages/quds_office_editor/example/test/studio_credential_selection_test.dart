@@ -101,74 +101,119 @@ void main() {
       expect(await (await restarted.storage).read('synthetic-secret'), isNull);
     },
   );
+  test('failed custom keychain selection preserves the original store and never redirects a write', () async {
+    debugDefaultTargetPlatformOverride = TargetPlatform.macOS;
+    addTearDown(() => debugDefaultTargetPlatformOverride = null);
+    final calls = <String>[];
+    const channel = MethodChannel(MacOsCustomKeychainStorage.methodChannelName);
+    final messenger =
+        TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger;
+    messenger.setMockMethodCallHandler(channel, (c) async {
+      calls.add(c.method);
+      throw PlatformException(code: 'custom_keychain_access_denied');
+    });
+    addTearDown(() => messenger.setMockMethodCallHandler(channel, null));
+    final manager = StudioCredentialStorage();
+    await manager.select(StudioCredentialMode.session);
+    final original = await manager.storage;
+    await expectLater(
+      manager.select(
+        StudioCredentialMode.customKeychain,
+        path: '/tmp/synthetic.keychain-db',
+      ),
+      Platform.isMacOS
+          ? throwsA(
+              isA<PlatformException>().having(
+                (error) => error.code,
+                'native denial',
+                'custom_keychain_access_denied',
+              ),
+            )
+          : throwsA(
+              isA<ArgumentError>().having(
+                (error) => error.message,
+                'host admission',
+                'Choose a macOS keychain file.',
+              ),
+            ),
+    );
+    expect(manager.mode, StudioCredentialMode.session);
+    expect(await manager.storage, same(original));
+    // The manager uses dart:io admission. A Flutter target override does
+    // not turn a Linux/Windows test process into a macOS host.
+    expect(calls, Platform.isMacOS ? ['initialize'] : isEmpty);
+  });
   test(
-    'failed custom keychain selection preserves the original store and never redirects a write',
+    'custom keychain adapter retains native access-denial without fallback',
     () async {
       debugDefaultTargetPlatformOverride = TargetPlatform.macOS;
       addTearDown(() => debugDefaultTargetPlatformOverride = null);
-      final calls = <String>[];
+      const path = '/tmp/synthetic.keychain-db';
       const channel = MethodChannel(
         MacOsCustomKeychainStorage.methodChannelName,
       );
       final messenger =
           TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger;
-      messenger.setMockMethodCallHandler(channel, (c) async {
-        calls.add(c.method);
+      final calls = <String>[];
+      messenger.setMockMethodCallHandler(channel, (call) async {
+        calls.add(call.method);
+        expect(call.arguments, {'path': path});
         throw PlatformException(code: 'custom_keychain_access_denied');
       });
       addTearDown(() => messenger.setMockMethodCallHandler(channel, null));
-      final manager = StudioCredentialStorage();
-      await manager.select(StudioCredentialMode.session);
-      final original = await manager.storage;
+      final store = MacOsCustomKeychainStorage(path: path);
       await expectLater(
-        manager.select(
-          StudioCredentialMode.customKeychain,
-          path: '/tmp/synthetic.keychain-db',
+        store.initialize(),
+        throwsA(
+          isA<PlatformException>().having(
+            (error) => error.code,
+            'native denial',
+            'custom_keychain_access_denied',
+          ),
         ),
-        throwsA(isA<PlatformException>()),
       );
-      expect(manager.mode, StudioCredentialMode.session);
-      expect(await manager.storage, same(original));
+      expect(
+        () => store.write('synthetic-key', 'synthetic-value'),
+        throwsStateError,
+      );
       expect(calls, ['initialize']);
     },
   );
-  test(
-    'platform probe verifies read-back before deletion with host options',
-    () async {
-      const channel = MethodChannel(
-        'plugins.it_nomads.com/flutter_secure_storage',
-      );
-      final messenger =
-          TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger;
-      String? saved;
-      final calls = <String>[];
-      messenger.setMockMethodCallHandler(channel, (c) async {
-        final args = c.arguments as Map<Object?, Object?>;
-        final options = args['options'] as Map<Object?, Object?>;
-        // The plugin chooses options using dart:io Platform, independently
-        // of Flutter's visual platform override used by the custom-store test.
-        if (Platform.isMacOS) {
-          expect(options['useDataProtectionKeyChain'], 'false');
-        }
-        calls.add(c.method);
-        switch (c.method) {
-          case 'write':
-            saved = args['value'] as String;
-            return null;
-          case 'read':
-            return saved;
-          case 'delete':
-            saved = null;
-            return null;
-        }
-        throw StateError('Unexpected operation');
-      });
-      addTearDown(() => messenger.setMockMethodCallHandler(channel, null));
-      await PlatformSecureStorage(
-        useDataProtectionKeyChain: false,
-      ).verifyAvailable();
-      expect(calls, ['write', 'read', 'delete']);
-      expect(saved, isNull);
-    },
-  );
+  test('platform probe selects host options and verifies read-back before deletion', () async {
+    const channel = MethodChannel(
+      'plugins.it_nomads.com/flutter_secure_storage',
+    );
+    final messenger =
+        TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger;
+    String? saved;
+    final calls = <String>[];
+    messenger.setMockMethodCallHandler(channel, (c) async {
+      final args = c.arguments as Map<Object?, Object?>;
+      final options = args['options'] as Map<Object?, Object?>;
+      // The plugin chooses options using dart:io Platform, independently
+      // of Flutter's visual platform override used by the custom-store test.
+      if (Platform.isMacOS) {
+        expect(options['useDataProtectionKeyChain'], 'false');
+      } else {
+        expect(options.containsKey('useDataProtectionKeyChain'), isFalse);
+      }
+      calls.add(c.method);
+      switch (c.method) {
+        case 'write':
+          saved = args['value'] as String;
+          return null;
+        case 'read':
+          return saved;
+        case 'delete':
+          saved = null;
+          return null;
+      }
+      throw StateError('Unexpected operation');
+    });
+    addTearDown(() => messenger.setMockMethodCallHandler(channel, null));
+    await PlatformSecureStorage(useDataProtectionKeyChain: false)
+        .verifyAvailable();
+    expect(calls, ['write', 'read', 'delete']);
+    expect(saved, isNull);
+  });
 }

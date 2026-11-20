@@ -17,7 +17,7 @@ plan rather than treating provider connectivity as full product parity.
 
 | Order | Workflow | Current position | Next acceptance boundary |
 | --- | --- | --- | --- |
-| 1 | Recoverable composition | Local autosave, attachment/reply recovery and interrupted-send warnings now connected to native hosts | Multiple drafts, offline draft entry and provider-side Drafts synchronization |
+| 1 | Recoverable composition | Multiple account-scoped local drafts, independent reply/forward drafts, attachment/reply recovery and interrupted-send warnings; offline editing for remembered explicit-server/preset IMAP accounts | Verified offline entry for autodiscovered/EWS/cloud accounts and provider-side Drafts synchronization |
 | 2 | Everyday mailbox workspace (M04W/M06) | Shared foreground list across IMAP, EWS, Gmail and Microsoft 365; remembered native IMAP/SMTP accounts with explicit switching and retained local drafts | Repository-driven account/folder workspace, durable account sessions across providers, unified/offline inbox, durable commands, consistent move/delete and bulk actions |
 | 3 | Sending and outbox (M07) | Visible native durable Outbox, atomic draft transfer, frozen MIME/envelopes, restart recovery and explicit send/retry/cancel across SMTP/EWS/Gmail/Microsoft 365 | Preview/edit-copy and explicit uncertain-record resolution, then undo-send, scheduling, background execution and Sent reconciliation |
 | 4 | Efficient discovery and organization | Independent archive FTS, saved archive searches and bounded mailbox filtering | Full account search, conversations, tags/categories, bulk commands and ordered rule execution with preview/recovery |
@@ -28,6 +28,11 @@ Each increment needs an actual user path, typed failure/recovery behavior,
 focused local tests and a remote source checkpoint before the next. Reconcile
 current main/branches/PRs before final publication. GitHub Actions queue time is
 not an acceptance dependency; record the actual local commands and scope.
+
+The [multiple-draft guide](multiple-drafts.md) describes the bounded draft list,
+independent selection/deletion and offline editing boundary. Its
+[local evidence](../../validation/mail-multiple-drafts-20261120/README.md)
+records intake, remote checkpoints and actual qualification.
 
 The [durable Outbox guide](outbox.md) describes the sending continuation, atomic
 draft handoff, sticky uncertainty and native account boundaries. Its

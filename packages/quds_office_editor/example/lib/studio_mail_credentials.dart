@@ -1,4 +1,5 @@
 import 'dart:convert';
+
 import 'package:crypto/crypto.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
@@ -265,11 +266,13 @@ final class _PlatformStudioMailCredentialStore
   _PlatformStudioMailCredentialStore({
     FlutterSecureStorage? storage,
     Future<SecureStorage> Function()? selectedStorage,
+    int Function()? storageRevision,
   }) : _storage =
            selectedStorage ??
            (() async =>
                _FlutterMailStorage(storage ?? const FlutterSecureStorage())),
-       _verifyWrites = true;
+       _verifyWrites = true,
+       _storageRevision = storageRevision;
 
   static const _legacyKey = 'crispoffice.mail.account.v1';
   static const _catalogKey = 'crispoffice.mail.accounts.v2';
@@ -278,6 +281,7 @@ final class _PlatformStudioMailCredentialStore
   static final _operations = AsyncLock();
   final Future<SecureStorage> Function() _storage;
   final bool _verifyWrites;
+  final int Function()? _storageRevision;
 
   // Serialize even across dialog instances. A later Forget must not be undone
   // by an older slow keychain write, and a failed operation must release the queue.
@@ -293,8 +297,7 @@ final class _PlatformStudioMailCredentialStore
       (await saveAccount(credentials)).isSuccess;
 
   @override
-  Future<bool> clear() async => (await _perform(() async {
-    final storage = await _storage();
+  Future<bool> clear() async => (await _perform((storage) async {
     final catalog = await _readCatalog(storage);
     final selected = catalog.selectedAccountId;
     return _forget(storage, catalog, selected);
@@ -302,45 +305,58 @@ final class _PlatformStudioMailCredentialStore
 
   @override
   Future<StudioMailAccountCatalogResult> loadAccounts() =>
-      _perform(() async => _readCatalog(await _storage()));
+      _perform(_readCatalog);
 
   @override
   Future<StudioMailAccountCatalogResult> saveAccount(
     StudioMailCredentials credentials,
-  ) => _perform(() async {
-    // Snapshot the validated host value before awaiting IO. Callers may supply
-    // a subtype with computed getters; delayed reads cannot change the record
-    // whose identity and validation were accepted for this operation.
-    final snapshot = StudioMailCredentials.fromJson(credentials.toJson());
+  ) {
+    // Snapshot before any await or backend lookup. A subtype with computed
+    // getters cannot change the accepted record while this operation queues.
+    final StudioMailCredentials? snapshot;
+    try {
+      snapshot = StudioMailCredentials.fromJson(credentials.toJson());
+    } on Object {
+      return Future.value(
+        const StudioMailAccountCatalogResult.failure(
+          StudioMailAccountCatalogProblem.unavailable,
+        ),
+      );
+    }
     if (snapshot == null) {
-      throw const _CatalogFailure(StudioMailAccountCatalogProblem.invalid);
+      return Future.value(
+        const StudioMailAccountCatalogResult.failure(
+          StudioMailAccountCatalogProblem.invalid,
+        ),
+      );
     }
-    final storage = await _storage();
-    final catalog = await _readCatalog(storage);
-    final accounts = List<StudioMailSavedAccount>.of(catalog.accounts);
-    final id = snapshot.accountId;
-    final index = accounts.indexWhere((account) => account.id == id);
-    final saved = StudioMailSavedAccount(id: id, credentials: snapshot);
-    if (index < 0) {
-      if (accounts.length >= StudioMailAccountCatalog.maxAccounts) {
-        throw const _CatalogFailure(
-          StudioMailAccountCatalogProblem.limitReached,
-        );
+    final StudioMailCredentials accepted = snapshot;
+    return _perform((storage) async {
+      final catalog = await _readCatalog(storage);
+      final accounts = List<StudioMailSavedAccount>.of(catalog.accounts);
+      final id = accepted.accountId;
+      final index = accounts.indexWhere((account) => account.id == id);
+      final saved = StudioMailSavedAccount(id: id, credentials: accepted);
+      if (index < 0) {
+        if (accounts.length >= StudioMailAccountCatalog.maxAccounts) {
+          throw const _CatalogFailure(
+            StudioMailAccountCatalogProblem.limitReached,
+          );
+        }
+        accounts.add(saved);
+      } else {
+        accounts[index] = saved;
       }
-      accounts.add(saved);
-    } else {
-      accounts[index] = saved;
-    }
-    return _writeCatalog(
-      storage,
-      StudioMailAccountCatalog(accounts: accounts, selectedAccountId: id),
-    );
-  });
+      return _writeCatalog(
+        storage,
+        StudioMailAccountCatalog(accounts: accounts, selectedAccountId: id),
+      );
+    });
+  }
 
   @override
   Future<StudioMailAccountCatalogResult> selectAccount(String id) =>
-      _perform(() async {
-        final storage = await _storage();
+      _perform((storage) async {
         final catalog = await _readCatalog(storage);
         if (!catalog.accounts.any((account) => account.id == id)) {
           throw const _CatalogFailure(StudioMailAccountCatalogProblem.notFound);
@@ -356,8 +372,7 @@ final class _PlatformStudioMailCredentialStore
 
   @override
   Future<StudioMailAccountCatalogResult> forgetAccount(String id) =>
-      _perform(() async {
-        final storage = await _storage();
+      _perform((storage) async {
         final catalog = await _readCatalog(storage);
         if (!catalog.accounts.any((account) => account.id == id)) {
           throw const _CatalogFailure(StudioMailAccountCatalogProblem.notFound);
@@ -386,18 +401,34 @@ final class _PlatformStudioMailCredentialStore
   }
 
   Future<StudioMailAccountCatalogResult> _perform(
-    Future<StudioMailAccountCatalog> Function() operation,
-  ) => _ordered(() async {
-    try {
-      return StudioMailAccountCatalogResult.success(await operation());
-    } on _CatalogFailure catch (failure) {
-      return StudioMailAccountCatalogResult.failure(failure.problem);
-    } on Object {
-      return const StudioMailAccountCatalogResult.failure(
-        StudioMailAccountCatalogProblem.unavailable,
-      );
-    }
-  });
+    Future<StudioMailAccountCatalog> Function(SecureStorage) operation,
+  ) {
+    final acceptedRevision = _storageRevision?.call();
+    return _ordered(() async {
+      try {
+        if (acceptedRevision != _storageRevision?.call()) {
+          throw const _CatalogFailure(
+            StudioMailAccountCatalogProblem.unavailable,
+          );
+        }
+        final storage = await _storage();
+        if (acceptedRevision != _storageRevision?.call()) {
+          throw const _CatalogFailure(
+            StudioMailAccountCatalogProblem.unavailable,
+          );
+        }
+        // From this point every read, write and cleanup uses this backend,
+        // even when another dialog changes the app-wide selection meanwhile.
+        return StudioMailAccountCatalogResult.success(await operation(storage));
+      } on _CatalogFailure catch (failure) {
+        return StudioMailAccountCatalogResult.failure(failure.problem);
+      } on Object {
+        return const StudioMailAccountCatalogResult.failure(
+          StudioMailAccountCatalogProblem.unavailable,
+        );
+      }
+    });
+  }
 
   Future<StudioMailAccountCatalog> _readCatalog(SecureStorage storage) async {
     final raw = await storage.read(_catalogKey);
@@ -585,11 +616,18 @@ final class _CatalogFailure implements Exception {
 /// cannot split a read/write across two credential stores.
 final class StudioMailAccountsStore
     implements StudioMailCredentialStore, StudioMailAccountCatalogStore {
-  StudioMailAccountsStore({Future<SecureStorage> Function()? storage})
-    : _repository = _PlatformStudioMailCredentialStore(
-        selectedStorage:
-            storage ?? (() => StudioCredentialStorage.instance.storage),
-      );
+  StudioMailAccountsStore({
+    Future<SecureStorage> Function()? storage,
+    int Function()? selectionRevision,
+  }) : _repository = _PlatformStudioMailCredentialStore(
+         selectedStorage:
+             storage ?? (() => StudioCredentialStorage.instance.storage),
+         storageRevision:
+             selectionRevision ??
+             (storage == null
+                 ? () => StudioCredentialStorage.instance.revision
+                 : null),
+       );
 
   final _PlatformStudioMailCredentialStore _repository;
 
@@ -648,8 +686,8 @@ final class StudioMailAccountsStore
   }
 }
 
-/// Adapts the established injected Flutter keychain seam without changing its
-/// acknowledged-write contract or touching any other credential keys.
+/// Adapts the established injected Flutter keychain seam. Catalog writes are
+/// verified by readback and no unrelated credential keys are touched.
 final class _FlutterMailStorage extends SecureStorage {
   _FlutterMailStorage(this._storage);
   final FlutterSecureStorage _storage;

@@ -459,8 +459,21 @@ void main() {
     expect(find.text('Nachricht öffnen'), findsOneWidget);
     expect(find.text('Vollständig'), findsOneWidget);
     expect(find.text('Kompakt'), findsOneWidget);
+    // Page-route dismissal can start asynchronously. Bound the wait by its
+    // configured transition while retaining the removal/controller assertions.
+    final mailCloseDuration = ModalRoute.of(
+      tester.element(find.byType(StudioMailDialog)),
+    )!.reverseTransitionDuration;
     await tester.tap(find.byTooltip('Schließen').last);
-    await _pump(tester);
+    await tester.pump();
+    for (
+      var frame = 0;
+      frame < 3 && find.byType(StudioMailDialog).evaluate().isNotEmpty;
+      frame++
+    ) {
+      await tester.pump(mailCloseDuration);
+    }
+    await tester.pump();
     expect(find.byType(StudioMailDialog), findsNothing);
     expect(
       tester.widget<QudsSheetEditor>(find.byType(QudsSheetEditor)).controller,

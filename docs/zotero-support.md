@@ -139,13 +139,69 @@ Selections touching bookmark boundaries or empty atomic field tokens are also
 refused. Finish active text composition
 first; moving the selection or editing the destination while Zotero is open
 invalidates the staged result. Headers, footers, comments and text frames remain
-unsupported destinations. Tables in imported research content, lists deeper
-than nine levels, custom or
-reversed list markers, and unsupported custom formatting are
-refused with an explanation before application. Ordered-list starting numbers
-must be integers from 1 to 999999. Malformed,
-missing, repeated or unconverted citation placeholders also refuse the whole
+unsupported destinations. Notes containing tables require a paragraph in the
+main flow of the body or authored note, outside an existing table. Lists deeper
+than nine levels, custom or reversed list markers, and unsupported custom
+formatting are refused with an explanation before application. Ordered-list
+starting numbers must be integers from 1 to 999999. Malformed, missing, repeated
+or unconverted citation placeholders also refuse the whole
 result. Nothing is silently flattened to make these structures fit.
+
+### Tables in notes and annotations
+
+Add Note and Add Annotation preserve supported rectangular tables as native
+Word tables. Cells can contain ordinary or empty paragraphs, soft line breaks,
+headings, supported character formatting, links, lists, pictures and active
+citation fields. Empty cells and an entirely empty table retain their structure.
+Header-cell text starts bold and retains explicit inline emphasis changes.
+
+Citations follow the note's source order: rows from first to last, cells within
+each row, and then the paragraphs inside each cell. Refresh and bibliography
+commands include that sequence. Lists in separate cells retain independent
+counters and starting numbers. The tables, cell content, native fields and
+supported formatting remain part of DOCX saving and reopening.
+
+Place the caret or select text within one main-flow paragraph of the body or
+an authored footnote/endnote. A result containing a table cannot be inserted
+into an existing table cell. Surrounding prose stays in paragraphs outside the
+new table. A leading table in an authored note leaves the automatic note marker
+and separator before the table; citations inside it retain that note's
+ownership. When imported content ends in a table, the insertion caret returns
+to a main-flow paragraph immediately after it. The Notes pane edits the
+surrounding prose; it preserves table cells without exposing them as ordinary
+Notes text.
+
+Tables share the complete note's 8 MiB payload, 10,000-paragraph,
+10,000-link and image budgets. Parsing a cell does not restart those limits.
+The additional table bounds are:
+
+| Limit | Supported range |
+| --- | --- |
+| Tables in one note | Up to 64 |
+| Rows per table | Up to 256 |
+| Columns per table | Up to 32 |
+| Cells across the complete note | Up to 4,096 |
+| Supplied column width | An integer from 1 to 4,000 CSS pixels |
+| Total native table width | At most 4,000 points |
+
+Supplied widths for the same column must agree across rows. Widths use the
+same conversion as pictures: 96 CSS pixels become 72 points. A column with no
+supplied width uses a 120-point default. The existing table layout fits an
+oversized grid to the available display width. Cell backgrounds accept
+three- or six-digit hexadecimal colors, integer RGB colors, or transparent.
+
+The supported HTML structure is `table`, optional `tbody`, `tr`, `td` and
+`th`. Merged cells, nested tables, tables inside list items, unequal row lengths,
+separate header/footer row groups, captions, custom table classes and other
+table/row/cell styling are refused. A malformed table, unsupported image, or
+missing/repeated/unconverted citation placeholder refuses the entire staged
+result. The existing cancellation, stale-selection, composition and single-step
+undo guarantees apply to the table and its surrounding content together.
+
+The [table implementation and validation record](validation/zotero-research-tables-20261120/README.md)
+identifies the source checkpoints, checks and application-acceptance scope.
+Local model and controller checks are separate from opening and refreshing the
+result in an installed Word or LibreOffice application.
 
 ### Embedded pictures in notes and annotations
 
@@ -1126,6 +1182,14 @@ pane's visible selection to those offsets. A nonempty range applies only to
 research-content insertion; ordinary citation commands keep their existing
 caret/field behavior. The surrounding rollback boundary is still required.
 
+`WordZoteroNoteText.blocks` retains table ownership. Its `paragraphs` view
+contains those same paragraph objects in row-major order, and citation/list
+indexes address that view. Hosts preserving a parsed fragment must clone its
+blocks and flatten the cloned tree; cloning the paragraph view alone discards
+the table containers. A table-containing payload is checked against the actual
+destination container when staged and again before application. The final
+caret remains in the main flow even when the payload ends in a table.
+
 ### Native bibliography layout contract
 
 The adapter accepts Zotero's
@@ -1176,7 +1240,19 @@ background timer, automatic retry, credential persistence or document data.
 Custom hosts that replace online clients can pass the same `ZoteroBackoffState`
 to each new client. Clients sharing that state must use the same clock.
 
-## Previous continuation evidence and current qualification
+## Current and previous qualification evidence
+
+The [research-table work record](validation/zotero-research-tables-20261120/README.md)
+tracks this increment's incoming-work reconciliation, remote checkpoints,
+exact-source checks and remaining application acceptance. The
+[authored-note and selected-text record](validation/zotero-note-targets-20261120/README.md)
+retains the preceding increment's evidence and execution limits.
+
+Zotero's current desktop plugin comparison targets are Word and LibreOffice.
+Its [troubleshooting guidance](https://www.zotero.org/support/word_processor_plugin_troubleshooting)
+explicitly excludes Apache OpenOffice from supported applications. Any Apache
+OpenOffice compatibility work remains a separate legacy target, requiring
+identified application, Zotero and plugin versions.
 
 Embedded pictures and structured research lists have [completed local qualification](validation/zotero-parity-continuation-20261120/README.md)
 on the combined source at `708f2821`, including incoming Office and Mail
@@ -1191,7 +1267,8 @@ has a [separate status report](validation/zotero-word-parity-20261118/README.md)
 Its implementation and incoming branch integration are saved remotely. The report
 separates completed development checks from the final exact-source run that was
 blocked by shared executor disk exhaustion. That historical source has no
-final passing total; the current combined source is qualified separately above.
+final passing total; the newer work records identify their own tested sources
+and results.
 
 The previous continuation started from Quds
 `dc5f93b673e6087cccc6d66b33dfbfd099668f77` and CrispCloud

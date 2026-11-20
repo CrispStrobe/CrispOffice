@@ -1,0 +1,63 @@
+{
+  "target_commit": "192ea2aedbf0b1494627953c79a7042037a63301",
+  "target_tree": "1b8e807cd76f2bbc599780170d2a2e993ea4da62",
+  "cutoff_at_utc": "2026-11-20T13:14:35.544281+00:00",
+  "receipt": "docs/validation/office-vba-expansion-20261120/integration/final-cutoff-inclusion.json",
+  "receipt_sha256": "f860865abbcd44a0842c96627d458ecb71fbaded0c3a52e0807245709ced5adb",
+  "inventory": "docs/validation/office-vba-expansion-20261120/integration/final-cutoff-inventory.json",
+  "inventory_sha256": "381082c260d756c03fcdc5cd0a5e3a9d767219875ca41af0cdeea921bf9a9734",
+  "summary": {
+    "branch_count": 16,
+    "branches": {
+      "historically_superseded_equivalent": 9,
+      "ancestor": 7
+    },
+    "pr_count": 249,
+    "prs": {
+      "ancestor": 235,
+      "historically_superseded_equivalent": 14
+    },
+    "upstream_count": 4,
+    "upstream": {
+      "ancestor": 4
+    },
+    "retained_deleted_branch_count": 9,
+    "retained_deleted_branches_all_ancestors": true,
+    "retained_advanced_branch_prior_head_count": 5,
+    "retained_advanced_pr_prior_head_count": 3,
+    "prior_capture_branch_count": 24,
+    "prior_capture_pr_count": 249,
+    "prior_capture_upstream_count": 4,
+    "historical_proof_count": 14,
+    "historical_whole_tree_equal_count": 13,
+    "all_historical_proofs_verified": true,
+    "uncovered_count": 0,
+    "all_required_new_heads_ancestors": true
+  },
+  "required_new_heads": [
+    {
+      "purpose": "main consistency and completed PR247/248 history",
+      "sha": "b42eca1db058f0def247b86c2f15dea90c11b4e8",
+      "is_ancestor": true
+    },
+    {
+      "purpose": "selected Mail account backend guards and host fixture corrections",
+      "sha": "625f4d76d10ddf2144220f25ae8d867452eeed61",
+      "is_ancestor": true
+    },
+    {
+      "purpose": "durable Outbox and explicit uncertain retry workflows",
+      "sha": "bda00b32911bcab4e748851d89af0dbdfc886d39",
+      "is_ancestor": true
+    },
+    {
+      "purpose": "Zotero research tables, cache/engine ownership guards and selected-store concurrency",
+      "sha": "2d617a31bce48a7312f31586f70f7472e3420406",
+      "is_ancestor": true
+    }
+  ],
+  "all_ancestry_and_historical_proofs_recomputed": true,
+  "source_and_input_deltas_independently_recomputed": true,
+  "historical_C9_inclusion_retained_separately": true,
+  "runtime_qualification_of_incoming_apps_claimed": false
+}

@@ -2,6 +2,7 @@
 import 'dart:typed_data';
 import 'dart:convert';
 import 'dart:math';
+
 import 'package:pointycastle/export.dart';
 
 /// Structured validation failures retain FormatException compatibility while

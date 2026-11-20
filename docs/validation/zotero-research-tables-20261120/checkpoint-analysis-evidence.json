@@ -1,0 +1,35 @@
+{
+  "schema": 1,
+  "date": "2026-11-20",
+  "file": "checkpoint-analysis-evidence.tar.xz",
+  "bytes": 21896,
+  "sha256": "ed7c5dde63137ae8fa29051f9553f81f7cc739fdaedc652ce6e283472276323a",
+  "git_blob": "45f2ca01023da6b70109b027283f6baa25b82999",
+  "members": 15,
+  "source": "231bd0403a3d2855dc23bf8dacefaedba01f2aab",
+  "analysis": {
+    "runtime": "Genuine Dart 3.13.7 Analysis Server",
+    "requested_files": 94,
+    "completed_files": 94,
+    "errors": 0,
+    "warnings": 0,
+    "infos": 15,
+    "server_or_plugin_errors": 0,
+    "configured_plugins": 0,
+    "process_exit": 0,
+    "source_hashes_unchanged": true,
+    "completion": "Explicit analysis.getErrors response for each selected file; raw protocol retained."
+  },
+  "formatting": {
+    "runtime": "Genuine Dart 3.13.7 formatter",
+    "files": 94,
+    "changed": 0,
+    "exit": 0,
+    "all_checked_bytes_unchanged": true
+  },
+  "informational_findings": "Existing informational style findings in reader/credential sources and fixtures. No error, warning or new Zotero/layout/VBA/native-Mail/replay-helper finding was reported. This is not a diagnostic-free analysis claim.",
+  "contents": "Raw server requests, responses and stderr; hashes for all 94 files; applicable analysis options/includes; diagnostics; runtime binary hashes; driver and API provenance; clean formatter receipt.",
+  "qualification": "Targeted analysis of the selected 94 files, not a whole-repository analyzer run. Source remains frozen for final runtime qualification; subsequent documentation-only commits do not change these inputs.",
+  "diagnostic_summary": "checkpoint-analysis-summary.json",
+  "analysis_context": "The current gate uses the repository's actual nearest per-package options and their explicit include chain. Earlier informational counts retain their historical analysis context; different counts are not presented as source cleanup."
+}

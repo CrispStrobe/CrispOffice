@@ -1,0 +1,232 @@
+{
+  "commit": "192ea2aedbf0b1494627953c79a7042037a63301",
+  "tree": "1b8e807cd76f2bbc599780170d2a2e993ea4da62",
+  "stages": [
+    {
+      "name": "vm",
+      "exit_code": 0,
+      "seconds": 17.892
+    },
+    {
+      "name": "compile-js",
+      "exit_code": 0,
+      "seconds": 15.266
+    },
+    {
+      "name": "javascript",
+      "exit_code": 0,
+      "seconds": 1.535
+    }
+  ],
+  "samples": {
+    "example/macros/word_typography.bas": "cbe4ec2d15549b25577a8ee84027d5c748ae85de33435b7e72d71fbf391c6a40",
+    "example/macros/powerpoint_slideshow.bas": "4e73d87bc006a0d6dbf7b18aa655c50c42a507ea315670376fb1d0dfceaa29b1",
+    "example/macros/word_optional_helpers.bas": "4ff9344c0f296b5bf855f5e2a11228aaff5062a22a4b0171fe2821ffcd6781ca",
+    "example/macros/powerpoint_optional_helpers.bas": "601edfde4e34342a538ac40ed6edb3bd6280f2e3ba54862077451998a731bb3c",
+    "example/macros/word_paragraph_layout.bas": "17f07f80b45f1abafa8a5ac3f02992a2685fe4e4cd389bcd794f56a4c1adcf74",
+    "example/macros/powerpoint_text_margins.bas": "cb8c00174fe50ce01f9f117b3791f541509a4d7eb658453b751318560465d0cd"
+  },
+  "commands_passed": true,
+  "vm_js_byte_equal": false,
+  "source_unchanged": true,
+  "semantic_comparison": "Exact canonical JSON, with integral floats normalized to integers; boolean/string types retained and no numeric tolerance.",
+  "vm_js_semantic_equal": true,
+  "result": {
+    "previousTypographyAndSlideshow": {
+      "smoke": "vba-office-layout-v1",
+      "word": {
+        "example": "word_typography.bas",
+        "sourceBytes": 843,
+        "steps": 12,
+        "revision": 1,
+        "paragraphs": [
+          "Research note original heading",
+          "Reference marker original marker",
+          "Formula annotation original formula",
+          "Untouched paragraph"
+        ],
+        "headingSmallCaps": true,
+        "headingBold": true,
+        "scriptModes": [
+          "baseline",
+          "superscript",
+          "subscript"
+        ],
+        "highlightRgb": [
+          "FFFF00",
+          null,
+          "C0C0C0"
+        ]
+      },
+      "powerpoint": {
+        "example": "powerpoint_slideshow.bas",
+        "sourceBytes": 1488,
+        "steps": 12,
+        "revision": 1,
+        "slideIds": [
+          256,
+          257
+        ],
+        "hidden": [
+          false,
+          true
+        ],
+        "title": "Quarterly report",
+        "verticalAnchor": "center",
+        "alignment": "center",
+        "fontFamily": "Arial",
+        "bold": true,
+        "fontSizeHundredths": 2800,
+        "textRgb": "1F4E79",
+        "effect": "fade",
+        "durationMs": 1250,
+        "advanceOnClick": true,
+        "advanceAfterMs": 2500,
+        "untouchedBody": "Untouched body",
+        "untouchedAppendix": "Untouched appendix"
+      },
+      "immutableValidation": true,
+      "unchangedCallerInput": true,
+      "secondSaveSemanticMatch": true
+    },
+    "optionalHelpers": {
+      "word": {
+        "paragraphs": [
+          "Heading: Original heading",
+          "Original body",
+          "Original annotation",
+          "Untouched paragraph"
+        ],
+        "halfPoints": [
+          36,
+          24,
+          20
+        ],
+        "bold": [
+          false,
+          true,
+          false
+        ],
+        "operations": 7
+      },
+      "powerpoint": {
+        "titles": [
+          "Optional helpers",
+          "Second title"
+        ],
+        "sizePoints": [
+          20,
+          28
+        ],
+        "bold": [
+          false,
+          true
+        ],
+        "untouchedBody": "Untouched body",
+        "operations": 5
+      },
+      "language": {
+        "values": [
+          2,
+          1,
+          12,
+          true,
+          false,
+          true,
+          false,
+          false,
+          false,
+          true
+        ],
+        "refusals": [
+          "vba_type_error",
+          "vba_type_error",
+          "vba_missing_argument",
+          "vba_unsupported"
+        ]
+      }
+    },
+    "paragraphsAndMargins": {
+      "word": {
+        "operations": 10,
+        "text": [
+          "Original heading",
+          "Original body",
+          "Original annotation",
+          "Untouched paragraph"
+        ],
+        "lineMultipliers": [
+          1,
+          1.5,
+          2
+        ],
+        "rtl": [
+          null,
+          true,
+          false
+        ],
+        "headingHalfPoints": 32,
+        "headingBold": true,
+        "headingAfterPoints": 6,
+        "lastKeepTogether": true
+      },
+      "powerpoint": {
+        "operations": 5,
+        "margins": [
+          18,
+          6,
+          18,
+          12
+        ],
+        "anchor": "center",
+        "title": "First title",
+        "other": [
+          "Untouched body",
+          "Second title"
+        ]
+      },
+      "insetBoundaryEmus": [
+        1,
+        2147483647
+      ],
+      "additionalReopens": 2
+    }
+  },
+  "full_commands": "acceptance-evidence.tar.gz: validation-results/scoped-portable.receipt.json",
+  "comparison_recomputed_by_collector": true,
+  "vm_stdout_sha256": "c2396562fd05b9edfa9d8308af302bba556d880159b75eac449bc574c6d02d30",
+  "javascript_stdout_sha256": "869a5605f6c7fc432145a361949b3c1b4c0c95c404da77e2da157234b1f67d71",
+  "canonical_json_sha256": "a7600fdd253c4d99f3ff58cd9557ed625401da2a85c1834cd6fca9a2b912380b",
+  "examples": [
+    {
+      "file": "example/macros/word_typography.bas",
+      "operations": 12,
+      "sha256": "cbe4ec2d15549b25577a8ee84027d5c748ae85de33435b7e72d71fbf391c6a40"
+    },
+    {
+      "file": "example/macros/powerpoint_slideshow.bas",
+      "operations": 12,
+      "sha256": "4e73d87bc006a0d6dbf7b18aa655c50c42a507ea315670376fb1d0dfceaa29b1"
+    },
+    {
+      "file": "example/macros/word_optional_helpers.bas",
+      "operations": 7,
+      "sha256": "4ff9344c0f296b5bf855f5e2a11228aaff5062a22a4b0171fe2821ffcd6781ca"
+    },
+    {
+      "file": "example/macros/powerpoint_optional_helpers.bas",
+      "operations": 5,
+      "sha256": "601edfde4e34342a538ac40ed6edb3bd6280f2e3ba54862077451998a731bb3c"
+    },
+    {
+      "file": "example/macros/word_paragraph_layout.bas",
+      "operations": 10,
+      "sha256": "17f07f80b45f1abafa8a5ac3f02992a2685fe4e4cd389bcd794f56a4c1adcf74"
+    },
+    {
+      "file": "example/macros/powerpoint_text_margins.bas",
+      "operations": 5,
+      "sha256": "cb8c00174fe50ce01f9f117b3791f541509a4d7eb658453b751318560465d0cd"
+    }
+  ]
+}

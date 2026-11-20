@@ -1,0 +1,49 @@
+{
+  "checkpoint": "0e84c635f9e4569d27e5ee76e020d2a88eda0458",
+  "qualification": "Source correction verified by exact blob readback. Runtime diagnosis is attributed to validation_runtime's genuine original-file Flutter run and captured trace. Corrected six-test replay is pending at creation of this record.",
+  "file": "packages/quds_office_editor/example/test/studio_credential_selection_race_test.dart",
+  "originalBlob": "f39c42864cb09c847e40991bc6a468b2e29d8e8a",
+  "correctedBlob": "b9994ef52fa04474d0ad2129b97abf316453c867",
+  "productionChanges": [],
+  "testCount": 6,
+  "isolatedBaseline": {
+    "files": [
+      "test/studio_credential_selection_test.dart",
+      "test/studio_credential_selection_race_test.dart"
+    ],
+    "passes": 9,
+    "failures": 1,
+    "exitCode": 1,
+    "failedTest": "an open Mail dialog reloads an externally selected empty store",
+    "sourceHashesUnchanged": true,
+    "sourceHashCount": 1634,
+    "reportedBy": "/root/validation_runtime"
+  },
+  "observedCause": "The registered mock MethodChannel callback called flutter_test.expect while tester.pumpAndSettle's asynchronous guard was active. TestAsyncUtils raised Guarded function conflict before systemReads.add. MethodChannel wrapped the callback failure in PlatformException, which the catalog correctly classified as unavailable.",
+  "traceSummary": [
+    "Listener: mounted=true, credentialSettingsOpen=false, selection revision=2.",
+    "Catalog reload entered and resolved PlatformSecureStorage at revision=2.",
+    "_readCatalog entered, then _perform caught PlatformException(error, Guarded function conflict...).",
+    "SDK diagnostic identified pumpAndSettle at test line260 and expect in registered callback at line209; recommended expectSync.",
+    "Result unavailable; manager mode=system, revision=2; systemReads=[]; email/password empty; chooser count=1; tester.takeException=null."
+  ],
+  "traceArtifactQualification": "Raw diagnostic path runtime/diagnose-store-reload-0e84-trace/tests.jsonl was lost when the runtime shell unexpectedly terminated before upload. The decisive trace and exact-restoration confirmation were reported in tool/collaboration output. This JSON preserves that summary, not an invented raw log.",
+  "restoredOriginals": "validation_runtime confirmed all three temporarily instrumented source files restored byte-for-byte before shell termination.",
+  "correction": "Replace expect(call.method, 'read') with expectSync(call.method, 'read') only in this registered callback, and document its asynchronous-guard context.",
+  "assertionsPreserved": [
+    "Each callback must still be a read.",
+    "Exact ordered read keys: crispoffice.mail.accounts.v2 then crispoffice.mail.account.v1.",
+    "Old email and password cleared.",
+    "Saved-account form selection cleared.",
+    "Original session store's saved account remains intact.",
+    "No outstanding framework exception."
+  ],
+  "officialSdkEvidence": "https://github.com/flutter/flutter/blob/3.47.8/packages/flutter_test/lib/src/widget_tester.dart",
+  "sdkSemantics": "Public expectSync delegates to matcher_expect.expect without TestAsyncUtils.guardSync and is documented for callbacks during build/layout or asynchronous completion handlers.",
+  "replay": "cd packages/quds_office_editor/example && flutter test test/studio_credential_selection_test.dart test/studio_credential_selection_race_test.dart --concurrency=1 --reporter=json",
+  "boundaries": [
+    "No production credential or backend behavior changed.",
+    "No read-order or UI assertion removed.",
+    "No branch refresh or GitHub Actions query."
+  ]
+}

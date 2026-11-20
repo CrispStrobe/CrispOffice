@@ -4,12 +4,31 @@ All notable changes to `quds_office_editor` are documented here.
 
 ## Unreleased
 
+- Support independently identified local drafts through the Studio store's
+  optional catalog API. Preserve legacy drafts, pin selection/deletion to
+  account and revision, reject stale editor operations after draft changes,
+  and transfer only the chosen draft into its durable Outbox entry.
+- Add a localized Drafts chooser across IMAP/SMTP, EWS, Gmail and Microsoft 365,
+  with new/resume/confirmed-delete actions and independent reply/forward drafts.
+  Add save-only Local drafts before connecting remembered explicit-server or
+  preset IMAP accounts; guard Send in both UI and action handling and await
+  store ownership release before returning to connection setup.
+
 - Connect Studio Mail Send and Queue in Outbox to durable frozen messages across
   native SMTP, EWS, Gmail and Microsoft 365. Add a visible account-scoped queue,
   atomic draft transfer, restart recovery, explicitly acknowledged uncertain
   retries, cancellation before possible acceptance and local terminal cleanup.
   English, German and Arabic feedback distinguishes server acceptance from
   delivery. Queue inspection and reconnect never send automatically.
+
+- Accept supported Zotero research tables through the existing Add Note and
+  Add Annotation commands, preserving active citations, surrounding prose and
+  the single undo/redo transaction. Keep authored-note markers before leading
+  tables and restore the final caret to the main flow after trailing tables.
+  The Notes pane retains table cells while editing surrounding prose; incoming
+  tables require a destination outside existing tables. See the
+  [implementation and validation record](../../docs/validation/zotero-research-tables-20261120/README.md)
+  for source-specific checks and remaining application acceptance.
 
 - Quote HTML-only messages through the bounded inert body projection in Reply,
   Reply all and forwarding. Prefer authoritative plain text, keep Bcc and

@@ -29,6 +29,9 @@ class StudioCredentialStorage extends ChangeNotifier {
   int _selectionGeneration = 0;
   final Future<SecureStorage> Function() _systemStorageFactory;
 
+  /// Changes only after a selected backend is successfully committed.
+  int get revision => _selectionGeneration;
+
   static Future<SecureStorage> _createSystemStorage() async {
     // Determine capability before reading credentials. A denied or locked
     // store still fails explicitly rather than selecting another backend.
@@ -76,7 +79,7 @@ class StudioCredentialStorage extends ChangeNotifier {
   }
 
   Future<SecureStorage> get storage async {
-    await loadSelection();
+    if (!_loaded) await loadSelection();
     // Capture identity and generation before native initialization yields.
     final selectedMode = mode;
     final selectedPath = customPath;
@@ -117,7 +120,7 @@ class StudioCredentialStorage extends ChangeNotifier {
         await loadSelection();
         if (next == StudioCredentialMode.customKeychain) {
           if (kIsWeb ||
-              defaultTargetPlatform != TargetPlatform.macOS ||
+              !Platform.isMacOS ||
               path == null ||
               path.trim().isEmpty) {
             throw ArgumentError('Choose a macOS keychain file.');

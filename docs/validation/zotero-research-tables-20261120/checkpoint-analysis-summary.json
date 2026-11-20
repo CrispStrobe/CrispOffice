@@ -1,0 +1,117 @@
+{
+  "source": "231bd0403a3d2855dc23bf8dacefaedba01f2aab",
+  "filesRequested": 94,
+  "filesCompleted": 94,
+  "processExit": 0,
+  "errors": 0,
+  "warnings": 0,
+  "infos": 15,
+  "sourceHashesUnchanged": true,
+  "findings": [
+    {
+      "path": "packages/quds_mail_ui/lib/src/reader/selection_surface.dart",
+      "line": 5,
+      "severity": "INFO",
+      "code": "directives_ordering",
+      "message": "Sort directive sections alphabetically."
+    },
+    {
+      "path": "packages/quds_mail_ui/lib/src/reader/selection_surface.dart",
+      "line": 78,
+      "severity": "INFO",
+      "code": "prefer_initializing_formals",
+      "message": "Use an initializing formal to assign a parameter to a field."
+    },
+    {
+      "path": "packages/quds_mail_ui/test/reader_theme_scroll_test.dart",
+      "line": 3,
+      "severity": "INFO",
+      "code": "directives_ordering",
+      "message": "Sort directive sections alphabetically."
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/credentials/secure_storage_file_io.dart",
+      "line": 35,
+      "severity": "INFO",
+      "code": "prefer_initializing_formals",
+      "message": "Use an initializing formal to assign a parameter to a field."
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/credentials/secure_storage_file_io.dart",
+      "line": 296,
+      "severity": "INFO",
+      "code": "curly_braces_in_flow_control_structures",
+      "message": "Statements in an if should be enclosed in a block."
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/credentials/secure_storage_macos_keychain.dart",
+      "line": 99,
+      "severity": "INFO",
+      "code": "use_null_aware_elements",
+      "message": "Use the null-aware marker '?' rather than a null check via an 'if'."
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/credentials/secure_storage_macos_keychain.dart",
+      "line": 142,
+      "severity": "INFO",
+      "code": "use_null_aware_elements",
+      "message": "Use the null-aware marker '?' rather than a null check via an 'if'."
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/credentials/secure_storage_web.dart",
+      "line": 66,
+      "severity": "INFO",
+      "code": "prefer_initializing_formals",
+      "message": "Use an initializing formal to assign a parameter to a field."
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_credentials.dart",
+      "line": 275,
+      "severity": "INFO",
+      "code": "prefer_initializing_formals",
+      "message": "Use an initializing formal to assign a parameter to a field."
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_credential_selection_test.dart",
+      "line": 9,
+      "severity": "INFO",
+      "code": "avoid_relative_lib_imports",
+      "message": "Can't use a relative path to import a library in 'lib'."
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_credential_selection_test.dart",
+      "line": 10,
+      "severity": "INFO",
+      "code": "avoid_relative_lib_imports",
+      "message": "Can't use a relative path to import a library in 'lib'."
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_credential_selection_test.dart",
+      "line": 11,
+      "severity": "INFO",
+      "code": "avoid_relative_lib_imports",
+      "message": "Can't use a relative path to import a library in 'lib'."
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_account_stores_test.dart",
+      "line": 3,
+      "severity": "INFO",
+      "code": "avoid_relative_lib_imports",
+      "message": "Can't use a relative path to import a library in 'lib'."
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_account_stores_test.dart",
+      "line": 4,
+      "severity": "INFO",
+      "code": "avoid_relative_lib_imports",
+      "message": "Can't use a relative path to import a library in 'lib'."
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_account_stores_test.dart",
+      "line": 5,
+      "severity": "INFO",
+      "code": "avoid_relative_lib_imports",
+      "message": "Can't use a relative path to import a library in 'lib'."
+    }
+  ]
+}

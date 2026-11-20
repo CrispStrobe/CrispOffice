@@ -1,5 +1,22 @@
 # Mail implementation status — 20 November 2026
 
+## Multiple local drafts and offline composition
+
+The [multiple-draft continuation](multiple-drafts.md) adds a bounded,
+account-scoped draft chooser to native IMAP/SMTP and the shared EWS/Gmail/
+Microsoft 365 host. New messages and replies have independent IDs, revisions,
+attachment snapshots and earlier-send uncertainty. Selection and confirmed
+deletion reject stale account/revision snapshots; Outbox handoff affects only
+the chosen draft. The previous single-slot draft remains recoverable.
+
+Remembered explicit-server and preset IMAP accounts additionally offer **Local
+drafts** before connecting. This save-only workspace never creates a provider or
+invokes discovery; it releases its store lease before returning to connection
+setup. Historical autodiscovery records lack enough verified metadata for this
+offline entry. EWS/cloud offline sessions, provider Drafts synchronization and
+the repository-driven offline inbox remain future work. See the
+[source and validation record](../../validation/mail-multiple-drafts-20261120/README.md).
+
 ## Durable foreground Outbox
 
 The [Outbox continuation](outbox.md) connects native Studio Send and Queue in
@@ -13,8 +30,9 @@ cancellation and confirmed terminal-record cleanup are available.
 The production native host reuses its existing draft-store lease and account
 identity. Reconnect to that identity to inspect its queue after restart. This
 supersedes historical statements below that no visible durable outbox existed;
-their original qualification scope remains unchanged. Multiple drafts, offline
-entry, rich authoring, scheduling/undo-send, detailed SMTP recipient outcomes,
+their original qualification scope remains unchanged. The multiple-draft and
+limited offline-entry continuation is described above. Rich authoring,
+scheduling/undo-send, detailed SMTP recipient outcomes,
 Sent reconciliation and installed/live-provider qualification remain open.
 See the [local evidence](../../validation/mail-outbox-20261120/README.md).
 

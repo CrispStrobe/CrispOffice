@@ -86,6 +86,60 @@ final class StudioMailStoredDraft {
   final bool submissionUncertain;
 }
 
+/// A reviewable, account-scoped catalog row pinned to its stored revision.
+/// It contains no body text or attachment bytes.
+final class StudioMailDraftSummary {
+  const StudioMailDraftSummary({
+    required this.account,
+    required this.id,
+    required this.revision,
+    required this.subject,
+    required this.to,
+    required this.cc,
+    required this.bcc,
+    required this.attachmentCount,
+    required this.submissionUncertain,
+  });
+
+  final MailAccountId account;
+  final String id;
+  final int revision;
+  final String subject;
+  final String to;
+  final String cc;
+  final String bcc;
+  final int attachmentCount;
+  final bool submissionUncertain;
+}
+
+final class StudioMailDraftCatalogPage {
+  StudioMailDraftCatalogPage({
+    required List<StudioMailDraftSummary> drafts,
+    this.nextAfterId,
+  }) : drafts = List.unmodifiable(drafts);
+
+  final List<StudioMailDraftSummary> drafts;
+  final String? nextAfterId;
+}
+
+/// Optional multiple-draft support; existing single-draft host fakes remain
+/// valid. Save/close the current editor before changing the selected draft.
+/// Composer callbacks capture both [selectedDraftId] and [selectionEpoch] and
+/// reject changes before invoking the legacy store methods. Store operations
+/// also capture the epoch when invoked, rejecting writes queued before a switch.
+abstract interface class StudioMailDraftCatalog {
+  MailAccountId get account;
+  String get selectedDraftId;
+  int get selectionEpoch;
+  Future<StudioMailDraftCatalogPage> listDrafts({String? afterId});
+  Future<StudioMailStoredDraft> selectDraft(StudioMailDraftSummary summary);
+  Future<StudioMailStoredDraft> createDraft(StudioMailDraft initial);
+
+  /// Clears only the listed account/ID/revision. An unselected draft may be
+  /// discarded without changing the current editor or its uncertainty state.
+  Future<void> discardDraft(StudioMailDraftSummary summary);
+}
+
 /// Content-redacted storage failure. Hosts supply localized user feedback.
 final class StudioMailDraftStoreException implements Exception {
   const StudioMailDraftStoreException(this.code);
@@ -99,7 +153,8 @@ final class StudioMailDraftStoreException implements Exception {
 typedef StudioMailDraftStoreFactory =
     Future<StudioMailDraftStore> Function(StudioMailDraftAccount account);
 
-/// Exactly one foreground draft per scoped account, never an automatic sender.
+/// One selected foreground draft per scoped account, never an automatic sender.
+/// Hosts may additionally expose [StudioMailDraftCatalog] when implemented.
 ///
 /// Await [load] before editing, and await a save with submissionUncertain=true
 /// before invoking a transport. Once set, uncertainty remains sticky across
@@ -130,7 +185,10 @@ abstract interface class StudioMailDraftStore {
 /// Native hosts use the app-container opener. The public repository seam also
 /// supports deterministic tests and other hosts with their own store lifetime.
 final class SqliteStudioMailDraftStore
-    implements StudioMailDraftStore, StudioMailOutboxStore {
+    implements
+        StudioMailDraftStore,
+        StudioMailDraftCatalog,
+        StudioMailOutboxStore {
   SqliteStudioMailDraftStore({
     required SqliteMailRepository repository,
     required this.account,
@@ -146,6 +204,7 @@ final class SqliteStudioMailDraftStore
   }
 
   static const draftId = 'studio-foreground-compose';
+  static const maxDrafts = 100;
   static const maxOutboxEntries = 100;
 
   final SqliteMailRepository _repository;
@@ -157,9 +216,17 @@ final class SqliteStudioMailDraftStore
   bool _closing = false;
   bool _loaded = false;
   bool _submissionUncertain = false;
+  String _selectedDraftId = draftId;
+  int _selectionEpoch = 0;
   int? _revision;
   Future<void>? _closeResult;
   final Map<String, String> _activeOutboxAttempts = {};
+
+  @override
+  String get selectedDraftId => _selectedDraftId;
+
+  @override
+  int get selectionEpoch => _selectionEpoch;
 
   Future<T> _serialize<T>(Future<T> Function() action) {
     if (_closing) {
@@ -172,6 +239,18 @@ final class SqliteStudioMailDraftStore
     // or silently suppressing a later explicit retry/close.
     _pending = result.then<void>((_) {}, onError: (Object _, StackTrace _) {});
     return result;
+  }
+
+  Future<T> _serializeSelection<T>(Future<T> Function() action) {
+    final epoch = _selectionEpoch;
+    return _serialize(() async {
+      if (epoch != _selectionEpoch) {
+        throw const StudioMailDraftStoreException(
+          MailProblemCode.staleOperation,
+        );
+      }
+      return action();
+    });
   }
 
   static T _value<T>(MailResult<T> result) => switch (result) {
@@ -188,8 +267,10 @@ final class SqliteStudioMailDraftStore
   }
 
   @override
-  Future<StudioMailStoredDraft?> load() => _serialize(() async {
-    final stored = _value(await _repository.loadDraft(account, draftId));
+  Future<StudioMailStoredDraft?> load() => _serializeSelection(() async {
+    final stored = _value(
+      await _repository.loadDraft(account, _selectedDraftId),
+    );
     final snapshot = stored == null ? null : _restore(stored);
     _revision = stored?.revision;
     _loaded = true;
@@ -201,7 +282,7 @@ final class SqliteStudioMailDraftStore
   Future<void> save(
     StudioMailDraft draft, {
     required bool submissionUncertain,
-  }) => _serialize(() async {
+  }) => _serializeSelection(() async {
     _requireLoaded();
     final uncertain = submissionUncertain || _submissionUncertain;
     await _persistDraft(draft, uncertain: uncertain);
@@ -211,7 +292,7 @@ final class SqliteStudioMailDraftStore
   Future<void> saveRejectedDraft(
     StudioMailDraft draft, {
     required bool wasPreviouslyUncertain,
-  }) => _serialize(() async {
+  }) => _serializeSelection(() async {
     _requireLoaded();
     // A verified outcome must follow this owner's durable attempt marker. It
     // cannot manufacture a result for a draft that was never marked in flight.
@@ -226,36 +307,160 @@ final class SqliteStudioMailDraftStore
     required bool uncertain,
   }) async {
     final revision = (_revision ?? -1) + 1;
-    final prepared = MailDraft(
-      id: draftId,
-      account: account,
+    final prepared = _prepareDraft(
+      draft,
+      id: _selectedDraftId,
       revision: revision,
-      envelope: MailEnvelope(
-        subject: draft.subject,
-        inReplyTo: draft.thread.inReplyTo,
-        references: draft.thread.references?.split(' ') ?? const [],
-      ),
-      body: MailBody(plainText: draft.body),
-      attachments: [
-        for (var index = 0; index < draft.attachments.items.length; index++)
-          MailAttachment(
-            partPath: 'attachment-$index',
-            mediaType: draft.attachments.items[index].mediaType,
-            displayName: draft.attachments.items[index].name,
-            content: draft.attachments.items[index].content,
-          ),
-      ],
-      editorState: MailDraftEditorState(
-        to: draft.to,
-        cc: draft.cc,
-        bcc: draft.bcc,
-        submissionUncertain: uncertain,
+      uncertain: uncertain,
+    );
+    _value(
+      await _repository.saveDraft(
+        prepared,
+        expectedRevision: _revision,
+        maxActiveDrafts: maxDrafts,
       ),
     );
-    _value(await _repository.saveDraft(prepared, expectedRevision: _revision));
     _revision = revision;
     _submissionUncertain = uncertain;
   }
+
+  MailDraft _prepareDraft(
+    StudioMailDraft draft, {
+    required String id,
+    required int revision,
+    required bool uncertain,
+  }) => MailDraft(
+    id: id,
+    account: account,
+    revision: revision,
+    envelope: MailEnvelope(
+      subject: draft.subject,
+      inReplyTo: draft.thread.inReplyTo,
+      references: draft.thread.references?.split(' ') ?? const [],
+    ),
+    body: MailBody(plainText: draft.body),
+    attachments: [
+      for (var index = 0; index < draft.attachments.items.length; index++)
+        MailAttachment(
+          partPath: 'attachment-$index',
+          mediaType: draft.attachments.items[index].mediaType,
+          displayName: draft.attachments.items[index].name,
+          content: draft.attachments.items[index].content,
+        ),
+    ],
+    editorState: MailDraftEditorState(
+      to: draft.to,
+      cc: draft.cc,
+      bcc: draft.bcc,
+      submissionUncertain: uncertain,
+    ),
+  );
+
+  @override
+  Future<StudioMailDraftCatalogPage> listDrafts({String? afterId}) =>
+      _serialize(() async {
+        final page = _value(
+          await _repository.listDrafts(account, afterId: afterId),
+        );
+        final summaries = <StudioMailDraftSummary>[];
+        for (final draft in page.drafts) {
+          final editor = draft.editorState;
+          if (editor == null || editor.isCleared) {
+            throw const StudioMailDraftStoreException(
+              MailProblemCode.storageFailure,
+            );
+          }
+          summaries.add(
+            StudioMailDraftSummary(
+              account: draft.account,
+              id: draft.id,
+              revision: draft.revision,
+              subject: draft.envelope.subject,
+              to: editor.to,
+              cc: editor.cc,
+              bcc: editor.bcc,
+              attachmentCount: draft.attachmentCount,
+              submissionUncertain: editor.submissionUncertain,
+            ),
+          );
+        }
+        return StudioMailDraftCatalogPage(
+          drafts: summaries,
+          nextAfterId: page.nextAfterId,
+        );
+      });
+
+  void _requireSummaryAccount(StudioMailDraftSummary summary) {
+    if (summary.account != account) {
+      throw const StudioMailDraftStoreException(
+        MailProblemCode.permissionDenied,
+      );
+    }
+    if (summary.id.isEmpty || summary.revision < 0) {
+      throw const StudioMailDraftStoreException(MailProblemCode.invalidInput);
+    }
+  }
+
+  @override
+  Future<StudioMailStoredDraft> selectDraft(StudioMailDraftSummary summary) =>
+      _serialize(() async {
+        _requireSummaryAccount(summary);
+        final stored = _value(await _repository.loadDraft(account, summary.id));
+        if (stored == null || stored.revision != summary.revision) {
+          throw const StudioMailDraftStoreException(MailProblemCode.conflict);
+        }
+        final restored = _restore(stored);
+        if (restored == null) {
+          throw const StudioMailDraftStoreException(MailProblemCode.conflict);
+        }
+        _selectedDraftId = summary.id;
+        _revision = stored.revision;
+        _loaded = true;
+        _submissionUncertain = restored.submissionUncertain;
+        _selectionEpoch++;
+        return restored;
+      });
+
+  @override
+  Future<StudioMailStoredDraft> createDraft(StudioMailDraft initial) =>
+      _serialize(() async {
+        final id = _newOutboxIdentity('studio-draft');
+        final prepared = _prepareDraft(
+          initial,
+          id: id,
+          revision: 0,
+          uncertain: false,
+        );
+        _value(
+          await _repository.saveDraft(
+            prepared,
+            expectedRevision: null,
+            maxActiveDrafts: maxDrafts,
+          ),
+        );
+        _selectedDraftId = id;
+        _revision = 0;
+        _loaded = true;
+        _submissionUncertain = false;
+        _selectionEpoch++;
+        return StudioMailStoredDraft(
+          draft: initial,
+          submissionUncertain: false,
+        );
+      });
+
+  @override
+  Future<void> discardDraft(StudioMailDraftSummary summary) =>
+      _serialize(() async {
+        _requireSummaryAccount(summary);
+        await _clearDraft(summary.id, summary.revision);
+        if (_selectedDraftId == summary.id) {
+          _revision = summary.revision + 1;
+          _loaded = true;
+          _submissionUncertain = false;
+          _selectionEpoch++;
+        }
+      });
 
   void _requireOutboxAccount(MailOutboxEntry entry) {
     if (entry.prepared.account != account) {
@@ -320,7 +525,7 @@ final class SqliteStudioMailDraftStore
   Future<MailOutboxEntry> enqueueOutbox(
     StudioMailDraft draft,
     String sender,
-  ) => _serialize(() async {
+  ) => _serializeSelection(() async {
     _requireLoaded();
     // Save the exact editor snapshot before validation or queue admission, so
     // even an invalid recipient or full queue leaves the user's work durable.
@@ -337,7 +542,7 @@ final class SqliteStudioMailDraftStore
     final message = buildStudioMailMessage(draft, sender);
     final prepared = MailPreparedMessage(
       account: account,
-      draftId: draftId,
+      draftId: _selectedDraftId,
       draftRevision: sourceRevision,
       wire: MailBytes(utf8.encode(message.renderMessage())),
       envelope: MailTransportEnvelope(
@@ -359,6 +564,7 @@ final class SqliteStudioMailDraftStore
     );
     _revision = sourceRevision + 1;
     _submissionUncertain = false;
+    _selectionEpoch++;
     return queued;
   });
 
@@ -459,27 +665,32 @@ final class SqliteStudioMailDraftStore
   });
 
   @override
-  Future<void> clear() => _serialize(() async {
+  Future<void> clear() => _serializeSelection(() async {
     _requireLoaded();
-    final revision = (_revision ?? -1) + 1;
+    await _clearDraft(_selectedDraftId, _revision);
+    _revision = (_revision ?? -1) + 1;
+    _submissionUncertain = false;
+    _selectionEpoch++;
+  });
+
+  Future<void> _clearDraft(String id, int? expectedRevision) async {
+    final revision = (expectedRevision ?? -1) + 1;
     _value(
       await _repository.saveDraft(
         MailDraft(
-          id: draftId,
+          id: id,
           account: account,
           revision: revision,
           envelope: MailEnvelope(),
           body: const MailBody(),
           editorState: MailDraftEditorState(isCleared: true),
         ),
-        expectedRevision: _revision,
+        expectedRevision: expectedRevision,
       ),
     );
     // The empty revision marker prevents stale editors from recreating a sent
     // or discarded draft. Shared-store blob collection releases attachments.
-    _revision = revision;
-    _submissionUncertain = false;
-  });
+  }
 
   @override
   Future<void> close() {
