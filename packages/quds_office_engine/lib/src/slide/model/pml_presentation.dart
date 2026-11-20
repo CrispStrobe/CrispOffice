@@ -607,6 +607,7 @@ class PmlSlide {
   List<PmlShape> shapes;
 
   /// Non-editable master/layout decorations painted behind [shapes].
+  /// Import resolves master visibility here while retaining layout shapes.
   final List<PmlShape> backgroundShapes;
 
   /// Whether this slide has its own resolved master/layout decorations.

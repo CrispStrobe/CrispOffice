@@ -1925,6 +1925,8 @@ abstract final class OfficePdfExport {
     PmlPresentation deck,
     PmlSlide slide,
   ) {
+    // Resolved decorations already exclude hidden master shapes. Layout
+    // decorations remain visible even when the slide hides its master.
     if (slide.backgroundShapesResolved || slide.backgroundShapes.isNotEmpty) {
       return slide.backgroundShapes;
     }
