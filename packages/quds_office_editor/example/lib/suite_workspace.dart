@@ -300,13 +300,32 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
       ? Color.lerp(_appAccent, Colors.white, 0.48)!
       : _appAccent;
 
-  ThemeData get _materialTheme => studioMaterialTheme(
-    Theme.of(context),
-    office: _officeTheme,
-    accent: _appAccent,
-    dark: _look != SuiteLook.light,
-    highContrast: _look == SuiteLook.highContrast,
-  );
+  ThemeData? _materialThemeCache;
+  ThemeData? _materialThemeBase;
+  Object? _materialThemeKey;
+
+  /// Rebuilt only when its inputs change. A fresh ThemeData per workspace
+  /// build (every keystroke) made every Theme-dependent widget rebuild and
+  /// recomputed the seeded color scheme.
+  ThemeData get _materialTheme {
+    final base = Theme.of(context);
+    final key = (_look, _appAccent);
+    final cached = _materialThemeCache;
+    if (cached != null &&
+        identical(base, _materialThemeBase) &&
+        key == _materialThemeKey) {
+      return cached;
+    }
+    _materialThemeBase = base;
+    _materialThemeKey = key;
+    return _materialThemeCache = studioMaterialTheme(
+      base,
+      office: _officeTheme,
+      accent: _appAccent,
+      dark: _look != SuiteLook.light,
+      highContrast: _look == SuiteLook.highContrast,
+    );
+  }
 
   BuildContext get _themedContext => _themeScopeKey.currentContext ?? context;
 

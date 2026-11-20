@@ -216,6 +216,12 @@ Map<String, Object> _distribution(List<double> values) => {
 };
 
 void main() {
+  test(
+    'session keystroke cost (QUDS_TYPING_BENCHMARK=1)',
+    skip: !_enabled,
+    _sessionKeystrokeCost,
+  );
+
   testWidgets(
     'typing benchmark (QUDS_TYPING_BENCHMARK=1)',
     skip: !_enabled,
@@ -301,6 +307,10 @@ void main() {
           key = 'ribbon';
         } else if (widget is WordReviewStatusBar) {
           key = 'wordReviewStatusBar';
+        } else if (widget.runtimeType.toString() == 'StudioReviewStrip') {
+          // Only on branches that extract the strip (name-matched so the
+          // benchmark also compiles against older revisions).
+          key = 'reviewStrip';
         } else if (widget is IconButton &&
             _labelPattern.hasMatch(widget.tooltip ?? '')) {
           key = 'reviewStripLabel';
@@ -391,6 +401,43 @@ void main() {
       print('TYPING_BENCHMARK ${jsonEncode(report)}');
     },
   );
+}
+
+/// Session-only cost of one keystroke, without layout or widgets: what the
+/// controller's notification does in proofing (observe the edit) plus the
+/// canvas reading the findings to paint.
+Future<void> _sessionKeystrokeCost() async {
+  final document = _document();
+  var revision = 0;
+  final vocabulary = OfficeProofingVocabulary();
+  final session = WordProofingSession(
+    document: () => document,
+    revision: () => revision,
+    vocabulary: vocabulary,
+    service: OfficeProofingService(
+      providers: [
+        GermanSpellingProvider(vocabulary: vocabulary),
+        GermanWritingRulesProvider(),
+        ArabicWritingRulesProvider(),
+      ],
+    ),
+    debounce: const Duration(days: 1),
+  );
+  await session.checkNow();
+  final paragraph = document.paragraphs.elementAt(90);
+  final run = paragraph.inlines.whereType<WmlRun>().first;
+  final costs = <double>[];
+  for (var i = 0; i < 300; i++) {
+    final watch = Stopwatch()..start();
+    run.text = '${run.text}x';
+    revision++;
+    session.observeDocument();
+    session.findingsByParagraph.length;
+    costs.add(watch.elapsedMicroseconds / 1000);
+  }
+  session.dispose();
+  // ignore: avoid_print
+  print('SESSION_KEYSTROKE ${jsonEncode(_distribution(costs))}');
 }
 
 void _recordLabel(

@@ -162,6 +162,7 @@ void main() {
       lessThanOrEqualTo(passes + 2),
       reason: 'one pass per deadline, not per keystroke',
     );
+    await _settle(tester, h.controller);
   });
 
   testWidgets('a deadline pass defers the unfinished word at the caret', (

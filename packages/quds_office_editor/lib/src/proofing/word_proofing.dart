@@ -177,9 +177,6 @@ abstract final class WordProofingTiming {
 
   /// Main-isolate time a pass may use before yielding to input and frames.
   static const Duration sliceBudget = Duration(milliseconds: 4);
-
-  /// Minimum spacing of partial-result publications within one pass.
-  static const Duration progressInterval = Duration(milliseconds: 250);
 }
 
 /// Coarse, coalesced proofing state for status chrome. It changes only on
@@ -336,22 +333,34 @@ final class WordProofingSession extends ChangeNotifier {
       _pendingPublish = null;
       _provisionalFindings = null;
       final document = _document();
-      _publishCached(
-        _capture(document),
-        documentId: _documentIds[document] ??= 'document-${++_nextId}',
-        revision: _revision(),
-        useManual: false,
-        scheduled: pending.scheduled,
-      );
+      // Readers can be widgets in build: never notify listeners from here.
+      _flushing = true;
+      try {
+        _publishCached(
+          _capture(document),
+          documentId: _documentIds[document] ??= 'document-${++_nextId}',
+          revision: _revision(),
+          useManual: false,
+          scheduled: pending.scheduled,
+        );
+      } finally {
+        _flushing = false;
+      }
     }
     return _published;
   }
+
+  bool _flushing = false;
 
   set _summary(WordProofingSummary value) {
     _pendingPublish = null;
     _provisionalFindings = null;
     _published = value;
-    _updateStatus();
+    if (_flushing) {
+      scheduleMicrotask(_updateStatus);
+    } else {
+      _updateStatus();
+    }
   }
 
   WordProofingSummary get summary => _summary;
@@ -781,6 +790,7 @@ final class WordProofingSession extends ChangeNotifier {
   void _startBackgroundPass({required bool deferCaretWord}) {
     _maxTimer?.cancel();
     _maxTimer = null;
+    _timer?.cancel();
     _timer = null;
     unawaited(
       checkNow(
@@ -1357,7 +1367,7 @@ final class WordProofingSession extends ChangeNotifier {
   /// Only paragraphs without a reusable cached result reach the providers,
   /// the edited paragraph first. The pass yields to input and frames after
   /// each [WordProofingTiming.sliceBudget] of main-isolate work and publishes
-  /// partial results at most every [WordProofingTiming.progressInterval].
+  /// partial results about twenty times per pass over the changed paragraphs.
   /// [deferCaretWord] is used by the session's typing deadline only.
   Future<WordProofingSummary> checkNow({
     bool includeManualProviders = true,
@@ -1431,6 +1441,15 @@ final class WordProofingSession extends ChangeNotifier {
     for (final snapshot in captured.paragraphs) {
       final cached = _cachedReports(snapshot, useManual: useManual);
       if (cached != null && cached.every((report) => report.complete)) {
+        // A background pass never carries manual results forward: the next
+        // explicit check runs the manual providers again.
+        if (!useManual && _cache[snapshot.paragraph]!.includesManual) {
+          _cache[snapshot.paragraph] = _CachedParagraph(
+            snapshot.key,
+            cached,
+            false,
+          );
+        }
         continue;
       }
       if (identical(snapshot.paragraph, priorityParagraph)) {
@@ -1440,8 +1459,10 @@ final class WordProofingSession extends ChangeNotifier {
       }
     }
     final checkOrder = [?priority, ...dirty];
+    // About twenty progress publications per pass, plus early feedback for
+    // the edited paragraph; each one republishes the whole document.
+    final progressStride = (checkOrder.length + 19) ~/ 20;
     final slice = Stopwatch()..start();
-    final sinceProgress = Stopwatch()..start();
     for (var position = 0; position < checkOrder.length; position++) {
       final snapshot = checkOrder[position];
       // Yield even when a provider Future completes synchronously, but only
@@ -1481,7 +1502,7 @@ final class WordProofingSession extends ChangeNotifier {
       final remaining = position + 1 < checkOrder.length;
       if (remaining &&
           (identical(snapshot, priority) ||
-              sinceProgress.elapsed >= WordProofingTiming.progressInterval)) {
+              (position + 1) % progressStride == 0)) {
         // Direct host edits can bypass the revision counter. Validate the
         // complete story/field/guard snapshot before exposing partial results.
         if (!captured.sameAs(_capture(document))) {
@@ -1496,9 +1517,6 @@ final class WordProofingSession extends ChangeNotifier {
           checking: true,
         );
         notifyListeners();
-        sinceProgress
-          ..reset()
-          ..start();
       }
     }
     if (!current()) return _summary;
