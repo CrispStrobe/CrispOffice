@@ -336,7 +336,7 @@ abstract final class OfficePdfExport {
       }
       sink.canvas.fillRect(0, 0, slideW, slideH, _slideBackground(deck, slide));
       for (final PmlShape shape
-          in slide.backgroundShapes.isNotEmpty
+          in slide.backgroundShapes.isNotEmpty || !slide.showMasterShapes
               ? slide.backgroundShapes
               : deck.master.shapes) {
         _paintShape(sink, deck, slide, shape);
@@ -379,7 +379,7 @@ abstract final class OfficePdfExport {
       }
 
       linkShapes(
-        slide.backgroundShapes.isNotEmpty
+        slide.backgroundShapes.isNotEmpty || !slide.showMasterShapes
             ? slide.backgroundShapes
             : deck.master.shapes,
         scaled: notes,
@@ -466,7 +466,7 @@ abstract final class OfficePdfExport {
           _slideBackground(deck, slide),
         );
         for (final PmlShape shape
-            in slide.backgroundShapes.isNotEmpty
+            in slide.backgroundShapes.isNotEmpty || !slide.showMasterShapes
                 ? slide.backgroundShapes
                 : deck.master.shapes) {
           _paintShape(sink, deck, slide, shape);
@@ -493,7 +493,7 @@ abstract final class OfficePdfExport {
         }
 
         linkShapes(
-          slide.backgroundShapes.isNotEmpty
+          slide.backgroundShapes.isNotEmpty || !slide.showMasterShapes
               ? slide.backgroundShapes
               : deck.master.shapes,
         );
@@ -1787,10 +1787,17 @@ abstract final class OfficePdfExport {
         canvas.lineTo(x + w, y + h / 2);
         canvas.stroke();
       case PmlShapePreset.downArrow:
+        _arrowPath(canvas, x, y, w, h, _ArrowDirection.down);
+        canvas.stroke();
       case PmlShapePreset.upArrow:
+        _arrowPath(canvas, x, y, w, h, _ArrowDirection.up);
+        canvas.stroke();
       case PmlShapePreset.leftArrow:
+        _arrowPath(canvas, x, y, w, h, _ArrowDirection.left);
+        canvas.stroke();
       case PmlShapePreset.rightArrow:
-        break;
+        _arrowPath(canvas, x, y, w, h, _ArrowDirection.right);
+        canvas.stroke();
       case PmlShapePreset.freeform:
         if (path.length >= 2) {
           canvas.moveTo(x + path.first.x / 12700, y + path.first.y / 12700);
@@ -1948,7 +1955,9 @@ abstract final class OfficePdfExport {
       final PmlTextRun? run = _firstRichRun(paragraph);
       final double size = (run?.fontSizePt ?? 0) > 0
           ? run!.fontSizePt
-          : fallbackSize;
+          : (paragraph.defaultFontSizePt > 0
+                ? paragraph.defaultFontSizePt
+                : fallbackSize);
       final String text = _paragraphText(paragraph);
       if (!text.contains('\t') && !text.contains('\n')) {
         final double natural = sink.measureStyled(
@@ -2043,6 +2052,21 @@ abstract final class OfficePdfExport {
         PmlTextAlign.right => _TextAlign.right,
         PmlTextAlign.left || PmlTextAlign.justify => _TextAlign.left,
       };
+      // The authored-order shortcut is only safe for one unwrapped line.
+      // Explicit breaks and wider content retain the normal line layout.
+      final double? plainLtrWidth =
+          !paragraph.rightToLeft &&
+              !text.contains('\n') &&
+              !text.contains('\r') &&
+              !RegExp(r'\p{L}', unicode: true).hasMatch(text)
+          ? sink.plainWidth(
+              text,
+              size,
+              bold: bold,
+              italic: italic,
+              family: family,
+            )
+          : null;
       if (text.contains('\t')) {
         final List<String> parts = text.split('\t');
         final double tabBase = x + paragraph.marginLeftPt;
@@ -2084,18 +2108,10 @@ abstract final class OfficePdfExport {
           fallbackColor,
           fitScale,
         );
-      } else if (!paragraph.rightToLeft &&
-          !RegExp(r'\p{L}', unicode: true).hasMatch(text)) {
-        final double textWidth = sink.plainWidth(
-          text,
-          size,
-          bold: bold,
-          italic: italic,
-          family: family,
-        );
+      } else if (plainLtrWidth != null && plainLtrWidth <= maxWidth) {
         final double dx = switch (align) {
-          _TextAlign.center => (maxWidth - textWidth) / 2,
-          _TextAlign.right => maxWidth - textWidth,
+          _TextAlign.center => (maxWidth - plainLtrWidth) / 2,
+          _TextAlign.right => maxWidth - plainLtrWidth,
           _TextAlign.left || _TextAlign.auto => 0,
         };
         sink.drawPlainLtr(
@@ -2169,8 +2185,10 @@ abstract final class OfficePdfExport {
     var pendingSpace = false;
     var pendingBreak = false;
     for (final PmlTextRun run in paragraph.runs) {
-      final double size =
-          (run.fontSizePt > 0 ? run.fontSizePt : fallbackSize) * sizeScale;
+      // The caller has already scaled the inherited paragraph size.
+      final double size = run.fontSizePt > 0
+          ? run.fontSizePt * sizeScale
+          : fallbackSize;
       final String color = run.color.isEmpty ? fallbackColor : run.color;
       final bool bold =
           run.bold &&
@@ -3067,7 +3085,7 @@ class _PageSink {
     return true;
   }
 
-  /// Number of laid-out lines for [text] at [size].
+  /// Unshaped advance width for a single authored-order line.
   double plainWidth(
     String text,
     double size, {
@@ -3125,6 +3143,7 @@ class _PageSink {
     }
   }
 
+  /// Number of laid-out lines for [text] at [size].
   int lineCount(
     String text,
     double size, {
