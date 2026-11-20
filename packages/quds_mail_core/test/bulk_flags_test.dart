@@ -135,9 +135,9 @@ void main() {
           return _success;
         }, plan: _plan(action: action));
         expect(commands.map((command) => command.id), [
-          'batch-0',
-          'batch-1',
-          'batch-2',
+          'batch:0',
+          'batch:1',
+          'batch:2',
         ]);
         expect(commands.map((command) => command.message), [
           _imap(1),

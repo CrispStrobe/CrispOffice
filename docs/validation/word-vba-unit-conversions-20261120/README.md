@@ -102,3 +102,99 @@ first `No space left on device` while creating the sandbox; later the exec
 server reports `No such file or directory`. No Dart analysis, formatting,
 VM, JavaScript compilation, CLI or whole-engine regression pass is claimed.
 Source review and arithmetic checks are recorded separately when complete.
+
+## Reviewed publication scope
+
+The historical initial intake above is superseded by the
+[incoming reconciliation](incoming-reconciliation.md). Checkpoint `8ca1958d9eb737beb88269bb962a2418f7a3a44a` includes
+`332d7b26` as an actual merge parent, resolving its sole
+modify/delete conflict by retaining main's deletion of the temporary workflow.
+All **311 initially captured references** are therefore represented:
+288 actual ancestors and 23 exact-tree or changed-file equivalents.
+There are no remaining exclusions or unclassified entries in that initial
+snapshot. No retained source branch is rewritten.
+
+The final numeric candidate promotes already-bounded inputs to binary64
+before scaling. Every permitted integer is exactly representable; this avoids
+signed-64 intermediate overflow without changing the round-trip guard or
+the existing multiply/divide fallback. No native document operation or
+runtime/serializer implementation changes.
+
+### Validation that actually ran
+
+The [arithmetic result](arithmetic-result.json) records **210,069 successful
+source-bound JavaScript assertions**: 200,010 conversion-grid comparisons,
+10,024 comparisons with the previous line algorithm, 12 decimal cases,
+19 boundary cases and four source-shape assertions. A separate **60,144-case**
+BigInt model checks signed-64 versus binary64 grid decisions for permitted
+integer inputs. These are arithmetic-model checks, not Dart test counts.
+Overlapping independent reviewer probes are not added to those counts.
+
+The [reproduction harness](check-arithmetic.mjs) binds the exact reviewed Dart
+evaluator text and compiler Git blob before running the same numeric model.
+Its core ran in the tool's V8 isolate. The standalone Node file wrapper has
+not been launched by a local process in this environment.
+
+Independent source review covers dispatch/reservation/checker paths,
+single argument evaluation, numeric boundaries, native guard retention,
+the example's operation order, and the test expectations. The first review
+is retained in [source-review-initial.json](source-review-initial.json);
+the [final source review](source-review.json) binds the final compiler, both
+suites, the BAS and the contract with no blocking findings. The
+[late-scope inventory](late-scope.md) records the four active later heads.
+
+### Validation that did not run
+
+There are **202 authored compiler cases and six authored native integration
+cases**, all **unexecuted**. The additional compiler case checks valid large
+scalar results whose intermediate scale products exceed signed 64-bit range.
+The [environment failure record](environment-blocker.json) records the
+pre-launch errors. No Dart compile, analyzer, formatter, VM/native suite,
+compiled-JavaScript parity, CLI, broader regression or installed-Word result
+is claimed. Earlier commits' passing counts do not qualify this new source.
+
+From a provisioned engine checkout, the focused pending gate is:
+
+~~~sh
+dart test test/office_vba_word_unit_conversions_test.dart \
+  test/office_vba_word_unit_conversions_integration_test.dart \
+  test/office_vba_word_line_spacing_test.dart \
+  test/office_vba_word_line_spacing_integration_test.dart
+dart analyze --fatal-infos
+dart format --output=none --set-exit-if-changed \
+  lib/src/automation/office_vba_language.dart \
+  test/office_vba_word_unit_conversions_test.dart \
+  test/office_vba_word_unit_conversions_integration_test.dart
+~~~
+
+These are reproducible next validation commands, not a transcript of executed
+commands. The repository's required broader gates remain unexecuted here.
+GitHub Actions were neither queried nor awaited.
+
+### Concurrent work after the initial intake
+
+Four active work heads appeared after implementation began: two overlapping
+Word measurement continuations and two Mail bulk-action continuations.
+Their exact captured heads and dispositions are retained in the late-scope
+record. They are outside the frozen initial intake and remain on their
+branches. In particular, the later Word measurement branch already contains
+this increment's `dd8e73a7` checkpoint and adds a competing implementation plus
+fixtures; the other Word branch adds named application-function arguments.
+This increment keeps its reviewed positional-only contract. A fresh remote
+main check is required immediately before merging; any work actually added
+to main must be retained.
+
+## Remote checkpoint ledger
+
+| Checkpoint | Preserved state |
+| --- | --- |
+| `e938eebba6ee1b52868acdcd3a1f9d69b5af6891` | Complete initial intake audit, before implementation |
+| `dd8e73a7d6252b336b2e7a437c4931addc42d491` | Physical conversions, example, contract and two authored suites |
+| `8ca1958d9eb737beb88269bb962a2418f7a3a44a` | Actual incoming maintenance ancestry, reviewed numeric corrections and arithmetic evidence |
+| Final evidence checkpoint, identified in PR #271 | Final independent review, late-scope inventory and source binding |
+
+[qualification.json](qualification.json) binds the reviewed source and the
+precise validation limits. The final remote-main SHA, final checkpoint SHA,
+complete-tree equality and merge-parent verification are recorded in
+[PR #271](https://github.com/CrispStrobe/quds_office_suite/pull/271) after the
+merge, avoiding a self-referential commit hash inside this tree.

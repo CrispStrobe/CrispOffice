@@ -990,8 +990,21 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
     final lease = session.begin();
     final run = Object();
     final projected = <MailRemoteIdentity>{};
-    bool current() =>
-        scopeCurrent() && lease.isCurrent && identical(_bulkRun, run);
+    bool current() {
+      if (!scopeCurrent() || !lease.isCurrent || !identical(_bulkRun, run)) {
+        return false;
+      }
+      try {
+        final currentRows = {
+          for (final header in _headers) header.id: header.remote,
+        };
+        return provider.account == mailbox.account &&
+            selected.every((header) => currentRows[header.id] == header.remote);
+      } on Object {
+        return false;
+      }
+    }
+
     setState(() {
       _busy = true;
       _error = null;
@@ -1066,7 +1079,18 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
       shouldStop: () => _bulkStopRequested,
       onProgress: observe,
     );
-    if (!current()) return;
+    if (!current()) {
+      if (scopeCurrent() && identical(_bulkRun, run)) {
+        setState(() {
+          _bulkReport = report;
+          _bulkRunning = false;
+          _busy = false;
+          _needsRefresh = true;
+          _error = widget.strings.mailWorkspaceRefreshRequired;
+        });
+      }
+      return;
+    }
     observe(report);
     setState(() {
       _bulkRunning = false;

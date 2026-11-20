@@ -63,7 +63,8 @@ MailMessageList(
 
 The list keeps checkboxes separate from the opened message. **Select visible**
 and Ctrl/Cmd+A, while the list owns focus, check only the currently matching
-loaded rows. Space checks the keyboard cursor; Enter opens it. Selection itself
+loaded rows. Space checks the keyboard cursor; Escape clears checked rows;
+Enter opens the cursor. Selection itself
 does not open messages, load pages, read bodies or invoke a mutation callback.
 Filtering prunes hidden checks permanently; newly loaded rows are not selected
 automatically. Sorting preserves checked identities.

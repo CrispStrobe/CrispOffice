@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -83,7 +84,18 @@ class _Provider extends Fake implements MailProvider {
     required MailOperationLease lease,
   }) async {
     bodyReads++;
-    return const MailFailure(MailProblem(MailProblemCode.unsupported));
+    final header = headers.firstWhere((header) => header.remote == identity);
+    return MailSuccess(
+      MailMessage(
+        raw: MailBytes(
+          Uint8List.fromList('Subject: Frozen\r\n\r\nbody'.codeUnits),
+        ),
+        envelope: header.envelope,
+        body: const MailBody(plainText: 'Opened message body'),
+        localId: header.id,
+        remoteIdentity: identity,
+      ),
+    );
   }
 
   @override
@@ -261,6 +273,110 @@ void main() {
     MailProviderKind.gmail,
     MailProviderKind.graph,
   ]) {
+    testWidgets(
+      '${kind.name}: reversed subset freezes caller IDs and preserves the reader',
+      (tester) async {
+        final harness = _Harness(kind);
+        await _show(tester, harness);
+        _list(tester).onOpen('ews-message-one');
+        await _pump(tester);
+        final reader = tester
+            .widget<MailMessageView>(find.byType(MailMessageView))
+            .controller;
+        expect(harness.provider.bodyReads, 1);
+        for (final action in MailBulkFlagAction.values) {
+          final gate = Completer<MailResult<MailUnit>>();
+          harness.provider.respond = (_, _) => gate.future;
+          final before = harness.provider.commands.length;
+          final ids = ['ews-message-three', 'ews-message-two'];
+          _list(tester).onBulkAction!(action, ids);
+          ids
+            ..clear()
+            ..add('ews-message-one');
+          await tester.pump();
+          expect(harness.provider.commands, hasLength(before + 1));
+          gate.complete(_success);
+          await _pump(tester);
+          final commands = harness.provider.commands.skip(before).toList();
+          expect(commands.map((command) => command.message), [
+            harness.provider.remote('three'),
+            harness.provider.remote('two'),
+          ]);
+          final readAction =
+              action == MailBulkFlagAction.markRead ||
+              action == MailBulkFlagAction.markUnread;
+          final desired =
+              action == MailBulkFlagAction.markRead ||
+              action == MailBulkFlagAction.flag;
+          for (final command in commands) {
+            if (readAction) {
+              expect(command, isA<MailSetRead>());
+              expect((command as MailSetRead).read, desired);
+            } else {
+              expect(command, isA<MailSetFlagged>());
+              expect((command as MailSetFlagged).flagged, desired);
+            }
+          }
+          expect(
+            tester
+                .widget<MailMessageView>(find.byType(MailMessageView))
+                .controller,
+            same(reader),
+          );
+          expect(_list(tester).selectedId, 'ews-message-one');
+          expect(_list(tester).items.first.isRead, isNull);
+          expect(_list(tester).items.first.isFlagged, isNull);
+          _counts(tester, 2, 0, 0, 0);
+        }
+        expect(harness.provider.bodyReads, 1);
+        expect(harness.provider.headerReads, 1);
+      },
+    );
+
+    testWidgets(
+      '${kind.name}: folder A B A rejects callbacks from the earlier observation',
+      (tester) async {
+        final harness = _Harness(kind);
+        await _show(tester, harness);
+        final callback = _list(tester).onBulkAction!;
+        final ids = _ids(tester);
+        await tester.tap(find.text('Archive'));
+        await _pump(tester);
+        await tester.tap(find.text('Inbox'));
+        await _pump(tester);
+        callback(MailBulkFlagAction.markRead, ids);
+        await _pump(tester);
+        expect(harness.provider.commands, isEmpty);
+        expect(harness.provider.headerReads, 3);
+        await _start(tester, MailBulkFlagAction.flag);
+        _counts(tester, 3, 0, 0, 0);
+        expect(harness.provider.bodyReads, 0);
+      },
+    );
+
+    testWidgets(
+      '${kind.name}: generic failure codes never certify an unchanged server',
+      (tester) async {
+        final harness = _Harness(kind);
+        await _show(tester, harness);
+        for (final code in [
+          MailProblemCode.cancelled,
+          MailProblemCode.staleOperation,
+          MailProblemCode.permissionDenied,
+        ]) {
+          final before = harness.provider.commands.length;
+          harness.provider.respond = (_, _) => MailFailure(MailProblem(code));
+          await _start(tester, MailBulkFlagAction.flag);
+          _counts(tester, 0, 0, 1, 2);
+          expect(harness.provider.commands, hasLength(before + 1));
+          expect(_list(tester).bulkEnabled, isFalse);
+          await tester.tap(find.byTooltip(_strings.refresh));
+          await _pump(tester);
+        }
+        expect(harness.provider.bodyReads, 0);
+      },
+    );
+
     testWidgets(
       '${kind.name}: selected bulk actions update only confirmed target flags without body fetches',
       (tester) async {

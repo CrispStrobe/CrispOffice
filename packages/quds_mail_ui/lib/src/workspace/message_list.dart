@@ -559,6 +559,12 @@ class _MailMessageListState extends State<MailMessageList> {
         HardwareKeyboard.instance.isShiftPressed) {
       return KeyEventResult.ignored;
     }
+    if (key == LogicalKeyboardKey.escape &&
+        widget.onBulkAction != null &&
+        _checkedIds.isNotEmpty) {
+      if (event is KeyDownEvent) _clearSelection(_interactionGeneration);
+      return KeyEventResult.handled;
+    }
     if (key == LogicalKeyboardKey.space && widget.onBulkAction != null) {
       if (event is KeyDownEvent) {
         if (_activeId case final id?) {

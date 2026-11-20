@@ -4,6 +4,11 @@
   with confirmed, definite failed, uncertain and unattempted per-message results.
   Stop on uncertain writes or stale/cancelled scope without retrying. Add explicit
   optional mutation-boundary evidence to problems; unknown evidence stays uncertain.
+  Preserve the concurrent coordinator API through the same dispatch engine:
+  certified attempts, single-use coordination, optional provider validation,
+  public `operationAt`, operation-bearing receipts and typed stop reasons. Use
+  stable `planId:index` operation IDs and nonblank plan IDs up to 256 characters.
+  Uncertainty takes precedence over simultaneous stop or scope changes.
 
 - Add bounded portable loaded-header search with field-scoped text, quoted
   phrases, observed read/flag states and strict local-calendar date predicates.

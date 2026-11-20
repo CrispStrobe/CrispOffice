@@ -2,6 +2,7 @@
 
 - Add explicit visible-message selection and foreground read/flag action
   callbacks, with immutable ordered snapshots, Ctrl/Cmd+A and Space selection,
+  Escape to clear checked rows,
   hidden-row pruning, scope/revision resets and stale-menu rejection.
 - Keep bulk controls absent in read-only hosts and unavailable while busy or
   refresh is required; expose a scrollable host-owned progress/results slot.

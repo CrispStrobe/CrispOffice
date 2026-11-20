@@ -193,16 +193,20 @@ class StudioMailBulkStatus extends StatelessWidget {
           children: [
             Text(_action, style: const TextStyle(fontWeight: FontWeight.w600)),
             const SizedBox(height: 4),
-            Wrap(
-              spacing: 12,
-              runSpacing: 4,
-              children: [
-                for (final outcome in MailBulkFlagOutcome.values)
-                  Text(
-                    '${running && outcome == MailBulkFlagOutcome.unattempted ? _text('Pending', 'Ausstehend', 'قيد الانتظار') : _outcome(outcome)}: ${report.count(outcome)}',
-                    key: ValueKey('studio-mail-bulk-count-${outcome.name}'),
-                  ),
-              ],
+            Semantics(
+              key: const ValueKey('studio-mail-bulk-counts'),
+              liveRegion: true,
+              child: Wrap(
+                spacing: 12,
+                runSpacing: 4,
+                children: [
+                  for (final outcome in MailBulkFlagOutcome.values)
+                    Text(
+                      '${running && outcome == MailBulkFlagOutcome.unattempted ? _text('Pending', 'Ausstehend', 'قيد الانتظار') : _outcome(outcome)}: ${report.count(outcome)}',
+                      key: ValueKey('studio-mail-bulk-count-${outcome.name}'),
+                    ),
+                ],
+              ),
             ),
             if (running) ...[
               const SizedBox(height: 8),
