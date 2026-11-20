@@ -314,10 +314,12 @@ final class NativeStudioMailArchiveFiles implements StudioMailArchiveFiles {
     this.chooseFiles,
     this.chooseExportPath,
     this.chooseDirectory,
+    this.isExportCurrent,
   });
   final Future<List<StudioMailArchiveInput>?> Function()? chooseFiles;
   final Future<String?> Function(String suggestedName)? chooseExportPath;
   final Future<String?> Function()? chooseDirectory;
+  final bool Function()? isExportCurrent;
 
   @override
   Future<String?> pickDirectory() =>
@@ -513,8 +515,15 @@ final class NativeStudioMailArchiveFiles implements StudioMailArchiveFiles {
     File? reservation;
     FileStat? reservationStat;
     bool published = false;
-    try {
+    void checkCurrent() {
       cancellation.throwIfCancelled();
+      if (isExportCurrent?.call() == false) {
+        throw const MailCancelled(MailCancellationReason.accountChanged);
+      }
+    }
+
+    try {
+      checkCurrent();
       final path = chooseExportPath != null
           ? await chooseExportPath!(suggestedName)
           : await FilePicker.platform.saveFile(
@@ -522,23 +531,24 @@ final class NativeStudioMailArchiveFiles implements StudioMailArchiveFiles {
               type: FileType.custom,
               allowedExtensions: const ['eml'],
             );
-      cancellation.throwIfCancelled();
+      checkCurrent();
       if (path == null) return const MailSuccess(false);
       final destination = File(path);
       temporary = await destination.parent.createTemp(
         '.crispoffice-mail-export-',
       );
+      checkCurrent();
       final staged = File(
         '${temporary.path}${Platform.pathSeparator}original.eml',
       );
       await staged.writeAsBytes(bytes.bytes, flush: true);
-      cancellation.throwIfCancelled();
+      checkCurrent();
       // Exclusive creation refuses existing files and symlinks. Reserve only
       // after the complete original has been flushed to the sibling directory.
       await destination.create(exclusive: true);
       reservation = destination;
       reservationStat = await destination.stat();
-      cancellation.throwIfCancelled();
+      checkCurrent();
       await staged.rename(destination.path);
       published = true;
       return const MailSuccess(true);

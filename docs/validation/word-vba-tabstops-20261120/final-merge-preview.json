@@ -1,0 +1,364 @@
+{
+  "schema": "quds-word-vba-final-merge-preview/v1",
+  "checked_at_utc": "2026-11-20T14:43:33.035005+00:00",
+  "base_head": "5b4a85ccf796ad68c4f96edd4119280f11295e53",
+  "roots": [
+    "7f2d51a5206059478ea81965ccc95b89a9274ca6",
+    "f682e18063931c8d1dc40c67a7264b9f32185255"
+  ],
+  "first_merge_tree": "bef1de26c5f7dcabdc40636e2e3ac943bc319c7d",
+  "temporary_preview_commit": "4d34dfbb6d10944385083b31dfbe8b769eec29b8",
+  "proposed_final_tree": "f86a24f095c9ecaa2bc747885ee9bf05e5215d76",
+  "conflicts": [],
+  "first_merge_output": "bef1de26c5f7dcabdc40636e2e3ac943bc319c7d\n\n",
+  "second_merge_output": "f86a24f095c9ecaa2bc747885ee9bf05e5215d76\n\n",
+  "qualified_source": "b5410b107a83f213e27c1476e766551b3f6cd6a4",
+  "input_scopes": [
+    "packages/quds_office_engine/lib",
+    "packages/quds_office_engine/test",
+    "packages/quds_office_engine/tool",
+    "packages/quds_office_engine/example",
+    "packages/quds_office_engine/pubspec.yaml",
+    "packages/legacy_doc_parser/lib",
+    "packages/legacy_doc_parser/pubspec.yaml",
+    "pubspec.yaml",
+    "pubspec.lock",
+    "analysis_options.yaml"
+  ],
+  "scope_entries_before": 1110,
+  "scope_entries_after": 1110,
+  "scope_changes": [],
+  "scope_added_paths": [],
+  "scope_removed_paths": [],
+  "recorded_input_entries": 1110,
+  "recorded_input_identity_mismatches": [],
+  "binding_sha256": "86d70ab00f48fe934ad934b38d75d1ee1e1c57f43c23931ee8feeea9ea7ead95",
+  "outside_scope_changes": [
+    {
+      "path": "README.md",
+      "before": {
+        "git_mode": "100644",
+        "git_type": "blob",
+        "git_blob": "291d4d9167ad09ce3b953b37f2576c3a6b10afba"
+      },
+      "after": {
+        "git_mode": "100644",
+        "git_type": "blob",
+        "git_blob": "8826ffc7a378184a8d71d6d06619131a7e719d3e"
+      }
+    },
+    {
+      "path": "docs/roadmaps/mail/README.md",
+      "before": {
+        "git_mode": "100644",
+        "git_type": "blob",
+        "git_blob": "4416f90e4ac8fa806aa802695e01d2d6adae2c8e"
+      },
+      "after": {
+        "git_mode": "100644",
+        "git_type": "blob",
+        "git_blob": "0770be92cfa17a66b5f9dfeae853046a486ed2c0"
+      }
+    },
+    {
+      "path": "docs/roadmaps/mail/implementation-plan.md",
+      "before": {
+        "git_mode": "100644",
+        "git_type": "blob",
+        "git_blob": "cfbd5e7a83583369c49669415dd31a40527dea03"
+      },
+      "after": {
+        "git_mode": "100644",
+        "git_type": "blob",
+        "git_blob": "cfb8558554d3acdb1f808e8eff9653e4c367be4c"
+      }
+    },
+    {
+      "path": "docs/roadmaps/mail/multiple-drafts.md",
+      "before": {
+        "git_mode": "100644",
+        "git_type": "blob",
+        "git_blob": "da80079cda3d6121dd4fa597c058f5ef8c6cff08"
+      },
+      "after": {
+        "git_mode": "100644",
+        "git_type": "blob",
+        "git_blob": "486f50757c49620563653796157f59f3d101f341"
+      }
+    },
+    {
+      "path": "docs/roadmaps/mail/outbox-management.md",
+      "before": null,
+      "after": {
+        "git_mode": "100644",
+        "git_type": "blob",
+        "git_blob": "9f8367c0557b468ae7f236da880cf03529bea2be"
+      }
+    },
+    {
+      "path": "docs/roadmaps/mail/outbox.md",
+      "before": {
+        "git_mode": "100644",
+        "git_type": "blob",
+        "git_blob": "672ba412fc76d4f82ba799bd03bcf8a55d91554f"
+      },
+      "after": {
+        "git_mode": "100644",
+        "git_type": "blob",
+        "git_blob": "7fcba508e3ea3b45d7617a5c74797c247cdf4280"
+      }
+    },
+    {
+      "path": "docs/roadmaps/mail/status.md",
+      "before": {
+        "git_mode": "100644",
+        "git_type": "blob",
+        "git_blob": "1b0ea4c298b29c648c5f03776eaa37a5d1da90f4"
+      },
+      "after": {
+        "git_mode": "100644",
+        "git_type": "blob",
+        "git_blob": "a55e1951fd38b4046b846c2a4127dda7695b7876"
+      }
+    },
+    {
+      "path": "docs/validation/mail-outbox-management-20261120/intake-initial.json",
+      "before": {
+        "git_mode": "100644",
+        "git_type": "blob",
+        "git_blob": "2bb4e5fe3b74a00f263f452e05d3009fed6f4d42"
+      },
+      "after": {
+        "git_mode": "100644",
+        "git_type": "blob",
+        "git_blob": "d3c2d3aa80b998925e674e97aee1e8a1c6963099"
+      }
+    },
+    {
+      "path": "docs/validation/zotero-research-tables-20261120/README.md",
+      "before": {
+        "git_mode": "100644",
+        "git_type": "blob",
+        "git_blob": "8c0927b94f58b0bbd05ca6ead607573cd60dea18"
+      },
+      "after": {
+        "git_mode": "100644",
+        "git_type": "blob",
+        "git_blob": "fa3ebfd77a1cf725cbfb40b4d16b8b43c0563d92"
+      }
+    },
+    {
+      "path": "docs/validation/zotero-research-tables-20261120/checkpoint-outbox-followup-evidence.json",
+      "before": null,
+      "after": {
+        "git_mode": "100644",
+        "git_type": "blob",
+        "git_blob": "ac21ea74d73ff14f5305509ec34cad67d03d2ecc"
+      }
+    },
+    {
+      "path": "docs/validation/zotero-research-tables-20261120/checkpoint-outbox-followup-evidence.tar.xz",
+      "before": null,
+      "after": {
+        "git_mode": "100644",
+        "git_type": "blob",
+        "git_blob": "f9b46da8cf605e9689e17bc311f513d9e9d39e69"
+      }
+    },
+    {
+      "path": "docs/validation/zotero-research-tables-20261120/checkpoint-outbox-followup-summary.json",
+      "before": null,
+      "after": {
+        "git_mode": "100644",
+        "git_type": "blob",
+        "git_blob": "62cfc06b4a7665ddc7a4a5fd6274231a0c5d146b"
+      }
+    },
+    {
+      "path": "docs/validation/zotero-research-tables-20261120/final-main-adoption.json",
+      "before": null,
+      "after": {
+        "git_mode": "100644",
+        "git_type": "blob",
+        "git_blob": "131c289712662714ca92e5e2a245d310f6fd29bf"
+      }
+    },
+    {
+      "path": "docs/validation/zotero-research-tables-20261120/final-main-engine-adoption.json",
+      "before": null,
+      "after": {
+        "git_mode": "100644",
+        "git_type": "blob",
+        "git_blob": "5af03eb489f190d1cd8167ce1107d9ca02655866"
+      }
+    },
+    {
+      "path": "docs/validation/zotero-research-tables-20261120/final-main-root-continuity.json",
+      "before": null,
+      "after": {
+        "git_mode": "100644",
+        "git_type": "blob",
+        "git_blob": "86db15a4bdacc14407a7df91edd2e664767a6fa5"
+      }
+    },
+    {
+      "path": "packages/quds_mail_core/CHANGELOG.md",
+      "before": {
+        "git_mode": "100644",
+        "git_type": "blob",
+        "git_blob": "d0eec0c0e15dc4e02f1d807d8037b4bc9dccf317"
+      },
+      "after": {
+        "git_mode": "100644",
+        "git_type": "blob",
+        "git_blob": "da7cf360095c7286fd4361404beb06c9d7b0cc21"
+      }
+    },
+    {
+      "path": "packages/quds_mail_store/CHANGELOG.md",
+      "before": {
+        "git_mode": "100644",
+        "git_type": "blob",
+        "git_blob": "a234536bc233e36056e55d50bc7e297d3f27bb1a"
+      },
+      "after": {
+        "git_mode": "100644",
+        "git_type": "blob",
+        "git_blob": "79529891f6bae270c08b0fb7217934543b24f7ff"
+      }
+    },
+    {
+      "path": "packages/quds_office_editor/CHANGELOG.md",
+      "before": {
+        "git_mode": "100644",
+        "git_type": "blob",
+        "git_blob": "7067a9c2491b78eaa7df1c1b1f8a0cede06688d2"
+      },
+      "after": {
+        "git_mode": "100644",
+        "git_type": "blob",
+        "git_blob": "a5ef108b75325829c47cbd46c40e87d0b734ae15"
+      }
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_credentials.dart",
+      "before": {
+        "git_mode": "100644",
+        "git_type": "blob",
+        "git_blob": "0d7d3a34d91637dab126915a4c55e8c07876f0c8"
+      },
+      "after": {
+        "git_mode": "100644",
+        "git_type": "blob",
+        "git_blob": "688bacc077b63419bccab463c9cf6340439362bd"
+      }
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_outbox_content.dart",
+      "before": {
+        "git_mode": "100644",
+        "git_type": "blob",
+        "git_blob": "5e7b56ed7e717583f8be7157a68c2d84277c3369"
+      },
+      "after": {
+        "git_mode": "100644",
+        "git_type": "blob",
+        "git_blob": "76649394361450c72f3485613e92bc35ef10bd4c"
+      }
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_outbox_strings.dart",
+      "before": {
+        "git_mode": "100644",
+        "git_type": "blob",
+        "git_blob": "1cae491e21c819c85cba4a45920a8f924de516ff"
+      },
+      "after": {
+        "git_mode": "100644",
+        "git_type": "blob",
+        "git_blob": "5928f217cddb0c8738777ea7c78915cd6ec9359d"
+      }
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_credential_selection_test.dart",
+      "before": {
+        "git_mode": "100644",
+        "git_type": "blob",
+        "git_blob": "dd958222f69a3faefbd66d539e8cbe16b3e5e363"
+      },
+      "after": {
+        "git_mode": "100644",
+        "git_type": "blob",
+        "git_blob": "c1957fed595b1de8c1a01e1569bfddcb851d0631"
+      }
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_outbox_cloud_test.dart",
+      "before": {
+        "git_mode": "100644",
+        "git_type": "blob",
+        "git_blob": "39975403c5ff085f6731e67e8f8e33e0b85463fb"
+      },
+      "after": {
+        "git_mode": "100644",
+        "git_type": "blob",
+        "git_blob": "9f37518d91b9bf5611ba876db8e1a19aad075258"
+      }
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_outbox_content_test.dart",
+      "before": {
+        "git_mode": "100644",
+        "git_type": "blob",
+        "git_blob": "23b69e4363633cb2850e2a5a9ff86f752215017c"
+      },
+      "after": {
+        "git_mode": "100644",
+        "git_type": "blob",
+        "git_blob": "8b11e27314cdb1b0d05f0a0df0359f8db669176d"
+      }
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_outbox_host_test.dart",
+      "before": {
+        "git_mode": "100644",
+        "git_type": "blob",
+        "git_blob": "34e047b05bc66d5af4292e71077f989bd3c40b78"
+      },
+      "after": {
+        "git_mode": "100644",
+        "git_type": "blob",
+        "git_blob": "75e47c737896df3a3aec32f8d33547b8b75e697b"
+      }
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_outbox_management_test.dart",
+      "before": {
+        "git_mode": "100644",
+        "git_type": "blob",
+        "git_blob": "595e0d70a95726fee3dc0c68027706bfb7894270"
+      },
+      "after": {
+        "git_mode": "100644",
+        "git_type": "blob",
+        "git_blob": "d6fae4f63adbff952de532cbaaf145401fa252b7"
+      }
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_outbox_review_visual_test.dart",
+      "before": null,
+      "after": {
+        "git_mode": "100644",
+        "git_type": "blob",
+        "git_blob": "e6f0b11b38d833bf311b63dbc086afc7cdcdc289"
+      }
+    }
+  ],
+  "github_changes": [],
+  "executable_script_changes": [],
+  "index_tree_before_and_after": "6eeb127a78a32ea11e045d4cf97a11c52a8a606c",
+  "worktree_status_unchanged": true,
+  "remote_mutation": false,
+  "github_actions_used": false,
+  "qualification_claim": "Prospective tree/source preservation only; not an executed merge or additional test run."
+}

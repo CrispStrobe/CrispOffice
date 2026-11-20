@@ -1,5 +1,27 @@
 # Mail implementation status — 20 November 2026
 
+## Outbox review and management
+
+The [management continuation](outbox-management.md) adds read-only saved-message
+review, exact EML export, a separately confirmed private recipient JSON export,
+atomic **Edit as new draft**, and **Stop retrying** for unresolved acceptance.
+Editing is available only when no attempt may have been accepted; it cancels
+the original and creates a new draft in one SQLite transaction. Other drafts
+and the original frozen MIME remain intact. Bcc is reconstructed from the
+transport envelope, and supported attachment bytes/threading are retained.
+
+Closing an uncertain record does not invent an accepted/rejected provider result
+or resolve delivery. It records **Closed locally — delivery unknown** and disables
+further sends for that entry. Separate confirmed cleanup remains possible.
+Preview uses inert text and does not open attachments or load external resources;
+unsupported projection keeps exact raw export available. The host routes cover
+native SMTP, EWS, Gmail and Microsoft 365, with English/German/Arabic labels.
+
+The [qualification record](../../validation/mail-outbox-management-20261120/README.md)
+binds these workflows and the incoming draft/account/layout continuations to the
+combined source. Undo-send, scheduling, provider Sent reconciliation, background
+execution and live-provider/installed-platform gates remain open.
+
 ## Multiple local drafts and offline composition
 
 The [multiple-draft continuation](multiple-drafts.md) adds a bounded,
@@ -753,9 +775,12 @@ harness, not the standalone Office application.
    other-OS TLS coverage and authorized disposable-account interoperability. Generic browser
    socket transport remains explicitly unsupported; no automatic retry is added
    without its own bounded policy and reconciliation checks.
-3. Continue M07 composition/submission and M04W's repository-driven mailbox
-   workspace. Preserve immutable queued revisions, explicit SMTP outcomes,
-   uncertain-send reconciliation and the all-or-abort recipient policy.
+3. Build the next M07 increment as a durable pre-submission undo delay and
+   explicitly scheduled foreground send, with separate eligibility/intent,
+   restart/time-change handling and cancel-before-attempt transactions. Keep
+   M04W's repository-driven workspace and provider-specific Sent reconciliation
+   as explicit subsequent boundaries; preserve unknown acceptance and the
+   all-or-abort recipient policy.
 4. Independently close reader/browser no-fetch and browser-store runtime gates,
    including quotas, reloads, tab contention and recovery. Qualify memory and
    rendering on the intended low-memory devices. Keep CrispCloud EML routing

@@ -4,6 +4,14 @@ All notable changes to `quds_office_engine` are documented here.
 
 ## Unreleased
 
+- Extend Word VBA with typed `TabStops` selectors, aliases and helpers,
+  `Add` with named/optional numeric arguments, and `ClearAll`. Add native
+  single-position tab updates and inherited custom-tab clearing, retaining
+  unrelated source XML, style inheritance and the document default-tab interval.
+  Preserve exact signed twip positions and normal atomic publication/permissions.
+  Collection reads, returned `TabStop` objects and implicit hanging-indent
+  behavior remain outside this bounded source adapter.
+
 - Extend Word VBA with typed Font/ParagraphFormat helpers, Paragraph.Format,
   reading order and exact single/1.5/double line-spacing presets. Preserve
   independent native spacing attributes and keep foreign/nested layout XML

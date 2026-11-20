@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Atomically cancel a safely editable Outbox entry and create a distinct revision-zero draft, with full source compare-and-set, draft admission, blob ownership and quota rollback. Persist explicit uncertain closure without inventing provider acceptance.
+
 - Add bounded, account-scoped draft metadata pages without resolving attachment
   blobs. Keep cleared revision markers out of normal pages and enforce an
   optional active-draft limit atomically with draft writes and quota checks.

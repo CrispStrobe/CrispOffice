@@ -1,0 +1,14 @@
+{
+  "source_commit": "b5410b107a83f213e27c1476e766551b3f6cd6a4",
+  "command": [
+    "dart",
+    "analyze",
+    "--fatal-infos",
+    "packages/quds_office_engine"
+  ],
+  "cwd": "/workspace/scratch/02ca2ade0467/quds_office_suite",
+  "exit_code": 0,
+  "stdout": "Analyzing quds_office_engine...\nNo issues found!\n",
+  "stderr": "",
+  "scope": "Complete pure Dart engine package; runtime environment and locked dependencies recorded separately."
+}

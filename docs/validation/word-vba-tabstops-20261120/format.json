@@ -1,0 +1,24 @@
+{
+  "source_commit": "b5410b107a83f213e27c1476e766551b3f6cd6a4",
+  "command": [
+    "dart",
+    "format",
+    "--language-version=3.12",
+    "--output=none",
+    "--set-exit-if-changed",
+    "packages/quds_office_engine/lib/src/automation/office_vba_language.dart",
+    "packages/quds_office_engine/lib/src/automation/operations/word_steps.dart",
+    "packages/quds_office_engine/lib/src/word/serial/word_deserializer.dart",
+    "packages/quds_office_engine/lib/src/word/serial/word_property_io.dart",
+    "packages/quds_office_engine/lib/src/word/serial/word_style_cascade.dart",
+    "packages/quds_office_engine/test/office_macro_word_tab_stops_test.dart",
+    "packages/quds_office_engine/test/office_vba_word_tabstops_integration_test.dart",
+    "packages/quds_office_engine/test/office_vba_word_tabstops_test.dart",
+    "packages/quds_office_engine/tool/macros/web_vba_word_tabstops_smoke.dart"
+  ],
+  "exit_code": 0,
+  "stdout": "Formatted 9 files (0 changed) in 1.80 seconds.\n",
+  "stderr": "",
+  "files": 9,
+  "changed": 0
+}

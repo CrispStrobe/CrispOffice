@@ -1,0 +1,121 @@
+{
+  "scope": "Development attempts and superseded focused checks, excluded from final accepted gate counts. Includes rejected test expectations, absent-JS-output attempt and before/after MC source review probe.",
+  "files": {
+    "reviewer_tabstops_probe_after.stdout": {
+      "bytes": 1878,
+      "sha256": "697175ec88ae627fb31bbaab5d62fa167d78be5964464f8fe65932aed94efe70"
+    },
+    "native-tabstops-receipt.json": {
+      "bytes": 4125,
+      "sha256": "49043fc313c66170279bfef46e7b5048a12a8717afdcef06c38481261aee72e1"
+    },
+    "reviewer_tabstops_probe.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "word-tabstops-source-attempt2.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "reviewer_tabstops_probe_after.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "word-tabstops-integration-2.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "word-tabstops-integration-1.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "word-tabstops-vm.stdout": {
+      "bytes": 733,
+      "sha256": "7f65addc7fb69d6006c50528dee6e5557f828b46437d9cd6e3d46a663bc9f7af"
+    },
+    "word-tabstops-js-self.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "word-tabstops-js-compile.stdout": {
+      "bytes": 114,
+      "sha256": "68f3c68878095f5267736f04103b7293e3f5d468b92a6e243af5f35dfa228f99"
+    },
+    "reviewer_tabstops_probe.dart": {
+      "bytes": 2107,
+      "sha256": "df4dda9db5e7ee311d84f33b1215ad740f4b28be66848d7813ad4c76eb975182"
+    },
+    "word-tabstops-integration-1.jsonl": {
+      "bytes": 1602,
+      "sha256": "471f88e32bb3ee161f4f15570ef00da0a349a623257d43dffb6ac8a1d037fbf7"
+    },
+    "reviewer_tabstops_probe.stdout": {
+      "bytes": 1769,
+      "sha256": "78efce458d196bd37e049bfbfe7cf295aa4891197aee4bf99de53cc1978d8898"
+    },
+    "word-tabstops-js.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "word-tabstops-source-attempt1.jsonl": {
+      "bytes": 18321,
+      "sha256": "7683880ffaf3eab75a3a9e12cc107288d3c4b339dfa48acde5cfa30af884ccca"
+    },
+    "word-tabstops-portable-receipt.json": {
+      "bytes": 4737,
+      "sha256": "eb32e102cfd1c4a24f3576185dee8d774a2868cff0100e906cbbece907ecf42f"
+    },
+    "native-tabstops-final.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "word-tabstops-vm.stderr.attempt-1": {
+      "bytes": 475,
+      "sha256": "ace60efea86a50401f5b85b3b4346cd193289bed4731a2e91f9adb6311025724"
+    },
+    "word-tabstops-js-self.stdout": {
+      "bytes": 733,
+      "sha256": "7f65addc7fb69d6006c50528dee6e5557f828b46437d9cd6e3d46a663bc9f7af"
+    },
+    "word-tabstops-source-attempt2.jsonl": {
+      "bytes": 39414,
+      "sha256": "20e3c2b3ba1fb8757f5e70e055af44f11d66612d17946599e2979b7946ead533"
+    },
+    "word-tabstops-integration-2.jsonl": {
+      "bytes": 5443,
+      "sha256": "10610709386812751f80555a784d21fb42c849827dd4182700342791152f89e4"
+    },
+    "word-tabstops-js-compile.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "word-tabstops-portable-receipt.json.attempt-1": {
+      "bytes": 1889,
+      "sha256": "762bb95ccc491fb810b5f9c7e463f688dfd914c04156ab118866ad9d24f9fbb1"
+    },
+    "native-tabstops-final.jsonl": {
+      "bytes": 19314,
+      "sha256": "4b12215aeaebc14ae989dc8d8d3ace7697c6b640746432236cb4040626aca9a2"
+    },
+    "word-tabstops-vm.stdout.attempt-1": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "word-tabstops-vm.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "word-tabstops-js.stdout": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "word-tabstops-portable-canonical.json": {
+      "bytes": 733,
+      "sha256": "a301ad0994efbcd2c481f0cd0880ec24f6f5c47d187ba4d3019da8ce415f0162"
+    },
+    "word-tabstops-source-attempt1.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  }
+}

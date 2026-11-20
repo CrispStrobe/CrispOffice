@@ -120,7 +120,7 @@ Start with tables for profiles/accounts/identities, mailboxes, messages, members
 
 ### Outbox contract
 
-Use explicit states such as queued, submitting, submitted, retryableFailure, permanentFailure, uncertain and cancelled. Persist attempt identity before network submission. Transport errors after possible server acceptance become uncertain; do not automatically resend those messages.
+Use explicit states such as queued, submitting, submitted, retryableFailure, permanentFailure, uncertain, cancelled and closedUncertain. The last is an explicit local stop with delivery still unknown. Persist attempt identity before network submission. Transport errors after possible server acceptance become uncertain; do not automatically resend those messages.
 
 Prepare and freeze the draft revision, wire MIME hash and envelope before enqueueing. A later edit creates a new draft revision and cannot mutate the queued payload. Delay/undo-send operates before submission. A cancelled UI wait does not prove the provider did not accept a message.
 
@@ -369,7 +369,9 @@ M07 or the document-snapshot work in M08.
 - [ ] Keep Bcc recipients in the SMTP envelope and out of transmitted headers, including folded/case-varied header cases.
 - [ ] Use the DATA submission path initially. Preserve the current all-or-abort RCPT policy and add typed recipient-attempt outcomes in the adapter/fork where the library exposes only an aggregate error. A failed RCPT followed by RSET must leave every recipient marked not submitted, never delivered. BDAT or partial-recipient delivery requires separate qualification before enabling it.
 - [x] Freeze the saved draft revision, MIME and complete envelope together; atomically clear the source draft; expose native account-scoped queued/submitting/accepted/failed/uncertain/cancelled states, restart recovery, explicit send/retry/cancel and guarded terminal cleanup. No automatic uncertain retry or reconnect sending.
-- [ ] Complete partial-recipient results, live SMTP transcript qualification, provider Sent-folder reconciliation, outbox preview/edit-copy and explicit uncertain-record resolution. Add undo-send and scheduling only on the durable frozen-entry foundation.
+- [x] Add bounded Outbox review, exact EML/private-envelope export, atomic edit into a new draft and explicit local closure of uncertain records without resending or fabricating delivery. See [outbox-management.md](outbox-management.md).
+- [ ] Add durable undo-send delay and explicit scheduling on the frozen-entry foundation, with persistent eligibility, clock/restart handling and cancellation before provider invocation.
+- [ ] Complete partial-recipient results, live SMTP transcript qualification and provider-specific Sent-folder reconciliation. Background execution requires its own ownership/lifecycle acceptance.
 - [ ] Do not send imported arbitrary raw MIME through a text path and call it byte-exact. Byte-stream SMTP is a separate extension.
 
 **Acceptance:** raw SMTP transcript proves envelope/header separation, DATA dot handling, MIME bytes and final-response semantics; mixed 250/550 RCPT replies cause RSET and no DATA; injected CR/LF is rejected; connection loss after potential acceptance yields uncertain, not automatic resend; reopen preserves draft and queue. Submitted means accepted by the submission server, not final delivery. Large-file behavior respects declared limits without claiming BDAT means streaming memory.

@@ -1,0 +1,628 @@
+{
+  "repository": "CrispStrobe/quds_office_suite",
+  "main": "13be50464d1b43e9f2100fb9ccc12f8fe22eb55e",
+  "branches": [
+    {
+      "name": "codex/odt-field-continuation-20261117",
+      "sha": "c34945761e7991f5fe49037d79529acdd260b31c"
+    },
+    {
+      "name": "codex/word-powerpoint-vba-expansion-20261120",
+      "sha": "0f6239396ff3328473a5f57c280b982d57e33a08"
+    },
+    {
+      "name": "codex/zotero-research-tables-20261120",
+      "sha": "93dc987cf993787bd613018b3028e7ad60d5472a"
+    },
+    {
+      "name": "docs/ods-color-scale",
+      "sha": "58fdddfbcf198a8c0e38e32f6fcc9d6604e95283"
+    },
+    {
+      "name": "docs/ods-data-bar",
+      "sha": "69d14f84cabd3931b7640c1654b401c89faba766"
+    },
+    {
+      "name": "feat/ods-color-scale",
+      "sha": "74ce9ffb816c70c0d2ae50b91ec52a614f26d688"
+    },
+    {
+      "name": "feat/ods-data-bar",
+      "sha": "0a53b8a70128870f3e1df6d18cdb177bb64290ee"
+    },
+    {
+      "name": "feat/ods-dynamic-validation-links",
+      "sha": "68a0db23408e4c95d6d283219504c79aea33a6fe"
+    },
+    {
+      "name": "feat/ods-icon-sets",
+      "sha": "005c708e9f747cb46cf02e12c869b0a2f85ac824"
+    },
+    {
+      "name": "feat/ods-time-period-conditions",
+      "sha": "7ef09f2408f467c65427700e65907531ecb26acb"
+    },
+    {
+      "name": "fix/mail-credential-stores-chrome-20261120",
+      "sha": "a652a205e6daf6b4b8e3baec04db1c1b52fabd0d"
+    },
+    {
+      "name": "integrate/office-union-148",
+      "sha": "3abf8f43b0e79c10271bbd046f391e462b8fe6b9"
+    },
+    {
+      "name": "integrate/recent-pptx",
+      "sha": "4f5c153774ab7492430c2b68653c54e0c08dc2ad"
+    },
+    {
+      "name": "main",
+      "sha": "13be50464d1b43e9f2100fb9ccc12f8fe22eb55e"
+    },
+    {
+      "name": "work/mail-accounts-20261120",
+      "sha": "c20b41d9c7eed574c02e49f1fd96789843aec2e6"
+    },
+    {
+      "name": "work/mail-multiple-drafts-20261120",
+      "sha": "e7ed2efd4e661ef244a21dd2836525c8e1531b7e"
+    },
+    {
+      "name": "work/mail-outbox-20261120",
+      "sha": "9443612b024114c424ba2f8146e04050d6e049b0"
+    }
+  ],
+  "pullRequests": [
+    {
+      "number": 249,
+      "title": "Preserve Zotero research-note tables and active cell citations [skip ci]",
+      "state": "open",
+      "draft": true,
+      "head": "codex/zotero-research-tables-20261120",
+      "sha": "93dc987cf993787bd613018b3028e7ad60d5472a",
+      "merged_at": null,
+      "updated_at": "2026-11-20T13:49:28Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/249"
+    },
+    {
+      "number": 252,
+      "title": "Extend Word and PowerPoint VBA helpers, paragraph layout and text margins [skip ci]",
+      "state": "open",
+      "draft": false,
+      "head": "codex/word-powerpoint-vba-expansion-20261120",
+      "sha": "0f6239396ff3328473a5f57c280b982d57e33a08",
+      "merged_at": null,
+      "updated_at": "2026-11-20T13:48:48Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/252"
+    },
+    {
+      "number": 251,
+      "title": "Mail: complete account ownership integration and local qualification",
+      "state": "open",
+      "draft": true,
+      "head": "work/mail-accounts-20261120",
+      "sha": "c20b41d9c7eed574c02e49f1fd96789843aec2e6",
+      "merged_at": null,
+      "updated_at": "2026-11-20T13:45:32Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/251"
+    },
+    {
+      "number": 243,
+      "title": "Mail: add remembered native accounts and explicit switching",
+      "state": "closed",
+      "draft": true,
+      "head": "work/mail-accounts-20261120",
+      "sha": "a059c0249a25bef602640c8b8d504bd8da41c619",
+      "merged_at": "2026-11-20T11:46:32Z",
+      "updated_at": "2026-11-20T13:43:10Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/243"
+    },
+    {
+      "number": 250,
+      "title": "Mail: durable foreground Outbox with explicit recovery [skip ci]",
+      "state": "closed",
+      "draft": false,
+      "head": "work/mail-outbox-20261120",
+      "sha": "9443612b024114c424ba2f8146e04050d6e049b0",
+      "merged_at": "2026-11-20T13:32:06Z",
+      "updated_at": "2026-11-20T13:33:08Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/250"
+    },
+    {
+      "number": 248,
+      "title": "Complete safe HTML replies and explicit attachment forwarding",
+      "state": "closed",
+      "draft": false,
+      "head": "work/mail-reply-forward-20261120",
+      "sha": "56d5fdf15a20ced764561a1ac2429c2c37a6e780",
+      "merged_at": "2026-11-20T12:31:17Z",
+      "updated_at": "2026-11-20T13:09:58Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/248"
+    },
+    {
+      "number": 238,
+      "title": "Complete Zotero image notes and structured lists; integrate incoming Office work",
+      "state": "closed",
+      "draft": false,
+      "head": "codex/zotero-parity-continuation-20261120",
+      "sha": "40a8f8eb76bd9bf51205fa0cb9f576ba497ad76b",
+      "merged_at": "2026-11-20T10:55:29Z",
+      "updated_at": "2026-11-20T13:09:52Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/238"
+    },
+    {
+      "number": 240,
+      "title": "Extend Zotero research insertion to authored notes and selected text [skip ci]",
+      "state": "closed",
+      "draft": false,
+      "head": "codex/zotero-note-targets-20261120",
+      "sha": "6c23d94472f741aceff6aef0de0e6ef847195afe",
+      "merged_at": "2026-11-20T10:55:27Z",
+      "updated_at": "2026-11-20T13:09:50Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/240"
+    },
+    {
+      "number": 245,
+      "title": "Extend Word and PowerPoint VBA typography and slideshow support",
+      "state": "closed",
+      "draft": false,
+      "head": "codex/word-powerpoint-vba-continuation-20261120",
+      "sha": "d46d4ef394ed7cafd40bc266c793f8c0df6ec57f",
+      "merged_at": "2026-11-20T11:19:24Z",
+      "updated_at": "2026-11-20T13:09:49Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/245"
+    },
+    {
+      "number": 247,
+      "title": "Incremental Word relayout for local edits (typing lag)",
+      "state": "closed",
+      "draft": false,
+      "head": "perf/incremental-layout-20261120",
+      "sha": "baf6d1bc53b611e9fb37082ca69c409e5f8d6381",
+      "merged_at": "2026-11-20T13:09:31Z",
+      "updated_at": "2026-11-20T13:09:42Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/247"
+    },
+    {
+      "number": 242,
+      "title": "Redesign the Downloads manager (uniform grouped package list)",
+      "state": "closed",
+      "draft": false,
+      "head": "feat/downloads-manager-redesign-20261120",
+      "sha": "84d02025fade09c80f3f58942b466f4522eb4434",
+      "merged_at": "2026-11-20T11:46:32Z",
+      "updated_at": "2026-11-20T11:46:32Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/242"
+    },
+    {
+      "number": 246,
+      "title": "Fix analyze on main: font-pack stub signature, duplicate crypto dev dependency",
+      "state": "closed",
+      "draft": false,
+      "head": "fix/font-pack-stub-packs-20261120",
+      "sha": "d0c9007480ba518022836e017802875614e6205c",
+      "merged_at": "2026-11-20T11:17:02Z",
+      "updated_at": "2026-11-20T11:17:22Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/246"
+    },
+    {
+      "number": 244,
+      "title": "Typing/proofing: record hosted benchmark and suite results [skip ci]",
+      "state": "closed",
+      "draft": false,
+      "head": "perf/typing-proofing-results-20261120",
+      "sha": "2fd61c3353dc22ee36ed1bc1a69df470a9423230",
+      "merged_at": "2026-11-20T11:01:51Z",
+      "updated_at": "2026-11-20T11:02:28Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/244"
+    },
+    {
+      "number": 237,
+      "title": "Typing: coalesce as-you-type proofing and status chrome (+ benchmark)",
+      "state": "closed",
+      "draft": true,
+      "head": "perf/typing-proofing-20261120",
+      "sha": "712d0ea558a01cabff25a83294a29b8d57ec25d4",
+      "merged_at": "2026-11-20T10:55:29Z",
+      "updated_at": "2026-11-20T11:01:18Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/237"
+    },
+    {
+      "number": 241,
+      "title": "Mail: shared foreground navigation and reconciled qualification",
+      "state": "closed",
+      "draft": false,
+      "head": "work/mail-workspace-20261120",
+      "sha": "aad737dd79c034b831a8957daa4165c6c64e35e5",
+      "merged_at": "2026-11-20T10:28:08Z",
+      "updated_at": "2026-11-20T10:50:58Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/241"
+    },
+    {
+      "number": 233,
+      "title": "Persist native Mail drafts and reconcile current Office work [skip ci]",
+      "state": "closed",
+      "draft": false,
+      "head": "work/mail-draft-recovery-20261120",
+      "sha": "20b2ecf572f8fd5663a728529da7bf5c7ebbda1d",
+      "merged_at": "2026-11-20T08:01:59Z",
+      "updated_at": "2026-11-20T10:50:58Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/233"
+    },
+    {
+      "number": 221,
+      "title": "Add bounded mail attachments and reconcile current Office work",
+      "state": "closed",
+      "draft": true,
+      "head": "work/mail-attachments-20261120",
+      "sha": "177f29d3f9450a58f41189b462b0814aad37e45c",
+      "merged_at": "2026-11-20T07:24:05Z",
+      "updated_at": "2026-11-20T10:50:58Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/221"
+    },
+    {
+      "number": 239,
+      "title": "Extend Word and PowerPoint VBA; integrate recent work [skip ci]",
+      "state": "closed",
+      "draft": false,
+      "head": "codex/word-powerpoint-vba-20261120",
+      "sha": "06f119566235aa3765445526f5ffab48832b1a31",
+      "merged_at": "2026-11-20T09:46:52Z",
+      "updated_at": "2026-11-20T10:50:57Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/239"
+    },
+    {
+      "number": 227,
+      "title": "Extend Word and Excel VBA with explicit Variants and paragraph macros",
+      "state": "closed",
+      "draft": true,
+      "head": "codex/vba-variant-conversions-20261120",
+      "sha": "1ceae221d37e733f0195d35622a05f896a2d13a1",
+      "merged_at": "2026-11-20T09:32:04Z",
+      "updated_at": "2026-11-20T10:50:57Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/227"
+    },
+    {
+      "number": 223,
+      "title": "Extend Zotero research-material browsing and reconcile recent work [skip ci]",
+      "state": "closed",
+      "draft": false,
+      "head": "codex/zotero-research-materials-20261120",
+      "sha": "a31616d3567a43307251e13a9728cf92fd8690c6",
+      "merged_at": "2026-11-20T07:24:03Z",
+      "updated_at": "2026-11-20T10:50:57Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/223"
+    },
+    {
+      "number": 234,
+      "title": "Rename built app artifacts and platform identities to CrispOffice",
+      "state": "closed",
+      "draft": false,
+      "head": "feat/crispoffice-rename-20261120",
+      "sha": "228d13d949859c66c58cf51addfbb03b09c7365d",
+      "merged_at": "2026-11-20T09:46:53Z",
+      "updated_at": "2026-11-20T10:50:28Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/234"
+    },
+    {
+      "number": 236,
+      "title": "Qualify manual German grammar on the Android arm64 spaCy library",
+      "state": "closed",
+      "draft": false,
+      "head": "feat/android-spacy-grammar-20261120",
+      "sha": "7319b220ab2e64b440e6f63d299eb747366a24d3",
+      "merged_at": "2026-11-20T09:31:28Z",
+      "updated_at": "2026-11-20T09:31:52Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/236"
+    },
+    {
+      "number": 235,
+      "title": "Register the Android spaCy grammar replay workflow",
+      "state": "closed",
+      "draft": false,
+      "head": "ci/android-spacy-grammar-workflow",
+      "sha": "596fb68f64c447177ed202a40f890c20205a0270",
+      "merged_at": "2026-11-20T08:37:17Z",
+      "updated_at": "2026-11-20T09:31:52Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/235"
+    },
+    {
+      "number": 232,
+      "title": "Native proofing libraries on iOS/iPadOS and Android (+ on-device gate, Android spaCy analysis record)",
+      "state": "closed",
+      "draft": false,
+      "head": "feat/mobile-proofing-native-20261120",
+      "sha": "8b09e0ca6667c00db81b613c40b6d275bc20471a",
+      "merged_at": "2026-11-20T06:59:22Z",
+      "updated_at": "2026-11-20T06:59:54Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/232"
+    },
+    {
+      "number": 230,
+      "title": "Roadmap: GlotLID as optional second language identifier (feasibility)",
+      "state": "closed",
+      "draft": false,
+      "head": "docs/glotlid-feasibility-20261120",
+      "sha": "3c137a66e8a434f5a90e80f5094bfaa25354067a",
+      "merged_at": "2026-11-20T06:14:49Z",
+      "updated_at": "2026-11-20T06:59:52Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/230"
+    },
+    {
+      "number": 231,
+      "title": "Arabic grammar: context disambiguation over Camel Morph analyses [skip ci]",
+      "state": "closed",
+      "draft": false,
+      "head": "feat/arabic-morph-disambig-20261120",
+      "sha": "754d30d199b6f7dfd52b2772a27cc37a3f8d3dd8",
+      "merged_at": "2026-11-20T06:43:03Z",
+      "updated_at": "2026-11-20T06:43:26Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/231"
+    },
+    {
+      "number": 226,
+      "title": "Fix comment draft language test after language-download review",
+      "state": "closed",
+      "draft": false,
+      "head": "fix/comment-draft-language-test-20261120",
+      "sha": "a56397df5f53b991f5016f3cc8e1ab53b7ce12f1",
+      "merged_at": "2026-11-20T05:29:16Z",
+      "updated_at": "2026-11-20T06:03:06Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/226"
+    },
+    {
+      "number": 229,
+      "title": "Persist verified web dictionaries and morphology data across sessions",
+      "state": "closed",
+      "draft": false,
+      "head": "feat/web-proofing-persistence-20261120",
+      "sha": "0c12d087e1d21b710c9fe224a06a93d526f0721e",
+      "merged_at": "2026-11-20T06:01:58Z",
+      "updated_at": "2026-11-20T06:03:05Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/229"
+    },
+    {
+      "number": 228,
+      "title": "macOS CI: portable paths; ship pinned spaCy bytes unchanged in ad hoc builds",
+      "state": "closed",
+      "draft": false,
+      "head": "fix/macos-ci-portable-20261120",
+      "sha": "f3ed8d74a016bc1e826dbaf056397e887d765b43",
+      "merged_at": "2026-11-20T05:45:09Z",
+      "updated_at": "2026-11-20T06:02:57Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/228"
+    },
+    {
+      "number": 224,
+      "title": "macOS release signing with code-identity spaCy qualification; weekly macOS CI",
+      "state": "closed",
+      "draft": false,
+      "head": "feat/macos-signing-ci-20261120",
+      "sha": "38c9c297c12fca3422b8f758e7b1afbdabbf064c",
+      "merged_at": "2026-11-20T05:02:10Z",
+      "updated_at": "2026-11-20T05:14:11Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/224"
+    },
+    {
+      "number": 225,
+      "title": "Native spaCy German grammar v2: NP agreement, preposition case, verb position (+ experimental person)",
+      "state": "closed",
+      "draft": false,
+      "head": "feat/spacy-grammar-v2-20261120",
+      "sha": "4973e712045bdcf45fd36dcfe37d380c52265d3c",
+      "merged_at": "2026-11-20T05:13:37Z",
+      "updated_at": "2026-11-20T05:13:51Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/225"
+    },
+    {
+      "number": 222,
+      "title": "Extend VBA string conformance and reconcile current Office work [skip ci]",
+      "state": "closed",
+      "draft": false,
+      "head": "codex/vba-string-conformance-20261120",
+      "sha": "7be53768501bb6df426eeb9d05c921e393ded02f",
+      "merged_at": "2026-11-20T04:41:16Z",
+      "updated_at": "2026-11-20T04:41:44Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/222"
+    },
+    {
+      "number": 220,
+      "title": "Qualify the app-bundled macOS spaCy library for manual German grammar [skip ci]",
+      "state": "closed",
+      "draft": false,
+      "head": "feat/spacy-macos-bundled-qualification-20261119",
+      "sha": "1441665236401e94ccf03ffa694c7434bb227ef3",
+      "merged_at": "2026-11-19T22:30:15Z",
+      "updated_at": "2026-11-19T23:08:21Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/220"
+    },
+    {
+      "number": 218,
+      "title": "Extend Zotero tag discovery and source citation navigation",
+      "state": "closed",
+      "draft": false,
+      "head": "codex/zotero-workflow-20261119",
+      "sha": "6626ad430a54122e4514cc2870fdcee18760682f",
+      "merged_at": "2026-11-19T21:31:47Z",
+      "updated_at": "2026-11-19T22:45:46Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/218"
+    },
+    {
+      "number": 217,
+      "title": "Add To/Cc/Bcc and Reply all; reconcile concurrent fork work [skip ci]",
+      "state": "closed",
+      "draft": false,
+      "head": "work/mail-continuation-20261119",
+      "sha": "fd17f6c4e0ffc22b71e52dcc7859fd95f72f30c7",
+      "merged_at": "2026-11-19T21:41:20Z",
+      "updated_at": "2026-11-19T22:45:46Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/217"
+    },
+    {
+      "number": 216,
+      "title": "Preserve mail reply threading and reconcile fork continuations",
+      "state": "closed",
+      "draft": false,
+      "head": "work/mail-next-20261119",
+      "sha": "ab833975409abfb207f3a6a1a146183a4a5198fd",
+      "merged_at": "2026-11-19T20:50:37Z",
+      "updated_at": "2026-11-19T22:45:46Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/216"
+    },
+    {
+      "number": 219,
+      "title": "Extend VBA with dynamic arrays and reconcile current Office work",
+      "state": "closed",
+      "draft": false,
+      "head": "codex/vba-dynamic-arrays-20261119",
+      "sha": "3003272fc2bc1f77bdb1355aa7cb27356dfbc61b",
+      "merged_at": "2026-11-19T22:01:27Z",
+      "updated_at": "2026-11-19T22:45:45Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/219"
+    },
+    {
+      "number": 212,
+      "title": "Resume mail archive restores with durable destination checkpoints [skip ci]",
+      "state": "closed",
+      "draft": false,
+      "head": "codex/mail-archive-resume-20261119",
+      "sha": "482fbd99dd8d3d5aff7d773fa87454f4d324028d",
+      "merged_at": "2026-11-19T20:16:03Z",
+      "updated_at": "2026-11-19T22:45:45Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/212"
+    },
+    {
+      "number": 211,
+      "title": "Make Layout precise and compact, fix dark appearance, clarify document modes",
+      "state": "closed",
+      "draft": true,
+      "head": "codex/crispoffice-layout-theme-20261119",
+      "sha": "cacae8569814e4cb81f58d358734d31431f102be",
+      "merged_at": "2026-11-19T20:50:38Z",
+      "updated_at": "2026-11-19T22:45:45Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/211"
+    },
+    {
+      "number": 210,
+      "title": "Extend VBA macros with bounded arrays and For Each; reconcile fork work",
+      "state": "closed",
+      "draft": true,
+      "head": "codex/vba-arrays-foreach-20261119",
+      "sha": "3abffb94dcf33a2766a4579d296d0ef09c9e35cd",
+      "merged_at": "2026-11-19T20:50:38Z",
+      "updated_at": "2026-11-19T22:45:45Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/210"
+    },
+    {
+      "number": 215,
+      "title": "Verify the saved spaCy setup before the first analysis [skip ci]",
+      "state": "closed",
+      "draft": false,
+      "head": "fix/spacy-open-refresh-20261119",
+      "sha": "cc061e72bd167cdaf4a99d3c0b714f27cb93b2c8",
+      "merged_at": "2026-11-19T19:53:14Z",
+      "updated_at": "2026-11-19T19:53:18Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/215"
+    },
+    {
+      "number": 214,
+      "title": "Align bundled spaCy mode with NER state and the downloads manager [skip ci]",
+      "state": "closed",
+      "draft": false,
+      "head": "fix/spacy-bundled-ner-20261119",
+      "sha": "dc93a176f8efc98feff9c25565fb036175793a54",
+      "merged_at": "2026-11-19T19:42:42Z",
+      "updated_at": "2026-11-19T19:43:15Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/214"
+    },
+    {
+      "number": 213,
+      "title": "Bundle the spaCy runtime in the macOS app, register missing licences, harden the build [skip ci]",
+      "state": "closed",
+      "draft": false,
+      "head": "fix/app-gaps-20261119",
+      "sha": "0e03878b028ec25ed3d84a790633433eafc3bede",
+      "merged_at": "2026-11-19T19:15:39Z",
+      "updated_at": "2026-11-19T19:43:15Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/213"
+    },
+    {
+      "number": 209,
+      "title": "Restore exported mail archives with verified originals and provenance",
+      "state": "closed",
+      "draft": false,
+      "head": "codex/mail-archive-restore-20261119",
+      "sha": "6275d21246040e03f6264b27171992c88d1474a2",
+      "merged_at": "2026-11-19T18:16:42Z",
+      "updated_at": "2026-11-19T19:43:14Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/209"
+    },
+    {
+      "number": 207,
+      "title": "Extend bounded VBA macros with conditional loops and Select Case",
+      "state": "closed",
+      "draft": false,
+      "head": "codex/vba-control-flow-20261119",
+      "sha": "dde2b56066746223b2b313cbfb0ce8dba55dc6bd",
+      "merged_at": "2026-11-19T17:49:23Z",
+      "updated_at": "2026-11-19T19:43:14Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/207"
+    },
+    {
+      "number": 206,
+      "title": "Improve CrispOffice ribbons and native desktop menus [skip ci]",
+      "state": "closed",
+      "draft": false,
+      "head": "codex/crispoffice-gui-20261119",
+      "sha": "bba11ff1b23b2e8c0cdc0d872ce31394ada83bf2",
+      "merged_at": "2026-11-19T17:40:16Z",
+      "updated_at": "2026-11-19T19:43:14Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/206"
+    },
+    {
+      "number": 208,
+      "title": "[skip ci] MacBook build integration: resolve temp folder in Studio directory-import tests",
+      "state": "closed",
+      "draft": false,
+      "head": "integrate/macbook-build-20261119",
+      "sha": "de9d21f9014060c14263ce17fe323d5fdb063d11",
+      "merged_at": "2026-11-19T17:39:56Z",
+      "updated_at": "2026-11-19T17:40:45Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/208"
+    },
+    {
+      "number": 204,
+      "title": "Extend VBA macros with reusable procedures and scalar functions",
+      "state": "closed",
+      "draft": false,
+      "head": "codex/vba-procedures-20261119",
+      "sha": "3db248be978b24d0693d1133505d9be200fd1256",
+      "merged_at": "2026-11-19T16:48:52Z",
+      "updated_at": "2026-11-19T17:40:22Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/204"
+    },
+    {
+      "number": 202,
+      "title": "Extend Office macros with a bounded Excel VBA compiler",
+      "state": "closed",
+      "draft": true,
+      "head": "codex/vba-excel-macros",
+      "sha": "d98c8ae020a60715fbb02f5332b2f3414fb6805b",
+      "merged_at": null,
+      "updated_at": "2026-11-19T17:40:22Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/202"
+    },
+    {
+      "number": 197,
+      "title": "Add on-premises Exchange EWS support",
+      "state": "closed",
+      "draft": false,
+      "head": "feat/ews-on-premises",
+      "sha": "f20b3c61d28918cd75526c64852c41fae943acf3",
+      "merged_at": "2026-11-19T14:56:01Z",
+      "updated_at": "2026-11-19T17:40:22Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/197"
+    }
+  ],
+  "captureDate": "2026-11-20",
+  "captureBoundary": "Captured before remote scope checkpoint e18a10320e8fc44218a43f932deb7a7510349c21; exact provider fetch time was not recorded."
+}

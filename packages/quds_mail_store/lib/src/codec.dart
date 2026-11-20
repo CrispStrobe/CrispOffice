@@ -317,6 +317,13 @@ abstract final class MailStoreCodec {
       if (next.priorSubmissionUncertain != previous.priorSubmissionUncertain) {
         return false;
       }
+      if (next.state == MailOutboxState.closedUncertain) {
+        return previous.canCloseUncertain &&
+            next.attemptNumber == previous.attemptNumber &&
+            next.attemptId == previous.attemptId &&
+            jsonEncode(_nullableResult(previous.result)) ==
+                jsonEncode(_nullableResult(next.result));
+      }
       switch (previous.state) {
         case MailOutboxState.queued:
         case MailOutboxState.retryableFailure:
@@ -341,6 +348,7 @@ abstract final class MailStoreCodec {
         case MailOutboxState.permanentFailure:
         case MailOutboxState.uncertain:
         case MailOutboxState.cancelled:
+        case MailOutboxState.closedUncertain:
           return false;
       }
     } on FormatException {

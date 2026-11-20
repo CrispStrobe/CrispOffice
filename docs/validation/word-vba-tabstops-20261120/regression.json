@@ -1,0 +1,698 @@
+{
+  "source_commit": "b5410b107a83f213e27c1476e766551b3f6cd6a4",
+  "source_tree": "4ac401fd0cd2de3fe5f305bf605f20fdc728d3f2",
+  "started_utc": "2026-11-20T14:17:04.871118+00:00",
+  "finished_utc": "2026-11-20T14:43:08.620976+00:00",
+  "complete": true,
+  "file_count": 59,
+  "passing_cases": 2114,
+  "distinct_cases": 2114,
+  "case_identity": [
+    "file",
+    "full_test_name",
+    "occurrence_ordinal"
+  ],
+  "failed_cases": 0,
+  "skipped_cases": 0,
+  "inputs_unchanged": true,
+  "input_entries": 1110,
+  "maximum_test_runners": 2,
+  "execution": "Complete fresh execution of all 59 files on one frozen source; original groups01+02 retained, six disjoint groups in two serial lanes.",
+  "groups": [
+    {
+      "accepted": true,
+      "problems": [],
+      "passing_cases": 437,
+      "files": [
+        "office_vba_arguments_integration_test.dart",
+        "office_vba_arguments_test.dart",
+        "office_vba_arrays_boundaries_test.dart",
+        "office_vba_arrays_integration_test.dart",
+        "office_vba_arrays_test.dart",
+        "office_vba_conformance_test.dart",
+        "office_vba_control_flow_boundaries_test.dart",
+        "office_vba_control_flow_integration_test.dart"
+      ],
+      "errors": [],
+      "hidden_completions": 8,
+      "declared_cases": 437,
+      "stdout_sha256": "5e9d771f156c39b24f5b5397589c9ef77a1c6eb1de2bbc7514c95ab6ccb8c157",
+      "label": "group-01",
+      "lane": "completed-original",
+      "command": [
+        "/workspace/scratch/02ca2ade0467/runtime/run-engine-tests.sh",
+        "--reporter=json",
+        "test/office_vba_arguments_integration_test.dart",
+        "test/office_vba_arguments_test.dart",
+        "test/office_vba_arrays_boundaries_test.dart",
+        "test/office_vba_arrays_integration_test.dart",
+        "test/office_vba_arrays_test.dart",
+        "test/office_vba_conformance_test.dart",
+        "test/office_vba_control_flow_boundaries_test.dart",
+        "test/office_vba_control_flow_integration_test.dart"
+      ],
+      "exit_code": 0,
+      "seconds": 395.823,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "tabstops-gate/group-01.jsonl",
+      "stderr": "tabstops-gate/group-01.stderr",
+      "inputs_unchanged": true,
+      "source_provenance": "Original frozen before manifest plus exact Git binding and boundary after manifest"
+    },
+    {
+      "accepted": true,
+      "problems": [],
+      "passing_cases": 196,
+      "files": [
+        "office_vba_control_flow_test.dart",
+        "office_vba_dynamic_arrays_integration_test.dart",
+        "office_vba_dynamic_arrays_test.dart",
+        "office_vba_integration_test.dart",
+        "office_vba_language_test.dart",
+        "office_vba_powerpoint_cli_test.dart",
+        "office_vba_powerpoint_conformance_test.dart",
+        "office_vba_powerpoint_integration_test.dart"
+      ],
+      "errors": [],
+      "hidden_completions": 8,
+      "declared_cases": 196,
+      "stdout_sha256": "f211c86ec568ad591afc9d3d8de3393b352e9338dce1d745a11febd971fdedde",
+      "label": "group-02",
+      "lane": "completed-original",
+      "command": [
+        "/workspace/scratch/02ca2ade0467/runtime/run-engine-tests.sh",
+        "--reporter=json",
+        "test/office_vba_control_flow_test.dart",
+        "test/office_vba_dynamic_arrays_integration_test.dart",
+        "test/office_vba_dynamic_arrays_test.dart",
+        "test/office_vba_integration_test.dart",
+        "test/office_vba_language_test.dart",
+        "test/office_vba_powerpoint_cli_test.dart",
+        "test/office_vba_powerpoint_conformance_test.dart",
+        "test/office_vba_powerpoint_integration_test.dart"
+      ],
+      "exit_code": 0,
+      "seconds": 495.754,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "tabstops-gate/group-02.jsonl",
+      "stderr": "tabstops-gate/group-02.stderr",
+      "inputs_unchanged": true,
+      "source_provenance": "Original frozen before manifest plus exact Git binding and boundary after manifest"
+    },
+    {
+      "accepted": true,
+      "problems": [],
+      "passing_cases": 248,
+      "files": [
+        "office_vba_powerpoint_layout_integration_test.dart",
+        "office_vba_powerpoint_layout_test.dart",
+        "office_vba_powerpoint_margins_integration_test.dart",
+        "office_vba_powerpoint_margins_test.dart",
+        "office_vba_powerpoint_test.dart",
+        "office_vba_procedure_boundaries_test.dart",
+        "office_vba_procedures_integration_test.dart",
+        "office_vba_procedures_test.dart"
+      ],
+      "errors": [],
+      "hidden_completions": 8,
+      "declared_cases": 248,
+      "stdout_sha256": "0853b3df86945ddba19f21b72da4d141a68863039edb208c3690c17d34d5adb7",
+      "label": "group-03",
+      "lane": "lane-a",
+      "command": [
+        "/workspace/scratch/02ca2ade0467/runtime/run-engine-tests.sh",
+        "--reporter=json",
+        "test/office_vba_powerpoint_layout_integration_test.dart",
+        "test/office_vba_powerpoint_layout_test.dart",
+        "test/office_vba_powerpoint_margins_integration_test.dart",
+        "test/office_vba_powerpoint_margins_test.dart",
+        "test/office_vba_powerpoint_test.dart",
+        "test/office_vba_procedure_boundaries_test.dart",
+        "test/office_vba_procedures_integration_test.dart",
+        "test/office_vba_procedures_test.dart"
+      ],
+      "exit_code": 0,
+      "seconds": 257.153,
+      "started_utc": "2026-11-20T14:26:15.968897+00:00",
+      "finished_utc": "2026-11-20T14:30:33.121635+00:00",
+      "inputs_unchanged": true,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "tabstops-parallel-gate/lane-a/group-03.jsonl",
+      "stderr": "tabstops-parallel-gate/lane-a/group-03.stderr"
+    },
+    {
+      "accepted": true,
+      "problems": [],
+      "passing_cases": 582,
+      "files": [
+        "office_vba_string_intrinsics_integration_test.dart",
+        "office_vba_string_intrinsics_test.dart",
+        "office_vba_variant_conformance_test.dart",
+        "office_vba_variant_conversions_integration_test.dart",
+        "office_vba_variant_conversions_test.dart",
+        "office_vba_word_argument_shapes_test.dart",
+        "office_vba_word_cli_test.dart",
+        "office_vba_word_conformance_test.dart"
+      ],
+      "errors": [],
+      "hidden_completions": 8,
+      "declared_cases": 582,
+      "stdout_sha256": "f63ec4c76b980fde881069efad9ea74937dd932daad691c569b3e327210e5bf2",
+      "label": "group-04",
+      "lane": "lane-b",
+      "command": [
+        "/workspace/scratch/02ca2ade0467/runtime/run-engine-tests.sh",
+        "--reporter=json",
+        "test/office_vba_string_intrinsics_integration_test.dart",
+        "test/office_vba_string_intrinsics_test.dart",
+        "test/office_vba_variant_conformance_test.dart",
+        "test/office_vba_variant_conversions_integration_test.dart",
+        "test/office_vba_variant_conversions_test.dart",
+        "test/office_vba_word_argument_shapes_test.dart",
+        "test/office_vba_word_cli_test.dart",
+        "test/office_vba_word_conformance_test.dart"
+      ],
+      "exit_code": 0,
+      "seconds": 520.512,
+      "started_utc": "2026-11-20T14:31:57.685517+00:00",
+      "finished_utc": "2026-11-20T14:40:38.197889+00:00",
+      "inputs_unchanged": true,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "tabstops-parallel-gate/lane-b/group-04.jsonl",
+      "stderr": "tabstops-parallel-gate/lane-b/group-04.stderr"
+    },
+    {
+      "accepted": true,
+      "problems": [],
+      "passing_cases": 351,
+      "files": [
+        "office_vba_word_extensions_test.dart",
+        "office_vba_word_format_integration_test.dart",
+        "office_vba_word_integration_test.dart",
+        "office_vba_word_language_test.dart",
+        "office_vba_word_paragraph_layout_integration_test.dart",
+        "office_vba_word_paragraph_layout_test.dart",
+        "office_vba_word_tabstops_integration_test.dart",
+        "office_vba_word_tabstops_test.dart"
+      ],
+      "errors": [],
+      "hidden_completions": 8,
+      "declared_cases": 351,
+      "stdout_sha256": "08ee6b478a9c61a946c183f379292bdba5f501dc331e548b512d1113ec9b2e31",
+      "label": "group-05",
+      "lane": "lane-a",
+      "command": [
+        "/workspace/scratch/02ca2ade0467/runtime/run-engine-tests.sh",
+        "--reporter=json",
+        "test/office_vba_word_extensions_test.dart",
+        "test/office_vba_word_format_integration_test.dart",
+        "test/office_vba_word_integration_test.dart",
+        "test/office_vba_word_language_test.dart",
+        "test/office_vba_word_paragraph_layout_integration_test.dart",
+        "test/office_vba_word_paragraph_layout_test.dart",
+        "test/office_vba_word_tabstops_integration_test.dart",
+        "test/office_vba_word_tabstops_test.dart"
+      ],
+      "exit_code": 0,
+      "seconds": 129.031,
+      "started_utc": "2026-11-20T14:30:33.233808+00:00",
+      "finished_utc": "2026-11-20T14:32:42.265322+00:00",
+      "inputs_unchanged": true,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "tabstops-parallel-gate/lane-a/group-05.jsonl",
+      "stderr": "tabstops-parallel-gate/lane-a/group-05.stderr"
+    },
+    {
+      "accepted": true,
+      "problems": [],
+      "passing_cases": 188,
+      "files": [
+        "office_vba_word_typography_integration_test.dart",
+        "office_vba_word_typography_test.dart",
+        "office_macro_word_tab_stops_test.dart",
+        "office_macro_word_revision_guard_test.dart",
+        "office_macro_runtime_test.dart",
+        "office_operations_test.dart",
+        "office_macro_expansion_test.dart",
+        "style_cascade_test.dart"
+      ],
+      "errors": [],
+      "hidden_completions": 8,
+      "declared_cases": 188,
+      "stdout_sha256": "8a288b44cc7e538accb0809daba777119cab733648778e7dfae920f6568dc214",
+      "label": "group-06",
+      "lane": "lane-b",
+      "command": [
+        "/workspace/scratch/02ca2ade0467/runtime/run-engine-tests.sh",
+        "--reporter=json",
+        "test/office_vba_word_typography_integration_test.dart",
+        "test/office_vba_word_typography_test.dart",
+        "test/office_macro_word_tab_stops_test.dart",
+        "test/office_macro_word_revision_guard_test.dart",
+        "test/office_macro_runtime_test.dart",
+        "test/office_operations_test.dart",
+        "test/office_macro_expansion_test.dart",
+        "test/style_cascade_test.dart"
+      ],
+      "exit_code": 0,
+      "seconds": 108.445,
+      "started_utc": "2026-11-20T14:40:38.261877+00:00",
+      "finished_utc": "2026-11-20T14:42:26.706417+00:00",
+      "inputs_unchanged": true,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "tabstops-parallel-gate/lane-b/group-06.jsonl",
+      "stderr": "tabstops-parallel-gate/lane-b/group-06.stderr"
+    },
+    {
+      "accepted": true,
+      "problems": [],
+      "passing_cases": 97,
+      "files": [
+        "styleless_import_fidelity_test.dart",
+        "word_styles_layout_test.dart",
+        "word_referenced_styles_and_breaks_test.dart",
+        "word_proofing_inheritance_test.dart",
+        "word_compatibility_fidelity_test.dart",
+        "word_package_preservation_test.dart",
+        "word_fidelity_test.dart",
+        "word_paragraph_mark_layout_test.dart"
+      ],
+      "errors": [],
+      "hidden_completions": 8,
+      "declared_cases": 97,
+      "stdout_sha256": "e53a0ac8726659e845d02934c5b94e454ccab07cf4593c50bf716b37d0f98397",
+      "label": "group-07",
+      "lane": "lane-a",
+      "command": [
+        "/workspace/scratch/02ca2ade0467/runtime/run-engine-tests.sh",
+        "--reporter=json",
+        "test/styleless_import_fidelity_test.dart",
+        "test/word_styles_layout_test.dart",
+        "test/word_referenced_styles_and_breaks_test.dart",
+        "test/word_proofing_inheritance_test.dart",
+        "test/word_compatibility_fidelity_test.dart",
+        "test/word_package_preservation_test.dart",
+        "test/word_fidelity_test.dart",
+        "test/word_paragraph_mark_layout_test.dart"
+      ],
+      "exit_code": 0,
+      "seconds": 121.704,
+      "started_utc": "2026-11-20T14:32:42.360125+00:00",
+      "finished_utc": "2026-11-20T14:34:44.064364+00:00",
+      "inputs_unchanged": true,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "tabstops-parallel-gate/lane-a/group-07.jsonl",
+      "stderr": "tabstops-parallel-gate/lane-a/group-07.stderr"
+    },
+    {
+      "accepted": true,
+      "problems": [],
+      "passing_cases": 15,
+      "files": [
+        "odt_tab_stop_fidelity_test.dart",
+        "odt_tab_style_fidelity_test.dart",
+        "odt_tab_style_cache_test.dart"
+      ],
+      "errors": [],
+      "hidden_completions": 3,
+      "declared_cases": 15,
+      "stdout_sha256": "7c81968e4b8d72a501c891b0785301c07bcddf6af73a642708d30772ad01c966",
+      "label": "group-08",
+      "lane": "lane-b",
+      "command": [
+        "/workspace/scratch/02ca2ade0467/runtime/run-engine-tests.sh",
+        "--reporter=json",
+        "test/odt_tab_stop_fidelity_test.dart",
+        "test/odt_tab_style_fidelity_test.dart",
+        "test/odt_tab_style_cache_test.dart"
+      ],
+      "exit_code": 0,
+      "seconds": 41.648,
+      "started_utc": "2026-11-20T14:42:26.767717+00:00",
+      "finished_utc": "2026-11-20T14:43:08.415753+00:00",
+      "inputs_unchanged": true,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "tabstops-parallel-gate/lane-b/group-08.jsonl",
+      "stderr": "tabstops-parallel-gate/lane-b/group-08.stderr"
+    }
+  ],
+  "per_file_cases": {
+    "odt_tab_stop_fidelity_test.dart": 8,
+    "odt_tab_style_cache_test.dart": 5,
+    "odt_tab_style_fidelity_test.dart": 2,
+    "office_macro_expansion_test.dart": 5,
+    "office_macro_runtime_test.dart": 25,
+    "office_macro_word_revision_guard_test.dart": 2,
+    "office_macro_word_tab_stops_test.dart": 40,
+    "office_operations_test.dart": 27,
+    "office_vba_arguments_integration_test.dart": 16,
+    "office_vba_arguments_test.dart": 68,
+    "office_vba_arrays_boundaries_test.dart": 144,
+    "office_vba_arrays_integration_test.dart": 11,
+    "office_vba_arrays_test.dart": 32,
+    "office_vba_conformance_test.dart": 115,
+    "office_vba_control_flow_boundaries_test.dart": 42,
+    "office_vba_control_flow_integration_test.dart": 9,
+    "office_vba_control_flow_test.dart": 35,
+    "office_vba_dynamic_arrays_integration_test.dart": 11,
+    "office_vba_dynamic_arrays_test.dart": 50,
+    "office_vba_integration_test.dart": 12,
+    "office_vba_language_test.dart": 55,
+    "office_vba_powerpoint_cli_test.dart": 2,
+    "office_vba_powerpoint_conformance_test.dart": 24,
+    "office_vba_powerpoint_integration_test.dart": 7,
+    "office_vba_powerpoint_layout_integration_test.dart": 46,
+    "office_vba_powerpoint_layout_test.dart": 41,
+    "office_vba_powerpoint_margins_integration_test.dart": 16,
+    "office_vba_powerpoint_margins_test.dart": 27,
+    "office_vba_powerpoint_test.dart": 63,
+    "office_vba_procedure_boundaries_test.dart": 19,
+    "office_vba_procedures_integration_test.dart": 10,
+    "office_vba_procedures_test.dart": 26,
+    "office_vba_string_intrinsics_integration_test.dart": 11,
+    "office_vba_string_intrinsics_test.dart": 102,
+    "office_vba_variant_conformance_test.dart": 162,
+    "office_vba_variant_conversions_integration_test.dart": 9,
+    "office_vba_variant_conversions_test.dart": 239,
+    "office_vba_word_argument_shapes_test.dart": 8,
+    "office_vba_word_cli_test.dart": 5,
+    "office_vba_word_conformance_test.dart": 46,
+    "office_vba_word_extensions_test.dart": 30,
+    "office_vba_word_format_integration_test.dart": 2,
+    "office_vba_word_integration_test.dart": 14,
+    "office_vba_word_language_test.dart": 156,
+    "office_vba_word_paragraph_layout_integration_test.dart": 17,
+    "office_vba_word_paragraph_layout_test.dart": 37,
+    "office_vba_word_tabstops_integration_test.dart": 10,
+    "office_vba_word_tabstops_test.dart": 85,
+    "office_vba_word_typography_integration_test.dart": 30,
+    "office_vba_word_typography_test.dart": 48,
+    "style_cascade_test.dart": 11,
+    "styleless_import_fidelity_test.dart": 5,
+    "word_compatibility_fidelity_test.dart": 5,
+    "word_fidelity_test.dart": 19,
+    "word_package_preservation_test.dart": 32,
+    "word_paragraph_mark_layout_test.dart": 3,
+    "word_proofing_inheritance_test.dart": 16,
+    "word_referenced_styles_and_breaks_test.dart": 2,
+    "word_styles_layout_test.dart": 15
+  },
+  "excluded_attempts": [
+    {
+      "stdout": "tabstops-gate/group-03.jsonl",
+      "reason": "Original serial parent stopped at group boundary before Dart startup; no cases accepted."
+    }
+  ],
+  "archive": {
+    "path": "regression-evidence.tar.xz",
+    "sha256": "a5701134e398f10ba01a831b45d41dde51f6318779c0ad7938c5a0f379adadd9",
+    "bytes": 248860,
+    "members": {
+      "checkout-runtime/.dart_tool/package_config.json": {
+        "sha256": "dcfd1638df8cb6f2ad777762837e6b3d2ed4502c7b5d55b13d4b2255198dc548",
+        "bytes": 12705
+      },
+      "env.sh": {
+        "sha256": "bf07694ef130b77db357979f28e6cf31b5d0654b67a1912dedffb361add528f7",
+        "bytes": 325
+      },
+      "environment.json": {
+        "sha256": "14e77534377752ff4ad83490a1cec32c1e91e2b66a330f19472976bb9762322c",
+        "bytes": 2087
+      },
+      "evidence-review.json": {
+        "sha256": "c8cf6f3f58f77d4ca20b80bf780ca6551310f6ccf17309e4d342a30f3345f0b5",
+        "bytes": 4401
+      },
+      "isolated-runtime/.dart_tool/package_config.json": {
+        "sha256": "f247aeb3b51079a05573651bc6ae0bcd1943d4f91093de241712aa7d865e8081",
+        "bytes": 12489
+      },
+      "isolated-runtime/pubspec.lock": {
+        "sha256": "0c3f527784e6f4a057d4fdf0a4e124e841a5ef0f521db06d7485c86cb0d6bf09",
+        "bytes": 12976
+      },
+      "isolated-runtime/pubspec.yaml": {
+        "sha256": "b937786e81a2f3cfcdc1b196db0f8fb73542309b253903afc7de73a07e09a3d5",
+        "bytes": 192
+      },
+      "package_tabstops_qualification.py": {
+        "sha256": "7ea374dbdd75f070b437899241074b054f784dec6ff7835159f265bfe648e9f3",
+        "bytes": 5546
+      },
+      "run-engine-tests.before-boundary.sh": {
+        "sha256": "6e6793f137323565567c77244b98602e7fce73fff616c7366e2ca52626fe9df5",
+        "bytes": 402
+      },
+      "run-engine-tests.boundary-guarded.sh": {
+        "sha256": "3c340014059a2cf909ce31531ce2983ebf6e7c25d04773f87b18838e9564ac9d",
+        "bytes": 484
+      },
+      "run-engine-tests.sh": {
+        "sha256": "6e6793f137323565567c77244b98602e7fce73fff616c7366e2ca52626fe9df5",
+        "bytes": 402
+      },
+      "run-word-tabstops-portable.py": {
+        "sha256": "4d94b6e6b9d8cab016aec923fa815e8e73c680162dfe6fbedb3ad049def33adf",
+        "bytes": 3334
+      },
+      "run_word_tabstops_gate.py": {
+        "sha256": "dae3ba55e9c07c8c109b3cf3fba8561b8a2b1b611961dd50a4516aca41b76f14",
+        "bytes": 5087
+      },
+      "run_word_tabstops_parallel_gate.py": {
+        "sha256": "8326a76ddfc6aacdb26f8ffb7e12619d65c4b8e85d95ca4e63d64a37b0fe18e1",
+        "bytes": 14921
+      },
+      "stop-serial-gate-boundary.py": {
+        "sha256": "44c27634088bab08008870030ce4877acb9a711710a11919b93eaf2e15eb06f9",
+        "bytes": 1438
+      },
+      "tabstops-engine-analysis.stderr": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      "tabstops-engine-analysis.stdout": {
+        "sha256": "c557a0c697cdb937104f1423d3c02d6a1062917cb0bcb2830d91db8cf6192af0",
+        "bytes": 49
+      },
+      "tabstops-format.stderr": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      "tabstops-format.stdout": {
+        "sha256": "d27ffd49c9b91fe21075c12fe87ba5401362f900b01d82d96a6d0342530055ad",
+        "bytes": 47
+      },
+      "tabstops-gate-progress.log": {
+        "sha256": "29f819b7c84cdbaa9e00a41a793513368db8c2bf130c0079f557bf919ae6c6f5",
+        "bytes": 123
+      },
+      "tabstops-gate-runner.stderr": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      "tabstops-gate/group-01.jsonl": {
+        "sha256": "5e9d771f156c39b24f5b5397589c9ef77a1c6eb1de2bbc7514c95ab6ccb8c157",
+        "bytes": 232393
+      },
+      "tabstops-gate/group-01.stderr": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      "tabstops-gate/group-02.jsonl": {
+        "sha256": "f211c86ec568ad591afc9d3d8de3393b352e9338dce1d745a11febd971fdedde",
+        "bytes": 107281
+      },
+      "tabstops-gate/group-02.stderr": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      "tabstops-gate/group-03.jsonl": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      "tabstops-gate/group-03.stderr": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      "tabstops-gate/inputs-before.json.gz": {
+        "sha256": "0f11f985deb930740eb7aa0eb0b2329977bda4b9c09a28a658039da5234fd6c6",
+        "bytes": 59467
+      },
+      "tabstops-gate/stopped-at-boundary.json": {
+        "sha256": "72f6ba22dc3892e68b35a5adb0915e85a02396e511cae28e5e1408393e950945",
+        "bytes": 935
+      },
+      "tabstops-gate/summary.json": {
+        "sha256": "99255b8420e5835408231c6e8b43ebe390aa79aed751f6b6b35d2686ce2701dd",
+        "bytes": 113436
+      },
+      "tabstops-parallel-gate.log": {
+        "sha256": "63dbb850b88f3d107e7d3c7e755fe36c64f51050a9c39ce72f9fc306100b631d",
+        "bytes": 478
+      },
+      "tabstops-parallel-gate.stderr": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      "tabstops-parallel-gate/executed-scripts.json": {
+        "sha256": "0cf18ba0173f8bb4e703e76ece4eaa573bbf70e06f58b9903def275044d2ebf2",
+        "bytes": 1803
+      },
+      "tabstops-parallel-gate/handoff.json": {
+        "sha256": "80125503a2425b3d1ef7ff8dcd3f73ac5fda8048d6da4c7cb8a29f380895dcdb",
+        "bytes": 1429
+      },
+      "tabstops-parallel-gate/inputs-after.json.gz": {
+        "sha256": "1cfcf069fe33473b07e39ff074c3852c1b1e90431758df5bd019a14803d847b8",
+        "bytes": 59466
+      },
+      "tabstops-parallel-gate/inputs-before.json.gz": {
+        "sha256": "8e8bc1277954d410d08562b1347e304a1a0898faa6e0fa2eab4f1691fd7b98ba",
+        "bytes": 59467
+      },
+      "tabstops-parallel-gate/lane-a/group-03-inputs-after.json.gz": {
+        "sha256": "fff2657a02d40741fad7b38d18ee8f50e34fc738e0c94f5719945e59447bb6f5",
+        "bytes": 59475
+      },
+      "tabstops-parallel-gate/lane-a/group-03-inputs-before.json.gz": {
+        "sha256": "ce8251362f5649641afb0e4313079ca9aa2c930c39f630872d6be9c9f062d661",
+        "bytes": 59476
+      },
+      "tabstops-parallel-gate/lane-a/group-03-receipt.json": {
+        "sha256": "a8e2c3fd983f9743b4fb083e899d3b29696d1bd6e864210f72ccdb8feed8b774",
+        "bytes": 46456
+      },
+      "tabstops-parallel-gate/lane-a/group-03.jsonl": {
+        "sha256": "0853b3df86945ddba19f21b72da4d141a68863039edb208c3690c17d34d5adb7",
+        "bytes": 126172
+      },
+      "tabstops-parallel-gate/lane-a/group-03.stderr": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      "tabstops-parallel-gate/lane-a/group-05-inputs-after.json.gz": {
+        "sha256": "6c7b855aabca16d1135cabd377da71845ed5fd1d00545f8fbc2d641b2eb25515",
+        "bytes": 59475
+      },
+      "tabstops-parallel-gate/lane-a/group-05-inputs-before.json.gz": {
+        "sha256": "6b2836a65b9572b3d9cc8909598f2d25e6151d30fc8a7fe5ac7e1995599f853e",
+        "bytes": 59476
+      },
+      "tabstops-parallel-gate/lane-a/group-05-receipt.json": {
+        "sha256": "54d4c39d78bd47fa73b174a20cf78b374d99bf894495ded41b11d09daba92a32",
+        "bytes": 65515
+      },
+      "tabstops-parallel-gate/lane-a/group-05.jsonl": {
+        "sha256": "08ee6b478a9c61a946c183f379292bdba5f501dc331e548b512d1113ec9b2e31",
+        "bytes": 174333
+      },
+      "tabstops-parallel-gate/lane-a/group-05.stderr": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      "tabstops-parallel-gate/lane-a/group-07-inputs-after.json.gz": {
+        "sha256": "846e7a13292df21d506e098c5ae130c8f3736723b61921ca641c1ee2bfce9fa9",
+        "bytes": 59475
+      },
+      "tabstops-parallel-gate/lane-a/group-07-inputs-before.json.gz": {
+        "sha256": "14e529371c9ae392098555cc8b8613127293c3e510c7f57d8c2e9e6187b6f395",
+        "bytes": 59476
+      },
+      "tabstops-parallel-gate/lane-a/group-07-receipt.json": {
+        "sha256": "4d7757db524c78ad36dc9c7f953c0622fe9f30a79caaef0d2cc15e65035c2f34",
+        "bytes": 17980
+      },
+      "tabstops-parallel-gate/lane-a/group-07.jsonl": {
+        "sha256": "e53a0ac8726659e845d02934c5b94e454ccab07cf4593c50bf716b37d0f98397",
+        "bytes": 50974
+      },
+      "tabstops-parallel-gate/lane-a/group-07.stderr": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      "tabstops-parallel-gate/lane-b/group-04-inputs-after.json.gz": {
+        "sha256": "c9b4720ad2038d23b65bf98231968cc1507b4308c06ce028e6a05ec662e4ec2b",
+        "bytes": 59475
+      },
+      "tabstops-parallel-gate/lane-b/group-04-inputs-before.json.gz": {
+        "sha256": "bd35beec34566d4b79f07ec37a977b465c2eac3b7cd02375aaa712e0ceb9d1d6",
+        "bytes": 59476
+      },
+      "tabstops-parallel-gate/lane-b/group-04-receipt.json": {
+        "sha256": "9e2fe502d026c764705e6cd2d42bc7fb80287fff6d275b2a4d0c9b83dbed1f52",
+        "bytes": 111730
+      },
+      "tabstops-parallel-gate/lane-b/group-04.jsonl": {
+        "sha256": "f63ec4c76b980fde881069efad9ea74937dd932daad691c569b3e327210e5bf2",
+        "bytes": 295671
+      },
+      "tabstops-parallel-gate/lane-b/group-04.stderr": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      "tabstops-parallel-gate/lane-b/group-06-inputs-after.json.gz": {
+        "sha256": "9300f14d3420f475113cd029c39267362afdb7c4d429283f8339dedb31e124dd",
+        "bytes": 59475
+      },
+      "tabstops-parallel-gate/lane-b/group-06-inputs-before.json.gz": {
+        "sha256": "04e177d348a2b7eaa1c5f16f7d8c8ec72c48f061ff4bdd5b92b027b7233587f5",
+        "bytes": 59476
+      },
+      "tabstops-parallel-gate/lane-b/group-06-receipt.json": {
+        "sha256": "cad5ef441d4f66b826ccdd1ca1987038394fc747af8e4214f6eec6be4a0b1aeb",
+        "bytes": 34695
+      },
+      "tabstops-parallel-gate/lane-b/group-06.jsonl": {
+        "sha256": "8a288b44cc7e538accb0809daba777119cab733648778e7dfae920f6568dc214",
+        "bytes": 94446
+      },
+      "tabstops-parallel-gate/lane-b/group-06.stderr": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      "tabstops-parallel-gate/lane-b/group-08-inputs-after.json.gz": {
+        "sha256": "943cc06d7df2344979e6d5c5021b00fbb9c6f3ec221dd66a300d57def7478f8d",
+        "bytes": 59475
+      },
+      "tabstops-parallel-gate/lane-b/group-08-inputs-before.json.gz": {
+        "sha256": "34244037b4645223300b78c95806a92aafd9579e8abeb698a3611921a6433ce3",
+        "bytes": 59476
+      },
+      "tabstops-parallel-gate/lane-b/group-08-receipt.json": {
+        "sha256": "11a6fe2253207d3348f268abf47654df489491814c8d1c77a90e443cac246e64",
+        "bytes": 3504
+      },
+      "tabstops-parallel-gate/lane-b/group-08.jsonl": {
+        "sha256": "7c81968e4b8d72a501c891b0785301c07bcddf6af73a642708d30772ad01c966",
+        "bytes": 8737
+      },
+      "tabstops-parallel-gate/lane-b/group-08.stderr": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      "tabstops-parallel-gate/progress.json": {
+        "sha256": "c013b6bc3c119cb32ef0676ad71c2eb77f9aab0cfd8e628a228aaf068a9a0b82",
+        "bytes": 10183
+      },
+      "tabstops-parallel-gate/serial-boundary-inputs-after.json.gz": {
+        "sha256": "e29bd26044216ae5ba29bf165b19c0fa5305957e9fa83695c56d086053034e2d",
+        "bytes": 59482
+      },
+      "tabstops-parallel-gate/source-git-binding.json.gz": {
+        "sha256": "86d70ab00f48fe934ad934b38d75d1ee1e1c57f43c23931ee8feeea9ea7ead95",
+        "bytes": 89519
+      },
+      "tabstops-parallel-gate/summary.json": {
+        "sha256": "ecf1bcc7f544db1e565e7d0d7bf955e03f108298051aa36402067ec9768ddb85",
+        "bytes": 412833
+      },
+      "word-tabstops-gate-files.json": {
+        "sha256": "00107af19a0cbd48dde17b06a34511089fee374d1adec5a02651e8f82edba18e",
+        "bytes": 2568
+      }
+    }
+  },
+  "counting": "Counts only the eight accepted, disjoint groups from the final frozen-source 59-file cohort. Hidden loading/setup events and all development or partial checkpoints are excluded. Original groups01/02 were independently re-audited and retained; the original group03 startup was stopped before Dart and is archived only as an excluded attempt."
+}

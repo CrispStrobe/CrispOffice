@@ -7,6 +7,10 @@ is connected to IMAP/SMTP, on-premises EWS, Gmail and Microsoft 365 on native ho
 It reuses the existing account identity and store owner; account management is a
 separate lane.
 
+The later [management continuation](outbox-management.md) adds local message
+review/export, atomic edit-copy and explicit stop-retrying while delivery remains
+unknown. The original sending contracts below remain in force.
+
 ## User workflow
 
 1. Connect the intended account and open **Compose**, **Reply**, **Reply all**, or
@@ -39,13 +43,14 @@ The first version does not expose this account-scoped store before reconnecting.
 
 | Stored state | Meaning | Available actions |
 | --- | --- | --- |
-| Queued | Frozen item; no new provider attempt has started | Send now, cancel; inherited legacy uncertainty requires acknowledgement instead |
+| Queued | Frozen item; no new provider attempt has started | Send now, cancel or edit as a new draft; inherited uncertainty instead requires acknowledged retry or stop retrying |
 | Submitting | Attempt identity committed before provider invocation | Wait; no second send or cancellation |
 | Submitted | Sending service acknowledged acceptance | Remove local record; acceptance is not final delivery |
-| Retryable failure | Latest attempt definitely not accepted | Explicit retry or cancel, unless an older attempt remains uncertain |
-| Permanent failure | Latest attempt definitely rejected | Review/recompose and remove local record when no older uncertainty remains |
-| Uncertain | Acceptance cannot be established or excluded | Delivery check and explicitly acknowledged retry |
-| Cancelled | Future sending of this queued item disabled locally | Remove local record |
+| Retryable failure | Latest attempt definitely not accepted | Explicit retry, cancel or edit as a new draft; older uncertainty instead requires acknowledged retry or stop retrying |
+| Permanent failure | Latest attempt definitely rejected | Review/export and remove when no older uncertainty remains; otherwise acknowledged retry or stop retrying |
+| Uncertain | Acceptance cannot be established or excluded | Review/export, delivery check, explicitly acknowledged retry or stop retrying |
+| Cancelled | Future sending of this queued item disabled locally | Review/export; remove local record |
+| Closed uncertain | Explicit local stop; earlier delivery remains unknown | Review/export; separately confirmed removal; no retry |
 
 An older uncertain attempt is represented independently of the latest outcome.
 Ordinary retry and cancellation cannot erase that history. Only the explicit
@@ -122,10 +127,10 @@ production native SQLite adapter supplies the durable outbox capability.
 - Native application-data storage is local and unencrypted. Credentials and
   tokens do not enter the outbox. No server-side Drafts synchronization is added.
 - There is no scheduled send, undo-send timer, background worker, automatic
-  reconnect sending, offline account browser, queued-message editor, or message
-  recall. Cancel and compose a new message to change a never-submitted item.
-- Full MIME body preview/export from Outbox, editing a queued copy, explicit
-  resolution of uncertain records without resending, provider-specific Sent
+  reconnect sending, offline account browser or message recall. The management
+  continuation atomically cancels a safely editable item and opens a new draft.
+- Review/exact export, editing a queued copy and explicit local uncertain
+  closure are implemented in the management continuation. Provider-specific Sent
   reconciliation and detailed SMTP recipient outcomes remain follow-ups.
 - Live-provider accounts and installed desktop/mobile lifecycle qualification
   remain release gates. Local deterministic/loopback tests establish the recorded
@@ -139,8 +144,8 @@ separates initial intake, incremental checkpoints, failed development attempts,
 accepted tests and final integration. It records the exact runtime and source.
 GitHub Actions are not an acceptance dependency.
 
-Next, complete the outbox management loop with a reviewable message preview and
-explicit resolution/edit-copy actions, then add undo-send and scheduling on the
-same frozen-entry foundation. Rich composition, signatures/templates, multiple
-drafts and provider Drafts synchronization remain ordered parallel milestones in
-the [parity roadmap](README.md).
+The [management increment](outbox-management.md) completes the review/export,
+edit-copy and local uncertain-closure loop. Next add durable undo-send and
+explicit scheduling on the same frozen-entry foundation. Multiple local drafts
+are available; rich composition, signatures/templates and provider Drafts
+synchronization remain ordered milestones in the [parity roadmap](README.md).

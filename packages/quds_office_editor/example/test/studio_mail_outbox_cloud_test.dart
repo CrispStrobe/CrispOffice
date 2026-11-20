@@ -1,14 +1,17 @@
 import 'dart:convert';
+import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:quds_mail_core/quds_mail_core.dart';
+import 'package:quds_mail_mime/quds_mail_mime.dart';
 import 'package:quds_mail_transport/quds_mail_transport.dart';
 import 'package:quds_office_editor/quds_office_editor.dart';
 import 'package:quds_office_studio/studio_mail_cloud.dart';
 import 'package:quds_office_studio/studio_mail_compose.dart';
 import 'package:quds_office_studio/studio_mail_draft_store.dart';
 import 'package:quds_office_studio/studio_mail_outbox_dialog.dart';
+import 'package:quds_office_studio/studio_mail_outbox_strings.dart';
 import 'package:quds_office_studio/studio_mail_strings.dart';
 import 'package:quds_office_studio/studio_strings.dart';
 
@@ -147,6 +150,13 @@ Finder _outboxTooltip(String tooltip) => find.descendant(
 Finder _sendQueued(MailOutboxEntry entry) =>
     _key('studio-mail-outbox-send-${entry.id}');
 
+Future<void> _press(WidgetTester tester, Finder control) async {
+  await tester.ensureVisible(control);
+  await pumpOutboxWidgets(tester);
+  await tester.tap(control);
+  await pumpOutboxWidgets(tester);
+}
+
 Future<SqliteOutboxFixture> _fixture(
   WidgetTester tester,
   MailCloudService service,
@@ -236,6 +246,132 @@ void main() {
     MailCloudService.gmail,
     MailCloudService.microsoft365,
   ]) {
+    testWidgets(
+      '${service.name} edits a queued copy without sending or replacing sibling drafts',
+      (tester) async {
+        final fixture = await _fixture(tester, service);
+        final seed = await awaitOutboxOperation(tester, fixture.openLoaded());
+        const sibling = StudioMailDraft(
+          to: 'sibling@example.test',
+          bcc: 'sibling-hidden@example.test',
+          subject: 'Keep this cloud draft',
+          body: 'Unfinished sibling body.',
+        );
+        await awaitOutboxOperation(
+          tester,
+          seed.save(sibling, submissionUncertain: true),
+        );
+        final original = StudioMailDraft(
+          to: 'queued@example.test',
+          cc: 'queued-copy@example.test',
+          bcc: 'queued-hidden@example.test',
+          subject: '${service.name} original frozen message',
+          body: 'Frozen cloud body مرحبا <safe> & unchanged.',
+          attachments: StudioMailAttachments.from([
+            StudioMailAttachment(
+              name: 'cloud.bin',
+              bytes: Uint8List.fromList([0, 10, 128, 255]),
+            ),
+          ]),
+        );
+        await awaitOutboxOperation(tester, seed.createDraft(original));
+        final frozen = await awaitOutboxOperation(
+          tester,
+          seed.enqueueOutbox(original, _sender),
+        );
+        await awaitOutboxOperation(tester, seed.close());
+        final harness = _CloudHarness();
+        final provider = await _mountCloud(tester, fixture, harness, service);
+        final store = fixture.adapters.last;
+        final originalEpoch = store.selectionEpoch;
+        expect(store.selectedDraftId, SqliteStudioMailDraftStore.draftId);
+        await _press(tester, _openOutbox);
+        await _press(tester, _key('studio-mail-outbox-edit-${frozen.id}'));
+        expect(find.text(_strings.mailOutboxEditExplanation), findsOneWidget);
+        await _press(tester, _key('studio-mail-outbox-confirm'));
+        expect(find.byType(StudioMailOutboxDialog), findsNothing);
+        final composer = tester.widget<StudioMailComposeDialog>(
+          find.byType(StudioMailComposeDialog),
+        );
+        expect(composer.initialDraft!.subject, original.subject);
+        expect(composer.initialDraft!.body, original.body);
+        expect(composer.initialDraft!.to, original.to);
+        expect(composer.initialDraft!.cc, original.cc);
+        expect(composer.initialDraft!.bcc, original.bcc);
+        expect(
+          composer.initialDraft!.attachments.items.single.content.bytes,
+          original.attachments.items.single.content.bytes,
+        );
+        expect(composer.previousSubmissionUncertain, isFalse);
+        expect(store.selectionEpoch, greaterThan(originalEpoch));
+        final editedId = store.selectedDraftId;
+        expect(editedId, isNot(SqliteStudioMailDraftStore.draftId));
+        expect(editedId, isNot(frozen.prepared.draftId));
+        final retired = (await awaitOutboxOperation(
+          tester,
+          store.loadOutbox(),
+        )).single;
+        expect(retired.state, MailOutboxState.cancelled);
+        expect(retired.prepared.wire.bytes, frozen.prepared.wire.bytes);
+        expect(provider.submissions, isEmpty);
+        final page = await awaitOutboxOperation(tester, store.listDrafts());
+        expect(page.drafts, hasLength(2));
+        final kept = page.drafts.singleWhere(
+          (entry) => entry.id == SqliteStudioMailDraftStore.draftId,
+        );
+        expect(kept.subject, sibling.subject);
+        expect(kept.submissionUncertain, isTrue);
+        await tester.enterText(
+          _field(_strings.subject),
+          '${service.name} explicitly edited',
+        );
+        await _press(tester, _queue);
+        expect(find.byType(StudioMailComposeDialog), findsNothing);
+        final entries = await awaitOutboxOperation(tester, store.loadOutbox());
+        expect(entries, hasLength(2));
+        final edited = entries.singleWhere((entry) => entry.id != frozen.id);
+        expect(edited.state, MailOutboxState.queued);
+        expect(edited.attemptNumber, 0);
+        expect(edited.prepared.draftId, editedId);
+        expect(edited.prepared.wireHash, isNot(frozen.prepared.wireHash));
+        final beforeMessage = const QudsMimeCodec()
+            .parse(frozen.prepared.wire.bytes)
+            .message!;
+        final afterMessage = const QudsMimeCodec()
+            .parse(edited.prepared.wire.bytes)
+            .message!;
+        expect(afterMessage.envelope.messageId, isNotNull);
+        expect(
+          afterMessage.envelope.messageId,
+          isNot(beforeMessage.envelope.messageId),
+        );
+        expect(
+          afterMessage.envelope.subject,
+          '${service.name} explicitly edited',
+        );
+        expect(
+          afterMessage.attachments.single.content.bytes,
+          original.attachments.items.single.content.bytes,
+        );
+        expect(
+          edited.prepared.envelope.recipients,
+          original.recipients.envelope,
+        );
+        final remaining = await awaitOutboxOperation(
+          tester,
+          store.listDrafts(),
+        );
+        expect(remaining.drafts.single.id, SqliteStudioMailDraftStore.draftId);
+        expect(remaining.drafts.single.subject, sibling.subject);
+        expect(remaining.drafts.single.submissionUncertain, isTrue);
+        await _press(tester, _openOutbox);
+        expect(provider.submissions, isEmpty);
+        expect(tester.takeException(), isNull);
+        await tester.pumpWidget(const SizedBox.shrink());
+        await pumpOutboxWidgets(tester);
+      },
+    );
+
     testWidgets(
       '${service.name} queued message survives reconnect and sends only explicitly',
       (tester) async {

@@ -56,8 +56,10 @@ positions. For example, `Pair(second:=Mark(2), first:=Mark(1))` evaluates
 operations retain that order. The callee receives a new local frame only after
 the supplied expressions have been evaluated.
 
-The named-argument syntax applies to declared module helpers in this release.
-It does not add named arguments to `RGB`, the String or Variant intrinsics,
+The named-argument syntax applies to declared module helpers and the bounded
+Word [`TabStops.Add`](VBA_WORD_MACROS.md#custom-paragraph-tab-stops) method.
+That method has its own fixed required/optional numeric argument contract and
+retains source-order evaluation. It does not add named arguments to `RGB`, the String or Variant intrinsics,
 array subscripts, or application members such as `Paragraphs`, `Shapes`,
 `Range`, or `InsertBefore`.
 
