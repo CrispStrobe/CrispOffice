@@ -3,6 +3,8 @@
 - Add bounded structured search of loaded message headers with localized syntax
   errors, recipient/date/state predicates, explicit clear and accessible help.
   Technical examples keep their left-to-right order within Arabic help.
+- Keep long localized controls and errors scrollable in compact workspaces,
+  reserving usable space for message rows and explicit pagination.
 - Add stable local provider/date/sender/subject ordering without provider work,
   keeping unknown dates last and preserving message identity through reordering.
 - Add a bounded body-only quotation API, preserving empty plain alternatives and

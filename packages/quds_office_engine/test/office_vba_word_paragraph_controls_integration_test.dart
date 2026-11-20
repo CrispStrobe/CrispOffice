@@ -511,27 +511,23 @@ End Sub
     timeout: officeMacroCliTestTimeout,
   );
 
-  test(
-    'CLI native refusal preserves input and never creates output',
-    () async {
-      final directory = Directory.systemTemp.createTempSync(
-        'quds-paragraph-controls-refusal-',
-      );
-      addTearDown(() => directory.deleteSync(recursive: true));
-      final input = File('${directory.path}/input.docm')
-        ..writeAsBytesSync(_beforeAttribute('w:before="120" w:beforeLines="10"'));
-      final original = input.readAsBytesSync();
-      final output = File('${directory.path}/output.docm');
-      final result = await _cli([
-        'run-word-vba',
-        input.path,
-        File(_example).absolute.path,
-        output.path,
-      ]);
-      expect(result.exitCode, isNot(0));
-      expect(input.readAsBytesSync(), original);
-      expect(output.existsSync(), isFalse);
-    },
-    timeout: officeMacroCliTestTimeout,
-  );
+  test('CLI native refusal preserves input and never creates output', () async {
+    final directory = Directory.systemTemp.createTempSync(
+      'quds-paragraph-controls-refusal-',
+    );
+    addTearDown(() => directory.deleteSync(recursive: true));
+    final input = File('${directory.path}/input.docm')
+      ..writeAsBytesSync(_beforeAttribute('w:before="120" w:beforeLines="10"'));
+    final original = input.readAsBytesSync();
+    final output = File('${directory.path}/output.docm');
+    final result = await _cli([
+      'run-word-vba',
+      input.path,
+      File(_example).absolute.path,
+      output.path,
+    ]);
+    expect(result.exitCode, isNot(0));
+    expect(input.readAsBytesSync(), original);
+    expect(output.existsSync(), isFalse);
+  }, timeout: officeMacroCliTestTimeout);
 }

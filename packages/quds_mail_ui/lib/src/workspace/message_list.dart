@@ -179,6 +179,7 @@ class MailMessageList extends StatefulWidget {
 class _MailMessageListState extends State<MailMessageList> {
   final _query = TextEditingController();
   final _listFocus = FocusNode(debugLabel: 'Mail message list');
+  final _headerScroll = ScrollController();
   final _scroll = ScrollController();
   bool _unread = false;
   bool _flagged = false;
@@ -264,7 +265,7 @@ class _MailMessageListState extends State<MailMessageList> {
       _sort = MailMessageListSort.providerOrder;
       _activeId = null;
       _listFocus.unfocus();
-      _resetScroll();
+      _resetScroll(header: true);
     } else {
       _reconcileCursor(_visible);
       if (_listFocus.hasFocus) _revealCursor();
@@ -275,6 +276,7 @@ class _MailMessageListState extends State<MailMessageList> {
   void dispose() {
     _query.dispose();
     _listFocus.dispose();
+    _headerScroll.dispose();
     _scroll.dispose();
     super.dispose();
   }
@@ -286,9 +288,11 @@ class _MailMessageListState extends State<MailMessageList> {
         : visible.firstOrNull?.id;
   }
 
-  void _resetScroll() {
+  void _resetScroll({bool header = false}) {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (mounted && _scroll.hasClients) _scroll.jumpTo(0);
+      if (mounted && header && _headerScroll.hasClients)
+        _headerScroll.jumpTo(0);
     });
   }
 
@@ -453,7 +457,7 @@ class _MailMessageListState extends State<MailMessageList> {
           scaler.scale(11) * 1.3 +
           24,
     );
-    return Column(
+    final header = Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         Padding(
@@ -550,39 +554,71 @@ class _MailMessageListState extends State<MailMessageList> {
             style: Theme.of(context).textTheme.bodySmall,
           ),
         ),
+      ],
+    );
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
         Expanded(
-          child: Focus(
-            key: const ValueKey('mail-list-focus'),
-            focusNode: _listFocus,
-            onKeyEvent: _onKey,
-            onFocusChange: (focused) {
-              if (!mounted) return;
-              setState(() {
-                if (focused) _reconcileCursor(_visible);
-              });
-              if (focused) _revealCursor();
-            },
-            child: visible.isEmpty
-                ? Center(
-                    child: Padding(
-                      padding: const EdgeInsets.all(12),
-                      child: Text(
-                        widget.busy && widget.items.isEmpty
-                            ? strings.loading
-                            : _filtered
-                            ? strings.noMatches
-                            : strings.noMessages,
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
-                  )
-                : ListView.builder(
-                    key: const ValueKey('mail-list-rows'),
-                    controller: _scroll,
-                    itemExtent: _itemExtent,
-                    itemCount: visible.length,
-                    itemBuilder: (context, index) => _row(visible[index]),
+          child: LayoutBuilder(
+            builder: (context, constraints) => Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                // Long translations and errors can outgrow a compact dialog.
+                // Keep every control reachable without consuming the row area.
+                ConstrainedBox(
+                  constraints: BoxConstraints(
+                    maxHeight: constraints.maxHeight * 0.65,
                   ),
+                  child: Scrollbar(
+                    controller: _headerScroll,
+                    thumbVisibility: true,
+                    child: SingleChildScrollView(
+                      key: const ValueKey('mail-list-header-scroll'),
+                      controller: _headerScroll,
+                      primary: false,
+                      child: header,
+                    ),
+                  ),
+                ),
+                Expanded(
+                  child: Focus(
+                    key: const ValueKey('mail-list-focus'),
+                    focusNode: _listFocus,
+                    onKeyEvent: _onKey,
+                    onFocusChange: (focused) {
+                      if (!mounted) return;
+                      setState(() {
+                        if (focused) _reconcileCursor(_visible);
+                      });
+                      if (focused) _revealCursor();
+                    },
+                    child: visible.isEmpty
+                        ? Center(
+                            child: Padding(
+                              padding: const EdgeInsets.all(12),
+                              child: Text(
+                                widget.busy && widget.items.isEmpty
+                                    ? strings.loading
+                                    : _filtered
+                                    ? strings.noMatches
+                                    : strings.noMessages,
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                          )
+                        : ListView.builder(
+                            key: const ValueKey('mail-list-rows'),
+                            controller: _scroll,
+                            itemExtent: _itemExtent,
+                            itemCount: visible.length,
+                            itemBuilder: (context, index) =>
+                                _row(visible[index]),
+                          ),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
         if (widget.limitNotice case final notice?)

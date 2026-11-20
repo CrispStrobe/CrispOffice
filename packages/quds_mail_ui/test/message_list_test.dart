@@ -121,6 +121,15 @@ List<String> _rowOrder(WidgetTester tester, List<String> ids) => [...ids]
 String _localizedSearchError(MailHeaderSearchError error) =>
     'Localized error: ${error.name}';
 
+String _compactGermanError(MailHeaderSearchError _) =>
+    'Trennen Sie Begriffe durch Leerzeichen. Boolesche Operatoren, Verneinung '
+    'und Platzhalter werden nicht unterstützt; setzen Sie wörtlichen Text '
+    'in Anführungszeichen.';
+
+String _compactArabicError(MailHeaderSearchError _) =>
+    'افصل العبارات بمسافات. لا تُدعم العوامل المنطقية أو النفي أو أحرف البدل؛ '
+    'ضع النص الحرفي بين علامتي اقتباس.';
+
 void main() {
   test('row collection is immutable and identities cannot alias', () {
     final source = [..._items];
@@ -924,6 +933,123 @@ void main() {
       expect(tester.takeException(), isNull);
     },
   );
+
+  for (final (language, direction, strings) in const [
+    (
+      'de',
+      TextDirection.ltr,
+      MailMessageListStrings(
+        searchLoaded: 'Geladene Nachrichtenköpfe durchsuchen',
+        unread: 'Ungelesen',
+        flagged: 'Gekennzeichnet',
+        noMessages: 'Keine Nachrichten',
+        noMatches: 'Keine geladene Nachricht entspricht diesen Filtern.',
+        loadMore: 'Weitere Nachrichten laden',
+        loading: 'Wird geladen…',
+        loadedScope:
+            'Suche, Filter und Sortierung gelten nur für geladene '
+            'Nachrichtenköpfe dieses Ordners.',
+        count: _count,
+        providerOrder: 'Ordnerreihenfolge',
+        searchError: _compactGermanError,
+      ),
+    ),
+    (
+      'ar',
+      TextDirection.rtl,
+      MailMessageListStrings(
+        searchLoaded: 'البحث في الترويسات المحمّلة',
+        unread: 'غير مقروءة',
+        flagged: 'المعلّمة',
+        noMessages: 'لا توجد رسائل',
+        noMatches: 'لا توجد رسائل محمّلة تطابق هذه المرشحات.',
+        loadMore: 'تحميل المزيد من الرسائل',
+        loading: 'جارٍ التحميل…',
+        loadedScope:
+            'ينطبق البحث والترشيح والترتيب على الترويسات المحمّلة '
+            'في هذا المجلد فقط.',
+        count: _count,
+        providerOrder: 'ترتيب المجلد',
+        searchError: _compactArabicError,
+      ),
+    ),
+  ]) {
+    testWidgets('compact $language header scrolls while rows remain usable', (
+      tester,
+    ) async {
+      final opened = <String>[];
+      var loads = 0;
+      Widget compact({String scopeId = 'a'}) => _app(
+        SizedBox(
+          height: 260,
+          child: _list(
+            strings: strings,
+            scopeId: scopeId,
+            onOpen: opened.add,
+            hasMore: true,
+            onLoadMore: () => loads++,
+          ),
+        ),
+        width: 320,
+        scale: 1.4,
+        direction: direction,
+      );
+      await tester.pumpWidget(compact());
+      await tester.pumpAndSettle();
+      expect(tester.takeException(), isNull);
+      expect(
+        tester.getSize(find.byKey(const ValueKey('mail-list-rows'))).height,
+        greaterThanOrEqualTo(70),
+      );
+      final header = tester
+          .widget<SingleChildScrollView>(
+            find.byKey(const ValueKey('mail-list-header-scroll')),
+          )
+          .controller!;
+      expect(header.position.maxScrollExtent, greaterThan(0));
+      await tester.ensureVisible(find.byKey(const ValueKey('mail-list-scope')));
+      await tester.pumpAndSettle();
+      expect(header.offset, greaterThan(0));
+      expect(
+        find.byKey(const ValueKey('mail-list-scope')).hitTestable(),
+        findsOneWidget,
+      );
+      expect(opened, isEmpty);
+      expect(loads, 0);
+
+      await tester.pumpWidget(compact(scopeId: 'b'));
+      await tester.pumpAndSettle();
+      expect(header.offset, 0);
+      await tester.enterText(
+        find.byKey(const ValueKey('mail-list-search')),
+        'from:alice OR report',
+      );
+      await tester.pumpAndSettle();
+      await tester.ensureVisible(
+        find.byKey(const ValueKey('mail-list-search-error')),
+      );
+      await tester.pumpAndSettle();
+      expect(tester.takeException(), isNull);
+      expect(
+        find.byKey(const ValueKey('mail-list-search-error')),
+        findsOneWidget,
+      );
+      await tester.ensureVisible(
+        find.byKey(const ValueKey('mail-list-clear-search')),
+      );
+      await tester.tap(find.byKey(const ValueKey('mail-list-clear-search')));
+      await tester.pumpAndSettle();
+      await _focusList(tester);
+      await tester.sendKeyEvent(LogicalKeyboardKey.end);
+      await tester.pumpAndSettle();
+      expect(opened, isEmpty);
+      await tester.sendKeyEvent(LogicalKeyboardKey.enter);
+      expect(opened, ['unknown']);
+      await tester.tap(find.byKey(const ValueKey('mail-list-load-more')));
+      expect(loads, 1);
+      expect(tester.takeException(), isNull);
+    });
+  }
 
   for (final direction in TextDirection.values) {
     testWidgets('narrow $direction and enlarged text stay within the list', (
