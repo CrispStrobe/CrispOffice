@@ -1513,7 +1513,9 @@ void main() {
         final original = harness.provider!
           ..replyParticipants = true
           ..outcome = MailSubmissionOutcome.uncertain;
-        final source = const QudsMimeCodec().parse(original.message().raw.bytes);
+        final source = const QudsMimeCodec().parse(
+          original.message().raw.bytes,
+        );
         expect(source.status, MailParseStatus.complete);
         expect(source.message!.attachments, hasLength(1));
         await tester.tap(find.text('Cloud message'));
@@ -1531,10 +1533,14 @@ void main() {
         expect(initial.thread.inReplyTo, isNull);
         expect(initial.thread.references, isNull);
         expect(initial.attachments.items.single.name, 'cloud.bin');
-        expect(
-          initial.attachments.items.single.content.bytes,
-          [0, 1, 2, 255, 13, 10],
-        );
+        expect(initial.attachments.items.single.content.bytes, [
+          0,
+          1,
+          2,
+          255,
+          13,
+          10,
+        ]);
         expect(initial.body, contains('Body from cloud provider.'));
         expect(initial.body, isNot(contains(_strings.mailTextOnlyForward)));
         expect(original.submissions, isEmpty);
@@ -1550,7 +1556,16 @@ void main() {
         expect(find.text(_strings.mailSubmissionUncertain), findsOneWidget);
         expect(drafts.records.values.single.submissionUncertain, isTrue);
         expect(
-          drafts.records.values.single.draft.attachments.items.single.content.bytes,
+          drafts
+              .records
+              .values
+              .single
+              .draft
+              .attachments
+              .items
+              .single
+              .content
+              .bytes,
           [0, 1, 2, 255, 13, 10],
         );
         await tester.tap(find.byTooltip(_strings.mailForwardWithAttachments));
@@ -1577,10 +1592,14 @@ void main() {
             .initialDraft!;
         expect(recovered.to, 'forward@example.test');
         expect(recovered.attachments.items.single.name, 'cloud.bin');
-        expect(
-          recovered.attachments.items.single.content.bytes,
-          [0, 1, 2, 255, 13, 10],
-        );
+        expect(recovered.attachments.items.single.content.bytes, [
+          0,
+          1,
+          2,
+          255,
+          13,
+          10,
+        ]);
         expect(recovered.body, initial.body);
         expect(tester.widget<FilledButton>(send).onPressed, isNull);
         expect(reconnected.submissions, isEmpty);
@@ -1600,10 +1619,14 @@ void main() {
           expect(parsed.status, MailParseStatus.complete);
           final message = parsed.message!;
           expect(message.attachments.single.displayName, 'cloud.bin');
-          expect(
-            message.attachments.single.content.bytes,
-            [0, 1, 2, 255, 13, 10],
-          );
+          expect(message.attachments.single.content.bytes, [
+            0,
+            1,
+            2,
+            255,
+            13,
+            10,
+          ]);
           expect(message.attachments.single.inline, isFalse);
           expect(message.envelope.inReplyTo, isNull);
           expect(message.envelope.references, isEmpty);

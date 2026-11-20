@@ -76,10 +76,11 @@ void main() {
     expect(forward.body, isNot(contains('研究')));
     expect(forward.body, isNot(contains('same.txt')));
     expect(forward.attachments.totalBytes, 5);
-    expect(
-      forward.attachments.items.map((part) => part.name),
-      ['研究😀.bin', 'same.txt', 'same.txt'],
-    );
+    expect(forward.attachments.items.map((part) => part.name), [
+      '研究😀.bin',
+      'same.txt',
+      'same.txt',
+    ]);
     expect(forward.attachments.items[0].content.bytes, [0, 127, 128, 255]);
     expect(forward.attachments.items[1].content.bytes, isEmpty);
     expect(forward.attachments.items[2].content.bytes, [42]);
@@ -102,49 +103,57 @@ void main() {
     expect(result.original!.bytes, [1, 2, 3]);
   });
 
-  test('attached forward MIME retains bytes and starts an independent thread', () {
-    final binary = List<int>.generate(4097, (index) => index % 256);
-    final source = _source(
-      plain: null,
-      html: '<p>Original <b>HTML</b> &amp; text</p>'
-          '<img src="cid:source-inline-id">',
-      attachments: [
-        _attachment('صورة😀.png', binary, type: 'image/png', inline: true),
-        _attachment('empty.bin', []),
-      ],
-    );
-    final forward = buildStudioMailForwardWithAttachmentsDraft(source);
-    final addressed = StudioMailDraft(
-      to: 'chosen@example.invalid',
-      subject: forward.subject,
-      body: forward.body,
-      thread: forward.thread,
-      attachments: forward.attachments,
-    );
-    final wire = buildStudioMailMessage(
-      addressed,
-      'writer@example.invalid',
-    ).renderMessage();
-    final parsed = const QudsMimeCodec().parse(ascii.encode(wire));
-    expect(parsed.status, MailParseStatus.complete, reason: parsed.diagnostics.toString());
-    final message = parsed.message!;
-    expect(message.attachments, hasLength(2));
-    expect(message.attachments.first.displayName, 'صورة😀.png');
-    expect(message.attachments.first.content.bytes, binary);
-    expect(message.attachments.first.inline, isFalse);
-    expect(message.attachments.first.contentId, isNull);
-    expect(message.attachments.last.content.bytes, isEmpty);
-    expect(message.envelope.to.single.address, 'chosen@example.invalid');
-    expect(message.envelope.cc, isEmpty);
-    expect(message.envelope.bcc, isEmpty);
-    expect(message.envelope.inReplyTo, isNull);
-    expect(message.envelope.references, isEmpty);
-    expect(message.body.plainText, contains('> Original HTML & text'));
-    expect(message.body.plainText, isNot(contains('صورة')));
-    expect(message.body.plainText, isNot(contains('source-inline-id')));
-    expect(wire, isNot(contains('private-bcc@example.invalid')));
-    expect(wire, isNot(contains('<parent@example.invalid>')));
-  });
+  test(
+    'attached forward MIME retains bytes and starts an independent thread',
+    () {
+      final binary = List<int>.generate(4097, (index) => index % 256);
+      final source = _source(
+        plain: null,
+        html:
+            '<p>Original <b>HTML</b> &amp; text</p>'
+            '<img src="cid:source-inline-id">',
+        attachments: [
+          _attachment('صورة😀.png', binary, type: 'image/png', inline: true),
+          _attachment('empty.bin', []),
+        ],
+      );
+      final forward = buildStudioMailForwardWithAttachmentsDraft(source);
+      final addressed = StudioMailDraft(
+        to: 'chosen@example.invalid',
+        subject: forward.subject,
+        body: forward.body,
+        thread: forward.thread,
+        attachments: forward.attachments,
+      );
+      final wire = buildStudioMailMessage(
+        addressed,
+        'writer@example.invalid',
+      ).renderMessage();
+      final parsed = const QudsMimeCodec().parse(ascii.encode(wire));
+      expect(
+        parsed.status,
+        MailParseStatus.complete,
+        reason: parsed.diagnostics.toString(),
+      );
+      final message = parsed.message!;
+      expect(message.attachments, hasLength(2));
+      expect(message.attachments.first.displayName, 'صورة😀.png');
+      expect(message.attachments.first.content.bytes, binary);
+      expect(message.attachments.first.inline, isFalse);
+      expect(message.attachments.first.contentId, isNull);
+      expect(message.attachments.last.content.bytes, isEmpty);
+      expect(message.envelope.to.single.address, 'chosen@example.invalid');
+      expect(message.envelope.cc, isEmpty);
+      expect(message.envelope.bcc, isEmpty);
+      expect(message.envelope.inReplyTo, isNull);
+      expect(message.envelope.references, isEmpty);
+      expect(message.body.plainText, contains('> Original HTML & text'));
+      expect(message.body.plainText, isNot(contains('صورة')));
+      expect(message.body.plainText, isNot(contains('source-inline-id')));
+      expect(wire, isNot(contains('private-bcc@example.invalid')));
+      expect(wire, isNot(contains('<parent@example.invalid>')));
+    },
+  );
 
   test('replies and text-only forward never inspect or copy source parts', () {
     final source = _source(
@@ -165,25 +174,36 @@ void main() {
     }
   });
 
-  test('complete empty attachment set and explicit empty plain body are valid', () {
-    final draft = buildStudioMailForwardWithAttachmentsDraft(
-      _source(plain: '', html: '<p>Unselected alternate</p>'),
-    );
-    expect(draft.attachments.isEmpty, isTrue);
-    expect(draft.body, endsWith('> '));
-    expect(draft.body, isNot(contains('Unselected alternate')));
-  });
+  test(
+    'complete empty attachment set and explicit empty plain body are valid',
+    () {
+      final draft = buildStudioMailForwardWithAttachmentsDraft(
+        _source(plain: '', html: '<p>Unselected alternate</p>'),
+      );
+      expect(draft.attachments.isEmpty, isTrue);
+      expect(draft.body, endsWith('> '));
+      expect(draft.body, isNot(contains('Unselected alternate')));
+    },
+  );
 
-  test('complete attachment-only messages forward their files with attribution', () {
-    final draft = buildStudioMailForwardWithAttachmentsDraft(
-      _source(plain: null, attachments: [_attachment('file.bin', [1])]),
-    );
-    expect(draft.body, contains('From: author@example.invalid'));
-    expect(draft.body, endsWith('> '));
-    expect(draft.attachments.items.single.name, 'file.bin');
-    expect(draft.attachments.items.single.content.bytes, [1]);
-    expect(draft.to, isEmpty);
-  });
+  test(
+    'complete attachment-only messages forward their files with attribution',
+    () {
+      final draft = buildStudioMailForwardWithAttachmentsDraft(
+        _source(
+          plain: null,
+          attachments: [
+            _attachment('file.bin', [1]),
+          ],
+        ),
+      );
+      expect(draft.body, contains('From: author@example.invalid'));
+      expect(draft.body, endsWith('> '));
+      expect(draft.attachments.items.single.name, 'file.bin');
+      expect(draft.attachments.items.single.content.bytes, [1]);
+      expect(draft.to, isEmpty);
+    },
+  );
 
   test('missing body without files and malformed HTML still refuse', () {
     for (final source in [
@@ -191,7 +211,9 @@ void main() {
       _source(
         plain: null,
         html: '<p>Incomplete source</p><script>',
-        attachments: [_attachment('file.bin', [1])],
+        attachments: [
+          _attachment('file.bin', [1]),
+        ],
       ),
     ]) {
       expect(
@@ -201,27 +223,32 @@ void main() {
     }
   });
 
-  test('every noncomplete parse is refused even with apparently valid parts', () {
-    for (final status in MailParseStatus.values) {
-      if (status == MailParseStatus.complete) continue;
-      final source = _source(
-        status: status,
-        attachments: [_attachment('visible.bin', [42])],
-      );
+  test(
+    'every noncomplete parse is refused even with apparently valid parts',
+    () {
+      for (final status in MailParseStatus.values) {
+        if (status == MailParseStatus.complete) continue;
+        final source = _source(
+          status: status,
+          attachments: [
+            _attachment('visible.bin', [42]),
+          ],
+        );
+        expect(
+          () => buildStudioMailForwardWithAttachmentsDraft(source),
+          _forwardUnavailable,
+          reason: status.name,
+        );
+        expect(source.message!.attachments.single.content.bytes, [42]);
+      }
       expect(
-        () => buildStudioMailForwardWithAttachmentsDraft(source),
+        () => buildStudioMailForwardWithAttachmentsDraft(
+          MailParseResult(status: MailParseStatus.rejected),
+        ),
         _forwardUnavailable,
-        reason: status.name,
       );
-      expect(source.message!.attachments.single.content.bytes, [42]);
-    }
-    expect(
-      () => buildStudioMailForwardWithAttachmentsDraft(
-        MailParseResult(status: MailParseStatus.rejected),
-      ),
-      _forwardUnavailable,
-    );
-  });
+    },
+  );
 
   test('ten parts including zero-byte inline parts pass, eleven refuse', () {
     final part = _attachment('empty.bin', [], inline: true);
@@ -238,47 +265,61 @@ void main() {
     );
   });
 
-  test('ten MiB total is accepted and one extra byte refuses the whole set', () {
-    final maximum = MailAttachment(
-      partPath: '2',
-      mediaType: 'application/octet-stream',
-      displayName: 'maximum.bin',
-      content: MailBytes(Uint8List(StudioMailAttachments.maxTotalBytes)),
-    );
-    final accepted = buildStudioMailForwardWithAttachmentsDraft(
-      _source(attachments: [maximum]),
-    );
-    expect(accepted.attachments.totalBytes, StudioMailAttachments.maxTotalBytes);
-    expect(
-      () => buildStudioMailForwardWithAttachmentsDraft(
-        _source(attachments: [maximum, _attachment('extra.bin', [1])]),
-      ),
-      _forwardUnavailable,
-    );
-    expect(accepted.attachments.items.single.length, maximum.content.length);
-    expect(maximum.content.bytes.first, 0);
-  });
-
-  test('unsafe names and unsupported media types never produce partial drafts', () {
-    final valid = _attachment('safe.bin', [1, 2]);
-    for (final invalid in [
-      _attachment('../private.bin', [3]),
-      _attachment('private\r\nBcc: hidden', [3]),
-      _attachment('attached.eml', [3], type: 'message/rfc822'),
-      _attachment('parts.bin', [3], type: 'multipart/mixed'),
-      _attachment('text.txt', [3], type: 'text/plain; charset=utf-8'),
-    ]) {
-      final result = _source(attachments: [valid, invalid]);
+  test(
+    'ten MiB total is accepted and one extra byte refuses the whole set',
+    () {
+      final maximum = MailAttachment(
+        partPath: '2',
+        mediaType: 'application/octet-stream',
+        displayName: 'maximum.bin',
+        content: MailBytes(Uint8List(StudioMailAttachments.maxTotalBytes)),
+      );
+      final accepted = buildStudioMailForwardWithAttachmentsDraft(
+        _source(attachments: [maximum]),
+      );
       expect(
-        () => buildStudioMailForwardWithAttachmentsDraft(result),
+        accepted.attachments.totalBytes,
+        StudioMailAttachments.maxTotalBytes,
+      );
+      expect(
+        () => buildStudioMailForwardWithAttachmentsDraft(
+          _source(
+            attachments: [
+              maximum,
+              _attachment('extra.bin', [1]),
+            ],
+          ),
+        ),
         _forwardUnavailable,
       );
-      expect(result.message!.attachments, [valid, invalid]);
-      expect(valid.content.bytes, [1, 2]);
-    }
-    expect(
-      const StudioMailForwardAttachmentsUnavailable().toString(),
-      'The complete attachment set cannot be forwarded.',
-    );
-  });
+      expect(accepted.attachments.items.single.length, maximum.content.length);
+      expect(maximum.content.bytes.first, 0);
+    },
+  );
+
+  test(
+    'unsafe names and unsupported media types never produce partial drafts',
+    () {
+      final valid = _attachment('safe.bin', [1, 2]);
+      for (final invalid in [
+        _attachment('../private.bin', [3]),
+        _attachment('private\r\nBcc: hidden', [3]),
+        _attachment('attached.eml', [3], type: 'message/rfc822'),
+        _attachment('parts.bin', [3], type: 'multipart/mixed'),
+        _attachment('text.txt', [3], type: 'text/plain; charset=utf-8'),
+      ]) {
+        final result = _source(attachments: [valid, invalid]);
+        expect(
+          () => buildStudioMailForwardWithAttachmentsDraft(result),
+          _forwardUnavailable,
+        );
+        expect(result.message!.attachments, [valid, invalid]);
+        expect(valid.content.bytes, [1, 2]);
+      }
+      expect(
+        const StudioMailForwardAttachmentsUnavailable().toString(),
+        'The complete attachment set cannot be forwarded.',
+      );
+    },
+  );
 }

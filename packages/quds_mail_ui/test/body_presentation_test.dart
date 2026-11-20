@@ -22,7 +22,8 @@ void expectRejected(
 
 void main() {
   test('plain quotation preserves literal text and Unicode exactly', () {
-    const text = 'Café مرحبًا 😀\r\n  Indent\nBcc: a literal body label.'
+    const text =
+        'Café مرحبًا 😀\r\n  Indent\nBcc: a literal body label.'
         '\n<script>Plain text is not HTML.</script>';
     final presentation = buildMailBodyPresentation(
       const MailBody(plainText: text, html: '<p>Not selected</p>'),
@@ -59,9 +60,7 @@ void main() {
 
   test('HTML-only text uses inert entities, breaks and styling', () {
     final presentation = buildMailBodyPresentation(
-      const MailBody(
-        html: 'Hello <b>world</b> &amp; مرحبًا<br>Next &#x1f600;',
-      ),
+      const MailBody(html: 'Hello <b>world</b> &amp; مرحبًا<br>Next &#x1f600;'),
     );
     expect(presentation.rejected, isFalse);
     expect(presentation.usedHtml, isTrue);
@@ -80,7 +79,8 @@ void main() {
   test('paragraphs, lists and table cells retain readable separation', () {
     final presentation = buildMailBodyPresentation(
       const MailBody(
-        html: '<p>A</p><ul><li>B</li><li>C</li></ul>'
+        html:
+            '<p>A</p><ul><li>B</li><li>C</li></ul>'
             '<table><tr><td>X</td><td>Y</td></tr></table>',
       ),
     );
@@ -142,7 +142,8 @@ void main() {
   test('active markup and resource attributes never enter quoted text', () {
     final presentation = buildMailBodyPresentation(
       const MailBody(
-        html: '<p>Before</p>'
+        html:
+            '<p>Before</p>'
             '<ScRiPt>fetch("https://secret.invalid")</sCrIpT>'
             '<style>@import "https://secret.invalid/style";</style>'
             '<form><input value="secret"><button>secret</button></form>'
@@ -182,7 +183,8 @@ void main() {
   test('remote and CID images have no attachment lookup or resource path', () {
     final presentation = buildMailBodyPresentation(
       const MailBody(
-        html: '<img src="https://remote.invalid/private.png">'
+        html:
+            '<img src="https://remote.invalid/private.png">'
             '<img srcset="https://remote.invalid/large.png 2x"'
             ' src="cid:private-name.png">',
       ),
