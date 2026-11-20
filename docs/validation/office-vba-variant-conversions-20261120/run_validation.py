@@ -56,7 +56,8 @@ def summarize_events(path: Path) -> dict[str, object]:
     tests: dict[int, dict[str, object]] = {}
     cases = []
     messages = []
-    for line in path.read_text(errors='replace').splitlines():
+    # JSON Lines uses physical LF. Unicode separators can occur inside a name.
+    for line in path.read_text(errors='replace').split('\n'):
         try:
             event = json.loads(line)
         except json.JSONDecodeError:

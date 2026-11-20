@@ -23,12 +23,15 @@ class WebStudioArabicMorphHost extends StudioArabicMorphHost {
     this.modelBundle = camelMorphMsaDisambig,
     this.workerUrl,
     StudioWebDataStore? store,
+    ArabicMorphTransport Function()? transportFactory,
   }) : _client = client ?? http.Client.new,
+       _transportFactory = transportFactory,
        store = store ?? createDefaultStudioWebDataStore(),
        _status = StudioArabicMorphStatus(bundle: bundle),
        _modelStatus = StudioArabicMorphStatus(bundle: modelBundle);
 
   final http.Client Function() _client;
+  final ArabicMorphTransport Function()? _transportFactory;
 
   /// Where verified downloads are kept between sessions.
   final StudioWebDataStore store;
@@ -168,17 +171,33 @@ class WebStudioArabicMorphHost extends StudioArabicMorphHost {
 
   @override
   Future<void> removeModel() async {
+    final morphology = _morphology;
     _setModel(StudioArabicMorphStatus(bundle: modelBundle));
     await _forget(modelBundle);
-    // The worker keeps a loaded model: reopen the database without it.
-    final database = _database;
-    if (database != null && _status.installed) {
-      await _activate(database, _status.location ?? 'memory');
+    // The database bytes already belong to the worker. Release only its model;
+    // reopening would attempt to transfer the detached host buffers again.
+    await morphology?.unloadDisambiguator();
+    if (morphology == null || !identical(_morphology, morphology)) return;
+    if (morphology.disambiguatorFailure != null) {
+      _setModel(
+        StudioArabicMorphStatus(
+          bundle: modelBundle,
+          problem:
+              'The context model could not be unloaded: '
+              '${morphology.disambiguatorFailure}',
+        ),
+      );
+      _set(
+        StudioArabicMorphStatus(
+          bundle: bundle,
+          installed: _status.installed,
+          loaded: morphology.isAvailable,
+          location: _status.location,
+          problem: '${morphology.failure}',
+        ),
+      );
     }
   }
-
-  /// The verified database of this session, kept to reopen the analyzer.
-  MorphDatabaseBytes? _database;
 
   @override
   ArabicMorphology get morphology =>
@@ -282,11 +301,11 @@ class WebStudioArabicMorphHost extends StudioArabicMorphHost {
   }
 
   Future<void> _activate(MorphDatabaseBytes database, String location) async {
-    _database = database;
     await _morphology?.dispose();
     final morphology = _morphology = CamelArabicMorphology(
       database: database,
       workerUrl: workerUrl,
+      transport: _transportFactory?.call(),
     );
     _set(
       StudioArabicMorphStatus(
@@ -319,7 +338,6 @@ class WebStudioArabicMorphHost extends StudioArabicMorphHost {
   Future<void> remove() async {
     final previous = _morphology;
     _morphology = null;
-    _database = null;
     _modelStatus = StudioArabicMorphStatus(bundle: modelBundle);
     _set(StudioArabicMorphStatus(bundle: bundle));
     await _forget();

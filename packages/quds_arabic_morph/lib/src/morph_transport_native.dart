@@ -203,6 +203,11 @@ final class _NativeTransport implements ArabicMorphTransport {
   }
 
   @override
+  Future<void> unloadDisambiguator() async {
+    await _send(['close_model']);
+  }
+
+  @override
   Future<List<List<ArabicContextReading>>> disambiguate(
     List<List<String>> sentences,
   ) async {
@@ -345,6 +350,12 @@ void _workerMain(List<Object?> arguments) {
         }
         model = opened;
         host.send(['result', id, bindings.modelInfo(model)]);
+      } else if (value case [_, 'close_model']) {
+        if (model != nullptr) {
+          bindings.modelFree(model);
+          model = nullptr;
+        }
+        host.send(['result', id, null]);
       } else if (value case [
         _,
         'disambiguate',
