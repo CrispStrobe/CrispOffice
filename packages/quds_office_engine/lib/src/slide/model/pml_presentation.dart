@@ -196,8 +196,7 @@ class PmlTextParagraph {
   double indentPt;
   double lineSpacing;
 
-  /// Fixed paragraph leading, when DrawingML uses `a:spcPts`.
-  /// Normal autofit reduces percentage leading only.
+  /// Fixed line spacing in points; excludes percentage autofit reduction.
   double? lineSpacingPt;
   double spaceBeforePt;
   double spaceAfterPt;
@@ -452,8 +451,8 @@ class PmlShape {
     this.rightToLeft,
     this.textAlign = PmlTextAlign.left,
     this.textAnchor = PmlTextAnchor.top,
-    this.textScale = 1.0,
-    this.lineSpacingReduction = 0.0,
+    double textScale = 1.0,
+    double lineSpacingReduction = 0.0,
     List<PmlTextParagraph>? richText,
     this.groupId,
     this.placeholder = false,
@@ -464,7 +463,12 @@ class PmlShape {
     this.strokeColor = '',
     this.strokeWidth = 1,
     this.hyperlinkUrl = '',
-  }) : path = path ?? <PmlPathPoint>[],
+  }) : _textScale = _autofitRatio(textScale, 'textScale'),
+       _lineSpacingReduction = _autofitRatio(
+         lineSpacingReduction,
+         'lineSpacingReduction',
+       ),
+       path = path ?? <PmlPathPoint>[],
        richText = richText ?? <PmlTextParagraph>[],
        mediaBytes = mediaBytes ?? <int>[];
 
@@ -559,11 +563,29 @@ class PmlShape {
   /// Vertical text-frame placement from `a:bodyPr/@anchor`.
   PmlTextAnchor textAnchor;
 
-  /// `a:normAutofit/@fontScale`, normalized to a positive fraction no greater than 1.0.
-  double textScale;
+  /// `a:normAutofit/@fontScale`, normalized to 0.0–1.0.
+  double get textScale => _textScale;
+  double _textScale;
+
+  set textScale(double value) => _textScale = _autofitRatio(value, 'textScale');
 
   /// `a:normAutofit/@lnSpcReduction`, normalized to 0.0–1.0.
-  double lineSpacingReduction;
+  double get lineSpacingReduction => _lineSpacingReduction;
+  double _lineSpacingReduction;
+
+  set lineSpacingReduction(double value) =>
+      _lineSpacingReduction = _autofitRatio(value, 'lineSpacingReduction');
+
+  static double _autofitRatio(double value, String name) {
+    if (!value.isFinite || value < 0 || value > 1) {
+      throw RangeError.value(
+        value,
+        name,
+        'Expected a finite value from 0 to 1',
+      );
+    }
+    return value;
+  }
 
   /// Rich paragraph/run model when the source text has not been replaced.
   List<PmlTextParagraph> richText;

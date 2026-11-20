@@ -1425,15 +1425,12 @@ class RenderSlideStage extends RenderBox implements MouseTrackerAnnotation {
     Color color, {
     Color? background,
   }) {
-    final double baseSize =
-        (shape.fontSizePt > 0 ? shape.fontSizePt : 16) * shape.textScale;
-    final double lineHeight = 1 - shape.lineSpacingReduction;
-
-    final int lines = _growsWithText(r)
+    final double baseSize = shape.fontSizePt > 0 ? shape.fontSizePt : 16;
+    final double lineHeight =
+        baseSize * shape.textScale * (1 - shape.lineSpacingReduction) * 1.2;
+    final int lines = _growsWithText(r) || lineHeight == 0
         ? 32
-        : (r.height / (baseSize * 1.2 * math.max(0.1, lineHeight)))
-              .ceil()
-              .clamp(1, 32);
+        : (r.height / lineHeight).ceil().clamp(1, 32);
     final bool rtl = shape.rightToLeft ?? PaintRunText.looksRtl(text);
     final TextAlign align = switch (shape.textAlign) {
       PmlTextAlign.center => TextAlign.center,
@@ -1455,16 +1452,30 @@ class RenderSlideStage extends RenderBox implements MouseTrackerAnnotation {
         background: background,
       );
     }
-    return PaintRunText.plain(
-      text: text,
-      fontSize: baseSize,
-      height: lineHeight,
-      color: color,
-      themeFamily: _theme.fontFamily,
+    return TextPainter(
+      text: TextSpan(
+        text: text,
+        style: TextStyle(
+          fontSize: baseSize * shape.textScale,
+          height: _flutterLineHeight(1 - shape.lineSpacingReduction),
+          color: color,
+          fontWeight: FontWeight.normal,
+          fontFamily: PaintRunText.familyFor(
+            text: text,
+            themeFamily: _theme.fontFamily,
+          ),
+          fontFamilyFallback: PaintRunText.fallbacksFor(text),
+        ),
+      ),
+      textDirection: rtl ? TextDirection.rtl : TextDirection.ltr,
+      textAlign: align,
       maxLines: lines,
-      align: align,
-      rtl: rtl,
-      bold: false,
+      textHeightBehavior: shape.lineSpacingReduction > 0
+          ? const ui.TextHeightBehavior(
+              applyHeightToFirstAscent: false,
+              applyHeightToLastDescent: false,
+            )
+          : null,
     );
   }
 
@@ -1507,12 +1518,7 @@ class RenderSlideStage extends RenderBox implements MouseTrackerAnnotation {
             text: runText,
             style: TextStyle(
               fontSize: size,
-              height: paragraph.lineSpacingPt == null
-                  ? math.max(
-                      0,
-                      paragraph.lineSpacing - shape.lineSpacingReduction,
-                    )
-                  : paragraph.lineSpacingPt! / size,
+              height: _slideParagraphHeight(paragraph, shape, size),
               color: runColor,
               fontWeight:
                   run.bold &&
@@ -1551,12 +1557,7 @@ class RenderSlideStage extends RenderBox implements MouseTrackerAnnotation {
           text: '\n',
           style: TextStyle(
             fontSize: blankSize,
-            height: paragraph.lineSpacingPt == null
-                ? math.max(
-                    0,
-                    paragraph.lineSpacing - shape.lineSpacingReduction,
-                  )
-                : paragraph.lineSpacingPt! / blankSize,
+            height: _slideParagraphHeight(paragraph, shape, blankSize),
           ),
         ),
       );
@@ -1566,8 +1567,34 @@ class RenderSlideStage extends RenderBox implements MouseTrackerAnnotation {
       textDirection: rtl ? TextDirection.rtl : TextDirection.ltr,
       textAlign: align,
       maxLines: maxLines,
+      textHeightBehavior:
+          shape.lineSpacingReduction > 0 ||
+              paragraphs.any((paragraph) => paragraph.lineSpacingPt != null)
+          ? const ui.TextHeightBehavior(
+              applyHeightToFirstAscent: false,
+              applyHeightToLastDescent: false,
+            )
+          : null,
     );
   }
+
+  double _slideParagraphHeight(
+    PmlTextParagraph paragraph,
+    PmlShape shape,
+    double size,
+  ) {
+    final double? fixed = paragraph.lineSpacingPt;
+    if (fixed != null && fixed.isFinite) {
+      return _flutterLineHeight(size > 0 ? math.max(0, fixed) / size : 0);
+    }
+    return _flutterLineHeight(
+      math.max(0, paragraph.lineSpacing - shape.lineSpacingReduction),
+    );
+  }
+
+  // Flutter reserves a zero height multiplier for natural font metrics.
+  // Keep a zero authored advance collapsed without changing its stored value.
+  double _flutterLineHeight(double value) => value == 0 ? 0.001 : value;
 
   Color _hexColor(String hex, Color fallback) {
     if (hex.isEmpty) {

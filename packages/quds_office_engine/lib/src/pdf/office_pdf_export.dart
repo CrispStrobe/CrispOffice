@@ -1666,7 +1666,7 @@ abstract final class OfficePdfExport {
         );
       }
       final String text = deck.resolveText(shape, slide);
-      if (text.isNotEmpty) {
+      if (text.isNotEmpty && shape.textScale > 0) {
         final List<PmlTextParagraph> paragraphs = shape.resolvedRichText;
         if (paragraphs.isNotEmpty && text == shape.text) {
           _paintRichText(sink, shape, paragraphs, x, y, w, h);
@@ -2169,6 +2169,24 @@ abstract final class OfficePdfExport {
     return slide.resolveBackground(deck.master.background);
   }
 
+  static double _slideLineAdvance(
+    _PageSink sink,
+    PmlTextParagraph paragraph,
+    PmlShape shape,
+    double size, {
+    bool bold = false,
+    bool italic = false,
+    String? family,
+  }) {
+    final double? fixed = paragraph.lineSpacingPt;
+    if (fixed != null && fixed.isFinite) return math.max(0, fixed);
+    final double base = shape.textScale == 1 && shape.lineSpacingReduction == 0
+        ? size * 1.25
+        : sink.lineHeight(size, bold: bold, italic: italic, family: family);
+    return base *
+        math.max(0, paragraph.lineSpacing - shape.lineSpacingReduction);
+  }
+
   static void _paintRichText(
     _PageSink sink,
     PmlShape shape,
@@ -2286,14 +2304,15 @@ abstract final class OfficePdfExport {
     final String color = (run?.color ?? '').isNotEmpty
         ? run!.color
         : fallbackColor;
-    final double spacingFactor = math.max(
-      0,
-      paragraph.lineSpacing - shape.lineSpacingReduction,
+    final double lineAdvance = _slideLineAdvance(
+      sink,
+      paragraph,
+      shape,
+      size,
+      bold: bold,
+      italic: italic,
+      family: family,
     );
-    final double lineAdvance =
-        paragraph.lineSpacingPt ??
-        sink.lineHeight(size, bold: bold, italic: italic, family: family) *
-            spacingFactor;
     final double cy = y + paragraph.spaceBeforePt;
     final double px = x + paragraph.marginLeftPt;
     final double maxWidth = math.max(8, width - paragraph.marginLeftPt);
@@ -2368,8 +2387,7 @@ abstract final class OfficePdfExport {
         size,
         fallbackColor,
         sizeScale,
-        spacingFactor: spacingFactor,
-        fixedLeading: paragraph.lineSpacingPt,
+        shape,
         paint: paint,
       );
     } else {
@@ -2428,9 +2446,8 @@ abstract final class OfficePdfExport {
     _TextAlign align,
     double fallbackSize,
     String fallbackColor,
-    double sizeScale, {
-    double spacingFactor = 1,
-    double? fixedLeading,
+    double sizeScale,
+    PmlShape shape, {
     bool paint = true,
   }) {
     final List<_RichWord> words = <_RichWord>[];
@@ -2554,13 +2571,18 @@ abstract final class OfficePdfExport {
         }
         width += word.width(sink);
         for (final _RichSegment segment in word.segments) {
-          final double natural = sink.lineHeight(
-            segment.size,
-            bold: segment.bold,
-            italic: segment.italic,
-            family: segment.family.isEmpty ? null : segment.family,
+          height = math.max(
+            height,
+            _slideLineAdvance(
+              sink,
+              paragraph,
+              shape,
+              segment.size,
+              bold: segment.bold,
+              italic: segment.italic,
+              family: segment.family.isEmpty ? null : segment.family,
+            ),
           );
-          height = math.max(height, natural);
         }
       }
       var cx = x;
@@ -2605,10 +2627,7 @@ abstract final class OfficePdfExport {
           );
         }
       }
-      cy +=
-          fixedLeading ??
-          (height <= 0 ? sink.lineHeight(fallbackSize) : height) *
-              spacingFactor;
+      cy += height;
     }
     return cy - y;
   }
@@ -3143,12 +3162,12 @@ class _PageSink {
     int? baseLevel,
     double? lineAdvance,
   }) {
-    if (text.isEmpty) {
+    if (text.isEmpty || size <= 0) {
       return;
     }
-    if (lineAdvance != null ||
-        pack.layoutFont != null ||
-        _needsAuthoredLtr(text, baseLevel)) {
+    if (pack.layoutFont != null ||
+        _needsAuthoredLtr(text, baseLevel) ||
+        lineAdvance != null) {
       final List<BrokenLine> lines = _layoutLines(
         text,
         size,

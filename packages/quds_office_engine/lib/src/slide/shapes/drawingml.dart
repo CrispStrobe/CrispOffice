@@ -356,19 +356,6 @@ List<PmlShape> parseSlideShapes(
         'flowChartTerminator' => PmlShapePreset.roundRect,
         _ => PmlShapePreset.rect,
       };
-    } else if (reader.localName == 'normAutofit' &&
-        reader.namespaceUri == OfficeNamespaces.a &&
-        inTxBody &&
-        currentCell == null &&
-        current != null) {
-      current.textScale = _fitPercent(
-        reader.getAttribute('fontScale'),
-        fallback: 1,
-      ).clamp(0.00001, 1.0);
-      current.lineSpacingReduction = _fitPercent(
-        reader.getAttribute('lnSpcReduction'),
-        fallback: 0,
-      ).clamp(0.0, 1.0);
     } else if (reader.localName == 'bodyPr' && current != null) {
       current.textAnchor = switch (reader.getAttribute('anchor')) {
         'ctr' => PmlTextAnchor.center,
@@ -557,6 +544,17 @@ void _captureTextSources(
         reader.namespaceUri == OfficeNamespaces.p &&
         current != null) {
       final XmlElement body = XmlDocument.readElement(reader);
+      final XmlElement? autofit = body
+          .firstChild('bodyPr', namespaceUri: OfficeNamespaces.a)
+          ?.firstChild('normAutofit', namespaceUri: OfficeNamespaces.a);
+      current.textScale = _readAutofitRatio(
+        autofit?.getAttribute('fontScale'),
+        1,
+      );
+      current.lineSpacingReduction = _readAutofitRatio(
+        autofit?.getAttribute('lnSpcReduction'),
+        0,
+      );
       final String snapshot = XmlDocument(
         root: body,
       ).toXmlString(declaration: false);
@@ -1222,15 +1220,75 @@ void _setTextTypeface(XmlElement properties, String script, String family) {
   );
 }
 
-double _fitPercent(String? value, {required double fallback}) {
-  if (value == null) return fallback;
-  final String raw = value.trim();
-  final bool percent = raw.endsWith('%');
-  final double? number = double.tryParse(
-    percent ? raw.substring(0, raw.length - 1) : raw,
-  );
+double _readAutofitRatio(String? text, double fallback) {
+  if (text == null) return fallback;
+  final String value = text.trim();
+  final bool percent = value.endsWith('%');
+  final double? number = percent
+      ? double.tryParse(value.substring(0, value.length - 1))
+      : int.tryParse(value)?.toDouble();
   if (number == null || !number.isFinite) return fallback;
-  return number / (percent ? 100 : 100000);
+  return (number / (percent ? 100 : 100000)).clamp(0.0, 1.0);
+}
+
+void _writeAutofit(XmlElement body, PmlShape shape) {
+  XmlElement? properties = body.firstChild(
+    'bodyPr',
+    namespaceUri: OfficeNamespaces.a,
+  );
+  XmlElement? autofit = properties?.firstChild(
+    'normAutofit',
+    namespaceUri: OfficeNamespaces.a,
+  );
+  if (autofit == null &&
+      shape.textScale == 1 &&
+      shape.lineSpacingReduction == 0) {
+    // An ordinary text box must not acquire normal autofit merely by saving.
+    return;
+  }
+  if (properties == null) {
+    properties = _textElement('bodyPr')..parent = body;
+    body.children.insert(0, properties);
+  }
+  final bool created = autofit == null;
+  if (created) {
+    properties.children.removeWhere(
+      (XmlNode node) =>
+          node is XmlElement &&
+          node.namespaceUri == OfficeNamespaces.a &&
+          (node.localName == 'noAutofit' || node.localName == 'spAutoFit'),
+    );
+    autofit = _textElement('normAutofit');
+    final int laterProperty = properties.children.indexWhere(
+      (XmlNode node) =>
+          node is XmlElement &&
+          node.namespaceUri == OfficeNamespaces.a &&
+          const <String>{
+            'scene3d',
+            'sp3d',
+            'flatTx',
+            'extLst',
+          }.contains(node.localName),
+    );
+    autofit.parent = properties;
+    properties.children.insert(
+      laterProperty < 0 ? properties.children.length : laterProperty,
+      autofit,
+    );
+  }
+  if (created ||
+      _readAutofitRatio(autofit.getAttribute('fontScale'), 1) !=
+          shape.textScale) {
+    autofit.setAttribute('fontScale', '${(shape.textScale * 100000).round()}');
+  }
+  if (created ||
+      _readAutofitRatio(autofit.getAttribute('lnSpcReduction'), 0) !=
+          shape.lineSpacingReduction) {
+    autofit.setAttribute(
+      'lnSpcReduction',
+      '${(shape.lineSpacingReduction * 100000).round()}',
+    );
+  }
 }
 
 Iterable<XmlElement> _textDescendants(XmlElement root, String name) sync* {
@@ -1293,49 +1351,7 @@ void _writeShapeText(XmlWriter writer, PmlShape shape) {
     body.addChild(_textElement('bodyPr'));
     body.addChild(_textElement('lstStyle'));
   }
-  if ((source == null &&
-          (shape.textScale != 1 || shape.lineSpacingReduction != 0)) ||
-      (source != null &&
-          (source.textScale != shape.textScale ||
-              source.lineSpacingReduction != shape.lineSpacingReduction))) {
-    XmlElement? props = body.firstChild(
-      'bodyPr',
-      namespaceUri: OfficeNamespaces.a,
-    );
-    if (props == null) {
-      props = _textElement('bodyPr')..parent = body;
-      body.children.insert(0, props);
-    }
-    props.children.removeWhere(
-      (XmlNode node) =>
-          node is XmlElement &&
-          node.namespaceUri == OfficeNamespaces.a &&
-          const {
-            'noAutofit',
-            'spAutoFit',
-            'normAutofit',
-          }.contains(node.localName),
-    );
-    final XmlElement fit = _textElement('normAutofit')
-      ..setAttribute('fontScale', '${(shape.textScale * 100000).round()}')
-      ..setAttribute(
-        'lnSpcReduction',
-        '${(shape.lineSpacingReduction * 100000).round()}',
-      )
-      ..parent = props;
-    // Autofit precedes 3D and extension properties in CT_TextBodyProperties.
-    final int tail = props.children.indexWhere(
-      (XmlNode node) =>
-          node is XmlElement &&
-          const {
-            'scene3d',
-            'sp3d',
-            'flatTx',
-            'extLst',
-          }.contains(node.localName),
-    );
-    props.children.insert(tail < 0 ? props.children.length : tail, fit);
-  }
+  _writeAutofit(body, shape);
   final bool replace = source == null || source.text != shape.text;
   if (replace) {
     final List<XmlElement> original = body.childrenNamed(
