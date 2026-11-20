@@ -1,0 +1,76 @@
+00:00 +0: loading test/word_extended_revision_test.dart
+00:00 +0: test/word_extended_revision_test.dart: run history does not override current properties; reject restores the previous set
+00:00 +1: test/word_extended_revision_test.dart: accept keeps current formatting and removes native history
+00:00 +2: test/word_extended_revision_test.dart: paragraph formatting imports current alignment and rejects previous spacing
+00:00 +3: test/word_extended_revision_test.dart: empty previous properties restore inheritance instead of editor defaults
+00:00 +4: test/word_extended_revision_test.dart: formatting history survives three direct saves
+00:00 +5: test/word_extended_revision_test.dart: formatting history survives three isolate saves
+00:00 +6: test/word_extended_revision_test.dart: accept either side resolves an entire multi-run move
+00:00 +7: test/word_extended_revision_test.dart: reject either side resolves an entire multi-run move
+00:00 +8: test/word_extended_revision_test.dart: move endpoints and linkage survive repeated native saves across paragraphs
+00:00 +9: test/word_extended_revision_test.dart: move preflight is atomic when the other side is stale
+00:00 +10: test/word_extended_revision_test.dart: formatting can overlap tracked text; accepting deletion discards its formatting
+00:00 +11: test/word_extended_revision_test.dart: rejecting formatting leaves the overlapping text insertion pending
+00:00 +12: test/word_extended_revision_test.dart: empty paragraphs preserve and resolve paragraph formatting
+00:00 +13: test/word_extended_revision_test.dart: old color, size and language attributes restore with namespace identity
+00:00 +14: test/word_extended_revision_test.dart: formatting ranges rebase through a text replacement without text attribution conflicts
+00:00 +15: test/word_extended_revision_test.dart: paragraph formatting remains reviewable when its text changes
+00:00 +16: test/word_extended_revision_test.dart: a missing previous property set cannot be silently accepted or exported
+00:00 +17: test/word_extended_revision_test.dart: an incomplete move cannot be partially resolved or silently exported
+00:00 +18: test/word_extended_revision_test.dart: move preflight checks a protected destination before deleting source text
+00:00 +19: test/word_extended_revision_test.dart: Word 16.111.1 saved native formatting and move revisions round-trip
+00:00 +20: test/word_extended_revision_test.dart: an empty text run retains its formatting revision through a save
+00:00 +21: test/word_extended_revision_test.dart: write a native tracked formatting and move interoperability fixture
+00:01 +22: loading test/word_revision_story_test.dart
+00:01 +22: test/word_revision_story_test.dart: record binds a body paragraph before index-changing structural edits
+00:01 +23: test/word_revision_story_test.dart: detached targets and invalid recorded indices never redirect into body
+00:01 +24: test/word_revision_story_test.dart: legacy directly constructed revisions bind once and note tables resolve
+00:02 +25: test/word_revision_story_test.dart: direct preserves native revision ownership through three saves
+00:02 +26: test/word_revision_story_test.dart: isolate preserves native revision ownership through three saves
+00:02 +27: test/word_revision_story_test.dart: reject resolves all native story changes without touching other text
+00:02 +28: test/word_revision_story_test.dart: accept resolves all native story changes without touching other text
+00:02 +29: test/word_revision_story_test.dart: export cuts coalesced runs at exact tracked bounds without live mutation
+00:02 +30: test/word_revision_story_test.dart: native hyperlink changes retain real paragraph offsets and link metadata
+00:02 +31: test/word_revision_story_test.dart: atomic fields retain schema-valid tracked result and full boundaries
+00:03 +32: test/word_revision_story_test.dart: partial tracked bounds never split atomic note marks or field results
+00:03 +33: loading test/word_revision_validation_test.dart
+00:03 +33: test/word_revision_validation_test.dart: cross-control revision validation cannot rebase another pending span
+00:03 +34: test/word_revision_validation_test.dart: direct export rejects stale spans before package mutation
+00:04 +35: test/word_revision_validation_test.dart: isolate export rejects stale spans before package mutation
+00:04 +36: test/word_revision_validation_test.dart: batch validation is atomic when a later revision is invalid
+00:04 +37: test/word_revision_validation_test.dart: invalid ranges cannot be clamped into unrelated text on resolution
+00:04 +38: test/word_revision_validation_test.dart: engine batch resolution rebases later ranges in insertion order
+00:04 +39: test/word_revision_validation_test.dart: recorded partial atomic spans expand with matching text immediately
+00:04 +40: loading test/word_revision_scaling_test.dart
+00:04 +40: test/word_revision_scaling_test.dart: many tracked changes import and save in linear-ish time
+00:05 +41: test/word_revision_scaling_test.dart: overlap detection is unchanged
+00:05 +42: loading test/word_comparison_test.dart
+00:05 +42: test/word_comparison_test.dart: middle paragraph insertion does not rewrite following paragraphs
+00:05 +43: test/word_comparison_test.dart: whole paragraph removal and empty paragraphs remain visible
+00:05 +44: test/word_comparison_test.dart: word-level redline retains unchanged context and reconstructs both inputs
+00:05 +45: test/word_comparison_test.dart: repeated paragraphs align deterministically
+00:05 +46: test/word_comparison_test.dart: Unicode, Arabic, combining marks and joined emoji are indivisible
+00:06 +47: test/word_comparison_test.dart: normalization preserves source text and reports only requested differences
+00:06 +48: test/word_comparison_test.dart: direct run formatting is detected but equivalent run splitting is not
+00:06 +49: test/word_comparison_test.dart: paragraph and section formatting changes have readable details
+00:06 +50: test/word_comparison_test.dart: projecting pending revisions never changes metadata or input identity
+00:06 +51: test/word_comparison_test.dart: tracked deletion projection excludes deleted character formatting
+00:06 +52: test/word_comparison_test.dart: invalid or overlapping revision ranges cannot silently project wrong text
+00:06 +53: test/word_comparison_test.dart: detached target is not redirected by a stale legacy index
+00:06 +54: test/word_comparison_test.dart: captured-null target cannot be rebound after later paragraph insertion
+00:06 +55: test/word_comparison_test.dart: table, frame, header and note changes retain their story locations
+00:06 +56: test/word_comparison_test.dart: empty table topology changes are not mistaken for equal documents
+00:06 +57: test/word_comparison_test.dart: same display text with a different hyperlink is a structural change
+00:06 +58: test/word_comparison_test.dart: splitting a hyperlink across equal runs is not a document change
+00:06 +59: test/word_comparison_test.dart: coarse fallback is bounded, disclosed and does not truncate text
+00:06 +60: test/word_comparison_test.dart: large mostly identical inputs use anchors without quadratic work
+00:06 +61: test/word_comparison_test.dart: explicit input limits fail rather than return a partial equal result
+00:06 +62: test/word_comparison_test.dart: JSON report is deterministic, immutable and contains no model references
+00:06 +63: test/word_comparison_test.dart: legacy unsafe mutation API fails before touching either input
+00:06 +64: test/word_comparison_test.dart: independently authored native XML produces a readable comparison
+00:06 +65: test/word_comparison_test.dart: many independent edit sequences reconstruct both paragraph streams
+00:07 +66: loading test/word_comment_test.dart
+00:08 +66: test/word_comment_test.dart: comments attach to a range and survive a docx round-trip
+00:08 +67: test/word_comment_test.dart: a comment can cover a multi-paragraph range
+00:08 +68: test/word_comment_test.dart: rich comment threads round-trip with replies and resolve state
+00:08 +69: All tests passed!
