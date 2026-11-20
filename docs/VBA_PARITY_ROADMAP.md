@@ -123,7 +123,7 @@ Word ranges or live execution were added. See the
 [exact contract](VBA_WORD_MACROS.md#custom-paragraph-tab-stops) and
 [source-bound local qualification](validation/word-vba-tabstops-20261120/README.md).
 
-### Next shared-language increments
+### Custom Word line spacing
 
 The Word spacing continuation adds exact, minimum and custom multiple spacing
 through explicit `LineSpacingRule` / `LineSpacing` pairs, standard `Space1`,
@@ -133,6 +133,8 @@ intervening document writes are refused. This deliberately bounded contract
 does not introduce live spacing reads or infer existing font metrics. See the
 [exact contract](VBA_WORD_MACROS.md#exact-minimum-and-multiple-line-spacing)
 and [local qualification](validation/word-vba-paragraph-spacing-20261120/README.md).
+
+### Next shared-language increments
 
 Keep multidimensional arrays and array parameter passing as separate increments
 with their own shape, ownership, aliasing and resource tests. Broader implicit
