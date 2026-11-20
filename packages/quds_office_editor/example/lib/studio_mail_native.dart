@@ -44,6 +44,7 @@ class StudioMailDialog extends StatefulWidget {
     this.messageLoaderFactory,
     this.accountDiscovery,
     this.credentialStore,
+    this.credentialSettingsOpener,
     this.archiveWriter,
     this.archiveFolderWriter,
     this.draftStoreFactory,
@@ -54,6 +55,10 @@ class StudioMailDialog extends StatefulWidget {
 
   /// Tests supply the keychain boundary without reading a platform credential.
   final StudioMailCredentialStore? credentialStore;
+
+  /// Hosts can provide credential settings without accessing a platform store.
+  /// Returns true only when the selected backend changed.
+  final Future<bool> Function(BuildContext context)? credentialSettingsOpener;
   final StudioMailArchiveWriter? archiveWriter;
   final StudioMailArchiveFolderWriter? archiveFolderWriter;
   final StudioMailDraftStoreFactory? draftStoreFactory;
@@ -1378,7 +1383,10 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
   );
 
   Future<void> _openCredentialStorage() async {
-    if (await showStudioCredentialSettings(context) && mounted) {
+    if (_busy || _credentialPending || _connecting) return;
+    final open =
+        widget.credentialSettingsOpener ?? showStudioCredentialSettings;
+    if (await open(context) && mounted) {
       _credentialGeneration++;
       setState(() {
         _credentialPending = false;
@@ -1386,6 +1394,11 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
             ? 'Save this connected account to the selected credential store.'
             : null;
         _accountCatalog = null;
+        // An account association belongs to its selected credential backend.
+        // Keep the live connection and editable form, but never offer Forget
+        // or a chooser selection from the previous store during this reload.
+        _selectedSavedAccountId = null;
+        _hasSavedCredentials = false;
       });
       await _loadCredentials();
     }
@@ -1401,7 +1414,9 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
       SubmenuButton(
         menuChildren: [
           MenuItemButton(
-            onPressed: _openCredentialStorage,
+            onPressed: _busy || _credentialPending || _connecting
+                ? null
+                : _openCredentialStorage,
             child: const Text('Credential storage…'),
           ),
           MenuItemButton(
@@ -1456,87 +1471,93 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
     ],
   );
 
-  Widget _accountView(
-    BuildContext context, {
-    required bool compact,
-  }) => Scaffold(
-    backgroundColor: Theme.of(context).colorScheme.surface,
-    appBar: AppBar(
-      backgroundColor: Theme.of(context).colorScheme.surfaceContainerHighest,
-      foregroundColor: Theme.of(context).colorScheme.onSurface,
-      surfaceTintColor: Colors.transparent,
-      automaticallyImplyLeading: false,
-      title: Text(widget.strings.mailTitle, overflow: TextOverflow.ellipsis),
-      actions: <Widget>[
-        IconButton(
-          tooltip: 'Credential storage',
-          icon: const Icon(Icons.key),
-          onPressed: _credentialPending ? null : _openCredentialStorage,
-        ),
-        IconButton(
-          onPressed: _busy || _connecting
-              ? null
-              : () => setState(() {
-                  _savedMessagesVisited = true;
-                  _showSavedMessages = true;
-                }),
-          tooltip: widget.strings.savedMessages,
-          icon: const Icon(Icons.folder_open_outlined),
-        ),
-        if (_client != null) ...<Widget>[
-          if (compact)
-            IconButton(
-              onPressed: _busy ? null : _compose,
-              tooltip: widget.strings.compose,
-              icon: const Icon(Icons.edit_outlined),
-            )
-          else
-            TextButton.icon(
-              onPressed: _busy ? null : _compose,
-              icon: const Icon(Icons.edit_outlined),
-              label: Text(widget.strings.compose),
-            ),
-          IconButton(
-            onPressed: _busy || _mailbox == null
-                ? null
-                : () => _selectMailbox(_mailbox!),
-            tooltip: widget.strings.refresh,
-            icon: const Icon(Icons.refresh),
+  Widget _accountView(BuildContext context, {required bool compact}) =>
+      Scaffold(
+        backgroundColor: Theme.of(context).colorScheme.surface,
+        appBar: AppBar(
+          backgroundColor: Theme.of(context)
+              .colorScheme
+              .surfaceContainerHighest,
+          foregroundColor: Theme.of(context).colorScheme.onSurface,
+          surfaceTintColor: Colors.transparent,
+          automaticallyImplyLeading: false,
+          title: Text(
+            widget.strings.mailTitle,
+            overflow: TextOverflow.ellipsis,
           ),
-          if (_draft != null)
+          actions: <Widget>[
             IconButton(
-              onPressed: _busy || _dialogOpen ? null : _discardDraft,
-              tooltip: widget.strings.mailDiscardDraft,
-              icon: const Icon(Icons.delete_outline),
-            ),
-          if (_accountCatalogStore != null)
-            IconButton(
-              key: const ValueKey('studio-mail-switch-account'),
-              onPressed: _busy || _dialogOpen || _credentialPending
+              key: const ValueKey('studio-mail-credential-storage'),
+              tooltip: 'Credential storage',
+              icon: const Icon(Icons.key),
+              onPressed: _busy || _credentialPending || _connecting
                   ? null
-                  : _switchAccount,
-              tooltip: widget.strings.mailSwitchAccount,
-              icon: const Icon(Icons.switch_account_outlined),
+                  : _openCredentialStorage,
             ),
-          IconButton(
-            onPressed: _disconnect,
-            tooltip: widget.strings.disconnect,
-            icon: const Icon(Icons.logout),
-          ),
-        ],
-        const SizedBox(width: 8),
-        IconButton(
-          onPressed: () => Navigator.of(context).pop(),
-          tooltip: widget.strings.close,
-          icon: const Icon(Icons.close),
+            IconButton(
+              onPressed: _busy || _connecting
+                  ? null
+                  : () => setState(() {
+                      _savedMessagesVisited = true;
+                      _showSavedMessages = true;
+                    }),
+              tooltip: widget.strings.savedMessages,
+              icon: const Icon(Icons.folder_open_outlined),
+            ),
+            if (_client != null) ...<Widget>[
+              if (compact)
+                IconButton(
+                  onPressed: _busy ? null : _compose,
+                  tooltip: widget.strings.compose,
+                  icon: const Icon(Icons.edit_outlined),
+                )
+              else
+                TextButton.icon(
+                  onPressed: _busy ? null : _compose,
+                  icon: const Icon(Icons.edit_outlined),
+                  label: Text(widget.strings.compose),
+                ),
+              IconButton(
+                onPressed: _busy || _mailbox == null
+                    ? null
+                    : () => _selectMailbox(_mailbox!),
+                tooltip: widget.strings.refresh,
+                icon: const Icon(Icons.refresh),
+              ),
+              if (_draft != null)
+                IconButton(
+                  onPressed: _busy || _dialogOpen ? null : _discardDraft,
+                  tooltip: widget.strings.mailDiscardDraft,
+                  icon: const Icon(Icons.delete_outline),
+                ),
+              if (_accountCatalogStore != null)
+                IconButton(
+                  key: const ValueKey('studio-mail-switch-account'),
+                  onPressed: _busy || _dialogOpen || _credentialPending
+                      ? null
+                      : _switchAccount,
+                  tooltip: widget.strings.mailSwitchAccount,
+                  icon: const Icon(Icons.switch_account_outlined),
+                ),
+              IconButton(
+                onPressed: _disconnect,
+                tooltip: widget.strings.disconnect,
+                icon: const Icon(Icons.logout),
+              ),
+            ],
+            const SizedBox(width: 8),
+            IconButton(
+              onPressed: () => Navigator.of(context).pop(),
+              tooltip: widget.strings.close,
+              icon: const Icon(Icons.close),
+            ),
+            const SizedBox(width: 8),
+          ],
         ),
-        const SizedBox(width: 8),
-      ],
-    ),
-    body: _client == null
-        ? _accountSetup(context)
-        : _inbox(context, compact: compact),
-  );
+        body: _client == null
+            ? _accountSetup(context)
+            : _inbox(context, compact: compact),
+      );
 
   Widget _accountSetup(BuildContext context) => Center(
     child: SingleChildScrollView(
@@ -1590,7 +1611,9 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
                   const Divider(height: 24),
                 ],
                 TextButton.icon(
-                  onPressed: _credentialPending ? null : _openCredentialStorage,
+                  onPressed: _busy || _credentialPending || _connecting
+                      ? null
+                      : _openCredentialStorage,
                   icon: const Icon(Icons.key),
                   label: Text(
                     'Credential storage: ${StudioCredentialStorage.instance.label}',

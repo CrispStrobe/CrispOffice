@@ -14,12 +14,26 @@ enum StudioCredentialMode { system, customKeychain, encryptedVault, session }
 
 /// Non-secret selection. A failed selected store never falls back to another.
 class StudioCredentialStorage extends ChangeNotifier {
+  StudioCredentialStorage({
+    Future<SecureStorage> Function()? systemStorageFactory,
+  }) : _systemStorageFactory = systemStorageFactory ?? _createSystemStorage;
+
   static final instance = StudioCredentialStorage();
   static const preferenceKey = 'crispoffice.credentials.selection.v1';
   StudioCredentialMode mode = StudioCredentialMode.system;
   String? customPath;
   final _stores = <String, SecureStorage>{};
   bool _loaded = false;
+  int _selectionGeneration = 0;
+  final Future<SecureStorage> Function() _systemStorageFactory;
+
+  static Future<SecureStorage> _createSystemStorage() async {
+    // Determine capability before reading credentials. A denied or locked
+    // store still fails explicitly rather than selecting another backend.
+    await PlatformSecureStorage.detectMacOsKeychain();
+    return PlatformSecureStorage();
+  }
+
   String get label => switch (mode) {
     StudioCredentialMode.system => 'System credential store',
     StudioCredentialMode.customKeychain => 'Custom macOS keychain',
@@ -62,20 +76,20 @@ class StudioCredentialStorage extends ChangeNotifier {
 
   Future<SecureStorage> get storage async {
     await loadSelection();
-    final cached = _stores[_identity];
+    final selectedMode = mode;
+    final selectedPath = customPath;
+    final selectedIdentity = _identity;
+    final generation = _selectionGeneration;
+    final cached = _stores[selectedIdentity];
     if (cached != null) return cached;
     final SecureStorage result;
-    switch (mode) {
+    switch (selectedMode) {
       case StudioCredentialMode.system:
-        // Use CrispCloud's capability check before reading any credential:
-        // a missing Data Protection entitlement selects the OS file keychain.
-        // Locked/denied/unavailable stores never trigger credential fallbacks.
-        await PlatformSecureStorage.detectMacOsKeychain();
-        result = PlatformSecureStorage();
+        result = await _systemStorageFactory();
       case StudioCredentialMode.session:
         result = InMemorySecureStorage();
       case StudioCredentialMode.customKeychain:
-        final selected = MacOsCustomKeychainStorage(path: customPath!);
+        final selected = MacOsCustomKeychainStorage(path: selectedPath!);
         await selected.initialize();
         result = selected;
       case StudioCredentialMode.encryptedVault:
@@ -83,14 +97,26 @@ class StudioCredentialStorage extends ChangeNotifier {
           'Unlock the encrypted credential vault in Credential storage.',
         );
     }
-    _stores[_identity] = result;
+    // This instance belongs to the selection captured above, including its
+    // persistence policy. Never cache it under a later selection or replace a
+    // newer instance after switching away and back to the same store.
+    if (generation == _selectionGeneration &&
+        mode == selectedMode &&
+        customPath == selectedPath) {
+      return _stores.putIfAbsent(selectedIdentity, () => result);
+    }
+    // An operation already opening the old backend stays with that backend;
+    // changing selection cannot redirect an in-flight credential transaction.
     return result;
   }
 
   Future<void> select(StudioCredentialMode next, {String? path}) async {
     await loadSelection();
     if (next == StudioCredentialMode.customKeychain) {
-      if (!Platform.isMacOS || path == null || path.trim().isEmpty) {
+      if (kIsWeb ||
+          defaultTargetPlatform != TargetPlatform.macOS ||
+          path == null ||
+          path.trim().isEmpty) {
         throw ArgumentError('Choose a macOS keychain file.');
       }
       final store = MacOsCustomKeychainStorage(path: path);
@@ -109,6 +135,7 @@ class StudioCredentialStorage extends ChangeNotifier {
     if (!await prefs.setString(preferenceKey, record)) {
       throw StateError('Could not save the credential-store selection.');
     }
+    _selectionGeneration++;
     mode = next;
     customPath = next == StudioCredentialMode.customKeychain ? path : null;
     notifyListeners();
