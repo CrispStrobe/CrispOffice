@@ -1,5 +1,10 @@
 ## 0.1.0
 
+- Add explicit multi-message selection and foreground read/unread/flag/unflag
+  requests, with visible-only selection, keyboard controls, immutable command
+  snapshots, stale-callback guards and Escape to clear. A scrollable host-owned
+  status slot preserves progress, outcomes and stop-after-current controls while
+  ordinary selection and opening are blocked during execution.
 - Add bounded structured search of loaded message headers with localized syntax
   errors, recipient/date/state predicates, explicit clear and accessible help.
   Technical examples keep their left-to-right order within Arabic help.

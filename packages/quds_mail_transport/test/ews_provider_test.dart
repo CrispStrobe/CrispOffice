@@ -211,6 +211,62 @@ MailPreparedMessage _prepared({List<String>? recipients}) =>
 
 void main() {
   test(
+    'bulk EWS reports acknowledged, definite, uncertain and untouched identities',
+    () async {
+      final fixture = _Fixture();
+      fixture.scripts.addAll([
+        [('GetItem', (_) => _response('GetItem', _item('one', read: true)))],
+        [
+          (
+            'GetItem',
+            (_) => _response('GetItem', _error('GetItem', 'ErrorItemNotFound')),
+          ),
+        ],
+        [
+          ('GetItem', (_) => _response('GetItem', _item('three'))),
+          (
+            'UpdateItem',
+            (_) => throw const EwsException(MailProblemCode.unavailable),
+          ),
+        ],
+      ]);
+      final provider = fixture.provider();
+      final report = await const MailBulkFlagRunner().run(
+        plan: MailBulkFlagPlan(
+          id: 'ews-bulk',
+          mailbox: _mailbox,
+          action: MailBulkFlagAction.markRead,
+          messages: [
+            _identity('one'),
+            _identity('two'),
+            _identity('three'),
+            _identity('four'),
+          ],
+        ),
+        lease: fixture.session.begin(),
+        apply: provider.apply,
+        isScopeCurrent: () => true,
+      );
+      expect(report.results.map((result) => result.outcome), [
+        MailBulkFlagOutcome.confirmed,
+        MailBulkFlagOutcome.failed,
+        MailBulkFlagOutcome.uncertain,
+        MailBulkFlagOutcome.unattempted,
+      ]);
+      expect(report.results[1].problem?.mutationMayHaveOccurred, isFalse);
+      expect(report.results[2].problem?.mutationMayHaveOccurred, isTrue);
+      expect(fixture.clients, hasLength(3));
+      expect(
+        fixture.clients
+            .expand((client) => client.requests)
+            .where((request) => request.$3),
+        hasLength(1),
+      );
+      expect(report.requiresRefresh, isTrue);
+    },
+  );
+
+  test(
     'initial sync coalesces changes and loads complete headers once',
     () async {
       final fixture = _Fixture();

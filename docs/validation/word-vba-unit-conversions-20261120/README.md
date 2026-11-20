@@ -24,6 +24,11 @@ receipts in [local-qualification.tar.gz](local-qualification.tar.gz).
 | Engine runtime | Dart 3.14.1; 56 hosted dependency versions and archive hashes match the repository lock |
 | JavaScript runtime | v24.22.3 |
 
+The dependency archive proof is retained in the archive at
+historical-mail-core/hosted-dependencies.json. It records the same 56 hosted
+packages used by the Word harness, with cached hashes matching the repository
+lock. The captured Mail-core and Word lockfiles are byte-identical.
+
 Later evidence and Mail integration commits retain these Word inputs; the
 integration report records the final source identity check. No GitHub Actions
 run, check status, or workflow result was awaited or used as a qualification

@@ -31,6 +31,82 @@ MailProblemCode _code<T>(MailResult<T> result) =>
 
 void main() {
   test(
+    'bulk IMAP failures distinguish stale generation from uncertain STORE',
+    () async {
+      final fixture = ImapFixture(messages: {1: _message(), 2: _message()});
+      final identity = _identity(fixture);
+      fixture.uidValidity++;
+      final beforeWrite = await fixture.provider().apply(
+        MailSetRead(id: 'stale-generation', message: identity, read: true),
+        _lease(fixture),
+      );
+      expect(_code(beforeWrite), MailProblemCode.conflict);
+      expect(
+        (beforeWrite as MailFailure<MailUnit>).problem.mutationMayHaveOccurred,
+        isFalse,
+      );
+      expect(
+        fixture.commands.where((command) => command.startsWith('UID STORE ')),
+        isEmpty,
+      );
+
+      fixture.closeAfterMutation = true;
+      final provider = fixture.provider();
+      final report = await const MailBulkFlagRunner().run(
+        plan: MailBulkFlagPlan(
+          id: 'uncertain-imap',
+          mailbox: fixture.mailbox,
+          action: MailBulkFlagAction.markRead,
+          messages: [_identity(fixture, 1), _identity(fixture, 2)],
+        ),
+        lease: _lease(fixture),
+        apply: provider.apply,
+        isScopeCurrent: () => true,
+      );
+      expect(report.uncertainCount, 1);
+      expect(report.unattemptedCount, 1);
+      expect(report.results.first.problem?.mutationMayHaveOccurred, isTrue);
+      expect(
+        fixture.commands.where((command) => command.startsWith('UID STORE ')),
+        hasLength(1),
+      );
+      expect(fixture.messages[1]!.flags, contains(r'\Seen'));
+      expect(fixture.messages[2]!.flags, isEmpty);
+    },
+  );
+
+  test(
+    'bulk IMAP missing UID is definite and later selected UID still runs',
+    () async {
+      final fixture = ImapFixture(messages: {1: _message(), 3: _message()});
+      final provider = fixture.provider();
+      final report = await const MailBulkFlagRunner().run(
+        plan: MailBulkFlagPlan(
+          id: 'missing-imap',
+          mailbox: fixture.mailbox,
+          action: MailBulkFlagAction.flag,
+          messages: [
+            _identity(fixture, 1),
+            _identity(fixture, 2),
+            _identity(fixture, 3),
+          ],
+        ),
+        lease: _lease(fixture),
+        apply: provider.apply,
+        isScopeCurrent: () => true,
+      );
+      expect(report.confirmedCount, 2);
+      expect(report.failedCount, 1);
+      expect(report.results[1].problem?.mutationMayHaveOccurred, isFalse);
+      expect(report.requiresRefresh, isFalse);
+      expect(
+        fixture.commands.where((command) => command.startsWith('UID STORE ')),
+        hasLength(2),
+      );
+    },
+  );
+
+  test(
     'actual command parser discovers selectable folders over required TLS',
     () async {
       final fixture = ImapFixture();

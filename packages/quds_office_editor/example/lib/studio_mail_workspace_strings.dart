@@ -102,6 +102,32 @@ extension StudioMailWorkspaceStrings on StudioStrings {
     senderAscending: _text('Sender A–Z', 'Absender A–Z', 'المرسل أ–ي'),
     subjectAscending: _text('Subject A–Z', 'Betreff A–Z', 'الموضوع أ–ي'),
     searchError: _mailHeaderSearchError,
+    selectMessage: _text(
+      'Select message',
+      'Nachricht auswählen',
+      'تحديد الرسالة',
+    ),
+    selectVisible: _text(
+      'Select visible',
+      'Sichtbare auswählen',
+      'تحديد الظاهرة',
+    ),
+    clearSelection: _text('Clear selection', 'Auswahl aufheben', 'مسح التحديد'),
+    selectedCount: (count) =>
+        _text('$count selected', '$count ausgewählt', '$count محددة'),
+    bulkActions: _text(
+      'Selected messages',
+      'Ausgewählte Nachrichten',
+      'الرسائل المحددة',
+    ),
+    markRead: _text('Mark as read', 'Als gelesen markieren', 'وضع كمقروءة'),
+    markUnread: _text(
+      'Mark as unread',
+      'Als ungelesen markieren',
+      'وضع كغير مقروءة',
+    ),
+    flag: _text('Flag', 'Kennzeichnen', 'وضع علامة'),
+    unflag: _text('Remove flag', 'Kennzeichnung entfernen', 'إزالة العلامة'),
   );
 
   String _mailHeaderSearchError(MailHeaderSearchError error) => switch (error) {

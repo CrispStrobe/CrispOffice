@@ -4,6 +4,16 @@ All notable changes to `quds_office_editor` are documented here.
 
 ## Unreleased
 
+- Add foreground bulk read/unread/flag/unflag actions to connected IMAP, EWS,
+  Gmail and Microsoft 365. Freeze checked visible identities, run sequentially,
+  report confirmed/failed/uncertain/unattempted counts and stop on uncertainty.
+  Let users stop after the current request, require explicit refresh for an
+  unconfirmed write, preserve nullable flags and reject stale scope callbacks.
+  Keep cached mail read-only and preserve discovery state on same-folder refresh.
+  Show localized progress and per-message receipts, retain provider mutation
+  evidence, and preserve conservative compatibility for native adapters that
+  supply both immutable remote records and the earlier action capability.
+
 - Refuse an oversized Studio settings snapshot before replacing the last valid
   saved settings. Keep the existing load budget and expose a recoverable save
   error so accepted personal dictionaries cannot reset preferences on restart.

@@ -4,6 +4,8 @@
   coordination. Every frozen identity has a confirmed, definitely failed,
   uncertain or unattempted outcome. Stop on uncertainty, cancellation or stale
   scope; preserve in-flight receipts without authorizing stale publication.
+  Adapt provider mutation evidence through the same coordinator, with immutable
+  progress and per-message reports; absent evidence remains uncertain.
 
 - Add bounded portable loaded-header search with field-scoped text, quoted
   phrases, observed read/flag states and strict local-calendar date predicates.
