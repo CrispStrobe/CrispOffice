@@ -1,0 +1,56 @@
+{
+  "os": "android",
+  "abi": "android_x64",
+  "data_directory": "/data/user/0/<pkg>/files/quds_office_studio",
+  "hunspell_library": "(default)",
+  "hunspell": {
+    "الى": [
+      "إلى",
+      "ألي",
+      "ألى"
+    ],
+    "المدرسه": [
+      "المدرسة",
+      "ألمدرسة",
+      "ألمدرسه"
+    ],
+    "هاذا": [
+      "هادا",
+      "عاذا",
+      "هاذ"
+    ]
+  },
+  "arabic_morph": {
+    "analyses": 2,
+    "first_lex": "كَتَب"
+  },
+  "language_id": [
+    "de:0.999995",
+    "ar:0.997445"
+  ],
+  "harper": "harper.AnA:[a]",
+  "spacy": {
+    "library": "libcrispembed-spacy.so",
+    "library_sha256": "415eb3607b2b4bd0385d46a2aaaf5719a28c6d5d590d96e9e4bd1b4ebaa7ac4e",
+    "code_sha256": null,
+    "identity": {
+      "library_sha256": "415eb3607b2b4bd0385d46a2aaaf5719a28c6d5d590d96e9e4bd1b4ebaa7ac4e",
+      "bundle_sha256": "d599768375de3dc56abcca5cf1d49da0015857f9d3a10640aebb5317ef5d427e",
+      "model_sha256": "fae2e6ab8d6c611d7a9dddd4b3259a871a1d2f95cacc8259f49c1e4ff31ff6cd",
+      "resources_sha256": "b42496cc373ada57a67ed2f4c2c25f8d22f80c08db5841a7cdb91c8a6e18562a",
+      "abi_version": 1,
+      "text_abi_version": 1,
+      "capability_mask": 15
+    },
+    "recorded_qualification": null,
+    "grammar_qualified": false,
+    "manifest_sha256": "9a3bb6bae6114adcf579840834ddcb64dea4e0aaa8361718dc7a551d663c8f7c",
+    "cases": 16,
+    "tokens": 113,
+    "sentences": 22,
+    "compared_fields": 2571,
+    "differences": [],
+    "analysis_microseconds": 29456
+  },
+  "spacy_grammar_offered": false
+}
