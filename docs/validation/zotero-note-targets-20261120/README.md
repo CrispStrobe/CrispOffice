@@ -18,23 +18,42 @@ file identities; the prior union branch has an identical accepted tree. All
 four upstream branch heads were already ancestors of the observed main.
 The accompanying JSON files record these comparisons.
 
-## Acceptance plan
+## Accepted engine execution
 
-- Insert and replace rich research content in both authored note types.
-- Keep body anchors, native note markers, citation ordering and note ownership.
-- Preserve surrounding prose, formatting, lists and supported embedded images.
-- Verify supported DOCX save/reopen and a subsequent citation transaction.
-- Restore both the document and the original selection direction with one undo.
-- Refuse stale targets, composition, cross-paragraph and protected selections.
-- Exercise the shared native command dialog, including cancellation.
-- Run focused regressions for the reconciled proofing cache and slide gradients.
+The final integrated engine source passed **294 visible tests**, with no failures,
+errors or skips, across the eleven original suites in
+`packages/quds_office_engine/tool/zotero/research_target_acceptance.dart`.
+The genuine reporter recorded `success: true` and exit code 0. All 359 recorded
+source hashes remained unchanged during the run.
 
-The first implementation checkpoint is saved before local validation completes.
-Its presence on the continuation branch is not a test result or a parity claim.
-Final local results and remaining limitations will be recorded here before main
-publication. GitHub Actions are not a waiting or acceptance path for this work.
+The tested local merge `730d2177e9dc2648224fc61dd50b594abe8dc278` has the
+same tree `242f8c111a21cb5baeeed3d6d73902a3821e739c` as remote checkpoint
+`586e53502701d2f568f38bdcfb4aa5fd64a53142`. This includes main's subsequent
+Mail, font-pack and PDF updates and the typing documentation-only follow-up.
+The exact source hashes, command, results and cleanup receipt are in `engine/`.
 
-This environment has no live Zotero, Word or LibreOffice acceptance session.
-Controlled protocol tests and serializer tests do not qualify those applications.
-Active ODT transfer, rich note tables and broader raster fidelity remain separate
-roadmap items.
+An earlier three-suite run had 94 passes and two new fixture failures. Review
+corrected the invalid transient list-restart expectation and found/fixed missing
+note list-label resolution on reopening. The final integrated run above covers
+those cases and supersedes the earlier attempt. A separate interrupted run that
+filled the workspace disk is excluded from accepted evidence.
+
+## Remaining execution at this checkpoint
+
+Flutter/controller acceptance and the final targeted analyzer are still in
+progress. This checkpoint preserves the completed engine evidence; it does not
+claim those remaining checks passed. The single-importer harnesses retain the
+original tests and bound compiler-cache disk use after capacity recovery.
+
+## Source review and limits
+
+Independent reviews covered native field boundaries, bookmark/atomic endpoints,
+separate text-box stories, note numbering, controller selection mapping, stale
+transactions, rollback and undo. See `source-review.json` and
+`latest-integration.json` for exact reviewed blobs and reconciliation evidence.
+
+GitHub Actions were not queried or awaited. This environment has no live Zotero,
+Word, LibreOffice or Apache OpenOffice acceptance session. Controlled protocol,
+serializer and controller tests cannot qualify those applications. Active ODT
+transfer, imported rich-note tables, wider structural selections and broader
+raster fidelity remain separate roadmap items.
