@@ -226,9 +226,9 @@ extension StudioMailFeedback on StudioStrings {
     'يؤدي هذا إلى حذف المسودة المحلية ومرفقاتها المحفوظة. ولا يلغي رسالة أُرسلت بالفعل. تحقق من التسليم قبل إرسال نسخة أخرى.',
   );
   String get mailPlainTextUnavailable => _mailText(
-    'This message has no plain-text body to quote. Use Compose to write a new message.',
-    'Diese Nachricht enthält keinen Klartext zum Zitieren. Mit „Verfassen“ eine neue Nachricht schreiben.',
-    'لا تحتوي هذه الرسالة على نص عادي للاقتباس. استخدم إنشاء رسالة لكتابة رسالة جديدة.',
+    'This message has no safely quotable body. Use Compose to write a new message.',
+    'Der Nachrichtentext kann nicht sicher zitiert werden. Mit „Verfassen“ eine neue Nachricht schreiben.',
+    'لا يوجد نص يمكن اقتباسه بأمان في هذه الرسالة. استخدم إنشاء رسالة لكتابة رسالة جديدة.',
   );
   String get mailQuotedTextTruncated => _mailText(
     '[Quoted text truncated.]',
@@ -240,10 +240,29 @@ extension StudioMailFeedback on StudioStrings {
     '[Weiterleitung nur als Text; Anlagen sind nicht enthalten.]',
     '[إعادة توجيه النص فقط؛ المرفقات غير مضمنة.]',
   );
+  String get mailForwardWithAttachments => _mailText(
+    'Forward with attachments',
+    'Mit Anhängen weiterleiten',
+    'إعادة التوجيه مع المرفقات',
+  );
+  String get mailAttachedForwardNotice => _mailText(
+    '[Forwarded as text with original attachments. Inline images are attached as files.]',
+    '[Als Text mit den ursprünglichen Anhängen weitergeleitet. Eingebettete Bilder sind als Dateien angehängt.]',
+    '[أُعيد التوجيه كنص مع المرفقات الأصلية. تُرفق الصور المضمنة كملفات.]',
+  );
+  String get mailForwardAttachmentsUnavailable => _mailText(
+    'Attachments could not be forwarded as a complete set. Use Forward text only or add files manually (up to 10 files / 10 MiB).',
+    'Die Anhänge können nicht vollständig weitergeleitet werden. Nur Text weiterleiten oder Dateien manuell hinzufügen (bis zu 10 Dateien / 10 MiB).',
+    'تعذر إعادة توجيه جميع المرفقات معًا. أعد توجيه النص فقط أو أضف الملفات يدويًا (حتى 10 ملفات / 10 ميبيبايت).',
+  );
   String get reply => _mailText('Reply', 'Antworten', 'رد');
   String get replyAll =>
       _mailText('Reply all', 'Allen antworten', 'رد على الجميع');
-  String get forward => _mailText('Forward', 'Weiterleiten', 'إعادة توجيه');
+  String get forward => _mailText(
+    'Forward text only',
+    'Nur Text weiterleiten',
+    'إعادة توجيه النص فقط',
+  );
   String get markRead =>
       _mailText('Mark as read', 'Als gelesen markieren', 'وضع علامة كمقروء');
 

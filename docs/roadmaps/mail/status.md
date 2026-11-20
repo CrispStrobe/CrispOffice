@@ -1,5 +1,31 @@
 # Mail implementation status — 20 November 2026
 
+## Reply and forwarding fidelity
+
+The [reply/forward continuation](reply-forward.md) completes two existing
+composition paths across native IMAP/SMTP, EWS, Gmail and Microsoft 365.
+Reply, Reply all and both forward choices can quote HTML-only mail through a
+bounded inert body projection. An explicitly empty plain-text alternative stays
+authoritative. The body projection excludes envelope headers, Bcc and attachment
+metadata; forwards add explicit From/Date/Subject attribution. Source-status and
+strict HTML admission refuse incomplete HTML quotations.
+
+**Forward text only** retains its attachment-free behavior. **Forward with
+attachments** requires a complete MIME parse and admits every decoded attachment
+before copying any payload, including inline parts as ordinary files. The same
+ten-file/10 MiB aggregate composer limits apply. Unsupported names/types, missing
+parts or excess size/count refuse the whole action with localized feedback.
+Complete attachment-only messages can forward their files with attribution and
+an empty quote. Forwards require an explicit recipient and start a new thread.
+
+Both paths reuse local draft autosave/recovery and the existing uncertain-send
+guards. No new transport, automatic retry or account state is introduced.
+The [source and qualification record](../../validation/mail-reply-forward-20261120/README.md)
+records incremental remote checkpoints, actual tests and remaining boundaries.
+This closes text quotation and explicit file-forwarding gaps; rich HTML
+composition, preserved inline layout, signatures/templates and a visible durable
+outbox remain open.
+
 ## Remembered native IMAP/SMTP accounts
 
 The [remembered-account continuation](remembered-accounts.md) adds a bounded
@@ -35,8 +61,9 @@ transaction, and use fixed error messages that do not expose credentials.
 Switch account saves a retained draft before retiring the connection. Failure
 keeps the current session available. The existing provider/incoming-endpoint/
 login/sender draft identity is unchanged. Changing credential storage clears
-the old catalog selection and Forget association before reloading while
-preserving the live connection and editable form. Delayed completions cannot
+the old catalog selection and Forget association before reloading. Disconnected
+setup credentials are cleared; a live connection and newer edits made while
+loading remain protected. Delayed completions cannot
 replace newer settings or redirect an initialized backend into the new store's
 cache. Storage controls wait for busy Mail operations, including initial draft
 restore, pending credential operations and connections.
@@ -134,9 +161,10 @@ The incoming Zotero and earlier mail receipts retain their own original source
 identities and scope.
 
 The attachment increment originally used session-only composition; the draft
-recovery continuation above now persists it locally. Durable outbox, automatic
-attachment copying on forward, current-document/PDF attachment commands and the
-VBA mail surface remain open. Live-provider delivery and installed-OS
+recovery continuation above now persists it locally. Explicit complete
+attachment forwarding is covered by the reply/forward continuation above.
+Durable outbox, current-document/PDF attachment commands and the VBA mail
+surface remain open. Live-provider delivery and installed-OS
 picker interoperability remain separate gates. M07 and M08 remain open.
 
 ## Durable archive, indexing and search
@@ -233,7 +261,7 @@ acknowledgement before another attempt. DATA and BDAT must return final SMTP 250
 acceptance; an earlier positive reply or a recorded command failure cannot
 certify submission.
 
-Reply and text-only forwarding quote the fetched message's plain-text part,
+At that checkpoint, Reply and text-only forwarding quote the fetched message's plain-text part,
 preserve complete Unicode characters at their explicit quote limit, and do not
 copy Bcc or attachments. Replies now retain bounded, validated `In-Reply-To`
 and `References` metadata through editing, explicit uncertain retries and the
@@ -244,7 +272,8 @@ identifier subset, limits and source qualification. The recipient continuation
 originally exercised only a pure threading subset; the attachment continuation
 now qualifies the complete threading/MIME cases and composer/host suites against
 the locked workspace, as recorded below.
-HTML-only quotation remains outside this increment. A retained uncertain draft
+HTML-only quotation was outside that historical increment; the current
+reply/forward continuation above adds bounded inert text quotation. A retained uncertain draft
 cannot be silently replaced by a reply/forward; Compose resumes it, and an
 explicit confirmed discard removes only the session draft without cancelling
 a message already submitted.

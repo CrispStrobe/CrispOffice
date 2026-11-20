@@ -1,0 +1,263 @@
+{
+  "schema_version": 1,
+  "recorded_at_utc": "2026-11-20T12:29:12.745754+00:00",
+  "qualification_status": "passed_selected_final_integration_scope",
+  "source": {
+    "source_head": "081f337475b76e0b13a513fb95bc3c9ef766f6f4",
+    "source_tree": "4d1d20bdd3145ee692d9bd4d09476a1954b51e0d",
+    "prior_source_head": "4df7a148f156d9a697028994f14b171877d1d47c",
+    "prior_manifest_verified_paths": 36,
+    "mail_and_root_dependency_diff_paths": [],
+    "lock_sha256": "0d64a732cd7f6c7cc4e1e01255276f081b59e6f43039636c3d36f6785a958ce2",
+    "selected_manifest": [
+      {
+        "path": "packages/quds_office_editor/example/lib/studio_licenses.dart",
+        "git_blob": "d6912a9bea83fd979bd19c51a289b042420e3ec4",
+        "sha256": "f75d954c9387537951f5866dcedbaffbd714a5f06f544d18e8ca120d7b6294d4"
+      },
+      {
+        "path": "packages/quds_office_editor/example/test/studio_hunspell_setup_test.dart",
+        "git_blob": "a0d9f6a288d02a4bca818e7e277aea96ab5c3af2",
+        "sha256": "3d1ed24b208bef5d6a9358c5b1d02a1a478b1eca678e75f0d03c708947fc3184"
+      },
+      {
+        "path": "packages/quds_office_editor/example/test/studio_arabic_morph_setup_test.dart",
+        "git_blob": "baf90c62c3bd62b87f78b6f8c284e2a15bef628c",
+        "sha256": "cebb4715bbc4a3fb2ca1f5c3dc95278f2b7ae7026664e6af8e6bf60b921c5b61"
+      },
+      {
+        "path": "packages/quds_office_editor/example/test/studio_mail_compose_test.dart",
+        "git_blob": "e041c8a4527e66639f235c38250633f917c34860",
+        "sha256": "2b3e4d62cdef92208324a52dc6e86084c7cd5e66c7ce5c2a248e813ea03bb4e3"
+      },
+      {
+        "path": "packages/quds_office_editor/example/test/studio_mail_test.dart",
+        "git_blob": "873390865d4e2b3404e51567d68d22d92ce31231",
+        "sha256": "cdf0b218a2a3f22c9ce92e1ff4bb3f0f72498af354b631552d3940f89a81ead2"
+      }
+    ]
+  },
+  "all_mail_package_diff_paths": [],
+  "runtime_reference": "runtime-results.json",
+  "prior_mail_qualification": {
+    "source_head": "4df7a148f156d9a697028994f14b171877d1d47c",
+    "accepted_tests": 648,
+    "unique_test_files": 27,
+    "receipt_git_blob": "103bc0e8803a2b39b810fdd3776ce239bae81c46"
+  },
+  "scope_reason": "Reconciled main changes shared Word layout/controller dependencies used by Mail Compose, while all mail source/test and lock blobs remain unchanged. Re-ran Compose/native host and the two existing license registry fixtures for the isolated license-loader correction.",
+  "static_analysis": [
+    {
+      "command": [
+        "dart",
+        "format",
+        "--output=none",
+        "--set-exit-if-changed",
+        "packages/quds_office_editor/example/lib/studio_licenses.dart"
+      ],
+      "cwd": ".",
+      "exit_code": 0,
+      "seconds": 0.11623464800004513,
+      "timed_out": false,
+      "output": "Formatted 1 file (0 changed) in 0.01 seconds.\n",
+      "log_sha256": "1685974b88bd671112e17334bdc2abb8ef350e01ae026547459ec7a8307375ec"
+    },
+    {
+      "command": [
+        "dart",
+        "analyze",
+        "--fatal-infos",
+        "packages/quds_office_editor/example/lib/studio_licenses.dart"
+      ],
+      "cwd": ".",
+      "exit_code": 0,
+      "seconds": 0.8508065139999417,
+      "timed_out": false,
+      "output": "Analyzing studio_licenses.dart...\nNo issues found!\n",
+      "log_sha256": "c9053e9b615b413780997ce8567a6a066185bcd949e350b2645caa02eee7b1d4"
+    }
+  ],
+  "runs": [
+    {
+      "name": "integration-licenses",
+      "source_head": "081f337475b76e0b13a513fb95bc3c9ef766f6f4",
+      "source_tree": "4d1d20bdd3145ee692d9bd4d09476a1954b51e0d",
+      "started_at_utc": "2026-11-20T12:26:48.164117+00:00",
+      "command": [
+        "flutter",
+        "test",
+        "--no-pub",
+        "--reporter=json",
+        "--concurrency=1",
+        "--no-track-widget-creation",
+        "--plain-name",
+        "the licence page lists",
+        "test/studio_hunspell_setup_test.dart",
+        "test/studio_arabic_morph_setup_test.dart"
+      ],
+      "cwd": "packages/quds_office_editor/example",
+      "selected": [
+        "test/studio_hunspell_setup_test.dart",
+        "test/studio_arabic_morph_setup_test.dart"
+      ],
+      "exit_code": 0,
+      "seconds": 20.019425772999966,
+      "timed_out": false,
+      "passed": 2,
+      "failed": 0,
+      "skipped": 0,
+      "suite_count": 2,
+      "complete": true,
+      "errors": [],
+      "logs": [
+        {
+          "path": "integration-licenses.events.jsonl",
+          "sha256": "c5bcad6d0c9e25125340c2f984bcd0ccd4018bc59f14688ea3f44f2a1d94f35c",
+          "bytes": 2747
+        },
+        {
+          "path": "integration-licenses.stderr.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      ],
+      "accepted": true
+    },
+    {
+      "name": "integration-compose",
+      "source_head": "081f337475b76e0b13a513fb95bc3c9ef766f6f4",
+      "source_tree": "4d1d20bdd3145ee692d9bd4d09476a1954b51e0d",
+      "started_at_utc": "2026-11-20T12:27:08.186042+00:00",
+      "command": [
+        "flutter",
+        "test",
+        "--no-pub",
+        "--reporter=json",
+        "--concurrency=1",
+        "--no-track-widget-creation",
+        "test/studio_mail_compose_test.dart"
+      ],
+      "cwd": "packages/quds_office_editor/example",
+      "selected": [
+        "test/studio_mail_compose_test.dart"
+      ],
+      "exit_code": 0,
+      "seconds": 21.010063359000014,
+      "timed_out": false,
+      "passed": 24,
+      "failed": 0,
+      "skipped": 0,
+      "suite_count": 1,
+      "complete": true,
+      "errors": [],
+      "logs": [
+        {
+          "path": "integration-compose.events.jsonl",
+          "sha256": "46924c52eab6abeda78c7f208408c972a41a9c2b72cba475e2729e8c1f2720f1",
+          "bytes": 12288
+        },
+        {
+          "path": "integration-compose.stderr.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      ],
+      "accepted": true
+    },
+    {
+      "name": "integration-native",
+      "source_head": "081f337475b76e0b13a513fb95bc3c9ef766f6f4",
+      "source_tree": "4d1d20bdd3145ee692d9bd4d09476a1954b51e0d",
+      "started_at_utc": "2026-11-20T12:27:29.199056+00:00",
+      "command": [
+        "flutter",
+        "test",
+        "--no-pub",
+        "--reporter=json",
+        "--concurrency=1",
+        "--no-track-widget-creation",
+        "test/studio_mail_test.dart"
+      ],
+      "cwd": "packages/quds_office_editor/example",
+      "selected": [
+        "test/studio_mail_test.dart"
+      ],
+      "exit_code": 0,
+      "seconds": 74.05004294499986,
+      "timed_out": false,
+      "passed": 81,
+      "failed": 0,
+      "skipped": 0,
+      "suite_count": 1,
+      "complete": true,
+      "errors": [],
+      "logs": [
+        {
+          "path": "integration-native.events.jsonl",
+          "sha256": "e982d9b2b1c3d4cae159a5f8bc21c2c2a7b50c5e5f688b9e999fbb362520160b",
+          "bytes": 43812
+        },
+        {
+          "path": "integration-native.stderr.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      ],
+      "accepted": true
+    }
+  ],
+  "summary": {
+    "commands_completed": 3,
+    "unique_test_files": 4,
+    "passed": 107,
+    "failed": 0,
+    "skipped": 0,
+    "per_file": [
+      {
+        "path": "packages/quds_office_editor/example/test/studio_arabic_morph_setup_test.dart",
+        "run": "integration-licenses",
+        "passed": 1,
+        "failed": 0,
+        "skipped": 0
+      },
+      {
+        "path": "packages/quds_office_editor/example/test/studio_hunspell_setup_test.dart",
+        "run": "integration-licenses",
+        "passed": 1,
+        "failed": 0,
+        "skipped": 0
+      },
+      {
+        "path": "packages/quds_office_editor/example/test/studio_mail_compose_test.dart",
+        "run": "integration-compose",
+        "passed": 24,
+        "failed": 0,
+        "skipped": 0
+      },
+      {
+        "path": "packages/quds_office_editor/example/test/studio_mail_test.dart",
+        "run": "integration-native",
+        "passed": 81,
+        "failed": 0,
+        "skipped": 0
+      }
+    ],
+    "unique_selected_paths": [
+      "packages/quds_office_editor/example/test/studio_arabic_morph_setup_test.dart",
+      "packages/quds_office_editor/example/test/studio_hunspell_setup_test.dart",
+      "packages/quds_office_editor/example/test/studio_mail_compose_test.dart",
+      "packages/quds_office_editor/example/test/studio_mail_test.dart"
+    ]
+  },
+  "machine_log_archive": {
+    "path": "integration-machine-logs.tar.gz",
+    "sha256": "322e1916fac9e31356b8fd15a36087c36a8294c0c83c1f16191bedc86779aaae",
+    "bytes": 8928
+  },
+  "scope_limits": [
+    "The prior 648 tests and this 107-test integration gate are separate source-bound qualifications; Compose and native tests repeat on the later source and are not new unique tests.",
+    "No broader Word/VBA/Zotero/Office tests were run in this mail task.",
+    "No GitHub CI was used or awaited."
+  ],
+  "source_worktree_clean": true
+}

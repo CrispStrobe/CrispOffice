@@ -263,8 +263,8 @@ void main() {
         expect(tester.takeException(), isNull);
         expect(_selection(tester), isNull);
         expect(_canForget(tester), isFalse);
-        expect(_text(tester, _strings.emailAddress), _a.email);
-        expect(_text(tester, _strings.password), _a.password);
+        expect(_text(tester, _strings.emailAddress), isEmpty);
+        expect(_text(tester, _strings.password), isEmpty);
         expect(accounts.forgottenIds, isEmpty);
         expect(client.connections, 0);
         if (unavailable) {

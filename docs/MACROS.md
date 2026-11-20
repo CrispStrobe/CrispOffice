@@ -199,7 +199,11 @@ request `topLevel: true`, which refuses groups and unmodeled native objects
 instead of applying Office indices to flattened shapes.
 
 Native `pptx.shapeTextFrame` accepts `anchor: "top"`, `"center"`, or `"bottom"`
-and uses the same text-shape and top-level collection guards. Native
+and/or `marginLeft`, `marginTop`, `marginRight`, `marginBottom` in points.
+Margins require exact nonnegative integer EMUs within signed Long bounds;
+one point is 12,700 EMUs. The operation requires at least one property,
+validates all supplied fields before mutation, preserves omitted sides and
+uses the same text-shape and top-level collection guards. Native
 `pptx.slideTransition` updates only the supplied `kind`, `direction`,
 `durationMs`, and `advanceOnClick` fields; `kind` is optional. Omitted fields,
 including automatic advance timing, retain their current values. Source-level

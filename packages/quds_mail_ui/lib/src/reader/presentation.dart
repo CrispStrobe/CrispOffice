@@ -631,6 +631,9 @@ final class _Projection {
       }
       final token = source.substring(index + 1, end).trim();
       index = end + 1;
+      if (token.isEmpty) {
+        incompleteHtml('Empty HTML markup prevents complete quotation.');
+      }
       if (token.isEmpty || token.startsWith('!') || token.startsWith('?')) {
         blocked++;
         continue;

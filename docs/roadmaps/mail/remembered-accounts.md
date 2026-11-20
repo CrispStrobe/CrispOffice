@@ -51,11 +51,16 @@ Changing storage neither copies accounts between stores nor deletes them from
 their previous store.
 
 Changing storage clears the previous account selection and Forget association
-before reloading. The active connection and editable form remain intact; the
-existing session/settings guards decide whether the new catalog may fill setup.
+before reloading. When disconnected, it also clears the previous setup
+credentials. An active connection remains intact; session/settings guards
+decide whether the new catalog may fill setup and preserve newer edits made
+while a catalog read is pending.
 Storage changes are disabled during busy Mail operations, including initial
-draft restore, connection attempts and pending credential operations. A backend initialized late remains owned by its original selection
-and cannot replace the newly selected store's cached instance.
+draft restore, connection attempts and pending credential operations. Settings
+cannot be applied twice or dismissed while a selection is being committed.
+A backend initialized late remains owned by its original selection and cannot
+replace the newly selected store's cached instance, including an A-to-B-to-A
+selection sequence.
 
 ## Identity, migration and failure behavior
 
@@ -74,6 +79,11 @@ temporary. The v2 catalog remains authoritative even when empty, preventing an
 old record from silently reappearing. Invalid or unreadable catalogs are
 reported as failures; they are never treated as an empty catalog that can be
 overwritten by a new save.
+
+The earlier keyed v2 representation is accepted through a validated migration
+into the canonical list. The compatibility account-store interface uses this
+same catalog, so its writes retain the bounded identity, readback and tombstone
+rules.
 
 Catalog operations serialize across store instances in the host isolate and
 use one selected backend for each transaction. Selection and Forget target an

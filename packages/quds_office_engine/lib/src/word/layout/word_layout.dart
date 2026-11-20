@@ -1022,6 +1022,12 @@ class WordLayoutEngine {
 
   _Recorder? _recorder;
 
+  /// Last line breaks per paragraph (see [_BreakCache]).
+  final Expando<_BreakCache> _breakCache = Expando<_BreakCache>();
+
+  /// True while laying out a block an incremental layout proved unchanged.
+  bool _breakCacheReadable = false;
+
   /// layout API.
   ///
   /// With [reuse] and [dirtyParagraphs] (and no field update), lays out only
@@ -1223,6 +1229,7 @@ class WordLayoutEngine {
     var lastSection = -1;
     var lastCandidate = 0;
     var lastOffset = 0;
+    final Set<WmlBlock> dirtyBlocks = Set<WmlBlock>.identity();
     for (int s = 0; s < sectionCount; s++) {
       final WmlSection section = document.sections[s];
       final _SectionRecord? record = old.sections[s];
@@ -1254,6 +1261,7 @@ class WordLayoutEngine {
       // (split/join, list or direction sync) without changing its text.
       final int start = p > 0 ? p - 1 : 0;
       final int suffix = q > 0 ? q - 1 : 0;
+      dirtyBlocks.addAll(now.sublist(start, n - suffix));
       if (firstSection < 0) {
         if (m == 0 || start >= m) return null;
         firstSection = s;
@@ -1264,7 +1272,8 @@ class WordLayoutEngine {
       lastOffset = n - m;
     }
     _prepareLayout(document, updateFields: false);
-    final _Recorder recorder = _recorder = _Recorder(sectionCount);
+    final _Recorder recorder = _recorder = _Recorder(sectionCount)
+      ..dirtyBlocks = dirtyBlocks;
     try {
       if (firstSection < 0) {
         // Nothing changed in the body (for example a comment edit).
@@ -1347,6 +1356,7 @@ class WordLayoutEngine {
       );
     } finally {
       _recorder = null;
+      _breakCacheReadable = false;
     }
   }
 
@@ -1528,6 +1538,9 @@ class WordLayoutEngine {
         if (recorder.convergence != null) {
           WordIncrementalLayoutStats.blocksLaidOut++;
         }
+        _breakCacheReadable =
+            recorder.convergence != null &&
+            !recorder.dirtyBlocks.contains(block);
       }
       switch (block) {
         case WmlContentControlBlock():
@@ -2008,9 +2021,38 @@ class WordLayoutEngine {
       return GposMarkToBase.fnFor(baseFace, baseSize)(base, mark);
     }
 
-    final hyphenationOffsets =
-        _layoutDoc?.autoHyphenation == true &&
-            paragraph.properties.suppressAutoHyphens != true
+    final bool wrapsFrames =
+        allowBreak &&
+        flow != null &&
+        currentFrames.any(
+          (box) => box.frame != null && box.frame!.wrap != WmlFrameWrap.none,
+        );
+    // Wrapping uses a separate breaker and does not replace the ordinary
+    // paragraph cache. Discard an older entry: a dirty paragraph may change
+    // its font or text while wrapping, then later move off the frame's page.
+    if (wrapsFrames) {
+      _breakCache[paragraph] = null;
+    }
+    // Line breaks of a paragraph the caller proved unchanged since the last
+    // layout (incremental layout, clean block) are reused when the width
+    // environment is the same; shaping dominates layout cost.
+    final _BreakCache? cachedBreaks = wrapsFrames || !_breakCacheReadable
+        ? null
+        : _breakCache[paragraph];
+    final List<BrokenLine>? reusedBreaks =
+        cachedBreaks != null &&
+            cachedBreaks.matches(
+              maxWidth: maxWidth,
+              allowBreak: allowBreak,
+              document: _layoutDoc,
+            )
+        ? cachedBreaks.lines
+        : null;
+    if (reusedBreaks != null) WordIncrementalLayoutStats.breaksReused++;
+    final hyphenationOffsets = reusedBreaks != null
+        ? const <int>[]
+        : _layoutDoc?.autoHyphenation == true &&
+              paragraph.properties.suppressAutoHyphens != true
         ? OfficeHyphenator.breakOffsets(
             text,
             language:
@@ -2027,12 +2069,6 @@ class WordLayoutEngine {
         ? (glyph.logicalIndex - 1).clamp(0, text.length)
         : glyph.logicalIndex;
 
-    final bool wrapsFrames =
-        allowBreak &&
-        flow != null &&
-        currentFrames.any(
-          (box) => box.frame != null && box.frame!.wrap != WmlFrameWrap.none,
-        );
     final justify =
         paragraph.properties.justification == WmlJustification.justify ||
         paragraph.properties.justification == WmlJustification.distributed;
@@ -2058,26 +2094,37 @@ class WordLayoutEngine {
         : null;
     final List<BrokenLine> broken = wrapsFrames
         ? const []
-        : LineBreaker.breakLines(
-            text: text,
-            balanceLines: false,
-            hyphenationOffsets: hyphenationOffsets,
-            maxWidth: maxWidth,
-            widthOf: (cp) => widthAt(cp, 0),
-            widthAt: widthAt,
-            glyphIdAt: glyphIdAt,
-            markAttachOf: markAttach,
-            baseLevel: paragraph.properties.bidiBaseLevel,
-            justify: justify,
-            measureLine: measureRun == null && !hasMeasuredTabs
-                ? null
-                : measuredLine,
-            breakLongWords: !allowBreak,
-            ligate:
-                displayLabels.isEmpty && measureRun == null && !hasMeasuredTabs
-                ? null
-                : measuredRuns,
-          );
+        : reusedBreaks ??
+              LineBreaker.breakLines(
+                text: text,
+                balanceLines: false,
+                hyphenationOffsets: hyphenationOffsets,
+                maxWidth: maxWidth,
+                widthOf: (cp) => widthAt(cp, 0),
+                widthAt: widthAt,
+                glyphIdAt: glyphIdAt,
+                markAttachOf: markAttach,
+                baseLevel: paragraph.properties.bidiBaseLevel,
+                justify: justify,
+                measureLine: measureRun == null && !hasMeasuredTabs
+                    ? null
+                    : measuredLine,
+                breakLongWords: !allowBreak,
+                ligate:
+                    displayLabels.isEmpty &&
+                        measureRun == null &&
+                        !hasMeasuredTabs
+                    ? null
+                    : measuredRuns,
+              );
+    if (!wrapsFrames && reusedBreaks == null) {
+      _breakCache[paragraph] = _BreakCache(
+        broken,
+        maxWidth: maxWidth,
+        allowBreak: allowBreak,
+        document: _layoutDoc,
+      );
+    }
     var cursorY = y + paragraph.properties.spacingBefore;
     var idx = pageIndex;
     var lineOrigin = originX ?? section.margins.left;

@@ -7,6 +7,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:path/path.dart' as p;
 
 import 'credentials/secure_storage_service.dart';
+import 'credentials/utils/async_lock.dart';
 import 'credentials/secure_storage_file_io.dart';
 import 'credentials/secure_storage_macos_keychain.dart';
 
@@ -23,6 +24,7 @@ class StudioCredentialStorage extends ChangeNotifier {
   StudioCredentialMode mode = StudioCredentialMode.system;
   String? customPath;
   final _stores = <String, SecureStorage>{};
+  final _selectionOperations = AsyncLock();
   bool _loaded = false;
   int _selectionGeneration = 0;
   final Future<SecureStorage> Function() _systemStorageFactory;
@@ -40,7 +42,6 @@ class StudioCredentialStorage extends ChangeNotifier {
     StudioCredentialMode.encryptedVault => 'Encrypted credential vault',
     StudioCredentialMode.session => 'This session only',
   };
-  String get _identity => '${mode.name}:${customPath ?? ''}';
   bool get persistent => mode != StudioCredentialMode.session;
   Future<void> loadSelection() async {
     if (_loaded) return;
@@ -76,9 +77,10 @@ class StudioCredentialStorage extends ChangeNotifier {
 
   Future<SecureStorage> get storage async {
     await loadSelection();
+    // Capture identity and generation before native initialization yields.
     final selectedMode = mode;
     final selectedPath = customPath;
-    final selectedIdentity = _identity;
+    final selectedIdentity = '${selectedMode.name}:${selectedPath ?? ''}';
     final generation = _selectionGeneration;
     final cached = _stores[selectedIdentity];
     if (cached != null) return cached;
@@ -110,34 +112,35 @@ class StudioCredentialStorage extends ChangeNotifier {
     return result;
   }
 
-  Future<void> select(StudioCredentialMode next, {String? path}) async {
-    await loadSelection();
-    if (next == StudioCredentialMode.customKeychain) {
-      if (kIsWeb ||
-          defaultTargetPlatform != TargetPlatform.macOS ||
-          path == null ||
-          path.trim().isEmpty) {
-        throw ArgumentError('Choose a macOS keychain file.');
-      }
-      final store = MacOsCustomKeychainStorage(path: path);
-      await store.initialize();
-      _stores['${next.name}:$path'] = store;
-    }
-    if (next == StudioCredentialMode.encryptedVault &&
-        !_stores.containsKey('${next.name}:')) {
-      throw StateError('Unlock or create the vault first.');
-    }
-    final record = jsonEncode({
-      'mode': next.name,
-      'path': next == StudioCredentialMode.customKeychain ? path : null,
-    });
-    final prefs = await SharedPreferences.getInstance();
-    if (!await prefs.setString(preferenceKey, record)) {
-      throw StateError('Could not save the credential-store selection.');
-    }
-    _selectionGeneration++;
-    mode = next;
-    customPath = next == StudioCredentialMode.customKeychain ? path : null;
-    notifyListeners();
-  }
+  Future<void> select(StudioCredentialMode next, {String? path}) =>
+      _selectionOperations.synchronized(() async {
+        await loadSelection();
+        if (next == StudioCredentialMode.customKeychain) {
+          if (kIsWeb ||
+              defaultTargetPlatform != TargetPlatform.macOS ||
+              path == null ||
+              path.trim().isEmpty) {
+            throw ArgumentError('Choose a macOS keychain file.');
+          }
+          final store = MacOsCustomKeychainStorage(path: path);
+          await store.initialize();
+          _stores['${next.name}:$path'] = store;
+        }
+        if (next == StudioCredentialMode.encryptedVault &&
+            !_stores.containsKey('${next.name}:')) {
+          throw StateError('Unlock or create the vault first.');
+        }
+        final record = jsonEncode({
+          'mode': next.name,
+          'path': next == StudioCredentialMode.customKeychain ? path : null,
+        });
+        final prefs = await SharedPreferences.getInstance();
+        if (!await prefs.setString(preferenceKey, record)) {
+          throw StateError('Could not save the credential-store selection.');
+        }
+        _selectionGeneration++;
+        mode = next;
+        customPath = next == StudioCredentialMode.customKeychain ? path : null;
+        notifyListeners();
+      });
 }

@@ -1,0 +1,32 @@
+{
+  "captured_utc": "2026-11-20T11:48:19.496447+00:00",
+  "kind": "independent-development-review",
+  "source_checkout_head_after_run": "40e6a71da76662e485fb406901b63b46b9b8909a",
+  "source_freeze": false,
+  "source_limit": "Development checkout was not frozen; the final combined source-manifest gate is authoritative for merged sources.",
+  "test": "packages/quds_office_engine/test/slide_text_insets_preservation_test.dart",
+  "test_sha256": "ada54a6bb1a432360335c28bd9675edbaeebe599ef4393ced51bce03535ffa73",
+  "passed": 9,
+  "failed": 0,
+  "skipped": 0,
+  "observed_runner_summary": "00:00 +9: All tests passed!",
+  "raw_log": "passed.log",
+  "validation": "Dart VM source compiler, pure-Dart engine and PDF display-list inspection",
+  "coverage": [
+    "Unsaved two-run rich text retains independent font size, color, bold, italic, alignment, and copy behavior on margin-only edits.",
+    "Imported negative, malformed, and out-of-bounds native margins remain opaque when a different side is written; three native save/reopen cycles.",
+    "Placeholder keeps unassigned inset attributes absent, original layout part exact, and placeholder/layout bindings intact; three cycles.",
+    "Zero-height and 3/7-point spAutoFit text boxes retain PDF text with finite positions and native autofit markup; three cycles each.",
+    "Alternate DrawingML prefix, foreign same-name attributes, nested bodyPr lookalikes, and extension markup retain namespace-correct ownership; three cycles.",
+    "One EMU and signed-Long maximum positive EMU persist exactly through three cycles."
+  ],
+  "review_fixes_verified": [
+    "Removed rich-text suppression for zero-height and consumed-height text boxes; preserved bounded overflow width.",
+    "Prevented margin-only edits from flattening authored unsaved rich runs."
+  ],
+  "limits": [
+    "Direct bodyPr margin projection; layout/master inherited margin rendering is not claimed.",
+    "No Flutter execution, installed Microsoft PowerPoint, UI hit-testing, or pixel/image comparisons.",
+    "No GitHub Actions polling."
+  ]
+}
