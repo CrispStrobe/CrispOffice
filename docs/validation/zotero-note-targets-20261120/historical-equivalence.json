@@ -1,0 +1,86 @@
+[
+  {
+    "ref": "origin/feat/ods-color-scale",
+    "head": "74ce9ffb816c70c0d2ae50b91ec52a614f26d688",
+    "integrated": "4584d5f319aab198f1d705f48b4d6647e6cbabea",
+    "integrated_is_main_ancestor": true,
+    "changed_paths": 7,
+    "exact_mode_type_blob_matches": 7,
+    "differences": []
+  },
+  {
+    "ref": "origin/docs/ods-color-scale",
+    "head": "58fdddfbcf198a8c0e38e32f6fcc9d6604e95283",
+    "integrated": "4eaca83b192897edad82658107dfeb5bcbed0920",
+    "integrated_is_main_ancestor": true,
+    "changed_paths": 1,
+    "exact_mode_type_blob_matches": 1,
+    "differences": []
+  },
+  {
+    "ref": "origin/feat/ods-dynamic-validation-links",
+    "head": "68a0db23408e4c95d6d283219504c79aea33a6fe",
+    "integrated": "d754bf15b07a24c8a86c8dce339ca749fecd9531",
+    "integrated_is_main_ancestor": true,
+    "changed_paths": 4,
+    "exact_mode_type_blob_matches": 4,
+    "differences": []
+  },
+  {
+    "ref": "origin/feat/ods-data-bar",
+    "head": "0a53b8a70128870f3e1df6d18cdb177bb64290ee",
+    "integrated": "b3f41eb4b4bca8ca13676b4114891ea6d9185043",
+    "integrated_is_main_ancestor": true,
+    "changed_paths": 8,
+    "exact_mode_type_blob_matches": 8,
+    "differences": []
+  },
+  {
+    "ref": "origin/docs/ods-data-bar",
+    "head": "69d14f84cabd3931b7640c1654b401c89faba766",
+    "integrated": "52c73ae4dbadf2ca00a5d619144350ccc353b31a",
+    "integrated_is_main_ancestor": true,
+    "changed_paths": 1,
+    "exact_mode_type_blob_matches": 1,
+    "differences": []
+  },
+  {
+    "ref": "origin/feat/ods-icon-sets",
+    "head": "005c708e9f747cb46cf02e12c869b0a2f85ac824",
+    "integrated": "c84d5e16024c502f6c451fd04b9807b1e65f20d3",
+    "integrated_is_main_ancestor": true,
+    "changed_paths": 7,
+    "exact_mode_type_blob_matches": 7,
+    "differences": []
+  },
+  {
+    "ref": "origin/feat/ods-time-period-conditions",
+    "head": "7ef09f2408f467c65427700e65907531ecb26acb",
+    "integrated": "34dc6b6806869570e9ec342e4d7ee0d6951c0ba6",
+    "integrated_is_main_ancestor": true,
+    "changed_paths": 7,
+    "exact_mode_type_blob_matches": 7,
+    "differences": []
+  },
+  {
+    "ref": "origin/codex/odt-field-continuation-20261117",
+    "head": "c34945761e7991f5fe49037d79529acdd260b31c",
+    "integrated": "2c47165d01d01cc883135a434ac9f6591ce6e770",
+    "integrated_is_main_ancestor": true,
+    "changed_paths": 37,
+    "exact_mode_type_blob_matches": 37,
+    "differences": []
+  },
+  {
+    "ref": "origin/integrate/office-union-148",
+    "head": "3abf8f43b0e79c10271bbd046f391e462b8fe6b9",
+    "integrated": "4b2b4e78839d2997a583b7ab1346e2fa537a8ac4",
+    "integrated_is_main_ancestor": true,
+    "changed_paths": 221,
+    "exact_mode_type_blob_matches": 221,
+    "differences": [],
+    "branch_tree": "e3adc9e259c6120b4b1e3e03177391f880243e13",
+    "integrated_tree": "e3adc9e259c6120b4b1e3e03177391f880243e13",
+    "entire_tree_identical": true
+  }
+]
