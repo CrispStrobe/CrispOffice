@@ -2373,84 +2373,33 @@ abstract final class OfficePdfExport {
         paint: paint,
       );
     } else {
-      final List<String>? plainLtrLines =
-          !paragraph.rightToLeft &&
-              !text.contains('\r') &&
-              !RegExp(r'\p{L}', unicode: true).hasMatch(text)
-          ? text.split('\n')
-          : null;
-      final bool plainLtrFits =
-          plainLtrLines?.every(
-            (line) =>
-                sink.plainWidth(
-                  line,
-                  size,
-                  bold: bold,
-                  italic: italic,
-                  family: family,
-                ) <=
-                maxWidth,
-          ) ??
-          false;
-      if (plainLtrLines != null && plainLtrFits) {
-        var baseline = cy + size;
-        for (final String line in plainLtrLines) {
-          if (paint) {
-            final double textWidth = sink.plainWidth(
-              line,
-              size,
-              bold: bold,
-              italic: italic,
-              family: family,
-            );
-            final double dx = switch (align) {
-              _TextAlign.center => (maxWidth - textWidth) / 2,
-              _TextAlign.right => maxWidth - textWidth,
-              _TextAlign.left || _TextAlign.auto => 0,
-            };
-            sink.drawPlainLtr(
-              line,
-              px + dx,
-              baseline,
-              size,
-              color,
-              bold: bold,
-              italic: italic,
-              family: family,
-            );
-          }
-          baseline += lineAdvance;
-        }
-        height = plainLtrLines.length * lineAdvance;
-      } else {
-        final int lines = sink.lineCount(
+      final int lines = sink.lineCount(
+        text,
+        size,
+        maxWidth: maxWidth,
+        bold: bold,
+        italic: italic,
+        family: family,
+        baseLevel: paragraph.rightToLeft ? 1 : 0,
+        forceLayout: true,
+      );
+      if (paint) {
+        sink.drawText(
           text,
+          px,
+          cy + size,
           size,
+          color,
           maxWidth: maxWidth,
+          align: align,
           bold: bold,
           italic: italic,
           family: family,
           baseLevel: paragraph.rightToLeft ? 1 : 0,
-          forceLayout: true,
+          lineAdvance: lineAdvance,
         );
-        if (paint) {
-          sink.drawText(
-            text,
-            px,
-            cy + size,
-            size,
-            color,
-            maxWidth: maxWidth,
-            align: align,
-            bold: bold,
-            italic: italic,
-            family: family,
-            baseLevel: paragraph.rightToLeft ? 1 : 0,
-            lineAdvance: lineAdvance,
-          );
-        }
-        height = lines * lineAdvance;
       }
+      height = lines * lineAdvance;
     }
     return paragraph.spaceBeforePt + height + paragraph.spaceAfterPt;
   }
@@ -3567,6 +3516,7 @@ class _PageSink {
         content: canvas.toStream(),
         images: List<PdfEmbeddedImage>.from(images),
         links: List<PdfLinkAnnot>.from(links),
+        extGStates: canvas.alphaStates,
       ),
     );
   }

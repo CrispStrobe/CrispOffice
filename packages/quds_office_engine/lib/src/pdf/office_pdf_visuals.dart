@@ -139,6 +139,10 @@ abstract final class OfficePdfVisuals {
       canvas.fill();
       canvas.restore();
     }
+    if (adj.transparency > 0.001) {
+      canvas.save();
+      canvas.setAlpha(1 - adj.transparency);
+    }
     final double cropLeft = adj.cropLeft.clamp(0.0, 0.9);
     final double cropTop = adj.cropTop.clamp(0.0, 0.9);
     final double cropRight = adj.cropRight.clamp(0.0, 0.9);
@@ -160,6 +164,9 @@ abstract final class OfficePdfVisuals {
       canvas.restore();
     } else {
       canvas.drawImage(name, x, y, w, h);
+    }
+    if (adj.transparency > 0.001) {
+      canvas.restore();
     }
     if (adj.borderWidth > 0 && adj.borderColor.isNotEmpty) {
       canvas.save();
