@@ -1,5 +1,22 @@
 # Mail implementation status — 20 November 2026
 
+## Foreground bulk read and flag triage
+
+The [bulk-action continuation](bulk-actions.md) adds checked visible selections,
+explicit read/unread/flag/unflag commands, keyboard selection and localized
+outcome summaries to connected IMAP, EWS, Gmail and Microsoft 365. Plans freeze
+remote identities; sequential execution records confirmed, failed, uncertain
+and unattempted items. Unknown confirmation stops later dispatches and requires
+an explicit refresh. Stop waits for the current request without auto-retrying.
+
+Only confirmed target flags update the original foreground view. Scope and
+refresh generations reject stale callbacks, including A → B → A, while a
+same-folder refresh preserves query/sort and clears checked rows. Cached mail
+remains read-only. Reports and intent are not durable across restart, so M04W
+and its repository-driven command journal remain open. The
+[local record](../../validation/mail-bulk-actions-20261120/README.md) separates
+actual execution, source integration and remaining provider/platform gates.
+
 ## Structured loaded-header search and sorting
 
 The [header-search continuation](header-search.md) adds bounded field/phrase
@@ -11,7 +28,7 @@ English/German/Arabic help and controls describe the loaded-folder scope.
 Filtering, sorting and keyboard movement issue no provider/body/mutation work.
 
 This advances discovery within M04W. Account-wide search, durable commands,
-bulk triage, conversations and full offline synchronization remain open. The
+durable bulk commands, conversations and full offline synchronization remain open. The
 [local record](../../validation/mail-header-search-20261120/README.md) separates
 fresh validation from inherited evidence and live-provider/platform gates.
 

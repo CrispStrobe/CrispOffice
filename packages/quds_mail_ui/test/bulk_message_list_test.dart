@@ -455,7 +455,11 @@ void main() {
         expect(list.height, greaterThanOrEqualTo(80));
         await _tap(tester, _key('mail-list-select-shown'));
         expect(find.text('3 selected'), findsOneWidget);
-        await _action(tester, MailBulkFlagAction.markRead);
+        await _tap(tester, _key('mail-list-bulk-actions'));
+        final label = find.text(_strings.markRead);
+        expect(Directionality.of(tester.element(label)), direction);
+        expect(tester.widget<Text>(label).textScaler!.scale(10), 14);
+        await _tap(tester, _key('mail-list-bulk-markRead'));
         expect(tester.takeException(), isNull);
       },
     );

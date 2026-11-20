@@ -612,6 +612,35 @@ void main() {
   );
 
   testWidgets(
+    'EWS refresh retains discovery but rejects the old bulk selection scope',
+    (tester) async {
+      late _Provider provider;
+      await _show(
+        tester,
+        (configuration, credentials) =>
+            provider = _Provider(configuration, credentials),
+      );
+      await _connect(tester);
+      await tester.enterText(_field('mail-list-search'), 'Exchange');
+      await _pump(tester);
+      final old = _bulkList(tester);
+      await tester.tap(find.byTooltip(_strings.refresh));
+      await _pump(tester);
+      final refreshed = _bulkList(tester);
+      expect(refreshed.scopeId, old.scopeId);
+      expect(refreshed.selectionScopeId, isNot(old.selectionScopeId));
+      expect(
+        tester.widget<TextField>(_field('mail-list-search')).controller!.text,
+        'Exchange',
+      );
+      old.onBulkAction!(MailBulkFlagAction.flag, ['ews-message-one']);
+      await _pump(tester);
+      expect(provider.commands, isEmpty);
+      expect(provider.reads, 0);
+    },
+  );
+
+  testWidgets(
     'EWS bulk ignores duplicate or missing row identities before dispatch',
     (tester) async {
       late _Provider provider;

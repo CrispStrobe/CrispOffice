@@ -5809,7 +5809,10 @@ class _Evaluator {
             'pointstocentimeters' => number * 127 / 3600,
             'millimeterstopoints' => number * 360 / 127,
             'pointstomillimeters' => number * 127 / 360,
-            _ => context.unsupported(token, 'Unsupported Word unit conversion.'),
+            _ => context.unsupported(
+              token,
+              'Unsupported Word unit conversion.',
+            ),
           };
     if (!result.isFinite || result.abs() > _maxExactInteger) {
       context.type(

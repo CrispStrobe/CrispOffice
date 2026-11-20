@@ -3,7 +3,9 @@
 This increment extends the shared connected and cached mailbox list. It does
 not change the independent archive's existing full-text search or saved searches.
 It is one completed discovery slice toward M04W; durable synchronization,
-account-wide search, conversations and bulk commands remain separate work.
+account-wide search and conversations remain separate work. The subsequent
+[foreground bulk increment](bulk-actions.md) adds read/flag triage to connected
+hosts while keeping cached mail read-only.
 
 ## User path
 
@@ -82,16 +84,18 @@ records actual commands, results, remote checkpoints and remaining boundaries.
 
 ## Next increments toward desktop-client parity
 
-1. Foreground bulk read/flag: freeze selected account/folder/remote identities;
-   report confirmed, failed, uncertain and unattempted outcomes; stop on
-   uncertainty and reject stale scope. Reuse the current nullable flag contract.
-2. Durable repository-driven sessions and a remote-command journal, with restart,
+The [foreground bulk read/flag increment](bulk-actions.md) now freezes selected
+account/folder/remote identities, reports confirmed, failed, uncertain and
+unattempted outcomes, and stops on uncertainty or stale scope. It preserves the
+nullable flag contract and does not introduce offline replay.
+
+1. Durable repository-driven sessions and a remote-command journal, with restart,
    UIDVALIDITY, conflict, cancellation and offline/reconnect qualification.
-3. Account/unified search, saved live views and conversations over the durable
+2. Account/unified search, saved live views and conversations over the durable
    index, preserving explicit cache completeness and source-message identity.
-4. Rules and quick actions over those query/command contracts; rich authoring,
+3. Rules and quick actions over those query/command contracts; rich authoring,
    signatures/templates and Office attachment workflows can progress separately.
-5. Scheduling/Sent reconciliation, Calendar/People, shared mailboxes and security
+4. Scheduling/Sent reconciliation, Calendar/People, shared mailboxes and security
    features retain provider-specific acceptance requirements in the main plan.
 
 This ordering is an engineering decision, not a claim of complete competitor

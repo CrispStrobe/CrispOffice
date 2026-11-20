@@ -436,11 +436,11 @@ void main() {
     (tester) async {
       final headers = _bulkHeaders();
       final browser = _BulkBrowser()
+        ..mutationHandler = (index) async {
+          if (index == 2) throw StateError('private-server-text');
+        }
         ..pages = (mailbox, cursor, limit) async =>
-            StudioMailHeaderPage(messages: headers)
-              ..mutationHandler = (index) async {
-                if (index == 2) throw StateError('private-server-text');
-              };
+            StudioMailHeaderPage(messages: headers);
       await _show(tester, browser);
       _bulkList(tester).onBulkAction!(MailBulkFlagAction.markRead, [
         'imap-message-91:300',
@@ -485,8 +485,9 @@ void main() {
     (tester) async {
       final gate = Completer<void>();
       final browser = _BulkBrowser()
+        ..mutationGate = gate
         ..pages = (mailbox, cursor, limit) async =>
-            StudioMailHeaderPage(messages: _bulkHeaders())..mutationGate = gate;
+            StudioMailHeaderPage(messages: _bulkHeaders());
       await _show(tester, browser);
       _bulkList(tester).onBulkAction!(MailBulkFlagAction.flag, [
         'imap-message-91:300',
@@ -525,8 +526,9 @@ void main() {
         final headers = _bulkHeaders();
         final gate = Completer<void>();
         final browser = _BulkBrowser()
+          ..mutationGate = gate
           ..pages = (mailbox, cursor, limit) async =>
-              StudioMailHeaderPage(messages: headers)..mutationGate = gate;
+              StudioMailHeaderPage(messages: headers);
         await _show(tester, browser);
         _bulkList(tester).onBulkAction!(MailBulkFlagAction.markRead, [
           'imap-message-91:300',
@@ -570,6 +572,30 @@ void main() {
       await _pump(tester);
       expect(browser.changes, isEmpty);
       expect(_bulkList(tester).items.first.isFlagged, isFalse);
+      expect(browser.reads, 0);
+    },
+  );
+
+  testWidgets(
+    'IMAP refresh retains discovery but rejects the old bulk selection scope',
+    (tester) async {
+      final browser = _BulkBrowser();
+      await _show(tester, browser);
+      await tester.enterText(_key('mail-list-search'), 'message');
+      await _pump(tester);
+      final old = _bulkList(tester);
+      await tester.tap(_button(_strings.refresh));
+      await _pump(tester);
+      final refreshed = _bulkList(tester);
+      expect(refreshed.scopeId, old.scopeId);
+      expect(refreshed.selectionScopeId, isNot(old.selectionScopeId));
+      expect(
+        tester.widget<TextField>(_key('mail-list-search')).controller!.text,
+        'message',
+      );
+      old.onBulkAction!(MailBulkFlagAction.markRead, ['imap-message-91:300']);
+      await _pump(tester);
+      expect(browser.changes, isEmpty);
       expect(browser.reads, 0);
     },
   );
