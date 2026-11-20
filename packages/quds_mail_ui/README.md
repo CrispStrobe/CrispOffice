@@ -1,6 +1,45 @@
-# Quds Mail reader
+# Quds Mail UI components
 
-`quds_mail_ui` is an account-free Flutter saved-message reader. A host supplies an immutable `MailParseResult`, or a byte-only `MailCodec` and original input. Opening a message does not create an account, credential store, database, transport, or network client.
+`quds_mail_ui` provides an account-free Flutter saved-message reader and a
+reusable foreground message list. A host supplies immutable reader input or
+message-list rows and owns all transport, credentials, persistence and actions.
+The components create no account, credential store, database or network client.
+
+## Embed the same message list in either host
+
+```dart
+MailMessageList(
+  scopeId: hostAccountAndFolderIdentity,
+  items: rows, // List<MailMessageListItem>, with unique stable nonempty IDs
+  strings: hostLocalizedListStrings,
+  selectedId: openedMessageIdentity,
+  onOpen: hostOpenMessage,
+  busy: isFetching,
+  hasMore: nextCursor != null,
+  onLoadMore: hostLoadNextPage,
+  limitNotice: reachedHostLimit ? hostLimitNotice : null,
+);
+```
+
+The list searches loaded subjects and senders without making requests. Unread
+and Flagged filters combine; nullable unknown flags do not count as observed
+unread/flagged states. Counts distinguish visible and loaded rows. Load more
+remains available when filtering hides every loaded row. Rows are virtualized.
+
+Arrow Up/Down and Home/End move list focus; Enter/Space explicitly activates
+the focused row. Editing the search field keeps its normal editing keys.
+Focus and opened-message selection are separate stable identities. Changing
+`scopeId` resets query, filters, focus and scrolling. Hosts can retain the
+widget while displaying a compact reader, but must exclude hidden list focus
+and invalidate callbacks when switching sessions.
+
+`busy` prevents activation and pagination, while local filtering stays
+available. The host validates pages/cursors, enforces quotas, confirms actions,
+and supplies loading/error/retry and limit policy. The Studio integration uses
+50-message requests and a 1,000-loaded-message ceiling. This list alone is not
+the planned account-aware `QudsMailWorkspace`; repository streams, unified
+inbox and durable command orchestration remain open. See the
+[foreground mailbox contract](../../docs/roadmaps/mail/mailbox-workspace.md).
 
 ## Embed the same reader in either host
 

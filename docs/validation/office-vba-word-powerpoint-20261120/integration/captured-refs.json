@@ -1,0 +1,147 @@
+{
+  "captured_at_utc": "2026-11-20 09:31:44 UTC",
+  "source_commit": "fb09a29b70e469c2858bde48c8977590791b6ba7",
+  "branches": [
+    {
+      "branch": "ci/android-spacy-grammar-workflow",
+      "sha": "596fb68f64c447177ed202a40f890c20205a0270"
+    },
+    {
+      "branch": "codex/odt-field-continuation-20261117",
+      "sha": "c34945761e7991f5fe49037d79529acdd260b31c"
+    },
+    {
+      "branch": "codex/vba-variant-conversions-20261120",
+      "sha": "1ceae221d37e733f0195d35622a05f896a2d13a1"
+    },
+    {
+      "branch": "codex/word-powerpoint-vba-20261120",
+      "sha": "038b6bd66b8815904e99a03c56febe0707e97e5b"
+    },
+    {
+      "branch": "codex/zotero-parity-20261120",
+      "sha": "3100725d07a715f230c263f640dbd588c7c75660"
+    },
+    {
+      "branch": "codex/zotero-parity-continuation-20261120",
+      "sha": "708f2821f5563912642d8062ea4db126462a67a1"
+    },
+    {
+      "branch": "codex/zotero-research-materials-20261120",
+      "sha": "a31616d3567a43307251e13a9728cf92fd8690c6"
+    },
+    {
+      "branch": "docs/ods-color-scale",
+      "sha": "58fdddfbcf198a8c0e38e32f6fcc9d6604e95283"
+    },
+    {
+      "branch": "docs/ods-data-bar",
+      "sha": "69d14f84cabd3931b7640c1654b401c89faba766"
+    },
+    {
+      "branch": "feat/android-spacy-grammar-20261120",
+      "sha": "67a4917b33dcd578333adabac1c50db0fc2a62b6"
+    },
+    {
+      "branch": "feat/crispoffice-rename-20261120",
+      "sha": "228d13d949859c66c58cf51addfbb03b09c7365d"
+    },
+    {
+      "branch": "feat/ods-color-scale",
+      "sha": "74ce9ffb816c70c0d2ae50b91ec52a614f26d688"
+    },
+    {
+      "branch": "feat/ods-data-bar",
+      "sha": "0a53b8a70128870f3e1df6d18cdb177bb64290ee"
+    },
+    {
+      "branch": "feat/ods-dynamic-validation-links",
+      "sha": "68a0db23408e4c95d6d283219504c79aea33a6fe"
+    },
+    {
+      "branch": "feat/ods-icon-sets",
+      "sha": "005c708e9f747cb46cf02e12c869b0a2f85ac824"
+    },
+    {
+      "branch": "feat/ods-time-period-conditions",
+      "sha": "7ef09f2408f467c65427700e65907531ecb26acb"
+    },
+    {
+      "branch": "integrate/office-union-148",
+      "sha": "3abf8f43b0e79c10271bbd046f391e462b8fe6b9"
+    },
+    {
+      "branch": "integrate/recent-pptx",
+      "sha": "1eddb91495bd405a1dfb3b1e8734e93e85b04b1d"
+    },
+    {
+      "branch": "integrate/window-focus-office-20261120",
+      "sha": "b8f4a7be7cc5ac1a6d9c1d89d999c5e6f3e13fb6"
+    },
+    {
+      "branch": "main",
+      "sha": "5e38de19ab5af8d6811d601c7317cba7f69d516b"
+    },
+    {
+      "branch": "perf/typing-proofing-20261120",
+      "sha": "604e5f1ab3b70d1cd770e4413f54d167078185a4"
+    },
+    {
+      "branch": "work/mail-attachments-20261120",
+      "sha": "177f29d3f9450a58f41189b462b0814aad37e45c"
+    },
+    {
+      "branch": "work/mail-draft-recovery-20261120",
+      "sha": "20b2ecf572f8fd5663a728529da7bf5c7ebbda1d"
+    },
+    {
+      "branch": "work/mail-workspace-20261120",
+      "sha": "44abcfa10367c8cf586ad3cf826feb3cb1de6dab"
+    }
+  ],
+  "checkpoint_mappings": {
+    "e32b95a2fcfefe57f9ad6e77dbcffd8a54ff41ca": "c224a66a4c1913690aff5273ab584621487305d1",
+    "00f1d8d6e4f4952aaa029e4f4ee126006e7b7945": "54d07bc32fb35a7aa4445971b3cd3604b7c5cf7f",
+    "ef9022224e1913adb73364d58ad6d86573c07866": "b9e4f1d4bc691714f68e3685dbf729b09ccb0449",
+    "e435e34120c4c3d7f23797fc621576c527372dec": "1d3f9e64da6d7a9498e010c30e0e9d3f03c411bb",
+    "922466f358d41d2fbcd7e3c05bf763547db9b9b3": "dbf26abb997eb0aadba533309d4d04ed44635aea",
+    "877dd493f08ceb1d6dd8efb4a75d783d00544e1e": "f6d6fcf55a03d55749e631f003d2b795e6f1299f",
+    "ff0dab9db4b778cc80a3d8963169de183a0c160a": "d57b467e8ea81ee9e644f454bbeaeb5618cbfdc8",
+    "a8a4724e13303164b9de4e8232915aeab52c99d8": "075fb00df111184f39030ecb12dfe17d1276f40d",
+    "f73720c2ba1406041d1a7f65e0b32f139cbdaef7": "510a42aff42c4402bfd9a08d2dd63afd0185ed77",
+    "57bcb46f40f0f02247df9e1df6da07a05de5d529": "a6e3ce02ecbf4a2149bfb94f166ed1dcd64a40d4",
+    "e21d1a21a7240ce69146a2d68b80ba0d5e7e7f3b": "038b6bd66b8815904e99a03c56febe0707e97e5b",
+    "fb30f020034db943885603d993115640badd0b85": "932d49a33cccaeedd7fcb41aa16cbfda95aeb4e4",
+    "fffe59420e25a049a74a83d3a0e987d54b23bffe": "db514badc72f15aafa07fad081e7a810eb8ad3f7",
+    "9c4d397063541f3085f57ce7e8b0715077d17250": "fb09a29b70e469c2858bde48c8977590791b6ba7"
+  },
+  "open_pull_requests": [
+    {
+      "number": 234,
+      "title": "Rename built app artifacts and platform identities to CrispOffice",
+      "draft": false,
+      "head": "228d13d949859c66c58cf51addfbb03b09c7365d",
+      "branch": "feat/crispoffice-rename-20261120",
+      "base": "5e38de19ab5af8d6811d601c7317cba7f69d516b",
+      "updated": "2026-11-20T09:21:54Z"
+    },
+    {
+      "number": 236,
+      "title": "Qualify manual German grammar on the Android arm64 spaCy library",
+      "draft": false,
+      "head": "67a4917b33dcd578333adabac1c50db0fc2a62b6",
+      "branch": "feat/android-spacy-grammar-20261120",
+      "base": "5e38de19ab5af8d6811d601c7317cba7f69d516b",
+      "updated": "2026-11-20T09:07:45Z"
+    },
+    {
+      "number": 227,
+      "title": "Extend Word and Excel VBA with explicit Variants and paragraph macros",
+      "draft": true,
+      "head": "1ceae221d37e733f0195d35622a05f896a2d13a1",
+      "branch": "codex/vba-variant-conversions-20261120",
+      "base": "5e38de19ab5af8d6811d601c7317cba7f69d516b",
+      "updated": "2026-11-20T09:04:02Z"
+    }
+  ]
+}

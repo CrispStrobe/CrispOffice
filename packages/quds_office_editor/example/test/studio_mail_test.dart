@@ -1624,6 +1624,7 @@ void main() {
       find.text(_strings.mailMessageListStrings.noMatches),
       findsOneWidget,
     );
+    expect(find.text(_strings.noMessages), findsNothing);
     expect(tester.takeException(), isNull);
     await _close(tester);
   });
