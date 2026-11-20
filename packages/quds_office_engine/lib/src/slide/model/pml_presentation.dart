@@ -588,6 +588,7 @@ class PmlSlide {
   List<PmlShape> shapes;
 
   /// Non-editable master/layout decorations painted behind [shapes].
+  /// Import resolves master visibility here while retaining layout shapes.
   final List<PmlShape> backgroundShapes;
 
   /// Whether this slide has its own resolved master/layout decorations.
@@ -666,7 +667,8 @@ class PmlSlide {
   /// PowerPoint `p:sld/@show="0"` — skipped during a slide show.
   bool hidden;
 
-  /// Whether master/layout decorations are visible (`p:sld/@showMasterSp`).
+  /// The authored master-shape visibility flag (`p:sld/@showMasterSp`).
+  /// Layout shapes are unaffected; import resolves master shapes separately.
   bool showMasterShapes;
 
   /// copy API.

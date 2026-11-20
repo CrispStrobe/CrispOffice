@@ -1069,7 +1069,9 @@ class RenderSlideStage extends RenderBox implements MouseTrackerAnnotation {
     final sample = samples?[shape.id] ?? PmlAnimSample.identity;
     if (!_staticSample(sample)) return null;
     final int? own = int.tryParse(shape.fillColor, radix: 16);
-    if (own != null && !_growsWithText(rect)) {
+    if (own != null &&
+        !_growsWithText(rect) &&
+        shape.preset == PmlShapePreset.rect) {
       return Color(0xFF000000 | own);
     }
     if (own != null) return null;
@@ -1081,12 +1083,12 @@ class RenderSlideStage extends RenderBox implements MouseTrackerAnnotation {
         : rect;
     Color? background = _slidePaper(target);
     for (final List<PmlShape> layer in <List<PmlShape>>[
-      if (target.showMasterShapes) target.backgroundShapes,
+      target.backgroundShapes,
       target.shapes,
     ]) {
       final bool decorations = identical(layer, target.backgroundShapes);
       for (final previous in layer) {
-        if (identical(previous, shape)) return background;
+        if (!decorations && identical(previous, shape)) return background;
         if (!decorations && (skipIds?.contains(previous.id) ?? false)) continue;
         final previousSample = decorations
             ? PmlAnimSample.identity
@@ -1110,6 +1112,7 @@ class RenderSlideStage extends RenderBox implements MouseTrackerAnnotation {
             previous.table != null ||
             previous.hasMedia ||
             previous.text.isNotEmpty ||
+            previous.preset != PmlShapePreset.rect ||
             previous.transform.rotationDegrees.abs() >= 0.01) {
           background = null;
           continue;
@@ -1737,12 +1740,14 @@ class RenderSlideStage extends RenderBox implements MouseTrackerAnnotation {
       Offset.zero & _slideSize,
       Paint()..color = _slidePaper(target),
     );
-    // Decoration IDs belong to their master/layout part, not the slide.
-    // Slide animations and morph exclusions must not target matching IDs here.
-    if (target.showMasterShapes) {
-      for (final PmlShape shape in target.backgroundShapes) {
-        _paintShapeInRect(canvas, shape, _shapeRect(shape));
-      }
+    for (final PmlShape shape in target.backgroundShapes) {
+      // Master/layout shape IDs are scoped to their source parts. Foreground
+      // animation and morph IDs must never hide or transform decorations.
+      final Rect r = _shapeRect(shape);
+      canvas.save();
+      _rotateCanvas(canvas, shape, r);
+      _paintShapeInRect(canvas, shape, r);
+      canvas.restore();
     }
     for (final PmlShape shape in target.shapes) {
       if (skipIds != null && skipIds.contains(shape.id)) {

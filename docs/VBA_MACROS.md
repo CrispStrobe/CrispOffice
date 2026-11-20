@@ -21,6 +21,8 @@ one-dimensional local arrays and `For Each` loops support bounded source-data
 processing and explicit cell-range iteration within those same budgets.
 Dynamic local arrays add `ReDim`, `ReDim Preserve`, and `Erase`; module
 `Option Base` controls omitted lower bounds for both fixed and dynamic arrays.
+String expressions can use `Len`, `Left$`, `Right$`, and `Mid$` with explicit
+UTF-16 indexing, strict argument types, and the shared compilation work budget.
 
 This increment targets the spreadsheet family (`xlsx`, including macro-enabled
 and template workbook packages admitted by the existing runtime). Embedded VBA
@@ -491,6 +493,88 @@ Only supported member names are admitted. `Merge`, `ColumnWidth`, `NumberFormat`
 `FormulaR1C1`, worksheet dynamic spill formulas, named ranges, whole rows/columns, discontiguous
 ranges, and default members are not translated into approximate operations.
 
+## String intrinsics
+
+These case-insensitive functions operate on source String values, including a
+supported scalar `Variant` currently containing a String. They can be nested,
+used with array elements, passed to helpers, or used to compute an explicit
+worksheet/range selector. They do not read workbook values.
+
+| Signature | Result and bounds |
+| --- | --- |
+| `Len(text)` | Number of UTF-16 code units in the String |
+| `Left$(text, count)` | First `count` units, clamped to the available text |
+| `Right$(text, count)` | Last `count` units, clamped to the available text |
+| `Mid$(text, start[, count])` | Units starting at one-based `start`; omitted `count` returns the remaining suffix |
+
+`count` must be an exact integer from `0` through `2147483647`; `start` must be
+an exact integer from `1` through `2147483647`. An integral `Double` or assigned
+numeric `Variant` can supply these values. A zero count returns `""`; a valid
+start beyond the text also returns `""`. All arguments are evaluated exactly
+once, left to right, before the intrinsic validates their values. A zero count
+or a start past the end does not skip the other arguments or their diagnostics.
+
+```vb
+Dim record As String
+record = "INV-1042|Paper"
+Worksheets(1).Range("A1").Value2 = Left$(record, 8)  ' INV-1042
+Worksheets(1).Range("B1").Value2 = Mid$(record, 10)  ' Paper
+Worksheets(1).Range("C1").Value2 = Right$(Left$(record, 8), 4)  ' 1042
+Worksheets(1).Range("D1").Value2 = Len(Mid$(record, 10))  ' 5
+```
+
+The text unit is explicitly UTF-16, matching the compiler's source positions
+and String limits. `Len("A😀B")` is `4`, and `Mid$("A😀B", 2, 2)` is `"😀"`.
+Combining marks count separately. A one-unit slice can split a surrogate pair;
+these intrinsics do not count Unicode scalar values or grapheme clusters.
+Such halves may be held in local values, measured with `Len`, and recombined.
+Every String emitted into a native operation, including a cell value, formula,
+or sheet selector, must contain well-formed UTF-16. A lone surrogate at this
+boundary produces a positioned `vba_type_error` before a plan is returned;
+the compiler never silently substitutes a replacement character during XLSX
+publication. A normal supplementary character or correctly recombined pair is
+preserved through the native plan and workbook round trip.
+
+This slice keeps the dialect's strict conversion rules. Numeric/Boolean text
+arguments, numeric `Len`, fractional counts, String-to-number conversion,
+`Empty`, and `Null` remain unsupported. Full VBA also gives `Len` storage-size
+semantics for typed non-String variables and applies numeric Let-coercion;
+those behaviors are not approximated here. Negative counts, zero/negative
+starts, and values outside signed Long bounds produce `vba_type_error` when
+evaluated. Wrong arity and statically incompatible types produce `vba_type_error`,
+including in unused code. Value-dependent
+errors in unexecuted branches are not evaluated.
+
+Only these four signatures are added. Unsuffixed `Left`, `Right`, and `Mid`,
+`LenB`/byte variants, `Len$`, named arguments, VBA qualification, and the
+assignable `Mid$` statement remain unsupported. The `$` suffix is recognized
+only for the three implemented intrinsic names; arbitrary variable and
+procedure type suffixes are not enabled. Builtin names cannot be shadowed.
+Function calls remain disallowed in constants and fixed-array bounds.
+
+Every returned substring unit consumes one unit of the shared 100,000-work
+budget, charged before allocation and after clamping. This charge also applies
+when the result is the whole input; a huge requested count does not imply a
+huge allocation. `Len` uses constant work in addition to normal argument
+evaluation. The 32,767-unit per-string and active-array string limits still
+apply. Exhaustion fails compilation without returning a partial native plan.
+
+The runnable [string report](../packages/quds_office_engine/example/macros/string_report.bas)
+uses all four intrinsics with dynamic arrays and reusable helpers. It emits 28
+native operations, writes three parsed records, obtains matching source and
+worksheet totals of **14**, and writes a UTF-16 length of **4** plus the extracted
+emoji. Its records are synthetic source data.
+
+```bash
+dart run tool/macros/office_macro.dart compile-vba \
+  example/macros/string_report.bas string-report.qudsmacro.json
+```
+
+[Versioned conformance cases](VBA_CONFORMANCE.md) distinguish documented
+behavior, intentional dialect restrictions, and separately recorded Office
+host observations. The current string corpus has no Office host execution
+provenance; VM/JavaScript agreement establishes portability of this subset.
+
 ## Supported language constructs
 
 | Construct | Supported behavior and restrictions |
@@ -511,6 +595,7 @@ ranges, and default members are not translated into approximate operations.
 | Assignment | Scalar assignment, optional `Let`, and explicitly supported writable object properties |
 | Arithmetic | Decimal/exponent literals, parentheses, unary `+`/`-`, and binary `+`, `-`, `*`, `/` |
 | Text | Double-quoted literals with doubled embedded quotes and `&` concatenation of scalar values |
+| String intrinsics | `Len`, `Left$`, `Right$`, and `Mid$` on actual Strings; UTF-16 units, exact integral signed-Long arguments, no implicit coercion |
 | Comparisons | `=`, `<>`, `<`, `>`, `<=`, `>=` between matching scalar types; string comparisons use binary ordering |
 | Boolean logic | `Not`, `And`, `Or`, `Xor` on Boolean values; operands are evaluated eagerly |
 | Conditions | Block `If … Then`, `ElseIf`, `Else`, `End If`; conditions must be Boolean and known from source |
@@ -577,9 +662,9 @@ The compiler has its own limits before the native runtime receives a plan:
 | String code units stored across active array slots | 1,048,576 |
 | Parameters / arguments per procedure call | 16 |
 | Procedure frames, including the selected entry | 32 |
-| String literal / concatenation length | 32,767 UTF-16 code units |
+| String literal / concatenation / intrinsic result length | 32,767 UTF-16 code units |
 | Absolute numeric magnitude | 9,007,199,254,740,991 (`2^53 − 1`) |
-| Evaluation and statement visits | 100,000 |
+| Evaluation/statement visits, array work, and substring-copy units | 100,000 |
 | Emitted native operations | 10,000 |
 | Encoded native plan | 1 MiB |
 
@@ -588,7 +673,8 @@ and JavaScript. Arithmetic must remain finite. The compiler refuses work before
 expanding a range that exceeds the remaining operation budget. Each emitted
 operation is charged against the aggregate encoded byte budget, and compilation
 work is charged even for loops with empty bodies. Strings are bounded before
-concatenation allocates a larger result.
+concatenation allocates a larger result. Substring copies charge their clamped
+result length before allocating, even when their result is subsequently discarded.
 
 Conditional loops and `Select Case` do not increase these limits. Every loop
 attempt and Case alternative consumes work in addition to its expressions and
@@ -690,6 +776,11 @@ The supported mappings are based on Microsoft's documented VBA behavior:
 - [Select Case syntax and ranges](https://learn.microsoft.com/en-us/office/vba/language/reference/user-interface-help/select-case-statement)
 - [MS-VBAL Select Case evaluation order](https://learn.microsoft.com/en-us/openspecs/microsoft_general_purpose_programming_languages/ms-vbal/94a2f0fe-bdbe-4f5d-b3f4-bbf339b0ac65)
 - [RGB color values](https://learn.microsoft.com/en-us/office/vba/language/reference/user-interface-help/rgb-function)
+- [Len, including typed-variable storage semantics](https://learn.microsoft.com/en-us/office/vba/language/reference/user-interface-help/len-function)
+- [Left](https://learn.microsoft.com/en-us/office/vba/language/reference/user-interface-help/left-function), [Right](https://learn.microsoft.com/en-us/office/vba/language/reference/user-interface-help/right-function), and [Mid](https://learn.microsoft.com/en-us/office/vba/language/reference/user-interface-help/mid-function)
+- [MS-VBAL Left$](https://learn.microsoft.com/en-us/openspecs/microsoft_general_purpose_programming_languages/ms-vbal/5f10a9e1-b6ba-4a92-bd94-c4c99da74ef2)
+- [MS-VBAL numeric Let-coercion](https://learn.microsoft.com/en-us/openspecs/microsoft_general_purpose_programming_languages/ms-vbal/56fb78c3-a0ea-4bf0-8ee4-eb5f89bda4f7)
+- [MS-VBAL value types and nominal String representation](https://learn.microsoft.com/en-us/openspecs/microsoft_general_purpose_programming_languages/ms-vbal/c86480b2-aef2-4488-b177-f55e13cc51f2)
 - [Operator precedence](https://learn.microsoft.com/en-us/office/vba/language/reference/user-interface-help/operator-precedence)
 - [Sub declarations and ByVal/ByRef defaults](https://learn.microsoft.com/en-us/office/vba/language/reference/user-interface-help/sub-statement)
 - [Function declarations and return values](https://learn.microsoft.com/en-us/office/vba/language/reference/user-interface-help/function-statement)

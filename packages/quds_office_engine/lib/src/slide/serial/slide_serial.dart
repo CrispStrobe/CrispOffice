@@ -132,15 +132,13 @@ class SlideDeserializer {
             layout.placeholders,
             layout.master?.placeholders ?? const <PmlShape>[],
           ]);
-          if (pres.slides[i].showMasterShapes) {
-            pres.slides[i].backgroundShapes.addAll(<PmlShape>[
-              if (layout.showMasterShapes)
-                for (final PmlShape shape
-                    in layout.master?.decorations ?? const <PmlShape>[])
-                  shape.copy(),
-              for (final PmlShape shape in layout.decorations) shape.copy(),
-            ]);
-          }
+          pres.slides[i].backgroundShapes.addAll(<PmlShape>[
+            if (pres.slides[i].showMasterShapes && layout.showMasterShapes)
+              for (final PmlShape shape
+                  in layout.master?.decorations ?? const <PmlShape>[])
+                shape.copy(),
+            for (final PmlShape shape in layout.decorations) shape.copy(),
+          ]);
         }
         pres.slides[i].shapes.addAll(shapes);
         parseSlideMotion(slideXml, pres.slides[i]);
@@ -219,13 +217,14 @@ class SlideDeserializer {
   PmlPresentation readBytes(Uint8List bytes, {String? password}) =>
       read(OpcPackage.openBytes(bytes, password: password));
 
+  /// `showMasterSp` hides master decorations while retaining layout shapes.
   static bool _showsMasterShapes(String xml) {
     final XmlPullReader reader = XmlPullReader(xml);
     while (reader.next()) {
       if (reader.eventType == XmlEventType.startElement &&
           reader.namespaceUri == OfficeNamespaces.p &&
           (reader.localName == 'sld' || reader.localName == 'sldLayout')) {
-        final String? value = reader.getAttribute('showMasterSp');
+        final String? value = reader.getAttribute('showMasterSp')?.trim();
         return value != '0' && value != 'false';
       }
     }
