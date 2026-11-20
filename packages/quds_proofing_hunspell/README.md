@@ -25,7 +25,10 @@ qualification.
   and SHA-256 equal the compiled-in catalog (`hunspellCatalog`), publishes the
   tree with one rename and verifies it again; `remove` renames before
   deleting. On the web the host fetches the two dictionary files itself and
-  passes them through `HunspellDictionaryBytes.verified`.
+  passes them through `HunspellDictionaryBytes.verified`. The Studio web host
+  keeps the verified files in the browser's Cache Storage and passes them
+  through the same check again on every load (a stored copy that fails is
+  deleted); removal in the download dialog deletes them.
 
 ## Use
 
