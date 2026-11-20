@@ -95,3 +95,39 @@ Variant/object-checking gaps under repair. It is retained as fetched work and
 must be refreshed before final publication. This mail integration does not
 rewrite its branch or mislabel it as qualified. A later ready/merged state
 requires a fresh source review and the relevant local validation.
+
+
+## Main refresh during Mail implementation
+
+Main advanced to `e06eb3a7e21b71c1d5d4b1d2cc9abde24774eb26`, incorporating
+Word line boxes, wrapping, tabs and kerning (including the language-edit
+preservation fix in `07ba3cf1`) and full background gradients in
+`1af71e20aec5a6e1f83703c4d09f56bb644b8e09`. An isolated merge incorporates
+that main as a second parent of Mail's checkpoint
+`191605e3cc06d5ac2efbb2d9f60b6b2bd07d7903`.
+
+Only `slide_serial.dart` and `slide_import_fidelity_test.dart` conflicted.
+Both branches implement full gradient backgrounds. Main selected gradients
+through its picture slot; Mail's incoming-Office reconciliation keeps a
+separate gradient slot so selected fills copy, clear and edit independently
+of ordinary decorations. Combining both selection paths would paint a
+background twice. The resolution retains the explicit gradient ownership,
+all parser/rendering corrections above, and main's new regression asserting
+that a gradient replaces an inherited image exactly once. The identical
+shape-gradient test occurs once. Both branches' other background regressions
+are retained.
+
+Incoming Word/bidi/editor-Word/controller files are byte-identical to refreshed
+main. Existing gradient model, shape parser, PDF and editor paint sources are
+byte-identical to the prior qualified Mail checkpoint. The bounded conflict
+gate exercises the merged slide import suite and gradient regression suite,
+plus strict analysis/format of the two resolved files. Source hashes, raw test
+events and outcomes are recorded under `main-refresh/`; prior evidence is
+left intact. No GitHub Actions checks or queue waits are used.
+
+The fetched PR #227 head advanced to
+`4b8ad78188f2d1f4031887cd51262b07e865a552` while still marked draft with
+qualification in progress. It remains independently owned work and is not
+silently merged by this refresh. Mail's remote branch can advance while this
+isolated merge is tested; later Mail checkpoints must be retained when the
+merge is published.

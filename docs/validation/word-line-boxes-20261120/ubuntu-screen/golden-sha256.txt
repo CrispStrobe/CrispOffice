@@ -1,0 +1,2 @@
+549d9bf04ef7251f4520095dbb76f94ad048bd8a55385c78ee466a417fecb3fb  test/goldens/linux/word_selection_macOS.png
+f7dfe6e1672e41e497685e02e556c90f587398d18d297887866b9fba82544122  test/goldens/linux/word_selection_windows.png

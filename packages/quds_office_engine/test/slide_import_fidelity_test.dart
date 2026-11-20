@@ -636,6 +636,31 @@ void main() {
       }
     });
 
+    test('gradient background replaces inherited image exactly once', () {
+      const gradient =
+          '<p:bg><p:bgPr><a:gradFill><a:gsLst>'
+          '<a:gs pos="0"><a:srgbClr val="112233"/></a:gs>'
+          '<a:gs pos="100000"><a:srgbClr val="AABBCC"/></a:gs>'
+          '</a:gsLst><a:lin ang="5400000"/></a:gradFill></p:bgPr></p:bg>';
+      final deck = _deck(
+        [_sld('', background: gradient)],
+        masterBackground: _pictureBackground,
+        masterBackgroundImage: _backgroundPng(0, 255, 0),
+      );
+      for (final slide in [
+        deck.slides.single,
+        SlideDeserializer()
+            .readBytes(SlideSerializer().writeBytes(deck))
+            .slides
+            .single,
+      ]) {
+        expect(slide.backgroundShapes, hasLength(1));
+        expect(slide.backgroundShapes.single.gradient?.stops, hasLength(2));
+        expect(slide.backgroundShapes.single.gradient?.angleDegrees, 90);
+        expect(slide.backgroundShapes.single.visual?.imageBytes, isNull);
+      }
+    });
+
     test(
       'authored slide image replaces inherited images behind decorations',
       () {
@@ -897,7 +922,7 @@ void main() {
     });
 
     test(
-      'gradient fallback follows slide layout and secondary master scope',
+      'gradient rendering follows slide layout and secondary master scope',
       () {
         final PmlPresentation masters = _deck(
           <String>[_sld(''), _sld('')],

@@ -143,6 +143,8 @@ class SlideDeserializer {
                 pres.slideHeight,
               )
             : layout?.backgroundImage;
+        // Keep gradient ownership separate from pictures so a selected fill
+        // is painted once and cleared correctly when the background is edited.
         final PmlShape? backgroundGradient = hasSlideBackground
             ? _backgroundGradientShape(
                 slideXml,

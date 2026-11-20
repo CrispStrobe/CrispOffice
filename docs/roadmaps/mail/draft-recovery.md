@@ -8,7 +8,7 @@ Mail store and the shared Word editing surface.
 ## Using local drafts
 
 Connect to the same account and choose **Compose** to resume its saved draft.
-Changes autosave after 500 ms. **Save and close** flushes the latest revision
+Changes autosave after 500 ms without further edits. **Save and close** flushes the latest revision
 without sending; **Send** validates the draft and waits for persistence before
 contacting the provider. The status shows saving, saved or a fixed localized
 failure. A failed save leaves the editor open; **Retry saving** tries again,
@@ -72,9 +72,10 @@ provider/installed-platform qualification remain separate increments. The
 ordered work stays in [implementation-plan.md](implementation-plan.md), with
 current completion boundaries in [status.md](status.md).
 
-One local draft is retained per scoped account. Ordinary autosave may leave up
-to the debounce interval of latest edits unsaved if the process is abruptly
-terminated; the saved indicator describes the last successful write. File-backed
+One local draft is retained per scoped account. If the process terminates
+abruptly, changes since the last completed save can be lost. Continuous editing,
+a pending write or a storage failure can extend that period beyond the 500 ms
+debounce. The saved indicator reflects a completed write. File-backed
 reopen and existing store crash/recovery tests cover their recorded scenarios,
 not arbitrary device power loss or an installed-platform application lifecycle.
 
