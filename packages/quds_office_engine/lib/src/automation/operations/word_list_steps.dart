@@ -229,6 +229,14 @@ void _checkPackageSources(WmlDocument document, {required bool allNumbers}) {
 class _ListEdit {
   _ListEdit(this.document, this.paragraph, {bool allNumbers = false})
     : direct = _properties(paragraph) {
+    // Serialization omits unbalanced modeled field boundaries in any story.
+    // Opaque field containers can hide the other half of a valid source field,
+    // so never publish a list edit when saving would discard those boundaries.
+    if (WordFieldSpans.unbalanced(document).isNotEmpty) {
+      throw UnsupportedError(
+        'List edits cannot preserve unbalanced modeled field boundaries.',
+      );
+    }
     _checkPackageSources(document, allNumbers: allNumbers);
     _checkProperties(direct);
     _one(direct, 'ind');

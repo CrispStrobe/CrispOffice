@@ -236,7 +236,9 @@ off matching native paragraph numbering or applies a deterministic Quds
 single-level default when the kind differs. Native `docx.removeNumbers` takes
 `paragraph` and optional `numberType` (`all`, the default, or `paragraph`).
 The `all` form refuses selected LISTNUM fields; paragraph-only removal preserves
-them. Both write persistent paragraph-numbering suppression when clearing and
+supported field packets. Both operations refuse field boundaries that serialization
+would discard as unbalanced, including boundaries in unrelated stories. Both
+write persistent paragraph-numbering suppression when clearing and
 preserve unrelated native content. These operations address body paragraphs;
 the [ListFormat contract](VBA_WORD_MACROS.md#paragraph-list-formatting) documents
 source arguments, default layout, inheritance, ambiguity guards and limits.

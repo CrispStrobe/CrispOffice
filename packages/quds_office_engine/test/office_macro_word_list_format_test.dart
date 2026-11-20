@@ -88,6 +88,31 @@ XmlElement _properties(Uint8List bytes) =>
 String? _val(XmlElement? node, String name) =>
     node?.getAttribute(name, namespaceUri: _w);
 
+List<String> _fieldTokens(Uint8List bytes) {
+  final tokens = <String>[];
+  void visit(XmlElement node) {
+    if (node.namespaceUri == _w) {
+      if (node.localName == 'fldChar') {
+        tokens.add(
+          'boundary:${node.getAttribute('fldCharType', namespaceUri: _w)}',
+        );
+      } else if (node.localName == 'instrText') {
+        tokens.add('instruction:${node.text}');
+      }
+    }
+    for (final child in node.childElements) {
+      visit(child);
+    }
+  }
+
+  visit(
+    XmlDocument.parse(
+      OpcPackage.openBytes(bytes).getPart('/word/document.xml')!.readText(),
+    ).root!,
+  );
+  return tokens;
+}
+
 void main() {
   for (final numbered in [false, true]) {
     test(
@@ -575,7 +600,13 @@ void main() {
             format: OfficeMacroFormat.docx,
           );
           session.startRecording('Rejected opaque field removal');
-          final macro = _plan([_default(true), _remove()]);
+          final macro = _plan([
+            OfficeMacroStep(
+              tool: 'docx.paragraphFormat',
+              arguments: {'paragraph': 0, 'after': 12},
+            ),
+            _remove(),
+          ]);
           for (final action in [session.validate, session.run]) {
             await expectLater(
               action(macro),
@@ -592,17 +623,44 @@ void main() {
           }
           expect(session.stopRecording().steps, isEmpty);
 
+          if (!opaqueEnd) {
+            expect(
+              () => native.applyStep(doc, {
+                'op': 'removeNumbers',
+                'paragraph': 0,
+                'numberType': 'paragraph',
+              }),
+              throwsUnsupportedError,
+            );
+            expect(
+              identical(doc.paragraphs.single.properties, properties),
+              isTrue,
+            );
+            expect({
+              for (final part in doc.package!.parts) part.uri: part.readBytes(),
+            }, parts);
+            await expectLater(
+              session.run(_plan([_remove(type: 'paragraph')])),
+              throwsA(isA<OfficeMacroException>()),
+            );
+            expect(session.bytes, input);
+            expect(session.revision, 0);
+            return;
+          }
+
           await session.run(_plan([_remove(type: 'paragraph')]));
-          expect(
-            _read(session.bytes).paragraphs.single.text,
-            'Selected result',
-          );
-          expect(
-            OpcPackage.openBytes(
-              session.bytes,
-            ).getPart('/word/document.xml')!.readText(),
-            contains('LISTNUM LegalDefault'),
-          );
+          final originalTokens = _fieldTokens(input);
+          var saved = session.bytes;
+          for (var cycle = 0; cycle < 3; cycle++) {
+            final reopened = _read(saved);
+            expect(reopened.paragraphs.single.text, 'Selected result');
+            expect(
+              reopened.paragraphs.single.properties.numberingSuppressed,
+              isTrue,
+            );
+            expect(_fieldTokens(saved), originalTokens);
+            saved = WordSerializer().writeBytes(reopened);
+          }
         },
       );
     }
@@ -680,4 +738,61 @@ void main() {
       );
     },
   );
+
+  final stories = <String, void Function(WmlDocument, WmlParagraph)>{
+    'unselected body': (doc, paragraph) =>
+        doc.sections.single.blocks.add(paragraph),
+    'header': (doc, paragraph) => doc.sections.single.header.add(paragraph),
+    'footer': (doc, paragraph) => doc.sections.single.footer.add(paragraph),
+    'first header': (doc, paragraph) =>
+        doc.sections.single.firstHeader.add(paragraph),
+    'first footer': (doc, paragraph) =>
+        doc.sections.single.firstFooter.add(paragraph),
+    'even header': (doc, paragraph) =>
+        doc.sections.single.evenHeader.add(paragraph),
+    'even footer': (doc, paragraph) =>
+        doc.sections.single.evenFooter.add(paragraph),
+    'footnote': (doc, paragraph) => doc.footnotes.add(
+      WmlNote(id: 1, endnote: false, paragraphs: [paragraph]),
+    ),
+    'endnote': (doc, paragraph) => doc.endnotes.add(
+      WmlNote(id: 1, endnote: true, paragraphs: [paragraph]),
+    ),
+    'comment': (doc, paragraph) =>
+        doc.comments.add(WmlComment(id: 1, paragraphs: [paragraph])),
+  };
+  for (final story in stories.entries) {
+    test(
+      'all new list edits refuse unbalanced ${story.key} fields atomically',
+      () {
+        final doc = _read(_fixture());
+        final target = doc.paragraphs.single;
+        final unbalanced = WmlParagraph(
+          inlines: [WmlFieldBoundary(kind: WmlFieldBoundaryKind.end)],
+        );
+        story.value(doc, unbalanced);
+        final properties = target.properties;
+        final parts = {
+          for (final part in doc.package!.parts)
+            part.uri: Uint8List.fromList(part.readBytes()),
+        };
+        for (final operation in <Map<String, Object?>>[
+          {'op': 'listDefault', 'paragraph': 0, 'numbered': false},
+          {'op': 'listDefault', 'paragraph': 0, 'numbered': true},
+          {'op': 'removeNumbers', 'paragraph': 0, 'numberType': 'all'},
+          {'op': 'removeNumbers', 'paragraph': 0, 'numberType': 'paragraph'},
+        ]) {
+          expect(
+            () => native.applyStep(doc, operation),
+            throwsUnsupportedError,
+          );
+          expect(identical(target.properties, properties), isTrue);
+          expect(unbalanced.inlines, hasLength(1));
+          expect({
+            for (final part in doc.package!.parts) part.uri: part.readBytes(),
+          }, parts);
+        }
+      },
+    );
+  }
 }

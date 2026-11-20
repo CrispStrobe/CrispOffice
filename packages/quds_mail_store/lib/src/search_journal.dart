@@ -602,6 +602,7 @@ extension MailStoreLocalOperations on SqliteMailRepository {
   /// Retains only retired identity markers and vault-cleanup intents, so the host
   /// can finish secure-store deletion even after a crash during profile removal.
   Future<MailResult<MailUnit>> removeProfile() => _write(() async {
+    await _db.customStatement('DELETE FROM local_accounts');
     for (final row in await _rows('SELECT id FROM accounts')) {
       await _removeLocalAccount(
         MailAccountId(row.read<String>('id'), profile: profile),

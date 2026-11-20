@@ -9,6 +9,7 @@ import 'models.dart';
 import 'schema/database.dart';
 
 part 'search_journal.dart';
+part 'local_accounts.dart';
 
 /// One profile in one database, with native/browser setup in separate entries.
 ///

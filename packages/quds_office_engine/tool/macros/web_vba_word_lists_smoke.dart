@@ -386,6 +386,8 @@ List<String> _nativeFieldTokens(Uint8List bytes) {
 
 Future<Map<String, Object?>> _opaqueFieldBoundaryGuards() async {
   var cases = 0;
+  var paragraphRefusals = 0;
+  var paragraphPreservations = 0;
   for (final wrapper in ['customXml', 'smartTag']) {
     for (final opaqueEnd in [false, true]) {
       final template = wordListInput();
@@ -422,7 +424,7 @@ Future<Map<String, Object?>> _opaqueFieldBoundaryGuards() async {
       session.startRecording('Opaque field boundary must not publish');
       final plan = _compile('''
 Sub Main()
-  ActiveDocument.Paragraphs(1).Range.ListFormat.ApplyNumberDefault
+  ActiveDocument.Paragraphs(1).Range.ParagraphFormat.SpaceAfter = 12
   ActiveDocument.Paragraphs(2).Range.ListFormat.RemoveNumbers
 End Sub
 ''');
@@ -449,13 +451,41 @@ End Sub
           'Opaque field refusal did not roll back the complete plan',
         );
       }
-      await session.run(
-        _compile('''
+      final paragraphPlan = _compile('''
 Sub Main()
   ActiveDocument.Paragraphs(2).Range.ListFormat.RemoveNumbers wdNumberParagraph
 End Sub
-'''),
-      );
+''');
+      if (!opaqueEnd) {
+        session.startRecording('Unbalanced field boundary must not publish');
+        for (final validateOnly in [true, false]) {
+          try {
+            if (validateOnly) {
+              await session.validate(paragraphPlan);
+            } else {
+              await session.run(paragraphPlan);
+            }
+            throw StateError(
+              'Unbalanced field boundary unexpectedly published',
+            );
+          } on OfficeMacroException catch (error) {
+            if (error.code != 'operation_failed' ||
+                error.stepIndex != 0 ||
+                error.tool != 'docx.removeNumbers') {
+              rethrow;
+            }
+          }
+        }
+        if (session.revision != 0 ||
+            base64Encode(session.bytes) != original ||
+            session.stopRecording().steps.isNotEmpty) {
+          throw StateError('Unbalanced field refusal changed the document');
+        }
+        paragraphRefusals++;
+        cases++;
+        continue;
+      }
+      await session.run(paragraphPlan);
       if (session.revision != 1) {
         throw StateError('Paragraph removal did not publish once');
       }
@@ -476,13 +506,15 @@ End Sub
         }
         saved = WordSerializer().writeBytes(document);
       }
+      paragraphPreservations++;
       cases++;
     }
   }
   return {
     'cases': cases,
     'allModeRollback': true,
-    'paragraphModePreservesFields': true,
+    'paragraphModeRefusals': paragraphRefusals,
+    'paragraphModePreservations': paragraphPreservations,
     'additionalReopens': 2,
   };
 }

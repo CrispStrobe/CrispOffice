@@ -307,17 +307,22 @@ follows the existing Quds paragraph/default and
 supported table-style layers; this does not add other conditional table regions.
 
 `RemoveNumbers NumberType:=wdNumberParagraph` removes paragraph numbering while
-preserving field instructions/results. The omitted or explicit `wdNumberAllNumbers`
+preserving supported field instructions/results. All three list methods refuse
+before mutation if the live document contains field boundaries that the serializer
+would discard as unbalanced, including in another story or where an opaque block
+hides a field's opening or closing boundary. This guard prevents a list edit from
+silently losing unrelated field markers during serialization; it does not repair
+the field source. The omitted or explicit `wdNumberAllNumbers`
 form additionally checks for `LISTNUM` fields and refuses if it cannot fulfill
 the requested removal without editing such fields. This includes split complex
 field instructions and fields spanning the selected paragraph. It never silently
 leaves a selected `LISTNUM` field behind while reporting an all-numbers removal.
 All-number removal also conservatively refuses any field-bearing alternative
 XML branch anywhere in stored Word parts, field-bearing opaque body blocks or
-inlines even outside the selected paragraph, and selected unbalanced fields
-whose removal cannot be determined. Opaque content can hide a field boundary
-that overlaps the target paragraph. Paragraph-only removal preserves ordinary
-modeled fields and does not attempt to repair malformed field source.
+inlines even outside the selected paragraph. Opaque content can hide a field
+boundary that overlaps the target paragraph. Paragraph-only removal can preserve
+fully opaque field packets when no modeled boundaries would be discarded; it
+does not infer or modify their instructions.
 `wdNumberListNum = 2` is recognized but refused at compilation. The source adapter
 does not expose live list reads, `ListLevelNumber`, list templates/galleries,
 outline application, indent/outdent methods, or a document-wide list collection.
