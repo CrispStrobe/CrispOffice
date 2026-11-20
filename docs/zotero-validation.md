@@ -1,5 +1,51 @@
 # Zotero validation
 
+## 20 November 2026 — browse reference notes and attachment metadata
+
+Qualified product source: **`f0122cb5bff5b6cf6a6f69f043545dabc2930791`**,
+followed by current-main integration
+**`d1b8f9be24f08b2e4de7292c8727eddbd77bbf55`**, on
+`codex/zotero-research-materials-20261120`,
+[PR #223](https://github.com/CrispStrobe/quds_office_suite/pull/223).
+
+**Library → Reference details → Notes and attachments…** pages through a
+connected source's direct child notes and attachment metadata. Notes have
+bounded inert plain-text previews and copying; attachment details expose the
+supplied filename, MIME type, storage mode and URL, plus an embedded note when
+present. Explicit retry/reload and connection/version guards preserve selected
+references, unfinished search/tag input, document content and undo history.
+Desktop inspection requires a parent snapshot from the same identified
+Zotero 10+ database. File contents remain in Zotero.
+
+**2,886 distinct local application cases pass across 135 files**: 642 Zotero
+engine, 632 Zotero editor, 292 rendering, 743 VBA/shared macro, 546 Mail, and
+31 DOCX/revision-guard cases. The 88 new Zotero regressions are counted once.
+All 55 final changed Dart targets pass strict analysis and formatting.
+Independent raw-event audits confirm exact coverage, unique case identities,
+zero failures/skips/errors, and unchanged recorded inputs.
+
+The first 2,884 cases/134 files ran at `f0122cb5`. Later main adds a two-case
+Word macro guard and fixture line-ending attributes to the source inventory;
+all 3,994 earlier input records remain byte-identical. The added two cases pass
+at `d1b8f9be`, with a separate source-preservation proof. The same 69-case VBA
+corpus also produces identical VM/JavaScript receipts, and one synthetic
+message from the actual Mail builder passes 30 independent Python MIME
+assertions; neither supplemental result inflates the application-case total.
+
+The bounded final intake covers 15 fork branches and 223 PR heads, including
+this work's own PR #223, with 14 retained historical equivalence proofs and
+the actual upstream's four branches/four PR heads. Recent PPTX, VBA and Mail
+heads retain their original ancestry, and later main through `fe076d22` is
+preserved. Work is checkpointed remotely; GitHub Actions, check and status
+endpoints are neither queried nor awaited.
+
+The [complete report](validation/zotero-research-materials-20261120/README.md)
+contains exact identities, raw results, source/runtime fingerprints,
+independent audits, diagnostics, reconciliation records and reproduction
+commands. Acceptance is local model/controller/widget, serializer, actual
+CLI and controlled transport. No new installed-app, live Zotero/Mail account,
+or actual Word/LibreOffice interoperability run is claimed.
+
 ## 19 November 2026 — tag discovery and source citation locations
 
 Qualified product source: **`780422316b4e37989e01ac871dd2956fbd2c8908`**, on

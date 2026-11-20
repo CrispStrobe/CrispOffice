@@ -30,7 +30,6 @@ concurrency:
 
 env:
   FLUTTER_VERSION: 3.47.8
-  CARGO_TARGET_DIR: ${{ github.workspace }}/../shared-cargo-target
   QUDS_BUILD_JOBS: 4
 
 jobs:
@@ -38,10 +37,12 @@ jobs:
     name: Build, gates, analyze (ad hoc)
     runs-on: macos-15
     timeout-minutes: 150
-    env:
-      LOGS: ${{ github.workspace }}/../logs
     steps:
       - uses: actions/checkout@v5
+      - name: Paths
+        run: |
+          echo "CARGO_TARGET_DIR=$HOME/.cache/shared-cargo-target" >>"$GITHUB_ENV"
+          echo "LOGS=$RUNNER_TEMP/logs" >>"$GITHUB_ENV"
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
@@ -58,7 +59,7 @@ jobs:
             ~/.cargo/registry/cache
             ~/.cargo/git/db
             ~/.rustup/toolchains
-            ${{ env.CARGO_TARGET_DIR }}
+            ~/.cache/shared-cargo-target
           key: cargo-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('packages/quds_proofing_harper/native/Cargo.lock', 'packages/quds_proofing_harper/native/rust-toolchain.toml') }}
           restore-keys: cargo-${{ runner.os }}-${{ runner.arch }}-
       - name: Tool versions
@@ -119,7 +120,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: macos-app-weekly-logs-${{ github.run_number }}
-          path: ${{ env.LOGS }}
+          path: ${{ runner.temp }}/logs
           if-no-files-found: error
           retention-days: 30
 
@@ -129,10 +130,13 @@ jobs:
     runs-on: macos-15
     timeout-minutes: 150
     env:
-      LOGS: ${{ github.workspace }}/../logs
       SIGN_MODE: ${{ inputs.sign }}
     steps:
       - uses: actions/checkout@v5
+      - name: Paths
+        run: |
+          echo "CARGO_TARGET_DIR=$HOME/.cache/shared-cargo-target" >>"$GITHUB_ENV"
+          echo "LOGS=$RUNNER_TEMP/logs" >>"$GITHUB_ENV"
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
@@ -149,7 +153,7 @@ jobs:
             ~/.cargo/registry/cache
             ~/.cargo/git/db
             ~/.rustup/toolchains
-            ${{ env.CARGO_TARGET_DIR }}
+            ~/.cache/shared-cargo-target
           key: cargo-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('packages/quds_proofing_harper/native/Cargo.lock', 'packages/quds_proofing_harper/native/rust-toolchain.toml') }}
           restore-keys: cargo-${{ runner.os }}-${{ runner.arch }}-
       - name: Import signing material
@@ -234,8 +238,8 @@ jobs:
         with:
           name: crispoffice-${{ inputs.sign }}-${{ github.run_number }}
           path: |
-            ${{ env.QUDS_SIGN_OUTPUT }}/*.pkg
-            ${{ env.QUDS_SIGN_OUTPUT }}/*-macos.zip
+            ${{ runner.temp }}/signed/*.pkg
+            ${{ runner.temp }}/signed/*-macos.zip
           if-no-files-found: error
           retention-days: 7
       - name: Upload logs
@@ -243,7 +247,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: macos-app-signed-logs-${{ github.run_number }}
-          path: ${{ env.LOGS }}
+          path: ${{ runner.temp }}/logs
           if-no-files-found: warn
           retention-days: 30
       - name: Remove signing material

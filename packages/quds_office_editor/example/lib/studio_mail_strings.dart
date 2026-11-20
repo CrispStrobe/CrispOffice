@@ -42,6 +42,33 @@ extension StudioMailFeedback on StudioStrings {
     'Nachrichtentext · unformatiert',
     'نص الرسالة · نص عادي',
   );
+  String get mailAddAttachments =>
+      _mailText('Attach files', 'Dateien anhängen', 'إرفاق ملفات');
+  String get mailReadingAttachments => _mailText(
+    'Reading attachments…',
+    'Anhänge werden gelesen…',
+    'جارٍ قراءة المرفقات…',
+  );
+  String mailAttachmentSize(int bytes) {
+    if (bytes < 1024) return '$bytes B';
+    if (bytes < 1024 * 1024) {
+      return '${(bytes / 1024).toStringAsFixed(1)} KiB';
+    }
+    return '${(bytes / (1024 * 1024)).toStringAsFixed(2)} MiB';
+  }
+
+  String mailAttachmentSummary(int count, int bytes) => _mailText(
+    '$count / 10 attachments · ${mailAttachmentSize(bytes)} / 10 MiB total',
+    '$count / 10 Anhänge · ${mailAttachmentSize(bytes)} / 10 MiB insgesamt',
+    '$count / 10 مرفقات · ${mailAttachmentSize(bytes)} / 10 MiB إجمالًا',
+  );
+  String mailRemoveAttachment(String name) =>
+      _mailText('Remove $name', '$name entfernen', 'إزالة $name');
+  String get mailAttachmentFailed => _mailText(
+    'No files were added. Choose up to 10 files totaling at most 10 MiB, with ordinary file names. Check that each file is available and try again.',
+    'Es wurden keine Dateien hinzugefügt. Bis zu 10 Dateien mit insgesamt höchstens 10 MiB und gewöhnlichen Dateinamen auswählen. Prüfen, ob jede Datei verfügbar ist, und erneut versuchen.',
+    'لم تُضف أي ملفات. اختر حتى 10 ملفات بأسماء عادية وبحجم إجمالي لا يتجاوز 10 ميبيبايت. تحقق من توفر كل ملف وحاول مجددًا.',
+  );
   String get mailSubmissionAccepted => _mailText(
     'The sending server accepted the message. This session does not save a Sent copy.',
     'Der Versandserver hat die Nachricht angenommen. Diese Sitzung speichert keine Kopie unter „Gesendet“.',

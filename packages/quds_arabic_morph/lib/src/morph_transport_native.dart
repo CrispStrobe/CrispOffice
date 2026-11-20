@@ -191,6 +191,51 @@ final class _NativeTransport implements ArabicMorphTransport {
   }
 
   @override
+  Future<Map<String, Object?>> openDisambiguator(MorphDatabase model) async {
+    if (model is! MorphDatabaseFiles) {
+      throw const ArabicMorphUnavailableException(
+        'The native Arabic morphology worker opens an installed bundle.',
+      );
+    }
+    final info = await _send([
+      'open_model',
+      model.manifestPath,
+      model.bundle.manifest.sha256,
+    ]);
+    return (jsonDecode(info! as String) as Map).cast<String, Object?>();
+  }
+
+  @override
+  Future<List<List<ArabicContextReading>>> disambiguate(
+    List<List<String>> sentences,
+  ) async {
+    if (sentences.isEmpty) return const [];
+    final words = [for (final s in sentences) ...s];
+    final result = await _send([
+      'disambiguate',
+      words,
+      [for (final s in sentences) s.length],
+    ]);
+    final decoder = _decoder;
+    if (decoder == null) {
+      throw const ArabicMorphUnavailableException(
+        'No Arabic morphology database is open.',
+      );
+    }
+    final bytes = (result! as TransferableTypedData)
+        .materialize()
+        .asUint8List();
+    final readings = decoder.decodeReadings(bytes, words.length);
+    final out = <List<ArabicContextReading>>[];
+    var at = 0;
+    for (final s in sentences) {
+      out.add(readings.sublist(at, at + s.length));
+      at += s.length;
+    }
+    return out;
+  }
+
+  @override
   Future<void> dispose() => _disposal ??= _dispose();
 
   Future<void> _dispose() async {
@@ -243,11 +288,14 @@ void _workerMain(List<Object?> arguments) {
   }
   host.send(input.sendPort);
   Pointer<Void> handle = nullptr;
+  Pointer<Void> model = nullptr;
   input.listen((Object? value) {
     if (value case ['dispose']) {
       try {
+        if (model != nullptr) bindings.modelFree(model);
         if (handle != nullptr) bindings.free(handle);
       } finally {
+        model = nullptr;
         handle = nullptr;
         bindings.dispose();
         input.close();
@@ -279,6 +327,52 @@ void _workerMain(List<Object?> arguments) {
         }
         handle = opened;
         host.send(['result', id, bindings.info(handle)]);
+      } else if (value case [
+        _,
+        'open_model',
+        final String manifest,
+        final String manifestSha256,
+      ]) {
+        if (model != nullptr) {
+          bindings.modelFree(model);
+          model = nullptr;
+        }
+        final (opened, error) = bindings.openModel(manifest, manifestSha256);
+        if (opened == nullptr) {
+          host.send([
+            'error',
+            id,
+            'The disambiguation model could not be opened: $error',
+          ]);
+          return;
+        }
+        model = opened;
+        host.send(['result', id, bindings.modelInfo(model)]);
+      } else if (value case [
+        _,
+        'disambiguate',
+        final List<Object?> words,
+        final List<Object?> lengths,
+      ]) {
+        if (handle == nullptr || model == nullptr) {
+          host.send([
+            'error',
+            id,
+            'No Arabic morphology database or disambiguation model is open.',
+          ]);
+          return;
+        }
+        final bytes = bindings.disambiguate(
+          handle,
+          model,
+          words.cast<String>(),
+          lengths.cast<int>(),
+        );
+        host.send([
+          'result',
+          id,
+          TransferableTypedData.fromList([bytes]),
+        ]);
       } else if (value case [_, 'analyze', final List<Object?> words]) {
         if (handle == nullptr) {
           host.send([
@@ -299,6 +393,7 @@ void _workerMain(List<Object?> arguments) {
 
 const _errorCapacity = 512;
 const _compactMagic = 0x31434D41;
+const _scoresMagic = 0x31534D41;
 const _compactDedup = 1;
 // quds_arabic_morph_alloc's limit; batches are split to stay below it.
 const _maxAllocation = 1 << 20;
@@ -362,6 +457,66 @@ final class _Bindings {
             Void Function(Pointer<Void>),
             void Function(Pointer<Void>)
           >('crispembed_ar_morph_free'),
+      _openModel = library
+          .lookupFunction<
+            Pointer<Void> Function(
+              Pointer<Uint8>,
+              Pointer<Uint8>,
+              Pointer<Uint8>,
+              Size,
+            ),
+            Pointer<Void> Function(
+              Pointer<Uint8>,
+              Pointer<Uint8>,
+              Pointer<Uint8>,
+              int,
+            )
+          >('crispembed_ar_morph_disambig_open'),
+      _disambiguate = library
+          .lookupFunction<
+            Int32 Function(
+              Pointer<Void>,
+              Pointer<Void>,
+              Pointer<Uint8>,
+              Pointer<Uint32>,
+              Uint32,
+              Pointer<Uint32>,
+              Uint32,
+              Uint32,
+              Pointer<Pointer<Uint8>>,
+              Pointer<Size>,
+              Pointer<Uint8>,
+              Size,
+            ),
+            int Function(
+              Pointer<Void>,
+              Pointer<Void>,
+              Pointer<Uint8>,
+              Pointer<Uint32>,
+              int,
+              Pointer<Uint32>,
+              int,
+              int,
+              Pointer<Pointer<Uint8>>,
+              Pointer<Size>,
+              Pointer<Uint8>,
+              int,
+            )
+          >('crispembed_ar_morph_disambiguate'),
+      _modelInfo = library
+          .lookupFunction<
+            Pointer<Uint8> Function(Pointer<Void>),
+            Pointer<Uint8> Function(Pointer<Void>)
+          >('crispembed_ar_morph_disambig_info'),
+      modelFree = library
+          .lookupFunction<
+            Void Function(Pointer<Void>),
+            void Function(Pointer<Void>)
+          >('crispembed_ar_morph_disambig_free'),
+      _enableDisambiguation = library
+          .lookupFunction<Int32 Function(), int Function()>(
+            'quds_arabic_morph_enable_disambiguation',
+          ),
       _malloc = library
           .lookupFunction<
             Pointer<Uint8> Function(Size),
@@ -378,7 +533,7 @@ final class _Bindings {
     final adapter = library.lookupFunction<Uint32 Function(), int Function()>(
       'quds_arabic_morph_adapter_version',
     );
-    if (abi() != 2 || adapter() != 1) {
+    if (abi() != 3 || adapter() != 2) {
       throw StateError('Unsupported Arabic morphology ABI.');
     }
     try {
@@ -411,6 +566,31 @@ final class _Bindings {
     int,
   )
   _analyzeCompact;
+  final Pointer<Void> Function(
+    Pointer<Uint8>,
+    Pointer<Uint8>,
+    Pointer<Uint8>,
+    int,
+  )
+  _openModel;
+  final int Function(
+    Pointer<Void>,
+    Pointer<Void>,
+    Pointer<Uint8>,
+    Pointer<Uint32>,
+    int,
+    Pointer<Uint32>,
+    int,
+    int,
+    Pointer<Pointer<Uint8>>,
+    Pointer<Size>,
+    Pointer<Uint8>,
+    int,
+  )
+  _disambiguate;
+  final Pointer<Uint8> Function(Pointer<Void>) _modelInfo;
+  final void Function(Pointer<Void>) modelFree;
+  final int Function() _enableDisambiguation;
   final void Function(Pointer<Uint8>) _bufferFree;
   final Pointer<Uint8> Function(Pointer<Void>) _info;
   final void Function(Pointer<Void>) free;
@@ -475,6 +655,146 @@ final class _Bindings {
   }
 
   String info(Pointer<Void> handle) => _cString(_info(handle));
+
+  /// Opens a disambiguation model bundle. CrispEmbed's disambiguator is
+  /// default-off (CRISPEMBED_AR_MORPH_DISAMBIG); the adapter switches it on
+  /// for this process unless the environment already sets it, so an
+  /// operator's CRISPEMBED_AR_MORPH_DISAMBIG=0 still wins.
+  (Pointer<Void>, String) openModel(String manifest, String manifestSha256) {
+    _enableDisambiguation();
+    _error[0] = 0;
+    final handle = _withString(
+      manifest,
+      (m) => _withString(
+        manifestSha256,
+        (s) => _openModel(m, s, _error, _errorCapacity),
+      ),
+    );
+    return (handle, _cString(_error, _errorCapacity));
+  }
+
+  String modelInfo(Pointer<Void> model) => _cString(_modelInfo(model));
+
+  /// One disambiguation buffer for whole sentences ([lengths] words each),
+  /// split into native calls below the adapter's allocation limit and
+  /// joined: the compact records of every word, then their scores.
+  Uint8List disambiguate(
+    Pointer<Void> handle,
+    Pointer<Void> model,
+    List<String> words,
+    List<int> lengths,
+  ) {
+    final encoded = [for (final word in words) utf8.encode(word)];
+    final records = BytesBuilder(copy: false);
+    final scores = BytesBuilder(copy: false);
+    var word = 0;
+    var sentence = 0;
+    while (sentence < lengths.length) {
+      var end = sentence;
+      var bytes = 0;
+      var count = 0;
+      while (end < lengths.length) {
+        var size = 0;
+        for (var i = 0; i < lengths[end]; i++) {
+          size += encoded[word + count + i].length + 4;
+        }
+        if (end > sentence &&
+            bytes + size + 4 * (end - sentence + 1) >= _maxAllocation) {
+          break;
+        }
+        bytes += size;
+        count += lengths[end];
+        end++;
+      }
+      final part = _disambiguateChunk(
+        handle,
+        model,
+        encoded.sublist(word, word + count),
+        lengths.sublist(sentence, end),
+      );
+      final data = ByteData.sublistView(part);
+      // AMC1 n | records | AMS1 n | scores
+      var at = 8;
+      for (var i = 0; i < count; i++) {
+        at += 8 + data.getUint32(at + 4, Endian.little);
+      }
+      records.add(Uint8List.sublistView(part, 8, at));
+      scores.add(Uint8List.sublistView(part, at + 8));
+      word += count;
+      sentence = end;
+    }
+    final header = ByteData(8)
+      ..setUint32(0, _compactMagic, Endian.little)
+      ..setUint32(4, words.length, Endian.little);
+    final middle = ByteData(8)
+      ..setUint32(0, _scoresMagic, Endian.little)
+      ..setUint32(4, words.length, Endian.little);
+    return (BytesBuilder(copy: false)
+          ..add(header.buffer.asUint8List())
+          ..add(records.takeBytes())
+          ..add(middle.buffer.asUint8List())
+          ..add(scores.takeBytes()))
+        .takeBytes();
+  }
+
+  Uint8List _disambiguateChunk(
+    Pointer<Void> handle,
+    Pointer<Void> model,
+    List<Uint8List> words,
+    List<int> lengths,
+  ) {
+    final total = words.fold<int>(0, (sum, w) => sum + w.length);
+    if (total + 4 * words.length + 4 * lengths.length >= _maxAllocation) {
+      throw StateError('A sentence is too long to disambiguate.');
+    }
+    final text = _allocate(total == 0 ? 1 : total);
+    Pointer<Uint32> wordLengths = nullptr;
+    Pointer<Uint32> sentenceLengths = nullptr;
+    try {
+      wordLengths = _allocate(4 * (words.isEmpty ? 1 : words.length)).cast();
+      sentenceLengths = _allocate(4 * lengths.length).cast();
+      var at = 0;
+      final view = text.asTypedList(total == 0 ? 1 : total);
+      for (var i = 0; i < words.length; i++) {
+        view.setAll(at, words[i]);
+        at += words[i].length;
+        wordLengths[i] = words[i].length;
+      }
+      for (var i = 0; i < lengths.length; i++) {
+        sentenceLengths[i] = lengths[i];
+      }
+      _error[0] = 0;
+      final status = _disambiguate(
+        handle,
+        model,
+        text,
+        wordLengths,
+        words.length,
+        sentenceLengths,
+        lengths.length,
+        _compactDedup,
+        _out,
+        _outLength,
+        _error,
+        _errorCapacity,
+      );
+      if (status != 0) {
+        throw StateError(
+          'disambiguation failed ($status): ${_cString(_error, _errorCapacity)}',
+        );
+      }
+      final output = _out.value;
+      try {
+        return Uint8List.fromList(output.asTypedList(_outLength.value));
+      } finally {
+        _bufferFree(output);
+      }
+    } finally {
+      _free(text);
+      if (wordLengths != nullptr) _free(wordLengths.cast());
+      if (sentenceLengths != nullptr) _free(sentenceLengths.cast());
+    }
+  }
 
   /// The compact results of [words] in the analyzer's batch format (`AMC1`,
   /// word count, per-word status and record; duplicate analyses dropped),

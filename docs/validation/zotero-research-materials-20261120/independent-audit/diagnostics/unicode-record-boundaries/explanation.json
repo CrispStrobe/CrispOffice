@@ -1,0 +1,31 @@
+{
+  "cause": "The independent auditor used str.splitlines(), which splits Unicode NEL/LINE SEPARATOR/PARAGRAPH SEPARATOR inside valid JSON string values. NDJSON records are separated by physical LF bytes. The primary runner already uses physical stream iteration.",
+  "physical_records_all_valid_json": true,
+  "record_count": 683,
+  "affected_test_starts": [
+    {
+      "test_id": 49,
+      "name": "rejects unsafe filename \"next\u0085line.txt\" before snapshotting",
+      "unicode_line_separator_codepoints": [
+        "U+0085"
+      ]
+    },
+    {
+      "test_id": 50,
+      "name": "rejects unsafe filename \"separator\u2028.txt\" before snapshotting",
+      "unicode_line_separator_codepoints": [
+        "U+2028"
+      ]
+    },
+    {
+      "test_id": 51,
+      "name": "rejects unsafe filename \"paragraph\u2029.txt\" before snapshotting",
+      "unicode_line_separator_codepoints": [
+        "U+2029"
+      ]
+    }
+  ],
+  "product_source_changed": false,
+  "tests_rerun": false,
+  "remediation": "Split the existing unchanged NDJSON log on physical LF only and retain every test name exactly."
+}

@@ -11,23 +11,28 @@ import 'morph_transport_stub.dart'
     as platform;
 
 /// [ArabicMorphology] backed by the native Camel Morph analyzer (a C++ port
-/// of camel_tools 1.6.0) over a verified, user-downloaded database.
+/// of camel_tools 1.6.0) over a verified, user-downloaded database. With a
+/// verified context disambiguation model ([disambiguator] or
+/// [loadDisambiguator]) it is also an [ArabicContextMorphology].
 ///
 /// One instance owns one worker (a persistent isolate natively, a module Web
 /// Worker in browsers) and should live as long as the database is installed;
 /// proofing providers are recreated per configuration, this object is not.
 /// [isAvailable] turns true once [load] has opened the database. Results are
 /// cached per session (bounded by [cacheWords] distinct words).
-final class CamelArabicMorphology implements ArabicMorphology {
+final class CamelArabicMorphology implements ArabicContextMorphology {
   CamelArabicMorphology({
     required MorphDatabase database,
+    MorphDatabase? disambiguator,
     String? nativeLibraryPath,
     Uri? workerUrl,
     ArabicMorphTransport? transport,
     this.cacheWords = 4096,
     this.batchWords = 512,
+    this.cacheSentences = 1024,
   }) : bundle = database.bundle,
        _database = database,
+       _pendingModel = disambiguator,
        _transport =
            transport ??
            platform.createArabicMorphTransport(
@@ -54,12 +59,23 @@ final class CamelArabicMorphology implements ArabicMorphology {
   /// the worker or builds one huge message.
   final int batchWords;
 
+  /// Sentences whose readings are kept (least recently used dropped first);
+  /// proofing checks the same paragraph again after every edit elsewhere.
+  final int cacheSentences;
+
   final LinkedHashMap<String, List<ArabicAnalysis>> _cache = LinkedHashMap();
+  final LinkedHashMap<String, List<ArabicContextReading>> _readings =
+      LinkedHashMap();
   Future<void>? _loading;
   bool _available = false;
   bool _disposed = false;
   Object? _failure;
   Map<String, Object?>? _info;
+  MorphDatabase? _pendingModel;
+  Future<void>? _loadingDisambiguator;
+  bool _canDisambiguate = false;
+  Object? _disambiguatorFailure;
+  Map<String, Object?>? _disambiguatorInfo;
 
   @override
   bool get isAvailable => _available && !_disposed;
@@ -74,6 +90,117 @@ final class CamelArabicMorphology implements ArabicMorphology {
   /// Opens the database once; later calls return the same future. Completes
   /// normally even when loading fails ([failure] tells why).
   Future<void> load() => _loading ??= _open();
+
+  @override
+  bool get canDisambiguate => _canDisambiguate && isAvailable;
+
+  /// Why the disambiguation model could not be loaded, if it was not.
+  Object? get disambiguatorFailure => _disambiguatorFailure;
+
+  /// The model's description (format, hashes, tag and lexeme counts,
+  /// training metadata); null until loaded.
+  Map<String, Object?>? get disambiguatorInfo => _disambiguatorInfo;
+
+  /// Opens the context disambiguation model [model] once the database is
+  /// open; later calls return the same future until a failure
+  /// ([disambiguatorFailure]), after which a call retries.
+  Future<void> loadDisambiguator(MorphDatabase model) =>
+      _loadingDisambiguator ??= () async {
+        await load();
+        await _openModel(model);
+      }();
+
+  Future<void> _openModel(MorphDatabase model) async {
+    if (!isAvailable) {
+      _loadingDisambiguator = null;
+      return;
+    }
+    try {
+      _disambiguatorInfo = await _transport.openDisambiguator(model);
+      _canDisambiguate = !_disposed;
+      _disambiguatorFailure = null;
+    } on Object catch (error) {
+      _disambiguatorFailure = error;
+      _canDisambiguate = false;
+      _loadingDisambiguator = null;
+    }
+  }
+
+  @override
+  Future<List<List<ArabicContextReading>>> disambiguate(
+    List<List<String>> sentences,
+  ) async {
+    await load();
+    final pending = _loadingDisambiguator;
+    if (pending != null) await pending;
+    if (!canDisambiguate || sentences.isEmpty) {
+      return const <List<ArabicContextReading>>[];
+    }
+    final out = List<List<ArabicContextReading>?>.filled(
+      sentences.length,
+      null,
+    );
+    final missing = <int>[];
+    final repeats = <int, int>{}; // sentence -> earlier identical one
+    final firstOf = <String, int>{};
+    for (var i = 0; i < sentences.length; i++) {
+      final key = sentences[i].join('\u0000');
+      final cached = _readings.remove(key);
+      if (cached != null) {
+        _readings[key] = cached;
+        out[i] = cached;
+      } else if (firstOf[key] case final first?) {
+        repeats[i] = first;
+      } else {
+        firstOf[key] = i;
+        missing.add(i);
+      }
+    }
+    // Batches of whole sentences, about batchWords tokens each.
+    var start = 0;
+    while (start < missing.length) {
+      var end = start;
+      var tokens = 0;
+      while (end < missing.length &&
+          (end == start ||
+              tokens + sentences[missing[end]].length <= batchWords)) {
+        tokens += sentences[missing[end]].length;
+        end++;
+      }
+      final batch = [for (final i in missing.sublist(start, end)) sentences[i]];
+      final List<List<ArabicContextReading>> readings;
+      try {
+        readings = await _transport.disambiguate(batch);
+      } on ArabicMorphUnavailableException catch (error) {
+        _failure = error;
+        _available = false;
+        _canDisambiguate = false;
+        return const <List<ArabicContextReading>>[];
+      }
+      if (readings.length != batch.length) {
+        throw const FormatException(
+          'Malformed Arabic disambiguation response.',
+        );
+      }
+      for (var j = 0; j < batch.length; j++) {
+        if (readings[j].length != batch[j].length) {
+          throw const FormatException(
+            'Malformed Arabic disambiguation response.',
+          );
+        }
+        out[missing[start + j]] = readings[j];
+        if (cacheSentences > 0) {
+          _readings[batch[j].join('\u0000')] = readings[j];
+          while (_readings.length > cacheSentences) {
+            _readings.remove(_readings.keys.first);
+          }
+        }
+      }
+      start = end;
+    }
+    repeats.forEach((i, first) => out[i] = out[first]);
+    return [for (final r in out) r!];
+  }
 
   Future<void> _open() async {
     final database = _database;
@@ -90,6 +217,11 @@ final class CamelArabicMorphology implements ArabicMorphology {
     } on Object catch (error) {
       _failure = error;
       _available = false;
+    }
+    final model = _pendingModel;
+    _pendingModel = null;
+    if (model != null && _available) {
+      await (_loadingDisambiguator ??= _openModel(model));
     }
   }
 
@@ -160,14 +292,19 @@ final class CamelArabicMorphology implements ArabicMorphology {
   /// Number of words currently cached (diagnostics and tests).
   int get cachedWords => _cache.length;
 
-  /// Drops the session cache (the analyzer stays open).
-  void clearCache() => _cache.clear();
+  /// Drops the session caches (the analyzer stays open).
+  void clearCache() {
+    _cache.clear();
+    _readings.clear();
+  }
 
   Future<void> dispose() async {
     if (_disposed) return;
     _disposed = true;
     _available = false;
+    _canDisambiguate = false;
     _cache.clear();
+    _readings.clear();
     await _transport.dispose();
   }
 }

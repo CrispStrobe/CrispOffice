@@ -1,10 +1,10 @@
 {
   "component": {
-    "commit": "0ed76631843cadd9b5c8296f25ed8a414d8f51db",
+    "commit": "3bab324832ea911c2b1260a0d50f0ed898f47950",
     "files": {
       "LICENSE": "a70d0ab5fb2dbab83d1a63071776891e6dfc7ba6e3063b3940c21274c1225a3e",
-      "src/arabic_morph.cpp": "fff60440de9faaff4f5a5a0ec2c2b593a17eea8f94b6e55231d4059f361e910f",
-      "src/arabic_morph.h": "98a2d0e6ec9ffed02c7d63e8e19c0ce7a46ed995859c2085fecad5b10620bc4c",
+      "src/arabic_morph.cpp": "c1547caf39aab9f74834cba9c782498e876357ba07ec6487d55b928c03f35400",
+      "src/arabic_morph.h": "cb7239fd6c727fd71d6f52240c380dd0914e6fb52418a7142bb7f8f81bcb0ed7",
       "src/arabic_morph_tables.h": "72f9bf25aaaa0aa69b0fccfde2f97e97468c0dc8a523f4e012310d9b3bb5c174",
       "src/core/env_gate.h": "2370e31636ea25bc1e5ca63e1e606f4cd3c07c65e0f4d1347b2ec6daf57eaa0e",
       "src/core/json.h": "7e72a6359897e9397e5bee3edf7563476fc4bd41516bf5245a16df50dc54c589",
@@ -36,16 +36,20 @@
     ],
     "license": "MIT",
     "name": "crispembed-ar-morph",
-    "pull_request": 255,
+    "pull_request": 261,
     "source": "https://github.com/CrispStrobe/CrispEmbed"
   },
   "data_notices": {
     "bundle": "huggingface.co/cstr/camel-morph-msa-v1.0@d5364e04af7a40b0c9044ed127606e585be15272/proofing-bin",
     "files": {
       "camel-morph-msa-LICENSE": "214965747a90efe3e5268d367192bb077f1101620662cba71d59d902000b2d94",
-      "camel-morph-msa-NOTICE": "ce2f9c051786a37e4eb72367e6a6c9ea256b702137d4187bb0bfbda38f860efd"
+      "camel-morph-msa-NOTICE": "ce2f9c051786a37e4eb72367e6a6c9ea256b702137d4187bb0bfbda38f860efd",
+      "camel-morph-msa-disambig-LICENSE": "ef2c6367af269181d259bbda4b6167684f85242bb04b28923f91e2861be4c695",
+      "camel-morph-msa-disambig-NOTICE": "12f44e5787019e5eb5595663cb7275408d961f430b74d108fa77006235e2638b"
     },
-    "license": "CC-BY-4.0"
+    "license": "CC-BY-4.0",
+    "model_bundle": "huggingface.co/cstr/camel-morph-msa-disambig@07fd9e65200a3ea92a081efa9b0714817178df5f/bigram-v1",
+    "model_license": "CC-BY-SA-4.0"
   },
   "notices": {
     "CPython-LICENSE": "3b2f81fe21d181c499c59a256c8e1968455d6689d269aa85373bfb6af41da3bf",
@@ -55,6 +59,6 @@
     "Unicode-LICENSE.txt": "e7a93b009565cfce55919a381437ac4db883e9da2126fa28b91d12732bc53d96",
     "camel_tools-LICENSE": "7a3ef160e8957145490ff66591aa9cb8cb08601a2e9fb1673c5fb7af74c727f2"
   },
-  "policy": "MIT adapter and MIT CrispEmbed analyzer (a port of MIT camel_tools); Ryu under the Apache-2.0 option of its Apache-2.0/BSL-1.0 dual licence; Unicode/CPython character data under their notices. No GPL/LGPL code. The Camel Morph database (CC BY 4.0) is user-downloaded data, never part of the binary.",
+  "policy": "MIT adapter and MIT CrispEmbed analyzer (a port of MIT camel_tools); Ryu under the Apache-2.0 option of its Apache-2.0/BSL-1.0 dual licence; Unicode/CPython character data under their notices. No GPL/LGPL code. The Camel Morph database (CC BY 4.0) and its context model (CC BY-SA 4.0) are user-downloaded data, never part of the binary.",
   "schema_version": 1
 }

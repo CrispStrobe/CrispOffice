@@ -1494,6 +1494,46 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
                           ),
                         ),
                         SwitchListTile(
+                          key: const ValueKey<String>(
+                            'studio-setting-arabic-context',
+                          ),
+                          contentPadding: EdgeInsets.zero,
+                          title: Text(
+                            _t(
+                              'Arabic grammar: read words in context',
+                              StudioStrings.de(
+                                'Arabic grammar: read words in context',
+                              ),
+                              'القواعد العربية: قراءة الكلمات في سياقها',
+                            ),
+                          ),
+                          subtitle: Text(
+                            _t(
+                              'With the Arabic context model installed, grammar '
+                                  'rules rely on the clearly most likely reading '
+                                  'of each word. Off: a rule stays silent '
+                                  'whenever any reading would fit.',
+                              StudioStrings.de(
+                                'With the Arabic context model installed, '
+                                'grammar rules rely on the clearly most likely '
+                                'reading of each word. Off: a rule stays silent '
+                                'whenever any reading would fit.',
+                              ),
+                              'عند تثبيت نموذج السياق العربي تعتمد قواعد النحو '
+                                  'على القراءة الأرجح بوضوح لكل كلمة. عند '
+                                  'الإيقاف: تسكت القاعدة إذا صلحت أي قراءة.',
+                            ),
+                          ),
+                          value:
+                              studioArabicMorphHost.grammarReading ==
+                              ArabicGrammarReading.contextual,
+                          onChanged: (value) => changed(
+                            () => studioArabicMorphHost.grammarReading = value
+                                ? ArabicGrammarReading.contextual
+                                : ArabicGrammarReading.allAnalyses,
+                          ),
+                        ),
+                        SwitchListTile(
                           contentPadding: EdgeInsets.zero,
                           title: Text(_strings.showRibbonLabels),
                           value: _ribbonPreferences.showGroupLabels,
@@ -6744,7 +6784,10 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   /// otherwise [UnavailableArabicMorphology], so morphology-based rules stay
   /// silent.
   ArabicWritingRulesProvider _arabicWritingRules(ArabicMorphology morphology) =>
-      ArabicWritingRulesProvider(morphology: morphology);
+      ArabicWritingRulesProvider(
+        morphology: morphology,
+        grammarReading: studioArabicMorphHost.grammarReading,
+      );
 
   String? _arabicMorphKey;
 
@@ -9247,18 +9290,8 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     final int nextY = y == null
         ? t.y
         : ((_slides.presentation.slideHeight - t.cy) * y).round();
-    _slides.applyTransform(
-      shape,
-      PmlTransform(
-        x: nextX,
-        y: nextY,
-        cx: t.cx,
-        cy: t.cy,
-        rot: t.rot,
-        flipH: t.flipH,
-        flipV: t.flipV,
-      ),
-    );
+    _slides.applyTransform(shape, t.copyWith(x: nextX, y: nextY));
+
     _slides.refresh();
   }
 

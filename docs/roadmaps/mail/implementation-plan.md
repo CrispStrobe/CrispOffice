@@ -335,10 +335,17 @@ baseline `479e1e03` identity.
 **Foreground increment:** [recipient groups and Reply all](recipients-and-reply-all.md)
 now provide bounded To/Cc/Bcc composition, explicit-envelope Bcc separation,
 visible-participant replies and retained uncertain drafts in the Studio host.
-The pure draft model is independent of the widget surface. This does not complete
-the durable composition/outbox, rich-body, attachment or live-provider gates below;
-executed subset and dependency limitations are recorded with the increment.
+The later [outgoing attachment increment](attachments.md) adds immutable local
+file snapshots, atomic/cancellable selection, ten-file/10 MiB limits, exact
+base64 parts and ASCII-safe RFC 2231 filenames to that shared foreground path.
+The pure draft model is independent of the widget surface. Current locked-graph
+qualification is recorded with the attachment increment, separately from the
+earlier recipient subset. Durable composition/outbox, local autosave, richer
+bodies, automatic source-attachment forwarding and live-provider gates remain
+open; this does not complete M07 or the document-snapshot work in M08.
 
+- [x] Add bounded outgoing file attachments to the shared Studio foreground
+  composer and retain their immutable bytes across rejected/uncertain attempts.
 - [ ] Typed draft model, identity/To/Cc/Bcc, subject, attachments, reply/reply-all/forward and local autosave.
 - [ ] Implement a mail-body custom RenderBox editor with IME, selection, undo, bidi and accessibility, reusing approved Quds input/command primitives where appropriate.
 - [ ] Initial canonical body supports paragraphs, line breaks, emphasis, lists and links; add tables/inline images only with serializer/round-trip tests.

@@ -57,7 +57,7 @@ class SlideDeserializer {
             relId = reader.attributeValue(a);
           }
         }
-        pres.slides.add(PmlSlide(id: id));
+        pres.slides.add(PmlSlide(id: id, backgroundShapesResolved: true));
         final PackageRelationship? rel = relId == null
             ? null
             : presentationRels.byId(relId);
@@ -89,7 +89,11 @@ class SlideDeserializer {
       source.root!,
       slideRelationshipIssue: slideRelationshipIssue,
     );
-    final _SlideTemplates templates = _SlideTemplates(package);
+    final _SlideTemplates templates = _SlideTemplates(
+      package,
+      slideWidth: pres.slideWidth,
+      slideHeight: pres.slideHeight,
+    );
     final String? masterBg = _masterBackground(
       package,
       templates.defaultColors,
@@ -132,6 +136,16 @@ class SlideDeserializer {
             layout.placeholders,
             layout.master?.placeholders ?? const <PmlShape>[],
           ]);
+          final PmlShape? slideBackgroundImage = _backgroundImageShape(
+            slideXml,
+            package,
+            package.relationshipsFor(uri),
+            pres.slideWidth,
+            pres.slideHeight,
+          );
+          if (slideBackgroundImage != null) {
+            pres.slides[i].backgroundShapes.insert(0, slideBackgroundImage);
+          }
           pres.slides[i].backgroundShapes.addAll(<PmlShape>[
             if (pres.slides[i].showMasterShapes && layout.showsMasterShapes)
               for (final PmlShape shape
@@ -217,6 +231,22 @@ class SlideDeserializer {
   PmlPresentation readBytes(Uint8List bytes, {String? password}) =>
       read(OpcPackage.openBytes(bytes, password: password));
 
+  /// `showMasterSp` hides master decorations without hiding layout shapes or
+  /// the editable slide content. XML Schema booleans default to true here.
+
+  static bool _showsMasterShapes(String xml) {
+    final XmlPullReader reader = XmlPullReader(xml);
+    while (reader.next()) {
+      if (reader.eventType == XmlEventType.startElement &&
+          reader.namespaceUri == OfficeNamespaces.p &&
+          (reader.localName == 'sld' || reader.localName == 'sldLayout')) {
+        final String? value = reader.getAttribute('showMasterSp')?.trim();
+        return value != '0' && value != 'false';
+      }
+    }
+    return true;
+  }
+
   static bool _slideIsHidden(String xml) {
     final int start = xml.indexOf('<p:sld');
     if (start < 0) {
@@ -230,38 +260,73 @@ class SlideDeserializer {
     return RegExp(r'''\bshow\s*=\s*["'](?:0|false)["']''').hasMatch(attrs);
   }
 
-  /// `showMasterSp` hides master decorations without hiding layout shapes or
-  /// the editable slide content. XML Schema booleans default to true here.
-  static bool _showsMasterShapes(String xml) {
-    final XmlPullReader reader = XmlPullReader(xml);
-    while (reader.next()) {
-      if (reader.eventType == XmlEventType.startElement) {
-        final String? value = reader.getAttribute('showMasterSp')?.trim();
-        return value != '0' && value != 'false';
-      }
-    }
-    return true;
-  }
-
-  /// Resolves a solid `p:bg` fill to `RRGGBB`, honoring theme variants.
-  static String? _backgroundOf(String xml, Map<String, String> colors) {
+  /// Converts a `p:bg/a:blipFill` into a full-slide picture decoration.
+  static PmlShape? _backgroundImageShape(
+    String xml,
+    OpcPackage package,
+    RelationshipCollection rels,
+    int width,
+    int height,
+  ) {
     final XmlPullReader reader = XmlPullReader(xml);
     var inBg = false;
-    var fillPending = false;
+    var inFill = false;
     while (reader.next()) {
       if (reader.eventType == XmlEventType.endElement) {
         if (reader.localName == 'bg' || reader.localName == 'bgPr') {
           inBg = false;
-          fillPending = false;
+          inFill = false;
+        } else if (reader.localName == 'blipFill') {
+          inFill = false;
         }
         continue;
       }
       if (reader.eventType != XmlEventType.startElement) continue;
       if (reader.localName == 'bg' || reader.localName == 'bgPr') {
         inBg = true;
-      } else if (reader.localName == 'solidFill' && inBg) {
-        fillPending = true;
-      } else if (fillPending &&
+      } else if (inBg && reader.localName == 'blipFill') {
+        inFill = true;
+      } else if (inBg && inFill && reader.localName == 'blip') {
+        final String? rid =
+            reader.getAttribute('embed') ?? reader.getAttribute('id');
+        final PackageRelationship? rel = rid == null ? null : rels.byId(rid);
+        if (rel == null) continue;
+        final PackagePart? part = package.getPart(rels.resolve(rel));
+        if (part == null) continue;
+        return PmlShape(
+          id: 1,
+          name: 'Background',
+          fillColor: '',
+          transform: PmlTransform(x: 0, y: 0, cx: width, cy: height),
+          visual: OfficeVisual(
+            kind: OfficeVisualKind.picture,
+            title: 'Background',
+            imageBytes: part.readBytes(),
+            width: width / 12700,
+            height: height / 12700,
+            picture: PictureAdjust(),
+          ),
+        );
+      }
+    }
+    return null;
+  }
+
+  /// Resolves a solid `p:bg` fill to `RRGGBB`, honoring theme variants.
+  static String? _backgroundOf(String xml, Map<String, String> colors) {
+    final XmlPullReader reader = XmlPullReader(xml);
+    var inBg = false;
+    while (reader.next()) {
+      if (reader.eventType == XmlEventType.endElement) {
+        if (reader.localName == 'bg' || reader.localName == 'bgPr') {
+          inBg = false;
+        }
+        continue;
+      }
+      if (reader.eventType != XmlEventType.startElement) continue;
+      if (reader.localName == 'bg' || reader.localName == 'bgPr') {
+        inBg = true;
+      } else if (inBg &&
           const <String>{
             'srgbClr',
             'schemeClr',
@@ -289,12 +354,10 @@ class SlideDeserializer {
       }
       final XmlPullReader reader = XmlPullReader(part.readText());
       var inBg = false;
-      var fillPending = false;
       while (reader.next()) {
         if (reader.eventType == XmlEventType.endElement) {
           if (reader.localName == 'bg' || reader.localName == 'bgPr') {
             inBg = false;
-            fillPending = false;
           }
           continue;
         }
@@ -304,8 +367,7 @@ class SlideDeserializer {
         if (reader.localName == 'bg' || reader.localName == 'bgPr') {
           inBg = true;
         } else if (reader.localName == 'solidFill' && inBg) {
-          fillPending = true;
-        } else if (fillPending &&
+        } else if (inBg &&
             const <String>{
               'srgbClr',
               'schemeClr',
@@ -381,6 +443,7 @@ class _SlideTemplate {
     this.background,
     this.inheritsMasterBackground = false,
     this.showsMasterShapes = true,
+
     this.master,
   });
 
@@ -391,19 +454,25 @@ class _SlideTemplate {
   final String? background;
   final bool inheritsMasterBackground;
   final bool showsMasterShapes;
+
   final _SlideTemplate? master;
 }
 
 /// Follows slide → `slideLayout` → `slideMaster` → `theme` relationships,
 /// parsing each part once.
 class _SlideTemplates {
-  _SlideTemplates(this.package)
-    : defaultColors = _colorMap(
-        package.getPart('/ppt/theme/theme1.xml')?.readText(),
-        null,
-      );
+  _SlideTemplates(
+    this.package, {
+    this.slideWidth = 12192000,
+    this.slideHeight = 6858000,
+  }) : defaultColors = _colorMap(
+         package.getPart('/ppt/theme/theme1.xml')?.readText(),
+         null,
+       );
 
   final OpcPackage package;
+  final int slideWidth;
+  final int slideHeight;
   final Map<String, String> defaultColors;
   final Map<String, _SlideTemplate?> _layouts = <String, _SlideTemplate?>{};
   final Map<String, _SlideTemplate?> _masters = <String, _SlideTemplate?>{};
@@ -472,10 +541,11 @@ class _SlideTemplates {
         for (final PmlShape shape in shapes)
           if (shape.placeholder && positioned.contains(shape)) shape,
       ],
-      decorations: _decorations(shapes, package, uri),
+      decorations: _decorations(shapes, package, uri, background: background),
       background: background ?? master?.background,
       inheritsMasterBackground: background == null,
       showsMasterShapes: SlideDeserializer._showsMasterShapes(xml),
+
       master: master,
     );
   }
@@ -507,25 +577,39 @@ class _SlideTemplates {
         for (final PmlShape shape in shapes)
           if (shape.placeholder && positioned.contains(shape)) shape,
       ],
-      decorations: _decorations(shapes, package, uri),
+      decorations: _decorations(
+        shapes,
+        package,
+        uri,
+        background: SlideDeserializer._backgroundOf(xml, colors),
+      ),
       background: SlideDeserializer._backgroundOf(xml, colors),
     );
   }
 
-  static List<PmlShape> _decorations(
+  List<PmlShape> _decorations(
     List<PmlShape> shapes,
     OpcPackage package,
-    String uri,
-  ) {
+    String uri, {
+    String? background,
+  }) {
     final List<PmlShape> decorations = <PmlShape>[
       for (final PmlShape shape in shapes)
         if (!shape.placeholder) shape,
     ];
-    SlideDeserializer._bindShapeMedia(
-      decorations,
-      package,
-      package.relationshipsFor(uri),
-    );
+    final RelationshipCollection rels = package.relationshipsFor(uri);
+    SlideDeserializer._bindShapeMedia(decorations, package, rels);
+    final String? xml = package.getPart(uri)?.readText();
+    if (xml != null) {
+      final PmlShape? image = SlideDeserializer._backgroundImageShape(
+        xml,
+        package,
+        rels,
+        slideWidth,
+        slideHeight,
+      );
+      if (image != null) decorations.insert(0, image);
+    }
     return decorations;
   }
 

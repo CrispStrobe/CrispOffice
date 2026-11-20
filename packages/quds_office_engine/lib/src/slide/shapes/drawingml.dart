@@ -244,14 +244,14 @@ List<PmlShape> parseSlideShapes(
         cx: current.transform.cx,
         cy: current.transform.cy,
         rot: rot,
-        flipH: const {
-          '1',
-          'true',
-        }.contains(reader.getAttribute('flipH')?.trim()),
-        flipV: const {
-          '1',
-          'true',
-        }.contains(reader.getAttribute('flipV')?.trim()),
+        flipH: switch (reader.getAttribute('flipH')?.trim()) {
+          '1' || 'true' => true,
+          _ => false,
+        },
+        flipV: switch (reader.getAttribute('flipV')?.trim()) {
+          '1' || 'true' => true,
+          _ => false,
+        },
       );
       final OfficeVisual? visual = current.visual;
       if (visual != null) {
@@ -289,6 +289,17 @@ List<PmlShape> parseSlideShapes(
         'upArrow' => PmlShapePreset.upArrow,
         'leftArrow' => PmlShapePreset.leftArrow,
         'rightArrow' => PmlShapePreset.rightArrow,
+        'diamond' || 'flowChartDecision' => PmlShapePreset.diamond,
+        'hexagon' => PmlShapePreset.hexagon,
+        'pentagon' || 'homePlate' => PmlShapePreset.pentagon,
+        'chevron' => PmlShapePreset.chevron,
+        'parallelogram' || 'flowChartData' => PmlShapePreset.parallelogram,
+        'trapezoid' => PmlShapePreset.trapezoid,
+        'round1Rect' ||
+        'round2SameRect' ||
+        'round2DiagRect' ||
+        'plaque' ||
+        'flowChartTerminator' => PmlShapePreset.roundRect,
         _ => PmlShapePreset.rect,
       };
     } else if (reader.localName == 'bodyPr' && current != null) {
@@ -791,8 +802,12 @@ void _writeSlideShape(XmlWriter w, PmlShape shape) {
   if (shape.transform.rot != 0) {
     w.writeAttribute('rot', '${shape.transform.rot}');
   }
-  if (shape.transform.flipH) w.writeAttribute('flipH', '1');
-  if (shape.transform.flipV) w.writeAttribute('flipV', '1');
+  if (shape.transform.flipH) {
+    w.writeAttribute('flipH', '1');
+  }
+  if (shape.transform.flipV) {
+    w.writeAttribute('flipV', '1');
+  }
 
   /// writeEmptyElement API.
   w.writeEmptyElement(
@@ -832,6 +847,12 @@ void _writeSlideShape(XmlWriter w, PmlShape shape) {
         PmlShapePreset.upArrow => 'upArrow',
         PmlShapePreset.leftArrow => 'leftArrow',
         PmlShapePreset.rightArrow => 'rightArrow',
+        PmlShapePreset.diamond => 'diamond',
+        PmlShapePreset.hexagon => 'hexagon',
+        PmlShapePreset.pentagon => 'pentagon',
+        PmlShapePreset.chevron => 'chevron',
+        PmlShapePreset.parallelogram => 'parallelogram',
+        PmlShapePreset.trapezoid => 'trapezoid',
         PmlShapePreset.rect => 'rect',
       },
     },

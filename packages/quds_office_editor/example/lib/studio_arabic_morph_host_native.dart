@@ -33,17 +33,93 @@ class NativeStudioArabicMorphHost extends StudioArabicMorphHost {
     this.libraryPath,
     MorphInstaller? installer,
     this.bundle = camelMorphMsaProofingBin,
+    this.modelBundle = camelMorphMsaDisambig,
   }) : _installer = installer ?? MorphInstaller(root),
-       _status = StudioArabicMorphStatus(bundle: bundle);
+       _status = StudioArabicMorphStatus(bundle: bundle),
+       _modelStatus = StudioArabicMorphStatus(bundle: modelBundle);
 
   final MorphInstaller _installer;
   final String? libraryPath;
   final MorphBundleDownload bundle;
+
+  /// The context disambiguation model installed next to [bundle].
+  final MorphBundleDownload modelBundle;
   StudioArabicMorphStatus _status;
+  StudioArabicMorphStatus _modelStatus;
   CamelArabicMorphology? _morphology;
 
   @override
   StudioArabicMorphStatus get status => _status;
+
+  @override
+  StudioArabicMorphStatus get modelStatus => _modelStatus;
+
+  void _setModel(StudioArabicMorphStatus next) {
+    _modelStatus = next;
+    notifyListeners();
+  }
+
+  /// Loads the installed model [files] into the current analyzer.
+  Future<void> _activateModel(MorphDatabaseFiles files) async {
+    final morphology = _morphology;
+    final location = File(files.manifestPath).parent.path;
+    _setModel(
+      StudioArabicMorphStatus(
+        bundle: modelBundle,
+        installed: true,
+        location: location,
+      ),
+    );
+    if (morphology == null) return; // loaded with the database
+    await morphology.loadDisambiguator(files);
+    if (!identical(_morphology, morphology)) return;
+    _setModel(
+      StudioArabicMorphStatus(
+        bundle: modelBundle,
+        installed: true,
+        loaded: morphology.canDisambiguate,
+        location: location,
+        problem: morphology.disambiguatorFailure == null
+            ? null
+            : 'Installed, but the context model could not load: '
+                  '${morphology.disambiguatorFailure}',
+      ),
+    );
+  }
+
+  @override
+  Future<void> installModel({
+    void Function(int received, int total)? onProgress,
+    StudioHunspellCancellation? cancellation,
+  }) async {
+    final cancel = MorphInstallCancellation();
+    if (cancellation?.isCancelled ?? false) cancel.cancel();
+    cancellation?.addListener(cancel.cancel);
+    final MorphDatabaseFiles files;
+    try {
+      files = await _installer.install(
+        modelBundle,
+        onProgress: onProgress,
+        cancellation: cancel,
+      );
+    } on Object catch (error) {
+      _setModel(
+        StudioArabicMorphStatus(bundle: modelBundle, problem: '$error'),
+      );
+      rethrow;
+    }
+    await _activateModel(files);
+  }
+
+  @override
+  Future<void> removeModel() async {
+    _setModel(StudioArabicMorphStatus(bundle: modelBundle));
+    await _installer.remove(modelBundle);
+    // The analyzer keeps a loaded model; reopen the database without it.
+    final files = await _installer.installed(bundle);
+    await _deactivate();
+    if (files != null) await _activate(files);
+  }
 
   @override
   ArabicMorphology get morphology =>
@@ -58,8 +134,17 @@ class NativeStudioArabicMorphHost extends StudioArabicMorphHost {
   /// the outcome; the previous analyzer, if any, is disposed.
   Future<void> _activate(MorphDatabaseFiles files) async {
     final previous = _morphology;
+    MorphDatabaseFiles? model;
+    try {
+      model = await _installer.installed(modelBundle);
+    } on Object catch (error) {
+      _setModel(
+        StudioArabicMorphStatus(bundle: modelBundle, problem: '$error'),
+      );
+    }
     final morphology = _morphology = CamelArabicMorphology(
       database: files,
+      disambiguator: model,
       nativeLibraryPath: libraryPath,
     );
     final location = File(files.manifestPath).parent.path;
@@ -73,6 +158,18 @@ class NativeStudioArabicMorphHost extends StudioArabicMorphHost {
     unawaited(previous?.dispose());
     await morphology.load();
     if (!identical(_morphology, morphology)) return;
+    if (model != null) {
+      _modelStatus = StudioArabicMorphStatus(
+        bundle: modelBundle,
+        installed: true,
+        loaded: morphology.canDisambiguate,
+        location: File(model.manifestPath).parent.path,
+        problem: morphology.disambiguatorFailure == null
+            ? null
+            : 'Installed, but the context model could not load: '
+                  '${morphology.disambiguatorFailure}',
+      );
+    }
     _set(
       StudioArabicMorphStatus(
         bundle: bundle,
@@ -98,10 +195,16 @@ class NativeStudioArabicMorphHost extends StudioArabicMorphHost {
     try {
       // Earlier bundles (the 78 MB noprob text database) are replaced, not
       // migrated: they are removed and the user downloads this one.
-      await _installer.removeOtherBundles(bundle);
+      await _installer.removeOtherBundles(bundle, alsoKeep: [modelBundle]);
       final files = await _installer.installed(bundle);
       if (files == null) {
         await _deactivate();
+        final model = await _installer.installed(modelBundle);
+        _modelStatus = StudioArabicMorphStatus(
+          bundle: modelBundle,
+          installed: model != null,
+          location: model == null ? null : File(model.manifestPath).parent.path,
+        );
         _set(StudioArabicMorphStatus(bundle: bundle));
       } else if (_morphology == null) {
         await _activate(files);

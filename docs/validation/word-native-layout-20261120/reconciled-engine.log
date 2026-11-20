@@ -1,0 +1,59 @@
+00:00 +0: loading test/word_font_line_metrics_test.dart
+00:00 +0: test/word_font_line_metrics_test.dart: real font metrics prevent a spurious second page in 45-line text
+00:00 +1: test/word_font_line_metrics_test.dart: exact spacing changes pitch and places surplus above baseline
+00:00 +2: test/word_font_line_metrics_test.dart: multiple spacing changes pitch without shifting first baseline
+00:00 +3: test/word_font_line_metrics_test.dart: minimum spacing never shrinks natural type and aligns extra leading
+00:00 +4: test/word_paragraph_mark_layout_test.dart: empty paragraph uses the authored mark font instead of an invented 11pt run
+00:00 +5: test/word_paragraph_mark_layout_test.dart: empty paragraph uses the authored mark font instead of an invented 11pt run
+00:00 +6: test/word_paragraph_mark_layout_test.dart: mark resolves document defaults and paragraph style, not visible run overrides
+00:00 +7: test/word_paragraph_mark_layout_test.dart: mark metadata is independent in clones and survives three isolate saves
+00:00 +8: test/word_extended_revision_test.dart: run history does not override current properties; reject restores the previous set
+00:00 +9: test/word_extended_revision_test.dart: accept keeps current formatting and removes native history
+00:00 +10: test/word_extended_revision_test.dart: paragraph formatting imports current alignment and rejects previous spacing
+00:00 +11: test/slide_transform_orientation_test.dart: left alignment preserves each connector orientation
+00:00 +12: test/slide_transform_orientation_test.dart: left alignment preserves each connector orientation
+00:00 +13: test/word_extended_revision_test.dart: formatting history survives three direct saves
+00:00 +14: test/word_extended_revision_test.dart: formatting history survives three direct saves
+00:00 +15: test/word_extended_revision_test.dart: formatting history survives three direct saves
+00:00 +16: test/word_extended_revision_test.dart: formatting history survives three direct saves
+00:00 +17: test/word_extended_revision_test.dart: formatting history survives three direct saves
+00:00 +18: test/word_extended_revision_test.dart: formatting history survives three direct saves
+00:00 +19: test/word_extended_revision_test.dart: formatting history survives three direct saves
+00:00 +20: test/word_extended_revision_test.dart: formatting history survives three direct saves
+00:00 +21: test/slide_transform_orientation_test.dart: shapeGeometry x-only update preserves orientation through PPTX save
+00:00 +22: test/slide_transform_orientation_test.dart: shapeGeometry x-only update preserves orientation through PPTX save
+00:00 +23: test/slide_transform_orientation_test.dart: shapeGeometry x-only update preserves orientation through PPTX save
+00:00 +24: test/slide_transform_orientation_test.dart: shapeGeometry x-only update preserves orientation through PPTX save
+00:00 +25: test/slide_transform_orientation_test.dart: shapeGeometry x-only update preserves orientation through PPTX save
+00:00 +26: test/slide_transform_orientation_test.dart: shapeGeometry x-only update preserves orientation through PPTX save
+00:00 +27: test/slide_transform_orientation_test.dart: shapeGeometry x-only update preserves orientation through PPTX save
+00:00 +28: test/slide_transform_orientation_test.dart: shapeGeometry x-only update preserves orientation through PPTX save
+00:00 +29: test/slide_transform_orientation_test.dart: shapeGeometry x-only update preserves orientation through PPTX save
+00:00 +30: test/slide_transform_orientation_test.dart: shapeGeometry x-only update preserves orientation through PPTX save
+00:00 +31: test/slide_transform_orientation_test.dart: shapeGeometry x-only update preserves orientation through PPTX save
+00:00 +32: test/slide_transform_orientation_test.dart: shapeGeometry x-only update preserves orientation through PPTX save
+00:00 +33: test/slide_transform_orientation_test.dart: shapeGeometry x-only update preserves orientation through PPTX save
+00:00 +34: test/slide_transform_orientation_test.dart: shapeGeometry x-only update preserves orientation through PPTX save
+00:00 +35: test/slide_render_fidelity_test.dart: numeric rich text keeps line breaks with embeddedFont=false
+00:00 +36: test/slide_render_fidelity_test.dart: numeric rich text keeps line breaks with embeddedFont=false
+00:00 +37: test/slide_render_fidelity_test.dart: numeric rich text keeps line breaks with embeddedFont=false
+00:00 +38: test/slide_render_fidelity_test.dart: numeric rich text keeps line breaks with embeddedFont=false
+00:00 +39: test/slide_render_fidelity_test.dart: numeric rich text keeps line breaks with embeddedFont=false
+00:00 +40: test/slide_render_fidelity_test.dart: numeric rich text keeps line breaks with embeddedFont=false
+00:00 +41: test/slide_render_fidelity_test.dart: numeric rich text keeps line breaks with embeddedFont=false
+00:00 +42: test/slide_render_fidelity_test.dart: numeric rich text keeps line breaks with embeddedFont=false
+00:00 +43: test/slide_transform_orientation_test.dart: shapeGeometry height-only update preserves orientation through PPTX save
+00:00 +44: test/slide_render_fidelity_test.dart: numeric rich text keeps line breaks with embeddedFont=true
+00:00 +45: test/slide_render_fidelity_test.dart: numeric rich text keeps line breaks with embeddedFont=true
+00:00 +46: test/slide_render_fidelity_test.dart: numeric rich text keeps line breaks with embeddedFont=true
+00:00 +47: test/slide_render_fidelity_test.dart: numeric rich text keeps line breaks with embeddedFont=true
+00:00 +48: test/slide_render_fidelity_test.dart: numeric rich text keeps line breaks with embeddedFont=true
+00:00 +49: test/slide_render_fidelity_test.dart: numeric rich text keeps line breaks with embeddedFont=true
+00:00 +50: test/slide_render_fidelity_test.dart: numeric rich text keeps line breaks with embeddedFont=true
+00:00 +51: test/slide_render_fidelity_test.dart: numeric rich text keeps authored single-line LTR order
+00:00 +52: test/slide_render_fidelity_test.dart: PDF PdfSlideExportMode.slides inherits master paper and keeps an explicit slide color
+00:00 +53: test/slide_render_fidelity_test.dart: PDF PdfSlideExportMode.notesPages inherits master paper and keeps an explicit slide color
+00:00 +54: test/slide_render_fidelity_test.dart: PDF uses an edited font size instead of the imported run snapshot
+00:00 +55: test/slide_render_fidelity_test.dart: PDF uses an edited ink color instead of the imported run snapshot
+00:00 +56: test/slide_render_fidelity_test.dart: scalar alignment and direction edits invalidate the imported runs
+00:00 +57: All tests passed!

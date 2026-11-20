@@ -419,6 +419,46 @@ CSL JSON**. If selecting another imported reference would exceed the 20-source
 limit, the workspace explains the limit; use **Review selected** to remove a
 source even when it is hidden by the current search.
 
+### Read research notes and inspect attachments
+
+In **Library**, open a source's **Reference details**, then choose **Notes and
+attachments…**. This explicitly loads that source's direct child notes and
+attachments in pages of 25. Opening ordinary reference details still uses the
+already loaded metadata without making an extra request. **Previous page**,
+**Next page** and **Reload** fetch only when chosen; returning from a child
+keeps the current page. If Zotero reports a changed library version while
+paging, reload from the first page to avoid mixing shifted results.
+
+Open a note to read its plain-text preview, then choose **Copy note text**.
+Paragraphs, line breaks, lists, table-cell separation, preformatted whitespace,
+Unicode and scientific comparisons remain readable. Formatting and active
+citation links are not copied. Images and other embedded content are omitted
+and identified in the preview; their resources are never loaded. Unsupported
+or malformed note markup shows a per-note explanation while other results
+remain available. For insertion with live citation fields, use the native
+**Add Zotero note** workflow described above.
+
+Attachment details show the supplied title, filename, content type, storage
+mode and URL, with **Copy details**. An attachment's embedded note can also be
+read and copied. File contents remain in Zotero, URLs stay selectable text,
+and linked-file paths are not exposed or used to invent a filename. This
+workflow does not download or launch files or inspect attachment annotations.
+
+Only records visible to the current connection are shown; online note access
+depends on library visibility and API-key permissions. Desktop inspection
+requires **Zotero 10 or later** and a parent reference loaded through the same
+identified database connection. Older or headerless snapshots show a reconnect
+explanation. Switching the desktop database, changing the connected library,
+or closing the view prevents an old response from being presented as current.
+Errors retain the previous page when appropriate and offer an explicit retry;
+online backoff is respected without automatic requests.
+
+Inspection and copying work in read-only documents. They preserve selected
+references, unfinished search and tag input, the document content, and undo
+history. Notes are bounded to 1 MiB of UTF-8 each; a child response is bounded
+to 8 MiB, and overly complex markup is refused for that preview. No note or
+attachment data is added to the document merely by browsing it.
+
 ### Cite a stored document reference again
 
 Choose **Document → Cited references…** to search the sources already cited in
@@ -937,7 +977,8 @@ never imports Flutter or
 `dart:io`. Hosts without a transport can still offer offline import, field
 management, and embedded-source export.
 
-The engine exports `ZoteroClient`, `ZoteroLibrary`, `ZoteroItem`, `ZoteroSavedSearch`,
+The engine exports `ZoteroClient`, `ZoteroLibrary`, `ZoteroItem`, `ZoteroItemChild`,
+`ZoteroItemChildKind`, `ZoteroSavedSearch`,
 `ZoteroCitation`, `ZoteroCitationItem`, and `WordZotero`. The editor adds
 `WordEditorController.insertZoteroCitation`, `updateZoteroCitation`,
 `refreshZoteroCitations`, `insertZoteroBibliography`,
@@ -950,6 +991,15 @@ for the active body/Notes caret or a selection confined to one paragraph. Hosts 
 commands) to begin that command immediately with their local transport.
 Live field handles must be
 re-inspected after a mutation or history operation.
+
+`ZoteroClient.itemChildren(library, parentKey)` returns a validated, paginated
+read-only list of direct child notes and attachments, without CSL rendering or
+file requests. In a desktop host, pass `expectedLocalServerId` from the
+parent's `ZoteroItem.localServerId`; this provenance belongs to the exact
+catalog response and must match the client's already pinned database. It is
+never embedded in CSL or document metadata. The child model retains raw
+`noteHtml` as untrusted data. The editor's note preview converts it to inert
+text with explicit input, token, nesting and attribute bounds.
 
 `WordNotesPane` publishes focus, selection and composing ranges through
 `setNoteEditingTarget(note, selection, composing: range)`. Custom note editors
