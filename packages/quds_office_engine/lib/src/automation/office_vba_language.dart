@@ -5788,7 +5788,7 @@ class _Evaluator {
       'pointstocentimeters' => (2540, 72000),
       'millimeterstopoints' => (7200, 2540),
       'pointstomillimeters' => (2540, 7200),
-      _ => context.unsupported(token, 'Unsupported Word unit conversion.'),
+      _ => context.unsupported(token, 'Unsupported Word conversion.'),
     };
     final units = number * unitsPerInput;
     // Use the exact common grid only when the input round-trips on it.
@@ -5809,7 +5809,7 @@ class _Evaluator {
             'pointstocentimeters' => number * 127 / 3600,
             'millimeterstopoints' => number * 360 / 127,
             'pointstomillimeters' => number * 127 / 360,
-            _ => context.unsupported(token, 'Unsupported Word unit conversion.'),
+            _ => context.unsupported(token, 'Unsupported Word conversion.'),
           };
     if (!result.isFinite || result.abs() > _maxExactInteger) {
       context.type(

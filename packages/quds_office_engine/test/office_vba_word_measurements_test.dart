@@ -187,7 +187,7 @@ End Sub
     });
   });
 
-  test('a conversion argument is evaluated once before its resulting write', () {
+  test('a conversion argument is evaluated exactly once', () {
     final plan = _source('''
 Function Measure() As Double
   ActiveDocument.Paragraphs(2).Range.InsertBefore "once"
@@ -242,8 +242,14 @@ End Sub
   }
 
   test('metric conversion remains a scalar even off the native twip grid', () {
-    expect(_scalar('CentimetersToPoints(1)'), closeTo(28.346456692913385, 1e-12));
-    expect(_scalar('MillimetersToPoints(1)'), closeTo(2.8346456692913384, 1e-13));
+    expect(
+      _scalar('CentimetersToPoints(1)'),
+      closeTo(28.346456692913385, 1e-12),
+    );
+    expect(
+      _scalar('MillimetersToPoints(1)'),
+      closeTo(2.8346456692913384, 1e-13),
+    );
     _reject('$_target.LeftIndent = CentimetersToPoints(1)', 'vba_type_error');
     _reject('$_target.LeftIndent = MillimetersToPoints(1)', 'vba_type_error');
   });
@@ -292,7 +298,7 @@ End Sub
     );
   });
 
-  test('target precision and bounds still constrain converted measurements', () {
+  test('target precision and bounds constrain converted values', () {
     _reject('$_target.SpaceBefore = InchesToPoints(-0.5)', 'vba_type_error');
     _reject('$_target.LeftIndent = InchesToPoints(2000000)', 'vba_type_error');
     _reject(

@@ -147,6 +147,23 @@ This continuation also qualifies the incoming custom spacing work described
 below. See the [exact contract](VBA_WORD_MACROS.md#opening-closing-and-toggling-paragraph-spacing)
 and [local evidence](validation/word-vba-paragraph-controls-20261120/README.md).
 
+### Physical Word measurements
+
+The measurement continuation adds eight inch/centimeter/millimeter/pica
+conversion helpers, globally and on `Application`. They compose through the
+existing checked scalar language and emit no operations until a supported
+native property is written. Exact physical ratios, binary64 result bounds,
+Word-only names, refusal of implicit coercion and unchanged native precision
+are documented in the [Word contract](VBA_WORD_MACROS.md#physical-measurement-conversions).
+
+This is a bounded source-language increment. It does not implement VBA
+`Single` identity/rounding or document-aware execution. Authored compiler,
+native transaction, DOCM-preservation and portable-driver regressions remain
+unexecuted because the local execution service became unavailable before
+checkout. The [validation record](validation/word-vba-measurements-20261120/README.md)
+records source review and arithmetic-model checks without treating them as
+Dart test results. Prior qualification counts do not qualify this new source.
+
 ### Next shared-language increments
 
 Keep multidimensional arrays and array parameter passing as separate increments

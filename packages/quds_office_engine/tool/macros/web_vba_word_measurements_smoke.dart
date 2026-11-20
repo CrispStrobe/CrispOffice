@@ -6,7 +6,7 @@ import 'package:quds_office_engine/quds_office_engine.dart';
 
 const _example = String.fromEnvironment('WORD_MEASUREMENTS_BAS_BASE64');
 
-OfficeMacro wordMeasurementPlan(String source) => OfficeMacroLanguages().compile(
+OfficeMacro measurementPlan(String source) => OfficeMacroLanguages().compile(
   OfficeMacroSource(
     language: 'vba-word',
     format: OfficeMacroFormat.docx,
@@ -63,7 +63,7 @@ Map<String, Object?> wordMeasurementState(Uint8List bytes) {
       paragraphs[1].text.isNotEmpty ||
       paragraphs[2].text != 'Untouched' ||
       paragraphs[2].properties.spacingBefore != 9) {
-    throw StateError('Measurement formatting changed text or another paragraph');
+    throw StateError('Measurement formatting changed unrelated paragraph content');
   }
   final first = paragraphs[0].properties;
   if (first.indent.left != 36 ||
@@ -76,7 +76,7 @@ Map<String, Object?> wordMeasurementState(Uint8List bytes) {
       first.lineSpacing != 18 ||
       !first.keepTogether ||
       paragraphs[1].properties.indent.left != 7.2) {
-    throw StateError('Physical measurements did not retain exact native values');
+    throw StateError('Measurements did not retain exact native values');
   }
   if (first.tabs.length != 2 ||
       first.tabs[0].position != 54 ||
@@ -88,7 +88,7 @@ Map<String, Object?> wordMeasurementState(Uint8List bytes) {
       paragraphs[0].inlines.whereType<WmlRun>().any(
         (run) => !run.properties.bold,
       )) {
-    throw StateError('Measurement formatting lost a tab stop or run formatting');
+    throw StateError('Measurements lost an existing tab stop or run formatting');
   }
   final root = XmlDocument.parse(
     OpcPackage.openBytes(bytes).getPart('/word/document.xml')!.readText(),
@@ -132,7 +132,7 @@ Map<String, Object?> wordMeasurementState(Uint8List bytes) {
 Future<Map<String, Object?>> runWordMeasurementExample(String source) async {
   final input = wordMeasurementInput();
   final original = base64Encode(input);
-  final plan = wordMeasurementPlan(source);
+  final plan = measurementPlan(source);
   if (plan.steps.length != 8) {
     throw StateError('The actual measurement example must emit eight writes');
   }
@@ -174,7 +174,7 @@ Future<void> _rollback() async {
   final original = base64Encode(input);
   final session = OfficeMacroSession(input, format: OfficeMacroFormat.docx);
   session.startRecording('Refused measurement plan');
-  final plan = wordMeasurementPlan('''
+  final plan = measurementPlan('''
 Sub Main()
   ActiveDocument.Paragraphs(1).Format.LeftIndent = InchesToPoints(0.5)
   ActiveDocument.Paragraphs(99).TabStops.Add PicasToPoints(6)
@@ -209,7 +209,7 @@ Future<void> _policy(String source) async {
     policy: OfficeMacroPolicy(allowMutation: false),
   );
   try {
-    await session.run(wordMeasurementPlan(source));
+    await session.run(measurementPlan(source));
     throw StateError('Measurements bypassed read-only policy');
   } on OfficeMacroException catch (error) {
     if (error.code != 'permission_denied') rethrow;
@@ -254,10 +254,12 @@ Future<void> main() async {
   await _rollback();
   await _policy(source);
   await _mcp(source);
-  print(jsonEncode(<String, Object?>{
-    'example': example,
-    'lateFailureRollback': true,
-    'readOnlyPolicy': true,
-    'mcpCompileAndRun': true,
-  }));
+  print(
+    jsonEncode(<String, Object?>{
+      'example': example,
+      'lateFailureRollback': true,
+      'readOnlyPolicy': true,
+      'mcpCompileAndRun': true,
+    }),
+  );
 }

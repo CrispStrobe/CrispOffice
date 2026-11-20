@@ -11,10 +11,10 @@ String _example() =>
     File('example/macros/word_measurements.bas').readAsStringSync();
 
 OfficeMacro _plan(String body) =>
-    portable.wordMeasurementPlan('Sub Main()\n$body\nEnd Sub');
+    portable.measurementPlan('Sub Main()\n$body\nEnd Sub');
 
 void main() {
-  test('the actual BAS example survives publication, reopen and replay', () async {
+  test('the BAS example survives publication, reopen and replay', () async {
     final result = await portable.runWordMeasurementExample(_example());
     expect(result['operations'], 8);
     expect(result['revision'], 1);
@@ -22,7 +22,7 @@ void main() {
     expect(result['replayStable'], isTrue);
   });
 
-  test('a late missing paragraph rolls back measured writes and recording', () async {
+  test('late failure rolls back measured writes and recording', () async {
     final input = portable.wordMeasurementInput();
     final session = OfficeMacroSession(input, format: OfficeMacroFormat.docx);
     session.startRecording('Do not publish');
@@ -56,7 +56,7 @@ ActiveDocument.Paragraphs(99).TabStops.Add CentimetersToPoints(2.54)
         format: OfficeMacroFormat.docx,
         policy: policy,
       );
-      final plan = portable.wordMeasurementPlan(_example());
+      final plan = portable.measurementPlan(_example());
       final failure = isA<OfficeMacroException>().having(
         (error) => error.code,
         'code',
@@ -69,7 +69,7 @@ ActiveDocument.Paragraphs(99).TabStops.Add CentimetersToPoints(2.54)
     });
   }
 
-  test('measurement formatting retains opaque embedded macro project bytes', () async {
+  test('DOCM measurement writes retain opaque VBA project bytes', () async {
     const documentType =
         'application/vnd.ms-word.document.macroEnabled.main+xml';
     const projectType = 'application/vnd.ms-office.vbaProject';
@@ -89,7 +89,7 @@ ActiveDocument.Paragraphs(99).TabStops.Add CentimetersToPoints(2.54)
       'measurements.docm',
     ))!;
     final session = OfficeMacroSession(input, format: OfficeMacroFormat.docx);
-    await session.run(portable.wordMeasurementPlan(_example()));
+    await session.run(portable.measurementPlan(_example()));
     var saved = session.bytes;
     for (var cycle = 0; cycle < 3; cycle++) {
       await guard.validateSaved(saved);
