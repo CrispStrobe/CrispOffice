@@ -74,10 +74,13 @@ NOTICES = {
     "CPython-LICENSE": "tools/arabic_morph/notices/CPython-LICENSE",
 }
 # Attribution of the user-downloaded data (never compiled in), copied from
-# the pinned proofing-bin bundle so hosts can show it on their licence page.
+# the pinned proofing-bin bundle and the pinned context model bundle so hosts
+# can show it on their licence page.
 DATA_NOTICES = {
     "camel-morph-msa-NOTICE": ("ce2f9c051786a37e4eb72367e6a6c9ea256b702137d4187bb0bfbda38f860efd", 1799),
     "camel-morph-msa-LICENSE": ("214965747a90efe3e5268d367192bb077f1101620662cba71d59d902000b2d94", 442),
+    "camel-morph-msa-disambig-NOTICE": ("12f44e5787019e5eb5595663cb7275408d961f430b74d108fa77006235e2638b", 1484),
+    "camel-morph-msa-disambig-LICENSE": ("ef2c6367af269181d259bbda4b6167684f85242bb04b28923f91e2861be4c695", 363),
 }
 LIBRARY = "quds_arabic_morph"
 
@@ -122,8 +125,8 @@ def license_bundle(root: Path) -> dict:
         "schema_version": 1,
         "policy": "MIT adapter and MIT CrispEmbed analyzer (a port of MIT camel_tools); Ryu under the Apache-2.0 "
                   "option of its Apache-2.0/BSL-1.0 dual licence; Unicode/CPython character data under their "
-                  "notices. No GPL/LGPL code. The Camel Morph database (CC BY 4.0) is user-downloaded data, never "
-                  "part of the binary.",
+                  "notices. No GPL/LGPL code. The Camel Morph database (CC BY 4.0) and its context model (CC BY-SA "
+                  "4.0) are user-downloaded data, never part of the binary.",
         "component": {
             "name": "crispembed-ar-morph", "source": CRISPEMBED["repository"], "commit": CRISPEMBED["commit"],
             "pull_request": CRISPEMBED["pull_request"], "license": "MIT",
@@ -138,6 +141,9 @@ def license_bundle(root: Path) -> dict:
         "data_notices": {
             "bundle": "huggingface.co/cstr/camel-morph-msa-v1.0@d5364e04af7a40b0c9044ed127606e585be15272/proofing-bin",
             "license": "CC-BY-4.0",
+            "model_bundle": "huggingface.co/cstr/camel-morph-msa-disambig@07fd9e65200a3ea92a081efa9b0714817178df5f"
+                            "/bigram-v1",
+            "model_license": "CC-BY-SA-4.0",
             "files": {name: digest for name, (digest, _) in sorted(DATA_NOTICES.items())},
         },
     }

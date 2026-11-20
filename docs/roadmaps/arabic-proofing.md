@@ -545,7 +545,9 @@ below. No Arabic resource is downloaded by default.
    analyses, and the noprob fallback order is much worse: top-1 UPOS+lemma
    against PUD gold falls from 73.0% to 47.0% (CrispEmbed
    `docs/validation/camel-morph-msa-20261119/ranking-full-vs-noprob.json`).
-   A top-1 analysis is therefore not a usable signal. `analyzeWords` returns
+   A top-1 analysis is therefore not a usable signal (superseded on
+   20 November 2026 by the context model, see
+   [Context disambiguation](#context-disambiguation-licence-survey-and-model-20-november-2026)). `analyzeWords` returns
    the full unordered set, and rules must reason over all analyses. A rule
    reports only when **no** analysis of a word is compatible with the
    pattern, and a word without analyses (unknown, foreign name) is silent.
@@ -648,6 +650,115 @@ below. No Arabic resource is downloaded by default.
    - a POS/morphology/lemma tagger trained on silver annotations: about 2–4
      weeks plus annotation cost; dependency parsing noticeably weaker.
    Compute is not the bottleneck; licence-clean training data is.
+
+## Context disambiguation: licence survey and model (20 November 2026)
+
+Goal: rank Camel Morph analyses in context so the T2 rules can rely on a
+clearly leading reading, without LDC data and with commercial use allowed for
+the downloaded model.
+
+### Licence survey
+
+Checked against each resource's own licence page; "unverified" where the page
+could not be reached. Research survey, not legal advice.
+
+| Resource | Licence | Use here |
+|---|---|---|
+| [Arabic Wikipedia](https://foundation.wikimedia.org/wiki/Policy:Terms_of_Use) (dump `20231101.ar` via [HF wikimedia/wikipedia](https://huggingface.co/datasets/wikimedia/wikipedia)) | [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) + GFDL | **Training text** (raw, no annotation). Model licensed CC BY-SA 4.0 with attribution. |
+| [Arabic Wikinews](https://ar.wikinews.org/wiki/%D9%88%D9%8A%D9%83%D9%8A_%D8%A7%D9%84%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1:%D8%AD%D9%82%D9%88%D9%82_%D8%A7%D9%84%D9%86%D8%B3%D8%AE) | CC BY 2.5 (before Aug 2024), then CC BY-SA 4.0 | Usable (news register); not needed yet. |
+| [Hindawi Arabic E-Book Corpus](https://spraakbanken.gu.se/en/resources/arabic-ebooks) (Gothenburg) | [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) | Usable (81.5M words, varied genres); candidate for a later model. |
+| [Global Voices](https://globalvoices.org/about/global-voices-attribution-policy/) (OPUS) | CC BY 3.0 | Usable, small. |
+| [UN Parallel Corpus v1.0](https://opus.nlpl.eu/legacy/UNPC.php) | Custom: acknowledge the UN, no other restriction | Usable; very formal register. |
+| [Tatoeba](https://tatoeba.org/en/terms_of_use) | CC BY 2.0 FR / CC0 | Usable, small. |
+| [FineWeb-2 `arb_Arab`](https://huggingface.co/datasets/HuggingFaceFW/fineweb-2) | ODC-By 1.0 + Common Crawl terms | Possible, but the crawled text carries no licence; not used. |
+| [Camel Morph MSA v1.0](https://github.com/CAMeL-Lab/camel_morph) | CC BY 4.0 | Analyses and lexemes the model ranks (already shipped data). |
+| [UD Arabic-PUD](https://github.com/UniversalDependencies/UD_Arabic-PUD) | [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/) | **Evaluation only** (1,000 sentences). |
+| [UD Arabic-PADT](https://github.com/UniversalDependencies/UD_Arabic-PADT) | CC BY-NC-SA 3.0 | Excluded (non-commercial). |
+| [UD Arabic-NYUAD](https://github.com/UniversalDependencies/UD_Arabic-NYUAD), [Penn Arabic Treebank](https://catalog.ldc.upenn.edu/LDC2010T13) | LDC licence (text) | Excluded. |
+| [OSIAN](https://aclanthology.org/W19-4619), [KSUCCA](https://sourceforge.net/projects/ksucca-corpus/), [OpenITI](https://zenodo.org/records/10007820), TED2020, OPUS Tanzil, Hindawi HF scrape | CC BY-NC / NC-SA / NC-ND | Excluded. |
+| [Tashkeela](https://sourceforge.net/projects/tashkeela/), [Quranic Arabic Corpus](https://corpus.quran.com/license.jsp), [Arramooz](https://github.com/linuxscout/arramooz), camel_tools `calima-msa-r13` | GPL (QAC also forbids changes) | Excluded (avoid GPL data). |
+| Abu El-Khair / Arabic Billion Words, News-Commentary, Kalimat, OSCAR, CulturaX, Leipzig | No licence for the text, or unverified | Excluded. |
+| Camel Treebank, SAMER, Qabas, AlKhalil | Research-only or unverified | Excluded. |
+
+### Approach and result
+
+No licence-clean annotated Arabic corpus allows training a tagger, so the
+model is unsupervised: a bigram hidden Markov model whose states are the
+analyzer's own analyses grouped by tag (part of speech, proclitics, `enc0`,
+aspect, person, number), lemma and part of speech, trained by EM on 12M tokens
+of Arabic Wikipedia (CrispEmbed `tools/arabic_morph/disambig_train.py`; the
+1,600 Wikipedia evaluation articles below are excluded). Variants were chosen
+on PUD sentences 0–499 only.
+
+Top-1 in context on UD Arabic-PUD (15,482 tokens that are one UD word):
+
+| | noprob, all analyses (no ranking) | context model | `full` (PATB probabilities, not shippable) |
+|---|---:|---:|---:|
+| UPOS | 47.0% | **77.9%** | 77.9% |
+| lemma | 72.3% | **90.4%** | 88.2% |
+| both | 40.9% | **73.2%** | 74.1% |
+
+Held-out sentences 500–999: 78.1 / 90.8 / 73.4 against `full` 77.5 / 87.8 /
+73.5. (Word-type, out-of-context comparison with the earlier receipt: 79.4%
+vs 57.0% UPOS for `full` vs `noprob`.) The model closes the whole UPOS gap.
+CrispEmbed PR #261; receipt `docs/validation/camel-morph-disambig-20261120`.
+Model: [`cstr/camel-morph-msa-disambig@07fd9e65`](https://huggingface.co/cstr/camel-morph-msa-disambig/tree/07fd9e65200a3ea92a081efa9b0714817178df5f/bigram-v1)
+(`bigram-v1/`, 4.5 MB, CC BY-SA 4.0).
+
+### Rules
+
+`ArabicGrammarReading.contextual` (default): when the analyzer implements
+`ArabicContextMorphology` with the model loaded, a word whose best reading
+leads the second by at least 0.9 (≥ 0.95 against ≤ 0.05) is represented by
+that reading's analyses; every other word keeps all analyses, so the
+"no compatible analysis" principle is unchanged. `allAnalyses` restores the
+previous behaviour (Studio setting "Arabic grammar: read words in context").
+Without the model both modes are identical.
+
+A/B with the real analyzer (`tool/pud_rule_findings.dart`), default rule set,
+T2 findings:
+
+| Corpus | all analyses | contextual | new | gone |
+|---|---:|---:|---:|---:|
+| UD Arabic-PUD, 1,000 sentences | 0 | 1 | 1 | 0 |
+| Wikipedia sample, 13,464 sentences from 1,600 random `20231101.ar` articles (seed 20261120) | 7 | 8 | 2 | 1 |
+
+Every changed finding, judged:
+
+- PUD, new, `ar.numeral.gender`: «هناك **ثلاثة** أشجار نخيل» → `ثلاث`.
+  Genuine: the singular of أشجار is شجرة (feminine), so the numeral is
+  ثلاث (a collective شجر reading exists, which makes it a common slip
+  rather than a typo).
+- Wikipedia, new, `ar.numeral.gender`: «اقتحمَ **ثلاث** شبان» → `ثلاثة`.
+  Genuine (شاب is masculine).
+- Wikipedia, new, `ar.numeral.gender`: «في **ثلاث** أماكن» → `ثلاثة`.
+  Genuine (مكان is masculine).
+- Wikipedia, gone, `ar.grammar.preposition-case`: «ولد في **لبانون**» (the
+  town Lebanon, US). A false positive of the all-analyses mode: the context
+  model reads it as a proper noun.
+
+So the A/B shows no new false positive on clean text (the one PUD finding is
+a real agreement error), two more genuine Wikipedia findings and one fewer
+false positive; the contextual mode is the default. Margins 0.8 and 0.5 give
+exactly the same findings on both corpora. Cost: checking all of
+PUD takes 21.9 s instead of 4.8 s through the Dart API (each check
+disambiguates the sentences that hold a word a rule needs; results are cached
+per sentence).
+
+### Packaging
+
+The model is a second download in the Dictionaries dialog ("Arabic context
+model", 4.5 MB, needs the morphology data; pinned by SHA-256 like the
+database), listed on the licences page with its CC BY-SA 4.0 NOTICE.
+`CamelArabicMorphology` opens it in the same worker (native isolate and Web
+Worker). CrispEmbed's disambiguator is default-off
+(`CRISPEMBED_AR_MORPH_DISAMBIG`); the Quds adapter switches it on for the
+process only when the host loads a model, and an operator's `=0` still wins.
+
+Open: the recall gain is modest because most rule words were already
+unambiguous enough; richer tags (case, state) would let rules use more of
+the reading but need a sparse EM trainer. The web release still does not
+package the morphology worker.
 
 ## LanguageTool Arabic assessment (v6.8)
 

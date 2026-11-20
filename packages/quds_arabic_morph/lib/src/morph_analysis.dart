@@ -102,7 +102,8 @@ final class CompactArabicAnalysis extends UnmodifiableMapBase<String, String> {
 /// Decodes the analyzer's compact output (`crispembed_ar_morph_analyze_compact`,
 /// CrispEmbed ABI 2): one little-endian buffer per batch with, per word, a
 /// status and a record of unique value strings plus analyses as
-/// (key id, string index) pairs. No JSON is involved.
+/// (key id, string index) pairs. No JSON is involved. [decodeReadings] reads
+/// the context disambiguator's output, the same records followed by scores.
 ///
 /// Each word keeps its own record bytes (about 1-2 KB); the [ArabicAnalysis]
 /// maps are views over them, and value strings are decoded on first read and
@@ -126,6 +127,68 @@ final class CompactAnalysisDecoder {
   /// Analyses of the [words] words of [buffer] in order; null marks a word
   /// the analyzer rejected as input.
   List<List<ArabicAnalysis>?> decode(Uint8List buffer, int words) {
+    final (out, end) = _records(buffer, words);
+    if (end != buffer.length) {
+      throw const FormatException('Malformed Arabic morphology buffer.');
+    }
+    return out;
+  }
+
+  /// `AMS1` little-endian: the score section of a disambiguation buffer.
+  static const scoresMagic = 0x31534D41;
+
+  /// Readings of a `crispembed_ar_morph_disambiguate` buffer (CrispEmbed ABI
+  /// 3): the compact records of [words] words followed by the score section,
+  /// per word the rank and score of every analysis's candidate. A rejected
+  /// word has no analyses.
+  List<ArabicContextReading> decodeReadings(Uint8List buffer, int words) {
+    final (analyses, start) = _records(buffer, words);
+    final data = ByteData.sublistView(buffer);
+    if (start + 8 > buffer.length ||
+        data.getUint32(start, Endian.little) != scoresMagic ||
+        data.getUint32(start + 4, Endian.little) != words) {
+      throw const FormatException('Malformed Arabic disambiguation buffer.');
+    }
+    var at = start + 8;
+    final out = <ArabicContextReading>[];
+    for (var w = 0; w < words; w++) {
+      if (at + 8 > buffer.length) {
+        throw const FormatException('Truncated Arabic disambiguation buffer.');
+      }
+      final count = data.getUint32(at, Endian.little);
+      final candidates = data.getUint32(at + 4, Endian.little);
+      at += 8;
+      final list = analyses[w] ?? const <ArabicAnalysis>[];
+      if (count != list.length ||
+          candidates == 0 ||
+          at + 8 * count > buffer.length) {
+        throw const FormatException('Malformed Arabic disambiguation buffer.');
+      }
+      final scores = Float64List(count);
+      final ranks = Int32List(count);
+      for (var a = 0; a < count; a++) {
+        final rank = data.getUint32(at, Endian.little);
+        final score = data.getFloat32(at + 4, Endian.little);
+        if (rank >= candidates || !(score >= 0 && score <= 1.0001)) {
+          throw const FormatException('Malformed Arabic disambiguation score.');
+        }
+        ranks[a] = rank;
+        scores[a] = score;
+        at += 8;
+      }
+      out.add(
+        count == 0
+            ? ArabicContextReading.none
+            : ArabicContextReading(list, scores, ranks),
+      );
+    }
+    if (at != buffer.length) {
+      throw const FormatException('Malformed Arabic disambiguation buffer.');
+    }
+    return out;
+  }
+
+  (List<List<ArabicAnalysis>?>, int) _records(Uint8List buffer, int words) {
     final data = ByteData.sublistView(buffer);
     if (buffer.length < 8 ||
         data.getUint32(0, Endian.little) != magic ||
@@ -155,10 +218,7 @@ final class CompactAnalysisDecoder {
       }
       at += length;
     }
-    if (at != buffer.length) {
-      throw const FormatException('Malformed Arabic morphology buffer.');
-    }
-    return out;
+    return (out, at);
   }
 
   String _intern(String value) => _values.putIfAbsent(value, () => value);

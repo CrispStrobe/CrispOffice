@@ -1,6 +1,6 @@
 name: quds_arabic_morph
 description: Optional local Arabic morphological analysis (native Camel Morph analyzer, MIT) over the user-downloaded Camel Morph MSA database (CC BY 4.0) for Quds Office.
-version: 0.2.0
+version: 0.3.0
 publish_to: none
 resolution: workspace
 environment:

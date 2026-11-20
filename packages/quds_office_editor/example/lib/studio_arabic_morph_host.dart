@@ -64,9 +64,40 @@ abstract class StudioArabicMorphHost extends ChangeNotifier {
   /// configuration; this instance is not.
   ArabicMorphology get morphology;
 
-  /// Changes whenever [morphology] changes identity or availability.
+  /// The optional context disambiguation model ([camelMorphMsaDisambig]), a
+  /// second download that needs the database. `loaded` means the analyzer
+  /// ranks analyses in context ([ArabicContextMorphology.canDisambiguate]).
+  StudioArabicMorphStatus get modelStatus => const StudioArabicMorphStatus(
+    bundle: camelMorphMsaDisambig,
+    unavailableReason: 'This host does not offer the context model.',
+  );
+
+  /// Downloads, verifies and installs the context model (explicit user
+  /// action), then loads it next to the database.
+  Future<void> installModel({
+    void Function(int received, int total)? onProgress,
+    StudioHunspellCancellation? cancellation,
+  }) async => throw UnsupportedError('No context model on this host.');
+
+  /// Removes the context model; the analyzer keeps working without it.
+  Future<void> removeModel() async {}
+
+  /// How the Arabic grammar rules read words. [ArabicGrammarReading.contextual]
+  /// uses the context model when it is loaded (and is the same as
+  /// [ArabicGrammarReading.allAnalyses] without it).
+  ArabicGrammarReading get grammarReading => _grammarReading;
+  ArabicGrammarReading _grammarReading = ArabicGrammarReading.contextual;
+  set grammarReading(ArabicGrammarReading value) {
+    if (value == _grammarReading) return;
+    _grammarReading = value;
+    notifyListeners();
+  }
+
+  /// Changes whenever [morphology] changes identity or availability, the
+  /// context model loads or unloads, or [grammarReading] changes.
   String get configurationKey => status.installed
       ? '${status.bundle.id}@${status.bundle.revision}:${status.loaded}'
+            ':${modelStatus.loaded}:${grammarReading.name}'
       : '';
 }
 

@@ -52,9 +52,29 @@ Only out-of-context ranking changes. Without the probabilities, camel_tools'
 order falls back to the diacritized form, and top-1 UPOS+lemma accuracy drops
 from 73.0% to 47.0%.
 
-Quds therefore never ranks: `analyzeWords` returns every analysis in no
-particular order. Rules reason over the whole set, for example by reporting
-only when **no** analysis of a word is compatible.
+`analyzeWords` therefore returns every analysis in no particular order, and
+rules reason over the whole set, for example by reporting only when **no**
+analysis of a word is compatible.
+
+## Context model (optional second download)
+
+`camelMorphMsaDisambig` is a licence-clean replacement for the dropped
+probabilities: a bigram hidden Markov model over the database's own analyses,
+trained without annotations on Arabic Wikipedia (CC BY-SA 4.0) by CrispEmbed's
+`tools/arabic_morph/disambig_train.py`. With it loaded,
+`CamelArabicMorphology` is an `ArabicContextMorphology`: `disambiguate`
+ranks each token's analyses in its sentence (tokens from the engine's
+`arabicContextSentences`, punctuation included). On UD Arabic-PUD the best
+reading's UPOS is right for 77.9% of tokens, the same as the `full`
+ranking, and its lemma for 90.4% (`full`: 88.2%). The grammar rules use a
+reading only when it leads the second by at least 0.9
+(`ArabicGrammarReading.contextual`); see `docs/roadmaps/arabic-proofing.md`
+for the A/B. The model is 4.5 MB, CC BY-SA 4.0 (Wikipedia contributors;
+Camel Morph MSA v1.0 © 2024 NYU Abu Dhabi, CC BY 4.0), pinned by SHA-256 like
+the database; `licenses/data/camel-morph-msa-disambig-{NOTICE,LICENSE}` hold
+its attribution. CrispEmbed's disambiguator is default-off
+(`CRISPEMBED_AR_MORPH_DISAMBIG`); the adapter enables it for the process when
+a model is opened, unless the variable is already set.
 
 ## The proofing feature profile
 
@@ -219,10 +239,12 @@ Hosts must ship the notices with the binary (`--install-licenses`).
 ```sh
 QUDS_ARABIC_MORPH_TEST_LIBRARY=build/native/libquds_arabic_morph.dylib \
 QUDS_ARABIC_MORPH_TEST_BUNDLE=/path/to/verified/proofing-bin \
+QUDS_ARABIC_MORPH_TEST_MODEL=/path/to/verified/bigram-v1 \
 QUDS_ARABIC_MORPH_LIVE_DOWNLOAD=1 dart test
 dart run tool/pud_benchmark.dart <library> <bundle dir> pud.txt
 dart run tool/pud_rule_findings.dart <library> <bundle dir> pud.txt > findings.jsonl
-node tool/web_smoke.mjs build/web <bundle dir> pud.txt
+dart run tool/pud_rule_findings.dart <library> <bundle dir> pud.txt --model <model dir> > contextual.jsonl
+node tool/web_smoke.mjs build/web <bundle dir> pud.txt [<model dir>]
 dart compile js -O2 tool/browser_smoke.dart -o out/smoke.js
 python3 tool/browser_smoke.py --script out/smoke.js --web build/web \
   --bundle <bundle dir> --corpus pud.txt
