@@ -87,7 +87,9 @@
         "host_fonts_test.dart",
         "installed_host_fonts_test.dart",
         "office_slide_effects_test.dart",
-        "office_system_fonts_test.dart"
+        "office_system_fonts_test.dart",
+        "word_run_metrics_test.dart",
+        "word_selection_paint_test.dart"
       ]
     },
     "arabic-morph-lifecycle": {
@@ -127,7 +129,10 @@
         "style_cascade_test.dart",
         "styleless_import_fidelity_test.dart",
         "word_kerning_properties_test.dart",
-        "word_line_box_fidelity_test.dart"
+        "word_line_box_fidelity_test.dart",
+        "line_breaker_greedy_test.dart",
+        "word_font_line_metrics_test.dart",
+        "word_layout_test.dart"
       ]
     },
     "mail-model": {
