@@ -23,6 +23,7 @@ class SlideStage extends LeafRenderObjectWidget {
   const SlideStage({
     super.key,
     required this.slide,
+    this.master,
     this.selected,
     this.selectedShapes = const <PmlShape>[],
     this.config = const OfficeSurfaceConfig(),
@@ -57,6 +58,10 @@ class SlideStage extends LeafRenderObjectWidget {
 
   /// slide API.
   final PmlSlide slide;
+
+  /// Optional master context for resolving direct background edits at paint
+  /// time. Without it, the slide's resolved background snapshot is used.
+  final PmlMaster? master;
 
   /// selected API.
   final PmlShape? selected;
@@ -153,6 +158,7 @@ class SlideStage extends LeafRenderObjectWidget {
   RenderSlideStage createRenderObject(BuildContext context) {
     return RenderSlideStage(
       slide: slide,
+      master: master,
       selected: selected,
       selectedShapes: selectedShapes,
       config: config,
@@ -191,6 +197,7 @@ class SlideStage extends LeafRenderObjectWidget {
   void updateRenderObject(BuildContext context, RenderSlideStage renderObject) {
     renderObject
       ..slide = slide
+      ..master = master
       ..selected = selected
       ..selectedShapes = selectedShapes
       ..config = config
@@ -234,6 +241,7 @@ class RenderSlideStage extends RenderBox implements MouseTrackerAnnotation {
   /// RenderSlideStage API.
   RenderSlideStage({
     required this.slide,
+    this.master,
     this.selected,
     this.selectedShapes = const <PmlShape>[],
     required this.config,
@@ -268,6 +276,9 @@ class RenderSlideStage extends RenderBox implements MouseTrackerAnnotation {
 
   /// slide API.
   PmlSlide slide;
+
+  /// Master context used to resolve inherited paper without model mutation.
+  PmlMaster? master;
 
   /// selected API.
   PmlShape? selected;
@@ -1082,6 +1093,7 @@ class RenderSlideStage extends RenderBox implements MouseTrackerAnnotation {
     var precedingIndex = 0;
     for (final previous in target.backgroundShapes.followedBy(target.shapes)) {
       final bool inherited = precedingIndex++ < inheritedCount;
+      if (inherited && _hiddenBackgroundPicture(target, previous)) continue;
       if (!inherited && identical(previous, shape)) break;
       if (!inherited && (skipIds?.contains(previous.id) ?? false)) continue;
       final previousSample = inherited
@@ -1811,7 +1823,12 @@ class RenderSlideStage extends RenderBox implements MouseTrackerAnnotation {
   }
 
   Color _slidePaper(PmlSlide target) {
-    final int? rgb = int.tryParse(target.background, radix: 16);
+    final int? rgb = int.tryParse(
+      master == null
+          ? target.background
+          : target.resolveBackground(master!.background),
+      radix: 16,
+    );
     // Inherited neutral paper follows the display theme when adaptation is
     // enabled. Explicit slide/layout fills retain their authored appearance.
     return rgb == null ||
@@ -1821,6 +1838,11 @@ class RenderSlideStage extends RenderBox implements MouseTrackerAnnotation {
         ? _theme.slideBackground
         : Color(0xFF000000 | (rgb & 0xFFFFFF));
   }
+
+  bool _hiddenBackgroundPicture(PmlSlide target, PmlShape shape) =>
+      shape.isBackgroundPicture &&
+      target.inheritsMasterBackground &&
+      (master?.hasAuthoredBackground ?? false);
 
   void _paintSlideBody(
     Canvas canvas,
@@ -1833,6 +1855,7 @@ class RenderSlideStage extends RenderBox implements MouseTrackerAnnotation {
       Paint()..color = _slidePaper(target),
     );
     for (final PmlShape shape in target.backgroundShapes) {
+      if (_hiddenBackgroundPicture(target, shape)) continue;
       // Master/layout shape ids belong to their own parts. Slide animations
       // and morph matching must never apply to a coincident decoration id.
       final Rect r = _shapeRect(shape);

@@ -10622,6 +10622,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
               child: IgnorePointer(
                 child: SlideStage(
                   slide: _slides.slide,
+                  master: _slides.presentation.master,
                   preview: true,
                   config: _config.copyWith(
                     mode: OfficeInteractionMode.viewing,
@@ -10655,6 +10656,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
                         child: IgnorePointer(
                           child: SlideStage(
                             slide: _slides.presentation.slides[i],
+                            master: _slides.presentation.master,
                             preview: true,
                             config: _config.copyWith(
                               mode: OfficeInteractionMode.viewing,
@@ -11423,6 +11425,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
                                   child: IgnorePointer(
                                     child: SlideStage(
                                       slide: slide,
+                                      master: _slides.presentation.master,
                                       preview: true,
                                       config: _config.copyWith(
                                         mode: OfficeInteractionMode.viewing,

@@ -803,19 +803,16 @@ class PmlLayout {
 /// Class PmlMaster.
 class PmlMaster {
   /// PmlMaster API.
-  PmlMaster({
-    required this.name,
-    String background = 'FFFFFF',
-    List<PmlShape>? shapes,
-  }) : shapes = shapes ?? <PmlShape>[] {
-    this.background = background;
-  }
+  PmlMaster({required this.name, String? background, List<PmlShape>? shapes})
+    : _background = background ?? 'FFFFFF',
+      _hasAuthoredBackground = background != null,
+      shapes = shapes ?? <PmlShape>[];
 
   /// name API.
   String name;
 
-  String _background = 'FFFFFF';
-  bool _hasAuthoredBackground = true;
+  String _background;
+  bool _hasAuthoredBackground;
 
   /// Resolved paper color. Assigning it authors a solid master fill, including
   /// when the color equals an imported picture's solid fallback.

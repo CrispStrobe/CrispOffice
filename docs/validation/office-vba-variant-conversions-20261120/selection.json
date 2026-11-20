@@ -79,7 +79,8 @@
         "test/slide_transform_orientation_test.dart",
         "test/office_pdf_export_test.dart",
         "test/slide_picture_background_test.dart",
-        "test/slide_geometric_presets_test.dart"
+        "test/slide_geometric_presets_test.dart",
+        "test/slide_background_publication_test.dart"
       ]
     },
     "incoming-rendering-editor": {
@@ -93,7 +94,8 @@
         "test/slide_render_fidelity_test.dart",
         "test/slide_section_reorder_test.dart",
         "test/slide_transform_orientation_test.dart",
-        "test/slide_geometric_presets_test.dart"
+        "test/slide_geometric_presets_test.dart",
+        "test/slide_background_publication_test.dart"
       ]
     },
     "incoming-mail-host": {
@@ -175,12 +177,12 @@
       ]
     }
   },
-  "runtime": "Use repository-pinned Flutter 3.47.8 / Dart 3.13.7 with the unchanged locked workspace. Run genuine Dart VM tests through dart, widget suites through flutter test --no-pub --concurrency=1. Record source head, selected files, raw machine events and exit status; do not count loader/setup events as tests. Serialize all Flutter CLI invocations globally to avoid concurrent SDK engine-stamp updates; pure-Dart package groups may run concurrently.",
+  "runtime": "Use repository-pinned Flutter 3.47.8 / Dart 3.13.7 with the unchanged locked workspace. Run genuine Dart VM tests through dart, widget suites through flutter test --no-pub --concurrency=1. Record source head, selected files, raw machine events and exit status; do not count loader/setup events as tests. Serialize all Flutter CLI invocations globally to avoid concurrent SDK engine-stamp updates; pure-Dart package groups may run concurrently. Provide QUDS_SPACY_MACOS_LIBRARY pointing to the immutable, SHA-256-verified macOS library pinned by build_macos_app.sh for the hash-only identity test; it is not loaded or executed.",
   "static": "Strict analyzer over affected engine/editor/Studio/spacy source and tests, formatting for changed Dart files, git diff --check. Whole-engine analysis also covers new macros.",
   "caveats": [
     "No GitHub CI, workflow, check-run or commit-status queries; no waiting.",
     "Spacy tests above use synthetic annotations/backends and validate lifecycle/planner behavior. Fresh native model qualification is not implied. Preserve the original native receipts and their source/runtime attribution.",
-    "Do not rerun the consumed native qualification seal or rewrite its protocol/panel/results. No accepted native binary is needed for the selected synthetic tests.",
+    "Do not rerun the consumed native qualification seal or rewrite its protocol/panel/results. The selected Mach-O identity test reads the exact pinned macOS binary as data; no native library or model is executed.",
     "Mail/Zotero controlled transports exercise request and response behavior without sending real mail or writing to connected accounts.",
     "This is a focused selection, not the entire Studio or repository suite. The main correction for the previously failing comment-draft language-change test is included and receives a fresh run.",
     "PPTX regressions include nearest-background ownership, retained media identity, exact imported crop, edited master inheritance, PDF canvas state, and geometric preset identity and silhouettes."

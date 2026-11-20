@@ -2014,6 +2014,14 @@ abstract final class OfficePdfExport {
     // Resolved decorations already exclude hidden master shapes. Layout
     // decorations remain visible even when the slide hides its master.
     if (slide.backgroundShapesResolved || slide.backgroundShapes.isNotEmpty) {
+      if (slide.inheritsMasterBackground && deck.master.hasAuthoredBackground) {
+        // Direct master edits take effect before a native save, without
+        // deleting imported snapshots or overriding local slide/layout fills.
+        return [
+          for (final shape in slide.backgroundShapes)
+            if (!shape.isBackgroundPicture) shape,
+        ];
+      }
       return slide.backgroundShapes;
     }
     return slide.showMasterShapes ? deck.master.shapes : const <PmlShape>[];

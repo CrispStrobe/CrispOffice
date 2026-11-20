@@ -23,8 +23,9 @@ All notable changes to `quds_office_engine` are documented here.
   and native master inheritance after solid-background edits. Keep explicit
   slide/layout fills authoritative and isolate PDF picture-border canvas state.
   Retain authored background XML, gradient stops, no-fill and namespace bindings
-  with valid copied image relationships. Add focused ownership, package, copy
-  and save regressions.
+  with valid copied image relationships. Apply direct master edits during PDF
+  rendering and keep inherited picture snapshots in fresh-deck copies. Add
+  focused ownership, package, copy and save regressions.
 
 - Import and render geometric/flowchart presets with distinct convex pentagon
   and home-plate silhouettes. Preserve home-plate identity through copy and
