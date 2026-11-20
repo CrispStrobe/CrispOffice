@@ -1,0 +1,353 @@
+{
+  "schema_version": 1,
+  "reviewer": "independent intake/source review agent",
+  "reviewed_commit": "dd8e73a7d6252b336b2e7a437c4931addc42d491",
+  "reviewed_compiler": {
+    "path": "packages/quds_office_engine/lib/src/automation/office_vba_language.dart",
+    "initial_blob": "bc00a76840eb300b5f955c0cf119e70ad4ac5829",
+    "checkpoint_blob": "3558d0697bf8d9a9a1319e70fab339c754d6a17f",
+    "final_candidate_blob": "fb86d1abc97f96e22adef19e0d8156745506d7af",
+    "candidate_delta": "Exactly one reviewed comment-only sentence change; all executable bytes match the reviewed checkpoint.",
+    "candidate_delta_verified": true
+  },
+  "reviewed_files": [
+    {
+      "path": "packages/quds_office_engine/test/office_vba_word_unit_conversions_test.dart",
+      "blob": "94d136ef0da9874f59611dbc42ef2f9b2a63fab8"
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_vba_word_unit_conversions_integration_test.dart",
+      "blob": "d44ec892f13d9384ebed1e13b3f56e64c7959f2b"
+    },
+    {
+      "path": "packages/quds_office_engine/example/macros/word_unit_conversions.bas",
+      "blob": "cf996b99e767d1742557f257599bf0edf61eefa0"
+    },
+    {
+      "path": "docs/VBA_WORD_MACROS.md",
+      "blob": "f715838929eb5aaf33a60468f9f361c52534deee"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/automation/office_macro_runtime.dart",
+      "blob": "99e384ddfee93607af303211e2cf08c4124c78be"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/automation/office_macro_model.dart",
+      "blob": "11b40aa8dfe10bf43c5fb117f6c11d651fbcd8e6"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/automation/operations/word_steps.dart",
+      "blob": "94338d4b998aaa83f2ca6ccd0ef5af1c5cdc7b70"
+    }
+  ],
+  "status": "source_review_complete_no_blocking_findings",
+  "scope": "Independent source and test-expectation review plus JavaScript arithmetic probes. This is not a Dart compilation, analyzer, formatter, VBA execution, native document run or VM/compiled-JavaScript parity qualification.",
+  "patch_binding": {
+    "diff_hunks": 7,
+    "old_context_matches": true,
+    "whole_source_matches_published_patch": true
+  },
+  "source_findings": [
+    {
+      "area": "dispatch and host isolation",
+      "result": "The ten-name map has exactly the two existing line conversions and eight intended physical conversions. All five prior Set.contains sites become Map.containsKey. Word-only reservation/checker/evaluator guards remain in place; no stale Set.contains call remains."
+    },
+    {
+      "area": "arity, types and side effects",
+      "result": "Existing _count/_arguments and numeric-kind checks apply to every new name; named/omitted arguments and wrong receiver kinds remain refused. Evaluation still evaluates arguments once, in existing source order, with pending line-spacing guards and normal work limits."
+    },
+    {
+      "area": "arithmetic",
+      "result": "Integral pairs match 72 points/inch, 2.54 cm/inch, 25.4 mm/inch and 12 points/pica. The exact round-trip grid guard and finite output bound remain. Forward conversions multiply and inverse conversions divide by a forward factor; legacy PointsToLines therefore preserves its old /12 off-grid path."
+    },
+    {
+      "area": "native operations",
+      "result": "No native operation, serializer or session implementation changes in the reviewed increment. Converted values still pass the existing independent destination precision/range checks. The native session source confirms empty plans do not save or increment revision, and failed validation/playback do not publish partial edits."
+    },
+    {
+      "area": "authored compiler tests",
+      "result": "Read all source and enumerated 201 cases: 8 names x 21 per-name cases, 17 canonical native-decimal cases, and 16 remaining cases. This is an authored case count; none were executed."
+    },
+    {
+      "area": "authored integration tests",
+      "result": "Read all six tests. API calls match current runtime/model source; the BAS emits nine paragraphFormat writes; save/reopen assertions, rollback/recording checks, mutation policy checks and no-op revision expectations are consistent with inspected implementation. None were executed."
+    },
+    {
+      "area": "example and contract",
+      "result": "Exact BAS uses all eight physical functions, typed ByVal helper, named helper arguments, With Application and two body paragraphs. Documented final indents/spacing match its nine writes. Contract correctly separates exact physical ratios from unmeasured Word Single behavior and separates scalar conversion from native twip validation."
+    }
+  ],
+  "resolved_review_findings": [
+    {
+      "finding": "A generic multiply-by-reciprocal inverse fallback would alter legacy PointsToLines off-grid results.",
+      "resolution": "Published compiler uses division by exact factor 12 for PointsToLines; explicit high-range legacy regression was added. Independent probes also covered three fractional off-grid inputs."
+    },
+    {
+      "finding": "Ordinary IEEE arithmetic can round an adjacent off-grid input to an exact native value; an absolute no-neighbor-rounding claim would be false.",
+      "resolution": "User-facing contract explicitly acknowledges ordinary binary64 rounding, selected rejection probes remain genuinely off-grid, and the final candidate compiler comment now promises only no epsilon rounding or blanket snapping."
+    }
+  ],
+  "arithmetic_probe": {
+    "method": "Extracted ten integral scale pairs from the actual committed Dart source; asserted reviewed guard/factor shape; executed the corresponding arithmetic in JavaScript. This does not execute Dart, parse VBA or run native document mutations.",
+    "compiler_blob": "3558d0697bf8d9a9a1319e70fab339c754d6a17f",
+    "final_candidate_executable_equivalence_verified": true,
+    "extracted_pairs": {
+      "linestopoints": [
+        240,
+        20
+      ],
+      "pointstolines": [
+        20,
+        240
+      ],
+      "inchestopoints": [
+        1440,
+        20
+      ],
+      "pointstoinches": [
+        20,
+        1440
+      ],
+      "centimeterstopoints": [
+        72000,
+        2540
+      ],
+      "pointstocentimeters": [
+        2540,
+        72000
+      ],
+      "millimeterstopoints": [
+        7200,
+        2540
+      ],
+      "pointstomillimeters": [
+        2540,
+        7200
+      ],
+      "picastopoints": [
+        240,
+        20
+      ],
+      "pointstopicas": [
+        20,
+        240
+      ]
+    },
+    "structural": {
+      "exact_names": true,
+      "lookup_count": 5,
+      "stale_set_lookup_count": 0,
+      "factor_direction": true,
+      "roundtrip_guard": true,
+      "output_bound": true,
+      "old_reverse_division_preserved": true
+    },
+    "exact_twip_numeric_comparisons": 200010,
+    "additional_comparisons": 32,
+    "results": [
+      {
+        "label": "linestopoints exact twip round trips 40002",
+        "ok": true
+      },
+      {
+        "label": "inchestopoints exact twip round trips 40002",
+        "ok": true
+      },
+      {
+        "label": "centimeterstopoints exact twip round trips 40002",
+        "ok": true
+      },
+      {
+        "label": "millimeterstopoints exact twip round trips 40002",
+        "ok": true
+      },
+      {
+        "label": "picastopoints exact twip round trips 40002",
+        "ok": true
+      },
+      {
+        "label": "inchestopoints rejects output beyond bound",
+        "ok": true
+      },
+      {
+        "label": "centimeterstopoints rejects output beyond bound",
+        "ok": true
+      },
+      {
+        "label": "millimeterstopoints rejects output beyond bound",
+        "ok": true
+      },
+      {
+        "label": "picastopoints rejects output beyond bound",
+        "ok": true
+      },
+      {
+        "label": "legacy PointsToLines off-grid 71.99999999999999",
+        "ok": true
+      },
+      {
+        "label": "legacy PointsToLines off-grid 1e-20",
+        "ok": true
+      },
+      {
+        "label": "legacy PointsToLines off-grid 0.00001",
+        "ok": true
+      },
+      {
+        "label": "legacy PointsToLines off-grid 9007199254740991",
+        "ok": true
+      },
+      {
+        "label": "inchestopoints reference value",
+        "ok": true
+      },
+      {
+        "label": "inchestopoints zero",
+        "ok": true
+      },
+      {
+        "label": "inchestopoints sign",
+        "ok": true
+      },
+      {
+        "label": "pointstoinches reference value",
+        "ok": true
+      },
+      {
+        "label": "pointstoinches zero",
+        "ok": true
+      },
+      {
+        "label": "pointstoinches sign",
+        "ok": true
+      },
+      {
+        "label": "centimeterstopoints reference value",
+        "ok": true
+      },
+      {
+        "label": "centimeterstopoints zero",
+        "ok": true
+      },
+      {
+        "label": "centimeterstopoints sign",
+        "ok": true
+      },
+      {
+        "label": "pointstocentimeters reference value",
+        "ok": true
+      },
+      {
+        "label": "pointstocentimeters zero",
+        "ok": true
+      },
+      {
+        "label": "pointstocentimeters sign",
+        "ok": true
+      },
+      {
+        "label": "millimeterstopoints reference value",
+        "ok": true
+      },
+      {
+        "label": "millimeterstopoints zero",
+        "ok": true
+      },
+      {
+        "label": "millimeterstopoints sign",
+        "ok": true
+      },
+      {
+        "label": "pointstomillimeters reference value",
+        "ok": true
+      },
+      {
+        "label": "pointstomillimeters zero",
+        "ok": true
+      },
+      {
+        "label": "pointstomillimeters sign",
+        "ok": true
+      },
+      {
+        "label": "picastopoints reference value",
+        "ok": true
+      },
+      {
+        "label": "picastopoints zero",
+        "ok": true
+      },
+      {
+        "label": "picastopoints sign",
+        "ok": true
+      },
+      {
+        "label": "pointstopicas reference value",
+        "ok": true
+      },
+      {
+        "label": "pointstopicas zero",
+        "ok": true
+      },
+      {
+        "label": "pointstopicas sign",
+        "ok": true
+      }
+    ],
+    "all_checks_passed": true,
+    "counting": "Independent arithmetic probes only. Do not add these to authored or executed Dart test counts; do not combine them with another reviewer's overlapping probes as unique coverage."
+  },
+  "primary_sources": [
+    {
+      "url": "https://learn.microsoft.com/en-us/office/vba/api/word.application.inchestopoints",
+      "supports": "Word method, Single input/result, 72 points/inch."
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/office/vba/api/word.application.pointstoinches",
+      "supports": "Inverse Word method, Single input/result."
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/office/vba/api/word.application.centimeterstopoints",
+      "supports": "Word method, Single input/result; prose metric factor is rounded."
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/office/vba/api/word.application.pointstocentimeters",
+      "supports": "Inverse Word method, Single input/result."
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/office/vba/api/word.application.millimeterstopoints",
+      "supports": "Word method, Single input/result; prose factor differs from reverse-method page and is not used as an exact ratio."
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/office/vba/api/word.application.pointstomillimeters",
+      "supports": "Inverse Word method, Single input/result."
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/office/vba/api/word.application.picastopoints",
+      "supports": "Word method, Single input/result, 12 points/pica."
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/office/vba/api/word.application.pointstopicas",
+      "supports": "Inverse Word method, Single input/result, 12 points/pica."
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/openspecs/office_standards/ms-oi29500/afb7e140-b259-4901-8af4-d4a514f50db9",
+      "supports": "Office coordinate ratios 914400 units/inch and 360000 units/cm; exact physical metric ratio is inferred from these unit definitions."
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/windows/win32/vml/basic-vml-types",
+      "supports": "12700 units/point and 635 units/twip, consistent with 20 twips/point."
+    }
+  ],
+  "unexecuted": {
+    "dart_compiler_tests": 201,
+    "dart_integration_tests": 6,
+    "dart_analyzer": true,
+    "dart_formatter": true,
+    "broader_office_regression": true,
+    "vm_and_compiled_javascript_parity": true,
+    "microsoft_word_runtime_comparison": true
+  },
+  "github_actions_queried": false,
+  "github_actions_waited": false
+}
