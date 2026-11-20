@@ -10,6 +10,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 import 'studio_mail_archive_action.dart';
 import 'studio_mail_archive_folder_action.dart';
+import 'studio_mail_bulk_status.dart';
 import 'studio_mail_compose.dart';
 import 'studio_mail_outbox.dart';
 import 'studio_mail_outbox_dialog.dart';
@@ -123,6 +124,12 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
   // separate from a possibly unobserved provider flag snapshot.
   final _confirmedRead = <MailRemoteIdentity, bool>{};
   final _confirmedFlagged = <MailRemoteIdentity, bool>{};
+  int _headerRevision = 0;
+  Object? _bulkRun;
+  MailBulkFlagReport? _bulkReport;
+  Map<MailRemoteIdentity, String> _bulkSubjects = const {};
+  bool _bulkRunning = false;
+  bool _bulkStopRequested = false;
   MailEwsAuthentication _authentication = MailEwsAuthentication.ntlm;
   MailProvider? _provider;
   MailSubmissionProvider? _submission;
@@ -250,6 +257,7 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
 
   @override
   void dispose() {
+    _bulkRun = null;
     _mailboxCapture?.dispose();
     _session?.dispose();
     _credentials?.clear();
@@ -395,6 +403,12 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
       _validateHeaderPage(page, inbox.id, limit: _pageSize);
       setState(() {
         _usedHeaderCursors.clear();
+        _headerRevision++;
+        _bulkRun = null;
+        _bulkReport = null;
+        _bulkSubjects = const {};
+        _bulkRunning = false;
+        _bulkStopRequested = false;
         _confirmedRead.clear();
         _confirmedFlagged.clear();
         _connected = true;
@@ -545,6 +559,12 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
     _closeCloud();
     final old = _reader;
     setState(() {
+      _headerRevision++;
+      _bulkRun = null;
+      _bulkReport = null;
+      _bulkSubjects = const {};
+      _bulkRunning = false;
+      _bulkStopRequested = false;
       _session = null;
       _provider = null;
       _submission = null;
@@ -777,6 +797,12 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
       _busy = true;
       _error = null;
       _notice = null;
+      _headerRevision++;
+      _bulkRun = null;
+      _bulkReport = null;
+      _bulkSubjects = const {};
+      _bulkRunning = false;
+      _bulkStopRequested = false;
       if (!more) {
         _mailbox = mailbox;
         _selected = null;
@@ -908,6 +934,170 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
             : widget.strings.mailMessageFailed;
       });
     }
+  }
+
+  void Function(MailBulkFlagAction, List<String>)? _bulkActionCallback() {
+    final provider = _provider;
+    final session = _session;
+    final mailbox = _mailbox;
+    final revision = _headerRevision;
+    if (provider == null || session == null || mailbox == null) return null;
+    return (action, ids) => unawaited(
+      _applyBulk(action, ids, provider, session, mailbox.id, revision),
+    );
+  }
+
+  Future<void> _applyBulk(
+    MailBulkFlagAction action,
+    List<String> ids,
+    MailProvider provider,
+    MailAccountSession session,
+    MailMailboxId mailbox,
+    int revision,
+  ) async {
+    bool scopeCurrent() =>
+        mounted &&
+        identical(_provider, provider) &&
+        identical(_session, session) &&
+        !session.isDisposed &&
+        _mailbox?.id == mailbox &&
+        _headerRevision == revision;
+    if (!scopeCurrent() ||
+        !_connected ||
+        _blocked ||
+        _needsRefresh ||
+        ids.isEmpty ||
+        ids.length > MailBulkFlagPlan.maxMessages ||
+        ids.toSet().length != ids.length) {
+      return;
+    }
+    final rows = {
+      for (final header in _headers) 'ews-message-${header.id.value}': header,
+    };
+    // Reject the whole selection if even one row no longer belongs to this
+    // captured provider/folder generation. Never execute a silently smaller set.
+    if (ids.any((id) => !rows.containsKey(id))) return;
+    final selected = [for (final id in ids) rows[id]!];
+    final plan = MailBulkFlagPlan(
+      id: 'bulk-${++_serial}',
+      mailbox: mailbox,
+      action: action,
+      messages: [for (final header in selected) header.remote],
+    );
+    final subjects = Map<MailRemoteIdentity, String>.unmodifiable({
+      for (final header in selected) header.remote: header.envelope.subject,
+    });
+    final lease = session.begin();
+    final run = Object();
+    final projected = <MailRemoteIdentity>{};
+    bool current() =>
+        scopeCurrent() && lease.isCurrent && identical(_bulkRun, run);
+    setState(() {
+      _busy = true;
+      _error = null;
+      _notice = null;
+      _bulkRun = run;
+      _bulkReport = null;
+      _bulkSubjects = subjects;
+      _bulkRunning = true;
+      _bulkStopRequested = false;
+    });
+    void observe(MailBulkFlagReport report) {
+      if (!current()) return;
+      final confirmed = {
+        for (final result in report.results)
+          if (result.outcome == MailBulkFlagOutcome.confirmed &&
+              projected.add(result.message))
+            result.message,
+      };
+      setState(() {
+        _bulkReport = report;
+        if (report.requiresRefresh) _needsRefresh = true;
+        if (confirmed.isEmpty) return;
+        final readAction =
+            action == MailBulkFlagAction.markRead ||
+            action == MailBulkFlagAction.markUnread;
+        final desired =
+            action == MailBulkFlagAction.markRead ||
+            action == MailBulkFlagAction.flag;
+        for (final remote in confirmed) {
+          if (readAction) {
+            _confirmedRead[remote] = desired;
+          } else {
+            _confirmedFlagged[remote] = desired;
+          }
+        }
+        _headers = [
+          for (final header in _headers)
+            if (!confirmed.contains(header.remote))
+              header
+            else
+              MailHeaderRecord(
+                id: header.id,
+                remote: header.remote,
+                envelope: header.envelope,
+                flags: header.flags == null
+                    ? null
+                    : MailMessageFlags(
+                        isRead: readAction ? desired : header.flags!.isRead,
+                        isFlagged: readAction
+                            ? header.flags!.isFlagged
+                            : desired,
+                        isAnswered: header.flags!.isAnswered,
+                        isDraft: header.flags!.isDraft,
+                        isDeleted: header.flags!.isDeleted,
+                      ),
+              ),
+        ];
+        final open = _selected;
+        if (open != null && confirmed.contains(open.remote)) {
+          _selected = _headers
+              .where((header) => header.remote == open.remote)
+              .firstOrNull;
+        }
+      });
+    }
+
+    final report = await const MailBulkFlagRunner().run(
+      plan: plan,
+      lease: lease,
+      apply: provider.apply,
+      isScopeCurrent: current,
+      shouldStop: () => _bulkStopRequested,
+      onProgress: observe,
+    );
+    if (!current()) return;
+    observe(report);
+    setState(() {
+      _bulkRunning = false;
+      _busy = false;
+    });
+  }
+
+  Widget? _bulkStatus() {
+    final report = _bulkReport;
+    final run = _bulkRun;
+    if (report == null) return null;
+    return StudioMailBulkStatus(
+      strings: widget.strings,
+      report: report,
+      running: _bulkRunning,
+      subjects: _bulkSubjects,
+      onStop: !_bulkRunning || _bulkStopRequested
+          ? null
+          : () {
+              if (mounted && identical(_bulkRun, run) && _bulkRunning) {
+                setState(() => _bulkStopRequested = true);
+              }
+            },
+      onDismiss: _bulkRunning
+          ? null
+          : () {
+              if (mounted && identical(_bulkReport, report)) {
+                setState(() => _bulkReport = null);
+              }
+            },
+    );
   }
 
   Future<void> _apply(MailOperation command) async {
@@ -2128,6 +2318,10 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
         child: MailMessageList(
           key: _messageListKey,
           scopeId: '${identityHashCode(_provider)}:${_mailbox?.id.value}',
+          selectionRevision: _headerRevision,
+          bulkEnabled: !_blocked && !_needsRefresh,
+          onBulkAction: _bulkActionCallback(),
+          bulkStatus: _bulkStatus(),
           strings: widget.strings.mailMessageListStrings,
           items: [
             for (final header in _headers)

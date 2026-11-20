@@ -12,6 +12,7 @@ import 'studio_credential_settings.dart';
 import 'studio_credential_storage.dart';
 import 'studio_mail_archive_action.dart';
 import 'studio_mail_archive_folder_action.dart';
+import 'studio_mail_bulk_status.dart';
 import 'studio_mail_cloud.dart';
 import 'studio_mail_cached_strings.dart';
 import 'studio_mail_compose.dart';
@@ -111,6 +112,13 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
       Map<mail.MimeMessage, ({bool? read, bool? flagged})>.identity();
   MailCursor? _nextHeaders;
   bool _needsRefresh = false;
+  int _bulkRevision = 0;
+  int _bulkSerial = 0;
+  MailAccountSession? _bulkSession;
+  MailBulkFlagReport? _bulkReport;
+  Map<MailRemoteIdentity, String> _bulkSubjects = const {};
+  bool _bulkRunning = false;
+  bool _bulkStopRequested = false;
   final _primaryLogin = TextEditingController();
   StudioMailImapPreset? _preset;
   bool _icloudFullAddressLogin = false;
@@ -532,6 +540,7 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
       );
     }
     _sessionGeneration++;
+    _bulkSession?.dispose();
     _mailboxCapture?.dispose();
     _credentialGeneration++;
     _email.dispose();
@@ -903,6 +912,9 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
         _mailboxes = boxes;
         _mailbox = inbox;
         _messages = page.messages;
+        _bulkRevision++;
+        _bulkReport = null;
+        _bulkSubjects = const {};
         _nextHeaders = page.next;
         _usedHeaderCursors.clear();
         _confirmedFlags.clear();
@@ -1008,6 +1020,9 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
           _error = null;
           _notice = null;
           if (!more) {
+            _bulkRevision++;
+            _bulkReport = null;
+            _bulkSubjects = const {};
             _mailbox = mailbox;
             _messageMailbox = null;
             _selected = null;
@@ -1744,6 +1759,162 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
 
   Future<void> _markRead() => _changeMessageFlags(read: true);
 
+  Future<void> _changeBulkFlags(
+    MailBulkFlagAction action,
+    List<String> ids, {
+    required int revision,
+    required StudioMailMessageLoader expectedLoader,
+  }) => runStudioMailOperation(() async {
+    final client = _client;
+    final loader = _messageLoader;
+    final mailbox = _messageMailbox;
+    if (client == null ||
+        loader == null ||
+        loader is! StudioMailBulkMessageActions ||
+        mailbox == null ||
+        _busy ||
+        _dialogOpen ||
+        _needsRefresh ||
+        revision != _bulkRevision ||
+        !identical(loader, expectedLoader) ||
+        ids.isEmpty ||
+        ids.length > MailBulkFlagPlan.maxMessages ||
+        ids.toSet().length != ids.length) {
+      return;
+    }
+    final actions = loader as StudioMailBulkMessageActions;
+    final generation = _sessionGeneration;
+    final headers = _messages;
+    final byId = {for (final header in headers) _messageKey(header): header};
+    if (ids.any((id) => !byId.containsKey(id))) return;
+    final frozen = <MailRemoteIdentity, mail.MimeMessage>{};
+    final MailBulkFlagPlan plan;
+    try {
+      for (final id in ids) {
+        final header = byId[id]!;
+        final identity = actions.bulkIdentity(mailbox, header);
+        if (frozen.containsKey(identity)) {
+          throw ArgumentError('Duplicate bulk identity.');
+        }
+        frozen[identity] = header;
+      }
+      plan = MailBulkFlagPlan(
+        id: 'studio-imap-bulk-${++_bulkSerial}',
+        mailbox: MailMailboxId(mailbox.path, account: actions.account),
+        action: action,
+        messages: frozen.keys.toList(),
+      );
+    } on Object {
+      setState(() {
+        _needsRefresh = true;
+        _error = widget.strings.mailWorkspaceRefreshRequired;
+      });
+      return;
+    }
+    final session = MailAccountSession(actions.account);
+    final validity = (plan.messages.first as MailImapIdentity).uidValidity;
+    bool current() {
+      if (!_currentSession(client, generation) ||
+          !identical(_messageLoader, loader) ||
+          !identical(_messageMailbox, mailbox) ||
+          !identical(_messages, headers) ||
+          !identical(_bulkSession, session) ||
+          revision != _bulkRevision ||
+          mailbox.path != plan.mailbox.value ||
+          mailbox.uidValidity != validity) {
+        return false;
+      }
+      try {
+        return actions.account == plan.mailbox.account &&
+            frozen.entries.every(
+              (entry) =>
+                  entry.value.uid == (entry.key as MailImapIdentity).uid &&
+                  actions.bulkIdentity(mailbox, entry.value) == entry.key,
+            );
+      } on Object {
+        return false;
+      }
+    }
+
+    void project(MailBulkFlagReport report) {
+      for (final result in report.results) {
+        if (result.outcome != MailBulkFlagOutcome.confirmed) continue;
+        final header = frozen[result.message]!;
+        final read = switch (action) {
+          MailBulkFlagAction.markRead => true,
+          MailBulkFlagAction.markUnread => false,
+          _ => _observedRead(header),
+        };
+        final flagged = switch (action) {
+          MailBulkFlagAction.flag => true,
+          MailBulkFlagAction.unflag => false,
+          _ => _observedFlagged(header),
+        };
+        _confirmedFlags[header] = (read: read, flagged: flagged);
+        if (action == MailBulkFlagAction.markRead ||
+            action == MailBulkFlagAction.markUnread) {
+          header.setFlag(mail.MessageFlags.seen, read!);
+        } else {
+          header.setFlag(mail.MessageFlags.flagged, flagged!);
+        }
+      }
+      _bulkReport = report;
+      if (report.requiresRefresh) _needsRefresh = true;
+    }
+
+    setState(() {
+      _bulkSession = session;
+      _bulkSubjects = Map.unmodifiable({
+        for (final entry in frozen.entries)
+          entry.key: entry.value.decodeSubject() ?? '(no subject)',
+      });
+      _bulkReport = null;
+      _bulkRunning = true;
+      _bulkStopRequested = false;
+      _busy = true;
+      _error = null;
+      _notice = null;
+    });
+    try {
+      final report = await const MailBulkFlagRunner().run(
+        plan: plan,
+        lease: session.begin(),
+        apply: actions.applyBulkFlag,
+        isScopeCurrent: current,
+        shouldStop: () => _bulkStopRequested,
+        onProgress: (report) {
+          if (current()) setState(() => project(report));
+        },
+      );
+      if (!current()) {
+        // A mutable native header/mailbox may be retired without changing the
+        // account. Release the foreground lock but require a fresh observation.
+        if (_currentSession(client, generation) &&
+            identical(_bulkSession, session)) {
+          setState(() {
+            _bulkReport = report;
+            _bulkRunning = false;
+            _busy = false;
+            _needsRefresh = true;
+            _error = widget.strings.mailWorkspaceRefreshRequired;
+          });
+        }
+        return;
+      }
+      setState(() {
+        project(report);
+        _bulkRunning = false;
+        _busy = false;
+        if (report.requiresRefresh) {
+          _error = widget.strings.mailWorkspaceRefreshRequired;
+        }
+      });
+    } finally {
+      if (identical(_bulkSession, session)) _bulkSession = null;
+      session.dispose();
+    }
+  });
+
   Future<void> _changeMessageFlags({bool? read, bool? flagged}) =>
       runStudioMailOperation(() async {
         final client = _client;
@@ -1861,6 +2032,8 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
 
   void _disconnect() {
     _sessionGeneration++;
+    _bulkSession?.dispose();
+    _bulkSession = null;
     _mailboxCapture?.dispose();
     _mailboxCapture = null;
     final draftStore = _draftStore;
@@ -1888,6 +2061,11 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
       _mailboxes = const <mail.Mailbox>[];
       _mailbox = null;
       _messages = const <mail.MimeMessage>[];
+      _bulkRevision++;
+      _bulkReport = null;
+      _bulkSubjects = const {};
+      _bulkRunning = false;
+      _bulkStopRequested = false;
       _nextHeaders = null;
       _usedHeaderCursors.clear();
       _confirmedFlags.clear();
@@ -3129,67 +3307,116 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
     return 'imap-message-${observed?.uidValidity}:${message.uid ?? identityHashCode(message)}';
   }
 
-  Widget _messageList() => MailMessageList(
-    key: _messageListKey,
-    scopeId: '$_sessionGeneration:${_mailbox?.path}',
-    strings: widget.strings.mailMessageListStrings,
-    items: [
-      for (final message in _messages)
-        MailMessageListItem(
-          id: _messageKey(message),
-          subject: message.decodeSubject() ?? '(no subject)',
-          sender:
-              message.from
-                  ?.map(
-                    (address) =>
-                        address.personalName == null ||
-                            address.personalName!.isEmpty
-                        ? address.email
-                        : '${address.personalName} <${address.email}>',
-                  )
-                  .join(', ') ??
-              '',
-          to:
-              message.to
-                  ?.map(
-                    (address) => address.personalName?.isNotEmpty == true
-                        ? '${address.personalName} <${address.email}>'
-                        : address.email,
-                  )
-                  .join(', ') ??
-              '',
-          cc:
-              message.cc
-                  ?.map(
-                    (address) => address.personalName?.isNotEmpty == true
-                        ? '${address.personalName} <${address.email}>'
-                        : address.email,
-                  )
-                  .join(', ') ??
-              '',
-          date: message.decodeDate(),
-          dateLabel: message.decodeDate()?.toLocal().toString(),
-          isRead: _observedRead(message),
-          isFlagged: _observedFlagged(message),
-        ),
-    ],
-    selectedId: _selected == null ? null : _messageKey(_selected!),
-    busy: _busy || _dialogOpen,
-    hasMore: _nextHeaders != null && _messages.length < _maxHeaders,
-    loadMoreKey: const ValueKey('imap-load-more'),
-    onLoadMore: _needsRefresh || _mailbox == null
-        ? null
-        : () => unawaited(_selectMailbox(_mailbox!, more: true)),
-    limitNotice: _messages.length >= _maxHeaders && _nextHeaders != null
-        ? widget.strings.mailWorkspaceLimit
-        : null,
-    onOpen: (id) {
-      final message = _messages
-          .where((message) => _messageKey(message) == id)
-          .firstOrNull;
-      if (message != null) unawaited(_openMessage(message));
-    },
-  );
+  Widget _messageList() {
+    final revision = _bulkRevision;
+    final loader = _messageLoader;
+    final bulkSession = _bulkSession;
+    final bulkReport = _bulkReport;
+    return MailMessageList(
+      selectionRevision: revision,
+      bulkEnabled: !_needsRefresh,
+      onBulkAction: loader is StudioMailBulkMessageActions
+          ? (action, ids) => unawaited(
+              _changeBulkFlags(
+                action,
+                ids,
+                revision: revision,
+                expectedLoader: loader!,
+              ),
+            )
+          : null,
+      bulkStatus: bulkReport == null
+          ? null
+          : StudioMailBulkStatus(
+              strings: widget.strings,
+              report: bulkReport,
+              running: _bulkRunning,
+              subjects: _bulkSubjects,
+              onStop: _bulkRunning && !_bulkStopRequested
+                  ? () {
+                      if (!mounted ||
+                          !_bulkRunning ||
+                          !identical(_bulkSession, bulkSession)) {
+                        return;
+                      }
+                      setState(() => _bulkStopRequested = true);
+                    }
+                  : null,
+              onDismiss: _bulkRunning || bulkReport.requiresRefresh
+                  ? null
+                  : () {
+                      if (!mounted ||
+                          _bulkRunning ||
+                          !identical(_bulkReport, bulkReport)) {
+                        return;
+                      }
+                      setState(() {
+                        _bulkReport = null;
+                        _bulkSubjects = const {};
+                      });
+                    },
+            ),
+      key: _messageListKey,
+      scopeId: '$_sessionGeneration:${_mailbox?.path}',
+      strings: widget.strings.mailMessageListStrings,
+      items: [
+        for (final message in _messages)
+          MailMessageListItem(
+            id: _messageKey(message),
+            subject: message.decodeSubject() ?? '(no subject)',
+            sender:
+                message.from
+                    ?.map(
+                      (address) =>
+                          address.personalName == null ||
+                              address.personalName!.isEmpty
+                          ? address.email
+                          : '${address.personalName} <${address.email}>',
+                    )
+                    .join(', ') ??
+                '',
+            to:
+                message.to
+                    ?.map(
+                      (address) => address.personalName?.isNotEmpty == true
+                          ? '${address.personalName} <${address.email}>'
+                          : address.email,
+                    )
+                    .join(', ') ??
+                '',
+            cc:
+                message.cc
+                    ?.map(
+                      (address) => address.personalName?.isNotEmpty == true
+                          ? '${address.personalName} <${address.email}>'
+                          : address.email,
+                    )
+                    .join(', ') ??
+                '',
+            date: message.decodeDate(),
+            dateLabel: message.decodeDate()?.toLocal().toString(),
+            isRead: _observedRead(message),
+            isFlagged: _observedFlagged(message),
+          ),
+      ],
+      selectedId: _selected == null ? null : _messageKey(_selected!),
+      busy: _busy || _dialogOpen,
+      hasMore: _nextHeaders != null && _messages.length < _maxHeaders,
+      loadMoreKey: const ValueKey('imap-load-more'),
+      onLoadMore: _needsRefresh || _mailbox == null
+          ? null
+          : () => unawaited(_selectMailbox(_mailbox!, more: true)),
+      limitNotice: _messages.length >= _maxHeaders && _nextHeaders != null
+          ? widget.strings.mailWorkspaceLimit
+          : null,
+      onOpen: (id) {
+        final message = _messages
+            .where((message) => _messageKey(message) == id)
+            .firstOrNull;
+        if (message != null) unawaited(_openMessage(message));
+      },
+    );
+  }
 
   Widget _compactInbox(BuildContext context) => IndexedStack(
     index: _reader != null && _showCompactMessage ? 1 : 0,

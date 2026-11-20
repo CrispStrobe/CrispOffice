@@ -701,6 +701,7 @@ void main() {
         await _show(tester, harness, service: service);
         await _connect(tester);
         await tester.tap(_field('mail-list-unread'));
+        await _pump(tester);
         await tester.tap(_field('ews-message-cloud-message'));
         await _pump(tester);
         await tester.tap(find.byTooltip(_strings.markRead));
