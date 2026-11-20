@@ -7,6 +7,10 @@
   Preserve immutable progress snapshots and optional stop-after-current checks.
   Add explicit optional mutation-boundary evidence to problems and map provider
   results conservatively: only certified no-mutation failures are definite.
+  Recheck leases after caller guards, preserve uncertainty when a certificate
+  contradicts mutation evidence, and require refresh after invalidated scopes.
+  Stop the remaining selection on certified quota rejection without automatic
+  retry, preserving provider retry guidance and requiring no uncertainty refresh.
 
 - Add bounded portable loaded-header search with field-scoped text, quoted
   phrases, observed read/flag states and strict local-calendar date predicates.

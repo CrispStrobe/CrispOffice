@@ -469,6 +469,27 @@ void main() {
     });
   }
 
+  testWidgets('Escape clears checked rows without opening or changing mail', (
+    tester,
+  ) async {
+    var opens = 0;
+    var actions = 0;
+    await tester.pumpWidget(
+      _app(_list(onOpen: (_) => opens++, onBulkAction: (_, _) => actions++)),
+    );
+    await _selectAll(tester);
+    await _focusList(tester);
+    await tester.sendKeyEvent(LogicalKeyboardKey.escape);
+    await tester.pumpAndSettle();
+    expect(find.text('0 selected'), findsOneWidget);
+    expect(opens, 0);
+    expect(actions, 0);
+    await tester.sendKeyEvent(LogicalKeyboardKey.space);
+    await tester.pumpAndSettle();
+    expect(find.text('1 selected'), findsOneWidget);
+    expect(opens, 0);
+  });
+
   testWidgets('search editing keeps Ctrl+A and Space without checking mail', (
     tester,
   ) async {

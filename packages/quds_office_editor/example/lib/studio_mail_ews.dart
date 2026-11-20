@@ -9,6 +9,7 @@ import 'package:quds_mail_ui/quds_mail_ui.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import 'studio_mail_archive_action.dart';
+import 'studio_mail_bulk_status.dart';
 import 'studio_mail_archive_folder_action.dart';
 import 'studio_mail_compose.dart';
 import 'studio_mail_outbox.dart';
@@ -155,6 +156,8 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
   int _mailboxGeneration = 0;
   int _nextBulkOperation = 0;
   MailCancellationSource? _bulkCancellation;
+  MailBulkFlagReport? _bulkReport;
+  Map<MailRemoteIdentity, String> _bulkSubjects = const {};
   String? _error;
   String? _notice;
   String? _localAccountWarning;
@@ -572,6 +575,8 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
       _submissionUncertain = false;
       _showMessage = false;
       _needsRefresh = false;
+      _bulkReport = null;
+      _bulkSubjects = const {};
       _password.clear();
       _clientSecret.clear();
       _usedHeaderCursors.clear();
@@ -786,6 +791,8 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
       _notice = null;
       if (!more) {
         _mailboxGeneration++;
+        _bulkReport = null;
+        _bulkSubjects = const {};
         _mailbox = mailbox;
         _selected = null;
         _reader = null;
@@ -1061,6 +1068,10 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
     final cancellation = MailCancellationSource();
     setState(() {
       _bulkCancellation = cancellation;
+      _bulkReport = null;
+      _bulkSubjects = Map.unmodifiable({
+        for (final header in selected) header.remote: header.envelope.subject,
+      });
       _busy = true;
       _error = null;
       _notice = null;
@@ -1071,6 +1082,11 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
         lease: lease,
         cancellation: cancellation.token,
         isScopeCurrent: currentScope,
+        onProgress: (report) {
+          if (currentScope() && identical(_bulkCancellation, cancellation)) {
+            setState(() => _bulkReport = report);
+          }
+        },
         apply: (operation, operationLease) async =>
             MailBulkFlagAttempt.fromResult(
               await provider.apply(operation, operationLease),
@@ -1078,6 +1094,7 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
       );
       if (!currentScope()) return;
       setState(() {
+        _bulkReport = report;
         final updates = <MailRemoteIdentity, MailHeaderRecord>{};
         for (var i = 0; i < report.items.length; i++) {
           final result = report.items[i];
@@ -1116,10 +1133,7 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
           _selected = updates[opened.remote] ?? opened;
         }
         _notice = widget.strings.mailBulkSummary(report);
-        if (report.uncertainCount > 0 ||
-            report.stopReason == MailBulkFlagStopReason.staleScope ||
-            report.stopReason == MailBulkFlagStopReason.invalidScope ||
-            report.stopReason == MailBulkFlagStopReason.scopeCheckFailed) {
+        if (report.requiresRefresh) {
           _needsRefresh = true;
           _error = widget.strings.mailWorkspaceRefreshRequired;
         }
@@ -2241,6 +2255,45 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
     ],
   );
 
+  Widget? _bulkStatus() {
+    final report = _bulkReport;
+    if (report == null) return null;
+    final mailboxGeneration = _mailboxGeneration;
+    final cancellation = _bulkCancellation;
+    final running = cancellation != null;
+    return StudioMailBulkStatus(
+      strings: widget.strings,
+      report: report,
+      running: running,
+      subjects: _bulkSubjects,
+      showStop: false,
+      onStop: cancellation == null
+          ? null
+          : () {
+              if (mounted && identical(_bulkCancellation, cancellation)) {
+                cancellation.cancel();
+              }
+            },
+      onDismiss: running || report.requiresRefresh
+          ? null
+          : () {
+              if (!mounted ||
+                  mailboxGeneration != _mailboxGeneration ||
+                  !identical(_bulkReport, report) ||
+                  _bulkCancellation != null) {
+                return;
+              }
+              setState(() {
+                _bulkReport = null;
+                _bulkSubjects = const {};
+                if (_notice == widget.strings.mailBulkSummary(report)) {
+                  _notice = null;
+                }
+              });
+            },
+    );
+  }
+
   Widget _messageList({required bool compact}) {
     final mailboxGeneration = _mailboxGeneration;
     final cancellation = _bulkCancellation;
@@ -2281,6 +2334,7 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
             key: _messageListKey,
             scopeId: '${identityHashCode(_provider)}:${_mailbox?.id.value}',
             selectionScopeId: '$mailboxGeneration',
+            bulkStatus: _bulkStatus(),
             strings: widget.strings.mailMessageListStrings,
             items: [
               for (final header in _headers)

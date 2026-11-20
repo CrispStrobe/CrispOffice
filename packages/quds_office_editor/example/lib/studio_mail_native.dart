@@ -11,6 +11,7 @@ import 'package:quds_mail_ui/quds_mail_ui.dart';
 import 'studio_credential_settings.dart';
 import 'studio_credential_storage.dart';
 import 'studio_mail_archive_action.dart';
+import 'studio_mail_bulk_status.dart';
 import 'studio_mail_archive_folder_action.dart';
 import 'studio_mail_cloud.dart';
 import 'studio_mail_cached_strings.dart';
@@ -114,6 +115,8 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
   int _mailboxGeneration = 0;
   int _nextBulkOperation = 0;
   MailCancellationSource? _bulkCancellation;
+  MailBulkFlagReport? _bulkReport;
+  Map<MailRemoteIdentity, String> _bulkSubjects = const {};
   final _primaryLogin = TextEditingController();
   StudioMailImapPreset? _preset;
   bool _icloudFullAddressLogin = false;
@@ -911,6 +914,8 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
         _usedHeaderCursors.clear();
         _confirmedFlags.clear();
         _needsRefresh = false;
+        _bulkReport = null;
+        _bulkSubjects = const {};
         _selected = null;
         _reader = null;
         _connecting = false;
@@ -1013,6 +1018,8 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
           _notice = null;
           if (!more) {
             _mailboxGeneration++;
+            _bulkReport = null;
+            _bulkSubjects = const {};
             _mailbox = mailbox;
             _messageMailbox = null;
             _selected = null;
@@ -1079,6 +1086,8 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
             _messageMailbox = observedMailbox;
             _nextHeaders = page.next;
             _needsRefresh = false;
+            _bulkReport = null;
+            _bulkSubjects = const {};
           });
           await _saveCachedView(client, generation);
           if (_currentSession(client, generation)) {
@@ -1934,6 +1943,11 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
     };
     setState(() {
       _bulkCancellation = cancellation;
+      _bulkReport = null;
+      _bulkSubjects = Map.unmodifiable({
+        for (var i = 0; i < targets.length; i++)
+          observed[i].remote: targets[i].decodeSubject() ?? '',
+      });
       _busy = true;
       _error = null;
       _notice = null;
@@ -1944,7 +1958,21 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
         lease: session.begin(),
         cancellation: cancellation.token,
         isScopeCurrent: currentSelection,
+        onProgress: (report) {
+          if (currentSelection() &&
+              identical(_bulkCancellation, cancellation)) {
+            setState(() => _bulkReport = report);
+          }
+        },
         apply: (operation, lease) async {
+          if (loader is StudioMailBulkMessageActions) {
+            return MailBulkFlagAttempt.fromResult(
+              await (loader as StudioMailBulkMessageActions).applyBulkFlag(
+                operation,
+                lease,
+              ),
+            );
+          }
           final message = byRemote[operation.message]!;
           try {
             if (operation is MailSetRead) {
@@ -1980,12 +2008,15 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
       if (!currentHost()) return;
       if (!currentSelection()) {
         setState(() {
+          _bulkReport = null;
+          _bulkSubjects = const {};
           _needsRefresh = true;
           _error = widget.strings.mailWorkspaceRefreshRequired;
         });
         return;
       }
       setState(() {
+        _bulkReport = report;
         for (var i = 0; i < report.items.length; i++) {
           final result = report.items[i];
           if (result.outcome != MailBulkFlagOutcome.confirmed) continue;
@@ -2006,10 +2037,7 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
           }
         }
         _notice = widget.strings.mailBulkSummary(report);
-        if (report.uncertainCount > 0 ||
-            report.stopReason == MailBulkFlagStopReason.staleScope ||
-            report.stopReason == MailBulkFlagStopReason.invalidScope ||
-            report.stopReason == MailBulkFlagStopReason.scopeCheckFailed) {
+        if (report.requiresRefresh) {
           _needsRefresh = true;
           _error = widget.strings.mailWorkspaceRefreshRequired;
         }
@@ -2101,6 +2129,8 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
       _usedHeaderCursors.clear();
       _confirmedFlags.clear();
       _needsRefresh = false;
+      _bulkReport = null;
+      _bulkSubjects = const {};
       _selected = null;
       _showCompactMessage = false;
       _error = null;
@@ -3347,6 +3377,45 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
     return 'imap-message-${observed?.uidValidity}:${message.uid ?? identityHashCode(message)}';
   }
 
+  Widget? _bulkStatus() {
+    final report = _bulkReport;
+    if (report == null) return null;
+    final mailboxGeneration = _mailboxGeneration;
+    final cancellation = _bulkCancellation;
+    final running = cancellation != null;
+    return StudioMailBulkStatus(
+      strings: widget.strings,
+      report: report,
+      running: running,
+      subjects: _bulkSubjects,
+      showStop: false,
+      onStop: cancellation == null
+          ? null
+          : () {
+              if (mounted && identical(_bulkCancellation, cancellation)) {
+                cancellation.cancel();
+              }
+            },
+      onDismiss: running || report.requiresRefresh
+          ? null
+          : () {
+              if (!mounted ||
+                  mailboxGeneration != _mailboxGeneration ||
+                  !identical(_bulkReport, report) ||
+                  _bulkCancellation != null) {
+                return;
+              }
+              setState(() {
+                _bulkReport = null;
+                _bulkSubjects = const {};
+                if (_notice == widget.strings.mailBulkSummary(report)) {
+                  _notice = null;
+                }
+              });
+            },
+    );
+  }
+
   Widget _messageList() {
     final mailboxGeneration = _mailboxGeneration;
     final cancellation = _bulkCancellation;
@@ -3354,6 +3423,7 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
       key: _messageListKey,
       scopeId: '$_sessionGeneration:${_mailbox?.path}',
       selectionScopeId: '$mailboxGeneration',
+      bulkStatus: _bulkStatus(),
       strings: widget.strings.mailMessageListStrings,
       items: [
         for (final message in _messages)

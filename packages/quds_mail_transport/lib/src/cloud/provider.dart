@@ -365,10 +365,19 @@ final class ApiMailCloudProvider implements MailCloudProvider {
       rethrow;
     }
     // Only explicit request/auth/resource/precondition rejection statuses prove
-    // no write. Rate limits, timeouts and unfamiliar 4xx responses remain
-    // uncertain once dispatched, as do server failures after a possible commit.
+    // no write, including documented rate-limit rejection. Timeouts and
+    // unfamiliar 4xx responses remain uncertain after a possible commit.
     if (mutation &&
-        const {400, 401, 403, 404, 409, 412}.contains(response.statusCode)) {
+        const {
+          400,
+          401,
+          403,
+          404,
+          409,
+          410,
+          412,
+          429,
+        }.contains(response.statusCode)) {
       operation.mutationPossible = false;
     }
     operation.check();

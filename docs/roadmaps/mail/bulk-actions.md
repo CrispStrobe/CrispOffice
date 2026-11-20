@@ -44,7 +44,10 @@ an unobserved independent flag remains unobserved.
 | Not attempted | The batch stopped before this identity's adapter was invoked |
 
 Every frozen identity has one outcome in the portable report, in original
-selection order. The host displays all four outcome counts. Uncertainty stops
+selection order. The host displays all four outcome counts and a **Details**
+view with each captured subject and its outcome. Subjects are frozen with the
+selection, so later refreshes cannot relabel an earlier result. While a batch
+runs, unsettled items are labeled **Pending**, including the in-flight request. Uncertainty stops
 the batch immediately; later messages are not attempted. Another mutation
 requires an explicit folder refresh, and there is no automatic retry.
 
@@ -54,8 +57,10 @@ explicit `false` certifies that no remote mutation happened and becomes
 **uncertain**. The native loader preserves this receipt rather than discarding
 it while translating provider errors. A certified cancellation or stale-scope
 failure still stops later requests; a certified ordinary rejection can allow
-the next selected message. Timeouts, throttled dispatched requests and server
-failures retain uncertainty until an ordinary refresh reconciles observations.
+the next selected message. A certified quota/rate-limit rejection stops the
+remaining batch without an automatic retry or a forced refresh. Its provider
+retry delay remains available in the receipt. Timeouts, unfamiliar responses
+and server failures retain uncertainty until a refresh reconciles observations.
 
 While a batch runs, the ordinary busy guards prevent new message operations,
 folder/account switches and another batch. **Stop after current message**
@@ -68,8 +73,8 @@ request already sent. No detached future or background replay is introduced.
 `MailBulkFlagPlan` copies and validates 1–1,000 unique remote identities in one
 account/provider/mailbox. IMAP additionally requires a single UIDVALIDITY and
 uses exact UIDs, never sequence numbers. Opaque provider IDs retain account and
-provider namespaces. The coordinator is single-use. Optional immutable progress snapshots preserve the full original
-order; observer failures do not rewrite provider outcomes. A consumed menu
+provider namespaces. The coordinator is single-use. Optional immutable progress
+snapshots preserve the full original order; observer failures do not rewrite provider outcomes. A consumed menu
 callback cannot dispatch the same selection again after completion.
 
 The hosts retain the original account session, provider/loader, folder

@@ -15,6 +15,7 @@ enum MailBulkFlagStopReason {
   invalidScope,
   scopeCheckFailed,
   uncertain,
+  rateLimited,
 }
 
 /// An immutable, bounded selection in one account, folder and provider.
@@ -115,6 +116,8 @@ final class MailBulkFlagPlan {
 /// an arbitrary [MailFailure] from [MailProvider.apply] does not establish that:
 /// cancellation, a stale lease, or a lost reply may follow remote acceptance.
 /// An adapter without definite rejection evidence must return [uncertain].
+/// An explicit possible-mutation problem contradicts a failed certificate and
+/// is conservatively retained as uncertain by the coordinator.
 final class MailBulkFlagAttempt {
   /// Only explicit no-mutation evidence makes a provider failure definite.
   /// Codes such as permission denied or cancelled cannot establish delivery.
@@ -181,9 +184,14 @@ final class MailBulkFlagReport {
   int get uncertainCount => count(MailBulkFlagOutcome.uncertain);
   int get unattemptedCount => count(MailBulkFlagOutcome.unattempted);
 
-  /// Unknown remote outcomes require a fresh observation before another write.
-  /// Hosts must also reject publication into a retired account/folder scope.
-  bool get requiresRefresh => uncertainCount != 0;
+  /// Unknown outcomes or an invalidated scope require a fresh observation before
+  /// another write. A known reply followed by user cancellation does not.
+  /// Hosts must still reject publication into a retired account/folder scope.
+  bool get requiresRefresh =>
+      uncertainCount != 0 ||
+      stopReason == MailBulkFlagStopReason.staleScope ||
+      stopReason == MailBulkFlagStopReason.invalidScope ||
+      stopReason == MailBulkFlagStopReason.scopeCheckFailed;
 }
 
 /// A single-use, sequential foreground batch with no retry or background work.
@@ -239,7 +247,7 @@ final class MailBulkFlagCoordinator {
       }
     }
 
-    MailBulkFlagStopReason? interruption() {
+    MailBulkFlagStopReason? leaseInterruption() {
       if (lease.account != plan.mailbox.account) {
         return MailBulkFlagStopReason.invalidScope;
       }
@@ -251,6 +259,12 @@ final class MailBulkFlagCoordinator {
             : MailBulkFlagStopReason.cancelled;
       }
       if (!lease.isCurrent) return MailBulkFlagStopReason.staleScope;
+      return null;
+    }
+
+    MailBulkFlagStopReason? interruption() {
+      final initial = leaseInterruption();
+      if (initial != null) return initial;
       try {
         if (!isScopeCurrent()) return MailBulkFlagStopReason.staleScope;
       } catch (_) {
@@ -263,7 +277,9 @@ final class MailBulkFlagCoordinator {
       } catch (_) {
         return MailBulkFlagStopReason.cancelled;
       }
-      return null;
+      // A synchronous caller guard can retire the lease while returning a
+      // permissive value. Recheck it before accepting the next dispatch.
+      return leaseInterruption();
     }
 
     publish();
@@ -282,17 +298,20 @@ final class MailBulkFlagCoordinator {
           MailProblem(MailProblemCode.providerFailure),
         );
       }
-      items[index] = MailBulkFlagItemResult._(
-        operation,
-        attempt.outcome,
-        attempt.problem,
-      );
-      if (attempt.outcome == MailBulkFlagOutcome.uncertain) {
+      final problem = attempt.problem;
+      final outcome =
+          attempt.outcome == MailBulkFlagOutcome.failed &&
+              problem?.mutationMayHaveOccurred == true
+          ? MailBulkFlagOutcome.uncertain
+          : attempt.outcome;
+      items[index] = MailBulkFlagItemResult._(operation, outcome, problem);
+      if (outcome == MailBulkFlagOutcome.uncertain) {
         stopReason = MailBulkFlagStopReason.uncertain;
-      } else if (attempt.outcome == MailBulkFlagOutcome.failed) {
-        stopReason = switch (attempt.problem?.code) {
+      } else if (outcome == MailBulkFlagOutcome.failed) {
+        stopReason = switch (problem?.code) {
           MailProblemCode.cancelled => MailBulkFlagStopReason.cancelled,
           MailProblemCode.staleOperation => MailBulkFlagStopReason.staleScope,
+          MailProblemCode.quotaExceeded => MailBulkFlagStopReason.rateLimited,
           _ => null,
         };
       }

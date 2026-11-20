@@ -74,6 +74,23 @@ abstract interface class StudioMailMessageActions {
   });
 }
 
+/// Foreground bulk commands retain the provider's mutation evidence. Older
+/// reader/action adapters stay valid without claiming this optional capability.
+abstract interface class StudioMailBulkMessageActions {
+  MailAccountId get account;
+
+  /// Only a header observed by this loader may supply a bulk remote identity.
+  MailImapIdentity bulkIdentity(
+    mail.Mailbox selectedMailbox,
+    mail.MimeMessage header,
+  );
+
+  Future<MailResult<MailUnit>> applyBulkFlag(
+    MailOperation command,
+    MailOperationLease hostLease,
+  );
+}
+
 /// Optional folder archiving capability, separate from existing reader fakes.
 /// Hosts supply a stable mailbox profile and own the archive's lifetime.
 abstract interface class StudioMailMailboxArchiver {
@@ -146,6 +163,7 @@ final class NativeStudioMailMessageLoader
         StudioMailMailboxBrowser,
         StudioMailMailboxRecords,
         StudioMailMessageActions,
+        StudioMailBulkMessageActions,
         StudioMailMailboxArchiver {
   factory NativeStudioMailMessageLoader(
     mail.MailAccount account, {
@@ -542,6 +560,62 @@ final class NativeStudioMailMessageLoader
         lease,
       ),
     );
+  }
+
+  @override
+  MailImapIdentity bulkIdentity(
+    mail.Mailbox selectedMailbox,
+    mail.MimeMessage header,
+  ) => observedHeader(selectedMailbox, header).remote as MailImapIdentity;
+
+  @override
+  Future<MailResult<MailUnit>> applyBulkFlag(
+    MailOperation command,
+    MailOperationLease hostLease,
+  ) async {
+    MailFailure<MailUnit> failure(MailProblemCode code, bool dispatched) =>
+        MailFailure(MailProblem(code, mutationMayHaveOccurred: dispatched));
+    if (command is! MailSetRead && command is! MailSetFlagged ||
+        command.message is! MailImapIdentity ||
+        command.message.account != account ||
+        hostLease.account != account) {
+      return failure(MailProblemCode.invalidInput, false);
+    }
+    if (_active != null) return failure(MailProblemCode.unavailable, false);
+    final operation = _MessageOperation();
+    var dispatched = false;
+    try {
+      hostLease.checkCurrent();
+      final lease = _session.begin(cancellation: operation.cancellation.token);
+      _active = operation;
+      final provider = _providerFactory(
+        configuration: _configuration,
+        credentialStore: _credentials,
+        limits: limits,
+      );
+      if (provider.account != account) {
+        return failure(MailProblemCode.invalidInput, false);
+      }
+      hostLease.checkCurrent();
+      lease.checkCurrent();
+      dispatched = true;
+      // Do not race cancellation against a provider acknowledgment or erase its
+      // explicit pre-mutation evidence. The bounded provider owns completion;
+      // the runner and host separately reject stale UI projection.
+      return await provider.apply(command, lease);
+    } on MailCancelled catch (error) {
+      return failure(
+        error.reason == MailCancellationReason.user ||
+                error.reason == MailCancellationReason.budgetExpired
+            ? MailProblemCode.cancelled
+            : MailProblemCode.staleOperation,
+        dispatched,
+      );
+    } on Object {
+      return failure(MailProblemCode.providerFailure, dispatched);
+    } finally {
+      if (identical(_active, operation)) _active = null;
+    }
   }
 
   @override

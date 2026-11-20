@@ -1242,6 +1242,7 @@ void main() {
     );
     await _connect(tester);
     await tester.tap(_field('mail-list-unread'));
+    await _pump(tester);
     await tester.tap(_field('ews-message-one'));
     await _pump(tester);
     await tester.tap(find.byTooltip(_strings.markRead));

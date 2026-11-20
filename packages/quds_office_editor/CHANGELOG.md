@@ -4,6 +4,9 @@ All notable changes to `quds_office_editor` are documented here.
 
 ## Unreleased
 
+- Show localized foreground bulk progress and per-message receipts with frozen
+  subjects, cancellation after the current message and refresh-aware dismissal.
+
 - Add foreground bulk read/unread/flag/unflag actions to connected IMAP, EWS,
   Gmail and Microsoft 365. Freeze checked visible identities, run sequentially,
   report confirmed/failed/uncertain/unattempted counts and stop on uncertainty.
