@@ -1,0 +1,168 @@
+{
+  "schema_version": 1,
+  "reviewer": "Independent intake_audit agent",
+  "status": "No blocking source issue found in the current-main compiler or compatibility of the retained 202 compiler and 6 integration cases. Runtime qualification remains unavailable.",
+  "reviewed_source_main": "b01cb23dc1b7bc94b691d68a2507b61dc6d48d7a",
+  "latest_main_source_readback": {
+    "commit": "22cf73b816328cd5fe54ec1793c89f1cc322db3b",
+    "compiler_blob": "07dc3c5737661abaf3b17db24439c71482de22ed",
+    "compiler_bytes_identical": true,
+    "compiler_test_blob": "d5caee5321cbf18e65466c2bf43fcec49397e725",
+    "compiler_test_bytes_identical": true
+  },
+  "reviewed_files": [
+    {
+      "path": "packages/quds_office_engine/lib/src/automation/office_vba_language.dart",
+      "blob": "07dc3c5737661abaf3b17db24439c71482de22ed",
+      "scope": "Current-main conversion table, checker, evaluator, host guards, call dispatch and reserved names; full incoming compiler patch reviewed."
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_vba_word_unit_conversions_test.dart",
+      "blob": "d5caee5321cbf18e65466c2bf43fcec49397e725",
+      "scope": "202 authored compiler cases reviewed; not executed in Dart."
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_vba_word_unit_conversions_integration_test.dart",
+      "blob": "d44ec892f13d9384ebed1e13b3f56e64c7959f2b",
+      "scope": "6 authored integration cases reviewed against preserved runtime interfaces; not executed in Dart."
+    },
+    {
+      "path": "packages/quds_office_engine/example/macros/word_unit_conversions.bas",
+      "blob": "cf996b99e767d1742557f257599bf0edf61eefa0",
+      "scope": "Exact retained source example reviewed: nine writes on two existing body paragraphs."
+    },
+    {
+      "path": "docs/VBA_WORD_MACROS.md",
+      "blob": "e1ba38ca57f2c997cb3d978a4f3e24b3946fb4d9",
+      "scope": "Current-main physical measurement/named argument/numeric compatibility contract read directly at b01."
+    }
+  ],
+  "source_findings": [
+    {
+      "area": "Official named arguments",
+      "finding": "All ten conversion names carry one official case-insensitive parameter in the map. Forward names are Inches, Centimeters, Millimeters, Picas and Lines; all reverse names use Points. _wordUnitCall accepts exactly one positional or matching named argument, rejects omission, extra arguments and unknown names, and checks the unwrapped expression's numeric compatibility."
+    },
+    {
+      "area": "Evaluation order and once-only argument evaluation",
+      "finding": "Bare and Application member calls select _evaluateWordUnitCall before the generic argument evaluation path. It unwraps a named argument then evaluates its value exactly once through the ordinary work-budget evaluator. Member receiver evaluation still precedes argument evaluation. Scalar helpers and side-effecting helper arguments retain execution ordering."
+    },
+    {
+      "area": "Host isolation and static validation",
+      "finding": "The five conversion lookups use containsKey and remain guarded by the Word language/application type. Word-only reservation is retained. Checker validation still traverses unused helpers and dead branches. Numeric Variant contents are checked dynamically by _number; Boolean, string, Empty, Null and object values are not implicitly accepted."
+    },
+    {
+      "area": "Numeric path",
+      "finding": "The input passes existing finite/common-exact-integer bounds, then is promoted to binary64 before multiplication. Rational factors match 72 points/inch, 12 points/pica or line, and the inferred exact metric ratios 3600/127 and 360/127. Exact inverse equality alone permits native-grid canonicalization; there is no epsilon test. Integer products are bounded before use. Ordinary binary64 rounding can still naturally produce an on-grid result, as the contract states."
+    },
+    {
+      "area": "Legacy inverse line arithmetic",
+      "finding": "PointsToLines retains number / 12 behavior for off-grid scalar fallback via numerator 1, denominator 12. The selected high-range fallback comparisons, including maximum common exact integer, agree in the current-source numeric model."
+    },
+    {
+      "area": "Retained tests and examples",
+      "finding": "All retained intentionally invalid named-call fixtures use Value:=, which remains an unknown parameter for all eight new physical methods. They do not conflict with the newly accepted official names. The 17 canonical native cases and all six precision-refusal fixtures agree with the current evaluator model. Both large scalar expectations added in d5 agree within their stated binary64 tolerances. Integration and BAS source continue to target unchanged native APIs."
+    },
+    {
+      "area": "Current documentation",
+      "finding": "The incoming Word contract accurately describes positional and official named arguments, actual numeric values, once-only evaluation, the binary64/common-bound model, exact inverse canonicalization, native precision and explicit CLng rounding, and lack of Single subtype/rounding emulation. It expressly distinguishes authored fixtures from unavailable Dart runtime qualification."
+    },
+    {
+      "area": "Runtime scope",
+      "finding": "The conversion compiler emits scalar values using existing write operations. This review found no new native runtime, serialization, permission, allowlist or publication implementation in the compiler delta."
+    }
+  ],
+  "arithmetic_review": {
+    "script_path": "docs/validation/word-vba-unit-conversions-20261120/check-main-arithmetic.mjs",
+    "script_blob": "53ae8838160899dd2eabd7d5adb75f01b92d6728",
+    "result_path": "docs/validation/word-vba-unit-conversions-20261120/main-arithmetic-result.json",
+    "result_blob": "cb4bef8fd056971324eab19296d924ac866432d0",
+    "assertions": 246,
+    "counts": {
+      "source": 4,
+      "reference": 30,
+      "retained_canonical_fixture": 17,
+      "retained_native_precision_refusal": 6,
+      "retained_scalar_fixture": 6,
+      "legacy_inverse_fallback": 4,
+      "result_bound": 4,
+      "input_bound": 5,
+      "selected_twip_boundaries": 170
+    },
+    "passed": true,
+    "scope": "Exact-source-bound JavaScript numeric transcription and source-shape checks only. No Dart parsing, compilation, VM, compiled-Dart-JavaScript, native document or test execution.",
+    "execution": "Pure core executed in the functions.exec V8 isolate against exact fetched source; standalone Node wrapper authored but not launched.",
+    "source_binding": "The wrapper checks the exact Git blob ID. The executed core checks exact evaluator text, exact checker text, all ten map entries and dispatch lookup shape.",
+    "dart_tests_executed": 0
+  },
+  "incoming_evidence_review": {
+    "path": "docs/validation/word-vba-measurements-20261120/source-review.json",
+    "reviewed_at_main": "b01cb23dc1b7bc94b691d68a2507b61dc6d48d7a",
+    "production_blob": "07dc3c5737661abaf3b17db24439c71482de22ed",
+    "findings": "Incoming review and README explicitly state that consolidated Dart execution was unavailable. Incoming commit-message claims of 147 source, 10 integration and 103 legacy tests were not reproduced and were not counted as fresh passes.",
+    "fixed_numeric_receipts_independently_replayed": 21,
+    "fixed_numeric_receipt_mismatches": 0,
+    "broader_incoming_arithmetic_counts_reproduced": false,
+    "counting_rule": "The 21 fixed receipt comparisons are supplemental and overlap current checks; do not add them to the 246 assertion count or any Dart test count. Incoming broad arithmetic claims are not adopted as this review's results.",
+    "later_updates": "Parent reports later updates to incoming evidence at 22cf; this evidence content assessment is explicitly tied to b01 and makes no claim to reviewing those later evidence edits."
+  },
+  "historical_evidence": {
+    "compiler_blob": "a105ddd700c3822cb775d6a5ee9385bc380f4e8f",
+    "checkpoint": "c12ad8bc9c17f1849acdf92b2245e9198f1005b8",
+    "status": "Earlier source-review.json, qualification.json and arithmetic-model records describe the superseded scale-map evaluator. Retain them as historical evidence; they do not qualify current compiler 07dc. The unchanged fixture bindings remain useful with this new source review."
+  },
+  "primary_sources": [
+    {
+      "url": "https://learn.microsoft.com/en-us/office/vba/api/word.application.inchestopoints",
+      "supports": "Word method, Single input/result, 72 points/inch."
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/office/vba/api/word.application.pointstoinches",
+      "supports": "Inverse Word method, Single input/result."
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/office/vba/api/word.application.centimeterstopoints",
+      "supports": "Word method, Single input/result; prose metric factor is rounded."
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/office/vba/api/word.application.pointstocentimeters",
+      "supports": "Inverse Word method, Single input/result."
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/office/vba/api/word.application.millimeterstopoints",
+      "supports": "Word method, Single input/result; prose factor differs from reverse-method page and is not used as an exact ratio."
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/office/vba/api/word.application.pointstomillimeters",
+      "supports": "Inverse Word method, Single input/result."
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/office/vba/api/word.application.picastopoints",
+      "supports": "Word method, Single input/result, 12 points/pica."
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/office/vba/api/word.application.pointstopicas",
+      "supports": "Inverse Word method, Single input/result, 12 points/pica."
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/openspecs/office_standards/ms-oi29500/afb7e140-b259-4901-8af4-d4a514f50db9",
+      "supports": "Office coordinate ratios 914400 units/inch and 360000 units/cm; exact physical metric ratio is inferred from these unit definitions."
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/windows/win32/vml/basic-vml-types",
+      "supports": "12700 units/point and 635 units/twip, consistent with 20 twips/point."
+    }
+  ],
+  "unexecuted": [
+    "Dart parsing or compilation",
+    "Dart VM or compiled-Dart-JavaScript execution",
+    "Dart unit or integration suites",
+    "Dart analyzer",
+    "Dart formatter",
+    "Native document/CLI/MCP runtime execution",
+    "Installed Microsoft Word host parity",
+    "Standalone Node model wrapper"
+  ],
+  "github_actions_queried": false,
+  "github_actions_waited": false,
+  "ref_mutations_performed": false
+}
