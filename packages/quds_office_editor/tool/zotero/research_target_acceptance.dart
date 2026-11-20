@@ -4,6 +4,7 @@
 import 'package:flutter_test/flutter_test.dart';
 
 import '../../example/test/studio_comment_draft_proofing_test.dart' as suite10;
+import '../../example/test/studio_word_chrome_settle_test.dart' as suite12;
 import '../../test/word_incremental_layout_equivalence_test.dart' as suite11;
 import '../../test/word_proofing_capture_cache_test.dart' as suite9;
 import '../../test/word_proofing_session_test.dart' as suite8;
@@ -29,4 +30,5 @@ void main() {
   group('word_proofing_session_test.dart', suite8.main);
   group('word_proofing_capture_cache_test.dart', suite9.main);
   group('studio_comment_draft_proofing_test.dart', suite10.main);
+  group('studio_word_chrome_settle_test.dart', suite12.main);
 }
