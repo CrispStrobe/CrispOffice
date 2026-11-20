@@ -1,0 +1,199 @@
+{
+  "target_head": "fe2c57604c33c1ee5ef1e9f25121e99d66c74d9a",
+  "observed_head": "fe2c57604c33c1ee5ef1e9f25121e99d66c74d9a",
+  "target_tree": "0b615e2395aebc367e859fa2ee694ffce3529623",
+  "word": {
+    "path_count": 5194,
+    "mismatches": [],
+    "source_identical": true,
+    "recorded_runtime_source_mismatches": [],
+    "qualified_head": "520d0ca8870c6a169e23603660f2cde96366f9b2",
+    "retained_counts": {
+      "engine_passed": 823,
+      "incoming_word_passed": 974,
+      "editor_passed": 582,
+      "editor_skipped": 8
+    },
+    "fresh_studio_cases_replace_original_results": [
+      {
+        "path": "packages/quds_office_editor/example/test/studio_comment_draft_proofing_test.dart",
+        "passed": 15
+      },
+      {
+        "path": "packages/quds_office_editor/example/test/studio_word_chrome_settle_test.dart",
+        "passed": 1
+      }
+    ],
+    "baseline_receipts": {
+      "engine": {
+        "path": "/workspace/scratch/37104639dddb/zotero-runtime/final-source-acceptance/engine-receipt.json",
+        "sha256": "2325254ac5b44a6d0df69d1d383541e674c9e921c0290ec9057877c64f66f6fa"
+      },
+      "editor": {
+        "path": "/workspace/scratch/37104639dddb/zotero-runtime/final-source-acceptance/editor-receipt.json",
+        "sha256": "224ea324dc206026e6def962f5314d066b38e6518135745cbe86ac6fc6fb9f2a"
+      },
+      "incoming": {
+        "path": "/workspace/scratch/37104639dddb/zotero-runtime/final-source-acceptance/incoming-receipt.json",
+        "sha256": "27f47ceda432ef96bf69f9c91f435426f5bf580d3d435279ba83dbb1a9d0cd02"
+      }
+    }
+  },
+  "mail": {
+    "core": {
+      "path_count": 44,
+      "mismatches": [],
+      "source_identical": true,
+      "qualified_head": "e8edb90a2948af60f41e50795c049a0a4d1ed3e6",
+      "passed": 219,
+      "receipt_path": "/workspace/scratch/37104639dddb/intake-audit/mail-final-core-receipt.json",
+      "receipt_sha256": "0ad026034fc74435ba4b3e2ee7a210f54592fe8dcde0d86577476134d042d7b0"
+    },
+    "transport": {
+      "path_count": 259,
+      "mismatches": [],
+      "source_identical": true,
+      "qualified_head": "38dcd802ae79e22d9f84ad79db1a197c43f3ad70",
+      "passed": 415,
+      "receipt_path": "/workspace/scratch/37104639dddb/intake-audit/mail-transport-accepted-receipt.json",
+      "receipt_sha256": "398da90e2309969a266a49b2ac1826d1f652088db709a6e86c7d34ec28094714"
+    },
+    "shared_ui": {
+      "qualified_head": "37148e37736a4134bba1d3c07b0ad847c2e1447d",
+      "passed": 179,
+      "receipt_path": "/workspace/scratch/37104639dddb/zotero-runtime/mail-reader-full-ui-final-receipt.json",
+      "receipt_sha256": "401ad24dd4beb57f6b0c2a2da8fd69cdbbbf44e4922edc9cc6236d4ee09615f9",
+      "path_count": 64,
+      "mismatches": [],
+      "added_inputs": [],
+      "source_identical": true,
+      "transitive_source_binding": {
+        "path_count": 149,
+        "mismatches": [],
+        "source_identical": true
+      },
+      "note": "Reader/core/UI/example inputs were captured before and after the179-case run. MIME and vendored enough_mail inputs are separately bound by unchanged Git blobs plus current working bytes; dependency resolution is bound below."
+    }
+  },
+  "package_config_sha256": "b8484352f8e744aea71c1210e293eedf7a70425bc4c9c4f82afff93d16e5a0ab",
+  "mail_package_config_matches_qualified_baseline": true,
+  "mail_changes_requiring_separate_qualification": [
+    {
+      "path": "packages/quds_mail_ui/lib/src/reader/controller.dart",
+      "baseline": {
+        "mode": "100644",
+        "kind": "blob",
+        "blob": "d9c8314fe4da812f91e44418c2eb03e89868fb9c"
+      },
+      "target": {
+        "mode": "100644",
+        "kind": "blob",
+        "blob": "48067a2924c2addd17e6541a5a8b32a08657f444"
+      },
+      "working_blob": "48067a2924c2addd17e6541a5a8b32a08657f444"
+    },
+    {
+      "path": "packages/quds_mail_ui/lib/src/reader/presentation.dart",
+      "baseline": {
+        "mode": "100644",
+        "kind": "blob",
+        "blob": "3db312a5572c78e9115a666ed5363eea467c28d5"
+      },
+      "target": {
+        "mode": "100644",
+        "kind": "blob",
+        "blob": "74fcf61db2938294a8912c911c1dab25ce6bd223"
+      },
+      "working_blob": "74fcf61db2938294a8912c911c1dab25ce6bd223"
+    },
+    {
+      "path": "packages/quds_mail_ui/test/controller_test.dart",
+      "baseline": {
+        "mode": "100644",
+        "kind": "blob",
+        "blob": "15276fa1ca36613ec5c4badcaac926ae63fb28e6"
+      },
+      "target": {
+        "mode": "100644",
+        "kind": "blob",
+        "blob": "ab171320389a859d32385ab2b7bfa8d97feb494b"
+      },
+      "working_blob": "ab171320389a859d32385ab2b7bfa8d97feb494b"
+    },
+    {
+      "path": "packages/quds_mail_ui/test/presentation_test.dart",
+      "baseline": {
+        "mode": "100644",
+        "kind": "blob",
+        "blob": "ad25d86372e45965869c4c1f75fecee21cd75135"
+      },
+      "target": {
+        "mode": "100644",
+        "kind": "blob",
+        "blob": "6be0078fc557c4e99276750b34763cbba02f59c4"
+      },
+      "working_blob": "6be0078fc557c4e99276750b34763cbba02f59c4"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_native.dart",
+      "baseline": {
+        "mode": "100644",
+        "kind": "blob",
+        "blob": "6cae508ad7712bb66a9573e7ad27d18750521ff0"
+      },
+      "target": {
+        "mode": "100644",
+        "kind": "blob",
+        "blob": "5a0153644ff3c029172831bded71c600406c5009"
+      },
+      "working_blob": "5a0153644ff3c029172831bded71c600406c5009"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_remote_images.dart",
+      "baseline": null,
+      "target": {
+        "mode": "100644",
+        "kind": "blob",
+        "blob": "6d88fe70ffa283ba66f5462d6311b43f26ba3a71"
+      },
+      "working_blob": "6d88fe70ffa283ba66f5462d6311b43f26ba3a71"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_autoconnect_test.dart",
+      "baseline": null,
+      "target": {
+        "mode": "100644",
+        "kind": "blob",
+        "blob": "37d389831273854ee2b44b8196583581b4b6a3fe"
+      },
+      "working_blob": "37d389831273854ee2b44b8196583581b4b6a3fe"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_credential_backend_switch_test.dart",
+      "baseline": {
+        "mode": "100644",
+        "kind": "blob",
+        "blob": "8741806b2ce2e7e9f6811a8bd33ae2f2f97f5855"
+      },
+      "target": {
+        "mode": "100644",
+        "kind": "blob",
+        "blob": "d3c320e87404f783c5a9bf0ad1f182ca66d34a0d"
+      },
+      "working_blob": "d3c320e87404f783c5a9bf0ad1f182ca66d34a0d"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_remote_images_test.dart",
+      "baseline": null,
+      "target": {
+        "mode": "100644",
+        "kind": "blob",
+        "blob": "892f39da295def02caaf572ec28bfd6b8af6ee3a"
+      },
+      "working_blob": "892f39da295def02caaf572ec28bfd6b8af6ee3a"
+    }
+  ],
+  "note": "This proves retained source applicability. The two StudioShell suites compile Mail; their fresh 16 outcomes replace the original 16 within editor598. Latest shared UI and host/image/auto-connect tests require separately source-bound acceptance. Earlier focused and diagnostic runs are excluded from acceptance totals.",
+  "retained_source_binding_passed": true,
+  "full_record": "applicability/post-main-source-applicability.json inside post-main-evidence.tar.gz"
+}

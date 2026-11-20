@@ -1,0 +1,145 @@
+{
+  "archive": "mail-final-evidence.tar.gz",
+  "bytes": 1209821,
+  "sha256": "caebb31d305f6b719d4fed26446a6747ad1a556a4a1964bddfb0716712ad8407",
+  "members": 34,
+  "files": {
+    "accepted-source-applicability.json": {
+      "bytes": 1768,
+      "sha256": "4558fdf71065401f8c9d07166ec216154959b10bef306eafbdb3e37b7710a117"
+    },
+    "check_final_mail_applicability.py": {
+      "bytes": 4393,
+      "sha256": "ce237e397a8682c194ba04425ca5137bc15749091c54d1b1afc3f325804ec6f1"
+    },
+    "late-mail-intake-delta.json": {
+      "bytes": 2938,
+      "sha256": "120ea423adbebbfd93e6fb737fe26add24137ed3565c26b4a528f845a0296430"
+    },
+    "late-mail-union-resolution.json": {
+      "bytes": 2927,
+      "sha256": "830cee2ebce2994636b874f11519cc63aca478b52822ae69312a08de5aebe90c"
+    },
+    "mail-evidence.tar.gz": {
+      "bytes": 497352,
+      "sha256": "e05975b60e7402bc94ee6742a48286b757293832e2c2bee7419b518fecffa5a2"
+    },
+    "mail-final-core-preflight.json": {
+      "bytes": 2216,
+      "sha256": "47e0d03807968e5a987a810aa0d4a276ac98e91875a9bae188d8f4ca1184aeba"
+    },
+    "mail-final-core-receipt.json": {
+      "bytes": 106615,
+      "sha256": "0ad026034fc74435ba4b3e2ee7a210f54592fe8dcde0d86577476134d042d7b0"
+    },
+    "mail-final-core-sources-after.json": {
+      "bytes": 372134,
+      "sha256": "507dab1b7c069588787d5ffe4f6aa1850b81eb7706c033e75db675eef704d00a"
+    },
+    "mail-final-core-sources-before.json": {
+      "bytes": 372134,
+      "sha256": "507dab1b7c069588787d5ffe4f6aa1850b81eb7706c033e75db675eef704d00a"
+    },
+    "mail-final-core.jsonl": {
+      "bytes": 106434,
+      "sha256": "9f63b734231de2edfe0b62a6c4c157e83756abcb54f0c9a37c102512f32a0a5e"
+    },
+    "mail-final-core.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "mail-final-hosts-preflight.json": {
+      "bytes": 2458,
+      "sha256": "ec2656fe574938b9493c08b5d1f7fb9af9fb78e54ec4414d80480aa1497a42f1"
+    },
+    "mail-final-hosts-receipt.json": {
+      "bytes": 220117,
+      "sha256": "6d864eb2cf5f0c5e805defb7f53afd39a75464811c1ea0e4dca0179eae406ae2"
+    },
+    "mail-final-hosts-sources-after.json": {
+      "bytes": 372134,
+      "sha256": "507dab1b7c069588787d5ffe4f6aa1850b81eb7706c033e75db675eef704d00a"
+    },
+    "mail-final-hosts-sources-before.json": {
+      "bytes": 372134,
+      "sha256": "507dab1b7c069588787d5ffe4f6aa1850b81eb7706c033e75db675eef704d00a"
+    },
+    "mail-final-hosts.jsonl": {
+      "bytes": 207653,
+      "sha256": "92f8b34a8133ab44f023213169d6a5ac3f18101b68e1e1ec28e44cab1806f4b8"
+    },
+    "mail-final-hosts.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "mail-final-plan.json": {
+      "bytes": 2814,
+      "sha256": "5eb69db35fba172c0aed439349dd308dd9f23648c22f075226967c7531975c16"
+    },
+    "mail-final-qualification.json": {
+      "bytes": 3372,
+      "sha256": "57118658b3492a9a5f544775bd32f50ddb3274a428df567e61d3a0951e494d0f"
+    },
+    "mail-final-qualification.md": {
+      "bytes": 1987,
+      "sha256": "07fb565120540ae38bb42432bab08025a2a0a1ebe552a9e0c03f4cb8f4a1293d"
+    },
+    "mail-final-source-applicability.json": {
+      "bytes": 64311,
+      "sha256": "0dbc1041e4e7a112be5bb249068ff4f4e558cfdb06e7323eb824167ceb4d8f0d"
+    },
+    "mail-isolated-environment.json": {
+      "bytes": 925,
+      "sha256": "2a072c3f7b94f10580b30e8e8b12cbeff7ef8e0226a6ee7151a0a2e09c6fbc69"
+    },
+    "mail-qualification.json": {
+      "bytes": 9686,
+      "sha256": "1c573b4d7fb22139753515c378b3c295879ff46fe307edbc660381619ccd7f7d"
+    },
+    "mail-qualification.md": {
+      "bytes": 3138,
+      "sha256": "462a8e091acb6c8806d15b260846d80ca43907122bd5f5e59b3cf0d4e54ae62b"
+    },
+    "mail-transport-accepted-receipt.json": {
+      "bytes": 829,
+      "sha256": "398da90e2309969a266a49b2ac1826d1f652088db709a6e86c7d34ec28094714"
+    },
+    "mail-transport-accepted-sources.json": {
+      "bytes": 125716,
+      "sha256": "ab4ee0fe054ddb599725c1f298af4950b734f1aefdeb8e1147f0bca428089be0"
+    },
+    "mail-transport-accepted.jsonl": {
+      "bytes": 202157,
+      "sha256": "1e820dd2ca65ee34cd4bb89867fb2229ac13f2b405b8fb01b980538e9ba1c032"
+    },
+    "mail-transport-accepted.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "mail-ui-final-receipt.json": {
+      "bytes": 659,
+      "sha256": "d8b65ccce044218cef90f6e31d9402e854b6185ac0a2aa03eca4f7a2a28ee10b"
+    },
+    "mail-ui-final-sources.json": {
+      "bytes": 125716,
+      "sha256": "ab4ee0fe054ddb599725c1f298af4950b734f1aefdeb8e1147f0bca428089be0"
+    },
+    "mail-ui-final.jsonl": {
+      "bytes": 87830,
+      "sha256": "2942256b5d85ea19cc7704bcf5e99d2646e40e0826ea4fed2effdb47ee46656e"
+    },
+    "mail-ui-final.stderr": {
+      "bytes": 67,
+      "sha256": "e79d957dc156378e662f738d5731d4aea7ee13f9d634b349525a57c30a3c9b39"
+    },
+    "package_final_mail_evidence.py": {
+      "bytes": 7606,
+      "sha256": "66a2c5da7ed7565df574d5a4507ff04c0146b586249f909b31805fc73ed358b4"
+    },
+    "run_frozen_mail_validation.py": {
+      "bytes": 7898,
+      "sha256": "37374cd6ff57168136cc75ad9853ead685599a1ed422e3d6e0d109950dc1387c"
+    }
+  },
+  "verified_members": 34
+}
