@@ -903,6 +903,7 @@ final class WordZoteroCitingSession {
       );
     }
     _noteTextInsertionType(0);
+    _assertOutsideNativeFields();
     final range = WmlRunEdit.normalizeRange(
       paragraph,
       insertionOffset,
@@ -933,15 +934,19 @@ final class WordZoteroCitingSession {
       for (final inline in paragraph.inlines) {
         if (inline is WmlRun) {
           final end = offset + inline.text.length;
-          if (offset < insertionEndOffset &&
-              end > insertionOffset &&
-              (inline.isAtomic || inline.commentIds.isNotEmpty)) {
+          final selected = offset < insertionEndOffset && end > insertionOffset ||
+              inline.text.isEmpty &&
+                  offset >= insertionOffset &&
+                  offset <= insertionEndOffset;
+          if (selected && (inline.isAtomic || inline.commentIds.isNotEmpty)) {
             throw UnsupportedError(
               'A Zotero research-content selection must not contain note references, pictures, fields or commented text.',
             );
           }
           offset = end;
-        } else if (offset > insertionOffset && offset < insertionEndOffset) {
+        } else if ((inline is WmlBookmarkBoundary &&
+                offset >= insertionOffset && offset <= insertionEndOffset) ||
+            (offset > insertionOffset && offset < insertionEndOffset)) {
           throw UnsupportedError(
             'A Zotero research-content selection must not cross structural markers.',
           );
@@ -955,6 +960,92 @@ final class WordZoteroCitingSession {
     );
     WordContentControls.assertCanSplit(paragraph, insertionOffset);
     WordContentControls.assertCanSplit(paragraph, insertionEndOffset);
+  }
+
+  /// Native field result runs can look like ordinary text even when their
+  /// boundaries live in other paragraphs. Protect the complete chosen story;
+  /// Zotero-only edit normalization cannot establish these field extents.
+  ///
+  /// Exact generic-field endpoints remain guarded: the inline splice helpers
+  /// define packet affinity only for Zotero citations. Strictly outside text
+  /// remains editable. Malformed packets cannot establish safe field ownership.
+  void _assertOutsideNativeFields() {
+    final paragraphs = _flowParagraphs(
+      _insertionNote?.note.blocks ??
+          document.sections.expand((section) => section.blocks),
+    ).toList();
+    final target = paragraphs.indexOf(insertionParagraph!);
+    if (target < 0) {
+      throw StateError('The Zotero research-content story changed.');
+    }
+    final stack = <_ResearchFieldScan>[];
+    var scanned = 0;
+    Never malformed() => throw UnsupportedError(
+      'Resolve malformed Word field boundaries in this document story before inserting Zotero research content.',
+    );
+    for (var index = 0; index < paragraphs.length; index++) {
+      var offset = 0;
+      for (final inline in paragraphs[index].inlines) {
+        if (++scanned > 1000000) {
+          throw UnsupportedError(
+            'This story is too complex for one Zotero research-content insertion.',
+          );
+        }
+        if (inline is WmlRun) {
+          offset += inline.text.length;
+          continue;
+        }
+        if (inline is! WmlFieldBoundary) continue;
+        switch (inline.kind) {
+          case WmlFieldBoundaryKind.begin:
+            if (stack.length >= 256) {
+              throw UnsupportedError(
+                'This story contains too many nested Word fields.',
+              );
+            }
+            if (stack.isNotEmpty) stack.last.nested = true;
+            stack.add(
+              _ResearchFieldScan(index, offset, nested: stack.isNotEmpty),
+            );
+          case WmlFieldBoundaryKind.instruction:
+            if (stack.isEmpty || stack.last.separated) malformed();
+            final open = stack.last;
+            // Only the command prefix is needed to recognize an existing
+            // Zotero citation; do not copy arbitrarily large field metadata.
+            final remaining = 256 - open.instruction.length;
+            if (remaining > 0) {
+              open.instruction += inline.text.length <= remaining
+                  ? inline.text
+                  : inline.text.substring(0, remaining);
+            }
+          case WmlFieldBoundaryKind.separate:
+            if (stack.isEmpty || stack.last.separated) malformed();
+            stack.last.separated = true;
+          case WmlFieldBoundaryKind.end:
+            if (stack.isEmpty) malformed();
+            final open = stack.removeLast();
+            if (open.separated &&
+                !open.nested &&
+                WordZotero.kindOfInstruction(open.instruction) ==
+                    ZoteroFieldKind.citation) {
+              // The constructor and range guard already require these
+              // original citation packets to be editable and untouched.
+              continue;
+            }
+            if (target < open.paragraph || target > index) continue;
+            final start = target == open.paragraph ? open.start : 0;
+            final end = target == index
+                ? offset
+                : insertionParagraph!.text.length;
+            if (insertionOffset <= end && insertionEndOffset >= start) {
+              throw UnsupportedError(
+                'Choose ordinary text away from Word field results and boundaries before inserting Zotero research content.',
+              );
+            }
+        }
+      }
+    }
+    if (stack.isNotEmpty) malformed();
   }
 
   static bool _isTextBoundary(String text, int offset) =>
@@ -1789,6 +1880,15 @@ final class _CitingField {
                     'basic-author-year') ||
             noteType != originalNoteType ||
             code != WordZoteroCitingSession._toHttp(original!.instruction);
+}
+
+final class _ResearchFieldScan {
+  _ResearchFieldScan(this.paragraph, this.start, {required this.nested});
+  final int paragraph;
+  final int start;
+  String instruction = '';
+  bool separated = false;
+  bool nested;
 }
 
 final class _NoteAnchor {
