@@ -1,34 +1,101 @@
-# Word VBA tab stops
+# Word VBA custom tab stops
 
-## Implementation and completed checks
+## Result
 
-The bounded Word adapter now supports typed `TabStops` selectors, aliases,
-required `ByVal` helper arguments, `With`, named/optional `Add` arguments and
-`ClearAll`. Native operations preserve untouched direct and inherited stops,
-write clear records for effective custom stops, and retain the existing
-replace-all behavior of `paragraphFormat.tabs`. Default-tab interval settings,
-indentation, unrelated XML and opaque VBA package bytes remain preserved.
-See the [exact source contract](../../VBA_WORD_MACROS.md#custom-paragraph-tab-stops).
+The Word adapter supports typed `TabStops` selectors, aliases, required `ByVal`
+helper arguments, `With`, named/optional `Add` arguments and `ClearAll`.
+Positions use exact 0.05-point increments from -1584 through 1584 points.
+Four alignments and four leaders are supported. The native editing path
+preserves unrelated direct and inherited stops, writes positional clear records,
+and retains the existing replace-all behavior of `paragraphFormat.tabs`.
 
-Checkpoint `b5410b107a83f213e27c1476e766551b3f6cd6a4` combines the feature with
-the captured recent main, Zotero and Outbox work. The
-[refreshed reconciliation](reconciliation.md) accounts for 19 branches,
-255 PR heads and four upstream heads with zero uncovered inputs.
+The implementation also fixes inherited-stop replacement and refuses ambiguous
+native source, including custom tabs hidden in markup-compatibility alternatives.
+Default-tab interval settings, indentation, unrelated XML and opaque VBA package
+bytes remain preserved. See the [exact source contract](../../VBA_WORD_MACROS.md#custom-paragraph-tab-stops)
+and the executable [BAS example](../../../packages/quds_office_engine/example/macros/word_tabstops.bas).
 
-Completed checks on that source include whole-engine strict analysis
-([receipt](analysis.json)) and execution of the actual seven-operation BAS
-example on Dart VM and compiled JavaScript, with matching canonical and raw
-JSON, native save/reopen, precision boundaries, named evaluation order and
-late-failure rollback ([receipt](portable.json), [semantic result](portable-result.json)).
-The [runtime record](environment.json) binds Dart 3.13.7 and the 56 hosted
-dependency versions matching the repository lockfile.
+## Completed local qualification
 
-The broader combined-source regression gate is still being completed; its
-final accepted count is not represented by the earlier development checks.
-[Development evidence](development-evidence.json) indexes the preserved
-development archive, including superseded test attempts, rejected empty
-JavaScript output, and the before/after markup-compatibility review probe.
-Those attempts will not inflate the final passing count.
+The final local gate passed **2,114 test cases in 59 unique files, with zero
+failures and zero skips**. It covers every one of the 42 `office_vba_*` test files
+plus 17 native-operation, style, fidelity, preservation and ODT regression files.
+The new tests contribute 85 compiler cases, 40 native cases and 10 integrated
+execution cases to that same total; they are not counted twice.
+
+| Check | Result | Evidence |
+| --- | --- | --- |
+| Frozen-source regression gate | 2,114 passing cases, 59 files, zero failures/skips | [Summary and case counts](regression.json), [raw evidence archive](regression-evidence.tar.xz) |
+| Whole engine strict analysis | `dart analyze --fatal-infos packages/quds_office_engine`; no issues | [Analysis receipt](analysis.json) |
+| Formatting of all changed Dart files | 9 files, zero changes | [Formatting receipt](format.json) |
+| Actual BAS on Dart VM and compiled JavaScript | Matching canonical and raw JSON; seven operations, native save/reopen, boundary precision, named evaluation order, six refusals and late-failure rollback | [Portable receipt](portable.json), [semantic result](portable-result.json), [raw logs](portable-logs.json.gz) |
+| Dependency identity | Dart 3.13.7; all 56 shared hosted versions match the repository lockfile | [Runtime record](environment.json) |
+
+All accepted regression cases ran against source checkpoint
+`b5410b107a83f213e27c1476e766551b3f6cd6a4`, tree
+`4ac401fd0cd2de3fe5f305bf605f20fdc728d3f2`. The archive binds all **1,110 recorded
+repository input files** to exact Git mode/type/blob identities and SHA-256
+content hashes. Before/after manifests match throughout the run. SDK and package
+identities are recorded separately in the runtime record.
+
+The first two complete test batches were retained when the remaining batches
+moved to two bounded serial runners. Every file appears in exactly one accepted
+batch. The collector independently checked case start/completion pairing, suite
+declared counts, successful final events and raw-log hashes. Hidden loading/setup
+events are excluded. Case identities include the file, full test name and
+occurrence ordinal, so repeated test names are counted correctly. The original
+third-batch startup was stopped before Dart ran and contributes no accepted cases.
+
+The archived [partial checkpoint](partial-regression.json) saved the first 881
+completed cases during execution. It is a subset of the final result, not an
+additional pass count. [Development evidence](development-evidence.json) preserves
+superseded attempts, rejected empty JavaScript output and the before/after
+markup-compatibility review probe; those attempts also do not inflate the final
+count.
+
+## Reproduction and scope
+
+The archive includes the exact file selection, commands, raw JSON reporter logs,
+per-batch receipts, source manifests, runner scripts, controlled handoff record,
+isolated dependency manifests and an independent evidence review. Paths in those
+historical scripts identify the validation environment used for this run.
+
+In a checkout with the repository dependencies resolved, the same test selection
+can be run from the repository root with:
+
+```sh
+python3 - <<'PYTHON'
+import json
+import subprocess
+from pathlib import Path
+
+root = Path.cwd()
+record = json.loads((root / 'docs/validation/word-vba-tabstops-20261120/regression.json').read_text())
+for group in record['groups']:
+    subprocess.run([
+        'dart', 'test', '--compiler', 'source', '--concurrency=1',
+        '--timeout=4x', '--fail-fast',
+        *['test/' + name for name in group['files']],
+    ], cwd=root / 'packages/quds_office_engine', check=True)
+PYTHON
+```
+
+This qualifies the bounded pure Dart Word/Office implementation. It is not a
+claim of complete VBA or COM compatibility, execution of embedded VBA projects,
+or comparison against an installed Microsoft Word host. Live `TabStop` objects,
+collection reads/indexing/enumeration and arbitrary Word ranges remain outside
+this increment. Table inheritance follows Quds's existing whole-table,
+horizontal-band and first-row layers; other conditional table regions remain
+unmodeled and their native definitions are preserved. See the source contract
+for precise `ClearAll` limits.
+
+The incoming Mail, Flutter, credential-store, Zotero and provider workflows retain
+their own source-specific validation records. This engine gate does not qualify
+those product runtimes. GitHub Actions was neither queried nor awaited.
+
+The [source reconciliation record](reconciliation.md) documents the original and
+refreshed branch/PR inventories, later incoming changes and inclusion proofs.
+The initial capture below remains preserved as historical evidence.
 
 ## Initial source intake
 
@@ -89,6 +156,10 @@ The upstream repository is `MohammedAsaadAsaad/quds_office_suite`.
 | `cursor/cloud-agent-1790580069020-0rk1h` | `9930be8df44ffe117fb22778c514eea0ee73ce21` |
 | `main` | `15c5d29b63fb17a93c7fb3426a8fd4d95a32f1ba` |
 
-## Scope of this record
+## Scope of the initial intake
 
-This is a source/history inclusion audit. It makes no runtime qualification claim for the new tab-stop increment or incoming Mail, editor, credential-store, Zotero or other product work. Existing incoming validation records retain their own source-specific scope. GitHub Actions was neither queried nor awaited. Any later advance of main or another branch requires a separate refresh before final publication.
+The initial intake section records source/history inclusion at checkpoint
+`49d0fe9966edff96e2cbda7e483a9ba8a689219a`. Later reconciliation is recorded
+separately and the completed execution results above are bound to their own
+qualified source. Inclusion of a captured PR's source does not require changing
+that PR's separate GitHub interface state.

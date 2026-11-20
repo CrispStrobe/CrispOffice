@@ -183,12 +183,19 @@ preserving them does not add their missing live rendering behavior.
 
 `ClearAll`, `ClearAll()`, `Call stops.ClearAll`, and `Call stops.ClearAll()`
 accept no arguments. They clear the currently effective **explicit native
-custom-tab definitions**, including those inherited from document defaults,
-table formatting and paragraph styles. Position-specific native `clear`
+custom-tab definitions** resolved by Quds, including those inherited from
+document defaults, supported table-style layers and paragraph styles. Position-specific native `clear`
 records keep those stops suppressed after style refresh and repeated save/reopen.
 Document default-tab interval settings and paragraph indentation are preserved;
 implicit hanging-indent behavior is not redefined. New custom positions added
 to a style after the operation are not preemptively suppressed.
+
+Table-style inheritance follows the existing Quds resolver: `wholeTable`,
+enabled horizontal bands (`band1Horz` / `band2Horz`), and enabled `firstRow`.
+It does not evaluate first/last-column, last-row, corner or vertical-band
+conditional regions. Native tab definitions in those unmodeled regions remain
+preserved; `ClearAll` does not promise to suppress them. This increment does
+not add complete conditional table-style parity.
 
 Both operations retain unrelated native properties, extension attributes and
 children, foreign namespace lookalikes, and opaque macro-project parts through
@@ -200,8 +207,8 @@ anywhere in the stored Word XML parts cause a conservative document-level
 refusal, including alternatives wrapped around an entire style or paragraph
 property block. The adapter does not infer which hidden tab branch Word would edit.
 The existing native `paragraphFormat.tabs` operation retains replacement of the
-whole effective collection, including inherited stops, under the corrected
-position-wise style cascade.
+whole effective collection resolved by Quds, including inherited stops, under
+the corrected position-wise style cascade and the same table-layer limits.
 
 This slice supports statements whose `Add` return value is discarded. It does
 not introduce `TabStop` objects, indexing, `Count`, enumeration, collection-copy

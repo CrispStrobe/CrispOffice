@@ -222,11 +222,13 @@ required `position` in points and optional `alignment` (`left`, `center`,
 `right`, `decimal`; default `left`) and `leader` (`none`, `dot`, `hyphen`,
 `underscore`; default `none`). Positions must be finite exact twentieth-points
 in `-1584..1584`. Native `docx.clearTabStops` clears the selected paragraph's
-currently effective explicit custom-tab definitions, including inherited stops,
+currently effective explicit custom-tab definitions resolved by Quds, including inherited stops,
 using native position-specific clear records. It preserves default-tab interval
 settings and indentation. Both operations accept the usual explicit story
 selectors; `vba-word` emits only body-paragraph selectors. Partial tab edits
-preserve unrelated source XML and inheritance. Ambiguous source definitions
+preserve unrelated source XML and inheritance. Table inheritance uses the
+existing whole-table, horizontal-band and first-row layers; other conditional
+table regions remain unmodeled. Ambiguous source definitions
 are rejected before mutation; see the [Word contract](VBA_WORD_MACROS.md#custom-paragraph-tab-stops).
 
 The `example/macros/procedural_report.bas` example demonstrates shared heading
