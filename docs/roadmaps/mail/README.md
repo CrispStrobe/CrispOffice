@@ -18,7 +18,7 @@ plan rather than treating provider connectivity as full product parity.
 | Order | Workflow | Current position | Next acceptance boundary |
 | --- | --- | --- | --- |
 | 1 | Recoverable composition | Local autosave, attachment/reply recovery and interrupted-send warnings now connected to native hosts | Multiple drafts, offline draft entry and provider-side Drafts synchronization |
-| 2 | Everyday mailbox workspace (M04W/M06) | Shared foreground list across IMAP, EWS, Gmail and Microsoft 365: explicit pagination, loaded-message search, unread/flagged filters, stable selection, keyboard navigation and confirmed read/flag actions | Repository-driven account/folder workspace, persistent account switching/unified inbox, durable commands, consistent move/delete and bulk actions |
+| 2 | Everyday mailbox workspace (M04W/M06) | Shared foreground list across IMAP, EWS, Gmail and Microsoft 365; remembered native IMAP/SMTP accounts with explicit switching and retained local drafts | Repository-driven account/folder workspace, durable account sessions across providers, unified/offline inbox, durable commands, consistent move/delete and bulk actions |
 | 3 | Sending and outbox (M07) | Foreground submission and durable draft safety; core outbox/store contracts exist | Visible queued messages, immutable prepared MIME/envelopes, crash recovery, explicit retry/cancel, then undo-send and scheduled send |
 | 4 | Efficient discovery and organization | Independent archive FTS, saved archive searches and bounded mailbox filtering | Full account search, conversations, tags/categories, bulk commands and ordered rule execution with preview/recovery |
 | 5 | Rich authoring and Office workflows (M07/M08) | Word-based plain text, To/Cc/Bcc, reply all, file attachments | Signatures/templates, HTML alternatives, inline images, attach current document/PDF and edit a copy of a received attachment |
@@ -29,7 +29,7 @@ focused local tests and a remote source checkpoint before the next. Reconcile
 current main/branches/PRs before final publication. GitHub Actions queue time is
 not an acceptance dependency; record the actual local commands and scope.
 
-The [remembered-account guide](remembered-accounts.md) describes the next native
+The [remembered-account guide](remembered-accounts.md) describes the native
 IMAP/SMTP account-management increment and its exact scope. Its
 [local work record](../../validation/mail-accounts-20261120/README.md) tracks
 implementation and qualification separately from earlier results.

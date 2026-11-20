@@ -1665,25 +1665,7 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
                           _remember = value;
                         }),
                 ),
-                TextButton.icon(
-                  key: const ValueKey('studio-mail-forget'),
-                  onPressed:
-                      _connecting ||
-                          _accountCatalogStore != null &&
-                              (_credentialPending ||
-                                  _selectedSavedAccountId == null)
-                      ? null
-                      : _forgetCredentials,
-                  icon: Icon(
-                    _credentialPending
-                        ? Icons.hourglass_empty
-                        : _hasSavedCredentials
-                        ? Icons.key_off_outlined
-                        : Icons.delete_outline,
-                    size: 18,
-                  ),
-                  label: Text(widget.strings.forgetAccount),
-                ),
+                _forgetAccountButton(),
                 if (_credentialError != null) _credentialFeedback(context),
                 if (_error != null)
                   Padding(
@@ -1723,6 +1705,109 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
     ),
   );
 
+  String _accountTransport(int port, bool startTls) =>
+      '$port ${startTls ? 'STARTTLS' : 'TLS'}';
+
+  String _savedAccountDetails(StudioMailCredentials credentials) {
+    final identity = credentials.connectionIdentity;
+    return '${widget.strings.mailAccountSender(identity.sender)}\n'
+        '${widget.strings.mailAccountImapLogin(identity.imapLogin)} · '
+        '${identity.imapHost}:${_accountTransport(identity.imapPort, identity.imapStartTls)}\n'
+        '${widget.strings.mailAccountSmtpLogin(identity.smtpLogin)} · '
+        '${identity.smtpHost}:${_accountTransport(identity.smtpPort, identity.smtpStartTls)}';
+  }
+
+  String _savedAccountSummary(
+    StudioMailSavedAccount saved,
+    List<StudioMailSavedAccount> accounts,
+  ) {
+    final identity = saved.credentials.connectionIdentity;
+    final peers = accounts
+        .map((entry) => entry.credentials.connectionIdentity)
+        .where(
+          (entry) =>
+              entry.sender == identity.sender &&
+              entry.imapHost == identity.imapHost,
+        )
+        .toList();
+    final details = <String>[];
+    final imapLoginDiffers =
+        peers.map((entry) => entry.imapLogin).toSet().length > 1;
+    final smtpLoginDiffers =
+        peers.map((entry) => entry.smtpLogin).toSet().length > 1;
+    if (imapLoginDiffers &&
+        smtpLoginDiffers &&
+        peers.every((entry) => entry.imapLogin == entry.smtpLogin)) {
+      details.add(widget.strings.mailAccountLogin(identity.imapLogin));
+    } else {
+      if (imapLoginDiffers) {
+        details.add(widget.strings.mailAccountImapLogin(identity.imapLogin));
+      }
+      if (smtpLoginDiffers) {
+        details.add(widget.strings.mailAccountSmtpLogin(identity.smtpLogin));
+      }
+    }
+    if (peers
+            .map((entry) => (entry.imapPort, entry.imapStartTls))
+            .toSet()
+            .length >
+        1) {
+      details.add(
+        'IMAP: ${_accountTransport(identity.imapPort, identity.imapStartTls)}',
+      );
+    }
+    if (peers
+            .map(
+              (entry) => (entry.smtpHost, entry.smtpPort, entry.smtpStartTls),
+            )
+            .toSet()
+            .length >
+        1) {
+      details.add(
+        'SMTP: ${identity.smtpHost}:${_accountTransport(identity.smtpPort, identity.smtpStartTls)}',
+      );
+    }
+    return [identity.sender, ...details, identity.imapHost].join(' · ');
+  }
+
+  Widget _forgetAccountButton() {
+    final button = TextButton.icon(
+      key: const ValueKey('studio-mail-forget'),
+      onPressed:
+          _connecting ||
+              _accountCatalogStore != null &&
+                  (_credentialPending || _selectedSavedAccountId == null)
+          ? null
+          : _forgetCredentials,
+      icon: Icon(
+        _credentialPending
+            ? Icons.hourglass_empty
+            : _hasSavedCredentials
+            ? Icons.key_off_outlined
+            : Icons.delete_outline,
+        size: 18,
+      ),
+      label: Text(widget.strings.forgetAccount),
+    );
+    final selected = _accountCatalog?.accounts
+        .where((entry) => entry.id == _selectedSavedAccountId)
+        .firstOrNull;
+    if (selected == null) return button;
+    final details = _savedAccountDetails(selected.credentials);
+    return Tooltip(
+      key: const ValueKey('studio-mail-forget-tooltip'),
+      message: '${widget.strings.forgetAccount}\n$details',
+      excludeFromSemantics: true,
+      child: MergeSemantics(
+        child: Semantics(
+          key: const ValueKey('studio-mail-forget-description'),
+          label: details,
+          child: button,
+        ),
+      ),
+    );
+  }
+
   Widget _rememberedAccounts(BuildContext context) {
     final accounts =
         _accountCatalog?.accounts ?? const <StudioMailSavedAccount>[];
@@ -1743,9 +1828,23 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
               for (final saved in accounts)
                 DropdownMenuItem(
                   value: saved.id,
-                  child: Text(
-                    '${saved.credentials.email} · ${saved.credentials.imapHost}',
-                    overflow: TextOverflow.ellipsis,
+                  child: Tooltip(
+                    key: ValueKey('studio-mail-account-tooltip-${saved.id}'),
+                    message: _savedAccountDetails(saved.credentials),
+                    excludeFromSemantics: true,
+                    child: Semantics(
+                      key: ValueKey(
+                        'studio-mail-account-description-${saved.id}',
+                      ),
+                      label: _savedAccountDetails(saved.credentials),
+                      excludeSemantics: true,
+                      child: Text(
+                        _savedAccountSummary(saved, accounts),
+                        key: ValueKey('studio-mail-account-label-${saved.id}'),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
                   ),
                 ),
             ],

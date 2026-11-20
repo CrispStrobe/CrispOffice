@@ -21,6 +21,13 @@ local draft recovery.
    It does not remove another account, delete server mail, or delete the local
    drafts and independently saved archive messages.
 
+Accounts sharing the same sender and IMAP host show their differing effective
+logins, TLS settings or SMTP route. Hover or long-press a choice to inspect its
+full sender, IMAP and SMTP logins, servers, ports and TLS modes. The same
+description is available to assistive technology and identifies the selected
+**Forget** target. Passwords and internal account IDs are never part of these
+descriptions; provider presets display the routes they actually use.
+
 English, German and Arabic labels cover the chooser, new-account action,
 switching, selected-account removal and catalog failures. Existing single-record
 credential-store embedders retain their supported injection interface.
@@ -29,8 +36,9 @@ credential-store embedders retain their supported injection interface.
 
 The catalog is one versioned keychain record, limited in account count and
 encoded size. Account identities exclude passwords. Endpoint and provider
-settings distinguish accounts; case-sensitive login and address local parts
-remain distinct. Password rotation does not strand an existing entry.
+settings distinguish accounts; complete authentication logins and sending
+addresses retain their exact case, while hostnames are normalized. Password
+rotation does not strand an existing entry.
 
 An existing v1 remembered account is migrated without removing the old record
 before its replacement is durable. The v2 catalog remains authoritative even
@@ -38,7 +46,7 @@ when empty, preventing an old record from silently reappearing. Invalid or
 unreadable catalogs are reported as failures; they are never treated as an
 empty catalog that can be overwritten by a new save.
 
-Keychain operations serialize across store instances. Selection and Forget
+Keychain operations serialize across store instances in the host isolate. Selection and Forget
 target an explicit saved account identity. Settings revisions and session
 generations prevent delayed reads, selection writes and connection callbacks
 from replacing a newer form or mailbox session. Keychain failure is visible;
@@ -46,7 +54,9 @@ the UI does not claim that a failed save or removal succeeded.
 
 The established draft account fingerprint is unchanged. Draft ownership still
 uses provider, incoming endpoint, login and sender. Switching closes the prior
-draft store and restores only the new account's draft after connection.
+draft store and restores the connected identity's draft. Configurations that
+differ only in SMTP settings continue to share that existing draft identity;
+the new catalog does not silently introduce a different draft namespace.
 
 ## Scope and next work
 
@@ -55,10 +65,15 @@ and Fastmail presets. EWS and cloud-provider dialogs retain their existing
 authentication lifetime. This increment does not persist OAuth tokens, connect
 several accounts simultaneously, or provide a unified/offline inbox.
 
+Earlier status entries describe their original increments. This native
+IMAP/SMTP chooser supersedes their statements that only one account could be
+remembered or that persistent account switching was unavailable. Historical
+validation remains tied to its own source.
+
 The next M04W acceptance boundary is a repository-driven mailbox session:
-persist account/folder context, page cached headers with stable ordering,
-expose cached/offline/sync states, and reconcile supported mutations through
-durable commands. Then add source-aware unified views, bulk triage and
+persist mailbox/folder context beyond the selected sign-in, page cached headers
+with stable ordering, expose cached/offline/sync states, and reconcile supported
+mutations through durable commands. Then add source-aware unified views, bulk triage and
 account-wide search. The existing [ordered parity roadmap](README.md#desktop-mail-parity-ordered-increments)
 keeps queued sending, automation, rich authoring and Calendar/People separate.
 

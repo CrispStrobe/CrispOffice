@@ -6,6 +6,20 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'studio_mail_presets.dart';
 import 'studio_mail_recipients.dart';
 
+/// Immutable effective route fields for account identity and chooser labels.
+/// Credentials and tokens are deliberately absent from this presentation value.
+typedef StudioMailConnectionIdentity = ({
+  String sender,
+  String imapHost,
+  int imapPort,
+  bool imapStartTls,
+  String imapLogin,
+  String smtpHost,
+  int smtpPort,
+  bool smtpStartTls,
+  String smtpLogin,
+});
+
 /// Host-owned credential record. Only the platform keychain receives its JSON;
 /// diagnostics and exception messages must never include the record's values.
 class StudioMailCredentials {
@@ -31,12 +45,9 @@ class StudioMailCredentials {
   final String primaryLogin;
   final bool icloudFullAddressLogin;
 
-  /// Stable identity of the effective endpoints, logins and sending address.
-  /// Password rotation does not create another account. Hostname casing is
-  /// insignificant; the complete authentication login and sending address stay
-  /// exact, matching the existing connection and local-draft identity contract.
-  /// The digest contains no credential bytes and is not a credential itself.
-  String get accountId {
+  /// Uses the same preset precedence and login choices as account connection.
+  /// Hostnames are canonicalized; complete login and sender casing stays exact.
+  StudioMailConnectionIdentity get connectionIdentity {
     final sender = email.trim();
     final login = preset == null || primaryLogin.trim().isEmpty
         ? sender
@@ -49,20 +60,40 @@ class StudioMailCredentials {
     final outgoingStartTls = preset == null
         ? startTls
         : preset == StudioMailImapPreset.icloud;
+    return (
+      sender: sender,
+      imapHost: (preset?.imapHost ?? imapHost).trim().toLowerCase(),
+      imapPort: incomingStartTls ? 143 : 993,
+      imapStartTls: incomingStartTls,
+      imapLogin: incomingLogin,
+      smtpHost: (preset?.smtpHost ?? smtpHost).trim().toLowerCase(),
+      smtpPort: outgoingStartTls ? 587 : 465,
+      smtpStartTls: outgoingStartTls,
+      smtpLogin: login,
+    );
+  }
+
+  /// Stable identity of the effective endpoints, logins and sending address.
+  /// Password rotation does not create another account. Hostname casing is
+  /// insignificant; the complete authentication login and sending address stay
+  /// exact, matching the existing connection and local-draft identity contract.
+  /// The digest contains no credential bytes and is not a credential itself.
+  String get accountId {
+    final identity = connectionIdentity;
     return sha256
         .convert(
           utf8.encode(
             jsonEncode([
               'studio-imap-smtp-account-v2',
-              (preset?.imapHost ?? imapHost).trim().toLowerCase(),
-              incomingStartTls ? 143 : 993,
-              incomingStartTls ? 'starttls' : 'tls',
-              incomingLogin,
-              (preset?.smtpHost ?? smtpHost).trim().toLowerCase(),
-              outgoingStartTls ? 587 : 465,
-              outgoingStartTls ? 'starttls' : 'tls',
-              login,
-              sender,
+              identity.imapHost,
+              identity.imapPort,
+              identity.imapStartTls ? 'starttls' : 'tls',
+              identity.imapLogin,
+              identity.smtpHost,
+              identity.smtpPort,
+              identity.smtpStartTls ? 'starttls' : 'tls',
+              identity.smtpLogin,
+              identity.sender,
             ]),
           ),
         )

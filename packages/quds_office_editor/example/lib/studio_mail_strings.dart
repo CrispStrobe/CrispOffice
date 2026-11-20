@@ -19,6 +19,20 @@ extension StudioMailFeedback on StudioStrings {
       _mailText('New account', 'Neues Konto', 'حساب جديد');
   String get mailSwitchAccount =>
       _mailText('Switch account', 'Konto wechseln', 'تبديل الحساب');
+  String mailAccountSender(String sender) =>
+      _mailText('Sender: $sender', 'Absender: $sender', 'المرسل: $sender');
+  String mailAccountLogin(String login) =>
+      _mailText('Login: $login', 'Anmeldename: $login', 'اسم الدخول: $login');
+  String mailAccountImapLogin(String login) => _mailText(
+    'IMAP login: $login',
+    'IMAP-Anmeldename: $login',
+    'اسم دخول IMAP: $login',
+  );
+  String mailAccountSmtpLogin(String login) => _mailText(
+    'SMTP login: $login',
+    'SMTP-Anmeldename: $login',
+    'اسم دخول SMTP: $login',
+  );
   String get mailSavedAccountsHelp => _mailText(
     'Choose a saved IMAP account, then Connect. New account keeps your other saved accounts. Forget removes only the selected sign-in; local drafts and saved messages stay on this device.',
     'Ein gespeichertes IMAP-Konto auswählen und dann verbinden. „Neues Konto“ behält die anderen gespeicherten Konten. „Konto vergessen“ entfernt nur die ausgewählten Zugangsdaten; lokale Entwürfe und gespeicherte Nachrichten bleiben auf diesem Gerät.',
