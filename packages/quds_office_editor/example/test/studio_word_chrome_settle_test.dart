@@ -11,6 +11,12 @@ Future<void> _frames(WidgetTester tester) async {
   await tester.pump();
 }
 
+Future<void> _dialogFrames(WidgetTester tester) async {
+  await tester.pump();
+  await tester.pump(const Duration(milliseconds: 300));
+  await _frames(tester);
+}
+
 void main() {
   testWidgets(
     'the trailing Word chrome refresh requests an idle frame and shows the latest heading',
@@ -60,7 +66,7 @@ void main() {
       // The outline is host chrome; the document text itself is painted by
       // the editor and does not create a matching Text widget.
       await tester.tap(find.byTooltip('Settings'));
-      await tester.pumpAndSettle();
+      await _dialogFrames(tester);
       final outline = find.widgetWithText(
         SwitchListTile,
         'Show document outline',
@@ -69,7 +75,10 @@ void main() {
       await tester.tap(outline);
       await tester.pump();
       await tester.tap(find.widgetWithText(TextButton, 'Close'));
-      await tester.pumpAndSettle();
+      await _dialogFrames(tester);
+      // The editor's periodic caret must not supply the frame being tested.
+      FocusManager.instance.primaryFocus?.unfocus();
+      await _frames(tester);
       expect(find.text(heading), findsOneWidget);
 
       // The first edit changes Undo/dirty state and rebuilds immediately.
