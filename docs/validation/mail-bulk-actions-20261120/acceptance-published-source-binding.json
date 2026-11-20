@@ -1,0 +1,19 @@
+{
+  "purpose": "Bind archived pre-main acceptance to exact published checkpoint, including tested visual import order",
+  "checked_at_utc": "2026-11-20T21:34:27.888433+00:00",
+  "published_commit": "511990e9b81ff5d6ef2ed1488ff31e2565f21618",
+  "published_tree": "944696fe8968a7c0c23c7ef41399b02187d07635",
+  "evidence_manifest": "evidence-manifest.json",
+  "archive_sha256": "5ff4d171e28d83ea8804b5e112efe31725b7e9c83c2b81230223c09b3bfa6121",
+  "qualified_unique_inputs": 1107,
+  "tracked_inputs_verified_from_git_blobs": 1104,
+  "mismatches": [],
+  "runtime_only_inputs": {
+    ".dart_tool/native_assets.yaml": "bd154da8e32330827d143493ddc5266517b5496d8123df15730768d49a24b8e0",
+    ".dart_tool/package_config.json": "b8484352f8e744aea71c1210e293eedf7a70425bc4c9c4f82afff93d16e5a0ab",
+    "packages/quds_office_editor/example/build/native_assets/linux/libsqlite3.so": "0a65852703763619a7a34633b4959b3b86c4103804a4dfe4e8b27b5de1c0647b"
+  },
+  "runtime_inputs_still_match": true,
+  "status": "PASS",
+  "note": "Runtime-only configuration and the genuine locked SQLite library are not committed. Their hashes and native-assets provenance are archived. Subsequent main changes are qualified by a separate reconciliation supplement."
+}

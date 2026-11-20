@@ -8,9 +8,11 @@ import 'package:quds_mail_store/quds_mail_store.dart';
 import 'package:quds_mail_transport/quds_mail_transport.dart';
 import 'package:quds_mail_ui/quds_mail_ui.dart';
 
+import 'studio_chrome.dart';
 import 'studio_credential_settings.dart';
 import 'studio_credential_storage.dart';
 import 'studio_mail_archive_action.dart';
+import 'studio_mail_bulk_status.dart';
 import 'studio_mail_archive_folder_action.dart';
 import 'studio_mail_cloud.dart';
 import 'studio_mail_cached_strings.dart';
@@ -32,6 +34,7 @@ import 'studio_mail_outbox.dart';
 import 'studio_mail_outbox_dialog.dart';
 import 'studio_mail_outbox_strings.dart';
 import 'studio_mail_presets.dart';
+import 'studio_mail_remote_images.dart';
 import 'studio_mail_reply.dart';
 import 'studio_mail_strings.dart';
 import 'studio_mail_workspace_strings.dart';
@@ -53,6 +56,7 @@ class StudioMailDialog extends StatefulWidget {
     this.chromeBuilder,
     this.clientFactory,
     this.messageLoaderFactory,
+    this.autoConnectSavedAccount,
     this.accountDiscovery,
     this.credentialStore,
     this.credentialSettingsOpener,
@@ -80,6 +84,10 @@ class StudioMailDialog extends StatefulWidget {
   /// to control network completions without contacting an external account.
   final mail.MailClient Function(mail.MailAccount account)? clientFactory;
 
+  /// Connect after adopting remembered credentials. Built-in clients enable
+  /// this by default; hosts supplying their own factories can opt in explicitly.
+  final bool? autoConnectSavedAccount;
+
   /// Resolves endpoint settings only; credentials are supplied after the
   /// discovery origin and IMAP/SMTP server types have been checked.
   final Future<mail.ClientConfig?> Function(String email)? accountDiscovery;
@@ -92,7 +100,8 @@ class StudioMailDialog extends StatefulWidget {
   State<StudioMailDialog> createState() => _StudioMailDialogState();
 }
 
-class _StudioMailDialogState extends State<StudioMailDialog> {
+class _StudioMailDialogState extends State<StudioMailDialog>
+    with WidgetsBindingObserver {
   StudioMailLocalAccountStore? get _localAccounts =>
       widget.localAccountStore ??
       (widget.draftStoreFactory == null
@@ -111,6 +120,11 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
       Map<mail.MimeMessage, ({bool? read, bool? flagged})>.identity();
   MailCursor? _nextHeaders;
   bool _needsRefresh = false;
+  int _mailboxGeneration = 0;
+  int _nextBulkOperation = 0;
+  MailCancellationSource? _bulkCancellation;
+  MailBulkFlagReport? _bulkReport;
+  Map<MailRemoteIdentity, String> _bulkSubjects = const {};
   final _primaryLogin = TextEditingController();
   StudioMailImapPreset? _preset;
   bool _icloudFullAddressLogin = false;
@@ -126,6 +140,9 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
   bool _startTls = false;
   bool _hasSavedCredentials = false;
   bool _credentialPending = false;
+  Object? _autoConnectTicket;
+  bool _remoteImagesLoading = false;
+  bool _remoteImagesLoaded = false;
   int _settingsRevision = 0;
   int _credentialGeneration = 0;
 
@@ -164,6 +181,7 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addObserver(this);
     _credentials = widget.credentialStore ?? StudioMailCredentialStore();
     _accountCatalogStore = switch (_credentials) {
       StudioMailAccountCatalogStore store => store,
@@ -186,6 +204,7 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
 
   void _settingsEdited() {
     _settingsRevision++;
+    _autoConnectTicket = null;
     // Keep the offline action in sync with the effective saved-account route.
     // Password edits retain the route; endpoint/sender/login edits may not.
     if (mounted && _selectedSavedAccountId != null) setState(() {});
@@ -210,6 +229,7 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
         credentialGeneration != _credentialGeneration) {
       return;
     }
+    var adopted = false;
     setState(() {
       _hasSavedCredentials = saved != null;
       if (saved == null ||
@@ -219,6 +239,62 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
         return;
       }
       _applyCredentials(saved);
+      adopted = true;
+    });
+    if (adopted) _scheduleAutoConnect();
+  }
+
+  bool get _autoConnectEnabled =>
+      widget.autoConnectSavedAccount ??
+      (widget.clientFactory == null && widget.messageLoaderFactory == null);
+
+  void _scheduleAutoConnect() {
+    if (!_autoConnectEnabled ||
+        _autoConnectTicket != null ||
+        !_hasSavedCredentials ||
+        _credentialPending ||
+        _credentialSettingsOpen ||
+        _credentialStoreChangePending ||
+        _showSavedMessages ||
+        _client != null ||
+        _connecting ||
+        _busy ||
+        _dialogOpen ||
+        _email.text.trim().isEmpty ||
+        _password.text.isEmpty) {
+      return;
+    }
+    final ticket = Object();
+    _autoConnectTicket = ticket;
+    final settings = _settingsRevision;
+    final credentials = _credentialGeneration;
+    final store = _credentialStoreRevision;
+    final session = _sessionGeneration;
+    final account = _selectedSavedAccountId;
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!identical(_autoConnectTicket, ticket)) return;
+      _autoConnectTicket = null;
+      if (!mounted ||
+          !_autoConnectEnabled ||
+          settings != _settingsRevision ||
+          credentials != _credentialGeneration ||
+          store != _credentialStoreRevision ||
+          session != _sessionGeneration ||
+          account != _selectedSavedAccountId ||
+          !_hasSavedCredentials ||
+          _credentialPending ||
+          _credentialSettingsOpen ||
+          _credentialStoreChangePending ||
+          _showSavedMessages ||
+          _client != null ||
+          _connecting ||
+          _busy ||
+          _dialogOpen ||
+          _email.text.trim().isEmpty ||
+          _password.text.isEmpty) {
+        return;
+      }
+      unawaited(_connect());
     });
   }
 
@@ -275,6 +351,7 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
       );
     }
     if (!mounted || generation != _credentialGeneration) return;
+    var adopted = false;
     setState(() {
       _credentialPending = false;
       final current =
@@ -290,9 +367,13 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
       if (current) {
         _credentialError = null;
         final saved = result.catalog!.selectedAccount;
-        if (saved != null) _applySavedAccount(saved);
+        if (saved != null) {
+          _applySavedAccount(saved);
+          adopted = true;
+        }
       }
     });
+    if (adopted) _scheduleAutoConnect();
   }
 
   Future<void> _selectSavedAccount(String id) async {
@@ -525,12 +606,21 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
   }
 
   @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    // Keep the current mailbox and open message intact when the app returns
+    // from another desktop. An eager refresh cleared the reader before its
+    // network round-trip completed, which looked like a disconnect.
+  }
+
+  @override
   void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
     if (widget.credentialStore == null) {
       StudioCredentialStorage.instance.removeListener(
         _credentialStorageChanged,
       );
     }
+    _bulkCancellation?.cancel(MailCancellationReason.disposed);
     _sessionGeneration++;
     _mailboxCapture?.dispose();
     _credentialGeneration++;
@@ -907,6 +997,8 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
         _usedHeaderCursors.clear();
         _confirmedFlags.clear();
         _needsRefresh = false;
+        _bulkReport = null;
+        _bulkSubjects = const {};
         _selected = null;
         _reader = null;
         _connecting = false;
@@ -1008,6 +1100,9 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
           _error = null;
           _notice = null;
           if (!more) {
+            _mailboxGeneration++;
+            _bulkReport = null;
+            _bulkSubjects = const {};
             _mailbox = mailbox;
             _messageMailbox = null;
             _selected = null;
@@ -1074,6 +1169,8 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
             _messageMailbox = observedMailbox;
             _nextHeaders = page.next;
             _needsRefresh = false;
+            _bulkReport = null;
+            _bulkSubjects = const {};
           });
           await _saveCachedView(client, generation);
           if (_currentSession(client, generation)) {
@@ -1144,6 +1241,7 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
           setState(() {
             _selected = message;
             _reader = reader;
+            _remoteImagesLoaded = false;
             _showCompactMessage = true;
           });
           _retireReader(previous);
@@ -1614,6 +1712,38 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
     }
   });
 
+  Future<void> _loadRemoteImages() async {
+    final reader = _reader;
+    if (reader == null ||
+        reader.isDisposed ||
+        _remoteImagesLoading ||
+        _remoteImagesLoaded ||
+        reader.presentation.remoteImageUrls.isEmpty) {
+      return;
+    }
+    final generation = _sessionGeneration;
+    bool current() =>
+        mounted &&
+        identical(reader, _reader) &&
+        generation == _sessionGeneration &&
+        !reader.isDisposed;
+    setState(() {
+      _remoteImagesLoading = true;
+      _error = null;
+    });
+    try {
+      final admitted = await StudioMailRemoteImageLoader().load(
+        reader,
+        isCurrent: current,
+      );
+      if (current() && admitted > 0) {
+        setState(() => _remoteImagesLoaded = true);
+      }
+    } finally {
+      if (mounted) setState(() => _remoteImagesLoading = false);
+    }
+  }
+
   Future<void> _reply() => _composeFromMessage(forward: false);
 
   Future<void> _replyAll() =>
@@ -1820,6 +1950,227 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
         }
       });
 
+  Future<void> _changeBulkFlags(
+    MailBulkFlagAction action,
+    List<String> ids, {
+    required int mailboxGeneration,
+  }) => runStudioMailOperation(() async {
+    final client = _client;
+    final loader = _messageLoader;
+    final mailbox = _messageMailbox;
+    if (!mounted ||
+        client == null ||
+        loader is! StudioMailMessageActions ||
+        loader is! StudioMailMailboxRecords ||
+        mailbox == null ||
+        _busy ||
+        _dialogOpen ||
+        _needsRefresh ||
+        mailboxGeneration != _mailboxGeneration ||
+        ids.isEmpty ||
+        ids.length > MailBulkFlagPlan.maxMessages ||
+        ids.toSet().length != ids.length) {
+      return;
+    }
+    final actions = loader as StudioMailMessageActions;
+    final records = loader as StudioMailMailboxRecords;
+    final generation = _sessionGeneration;
+    final mailboxPath = mailbox.path;
+    final uidValidity = mailbox.uidValidity;
+    final account = records.account;
+    final targets = <mail.MimeMessage>[];
+    final observed = <MailHeaderRecord>[];
+    final MailBulkFlagPlan plan;
+    try {
+      for (final id in ids) {
+        final matches = _messages.where(
+          (message) => _messageKey(message) == id,
+        );
+        if (matches.length != 1) return;
+        final message = matches.single;
+        final header = records.observedHeader(mailbox, message);
+        final remote = header.remote;
+        if (remote is! MailImapIdentity ||
+            remote.account != account ||
+            remote.mailbox.value != mailboxPath ||
+            remote.uidValidity != uidValidity ||
+            remote.uid != message.uid) {
+          throw const StudioMailMessageLoadException(MailProblemCode.conflict);
+        }
+        targets.add(message);
+        observed.add(header);
+      }
+      plan = MailBulkFlagPlan(
+        id: 'imap-bulk-${++_nextBulkOperation}',
+        mailbox: MailMailboxId(mailboxPath, account: account),
+        provider: MailProviderKind.imap,
+        messages: [for (final header in observed) header.remote],
+        action: action,
+      );
+    } on Object {
+      if (_currentSession(client, generation)) {
+        setState(() {
+          _needsRefresh = true;
+          _error = widget.strings.mailWorkspaceRefreshRequired;
+        });
+      }
+      return;
+    }
+
+    bool currentHost() =>
+        _currentSession(client, generation) &&
+        identical(_messageLoader, loader) &&
+        mailboxGeneration == _mailboxGeneration &&
+        identical(_messageMailbox, mailbox) &&
+        records.account == account;
+
+    bool currentSelection() {
+      if (!currentHost() ||
+          mailbox.path != mailboxPath ||
+          mailbox.uidValidity != uidValidity) {
+        return false;
+      }
+      try {
+        final loaded = Set<mail.MimeMessage>.identity()..addAll(_messages);
+        for (var i = 0; i < targets.length; i++) {
+          final message = targets[i];
+          final remote = observed[i].remote as MailImapIdentity;
+          if (!loaded.contains(message) || message.uid != remote.uid) {
+            return false;
+          }
+          final latest = records.observedHeader(mailbox, message);
+          if (latest.id != observed[i].id || latest.remote != remote) {
+            return false;
+          }
+        }
+      } on Object {
+        return false;
+      }
+      return true;
+    }
+
+    // This lease scopes the coordinator; the native loader retains ownership
+    // of its own transport lease. Cancel stops later dispatches only.
+    final session = MailAccountSession(account);
+    final cancellation = MailCancellationSource();
+    final frozenMailbox = mailbox.copyWith();
+    final byRemote = {
+      for (var i = 0; i < targets.length; i++) observed[i].remote: targets[i],
+    };
+    setState(() {
+      _bulkCancellation = cancellation;
+      _bulkReport = null;
+      _bulkSubjects = Map.unmodifiable({
+        for (var i = 0; i < targets.length; i++)
+          observed[i].remote: targets[i].decodeSubject() ?? '',
+      });
+      _busy = true;
+      _error = null;
+      _notice = null;
+    });
+    try {
+      final report = await MailBulkFlagCoordinator().run(
+        plan: plan,
+        lease: session.begin(),
+        cancellation: cancellation.token,
+        isScopeCurrent: currentSelection,
+        onProgress: (report) {
+          if (currentSelection() &&
+              identical(_bulkCancellation, cancellation)) {
+            setState(() => _bulkReport = report);
+          }
+        },
+        apply: (operation, lease) async {
+          if (loader is StudioMailBulkMessageActions) {
+            return MailBulkFlagAttempt.fromResult(
+              await (loader as StudioMailBulkMessageActions).applyBulkFlag(
+                operation,
+                lease,
+              ),
+            );
+          }
+          final message = byRemote[operation.message]!;
+          try {
+            if (operation is MailSetRead) {
+              await actions.setRead(
+                frozenMailbox,
+                message,
+                read: operation.read,
+              );
+            } else if (operation is MailSetFlagged) {
+              await actions.setFlagged(
+                frozenMailbox,
+                message,
+                flagged: operation.flagged,
+              );
+            } else {
+              return const MailBulkFlagAttempt.failed(
+                MailProblem(MailProblemCode.unsupported),
+              );
+            }
+            return const MailBulkFlagAttempt.confirmed();
+          } on StudioMailMessageLoadException catch (error) {
+            return MailBulkFlagAttempt.fromResult(
+              MailFailure<MailUnit>(
+                MailProblem(
+                  error.code,
+                  mutationMayHaveOccurred: error.mutationMayHaveOccurred,
+                ),
+              ),
+            );
+          }
+        },
+      );
+      if (!currentHost()) return;
+      if (!currentSelection()) {
+        setState(() {
+          // Keep evidence for the frozen identities even if their mailbox
+          // generation changed. Never project its flags into the new scope.
+          _bulkReport = report;
+          _needsRefresh = true;
+          _error = widget.strings.mailWorkspaceRefreshRequired;
+        });
+        return;
+      }
+      setState(() {
+        _bulkReport = report;
+        for (var i = 0; i < report.items.length; i++) {
+          final result = report.items[i];
+          if (result.outcome != MailBulkFlagOutcome.confirmed) continue;
+          final message = targets[i];
+          final operation = result.operation;
+          _confirmedFlags[message] = (
+            read: operation is MailSetRead
+                ? operation.read
+                : _observedRead(message),
+            flagged: operation is MailSetFlagged
+                ? operation.flagged
+                : _observedFlagged(message),
+          );
+          if (operation is MailSetRead) {
+            message.setFlag(mail.MessageFlags.seen, operation.read);
+          } else if (operation is MailSetFlagged) {
+            message.setFlag(mail.MessageFlags.flagged, operation.flagged);
+          }
+        }
+        _notice = widget.strings.mailBulkSummary(report);
+        if (report.requiresRefresh) {
+          _needsRefresh = true;
+          _error = widget.strings.mailWorkspaceRefreshRequired;
+        }
+      });
+    } finally {
+      session.dispose();
+      if (_currentSession(client, generation) &&
+          identical(_bulkCancellation, cancellation)) {
+        setState(() {
+          _bulkCancellation = null;
+          _busy = false;
+        });
+      }
+    }
+  });
+
   Future<void> _switchAccount() async {
     final client = _client;
     if (client == null ||
@@ -1860,6 +2211,9 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
   }
 
   void _disconnect() {
+    _mailboxGeneration++;
+    _bulkCancellation?.cancel(MailCancellationReason.accountChanged);
+    _bulkCancellation = null;
     _sessionGeneration++;
     _mailboxCapture?.dispose();
     _mailboxCapture = null;
@@ -1892,6 +2246,8 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
       _usedHeaderCursors.clear();
       _confirmedFlags.clear();
       _needsRefresh = false;
+      _bulkReport = null;
+      _bulkSubjects = const {};
       _selected = null;
       _showCompactMessage = false;
       _error = null;
@@ -2057,7 +2413,7 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
           widget.chromeBuilder!(context)
         else if (Theme.of(context).platform == TargetPlatform.macOS)
           const SizedBox(height: 32),
-        _mailMenus(context),
+        _mailChrome(context),
         Expanded(
           child: RepaintBoundary(
             child: LayoutBuilder(
@@ -2153,171 +2509,184 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
     await _reloadSelectedCredentialStore();
   }
 
-  Widget _mailMenus(BuildContext context) => MenuBar(
-    style: MenuStyle(
-      backgroundColor: WidgetStatePropertyAll(
-        Theme.of(context).colorScheme.surface,
+  Widget _mailChrome(BuildContext context) {
+    final theme = Theme.of(context);
+    final Color foreground = theme.colorScheme.onSurface;
+    Widget command({
+      Key? key,
+      required IconData icon,
+      required String tooltip,
+      VoidCallback? onPressed,
+      bool selected = false,
+    }) => IconButton(
+      key: key,
+      tooltip: tooltip,
+      onPressed: onPressed,
+      visualDensity: VisualDensity.compact,
+      constraints: const BoxConstraints.tightFor(width: 38, height: 38),
+      iconSize: 19,
+      icon: Icon(
+        icon,
+        color: onPressed == null
+            ? theme.disabledColor
+            : selected
+            ? theme.colorScheme.primary
+            : foreground,
       ),
-    ),
-    children: [
-      SubmenuButton(
-        menuChildren: [
-          if (_hasCredentialSettings)
-            MenuItemButton(
-              onPressed: _canChangeCredentialStorage
-                  ? _openCredentialStorage
-                  : null,
-              child: const Text('Credential storage…'),
-            ),
-          MenuItemButton(
-            onPressed: () => setState(() {
-              _savedMessagesVisited = true;
-              _showSavedMessages = true;
-            }),
-            child: Text(widget.strings.savedMessages),
-          ),
-          MenuItemButton(
-            onPressed: () => Navigator.of(context).pop(),
-            child: Text(widget.strings.close),
-          ),
-        ],
-        child: const Text('File'),
-      ),
-      SubmenuButton(
-        menuChildren: [
-          MenuItemButton(
+    );
+    final groups = <StudioRibbonGroup>[
+      StudioRibbonGroup(
+        id: 'compose',
+        title: 'Compose',
+        children: <Widget>[
+          TextButton.icon(
+            key: const ValueKey('studio-mail-compose'),
             onPressed: _client == null || _busy ? null : _compose,
-            child: Text(widget.strings.compose),
-          ),
-          MenuItemButton(
-            onPressed: _busy || _mailbox == null
-                ? null
-                : () => _selectMailbox(_mailbox!),
-            child: Text(widget.strings.refresh),
-          ),
-          MenuItemButton(
-            onPressed: _client == null ? null : _disconnect,
-            child: Text(widget.strings.disconnect),
-          ),
-        ],
-        child: Text(widget.strings.mail),
-      ),
-      SubmenuButton(
-        menuChildren: [
-          MenuItemButton(
-            onPressed: () => setState(() => _showSavedMessages = false),
-            child: const Text('Accounts'),
-          ),
-          MenuItemButton(
-            onPressed: () => setState(() {
-              _savedMessagesVisited = true;
-              _showSavedMessages = true;
-            }),
-            child: Text(widget.strings.savedMessages),
-          ),
-        ],
-        child: const Text('View'),
-      ),
-    ],
-  );
-
-  Widget _accountView(
-    BuildContext context, {
-    required bool compact,
-  }) => Scaffold(
-    backgroundColor: Theme.of(context).colorScheme.surface,
-    appBar: AppBar(
-      backgroundColor: Theme.of(context).colorScheme.surfaceContainerHighest,
-      foregroundColor: Theme.of(context).colorScheme.onSurface,
-      surfaceTintColor: Colors.transparent,
-      automaticallyImplyLeading: false,
-      title: Text(widget.strings.mailTitle, overflow: TextOverflow.ellipsis),
-      actions: <Widget>[
-        if (_hasCredentialSettings)
-          IconButton(
-            key: const ValueKey('studio-mail-credential-storage'),
-            tooltip: 'Credential storage',
-            icon: const Icon(Icons.key),
-            onPressed: _canChangeCredentialStorage
-                ? _openCredentialStorage
-                : null,
-          ),
-        IconButton(
-          onPressed: _busy || _connecting
-              ? null
-              : () => setState(() {
-                  _savedMessagesVisited = true;
-                  _showSavedMessages = true;
-                }),
-          tooltip: widget.strings.savedMessages,
-          icon: const Icon(Icons.folder_open_outlined),
-        ),
-        if (_client != null) ...<Widget>[
-          if (compact)
-            IconButton(
-              onPressed: _busy ? null : _compose,
-              tooltip: widget.strings.compose,
-              icon: const Icon(Icons.edit_outlined),
-            )
-          else
-            TextButton.icon(
-              onPressed: _busy ? null : _compose,
-              icon: const Icon(Icons.edit_outlined),
-              label: Text(widget.strings.compose),
-            ),
-          IconButton(
-            key: const ValueKey('studio-mail-open-drafts'),
-            onPressed: _busy || _dialogOpen ? null : _openDrafts,
-            tooltip: widget.strings.mailDrafts,
-            icon: const Icon(Icons.drafts_outlined),
-          ),
-          IconButton(
-            key: const ValueKey('studio-mail-open-outbox'),
-            onPressed: _busy || _dialogOpen ? null : _openOutbox,
-            tooltip: widget.strings.mailOutbox,
-            icon: const Icon(Icons.outbox_outlined),
-          ),
-          IconButton(
-            onPressed: _busy || _mailbox == null
-                ? null
-                : () => _selectMailbox(_mailbox!),
-            tooltip: widget.strings.refresh,
-            icon: const Icon(Icons.refresh),
+            icon: const Icon(Icons.edit_outlined, size: 18),
+            label: Text(widget.strings.compose),
           ),
           if (_draft != null)
-            IconButton(
-              onPressed: _busy || _dialogOpen ? null : _discardDraft,
+            command(
+              icon: Icons.delete_outline,
               tooltip: widget.strings.mailDiscardDraft,
-              icon: const Icon(Icons.delete_outline),
+              onPressed: _busy || _dialogOpen ? null : _discardDraft,
             ),
+        ],
+      ),
+      StudioRibbonGroup(
+        id: 'mailbox',
+        title: 'Mailbox',
+        children: <Widget>[
+          command(
+            icon: Icons.refresh,
+            tooltip: widget.strings.refresh,
+            onPressed: _client != null && !_busy && _mailbox != null
+                ? () => _selectMailbox(_mailbox!)
+                : null,
+          ),
+          command(
+            key: const ValueKey('studio-mail-open-drafts'),
+            icon: Icons.drafts_outlined,
+            tooltip: widget.strings.mailDrafts,
+            onPressed: _client == null || _busy || _dialogOpen
+                ? null
+                : _openDrafts,
+          ),
+          command(
+            key: const ValueKey('studio-mail-open-outbox'),
+            icon: Icons.outbox_outlined,
+            tooltip: widget.strings.mailOutbox,
+            onPressed: _client == null || _busy || _dialogOpen
+                ? null
+                : _openOutbox,
+          ),
           if (_accountCatalogStore != null)
-            IconButton(
+            command(
               key: const ValueKey('studio-mail-switch-account'),
+              icon: Icons.switch_account_outlined,
+              tooltip: widget.strings.mailSwitchAccount,
               onPressed: _busy || _dialogOpen || _credentialPending
                   ? null
                   : _switchAccount,
-              tooltip: widget.strings.mailSwitchAccount,
-              icon: const Icon(Icons.switch_account_outlined),
             ),
-          IconButton(
-            onPressed: _disconnect,
+          command(
+            icon: Icons.logout,
             tooltip: widget.strings.disconnect,
-            icon: const Icon(Icons.logout),
+            onPressed: _client == null ? null : _disconnect,
           ),
         ],
-        const SizedBox(width: 8),
-        IconButton(
-          onPressed: () => Navigator.of(context).pop(),
-          tooltip: widget.strings.close,
-          icon: const Icon(Icons.close),
+      ),
+      StudioRibbonGroup(
+        id: 'view',
+        title: 'View',
+        children: <Widget>[
+          command(
+            key: const ValueKey('studio-mail-show-images'),
+            icon: _remoteImagesLoading
+                ? Icons.hourglass_top
+                : Icons.image_outlined,
+            tooltip: 'Show remote images',
+            onPressed:
+                _reader == null ||
+                    _remoteImagesLoaded ||
+                    _remoteImagesLoading ||
+                    _reader!.presentation.blockedResourceCount == 0
+                ? null
+                : _loadRemoteImages,
+          ),
+          command(
+            key: const ValueKey('studio-mail-saved-messages'),
+            icon: Icons.folder_open_outlined,
+            tooltip: widget.strings.savedMessages,
+            selected: _showSavedMessages,
+            onPressed: _busy || _connecting
+                ? null
+                : () => setState(() {
+                    _savedMessagesVisited = true;
+                    _showSavedMessages = true;
+                  }),
+          ),
+          if (_hasCredentialSettings)
+            command(
+              key: const ValueKey('studio-mail-credential-storage'),
+              icon: Icons.key,
+              tooltip: 'Credential storage',
+              onPressed: _canChangeCredentialStorage
+                  ? _openCredentialStorage
+                  : null,
+            ),
+          command(
+            icon: Icons.close,
+            tooltip: widget.strings.close,
+            onPressed: () => Navigator.of(context).maybePop(),
+          ),
+        ],
+      ),
+    ];
+    return StudioRibbonStyle(
+      compact: false,
+      showCommandLabels: false,
+      showGroupLabels: true,
+      child: Material(
+        color: theme.colorScheme.surface,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            Container(
+              height: 38,
+              padding: const EdgeInsetsDirectional.only(start: 8),
+              alignment: AlignmentDirectional.centerStart,
+              decoration: BoxDecoration(
+                border: Border(
+                  bottom: BorderSide(color: theme.colorScheme.outlineVariant),
+                ),
+              ),
+              child: StudioTabChip(
+                label: 'Home',
+                selected: true,
+                accent: theme.colorScheme.primary,
+                onTap: () {},
+              ),
+            ),
+            SizedBox(
+              height: StudioRibbonStrip.preferredHeight(
+                context,
+                compact: false,
+                showCommandLabels: false,
+                showGroupLabels: true,
+              ),
+              child: StudioRibbonStrip(groups: groups),
+            ),
+          ],
         ),
-        const SizedBox(width: 8),
-      ],
-    ),
-    body: _client == null
-        ? _accountSetup(context)
-        : _inbox(context, compact: compact),
-  );
+      ),
+    );
+  }
+
+  Widget _accountView(BuildContext context, {required bool compact}) =>
+      _client == null
+      ? _accountSetup(context)
+      : _inbox(context, compact: compact);
 
   Widget _accountSetup(BuildContext context) => Center(
     child: SingleChildScrollView(
@@ -2800,15 +3169,16 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
                   },
           ),
         ),
-        Align(
-          alignment: AlignmentDirectional.centerStart,
-          child: TextButton.icon(
-            key: const ValueKey('studio-mail-new-account'),
-            onPressed: _connecting || _credentialPending ? null : _newAccount,
-            icon: const Icon(Icons.person_add_alt_outlined),
-            label: Text(widget.strings.mailNewAccount),
+        if (_selectedSavedAccountId != null)
+          Align(
+            alignment: AlignmentDirectional.centerStart,
+            child: TextButton.icon(
+              key: const ValueKey('studio-mail-new-account'),
+              onPressed: _connecting || _credentialPending ? null : _newAccount,
+              icon: const Icon(Icons.person_add_alt_outlined),
+              label: Text(widget.strings.mailNewAccount),
+            ),
           ),
-        ),
         Text(
           widget.strings.mailSavedAccountsHelp,
           style: Theme.of(context).textTheme.bodySmall,
@@ -2883,7 +3253,16 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
               child: Row(
                 children: <Widget>[
                   Expanded(
-                    child: SelectableText(_error ?? _notice ?? '', maxLines: 2),
+                    child: Semantics(
+                      liveRegion: true,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          if (_notice != null) SelectableText(_notice!),
+                          if (_error != null) SelectableText(_error!),
+                        ],
+                      ),
+                    ),
                   ),
                 ],
               ),
@@ -3129,67 +3508,131 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
     return 'imap-message-${observed?.uidValidity}:${message.uid ?? identityHashCode(message)}';
   }
 
-  Widget _messageList() => MailMessageList(
-    key: _messageListKey,
-    scopeId: '$_sessionGeneration:${_mailbox?.path}',
-    strings: widget.strings.mailMessageListStrings,
-    items: [
-      for (final message in _messages)
-        MailMessageListItem(
-          id: _messageKey(message),
-          subject: message.decodeSubject() ?? '(no subject)',
-          sender:
-              message.from
-                  ?.map(
-                    (address) =>
-                        address.personalName == null ||
-                            address.personalName!.isEmpty
-                        ? address.email
-                        : '${address.personalName} <${address.email}>',
-                  )
-                  .join(', ') ??
-              '',
-          to:
-              message.to
-                  ?.map(
-                    (address) => address.personalName?.isNotEmpty == true
-                        ? '${address.personalName} <${address.email}>'
-                        : address.email,
-                  )
-                  .join(', ') ??
-              '',
-          cc:
-              message.cc
-                  ?.map(
-                    (address) => address.personalName?.isNotEmpty == true
-                        ? '${address.personalName} <${address.email}>'
-                        : address.email,
-                  )
-                  .join(', ') ??
-              '',
-          date: message.decodeDate(),
-          dateLabel: message.decodeDate()?.toLocal().toString(),
-          isRead: _observedRead(message),
-          isFlagged: _observedFlagged(message),
-        ),
-    ],
-    selectedId: _selected == null ? null : _messageKey(_selected!),
-    busy: _busy || _dialogOpen,
-    hasMore: _nextHeaders != null && _messages.length < _maxHeaders,
-    loadMoreKey: const ValueKey('imap-load-more'),
-    onLoadMore: _needsRefresh || _mailbox == null
-        ? null
-        : () => unawaited(_selectMailbox(_mailbox!, more: true)),
-    limitNotice: _messages.length >= _maxHeaders && _nextHeaders != null
-        ? widget.strings.mailWorkspaceLimit
-        : null,
-    onOpen: (id) {
-      final message = _messages
-          .where((message) => _messageKey(message) == id)
-          .firstOrNull;
-      if (message != null) unawaited(_openMessage(message));
-    },
-  );
+  Widget? _bulkStatus() {
+    final report = _bulkReport;
+    if (report == null) return null;
+    final mailboxGeneration = _mailboxGeneration;
+    final cancellation = _bulkCancellation;
+    final running = cancellation != null;
+    return StudioMailBulkStatus(
+      strings: widget.strings,
+      report: report,
+      running: running,
+      subjects: _bulkSubjects,
+      showStop: false,
+      onStop: cancellation == null
+          ? null
+          : () {
+              if (mounted && identical(_bulkCancellation, cancellation)) {
+                cancellation.cancel();
+              }
+            },
+      onDismiss: running || report.requiresRefresh
+          ? null
+          : () {
+              if (!mounted ||
+                  mailboxGeneration != _mailboxGeneration ||
+                  !identical(_bulkReport, report) ||
+                  _bulkCancellation != null) {
+                return;
+              }
+              setState(() {
+                _bulkReport = null;
+                _bulkSubjects = const {};
+                if (_notice == widget.strings.mailBulkSummary(report)) {
+                  _notice = null;
+                }
+              });
+            },
+    );
+  }
+
+  Widget _messageList() {
+    final mailboxGeneration = _mailboxGeneration;
+    final cancellation = _bulkCancellation;
+    return MailMessageList(
+      key: _messageListKey,
+      scopeId: '$_sessionGeneration:${_mailbox?.path}',
+      selectionScopeId: '$mailboxGeneration',
+      bulkStatus: _bulkStatus(),
+      strings: widget.strings.mailMessageListStrings,
+      items: [
+        for (final message in _messages)
+          MailMessageListItem(
+            id: _messageKey(message),
+            subject: message.decodeSubject() ?? '(no subject)',
+            sender:
+                message.from
+                    ?.map(
+                      (address) =>
+                          address.personalName == null ||
+                              address.personalName!.isEmpty
+                          ? address.email
+                          : '${address.personalName} <${address.email}>',
+                    )
+                    .join(', ') ??
+                '',
+            to:
+                message.to
+                    ?.map(
+                      (address) => address.personalName?.isNotEmpty == true
+                          ? '${address.personalName} <${address.email}>'
+                          : address.email,
+                    )
+                    .join(', ') ??
+                '',
+            cc:
+                message.cc
+                    ?.map(
+                      (address) => address.personalName?.isNotEmpty == true
+                          ? '${address.personalName} <${address.email}>'
+                          : address.email,
+                    )
+                    .join(', ') ??
+                '',
+            date: message.decodeDate(),
+            dateLabel: message.decodeDate()?.toLocal().toString(),
+            isRead: _observedRead(message),
+            isFlagged: _observedFlagged(message),
+          ),
+      ],
+      selectedId: _selected == null ? null : _messageKey(_selected!),
+      busy: _busy || _dialogOpen,
+      onBulkAction:
+          _messageLoader is StudioMailMessageActions &&
+              _messageLoader is StudioMailMailboxRecords
+          ? (action, ids) => unawaited(
+              _changeBulkFlags(
+                action,
+                ids,
+                mailboxGeneration: mailboxGeneration,
+              ),
+            )
+          : null,
+      bulkActionsEnabled: !_needsRefresh,
+      onCancelBulk: cancellation == null
+          ? null
+          : () {
+              if (identical(_bulkCancellation, cancellation)) {
+                cancellation.cancel();
+              }
+            },
+      hasMore: _nextHeaders != null && _messages.length < _maxHeaders,
+      loadMoreKey: const ValueKey('imap-load-more'),
+      onLoadMore: _needsRefresh || _mailbox == null
+          ? null
+          : () => unawaited(_selectMailbox(_mailbox!, more: true)),
+      limitNotice: _messages.length >= _maxHeaders && _nextHeaders != null
+          ? widget.strings.mailWorkspaceLimit
+          : null,
+      onOpen: (id) {
+        final message = _messages
+            .where((message) => _messageKey(message) == id)
+            .firstOrNull;
+        if (message != null) unawaited(_openMessage(message));
+      },
+    );
+  }
 
   Widget _compactInbox(BuildContext context) => IndexedStack(
     index: _reader != null && _showCompactMessage ? 1 : 0,

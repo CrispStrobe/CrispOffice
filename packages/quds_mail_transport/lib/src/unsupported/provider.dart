@@ -18,8 +18,9 @@ final class _UnsupportedMailProvider implements MailProvider {
   @override
   final MailAccountId account;
 
-  MailResult<T> _unavailable<T>() =>
-      const MailFailure(MailProblem(MailProblemCode.unsupported));
+  MailResult<T> _unavailable<T>() => const MailFailure(
+    MailProblem(MailProblemCode.unsupported, mutationMayHaveOccurred: false),
+  );
 
   @override
   Future<MailResult<MailCapabilities>> capabilities(

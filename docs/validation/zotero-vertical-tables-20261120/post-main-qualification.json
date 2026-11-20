@@ -1,0 +1,150 @@
+{
+  "frozen_head": "fe2c57604c33c1ee5ef1e9f25121e99d66c74d9a",
+  "tree": "0b615e2395aebc367e859fa2ee694ffce3529623",
+  "mail": {
+    "passed": 1249,
+    "skipped": 0,
+    "failed": 0,
+    "errors": 0,
+    "cohorts": {
+      "core": {
+        "passed": 219,
+        "qualified_head": "e8edb90a2948af60f41e50795c049a0a4d1ed3e6",
+        "retained": true,
+        "suites": {
+          "packages/quds_mail_core/test/bulk_flags_compatibility_test.dart": 28,
+          "packages/quds_mail_core/test/bulk_flags_coordinator_test.dart": 31,
+          "packages/quds_mail_core/test/bulk_flags_provider_results_test.dart": 36,
+          "packages/quds_mail_core/test/bulk_flags_test.dart": 30,
+          "packages/quds_mail_core/test/cancellation_test.dart": 3,
+          "packages/quds_mail_core/test/ews_identity_test.dart": 5,
+          "packages/quds_mail_core/test/header_search_test.dart": 27,
+          "packages/quds_mail_core/test/imap_sync_range_test.dart": 18,
+          "packages/quds_mail_core/test/models_test.dart": 9,
+          "packages/quds_mail_core/test/outbox_management_test.dart": 7,
+          "packages/quds_mail_core/test/outbox_test.dart": 16,
+          "packages/quds_mail_core/test/sync_coordinator_test.dart": 9
+        }
+      },
+      "transport": {
+        "passed": 415,
+        "qualified_head": "38dcd802ae79e22d9f84ad79db1a197c43f3ad70",
+        "retained": true,
+        "suites": {
+          "packages/quds_mail_transport/test/cloud_http_test.dart": 18,
+          "packages/quds_mail_transport/test/cloud_oauth_loopback_test.dart": 3,
+          "packages/quds_mail_transport/test/cloud_oauth_test.dart": 30,
+          "packages/quds_mail_transport/test/cloud_provider_test.dart": 101,
+          "packages/quds_mail_transport/test/cloud_store_test.dart": 4,
+          "packages/quds_mail_transport/test/configuration_test.dart": 12,
+          "packages/quds_mail_transport/test/cursor_test.dart": 5,
+          "packages/quds_mail_transport/test/ews_configuration_test.dart": 7,
+          "packages/quds_mail_transport/test/ews_http_test.dart": 18,
+          "packages/quds_mail_transport/test/ews_ntlm_test.dart": 12,
+          "packages/quds_mail_transport/test/ews_provider_test.dart": 23,
+          "packages/quds_mail_transport/test/ews_soap_test.dart": 23,
+          "packages/quds_mail_transport/test/host_store_integration_test.dart": 6,
+          "packages/quds_mail_transport/test/native_browse_test.dart": 29,
+          "packages/quds_mail_transport/test/native_provider_test.dart": 71,
+          "packages/quds_mail_transport/test/native_tls_cancellation_test.dart": 4,
+          "packages/quds_mail_transport/test/native_tls_round_trip_test.dart": 5,
+          "packages/quds_mail_transport/test/native_tls_test.dart": 17,
+          "packages/quds_mail_transport/test/uid_discovery_test.dart": 27
+        }
+      },
+      "shared_ui": {
+        "passed": 179,
+        "captured_at_head": "37148e37736a4134bba1d3c07b0ad847c2e1447d",
+        "bound_to_final_source": true,
+        "suites": {
+          "packages/quds_mail_ui/test/body_presentation_contract_test.dart": 11,
+          "packages/quds_mail_ui/test/body_presentation_test.dart": 31,
+          "packages/quds_mail_ui/test/bulk_api_aliases_test.dart": 3,
+          "packages/quds_mail_ui/test/bulk_message_list_test.dart": 20,
+          "packages/quds_mail_ui/test/controller_test.dart": 13,
+          "packages/quds_mail_ui/test/example_test.dart": 1,
+          "packages/quds_mail_ui/test/message_list_bulk_test.dart": 31,
+          "packages/quds_mail_ui/test/message_list_test.dart": 33,
+          "packages/quds_mail_ui/test/message_view_test.dart": 11,
+          "packages/quds_mail_ui/test/presentation_test.dart": 23,
+          "packages/quds_mail_ui/test/reader_theme_scroll_test.dart": 2
+        }
+      },
+      "hosts": {
+        "passed": 436,
+        "qualified_head": "fe2c57604c33c1ee5ef1e9f25121e99d66c74d9a",
+        "suites": {
+          "packages/quds_office_editor/example/test/studio_mail_accounts_test.dart": 22,
+          "packages/quds_office_editor/example/test/studio_mail_autoconnect_test.dart": 14,
+          "packages/quds_office_editor/example/test/studio_mail_bulk_provider_test.dart": 39,
+          "packages/quds_office_editor/example/test/studio_mail_bulk_visual_test.dart": 13,
+          "packages/quds_office_editor/example/test/studio_mail_cached_mail_test.dart": 32,
+          "packages/quds_office_editor/example/test/studio_mail_cloud_test.dart": 59,
+          "packages/quds_office_editor/example/test/studio_mail_credential_backend_switch_test.dart": 7,
+          "packages/quds_office_editor/example/test/studio_mail_ews_test.dart": 77,
+          "packages/quds_office_editor/example/test/studio_mail_message_loader_test.dart": 95,
+          "packages/quds_office_editor/example/test/studio_mail_remote_images_test.dart": 18,
+          "packages/quds_office_editor/example/test/studio_mail_workspace_test.dart": 60
+        }
+      }
+    }
+  },
+  "word": {
+    "passed": 2395,
+    "skipped": 8,
+    "failed": 0,
+    "retained_at_520": {
+      "engine": 823,
+      "incoming_word": 974,
+      "editor": 582,
+      "skipped_editor": 8
+    },
+    "fresh_studio_replacement": {
+      "passed": 16,
+      "suites": {
+        "packages/quds_office_editor/example/test/studio_comment_draft_proofing_test.dart": 15,
+        "packages/quds_office_editor/example/test/studio_word_chrome_settle_test.dart": 1
+      }
+    },
+    "final_editor_total": 598
+  },
+  "combined": {
+    "passed": 3644,
+    "skipped": 8,
+    "failed": 0,
+    "errors": 0
+  },
+  "source_stability": {
+    "host_input_count": 2659,
+    "host_sources_unchanged": true,
+    "host_runtime_unchanged": true,
+    "runtime_matches_retained_core": true,
+    "word_protected_inputs": 5194,
+    "retained_source_binding_passed": true
+  },
+  "test_file_import_audit": {
+    "packages/quds_office_editor/example/test/studio_mail_accounts_test.dart": [],
+    "packages/quds_office_editor/example/test/studio_mail_autoconnect_test.dart": [],
+    "packages/quds_office_editor/example/test/studio_mail_bulk_provider_test.dart": [],
+    "packages/quds_office_editor/example/test/studio_mail_bulk_visual_test.dart": [],
+    "packages/quds_office_editor/example/test/studio_mail_cached_mail_test.dart": [],
+    "packages/quds_office_editor/example/test/studio_mail_cloud_test.dart": [],
+    "packages/quds_office_editor/example/test/studio_mail_credential_backend_switch_test.dart": [],
+    "packages/quds_office_editor/example/test/studio_mail_ews_test.dart": [],
+    "packages/quds_office_editor/example/test/studio_mail_message_loader_test.dart": [],
+    "packages/quds_office_editor/example/test/studio_mail_remote_images_test.dart": [],
+    "packages/quds_office_editor/example/test/studio_mail_workspace_test.dart": []
+  },
+  "retained_evidence_archives": {
+    "local-validation.tar.gz": {
+      "bytes": 2206062,
+      "sha256": "0758993b29e7c554766e9de3b273bee5f6525b30bcdd6ffd84c0275e233be561"
+    },
+    "mail-final-evidence.tar.gz": {
+      "bytes": 1209821,
+      "sha256": "caebb31d305f6b719d4fed26446a6747ad1a556a4a1964bddfb0716712ad8407"
+    }
+  },
+  "count_policy": "Each test identity is counted once. The fresh16 Studio cases replace16 cases inside the original598 editor population. Earlier UI164, host375, auto14/focused43, and remote18 development runs are not added again. Core219 and transport415 retain exact-input qualification; their full original logs remain in the separate Mail evidence archive.",
+  "scope": "Real local Dart/Flutter runtime with locked dependencies and controlled providers. No installed Zotero/Word/LibreOffice, live mail account, actual send, or GitHub Actions result is claimed."
+}

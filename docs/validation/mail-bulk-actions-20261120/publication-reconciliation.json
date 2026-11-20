@@ -1,0 +1,42 @@
+{
+  "purpose": "Final publication acceptance after latest main Zotero integration",
+  "accepted_source": "79e10ef8375aa9950d624eb9702ba1ff19a19e8c",
+  "accepted_tree": "d3a472f1e23bb98c1898087bdbd1ddf9d07f4c8d",
+  "recorded_at_utc": "2026-11-20T21:55:28.058879+00:00",
+  "incorporated_main": "698209aaa6e7f1350b6541df5eb192b7b233443d",
+  "main_reconciliation_checkpoint": "5034494d68257d9dc89493dd11f408c1c1165fae",
+  "local_gates": {
+    "zotero_engine_qualified": 282,
+    "zotero_engine_unchanged_suites": 234,
+    "zotero_protocol_clean_rerun": 48,
+    "zotero_editor": 114,
+    "mail_hosts": 352,
+    "visual_probes": 8,
+    "identical_inspected_images": 21
+  },
+  "counts_overlap": true,
+  "earlier_unchanged_scope_gates": {
+    "core_vm": 181,
+    "core_bulk_node": 87,
+    "transport_vm": 415,
+    "transport_cloud_node": 107,
+    "shared_ui": 161,
+    "font_loader": 9
+  },
+  "prior_word_gates": {
+    "source": "3f9d3647a20b06c73f5bfd0ade2846e7859e4502",
+    "vm": 961,
+    "node": 758,
+    "bas_semantic_pairs": 3,
+    "unchanged_inputs": 488,
+    "changed_zotero_libraries": 4,
+    "note": "Prior full scope is not relabeled current. Changed dependencies are covered by fresh Zotero engine/editor gates; no complete Word rerun after Zotero is claimed."
+  },
+  "current_mail_package_files_identical": 222,
+  "current_mail_dart_feature_files_identical": 211,
+  "frozen_intake_refs": 320,
+  "frozen_intake_uncovered_refs": 0,
+  "historical_replacement_proofs": 14,
+  "github_actions": "NOT QUERIED OR AWAITED",
+  "status": "PASS"
+}

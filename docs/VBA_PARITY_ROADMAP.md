@@ -149,21 +149,21 @@ and [local evidence](validation/word-vba-paragraph-controls-20261120/README.md).
 
 ### Physical Word measurements
 
-The measurement continuation adds eight inch/centimeter/millimeter/pica
-conversion helpers, globally and on `Application`, and official named
-arguments for all ten physical/line conversion functions. They compose through the
-existing checked scalar language and emit no operations until a supported
-native property is written. Exact physical ratios, binary64 result bounds,
-Word-only names, refusal of implicit coercion and unchanged native precision
-are documented in the [Word contract](VBA_WORD_MACROS.md#physical-measurement-conversions).
-
-This is a bounded source-language increment. It does not implement VBA
-`Single` identity/rounding or document-aware execution. Authored compiler,
-native transaction, DOCM-preservation and portable-driver regressions remain
-unexecuted because the local execution service became unavailable before
-checkout. The [validation record](validation/word-vba-measurements-20261120/README.md)
-records source review and arithmetic-model checks without treating them as
-Dart test results. Prior qualification counts do not qualify this new source.
+The Word measurement continuation adds inches, centimeters, millimeters and
+picas in both directions, and official named arguments for all ten unit
+conversions, including the existing line/point functions. It uses exact physical
+ratios with bounded Double arithmetic and exact native-grid canonicalization;
+it does not emulate VBA Single rounding or loosen property precision guards.
+The complete BAS examples and source/integration checks cover document
+publication, CLI/MCP paths and the portable numeric contract. The combined
+source has local Dart acceptance; earlier arithmetic-model and authored
+JavaScript checks retain their separate execution status. See the
+[measurement contract](VBA_WORD_MACROS.md#physical-measurement-conversions)
+and [combined-source qualification](validation/zotero-merged-cells-20261120/intake.md).
+The incoming Mail continuation additionally qualified the named-argument
+example and original eight-, nine- and thirteen-operation examples on the
+VM and JavaScript; see its [source-specific record](validation/mail-bulk-actions-20261120/intake-local-word-final.md).
+Later publication evidence remains available in the [Mail/Word main record](validation/mail-bulk-actions-20261120/final-main-word-summary.md) and [Word main integration record](validation/word-main-integration-20261120/README.md).
 
 ### Next shared-language increments
 

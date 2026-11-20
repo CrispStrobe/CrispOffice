@@ -11,9 +11,11 @@ identified application, Zotero and plugin versions. LibreOffice results do not
 establish that compatibility.
 
 The [usage guide](../../zotero-support.md) describes the current controls. The
-[research-table work record](../../validation/zotero-research-tables-20261120/README.md)
+[vertical-table work record](../../validation/zotero-vertical-tables-20261120/README.md)
 records the latest source, incoming-work reconciliation, remote checkpoints,
-checks and remaining acceptance. The earlier
+checks and remaining acceptance. The
+[research-table work record](../../validation/zotero-research-tables-20261120/README.md)
+retains the preceding table increment's evidence. The earlier
 [structured-note continuation](../../validation/zotero-parity-continuation-20261120/README.md)
 retains its evidence for embedded pictures and research lists. Historical
 results retain their original source and platform attribution.
@@ -24,10 +26,10 @@ results retain their original source and platform attribution.
 | --- | --- | --- |
 | Add/edit citation | Native Zotero picker, selected catalog sources, locators, prefixes/suffixes, multiple items, body and authored-note caret | Unsupported stories and structural ranges remain guarded |
 | Document preferences | Native style, locale and inline/footnote/endnote preferences stored in the document | Conversion refuses authored notes whose extra content would be lost |
-| Refresh | Complete supported document sequence sent to Zotero's processor, including note order, numeric renumbering, disambiguation and style-dependent ibid. | Live acceptance must be repeated on the exact release/host |
+| Refresh | Complete supported document sequence sent to Zotero's processor, including note order, numeric renumbering, disambiguation, style-dependent ibid. and merging of directly touching citation packets | Merge hints require physical adjacency in the same paragraph/story/note; live acceptance must be repeated on the exact release/host |
 | Bibliography | Native add/edit, entry paragraphs, rich runs, hanging indents, spacing and tab stops | Replacement requires a complete exclusively owned bibliography range |
 | Unlink citations | Explicit individual and document-wide conversion with undo | Verify final target-application files separately |
-| Add Note | Rich paragraphs, headings, nested lists up to nine levels, multiparagraph items, links, pictures, rectangular tables and active citations; insertion in body or authored notes and replacement within one paragraph | Table payloads require a main-flow destination; merged/nested tables, header/footer row groups, custom table styling, broader selections and custom/reversed list markers remain unsupported |
+| Add Note | Rich paragraphs, headings, nested lists up to nine levels, multiparagraph items, links, pictures, rectangular tables with combined row/column spans and active citations; insertion in body or authored notes and replacement within one paragraph | Table payloads require a main-flow destination; compact merged-row height distribution, nested tables, header/footer row groups, custom table styling, broader selections and custom/reversed list markers remain unsupported |
 | Add Annotation | Zotero 9+ native annotation picker, text/comments and supported PNG image/ink content with active citations | Uses the same bounded image/content envelope as Add Note |
 | Library/source discovery | Local/online catalogs, collections, saved searches, tags, source details, cited-source reuse and occurrence navigation | Local and online catalog APIs have different connection/version requirements |
 | Research materials | Read-only direct-child note previews and attachment metadata | No separate attachment-file download or Zotero library write workflow |
@@ -112,12 +114,78 @@ prose and preserves the table without presenting its cells as ordinary Notes
 text. The complete operation retains the established atomic staging, target
 guards, DOCX persistence and undo boundary.
 
-Merged or nested tables, tables inside list items, unequal row lengths,
-separate header/footer row groups, captions and custom table/row/cell styling
-remain unsupported. The
+That initial table increment refused merged cells. The horizontal-merge
+continuation below extends its structure while retaining the remaining limits.
+The
 [implementation and validation record](../../validation/zotero-research-tables-20261120/README.md)
 separates local source checks from live Zotero and Word/LibreOffice acceptance.
 This increment does not establish active ODT transfer or complete plugin parity.
+
+## Delivered increment: horizontal merged cells and adjacent-citation Refresh
+
+Add Note and Add Annotation now map HTML `colspan` values from 1 to 32 to native
+`gridSpan`. All rows must cover the same logical column count, up to 32, while
+their authored cell counts may differ. Rich text, independent lists, pictures
+and active citations remain owned by their native cells and paragraphs, with
+the same body, footnote and endnote destinations and one undo/redo transaction.
+DOCX saving and reopening retain the spans, cell contents and active fields.
+
+A supplied `data-colwidth` vector has exactly one entry per covered logical
+column. Each entry is an integer: 0 means unspecified, and 1–4,000 specifies CSS
+pixels. Explicit widths reconcile across all rows by logical column; unresolved
+columns use 120 points. A cell's width is the sum of its covered grid widths,
+and total native table width remains at most 4,000 points. The existing bounds
+of 64 tables, 256 rows per table and 4,096 authored cells per note remain,
+alongside shared paragraph, link and image budgets. At that checkpoint, vertical merges
+(`rowspan` greater than 1), nested tables, tables inside list items, unequal
+logical row widths, separate header/footer row groups, captions and unsupported
+custom styling refused the entire staged insertion. The subsequent vertical-table increment below extends that boundary. The
+[usage guide](../../zotero-support.md#tables-in-notes-and-annotations) records the
+complete content envelope.
+
+Native Refresh advertises boolean `supportsCitationMerging` and marks a field
+`adjacent` only when its native citation packet directly touches the **next
+enumerated field** within the same paragraph, story and authored note. Zotero
+owns the merged item order, deduplication and CSL formatting. Whitespace,
+zero-width text characters, bookmarks, comments, controls, ordinary native
+fields, bibliographies and paragraph/cell/note boundaries break the chain.
+Staged insertion, deletion, unlinking and conversion do not create new merge
+opportunities. Quds rechecks physical adjacency before applying the result;
+successful refresh is one undo/redo step, and aborted or stale results stay
+detached.
+
+The [continuation validation record](../../validation/zotero-merged-cells-20261120/README.md)
+qualifies source `180399f99a3898501ab1959e3b845150d7da59fd` with 495 engine
+passes, 378 editor passes/eight skips and 928 incoming Word/Mail passes. The
+three final processes total 1,801 passes and eight skips, with zero failures or
+errors. All 257 Zotero editor cases executed and passed. The eight skips are
+existing image-only layout fixtures; they are also excluded from the corrected
+earlier-source tally. Repeated runs are not added together. PR #276 merged into main as
+`698209aaa6e7f1350b6541df5eb192b7b233443d`. This is local source qualification; no new installed
+Zotero, Word or LibreOffice run, active ODT transfer or complete parity is
+claimed. Earlier records retain their original evidence and source attribution.
+
+## Delivered increment: vertical research-table merges
+
+Add Note and Add Annotation now accept bounded `rowspan` and combined
+`rowspan`/`colspan`. A logical occupancy grid checks complete rectangular
+coverage, actual-row bounds, row-group boundaries and overlaps before staging.
+Native continuation cells own mandatory empty paragraphs; citation and list
+indexes are remapped to the final native paragraph order, preserving active
+fields and independent counters before, inside and after tables.
+
+The complete fragment is limited to 4,096 native cells and 10,000 native
+paragraphs, including generated continuations. Width vectors reconcile by
+occupied logical column. Body, authored-footnote and authored-endnote targets
+retain detached cancellation/stale-target behavior, one undo/redo step and
+DOCX reopening.
+
+Merged-cell shading/borders continue across physical pages. Pointer and keyboard
+navigation target the originating cell while row handles retain physical row
+geometry. The first physical row still carries the originating cell's full
+content height; compact Word-style row-height distribution is not claimed.
+See the [source-bound work record](../../validation/zotero-vertical-tables-20261120/README.md)
+for current qualification and remaining installed-application acceptance.
 
 ## Next implementation and acceptance steps
 
@@ -126,7 +194,7 @@ This increment does not establish active ODT transfer or complete plugin parity.
    comments, content controls, existing fields and note references. Keep the
    authored-note ownership, stale-selection, composition and undo guarantees
    established by the existing increments.
-2. **Extend table structure and formatting.** Map merged cells, nested tables,
+2. **Extend table structure and formatting.** Improve merged-row height distribution and map nested tables,
    header/footer row groups and custom styles to native structures with explicit
    ownership. Qualify their citation order, geometry, save/reopen behavior and
    rendering before accepting them. Add table-cell editing in the Notes pane
@@ -142,7 +210,8 @@ This increment does not establish active ODT transfer or complete plugin parity.
 5. **Run release-host acceptance.** Exercise current native Zotero, Word and
    LibreOffice with a synthetic library on each supported desktop platform.
    Check picker cancellation, metadata updates, note-style conversion,
-   image/ink annotation and table insertion, bibliography refresh, saved-file
+   image/ink annotation and horizontally/vertically merged table insertion, adjacent-citation
+   refresh, bibliography refresh, saved-file
    reopening and return-to-writing focus. Record exact application versions,
    source and artifacts. Browser and mobile support require their own acceptance scope.
    Qualify any legacy Apache OpenOffice target separately with explicitly
@@ -167,3 +236,8 @@ path for these continuations.
 - [Pinned native note insertion](https://github.com/zotero/zotero/blob/c5b271dd05050257b6e035db6347beedbabbd73e/chrome/content/zotero/xpcom/integration.js)
 - [Pinned note-editor image and table schema](https://github.com/zotero/note-editor/blob/bdf61e0c275e483c3068ce4fcb86b44691b22afc/src/core/schema/nodes.js)
 - [ProseMirror table serialization schema](https://github.com/ProseMirror/prosemirror-tables/blob/v1.7.1/src/schema.ts)
+- [Pinned native Refresh citation merging](https://github.com/zotero/zotero/blob/98f6486db71115d4198d1f746f487aef45805a2b/chrome/content/zotero/xpcom/integration.js)
+- [Pinned HTTP integration field and capability contract](https://github.com/zotero/zotero/blob/98f6486db71115d4198d1f746f487aef45805a2b/chrome/content/zotero/xpcom/httpIntegrationClient.js)
+- [Pinned ProseMirror span and column-width schema](https://github.com/ProseMirror/prosemirror-tables/blob/a99f70855f2b3e2433bc77451fedd884305fda5b/src/schema.ts)
+- [Pinned ProseMirror table column sizing](https://github.com/ProseMirror/prosemirror-tables/blob/a99f70855f2b3e2433bc77451fedd884305fda5b/src/tableview.ts)
+- [Pinned ProseMirror column resizing](https://github.com/ProseMirror/prosemirror-tables/blob/a99f70855f2b3e2433bc77451fedd884305fda5b/src/columnresizing.ts)

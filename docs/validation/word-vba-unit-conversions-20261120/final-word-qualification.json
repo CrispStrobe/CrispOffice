@@ -1,0 +1,393 @@
+{
+  "bulk_intake_node": {
+    "failed": 0,
+    "passed": 63,
+    "reporter_errors": 0,
+    "same_case_identities_as_vm": true,
+    "skipped": 0,
+    "terminal_success": true
+  },
+  "changed_source_paths": [],
+  "commands": [
+    {
+      "command": [
+        "/workspace/scratch/03cd41fa0e7e/runtime/toolchain/dart-sdk/bin/dart",
+        "format",
+        "--output=none",
+        "--set-exit-if-changed",
+        "/workspace/scratch/03cd41fa0e7e/quds_integration/packages/quds_office_engine/test/office_vba_word_measurements_test.dart",
+        "/workspace/scratch/03cd41fa0e7e/quds_integration/packages/quds_office_engine/test/office_vba_word_measurements_integration_test.dart",
+        "/workspace/scratch/03cd41fa0e7e/quds_integration/packages/quds_office_engine/test/office_vba_word_named_measurements_test.dart",
+        "/workspace/scratch/03cd41fa0e7e/quds_integration/packages/quds_office_engine/test/office_vba_word_named_measurements_integration_test.dart",
+        "/workspace/scratch/03cd41fa0e7e/quds_integration/packages/quds_office_engine/test/office_vba_word_unit_conversions_test.dart",
+        "/workspace/scratch/03cd41fa0e7e/quds_integration/packages/quds_office_engine/test/office_vba_word_unit_conversions_integration_test.dart",
+        "/workspace/scratch/03cd41fa0e7e/quds_integration/packages/quds_office_engine/test/office_vba_word_bulk_intake_conversions_test.dart",
+        "/workspace/scratch/03cd41fa0e7e/quds_integration/packages/quds_office_engine/tool/macros/web_vba_word_measurements_smoke.dart",
+        "/workspace/scratch/03cd41fa0e7e/quds_integration/packages/quds_office_engine/tool/macros/web_vba_word_named_measurements_smoke.dart"
+      ],
+      "cwd": "/workspace/scratch/03cd41fa0e7e/quds_integration/packages/quds_office_engine",
+      "exit_code": 0,
+      "finished_utc": "2026-11-20T21:06:18.257737+00:00",
+      "log": "format.log",
+      "log_sha256": "0e47c0fba5422202942a253f115e688069b775dcc7629287ac64614606b56cdc",
+      "name": "format",
+      "seconds": 0.187,
+      "started_utc": "2026-11-20T21:06:18.070582+00:00"
+    },
+    {
+      "command": [
+        "/workspace/scratch/03cd41fa0e7e/runtime/toolchain/dart-sdk/bin/dart",
+        "--old_gen_heap_size=768",
+        "--packages=/workspace/scratch/03cd41fa0e7e/quds_integration/.dart_tool/package_config.json",
+        "/workspace/scratch/03cd41fa0e7e/runtime/toolchain/test-runner/test-runner.dill",
+        "--compiler",
+        "source",
+        "--concurrency=1",
+        "--timeout=4x",
+        "test/office_vba_word_measurements_test.dart",
+        "test/office_vba_word_measurements_integration_test.dart",
+        "test/office_vba_word_named_measurements_test.dart",
+        "test/office_vba_word_named_measurements_integration_test.dart",
+        "test/office_vba_word_unit_conversions_test.dart",
+        "test/office_vba_word_unit_conversions_integration_test.dart",
+        "test/office_vba_word_bulk_intake_conversions_test.dart",
+        "--reporter=json"
+      ],
+      "cwd": "/workspace/scratch/03cd41fa0e7e/quds_integration/packages/quds_office_engine",
+      "exit_code": 0,
+      "finished_utc": "2026-11-20T21:07:13.118427+00:00",
+      "log": "measurement-tests.log",
+      "log_sha256": "197eb668b492de98d128be131a1152ee7f192cdef06c5bd68a8c23c4d71a6553",
+      "name": "measurement-tests",
+      "seconds": 54.86,
+      "started_utc": "2026-11-20T21:06:18.258076+00:00"
+    },
+    {
+      "command": [
+        "/workspace/scratch/03cd41fa0e7e/runtime/toolchain/dart-sdk/bin/dart",
+        "--old_gen_heap_size=768",
+        "--packages=/workspace/scratch/03cd41fa0e7e/quds_integration/.dart_tool/package_config.json",
+        "/workspace/scratch/03cd41fa0e7e/runtime/toolchain/test-runner/test-runner.dill",
+        "--platform=node",
+        "--compiler=dart2js",
+        "--concurrency=1",
+        "--timeout=4x",
+        "test/office_vba_word_bulk_intake_conversions_test.dart",
+        "--reporter=json"
+      ],
+      "cwd": "/workspace/scratch/03cd41fa0e7e/quds_integration/packages/quds_office_engine",
+      "exit_code": 0,
+      "finished_utc": "2026-11-20T21:07:23.792803+00:00",
+      "log": "bulk-intake-node.log",
+      "log_sha256": "089c98cc3400490831791dcc8d245eadcc0b5a2c8249001001cfb13718d6d8c5",
+      "name": "bulk-intake-node",
+      "seconds": 10.674,
+      "started_utc": "2026-11-20T21:07:13.119250+00:00"
+    },
+    {
+      "command": [
+        "/workspace/scratch/03cd41fa0e7e/runtime/toolchain/dart-sdk/bin/dart",
+        "analyze",
+        "--fatal-infos"
+      ],
+      "cwd": "/workspace/scratch/03cd41fa0e7e/quds_integration/packages/quds_office_engine",
+      "exit_code": 0,
+      "finished_utc": "2026-11-20T21:07:34.860357+00:00",
+      "log": "engine-analysis.log",
+      "log_sha256": "c557a0c697cdb937104f1423d3c02d6a1062917cb0bcb2830d91db8cf6192af0",
+      "name": "engine-analysis",
+      "seconds": 11.067,
+      "started_utc": "2026-11-20T21:07:23.793812+00:00"
+    },
+    {
+      "command": [
+        "/workspace/scratch/03cd41fa0e7e/runtime/toolchain/dart-sdk/bin/dart",
+        "--packages=/workspace/scratch/03cd41fa0e7e/quds_integration/.dart_tool/package_config.json",
+        "-DWORD_MEASUREMENTS_BAS_BASE64=T3B0aW9uIEV4cGxpY2l0CgonIFJlcXVpcmVzIHR3byBleGlzdGluZyBib2R5IHBhcmFncmFwaHMuIE1lYXN1cmVtZW50cyBhcmUgZXhwbGljaXQgc291cmNlCicgdmFsdWVzOyBubyBsaXZlIGRvY3VtZW50IHJlYWRzIG9yIGFwcGxpY2F0aW9uIGRpc2NvdmVyeSBhcmUgcGVyZm9ybWVkLgpTdWIgQXBwbHlMYXlvdXQoQnlWYWwgbGF5b3V0IEFzIFBhcmFncmFwaEZvcm1hdCwgQnlWYWwgaW5zZXQgQXMgRG91YmxlKQogICAgV2l0aCBsYXlvdXQKICAgICAgICAuTGVmdEluZGVudCA9IEluY2hlc1RvUG9pbnRzKGluc2V0KQogICAgICAgIC5SaWdodEluZGVudCA9IENlbnRpbWV0ZXJzVG9Qb2ludHMoUG9pbnRzVG9DZW50aW1ldGVycyg3MikpCiAgICAgICAgLkZpcnN0TGluZUluZGVudCA9IC1QaWNhc1RvUG9pbnRzKDEuNSkKICAgICAgICAuU3BhY2VCZWZvcmUgPSBQaWNhc1RvUG9pbnRzKDAuNSkKICAgICAgICAuU3BhY2VBZnRlciA9IE1pbGxpbWV0ZXJzVG9Qb2ludHMoUG9pbnRzVG9NaWxsaW1ldGVycygzNikpCiAgICAgICAgLkxpbmVTcGFjaW5nUnVsZSA9IHdkTGluZVNwYWNlRXhhY3RseQogICAgICAgIC5MaW5lU3BhY2luZyA9IFBpY2FzVG9Qb2ludHMoUG9pbnRzVG9QaWNhcygxOCkpCiAgICBFbmQgV2l0aApFbmQgU3ViCgpTdWIgTWFpbigpCiAgICBEaW0gaW5zZXQgQXMgRG91YmxlCiAgICBXaXRoIEFwcGxpY2F0aW9uCiAgICAgICAgaW5zZXQgPSAuUG9pbnRzVG9JbmNoZXMoLk1pbGxpbWV0ZXJzVG9Qb2ludHMoMTIuNykpCiAgICAgICAgV2l0aCAuQWN0aXZlRG9jdW1lbnQuUGFyYWdyYXBocy5JdGVtKDEpCiAgICAgICAgICAgIEFwcGx5TGF5b3V0IGluc2V0Oj1pbnNldCwgbGF5b3V0Oj0uRm9ybWF0CiAgICAgICAgICAgIC5UYWJTdG9wcy5BZGQgUG9zaXRpb246PUluY2hlc1RvUG9pbnRzKDEuNSksIF8KICAgICAgICAgICAgICAgIEFsaWdubWVudDo9d2RBbGlnblRhYlJpZ2h0LCBMZWFkZXI6PXdkVGFiTGVhZGVyRG90cwogICAgICAgIEVuZCBXaXRoCiAgICBFbmQgV2l0aAogICAgQWN0aXZlRG9jdW1lbnQuUGFyYWdyYXBocygyKS5Gb3JtYXQuTGVmdEluZGVudCA9IF8KICAgICAgICBDZW50aW1ldGVyc1RvUG9pbnRzKFBvaW50c1RvQ2VudGltZXRlcnMoNy4yKSkKRW5kIFN1Ygo=",
+        "tool/macros/web_vba_word_measurements_smoke.dart"
+      ],
+      "cwd": "/workspace/scratch/03cd41fa0e7e/quds_integration/packages/quds_office_engine",
+      "exit_code": 0,
+      "finished_utc": "2026-11-20T21:07:41.134122+00:00",
+      "log": "measurements-vm.log",
+      "log_sha256": "e0c0bbeeef605bc5dd7e721835e0b5747e055ceb288f334c2f07c1e626433eeb",
+      "name": "measurements-vm",
+      "seconds": 6.261,
+      "started_utc": "2026-11-20T21:07:34.873334+00:00"
+    },
+    {
+      "command": [
+        "/workspace/scratch/03cd41fa0e7e/runtime/toolchain/dart-sdk/bin/dart",
+        "compile",
+        "js",
+        "-O2",
+        "--packages=/workspace/scratch/03cd41fa0e7e/quds_integration/.dart_tool/package_config.json",
+        "-DWORD_MEASUREMENTS_BAS_BASE64=T3B0aW9uIEV4cGxpY2l0CgonIFJlcXVpcmVzIHR3byBleGlzdGluZyBib2R5IHBhcmFncmFwaHMuIE1lYXN1cmVtZW50cyBhcmUgZXhwbGljaXQgc291cmNlCicgdmFsdWVzOyBubyBsaXZlIGRvY3VtZW50IHJlYWRzIG9yIGFwcGxpY2F0aW9uIGRpc2NvdmVyeSBhcmUgcGVyZm9ybWVkLgpTdWIgQXBwbHlMYXlvdXQoQnlWYWwgbGF5b3V0IEFzIFBhcmFncmFwaEZvcm1hdCwgQnlWYWwgaW5zZXQgQXMgRG91YmxlKQogICAgV2l0aCBsYXlvdXQKICAgICAgICAuTGVmdEluZGVudCA9IEluY2hlc1RvUG9pbnRzKGluc2V0KQogICAgICAgIC5SaWdodEluZGVudCA9IENlbnRpbWV0ZXJzVG9Qb2ludHMoUG9pbnRzVG9DZW50aW1ldGVycyg3MikpCiAgICAgICAgLkZpcnN0TGluZUluZGVudCA9IC1QaWNhc1RvUG9pbnRzKDEuNSkKICAgICAgICAuU3BhY2VCZWZvcmUgPSBQaWNhc1RvUG9pbnRzKDAuNSkKICAgICAgICAuU3BhY2VBZnRlciA9IE1pbGxpbWV0ZXJzVG9Qb2ludHMoUG9pbnRzVG9NaWxsaW1ldGVycygzNikpCiAgICAgICAgLkxpbmVTcGFjaW5nUnVsZSA9IHdkTGluZVNwYWNlRXhhY3RseQogICAgICAgIC5MaW5lU3BhY2luZyA9IFBpY2FzVG9Qb2ludHMoUG9pbnRzVG9QaWNhcygxOCkpCiAgICBFbmQgV2l0aApFbmQgU3ViCgpTdWIgTWFpbigpCiAgICBEaW0gaW5zZXQgQXMgRG91YmxlCiAgICBXaXRoIEFwcGxpY2F0aW9uCiAgICAgICAgaW5zZXQgPSAuUG9pbnRzVG9JbmNoZXMoLk1pbGxpbWV0ZXJzVG9Qb2ludHMoMTIuNykpCiAgICAgICAgV2l0aCAuQWN0aXZlRG9jdW1lbnQuUGFyYWdyYXBocy5JdGVtKDEpCiAgICAgICAgICAgIEFwcGx5TGF5b3V0IGluc2V0Oj1pbnNldCwgbGF5b3V0Oj0uRm9ybWF0CiAgICAgICAgICAgIC5UYWJTdG9wcy5BZGQgUG9zaXRpb246PUluY2hlc1RvUG9pbnRzKDEuNSksIF8KICAgICAgICAgICAgICAgIEFsaWdubWVudDo9d2RBbGlnblRhYlJpZ2h0LCBMZWFkZXI6PXdkVGFiTGVhZGVyRG90cwogICAgICAgIEVuZCBXaXRoCiAgICBFbmQgV2l0aAogICAgQWN0aXZlRG9jdW1lbnQuUGFyYWdyYXBocygyKS5Gb3JtYXQuTGVmdEluZGVudCA9IF8KICAgICAgICBDZW50aW1ldGVyc1RvUG9pbnRzKFBvaW50c1RvQ2VudGltZXRlcnMoNy4yKSkKRW5kIFN1Ygo=",
+        "tool/macros/web_vba_word_measurements_smoke.dart",
+        "-o",
+        "/workspace/scratch/03cd41fa0e7e/runtime/measurement-main-final-retry/word_measurements.js"
+      ],
+      "cwd": "/workspace/scratch/03cd41fa0e7e/quds_integration/packages/quds_office_engine",
+      "exit_code": 0,
+      "finished_utc": "2026-11-20T21:07:50.416558+00:00",
+      "log": "measurements-js-compile.log",
+      "log_sha256": "1151a14db478d705f595129ab2306b68498edad2e3873bfaace1a0826f35b82d",
+      "name": "measurements-js-compile",
+      "seconds": 9.281,
+      "started_utc": "2026-11-20T21:07:41.135827+00:00"
+    },
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+        "-e",
+        "globalThis.self = globalThis; require(\"/workspace/scratch/03cd41fa0e7e/runtime/measurement-main-final-retry/word_measurements.js\");"
+      ],
+      "cwd": "/workspace/scratch/03cd41fa0e7e/quds_integration/packages/quds_office_engine",
+      "exit_code": 0,
+      "finished_utc": "2026-11-20T21:07:50.768288+00:00",
+      "log": "measurements-js-node.log",
+      "log_sha256": "e0c0bbeeef605bc5dd7e721835e0b5747e055ceb288f334c2f07c1e626433eeb",
+      "name": "measurements-js-node",
+      "seconds": 0.351,
+      "started_utc": "2026-11-20T21:07:50.417177+00:00"
+    },
+    {
+      "command": [
+        "/workspace/scratch/03cd41fa0e7e/runtime/toolchain/dart-sdk/bin/dart",
+        "--packages=/workspace/scratch/03cd41fa0e7e/quds_integration/.dart_tool/package_config.json",
+        "-DWORD_NAMED_MEASUREMENTS_BAS_BASE64=T3B0aW9uIEV4cGxpY2l0CgonIFJlcXVpcmVzIHR3byBleGlzdGluZyBib2R5IHBhcmFncmFwaHM7IGxlYXZlcyBhbGwgbGF0ZXIgcGFyYWdyYXBocyBhbG9uZS4KJyBVc2UgZGltZW5zaW9ucyB0aGF0IGxhbmQgb24gV29yZCdzIGV4YWN0IHR3ZW50aWV0aC1wb2ludCBzdG9yYWdlIGdyaWQuClN1YiBSZXBvcnRQYXJhZ3JhcGgoQnlWYWwgdGFyZ2V0IEFzIFBhcmFncmFwaEZvcm1hdCwgQnlWYWwgaW5zZXQgQXMgRG91YmxlLCBPcHRpb25hbCBCeVZhbCBhZnRlciBBcyBEb3VibGUgPSA2KQogICAgV2l0aCB0YXJnZXQKICAgICAgICAuTGVmdEluZGVudCA9IGluc2V0CiAgICAgICAgLlJpZ2h0SW5kZW50ID0gTWlsbGltZXRlcnNUb1BvaW50cyhNaWxsaW1ldGVyczo9MTIuNykKICAgICAgICAuRmlyc3RMaW5lSW5kZW50ID0gLVBpY2FzVG9Qb2ludHMoUGljYXM6PTEuNSkKICAgICAgICAuU3BhY2VCZWZvcmUgPSBJbmNoZXNUb1BvaW50cyhJbmNoZXM6PTAuMTI1KQogICAgICAgIC5TcGFjZUFmdGVyID0gYWZ0ZXIKICAgICAgICAuTGluZVNwYWNpbmdSdWxlID0gd2RMaW5lU3BhY2VFeGFjdGx5CiAgICAgICAgLkxpbmVTcGFjaW5nID0gUGljYXNUb1BvaW50cygxLjE1KQogICAgRW5kIFdpdGgKRW5kIFN1YgoKU3ViIE1haW4oKQogICAgRGltIGNlbnRpbWV0ZXJzIEFzIERvdWJsZQogICAgRGltIG1pbGxpbWV0ZXJzIEFzIERvdWJsZQogICAgRGltIGluY2hlcyBBcyBEb3VibGUKICAgIERpbSBwaWNhcyBBcyBEb3VibGUKICAgIERpbSBsaW5lcyBBcyBEb3VibGUKICAgIERpbSBsYXlvdXQgQXMgUGFyYWdyYXBoRm9ybWF0CgogICAgV2l0aCBBcHBsaWNhdGlvbgogICAgICAgIGNlbnRpbWV0ZXJzID0gLlBvaW50c1RvQ2VudGltZXRlcnMoUG9pbnRzOj03MikKICAgICAgICBtaWxsaW1ldGVycyA9IC5Qb2ludHNUb01pbGxpbWV0ZXJzKDcyKQogICAgICAgIGluY2hlcyA9IC5Qb2ludHNUb0luY2hlcyhQb2ludHM6PTcyKQogICAgICAgIHBpY2FzID0gLlBvaW50c1RvUGljYXMoNzIpCiAgICAgICAgbGluZXMgPSAuUG9pbnRzVG9MaW5lcyhQb2ludHM6PTEzLjgpCiAgICBFbmQgV2l0aAoKICAgIFNldCBsYXlvdXQgPSBUaGlzRG9jdW1lbnQuUGFyYWdyYXBocygxKS5SYW5nZS5QYXJhZ3JhcGhGb3JtYXQKICAgIFJlcG9ydFBhcmFncmFwaCBpbnNldDo9QXBwbGljYXRpb24uSW5jaGVzVG9Qb2ludHMoMC41KSwgdGFyZ2V0Oj1sYXlvdXQKICAgIGxheW91dC5UYWJTdG9wcy5DbGVhckFsbAogICAgbGF5b3V0LlRhYlN0b3BzLkFkZCBQb3NpdGlvbjo9Q2VudGltZXRlcnNUb1BvaW50cyhDZW50aW1ldGVyczo9Mi41NCksIEFsaWdubWVudDo9d2RBbGlnblRhYkNlbnRlciwgTGVhZGVyOj13ZFRhYkxlYWRlckRvdHMKCiAgICBTZXQgbGF5b3V0ID0gQWN0aXZlRG9jdW1lbnQuUGFyYWdyYXBocy5JdGVtKDIpLkZvcm1hdAogICAgV2l0aCBsYXlvdXQKICAgICAgICAuTGVmdEluZGVudCA9IENlbnRpbWV0ZXJzVG9Qb2ludHMoY2VudGltZXRlcnMpCiAgICAgICAgLlJpZ2h0SW5kZW50ID0gQXBwbGljYXRpb24uTWlsbGltZXRlcnNUb1BvaW50cyhtaWxsaW1ldGVycykKICAgICAgICAuU3BhY2VCZWZvcmUgPSBQaWNhc1RvUG9pbnRzKHBpY2FzKQogICAgICAgIC5TcGFjZUFmdGVyID0gSW5jaGVzVG9Qb2ludHMoaW5jaGVzKQogICAgICAgIC5MaW5lU3BhY2luZ1J1bGUgPSB3ZExpbmVTcGFjZU11bHRpcGxlCiAgICAgICAgLkxpbmVTcGFjaW5nID0gTGluZXNUb1BvaW50cyhMaW5lczo9bGluZXMpCiAgICBFbmQgV2l0aApFbmQgU3ViCg==",
+        "tool/macros/web_vba_word_named_measurements_smoke.dart"
+      ],
+      "cwd": "/workspace/scratch/03cd41fa0e7e/quds_integration/packages/quds_office_engine",
+      "exit_code": 0,
+      "finished_utc": "2026-11-20T21:07:57.352502+00:00",
+      "log": "named-measurements-vm.log",
+      "log_sha256": "06fce771e3b07af50a9e81ee2619c8b464745603ebe117958389abb0d511f382",
+      "name": "named-measurements-vm",
+      "seconds": 6.583,
+      "started_utc": "2026-11-20T21:07:50.769253+00:00"
+    },
+    {
+      "command": [
+        "/workspace/scratch/03cd41fa0e7e/runtime/toolchain/dart-sdk/bin/dart",
+        "compile",
+        "js",
+        "-O2",
+        "--packages=/workspace/scratch/03cd41fa0e7e/quds_integration/.dart_tool/package_config.json",
+        "-DWORD_NAMED_MEASUREMENTS_BAS_BASE64=T3B0aW9uIEV4cGxpY2l0CgonIFJlcXVpcmVzIHR3byBleGlzdGluZyBib2R5IHBhcmFncmFwaHM7IGxlYXZlcyBhbGwgbGF0ZXIgcGFyYWdyYXBocyBhbG9uZS4KJyBVc2UgZGltZW5zaW9ucyB0aGF0IGxhbmQgb24gV29yZCdzIGV4YWN0IHR3ZW50aWV0aC1wb2ludCBzdG9yYWdlIGdyaWQuClN1YiBSZXBvcnRQYXJhZ3JhcGgoQnlWYWwgdGFyZ2V0IEFzIFBhcmFncmFwaEZvcm1hdCwgQnlWYWwgaW5zZXQgQXMgRG91YmxlLCBPcHRpb25hbCBCeVZhbCBhZnRlciBBcyBEb3VibGUgPSA2KQogICAgV2l0aCB0YXJnZXQKICAgICAgICAuTGVmdEluZGVudCA9IGluc2V0CiAgICAgICAgLlJpZ2h0SW5kZW50ID0gTWlsbGltZXRlcnNUb1BvaW50cyhNaWxsaW1ldGVyczo9MTIuNykKICAgICAgICAuRmlyc3RMaW5lSW5kZW50ID0gLVBpY2FzVG9Qb2ludHMoUGljYXM6PTEuNSkKICAgICAgICAuU3BhY2VCZWZvcmUgPSBJbmNoZXNUb1BvaW50cyhJbmNoZXM6PTAuMTI1KQogICAgICAgIC5TcGFjZUFmdGVyID0gYWZ0ZXIKICAgICAgICAuTGluZVNwYWNpbmdSdWxlID0gd2RMaW5lU3BhY2VFeGFjdGx5CiAgICAgICAgLkxpbmVTcGFjaW5nID0gUGljYXNUb1BvaW50cygxLjE1KQogICAgRW5kIFdpdGgKRW5kIFN1YgoKU3ViIE1haW4oKQogICAgRGltIGNlbnRpbWV0ZXJzIEFzIERvdWJsZQogICAgRGltIG1pbGxpbWV0ZXJzIEFzIERvdWJsZQogICAgRGltIGluY2hlcyBBcyBEb3VibGUKICAgIERpbSBwaWNhcyBBcyBEb3VibGUKICAgIERpbSBsaW5lcyBBcyBEb3VibGUKICAgIERpbSBsYXlvdXQgQXMgUGFyYWdyYXBoRm9ybWF0CgogICAgV2l0aCBBcHBsaWNhdGlvbgogICAgICAgIGNlbnRpbWV0ZXJzID0gLlBvaW50c1RvQ2VudGltZXRlcnMoUG9pbnRzOj03MikKICAgICAgICBtaWxsaW1ldGVycyA9IC5Qb2ludHNUb01pbGxpbWV0ZXJzKDcyKQogICAgICAgIGluY2hlcyA9IC5Qb2ludHNUb0luY2hlcyhQb2ludHM6PTcyKQogICAgICAgIHBpY2FzID0gLlBvaW50c1RvUGljYXMoNzIpCiAgICAgICAgbGluZXMgPSAuUG9pbnRzVG9MaW5lcyhQb2ludHM6PTEzLjgpCiAgICBFbmQgV2l0aAoKICAgIFNldCBsYXlvdXQgPSBUaGlzRG9jdW1lbnQuUGFyYWdyYXBocygxKS5SYW5nZS5QYXJhZ3JhcGhGb3JtYXQKICAgIFJlcG9ydFBhcmFncmFwaCBpbnNldDo9QXBwbGljYXRpb24uSW5jaGVzVG9Qb2ludHMoMC41KSwgdGFyZ2V0Oj1sYXlvdXQKICAgIGxheW91dC5UYWJTdG9wcy5DbGVhckFsbAogICAgbGF5b3V0LlRhYlN0b3BzLkFkZCBQb3NpdGlvbjo9Q2VudGltZXRlcnNUb1BvaW50cyhDZW50aW1ldGVyczo9Mi41NCksIEFsaWdubWVudDo9d2RBbGlnblRhYkNlbnRlciwgTGVhZGVyOj13ZFRhYkxlYWRlckRvdHMKCiAgICBTZXQgbGF5b3V0ID0gQWN0aXZlRG9jdW1lbnQuUGFyYWdyYXBocy5JdGVtKDIpLkZvcm1hdAogICAgV2l0aCBsYXlvdXQKICAgICAgICAuTGVmdEluZGVudCA9IENlbnRpbWV0ZXJzVG9Qb2ludHMoY2VudGltZXRlcnMpCiAgICAgICAgLlJpZ2h0SW5kZW50ID0gQXBwbGljYXRpb24uTWlsbGltZXRlcnNUb1BvaW50cyhtaWxsaW1ldGVycykKICAgICAgICAuU3BhY2VCZWZvcmUgPSBQaWNhc1RvUG9pbnRzKHBpY2FzKQogICAgICAgIC5TcGFjZUFmdGVyID0gSW5jaGVzVG9Qb2ludHMoaW5jaGVzKQogICAgICAgIC5MaW5lU3BhY2luZ1J1bGUgPSB3ZExpbmVTcGFjZU11bHRpcGxlCiAgICAgICAgLkxpbmVTcGFjaW5nID0gTGluZXNUb1BvaW50cyhMaW5lczo9bGluZXMpCiAgICBFbmQgV2l0aApFbmQgU3ViCg==",
+        "tool/macros/web_vba_word_named_measurements_smoke.dart",
+        "-o",
+        "/workspace/scratch/03cd41fa0e7e/runtime/measurement-main-final-retry/word_named_measurements.js"
+      ],
+      "cwd": "/workspace/scratch/03cd41fa0e7e/quds_integration/packages/quds_office_engine",
+      "exit_code": 0,
+      "finished_utc": "2026-11-20T21:08:06.152062+00:00",
+      "log": "named-measurements-js-compile.log",
+      "log_sha256": "e01fa96a592e975ea4e6802447eb024ba4029a014778f88f00200cc612252d6e",
+      "name": "named-measurements-js-compile",
+      "seconds": 8.799,
+      "started_utc": "2026-11-20T21:07:57.353037+00:00"
+    },
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+        "-e",
+        "globalThis.self = globalThis; require(\"/workspace/scratch/03cd41fa0e7e/runtime/measurement-main-final-retry/word_named_measurements.js\");"
+      ],
+      "cwd": "/workspace/scratch/03cd41fa0e7e/quds_integration/packages/quds_office_engine",
+      "exit_code": 0,
+      "finished_utc": "2026-11-20T21:08:06.507416+00:00",
+      "log": "named-measurements-js-node.log",
+      "log_sha256": "06fce771e3b07af50a9e81ee2619c8b464745603ebe117958389abb0d511f382",
+      "name": "named-measurements-js-node",
+      "seconds": 0.353,
+      "started_utc": "2026-11-20T21:08:06.154496+00:00"
+    }
+  ],
+  "dart_version": "Dart SDK version: 3.14.1 (stable) (Tue Nov 17 00:01:24 2026 -0800) on \"linux_x64\"",
+  "finished_utc": "2026-11-20T21:08:06.617541+00:00",
+  "incoming_example_sha256": "960cdc52c5fa2ef9a54fc943b19539d1ad96f3f260d2c225cd299a0f577f283e",
+  "node_version": "v24.22.3",
+  "portable_equal": true,
+  "portable_examples": {
+    "measurements": {
+      "define": "WORD_MEASUREMENTS_BAS_BASE64",
+      "driver": "tool/macros/web_vba_word_measurements_smoke.dart",
+      "driver_sha256": "d14f4aae6ac8f2f8efeea50d981c6fac4a4444ee318b86c70a520d182fd7a362",
+      "example": "example/macros/word_measurements.bas",
+      "example_sha256": "dd62cd308c0517ef34ffc7567ffcfa102bc17b7d408b1acfd00ed77e237c0fbd",
+      "portable_equal": true,
+      "portable_result": {
+        "example": {
+          "additionalReopens": 2,
+          "operations": 8,
+          "replayStable": true,
+          "revision": 1,
+          "state": {
+            "emptyParagraphLeftTwips": 144,
+            "firstIndentTwips": {
+              "hanging": "360",
+              "left": "720",
+              "right": "1440"
+            },
+            "firstSpacingTwips": {
+              "after": "720",
+              "before": "120",
+              "line": "360",
+              "lineRule": "exact"
+            },
+            "paragraphs": 3,
+            "tabPositionsTwips": [
+              1080,
+              2160
+            ],
+            "untouchedTextAndFormatting": true
+          }
+        },
+        "lateFailureRollback": true,
+        "mcpCompileAndRun": true,
+        "readOnlyPolicy": true
+      }
+    },
+    "named-measurements": {
+      "define": "WORD_NAMED_MEASUREMENTS_BAS_BASE64",
+      "driver": "tool/macros/web_vba_word_named_measurements_smoke.dart",
+      "driver_sha256": "46141b58d227e3b22e06e6bb0d10b01625f14f99358c400daf441f65afddbc11",
+      "example": "example/macros/word_named_measurements.bas",
+      "example_sha256": "8255788a75f6ea75f193c3c58c717d0f0f743575ae9506374607a936106d2ccf",
+      "portable_equal": true,
+      "portable_result": {
+        "example": {
+          "additionalReopens": 2,
+          "nativeIndentGroupReplaced": true,
+          "opaqueVbaPreserved": true,
+          "operations": 13,
+          "paragraphs": [
+            {
+              "after": 6,
+              "before": 9,
+              "firstLine": 0,
+              "hanging": 18,
+              "left": 36,
+              "line": 13.8,
+              "right": 36,
+              "rule": "exact",
+              "tabs": [
+                [
+                  72,
+                  "center",
+                  "dot"
+                ]
+              ],
+              "text": "Measured paragraph"
+            },
+            {
+              "after": 72,
+              "before": 72,
+              "firstLine": 0,
+              "hanging": 0,
+              "left": 72,
+              "line": 1.15,
+              "right": 72,
+              "rule": "auto",
+              "tabs": [],
+              "text": ""
+            },
+            {
+              "after": 4,
+              "before": 2,
+              "firstLine": 0,
+              "hanging": 0,
+              "left": 0,
+              "line": 1,
+              "right": 0,
+              "rule": "auto",
+              "tabs": [],
+              "text": "Untouched paragraph"
+            }
+          ],
+          "revisionAfterReplay": 2
+        },
+        "guards": {
+          "completeAllowlistRevision": 1,
+          "lateFailureStep": 1,
+          "refusedPolicies": 3,
+          "validateAndRunRollback": true
+        }
+      }
+    }
+  },
+  "production_sha256": "41de865411b884d18c1097e9a80d68cd6bf1fb245e1844a46f72af05636f5ecd",
+  "root_package_configuration_unchanged": true,
+  "runtime_environment": {
+    "DART_SUPPRESS_ANALYTICS": "true",
+    "PUB_CACHE": "/workspace/scratch/03cd41fa0e7e/runtime/toolchain/pub-cache",
+    "QUDS_DART_ROOT": "/workspace/scratch/03cd41fa0e7e/runtime/toolchain/dart-sdk",
+    "QUDS_VALIDATION_ROOT": "/workspace/scratch/03cd41fa0e7e/quds_integration",
+    "TMPDIR": "/workspace/scratch/03cd41fa0e7e/runtime/measurement-main-final-retry/tmp",
+    "XDG_CACHE_HOME": "/workspace/scratch/03cd41fa0e7e/runtime/measurement-main-final-retry/cache",
+    "XDG_CONFIG_HOME": "/workspace/scratch/03cd41fa0e7e/runtime/measurement-main-final-retry/config"
+  },
+  "runtime_unchanged": true,
+  "source_files_hashed": 986,
+  "source_head": "cb5909fefe6dd41db0f9c38207db83166072dcaf",
+  "source_head_unchanged": true,
+  "source_tree": "3eca24612f32567d7312ae098d7b30c049bb6e3b",
+  "source_unchanged": true,
+  "started_utc": "2026-11-20T21:06:18.061190+00:00",
+  "success": true,
+  "test_files": [
+    "test/office_vba_word_measurements_test.dart",
+    "test/office_vba_word_measurements_integration_test.dart",
+    "test/office_vba_word_named_measurements_test.dart",
+    "test/office_vba_word_named_measurements_integration_test.dart",
+    "test/office_vba_word_unit_conversions_test.dart",
+    "test/office_vba_word_unit_conversions_integration_test.dart",
+    "test/office_vba_word_bulk_intake_conversions_test.dart"
+  ],
+  "tests": {
+    "failed": 0,
+    "file_count": 7,
+    "passed": 645,
+    "per_file": {
+      "test/office_vba_word_bulk_intake_conversions_test.dart": {
+        "failed": 0,
+        "passed": 63,
+        "skipped": 0
+      },
+      "test/office_vba_word_measurements_integration_test.dart": {
+        "failed": 0,
+        "passed": 6,
+        "skipped": 0
+      },
+      "test/office_vba_word_measurements_test.dart": {
+        "failed": 0,
+        "passed": 197,
+        "skipped": 0
+      },
+      "test/office_vba_word_named_measurements_integration_test.dart": {
+        "failed": 0,
+        "passed": 11,
+        "skipped": 0
+      },
+      "test/office_vba_word_named_measurements_test.dart": {
+        "failed": 0,
+        "passed": 160,
+        "skipped": 0
+      },
+      "test/office_vba_word_unit_conversions_integration_test.dart": {
+        "failed": 0,
+        "passed": 6,
+        "skipped": 0
+      },
+      "test/office_vba_word_unit_conversions_test.dart": {
+        "failed": 0,
+        "passed": 202,
+        "skipped": 0
+      }
+    },
+    "reporter_errors": 0,
+    "skipped": 0,
+    "terminal_success": true
+  }
+}

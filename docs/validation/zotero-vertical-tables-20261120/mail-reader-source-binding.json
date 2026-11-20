@@ -1,0 +1,13 @@
+{
+  "head": "fe2c57604c33c1ee5ef1e9f25121e99d66c74d9a",
+  "receipt": "mail-reader-full-ui-final-receipt.json",
+  "passed": 179,
+  "skipped": 0,
+  "source_count": 64,
+  "source_stable_during_run": true,
+  "changed_inputs": [],
+  "added_inputs": [],
+  "removed_inputs": [],
+  "same_input_set_and_hashes": true,
+  "scope": "All tracked non-Markdown files beneath packages/quds_mail_ui and packages/quds_mail_core plus root pubspec.yaml/pubspec.lock; external SDK/cache and other workspace packages are not included in this local gate manifest."
+}

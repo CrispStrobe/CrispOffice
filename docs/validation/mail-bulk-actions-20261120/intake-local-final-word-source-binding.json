@@ -1,0 +1,16 @@
+{
+  "schema": "quds-mail-bulk-final-word-source-binding/v1",
+  "verified_at_utc": "2026-11-20T21:17:48.229853+00:00",
+  "target_commit": "65468fdff43c3acec20fd0d7fd8d4ae9d254d572",
+  "target_tree": "096c3ad4af34ebefa87c5eb8ad6c4af5edb41f86",
+  "accepted_receipt": "intake-local-word-final-validation.json",
+  "accepted_receipt_sha256": "1aa364b0e2944106eabbbb0ab7363318fad98ea01410ca8d03b40a8bdade4c19",
+  "accepted_receipt_status": "PASS",
+  "scope": "Every scoped Word/dependency path from the final VM/Node/BAS acceptance receipt, read from immutable published Git blobs. Mail files are outside this binding.",
+  "source_path_count": 369,
+  "expected_source_manifest_sha256": "f71cc1ac30fee9ab5dec70312592382bab59b4395a47910ce74be56c7816d698",
+  "published_source_manifest_sha256": "f71cc1ac30fee9ab5dec70312592382bab59b4395a47910ce74be56c7816d698",
+  "mismatches": [],
+  "status": "PASS",
+  "github_actions": "NOT QUERIED OR AWAITED"
+}

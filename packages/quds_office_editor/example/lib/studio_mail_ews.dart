@@ -9,6 +9,7 @@ import 'package:quds_mail_ui/quds_mail_ui.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import 'studio_mail_archive_action.dart';
+import 'studio_mail_bulk_status.dart';
 import 'studio_mail_archive_folder_action.dart';
 import 'studio_mail_compose.dart';
 import 'studio_mail_outbox.dart';
@@ -152,6 +153,11 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
   bool _dialogOpen = false;
   bool _showMessage = false;
   bool _needsRefresh = false;
+  int _mailboxGeneration = 0;
+  int _nextBulkOperation = 0;
+  MailCancellationSource? _bulkCancellation;
+  MailBulkFlagReport? _bulkReport;
+  Map<MailRemoteIdentity, String> _bulkSubjects = const {};
   String? _error;
   String? _notice;
   String? _localAccountWarning;
@@ -250,6 +256,7 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
 
   @override
   void dispose() {
+    _bulkCancellation?.cancel(MailCancellationReason.disposed);
     _mailboxCapture?.dispose();
     _session?.dispose();
     _credentials?.clear();
@@ -535,6 +542,9 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
   }
 
   void _disconnect() {
+    _mailboxGeneration++;
+    _bulkCancellation?.cancel(MailCancellationReason.accountChanged);
+    _bulkCancellation = null;
     _mailboxCapture?.dispose();
     _mailboxCapture = null;
     final draftStore = _draftStore;
@@ -565,6 +575,8 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
       _submissionUncertain = false;
       _showMessage = false;
       _needsRefresh = false;
+      _bulkReport = null;
+      _bulkSubjects = const {};
       _password.clear();
       _clientSecret.clear();
       _usedHeaderCursors.clear();
@@ -778,6 +790,9 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
       _error = null;
       _notice = null;
       if (!more) {
+        _mailboxGeneration++;
+        _bulkReport = null;
+        _bulkSubjects = const {};
         _mailbox = mailbox;
         _selected = null;
         _reader = null;
@@ -1000,6 +1015,139 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
             ? _problem(error.problem, widget.strings.ewsMutationFailed)
             : widget.strings.ewsMutationFailed;
       });
+    }
+  }
+
+  Future<void> _applyBulkFlags(
+    MailBulkFlagAction action,
+    List<String> ids, {
+    required int mailboxGeneration,
+  }) async {
+    final provider = _provider;
+    final session = _session;
+    final mailbox = _mailbox;
+    if (!mounted ||
+        provider == null ||
+        session == null ||
+        mailbox == null ||
+        _blocked ||
+        _needsRefresh ||
+        mailboxGeneration != _mailboxGeneration ||
+        ids.isEmpty ||
+        ids.length > MailBulkFlagPlan.maxMessages ||
+        ids.toSet().length != ids.length) {
+      return;
+    }
+    final selected = <MailHeaderRecord>[];
+    for (final id in ids) {
+      final matches = _headers.where(
+        (header) => 'ews-message-${header.id.value}' == id,
+      );
+      if (matches.length != 1) return;
+      selected.add(matches.single);
+    }
+    final lease = session.begin();
+    final plan = MailBulkFlagPlan(
+      id: 'provider-bulk-${++_nextBulkOperation}',
+      mailbox: mailbox.id,
+      provider: selected.first.remote.provider,
+      messages: [for (final header in selected) header.remote],
+      action: action,
+    );
+    bool currentScope() {
+      if (!_current(provider, lease) ||
+          !identical(_session, session) ||
+          mailboxGeneration != _mailboxGeneration ||
+          !identical(_mailbox, mailbox)) {
+        return false;
+      }
+      final current = {for (final header in _headers) header.id: header.remote};
+      return selected.every((target) => current[target.id] == target.remote);
+    }
+
+    final cancellation = MailCancellationSource();
+    setState(() {
+      _bulkCancellation = cancellation;
+      _bulkReport = null;
+      _bulkSubjects = Map.unmodifiable({
+        for (final header in selected) header.remote: header.envelope.subject,
+      });
+      _busy = true;
+      _error = null;
+      _notice = null;
+    });
+    try {
+      final report = await MailBulkFlagCoordinator().run(
+        plan: plan,
+        lease: lease,
+        cancellation: cancellation.token,
+        isScopeCurrent: currentScope,
+        onProgress: (report) {
+          if (currentScope() && identical(_bulkCancellation, cancellation)) {
+            setState(() => _bulkReport = report);
+          }
+        },
+        apply: (operation, operationLease) async =>
+            MailBulkFlagAttempt.fromResult(
+              await provider.apply(operation, operationLease),
+            ),
+      );
+      if (!currentScope()) return;
+      setState(() {
+        _bulkReport = report;
+        final updates = <MailRemoteIdentity, MailHeaderRecord>{};
+        for (var i = 0; i < report.items.length; i++) {
+          final result = report.items[i];
+          if (result.outcome != MailBulkFlagOutcome.confirmed) continue;
+          final header = selected[i];
+          final operation = result.operation;
+          if (operation is MailSetRead) {
+            _confirmedRead[header.remote] = operation.read;
+          } else if (operation is MailSetFlagged) {
+            _confirmedFlagged[header.remote] = operation.flagged;
+          }
+          final flags = header.flags;
+          updates[header.remote] = MailHeaderRecord(
+            id: header.id,
+            remote: header.remote,
+            envelope: header.envelope,
+            flags: flags == null
+                ? null
+                : MailMessageFlags(
+                    isRead: operation is MailSetRead
+                        ? operation.read
+                        : flags.isRead,
+                    isFlagged: operation is MailSetFlagged
+                        ? operation.flagged
+                        : flags.isFlagged,
+                    isAnswered: flags.isAnswered,
+                    isDraft: flags.isDraft,
+                    isDeleted: flags.isDeleted,
+                  ),
+          );
+        }
+        _headers = [
+          for (final header in _headers) updates[header.remote] ?? header,
+        ];
+        if (_selected case final opened?) {
+          _selected = updates[opened.remote] ?? opened;
+        }
+        _notice = widget.strings.mailBulkSummary(report);
+        if (report.requiresRefresh) {
+          _needsRefresh = true;
+          _error = widget.strings.mailWorkspaceRefreshRequired;
+        }
+      });
+      // These are per-flag confirmations. Persisting a synthetic full snapshot
+      // here would turn unknown flags into invented observations.
+    } finally {
+      if (_current(provider, lease) &&
+          identical(_bulkCancellation, cancellation)) {
+        setState(() {
+          _bulkCancellation = null;
+          _busy = false;
+        });
+      }
     }
   }
 
@@ -1998,7 +2146,22 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
               : Theme.of(context).colorScheme.errorContainer,
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-            child: Row(children: [Expanded(child: Text(_error ?? _notice!))]),
+            child: Row(
+              children: [
+                Expanded(
+                  child: Semantics(
+                    liveRegion: true,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        if (_notice != null) Text(_notice!),
+                        if (_error != null) Text(_error!),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       Expanded(
@@ -2092,99 +2255,159 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
     ],
   );
 
-  Widget _messageList({required bool compact}) => Column(
-    children: [
-      if (compact)
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 12),
-          child: DropdownButton<MailMailboxId>(
-            isExpanded: true,
-            value: _mailbox?.id,
-            items: [
-              for (final box in _mailboxes)
-                DropdownMenuItem(
-                  value: box.id,
-                  child: Text(
-                    box.displayName,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
+  Widget? _bulkStatus() {
+    final report = _bulkReport;
+    if (report == null) return null;
+    final mailboxGeneration = _mailboxGeneration;
+    final cancellation = _bulkCancellation;
+    final running = cancellation != null;
+    return StudioMailBulkStatus(
+      strings: widget.strings,
+      report: report,
+      running: running,
+      subjects: _bulkSubjects,
+      showStop: false,
+      onStop: cancellation == null
+          ? null
+          : () {
+              if (mounted && identical(_bulkCancellation, cancellation)) {
+                cancellation.cancel();
+              }
+            },
+      onDismiss: running || report.requiresRefresh
+          ? null
+          : () {
+              if (!mounted ||
+                  mailboxGeneration != _mailboxGeneration ||
+                  !identical(_bulkReport, report) ||
+                  _bulkCancellation != null) {
+                return;
+              }
+              setState(() {
+                _bulkReport = null;
+                _bulkSubjects = const {};
+                if (_notice == widget.strings.mailBulkSummary(report)) {
+                  _notice = null;
+                }
+              });
+            },
+    );
+  }
+
+  Widget _messageList({required bool compact}) {
+    final mailboxGeneration = _mailboxGeneration;
+    final cancellation = _bulkCancellation;
+    return Column(
+      children: [
+        if (compact)
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 12),
+            child: DropdownButton<MailMailboxId>(
+              isExpanded: true,
+              value: _mailbox?.id,
+              items: [
+                for (final box in _mailboxes)
+                  DropdownMenuItem(
+                    value: box.id,
+                    child: Text(
+                      box.displayName,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
                   ),
+              ],
+              onChanged: _blocked
+                  ? null
+                  : (id) {
+                      if (id != null) {
+                        unawaited(
+                          _loadHeaders(
+                            _mailboxes.firstWhere((box) => box.id == id),
+                          ),
+                        );
+                      }
+                    },
+            ),
+          ),
+        Expanded(
+          child: MailMessageList(
+            key: _messageListKey,
+            scopeId: '${identityHashCode(_provider)}:${_mailbox?.id.value}',
+            selectionScopeId: '$mailboxGeneration',
+            bulkStatus: _bulkStatus(),
+            strings: widget.strings.mailMessageListStrings,
+            items: [
+              for (final header in _headers)
+                MailMessageListItem(
+                  id: 'ews-message-${header.id.value}',
+                  subject: header.envelope.subject,
+                  sender: header.envelope.from
+                      .map(
+                        (address) =>
+                            address.displayName == null ||
+                                address.displayName!.isEmpty
+                            ? address.address
+                            : '${address.displayName} <${address.address}>',
+                      )
+                      .join(', '),
+                  to: header.envelope.to
+                      .map(
+                        (address) => address.displayName?.isNotEmpty == true
+                            ? '${address.displayName} <${address.address}>'
+                            : address.address,
+                      )
+                      .join(', '),
+                  cc: header.envelope.cc
+                      .map(
+                        (address) => address.displayName?.isNotEmpty == true
+                            ? '${address.displayName} <${address.address}>'
+                            : address.address,
+                      )
+                      .join(', '),
+                  date: header.envelope.sentAt,
+                  dateLabel: header.envelope.sentAt?.toLocal().toString(),
+                  isRead: _isRead(header),
+                  isFlagged: _isFlagged(header),
                 ),
             ],
-            onChanged: _blocked
+            selectedId: _selected == null
                 ? null
-                : (id) {
-                    if (id != null) {
-                      unawaited(
-                        _loadHeaders(
-                          _mailboxes.firstWhere((box) => box.id == id),
-                        ),
-                      );
+                : 'ews-message-${_selected!.id.value}',
+            busy: _blocked,
+            onBulkAction: (action, ids) => unawaited(
+              _applyBulkFlags(
+                action,
+                ids,
+                mailboxGeneration: mailboxGeneration,
+              ),
+            ),
+            bulkActionsEnabled: !_needsRefresh,
+            onCancelBulk: cancellation == null
+                ? null
+                : () {
+                    if (identical(_bulkCancellation, cancellation)) {
+                      cancellation.cancel();
                     }
                   },
+            hasMore: _next != null && _headers.length < _maxHeaders,
+            loadMoreKey: const ValueKey('ews-load-more'),
+            onLoadMore: _needsRefresh || _mailbox == null
+                ? null
+                : () => unawaited(_loadHeaders(_mailbox!, more: true)),
+            limitNotice: _headers.length >= _maxHeaders && _next != null
+                ? widget.strings.mailWorkspaceLimit
+                : null,
+            onOpen: (id) {
+              final header = _headers
+                  .where((item) => 'ews-message-${item.id.value}' == id)
+                  .firstOrNull;
+              if (header != null) unawaited(_openMessage(header));
+            },
           ),
         ),
-      Expanded(
-        child: MailMessageList(
-          key: _messageListKey,
-          scopeId: '${identityHashCode(_provider)}:${_mailbox?.id.value}',
-          strings: widget.strings.mailMessageListStrings,
-          items: [
-            for (final header in _headers)
-              MailMessageListItem(
-                id: 'ews-message-${header.id.value}',
-                subject: header.envelope.subject,
-                sender: header.envelope.from
-                    .map(
-                      (address) =>
-                          address.displayName == null ||
-                              address.displayName!.isEmpty
-                          ? address.address
-                          : '${address.displayName} <${address.address}>',
-                    )
-                    .join(', '),
-                to: header.envelope.to
-                    .map(
-                      (address) => address.displayName?.isNotEmpty == true
-                          ? '${address.displayName} <${address.address}>'
-                          : address.address,
-                    )
-                    .join(', '),
-                cc: header.envelope.cc
-                    .map(
-                      (address) => address.displayName?.isNotEmpty == true
-                          ? '${address.displayName} <${address.address}>'
-                          : address.address,
-                    )
-                    .join(', '),
-                date: header.envelope.sentAt,
-                dateLabel: header.envelope.sentAt?.toLocal().toString(),
-                isRead: _isRead(header),
-                isFlagged: _isFlagged(header),
-              ),
-          ],
-          selectedId: _selected == null
-              ? null
-              : 'ews-message-${_selected!.id.value}',
-          busy: _blocked,
-          hasMore: _next != null && _headers.length < _maxHeaders,
-          loadMoreKey: const ValueKey('ews-load-more'),
-          onLoadMore: _needsRefresh || _mailbox == null
-              ? null
-              : () => unawaited(_loadHeaders(_mailbox!, more: true)),
-          limitNotice: _headers.length >= _maxHeaders && _next != null
-              ? widget.strings.mailWorkspaceLimit
-              : null,
-          onOpen: (id) {
-            final header = _headers
-                .where((item) => 'ews-message-${item.id.value}' == id)
-                .firstOrNull;
-            if (header != null) unawaited(_openMessage(header));
-          },
-        ),
-      ),
-    ],
-  );
+      ],
+    );
+  }
 
   Widget _actions({required bool compact}) {
     final selected = _selected;

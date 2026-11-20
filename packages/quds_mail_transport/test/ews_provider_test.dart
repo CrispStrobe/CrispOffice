@@ -211,6 +211,65 @@ MailPreparedMessage _prepared({List<String>? recipients}) =>
 
 void main() {
   test(
+    'bulk EWS reports acknowledged, definite, uncertain and untouched identities',
+    () async {
+      final fixture = _Fixture();
+      fixture.scripts.addAll([
+        [('GetItem', (_) => _response('GetItem', _item('one', read: true)))],
+        [
+          (
+            'GetItem',
+            (_) => _response('GetItem', _error('GetItem', 'ErrorItemNotFound')),
+          ),
+        ],
+        [
+          ('GetItem', (_) => _response('GetItem', _item('three'))),
+          (
+            'UpdateItem',
+            (_) => throw const EwsException(MailProblemCode.unavailable),
+          ),
+        ],
+      ]);
+      final provider = fixture.provider();
+      final report = await MailBulkFlagCoordinator().run(
+        plan: MailBulkFlagPlan(
+          id: 'ews-bulk',
+          mailbox: _mailbox,
+          provider: MailProviderKind.ews,
+          action: MailBulkFlagAction.markRead,
+          messages: [
+            _identity('one'),
+            _identity('two'),
+            _identity('three'),
+            _identity('four'),
+          ],
+        ),
+        lease: fixture.session.begin(),
+        apply: (operation, lease) async => MailBulkFlagAttempt.fromResult(
+          await provider.apply(operation, lease),
+        ),
+        isScopeCurrent: () => true,
+      );
+      expect(report.items.map((result) => result.outcome), [
+        MailBulkFlagOutcome.confirmed,
+        MailBulkFlagOutcome.failed,
+        MailBulkFlagOutcome.uncertain,
+        MailBulkFlagOutcome.unattempted,
+      ]);
+      expect(report.items[1].problem?.mutationMayHaveOccurred, isFalse);
+      expect(report.items[2].problem?.mutationMayHaveOccurred, isTrue);
+      expect(fixture.clients, hasLength(3));
+      expect(
+        fixture.clients
+            .expand((client) => client.requests)
+            .where((request) => request.$3),
+        hasLength(1),
+      );
+      expect(report.requiresRefresh, isTrue);
+    },
+  );
+
+  test(
     'initial sync coalesces changes and loads complete headers once',
     () async {
       final fixture = _Fixture();

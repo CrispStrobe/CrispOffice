@@ -74,6 +74,23 @@ abstract interface class StudioMailMessageActions {
   });
 }
 
+/// Foreground bulk commands retain the provider's mutation evidence. Older
+/// reader/action adapters stay valid without claiming this optional capability.
+abstract interface class StudioMailBulkMessageActions {
+  MailAccountId get account;
+
+  /// Only a header observed by this loader may supply a bulk remote identity.
+  MailImapIdentity bulkIdentity(
+    mail.Mailbox selectedMailbox,
+    mail.MimeMessage header,
+  );
+
+  Future<MailResult<MailUnit>> applyBulkFlag(
+    MailOperation command,
+    MailOperationLease hostLease,
+  );
+}
+
 /// Optional folder archiving capability, separate from existing reader fakes.
 /// Hosts supply a stable mailbox profile and own the archive's lifetime.
 abstract interface class StudioMailMailboxArchiver {
@@ -97,9 +114,15 @@ typedef StudioMailProviderFactory =
 
 /// Fixed explanations never include server replies, message data or secrets.
 final class StudioMailMessageLoadException implements Exception {
-  const StudioMailMessageLoadException(this.code);
+  const StudioMailMessageLoadException(
+    this.code, {
+    this.mutationMayHaveOccurred,
+  });
 
   final MailProblemCode code;
+
+  /// Only false certifies no remote mutation. Missing evidence stays unknown.
+  final bool? mutationMayHaveOccurred;
 
   String get message => switch (code) {
     MailProblemCode.unsupported =>
@@ -140,6 +163,7 @@ final class NativeStudioMailMessageLoader
         StudioMailMailboxBrowser,
         StudioMailMailboxRecords,
         StudioMailMessageActions,
+        StudioMailBulkMessageActions,
         StudioMailMailboxArchiver {
   factory NativeStudioMailMessageLoader(
     mail.MailAccount account, {
@@ -261,6 +285,7 @@ final class NativeStudioMailMessageLoader
     if (_session.isDisposed) {
       throw const StudioMailMessageLoadException(
         MailProblemCode.staleOperation,
+        mutationMayHaveOccurred: false,
       );
     }
     try {
@@ -274,11 +299,15 @@ final class NativeStudioMailMessageLoader
           validity > 0xffffffff) {
         throw const StudioMailMessageLoadException(
           MailProblemCode.invalidInput,
+          mutationMayHaveOccurred: false,
         );
       }
       return (MailMailboxId(path, account: _configuration.account), validity);
     } on ArgumentError {
-      throw const StudioMailMessageLoadException(MailProblemCode.invalidInput);
+      throw const StudioMailMessageLoadException(
+        MailProblemCode.invalidInput,
+        mutationMayHaveOccurred: false,
+      );
     }
   }
 
@@ -293,6 +322,7 @@ final class NativeStudioMailMessageLoader
       if (uid == null) {
         throw const StudioMailMessageLoadException(
           MailProblemCode.invalidInput,
+          mutationMayHaveOccurred: false,
         );
       }
       identity = MailImapIdentity(
@@ -302,7 +332,10 @@ final class NativeStudioMailMessageLoader
       );
       final bound = _browsedIdentities[header];
       if (bound != null && bound != identity) {
-        throw const StudioMailMessageLoadException(MailProblemCode.conflict);
+        throw const StudioMailMessageLoadException(
+          MailProblemCode.conflict,
+          mutationMayHaveOccurred: false,
+        );
       }
       // This optional high-level-client hint can reject an obvious stale list;
       // its XOR collisions mean it is never used instead of the full identity.
@@ -314,10 +347,16 @@ final class NativeStudioMailMessageLoader
                 mailboxUidValidity: uidValidity,
                 messageUid: uid,
               )) {
-        throw const StudioMailMessageLoadException(MailProblemCode.conflict);
+        throw const StudioMailMessageLoadException(
+          MailProblemCode.conflict,
+          mutationMayHaveOccurred: false,
+        );
       }
     } on ArgumentError {
-      throw const StudioMailMessageLoadException(MailProblemCode.invalidInput);
+      throw const StudioMailMessageLoadException(
+        MailProblemCode.invalidInput,
+        mutationMayHaveOccurred: false,
+      );
     }
     return identity;
   }
@@ -524,6 +563,62 @@ final class NativeStudioMailMessageLoader
   }
 
   @override
+  MailImapIdentity bulkIdentity(
+    mail.Mailbox selectedMailbox,
+    mail.MimeMessage header,
+  ) => observedHeader(selectedMailbox, header).remote as MailImapIdentity;
+
+  @override
+  Future<MailResult<MailUnit>> applyBulkFlag(
+    MailOperation command,
+    MailOperationLease hostLease,
+  ) async {
+    MailFailure<MailUnit> failure(MailProblemCode code, bool dispatched) =>
+        MailFailure(MailProblem(code, mutationMayHaveOccurred: dispatched));
+    if (command is! MailSetRead && command is! MailSetFlagged ||
+        command.message is! MailImapIdentity ||
+        command.message.account != account ||
+        hostLease.account != account) {
+      return failure(MailProblemCode.invalidInput, false);
+    }
+    if (_active != null) return failure(MailProblemCode.unavailable, false);
+    final operation = _MessageOperation();
+    var dispatched = false;
+    try {
+      hostLease.checkCurrent();
+      final lease = _session.begin(cancellation: operation.cancellation.token);
+      _active = operation;
+      final provider = _providerFactory(
+        configuration: _configuration,
+        credentialStore: _credentials,
+        limits: limits,
+      );
+      if (provider.account != account) {
+        return failure(MailProblemCode.invalidInput, false);
+      }
+      hostLease.checkCurrent();
+      lease.checkCurrent();
+      dispatched = true;
+      // Do not race cancellation against a provider acknowledgment or erase its
+      // explicit pre-mutation evidence. The bounded provider owns completion;
+      // the runner and host separately reject stale UI projection.
+      return await provider.apply(command, lease);
+    } on MailCancelled catch (error) {
+      return failure(
+        error.reason == MailCancellationReason.user ||
+                error.reason == MailCancellationReason.budgetExpired
+            ? MailProblemCode.cancelled
+            : MailProblemCode.staleOperation,
+        dispatched,
+      );
+    } on Object {
+      return failure(MailProblemCode.providerFailure, dispatched);
+    } finally {
+      if (identical(_active, operation)) _active = null;
+    }
+  }
+
+  @override
   Future<MailArchiveRunReport> archiveMailbox(
     mail.Mailbox selectedMailbox, {
     required SqliteMailArchive archive,
@@ -611,6 +706,7 @@ final class NativeStudioMailMessageLoader
     final operation = _MessageOperation();
     _active = operation;
     final lease = _session.begin(cancellation: operation.cancellation.token);
+    var actionInvoked = false;
     try {
       final provider = _providerFactory(
         configuration: _configuration,
@@ -620,9 +716,11 @@ final class NativeStudioMailMessageLoader
       if (provider.account != _configuration.account) {
         throw const StudioMailMessageLoadException(
           MailProblemCode.invalidInput,
+          mutationMayHaveOccurred: false,
         );
       }
       lease.checkCurrent();
+      actionInvoked = true;
       final result = await Future.any<MailResult<T>>([
         action(provider, lease),
         operation.cancelled.future.then(
@@ -631,7 +729,10 @@ final class NativeStudioMailMessageLoader
       ]);
       lease.checkCurrent();
       if (result case MailFailure<T>(:final problem)) {
-        throw StudioMailMessageLoadException(problem.code);
+        throw StudioMailMessageLoadException(
+          problem.code,
+          mutationMayHaveOccurred: problem.mutationMayHaveOccurred,
+        );
       }
       return (result as MailSuccess<T>).value;
     } on StudioMailMessageLoadException {
@@ -641,10 +742,12 @@ final class NativeStudioMailMessageLoader
         error.reason == MailCancellationReason.user
             ? MailProblemCode.cancelled
             : MailProblemCode.staleOperation,
+        mutationMayHaveOccurred: actionInvoked ? null : false,
       );
     } on Object {
-      throw const StudioMailMessageLoadException(
+      throw StudioMailMessageLoadException(
         MailProblemCode.providerFailure,
+        mutationMayHaveOccurred: actionInvoked ? null : false,
       );
     } finally {
       if (identical(_active, operation)) _active = null;

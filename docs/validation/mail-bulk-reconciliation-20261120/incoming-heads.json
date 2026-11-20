@@ -1,0 +1,105 @@
+{
+  "checks": [
+    {
+      "command": [
+        "git",
+        "-C",
+        "/workspace/scratch/03cd41fa0e7e/quds_mail_integration",
+        "merge-base",
+        "--is-ancestor",
+        "cb5909fefe6dd41db0f9c38207db83166072dcaf",
+        "cf25a0a3d80ee18d2550161af182bacc4e49d18f"
+      ],
+      "commit": "cb5909fefe6dd41db0f9c38207db83166072dcaf",
+      "exit_code": 0,
+      "source": "frozen_word_baseline"
+    },
+    {
+      "command": [
+        "git",
+        "-C",
+        "/workspace/scratch/03cd41fa0e7e/quds_mail_integration",
+        "merge-base",
+        "--is-ancestor",
+        "467dcaffe016b9e647f944b59af473b13e3ae7f6",
+        "cf25a0a3d80ee18d2550161af182bacc4e49d18f"
+      ],
+      "commit": "467dcaffe016b9e647f944b59af473b13e3ae7f6",
+      "exit_code": 0,
+      "source": "word_evidence"
+    },
+    {
+      "command": [
+        "git",
+        "-C",
+        "/workspace/scratch/03cd41fa0e7e/quds_mail_integration",
+        "merge-base",
+        "--is-ancestor",
+        "9109fcc645d0d95fbe7a7568ddf1e0ebc07bc384",
+        "cf25a0a3d80ee18d2550161af182bacc4e49d18f"
+      ],
+      "commit": "9109fcc645d0d95fbe7a7568ddf1e0ebc07bc384",
+      "exit_code": 0,
+      "source": "bulk_actions"
+    },
+    {
+      "command": [
+        "git",
+        "-C",
+        "/workspace/scratch/03cd41fa0e7e/quds_mail_integration",
+        "merge-base",
+        "--is-ancestor",
+        "fcc7bd27f7df6200ac7d3174f6e21097f931cca0",
+        "cf25a0a3d80ee18d2550161af182bacc4e49d18f"
+      ],
+      "commit": "fcc7bd27f7df6200ac7d3174f6e21097f931cca0",
+      "exit_code": 0,
+      "source": "bulk_flags"
+    },
+    {
+      "command": [
+        "git",
+        "-C",
+        "/workspace/scratch/03cd41fa0e7e/quds_mail_integration",
+        "merge-base",
+        "--is-ancestor",
+        "b01cb23dc1b7bc94b691d68a2507b61dc6d48d7a",
+        "cf25a0a3d80ee18d2550161af182bacc4e49d18f"
+      ],
+      "commit": "b01cb23dc1b7bc94b691d68a2507b61dc6d48d7a",
+      "exit_code": 0,
+      "source": "mail_branch_common_ancestor"
+    },
+    {
+      "command": [
+        "git",
+        "-C",
+        "/workspace/scratch/03cd41fa0e7e/quds_mail_integration",
+        "merge-base",
+        "--is-ancestor",
+        "e975cec13b289fe067ef406cd3044701ecc44744",
+        "cf25a0a3d80ee18d2550161af182bacc4e49d18f"
+      ],
+      "commit": "e975cec13b289fe067ef406cd3044701ecc44744",
+      "exit_code": 0,
+      "source": "captured_later_main"
+    },
+    {
+      "command": [
+        "git",
+        "-C",
+        "/workspace/scratch/03cd41fa0e7e/quds_mail_integration",
+        "merge-base",
+        "--is-ancestor",
+        "cdd98460c2eed261719c660351f11adc962e2ca5",
+        "cf25a0a3d80ee18d2550161af182bacc4e49d18f"
+      ],
+      "commit": "cdd98460c2eed261719c660351f11adc962e2ca5",
+      "exit_code": 0,
+      "source": "original_execution"
+    }
+  ],
+  "github_actions_used": false,
+  "qualified_source_head": "cf25a0a3d80ee18d2550161af182bacc4e49d18f",
+  "qualified_source_tree": "0780f20f27df62004404496d8e5c529c4bdccd87"
+}

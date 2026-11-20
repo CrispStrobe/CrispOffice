@@ -1,0 +1,32 @@
+{
+  "base": "fe2c57604c33c1ee5ef1e9f25121e99d66c74d9a",
+  "incoming_main": "329d03914808589d3e7650fa870df15a2408afe2",
+  "frozen_head": "6045998d885cbb045454a993aedfdfc0977714d6",
+  "tree": "64360d621e85c5298e0ae132a9c42d1e119df70a",
+  "incoming_ancestry_included": true,
+  "changed_source_paths": [
+    "packages/quds_office_editor/example/lib/studio_mail_native.dart",
+    "packages/quds_office_editor/example/test/studio_mail_accounts_test.dart"
+  ],
+  "native_methods": {
+    "_mailChrome": {
+      "matches_incoming_exactly": true,
+      "before_sha256": "728ff7cb0d46091eca0c2f685ef107f360975798fbf5c2ee99db634568e221ea",
+      "after_sha256": "462b6072836473580c30a6b97f3f1b99ff02de1d7fbd31cd82fa129ef168ee80"
+    },
+    "_rememberedAccounts": {
+      "matches_incoming_exactly": true,
+      "before_sha256": "ad307213237189fe3ea904a9f299b7c9190d3fc77a7d7d187cc335f1f6639846",
+      "after_sha256": "ff9ce961484f33c6eb345a6ea56a0898746244c99b53939dab0af10c3cb6f34f"
+    }
+  },
+  "all_other_native_bytes_unchanged": true,
+  "account_fixture_matches_incoming_exactly": true,
+  "protected_inputs": {
+    "path_count": 5520,
+    "mismatches": [],
+    "source_identical": true
+  },
+  "source_binding_passed": true,
+  "full_record": "source-binding.json inside freshness-tail-evidence.tar.gz"
+}

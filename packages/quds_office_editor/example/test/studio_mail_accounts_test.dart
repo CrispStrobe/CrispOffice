@@ -233,7 +233,10 @@ Future<void> _connect(WidgetTester tester) =>
     _tap(tester, find.widgetWithText(FilledButton, _strings.connect));
 
 Future<void> _enterNewAccount(WidgetTester tester) async {
-  await _tap(tester, _key('studio-mail-new-account'));
+  final newAccount = _key('studio-mail-new-account');
+  if (newAccount.evaluate().isNotEmpty) {
+    await _tap(tester, newAccount);
+  }
   await tester.enterText(_field(_strings.emailAddress), _c.email);
   await tester.enterText(_field(_strings.password), _c.password);
   await _tap(
@@ -877,10 +880,7 @@ void main() {
         isNull,
       );
       await _tap(tester, find.byTooltip(_strings.disconnect));
-      expect(
-        tester.widget<TextButton>(_key('studio-mail-new-account')).onPressed,
-        isNull,
-      );
+      expect(_key('studio-mail-new-account'), findsNothing);
       await tester.enterText(
         _field(_strings.emailAddress),
         'newer@example.test',
