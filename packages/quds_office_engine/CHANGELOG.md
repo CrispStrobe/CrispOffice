@@ -4,6 +4,15 @@ All notable changes to `quds_office_engine` are documented here.
 
 ## Unreleased
 
+- Add Word VBA inch, centimeter, millimeter and pica conversions in both
+  directions, unqualified or on Application, including With Application.
+  Preserve exact physical ratios, canonical conversion-grid arithmetic and
+  the legacy line-conversion fallback. Retain explicit numeric typing,
+  destination precision checks, finite bounds and shared execution guards.
+  Include a two-paragraph BAS example and focused compiler/native regression
+  suites; see the continuation record for executed validation and environment
+  limits. No native document operation or VBA Single coercion is added.
+
 - Fall back to full Word layout for changed footnote/endnote paragraphs,
   including nested note tables, so formatting edits cannot reuse stale note
   geometry. Keep incremental body edits when note content is unchanged and

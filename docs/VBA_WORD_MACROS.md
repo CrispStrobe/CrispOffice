@@ -313,8 +313,8 @@ the corrected position-wise style cascade and the same table-layer limits.
 
 This slice supports statements whose `Add` return value is discarded. It does
 not introduce `TabStop` objects, indexing, `Count`, enumeration, collection-copy
-assignment, default-tab setters, `Selection`, unit-conversion intrinsics or live
-document reads. The actual [word_tabstops.bas](../packages/quds_office_engine/example/macros/word_tabstops.bas)
+assignment, default-tab setters, `Selection` or live document reads. Supported
+measurement conversions are documented separately below. The actual [word_tabstops.bas](../packages/quds_office_engine/example/macros/word_tabstops.bas)
 example requires three existing body paragraphs and is exercised on the Dart VM
 and compiled JavaScript by the portable regression driver. See the
 [qualification record](validation/word-vba-tabstops-20261120/README.md) for executed
@@ -818,6 +818,96 @@ Primary contracts: Microsoft's
 [Space1](https://learn.microsoft.com/en-us/office/vba/api/word.paragraphformat.space1),
 [Space15](https://learn.microsoft.com/en-us/office/vba/api/word.paragraphformat.space15)
 and [Space2](https://learn.microsoft.com/en-us/office/vba/api/word.paragraphformat.space2).
+
+
+### Physical measurement conversions
+
+The Word dialect supports these document-independent numeric functions,
+unqualified, through `Application`, and inside `With Application`:
+
+| Functions | Exact physical relationship used by this adapter |
+| --- | --- |
+| `InchesToPoints`, `PointsToInches` | 1 inch = 72 points |
+| `CentimetersToPoints`, `PointsToCentimeters` | 2.54 centimeters = 72 points |
+| `MillimetersToPoints`, `PointsToMillimeters` | 25.4 millimeters = 72 points |
+| `PicasToPoints`, `PointsToPicas` | 1 pica = 12 points |
+
+These extend the existing `LinesToPoints` / `PointsToLines` functions without
+changing their twelve-points-per-line contract. Each function requires exactly
+one positional, actual numeric argument. Numeric Variants are accepted;
+strings, Booleans, Empty, Null and omitted Variants are not implicitly coerced.
+The functions accept zero and negative measurements and check both the input
+and result against the existing finite portable numeric bound, `2^53 - 1`
+in magnitude. Function names are case-insensitive and reserved in `vba-word`;
+the Excel and PowerPoint dialects do not acquire these Word intrinsics.
+
+Scalar evaluation emits no native operation. An argument expression executes
+once, with the existing procedure order, source-work limits and pending
+line-spacing-pair guards. Typed aliases, required ByVal helpers and named
+arguments on those module helpers can use the resulting number. Named
+arguments on the application conversion functions, property-style reads,
+screen-dependent pixel conversions and live document reads remain unsupported.
+Malformed calls are rejected in unused helpers and dead branches as well as
+executed source.
+
+```vb
+Sub Main()
+    Dim points As Double
+    With Application
+        points = .CentimetersToPoints(2.54)
+    End With
+    ActiveDocument.Paragraphs(1).Format.LeftIndent = points
+    ActiveDocument.Paragraphs(1).Format.FirstLineIndent = -PicasToPoints(1.5)
+End Sub
+```
+
+This sets the first paragraph's left indent to 72 points and its hanging
+indent to 18 points. Exact conversion-grid arithmetic keeps ordinary inputs
+such as `InchesToPoints(0.2)`, `CentimetersToPoints(0.127)` and
+`PicasToPoints(1.15)` at canonical 14.4, 3.6 and 13.8-point values. An input
+uses that grid only if it round-trips exactly; no epsilon or blanket snapping
+is applied. Ordinary binary64 arithmetic can itself round a result to an
+exact native value, as it already can for the line conversions.
+
+**Conversion and formatting precision are separate.** For example,
+`CentimetersToPoints(1)` yields approximately 28.346456692913385 points
+as a scalar. A paragraph indent requires exact twentieth-points, so that value
+cannot be assigned directly under this dialect's existing precision contract.
+A macro author can explicitly choose twip rounding using the existing
+ties-to-even `CLng` conversion:
+
+```vb
+Sub Main()
+    ActiveDocument.Paragraphs(1).Format.LeftIndent = _
+        CLng(CentimetersToPoints(1) * 20) / 20
+End Sub
+```
+
+That example writes 28.35 points. The compiler does not silently add rounding,
+change a destination property's range limits, or emulate VBA `Single`
+coercion. Microsoft's API documentation identifies Single arguments/results
+and gives rounded metric conversion factors; the exact physical ratios above
+are the explicit Quds numeric contract, not a claim of observed Word binary32
+parity.
+
+The actual [word_unit_conversions.bas](../packages/quds_office_engine/example/macros/word_unit_conversions.bas)
+example uses all eight physical conversion functions, a typed ByVal helper,
+named helper arguments and `With Application`. It requires two existing body
+paragraphs and emits nine paragraph-format operations. Both paragraphs finish
+with 72-point left indents, 18-point right indents, 12-point before spacing and
+6-point after spacing; the first also has an 18-point hanging indent.
+The [continuation record](validation/word-vba-unit-conversions-20261120/README.md)
+states exactly which checks were executed and which remain unexecuted.
+
+Primary contracts: Microsoft's
+[InchesToPoints](https://learn.microsoft.com/en-us/office/vba/api/word.application.inchestopoints),
+[PointsToInches](https://learn.microsoft.com/en-us/office/vba/api/word.application.pointstoinches),
+[CentimetersToPoints](https://learn.microsoft.com/en-us/office/vba/api/word.application.centimeterstopoints),
+[PointsToCentimeters](https://learn.microsoft.com/en-us/office/vba/api/word.application.pointstocentimeters),
+[MillimetersToPoints](https://learn.microsoft.com/en-us/office/vba/api/word.application.millimeterstopoints),
+[PointsToMillimeters](https://learn.microsoft.com/en-us/office/vba/api/word.application.pointstomillimeters),
+[PicasToPoints](https://learn.microsoft.com/en-us/office/vba/api/word.application.picastopoints)
+and [PointsToPicas](https://learn.microsoft.com/en-us/office/vba/api/word.application.pointstopicas).
 
 ### Typography and highlighting
 

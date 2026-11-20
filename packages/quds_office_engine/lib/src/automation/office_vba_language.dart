@@ -275,7 +275,20 @@ const _wordListMethods = <String>{
 };
 const _wordSpacingMethods = <String>{'space1', 'space15', 'space2'};
 const _wordParagraphControls = <String>{'openup', 'closeup', 'openorcloseup'};
-const _wordUnitConversions = <String>{'linestopoints', 'pointstolines'};
+// Integral scale pairs preserve exact inch/metric relationships without
+// tolerance-based rounding. One inch is 72 points, 2.54 cm, or 25.4 mm.
+const _wordUnitConversions = <String, (int, int)>{
+  'linestopoints': (240, 20),
+  'pointstolines': (20, 240),
+  'inchestopoints': (1440, 20),
+  'pointstoinches': (20, 1440),
+  'centimeterstopoints': (72000, 2540),
+  'pointstocentimeters': (2540, 72000),
+  'millimeterstopoints': (7200, 2540),
+  'pointstomillimeters': (2540, 7200),
+  'picastopoints': (240, 20),
+  'pointstopicas': (20, 240),
+};
 const _powerPointConstants = <String, int>{
   'msoanchortop': 1,
   'msoanchortopbaseline': 2,
@@ -345,7 +358,7 @@ class _Context {
       constants.containsKey(name) ||
       (isWord &&
           (_wordReserved.contains(name) ||
-              _wordUnitConversions.contains(name))) ||
+              _wordUnitConversions.containsKey(name))) ||
       (isPowerPoint && _powerPointReserved.contains(name));
 
   Never fail(
@@ -3012,7 +3025,7 @@ class _Checker {
           return _stringIntrinsic(expression);
         }
         if (context.isWord &&
-            _wordUnitConversions.contains(expression.token.lower)) {
+            _wordUnitConversions.containsKey(expression.token.lower)) {
           _count(expression.token, expression.arguments, 1);
           final argument = expression.arguments.single;
           _compatible(_Kind.number, _expression(argument), argument.token);
@@ -3104,7 +3117,7 @@ class _Checker {
             return _Kind.document;
           }
           if (receiver == _Kind.wordApplication &&
-              _wordUnitConversions.contains(name)) {
+              _wordUnitConversions.containsKey(name)) {
             final argument = _arguments(expression, 1).single;
             _compatible(_Kind.number, _expression(argument), argument.token);
             return _Kind.number;
@@ -4217,7 +4230,7 @@ class _Evaluator {
           return _variantIntrinsic(expression, arguments.single);
         }
         if (context.isWord &&
-            _wordUnitConversions.contains(expression.token.lower)) {
+            _wordUnitConversions.containsKey(expression.token.lower)) {
           return _wordUnitConversion(expression.token, arguments.single);
         }
         if (expression.token.lower == 'worksheets') {
@@ -4243,7 +4256,7 @@ class _Evaluator {
         }
         if (context.isWord) {
           if (receiver is _WordApplication) {
-            if (_wordUnitConversions.contains(expression.token.lower)) {
+            if (_wordUnitConversions.containsKey(expression.token.lower)) {
               return _wordUnitConversion(expression.token, arguments.single);
             }
             return const _WordDocument();
@@ -5764,13 +5777,16 @@ class _Evaluator {
 
   Object _wordUnitConversion(_Token token, Object value) {
     final number = _number(value, token);
-    final toPoints = token.lower == 'linestopoints';
-    final unitsPerInput = toPoints ? 240 : 20;
-    final unitsPerOutput = toPoints ? 20 : 240;
+    final (unitsPerInput, unitsPerOutput) = _wordUnitConversions[token.lower]!;
+    final toPoints = token.lower.endsWith('topoints');
+    final factor = toPoints
+        ? unitsPerInput / unitsPerOutput
+        : unitsPerOutput / unitsPerInput;
     final units = number * unitsPerInput;
-    // Use the exact native unit grid when the input round-trips on it. This
-    // keeps ordinary values such as 1.15 lines -> 13.8 points representable
+    // Use the integral conversion grid only when the input round-trips on it.
+    // This keeps 1.15 lines -> 13.8 points and 2.54 cm -> 72 points canonical
     // without snapping neighboring off-grid inputs or rounding all inputs.
+    // The destination property's independent precision checks still apply.
     final onGrid =
         units.isFinite &&
         units.abs() <= _maxExactInteger &&
@@ -5778,8 +5794,8 @@ class _Evaluator {
     final result = onGrid
         ? units.round() / unitsPerOutput
         : toPoints
-        ? number * 12
-        : number / 12;
+        ? number * factor
+        : number / factor;
     if (!result.isFinite || result.abs() > _maxExactInteger) {
       context.type(
         token,
