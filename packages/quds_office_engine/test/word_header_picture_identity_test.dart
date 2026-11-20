@@ -110,6 +110,21 @@ void main() {
       expect(pictures.single.visual, same(visual));
     });
 
+    test('$story distinct nodes may reuse one asset at the same placement', () {
+      final visual = _picture(_red);
+      final pictures = _pictures(
+        WmlDocument(
+          sections: [
+            _section(inline: visual, anchored: [visual], footer: footer),
+          ],
+        ),
+      );
+      expect(pictures, hasLength(2));
+      expect(pictures.map((frame) => frame.visual), [visual, visual]);
+      expect(pictures.first.x, pictures.last.x);
+      expect(pictures.first.y, pictures.last.y);
+    });
+
     test(
       '$story distinct inline and anchored pictures of one size survive',
       () {

@@ -1,0 +1,270 @@
+{
+  "archive_members": {
+    "accepted-identities/affected-macro-runtime.json": {
+      "bytes": 206467,
+      "sha256": "2a194dc1580fc4fc1940fb4fc9cbcbc431ca59cbe78c58bb639348e3ce539daa"
+    },
+    "accepted-identities/editor-layout-and-fonts.json": {
+      "bytes": 36514,
+      "sha256": "3ae12c094ea5b3a9bfef63388d6fc548c495434cad8a35215632ada6930a55a5"
+    },
+    "accepted-identities/retained-font.json": {
+      "bytes": 2490,
+      "sha256": "0fa814419c097d828132c722a8dcf3216bab3577f61d4cf3800eef417c8a0e82"
+    },
+    "accepted-identities/retained-word-node.json": {
+      "bytes": 224767,
+      "sha256": "22031c5dbb4f275e20e93b5f75a18ab58ee29e8913b883dd7f2ff80f17d9e645"
+    },
+    "accepted-identities/retained-word-vm.json": {
+      "bytes": 277470,
+      "sha256": "75496964162d16041d0c00c9a4fcdec6761081991b6c1f6863c99076dd1edb7d"
+    },
+    "accepted-identities/retained-zotero-editor.json": {
+      "bytes": 34291,
+      "sha256": "9b51762bd969796d4e1e18aecfcef02cac0b5813b05ef102b8ecb473318a7e57"
+    },
+    "accepted-identities/retained-zotero-engine.json": {
+      "bytes": 83872,
+      "sha256": "c12781160b22cde8e339ebcd6d37e2da34f9fd84f05de05624423b0ca6ba5ead"
+    },
+    "accepted-identities/word-native-layout.json": {
+      "bytes": 113787,
+      "sha256": "8f9b668c87117f02dc8d291fb6733c42a7aa562dd1f59c954e02da5c0b137ac4"
+    },
+    "accepted-identities/zotero-editor.json": {
+      "bytes": 75376,
+      "sha256": "d8dc7053cde9954b6275fc43f6520aa2db43cbc7b037e7e9ee25aaea799bb38a"
+    },
+    "accepted-identities/zotero-engine.json": {
+      "bytes": 139531,
+      "sha256": "fe5f3af53dc562659ad466aa084380068c8ae028be7926d995934ef4170a2b7d"
+    },
+    "fresh/editor-analysis.stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "fresh/editor-analysis.stdout.log": {
+      "bytes": 530,
+      "sha256": "c035c357523f45b8b3a456e8ffbbeda9a460c7f15f119b75d84bfaaa30330723"
+    },
+    "fresh/editor-layout-cases.json": {
+      "bytes": 29035,
+      "sha256": "54dd17c6c23b70a049f8dc28244e0515b44a6fa4ecedf38193c38a7ca026eb3b"
+    },
+    "fresh/editor-tests-cases.json": {
+      "bytes": 63256,
+      "sha256": "7de9a2d0b5f08227d5fb11b3a3813e708db32fbf3a1994d7ee96b64040a2ecac"
+    },
+    "fresh/editor-tests.stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "fresh/editor-tests.stdout.log": {
+      "bytes": 132508,
+      "sha256": "7cb2be92a452f8785dd7eff3a1438638b7367f11cf996167fb6e8cc612eb569d"
+    },
+    "fresh/engine-analysis.stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "fresh/engine-analysis.stdout.log": {
+      "bytes": 49,
+      "sha256": "c557a0c697cdb937104f1423d3c02d6a1062917cb0bcb2830d91db8cf6192af0"
+    },
+    "fresh/format.stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "fresh/format.stdout.log": {
+      "bytes": 47,
+      "sha256": "3ec8f351db495c07ae881d9d9d584931370c9c21083ad1e64dae0e687c329801"
+    },
+    "fresh/fresh-selection.json": {
+      "bytes": 4528,
+      "sha256": "c3a8e02aa68fe0134606c0ff73eb512d3d81471d42412fdffcb41fa042269af0"
+    },
+    "fresh/incoming-retention-audit.json": {
+      "bytes": 480068,
+      "sha256": "0a030bf56e5b51080c960575230161d8123a1fe178d186a565bcabb60a923dd1"
+    },
+    "fresh/macro-cases.json": {
+      "bytes": 166042,
+      "sha256": "2ea76a4da15cdb64d4dc9e5554b7e2cd0a48507b72e4ca8345237d0b49121b4a"
+    },
+    "fresh/macro-cleanup.json": {
+      "bytes": 147,
+      "sha256": "cfcf3072c711cc06af7cc38d7da4681c72de797fce704e6830cac3e8fac02d4f"
+    },
+    "fresh/macro-tests-cases.json": {
+      "bytes": 166042,
+      "sha256": "2ea76a4da15cdb64d4dc9e5554b7e2cd0a48507b72e4ca8345237d0b49121b4a"
+    },
+    "fresh/macro-tests.stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "fresh/macro-tests.stdout.log": {
+      "bytes": 322339,
+      "sha256": "2bac2756dc31703e46c6b14b9f0c400768e3a502a772ce9168f6acc6ec2f235c"
+    },
+    "fresh/native-cases.json": {
+      "bytes": 54453,
+      "sha256": "a56ea20f82e6f1348260332979e57469374c5a373b38c723f74f06c39c6d4a41"
+    },
+    "fresh/native-zotero-engine-tests-cases.json": {
+      "bytes": 101088,
+      "sha256": "8003d5f666fe144f700a8a29d2b60d998ec688385b38126e577394b1d40800a0"
+    },
+    "fresh/native-zotero-engine-tests.stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "fresh/native-zotero-engine-tests.stdout.log": {
+      "bytes": 204110,
+      "sha256": "f04efd9ea18914891647848071cef7de79a0324dd5988b65636d7c81126f1d79"
+    },
+    "fresh/progress.json": {
+      "bytes": 23911,
+      "sha256": "0828cc16130cf447da6fe06f80d02fbe18a0cfde9b2db5d139a69916634e9d41"
+    },
+    "fresh/qualification.json": {
+      "bytes": 24321,
+      "sha256": "dcbc9eb018887097f8f026ca2ce678f481c8d429983b9161276b1fbce83857cc"
+    },
+    "fresh/runtime-after.json": {
+      "bytes": 2639,
+      "sha256": "ef026ddec47dd24f2056bc1856f57aec839d4a627eeea98dc41ab7b54fcaba9f"
+    },
+    "fresh/runtime-before.json": {
+      "bytes": 2639,
+      "sha256": "ef026ddec47dd24f2056bc1856f57aec839d4a627eeea98dc41ab7b54fcaba9f"
+    },
+    "fresh/source-after.json": {
+      "bytes": 405788,
+      "sha256": "432cb47cd6faaef4968aa7c56721be80bcff0e150b5eac393c353b718abd5142"
+    },
+    "fresh/source-before.json": {
+      "bytes": 405788,
+      "sha256": "432cb47cd6faaef4968aa7c56721be80bcff0e150b5eac393c353b718abd5142"
+    },
+    "fresh/zotero-editor-cases.json": {
+      "bytes": 34224,
+      "sha256": "24370221d9a1fa9317e41a488295cfaa8212c2fa1d48cb3dd6e641cc97ffacd6"
+    },
+    "fresh/zotero-engine-cases.json": {
+      "bytes": 46638,
+      "sha256": "4e541d9578a2aa637daa0fb23b37bbb81de871b5ab77a8321d4da1887a493aaa"
+    },
+    "historical-80e240ec-attempt/README.md": {
+      "bytes": 2065,
+      "sha256": "00c6dfc709299a666ca60a20608ca979b32a426e60273f6d52a0a569db446473"
+    },
+    "historical-80e240ec-attempt/attempt-evidence.tar.gz": {
+      "bytes": 450968,
+      "sha256": "0eabbfef732b042ac104187b2c3db9c841382f823c4adcfc4bd5f9216485158e"
+    },
+    "historical-80e240ec-attempt/attempt-summary.json": {
+      "bytes": 5615,
+      "sha256": "cbcb190b98dd86171f333c983fad95de0d131d79840b07366bd0c992ea4d0dc3"
+    },
+    "historical-80e240ec-attempt/qualification.json": {
+      "bytes": 22095,
+      "sha256": "fa1fb1dedc1a95848557123c45e0e3bcd39c1bf6a3c21872aa9e0c7690285999"
+    },
+    "historical-80e240ec-attempt/receipt-manifest.json": {
+      "bytes": 6456,
+      "sha256": "a7de4af8ea86b508b6b61cd36505b69f6b274654c999b23ce92372c9f74682b3"
+    },
+    "historical-macro-identity/final-union-proof.json": {
+      "bytes": 440,
+      "sha256": "f1533811898ea34f4b853982ecbe7aeffb5dca9e1706b37694cbca60153c5c87"
+    },
+    "historical-macro-identity/prior-3598-overlap-proof.json": {
+      "bytes": 1007,
+      "sha256": "6360706fecce3ab45d7363692cfcbda8d55c433351dfd23b3cf5a6f9c42e912b"
+    },
+    "historical-macro-identity/prior-709-cases.json": {
+      "bytes": 158071,
+      "sha256": "11f4f407b95f1d1ef12e4c1632874f29361ef8898af206d7c0f2e3d52c1cdab6"
+    },
+    "independent-review/audit_delivery_word_receipt.py": {
+      "bytes": 10573,
+      "sha256": "b7ae389b5fcddc76e324d83262428e9a1936e098c9c0a645f4da5145a2932324"
+    },
+    "independent-review/delivery-word-final-recount.json": {
+      "bytes": 34614,
+      "sha256": "d1f3af275f34d2eba2645c297dfa102ae38b62f61d93c8071ad69f95fd67fcf7"
+    },
+    "independent-review/delivery-word-partial-recount.json": {
+      "bytes": 3851,
+      "sha256": "55513322c26980cc489ceb598deaf6067c8c78f1c340b0119519c736f5f4f0a9"
+    },
+    "tools-and-bindings/audit_incoming_0a2_word_evidence.py": {
+      "bytes": 15303,
+      "sha256": "01777abecb5f415f109a000a74c235b6c6fec825037800e81b330f6e9bff7a4c"
+    },
+    "tools-and-bindings/incoming-0a2-word-evidence-audit.json": {
+      "bytes": 480068,
+      "sha256": "0a030bf56e5b51080c960575230161d8123a1fe178d186a565bcabb60a923dd1"
+    },
+    "tools-and-bindings/package_final_word_zotero_evidence.py": {
+      "bytes": 25279,
+      "sha256": "2d9c94e6a4c00ba302f094ac5fc1ac9c705d71ae3c419702878f1c4966132a0e"
+    },
+    "tools-and-bindings/qualify_delivery_word_zotero.py": {
+      "bytes": 14146,
+      "sha256": "ae62ed459606d1f0f5a2572a06f35736eae7a9007a6e149b5561eec65a568124"
+    },
+    "tools-and-bindings/quds-delivery-native-assets.json": {
+      "bytes": 514,
+      "sha256": "82897318cb98e57dd9b9e80833c444f93787b43535c20de109500d7a18bf40d8"
+    },
+    "tools-and-bindings/quds-delivery-runtime-mapping.json": {
+      "bytes": 62348,
+      "sha256": "1fd99b1a75cd3ec7fd8e7f6595b714f3bff5a9baaa60949f31dd9fe6e0ee217a"
+    },
+    "tools-and-bindings/reference-fixture-git-binding.json": {
+      "bytes": 32117,
+      "sha256": "6fa3c834b6654878de76c3310d12c46435e181ffccd25c1c50650133853b9bcd"
+    }
+  },
+  "deterministic_archive": {
+    "bytes": 1008035,
+    "gid": 0,
+    "gzip_mtime": 0,
+    "members": 57,
+    "ordering": "lexical",
+    "path": "local-qualification.tar.gz",
+    "repeated_serialization_equal": true,
+    "sha256": "5f17f54e93db5d36970c31f06668113add960320f22b5fcbccab344879a9ea1e",
+    "tar_mtime": 0,
+    "uid": 0,
+    "uncompressed_member_bytes": 5190285
+  },
+  "schema_version": 1,
+  "self_exclusion": "This manifest does not hash itself.",
+  "source_commit": "c62338c65571aa399da5592455b651fa5c6a9317",
+  "top_level_files": {
+    "README.md": {
+      "bytes": 10680,
+      "sha256": "bfe52469151928a69e42118a042a00b0a2b751ede5381e7ab65e699f40a9a98c"
+    },
+    "accepted-summary.json": {
+      "bytes": 16146,
+      "sha256": "13127d80fd298abb500451c8665e3210d80d8ad8ed674ceac0b6a1e6c0ea64d8"
+    },
+    "incoming-retention-audit.json": {
+      "bytes": 480068,
+      "sha256": "0a030bf56e5b51080c960575230161d8123a1fe178d186a565bcabb60a923dd1"
+    },
+    "local-qualification.tar.gz": {
+      "bytes": 1008035,
+      "sha256": "5f17f54e93db5d36970c31f06668113add960320f22b5fcbccab344879a9ea1e"
+    },
+    "qualification.json": {
+      "bytes": 24321,
+      "sha256": "dcbc9eb018887097f8f026ca2ce678f481c8d429983b9161276b1fbce83857cc"
+    }
+  }
+}

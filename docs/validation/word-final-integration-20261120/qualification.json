@@ -1,0 +1,471 @@
+{
+  "commands": [
+    {
+      "command": [
+        "/workspace/scratch/03cd41fa0e7e/runtime/flutter-toolchain/bin/flutter",
+        "test",
+        "--no-pub",
+        "--concurrency=1",
+        "--machine",
+        "test/word_header_footer_navigation_test.dart",
+        "test/word_incremental_layout_equivalence_test.dart",
+        "test/word_inline_picture_history_test.dart",
+        "test/word_page_layout_test.dart",
+        "test/word_zotero_bibliography_controller_test.dart",
+        "test/word_zotero_citing_controller_test.dart",
+        "test/word_zotero_citing_dialog_test.dart",
+        "test/word_zotero_direct_command_test.dart",
+        "test/word_zotero_note_image_controller_test.dart",
+        "test/word_zotero_note_target_test.dart",
+        "test/word_zotero_rich_controller_test.dart"
+      ],
+      "cwd": "/workspace/scratch/03cd41fa0e7e/quds_delivery/packages/quds_office_editor",
+      "exit_code": 0,
+      "finished_utc": "2026-11-20T22:26:49.268490+00:00",
+      "name": "editor-tests",
+      "seconds": 224.798,
+      "started_utc": "2026-11-20T22:23:04.470107+00:00",
+      "stderr": "editor-tests.stderr.log",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "editor-tests.stdout.log",
+      "stdout_sha256": "7cb2be92a452f8785dd7eff3a1438638b7367f11cf996167fb6e8cc612eb569d"
+    },
+    {
+      "command": [
+        "/workspace/scratch/03cd41fa0e7e/runtime/toolchain/dart-sdk/bin/dart",
+        "--old_gen_heap_size=768",
+        "--packages=/workspace/scratch/03cd41fa0e7e/quds_delivery/.dart_tool/package_config.json",
+        "/workspace/scratch/03cd41fa0e7e/runtime/toolchain/test-runner/test-runner.dill",
+        "--compiler",
+        "source",
+        "--concurrency=1",
+        "--timeout=4x",
+        "--reporter=json",
+        "test/word_compatibility_fidelity_test.dart",
+        "test/word_contained_text_wrap_test.dart",
+        "test/word_fidelity_test.dart",
+        "test/word_frame_wrap_test.dart",
+        "test/word_header_picture_identity_test.dart",
+        "test/word_inline_picture_test.dart",
+        "test/word_line_box_fidelity_test.dart",
+        "test/word_media_dedupe_test.dart",
+        "test/word_native_presentation_test.dart",
+        "test/word_package_preservation_test.dart",
+        "test/word_picture_distance_fidelity_test.dart",
+        "test/word_section_clone_fidelity_test.dart",
+        "test/word_styles_layout_test.dart",
+        "test/word_table_direction_test.dart",
+        "test/word_table_grid_addressing_test.dart",
+        "test/word_table_test.dart",
+        "test/word_zotero_bibliography_layout_test.dart",
+        "test/word_zotero_note_images_integration_test.dart",
+        "test/word_zotero_note_insertion_test.dart",
+        "test/word_zotero_note_list_test.dart",
+        "test/word_zotero_preference_flow_test.dart",
+        "test/word_zotero_research_target_test.dart",
+        "test/word_zotero_rich_edit_test.dart",
+        "test/word_zotero_style_preferences_review_test.dart"
+      ],
+      "cwd": "/workspace/scratch/03cd41fa0e7e/quds_delivery/packages/quds_office_engine",
+      "exit_code": 0,
+      "finished_utc": "2026-11-20T22:26:53.518368+00:00",
+      "name": "native-zotero-engine-tests",
+      "seconds": 229.049,
+      "started_utc": "2026-11-20T22:23:04.469412+00:00",
+      "stderr": "native-zotero-engine-tests.stderr.log",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "native-zotero-engine-tests.stdout.log",
+      "stdout_sha256": "f04efd9ea18914891647848071cef7de79a0324dd5988b65636d7c81126f1d79"
+    },
+    {
+      "command": [
+        "/workspace/scratch/03cd41fa0e7e/runtime/toolchain/dart-sdk/bin/dart",
+        "--old_gen_heap_size=768",
+        "--packages=/workspace/scratch/03cd41fa0e7e/quds_delivery/.dart_tool/package_config.json",
+        "/workspace/scratch/03cd41fa0e7e/runtime/toolchain/test-runner/test-runner.dill",
+        "--compiler",
+        "source",
+        "--concurrency=1",
+        "--timeout=4x",
+        "--reporter=json",
+        "test/office_macro_cli_test.dart",
+        "test/office_macro_mcp_test.dart",
+        "test/office_macro_runtime_test.dart",
+        "test/office_macro_word_line_spacing_test.dart",
+        "test/office_macro_word_list_format_test.dart",
+        "test/office_macro_word_list_levels_test.dart",
+        "test/office_macro_word_paragraph_controls_test.dart",
+        "test/office_macro_word_revision_guard_test.dart",
+        "test/office_macro_word_tab_stops_test.dart",
+        "test/office_vba_arguments_integration_test.dart",
+        "test/office_vba_word_cli_test.dart",
+        "test/office_vba_word_format_integration_test.dart",
+        "test/office_vba_word_integration_test.dart",
+        "test/office_vba_word_list_levels_integration_test.dart",
+        "test/office_vba_word_lists_integration_test.dart",
+        "test/office_vba_word_paragraph_controls_integration_test.dart",
+        "test/office_vba_word_paragraph_layout_integration_test.dart",
+        "test/office_vba_word_tabstops_integration_test.dart",
+        "test/office_vba_word_typography_integration_test.dart"
+      ],
+      "cwd": "/workspace/scratch/03cd41fa0e7e/quds_delivery/packages/quds_office_engine",
+      "exit_code": 0,
+      "finished_utc": "2026-11-20T22:29:48.469371+00:00",
+      "name": "macro-tests",
+      "seconds": 404.0,
+      "started_utc": "2026-11-20T22:23:04.469198+00:00",
+      "stderr": "macro-tests.stderr.log",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "macro-tests.stdout.log",
+      "stdout_sha256": "2bac2756dc31703e46c6b14b9f0c400768e3a502a772ce9168f6acc6ec2f235c"
+    },
+    {
+      "command": [
+        "/workspace/scratch/03cd41fa0e7e/runtime/toolchain/dart-sdk/bin/dart",
+        "analyze",
+        "--fatal-infos"
+      ],
+      "cwd": "/workspace/scratch/03cd41fa0e7e/quds_delivery/packages/quds_office_engine",
+      "exit_code": 0,
+      "finished_utc": "2026-11-20T22:30:00.916599+00:00",
+      "name": "engine-analysis",
+      "seconds": 12.421,
+      "started_utc": "2026-11-20T22:29:48.495708+00:00",
+      "stderr": "engine-analysis.stderr.log",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "engine-analysis.stdout.log",
+      "stdout_sha256": "c557a0c697cdb937104f1423d3c02d6a1062917cb0bcb2830d91db8cf6192af0"
+    },
+    {
+      "command": [
+        "/workspace/scratch/03cd41fa0e7e/runtime/flutter-toolchain/flutter/bin/cache/dart-sdk/bin/dart",
+        "analyze",
+        "--fatal-infos",
+        "test/office_system_fonts_test.dart",
+        "test/word_header_footer_navigation_test.dart",
+        "test/word_incremental_layout_equivalence_test.dart",
+        "test/word_inline_picture_history_test.dart",
+        "test/word_page_layout_test.dart",
+        "test/word_zotero_bibliography_controller_test.dart",
+        "test/word_zotero_citing_controller_test.dart",
+        "test/word_zotero_citing_dialog_test.dart",
+        "test/word_zotero_direct_command_test.dart",
+        "test/word_zotero_note_image_controller_test.dart",
+        "test/word_zotero_note_target_test.dart",
+        "test/word_zotero_rich_controller_test.dart",
+        "tool/zotero/research_target_acceptance.dart"
+      ],
+      "cwd": "/workspace/scratch/03cd41fa0e7e/quds_delivery/packages/quds_office_editor",
+      "exit_code": 0,
+      "finished_utc": "2026-11-20T22:30:03.053781+00:00",
+      "name": "editor-analysis",
+      "seconds": 14.558,
+      "started_utc": "2026-11-20T22:29:48.495778+00:00",
+      "stderr": "editor-analysis.stderr.log",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "editor-analysis.stdout.log",
+      "stdout_sha256": "c035c357523f45b8b3a456e8ffbbeda9a460c7f15f119b75d84bfaaa30330723"
+    },
+    {
+      "command": [
+        "/workspace/scratch/03cd41fa0e7e/runtime/flutter-toolchain/flutter/bin/cache/dart-sdk/bin/dart",
+        "format",
+        "--output=none",
+        "--set-exit-if-changed",
+        "packages/quds_office_editor/test/office_system_fonts_test.dart",
+        "packages/quds_office_engine/lib/src/word/layout/word_layout.dart",
+        "packages/quds_office_engine/lib/src/word/serial/word_deserializer.dart",
+        "packages/quds_office_engine/test/word_header_picture_identity_test.dart",
+        "packages/quds_office_engine/test/word_header_picture_layout_regression_test.dart",
+        "packages/quds_office_engine/test/word_table_style_precedence_test.dart",
+        "packages/quds_office_engine/test/zotero_citing_test.dart"
+      ],
+      "cwd": "/workspace/scratch/03cd41fa0e7e/quds_delivery",
+      "exit_code": 0,
+      "finished_utc": "2026-11-20T22:30:03.197823+00:00",
+      "name": "format",
+      "seconds": 0.143,
+      "started_utc": "2026-11-20T22:30:03.054925+00:00",
+      "stderr": "format.stderr.log",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "format.stdout.log",
+      "stdout_sha256": "3ec8f351db495c07ae881d9d9d584931370c9c21083ad1e64dae0e687c329801"
+    }
+  ],
+  "dart_version": "Dart SDK version: 3.14.1 (stable) (Tue Nov 17 00:01:24 2026 -0800) on \"linux_x64\"",
+  "editor_dart_version": "Dart SDK version: 3.13.7 (stable) (Thu Oct 22 14:28:57 2026 -0700) on \"linux_x64\"",
+  "expected_editor_exclusions": [
+    {
+      "file": "packages/quds_office_editor/test/word_incremental_layout_equivalence_test.dart",
+      "name": "incremental layout equals full layout fixture legacy_doc_parser/test/fixtures/fidelity/image-appearance/authored/floating-both.docx",
+      "reason": "no paragraphs to edit"
+    },
+    {
+      "file": "packages/quds_office_editor/test/word_incremental_layout_equivalence_test.dart",
+      "name": "incremental layout equals full layout fixture legacy_doc_parser/test/fixtures/fidelity/image-appearance/authored/floating-control.docx",
+      "reason": "no paragraphs to edit"
+    },
+    {
+      "file": "packages/quds_office_editor/test/word_incremental_layout_equivalence_test.dart",
+      "name": "incremental layout equals full layout fixture legacy_doc_parser/test/fixtures/fidelity/image-appearance/authored/floating-horizontal.docx",
+      "reason": "no paragraphs to edit"
+    },
+    {
+      "file": "packages/quds_office_editor/test/word_incremental_layout_equivalence_test.dart",
+      "name": "incremental layout equals full layout fixture legacy_doc_parser/test/fixtures/fidelity/image-appearance/authored/floating-margin-quarter.docx",
+      "reason": "no paragraphs to edit"
+    },
+    {
+      "file": "packages/quds_office_editor/test/word_incremental_layout_equivalence_test.dart",
+      "name": "incremental layout equals full layout fixture legacy_doc_parser/test/fixtures/fidelity/image-appearance/authored/floating-negative-quarter.docx",
+      "reason": "no paragraphs to edit"
+    },
+    {
+      "file": "packages/quds_office_editor/test/word_incremental_layout_equivalence_test.dart",
+      "name": "incremental layout equals full layout fixture legacy_doc_parser/test/fixtures/fidelity/image-appearance/authored/floating-outline-shadow.docx",
+      "reason": "no paragraphs to edit"
+    },
+    {
+      "file": "packages/quds_office_editor/test/word_incremental_layout_equivalence_test.dart",
+      "name": "incremental layout equals full layout fixture legacy_doc_parser/test/fixtures/fidelity/image-appearance/authored/floating-quarter.docx",
+      "reason": "no paragraphs to edit"
+    },
+    {
+      "file": "packages/quds_office_editor/test/word_incremental_layout_equivalence_test.dart",
+      "name": "incremental layout equals full layout fixture legacy_doc_parser/test/fixtures/fidelity/image-appearance/authored/floating-vertical.docx",
+      "reason": "no paragraphs to edit"
+    }
+  ],
+  "finished_utc": "2026-11-20T22:30:03.669694+00:00",
+  "fresh_categories": {
+    "editor-layout": {
+      "failed": 0,
+      "files": 4,
+      "passed": 96,
+      "skipped": 8
+    },
+    "macro": {
+      "failed": 0,
+      "files": 19,
+      "passed": 663,
+      "skipped": 0
+    },
+    "native": {
+      "failed": 0,
+      "files": 16,
+      "passed": 223,
+      "skipped": 0
+    },
+    "zotero-editor": {
+      "failed": 0,
+      "files": 7,
+      "passed": 143,
+      "skipped": 0
+    },
+    "zotero-engine": {
+      "failed": 0,
+      "files": 8,
+      "passed": 188,
+      "skipped": 0
+    }
+  },
+  "head_unchanged": true,
+  "incoming_audit_sha256": "0a030bf56e5b51080c960575230161d8123a1fe178d186a565bcabb60a923dd1",
+  "retained_scope": {
+    "fonts": {
+      "files": 1,
+      "passed": 9
+    },
+    "word_node": {
+      "files": 7,
+      "passed": 758
+    },
+    "word_vm": {
+      "excluded_superseded_style_cases": 15,
+      "files": 25,
+      "passed": 946
+    },
+    "zotero_editor": {
+      "files": 2,
+      "passed": 114
+    },
+    "zotero_engine": {
+      "files": 6,
+      "passed": 282
+    }
+  },
+  "retention_note": "Retained results are the independently audited incoming executions with explicit source/dependency bounds. They are not fresh executions on this local runtime. No cross-scope grand total is asserted.",
+  "runtime_unchanged": true,
+  "selection": {
+    "editor-layout": {
+      "packages/quds_office_editor/test/word_header_footer_navigation_test.dart": 19,
+      "packages/quds_office_editor/test/word_incremental_layout_equivalence_test.dart": 66,
+      "packages/quds_office_editor/test/word_inline_picture_history_test.dart": 1,
+      "packages/quds_office_editor/test/word_page_layout_test.dart": 10
+    },
+    "macro": {
+      "packages/quds_office_engine/test/office_macro_cli_test.dart": 5,
+      "packages/quds_office_engine/test/office_macro_mcp_test.dart": 15,
+      "packages/quds_office_engine/test/office_macro_runtime_test.dart": 25,
+      "packages/quds_office_engine/test/office_macro_word_line_spacing_test.dart": 96,
+      "packages/quds_office_engine/test/office_macro_word_list_format_test.dart": 67,
+      "packages/quds_office_engine/test/office_macro_word_list_levels_test.dart": 101,
+      "packages/quds_office_engine/test/office_macro_word_paragraph_controls_test.dart": 118,
+      "packages/quds_office_engine/test/office_macro_word_revision_guard_test.dart": 2,
+      "packages/quds_office_engine/test/office_macro_word_tab_stops_test.dart": 40,
+      "packages/quds_office_engine/test/office_vba_arguments_integration_test.dart": 16,
+      "packages/quds_office_engine/test/office_vba_word_cli_test.dart": 5,
+      "packages/quds_office_engine/test/office_vba_word_format_integration_test.dart": 2,
+      "packages/quds_office_engine/test/office_vba_word_integration_test.dart": 14,
+      "packages/quds_office_engine/test/office_vba_word_list_levels_integration_test.dart": 44,
+      "packages/quds_office_engine/test/office_vba_word_lists_integration_test.dart": 22,
+      "packages/quds_office_engine/test/office_vba_word_paragraph_controls_integration_test.dart": 34,
+      "packages/quds_office_engine/test/office_vba_word_paragraph_layout_integration_test.dart": 17,
+      "packages/quds_office_engine/test/office_vba_word_tabstops_integration_test.dart": 10,
+      "packages/quds_office_engine/test/office_vba_word_typography_integration_test.dart": 30
+    },
+    "native": {
+      "packages/quds_office_engine/test/word_compatibility_fidelity_test.dart": 5,
+      "packages/quds_office_engine/test/word_contained_text_wrap_test.dart": 41,
+      "packages/quds_office_engine/test/word_fidelity_test.dart": 19,
+      "packages/quds_office_engine/test/word_frame_wrap_test.dart": 11,
+      "packages/quds_office_engine/test/word_header_picture_identity_test.dart": 13,
+      "packages/quds_office_engine/test/word_inline_picture_test.dart": 6,
+      "packages/quds_office_engine/test/word_line_box_fidelity_test.dart": 7,
+      "packages/quds_office_engine/test/word_media_dedupe_test.dart": 1,
+      "packages/quds_office_engine/test/word_native_presentation_test.dart": 26,
+      "packages/quds_office_engine/test/word_package_preservation_test.dart": 32,
+      "packages/quds_office_engine/test/word_picture_distance_fidelity_test.dart": 9,
+      "packages/quds_office_engine/test/word_section_clone_fidelity_test.dart": 2,
+      "packages/quds_office_engine/test/word_styles_layout_test.dart": 17,
+      "packages/quds_office_engine/test/word_table_direction_test.dart": 1,
+      "packages/quds_office_engine/test/word_table_grid_addressing_test.dart": 22,
+      "packages/quds_office_engine/test/word_table_test.dart": 11
+    },
+    "zotero-editor": {
+      "packages/quds_office_editor/test/word_zotero_bibliography_controller_test.dart": 13,
+      "packages/quds_office_editor/test/word_zotero_citing_controller_test.dart": 21,
+      "packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart": 24,
+      "packages/quds_office_editor/test/word_zotero_direct_command_test.dart": 23,
+      "packages/quds_office_editor/test/word_zotero_note_image_controller_test.dart": 21,
+      "packages/quds_office_editor/test/word_zotero_note_target_test.dart": 33,
+      "packages/quds_office_editor/test/word_zotero_rich_controller_test.dart": 8
+    },
+    "zotero-engine": {
+      "packages/quds_office_engine/test/word_zotero_bibliography_layout_test.dart": 14,
+      "packages/quds_office_engine/test/word_zotero_note_images_integration_test.dart": 10,
+      "packages/quds_office_engine/test/word_zotero_note_insertion_test.dart": 41,
+      "packages/quds_office_engine/test/word_zotero_note_list_test.dart": 38,
+      "packages/quds_office_engine/test/word_zotero_preference_flow_test.dart": 11,
+      "packages/quds_office_engine/test/word_zotero_research_target_test.dart": 35,
+      "packages/quds_office_engine/test/word_zotero_rich_edit_test.dart": 30,
+      "packages/quds_office_engine/test/word_zotero_style_preferences_review_test.dart": 9
+    }
+  },
+  "source_files_hashed": 2831,
+  "source_head": "c62338c65571aa399da5592455b651fa5c6a9317",
+  "source_tree": "d8e43e6f43b0726e8fefded52c185e387291916d",
+  "source_unchanged": true,
+  "started_utc": "2026-11-20T22:23:04.459357+00:00",
+  "success": true,
+  "success_scope": "Audited residual cohorts with exactly eight predeclared no-editable-paragraph editor exclusions. Exclusions are not counted as passes. Retained incoming results remain separately source/runtime attributed.",
+  "test_groups": {
+    "editor-tests": {
+      "all_selected_files_executed": true,
+      "case_identities_unique": true,
+      "every_started_test_completed_once": true,
+      "exact_expected_exclusions": true,
+      "exact_expected_per_file_populations": true,
+      "failed": 0,
+      "passed": 239,
+      "per_file_passed": {
+        "packages/quds_office_editor/test/word_header_footer_navigation_test.dart": 19,
+        "packages/quds_office_editor/test/word_incremental_layout_equivalence_test.dart": 66,
+        "packages/quds_office_editor/test/word_inline_picture_history_test.dart": 1,
+        "packages/quds_office_editor/test/word_page_layout_test.dart": 10,
+        "packages/quds_office_editor/test/word_zotero_bibliography_controller_test.dart": 13,
+        "packages/quds_office_editor/test/word_zotero_citing_controller_test.dart": 21,
+        "packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart": 24,
+        "packages/quds_office_editor/test/word_zotero_direct_command_test.dart": 23,
+        "packages/quds_office_editor/test/word_zotero_note_image_controller_test.dart": 21,
+        "packages/quds_office_editor/test/word_zotero_note_target_test.dart": 33,
+        "packages/quds_office_editor/test/word_zotero_rich_controller_test.dart": 8
+      },
+      "reporter_errors": 0,
+      "skipped": 8,
+      "terminal_success": true
+    },
+    "macro-tests": {
+      "all_selected_files_executed": true,
+      "case_identities_unique": true,
+      "every_started_test_completed_once": true,
+      "exact_expected_exclusions": true,
+      "exact_expected_per_file_populations": true,
+      "failed": 0,
+      "passed": 663,
+      "per_file_passed": {
+        "packages/quds_office_engine/test/office_macro_cli_test.dart": 5,
+        "packages/quds_office_engine/test/office_macro_mcp_test.dart": 15,
+        "packages/quds_office_engine/test/office_macro_runtime_test.dart": 25,
+        "packages/quds_office_engine/test/office_macro_word_line_spacing_test.dart": 96,
+        "packages/quds_office_engine/test/office_macro_word_list_format_test.dart": 67,
+        "packages/quds_office_engine/test/office_macro_word_list_levels_test.dart": 101,
+        "packages/quds_office_engine/test/office_macro_word_paragraph_controls_test.dart": 118,
+        "packages/quds_office_engine/test/office_macro_word_revision_guard_test.dart": 2,
+        "packages/quds_office_engine/test/office_macro_word_tab_stops_test.dart": 40,
+        "packages/quds_office_engine/test/office_vba_arguments_integration_test.dart": 16,
+        "packages/quds_office_engine/test/office_vba_word_cli_test.dart": 5,
+        "packages/quds_office_engine/test/office_vba_word_format_integration_test.dart": 2,
+        "packages/quds_office_engine/test/office_vba_word_integration_test.dart": 14,
+        "packages/quds_office_engine/test/office_vba_word_list_levels_integration_test.dart": 44,
+        "packages/quds_office_engine/test/office_vba_word_lists_integration_test.dart": 22,
+        "packages/quds_office_engine/test/office_vba_word_paragraph_controls_integration_test.dart": 34,
+        "packages/quds_office_engine/test/office_vba_word_paragraph_layout_integration_test.dart": 17,
+        "packages/quds_office_engine/test/office_vba_word_tabstops_integration_test.dart": 10,
+        "packages/quds_office_engine/test/office_vba_word_typography_integration_test.dart": 30
+      },
+      "reporter_errors": 0,
+      "skipped": 0,
+      "terminal_success": true
+    },
+    "native-zotero-engine-tests": {
+      "all_selected_files_executed": true,
+      "case_identities_unique": true,
+      "every_started_test_completed_once": true,
+      "exact_expected_exclusions": true,
+      "exact_expected_per_file_populations": true,
+      "failed": 0,
+      "passed": 411,
+      "per_file_passed": {
+        "packages/quds_office_engine/test/word_compatibility_fidelity_test.dart": 5,
+        "packages/quds_office_engine/test/word_contained_text_wrap_test.dart": 41,
+        "packages/quds_office_engine/test/word_fidelity_test.dart": 19,
+        "packages/quds_office_engine/test/word_frame_wrap_test.dart": 11,
+        "packages/quds_office_engine/test/word_header_picture_identity_test.dart": 13,
+        "packages/quds_office_engine/test/word_inline_picture_test.dart": 6,
+        "packages/quds_office_engine/test/word_line_box_fidelity_test.dart": 7,
+        "packages/quds_office_engine/test/word_media_dedupe_test.dart": 1,
+        "packages/quds_office_engine/test/word_native_presentation_test.dart": 26,
+        "packages/quds_office_engine/test/word_package_preservation_test.dart": 32,
+        "packages/quds_office_engine/test/word_picture_distance_fidelity_test.dart": 9,
+        "packages/quds_office_engine/test/word_section_clone_fidelity_test.dart": 2,
+        "packages/quds_office_engine/test/word_styles_layout_test.dart": 17,
+        "packages/quds_office_engine/test/word_table_direction_test.dart": 1,
+        "packages/quds_office_engine/test/word_table_grid_addressing_test.dart": 22,
+        "packages/quds_office_engine/test/word_table_test.dart": 11,
+        "packages/quds_office_engine/test/word_zotero_bibliography_layout_test.dart": 14,
+        "packages/quds_office_engine/test/word_zotero_note_images_integration_test.dart": 10,
+        "packages/quds_office_engine/test/word_zotero_note_insertion_test.dart": 41,
+        "packages/quds_office_engine/test/word_zotero_note_list_test.dart": 38,
+        "packages/quds_office_engine/test/word_zotero_preference_flow_test.dart": 11,
+        "packages/quds_office_engine/test/word_zotero_research_target_test.dart": 35,
+        "packages/quds_office_engine/test/word_zotero_rich_edit_test.dart": 30,
+        "packages/quds_office_engine/test/word_zotero_style_preferences_review_test.dart": 9
+      },
+      "reporter_errors": 0,
+      "skipped": 0,
+      "terminal_success": true
+    }
+  },
+  "worktree_clean": true
+}
