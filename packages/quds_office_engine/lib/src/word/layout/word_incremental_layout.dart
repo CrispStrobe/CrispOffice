@@ -79,20 +79,33 @@ class _Checkpoint {
 
   bool get hasContent => lines > 0 || frames > 0;
 
-  _Checkpoint shifted(int delta) => delta == 0
-      ? this
-      : _Checkpoint(
-          pagesLength: pagesLength,
-          pageIndex: pageIndex,
-          columnIndex: columnIndex,
-          y: y,
-          columnTop: columnTop,
-          lines: lines,
-          frames: frames,
-          adjacentAfter: adjacentAfter,
-          paragraphIndex: paragraphIndex + delta,
-          wrapFrames: wrapFrames,
-        );
+  /// The same checkpoint after a splice: paragraph indices move by [delta];
+  /// on the spliced page ([page]) the new prefix can hold a different number
+  /// of lines and frames than the old one (an empty paragraph has height but
+  /// no line, and may gain one at the same height).
+  _Checkpoint shifted(
+    int delta, {
+    required int page,
+    required int lineDelta,
+    required int frameDelta,
+  }) {
+    final bool onPage = pagesLength == page;
+    if (delta == 0 && (!onPage || lineDelta == 0 && frameDelta == 0)) {
+      return this;
+    }
+    return _Checkpoint(
+      pagesLength: pagesLength,
+      pageIndex: pageIndex,
+      columnIndex: columnIndex,
+      y: y,
+      columnTop: columnTop,
+      lines: onPage ? lines + lineDelta : lines,
+      frames: onPage ? frames + frameDelta : frames,
+      adjacentAfter: adjacentAfter,
+      paragraphIndex: paragraphIndex + delta,
+      wrapFrames: wrapFrames,
+    );
+  }
 }
 
 class _SectionRecord {
@@ -348,8 +361,14 @@ class WordIncrementalLayoutStats {
   }
 }
 
+String _link(WmlHyperlink? link) =>
+    link == null ? '-' : '${link.anchor}|${link.url}|${link.file}';
+
 /// A canonical text form of a layout, for comparing two layouts of the same
 /// document (line boxes, glyph positions, page assignment, boxes, chrome).
+/// Model objects are named by identity where layout refers to the document's
+/// own objects (source paragraphs, tables, frames) and by value where layout
+/// may create them afresh (links, note-story content, visuals).
 String wordLayoutFingerprint(LaidOutDocument document) {
   final StringBuffer out = StringBuffer()
     ..writeln('pageSize ${document.pageSize.width} ${document.pageSize.height}')
@@ -368,7 +387,7 @@ String wordLayoutFingerprint(LaidOutDocument document) {
       ..write(' toc=${l.tocTargetParagraph}/${l.tocLeader}')
       ..write(' src=${l.sourceText}')
       ..write(' srcPara=${identityHashCode(l.sourceParagraph)}')
-      ..write(' link=${identityHashCode(l.hyperlink)}')
+      ..write(' link=${_link(l.hyperlink)}')
       ..writeln(' proof=${l.proofingOffsets}');
     for (final LaidOutGlyph g in l.glyphs) {
       out
@@ -381,7 +400,7 @@ String wordLayoutFingerprint(LaidOutDocument document) {
         ..write(' hl=${g.highlight} f=${g.fontFamily}')
         ..write(' va=${g.vertAlign.name} disp=${g.displayText}')
         ..write('/${g.displayOffset}/${g.sourceEnd}/${g.actualText}')
-        ..write(' link=${identityHashCode(g.hyperlink)}')
+        ..write(' link=${_link(g.hyperlink)}')
         ..writeln(' cm=${g.commentIds}');
     }
   }
@@ -414,10 +433,17 @@ String wordLayoutFingerprint(LaidOutDocument document) {
         ..write(' edges=${b.strokeTop}${b.strokeRight}')
         ..write('${b.strokeBottom}${b.strokeLeft}')
         ..write(' cell=${b.tableRow}/${b.tableCol}/${b.tableGridCol}')
-        ..write(' table=${identityHashCode(b.table)}')
-        ..write(' visual=${identityHashCode(b.visual)}')
-        ..write(' eq=${identityHashCode(b.equation)}')
-        ..write(' frame=${identityHashCode(b.frame)}')
+        ..write(
+          ' table=${b.isNoteContent ? b.table != null : identityHashCode(b.table)}',
+        )
+        ..write(' visual=${b.visual?.kind.name}/${b.visual?.title}')
+        ..write('/${b.visual?.width}/${b.visual?.height}')
+        ..write(
+          ' eq=${b.isNoteContent ? b.equation != null : identityHashCode(b.equation)}',
+        )
+        ..write(
+          ' frame=${b.isNoteContent ? b.frame != null : identityHashCode(b.frame)}',
+        )
         ..writeln(' note=${b.isNoteContent}');
     }
   }

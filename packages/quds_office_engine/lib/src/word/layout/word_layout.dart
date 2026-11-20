@@ -1391,10 +1391,16 @@ class WordLayoutEngine {
     final int s = splice.sectionIndex;
     final _SectionRecord oldRecord = old.sections[s]!;
     final _SectionRecord record = recorder.sections[s]!;
+    _Checkpoint carry(_Checkpoint c) => c.shifted(
+      delta,
+      page: at,
+      lineDelta: splice.lines.length - cp.lines,
+      frameDelta: splice.frames.length - cp.frames,
+    );
     for (int j = splice.oldBlock; j < oldRecord.blocks.length; j++) {
       record.blocks.add(oldRecord.blocks[j]);
       record.texts.add(oldRecord.texts[j]);
-      record.checkpoints.add(oldRecord.checkpoints[j].shifted(delta));
+      record.checkpoints.add(carry(oldRecord.checkpoints[j]));
     }
     for (int t = s + 1; t < old.sections.length; t++) {
       final _SectionRecord? later = old.sections[t];
@@ -1406,7 +1412,7 @@ class WordLayoutEngine {
         ..blocks.addAll(later.blocks)
         ..texts.addAll(later.texts);
       for (final _Checkpoint c in later.checkpoints) {
-        copy.checkpoints.add(c.shifted(delta));
+        copy.checkpoints.add(carry(c));
       }
       recorder.sections[t] = copy;
     }

@@ -3503,7 +3503,9 @@ class WordEditorController extends OfficeController {
       }
     }
     commands.endBatch();
-    relayout();
+    // Like typing and Enter: the split paragraphs are new blocks and the
+    // first one's text changed, so the incremental path sees all of them.
+    relayout(localEdit: true);
     _markLocalEdit();
     _syncImeSelection();
     notifyListeners();
