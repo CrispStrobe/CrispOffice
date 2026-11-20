@@ -184,7 +184,7 @@ const officeCoreFontPack = OfficeFontPack(
       bytes: 321468,
       sha256:
           'f1910813ffca03ac542ea7675bc3b7c6107b1d36d07f0f497b99a04af6b8236d',
-      aliases: <String>[],
+      aliases: <String>['Microsoft Sans Serif'],
     ),
     OfficeFontPackFile(
       fileName: 'Arimo-Bold.ttf',
@@ -194,7 +194,7 @@ const officeCoreFontPack = OfficeFontPack(
       bytes: 322032,
       sha256:
           '9d7b4d101bf6d39f20845ccf42bd4bc7e95aca4af3dd4741f4305392c42bf82d',
-      aliases: <String>[],
+      aliases: <String>['Microsoft Sans Serif'],
     ),
     OfficeFontPackFile(
       fileName: 'Arimo-Italic.ttf',
@@ -204,7 +204,7 @@ const officeCoreFontPack = OfficeFontPack(
       bytes: 345504,
       sha256:
           '1a6cccc3da650ae5c7ef66433092fd458c3e62813b527126fdef18ee949eb8e8',
-      aliases: <String>[],
+      aliases: <String>['Microsoft Sans Serif'],
     ),
     OfficeFontPackFile(
       fileName: 'Arimo-BoldItalic.ttf',
@@ -214,7 +214,7 @@ const officeCoreFontPack = OfficeFontPack(
       bytes: 346884,
       sha256:
           '4dc179538270f822e4020060644ec0ea01cbfef7e0411f3e4193cbb8b7015490',
-      aliases: <String>[],
+      aliases: <String>['Microsoft Sans Serif'],
     ),
   ],
 );
@@ -360,7 +360,7 @@ const officeVisualFontPack = OfficeFontPack(
       bytes: 341420,
       sha256:
           '65d66fe2fdd1f9ed8d053eda37c62792dd5f05a34268019b387535b3cf22dec0',
-      aliases: <String>[],
+      aliases: <String>['Aptos'],
     ),
     OfficeFontPackFile(
       fileName: 'Inter-Bold.ttf',
@@ -370,7 +370,7 @@ const officeVisualFontPack = OfficeFontPack(
       bytes: 343100,
       sha256:
           'fb0f006cf34865ea04282880310615d53766541a85c75aeb1fe85cabb0b03404',
-      aliases: <String>[],
+      aliases: <String>['Aptos'],
     ),
     OfficeFontPackFile(
       fileName: 'Inter-Italic.ttf',
@@ -380,7 +380,7 @@ const officeVisualFontPack = OfficeFontPack(
       bytes: 344808,
       sha256:
           '754377ede232f9dc96354810d5138fa1e5ac43f54d885c0796bd5ba53b0b0bec',
-      aliases: <String>[],
+      aliases: <String>['Aptos'],
     ),
     OfficeFontPackFile(
       fileName: 'Inter-BoldItalic.ttf',
@@ -390,7 +390,7 @@ const officeVisualFontPack = OfficeFontPack(
       bytes: 346692,
       sha256:
           '9650b7400ccad49cf9d1f4e90059e588e3460140124394ed6ea5189878df5fc1',
-      aliases: <String>[],
+      aliases: <String>['Aptos'],
     ),
     OfficeFontPackFile(
       fileName: 'DMSans-Regular.ttf',
