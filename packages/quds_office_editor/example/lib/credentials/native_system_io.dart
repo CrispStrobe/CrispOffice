@@ -21,20 +21,18 @@ typedef _ChmodDart = int Function(Pointer<Utf8>, int);
 typedef _LinkNative = Int32 Function(Pointer<Utf8>, Pointer<Utf8>);
 typedef _LinkDart = int Function(Pointer<Utf8>, Pointer<Utf8>);
 
-typedef _GetDiskFreeSpaceExNative =
-    Int32 Function(
-      Pointer<Utf16>,
-      Pointer<Uint64>,
-      Pointer<Uint64>,
-      Pointer<Uint64>,
-    );
-typedef _GetDiskFreeSpaceExDart =
-    int Function(
-      Pointer<Utf16>,
-      Pointer<Uint64>,
-      Pointer<Uint64>,
-      Pointer<Uint64>,
-    );
+typedef _GetDiskFreeSpaceExNative = Int32 Function(
+  Pointer<Utf16>,
+  Pointer<Uint64>,
+  Pointer<Uint64>,
+  Pointer<Uint64>,
+);
+typedef _GetDiskFreeSpaceExDart = int Function(
+  Pointer<Utf16>,
+  Pointer<Uint64>,
+  Pointer<Uint64>,
+  Pointer<Uint64>,
+);
 
 final DynamicLibrary _libc = DynamicLibrary.process();
 final DynamicLibrary? _kernel32 = Platform.isWindows
@@ -166,9 +164,8 @@ bool commandExists(String command) {
     if (directory.isEmpty) continue;
     for (final candidate in candidates) {
       try {
-        if (File(
-          '$directory${Platform.pathSeparator}$candidate',
-        ).existsSync()) {
+        if (File('$directory${Platform.pathSeparator}$candidate')
+            .existsSync()) {
           return true;
         }
       } catch (_) {

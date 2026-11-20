@@ -27,53 +27,60 @@ void main() {
     _sameParagraphs(note);
   });
 
-  test('native table cells retain row-major citation indexes and ownership', () {
-    final note = WordZoteroNoteText.fromHtml(
-      '<p>Before</p>'
-      '<table><tbody><tr><th><p>Heading</p></th><th><p>Other</p></th></tr>'
-      '<tr><td><p>One $_one</p><p>Tail</p></td>'
-      '<td>Two $_two</td></tr></tbody></table><p>After</p>',
-    );
-    expect(note.blocks, hasLength(3));
-    expect(note.blocks.first, same(note.paragraphs.first));
-    expect(note.blocks.last, same(note.paragraphs.last));
-    final table = note.blocks[1] as WmlTable;
-    expect(table.rows, hasLength(2));
-    expect(table.rows.map((row) => row.cells.length), [2, 2]);
-    expect(note.paragraphs.map((paragraph) => paragraph.text), [
-      'Before',
-      'Heading',
-      'Other',
-      'One (First)',
-      'Tail',
-      'Two (Second)',
-      'After',
-    ]);
-    expect(table.rows[1].cells[0].blocks, hasLength(2));
-    expect(table.rows[1].cells[0].blocks.first, same(note.paragraphs[3]));
-    for (final index in [1, 2]) {
-      expect(
-        note.paragraphs[index].inlines.whereType<WmlRun>().single.properties.bold,
-        isTrue,
+  test(
+    'native table cells retain row-major citation indexes and ownership',
+    () {
+      final note = WordZoteroNoteText.fromHtml(
+        '<p>Before</p>'
+        '<table><tbody><tr><th><p>Heading</p></th><th><p>Other</p></th></tr>'
+        '<tr><td><p>One $_one</p><p>Tail</p></td>'
+        '<td>Two $_two</td></tr></tbody></table><p>After</p>',
       );
-    }
-    for (final (id, paragraphIndex, expected) in [
-      ('ABC123', 3, '(First)'),
-      ('DEF456', 5, '(Second)'),
-    ]) {
-      final placeholder = note.placeholders[id]!;
-      expect(placeholder.paragraphIndex, paragraphIndex);
-      expect(
-        note.paragraphs[paragraphIndex].text.substring(
-          placeholder.start,
-          placeholder.end,
-        ),
-        expected,
-      );
-    }
-    expect(note.plainText.contains(RegExp('[\uE000-\uE002]')), isFalse);
-    _sameParagraphs(note);
-  });
+      expect(note.blocks, hasLength(3));
+      expect(note.blocks.first, same(note.paragraphs.first));
+      expect(note.blocks.last, same(note.paragraphs.last));
+      final table = note.blocks[1] as WmlTable;
+      expect(table.rows, hasLength(2));
+      expect(table.rows.map((row) => row.cells.length), [2, 2]);
+      expect(note.paragraphs.map((paragraph) => paragraph.text), [
+        'Before',
+        'Heading',
+        'Other',
+        'One (First)',
+        'Tail',
+        'Two (Second)',
+        'After',
+      ]);
+      expect(table.rows[1].cells[0].blocks, hasLength(2));
+      expect(table.rows[1].cells[0].blocks.first, same(note.paragraphs[3]));
+      for (final index in [1, 2]) {
+        expect(
+          note.paragraphs[index].inlines
+              .whereType<WmlRun>()
+              .single
+              .properties
+              .bold,
+          isTrue,
+        );
+      }
+      for (final (id, paragraphIndex, expected) in [
+        ('ABC123', 3, '(First)'),
+        ('DEF456', 5, '(Second)'),
+      ]) {
+        final placeholder = note.placeholders[id]!;
+        expect(placeholder.paragraphIndex, paragraphIndex);
+        expect(
+          note.paragraphs[paragraphIndex].text.substring(
+            placeholder.start,
+            placeholder.end,
+          ),
+          expected,
+        );
+      }
+      expect(note.plainText.contains(RegExp('[\uE000-\uE002]')), isFalse);
+      _sameParagraphs(note);
+    },
+  );
 
   test('empty cells and a wholly empty table remain native structure', () {
     final note = WordZoteroNoteText.fromHtml(
@@ -90,53 +97,66 @@ void main() {
     _sameParagraphs(note);
   });
 
-  test('adjacent tables and multiple tbody groups retain source block order', () {
-    final note = WordZoteroNoteText.fromHtml(
-      '<table><tbody><tr><td>A</td></tr></tbody>'
-      '<tbody><tr><td>B</td></tr></tbody></table>'
-      '<table><tr><td>C</td></tr></table>',
-    );
-    expect(note.blocks, hasLength(2));
-    expect(note.blocks.every((block) => block is WmlTable), isTrue);
-    expect((note.blocks.first as WmlTable).rows, hasLength(2));
-    expect(note.paragraphs.map((paragraph) => paragraph.text), ['A', 'B', 'C']);
-    _sameParagraphs(note);
-  });
+  test(
+    'adjacent tables and multiple tbody groups retain source block order',
+    () {
+      final note = WordZoteroNoteText.fromHtml(
+        '<table><tbody><tr><td>A</td></tr></tbody>'
+        '<tbody><tr><td>B</td></tr></tbody></table>'
+        '<table><tr><td>C</td></tr></table>',
+      );
+      expect(note.blocks, hasLength(2));
+      expect(note.blocks.every((block) => block is WmlTable), isTrue);
+      expect((note.blocks.first as WmlTable).rows, hasLength(2));
+      expect(note.paragraphs.map((paragraph) => paragraph.text), [
+        'A',
+        'B',
+        'C',
+      ]);
+      _sameParagraphs(note);
+    },
+  );
 
-  test('rich cell paragraphs, headings, pictures and ordinary links survive', () {
-    final picture = image.encodePng(image.Image(width: 4, height: 2));
-    final note = WordZoteroNoteText.fromHtml(
-      _table(
-        '<tr><td><h2>Title</h2><p><b>Bold</b> <i>Italic</i><br/>'
-        '<a href="https://example.org/source">Link</a> $_one</p>'
-        '<p><img src="data:image/png;base64,${base64Encode(picture)}" '
-        'width="40" height="20" alt="Figure"></p></td><td></td></tr>',
-      ),
-    );
-    expect(note.paragraphs.map((paragraph) => paragraph.text), [
-      'Title',
-      'Bold Italic\nLink (First)',
-      '\uFFFC',
-      '',
-    ]);
-    expect(note.paragraphs.first.properties.headingLevel, 2);
-    final runs = note.paragraphs[1].inlines.whereType<WmlRun>();
-    expect(runs.first.properties.bold, isTrue);
-    expect(
-      runs.singleWhere((run) => run.text.trim() == 'Italic').properties.italic,
-      isTrue,
-    );
-    expect(
-      runs.singleWhere((run) => run.hyperlink != null).hyperlink!.url,
-      'https://example.org/source',
-    );
-    final pictureRun = note.paragraphs[2].inlines.whereType<WmlRun>().single;
-    expect(pictureRun.inlineVisual!.visual.imageBytes, picture);
-    expect(pictureRun.inlineVisual!.visual.width, 30);
-    expect(pictureRun.inlineVisual!.visual.height, 15);
-    expect(note.placeholders['ABC123']!.paragraphIndex, 1);
-    _sameParagraphs(note);
-  });
+  test(
+    'rich cell paragraphs, headings, pictures and ordinary links survive',
+    () {
+      final picture = image.encodePng(image.Image(width: 4, height: 2));
+      final note = WordZoteroNoteText.fromHtml(
+        _table(
+          '<tr><td><h2>Title</h2><p><b>Bold</b> <i>Italic</i><br/>'
+          '<a href="https://example.org/source">Link</a> $_one</p>'
+          '<p><img src="data:image/png;base64,${base64Encode(picture)}" '
+          'width="40" height="20" alt="Figure"></p></td><td></td></tr>',
+        ),
+      );
+      expect(note.paragraphs.map((paragraph) => paragraph.text), [
+        'Title',
+        'Bold Italic\nLink (First)',
+        '\uFFFC',
+        '',
+      ]);
+      expect(note.paragraphs.first.properties.headingLevel, 2);
+      final runs = note.paragraphs[1].inlines.whereType<WmlRun>();
+      expect(runs.first.properties.bold, isTrue);
+      expect(
+        runs
+            .singleWhere((run) => run.text.trim() == 'Italic')
+            .properties
+            .italic,
+        isTrue,
+      );
+      expect(
+        runs.singleWhere((run) => run.hyperlink != null).hyperlink!.url,
+        'https://example.org/source',
+      );
+      final pictureRun = note.paragraphs[2].inlines.whereType<WmlRun>().single;
+      expect(pictureRun.inlineVisual!.visual.imageBytes, picture);
+      expect(pictureRun.inlineVisual!.visual.width, 30);
+      expect(pictureRun.inlineVisual!.visual.height, 15);
+      expect(note.placeholders['ABC123']!.paragraphIndex, 1);
+      _sameParagraphs(note);
+    },
+  );
 
   for (final (content, expected) in [
     ('A<br/>', 'A\n'),
@@ -145,19 +165,25 @@ void main() {
     ('<br/>A<br/>', '\nA\n'),
   ]) {
     for (final wrapped in [false, true]) {
-      test('cell soft breaks survive structural markers: $content wrapped $wrapped',
-          () {
-        final html = wrapped ? '<div><span>$content</span></div>' : content;
-        final note = WordZoteroNoteText.fromHtml(
-          _table('<tr><td>$html</td><td><p>Next $_one</p></td></tr>'),
-        );
-        expect(note.paragraphs.map((paragraph) => paragraph.text),
-            [expected, 'Next (First)']);
-        expect(note.placeholders['ABC123']!.paragraphIndex, 1);
-        expect((note.blocks.single as WmlTable).rows.single.cells.first.blocks,
-            hasLength(1));
-        _sameParagraphs(note);
-      });
+      test(
+        'cell soft breaks survive structural markers: $content wrapped $wrapped',
+        () {
+          final html = wrapped ? '<div><span>$content</span></div>' : content;
+          final note = WordZoteroNoteText.fromHtml(
+            _table('<tr><td>$html</td><td><p>Next $_one</p></td></tr>'),
+          );
+          expect(note.paragraphs.map((paragraph) => paragraph.text), [
+            expected,
+            'Next (First)',
+          ]);
+          expect(note.placeholders['ABC123']!.paragraphIndex, 1);
+          expect(
+            (note.blocks.single as WmlTable).rows.single.cells.first.blocks,
+            hasLength(1),
+          );
+          _sameParagraphs(note);
+        },
+      );
     }
   }
 
@@ -214,33 +240,40 @@ void main() {
     );
   });
 
-  test('lists in separate cells keep independent starts and continuation indexes',
-      () {
-    final note = WordZoteroNoteText.fromHtml(
-      _table(
-        '<tr><td><ol start="4"><li>First<p>Continuation</p>'
-        '<ul><li>Deep $_one</li></ul></li></ol></td>'
-        '<td><ol start="7"><li>Other $_two</li></ol></td></tr>',
-      ) +
-          '<ol start="2"><li>Tail</li></ol>',
-    );
-    expect(note.paragraphs.map((paragraph) => paragraph.text), [
-      'First',
-      'Continuation',
-      'Deep (First)',
-      'Other (Second)',
-      'Tail',
-    ]);
-    expect(note.listItems.keys, [0, 1, 2, 3, 4]);
-    expect(note.listItems.values.map((item) => item.listId), [0, 0, 1, 2, 3]);
-    expect(note.listItems.values.map((item) => item.continuation),
-        [false, true, false, false, false]);
-    expect(note.listItems.values.map((item) => item.level), [0, 0, 1, 0, 0]);
-    expect(note.listItems.values.map((item) => item.start), [4, 4, 1, 7, 2]);
-    expect(note.placeholders['ABC123']!.paragraphIndex, 2);
-    expect(note.placeholders['DEF456']!.paragraphIndex, 3);
-    _sameParagraphs(note);
-  });
+  test(
+    'lists in separate cells keep independent starts and continuation indexes',
+    () {
+      final note = WordZoteroNoteText.fromHtml(
+        _table(
+              '<tr><td><ol start="4"><li>First<p>Continuation</p>'
+              '<ul><li>Deep $_one</li></ul></li></ol></td>'
+              '<td><ol start="7"><li>Other $_two</li></ol></td></tr>',
+            ) +
+            '<ol start="2"><li>Tail</li></ol>',
+      );
+      expect(note.paragraphs.map((paragraph) => paragraph.text), [
+        'First',
+        'Continuation',
+        'Deep (First)',
+        'Other (Second)',
+        'Tail',
+      ]);
+      expect(note.listItems.keys, [0, 1, 2, 3, 4]);
+      expect(note.listItems.values.map((item) => item.listId), [0, 0, 1, 2, 3]);
+      expect(note.listItems.values.map((item) => item.continuation), [
+        false,
+        true,
+        false,
+        false,
+        false,
+      ]);
+      expect(note.listItems.values.map((item) => item.level), [0, 0, 1, 0, 0]);
+      expect(note.listItems.values.map((item) => item.start), [4, 4, 1, 7, 2]);
+      expect(note.placeholders['ABC123']!.paragraphIndex, 2);
+      expect(note.placeholders['DEF456']!.paragraphIndex, 3);
+      _sameParagraphs(note);
+    },
+  );
 
   test('column widths propagate consistently using CSS pixels', () {
     final note = WordZoteroNoteText.fromHtml(
@@ -255,8 +288,10 @@ void main() {
     for (final row in table.rows) {
       expect(row.cells.map((cell) => cell.width), [75, 150]);
       expect(row.cells.map((cell) => cell.gridSpan), [1, 1]);
-      expect(row.cells.map((cell) => cell.vMerge),
-          [WmlVMerge.none, WmlVMerge.none]);
+      expect(row.cells.map((cell) => cell.vMerge), [
+        WmlVMerge.none,
+        WmlVMerge.none,
+      ]);
     }
   });
 
@@ -279,8 +314,12 @@ void main() {
       ),
     );
     final table = note.blocks.single as WmlTable;
-    expect(table.rows.single.cells.map((cell) => cell.fillColor),
-        ['0080FF', 'AABBCC', '123456', null]);
+    expect(table.rows.single.cells.map((cell) => cell.fillColor), [
+      '0080FF',
+      'AABBCC',
+      '123456',
+      null,
+    ]);
     _sameParagraphs(note);
   });
 
@@ -356,9 +395,7 @@ void main() {
   test('authored structural-marker characters cannot impersonate a table', () {
     for (final marker in ['\uE000t0\uE001', '&#57344;c0&#57345;']) {
       expect(
-        () => WordZoteroNoteText.fromHtml(
-          _table('<tr><td>$marker</td></tr>'),
-        ),
+        () => WordZoteroNoteText.fromHtml(_table('<tr><td>$marker</td></tr>')),
         throwsFormatException,
       );
     }
@@ -372,10 +409,7 @@ void main() {
       _table(List.filled(257, row).join()),
       _table('<tr>${List.filled(33, cell).join()}</tr>'),
     ]) {
-      expect(
-        () => WordZoteroNoteText.fromHtml(html),
-        throwsFormatException,
-      );
+      expect(() => WordZoteroNoteText.fromHtml(html), throwsFormatException);
     }
   });
 
@@ -401,8 +435,7 @@ void main() {
 
   test('the image budget is shared by cells and surrounding paragraphs', () {
     final picture = image.encodePng(image.Image(width: 4, height: 2));
-    final img =
-        '<img src="data:image/png;base64,${base64Encode(picture)}">';
+    final img = '<img src="data:image/png;base64,${base64Encode(picture)}">';
     final cells = List.filled(32, '<tr><td><p>$img</p></td></tr>').join();
     final accepted = WordZoteroNoteText.fromHtml(_table(cells));
     expect(accepted.paragraphs, hasLength(32));

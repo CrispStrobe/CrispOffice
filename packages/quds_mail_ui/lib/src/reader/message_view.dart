@@ -12,10 +12,13 @@ import 'selection_surface.dart';
 
 enum MailSourceView { source, hex }
 
-typedef MailReadOnlyAttachmentAction =
-    Future<void> Function(MailAttachment attachment);
-typedef MailSourceAction =
-    Future<void> Function(MailBytes bytes, MailSourceView view);
+typedef MailReadOnlyAttachmentAction = Future<void> Function(
+  MailAttachment attachment,
+);
+typedef MailSourceAction = Future<void> Function(
+  MailBytes bytes,
+  MailSourceView view,
+);
 typedef MailApprovedLinkAction = Future<void> Function(Uri target);
 typedef MailCopyAction = Future<void> Function(String decodedText);
 
@@ -394,13 +397,13 @@ class _MailMessageViewState extends State<MailMessageView> {
                                     (Theme.of(context).textTheme.bodyLarge ??
                                             const TextStyle(fontSize: 16))
                                         .copyWith(
-                                          color: Theme.of(
-                                            context,
-                                          ).colorScheme.onSurface,
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .onSurface,
                                         ),
-                                linkColor: Theme.of(
-                                  context,
-                                ).colorScheme.primary,
+                                linkColor: Theme.of(context)
+                                    .colorScheme
+                                    .primary,
                                 textScaler: MediaQuery.textScalerOf(context),
                                 onFocusRequest: _focus.requestFocus,
                                 onCopy: () => unawaited(_copy()),

@@ -84,7 +84,6 @@ void _finish(WordZoteroCitingSession session) {
 WmlDocument _reopen(WmlDocument document) =>
     WordDeserializer().readBytes(WordSerializer().writeBytes(document));
 
-
 String _table(String first, String second) =>
     '<table><tbody><tr><td><p>$first</p></td>'
     '<td><p>$second</p></td></tr></tbody></table>';
@@ -105,7 +104,11 @@ void main() {
         ),
       ],
     );
-    final document = WmlDocument(sections: [WmlSection(blocks: [original])]);
+    final document = WmlDocument(
+      sections: [
+        WmlSection(blocks: [original]),
+      ],
+    );
     final session = _session(document, original, start: 7, end: 13);
     _start(session, _table('First $_one', 'Second $_two'));
     final inserted = _convert(session, ['SECOND2', 'FIRST1']);
@@ -119,8 +122,12 @@ void main() {
     expect(blocks, hasLength(3));
     expect(blocks.first, same(original));
     final table = _onlyTable(blocks);
-    expect(table.rows.single.cells.map((c) => (c.blocks.single as WmlParagraph).text),
-        ['First (One)', 'Second (Two)']);
+    expect(
+      table.rows.single.cells.map(
+        (c) => (c.blocks.single as WmlParagraph).text,
+      ),
+      ['First (One)', 'Second (Two)'],
+    );
     final suffix = blocks.last as WmlParagraph;
     expect(original.text, 'Before ');
     expect(original.inlines.whereType<WmlRun>().single.properties.bold, isTrue);
@@ -171,7 +178,10 @@ void main() {
     _set(session, inserted[0], 'two', '(Two)');
     _set(session, inserted[1], 'one', '(One)');
     expect(_fields(session).map((f) => f['id']), [
-      original.first['id'], inserted[1]['id'], inserted[0]['id'], original.last['id'],
+      original.first['id'],
+      inserted[1]['id'],
+      inserted[0]['id'],
+      original.last['id'],
     ]);
     _finish(session);
     expect(document.paragraphs.first.text, '(Before expanded)Left ');
@@ -179,8 +189,12 @@ void main() {
     expect(session.caretAfter!.paragraph, same(document.paragraphs.last));
     expect(session.caretAfter!.offset, 0);
     for (final result in [document, _reopen(document)]) {
-      expect(WordZotero.fields(result).map((f) => f.citation!.citationId),
-          ['before', 'one', 'two', 'after']);
+      expect(WordZotero.fields(result).map((f) => f.citation!.citationId), [
+        'before',
+        'one',
+        'two',
+        'after',
+      ]);
       final fresh = _session(result, result.paragraphs.first);
       expect(_fields(fresh).map((f) => f['noteIndex']), [0, 0, 0, 0]);
     }
@@ -189,11 +203,19 @@ void main() {
   test('ordinary paragraphs around a table remain outside its cells', () {
     final document = WmlDocument.empty(text: 'BeforeAfter');
     final session = _session(document, document.paragraphs.single, start: 6);
-    _start(session, '<p>Intro</p>' + _table('Cell one', 'Cell two') + '<p>End</p>');
+    _start(
+      session,
+      '<p>Intro</p>' + _table('Cell one', 'Cell two') + '<p>End</p>',
+    );
     _finish(session);
     final blocks = document.sections.single.blocks;
-    expect(blocks.map((b) => b is WmlParagraph ? b.text : 'TABLE'),
-        ['Before', 'Intro', 'TABLE', 'End', 'After']);
+    expect(blocks.map((b) => b is WmlParagraph ? b.text : 'TABLE'), [
+      'Before',
+      'Intro',
+      'TABLE',
+      'End',
+      'After',
+    ]);
     expect(session.caretAfter!.paragraph, same(blocks[3]));
     expect(session.caretAfter!.offset, 3);
   });
@@ -202,52 +224,80 @@ void main() {
     final label = endnote ? 'endnote' : 'footnote';
     final type = endnote ? 2 : 1;
     for (final separator in [false, true]) {
-      test('$label leading table preserves its marker and separator $separator', () {
-        final document = WmlDocument.empty(text: 'Body');
-        final note = WordNotes.insert(
-          document, document.paragraphs.single,
-          endnote: endnote, text: separator ? ' Trailing prose' : 'Trailing prose',
-        );
-        final original = note.paragraphs.single;
-        original.inlines.insert(0, WmlNoteMarker(
-          endnote: endnote, properties: WmlRunProps(bold: true),
-        ));
-        final session = _session(document, original, start: separator ? 1 : 0);
-        _start(session, _table('$_one', '$_two'), type: type);
-        final fields = _convert(session, ['SECOND2', 'FIRST1'], type: type);
-        expect(fields.map((f) => f['noteIndex']), [1, 1]);
-        _set(session, fields[0], 'two', '(Two)');
-        _set(session, fields[1], 'one', '(One)');
-        _finish(session);
-        expect(note.blocks, hasLength(3));
-        expect(note.blocks.first, same(original));
-        expect(original.inlines.first, isA<WmlNoteMarker>());
-        expect(original.text, separator ? ' ' : '');
-        final table = _onlyTable(note.blocks);
-        expect(WordTree.paragraphs([table])
-            .expand((p) => p.inlines.whereType<WmlNoteMarker>()), isEmpty);
-        final suffix = note.blocks.last as WmlParagraph;
-        expect(suffix.text, 'Trailing prose');
-        expect(session.caretAfter, (paragraph: suffix, offset: 0));
-        expect(WordNotes.editableParagraphs(note), contains(same(suffix)));
-        expect(document.footnotes.length + document.endnotes.length, 1);
-        for (final result in [document, _reopen(document)]) {
-          final current = (endnote ? result.endnotes : result.footnotes).single;
-          expect(current.blocks.first, isA<WmlParagraph>());
-          expect(current.blocks[1], isA<WmlTable>());
-          expect(current.paragraphs.first.inlines.first, isA<WmlNoteMarker>());
-          expect(WordZotero.fields(result).map((f) => f.citation!.citationId),
-              ['one', 'two']);
-          expect(_fields(_session(result, current.paragraphs.first))
-              .map((f) => f['noteIndex']), [1, 1]);
-        }
-      });
+      test(
+        '$label leading table preserves its marker and separator $separator',
+        () {
+          final document = WmlDocument.empty(text: 'Body');
+          final note = WordNotes.insert(
+            document,
+            document.paragraphs.single,
+            endnote: endnote,
+            text: separator ? ' Trailing prose' : 'Trailing prose',
+          );
+          final original = note.paragraphs.single;
+          original.inlines.insert(
+            0,
+            WmlNoteMarker(
+              endnote: endnote,
+              properties: WmlRunProps(bold: true),
+            ),
+          );
+          final session = _session(
+            document,
+            original,
+            start: separator ? 1 : 0,
+          );
+          _start(session, _table('$_one', '$_two'), type: type);
+          final fields = _convert(session, ['SECOND2', 'FIRST1'], type: type);
+          expect(fields.map((f) => f['noteIndex']), [1, 1]);
+          _set(session, fields[0], 'two', '(Two)');
+          _set(session, fields[1], 'one', '(One)');
+          _finish(session);
+          expect(note.blocks, hasLength(3));
+          expect(note.blocks.first, same(original));
+          expect(original.inlines.first, isA<WmlNoteMarker>());
+          expect(original.text, separator ? ' ' : '');
+          final table = _onlyTable(note.blocks);
+          expect(
+            WordTree.paragraphs([table])
+                .expand((p) => p.inlines.whereType<WmlNoteMarker>()),
+            isEmpty,
+          );
+          final suffix = note.blocks.last as WmlParagraph;
+          expect(suffix.text, 'Trailing prose');
+          expect(session.caretAfter, (paragraph: suffix, offset: 0));
+          expect(WordNotes.editableParagraphs(note), contains(same(suffix)));
+          expect(document.footnotes.length + document.endnotes.length, 1);
+          for (final result in [document, _reopen(document)]) {
+            final current =
+                (endnote ? result.endnotes : result.footnotes).single;
+            expect(current.blocks.first, isA<WmlParagraph>());
+            expect(current.blocks[1], isA<WmlTable>());
+            expect(
+              current.paragraphs.first.inlines.first,
+              isA<WmlNoteMarker>(),
+            );
+            expect(
+              WordZotero.fields(result).map((f) => f.citation!.citationId),
+              ['one', 'two'],
+            );
+            expect(
+              _fields(_session(result, current.paragraphs.first))
+                  .map((f) => f['noteIndex']),
+              [1, 1],
+            );
+          }
+        },
+      );
     }
 
     test('$label offset zero keeps the automatic separator before a table', () {
       final document = WmlDocument.empty(text: 'Body');
       final note = WordNotes.insert(
-        document, document.paragraphs.single, endnote: endnote, text: ' Tail',
+        document,
+        document.paragraphs.single,
+        endnote: endnote,
+        text: ' Tail',
       );
       final paragraph = note.paragraphs.single;
       paragraph.inlines.insert(0, WmlNoteMarker(endnote: endnote));
@@ -263,106 +313,169 @@ void main() {
     test('$label empty authored story receives a main-flow table caret', () {
       final document = WmlDocument.empty(text: 'Body');
       final note = WordNotes.insert(
-        document, document.paragraphs.single, endnote: endnote,
+        document,
+        document.paragraphs.single,
+        endnote: endnote,
       );
       final session = _session(document, note.paragraphs.single);
       _start(session, _table('Cell', ''), type: type);
       _finish(session);
-      expect(note.blocks.map((b) => b.runtimeType),
-          [WmlParagraph, WmlTable, WmlParagraph]);
+      expect(note.blocks.map((b) => b.runtimeType), [
+        WmlParagraph,
+        WmlTable,
+        WmlParagraph,
+      ]);
       final suffix = note.blocks.last as WmlParagraph;
       expect(session.caretAfter, (paragraph: suffix, offset: 0));
       expect(WordNotes.editableParagraphs(note).last, same(suffix));
-      final restored = (endnote ? _reopen(document).endnotes : _reopen(document).footnotes).single;
-      expect(restored.paragraphs.first.inlines.any((i) => i is WmlNoteMarker), isTrue);
+      final restored =
+          (endnote ? _reopen(document).endnotes : _reopen(document).footnotes)
+              .single;
+      expect(
+        restored.paragraphs.first.inlines.any((i) => i is WmlNoteMarker),
+        isTrue,
+      );
     });
 
-    test('$label incompatible table citation conversion leaves all content staged', () {
-      final document = WmlDocument.empty(text: 'Body');
-      final note = WordNotes.insert(document, document.paragraphs.single,
-          endnote: endnote, text: 'Keep');
-      final original = note.paragraphs.single;
-      final session = _session(document, original);
-      _start(session, _table('$_one', ''), type: type);
-      expect(() => _convert(session, ['FIRST1'], type: endnote ? 1 : 2),
-          throwsUnsupportedError);
-      expect(() => _call(session, 'Document.complete'), throwsFormatException);
-      expect(note.blocks, [same(original)]);
-      expect(note.text, 'Keep');
-      expect(WordZotero.fields(document), isEmpty);
-    });
+    test(
+      '$label incompatible table citation conversion leaves all content staged',
+      () {
+        final document = WmlDocument.empty(text: 'Body');
+        final note = WordNotes.insert(
+          document,
+          document.paragraphs.single,
+          endnote: endnote,
+          text: 'Keep',
+        );
+        final original = note.paragraphs.single;
+        final session = _session(document, original);
+        _start(session, _table('$_one', ''), type: type);
+        expect(
+          () => _convert(session, ['FIRST1'], type: endnote ? 1 : 2),
+          throwsUnsupportedError,
+        );
+        expect(
+          () => _call(session, 'Document.complete'),
+          throwsFormatException,
+        );
+        expect(note.blocks, [same(original)]);
+        expect(note.text, 'Keep');
+        expect(WordZotero.fields(document), isEmpty);
+      },
+    );
   }
 
   for (final type in [1, 2]) {
-    test('table cell citations create separate native notes for style $type', () {
-      final document = WmlDocument.empty(text: 'Body');
-      final session = _session(document, document.paragraphs.single, start: 4);
-      _start(session, _table('First $_one', 'Second $_two'), type: type);
-      final fields = _convert(session, ['SECOND2', 'FIRST1'], type: type);
-      expect(fields.map((f) => f['noteIndex']), [2, 1]);
+    test(
+      'table cell citations create separate native notes for style $type',
+      () {
+        final document = WmlDocument.empty(text: 'Body');
+        final session = _session(
+          document,
+          document.paragraphs.single,
+          start: 4,
+        );
+        _start(session, _table('First $_one', 'Second $_two'), type: type);
+        final fields = _convert(session, ['SECOND2', 'FIRST1'], type: type);
+        expect(fields.map((f) => f['noteIndex']), [2, 1]);
+        _set(session, fields[0], 'two', '(Two)');
+        _set(session, fields[1], 'one', '(One)');
+        _finish(session);
+        final table = _onlyTable(document.sections.single.blocks);
+        final references = WordTree.paragraphs([table])
+            .expand((p) => p.inlines.whereType<WmlRun>())
+            .where((r) => r.noteRefId != null)
+            .toList();
+        expect(references, hasLength(2));
+        expect(
+          references.every((r) => r.noteRefEndnote == (type == 2)),
+          isTrue,
+        );
+        for (final result in [document, _reopen(document)]) {
+          expect(
+            (type == 2 ? result.endnotes : result.footnotes),
+            hasLength(2),
+          );
+          expect(
+            _fields(_session(result, result.paragraphs.first))
+                .map((f) => f['noteIndex']),
+            [1, 2],
+          );
+        }
+      },
+    );
+  }
+
+  test(
+    'table geometry pictures lists and citations survive DOCX and refresh',
+    () {
+      final png = image.encodePng(
+        image.Image(width: 2, height: 2, numChannels: 4),
+      );
+      final document = WmlDocument.empty(text: 'BeforeAfter');
+      final session = _session(document, document.paragraphs.single, start: 6);
+      final html =
+          '<table><tbody><tr>'
+              '<td data-colwidth="120" style="background-color: #abcdef">'
+              '<ol start="3"><li>First $_one</li><li>Next</li></ol></td>'
+              '<td data-colwidth="240"><p><img src="data:image/png;base64,' +
+          base64Encode(png) +
+          '" width="24" alt="Cell image"/></p>'
+              '<ol start="7"><li>Second $_two</li></ol></td>'
+              '</tr></tbody></table>';
+      _start(session, html);
+      final fields = _convert(session, ['SECOND2', 'FIRST1']);
       _set(session, fields[0], 'two', '(Two)');
       _set(session, fields[1], 'one', '(One)');
       _finish(session);
-      final table = _onlyTable(document.sections.single.blocks);
-      final references = WordTree.paragraphs([table])
-          .expand((p) => p.inlines.whereType<WmlRun>())
-          .where((r) => r.noteRefId != null).toList();
-      expect(references, hasLength(2));
-      expect(references.every((r) => r.noteRefEndnote == (type == 2)), isTrue);
-      for (final result in [document, _reopen(document)]) {
-        expect((type == 2 ? result.endnotes : result.footnotes), hasLength(2));
-        expect(_fields(_session(result, result.paragraphs.first))
-            .map((f) => f['noteIndex']), [1, 2]);
+      var result = _reopen(document);
+      for (var round = 0; round < 2; round++) {
+        final table = _onlyTable(result.sections.single.blocks);
+        expect(table.grid, [90.0, 180.0]);
+        expect(table.rows.single.cells.first.fillColor, 'ABCDEF');
+        final paragraphs = WordTree.paragraphs([table]).toList();
+        expect(
+          paragraphs
+              .where((p) => p.properties.listLabel != null)
+              .map((p) => p.properties.listLabel),
+          ['3. ', '4. ', '7. '],
+        );
+        final visuals = paragraphs
+            .expand((p) => p.inlines.whereType<WmlRun>())
+            .where((r) => r.inlineVisual != null)
+            .toList();
+        expect(visuals, hasLength(1));
+        final refresh = _session(result, result.paragraphs.first);
+        final current = _fields(refresh);
+        expect(current, hasLength(2));
+        _set(refresh, current[0], 'one', '(One refreshed)');
+        _set(refresh, current[1], 'two', '(Two refreshed)');
+        _finish(refresh);
+        expect(WordZotero.fields(result).map((f) => f.cachedText), [
+          '(One refreshed)',
+          '(Two refreshed)',
+        ]);
+        expect(_onlyTable(result.sections.single.blocks), same(table));
+        expect(table.grid, [90.0, 180.0]);
+        result = _reopen(result);
       }
-    });
-  }
-
-  test('table geometry pictures lists and citations survive DOCX and refresh', () {
-    final png = image.encodePng(image.Image(width: 2, height: 2, numChannels: 4));
-    final document = WmlDocument.empty(text: 'BeforeAfter');
-    final session = _session(document, document.paragraphs.single, start: 6);
-    final html = '<table><tbody><tr>'
-        '<td data-colwidth="120" style="background-color: #abcdef">'
-        '<ol start="3"><li>First $_one</li><li>Next</li></ol></td>'
-        '<td data-colwidth="240"><p><img src="data:image/png;base64,' +
-        base64Encode(png) + '" width="24" alt="Cell image"/></p>'
-        '<ol start="7"><li>Second $_two</li></ol></td>'
-        '</tr></tbody></table>';
-    _start(session, html);
-    final fields = _convert(session, ['SECOND2', 'FIRST1']);
-    _set(session, fields[0], 'two', '(Two)');
-    _set(session, fields[1], 'one', '(One)');
-    _finish(session);
-    var result = _reopen(document);
-    for (var round = 0; round < 2; round++) {
-      final table = _onlyTable(result.sections.single.blocks);
-      expect(table.grid, [90.0, 180.0]);
-      expect(table.rows.single.cells.first.fillColor, 'ABCDEF');
-      final paragraphs = WordTree.paragraphs([table]).toList();
-      expect(paragraphs.where((p) => p.properties.listLabel != null)
-          .map((p) => p.properties.listLabel), ['3. ', '4. ', '7. ']);
-      final visuals = paragraphs.expand((p) => p.inlines.whereType<WmlRun>())
-          .where((r) => r.inlineVisual != null).toList();
-      expect(visuals, hasLength(1));
-      final refresh = _session(result, result.paragraphs.first);
-      final current = _fields(refresh);
-      expect(current, hasLength(2));
-      _set(refresh, current[0], 'one', '(One refreshed)');
-      _set(refresh, current[1], 'two', '(Two refreshed)');
-      _finish(refresh);
-      expect(WordZotero.fields(result).map((f) => f.cachedText),
-          ['(One refreshed)', '(Two refreshed)']);
-      expect(_onlyTable(result.sections.single.blocks), same(table));
-      expect(table.grid, [90.0, 180.0]);
-      result = _reopen(result);
-    }
-  });
+    },
+  );
 
   test('table payload cannot create a nested destination table', () {
     final target = WmlParagraph(inlines: [WmlRun(text: 'Keep')]);
     final cell = WmlTableCell(blocks: [target]);
-    final outer = WmlTable(rows: [WmlTableRow(cells: [cell])], grid: [120]);
-    final document = WmlDocument(sections: [WmlSection(blocks: [outer])]);
+    final outer = WmlTable(
+      rows: [
+        WmlTableRow(cells: [cell]),
+      ],
+      grid: [120],
+    );
+    final document = WmlDocument(
+      sections: [
+        WmlSection(blocks: [outer]),
+      ],
+    );
     final session = _session(document, target);
     expect(() => _start(session, _table('A', 'B')), throwsUnsupportedError);
     expect(cell.blocks, [same(target)]);
@@ -370,36 +483,57 @@ void main() {
     expect(document.sections.single.blocks, [same(outer)]);
   });
 
-  test('moving a staged table target into a cell refuses apply before mutation', () {
-    final document = WmlDocument.empty(text: 'Keep');
-    final paragraph = document.paragraphs.single;
-    final session = _session(document, paragraph);
-    _start(session, _table('A', 'B'));
-    _call(session, 'Document.complete');
-    final outer = WmlTable(rows: [
-      WmlTableRow(cells: [WmlTableCell(blocks: [paragraph])]),
-    ], grid: [120]);
-    document.sections.single.blocks
-      ..clear()
-      ..add(outer);
-    expect(session.apply, throwsA(anything));
-    expect(outer.rows.single.cells.single.blocks, [same(paragraph)]);
-    expect(paragraph.text, 'Keep');
-  });
-
-  for (final ids in [<String>[], ['FIRST1'], ['FIRST1', 'FIRST1'], ['FIRST1', 'UNKNOWN']]) {
-    test('incomplete or invalid table placeholders reject atomically: $ids', () {
+  test(
+    'moving a staged table target into a cell refuses apply before mutation',
+    () {
       final document = WmlDocument.empty(text: 'Keep');
       final paragraph = document.paragraphs.single;
-      final session = _session(document, paragraph, end: 4);
-      _start(session, _table('$_one', '$_two'));
-      expect(() => _convert(session, ids), throwsFormatException);
-      expect(() => _call(session, 'Document.complete'), throwsFormatException);
-      expect(document.sections.single.blocks, [same(paragraph)]);
+      final session = _session(document, paragraph);
+      _start(session, _table('A', 'B'));
+      _call(session, 'Document.complete');
+      final outer = WmlTable(
+        rows: [
+          WmlTableRow(
+            cells: [
+              WmlTableCell(blocks: [paragraph]),
+            ],
+          ),
+        ],
+        grid: [120],
+      );
+      document.sections.single.blocks
+        ..clear()
+        ..add(outer);
+      expect(session.apply, throwsA(anything));
+      expect(outer.rows.single.cells.single.blocks, [same(paragraph)]);
       expect(paragraph.text, 'Keep');
-      expect(WordZotero.fields(document), isEmpty);
-      expect(document.footnotes, isEmpty);
-      expect(document.endnotes, isEmpty);
-    });
+    },
+  );
+
+  for (final ids in [
+    <String>[],
+    ['FIRST1'],
+    ['FIRST1', 'FIRST1'],
+    ['FIRST1', 'UNKNOWN'],
+  ]) {
+    test(
+      'incomplete or invalid table placeholders reject atomically: $ids',
+      () {
+        final document = WmlDocument.empty(text: 'Keep');
+        final paragraph = document.paragraphs.single;
+        final session = _session(document, paragraph, end: 4);
+        _start(session, _table('$_one', '$_two'));
+        expect(() => _convert(session, ids), throwsFormatException);
+        expect(
+          () => _call(session, 'Document.complete'),
+          throwsFormatException,
+        );
+        expect(document.sections.single.blocks, [same(paragraph)]);
+        expect(paragraph.text, 'Keep');
+        expect(WordZotero.fields(document), isEmpty);
+        expect(document.footnotes, isEmpty);
+        expect(document.endnotes, isEmpty);
+      },
+    );
   }
 }
