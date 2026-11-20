@@ -1,0 +1,41 @@
+{
+  "started_at": "2026-11-20T09:04:37.217954+00:00",
+  "finished_at": "2026-11-20T09:04:37.352611+00:00",
+  "command": [
+    "/workspace/scratch/8e9460dcd580/runtime/bin/dart",
+    "format",
+    "--output=none",
+    "--set-exit-if-changed",
+    "packages/quds_mail_core/lib/src/ports/provider.dart",
+    "packages/quds_mail_transport/lib/src/cursor.dart",
+    "packages/quds_mail_transport/lib/src/native/provider.dart",
+    "packages/quds_mail_transport/test/native_browse_test.dart",
+    "packages/quds_mail_transport/test/support/imap_fixture.dart",
+    "packages/quds_office_editor/example/lib/studio_mail_message_loader.dart",
+    "packages/quds_office_editor/example/test/studio_mail_message_loader_test.dart"
+  ],
+  "cwd": "/workspace/scratch/8e9460dcd580/quds_office_suite",
+  "exit_code": 0,
+  "inputs_before": {
+    "packages/quds_mail_core/lib/src/ports/provider.dart": "b9210a795eee1253d1e66b3422ab3e7004dc64231aa178f99959f3f70c28a3be",
+    "packages/quds_mail_transport/lib/src/cursor.dart": "8a75a9bcc7a95e3fb745af3345ba25c1e7433b1a5d71f42424a658522a5bab88",
+    "packages/quds_mail_transport/lib/src/native/provider.dart": "52a44b05be583726d9e0033fdd704ee99fb03c96f1c07fdf3e090a2f0fa9f843",
+    "packages/quds_mail_transport/test/native_browse_test.dart": "029b9f966d4af560085282f80f9d0f25fb399b2c577dda908799742613b86ddd",
+    "packages/quds_mail_transport/test/support/imap_fixture.dart": "33e7b27be7214a8c7d3831aa7889cf4fc5a69e2f7e74e4a4a75a68746bd7b37a",
+    "packages/quds_office_editor/example/lib/studio_mail_message_loader.dart": "a5c4b384f7b540ee6d1dcb72073048935294729257393984d8fbd40bf35e0441",
+    "packages/quds_office_editor/example/test/studio_mail_message_loader_test.dart": "d6f32c5365879c1e14cce12156fc94889204ba996894743998976a736dd585a0"
+  },
+  "inputs_after": {
+    "packages/quds_mail_core/lib/src/ports/provider.dart": "b9210a795eee1253d1e66b3422ab3e7004dc64231aa178f99959f3f70c28a3be",
+    "packages/quds_mail_transport/lib/src/cursor.dart": "8a75a9bcc7a95e3fb745af3345ba25c1e7433b1a5d71f42424a658522a5bab88",
+    "packages/quds_mail_transport/lib/src/native/provider.dart": "52a44b05be583726d9e0033fdd704ee99fb03c96f1c07fdf3e090a2f0fa9f843",
+    "packages/quds_mail_transport/test/native_browse_test.dart": "029b9f966d4af560085282f80f9d0f25fb399b2c577dda908799742613b86ddd",
+    "packages/quds_mail_transport/test/support/imap_fixture.dart": "33e7b27be7214a8c7d3831aa7889cf4fc5a69e2f7e74e4a4a75a68746bd7b37a",
+    "packages/quds_office_editor/example/lib/studio_mail_message_loader.dart": "a5c4b384f7b540ee6d1dcb72073048935294729257393984d8fbd40bf35e0441",
+    "packages/quds_office_editor/example/test/studio_mail_message_loader_test.dart": "d6f32c5365879c1e14cce12156fc94889204ba996894743998976a736dd585a0"
+  },
+  "source_unchanged": true,
+  "stdout": "logs/format-check.stdout",
+  "stderr": "logs/format-check.stderr",
+  "qualification": "Read-only formatting check at evidence preparation, separate from earlier development test execution."
+}

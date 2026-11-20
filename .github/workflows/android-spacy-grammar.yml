@@ -120,7 +120,8 @@ jobs:
         if: inputs.gate
         run: |
           case "$ABI" in arm64-v8a) triple=aarch64-linux-android ;; x86_64) triple=x86_64-linux-android ;; esac
-          rustup target add "$triple"
+          # Inside the crate, so the target lands in its pinned rust-toolchain.toml toolchain.
+          (cd packages/quds_proofing_harper/native && rustup target add "$triple")
           for p in quds_proofing_hunspell quds_arabic_morph quds_language_id quds_proofing_harper; do
             python3 packages/$p/tool/build.py --android --android-abi "$ABI" \
               --output "build/$p-android" --install-android "$JNI/$ABI"

@@ -104,7 +104,7 @@ class PmlGradientStop {
   PmlGradientStop copy() => PmlGradientStop(position: position, color: color);
 }
 
-/// A linear DrawingML gradient fill.
+/// A linear or centered circular DrawingML gradient fill.
 class PmlGradientFill {
   PmlGradientFill({
     List<PmlGradientStop>? stops,
@@ -114,6 +114,9 @@ class PmlGradientFill {
 
   final List<PmlGradientStop> stops;
   double angleDegrees;
+
+  /// Circular shading from the center to the circumscribed shape bounds.
+  /// Other path types and noncentral focus rectangles are not modeled.
   bool radial;
 
   String get fallbackColor => stops.isEmpty ? '' : stops.first.color;

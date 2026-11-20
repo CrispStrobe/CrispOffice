@@ -1762,10 +1762,10 @@ abstract final class OfficePdfExport {
     const int steps = 72;
     if (gradient.radial) {
       canvas.fillRect(x, y, w, h, gradient.stops.last.color);
-      final double radius = math.min(w, h) / 2;
+      final double radius = math.sqrt(w * w + h * h) / 2;
       for (var i = steps; i > 0; i--) {
         final double r = radius * i / steps;
-        canvas.setFillColor(_gradientColor(gradient, (i - .5) / steps));
+        canvas.setFillColor(_gradientColor(gradient, i / steps));
         canvas.ellipse(cx - r, cy - r, r * 2, r * 2);
         canvas.fill();
       }

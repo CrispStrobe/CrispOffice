@@ -1,0 +1,54 @@
+{
+  "reason": "Hardlink only byte-identical regular SDK files with identical mode. All paths and executable/source bytes preserved.",
+  "changes": [
+    {
+      "first": "/workspace/scratch/8e9460dcd580/runtime/flutter/packages/flutter/coverage/lcov.info",
+      "duplicate": "/workspace/scratch/8e9460dcd580/runtime/flutter/packages/flutter/coverage/lcov.base.info",
+      "bytes_reclaimed": 1312634,
+      "sha256": "d92abe828e294ebfdbdff49ae500c634378710db8736e45dbc0a0c46f357e0d4",
+      "mode": 420,
+      "same_hash_after": true
+    },
+    {
+      "first": "/workspace/scratch/8e9460dcd580/runtime/flutter/bin/cache/dart-sdk/lib/_internal/vm_platform.dill",
+      "duplicate": "/workspace/scratch/8e9460dcd580/runtime/flutter/bin/cache/dart-sdk/lib/_internal/vm_platform_strong.dill",
+      "bytes_reclaimed": 8663120,
+      "sha256": "883d97292177020d42bed41ffcc3755319bb499872239715dde5e0ae3a723f67",
+      "mode": 420,
+      "same_hash_after": true
+    },
+    {
+      "first": "/workspace/scratch/8e9460dcd580/runtime/flutter/bin/cache/dart-sdk/lib/html/dart2js/html_dart2js.dart",
+      "duplicate": "/workspace/scratch/8e9460dcd580/runtime/flutter/bin/cache/pkg/sky_engine/lib/html/html_dart2js.dart",
+      "bytes_reclaimed": 1268964,
+      "sha256": "eb8e7ebc5aeb7b3de12aa274d5a92d8933fc364d645e9c4becf74ad0e829b69e",
+      "mode": 420,
+      "same_hash_after": true
+    },
+    {
+      "first": "/workspace/scratch/8e9460dcd580/runtime/flutter/bin/cache/dart-sdk/bin/snapshots/frontend_server_aot.dart.snapshot",
+      "duplicate": "/workspace/scratch/8e9460dcd580/runtime/flutter/bin/cache/artifacts/engine/linux-x64/frontend_server_aot.dart.snapshot",
+      "bytes_reclaimed": 17153416,
+      "sha256": "0c484223020a7aad5874e1ef3bdcc43c9d0b36a1402f223d538ee2d4cc0b847a",
+      "mode": 420,
+      "same_hash_after": true
+    },
+    {
+      "first": "/workspace/scratch/8e9460dcd580/runtime/flutter/bin/cache/dart-sdk/bin/resources/devtools/assets/fonts/MaterialIcons-Regular.otf",
+      "duplicate": "/workspace/scratch/8e9460dcd580/runtime/flutter/bin/cache/artifacts/material_fonts/MaterialIcons-Regular.otf",
+      "bytes_reclaimed": 1645184,
+      "sha256": "d9865b671a09d683d13a863089d8825e0f61a37696ce5d7d448bc8023aa62453",
+      "mode": 420,
+      "same_hash_after": true
+    },
+    {
+      "first": "/workspace/scratch/8e9460dcd580/runtime/flutter/bin/cache/artifacts/engine/common/flutter_patched_sdk/vm_outline_strong.dill",
+      "duplicate": "/workspace/scratch/8e9460dcd580/runtime/flutter/bin/cache/artifacts/engine/common/flutter_patched_sdk_product/vm_outline_strong.dill",
+      "bytes_reclaimed": 2071360,
+      "sha256": "8f094bd6fd8d5f8d089e5dff389cb45ed6b3ab0f6d44cc1af905da19f73ca34d",
+      "mode": 420,
+      "same_hash_after": true
+    }
+  ],
+  "reclaimed_bytes": 32114678
+}

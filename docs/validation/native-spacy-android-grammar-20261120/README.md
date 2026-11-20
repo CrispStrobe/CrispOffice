@@ -160,6 +160,16 @@ original Linux results with 0 differences. This also checks the refactor of
 - Tools: `grammar_replay_core.dart`, `replay_grammar_v2.dart`,
   `grammar_replay_server.py`, `compare_replay_rows.py`.
 
+## What ran where
+
+| Run | Where | Library | Outcome |
+| --- | --- | --- | --- |
+| W6, W7 and v2 replay (`mobile_spacy_grammar_replay_test.dart`) | Local Apple-silicon Mac, Android 16 arm64 emulator (temporary AVD) | `ed730f62…` arm64-v8a | **passed** (the qualification above) |
+| macOS controls (W6, W7, v2) | Local Mac, `dart run` | `ccc96620…` | W6/W7 0 differences; v2 exactly the 7 source differences |
+| Mobile gate with the new grammar step (`mobile_native_proofing_test.dart`) | Local arm64 emulator | `ed730f62…` | **not completed**. The Mac was overloaded (load about 60–80) and the owner moved emulator work off the machine, so the Gradle build was stopped before the test ran. The earlier gate in [native-proofing-mobile-20261120](../native-proofing-mobile-20261120/README.md) passed on these bytes, but without the grammar step. |
+| `/dev/kvm` probe | GitHub `ubuntu-24.04-arm` ([run 44704041243](https://github.com/CrispStrobe/quds_office_suite/actions/runs/44704041243)) | — | no `/dev/kvm` and no Android SDK, so no arm64 emulator on GitHub-hosted runners |
+| Mobile gate, workflow [`android-spacy-grammar.yml`](../../../.github/workflows/android-spacy-grammar.yml) | GitHub `ubuntu-latest`, x86_64 emulator with KVM | the x86_64 library built there | see the PR. It covers the x86_64 bytes only, and no claim moves between the two ABIs. |
+
 ## iOS
 
 See [ios.md](ios.md).

@@ -34,10 +34,14 @@ List<PmlShape> parseSlideShapes(
   int? shapePropertiesDepth;
   int? gradientDepth;
   int? gradientStopDepth;
+  int? gradientPathDepth;
   final List<PmlGradientStop> gradientStops = <PmlGradientStop>[];
   double? gradientStopPosition;
   double gradientAngle = 0;
   var gradientRadial = false;
+  var gradientCentered = false;
+  var gradientDefaultTile = true;
+  var gradientIsLinear = true;
 
   /// textFillPending API.
   var textFillPending = false;
@@ -97,6 +101,10 @@ List<PmlShape> parseSlideShapes(
       } else if (reader.localName == 'style') {
         inStyle = false;
         styleRef = null;
+      } else if (reader.localName == 'path' &&
+          gradientPathDepth != null &&
+          reader.depth == gradientPathDepth - 1) {
+        gradientPathDepth = null;
       } else if (reader.localName == 'gradFill' &&
           inGradFill &&
           gradientDepth != null &&
@@ -105,16 +113,21 @@ List<PmlShape> parseSlideShapes(
           final List<PmlGradientStop> stops = <PmlGradientStop>[
             ...gradientStops,
           ]..sort((a, b) => a.position.compareTo(b.position));
-          current.gradient = PmlGradientFill(
-            stops: stops,
-            angleDegrees: gradientAngle,
-            radial: gradientRadial,
-          );
+          current.gradient =
+              gradientIsLinear ||
+                  gradientRadial && gradientCentered && gradientDefaultTile
+              ? PmlGradientFill(
+                  stops: stops,
+                  angleDegrees: gradientAngle,
+                  radial: gradientRadial,
+                )
+              : null;
           current.fillColor = stops.first.color;
         }
         inGradFill = false;
         gradientDepth = null;
         gradientStopDepth = null;
+        gradientPathDepth = null;
         gradientStops.clear();
         gradientStopPosition = null;
         fillPending = false;
@@ -126,6 +139,7 @@ List<PmlShape> parseSlideShapes(
         inGradFill = false;
         gradientDepth = null;
         gradientStopDepth = null;
+        gradientPathDepth = null;
         gradientStops.clear();
         gradientStopPosition = null;
       } else if (reader.localName == 'gs' &&
@@ -163,6 +177,7 @@ List<PmlShape> parseSlideShapes(
         inGradFill = false;
         gradientDepth = null;
         gradientStopDepth = null;
+        gradientPathDepth = null;
         gradientStops.clear();
         gradientStopPosition = null;
         inTxBody = false;
@@ -378,10 +393,14 @@ List<PmlShape> parseSlideShapes(
       inGradFill = true;
       gradientDepth = reader.depth;
       gradientStopDepth = null;
+      gradientPathDepth = null;
       gradientStops.clear();
       gradientStopPosition = null;
       gradientAngle = 0;
       gradientRadial = false;
+      gradientCentered = false;
+      gradientDefaultTile = true;
+      gradientIsLinear = true;
       fillPending = false;
       explicitFill = true;
     } else if ((reader.localName == 'solidFill' ||
@@ -427,7 +446,20 @@ List<PmlShape> parseSlideShapes(
         reader.namespaceUri == OfficeNamespaces.a &&
         inGradFill &&
         reader.depth == gradientDepth! + 1) {
-      gradientRadial = true;
+      gradientPathDepth = reader.depth;
+      gradientIsLinear = false;
+      gradientRadial = reader.getAttribute('path') == 'circle';
+    } else if (reader.localName == 'fillToRect' &&
+        reader.namespaceUri == OfficeNamespaces.a &&
+        inGradFill &&
+        gradientPathDepth != null &&
+        reader.depth == gradientPathDepth + 1) {
+      gradientCentered = isCenteredRadialFillToRect(reader);
+    } else if (reader.localName == 'tileRect' &&
+        reader.namespaceUri == OfficeNamespaces.a &&
+        inGradFill &&
+        reader.depth == gradientDepth! + 1) {
+      gradientDefaultTile = isDefaultGradientTileRect(reader);
     } else if (_colorElements.contains(reader.localName) && current != null) {
       // Color modifiers are consumed by the resolver, changing reader.depth.
       // Capture fill ownership while still positioned on the color start.
@@ -1170,6 +1202,32 @@ void _writeSlideShape(XmlWriter w, PmlShape shape) {
 
 XmlElement _textElement(String name) =>
     XmlElement(localName: name, prefix: 'a', namespaceUri: OfficeNamespaces.a);
+
+/// Whether a DrawingML radial focus is the supported central point.
+bool isCenteredRadialFillToRect(XmlPullReader reader) => const <String>[
+  'l',
+  't',
+  'r',
+  'b',
+].every((name) => _fitPercent(reader.getAttribute(name), fallback: 0) == 0.5);
+
+/// Whether a gradient uses the unshifted shape bounds as its fill tile.
+bool isDefaultGradientTileRect(XmlPullReader reader) =>
+    const <String>['l', 't', 'r', 'b'].every((name) {
+      final String? value = reader.getAttribute(name);
+      return value == null || _fitPercent(value, fallback: double.nan) == 0;
+    });
+
+double _fitPercent(String? value, {required double fallback}) {
+  if (value == null) return fallback;
+  final String raw = value.trim();
+  final bool percent = raw.endsWith('%');
+  final double? number = double.tryParse(
+    percent ? raw.substring(0, raw.length - 1) : raw,
+  );
+  if (number == null || !number.isFinite) return fallback;
+  return number / (percent ? 100 : 100000);
+}
 
 // CT_TextCharacterProperties orders script fonts before hyperlinks and rtl.
 // Preserve every unrelated child while inserting only the requested font.
