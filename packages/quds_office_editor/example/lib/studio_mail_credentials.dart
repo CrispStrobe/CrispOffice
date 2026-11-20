@@ -4,6 +4,7 @@ import 'package:crypto/crypto.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 import 'credentials/secure_storage_service.dart';
+import 'credentials/utils/async_lock.dart';
 import 'studio_credential_storage.dart';
 import 'studio_mail_presets.dart';
 import 'studio_mail_recipients.dart';
@@ -241,8 +242,12 @@ abstract interface class StudioMailAccountCatalogStore {
 /// platform implementation also offers [StudioMailAccountCatalogStore]. Writes
 /// report actual success. [clear] forgets only the selected remembered account.
 abstract interface class StudioMailCredentialStore {
-  factory StudioMailCredentialStore({FlutterSecureStorage? storage}) =>
-      storage == null
+  factory StudioMailCredentialStore({
+    FlutterSecureStorage? storage,
+    Future<SecureStorage> Function()? backend,
+  }) => backend != null
+      ? _PlatformStudioMailCredentialStore(selectedStorage: backend)
+      : storage == null
       ? StudioMailAccountsStore()
       : _PlatformStudioMailCredentialStore(storage: storage);
 
@@ -267,25 +272,22 @@ final class _PlatformStudioMailCredentialStore
            (() async => _FlutterMailStorage(
              storage ?? const FlutterSecureStorage(),
            )),
-       _verifyWrites = selectedStorage != null,
+       _verifyWrites = true,
        _storageRevision = storageRevision;
 
   static const _legacyKey = 'crispoffice.mail.account.v1';
   static const _catalogKey = 'crispoffice.mail.accounts.v2';
   static const _maxLegacyCodeUnits = 256 * 1024;
   static const _maxCatalogCodeUnits = 4 * 1024 * 1024;
-  static Future<void> _queue = Future<void>.value();
+  static final _operations = AsyncLock();
   final Future<SecureStorage> Function() _storage;
   final bool _verifyWrites;
   final int Function()? _storageRevision;
 
   // Serialize even across dialog instances. A later Forget must not be undone
   // by an older slow keychain write, and a failed operation must release the queue.
-  Future<T> _ordered<T>(Future<T> Function() operation) {
-    final result = _queue.then((_) => operation());
-    _queue = result.then<void>((_) {}, onError: (Object _, StackTrace _) {});
-    return result;
-  }
+  Future<T> _ordered<T>(Future<T> Function() operation) =>
+      _operations.synchronized(operation);
 
   @override
   Future<StudioMailCredentials?> load() async =>
@@ -663,8 +665,8 @@ final class StudioMailAccountsStore
   }
 }
 
-/// Adapts the established injected Flutter keychain seam without changing its
-/// acknowledged-write contract or touching any other credential keys.
+/// Adapts the established injected Flutter keychain seam. Catalog writes are
+/// verified by readback and no unrelated credential keys are touched.
 final class _FlutterMailStorage extends SecureStorage {
   _FlutterMailStorage(this._storage);
   final FlutterSecureStorage _storage;

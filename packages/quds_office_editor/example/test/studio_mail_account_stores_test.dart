@@ -27,20 +27,33 @@ void main() {
     'independent accounts survive a new repository and forgetting one preserves the other',
     () async {
       final storage = InMemorySecureStorage();
-      final repo = StudioMailAccountsStore(storage: () async => storage);
+      final repo = StudioMailCredentialStore(backend: () async => storage);
       final first = account('first@example.test'),
           second = account('second@example.test');
       expect(await repo.save(first), isTrue);
       expect(await repo.save(second), isTrue);
-      final reopened = StudioMailAccountsStore(storage: () async => storage);
-      expect((await reopened.accounts()).map((c) => c.email), [
-        first.email,
-        second.email,
-      ]);
+      final reopened = StudioMailCredentialStore(backend: () async => storage);
+      expect(
+        (await (reopened as StudioMailAccountCatalogStore).loadAccounts())
+            .catalog!
+            .accounts
+            .map((c) => c.credentials.email),
+        [first.email, second.email],
+      );
       expect((await reopened.load())!.email, second.email);
-      reopened.selectAccount(first);
+      await (reopened as StudioMailAccountCatalogStore).selectAccount(
+        first.accountId,
+      );
       expect(await reopened.clear(), isTrue);
-      expect((await reopened.accounts()).single.email, second.email);
+      expect(
+        (await (reopened as StudioMailAccountCatalogStore).loadAccounts())
+            .catalog!
+            .accounts
+            .single
+            .credentials
+            .email,
+        second.email,
+      );
       expect((await reopened.load())!.email, second.email);
     },
   );
@@ -48,11 +61,19 @@ void main() {
     'a failed selected-store write preserves previously saved accounts',
     () async {
       final storage = FailingStorage();
-      final repo = StudioMailAccountsStore(storage: () async => storage);
+      final repo = StudioMailCredentialStore(backend: () async => storage);
       expect(await repo.save(account('first@example.test')), isTrue);
       storage.fail = true;
       expect(await repo.save(account('second@example.test')), isFalse);
-      expect((await repo.accounts()).single.email, 'first@example.test');
+      expect(
+        (await (repo as StudioMailAccountCatalogStore).loadAccounts())
+            .catalog!
+            .accounts
+            .single
+            .credentials
+            .email,
+        'first@example.test',
+      );
     },
   );
   test(
@@ -68,7 +89,7 @@ void main() {
         'synthetic-master-password',
         expectedExisting: false,
       );
-      final repo = StudioMailAccountsStore(storage: () async => vault);
+      final repo = StudioMailCredentialStore(backend: () async => vault);
       expect(await repo.save(account('first@example.test')), isTrue);
       expect(await repo.save(account('second@example.test')), isTrue);
       final ciphertext = await file.readAsBytes();
@@ -89,9 +110,12 @@ void main() {
         expectedExisting: true,
       );
       expect(
-        (await StudioMailAccountsStore(
-          storage: () async => reopened,
-        ).accounts()).length,
+        (await (StudioMailCredentialStore(backend: () async => reopened)
+                    as StudioMailAccountCatalogStore)
+                .loadAccounts())
+            .catalog!
+            .accounts
+            .length,
         2,
       );
       if (!Platform.isWindows) expect((await file.stat()).mode & 0x1ff, 0x180);

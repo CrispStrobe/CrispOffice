@@ -1,3 +1,4 @@
+import 'support/mail_credentials.dart';
 import 'package:enough_mail/enough_mail.dart' as mail;
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -134,7 +135,12 @@ void main() {
       await tester.binding.setSurfaceSize(const Size(1280, 1050));
       addTearDown(() => tester.binding.setSurfaceSize(null));
       await tester.pumpWidget(
-        const MaterialApp(home: StudioMailDialog(strings: _strings)),
+        MaterialApp(
+          home: StudioMailDialog(
+            strings: _strings,
+            credentialStore: SessionMailCredentials(),
+          ),
+        ),
       );
       await tester.enterText(
         _input(_strings.password),
@@ -173,6 +179,7 @@ void main() {
     await tester.pumpWidget(
       MaterialApp(
         home: StudioMailDialog(
+          credentialStore: SessionMailCredentials(),
           draftStoreFactory: MemoryStudioMailDrafts().open,
           strings: _strings,
           accountDiscovery: (_) async {

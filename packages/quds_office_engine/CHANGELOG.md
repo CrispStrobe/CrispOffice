@@ -4,6 +4,16 @@ All notable changes to `quds_office_engine` are documented here.
 
 ## Unreleased
 
+- Preserve bounded rectangular Zotero research-note and annotation tables as
+  native Word blocks, including rich cell content, pictures, independent lists
+  and active citations in row order. Map consistent column widths and supported
+  cell fills while sharing whole-note resource budgets. Preserve surrounding
+  prose, authored-note markers and a main-flow caret after trailing tables.
+  Refuse merged/nested tables, unsupported styling and table-cell destinations
+  for table payloads before publication. See the
+  [implementation and validation record](../../docs/validation/zotero-research-tables-20261120/README.md)
+  for the tested source and remaining application acceptance.
+
 - Continue the bounded Word/PowerPoint VBA adapters with Word document aliases,
   `Paragraphs.Item`, small caps, superscript/subscript and fixed-palette
   highlighting; add PowerPoint typed text-frame/formatting/transition helpers,

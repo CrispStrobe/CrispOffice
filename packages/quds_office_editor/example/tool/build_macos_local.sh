@@ -11,6 +11,9 @@ fi
 [[ "$IDENTITY" =~ ^[0-9A-Fa-f]{40}$ ]] || {
   echo "Select one installed development certificate with QUDS_LOCAL_SIGN_IDENTITY (SHA-1)." >&2; exit 1;
 }
+python3 -c 'import inspect,tarfile; assert "filter" in inspect.signature(tarfile.TarFile.extractall).parameters' || {
+  echo 'Use a current Python (3.12 or newer recommended) for safe native-source extraction.' >&2; exit 1;
+}
 bash "$EXAMPLE/tool/build_macos_app.sh" --sign adhoc "$@"
 case "$QUDS_BUILD_MODE" in debug) CONFIG=Debug ;; release) CONFIG=Release ;; profile) CONFIG=Profile ;; esac
 APP="$EXAMPLE/build/macos/Build/Products/$CONFIG/CrispOffice.app"

@@ -4,6 +4,24 @@ All notable changes to `quds_office_editor` are documented here.
 
 ## Unreleased
 
+- Accept supported Zotero research tables through the existing Add Note and
+  Add Annotation commands, preserving active citations, surrounding prose and
+  the single undo/redo transaction. Keep authored-note markers before leading
+  tables and restore the final caret to the main flow after trailing tables.
+  The Notes pane retains table cells while editing surrounding prose; incoming
+  tables require a destination outside existing tables. See the
+  [implementation and validation record](../../docs/validation/zotero-research-tables-20261120/README.md)
+  for source-specific checks and remaining application acceptance.
+
+- Quote HTML-only messages through the bounded inert body projection in Reply,
+  Reply all and forwarding. Prefer authoritative plain text, keep Bcc and
+  attachment metadata out of quotes, and retain Unicode-safe truncation.
+- Add explicit Forward with attachments beside Forward text only in the shared
+  native IMAP/EWS/cloud hosts. Require a complete source parse and admit all
+  decoded parts before copying within the ten-file/10 MiB limit. Include inline
+  images as ordinary files, preserve exact bytes through drafts and sending,
+  and keep retained/uncertain drafts protected from replacement.
+
 - Remember up to 20 native IMAP/SMTP accounts in a bounded platform-keychain
   catalog. Restore the selected account, choose another account explicitly,
   and forget only that account. Migrate the previous single-account record

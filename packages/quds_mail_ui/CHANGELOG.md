@@ -1,5 +1,7 @@
 ## 0.1.0
 
+- Add a bounded body-only quotation API, preserving empty plain alternatives and
+  rejecting incomplete HTML without reading message headers or attachments.
 - Add a reusable foreground mailbox list with explicit loaded-message search,
   combined unread/flagged filters, bounded host-owned pagination, stable message
   focus, keyboard opening and provider/account scope resets.

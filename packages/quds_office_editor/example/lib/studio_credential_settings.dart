@@ -45,8 +45,9 @@ class _CredentialSettingsState extends State<_CredentialSettings> {
       final has = await manager.vaultExists();
       if (mounted) setState(() => existing = has);
     } catch (_) {
-      if (mounted)
+      if (mounted) {
         setState(() => error = 'The existing vault could not be inspected.');
+      }
     }
   }
 
@@ -79,11 +80,12 @@ class _CredentialSettingsState extends State<_CredentialSettings> {
       await manager.select(selectedMode, path: selectedPath);
       if (mounted) Navigator.pop(context, true);
     } catch (_) {
-      if (mounted)
+      if (mounted) {
         setState(
           () => error =
               'Could not open the selected credential store. Check its access or password and try again.',
         );
+      }
     } finally {
       if (mounted) setState(() => busy = false);
     }
@@ -108,7 +110,9 @@ class _CredentialSettingsState extends State<_CredentialSettings> {
               DropdownButtonFormField<StudioCredentialMode>(
                 initialValue: mode,
                 isExpanded: true,
-                decoration: const InputDecoration(labelText: 'Credential store'),
+                decoration: const InputDecoration(
+                  labelText: 'Credential store',
+                ),
                 items: [
                   for (final m in StudioCredentialMode.values)
                     if (m != StudioCredentialMode.customKeychain ||
@@ -147,8 +151,9 @@ class _CredentialSettingsState extends State<_CredentialSettings> {
                               await MacOsCustomKeychainStorage.chooseKeychain(
                                 initialPath: path.text,
                               );
-                          if (mounted && selected != null)
+                          if (mounted && selected != null) {
                             setState(() => path.text = selected);
+                          }
                         },
                   icon: const Icon(Icons.folder_open),
                   label: const Text('Browse…'),
@@ -166,7 +171,9 @@ class _CredentialSettingsState extends State<_CredentialSettings> {
                   enabled: !busy,
                   obscureText: true,
                   autofocus: true,
-                  decoration: const InputDecoration(labelText: 'Master password'),
+                  decoration: const InputDecoration(
+                    labelText: 'Master password',
+                  ),
                 ),
                 if (!existing)
                   TextField(
@@ -190,7 +197,9 @@ class _CredentialSettingsState extends State<_CredentialSettings> {
                   padding: const EdgeInsets.only(top: 12),
                   child: Text(
                     error!,
-                    style: TextStyle(color: Theme.of(context).colorScheme.error),
+                    style: TextStyle(
+                      color: Theme.of(context).colorScheme.error,
+                    ),
                   ),
                 ),
             ],
