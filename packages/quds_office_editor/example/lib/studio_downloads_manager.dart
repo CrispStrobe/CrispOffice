@@ -1,9 +1,12 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:quds_office_editor/quds_office_editor.dart';
 import 'package:quds_proofing_spacy/quds_proofing_spacy.dart';
 import 'studio_hunspell_host.dart';
 import 'studio_arabic_morph_host.dart';
 import 'studio_spacy_host.dart';
+import 'studio_font_pack_host.dart';
+import 'studio_font_pack_setup.dart';
 import 'studio_hunspell_setup.dart';
 import 'studio_spacy_setup.dart';
 
@@ -19,6 +22,7 @@ Future<void> showStudioDownloadsManager(
     hunspell: studioHunspellHost,
     morphology: studioArabicMorphHost,
     spacy: studioSpacyHost,
+    fontPacks: studioFontPackHost,
   ),
 );
 
@@ -29,11 +33,15 @@ class StudioDownloadsManager extends StatefulWidget {
     required this.morphology,
     required this.spacy,
     this.languages = const <String>{},
+    this.fontPacks,
   });
   final StudioHunspellHost hunspell;
   final StudioArabicMorphHost morphology;
   final StudioSpacyHost spacy;
   final Set<String> languages;
+
+  /// Optional open font packs; null keeps the manager language-only (tests).
+  final StudioFontPackHost? fontPacks;
   @override
   State<StudioDownloadsManager> createState() => _StudioDownloadsManagerState();
 }
@@ -47,12 +55,14 @@ class _StudioDownloadsManagerState extends State<StudioDownloadsManager> {
     widget.hunspell.addListener(_changed);
     widget.morphology.addListener(_changed);
     widget.spacy.addListener(_changed);
+    widget.fontPacks?.addListener(_changed);
     unawaited(
       _run(() async {
         await Future.wait<void>(<Future<void>>[
           widget.hunspell.refresh(),
           widget.morphology.refresh(),
           widget.spacy.refresh(),
+          if (widget.fontPacks case final packs?) packs.refresh(),
         ]);
       }),
     );
@@ -63,6 +73,7 @@ class _StudioDownloadsManagerState extends State<StudioDownloadsManager> {
     widget.hunspell.removeListener(_changed);
     widget.morphology.removeListener(_changed);
     widget.spacy.removeListener(_changed);
+    widget.fontPacks?.removeListener(_changed);
     super.dispose();
   }
 
@@ -165,6 +176,11 @@ class _StudioDownloadsManagerState extends State<StudioDownloadsManager> {
       context: context,
       builder: (_) => StudioSpacySetupDialog(host: widget.spacy),
     );
+    void fontPack(OfficeFontPackStatus status) => showDialog<void>(
+      context: context,
+      builder: (_) =>
+          StudioFontPackSetupDialog(status: status, host: widget.fontPacks!),
+    );
     return AlertDialog(
       title: const Text('Language downloads'),
       scrollable: true,
@@ -195,6 +211,27 @@ class _StudioDownloadsManagerState extends State<StudioDownloadsManager> {
                 'German spelling/writing rules, English Harper checker, Arabic writing rules, language detection and bundled thesaurus data. Bundled files are part of the application; downloaded packages below can be removed independently.',
               ),
             ),
+            if (widget.fontPacks case final packs?) ...<Widget>[
+              const Text('Office font downloads'),
+              for (final status in packs.statuses)
+                _entry(
+                  title: status.pack.title,
+                  detail:
+                      '${status.pack.description} · ${_size(status.pack.bytes)} · ${status.pack.licence}\n'
+                      '${status.installed ? status.directory : "Optional download from the pinned open font pack"}',
+                  installed: status.installed,
+                  manage: () => fontPack(status),
+                  problem: status.problem,
+                  remove: status.installed || status.problem != null
+                      ? () => packs.remove(status.pack)
+                      : null,
+                ),
+              if (packs.statuses.isEmpty)
+                const Text(
+                  'Font pack status is not available on this platform.',
+                ),
+              const SizedBox(height: 8),
+            ],
             const Text('Download inventory — all languages'),
             for (final item in widget.hunspell.statuses)
               _entry(

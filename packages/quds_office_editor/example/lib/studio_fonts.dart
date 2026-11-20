@@ -3,6 +3,7 @@ import 'dart:typed_data';
 import 'package:quds_office_editor/quds_office_editor.dart';
 
 import 'studio_files.dart';
+import 'studio_font_pack_host.dart';
 import 'studio_pdf_faces.dart';
 
 /// Studio extras on top of [OfficeHostFonts].
@@ -37,5 +38,8 @@ abstract final class StudioFonts {
         // Bundled compatibility aliases keep their existing ownership.
       }
     }
+    // Optional open packs fill gaps only after exact Office/OS faces have
+    // claimed their names. Installed packs therefore never override Office.
+    await studioFontPackHost.registerInstalled();
   }
 }

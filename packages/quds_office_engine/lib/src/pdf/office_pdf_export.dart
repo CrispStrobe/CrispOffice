@@ -2893,6 +2893,15 @@ class _FontPack {
   final List<PdfEmbeddedFace> faces = <PdfEmbeddedFace>[];
   final Map<(SfntFont, double), FontMetrics> _metrics = {};
 
+  double kerningOf(int leftCp, int rightCp, double size) {
+    final SfntFont? font = fontFor(leftCp);
+    if (font == null || font.unitsPerEm <= 0) return 0;
+    final int left = font.glyphIdFor(leftCp);
+    final int right = font.glyphIdFor(rightCp);
+    if (left == 0 || right == 0) return 0;
+    return font.kerningForGlyphs(left, right) * size / font.unitsPerEm;
+  }
+
   SfntFont? fontFor(
     int cp, {
     String? family,
