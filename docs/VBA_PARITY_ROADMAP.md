@@ -123,7 +123,7 @@ Word ranges or live execution were added. See the
 [exact contract](VBA_WORD_MACROS.md#custom-paragraph-tab-stops) and
 [source-bound local qualification](validation/word-vba-tabstops-20261120/README.md).
 
-### Next shared-language increments
+### Custom Word line spacing
 
 The Word spacing continuation adds exact, minimum and custom multiple spacing
 through explicit `LineSpacingRule` / `LineSpacing` pairs, standard `Space1`,
@@ -133,6 +133,36 @@ intervening document writes are refused. This deliberately bounded contract
 does not introduce live spacing reads or infer existing font metrics. See the
 [exact contract](VBA_WORD_MACROS.md#exact-minimum-and-multiple-line-spacing)
 and [local qualification](validation/word-vba-paragraph-spacing-20261120/README.md).
+
+### Paragraph spacing controls
+
+The paragraph-controls continuation adds `OpenUp`, `CloseUp` and
+`OpenOrCloseUp` on `Paragraph` and `ParagraphFormat`. The native operation
+resolves each toggle against the detached document after earlier plan edits;
+no document value is exposed to source expressions. Sparse before ownership
+preserves after/line inheritance, and conservative source guards refuse
+unmodeled automatic/line-based spacing and ambiguous styles. Default paragraph
+styles now recognize native Boolean flags and native namespace identities.
+This continuation also qualifies the incoming custom spacing work described
+below. See the [exact contract](VBA_WORD_MACROS.md#opening-closing-and-toggling-paragraph-spacing)
+and [local evidence](validation/word-vba-paragraph-controls-20261120/README.md).
+
+### Physical Word measurements
+
+The Word measurement continuation adds inches, centimeters, millimeters and
+picas in both directions, and official named arguments for all ten unit
+conversions, including the existing line/point functions. It uses exact physical
+ratios with bounded Double arithmetic and exact native-grid canonicalization;
+it does not emulate VBA Single rounding or loosen property precision guards.
+The `word_named_measurements.bas` example and source/integration checks
+exercise document publication, CLI/MCP paths and VM/JavaScript behavior.
+The original eight-operation `word_measurements.bas` and independent
+nine-operation `word_unit_conversions.bas` examples and their fixtures remain
+available alongside the thirteen-operation named-argument example. See the
+[measurement contract](VBA_WORD_MACROS.md#physical-measurement-conversions)
+and [qualification record](validation/word-vba-unit-conversions-20261120/README.md).
+
+### Next shared-language increments
 
 Keep multidimensional arrays and array parameter passing as separate increments
 with their own shape, ownership, aliasing and resource tests. Broader implicit

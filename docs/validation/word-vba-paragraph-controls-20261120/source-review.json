@@ -1,0 +1,2341 @@
+{
+  "schema_version": 1,
+  "reviewed_at_utc": "2026-11-20T18:36:27.340324+00:00",
+  "reviewer": "compatibility_plan collaborating agent",
+  "role_disclosure": "Contributor to compiler and style-cascade corrections; peer reviewer of the native paragraph-spacing helper authored by root. This is not an independent review of the entire change by a non-contributor.",
+  "repository": "CrispStrobe/quds_office_suite",
+  "checkout_head_at_review": "aacc5e7e2edd0cb6345e6e0140796f0f1382f574",
+  "source_binding_note": "Hashes below identify the working-tree files actually inspected at review completion. They are not asserted to be historical source manifests for earlier standalone test runs. Final gate and publication binding are recorded separately by root.",
+  "reviewed_source_files": [
+    {
+      "path": "packages/quds_office_engine/lib/src/automation/office_vba_language.dart",
+      "bytes": 192489,
+      "sha256": "b7bee8b38a300336f1daa27f054ad949945f630554e52573ba5fa58a7b3714f2"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/automation/operations/word_steps.dart",
+      "bytes": 32139,
+      "sha256": "a482ef19f744b641d9448e3e35547c66736e189992a8b20de7196dd2da3f7bee"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/automation/operations/word_spacing_steps.dart",
+      "bytes": 14432,
+      "sha256": "e85dd149cda6eb7a26bace95168ff064716d88d917fadeb97e4436d14809f715"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/serial/word_style_cascade.dart",
+      "bytes": 39646,
+      "sha256": "7f550d3fb59b1041c08ec91209725ce4be88bc2ead1d97f78c513dcbb4f60184"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/serial/word_property_io.dart",
+      "bytes": 16080,
+      "sha256": "dec09698f92c895324abd5df653b7a7b86ea1bf89c4619983d26b56938be56a4"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/serial/word_deserializer.dart",
+      "bytes": 160057,
+      "sha256": "929c35fe59d9b7267dd74a94f7f0dc4353c8db11c569a5a7f5601c5f4868ded8"
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_vba_word_paragraph_controls_test.dart",
+      "bytes": 11967,
+      "sha256": "6d514569a07bdf40e38fb5cf65c0450d124e18c887b13ca7c5db27b60d0455a4"
+    },
+    {
+      "path": "packages/quds_office_engine/test/word_paragraph_style_identity_test.dart",
+      "bytes": 11925,
+      "sha256": "db4222df5ec8ce0ee599389dac2eaee1dcc32e5cdba980e61e256d2523cd781a"
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_macro_word_paragraph_controls_test.dart",
+      "bytes": 23237,
+      "sha256": "269e9e8ee0d36f372c448d490e921bae1c68a635e1b98d38c7e1f2331e35ba17"
+    }
+  ],
+  "scope": {
+    "members": [
+      "Paragraph.OpenUp",
+      "Paragraph.CloseUp",
+      "Paragraph.OpenOrCloseUp",
+      "ParagraphFormat.OpenUp",
+      "ParagraphFormat.CloseUp",
+      "ParagraphFormat.OpenOrCloseUp"
+    ],
+    "native_operation": "docx.paragraphSpaceBefore",
+    "actions": {
+      "open": "Set configured paragraph spacing before to 12 points.",
+      "close": "Set configured paragraph spacing before to zero.",
+      "toggle": "Resolve current configured before-spacing at native execution; zero becomes 12 points and positive becomes zero."
+    },
+    "compiler_review": [
+      "Explicit Paragraph or ParagraphFormat receivers only.",
+      "Typed aliases, required ByVal object parameters, nested With, bare/parenthesized/Call statement forms.",
+      "Receiver evaluation once; no source-time document reads or folding of repeated native toggles.",
+      "Invalid call forms checked in unreachable source; no reads/property assignments exposed.",
+      "Each call emits one native step, shares the existing aggregate operation budget, and cannot interrupt a pending custom line-spacing pair."
+    ],
+    "native_peer_review": [
+      "Action and source guards precede property-copy publication.",
+      "Only the spacing:before ownership group is removed from the imported snapshot; after/line ownership is retained.",
+      "Existing unbalanced-field and markup-alternative guards are reused.",
+      "Before-lines, enabled automatic before-spacing, unsupported numbering/table-region spacing and malformed native before values are conservatively refused.",
+      "Native style identity ambiguities are refused; resolved identities use namespace-aware source selection.",
+      "Source/style extension metadata is retained through the existing sparse property writer and covered by dedicated import/refresh/reopen tests.",
+      "Omitted native style type is paragraph, including when foreign type metadata is present.",
+      "Cross-kind/numbering inheritance and unresolved or ambiguous paragraph/table style references are explicitly refused for the three new controls."
+    ]
+  },
+  "findings": [
+    {
+      "id": "PC-STYLE-DEFAULT-BOOLEAN",
+      "status": "resolved",
+      "severity": "correctness",
+      "problem": "The cascade recognized only default=1. Valid default=true/on paragraph styles were ignored, so a style containing 120 twips before-spacing could import as zero and toggle to 12 points rather than zero.",
+      "reproduction": "Probe output entries defaultAttribute=true and on both observed before=0 and after=12.",
+      "correction": "_StyleCascade._load recognizes the native default attribute and all enabled OnOff spellings: 1, true, on.",
+      "regression": "Six enabled-default cases across standard and alternate prefixes, plus three disabled-default cases, with refresh/save/reopen and toggle checks."
+    },
+    {
+      "id": "PC-STYLE-NAMESPACE-IDENTITY",
+      "status": "resolved",
+      "severity": "correctness",
+      "problem": "Foreign style elements or style identity/default/basedOn attributes could enter the effective native cascade and change the branch selected by the toggle.",
+      "reproduction": "Three namespace probe cases each observed a foreign source producing before=6 and after=0 instead of native before=0 and after=12.",
+      "correction": "_load now registers native style records and native styleId/type/default attributes; chain selects a native basedOn child and native val. Original XML is not rewritten.",
+      "regression": "Foreign lookalikes, conflicting native/foreign attributes, alternate prefixes, style refresh and exact retained fixture styles XML."
+    },
+    {
+      "id": "PC-TABLE-REGION-NAMESPACE",
+      "status": "resolved",
+      "severity": "correctness",
+      "problem": "The table cascade selected foreign tblStylePr/type lookalikes, allowing a foreign wholeTable packet to supply before-spacing.",
+      "reproduction": "Table namespace probe observed before=6 and after=0 from foreign tblStylePr; correct native before was zero.",
+      "correction": "_tableCellLayers selects native tblStylePr records and native type attributes by namespace.",
+      "regression": "Five table-region cases cover native wholeTable inheritance with two prefixes, foreign regions, foreign type-only metadata, and conflicting native/foreign type attributes."
+    },
+    {
+      "id": "PC-STYLE-AMBIGUITY-GUARD",
+      "status": "addressed_in_native_review",
+      "severity": "correctness",
+      "problem": "Runtime toggle selection must not rely on duplicate native style identities/defaults or incomplete/cyclic native basedOn chains.",
+      "correction": "Root added pre-mutation checks for unique nonempty native style IDs, default Boolean values and duplicate default paragraph styles, duplicate native basedOn/identity attributes, and complete acyclic inheritance.",
+      "verification_note": "Reviewed source implementation. Native guard regression execution and totals are owned by root and are not added to this reviewer's standalone test totals."
+    },
+    {
+      "id": "PC-STYLE-OMITTED-TYPE",
+      "status": "resolved",
+      "severity": "correctness",
+      "problem": "The new namespace-aware default-style selection required an explicit paragraph type. WordprocessingML defines an omitted native type as paragraph, so valid omitted-type defaults could be ignored. One original identity test incorrectly treated a foreign type attribute with omitted native type as making the native style inactive.",
+      "source_evidence": "ECMA-376 Part1 5th edition, section17.7.4.17 style, type (Style Type), printed page644 / PDF page654.",
+      "correction": "The cascade uses the native type when present and otherwise paragraph. Root applies the same default in native type/default validation. Foreign type metadata cannot replace the native omitted-type default.",
+      "regression": "Corrected40-case identity suite: six omitted-type defaults across two prefixes and three enabled Boolean spellings; four foreign type values; three omitted/explicit paragraph basedOn combinations. Cases verify effective spacing, refresh, toggle and repeated save/reopen with exact retained authored styles XML."
+    },
+    {
+      "id": "PC-STYLE-INHERITANCE-KIND",
+      "status": "addressed_in_native_review",
+      "severity": "correctness",
+      "problem": "The existing general cascade follows basedOn chains without enforcing same-kind inheritance. WordprocessingML ignores cross-kind basedOn and all numbering-style basedOn; a before-spacing toggle must not use an unsupported inherited value.",
+      "source_evidence": "Microsoft Open XML BasedOn remarks reproduce ISO/IEC29500 rules for paragraph/table/character same-kind inheritance and ignored numbering inheritance.",
+      "correction": "Root validates native kinds with omitted type defaulting to paragraph; rejects unknown/empty kinds, cross-kind basedOn, and any numbering basedOn before all three new controls. Existing complete/acyclic checks remain. The general style cascade is not broadly rewritten.",
+      "verification_note": "Reviewed native helper and regression cases; final focused native suite115 passed. These are bounded refusal checks, not a claim that the engine now implements all style inheritance semantics."
+    },
+    {
+      "id": "PC-STYLE-REFERENCE-ADMISSION",
+      "status": "addressed_in_native_review",
+      "severity": "correctness",
+      "problem": "The existing paragraph/table cascade can follow a referenced style of the wrong kind. Paragraph properties parsing also dispatches pStyle by local name without the direct native element filter used for spacing, so foreign or nested selector packets can influence the modeled selection.",
+      "correction": "Root collects validated native style kinds, requires the selected modeled paragraph style to resolve to paragraph, and validates raw pStyle/tblStyle references in Word XML plus current sourcePropertiesXml. Wrong-kind, missing, foreign, malformed, misplaced, duplicate and ambiguous references are refused before mutation.",
+      "verification_note": "Reviewed the completed guard and focused native cases. The raw sourcePropertiesXml root is included in deferred reference validation. Foreign val beside native val is an explicit conservative admission restriction; this review does not claim an observed value-precedence bug in pStyle, whose reader already selects native val by namespace."
+    }
+  ],
+  "diagnostic_probes": [
+    {
+      "script": {
+        "path": "/workspace/scratch/b77d79e8305c/runtime/paragraph_controls_review_probe.dart",
+        "bytes": 1301,
+        "sha256": "181d3bfa0b44fab9c3bb3e89dddffcd373b5428e8680297056f750d1bb07a619"
+      },
+      "script_utf8": "import 'dart:convert';\nimport 'package:quds_office_engine/quds_office_engine.dart';\nimport 'package:quds_office_engine/src/automation/operations/word_steps.dart' as native;\n\nvoid main() {\n  final results = <Map<String, Object?>>[];\n  for (final value in ['1', 'true', 'on']) {\n    final package = OpcPackage.openBytes((DocxDocumentBuilder()..paragraph('template')).build());\n    package.getPart('/word/document.xml')!.writeText('<w:document xmlns:w=\"${OfficeNamespaces.w}\"><w:body><w:p><w:r><w:t>target</w:t></w:r></w:p><w:sectPr/></w:body></w:document>');\n    package.getPart('/word/styles.xml')!.writeText('<w:styles xmlns:w=\"${OfficeNamespaces.w}\"><w:style w:type=\"paragraph\" w:default=\"$value\" w:styleId=\"PositiveDefault\"><w:name w:val=\"Positive default\"/><w:pPr><w:spacing w:before=\"120\"/></w:pPr></w:style></w:styles>');\n    final doc = WordDeserializer().readBytes(package.save());\n    final before = doc.paragraphs.single.properties.spacingBefore;\n    String? failure;\n    try { native.applyStep(doc, {'op':'paragraphSpaceBefore','paragraph':0,'action':'toggle'}); } catch(e) {failure=e.toString();}\n    final after = doc.paragraphs.single.properties.spacingBefore;\n    results.add({'defaultAttribute':value,'before':before,'after':after,'error':failure});\n  }\n  print(jsonEncode(results));\n}\n",
+      "output": {
+        "path": "/workspace/scratch/b77d79e8305c/runtime/paragraph-controls-review-probe.json",
+        "bytes": 197,
+        "sha256": "2d89e8be57ac3db54524c6bf0d1d345bbb3b13fd94d500b5301290d0f80c5b7e"
+      },
+      "observed_before_correction": [
+        {
+          "defaultAttribute": "1",
+          "before": 6.0,
+          "after": 0.0,
+          "error": null
+        },
+        {
+          "defaultAttribute": "true",
+          "before": 0.0,
+          "after": 12.0,
+          "error": null
+        },
+        {
+          "defaultAttribute": "on",
+          "before": 0.0,
+          "after": 12.0,
+          "error": null
+        }
+      ],
+      "classification": "Diagnostic reproduction before the correction, not a passing regression case or publication gate."
+    },
+    {
+      "script": {
+        "path": "/workspace/scratch/b77d79e8305c/runtime/paragraph_controls_namespace_probe.dart",
+        "bytes": 1806,
+        "sha256": "c26a2d41ce77f59b7b73d48d5845d1bc1942301569907df67230acdb8ccd05be"
+      },
+      "script_utf8": "import 'dart:convert';\nimport 'package:quds_office_engine/quds_office_engine.dart';\nimport 'package:quds_office_engine/src/automation/operations/word_steps.dart' as native;\n\nvoid main() {\n  final cases = <String,String>{\n    'foreign_default_style': '<w:style w:type=\"paragraph\" w:default=\"1\" w:styleId=\"Base\"><w:pPr><w:spacing w:before=\"0\"/></w:pPr></w:style><x:style x:type=\"paragraph\" x:default=\"1\" x:styleId=\"Foreign\"><w:pPr><w:spacing w:before=\"120\"/></w:pPr></x:style>',\n    'foreign_default_attribute': '<w:style w:type=\"paragraph\" x:default=\"1\" w:styleId=\"Base\"><w:pPr><w:spacing w:before=\"120\"/></w:pPr></w:style>',\n    'foreign_based_on': '<w:style w:type=\"paragraph\" w:styleId=\"Positive\"><w:pPr><w:spacing w:before=\"120\"/></w:pPr></w:style><w:style w:type=\"paragraph\" w:default=\"1\" w:styleId=\"Base\"><x:basedOn x:val=\"Positive\"/></w:style>',\n  };\n  final results = <Map<String, Object?>>[];\n  for (final entry in cases.entries) {\n    final package = OpcPackage.openBytes((DocxDocumentBuilder()..paragraph('template')).build());\n    package.getPart('/word/document.xml')!.writeText('<w:document xmlns:w=\"${OfficeNamespaces.w}\"><w:body><w:p><w:r><w:t>target</w:t></w:r></w:p><w:sectPr/></w:body></w:document>');\n    package.getPart('/word/styles.xml')!.writeText('<w:styles xmlns:w=\"${OfficeNamespaces.w}\" xmlns:x=\"urn:foreign\">${entry.value}</w:styles>');\n    final doc = WordDeserializer().readBytes(package.save());\n    final before = doc.paragraphs.single.properties.spacingBefore;\n    String? failure;\n    try { native.applyStep(doc, {'op':'paragraphSpaceBefore','paragraph':0,'action':'toggle'}); } catch(e) {failure=e.toString();}\n    results.add({'case':entry.key,'before':before,'after':doc.paragraphs.single.properties.spacingBefore,'error':failure});\n  }\n  print(jsonEncode(results));\n}\n",
+      "output": {
+        "path": "/workspace/scratch/b77d79e8305c/runtime/paragraph-controls-namespace-probe.json",
+        "bytes": 214,
+        "sha256": "01152eaf871f068e116e93bfb9a997fbbaed4d6b900e35d6b86f3e08fe4a18cb"
+      },
+      "observed_before_correction": [
+        {
+          "case": "foreign_default_style",
+          "before": 6.0,
+          "after": 0.0,
+          "error": null
+        },
+        {
+          "case": "foreign_default_attribute",
+          "before": 6.0,
+          "after": 0.0,
+          "error": null
+        },
+        {
+          "case": "foreign_based_on",
+          "before": 6.0,
+          "after": 0.0,
+          "error": null
+        }
+      ],
+      "classification": "Diagnostic reproduction before the correction, not a passing regression case or publication gate."
+    },
+    {
+      "script": {
+        "path": "/workspace/scratch/b77d79e8305c/runtime/paragraph_controls_table_namespace_probe.dart",
+        "bytes": 1256,
+        "sha256": "b3adc7f56bd8f72ef84be3f0e3bf22fbab607715a508072f5dd9963bd430b0b0"
+      },
+      "script_utf8": "import 'dart:convert';\nimport 'package:quds_office_engine/quds_office_engine.dart';\nimport 'package:quds_office_engine/src/automation/operations/word_steps.dart' as native;\nvoid main() {\n  final package = OpcPackage.openBytes((DocxDocumentBuilder()..paragraph('template')).build());\n  package.getPart('/word/document.xml')!.writeText('<w:document xmlns:w=\"${OfficeNamespaces.w}\"><w:body><w:tbl><w:tblPr><w:tblStyle w:val=\"TableStyle\"/></w:tblPr><w:tblGrid><w:gridCol w:w=\"2000\"/></w:tblGrid><w:tr><w:tc><w:p><w:r><w:t>target</w:t></w:r></w:p></w:tc></w:tr></w:tbl><w:sectPr/></w:body></w:document>');\n  package.getPart('/word/styles.xml')!.writeText('<w:styles xmlns:w=\"${OfficeNamespaces.w}\" xmlns:x=\"urn:foreign\"><w:style w:type=\"table\" w:styleId=\"TableStyle\"><x:tblStylePr x:type=\"wholeTable\"><w:pPr><w:spacing w:before=\"120\"/></w:pPr></x:tblStylePr></w:style></w:styles>');\n  final doc=WordDeserializer().readBytes(package.save());\n  final before=doc.paragraphs.single.properties.spacingBefore;\n  String? failure;\n  try {native.applyStep(doc, {'op':'paragraphSpaceBefore','paragraph':0,'action':'toggle'});}catch(e){failure=e.toString();}\n  print(jsonEncode({'before':before,'after':doc.paragraphs.single.properties.spacingBefore,'error':failure}));\n}\n",
+      "output": {
+        "path": "/workspace/scratch/b77d79e8305c/runtime/paragraph-controls-table-namespace-probe.json",
+        "bytes": 40,
+        "sha256": "22797eba895590ce6953f68c5768ca0665fdb05a7baf7bdcd385fa9dc5271cc3"
+      },
+      "observed_before_correction": {
+        "before": 6.0,
+        "after": 0.0,
+        "error": null
+      },
+      "classification": "Diagnostic reproduction before the correction, not a passing regression case or publication gate."
+    }
+  ],
+  "standalone_test_runs": [
+    {
+      "test_file": "packages/quds_office_engine/test/office_vba_word_paragraph_controls_test.dart",
+      "log": {
+        "path": "/workspace/scratch/b77d79e8305c/runtime/paragraph-controls-compiler.jsonl",
+        "bytes": 70411,
+        "sha256": "2cfdd2df3c524d857d566b1ea22ddc1c43f0d959d31b7f93209246e53a045920"
+      },
+      "counting_rule": "Count testDone events whose hidden field is exactly false; retain case multiplicities; exclude loader events.",
+      "total_test_done_events": 149,
+      "hidden_test_done_events": 1,
+      "test_cases": 148,
+      "passing_cases": 148,
+      "failed_cases": 0,
+      "skipped_cases": 0,
+      "runner_done": [
+        {
+          "success": true,
+          "type": "done",
+          "time": 19937
+        }
+      ],
+      "cases": [
+        {
+          "name": "spacing control statement: ActiveDocument.Paragraphs(2).OpenUp",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "spacing control statement: ActiveDocument.Paragraphs(2).OpenUp()",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "spacing control statement: Call ActiveDocument.Paragraphs(2).OpenUp",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "spacing control statement: Call ActiveDocument.Paragraphs(2).OpenUp()",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "spacing control statement: call activedocument.paragraphs(2).openup()",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "spacing control statement: ActiveDocument.Paragraphs(2).CloseUp",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "spacing control statement: ActiveDocument.Paragraphs(2).CloseUp()",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "spacing control statement: Call ActiveDocument.Paragraphs(2).CloseUp",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "spacing control statement: Call ActiveDocument.Paragraphs(2).CloseUp()",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "spacing control statement: call activedocument.paragraphs(2).closeup()",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "spacing control statement: ActiveDocument.Paragraphs(2).OpenOrCloseUp",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "spacing control statement: ActiveDocument.Paragraphs(2).OpenOrCloseUp()",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "spacing control statement: Call ActiveDocument.Paragraphs(2).OpenOrCloseUp",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "spacing control statement: Call ActiveDocument.Paragraphs(2).OpenOrCloseUp()",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "spacing control statement: call activedocument.paragraphs(2).openorcloseup()",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "spacing control statement: ActiveDocument.Paragraphs(2).Format.OpenUp",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "spacing control statement: ActiveDocument.Paragraphs(2).Format.OpenUp()",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "spacing control statement: Call ActiveDocument.Paragraphs(2).Format.OpenUp",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "spacing control statement: Call ActiveDocument.Paragraphs(2).Format.OpenUp()",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "spacing control statement: call activedocument.paragraphs(2).format.openup()",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "spacing control statement: ActiveDocument.Paragraphs(2).Format.CloseUp",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "spacing control statement: ActiveDocument.Paragraphs(2).Format.CloseUp()",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "spacing control statement: Call ActiveDocument.Paragraphs(2).Format.CloseUp",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "spacing control statement: Call ActiveDocument.Paragraphs(2).Format.CloseUp()",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "spacing control statement: call activedocument.paragraphs(2).format.closeup()",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "spacing control statement: ActiveDocument.Paragraphs(2).Format.OpenOrCloseUp",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "spacing control statement: ActiveDocument.Paragraphs(2).Format.OpenOrCloseUp()",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "spacing control statement: Call ActiveDocument.Paragraphs(2).Format.OpenOrCloseUp",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "spacing control statement: Call ActiveDocument.Paragraphs(2).Format.OpenOrCloseUp()",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "spacing control statement: call activedocument.paragraphs(2).format.openorcloseup()",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "spacing control statement: ActiveDocument.Paragraphs(2).Range.ParagraphFormat.OpenUp",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "spacing control statement: ActiveDocument.Paragraphs(2).Range.ParagraphFormat.OpenUp()",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "spacing control statement: Call ActiveDocument.Paragraphs(2).Range.ParagraphFormat.OpenUp",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "spacing control statement: Call ActiveDocument.Paragraphs(2).Range.ParagraphFormat.OpenUp()",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "spacing control statement: call activedocument.paragraphs(2).range.paragraphformat.openup()",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "spacing control statement: ActiveDocument.Paragraphs(2).Range.ParagraphFormat.CloseUp",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "spacing control statement: ActiveDocument.Paragraphs(2).Range.ParagraphFormat.CloseUp()",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "spacing control statement: Call ActiveDocument.Paragraphs(2).Range.ParagraphFormat.CloseUp",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "spacing control statement: Call ActiveDocument.Paragraphs(2).Range.ParagraphFormat.CloseUp()",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "spacing control statement: call activedocument.paragraphs(2).range.paragraphformat.closeup()",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "spacing control statement: ActiveDocument.Paragraphs(2).Range.ParagraphFormat.OpenOrCloseUp",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "spacing control statement: ActiveDocument.Paragraphs(2).Range.ParagraphFormat.OpenOrCloseUp()",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "spacing control statement: Call ActiveDocument.Paragraphs(2).Range.ParagraphFormat.OpenOrCloseUp",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "spacing control statement: Call ActiveDocument.Paragraphs(2).Range.ParagraphFormat.OpenOrCloseUp()",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "spacing control statement: call activedocument.paragraphs(2).range.paragraphformat.openorcloseup()",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "Paragraph aliases and named ByVal helpers retain their selector",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "ParagraphFormat aliases survive helper rebinding and other aliases",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "nested With restores Paragraph and ParagraphFormat receivers",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "With captures a bound selector before its variable is rebound",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "OpenUp captures a side-effecting paragraph index exactly once",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "CloseUp captures a side-effecting paragraph index exactly once",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "OpenOrCloseUp captures a side-effecting paragraph index exactly once",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "source scalar loops choose paragraphs without reading document state",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "repeated toggles remain ordered native operations",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "controls preserve a completed custom line-spacing pair",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "ActiveDocument.Paragraphs(2).OpenUp cannot interrupt a pending line-spacing pair",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "ActiveDocument.Paragraphs(2).Format.OpenUp cannot interrupt a pending line-spacing pair",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "OpenUp in a point-value helper cannot interrupt a pending pair",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "ActiveDocument.Paragraphs(2).CloseUp cannot interrupt a pending line-spacing pair",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "ActiveDocument.Paragraphs(2).Format.CloseUp cannot interrupt a pending line-spacing pair",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "CloseUp in a point-value helper cannot interrupt a pending pair",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "ActiveDocument.Paragraphs(2).OpenOrCloseUp cannot interrupt a pending line-spacing pair",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "ActiveDocument.Paragraphs(2).Format.OpenOrCloseUp cannot interrupt a pending line-spacing pair",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "OpenOrCloseUp in a point-value helper cannot interrupt a pending pair",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "OpenUp rejects arguments in an unused helper: 1",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "OpenUp rejects bare arguments in a dead branch: 1",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "OpenUp rejects arguments in an unused helper: 1, 2",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "OpenUp rejects bare arguments in a dead branch: 1, 2",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "OpenUp rejects arguments in an unused helper: ,",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "OpenUp rejects bare arguments in a dead branch: ,",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "OpenUp rejects arguments in an unused helper: Amount:=12",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "OpenUp rejects bare arguments in a dead branch: Amount:=12",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "OpenUp rejects arguments in an unused helper: Empty",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "OpenUp rejects bare arguments in a dead branch: Empty",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "CloseUp rejects arguments in an unused helper: 1",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "CloseUp rejects bare arguments in a dead branch: 1",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "CloseUp rejects arguments in an unused helper: 1, 2",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "CloseUp rejects bare arguments in a dead branch: 1, 2",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "CloseUp rejects arguments in an unused helper: ,",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "CloseUp rejects bare arguments in a dead branch: ,",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "CloseUp rejects arguments in an unused helper: Amount:=12",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "CloseUp rejects bare arguments in a dead branch: Amount:=12",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "CloseUp rejects arguments in an unused helper: Empty",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "CloseUp rejects bare arguments in a dead branch: Empty",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "OpenOrCloseUp rejects arguments in an unused helper: 1",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "OpenOrCloseUp rejects bare arguments in a dead branch: 1",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "OpenOrCloseUp rejects arguments in an unused helper: 1, 2",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "OpenOrCloseUp rejects bare arguments in a dead branch: 1, 2",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "OpenOrCloseUp rejects arguments in an unused helper: ,",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "OpenOrCloseUp rejects bare arguments in a dead branch: ,",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "OpenOrCloseUp rejects arguments in an unused helper: Amount:=12",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "OpenOrCloseUp rejects bare arguments in a dead branch: Amount:=12",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "OpenOrCloseUp rejects arguments in an unused helper: Empty",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "OpenOrCloseUp rejects bare arguments in a dead branch: Empty",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "wrong receiver refuses Application.OpenUp in unused source",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "wrong receiver refuses Application.CloseUp in unused source",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "wrong receiver refuses Application.OpenOrCloseUp in unused source",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "wrong receiver refuses ActiveDocument.OpenUp in unused source",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "wrong receiver refuses ActiveDocument.CloseUp in unused source",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "wrong receiver refuses ActiveDocument.OpenOrCloseUp in unused source",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "wrong receiver refuses ActiveDocument.Paragraphs.OpenUp in unused source",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "wrong receiver refuses ActiveDocument.Paragraphs.CloseUp in unused source",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "wrong receiver refuses ActiveDocument.Paragraphs.OpenOrCloseUp in unused source",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "wrong receiver refuses ActiveDocument.Paragraphs(2).Range.OpenUp in unused source",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "wrong receiver refuses ActiveDocument.Paragraphs(2).Range.CloseUp in unused source",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "wrong receiver refuses ActiveDocument.Paragraphs(2).Range.OpenOrCloseUp in unused source",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "wrong receiver refuses ActiveDocument.Paragraphs(2).Range.Font.OpenUp in unused source",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "wrong receiver refuses ActiveDocument.Paragraphs(2).Range.Font.CloseUp in unused source",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "wrong receiver refuses ActiveDocument.Paragraphs(2).Range.Font.OpenOrCloseUp in unused source",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "wrong receiver refuses ActiveDocument.Paragraphs(2).TabStops.OpenUp in unused source",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "wrong receiver refuses ActiveDocument.Paragraphs(2).TabStops.CloseUp in unused source",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "wrong receiver refuses ActiveDocument.Paragraphs(2).TabStops.OpenOrCloseUp in unused source",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "wrong receiver refuses ActiveDocument.Paragraphs(2).Range.ListFormat.OpenUp in unused source",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "wrong receiver refuses ActiveDocument.Paragraphs(2).Range.ListFormat.CloseUp in unused source",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "wrong receiver refuses ActiveDocument.Paragraphs(2).Range.ListFormat.OpenOrCloseUp in unused source",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "OpenUp refuses reads, property writes and unbound selectors: Dim value As Variant\nvalue = ActiveDocument.Paragraphs(2).Format.OpenUp",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "OpenUp refuses reads, property writes and unbound selectors: Dim value As Variant\nvalue = ActiveDocument.Paragraphs(2).OpenUp()",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "OpenUp refuses reads, property writes and unbound selectors: ActiveDocument.Paragraphs(2).Format.OpenUp = 0",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "OpenUp refuses reads, property writes and unbound selectors: Let ActiveDocument.Paragraphs(2).OpenUp = 12",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "OpenUp refuses reads, property writes and unbound selectors: Set ActiveDocument.Paragraphs(2).Format.OpenUp = ActiveDocument.Paragraphs(2).Format",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "OpenUp refuses reads, property writes and unbound selectors: With ActiveDocument.Paragraphs(2).OpenUp\nEnd With",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "OpenUp refuses reads, property writes and unbound selectors: Dim target As Paragraph\ntarget.OpenUp",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "OpenUp refuses reads, property writes and unbound selectors: Dim target As ParagraphFormat\ntarget.OpenUp",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "CloseUp refuses reads, property writes and unbound selectors: Dim value As Variant\nvalue = ActiveDocument.Paragraphs(2).Format.CloseUp",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "CloseUp refuses reads, property writes and unbound selectors: Dim value As Variant\nvalue = ActiveDocument.Paragraphs(2).CloseUp()",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "CloseUp refuses reads, property writes and unbound selectors: ActiveDocument.Paragraphs(2).Format.CloseUp = 0",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "CloseUp refuses reads, property writes and unbound selectors: Let ActiveDocument.Paragraphs(2).CloseUp = 12",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "CloseUp refuses reads, property writes and unbound selectors: Set ActiveDocument.Paragraphs(2).Format.CloseUp = ActiveDocument.Paragraphs(2).Format",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "CloseUp refuses reads, property writes and unbound selectors: With ActiveDocument.Paragraphs(2).CloseUp\nEnd With",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "CloseUp refuses reads, property writes and unbound selectors: Dim target As Paragraph\ntarget.CloseUp",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "CloseUp refuses reads, property writes and unbound selectors: Dim target As ParagraphFormat\ntarget.CloseUp",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "OpenOrCloseUp refuses reads, property writes and unbound selectors: Dim value As Variant\nvalue = ActiveDocument.Paragraphs(2).Format.OpenOrCloseUp",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "OpenOrCloseUp refuses reads, property writes and unbound selectors: Dim value As Variant\nvalue = ActiveDocument.Paragraphs(2).OpenOrCloseUp()",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "OpenOrCloseUp refuses reads, property writes and unbound selectors: ActiveDocument.Paragraphs(2).Format.OpenOrCloseUp = 0",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "OpenOrCloseUp refuses reads, property writes and unbound selectors: Let ActiveDocument.Paragraphs(2).OpenOrCloseUp = 12",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "OpenOrCloseUp refuses reads, property writes and unbound selectors: Set ActiveDocument.Paragraphs(2).Format.OpenOrCloseUp = ActiveDocument.Paragraphs(2).Format",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "OpenOrCloseUp refuses reads, property writes and unbound selectors: With ActiveDocument.Paragraphs(2).OpenOrCloseUp\nEnd With",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "OpenOrCloseUp refuses reads, property writes and unbound selectors: Dim target As Paragraph\ntarget.OpenOrCloseUp",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "OpenOrCloseUp refuses reads, property writes and unbound selectors: Dim target As ParagraphFormat\ntarget.OpenOrCloseUp",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "rejected arguments are diagnosed before a side-effecting argument runs",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "a valid zero-argument method in unreachable code emits no operation",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "maximum supported operation count accepts spacing controls",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "OpenUp obeys the aggregate native operation limit",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "CloseUp obeys the aggregate native operation limit",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "OpenOrCloseUp obeys the aggregate native operation limit",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "selector side effects share the native operation budget",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "paragraph spacing controls cannot leak into vba-excel",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "paragraph spacing controls cannot leak into vba-powerpoint",
+          "result": "success",
+          "skipped": false
+        }
+      ]
+    }
+  ],
+  "test_count_reconciliation": "The unchanged compiler standalone log contains 149 testDone events: one hidden loader and 148 real cases. The final focused two-suite log contains 157 testDone events: 115 native cases, 40 corrected identity cases, and two hidden loaders. The earlier 28-case identity run and failed development attempts are retained as history and are not added to acceptance totals. Final gate totals and exact source/runtime binding are owned by root.",
+  "development_note": "Early style-identity fixture assertions differed only because ordinary serialization adds an XML declaration. The fixture was given the canonical authored declaration before the passing final run. Diagnostic reproductions and earlier development failures are excluded from passing totals. The omitted-type follow-up corrected a normative expectation in one earlier identity case. Its first added basedOn fixture failed only on ordinary XML whitespace normalization; the final corrected40-case suite passed. Root also records separately an earlier combined attempt whose document-default fixture had a dangling Layout style, now explicitly unsupported by admission; its corrected combined retry passed155 cases.",
+  "checks": {
+    "format": "All four reviewer-owned implementation/test files formatted with the provided Dart runtime.",
+    "diff_check": "git diff --check passed for the four reviewer-owned implementation/test files.",
+    "github_actions_queried": false,
+    "github_actions_waited_for": false
+  },
+  "acceptance": {
+    "result": "bounded_source_review_accepted",
+    "open_concrete_findings": 0,
+    "conditions": [
+      "Root must bind the final regression/analysis/publication gates to their exact final source inputs.",
+      "Any later source integration affecting the reviewed files or relevant behavior requires focused re-review."
+    ],
+    "limits": [
+      "This remains a bounded source adapter over explicitly selected existing paragraphs.",
+      "No arbitrary Word ranges, document-wide collection calls, live object-model reads, COM, or embedded VBA execution are added.",
+      "Automatic/line-based before-spacing and unsupported conditional source regions remain refused.",
+      "No claim of complete Microsoft Word rendering or pagination parity.",
+      "Preservation tests use supported fixtures and their retained source records; they do not assert byte identity for every XML part of every input.",
+      "The new style-reference/inheritance checks are conservative admission restrictions for these controls. Broader generic style-reader behavior and Word-compatible fallback for missing or invalid references are not implemented by this increment."
+    ]
+  },
+  "primary_contract_urls": [
+    "https://learn.microsoft.com/en-us/office/vba/api/word.paragraphformat.openup",
+    "https://learn.microsoft.com/en-us/office/vba/api/word.paragraphformat.closeup",
+    "https://learn.microsoft.com/office/vba/api/word.paragraphformat.openorcloseup",
+    "https://learn.microsoft.com/en-us/office/vba/api/word.paragraphs.openorcloseup",
+    "https://learn.microsoft.com/en-us/office/vba/api/word.paragraphs.openup",
+    "https://learn.microsoft.com/en-us/dotnet/api/documentformat.openxml.wordprocessing.style.default?view=openxml-3.0.1",
+    "https://learn.microsoft.com/en-us/dotnet/api/documentformat.openxml.onoffvalue?view=openxml-3.0.1",
+    "https://ecma-international.org/publications-and-standards/standards/ecma-376/",
+    "https://ecma-international.org/wp-content/uploads/ECMA-376-1_5th_edition_december_2016.zip",
+    "https://learn.microsoft.com/en-us/dotnet/api/documentformat.openxml.wordprocessing.basedon?view=openxml-3.0.1",
+    "https://learn.microsoft.com/en-us/dotnet/api/documentformat.openxml.wordprocessing.paragraphstyleid?view=openxml-3.0.1",
+    "https://learn.microsoft.com/en-us/dotnet/api/documentformat.openxml.wordprocessing.tablestyle?view=openxml-3.0.1"
+  ],
+  "post_intake_pr_review": {
+    "timing": "Absent from the initial captured refs and observed in a later refresh; classified separately from the initial intake requirement.",
+    "github_actions_queried": false,
+    "github_actions_waited_for": false,
+    "github_mutations_performed": false,
+    "integration_decisions_owned_by": "root",
+    "local_remote_tracking_heads_match_capture": true,
+    "records": [
+      {
+        "github_capture": {
+          "url": "https://github.com/CrispStrobe/quds_office_suite/pull/264",
+          "number": 264,
+          "title": "Make main CI green again",
+          "state": "open",
+          "draft": true,
+          "merged": false,
+          "base": "main",
+          "base_sha": "5ad4461a93c835479bf67acab63623944b3900a3",
+          "head": "fix/main-green-20261120",
+          "head_sha": "01224376ee0e86703b6b4723e40c72de7629e50b",
+          "created_at": "2026-11-20T18:07:10Z",
+          "updated_at": "2026-11-20T18:09:38Z",
+          "body": "WIP: fixing the failures on main CI. Details to follow.\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)",
+          "commits": 2,
+          "changed_files": 5,
+          "additions": 167,
+          "deletions": 15
+        },
+        "changed_paths": [
+          "packages/quds_office_editor/lib/src/embed/pdf_controller.dart",
+          "packages/quds_office_engine/test/office_vba_powerpoint_cli_test.dart",
+          "packages/quds_office_engine/test/office_vba_word_cli_test.dart",
+          "packages/quds_office_engine/test/support/office_macro_cli.dart",
+          "packages/quds_office_engine/tool/macros/office_macro.dart"
+        ],
+        "scope": "Editor lint brace plus Office macro CLI process lifetime and Word/PowerPoint CLI test harness. No Word compiler/model/native formatting changes.",
+        "classification": "recommend_defer_post_intake_draft",
+        "reason": "Captured PR remains draft and describes itself as WIP. No qualification evidence in captured body or changed paths. CLI runner changes require bounded real CLI validation before integration; root owns integration.",
+        "local_review": "Read all five changed-file diffs. Kernel-once helper, explicit Dart executable selection, process deadlines and stdout/stderr flush/exit behavior reviewed statically. No candidate CLI execution performed.",
+        "changed_source_overlap": "Touches engine CLI and regression harness that are part of the qualification surface, although no same-path overlap with the new spacing-control implementation."
+      },
+      {
+        "github_capture": {
+          "url": "https://github.com/CrispStrobe/quds_office_suite/pull/265",
+          "number": 265,
+          "title": "macOS: require 13.0, pin Hunspell deployment target, guard library minimum OS",
+          "state": "open",
+          "draft": false,
+          "merged": false,
+          "base": "main",
+          "base_sha": "5ad4461a93c835479bf67acab63623944b3900a3",
+          "head": "chore/macos-13-minimum-20261120",
+          "head_sha": "a51c20737b1932d9c6475ea6dddc33fbd50b2c17",
+          "created_at": "2026-11-20T18:07:56Z",
+          "updated_at": "2026-11-20T18:07:56Z",
+          "body": "## Summary\n- **macOS 13 minimum:** Runner `MACOSX_DEPLOYMENT_TARGET` and the Podfile platform go from 12.0 to 13.0. The bundled spaCy library needs macOS 13, so on macOS 12 the app started but spaCy failed to load.\n- **Hunspell deployment target (real bug):** the Hunspell build didn't pin `CMAKE_OSX_DEPLOYMENT_TARGET`, so it inherited the host SDK.\n  - The current app bundle's `libquds_proofing_hunspell.dylib` declares `minos 26.0` (built with Xcode 26), so spelling would fail to load on every macOS before 26.\n  - It now pins 10.15 like `quds_arabic_morph` and `quds_language_id`.\n  - Rebuilt locally: `minos 11.0` (arm64 floor), SDK 26.2, links only `/usr/lib`.\n- **Guard:** `build_macos_app.sh` now fails when any bundled library's `minos` exceeds the app's `LSMinimumSystemVersion`. Checked against the currently installed bundle, it flags exactly the Hunspell library (26.0); spaCy 13.0, Harper, Arabic morphology and language-id 11.0 pass.\n- **Docs:** `docs/release/macos-signing.md` gains a \"Minimum macOS\" section.\n\n## Test plan\n- [x] `bash -n` on the build script; the version comparison was tested on 11.0/13.0/26.0/10.15/13.1.\n- [x] Local Hunspell native rebuild: `vtool` shows minos 11.0.\n- [ ] `macos-app-weekly.yml` via workflow_dispatch on this branch: full app build including the new guard.\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)",
+          "commits": 1,
+          "changed_files": 5,
+          "additions": 33,
+          "deletions": 5
+        },
+        "changed_paths": [
+          "docs/release/macos-signing.md",
+          "packages/quds_office_editor/example/macos/Podfile",
+          "packages/quds_office_editor/example/macos/Runner.xcodeproj/project.pbxproj",
+          "packages/quds_office_editor/example/tool/build_macos_app.sh",
+          "packages/quds_proofing_hunspell/tool/build.py"
+        ],
+        "scope": "macOS minimum-version configuration, Hunspell native deployment target and application packaging guard; no engine/Word paths.",
+        "classification": "recommend_defer_post_intake_platform_change",
+        "reason": "Captured body reports local macOS library evidence and an uncompleted full app build. Current Linux environment cannot reproduce macOS packaging qualification. New version-comparison guard has a reproduced equivalent-version spelling defect.",
+        "local_review": "bash -n passed for the exact candidate build script; Python ast.parse passed for the candidate Hunspell builder. Extracted version_le returned exit 1 for 13.0.0 <= 13.0 and exit 0 for 13.0 <= 13.0.0. Numeric-equivalent zero-patch versions should not fail the guard.",
+        "changed_source_overlap": "No same-path overlap with spacing-control implementation."
+      },
+      {
+        "github_capture": {
+          "url": "https://github.com/CrispStrobe/quds_office_suite/pull/266",
+          "number": 266,
+          "title": "docs: Mac App Store submission package (CrispOffice)",
+          "state": "open",
+          "draft": true,
+          "merged": false,
+          "base": "main",
+          "base_sha": "5ad4461a93c835479bf67acab63623944b3900a3",
+          "head": "docs/app-store-submission-20261120",
+          "head_sha": "f4c3d582711b923b41a8ab37f917bc1564ab1a55",
+          "created_at": "2026-11-20T18:10:44Z",
+          "updated_at": "2026-11-20T18:10:44Z",
+          "body": "Draft package for App Store Connect app 6837406661: China compliance answers (No/No, exclude China mainland), listing text EN/DE, App Privacy (data not collected, with basis in code), privacy policy draft, age rating, export compliance, reviewer notes, screenshot plan.\n\nItems marked **owner** need decisions only the owner can make (URLs, localizations, France encryption documentation).\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)",
+          "commits": 1,
+          "changed_files": 1,
+          "additions": 196,
+          "deletions": 0
+        },
+        "changed_paths": [
+          "docs/release/app-store-submission.md"
+        ],
+        "scope": "One Mac App Store submission draft document with owner decisions still marked.",
+        "classification": "recommend_defer_post_intake_draft",
+        "reason": "Captured PR is draft. Document explicitly leaves owner URLs/contact/localization/export-distribution decisions open. No code changes or Word requirement.",
+        "local_review": "Read changed-file metadata and owner/draft markers; did not make legal/compliance decisions or publish the document elsewhere.",
+        "changed_source_overlap": "No engine or Word source paths."
+      },
+      {
+        "github_capture": {
+          "url": "https://github.com/CrispStrobe/quds_office_suite/pull/267",
+          "number": 267,
+          "title": "Arabic context model on web: bundle the Wasm worker, native/web parity CI",
+          "state": "open",
+          "draft": false,
+          "merged": false,
+          "base": "main",
+          "base_sha": "5ad4461a93c835479bf67acab63623944b3900a3",
+          "head": "feat/arabic-web-context-20261120",
+          "head_sha": "368751862a2cb405249c8f91c0fa4e3e97ff3029",
+          "created_at": "2026-11-20T18:10:49Z",
+          "updated_at": "2026-11-20T18:10:49Z",
+          "body": "## Problem\nThe Arabic morphology context model (HF `cstr/camel-morph-msa-disambig@07fd9e65` `bigram-v1`, CrispEmbed ABI 3) worked on desktop/mobile but not in the web build. The Dart side was already complete: `WebStudioArabicMorphHost` downloads via the Downloads manager, verifies against the pinned SHA-256 (`MorphDatabaseBytes.verified`) and keeps the bundle in Cache Storage (`StudioWebDataStore`); the worker protocol has `open_model`/`disambiguate`. The web release job (`crispoffice-binaries.yml`), however, bundled only the Hunspell worker. `proofing/arabic_morph_worker.mjs` and the Arabic Wasm module were never shipped, so the analyzer and the model could not load in the browser.\n\n## Change\n- `crispoffice-binaries.yml` web job: build the pinned Arabic morphology Wasm worker (emsdk 6.0.2, the version the package was tested with) and `--install-web` it into `example/web/proofing` with its notices. The Wasm module is compiled from the **same pinned CrispEmbed sources** (3bab3248, PR #261) as the native library, so the decoder is the same algorithm. The C++ was not re-implemented in Dart.\n- New `arabic-morph-web-parity.yml` (PRs touching the package): builds native + Wasm, installs the web files the way the web release does, downloads the pinned database and model with the verifying installer (`tool/fetch_bundles.dart`), runs the existing web smoke with the model, then\n  - `tool/disambig_parity.mjs` disambiguates the fixed panel `test/fixtures/disambig_parity_panel.json` (9 sentences) in the shipped worker;\n  - `test/arabic_morph_web_parity_test.dart` decodes that buffer with the web transport's decoder and requires, per token, the same analyses in the same order, the same ranks, bit-identical float32 scores, and the same lemma/POS/UPOS choice as the native library (and, once recorded, the committed expected choices).\n  - It also runs `arabic_morph_native_test.dart` against the real library and model.\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)",
+          "commits": 1,
+          "changed_files": 8,
+          "additions": 399,
+          "deletions": 0
+        },
+        "changed_paths": [
+          ".github/workflows/arabic-morph-web-parity.yml",
+          ".github/workflows/crispoffice-binaries.yml",
+          "packages/quds_arabic_morph/CHANGELOG.md",
+          "packages/quds_arabic_morph/README.md",
+          "packages/quds_arabic_morph/test/arabic_morph_web_parity_test.dart",
+          "packages/quds_arabic_morph/test/fixtures/disambig_parity_panel.json",
+          "packages/quds_arabic_morph/tool/disambig_parity.mjs",
+          "packages/quds_arabic_morph/tool/fetch_bundles.dart"
+        ],
+        "scope": "Arabic morphology WebAssembly packaging, new parity workflow, fixed panel, fetch script and native/web parity test; no engine/Word source.",
+        "classification": "recommend_defer_post_intake_unqualified_platform_feature",
+        "reason": "Non-draft metadata alone does not establish executed native/Wasm qualification. Captured changes introduce a workflow/test rather than a committed passing execution record; expected-choice golden is explicitly future work.",
+        "local_review": "Exact disambig_parity.mjs passed node --input-type=module --check. Panel JSON parsed: 9 sentences and 49 tokens. disambig_parity_expected.json is absent at captured head. Native/Wasm libraries and pinned database/model parity were not built or executed.",
+        "changed_source_overlap": "No same-path overlap with spacing-control implementation; modifies web release workflow."
+      }
+    ]
+  },
+  "superseded_test_runs": [
+    {
+      "test_file": "packages/quds_office_engine/test/word_paragraph_style_identity_test.dart",
+      "log": {
+        "path": "/workspace/scratch/b77d79e8305c/runtime/paragraph-style-identity-final.jsonl",
+        "bytes": 13156,
+        "sha256": "fb2d8b1b88a500989f05ca4f062d96dbd53bfa86bde08624f629814760cf9ec3"
+      },
+      "counting_rule": "Count testDone events whose hidden field is exactly false; retain case multiplicities; exclude loader events.",
+      "total_test_done_events": 29,
+      "hidden_test_done_events": 1,
+      "test_cases": 28,
+      "passing_cases": 28,
+      "failed_cases": 0,
+      "skipped_cases": 0,
+      "runner_done": [
+        {
+          "success": true,
+          "type": "done",
+          "time": 21166
+        }
+      ],
+      "cases": [
+        {
+          "name": "default style 1 resolves with native prefix w",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "default style true resolves with native prefix w",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "default style on resolves with native prefix w",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "default style 1 resolves with native prefix word",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "default style true resolves with native prefix word",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "default style on resolves with native prefix word",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "disabled default marker 0 cannot supply before spacing",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "disabled default marker false cannot supply before spacing",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "disabled default marker off cannot supply before spacing",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "foreign style record stays opaque during the native cascade",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "foreign style cannot replace the native id stays opaque during the native cascade",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "foreign default attribute stays opaque during the native cascade",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "foreign type attribute stays opaque during the native cascade",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "foreign style id attribute stays opaque during the native cascade",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "foreign basedOn element stays opaque during the native cascade",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "foreign basedOn value attribute stays opaque during the native cascade",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "native default wins over a preceding foreign default",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "native type wins over a preceding foreign type",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "native id wins over a preceding foreign id",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "native basedOn wins over a preceding foreign element",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "native basedOn value wins over a preceding foreign value",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "alternate-prefix basedOn and default retain sparse property ownership",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "foreign identity packets remain inert when default formatting toggles",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "native wholeTable region resolves with prefix w",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "native wholeTable region resolves with prefix word",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "foreign table region stays opaque during import and toggle",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "foreign table region type cannot activate a native region",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "native table region type wins over a foreign type attribute",
+          "result": "success",
+          "skipped": false
+        }
+      ],
+      "status": "superseded_by_corrected_40_case_identity_suite",
+      "reason": "One earlier foreign x:type case incorrectly expected an absent native type to be inactive. ECMA-376 defines the omitted native type as paragraph. The corrected suite checks that default and adds omitted-type/default and same-kind basedOn fixtures; the earlier 28-case run is historical only and is not current acceptance evidence."
+    }
+  ],
+  "focused_test_runs": [
+    {
+      "log": {
+        "path": "/workspace/scratch/b77d79e8305c/runtime/paragraph-controls-style-final-development-2.jsonl",
+        "bytes": 71870,
+        "sha256": "d056491596cbbdbf9c0908c1cd49136bb652031804d12b3730682b0517ecb6b8"
+      },
+      "counting_rule": "Join testStart.test.id to testDone.testID and testStart.test.suiteID to suite.id. Count only testDone.hidden exactly false. Preserve case multiplicities; exclude hidden loader events.",
+      "runner_done": [
+        {
+          "success": true,
+          "type": "done",
+          "time": 7369
+        }
+      ],
+      "suites": [
+        {
+          "test_file": "packages/quds_office_engine/test/office_macro_word_paragraph_controls_test.dart",
+          "suite_id": 0,
+          "total_test_done_events": 116,
+          "hidden_test_done_events": 1,
+          "test_cases": 115,
+          "passing_cases": 115,
+          "failed_cases": 0,
+          "skipped_cases": 0,
+          "cases": [
+            {
+              "name": "open from 0 twips survives repeated native reopens",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "close from 0 twips survives repeated native reopens",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "toggle from 0 twips survives repeated native reopens",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "open from 1 twips survives repeated native reopens",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "close from 1 twips survives repeated native reopens",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "toggle from 1 twips survives repeated native reopens",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "open from 180 twips survives repeated native reopens",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "close from 180 twips survives repeated native reopens",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "toggle from 180 twips survives repeated native reopens",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "open from 240 twips survives repeated native reopens",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "close from 240 twips survives repeated native reopens",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "toggle from 240 twips survives repeated native reopens",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "open from 2147483647 twips survives repeated native reopens",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "close from 2147483647 twips survives repeated native reopens",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "toggle from 2147483647 twips survives repeated native reopens",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "open supports empty paragraphs without structural changes",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "open changes only native before ownership and preserves metadata",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "open same-value assignment owns before while other attributes inherit",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "close supports empty paragraphs without structural changes",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "close changes only native before ownership and preserves metadata",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "close same-value assignment owns before while other attributes inherit",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "toggle supports empty paragraphs without structural changes",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "toggle changes only native before ownership and preserves metadata",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "toggle same-value assignment owns before while other attributes inherit",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "toggle resolves document defaults and based-on styles",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "toggle sees preceding native writes and preserves their direct ownership",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "native prefix aliases and foreign collisions remain distinct",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "alternate inherited prefixes resolve before without owning after or line",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "invalid native before=-1 refuses before mutation",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "invalid native before=1.5 refuses before mutation",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "invalid native before=12pt refuses before mutation",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "invalid native before=bad refuses before mutation",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "invalid native before=2147483648 refuses before mutation",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "invalid native before=1e309 refuses before mutation",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "ambiguous style source missing ID refuses before any mutation",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "ambiguous style source duplicate ID refuses before any mutation",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "ambiguous style source duplicate expanded ID refuses before any mutation",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "ambiguous style source multiple defaults refuses before any mutation",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "ambiguous style source invalid default flag refuses before any mutation",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "ambiguous style source multiple defaults including omitted type refuses before any mutation",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "ambiguous style source invalid native type refuses before any mutation",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "ambiguous style source empty native type refuses before any mutation",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "ambiguous style source paragraph based on character refuses before any mutation",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "ambiguous style source omitted paragraph type based on table refuses before any mutation",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "ambiguous style source character based on paragraph refuses before any mutation",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "ambiguous style source table based on character refuses before any mutation",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "ambiguous style source numbering based on numbering refuses before any mutation",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "ambiguous style source missing parent ID refuses before any mutation",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "ambiguous style source missing parent style refuses before any mutation",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "ambiguous style source duplicate parent refuses before any mutation",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "ambiguous style source self cycle refuses before any mutation",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "ambiguous style source two-style cycle refuses before any mutation",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "paragraph selector with character style refuses before mutation",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "paragraph selector with table style refuses before mutation",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "paragraph selector with numbering style refuses before mutation",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "paragraph selector with missing style refuses before mutation",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "table selector with paragraph style refuses before mutation",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "table selector with character style refuses before mutation",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "table selector with numbering style refuses before mutation",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "table selector with missing style refuses before mutation",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "foreign element paragraph style selector refuses before mutation",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "foreign value paragraph style selector refuses before mutation",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "foreign and native values paragraph style selector refuses before mutation",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "unqualified and native values paragraph style selector refuses before mutation",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "nested native paragraph style selector refuses before mutation",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "duplicate native paragraph style selector refuses before mutation",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "duplicate expanded value paragraph style selector refuses before mutation",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "direct w:beforeLines=\"0\" refuses automatic or line-based inference",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "style w:beforeLines=\"0\" refuses automatic or line-based inference",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "defaults w:beforeLines=\"0\" refuses automatic or line-based inference",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "direct w:beforeLines=\"100\" refuses automatic or line-based inference",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "style w:beforeLines=\"100\" refuses automatic or line-based inference",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "defaults w:beforeLines=\"100\" refuses automatic or line-based inference",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "direct w:beforeAutospacing=\"1\" refuses automatic or line-based inference",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "style w:beforeAutospacing=\"1\" refuses automatic or line-based inference",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "defaults w:beforeAutospacing=\"1\" refuses automatic or line-based inference",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "direct w:beforeAutospacing=\"true\" refuses automatic or line-based inference",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "style w:beforeAutospacing=\"true\" refuses automatic or line-based inference",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "defaults w:beforeAutospacing=\"true\" refuses automatic or line-based inference",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "direct w:beforeAutospacing=\"on\" refuses automatic or line-based inference",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "style w:beforeAutospacing=\"on\" refuses automatic or line-based inference",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "defaults w:beforeAutospacing=\"on\" refuses automatic or line-based inference",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "direct w:beforeAutospacing=\"unknown\" refuses automatic or line-based inference",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "style w:beforeAutospacing=\"unknown\" refuses automatic or line-based inference",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "defaults w:beforeAutospacing=\"unknown\" refuses automatic or line-based inference",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "explicit disabled automatic spacing 0 supports toggle",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "explicit disabled automatic spacing false supports toggle",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "explicit disabled automatic spacing off supports toggle",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "ambiguous before packet <w:spacing w:before=\"0\"/><w:spacing w:before=\"240\"/> refuses",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "ambiguous before packet <w:spacing xmlns:q=\"http://schemas.openxmlformats.org/wordprocessingml refuses",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "ambiguous before packet <w:spacing xmlns:q=\"http://schemas.openxmlformats.org/wordprocessingml refuses",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "ambiguous before packet <mc:AlternateContent><mc:Choice Requires=\"x\"><w:spacing w:before=\"120\" refuses",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "ambiguous before packet <mc:AlternateContent><mc:Choice Requires=\"x\"><x:spacing x:before=\"120\" refuses",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "alternative wrappers around paragraph properties refuse",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "unbalanced modeled fields refuse before source mutation",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "unmodeled table region lastRow with before spacing refuses",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "unmodeled table region firstCol with before spacing refuses",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "unmodeled table region lastCol with before spacing refuses",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "unmodeled table region band1Vert with before spacing refuses",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "unmodeled table region nwCell with before spacing refuses",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "numbering-level paragraph spacing cannot be silently inferred",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "invalid native arguments {action: invalid} refuse without side effects",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "invalid native arguments {action: OPEN} refuse without side effects",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "invalid native arguments {action: 1} refuse without side effects",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "invalid native arguments {action: null} refuse without side effects",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "invalid native arguments {paragraph: -1} refuse without side effects",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "invalid native arguments {paragraph: 1} refuse without side effects",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "invalid native arguments {paragraph: 0.5} refuse without side effects",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "invalid native arguments {extra: 1} refuse without side effects",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "missing action refuses without side effects",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "invalid authored effective spacing -1.0 refuses",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "invalid authored effective spacing 0.01 refuses",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "invalid authored effective spacing NaN refuses",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "invalid authored effective spacing Infinity refuses",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "invalid authored effective spacing 107374182.4 refuses",
+              "result": "success",
+              "skipped": false
+            }
+          ]
+        },
+        {
+          "test_file": "packages/quds_office_engine/test/word_paragraph_style_identity_test.dart",
+          "suite_id": 118,
+          "total_test_done_events": 41,
+          "hidden_test_done_events": 1,
+          "test_cases": 40,
+          "passing_cases": 40,
+          "failed_cases": 0,
+          "skipped_cases": 0,
+          "cases": [
+            {
+              "name": "default style 1 resolves with native prefix w",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "default style true resolves with native prefix w",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "default style on resolves with native prefix w",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "default style 1 resolves with native prefix word",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "default style true resolves with native prefix word",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "default style on resolves with native prefix word",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "disabled default marker 0 cannot supply before spacing",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "disabled default marker false cannot supply before spacing",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "disabled default marker off cannot supply before spacing",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "omitted style type defaults to paragraph with w 1",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "omitted style type defaults to paragraph with w true",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "omitted style type defaults to paragraph with w on",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "omitted style type defaults to paragraph with word 1",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "omitted style type defaults to paragraph with word true",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "omitted style type defaults to paragraph with word on",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "foreign type paragraph does not override the paragraph default",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "foreign type character does not override the paragraph default",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "foreign type table does not override the paragraph default",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "foreign type numbering does not override the paragraph default",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "omitted type remains paragraph in basedOn  / ",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "omitted type remains paragraph in basedOn  w:type=\"paragraph\" / ",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "omitted type remains paragraph in basedOn  /  w:type=\"paragraph\"",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "foreign style record stays opaque during the native cascade",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "foreign style cannot replace the native id stays opaque during the native cascade",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "foreign default attribute stays opaque during the native cascade",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "foreign style id attribute stays opaque during the native cascade",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "foreign basedOn element stays opaque during the native cascade",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "foreign basedOn value attribute stays opaque during the native cascade",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "native default wins over a preceding foreign default",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "native type wins over a preceding foreign type",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "native id wins over a preceding foreign id",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "native basedOn wins over a preceding foreign element",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "native basedOn value wins over a preceding foreign value",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "alternate-prefix basedOn and default retain sparse property ownership",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "foreign identity packets remain inert when default formatting toggles",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "native wholeTable region resolves with prefix w",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "native wholeTable region resolves with prefix word",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "foreign table region stays opaque during import and toggle",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "foreign table region type cannot activate a native region",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "native table region type wins over a foreign type attribute",
+              "result": "success",
+              "skipped": false
+            }
+          ]
+        }
+      ],
+      "errors": [],
+      "executor": "root collaborating agent; raw events inspected by this reviewer",
+      "status": "passed",
+      "aggregate_test_cases": 155
+    }
+  ],
+  "development_attempts": [
+    {
+      "log": {
+        "path": "/workspace/scratch/b77d79e8305c/runtime/paragraph-style-identity-type-final.jsonl",
+        "bytes": 10748,
+        "sha256": "8b0c434c1b3a8f89d01e07f9e5e63b031f27ca7972a92d8f244c325e753eba27"
+      },
+      "counting_rule": "Join testStart.test.id to testDone.testID and testStart.test.suiteID to suite.id. Count only testDone.hidden exactly false. Preserve case multiplicities; exclude hidden loader events.",
+      "runner_done": [
+        {
+          "success": false,
+          "type": "done",
+          "time": 27165
+        }
+      ],
+      "suites": [
+        {
+          "test_file": "packages/quds_office_engine/test/word_paragraph_style_identity_test.dart",
+          "suite_id": 0,
+          "total_test_done_events": 21,
+          "hidden_test_done_events": 1,
+          "test_cases": 20,
+          "passing_cases": 19,
+          "failed_cases": 1,
+          "skipped_cases": 0,
+          "cases": [
+            {
+              "name": "default style 1 resolves with native prefix w",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "default style true resolves with native prefix w",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "default style on resolves with native prefix w",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "default style 1 resolves with native prefix word",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "default style true resolves with native prefix word",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "default style on resolves with native prefix word",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "disabled default marker 0 cannot supply before spacing",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "disabled default marker false cannot supply before spacing",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "disabled default marker off cannot supply before spacing",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "omitted style type defaults to paragraph with w 1",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "omitted style type defaults to paragraph with w true",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "omitted style type defaults to paragraph with w on",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "omitted style type defaults to paragraph with word 1",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "omitted style type defaults to paragraph with word true",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "omitted style type defaults to paragraph with word on",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "foreign type paragraph does not override the paragraph default",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "foreign type character does not override the paragraph default",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "foreign type table does not override the paragraph default",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "foreign type numbering does not override the paragraph default",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "omitted type remains paragraph in basedOn  / ",
+              "result": "failure",
+              "skipped": false
+            }
+          ]
+        }
+      ],
+      "errors": [
+        {
+          "testID": 22,
+          "error": "Expected: '<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?><w:styles xmlns:w=\"http://schemas.openxmlformats.org/wordprocessingml/2006/main\" xmlns:x=\"urn:paragraph-style-identity\"><w:style  w:styleId=\"Positive\"><w:pPr><w:spacing w:before=\"120\"/></w:pPr></w:style><w:style  w:styleId=\"Native\"><w:basedOn w:val=\"Positive\"/></w:style></w:styles>'\n  Actual: '<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?><w:styles xmlns:w=\"http://schemas.openxmlformats.org/wordprocessingml/2006/main\" xmlns:x=\"urn:paragraph-style-identity\"><w:style w:styleId=\"Positive\"><w:pPr><w:spacing w:before=\"120\"/></w:pPr></w:style><w:style w:styleId=\"Native\"><w:basedOn w:val=\"Positive\"/></w:style></w:styles>'\n   Which: is different.\n          Expected: ... ><w:style  w:styleId ...\n            Actual: ... ><w:style w:styleId= ...\n                                  ^\n           Differ at offset 184\n",
+          "stackTrace": "package:matcher                                     expect\ntest/word_paragraph_style_identity_test.dart 56:3   _checkBefore\ntest/word_paragraph_style_identity_test.dart 156:9  main.<fn>\n",
+          "isFailure": true,
+          "type": "error",
+          "time": 27149
+        }
+      ],
+      "status": "development_fixture_failure_not_acceptance",
+      "reason": "The first newly added omitted-type basedOn fixture contained doubled attribute separator spaces. Ordinary XML serialization normalized those spaces. The authored fixture was corrected to canonical spacing; no production behavior change was made for this assertion."
+    }
+  ],
+  "primary_reference_evidence": {
+    "omitted_style_type": {
+      "source": "Official ECMA International ECMA-376 Part1 5th edition, December2016; ZIP linked from official standard page.",
+      "download_url": "https://ecma-international.org/wp-content/uploads/ECMA-376-1_5th_edition_december_2016.zip",
+      "archive": {
+        "path": "/workspace/scratch/b77d79e8305c/runtime/ecma-376-part1.zip",
+        "bytes": 43501721,
+        "sha256": "9d0bcad9cf06054785b03762fcfadbf6bab7e54a5f9d69434e34b7fd464d4129"
+      },
+      "pdf": {
+        "path": "/workspace/scratch/b77d79e8305c/runtime/ecma-376-part1.pdf",
+        "bytes": 35304993,
+        "sha256": "7cccfd0ad0e2ef89316acece15e44a8a088d0603ce4bba4e7b0361b50d13a37d"
+      },
+      "archive_member": "Ecma Office Open XML Part 1 - Fundamentals And Markup Language Reference.pdf",
+      "location": "17.7.4.17 style; type (Style Type); printed page644; PDF page654 (one-based)",
+      "short_normative_excerpt": "If this attribute is not specified, then the default value shall be assumed to be paragraph.",
+      "retrieval_note": "Web search/open verified the official standards page and linked archive; public archive downloaded to scratch, PDF extracted locally and text inspected. No mirrored specification is relied upon."
+    },
+    "based_on": "Microsoft BasedOn remarks specify same-kind parents for paragraph/table/character styles and ignored basedOn for numbering styles. Native admission conservatively refuses unsupported chains rather than emulating every ignored-link fallback.",
+    "style_consumers": "Microsoft ParagraphStyleId and TableStyle remarks identify paragraph and table style references respectively; absent/nonexistent references apply no corresponding style. The new operation chooses bounded refusal for missing selectors rather than claiming full fallback parity."
+  }
+}

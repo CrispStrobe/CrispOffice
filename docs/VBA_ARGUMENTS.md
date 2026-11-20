@@ -56,10 +56,14 @@ positions. For example, `Pair(second:=Mark(2), first:=Mark(1))` evaluates
 operations retain that order. The callee receives a new local frame only after
 the supplied expressions have been evaluated.
 
-The named-argument syntax applies to declared module helpers and the bounded
-Word [`TabStops.Add`](VBA_WORD_MACROS.md#custom-paragraph-tab-stops) method.
-That method has its own fixed required/optional numeric argument contract and
-retains source-order evaluation. It does not add named arguments to `RGB`, the String or Variant intrinsics,
+The named-argument syntax applies to declared module helpers, the bounded
+Word [`TabStops.Add`](VBA_WORD_MACROS.md#custom-paragraph-tab-stops) and
+[`ListFormat`](VBA_WORD_MACROS.md) methods, and the ten Word
+[measurement conversion functions](VBA_WORD_MACROS.md#physical-measurement-conversions).
+Each has its own fixed argument contract and retains source-order evaluation.
+Measurement conversions accept exactly one required numeric value, by position
+or its official name (`Inches`, `Centimeters`, `Millimeters`, `Picas`, `Lines`
+or `Points`); omissions are not supported. This does not add named arguments to `RGB`, the String or Variant intrinsics,
 array subscripts, or application members such as `Paragraphs`, `Shapes`,
 `Range`, or `InsertBefore`.
 

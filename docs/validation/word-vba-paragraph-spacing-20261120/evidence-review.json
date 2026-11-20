@@ -1,0 +1,2431 @@
+{
+  "additional_verifier_sources": {
+    "audit_batched_regression.py": {
+      "bytes": 18874,
+      "sha256": "9e67c1d606878122b6bf5f35381847555770c72f7b984b9fdebb642b63898c76"
+    },
+    "audit_bounded_progress_archive.py": {
+      "bytes": 6360,
+      "sha256": "d6519819d2eb21d74a9b1ebaad950a44142496be6a0427fcd92ea2c381e104a3"
+    },
+    "audit_checkpoint_archives.py": {
+      "bytes": 7965,
+      "sha256": "52aaf5d428bd046a409bd4937d9756cd5666017f24cdd411ccd5d49b9f1137dd"
+    }
+  },
+  "checkpoint_archives": {
+    "additional_word_regression_cases": 0,
+    "archives": {
+      "bounded-progress-evidence": {
+        "accepted_batch_snapshots_independently_reconstructed": [
+          {
+            "batch_id": 1,
+            "passing_cases": 335,
+            "suites": 10
+          },
+          {
+            "batch_id": 2,
+            "passing_cases": 497,
+            "suites": 10
+          },
+          {
+            "batch_id": 7,
+            "passing_cases": 140,
+            "suites": 10
+          },
+          {
+            "batch_id": 8,
+            "passing_cases": 40,
+            "suites": 5
+          }
+        ],
+        "actual_frozen_batch_inputs_and_diagnostics_unchanged": true,
+        "additional_word_regression_cases": 0,
+        "archive": "/workspace/scratch/16bd38fb2cfb/runtime/bounded-progress-checkpoint-files/bounded-progress-evidence.tar.xz",
+        "archived_member_hashes_modes_indexes_and_metadata_verified": true,
+        "bytes": 401756,
+        "evolving_reviewer_tool_snapshots": [
+          {
+            "archived_sha256": "dbd560c13ba503618d09990dce05d3409c7bc0da891803821e0ae7ad4da4775d",
+            "classification": "Historical snapshot of an evolving review/packaging tool; not a frozen test input or final acceptance claim",
+            "current_sha256": "8f5a0a3c525128341457d8875b49154fbf04a390e4bd3ecb7ed09deca0f25577",
+            "member": "independent-review/audit_publication_scope.py"
+          },
+          {
+            "archived_sha256": "6583b6bcf927d707d591bbd7da6c89914f25c9d506d9649359c6adaa3e7f311b",
+            "classification": "Historical snapshot of an evolving review/packaging tool; not a frozen test input or final acceptance claim",
+            "current_sha256": "31b2e193a365f0785b3f433e48b7b242c4908e630788225bba9eaecf1aa6d7b7",
+            "member": "independent-review/verify_final_evidence.py"
+          },
+          {
+            "archived_sha256": "6cb5c131a103a7016e44dfb5d7118577a00cef16980fabeb5b8130079afd63a8",
+            "classification": "Historical snapshot of an evolving review/packaging tool; not a frozen test input or final acceptance claim",
+            "current_sha256": "8255303d75514ed83bbed47d89934656ca368207f89df40989671d269323c7be",
+            "member": "runners/package_word_spacing_batched_regression.py"
+          }
+        ],
+        "index_sha256": "3a08ab0163dad992a9f59807db78960cbeb5774c35b92634d815f4f4a1454066",
+        "member_count": 67,
+        "metadata": {
+          "accepted_batches": [
+            {
+              "batch": "batch-01",
+              "exit_code": 0,
+              "passing_cases": 335
+            },
+            {
+              "batch": "batch-02",
+              "exit_code": 0,
+              "passing_cases": 497
+            },
+            {
+              "batch": "batch-07",
+              "exit_code": 0,
+              "passing_cases": 140
+            },
+            {
+              "batch": "batch-08",
+              "exit_code": 0,
+              "passing_cases": 40
+            }
+          ],
+          "accepted_subset_cases": 1012,
+          "additional_regression_cases": 0,
+          "failed_attempts_contribution": 0,
+          "final_gate_complete": false,
+          "github_actions": "not queried or awaited",
+          "publication_acceptance": false,
+          "source_commit": "0201b549d0dc3f601c50e36255d557034cb01699"
+        },
+        "sha256": "c88bd97f9b7d74e4e995461b768323402fc16420d7129896a8706479fd341801",
+        "status": "PASS"
+      },
+      "interrupted-regression-evidence": {
+        "archive": "/workspace/scratch/16bd38fb2cfb/runtime/progress-checkpoint-files/interrupted-regression-evidence.tar.xz",
+        "bytes": 598024,
+        "complete_members_modes_indexes_metadata_and_live_inputs_verified": true,
+        "index_sha256": "62746a57b59e4958da17e09e02e3e355e25564998b5c1fb2fc705eca0a3a8fbd",
+        "member_count": 17,
+        "metadata": {
+          "completed_visible_cases": 2679,
+          "observed_suites": 64,
+          "process_exit_receipt_present": false,
+          "publication_acceptance": false,
+          "reason": "Coordinator process no longer existed; no observed test failure. Complete bounded-batch rerun required.",
+          "regression_total_contribution": 0,
+          "source_commit": "0201b549d0dc3f601c50e36255d557034cb01699",
+          "terminal_done_present": false
+        },
+        "sha256": "6cdd05e5f627041cfa076c3251a93700e727f8ec705c6b5cbcc491177a99a481",
+        "status": "PASS"
+      },
+      "late-intake-evidence": {
+        "archive": "/workspace/scratch/16bd38fb2cfb/runtime/progress-checkpoint-files/late-intake-evidence.tar.xz",
+        "bytes": 36952,
+        "complete_members_modes_indexes_metadata_and_live_inputs_verified": true,
+        "index_sha256": "56f9c5a298422b2bb3a592f7b8169d08ecc256816a0617e2b24293f4fed3502f",
+        "member_count": 249,
+        "metadata": {
+          "actual_bash3_execution": false,
+          "actual_macos_build": false,
+          "candidate_sha256": "8592dd41fb59da7fa3ead05287005cfa06d90c02bb5de495e9f985062ffff904",
+          "excluded_recreatable_third_party_setup": [
+            "bash-3.2/",
+            "bash-3.2.tar.gz"
+          ],
+          "independent_expectations": 36,
+          "producer_isolated_checks": 61,
+          "word_regression_total_contribution": 0
+        },
+        "sha256": "d223283dae6098b89b4c0dce96ad036486fe993ddd687673ec7ae9abe8556b81",
+        "status": "PASS"
+      }
+    },
+    "no_actual_macos_or_bash3_execution_claimed": true,
+    "status": "PASS"
+  },
+  "current_head_at_review": "0201b549d0dc3f601c50e36255d557034cb01699",
+  "dart_version": "3.14.1",
+  "github_actions_queried_or_awaited": false,
+  "limits": [
+    "Recorded runtime inputs are phase-specific: 20 portable, 19 static, and 3489 regression across eight bounded invocations. The smaller manifests are not represented as a full dependency/runtime closure.",
+    "This is independent evidence replay and integrity verification, not a new execution of the final test suite.",
+    "The source manifest covers the stated 1131 selected inputs. The separate source review also binds the Word contract and exact BAS, with preservation limited as documented.",
+    "Development attempts, the interrupted invocation with 2,679 completions, and the 56 independent supplemental expectations are excluded from the 2,799 regression total.",
+    "Final publication and remote merge consistency are separate checks and are not implied by this pre-publication review."
+  ],
+  "outstanding_findings": [],
+  "packaging": {
+    "archives": {
+      "development_and_source_review": {
+        "all_member_contents_modes_and_live_inputs_verified": true,
+        "bytes": 933452,
+        "development_cases_added_to_acceptance": 0,
+        "development_raw_streams_independently_recounted": 15,
+        "embedded_and_external_index_identical": true,
+        "index": "/workspace/scratch/16bd38fb2cfb/runtime/line-spacing-development-review/members.json",
+        "index_identity": {
+          "bytes": 27607,
+          "sha256": "c4262f7d9570ccc367a2062d1bd27e8c13051c9445f7bbb674620000d8d19a15"
+        },
+        "member_count": 110,
+        "path": "/workspace/scratch/16bd38fb2cfb/runtime/line-spacing-development-review.tar.xz",
+        "receipt": "/workspace/scratch/16bd38fb2cfb/runtime/line-spacing-development-review/packaging.json",
+        "receipt_identity": {
+          "bytes": 1084,
+          "sha256": "c5bcbee46d86d6554a92a29161a020ab3242c6dc8e9d1cb9a24eb2a60d4bedb0"
+        },
+        "required_phase_files_complete": true,
+        "sha256": "7fbfbd9b62133c114ce5ea402e61d502d8ade49608140b52545f3cdc6ed81df4",
+        "status": "PASS"
+      },
+      "portable_static": {
+        "all_member_contents_modes_and_live_inputs_verified": true,
+        "bytes": 940356,
+        "embedded_and_external_index_identical": true,
+        "index": "/workspace/scratch/16bd38fb2cfb/runtime/line-spacing-portable-static-members.json",
+        "index_identity": {
+          "bytes": 9811,
+          "sha256": "c5f56f916b220f1395ee090c5f9810ceb85a85e96867aa643100b217f97f07b8"
+        },
+        "member_count": 60,
+        "path": "/workspace/scratch/16bd38fb2cfb/runtime/line-spacing-portable-static-final.tar.xz",
+        "receipt": "/workspace/scratch/16bd38fb2cfb/runtime/line-spacing-portable-static-packaging.json",
+        "receipt_identity": {
+          "bytes": 807,
+          "sha256": "9de9e29541de5bb701688646edc89831a135492e2ed46025ac7d8f5a842d77f8"
+        },
+        "required_phase_files_complete": true,
+        "sha256": "d4d48a757e34ae1c3e3aa8c1c2113b6f52bf229e86dae40c3c50c3461742c41a",
+        "status": "PASS"
+      },
+      "regression": {
+        "all_member_contents_modes_and_live_inputs_verified": true,
+        "bytes": 997460,
+        "embedded_and_external_index_identical": true,
+        "independent_archive_reconstruction_identical": true,
+        "index": "/workspace/scratch/16bd38fb2cfb/runtime/word-spacing-regression-members.json",
+        "index_identity": {
+          "bytes": 30956,
+          "sha256": "e02500d69de8266a941810d1ecb098483023475c7cee5c00dff6a84a39683f7a"
+        },
+        "member_count": 158,
+        "path": "/workspace/scratch/16bd38fb2cfb/runtime/word-spacing-regression-final.tar.xz",
+        "receipt": "/workspace/scratch/16bd38fb2cfb/runtime/word-spacing-regression-packaging.json",
+        "receipt_identity": {
+          "bytes": 1040,
+          "sha256": "fe974408fcfa1d13694e204af30a7bb222633e47036799dc7060e5c0192ae3b5"
+        },
+        "required_phase_files_complete": true,
+        "sha256": "bc691608884ad4e3a28c67dcf90acd1898352707d95fbea488b792668a6fa422",
+        "status": "PASS"
+      }
+    },
+    "status": "PASS"
+  },
+  "portable": {
+    "artifact_manifest": {
+      "actual-example.bas": {
+        "bytes": 1243,
+        "sha256": "ea112b9e3b3f9e8eb71540c0d98e0a9a1849d229d11ebc9d1ef8df71d0d5b3f9"
+      },
+      "commands.json": {
+        "bytes": 5154,
+        "sha256": "c46bb49872a5971e411371aed1e2eda36ea5b2d32d00222afeb05f5d13445e6e"
+      },
+      "compile-js.stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "compile-js.stdout": {
+        "bytes": 114,
+        "sha256": "9c1c7f1417f801e5165d23aa1d2f91dcfcda2c8869e8e0c20c436de5116dc971"
+      },
+      "gate-helper.py": {
+        "bytes": 16015,
+        "sha256": "4e20f170e09aac9b1cd3881fa265996315693a48de36a3f0310243911133ff17"
+      },
+      "inputs-after.json.gz": {
+        "bytes": 99160,
+        "sha256": "0ab5f411f509176b91e4d9ec1e9f83f08102dbce552747fccc7af39e51c7c890"
+      },
+      "inputs-before.json.gz": {
+        "bytes": 99161,
+        "sha256": "b61067ab995187987c76db9bf59c80f6083f3a5f161d722e9d8dd3311b639333"
+      },
+      "node.stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "node.stdout": {
+        "bytes": 1393,
+        "sha256": "2c5c1131842f09451d4334bbb7c3f97ae39f52db560c2847e8fbdd7c045e8f59"
+      },
+      "result.json": {
+        "bytes": 1393,
+        "sha256": "f0fe334a367c08018ed63936f0cd690371cd85f4e1ca90d1a60de85483791e51"
+      },
+      "runner.py": {
+        "bytes": 6912,
+        "sha256": "14f0f7fd7228e520344c113b6e4e3b69c6e040b4575c5a5b73ac45c5030ff450"
+      },
+      "summary.json": {
+        "bytes": 6262,
+        "sha256": "4f7435418d3ddc56ec808a1bd3c66ebdf3d44f9a9a0bcb60eefeb55650f613a4"
+      },
+      "vm.stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "vm.stdout": {
+        "bytes": 1393,
+        "sha256": "2c5c1131842f09451d4334bbb7c3f97ae39f52db560c2847e8fbdd7c045e8f59"
+      },
+      "word-line-spacing.js": {
+        "bytes": 3140608,
+        "sha256": "df65a9fe4f8e9dcd2e2d417678945c37b264153c42a8e9d56a2cb7a4db768ff2"
+      },
+      "word-line-spacing.js.deps": {
+        "bytes": 134172,
+        "sha256": "b1c14481c98d38410a1a1448b1a966b551086e5eff780d8c5349dc85b86fc4b9"
+      },
+      "word-line-spacing.js.map": {
+        "bytes": 1091867,
+        "sha256": "44bdb1ed05c3adc06dbc39b2e907891073afad97b12ca20cb01d00a0a1dd0034"
+      }
+    },
+    "before_after_exactly_equal": true,
+    "canonical_sha256": "f0fe334a367c08018ed63936f0cd690371cd85f4e1ca90d1a60de85483791e51",
+    "commands": [
+      {
+        "argv": [
+          "/workspace/scratch/16bd38fb2cfb/runtime/toolchain/dart-sdk/bin/dart",
+          "--packages=/workspace/scratch/16bd38fb2cfb/quds_office_suite/.dart_tool/package_config.json",
+          "-DWORD_LINE_SPACING_BAS_BASE64=T3B0aW9uIEV4cGxpY2l0CgonIFJlcXVpcmVzIHRocmVlIGV4aXN0aW5nIGJvZHkgcGFyYWdyYXBocy4gRWFjaCBjdXN0b20gcnVsZSBtdXN0IGJlIGZvbGxvd2VkCicgYnkgTGluZVNwYWNpbmcgb24gdGhhdCBzYW1lIHBhcmFncmFwaCBiZWZvcmUgYW5vdGhlciBXb3JkIG11dGF0aW9uLgpTdWIgU2V0RXhhY3QoQnlWYWwgdGFyZ2V0IEFzIFBhcmFncmFwaEZvcm1hdCwgQnlWYWwgcG9pbnRzIEFzIERvdWJsZSkKICAgIERpbSBhbW91bnQgQXMgRG91YmxlCiAgICB0YXJnZXQuTGluZVNwYWNpbmdSdWxlID0gd2RMaW5lU3BhY2VFeGFjdGx5CiAgICBhbW91bnQgPSBwb2ludHMKICAgIHRhcmdldC5MaW5lU3BhY2luZyA9IGFtb3VudAogICAgU2V0IHRhcmdldCA9IEFjdGl2ZURvY3VtZW50LlBhcmFncmFwaHMoMykuRm9ybWF0CkVuZCBTdWIKClN1YiBNYWluKCkKICAgIERpbSB0YXJnZXQgQXMgUGFyYWdyYXBoRm9ybWF0CiAgICBEaW0gc2F2ZWRGb3JtYXQgQXMgUGFyYWdyYXBoRm9ybWF0CiAgICBEaW0gbXVsdGlwbGVQb2ludHMgQXMgRG91YmxlCiAgICBTZXQgdGFyZ2V0ID0gQXBwbGljYXRpb24uQWN0aXZlRG9jdW1lbnQuUGFyYWdyYXBocy5JdGVtKDEpLkZvcm1hdAogICAgU2V0IHNhdmVkRm9ybWF0ID0gdGFyZ2V0CiAgICB0YXJnZXQuU3BhY2UxCiAgICBDYWxsIFNldEV4YWN0KHBvaW50czo9QXBwbGljYXRpb24uTGluZXNUb1BvaW50cygxKSArIDIuMjUsIHRhcmdldDo9c2F2ZWRGb3JtYXQpCgogICAgU2V0IHRhcmdldCA9IFRoaXNEb2N1bWVudC5QYXJhZ3JhcGhzKDIpLlJhbmdlLlBhcmFncmFwaEZvcm1hdAogICAgQ2FsbCB0YXJnZXQuU3BhY2UxNQogICAgdGFyZ2V0LkxpbmVTcGFjaW5nUnVsZSA9IHdkTGluZVNwYWNlQXRMZWFzdAogICAgdGFyZ2V0LkxpbmVTcGFjaW5nID0gTGluZXNUb1BvaW50cyhQb2ludHNUb0xpbmVzKDE4KSkKCiAgICBXaXRoIEFjdGl2ZURvY3VtZW50LlBhcmFncmFwaHMoMykuUmFuZ2UKICAgICAgICBXaXRoIC5QYXJhZ3JhcGhGb3JtYXQKICAgICAgICAgICAgQ2FsbCAuU3BhY2UyKCkKICAgICAgICAgICAgLkxpbmVTcGFjaW5nUnVsZSA9IHdkTGluZVNwYWNlTXVsdGlwbGUKICAgICAgICAgICAgbXVsdGlwbGVQb2ludHMgPSBBcHBsaWNhdGlvbi5MaW5lc1RvUG9pbnRzKFBvaW50c1RvTGluZXMoMjEpKQogICAgICAgICAgICAuTGluZVNwYWNpbmcgPSBtdWx0aXBsZVBvaW50cwogICAgICAgIEVuZCBXaXRoCiAgICBFbmQgV2l0aApFbmQgU3ViCg==",
+          "/workspace/scratch/16bd38fb2cfb/quds_office_suite/packages/quds_office_engine/tool/macros/web_vba_word_line_spacing_smoke.dart"
+        ],
+        "cwd": "/workspace/scratch/16bd38fb2cfb/quds_office_suite/packages/quds_office_engine",
+        "exit_code": 0,
+        "name": "vm",
+        "seconds": 16.31,
+        "started_utc": "2026-11-20T17:54:13.143352+00:00"
+      },
+      {
+        "argv": [
+          "/workspace/scratch/16bd38fb2cfb/runtime/toolchain/dart-sdk/bin/dart",
+          "compile",
+          "js",
+          "-O1",
+          "--packages=/workspace/scratch/16bd38fb2cfb/quds_office_suite/.dart_tool/package_config.json",
+          "-DWORD_LINE_SPACING_BAS_BASE64=T3B0aW9uIEV4cGxpY2l0CgonIFJlcXVpcmVzIHRocmVlIGV4aXN0aW5nIGJvZHkgcGFyYWdyYXBocy4gRWFjaCBjdXN0b20gcnVsZSBtdXN0IGJlIGZvbGxvd2VkCicgYnkgTGluZVNwYWNpbmcgb24gdGhhdCBzYW1lIHBhcmFncmFwaCBiZWZvcmUgYW5vdGhlciBXb3JkIG11dGF0aW9uLgpTdWIgU2V0RXhhY3QoQnlWYWwgdGFyZ2V0IEFzIFBhcmFncmFwaEZvcm1hdCwgQnlWYWwgcG9pbnRzIEFzIERvdWJsZSkKICAgIERpbSBhbW91bnQgQXMgRG91YmxlCiAgICB0YXJnZXQuTGluZVNwYWNpbmdSdWxlID0gd2RMaW5lU3BhY2VFeGFjdGx5CiAgICBhbW91bnQgPSBwb2ludHMKICAgIHRhcmdldC5MaW5lU3BhY2luZyA9IGFtb3VudAogICAgU2V0IHRhcmdldCA9IEFjdGl2ZURvY3VtZW50LlBhcmFncmFwaHMoMykuRm9ybWF0CkVuZCBTdWIKClN1YiBNYWluKCkKICAgIERpbSB0YXJnZXQgQXMgUGFyYWdyYXBoRm9ybWF0CiAgICBEaW0gc2F2ZWRGb3JtYXQgQXMgUGFyYWdyYXBoRm9ybWF0CiAgICBEaW0gbXVsdGlwbGVQb2ludHMgQXMgRG91YmxlCiAgICBTZXQgdGFyZ2V0ID0gQXBwbGljYXRpb24uQWN0aXZlRG9jdW1lbnQuUGFyYWdyYXBocy5JdGVtKDEpLkZvcm1hdAogICAgU2V0IHNhdmVkRm9ybWF0ID0gdGFyZ2V0CiAgICB0YXJnZXQuU3BhY2UxCiAgICBDYWxsIFNldEV4YWN0KHBvaW50czo9QXBwbGljYXRpb24uTGluZXNUb1BvaW50cygxKSArIDIuMjUsIHRhcmdldDo9c2F2ZWRGb3JtYXQpCgogICAgU2V0IHRhcmdldCA9IFRoaXNEb2N1bWVudC5QYXJhZ3JhcGhzKDIpLlJhbmdlLlBhcmFncmFwaEZvcm1hdAogICAgQ2FsbCB0YXJnZXQuU3BhY2UxNQogICAgdGFyZ2V0LkxpbmVTcGFjaW5nUnVsZSA9IHdkTGluZVNwYWNlQXRMZWFzdAogICAgdGFyZ2V0LkxpbmVTcGFjaW5nID0gTGluZXNUb1BvaW50cyhQb2ludHNUb0xpbmVzKDE4KSkKCiAgICBXaXRoIEFjdGl2ZURvY3VtZW50LlBhcmFncmFwaHMoMykuUmFuZ2UKICAgICAgICBXaXRoIC5QYXJhZ3JhcGhGb3JtYXQKICAgICAgICAgICAgQ2FsbCAuU3BhY2UyKCkKICAgICAgICAgICAgLkxpbmVTcGFjaW5nUnVsZSA9IHdkTGluZVNwYWNlTXVsdGlwbGUKICAgICAgICAgICAgbXVsdGlwbGVQb2ludHMgPSBBcHBsaWNhdGlvbi5MaW5lc1RvUG9pbnRzKFBvaW50c1RvTGluZXMoMjEpKQogICAgICAgICAgICAuTGluZVNwYWNpbmcgPSBtdWx0aXBsZVBvaW50cwogICAgICAgIEVuZCBXaXRoCiAgICBFbmQgV2l0aApFbmQgU3ViCg==",
+          "-o",
+          "/workspace/scratch/16bd38fb2cfb/runtime/line-spacing-portable-final/word-line-spacing.js",
+          "/workspace/scratch/16bd38fb2cfb/quds_office_suite/packages/quds_office_engine/tool/macros/web_vba_word_line_spacing_smoke.dart"
+        ],
+        "cwd": "/workspace/scratch/16bd38fb2cfb/quds_office_suite/packages/quds_office_engine",
+        "exit_code": 0,
+        "name": "compile-js",
+        "seconds": 16.821,
+        "started_utc": "2026-11-20T17:54:29.453662+00:00"
+      },
+      {
+        "argv": [
+          "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+          "-e",
+          "globalThis.self = globalThis; require(process.argv[1]);",
+          "/workspace/scratch/16bd38fb2cfb/runtime/line-spacing-portable-final/word-line-spacing.js"
+        ],
+        "cwd": "/workspace/scratch/16bd38fb2cfb/quds_office_suite/packages/quds_office_engine",
+        "exit_code": 0,
+        "name": "node",
+        "seconds": 1.322,
+        "started_utc": "2026-11-20T17:54:46.275413+00:00"
+      }
+    ],
+    "raw_bytes": 1393,
+    "raw_sha256": "2c5c1131842f09451d4334bbb7c3f97ae39f52db560c2847e8fbdd7c045e8f59",
+    "result": {
+      "example": {
+        "additionalReopens": 2,
+        "opaqueVbaPreserved": true,
+        "operations": 6,
+        "paragraphs": [
+          {
+            "amount": 14.25,
+            "directAfter": "180",
+            "directBefore": "120",
+            "effectiveAfter": 9,
+            "effectiveBefore": 6,
+            "nativeLine": "285",
+            "nativeRule": "exact",
+            "rule": "exact",
+            "text": "Exact paragraph",
+            "token": "first"
+          },
+          {
+            "amount": 18,
+            "directAfter": null,
+            "directBefore": null,
+            "effectiveAfter": 12,
+            "effectiveBefore": 9,
+            "nativeLine": "360",
+            "nativeRule": "atLeast",
+            "rule": "atLeast",
+            "text": "Minimum paragraph",
+            "token": "second"
+          },
+          {
+            "amount": 1.75,
+            "directAfter": "0",
+            "directBefore": "0",
+            "effectiveAfter": 0,
+            "effectiveBefore": 0,
+            "nativeLine": "420",
+            "nativeRule": "auto",
+            "rule": "auto",
+            "text": "",
+            "token": "third"
+          },
+          {
+            "amount": 30,
+            "directAfter": null,
+            "directBefore": null,
+            "effectiveAfter": 12,
+            "effectiveBefore": 9,
+            "nativeLine": "600",
+            "nativeRule": "exact",
+            "rule": "exact",
+            "text": "Untouched paragraph",
+            "token": "untouched"
+          }
+        ],
+        "revision": 1
+      },
+      "exampleReplay": {
+        "operationsPerRun": 6,
+        "revision": 2,
+        "sameSavedState": true
+      },
+      "ordinaryDecimals": {
+        "additionalReopens": 2,
+        "linesToPoints": 13.8,
+        "nativeLines": [
+          "276",
+          "276",
+          "23"
+        ],
+        "pointsToLines": 1.15,
+        "savedMultiple": 1.15
+      },
+      "policies": {
+        "completeAllowlistRevision": 1,
+        "refusedPolicies": 3
+      },
+      "presetGuards": {
+        "failedNativeCallsExcluded": 4,
+        "refusedSourcePlans": 4,
+        "validateAndRunRollback": true
+      },
+      "recording": {
+        "failedCallExcluded": true,
+        "recordedSteps": 3,
+        "replayRevision": 1
+      },
+      "refusedSources": 15,
+      "rollback": {
+        "failedStep": 2,
+        "validateAndRunRollback": true
+      }
+    },
+    "runtime": {
+      "all_recorded_actual_contents_verified": true,
+      "entries_sha256": "febc83dea560a02af0d1104607ab9f2641f5bf206aa9d331cbca1daa40a4831d",
+      "recorded_paths": 20
+    },
+    "source": {
+      "actual_contents_modes_and_git_objects_verified": true,
+      "entries_sha256": "b39ab94eaba58667c59c3194111a5841c44704be7a2874f287a5bee8db3866a4",
+      "qualified_paths": 1131,
+      "selection_sha256": "1e0418e6caa78ede45506c7a4af23e4256b4c46c23a5a6f63412b8b9d1febc8a"
+    },
+    "status": "PASS"
+  },
+  "qualified_source": "0201b549d0dc3f601c50e36255d557034cb01699",
+  "qualified_tree": "86531c002a6b1d6e748849f7370a87072a5fa768",
+  "regression": {
+    "accepted_batch_reviews": [
+      {
+        "batch_id": 1,
+        "before_after_exactly_equal": true,
+        "command": {
+          "argv": [
+            "/workspace/scratch/16bd38fb2cfb/runtime/toolchain/run-engine-tests.sh",
+            "--concurrency=2",
+            "--reporter=json",
+            "test/numbering_collision_test.dart",
+            "test/odt_paragraph_properties_test.dart",
+            "test/odt_tab_stop_fidelity_test.dart",
+            "test/odt_tab_style_cache_test.dart",
+            "test/odt_tab_style_fidelity_test.dart",
+            "test/office_macro_expansion_test.dart",
+            "test/office_macro_runtime_test.dart",
+            "test/office_macro_word_line_spacing_test.dart",
+            "test/office_macro_word_list_format_test.dart",
+            "test/office_macro_word_list_levels_test.dart"
+          ],
+          "batch_id": 1,
+          "collector_sha256": "b1dbca0cdecf01f782943d50d55bc4fed7d836dc011f851eece6c0c8c3c7772d",
+          "cwd": "/workspace/scratch/16bd38fb2cfb/quds_office_suite/packages/quds_office_engine",
+          "source_commit": "0201b549d0dc3f601c50e36255d557034cb01699",
+          "started_utc": "2026-11-20T18:23:47.772805+00:00"
+        },
+        "execution": {
+          "exit_code": 0,
+          "finished_utc": "2026-11-20T18:26:15.186229+00:00",
+          "seconds": 147.412
+        },
+        "raw_audit": {
+          "counts": {
+            "numbering_collision_test.dart": 8,
+            "odt_paragraph_properties_test.dart": 18,
+            "odt_tab_stop_fidelity_test.dart": 8,
+            "odt_tab_style_cache_test.dart": 5,
+            "odt_tab_style_fidelity_test.dart": 2,
+            "office_macro_expansion_test.dart": 5,
+            "office_macro_runtime_test.dart": 25,
+            "office_macro_word_line_spacing_test.dart": 96,
+            "office_macro_word_list_format_test.dart": 67,
+            "office_macro_word_list_levels_test.dart": 101
+          },
+          "events": {
+            "allSuites": 1,
+            "done": 1,
+            "group": 13,
+            "start": 1,
+            "suite": 10,
+            "testDone": 345,
+            "testStart": 345
+          },
+          "failed_cases": 0,
+          "hidden_completions": 10,
+          "passed_cases": 335,
+          "protocol_and_all_group_declarations_verified": true,
+          "raw_bytes": 160149,
+          "raw_sha256": "40b2085cb7e4b4d7e8e6ccee3df8b3338d24b5d2c277c8a584caf99ced6904f1",
+          "skipped_cases": 0,
+          "start_completion_count": 345,
+          "suite_count": 10
+        },
+        "runtime": {
+          "all_recorded_actual_contents_verified": true,
+          "entries_sha256": "0dff7678e48f81a46b7dff2f8119021cb7538bc18bb673954b656457dc2f7bde",
+          "recorded_paths": 3489
+        },
+        "source": {
+          "actual_contents_modes_and_git_objects_verified": true,
+          "entries_sha256": "b39ab94eaba58667c59c3194111a5841c44704be7a2874f287a5bee8db3866a4",
+          "qualified_paths": 1131,
+          "selection_sha256": "1e0418e6caa78ede45506c7a4af23e4256b4c46c23a5a6f63412b8b9d1febc8a"
+        },
+        "status": "PASS"
+      },
+      {
+        "batch_id": 2,
+        "before_after_exactly_equal": true,
+        "command": {
+          "argv": [
+            "/workspace/scratch/16bd38fb2cfb/runtime/toolchain/run-engine-tests.sh",
+            "--concurrency=2",
+            "--reporter=json",
+            "test/office_macro_word_revision_guard_test.dart",
+            "test/office_macro_word_tab_stops_test.dart",
+            "test/office_operations_test.dart",
+            "test/office_vba_arguments_integration_test.dart",
+            "test/office_vba_arguments_test.dart",
+            "test/office_vba_arrays_boundaries_test.dart",
+            "test/office_vba_arrays_integration_test.dart",
+            "test/office_vba_arrays_test.dart",
+            "test/office_vba_conformance_test.dart",
+            "test/office_vba_control_flow_boundaries_test.dart"
+          ],
+          "batch_id": 2,
+          "collector_sha256": "b1dbca0cdecf01f782943d50d55bc4fed7d836dc011f851eece6c0c8c3c7772d",
+          "cwd": "/workspace/scratch/16bd38fb2cfb/quds_office_suite/packages/quds_office_engine",
+          "source_commit": "0201b549d0dc3f601c50e36255d557034cb01699",
+          "started_utc": "2026-11-20T18:34:36.998070+00:00"
+        },
+        "execution": {
+          "exit_code": 0,
+          "finished_utc": "2026-11-20T18:38:50.073521+00:00",
+          "seconds": 253.075
+        },
+        "raw_audit": {
+          "counts": {
+            "office_macro_word_revision_guard_test.dart": 2,
+            "office_macro_word_tab_stops_test.dart": 40,
+            "office_operations_test.dart": 27,
+            "office_vba_arguments_integration_test.dart": 16,
+            "office_vba_arguments_test.dart": 68,
+            "office_vba_arrays_boundaries_test.dart": 144,
+            "office_vba_arrays_integration_test.dart": 11,
+            "office_vba_arrays_test.dart": 32,
+            "office_vba_conformance_test.dart": 115,
+            "office_vba_control_flow_boundaries_test.dart": 42
+          },
+          "events": {
+            "allSuites": 1,
+            "done": 1,
+            "group": 35,
+            "start": 1,
+            "suite": 10,
+            "testDone": 507,
+            "testStart": 507
+          },
+          "failed_cases": 0,
+          "hidden_completions": 10,
+          "passed_cases": 497,
+          "protocol_and_all_group_declarations_verified": true,
+          "raw_bytes": 253645,
+          "raw_sha256": "7801fffca1a701ad5722997858a38e94412f89bc840fd0fb4cef3fb60dd09159",
+          "skipped_cases": 0,
+          "start_completion_count": 507,
+          "suite_count": 10
+        },
+        "runtime": {
+          "all_recorded_actual_contents_verified": true,
+          "entries_sha256": "0dff7678e48f81a46b7dff2f8119021cb7538bc18bb673954b656457dc2f7bde",
+          "recorded_paths": 3489
+        },
+        "source": {
+          "actual_contents_modes_and_git_objects_verified": true,
+          "entries_sha256": "b39ab94eaba58667c59c3194111a5841c44704be7a2874f287a5bee8db3866a4",
+          "qualified_paths": 1131,
+          "selection_sha256": "1e0418e6caa78ede45506c7a4af23e4256b4c46c23a5a6f63412b8b9d1febc8a"
+        },
+        "status": "PASS"
+      },
+      {
+        "batch_id": 3,
+        "before_after_exactly_equal": true,
+        "command": {
+          "argv": [
+            "/workspace/scratch/16bd38fb2cfb/runtime/toolchain/run-engine-tests.sh",
+            "--concurrency=2",
+            "--reporter=json",
+            "test/office_vba_control_flow_integration_test.dart",
+            "test/office_vba_control_flow_test.dart",
+            "test/office_vba_dynamic_arrays_integration_test.dart",
+            "test/office_vba_dynamic_arrays_test.dart",
+            "test/office_vba_integration_test.dart",
+            "test/office_vba_language_test.dart",
+            "test/office_vba_powerpoint_cli_test.dart",
+            "test/office_vba_powerpoint_conformance_test.dart",
+            "test/office_vba_powerpoint_integration_test.dart",
+            "test/office_vba_powerpoint_layout_integration_test.dart"
+          ],
+          "batch_id": 3,
+          "collector_sha256": "b1dbca0cdecf01f782943d50d55bc4fed7d836dc011f851eece6c0c8c3c7772d",
+          "cwd": "/workspace/scratch/16bd38fb2cfb/quds_office_suite/packages/quds_office_engine",
+          "source_commit": "0201b549d0dc3f601c50e36255d557034cb01699",
+          "started_utc": "2026-11-20T18:39:02.328288+00:00"
+        },
+        "execution": {
+          "exit_code": 0,
+          "finished_utc": "2026-11-20T18:45:46.281925+00:00",
+          "seconds": 403.953
+        },
+        "raw_audit": {
+          "counts": {
+            "office_vba_control_flow_integration_test.dart": 9,
+            "office_vba_control_flow_test.dart": 35,
+            "office_vba_dynamic_arrays_integration_test.dart": 11,
+            "office_vba_dynamic_arrays_test.dart": 50,
+            "office_vba_integration_test.dart": 12,
+            "office_vba_language_test.dart": 55,
+            "office_vba_powerpoint_cli_test.dart": 2,
+            "office_vba_powerpoint_conformance_test.dart": 24,
+            "office_vba_powerpoint_integration_test.dart": 7,
+            "office_vba_powerpoint_layout_integration_test.dart": 46
+          },
+          "events": {
+            "allSuites": 1,
+            "done": 1,
+            "group": 31,
+            "start": 1,
+            "suite": 10,
+            "testDone": 261,
+            "testStart": 261
+          },
+          "failed_cases": 0,
+          "hidden_completions": 10,
+          "passed_cases": 251,
+          "protocol_and_all_group_declarations_verified": true,
+          "raw_bytes": 133784,
+          "raw_sha256": "f48d6bb1754574f87e9abea9bbefa9396c8d8ac7d7afb0766271276e514095f9",
+          "skipped_cases": 0,
+          "start_completion_count": 261,
+          "suite_count": 10
+        },
+        "runtime": {
+          "all_recorded_actual_contents_verified": true,
+          "entries_sha256": "0dff7678e48f81a46b7dff2f8119021cb7538bc18bb673954b656457dc2f7bde",
+          "recorded_paths": 3489
+        },
+        "source": {
+          "actual_contents_modes_and_git_objects_verified": true,
+          "entries_sha256": "b39ab94eaba58667c59c3194111a5841c44704be7a2874f287a5bee8db3866a4",
+          "qualified_paths": 1131,
+          "selection_sha256": "1e0418e6caa78ede45506c7a4af23e4256b4c46c23a5a6f63412b8b9d1febc8a"
+        },
+        "status": "PASS"
+      },
+      {
+        "batch_id": 4,
+        "before_after_exactly_equal": true,
+        "command": {
+          "argv": [
+            "/workspace/scratch/16bd38fb2cfb/runtime/toolchain/run-engine-tests.sh",
+            "--concurrency=2",
+            "--reporter=json",
+            "test/office_vba_powerpoint_layout_test.dart",
+            "test/office_vba_powerpoint_margins_integration_test.dart",
+            "test/office_vba_powerpoint_margins_test.dart",
+            "test/office_vba_powerpoint_test.dart",
+            "test/office_vba_procedure_boundaries_test.dart",
+            "test/office_vba_procedures_integration_test.dart",
+            "test/office_vba_procedures_test.dart",
+            "test/office_vba_string_intrinsics_integration_test.dart",
+            "test/office_vba_string_intrinsics_test.dart",
+            "test/office_vba_variant_conformance_test.dart"
+          ],
+          "batch_id": 4,
+          "collector_sha256": "b1dbca0cdecf01f782943d50d55bc4fed7d836dc011f851eece6c0c8c3c7772d",
+          "cwd": "/workspace/scratch/16bd38fb2cfb/quds_office_suite/packages/quds_office_engine",
+          "source_commit": "0201b549d0dc3f601c50e36255d557034cb01699",
+          "started_utc": "2026-11-20T18:46:05.042097+00:00"
+        },
+        "execution": {
+          "exit_code": 0,
+          "finished_utc": "2026-11-20T18:50:33.685548+00:00",
+          "seconds": 268.643
+        },
+        "raw_audit": {
+          "counts": {
+            "office_vba_powerpoint_layout_test.dart": 41,
+            "office_vba_powerpoint_margins_integration_test.dart": 16,
+            "office_vba_powerpoint_margins_test.dart": 27,
+            "office_vba_powerpoint_test.dart": 63,
+            "office_vba_procedure_boundaries_test.dart": 19,
+            "office_vba_procedures_integration_test.dart": 10,
+            "office_vba_procedures_test.dart": 26,
+            "office_vba_string_intrinsics_integration_test.dart": 11,
+            "office_vba_string_intrinsics_test.dart": 102,
+            "office_vba_variant_conformance_test.dart": 162
+          },
+          "events": {
+            "allSuites": 1,
+            "done": 1,
+            "group": 29,
+            "start": 1,
+            "suite": 10,
+            "testDone": 487,
+            "testStart": 487
+          },
+          "failed_cases": 0,
+          "hidden_completions": 10,
+          "passed_cases": 477,
+          "protocol_and_all_group_declarations_verified": true,
+          "raw_bytes": 239876,
+          "raw_sha256": "116cf035b5ac8dcaf9820b91b04fd1287c2ba4bdbeb746819bdb1d0b1967e013",
+          "skipped_cases": 0,
+          "start_completion_count": 487,
+          "suite_count": 10
+        },
+        "runtime": {
+          "all_recorded_actual_contents_verified": true,
+          "entries_sha256": "0dff7678e48f81a46b7dff2f8119021cb7538bc18bb673954b656457dc2f7bde",
+          "recorded_paths": 3489
+        },
+        "source": {
+          "actual_contents_modes_and_git_objects_verified": true,
+          "entries_sha256": "b39ab94eaba58667c59c3194111a5841c44704be7a2874f287a5bee8db3866a4",
+          "qualified_paths": 1131,
+          "selection_sha256": "1e0418e6caa78ede45506c7a4af23e4256b4c46c23a5a6f63412b8b9d1febc8a"
+        },
+        "status": "PASS"
+      },
+      {
+        "batch_id": 5,
+        "before_after_exactly_equal": true,
+        "command": {
+          "argv": [
+            "/workspace/scratch/16bd38fb2cfb/runtime/toolchain/run-engine-tests.sh",
+            "--concurrency=2",
+            "--reporter=json",
+            "test/office_vba_variant_conversions_integration_test.dart",
+            "test/office_vba_variant_conversions_test.dart",
+            "test/office_vba_word_argument_shapes_test.dart",
+            "test/office_vba_word_cli_test.dart",
+            "test/office_vba_word_conformance_test.dart",
+            "test/office_vba_word_extensions_test.dart",
+            "test/office_vba_word_format_integration_test.dart",
+            "test/office_vba_word_integration_test.dart",
+            "test/office_vba_word_language_test.dart",
+            "test/office_vba_word_line_spacing_integration_test.dart"
+          ],
+          "batch_id": 5,
+          "collector_sha256": "b1dbca0cdecf01f782943d50d55bc4fed7d836dc011f851eece6c0c8c3c7772d",
+          "cwd": "/workspace/scratch/16bd38fb2cfb/quds_office_suite/packages/quds_office_engine",
+          "source_commit": "0201b549d0dc3f601c50e36255d557034cb01699",
+          "started_utc": "2026-11-20T18:50:45.544232+00:00"
+        },
+        "execution": {
+          "exit_code": 0,
+          "finished_utc": "2026-11-20T18:55:53.907170+00:00",
+          "seconds": 308.362
+        },
+        "raw_audit": {
+          "counts": {
+            "office_vba_variant_conversions_integration_test.dart": 9,
+            "office_vba_variant_conversions_test.dart": 239,
+            "office_vba_word_argument_shapes_test.dart": 8,
+            "office_vba_word_cli_test.dart": 5,
+            "office_vba_word_conformance_test.dart": 46,
+            "office_vba_word_extensions_test.dart": 30,
+            "office_vba_word_format_integration_test.dart": 2,
+            "office_vba_word_integration_test.dart": 14,
+            "office_vba_word_language_test.dart": 156,
+            "office_vba_word_line_spacing_integration_test.dart": 23
+          },
+          "events": {
+            "allSuites": 1,
+            "done": 1,
+            "group": 26,
+            "start": 1,
+            "suite": 10,
+            "testDone": 542,
+            "testStart": 542
+          },
+          "failed_cases": 0,
+          "hidden_completions": 10,
+          "passed_cases": 532,
+          "protocol_and_all_group_declarations_verified": true,
+          "raw_bytes": 261357,
+          "raw_sha256": "505ecafa9e54a85c814adf4be3f3b92bd04e1520d0faae44fbcc0cba2a2ba394",
+          "skipped_cases": 0,
+          "start_completion_count": 542,
+          "suite_count": 10
+        },
+        "runtime": {
+          "all_recorded_actual_contents_verified": true,
+          "entries_sha256": "0dff7678e48f81a46b7dff2f8119021cb7538bc18bb673954b656457dc2f7bde",
+          "recorded_paths": 3489
+        },
+        "source": {
+          "actual_contents_modes_and_git_objects_verified": true,
+          "entries_sha256": "b39ab94eaba58667c59c3194111a5841c44704be7a2874f287a5bee8db3866a4",
+          "qualified_paths": 1131,
+          "selection_sha256": "1e0418e6caa78ede45506c7a4af23e4256b4c46c23a5a6f63412b8b9d1febc8a"
+        },
+        "status": "PASS"
+      },
+      {
+        "batch_id": 6,
+        "before_after_exactly_equal": true,
+        "command": {
+          "argv": [
+            "/workspace/scratch/16bd38fb2cfb/runtime/toolchain/run-engine-tests.sh",
+            "--concurrency=2",
+            "--reporter=json",
+            "test/office_vba_word_line_spacing_test.dart",
+            "test/office_vba_word_list_levels_integration_test.dart",
+            "test/office_vba_word_list_levels_test.dart",
+            "test/office_vba_word_lists_integration_test.dart",
+            "test/office_vba_word_lists_test.dart",
+            "test/office_vba_word_paragraph_layout_integration_test.dart",
+            "test/office_vba_word_paragraph_layout_test.dart",
+            "test/office_vba_word_tabstops_integration_test.dart",
+            "test/office_vba_word_tabstops_test.dart",
+            "test/office_vba_word_typography_integration_test.dart"
+          ],
+          "batch_id": 6,
+          "collector_sha256": "b1dbca0cdecf01f782943d50d55bc4fed7d836dc011f851eece6c0c8c3c7772d",
+          "cwd": "/workspace/scratch/16bd38fb2cfb/quds_office_suite/packages/quds_office_engine",
+          "source_commit": "0201b549d0dc3f601c50e36255d557034cb01699",
+          "started_utc": "2026-11-20T18:56:05.838335+00:00"
+        },
+        "execution": {
+          "exit_code": 0,
+          "finished_utc": "2026-11-20T18:58:51.736468+00:00",
+          "seconds": 165.897
+        },
+        "raw_audit": {
+          "counts": {
+            "office_vba_word_line_spacing_test.dart": 99,
+            "office_vba_word_list_levels_integration_test.dart": 44,
+            "office_vba_word_list_levels_test.dart": 88,
+            "office_vba_word_lists_integration_test.dart": 22,
+            "office_vba_word_lists_test.dart": 95,
+            "office_vba_word_paragraph_layout_integration_test.dart": 17,
+            "office_vba_word_paragraph_layout_test.dart": 37,
+            "office_vba_word_tabstops_integration_test.dart": 10,
+            "office_vba_word_tabstops_test.dart": 85,
+            "office_vba_word_typography_integration_test.dart": 30
+          },
+          "events": {
+            "allSuites": 1,
+            "done": 1,
+            "group": 10,
+            "start": 1,
+            "suite": 10,
+            "testDone": 537,
+            "testStart": 537
+          },
+          "failed_cases": 0,
+          "hidden_completions": 10,
+          "passed_cases": 527,
+          "protocol_and_all_group_declarations_verified": true,
+          "raw_bytes": 249404,
+          "raw_sha256": "a5becf577b4b77ccc179472a36bedddc7ef703d77f3b8130cf6aba10244a4783",
+          "skipped_cases": 0,
+          "start_completion_count": 537,
+          "suite_count": 10
+        },
+        "runtime": {
+          "all_recorded_actual_contents_verified": true,
+          "entries_sha256": "0dff7678e48f81a46b7dff2f8119021cb7538bc18bb673954b656457dc2f7bde",
+          "recorded_paths": 3489
+        },
+        "source": {
+          "actual_contents_modes_and_git_objects_verified": true,
+          "entries_sha256": "b39ab94eaba58667c59c3194111a5841c44704be7a2874f287a5bee8db3866a4",
+          "qualified_paths": 1131,
+          "selection_sha256": "1e0418e6caa78ede45506c7a4af23e4256b4c46c23a5a6f63412b8b9d1febc8a"
+        },
+        "status": "PASS"
+      },
+      {
+        "batch_id": 7,
+        "before_after_exactly_equal": true,
+        "command": {
+          "argv": [
+            "/workspace/scratch/16bd38fb2cfb/runtime/toolchain/run-engine-tests.sh",
+            "--concurrency=2",
+            "--reporter=json",
+            "test/office_vba_word_typography_test.dart",
+            "test/style_cascade_test.dart",
+            "test/styleless_import_fidelity_test.dart",
+            "test/word_compatibility_fidelity_test.dart",
+            "test/word_fidelity_test.dart",
+            "test/word_font_line_metrics_test.dart",
+            "test/word_line_box_fidelity_test.dart",
+            "test/word_list_numbering_snapshot_test.dart",
+            "test/word_package_preservation_test.dart",
+            "test/word_paragraph_mark_layout_test.dart"
+          ],
+          "batch_id": 7,
+          "collector_sha256": "b1dbca0cdecf01f782943d50d55bc4fed7d836dc011f851eece6c0c8c3c7772d",
+          "cwd": "/workspace/scratch/16bd38fb2cfb/quds_office_suite/packages/quds_office_engine",
+          "source_commit": "0201b549d0dc3f601c50e36255d557034cb01699",
+          "started_utc": "2026-11-20T18:23:47.780341+00:00"
+        },
+        "execution": {
+          "exit_code": 0,
+          "finished_utc": "2026-11-20T18:26:12.023843+00:00",
+          "seconds": 144.243
+        },
+        "raw_audit": {
+          "counts": {
+            "office_vba_word_typography_test.dart": 48,
+            "style_cascade_test.dart": 11,
+            "styleless_import_fidelity_test.dart": 5,
+            "word_compatibility_fidelity_test.dart": 5,
+            "word_fidelity_test.dart": 19,
+            "word_font_line_metrics_test.dart": 5,
+            "word_line_box_fidelity_test.dart": 7,
+            "word_list_numbering_snapshot_test.dart": 5,
+            "word_package_preservation_test.dart": 32,
+            "word_paragraph_mark_layout_test.dart": 3
+          },
+          "events": {
+            "allSuites": 1,
+            "done": 1,
+            "group": 11,
+            "start": 1,
+            "suite": 10,
+            "testDone": 150,
+            "testStart": 150
+          },
+          "failed_cases": 0,
+          "hidden_completions": 10,
+          "passed_cases": 140,
+          "protocol_and_all_group_declarations_verified": true,
+          "raw_bytes": 70019,
+          "raw_sha256": "9fa3c1576b830c5a515d2c000d35a9c2985c75f00b2c5c6591f94c5fd7c1215c",
+          "skipped_cases": 0,
+          "start_completion_count": 150,
+          "suite_count": 10
+        },
+        "runtime": {
+          "all_recorded_actual_contents_verified": true,
+          "entries_sha256": "0dff7678e48f81a46b7dff2f8119021cb7538bc18bb673954b656457dc2f7bde",
+          "recorded_paths": 3489
+        },
+        "source": {
+          "actual_contents_modes_and_git_objects_verified": true,
+          "entries_sha256": "b39ab94eaba58667c59c3194111a5841c44704be7a2874f287a5bee8db3866a4",
+          "qualified_paths": 1131,
+          "selection_sha256": "1e0418e6caa78ede45506c7a4af23e4256b4c46c23a5a6f63412b8b9d1febc8a"
+        },
+        "status": "PASS"
+      },
+      {
+        "batch_id": 8,
+        "before_after_exactly_equal": true,
+        "command": {
+          "argv": [
+            "/workspace/scratch/16bd38fb2cfb/runtime/toolchain/run-engine-tests.sh",
+            "--concurrency=2",
+            "--reporter=json",
+            "test/word_proofing_inheritance_test.dart",
+            "test/word_referenced_styles_and_breaks_test.dart",
+            "test/word_style_introduction_test.dart",
+            "test/word_styles_layout_test.dart",
+            "test/xml_namespace_capture_test.dart"
+          ],
+          "batch_id": 8,
+          "collector_sha256": "b1dbca0cdecf01f782943d50d55bc4fed7d836dc011f851eece6c0c8c3c7772d",
+          "cwd": "/workspace/scratch/16bd38fb2cfb/quds_office_suite/packages/quds_office_engine",
+          "source_commit": "0201b549d0dc3f601c50e36255d557034cb01699",
+          "started_utc": "2026-11-20T18:26:35.798148+00:00"
+        },
+        "execution": {
+          "exit_code": 0,
+          "finished_utc": "2026-11-20T18:27:56.965265+00:00",
+          "seconds": 81.158
+        },
+        "raw_audit": {
+          "counts": {
+            "word_proofing_inheritance_test.dart": 16,
+            "word_referenced_styles_and_breaks_test.dart": 2,
+            "word_style_introduction_test.dart": 4,
+            "word_styles_layout_test.dart": 15,
+            "xml_namespace_capture_test.dart": 3
+          },
+          "events": {
+            "allSuites": 1,
+            "done": 1,
+            "group": 9,
+            "start": 1,
+            "suite": 5,
+            "testDone": 45,
+            "testStart": 45
+          },
+          "failed_cases": 0,
+          "hidden_completions": 5,
+          "passed_cases": 40,
+          "protocol_and_all_group_declarations_verified": true,
+          "raw_bytes": 22324,
+          "raw_sha256": "62fb0d08b96c856071c2644a04d75c620aba9aa1d60ef44aad034cfcb4d8a0fb",
+          "skipped_cases": 0,
+          "start_completion_count": 45,
+          "suite_count": 5
+        },
+        "runtime": {
+          "all_recorded_actual_contents_verified": true,
+          "entries_sha256": "0dff7678e48f81a46b7dff2f8119021cb7538bc18bb673954b656457dc2f7bde",
+          "recorded_paths": 3489
+        },
+        "source": {
+          "actual_contents_modes_and_git_objects_verified": true,
+          "entries_sha256": "b39ab94eaba58667c59c3194111a5841c44704be7a2874f287a5bee8db3866a4",
+          "qualified_paths": 1131,
+          "selection_sha256": "1e0418e6caa78ede45506c7a4af23e4256b4c46c23a5a6f63412b8b9d1febc8a"
+        },
+        "status": "PASS"
+      }
+    ],
+    "additional_existing_layout_cases": 12,
+    "all_current_office_vba_modules": 48,
+    "artifact_manifest": {
+      "batch-01/cases.json.gz": {
+        "bytes": 8038,
+        "sha256": "c125ad30a9da95d09f730fe981728bbafd20f20b49566683ef3ea222e8a6b966"
+      },
+      "batch-01/command.json": {
+        "bytes": 920,
+        "sha256": "9dbd4b229b40f4ded2db7fb1b331be7ff3a1de941a1ac6fb160d774a841d4af6"
+      },
+      "batch-01/execution.json": {
+        "bytes": 97,
+        "sha256": "41b7466194be16f642bf96a769780d506740658089a9b71aa642c60a3a303a81"
+      },
+      "batch-01/inputs-after.json.gz": {
+        "bytes": 282363,
+        "sha256": "a45cd2bb54566bb667a769131a3304a8c51bb07acca86fb6e32d88140ee43daa"
+      },
+      "batch-01/inputs-before.json.gz": {
+        "bytes": 282363,
+        "sha256": "a45cd2bb54566bb667a769131a3304a8c51bb07acca86fb6e32d88140ee43daa"
+      },
+      "batch-01/stderr.log": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "batch-01/stdout.jsonl": {
+        "bytes": 160149,
+        "sha256": "40b2085cb7e4b4d7e8e6ccee3df8b3338d24b5d2c277c8a584caf99ced6904f1"
+      },
+      "batch-01/summary.json": {
+        "bytes": 8439,
+        "sha256": "2e389890d69b8321795ba2653828109df7ce67e8b7a048e5866b3062dfacf908"
+      },
+      "batch-02/cases.json.gz": {
+        "bytes": 13516,
+        "sha256": "f5df168b2cc1a21769eeb8389abc000f0f6cd09f27c5695410128bce35cb0e11"
+      },
+      "batch-02/command.json": {
+        "bytes": 943,
+        "sha256": "784d936de78c56e8386a7b2f4e2cbb35eb6b31815ae90cadcd2da64f91ae13da"
+      },
+      "batch-02/execution.json": {
+        "bytes": 97,
+        "sha256": "d0b62e51a683380aa79990f7a3112d6f8436a1b69bf3395c58ecf9c85b9b66e2"
+      },
+      "batch-02/inputs-after.json.gz": {
+        "bytes": 282363,
+        "sha256": "a45cd2bb54566bb667a769131a3304a8c51bb07acca86fb6e32d88140ee43daa"
+      },
+      "batch-02/inputs-before.json.gz": {
+        "bytes": 282363,
+        "sha256": "a45cd2bb54566bb667a769131a3304a8c51bb07acca86fb6e32d88140ee43daa"
+      },
+      "batch-02/stderr.log": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "batch-02/stdout.jsonl": {
+        "bytes": 253645,
+        "sha256": "7801fffca1a701ad5722997858a38e94412f89bc840fd0fb4cef3fb60dd09159"
+      },
+      "batch-02/summary.json": {
+        "bytes": 11401,
+        "sha256": "af85beba4ed4795a10a7c44c3e5b42291b0ed44be451213db8c03d6a8b217330"
+      },
+      "batch-03/cases.json.gz": {
+        "bytes": 9244,
+        "sha256": "71faff9b8d051eb2fd3b44bc8c60252504bd9ae20f5b0c1b6a7afa9f51cd8df5"
+      },
+      "batch-03/command.json": {
+        "bytes": 977,
+        "sha256": "3e0c42b3127ee2fbc6c556e5af0d7fb4d666c898eb212b6e8ed9fcce20722473"
+      },
+      "batch-03/execution.json": {
+        "bytes": 97,
+        "sha256": "fd9c7890b5bcc7039ec4b5eba014450a7a3a1b65377d17ae703a18c67761cc46"
+      },
+      "batch-03/inputs-after.json.gz": {
+        "bytes": 282363,
+        "sha256": "a45cd2bb54566bb667a769131a3304a8c51bb07acca86fb6e32d88140ee43daa"
+      },
+      "batch-03/inputs-before.json.gz": {
+        "bytes": 282363,
+        "sha256": "a45cd2bb54566bb667a769131a3304a8c51bb07acca86fb6e32d88140ee43daa"
+      },
+      "batch-03/stderr.log": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "batch-03/stdout.jsonl": {
+        "bytes": 133784,
+        "sha256": "f48d6bb1754574f87e9abea9bbefa9396c8d8ac7d7afb0766271276e514095f9"
+      },
+      "batch-03/summary.json": {
+        "bytes": 7045,
+        "sha256": "658bc983a8208fe96fd36413ca6055383aa89bd9d926b5f200791efbeb1befde"
+      },
+      "batch-04/cases.json.gz": {
+        "bytes": 11518,
+        "sha256": "a7cc392435336e4476e811beac9cec3b5d544ea99bc3236bfd7d724b7bdc2808"
+      },
+      "batch-04/command.json": {
+        "bytes": 987,
+        "sha256": "04b4a61ac1321015dde8cfd82978f096d113656b96507df15f7d5a36d872cbea"
+      },
+      "batch-04/execution.json": {
+        "bytes": 97,
+        "sha256": "3dc84df220476148078f01b545650d82d33ff93b98ebd8fcf94cd190be0ad4bf"
+      },
+      "batch-04/inputs-after.json.gz": {
+        "bytes": 282363,
+        "sha256": "a45cd2bb54566bb667a769131a3304a8c51bb07acca86fb6e32d88140ee43daa"
+      },
+      "batch-04/inputs-before.json.gz": {
+        "bytes": 282363,
+        "sha256": "a45cd2bb54566bb667a769131a3304a8c51bb07acca86fb6e32d88140ee43daa"
+      },
+      "batch-04/stderr.log": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "batch-04/stdout.jsonl": {
+        "bytes": 239876,
+        "sha256": "116cf035b5ac8dcaf9820b91b04fd1287c2ba4bdbeb746819bdb1d0b1967e013"
+      },
+      "batch-04/summary.json": {
+        "bytes": 11119,
+        "sha256": "dc10b1598613635b08e3e080ed964bf519224ef8854d6a836b6546b5bb3cc26b"
+      },
+      "batch-05/cases.json.gz": {
+        "bytes": 11186,
+        "sha256": "5f6ea5d4c9a173e98b8da3d2777fe61ed81dde8f35ce47856c1a90003ad7cf61"
+      },
+      "batch-05/command.json": {
+        "bytes": 985,
+        "sha256": "f5be61c2dc367a77243d4d2aae4d6e73ddb711c96b54baf30e03fd486e437258"
+      },
+      "batch-05/execution.json": {
+        "bytes": 97,
+        "sha256": "45ceb4663a2ea68bd93d1d24d0dea167e9cb33b3abde2dfae0b73a42976de9af"
+      },
+      "batch-05/inputs-after.json.gz": {
+        "bytes": 282363,
+        "sha256": "a45cd2bb54566bb667a769131a3304a8c51bb07acca86fb6e32d88140ee43daa"
+      },
+      "batch-05/inputs-before.json.gz": {
+        "bytes": 282363,
+        "sha256": "a45cd2bb54566bb667a769131a3304a8c51bb07acca86fb6e32d88140ee43daa"
+      },
+      "batch-05/stderr.log": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "batch-05/stdout.jsonl": {
+        "bytes": 261357,
+        "sha256": "505ecafa9e54a85c814adf4be3f3b92bd04e1520d0faae44fbcc0cba2a2ba394"
+      },
+      "batch-05/summary.json": {
+        "bytes": 12095,
+        "sha256": "50efcfadf163a13842f87a415ea0b8ed7ba43f5c0575d2a2f7d613826deca93f"
+      },
+      "batch-06/cases.json.gz": {
+        "bytes": 10794,
+        "sha256": "2621c058b06ad2ab2d22c9a4d596b4c059cba28c88f2912e0d2a9f5e2e9881af"
+      },
+      "batch-06/command.json": {
+        "bytes": 1007,
+        "sha256": "0f20ed1af0e5bb6664a5dd53b0dac57709908ce8ab15d78c7d2da64bf442c661"
+      },
+      "batch-06/execution.json": {
+        "bytes": 97,
+        "sha256": "0dbcea6e9ce1db1f78d4bc6fda073a8738c75d86f444ecc4035677f1ab8b82ca"
+      },
+      "batch-06/inputs-after.json.gz": {
+        "bytes": 282363,
+        "sha256": "a45cd2bb54566bb667a769131a3304a8c51bb07acca86fb6e32d88140ee43daa"
+      },
+      "batch-06/inputs-before.json.gz": {
+        "bytes": 282363,
+        "sha256": "a45cd2bb54566bb667a769131a3304a8c51bb07acca86fb6e32d88140ee43daa"
+      },
+      "batch-06/stderr.log": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "batch-06/stdout.jsonl": {
+        "bytes": 249404,
+        "sha256": "a5becf577b4b77ccc179472a36bedddc7ef703d77f3b8130cf6aba10244a4783"
+      },
+      "batch-06/summary.json": {
+        "bytes": 12043,
+        "sha256": "203d683e99b0cb9d5f83957fa6d16c5142ff4012b3ed46beb56e7e2531c71dd8"
+      },
+      "batch-07/cases.json.gz": {
+        "bytes": 4612,
+        "sha256": "d3d81ac214a382624e26f20685768abff339dc3c0ceb42c8d98ba325e2271017"
+      },
+      "batch-07/command.json": {
+        "bytes": 912,
+        "sha256": "8153e9a8f26b3fef9c334a1b2c0b2ab0630db4d235f4ad6b8fc3ff7fdbc9d1be"
+      },
+      "batch-07/execution.json": {
+        "bytes": 97,
+        "sha256": "590a9ba663925f746eeccc66923589e27866dc4b1c4fa4de68e4c2133c800c17"
+      },
+      "batch-07/inputs-after.json.gz": {
+        "bytes": 282363,
+        "sha256": "a45cd2bb54566bb667a769131a3304a8c51bb07acca86fb6e32d88140ee43daa"
+      },
+      "batch-07/inputs-before.json.gz": {
+        "bytes": 282363,
+        "sha256": "a45cd2bb54566bb667a769131a3304a8c51bb07acca86fb6e32d88140ee43daa"
+      },
+      "batch-07/stderr.log": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "batch-07/stdout.jsonl": {
+        "bytes": 70019,
+        "sha256": "9fa3c1576b830c5a515d2c000d35a9c2985c75f00b2c5c6591f94c5fd7c1215c"
+      },
+      "batch-07/summary.json": {
+        "bytes": 4893,
+        "sha256": "747b9aac28a9a11af777fc879546a2714971a429d07b25375c10a56f6080ba49"
+      },
+      "batch-08/cases.json.gz": {
+        "bytes": 1849,
+        "sha256": "845a5f99872425443ed8d871002c0e3650c730695001bba3e9c2f39c0269b55e"
+      },
+      "batch-08/command.json": {
+        "bytes": 690,
+        "sha256": "c7685e3ae78e4f1a9c9573dd4c09e4161844f6e4cd32f412177829d3979eeb73"
+      },
+      "batch-08/execution.json": {
+        "bytes": 96,
+        "sha256": "194a9a55d1bf33cade72db6c2c7a2e8cdda4bb0c13cac93a17612bab7b792d29"
+      },
+      "batch-08/inputs-after.json.gz": {
+        "bytes": 282363,
+        "sha256": "a45cd2bb54566bb667a769131a3304a8c51bb07acca86fb6e32d88140ee43daa"
+      },
+      "batch-08/inputs-before.json.gz": {
+        "bytes": 282363,
+        "sha256": "a45cd2bb54566bb667a769131a3304a8c51bb07acca86fb6e32d88140ee43daa"
+      },
+      "batch-08/stderr.log": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "batch-08/stdout.jsonl": {
+        "bytes": 22324,
+        "sha256": "62fb0d08b96c856071c2644a04d75c620aba9aa1d60ef44aad034cfcb4d8a0fb"
+      },
+      "batch-08/summary.json": {
+        "bytes": 2657,
+        "sha256": "d80c9b10387fec945c2af653962faaddeac23e614dd37c011f26086d38e4378d"
+      },
+      "batches.json": {
+        "bytes": 4110,
+        "sha256": "2c66ba9eda56a88567e628af1eacadd7b398df2af797907598a3b3662ad7a381"
+      },
+      "case-identity-comparison.json": {
+        "bytes": 12937,
+        "sha256": "d2e2e4e233b952f0280eae5751e1c669ab207895ae6a7c9e8ae207483af7b78e"
+      },
+      "cases.json.gz": {
+        "bytes": 68296,
+        "sha256": "93d2fe5ec4d1ad800463ba8220f6fbaed0243e17f80242e50f805874017cf811"
+      },
+      "diagnostics/attempts.json": {
+        "bytes": 5722,
+        "sha256": "cdb659962a9b4e24d8f765d1044035748dfc9970abedd69eed92552c2649ba07"
+      },
+      "diagnostics/batch-02-timeout/cli-temporary-artifact-preservation.json": {
+        "bytes": 750,
+        "sha256": "f746e037898736e1d4fb99552044db50a53296a399671480a0342cfce5b473d2"
+      },
+      "diagnostics/batch-02-timeout/cli-temporary-artifact/helpers.bas": {
+        "bytes": 210,
+        "sha256": "343740c77258063be4f5f6ed41626d75b8fa4e2957aff74951b98e09274c377a"
+      },
+      "diagnostics/batch-02-timeout/cli-temporary-artifact/input.xlsx": {
+        "bytes": 2595,
+        "sha256": "9172a224f43e768927b3bb4b2236e636e2ece0f603c358c78508748839fdffb9"
+      },
+      "diagnostics/batch-02-timeout/cli-temporary-artifact/output.xlsx": {
+        "bytes": 3610,
+        "sha256": "6de89d7382d96d864ddada4518dd97bcd6ca4a05542cc3a6b4b785f6bd5d0d69"
+      },
+      "diagnostics/batch-02-timeout/command.json": {
+        "bytes": 943,
+        "sha256": "ede7d7a20aee154d5c6fa70e8ca1ec45ab94ed35c846d794cf44facec81bd6a5"
+      },
+      "diagnostics/batch-02-timeout/inputs-at-termination-observation.json.gz": {
+        "bytes": 282363,
+        "sha256": "a45cd2bb54566bb667a769131a3304a8c51bb07acca86fb6e32d88140ee43daa"
+      },
+      "diagnostics/batch-02-timeout/inputs-before.json.gz": {
+        "bytes": 282363,
+        "sha256": "a45cd2bb54566bb667a769131a3304a8c51bb07acca86fb6e32d88140ee43daa"
+      },
+      "diagnostics/batch-02-timeout/relocation-and-observation.json": {
+        "bytes": 2686,
+        "sha256": "366d5c7241276e95d9a930538130efa8bd083fe0625dbc385a69db7e00b65818"
+      },
+      "diagnostics/batch-02-timeout/stderr.log": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "diagnostics/batch-02-timeout/stdout.jsonl": {
+        "bytes": 157316,
+        "sha256": "b3c554a8de7202af0647cd2003443d6b293b600b70ce1d9747b3d2f901568b74"
+      },
+      "diagnostics/batch-03-timeout/cases.json.gz": {
+        "bytes": 1819,
+        "sha256": "8e1b44a8b8ce6b950947704887e13b9147374099a73ca79a22f6cf6aac8f4e1e"
+      },
+      "diagnostics/batch-03-timeout/command.json": {
+        "bytes": 977,
+        "sha256": "8749118949a22564f83eae5b0a58ff75bfba01af75840474dfae783d8a2970a1"
+      },
+      "diagnostics/batch-03-timeout/execution.json": {
+        "bytes": 97,
+        "sha256": "f943ef49e52e662100bb27436b041d4717ff2b2ced3f87057de493907d6d89b0"
+      },
+      "diagnostics/batch-03-timeout/inputs-after.json.gz": {
+        "bytes": 282363,
+        "sha256": "a45cd2bb54566bb667a769131a3304a8c51bb07acca86fb6e32d88140ee43daa"
+      },
+      "diagnostics/batch-03-timeout/inputs-before.json.gz": {
+        "bytes": 282363,
+        "sha256": "a45cd2bb54566bb667a769131a3304a8c51bb07acca86fb6e32d88140ee43daa"
+      },
+      "diagnostics/batch-03-timeout/relocation-and-observation.json": {
+        "bytes": 2773,
+        "sha256": "bb0df5cb76358756467a83ff4ea0dcac095ddb4eff5a12006749a1849025851f"
+      },
+      "diagnostics/batch-03-timeout/stderr.log": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "diagnostics/batch-03-timeout/stdout.jsonl": {
+        "bytes": 25832,
+        "sha256": "de5145cb81772f3fe37d9943f3521ee4c3f4c6cbf4107dec252e98a06f2f3f4c"
+      },
+      "diagnostics/batch-03-timeout/summary.json": {
+        "bytes": 4834,
+        "sha256": "67bd5bc22d62d7c3786b16f4e52859be05abd93a4b3dce57e18d482d7876f488"
+      },
+      "inputs-after.json.gz": {
+        "bytes": 282363,
+        "sha256": "a45cd2bb54566bb667a769131a3304a8c51bb07acca86fb6e32d88140ee43daa"
+      },
+      "inputs-before.json.gz": {
+        "bytes": 282363,
+        "sha256": "a45cd2bb54566bb667a769131a3304a8c51bb07acca86fb6e32d88140ee43daa"
+      },
+      "inputs-final.json.gz": {
+        "bytes": 282363,
+        "sha256": "a45cd2bb54566bb667a769131a3304a8c51bb07acca86fb6e32d88140ee43daa"
+      },
+      "plan.json": {
+        "bytes": 12679,
+        "sha256": "362139b881ba769b72e985f6e3c9126192f1dc53961c2c013a6a8649682d8972"
+      },
+      "prior-cases.json.gz": {
+        "bytes": 49617,
+        "sha256": "fd156808dba32ae43330da1cd82d4be72cfa886cedaf48a37256133e8c094828"
+      },
+      "prior-evidence-audit.json": {
+        "bytes": 56597,
+        "sha256": "e5e3f318b07d3b7a7a7bc1d1651562a9c47354158baf73330ffd4b7069935106"
+      },
+      "prior-inputs-before.json.gz": {
+        "bytes": 97889,
+        "sha256": "38562a55089c2a541699082a8aa078b0f7dac6b98f452c1cf8763aeca7e01060"
+      },
+      "prior-report.json": {
+        "bytes": 16035,
+        "sha256": "1eedba2558e02b43ac1185ebd580ed25b3a2fe63603e76acf0520018a0c66dc4"
+      },
+      "prior-stdout.jsonl.gz": {
+        "bytes": 95177,
+        "sha256": "f297c1c5a3066bd72e80fdd5c3b909d0f17a0d7ed6cd2e9583092b6139eff475"
+      },
+      "root-binding-aliases.json": {
+        "bytes": 330,
+        "sha256": "73e6cdd1f5f05d7241b6288a9d5b58e2253e6f70e0714c093944d1570e636653"
+      },
+      "summary.json": {
+        "bytes": 216099,
+        "sha256": "c3bb038e4e9d830e0841944e01e150a9c333004b97c0a8fd5b74b7b97bf7a0fd"
+      }
+    },
+    "before_after_and_between_batches_exactly_equal": true,
+    "binding_snapshots_verified": 17,
+    "case_identity_set_sha256": "741858547b01b6d4c51edb385993ab72c6461d187a848fb89551af1383fc318f",
+    "collector_review": "No blocking bookkeeping issue. Every original file occurs once; reporter IDs are namespaced by batch; the independent audit reconstructs every group declaration, case, source coordinate, outcome, and start/completion.",
+    "expected_case_count": 2799,
+    "failed_bounded_attempts": [
+      {
+        "accepted_case_contribution": 0,
+        "batch_id": 2,
+        "cause_claim": "Resource contention remains an inference; the review verifies concrete timeout evidence and separately accepted retries.",
+        "classification": "FAILED_DIAGNOSTIC",
+        "normal_execution_receipt_present": false,
+        "original_payloads_unchanged_through_relocation": true,
+        "recorded_tool_exit_code": 130,
+        "reporter_timeout_errors": 2,
+        "source_and_recorded_runtime_unchanged": true,
+        "visible_completed_cases": 299,
+        "visible_failed_cases": 2,
+        "visible_successful_cases": 297
+      },
+      {
+        "accepted_case_contribution": 0,
+        "batch_id": 3,
+        "cause_claim": "Resource contention remains an inference; the review verifies concrete timeout evidence and separately accepted retries.",
+        "classification": "FAILED_DIAGNOSTIC",
+        "normal_execution_receipt_present": true,
+        "original_payloads_unchanged_through_relocation": true,
+        "recorded_tool_exit_code": 1,
+        "reporter_timeout_errors": 1,
+        "source_and_recorded_runtime_unchanged": true,
+        "visible_completed_cases": 41,
+        "visible_failed_cases": 1,
+        "visible_successful_cases": 40
+      }
+    ],
+    "independent_raw_audit": {
+      "batch_count": 8,
+      "failed_cases": 0,
+      "maximum_overlapping_command_intervals": 2,
+      "namespaced_start_completion_count": 2874,
+      "namespaced_start_completion_sha256": "ec370ea331d2175c3e9c84a6e82fcf7e5eeec230dbde03393a853f2a7597035b",
+      "passed_cases": 2799,
+      "per_file_cases": {
+        "numbering_collision_test.dart": 8,
+        "odt_paragraph_properties_test.dart": 18,
+        "odt_tab_stop_fidelity_test.dart": 8,
+        "odt_tab_style_cache_test.dart": 5,
+        "odt_tab_style_fidelity_test.dart": 2,
+        "office_macro_expansion_test.dart": 5,
+        "office_macro_runtime_test.dart": 25,
+        "office_macro_word_line_spacing_test.dart": 96,
+        "office_macro_word_list_format_test.dart": 67,
+        "office_macro_word_list_levels_test.dart": 101,
+        "office_macro_word_revision_guard_test.dart": 2,
+        "office_macro_word_tab_stops_test.dart": 40,
+        "office_operations_test.dart": 27,
+        "office_vba_arguments_integration_test.dart": 16,
+        "office_vba_arguments_test.dart": 68,
+        "office_vba_arrays_boundaries_test.dart": 144,
+        "office_vba_arrays_integration_test.dart": 11,
+        "office_vba_arrays_test.dart": 32,
+        "office_vba_conformance_test.dart": 115,
+        "office_vba_control_flow_boundaries_test.dart": 42,
+        "office_vba_control_flow_integration_test.dart": 9,
+        "office_vba_control_flow_test.dart": 35,
+        "office_vba_dynamic_arrays_integration_test.dart": 11,
+        "office_vba_dynamic_arrays_test.dart": 50,
+        "office_vba_integration_test.dart": 12,
+        "office_vba_language_test.dart": 55,
+        "office_vba_powerpoint_cli_test.dart": 2,
+        "office_vba_powerpoint_conformance_test.dart": 24,
+        "office_vba_powerpoint_integration_test.dart": 7,
+        "office_vba_powerpoint_layout_integration_test.dart": 46,
+        "office_vba_powerpoint_layout_test.dart": 41,
+        "office_vba_powerpoint_margins_integration_test.dart": 16,
+        "office_vba_powerpoint_margins_test.dart": 27,
+        "office_vba_powerpoint_test.dart": 63,
+        "office_vba_procedure_boundaries_test.dart": 19,
+        "office_vba_procedures_integration_test.dart": 10,
+        "office_vba_procedures_test.dart": 26,
+        "office_vba_string_intrinsics_integration_test.dart": 11,
+        "office_vba_string_intrinsics_test.dart": 102,
+        "office_vba_variant_conformance_test.dart": 162,
+        "office_vba_variant_conversions_integration_test.dart": 9,
+        "office_vba_variant_conversions_test.dart": 239,
+        "office_vba_word_argument_shapes_test.dart": 8,
+        "office_vba_word_cli_test.dart": 5,
+        "office_vba_word_conformance_test.dart": 46,
+        "office_vba_word_extensions_test.dart": 30,
+        "office_vba_word_format_integration_test.dart": 2,
+        "office_vba_word_integration_test.dart": 14,
+        "office_vba_word_language_test.dart": 156,
+        "office_vba_word_line_spacing_integration_test.dart": 23,
+        "office_vba_word_line_spacing_test.dart": 99,
+        "office_vba_word_list_levels_integration_test.dart": 44,
+        "office_vba_word_list_levels_test.dart": 88,
+        "office_vba_word_lists_integration_test.dart": 22,
+        "office_vba_word_lists_test.dart": 95,
+        "office_vba_word_paragraph_layout_integration_test.dart": 17,
+        "office_vba_word_paragraph_layout_test.dart": 37,
+        "office_vba_word_tabstops_integration_test.dart": 10,
+        "office_vba_word_tabstops_test.dart": 85,
+        "office_vba_word_typography_integration_test.dart": 30,
+        "office_vba_word_typography_test.dart": 48,
+        "style_cascade_test.dart": 11,
+        "styleless_import_fidelity_test.dart": 5,
+        "word_compatibility_fidelity_test.dart": 5,
+        "word_fidelity_test.dart": 19,
+        "word_font_line_metrics_test.dart": 5,
+        "word_line_box_fidelity_test.dart": 7,
+        "word_list_numbering_snapshot_test.dart": 5,
+        "word_package_preservation_test.dart": 32,
+        "word_paragraph_mark_layout_test.dart": 3,
+        "word_proofing_inheritance_test.dart": 16,
+        "word_referenced_styles_and_breaks_test.dart": 2,
+        "word_style_introduction_test.dart": 4,
+        "word_styles_layout_test.dart": 15,
+        "xml_namespace_capture_test.dart": 3
+      },
+      "skipped_cases": 0,
+      "suite_count": 75
+    },
+    "interrupted_attempt": {
+      "accepted_case_contribution": 0,
+      "artifact_manifest": {
+        "command.json": {
+          "bytes": 4228,
+          "sha256": "29f931fcd7a7eb97cef59eb5eb548876f5174918001d6de3a36e13eabbb3ce2a"
+        },
+        "inputs-before.json.gz": {
+          "bytes": 282252,
+          "sha256": "8ba988e8945a3b5c5848cd830ccd05addbb694955340a2c2db5d983ff7948841"
+        },
+        "plan.json": {
+          "bytes": 11806,
+          "sha256": "ba6165c29a73380150c6b364fbf545e732f85a109b0bc5c92a5d9ea6c8a5a634"
+        },
+        "prior-cases.json.gz": {
+          "bytes": 49617,
+          "sha256": "fd156808dba32ae43330da1cd82d4be72cfa886cedaf48a37256133e8c094828"
+        },
+        "prior-evidence-audit.json": {
+          "bytes": 56597,
+          "sha256": "e5e3f318b07d3b7a7a7bc1d1651562a9c47354158baf73330ffd4b7069935106"
+        },
+        "prior-inputs-before.json.gz": {
+          "bytes": 97889,
+          "sha256": "38562a55089c2a541699082a8aa078b0f7dac6b98f452c1cf8763aeca7e01060"
+        },
+        "prior-report.json": {
+          "bytes": 16035,
+          "sha256": "1eedba2558e02b43ac1185ebd580ed25b3a2fe63603e76acf0520018a0c66dc4"
+        },
+        "prior-stdout.jsonl.gz": {
+          "bytes": 95177,
+          "sha256": "f297c1c5a3066bd72e80fdd5c3b909d0f17a0d7ed6cd2e9583092b6139eff475"
+        },
+        "stderr.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "stdout.jsonl": {
+          "bytes": 1344682,
+          "sha256": "71e399799ecdf6cfb389cf2664f8e3d4f2c2682de3c277c6a25841d51761c502"
+        }
+      },
+      "automatic_after_snapshot_present": false,
+      "process_exit_receipt_present": false,
+      "raw_reporter_sha256": "71e399799ecdf6cfb389cf2664f8e3d4f2c2682de3c277c6a25841d51761c502",
+      "status": "INCOMPLETE_DIAGNOSTIC",
+      "terminal_done_present": false,
+      "visible_completed_cases": 2679
+    },
+    "new_feature_cases": 218,
+    "original_vm_suites_selected": 75,
+    "previous_70_exact_case_and_source_comparison": {
+      "current_cases": 2569,
+      "exact_match": true,
+      "extra": [],
+      "missing": [],
+      "per_file": {
+        "numbering_collision_test.dart": {
+          "current_cases": 8,
+          "exact_case_identities_match": true,
+          "previous_cases": 8,
+          "source_unchanged": true
+        },
+        "odt_paragraph_properties_test.dart": {
+          "current_cases": 18,
+          "exact_case_identities_match": true,
+          "previous_cases": 18,
+          "source_unchanged": true
+        },
+        "odt_tab_stop_fidelity_test.dart": {
+          "current_cases": 8,
+          "exact_case_identities_match": true,
+          "previous_cases": 8,
+          "source_unchanged": true
+        },
+        "odt_tab_style_cache_test.dart": {
+          "current_cases": 5,
+          "exact_case_identities_match": true,
+          "previous_cases": 5,
+          "source_unchanged": true
+        },
+        "odt_tab_style_fidelity_test.dart": {
+          "current_cases": 2,
+          "exact_case_identities_match": true,
+          "previous_cases": 2,
+          "source_unchanged": true
+        },
+        "office_macro_expansion_test.dart": {
+          "current_cases": 5,
+          "exact_case_identities_match": true,
+          "previous_cases": 5,
+          "source_unchanged": true
+        },
+        "office_macro_runtime_test.dart": {
+          "current_cases": 25,
+          "exact_case_identities_match": true,
+          "previous_cases": 25,
+          "source_unchanged": true
+        },
+        "office_macro_word_list_format_test.dart": {
+          "current_cases": 67,
+          "exact_case_identities_match": true,
+          "previous_cases": 67,
+          "source_unchanged": true
+        },
+        "office_macro_word_list_levels_test.dart": {
+          "current_cases": 101,
+          "exact_case_identities_match": true,
+          "previous_cases": 101,
+          "source_unchanged": true
+        },
+        "office_macro_word_revision_guard_test.dart": {
+          "current_cases": 2,
+          "exact_case_identities_match": true,
+          "previous_cases": 2,
+          "source_unchanged": true
+        },
+        "office_macro_word_tab_stops_test.dart": {
+          "current_cases": 40,
+          "exact_case_identities_match": true,
+          "previous_cases": 40,
+          "source_unchanged": true
+        },
+        "office_operations_test.dart": {
+          "current_cases": 27,
+          "exact_case_identities_match": true,
+          "previous_cases": 27,
+          "source_unchanged": true
+        },
+        "office_vba_arguments_integration_test.dart": {
+          "current_cases": 16,
+          "exact_case_identities_match": true,
+          "previous_cases": 16,
+          "source_unchanged": true
+        },
+        "office_vba_arguments_test.dart": {
+          "current_cases": 68,
+          "exact_case_identities_match": true,
+          "previous_cases": 68,
+          "source_unchanged": true
+        },
+        "office_vba_arrays_boundaries_test.dart": {
+          "current_cases": 144,
+          "exact_case_identities_match": true,
+          "previous_cases": 144,
+          "source_unchanged": true
+        },
+        "office_vba_arrays_integration_test.dart": {
+          "current_cases": 11,
+          "exact_case_identities_match": true,
+          "previous_cases": 11,
+          "source_unchanged": true
+        },
+        "office_vba_arrays_test.dart": {
+          "current_cases": 32,
+          "exact_case_identities_match": true,
+          "previous_cases": 32,
+          "source_unchanged": true
+        },
+        "office_vba_conformance_test.dart": {
+          "current_cases": 115,
+          "exact_case_identities_match": true,
+          "previous_cases": 115,
+          "source_unchanged": true
+        },
+        "office_vba_control_flow_boundaries_test.dart": {
+          "current_cases": 42,
+          "exact_case_identities_match": true,
+          "previous_cases": 42,
+          "source_unchanged": true
+        },
+        "office_vba_control_flow_integration_test.dart": {
+          "current_cases": 9,
+          "exact_case_identities_match": true,
+          "previous_cases": 9,
+          "source_unchanged": true
+        },
+        "office_vba_control_flow_test.dart": {
+          "current_cases": 35,
+          "exact_case_identities_match": true,
+          "previous_cases": 35,
+          "source_unchanged": true
+        },
+        "office_vba_dynamic_arrays_integration_test.dart": {
+          "current_cases": 11,
+          "exact_case_identities_match": true,
+          "previous_cases": 11,
+          "source_unchanged": true
+        },
+        "office_vba_dynamic_arrays_test.dart": {
+          "current_cases": 50,
+          "exact_case_identities_match": true,
+          "previous_cases": 50,
+          "source_unchanged": true
+        },
+        "office_vba_integration_test.dart": {
+          "current_cases": 12,
+          "exact_case_identities_match": true,
+          "previous_cases": 12,
+          "source_unchanged": true
+        },
+        "office_vba_language_test.dart": {
+          "current_cases": 55,
+          "exact_case_identities_match": true,
+          "previous_cases": 55,
+          "source_unchanged": true
+        },
+        "office_vba_powerpoint_cli_test.dart": {
+          "current_cases": 2,
+          "exact_case_identities_match": true,
+          "previous_cases": 2,
+          "source_unchanged": true
+        },
+        "office_vba_powerpoint_conformance_test.dart": {
+          "current_cases": 24,
+          "exact_case_identities_match": true,
+          "previous_cases": 24,
+          "source_unchanged": true
+        },
+        "office_vba_powerpoint_integration_test.dart": {
+          "current_cases": 7,
+          "exact_case_identities_match": true,
+          "previous_cases": 7,
+          "source_unchanged": true
+        },
+        "office_vba_powerpoint_layout_integration_test.dart": {
+          "current_cases": 46,
+          "exact_case_identities_match": true,
+          "previous_cases": 46,
+          "source_unchanged": true
+        },
+        "office_vba_powerpoint_layout_test.dart": {
+          "current_cases": 41,
+          "exact_case_identities_match": true,
+          "previous_cases": 41,
+          "source_unchanged": true
+        },
+        "office_vba_powerpoint_margins_integration_test.dart": {
+          "current_cases": 16,
+          "exact_case_identities_match": true,
+          "previous_cases": 16,
+          "source_unchanged": true
+        },
+        "office_vba_powerpoint_margins_test.dart": {
+          "current_cases": 27,
+          "exact_case_identities_match": true,
+          "previous_cases": 27,
+          "source_unchanged": true
+        },
+        "office_vba_powerpoint_test.dart": {
+          "current_cases": 63,
+          "exact_case_identities_match": true,
+          "previous_cases": 63,
+          "source_unchanged": true
+        },
+        "office_vba_procedure_boundaries_test.dart": {
+          "current_cases": 19,
+          "exact_case_identities_match": true,
+          "previous_cases": 19,
+          "source_unchanged": true
+        },
+        "office_vba_procedures_integration_test.dart": {
+          "current_cases": 10,
+          "exact_case_identities_match": true,
+          "previous_cases": 10,
+          "source_unchanged": true
+        },
+        "office_vba_procedures_test.dart": {
+          "current_cases": 26,
+          "exact_case_identities_match": true,
+          "previous_cases": 26,
+          "source_unchanged": true
+        },
+        "office_vba_string_intrinsics_integration_test.dart": {
+          "current_cases": 11,
+          "exact_case_identities_match": true,
+          "previous_cases": 11,
+          "source_unchanged": true
+        },
+        "office_vba_string_intrinsics_test.dart": {
+          "current_cases": 102,
+          "exact_case_identities_match": true,
+          "previous_cases": 102,
+          "source_unchanged": true
+        },
+        "office_vba_variant_conformance_test.dart": {
+          "current_cases": 162,
+          "exact_case_identities_match": true,
+          "previous_cases": 162,
+          "source_unchanged": true
+        },
+        "office_vba_variant_conversions_integration_test.dart": {
+          "current_cases": 9,
+          "exact_case_identities_match": true,
+          "previous_cases": 9,
+          "source_unchanged": true
+        },
+        "office_vba_variant_conversions_test.dart": {
+          "current_cases": 239,
+          "exact_case_identities_match": true,
+          "previous_cases": 239,
+          "source_unchanged": true
+        },
+        "office_vba_word_argument_shapes_test.dart": {
+          "current_cases": 8,
+          "exact_case_identities_match": true,
+          "previous_cases": 8,
+          "source_unchanged": true
+        },
+        "office_vba_word_cli_test.dart": {
+          "current_cases": 5,
+          "exact_case_identities_match": true,
+          "previous_cases": 5,
+          "source_unchanged": true
+        },
+        "office_vba_word_conformance_test.dart": {
+          "current_cases": 46,
+          "exact_case_identities_match": true,
+          "previous_cases": 46,
+          "source_unchanged": true
+        },
+        "office_vba_word_extensions_test.dart": {
+          "current_cases": 30,
+          "exact_case_identities_match": true,
+          "previous_cases": 30,
+          "source_unchanged": true
+        },
+        "office_vba_word_format_integration_test.dart": {
+          "current_cases": 2,
+          "exact_case_identities_match": true,
+          "previous_cases": 2,
+          "source_unchanged": true
+        },
+        "office_vba_word_integration_test.dart": {
+          "current_cases": 14,
+          "exact_case_identities_match": true,
+          "previous_cases": 14,
+          "source_unchanged": true
+        },
+        "office_vba_word_language_test.dart": {
+          "current_cases": 156,
+          "exact_case_identities_match": true,
+          "previous_cases": 156,
+          "source_unchanged": true
+        },
+        "office_vba_word_list_levels_integration_test.dart": {
+          "current_cases": 44,
+          "exact_case_identities_match": true,
+          "previous_cases": 44,
+          "source_unchanged": true
+        },
+        "office_vba_word_list_levels_test.dart": {
+          "current_cases": 88,
+          "exact_case_identities_match": true,
+          "previous_cases": 88,
+          "source_unchanged": true
+        },
+        "office_vba_word_lists_integration_test.dart": {
+          "current_cases": 22,
+          "exact_case_identities_match": true,
+          "previous_cases": 22,
+          "source_unchanged": true
+        },
+        "office_vba_word_lists_test.dart": {
+          "current_cases": 95,
+          "exact_case_identities_match": true,
+          "previous_cases": 95,
+          "source_unchanged": true
+        },
+        "office_vba_word_paragraph_layout_integration_test.dart": {
+          "current_cases": 17,
+          "exact_case_identities_match": true,
+          "previous_cases": 17,
+          "source_unchanged": true
+        },
+        "office_vba_word_paragraph_layout_test.dart": {
+          "current_cases": 37,
+          "exact_case_identities_match": true,
+          "previous_cases": 37,
+          "source_unchanged": true
+        },
+        "office_vba_word_tabstops_integration_test.dart": {
+          "current_cases": 10,
+          "exact_case_identities_match": true,
+          "previous_cases": 10,
+          "source_unchanged": true
+        },
+        "office_vba_word_tabstops_test.dart": {
+          "current_cases": 85,
+          "exact_case_identities_match": true,
+          "previous_cases": 85,
+          "source_unchanged": true
+        },
+        "office_vba_word_typography_integration_test.dart": {
+          "current_cases": 30,
+          "exact_case_identities_match": true,
+          "previous_cases": 30,
+          "source_unchanged": true
+        },
+        "office_vba_word_typography_test.dart": {
+          "current_cases": 48,
+          "exact_case_identities_match": true,
+          "previous_cases": 48,
+          "source_unchanged": true
+        },
+        "style_cascade_test.dart": {
+          "current_cases": 11,
+          "exact_case_identities_match": true,
+          "previous_cases": 11,
+          "source_unchanged": true
+        },
+        "styleless_import_fidelity_test.dart": {
+          "current_cases": 5,
+          "exact_case_identities_match": true,
+          "previous_cases": 5,
+          "source_unchanged": true
+        },
+        "word_compatibility_fidelity_test.dart": {
+          "current_cases": 5,
+          "exact_case_identities_match": true,
+          "previous_cases": 5,
+          "source_unchanged": true
+        },
+        "word_fidelity_test.dart": {
+          "current_cases": 19,
+          "exact_case_identities_match": true,
+          "previous_cases": 19,
+          "source_unchanged": true
+        },
+        "word_list_numbering_snapshot_test.dart": {
+          "current_cases": 5,
+          "exact_case_identities_match": true,
+          "previous_cases": 5,
+          "source_unchanged": true
+        },
+        "word_package_preservation_test.dart": {
+          "current_cases": 32,
+          "exact_case_identities_match": true,
+          "previous_cases": 32,
+          "source_unchanged": true
+        },
+        "word_paragraph_mark_layout_test.dart": {
+          "current_cases": 3,
+          "exact_case_identities_match": true,
+          "previous_cases": 3,
+          "source_unchanged": true
+        },
+        "word_proofing_inheritance_test.dart": {
+          "current_cases": 16,
+          "exact_case_identities_match": true,
+          "previous_cases": 16,
+          "source_unchanged": true
+        },
+        "word_referenced_styles_and_breaks_test.dart": {
+          "current_cases": 2,
+          "exact_case_identities_match": true,
+          "previous_cases": 2,
+          "source_unchanged": true
+        },
+        "word_style_introduction_test.dart": {
+          "current_cases": 4,
+          "exact_case_identities_match": true,
+          "previous_cases": 4,
+          "source_unchanged": true
+        },
+        "word_styles_layout_test.dart": {
+          "current_cases": 15,
+          "exact_case_identities_match": true,
+          "previous_cases": 15,
+          "source_unchanged": true
+        },
+        "xml_namespace_capture_test.dart": {
+          "current_cases": 3,
+          "exact_case_identities_match": true,
+          "previous_cases": 3,
+          "source_unchanged": true
+        }
+      },
+      "previous_cases": 2569
+    },
+    "previous_files": 70,
+    "previous_raw_reconstructed_cases": 2569,
+    "runtime": {
+      "all_recorded_actual_contents_verified": true,
+      "recorded_paths": 3489
+    },
+    "runtime_scope": {
+      "external_dependency_roots": [
+        {
+          "name": "_fe_analyzer_shared",
+          "root": "/workspace/scratch/16bd38fb2cfb/runtime/toolchain/pub-cache/hosted/pub.dev/_fe_analyzer_shared-103.0.0"
+        },
+        {
+          "name": "analyzer",
+          "root": "/workspace/scratch/16bd38fb2cfb/runtime/toolchain/pub-cache/hosted/pub.dev/analyzer-13.3.0"
+        },
+        {
+          "name": "archive",
+          "root": "/workspace/scratch/16bd38fb2cfb/runtime/toolchain/pub-cache/hosted/pub.dev/archive-4.7.1"
+        },
+        {
+          "name": "args",
+          "root": "/workspace/scratch/16bd38fb2cfb/runtime/toolchain/pub-cache/hosted/pub.dev/args-2.7.0"
+        },
+        {
+          "name": "async",
+          "root": "/workspace/scratch/16bd38fb2cfb/runtime/toolchain/pub-cache/hosted/pub.dev/async-2.13.1"
+        },
+        {
+          "name": "boolean_selector",
+          "root": "/workspace/scratch/16bd38fb2cfb/runtime/toolchain/pub-cache/hosted/pub.dev/boolean_selector-2.1.2"
+        },
+        {
+          "name": "characters",
+          "root": "/workspace/scratch/16bd38fb2cfb/runtime/toolchain/pub-cache/hosted/pub.dev/characters-1.4.1"
+        },
+        {
+          "name": "cli_config",
+          "root": "/workspace/scratch/16bd38fb2cfb/runtime/toolchain/pub-cache/hosted/pub.dev/cli_config-0.2.0"
+        },
+        {
+          "name": "cli_util",
+          "root": "/workspace/scratch/16bd38fb2cfb/runtime/toolchain/pub-cache/hosted/pub.dev/cli_util-0.6.0"
+        },
+        {
+          "name": "collection",
+          "root": "/workspace/scratch/16bd38fb2cfb/runtime/toolchain/pub-cache/hosted/pub.dev/collection-1.19.1"
+        },
+        {
+          "name": "convert",
+          "root": "/workspace/scratch/16bd38fb2cfb/runtime/toolchain/pub-cache/hosted/pub.dev/convert-3.1.2"
+        },
+        {
+          "name": "coverage",
+          "root": "/workspace/scratch/16bd38fb2cfb/runtime/toolchain/pub-cache/hosted/pub.dev/coverage-1.16.1"
+        },
+        {
+          "name": "crypto",
+          "root": "/workspace/scratch/16bd38fb2cfb/runtime/toolchain/pub-cache/hosted/pub.dev/crypto-3.0.8"
+        },
+        {
+          "name": "ffi",
+          "root": "/workspace/scratch/16bd38fb2cfb/runtime/toolchain/pub-cache/hosted/pub.dev/ffi-2.2.0"
+        },
+        {
+          "name": "file",
+          "root": "/workspace/scratch/16bd38fb2cfb/runtime/toolchain/pub-cache/hosted/pub.dev/file-7.0.1"
+        },
+        {
+          "name": "frontend_server_client",
+          "root": "/workspace/scratch/16bd38fb2cfb/runtime/toolchain/pub-cache/hosted/pub.dev/frontend_server_client-4.2.0"
+        },
+        {
+          "name": "glob",
+          "root": "/workspace/scratch/16bd38fb2cfb/runtime/toolchain/pub-cache/hosted/pub.dev/glob-2.2.0"
+        },
+        {
+          "name": "http_multi_server",
+          "root": "/workspace/scratch/16bd38fb2cfb/runtime/toolchain/pub-cache/hosted/pub.dev/http_multi_server-3.2.3"
+        },
+        {
+          "name": "http_parser",
+          "root": "/workspace/scratch/16bd38fb2cfb/runtime/toolchain/pub-cache/hosted/pub.dev/http_parser-4.1.2"
+        },
+        {
+          "name": "image",
+          "root": "/workspace/scratch/16bd38fb2cfb/runtime/toolchain/pub-cache/hosted/pub.dev/image-4.13.1"
+        },
+        {
+          "name": "io",
+          "root": "/workspace/scratch/16bd38fb2cfb/runtime/toolchain/pub-cache/hosted/pub.dev/io-1.1.0"
+        },
+        {
+          "name": "lints",
+          "root": "/workspace/scratch/16bd38fb2cfb/runtime/toolchain/pub-cache/hosted/pub.dev/lints-6.1.0"
+        },
+        {
+          "name": "logging",
+          "root": "/workspace/scratch/16bd38fb2cfb/runtime/toolchain/pub-cache/hosted/pub.dev/logging-1.3.0"
+        },
+        {
+          "name": "matcher",
+          "root": "/workspace/scratch/16bd38fb2cfb/runtime/toolchain/pub-cache/hosted/pub.dev/matcher-0.12.20"
+        },
+        {
+          "name": "meta",
+          "root": "/workspace/scratch/16bd38fb2cfb/runtime/toolchain/pub-cache/hosted/pub.dev/meta-1.19.0"
+        },
+        {
+          "name": "mime",
+          "root": "/workspace/scratch/16bd38fb2cfb/runtime/toolchain/pub-cache/hosted/pub.dev/mime-2.1.0"
+        },
+        {
+          "name": "node_preamble",
+          "root": "/workspace/scratch/16bd38fb2cfb/runtime/toolchain/pub-cache/hosted/pub.dev/node_preamble-2.0.2"
+        },
+        {
+          "name": "package_config",
+          "root": "/workspace/scratch/16bd38fb2cfb/runtime/toolchain/pub-cache/hosted/pub.dev/package_config-2.2.0"
+        },
+        {
+          "name": "path",
+          "root": "/workspace/scratch/16bd38fb2cfb/runtime/toolchain/pub-cache/hosted/pub.dev/path-1.9.1"
+        },
+        {
+          "name": "petitparser",
+          "root": "/workspace/scratch/16bd38fb2cfb/runtime/toolchain/pub-cache/hosted/pub.dev/petitparser-7.1.0"
+        },
+        {
+          "name": "pool",
+          "root": "/workspace/scratch/16bd38fb2cfb/runtime/toolchain/pub-cache/hosted/pub.dev/pool-1.5.3"
+        },
+        {
+          "name": "posix",
+          "root": "/workspace/scratch/16bd38fb2cfb/runtime/toolchain/pub-cache/hosted/pub.dev/posix-6.5.4"
+        },
+        {
+          "name": "pub_semver",
+          "root": "/workspace/scratch/16bd38fb2cfb/runtime/toolchain/pub-cache/hosted/pub.dev/pub_semver-2.2.1"
+        },
+        {
+          "name": "shelf",
+          "root": "/workspace/scratch/16bd38fb2cfb/runtime/toolchain/pub-cache/hosted/pub.dev/shelf-1.4.3"
+        },
+        {
+          "name": "shelf_packages_handler",
+          "root": "/workspace/scratch/16bd38fb2cfb/runtime/toolchain/pub-cache/hosted/pub.dev/shelf_packages_handler-3.0.2"
+        },
+        {
+          "name": "shelf_static",
+          "root": "/workspace/scratch/16bd38fb2cfb/runtime/toolchain/pub-cache/hosted/pub.dev/shelf_static-1.2.0"
+        },
+        {
+          "name": "shelf_web_socket",
+          "root": "/workspace/scratch/16bd38fb2cfb/runtime/toolchain/pub-cache/hosted/pub.dev/shelf_web_socket-3.0.0"
+        },
+        {
+          "name": "source_map_stack_trace",
+          "root": "/workspace/scratch/16bd38fb2cfb/runtime/toolchain/pub-cache/hosted/pub.dev/source_map_stack_trace-2.1.2"
+        },
+        {
+          "name": "source_maps",
+          "root": "/workspace/scratch/16bd38fb2cfb/runtime/toolchain/pub-cache/hosted/pub.dev/source_maps-0.10.14"
+        },
+        {
+          "name": "source_span",
+          "root": "/workspace/scratch/16bd38fb2cfb/runtime/toolchain/pub-cache/hosted/pub.dev/source_span-1.10.2"
+        },
+        {
+          "name": "stack_trace",
+          "root": "/workspace/scratch/16bd38fb2cfb/runtime/toolchain/pub-cache/hosted/pub.dev/stack_trace-1.12.2"
+        },
+        {
+          "name": "stream_channel",
+          "root": "/workspace/scratch/16bd38fb2cfb/runtime/toolchain/pub-cache/hosted/pub.dev/stream_channel-2.1.4"
+        },
+        {
+          "name": "string_scanner",
+          "root": "/workspace/scratch/16bd38fb2cfb/runtime/toolchain/pub-cache/hosted/pub.dev/string_scanner-1.4.1"
+        },
+        {
+          "name": "term_glyph",
+          "root": "/workspace/scratch/16bd38fb2cfb/runtime/toolchain/pub-cache/hosted/pub.dev/term_glyph-1.2.2"
+        },
+        {
+          "name": "test",
+          "root": "/workspace/scratch/16bd38fb2cfb/runtime/toolchain/pub-cache/hosted/pub.dev/test-1.31.1"
+        },
+        {
+          "name": "test_api",
+          "root": "/workspace/scratch/16bd38fb2cfb/runtime/toolchain/pub-cache/hosted/pub.dev/test_api-0.7.12"
+        },
+        {
+          "name": "test_core",
+          "root": "/workspace/scratch/16bd38fb2cfb/runtime/toolchain/pub-cache/hosted/pub.dev/test_core-0.6.18"
+        },
+        {
+          "name": "typed_data",
+          "root": "/workspace/scratch/16bd38fb2cfb/runtime/toolchain/pub-cache/hosted/pub.dev/typed_data-1.4.0"
+        },
+        {
+          "name": "vm_service",
+          "root": "/workspace/scratch/16bd38fb2cfb/runtime/toolchain/pub-cache/hosted/pub.dev/vm_service-15.4.0"
+        },
+        {
+          "name": "watcher",
+          "root": "/workspace/scratch/16bd38fb2cfb/runtime/toolchain/pub-cache/hosted/pub.dev/watcher-1.2.1"
+        },
+        {
+          "name": "web",
+          "root": "/workspace/scratch/16bd38fb2cfb/runtime/toolchain/pub-cache/hosted/pub.dev/web-1.1.2"
+        },
+        {
+          "name": "web_socket",
+          "root": "/workspace/scratch/16bd38fb2cfb/runtime/toolchain/pub-cache/hosted/pub.dev/web_socket-1.0.1"
+        },
+        {
+          "name": "web_socket_channel",
+          "root": "/workspace/scratch/16bd38fb2cfb/runtime/toolchain/pub-cache/hosted/pub.dev/web_socket_channel-3.0.3"
+        },
+        {
+          "name": "webkit_inspection_protocol",
+          "root": "/workspace/scratch/16bd38fb2cfb/runtime/toolchain/pub-cache/hosted/pub.dev/webkit_inspection_protocol-1.2.1"
+        },
+        {
+          "name": "xml",
+          "root": "/workspace/scratch/16bd38fb2cfb/runtime/toolchain/pub-cache/hosted/pub.dev/xml-7.1.0"
+        },
+        {
+          "name": "yaml",
+          "root": "/workspace/scratch/16bd38fb2cfb/runtime/toolchain/pub-cache/hosted/pub.dev/yaml-3.1.4"
+        }
+      ],
+      "sdk_scope": "bin and lib recursively, excluding .sym, plus version/revision/sdk_packages.yaml",
+      "verified_recorded_selection": true
+    },
+    "source": {
+      "actual_contents_modes_and_git_objects_verified": true,
+      "qualified_paths": 1131
+    },
+    "status": "PASS"
+  },
+  "review_finished_utc": "2026-11-20T19:02:38.966188+00:00",
+  "review_started_utc": "2026-11-20T19:02:20.342953+00:00",
+  "reviewer": "Independent source/intake reviewer; no producer/helper imports and no new test execution",
+  "schema": "quds-word-line-spacing-independent-evidence-review/v1",
+  "static": {
+    "analysis_scope": "Whole engine package, fatal infos and warnings",
+    "artifact_manifest": {
+      "analysis.stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "analysis.stdout": {
+        "bytes": 49,
+        "sha256": "c557a0c697cdb937104f1423d3c02d6a1062917cb0bcb2830d91db8cf6192af0"
+      },
+      "commands.json": {
+        "bytes": 1853,
+        "sha256": "19ce29333ff8e97cbc24d7d6a2cf5a13bed62c3bd380cc01b16500a860c228e6"
+      },
+      "format.stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "format.stdout": {
+        "bytes": 47,
+        "sha256": "c97d58d21bf969031d04221a48f2db16296c6b4f24e0e67b58e74b7a64481f3b"
+      },
+      "gate-helper.py": {
+        "bytes": 16015,
+        "sha256": "4e20f170e09aac9b1cd3881fa265996315693a48de36a3f0310243911133ff17"
+      },
+      "inputs-after.json.gz": {
+        "bytes": 99117,
+        "sha256": "8a75b6661d058b68fe7421e7b241492dcbe462cca8a8c534c790787062b0ba24"
+      },
+      "inputs-before.json.gz": {
+        "bytes": 99118,
+        "sha256": "a90b85b97cd9b08c98dcb4da00aeca67f48326c06378161db30f99b82061793b"
+      },
+      "plan.json": {
+        "bytes": 940,
+        "sha256": "3ef0c5395ef0dfa2d0a7cf267a092f2ca402e5c236f0ad1e3dc590a07a7f41fd"
+      },
+      "runner.py": {
+        "bytes": 6035,
+        "sha256": "65955e50ba380925efd3d36ceeed537c8e00f4072a35d1b7ca0aac74fbcc36fd"
+      },
+      "summary.json": {
+        "bytes": 3871,
+        "sha256": "9429d99aacdd4a58f9442c685d14f5081a64462b7d5be14366e27c47b147d43c"
+      }
+    },
+    "before_after_exactly_equal": true,
+    "commands": [
+      {
+        "argv": [
+          "/workspace/scratch/16bd38fb2cfb/runtime/toolchain/dart-sdk/bin/dart",
+          "analyze",
+          "--fatal-infos",
+          "--fatal-warnings"
+        ],
+        "cwd": "/workspace/scratch/16bd38fb2cfb/quds_office_suite/packages/quds_office_engine",
+        "exit_code": 0,
+        "name": "analysis",
+        "seconds": 30.702,
+        "started_utc": "2026-11-20T17:54:57.476943+00:00"
+      },
+      {
+        "argv": [
+          "/workspace/scratch/16bd38fb2cfb/runtime/toolchain/dart-sdk/bin/dart",
+          "format",
+          "--output=none",
+          "--set-exit-if-changed",
+          "/workspace/scratch/16bd38fb2cfb/quds_office_suite/packages/quds_office_engine/lib/src/automation/office_vba_language.dart",
+          "/workspace/scratch/16bd38fb2cfb/quds_office_suite/packages/quds_office_engine/lib/src/automation/operations/word_spacing_steps.dart",
+          "/workspace/scratch/16bd38fb2cfb/quds_office_suite/packages/quds_office_engine/lib/src/automation/operations/word_steps.dart",
+          "/workspace/scratch/16bd38fb2cfb/quds_office_suite/packages/quds_office_engine/lib/src/word/serial/word_style_cascade.dart",
+          "/workspace/scratch/16bd38fb2cfb/quds_office_suite/packages/quds_office_engine/test/office_macro_word_line_spacing_test.dart",
+          "/workspace/scratch/16bd38fb2cfb/quds_office_suite/packages/quds_office_engine/test/office_vba_word_line_spacing_integration_test.dart",
+          "/workspace/scratch/16bd38fb2cfb/quds_office_suite/packages/quds_office_engine/test/office_vba_word_line_spacing_test.dart",
+          "/workspace/scratch/16bd38fb2cfb/quds_office_suite/packages/quds_office_engine/tool/macros/web_vba_word_line_spacing_smoke.dart"
+        ],
+        "cwd": "/workspace/scratch/16bd38fb2cfb/quds_office_suite/packages/quds_office_engine",
+        "exit_code": 0,
+        "name": "format",
+        "seconds": 0.539,
+        "started_utc": "2026-11-20T17:55:28.179767+00:00"
+      }
+    ],
+    "format_paths": [
+      "packages/quds_office_engine/lib/src/automation/office_vba_language.dart",
+      "packages/quds_office_engine/lib/src/automation/operations/word_spacing_steps.dart",
+      "packages/quds_office_engine/lib/src/automation/operations/word_steps.dart",
+      "packages/quds_office_engine/lib/src/word/serial/word_style_cascade.dart",
+      "packages/quds_office_engine/test/office_macro_word_line_spacing_test.dart",
+      "packages/quds_office_engine/test/office_vba_word_line_spacing_integration_test.dart",
+      "packages/quds_office_engine/test/office_vba_word_line_spacing_test.dart",
+      "packages/quds_office_engine/tool/macros/web_vba_word_line_spacing_smoke.dart"
+    ],
+    "runtime": {
+      "all_recorded_actual_contents_verified": true,
+      "entries_sha256": "106beac8603e4b36de1d199f5bc95f6d259d0921be3c02c7b11b31748877d1c2",
+      "recorded_paths": 19
+    },
+    "source": {
+      "actual_contents_modes_and_git_objects_verified": true,
+      "entries_sha256": "b39ab94eaba58667c59c3194111a5841c44704be7a2874f287a5bee8db3866a4",
+      "qualified_paths": 1131,
+      "selection_sha256": "1e0418e6caa78ede45506c7a4af23e4256b4c46c23a5a6f63412b8b9d1febc8a"
+    },
+    "status": "PASS"
+  },
+  "status": "PASS",
+  "supplemental": {
+    "counted_in_regression": 0,
+    "expectations": 56,
+    "final_probe_receipt": {
+      "bytes": 28678,
+      "sha256": "e102242ef844699c6a69c6deebee3d6d13fa99573bb1b465ab8fea04fd3914d4"
+    },
+    "raw_output": {
+      "bytes": 9593,
+      "sha256": "41e76c4da2a120a356ab8fbeb0b84aedc4bed8bf900d0799ebf3b990870de15a"
+    },
+    "recorded_runtime": {
+      "all_recorded_actual_contents_verified": true,
+      "entries_sha256": "eec64a9da92ea9612cbea7ae7226932e62dbc5b6a0e0fbf38b6b39fd6ed4e947",
+      "recorded_paths": 38
+    },
+    "scope": "Independently authored adversarial probes are supplemental. Early and corrected development attempts are not final regression cases.",
+    "source_and_contract_inputs": 10,
+    "source_review_receipt": {
+      "bytes": 11468,
+      "sha256": "fe7b353d18ebda8cf27a99ed2a0673cae241b747699ac58b651afd394c08d705"
+    },
+    "status": "PASS"
+  },
+  "verifier": {
+    "bytes": 50766,
+    "sha256": "31b2e193a365f0785b3f433e48b7b242c4908e630788225bba9eaecf1aa6d7b7"
+  }
+}

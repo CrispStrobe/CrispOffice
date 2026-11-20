@@ -1,0 +1,182 @@
+{
+  "schema": "quds-mail-late-main-reconciliation/v1",
+  "recorded_at_utc": "2026-11-20T19:26:13.430815+00:00",
+  "status": "READ_ONLY_SCOPE_AND_RESOLUTION_REVIEW_PASS",
+  "old_qualified_branch_commit": "78c7799c49c4b4824b9e47f3a6c3a7c160184da9",
+  "old_qualified_branch_tree": "d3c9412caa35978ad2efc3ef1511009975a6a95a",
+  "advanced_main_commit": "52c7f27fc7b6998e209e3ac8c815d6cf1ca6f867",
+  "advanced_main_tree": "0d48950bcc18151d5450e996fe04d59852d2c65b",
+  "merge_base": "d1e9cbc0c5dd38f0c8d28e3d76e7fdd59990f3f4",
+  "proposed_merge_tree": "b9e606758f54cb832011dca7b6d72085e9f60a16",
+  "proposed_tree_contains_unresolved_conflict": true,
+  "comparison": "Compare immutable Git objects for the old qualified branch and supplied merge-tree; no current worktree edits are treated as merged evidence.",
+  "scope_proof": {
+    "changed_paths": 61,
+    "inherited_validation_paths": 60,
+    "changed_dart_paths": 0,
+    "unchanged_dart_files": 2427,
+    "unchanged_dart_manifest_sha256": "25701884d777941207a737f695f155e6fcefc3d6faec815b6d4aaf9ba70c993c",
+    "all_other_paths_except_validation_subtree_and_guard_unchanged": true,
+    "unchanged_other_files": 18982,
+    "unchanged_other_manifest_sha256": "e5e8002ac2656759489aee7dc4d80c881fafccf68d0464a16dba4fb56ef8df92",
+    "manifest_encoding": "UTF-8 sorted path records, each mode + space + type + space + Git object ID + TAB + path + LF; identical before/proposed maps verified directly.",
+    "application_code_delta": "None. The sole changed path outside the inherited validation subtree is the conflicting macOS build helper."
+  },
+  "validation_delta": {
+    "path_prefix": "docs/validation/word-vba-paragraph-spacing-20261120/",
+    "modified": [
+      "README.md"
+    ],
+    "added": [
+      "analysis-format.json",
+      "audit_batched_regression.py",
+      "audit_bounded_progress_archive.py",
+      "audit_checkpoint_archives.py",
+      "audit_publication_refs.py",
+      "audit_publication_scope.py",
+      "bounded-progress-archive-review.json",
+      "bounded-progress-checkpoint.md",
+      "bounded-progress-evidence.tar.xz",
+      "bounded-progress-members.json",
+      "bounded-progress-packaging.json",
+      "bounded-timeout-diagnostics-review.json",
+      "build_word_spacing_delivery.py",
+      "checkpoint-archives-review.json",
+      "checkpoints.json",
+      "development-attempts.json",
+      "development-review-README.md",
+      "environment.json",
+      "evidence-review.json",
+      "evidence-review.md",
+      "late-integration-binding.json",
+      "late-integration-review.json",
+      "late-integration-review.md",
+      "latest-captured-fork-refs.txt",
+      "latest-captured-upstream-refs.txt",
+      "latest-scope-fork-refs.txt",
+      "latest-scope-upstream-refs.txt",
+      "main-reconciliation.json",
+      "main-reconciliation.md",
+      "portable-result.json",
+      "portable.json",
+      "prepare_external_reconciliation.py",
+      "prepare_main_reconciliation.py",
+      "publication-checkpoint-8b9be399.json",
+      "publication-checkpoint-a6c9bb6a.json",
+      "publication-files.json",
+      "publication-fork-refs.txt",
+      "publication-intake.json",
+      "publication-scope-review.json",
+      "publication-scope-review.md",
+      "publication-upstream-refs.txt",
+      "qualification.json",
+      "recovery-scope-fork-refs.txt",
+      "recovery-scope-upstream-refs.txt",
+      "regression-evidence.tar.xz",
+      "regression-members.json",
+      "regression-packaging.json",
+      "regression-reproduction.md",
+      "regression.json",
+      "scope-incoming-review.json",
+      "scope-source-bindings.json",
+      "source-consistency.json.gz",
+      "stage_word_spacing_evidence.py",
+      "verify_final_evidence.py",
+      "verify_late_integration.py",
+      "verify_main_reconciliation.py",
+      "verify_publication_checkpoint.py",
+      "verify_publication_checkpoint_a6c9bb6a.py",
+      "verify_word_spacing_publication.py"
+    ],
+    "evidence_boundary": "These Word-spacing documents, scripts, compressed manifests and archives are inherited from advanced main. Their recorded runs are not new executions or independent archive qualification by this review."
+  },
+  "macos_guard_resolution": {
+    "path": "packages/quds_office_editor/example/tool/build_macos_app.sh",
+    "old_branch": {
+      "git_blob": "c5ca5a2fc0addbfc98139f48873e5fd5e20d619f",
+      "sha256": "2a423da95d5dcc9147049af1fac5a303a7f406ac80263947acfeeb3864170b0c",
+      "bytes": 23955
+    },
+    "main_preservation_choice": {
+      "git_blob": "3b7cffe6852a4d9f68aacdc6014dc96ea11c7f1f",
+      "sha256": "8592dd41fb59da7fa3ead05287005cfa06d90c02bb5de495e9f985062ffff904",
+      "bytes": 26739
+    },
+    "unresolved_proposal": {
+      "git_blob": "557e67637febf0c40076af57e02d285ebbf557b2",
+      "sha256": "838e49310a86a365de7a6822ef9f9fe017c7634fbca1a48830f689d015f4e8ae",
+      "conflict_blocks": 2
+    },
+    "recommendation": "Preserve the full main version of this file; root owns applying the resolution and the integration worker owns the focused Python guard tests.",
+    "preservation_proof": {
+      "bytes_before_minimum_os_guard_identical": true,
+      "prefix_sha256": "ca516e4e54ab7d1c5fcaa5f16c2e6ccdcb6a3d1cbb92e4c8ff2292b5eaa98554",
+      "bytes_after_minimum_os_guard_identical": true,
+      "suffix_sha256": "6f380aa330a41e02cad454ee63fac1f3c1fd6684246beac0fcb8acf39d53ee44"
+    },
+    "why_main_is_stronger": [
+      "Compares normalized decimal strings with LC_ALL=C instead of converting components to awk numbers, avoiding octal and numeric-precision/overflow issues.",
+      "Accepts only one to three numeric components; missing components and leading zeros normalize to zero. This intentionally rejects longer/malformed versions the previous helper could accept.",
+      "Validates every architecture and every deployment load command, including modern LC_BUILD_VERSION MACOS/minos and legacy LC_VERSION_MIN_MACOSX/version.",
+      "Rejects missing architecture metadata, malformed/duplicate command fields, missing minimum versions and non-macOS platform declarations.",
+      "Separates deployment targets from nested build-tool versions and compares every parsed minimum against the application declaration."
+    ],
+    "review_limit": "This is static source review. Actual macOS/vtool output and a signed application build were not executed here; focused fixture checks and shell syntax results must be recorded by their executing owner."
+  },
+  "old_branch_source_sha256_bindings": {
+    "packages/quds_mail_core/lib/src/search/header_search.dart": {
+      "branch_and_proposal_blob": "eae72758f80075b501c6f2d9c0badb4a5546347d",
+      "sha256": "4cddb3b12d8eecab1420cee87b0d6768d6f421b67ce5c3a649ce3dd4b58d741c"
+    },
+    "packages/quds_mail_ui/lib/src/workspace/message_list.dart": {
+      "branch_and_proposal_blob": "2450b413e7649b743a43a751f1a1907c09a13989",
+      "sha256": "0e983b49b68e6a6747790d17f5a4df14c38a8cc7c0851e802f15339c3b6e6544"
+    },
+    "packages/quds_office_editor/example/lib/studio_mail_native.dart": {
+      "branch_and_proposal_blob": "2adabf6978c0296ef1811f574acf42e43e9f3298",
+      "sha256": "acd6561f19b8c5bbd06d5b7ac3beec15cd8032444b51989a561c3c9e05049846"
+    },
+    "packages/quds_office_editor/example/lib/studio_mail_ews.dart": {
+      "branch_and_proposal_blob": "9e7c3bda9bd5b0eb4d85dfb7046f82d6feca671c",
+      "sha256": "f9cbb054cf9420e73308289c862f855e7afcf3009d7c66dfd1988ab0569f8497"
+    },
+    "packages/quds_office_editor/example/lib/studio_mail_cached_mail.dart": {
+      "branch_and_proposal_blob": "3f3b6cb899d550065b55d40aa0f1ad1ac78e922f",
+      "sha256": "97bb7f5fa6151a12d5f808d4f3b4ead304849c3874555b7587c208409db96dc8"
+    },
+    "packages/quds_office_editor/example/lib/suite_workspace.dart": {
+      "branch_and_proposal_blob": "e4bf222da90aa64d2435f3011a939fd444c5f1d3",
+      "sha256": "627e7192d42e692b9812450b43d48aaaba64ce4785fbee1f7322019d2c29e369"
+    },
+    "packages/quds_office_editor/example/test/app_store_screenshots_gate.dart": {
+      "branch_and_proposal_blob": "128be91ebf9f385dc49a7deeb59500e60b9c0b27",
+      "sha256": "0f6251901f611a8ce83474a0d5b8c2be7a7086dffe2ad98c1c8c2508edaccf91"
+    },
+    "packages/quds_office_editor/test/word_zotero_navigation_test.dart": {
+      "branch_and_proposal_blob": "156a96a90debcbe5ca3172d931fd4769c34802ed",
+      "sha256": "bffaeb8cec972978bec91a5e005c139f0a217eac1951348fba326b49347de47b"
+    },
+    "packages/quds_office_engine/lib/src/automation/operations/word_spacing_steps.dart": {
+      "branch_and_proposal_blob": "10fc6adec125a44516dc125538c91d0a4bccc1f2",
+      "sha256": "96db018e6f0d980ba7e894c36da102ba6c02fcf71e8f789928395d4e0f721952"
+    },
+    "packages/quds_office_engine/lib/src/word/layout/word_layout.dart": {
+      "branch_and_proposal_blob": "1424c99d245adad895a1b43b8606aab21380e8b6",
+      "sha256": "a0385aa798546881829bb366622a44c0fa61bb5623e739e5337e7a43971c9253"
+    },
+    "packages/quds_office_editor/example/tool/test_macos_minimum_version.py": {
+      "branch_and_proposal_blob": "f0d32abb89c86ee6561d577c6bb8fe65d75a76e7",
+      "sha256": "1e0c565acb04a5f52025dc9803bad3931b8c170602470a1cd75bca20dad3940b"
+    },
+    "pubspec.lock": {
+      "branch_and_proposal_blob": "c677b8fbc9de6607a1c0af2608bec1c2d32fca6d",
+      "sha256": "0d64a732cd7f6c7cc4e1e01255276f081b59e6f43039636c3d36f6785a958ce2"
+    }
+  },
+  "limits": [
+    "The supplied merge-tree still contains conflict markers and is not a release tree. Root must apply the selected guard, include any independently reviewed test-only changes and record the resulting tree/commit.",
+    "The all-Dart and other-path equality proofs preserve applicability of prior unchanged-source results; they do not turn inherited validation archives into freshly executed tests.",
+    "No Dart compiler, Python guard test, macOS build, workflow, CI/status endpoint, provider call, ref refresh or remote mutation was performed by this review.",
+    "This records the specific late main reconciliation at the supplied tips; it is not a fresh all-branches/PR capture."
+  ]
+}

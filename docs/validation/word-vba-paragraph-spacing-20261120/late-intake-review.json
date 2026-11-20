@@ -1,0 +1,230 @@
+{
+  "schema": "quds-later-intake-independent-review/v1",
+  "reviewed_utc": "2026-11-20T18:11:47.926429+00:00",
+  "qualified_word_source": "0201b549d0dc3f601c50e36255d557034cb01699",
+  "captured_remote_main": "5ad4461a93c835479bf67acab63623944b3900a3",
+  "qualified_word_source_remains_frozen": true,
+  "capture": {
+    "path": "runtime/publication-fork-refs.txt",
+    "bytes": 18019,
+    "sha256": "8d6ab182bcd31ea842a040f3d0c1f02a4b947d1086c373c726544236009604a5"
+  },
+  "capture_counts": {
+    "fork_branches": {
+      "later_unmerged": 3,
+      "equivalent": 9,
+      "ancestor": 14,
+      "target": 1
+    },
+    "fork_pull_requests": {
+      "ancestor": 248,
+      "equivalent": 14,
+      "target": 1,
+      "later_unmerged": 2
+    }
+  },
+  "later_unmerged_entries": [
+    {
+      "kind": "fork_branches",
+      "ref": "refs/heads/chore/macos-13-minimum-20261120",
+      "sha": "a51c20737b1932d9c6475ea6dddc33fbd50b2c17",
+      "disposition": "later_unmerged"
+    },
+    {
+      "kind": "fork_branches",
+      "ref": "refs/heads/codex/word-vba-paragraph-controls-20261120",
+      "sha": "3bbd414d8f1129bd802b33c3af961d5c12489da2",
+      "disposition": "later_unmerged"
+    },
+    {
+      "kind": "fork_branches",
+      "ref": "refs/heads/fix/main-green-20261120",
+      "sha": "5a73a056f7c757a64d56345c31eabdd6de6eb18a",
+      "disposition": "later_unmerged"
+    },
+    {
+      "kind": "fork_pull_requests",
+      "ref": "refs/pull/264/head",
+      "sha": "5a73a056f7c757a64d56345c31eabdd6de6eb18a",
+      "disposition": "later_unmerged"
+    },
+    {
+      "kind": "fork_pull_requests",
+      "ref": "refs/pull/265/head",
+      "sha": "a51c20737b1932d9c6475ea6dddc33fbd50b2c17",
+      "disposition": "later_unmerged"
+    }
+  ],
+  "later_heads": [
+    {
+      "head": "a51c20737b1932d9c6475ea6dddc33fbd50b2c17",
+      "branch": "chore/macos-13-minimum-20261120",
+      "pull_request": 265,
+      "merge_base_with_qualified_source": "5ad4461a93c835479bf67acab63623944b3900a3",
+      "head_tree": "814ffdacc0bd77e5e417b09b0f681221f8e13491",
+      "qualified_is_ancestor": false,
+      "head_is_ancestor_of_qualified": false,
+      "commits_not_in_qualified": [
+        "a51c20737b1932d9c6475ea6dddc33fbd50b2c17"
+      ],
+      "changed_paths_from_merge_base": [
+        "docs/release/macos-signing.md",
+        "packages/quds_office_editor/example/macos/Podfile",
+        "packages/quds_office_editor/example/macos/Runner.xcodeproj/project.pbxproj",
+        "packages/quds_office_editor/example/tool/build_macos_app.sh",
+        "packages/quds_proofing_hunspell/tool/build.py"
+      ],
+      "intersection_with_1131_qualified_inputs": [],
+      "changed_objects": {
+        "docs/release/macos-signing.md": "100644 blob f74a5ec804789da636629597928bb3aed44b85fa\tdocs/release/macos-signing.md",
+        "packages/quds_office_editor/example/macos/Podfile": "100644 blob 65543e28bb532423ad23c40d693e38aac329badf\tpackages/quds_office_editor/example/macos/Podfile",
+        "packages/quds_office_editor/example/macos/Runner.xcodeproj/project.pbxproj": "100644 blob e63b9d9fdc48202e29aecd0f52db32b3d2fd21bd\tpackages/quds_office_editor/example/macos/Runner.xcodeproj/project.pbxproj",
+        "packages/quds_office_editor/example/tool/build_macos_app.sh": "100755 blob 09836881aab89216033cdd4d8251941432931a7d\tpackages/quds_office_editor/example/tool/build_macos_app.sh",
+        "packages/quds_proofing_hunspell/tool/build.py": "100644 blob 1bfc03ad92173f8714165d4f304ae530ac58ccb0\tpackages/quds_proofing_hunspell/tool/build.py"
+      }
+    },
+    {
+      "head": "5a73a056f7c757a64d56345c31eabdd6de6eb18a",
+      "branch": "fix/main-green-20261120",
+      "pull_request": 264,
+      "merge_base_with_qualified_source": "5ad4461a93c835479bf67acab63623944b3900a3",
+      "head_tree": "f81ebf48c5f60c476006ab0f99ce9ad9b7ae5f31",
+      "qualified_is_ancestor": false,
+      "head_is_ancestor_of_qualified": false,
+      "commits_not_in_qualified": [
+        "5a73a056f7c757a64d56345c31eabdd6de6eb18a"
+      ],
+      "changed_paths_from_merge_base": [
+        "packages/quds_office_editor/lib/src/embed/pdf_controller.dart"
+      ],
+      "intersection_with_1131_qualified_inputs": [],
+      "changed_objects": {
+        "packages/quds_office_editor/lib/src/embed/pdf_controller.dart": "100644 blob ee32ba50ac13547340cdd13e1c6834175342c59b\tpackages/quds_office_editor/lib/src/embed/pdf_controller.dart"
+      }
+    },
+    {
+      "head": "3bbd414d8f1129bd802b33c3af961d5c12489da2",
+      "branch": "codex/word-vba-paragraph-controls-20261120",
+      "pull_request": null,
+      "merge_base_with_qualified_source": "0201b549d0dc3f601c50e36255d557034cb01699",
+      "head_tree": "64076b4481aa24da707c027c7f4f8a2fc7abd6ee",
+      "qualified_is_ancestor": true,
+      "head_is_ancestor_of_qualified": false,
+      "commits_not_in_qualified": [
+        "3bbd414d8f1129bd802b33c3af961d5c12489da2"
+      ],
+      "changed_paths_from_merge_base": [
+        "docs/validation/word-vba-paragraph-controls-20261120/fork-remote-refs.txt",
+        "docs/validation/word-vba-paragraph-controls-20261120/incoming-github-metadata.json",
+        "docs/validation/word-vba-paragraph-controls-20261120/incoming-review.json",
+        "docs/validation/word-vba-paragraph-controls-20261120/incoming-review.md",
+        "docs/validation/word-vba-paragraph-controls-20261120/upstream-remote-refs.txt",
+        "docs/validation/word-vba-paragraph-controls-20261120/verify_intake.py"
+      ],
+      "intersection_with_1131_qualified_inputs": [],
+      "changed_objects": {
+        "docs/validation/word-vba-paragraph-controls-20261120/fork-remote-refs.txt": "100644 blob 275c72947629ecb77f97a1bc40c72fef213000a1\tdocs/validation/word-vba-paragraph-controls-20261120/fork-remote-refs.txt",
+        "docs/validation/word-vba-paragraph-controls-20261120/incoming-github-metadata.json": "100644 blob f26ecae5fd26c59c12836b48f84ce069df2cbc93\tdocs/validation/word-vba-paragraph-controls-20261120/incoming-github-metadata.json",
+        "docs/validation/word-vba-paragraph-controls-20261120/incoming-review.json": "100644 blob ee299f563f96787295c5487dc14b23b4be752454\tdocs/validation/word-vba-paragraph-controls-20261120/incoming-review.json",
+        "docs/validation/word-vba-paragraph-controls-20261120/incoming-review.md": "100644 blob 33fa4a58da79d3dc2162a67bfc2b9a081b1fe1b7\tdocs/validation/word-vba-paragraph-controls-20261120/incoming-review.md",
+        "docs/validation/word-vba-paragraph-controls-20261120/upstream-remote-refs.txt": "100644 blob 37fe987db91c27a3d43b35c9c93797051b34278b\tdocs/validation/word-vba-paragraph-controls-20261120/upstream-remote-refs.txt",
+        "docs/validation/word-vba-paragraph-controls-20261120/verify_intake.py": "100644 blob 1b16d6415bd207aede8945c2c121ca3909cb8b14\tdocs/validation/word-vba-paragraph-controls-20261120/verify_intake.py"
+      }
+    }
+  ],
+  "paragraph_controls_intake_evidence": {
+    "status": "PASS",
+    "checked_capture_entries": 296,
+    "recomputed_historical_proofs": 14,
+    "full_tree_identities": 13,
+    "exact_37_path_continuation": true,
+    "counts": {
+      "fork_branches": {
+        "equivalent": 9,
+        "ancestor": 14,
+        "target": 2
+      },
+      "fork_pull_requests": {
+        "ancestor": 248,
+        "equivalent": 14,
+        "target": 1
+      },
+      "upstream_branches": {
+        "ancestor": 4
+      },
+      "upstream_pull_requests": {
+        "ancestor": 4
+      }
+    },
+    "uncovered": [],
+    "scope": "The capture predates the two macOS/editor branches. It is an inclusion audit, not new Word runtime acceptance."
+  },
+  "findings": [
+    {
+      "id": "late-macos-version-comparison",
+      "priority": "P2",
+      "status": "RESOLVED_IN_REVIEWED_SCRATCH_CORRECTION",
+      "head": "a51c20737b1932d9c6475ea6dddc33fbd50b2c17",
+      "path": "packages/quds_office_editor/example/tool/build_macos_app.sh",
+      "observed": [
+        "version_le 13.0.0 13.0 returns false, rejecting numerically equal versions",
+        "library minimum selection using major/minor sort chooses 13.0.9 over 13.0.10"
+      ],
+      "recommended_fix": "Compare normalized numeric major/minor/patch components for each minos record, avoiding string equality and lexical patch-order ties. Validate syntax and source-level cases locally; no macOS build claim.",
+      "resolution_candidate_sha256": "8592dd41fb59da7fa3ead05287005cfa06d90c02bb5de495e9f985062ffff904"
+    },
+    {
+      "id": "late-macos-legacy-version-command",
+      "priority": "P2",
+      "status": "RESOLVED_IN_REVIEWED_SCRATCH_CORRECTION",
+      "head": "a51c20737b1932d9c6475ea6dddc33fbd50b2c17",
+      "path": "packages/quds_office_editor/example/tool/build_macos_app.sh",
+      "observed": [
+        "The minos-only parser rejects a valid LC_VERSION_MIN_MACOSX record because vtool prints its deployment minimum under version."
+      ],
+      "basis": "Apple cctools misc/vtool.c, Git blob e1a5ae9e1c22b4e948d540a1f56002349fe613d1; command_show and print_version_min_command. This is source-based format verification, not execution of macOS vtool.",
+      "recommended_fix": "Recognize version only within LC_VERSION_MIN_MACOSX and minos only within LC_BUILD_VERSION/platform MACOS. Ignore nested build-tool version fields. Compare each deployment minimum within every architecture block.",
+      "resolution_candidate_sha256": "8592dd41fb59da7fa3ead05287005cfa06d90c02bb5de495e9f985062ffff904"
+    }
+  ],
+  "syntax_checks": {
+    "macos_shell_bash_n_exit": 0,
+    "hunspell_python_ast": "PASS"
+  },
+  "recommendation": "After the frozen Word gate and evidence qualification, merge all three captured original heads preserving ancestry, apply the exact independently reviewed macOS correction, and verify all1131 Word input identities plus the Word contract remain unchanged. The corrected candidate is approved; publication/main integration is a separate pending action.",
+  "probe_files": {
+    "late-macos-build.sh": {
+      "bytes": 23409,
+      "sha256": "ef23b468c3c4ba5b577abb5d11aea44e0b7898d136317da255d8d0fc90d747a4"
+    },
+    "late-macos-version-probe.sh": {
+      "bytes": 422,
+      "sha256": "8320fcaae8ec418f4b63b1cb7402d9321b80565bfd572fa09a15eaf1cf5af2fd"
+    },
+    "late-macos-version-probe.stdout": {
+      "bytes": 107,
+      "sha256": "706579cc6a47d583da4fea0169305f4517dccd0ac7eb8a5ecd2c356a30d56e0a"
+    },
+    "late-macos-version-probe.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "github_actions_queried_or_awaited": false,
+  "primary_source_reference": "intake-review/apple-vtool-source-reference.json",
+  "correction_review": {
+    "status": "ACCEPTED_FOR_INTEGRATION",
+    "reviewed_utc": "2026-11-20T18:24:37.895181+00:00",
+    "candidate": "macos-build-correction-20261120/build_macos_app.corrected.sh",
+    "candidate_sha256": "8592dd41fb59da7fa3ead05287005cfa06d90c02bb5de495e9f985062ffff904",
+    "extracted_functions_sha256": "de16ee0a594b31d42aa311dd16d80dd3ddd5e7f42574f747c7f229cd6b5b6d81",
+    "independent_probe_receipt": "intake-review/late-macos-independent/review.json",
+    "independent_expectations": 36,
+    "passing": 36,
+    "failed": 0,
+    "word_regression_contribution": 0,
+    "new_findings": [],
+    "limits": "Executed installed Linux Bash5 with BASH_COMPAT=3.2 and AWK using mocked vtool output modeled on Apple source. No actual macOS, actual Bash3, native build or signing claim.",
+    "integration_status": "Pending application to the publication branch after frozen Word gates finish."
+  }
+}

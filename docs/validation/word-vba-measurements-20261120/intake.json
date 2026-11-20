@@ -1,0 +1,264 @@
+{
+  "schema_version": 1,
+  "captured_main": "c954d00d2fc85604ae394674bca91ea8a1dede0e",
+  "captured_main_tree": "1d279ced85f247b7fae5e21a04dd8ea354a75919",
+  "integration_commit": "30c8401d6c6083737c2bdb55dd08e5aa03162aff",
+  "fork": "CrispStrobe/quds_office_suite",
+  "branch": "codex/word-vba-measurements-20261120",
+  "pre_task_branches": [
+    {
+      "name": "chore/macos-13-minimum-20261120",
+      "sha": "a51c20737b1932d9c6475ea6dddc33fbd50b2c17"
+    },
+    {
+      "name": "codex/odt-field-continuation-20261117",
+      "sha": "c34945761e7991f5fe49037d79529acdd260b31c"
+    },
+    {
+      "name": "codex/word-powerpoint-vba-expansion-20261120",
+      "sha": "0f6239396ff3328473a5f57c280b982d57e33a08"
+    },
+    {
+      "name": "codex/word-vba-compat-20261120-next",
+      "sha": "650afb7d117337bab943af05d63a250a7e90c058"
+    },
+    {
+      "name": "codex/word-vba-list-levels-20261120",
+      "sha": "fff4a4afda2beecdd20ae0bd1f3c31622e8c0b37"
+    },
+    {
+      "name": "codex/word-vba-paragraph-controls-20261120",
+      "sha": "90ecd41c8a3ef2a6f35967f1219223022e2b0d32"
+    },
+    {
+      "name": "codex/word-vba-paragraph-spacing-20261120",
+      "sha": "d30299dd91634ad7e20c32db5c39a6687fcef4aa"
+    },
+    {
+      "name": "codex/word-vba-ranges-20261120",
+      "sha": "22e5960e99915e81a1b5997058cac44dac27ba1a"
+    },
+    {
+      "name": "codex/zotero-research-tables-20261120",
+      "sha": "34491bca22a2989dd89d9da3c853f5e57de5464f"
+    },
+    {
+      "name": "docs/app-store-submission-20261120",
+      "sha": "b08e0a55b629ac22b33c54146b56438862965022"
+    },
+    {
+      "name": "docs/ods-color-scale",
+      "sha": "58fdddfbcf198a8c0e38e32f6fcc9d6604e95283"
+    },
+    {
+      "name": "docs/ods-data-bar",
+      "sha": "69d14f84cabd3931b7640c1654b401c89faba766"
+    },
+    {
+      "name": "feat/app-store-screenshots-20261120",
+      "sha": "3c6637b6e5585de5fb4b8d27a0ceda6f96edb95f"
+    },
+    {
+      "name": "feat/arabic-web-context-20261120",
+      "sha": "be47bed22a88382f016d823e526bae49590bd0eb"
+    },
+    {
+      "name": "feat/ods-color-scale",
+      "sha": "74ce9ffb816c70c0d2ae50b91ec52a614f26d688"
+    },
+    {
+      "name": "feat/ods-data-bar",
+      "sha": "0a53b8a70128870f3e1df6d18cdb177bb64290ee"
+    },
+    {
+      "name": "feat/ods-dynamic-validation-links",
+      "sha": "68a0db23408e4c95d6d283219504c79aea33a6fe"
+    },
+    {
+      "name": "feat/ods-icon-sets",
+      "sha": "005c708e9f747cb46cf02e12c869b0a2f85ac824"
+    },
+    {
+      "name": "feat/ods-time-period-conditions",
+      "sha": "7ef09f2408f467c65427700e65907531ecb26acb"
+    },
+    {
+      "name": "feat/settings-arweb-20261120",
+      "sha": "e8db6b3f21401f8c6ac4dae4c2934edde8699f4b"
+    },
+    {
+      "name": "fix/bookmark-typing-20261120",
+      "sha": "81691cde9606302cd8dee7ebe28d7532c858393d"
+    },
+    {
+      "name": "fix/mail-credential-stores-chrome-20261120",
+      "sha": "a652a205e6daf6b4b8e3baec04db1c1b52fabd0d"
+    },
+    {
+      "name": "fix/main-green-20261120",
+      "sha": "332d7b26a320ca560f4f2214e1e63da9392269ab"
+    },
+    {
+      "name": "integrate/office-union-148",
+      "sha": "3abf8f43b0e79c10271bbd046f391e462b8fe6b9"
+    },
+    {
+      "name": "integrate/recent-pptx",
+      "sha": "c954d00d2fc85604ae394674bca91ea8a1dede0e"
+    },
+    {
+      "name": "main",
+      "sha": "c954d00d2fc85604ae394674bca91ea8a1dede0e"
+    },
+    {
+      "name": "work/mail-accounts-20261120",
+      "sha": "86e44e87f829b0309ea7b84fd5d390f596fe7f26"
+    },
+    {
+      "name": "work/mail-cached-workspace-20261120",
+      "sha": "c7e721b7703766491fd4459b69de30bf68d9010d"
+    },
+    {
+      "name": "work/mail-multiple-drafts-20261120",
+      "sha": "b3abdf3b4628a8a703857d69b8f11cd21bc502e1"
+    },
+    {
+      "name": "work/mail-offline-accounts-20261120",
+      "sha": "44855ab24c2c7fd34953e879fba571381cce0bc3"
+    },
+    {
+      "name": "work/mail-outbox-20261120",
+      "sha": "9443612b024114c424ba2f8146e04050d6e049b0"
+    },
+    {
+      "name": "work/mail-outbox-management-20261120",
+      "sha": "79e11935e16ea1d2fa576ead0712c83f22e15c28"
+    },
+    {
+      "name": "work/mail-parity-20261120",
+      "sha": "540eb7a41554620e1405807ac1db9dc38bd62148"
+    }
+  ],
+  "audit": {
+    "fork_pr_heads": 270,
+    "pr_heads_ancestral": 256,
+    "pr_heads_historical_equivalent": 14,
+    "open_prs": 0,
+    "fork_branch_heads": 33,
+    "branch_heads_ancestral": 23,
+    "branch_heads_historical_equivalent": 9,
+    "branch_heads_reconciled": 1,
+    "upstream": "MohammedAsaadAsaad/quds_office_suite",
+    "upstream_branches_ancestral": 4,
+    "upstream_pr_heads_ancestral": 4,
+    "upstream_main": "15c5d29b63fb17a93c7fb3426a8fd4d95a32f1ba",
+    "historical_inventory": "docs/validation/mail-header-search-20261120/intake.json",
+    "replacement_checks": "13 identical whole Git trees; ODT continuation's 37 changed blobs and modes match its ancestral replacement.",
+    "refreshed_pr_heads": [
+      {
+        "number": 270,
+        "sha": "540eb7a41554620e1405807ac1db9dc38bd62148"
+      },
+      {
+        "number": 269,
+        "sha": "e8db6b3f21401f8c6ac4dae4c2934edde8699f4b"
+      },
+      {
+        "number": 268,
+        "sha": "90ecd41c8a3ef2a6f35967f1219223022e2b0d32"
+      },
+      {
+        "number": 264,
+        "sha": "1e723bd4bc96e07b1b790daf9b82897a846c6096"
+      },
+      {
+        "number": 263,
+        "sha": "d30299dd91634ad7e20c32db5c39a6687fcef4aa"
+      }
+    ],
+    "reconciliation": {
+      "head": "332d7b26a320ca560f4f2214e1e63da9392269ab",
+      "path": ".github/workflows/tmp-regenerate-editor-goldens.yml",
+      "resolution": "Retain main's deliberate deletion of the temporary golden attribution workflow. The incoming commit changes only its diagnostic SHA matrix. Recorded as a second parent with main's tree unchanged; not labeled content-equivalent."
+    }
+  },
+  "execution": {
+    "local_checkout": "blocked before clone by sandbox startup ENOSPC; execution service subsequently unavailable",
+    "dart_tests": "not run",
+    "dart_analyze": "not run",
+    "dart_format": "not run",
+    "github_actions": "not queried or awaited"
+  },
+  "concurrent": {
+    "branch": "codex/word-vba-compatibility-20261120-continuation",
+    "head": "dd8e73a7d6252b336b2e7a437c4931addc42d491",
+    "resolution": {
+      "production": "Retain reviewed Set/contains dispatch and binary64 evaluator with numerator/divisor metric fallback.",
+      "preserved_paths": [
+        "docs/validation/word-vba-unit-conversions-20261120/README.md",
+        "docs/validation/word-vba-unit-conversions-20261120/intake.json",
+        "packages/quds_office_engine/example/macros/word_unit_conversions.bas",
+        "packages/quds_office_engine/test/office_vba_word_unit_conversions_integration_test.dart",
+        "packages/quds_office_engine/test/office_vba_word_unit_conversions_test.dart"
+      ],
+      "documentation": "Consolidate shared Word contract/changelog; retain incoming explicit CLng rounding guidance and both examples/suites."
+    }
+  },
+  "concurrent_named": {
+    "branch": "codex/word-vba-unit-conversions-20261120",
+    "head": "e08635b3f21c60ad21888821050dc97c2dbf7086",
+    "production_blob": "07dc3c5737661abaf3b17db24439c71482de22ed",
+    "resolution": "Adopt complete coherent named-argument conversion implementation; preserve colliding fixtures under distinct named_measurements paths.",
+    "renamed_files": [
+      "packages/quds_office_engine/example/macros/word_named_measurements.bas",
+      "packages/quds_office_engine/test/office_vba_word_named_measurements_test.dart",
+      "packages/quds_office_engine/test/office_vba_word_named_measurements_integration_test.dart",
+      "packages/quds_office_engine/tool/macros/web_vba_word_named_measurements_smoke.dart"
+    ]
+  },
+  "late_unmerged_active_work": [
+    {
+      "branch": "work/mail-bulk-flags-20261120",
+      "head": "0cc6316c61efd8b39a9cb0cfed6b2879f7865d48",
+      "reason": "Created after initial intake; active Mail integration/intake checkpoint."
+    },
+    {
+      "branch": "work/mail-bulk-actions-20261120",
+      "head": "69ab514b57a4d6d4db062d802eb853c2691d80fe",
+      "reason": "Created after initial intake; unfinished unrelated core Mail coordinator work without provider/UI integration or completed qualification."
+    }
+  ],
+  "final_refresh": {
+    "observed_main": "c954d00d2fc85604ae394674bca91ea8a1dede0e",
+    "branch_count": 38,
+    "word_heads": [
+      {
+        "branch": "codex/word-vba-compatibility-20261120-continuation",
+        "head": "dd8e73a7d6252b336b2e7a437c4931addc42d491"
+      },
+      {
+        "branch": "codex/word-vba-unit-conversions-20261120",
+        "head": "e08635b3f21c60ad21888821050dc97c2dbf7086"
+      }
+    ],
+    "late_mail_heads": [
+      {
+        "branch": "work/mail-bulk-actions-20261120",
+        "head": "b60c0ec26f2a80c984076fb1d480eb2e641b542e",
+        "disposition": "Active overlapping Mail development introduced after initial intake; preserved remotely, not integrated into this Word change."
+      },
+      {
+        "branch": "work/mail-bulk-flags-20261120",
+        "head": "034d73d2d09245c4a151de37bf522664ea5b4a80",
+        "disposition": "Active overlapping Mail development introduced after initial intake; preserved remotely, not integrated into this Word change."
+      }
+    ]
+  },
+  "post_merge_word_checkpoint": {
+    "head": "8ca1958d9eb737beb88269bb962a2418f7a3a44a",
+    "observed_before_publication": "2026-11-20T20:41:23Z",
+    "production_resolution": "Already represented by adopted binary64 named-conversion implementation. Retain final named-argument source unchanged.",
+    "preserved": "Six historical evidence files, expanded historical README and two large-scalar regression expectations.",
+    "original_merge": "b01cb23dc1b7bc94b691d68a2507b61dc6d48d7a"
+  }
+}

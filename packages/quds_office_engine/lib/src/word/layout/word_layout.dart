@@ -180,8 +180,8 @@ class LaidOutLine {
       ? null
       : proofingOffsets![layoutOffset];
 
-  /// Inner left/right pad for table-cell text (`tblCellMar` 108 twips).
-  static const double tableCellPad = 5.4;
+  /// Default inner left/right pad for table-cell text (85 twips).
+  static const double tableCellPad = 4.25;
 
   /// Inner pad for absolutely placed [WmlFrame] text.
   static const double framePad = 8;
@@ -838,6 +838,91 @@ class WordLayoutEngine {
   final Map<int, List<_NoteSlice>> _noteSlices = <int, List<_NoteSlice>>{};
   final Set<int> _placedNotes = <int>{};
 
+  /// [_placedNotes] in placement order (incremental layout restores
+  /// prefixes of it).
+  final List<int> _placedOrder = <int>[];
+
+  /// Note slices reserved on pages from [fromPage] on, copied; null if none.
+  Map<int, List<_NoteSlice>>? _pendingNotes(int fromPage) {
+    if (_noteSlices.isEmpty) return null;
+    Map<int, List<_NoteSlice>>? result;
+    _noteSlices.forEach((int page, List<_NoteSlice> slices) {
+      if (page >= fromPage && slices.isNotEmpty) {
+        (result ??= <int, List<_NoteSlice>>{})[page] = List<_NoteSlice>.of(
+          slices,
+        );
+      }
+    });
+    return result;
+  }
+
+  /// The note state of the flow equals the one recorded in [cp] (whose
+  /// layout placed notes in [oldOrder]).
+  bool _notesMatch(_Checkpoint cp, List<int> oldOrder) {
+    if (_placedOrder.length != cp.placedNotes ||
+        oldOrder.length < cp.placedNotes) {
+      return false;
+    }
+    for (int i = 0; i < cp.placedNotes; i++) {
+      if (!_placedNotes.contains(oldOrder[i])) return false;
+    }
+    final Map<int, List<_NoteSlice>>? pending = cp.pendingNotes;
+    for (final MapEntry<int, List<_NoteSlice>> entry in _noteSlices.entries) {
+      if (entry.key >= cp.pagesLength &&
+          !_sameSlices(entry.value, pending?[entry.key])) {
+        return false;
+      }
+    }
+    if (pending != null) {
+      for (final MapEntry<int, List<_NoteSlice>> entry in pending.entries) {
+        if (!_sameSlices(entry.value, _noteSlices[entry.key])) return false;
+      }
+    }
+    return true;
+  }
+
+  /// Note order, labels and the section of each reference: shaped note
+  /// stories (sized for the section that first places them) and reference
+  /// labels in the body are valid while this is unchanged.
+  List<Object> _noteNumberingSignature(WmlDocument document) {
+    final WordNoteNumbering numbering = _noteNumbering!;
+    final List<Object> result = <Object>[];
+    for (final WmlNote note in numbering.notes) {
+      result
+        ..add(note)
+        ..add(numbering.labelFor(note));
+    }
+    for (int s = 0; s < document.sections.length; s++) {
+      for (final WmlParagraph p in WordTree.paragraphs(
+        document.sections[s].blocks,
+      )) {
+        for (final WmlInline inline in p.inlines) {
+          if (inline is WmlRun && inline.noteRefId != null) {
+            result.add(
+              '$s:${inline.noteRefEndnote ? 'e' : 'f'}${inline.noteRefId}',
+            );
+          }
+        }
+      }
+    }
+    return result;
+  }
+
+  /// Note definitions, their paragraphs and text.
+  static List<Object> _noteContentSignature(WmlDocument document) => <Object>[
+    for (final WmlNote note in <WmlNote>[
+      ...document.footnotes,
+      ...document.endnotes,
+    ]) ...<Object>[
+      note,
+      '${note.blocks.length}',
+      for (final WmlParagraph p in WordTree.paragraphs(note.blocks)) ...[
+        p,
+        p.text,
+      ],
+    ],
+  ];
+
   double _noteReserve(int page) {
     final List<_NoteSlice> slices = _noteSlices[page] ?? <_NoteSlice>[];
     return slices.isEmpty
@@ -879,6 +964,7 @@ class WordLayoutEngine {
     for (var ni = 0; ni < notes.length; ni++) {
       final WmlNote note = notes[ni];
       _placedNotes.add(note.id);
+      _placedOrder.add(note.id);
       final _NoteStory story = _story(note, section);
       var start = 0.0;
       var target = page;
@@ -978,7 +1064,7 @@ class WordLayoutEngine {
   /// Tallest header logo height for [section] (0 if none).
   static double _headerLogoHeight(WmlSection section) {
     var maxH = 0.0;
-    void consider(List<WmlVisual> visuals) {
+    void consider(Iterable<WmlVisual> visuals) {
       for (final WmlVisual item in visuals) {
         maxH = math.max(maxH, item.visual.height);
       }
@@ -987,6 +1073,17 @@ class WordLayoutEngine {
     consider(section.headerVisuals);
     consider(section.firstHeaderVisuals);
     consider(section.evenHeaderVisuals);
+    for (final story in [
+      section.header,
+      section.firstHeader,
+      section.evenHeader,
+    ]) {
+      consider([
+        for (final paragraph in story)
+          for (final run in paragraph.inlines.whereType<WmlRun>())
+            if (run.inlineVisual != null) run.inlineVisual!,
+      ]);
+    }
     return maxH;
   }
 
@@ -1094,6 +1191,7 @@ class WordLayoutEngine {
     _noteStories.clear();
     _noteSlices.clear();
     _placedNotes.clear();
+    _placedOrder.clear();
     // Materialize every nested TOC before paragraph indices are counted. A
     // normal engine layout also binds imported cached entries to live headings;
     // temporary row shaping keeps their original document-wide targets.
@@ -1193,6 +1291,7 @@ class WordLayoutEngine {
         ),
       );
     }
+    final int flowPages = pages.length;
     while (_noteSlices.keys.any((int index) => index >= pages.length)) {
       final _NoteSlice? slice = _noteSlices[pages.length]?.firstOrNull;
       final WmlSection section = slice?.section ?? document.sections.last;
@@ -1207,9 +1306,35 @@ class WordLayoutEngine {
         ),
       );
     }
+    final bool hasNotes =
+        document.footnotes.isNotEmpty || document.endnotes.isNotEmpty;
+    final int endnotePage = document.endnotes.isNotEmpty
+        ? pages.length - 1
+        : -1;
+    final int endnoteLines = endnotePage < 0 ? 0 : pages.last.notes.length;
+    final int endnoteFrames = endnotePage < 0 ? 0 : pages.last.frames.length;
     _appendEndnotes(document, pages);
     if (updateFields) {
       WordFields.update(document, pageCount: pages.length);
+    }
+    if (state != null) {
+      state.flowPages = flowPages;
+      if (hasNotes) {
+        state.notes = _NoteState(
+          slices: <int, List<_NoteSlice>>{
+            for (final MapEntry<int, List<_NoteSlice>> entry
+                in _noteSlices.entries)
+              entry.key: List<_NoteSlice>.of(entry.value),
+          },
+          placedOrder: List<int>.of(_placedOrder),
+          stories: Map<WmlNote, _NoteStory>.of(_noteStories),
+          numbering: _noteNumberingSignature(document),
+          content: _noteContentSignature(document),
+          endnotePage: endnotePage,
+          endnoteLines: endnoteLines,
+          endnoteFrames: endnoteFrames,
+        );
+      }
     }
     return LaidOutDocument(
       pages: pages,
@@ -1229,8 +1354,8 @@ class WordLayoutEngine {
         !identical(old.owner, _incrementalOwner) ||
         !identical(old.document, document) ||
         old.sections.length != document.sections.length ||
-        document.footnotes.isNotEmpty ||
-        document.endnotes.isNotEmpty) {
+        (document.footnotes.isNotEmpty || document.endnotes.isNotEmpty) !=
+            (old.notes != null)) {
       return null;
     }
     final int sectionCount = document.sections.length;
@@ -1284,6 +1409,26 @@ class WordLayoutEngine {
       lastOffset = n - m;
     }
     _prepareLayout(document, updateFields: false);
+    final _NoteState? oldNotes = old.notes;
+    if (oldNotes != null) {
+      // Labels in the body, note stories and their placement are valid only
+      // while note order, labels, reference sections and content are equal.
+      // Declared dirty note paragraphs may have changed mutable formatting
+      // without changing text or identity, including inside nested tables.
+      if (<WmlNote>[...document.footnotes, ...document.endnotes].any(
+            (note) => note.blocks.any(
+              (block) => _blockContainsAny(block, dirtyParagraphs),
+            ),
+          ) ||
+          !_sameObjects(
+            oldNotes.numbering,
+            _noteNumberingSignature(document),
+          ) ||
+          !_sameObjects(oldNotes.content, _noteContentSignature(document))) {
+        return null;
+      }
+      _noteStories.addAll(oldNotes.stories);
+    }
     final _Recorder recorder = _recorder = _Recorder(sectionCount)
       ..dirtyBlocks = dirtyBlocks;
     try {
@@ -1296,15 +1441,16 @@ class WordLayoutEngine {
             pages: List<LaidOutPage>.of(reuse.pages),
             pageSize: document.sections.first.pageSize,
           )
-          .._incremental = _IncrementalState(
-            _incrementalOwner,
-            document,
-            recorder.sections,
-          );
+          .._incremental =
+              (_IncrementalState(_incrementalOwner, document, recorder.sections)
+                ..flowPages = old.flowPages
+                ..notes = oldNotes);
       }
       final _SectionRecord resumeRecord = old.sections[firstSection]!;
       final _Checkpoint cp = resumeRecord.checkpoints[firstBlock];
-      final List<LaidOutPage> oldPages = reuse.pages;
+      // Note-overflow and endnote pages are made again after the flow.
+      if (old.flowPages > reuse.pages.length) return null;
+      final List<LaidOutPage> oldPages = reuse.pages.sublist(0, old.flowPages);
       if (cp.pagesLength > oldPages.length) return null;
       final List<LaidOutLine> lines = <LaidOutLine>[];
       final List<LaidOutBox> frames = <LaidOutBox>[];
@@ -1322,6 +1468,24 @@ class WordLayoutEngine {
       }
       for (int s = 0; s < firstSection; s++) {
         recorder.sections[s] = old.sections[s];
+      }
+      if (oldNotes != null) {
+        // Finished pages keep their final slices; unfinished pages get the
+        // slices reserved before the resume block.
+        oldNotes.slices.forEach((int page, List<_NoteSlice> slices) {
+          if (page < cp.pagesLength) {
+            _noteSlices[page] = List<_NoteSlice>.of(slices);
+          }
+        });
+        cp.pendingNotes?.forEach((int page, List<_NoteSlice> slices) {
+          _noteSlices[page] = List<_NoteSlice>.of(slices);
+        });
+        for (final int id in oldNotes.placedOrder.take(cp.placedNotes)) {
+          _placedNotes.add(id);
+          _placedOrder.add(id);
+        }
+      } else if (cp.placedNotes != 0 || cp.pendingNotes != null) {
+        return null;
       }
       final _SectionRecord prefix = _SectionRecord(resumeRecord.section)
         ..blocks.addAll(resumeRecord.blocks.take(firstBlock))
@@ -1391,6 +1555,18 @@ class WordLayoutEngine {
     final _Checkpoint cp = splice.checkpoint;
     final int at = cp.pagesLength;
     final int delta = splice.delta;
+    final _NoteState? oldNotes = old.notes;
+    if (oldNotes != null) {
+      // From here on the old flow repeats: its reserved slices for the
+      // remaining pages and its later placements are the full layout's.
+      _noteSlices.removeWhere((int page, _) => page >= at);
+      oldNotes.slices.forEach((int page, List<_NoteSlice> slices) {
+        if (page >= at) _noteSlices[page] = List<_NoteSlice>.of(slices);
+      });
+      for (final int id in oldNotes.placedOrder.skip(cp.placedNotes)) {
+        if (_placedNotes.add(id)) _placedOrder.add(id);
+      }
+    }
     if (at < oldPages.length) {
       final LaidOutPage partial = oldPages[at];
       final _PageOrigin origin = partial._origin!;
@@ -1411,9 +1587,13 @@ class WordLayoutEngine {
         ),
       );
       for (int i = at + 1; i < oldPages.length; i++) {
-        final LaidOutPage page = oldPages[i];
+        LaidOutPage page = oldPages[i];
         final int body = page._origin?.bodyFrames ?? page.frames.length;
         _shiftParagraphIndices(page.lines, page.frames.take(body), delta);
+        if (oldNotes != null && i == oldNotes.endnotePage) {
+          // Endnotes are appended again after the flow.
+          page = _withoutEndnotes(page, oldNotes);
+        }
         pages.add(page);
       }
     }
@@ -1449,6 +1629,22 @@ class WordLayoutEngine {
     }
   }
 
+  /// [page] as it was before endnotes were appended to it.
+  static LaidOutPage _withoutEndnotes(LaidOutPage page, _NoteState notes) =>
+      LaidOutPage(
+        index: page.index,
+        width: page.width,
+        height: page.height,
+        lines: page.lines,
+        sectionIndex: page.sectionIndex,
+        frames: page.frames.sublist(0, notes.endnoteFrames),
+        header: page.header,
+        footer: page.footer,
+        notes: page.notes.sublist(0, notes.endnoteLines),
+        headerBand: page.headerBand,
+        footerBand: page.footerBand,
+      ).._origin = page._origin;
+
   void _verifyIncremental(WmlDocument document, LaidOutDocument incremental) {
     final bool saved = incrementalLayout;
     incrementalLayout = false;
@@ -1474,13 +1670,17 @@ class WordLayoutEngine {
     );
   }
 
+  static Iterable<LaidOutBox> _bodyFrames(LaidOutPage page) => page.frames
+      .take(page._origin?.bodyFrames ?? page.frames.length)
+      .where((frame) => !frame.isNoteContent);
+
   static double _contentBottom(LaidOutPage page, {required double fallback}) {
     var bottom = fallback;
     for (final LaidOutLine line in page.lines) {
       bottom = math.max(bottom, line.y + line.height);
     }
-    for (final LaidOutBox box in page.frames) {
-      if (!box.isNoteContent) bottom = math.max(bottom, box.y + box.height);
+    for (final LaidOutBox box in _bodyFrames(page)) {
+      bottom = math.max(bottom, box.y + box.height);
     }
     return bottom;
   }
@@ -1513,9 +1713,9 @@ class WordLayoutEngine {
       if (continuous && pages.isNotEmpty) {
         final LaidOutPage last = pages.removeLast();
         flow.current.addAll(last.lines);
-        flow.currentFrames.addAll(
-          last.frames.where((LaidOutBox b) => !b.isNoteContent),
-        );
+        // Chrome is recreated for this section when the page is made again;
+        // carrying it here would duplicate it and count it as body content.
+        flow.currentFrames.addAll(_bodyFrames(last));
         flow.pageIndex = last.index;
         flow.y = _contentBottom(last, fallback: _bodyTopClearingLogo(section));
         flow.columnTop = flow.y;
@@ -1546,6 +1746,7 @@ class WordLayoutEngine {
           flow,
           paragraphIndex,
           adjacentParagraphAfter,
+          _notesMatch,
         )) {
           return paragraphIndex;
         }
@@ -1555,6 +1756,8 @@ class WordLayoutEngine {
           flow,
           paragraphIndex,
           adjacentParagraphAfter,
+          placedNotes: _placedOrder.length,
+          pendingNotes: _pendingNotes(flow.pages.length),
         );
         if (recorder.convergence != null) {
           WordIncrementalLayoutStats.blocksLaidOut++;
@@ -3160,7 +3363,15 @@ class WordLayoutEngine {
             pageNumber,
             firstInSection: firstInSection,
           );
-    if (visuals.isEmpty) {
+    final List<WmlParagraph> story = isFooter
+        ? section.footerForPage(pageNumber, firstInSection: firstInSection)
+        : section.headerForPage(pageNumber, firstInSection: firstInSection);
+    final List<WmlVisual> inlineVisuals = <WmlVisual>[
+      for (final WmlParagraph paragraph in story)
+        for (final WmlRun run in paragraph.inlines.whereType<WmlRun>())
+          if (run.inlineVisual != null) run.inlineVisual!,
+    ];
+    if (visuals.isEmpty && inlineVisuals.isEmpty) {
       return const <LaidOutBox>[];
     }
     final double bandTop = isFooter
@@ -3168,8 +3379,44 @@ class WordLayoutEngine {
               math.max(section.margins.footer, section.margins.bottom * 0.55)
         : section.margins.header;
     final List<LaidOutBox> frames = <LaidOutBox>[];
+    final listed = Set<WmlVisual>.identity()..addAll(visuals);
+    final placed = Set<WmlVisual>.identity();
     var x = section.margins.left;
+    // Header/footer tables are flattened to their paragraphs by the source
+    // model. Keep their inline pictures (typically the organisation logo)
+    // instead of painting U+FFFC as a row of missing-glyph boxes.
+    var inlineX = section.margins.left;
+    for (final WmlVisual item in inlineVisuals) {
+      final OfficeVisual visual = item.visual;
+      if (listed.contains(item) || !placed.add(item)) {
+        // One node may be exposed through both representations; its list
+        // placement owns that occurrence. Distinct nodes can share an asset.
+        continue;
+      }
+      final double width = visual.width.clamp(16, section.contentWidth);
+      final double height = visual.height.clamp(12, 120);
+      frames.add(
+        LaidOutBox(
+          x: inlineX,
+          y: bandTop,
+          width: width,
+          height: height,
+          fillColor: null,
+          strokeColor: '00000000',
+          kind: LaidOutBoxKind.picture,
+          visual: visual,
+          strokeTop: false,
+          strokeRight: false,
+          strokeBottom: false,
+          strokeLeft: false,
+        ),
+      );
+      inlineX += width + 8;
+    }
     for (final WmlVisual item in visuals) {
+      // Repeated references to one node are one occurrence. Equal content or
+      // coordinates do not identify distinct authored nodes, even with alpha.
+      if (!placed.add(item)) continue;
       final OfficeVisual visual = item.visual;
       final double width = visual.width.clamp(16, section.pageSize.width);
       final double height = visual.height.clamp(12, 120);
@@ -3770,7 +4017,7 @@ class WordLayoutEngine {
       final WmlParagraph paragraph = story[i];
       final WmlRunProps run = WmlRunEdit.propsAt(paragraph, 0);
       final WmlDocument? doc = _layoutDoc;
-      final String source = paragraph.text;
+      final String source = paragraph.text.replaceAll('\uFFFC', ' ');
       final String raw = source.trim();
       final int rawStart = source.length - source.trimLeft().length;
       final String text;

@@ -107,6 +107,7 @@ class WordDeserializer {
   WmlNote? _readingNote;
   bool _noteMarkCaptured = false;
   final Set<WmlTable> _tablesWithOwnBorders = Set<WmlTable>.identity();
+  final Set<WmlTable> _tablesWithOwnBorderWidths = Set<WmlTable>.identity();
   final Set<WmlRunProps> _notBold = Set<WmlRunProps>.identity();
   final Set<WmlRunProps> _notItalic = Set<WmlRunProps>.identity();
   final Map<WmlTable, _TableLook> _tableLooks =
@@ -123,6 +124,7 @@ class WordDeserializer {
     _paragraphFormatChanges.clear();
     _moveRanges.clear();
     _tablesWithOwnBorders.clear();
+    _tablesWithOwnBorderWidths.clear();
     _tableLooks.clear();
     _notBold.clear();
     _notItalic.clear();
@@ -2621,7 +2623,9 @@ class WordDeserializer {
         );
       } else if (reader.localName == 'tblBorders') {
         _tablesWithOwnBorders.add(table);
-        _readTblBorders(reader, table.properties);
+        if (_readTblBorders(reader, table.properties)) {
+          _tablesWithOwnBorderWidths.add(table);
+        }
       } else if (reader.localName == 'tblLook') {
         _tableLooks[table] = _TableLook.read(reader);
       } else if (reader.localName == 'bidiVisual') {
@@ -2636,10 +2640,12 @@ class WordDeserializer {
     }
   }
 
-  void _readTblBorders(XmlPullReader reader, WmlTableProps props) {
+  /// Returns whether a drawn direct border declares its own width.
+  bool _readTblBorders(XmlPullReader reader, WmlTableProps props) {
     if (reader.isEmptyElement) {
-      return;
+      return false;
     }
+    var hasDirectWidth = false;
     final int depth = reader.depth;
     while (reader.next() && reader.depth >= depth) {
       if (reader.eventType != XmlEventType.startElement) {
@@ -2662,12 +2668,14 @@ class WordDeserializer {
       );
       if (sz != null) {
         props.borderWidth = (int.tryParse(sz) ?? 4) / 8.0;
+        hasDirectWidth = true;
       }
       if (color != null && color.isNotEmpty && color.toLowerCase() != 'auto') {
         props.borderColor = color;
       }
       props.borders = true;
     }
+    return hasDirectWidth;
   }
 
   /// Applies `styles.xml` table styles (borders, header row and banded row
@@ -2706,6 +2714,19 @@ class WordDeserializer {
             ..borderColor ??= '000000'
             ..borderWidth = 0.5;
         }
+      } else if (style != null &&
+          style.bordersDeclared &&
+          style.borderColor != null &&
+          (table.properties.borderColor == null ||
+              table.properties.borderColor!.toLowerCase() == 'auto')) {
+        // Word resolves an omitted/automatic direct border from the table
+        // style. In particular Medium Grid 3's white grid must stay white
+        // instead of becoming a black rectangle around every cell.
+        table.properties.borderColor = style.borderColor;
+        // Preserve an authored direct size; an omitted size still inherits.
+        if (!_tablesWithOwnBorderWidths.contains(table)) {
+          table.properties.borderWidth = style.borderWidth;
+        }
       }
       if (style != null) {
         final _TableLook look = _tableLooks[table] ?? const _TableLook();
@@ -2722,6 +2743,39 @@ class WordDeserializer {
           }
           for (final WmlTableCell cell in table.rows[r].cells) {
             cell.fillColor ??= fill;
+          }
+        }
+        // Conditional run properties already went through _StyleCascade.
+        // Reapplying them here would replace direct/character overrides and
+        // reach into nested tables whose formatting belongs to another style.
+        // Table styles in Word set the cell paragraph rhythm. Applying this
+        // only to Table Grid left Medium Grid rows roughly 8 pt too tall.
+        for (final WmlTableRow row in table.rows) {
+          for (final WmlTableCell cell in row.cells) {
+            for (final WmlBlock block in WordTree.visibleBlocks(cell.blocks)) {
+              if (block is! WmlParagraph) continue;
+              final properties = block.properties;
+              var changed = false;
+              if (!properties.explicitSpacingAfter &&
+                  properties.spacingAfter != 0) {
+                properties.spacingAfter = 0;
+                changed = true;
+              }
+              if (!properties.explicitLineSpacing &&
+                  properties.lineSpacingRule == WmlLineSpacingRule.auto &&
+                  properties.lineSpacing != 1) {
+                properties.lineSpacing = 1;
+                changed = true;
+              }
+              if (changed && properties.importedValues != null) {
+                // These are import defaults, not user edits. Keep them in the
+                // effective baseline so sparse export does not pin new direct
+                // spacing onto paragraphs that still inherit their styles.
+                properties.importedValues = WordPropertyIo.paragraphValues(
+                  properties,
+                );
+              }
+            }
           }
         }
       }
@@ -2745,6 +2799,7 @@ class WordDeserializer {
       _walkTables(note.blocks, applyTo);
     }
     _tablesWithOwnBorders.clear();
+    _tablesWithOwnBorderWidths.clear();
     _tableLooks.clear();
   }
 
@@ -3527,12 +3582,21 @@ class WordDeserializer {
       if (reader.eventType != XmlEventType.startElement) {
         continue;
       }
+      final String? val = reader.getAttribute(
+        'val',
+        namespaceUri: OfficeNamespaces.w,
+      );
+      if (val == null || val == 'none' || val == 'nil') {
+        continue;
+      }
       final String? color = reader.getAttribute(
         'color',
         namespaceUri: OfficeNamespaces.w,
       );
-      if (color != null && color.isNotEmpty) {
+      if (color != null && color.isNotEmpty && color.toLowerCase() != 'auto') {
         props.borderColor = color;
+      } else {
+        props.borderColor ??= '000000';
       }
     }
   }

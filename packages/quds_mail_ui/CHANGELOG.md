@@ -1,5 +1,18 @@
 ## 0.1.0
 
+- Add explicit visible-message selection and foreground read/flag action
+  callbacks, with immutable ordered snapshots, Ctrl/Cmd+A and Space selection,
+  Escape to clear checked rows,
+  hidden-row pruning, scope/revision resets and stale-menu rejection.
+- Keep bulk controls absent in read-only hosts and unavailable while busy or
+  refresh is required; expose a scrollable host-owned progress/results slot.
+- Add bounded structured search of loaded message headers with localized syntax
+  errors, recipient/date/state predicates, explicit clear and accessible help.
+  Technical examples keep their left-to-right order within Arabic help.
+- Keep long localized controls and errors scrollable in compact workspaces,
+  reserving usable space for message rows and explicit pagination.
+- Add stable local provider/date/sender/subject ordering without provider work,
+  keeping unknown dates last and preserving message identity through reordering.
 - Add a bounded body-only quotation API, preserving empty plain alternatives and
   rejecting incomplete HTML without reading message headers or attachments.
 - Add a reusable foreground mailbox list with explicit loaded-message search,

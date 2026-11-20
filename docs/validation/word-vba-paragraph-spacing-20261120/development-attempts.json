@@ -1,0 +1,217 @@
+{
+  "development_publication_acceptance": false,
+  "portable_development_runs": {
+    "line-spacing-portable-development": {
+      "canonical_results_equal": true,
+      "commands_succeeded": true,
+      "development_only": true,
+      "head_matches_worktree": false,
+      "qualified": false,
+      "raw_output_bytes": 1174,
+      "raw_outputs_equal": false,
+      "runtime_inputs_unchanged": true,
+      "source_inputs_unchanged": true
+    },
+    "line-spacing-portable-development-2": {
+      "canonical_results_equal": true,
+      "commands_succeeded": true,
+      "development_only": true,
+      "head_matches_worktree": false,
+      "qualified": false,
+      "raw_output_bytes": 1154,
+      "raw_outputs_equal": true,
+      "runtime_inputs_unchanged": true,
+      "source_inputs_unchanged": true
+    }
+  },
+  "reporter_streams": {
+    "runtime/compiler-development-01.jsonl": {
+      "failed_completions_including_hidden_loads": 1,
+      "last_reporter_success": false,
+      "parse_problems": [],
+      "publication_acceptance": false,
+      "reporter_error_events": 1,
+      "scope": "development_only",
+      "visible_completed_cases": 8,
+      "visible_failed": 1,
+      "visible_passed": 7,
+      "visible_skipped": 0
+    },
+    "runtime/compiler-development-02.jsonl": {
+      "failed_completions_including_hidden_loads": 1,
+      "last_reporter_success": false,
+      "parse_problems": [],
+      "publication_acceptance": false,
+      "reporter_error_events": 1,
+      "scope": "development_only",
+      "visible_completed_cases": 8,
+      "visible_failed": 1,
+      "visible_passed": 7,
+      "visible_skipped": 0
+    },
+    "runtime/compiler-development-03.jsonl": {
+      "failed_completions_including_hidden_loads": 1,
+      "last_reporter_success": false,
+      "parse_problems": [],
+      "publication_acceptance": false,
+      "reporter_error_events": 1,
+      "scope": "development_only",
+      "visible_completed_cases": 8,
+      "visible_failed": 1,
+      "visible_passed": 7,
+      "visible_skipped": 0
+    },
+    "runtime/compiler-development-04.jsonl": {
+      "failed_completions_including_hidden_loads": 0,
+      "last_reporter_success": true,
+      "parse_problems": [],
+      "publication_acceptance": false,
+      "reporter_error_events": 0,
+      "scope": "development_only",
+      "visible_completed_cases": 89,
+      "visible_failed": 0,
+      "visible_passed": 89,
+      "visible_skipped": 0
+    },
+    "runtime/compiler-development-05.jsonl": {
+      "failed_completions_including_hidden_loads": 0,
+      "last_reporter_success": true,
+      "parse_problems": [],
+      "publication_acceptance": false,
+      "reporter_error_events": 0,
+      "scope": "development_only",
+      "visible_completed_cases": 99,
+      "visible_failed": 0,
+      "visible_passed": 99,
+      "visible_skipped": 0
+    },
+    "runtime/line-spacing-existing-regression.jsonl": {
+      "failed_completions_including_hidden_loads": 0,
+      "last_reporter_success": true,
+      "parse_problems": [],
+      "publication_acceptance": false,
+      "reporter_error_events": 0,
+      "scope": "development_only",
+      "visible_completed_cases": 64,
+      "visible_failed": 0,
+      "visible_passed": 64,
+      "visible_skipped": 0
+    },
+    "runtime/line-spacing-integration-development-2.jsonl": {
+      "failed_completions_including_hidden_loads": 0,
+      "last_reporter_success": true,
+      "parse_problems": [],
+      "publication_acceptance": false,
+      "reporter_error_events": 0,
+      "scope": "development_only",
+      "visible_completed_cases": 18,
+      "visible_failed": 0,
+      "visible_passed": 18,
+      "visible_skipped": 0
+    },
+    "runtime/line-spacing-integration-development-3.jsonl": {
+      "failed_completions_including_hidden_loads": 0,
+      "last_reporter_success": true,
+      "parse_problems": [],
+      "publication_acceptance": false,
+      "reporter_error_events": 0,
+      "scope": "development_only",
+      "visible_completed_cases": 23,
+      "visible_failed": 0,
+      "visible_passed": 23,
+      "visible_skipped": 0
+    },
+    "runtime/line-spacing-integration-development.jsonl": {
+      "failed_completions_including_hidden_loads": 1,
+      "last_reporter_success": false,
+      "parse_problems": [],
+      "publication_acceptance": false,
+      "reporter_error_events": 1,
+      "scope": "development_only",
+      "visible_completed_cases": 1,
+      "visible_failed": 1,
+      "visible_passed": 0,
+      "visible_skipped": 0
+    },
+    "runtime/line-spacing-native-corrected.jsonl": {
+      "failed_completions_including_hidden_loads": 1,
+      "last_reporter_success": false,
+      "parse_problems": [],
+      "publication_acceptance": false,
+      "reporter_error_events": 1,
+      "scope": "development_only",
+      "visible_completed_cases": 63,
+      "visible_failed": 1,
+      "visible_passed": 62,
+      "visible_skipped": 0
+    },
+    "runtime/line-spacing-native-final.jsonl": {
+      "failed_completions_including_hidden_loads": 0,
+      "last_reporter_success": true,
+      "parse_problems": [],
+      "publication_acceptance": false,
+      "reporter_error_events": 0,
+      "scope": "development_only",
+      "visible_completed_cases": 71,
+      "visible_failed": 0,
+      "visible_passed": 71,
+      "visible_skipped": 0
+    },
+    "runtime/line-spacing-native-initial.jsonl": {
+      "failed_completions_including_hidden_loads": 1,
+      "last_reporter_success": false,
+      "parse_problems": [],
+      "publication_acceptance": false,
+      "reporter_error_events": 1,
+      "scope": "development_only",
+      "visible_completed_cases": 32,
+      "visible_failed": 1,
+      "visible_passed": 31,
+      "visible_skipped": 0
+    },
+    "runtime/line-spacing-preset-guard-regression.jsonl": {
+      "failed_completions_including_hidden_loads": 0,
+      "last_reporter_success": true,
+      "parse_problems": [],
+      "publication_acceptance": false,
+      "reporter_error_events": 0,
+      "scope": "development_only",
+      "visible_completed_cases": 105,
+      "visible_failed": 0,
+      "visible_passed": 105,
+      "visible_skipped": 0
+    },
+    "runtime/line-spacing-property-packet-guard.jsonl": {
+      "failed_completions_including_hidden_loads": 0,
+      "last_reporter_success": true,
+      "parse_problems": [],
+      "publication_acceptance": false,
+      "reporter_error_events": 0,
+      "scope": "development_only",
+      "visible_completed_cases": 96,
+      "visible_failed": 0,
+      "visible_passed": 96,
+      "visible_skipped": 0
+    },
+    "runtime/setup-smoke.jsonl": {
+      "failed_completions_including_hidden_loads": 0,
+      "last_reporter_success": true,
+      "parse_problems": [],
+      "publication_acceptance": false,
+      "reporter_error_events": 0,
+      "scope": "development_only",
+      "visible_completed_cases": 88,
+      "visible_failed": 0,
+      "visible_passed": 88,
+      "visible_skipped": 0
+    }
+  },
+  "separate_independent_review": {
+    "accepted_supplemental_expectations": 56,
+    "receipt": "intake-review/source-review-probes-final.json",
+    "regression_total_contribution": 0,
+    "source_commit": "0201b549d0dc3f601c50e36255d557034cb01699",
+    "status": "ACCEPTED"
+  },
+  "sum_of_attempt_counts_is_not_an_acceptance_total": true
+}

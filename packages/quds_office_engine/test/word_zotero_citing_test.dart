@@ -187,7 +187,7 @@ void main() {
     expect(application, containsPair('documentID', _documentId));
     expect(application, containsPair('outputFormat', 'html'));
     expect(application['supportedNotes'], ['footnotes', 'endnotes']);
-    expect(application['supportsCitationMerging'], isFalse);
+    expect(application['supportsCitationMerging'], isTrue);
     expect(_call(session, 'Document.activate'), isNull);
     expect(_call(session, 'Document.canInsertField', ['Http']), isTrue);
     final field = _fields(session).single;

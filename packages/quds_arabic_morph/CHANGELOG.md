@@ -1,3 +1,17 @@
+## Unreleased
+
+- The CrispOffice web build now bundles the Arabic morphology Wasm worker
+  (`crispoffice-binaries.yml`, emsdk 6.0.2, `--install-web` into
+  `example/web/proofing`), so the database and the context model work in the
+  browser: both are user downloads from the Downloads manager, verified
+  against their pins and kept in Cache Storage.
+- Native/web parity: `tool/disambig_parity.mjs` disambiguates the fixed panel
+  `test/fixtures/disambig_parity_panel.json` in the shipped worker and
+  `test/arabic_morph_web_parity_test.dart` requires the same analyses, ranks,
+  bit-identical scores and lemma/POS/UPOS choices as the native library
+  (CI: `arabic-morph-web-parity.yml`). `tool/fetch_bundles.dart` downloads the
+  pinned bundles with the verifying installer.
+
 ## 0.3.0
 
 - Context disambiguation: `CamelArabicMorphology` implements the engine's

@@ -1,0 +1,1256 @@
+{
+  "files": {
+    "candidate/apple-vtool-source-reference.json": {
+      "bytes": 1620,
+      "mode": "0644",
+      "sha256": "c458fee07abffab1b4b1f9469e9c12ded1e82c3ca6f0f51d02a9832f36a4ea23"
+    },
+    "candidate/bash3-build-attempt01.jsonl": {
+      "bytes": 0,
+      "mode": "0644",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "candidate/bash3-build-attempt01.stderr": {
+      "bytes": 260,
+      "mode": "0644",
+      "sha256": "ab9cab9142b9cfab921edd693867cb73f0ef691af0674061f24085efcd8677a0"
+    },
+    "candidate/bash3-build.jsonl": {
+      "bytes": 0,
+      "mode": "0644",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "candidate/bash3-build.stderr": {
+      "bytes": 0,
+      "mode": "0644",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "candidate/bash3-configure.stderr": {
+      "bytes": 0,
+      "mode": "0644",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "candidate/bash3-configure.stdout": {
+      "bytes": 14607,
+      "mode": "0644",
+      "sha256": "8a1b3214520c779ff418c44503291bbbe1e931eef0747512e56881a25a7c0184"
+    },
+    "candidate/build_bash3_probe.py": {
+      "bytes": 2043,
+      "mode": "0644",
+      "sha256": "d595b4d11c9f718cecc08ef2c67c63235f0ed3702cde7de3fc2d2393ac40dfec"
+    },
+    "candidate/build_macos_app.corrected.sh": {
+      "bytes": 26739,
+      "mode": "0755",
+      "sha256": "8592dd41fb59da7fa3ead05287005cfa06d90c02bb5de495e9f985062ffff904"
+    },
+    "candidate/build_macos_app.original.sh": {
+      "bytes": 23409,
+      "mode": "0755",
+      "sha256": "ef23b468c3c4ba5b577abb5d11aea44e0b7898d136317da255d8d0fc90d747a4"
+    },
+    "candidate/checkout-head.stderr": {
+      "bytes": 0,
+      "mode": "0644",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "candidate/checkout-head.stdout": {
+      "bytes": 41,
+      "mode": "0644",
+      "sha256": "3b67ca8bd89ece40cbb9a9176291cfb73932a240ff311ef1adb65e91e0c71d78"
+    },
+    "candidate/checkout-status.stderr": {
+      "bytes": 0,
+      "mode": "0644",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "candidate/checkout-status.stdout": {
+      "bytes": 0,
+      "mode": "0644",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "candidate/checks-bash5.jsonl": {
+      "bytes": 56504,
+      "mode": "0644",
+      "sha256": "904a788c4931415b9c53ad4cfbe0448edbd6d23fda1d26948abd63579bde17d6"
+    },
+    "candidate/checks-bash5.stderr": {
+      "bytes": 0,
+      "mode": "0644",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "candidate/checks-bash5/bash-version.txt": {
+      "bytes": 308,
+      "mode": "0644",
+      "sha256": "f21766c2171625ffe29bcbd9c8fa9bd89da3014e9ecc6ec15e477e8056e87209"
+    },
+    "candidate/checks-bash5/fixtures/duplicate-minos.txt": {
+      "bytes": 187,
+      "mode": "0644",
+      "sha256": "60d06508890575c9ef70624621f87e27b0c8fd32a76a16e4be2325f2404693e2"
+    },
+    "candidate/checks-bash5/fixtures/empty-output.txt": {
+      "bytes": 0,
+      "mode": "0644",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "candidate/checks-bash5/fixtures/invalid-app-minimum.txt": {
+      "bytes": 172,
+      "mode": "0644",
+      "sha256": "153a206010222446a3293bcea31952f637ffeadd73fa4a442021232345ee7c24"
+    },
+    "candidate/checks-bash5/fixtures/legacy-malformed-version.txt": {
+      "bytes": 117,
+      "mode": "0644",
+      "sha256": "445bd1455563c4834406dae076724ff5e9fb7c96e32a63801db03ed3fb259a89"
+    },
+    "candidate/checks-bash5/fixtures/legacy-missing-version.txt": {
+      "bytes": 100,
+      "mode": "0644",
+      "sha256": "dc473ab03e884537e32f23f98340b83ca11d2a294ce2a4c06a7aff2f7ae02717"
+    },
+    "candidate/checks-bash5/fixtures/legacy-wrong-platform.txt": {
+      "bytes": 118,
+      "mode": "0644",
+      "sha256": "5217033393a8ff6b2e3ef1e6e0ac715cfd10fbf4e345cee7eae8ff39717c2af4"
+    },
+    "candidate/checks-bash5/fixtures/malformed-minos-dot.txt": {
+      "bytes": 173,
+      "mode": "0644",
+      "sha256": "1d6b29c7e7270c46a7ff9718f9fbb5ddf3477051a043b858c6260fd14ddbdca2"
+    },
+    "candidate/checks-bash5/fixtures/malformed-minos-empty.txt": {
+      "bytes": 168,
+      "mode": "0644",
+      "sha256": "c614798cabd35b726c2390a8470c982f8799f4834a7c602641d5e203403014f6"
+    },
+    "candidate/checks-bash5/fixtures/malformed-minos-extra-field.txt": {
+      "bytes": 178,
+      "mode": "0644",
+      "sha256": "356e702742580c56c744b21fef26a0fc14a036dd0b439bd82029bff43cc1a979"
+    },
+    "candidate/checks-bash5/fixtures/malformed-minos-negative.txt": {
+      "bytes": 173,
+      "mode": "0644",
+      "sha256": "767f7d4d8c1c8fb414946706b860e858f3cd3adbaed0a53f2c0749784546c5ac"
+    },
+    "candidate/checks-bash5/fixtures/minos-before-command.txt": {
+      "bytes": 187,
+      "mode": "0644",
+      "sha256": "cbae7dc28cff667034cfe570efc50e9e72d7f471e7b685b084902d17a33b07b3"
+    },
+    "candidate/checks-bash5/fixtures/missing-header.txt": {
+      "bytes": 147,
+      "mode": "0644",
+      "sha256": "ce5e5242eb6b9de10722ee4da9a10195d94c31d978f9df0d233088a8d4dd4baf"
+    },
+    "candidate/checks-bash5/fixtures/missing-minos.txt": {
+      "bytes": 157,
+      "mode": "0644",
+      "sha256": "ab3d784580805fb59f97065e985854515a26489b2145d859c35c7927b336c332"
+    },
+    "candidate/checks-bash5/fixtures/missing-platform.txt": {
+      "bytes": 156,
+      "mode": "0644",
+      "sha256": "21f46997f1e20a7061ce80de793185f1ee78d2b0e85afd31f346e25af3436d93"
+    },
+    "candidate/checks-bash5/fixtures/multiple-commands-compatible.txt": {
+      "bytes": 320,
+      "mode": "0644",
+      "sha256": "47d0d781ca2468790aa02c1e3ef989b4dfe71a8d75dc38dc049933c3ff6b4dca"
+    },
+    "candidate/checks-bash5/fixtures/multiple-commands-later-too-new.txt": {
+      "bytes": 323,
+      "mode": "0644",
+      "sha256": "2feb822ef74f344afa511bdf7d08dece4d28608052170f9c0e8efc112f3b7987"
+    },
+    "candidate/checks-bash5/fixtures/thin-legacy-too-new.txt": {
+      "bytes": 118,
+      "mode": "0644",
+      "sha256": "89b2febb8a5df2a3d5c6bca55a5f922e7c902cf35133624e89c48903ec93e6de"
+    },
+    "candidate/checks-bash5/fixtures/thin-legacy.txt": {
+      "bytes": 116,
+      "mode": "0644",
+      "sha256": "f5b14ef72df36aa57202df5d8896a6f9843f39cfc0f1bccf3b75c43ae9bb27fc"
+    },
+    "candidate/checks-bash5/fixtures/thin-modern-equal.txt": {
+      "bytes": 172,
+      "mode": "0644",
+      "sha256": "153a206010222446a3293bcea31952f637ffeadd73fa4a442021232345ee7c24"
+    },
+    "candidate/checks-bash5/fixtures/thin-modern-leading-zero.txt": {
+      "bytes": 178,
+      "mode": "0644",
+      "sha256": "5bed970a622cedb656f4a3a5b8bcbbc8addfd2b3c18685de97ffb959c8b218ee"
+    },
+    "candidate/checks-bash5/fixtures/thin-modern-tool-version-ignored.txt": {
+      "bytes": 172,
+      "mode": "0644",
+      "sha256": "2740abc0232107885db669d9fceeb6091c988a94a6de6f3a5d56710a20635acd"
+    },
+    "candidate/checks-bash5/fixtures/thin-modern-trailing-zero.txt": {
+      "bytes": 174,
+      "mode": "0644",
+      "sha256": "3f335b9e5b7345c54c58a216653b4b568c285a35a1d1685cd91545bee9b9f198"
+    },
+    "candidate/checks-bash5/fixtures/universal-both-compatible.txt": {
+      "bytes": 393,
+      "mode": "0644",
+      "sha256": "f9da92c0386cba0fc08746c5439561df683523eca8c79fb7832910827709132b"
+    },
+    "candidate/checks-bash5/fixtures/universal-earlier-major.txt": {
+      "bytes": 388,
+      "mode": "0644",
+      "sha256": "e4d8c3bea46fc53083e5fbca9946d72213cf1df238cd530fc8a3a2382ce9c882"
+    },
+    "candidate/checks-bash5/fixtures/universal-later-major.txt": {
+      "bytes": 388,
+      "mode": "0644",
+      "sha256": "d92569476e64303fd522eaa9f2621ba8f6e8d6ada572901e660f4e4c2ebcd9f7"
+    },
+    "candidate/checks-bash5/fixtures/universal-legacy-modern.txt": {
+      "bytes": 332,
+      "mode": "0644",
+      "sha256": "1b41bdbfcc6258cd0319d270a33d9fc044d9f42f72d95eeda73a1d5c44c95945"
+    },
+    "candidate/checks-bash5/fixtures/universal-malformed-first.txt": {
+      "bytes": 390,
+      "mode": "0644",
+      "sha256": "0a9c143eee9b166986ae44ad9d690455bd6182c37891165fb268843f9232706d"
+    },
+    "candidate/checks-bash5/fixtures/universal-malformed-last.txt": {
+      "bytes": 390,
+      "mode": "0644",
+      "sha256": "fda637069432a1198f60d93208f229edaf9141274041e5f4b3e5fd8bb24d6f8a"
+    },
+    "candidate/checks-bash5/fixtures/universal-missing-first.txt": {
+      "bytes": 241,
+      "mode": "0644",
+      "sha256": "470208b7c5d76ab8e83671866a08fa8d6da5ac8cb525baab03af6f33c00135f9"
+    },
+    "candidate/checks-bash5/fixtures/universal-missing-last.txt": {
+      "bytes": 241,
+      "mode": "0644",
+      "sha256": "b54d12dba67b174bbc95208fe2e3496fb2edc2547620bcb53f2c9df9de0e2d7c"
+    },
+    "candidate/checks-bash5/fixtures/universal-patch-max-forward.txt": {
+      "bytes": 393,
+      "mode": "0644",
+      "sha256": "f9da92c0386cba0fc08746c5439561df683523eca8c79fb7832910827709132b"
+    },
+    "candidate/checks-bash5/fixtures/universal-patch-max-reverse.txt": {
+      "bytes": 393,
+      "mode": "0644",
+      "sha256": "1fa7c289853c5707e05e47356f90d79ca2695b16e0cfe68b4834175d9c11e558"
+    },
+    "candidate/checks-bash5/fixtures/vtool-failed-with-plausible-output.txt": {
+      "bytes": 172,
+      "mode": "0644",
+      "sha256": "153a206010222446a3293bcea31952f637ffeadd73fa4a442021232345ee7c24"
+    },
+    "candidate/checks-bash5/fixtures/wrong-platform.txt": {
+      "bytes": 170,
+      "mode": "0644",
+      "sha256": "795ee8a372784f1e984021e586348fd402c41390207db9f7f4d2f9dd9d0479b7"
+    },
+    "candidate/checks-bash5/raw/duplicate-minos.stderr": {
+      "bytes": 160,
+      "mode": "0644",
+      "sha256": "50315274d25926a3b6752f1c8a4ceccc99d7559c230de615506a57650c3e7464"
+    },
+    "candidate/checks-bash5/raw/duplicate-minos.stdout": {
+      "bytes": 0,
+      "mode": "0644",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "candidate/checks-bash5/raw/duplicate-minos.vtool-calls": {
+      "bytes": 36,
+      "mode": "0644",
+      "sha256": "a19260d1a9f3ba964620921ad44e0a81aadc58de6a9f9188dedb6afadf7d483f"
+    },
+    "candidate/checks-bash5/raw/empty-output.stderr": {
+      "bytes": 134,
+      "mode": "0644",
+      "sha256": "7d5c269696d9ad7316c21bf1a993eb2cc93528012ef999bba0db64716e03356c"
+    },
+    "candidate/checks-bash5/raw/empty-output.stdout": {
+      "bytes": 0,
+      "mode": "0644",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "candidate/checks-bash5/raw/empty-output.vtool-calls": {
+      "bytes": 36,
+      "mode": "0644",
+      "sha256": "a19260d1a9f3ba964620921ad44e0a81aadc58de6a9f9188dedb6afadf7d483f"
+    },
+    "candidate/checks-bash5/raw/equal-all-zero.stderr": {
+      "bytes": 0,
+      "mode": "0644",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "candidate/checks-bash5/raw/equal-all-zero.stdout": {
+      "bytes": 0,
+      "mode": "0644",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "candidate/checks-bash5/raw/equal-leading-zero.stderr": {
+      "bytes": 0,
+      "mode": "0644",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "candidate/checks-bash5/raw/equal-leading-zero.stdout": {
+      "bytes": 0,
+      "mode": "0644",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "candidate/checks-bash5/raw/equal-long-left.stderr": {
+      "bytes": 0,
+      "mode": "0644",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "candidate/checks-bash5/raw/equal-long-left.stdout": {
+      "bytes": 0,
+      "mode": "0644",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "candidate/checks-bash5/raw/equal-long-right.stderr": {
+      "bytes": 0,
+      "mode": "0644",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "candidate/checks-bash5/raw/equal-long-right.stdout": {
+      "bytes": 0,
+      "mode": "0644",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "candidate/checks-bash5/raw/equal-major-only.stderr": {
+      "bytes": 0,
+      "mode": "0644",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "candidate/checks-bash5/raw/equal-major-only.stdout": {
+      "bytes": 0,
+      "mode": "0644",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "candidate/checks-bash5/raw/equal-short.stderr": {
+      "bytes": 0,
+      "mode": "0644",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "candidate/checks-bash5/raw/equal-short.stdout": {
+      "bytes": 0,
+      "mode": "0644",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "candidate/checks-bash5/raw/invalid-app-minimum.stderr": {
+      "bytes": 45,
+      "mode": "0644",
+      "sha256": "e2f70d002586a6deccb393434a1db4a30aa758deef3dfc769f6fe94f477375e6"
+    },
+    "candidate/checks-bash5/raw/invalid-app-minimum.stdout": {
+      "bytes": 0,
+      "mode": "0644",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "candidate/checks-bash5/raw/invalid-empty-component.stderr": {
+      "bytes": 0,
+      "mode": "0644",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "candidate/checks-bash5/raw/invalid-empty-component.stdout": {
+      "bytes": 0,
+      "mode": "0644",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "candidate/checks-bash5/raw/invalid-empty-left.stderr": {
+      "bytes": 0,
+      "mode": "0644",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "candidate/checks-bash5/raw/invalid-empty-left.stdout": {
+      "bytes": 0,
+      "mode": "0644",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "candidate/checks-bash5/raw/invalid-empty-right.stderr": {
+      "bytes": 0,
+      "mode": "0644",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "candidate/checks-bash5/raw/invalid-empty-right.stdout": {
+      "bytes": 0,
+      "mode": "0644",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "candidate/checks-bash5/raw/invalid-exponent.stderr": {
+      "bytes": 0,
+      "mode": "0644",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "candidate/checks-bash5/raw/invalid-exponent.stdout": {
+      "bytes": 0,
+      "mode": "0644",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "candidate/checks-bash5/raw/invalid-extra-component.stderr": {
+      "bytes": 0,
+      "mode": "0644",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "candidate/checks-bash5/raw/invalid-extra-component.stdout": {
+      "bytes": 0,
+      "mode": "0644",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "candidate/checks-bash5/raw/invalid-leading-space.stderr": {
+      "bytes": 0,
+      "mode": "0644",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "candidate/checks-bash5/raw/invalid-leading-space.stdout": {
+      "bytes": 0,
+      "mode": "0644",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "candidate/checks-bash5/raw/invalid-negative.stderr": {
+      "bytes": 0,
+      "mode": "0644",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "candidate/checks-bash5/raw/invalid-negative.stdout": {
+      "bytes": 0,
+      "mode": "0644",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "candidate/checks-bash5/raw/invalid-newline.stderr": {
+      "bytes": 0,
+      "mode": "0644",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "candidate/checks-bash5/raw/invalid-newline.stdout": {
+      "bytes": 0,
+      "mode": "0644",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "candidate/checks-bash5/raw/invalid-plus.stderr": {
+      "bytes": 0,
+      "mode": "0644",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "candidate/checks-bash5/raw/invalid-plus.stdout": {
+      "bytes": 0,
+      "mode": "0644",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "candidate/checks-bash5/raw/invalid-suffix.stderr": {
+      "bytes": 0,
+      "mode": "0644",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "candidate/checks-bash5/raw/invalid-suffix.stdout": {
+      "bytes": 0,
+      "mode": "0644",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "candidate/checks-bash5/raw/invalid-trailing-dot.stderr": {
+      "bytes": 0,
+      "mode": "0644",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "candidate/checks-bash5/raw/invalid-trailing-dot.stdout": {
+      "bytes": 0,
+      "mode": "0644",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "candidate/checks-bash5/raw/legacy-malformed-version.stderr": {
+      "bytes": 65,
+      "mode": "0644",
+      "sha256": "9f0b2848502a18621dcba7a7e5a9d70c7c68a5bb8ee0c55994ed773fbc3d2e37"
+    },
+    "candidate/checks-bash5/raw/legacy-malformed-version.stdout": {
+      "bytes": 0,
+      "mode": "0644",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "candidate/checks-bash5/raw/legacy-malformed-version.vtool-calls": {
+      "bytes": 36,
+      "mode": "0644",
+      "sha256": "a19260d1a9f3ba964620921ad44e0a81aadc58de6a9f9188dedb6afadf7d483f"
+    },
+    "candidate/checks-bash5/raw/legacy-missing-version.stderr": {
+      "bytes": 158,
+      "mode": "0644",
+      "sha256": "82bdc05357d201e9d5e82ad2a2e9b74d4c2ee31bca15fed9257e218b1cc419a1"
+    },
+    "candidate/checks-bash5/raw/legacy-missing-version.stdout": {
+      "bytes": 0,
+      "mode": "0644",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "candidate/checks-bash5/raw/legacy-missing-version.vtool-calls": {
+      "bytes": 36,
+      "mode": "0644",
+      "sha256": "a19260d1a9f3ba964620921ad44e0a81aadc58de6a9f9188dedb6afadf7d483f"
+    },
+    "candidate/checks-bash5/raw/legacy-wrong-platform.stderr": {
+      "bytes": 191,
+      "mode": "0644",
+      "sha256": "40483880170fd47d22c8ff53eecb69e44e5bab99c3893082b74638148f00a99d"
+    },
+    "candidate/checks-bash5/raw/legacy-wrong-platform.stdout": {
+      "bytes": 0,
+      "mode": "0644",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "candidate/checks-bash5/raw/legacy-wrong-platform.vtool-calls": {
+      "bytes": 36,
+      "mode": "0644",
+      "sha256": "a19260d1a9f3ba964620921ad44e0a81aadc58de6a9f9188dedb6afadf7d483f"
+    },
+    "candidate/checks-bash5/raw/major-order-higher.stderr": {
+      "bytes": 0,
+      "mode": "0644",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "candidate/checks-bash5/raw/major-order-higher.stdout": {
+      "bytes": 0,
+      "mode": "0644",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "candidate/checks-bash5/raw/major-order-lower.stderr": {
+      "bytes": 0,
+      "mode": "0644",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "candidate/checks-bash5/raw/major-order-lower.stdout": {
+      "bytes": 0,
+      "mode": "0644",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "candidate/checks-bash5/raw/malformed-minos-dot.stderr": {
+      "bytes": 64,
+      "mode": "0644",
+      "sha256": "5d47be8e5027e13b0ba2f618c530873fd73a8c7863ddab6eed67b0f842b4ac9f"
+    },
+    "candidate/checks-bash5/raw/malformed-minos-dot.stdout": {
+      "bytes": 0,
+      "mode": "0644",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "candidate/checks-bash5/raw/malformed-minos-dot.vtool-calls": {
+      "bytes": 36,
+      "mode": "0644",
+      "sha256": "a19260d1a9f3ba964620921ad44e0a81aadc58de6a9f9188dedb6afadf7d483f"
+    },
+    "candidate/checks-bash5/raw/malformed-minos-empty.stderr": {
+      "bytes": 160,
+      "mode": "0644",
+      "sha256": "50315274d25926a3b6752f1c8a4ceccc99d7559c230de615506a57650c3e7464"
+    },
+    "candidate/checks-bash5/raw/malformed-minos-empty.stdout": {
+      "bytes": 0,
+      "mode": "0644",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "candidate/checks-bash5/raw/malformed-minos-empty.vtool-calls": {
+      "bytes": 36,
+      "mode": "0644",
+      "sha256": "a19260d1a9f3ba964620921ad44e0a81aadc58de6a9f9188dedb6afadf7d483f"
+    },
+    "candidate/checks-bash5/raw/malformed-minos-extra-field.stderr": {
+      "bytes": 160,
+      "mode": "0644",
+      "sha256": "50315274d25926a3b6752f1c8a4ceccc99d7559c230de615506a57650c3e7464"
+    },
+    "candidate/checks-bash5/raw/malformed-minos-extra-field.stdout": {
+      "bytes": 0,
+      "mode": "0644",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "candidate/checks-bash5/raw/malformed-minos-extra-field.vtool-calls": {
+      "bytes": 36,
+      "mode": "0644",
+      "sha256": "a19260d1a9f3ba964620921ad44e0a81aadc58de6a9f9188dedb6afadf7d483f"
+    },
+    "candidate/checks-bash5/raw/malformed-minos-negative.stderr": {
+      "bytes": 64,
+      "mode": "0644",
+      "sha256": "82410f72ac7cc08eccd122f9144859ab699bb1b4f6bcfde140fbd8b94bc225c8"
+    },
+    "candidate/checks-bash5/raw/malformed-minos-negative.stdout": {
+      "bytes": 0,
+      "mode": "0644",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "candidate/checks-bash5/raw/malformed-minos-negative.vtool-calls": {
+      "bytes": 36,
+      "mode": "0644",
+      "sha256": "a19260d1a9f3ba964620921ad44e0a81aadc58de6a9f9188dedb6afadf7d483f"
+    },
+    "candidate/checks-bash5/raw/minor-order-higher.stderr": {
+      "bytes": 0,
+      "mode": "0644",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "candidate/checks-bash5/raw/minor-order-higher.stdout": {
+      "bytes": 0,
+      "mode": "0644",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "candidate/checks-bash5/raw/minor-order-lower.stderr": {
+      "bytes": 0,
+      "mode": "0644",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "candidate/checks-bash5/raw/minor-order-lower.stdout": {
+      "bytes": 0,
+      "mode": "0644",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "candidate/checks-bash5/raw/minos-before-command.stderr": {
+      "bytes": 160,
+      "mode": "0644",
+      "sha256": "50315274d25926a3b6752f1c8a4ceccc99d7559c230de615506a57650c3e7464"
+    },
+    "candidate/checks-bash5/raw/minos-before-command.stdout": {
+      "bytes": 0,
+      "mode": "0644",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "candidate/checks-bash5/raw/minos-before-command.vtool-calls": {
+      "bytes": 36,
+      "mode": "0644",
+      "sha256": "a19260d1a9f3ba964620921ad44e0a81aadc58de6a9f9188dedb6afadf7d483f"
+    },
+    "candidate/checks-bash5/raw/missing-header.stderr": {
+      "bytes": 165,
+      "mode": "0644",
+      "sha256": "be1467b384ddf664e71a212d467ac07655fdfff67f414c1b848928c4f3f11a26"
+    },
+    "candidate/checks-bash5/raw/missing-header.stdout": {
+      "bytes": 0,
+      "mode": "0644",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "candidate/checks-bash5/raw/missing-header.vtool-calls": {
+      "bytes": 36,
+      "mode": "0644",
+      "sha256": "a19260d1a9f3ba964620921ad44e0a81aadc58de6a9f9188dedb6afadf7d483f"
+    },
+    "candidate/checks-bash5/raw/missing-minos.stderr": {
+      "bytes": 158,
+      "mode": "0644",
+      "sha256": "82bdc05357d201e9d5e82ad2a2e9b74d4c2ee31bca15fed9257e218b1cc419a1"
+    },
+    "candidate/checks-bash5/raw/missing-minos.stdout": {
+      "bytes": 0,
+      "mode": "0644",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "candidate/checks-bash5/raw/missing-minos.vtool-calls": {
+      "bytes": 36,
+      "mode": "0644",
+      "sha256": "a19260d1a9f3ba964620921ad44e0a81aadc58de6a9f9188dedb6afadf7d483f"
+    },
+    "candidate/checks-bash5/raw/missing-platform.stderr": {
+      "bytes": 166,
+      "mode": "0644",
+      "sha256": "310ad11da030c935597433a91485dc7f0262c0607f1865bd93dfbb3a3d5e29d5"
+    },
+    "candidate/checks-bash5/raw/missing-platform.stdout": {
+      "bytes": 0,
+      "mode": "0644",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "candidate/checks-bash5/raw/missing-platform.vtool-calls": {
+      "bytes": 36,
+      "mode": "0644",
+      "sha256": "a19260d1a9f3ba964620921ad44e0a81aadc58de6a9f9188dedb6afadf7d483f"
+    },
+    "candidate/checks-bash5/raw/multiple-commands-compatible.stderr": {
+      "bytes": 0,
+      "mode": "0644",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "candidate/checks-bash5/raw/multiple-commands-compatible.stdout": {
+      "bytes": 0,
+      "mode": "0644",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "candidate/checks-bash5/raw/multiple-commands-compatible.vtool-calls": {
+      "bytes": 36,
+      "mode": "0644",
+      "sha256": "a19260d1a9f3ba964620921ad44e0a81aadc58de6a9f9188dedb6afadf7d483f"
+    },
+    "candidate/checks-bash5/raw/multiple-commands-later-too-new.stderr": {
+      "bytes": 65,
+      "mode": "0644",
+      "sha256": "2a26c5abcc1c93831ac37de25501563ac353ddd290bf2a40a3212efca1c96f87"
+    },
+    "candidate/checks-bash5/raw/multiple-commands-later-too-new.stdout": {
+      "bytes": 0,
+      "mode": "0644",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "candidate/checks-bash5/raw/multiple-commands-later-too-new.vtool-calls": {
+      "bytes": 36,
+      "mode": "0644",
+      "sha256": "a19260d1a9f3ba964620921ad44e0a81aadc58de6a9f9188dedb6afadf7d483f"
+    },
+    "candidate/checks-bash5/raw/patch-leading-zero-lower.stderr": {
+      "bytes": 0,
+      "mode": "0644",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "candidate/checks-bash5/raw/patch-leading-zero-lower.stdout": {
+      "bytes": 0,
+      "mode": "0644",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "candidate/checks-bash5/raw/patch-two-digits-higher.stderr": {
+      "bytes": 0,
+      "mode": "0644",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "candidate/checks-bash5/raw/patch-two-digits-higher.stdout": {
+      "bytes": 0,
+      "mode": "0644",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "candidate/checks-bash5/raw/patch-two-digits-lower.stderr": {
+      "bytes": 0,
+      "mode": "0644",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "candidate/checks-bash5/raw/patch-two-digits-lower.stdout": {
+      "bytes": 0,
+      "mode": "0644",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "candidate/checks-bash5/raw/thin-legacy-too-new.stderr": {
+      "bytes": 64,
+      "mode": "0644",
+      "sha256": "cb18e03087196227d29a70042c8777cdd61479423d3597a621387c4349cd2ac9"
+    },
+    "candidate/checks-bash5/raw/thin-legacy-too-new.stdout": {
+      "bytes": 0,
+      "mode": "0644",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "candidate/checks-bash5/raw/thin-legacy-too-new.vtool-calls": {
+      "bytes": 36,
+      "mode": "0644",
+      "sha256": "a19260d1a9f3ba964620921ad44e0a81aadc58de6a9f9188dedb6afadf7d483f"
+    },
+    "candidate/checks-bash5/raw/thin-legacy.stderr": {
+      "bytes": 0,
+      "mode": "0644",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "candidate/checks-bash5/raw/thin-legacy.stdout": {
+      "bytes": 0,
+      "mode": "0644",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "candidate/checks-bash5/raw/thin-legacy.vtool-calls": {
+      "bytes": 36,
+      "mode": "0644",
+      "sha256": "a19260d1a9f3ba964620921ad44e0a81aadc58de6a9f9188dedb6afadf7d483f"
+    },
+    "candidate/checks-bash5/raw/thin-modern-equal.stderr": {
+      "bytes": 0,
+      "mode": "0644",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "candidate/checks-bash5/raw/thin-modern-equal.stdout": {
+      "bytes": 0,
+      "mode": "0644",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "candidate/checks-bash5/raw/thin-modern-equal.vtool-calls": {
+      "bytes": 36,
+      "mode": "0644",
+      "sha256": "a19260d1a9f3ba964620921ad44e0a81aadc58de6a9f9188dedb6afadf7d483f"
+    },
+    "candidate/checks-bash5/raw/thin-modern-leading-zero.stderr": {
+      "bytes": 0,
+      "mode": "0644",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "candidate/checks-bash5/raw/thin-modern-leading-zero.stdout": {
+      "bytes": 0,
+      "mode": "0644",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "candidate/checks-bash5/raw/thin-modern-leading-zero.vtool-calls": {
+      "bytes": 36,
+      "mode": "0644",
+      "sha256": "a19260d1a9f3ba964620921ad44e0a81aadc58de6a9f9188dedb6afadf7d483f"
+    },
+    "candidate/checks-bash5/raw/thin-modern-tool-version-ignored.stderr": {
+      "bytes": 0,
+      "mode": "0644",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "candidate/checks-bash5/raw/thin-modern-tool-version-ignored.stdout": {
+      "bytes": 0,
+      "mode": "0644",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "candidate/checks-bash5/raw/thin-modern-tool-version-ignored.vtool-calls": {
+      "bytes": 36,
+      "mode": "0644",
+      "sha256": "a19260d1a9f3ba964620921ad44e0a81aadc58de6a9f9188dedb6afadf7d483f"
+    },
+    "candidate/checks-bash5/raw/thin-modern-trailing-zero.stderr": {
+      "bytes": 0,
+      "mode": "0644",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "candidate/checks-bash5/raw/thin-modern-trailing-zero.stdout": {
+      "bytes": 0,
+      "mode": "0644",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "candidate/checks-bash5/raw/thin-modern-trailing-zero.vtool-calls": {
+      "bytes": 36,
+      "mode": "0644",
+      "sha256": "a19260d1a9f3ba964620921ad44e0a81aadc58de6a9f9188dedb6afadf7d483f"
+    },
+    "candidate/checks-bash5/raw/universal-both-compatible.stderr": {
+      "bytes": 0,
+      "mode": "0644",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "candidate/checks-bash5/raw/universal-both-compatible.stdout": {
+      "bytes": 0,
+      "mode": "0644",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "candidate/checks-bash5/raw/universal-both-compatible.vtool-calls": {
+      "bytes": 36,
+      "mode": "0644",
+      "sha256": "a19260d1a9f3ba964620921ad44e0a81aadc58de6a9f9188dedb6afadf7d483f"
+    },
+    "candidate/checks-bash5/raw/universal-earlier-major.stderr": {
+      "bytes": 82,
+      "mode": "0644",
+      "sha256": "27b07903f1079c8fe56990c58a52774cf0b89a7291bcfd78311a76bd33d8dee7"
+    },
+    "candidate/checks-bash5/raw/universal-earlier-major.stdout": {
+      "bytes": 0,
+      "mode": "0644",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "candidate/checks-bash5/raw/universal-earlier-major.vtool-calls": {
+      "bytes": 36,
+      "mode": "0644",
+      "sha256": "a19260d1a9f3ba964620921ad44e0a81aadc58de6a9f9188dedb6afadf7d483f"
+    },
+    "candidate/checks-bash5/raw/universal-later-major.stderr": {
+      "bytes": 81,
+      "mode": "0644",
+      "sha256": "4110ed41c1b5808d28926ba2067255eba35c630987b5e039df46f44ae56fd796"
+    },
+    "candidate/checks-bash5/raw/universal-later-major.stdout": {
+      "bytes": 0,
+      "mode": "0644",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "candidate/checks-bash5/raw/universal-later-major.vtool-calls": {
+      "bytes": 36,
+      "mode": "0644",
+      "sha256": "a19260d1a9f3ba964620921ad44e0a81aadc58de6a9f9188dedb6afadf7d483f"
+    },
+    "candidate/checks-bash5/raw/universal-legacy-modern.stderr": {
+      "bytes": 0,
+      "mode": "0644",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "candidate/checks-bash5/raw/universal-legacy-modern.stdout": {
+      "bytes": 0,
+      "mode": "0644",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "candidate/checks-bash5/raw/universal-legacy-modern.vtool-calls": {
+      "bytes": 36,
+      "mode": "0644",
+      "sha256": "a19260d1a9f3ba964620921ad44e0a81aadc58de6a9f9188dedb6afadf7d483f"
+    },
+    "candidate/checks-bash5/raw/universal-malformed-first.stderr": {
+      "bytes": 87,
+      "mode": "0644",
+      "sha256": "06055a92dd7fc43ee8389c588e62547692916dd9e983941363aa20a42d107039"
+    },
+    "candidate/checks-bash5/raw/universal-malformed-first.stdout": {
+      "bytes": 0,
+      "mode": "0644",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "candidate/checks-bash5/raw/universal-malformed-first.vtool-calls": {
+      "bytes": 36,
+      "mode": "0644",
+      "sha256": "a19260d1a9f3ba964620921ad44e0a81aadc58de6a9f9188dedb6afadf7d483f"
+    },
+    "candidate/checks-bash5/raw/universal-malformed-last.stderr": {
+      "bytes": 86,
+      "mode": "0644",
+      "sha256": "412754e319195c824f38e2c13553b7d8bf93da3f057aca18baf7216daca80d63"
+    },
+    "candidate/checks-bash5/raw/universal-malformed-last.stdout": {
+      "bytes": 0,
+      "mode": "0644",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "candidate/checks-bash5/raw/universal-malformed-last.vtool-calls": {
+      "bytes": 36,
+      "mode": "0644",
+      "sha256": "a19260d1a9f3ba964620921ad44e0a81aadc58de6a9f9188dedb6afadf7d483f"
+    },
+    "candidate/checks-bash5/raw/universal-missing-first.stderr": {
+      "bytes": 186,
+      "mode": "0644",
+      "sha256": "b1451d40ae0b8074f4347a6aee3fc6c6d5be797ae1f28dbb0731a0296cd0d3f7"
+    },
+    "candidate/checks-bash5/raw/universal-missing-first.stdout": {
+      "bytes": 0,
+      "mode": "0644",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "candidate/checks-bash5/raw/universal-missing-first.vtool-calls": {
+      "bytes": 36,
+      "mode": "0644",
+      "sha256": "a19260d1a9f3ba964620921ad44e0a81aadc58de6a9f9188dedb6afadf7d483f"
+    },
+    "candidate/checks-bash5/raw/universal-missing-last.stderr": {
+      "bytes": 185,
+      "mode": "0644",
+      "sha256": "8954690d829fe4228b69b95e44aeb2649eaba49af025fc991ac1a07133c8cccf"
+    },
+    "candidate/checks-bash5/raw/universal-missing-last.stdout": {
+      "bytes": 0,
+      "mode": "0644",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "candidate/checks-bash5/raw/universal-missing-last.vtool-calls": {
+      "bytes": 36,
+      "mode": "0644",
+      "sha256": "a19260d1a9f3ba964620921ad44e0a81aadc58de6a9f9188dedb6afadf7d483f"
+    },
+    "candidate/checks-bash5/raw/universal-patch-max-forward.stderr": {
+      "bytes": 86,
+      "mode": "0644",
+      "sha256": "2dcca01261416c8d106096461769f45f07bd8b0bec33e31c815078c245ec06c4"
+    },
+    "candidate/checks-bash5/raw/universal-patch-max-forward.stdout": {
+      "bytes": 0,
+      "mode": "0644",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "candidate/checks-bash5/raw/universal-patch-max-forward.vtool-calls": {
+      "bytes": 36,
+      "mode": "0644",
+      "sha256": "a19260d1a9f3ba964620921ad44e0a81aadc58de6a9f9188dedb6afadf7d483f"
+    },
+    "candidate/checks-bash5/raw/universal-patch-max-reverse.stderr": {
+      "bytes": 87,
+      "mode": "0644",
+      "sha256": "63030cb36227aa16d2196403335a5684654292931aff37fdf9eb61438b165115"
+    },
+    "candidate/checks-bash5/raw/universal-patch-max-reverse.stdout": {
+      "bytes": 0,
+      "mode": "0644",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "candidate/checks-bash5/raw/universal-patch-max-reverse.vtool-calls": {
+      "bytes": 36,
+      "mode": "0644",
+      "sha256": "a19260d1a9f3ba964620921ad44e0a81aadc58de6a9f9188dedb6afadf7d483f"
+    },
+    "candidate/checks-bash5/raw/vtool-failed-with-plausible-output.stderr": {
+      "bytes": 66,
+      "mode": "0644",
+      "sha256": "c623bc558d6a936dbf2d13399a0b9e622323f4d4fa65c5c9db629df43376deb3"
+    },
+    "candidate/checks-bash5/raw/vtool-failed-with-plausible-output.stdout": {
+      "bytes": 0,
+      "mode": "0644",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "candidate/checks-bash5/raw/vtool-failed-with-plausible-output.vtool-calls": {
+      "bytes": 36,
+      "mode": "0644",
+      "sha256": "a19260d1a9f3ba964620921ad44e0a81aadc58de6a9f9188dedb6afadf7d483f"
+    },
+    "candidate/checks-bash5/raw/whole-script-syntax.stderr": {
+      "bytes": 0,
+      "mode": "0644",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "candidate/checks-bash5/raw/whole-script-syntax.stdout": {
+      "bytes": 0,
+      "mode": "0644",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "candidate/checks-bash5/raw/wide-component-higher.stderr": {
+      "bytes": 0,
+      "mode": "0644",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "candidate/checks-bash5/raw/wide-component-higher.stdout": {
+      "bytes": 0,
+      "mode": "0644",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "candidate/checks-bash5/raw/wide-component-lower.stderr": {
+      "bytes": 0,
+      "mode": "0644",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "candidate/checks-bash5/raw/wide-component-lower.stdout": {
+      "bytes": 0,
+      "mode": "0644",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "candidate/checks-bash5/raw/wrong-platform.stderr": {
+      "bytes": 166,
+      "mode": "0644",
+      "sha256": "310ad11da030c935597433a91485dc7f0262c0607f1865bd93dfbb3a3d5e29d5"
+    },
+    "candidate/checks-bash5/raw/wrong-platform.stdout": {
+      "bytes": 0,
+      "mode": "0644",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "candidate/checks-bash5/raw/wrong-platform.vtool-calls": {
+      "bytes": 36,
+      "mode": "0644",
+      "sha256": "a19260d1a9f3ba964620921ad44e0a81aadc58de6a9f9188dedb6afadf7d483f"
+    },
+    "candidate/checks-bash5/summary.json": {
+      "bytes": 66168,
+      "mode": "0644",
+      "sha256": "6e572639c7a608c6512a473ab79512fd6c5a597ae89b72a52cb1ef26b4992f02"
+    },
+    "candidate/extracted-functions.sh": {
+      "bytes": 3561,
+      "mode": "0644",
+      "sha256": "de16ee0a594b31d42aa311dd16d80dd3ddd5e7f42574f747c7f229cd6b5b6d81"
+    },
+    "candidate/isolated-entrypoint.sh": {
+      "bytes": 646,
+      "mode": "0644",
+      "sha256": "eb46863dfd6fde8bd30501421de8ad46a8a1dfe00e15fa195c0a11ff083ab275"
+    },
+    "candidate/macos-minimum-version.patch": {
+      "bytes": 5288,
+      "mode": "0644",
+      "sha256": "d8c3e48d9280f055863dd4667c9e7b6a7f66fec42a3cc717c45ce73813bd23d4"
+    },
+    "candidate/original-bug-1.stderr": {
+      "bytes": 0,
+      "mode": "0644",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "candidate/original-bug-1.stdout": {
+      "bytes": 0,
+      "mode": "0644",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "candidate/original-bug-2.stderr": {
+      "bytes": 0,
+      "mode": "0644",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "candidate/original-bug-2.stdout": {
+      "bytes": 7,
+      "mode": "0644",
+      "sha256": "2411b79d944e16f479addce092a25f54bd252e42d7051a38ed211bdc62666add"
+    },
+    "candidate/original-comparator.sh": {
+      "bytes": 107,
+      "mode": "0644",
+      "sha256": "17ef2445f9cdb353a2302b3d86114fdd4ad81eabd429297b00996cd807f950dc"
+    },
+    "candidate/original-defects.json": {
+      "bytes": 741,
+      "mode": "0644",
+      "sha256": "75b20ed140ece77cd1080c958610a9cd698cf01a346e59ebf27f7476f8bb7e47"
+    },
+    "candidate/prepare_correction.py": {
+      "bytes": 6885,
+      "mode": "0644",
+      "sha256": "ad999c1073ba4cf36805e8d9738e9b5a330115bbdb9424bc6db41a73eb193bed"
+    },
+    "candidate/run_checks.py": {
+      "bytes": 9505,
+      "mode": "0644",
+      "sha256": "aed78c3b59df1a134fe79c7ce93f6b647ebdd0b0192662e5f175e1b64d4acffe"
+    },
+    "candidate/source-receipt.json": {
+      "bytes": 880,
+      "mode": "0644",
+      "sha256": "28dcc97ea8775e4e580d64a13105f72af35f6707f7967d9436476de75efa6449"
+    },
+    "independent-review/apple-vtool-source-reference.json": {
+      "bytes": 1620,
+      "mode": "0644",
+      "sha256": "c458fee07abffab1b4b1f9469e9c12ded1e82c3ca6f0f51d02a9832f36a4ea23"
+    },
+    "independent-review/late-intake-review-initial.json": {
+      "bytes": 10323,
+      "mode": "0644",
+      "sha256": "be37ed2dbee47863883c7b76bf882ac00ddc3fc0c822c6479cd88eff009d0733"
+    },
+    "independent-review/late-intake-review-initial.md": {
+      "bytes": 3330,
+      "mode": "0644",
+      "sha256": "80bc2bc1188bb81658b0611936d06e1cf588f75d7230db89eac870a9fc8065a4"
+    },
+    "independent-review/late-intake-review.json": {
+      "bytes": 11557,
+      "mode": "0644",
+      "sha256": "15b823315a6d9d3ae4ea3fe2e7bd9494cb63a8544b55da0098a73b032767ec18"
+    },
+    "independent-review/late-intake-review.md": {
+      "bytes": 4544,
+      "mode": "0644",
+      "sha256": "2a55aee865fb24c313c011df61cf32ae9781002d99bea6e6970e71d3e7468ccc"
+    },
+    "independent-review/late-macos-build.sh": {
+      "bytes": 23409,
+      "mode": "0644",
+      "sha256": "ef23b468c3c4ba5b577abb5d11aea44e0b7898d136317da255d8d0fc90d747a4"
+    },
+    "independent-review/late-macos-independent/absent-header.txt": {
+      "bytes": 111,
+      "mode": "0644",
+      "sha256": "1d29f4b9321e281169c4d1714432571057ce30dd10ad4817f5ce1fdc15837df9"
+    },
+    "independent-review/late-macos-independent/duplicate-legacy-minimum.txt": {
+      "bytes": 156,
+      "mode": "0644",
+      "sha256": "f659bbdbcda777642702017393b5b0790a960cfac6a40834be820b1a44c78fd9"
+    },
+    "independent-review/late-macos-independent/duplicate-modern-minimum.txt": {
+      "bytes": 173,
+      "mode": "0644",
+      "sha256": "deb09156dbe0203cc72a5c07e8f472f373bede04536c27c60c88fee36a315586"
+    },
+    "independent-review/late-macos-independent/first-architecture-empty.txt": {
+      "bytes": 175,
+      "mode": "0644",
+      "sha256": "ca9809091b79f83e0424bc83fef252537aefc583baffdba28566b73a1627eda1"
+    },
+    "independent-review/late-macos-independent/ignore-modern-tool-version.txt": {
+      "bytes": 203,
+      "mode": "0644",
+      "sha256": "cc94f8a31ff1a64dff1919de8d82ba7c4dc15de3721021403129971442bd6cb3"
+    },
+    "independent-review/late-macos-independent/last-architecture-empty.txt": {
+      "bytes": 194,
+      "mode": "0644",
+      "sha256": "91fab09389db1ab24c2e7cc8b31bb981be851760124c9f66f064ff03ad387224"
+    },
+    "independent-review/late-macos-independent/legacy-malformed-version.txt": {
+      "bytes": 149,
+      "mode": "0644",
+      "sha256": "b24ca92bc231bb21c311f280135148be30284f6e21f7f7bd7dc2c99cdb3c949b"
+    },
+    "independent-review/late-macos-independent/malformed-app.txt": {
+      "bytes": 164,
+      "mode": "0644",
+      "sha256": "c3f710820d08dcff99c750e498be2130f4d2f265466594d9032540fdf2902b8e"
+    },
+    "independent-review/late-macos-independent/modern-tool-only.txt": {
+      "bytes": 179,
+      "mode": "0644",
+      "sha256": "be41f9aff5de632a519e4ba58d27fae4bf2dc72f44e3c4e75a1594dd687ea2a1"
+    },
+    "independent-review/late-macos-independent/patch-higher-first.txt": {
+      "bytes": 314,
+      "mode": "0644",
+      "sha256": "04ab6ec354d1a9bc41fbef3a645641952c389c0aab6cbfd3bdb1d7a2820adc45"
+    },
+    "independent-review/late-macos-independent/patch-higher-last.txt": {
+      "bytes": 314,
+      "mode": "0644",
+      "sha256": "1e2622e11c7ac6e866c37f53ea773fe5f47f6194a38b4d0b5a2c555a72a0fbdc"
+    },
+    "independent-review/late-macos-independent/review.json": {
+      "bytes": 15589,
+      "mode": "0644",
+      "sha256": "ce2c761bfc6845c98c6eba69a79e6989091a38e067fd94b0069612b8c0340e38"
+    },
+    "independent-review/late-macos-independent/second-command-higher.txt": {
+      "bytes": 257,
+      "mode": "0644",
+      "sha256": "ea4654053caefa8115cf6657f844e4763e6fa93928989162294c05ab8c04ce48"
+    },
+    "independent-review/late-macos-independent/thin-legacy.txt": {
+      "bytes": 145,
+      "mode": "0644",
+      "sha256": "818c9ea221f38c152702dbdfc918618c37287262467ca469b4b925a085a3537a"
+    },
+    "independent-review/late-macos-independent/thin-modern-equal.txt": {
+      "bytes": 168,
+      "mode": "0644",
+      "sha256": "594fd5c5ddc6838fa23de9cbf9ed67f306aafa9d8cce034ae666d7f78c2046d6"
+    },
+    "independent-review/late-macos-independent/universal-modern-and-legacy.txt": {
+      "bytes": 286,
+      "mode": "0644",
+      "sha256": "47682ac911a3523189d4f759a2779f01d1e1a20543b60d6d2198d9d5be4142d7"
+    },
+    "independent-review/late-macos-independent/vtool-failure.txt": {
+      "bytes": 164,
+      "mode": "0644",
+      "sha256": "c3f710820d08dcff99c750e498be2130f4d2f265466594d9032540fdf2902b8e"
+    },
+    "independent-review/late-macos-independent/wrong-legacy-platform.txt": {
+      "bytes": 144,
+      "mode": "0644",
+      "sha256": "48f9c79cfb9d8769ea5f4eb4a86a1243ca3faaf65b75a1988e08f201ec5e3544"
+    },
+    "independent-review/late-macos-independent/wrong-modern-platform.txt": {
+      "bytes": 162,
+      "mode": "0644",
+      "sha256": "c55c44e414eb2a3790d14e2dba1c71427f5fa39e6633dc6bfe109b4e3ee39fd8"
+    },
+    "independent-review/late-macos-version-probe.sh": {
+      "bytes": 422,
+      "mode": "0644",
+      "sha256": "8320fcaae8ec418f4b63b1cb7402d9321b80565bfd572fa09a15eaf1cf5af2fd"
+    },
+    "independent-review/late-macos-version-probe.stderr": {
+      "bytes": 0,
+      "mode": "0644",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "independent-review/late-macos-version-probe.stdout": {
+      "bytes": 107,
+      "mode": "0644",
+      "sha256": "706579cc6a47d583da4fea0169305f4517dccd0ac7eb8a5ecd2c356a30d56e0a"
+    },
+    "independent-review/review_macos_correction.py": {
+      "bytes": 6602,
+      "mode": "0644",
+      "sha256": "f3ba0534ba3056321a89c4a96ee704c9b78529f26e93d57540cd48eb987fa820"
+    }
+  },
+  "metadata": {
+    "actual_bash3_execution": false,
+    "actual_macos_build": false,
+    "candidate_sha256": "8592dd41fb59da7fa3ead05287005cfa06d90c02bb5de495e9f985062ffff904",
+    "excluded_recreatable_third_party_setup": [
+      "bash-3.2/",
+      "bash-3.2.tar.gz"
+    ],
+    "independent_expectations": 36,
+    "producer_isolated_checks": 61,
+    "word_regression_total_contribution": 0
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schema": "quds-mail-bulk-incoming-word-validation/v1",
+  "started_at_utc": "2026-11-20T20:37:40.600949+00:00",
+  "initial_head": "b60c0ec26f2a80c984076fb1d480eb2e641b542e",
+  "source_sha256_before": {
+    "pubspec.lock": "0d64a732cd7f6c7cc4e1e01255276f081b59e6f43039636c3d36f6785a958ce2",
+    "packages/quds_office_engine/lib/src/automation/office_vba_language.dart": "0e1a99cc82f08b971a53d6c2c1f4614f3d611f896f714f35aebe91f2cd873bfe",
+    "packages/quds_office_engine/test/office_vba_word_bulk_intake_conversions_test.dart": "5576a2bc76dea09bd5414b6be33dd8c681bba264ae6655192478ad77dca0cc76",
+    "packages/quds_office_engine/test/office_vba_word_line_spacing_test.dart": "aeaa9dfa5f332be8ec4349cc7efe5ebbba62c91af34a425a93139cd47977a7de",
+    "packages/quds_office_engine/test/office_vba_word_line_spacing_integration_test.dart": "4ab49bdd4633be2b66ddc6fd6385413c557516441e145f1930a78bd6bab96b80",
+    "packages/quds_office_engine/tool/macros/web_vba_word_line_spacing_smoke.dart": "b5f3a757b44623c78331109203314f325de0139afd785ee3a2f58451deebddaa",
+    "packages/quds_office_engine/example/macros/word_line_spacing.bas": "ea112b9e3b3f9e8eb71540c0d98e0a9a1849d229d11ebc9d1ef8df71d0d5b3f9"
+  },
+  "runtime": "Dart SDK version: 3.13.7 (stable) (Thu Oct 22 14:28:57 2026 -0700) on \"linux_x64\"",
+  "commands": [
+    {
+      "label": "format",
+      "command": [
+        "/home/agent/.codex/skills/remote-skills/quds-mail-work-20261120/runtime/flutter/bin/cache/dart-sdk/bin/dart",
+        "format",
+        "--output=none",
+        "--set-exit-if-changed",
+        "test/office_vba_word_bulk_intake_conversions_test.dart",
+        "lib/src/automation/office_vba_language.dart"
+      ],
+      "cwd": "packages/quds_office_engine",
+      "exit_code": 1,
+      "elapsed_seconds": 0.302,
+      "stdout": "intake-local-word-diagnostic-format.stdout.log",
+      "stderr": "intake-local-word-diagnostic-format.stderr.log",
+      "stdout_sha256": "fefe172ef1bb29bb17d5c9b7177810db31be002ab78c22a266964997c3a30a33",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "scope": "Incoming Word measurement conversions, original line-spacing regression, and portable line-spacing example. Mail UI/provider qualification is separate.",
+  "status": "FAIL",
+  "source_sha256_after": {
+    "pubspec.lock": "0d64a732cd7f6c7cc4e1e01255276f081b59e6f43039636c3d36f6785a958ce2",
+    "packages/quds_office_engine/lib/src/automation/office_vba_language.dart": "0e1a99cc82f08b971a53d6c2c1f4614f3d611f896f714f35aebe91f2cd873bfe",
+    "packages/quds_office_engine/test/office_vba_word_bulk_intake_conversions_test.dart": "5576a2bc76dea09bd5414b6be33dd8c681bba264ae6655192478ad77dca0cc76",
+    "packages/quds_office_engine/test/office_vba_word_line_spacing_test.dart": "aeaa9dfa5f332be8ec4349cc7efe5ebbba62c91af34a425a93139cd47977a7de",
+    "packages/quds_office_engine/test/office_vba_word_line_spacing_integration_test.dart": "4ab49bdd4633be2b66ddc6fd6385413c557516441e145f1930a78bd6bab96b80",
+    "packages/quds_office_engine/tool/macros/web_vba_word_line_spacing_smoke.dart": "b5f3a757b44623c78331109203314f325de0139afd785ee3a2f58451deebddaa",
+    "packages/quds_office_engine/example/macros/word_line_spacing.bas": "ea112b9e3b3f9e8eb71540c0d98e0a9a1849d229d11ebc9d1ef8df71d0d5b3f9"
+  }
+}

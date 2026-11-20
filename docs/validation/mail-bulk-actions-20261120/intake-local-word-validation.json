@@ -1,0 +1,219 @@
+{
+  "schema": "quds-mail-bulk-incoming-word-validation/v1",
+  "started_at_utc": "2026-11-20T20:38:59.588906+00:00",
+  "initial_head": "b60c0ec26f2a80c984076fb1d480eb2e641b542e",
+  "source_sha256_before": {
+    "pubspec.lock": "0d64a732cd7f6c7cc4e1e01255276f081b59e6f43039636c3d36f6785a958ce2",
+    "packages/quds_office_engine/lib/src/automation/office_vba_language.dart": "e975e5ede28868be995c74ac2111b77a0ad924d7be07a84aa771aa6e82fcbe75",
+    "packages/quds_office_engine/test/office_vba_word_bulk_intake_conversions_test.dart": "5576a2bc76dea09bd5414b6be33dd8c681bba264ae6655192478ad77dca0cc76",
+    "packages/quds_office_engine/test/office_vba_word_line_spacing_test.dart": "aeaa9dfa5f332be8ec4349cc7efe5ebbba62c91af34a425a93139cd47977a7de",
+    "packages/quds_office_engine/test/office_vba_word_line_spacing_integration_test.dart": "4ab49bdd4633be2b66ddc6fd6385413c557516441e145f1930a78bd6bab96b80",
+    "packages/quds_office_engine/tool/macros/web_vba_word_line_spacing_smoke.dart": "b5f3a757b44623c78331109203314f325de0139afd785ee3a2f58451deebddaa",
+    "packages/quds_office_engine/example/macros/word_line_spacing.bas": "ea112b9e3b3f9e8eb71540c0d98e0a9a1849d229d11ebc9d1ef8df71d0d5b3f9"
+  },
+  "runtime": "Dart SDK version: 3.13.7 (stable) (Thu Oct 22 14:28:57 2026 -0700) on \"linux_x64\"",
+  "commands": [
+    {
+      "label": "format",
+      "command": [
+        "/home/agent/.codex/skills/remote-skills/quds-mail-work-20261120/runtime/flutter/bin/cache/dart-sdk/bin/dart",
+        "format",
+        "--output=none",
+        "--set-exit-if-changed",
+        "test/office_vba_word_bulk_intake_conversions_test.dart",
+        "lib/src/automation/office_vba_language.dart"
+      ],
+      "cwd": "packages/quds_office_engine",
+      "exit_code": 0,
+      "elapsed_seconds": 0.089,
+      "stdout": "intake-local-word-format.stdout.log",
+      "stderr": "intake-local-word-format.stderr.log",
+      "stdout_sha256": "34b1a81a6635805e7b82c15d0a132700c07cc78c5e5ce1948a25a32f613e4bfa",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "accepted": true
+    },
+    {
+      "label": "analyze",
+      "command": [
+        "/home/agent/.codex/skills/remote-skills/quds-mail-work-20261120/runtime/flutter/bin/cache/dart-sdk/bin/dart",
+        "analyze",
+        "--fatal-infos",
+        "test/office_vba_word_bulk_intake_conversions_test.dart",
+        "lib/src/automation/office_vba_language.dart"
+      ],
+      "cwd": "packages/quds_office_engine",
+      "exit_code": 0,
+      "elapsed_seconds": 4.878,
+      "stdout": "intake-local-word-analyze.stdout.log",
+      "stderr": "intake-local-word-analyze.stderr.log",
+      "stdout_sha256": "41d8e6e8fb5549fe00ced03369e1b3484eb719ce9e11611134a4e63e6c21237c",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "accepted": true
+    },
+    {
+      "label": "vm",
+      "command": [
+        "/home/agent/.codex/skills/remote-skills/quds-mail-work-20261120/runtime/flutter/bin/cache/dart-sdk/bin/dart",
+        "--packages=/home/agent/.codex/skills/remote-skills/quds-mail-work-20261120/quds_office_suite/.dart_tool/package_config.json",
+        "/home/agent/.codex/skills/remote-skills/quds-mail-work-20261120/runtime/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+        "--concurrency=1",
+        "--reporter=json",
+        "test/office_vba_word_bulk_intake_conversions_test.dart",
+        "test/office_vba_word_line_spacing_test.dart",
+        "test/office_vba_word_line_spacing_integration_test.dart"
+      ],
+      "cwd": "packages/quds_office_engine",
+      "exit_code": 0,
+      "elapsed_seconds": 20.924,
+      "stdout": "intake-local-word-vm.stdout.log",
+      "stderr": "intake-local-word-vm.stderr.log",
+      "stdout_sha256": "babbf70d43fab124fbfafd9cdfac86f07923a376f29d484c7e8ee854153ef79c",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "tests": {
+        "passed": 185,
+        "failed": 0,
+        "skipped": 0,
+        "runner_done": [
+          {
+            "success": true,
+            "type": "done",
+            "time": 13580
+          }
+        ]
+      },
+      "accepted": true
+    },
+    {
+      "label": "node",
+      "command": [
+        "/home/agent/.codex/skills/remote-skills/quds-mail-work-20261120/runtime/flutter/bin/cache/dart-sdk/bin/dart",
+        "--packages=/home/agent/.codex/skills/remote-skills/quds-mail-work-20261120/quds_office_suite/.dart_tool/package_config.json",
+        "/home/agent/.codex/skills/remote-skills/quds-mail-work-20261120/runtime/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+        "--concurrency=1",
+        "--reporter=json",
+        "--platform=node",
+        "test/office_vba_word_bulk_intake_conversions_test.dart"
+      ],
+      "cwd": "packages/quds_office_engine",
+      "exit_code": 0,
+      "elapsed_seconds": 18.326,
+      "stdout": "intake-local-word-node.stdout.log",
+      "stderr": "intake-local-word-node.stderr.log",
+      "stdout_sha256": "f749ee8d50153e1fbb20e2c1b3b1c15714bfbfecbf9c5bd4645ad21dd02a2d6e",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "tests": {
+        "passed": 63,
+        "failed": 0,
+        "skipped": 0,
+        "runner_done": [
+          {
+            "success": true,
+            "type": "done",
+            "time": 11012
+          }
+        ]
+      },
+      "accepted": true
+    },
+    {
+      "label": "portable-vm",
+      "command": [
+        "/home/agent/.codex/skills/remote-skills/quds-mail-work-20261120/runtime/flutter/bin/cache/dart-sdk/bin/dart",
+        "--packages=/home/agent/.codex/skills/remote-skills/quds-mail-work-20261120/quds_office_suite/.dart_tool/package_config.json",
+        "-DWORD_LINE_SPACING_BAS_BASE64=T3B0aW9uIEV4cGxpY2l0CgonIFJlcXVpcmVzIHRocmVlIGV4aXN0aW5nIGJvZHkgcGFyYWdyYXBocy4gRWFjaCBjdXN0b20gcnVsZSBtdXN0IGJlIGZvbGxvd2VkCicgYnkgTGluZVNwYWNpbmcgb24gdGhhdCBzYW1lIHBhcmFncmFwaCBiZWZvcmUgYW5vdGhlciBXb3JkIG11dGF0aW9uLgpTdWIgU2V0RXhhY3QoQnlWYWwgdGFyZ2V0IEFzIFBhcmFncmFwaEZvcm1hdCwgQnlWYWwgcG9pbnRzIEFzIERvdWJsZSkKICAgIERpbSBhbW91bnQgQXMgRG91YmxlCiAgICB0YXJnZXQuTGluZVNwYWNpbmdSdWxlID0gd2RMaW5lU3BhY2VFeGFjdGx5CiAgICBhbW91bnQgPSBwb2ludHMKICAgIHRhcmdldC5MaW5lU3BhY2luZyA9IGFtb3VudAogICAgU2V0IHRhcmdldCA9IEFjdGl2ZURvY3VtZW50LlBhcmFncmFwaHMoMykuRm9ybWF0CkVuZCBTdWIKClN1YiBNYWluKCkKICAgIERpbSB0YXJnZXQgQXMgUGFyYWdyYXBoRm9ybWF0CiAgICBEaW0gc2F2ZWRGb3JtYXQgQXMgUGFyYWdyYXBoRm9ybWF0CiAgICBEaW0gbXVsdGlwbGVQb2ludHMgQXMgRG91YmxlCiAgICBTZXQgdGFyZ2V0ID0gQXBwbGljYXRpb24uQWN0aXZlRG9jdW1lbnQuUGFyYWdyYXBocy5JdGVtKDEpLkZvcm1hdAogICAgU2V0IHNhdmVkRm9ybWF0ID0gdGFyZ2V0CiAgICB0YXJnZXQuU3BhY2UxCiAgICBDYWxsIFNldEV4YWN0KHBvaW50czo9QXBwbGljYXRpb24uTGluZXNUb1BvaW50cygxKSArIDIuMjUsIHRhcmdldDo9c2F2ZWRGb3JtYXQpCgogICAgU2V0IHRhcmdldCA9IFRoaXNEb2N1bWVudC5QYXJhZ3JhcGhzKDIpLlJhbmdlLlBhcmFncmFwaEZvcm1hdAogICAgQ2FsbCB0YXJnZXQuU3BhY2UxNQogICAgdGFyZ2V0LkxpbmVTcGFjaW5nUnVsZSA9IHdkTGluZVNwYWNlQXRMZWFzdAogICAgdGFyZ2V0LkxpbmVTcGFjaW5nID0gTGluZXNUb1BvaW50cyhQb2ludHNUb0xpbmVzKDE4KSkKCiAgICBXaXRoIEFjdGl2ZURvY3VtZW50LlBhcmFncmFwaHMoMykuUmFuZ2UKICAgICAgICBXaXRoIC5QYXJhZ3JhcGhGb3JtYXQKICAgICAgICAgICAgQ2FsbCAuU3BhY2UyKCkKICAgICAgICAgICAgLkxpbmVTcGFjaW5nUnVsZSA9IHdkTGluZVNwYWNlTXVsdGlwbGUKICAgICAgICAgICAgbXVsdGlwbGVQb2ludHMgPSBBcHBsaWNhdGlvbi5MaW5lc1RvUG9pbnRzKFBvaW50c1RvTGluZXMoMjEpKQogICAgICAgICAgICAuTGluZVNwYWNpbmcgPSBtdWx0aXBsZVBvaW50cwogICAgICAgIEVuZCBXaXRoCiAgICBFbmQgV2l0aApFbmQgU3ViCg==",
+        "tool/macros/web_vba_word_line_spacing_smoke.dart"
+      ],
+      "cwd": "packages/quds_office_engine",
+      "exit_code": 0,
+      "elapsed_seconds": 7.821,
+      "stdout": "intake-local-word-portable-vm.stdout.log",
+      "stderr": "intake-local-word-portable-vm.stderr.log",
+      "stdout_sha256": "2c5c1131842f09451d4334bbb7c3f97ae39f52db560c2847e8fbdd7c045e8f59",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "accepted": true
+    },
+    {
+      "label": "portable-js-compile",
+      "command": [
+        "/home/agent/.codex/skills/remote-skills/quds-mail-work-20261120/runtime/flutter/bin/cache/dart-sdk/bin/dart",
+        "compile",
+        "js",
+        "-O1",
+        "--packages=/home/agent/.codex/skills/remote-skills/quds-mail-work-20261120/quds_office_suite/.dart_tool/package_config.json",
+        "-DWORD_LINE_SPACING_BAS_BASE64=T3B0aW9uIEV4cGxpY2l0CgonIFJlcXVpcmVzIHRocmVlIGV4aXN0aW5nIGJvZHkgcGFyYWdyYXBocy4gRWFjaCBjdXN0b20gcnVsZSBtdXN0IGJlIGZvbGxvd2VkCicgYnkgTGluZVNwYWNpbmcgb24gdGhhdCBzYW1lIHBhcmFncmFwaCBiZWZvcmUgYW5vdGhlciBXb3JkIG11dGF0aW9uLgpTdWIgU2V0RXhhY3QoQnlWYWwgdGFyZ2V0IEFzIFBhcmFncmFwaEZvcm1hdCwgQnlWYWwgcG9pbnRzIEFzIERvdWJsZSkKICAgIERpbSBhbW91bnQgQXMgRG91YmxlCiAgICB0YXJnZXQuTGluZVNwYWNpbmdSdWxlID0gd2RMaW5lU3BhY2VFeGFjdGx5CiAgICBhbW91bnQgPSBwb2ludHMKICAgIHRhcmdldC5MaW5lU3BhY2luZyA9IGFtb3VudAogICAgU2V0IHRhcmdldCA9IEFjdGl2ZURvY3VtZW50LlBhcmFncmFwaHMoMykuRm9ybWF0CkVuZCBTdWIKClN1YiBNYWluKCkKICAgIERpbSB0YXJnZXQgQXMgUGFyYWdyYXBoRm9ybWF0CiAgICBEaW0gc2F2ZWRGb3JtYXQgQXMgUGFyYWdyYXBoRm9ybWF0CiAgICBEaW0gbXVsdGlwbGVQb2ludHMgQXMgRG91YmxlCiAgICBTZXQgdGFyZ2V0ID0gQXBwbGljYXRpb24uQWN0aXZlRG9jdW1lbnQuUGFyYWdyYXBocy5JdGVtKDEpLkZvcm1hdAogICAgU2V0IHNhdmVkRm9ybWF0ID0gdGFyZ2V0CiAgICB0YXJnZXQuU3BhY2UxCiAgICBDYWxsIFNldEV4YWN0KHBvaW50czo9QXBwbGljYXRpb24uTGluZXNUb1BvaW50cygxKSArIDIuMjUsIHRhcmdldDo9c2F2ZWRGb3JtYXQpCgogICAgU2V0IHRhcmdldCA9IFRoaXNEb2N1bWVudC5QYXJhZ3JhcGhzKDIpLlJhbmdlLlBhcmFncmFwaEZvcm1hdAogICAgQ2FsbCB0YXJnZXQuU3BhY2UxNQogICAgdGFyZ2V0LkxpbmVTcGFjaW5nUnVsZSA9IHdkTGluZVNwYWNlQXRMZWFzdAogICAgdGFyZ2V0LkxpbmVTcGFjaW5nID0gTGluZXNUb1BvaW50cyhQb2ludHNUb0xpbmVzKDE4KSkKCiAgICBXaXRoIEFjdGl2ZURvY3VtZW50LlBhcmFncmFwaHMoMykuUmFuZ2UKICAgICAgICBXaXRoIC5QYXJhZ3JhcGhGb3JtYXQKICAgICAgICAgICAgQ2FsbCAuU3BhY2UyKCkKICAgICAgICAgICAgLkxpbmVTcGFjaW5nUnVsZSA9IHdkTGluZVNwYWNlTXVsdGlwbGUKICAgICAgICAgICAgbXVsdGlwbGVQb2ludHMgPSBBcHBsaWNhdGlvbi5MaW5lc1RvUG9pbnRzKFBvaW50c1RvTGluZXMoMjEpKQogICAgICAgICAgICAuTGluZVNwYWNpbmcgPSBtdWx0aXBsZVBvaW50cwogICAgICAgIEVuZCBXaXRoCiAgICBFbmQgV2l0aApFbmQgU3ViCg==",
+        "tool/macros/web_vba_word_line_spacing_smoke.dart",
+        "-o",
+        "/home/agent/.codex/skills/remote-skills/quds-mail-work-20261120/runtime/records/intake-word-line-spacing.js"
+      ],
+      "cwd": "packages/quds_office_engine",
+      "exit_code": 0,
+      "elapsed_seconds": 10.72,
+      "stdout": "intake-local-word-portable-js-compile.stdout.log",
+      "stderr": "intake-local-word-portable-js-compile.stderr.log",
+      "stdout_sha256": "5b72e18301a3eac35b92f80e5e0eed8bea0f68d8c43eec8b39636e57d25f687c",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "accepted": true
+    },
+    {
+      "label": "portable-node",
+      "command": [
+        "node",
+        "/home/agent/.codex/skills/remote-skills/quds-mail-work-20261120/runtime/records/intake-word-line-spacing.js"
+      ],
+      "cwd": "packages/quds_office_engine",
+      "exit_code": 0,
+      "elapsed_seconds": 0.15,
+      "stdout": "intake-local-word-portable-node.stdout.log",
+      "stderr": "intake-local-word-portable-node.stderr.log",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "accepted": false,
+      "diagnostic": "Raw Node invocation omitted the required dart2js self bootstrap and produced no JSON result. Exit 0 is not acceptance. The receipt harness then raised JSONDecodeError on that empty output."
+    },
+    {
+      "label": "portable-node-bootstrap",
+      "command": [
+        "node",
+        "-e",
+        "globalThis.self = globalThis; require(process.argv[1]);",
+        "/home/agent/.codex/skills/remote-skills/quds-mail-work-20261120/runtime/records/intake-word-line-spacing.js"
+      ],
+      "cwd": "packages/quds_office_engine",
+      "exit_code": 0,
+      "elapsed_seconds": 0.779,
+      "stdout": "intake-local-word-portable-node-bootstrap.stdout.log",
+      "stderr": "intake-local-word-portable-node-bootstrap.stderr.log",
+      "stdout_sha256": "2c5c1131842f09451d4334bbb7c3f97ae39f52db560c2847e8fbdd7c045e8f59",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "accepted": true
+    }
+  ],
+  "initial_diagnostic_receipt": "intake-local-word-validation-initial.json",
+  "scope": "Incoming Word measurement conversions, original line-spacing regression, and portable line-spacing example. Mail UI/provider qualification is separate.",
+  "portable_semantic_equal": true,
+  "portable_result_sections": [
+    "example",
+    "exampleReplay",
+    "ordinaryDecimals",
+    "presetGuards",
+    "policies",
+    "rollback",
+    "recording",
+    "refusedSources"
+  ],
+  "compiled_javascript_sha256": "ca70bf6d7951fa1b0499c0cb67487d785d1ccba11f08d21af54eeddd1c47da00",
+  "source_sha256_after": {
+    "pubspec.lock": "0d64a732cd7f6c7cc4e1e01255276f081b59e6f43039636c3d36f6785a958ce2",
+    "packages/quds_office_engine/lib/src/automation/office_vba_language.dart": "e975e5ede28868be995c74ac2111b77a0ad924d7be07a84aa771aa6e82fcbe75",
+    "packages/quds_office_engine/test/office_vba_word_bulk_intake_conversions_test.dart": "5576a2bc76dea09bd5414b6be33dd8c681bba264ae6655192478ad77dca0cc76",
+    "packages/quds_office_engine/test/office_vba_word_line_spacing_test.dart": "aeaa9dfa5f332be8ec4349cc7efe5ebbba62c91af34a425a93139cd47977a7de",
+    "packages/quds_office_engine/test/office_vba_word_line_spacing_integration_test.dart": "4ab49bdd4633be2b66ddc6fd6385413c557516441e145f1930a78bd6bab96b80",
+    "packages/quds_office_engine/tool/macros/web_vba_word_line_spacing_smoke.dart": "b5f3a757b44623c78331109203314f325de0139afd785ee3a2f58451deebddaa",
+    "packages/quds_office_engine/example/macros/word_line_spacing.bas": "ea112b9e3b3f9e8eb71540c0d98e0a9a1849d229d11ebc9d1ef8df71d0d5b3f9"
+  },
+  "source_unchanged": true,
+  "final_head": "b60c0ec26f2a80c984076fb1d480eb2e641b542e",
+  "completed_at_utc": "2026-11-20T20:41:02.237988+00:00",
+  "github_actions": "NOT QUERIED OR AWAITED",
+  "status": "PASS"
+}

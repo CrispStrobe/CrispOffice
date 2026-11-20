@@ -1,0 +1,238 @@
+{
+  "quds_office_suite/.dart_tool/package_config.json": {
+    "bytes": 12850,
+    "sha256": "6983ed96dad2af572e80bc2c8e7711f037e387664baae3078c4c32f3bd64c444"
+  },
+  "quds_office_suite/.dart_tool/package_graph.json": {
+    "bytes": 9353,
+    "sha256": "9f8290c011c131f53fe4f6e12c40f4a5d7281c6fe94bccb6adcf93c9d8a803d4"
+  },
+  "quds_office_suite/packages/quds_office_engine/example/macros/word_line_spacing.bas": {
+    "bytes": 1243,
+    "sha256": "ea112b9e3b3f9e8eb71540c0d98e0a9a1849d229d11ebc9d1ef8df71d0d5b3f9"
+  },
+  "quds_office_suite/packages/quds_office_engine/lib/src/automation/office_vba_language.dart": {
+    "bytes": 190877,
+    "sha256": "d1bac27a703519b81cea41d47ada534afeb18bdba468b6060ff680dacb732dcc"
+  },
+  "quds_office_suite/packages/quds_office_engine/lib/src/automation/operations/word_spacing_steps.dart": {
+    "bytes": 5198,
+    "sha256": "783c782ef28d9e7e62202291e17cd8e5f8747b2aa5188e02891e51fc92225f25"
+  },
+  "quds_office_suite/packages/quds_office_engine/lib/src/automation/operations/word_steps.dart": {
+    "bytes": 31957,
+    "sha256": "02417ab3271a94f399c5fe7fb5b99fde9ca6bef93f618864d3ceaafe7a9b9476"
+  },
+  "quds_office_suite/packages/quds_office_engine/lib/src/word/serial/word_style_cascade.dart": {
+    "bytes": 38823,
+    "sha256": "1ed6e37351eb0f9b0074ca70de3e8ed389bf8278d20ff2d73fd5ac6a8b3f8644"
+  },
+  "quds_office_suite/packages/quds_office_engine/test/office_macro_word_line_spacing_test.dart": {
+    "bytes": 26193,
+    "sha256": "ca9ab4e691b5803d3f36466c63c9446e66407c6eeb9d011891d37d9682f9511d"
+  },
+  "quds_office_suite/packages/quds_office_engine/test/office_vba_word_line_spacing_integration_test.dart": {
+    "bytes": 17311,
+    "sha256": "4ab49bdd4633be2b66ddc6fd6385413c557516441e145f1930a78bd6bab96b80"
+  },
+  "quds_office_suite/packages/quds_office_engine/test/office_vba_word_line_spacing_test.dart": {
+    "bytes": 12662,
+    "sha256": "aeaa9dfa5f332be8ec4349cc7efe5ebbba62c91af34a425a93139cd47977a7de"
+  },
+  "quds_office_suite/packages/quds_office_engine/tool/macros/web_vba_word_line_spacing_smoke.dart": {
+    "bytes": 25042,
+    "sha256": "b5f3a757b44623c78331109203314f325de0139afd785ee3a2f58451deebddaa"
+  },
+  "runtime/line-spacing-checks-final.stderr": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "runtime/line-spacing-checks-final.stdout": {
+    "bytes": 303,
+    "sha256": "cbfd1d6e92919d1d8c790fc2b6b420c8b519defe321f2a0817ac1d4cbb57a91b"
+  },
+  "runtime/line-spacing-checks-final/analysis.stderr": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "runtime/line-spacing-checks-final/analysis.stdout": {
+    "bytes": 49,
+    "sha256": "c557a0c697cdb937104f1423d3c02d6a1062917cb0bcb2830d91db8cf6192af0"
+  },
+  "runtime/line-spacing-checks-final/commands.json": {
+    "bytes": 1853,
+    "sha256": "19ce29333ff8e97cbc24d7d6a2cf5a13bed62c3bd380cc01b16500a860c228e6"
+  },
+  "runtime/line-spacing-checks-final/format.stderr": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "runtime/line-spacing-checks-final/format.stdout": {
+    "bytes": 47,
+    "sha256": "c97d58d21bf969031d04221a48f2db16296c6b4f24e0e67b58e74b7a64481f3b"
+  },
+  "runtime/line-spacing-checks-final/gate-helper.py": {
+    "bytes": 16015,
+    "sha256": "4e20f170e09aac9b1cd3881fa265996315693a48de36a3f0310243911133ff17"
+  },
+  "runtime/line-spacing-checks-final/inputs-after.json.gz": {
+    "bytes": 99117,
+    "sha256": "8a75b6661d058b68fe7421e7b241492dcbe462cca8a8c534c790787062b0ba24"
+  },
+  "runtime/line-spacing-checks-final/inputs-before.json.gz": {
+    "bytes": 99118,
+    "sha256": "a90b85b97cd9b08c98dcb4da00aeca67f48326c06378161db30f99b82061793b"
+  },
+  "runtime/line-spacing-checks-final/plan.json": {
+    "bytes": 940,
+    "sha256": "3ef0c5395ef0dfa2d0a7cf267a092f2ca402e5c236f0ad1e3dc590a07a7f41fd"
+  },
+  "runtime/line-spacing-checks-final/runner.py": {
+    "bytes": 6035,
+    "sha256": "65955e50ba380925efd3d36ceeed537c8e00f4072a35d1b7ca0aac74fbcc36fd"
+  },
+  "runtime/line-spacing-checks-final/summary.json": {
+    "bytes": 3871,
+    "sha256": "9429d99aacdd4a58f9442c685d14f5081a64462b7d5be14366e27c47b147d43c"
+  },
+  "runtime/line-spacing-portable-final.stderr": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "runtime/line-spacing-portable-final.stdout": {
+    "bytes": 452,
+    "sha256": "3a93edb6cb0376d1f0312b16f80e530690f1745164e82b9fd83395b92ff42c73"
+  },
+  "runtime/line-spacing-portable-final/actual-example.bas": {
+    "bytes": 1243,
+    "sha256": "ea112b9e3b3f9e8eb71540c0d98e0a9a1849d229d11ebc9d1ef8df71d0d5b3f9"
+  },
+  "runtime/line-spacing-portable-final/commands.json": {
+    "bytes": 5154,
+    "sha256": "c46bb49872a5971e411371aed1e2eda36ea5b2d32d00222afeb05f5d13445e6e"
+  },
+  "runtime/line-spacing-portable-final/compile-js.stderr": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "runtime/line-spacing-portable-final/compile-js.stdout": {
+    "bytes": 114,
+    "sha256": "9c1c7f1417f801e5165d23aa1d2f91dcfcda2c8869e8e0c20c436de5116dc971"
+  },
+  "runtime/line-spacing-portable-final/gate-helper.py": {
+    "bytes": 16015,
+    "sha256": "4e20f170e09aac9b1cd3881fa265996315693a48de36a3f0310243911133ff17"
+  },
+  "runtime/line-spacing-portable-final/inputs-after.json.gz": {
+    "bytes": 99160,
+    "sha256": "0ab5f411f509176b91e4d9ec1e9f83f08102dbce552747fccc7af39e51c7c890"
+  },
+  "runtime/line-spacing-portable-final/inputs-before.json.gz": {
+    "bytes": 99161,
+    "sha256": "b61067ab995187987c76db9bf59c80f6083f3a5f161d722e9d8dd3311b639333"
+  },
+  "runtime/line-spacing-portable-final/node.stderr": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "runtime/line-spacing-portable-final/node.stdout": {
+    "bytes": 1393,
+    "sha256": "2c5c1131842f09451d4334bbb7c3f97ae39f52db560c2847e8fbdd7c045e8f59"
+  },
+  "runtime/line-spacing-portable-final/result.json": {
+    "bytes": 1393,
+    "sha256": "f0fe334a367c08018ed63936f0cd690371cd85f4e1ca90d1a60de85483791e51"
+  },
+  "runtime/line-spacing-portable-final/runner.py": {
+    "bytes": 6912,
+    "sha256": "14f0f7fd7228e520344c113b6e4e3b69c6e040b4575c5a5b73ac45c5030ff450"
+  },
+  "runtime/line-spacing-portable-final/summary.json": {
+    "bytes": 6262,
+    "sha256": "4f7435418d3ddc56ec808a1bd3c66ebdf3d44f9a9a0bcb60eefeb55650f613a4"
+  },
+  "runtime/line-spacing-portable-final/vm.stderr": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "runtime/line-spacing-portable-final/vm.stdout": {
+    "bytes": 1393,
+    "sha256": "2c5c1131842f09451d4334bbb7c3f97ae39f52db560c2847e8fbdd7c045e8f59"
+  },
+  "runtime/line-spacing-portable-final/word-line-spacing.js": {
+    "bytes": 3140608,
+    "sha256": "df65a9fe4f8e9dcd2e2d417678945c37b264153c42a8e9d56a2cb7a4db768ff2"
+  },
+  "runtime/line-spacing-portable-final/word-line-spacing.js.deps": {
+    "bytes": 134172,
+    "sha256": "b1c14481c98d38410a1a1448b1a966b551086e5eff780d8c5349dc85b86fc4b9"
+  },
+  "runtime/line-spacing-portable-final/word-line-spacing.js.map": {
+    "bytes": 1091867,
+    "sha256": "44bdb1ed05c3adc06dbc39b2e907891073afad97b12ca20cb01d00a0a1dd0034"
+  },
+  "runtime/line-spacing-portable-static-reproduction.md": {
+    "bytes": 2596,
+    "sha256": "a75970527096c5615bc62b6977f6987b02b5d7dc425d9380f95b515bcbace139"
+  },
+  "runtime/line_spacing_gate_helper.py": {
+    "bytes": 16015,
+    "sha256": "4e20f170e09aac9b1cd3881fa265996315693a48de36a3f0310243911133ff17"
+  },
+  "runtime/package_line_spacing_checks.py": {
+    "bytes": 7345,
+    "sha256": "4c1d43355ca16b2eb18233416a1d367fbf3ac8d2ae98e82abc805866e82044ae"
+  },
+  "runtime/prior/runtime/reproduce_runtime.py": {
+    "bytes": 5527,
+    "sha256": "00728e6a81b989672e659eb40564df972bb3e4be2e403beafb1e8cdcad9bcb50"
+  },
+  "runtime/run_line_spacing_checks.py": {
+    "bytes": 6035,
+    "sha256": "65955e50ba380925efd3d36ceeed537c8e00f4072a35d1b7ca0aac74fbcc36fd"
+  },
+  "runtime/run_line_spacing_portable.py": {
+    "bytes": 6912,
+    "sha256": "14f0f7fd7228e520344c113b6e4e3b69c6e040b4575c5a5b73ac45c5030ff450"
+  },
+  "runtime/setup-receipt.json": {
+    "bytes": 915,
+    "sha256": "3bc3f9eb0d2cf5d70c18406d0b9bc6bde26cfb1aed7b290f58c8708b1a109c4b"
+  },
+  "runtime/setup.stderr": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "runtime/setup.stdout": {
+    "bytes": 2705,
+    "sha256": "0402eab90b4ef270da70b856349b4f615809db827c00f091f22d058e3efdf987"
+  },
+  "runtime/toolchain/engine-validation/packages/legacy_doc_parser/pubspec.yaml": {
+    "bytes": 426,
+    "sha256": "9c7e076de0d9c36c12a7fe6e1ba546355a20087e0e6483a0bc0fb9804d422cf3"
+  },
+  "runtime/toolchain/engine-validation/packages/quds_office_engine/pubspec.lock": {
+    "bytes": 13609,
+    "sha256": "02715ff258655dd186f1682400c589f7d2f7ae4c0e876407ac3e4fe14deb9ea6"
+  },
+  "runtime/toolchain/engine-validation/packages/quds_office_engine/pubspec.yaml": {
+    "bytes": 3625,
+    "sha256": "c594402727082d68aba1d1991d87552609c87b5c5ba30f802a3a88b0d04b5bd8"
+  },
+  "runtime/toolchain/env.sh": {
+    "bytes": 538,
+    "sha256": "33fd96982107e685e6dd9bbe5112c77aa4dc10f42549b4818f47cc9e2485fd13"
+  },
+  "runtime/toolchain/environment.json": {
+    "bytes": 2242,
+    "sha256": "abee33ba3d1ad92a883f780d2bae53529e7fefa3fd96e7cc3f4f57e6ebad12e1"
+  },
+  "runtime/toolchain/reproduction-command.json": {
+    "bytes": 442,
+    "sha256": "65467f496de4e90ab024bb2ca6599b9385b8758f4749b614d1ba15a97f7f2002"
+  },
+  "runtime/toolchain/run-engine-tests.sh": {
+    "bytes": 422,
+    "sha256": "a4e4bff28dc7ac52f1e4e8305c0c690ef8a0b2847caa053d24b09dadbcc4f2f1"
+  }
+}

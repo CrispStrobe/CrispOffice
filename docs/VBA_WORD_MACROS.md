@@ -71,8 +71,9 @@ The shared [argument contract](VBA_ARGUMENTS.md) supports named calls and
 optional scalar ByVal parameters on declared module helpers. Required Word
 object parameters may be passed by name; optional object parameters remain
 unsupported. `TabStops.Add` and the supported `ListFormat` methods also accept
-named optional arguments as described below; other Word members retain their
-positional-only contract.
+named optional arguments as described below. The measurement conversion
+functions accept their one required argument by position or by its official
+name; other Word members retain their positional-only contract.
 
 The common source language includes the existing local procedures and scalar
 functions, bounded control flow, typed arrays, string intrinsics, and explicit
@@ -112,6 +113,9 @@ header, footer, note, or comment story selector.
 | `range.ParagraphFormat.LineSpacingRule = value` | `docx.paragraphFormat` | `lineSpacingRule: auto`, `lineSpacing: 1`, `1.5`, or `2` |
 | Custom `LineSpacingRule` followed by `LineSpacing = points` | `docx.lineSpacing` | One paired edit with `rule: atLeast`, `exact`, or `multiple`, and `points` |
 | `range.ParagraphFormat.Space1`, `.Space15`, `.Space2` | `docx.paragraphFormat` | The corresponding single, 1.5-line, or double-line preset |
+| `paragraph.OpenUp` or `paragraph.Format.OpenUp` | `docx.paragraphSpaceBefore` | `action: open`; set before spacing to 12 points |
+| `paragraph.CloseUp` or `paragraph.Format.CloseUp` | `docx.paragraphSpaceBefore` | `action: close`; set before spacing to zero |
+| `paragraph.OpenOrCloseUp` or `paragraph.Format.OpenOrCloseUp` | `docx.paragraphSpaceBefore` | `action: toggle`; resolve current before spacing during native execution |
 | `paragraph.TabStops.Add position, alignment, leader` | `docx.tabStop` | `position` in points, `alignment`, and `leader` |
 | `paragraph.TabStops.ClearAll` | `docx.clearTabStops` | No additional arguments |
 | `range.ListFormat.ApplyBulletDefault` | `docx.listDefault` | `numbered: false` |
@@ -142,6 +146,92 @@ rule/amount operation. Repeated
 `InsertBefore` calls act on the paragraph as it exists at each step: inserting
 `"A"` and then `"B"` before `"tail"` produces `"BAtail"`. A later font operation
 formats the paragraph's current text, including text inserted by earlier steps.
+
+### Opening, closing and toggling paragraph spacing
+
+`Paragraph` and `ParagraphFormat` support the zero-argument `OpenUp`, `CloseUp`
+and `OpenOrCloseUp` methods. `Paragraph.Format` and
+`Paragraph.Range.ParagraphFormat` address the same selected paragraph. Bare
+statements, parenthesized statements, `Call target.OpenUp` and
+`Call target.OpenUp()` are supported, along with typed aliases, required `ByVal`
+helpers, named helper arguments and nested `With` blocks. The receiver is
+evaluated once. Collection-wide calls, direct `Range.OpenUp`, assigned return
+values, arguments and method reads are rejected, including in unused helpers
+and dead branches. The existing source work and operation limits still apply.
+
+```vb
+Sub Main()
+    Dim first As Paragraph
+    Dim format As ParagraphFormat
+    Set first = ActiveDocument.Paragraphs(1)
+    Set format = first.Format
+
+    first.CloseUp
+    With format
+        .OpenOrCloseUp
+        Call .OpenOrCloseUp()
+        .OpenUp
+    End With
+End Sub
+```
+
+This example finishes with 12 points of spacing before the first existing
+paragraph. `OpenUp` always sets 12 points; `CloseUp` sets zero. `OpenOrCloseUp`
+sets 12 points when the current spacing is zero, and zero when it is positive.
+The compiler emits the action rather than a guessed resulting value. Native
+execution resolves the current effective paragraph properties, including
+supported style inheritance and earlier operations in the same detached
+transaction. Two consecutive toggles both execute. Recording retains the
+toggle action, so replay resolves the spacing of the replay target. This does
+not expose document values to VBA expressions or add live property reads.
+
+Each method emits one `docx.paragraphSpaceBefore` operation with a zero-based
+`paragraph` and an exact `action` of `open`, `close` or `toggle`. A pending
+custom `LineSpacingRule` / `LineSpacing` pair must be completed before these
+methods, just as before any other document write. Body paragraph traversal,
+policy/allowlist checks, step limits, detached validation and all-or-nothing
+publication are unchanged. Empty paragraphs are supported without inserting
+text or changing paragraph structure.
+
+The edit owns only the native before-spacing group. Same-value writes become
+direct formatting; unedited after-spacing and line-spacing values continue to
+inherit and respond to later style edits. Unrelated direct properties, native
+style definitions, foreign attributes/children and opaque DOCM project/signature
+parts are preserved. An existing disabled `beforeAutospacing` attribute in the
+edited direct group can be removed; unedited groups retain their source data.
+Native style identities and `basedOn` links are resolved by namespace rather
+than prefix spelling, and default paragraph styles accept native `1`, `true`
+and `on` flags. An omitted native style type means `paragraph`; foreign type
+attributes do not override that default. Foreign style/attribute lookalikes
+remain source data.
+
+The supported input is nonnegative point spacing represented by exact integer
+twips in `0..2147483647`. The controls refuse native `beforeLines`, enabled or
+unknown `beforeAutospacing`, malformed/negative/noninteger/oversized native
+`before`, duplicate spacing or paragraph-property packets, spacing-bearing
+markup-compatibility alternatives, and unbalanced modeled field boundaries.
+They also refuse before-spacing declarations in numbering levels or unmodeled
+conditional table-style regions, and ambiguous style identities, duplicate
+defaults, unknown style types, missing `basedOn` targets, cyclic inheritance,
+cross-type `basedOn` links or numbering-style `basedOn` links. Paragraph/table
+style selectors must resolve to native styles of the expected type; missing,
+foreign, nested, duplicate or ambiguously attributed selectors are refused.
+These checks
+scan stored Word XML parts conservatively, so a conflicting declaration in an
+unrelated style or story can cause refusal. They do not guess automatic spacing,
+silently round native values, or choose an ambiguous style.
+
+Supported table-style inheritance remains Quds's existing `wholeTable`, enabled
+horizontal bands and `firstRow` projection. The controls do not introduce
+complete conditional table-style parity. They follow the existing body selector
+contract and do not add arbitrary ranges, collections, `Selection`, COM or
+embedded VBA execution.
+
+The actual [word_paragraph_controls.bas](../packages/quds_office_engine/example/macros/word_paragraph_controls.bas)
+example requires three existing body paragraphs. Its ten operations finish at
+12, zero and 12 points and can run again on its own saved output. The
+[qualification record](validation/word-vba-paragraph-controls-20261120/README.md)
+also covers the incoming custom line-spacing continuation.
 
 ### Custom paragraph tab stops
 
@@ -224,8 +314,8 @@ the corrected position-wise style cascade and the same table-layer limits.
 
 This slice supports statements whose `Add` return value is discarded. It does
 not introduce `TabStop` objects, indexing, `Count`, enumeration, collection-copy
-assignment, default-tab setters, `Selection`, unit-conversion intrinsics or live
-document reads. The actual [word_tabstops.bas](../packages/quds_office_engine/example/macros/word_tabstops.bas)
+assignment, default-tab setters, `Selection` or live document reads. Supported
+measurement conversions are documented separately below. The actual [word_tabstops.bas](../packages/quds_office_engine/example/macros/word_tabstops.bas)
 example requires three existing body paragraphs and is exercised on the Dart VM
 and compiled JavaScript by the portable regression driver. See the
 [qualification record](validation/word-vba-tabstops-20261120/README.md) for executed
@@ -672,11 +762,11 @@ for all three rules, including a multiple of `1/240` line. This is a storage
 and model contract, not a claim about Word's user-interface limits.
 
 `LinesToPoints(value)` multiplies by 12 and `PointsToLines(value)` divides by 12.
-Both accept one positional actual finite numeric argument, including signed
-values and zero. They also work as `Application.LinesToPoints(...)`,
+Both accept one actual finite numeric argument, including signed values and
+zero, supplied positionally or as `Lines:=` / `Points:=`. They also work as `Application.LinesToPoints(...)`,
 `Application.PointsToLines(...)`, or leading-dot calls inside `With Application`.
 They are Word-only source functions; declarations cannot shadow their names.
-Named/omitted arguments, object arguments and implicit scalar coercions are
+Omitted arguments, object arguments and implicit scalar coercions are
 unsupported. Conversion results must remain finite and within the shared
 numeric magnitude bound `9007199254740991`; later property writes apply their
 own precision/range checks. Inputs that exactly round-trip on the native
@@ -699,13 +789,17 @@ prefixes; original paragraph/style XML stays intact.
 Custom edits refuse ambiguous duplicate native paragraph/spacing containers or
 line/rule attributes, and spacing-bearing markup-compatibility alternatives
 anywhere in the stored Word XML, including foreign spacing lookalikes inside
-alternatives. Unbalanced modeled field boundaries are refused before a custom
+alternatives. Alternatives within or wrapping native paragraph properties are
+also refused when they carry other metadata: choosing a branch would discard
+an unedited property packet. Unbalanced modeled field boundaries are refused before a custom
 edit can trigger lossy serialization. These conservative source guards are
 applied to `docx.lineSpacing` and to generic `docx.paragraphFormat` calls that
 write `lineSpacing` or `lineSpacingRule`, including presets and `Space1` /
 `Space15` / `Space2`. Before/after-only writes retain their existing behavior.
-Valid supported field
-packets and opaque DOCM VBA parts remain inert and preserved.
+Valid supported field packets and opaque DOCM VBA parts remain inert and preserved.
+Unrelated body drawing alternatives remain within the ordinary serializer's
+existing behavior. This increment does not promise whole-package byte identity
+or preservation of every unmodeled alternative outside paragraph properties.
 
 The existing native layout uses fixed, minimum and multiple line heights;
 installed Word pagination, font metrics and clipping parity are not claimed.
@@ -725,6 +819,139 @@ Primary contracts: Microsoft's
 [Space1](https://learn.microsoft.com/en-us/office/vba/api/word.paragraphformat.space1),
 [Space15](https://learn.microsoft.com/en-us/office/vba/api/word.paragraphformat.space15)
 and [Space2](https://learn.microsoft.com/en-us/office/vba/api/word.paragraphformat.space2).
+
+### Physical measurement conversions
+
+Word layout macros can convert inches, centimeters, millimeters and picas to
+points and back, alongside the existing line/point conversions. These are
+document-independent functions: compilation neither reads a document nor
+queries screen resolution, fonts, locale or a running Word application.
+
+| Function | Required argument name | Conversion |
+| --- | --- | --- |
+| `InchesToPoints` | `Inches` | inches × 72 |
+| `CentimetersToPoints` | `Centimeters` | centimeters × 3600 / 127 |
+| `MillimetersToPoints` | `Millimeters` | millimeters × 360 / 127 |
+| `PicasToPoints` | `Picas` | picas × 12 |
+| `LinesToPoints` | `Lines` | lines × 12 |
+| `PointsToInches` | `Points` | points / 72 |
+| `PointsToCentimeters` | `Points` | points × 127 / 3600 |
+| `PointsToMillimeters` | `Points` | points × 127 / 360 |
+| `PointsToPicas` | `Points` | points / 12 |
+| `PointsToLines` | `Points` | points / 12 |
+
+Every function accepts exactly one actual number or numeric Variant. The
+argument can be positional or use the official name above, case-insensitively.
+Global calls, `Application.Function(...)` and leading-dot calls inside
+`With Application` all work. A supplied expression is evaluated once, in its
+ordinary source order, with the existing compiler work limits. Helpers,
+optional scalar defaults, arrays and arithmetic can supply measurements.
+Missing values, comma holes, duplicates, wrong names, object values and
+implicit conversion from String/Boolean/Empty/Null/omitted Variant are refused.
+Call shapes and statically known argument types are checked even in unreachable
+branches and unused helpers. A Variant's contents are checked when its value is
+evaluated. Functions remain unavailable in Const/default expressions, which
+already disallow function calls. The names are reserved only in `vba-word`;
+they do not add builtins or new reservations to Excel or PowerPoint.
+
+```vb
+Sub Main()
+    Dim inset As Double
+    With Application
+        inset = .CentimetersToPoints(Centimeters:=1.27)
+        With .ActiveDocument.Paragraphs(1).Format
+            .LeftIndent = inset
+            .FirstLineIndent = -InchesToPoints(Inches:=0.25)
+            .SpaceBefore = PicasToPoints(0.5)
+            .TabStops.Add Position:=MillimetersToPoints(25.4)
+            .LineSpacingRule = wdLineSpaceExactly
+            .LineSpacing = InchesToPoints(0.25)
+        End With
+    End With
+End Sub
+```
+
+This produces a 36-point left indent, an 18-point hanging indent, 6 points
+before the paragraph, a tab at 72 points, and exact 18-point line spacing.
+The complete [word_named_measurements.bas](../packages/quds_office_engine/example/macros/word_named_measurements.bas)
+example uses all ten functions, typed format aliases, named helper arguments
+and two existing paragraphs. It emits thirteen operations and is repeatable
+on its own output. Its source, integration and portable-driver fixtures use
+the matching `word_named_measurements` filenames.
+
+The original [word_measurements.bas](../packages/quds_office_engine/example/macros/word_measurements.bas)
+example and its independent fixtures are also retained. That example emits
+eight writes, including a tab stop and custom line spacing, and requires two
+existing body paragraphs. Keeping distinct filenames preserves both examples
+and their native-document expectations.
+
+The independently authored [word_unit_conversions.bas](../packages/quds_office_engine/example/macros/word_unit_conversions.bas)
+example is also retained. It uses the eight physical conversion functions and
+emits nine paragraph-format operations on two existing paragraphs. Both finish
+with 72-point left indents, 18-point right indents, 12-point before spacing and
+6-point after spacing; the first also has an 18-point hanging indent.
+
+**Numeric contract.** The portable dialect uses bounded binary64 `Double`
+arithmetic, including signed values and zero; it does not emulate the `Single`
+parameters/results documented for Microsoft Word. Both inputs and results must
+be finite and within magnitude `9007199254740991`. Intermediate multiplication
+uses floating-point arithmetic to avoid signed-integer overflow on the Dart VM.
+The physical ratios use
+exactly 72 points and 25.4 millimeters per inch. Microsoft Learn's rounded
+metric descriptions (including inconsistent millimeter approximations) are
+not used as conversion constants. These are specification-derived expectations;
+an installed Microsoft Word host has not been used to establish bit-for-bit
+VBA behavior.
+
+Exact native-grid values are canonicalized only when converting the candidate
+integer twip count back reproduces the input double exactly. This keeps
+`InchesToPoints(0.65) = 46.8`, `CentimetersToPoints(1.27) = 36` and
+`PicasToPoints(1.15) = 13.8` usable without a tolerance that would snap adjacent
+values. Off-grid inputs retain ordinary arithmetic. Inverse/forward round-trips
+preserve native twip values, including one twip, within the existing signed-Long
+document bound.
+
+**Property precision remains explicit.** The result must still satisfy the
+receiving property's existing range and precision rules. For example,
+`CentimetersToPoints(1)` is a valid scalar value (about 28.34645669 points),
+but assigning it directly to `LeftIndent` is refused because it is not an exact
+twentieth-point. The adapter does not silently round that value to 28.35.
+A macro author can explicitly choose twip rounding with the existing
+ties-to-even `CLng` conversion:
+
+```vb
+Sub Main()
+    ActiveDocument.Paragraphs(1).Format.LeftIndent = _
+        CLng(CentimetersToPoints(1) * 20) / 20
+End Sub
+```
+
+This writes 28.35 points because the source explicitly requests that rounding.
+Font sizes still require their existing half-point grid; tab stops, spacing
+and indentation retain their existing constraints. Pixel conversions,
+`Selection`, page-setup objects, arbitrary ranges and document property reads
+remain outside this slice.
+
+Conversions emit no native operation themselves. Resulting writes use the
+same detached transaction, permissions, allowlists, operation limits,
+cancellation and atomic publication as other Word macros. Native formatting
+ownership also remains unchanged: indentation edits replace the native
+`w:ind` property group, so foreign attributes inside that edited group are
+not promised to survive. Unrelated paragraph metadata, untouched paragraphs,
+style parts and opaque DOCM project/signature bytes are covered by the saved
+document tests. See the [local qualification record](validation/mail-bulk-flags-20261120/README.md#incoming-word-qualification)
+for executed VM, JavaScript, CLI and MCP checks.
+
+Primary references: Microsoft Word's
+[InchesToPoints](https://learn.microsoft.com/en-us/office/vba/api/word.application.inchestopoints),
+[CentimetersToPoints](https://learn.microsoft.com/en-us/office/vba/api/word.application.centimeterstopoints),
+[MillimetersToPoints](https://learn.microsoft.com/en-us/office/vba/api/word.application.millimeterstopoints),
+[PicasToPoints](https://learn.microsoft.com/en-us/office/vba/api/word.application.picastopoints),
+[PointsToInches](https://learn.microsoft.com/en-us/office/vba/api/word.application.pointstoinches),
+[PointsToCentimeters](https://learn.microsoft.com/en-us/office/vba/api/word.application.pointstocentimeters),
+[PointsToMillimeters](https://learn.microsoft.com/en-us/office/vba/api/word.application.pointstomillimeters)
+and [PointsToPicas](https://learn.microsoft.com/en-us/office/vba/api/word.application.pointstopicas),
+and [NIST's exact inch definition](https://www.nist.gov/pml/owm/si-units-length).
 
 ### Typography and highlighting
 

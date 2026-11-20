@@ -1,0 +1,16 @@
+{
+  "archive": "interrupted-regression-evidence.tar.xz",
+  "bytes": 598024,
+  "sha256": "6cdd05e5f627041cfa076c3251a93700e727f8ec705c6b5cbcc491177a99a481",
+  "member_count": 17,
+  "member_index_sha256": "62746a57b59e4958da17e09e02e3e355e25564998b5c1fb2fc705eca0a3a8fbd",
+  "all_members_verified": true,
+  "publication_acceptance": false,
+  "regression_total_contribution": 0,
+  "source_commit": "0201b549d0dc3f601c50e36255d557034cb01699",
+  "completed_visible_cases": 2679,
+  "observed_suites": 64,
+  "terminal_done_present": false,
+  "process_exit_receipt_present": false,
+  "reason": "Coordinator process no longer existed; no observed test failure. Complete bounded-batch rerun required."
+}

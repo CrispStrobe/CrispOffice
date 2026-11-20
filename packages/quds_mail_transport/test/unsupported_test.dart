@@ -59,7 +59,12 @@ void main() {
         ),
         MailDelete(id: 'delete', message: _identity),
       ]) {
-        _unsupported(await provider.apply(operation, lease));
+        final result = await provider.apply(operation, lease);
+        _unsupported(result);
+        expect(
+          MailBulkFlagAttempt.fromResult(result).outcome,
+          MailBulkFlagOutcome.failed,
+        );
       }
       expect(vault.calls, 0);
       expect(codec.calls, 0);

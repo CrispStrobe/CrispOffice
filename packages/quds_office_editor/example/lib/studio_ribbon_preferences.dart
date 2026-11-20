@@ -4,14 +4,28 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:path_provider/path_provider.dart';
 
+import 'studio_settings.dart';
+
 /// Local ribbon preferences. IDs are stable command IDs, never translated text.
 /// Unknown IDs are retained so contextual groups and newer versions can return.
 class StudioRibbonPreferences extends ChangeNotifier {
-  StudioRibbonPreferences({this.persist = true, Future<File> Function()? file})
-    : _file = file ?? _defaultFile;
+  StudioRibbonPreferences({
+    this.persist = true,
+    Future<File> Function()? file,
+    StudioSettingsBackend? backend,
+  }) : _file = file ?? _defaultFile,
+       _backend =
+           backend ??
+           (kIsWeb && persist
+               ? createDefaultStudioSettingsBackend(name: 'ribbon')
+               : null);
 
   final bool persist;
   final Future<File> Function() _file;
+
+  /// Storage other than the native file (the browser's Cache Storage on the
+  /// web); the document format is the same.
+  final StudioSettingsBackend? _backend;
   final Map<String, List<String>> _orders = <String, List<String>>{};
   final Map<String, Set<String>> _hidden = <String, Set<String>>{};
   Future<void>? _loadFuture;
@@ -44,12 +58,20 @@ class StudioRibbonPreferences extends ChangeNotifier {
   Future<void> load() => _loadFuture ??= _read();
 
   Future<void> _read() async {
-    if (!persist || kIsWeb) return;
+    if (!persist) return;
     final revision = _revision;
     try {
-      final file = await _file();
-      if (!await file.exists() || await file.length() > 262144) return;
-      final Object? decoded = jsonDecode(await file.readAsString());
+      final String? text;
+      final backend = _backend;
+      if (backend != null) {
+        text = await backend.read();
+      } else {
+        final file = await _file();
+        if (!await file.exists() || await file.length() > 262144) return;
+        text = await file.readAsString();
+      }
+      if (text == null || text.length > 262144) return;
+      final Object? decoded = jsonDecode(text);
       if (_disposed || _revision != revision) return;
       if (decoded is! Map<String, Object?> || decoded['version'] != 1) return;
       _compact = decoded['compact'] is bool
@@ -167,16 +189,21 @@ class StudioRibbonPreferences extends ChangeNotifier {
   void _changed() {
     _revision++;
     notifyListeners();
-    if (!persist || kIsWeb) return;
+    if (!persist) return;
     final contents = jsonEncode(toJson());
     // Serialize snapshots so a slower earlier write cannot replace a new one.
     _writes = _writes.then((_) async {
       try {
-        final file = await _file();
-        await file.parent.create(recursive: true);
-        final temporary = File('${file.path}.tmp');
-        await temporary.writeAsString(contents, flush: true);
-        await temporary.rename(file.path);
+        final backend = _backend;
+        if (backend != null) {
+          await backend.write(contents);
+        } else {
+          final file = await _file();
+          await file.parent.create(recursive: true);
+          final temporary = File('${file.path}.tmp');
+          await temporary.writeAsString(contents, flush: true);
+          await temporary.rename(file.path);
+        }
         if (_saveError != null && !_disposed) {
           _saveError = null;
           notifyListeners();

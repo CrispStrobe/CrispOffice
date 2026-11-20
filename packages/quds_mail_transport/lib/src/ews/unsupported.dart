@@ -20,8 +20,9 @@ final class _UnsupportedEwsProvider implements MailEwsProvider {
   @override
   final MailAccountId account;
 
-  MailResult<T> _unsupported<T>() =>
-      const MailFailure(MailProblem(MailProblemCode.unsupported));
+  MailResult<T> _unsupported<T>() => const MailFailure(
+    MailProblem(MailProblemCode.unsupported, mutationMayHaveOccurred: false),
+  );
 
   @override
   Future<MailResult<MailCapabilities>> capabilities(

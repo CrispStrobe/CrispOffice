@@ -59,6 +59,10 @@ final class MailReaderPresentation {
   final int blockedResourceCount;
 }
 
+/// Width and height of an admitted static PNG/JPEG attachment, or null.
+(int, int)? mailRasterDimensions(MailAttachment attachment) =>
+    _rasterDimensions(attachment);
+
 /// A deliberately small HTML-to-static-text projection, not a browser engine.
 ///
 /// It scans bounded input once without constructing a DOM. It supports paragraph
@@ -69,6 +73,7 @@ MailReaderPresentation buildMailPresentation(
   MailParseResult result, {
   MailReadBudget budget = const MailReadBudget(),
   bool preferHtml = true,
+  bool externalImagePlaceholders = true,
 }) {
   budget.validate();
   final diagnostics = <MailDiagnostic>[...result.diagnostics];
@@ -212,7 +217,11 @@ MailReaderPresentation buildMailPresentation(
     }
   }
   final useHtml = body.html != null && (preferHtml || body.plainText == null);
-  final builder = _Projection(budget, message.attachments);
+  final builder = _Projection(
+    budget,
+    message.attachments,
+    externalImagePlaceholders: externalImagePlaceholders,
+  );
   try {
     builder.add(
       message.envelope.subject.isEmpty
@@ -520,8 +529,14 @@ const _blockTags = {
 };
 
 final class _Projection {
-  _Projection(this.budget, this.attachments, {this.strictHtml = false});
+  _Projection(
+    this.budget,
+    this.attachments, {
+    this.strictHtml = false,
+    this.externalImagePlaceholders = true,
+  });
   final bool strictHtml;
+  final bool externalImagePlaceholders;
   final MailReadBudget budget;
   final List<MailAttachment> attachments;
   final StringBuffer text = StringBuffer();
@@ -578,6 +593,16 @@ final class _Projection {
     if (!newline) add('\n');
   }
 
+  /// HTML collapses source indentation and repeated whitespace. Without this,
+  /// the padded `div`/table wrappers used by transactional mail become dozens
+  /// of visually empty lines.
+  void addHtmlText(String value) {
+    var normalized = value.replaceAll(RegExp(r'[\t\r\n ]+'), ' ');
+    if (normalized.trim().isEmpty) return;
+    if (newline) normalized = normalized.trimLeft();
+    add(normalized);
+  }
+
   void incompleteHtml(String message) {
     if (strictHtml) throw _IncompleteHtml(message);
   }
@@ -590,7 +615,7 @@ final class _Projection {
         final next = source.indexOf('<', index);
         final end = next < 0 ? source.length : next;
         if (!stack.any((tag) => tag.suppressed)) {
-          add(_entities(source.substring(index, end)));
+          addHtmlText(_entities(source.substring(index, end)));
         }
         index = end;
         continue;
@@ -797,11 +822,13 @@ final class _Projection {
   void _image(String? source, String? alt) {
     if (source == null || !source.toLowerCase().startsWith('cid:')) {
       blocked++;
-      add(
-        alt == null || alt.isEmpty
-            ? '[External image blocked]'
-            : '[External image blocked: $alt]',
-      );
+      if (externalImagePlaceholders) {
+        add(
+          alt == null || alt.isEmpty
+              ? '[External image blocked]'
+              : '[External image blocked: $alt]',
+        );
+      }
       return;
     }
     String cid;

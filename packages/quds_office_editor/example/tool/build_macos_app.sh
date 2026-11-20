@@ -394,8 +394,127 @@ codesign "${SIGN_ARGS[@]}" ${APP_IDENTITY_ARGS[@]+"${APP_IDENTITY_ARGS[@]}"} --e
 
 log "Verify"
 codesign --verify --deep --strict --verbose=1 "$SIGNED_APP"
+APP_MINIMUM_OS="$(plutil -extract LSMinimumSystemVersion raw -o - "$SIGNED_APP/Contents/Info.plist")"
+# Return 0 when version $1 <= version $2, 1 when greater, and 2 for an
+# invalid version. Missing minor/patch components and leading zeros are
+# numeric zeros. Compare decimal strings to avoid octal or integer overflow.
+version_le() {
+  local pattern='^[0-9]+([.][0-9]+){0,2}$'
+  [[ "${1:-}" =~ $pattern && "${2:-}" =~ $pattern ]] || return 2
+  LC_ALL=C awk -v left="$1" -v right="$2" '
+    BEGIN {
+      split(left, lhs, /[.]/)
+      split(right, rhs, /[.]/)
+      for (i = 1; i <= 3; i++) {
+        a = lhs[i]; b = rhs[i]
+        sub(/^0+/, "", a); sub(/^0+/, "", b)
+        if (length(a) < length(b)) exit 0
+        if (length(a) > length(b)) exit 1
+        if (("x" a) < ("x" b)) exit 0
+        if (("x" a) > ("x" b)) exit 1
+      }
+      exit 0
+    }'
+}
+
+# Validate every architecture and every macOS deployment load command.
+# Modern commands use platform MACOS/minos; legacy commands use version.
+# A build command's nested tool version is not a deployment target.
+verify_library_minimum_os() {
+  local path="$1" app_minimum="$2" output minimums minimum slice status
+  if ! version_le "$app_minimum" "$app_minimum"; then
+    echo "app declares malformed minimum macOS: $app_minimum" >&2
+    return 1
+  fi
+  if ! output="$(vtool -show-build "$path")"; then
+    echo "$path: could not read macOS deployment commands" >&2
+    return 1
+  fi
+  if ! minimums="$(LC_ALL=C awk '
+    function fail(message) {
+      print "invalid macOS deployment commands: " message > "/dev/stderr"
+      failed = 1
+      exit 1
+    }
+    function finish_command() {
+      if (!in_command) return
+      if (kind != "LC_BUILD_VERSION" && kind != "LC_VERSION_MIN_MACOSX")
+        fail(slice ": unsupported deployment command " kind)
+      if (kind == "LC_BUILD_VERSION" && platform != "MACOS")
+        fail(slice ": missing or non-macOS platform")
+      if (!have_minimum) fail(slice ": missing minimum macOS")
+      print minimum "\t" slice
+      slice_minimums++
+      in_command = 0
+    }
+    function finish_slice() {
+      finish_command()
+      if (slice != "" && !slice_minimums)
+        fail(slice ": no macOS deployment command")
+    }
+    /^[^[:space:]].*:$/ {
+      finish_slice()
+      slice = $0
+      sub(/:$/, "", slice)
+      slice_minimums = 0
+      next
+    }
+    $1 == "Load" && $2 == "command" {
+      if (slice == "" || NF != 3 || $3 !~ /^[0-9]+$/)
+        fail("missing architecture header or malformed load command")
+      finish_command()
+      in_command = 1
+      kind = ""; platform = ""; minimum = ""; have_minimum = 0
+      next
+    }
+    $1 == "cmd" {
+      if (!in_command || NF != 2 || kind != "")
+        fail(slice ": malformed deployment command")
+      kind = $2
+      next
+    }
+    $1 == "platform" {
+      if (!in_command || kind != "LC_BUILD_VERSION" || NF != 2 || platform != "")
+        fail(slice ": malformed platform")
+      platform = $2
+      next
+    }
+    $1 == "minos" || ($1 == "version" && kind == "LC_VERSION_MIN_MACOSX") {
+      if (!in_command || NF != 2 || have_minimum ||
+          ($1 == "minos" && kind != "LC_BUILD_VERSION"))
+        fail(slice ": malformed minimum macOS")
+      minimum = $2
+      have_minimum = 1
+      next
+    }
+    END {
+      if (failed) exit 1
+      if (slice == "") fail("no architecture header")
+      finish_slice()
+    }' <<<"$output")"; then
+    echo "$path: cannot verify minimum macOS for every architecture" >&2
+    return 1
+  fi
+  while IFS=$'\t' read -r minimum slice; do
+    if version_le "$minimum" "$app_minimum"; then
+      continue
+    else
+      status=$?
+      if [[ "$status" == 2 ]]; then
+        echo "$slice declares malformed minimum macOS: $minimum" >&2
+      else
+        echo "$slice needs macOS $minimum, app declares $app_minimum" >&2
+      fi
+      return 1
+    fi
+  done <<<"$minimums"
+}
 for library in "${LIBRARIES[@]}"; do
   path="$FRAMEWORKS/$library"
+  # A library whose minimum macOS exceeds the app's would fail to load on
+  # older systems the app claims to support (the host SDK leaks in when a
+  # build does not pin its deployment target).
+  verify_library_minimum_os "$path" "$APP_MINIMUM_OS" || exit 1
   # Only system libraries (or the library itself) may be referenced.
   foreign="$(otool -L "$path" | tail -n +2 | awk '{print $1}' \
     | grep -v -e '^/usr/lib/' -e '^/System/' -e "$library\$" || true)"

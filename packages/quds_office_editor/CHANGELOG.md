@@ -4,6 +4,43 @@ All notable changes to `quds_office_editor` are documented here.
 
 ## Unreleased
 
+- Explain foreground bulk rate-limit stops and provider retry delays in English,
+  German and Arabic, including per-message details. Keep stale-scope refresh
+  guidance distinct from outcome certainty and prevent dismissal from clearing
+  its refresh requirement.
+
+- Add foreground bulk read/unread/flag/unflag actions for connected IMAP, EWS,
+  Gmail and Microsoft 365 mail. Freeze visible checked identities, preserve
+  nullable flag observations, report confirmed/failed/uncertain/unattempted
+  outcomes, stop after the current message, and require refresh on uncertainty.
+  Guard callbacks across selection, refresh and account changes; localize
+  selection, progress and per-message receipts in English, German and Arabic.
+  Same-folder refresh preserves query/sort while clearing checked rows.
+  Cached mail remains read-only; durable command/cache synchronization follows.
+
+- Accept horizontally merged Zotero research-note and annotation tables through
+  the existing native commands. Preserve cell-owned rich text, lists, pictures
+  and active citations in body, footnote and endnote targets; retain span widths,
+  surrounding prose, the final caret and one undo/redo step through DOCX reopening.
+- Let native Zotero Refresh combine directly touching citation fields in one
+  paragraph/story/note using Zotero's item order and formatting. Keep separated
+  fields distinct, recheck physical adjacency before applying, and leave
+  cancelled or stale results detached. A completed refresh is one undo/redo
+  step. See the
+  [continuation validation record](../../docs/validation/zotero-merged-cells-20261120/README.md)
+  for local checks; installed Zotero/Word/LibreOffice acceptance remains separate.
+
+- Refuse an oversized Studio settings snapshot before replacing the last valid
+  saved settings. Keep the existing load budget and expose a recoverable save
+  error so accepted personal dictionaries cannot reset preferences on restart.
+
+- Add structured loaded-header search and stable local sorting to connected
+  IMAP, EWS, Gmail and Microsoft 365 lists and offline cached mail. Search
+  visible sender/To/Cc, subject, local calendar dates and observed read/flag
+  states; show localized syntax help/errors in English, German and Arabic.
+  Filtering and sorting preserve message identity and never fetch bodies,
+  change server state or expand the explicitly loaded folder scope.
+
 - Native Studio Mail saves dated ordered views of visited IMAP, EWS, Gmail and
   Microsoft 365 folders plus explicitly opened message bodies/attachments.
   Verified accounts offer a separate Cached mail entry without credentials or

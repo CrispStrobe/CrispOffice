@@ -456,6 +456,12 @@ with both rule and point value; standard `Space1` / `Space15` / `Space2`
 methods use the guarded line-spacing preset path. The point/multiple
 conversion contract and paired-setter restrictions are documented in
 [the Word dialect](VBA_WORD_MACROS.md#exact-minimum-and-multiple-line-spacing).
+`Paragraph` and `ParagraphFormat` spacing controls emit
+`docx.paragraphSpaceBefore` with `action: open`, `close` or `toggle`.
+The native toggle resolves current supported before spacing after earlier
+transaction steps; it remains an action when recorded and replayed. These
+methods own only before spacing and conservatively refuse automatic/line-based
+or ambiguous source definitions. See the [spacing-control contract](VBA_WORD_MACROS.md#opening-closing-and-toggling-paragraph-spacing).
 `InsertBefore`
 uses the empty range at paragraph offset zero, preserving the paragraph mark.
 Word and Excel retain separate typed object members and native output formats;

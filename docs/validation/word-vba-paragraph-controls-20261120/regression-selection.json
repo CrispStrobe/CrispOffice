@@ -1,0 +1,698 @@
+{
+  "schema": "quds-word-office-regression-selection/v1",
+  "previous_record": "docs/validation/word-vba-list-levels-20261120/regression.json",
+  "previous_record_sha256": "1eedba2558e02b43ac1185ebd580ed25b3a2fe63603e76acf0520018a0c66dc4",
+  "previous_source_commit": "3c87debcd4d50cac88981ec39255c3c6890fe8fa",
+  "previous_cases": 2569,
+  "previous_files": 70,
+  "previous_case_archive": "docs/validation/word-vba-list-levels-20261120/regression-evidence.tar.xz",
+  "previous_case_member": "runtime/word-office-final/cases.json.gz",
+  "previous_case_member_sha256": "fd156808dba32ae43330da1cd82d4be72cfa886cedaf48a37256133e8c094828",
+  "format_baseline": "3ee4e3622c9a2198d384ed1cb296ab092a8838d0",
+  "group_counts": {
+    "previous_gate": 70,
+    "all_current_office_vba": 50,
+    "incoming_spacing": 3,
+    "paragraph_controls": 3,
+    "style_identity": 1,
+    "style_consumers": 3
+  },
+  "file_count": 80,
+  "files": [
+    {
+      "path": "test/numbering_collision_test.dart",
+      "groups": [
+        "previous_gate"
+      ],
+      "previous_case_count": 8,
+      "previous_source_sha256": "9b05f637b3965c98f2b16062c4052e8d18310db8724aab04a8f28e7f339e78ea"
+    },
+    {
+      "path": "test/odt_paragraph_properties_test.dart",
+      "groups": [
+        "previous_gate"
+      ],
+      "previous_case_count": 18,
+      "previous_source_sha256": "35b492937fc7d931111e184a0ab2d0e54463e99134af557816bb33d5e6458cce"
+    },
+    {
+      "path": "test/odt_tab_stop_fidelity_test.dart",
+      "groups": [
+        "previous_gate"
+      ],
+      "previous_case_count": 8,
+      "previous_source_sha256": "9682d19df64ee294ea7562935ecf089492443e1ada5738b52923073cf396ceed"
+    },
+    {
+      "path": "test/odt_tab_style_cache_test.dart",
+      "groups": [
+        "previous_gate"
+      ],
+      "previous_case_count": 5,
+      "previous_source_sha256": "5f9c526a0f76c05753dcbd8bdae5580f422d351583d117c544f9de8ed1922861"
+    },
+    {
+      "path": "test/odt_tab_style_fidelity_test.dart",
+      "groups": [
+        "previous_gate"
+      ],
+      "previous_case_count": 2,
+      "previous_source_sha256": "b089913a11c24f909961161b2d4787d46335cb3a29a21c5a8750baa7e751d13b"
+    },
+    {
+      "path": "test/office_macro_expansion_test.dart",
+      "groups": [
+        "previous_gate"
+      ],
+      "previous_case_count": 5,
+      "previous_source_sha256": "fad01bcbf47b0e7fe01967046ecbe272b72644cde6116f29c40eb063b6a6a42a"
+    },
+    {
+      "path": "test/office_macro_runtime_test.dart",
+      "groups": [
+        "previous_gate"
+      ],
+      "previous_case_count": 25,
+      "previous_source_sha256": "6eba9260afca9b9d16d59ee4c35d122b9076dda4e0dd936e76cb1047e6792e77"
+    },
+    {
+      "path": "test/office_macro_word_line_spacing_test.dart",
+      "groups": [
+        "incoming_spacing"
+      ]
+    },
+    {
+      "path": "test/office_macro_word_list_format_test.dart",
+      "groups": [
+        "previous_gate"
+      ],
+      "previous_case_count": 67,
+      "previous_source_sha256": "ef5a82c1a3d14201a2a32917a6b95a82c8702c7c927e3d1e67fa7508e0fb0c0c"
+    },
+    {
+      "path": "test/office_macro_word_list_levels_test.dart",
+      "groups": [
+        "previous_gate"
+      ],
+      "previous_case_count": 101,
+      "previous_source_sha256": "742a9a1d79cc4d73b6a5ff4df7fc506b8a766b2dba323c2b5d8201aae70018a8"
+    },
+    {
+      "path": "test/office_macro_word_paragraph_controls_test.dart",
+      "groups": [
+        "paragraph_controls"
+      ]
+    },
+    {
+      "path": "test/office_macro_word_revision_guard_test.dart",
+      "groups": [
+        "previous_gate"
+      ],
+      "previous_case_count": 2,
+      "previous_source_sha256": "ca6e36618c597818637f9d1d852387361abff9a6659326424a3089350ec19af8"
+    },
+    {
+      "path": "test/office_macro_word_tab_stops_test.dart",
+      "groups": [
+        "previous_gate"
+      ],
+      "previous_case_count": 40,
+      "previous_source_sha256": "9f3d1d95c15b099b68812527a6813bb7e096a5f27cae845cdbc75b4b8b3210a2"
+    },
+    {
+      "path": "test/office_operations_test.dart",
+      "groups": [
+        "previous_gate"
+      ],
+      "previous_case_count": 27,
+      "previous_source_sha256": "e246fccc01040572a4d6756925d551bd6c7bc5999670374784171692a395d0e6"
+    },
+    {
+      "path": "test/office_vba_arguments_integration_test.dart",
+      "groups": [
+        "previous_gate",
+        "all_current_office_vba"
+      ],
+      "previous_case_count": 16,
+      "previous_source_sha256": "d9b1cf19df3f009e48ab634215b4d322f95422545cce69639b758667740c36b6"
+    },
+    {
+      "path": "test/office_vba_arguments_test.dart",
+      "groups": [
+        "previous_gate",
+        "all_current_office_vba"
+      ],
+      "previous_case_count": 68,
+      "previous_source_sha256": "774797ca2b63e08d8b64d2d1792d59c9a97fdc1b44460876e673b5f69edfe74a"
+    },
+    {
+      "path": "test/office_vba_arrays_boundaries_test.dart",
+      "groups": [
+        "previous_gate",
+        "all_current_office_vba"
+      ],
+      "previous_case_count": 144,
+      "previous_source_sha256": "17a36c85437c234a9683547c29fd77823dd3af5fca36ff51c8120c6155e22b01"
+    },
+    {
+      "path": "test/office_vba_arrays_integration_test.dart",
+      "groups": [
+        "previous_gate",
+        "all_current_office_vba"
+      ],
+      "previous_case_count": 11,
+      "previous_source_sha256": "3540195984eda2cd9067b9efaf9313662294f789d5886f47c0e9b499a9cf3ed3"
+    },
+    {
+      "path": "test/office_vba_arrays_test.dart",
+      "groups": [
+        "previous_gate",
+        "all_current_office_vba"
+      ],
+      "previous_case_count": 32,
+      "previous_source_sha256": "cd98c732ef4b8d0c055906332cedfe7ee5798118b28068daf3d3b6a680acb95e"
+    },
+    {
+      "path": "test/office_vba_conformance_test.dart",
+      "groups": [
+        "previous_gate",
+        "all_current_office_vba"
+      ],
+      "previous_case_count": 115,
+      "previous_source_sha256": "9d828c2a1c46e028e04ccf40ddb940db7d26fb2ee16726ad77dcdb3d4f289c35"
+    },
+    {
+      "path": "test/office_vba_control_flow_boundaries_test.dart",
+      "groups": [
+        "previous_gate",
+        "all_current_office_vba"
+      ],
+      "previous_case_count": 42,
+      "previous_source_sha256": "5bddaf779a6d6776e92c2a0fe88f7e90540ef6b8f4ba10fc3bad3a3972eb6da7"
+    },
+    {
+      "path": "test/office_vba_control_flow_integration_test.dart",
+      "groups": [
+        "previous_gate",
+        "all_current_office_vba"
+      ],
+      "previous_case_count": 9,
+      "previous_source_sha256": "e52b56e5343c5c1f0e7a11a0087bf321890bc3a4fdd5767c0b4eb9c6225adf94"
+    },
+    {
+      "path": "test/office_vba_control_flow_test.dart",
+      "groups": [
+        "previous_gate",
+        "all_current_office_vba"
+      ],
+      "previous_case_count": 35,
+      "previous_source_sha256": "8cde7af243d4bb7d7cab59d29318f8e8e48b71b71cf1b71ad673771b3e6325e2"
+    },
+    {
+      "path": "test/office_vba_dynamic_arrays_integration_test.dart",
+      "groups": [
+        "previous_gate",
+        "all_current_office_vba"
+      ],
+      "previous_case_count": 11,
+      "previous_source_sha256": "34a87ce3d0173c801b49701384b356b6d4f281dad619149af60e27dab364604c"
+    },
+    {
+      "path": "test/office_vba_dynamic_arrays_test.dart",
+      "groups": [
+        "previous_gate",
+        "all_current_office_vba"
+      ],
+      "previous_case_count": 50,
+      "previous_source_sha256": "766476e5932aea4f97c98318a37145b180613327845759d58a3f5205d7997397"
+    },
+    {
+      "path": "test/office_vba_integration_test.dart",
+      "groups": [
+        "previous_gate",
+        "all_current_office_vba"
+      ],
+      "previous_case_count": 12,
+      "previous_source_sha256": "8c227d8f20ee48c15f032691d331266dd4fbb7fe6ca32e5540a8a38c1f50a4e9"
+    },
+    {
+      "path": "test/office_vba_language_test.dart",
+      "groups": [
+        "previous_gate",
+        "all_current_office_vba"
+      ],
+      "previous_case_count": 55,
+      "previous_source_sha256": "d7cf211e044102338050deeb54fcd2289be6264be9f89da59bd4956962e136ea"
+    },
+    {
+      "path": "test/office_vba_powerpoint_cli_test.dart",
+      "groups": [
+        "previous_gate",
+        "all_current_office_vba"
+      ],
+      "previous_case_count": 2,
+      "previous_source_sha256": "6d71f80bec75a2bf1bc1f964015e3587ddfc9a3d16a77c70a256f4cd66298cb0"
+    },
+    {
+      "path": "test/office_vba_powerpoint_conformance_test.dart",
+      "groups": [
+        "previous_gate",
+        "all_current_office_vba"
+      ],
+      "previous_case_count": 24,
+      "previous_source_sha256": "3676b9852387576c210c7870b6c2d13285e4ead122a4fca0507ed8c400e31b74"
+    },
+    {
+      "path": "test/office_vba_powerpoint_integration_test.dart",
+      "groups": [
+        "previous_gate",
+        "all_current_office_vba"
+      ],
+      "previous_case_count": 7,
+      "previous_source_sha256": "5fdc4a8eb32e4d4ccaf5cac967fbd8986a07620edd8973dd06c4e8fa557466ec"
+    },
+    {
+      "path": "test/office_vba_powerpoint_layout_integration_test.dart",
+      "groups": [
+        "previous_gate",
+        "all_current_office_vba"
+      ],
+      "previous_case_count": 46,
+      "previous_source_sha256": "272b899bbc4a300003432ec4125d31f2c0432a66f667875003241ea7cdc8b6c7"
+    },
+    {
+      "path": "test/office_vba_powerpoint_layout_test.dart",
+      "groups": [
+        "previous_gate",
+        "all_current_office_vba"
+      ],
+      "previous_case_count": 41,
+      "previous_source_sha256": "2abd7760303802ec243722e1c889590a31b29551fb41b3eebe456e0954b1efb3"
+    },
+    {
+      "path": "test/office_vba_powerpoint_margins_integration_test.dart",
+      "groups": [
+        "previous_gate",
+        "all_current_office_vba"
+      ],
+      "previous_case_count": 16,
+      "previous_source_sha256": "0dcdedffbe7ed9ab020b1ff94f4f90dd828328ecc4e9b8e24e7b001cc8ee9a8b"
+    },
+    {
+      "path": "test/office_vba_powerpoint_margins_test.dart",
+      "groups": [
+        "previous_gate",
+        "all_current_office_vba"
+      ],
+      "previous_case_count": 27,
+      "previous_source_sha256": "d4c7a400991e6bf754e13404d4291187222e3a5783cbbf5b147d7de443973d78"
+    },
+    {
+      "path": "test/office_vba_powerpoint_test.dart",
+      "groups": [
+        "previous_gate",
+        "all_current_office_vba"
+      ],
+      "previous_case_count": 63,
+      "previous_source_sha256": "bcc4cc563416ff3d6f233ed9f88da578a0c8572e6af5894b1acd6f843bbb71d1"
+    },
+    {
+      "path": "test/office_vba_procedure_boundaries_test.dart",
+      "groups": [
+        "previous_gate",
+        "all_current_office_vba"
+      ],
+      "previous_case_count": 19,
+      "previous_source_sha256": "c851c00d20bd61e8c3d9c81c6f5f542c225dfd5275fd66c859250eb7c90fe09e"
+    },
+    {
+      "path": "test/office_vba_procedures_integration_test.dart",
+      "groups": [
+        "previous_gate",
+        "all_current_office_vba"
+      ],
+      "previous_case_count": 10,
+      "previous_source_sha256": "9f7b5f864e3203faed9d18f774580bc528354747e4a47b81ec71f39075bcf7f5"
+    },
+    {
+      "path": "test/office_vba_procedures_test.dart",
+      "groups": [
+        "previous_gate",
+        "all_current_office_vba"
+      ],
+      "previous_case_count": 26,
+      "previous_source_sha256": "35f7b914ac211518b99c517ed77dbfd8d13e3156df50bcc82bee2653ba5ed18a"
+    },
+    {
+      "path": "test/office_vba_string_intrinsics_integration_test.dart",
+      "groups": [
+        "previous_gate",
+        "all_current_office_vba"
+      ],
+      "previous_case_count": 11,
+      "previous_source_sha256": "197f639911a80b69c8b5e1d423ac91d6e3af383df717a212e0cb0b19bfade813"
+    },
+    {
+      "path": "test/office_vba_string_intrinsics_test.dart",
+      "groups": [
+        "previous_gate",
+        "all_current_office_vba"
+      ],
+      "previous_case_count": 102,
+      "previous_source_sha256": "0f46a552571734be23a5c8e8f1a12d1e0199f07bb1503f68985b09841b435f6d"
+    },
+    {
+      "path": "test/office_vba_variant_conformance_test.dart",
+      "groups": [
+        "previous_gate",
+        "all_current_office_vba"
+      ],
+      "previous_case_count": 162,
+      "previous_source_sha256": "3e85379ea1bdb1c4b98402974a171fc0c53e2c475dca45b0a0d50100ca5258c5"
+    },
+    {
+      "path": "test/office_vba_variant_conversions_integration_test.dart",
+      "groups": [
+        "previous_gate",
+        "all_current_office_vba"
+      ],
+      "previous_case_count": 9,
+      "previous_source_sha256": "0cc53d64df0f34ee332998bf0cc7840887902ab65b844616767571a6df3287f2"
+    },
+    {
+      "path": "test/office_vba_variant_conversions_test.dart",
+      "groups": [
+        "previous_gate",
+        "all_current_office_vba"
+      ],
+      "previous_case_count": 239,
+      "previous_source_sha256": "519264969e41ae97a1b31b9316f1ac99698c58bd48ff9f469aeca071d92db843"
+    },
+    {
+      "path": "test/office_vba_word_argument_shapes_test.dart",
+      "groups": [
+        "previous_gate",
+        "all_current_office_vba"
+      ],
+      "previous_case_count": 8,
+      "previous_source_sha256": "2fe81c9fd919218288207d74645de57a2e32a41bcddd21b8b438a892721fe41f"
+    },
+    {
+      "path": "test/office_vba_word_cli_test.dart",
+      "groups": [
+        "previous_gate",
+        "all_current_office_vba"
+      ],
+      "previous_case_count": 5,
+      "previous_source_sha256": "9fdd637cb3dc9bb2d8139194e4fb8d085e885c4cd8130e37ecbaa0d06c9934cd"
+    },
+    {
+      "path": "test/office_vba_word_conformance_test.dart",
+      "groups": [
+        "previous_gate",
+        "all_current_office_vba"
+      ],
+      "previous_case_count": 46,
+      "previous_source_sha256": "bb01e8a1495694f7dc3508261cb16d9cc18676f92d11706d844af7e2d6f0db37"
+    },
+    {
+      "path": "test/office_vba_word_extensions_test.dart",
+      "groups": [
+        "previous_gate",
+        "all_current_office_vba"
+      ],
+      "previous_case_count": 30,
+      "previous_source_sha256": "da97171ab3d096e4f167bbad0558c074674e40d55ecdce19f34e3c55bac3d216"
+    },
+    {
+      "path": "test/office_vba_word_format_integration_test.dart",
+      "groups": [
+        "previous_gate",
+        "all_current_office_vba"
+      ],
+      "previous_case_count": 2,
+      "previous_source_sha256": "c63462646896690014060175c38d62517b12b21703c74ec30fd1eda37a9f0ac3"
+    },
+    {
+      "path": "test/office_vba_word_integration_test.dart",
+      "groups": [
+        "previous_gate",
+        "all_current_office_vba"
+      ],
+      "previous_case_count": 14,
+      "previous_source_sha256": "5c90794d61f6ea64ec5b7e8966d5b84e02b1214f22a238b3db0f8eb02cfebeaf"
+    },
+    {
+      "path": "test/office_vba_word_language_test.dart",
+      "groups": [
+        "previous_gate",
+        "all_current_office_vba"
+      ],
+      "previous_case_count": 156,
+      "previous_source_sha256": "2900ef6d789b4026d6b31ffc2e8001b6dfcea57ea23d2618ec6501336bb0f7cc"
+    },
+    {
+      "path": "test/office_vba_word_line_spacing_integration_test.dart",
+      "groups": [
+        "all_current_office_vba",
+        "incoming_spacing"
+      ]
+    },
+    {
+      "path": "test/office_vba_word_line_spacing_test.dart",
+      "groups": [
+        "all_current_office_vba",
+        "incoming_spacing"
+      ]
+    },
+    {
+      "path": "test/office_vba_word_list_levels_integration_test.dart",
+      "groups": [
+        "previous_gate",
+        "all_current_office_vba"
+      ],
+      "previous_case_count": 44,
+      "previous_source_sha256": "d8a83f0b13605f9eabc06b89fe72abd601fd9d2e59e86d7e7672e939474e371b"
+    },
+    {
+      "path": "test/office_vba_word_list_levels_test.dart",
+      "groups": [
+        "previous_gate",
+        "all_current_office_vba"
+      ],
+      "previous_case_count": 88,
+      "previous_source_sha256": "fce79a40639f1badc7e71f4ac71d58c689e48b081a1d12b343433d61b465fab2"
+    },
+    {
+      "path": "test/office_vba_word_lists_integration_test.dart",
+      "groups": [
+        "previous_gate",
+        "all_current_office_vba"
+      ],
+      "previous_case_count": 22,
+      "previous_source_sha256": "55a13de52913f218a96f78765be0e364d7a807b59abff61288193bfe043b6d7d"
+    },
+    {
+      "path": "test/office_vba_word_lists_test.dart",
+      "groups": [
+        "previous_gate",
+        "all_current_office_vba"
+      ],
+      "previous_case_count": 95,
+      "previous_source_sha256": "e7809245cf5d675d8799d414e97633eaced57c91f873143ac9a4126363dd5edd"
+    },
+    {
+      "path": "test/office_vba_word_paragraph_controls_integration_test.dart",
+      "groups": [
+        "all_current_office_vba",
+        "paragraph_controls"
+      ]
+    },
+    {
+      "path": "test/office_vba_word_paragraph_controls_test.dart",
+      "groups": [
+        "all_current_office_vba",
+        "paragraph_controls"
+      ]
+    },
+    {
+      "path": "test/office_vba_word_paragraph_layout_integration_test.dart",
+      "groups": [
+        "previous_gate",
+        "all_current_office_vba"
+      ],
+      "previous_case_count": 17,
+      "previous_source_sha256": "f83570da9584e5d830490473cd29a6cae7ac7242556843fc60260f79cd8d190f"
+    },
+    {
+      "path": "test/office_vba_word_paragraph_layout_test.dart",
+      "groups": [
+        "previous_gate",
+        "all_current_office_vba"
+      ],
+      "previous_case_count": 37,
+      "previous_source_sha256": "4a0b971ce336b970798ac32769c5b81429d266069d2da1cb402e7c748cbe385b"
+    },
+    {
+      "path": "test/office_vba_word_tabstops_integration_test.dart",
+      "groups": [
+        "previous_gate",
+        "all_current_office_vba"
+      ],
+      "previous_case_count": 10,
+      "previous_source_sha256": "7425b670143dbea6f709ea5838974c2352ff56f130775dff2d189cbd0859e859"
+    },
+    {
+      "path": "test/office_vba_word_tabstops_test.dart",
+      "groups": [
+        "previous_gate",
+        "all_current_office_vba"
+      ],
+      "previous_case_count": 85,
+      "previous_source_sha256": "a9a5f4b2c88bfed6b00f2e1e3aceead68ea7ad8b2a98736ee84819beec07b0f2"
+    },
+    {
+      "path": "test/office_vba_word_typography_integration_test.dart",
+      "groups": [
+        "previous_gate",
+        "all_current_office_vba"
+      ],
+      "previous_case_count": 30,
+      "previous_source_sha256": "2b40e20ff00ddf73aee97545ae20b1d8e273f458b3a69faae6c49955dfe9430e"
+    },
+    {
+      "path": "test/office_vba_word_typography_test.dart",
+      "groups": [
+        "previous_gate",
+        "all_current_office_vba"
+      ],
+      "previous_case_count": 48,
+      "previous_source_sha256": "36ae1d2889e050bb223bc8478e37bbfab83e5faa4459a6f1e2c355aaa7781a84"
+    },
+    {
+      "path": "test/style_cascade_test.dart",
+      "groups": [
+        "previous_gate"
+      ],
+      "previous_case_count": 11,
+      "previous_source_sha256": "ee0cdd3f9d55111c92998d3dd4e0202b7241ee6b392fe91afc3f9549d45a5ed5"
+    },
+    {
+      "path": "test/styleless_import_fidelity_test.dart",
+      "groups": [
+        "previous_gate"
+      ],
+      "previous_case_count": 5,
+      "previous_source_sha256": "02c7f3387910815d66565dc271797de9fcf716f18dc6f692815454d975ca35bd"
+    },
+    {
+      "path": "test/word_comment_proofing_styles_test.dart",
+      "groups": [
+        "style_consumers"
+      ],
+      "rationale": "Shared style map and basedOn chains for comment paragraph/character proofing; import, refresh and repeated saves."
+    },
+    {
+      "path": "test/word_compatibility_fidelity_test.dart",
+      "groups": [
+        "previous_gate"
+      ],
+      "previous_case_count": 5,
+      "previous_source_sha256": "383dbe4b6d69da7f88404b8547fed7cc51c2fe3a6b0ec09644aa17d6f1fcd00e"
+    },
+    {
+      "path": "test/word_fidelity_test.dart",
+      "groups": [
+        "previous_gate"
+      ],
+      "previous_case_count": 19,
+      "previous_source_sha256": "b40e05da6a47cdf4cacf609f29b05bc328538b4a72aad6cdf554b1fb3c97fd1b"
+    },
+    {
+      "path": "test/word_heading_apply_test.dart",
+      "groups": [
+        "style_consumers"
+      ],
+      "rationale": "Native paragraph style identification and basedOn inheritance when applying a heading."
+    },
+    {
+      "path": "test/word_list_numbering_snapshot_test.dart",
+      "groups": [
+        "previous_gate"
+      ],
+      "previous_case_count": 5,
+      "previous_source_sha256": "708219ae0c3c44e72c9ac7a67d20a42392b7b0bc0a3e25336371586221f3eb86"
+    },
+    {
+      "path": "test/word_package_preservation_test.dart",
+      "groups": [
+        "previous_gate"
+      ],
+      "previous_case_count": 32,
+      "previous_source_sha256": "57e69f5351569065e290945843a41bdb262e5f48267c624cc97512da80a0d2e9"
+    },
+    {
+      "path": "test/word_paragraph_mark_layout_test.dart",
+      "groups": [
+        "previous_gate"
+      ],
+      "previous_case_count": 3,
+      "previous_source_sha256": "b8769c7fbc22bcf789a3faea9a0df6957d573c6a210fbd6c3787032e2b99159b"
+    },
+    {
+      "path": "test/word_paragraph_style_identity_test.dart",
+      "groups": [
+        "style_identity"
+      ]
+    },
+    {
+      "path": "test/word_proofing_inheritance_test.dart",
+      "groups": [
+        "previous_gate"
+      ],
+      "previous_case_count": 16,
+      "previous_source_sha256": "88c3e204393a024d3aeb095f2fe215216b3d35a35f11af168351c692e43bab4c"
+    },
+    {
+      "path": "test/word_referenced_styles_and_breaks_test.dart",
+      "groups": [
+        "previous_gate"
+      ],
+      "previous_case_count": 2,
+      "previous_source_sha256": "519c50b0e09a5e74e9c3196e13eee25ece7074b35e51a228ae5b9956404f4edf"
+    },
+    {
+      "path": "test/word_style_introduction_test.dart",
+      "groups": [
+        "previous_gate"
+      ],
+      "previous_case_count": 4,
+      "previous_source_sha256": "5b82af9baf7346f45252e08dc95cc99365555b2f355cb4fe68c7f6e0a686d4b1"
+    },
+    {
+      "path": "test/word_styles_layout_test.dart",
+      "groups": [
+        "previous_gate"
+      ],
+      "previous_case_count": 15,
+      "previous_source_sha256": "8e5d171c763e9e24e36eec0a7c3ecee2444a39317db0123827450744f7db9205"
+    },
+    {
+      "path": "test/word_symbol_char_test.dart",
+      "groups": [
+        "style_consumers"
+      ],
+      "rationale": "Default paragraph and derived-style font inheritance for imported symbol runs; repeated isolate saves."
+    },
+    {
+      "path": "test/xml_namespace_capture_test.dart",
+      "groups": [
+        "previous_gate"
+      ],
+      "previous_case_count": 3,
+      "previous_source_sha256": "b738ee09a955bf35d16e4fcbe9a97db5482270d76627a2494150a3ef6114859c"
+    }
+  ],
+  "coverage_note": "Union of the complete prior Word/Office gate, every current office_vba_* module, incoming spacing and new controls/identity modules, plus three direct consumers of the changed shared style identity/basedOn resolver. No unrelated broad suite expansion.",
+  "runtime_contract": "Original separate test files through genuine package:test, VM platform, serial suite scheduling; final compiler and runner flags recorded verbatim by the invocation."
+}

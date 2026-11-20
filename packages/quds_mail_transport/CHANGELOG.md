@@ -2,6 +2,19 @@
 
 ## Unreleased
 
+- Certify documented Gmail/Graph HTTP 429 flag-update rejections as no effect,
+  preserving retry delay evidence and the separate submission outcome rules.
+  Unfamiliar post-dispatch failures remain uncertain.
+
+- Treat dispatched cloud message-mutation rate limits and unfamiliar client
+  errors as uncertain; only explicit request, authorization, resource or
+  precondition rejections certify no mutation. Preserve the separate submission
+  rejection and Retry-After contract.
+
+- Report explicit mutation-boundary evidence for failed IMAP, EWS, Gmail and
+  Microsoft 365 operations. Foreground bulk commands can distinguish definite
+  no-write failures from uncertain writes without guessing from a problem code.
+
 - Add bounded newest-first IMAP header browsing with fixed initial UID ceilings,
   separately scoped descending cursors and explicit UIDVALIDITY conflicts.
   Ascending archive retrieval and durable synchronization remain independent.

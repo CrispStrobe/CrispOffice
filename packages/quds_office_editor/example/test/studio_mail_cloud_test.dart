@@ -69,13 +69,16 @@ final class _Provider extends Fake implements MailCloudProvider {
     String id,
     String subject, {
     MailMessageFlags? flags = const MailMessageFlags(),
+    MailEnvelope? envelope,
   }) => MailHeaderRecord(
     id: MailMessageId(id),
     remote: identity(id == 'cloud-message' ? 'remote-message' : id),
-    envelope: MailEnvelope(
-      subject: subject,
-      from: [const MailAddress('writer@example.test')],
-    ),
+    envelope:
+        envelope ??
+        MailEnvelope(
+          subject: subject,
+          from: [const MailAddress('writer@example.test')],
+        ),
     flags: flags,
   );
 
@@ -393,6 +396,75 @@ MailArchiveRunReport _folderReport() => MailArchiveRunReport(
 void main() {
   for (final service in MailCloudService.values) {
     testWidgets(
+      '${service.name} structured search uses headers without provider work',
+      (tester) async {
+        final date = DateTime(2026, 11, 20, 12);
+        final harness = _Harness()
+          ..configureProvider = (provider) {
+            provider.headerPage = (mailbox, cursor) => MailHeaderPage(
+              messages: [
+                provider.header(
+                  'cloud-message',
+                  'Quarterly report',
+                  flags: const MailMessageFlags(isFlagged: true),
+                  envelope: MailEnvelope(
+                    subject: 'Quarterly report',
+                    from: const [
+                      MailAddress('writer@example.test', displayName: 'Writer'),
+                    ],
+                    to: const [
+                      MailAddress(
+                        'team@example.test',
+                        displayName: 'Project Team',
+                      ),
+                    ],
+                    cc: const [
+                      MailAddress(
+                        'reviewer@example.test',
+                        displayName: 'Reviewer',
+                      ),
+                    ],
+                    bcc: const [MailAddress('hidden@example.test')],
+                    sentAt: date,
+                  ),
+                ),
+                provider.header('two', 'Quarterly report', flags: null),
+              ],
+            );
+          };
+        await _show(tester, harness, service: service);
+        await _connect(tester);
+        final rows = tester
+            .widget<MailMessageList>(find.byType(MailMessageList))
+            .items;
+        expect(rows.first.date, date);
+        expect(rows.first.to, contains('Project Team <team@example.test>'));
+        expect(rows.first.cc, contains('reviewer@example.test'));
+        await tester.enterText(
+          _field('mail-list-search'),
+          'from:writer to:"Project Team" cc:reviewer subject:"Quarterly report" '
+          'on:2026-11-20 is:unread is:flagged',
+        );
+        await _pump(tester);
+        expect(_field('ews-message-cloud-message'), findsOneWidget);
+        expect(_field('ews-message-two'), findsNothing);
+        await tester.enterText(
+          _field('mail-list-search'),
+          'to:hidden@example.test',
+        );
+        await _pump(tester);
+        expect(
+          find.text(_strings.mailMessageListStrings.noMatches),
+          findsOneWidget,
+        );
+        expect(harness.provider!.cursors, hasLength(1));
+        expect(harness.provider!.reads, 0);
+        expect(harness.provider!.commands, isEmpty);
+        expect(tester.takeException(), isNull);
+      },
+    );
+
+    testWidgets(
       '${service.name} confirmed flag leaves unknown read state untouched',
       (tester) async {
         final harness = _Harness()
@@ -629,6 +701,7 @@ void main() {
         await _show(tester, harness, service: service);
         await _connect(tester);
         await tester.tap(_field('mail-list-unread'));
+        await _pump(tester);
         await tester.tap(_field('ews-message-cloud-message'));
         await _pump(tester);
         await tester.tap(find.byTooltip(_strings.markRead));
