@@ -1,0 +1,393 @@
+{
+  "head": "46e98c8c7ec65e67e8f71dc386804693e8ef1163",
+  "tree": "bdb862026d5a641eff60c842b2ebb34d4df876ad",
+  "branches": 22,
+  "recent_prs": 30,
+  "upstream": [
+    {
+      "ref": "upstream/ci/flutter-workspace",
+      "sha": "aca2f66941832bd0b19b436baeab1656a1b7de98",
+      "ancestor": true
+    },
+    {
+      "ref": "upstream/cursor/class-certificates-2db8",
+      "sha": "f45099688e7a3f67a1302efdb442830d052f2240",
+      "ancestor": true
+    },
+    {
+      "ref": "upstream/cursor/cloud-agent-1790580069020-0rk1h",
+      "sha": "9930be8df44ffe117fb22778c514eea0ee73ce21",
+      "ancestor": true
+    },
+    {
+      "ref": "upstream/main",
+      "sha": "15c5d29b63fb17a93c7fb3426a8fd4d95a32f1ba",
+      "ancestor": true
+    }
+  ],
+  "dispositions": [
+    {
+      "kind": "branch",
+      "label": "codex/odt-field-continuation-20261117",
+      "head": "c34945761e7991f5fe49037d79529acdd260b31c",
+      "disposition": "changed-path equivalent",
+      "comparison_base": "e3a38789359adaa33b2da1345c952fa1c2d8aebb",
+      "changed_paths": [
+        "docs/odf-export-fidelity.md",
+        "docs/validation/german-proofing-recovery-20261117/README.md",
+        "docs/validation/odt-field-continuation-20261117/README.md",
+        "docs/validation/odt-field-continuation-20261117/audit-portability.json",
+        "docs/validation/odt-field-continuation-20261117/audit_recovery.py",
+        "docs/validation/odt-field-continuation-20261117/evidence-index.json",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-analysis.inputs.json.gz",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-analysis.json",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-analysis.stderr.gz",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-analysis.stdout.gz",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-baseline.inputs.json.gz",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-baseline.json",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-baseline.stderr.gz",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-baseline.stdout.gz",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-node.inputs.json.gz",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-node.json",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-node.stderr.gz",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-node.stdout.gz",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-vm.inputs.json.gz",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-vm.json",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-vm.stderr.gz",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-vm.stdout.gz",
+        "docs/validation/odt-field-continuation-20261117/package-config.json",
+        "docs/validation/odt-field-continuation-20261117/pull-request-draft.md",
+        "docs/validation/odt-field-continuation-20261117/recovered-original-source.commit",
+        "docs/validation/odt-field-continuation-20261117/recovery-audit.json",
+        "docs/validation/odt-field-continuation-20261117/resolved-pubspec.lock",
+        "docs/validation/odt-field-continuation-20261117/run_logged.py",
+        "docs/validation/odt-field-continuation-20261117/runtime.json",
+        "docs/validation/odt-field-continuation-20261117/source-recovery.json",
+        "docs/validation/odt-field-continuation-20261117/test-workspace-pubspec.yaml",
+        "docs/validation/odt-field-continuation-20261117/verification.json",
+        "docs/validation/odt-field-continuation-20261117/verify_evidence.py",
+        "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart",
+        "packages/quds_office_engine/lib/src/word/serial/word_deserializer.dart",
+        "packages/quds_office_engine/test/odt_imported_field_fidelity_test.dart",
+        "packages/quds_office_engine/test/odt_page_field_fidelity_test.dart"
+      ],
+      "equivalent_ancestor": "b5b1fa99228f6f1862af0bc4efba6e527c2bec43"
+    },
+    {
+      "kind": "branch",
+      "label": "codex/word-powerpoint-vba-expansion-20261120",
+      "head": "0f6239396ff3328473a5f57c280b982d57e33a08",
+      "disposition": "ancestor"
+    },
+    {
+      "kind": "branch",
+      "label": "codex/word-vba-compat-20261120-next",
+      "head": "650afb7d117337bab943af05d63a250a7e90c058",
+      "disposition": "ancestor"
+    },
+    {
+      "kind": "branch",
+      "label": "codex/word-vba-list-levels-20261120",
+      "head": "46e98c8c7ec65e67e8f71dc386804693e8ef1163",
+      "disposition": "ancestor"
+    },
+    {
+      "kind": "branch",
+      "label": "codex/word-vba-ranges-20261120",
+      "head": "22e5960e99915e81a1b5997058cac44dac27ba1a",
+      "disposition": "ancestor"
+    },
+    {
+      "kind": "branch",
+      "label": "codex/zotero-research-tables-20261120",
+      "head": "34491bca22a2989dd89d9da3c853f5e57de5464f",
+      "disposition": "ancestor"
+    },
+    {
+      "kind": "branch",
+      "label": "docs/ods-color-scale",
+      "head": "58fdddfbcf198a8c0e38e32f6fcc9d6604e95283",
+      "disposition": "exact-tree equivalent",
+      "equivalent_ancestor": "4eaca83b192897edad82658107dfeb5bcbed0920"
+    },
+    {
+      "kind": "branch",
+      "label": "docs/ods-data-bar",
+      "head": "69d14f84cabd3931b7640c1654b401c89faba766",
+      "disposition": "exact-tree equivalent",
+      "equivalent_ancestor": "52c73ae4dbadf2ca00a5d619144350ccc353b31a"
+    },
+    {
+      "kind": "branch",
+      "label": "feat/ods-color-scale",
+      "head": "74ce9ffb816c70c0d2ae50b91ec52a614f26d688",
+      "disposition": "exact-tree equivalent",
+      "equivalent_ancestor": "4584d5f319aab198f1d705f48b4d6647e6cbabea"
+    },
+    {
+      "kind": "branch",
+      "label": "feat/ods-data-bar",
+      "head": "0a53b8a70128870f3e1df6d18cdb177bb64290ee",
+      "disposition": "exact-tree equivalent",
+      "equivalent_ancestor": "b3f41eb4b4bca8ca13676b4114891ea6d9185043"
+    },
+    {
+      "kind": "branch",
+      "label": "feat/ods-dynamic-validation-links",
+      "head": "68a0db23408e4c95d6d283219504c79aea33a6fe",
+      "disposition": "exact-tree equivalent",
+      "equivalent_ancestor": "d754bf15b07a24c8a86c8dce339ca749fecd9531"
+    },
+    {
+      "kind": "branch",
+      "label": "feat/ods-icon-sets",
+      "head": "005c708e9f747cb46cf02e12c869b0a2f85ac824",
+      "disposition": "exact-tree equivalent",
+      "equivalent_ancestor": "c84d5e16024c502f6c451fd04b9807b1e65f20d3"
+    },
+    {
+      "kind": "branch",
+      "label": "feat/ods-time-period-conditions",
+      "head": "7ef09f2408f467c65427700e65907531ecb26acb",
+      "disposition": "exact-tree equivalent",
+      "equivalent_ancestor": "34dc6b6806869570e9ec342e4d7ee0d6951c0ba6"
+    },
+    {
+      "kind": "branch",
+      "label": "fix/mail-credential-stores-chrome-20261120",
+      "head": "a652a205e6daf6b4b8e3baec04db1c1b52fabd0d",
+      "disposition": "ancestor"
+    },
+    {
+      "kind": "branch",
+      "label": "integrate/office-union-148",
+      "head": "3abf8f43b0e79c10271bbd046f391e462b8fe6b9",
+      "disposition": "exact-tree equivalent",
+      "equivalent_ancestor": "4b2b4e78839d2997a583b7ab1346e2fa537a8ac4"
+    },
+    {
+      "kind": "branch",
+      "label": "integrate/recent-pptx",
+      "head": "4f5c153774ab7492430c2b68653c54e0c08dc2ad",
+      "disposition": "ancestor"
+    },
+    {
+      "kind": "branch",
+      "label": "main",
+      "head": "acca1cbcba2a322ad1ae2d7d9fb415110ce22554",
+      "disposition": "ancestor"
+    },
+    {
+      "kind": "branch",
+      "label": "work/mail-accounts-20261120",
+      "head": "86e44e87f829b0309ea7b84fd5d390f596fe7f26",
+      "disposition": "ancestor"
+    },
+    {
+      "kind": "branch",
+      "label": "work/mail-multiple-drafts-20261120",
+      "head": "b3abdf3b4628a8a703857d69b8f11cd21bc502e1",
+      "disposition": "ancestor"
+    },
+    {
+      "kind": "branch",
+      "label": "work/mail-offline-accounts-20261120",
+      "head": "46e98c8c7ec65e67e8f71dc386804693e8ef1163",
+      "disposition": "ancestor"
+    },
+    {
+      "kind": "branch",
+      "label": "work/mail-outbox-20261120",
+      "head": "9443612b024114c424ba2f8146e04050d6e049b0",
+      "disposition": "ancestor"
+    },
+    {
+      "kind": "branch",
+      "label": "work/mail-outbox-management-20261120",
+      "head": "79e11935e16ea1d2fa576ead0712c83f22e15c28",
+      "disposition": "ancestor"
+    },
+    {
+      "kind": "pr",
+      "label": "#260",
+      "head": "46e98c8c7ec65e67e8f71dc386804693e8ef1163",
+      "disposition": "ancestor"
+    },
+    {
+      "kind": "pr",
+      "label": "#258",
+      "head": "fee58398c80ec811f4adfbbaef7ae08598abdda0",
+      "disposition": "ancestor"
+    },
+    {
+      "kind": "pr",
+      "label": "#254",
+      "head": "79e11935e16ea1d2fa576ead0712c83f22e15c28",
+      "disposition": "ancestor"
+    },
+    {
+      "kind": "pr",
+      "label": "#259",
+      "head": "650afb7d117337bab943af05d63a250a7e90c058",
+      "disposition": "ancestor"
+    },
+    {
+      "kind": "pr",
+      "label": "#257",
+      "head": "22e5960e99915e81a1b5997058cac44dac27ba1a",
+      "disposition": "ancestor"
+    },
+    {
+      "kind": "pr",
+      "label": "#249",
+      "head": "a2b87ee3f471da500423055e86ba2614fc053cae",
+      "disposition": "ancestor"
+    },
+    {
+      "kind": "pr",
+      "label": "#256",
+      "head": "34491bca22a2989dd89d9da3c853f5e57de5464f",
+      "disposition": "ancestor"
+    },
+    {
+      "kind": "pr",
+      "label": "#255",
+      "head": "b3abdf3b4628a8a703857d69b8f11cd21bc502e1",
+      "disposition": "ancestor"
+    },
+    {
+      "kind": "pr",
+      "label": "#252",
+      "head": "0f6239396ff3328473a5f57c280b982d57e33a08",
+      "disposition": "ancestor"
+    },
+    {
+      "kind": "pr",
+      "label": "#253",
+      "head": "4b6bc01be2c95008c320b5a26615828191cf1d9e",
+      "disposition": "ancestor"
+    },
+    {
+      "kind": "pr",
+      "label": "#251",
+      "head": "86e44e87f829b0309ea7b84fd5d390f596fe7f26",
+      "disposition": "ancestor"
+    },
+    {
+      "kind": "pr",
+      "label": "#243",
+      "head": "a059c0249a25bef602640c8b8d504bd8da41c619",
+      "disposition": "ancestor"
+    },
+    {
+      "kind": "pr",
+      "label": "#250",
+      "head": "9443612b024114c424ba2f8146e04050d6e049b0",
+      "disposition": "ancestor"
+    },
+    {
+      "kind": "pr",
+      "label": "#248",
+      "head": "56d5fdf15a20ced764561a1ac2429c2c37a6e780",
+      "disposition": "ancestor"
+    },
+    {
+      "kind": "pr",
+      "label": "#238",
+      "head": "40a8f8eb76bd9bf51205fa0cb9f576ba497ad76b",
+      "disposition": "ancestor"
+    },
+    {
+      "kind": "pr",
+      "label": "#240",
+      "head": "6c23d94472f741aceff6aef0de0e6ef847195afe",
+      "disposition": "ancestor"
+    },
+    {
+      "kind": "pr",
+      "label": "#245",
+      "head": "d46d4ef394ed7cafd40bc266c793f8c0df6ec57f",
+      "disposition": "ancestor"
+    },
+    {
+      "kind": "pr",
+      "label": "#247",
+      "head": "baf6d1bc53b611e9fb37082ca69c409e5f8d6381",
+      "disposition": "ancestor"
+    },
+    {
+      "kind": "pr",
+      "label": "#242",
+      "head": "84d02025fade09c80f3f58942b466f4522eb4434",
+      "disposition": "ancestor"
+    },
+    {
+      "kind": "pr",
+      "label": "#246",
+      "head": "d0c9007480ba518022836e017802875614e6205c",
+      "disposition": "ancestor"
+    },
+    {
+      "kind": "pr",
+      "label": "#244",
+      "head": "2fd61c3353dc22ee36ed1bc1a69df470a9423230",
+      "disposition": "ancestor"
+    },
+    {
+      "kind": "pr",
+      "label": "#237",
+      "head": "712d0ea558a01cabff25a83294a29b8d57ec25d4",
+      "disposition": "ancestor"
+    },
+    {
+      "kind": "pr",
+      "label": "#241",
+      "head": "aad737dd79c034b831a8957daa4165c6c64e35e5",
+      "disposition": "ancestor"
+    },
+    {
+      "kind": "pr",
+      "label": "#233",
+      "head": "20b2ecf572f8fd5663a728529da7bf5c7ebbda1d",
+      "disposition": "ancestor"
+    },
+    {
+      "kind": "pr",
+      "label": "#221",
+      "head": "177f29d3f9450a58f41189b462b0814aad37e45c",
+      "disposition": "ancestor"
+    },
+    {
+      "kind": "pr",
+      "label": "#239",
+      "head": "06f119566235aa3765445526f5ffab48832b1a31",
+      "disposition": "ancestor"
+    },
+    {
+      "kind": "pr",
+      "label": "#227",
+      "head": "1ceae221d37e733f0195d35622a05f896a2d13a1",
+      "disposition": "ancestor"
+    },
+    {
+      "kind": "pr",
+      "label": "#223",
+      "head": "a31616d3567a43307251e13a9728cf92fd8690c6",
+      "disposition": "ancestor"
+    },
+    {
+      "kind": "pr",
+      "label": "#234",
+      "head": "228d13d949859c66c58cf51addfbb03b09c7365d",
+      "disposition": "ancestor"
+    },
+    {
+      "kind": "pr",
+      "label": "#236",
+      "head": "7319b220ab2e64b440e6f63d299eb747366a24d3",
+      "disposition": "ancestor"
+    }
+  ],
+  "uncovered": [],
+  "github_actions": "NOT USED"
+}
