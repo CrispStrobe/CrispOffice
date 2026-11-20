@@ -183,6 +183,9 @@ const schemaV3 = <String>[
 /// A profile-local directory only. Forgetting a route cannot cascade into
 /// cached messages, drafts, Outbox payloads, credentials or provider mail.
 const schemaV4 = <String>[
+  '''ALTER TABLE store_profile ADD COLUMN local_account_revision INTEGER
+    NOT NULL DEFAULT 0 CHECK(typeof(local_account_revision) = 'integer' AND
+    local_account_revision BETWEEN 0 AND 9007199254740991)''',
   '''CREATE TABLE local_accounts (
     id TEXT PRIMARY KEY, provider TEXT NOT NULL, endpoint TEXT NOT NULL,
     login TEXT NOT NULL, sender TEXT NOT NULL, connected_at INTEGER NOT NULL

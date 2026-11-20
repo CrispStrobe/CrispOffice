@@ -2,8 +2,8 @@
 library;
 
 import 'dart:io';
-import 'dart:typed_data';
 
+import 'package:drift/drift.dart';
 import 'package:drift/native.dart';
 import 'package:quds_mail_core/quds_mail_core.dart';
 import 'package:quds_mail_store/quds_mail_store.dart';
@@ -37,6 +37,24 @@ T _value<T>(MailResult<T> result) {
 void _problem<T>(MailResult<T> result, MailProblemCode code) {
   expect(result, isA<MailFailure<T>>());
   expect((result as MailFailure<T>).problem.code, code);
+}
+
+final class _TransferProbe extends QueryInterceptor {
+  bool oversizedTextTransferred = false;
+
+  @override
+  Future<List<Map<String, Object?>>> runSelect(
+    QueryExecutor executor,
+    String statement,
+    List<Object?> args,
+  ) async {
+    final rows = await super.runSelect(executor, statement, args);
+    oversizedTextTransferred |= rows.any(
+      (row) =>
+          row.values.any((value) => value is String && value.length > 16384),
+    );
+    return rows;
+  }
 }
 
 void main() {
@@ -241,12 +259,21 @@ void main() {
     expect(_value(await store.listLocalAccounts()), isEmpty);
     failCommit = false;
     _value(await store.rememberLocalAccount(_record()));
+    final saved = _value(await store.listLocalAccounts()).single;
+    expect(saved.revision, 1);
     failCommit = true;
     _problem(
-      await store.forgetLocalAccount(_record()),
+      await store.forgetLocalAccount(saved),
       MailProblemCode.storageFailure,
     );
-    expect(_value(await store.listLocalAccounts()), hasLength(1));
+    _problem(
+      await store.rememberLocalAccount(_record()),
+      MailProblemCode.storageFailure,
+    );
+    expect(_value(await store.listLocalAccounts()).single.revision, 1);
+    failCommit = false;
+    _value(await store.rememberLocalAccount(_record()));
+    expect(_value(await store.listLocalAccounts()).single.revision, 2);
   });
 
   test(
@@ -293,7 +320,11 @@ void main() {
         ),
       );
       _value(await store.rememberLocalAccount(_record()));
-      _value(await store.forgetLocalAccount(_record()));
+      _value(
+        await store.forgetLocalAccount(
+          _value(await store.listLocalAccounts()).single,
+        ),
+      );
       expect(
         _value(await store.listAccounts()).single.credentialReference,
         'vault-reference',
@@ -435,6 +466,154 @@ void main() {
           4097,
         );
         check.close();
+      } finally {
+        await directory.delete(recursive: true);
+      }
+    },
+  );
+
+  test(
+    'remove, reopen and re-add cannot revive an old removal snapshot',
+    () async {
+      final directory = await Directory.systemTemp.createTemp(
+        'mail-directory-aba-',
+      );
+      final file = File('${directory.path}/mail.sqlite3');
+      Future<SqliteMailRepository> open() async => _value(
+        await SqliteMailRepository.open(
+          executor: NativeDatabase(file),
+          profile: _profile,
+        ),
+      );
+      try {
+        var disk = await open();
+        _value(await disk.rememberLocalAccount(_record()));
+        final original = _value(await disk.listLocalAccounts()).single;
+        _value(await disk.forgetLocalAccount(original));
+        await disk.close();
+        disk = await open();
+        try {
+          _value(await disk.rememberLocalAccount(_record()));
+          final replacement = _value(await disk.listLocalAccounts()).single;
+          expect(replacement.hasSameIdentity(original), isTrue);
+          expect(replacement.lastConnectedAt, original.lastConnectedAt);
+          expect(replacement.revision, greaterThan(original.revision));
+          _problem(
+            await disk.forgetLocalAccount(original),
+            MailProblemCode.conflict,
+          );
+          _value(await disk.forgetLocalAccount(replacement));
+        } finally {
+          await disk.close();
+        }
+      } finally {
+        await directory.delete(recursive: true);
+      }
+    },
+  );
+
+  for (final (field, corrupt) in [
+    ('login', 'x\u0000${'a' * 100000}'),
+    ('provider', 'x' * 100000),
+  ]) {
+    test(
+      'corrupt $field is rejected before oversized text reaches Dart rows',
+      () async {
+        final directory = await Directory.systemTemp.createTemp(
+          'mail-directory-bytes-',
+        );
+        final file = File('${directory.path}/mail.sqlite3');
+        final probe = _TransferProbe();
+        Future<SqliteMailRepository> open() async => _value(
+          await SqliteMailRepository.open(
+            executor: NativeDatabase(file).interceptWith(probe),
+            profile: _profile,
+          ),
+        );
+        try {
+          var disk = await open();
+          _value(await disk.rememberLocalAccount(_record()));
+          final saved = _value(await disk.listLocalAccounts()).single;
+          await disk.close();
+          final raw = sqlite.sqlite3.open(file.path);
+          raw.execute('UPDATE local_accounts SET $field=?', [corrupt]);
+          raw.close();
+          disk = await open();
+          try {
+            _problem(
+              await disk.listLocalAccounts(),
+              MailProblemCode.storageFailure,
+            );
+            _problem(
+              await disk.rememberLocalAccount(_record()),
+              MailProblemCode.storageFailure,
+            );
+            _problem(
+              await disk.forgetLocalAccount(saved),
+              MailProblemCode.storageFailure,
+            );
+            expect(probe.oversizedTextTransferred, isFalse);
+          } finally {
+            await disk.close();
+          }
+          final check = sqlite.sqlite3.open(file.path);
+          expect(
+            check.select('SELECT $field FROM local_accounts').single[field],
+            corrupt,
+          );
+          check.close();
+        } finally {
+          await directory.delete(recursive: true);
+        }
+      },
+    );
+  }
+
+  test(
+    'reopening under a lowered UTF-16 budget retains but refuses Unicode metadata',
+    () async {
+      final directory = await Directory.systemTemp.createTemp(
+        'mail-directory-unicode-',
+      );
+      final file = File('${directory.path}/mail.sqlite3');
+      Future<SqliteMailRepository> open(MailStoreLimits limits) async => _value(
+        await SqliteMailRepository.open(
+          executor: NativeDatabase(file),
+          profile: _profile,
+          limits: limits,
+        ),
+      );
+      final unicode = _record(login: '😀' * 1000);
+      try {
+        var disk = await open(const MailStoreLimits());
+        _value(await disk.rememberLocalAccount(unicode));
+        final original = _value(await disk.listLocalAccounts()).single;
+        await disk.close();
+        disk = await open(const MailStoreLimits(maxMetadataCodeUnits: 1500));
+        try {
+          _problem(
+            await disk.listLocalAccounts(),
+            MailProblemCode.quotaExceeded,
+          );
+          _problem(
+            await disk.rememberLocalAccount(unicode),
+            MailProblemCode.quotaExceeded,
+          );
+          _problem(
+            await disk.forgetLocalAccount(original),
+            MailProblemCode.quotaExceeded,
+          );
+        } finally {
+          await disk.close();
+        }
+        disk = await open(const MailStoreLimits());
+        try {
+          final restored = _value(await disk.listLocalAccounts()).single;
+          expect(restored.hasSameIdentity(unicode), isTrue);
+          expect(restored.revision, original.revision);
+        } finally {
+          await disk.close();
+        }
       } finally {
         await directory.delete(recursive: true);
       }
