@@ -1,0 +1,116 @@
+diff --git a/docs/release/macos-signing.md b/docs/release/macos-signing.md
+index 114d350db..28e5ec1d2 100644
+--- a/docs/release/macos-signing.md
++++ b/docs/release/macos-signing.md
+@@ -66,15 +66,17 @@ qualification bound to the code that was qualified, not to a signature:
+    give `f2022b1c…07efeb`; changing one code byte changes it.
+ 2. **Apple's tool agrees.** `codesign --remove-signature` of the qualified file
+    and of every re-signed copy yields identical bytes (with Xcode 26: 2,300,136
+-   bytes, SHA-256 `f62d2a0c…886ed2`). The stripped form depends on the
+-   codesign version (Xcode 16 on the CI runner produces other bytes), so the
+-   build compares input and output under the same tool rather than against
+-   that constant.
++   bytes, SHA-256 `f62d2a0c…886ed2`). Older codesign does not normalize: on
++   the Xcode 16 CI runner neither ad hoc re-signing nor
++   `--remove-signature` reproduces these bytes, while the code digest is
++   unchanged. That is why the code digest, not a file digest, is the identity.
+ 3. **Build-time proof.** `build_macos_app.sh` checks the code digest of the
+    pinned input before signing (after verifying its SHA-256 and length) and of
+-   the signed output, requires the signed output to strip to exactly the
+-   pinned input's stripped bytes, and refuses to record the library as
+-   qualified otherwise. It writes `sha256` and `code_sha256` into
++   the signed output, and refuses to record the library as qualified
++   otherwise. When the local codesign strips the pinned input to the
++   reference above, it additionally requires the signed output to strip to
++   the same bytes. Ad hoc builds do not re-sign the pinned library at all;
++   they ship its exact qualified bytes. It writes `sha256` and `code_sha256` into
+    `Contents/Resources/spacy-native.json`, which the app signature seals.
+ 4. **Runtime proof.** For a host-bundled library the native backend reads the
+    file once, verifies its SHA-256 and computes `machOCodeSha256` from the same
+diff --git a/packages/quds_office_editor/example/tool/build_macos_app.sh b/packages/quds_office_editor/example/tool/build_macos_app.sh
+index be569c7f6..7a519fbb4 100755
+--- a/packages/quds_office_editor/example/tool/build_macos_app.sh
++++ b/packages/quds_office_editor/example/tool/build_macos_app.sh
+@@ -39,11 +39,11 @@
+ # Release signing changes the spaCy library's file bytes, so its grammar
+ # qualification is carried by code identity rather than by file digest: the
+ # script requires the shipped library's machOCodeSha256 to equal
+-# SPACY_PIN_CODE_SHA256 before and after signing, and `codesign
+-# --remove-signature` of the signed library to equal the same operation on the
+-# verified pinned input byte for byte (stripping output depends on the
+-# codesign version, so both sides use this machine's tool;
+-# SPACY_PIN_UNSIGNED_SHA256 is the value Xcode 26 produces). Studio
++# SPACY_PIN_CODE_SHA256 before and after signing. Where the local codesign
++# strips the pinned input to SPACY_PIN_UNSIGNED_SHA256 (Xcode 26), it also
++# requires `codesign --remove-signature` of the signed library to equal that
++# byte for byte; Xcode 16 does not normalize stripping, so there only the
++# code digest applies. Ad hoc builds ship the pinned bytes unchanged. Studio
+ # re-measures the code digest from the bytes it loads.
+ #
+ # The spaCy library is not rebuilt by default: the script downloads the exact
+@@ -304,9 +304,15 @@ if [[ "${QUDS_SKIP_SPACY:-0}" != 1 && "$REBUILD_SPACY" != 1 ]]; then
+   # it for the comparison after signing.
+   [[ "$(code_sha256 "$FRAMEWORKS/libcrispembed-spacy.dylib")" == "$SPACY_PIN_CODE_SHA256" ]] \
+     || { echo "pinned spaCy library: unexpected code digest" >&2; exit 1; }
++  # Apple's cross-check is meaningful only with a codesign whose
++  # --remove-signature output does not depend on the signature (Xcode 26
++  # strips the pinned library to the reference; Xcode 16 does not).
+   SPACY_INPUT_UNSIGNED="$(unsigned_sha256 "$FRAMEWORKS/libcrispembed-spacy.dylib")"
+-  [[ "$SPACY_INPUT_UNSIGNED" == "$SPACY_PIN_UNSIGNED_SHA256" ]] \
+-    || echo "note: this codesign strips the pinned library to $SPACY_INPUT_UNSIGNED (Xcode 26: $SPACY_PIN_UNSIGNED_SHA256)"
++  if [[ "$SPACY_INPUT_UNSIGNED" != "$SPACY_PIN_UNSIGNED_SHA256" ]]; then
++    echo "note: this codesign strips the pinned library to $SPACY_INPUT_UNSIGNED, not the" \
++      "Xcode 26 reference; the codesign cross-check is skipped, the code digest still applies"
++    SPACY_INPUT_UNSIGNED=""
++  fi
+ fi
+ 
+ log "Sign ($SIGN_MODE)"
+@@ -324,6 +330,14 @@ else
+     -c "Add :com.apple.developer.team-identifier string $TEAM_ID" "$ENTITLEMENTS"
+ fi
+ for library in "${LIBRARIES[@]}"; do
++  # The pinned spaCy library already carries the ad hoc signature it was
++  # qualified with; ad hoc re-signing is not reproducible across codesign
++  # versions, so ad hoc builds ship those exact bytes.
++  if [[ "$SIGN_MODE" == adhoc && "$library" == libcrispembed-spacy.dylib \
++    && "$REBUILD_SPACY" != 1 ]]; then
++    codesign --verify --strict "$FRAMEWORKS/$library"
++    continue
++  fi
+   codesign "${SIGN_ARGS[@]}" "$FRAMEWORKS/$library"
+ done
+ if [[ "$SIGN_MODE" != adhoc ]]; then
+@@ -342,10 +356,10 @@ if [[ "${QUDS_SKIP_SPACY:-0}" != 1 ]]; then
+   printf '{"library":"libcrispembed-spacy.dylib","sha256":"%s","code_sha256":"%s"}\n' \
+     "$spacy_sha" "$spacy_code" >"$RESOURCES/spacy-native.json"
+   if [[ "$spacy_sha" == "$SPACY_PIN_SHA256" ]]; then
+-    # Ad hoc signing is deterministic, so re-signing the pinned bytes keeps them.
+     SPACY_NOTE="spaCy library $spacy_sha: qualified (analysis and manual German grammar)"
+-  elif [[ "$spacy_code" == "$SPACY_PIN_CODE_SHA256" \
+-    && "$(unsigned_sha256 "$spacy_library")" == "${SPACY_INPUT_UNSIGNED:-}" ]]; then
++  elif [[ "$REBUILD_SPACY" != 1 && "$spacy_code" == "$SPACY_PIN_CODE_SHA256" ]] \
++    && [[ -z "${SPACY_INPUT_UNSIGNED:-}" \
++      || "$(unsigned_sha256 "$spacy_library")" == "$SPACY_INPUT_UNSIGNED" ]]; then
+     SPACY_NOTE="spaCy library $spacy_sha: qualified code $spacy_code re-signed ($SIGN_MODE; analysis and manual German grammar)"
+   elif [[ "$REBUILD_SPACY" == 1 ]]; then
+     SPACY_NOTE="spaCy library $spacy_sha: UNQUALIFIED rebuild (analysis only; no grammar suggestions)"
+diff --git a/packages/quds_proofing_spacy/lib/src/distribution.dart b/packages/quds_proofing_spacy/lib/src/distribution.dart
+index 684fe6254..b67526930 100644
+--- a/packages/quds_proofing_spacy/lib/src/distribution.dart
++++ b/packages/quds_proofing_spacy/lib/src/distribution.dart
+@@ -381,10 +381,10 @@ const spacyGrammarMacosBundledCodeSha256 =
+ 
+ /// SHA-256 of `codesign --remove-signature` (Xcode 26) applied to
+ /// [spacyGrammarMacosBundledSha256] (2,300,136 bytes); identical for its Apple
+-/// Distribution and Developer ID re-signed copies. The stripped form depends
+-/// on the codesign version (Xcode 16 produces other bytes), so
+-/// build_macos_app.sh compares the signed library's stripped form with the
+-/// pinned input's under the same tool; this value is the reference record.
++/// Distribution and Developer ID re-signed copies. Older codesign (Xcode 16)
++/// does not normalize stripping, so build_macos_app.sh requires this
++/// cross-check only where the local tool reproduces this value; the code
++/// digest is the identity everywhere.
+ const spacyGrammarMacosBundledUnsignedSha256 =
+     'f62d2a0cf457a0ac577f45eceba93d8d5f2f450d4fd5a191f0cec61d88886ed2';
+ 

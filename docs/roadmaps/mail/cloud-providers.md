@@ -179,8 +179,10 @@ Gmail returns a confirmed message response. Graph's empty HTTP 202 means accepte
 for processing, not delivered. Definite rejections remain rejected. A possibly
 accepted request followed by lost response, cancellation, timeout, malformed
 acknowledgment or ambiguous server failure is **uncertain**. Studio retains the
-draft and requires delivery-check acknowledgment before another attempt. There
-is no automatic resend.
+immutable draft, including selected attachment bytes, in the current foreground
+session and requires delivery-check acknowledgment before another attempt.
+Disconnecting clears that session draft. There is no automatic resend, composer
+autosave or durable Studio outbox integration.
 
 Enable **Verbose diagnostics** during cloud setup for structured JSON events:
 service, operation, stage, HTTP status, request count, duration, byte/item counts

@@ -10,7 +10,7 @@ default.
   `native/src/quds_arabic_morph.cpp` compiled with CrispEmbed's
   `src/arabic_morph.cpp`. That file is MIT and keeps camel_tools' MIT notice.
   Its header-only helpers and Ryu (Apache-2.0 option) are compiled in too.
-  The sources come from CrispEmbed commit `0ed76631` (PR #255). Native
+  The sources come from CrispEmbed commit `3bab3248` (PR #261, ABI 3). Native
   platforms load it as a shared library in a persistent Dart isolate. The web
   build runs the same code as a bundled Emscripten WebAssembly module in a
   module Web Worker. No analyzer code is ever downloaded (App Store guideline
@@ -53,9 +53,29 @@ Only out-of-context ranking changes. Without the probabilities, camel_tools'
 order falls back to the diacritized form, and top-1 UPOS+lemma accuracy drops
 from 73.0% to 47.0%.
 
-Quds therefore never ranks: `analyzeWords` returns every analysis in no
-particular order. Rules reason over the whole set, for example by reporting
-only when **no** analysis of a word is compatible.
+`analyzeWords` therefore returns every analysis in no particular order, and
+rules reason over the whole set, for example by reporting only when **no**
+analysis of a word is compatible.
+
+## Context model (optional second download)
+
+`camelMorphMsaDisambig` is a licence-clean replacement for the dropped
+probabilities: a bigram hidden Markov model over the database's own analyses,
+trained without annotations on Arabic Wikipedia (CC BY-SA 4.0) by CrispEmbed's
+`tools/arabic_morph/disambig_train.py`. With it loaded,
+`CamelArabicMorphology` is an `ArabicContextMorphology`: `disambiguate`
+ranks each token's analyses in its sentence (tokens from the engine's
+`arabicContextSentences`, punctuation included). On UD Arabic-PUD the best
+reading's UPOS is right for 77.9% of tokens, the same as the `full`
+ranking, and its lemma for 90.4% (`full`: 88.2%). The grammar rules use a
+reading only when it leads the second by at least 0.9
+(`ArabicGrammarReading.contextual`); see `docs/roadmaps/arabic-proofing.md`
+for the A/B. The model is 4.5 MB, CC BY-SA 4.0 (Wikipedia contributors;
+Camel Morph MSA v1.0 © 2024 NYU Abu Dhabi, CC BY 4.0), pinned by SHA-256 like
+the database; `licenses/data/camel-morph-msa-disambig-{NOTICE,LICENSE}` hold
+its attribution. CrispEmbed's disambiguator is default-off
+(`CRISPEMBED_AR_MORPH_DISAMBIG`); the adapter enables it for the process when
+a model is opened, unless the variable is already set.
 
 ## The proofing feature profile
 
@@ -173,15 +193,19 @@ python3 tool/build.py --native \
   --install-licenses <App>.app/Contents/Resources/arabic-morph-licenses
 codesign --force --sign <identity> <App>.app/Contents/Frameworks/libquds_arabic_morph.dylib
 codesign --force --deep --sign <identity> --entitlements <Release.entitlements> <App>.app
-# Android: arm64-v8a with the NDK (static libc++) into jniLibs.
-python3 tool/build.py --android \
-  --install-android ../quds_office_editor/example/android/app/src/main/jniLibs/arm64-v8a
+# Android: arm64-v8a (devices) and x86_64 (emulator), NDK, static libc++,
+# 16 KB pages, one <abi>/ directory each under jniLibs.
+python3 tool/build.py --android --install-android ../quds_office_editor/example/android/app/src/main/jniLibs
+# iOS/iPadOS: dynamic frameworks (arm64 device; arm64+x86_64 simulator) in one
+# XCFramework, embedded and signed by the app (vendored CocoaPods framework);
+# run `pod install` in the host's ios/ after adding or removing one.
+python3 tool/build.py --ios --install-ios ../quds_office_editor/example/ios/QudsProofingNative/Frameworks
 # Licence-page assets of a Flutter host.
 python3 tool/build.py --install-licenses ../quds_office_editor/example/assets/licenses/arabic_morph
 ```
 
 `build.py` downloads exactly the 26 CrispEmbed files it needs from
-`raw.githubusercontent.com` at commit `0ed76631843cadd9b5c8296f25ed8a414d8f51db`.
+`raw.githubusercontent.com` at commit `3bab324832ea911c2b1260a0d50f0ed898f47950`.
 It admits each one only when its length and SHA-256 equal the pins in the
 script, and refuses to build if any compiled file or notice differs from
 `licenses/manifest.json`. It writes `build-receipt.json` with the hash of
@@ -220,10 +244,12 @@ Hosts must ship the notices with the binary (`--install-licenses`).
 ```sh
 QUDS_ARABIC_MORPH_TEST_LIBRARY=build/native/libquds_arabic_morph.dylib \
 QUDS_ARABIC_MORPH_TEST_BUNDLE=/path/to/verified/proofing-bin \
+QUDS_ARABIC_MORPH_TEST_MODEL=/path/to/verified/bigram-v1 \
 QUDS_ARABIC_MORPH_LIVE_DOWNLOAD=1 dart test
 dart run tool/pud_benchmark.dart <library> <bundle dir> pud.txt
 dart run tool/pud_rule_findings.dart <library> <bundle dir> pud.txt > findings.jsonl
-node tool/web_smoke.mjs build/web <bundle dir> pud.txt
+dart run tool/pud_rule_findings.dart <library> <bundle dir> pud.txt --model <model dir> > contextual.jsonl
+node tool/web_smoke.mjs build/web <bundle dir> pud.txt [<model dir>]
 dart compile js -O2 tool/browser_smoke.dart -o out/smoke.js
 python3 tool/browser_smoke.py --script out/smoke.js --web build/web \
   --bundle <bundle dir> --corpus pud.txt

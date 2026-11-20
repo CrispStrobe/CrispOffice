@@ -1,3 +1,20 @@
+## 0.3.0
+
+- Context disambiguation: `CamelArabicMorphology` implements the engine's
+  `ArabicContextMorphology` when the optional context model
+  (`camelMorphMsaDisambig`, Hugging Face `cstr/camel-morph-msa-disambig@07fd9e65`,
+  4.5 MB, CC BY-SA 4.0) is loaded (`disambiguator:` or `loadDisambiguator`).
+  `disambiguate` returns per token every analysis with its candidate's rank
+  and probability in context (CrispEmbed ABI 3,
+  `crispembed_ar_morph_disambiguate`), batched and cached per sentence.
+- On UD Arabic-PUD the best reading's UPOS is right for 77.9% of tokens
+  (all analyses unranked: 47.0%; the PATB-trained `full` ranking: 77.9%).
+- Adapter version 2 adds `quds_arabic_morph_enable_disambiguation` (the
+  CrispEmbed disambiguator is default-off); the worker protocol gains
+  `open_model` and `disambiguate`. `MorphInstaller.removeOtherBundles` takes
+  `alsoKeep`. `tool/pud_rule_findings.dart` gains `--model`, `--reading` and
+  `--margin`; `tool/web_smoke.mjs` an optional model check.
+
 ## 0.2.0
 
 - Switch to the `proofing-bin` bundle (`camelMorphMsaProofingBin`, Hugging

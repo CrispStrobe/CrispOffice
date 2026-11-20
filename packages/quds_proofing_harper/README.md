@@ -112,6 +112,13 @@ python3 packages/quds_proofing_harper/tool/build.py --web \
 # Package a Linux host after its Flutter release build has created the bundle.
 python3 packages/quds_proofing_harper/tool/build.py --native \
   --install-native /path/to/flutter/release/bundle/lib
+
+# Mobile (rustup with the aarch64/x86_64 Android and iOS targets, Android NDK):
+# arm64-v8a + x86_64 .so into jniLibs; arm64 device + arm64/x86_64 simulator
+# dynamic frameworks as one XCFramework that the iOS app embeds and signs.
+python3 packages/quds_proofing_harper/tool/build.py --android --ios \
+  --install-android packages/quds_office_editor/example/android/app/src/main/jniLibs \
+  --install-ios packages/quds_office_editor/example/ios/QudsProofingNative/Frameworks
 ```
 
 Both destinations receive `licenses/manifest.json`,

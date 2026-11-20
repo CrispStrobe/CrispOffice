@@ -94,6 +94,12 @@ const Map<String, String> studioGerman = <String, String>{
   'Delete row': 'Zeile löschen',
   'Delete table': 'Tabelle löschen',
   'Design': 'Design',
+  'Arabic grammar: read words in context':
+      'Arabische Grammatik: Wörter im Kontext lesen',
+  'With the Arabic context model installed, grammar rules rely on the clearly most likely reading of each word. Off: a rule stays silent whenever any reading would fit.':
+      'Mit installiertem arabischem Kontextmodell stützen sich die '
+      'Grammatikregeln auf die eindeutig wahrscheinlichste Lesart jedes '
+      'Worts. Aus: Eine Regel schweigt, sobald irgendeine Lesart passt.',
   'Detect language automatically': 'Sprache automatisch erkennen',
   'Diagram': 'Diagramm',
   'Dictionaries': 'Wörterbücher',

@@ -1,0 +1,50 @@
+{
+  "status": "passed",
+  "checkpointBeforeRepair": "84eb237806a3110b36322382aa98a1897ebac204",
+  "scope": "Incoming PPTX background precedence, original-fill retention and save/reopen repair",
+  "tests": {
+    "exitCode": 0,
+    "passed": 42,
+    "failed": 0,
+    "skipped": 0,
+    "inputCount": 416,
+    "inputsUnchanged": true,
+    "done": [
+      {
+        "success": true,
+        "type": "done",
+        "time": 3182
+      }
+    ]
+  },
+  "analysis": {
+    "exitCode": 0,
+    "inputsUnchanged": true,
+    "inputs": {
+      "packages/quds_office_engine/lib/src/slide/model/pml_presentation.dart": "3215ece77e7b83083f751c137c6304af03b952b0a833f2862fd5942ed941c038",
+      "packages/quds_office_engine/lib/src/slide/serial/slide_serial.dart": "454a17549963f9b8e133d4d61d335852d26f61fa904f23d35a0f91876941337b",
+      "packages/quds_office_engine/lib/src/slide/shapes/drawingml.dart": "6b3c53cfbeb8113d12f19ab9fce1033955c047378261e93a7e36be35d5ba30ff",
+      "packages/quds_office_engine/test/slide_import_fidelity_test.dart": "bd138a679e3d9da0fb3766b9b1264cd16fac8154afcaef09622888af89fab3f0"
+    }
+  },
+  "productionEditsComplete": true,
+  "stagedOrCommittedBySubagent": false,
+  "limitations": [
+    "Gradients render using a first-stop solid fallback; all authored gradient stops are retained on save.",
+    "The full editor/engine acceptance cohorts are owned by the parent integration task."
+  ],
+  "evidence": {
+    "tests": "serialization-receipt.json",
+    "events": "serialization-events.jsonl",
+    "before": "serialization-inputs.json",
+    "after": "serialization-inputs-after.json",
+    "analysis": "serialization-analysis-receipt.json",
+    "analysisLog": "serialization-analysis.log"
+  },
+  "primarySources": [
+    "https://learn.microsoft.com/en-us/office/open-xml/presentation/working-with-slide-layouts",
+    "https://learn.microsoft.com/en-us/dotnet/api/documentformat.openxml.presentation.background?view=openxml-3.0.1",
+    "https://learn.microsoft.com/en-us/dotnet/api/documentformat.openxml.presentation.backgroundproperties?view=openxml-3.0.1",
+    "https://learn.microsoft.com/en-us/office/vba/api/powerpoint.slide.followmasterbackground"
+  ]
+}

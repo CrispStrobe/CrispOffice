@@ -13,6 +13,16 @@ abstract interface class ArabicMorphTransport {
   /// rejects as input (invalid UTF-8, over 4,096 bytes).
   Future<List<List<ArabicAnalysis>?>> analyze(List<String> words);
 
+  /// Opens a context disambiguation model bundle next to the open database
+  /// (CrispEmbed ABI 3); completes with the model's `info` object.
+  Future<Map<String, Object?>> openDisambiguator(MorphDatabase model);
+
+  /// Readings of every token of [sentences] in order (one list per
+  /// sentence), ranked in context by the open model.
+  Future<List<List<ArabicContextReading>>> disambiguate(
+    List<List<String>> sentences,
+  );
+
   Future<void> dispose();
 }
 

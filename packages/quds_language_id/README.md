@@ -72,7 +72,8 @@ python3 tool/build.py --license-bundle                     # regenerate licenses
 python3 tool/build.py --verify-model                       # check assets/ against the pin
 python3 tool/build.py --wasm --install-web ../quds_office_editor/example/web/proofing
 python3 tool/build.py --native --install-native <App>.app/Contents/Frameworks
-python3 tool/build.py --android --install-android <jniLibs>/arm64-v8a
+python3 tool/build.py --android --install-android <jniLibs>   # arm64-v8a + x86_64
+python3 tool/build.py --ios --install-ios <ios/QudsProofingNative/Frameworks>
 python3 tool/build.py --install-licenses ../quds_office_editor/example/assets/licenses/language_id
 ```
 

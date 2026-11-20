@@ -1,0 +1,26 @@
+{
+  "recorded_at_utc": "2026-11-20T06:39:52.284628+00:00",
+  "published_source_commit": "a45ee3bf40dbb7e64a04f879fd6d574db7cb60b1",
+  "published_tree": "abb783deb0dcf32f5cd4a985818f040da6ac6229",
+  "parents": [
+    "c86e4d100920d64b5db004c374c818f5710b890d",
+    "177f29d3f9450a58f41189b462b0814aad37e45c"
+  ],
+  "proposal_applied_exactly": true,
+  "remote_branch": "codex/zotero-research-materials-20261120",
+  "remote_branch_head_verified_before_final_evidence": "a45ee3bf40dbb7e64a04f879fd6d574db7cb60b1",
+  "original_proposal_retained": true,
+  "validation": {
+    "engine_rendering": {
+      "passed": 228,
+      "files": 14,
+      "receipt": "../publication-final/accepted-engine-rendering/receipt.json"
+    },
+    "editor_rendering": {
+      "passed": 109,
+      "files": 10,
+      "receipt": "../publication-final/accepted-editor-rendering/receipt.json"
+    }
+  },
+  "author_mail_population_recounted_here": false
+}

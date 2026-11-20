@@ -1,0 +1,311 @@
+00:00 +0: loading test/word_kerning_properties_test.dart
+00:00 +0: test/word_kerning_properties_test.dart: inherited threshold stays sparse and direct edits survive save
+00:00 +1: test/word_kerning_properties_test.dart: new documents retain explicit kerning across save and reopen
+00:00 +2: test/word_kerning_properties_test.dart: native kerning thresholds resolve, clone, and round-trip sparsely
+00:00 +3: test/word_font_line_metrics_test.dart: real font metrics prevent a spurious second page in 45-line text
+00:00 +4: test/word_font_line_metrics_test.dart: exact spacing matches the native fixed-box baseline
+00:00 +5: test/word_font_line_metrics_test.dart: multiple spacing changes pitch without shifting first baseline
+00:00 +6: test/word_font_line_metrics_test.dart: minimum spacing never shrinks natural type and aligns extra leading
+00:00 +7: test/word_font_line_metrics_test.dart: host font metrics reach nested tall table and note story layout
+00:00 +8: test/word_line_box_fidelity_test.dart: each line uses its own size after a larger opening run
+00:00 +9: test/word_line_box_fidelity_test.dart: mixed run sizes share the fixed-height baseline without shifting small text
+00:00 +10: test/word_line_box_fidelity_test.dart: adjacent spacing uses the greater value and preserves model properties
+00:01 +11: test/line_breaker_greedy_test.dart: Word-style greedy wrapping consumes the longest fitting word prefix
+00:01 +12: test/line_breaker_greedy_test.dart: Word-style greedy wrapping consumes the longest fitting word prefix
+00:01 +13: test/word_line_box_fidelity_test.dart: center and right tabs position their following fields at real stops
+00:01 +14: test/line_breaker_greedy_test.dart: prepared and static greedy layout preserve hard breaks and space ownership
+00:01 +15: test/line_breaker_greedy_test.dart: prepared and static greedy layout preserve hard breaks and space ownership
+00:01 +16: test/line_breaker_greedy_test.dart: prepared and static greedy layout preserve hard breaks and space ownership
+00:01 +17: test/line_breaker_greedy_test.dart: an oversized word stays intact unless grapheme breaking is requested
+00:01 +18: test/line_breaker_greedy_test.dart: discretionary breaks retain hyphen ownership and width
+00:01 +19: test/line_breaker_controls_test.dart: zero width space offers an invisible source-preserving break: ​
+00:01 +20: test/line_breaker_controls_test.dart: zero width space offers an invisible source-preserving break: ​​
+00:01 +21: test/line_breaker_controls_test.dart: zero width space offers an invisible source-preserving break: ​‎
+00:01 +22: test/line_breaker_controls_test.dart: zero width space offers an invisible source-preserving break: ​
+00:01 +23: test/line_breaker_controls_test.dart: zero width space preserves supplementary source offsets
+00:01 +24: test/line_breaker_controls_test.dart: word joiner suppresses a hyphen break: ⁠
+00:01 +25: test/line_breaker_controls_test.dart: word joiner suppresses the preceding space break: ⁠
+00:01 +26: test/line_breaker_controls_test.dart: a space after the joiner still permits its own break: ⁠
+00:01 +27: test/line_breaker_controls_test.dart: emergency wrapping keeps the joiner boundary together: ⁠
+00:01 +28: test/line_breaker_controls_test.dart: word joiner suppresses a hyphen break: ﻿
+00:01 +29: test/line_breaker_controls_test.dart: word joiner suppresses the preceding space break: ﻿
+00:01 +30: test/line_breaker_controls_test.dart: a space after the joiner still permits its own break: ﻿
+00:01 +31: test/line_breaker_controls_test.dart: emergency wrapping keeps the joiner boundary together: ﻿
+00:01 +32: test/line_breaker_controls_test.dart: explicit zero width opportunities take precedence over word joiners
+00:01 +33: test/line_breaker_controls_test.dart: contextual overflow repair uses invisible break opportunities
+00:01 +34: test/line_breaker_controls_test.dart: contextual overflow repair retains word joiner constraints
+00:01 +35: test/line_breaker_measure_line_test.dart: remeasured trimmed lines repair a context-dependent overflow
+00:01 +36: test/line_breaker_measure_line_test.dart: prepared widths use the same repair and preserve hard breaks
+00:01 +37: test/line_breaker_measure_line_test.dart: prepared retries cache metrics without consuming source
+00:01 +38: test/line_breaker_measure_line_test.dart: overflow repair bounds host calls even when no word can fit
+00:01 +39: test/line_breaker_measure_line_test.dart: emergency source-grapheme cuts are opt-in: false
+00:01 +40: test/line_breaker_measure_line_test.dart: emergency source-grapheme cuts are opt-in: true
+00:01 +41: test/line_breaker_measure_line_test.dart: an oversized source grapheme remains intact and makes progress
+00:01 +42: test/line_breaker_measure_line_test.dart: contextual emergency repair consumes boundary spaces: " "
+00:01 +43: test/line_breaker_measure_line_test.dart: contextual emergency repair consumes boundary spaces: "   "
+00:01 +44: test/line_breaker_measure_line_test.dart: natural breaks never detach a mark from a source space grapheme
+00:01 +45: test/line_breaker_measure_line_test.dart: selected hyphens are measured with their original source records
+00:01 +46: test/line_breaker_measure_line_test.dart: a newly oversized discretionary hyphen does not split a whole word
+00:01 +47: test/line_breaker_measure_line_test.dart: invalid remove measurement retains original source and metrics
+00:01 +48: test/line_breaker_measure_line_test.dart: invalid reorder measurement retains original source and metrics
+00:01 +49: test/line_breaker_measure_line_test.dart: invalid negative measurement retains original source and metrics
+00:01 +50: test/line_breaker_measure_line_test.dart: invalid infinite measurement retains original source and metrics
+00:01 +51: test/variable_line_breaker_test.dart: prepared line context matches fixed width 36.0: Alpha beta gamma delta epsilon zeta eta theta iota kappa.
+00:01 +52: test/variable_line_breaker_test.dart: prepared line context matches fixed width 90.0: Alpha beta gamma delta epsilon zeta eta theta iota kappa.
+00:02 +53: test/variable_line_breaker_test.dart: prepared line context matches fixed width 36.0: First
+
+Second
+
+Third
+
+00:02 +54: test/variable_line_breaker_test.dart: prepared line context matches fixed width 90.0: First
+
+Second
+
+Third
+
+00:02 +55: test/variable_line_breaker_test.dart: prepared line context matches fixed width 36.0:   Leading spaces and trailing spaces
+00:02 +56: test/variable_line_breaker_test.dart: prepared line context matches fixed width 90.0:   Leading spaces and trailing spaces
+00:02 +57: test/variable_line_breaker_test.dart: prepared line context matches fixed width 36.0: Emoji 😀 plus 🧭 and nonbreaking space.
+00:02 +58: test/variable_line_breaker_test.dart: prepared line context matches fixed width 90.0: Emoji 😀 plus 🧭 and nonbreaking space.
+00:02 +59: test/variable_line_breaker_test.dart: prepared line context matches fixed width 36.0: مرحبا بالعالم 123 test نهاية
+00:02 +60: test/variable_line_breaker_test.dart: prepared line context matches fixed width 90.0: مرحبا بالعالم 123 test نهاية
+00:02 +61: test/variable_line_breaker_test.dart: prepared line context matches fixed width 36.0: ⁧مرحبا⁩ English ⁧نهاية⁩
+00:02 +62: test/variable_line_breaker_test.dart: prepared line context matches fixed width 90.0: ⁧مرحبا⁩ English ⁧نهاية⁩
+00:02 +63: test/variable_line_breaker_test.dart: soft wrap after hyphen consumes boundary spaces: " "
+00:02 +64: test/variable_line_breaker_test.dart: soft wrap after hyphen consumes boundary spaces: "   "
+00:02 +65: test/variable_line_breaker_test.dart: explicit line break preserves intentional leading spaces
+00:02 +66: test/variable_line_breaker_test.dart: nonbreaking space after hyphen is never treated as ordinary boundary space
+00:02 +67: test/variable_line_breaker_test.dart: variable widths consume Unicode and hard breaks exactly once
+00:02 +68: test/variable_line_breaker_test.dart: pagination can retry a source offset without consuming it
+00:02 +69: test/word_paragraph_mark_layout_test.dart: empty paragraph uses the authored mark font instead of an invented 11pt run
+00:02 +70: test/word_paragraph_mark_layout_test.dart: mark resolves document defaults and paragraph style, not visible run overrides
+00:02 +71: test/word_layout_test.dart: table cells are laid out in columns, not stacked
+00:02 +72: test/word_paragraph_mark_layout_test.dart: mark metadata is independent in clones and survives three isolate saves
+00:02 +73: test/word_paragraph_mark_layout_test.dart: mark metadata is independent in clones and survives three isolate saves
+00:02 +74: test/word_paragraph_mark_layout_test.dart: mark metadata is independent in clones and survives three isolate saves
+00:02 +75: test/word_paragraph_mark_layout_test.dart: mark metadata is independent in clones and survives three isolate saves
+00:03 +76: test/word_layout_test.dart: section columns fill left then right on the same page
+00:03 +77: test/word_styles_layout_test.dart: Word body layout body text uses fallbackWidthFactor, not the table-cell em
+00:03 +78: test/word_styles_layout_test.dart: Word body layout body text uses fallbackWidthFactor, not the table-cell em
+00:03 +79: test/word_styles_layout_test.dart: Word body layout body text uses fallbackWidthFactor, not the table-cell em
+00:03 +80: test/word_styles_layout_test.dart: Word body layout body text uses fallbackWidthFactor, not the table-cell em
+00:03 +81: test/word_styles_layout_test.dart: Word body layout body text uses fallbackWidthFactor, not the table-cell em
+00:03 +82: test/word_styles_layout_test.dart: Word body layout body text uses fallbackWidthFactor, not the table-cell em
+00:03 +83: test/word_styles_layout_test.dart: Word body layout body text uses fallbackWidthFactor, not the table-cell em
+00:03 +84: test/word_styles_layout_test.dart: Word body layout body text uses fallbackWidthFactor, not the table-cell em
+00:03 +85: test/word_styles_layout_test.dart: Word body layout body text uses fallbackWidthFactor, not the table-cell em
+00:03 +86: test/word_styles_layout_test.dart: Word body layout body text uses fallbackWidthFactor, not the table-cell em
+00:03 +87: test/word_styles_layout_test.dart: Word body layout body text uses fallbackWidthFactor, not the table-cell em
+00:03 +88: test/word_styles_layout_test.dart: Word body layout body text uses fallbackWidthFactor, not the table-cell em
+00:03 +89: test/word_contained_text_wrap_test.dart: unchanged nested cells display complete words through both save paths
+00:03 +90: test/word_contained_text_wrap_test.dart: unchanged nested cells display complete words through both save paths
+00:03 +91: test/word_contained_text_wrap_test.dart: unchanged nested cells display complete words through both save paths
+00:03 +92: test/word_contained_text_wrap_test.dart: unchanged nested cells display complete words through both save paths
+00:04 +93: test/word_contained_text_wrap_test.dart: unchanged nested cells display complete words through both save paths
+00:04 +94: test/word_contained_text_wrap_test.dart: unchanged nested cells display complete words through both save paths
+00:04 +95: test/word_contained_text_wrap_test.dart: unchanged nested cells display complete words through both save paths
+00:04 +96: test/word_contained_text_wrap_test.dart: unchanged nested cells display complete words through both save paths
+00:04 +97: test/word_contained_text_wrap_test.dart: unchanged nested cells display complete words through both save paths
+00:04 +98: test/word_contained_text_wrap_test.dart: unchanged nested cells display complete words through both save paths
+00:04 +99: test/word_contained_text_wrap_test.dart: unchanged nested cells display complete words through both save paths
+00:04 +100: test/word_contained_text_wrap_test.dart: unchanged nested cells display complete words through both save paths
+00:04 +101: test/word_contained_text_wrap_test.dart: unchanged nested cells display complete words through both save paths
+00:04 +102: test/word_contained_text_wrap_test.dart: unchanged nested cells display complete words through both save paths
+00:04 +103: test/word_contained_text_wrap_test.dart: unchanged nested cells display complete words through both save paths
+00:05 +104: test/word_contained_text_wrap_test.dart: unchanged nested cells display complete words through both save paths
+00:05 +105: test/word_footnote_reference_test.dart: imported footnote references are superscript and notes are laid out
+00:05 +106: test/word_footnote_reference_test.dart: imported footnote references are superscript and notes are laid out
+00:05 +107: test/word_footnote_reference_test.dart: imported footnote references are superscript and notes are laid out
+00:05 +108: test/word_frame_wrap_test.dart: square frames exclude nearby lines then restore full body width
+00:05 +109: test/word_frame_wrap_test.dart: square frames exclude nearby lines then restore full body width
+00:05 +110: test/word_frame_wrap_test.dart: square frames exclude nearby lines then restore full body width
+00:05 +111: test/word_frame_wrap_test.dart: square frames exclude nearby lines then restore full body width
+00:05 +112: test/word_contained_text_wrap_test.dart: format nested cells display complete words through both save paths
+00:05 +113: test/word_contained_text_wrap_test.dart: format nested cells display complete words through both save paths
+00:05 +114: test/word_contained_text_wrap_test.dart: format nested cells display complete words through both save paths
+00:05 +115: test/word_frame_wrap_test.dart: WmlFrameWrap.none keeps its distinct native and layout meaning
+00:05 +116: test/word_frame_wrap_test.dart: WmlFrameWrap.none keeps its distinct native and layout meaning
+00:05 +117: test/word_frame_wrap_test.dart: WmlFrameWrap.none keeps its distinct native and layout meaning
+00:05 +118: test/word_frame_wrap_test.dart: WmlFrameWrap.none keeps its distinct native and layout meaning
+00:05 +119: test/word_frame_wrap_test.dart: WmlFrameWrap.none keeps its distinct native and layout meaning
+00:05 +120: test/word_frame_wrap_test.dart: WmlFrameWrap.none keeps its distinct native and layout meaning
+00:05 +121: test/word_frame_wrap_test.dart: WmlFrameWrap.none keeps its distinct native and layout meaning
+00:05 +122: test/word_frame_wrap_test.dart: WmlFrameWrap.none keeps its distinct native and layout meaning
+00:05 +123: test/word_frame_wrap_test.dart: WmlFrameWrap.none keeps its distinct native and layout meaning
+00:05 +124: test/word_frame_wrap_test.dart: WmlFrameWrap.none keeps its distinct native and layout meaning
+00:05 +125: test/word_frame_wrap_test.dart: WmlFrameWrap.none keeps its distinct native and layout meaning
+00:05 +126: test/word_frame_wrap_test.dart: WmlFrameWrap.none keeps its distinct native and layout meaning
+00:05 +127: test/word_frame_wrap_test.dart: WmlFrameWrap.none keeps its distinct native and layout meaning
+00:05 +128: test/word_frame_wrap_test.dart: WmlFrameWrap.none keeps its distinct native and layout meaning
+00:05 +129: test/word_frame_wrap_test.dart: WmlFrameWrap.none keeps its distinct native and layout meaning
+00:05 +130: test/word_frame_wrap_test.dart: WmlFrameWrap.none keeps its distinct native and layout meaning
+00:06 +131: test/word_frame_wrap_test.dart: WmlFrameWrap.none keeps its distinct native and layout meaning
+00:06 +132: test/word_frame_wrap_test.dart: WmlFrameWrap.none keeps its distinct native and layout meaning
+00:06 +133: test/word_frame_wrap_test.dart: WmlFrameWrap.none keeps its distinct native and layout meaning
+00:06 +134: test/word_frame_wrap_test.dart: WmlFrameWrap.none keeps its distinct native and layout meaning
+00:06 +135: test/word_table_picture_pagination_test.dart: live 500pt inline picture fits at table depth 1
+00:06 +136: test/word_table_picture_pagination_test.dart: live 500pt inline picture fits at table depth 1
+00:06 +137: test/word_table_picture_pagination_test.dart: live 500pt inline picture fits at table depth 1
+00:06 +138: test/word_table_picture_pagination_test.dart: live 500pt inline picture fits at table depth 1
+00:06 +139: test/word_table_picture_pagination_test.dart: live 500pt inline picture fits at table depth 1
+00:06 +140: test/word_table_picture_pagination_test.dart: live 500pt inline picture fits at table depth 1
+00:06 +141: test/word_table_picture_pagination_test.dart: live 500pt inline picture fits at table depth 1
+00:06 +142: test/word_table_picture_pagination_test.dart: live 500pt inline picture fits at table depth 1
+00:06 +143: test/word_table_picture_pagination_test.dart: live 500pt inline picture fits at table depth 1
+00:06 +144: test/word_table_picture_pagination_test.dart: live 500pt inline picture fits at table depth 1
+00:06 +145: test/word_table_picture_pagination_test.dart: live 500pt inline picture fits at table depth 1
+00:06 +146: test/word_table_picture_pagination_test.dart: live 500pt inline picture fits at table depth 1
+00:06 +147: test/word_table_picture_pagination_test.dart: live 500pt inline picture fits at table depth 1
+00:06 +148: test/word_table_picture_pagination_test.dart: live 500pt inline picture fits at table depth 1
+00:06 +149: test/word_table_picture_pagination_test.dart: live 500pt inline picture fits at table depth 1
+00:06 +150: test/word_table_picture_pagination_test.dart: live 500pt inline picture fits at table depth 1
+00:06 +151: test/word_table_picture_pagination_test.dart: live 500pt inline picture fits at table depth 1
+00:06 +152: test/word_table_picture_pagination_test.dart: live 500pt inline picture fits at table depth 1
+00:06 +153: test/word_table_picture_pagination_test.dart: live 500pt inline picture fits at table depth 1
+00:06 +154: test/word_table_picture_pagination_test.dart: live 500pt inline picture fits at table depth 1
+00:06 +155: test/word_table_picture_pagination_test.dart: live 500pt inline picture fits at table depth 1
+00:06 +156: test/word_table_picture_pagination_test.dart: live 500pt inline picture fits at table depth 1
+00:06 +157: test/word_table_picture_pagination_test.dart: live 500pt inline picture fits at table depth 1
+00:06 +158: test/word_table_picture_pagination_test.dart: live 500pt inline picture fits at table depth 1
+00:06 +159: test/word_table_picture_pagination_test.dart: live 500pt inline picture fits at table depth 1
+00:06 +160: test/word_table_picture_pagination_test.dart: live 500pt inline picture fits at table depth 1
+00:06 +161: test/word_table_picture_pagination_test.dart: live 500pt inline picture fits at table depth 1
+00:06 +162: test/word_table_picture_pagination_test.dart: live 500pt inline picture fits at table depth 1
+00:06 +163: test/word_table_picture_pagination_test.dart: live 500pt inline picture fits at table depth 1
+00:06 +164: test/word_table_picture_pagination_test.dart: live 500pt inline picture fits at table depth 1
+00:06 +165: test/word_table_picture_pagination_test.dart: live 500pt inline picture fits at table depth 1
+00:06 +166: test/word_table_picture_pagination_test.dart: live 500pt inline picture fits at table depth 1
+00:06 +167: test/word_table_picture_pagination_test.dart: live 500pt inline picture fits at table depth 1
+00:06 +168: test/word_table_picture_pagination_test.dart: live 500pt inline picture fits at table depth 1
+00:06 +169: test/word_table_picture_pagination_test.dart: live 500pt inline picture fits at table depth 1
+00:06 +170: test/word_table_picture_pagination_test.dart: live 500pt inline picture fits at table depth 1
+00:06 +171: test/word_table_picture_pagination_test.dart: live 500pt inline picture fits at table depth 1
+00:07 +172: test/word_table_picture_pagination_test.dart: live 500pt inline picture fits at table depth 1
+00:07 +173: test/word_table_picture_pagination_test.dart: live 500pt inline picture fits at table depth 1
+00:07 +174: test/word_table_picture_pagination_test.dart: live 500pt inline picture fits at table depth 1
+00:07 +175: test/word_table_tall_frame_layout_test.dart: live tall-row page frame at a later source position keeps absolute coordinates, child identity and its footnote page
+00:07 +176: test/word_table_tall_frame_layout_test.dart: live tall-row page frame at a later source position keeps absolute coordinates, child identity and its footnote page
+00:07 +177: test/word_table_tall_frame_layout_test.dart: live tall-row page frame at a later source position keeps absolute coordinates, child identity and its footnote page
+00:07 +178: test/word_table_tall_frame_layout_test.dart: live tall-row page frame at a later source position keeps absolute coordinates, child identity and its footnote page
+00:07 +179: test/word_table_tall_frame_layout_test.dart: live tall-row page frame at a later source position keeps absolute coordinates, child identity and its footnote page
+00:07 +180: test/word_table_tall_frame_layout_test.dart: live tall-row page frame at a later source position keeps absolute coordinates, child identity and its footnote page
+00:07 +181: test/word_table_tall_frame_layout_test.dart: live tall-row page frame at a later source position keeps absolute coordinates, child identity and its footnote page
+00:07 +182: test/word_table_tall_toc_layout_test.dart: live tall-row TOC retains global links and final page overlay
+00:07 +183: test/word_table_tall_toc_layout_test.dart: live tall-row TOC retains global links and final page overlay
+00:07 +184: test/word_table_tall_toc_layout_test.dart: live tall-row TOC retains global links and final page overlay
+00:07 +185: test/word_table_tall_toc_layout_test.dart: live tall-row TOC retains global links and final page overlay
+00:08 +186: test/word_table_tall_toc_layout_test.dart: live tall-row TOC retains global links and final page overlay
+00:08 +187: test/word_table_tall_toc_layout_test.dart: live tall-row TOC retains global links and final page overlay
+00:08 +188: test/word_table_tall_toc_layout_test.dart: live tall-row TOC retains global links and final page overlay
+00:08 +189: test/word_table_tall_toc_layout_test.dart: live tall-row TOC retains global links and final page overlay
+00:08 +190: test/word_table_tall_toc_layout_test.dart: live tall-row TOC retains global links and final page overlay
+00:08 +191: test/word_table_tall_toc_layout_test.dart: live tall-row TOC retains global links and final page overlay
+00:08 +192: test/word_table_tall_toc_layout_test.dart: live tall-row TOC retains global links and final page overlay
+00:08 +193: test/word_table_tall_frame_layout_test.dart: reopened tall-row page frame at a later source position keeps absolute coordinates, child identity and its footnote page
+00:08 +194: test/word_table_tall_frame_layout_test.dart: reopened tall-row page frame at a later source position keeps absolute coordinates, child identity and its footnote page
+00:08 +195: test/word_table_tall_frame_layout_test.dart: reopened tall-row page frame at a later source position keeps absolute coordinates, child identity and its footnote page
+00:08 +196: test/word_table_tall_frame_layout_test.dart: reopened tall-row page frame at a later source position keeps absolute coordinates, child identity and its footnote page
+00:08 +197: test/word_table_tall_frame_layout_test.dart: reopened tall-row page frame at a later source position keeps absolute coordinates, child identity and its footnote page
+00:08 +198: test/word_table_tall_frame_layout_test.dart: reopened tall-row page frame at a later source position keeps absolute coordinates, child identity and its footnote page
+00:09 +199: test/word_table_tall_frame_layout_test.dart: reopened tall-row page frame at a later source position keeps absolute coordinates, child identity and its footnote page
+00:09 +200: test/word_table_tall_frame_layout_test.dart: reopened tall-row page frame at a later source position keeps absolute coordinates, child identity and its footnote page
+00:09 +201: test/word_table_tall_frame_layout_test.dart: reopened tall-row page frame at a later source position keeps absolute coordinates, child identity and its footnote page
+00:09 +202: test/word_table_tall_frame_layout_test.dart: reopened tall-row page frame at a later source position keeps absolute coordinates, child identity and its footnote page
+00:09 +203: test/word_table_tall_frame_layout_test.dart: reopened tall-row page frame at a later source position keeps absolute coordinates, child identity and its footnote page
+00:09 +204: test/word_table_tall_frame_layout_test.dart: reopened tall-row page frame at a later source position keeps absolute coordinates, child identity and its footnote page
+00:09 +205: test/word_table_tall_toc_layout_test.dart: native reopened tall-row TOC retains global links and final page overlay
+00:09 +206: test/word_table_tall_toc_layout_test.dart: native reopened tall-row TOC retains global links and final page overlay
+00:09 +207: test/word_table_tall_toc_layout_test.dart: native reopened tall-row TOC retains global links and final page overlay
+00:09 +208: test/word_table_tall_toc_layout_test.dart: native reopened tall-row TOC retains global links and final page overlay
+00:09 +209: test/word_table_tall_frame_layout_test.dart: reopened tall-row page frame at final boundary keeps absolute coordinates, child identity and its footnote page
+00:09 +210: test/word_table_tall_frame_layout_test.dart: reopened tall-row page frame at final boundary keeps absolute coordinates, child identity and its footnote page
+00:10 +211: test/word_table_tall_frame_layout_test.dart: reopened tall-row page frame at final boundary keeps absolute coordinates, child identity and its footnote page
+00:10 +212: test/word_table_tall_toc_layout_test.dart: native reopened tall-row TOC retains global links and suppressed page overlay
+00:10 +213: test/word_table_picture_pagination_test.dart: an image with no remaining physical height reports the nesting bound
+00:10 +214: test/word_table_tall_frame_layout_test.dart: reopened tall-row margin frame at a later source position keeps absolute coordinates, child identity and its footnote page
+00:10 +215: test/word_table_tall_frame_layout_test.dart: reopened tall-row margin frame at final boundary keeps absolute coordinates, child identity and its footnote page
+00:10 +216: test/rich_note_test.dart: dense body reserves footnotes and continues long notes without loss
+00:10 +217: test/rich_note_test.dart: rich note layout retains styles, wraps, tables, pictures and links
+00:11 +218: test/style_cascade_test.dart: scripts apply character/table styles and edit table run definitions
+00:11 +219: test/style_cascade_test.dart: scripts apply character/table styles and edit table run definitions
+00:11 +220: test/style_cascade_test.dart: scripts apply character/table styles and edit table run definitions
+00:11 +221: test/style_cascade_test.dart: scripts apply character/table styles and edit table run definitions
+00:11 +222: test/style_cascade_test.dart: scripts apply character/table styles and edit table run definitions
+00:11 +223: test/style_cascade_test.dart: scripts apply character/table styles and edit table run definitions
+00:11 +224: test/style_cascade_test.dart: scripts apply character/table styles and edit table run definitions
+00:11 +225: test/style_cascade_test.dart: scripts apply character/table styles and edit table run definitions
+00:11 +226: test/style_cascade_test.dart: scripts apply character/table styles and edit table run definitions
+00:11 +227: test/style_cascade_test.dart: scripts apply character/table styles and edit table run definitions
+00:11 +228: test/style_cascade_test.dart: scripts apply character/table styles and edit table run definitions
+00:11 +229: test/style_cascade_test.dart: scripts apply character/table styles and edit table run definitions
+00:11 +230: test/style_cascade_test.dart: scripts apply character/table styles and edit table run definitions
+00:11 +231: test/style_cascade_test.dart: scripts apply character/table styles and edit table run definitions
+00:11 +232: test/style_cascade_test.dart: scripts apply character/table styles and edit table run definitions
+00:11 +233: test/style_cascade_test.dart: scripts apply character/table styles and edit table run definitions
+00:11 +234: test/style_cascade_test.dart: scripts apply character/table styles and edit table run definitions
+00:11 +235: test/styleless_import_fidelity_test.dart: missing styles and direct properties remain absent after unrelated edits
+00:11 +236: test/styleless_import_fidelity_test.dart: missing styles and direct properties remain absent after unrelated edits
+00:11 +237: test/styleless_import_fidelity_test.dart: missing styles and direct properties remain absent after unrelated edits
+00:11 +238: test/styleless_import_fidelity_test.dart: missing styles and direct properties remain absent after unrelated edits
+00:11 +239: test/styleless_import_fidelity_test.dart: missing styles and direct properties remain absent after unrelated edits
+00:11 +240: test/rich_note_test.dart: rich note blocks, run styles and part-owned media survive editing
+00:11 +241: test/rich_note_test.dart: rich note blocks, run styles and part-owned media survive editing
+00:11 +242: test/rich_note_test.dart: rich note blocks, run styles and part-owned media survive editing
+00:11 +243: test/rich_note_test.dart: rich note blocks, run styles and part-owned media survive editing
+00:11 +244: test/rich_note_test.dart: rich note blocks, run styles and part-owned media survive editing
+00:11 +245: test/style_cascade_test.dart: defaults basedOn theme character table and direct values survive 3 cycles
+00:11 +246: test/rich_note_test.dart: legacy paragraph view edits keep nonparagraph note blocks
+00:11 +247: test/style_cascade_test.dart: direct edits survive style refresh and inherited values remain editable
+00:11 +248: test/rich_note_test.dart: a tall cell paragraph splits without losing text or placing its note early
+00:12 +249: test/style_cascade_test.dart: style toggles compose while direct on/off is absolute
+00:12 +250: test/style_cascade_test.dart: custom style part location stays authoritative after style edits
+00:12 +251: test/word_run_measure_boundaries_test.dart: lam-alef continuation keeps its source complex-script font
+00:12 +252: test/word_run_measure_boundaries_test.dart: invisible source controls retain offsets without consuming advance
+00:12 +253: test/word_run_measure_boundaries_test.dart: an advance on an absent control rejects the whole measured run
+00:12 +254: test/word_run_measure_boundaries_test.dart: generated note labels and nested note cells inherit host metrics
+00:12 +255: test/word_run_fragment_fallback_test.dart: null line fragment restores scalar metrics (batch)
+00:12 +256: test/word_run_fragment_fallback_test.dart: null line fragment restores scalar metrics (batch)
+00:12 +257: test/word_run_fragment_fallback_test.dart: invalid line fragment restores scalar metrics (batch)
+00:12 +258: test/word_run_fragment_fallback_test.dart: null line fragment restores scalar metrics (prepared)
+00:12 +259: test/word_run_fragment_fallback_test.dart: invalid line fragment restores scalar metrics (prepared)
+00:12 +260: test/word_run_fragment_fallback_test.dart: declined fragments restore real-font metrics without changing IDs
+00:12 +261: test/word_compatibility_fidelity_test.dart: MC selects one supported Choice or Fallback in every Word story
+00:12 +262: test/word_compatibility_fidelity_test.dart: MC selects one supported Choice or Fallback in every Word story
+00:12 +263: test/word_package_preservation_test.dart: docm retains native main part and opaque bytes over three edits: word/document.xml
+00:12 +264: test/word_package_preservation_test.dart: docm retains native main part and opaque bytes over three edits: word/document.xml
+00:13 +265: test/word_package_preservation_test.dart: docm retains native main part and opaque bytes over three edits: word/document.xml
+00:13 +266: test/word_compatibility_fidelity_test.dart: source section properties survive modeled edits over three saves
+00:13 +267: test/word_compatibility_fidelity_test.dart: source section properties survive modeled edits over three saves
+00:13 +268: test/word_package_preservation_test.dart: docm retains native main part and opaque bytes over three edits: content/manuscript%20draft.xml
+00:13 +269: test/word_package_preservation_test.dart: docm retains native main part and opaque bytes over three edits: content/manuscript%20draft.xml
+00:13 +270: test/word_package_preservation_test.dart: dotm retains native main part and opaque bytes over three edits: word/document.xml
+00:13 +271: test/word_package_preservation_test.dart: dotm retains native main part and opaque bytes over three edits: content/manuscript.xml
+00:13 +272: test/word_package_preservation_test.dart: dotm retains native main part and opaque bytes over three edits: content/manuscript%20draft.xml
+00:13 +273: test/word_package_preservation_test.dart: dotx retains native main part and opaque bytes over three edits: word/document.xml
+00:13 +274: test/word_package_preservation_test.dart: dotx retains native main part and opaque bytes over three edits: content/manuscript.xml
+00:13 +275: test/word_package_preservation_test.dart: dotx retains native main part and opaque bytes over three edits: content/manuscript%20draft.xml
+00:13 +276: test/word_package_preservation_test.dart: unsupported extensions do not inspect or execute package contents
+00:13 +277: test/word_package_preservation_test.dart: filename type mismatch has the same precise public error
+00:13 +278: test/word_package_preservation_test.dart: rejects mime loss before a host replaces its original
+00:13 +279: test/word_package_preservation_test.dart: rejects missing loss before a host replaces its original
+00:13 +280: test/word_package_preservation_test.dart: rejects mutated loss before a host replaces its original
+00:13 +281: test/word_package_preservation_test.dart: rejects binary-mime loss before a host replaces its original
+00:13 +282: test/word_package_preservation_test.dart: rejects relationship loss before a host replaces its original
+00:13 +283: test/word_package_preservation_test.dart: rejects signature-relationship loss before a host replaces its original
+00:13 +284: test/word_package_preservation_test.dart: package signatures are rejected before editing
+00:13 +285: test/word_package_preservation_test.dart: relationships to an opaque part remain protected without VBA names: word/embeddings/object1.bin
+00:13 +286: test/word_package_preservation_test.dart: relationships to an opaque part remain protected without VBA names: customUI/customUI.xml
+00:13 +287: test/word_package_preservation_test.dart: outgoing relationships owned by a non-VBA binary part are protected
+00:13 +288: test/word_package_preservation_test.dart: root relationships select the native main part, including strict types
+00:13 +289: test/word_package_preservation_test.dart: unsafe native main target is rejected: ../outside.xml
+00:13 +290: test/word_package_preservation_test.dart: unsafe native main target is rejected: %2e%2e/outside.xml
+00:13 +291: test/word_package_preservation_test.dart: unsafe native main target is rejected: https://example.test/main.xml
+00:13 +292: test/word_package_preservation_test.dart: unsafe native main target is rejected: word/document.xml?x=1
+00:13 +293: test/word_package_preservation_test.dart: declared part, cumulative, file and member budgets reject before expansion
+00:13 +294: test/word_package_preservation_test.dart: actual inflated bytes cannot bypass a forged small size declaration
+00:13 +295: test/word_package_preservation_test.dart: duplicate ZIP members are not silently collapsed by the package reader
+00:13 +296: test/word_package_preservation_test.dart: malformed content-type metadata cannot look like a valid package: <Types
+00:13 +297: test/word_package_preservation_test.dart: malformed content-type metadata cannot look like a valid package: <Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types">
+00:13 +298: test/word_package_preservation_test.dart: malformed content-type metadata cannot look like a valid package: <wrong/>
+00:13 +299: All tests passed!

@@ -1,0 +1,10 @@
+{
+  "kind": "Independent audit implementation correction; no product/test failure",
+  "intermediate_issues": [
+    "Replacement pin starts/completions are not unique and complete"
+  ],
+  "cause": "Counter(starts) interprets a dict as element-to-count mappings, using test-record objects as counts. The intended once-per-ID check is Counter(starts.keys()).",
+  "fix": "Compare completion-ID counts with an iterable of start-ID keys; source and test evidence are unchanged.",
+  "retained_original_report_sha256": "c82f098ec6c209f736ea1ed5890991a120f193602a99416593219b9ea51a4b58",
+  "replacement_raw_receipt_sha256": "a3d8105c313b9a17fdf9357595458008506920d77405daa0f06df6e90f60a835"
+}

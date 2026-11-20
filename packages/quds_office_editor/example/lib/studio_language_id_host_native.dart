@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:quds_language_id/quds_language_id.dart';
 
+import 'studio_native_paths.dart';
 import 'studio_language_id_host.dart';
 
 StudioLanguageIdHost createLanguageIdHost() => BundledStudioLanguageIdHost(
@@ -20,16 +21,5 @@ String? studioLanguageIdLibraryPath() {
   if (defined.isNotEmpty) return defined;
   final env = Platform.environment['QUDS_LANGUAGE_ID_LIBRARY'];
   if (env != null && env.isNotEmpty) return env;
-  final executable = File(Platform.resolvedExecutable).parent.path;
-  final candidates = Platform.isMacOS
-      ? ['$executable/../Frameworks/libquds_language_id.dylib']
-      : Platform.isWindows
-      ? ['$executable\\quds_language_id.dll']
-      : Platform.isLinux
-      ? ['$executable/lib/libquds_language_id.so']
-      : const <String>[];
-  for (final path in candidates) {
-    if (File(path).existsSync()) return path;
-  }
-  return null;
+  return studioPackagedLibrary('quds_language_id');
 }

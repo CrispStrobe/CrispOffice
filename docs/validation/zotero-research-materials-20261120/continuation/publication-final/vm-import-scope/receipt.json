@@ -1,0 +1,191 @@
+{
+  "additional_web_vm_roots": 3,
+  "changed_web_libraries_excluded_from_all_prior_core_vm_roots": true,
+  "code_after": {
+    "checker": {
+      "bytes": 13851,
+      "sha256": "c600562946be5f427fb59bc8fabd8abeeb0227d3f1be18aa1926deb0331d1585"
+    },
+    "dart_binary": {
+      "bytes": 4835712,
+      "sha256": "01e869e4af277734b02ab8898b870c6b00c9bec61bbcf9c923cd14de7ed85fbb"
+    }
+  },
+  "code_before": {
+    "checker": {
+      "bytes": 13851,
+      "sha256": "c600562946be5f427fb59bc8fabd8abeeb0227d3f1be18aa1926deb0331d1585"
+    },
+    "dart_binary": {
+      "bytes": 4835712,
+      "sha256": "01e869e4af277734b02ab8898b870c6b00c9bec61bbcf9c923cd14de7ed85fbb"
+    }
+  },
+  "code_unchanged": true,
+  "cohorts": {
+    "editor-rendering": {
+      "changed_libraries_reachable": [
+        "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/quds_office_engine/lib/src/slide/model/pml_presentation.dart",
+        "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/quds_office_engine/lib/src/slide/serial/slide_serial.dart",
+        "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/quds_office_engine/lib/src/slide/shapes/drawingml.dart"
+      ],
+      "imported_files": 2115,
+      "test_files": 10
+    },
+    "editor-word-layout": {
+      "changed_libraries_reachable": [
+        "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/quds_office_engine/lib/src/slide/model/pml_presentation.dart",
+        "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/quds_office_engine/lib/src/slide/serial/slide_serial.dart",
+        "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/quds_office_engine/lib/src/slide/shapes/drawingml.dart"
+      ],
+      "imported_files": 2120,
+      "test_files": 14
+    },
+    "editor-zotero": {
+      "changed_libraries_reachable": [
+        "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/quds_office_engine/lib/src/slide/model/pml_presentation.dart",
+        "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/quds_office_engine/lib/src/slide/serial/slide_serial.dart",
+        "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/quds_office_engine/lib/src/slide/shapes/drawingml.dart"
+      ],
+      "imported_files": 2148,
+      "test_files": 43
+    },
+    "engine-rendering": {
+      "changed_libraries_reachable": [
+        "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/quds_office_engine/lib/src/slide/model/pml_presentation.dart",
+        "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/quds_office_engine/lib/src/slide/serial/slide_serial.dart",
+        "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/quds_office_engine/lib/src/slide/shapes/drawingml.dart"
+      ],
+      "imported_files": 1290,
+      "test_files": 14
+    },
+    "engine-word-layout": {
+      "changed_libraries_reachable": [
+        "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/quds_office_engine/lib/src/slide/model/pml_presentation.dart",
+        "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/quds_office_engine/lib/src/slide/serial/slide_serial.dart",
+        "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/quds_office_engine/lib/src/slide/shapes/drawingml.dart"
+      ],
+      "imported_files": 1300,
+      "test_files": 22
+    },
+    "engine-zotero": {
+      "changed_libraries_reachable": [
+        "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/quds_office_engine/lib/src/slide/model/pml_presentation.dart",
+        "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/quds_office_engine/lib/src/slide/serial/slide_serial.dart",
+        "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/quds_office_engine/lib/src/slide/shapes/drawingml.dart"
+      ],
+      "imported_files": 1294,
+      "test_files": 29
+    },
+    "mail-host": {
+      "changed_libraries_reachable": [
+        "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/quds_office_engine/lib/src/slide/model/pml_presentation.dart",
+        "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/quds_office_engine/lib/src/slide/serial/slide_serial.dart",
+        "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/quds_office_engine/lib/src/slide/shapes/drawingml.dart"
+      ],
+      "imported_files": 3708,
+      "test_files": 11
+    },
+    "studio-integration": {
+      "changed_libraries_reachable": [
+        "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/quds_office_engine/lib/src/slide/model/pml_presentation.dart",
+        "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/quds_office_engine/lib/src/slide/serial/slide_serial.dart",
+        "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/quds_office_engine/lib/src/slide/shapes/drawingml.dart"
+      ],
+      "imported_files": 3843,
+      "test_files": 14
+    },
+    "web-persistence-vm": {
+      "changed_libraries_reachable": [
+        "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/quds_office_editor/example/lib/studio_hunspell_host_web.dart",
+        "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/quds_office_editor/example/lib/studio_web_data_store.dart",
+        "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/quds_office_editor/example/lib/studio_web_data_store_cache.dart",
+        "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/quds_office_editor/example/lib/studio_web_data_store_none.dart",
+        "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/quds_office_engine/lib/src/slide/model/pml_presentation.dart",
+        "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/quds_office_engine/lib/src/slide/serial/slide_serial.dart",
+        "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/quds_office_engine/lib/src/slide/shapes/drawingml.dart"
+      ],
+      "imported_files": 3834,
+      "test_files": 3
+    }
+  },
+  "command": [
+    "/workspace/scratch/2c6eaad19389/zotero-toolchain/flutter-sdk/bin/cache/dart-sdk/bin/dart",
+    "--packages=/workspace/scratch/2c6eaad19389/quds_office_suite/.dart_tool/package_config.json",
+    "/workspace/scratch/2c6eaad19389/zotero-toolchain/tmp/vm-import-scope-jan86c0b/directives.dart",
+    "/workspace/scratch/2c6eaad19389/quds_office_suite/docs/validation/zotero-research-materials-20261120/continuation/publication-final/vm-import-scope/selection.json",
+    "/workspace/scratch/2c6eaad19389/zotero-toolchain/tmp/vm-import-scope-jan86c0b/graph.json"
+  ],
+  "compressed_graph": {
+    "bytes": 291097,
+    "sha256": "449c85b27bbc1863997e6e0868def67adb39a8695057f37113a964481a09ef94"
+  },
+  "core_receipt_records": {
+    "editor-rendering": {
+      "bytes": 18026,
+      "sha256": "1213bed5daf39c5f1c9ad58fb9dd49ab03fc10cc1b62ada753dabf11bb17cf42"
+    },
+    "editor-word-layout": {
+      "bytes": 19910,
+      "sha256": "e994304a7949b29c5e460432df9aff13aae7fcb9357c1558d2592606bcf141ee"
+    },
+    "editor-zotero": {
+      "bytes": 23896,
+      "sha256": "87739f11408e8daa8f6f50285b6528faabe4ed116244a38c02caa2cc73dc62a6"
+    },
+    "engine-rendering": {
+      "bytes": 19624,
+      "sha256": "2538564b24dc1af4e3c839d92ff286c0d14e9728545dc7a91e67af80882e6f67"
+    },
+    "engine-word-layout": {
+      "bytes": 23785,
+      "sha256": "3bd977fb31a7d8748fcda4f7772afb22f24de7b07f79f8ba04a1775620b65ebe"
+    },
+    "engine-zotero": {
+      "bytes": 25565,
+      "sha256": "827788dbb7f480813d7deb8bb507b3199805adfc05dbdece4a90759e567b6181"
+    },
+    "mail-host": {
+      "bytes": 18801,
+      "sha256": "aa052ea7df7e9aa1f2672dfef3c19394ff95c45c6bb880f9c6e31f94b9c8032b"
+    },
+    "studio-integration": {
+      "bytes": 20309,
+      "sha256": "6c2f769b3873e8c1a90c1ae4ef47d9781e26bff46017956a5b4119b461de0d0c"
+    }
+  },
+  "core_test_roots": 157,
+  "core_test_source": "214c4ed80bef0cb871f74e90c506d508679d3d6e",
+  "dart_ast_source_sha256": "8d6c98e1cc9a47ffda6a48a1edd183e84f573484ec17c21d4da7c47ec704971b",
+  "dart_sdk_boundaries": [
+    "dart:async",
+    "dart:collection",
+    "dart:convert",
+    "dart:core",
+    "dart:developer",
+    "dart:ffi",
+    "dart:io",
+    "dart:isolate",
+    "dart:js_interop",
+    "dart:js_interop_unsafe",
+    "dart:math",
+    "dart:typed_data",
+    "dart:ui",
+    "dart:ui_web"
+  ],
+  "errors": [],
+  "fixed_environment": {
+    "dart.library.io": "true"
+  },
+  "graph_files": 4117,
+  "graph_sha256": "e5474f652a4587d6f5e42940470094f7b58ff113e2481799e79af5ed4ad4de7f",
+  "package_config_sha256": "0011318979bdc29c9637b857a5122ffea96d185f3d2dc50c5503904a9059d6a7",
+  "package_config_unchanged": true,
+  "semantics": "Only dart.library.io is fixed to true for the actually qualified Linux VM. Every other unknown conditional remains conservatively possible. All import/export/part directives are parsed as ASTs with package language versions; dart: libraries are explicit runtime boundaries. This is a static source reachability proof, not a dynamic call-coverage or arbitrary runtime-path proof.",
+  "source_changes_during_graph": [],
+  "source_head": "a45ee3bf40dbb7e64a04f879fd6d574db7cb60b1",
+  "source_head_after": "a45ee3bf40dbb7e64a04f879fd6d574db7cb60b1",
+  "status": "passed",
+  "unknown_conditional_variables": "All possible URI branches retained until a known matching branch ends the alternatives.",
+  "workspace_graph_files": 999
+}

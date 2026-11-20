@@ -1,0 +1,254 @@
+{
+  "application_timeouts_modified": false,
+  "artifacts": {
+    "events.jsonl.gz": {
+      "bytes": 496,
+      "git_blob_sha1": "5a9541a300f17e570b22cc2d81ea7e528619641b",
+      "sha256": "4b8d09a347bb067ffc83fbf2ab3bde59ca4a158181bcb74d54535e9980e8d81b"
+    },
+    "input-check.json": {
+      "bytes": 1248,
+      "git_blob_sha1": "92185d08734f5faff9d4e73598830a05793420b3",
+      "sha256": "7d77d97b155e726aa063a0af4cd61c855867dc765e31a52738a37dbf5df33dd4"
+    },
+    "inputs.json.gz": {
+      "bytes": 654847,
+      "git_blob_sha1": "7a0e06cef647bb9e2eebab5835bd73e5bb8586d9",
+      "sha256": "6da8d99632cd4b4296714d52ceaa073f8c2d46ac4ca5ea0c3596ffefe324fbc8"
+    },
+    "selection-adapter.json": {
+      "bytes": 2837,
+      "git_blob_sha1": "3103d91f9608e81af9ba68ec8c26e221d5a91b89",
+      "sha256": "5886967b0a8aeb44e4f093e0e1831758ff0b46e802e65b970aa8ddd4bfa42346"
+    },
+    "stderr.log.gz": {
+      "bytes": 31,
+      "git_blob_sha1": "87bfaf1cefef95e53a691da2269f30d7996d9c89",
+      "sha256": "b7368871ac9ce0ce08835c8c2fbf32d88bd56ee6bb93612434e3cc6bd4405e5e"
+    }
+  },
+  "cohort": "studio-pin",
+  "command": [
+    "/workspace/scratch/2c6eaad19389/zotero-toolchain/flutter-sdk/bin/flutter",
+    "test",
+    "--no-pub",
+    "--reporter",
+    "json",
+    "--concurrency",
+    "1",
+    "test/studio_spacy_pin_test.dart"
+  ],
+  "concurrency": 1,
+  "counting_scope": "Application test cases only. Loader and group-lifecycle events are excluded from the passing count but any failures in them still reject acceptance. Development runs and other cohorts are not included.",
+  "cwd": "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/quds_office_editor/example",
+  "elapsed_seconds": 6.914621167998121,
+  "exit_code": 0,
+  "external_dependency_file_count": 4502,
+  "fingerprints": {
+    "after_sha256": {
+      "dependencies": "3522c0e00ac142cc945a15dd4243afc938196806a38ddb9c89f372bdfcc6f846",
+      "host_fonts": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "runtime": "9c58c139ade21dc3073e27df7a4627814f2ddc40c2b7b684706d390d6d3c5aac",
+      "source": "0d01baf72786a54f5fa7c50dc2389af9bc16bd80010807dab9303d03fc44df95",
+      "workspace": "796c78924feaafc1773c00298a709fab93ec8388ecbc4a64d56c585279913b5c"
+    },
+    "before_sha256": {
+      "dependencies": "3522c0e00ac142cc945a15dd4243afc938196806a38ddb9c89f372bdfcc6f846",
+      "host_fonts": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "runtime": "9c58c139ade21dc3073e27df7a4627814f2ddc40c2b7b684706d390d6d3c5aac",
+      "source": "0d01baf72786a54f5fa7c50dc2389af9bc16bd80010807dab9303d03fc44df95",
+      "workspace": "796c78924feaafc1773c00298a709fab93ec8388ecbc4a64d56c585279913b5c"
+    },
+    "changed_paths": {
+      "dependencies": [],
+      "host_fonts": [],
+      "runtime": [],
+      "source": [],
+      "workspace": []
+    },
+    "source_matches_finish": {
+      "different_paths": [],
+      "matches": true,
+      "uncommitted_paths": []
+    },
+    "source_matches_start": {
+      "different_paths": [],
+      "matches": true,
+      "uncommitted_paths": []
+    }
+  },
+  "finished_at_utc": "2026-11-20T05:54:51.190304+00:00",
+  "guards": {
+    "all_requested_suites_executed_once": true,
+    "dependencies_unchanged": true,
+    "every_started_test_finished_once": true,
+    "final_event_success": true,
+    "host_fonts_unchanged": true,
+    "no_failures_skips_or_errors": true,
+    "runtime_unchanged": true,
+    "selection_adapter_and_primary_runner_unchanged": true,
+    "selection_unchanged": true,
+    "source_matches_finish_commit": true,
+    "source_matches_start_commit": true,
+    "source_unchanged": true,
+    "unique_application_test_names": true,
+    "workspace_unchanged": true
+  },
+  "head_unchanged": true,
+  "no_github_ci_or_status_endpoints": true,
+  "package": "packages/quds_office_editor/example",
+  "runner": "flutter",
+  "runtime": {
+    "dart_version": "Dart SDK version: 3.13.7 (stable) (Thu Oct 22 14:28:57 2026 -0700) on \"linux_x64\"",
+    "dart_version_command": [
+      "/workspace/scratch/2c6eaad19389/zotero-toolchain/flutter-sdk/bin/cache/dart-sdk/bin/dart",
+      "--version"
+    ],
+    "flutter": {
+      "channel": "stable",
+      "dartSdkVersion": "3.13.7",
+      "devToolsVersion": "2.60.0",
+      "engineBuildDate": "2026-10-22 20:34:48.330",
+      "engineCommitDate": "2026-10-23 02:13:38.000Z",
+      "engineContentHash": "dfd2e6cb7d319db05e3bf1503f3e2ac60f6288a2",
+      "engineRevision": "cf636b1dfb818dd6a3ff16e390e93b1a036969c8",
+      "flutterVersion": "3.47.8",
+      "frameworkCommitDate": "2026-10-22 21:37:31 -0700",
+      "frameworkRevision": "737ba8f885dc774b53b442759999a312c9461e4e",
+      "frameworkVersion": "3.47.8",
+      "repositoryUrl": "https://github.com/flutter/flutter.git"
+    },
+    "flutter_root": "/workspace/scratch/2c6eaad19389/zotero-toolchain/flutter-sdk",
+    "pub_cache": "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache"
+  },
+  "selected_files": [
+    "test/studio_spacy_pin_test.dart"
+  ],
+  "selected_repository_paths": [
+    "packages/quds_office_editor/example/test/studio_spacy_pin_test.dart"
+  ],
+  "selection_adapter": {
+    "adapter_command": [
+      "docs/validation/zotero-research-materials-20261120/continuation/publication-followup/run_studio_pin.py",
+      "studio-pin",
+      "--repo",
+      "/workspace/scratch/2c6eaad19389/quds_office_suite",
+      "--output",
+      "docs/validation/zotero-research-materials-20261120/continuation/publication-followup/accepted-studio-pin",
+      "--expected-head",
+      "6b917be36d5d54aa8a55ef3c8b9ce649aa8bab82"
+    ],
+    "additive_catalog": {
+      "studio-pin": {
+        "additional": [
+          "studio_spacy_pin_test.dart"
+        ],
+        "package": "packages/quds_office_editor/example",
+        "patterns": [],
+        "runner": "flutter"
+      }
+    },
+    "code_after": {
+      "adapter": {
+        "bytes": 4288,
+        "path": "/workspace/scratch/2c6eaad19389/quds_office_suite/docs/validation/zotero-research-materials-20261120/continuation/publication-followup/run_studio_pin.py",
+        "sha256": "f1eab70c9ed43824ffe48c1af82ebd9db7923a269306357e161fcf092ea17f75"
+      },
+      "primary_runner": {
+        "bytes": 29772,
+        "path": "/workspace/scratch/2c6eaad19389/quds_office_suite/docs/validation/zotero-research-materials-20261120/run_validation.py",
+        "sha256": "4d01ed59729abaa64e3ab643e8ebcb2f7136dd2d9f02cc4b07b81a06fbb919bf"
+      }
+    },
+    "code_before": {
+      "adapter": {
+        "bytes": 4288,
+        "path": "/workspace/scratch/2c6eaad19389/quds_office_suite/docs/validation/zotero-research-materials-20261120/continuation/publication-followup/run_studio_pin.py",
+        "sha256": "f1eab70c9ed43824ffe48c1af82ebd9db7923a269306357e161fcf092ea17f75"
+      },
+      "primary_runner": {
+        "bytes": 29772,
+        "path": "/workspace/scratch/2c6eaad19389/quds_office_suite/docs/validation/zotero-research-materials-20261120/run_validation.py",
+        "sha256": "4d01ed59729abaa64e3ab643e8ebcb2f7136dd2d9f02cc4b07b81a06fbb919bf"
+      }
+    },
+    "code_unchanged": true,
+    "cohort": "studio-pin",
+    "delegated_arguments": [
+      "/workspace/scratch/2c6eaad19389/quds_office_suite/docs/validation/zotero-research-materials-20261120/run_validation.py",
+      "studio-pin",
+      "--repo",
+      "/workspace/scratch/2c6eaad19389/quds_office_suite",
+      "--timeout",
+      "1800",
+      "--output",
+      "/workspace/scratch/2c6eaad19389/quds_office_suite/docs/validation/zotero-research-materials-20261120/continuation/publication-followup/accepted-studio-pin",
+      "--expected-head",
+      "6b917be36d5d54aa8a55ef3c8b9ce649aa8bab82"
+    ],
+    "primary_runner_exit_code": 0,
+    "primary_test_audit_and_fingerprint_logic_unchanged": true,
+    "purpose": "Qualify the publication-time build script consumed by the Studio spaCy pin test",
+    "selection": {
+      "additional": [
+        "studio_spacy_pin_test.dart"
+      ],
+      "package": "packages/quds_office_editor/example",
+      "patterns": [],
+      "runner": "flutter"
+    },
+    "shared_sdk_validation_lock_unchanged": true
+  },
+  "source_file_count": 4004,
+  "source_head_at_finish": "6b917be36d5d54aa8a55ef3c8b9ce649aa8bab82",
+  "source_head_at_start": "6b917be36d5d54aa8a55ef3c8b9ce649aa8bab82",
+  "started_at_utc": "2026-11-20T05:54:41.466557+00:00",
+  "status": "passed",
+  "tests": {
+    "application_cases": 1,
+    "duplicate_application_names": [],
+    "duplicate_suite_ids": false,
+    "error_events": [],
+    "every_started_test_finished_once": true,
+    "excluded_failures": [],
+    "excluded_pseudo_cases": 1,
+    "excluded_reasons": {
+      "hidden_lifecycle": 1
+    },
+    "failed": 0,
+    "final_events": [
+      {
+        "success": true,
+        "time": 5437,
+        "type": "done"
+      }
+    ],
+    "flutter_notification_envelopes": 0,
+    "layout_or_tap_diagnostics": [],
+    "missing_start_test_ids": [],
+    "parse_errors": [],
+    "passed": 1,
+    "skipped": 0,
+    "suite_count": 1,
+    "suites": [
+      {
+        "failed": 0,
+        "id": 0,
+        "passed": 1,
+        "path": "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/quds_office_editor/example/test/studio_spacy_pin_test.dart",
+        "skipped": 0
+      }
+    ],
+    "test_done_events": 2,
+    "test_start_events": 2,
+    "unfinished_test_ids": []
+  },
+  "timed_out": false,
+  "validation_runner": {
+    "bytes": 29772,
+    "git_blob_sha1": "269eef52038d97ae307859439875a23f350e0b0a",
+    "path": "/workspace/scratch/2c6eaad19389/quds_office_suite/docs/validation/zotero-research-materials-20261120/run_validation.py",
+    "sha256": "4d01ed59729abaa64e3ab643e8ebcb2f7136dd2d9f02cc4b07b81a06fbb919bf"
+  },
+  "watchdog_seconds": 1800
+}

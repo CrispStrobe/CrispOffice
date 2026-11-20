@@ -1,0 +1,83 @@
+{
+  "status": "verified_publication_followup_with_scoped_build_validation",
+  "audited_at_utc": "2026-11-20T05:57:04.672925+00:00",
+  "candidate_commit": "6b917be36d5d54aa8a55ef3c8b9ce649aa8bab82",
+  "candidate_tree": "aa8955a99d4c81ba1d57779c4cc2cd5dc0372374",
+  "candidate_parents": [
+    "f4b7f7af5b405194c28611349e032129c6d048d6",
+    "3e5f44ae14926b8054b2e5c0558ce71477891a33"
+  ],
+  "earlier_tested_source": "f3f98987824e021ed22a4d909e38d6307495267b",
+  "earlier_lint_corrected_source": "3cba1810b41a2fff5b2cd1eb355137a46b09f225",
+  "earlier_publication_candidate": "b1c8c8e534c41914b934defd6023839b851b28a2",
+  "earlier_publication_audit_sha256": "77ae9168f2354ca58b4cf98743fb38557b8f3fe6a0cc6f7669d53cd38f596113",
+  "recorded_source_inputs": 4004,
+  "changed_recorded_source_paths_by_reference": {
+    "f3f98987824e021ed22a4d909e38d6307495267b": [
+      "packages/quds_office_editor/example/tool/build_macos_app.sh",
+      "packages/quds_proofing_spacy/lib/src/distribution.dart",
+      "packages/quds_proofing_spacy/tool/evaluate_grammar_v2.dart"
+    ],
+    "3cba1810b41a2fff5b2cd1eb355137a46b09f225": [
+      "packages/quds_office_editor/example/tool/build_macos_app.sh",
+      "packages/quds_proofing_spacy/lib/src/distribution.dart"
+    ],
+    "b1c8c8e534c41914b934defd6023839b851b28a2": [
+      "packages/quds_office_editor/example/tool/build_macos_app.sh",
+      "packages/quds_proofing_spacy/lib/src/distribution.dart"
+    ]
+  },
+  "unchanged_recorded_source_inputs_from_tested_source": 4001,
+  "all_recorded_source_inputs_unchanged": false,
+  "selected_test_files_unchanged": 129,
+  "manifest_lock_analysis_paths_unchanged": 43,
+  "tracked_library_paths": 894,
+  "byte_identical_library_paths": 893,
+  "only_library_byte_change": "packages/quds_proofing_spacy/lib/src/distribution.dart",
+  "library_change_only_documentation_comments": true,
+  "all_dart_executable_tokens_unchanged_since_lint_correction": true,
+  "earlier_evaluator_brace_change_unmodified_and_retains_original_isolation_proof": true,
+  "script_pins_and_qualified_byte_identity_unchanged": true,
+  "qualified_file_sha256": "ccc96620e01164d18e8d2e46b9a383677e4430c8889833bedab5b56c16a1b40f",
+  "qualified_file_bytes": 2322928,
+  "qualified_code_digest_pin": "f2022b1cf75d831cddbd047eec5f5ac759728fee169ed2b5b785ecda1a07efeb",
+  "build_review": {
+    "path": "macos-build-review.json",
+    "sha256": "6c1d55b1f52cdee98885f7a7a677c3e3cfa778db574daa54113641f17484b7df",
+    "controlled_shell_cases_passed": 10,
+    "native_build_or_signing_executed": false
+  },
+  "fresh_pin_followup": {
+    "path": "accepted-studio-pin/receipt.json",
+    "sha256": "f0f44aa027b2069033b4a17174fbf436f0eecbe36600b16747df68bbdbfaec6b",
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "all_primary_guards_passed": true,
+    "distinct_case_total_increment": 0
+  },
+  "fresh_static": {
+    "path": "static/receipt.json",
+    "sha256": "b01cb54689afceab0334f8ab00c830c23de7bfadbe25a59947751af3069b0f10",
+    "head": "6b917be36d5d54aa8a55ef3c8b9ce649aa8bab82",
+    "targets": 83,
+    "analysis_exit_code": 0,
+    "format_exit_code": 0
+  },
+  "case_accounting": {
+    "original_five_cohort_successful_executions": 3209,
+    "distinct_application_cases_remain": 3201,
+    "distinct_files_remain": 129,
+    "followup_application_execution_is_one_existing_case_repeated": true,
+    "controlled_shell_checks_are_separate": 10,
+    "proofing_primary_uniqueness_rejection_and_independent_eight_pair_accounting_retained": true
+  },
+  "limits": [
+    "The earlier 3,201 distinct cases retain their recorded source attribution. The one script-reading case is freshly rerun on this candidate; the entire five-cohort selection is not rerun.",
+    "The original standalone evaluator isolation audit remains unchanged. This supplement reports the newer script behavior and documentation differences explicitly.",
+    "Command stubs check the exact changed shell control flow, not Apple signing tools or cryptographic implementations. No macOS build, native library execution, notarization, live account, or Office interoperability run is claimed."
+  ],
+  "github_actions_queried": false,
+  "remote_refs_mutated": false,
+  "verifier_sha256": "22ba8ec2f861064648e6e06b5e81f8825468989e439fae617a4b88e8f807099b"
+}

@@ -19,6 +19,13 @@ final Object _skip = _library == null || _bundle == null
     ? 'Set QUDS_ARABIC_MORPH_TEST_LIBRARY and QUDS_ARABIC_MORPH_TEST_BUNDLE.'
     : false;
 
+/// QUDS_ARABIC_MORPH_TEST_MODEL: the directory with the verified context
+/// model bundle (camelMorphMsaDisambig).
+final _model = Platform.environment['QUDS_ARABIC_MORPH_TEST_MODEL'];
+final Object _skipModel = _library == null || _bundle == null || _model == null
+    ? 'Set QUDS_ARABIC_MORPH_TEST_LIBRARY, _BUNDLE and _MODEL.'
+    : false;
+
 MorphDatabaseFiles _files(String directory) => MorphDatabaseFiles(
   camelMorphMsaProofingBin,
   manifestPath: '$directory/manifest.json',
@@ -46,6 +53,83 @@ int _databaseMappings(Directory bundle) {
 }
 
 void main() {
+  group('real library with the context model', () {
+    late CamelArabicMorphology morphology;
+    setUpAll(() async {
+      morphology = CamelArabicMorphology(
+        database: _files(_bundle!),
+        disambiguator: MorphDatabaseFiles(
+          camelMorphMsaDisambig,
+          manifestPath: '$_model/manifest.json',
+        ),
+        nativeLibraryPath: _library,
+      );
+      await morphology.load();
+    });
+    tearDownAll(() => morphology.dispose());
+
+    test('loads the pinned model and ranks readings in context', () async {
+      expect(morphology.canDisambiguate, isTrue);
+      expect(
+        morphology.disambiguatorInfo!['model_format'],
+        'crispembed-camel-morph-disambig-v1',
+      );
+      final sentences = [
+        for (final s in arabicContextSentences(
+          'قرأت ثلاثة كتب في المكتبة. كان الطلاب مجتهدين!',
+        ))
+          [for (final t in s) t.text],
+      ];
+      expect(sentences, hasLength(2));
+      final readings = await morphology.disambiguate(sentences);
+      expect(readings.map((s) => s.length), [6, 4]);
+      // كتب after a numeral is the plural of كتاب, في the preposition,
+      // كان the verb.
+      expect(readings[0][2].best.map((a) => a['lex']).toSet(), {'كِتَاب'});
+      expect(readings[0][3].best.first['pos'], 'prep');
+      expect(readings[1][0].best.first['pos'], 'verb');
+      for (final s in readings) {
+        for (final r in s) {
+          final best = r.bestScore;
+          expect(best, inInclusiveRange(0, 1.0001));
+          if (r.analyses.isNotEmpty) expect(r.margin, lessThanOrEqualTo(best));
+        }
+      }
+      expect(readings[0][5].analyses.single['pos'], 'punc');
+    });
+
+    test('a tampered model leaves analysis working without ranking', () async {
+      final copy = Directory.systemTemp.createTempSync('arabic-morph-model-');
+      addTearDown(() => copy.deleteSync(recursive: true));
+      for (final a in camelMorphMsaDisambig.files) {
+        File('$_model/${a.file}').copySync('${copy.path}/${a.file}');
+      }
+      final model = File('${copy.path}/${camelMorphMsaDisambig.database.file}');
+      final bytes = model.readAsBytesSync();
+      bytes[bytes.length ~/ 2] ^= 0x5a;
+      model.writeAsBytesSync(bytes);
+      final other = CamelArabicMorphology(
+        database: _files(_bundle!),
+        disambiguator: MorphDatabaseFiles(
+          camelMorphMsaDisambig,
+          manifestPath: '${copy.path}/manifest.json',
+        ),
+        nativeLibraryPath: _library,
+      );
+      addTearDown(other.dispose);
+      await other.load();
+      expect(other.isAvailable, isTrue);
+      expect(other.canDisambiguate, isFalse);
+      expect(other.disambiguatorFailure.toString(), contains('SHA-256'));
+      expect(
+        await other.disambiguate([
+          ['كتب'],
+        ]),
+        isEmpty,
+      );
+    });
+  }, skip: _skipModel);
+
   test('a missing native library leaves the analyzer unavailable', () async {
     final morphology = CamelArabicMorphology(
       database: _files('/missing'),

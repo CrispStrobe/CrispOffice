@@ -1,0 +1,316 @@
+[
+  {
+    "name": "calibri-auto-240",
+    "font": "/Applications/Microsoft Word.app/Contents/Resources/DFonts/Calibri.ttf",
+    "family": "Calibri",
+    "rule": "auto",
+    "line": 240
+  },
+  {
+    "name": "calibri-auto-360",
+    "font": "/Applications/Microsoft Word.app/Contents/Resources/DFonts/Calibri.ttf",
+    "family": "Calibri",
+    "rule": "auto",
+    "line": 360
+  },
+  {
+    "name": "calibri-exact-360",
+    "font": "/Applications/Microsoft Word.app/Contents/Resources/DFonts/Calibri.ttf",
+    "family": "Calibri",
+    "rule": "exact",
+    "line": 360
+  },
+  {
+    "name": "calibri-atLeast-240",
+    "font": "/Applications/Microsoft Word.app/Contents/Resources/DFonts/Calibri.ttf",
+    "family": "Calibri",
+    "rule": "atLeast",
+    "line": 240
+  },
+  {
+    "name": "aptos-auto-240",
+    "font": "/Applications/Microsoft Word.app/Contents/Resources/DFonts/Aptos.ttf",
+    "family": "Aptos",
+    "rule": "auto",
+    "line": 240
+  },
+  {
+    "name": "aptos-auto-360",
+    "font": "/Applications/Microsoft Word.app/Contents/Resources/DFonts/Aptos.ttf",
+    "family": "Aptos",
+    "rule": "auto",
+    "line": 360
+  },
+  {
+    "name": "aptos-exact-360",
+    "font": "/Applications/Microsoft Word.app/Contents/Resources/DFonts/Aptos.ttf",
+    "family": "Aptos",
+    "rule": "exact",
+    "line": 360
+  },
+  {
+    "name": "aptos-atLeast-240",
+    "font": "/Applications/Microsoft Word.app/Contents/Resources/DFonts/Aptos.ttf",
+    "family": "Aptos",
+    "rule": "atLeast",
+    "line": 240
+  },
+  {
+    "name": "arial-auto-240",
+    "font": "/System/Library/Fonts/Supplemental/Arial.ttf",
+    "family": "Arial",
+    "rule": "auto",
+    "line": 240
+  },
+  {
+    "name": "arial-auto-360",
+    "font": "/System/Library/Fonts/Supplemental/Arial.ttf",
+    "family": "Arial",
+    "rule": "auto",
+    "line": 360
+  },
+  {
+    "name": "arial-exact-360",
+    "font": "/System/Library/Fonts/Supplemental/Arial.ttf",
+    "family": "Arial",
+    "rule": "exact",
+    "line": 360
+  },
+  {
+    "name": "arial-atLeast-240",
+    "font": "/System/Library/Fonts/Supplemental/Arial.ttf",
+    "family": "Arial",
+    "rule": "atLeast",
+    "line": 240
+  },
+  {
+    "name": "times-auto-240",
+    "font": "/System/Library/Fonts/Supplemental/Times New Roman.ttf",
+    "family": "Times New Roman",
+    "rule": "auto",
+    "line": 240
+  },
+  {
+    "name": "times-auto-360",
+    "font": "/System/Library/Fonts/Supplemental/Times New Roman.ttf",
+    "family": "Times New Roman",
+    "rule": "auto",
+    "line": 360
+  },
+  {
+    "name": "times-exact-360",
+    "font": "/System/Library/Fonts/Supplemental/Times New Roman.ttf",
+    "family": "Times New Roman",
+    "rule": "exact",
+    "line": 360
+  },
+  {
+    "name": "times-atLeast-240",
+    "font": "/System/Library/Fonts/Supplemental/Times New Roman.ttf",
+    "family": "Times New Roman",
+    "rule": "atLeast",
+    "line": 240
+  },
+  {
+    "name": "wl2-wrap-arial",
+    "font": "/System/Library/Fonts/Supplemental/Arial.ttf",
+    "family": "Arial"
+  },
+  {
+    "name": "wl2-wrap-calibri",
+    "font": "/Applications/Microsoft Word.app/Contents/Resources/DFonts/Calibri.ttf",
+    "family": "Calibri"
+  },
+  {
+    "name": "wl2-justify-arial",
+    "font": "/System/Library/Fonts/Supplemental/Arial.ttf",
+    "family": "Arial"
+  },
+  {
+    "name": "wl2-mixed-size-valid",
+    "font": "/System/Library/Fonts/Supplemental/Arial.ttf",
+    "family": "Arial"
+  },
+  {
+    "name": "wl2-spacing",
+    "font": "/System/Library/Fonts/Supplemental/Arial.ttf",
+    "family": "Arial"
+  },
+  {
+    "name": "wl2-tabs",
+    "font": "/System/Library/Fonts/Supplemental/Arial.ttf",
+    "family": "Arial"
+  },
+  {
+    "name": "wl2-probe-01",
+    "font": "/System/Library/Fonts/Supplemental/Arial.ttf",
+    "family": "Arial",
+    "size": 12,
+    "pitch": 18,
+    "default": null
+  },
+  {
+    "name": "wl2-probe-02",
+    "font": "/System/Library/Fonts/Supplemental/Times New Roman.ttf",
+    "family": "Times New Roman",
+    "size": 12,
+    "pitch": 18,
+    "default": null
+  },
+  {
+    "name": "wl2-probe-03",
+    "font": "/Applications/Microsoft Word.app/Contents/Resources/DFonts/Calibri.ttf",
+    "family": "Calibri",
+    "size": 12,
+    "pitch": 18,
+    "default": null
+  },
+  {
+    "name": "wl2-probe-04",
+    "font": "/Applications/Microsoft Word.app/Contents/Resources/DFonts/Aptos.ttf",
+    "family": "Aptos",
+    "size": 12,
+    "pitch": 18,
+    "default": null
+  },
+  {
+    "name": "wl2-probe-05",
+    "font": "/System/Library/Fonts/Supplemental/Arial.ttf",
+    "family": "Arial",
+    "size": 8,
+    "pitch": 18,
+    "default": null
+  },
+  {
+    "name": "wl2-probe-06",
+    "font": "/System/Library/Fonts/Supplemental/Arial.ttf",
+    "family": "Arial",
+    "size": 18,
+    "pitch": 18,
+    "default": null
+  },
+  {
+    "name": "wl2-probe-07",
+    "font": "/System/Library/Fonts/Supplemental/Arial.ttf",
+    "family": "Arial",
+    "size": 24,
+    "pitch": 18,
+    "default": null
+  },
+  {
+    "name": "wl2-probe-08",
+    "font": "/System/Library/Fonts/Supplemental/Arial.ttf",
+    "family": "Arial",
+    "size": 12,
+    "pitch": 12,
+    "default": null
+  },
+  {
+    "name": "wl2-probe-09",
+    "font": "/System/Library/Fonts/Supplemental/Arial.ttf",
+    "family": "Arial",
+    "size": 12,
+    "pitch": 24,
+    "default": null
+  },
+  {
+    "name": "wl2-probe-10",
+    "font": "/System/Library/Fonts/Supplemental/Arial.ttf",
+    "family": "Arial",
+    "size": 12,
+    "pitch": 18,
+    "default": "Arial"
+  },
+  {
+    "name": "wl2-probe-11",
+    "font": "/System/Library/Fonts/Supplemental/Arial.ttf",
+    "family": "Arial",
+    "size": 12,
+    "pitch": 18,
+    "default": "Aptos"
+  },
+  {
+    "name": "wl2-probe-12",
+    "font": "/System/Library/Fonts/Supplemental/Arial.ttf",
+    "family": "Arial",
+    "size": 18,
+    "pitch": 18,
+    "default": "Arial"
+  },
+  {
+    "name": "wl2-exact-10",
+    "font": "/System/Library/Fonts/Supplemental/Arial.ttf",
+    "family": "Arial",
+    "size": 12,
+    "pitch": 10,
+    "default": null
+  },
+  {
+    "name": "wl2-exact-14",
+    "font": "/System/Library/Fonts/Supplemental/Arial.ttf",
+    "family": "Arial",
+    "size": 12,
+    "pitch": 14,
+    "default": null
+  },
+  {
+    "name": "wl2-exact-20",
+    "font": "/System/Library/Fonts/Supplemental/Arial.ttf",
+    "family": "Arial",
+    "size": 12,
+    "pitch": 20,
+    "default": null
+  },
+  {
+    "name": "wl2-exact-30",
+    "font": "/System/Library/Fonts/Supplemental/Arial.ttf",
+    "family": "Arial",
+    "size": 12,
+    "pitch": 30,
+    "default": null
+  },
+  {
+    "name": "wl2-exact-48",
+    "font": "/System/Library/Fonts/Supplemental/Arial.ttf",
+    "family": "Arial",
+    "size": 12,
+    "pitch": 48,
+    "default": null
+  },
+  {
+    "name": "wl2-exact-120",
+    "font": "/System/Library/Fonts/Supplemental/Arial.ttf",
+    "family": "Arial",
+    "size": 12,
+    "pitch": 120,
+    "default": null
+  },
+  {
+    "name": "wl2-minimum-18",
+    "font": "/System/Library/Fonts/Supplemental/Arial.ttf",
+    "family": "Arial",
+    "size": 12,
+    "pitch": 18,
+    "default": null,
+    "rule": "atLeast"
+  },
+  {
+    "name": "wl2-minimum-24",
+    "font": "/System/Library/Fonts/Supplemental/Arial.ttf",
+    "family": "Arial",
+    "size": 12,
+    "pitch": 24,
+    "default": null,
+    "rule": "atLeast"
+  },
+  {
+    "name": "wl2-wrap-calibri-kern-1",
+    "font": "/Applications/Microsoft Word.app/Contents/Resources/DFonts/Calibri.ttf",
+    "family": "Calibri"
+  },
+  {
+    "name": "wl2-wrap-calibri-kern-28",
+    "font": "/Applications/Microsoft Word.app/Contents/Resources/DFonts/Calibri.ttf",
+    "family": "Calibri"
+  }
+]

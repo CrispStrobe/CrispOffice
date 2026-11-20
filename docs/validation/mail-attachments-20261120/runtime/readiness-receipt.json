@@ -1,0 +1,32 @@
+{
+  "started_at_utc": "2026-11-20T05:16:02.915060+00:00",
+  "status": "ready",
+  "runs": [
+    {
+      "name": "native-sqlite-readiness",
+      "command": [
+        "/workspace/scratch/75dc9d25dfaf/runtime/bin/dart",
+        "run",
+        "/workspace/scratch/75dc9d25dfaf/quds_office_suite/packages/quds_mail_store/.dart_tool/runtime-native-smoke-d14ah20_/native_asset_smoke.dart"
+      ],
+      "cwd": "/workspace/scratch/75dc9d25dfaf/quds_office_suite/packages/quds_mail_store",
+      "exit_code": 0,
+      "log": "/workspace/scratch/75dc9d25dfaf/runtime/logs/native-sqlite-readiness.log",
+      "log_sha256": "631bdd79595db2ef8060d5e31b4ac6ba07c35a4633c244f868c30fa8fddfbd44"
+    }
+  ],
+  "lock_before_sha256": "b71c74cada904d0a3fac7d057b7c718011c50d2e108b6cfd0390566f8abab202",
+  "manifest_before_sha256": "453a1f8ab62db1c5577c424b058b50033a8d3b49b99c83862ab58a7e1108f74f",
+  "native_assets": {
+    "manifest": "/workspace/scratch/75dc9d25dfaf/quds_office_suite/.dart_tool/native_assets.yaml",
+    "manifest_sha256": "d7be1614df4d135565088bf16b1daa8da9f7791690241f2ff7ed0e2032c1d2b5",
+    "library": "/workspace/scratch/75dc9d25dfaf/quds_office_suite/.dart_tool/lib/libsqlite3.so",
+    "library_sha256": "0a65852703763619a7a34633b4959b3b86c4103804a4dfe4e8b27b5de1c0647b",
+    "version": "3.54.1",
+    "fts5": true,
+    "provenance": "Unmodified sqlite3 3.9.1 default native build hook; library checksum matches package pinned asset"
+  },
+  "lock_after_sha256": "b71c74cada904d0a3fac7d057b7c718011c50d2e108b6cfd0390566f8abab202",
+  "manifest_after_sha256": "453a1f8ab62db1c5577c424b058b50033a8d3b49b99c83862ab58a7e1108f74f",
+  "finished_at_utc": "2026-11-20T05:16:13.951402+00:00"
+}

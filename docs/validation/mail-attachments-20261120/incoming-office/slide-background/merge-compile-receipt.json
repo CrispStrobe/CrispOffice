@@ -1,0 +1,44 @@
+{
+  "phase": "regression-demonstration-before-repair",
+  "started_at_utc": "2026-11-20T05:20:55.870894+00:00",
+  "command": [
+    "/workspace/scratch/75dc9d25dfaf/runtime/flutter/bin/cache/dart-sdk/bin/dart",
+    "--packages=/workspace/scratch/75dc9d25dfaf/quds_office_suite/.dart_tool/package_config.json",
+    "/workspace/scratch/75dc9d25dfaf/runtime/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+    "packages/quds_office_engine/test/slide_import_fidelity_test.dart",
+    "--reporter=json",
+    "--concurrency=2"
+  ],
+  "exit_code": 1,
+  "elapsed_seconds": 16.095315190999827,
+  "input_sha256": {
+    "packages/quds_office_engine/lib/src/slide/serial/slide_serial.dart": "f44206c09fce1be52bdcd9d93b7c2acf3afdbe592dad3c934c7fcbd6ef468ff3",
+    "packages/quds_office_engine/lib/src/slide/model/pml_presentation.dart": "d3c2f7cd53db898bc754ae17e1ad0276cd84bea1871fce08d10aa3d38f5c0de6",
+    "packages/quds_office_engine/test/slide_import_fidelity_test.dart": "a6451a445439be959197246962f2d797dc5303b5d85c648de5538289da40b060",
+    "pubspec.lock": "b71c74cada904d0a3fac7d057b7c718011c50d2e108b6cfd0390566f8abab202"
+  },
+  "input_sha256_after": {
+    "packages/quds_office_engine/lib/src/slide/serial/slide_serial.dart": "f44206c09fce1be52bdcd9d93b7c2acf3afdbe592dad3c934c7fcbd6ef468ff3",
+    "packages/quds_office_engine/lib/src/slide/model/pml_presentation.dart": "d3c2f7cd53db898bc754ae17e1ad0276cd84bea1871fce08d10aa3d38f5c0de6",
+    "packages/quds_office_engine/test/slide_import_fidelity_test.dart": "a6451a445439be959197246962f2d797dc5303b5d85c648de5538289da40b060",
+    "pubspec.lock": "b71c74cada904d0a3fac7d057b7c718011c50d2e108b6cfd0390566f8abab202"
+  },
+  "inputs_unchanged": true,
+  "failures": [
+    {
+      "testID": 1,
+      "error": "Failed to load \"packages/quds_office_engine/test/slide_import_fidelity_test.dart\":\npackages/quds_office_engine/lib/src/slide/model/pml_presentation.dart:707:7: Error: Duplicated named argument 'showMasterShapes'.\n      showMasterShapes: showMasterShapes,\n      ^^^^^^^^^^^^^^^^",
+      "stackTrace": "package:test_core/src/runner/vm/platform.dart 334:7   VMPlatform._compileToKernel\n===== asynchronous gap ===========================\npackage:test_core/src/runner/vm/platform.dart 305:11  VMPlatform._spawnIsolate\n===== asynchronous gap ===========================\npackage:test_core/src/runner/vm/platform.dart 84:19   VMPlatform.load\n===== asynchronous gap ===========================\npackage:test_core/src/runner/loader.dart 249:27       Loader.loadFile.<fn>\n===== asynchronous gap ===========================\npackage:test_core/src/runner/load_suite.dart 95:21    new LoadSuite.<fn>.<fn>\n",
+      "isFailure": false,
+      "type": "error",
+      "time": 5643
+    }
+  ],
+  "done": [
+    {
+      "success": false,
+      "type": "done",
+      "time": 5648
+    }
+  ]
+}

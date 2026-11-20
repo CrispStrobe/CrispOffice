@@ -26,20 +26,22 @@ import sys
 import urllib.request
 
 PACKAGE = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(PACKAGE.parents[1] / "tools" / "proofing"))
+import mobile_native  # noqa: E402  (monorepo helper: iOS frameworks, Android ABIs)
 NATIVE = PACKAGE / "native"
 LICENSES = PACKAGE / "licenses"
 CRISPEMBED = {
     "repository": "https://github.com/CrispStrobe/CrispEmbed",
-    "commit": "0ed76631843cadd9b5c8296f25ed8a414d8f51db",
-    "pull_request": 255,
+    "commit": "3bab324832ea911c2b1260a0d50f0ed898f47950",
+    "pull_request": 261,
 }
 RAW = "https://raw.githubusercontent.com/CrispStrobe/CrispEmbed/{commit}/{path}"
 # Every file fetched from CrispEmbed: path -> (SHA-256, bytes). Compiled
 # sources and their notices; nothing else of CrispEmbed (no ggml) is used.
 SOURCES = {
     "LICENSE": ("a70d0ab5fb2dbab83d1a63071776891e6dfc7ba6e3063b3940c21274c1225a3e", 4739),
-    "src/arabic_morph.cpp": ("fff60440de9faaff4f5a5a0ec2c2b593a17eea8f94b6e55231d4059f361e910f", 111218),
-    "src/arabic_morph.h": ("98a2d0e6ec9ffed02c7d63e8e19c0ce7a46ed995859c2085fecad5b10620bc4c", 7377),
+    "src/arabic_morph.cpp": ("c1547caf39aab9f74834cba9c782498e876357ba07ec6487d55b928c03f35400", 139469),
+    "src/arabic_morph.h": ("cb7239fd6c727fd71d6f52240c380dd0914e6fb52418a7142bb7f8f81bcb0ed7", 11823),
     "src/arabic_morph_tables.h": ("72f9bf25aaaa0aa69b0fccfde2f97e97468c0dc8a523f4e012310d9b3bb5c174", 8028),
     "src/core/env_gate.h": ("2370e31636ea25bc1e5ca63e1e606f4cd3c07c65e0f4d1347b2ec6daf57eaa0e", 3245),
     "src/core/json.h": ("7e72a6359897e9397e5bee3edf7563476fc4bd41516bf5245a16df50dc54c589", 23378),
@@ -74,10 +76,13 @@ NOTICES = {
     "CPython-LICENSE": "tools/arabic_morph/notices/CPython-LICENSE",
 }
 # Attribution of the user-downloaded data (never compiled in), copied from
-# the pinned proofing-bin bundle so hosts can show it on their licence page.
+# the pinned proofing-bin bundle and the pinned context model bundle so hosts
+# can show it on their licence page.
 DATA_NOTICES = {
     "camel-morph-msa-NOTICE": ("ce2f9c051786a37e4eb72367e6a6c9ea256b702137d4187bb0bfbda38f860efd", 1799),
     "camel-morph-msa-LICENSE": ("214965747a90efe3e5268d367192bb077f1101620662cba71d59d902000b2d94", 442),
+    "camel-morph-msa-disambig-NOTICE": ("12f44e5787019e5eb5595663cb7275408d961f430b74d108fa77006235e2638b", 1484),
+    "camel-morph-msa-disambig-LICENSE": ("ef2c6367af269181d259bbda4b6167684f85242bb04b28923f91e2861be4c695", 363),
 }
 LIBRARY = "quds_arabic_morph"
 
@@ -122,8 +127,8 @@ def license_bundle(root: Path) -> dict:
         "schema_version": 1,
         "policy": "MIT adapter and MIT CrispEmbed analyzer (a port of MIT camel_tools); Ryu under the Apache-2.0 "
                   "option of its Apache-2.0/BSL-1.0 dual licence; Unicode/CPython character data under their "
-                  "notices. No GPL/LGPL code. The Camel Morph database (CC BY 4.0) is user-downloaded data, never "
-                  "part of the binary.",
+                  "notices. No GPL/LGPL code. The Camel Morph database (CC BY 4.0) and its context model (CC BY-SA "
+                  "4.0) are user-downloaded data, never part of the binary.",
         "component": {
             "name": "crispembed-ar-morph", "source": CRISPEMBED["repository"], "commit": CRISPEMBED["commit"],
             "pull_request": CRISPEMBED["pull_request"], "license": "MIT",
@@ -138,6 +143,9 @@ def license_bundle(root: Path) -> dict:
         "data_notices": {
             "bundle": "huggingface.co/cstr/camel-morph-msa-v1.0@d5364e04af7a40b0c9044ed127606e585be15272/proofing-bin",
             "license": "CC-BY-4.0",
+            "model_bundle": "huggingface.co/cstr/camel-morph-msa-disambig@07fd9e65200a3ea92a081efa9b0714817178df5f"
+                            "/bigram-v1",
+            "model_license": "CC-BY-SA-4.0",
             "files": {name: digest for name, (digest, _) in sorted(DATA_NOTICES.items())},
         },
     }
@@ -151,33 +159,15 @@ def library_name() -> str:
     return {"Darwin": f"lib{LIBRARY}.dylib", "Windows": f"{LIBRARY}.dll"}.get(system, f"lib{LIBRARY}.so")
 
 
-def android_ndk() -> Path:
-    for key in ("ANDROID_NDK_HOME", "ANDROID_NDK_ROOT"):
-        if os.environ.get(key):
-            return Path(os.environ[key])
-    sdk = Path(os.environ.get("ANDROID_HOME") or Path.home() / "Library/Android/sdk")
-    versions = sorted((sdk / "ndk").glob("*"), key=lambda p: [int(x) for x in p.name.split(".") if x.isdigit()])
-    if not versions:
-        raise SystemExit("Android NDK not found (set ANDROID_NDK_HOME)")
-    return versions[-1]
-
-
-def build(root: Path, output: Path, kind: str, jobs: int) -> list[Path]:
+def build(root: Path, output: Path, kind: str, jobs: int, abis=mobile_native.ANDROID_ABIS) -> list[Path]:
     build_dir = output / f"cmake-{kind}"
     common = ["-S", NATIVE, "-B", build_dir, "-DCMAKE_BUILD_TYPE=Release", f"-DCRISPEMBED_SOURCE_DIR={root}"]
     if kind == "android":
-        # arm64-v8a with static libc++, so the APK needs no libc++_shared.so.
-        ndk = android_ndk()
-        run(["cmake", *common, f"-DCMAKE_TOOLCHAIN_FILE={ndk / 'build/cmake/android.toolchain.cmake'}",
-             "-DANDROID_ABI=arm64-v8a", "-DANDROID_PLATFORM=android-24", "-DANDROID_STL=c++_static"])
-        run(["cmake", "--build", build_dir, "--parallel", str(jobs)])
-        found = [p for p in build_dir.rglob(f"lib{LIBRARY}.so") if p.is_file()]
-        if len(found) != 1:
-            raise SystemExit(f"expected one Android library, found {found}")
-        (output / "android").mkdir(parents=True, exist_ok=True)
-        target = output / "android" / f"lib{LIBRARY}.so"
-        shutil.copyfile(found[0], target)
-        return [target]
+        return mobile_native.build_cmake_android(
+            NATIVE, output, LIBRARY, abis, [f"-DCRISPEMBED_SOURCE_DIR={root}"], output, jobs, "Release")
+    if kind == "ios":
+        return mobile_native.build_cmake_ios(
+            NATIVE, output, LIBRARY, [f"-DCRISPEMBED_SOURCE_DIR={root}"], output, jobs, "Release")
     if kind == "native":
         extra = ["-DCMAKE_OSX_DEPLOYMENT_TARGET=10.15"] if platform.system() == "Darwin" else []
         run(["cmake", *common, *extra])
@@ -256,7 +246,6 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     parser.add_argument("--native", action="store_true")
     parser.add_argument("--wasm", action="store_true")
-    parser.add_argument("--android", action="store_true", help="Cross-build arm64-v8a with the Android NDK")
     parser.add_argument("--license-bundle", action="store_true")
     parser.add_argument("--output", type=Path, default=PACKAGE / "build")
     parser.add_argument("--jobs", type=int, default=3)
@@ -265,9 +254,7 @@ def main() -> int:
     parser.add_argument("--install-web", type=Path,
                         help="Copy the worker, module and wasm plus notices into this web asset directory "
                              "(e.g. packages/quds_office_editor/example/web/proofing)")
-    parser.add_argument("--install-android", type=Path,
-                        help="Copy the arm64-v8a library into this jniLibs ABI directory "
-                             "(e.g. android/app/src/main/jniLibs/arm64-v8a)")
+    mobile_native.add_arguments(parser)
     parser.add_argument("--install-licenses", type=Path,
                         help="Copy the code notices and licence manifest into this directory")
     args = parser.parse_args()
@@ -275,10 +262,9 @@ def main() -> int:
         parser.error("--install-native requires --native")
     if args.install_web and not args.wasm:
         parser.error("--install-web requires --wasm")
-    if args.install_android and not args.android:
-        parser.error("--install-android requires --android")
+    mobile_native.check_arguments(parser, args)
     output = args.output.resolve()
-    needs_source = args.license_bundle or args.native or args.wasm or args.android
+    needs_source = args.license_bundle or args.native or args.wasm or args.android or args.ios
     root = fetch_source(output / "source") if needs_source else None
     if args.license_bundle:
         license_bundle(root)
@@ -288,7 +274,9 @@ def main() -> int:
     if args.wasm:
         outputs += build(root, output, "wasm", args.jobs)
     if args.android:
-        outputs += build(root, output, "android", args.jobs)
+        outputs += build(root, output, "android", args.jobs, mobile_native.abis(args))
+    if args.ios:
+        outputs += build(root, output, "ios", args.jobs)
     if outputs:
         manifest = json.loads((LICENSES / "manifest.json").read_text(encoding="utf-8"))
         if manifest["component"]["commit"] != CRISPEMBED["commit"]:
@@ -318,8 +306,8 @@ def main() -> int:
         print(json.dumps(install(output, "native", args.install_native, licenses=False)))
     if args.install_web:
         print(json.dumps(install(output, "web", args.install_web, licenses=True)))
-    if args.install_android:
-        print(json.dumps(install(output, "android", args.install_android, licenses=False)))
+    for installed in mobile_native.install_from_arguments(output, args, LIBRARY):
+        print(json.dumps(installed))
     if args.install_licenses:
         install_licenses(args.install_licenses.resolve())
         print(json.dumps({"licenses": str(args.install_licenses.resolve())}))

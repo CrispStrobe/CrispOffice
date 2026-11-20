@@ -1,0 +1,55 @@
+{
+  "abi": "ios_arm64",
+  "arabic_morph": {
+    "analyses": 2,
+    "first_lex": "كَتَب"
+  },
+  "data_directory": "<simulator data container>/Library/Application Support/quds_office_studio",
+  "harper": "harper.AnA:[a]",
+  "hunspell": {
+    "المدرسه": [
+      "المدرسة",
+      "ألمدرسة",
+      "ألمدرسه"
+    ],
+    "الى": [
+      "إلى",
+      "ألي",
+      "ألى"
+    ],
+    "هاذا": [
+      "هادا",
+      "عاذا",
+      "هاذ"
+    ]
+  },
+  "hunspell_library": "<simulator bundle container>/Runner.app/Frameworks/quds_proofing_hunspell.framework/quds_proofing_hunspell",
+  "language_id": [
+    "de:0.999995",
+    "ar:0.997445"
+  ],
+  "os": "ios",
+  "spacy": {
+    "analysis_microseconds": 25051,
+    "cases": 16,
+    "code_sha256": null,
+    "compared_fields": 2571,
+    "differences": [],
+    "grammar_qualified": false,
+    "identity": {
+      "abi_version": 1,
+      "bundle_sha256": "d599768375de3dc56abcca5cf1d49da0015857f9d3a10640aebb5317ef5d427e",
+      "capability_mask": 15,
+      "library_sha256": "3827bd4c15a300b91a8300fd418ff42fbc9bc1f6f04bad3f0e96a1a387d10cc4",
+      "model_sha256": "fae2e6ab8d6c611d7a9dddd4b3259a871a1d2f95cacc8259f49c1e4ff31ff6cd",
+      "resources_sha256": "b42496cc373ada57a67ed2f4c2c25f8d22f80c08db5841a7cdb91c8a6e18562a",
+      "text_abi_version": 1
+    },
+    "library": "crispembed_spacy",
+    "library_sha256": "3827bd4c15a300b91a8300fd418ff42fbc9bc1f6f04bad3f0e96a1a387d10cc4",
+    "manifest_sha256": "9a3bb6bae6114adcf579840834ddcb64dea4e0aaa8361718dc7a551d663c8f7c",
+    "recorded_qualification": null,
+    "sentences": 22,
+    "tokens": 113
+  }
+}
