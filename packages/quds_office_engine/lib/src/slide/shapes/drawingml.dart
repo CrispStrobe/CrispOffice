@@ -311,7 +311,8 @@ List<PmlShape> parseSlideShapes(
         'rightArrow' => PmlShapePreset.rightArrow,
         'diamond' || 'flowChartDecision' => PmlShapePreset.diamond,
         'hexagon' => PmlShapePreset.hexagon,
-        'pentagon' || 'homePlate' => PmlShapePreset.pentagon,
+        'pentagon' => PmlShapePreset.pentagon,
+        'homePlate' => PmlShapePreset.homePlate,
         'chevron' => PmlShapePreset.chevron,
         'parallelogram' || 'flowChartData' => PmlShapePreset.parallelogram,
         'trapezoid' => PmlShapePreset.trapezoid,
@@ -666,7 +667,11 @@ OfficeVisual parseChartVisual(
 }
 
 /// slideToXml helper.
-String slideToXml(PmlSlide slide, {Map<PmlShape, String>? embedIds}) {
+String slideToXml(
+  PmlSlide slide, {
+  Map<PmlShape, String>? embedIds,
+  bool preserveBackgroundInheritance = false,
+}) {
   PmlArrange.validateGrouping(slide.shapes);
   // Group keys identify model membership. They need not be valid native
   // drawing IDs: the importer intentionally assigns compact local keys.
@@ -712,35 +717,76 @@ String slideToXml(PmlSlide slide, {Map<PmlShape, String>? embedIds}) {
   /// writeStartElement API.
   w.writeStartElement('cSld', prefix: 'p');
 
+  // Keep native fill inheritance when its source layout is retained. Other
+  // resolved pictures become one native fill, never editable slide shapes.
+  PmlShape? backgroundPicture;
+  if (!preserveBackgroundInheritance) {
+    for (final shape in slide.backgroundShapes) {
+      if (shape.isBackgroundPicture && (shape.visual?.isPicture ?? false)) {
+        backgroundPicture = shape;
+        break;
+      }
+    }
+  }
+  final String? backgroundEmbed = backgroundPicture == null
+      ? null
+      : embedIds?[backgroundPicture] ?? backgroundPicture.embedRelId;
   final XmlElement? sourceBackground = slide.sourceBackground?.copy();
   if (sourceBackground != null) {
-    final PmlShape? picture = slide.backgroundPicture;
-    final String? embed = picture == null
-        ? null
-        : embedIds?[picture] ?? picture.embedRelId;
-    if (embed != null) {
+    if (backgroundEmbed != null) {
       sourceBackground
           .firstChild('bgPr', namespaceUri: OfficeNamespaces.p)
           ?.firstChild('blipFill', namespaceUri: OfficeNamespaces.a)
           ?.firstChild('blip', namespaceUri: OfficeNamespaces.a)
           ?.setAttribute(
             'embed',
-            embed,
+            backgroundEmbed,
             prefix: 'r',
             namespaceUri: OfficeNamespaces.r,
           );
     }
     sourceBackground.writeTo(w);
-  } else if (slide.writesSolidBackground) {
+  } else if (backgroundEmbed != null || slide.writesSolidBackground) {
     w.writeStartElement('bg', prefix: 'p');
     w.writeStartElement('bgPr', prefix: 'p');
-    w.writeStartElement('solidFill', prefix: 'a');
-    w.writeEmptyElement(
-      'srgbClr',
-      prefix: 'a',
-      attributes: <String, String>{'val': slide.background},
-    );
-    w.writeEndElement();
+    if (backgroundEmbed != null) {
+      final PictureAdjust picture = backgroundPicture!.visual!.picture;
+      w.writeStartElement('blipFill', prefix: 'a');
+      DrawingmlVisualIo.writeBlip(
+        w,
+        relationshipId: backgroundEmbed,
+        adj: picture,
+      );
+      // Imported backgrounds support deep crops and edge expansion. The shared
+      // editable-picture writer deliberately applies narrower UI limits.
+      final crop = <String, int>{
+        'l': (picture.cropLeft.clamp(-.99, .99) * 100000).round(),
+        't': (picture.cropTop.clamp(-.99, .99) * 100000).round(),
+        'r': (picture.cropRight.clamp(-.99, .99) * 100000).round(),
+        'b': (picture.cropBottom.clamp(-.99, .99) * 100000).round(),
+      };
+      if (crop.values.any((value) => value != 0)) {
+        w.writeEmptyElement(
+          'srcRect',
+          prefix: 'a',
+          attributes: <String, String>{
+            for (final entry in crop.entries) entry.key: '${entry.value}',
+          },
+        );
+      }
+      w.writeStartElement('stretch', prefix: 'a');
+      w.writeEmptyElement('fillRect', prefix: 'a');
+      w.writeEndElement();
+      w.writeEndElement();
+    } else {
+      w.writeStartElement('solidFill', prefix: 'a');
+      w.writeEmptyElement(
+        'srgbClr',
+        prefix: 'a',
+        attributes: <String, String>{'val': slide.background},
+      );
+      w.writeEndElement();
+    }
     w.writeEndElement();
     w.writeEndElement();
   }
@@ -923,6 +969,7 @@ void _writeSlideShape(XmlWriter w, PmlShape shape) {
         PmlShapePreset.diamond => 'diamond',
         PmlShapePreset.hexagon => 'hexagon',
         PmlShapePreset.pentagon => 'pentagon',
+        PmlShapePreset.homePlate => 'homePlate',
         PmlShapePreset.chevron => 'chevron',
         PmlShapePreset.parallelogram => 'parallelogram',
         PmlShapePreset.trapezoid => 'trapezoid',

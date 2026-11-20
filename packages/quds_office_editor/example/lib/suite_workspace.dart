@@ -9291,7 +9291,6 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
         ? t.y
         : ((_slides.presentation.slideHeight - t.cy) * y).round();
     _slides.applyTransform(shape, t.copyWith(x: nextX, y: nextY));
-
     _slides.refresh();
   }
 
@@ -10666,6 +10665,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
               child: IgnorePointer(
                 child: SlideStage(
                   slide: _slides.slide,
+                  master: _slides.presentation.master,
                   preview: true,
                   config: _config.copyWith(
                     mode: OfficeInteractionMode.viewing,
@@ -10699,6 +10699,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
                         child: IgnorePointer(
                           child: SlideStage(
                             slide: _slides.presentation.slides[i],
+                            master: _slides.presentation.master,
                             preview: true,
                             config: _config.copyWith(
                               mode: OfficeInteractionMode.viewing,
@@ -11467,6 +11468,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
                                   child: IgnorePointer(
                                     child: SlideStage(
                                       slide: slide,
+                                      master: _slides.presentation.master,
                                       preview: true,
                                       config: _config.copyWith(
                                         mode: OfficeInteractionMode.viewing,

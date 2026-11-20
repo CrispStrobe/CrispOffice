@@ -63,6 +63,13 @@ jobs:
           test/office_vba_string_intrinsics_test.dart
           test/office_vba_string_intrinsics_integration_test.dart
           test/office_vba_conformance_test.dart
+          test/office_vba_variant_conversions_test.dart
+          test/office_vba_variant_conformance_test.dart
+          test/office_vba_variant_conversions_integration_test.dart
+          test/office_vba_word_language_test.dart
+          test/office_vba_word_conformance_test.dart
+          test/office_vba_word_integration_test.dart
+          test/office_vba_word_cli_test.dart
           test/office_macro_expansion_test.dart
           test/office_macro_mcp_test.dart
           test/office_macro_cli_test.dart
@@ -89,12 +96,17 @@ jobs:
           node -e 'globalThis.self = globalThis; require("./build/macros/web_vba_arrays_smoke.js")'
           dart compile js -O1 tool/macros/web_vba_dynamic_arrays_smoke.dart -o build/macros/web_vba_dynamic_arrays_smoke.js
           node -e 'globalThis.self = globalThis; require("./build/macros/web_vba_dynamic_arrays_smoke.js")'
-      - name: Shared string conformance on VM and JavaScript
+          dart compile js -O1 tool/macros/web_vba_word_smoke.dart -o build/macros/web_vba_word_smoke.js
+          node -e 'globalThis.self = globalThis; require("./build/macros/web_vba_word_smoke.js")'
+      - name: Shared language conformance on VM and JavaScript
         working-directory: packages/quds_office_engine
         run: |
+          set -e
           mkdir -p build/macros
-          VBA_CASES_BASE64=$(python3 -c 'import base64; from pathlib import Path; print(base64.b64encode(Path("test/fixtures/vba_conformance/string_intrinsics_v1.json").read_bytes()).decode())')
-          dart --packages=../../.dart_tool/package_config.json -DVBA_CONFORMANCE_BASE64="$VBA_CASES_BASE64" tool/macros/web_vba_string_conformance.dart > build/macros/strings-vm.json
-          dart compile js -O1 --packages=../../.dart_tool/package_config.json -DVBA_CONFORMANCE_BASE64="$VBA_CASES_BASE64" tool/macros/web_vba_string_conformance.dart -o build/macros/strings.js
-          node -e 'globalThis.self = globalThis; require("./build/macros/strings.js")' > build/macros/strings-js.json
-          cmp build/macros/strings-vm.json build/macros/strings-js.json
+          for suite in string_intrinsics_v1 variant_conversions_v1 variant_composition_v1 word_paragraphs_v1; do
+            VBA_CASES_BASE64=$(python3 -c 'import base64,sys; from pathlib import Path; print(base64.b64encode(Path(sys.argv[1]).read_bytes()).decode())' "test/fixtures/vba_conformance/${suite}.json")
+            dart --packages=../../.dart_tool/package_config.json -DVBA_CONFORMANCE_BASE64="$VBA_CASES_BASE64" tool/macros/web_vba_conformance.dart > "build/macros/${suite}-vm.json"
+            dart compile js -O1 --packages=../../.dart_tool/package_config.json -DVBA_CONFORMANCE_BASE64="$VBA_CASES_BASE64" tool/macros/web_vba_conformance.dart -o "build/macros/${suite}.js"
+            node -e 'globalThis.self = globalThis; require(process.argv[1])' "./build/macros/${suite}.js" > "build/macros/${suite}-js.json"
+            cmp "build/macros/${suite}-vm.json" "build/macros/${suite}-js.json"
+          done

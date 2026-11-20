@@ -91,6 +91,7 @@ enum PmlShapePreset {
   chevron,
   parallelogram,
   trapezoid,
+  homePlate,
 }
 
 /// One colour stop in a DrawingML gradient fill.
@@ -419,6 +420,7 @@ class PmlShape {
     this.embedRelId,
     List<PmlPathPoint>? path,
     this.visual,
+    this.isBackgroundPicture = false,
     this.table,
     this.rightToLeft,
     this.textAlign = PmlTextAlign.left,
@@ -475,6 +477,11 @@ class PmlShape {
 
   /// visual API.
   OfficeVisual? visual;
+
+  /// A full-slide picture resolved from the native `p:bg` fill.
+  /// This role distinguishes the background from ordinary template pictures.
+  /// It is rendered in [PmlSlide.backgroundShapes] and saved as `p:bg`.
+  final bool isBackgroundPicture;
 
   /// table API.
   PmlTable? table;
@@ -583,6 +590,7 @@ class PmlShape {
       embedRelId: embedRelId,
       path: <PmlPathPoint>[...path],
       visual: visual?.copy(),
+      isBackgroundPicture: isBackgroundPicture,
       table: table?.copy(),
       rightToLeft: rightToLeft,
       textAlign: textAlign,
@@ -630,6 +638,7 @@ class PmlSlide {
     this.showMasterShapes = true,
     this.notes = '',
     this.sourcePartUri,
+    this.sourceLayoutPartUri,
     this.transition = const PmlSlideTransition(),
     List<PmlShapeAnimation>? animations,
     this.hidden = false,
@@ -713,6 +722,7 @@ class PmlSlide {
     _background = value;
     inheritsMasterBackground = value.isEmpty;
     _primaryMasterBackground = null;
+    backgroundShapes.removeWhere((shape) => shape.isBackgroundPicture);
   }
 
   /// Whether a master-background edit should update this slide's paper.
@@ -751,11 +761,17 @@ class PmlSlide {
   void updateMasterBackground(String value) {
     if (inheritsMasterBackground) {
       setInheritedBackground(value, masterBackground: value);
+      backgroundShapes.removeWhere((shape) => shape.isBackgroundPicture);
     }
   }
 
   /// Original owning part, retained when slides are reordered.
   String? sourcePartUri;
+
+  /// Imported layout provenance, retained by copies within the same package.
+  /// It preserves native master-background inheritance when a copy gets a new
+  /// slide part rather than flattening an inherited picture into a local fill.
+  String? sourceLayoutPartUri;
 
   /// notes API.
   String notes;
@@ -784,6 +800,7 @@ class PmlSlide {
       ],
       showMasterShapes: showMasterShapes,
       sourcePartUri: id == null || id == this.id ? sourcePartUri : null,
+      sourceLayoutPartUri: sourceLayoutPartUri,
       transition: transition,
       hidden: hidden,
       animations: <PmlShapeAnimation>[
@@ -825,17 +842,43 @@ class PmlLayout {
 /// Class PmlMaster.
 class PmlMaster {
   /// PmlMaster API.
-  PmlMaster({
-    required this.name,
-    this.background = 'FFFFFF',
-    List<PmlShape>? shapes,
-  }) : shapes = shapes ?? <PmlShape>[];
+  PmlMaster({required this.name, String? background, List<PmlShape>? shapes})
+    : _background = background ?? 'FFFFFF',
+      _hasAuthoredBackground = background != null,
+      shapes = shapes ?? <PmlShape>[];
 
   /// name API.
   String name;
 
-  /// background API.
-  String background;
+  String _background;
+  bool _hasAuthoredBackground;
+  String? _nativeBackground;
+
+  /// Resolved paper color. Assigning it authors a solid master fill, including
+  /// when the color equals an imported picture's solid fallback.
+  String get background => _background;
+
+  set background(String value) {
+    _background = value;
+    _hasAuthoredBackground = true;
+  }
+
+  /// Whether native master fills should be replaced by the authored color.
+  bool get hasAuthoredBackground => _hasAuthoredBackground;
+
+  /// A changed primary color also changes inherited secondary-master colors.
+  /// An explicit assignment of the same color can still replace picture fills.
+  bool get changesNativeBackgroundColor =>
+      _nativeBackground == null ||
+      _nativeBackground !=
+          (_background.isEmpty ? 'FFFFFF' : _background.toUpperCase());
+
+  /// Records a resolved imported or published color without authoring a fill.
+  void setImportedBackground(String value) {
+    _background = value;
+    _hasAuthoredBackground = false;
+    _nativeBackground = value.isEmpty ? 'FFFFFF' : value.toUpperCase();
+  }
 
   /// Master shapes / placeholders.
   final List<PmlShape> shapes;

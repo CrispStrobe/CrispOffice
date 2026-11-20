@@ -1008,6 +1008,29 @@ void main() {
       },
     );
 
+    test('common geometric presets survive import', () {
+      for (final (String prst, PmlShapePreset preset)
+          in <(String, PmlShapePreset)>[
+            ('diamond', PmlShapePreset.diamond),
+            ('hexagon', PmlShapePreset.hexagon),
+            ('pentagon', PmlShapePreset.pentagon),
+            ('chevron', PmlShapePreset.chevron),
+            ('parallelogram', PmlShapePreset.parallelogram),
+            ('trapezoid', PmlShapePreset.trapezoid),
+          ]) {
+        final PmlPresentation deck = _deck(<String>[
+          _sld(
+            '<p:sp><p:nvSpPr><p:cNvPr id="2" name="Shape"/>'
+            '<p:cNvSpPr/><p:nvPr/></p:nvSpPr><p:spPr>'
+            '${_xfrm(0, 0, 914400, 914400)}'
+            '<a:prstGeom prst="$prst"><a:avLst/></a:prstGeom>'
+            '</p:spPr></p:sp>',
+          ),
+        ]);
+        expect(deck.slides.single.shapes.single.preset, preset);
+      }
+    });
+
     test('master background resolves theme lumMod', () {
       final PmlPresentation deck = _deck(
         <String>[_sld(_textBox(2, 'Slide'))],
@@ -1098,6 +1121,61 @@ void main() {
           copiedSecondary.resolveBackground(deck.master.background),
           '00FF00',
         );
+      },
+    );
+
+    test(
+      'secondary master paper is consistent through same-color native saves',
+      () {
+        final PmlPresentation deck = _deck(
+          <String>[
+            _sld(''),
+            _sld(''),
+            _sld('', background: _solidBackground('FFFFFF')),
+          ],
+          masterBackground: _solidBackground('AABBCC'),
+          secondaryMasterBackground: _solidBackground('112233'),
+        );
+        deck.slides.add(deck.slides[1].copy(id: 999));
+
+        void expectPaper(PmlPresentation candidate, List<String> expected) {
+          expect(
+            candidate.slides.map(
+              (slide) => slide
+                  .resolveBackground(candidate.master.background)
+                  .toUpperCase(),
+            ),
+            expected,
+          );
+          final PdfFile pdf = PdfFile.open(
+            OfficePdfExport.presentation(candidate),
+          );
+          for (var page = 0; page < candidate.slides.length; page++) {
+            expect(
+              pdf
+                  .displayList(page)
+                  .ops
+                  .whereType<PdfFillPath>()
+                  .map((op) => op.color),
+              contains(0xFF000000 | int.parse(expected[page], radix: 16)),
+              reason: 'Native paper on PDF page $page',
+            );
+          }
+        }
+
+        for (final (assignment, expected) in [
+          ('aabbcc', <String>['AABBCC', '112233', 'FFFFFF', '112233']),
+          ('FF0000', <String>['FF0000', 'FF0000', 'FFFFFF', 'FF0000']),
+          ('aabbcc', <String>['AABBCC', 'AABBCC', 'FFFFFF', 'AABBCC']),
+        ]) {
+          deck.master.background = assignment;
+          expectPaper(deck, expected);
+          final PmlPresentation reopened = SlideDeserializer().readBytes(
+            SlideSerializer().writeBytes(deck),
+          );
+          expectPaper(deck, expected);
+          expectPaper(reopened, expected);
+        }
       },
     );
 

@@ -5,9 +5,10 @@ multiple To recipients, Cc, Bcc and Reply all. Native SMTP, Exchange EWS, Gmail
 and Microsoft 365 use the same validated draft and MIME construction.
 The [original qualification record](../../validation/mail-recipients-20261119/README.md)
 retains its executed subset and dependency limitations. The later
-[attachment continuation](../../validation/mail-attachments-20261120/README.md)
-qualifies the complete recipient/reply/threading, MIME, provider-host and composer
-cohorts against the locked workspace; see the qualification section below.
+[20 November combined qualification](../../validation/zotero-research-materials-20261120/README.md)
+exercised the captured recipient/reply/threading, MIME, provider-host and composer
+cohorts against the locked workspace. Its recorded source and exact selection
+remain separate from subsequent changes; see the qualification section below.
 
 ## Using the composer
 
@@ -97,12 +98,13 @@ outbox, background sending or exactly-once delivery claim is introduced.
 
 ## Qualification
 
-The 20 November attachment continuation ran all 31 recipient, 39 reply and
-24 threading cases, including their MIME assertions, plus the complete focused
-composer and native/EWS/Gmail/Graph host suites. It used Flutter 3.47.8 / Dart
-3.13.7 and the actual workspace's locked package versions and archive hashes.
-The [new record](../../validation/mail-attachments-20261120/README.md) binds those
-results to their source and preserves the live-account/platform boundaries.
+The [20 November combined qualification](../../validation/zotero-research-materials-20261120/README.md)
+records all 31 recipient, 39 reply and 24 threading cases, including their MIME
+assertions, plus the focused composer and native/EWS/Gmail/Graph host suites
+captured at `f0122cb5bff5b6cf6a6f69f043545dabc2930791`. It used Flutter 3.47.8 /
+Dart 3.13.7 and the captured workspace's locked package versions and archive
+hashes. These inherited results retain their source and live-account/platform
+boundaries; later changes require separately bound qualification.
 
 ### Original 19 November qualification
 

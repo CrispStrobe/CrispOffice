@@ -160,8 +160,9 @@ The earlier Studio continuation saved its combined source remotely, but its
 aggregate qualification failed before completion and subsequent filesystem tool
 launches reported no space left on device. No accepted aggregate result is
 claimed for that earlier source. Its report retains exact source identities,
-attempts and replay instructions; the new attachment record above documents the
-freshly qualified cohorts, and previous totals below remain historical.
+attempts and replay instructions; the combined qualification record above documents its captured cohorts, and
+previous totals below remain historical. Later changes have separately bound
+results.
 
 ## Delivered code
 

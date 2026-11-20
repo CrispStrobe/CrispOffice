@@ -4,6 +4,9 @@ All notable changes to `quds_office_editor` are documented here.
 
 ## Unreleased
 
+- Render distinct pentagon and home-plate silhouettes while retaining chevron
+  geometry. Keep the Studio Mail theme's button height with a finite minimum
+  width so PDF organization controls can lay out in both light and dark themes.
 
 - Add outgoing file attachments to native Studio Mail with immutable byte
   snapshots, all-or-none cancellable selection, ten-file/10 MiB limits and

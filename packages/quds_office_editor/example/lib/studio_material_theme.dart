@@ -84,7 +84,7 @@ ThemeData studioMaterialTheme(
     outlinedButtonTheme: OutlinedButtonThemeData(
       style: OutlinedButton.styleFrom(
         alignment: Alignment.centerLeft,
-        minimumSize: const Size.fromHeight(44),
+        minimumSize: const Size(64, 44),
         padding: const EdgeInsets.symmetric(horizontal: 14),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
       ),

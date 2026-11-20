@@ -160,8 +160,10 @@ abstract final class OfficePdfVisuals {
       canvas.drawImage(name, x, y, w, h);
     }
     if (adj.borderWidth > 0 && adj.borderColor.isNotEmpty) {
+      canvas.save();
       canvas.setLineWidth(adj.borderWidth);
       canvas.strokeRect(x, y, w, h, adj.borderColor);
+      canvas.restore();
     }
   }
 
