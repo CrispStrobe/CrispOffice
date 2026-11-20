@@ -1062,6 +1062,10 @@ checking starts disabled. The exported `showWordProofingDialog` commits pending
 edits, opens the review UI and runs an explicit check. The example's F7/Spelling
 action uses this dialog; its **Check while typing** switch enables debounced
 background checks. A manual check works with that switch off.
+Background passes start after a 600 ms typing pause or at most 2.5 s after the
+first unchecked edit, recheck only changed paragraphs, and leave a settled
+status on screen while they wait; see
+[typing-proofing-20261120](performance/typing-proofing-20261120.md).
 
 The review shows findings, explanations, offered replacements and availability
 or coverage messages. Each finding includes a bounded source excerpt centered
