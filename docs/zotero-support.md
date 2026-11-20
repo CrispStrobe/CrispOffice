@@ -95,10 +95,14 @@ commands continue to work inside authored footnotes and endnotes.
 
 Paragraphs, empty paragraphs, soft line breaks, heading levels 1–6, supported
 character formatting, and ordinary HTTP(S), mail and Zotero links are retained.
-Flat bullet and decimal numbered lists are retained as native Word lists,
-including positive starting numbers. Each item can contain rich inline text or
-one paragraph, with active citation placeholders. Separate imported lists start
-their own counters and do not continue or change surrounding document lists.
+Bullet and decimal numbered lists are retained as native Word lists, including
+mixed nested lists up to nine levels and positive starting numbers. An item can
+contain rich inline text, multiple paragraphs, supported pictures, and nested
+lists, with active citation placeholders throughout. Only its first paragraph
+receives a bullet or number; subsequent paragraphs and text after a nested list
+remain indented as continuations of that item. Each nested list has its own
+counter and starting number. Separate imported lists do not continue or change
+surrounding document lists.
 Default PDF annotation note wrappers and their title headings are recognized.
 Citation placeholders become active Zotero fields with the source data, rather
 than remaining ordinary hyperlinks. Zotero controls their formatting and
@@ -116,7 +120,7 @@ Cancelling the note picker before it supplies any text also discards temporary
 fields and staged preference changes.
 
 Add Note currently starts from a body caret, not a text selection or an existing
-footnote/endnote. Tables, nested lists, multi-paragraph list items, custom or
+footnote/endnote. Tables, lists deeper than nine levels, custom or
 reversed list markers, and unsupported custom formatting are
 refused with an explanation before application. Ordered-list starting numbers
 must be integers from 1 to 999999. Malformed,
@@ -131,7 +135,9 @@ Image/ink annotations normally use PNG. The original accepted image bytes are
 embedded in the DOCX, with Zotero's supplied dimensions, alternative description,
 title and ordinary image hyperlink. Pictures occupy one native inline position,
 so adjacent citation placeholders retain their positions and reading order.
-A note containing only a picture is supported too.
+A note containing only a picture is supported too. Picture-only list items and
+continuation paragraphs retain their list position and ordinary image links
+through saving and reopening.
 
 Zotero's positive, finite HTML width/height values use CSS pixels: 96 pixels
 become 72 points. Fractional values produced by the note editor's resize and

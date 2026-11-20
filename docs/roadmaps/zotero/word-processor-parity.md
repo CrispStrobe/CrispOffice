@@ -8,8 +8,9 @@ Apache OpenOffice compatibility remains a separate, unqualified target; results
 from LibreOffice do not establish its application or plugin compatibility.
 
 The [usage guide](../../zotero-support.md) describes the current controls. The
-[embedded-image continuation](../../validation/zotero-note-images-20261120/README.md)
-records the latest source, local evidence and incoming-work reconciliation.
+[structured-note continuation](../../validation/zotero-parity-continuation-20261120/README.md)
+records the latest source, local evidence and incoming-work reconciliation,
+including completion of the saved embedded-image increment.
 Historical results retain their original source and platform attribution.
 
 ## Workflow coverage
@@ -21,7 +22,7 @@ Historical results retain their original source and platform attribution.
 | Refresh | Complete supported document sequence sent to Zotero's processor, including note order, numeric renumbering, disambiguation and style-dependent ibid. | Live acceptance must be repeated on the exact release/host |
 | Bibliography | Native add/edit, entry paragraphs, rich runs, hanging indents, spacing and tab stops | Replacement requires a complete exclusively owned bibliography range |
 | Unlink citations | Explicit individual and document-wide conversion with undo | Verify final target-application files separately |
-| Add Note | Rich paragraphs, headings, flat lists, ordinary links, active citations and supported embedded pictures | Body caret only; tables, nested lists and multiparagraph list items remain unsupported |
+| Add Note | Rich paragraphs, headings, nested lists up to nine levels, multiparagraph items, ordinary links, active citations and supported embedded pictures | Body caret only; tables and custom/reversed list markers remain unsupported |
 | Add Annotation | Zotero 9+ native annotation picker, text/comments and supported PNG image/ink content with active citations | Uses the same bounded image/content envelope as Add Note |
 | Library/source discovery | Local/online catalogs, collections, saved searches, tags, source details, cited-source reuse and occurrence navigation | Local and online catalog APIs have different connection/version requirements |
 | Research materials | Read-only direct-child note previews and attachment metadata | No separate attachment-file download or Zotero library write workflow |
@@ -32,7 +33,7 @@ The native controls use Zotero's own CSL processor. The separate basic/offline
 citation and single-item preview/export paths retain their narrower formatting
 contract; they are not evidence of complete document-wide CSL parity.
 
-## This increment: embedded research pictures
+## Delivered increments: pictures and structured research lists
 
 The previous Add Note/Add Annotation path refused every image. This increment
 uses the existing `Document.insertText` payload and existing Word inline-picture
@@ -52,10 +53,18 @@ Word/LibreOffice parity. No new live Zotero session or installed Word/LibreOffic
 interoperability result is implied by controlled protocol, serializer,
 controller or Flutter raster tests.
 
+The continuation preserves mixed nested lists and multiparagraph items as native
+Word paragraphs and numbering. First paragraphs receive the item marker;
+continuations retain their indentation without incrementing the counter. Nested
+lists have independent starts, and existing document lists are unchanged. Active
+citations and embedded pictures remain in reading order, including picture-only
+list paragraphs. The same detached transaction applies the entire result as one
+undoable edit and refuses malformed or over-depth content before publication.
+
 ## Next implementation and acceptance steps
 
-1. **Preserve richer note structure.** Extend nested and multiparagraph lists,
-   then tables, using native Word structures and explicit ownership. Include
+1. **Preserve richer note structure.** Extend tables using native Word
+   structures and explicit ownership. Include
    citations in every supported block, surrounding-text preservation, independent
    list numbering, save/reopen and single-step undo. Keep unsupported formatting
    atomic until it has a real model mapping.

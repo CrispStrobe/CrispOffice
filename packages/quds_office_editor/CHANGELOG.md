@@ -4,6 +4,11 @@ All notable changes to `quds_office_editor` are documented here.
 
 ## Unreleased
 
+- Import nested and multiparagraph Zotero note/annotation lists through the
+  existing native commands. Preserve citation order, surrounding prose, native
+  numbering, and a single undo/redo step; refuse stale targets and excessive
+  nesting before changing the document.
+
 - Support embedded research-note pictures and Zotero image/ink annotations in
   the existing native Add Note and Add Annotation controls. Images, active
   citations, notes and preferences apply together as one undo step, with stale

@@ -14,7 +14,7 @@ final class WordZoteroNoteText {
   final List<WmlParagraph> paragraphs;
   final Map<String, WordZoteroNotePlaceholder> placeholders;
 
-  /// Native list metadata keyed by the item's paragraph index.
+  /// Native list metadata keyed by each item or continuation paragraph index.
   final Map<int, WordZoteroNoteListItem> listItems;
   String get plainText => paragraphs.map((p) => p.text).join('\n');
 
@@ -41,6 +41,35 @@ final class WordZoteroNoteText {
     var elements = 0;
     const escape = HtmlEscape(HtmlEscapeMode.element);
     const attributeEscape = HtmlEscape(HtmlEscapeMode.attribute);
+
+    void writeListParagraph(_NoteItem item) {
+      final index = items.length;
+      items.add(
+        WordZoteroNoteListItem(
+          listId: item.list.id,
+          numbered: item.list.numbered,
+          start: item.list.start,
+          index: item.index,
+          level: item.list.level,
+          continuation: item.paragraphs++ != 0,
+        ),
+      );
+      canonical.write('\uE002\uE000l$index\uE001');
+    }
+
+    void openItemParagraph(_NoteItem item) {
+      if (item.implicitParagraphOpen) return;
+      canonical.write('<p>');
+      writeListParagraph(item);
+      item.implicitParagraphOpen = true;
+    }
+
+    void closeItemParagraph(_NoteItem item) {
+      if (!item.implicitParagraphOpen) return;
+      canonical.write('\uE002</p>');
+      item.implicitParagraphOpen = false;
+    }
+
     try {
       while (reader.next()) {
         switch (reader.eventType) {
@@ -103,17 +132,20 @@ final class WordZoteroNoteText {
               );
             }
             final activeItem = stack
-                .where((element) => element.tag == 'li')
-                .lastOrNull;
+                .where((element) => element.item != null)
+                .lastOrNull
+                ?.item;
             final isList = tag == 'ul' || tag == 'ol';
             if (isList &&
                 (activeLink ||
-                    !const <String>{
-                      'quds-note',
-                      'html',
-                      'body',
-                      'div',
-                    }.contains(parent?.tag))) {
+                    (activeItem != null
+                        ? !identical(parent?.item, activeItem)
+                        : !const <String>{
+                            'quds-note',
+                            'html',
+                            'body',
+                            'div',
+                          }.contains(parent?.tag)))) {
               throw _unsupportedList();
             }
             if (parent?.list != null && tag != 'li') {
@@ -122,19 +154,15 @@ final class WordZoteroNoteText {
             if (activeItem != null &&
                 (tag == 'p' || tag == 'div' || _headings.contains(tag))) {
               if (tag != 'p' ||
-                  !identical(parent, activeItem) ||
-                  activeItem.hasText ||
-                  activeItem.itemParagraphs != 0) {
+                  !identical(parent?.item, activeItem) ||
+                  activeLink) {
                 throw _unsupportedList();
               }
-              activeItem.itemParagraphs++;
-            } else if (identical(parent, activeItem) &&
-                activeItem != null &&
-                activeItem.itemParagraphs != 0) {
-              throw _unsupportedList();
             }
             _NoteList? list;
             if (isList) {
+              final level = activeItem == null ? 0 : activeItem.list.level + 1;
+              if (level > 8) throw _unsupportedList();
               final start = attributes['start'];
               if (start != null &&
                   (!RegExp(r'^[1-9][0-9]{0,5}$').hasMatch(start))) {
@@ -144,29 +172,31 @@ final class WordZoteroNoteText {
                 id: listCount++,
                 numbered: tag == 'ol',
                 start: start == null ? 1 : int.parse(start),
+                level: level,
               );
             }
-            int? itemIndex;
+            _NoteItem? item;
             if (tag == 'li') {
               final owner = parent?.list;
               if (owner == null) throw _unsupportedList();
-              itemIndex = items.length;
-              items.add(
-                WordZoteroNoteListItem(
-                  listId: owner.id,
-                  numbered: owner.numbered,
-                  start: owner.start,
-                  index: owner.items++,
-                ),
-              );
+              item = _NoteItem(owner, owner.items++);
             }
-            final outputTag =
-                tag == 'a' || tag == 'img' || (tag == 'p' && activeItem != null)
+            if (activeItem != null && identical(parent?.item, activeItem)) {
+              if (isList) {
+                // A list-only item still owns one visible marker before its
+                // children. Later content resumes at the parent's indentation.
+                if (activeItem.paragraphs == 0) openItemParagraph(activeItem);
+                closeItemParagraph(activeItem);
+              } else if (tag == 'p') {
+                closeItemParagraph(activeItem);
+              } else {
+                openItemParagraph(activeItem);
+              }
+            }
+            final outputTag = tag == 'a' || tag == 'img'
                 ? 'span'
-                : isList
+                : isList || tag == 'li'
                 ? 'div'
-                : tag == 'li'
-                ? 'p'
                 : tag;
             canonical.write('<$outputTag');
             final authoredStyle = attributes['style'];
@@ -194,29 +224,36 @@ final class WordZoteroNoteText {
               canonical.write('\uE000${linkIndex * 2}\uE001');
             }
             // Preserve authored empty paragraphs through the shared renderer.
-            if (tag == 'p' || tag == 'li') canonical.write('\uE002');
+            if (tag == 'p') {
+              if (activeItem == null) {
+                canonical.write('\uE002');
+              } else {
+                writeListParagraph(activeItem);
+              }
+            }
             if (tag == 'img') {
               final index = images.length;
               images.add(WmlVisual(visual: imageReader.read(attributes)));
               canonical.write('\uE000i$index\uE001');
             }
-            if (itemIndex != null) {
-              canonical.write('\uE000l$itemIndex\uE001');
-            }
             if (_headings.contains(tag)) {
               canonical.write('\uE000$tag\uE001');
             }
-            stack.add(_NoteElement(outputTag, tag, linkIndex, list));
+            stack.add(_NoteElement(outputTag, tag, linkIndex, list, item));
           case XmlEventType.endElement:
             if (stack.isEmpty) throw _malformed();
             final element = stack.removeLast();
             if (element.list?.items == 0) throw _unsupportedList();
+            final item = element.item;
+            if (item != null) {
+              if (item.paragraphs == 0) openItemParagraph(item);
+              closeItemParagraph(item);
+            }
             if (element.linkIndex != null) {
               canonical.write('\uE000${element.linkIndex! * 2 + 1}\uE001');
               activeLink = false;
             }
             if (element.tag == 'p' ||
-                element.tag == 'li' ||
                 (element.tag == 'div' && !element.hasText)) {
               canonical.write('\uE002');
             }
@@ -237,10 +274,16 @@ final class WordZoteroNoteText {
           case XmlEventType.characters:
             _checkMarkers(reader.text);
             final parent = stack.lastOrNull;
-            if (parent?.list != null ||
-                (parent?.tag == 'li' && parent!.itemParagraphs != 0)) {
+            if (parent?.list != null) {
               if (reader.text.trim().isNotEmpty) throw _unsupportedList();
               break;
+            }
+            final item = parent?.item;
+            if (item != null) {
+              if (!item.implicitParagraphOpen && reader.text.trim().isEmpty) {
+                break;
+              }
+              openItemParagraph(item);
             }
             canonical.write(escape.convert(reader.text));
             if (stack.isNotEmpty && reader.text.trim().isNotEmpty) {
@@ -443,7 +486,7 @@ final class WordZoteroNoteText {
     'Zotero returned a malformed or unsupported note. The document was kept unchanged.',
   );
   static UnsupportedError _unsupportedList() => UnsupportedError(
-    'This Zotero note needs a simple bulleted or numbered list. Nested lists, multiple paragraphs per item, and custom numbering are not supported. The document was kept unchanged.',
+    'This Zotero note needs bulleted or decimal-numbered lists with at most nine levels, paragraphs, and inline content. Custom numbering and other list structures are not supported. The document was kept unchanged.',
   );
   static const _headings = <String>{'h1', 'h2', 'h3', 'h4', 'h5', 'h6'};
   static const _tags = <String>{
@@ -506,18 +549,25 @@ final class WordZoteroNoteText {
   };
 }
 
-/// A paragraph in one independent, single-level research-note list.
+/// A paragraph in one independent research-note list.
+///
+/// [level] is the native Word level, from zero through eight. A [continuation]
+/// belongs to the same item and indentation without adding another marker.
 final class WordZoteroNoteListItem {
   const WordZoteroNoteListItem({
     required this.listId,
     required this.numbered,
     required this.start,
     required this.index,
+    this.level = 0,
+    this.continuation = false,
   });
   final int listId;
   final bool numbered;
   final int start;
   final int index;
+  final int level;
+  final bool continuation;
 }
 
 final class WordZoteroNotePlaceholder {
@@ -534,21 +584,35 @@ final class WordZoteroNotePlaceholder {
 }
 
 final class _NoteElement {
-  _NoteElement(this.outputTag, this.tag, this.linkIndex, this.list);
+  _NoteElement(this.outputTag, this.tag, this.linkIndex, this.list, this.item);
   final String outputTag;
   final String tag;
   final int? linkIndex;
   final _NoteList? list;
+  final _NoteItem? item;
   bool hasText = false;
-  int itemParagraphs = 0;
 }
 
 final class _NoteList {
-  _NoteList({required this.id, required this.numbered, required this.start});
+  _NoteList({
+    required this.id,
+    required this.numbered,
+    required this.start,
+    required this.level,
+  });
   final int id;
   final bool numbered;
   final int start;
+  final int level;
   int items = 0;
+}
+
+final class _NoteItem {
+  _NoteItem(this.list, this.index);
+  final _NoteList list;
+  final int index;
+  int paragraphs = 0;
+  bool implicitParagraphOpen = false;
 }
 
 final class _NoteLink {

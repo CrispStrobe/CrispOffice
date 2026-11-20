@@ -4,6 +4,12 @@ All notable changes to `quds_office_engine` are documented here.
 
 ## Unreleased
 
+- Preserve Zotero research-note lists with up to nine mixed nesting levels,
+  independent counters and starting numbers, and multiple paragraphs per item.
+  Keep continuation paragraphs unnumbered at the correct indent, retaining
+  active citations and embedded pictures through the staged document operation
+  and DOCX save/reopen.
+
 - Accept bounded embedded PNG and supported upright RGB/YCbCr JPEG pictures in
   Zotero Add Note and Add Annotation responses. Preserve original image bytes,
   dimensions, alternative text, title, ordinary links and active citation
