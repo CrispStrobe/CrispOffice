@@ -35,6 +35,7 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--flutter-sdk', required=True, type=Path)
     parser.add_argument('--output', required=True, type=Path)
+    parser.add_argument('--phase', choices=('broad', 'mail-final', 'office-final'), default='broad')
     args = parser.parse_args()
     output = args.output.resolve()
     output.mkdir(parents=True, exist_ok=True)
@@ -65,7 +66,35 @@ def main() -> int:
                                            '-o', str(output / 'word-lists.js')], engine, False),
         ('incoming-word-node', ['node', str(output / 'word-lists.js')], engine, False),
     ]
-    receipt = dict(status='RUNNING', started_at=datetime.now(timezone.utc).isoformat(),
+    if args.phase == 'mail-final':
+        changed = subprocess.check_output(
+            ['git', 'diff', '--name-only', '5c48058bedc42dd8cbf3fb9d6f1fb492b2ac1eb8', 'HEAD'],
+            cwd=ROOT, text=True).splitlines()
+        dart_files = sorted(name for name in changed if name.endswith('.dart'))
+        mail_files = [name for name in dart_files if name.startswith(
+            ('packages/quds_mail_store/', 'packages/quds_office_editor/example/'))]
+        commands = [commands[0],
+                    ('mail-analysis', [dart, 'analyze', '--fatal-infos', *mail_files], ROOT, False),
+                    ('changed-format', [dart, 'format', '--output=none', '--set-exit-if-changed', *dart_files], ROOT, False)]
+    elif args.phase == 'office-final':
+        cli_files = ['test/office_macro_cli_test.dart', 'test/office_vba_arguments_integration_test.dart',
+                     'test/office_vba_powerpoint_cli_test.dart', 'test/office_vba_word_cli_test.dart']
+        word_files = ['test/office_macro_word_list_format_test.dart', 'test/office_vba_word_lists_test.dart',
+                      'test/office_vba_word_lists_integration_test.dart', 'test/style_cascade_test.dart',
+                      'test/numbering_collision_test.dart', 'test/word_list_numbering_snapshot_test.dart',
+                      'test/word_styles_layout_test.dart', 'test/word_style_introduction_test.dart',
+                      'test/office_macro_word_tab_stops_test.dart']
+        # Retest complete affected CLI files; only the runner time allowance
+        # changes. Assertions, input/output checks and test source stay intact.
+        cli = ('automation-cli-retry', [dart, 'test', '--timeout=120s', '--concurrency=2',
+                                        '--reporter', 'json', *cli_files], engine, True)
+        word = ('word-preservation', [dart, 'test', '--concurrency=2', '--reporter', 'json', *word_files], engine, True)
+        analysis = ('reviewed-word-analysis', [dart, 'analyze', '--fatal-infos', 'lib/src/automation',
+                    'lib/src/word/serial/word_style_cascade.dart', 'test/office_macro_word_list_format_test.dart',
+                    'test/office_vba_word_lists_test.dart', 'test/office_vba_word_lists_integration_test.dart',
+                    'tool/macros/web_vba_word_lists_smoke.dart'], engine, False)
+        commands = [cli, word, commands[4], analysis, commands[6], commands[7]]
+    receipt = dict(status='RUNNING', phase=args.phase, started_at=datetime.now(timezone.utc).isoformat(),
                    source_commit=subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=ROOT, text=True).strip(),
                    source_tree=subprocess.check_output(['git', 'rev-parse', 'HEAD^{tree}'], cwd=ROOT, text=True).strip(),
                    source_before=inputs(), github_actions='NOT USED', checks=[])
