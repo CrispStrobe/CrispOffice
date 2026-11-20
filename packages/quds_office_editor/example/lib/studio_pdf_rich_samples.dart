@@ -18,7 +18,7 @@ Uint8List studioWidgetAtlasPdf() {
       margin: const pw.EdgeInsets.fromLTRB(36, 36, 36, 40),
       footer: (pw.Context context) => const pw.Footer(
         leading: pw.Text(
-          'QUDS OFFICE  ·  WIDGET ATLAS',
+          'CRISPOFFICE  ·  WIDGET ATLAS',
           style: pw.TextStyle(fontSize: 8, color: '78716C'),
         ),
       ),
@@ -436,7 +436,7 @@ Uint8List studioBoardPacketPdf() {
       margin: const pw.EdgeInsets.fromLTRB(36, 36, 36, 40),
       footer: (pw.Context context) => const pw.Footer(
         leading: pw.Text(
-          'QUDS OFFICE  ·  BOARD',
+          'CRISPOFFICE  ·  BOARD',
           style: pw.TextStyle(fontSize: 8, color: '78716C'),
         ),
       ),
@@ -450,7 +450,7 @@ Uint8List studioBoardPacketPdf() {
           ),
         ),
         _band(
-          kicker: 'QUDS OFFICE  ·  13 SEP 2026',
+          kicker: 'CRISPOFFICE  ·  13 SEP 2026',
           face: 'Packet',
           color: '9A3412',
           ink: 'FFEDD5',
@@ -655,7 +655,7 @@ Uint8List studioRecoveryBriefPdf() {
       ),
       build: (pw.Context context) => <pw.Widget>[
         _band(
-          kicker: 'QUDS OFFICE  ·  CORRIDOR',
+          kicker: 'CRISPOFFICE  ·  CORRIDOR',
           face: 'Cairo',
           color: '134E4A',
           ink: 'CCFBF1',

@@ -748,7 +748,7 @@ Uint8List _executiveMemo(SfntFont? font) {
       x: 48,
       y: 38,
       fontSize: 16,
-      text: 'QUDS OFFICE  ·  EXECUTIVE MEMO',
+      text: 'CRISPOFFICE  ·  EXECUTIVE MEMO',
       color: 'FFFFFF',
     )
     ..showLatin(
@@ -850,7 +850,7 @@ Uint8List _certificate(SfntFont? font) {
       x: 80,
       y: 100,
       fontSize: 12,
-      text: 'QUDS OFFICE SUITE  ·  LEARNING LAB',
+      text: 'CRISPOFFICE  ·  LEARNING LAB',
       color: '5C6BC0',
     )
     ..showLatin(
@@ -1008,7 +1008,7 @@ Uint8List _invoice(SfntFont? font) {
         children: <pw.Widget>[
           pw.Expanded(
             child: pw.Text(
-              'QUDS OFFICE',
+              'CRISPOFFICE',
               style: const pw.TextStyle(
                 fontSize: 12,
                 fontWeight: pw.FontWeight.bold,
