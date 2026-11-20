@@ -1,4 +1,26 @@
-# Mail implementation status — 19 November 2026
+# Mail implementation status — 20 November 2026
+
+## Outgoing file attachments
+
+The shared native Studio composer now supports [bounded file attachments](attachments.md)
+for SMTP, EWS, Gmail and Microsoft 365. Users can select and remove files, inspect
+their names/sizes and send immutable byte snapshots with the existing To/Cc/Bcc
+and reply-thread handling. Ten files and 10 MiB of combined payload are admitted
+per draft; selection is all-or-none, reads are bounded/cancellable, and failed or
+uncertain submissions retain the complete draft for the current session.
+
+MIME uses a mixed root containing the alternative body and base64 attachments,
+with ASCII-safe RFC 2231 filenames and no Bcc in the canonical wire. A scoped
+quoted-printable correction preserves terminal whitespace and bounds Unicode
+line wrapping. The [current local validation](../../validation/mail-attachments-20261120/README.md)
+uses the actual pinned Flutter/Dart workspace and resolved locked package graph;
+it supersedes the prior dependency-limited recipient qualification only for the
+specific cohorts freshly rerun there. Older receipts keep their original scope.
+
+This remains foreground, session-only composition: no local autosave, durable
+outbox, automatic attachment copying on forward, current-document/PDF attachment
+command or VBA mail surface is added. Live-provider delivery and installed-OS
+picker interoperability remain separate gates. M07 and M08 remain open.
 
 ## Durable archive, indexing and search
 
@@ -113,11 +135,14 @@ To recipients, Cc, Bcc and Reply all across the native SMTP and shared EWS/cloud
 hosts. Canonical MIME excludes Bcc while the explicit envelope includes hidden
 recipients. Reply all uses normalized visible participants, removes the connected
 sender, preserves To/Cc roles and rejects unsupported decoded mailboxes before
-joining them into editable fields. Its focused recipient/reply/thread subset
-ran on pinned Dart through a separate cached dependency graph; MIME/provider
-and Flutter widget qualification remains blocked by unavailable dependencies.
-The [current validation record](../../validation/mail-recipients-20261119/README.md)
-also records the incoming PPTX reconciliation and its compatibility corrections.
+joining them into editable fields. Its original recipient/reply/thread subset
+ran on pinned Dart through a separate cached dependency graph; unavailable
+dependencies prevented MIME/provider and Flutter widget qualification then.
+The [original validation record](../../validation/mail-recipients-20261119/README.md)
+retains that boundary and its PPTX reconciliation. The
+[20 November attachment continuation](../../validation/mail-attachments-20261120/README.md)
+subsequently ran the complete recipient/reply/threading, provider-host and
+composer suites against the actual locked workspace, without omitted cases.
 
 This does **not** close M04W or M07: accounts/drafts remain session-only, there is
 no repository-driven mailbox or durable outbox, and no automatic resend is added.
@@ -129,11 +154,12 @@ after stale connection completions; this does not establish a bounded physical
 shutdown time or disable those clients' reconnect policies.
 Real provider accounts, OAuth/PKCE, native credential vaults, actual browser
 persistence and installed-platform distribution remain separate acceptance gates.
-The final combined source is saved remotely, but its latest local aggregate
-qualification failed before completion and subsequent filesystem tool launches
-reported no space left on device. No accepted aggregate result is claimed for
-that source. See the current report for the exact source, preserved earlier
-attempts and replay instructions; previous totals below remain historical.
+The earlier Studio continuation saved its combined source remotely, but its
+aggregate qualification failed before completion and subsequent filesystem tool
+launches reported no space left on device. No accepted aggregate result is
+claimed for that earlier source. Its report retains exact source identities,
+attempts and replay instructions; the new attachment record above documents the
+freshly qualified cohorts, and previous totals below remain historical.
 
 ## Delivered code
 

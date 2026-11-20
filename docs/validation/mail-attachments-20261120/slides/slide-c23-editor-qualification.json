@@ -1,0 +1,104 @@
+{
+  "startedAtUtc": "2026-11-20T04:28:12.859084+00:00",
+  "baseCommit": "66d3123d7c25f2b7cfc61358ec137a3e59a12516",
+  "baseTree": "59e468b945490c9c24cf75cafc11c236d26d708b",
+  "sourceSha256": {
+    "packages/quds_office_editor/lib/src/editor_slide/render_slide_stage.dart": "3850f9f27684cbe07e32915928331fe3e2c0065208c259bfccb1d3d69a9f6056",
+    "packages/quds_office_editor/lib/src/embed/office_clipboard.dart": "88a4a455bbb58fc77e1153573a76c89d6f3b945562ead8f0aaf02a74887dc68a",
+    "packages/quds_office_editor/lib/src/embed/office_controller.dart": "08c597e44f3b83dfcc2d10d1f0ab1e78d542a64a7629df1caa8ba61b531f10f3",
+    "packages/quds_office_editor/example/lib/suite_workspace.dart": "67c9e51438057ef44d2eb68cf86e3f335496d792b9270dad3cea287ff8a0007f",
+    "packages/quds_office_engine/lib/src/pdf/office_pdf_export.dart": "6b9491a1f6eada0fd1639ca9015794d39cc9980fb0d40449fb4b82fc7f7f3cc8",
+    "packages/quds_office_engine/lib/src/slide/model/pml_presentation.dart": "4fc43349903a6d21ef2c48de0b8d5aa079a41f60ce963f501250bf2b7b137813",
+    "packages/quds_office_engine/lib/src/slide/model/pml_arrange.dart": "0b4c636e21cdb5e06b86203e04a8c627c7a8a3496f3dfbdf9817baed56527434",
+    "packages/quds_office_engine/lib/src/slide/anim/pml_morph.dart": "075cf2759b1b281e69c564d6e816f7c33f01582c0f5bc94e26e5d1cd9ebdee9c",
+    "packages/quds_office_engine/lib/src/slide/serial/slide_serial.dart": "baa521a3e9df0d71bcec59d4835cf5c6a8310ef65f8d3b40b53b44b88410800a",
+    "packages/quds_office_engine/lib/src/automation/operations/slide_steps.dart": "6fc463164ab0ab17b8f32f8f94dc88343c264d796a7fa6cb1129eaa0a970bcfa",
+    "packages/quds_office_engine/lib/src/slide/shapes/drawingml.dart": "2ba2f13eba3681d0ef3c7a8b9555c8de5080a15008ccaac4087d796f198bd835",
+    "packages/quds_office_editor/test/slide_render_fidelity_test.dart": "35538f364fbb6a28302cee83c6ba093c30f10996e79542a514f56f54b55a95db",
+    "packages/quds_office_editor/test/slide_incoming_pptx_regression_test.dart": "b8796b043c4425f3c33dd37c92c5be2e84477dc8eb7923a45b0a4643956f9a8c",
+    "packages/quds_office_editor/test/office_dark_slide_test.dart": "80d1e959bebc3a14296aa52496f343fa557bb35045767278c7fbc04120f4454a",
+    "packages/quds_office_editor/test/paint_run_text_unicode_test.dart": "48060e559c5c350551d2e7f2a781d9c3d8f9b845d67995f4aedee9dec12129eb",
+    "packages/quds_office_editor/test/slide_arrange_history_test.dart": "58db66ae020a48df80d15c9e4dd373223bfb4e58fb3ce2f0a83df5acf80eae81",
+    "packages/quds_office_editor/test/slide_transform_orientation_test.dart": "067f6aa461f4b1f165cd66bc7ab5c1cbc8312abe5a05ce0d6ae80dead59e83e9"
+  },
+  "tests": [
+    "packages/quds_office_editor/test/slide_render_fidelity_test.dart",
+    "packages/quds_office_editor/test/slide_incoming_pptx_regression_test.dart",
+    "packages/quds_office_editor/test/office_dark_slide_test.dart",
+    "packages/quds_office_editor/test/paint_run_text_unicode_test.dart",
+    "packages/quds_office_editor/test/slide_arrange_history_test.dart",
+    "packages/quds_office_editor/test/slide_transform_orientation_test.dart"
+  ],
+  "actionsQueriedOrAwaited": false,
+  "qualificationNote": "Duplicate visibility helper and mixed-rich-text PDF fallback scaling were corrected before this run; working-source hashes pin the exact tested inputs independently of concurrent checkpoint publication.",
+  "completedAtUtc": "2026-11-20T04:30:21.881521+00:00",
+  "sourceTreesAtBase": {
+    "packages/quds_office_engine/lib": "d11a8223eca031678df12c3d20baa594ee03631e",
+    "packages/quds_office_editor/lib": "f8efaa6f527a0e2200d08d2cd0be880b3ee5999d",
+    "packages/quds_office_editor/example/lib": "4b5bc6fb7cc49d2c71d76179f2ee86ff7a428db5"
+  },
+  "workingSourceOverridesFromBase": {
+    "packages/quds_office_engine/lib/src/pdf/office_pdf_export.dart": "6b9491a1f6eada0fd1639ca9015794d39cc9980fb0d40449fb4b82fc7f7f3cc8",
+    "packages/quds_office_editor/test/slide_transform_orientation_test.dart": "067f6aa461f4b1f165cd66bc7ab5c1cbc8312abe5a05ce0d6ae80dead59e83e9"
+  },
+  "commands": [
+    {
+      "cwd": "packages/quds_office_editor",
+      "command": "flutter test --no-pub test/slide_render_fidelity_test.dart test/slide_incoming_pptx_regression_test.dart test/office_dark_slide_test.dart test/paint_run_text_unicode_test.dart test/slide_arrange_history_test.dart test/slide_transform_orientation_test.dart --reporter expanded",
+      "exitCode": 0,
+      "testsPassed": 68,
+      "log": "slide-c23-editor-tests.log",
+      "logSha256": "9cf03687aaf2bbf2b71e4f900b5cfdde8e384b72e17fe94e287c463550e6eb9f"
+    },
+    {
+      "cwd": "packages/quds_office_editor",
+      "command": "dart analyze lib/src/editor_slide/render_slide_stage.dart lib/src/embed/office_clipboard.dart lib/src/embed/office_controller.dart example/lib/suite_workspace.dart test/slide_render_fidelity_test.dart test/slide_incoming_pptx_regression_test.dart test/office_dark_slide_test.dart test/paint_run_text_unicode_test.dart test/slide_arrange_history_test.dart test/slide_transform_orientation_test.dart",
+      "exitCode": 0,
+      "result": "No issues found",
+      "log": "slide-c23-editor-analysis.log",
+      "logSha256": "20261256771f27ebf3a15f9694bd42192c512118edf1006781d6d1e1b3bb6ba1"
+    }
+  ],
+  "totalTestsPassed": 68,
+  "newOrientationTests": 8,
+  "testOmissions": [],
+  "runtime": {
+    "flutter": "3.47.8",
+    "dart": "3.13.7",
+    "dependencyQualification": "The workspace dependency graph was resolved before these --no-pub runs. The global locked-version/source-hash qualification is recorded separately with the runtime receipts."
+  },
+  "qualificationScope": "Historical c23c8171 source qualification, before the latest VBA6b94e195/Zotero0aac0e0a merges. The 68 editor cases passed against the exact recorded source; this is excluded from final-tree counts.",
+  "excludedHistoricalRuns": [
+    {
+      "record": "slide-regression-qualification.json",
+      "testsPassed": 98
+    },
+    {
+      "record": "slide-vba-merge-qualification.json",
+      "testsPassed": 123
+    },
+    {
+      "log": "slide-final-editor-tests-before-pdf-fit-fix.log",
+      "testsPassed": 68
+    },
+    {
+      "log": "slide-final-editor-tests-duplicate-parser-failure.log",
+      "testsPassed": 0,
+      "exitCode": 1,
+      "reason": "Duplicate visibility helper prevented compilation before test execution."
+    }
+  ],
+  "verifiedProductCheckpoint": "c23c81719a0653b064aa6560d408476193fca539",
+  "checkpointMatch": {
+    "matchedSourceFiles": 16,
+    "newTestFilesPendingCheckpoint": [
+      "packages/quds_office_editor/test/slide_transform_orientation_test.dart"
+    ],
+    "allWorkingSourceHashesStillMatch": true
+  },
+  "productTreesAtVerifiedCheckpoint": {
+    "packages/quds_office_engine/lib": "2f30fcb1b95a0d3050cd42fabae414a60f995df7",
+    "packages/quds_office_editor/lib": "f8efaa6f527a0e2200d08d2cd0be880b3ee5999d",
+    "packages/quds_office_editor/example/lib": "4b5bc6fb7cc49d2c71d76179f2ee86ff7a428db5"
+  }
+}
