@@ -6,7 +6,9 @@ iOS Simulator and an Android emulator. The Studio app loads each one through
 its own host code. Pinned data is downloaded into the app's private sandbox.
 spaCy matches the frozen development panel exactly on both. The Android arm64
 spaCy library is now recorded for **analysis only**. No mobile build is
-qualified for grammar, and the planner gate is unchanged.
+qualified for grammar, and the planner gate is unchanged. (Superseded the same
+day for Android arm64 grammar: see
+[native-spacy-android-grammar-20261120](../native-spacy-android-grammar-20261120/README.md).)
 
 ## Packaging
 
@@ -66,8 +68,10 @@ copy cannot drift. The comparison is the same per-field comparison that
 
 - **Android arm64-v8a** `ed730f62…` (the stripped library shipped byte-exact
   in the APK): analysis parity is recorded in `spacyRecordedBuilds` as
-  `spacyAndroidArm64BundledSha256`. The record is analysis only, and grammar
-  is refused because the digest is not in `spacyGrammarNativeSha256s`.
+  `spacyAndroidArm64BundledSha256`. *Update, same day:* manual German grammar
+  is now qualified for these bytes as well, by an on-device replay of W6, W7
+  and grammar v2 ([evidence](../native-spacy-android-grammar-20261120/README.md)).
+  The digest is in `spacyGrammarNativeSha256s`.
 - **Android x86_64**: built. It was not run, because the only system image on
   this Apple-silicon host is arm64, and x86_64 images do not run there. It is
   unrecorded.
@@ -77,11 +81,13 @@ copy cannot drift. The comparison is the same per-field comparison that
   arm64+x86_64 binary, which `machOCodeSha256` rejects by design, so it cannot
   carry a signature-independent record either. Analysis still runs (the host
   offers analysis for unrecorded builds). Grammar is refused.
-- **Grammar** on mobile was not attempted. It needs the full W6/W7/v2 panel
-  replay (`tool/replay_grammar_panels.dart`) on the exact binary on a device.
-  Those panels read repository fixtures that are not yet packaged for an
-  on-device run. The numerical stage traces, ctest and C text-API controls
-  that back the desktop records were not run on mobile either.
+- **Grammar** on mobile was not attempted in this record. *Update, same day:*
+  the panel replay now runs on the device through
+  `integration_test/mobile_spacy_grammar_replay_test.dart`, with the inputs
+  served from the host, and it qualified Android arm64
+  ([evidence](../native-spacy-android-grammar-20261120/README.md)). The
+  numerical stage traces, ctest and C text-API controls that back the
+  desktop records were not run on mobile.
 
 ## Not verified here
 
