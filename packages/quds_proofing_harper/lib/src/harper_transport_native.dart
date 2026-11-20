@@ -134,6 +134,9 @@ void _workerMain(List<Object?> arguments) {
             ? defined
             : (Platform.isWindows
                   ? 'quds_proofing_harper.dll'
+                  // iOS apps embed the library as a signed framework.
+                  : Platform.isIOS
+                  ? 'quds_proofing_harper.framework/quds_proofing_harper'
                   : Platform.isMacOS
                   ? 'libquds_proofing_harper.dylib'
                   : 'libquds_proofing_harper.so'));

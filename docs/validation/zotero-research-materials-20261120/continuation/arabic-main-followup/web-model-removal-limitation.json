@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "source": {
+    "base_main": "43db439e1e605d6329a6eabe6817b04ca44ba1aa",
+    "incoming_main": "098412152fa1d64796eb3fb9c06699ced0f0c44d",
+    "previous_qualified_publication": "a3373021b6cbe6ae333217417bd1615e88019f7d",
+    "candidate": "f69e774fbb32a103260541e4a28fb17600bfc17e",
+    "candidate_tree": "1a45545ffa7f4c8548853a30c95bdb38309e3da9",
+    "parents": [
+      "a3373021b6cbe6ae333217417bd1615e88019f7d",
+      "098412152fa1d64796eb3fb9c06699ced0f0c44d"
+    ]
+  },
+  "classification": "Separate incoming Arabic browser limitation, source-identified only; no browser runtime execution or failure reproduction.",
+  "finding": {
+    "id": "arabic-web-remove-model-reuses-transferred-database",
+    "status_at_f69": "Source-level lifecycle defect identified; no browser runtime reproduction in this environment.",
+    "path": "packages/quds_office_editor/example/lib/studio_arabic_morph_host_web.dart",
+    "observation": "_activate stores the same MorphDatabaseBytes in _database and passes it to the transport; removeModel disposes the loaded worker and calls _activate with that cached object. The transport transfers the original Uint8List ArrayBuffers. MorphDatabaseBytes.verified makes an unmodifiable map but does not copy its lists.",
+    "consequence": "For JavaScript compilation, Uint8List.toJS casts without copying. Transferring detaches the retained buffers; reopening the base analyzer from those buffers after model removal can fail and lose base analysis. The session-only storage fallback cannot recover by reading persistent storage.",
+    "evidence": [
+      {
+        "path": "packages/quds_office_editor/example/lib/studio_arabic_morph_host_web.dart",
+        "revision": "f69e774fbb32a103260541e4a28fb17600bfc17e",
+        "blob": "738008f948712bc19642f2fa1672beb23b08ef09",
+        "bytes": 10669,
+        "sha256": "2fc00873314a18b20de8a94dce32a62e5c34574954de36eb0a1ca91c8f7021a9"
+      },
+      {
+        "path": "packages/quds_arabic_morph/lib/src/morph_transport_web.dart",
+        "revision": "f69e774fbb32a103260541e4a28fb17600bfc17e",
+        "blob": "6f85cda65e4ef22e75c733c045905318a84ba8dd",
+        "bytes": 9265,
+        "sha256": "d661b6e1bf5cb752eff761f2882124d80485d39bb7d3b8885bb7b2bc39f839ca"
+      },
+      {
+        "path": "packages/quds_arabic_morph/lib/src/morph_catalog.dart",
+        "revision": "f69e774fbb32a103260541e4a28fb17600bfc17e",
+        "blob": "ad1fb766b27f24377da0661d185f74e4ba77476d",
+        "bytes": 9602,
+        "sha256": "98d375cc3912ff4ab917defbf8e4cb2e3357492d3973caacbc9499352e7c9b1d"
+      },
+      {
+        "path": "packages/quds_office_editor/example/test/studio_web_persistence_test.dart",
+        "revision": "f69e774fbb32a103260541e4a28fb17600bfc17e",
+        "blob": "4827e3c214cf8e30647c1d85b028ffc2b959d7d4",
+        "bytes": 6458,
+        "sha256": "5b95ad0aacbff2d1d639aae002c94e797322379a720bc43c292808629f41e990"
+      }
+    ],
+    "local_sdk_documentation": {
+      "path": "/workspace/scratch/2c6eaad19389/zotero-toolchain/flutter-sdk/bin/cache/dart-sdk/lib/js_interop/js_interop.dart",
+      "sha256": "2396e8da3a3485b911a5c8c8744a519d5bde7938fac5a503c3e4bb6b232045e8",
+      "excerpt": "extension Uint8ListToJSUint8Array on Uint8List {\n  /// Converts this [Uint8List] to a [JSUint8Array] by either casting,\n  /// unwrapping, or cloning the [Uint8List].\n  ///\n  /// > [!NOTE]\n  /// > Depending on whether code is compiled to JavaScript or Wasm, this\n  /// > conversion will have different semantics.\n  ///\n  /// When compiling to JavaScript, all typed lists are the equivalent\n  /// JavaScript typed arrays, and therefore this getter simply casts.\n  ///\n  /// When compiling to Wasm, this [Uint8List] is a wrapper around a\n  /// `Uint8Array` if it was converted via [JSUint8ArrayToUint8List.toDart]. If\n  /// it is a wrapper, this getter unwraps it and returns the `Uint8Array`. If\n  /// it's instantiated in Dart, this getter clones this [Uint8List]'s values\n  /// into a new [JSUint8Array].\n  ///\n  /// Avoid assuming that modifications to this [Uint8List] will affect the\n  /// returned [JSUint8Array] and vice versa on all compilers unless it was\n  /// converted first via [JSUint8ArrayToUint8List.toDart].\n  external JSUint8Array get toJS;"
+    },
+    "fresh_VM_tests_do_not_cover_this_browser_transfer_path": true,
+    "resolution": "Requires an explicit source correction or disclosed browser limitation; not relabelled as an author baseline exception."
+  },
+  "publication_disposition": "Preserved from incoming main. No product correction or new browser lifecycle milestone in this Zotero continuation. Fresh VM results do not qualify this transfer path.",
+  "native_qualification_boundary": "Source consistency only. Native builds, packaging/signing, real model execution and Wasm runtime acceptance were not performed by this review. Existing ABI 2 Arabic binaries must be rebuilt."
+}

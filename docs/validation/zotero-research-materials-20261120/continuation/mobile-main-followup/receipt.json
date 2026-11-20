@@ -1,0 +1,55 @@
+{
+  "status": "passed",
+  "source_head": "2b74f1091c8fb968f1cb53c803bdd2a0b395159d",
+  "pre_formatter_qualified_source": "65ea4c3095ff5d821c57d4dced0ba50bdd9387e7",
+  "scope": "Bounded Linux-host readiness: native-path helpers, embedded spaCy fixture identity, Zotero startup/citing transport, and spaCy distribution metadata. Changed Dart source was statically checked; no Android/iOS native execution, build or installed-app acceptance is claimed.",
+  "qualified_distinct_tests": 51,
+  "qualified_test_files": 5,
+  "cohorts": {
+    "studio": {
+      "passed": 36,
+      "files": 4
+    },
+    "spacy_distribution": {
+      "passed": 15,
+      "files": 1
+    }
+  },
+  "formatter_followup": {
+    "passed": 2,
+    "files": 1,
+    "additional_distinct_tests": 0,
+    "receipt": "formatter-followup/receipt.json"
+  },
+  "strict_static": {
+    "targets": 18,
+    "passed": true,
+    "receipt": "formatter-followup/static.json"
+  },
+  "initial_format_failure_preserved": "static.json",
+  "formatter_proof": "formatter-equivalence.json",
+  "formatter_diff": "formatter.diff",
+  "preliminary_runs": "preliminary/",
+  "preliminary_runs_counted": false,
+  "resolver_transition": "implicit-resolution.json",
+  "dependency_verification": "dependency-scope.json",
+  "configuration_frozen_after_authorized_offline_verification": {
+    ".dart_tool/package_config.json": "ddfca5fc7d08d7d38377e1b31c1a11fd4a7f589d41322c776a09e36ae55b6ff3",
+    ".dart_tool/package_graph.json": "09b12d3718163b37c56c092d0d87d2f5a976bfb50f02009667efce07bd243c3e"
+  },
+  "configuration_unchanged_through_clean_host_runs_and_followup": true,
+  "resolver_note": "The initial direct dart test unexpectedly refreshed the configuration and fetched exact locked webdriver3.2.0. Preliminary streams are excluded. The resulting157-package graph was verified by an authorized offline --enforce-lockfile get with the tracked lock unchanged; clean runs used direct test.dart or Flutter --no-pub. Cached hash markers were checked, and unpacked added-dependency payloads independently hashed; no retained archive rehash is claimed.",
+  "native_mobile_acceptance": false,
+  "extra_python_or_native_gates_run": false,
+  "auditor_sha256": "4d01ed59729abaa64e3ab643e8ebcb2f7136dd2d9f02cc4b07b81a06fbb919bf",
+  "artifacts": {
+    "host-tests.json": "af6204ce98f4278024b886ee7858c91bf1375ee1460e478206b9443dc2ad76b9",
+    "dependency-scope.json": "c908358cd15dc2a9cb8d3166897161e5514f30c352e826c220f339310d660c60",
+    "implicit-resolution.json": "4d1fbde059efa09909fc4f86d81640cdf2119450321a577065848686de6ca519",
+    "formatter-equivalence.json": "47fbd6e469e9f7c57a6d6338c41337c7582f228533bc54c5920103136f5fe0c4",
+    "formatter.diff": "b9b610ebf278b5a36fd1d6f8bd46b8d08c2885b543e1c054f8626a7a63b06587",
+    "formatter-followup/receipt.json": "4c2c68fd4028d02f082e99e70a857abea3547562f87764ce7f7d9ca2f881e209",
+    "formatter-followup/static.json": "96c8a294521c09805ca5062da80540fe8e73f7b629ceab8898ff94cfc8bd0105",
+    "added-dependency-payloads.json.gz": "9338eb5eb68538c18cdf1183f77a01ed61c63a1a92b1cc94c90b10ef61bd5cb4"
+  }
+}

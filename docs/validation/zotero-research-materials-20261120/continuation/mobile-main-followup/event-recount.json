@@ -1,0 +1,35 @@
+{
+  "status": "passed",
+  "source": "65ea4c3095ff5d821c57d4dced0ba50bdd9387e7",
+  "method": "Independent direct JSON event recount; hidden lifecycle events excluded; raw stream hashes cross-checked against host receipt; configuration hashes rechecked. No test execution or complete runtime inventory inferred.",
+  "cohorts": [
+    {
+      "cohort": "studio",
+      "passed": 36,
+      "files": 4,
+      "raw_sha256": "648f07927d88c1356d8adcbfdc3bf47dd21d478a44cd8ec8bb780e73735f6186",
+      "case_identity_unique": true,
+      "every_started_event_completed_once": true,
+      "failures": 0,
+      "skipped": 0,
+      "errors": 0,
+      "final_success": true
+    },
+    {
+      "cohort": "spacy",
+      "passed": 15,
+      "files": 1,
+      "raw_sha256": "7af911974cda3d648ca1105285097cce913b09814aa300222ec6f0db17c26eb1",
+      "case_identity_unique": true,
+      "every_started_event_completed_once": true,
+      "failures": 0,
+      "skipped": 0,
+      "errors": 0,
+      "final_success": true
+    }
+  ],
+  "passing_cases": 51,
+  "files": 5,
+  "native_acceptance": false,
+  "note": "The subsequent formatter-only two-case rerun is separate and must not inflate this distinct total."
+}

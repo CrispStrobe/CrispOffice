@@ -1,0 +1,39 @@
+{
+  "cohorts": {
+    "arabic-unit": {
+      "package": "packages/quds_arabic_morph",
+      "patterns": [],
+      "additional": [
+        "arabic_morph_unit_test.dart"
+      ],
+      "runner": "dart"
+    },
+    "engine-arabic": {
+      "package": "packages/quds_office_engine",
+      "patterns": [],
+      "additional": [
+        "proofing/arabic_grammar_context_test.dart",
+        "proofing/arabic_grammar_rules_test.dart",
+        "proofing/arabic_writing_rules_test.dart",
+        "proofing/arabic_extended_rules_test.dart"
+      ],
+      "runner": "dart"
+    },
+    "studio-integration": {
+      "package": "packages/quds_office_editor/example",
+      "patterns": [],
+      "additional": [
+        "studio_arabic_morph_setup_test.dart",
+        "studio_downloads_manager_test.dart",
+        "studio_settings_test.dart",
+        "studio_linguistic_analysis_test.dart",
+        "studio_comment_draft_proofing_test.dart",
+        "studio_zotero_shortcuts_test.dart",
+        "studio_zotero_citing_transport_test.dart"
+      ],
+      "runner": "flutter"
+    }
+  },
+  "native_and_live_download_tests_selected": false,
+  "fresh_tests_run_by_preparation": false
+}

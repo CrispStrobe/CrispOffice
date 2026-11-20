@@ -1,0 +1,12 @@
+{
+  "path": "packages/quds_office_editor/example/test/studio_native_paths_test.dart",
+  "before_head": "65ea4c3095ff5d821c57d4dced0ba50bdd9387e7",
+  "after_head": "2b74f1091c8fb968f1cb53c803bdd2a0b395159d",
+  "before_sha256": "4ed8c3ccf0357d788fd45bdbdd50a9defa66c74dfc4c175c83149f79085245d6",
+  "after_sha256": "d5c0ce23e1b002926c3d9d23b6f15cad184a2defe53c22cc881fdb3342973429",
+  "comparison": "Quoted literals/comments preserved atomically; all other characters match after ignoring whitespace and the single trailing comma in the wrapped expect argument list. Exact diff retained.",
+  "initial_whitespace_only_comparison_passed": false,
+  "trailing_argument_comma_normalized_comparison_passed": true,
+  "assertion_content_changed": false,
+  "only_changed_tracked_path": true
+}

@@ -1,0 +1,100 @@
+{
+  "adapter_command": [
+    "docs/validation/zotero-research-materials-20261120/continuation/arabic-main-followup/run_arabic_followup.py",
+    "arabic-unit",
+    "--repo",
+    "/workspace/scratch/2c6eaad19389/quds_office_suite",
+    "--output",
+    "docs/validation/zotero-research-materials-20261120/continuation/arabic-main-followup/accepted-arabic-unit",
+    "--expected-head",
+    "f69e774fbb32a103260541e4a28fb17600bfc17e"
+  ],
+  "catalog_disjointness_check_unchanged": true,
+  "code_after": {
+    "adapter": {
+      "bytes": 5691,
+      "path": "/workspace/scratch/2c6eaad19389/quds_office_suite/docs/validation/zotero-research-materials-20261120/continuation/arabic-main-followup/run_arabic_followup.py",
+      "sha256": "c35ea5371e02ac0ccef93a5fccb9d500e3096a5718ed773574cad1fb6f608877"
+    },
+    "primary_runner": {
+      "bytes": 29772,
+      "path": "/workspace/scratch/2c6eaad19389/quds_office_suite/docs/validation/zotero-research-materials-20261120/run_validation.py",
+      "sha256": "4d01ed59729abaa64e3ab643e8ebcb2f7136dd2d9f02cc4b07b81a06fbb919bf"
+    }
+  },
+  "code_before": {
+    "adapter": {
+      "bytes": 5691,
+      "path": "/workspace/scratch/2c6eaad19389/quds_office_suite/docs/validation/zotero-research-materials-20261120/continuation/arabic-main-followup/run_arabic_followup.py",
+      "sha256": "c35ea5371e02ac0ccef93a5fccb9d500e3096a5718ed773574cad1fb6f608877"
+    },
+    "primary_runner": {
+      "bytes": 29772,
+      "path": "/workspace/scratch/2c6eaad19389/quds_office_suite/docs/validation/zotero-research-materials-20261120/run_validation.py",
+      "sha256": "4d01ed59729abaa64e3ab643e8ebcb2f7136dd2d9f02cc4b07b81a06fbb919bf"
+    }
+  },
+  "code_unchanged": true,
+  "cohort": "arabic-unit",
+  "delegated_arguments": [
+    "/workspace/scratch/2c6eaad19389/quds_office_suite/docs/validation/zotero-research-materials-20261120/run_validation.py",
+    "arabic-unit",
+    "--repo",
+    "/workspace/scratch/2c6eaad19389/quds_office_suite",
+    "--timeout",
+    "1800",
+    "--output",
+    "/workspace/scratch/2c6eaad19389/quds_office_suite/docs/validation/zotero-research-materials-20261120/continuation/arabic-main-followup/accepted-arabic-unit",
+    "--expected-head",
+    "f69e774fbb32a103260541e4a28fb17600bfc17e"
+  ],
+  "native_and_live_download_suites_excluded": true,
+  "primary_runner_exit_code": 0,
+  "primary_test_audit_and_fingerprint_logic_unchanged": true,
+  "prior_milestone_and_continuation_counts_are_separate": true,
+  "purpose": "Qualify PR231 with synthetic/unit Arabic and Studio integration tests; no native qualification",
+  "selection": {
+    "additional": [
+      "arabic_morph_unit_test.dart"
+    ],
+    "package": "packages/quds_arabic_morph",
+    "patterns": [],
+    "runner": "dart"
+  },
+  "selection_catalog": {
+    "arabic-unit": {
+      "additional": [
+        "arabic_morph_unit_test.dart"
+      ],
+      "package": "packages/quds_arabic_morph",
+      "patterns": [],
+      "runner": "dart"
+    },
+    "engine-arabic": {
+      "additional": [
+        "proofing/arabic_grammar_context_test.dart",
+        "proofing/arabic_grammar_rules_test.dart",
+        "proofing/arabic_writing_rules_test.dart",
+        "proofing/arabic_extended_rules_test.dart"
+      ],
+      "package": "packages/quds_office_engine",
+      "patterns": [],
+      "runner": "dart"
+    },
+    "studio-integration": {
+      "additional": [
+        "studio_arabic_morph_setup_test.dart",
+        "studio_downloads_manager_test.dart",
+        "studio_settings_test.dart",
+        "studio_linguistic_analysis_test.dart",
+        "studio_comment_draft_proofing_test.dart",
+        "studio_zotero_shortcuts_test.dart",
+        "studio_zotero_citing_transport_test.dart"
+      ],
+      "package": "packages/quds_office_editor/example",
+      "patterns": [],
+      "runner": "flutter"
+    }
+  },
+  "shared_sdk_validation_lock_unchanged": true
+}

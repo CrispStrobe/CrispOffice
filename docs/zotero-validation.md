@@ -3,17 +3,31 @@
 ## 20 November 2026 — browse reference notes and attachment metadata
 
 The [publication continuation](validation/zotero-research-materials-20261120/continuation/README.md)
-finishes this milestone after restoring and independently verifying the saved
-evidence. It preserves current main through PR #228, macOS portability and the
-comment-language test repair. Fresh local runs cover **3,201 distinct passing
-cases in 129 files**, including both complete Zotero suites; all **83 final
-changed Dart targets** pass strict analysis and formatting. Eight identical
-pre-existing proofing fixture repeats are counted once in a separate explicit
-accounting audit. These fresh counts overlap the original acceptance below and
-are kept separate. A lint-only block in an evaluation tool is isolated from
-the selected tests' imports. A later published macOS build-script correction
-has separate qualification: the repeated pin test, ten controlled shell
-checks and fresh full static analysis, without adding repeated case counts.
+finishes this milestone with current main and qualified Mail reconciliation.
+The final [mobile-main supplement](validation/zotero-research-materials-20261120/continuation/mobile-main-followup/README.md)
+preserves main `88905c56` (PR #232) at source `65ea4c30`, with **51 focused
+host cases in five files** passing on a fixed configuration. All 88 incoming
+postimages match at that merge; `2b74f109` subsequently formats one incoming
+test call. Zotero implementation files remain unchanged.
+The affected two cases pass again, and all **18 final changed Dart targets**
+pass strict analysis and formatting at `2b74f109`.
+Its latest Arabic/main follow-up passes **633 cases in 12 files** on `f69e774f`,
+with **129 active changed Dart targets** passing strict analysis and formatting.
+It preserves the broad **2,386-case / 157-file** gate at `214c4ed8` and the
+**356-case / 27-file** rendering/web-VM gate at `a45ee3bf`. Earlier proofing/spaCy
+and original milestone evidence retain their own source and accounting.
+These overlapping populations are not added together.
+
+The report separately records the blocked Chrome launch (zero application
+cases), a source-identified incoming Arabic web model-removal concern, native
+Word's 20/24-page threshold result, the existing shape limitation, and two
+preserved historical Mail harnesses with archived static diagnostics. Native
+Arabic ABI/model/Wasm execution remains outside the fresh local acceptance.
+The imported Arabic mobile receipt predates ABI 3 / adapter 2 and cannot
+qualify the final combined Arabic native source. Mobile author results retain
+their original attribution; no fresh iOS or Android execution is claimed here.
+Raw evidence, incoming reviews, source boundaries, remote checkpoints and
+reproduction instructions are retained in the continuation report.
 
 Qualified product source: **`f0122cb5bff5b6cf6a6f69f043545dabc2930791`**,
 followed by current-main integration

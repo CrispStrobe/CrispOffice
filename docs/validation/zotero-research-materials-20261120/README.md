@@ -1,11 +1,25 @@
 # Zotero research materials — 20 November 2026
 
 **Publication continuation:** the [continuation report](continuation/README.md)
-records the fresh reconciliation through main's PR #228, all 83 final Dart
-static targets, and 3,201 distinct passing cases in 129 files on the reconciled
-source. The eight identical proofing fixture repeats are counted once with an
-explicit independent accounting record. The original evidence below retains
-its original source and totals; the overlapping fresh runs are not added to it.
+records current main and qualified Mail reconciliation. The latest Arabic/main
+follow-up passes **633 cases / 12 files** and **129 active changed Dart static
+targets** at `f69e774f`. Earlier source-bound gates remain separate: **2,386 / 157**
+after broad host integration, **356 / 27** for Mail/web rendering and VM paths,
+and **3,201 / 129** for the first proofing/spaCy integration. Counts overlap and
+are not added to one another or to the original milestone evidence below.
+The report preserves blocked browser and native limits, the incoming Arabic
+web concern, and the precise historical-artifact static exceptions.
+
+The final [mobile-main supplement](continuation/mobile-main-followup/README.md)
+preserves main `88905c56` (PR #232) at source `65ea4c30`, where **51 focused
+host cases in five files** pass on a fixed configuration. All 88 incoming
+postimages match at that merge; the final `2b74f109` source formats one incoming
+test call. The Zotero implementation remains unchanged.
+The affected two cases pass again, and all **18 final changed Dart targets**
+pass strict analysis and formatting at `2b74f109`. Earlier
+source-bound results remain separate from this final delta. The incoming
+Arabic mobile receipt predates the merged ABI 3 / adapter 2 source and does not
+qualify it; native iOS/Android acceptance is not rerun in this environment.
 
 **Qualified product source:** `f0122cb5bff5b6cf6a6f69f043545dabc2930791`, on
 `codex/zotero-research-materials-20261120`,
