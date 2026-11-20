@@ -3,6 +3,7 @@ import 'package:quds_office_engine/src/word/serial/word_property_io.dart';
 
 import 'step_input.dart';
 import 'word_list_steps.dart';
+import 'word_spacing_steps.dart';
 import 'word_structure_steps.dart';
 
 const _storyFields = <String>['story', 'section', 'note', 'comment'];
@@ -16,6 +17,7 @@ const wordOperations = <String, List<String>>{
   'styleDefinition': ['style', 'type', 'rPr', 'pPr', 'tblPr', 'tcPr'],
   'tabStop': ['paragraph', 'position', 'alignment', 'leader', ..._storyFields],
   'clearTabStops': ['paragraph', ..._storyFields],
+  'lineSpacing': ['paragraph', 'rule', 'points', ..._storyFields],
   'paragraphFormat': [
     'paragraph',
     'alignment',
@@ -180,8 +182,18 @@ void applyStep(
       );
     case 'clearTabStops':
       WordDeserializer().editParagraphTabStops(doc, paragraph());
+    case 'lineSpacing':
+      setWordLineSpacing(
+        doc,
+        paragraph(),
+        rule: s.string('rule'),
+        points: s.number('points'),
+      );
     case 'paragraphFormat':
       final target = paragraph();
+      if (s.has('lineSpacing') || s.has('lineSpacingRule')) {
+        validateWordLineSpacingSource(doc, target);
+      }
       final p = target.properties.copy();
       List<WmlTabStop>? replacementTabs;
       // An explicit script assignment must remain direct formatting even

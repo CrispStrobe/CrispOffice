@@ -273,6 +273,8 @@ const _wordListMethods = <String>{
   'listoutdent',
   'removenumbers',
 };
+const _wordSpacingMethods = <String>{'space1', 'space15', 'space2'};
+const _wordUnitConversions = <String>{'linestopoints', 'pointstolines'};
 const _powerPointConstants = <String, int>{
   'msoanchortop': 1,
   'msoanchortopbaseline': 2,
@@ -340,7 +342,9 @@ class _Context {
   bool reserved(String name) =>
       _Checker._reserved.contains(name) ||
       constants.containsKey(name) ||
-      (isWord && _wordReserved.contains(name)) ||
+      (isWord &&
+          (_wordReserved.contains(name) ||
+              _wordUnitConversions.contains(name))) ||
       (isPowerPoint && _powerPointReserved.contains(name));
 
   Never fail(
@@ -860,6 +864,11 @@ class _WordListOperation extends _Statement {
   final _Member target;
 }
 
+class _WordSpacingOperation extends _Statement {
+  const _WordSpacingOperation(super.token, this.target);
+  final _Member target;
+}
+
 class _For extends _Statement {
   const _For(
     super.token,
@@ -1236,6 +1245,9 @@ class _Parser {
           } else if (target is _Member &&
               _wordListMethods.contains(target.token.lower)) {
             result.add(_WordListOperation(target.token, target));
+          } else if (target is _Member &&
+              _wordSpacingMethods.contains(target.token.lower)) {
+            result.add(_WordSpacingOperation(target.token, target));
           } else if (target is _Call) {
             result.add(_Invoke(target.token, target.arguments));
           } else if (target is _Name) {
@@ -1478,6 +1490,7 @@ class _Parser {
               'add',
               'clearall',
               ..._wordListMethods,
+              ..._wordSpacingMethods,
             }.contains(target.token.lower)) {
           final arguments = target.arguments ?? <_Expr>[];
           if (target.arguments == null &&
@@ -1502,6 +1515,8 @@ class _Parser {
                 ? _InsertBefore(target.token, call)
                 : _wordListMethods.contains(target.token.lower)
                 ? _WordListOperation(target.token, call)
+                : _wordSpacingMethods.contains(target.token.lower)
+                ? _WordSpacingOperation(target.token, call)
                 : _WordTabOperation(target.token, call),
           );
         } else if (!isSet &&
@@ -2425,6 +2440,18 @@ class _Checker {
           _wordTabCall(statement.target);
         case _WordListOperation():
           _wordListCall(statement.target);
+        case _WordSpacingOperation():
+          if (_expression(statement.target.receiver) != _Kind.paragraphFormat) {
+            context.type(
+              statement.token,
+              'Spacing methods require an explicit Word ParagraphFormat.',
+            );
+          }
+          _count(
+            statement.target.token,
+            statement.target.arguments ?? const <_Expr>[],
+            0,
+          );
         case _For():
           final counter = _symbol(statement.counter);
           if (counter.isConst ||
@@ -2856,6 +2883,7 @@ class _Checker {
           'firstlineindent',
           'readingorder',
           'linespacingrule',
+          'linespacing',
         }.contains(property)) {
           return _Kind.number;
         }
@@ -2958,6 +2986,13 @@ class _Checker {
         if (_stringIntrinsics.contains(expression.token.lower)) {
           return _stringIntrinsic(expression);
         }
+        if (context.isWord &&
+            _wordUnitConversions.contains(expression.token.lower)) {
+          _count(expression.token, expression.arguments, 1);
+          final argument = expression.arguments.single;
+          _compatible(_Kind.number, _expression(argument), argument.token);
+          return _Kind.number;
+        }
         if (_variantIntrinsics.contains(expression.token.lower)) {
           _count(expression.token, expression.arguments, 1);
           final argument = expression.arguments.single;
@@ -3042,6 +3077,12 @@ class _Checker {
           if (receiver == _Kind.wordApplication && name == 'activedocument') {
             _arguments(expression, 0, allowProperty: true);
             return _Kind.document;
+          }
+          if (receiver == _Kind.wordApplication &&
+              _wordUnitConversions.contains(name)) {
+            final argument = _arguments(expression, 1).single;
+            _compatible(_Kind.number, _expression(argument), argument.token);
+            return _Kind.number;
           }
           if (receiver == _Kind.document && name == 'paragraphs') {
             if (expression.arguments == null) return _Kind.paragraphs;
@@ -3470,6 +3511,13 @@ class _WordListFormat {
   final _WordRange range;
 }
 
+class _PendingWordLineSpacing {
+  const _PendingWordLineSpacing(this.range, this.rule, this.token);
+  final _WordRange range;
+  final int rule;
+  final _Token token;
+}
+
 class _PowerPointApplication {
   const _PowerPointApplication();
 }
@@ -3577,6 +3625,7 @@ class _Evaluator {
   int activeArrayStringUnits = 0;
   int work = 0;
   int encodedBytes = 0;
+  _PendingWordLineSpacing? pendingWordLineSpacing;
 
   OfficeMacro compile() {
     work = checker.constantWork;
@@ -3603,6 +3652,7 @@ class _Evaluator {
     }
     globalValues = Map<String, Object>.of(values);
     _invoke(procedure, const <Object>[], procedure.name, needsResult: false);
+    _requireCompleteWordLineSpacing();
     try {
       return OfficeMacro(name: name, format: context.format, steps: steps);
     } on OfficeMacroException catch (error) {
@@ -3875,6 +3925,17 @@ class _Evaluator {
             _wordTabs(statement.target);
           case _WordListOperation():
             _wordList(statement.target);
+          case _WordSpacingOperation():
+            final format =
+                _evaluate(statement.target.receiver) as _WordParagraphFormat;
+            _emitWord(format.range, 'paragraphFormat', <String, Object?>{
+              'lineSpacing': switch (statement.target.token.lower) {
+                'space1' => 1.0,
+                'space15' => 1.5,
+                _ => 2.0,
+              },
+              'lineSpacingRule': 'auto',
+            }, statement.token);
           case _With():
             withValues.add(_evaluate(statement.target));
             frames.add(_WithFrame());
@@ -4118,6 +4179,10 @@ class _Evaluator {
         if (_variantIntrinsics.contains(expression.token.lower)) {
           return _variantIntrinsic(expression, arguments.single);
         }
+        if (context.isWord &&
+            _wordUnitConversions.contains(expression.token.lower)) {
+          return _wordUnitConversion(expression.token, arguments.single);
+        }
         if (expression.token.lower == 'worksheets') {
           return _sheet(arguments.single, expression.token);
         }
@@ -4140,7 +4205,12 @@ class _Evaluator {
           return _evaluatePowerPointMember(expression, receiver, arguments);
         }
         if (context.isWord) {
-          if (receiver is _WordApplication) return const _WordDocument();
+          if (receiver is _WordApplication) {
+            if (_wordUnitConversions.contains(expression.token.lower)) {
+              return _wordUnitConversion(expression.token, arguments.single);
+            }
+            return const _WordDocument();
+          }
           if (receiver is _WordDocument && expression.arguments == null) {
             return const _WordParagraphs();
           }
@@ -5518,15 +5588,52 @@ class _Evaluator {
     }
     if (property == 'linespacingrule') {
       final rule = _integer(value, token);
-      if (rule < 0 || rule > 2) {
+      if (rule < 0 || rule > 5) {
         context.unsupported(
           token,
-          'LineSpacingRule supports wdLineSpaceSingle, wdLineSpace1pt5, and wdLineSpaceDouble; point-based and arbitrary multiple spacing require unsupported LineSpacing semantics.',
+          'LineSpacingRule requires a supported WdLineSpacing constant in 0..5.',
         );
+      }
+      _requireCompleteWordLineSpacing();
+      if (rule >= 3) {
+        pendingWordLineSpacing = _PendingWordLineSpacing(
+          format.range,
+          rule,
+          token,
+        );
+        return;
       }
       _emitWord(format.range, 'paragraphFormat', <String, Object?>{
         'lineSpacing': const <double>[1, 1.5, 2][rule],
         'lineSpacingRule': 'auto',
+      }, token);
+      return;
+    }
+    if (property == 'linespacing') {
+      final pending = pendingWordLineSpacing;
+      if (pending == null ||
+          pending.range.paragraph.index != format.range.paragraph.index) {
+        context.unsupported(
+          token,
+          'LineSpacing requires a preceding AtLeast, Exactly or Multiple rule for the same paragraph, with no intervening document write.',
+        );
+      }
+      final points = _number(value, token);
+      final twips = points * 20;
+      if (points <= 0 || twips > 2147483647 || twips.round() / 20 != points) {
+        context.type(
+          token,
+          'LineSpacing requires positive exact twentieth-points within signed Long twips.',
+        );
+      }
+      pendingWordLineSpacing = null;
+      _emitWord(format.range, 'lineSpacing', <String, Object?>{
+        'rule': const <String>[
+          'atLeast',
+          'exact',
+          'multiple',
+        ][pending.rule - 3],
+        'points': points,
       }, token);
       return;
     }
@@ -5618,6 +5725,42 @@ class _Evaluator {
     return text;
   }
 
+  Object _wordUnitConversion(_Token token, Object value) {
+    final number = _number(value, token);
+    final toPoints = token.lower == 'linestopoints';
+    final unitsPerInput = toPoints ? 240 : 20;
+    final unitsPerOutput = toPoints ? 20 : 240;
+    final units = number * unitsPerInput;
+    // Use the exact native unit grid when the input round-trips on it. This
+    // keeps ordinary values such as 1.15 lines -> 13.8 points representable
+    // without snapping neighboring off-grid inputs or rounding all inputs.
+    final onGrid =
+        units.isFinite &&
+        units.abs() <= _maxExactInteger &&
+        units.round() / unitsPerInput == number;
+    final result = onGrid
+        ? units.round() / unitsPerOutput
+        : toPoints
+        ? number * 12
+        : number / 12;
+    if (!result.isFinite || result.abs() > _maxExactInteger) {
+      context.type(
+        token,
+        'Word unit conversion exceeds the finite numeric bound.',
+      );
+    }
+    return result;
+  }
+
+  void _requireCompleteWordLineSpacing() {
+    final pending = pendingWordLineSpacing;
+    if (pending == null) return;
+    context.unsupported(
+      pending.token,
+      'AtLeast, Exactly and Multiple require a following LineSpacing write to the same paragraph before any other document mutation or the end of the macro.',
+    );
+  }
+
   void _emitWord(
     _WordRange range,
     String operation,
@@ -5705,6 +5848,7 @@ class _Evaluator {
   }
 
   void _emitNative(String tool, Map<String, Object?> arguments, _Token token) {
+    _requireCompleteWordLineSpacing();
     _tick(token);
     final json = <String, Object?>{'tool': tool, 'arguments': arguments};
     final bytes =

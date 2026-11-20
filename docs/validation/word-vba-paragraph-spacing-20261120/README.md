@@ -20,7 +20,7 @@ Remote checkpoint branch: `codex/word-vba-paragraph-spacing-20261120`.
 Checkpoints use expected-head, non-forced remote updates. GitHub Actions,
 workflow runs and status checks are not queried or awaited.
 
-## Planned bounded extension
+## Implemented bounded extension
 
 - `ParagraphFormat.LineSpacingRule` with `wdLineSpaceAtLeast`,
   `wdLineSpaceExactly` or `wdLineSpaceMultiple`, followed by `LineSpacing`.
@@ -41,7 +41,13 @@ behavior remains the same.
 
 ## Acceptance plan and current status
 
-Implementation and new-feature qualification are pending at this checkpoint.
+Implementation is present at this checkpoint; final qualification is pending.
+Development runs have exercised the new compiler, native edits and actual
+example through integration, CLI, VM and JavaScript paths. Independent review
+found and prompted fixes for parenthesized preset calls, common decimal line
+conversion and preset source-ambiguity guards. Development results and earlier
+failures are not final acceptance and will remain separately recorded.
+
 Acceptance requires compiler/refusal cases, native preservation and layout
 coverage, end-to-end transactions and the actual BAS example on Dart VM and
 compiled JavaScript, complete prior Word/Office regression coverage, strict

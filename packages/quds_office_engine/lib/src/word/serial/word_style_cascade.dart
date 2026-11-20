@@ -658,14 +658,14 @@ class _StyleCascade {
     return projection;
   }
 
-  static XmlElement _indentProjection(XmlElement source) {
-    // Only the effective geometry is projected here. Keeping source prefixes
-    // on copied attributes can leave them unbound, or a later layer can rebind
+  static XmlElement _layoutAttributeProjection(XmlElement source) {
+    // Only effective indentation/spacing attributes are projected here. Source
+    // prefixes on copied attributes can become unbound, or a later layer rebinds
     // an earlier layer's prefix. Normalize native attributes in this detached
     // projection; the full direct/style XML retains all extension metadata.
     final result =
         XmlElement(
-            localName: 'ind',
+            localName: source.localName,
             prefix: 'w',
             namespaceUri: OfficeNamespaces.w,
           )
@@ -705,8 +705,9 @@ class _StyleCascade {
       for (final incoming in layer.childElements) {
         final child = name == 'pPr' && _word(incoming, 'numPr')
             ? _numberingProjection(incoming)
-            : name == 'pPr' && _word(incoming, 'ind')
-            ? _indentProjection(incoming)
+            : name == 'pPr' &&
+                  (_word(incoming, 'ind') || _word(incoming, 'spacing'))
+            ? _layoutAttributeProjection(incoming)
             : incoming;
         if (name == 'pPr' &&
             (child.localName == 'spacing' ||

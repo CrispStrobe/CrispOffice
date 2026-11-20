@@ -4,6 +4,16 @@ All notable changes to `quds_office_engine` are documented here.
 
 ## Unreleased
 
+- Extend Word VBA paragraph formatting with explicit exact, minimum and
+  custom multiple line-spacing pairs, `Space1` / `Space15` / `Space2`, and
+  `LinesToPoints` / `PointsToLines`. Lower each explicit rule/amount pair to
+  one guarded native `docx.lineSpacing` edit; refuse incomplete pairs and
+  intervening document mutations without reading live document state.
+  Preserve independent spacing inheritance, native metadata and opaque VBA
+  parts. Correct alternate-prefix native spacing projection during style
+  resolution and repeated save/reopen. Keep ordinary macro policy, recording
+  and atomic publication boundaries.
+
 - Extend Word VBA `ListFormat` with `ApplyOutlineNumberDefault`, write-only
   `ListLevelNumber` and `ListIndent` / `ListOutdent`. Add guarded native outline
   creation and level changes, preserving list identities, imported definitions,

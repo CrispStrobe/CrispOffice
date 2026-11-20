@@ -449,7 +449,14 @@ documents supported types, syntax, members, and limits.
 The Word adapter lowers explicit `ThisDocument.Paragraphs(i).Range` operations
 to `docx.replaceText`, `docx.runFormat` and `docx.paragraphFormat`, and custom-tab
 selectors to `docx.tabStop` and `docx.clearTabStops`. Typed `Range.ListFormat`
-selectors emit `docx.listDefault` and `docx.removeNumbers`. `InsertBefore`
+selectors emit `docx.listDefault`, `docx.removeNumbers`,
+`docx.listOutlineDefault` and `docx.listLevel`. Explicit custom
+`LineSpacingRule` / `LineSpacing` pairs emit one `docx.lineSpacing` operation
+with both rule and point value; standard `Space1` / `Space15` / `Space2`
+methods use the guarded line-spacing preset path. The point/multiple
+conversion contract and paired-setter restrictions are documented in
+[the Word dialect](VBA_WORD_MACROS.md#exact-minimum-and-multiple-line-spacing).
+`InsertBefore`
 uses the empty range at paragraph offset zero, preserving the paragraph mark.
 Word and Excel retain separate typed object members and native output formats;
 neither adapter receives a live document during compilation. Inactive branches

@@ -125,6 +125,15 @@ Word ranges or live execution were added. See the
 
 ### Next shared-language increments
 
+The Word spacing continuation adds exact, minimum and custom multiple spacing
+through explicit `LineSpacingRule` / `LineSpacing` pairs, standard `Space1`,
+`Space15`, `Space2` methods and document-independent line/point conversions.
+Each complete pair lowers to one guarded native edit; unpaired setters and
+intervening document writes are refused. This deliberately bounded contract
+does not introduce live spacing reads or infer existing font metrics. See the
+[exact contract](VBA_WORD_MACROS.md#exact-minimum-and-multiple-line-spacing)
+and [local qualification](validation/word-vba-paragraph-spacing-20261120/README.md).
+
 Keep multidimensional arrays and array parameter passing as separate increments
 with their own shape, ownership, aliasing and resource tests. Broader implicit
 coercions, locale handling and numeric subtype reporting also need explicit

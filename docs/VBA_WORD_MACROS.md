@@ -110,6 +110,8 @@ header, footer, note, or comment story selector.
 | `range.ParagraphFormat.PageBreakBefore = value` | `docx.paragraphFormat` | `pageBreakBefore: value` |
 | `range.ParagraphFormat.ReadingOrder = value` | `docx.paragraphFormat` | `rtl: true` for RTL, `false` for LTR |
 | `range.ParagraphFormat.LineSpacingRule = value` | `docx.paragraphFormat` | `lineSpacingRule: auto`, `lineSpacing: 1`, `1.5`, or `2` |
+| Custom `LineSpacingRule` followed by `LineSpacing = points` | `docx.lineSpacing` | One paired edit with `rule: atLeast`, `exact`, or `multiple`, and `points` |
+| `range.ParagraphFormat.Space1`, `.Space15`, `.Space2` | `docx.paragraphFormat` | The corresponding single, 1.5-line, or double-line preset |
 | `paragraph.TabStops.Add position, alignment, leader` | `docx.tabStop` | `position` in points, `alignment`, and `leader` |
 | `paragraph.TabStops.ClearAll` | `docx.clearTabStops` | No additional arguments |
 | `range.ListFormat.ApplyBulletDefault` | `docx.listDefault` | `numbered: false` |
@@ -134,7 +136,9 @@ For example, `ThisDocument.Paragraphs(2).Range.InsertBefore "Ready: "` emits:
 }
 ```
 
-Each source write emits one native operation, in evaluation order. Repeated
+Each source write emits one native operation, in evaluation order, except the
+explicit custom line-spacing pair described below, which emits one complete
+rule/amount operation. Repeated
 `InsertBefore` calls act on the paragraph as it exists at each step: inserting
 `"A"` and then `"B"` before `"tail"` produces `"BAtail"`. A later font operation
 formats the paragraph's current text, including text inserted by earlier steps.
@@ -543,6 +547,8 @@ Paragraph-format operations can target an empty paragraph.
 | `LeftIndent`, `RightIndent`, `FirstLineIndent` | Signed finite number in exact `0.05`-point increments; absolute twentieth-point value must not exceed `2147483647` |
 | `ParagraphFormat.ReadingOrder` | Exact integer `0` (RTL) or `1` (LTR), including the named `WdReadingOrder` constants |
 | `ParagraphFormat.LineSpacingRule` | Exact integer `0`, `1`, or `2`, including the single, 1.5-line, and double-line constants below |
+| Custom `ParagraphFormat.LineSpacingRule` | Exact integer `3`, `4`, or `5`, followed by a matching `LineSpacing` write under the paired contract below |
+| `ParagraphFormat.LineSpacing` | Positive finite number in exact `0.05`-point increments, at most `107374182.35` points (`2147483647` native twips) |
 
 The named alignment constants are `wdAlignParagraphLeft = 0`,
 `wdAlignParagraphCenter = 1`, `wdAlignParagraphRight = 2`, and
@@ -588,13 +594,11 @@ formatting, so changing the paragraph style later cannot undo it.
 The native engine displays the selected line multiplier; matching an installed
 Word host's precise line-box metrics is outside this headless qualification.
 
-`wdLineSpaceAtLeast = 3`, `wdLineSpaceExactly = 4`, and
-`wdLineSpaceMultiple = 5` are recognized constants but are refused as writes.
-Their interaction with the point-based `LineSpacing` property needs a separate
-compatibility contract. `LineSpacing`, arbitrary line multiples, automatic
-before/after setters, and the `Space1`/`Space15`/`Space2` methods are not introduced
-by this slice. Preserving existing source metadata does not add live rendering
-or editing support for those unmodeled spacing modes.
+`ParagraphFormat.Space1`, `Space15`, and `Space2` apply the same three presets.
+They accept bare statements, empty parentheses, and both `Call` forms, including
+inside `With`. They take no arguments and return no value in this dialect.
+They operate on a `ParagraphFormat` selector; direct `Paragraph.Space1` and
+collection-wide methods remain unsupported.
 
 Paragraph formatting accepts empty paragraphs. `Font` aliases retain the
 existing nonempty paragraph-text requirement and never include paragraph marks.
@@ -602,6 +606,125 @@ existing nonempty paragraph-text requirement and never include paragraph marks.
 demonstrates typed font and paragraph helpers, the direct `Paragraph.Format`
 binding, RTL and LTR reading order, and all three line-spacing presets. It needs
 three existing paragraphs, with nonempty text in the first paragraph.
+
+### Exact, minimum and multiple line spacing
+
+The custom rules use a point value explicitly supplied by the macro:
+
+| Word rule | Value | Native interpretation of `LineSpacing` |
+| --- | ---: | --- |
+| `wdLineSpaceAtLeast` | 3 | Minimum line height in points; taller text may increase the line box |
+| `wdLineSpaceExactly` | 4 | Fixed line height in points |
+| `wdLineSpaceMultiple` | 5 | Points divided by 12 become the native line multiplier |
+
+```vb
+Sub Main()
+    With ActiveDocument.Paragraphs(1).Format
+        .LineSpacingRule = wdLineSpaceExactly
+        .LineSpacing = 14.25
+    End With
+    With ActiveDocument.Paragraphs(2).Range.ParagraphFormat
+        .LineSpacingRule = wdLineSpaceAtLeast
+        .LineSpacing = 18
+    End With
+    With ActiveDocument.Paragraphs(3).Format
+        .LineSpacingRule = wdLineSpaceMultiple
+        .LineSpacing = LinesToPoints(1.75)
+    End With
+End Sub
+```
+
+This bounded source adapter requires **one explicit rule/amount pair for every
+custom spacing edit**. After a custom `LineSpacingRule` assignment, the next
+executed document mutation must be a `LineSpacing` assignment selecting the
+same paragraph. Scalar calculations, local variable or selector rebinding,
+conditions, and helper calls can occur between them if they emit no document
+write. The pair can cross a `ByVal ParagraphFormat` helper boundary; aliases
+selecting the same paragraph are equivalent. The selected rule remains pending
+only during compilation, never in a live document or saved plan.
+
+An intervening font, text, list, tab or paragraph mutation, another rule
+assignment, a different paragraph, or an unfinished pair at macro exit causes
+a positioned compilation error and returns no plan. `LineSpacing` on its own,
+after a preset, or repeated without a fresh custom rule is unsupported. This
+explicit restriction avoids inferring the current rule or the point height of
+an existing automatic line from a document the compiler does not read. It is
+not full independent-property behavior of Microsoft Word.
+
+A completed pair emits one `docx.lineSpacing` operation, for example:
+
+```json
+{
+  "tool": "docx.lineSpacing",
+  "arguments": {"paragraph": 2, "rule": "multiple", "points": 21}
+}
+```
+
+Consequently a pair consumes one native step; its two source assignments still
+consume ordinary compiler work. The operation carries both values and changes
+them together. Methods and presets continue to emit one operation each.
+
+`LineSpacing` requires an actual numeric value or numeric Variant. Values must
+be positive exact twentieth-points and fit the documented dialect twip bound.
+Strings, Booleans, Empty, Null, omitted Variants, zero, negative values and
+inexact native units are refused. A one-twip value (`0.05` points) is supported
+for all three rules, including a multiple of `1/240` line. This is a storage
+and model contract, not a claim about Word's user-interface limits.
+
+`LinesToPoints(value)` multiplies by 12 and `PointsToLines(value)` divides by 12.
+Both accept one positional actual finite numeric argument, including signed
+values and zero. They also work as `Application.LinesToPoints(...)`,
+`Application.PointsToLines(...)`, or leading-dot calls inside `With Application`.
+They are Word-only source functions; declarations cannot shadow their names.
+Named/omitted arguments, object arguments and implicit scalar coercions are
+unsupported. Conversion results must remain finite and within the shared
+numeric magnitude bound `9007199254740991`; later property writes apply their
+own precision/range checks. Inputs that exactly round-trip on the native
+twentieth-point / 1/240-line grid use integer-unit arithmetic. Thus common
+values such as `LinesToPoints(1.15)` yield the canonical `13.8`-point value
+without widening the precision accepted for adjacent off-grid inputs.
+Off-grid conversion inputs retain ordinary numeric arithmetic; the resulting
+value, rather than the input's grid membership, is checked by a later write.
+The adapter uses its existing numeric representation
+and does not emulate VBA `Single` rounding or read font metrics.
+
+Native edits own only `w:spacing/@w:line` and `@w:lineRule`, preserving unrelated
+before/after attributes, automatic/line-unit metadata, extension attributes and
+children, and foreign namespace lookalikes. Untouched inherited before/after
+values still follow later style edits. An explicit same-value line-spacing
+assignment becomes direct formatting. Native spacing attributes now resolve
+by namespace identity in the style cascade, including alternate and rebound
+prefixes; original paragraph/style XML stays intact.
+
+Custom edits refuse ambiguous duplicate native paragraph/spacing containers or
+line/rule attributes, and spacing-bearing markup-compatibility alternatives
+anywhere in the stored Word XML, including foreign spacing lookalikes inside
+alternatives. Unbalanced modeled field boundaries are refused before a custom
+edit can trigger lossy serialization. These conservative source guards are
+applied to `docx.lineSpacing` and to generic `docx.paragraphFormat` calls that
+write `lineSpacing` or `lineSpacingRule`, including presets and `Space1` /
+`Space15` / `Space2`. Before/after-only writes retain their existing behavior.
+Valid supported field
+packets and opaque DOCM VBA parts remain inert and preserved.
+
+The existing native layout uses fixed, minimum and multiple line heights;
+installed Word pagination, font metrics and clipping parity are not claimed.
+Automatic before/after setters, live spacing reads, arbitrary ranges and
+collection-wide formatting remain outside this increment. The actual
+[word_line_spacing.bas](../packages/quds_office_engine/example/macros/word_line_spacing.bas)
+example combines helpers, aliases, presets and custom rules on three existing
+body paragraphs. See the
+[qualification record](validation/word-vba-paragraph-spacing-20261120/README.md)
+for the executed local gates and source identities.
+
+Primary contracts: Microsoft's
+[LineSpacingRule](https://learn.microsoft.com/en-us/office/vba/api/word.paragraphformat.linespacingrule),
+[LineSpacing](https://learn.microsoft.com/en-us/office/vba/api/word.paragraphformat.linespacing),
+[LinesToPoints](https://learn.microsoft.com/en-us/office/vba/api/word.application.linestopoints),
+[PointsToLines](https://learn.microsoft.com/en-us/office/vba/api/word.application.pointstolines),
+[Space1](https://learn.microsoft.com/en-us/office/vba/api/word.paragraphformat.space1),
+[Space15](https://learn.microsoft.com/en-us/office/vba/api/word.paragraphformat.space15)
+and [Space2](https://learn.microsoft.com/en-us/office/vba/api/word.paragraphformat.space2).
 
 ### Typography and highlighting
 
