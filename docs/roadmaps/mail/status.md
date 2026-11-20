@@ -1,19 +1,26 @@
 # Mail implementation status — 20 November 2026
 
-## Bounded attachment drafts
+## Outgoing file attachments
 
-The Studio composer now supports explicit local file selection and removal,
-with up to ten files and 10 MiB of original bytes. Immutable snapshots survive
-source-file changes and acknowledged retries after uncertain sends. Bounded,
-cancellable reads publish a complete selection or preserve the previous draft;
-mixed MIME carries exact binary payloads and Unicode filenames through the
-existing native, cloud and EWS submission paths.
+The shared native Studio composer now supports [bounded file attachments](attachments.md)
+for SMTP, EWS, Gmail and Microsoft 365. Users can select and remove files, inspect
+their names/sizes and send immutable byte snapshots with the existing To/Cc/Bcc
+and reply-thread handling. Ten files and 10 MiB of combined payload are admitted
+per draft; selection is all-or-none, reads are bounded/cancellable, and failed or
+uncertain submissions retain the complete draft for the current session.
 
-The [attachment guide](attachments.md) describes the workflow and limits.
-The [combined local qualification](../../validation/zotero-research-materials-20261120/README.md)
-records the captured source, controlled host/provider/MIME/SMTP coverage and
-independent MIME parsing. Larger-file provider upload sessions, persistent
-drafts/outbox and live-account acceptance remain separate.
+MIME uses a mixed root containing the alternative body and base64 attachments,
+with ASCII-safe RFC 2231 filenames and no Bcc in the canonical wire. A scoped
+quoted-printable correction preserves terminal whitespace and bounds Unicode
+line wrapping. The [current local validation](../../validation/mail-attachments-20261120/README.md)
+uses the actual pinned Flutter/Dart workspace and resolved locked package graph;
+it supersedes the prior dependency-limited recipient qualification only for the
+specific cohorts freshly rerun there. Older receipts keep their original scope.
+
+This remains foreground, session-only composition: no local autosave, durable
+outbox, automatic attachment copying on forward, current-document/PDF attachment
+command or VBA mail surface is added. Live-provider delivery and installed-OS
+picker interoperability remain separate gates. M07 and M08 remain open.
 
 ## Durable archive, indexing and search
 
@@ -129,12 +136,14 @@ To recipients, Cc, Bcc and Reply all across the native SMTP and shared EWS/cloud
 hosts. Canonical MIME excludes Bcc while the explicit envelope includes hidden
 recipients. Reply all uses normalized visible participants, removes the connected
 sender, preserves To/Cc roles and rejects unsupported decoded mailboxes before
-joining them into editable fields. Its focused recipient/reply/thread subset
-ran on pinned Dart through a separate cached dependency graph; MIME/provider
-and Flutter widget qualification was blocked by unavailable dependencies at
-that 19 November checkpoint.
-The [historical validation record](../../validation/mail-recipients-20261119/README.md)
-also records the incoming PPTX reconciliation and its compatibility corrections.
+joining them into editable fields. Its original recipient/reply/thread subset
+ran on pinned Dart through a separate cached dependency graph; unavailable
+dependencies prevented MIME/provider and Flutter widget qualification then.
+The [original validation record](../../validation/mail-recipients-20261119/README.md)
+retains that boundary and its PPTX reconciliation. The
+[20 November attachment continuation](../../validation/mail-attachments-20261120/README.md)
+subsequently ran the complete recipient/reply/threading, provider-host and
+composer suites against the actual locked workspace, without omitted cases.
 
 This does **not** close M04W or M07: accounts/drafts remain session-only, there is
 no repository-driven mailbox or durable outbox, and no automatic resend is added.
@@ -146,12 +155,12 @@ after stale connection completions; this does not establish a bounded physical
 shutdown time or disable those clients' reconnect policies.
 Real provider accounts, OAuth/PKCE, native credential vaults, actual browser
 persistence and installed-platform distribution remain separate acceptance gates.
-That checkpoint's combined source was saved remotely, but its local aggregate
-qualification failed before completion and subsequent filesystem tool launches
-reported no space left on device. No accepted aggregate result is claimed for
-that historical source. Its report preserves the exact source, earlier attempts
-and replay instructions. The accepted 20 November qualification above belongs
-to a later, explicitly identified source; previous totals below remain historical.
+The earlier Studio continuation saved its combined source remotely, but its
+aggregate qualification failed before completion and subsequent filesystem tool
+launches reported no space left on device. No accepted aggregate result is
+claimed for that earlier source. Its report retains exact source identities,
+attempts and replay instructions; the new attachment record above documents the
+freshly qualified cohorts, and previous totals below remain historical.
 
 ## Historical M00–M06 baseline
 
