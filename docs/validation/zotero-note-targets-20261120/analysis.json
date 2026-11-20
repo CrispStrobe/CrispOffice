@@ -1,0 +1,191 @@
+{
+  "started_at": "2026-11-20T10:42:33.606422+00:00",
+  "cwd": "/workspace/scratch/d3ee9898a61b/quds_office_suite",
+  "environment": ". /workspace/scratch/d3ee9898a61b/runtime/env.sh",
+  "head_before": "730d2177e9dc2648224fc61dd50b594abe8dc278",
+  "tree_before": "242f8c111a21cb5baeeed3d6d73902a3821e739c",
+  "dart_command": "/workspace/scratch/d3ee9898a61b/runtime/bin/dart",
+  "dart_resolved": "/workspace/scratch/d3ee9898a61b/runtime/bin/dart",
+  "dart_version": "Dart SDK version: 3.13.7 (stable) (Thu Oct 22 14:28:57 2026 -0700) on \"linux_x64\"",
+  "per_file_timeout_seconds": 90,
+  "total_timeout_seconds": 360,
+  "files": [
+    "packages/quds_office_engine/lib/src/word/model/word_zotero_citing.dart",
+    "packages/quds_office_engine/lib/src/word/serial/word_deserializer.dart",
+    "packages/quds_office_engine/test/word_zotero_research_target_test.dart",
+    "packages/quds_office_engine/test/word_zotero_add_note_test.dart",
+    "packages/quds_office_engine/tool/zotero/research_target_acceptance.dart",
+    "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+    "packages/quds_office_editor/lib/src/embed/word_zotero_dialog.dart",
+    "packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+    "packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart",
+    "packages/quds_office_editor/test/word_proofing_session_test.dart",
+    "packages/quds_office_editor/tool/zotero/research_target_acceptance.dart"
+  ],
+  "runs": [
+    {
+      "path": "packages/quds_office_engine/lib/src/word/model/word_zotero_citing.dart",
+      "command": "/workspace/scratch/d3ee9898a61b/runtime/bin/dart analyze packages/quds_office_engine/lib/src/word/model/word_zotero_citing.dart",
+      "log": "01-word_zotero_citing.dart.log",
+      "started_at": "2026-11-20T10:42:33.618814+00:00",
+      "exit_code": 0,
+      "ended_at": "2026-11-20T10:42:37.707886+00:00",
+      "duration_seconds": 4.089,
+      "log_sha256": "e57ed0a0273afe2ef90512a08006d7a1c996f671c83dd2818c2484176d758ef2",
+      "summary_tail": [
+        "Analyzing word_zotero_citing.dart...",
+        "No issues found!"
+      ]
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/serial/word_deserializer.dart",
+      "command": "/workspace/scratch/d3ee9898a61b/runtime/bin/dart analyze packages/quds_office_engine/lib/src/word/serial/word_deserializer.dart",
+      "log": "02-word_deserializer.dart.log",
+      "started_at": "2026-11-20T10:42:37.716236+00:00",
+      "exit_code": 0,
+      "ended_at": "2026-11-20T10:42:38.841644+00:00",
+      "duration_seconds": 1.125,
+      "log_sha256": "1b8245104c0664548724210ad6caa19fae01e30f3f686ce05eceb7981feff5c9",
+      "summary_tail": [
+        "Analyzing word_deserializer.dart...",
+        "No issues found!"
+      ]
+    },
+    {
+      "path": "packages/quds_office_engine/test/word_zotero_research_target_test.dart",
+      "command": "/workspace/scratch/d3ee9898a61b/runtime/bin/dart analyze packages/quds_office_engine/test/word_zotero_research_target_test.dart",
+      "log": "03-word_zotero_research_target_test.dart.log",
+      "started_at": "2026-11-20T10:42:38.842217+00:00",
+      "exit_code": 0,
+      "ended_at": "2026-11-20T10:42:45.309346+00:00",
+      "duration_seconds": 6.467,
+      "log_sha256": "90f42fc9781e71eb07b0c8d0f45789920b14f038ffce25369b6325607579af30",
+      "summary_tail": [
+        "Analyzing word_zotero_research_target_test.dart...",
+        "No issues found!"
+      ]
+    },
+    {
+      "path": "packages/quds_office_engine/test/word_zotero_add_note_test.dart",
+      "command": "/workspace/scratch/d3ee9898a61b/runtime/bin/dart analyze packages/quds_office_engine/test/word_zotero_add_note_test.dart",
+      "log": "04-word_zotero_add_note_test.dart.log",
+      "started_at": "2026-11-20T10:42:45.310066+00:00",
+      "exit_code": 0,
+      "ended_at": "2026-11-20T10:42:52.480335+00:00",
+      "duration_seconds": 7.17,
+      "log_sha256": "e51e5d7cf6db3181ea65f07990db31c5ea3a6872b0521f321346028dffc28974",
+      "summary_tail": [
+        "Analyzing word_zotero_add_note_test.dart...",
+        "No issues found!"
+      ]
+    },
+    {
+      "path": "packages/quds_office_engine/tool/zotero/research_target_acceptance.dart",
+      "command": "/workspace/scratch/d3ee9898a61b/runtime/bin/dart analyze packages/quds_office_engine/tool/zotero/research_target_acceptance.dart",
+      "log": "05-research_target_acceptance.dart.log",
+      "started_at": "2026-11-20T10:42:52.481097+00:00",
+      "exit_code": 0,
+      "ended_at": "2026-11-20T10:42:59.974086+00:00",
+      "duration_seconds": 7.493,
+      "log_sha256": "767cb85f2d946eb2582871a6c65b3bafe0509517442d3565693d60281c9899a1",
+      "summary_tail": [
+        "   info - research_target_acceptance.dart:12:1 - Sort directive sections alphabetically. Try sorting the directives. - directives_ordering",
+        "   info - research_target_acceptance.dart:13:1 - Sort directive sections alphabetically. Try sorting the directives. - directives_ordering",
+        "   info - research_target_acceptance.dart:16:1 - Sort directive sections alphabetically. Try sorting the directives. - directives_ordering",
+        "",
+        "6 issues found."
+      ]
+    },
+    {
+      "path": "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+      "command": "/workspace/scratch/d3ee9898a61b/runtime/bin/dart analyze packages/quds_office_editor/lib/src/embed/office_controller.dart",
+      "log": "06-office_controller.dart.log",
+      "started_at": "2026-11-20T10:42:59.974950+00:00",
+      "exit_code": 0,
+      "ended_at": "2026-11-20T10:43:08.782910+00:00",
+      "duration_seconds": 8.808,
+      "log_sha256": "b3f9cc4a9c4f5e0d4a2a81cc95d5460c7cf070c7da2a40c48b026ebc40a7cea6",
+      "summary_tail": [
+        "Analyzing office_controller.dart...",
+        "No issues found!"
+      ]
+    },
+    {
+      "path": "packages/quds_office_editor/lib/src/embed/word_zotero_dialog.dart",
+      "command": "/workspace/scratch/d3ee9898a61b/runtime/bin/dart analyze packages/quds_office_editor/lib/src/embed/word_zotero_dialog.dart",
+      "log": "07-word_zotero_dialog.dart.log",
+      "started_at": "2026-11-20T10:43:08.783634+00:00",
+      "exit_code": 0,
+      "ended_at": "2026-11-20T10:43:28.997353+00:00",
+      "duration_seconds": 20.214,
+      "log_sha256": "6a47162c20f278ad123ad1ac59faef7d31c17051725177fffae4f5e82e4732ee",
+      "summary_tail": [
+        "Analyzing word_zotero_dialog.dart...",
+        "No issues found!"
+      ]
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+      "command": "/workspace/scratch/d3ee9898a61b/runtime/bin/dart analyze packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+      "log": "08-word_zotero_add_note_controller_test.dart.log",
+      "started_at": "2026-11-20T10:43:28.998239+00:00",
+      "exit_code": 0,
+      "ended_at": "2026-11-20T10:43:49.080393+00:00",
+      "duration_seconds": 20.082,
+      "log_sha256": "5f6091b030256d202732a5e3dc05e5ac0a047b963131f312a34cef731495da60",
+      "summary_tail": [
+        "Analyzing word_zotero_add_note_controller_test.dart...",
+        "No issues found!"
+      ]
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart",
+      "command": "/workspace/scratch/d3ee9898a61b/runtime/bin/dart analyze packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart",
+      "log": "09-word_zotero_citing_dialog_test.dart.log",
+      "started_at": "2026-11-20T10:43:49.082851+00:00",
+      "exit_code": 0,
+      "ended_at": "2026-11-20T10:44:12.053070+00:00",
+      "duration_seconds": 22.97,
+      "log_sha256": "a7643032625c4b6616cc9ebe5ff919e97c5b312598c9be6772916612773b3667",
+      "summary_tail": [
+        "Analyzing word_zotero_citing_dialog_test.dart...",
+        "No issues found!"
+      ]
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_proofing_session_test.dart",
+      "command": "/workspace/scratch/d3ee9898a61b/runtime/bin/dart analyze packages/quds_office_editor/test/word_proofing_session_test.dart",
+      "log": "10-word_proofing_session_test.dart.log",
+      "started_at": "2026-11-20T10:44:12.054492+00:00",
+      "exit_code": 0,
+      "ended_at": "2026-11-20T10:44:33.833121+00:00",
+      "duration_seconds": 21.779,
+      "log_sha256": "474d6e4746767c151a038cb866852d31864c89bdad40352b18ec63689843d3d2",
+      "summary_tail": [
+        "Analyzing word_proofing_session_test.dart...",
+        "No issues found!"
+      ]
+    },
+    {
+      "path": "packages/quds_office_editor/tool/zotero/research_target_acceptance.dart",
+      "command": "/workspace/scratch/d3ee9898a61b/runtime/bin/dart analyze packages/quds_office_editor/tool/zotero/research_target_acceptance.dart",
+      "log": "11-research_target_acceptance.dart.log",
+      "started_at": "2026-11-20T10:44:33.837057+00:00",
+      "exit_code": 0,
+      "ended_at": "2026-11-20T10:44:55.098560+00:00",
+      "duration_seconds": 21.26,
+      "log_sha256": "ec84859b3f7cdd41668dc7c01c0f1e145b051d66b1c18f497e2e08731c8faa40",
+      "summary_tail": [
+        "Analyzing research_target_acceptance.dart...",
+        "No issues found!"
+      ]
+    }
+  ],
+  "ended_at": "2026-11-20T10:44:55.103960+00:00",
+  "head_after": "730d2177e9dc2648224fc61dd50b594abe8dc278",
+  "tree_after": "242f8c111a21cb5baeeed3d6d73902a3821e739c",
+  "source_hashes_unchanged": true,
+  "source_hash_count": 11,
+  "complete": true,
+  "all_exit_zero": true
+}

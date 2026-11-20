@@ -1,0 +1,179 @@
+{
+  "recorded_utc": "2026-11-20 10:38:11 UTC",
+  "initial_main": "d040c15a07f652d01e75363031d0efdee6357bda",
+  "initial_reconciliation_commit": "50e33639c545164af9f693265494c28b4ec8c15e",
+  "main_advances": [
+    {
+      "head": "50b029b3747a6643df040dafb470e54fa8dd5466",
+      "description": "Mail PR241; product blobs already present from captured1d261. Reconciled exact Mail evidence subtrees and roadmap changes.",
+      "checkpoint": "e867ffaa1c434a019b9ea8ccdd8592918ada6c0d"
+    },
+    {
+      "head": "d95e814af9556dcea448ba5673e0ba4dc81007d0",
+      "description": "Font-pack and PDF work,23paths; zero direct Zotero-path overlap. Identical pubspec.lock, crypto3.0.8 already satisfies the editor runtime addition.",
+      "checkpoint": "586e53502701d2f568f38bdcfb4aa5fd64a53142",
+      "local_merge_commit": "730d2177e9dc2648224fc61dd50b594abe8dc278",
+      "verified_identical_tree": "242f8c111a21cb5baeeed3d6d73902a3821e739c"
+    }
+  ],
+  "typing_followup": {
+    "head": "712d0ea558a01cabff25a83294a29b8d57ec25d4",
+    "changes": [
+      "docs/PROOFING.md",
+      ".github/workflows/typing-proofing-benchmark.yml"
+    ],
+    "product_delta_since_captured_afa927": false,
+    "checkpoint": "e867ffaa1c434a019b9ea8ccdd8592918ada6c0d"
+  },
+  "preservation": {
+    "mail_feature_old_validation_tree": "a4c73b7092a4019a4980e290c1d80c4450a067d4",
+    "mail_captured_1d261_validation_tree": "a4c73b7092a4019a4980e290c1d80c4450a067d4",
+    "mail_new_validation_tree": "c63f92670cc94b331eaa5b19a617915606bd1f34",
+    "main_50b_product_blobs_already_present": {
+      "packages/quds_office_engine/lib/src/slide/serial/slide_serial.dart": "03001be580022b5b192ab9091e7d51ad22c81100",
+      "packages/quds_office_engine/lib/src/slide/shapes/drawingml.dart": "95cf0ba946cd4088c8c5dd467880b879b1eb3176",
+      "packages/quds_office_engine/test/slide_radial_opacity_test.dart": "31dcb0bb803ec75b80fad2b383424212cdf614ef"
+    }
+  },
+  "late_ref_policy": "The starting snapshot was reconciled before feature work. Later main advances are preserved before publication. Independent branches that continue to advance after that snapshot are recorded, not silently substituted for unrelated in-progress work.",
+  "pending_at_snapshot": [
+    {
+      "branch": "codex/word-powerpoint-vba-continuation-20261120",
+      "head": "016c9df98827ea9be848280ba366fdc98ae58a18",
+      "disposition": "Advanced during this task; not included at this snapshot. Prior head a528ec2 was reviewed as explicitly unqualified WIP; this newer head was inventoried, not qualified by this task."
+    },
+    {
+      "branch": "feat/downloads-manager-redesign-20261120",
+      "head": "8c6469851942dda8b117f327682d1dc9ac152e0d",
+      "disposition": "Independent incoming UI work, not included at this snapshot; no current-head acceptance or open PR found in the audit."
+    }
+  ],
+  "actions_runs_jobs_checks_or_statuses_queried": false,
+  "snapshots": [
+    {
+      "branch": "codex/odt-field-continuation-20261117",
+      "sha": "c34945761e7991f5fe49037d79529acdd260b31c",
+      "protected": false
+    },
+    {
+      "branch": "codex/vba-variant-conversions-20261120",
+      "sha": "1ceae221d37e733f0195d35622a05f896a2d13a1",
+      "protected": false
+    },
+    {
+      "branch": "codex/word-powerpoint-vba-20261120",
+      "sha": "06f119566235aa3765445526f5ffab48832b1a31",
+      "protected": false
+    },
+    {
+      "branch": "codex/word-powerpoint-vba-continuation-20261120",
+      "sha": "016c9df98827ea9be848280ba366fdc98ae58a18",
+      "protected": false
+    },
+    {
+      "branch": "codex/zotero-note-targets-20261120",
+      "sha": "586e53502701d2f568f38bdcfb4aa5fd64a53142",
+      "protected": false
+    },
+    {
+      "branch": "codex/zotero-parity-20261120",
+      "sha": "3100725d07a715f230c263f640dbd588c7c75660",
+      "protected": false
+    },
+    {
+      "branch": "codex/zotero-parity-continuation-20261120",
+      "sha": "40a8f8eb76bd9bf51205fa0cb9f576ba497ad76b",
+      "protected": false
+    },
+    {
+      "branch": "codex/zotero-research-materials-20261120",
+      "sha": "a31616d3567a43307251e13a9728cf92fd8690c6",
+      "protected": false
+    },
+    {
+      "branch": "docs/ods-color-scale",
+      "sha": "58fdddfbcf198a8c0e38e32f6fcc9d6604e95283",
+      "protected": false
+    },
+    {
+      "branch": "docs/ods-data-bar",
+      "sha": "69d14f84cabd3931b7640c1654b401c89faba766",
+      "protected": false
+    },
+    {
+      "branch": "feat/crispoffice-rename-20261120",
+      "sha": "228d13d949859c66c58cf51addfbb03b09c7365d",
+      "protected": false
+    },
+    {
+      "branch": "feat/downloads-manager-redesign-20261120",
+      "sha": "8c6469851942dda8b117f327682d1dc9ac152e0d",
+      "protected": false
+    },
+    {
+      "branch": "feat/ods-color-scale",
+      "sha": "74ce9ffb816c70c0d2ae50b91ec52a614f26d688",
+      "protected": false
+    },
+    {
+      "branch": "feat/ods-data-bar",
+      "sha": "0a53b8a70128870f3e1df6d18cdb177bb64290ee",
+      "protected": false
+    },
+    {
+      "branch": "feat/ods-dynamic-validation-links",
+      "sha": "68a0db23408e4c95d6d283219504c79aea33a6fe",
+      "protected": false
+    },
+    {
+      "branch": "feat/ods-icon-sets",
+      "sha": "005c708e9f747cb46cf02e12c869b0a2f85ac824",
+      "protected": false
+    },
+    {
+      "branch": "feat/ods-time-period-conditions",
+      "sha": "7ef09f2408f467c65427700e65907531ecb26acb",
+      "protected": false
+    },
+    {
+      "branch": "integrate/office-union-148",
+      "sha": "3abf8f43b0e79c10271bbd046f391e462b8fe6b9",
+      "protected": false
+    },
+    {
+      "branch": "integrate/recent-pptx",
+      "sha": "9d49ed2a1d4e4039239c45350c5f1dc7074e2f42",
+      "protected": false
+    },
+    {
+      "branch": "integrate/window-focus-office-20261120",
+      "sha": "860c807bfd1385899eed130abfb8940f95bda113",
+      "protected": false
+    },
+    {
+      "branch": "main",
+      "sha": "d95e814af9556dcea448ba5673e0ba4dc81007d0",
+      "protected": false
+    },
+    {
+      "branch": "perf/typing-proofing-20261120",
+      "sha": "712d0ea558a01cabff25a83294a29b8d57ec25d4",
+      "protected": false
+    },
+    {
+      "branch": "work/mail-attachments-20261120",
+      "sha": "177f29d3f9450a58f41189b462b0814aad37e45c",
+      "protected": false
+    },
+    {
+      "branch": "work/mail-draft-recovery-20261120",
+      "sha": "20b2ecf572f8fd5663a728529da7bf5c7ebbda1d",
+      "protected": false
+    },
+    {
+      "branch": "work/mail-workspace-20261120",
+      "sha": "aad737dd79c034b831a8957daa4165c6c64e35e5",
+      "protected": false
+    }
+  ]
+}

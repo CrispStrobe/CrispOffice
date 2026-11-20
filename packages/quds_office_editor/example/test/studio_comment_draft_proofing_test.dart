@@ -144,7 +144,8 @@ Future<void> _enter(WidgetTester tester, String text, [int id = 1]) async {
 }
 
 Future<void> _finishCheck(WidgetTester tester) async {
-  await tester.pump(const Duration(milliseconds: 401));
+  // The draft debounce is the session's typing pause.
+  await tester.pump(WordProofingTiming.idle + const Duration(milliseconds: 1));
   for (var index = 0; index < 10; index++) {
     await tester.pump(const Duration(milliseconds: 1));
   }
@@ -175,7 +176,9 @@ void main() {
     final revision = controller.contentRevision;
     final dirty = controller.isDirty;
     await _enter(tester, 'Draft Commet stays here.');
-    await tester.pump(const Duration(milliseconds: 399));
+    await tester.pump(
+      WordProofingTiming.idle - const Duration(milliseconds: 1),
+    );
     expect(provider.requests.where((r) => r.text.startsWith('Draft')), isEmpty);
     expect(find.text('Waiting for a pause…'), findsOneWidget);
     await tester.pump(const Duration(milliseconds: 2));

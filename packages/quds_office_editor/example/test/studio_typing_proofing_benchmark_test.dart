@@ -216,12 +216,6 @@ Map<String, Object> _distribution(List<double> values) => {
 };
 
 void main() {
-  test(
-    'session keystroke cost (QUDS_TYPING_BENCHMARK=1)',
-    skip: !_enabled,
-    _sessionKeystrokeCost,
-  );
-
   testWidgets(
     'typing benchmark (QUDS_TYPING_BENCHMARK=1)',
     skip: !_enabled,
@@ -232,6 +226,14 @@ void main() {
       await tester.pumpWidget(const QudsOfficeStudioApp());
       await tester.pump();
       await tester.pump();
+      // Let the Studio's dictionary, morphology and language-ID hosts finish
+      // their (failing, in tests) loads, so none reconfigures proofing later.
+      for (var i = 0; i < 5; i++) {
+        await tester.runAsync(
+          () => Future<void>.delayed(const Duration(milliseconds: 200)),
+        );
+        await tester.pump(const Duration(milliseconds: 500));
+      }
       final editor = tester.widget<QudsWordEditor>(find.byType(QudsWordEditor));
       final controller = editor.controller;
       final stats = _Stats();
@@ -289,7 +291,14 @@ void main() {
         wasChecking = checking;
       }
 
-      void onController() => stats.controllerNotifications++;
+      final configurations = <Object>{
+        controller.proofing.draftConfigurationKey,
+      };
+      void onController() {
+        stats.controllerNotifications++;
+        configurations.add(controller.proofing.draftConfigurationKey);
+      }
+
       controller.proofing.addListener(onSession);
       controller.addListener(onController);
       final providerCallsBefore = stats.providerCalls;
@@ -396,10 +405,18 @@ void main() {
         'statusLabels': stats.labels.toSet().toList(),
         'settleMs': settleMs,
         'findings': summary.issues.length,
+        'configurations': configurations.length,
+        'status': summary.statusMessage,
       };
       // ignore: avoid_print
       print('TYPING_BENCHMARK ${jsonEncode(report)}');
     },
+  );
+
+  test(
+    'session keystroke cost (QUDS_TYPING_BENCHMARK=1)',
+    skip: !_enabled,
+    _sessionKeystrokeCost,
   );
 }
 
