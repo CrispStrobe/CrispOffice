@@ -677,10 +677,10 @@ String slideToXml(
   /// writeStartElement API.
   w.writeStartElement('cSld', prefix: 'p');
 
-  // Keep native master inheritance when its source layout is retained. Other
+  // Keep native fill inheritance when its source layout is retained. Other
   // resolved pictures become one native fill, never editable slide shapes.
   PmlShape? backgroundPicture;
-  if (!preserveBackgroundInheritance || !slide.inheritsMasterBackground) {
+  if (!preserveBackgroundInheritance) {
     for (final shape in slide.backgroundShapes) {
       if (shape.isBackgroundPicture && (shape.visual?.isPicture ?? false)) {
         backgroundPicture = shape;
@@ -691,9 +691,22 @@ String slideToXml(
   final String? backgroundEmbed = backgroundPicture == null
       ? null
       : embedIds?[backgroundPicture] ?? backgroundPicture.embedRelId;
-  final bool explicitColor =
-      !slide.inheritsMasterBackground && slide.background.isNotEmpty;
-  if (backgroundEmbed != null || explicitColor) {
+  final XmlElement? sourceBackground = slide.sourceBackground?.copy();
+  if (sourceBackground != null) {
+    if (backgroundEmbed != null) {
+      sourceBackground
+          .firstChild('bgPr', namespaceUri: OfficeNamespaces.p)
+          ?.firstChild('blipFill', namespaceUri: OfficeNamespaces.a)
+          ?.firstChild('blip', namespaceUri: OfficeNamespaces.a)
+          ?.setAttribute(
+            'embed',
+            backgroundEmbed,
+            prefix: 'r',
+            namespaceUri: OfficeNamespaces.r,
+          );
+    }
+    sourceBackground.writeTo(w);
+  } else if (backgroundEmbed != null || slide.writesSolidBackground) {
     w.writeStartElement('bg', prefix: 'p');
     w.writeStartElement('bgPr', prefix: 'p');
     if (backgroundEmbed != null) {

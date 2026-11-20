@@ -129,7 +129,8 @@ class SlideDeserializer {
           slideXml,
           layout?.colors ?? templates.defaultColors,
         );
-        final bool ownsBackground = _hasBackground(slideXml);
+        final XmlElement? sourceBackground = _sourceBackgroundOf(slideXml);
+        final bool ownsBackground = sourceBackground != null;
         final String resolvedBackground =
             (ownsBackground
                 ? slideBackground ?? 'FFFFFF'
@@ -152,9 +153,10 @@ class SlideDeserializer {
                 pres.slideHeight,
               )
             : layout?.backgroundImage?.copy();
-        if (backgroundImage != null) {
-          pres.slides[i].backgroundShapes.add(backgroundImage);
-        }
+        pres.slides[i].retainSourceBackground(
+          sourceBackground,
+          picture: backgroundImage,
+        );
         if (layout != null) {
           pres.slides[i].layoutName = layout.name;
           _inheritPlaceholders(shapes, positioned, <List<PmlShape>>[
@@ -287,6 +289,19 @@ class SlideDeserializer {
     return false;
   }
 
+  /// Retains the complete authored fill with its inherited namespace bindings.
+  static XmlElement? _sourceBackgroundOf(String xml) {
+    final XmlPullReader reader = XmlPullReader(xml);
+    while (reader.next()) {
+      if (reader.eventType == XmlEventType.startElement &&
+          reader.namespaceUri == OfficeNamespaces.p &&
+          reader.localName == 'bg') {
+        return XmlDocument.readElement(reader);
+      }
+    }
+    return null;
+  }
+
   /// Converts an internal `p:bg/a:blipFill` into a full-slide picture.
   static PmlShape? _backgroundImageShape(
     String xml,
@@ -300,6 +315,7 @@ class SlideDeserializer {
     var inBg = false;
     var inFill = false;
     PackagePart? image;
+    String? imageRelId;
     while (reader.next()) {
       if (reader.eventType == XmlEventType.endElement) {
         if (reader.localName == 'bg' &&
@@ -329,6 +345,7 @@ class SlideDeserializer {
               rel.type == RelationshipTypes.image &&
               rel.targetMode != RelationshipTargetMode.external) {
             image = package.getPart(rels.resolve(rel));
+            if (image != null) imageRelId = rid;
           }
         } else if (reader.localName == 'srcRect') {
           DrawingmlVisualIo.applySrcRect(picture, reader);
@@ -347,6 +364,7 @@ class SlideDeserializer {
       name: 'Background',
       fillColor: '',
       isBackgroundPicture: true,
+      embedRelId: imageRelId,
       transform: PmlTransform(x: 0, y: 0, cx: width, cy: height),
       visual: OfficeVisual(
         kind: OfficeVisualKind.picture,
@@ -804,7 +822,8 @@ class SlideSerializer {
       );
       final bool preserveBackgroundInheritance =
           !fresh &&
-          pres.slides[i].inheritsMasterBackground &&
+          pres.slides[i].sourceBackground == null &&
+          !pres.slides[i].writesSolidBackground &&
           pres.slides[i].sourceLayoutPartUri != null &&
           layoutRel != null &&
           layoutRel.targetMode == RelationshipTargetMode.internal &&
