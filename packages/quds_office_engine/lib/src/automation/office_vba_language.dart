@@ -275,7 +275,18 @@ const _wordListMethods = <String>{
 };
 const _wordSpacingMethods = <String>{'space1', 'space15', 'space2'};
 const _wordParagraphControls = <String>{'openup', 'closeup', 'openorcloseup'};
-const _wordUnitConversions = <String>{'linestopoints', 'pointstolines'};
+const _wordUnitConversions = <String>{
+  'linestopoints',
+  'pointstolines',
+  'inchestopoints',
+  'pointstoinches',
+  'centimeterstopoints',
+  'pointstocentimeters',
+  'millimeterstopoints',
+  'pointstomillimeters',
+  'picastopoints',
+  'pointstopicas',
+};
 const _powerPointConstants = <String, int>{
   'msoanchortop': 1,
   'msoanchortopbaseline': 2,
@@ -5763,23 +5774,43 @@ class _Evaluator {
   }
 
   Object _wordUnitConversion(_Token token, Object value) {
-    final number = _number(value, token);
-    final toPoints = token.lower == 'linestopoints';
-    final unitsPerInput = toPoints ? 240 : 20;
-    final unitsPerOutput = toPoints ? 20 : 240;
+    // Conversion products may exceed signed 64-bit intermediates even when
+    // the final result is portable; use binary64 arithmetic on every host.
+    final number = _number(value, token).toDouble();
+    final (unitsPerInput, unitsPerOutput) = switch (token.lower) {
+      'linestopoints' || 'picastopoints' => (240, 20),
+      'pointstolines' || 'pointstopicas' => (20, 240),
+      'inchestopoints' => (1440, 20),
+      'pointstoinches' => (20, 1440),
+      // Metric ratios use exact 2.54 cm / 25.4 mm per inch. Their common
+      // integer grid includes both native twips and the metric unit.
+      'centimeterstopoints' => (72000, 2540),
+      'pointstocentimeters' => (2540, 72000),
+      'millimeterstopoints' => (7200, 2540),
+      'pointstomillimeters' => (2540, 7200),
+      _ => context.unsupported(token, 'Unsupported Word unit conversion.'),
+    };
     final units = number * unitsPerInput;
-    // Use the exact native unit grid when the input round-trips on it. This
-    // keeps ordinary values such as 1.15 lines -> 13.8 points representable
-    // without snapping neighboring off-grid inputs or rounding all inputs.
+    // Use the exact common grid only when the input round-trips on it.
+    // Preserve ordinary decimal measurements without snapping neighboring
+    // off-grid inputs. Native property precision is still checked on writes.
     final onGrid =
         units.isFinite &&
         units.abs() <= _maxExactInteger &&
         units.round() / unitsPerInput == number;
     final result = onGrid
         ? units.round() / unitsPerOutput
-        : toPoints
-        ? number * 12
-        : number / 12;
+        : switch (token.lower) {
+            'linestopoints' || 'picastopoints' => number * 12,
+            'pointstolines' || 'pointstopicas' => number / 12,
+            'inchestopoints' => number * 72,
+            'pointstoinches' => number / 72,
+            'centimeterstopoints' => number * 3600 / 127,
+            'pointstocentimeters' => number * 127 / 3600,
+            'millimeterstopoints' => number * 360 / 127,
+            'pointstomillimeters' => number * 127 / 360,
+            _ => context.unsupported(token, 'Unsupported Word unit conversion.'),
+          };
     if (!result.isFinite || result.abs() > _maxExactInteger) {
       context.type(
         token,
