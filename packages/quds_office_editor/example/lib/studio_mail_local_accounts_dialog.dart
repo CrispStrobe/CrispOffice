@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:quds_mail_core/quds_mail_core.dart';
 import 'package:quds_mail_store/quds_mail_store.dart';
 
+import 'studio_mail_cached_mail.dart';
+import 'studio_mail_cached_strings.dart';
 import 'studio_mail_draft_store.dart';
 import 'studio_mail_local_accounts.dart';
 import 'studio_mail_local_accounts_strings.dart';
@@ -104,7 +106,10 @@ class _StudioMailLocalAccountsDialogState
     return '${row.endpoint}\n$login';
   }
 
-  Future<void> _open(MailLocalAccountRecord row) async {
+  Future<void> _open(
+    MailLocalAccountRecord row, {
+    bool cachedMail = false,
+  }) async {
     if (!_current || _busy || _childOpen) return;
     setState(() => _childOpen = true);
     try {
@@ -112,21 +117,31 @@ class _StudioMailLocalAccountsDialogState
       // draft owner. Also verify the original scope before entering its store.
       final latest = await widget.store.load();
       if (!_current) return;
-      if (!latest.any((entry) => entry.hasSameIdentity(row))) {
+      final matches = latest.where(
+        (entry) => entry.hasSameIdentity(row) && entry.revision == row.revision,
+      );
+      if (matches.length != 1) {
         throw const StudioMailDraftStoreException(MailProblemCode.conflict);
       }
-      final identity = studioMailLocalAccountIdentity(row);
+      final identity = studioMailLocalAccountIdentity(matches.single);
       if (!mounted) return;
       await showDialog<void>(
         context: context,
         barrierDismissible: false,
-        builder: (_) => StudioMailLocalDraftsDialog(
-          strings: widget.strings,
-          identity: identity,
-          sender: identity.sender,
-          isCurrent: () => _current,
-          draftStoreFactory: widget.draftStoreFactory,
-        ),
+        builder: (_) => cachedMail
+            ? StudioMailCachedMailDialog(
+                strings: widget.strings,
+                identity: identity,
+                isCurrent: () => _current,
+                draftStoreFactory: widget.draftStoreFactory,
+              )
+            : StudioMailLocalDraftsDialog(
+                strings: widget.strings,
+                identity: identity,
+                sender: identity.sender,
+                isCurrent: () => _current,
+                draftStoreFactory: widget.draftStoreFactory,
+              ),
       );
     } on Object {
       if (_current) {
@@ -186,12 +201,14 @@ class _StudioMailLocalAccountsDialogState
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Text(widget.strings.mailLocalAccountsHelp),
+              const SizedBox(height: 8),
+              Text(widget.strings.mailCachedAccountsHelp),
               const SizedBox(height: 16),
               if (_busy) const LinearProgressIndicator(),
               if (_error case final error?) Text(error),
               if (!_busy && _error == null && _records.isEmpty)
                 Text(widget.strings.mailLocalAccountsEmpty),
-              for (final row in _records)
+              for (final row in _records) ...[
                 ListTile(
                   key: ValueKey('studio-mail-local-account-${row.id}'),
                   contentPadding: EdgeInsets.zero,
@@ -208,6 +225,18 @@ class _StudioMailLocalAccountsDialogState
                     icon: const Icon(Icons.remove_circle_outline),
                   ),
                 ),
+                Align(
+                  alignment: AlignmentDirectional.centerStart,
+                  child: TextButton.icon(
+                    key: ValueKey('studio-mail-cached-account-${row.id}'),
+                    onPressed: _busy || _childOpen || !_current
+                        ? null
+                        : () => _open(row, cachedMail: true),
+                    icon: const Icon(Icons.offline_pin_outlined),
+                    label: Text(widget.strings.mailCachedMail),
+                  ),
+                ),
+              ],
             ],
           ),
         ),

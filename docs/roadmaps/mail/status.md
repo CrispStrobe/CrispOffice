@@ -1,5 +1,22 @@
 # Mail implementation status — 20 November 2026
 
+## Cached mailbox views
+
+The [cached mailbox continuation](cached-mailboxes.md) retains the ordered
+loaded header window of each visited native IMAP, EWS, Gmail and Microsoft 365
+folder. Explicitly opened message bodies, original source and attachment bytes
+can be reopened through **Cached mail** in the verified-account chooser without
+credentials or a provider. Capture times, partial scope, missing bodies and
+storage failures are explicit. Draft/Outbox namespaces and sole ownership are
+preserved; stale leases cannot commit after disconnect.
+
+The additive schema-v5 view records remain separate from synchronization
+cursors and authoritative memberships. This is limited cached reading;
+repository-driven foreground streams, durable synchronization/remote commands
+and a unified inbox remain open. See the
+[source and local qualification record](../../validation/mail-cached-workspace-20261120/README.md)
+for actual checks and the installed-platform/live-provider/browser boundaries.
+
 ## Outbox review and management
 
 The [management continuation](outbox-management.md) adds read-only saved-message

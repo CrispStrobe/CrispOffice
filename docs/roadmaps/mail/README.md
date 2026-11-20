@@ -18,7 +18,7 @@ plan rather than treating provider connectivity as full product parity.
 | Order | Workflow | Current position | Next acceptance boundary |
 | --- | --- | --- | --- |
 | 1 | Recoverable composition | Multiple account-scoped local drafts, independent reply/forward drafts, attachment/reply recovery and interrupted-send warnings; offline draft entry for verified IMAP (including discovery), EWS, Gmail and Microsoft 365 accounts | Provider-side Drafts synchronization with explicit conflicts and repository-backed offline sessions |
-| 2 | Everyday mailbox workspace (M04W/M06) | Shared foreground list across IMAP, EWS, Gmail and Microsoft 365; remembered native IMAP/SMTP accounts with explicit switching and retained local drafts | Repository-driven account/folder workspace, durable account sessions across providers, unified/offline inbox, durable commands, consistent move/delete and bulk actions |
+| 2 | Everyday mailbox workspace (M04W/M06) | Shared foreground list and dated cached views of visited folders across IMAP, EWS, Gmail and Microsoft 365; explicitly opened bodies/attachments remain readable offline | Repository-driven foreground streams, durable synchronization and remote commands, unified inbox, consistent move/delete and bulk actions |
 | 3 | Sending and outbox (M07) | Visible native durable Outbox, atomic draft transfer/edit-copy, frozen MIME/envelopes, review/exact export, restart recovery, explicit send/retry/cancel and local uncertain closure across SMTP/EWS/Gmail/Microsoft 365 | Durable undo-send delay and explicit scheduling, then background execution and provider-specific Sent reconciliation |
 | 4 | Efficient discovery and organization | Independent archive FTS, saved archive searches and bounded mailbox filtering | Full account search, conversations, tags/categories, bulk commands and ordered rule execution with preview/recovery |
 | 5 | Rich authoring and Office workflows (M07/M08) | Word-based plain text, To/Cc/Bcc, reply all, inert HTML-only text quotes, file attachments and explicit complete attachment forwarding | Signatures/templates, HTML alternatives, inline images, attach current document/PDF and edit a copy of a received attachment |
@@ -28,6 +28,13 @@ Each increment needs an actual user path, typed failure/recovery behavior,
 focused local tests and a remote source checkpoint before the next. Reconcile
 current main/branches/PRs before final publication. GitHub Actions queue time is
 not an acceptance dependency; record the actual local commands and scope.
+
+The [cached mailbox guide](cached-mailboxes.md) describes durable ordered views
+of visited folders, explicit body/attachment retention and credential-free
+reading through the verified-account chooser. It separates limited cached
+windows from authoritative synchronization and a unified inbox. Its
+[local work record](../../validation/mail-cached-workspace-20261120/README.md)
+tracks source checkpoints, intake and qualification.
 
 The [multiple-draft guide](multiple-drafts.md) describes the bounded draft list,
 independent selection/deletion and offline editing boundary. Its

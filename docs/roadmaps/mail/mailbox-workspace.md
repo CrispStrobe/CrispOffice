@@ -129,11 +129,12 @@ Development regressions include an actual 10,001-message inbox, 8,000 high
 keyboard-only activation, unknown flags, stale callbacks and the 1,000-row cap.
 This fixture evidence does not qualify live providers or installed platforms.
 
-M04W and full Outlook/Thunderbird/eM Client parity remain open. The next
-workspace increment should connect these rows to durable repository streams,
-add persistent account/folder sessions and a unified inbox, and route supported
-actions through durable commands with explicit reconciliation. Then expand
-consistent move/delete and bulk workflows, account-wide search and conversations.
-Multiple/offline drafts, provider-side Drafts synchronization, a visible queued
-outbox, undo-send and scheduling remain separate planned increments. This
-continuation does not change the current one-local-draft-per-account contract.
+The later [cached mailbox increment](cached-mailboxes.md) persists ordered
+views of visited folders and explicitly opened bodies for credential-free local
+reading. Multiple/offline local drafts and a visible durable Outbox have also
+landed in their separate increments. M04W and full Outlook/Thunderbird/eM Client
+parity remain open. Next, connect foreground rows to repository streams, add
+durable synchronization and a unified inbox, and route supported actions through
+durable commands with explicit reconciliation. Consistent move/delete and bulk
+workflows, account-wide search, conversations, provider Drafts, undo-send and
+scheduling retain their separate acceptance boundaries.

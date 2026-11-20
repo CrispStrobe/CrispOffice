@@ -13,6 +13,7 @@ import 'studio_credential_storage.dart';
 import 'studio_mail_archive_action.dart';
 import 'studio_mail_archive_folder_action.dart';
 import 'studio_mail_cloud.dart';
+import 'studio_mail_cached_strings.dart';
 import 'studio_mail_compose.dart';
 import 'studio_mail_credentials.dart';
 import 'studio_mail_draft_store.dart';
@@ -25,6 +26,7 @@ import 'studio_mail_local_accounts_strings.dart';
 import 'studio_mail_ews.dart';
 import 'studio_mail_local_drafts.dart';
 import 'studio_mail_message_loader.dart';
+import 'studio_mail_mailbox_store.dart';
 import 'studio_mail_operation.dart';
 import 'studio_mail_outbox.dart';
 import 'studio_mail_outbox_dialog.dart';
@@ -141,6 +143,7 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
   MailReaderController? _reader;
   StudioMailDraft? _draft;
   StudioMailDraftStore? _draftStore;
+  StudioMailMailboxCapture? _mailboxCapture;
   Future<void> _draftStoreClosing = Future<void>.value();
   bool _submissionUncertain = false;
   bool _busy = false;
@@ -153,6 +156,9 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
   String? _error;
   String? _notice;
   String? _localAccountWarning;
+  String? _cacheViewWarning;
+  String? _cacheBodyWarning;
+  String? get _cacheWarning => _cacheViewWarning ?? _cacheBodyWarning;
   String? _credentialError;
 
   @override
@@ -526,6 +532,7 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
       );
     }
     _sessionGeneration++;
+    _mailboxCapture?.dispose();
     _credentialGeneration++;
     _email.dispose();
     _password.dispose();
@@ -549,6 +556,15 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
       _currentAttempt(generation) && identical(client, _client);
 
   Future<void> _closeDraftStore(StudioMailDraftStore? store) async {
+    final mailboxStore = switch (store) {
+      StudioMailMailboxStoreOwner owner => owner.mailboxStore,
+      _ => null,
+    };
+    if (mailboxStore != null &&
+        identical(_mailboxCapture?.store, mailboxStore)) {
+      _mailboxCapture?.dispose();
+      _mailboxCapture = null;
+    }
     try {
       await store?.close();
     } on Object {
@@ -602,6 +618,13 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
           MailProblemCode.permissionDenied,
         );
       }
+      if (candidate case StudioMailMailboxStoreOwner(
+        :final mailboxStore,
+      ) when mailboxStore.account != identity.account) {
+        throw const StudioMailDraftStoreException(
+          MailProblemCode.permissionDenied,
+        );
+      }
       final restored = await candidate.load();
       if (!_currentSession(client, generation)) {
         await _closeDraftStore(candidate);
@@ -616,6 +639,29 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
             : null;
         if (restored != null) _notice = widget.strings.mailDraftRestored;
       });
+      final loader = _messageLoader;
+      final mailboxOwner = switch (candidate) {
+        StudioMailMailboxStoreOwner owner => owner,
+        _ => null,
+      };
+      final records = switch (loader) {
+        StudioMailMailboxRecords value => value,
+        _ => null,
+      };
+      if (mailboxOwner != null && records != null) {
+        final owner = candidate;
+        _mailboxCapture?.dispose();
+        _mailboxCapture = StudioMailMailboxCapture(
+          store: mailboxOwner.mailboxStore,
+          sourceAccount: records.account,
+          provider: MailProviderKind.imap,
+          isCurrent: () =>
+              _currentSession(client, generation) &&
+              identical(owner, _draftStore) &&
+              identical(loader, _messageLoader),
+        );
+        await _saveCachedView(client, generation);
+      }
       final directory = _localAccounts;
       if (directory != null && candidate is StudioMailDraftCatalog) {
         try {
@@ -648,6 +694,41 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
     } on Object {
       // The pre-submission marker remains uncertain if cleanup cannot commit.
       return false;
+    }
+  }
+
+  Future<void> _saveCachedView(mail.MailClient client, int generation) async {
+    final capture = _mailboxCapture;
+    final loader = switch (_messageLoader) {
+      StudioMailMailboxRecords value => value,
+      _ => null,
+    };
+    final mailbox = _messageMailbox;
+    if (capture == null ||
+        loader == null ||
+        mailbox == null ||
+        !_currentSession(client, generation)) {
+      return;
+    }
+    try {
+      await capture.saveView(
+        MailMailbox(
+          id: MailMailboxId(mailbox.path, account: loader.account),
+          displayName: mailbox.name,
+        ),
+        [
+          for (final message in _messages)
+            loader.observedHeader(mailbox, message),
+        ],
+        hasMore: _nextHeaders != null,
+      );
+      if (_currentSession(client, generation)) {
+        setState(() => _cacheViewWarning = null);
+      }
+    } on Object {
+      if (_currentSession(client, generation)) {
+        setState(() => _cacheViewWarning = widget.strings.mailCacheSaveFailed);
+      }
     }
   }
 
@@ -993,8 +1074,11 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
             _messageMailbox = observedMailbox;
             _nextHeaders = page.next;
             _needsRefresh = false;
-            _busy = false;
           });
+          await _saveCachedView(client, generation);
+          if (_currentSession(client, generation)) {
+            setState(() => _busy = false);
+          }
         } on Object catch (error) {
           if (_currentSession(client, generation)) {
             setState(() {
@@ -1030,7 +1114,21 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
           _notice = null;
         });
         try {
-          final raw = await loader.fetch(mailbox, message);
+          final MailMessage? observed;
+          final MailHeaderRecord? header;
+          final records = switch (loader) {
+            StudioMailMailboxRecords value => value,
+            _ => null,
+          };
+          if (records != null) {
+            header = records.observedHeader(mailbox, message);
+            observed = await records.fetchMessage(mailbox, message);
+          } else {
+            header = null;
+            observed = null;
+          }
+          final raw =
+              observed?.raw.copyBytes() ?? await loader.fetch(mailbox, message);
           if (!_currentSession(client, generation)) return;
           final reader = MailReaderController.fromBytes(
             raw,
@@ -1040,10 +1138,27 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
           setState(() {
             _selected = message;
             _reader = reader;
-            _busy = false;
             _showCompactMessage = true;
           });
           _retireReader(previous);
+          final capture = _mailboxCapture;
+          if (capture != null && header != null && observed != null) {
+            try {
+              await capture.cacheMessage(header, observed);
+              if (_currentSession(client, generation)) {
+                setState(() => _cacheBodyWarning = null);
+              }
+            } on Object {
+              if (_currentSession(client, generation)) {
+                setState(
+                  () => _cacheBodyWarning = widget.strings.mailCacheSaveFailed,
+                );
+              }
+            }
+          }
+          if (_currentSession(client, generation)) {
+            setState(() => _busy = false);
+          }
         } on Object {
           if (_currentSession(client, generation)) {
             setState(() {
@@ -1726,6 +1841,8 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
 
   void _disconnect() {
     _sessionGeneration++;
+    _mailboxCapture?.dispose();
+    _mailboxCapture = null;
     final draftStore = _draftStore;
     _draftStore = null;
     final client = _client;
@@ -1759,6 +1876,8 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
       _showCompactMessage = false;
       _error = null;
       _notice = null;
+      _cacheViewWarning = null;
+      _cacheBodyWarning = null;
     });
     _retireReader(previous);
     loader?.dispose();
@@ -2721,6 +2840,17 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
             child: Padding(
               padding: const EdgeInsets.all(12),
               child: Text(warning),
+            ),
+          ),
+        if (_cacheWarning case final warning?)
+          Material(
+            color: Theme.of(context).colorScheme.errorContainer,
+            child: Padding(
+              padding: const EdgeInsets.all(12),
+              child: Text(
+                warning,
+                key: const ValueKey('studio-mail-cache-warning'),
+              ),
             ),
           ),
         if (_error != null || _notice != null)

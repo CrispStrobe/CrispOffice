@@ -220,6 +220,7 @@ inspection receipt, not a complete dependency or runtime certification.
 
 - [x] Deliver the bounded foreground-list foundation: shared virtualized loaded-message list, stable identities, local subject/sender search, conjunctive unread/flagged filters, keyboard activation, compact reader/Back state and explicit 50-message pagination across native Studio hosts. Native IMAP browsing has its own scoped descending-UID cursor and a 1,000-loaded-message host ceiling; confirmed flag actions preserve nullable observations. See the [contract](mailbox-workspace.md) and [local evidence](../../validation/mail-workspace-20261120/README.md). This is a prerequisite slice and does not close the broader items below.
 - [x] Qualify the native [remembered IMAP/SMTP account chooser](remembered-accounts.md) with deterministic storage/provider fixtures: bounded selected-backend catalog, verified legacy migration, explicit selection/connection, selected-only Forget and unchanged per-account draft recovery. See the [local qualification and source-bound evidence](../../validation/mail-accounts-20261120/README.md). The provider-neutral repository-driven switching item below remains open.
+- [x] Persist dated ordered views of visited folders and explicitly opened body/attachment snapshots for credential-free cached reading across native IMAP, EWS, Gmail and Microsoft 365. Preserve stable identities, exclusive draft/cache ownership, transactional revision/lease checks and separate sync cursors. See [cached-mailboxes.md](cached-mailboxes.md). Loaded windows do not imply complete or currently synchronized folders.
 - [ ] Implement QudsMailWorkspace with account/folder or label navigation, paginated/virtualized message and conversation lists, stable selection and coordinated reader/composer sessions.
 - [ ] Drive lists, unread counts and local search from repository streams; keep loading, empty, offline, synchronizing, failed credentials and unsupported capabilities distinct.
 - [ ] Bind read/unread, flag, archive, move, delete and supported bulk actions to durable commands; expose failure/reconciliation status without discarding local state.
@@ -352,7 +353,9 @@ forwarding. The [multiple-draft continuation](multiple-drafts.md) adds independe
 local drafts and offline entry for remembered explicit-server/preset IMAP
 accounts. The [verified-account continuation](offline-accounts.md) extends local
 draft entry to autodiscovered IMAP, EWS, Gmail and Microsoft 365 after successful
-connection. Richer bodies, cached offline mailboxes, server draft synchronization,
+connection. [Cached mailbox views](cached-mailboxes.md) now retain visited
+folder windows and explicitly opened content. Richer bodies, full offline
+synchronization, server draft synchronization,
 Sent reconciliation and live-provider gates remain open; this does not complete
 M07 or the document-snapshot work in M08.
 
@@ -365,7 +368,8 @@ M07 or the document-snapshot work in M08.
 - [x] Add a bounded local draft list with independent IDs/revisions, new/resume/delete actions, per-draft uncertainty and exact Outbox handoff. Preserve the legacy draft and reject stale selection callbacks. See [multiple-drafts.md](multiple-drafts.md).
 - [x] Add save-only offline draft entry for remembered IMAP accounts with explicit servers or a provider preset, without constructing a provider or discovering settings.
 - [x] Persist bounded non-secret verified connection identities for autodiscovered IMAP, EWS, Gmail and Microsoft 365; reopen their original local draft catalogs without credentials, discovery or provider construction. Preserve exact account fingerprints and compare shortcut removal revisions. See [offline-accounts.md](offline-accounts.md).
-- [ ] Add durable repository-backed account/session metadata for cached mailbox reads and synchronization commands, then provider-side Drafts synchronization with explicit conflicts. Local draft shortcuts do not complete this boundary.
+- [x] Bind cached mailbox reads to stable account identities and durable visited-folder views, without credentials or provider construction. Preserve local drafts/Outbox and expose missing bodies explicitly.
+- [ ] Add durable synchronization commands and repository-driven foreground account/folder sessions, then provider-side Drafts synchronization with explicit conflicts. Cached browse windows do not complete this boundary.
 - [ ] Initial canonical body supports paragraphs, line breaks, emphasis, lists and links; add tables/inline images only with serializer/round-trip tests.
 - [ ] Generate multipart plain/HTML with deterministic boundaries and transfer encodings; preserve quoted original content as data.
 - [ ] Generate ASCII-safe wire MIME for the current text-oriented enough_mail SMTP API. Encode display names/subjects/filenames and payloads correctly. Handle non-ASCII mailbox local parts through negotiated SMTPUTF8 or explicit unsupported feedback.

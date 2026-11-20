@@ -3,6 +3,9 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:quds_mail_core/quds_mail_core.dart';
+import 'package:quds_mail_store/quds_mail_store.dart';
+import 'package:quds_office_studio/studio_mail_cached_mail.dart';
+import 'package:quds_office_studio/studio_mail_cached_strings.dart';
 import 'package:quds_office_studio/studio_mail_compose.dart';
 import 'package:quds_office_studio/studio_mail_draft_store.dart';
 import 'package:quds_office_studio/studio_mail_drafts_dialog.dart';
@@ -79,6 +82,99 @@ Future<void> _show(
 }
 
 void main() {
+  for (final provider in ['imap', 'ews', 'gmail', 'graph']) {
+    testWidgets('$provider cached-mail button opens only the local mailbox', (
+      tester,
+    ) async {
+      final identity = _identity(provider);
+      final fixture = await awaitOutboxOperation(
+        tester,
+        SqliteOutboxFixture.create(identity),
+      );
+      addTearDown(() async {
+        await tester.pumpWidget(const SizedBox.shrink());
+        await awaitOutboxOperation(tester, fixture.close());
+      });
+      final directory = MemoryMailLocalAccounts()..seed(identity);
+      await _show(tester, directory, open: fixture.open);
+      await _press(
+        tester,
+        find.byKey(
+          ValueKey('studio-mail-cached-account-${identity.account.value}'),
+        ),
+      );
+      for (
+        var i = 0;
+        i < 100 && find.text(_strings.mailCacheEmpty).evaluate().isEmpty;
+        i++
+      ) {
+        await tester.pump(const Duration(milliseconds: 10));
+      }
+      final dialog = tester.widget<StudioMailCachedMailDialog>(
+        find.byType(StudioMailCachedMailDialog),
+      );
+      expect(dialog.identity.account, identity.account);
+      expect(find.text(_strings.mailCacheEmpty), findsOneWidget);
+      expect(find.byType(StudioMailComposeDialog), findsNothing);
+      expect(find.byType(StudioMailDraftsDialog), findsNothing);
+      expect(fixture.adapters.single.selectionEpoch, 0);
+      expect(directory.loads, 2);
+      expect(directory.remembered, isEmpty);
+      await _press(
+        tester,
+        find.byKey(const ValueKey('studio-mail-cache-close')),
+      );
+      expect(find.byType(StudioMailCachedMailDialog), findsNothing);
+      expect(find.byType(ListTile), findsOneWidget);
+    });
+  }
+
+  for (final cachedMail in [false, true]) {
+    testWidgets(
+      'registration refresh blocks stale ${cachedMail ? 'cache' : 'draft'} entry',
+      (tester) async {
+        final identity = _identity('imap');
+        final directory = MemoryMailLocalAccounts()..seed(identity);
+        directory.onLoad = (count) {
+          if (count != 2) return;
+          final old = directory.records.values.single;
+          directory.records[old.id] = MailLocalAccountRecord(
+            id: old.id,
+            provider: old.provider,
+            endpoint: old.endpoint,
+            login: old.login,
+            sender: old.sender,
+            lastConnectedAt: old.lastConnectedAt,
+            revision: old.revision + 1,
+          );
+        };
+        var opens = 0;
+        await _show(
+          tester,
+          directory,
+          open: (_) async {
+            opens++;
+            throw StateError('must not acquire stale owner');
+          },
+        );
+        await _press(
+          tester,
+          cachedMail
+              ? find.byKey(
+                  ValueKey(
+                    'studio-mail-cached-account-${identity.account.value}',
+                  ),
+                )
+              : find.byType(ListTile),
+        );
+        expect(opens, 0);
+        expect(find.text(_strings.mailLocalAccountsFailed), findsOneWidget);
+        expect(find.byType(StudioMailCachedMailDialog), findsNothing);
+        expect(find.byType(StudioMailDraftsDialog), findsNothing);
+      },
+    );
+  }
+
   for (final provider in ['imap', 'ews', 'gmail', 'graph']) {
     testWidgets(
       '$provider resumes the existing draft in save-only composition',
