@@ -1,0 +1,117 @@
+{
+  "artifacts": {
+    "input-check.json": {
+      "bytes": 1248,
+      "git_blob_sha1": "3de43e14c70a9890b6bfe5835955067e7d0982c2",
+      "sha256": "3091fd23d48fab4b36fe80b8d6677a3d3ba884300d250a18f0ad3a4f3f84eefb"
+    },
+    "inputs.json.gz": {
+      "bytes": 654652,
+      "git_blob_sha1": "e3baf8af0f21261318d329ee7e69e6efb0f3e47f",
+      "sha256": "ab0d94c88fd0476e50265fffa75e23963dabb502292920b3f23167bc017f1276"
+    }
+  },
+  "fingerprints": {
+    "after_sha256": {
+      "dependencies": "b579a0a8650bfab4b7567da5122fd44e067b03fed6e0648a4d1ce841002e6762",
+      "host_fonts": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "runtime": "9c58c139ade21dc3073e27df7a4627814f2ddc40c2b7b684706d390d6d3c5aac",
+      "source": "9aaf92d2fb0b0383a0bce9ec7c05fe35432bd7057ad0a15ab955b5bc34b37cb6",
+      "workspace": "7644370dd7b9d63170b84e5574dd5375ef6dc58d9183c3750940259f50d8f722"
+    },
+    "before_sha256": {
+      "dependencies": "b579a0a8650bfab4b7567da5122fd44e067b03fed6e0648a4d1ce841002e6762",
+      "host_fonts": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "runtime": "9c58c139ade21dc3073e27df7a4627814f2ddc40c2b7b684706d390d6d3c5aac",
+      "source": "9aaf92d2fb0b0383a0bce9ec7c05fe35432bd7057ad0a15ab955b5bc34b37cb6",
+      "workspace": "7644370dd7b9d63170b84e5574dd5375ef6dc58d9183c3750940259f50d8f722"
+    },
+    "changed_paths": {
+      "dependencies": [],
+      "host_fonts": [],
+      "runtime": [],
+      "source": [],
+      "workspace": []
+    },
+    "source_matches_finish": {
+      "different_paths": [],
+      "matches": true,
+      "uncommitted_paths": []
+    },
+    "source_matches_start": {
+      "different_paths": [],
+      "matches": true,
+      "uncommitted_paths": []
+    }
+  },
+  "finished_at_utc": "2026-11-20T05:42:49.308574+00:00",
+  "guards": {
+    "all_checks_exit_zero": true,
+    "dependencies_unchanged": true,
+    "expected_head_unchanged": true,
+    "host_fonts_unchanged": true,
+    "runtime_unchanged": true,
+    "source_matches_finish_commit": true,
+    "source_matches_start_commit": true,
+    "source_unchanged": true,
+    "workspace_unchanged": true
+  },
+  "no_github_ci_or_status_endpoints": true,
+  "selected_file": "packages/quds_office_editor/example/test/studio_comment_draft_proofing_test.dart",
+  "source_file_count": 4006,
+  "source_head_at_finish": "6184051c75d882cac53be3c1a9384e4556588ad1",
+  "source_head_at_start": "6184051c75d882cac53be3c1a9384e4556588ad1",
+  "status": "passed",
+  "steps": [
+    {
+      "command": [
+        "/workspace/scratch/75dc9d25dfaf/runtime/flutter/bin/cache/dart-sdk/bin/dart",
+        "format",
+        "--output=none",
+        "--set-exit-if-changed",
+        "packages/quds_office_editor/example/test/studio_comment_draft_proofing_test.dart"
+      ],
+      "cwd": "/workspace/scratch/75dc9d25dfaf/quds_office_suite",
+      "elapsed_seconds": 0.06455246899713529,
+      "exit_code": 0,
+      "finished_at_utc": "2026-11-20T05:42:27.331748+00:00",
+      "name": "format",
+      "started_at_utc": "2026-11-20T05:42:27.267031+00:00",
+      "stderr": {
+        "bytes": 0,
+        "git_blob_sha1": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stdout": {
+        "bytes": 46,
+        "git_blob_sha1": "0ff065a128412c6a383c3def0e9e3a326c6b390c",
+        "sha256": "1685974b88bd671112e17334bdc2abb8ef350e01ae026547459ec7a8307375ec"
+      }
+    },
+    {
+      "command": [
+        "/workspace/scratch/75dc9d25dfaf/runtime/flutter/bin/cache/dart-sdk/bin/dart",
+        "analyze",
+        "--fatal-infos",
+        "--fatal-warnings",
+        "packages/quds_office_editor/example/test/studio_comment_draft_proofing_test.dart"
+      ],
+      "cwd": "/workspace/scratch/75dc9d25dfaf/quds_office_suite",
+      "elapsed_seconds": 19.225508187999367,
+      "exit_code": 0,
+      "finished_at_utc": "2026-11-20T05:42:46.558129+00:00",
+      "name": "analysis",
+      "started_at_utc": "2026-11-20T05:42:27.332367+00:00",
+      "stderr": {
+        "bytes": 0,
+        "git_blob_sha1": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stdout": {
+        "bytes": 70,
+        "git_blob_sha1": "a303e3dc9c19e704808556a234be6b02efc8883a",
+        "sha256": "08a60ff7d030530948202d7cfed760c3a2cdc5f6c5d9ee9550382963072e904a"
+      }
+    }
+  ]
+}

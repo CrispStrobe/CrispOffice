@@ -1,0 +1,84 @@
+{
+  "repository": "CrispStrobe/quds_office_suite",
+  "capture_started_at_utc": "2026-11-20T06:03:09.288219+00:00",
+  "captured_at_utc": "2026-11-20T06:03:12.400126+00:00",
+  "refs": [
+    {
+      "sha": "c34945761e7991f5fe49037d79529acdd260b31c",
+      "ref": "refs/heads/codex/odt-field-continuation-20261117"
+    },
+    {
+      "sha": "2f55e5359f8aa69b812cf7177a33efca904b7113",
+      "ref": "refs/heads/codex/vba-variant-conversions-20261120"
+    },
+    {
+      "sha": "c05668d1470eb14eef2ac4647b4623edd818274f",
+      "ref": "refs/heads/codex/zotero-research-materials-20261120"
+    },
+    {
+      "sha": "58fdddfbcf198a8c0e38e32f6fcc9d6604e95283",
+      "ref": "refs/heads/docs/ods-color-scale"
+    },
+    {
+      "sha": "69d14f84cabd3931b7640c1654b401c89faba766",
+      "ref": "refs/heads/docs/ods-data-bar"
+    },
+    {
+      "sha": "3d1f683d62519af9adc1e0eda7c03ea59d2cc69c",
+      "ref": "refs/heads/feat/arabic-morph-disambig-20261120"
+    },
+    {
+      "sha": "74ce9ffb816c70c0d2ae50b91ec52a614f26d688",
+      "ref": "refs/heads/feat/ods-color-scale"
+    },
+    {
+      "sha": "0a53b8a70128870f3e1df6d18cdb177bb64290ee",
+      "ref": "refs/heads/feat/ods-data-bar"
+    },
+    {
+      "sha": "68a0db23408e4c95d6d283219504c79aea33a6fe",
+      "ref": "refs/heads/feat/ods-dynamic-validation-links"
+    },
+    {
+      "sha": "005c708e9f747cb46cf02e12c869b0a2f85ac824",
+      "ref": "refs/heads/feat/ods-icon-sets"
+    },
+    {
+      "sha": "7ef09f2408f467c65427700e65907531ecb26acb",
+      "ref": "refs/heads/feat/ods-time-period-conditions"
+    },
+    {
+      "sha": "ab84bc1a0ff7ada1356a8fdc5cd8ebde73e842d3",
+      "ref": "refs/heads/fix/word-native-layout-fidelity-20261120"
+    },
+    {
+      "sha": "3abf8f43b0e79c10271bbd046f391e462b8fe6b9",
+      "ref": "refs/heads/integrate/office-union-148"
+    },
+    {
+      "sha": "e7ba3544b17817fa1769688c56ed395bf627e63e",
+      "ref": "refs/heads/integrate/recent-pptx"
+    },
+    {
+      "sha": "dbfbbd28caa064f4850dc81860a68de14d48fb35",
+      "ref": "refs/heads/main"
+    },
+    {
+      "sha": "177f29d3f9450a58f41189b462b0814aad37e45c",
+      "ref": "refs/heads/work/mail-attachments-20261120"
+    },
+    {
+      "sha": "177f29d3f9450a58f41189b462b0814aad37e45c",
+      "ref": "refs/pull/221/head"
+    },
+    {
+      "sha": "c05668d1470eb14eef2ac4647b4623edd818274f",
+      "ref": "refs/pull/223/head"
+    },
+    {
+      "sha": "f3ed8d74a016bc1e826dbaf056397e887d765b43",
+      "ref": "refs/pull/228/head"
+    }
+  ],
+  "github_actions_queried": false
+}

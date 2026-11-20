@@ -1,0 +1,20 @@
+{
+  "status": "passed",
+  "base_source_head": "58c6962ec3ea82811bfcafec42981385f216f892",
+  "final_source_head": "6184051c75d882cac53be3c1a9384e4556588ad1",
+  "final_tree": "b5b9ffdf6f500a9047cd4d01f3aa6c1bf8e91190",
+  "original_audit_report_sha256": "c82f098ec6c209f736ea1ed5890991a120f193602a99416593219b9ea51a4b58",
+  "original_passed_cases_retained": 2034,
+  "original_not_run_cases_retained": 1,
+  "exact_changed_paths": [
+    "packages/quds_office_editor/example/test/studio_comment_draft_proofing_test.dart"
+  ],
+  "all_application_libraries_and_other_files_identical": true,
+  "changed_test_is_an_original_selected_entry_point": false,
+  "tracked_non_document_dart_files_scanned": 2087,
+  "incoming_import_export_part_edges": [],
+  "filename_references_outside_changed_test": [],
+  "source_delta_patch_sha256": "a85004bc3c839e587d6ed87e951aea3bc8940a0a4300820c226573f868833f50",
+  "new_test_execution_claimed": false,
+  "issues": []
+}

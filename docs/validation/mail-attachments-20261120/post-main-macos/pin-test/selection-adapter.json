@@ -1,0 +1,66 @@
+{
+  "adapter_command": [
+    "/workspace/scratch/75dc9d25dfaf/run_macos_pin_refresh.py",
+    "macos-pin-refresh",
+    "--repo",
+    "/workspace/scratch/75dc9d25dfaf/quds_office_suite",
+    "--output",
+    "/workspace/scratch/75dc9d25dfaf/final-validation/macos-portability-refresh/pin-test",
+    "--expected-head",
+    "f8f36eb87b051a0b26ee68747dfd24c4717eaec1"
+  ],
+  "all_disjoint_selections": {
+    "macos-pin-refresh": [
+      "packages/quds_office_editor/example/test/studio_spacy_pin_test.dart"
+    ]
+  },
+  "code_after": {
+    "adapter": {
+      "bytes": 4368,
+      "path": "/workspace/scratch/75dc9d25dfaf/run_macos_pin_refresh.py",
+      "sha256": "8e3b3b0b5b90f54cf79368641013b500b2d6fb259e7116808b1d384fc2cfbda0"
+    },
+    "primary_runner": {
+      "bytes": 29772,
+      "path": "/workspace/scratch/75dc9d25dfaf/quds_office_suite/docs/validation/zotero-research-materials-20261120/run_validation.py",
+      "sha256": "4d01ed59729abaa64e3ab643e8ebcb2f7136dd2d9f02cc4b07b81a06fbb919bf"
+    }
+  },
+  "code_before": {
+    "adapter": {
+      "bytes": 4368,
+      "path": "/workspace/scratch/75dc9d25dfaf/run_macos_pin_refresh.py",
+      "sha256": "8e3b3b0b5b90f54cf79368641013b500b2d6fb259e7116808b1d384fc2cfbda0"
+    },
+    "primary_runner": {
+      "bytes": 29772,
+      "path": "/workspace/scratch/75dc9d25dfaf/quds_office_suite/docs/validation/zotero-research-materials-20261120/run_validation.py",
+      "sha256": "4d01ed59729abaa64e3ab643e8ebcb2f7136dd2d9f02cc4b07b81a06fbb919bf"
+    }
+  },
+  "code_unchanged": true,
+  "cohort": "macos-pin-refresh",
+  "delegated_arguments": [
+    "/workspace/scratch/75dc9d25dfaf/quds_office_suite/docs/validation/zotero-research-materials-20261120/run_validation.py",
+    "macos-pin-refresh",
+    "--repo",
+    "/workspace/scratch/75dc9d25dfaf/quds_office_suite",
+    "--timeout",
+    "1800",
+    "--output",
+    "/workspace/scratch/75dc9d25dfaf/final-validation/macos-portability-refresh/pin-test",
+    "--expected-head",
+    "f8f36eb87b051a0b26ee68747dfd24c4717eaec1"
+  ],
+  "primary_runner_exit_code": 0,
+  "primary_test_audit_and_fingerprint_logic_unchanged": true,
+  "purpose": "Final main-refresh macOS spaCy pin Flutter validation with one complete suite",
+  "selection": {
+    "additional": [
+      "studio_spacy_pin_test.dart"
+    ],
+    "package": "packages/quds_office_editor/example",
+    "patterns": [],
+    "runner": "flutter"
+  }
+}

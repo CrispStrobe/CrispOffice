@@ -1,0 +1,69 @@
+{
+  "status": "passed",
+  "source_head": "2b74f1091c8fb968f1cb53c803bdd2a0b395159d",
+  "command": [
+    "flutter",
+    "test",
+    "--no-pub",
+    "--reporter",
+    "json",
+    "--concurrency",
+    "1",
+    "test/studio_native_paths_test.dart"
+  ],
+  "cwd": "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/quds_office_editor/example",
+  "exit_code": 0,
+  "audit": {
+    "passed": 2,
+    "failed": 0,
+    "skipped": 0,
+    "application_cases": 2,
+    "suite_count": 1,
+    "suites": [
+      {
+        "id": 0,
+        "path": "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/quds_office_editor/example/test/studio_native_paths_test.dart",
+        "passed": 2,
+        "failed": 0,
+        "skipped": 0
+      }
+    ],
+    "test_start_events": 3,
+    "test_done_events": 3,
+    "every_started_test_finished_once": true,
+    "unfinished_test_ids": [],
+    "missing_start_test_ids": [],
+    "excluded_pseudo_cases": 1,
+    "excluded_reasons": {
+      "hidden_lifecycle": 1
+    },
+    "excluded_failures": [],
+    "duplicate_suite_ids": false,
+    "duplicate_application_names": [],
+    "error_events": [],
+    "parse_errors": [],
+    "final_events": [
+      {
+        "success": true,
+        "type": "done",
+        "time": 4776
+      }
+    ],
+    "layout_or_tap_diagnostics": [],
+    "flutter_notification_envelopes": 0
+  },
+  "raw_sha256": "2c4232ce5551371a4c2dcc30efda115e95bc3ff9f33b2b8137e2fc12261fc1a1",
+  "frozen_configuration": {
+    ".dart_tool/package_config.json": "ddfca5fc7d08d7d38377e1b31c1a11fd4a7f589d41322c776a09e36ae55b6ff3",
+    ".dart_tool/package_graph.json": "09b12d3718163b37c56c092d0d87d2f5a976bfb50f02009667efce07bd243c3e"
+  },
+  "configuration_after": {
+    ".dart_tool/package_config.json": "ddfca5fc7d08d7d38377e1b31c1a11fd4a7f589d41322c776a09e36ae55b6ff3",
+    ".dart_tool/package_graph.json": "09b12d3718163b37c56c092d0d87d2f5a976bfb50f02009667efce07bd243c3e"
+  },
+  "configuration_unchanged": true,
+  "static_passed": true,
+  "static_targets": 18,
+  "new_distinct_cases": 0,
+  "purpose": "Re-execute the same two cases after the one-file formatter-only source checkpoint."
+}

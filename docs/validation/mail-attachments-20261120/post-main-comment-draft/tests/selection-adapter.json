@@ -1,0 +1,66 @@
+{
+  "adapter_command": [
+    "/workspace/scratch/75dc9d25dfaf/run_post_main_comment_draft.py",
+    "post-main-comment-draft",
+    "--repo",
+    "/workspace/scratch/75dc9d25dfaf/quds_office_suite",
+    "--output",
+    "/workspace/scratch/75dc9d25dfaf/final-validation/post-main-comment-draft/tests",
+    "--expected-head",
+    "6184051c75d882cac53be3c1a9384e4556588ad1"
+  ],
+  "all_disjoint_selections": {
+    "post-main-comment-draft": [
+      "packages/quds_office_editor/example/test/studio_comment_draft_proofing_test.dart"
+    ]
+  },
+  "code_after": {
+    "adapter": {
+      "bytes": 4389,
+      "path": "/workspace/scratch/75dc9d25dfaf/run_post_main_comment_draft.py",
+      "sha256": "be749573af64c4fa4d82cc972c2991538aabfe878295332ed2c6ec8188fc54cc"
+    },
+    "primary_runner": {
+      "bytes": 29772,
+      "path": "/workspace/scratch/75dc9d25dfaf/quds_office_suite/docs/validation/zotero-research-materials-20261120/run_validation.py",
+      "sha256": "4d01ed59729abaa64e3ab643e8ebcb2f7136dd2d9f02cc4b07b81a06fbb919bf"
+    }
+  },
+  "code_before": {
+    "adapter": {
+      "bytes": 4389,
+      "path": "/workspace/scratch/75dc9d25dfaf/run_post_main_comment_draft.py",
+      "sha256": "be749573af64c4fa4d82cc972c2991538aabfe878295332ed2c6ec8188fc54cc"
+    },
+    "primary_runner": {
+      "bytes": 29772,
+      "path": "/workspace/scratch/75dc9d25dfaf/quds_office_suite/docs/validation/zotero-research-materials-20261120/run_validation.py",
+      "sha256": "4d01ed59729abaa64e3ab643e8ebcb2f7136dd2d9f02cc4b07b81a06fbb919bf"
+    }
+  },
+  "code_unchanged": true,
+  "cohort": "post-main-comment-draft",
+  "delegated_arguments": [
+    "/workspace/scratch/75dc9d25dfaf/quds_office_suite/docs/validation/zotero-research-materials-20261120/run_validation.py",
+    "post-main-comment-draft",
+    "--repo",
+    "/workspace/scratch/75dc9d25dfaf/quds_office_suite",
+    "--timeout",
+    "1800",
+    "--output",
+    "/workspace/scratch/75dc9d25dfaf/final-validation/post-main-comment-draft/tests",
+    "--expected-head",
+    "6184051c75d882cac53be3c1a9384e4556588ad1"
+  ],
+  "primary_runner_exit_code": 0,
+  "primary_test_audit_and_fingerprint_logic_unchanged": true,
+  "purpose": "Final main-refresh comment-draft Flutter validation with one complete suite",
+  "selection": {
+    "additional": [
+      "studio_comment_draft_proofing_test.dart"
+    ],
+    "package": "packages/quds_office_editor/example",
+    "patterns": [],
+    "runner": "flutter"
+  }
+}

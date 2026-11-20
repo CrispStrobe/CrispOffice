@@ -1,0 +1,8 @@
+Unhandled exception:
+Null check operator used on a null value
+#0      tokens (file:///workspace/scratch/2c6eaad19389/zotero-toolchain/tmp/final-declaration-scope-znx9whhg/declarations.dart:16:23)
+#1      hash (file:///workspace/scratch/2c6eaad19389/zotero-toolchain/tmp/final-declaration-scope-znx9whhg/declarations.dart:20:68)
+#2      analyze (file:///workspace/scratch/2c6eaad19389/zotero-toolchain/tmp/final-declaration-scope-znx9whhg/declarations.dart:44:24)
+#3      main (file:///workspace/scratch/2c6eaad19389/zotero-toolchain/tmp/final-declaration-scope-znx9whhg/declarations.dart:67:17)
+#4      _delayEntrypointInvocation.<anonymous closure> (dart:isolate-patch/isolate_patch.dart:311:33)
+#5      _RawReceivePort._handleMessage (dart:isolate-patch/isolate_patch.dart:192:12)

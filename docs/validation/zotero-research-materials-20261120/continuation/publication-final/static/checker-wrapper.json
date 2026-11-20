@@ -1,0 +1,30 @@
+{
+  "status": "failed",
+  "expected_head": "a45ee3bf40dbb7e64a04f879fd6d574db7cb60b1",
+  "milestone_base": "a452efdadc9000c51a8e5e9ba2f16405d4979e2e",
+  "before": {
+    "head": "a45ee3bf40dbb7e64a04f879fd6d574db7cb60b1",
+    "checker_sha256": "dda5b6b794c5b8572491347b1e247e62c2ab78f68d86cc5760baeda3d445de1a",
+    "wrapper_sha256": "c3c10af8c05f18e52e7b8f5dff4d31b6976201d9d0ee75c89ac900e5584b2701"
+  },
+  "after": {
+    "head": "a45ee3bf40dbb7e64a04f879fd6d574db7cb60b1",
+    "checker_sha256": "dda5b6b794c5b8572491347b1e247e62c2ab78f68d86cc5760baeda3d445de1a",
+    "wrapper_sha256": "c3c10af8c05f18e52e7b8f5dff4d31b6976201d9d0ee75c89ac900e5584b2701"
+  },
+  "checker_and_source_head_unchanged": true,
+  "unchanged_primary_checker_command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+    "/workspace/scratch/2c6eaad19389/quds_office_suite/docs/validation/zotero-research-materials-20261120/check_changed_dart.py",
+    "--repo",
+    "/workspace/scratch/2c6eaad19389/quds_office_suite",
+    "--base",
+    "a452efdadc9000c51a8e5e9ba2f16405d4979e2e",
+    "--output",
+    "/workspace/scratch/2c6eaad19389/quds_office_suite/docs/validation/zotero-research-materials-20261120/continuation/publication-final/static"
+  ],
+  "primary_exit_code": 1,
+  "primary_receipt_sha256": "5b9722c9d4a77f737f11a1479c2f35b7ba5987adda21b90a41406c73771fe775",
+  "changed_dart_targets": 110,
+  "sdk_cache_configuration_or_source_writes_requested": false
+}

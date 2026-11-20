@@ -1,0 +1,152 @@
+{
+  "status": "passed",
+  "source_head": "65ea4c3095ff5d821c57d4dced0ba50bdd9387e7",
+  "source_binding": "Frozen published head; tracked product/manifests unchanged on completion. This bounded supplement does not claim a new full source/dependency/runtime inventory.",
+  "frozen_configuration": {
+    ".dart_tool/package_config.json": "ddfca5fc7d08d7d38377e1b31c1a11fd4a7f589d41322c776a09e36ae55b6ff3",
+    ".dart_tool/package_graph.json": "09b12d3718163b37c56c092d0d87d2f5a976bfb50f02009667efce07bd243c3e"
+  },
+  "configuration_unchanged_after_both_commands": true,
+  "tracked_product_and_lock_unchanged": true,
+  "auditor_sha256": "4d01ed59729abaa64e3ab643e8ebcb2f7136dd2d9f02cc4b07b81a06fbb919bf",
+  "cohorts": {
+    "studio": {
+      "status": "passed",
+      "command": [
+        "flutter",
+        "test",
+        "--no-pub",
+        "--reporter",
+        "json",
+        "--concurrency",
+        "1",
+        "test/studio_native_paths_test.dart",
+        "test/spacy_development_cases_test.dart",
+        "test/studio_zotero_shortcuts_test.dart",
+        "test/studio_zotero_citing_transport_test.dart"
+      ],
+      "cwd": "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/quds_office_editor/example",
+      "exit_code": 0,
+      "audit": {
+        "passed": 36,
+        "failed": 0,
+        "skipped": 0,
+        "application_cases": 36,
+        "suite_count": 4,
+        "suites": [
+          {
+            "id": 0,
+            "path": "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/quds_office_editor/example/test/studio_native_paths_test.dart",
+            "passed": 2,
+            "failed": 0,
+            "skipped": 0
+          },
+          {
+            "id": 5,
+            "path": "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/quds_office_editor/example/test/spacy_development_cases_test.dart",
+            "passed": 1,
+            "failed": 0,
+            "skipped": 0
+          },
+          {
+            "id": 9,
+            "path": "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+            "passed": 15,
+            "failed": 0,
+            "skipped": 0
+          },
+          {
+            "id": 27,
+            "path": "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_citing_transport_test.dart",
+            "passed": 18,
+            "failed": 0,
+            "skipped": 0
+          }
+        ],
+        "test_start_events": 40,
+        "test_done_events": 40,
+        "every_started_test_finished_once": true,
+        "unfinished_test_ids": [],
+        "missing_start_test_ids": [],
+        "excluded_pseudo_cases": 4,
+        "excluded_reasons": {
+          "hidden_lifecycle": 4
+        },
+        "excluded_failures": [],
+        "duplicate_suite_ids": false,
+        "duplicate_application_names": [],
+        "error_events": [],
+        "parse_errors": [],
+        "final_events": [
+          {
+            "success": true,
+            "type": "done",
+            "time": 30768
+          }
+        ],
+        "layout_or_tap_diagnostics": [],
+        "flutter_notification_envelopes": 0
+      },
+      "raw_sha256": "648f07927d88c1356d8adcbfdc3bf47dd21d478a44cd8ec8bb780e73735f6186"
+    },
+    "spacy": {
+      "status": "passed",
+      "command": [
+        "dart",
+        "--packages=/workspace/scratch/2c6eaad19389/quds_office_suite/.dart_tool/package_config.json",
+        "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+        "--reporter",
+        "json",
+        "--concurrency",
+        "1",
+        "test/distribution_test.dart"
+      ],
+      "cwd": "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/quds_proofing_spacy",
+      "exit_code": 0,
+      "audit": {
+        "passed": 15,
+        "failed": 0,
+        "skipped": 0,
+        "application_cases": 15,
+        "suite_count": 1,
+        "suites": [
+          {
+            "id": 0,
+            "path": "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/quds_proofing_spacy/test/distribution_test.dart",
+            "passed": 15,
+            "failed": 0,
+            "skipped": 0
+          }
+        ],
+        "test_start_events": 16,
+        "test_done_events": 16,
+        "every_started_test_finished_once": true,
+        "unfinished_test_ids": [],
+        "missing_start_test_ids": [],
+        "excluded_pseudo_cases": 1,
+        "excluded_reasons": {
+          "hidden_lifecycle": 1
+        },
+        "excluded_failures": [],
+        "duplicate_suite_ids": false,
+        "duplicate_application_names": [],
+        "error_events": [],
+        "parse_errors": [],
+        "final_events": [
+          {
+            "success": true,
+            "type": "done",
+            "time": 2850
+          }
+        ],
+        "layout_or_tap_diagnostics": [],
+        "flutter_notification_envelopes": 0
+      },
+      "raw_sha256": "7af911974cda3d648ca1105285097cce913b09814aa300222ec6f0db17c26eb1"
+    }
+  },
+  "distinct_tests": 51,
+  "files": 5,
+  "preliminary_runs_counted": false,
+  "native_mobile_acceptance": false
+}

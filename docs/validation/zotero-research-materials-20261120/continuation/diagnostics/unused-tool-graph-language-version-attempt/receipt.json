@@ -1,0 +1,470 @@
+{
+  "cohorts": {
+    "engine-zotero": {
+      "test_files": 29,
+      "imported_files": 1307,
+      "target_reachable": false
+    },
+    "editor-zotero": {
+      "test_files": 43,
+      "imported_files": 2159,
+      "target_reachable": false
+    },
+    "engine-proofing": {
+      "test_files": 37,
+      "imported_files": 1316,
+      "target_reachable": false
+    },
+    "spacy": {
+      "test_files": 11,
+      "imported_files": 1315,
+      "target_reachable": false
+    },
+    "studio-integration": {
+      "test_files": 9,
+      "imported_files": 3882,
+      "target_reachable": false
+    }
+  },
+  "target": "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/quds_proofing_spacy/tool/evaluate_grammar_v2.dart",
+  "target_sha256": "ccd67cee89f72718259504e5f7fdccee786d8b290b02e19453eda3ce1b241735",
+  "package_config_sha256": "0011318979bdc29c9637b857a5122ffea96d185f3d2dc50c5503904a9059d6a7",
+  "package_config_unchanged": true,
+  "dart_sdk_boundaries": [
+    "dart:async",
+    "dart:collection",
+    "dart:convert",
+    "dart:core",
+    "dart:developer",
+    "dart:ffi",
+    "dart:io",
+    "dart:isolate",
+    "dart:js_interop",
+    "dart:js_interop_unsafe",
+    "dart:math",
+    "dart:typed_data",
+    "dart:ui",
+    "dart:ui_web"
+  ],
+  "errors": [
+    {
+      "file": "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/file_picker-10.3.10/lib/src/linux/filters.dart",
+      "parse_errors": [
+        "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/file_picker-10.3.10/lib/src/linux/filters.dart(2404..2406): Can't have modifier 'var' here.",
+        "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/file_picker-10.3.10/lib/src/linux/filters.dart(2413..2415): Can't have modifier 'var' here."
+      ]
+    },
+    {
+      "file": "/workspace/scratch/2c6eaad19389/quds_office_suite/third_party/enough_mail/lib/src/private/util/mail_address_parser.dart",
+      "parse_errors": [
+        "/workspace/scratch/2c6eaad19389/quds_office_suite/third_party/enough_mail/lib/src/private/util/mail_address_parser.dart(4319..4323): Can't have modifier 'final' here."
+      ]
+    },
+    {
+      "file": "/workspace/scratch/2c6eaad19389/quds_office_suite/third_party/enough_mail/lib/src/codecs/mail_codec.dart",
+      "parse_errors": [
+        "/workspace/scratch/2c6eaad19389/quds_office_suite/third_party/enough_mail/lib/src/codecs/mail_codec.dart(9117..9121): Can't have modifier 'final' here.",
+        "/workspace/scratch/2c6eaad19389/quds_office_suite/third_party/enough_mail/lib/src/codecs/mail_codec.dart(11322..11326): Can't have modifier 'final' here.",
+        "/workspace/scratch/2c6eaad19389/quds_office_suite/third_party/enough_mail/lib/src/codecs/mail_codec.dart(13698..13702): Can't have modifier 'final' here.",
+        "/workspace/scratch/2c6eaad19389/quds_office_suite/third_party/enough_mail/lib/src/codecs/mail_codec.dart(13721..13725): Can't have modifier 'final' here.",
+        "/workspace/scratch/2c6eaad19389/quds_office_suite/third_party/enough_mail/lib/src/codecs/mail_codec.dart(15635..15639): Can't have modifier 'final' here.",
+        "/workspace/scratch/2c6eaad19389/quds_office_suite/third_party/enough_mail/lib/src/codecs/mail_codec.dart(15661..15665): Can't have modifier 'final' here.",
+        "/workspace/scratch/2c6eaad19389/quds_office_suite/third_party/enough_mail/lib/src/codecs/mail_codec.dart(15697..15701): Can't have modifier 'final' here.",
+        "/workspace/scratch/2c6eaad19389/quds_office_suite/third_party/enough_mail/lib/src/codecs/mail_codec.dart(17242..17246): Can't have modifier 'final' here.",
+        "/workspace/scratch/2c6eaad19389/quds_office_suite/third_party/enough_mail/lib/src/codecs/mail_codec.dart(17265..17269): Can't have modifier 'final' here.",
+        "/workspace/scratch/2c6eaad19389/quds_office_suite/third_party/enough_mail/lib/src/codecs/mail_codec.dart(17301..17305): Can't have modifier 'final' here.",
+        "/workspace/scratch/2c6eaad19389/quds_office_suite/third_party/enough_mail/lib/src/codecs/mail_codec.dart(18123..18127): Can't have modifier 'final' here."
+      ]
+    },
+    {
+      "file": "/workspace/scratch/2c6eaad19389/quds_office_suite/third_party/enough_mail/lib/src/codecs/quoted_printable_mail_codec.dart",
+      "parse_errors": [
+        "/workspace/scratch/2c6eaad19389/quds_office_suite/third_party/enough_mail/lib/src/codecs/quoted_printable_mail_codec.dart(719..723): Can't have modifier 'final' here.",
+        "/workspace/scratch/2c6eaad19389/quds_office_suite/third_party/enough_mail/lib/src/codecs/quoted_printable_mail_codec.dart(3462..3466): Can't have modifier 'final' here.",
+        "/workspace/scratch/2c6eaad19389/quds_office_suite/third_party/enough_mail/lib/src/codecs/quoted_printable_mail_codec.dart(8470..8474): Can't have modifier 'final' here.",
+        "/workspace/scratch/2c6eaad19389/quds_office_suite/third_party/enough_mail/lib/src/codecs/quoted_printable_mail_codec.dart(8493..8497): Can't have modifier 'final' here."
+      ]
+    },
+    {
+      "file": "/workspace/scratch/2c6eaad19389/quds_office_suite/third_party/enough_mail/lib/src/codecs/base64_mail_codec.dart",
+      "parse_errors": [
+        "/workspace/scratch/2c6eaad19389/quds_office_suite/third_party/enough_mail/lib/src/codecs/base64_mail_codec.dart(4529..4533): Can't have modifier 'final' here."
+      ]
+    },
+    {
+      "file": "/workspace/scratch/2c6eaad19389/quds_office_suite/third_party/enough_mail/lib/src/private/imap/parser_helper.dart",
+      "parse_errors": [
+        "/workspace/scratch/2c6eaad19389/quds_office_suite/third_party/enough_mail/lib/src/private/imap/parser_helper.dart(3393..3397): Can't have modifier 'final' here.",
+        "/workspace/scratch/2c6eaad19389/quds_office_suite/third_party/enough_mail/lib/src/private/imap/parser_helper.dart(3829..3833): Can't have modifier 'final' here."
+      ]
+    },
+    {
+      "file": "/workspace/scratch/2c6eaad19389/quds_office_suite/third_party/enough_mail/lib/src/mime_data.dart",
+      "parse_errors": [
+        "/workspace/scratch/2c6eaad19389/quds_office_suite/third_party/enough_mail/lib/src/mime_data.dart(10234..10238): Can't have modifier 'final' here.",
+        "/workspace/scratch/2c6eaad19389/quds_office_suite/third_party/enough_mail/lib/src/mime_data.dart(10265..10269): Can't have modifier 'final' here."
+      ]
+    },
+    {
+      "file": "/workspace/scratch/2c6eaad19389/quds_office_suite/third_party/enough_mail/lib/src/private/util/byte_utils.dart",
+      "parse_errors": [
+        "/workspace/scratch/2c6eaad19389/quds_office_suite/third_party/enough_mail/lib/src/private/util/byte_utils.dart(176..180): Can't have modifier 'final' here.",
+        "/workspace/scratch/2c6eaad19389/quds_office_suite/third_party/enough_mail/lib/src/private/util/byte_utils.dart(198..202): Can't have modifier 'final' here."
+      ]
+    },
+    {
+      "file": "/workspace/scratch/2c6eaad19389/quds_office_suite/third_party/enough_mail/lib/src/media_type.dart",
+      "parse_errors": [
+        "/workspace/scratch/2c6eaad19389/quds_office_suite/third_party/enough_mail/lib/src/media_type.dart(8854..8858): Can't have modifier 'final' here."
+      ]
+    },
+    {
+      "file": "/workspace/scratch/2c6eaad19389/quds_office_suite/third_party/enough_mail/lib/src/codecs/date_codec.dart",
+      "parse_errors": [
+        "/workspace/scratch/2c6eaad19389/quds_office_suite/third_party/enough_mail/lib/src/codecs/date_codec.dart(15009..15013): Can't have modifier 'final' here."
+      ]
+    },
+    {
+      "file": "/workspace/scratch/2c6eaad19389/quds_office_suite/third_party/enough_mail/lib/src/private/util/uint8_list_reader.dart",
+      "parse_errors": [
+        "/workspace/scratch/2c6eaad19389/quds_office_suite/third_party/enough_mail/lib/src/private/util/uint8_list_reader.dart(5157..5161): Can't have modifier 'final' here.",
+        "/workspace/scratch/2c6eaad19389/quds_office_suite/third_party/enough_mail/lib/src/private/util/uint8_list_reader.dart(5869..5873): Can't have modifier 'final' here.",
+        "/workspace/scratch/2c6eaad19389/quds_office_suite/third_party/enough_mail/lib/src/private/util/uint8_list_reader.dart(7720..7724): Can't have modifier 'final' here."
+      ]
+    },
+    {
+      "file": "/workspace/scratch/2c6eaad19389/quds_office_suite/third_party/enough_mail/lib/src/message_builder.dart",
+      "parse_errors": [
+        "/workspace/scratch/2c6eaad19389/quds_office_suite/third_party/enough_mail/lib/src/message_builder.dart(48253..48257): Can't have modifier 'final' here.",
+        "/workspace/scratch/2c6eaad19389/quds_office_suite/third_party/enough_mail/lib/src/message_builder.dart(48274..48278): Can't have modifier 'final' here."
+      ]
+    },
+    {
+      "file": "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/intl-0.20.3/lib/src/intl/compact_number_format.dart",
+      "parse_errors": [
+        "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/intl-0.20.3/lib/src/intl/compact_number_format.dart(19011..19015): Can't have modifier 'final' here."
+      ]
+    },
+    {
+      "file": "/workspace/scratch/2c6eaad19389/quds_office_suite/third_party/enough_mail/lib/src/private/imap/imap_response_line.dart",
+      "parse_errors": [
+        "/workspace/scratch/2c6eaad19389/quds_office_suite/third_party/enough_mail/lib/src/private/imap/imap_response_line.dart(167..171): Can't have modifier 'final' here."
+      ]
+    },
+    {
+      "file": "/workspace/scratch/2c6eaad19389/quds_office_suite/third_party/enough_mail/lib/src/mail/mail_client.dart",
+      "parse_errors": [
+        "/workspace/scratch/2c6eaad19389/quds_office_suite/third_party/enough_mail/lib/src/mail/mail_client.dart(73033..73037): Can't have modifier 'final' here.",
+        "/workspace/scratch/2c6eaad19389/quds_office_suite/third_party/enough_mail/lib/src/mail/mail_client.dart(74878..74882): Can't have modifier 'final' here.",
+        "/workspace/scratch/2c6eaad19389/quds_office_suite/third_party/enough_mail/lib/src/mail/mail_client.dart(83625..83629): Can't have modifier 'final' here."
+      ]
+    },
+    {
+      "file": "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/pointycastle-4.0.0/lib/stream/eax.dart",
+      "parse_errors": [
+        "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/pointycastle-4.0.0/lib/stream/eax.dart(963..967): Can't have modifier 'final' here."
+      ]
+    },
+    {
+      "file": "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/pointycastle-4.0.0/lib/stream/ctr.dart",
+      "parse_errors": [
+        "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/pointycastle-4.0.0/lib/stream/ctr.dart(471..475): Can't have modifier 'final' here."
+      ]
+    },
+    {
+      "file": "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/pointycastle-4.0.0/lib/stream/sic.dart",
+      "parse_errors": [
+        "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/pointycastle-4.0.0/lib/stream/sic.dart(996..1000): Can't have modifier 'final' here."
+      ]
+    },
+    {
+      "file": "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/pointycastle-4.0.0/lib/macs/cmac.dart",
+      "parse_errors": [
+        "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/pointycastle-4.0.0/lib/macs/cmac.dart(1249..1253): Can't have modifier 'final' here."
+      ]
+    },
+    {
+      "file": "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/pointycastle-4.0.0/lib/block/modes/cbc.dart",
+      "parse_errors": [
+        "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/pointycastle-4.0.0/lib/block/modes/cbc.dart(549..553): Can't have modifier 'final' here."
+      ]
+    },
+    {
+      "file": "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/pointycastle-4.0.0/lib/stream/chacha7539.dart",
+      "parse_errors": [
+        "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/pointycastle-4.0.0/lib/stream/chacha7539.dart(761..765): Can't have modifier 'final' here."
+      ]
+    },
+    {
+      "file": "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/pointycastle-4.0.0/lib/stream/chacha20.dart",
+      "parse_errors": [
+        "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/pointycastle-4.0.0/lib/stream/chacha20.dart(756..760): Can't have modifier 'final' here."
+      ]
+    },
+    {
+      "file": "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/pointycastle-4.0.0/lib/asymmetric/pkcs1.dart",
+      "parse_errors": [
+        "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/pointycastle-4.0.0/lib/asymmetric/pkcs1.dart(634..638): Can't have modifier 'final' here."
+      ]
+    },
+    {
+      "file": "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/pointycastle-4.0.0/lib/random/auto_seed_block_ctr_random.dart",
+      "parse_errors": [
+        "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/pointycastle-4.0.0/lib/random/auto_seed_block_ctr_random.dart(829..833): Can't have modifier 'final' here."
+      ]
+    },
+    {
+      "file": "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/pointycastle-4.0.0/lib/random/block_ctr_random.dart",
+      "parse_errors": [
+        "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/pointycastle-4.0.0/lib/random/block_ctr_random.dart(672..676): Can't have modifier 'final' here."
+      ]
+    },
+    {
+      "file": "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/pointycastle-4.0.0/lib/signers/ecdsa_signer.dart",
+      "parse_errors": [
+        "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/pointycastle-4.0.0/lib/signers/ecdsa_signer.dart(637..641): Can't have modifier 'final' here."
+      ]
+    },
+    {
+      "file": "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/pointycastle-4.0.0/lib/padded_block_cipher/padded_block_cipher_impl.dart",
+      "parse_errors": [
+        "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/pointycastle-4.0.0/lib/padded_block_cipher/padded_block_cipher_impl.dart(510..514): Can't have modifier 'final' here."
+      ]
+    },
+    {
+      "file": "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/pointycastle-4.0.0/lib/macs/cbc_block_cipher_mac.dart",
+      "parse_errors": [
+        "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/pointycastle-4.0.0/lib/macs/cbc_block_cipher_mac.dart(584..588): Can't have modifier 'final' here."
+      ]
+    },
+    {
+      "file": "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/pointycastle-4.0.0/lib/macs/poly1305.dart",
+      "parse_errors": [
+        "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/pointycastle-4.0.0/lib/macs/poly1305.dart(872..876): Can't have modifier 'final' here.",
+        "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/pointycastle-4.0.0/lib/macs/poly1305.dart(4346..4350): Can't have modifier 'final' here.",
+        "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/pointycastle-4.0.0/lib/macs/poly1305.dart(4449..4453): Can't have modifier 'final' here.",
+        "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/pointycastle-4.0.0/lib/macs/poly1305.dart(4470..4474): Can't have modifier 'final' here.",
+        "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/pointycastle-4.0.0/lib/macs/poly1305.dart(4487..4491): Can't have modifier 'final' here.",
+        "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/pointycastle-4.0.0/lib/macs/poly1305.dart(6497..6501): Can't have modifier 'final' here."
+      ]
+    },
+    {
+      "file": "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/pointycastle-4.0.0/lib/key_derivators/pkcs5s1_parameter_generator.dart",
+      "parse_errors": [
+        "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/pointycastle-4.0.0/lib/key_derivators/pkcs5s1_parameter_generator.dart(326..330): Can't have modifier 'final' here."
+      ]
+    },
+    {
+      "file": "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/pointycastle-4.0.0/lib/key_derivators/pkcs12_parameter_generator.dart",
+      "parse_errors": [
+        "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/pointycastle-4.0.0/lib/key_derivators/pkcs12_parameter_generator.dart(334..338): Can't have modifier 'final' here."
+      ]
+    },
+    {
+      "file": "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/pointycastle-4.0.0/lib/key_derivators/pbkdf2.dart",
+      "parse_errors": [
+        "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/pointycastle-4.0.0/lib/key_derivators/pbkdf2.dart(811..815): Can't have modifier 'final' here."
+      ]
+    },
+    {
+      "file": "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/pointycastle-4.0.0/lib/digests/sha512t.dart",
+      "parse_errors": [
+        "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/pointycastle-4.0.0/lib/digests/sha512t.dart(652..656): Can't have modifier 'final' here."
+      ]
+    },
+    {
+      "file": "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/pointycastle-4.0.0/lib/digests/cshake.dart",
+      "parse_errors": [
+        "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/pointycastle-4.0.0/lib/digests/cshake.dart(827..831): Can't have modifier 'final' here."
+      ]
+    },
+    {
+      "file": "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/pointycastle-4.0.0/lib/digests/shake.dart",
+      "parse_errors": [
+        "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/pointycastle-4.0.0/lib/digests/shake.dart(732..736): Can't have modifier 'final' here."
+      ]
+    },
+    {
+      "file": "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/pointycastle-4.0.0/lib/digests/sha3.dart",
+      "parse_errors": [
+        "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/pointycastle-4.0.0/lib/digests/sha3.dart(587..591): Can't have modifier 'final' here."
+      ]
+    },
+    {
+      "file": "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/pointycastle-4.0.0/lib/digests/keccak.dart",
+      "parse_errors": [
+        "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/pointycastle-4.0.0/lib/digests/keccak.dart(549..553): Can't have modifier 'final' here."
+      ]
+    },
+    {
+      "file": "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/pointycastle-4.0.0/lib/block/modes/ige.dart",
+      "parse_errors": [
+        "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/pointycastle-4.0.0/lib/block/modes/ige.dart(647..651): Can't have modifier 'final' here."
+      ]
+    },
+    {
+      "file": "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/pointycastle-4.0.0/lib/block/modes/sic.dart",
+      "parse_errors": [
+        "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/pointycastle-4.0.0/lib/block/modes/sic.dart(536..540): Can't have modifier 'final' here."
+      ]
+    },
+    {
+      "file": "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/pointycastle-4.0.0/lib/block/modes/ccm.dart",
+      "parse_errors": [
+        "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/pointycastle-4.0.0/lib/block/modes/ccm.dart(964..968): Can't have modifier 'final' here."
+      ]
+    },
+    {
+      "file": "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/pointycastle-4.0.0/lib/block/modes/gcm.dart",
+      "parse_errors": [
+        "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/pointycastle-4.0.0/lib/block/modes/gcm.dart(504..508): Can't have modifier 'final' here."
+      ]
+    },
+    {
+      "file": "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/pointycastle-4.0.0/lib/block/modes/ofb.dart",
+      "parse_errors": [
+        "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/pointycastle-4.0.0/lib/block/modes/ofb.dart(558..562): Can't have modifier 'final' here."
+      ]
+    },
+    {
+      "file": "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/pointycastle-4.0.0/lib/block/modes/gctr.dart",
+      "parse_errors": [
+        "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/pointycastle-4.0.0/lib/block/modes/gctr.dart(602..606): Can't have modifier 'final' here."
+      ]
+    },
+    {
+      "file": "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/pointycastle-4.0.0/lib/block/modes/ecb.dart",
+      "parse_errors": [
+        "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/pointycastle-4.0.0/lib/block/modes/ecb.dart(548..552): Can't have modifier 'final' here."
+      ]
+    },
+    {
+      "file": "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/pointycastle-4.0.0/lib/block/modes/ctr.dart",
+      "parse_errors": [
+        "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/pointycastle-4.0.0/lib/block/modes/ctr.dart(509..513): Can't have modifier 'final' here."
+      ]
+    },
+    {
+      "file": "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/pointycastle-4.0.0/lib/block/modes/cfb.dart",
+      "parse_errors": [
+        "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/pointycastle-4.0.0/lib/block/modes/cfb.dart(558..562): Can't have modifier 'final' here."
+      ]
+    },
+    {
+      "file": "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/pointycastle-4.0.0/lib/block/twofish.dart",
+      "parse_errors": [
+        "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/pointycastle-4.0.0/lib/block/twofish.dart(19420..19424): Can't have modifier 'final' here.",
+        "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/pointycastle-4.0.0/lib/block/twofish.dart(24357..24361): Can't have modifier 'final' here.",
+        "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/pointycastle-4.0.0/lib/block/twofish.dart(24384..24388): Can't have modifier 'final' here.",
+        "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/pointycastle-4.0.0/lib/block/twofish.dart(24405..24409): Can't have modifier 'final' here.",
+        "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/pointycastle-4.0.0/lib/block/twofish.dart(24433..24437): Can't have modifier 'final' here.",
+        "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/pointycastle-4.0.0/lib/block/twofish.dart(26164..26168): Can't have modifier 'final' here.",
+        "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/pointycastle-4.0.0/lib/block/twofish.dart(26191..26195): Can't have modifier 'final' here.",
+        "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/pointycastle-4.0.0/lib/block/twofish.dart(26212..26216): Can't have modifier 'final' here.",
+        "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/pointycastle-4.0.0/lib/block/twofish.dart(26240..26244): Can't have modifier 'final' here.",
+        "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/pointycastle-4.0.0/lib/block/twofish.dart(27726..27730): Can't have modifier 'final' here.",
+        "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/pointycastle-4.0.0/lib/block/twofish.dart(27739..27743): Can't have modifier 'final' here."
+      ]
+    },
+    {
+      "file": "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/pointycastle-4.0.0/lib/block/blowfish.dart",
+      "parse_errors": [
+        "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/pointycastle-4.0.0/lib/block/blowfish.dart(14979..14983): Can't have modifier 'final' here.",
+        "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/pointycastle-4.0.0/lib/block/blowfish.dart(15005..15009): Can't have modifier 'final' here.",
+        "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/pointycastle-4.0.0/lib/block/blowfish.dart(15350..15354): Can't have modifier 'final' here.",
+        "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/pointycastle-4.0.0/lib/block/blowfish.dart(15377..15381): Can't have modifier 'final' here.",
+        "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/pointycastle-4.0.0/lib/block/blowfish.dart(15398..15402): Can't have modifier 'final' here.",
+        "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/pointycastle-4.0.0/lib/block/blowfish.dart(15426..15430): Can't have modifier 'final' here.",
+        "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/pointycastle-4.0.0/lib/block/blowfish.dart(16012..16016): Can't have modifier 'final' here.",
+        "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/pointycastle-4.0.0/lib/block/blowfish.dart(16256..16260): Can't have modifier 'final' here.",
+        "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/pointycastle-4.0.0/lib/block/blowfish.dart(16654..16658): Can't have modifier 'final' here.",
+        "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/pointycastle-4.0.0/lib/block/blowfish.dart(17634..17638): Can't have modifier 'final' here.",
+        "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/pointycastle-4.0.0/lib/block/blowfish.dart(17659..17663): Can't have modifier 'final' here.",
+        "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/pointycastle-4.0.0/lib/block/blowfish.dart(17683..17687): Can't have modifier 'final' here.",
+        "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/pointycastle-4.0.0/lib/block/blowfish.dart(17708..17712): Can't have modifier 'final' here.",
+        "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/pointycastle-4.0.0/lib/block/blowfish.dart(18143..18147): Can't have modifier 'final' here.",
+        "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/pointycastle-4.0.0/lib/block/blowfish.dart(18168..18172): Can't have modifier 'final' here.",
+        "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/pointycastle-4.0.0/lib/block/blowfish.dart(18192..18196): Can't have modifier 'final' here.",
+        "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/pointycastle-4.0.0/lib/block/blowfish.dart(18217..18221): Can't have modifier 'final' here."
+      ]
+    },
+    {
+      "file": "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/pointycastle-4.0.0/lib/asymmetric/oaep.dart",
+      "parse_errors": [
+        "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/pointycastle-4.0.0/lib/asymmetric/oaep.dart(1852..1856): Can't have modifier 'final' here."
+      ]
+    },
+    {
+      "file": "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/basic_utils-5.8.2/lib/src/BooleanUtils.dart",
+      "parse_errors": [
+        "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/basic_utils-5.8.2/lib/src/BooleanUtils.dart(598..602): Can't have modifier 'final' here.",
+        "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/basic_utils-5.8.2/lib/src/BooleanUtils.dart(1131..1135): Can't have modifier 'final' here.",
+        "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/basic_utils-5.8.2/lib/src/BooleanUtils.dart(1485..1489): Can't have modifier 'final' here.",
+        "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/basic_utils-5.8.2/lib/src/BooleanUtils.dart(1872..1876): Can't have modifier 'final' here.",
+        "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/basic_utils-5.8.2/lib/src/BooleanUtils.dart(1886..1890): Can't have modifier 'final' here.",
+        "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/basic_utils-5.8.2/lib/src/BooleanUtils.dart(2231..2235): Can't have modifier 'final' here.",
+        "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/basic_utils-5.8.2/lib/src/BooleanUtils.dart(3737..3741): Can't have modifier 'final' here.",
+        "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/basic_utils-5.8.2/lib/src/BooleanUtils.dart(6596..6600): Can't have modifier 'final' here.",
+        "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/basic_utils-5.8.2/lib/src/BooleanUtils.dart(6615..6619): Can't have modifier 'final' here.",
+        "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/basic_utils-5.8.2/lib/src/BooleanUtils.dart(6926..6930): Can't have modifier 'final' here.",
+        "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/basic_utils-5.8.2/lib/src/BooleanUtils.dart(7195..7199): Can't have modifier 'final' here."
+      ]
+    },
+    {
+      "file": "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/basic_utils-5.8.2/lib/src/EnumUtils.dart",
+      "parse_errors": [
+        "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/basic_utils-5.8.2/lib/src/EnumUtils.dart(463..467): Can't have modifier 'final' here.",
+        "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/basic_utils-5.8.2/lib/src/EnumUtils.dart(486..490): Can't have modifier 'final' here.",
+        "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/basic_utils-5.8.2/lib/src/EnumUtils.dart(510..514): Can't have modifier 'final' here.",
+        "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/basic_utils-5.8.2/lib/src/EnumUtils.dart(1129..1133): Can't have modifier 'final' here.",
+        "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/basic_utils-5.8.2/lib/src/EnumUtils.dart(1152..1156): Can't have modifier 'final' here.",
+        "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/basic_utils-5.8.2/lib/src/EnumUtils.dart(1613..1617): Can't have modifier 'final' here."
+      ]
+    },
+    {
+      "file": "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/basic_utils-5.8.2/lib/src/IterableUtils.dart",
+      "parse_errors": [
+        "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/basic_utils-5.8.2/lib/src/IterableUtils.dart(2137..2141): Can't have modifier 'final' here.",
+        "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/basic_utils-5.8.2/lib/src/IterableUtils.dart(2506..2510): Can't have modifier 'final' here.",
+        "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/basic_utils-5.8.2/lib/src/IterableUtils.dart(2535..2539): Can't have modifier 'final' here.",
+        "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/basic_utils-5.8.2/lib/src/IterableUtils.dart(2790..2794): Can't have modifier 'final' here.",
+        "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/basic_utils-5.8.2/lib/src/IterableUtils.dart(2816..2820): Can't have modifier 'final' here.",
+        "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/basic_utils-5.8.2/lib/src/IterableUtils.dart(3147..3151): Can't have modifier 'final' here.",
+        "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/basic_utils-5.8.2/lib/src/IterableUtils.dart(3173..3177): Can't have modifier 'final' here.",
+        "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/basic_utils-5.8.2/lib/src/IterableUtils.dart(3423..3427): Can't have modifier 'final' here.",
+        "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/basic_utils-5.8.2/lib/src/IterableUtils.dart(3449..3453): Can't have modifier 'final' here.",
+        "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/basic_utils-5.8.2/lib/src/IterableUtils.dart(3712..3716): Can't have modifier 'final' here.",
+        "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/basic_utils-5.8.2/lib/src/IterableUtils.dart(3738..3742): Can't have modifier 'final' here.",
+        "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/basic_utils-5.8.2/lib/src/IterableUtils.dart(4066..4070): Can't have modifier 'final' here.",
+        "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/basic_utils-5.8.2/lib/src/IterableUtils.dart(4528..4532): Can't have modifier 'final' here."
+      ]
+    },
+    {
+      "file": "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/basic_utils-5.8.2/lib/src/SortUtils.dart",
+      "parse_errors": [
+        "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/basic_utils-5.8.2/lib/src/SortUtils.dart(324..326): Can't have modifier 'var' here."
+      ]
+    }
+  ],
+  "source_changes_during_graph": [],
+  "target_directive_importers": [],
+  "reachable_files_mentioning_target": [],
+  "target_reachable": false,
+  "status": "failed",
+  "source_head": "f3f98987824e021ed22a4d909e38d6307495267b",
+  "source_head_after": "f3f98987824e021ed22a4d909e38d6307495267b",
+  "graph_files": 4115,
+  "workspace_graph_files": 974,
+  "graph_sha256": "8fca8d28b49776fdbb7b92b411f88535d4f8c7bb810924e6933a53a476ab1959",
+  "compressed_graph_sha256": "4b3534a7034818fa64725a4fd0623cc8528790ae30f24dd475b3353e23965b8d",
+  "checker_sha256": "5393e4f47e473ee4f2a8ca0f3362c49818518c5fe7a95c76bbb6b139bddc4276",
+  "dart_ast_source_sha256": "4ef6e690702014b335aaa7c4ade6d37abedcf7fa48469e79f4449531667656f2",
+  "command": [
+    "/workspace/scratch/2c6eaad19389/zotero-toolchain/flutter-sdk/bin/cache/dart-sdk/bin/dart",
+    "--packages=/workspace/scratch/2c6eaad19389/quds_office_suite/.dart_tool/package_config.json",
+    "/workspace/scratch/2c6eaad19389/zotero-toolchain/tmp/unused-tool-imports-r8v74bp0/directives.dart",
+    "/workspace/scratch/2c6eaad19389/quds_office_suite/docs/validation/zotero-research-materials-20261120/continuation/unused-tool-import-graph/selection.json",
+    "/workspace/scratch/2c6eaad19389/zotero-toolchain/tmp/unused-tool-imports-r8v74bp0/graph.json"
+  ],
+  "semantics": "All import/export/part directives and conditional alternatives are traversed. dart: runtime libraries are recorded boundaries. No reachable source references the tool filename; arbitrary dynamic path construction is outside static import proof."
+}

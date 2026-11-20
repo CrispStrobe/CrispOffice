@@ -1,0 +1,27 @@
+{
+  "startedAtUtc": "2026-11-20T05:27:34.750471+00:00",
+  "command": [
+    "/workspace/scratch/75dc9d25dfaf/runtime/flutter/bin/cache/dart-sdk/bin/dart",
+    "analyze",
+    "--fatal-infos",
+    "packages/quds_office_engine/lib/src/slide/model/pml_presentation.dart",
+    "packages/quds_office_engine/lib/src/slide/serial/slide_serial.dart",
+    "packages/quds_office_engine/lib/src/slide/shapes/drawingml.dart",
+    "packages/quds_office_engine/test/slide_import_fidelity_test.dart"
+  ],
+  "exitCode": 3,
+  "elapsedSeconds": 5.564599573001033,
+  "inputs": {
+    "packages/quds_office_engine/lib/src/slide/model/pml_presentation.dart": "0978bbd221c32317f52640571c925bbc2ebad12ac980375573db259397201070",
+    "packages/quds_office_engine/lib/src/slide/serial/slide_serial.dart": "454a17549963f9b8e133d4d61d335852d26f61fa904f23d35a0f91876941337b",
+    "packages/quds_office_engine/lib/src/slide/shapes/drawingml.dart": "6b3c53cfbeb8113d12f19ab9fce1033955c047378261e93a7e36be35d5ba30ff",
+    "packages/quds_office_engine/test/slide_import_fidelity_test.dart": "e81a6fb4457723a9391a60ac10234970853f570a474ffc4eede928e460543974"
+  },
+  "inputsAfter": {
+    "packages/quds_office_engine/lib/src/slide/model/pml_presentation.dart": "0978bbd221c32317f52640571c925bbc2ebad12ac980375573db259397201070",
+    "packages/quds_office_engine/lib/src/slide/serial/slide_serial.dart": "454a17549963f9b8e133d4d61d335852d26f61fa904f23d35a0f91876941337b",
+    "packages/quds_office_engine/lib/src/slide/shapes/drawingml.dart": "6b3c53cfbeb8113d12f19ab9fce1033955c047378261e93a7e36be35d5ba30ff",
+    "packages/quds_office_engine/test/slide_import_fidelity_test.dart": "e81a6fb4457723a9391a60ac10234970853f570a474ffc4eede928e460543974"
+  },
+  "inputsUnchanged": true
+}

@@ -132,8 +132,10 @@ mailbox and durable outbox host milestones remain open.
 
 Original implementation is MIT. XML 7.1.0 and Pointy Castle 4.0.0 were already
 locked transitive dependencies and become direct transport dependencies without
-version or archive-hash changes. Their MIT-family notices remain in the packages;
-the existing reviewed MPL MIME fork is unchanged.
+version or archive-hash changes. Their MIT-family notices remain in the packages.
+That EWS increment left the reviewed MPL MIME fork unchanged; the later
+[attachment increment](attachments.md) separately records its scoped
+quoted-printable encoder correction.
 
 ## Primary references
 

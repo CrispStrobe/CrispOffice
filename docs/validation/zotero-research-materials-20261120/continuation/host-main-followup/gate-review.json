@@ -1,0 +1,712 @@
+{
+  "candidate_tree": "497db59c5683a3d5efb566b4930e5fbdce98a52f",
+  "catalog_adapter_sha256": "6a2aeba352f43a8d3e1712b11c329eb35b4ba5a9495197b97de6df3b347a2b39",
+  "catalog_disjoint": true,
+  "catalog_file_count": 157,
+  "changed_dart_path_count": 30,
+  "changed_path_count": 119,
+  "changed_paths": {
+    "docs/roadmaps/mail/attachments.md": {
+      "before_blob": "dc59e248fd3a8186e66a89c27e4d3398927b3b24",
+      "candidate_blob": "b0f128a057041b6d34ed446cd97b57265525747c"
+    },
+    "docs/roadmaps/mail/implementation-plan.md": {
+      "before_blob": "aa9dcf1f057452bf42373daeef8aa231de6b861a",
+      "candidate_blob": "d2887d510cfbc0bc360e3dba480c0f9d8107fc25"
+    },
+    "docs/roadmaps/mail/recipients-and-reply-all.md": {
+      "before_blob": "2911b1de6c0bf492bbc1f6e91a7df458a74f5fbb",
+      "candidate_blob": "e5f2151cce012e9a3a48e1678ba738090139e847"
+    },
+    "docs/roadmaps/mail/status.md": {
+      "before_blob": "3eb619ea7de3eb8dd1f0c7d73d302bfa91f3ca26",
+      "candidate_blob": "45333c423de8cc2e2cbc1d2d30061c81f100ab0f"
+    },
+    "docs/validation/mail-attachments-20261120/resumed/initial-remote-inventory.json": {
+      "before_blob": null,
+      "candidate_blob": "50bc934c84570b3d64dff2e8ac1e275b20320b44"
+    },
+    "docs/validation/mail-attachments-20261120/slides/README.md": {
+      "before_blob": null,
+      "candidate_blob": "87d967a71c973b9b9d4c93eccf76b9a47a4037c3"
+    },
+    "docs/validation/mail-attachments-20261120/slides/slide-c23-editor-analysis.log": {
+      "before_blob": null,
+      "candidate_blob": "fc12d404da7cd5343c4149fc094412d3c03ac624"
+    },
+    "docs/validation/mail-attachments-20261120/slides/slide-c23-editor-qualification.json": {
+      "before_blob": null,
+      "candidate_blob": "9a4a8b4422d8912ae456c6449aaba36aec8566dc"
+    },
+    "docs/validation/mail-attachments-20261120/slides/slide-c23-editor-tests.log": {
+      "before_blob": null,
+      "candidate_blob": "2fae59a73bbf65ac0aa1549d87b6b5621cfcf46d"
+    },
+    "docs/validation/mail-attachments-20261120/slides/slide-editor-analysis-final.log": {
+      "before_blob": null,
+      "candidate_blob": "37cf2c07963e224b17c2004607659703719c0804"
+    },
+    "docs/validation/mail-attachments-20261120/slides/slide-editor-analysis.log": {
+      "before_blob": null,
+      "candidate_blob": "54af1254ccc45aa6cc5f87ed2ac4c203ae60eaec"
+    },
+    "docs/validation/mail-attachments-20261120/slides/slide-editor-tests-final.log": {
+      "before_blob": null,
+      "candidate_blob": "89a859c147fe76e357c6c1843bfec16a9764b321"
+    },
+    "docs/validation/mail-attachments-20261120/slides/slide-editor-tests.log": {
+      "before_blob": null,
+      "candidate_blob": "8a440552fa0599bc224f977acf690feaac940d6d"
+    },
+    "docs/validation/mail-attachments-20261120/slides/slide-engine-analysis.log": {
+      "before_blob": null,
+      "candidate_blob": "35c3801f19f4216317476b895ea33eee7b80e212"
+    },
+    "docs/validation/mail-attachments-20261120/slides/slide-engine-tests.log": {
+      "before_blob": null,
+      "candidate_blob": "005821d8b7f667c3056a2c6311685c5473376f53"
+    },
+    "docs/validation/mail-attachments-20261120/slides/slide-final-editor-analysis.log": {
+      "before_blob": null,
+      "candidate_blob": "fc12d404da7cd5343c4149fc094412d3c03ac624"
+    },
+    "docs/validation/mail-attachments-20261120/slides/slide-final-editor-inputs-before-parser-fix.json": {
+      "before_blob": null,
+      "candidate_blob": "19d87f2d5b0947a8439b01314f5af552273ff86d"
+    },
+    "docs/validation/mail-attachments-20261120/slides/slide-final-editor-inputs-before-pdf-fit-fix.json": {
+      "before_blob": null,
+      "candidate_blob": "d2d5252e1b7867b3e298f01440814475cb981b6e"
+    },
+    "docs/validation/mail-attachments-20261120/slides/slide-final-editor-qualification.json": {
+      "before_blob": null,
+      "candidate_blob": "0296c940c3da62392af147b0d5932b6fb093d4f3"
+    },
+    "docs/validation/mail-attachments-20261120/slides/slide-final-editor-tests-before-pdf-fit-fix.log": {
+      "before_blob": null,
+      "candidate_blob": "fa6332844d6f2e375d9b40d5f66cff2fefe3f5a6"
+    },
+    "docs/validation/mail-attachments-20261120/slides/slide-final-editor-tests-duplicate-parser-failure.log": {
+      "before_blob": null,
+      "candidate_blob": "7458b15d33e84a0faff79afcc4a6c75c438da517"
+    },
+    "docs/validation/mail-attachments-20261120/slides/slide-final-editor-tests.log": {
+      "before_blob": null,
+      "candidate_blob": "9fb99c0fe3d494a0dd845948e89a957879bf4e54"
+    },
+    "docs/validation/mail-attachments-20261120/slides/slide-inherited-contrast-before.log": {
+      "before_blob": null,
+      "candidate_blob": "581e718523acd2f7eae4b1cbfbe5ced1a3de38ac"
+    },
+    "docs/validation/mail-attachments-20261120/slides/slide-regression-qualification.json": {
+      "before_blob": null,
+      "candidate_blob": "66540f01402ed094b73a3ba2b364c463ac0e4194"
+    },
+    "docs/validation/mail-attachments-20261120/slides/slide-vba-merge-analysis.log": {
+      "before_blob": null,
+      "candidate_blob": "2422f04c99244bb8f2ffc438723e977153edc264"
+    },
+    "docs/validation/mail-attachments-20261120/slides/slide-vba-merge-editor-tests.log": {
+      "before_blob": null,
+      "candidate_blob": "6854ad89669a97afd39d72145e4d053adcaa76b1"
+    },
+    "docs/validation/mail-attachments-20261120/slides/slide-vba-merge-engine-tests.log": {
+      "before_blob": null,
+      "candidate_blob": "5e84b4722ebea2083158882db84527f67ac65610"
+    },
+    "docs/validation/mail-attachments-20261120/slides/slide-vba-merge-qualification.json": {
+      "before_blob": null,
+      "candidate_blob": "57de8921f02c81727a65282ceb14242600701aeb"
+    },
+    "docs/validation/mail-attachments-20261120/slides/slide-zotero-latest-merge-analysis.log": {
+      "before_blob": null,
+      "candidate_blob": "a6657d7c6b44f95724c43bacb86818e1df5e0161"
+    },
+    "docs/validation/native-spacy-grammar-v2-20261120/README.md": {
+      "before_blob": "af27429832ec99a355d5ba60c17effdd25d2deb8",
+      "candidate_blob": "48602f83ee5ba671903741438c03cee470940645"
+    },
+    "docs/validation/word-native-layout-20261120/README.md": {
+      "before_blob": null,
+      "candidate_blob": "a6acc75c436922b9ea132e81bd78a01eed99451b"
+    },
+    "docs/validation/word-native-layout-20261120/acceptance.json": {
+      "before_blob": null,
+      "candidate_blob": "51780bd3abdd051340d4945fcb532fa622ab00d6"
+    },
+    "docs/validation/word-native-layout-20261120/analysis-accepted.log": {
+      "before_blob": null,
+      "candidate_blob": "424325f259b915e0b646e19bae3136b36a65910e"
+    },
+    "docs/validation/word-native-layout-20261120/calibri-comparison.png": {
+      "before_blob": null,
+      "candidate_blob": "7a188139f473a117a1615390e1c5d0fe4738c0a3"
+    },
+    "docs/validation/word-native-layout-20261120/comparator-tests.log": {
+      "before_blob": null,
+      "candidate_blob": "0d6f1e8c7825ce06e7bd08ab448b9e5affd33077"
+    },
+    "docs/validation/word-native-layout-20261120/editor-accepted.log": {
+      "before_blob": null,
+      "candidate_blob": "b86ccf5c48fe5fd81ee76c82b0b2ae522edf46cd"
+    },
+    "docs/validation/word-native-layout-20261120/engine-accepted.log": {
+      "before_blob": null,
+      "candidate_blob": "ca7fa210ad1265ac81fc844e216f055974cfecb5"
+    },
+    "docs/validation/word-native-layout-20261120/marked-word-export.log": {
+      "before_blob": null,
+      "candidate_blob": "a59f02262442a95dabb8bad3f62ca5ed91a67c72"
+    },
+    "docs/validation/word-native-layout-20261120/qualification-after.json": {
+      "before_blob": null,
+      "candidate_blob": "5af9afc5931f8f51d16566654cc5863aa3efb68d"
+    },
+    "docs/validation/word-native-layout-20261120/qualification-before.json": {
+      "before_blob": null,
+      "candidate_blob": "1e5573024a597877f5dc66b2cd6faa8bc9a79bf8"
+    },
+    "docs/validation/word-native-layout-20261120/reconciled-editor.log": {
+      "before_blob": null,
+      "candidate_blob": "7585b20556bafe922594d6a9a7de48cc3113b194"
+    },
+    "docs/validation/word-native-layout-20261120/reconciled-engine.log": {
+      "before_blob": null,
+      "candidate_blob": "a2ef4a64abf34f486b1a9dfbf5d9505134859d33"
+    },
+    "docs/validation/word-native-layout-20261120/reference/aptos-atLeast-240-word-1.png": {
+      "before_blob": null,
+      "candidate_blob": "1974b56dedbc56fa4dc36cc19b670696470ef961"
+    },
+    "docs/validation/word-native-layout-20261120/reference/aptos-atLeast-240.docx": {
+      "before_blob": null,
+      "candidate_blob": "1df5434dba17d3c9853160651360e75145464128"
+    },
+    "docs/validation/word-native-layout-20261120/reference/aptos-auto-240-word-1.png": {
+      "before_blob": null,
+      "candidate_blob": "1974b56dedbc56fa4dc36cc19b670696470ef961"
+    },
+    "docs/validation/word-native-layout-20261120/reference/aptos-auto-240.docx": {
+      "before_blob": null,
+      "candidate_blob": "3f5c94f663cc9280aec8b455d774741d72fbbad3"
+    },
+    "docs/validation/word-native-layout-20261120/reference/aptos-auto-360-word-1.png": {
+      "before_blob": null,
+      "candidate_blob": "95e332c16828067f8715be7fdde49d8b76c00c93"
+    },
+    "docs/validation/word-native-layout-20261120/reference/aptos-auto-360-word-2.png": {
+      "before_blob": null,
+      "candidate_blob": "792ae3806c89700a94821e551e81367766aca1d4"
+    },
+    "docs/validation/word-native-layout-20261120/reference/aptos-auto-360.docx": {
+      "before_blob": null,
+      "candidate_blob": "0597361a377a0b6162da1de0b5decc2087c4fa6d"
+    },
+    "docs/validation/word-native-layout-20261120/reference/aptos-exact-360-word-1.png": {
+      "before_blob": null,
+      "candidate_blob": "e865078022331054c08bf98ce3a2dd2f3acbc57f"
+    },
+    "docs/validation/word-native-layout-20261120/reference/aptos-exact-360-word-2.png": {
+      "before_blob": null,
+      "candidate_blob": "269eb7c598ba92f06ff22377d38099b2782ed31f"
+    },
+    "docs/validation/word-native-layout-20261120/reference/aptos-exact-360.docx": {
+      "before_blob": null,
+      "candidate_blob": "831fd735ff097ad2aaa351a74c3ac7f62ebee521"
+    },
+    "docs/validation/word-native-layout-20261120/reference/arial-atLeast-240-word-1.png": {
+      "before_blob": null,
+      "candidate_blob": "a3e524c4195704b86e923173d243189b8b141539"
+    },
+    "docs/validation/word-native-layout-20261120/reference/arial-atLeast-240.docx": {
+      "before_blob": null,
+      "candidate_blob": "32d5a97c7c0721b0437e545df6ab7a46f8dc9189"
+    },
+    "docs/validation/word-native-layout-20261120/reference/arial-auto-240-word-1.png": {
+      "before_blob": null,
+      "candidate_blob": "a3e524c4195704b86e923173d243189b8b141539"
+    },
+    "docs/validation/word-native-layout-20261120/reference/arial-auto-240.docx": {
+      "before_blob": null,
+      "candidate_blob": "ecc211b73afe436663fd2278979737a9de1140ed"
+    },
+    "docs/validation/word-native-layout-20261120/reference/arial-auto-360-word-1.png": {
+      "before_blob": null,
+      "candidate_blob": "cc29bd8a6f9b1a935e5288de6e793c8e2e5f07d5"
+    },
+    "docs/validation/word-native-layout-20261120/reference/arial-auto-360-word-2.png": {
+      "before_blob": null,
+      "candidate_blob": "438d9cbeb53c4c5c5f7ccff26f80a49730b986d0"
+    },
+    "docs/validation/word-native-layout-20261120/reference/arial-auto-360.docx": {
+      "before_blob": null,
+      "candidate_blob": "fceaceb66cf6bacc157828a34e2dbc921094b4bc"
+    },
+    "docs/validation/word-native-layout-20261120/reference/arial-exact-360-word-1.png": {
+      "before_blob": null,
+      "candidate_blob": "0b67e601ed997d773717461235d7b75367346143"
+    },
+    "docs/validation/word-native-layout-20261120/reference/arial-exact-360-word-2.png": {
+      "before_blob": null,
+      "candidate_blob": "342efa1d420f56bb5857620ccc84eef3e0e8bc66"
+    },
+    "docs/validation/word-native-layout-20261120/reference/arial-exact-360.docx": {
+      "before_blob": null,
+      "candidate_blob": "c07581aaf1cf4d3c4714fe0fafa741535ade7d97"
+    },
+    "docs/validation/word-native-layout-20261120/reference/calibri-atLeast-240-word-1.png": {
+      "before_blob": null,
+      "candidate_blob": "10f16301a0cd8b07edde53d45dcb656fc5b950a8"
+    },
+    "docs/validation/word-native-layout-20261120/reference/calibri-atLeast-240.docx": {
+      "before_blob": null,
+      "candidate_blob": "274bc5a51e737315e874f4b106a770af725b5aa2"
+    },
+    "docs/validation/word-native-layout-20261120/reference/calibri-auto-240-word-1.png": {
+      "before_blob": null,
+      "candidate_blob": "10f16301a0cd8b07edde53d45dcb656fc5b950a8"
+    },
+    "docs/validation/word-native-layout-20261120/reference/calibri-auto-240.docx": {
+      "before_blob": null,
+      "candidate_blob": "6cefeecc3f68028c88915bb85f552361317cf0bf"
+    },
+    "docs/validation/word-native-layout-20261120/reference/calibri-auto-360-word-1.png": {
+      "before_blob": null,
+      "candidate_blob": "b71e138169afb16734ebac66cf207695af2f961a"
+    },
+    "docs/validation/word-native-layout-20261120/reference/calibri-auto-360-word-2.png": {
+      "before_blob": null,
+      "candidate_blob": "444c41482b4e3bd7c5457b471f0b7f9c2a6ef70b"
+    },
+    "docs/validation/word-native-layout-20261120/reference/calibri-auto-360.docx": {
+      "before_blob": null,
+      "candidate_blob": "8452e79998459526bd2f46693cee710676dfbbd4"
+    },
+    "docs/validation/word-native-layout-20261120/reference/calibri-exact-360-word-1.png": {
+      "before_blob": null,
+      "candidate_blob": "a6517e5b1bccdcc9202e89aba0c5383cb22597c8"
+    },
+    "docs/validation/word-native-layout-20261120/reference/calibri-exact-360-word-2.png": {
+      "before_blob": null,
+      "candidate_blob": "e793d819bb048775f6cc17c5b120b0a16d2ac096"
+    },
+    "docs/validation/word-native-layout-20261120/reference/calibri-exact-360.docx": {
+      "before_blob": null,
+      "candidate_blob": "3d4c47d9035910aaf1a76459d2211fda6ee86c14"
+    },
+    "docs/validation/word-native-layout-20261120/reference/manifest.json": {
+      "before_blob": null,
+      "candidate_blob": "9ac4cfedc0bf0b4246f168bb5062162a3497ac25"
+    },
+    "docs/validation/word-native-layout-20261120/reference/times-atLeast-240-word-1.png": {
+      "before_blob": null,
+      "candidate_blob": "26fd8d415a5e0e5d1d817fff4d1678f61e2ca8f0"
+    },
+    "docs/validation/word-native-layout-20261120/reference/times-atLeast-240.docx": {
+      "before_blob": null,
+      "candidate_blob": "65c43d9976ee390a607fbcc8e29c432ddd218822"
+    },
+    "docs/validation/word-native-layout-20261120/reference/times-auto-240-word-1.png": {
+      "before_blob": null,
+      "candidate_blob": "26fd8d415a5e0e5d1d817fff4d1678f61e2ca8f0"
+    },
+    "docs/validation/word-native-layout-20261120/reference/times-auto-240.docx": {
+      "before_blob": null,
+      "candidate_blob": "df4f1ca4e3508c6dc2c71adc805d33522fbca970"
+    },
+    "docs/validation/word-native-layout-20261120/reference/times-auto-360-word-1.png": {
+      "before_blob": null,
+      "candidate_blob": "9ae93b6b384eeae784e572763173b4b5e4abe533"
+    },
+    "docs/validation/word-native-layout-20261120/reference/times-auto-360-word-2.png": {
+      "before_blob": null,
+      "candidate_blob": "f99445e9938d26bab9c4e6126040c7b0ca4d9f7c"
+    },
+    "docs/validation/word-native-layout-20261120/reference/times-auto-360.docx": {
+      "before_blob": null,
+      "candidate_blob": "e464baa782ef0ab340616fd81826637bd7b1587b"
+    },
+    "docs/validation/word-native-layout-20261120/reference/times-exact-360-word-1.png": {
+      "before_blob": null,
+      "candidate_blob": "cddacf8f9ef81f6e26f2dccb87e17e53c8d16438"
+    },
+    "docs/validation/word-native-layout-20261120/reference/times-exact-360-word-2.png": {
+      "before_blob": null,
+      "candidate_blob": "44ab1c1929af018cf95a938fba150f6c14b90428"
+    },
+    "docs/validation/word-native-layout-20261120/reference/times-exact-360.docx": {
+      "before_blob": null,
+      "candidate_blob": "6221281fe5e23165ef28150022c659a5031d656d"
+    },
+    "docs/validation/word-native-layout-20261120/reference/word-reference.json": {
+      "before_blob": null,
+      "candidate_blob": "622c2f3679f93de7fcbb4a1d02b854bdad79356e"
+    },
+    "docs/validation/word-native-layout-20261120/word-export.log": {
+      "before_blob": null,
+      "candidate_blob": "3c3269b623aca9026f92fabac163ee04009ed44f"
+    },
+    "packages/quds_office_editor/CHANGELOG.md": {
+      "before_blob": "0a93e08e64862b40475530aa3e090ba6d7b175ce",
+      "candidate_blob": "8c25cc397459b57c141c34cb135d3143b2d2cb2b"
+    },
+    "packages/quds_office_editor/example/lib/studio_mail_compose.dart": {
+      "before_blob": "5a9cf37f21bcc28ae19317c99a9694e53649346f",
+      "candidate_blob": "ce1ecd8b53d760c0417cc228ad8ef913f49c26da"
+    },
+    "packages/quds_office_editor/example/lib/studio_mail_native.dart": {
+      "before_blob": "6bf1df15ac6244308c1fe0cb382e1db1d5da151a",
+      "candidate_blob": "a10a445e4a46cf78cff48ecd5ec18d1b29de83e0"
+    },
+    "packages/quds_office_editor/example/lib/studio_material_theme.dart": {
+      "before_blob": "ae1c0456e4e6bcac2cc7832dfef41f5a53c92863",
+      "candidate_blob": "644971de60199b0763ff8c685826551d5adba9ea"
+    },
+    "packages/quds_office_editor/example/lib/suite_workspace.dart": {
+      "before_blob": "cddbe90139062c773e4dfb582d199cd258e20c77",
+      "candidate_blob": "e9ea54c1bfc4003b2f39582c223dca003c089b3e"
+    },
+    "packages/quds_office_editor/example/test/studio_mail_attachment_compose_test.dart": {
+      "before_blob": "1842cec8fe5d75fb0568fa3e4a1fa4c8dcd1484d",
+      "candidate_blob": "17aa5ee00a3adc123149bcc8255c0e4cdce94ada"
+    },
+    "packages/quds_office_editor/lib/src/editor_slide/render_slide_stage.dart": {
+      "before_blob": "e150d39da155a1810b69dffcc310124283664294",
+      "candidate_blob": "2001dd86d8cdc0a58c6b13d8430c160b29a51af3"
+    },
+    "packages/quds_office_editor/lib/src/editor_word/render_word_canvas.dart": {
+      "before_blob": "aa0e3620e3d85b34077923104b41c9944657cb9d",
+      "candidate_blob": "e23ecb7328a2408a24ac16abeb0811deb4370915"
+    },
+    "packages/quds_office_editor/lib/src/embed/office_controller.dart": {
+      "before_blob": "ef46912a4c7c3d34effc359972304dd107202882",
+      "candidate_blob": "2c102f75e5379cfd72e6770b70fc828b80dd0392"
+    },
+    "packages/quds_office_editor/lib/src/embed/office_host_fonts.dart": {
+      "before_blob": "ed2d008b33e6a97e18cef7387f1c41b208af2a94",
+      "candidate_blob": "885d5a8873146a0c872b5c2df47104fccab9f904"
+    },
+    "packages/quds_office_editor/test/host_fonts_test.dart": {
+      "before_blob": "2198ddd7f757d502fa6fb469a45255fa814510ab",
+      "candidate_blob": "49e2061cff6602ddaa8089bc91b37c6fcb587879"
+    },
+    "packages/quds_office_editor/test/slide_incoming_pptx_regression_test.dart": {
+      "before_blob": "90d36f7ed79c3e699058e9bc3ada847654336254",
+      "candidate_blob": "dbbfeb0c5dc29b76ab638d21a9f90d9c4446812c"
+    },
+    "packages/quds_office_editor/test/slide_transform_orientation_test.dart": {
+      "before_blob": null,
+      "candidate_blob": "1b2cc6c90307036485197f1e4d55b5e82c020e4e"
+    },
+    "packages/quds_office_editor/tool/render_word_native_corpus.dart": {
+      "before_blob": null,
+      "candidate_blob": "6b6a7a96010a7dc6687a3eb3c21ea3958c8c9304"
+    },
+    "packages/quds_office_engine/lib/src/fonts/font_metrics.dart": {
+      "before_blob": "bf4ed25515f6ad1630c959d81b9227090cbc27e3",
+      "candidate_blob": "2b0b6c90c48ef285ac059b46e1cbe784596aa7ef"
+    },
+    "packages/quds_office_engine/lib/src/pdf/office_pdf_export.dart": {
+      "before_blob": "b79e6adec410302d215d6c053497b48be96a21c9",
+      "candidate_blob": "83c91afbe6405705a56bdb36977098215c809a06"
+    },
+    "packages/quds_office_engine/lib/src/pdf/office_pdf_visuals.dart": {
+      "before_blob": "6efcd0e906fbba1d73a93ad423fbcd16089f64b8",
+      "candidate_blob": "83a026662de35b4d542f290b1043fd75ac409c38"
+    },
+    "packages/quds_office_engine/lib/src/slide/model/pml_presentation.dart": {
+      "before_blob": "54a711c4877e08450ae23d94a005ffceb002a820",
+      "candidate_blob": "0ca0af3d981852c3300aea6b75246f33e874da03"
+    },
+    "packages/quds_office_engine/lib/src/slide/serial/slide_serial.dart": {
+      "before_blob": "79c472a78249ad52a107df9d89284ad05ba2e03e",
+      "candidate_blob": "a795c4a6e2e1618be70ac9a65917b4daa3d08c70"
+    },
+    "packages/quds_office_engine/lib/src/slide/shapes/drawingml.dart": {
+      "before_blob": "5e0efc672148bfe1225d5d827468b2e74767608c",
+      "candidate_blob": "a15e18af345372ed350ee1ef23c7c8b9f677ce54"
+    },
+    "packages/quds_office_engine/lib/src/word/layout/word_layout.dart": {
+      "before_blob": "9964637f6abb2614514ad31783caa3683ab61856",
+      "candidate_blob": "3c13cc58dbc450495b13e87190a0154e1ac4c64c"
+    },
+    "packages/quds_office_engine/lib/src/word/layout/word_note_layout.dart": {
+      "before_blob": "4ba7734a42ef6da14a0048395cb14eb4fc448d75",
+      "candidate_blob": "7b66925f8205cd59d0778336b904e7533423159c"
+    },
+    "packages/quds_office_engine/lib/src/word/layout/word_table_row_layout.dart": {
+      "before_blob": "6ae688961a865d012aab2229c81b9dc63b0e4536",
+      "candidate_blob": "65176ec282d7ab474f12b63f400a557655eb0ac6"
+    },
+    "packages/quds_office_engine/lib/src/word/properties/wml_properties.dart": {
+      "before_blob": "c424834f93facbfea93db28c45a8f0c8f1720a39",
+      "candidate_blob": "67bd04b58b7f23868e9b3d75f855e66112f2b9a2"
+    },
+    "packages/quds_office_engine/lib/src/word/serial/word_deserializer.dart": {
+      "before_blob": "6316805dc16862ac96f5f7a6e86e7ba7ef99e263",
+      "candidate_blob": "bc69b6dc13e202cb0bfee5dbb3075d646ba381dd"
+    },
+    "packages/quds_office_engine/lib/src/word/serial/word_style_cascade.dart": {
+      "before_blob": "708b504a94e5680046d8b75da5aa98c822f4f41e",
+      "candidate_blob": "6f17d8e6b64d770f3456bff757d09504a9f486dc"
+    },
+    "packages/quds_office_engine/test/slide_import_fidelity_test.dart": {
+      "before_blob": "6e2a40b3c75332dab4f5d8412ea9d39eee9e5a9c",
+      "candidate_blob": "30241bbf882bb97af933194d0ae65ea92d0c030e"
+    },
+    "packages/quds_office_engine/test/slide_transform_orientation_test.dart": {
+      "before_blob": null,
+      "candidate_blob": "ede150ae5a8fe046ea146001cb9cab18adb23e8b"
+    },
+    "packages/quds_office_engine/test/word_font_line_metrics_test.dart": {
+      "before_blob": null,
+      "candidate_blob": "ac6dca74af61375383738643a748d286efab4261"
+    },
+    "packages/quds_office_engine/test/word_paragraph_mark_layout_test.dart": {
+      "before_blob": null,
+      "candidate_blob": "b7e958e451c1095194a4f1acac1453a6830e52b5"
+    },
+    "packages/quds_office_engine/tool/fidelity/test_word_native_layout.py": {
+      "before_blob": null,
+      "candidate_blob": "51bb0be3b2711addd14c94ffeae41167c0abefb3"
+    },
+    "packages/quds_office_engine/tool/fidelity/word_native_layout.dart": {
+      "before_blob": null,
+      "candidate_blob": "9e51af0882aa9d52cc669d2e37ba351e80c01d4e"
+    },
+    "packages/quds_office_engine/tool/fidelity/word_native_layout.py": {
+      "before_blob": null,
+      "candidate_blob": "91a2bbeacd2771d5c779cea81572185fc44f5034"
+    },
+    "pubspec.lock": {
+      "before_blob": "9dd0b858b9b51066519be5cb085f3bd8a3c24d3c",
+      "candidate_blob": "b2b802bd19bcb5fd9ce4ad3ba91eeb025788b2a3"
+    }
+  },
+  "cohorts": {
+    "editor-rendering": {
+      "file_count": 10,
+      "rationale": "Every slide test includes the new orientation suite, plus the established dark-slide, Unicode painting, small-caps and tab-stop rendering integrations.",
+      "selected_source_blobs": {
+        "packages/quds_office_editor/test/office_dark_slide_test.dart": "dced92054febbb44a3702e430dda6a4c17869764",
+        "packages/quds_office_editor/test/paint_run_text_unicode_test.dart": "62c6903628f51c7f78d32254b9cb107e07a25a36",
+        "packages/quds_office_editor/test/slide_arrange_history_test.dart": "09cc6794acf2ee6958405a9066371baf8010394e",
+        "packages/quds_office_editor/test/slide_incoming_pptx_regression_test.dart": "dbbfeb0c5dc29b76ab638d21a9f90d9c4446812c",
+        "packages/quds_office_editor/test/slide_notes_history_test.dart": "ffdfe514c7450b26516dd1f9a87e25b32aff7328",
+        "packages/quds_office_editor/test/slide_render_fidelity_test.dart": "03496820d952b80da14e7d9cd0e17b1772975f0e",
+        "packages/quds_office_editor/test/slide_section_reorder_test.dart": "a16b7cdb59c0d4ed01f8b4040b1943d2792c56fe",
+        "packages/quds_office_editor/test/slide_transform_orientation_test.dart": "1b2cc6c90307036485197f1e4d55b5e82c020e4e",
+        "packages/quds_office_editor/test/word_small_caps_test.dart": "7e44aeb43a4f0aa9150f1b1517d6dd2e8fe84be2",
+        "packages/quds_office_editor/test/word_tab_stops_editor_test.dart": "38357e1bc5114b8b6f1c267564885a082b626da7"
+      }
+    },
+    "editor-word-layout": {
+      "file_count": 14,
+      "rationale": "Host-font face resolution, Word baseline/shaping/underline and fallback paint, caret and context geometry, selection/proofing geometry, page layout, note editing, inline-picture history and document/chrome themes.",
+      "selected_source_blobs": {
+        "packages/quds_office_editor/test/host_fonts_test.dart": "49e2061cff6602ddaa8089bc91b37c6fcb587879",
+        "packages/quds_office_editor/test/office_chrome_theme_test.dart": "e4d5bb8902a7afe5179ebf215a2c25b166a61c2e",
+        "packages/quds_office_editor/test/office_dark_document_test.dart": "eef184778893a33573bf40b31e2380ea386f7bf6",
+        "packages/quds_office_editor/test/paint_font_fallback_test.dart": "fbd7df25a43c963d34a26d8b333215420fbfa300",
+        "packages/quds_office_editor/test/word_hyphenation_caret_test.dart": "21f9365f579fd26ba4a9cde53bbac8d7917e826d",
+        "packages/quds_office_editor/test/word_inline_picture_history_test.dart": "587b88896fc94bc067e2a6cb2b132ca2e2769931",
+        "packages/quds_office_editor/test/word_keyboard_context_geometry_test.dart": "e239d2ec9f745631361f140a968c1b65ef475b07",
+        "packages/quds_office_editor/test/word_note_numbering_test.dart": "4371e685ffe998672691bfc61f58d8af75168945",
+        "packages/quds_office_editor/test/word_notes_editing_test.dart": "3b63f7e4af71347fb86e02ddd9e311ced163ccf2",
+        "packages/quds_office_editor/test/word_page_layout_test.dart": "230b7c0761179757091c88d707e5a8151028e801",
+        "packages/quds_office_editor/test/word_proofing_geometry_test.dart": "59999818f508e7aceedd498b942797e97e065a68",
+        "packages/quds_office_editor/test/word_selection_paint_test.dart": "ba95fcd5aa441c97e3b878e2e7deab2566870d4c",
+        "packages/quds_office_editor/test/word_shaped_wrap_test.dart": "e322e4a00dd378f77981936571e59cb4ea281f1d",
+        "packages/quds_office_editor/test/word_underline_paint_test.dart": "25aa28f02d316709967f4aa919aac8f71a360799"
+      }
+    },
+    "editor-zotero": {
+      "file_count": 43,
+      "rationale": "Full current Zotero editor corpus verifies dialogs, citations and document operations against the incoming controller, host-font and Word canvas changes.",
+      "selected_source_blobs": {
+        "packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart": "0d8869b671df74f333db7ec30ed9b59e2d046364",
+        "packages/quds_office_editor/test/word_zotero_backoff_session_test.dart": "dd681f67fa1fb7acb548061d4da69fa1bab5a18a",
+        "packages/quds_office_editor/test/word_zotero_bibliography_controller_test.dart": "2ba8fc2a65f8442337263e999ca839143c96c7bb",
+        "packages/quds_office_editor/test/word_zotero_catalog_citing_test.dart": "21a88d43d0dc81cede3583e748e32c544c6303e4",
+        "packages/quds_office_editor/test/word_zotero_catalog_query_test.dart": "903987e92ef865ecb4c1fa0a7bf7f3b98f3a9bbc",
+        "packages/quds_office_editor/test/word_zotero_children_dialog_test.dart": "d4ff9071616c6e2e07e3f8bca2ba5bbed315f4e9",
+        "packages/quds_office_editor/test/word_zotero_children_test.dart": "5e27aa59fcac58a3a3c81e373103e06226118b24",
+        "packages/quds_office_editor/test/word_zotero_citing_controller_test.dart": "03f8183864021b8b766fbf3debe3b680315f2a83",
+        "packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart": "8ea62cbe3ebd152195a2cf34f395765e1a7d4e6e",
+        "packages/quds_office_editor/test/word_zotero_collection_pagination_test.dart": "2c7ac95c3379050017bdd5470be9b7192115e7ae",
+        "packages/quds_office_editor/test/word_zotero_composer_test.dart": "495f4a8a7bb83c9ad13f7200f47aa4cfd985c7c5",
+        "packages/quds_office_editor/test/word_zotero_connected_alias_test.dart": "e766873e266dfca36b233b6ee3541c560bdaf100",
+        "packages/quds_office_editor/test/word_zotero_controller_test.dart": "4b7656d940dbed1e811ebc9ea601e75d1fe16dc9",
+        "packages/quds_office_editor/test/word_zotero_dialog_scaling_test.dart": "521e8af163fff94e2ea03438ce808f5252e8274a",
+        "packages/quds_office_editor/test/word_zotero_dialog_test.dart": "64d006e176c201326ed059eb048de20c90aab2c7",
+        "packages/quds_office_editor/test/word_zotero_direct_command_test.dart": "1ba13825985520cae5292d5b4e9ae2ac0e507243",
+        "packages/quds_office_editor/test/word_zotero_document_actions_test.dart": "0bf9628b17c40e93fd22e7602232f9ae46fb41c0",
+        "packages/quds_office_editor/test/word_zotero_document_reuse_test.dart": "78b2560278e7703ec1dc30e2c2552ea79b42d076",
+        "packages/quds_office_editor/test/word_zotero_document_source_picker_test.dart": "5ecdc6a986e5d6fcc4c9dd79729dd9f56e19b549",
+        "packages/quds_office_editor/test/word_zotero_document_sources_test.dart": "c5ac5ef6e4c239d22a73fb991b348d13dc43b908",
+        "packages/quds_office_editor/test/word_zotero_field_at_caret_test.dart": "c32b2b3504ff3f04fd804d8f26d2e9d183a9acf9",
+        "packages/quds_office_editor/test/word_zotero_format_test.dart": "980dd7eb8703cc0e120e664fd27b7cdaf0fbf97f",
+        "packages/quds_office_editor/test/word_zotero_import_search_test.dart": "cbb3c372c4ddad055a825382b8d8847a6e39acb8",
+        "packages/quds_office_editor/test/word_zotero_library_details_test.dart": "cd7079fd6ffcb5a5cba0e9bdd4a9ab5b2973d088",
+        "packages/quds_office_editor/test/word_zotero_navigation_dialog_test.dart": "6b8791ae9ab2ecf2b2324d62ae46a4c2adac1a70",
+        "packages/quds_office_editor/test/word_zotero_navigation_pane_test.dart": "2bc1f135db0b0967742ecaacc9741ed62b722773",
+        "packages/quds_office_editor/test/word_zotero_navigation_test.dart": "b3cc8d0e87f75cf6bc2df88b65240695d9ebbd86",
+        "packages/quds_office_editor/test/word_zotero_note_preview_test.dart": "7517ebc751c023e48962fac5ed9f364880b464a8",
+        "packages/quds_office_editor/test/word_zotero_note_target_test.dart": "401d7ef2f2fd4d2079fb17aed02f0df8c2d73a9d",
+        "packages/quds_office_editor/test/word_zotero_notes_pane_test.dart": "8d0d1eda1a7d8601181e450dbd0b90b76ee093b4",
+        "packages/quds_office_editor/test/word_zotero_occurrence_navigation_test.dart": "727ca84668a3c8a8a147bd8cbe7b40f653030ebd",
+        "packages/quds_office_editor/test/word_zotero_rich_controller_test.dart": "6a7cdef9235516b53a75b628a1350c3b33e8098c",
+        "packages/quds_office_editor/test/word_zotero_saved_search_test.dart": "698c53581d0bc0f92052458d1704a142b33277bb",
+        "packages/quds_office_editor/test/word_zotero_snapshot_test.dart": "7a9e9b5088f10a63154f15870fb42f4d0d3c9872",
+        "packages/quds_office_editor/test/word_zotero_source_identity_test.dart": "345b34eabd7b79d4dfaeabf2d978e9d6b5a36808",
+        "packages/quds_office_editor/test/word_zotero_source_occurrences_dialog_test.dart": "168bf9cceb4e3fbfd4f318e560a98a413e1f078d",
+        "packages/quds_office_editor/test/word_zotero_source_occurrences_test.dart": "848104e211288db8fe35b71f938cf97b96146cf9",
+        "packages/quds_office_editor/test/word_zotero_source_resolver_test.dart": "b0131f0c57a5c9ac77918ce0dd940ee5a875fe69",
+        "packages/quds_office_editor/test/word_zotero_stored_details_dialog_test.dart": "4697f7ba6ec4f699432b156a2bc787294026f7da",
+        "packages/quds_office_editor/test/word_zotero_stored_details_test.dart": "7399c40d7531019515384f18e8fbf6f9d42915bb",
+        "packages/quds_office_editor/test/word_zotero_tag_browser_test.dart": "d7fadcce8432cc0aed921a9f8288d874c0209b50",
+        "packages/quds_office_editor/test/word_zotero_tag_filter_test.dart": "a67eaf309020154047a17715c173b3ff46abb447",
+        "packages/quds_office_editor/test/word_zotero_unlink_all_test.dart": "f9fa5ef0b6471cc8e7364366fe17d2e30b6f4ca6"
+      }
+    },
+    "engine-rendering": {
+      "file_count": 14,
+      "rationale": "Every slide test includes the new orientation suite, plus PDF export and Word small caps. fonts_test and word_pdf_test are placed here so the unchanged original runner fingerprints every referenced host font.",
+      "selected_source_blobs": {
+        "packages/quds_office_engine/test/fonts_test.dart": "58f1bf1e28ab5fe80f0a2630702df831f4b09750",
+        "packages/quds_office_engine/test/office_pdf_export_test.dart": "f9198d9c0ac2330444a086fdd3f2b4c200c65b65",
+        "packages/quds_office_engine/test/slide_arrange_fidelity_test.dart": "19f1a8ef113617de27512d774be044b36edecb2d",
+        "packages/quds_office_engine/test/slide_import_fidelity_test.dart": "30241bbf882bb97af933194d0ae65ea92d0c030e",
+        "packages/quds_office_engine/test/slide_incoming_pptx_regression_test.dart": "414a74589a908ac16f3115a7662b1469a408e3b1",
+        "packages/quds_office_engine/test/slide_render_fidelity_test.dart": "7d0b5433d767e0d24adba1ad384932fc758e29ed",
+        "packages/quds_office_engine/test/slide_rich_text_explicit_style_test.dart": "a0e61fed5e0319f7596f368ef9f2a180a450227e",
+        "packages/quds_office_engine/test/slide_section_fidelity_test.dart": "028ee76b7cbd8e6bb10b0112ab0c7da2a7bcc989",
+        "packages/quds_office_engine/test/slide_table_cell_color_test.dart": "e5aa31fdffc4121ffe2bc9ac4715bbcb33c57c2d",
+        "packages/quds_office_engine/test/slide_test.dart": "930333462bd0e73ac23fd66be74c00197188f61d",
+        "packages/quds_office_engine/test/slide_text_fidelity_test.dart": "c2c325b382750e9a0267d89f421d6888595e2194",
+        "packages/quds_office_engine/test/slide_transform_orientation_test.dart": "ede150ae5a8fe046ea146001cb9cab18adb23e8b",
+        "packages/quds_office_engine/test/word_pdf_test.dart": "282983bdf0e364a3aaad0380a4ca809b6969bb7a",
+        "packages/quds_office_engine/test/word_small_caps_test.dart": "082448c5fc488e4fcd73619f1d53d1c82b1e5c81"
+      }
+    },
+    "engine-word-layout": {
+      "file_count": 22,
+      "rationale": "Focused named-font and typography/paragraph-mark suites, including both new tests, plus style cascade, referenced styles, run measurement, wrapping, inline pictures, nested and tall tables, note layout, serialization and cloning.",
+      "selected_source_blobs": {
+        "packages/quds_office_engine/test/office_named_fonts_test.dart": "250b27c38bc97e021eccb81ebca7fda241230f78",
+        "packages/quds_office_engine/test/style_cascade_test.dart": "b4e47e645e89e2b7ae567201c68bf007c63aefdb",
+        "packages/quds_office_engine/test/word_contained_text_wrap_test.dart": "4951a1dee5a0178ef5d141672707461500ed3de6",
+        "packages/quds_office_engine/test/word_fidelity_test.dart": "b1a5727712cb63ae5d53aca953a25acec9f4f4e2",
+        "packages/quds_office_engine/test/word_font_line_metrics_test.dart": "ac6dca74af61375383738643a748d286efab4261",
+        "packages/quds_office_engine/test/word_footnote_reference_test.dart": "493be357df87301deabe52990b0df770cb6f27d6",
+        "packages/quds_office_engine/test/word_frame_wrap_test.dart": "6e591aefd7e47e45dc6e69c1fde35f49334f4b33",
+        "packages/quds_office_engine/test/word_inline_picture_test.dart": "b31b298066d388d18b639a5ddcb8a8e145801234",
+        "packages/quds_office_engine/test/word_layout_test.dart": "64df717c8fa72afa7eb3a123be619d0dd537bfe9",
+        "packages/quds_office_engine/test/word_note_numbering_test.dart": "05b9df4bb47d50a9a75df2de7a6ce5735e937756",
+        "packages/quds_office_engine/test/word_note_script_break_test.dart": "e3ab72dc05ac53016078b63d693be2f1e05ab7fb",
+        "packages/quds_office_engine/test/word_paragraph_mark_layout_test.dart": "b7e958e451c1095194a4f1acac1453a6830e52b5",
+        "packages/quds_office_engine/test/word_picture_distance_fidelity_test.dart": "4ef67ee1772788d6f9579d1400db1163e690da15",
+        "packages/quds_office_engine/test/word_referenced_styles_and_breaks_test.dart": "46249482f6c6fdc534e8129b2d4d1095d5da3fd4",
+        "packages/quds_office_engine/test/word_run_measure_boundaries_test.dart": "cf6c71159f3fcd122c1aa1db727ab7970ca64c23",
+        "packages/quds_office_engine/test/word_run_measure_test.dart": "ea48dc3c61a177b6257f8be34f3e7c213efb5ad6",
+        "packages/quds_office_engine/test/word_section_clone_fidelity_test.dart": "b6a933c7e32a447b3a2861285c91618d512e09d2",
+        "packages/quds_office_engine/test/word_styles_layout_test.dart": "de6c5c5280790da137a7b87736e9a1503ba099d9",
+        "packages/quds_office_engine/test/word_table_nested_layout_test.dart": "86d317117f136ac1e9bb2c7cfe7fcf03e60fea5e",
+        "packages/quds_office_engine/test/word_table_picture_pagination_test.dart": "a6ee09b5386b24a31614fd9ff22070bd25856ada",
+        "packages/quds_office_engine/test/word_table_tall_frame_layout_test.dart": "ffe78a67121ef3d2043fbddb3de4576e577e1a96",
+        "packages/quds_office_engine/test/word_table_tall_toc_layout_test.dart": "09e5fda00bf75ad9389d2e5272ec4e96b640504c"
+      }
+    },
+    "engine-zotero": {
+      "file_count": 29,
+      "rationale": "Full current Zotero engine corpus verifies the delivered feature against the incoming shared Word and slide model/layout code.",
+      "selected_source_blobs": {
+        "packages/quds_office_engine/test/word_zotero_add_note_test.dart": "234804d0288f88bbd8355eb54d49f13fea743959",
+        "packages/quds_office_engine/test/word_zotero_bibliography_layout_test.dart": "8ac20b3d733b295fd1b9a47d57bf11ce4a29d6b2",
+        "packages/quds_office_engine/test/word_zotero_caret_test.dart": "43e9c133d8f68495df2eaaa4526db3df15c9e348",
+        "packages/quds_office_engine/test/word_zotero_citing_test.dart": "b1032ee4bab803997322170accb1cb94b15e432e",
+        "packages/quds_office_engine/test/word_zotero_document_data_test.dart": "ba361688bb890e31edb80fc97a1e3201dfc104b9",
+        "packages/quds_office_engine/test/word_zotero_formatted_bibliography_test.dart": "f6b3022292411a888bbfb6fe911e27ce077fe9e5",
+        "packages/quds_office_engine/test/word_zotero_note_insertion_test.dart": "a53f2eb4b06b41a4f1aba1ed15de19bfe994996c",
+        "packages/quds_office_engine/test/word_zotero_note_list_test.dart": "01d67622deeae0607aef5bf65edc60d78588f7f4",
+        "packages/quds_office_engine/test/word_zotero_preference_flow_test.dart": "a08d47ab044b3612c3280d4aca110af00594d78c",
+        "packages/quds_office_engine/test/word_zotero_rich_edit_test.dart": "c53592cc431f3f6605c6f41e7980a4c6c034e1b5",
+        "packages/quds_office_engine/test/word_zotero_scaling_test.dart": "00002fbbf6518c2142978c4b0aed86235cefd7a9",
+        "packages/quds_office_engine/test/word_zotero_simple_field_test.dart": "ca91db78f6fa4284d0708edddaa7873904f53ff0",
+        "packages/quds_office_engine/test/word_zotero_source_identity_test.dart": "c62f5df2c981f4755e2ae0ac4f33e9cb1cb204ee",
+        "packages/quds_office_engine/test/word_zotero_style_preferences_review_test.dart": "631232b4df6ec1e6f8226e01d8318f7163b58816",
+        "packages/quds_office_engine/test/word_zotero_test.dart": "53f29938b5f31cff40648f356c444d06f96183ba",
+        "packages/quds_office_engine/test/zotero_add_note_protocol_test.dart": "5c1d577e1a9a9df3bc4618324bf24814feed1327",
+        "packages/quds_office_engine/test/zotero_backoff_state_test.dart": "2f0663487f527d33e1855926c3f36803167f4423",
+        "packages/quds_office_engine/test/zotero_catalog_query_test.dart": "8d4b195ee3b32d5b62c7bafc2452f83ca1a680ce",
+        "packages/quds_office_engine/test/zotero_citing_test.dart": "50bd70dbd93ee129cff5a1d2a4c4c300f0667d47",
+        "packages/quds_office_engine/test/zotero_client_test.dart": "590e6b2b7953b08bc0a1434f866f67935e12c3fa",
+        "packages/quds_office_engine/test/zotero_formatted_text_test.dart": "b91cfd389a5b805bb78822e63dcbca499f5d9464",
+        "packages/quds_office_engine/test/zotero_identity_client_test.dart": "dd2cd6ab9b739eb87adbb5d2f8baa7f6d9762b65",
+        "packages/quds_office_engine/test/zotero_item_children_test.dart": "beeb029a930a38e99a9b59c978018dbc0a9cb2b6",
+        "packages/quds_office_engine/test/zotero_item_details_test.dart": "82dfbc364ac66784132deba3369c669c79149777",
+        "packages/quds_office_engine/test/zotero_metadata_batch_test.dart": "fbea53dd8badea6cf69b136945155f08305f82b1",
+        "packages/quds_office_engine/test/zotero_paragraph_runs_test.dart": "95943fabfffdb187c44ae5ff6be9503ffcac3734",
+        "packages/quds_office_engine/test/zotero_saved_search_test.dart": "483cf44306607d82e572fbab49d34084a1728c65",
+        "packages/quds_office_engine/test/zotero_tag_catalog_test.dart": "1494c136c23691da54ce2ce487c0cd1506abb64e",
+        "packages/quds_office_engine/test/zotero_tag_filter_test.dart": "c7d3ce25c44ba83b87ef0393540f0838ea879528"
+      }
+    },
+    "mail-host": {
+      "file_count": 11,
+      "rationale": "All eleven original Mail host suites, including changed attachment-compose RTL/reflow regressions, attachments, sessions, EWS/cloud, recipients, replies and threading.",
+      "selected_source_blobs": {
+        "packages/quds_office_editor/example/test/studio_mail_attachment_compose_test.dart": "17aa5ee00a3adc123149bcc8255c0e4cdce94ada",
+        "packages/quds_office_editor/example/test/studio_mail_attachment_loader_test.dart": "667245168f46cf5dd4e0a841a10edbc73df91a47",
+        "packages/quds_office_editor/example/test/studio_mail_attachment_test.dart": "7867227fac8a250e16b8aca3315864de170aeb48",
+        "packages/quds_office_editor/example/test/studio_mail_cloud_test.dart": "f93c62a428461936fa9817e090759037b6d78556",
+        "packages/quds_office_editor/example/test/studio_mail_compose_test.dart": "e041c8a4527e66639f235c38250633f917c34860",
+        "packages/quds_office_editor/example/test/studio_mail_ews_test.dart": "0b10f9ba5292dd798b6237d77a78977a1c4831ce",
+        "packages/quds_office_editor/example/test/studio_mail_recipients_test.dart": "5aa65040b3fff3242c155001e883cdcd7ce3e32a",
+        "packages/quds_office_editor/example/test/studio_mail_reply_test.dart": "d1b2682ab9a78446698df84fc04c39eeeaf3a250",
+        "packages/quds_office_editor/example/test/studio_mail_session_test.dart": "af036a4ceb67d65a953e53eca2427165ffb1fc89",
+        "packages/quds_office_editor/example/test/studio_mail_test.dart": "9fe185d34ba6a7d192913d84a4fff8a0bc85b731",
+        "packages/quds_office_editor/example/test/studio_mail_threading_test.dart": "fda2e0248960a802d4ec43f589e37c876e8eec5c"
+      }
+    },
+    "studio-integration": {
+      "file_count": 14,
+      "rationale": "The preceding nine Studio integration suites plus host material theme, Mail presets/lifecycle, page-layout and paragraph dialogs affected by the incoming host changes.",
+      "selected_source_blobs": {
+        "packages/quds_office_editor/example/test/studio_comment_draft_proofing_test.dart": "055410c2c2daa10cbc57071a8456c5d85387a296",
+        "packages/quds_office_editor/example/test/studio_downloads_manager_test.dart": "6cdbbb220e84a0e1d35789d6a1856fa93dab47fb",
+        "packages/quds_office_editor/example/test/studio_language_id_test.dart": "334a2571d68faac083a4b793f6bfde7a86df1e27",
+        "packages/quds_office_editor/example/test/studio_layout_theme_test.dart": "d5b8052b8f8f522a0960293af4a18efd7163209c",
+        "packages/quds_office_editor/example/test/studio_linguistic_analysis_test.dart": "bbaf6dfe89061cd5ae3892a6cd0e684dd5d406db",
+        "packages/quds_office_editor/example/test/studio_mail_lifecycle_test.dart": "f04c0af7f01eb4dd684a4cffa8a1a623ee51c48d",
+        "packages/quds_office_editor/example/test/studio_mail_presets_test.dart": "5be9e9e5955d302bb16ba0876994d5ac7e5d5730",
+        "packages/quds_office_editor/example/test/studio_page_layout_dialog_test.dart": "f0c46348b755ff0f546a4409c49cffd483cb9e1b",
+        "packages/quds_office_editor/example/test/studio_paragraph_dialog_test.dart": "8b7dea4bd6a2ed0acf8288d2d0525e3891b6ad45",
+        "packages/quds_office_editor/example/test/studio_settings_test.dart": "c64e51d809b8ac563ec952200d6e852d42a15efe",
+        "packages/quds_office_editor/example/test/studio_spacy_pin_test.dart": "8fa18545f41d149bc7af8485b67731a8517b2cb2",
+        "packages/quds_office_editor/example/test/studio_spacy_setup_test.dart": "7e6f94754bc499e7a2bb611a87c9ef1ba69d5678",
+        "packages/quds_office_editor/example/test/studio_zotero_citing_transport_test.dart": "ae85923e2732770db63e45c80a7b3ca329cedf9a",
+        "packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart": "4e62ab3326bdd745a305b187cc01dfd742ac58a8"
+      }
+    }
+  },
+  "exclusions": [
+    "No unrelated broad VBA/proofing/spacy rerun: those implementations are unchanged by this source delta.",
+    "No fresh native Word/macOS display or live Zotero/Mail account acceptance is claimed."
+  ],
+  "font_scope": "The three selected suites with literal system font paths are all in engine-rendering; its original host-font presence/content guard is unchanged.",
+  "guard_policy": "Only the disjoint catalog changes. The pinned original runner controls real execution, all pass/skip/error accounting, source/dependency/runtime/font fingerprints, expected HEAD and the shared SDK lock. No duplicate-name exception is pre-approved for this gate.",
+  "native_word_author_acceptance": {
+    "failed_cases": "Four Arial/Times exact-spacing pages",
+    "pages_above_95_percent": 20,
+    "scope": "Incoming author evidence, not a fresh native run here",
+    "strict_acceptance_gate_met": false,
+    "total_pages": 24
+  },
+  "previous_evidence_commit": "c05668d1470eb14eef2ac4647b4623edd818274f",
+  "primary_runner_sha256": "4d01ed59729abaa64e3ab643e8ebcb2f7136dd2d9f02cc4b07b81a06fbb919bf",
+  "prior_results": "Original2886 and prior continuation3201 distinct cases remain immutable and are not summed into this gate.",
+  "purpose": "Bounded local regression gate for incoming Word, slide and Mail host integration, separate from the earlier milestone and continuation counts.",
+  "qualified_source_candidate": "214c4ed80bef0cb871f74e90c506d508679d3d6e",
+  "static_scope": "All changed Dart targets since original publication baseline, including native corpus tools, receive strict analysis and non-mutating format checks separately."
+}

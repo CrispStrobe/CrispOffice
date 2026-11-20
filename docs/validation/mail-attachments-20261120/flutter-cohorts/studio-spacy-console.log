@@ -1,0 +1,6 @@
+Acquiring the shared local validation lock
+Fingerprinting inputs for studio-spacy: 2 suites
+Running studio-spacy with unchanged application timeouts
+Auditing events and post-run inputs for studio-spacy
+{"cohort": "studio-spacy", "status": "passed", "passed": 20, "failed": 0, "skipped": 0, "suites": 2, "exit_code": 0, "guards": {"source_unchanged": true, "workspace_unchanged": true, "dependencies_unchanged": true, "runtime_unchanged": true, "host_fonts_unchanged": true, "source_matches_start_commit": true, "source_matches_finish_commit": true, "selection_unchanged": true, "all_requested_suites_executed_once": true, "every_started_test_finished_once": true, "unique_application_test_names": true, "final_event_success": true, "no_failures_skips_or_errors": true}}
+{"cohort": "studio-spacy", "adapter_unchanged": true, "status": "passed"}

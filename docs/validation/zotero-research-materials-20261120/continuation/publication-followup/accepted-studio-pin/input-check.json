@@ -1,0 +1,33 @@
+{
+  "after_sha256": {
+    "dependencies": "3522c0e00ac142cc945a15dd4243afc938196806a38ddb9c89f372bdfcc6f846",
+    "host_fonts": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+    "runtime": "9c58c139ade21dc3073e27df7a4627814f2ddc40c2b7b684706d390d6d3c5aac",
+    "source": "0d01baf72786a54f5fa7c50dc2389af9bc16bd80010807dab9303d03fc44df95",
+    "workspace": "796c78924feaafc1773c00298a709fab93ec8388ecbc4a64d56c585279913b5c"
+  },
+  "before_sha256": {
+    "dependencies": "3522c0e00ac142cc945a15dd4243afc938196806a38ddb9c89f372bdfcc6f846",
+    "host_fonts": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+    "runtime": "9c58c139ade21dc3073e27df7a4627814f2ddc40c2b7b684706d390d6d3c5aac",
+    "source": "0d01baf72786a54f5fa7c50dc2389af9bc16bd80010807dab9303d03fc44df95",
+    "workspace": "796c78924feaafc1773c00298a709fab93ec8388ecbc4a64d56c585279913b5c"
+  },
+  "changed_paths": {
+    "dependencies": [],
+    "host_fonts": [],
+    "runtime": [],
+    "source": [],
+    "workspace": []
+  },
+  "source_matches_finish": {
+    "different_paths": [],
+    "matches": true,
+    "uncommitted_paths": []
+  },
+  "source_matches_start": {
+    "different_paths": [],
+    "matches": true,
+    "uncommitted_paths": []
+  }
+}

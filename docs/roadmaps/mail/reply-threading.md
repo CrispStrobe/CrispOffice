@@ -1,10 +1,13 @@
 # Studio mail reply threading
 
-**Scope date:** 2026-11-19. **Implementation:** native Studio replies through the
-shared composer and MIME builder. **Runtime qualification:** a later recipient
-continuation exercised the pure threading subset; MIME and widget cases remain
-open. See its [current record](../../validation/mail-recipients-20261119/README.md)
-and the original [source review](../../validation/mail-reply-threading-20261119/README.md).
+**Scope date:** 2026-11-20. **Implementation:** native Studio replies through the
+shared composer and MIME builder. **Runtime qualification:** the
+[attachment continuation](../../validation/mail-attachments-20261120/README.md)
+qualifies the complete threading/MIME cases and composer/provider-host suites
+against the actual locked workspace. The
+[recipient record](../../validation/mail-recipients-20261119/README.md) and
+original [source review](../../validation/mail-reply-threading-20261119/README.md)
+retain their earlier, more limited qualification boundaries.
 
 ## Behavior
 
@@ -24,7 +27,7 @@ control is required.
 
 A new composition has no thread metadata. **Forward** produces a new
 conversation even when its source has references. The existing text-only quote,
-recipient validation, Bcc exclusion, attachment exclusion and Unicode quote
+recipient validation, source-Bcc and source-attachment exclusion, and Unicode quote
 limit continue to apply. Thread metadata does not turn the foreground draft
 into a durable outbox or guarantee exactly-once delivery.
 
@@ -79,6 +82,15 @@ library's automatic reply builder. No dependency or schema change is required.
 
 ## Qualification
 
+The 20 November attachment continuation ran all 24 threading cases, including
+MIME assertions, and the complete composer and native/EWS/Gmail/Graph host
+suites. The [current record](../../validation/mail-attachments-20261120/README.md)
+binds these results to the pinned Flutter 3.47.8 / Dart 3.13.7 runtime and actual
+locked dependencies. Live-provider delivery and receiving-client conversation
+grouping remain unverified.
+
+### Historical source and subset qualification
+
 Focused regressions cover source parsing, malformed metadata, comment fragments,
 header injection, identifier/chain limits, deduplication, MIME serialization,
 ordinary and forward composition, composer edits and uncertain retries.
@@ -86,7 +98,8 @@ The initial implementation was source-reviewed without an executor. The later
 recipient continuation installed pinned Flutter 3.47.8 / Dart 3.13.7, formatted
 the changed source/tests, and executed 16 pure threading cases through a separate
 cached dependency graph. Whole MIME-dependent cases were excluded and recorded;
-MIME round trips, composer widgets and full workspace analysis remain unexecuted
-because workspace dependencies could not be resolved. These focused results do
+MIME round trips, composer widgets and full workspace analysis were unexecuted
+in that earlier continuation because workspace dependencies could not be resolved.
+Those focused results do
 not establish full-lock workspace or live-provider interoperability.
 GitHub Actions are neither awaited nor used as an acceptance gate.

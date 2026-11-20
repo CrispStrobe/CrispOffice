@@ -1,0 +1,983 @@
+{
+  "schema_version": 1,
+  "scope": "Bounded source review of merged PR231; immutable f69 source snapshot. No build, native execution, test run, ref fetch or CI query by this review.",
+  "source": {
+    "base_main": "43db439e1e605d6329a6eabe6817b04ca44ba1aa",
+    "incoming_main": "098412152fa1d64796eb3fb9c06699ced0f0c44d",
+    "previous_qualified_publication": "a3373021b6cbe6ae333217417bd1615e88019f7d",
+    "candidate": "f69e774fbb32a103260541e4a28fb17600bfc17e",
+    "candidate_tree": "1a45545ffa7f4c8548853a30c95bdb38309e3da9",
+    "parents": [
+      "a3373021b6cbe6ae333217417bd1615e88019f7d",
+      "098412152fa1d64796eb3fb9c06699ced0f0c44d"
+    ]
+  },
+  "metadata": "pr231-metadata.json",
+  "changed_paths": [
+    {
+      "path": "docs/roadmaps/arabic-proofing.md",
+      "revision": "f69e774fbb32a103260541e4a28fb17600bfc17e",
+      "blob": "9c0ebfe98262b6ad3e9c10f5c45ee74983e71a57",
+      "bytes": 56930,
+      "sha256": "2c7b8a19883b19acfed400a857e35272baaf254c722ffb24fa42a824d0ff906b",
+      "old_blob": "f96c6ce8c4792539c479fbf693395e62e2b080b1",
+      "main_blob": "9c0ebfe98262b6ad3e9c10f5c45ee74983e71a57",
+      "candidate_equals_main": true
+    },
+    {
+      "path": "packages/quds_arabic_morph/CHANGELOG.md",
+      "revision": "f69e774fbb32a103260541e4a28fb17600bfc17e",
+      "blob": "84d2665d4f10e950eb56187150730b57bf933382",
+      "bytes": 2274,
+      "sha256": "1bc4ce040fc04f3ff071fe2d9695ad4d2d9f49723f937d1a6ce241a31d05a596",
+      "old_blob": "feb9770d27bfcbafc4437d0366a2aa59db37f288",
+      "main_blob": "84d2665d4f10e950eb56187150730b57bf933382",
+      "candidate_equals_main": true
+    },
+    {
+      "path": "packages/quds_arabic_morph/README.md",
+      "revision": "f69e774fbb32a103260541e4a28fb17600bfc17e",
+      "blob": "85a220550d21eb2d6295eb3f630d8a98888a4410",
+      "bytes": 13698,
+      "sha256": "da272f70de8bbae749139d5fed32b181b704ce905ffb840cf4c0713188a82d41",
+      "old_blob": "711b2e284407296908c20eee20f5c5f2571b75c6",
+      "main_blob": "85a220550d21eb2d6295eb3f630d8a98888a4410",
+      "candidate_equals_main": true
+    },
+    {
+      "path": "packages/quds_arabic_morph/lib/src/camel_arabic_morphology.dart",
+      "revision": "f69e774fbb32a103260541e4a28fb17600bfc17e",
+      "blob": "a442237d0b6d093e9cc1095fe78fcad1f6ca1180",
+      "bytes": 10376,
+      "sha256": "e602c3f57c950f451cc4212194b2eca1cf249563b8bd8c8bf262ad0b2263f9d7",
+      "old_blob": "6dbbfddd6ca421628d2bc3945fa649fe6722a384",
+      "main_blob": "a442237d0b6d093e9cc1095fe78fcad1f6ca1180",
+      "candidate_equals_main": true
+    },
+    {
+      "path": "packages/quds_arabic_morph/lib/src/morph_analysis.dart",
+      "revision": "f69e774fbb32a103260541e4a28fb17600bfc17e",
+      "blob": "5d56dc0ac92209d795b72b42268fee4c36d82f4e",
+      "bytes": 12194,
+      "sha256": "e754b80d01f9c3ad209b56550cf9e0fa118346c828d7278d59d0dfa9207e79c4",
+      "old_blob": "30618c6d3b7e37776075ceac8a06e2d94ae70d73",
+      "main_blob": "5d56dc0ac92209d795b72b42268fee4c36d82f4e",
+      "candidate_equals_main": true
+    },
+    {
+      "path": "packages/quds_arabic_morph/lib/src/morph_catalog.dart",
+      "revision": "f69e774fbb32a103260541e4a28fb17600bfc17e",
+      "blob": "ad1fb766b27f24377da0661d185f74e4ba77476d",
+      "bytes": 9602,
+      "sha256": "98d375cc3912ff4ab917defbf8e4cb2e3357492d3973caacbc9499352e7c9b1d",
+      "old_blob": "ce0ef4f8d572b1547963fb7bb6fc775e2eaf2678",
+      "main_blob": "ad1fb766b27f24377da0661d185f74e4ba77476d",
+      "candidate_equals_main": true
+    },
+    {
+      "path": "packages/quds_arabic_morph/lib/src/morph_installer_io.dart",
+      "revision": "f69e774fbb32a103260541e4a28fb17600bfc17e",
+      "blob": "ca5f8518bd4560ace206b26d1aa8e07f8522eb51",
+      "bytes": 8734,
+      "sha256": "ab672a3fa52064a793c837d547f0ee7b5119616f90e6366d808c1ee78f788880",
+      "old_blob": "e0ba02f173035dc90fa79a279415beca57007f93",
+      "main_blob": "ca5f8518bd4560ace206b26d1aa8e07f8522eb51",
+      "candidate_equals_main": true
+    },
+    {
+      "path": "packages/quds_arabic_morph/lib/src/morph_transport.dart",
+      "revision": "f69e774fbb32a103260541e4a28fb17600bfc17e",
+      "blob": "f928abfbadc981909fe0c91dbf778b503f16c508",
+      "bytes": 1380,
+      "sha256": "c2a8fa921679d52a9d013020f4e62519b7c4255bb8cef9b8833ea197b5048418",
+      "old_blob": "b733cf31366f0788e4852a5f25b86a332047b28c",
+      "main_blob": "f928abfbadc981909fe0c91dbf778b503f16c508",
+      "candidate_equals_main": true
+    },
+    {
+      "path": "packages/quds_arabic_morph/lib/src/morph_transport_native.dart",
+      "revision": "f69e774fbb32a103260541e4a28fb17600bfc17e",
+      "blob": "bdad68afc065e37b538341ade4f5820902137678",
+      "bytes": 26585,
+      "sha256": "3152bd125ee486f0ef706df474e67baf21dc4289cf626706bf3780425585d0fa",
+      "old_blob": "6bdc50d1e67747b870d0e182d67753427783f7af",
+      "main_blob": "bdad68afc065e37b538341ade4f5820902137678",
+      "candidate_equals_main": true
+    },
+    {
+      "path": "packages/quds_arabic_morph/lib/src/morph_transport_stub.dart",
+      "revision": "f69e774fbb32a103260541e4a28fb17600bfc17e",
+      "blob": "9ac14934c6a9fb3a8dc629afc752ad91abfb659a",
+      "bytes": 939,
+      "sha256": "d7bb742c7f1160e28878fe57c187df0b5b21e6f89b8104d22015417f4424aac2",
+      "old_blob": "6a49ecd61bbabb9d99f22a67bbbf7ed2b057735a",
+      "main_blob": "9ac14934c6a9fb3a8dc629afc752ad91abfb659a",
+      "candidate_equals_main": true
+    },
+    {
+      "path": "packages/quds_arabic_morph/lib/src/morph_transport_web.dart",
+      "revision": "f69e774fbb32a103260541e4a28fb17600bfc17e",
+      "blob": "6f85cda65e4ef22e75c733c045905318a84ba8dd",
+      "bytes": 9265,
+      "sha256": "d661b6e1bf5cb752eff761f2882124d80485d39bb7d3b8885bb7b2bc39f839ca",
+      "old_blob": "799385797abd7e3d4e99ceb7d249ad9e601de97d",
+      "main_blob": "6f85cda65e4ef22e75c733c045905318a84ba8dd",
+      "candidate_equals_main": true
+    },
+    {
+      "path": "packages/quds_arabic_morph/licenses/data/camel-morph-msa-disambig-LICENSE",
+      "revision": "f69e774fbb32a103260541e4a28fb17600bfc17e",
+      "blob": "3d81e2028382972c6d96a802e8490e8e2c468339",
+      "bytes": 363,
+      "sha256": "ef2c6367af269181d259bbda4b6167684f85242bb04b28923f91e2861be4c695",
+      "old_blob": null,
+      "main_blob": "3d81e2028382972c6d96a802e8490e8e2c468339",
+      "candidate_equals_main": true
+    },
+    {
+      "path": "packages/quds_arabic_morph/licenses/data/camel-morph-msa-disambig-NOTICE",
+      "revision": "f69e774fbb32a103260541e4a28fb17600bfc17e",
+      "blob": "e21a4c615ebc383c2a8a8bf5e177b3d0414061fd",
+      "bytes": 1484,
+      "sha256": "12f44e5787019e5eb5595663cb7275408d961f430b74d108fa77006235e2638b",
+      "old_blob": null,
+      "main_blob": "e21a4c615ebc383c2a8a8bf5e177b3d0414061fd",
+      "candidate_equals_main": true
+    },
+    {
+      "path": "packages/quds_arabic_morph/licenses/manifest.json",
+      "revision": "f69e774fbb32a103260541e4a28fb17600bfc17e",
+      "blob": "f6c3dab50d838cc5dc156036803441549fd73b50",
+      "bytes": 5104,
+      "sha256": "9fb7d8ee44458c4b8d1dfd9038da46c1530b4b1ebb3c5c38b552c762ac08f899",
+      "old_blob": "8612abbc6b5a81dc90298749a0531935b15bc435",
+      "main_blob": "f6c3dab50d838cc5dc156036803441549fd73b50",
+      "candidate_equals_main": true
+    },
+    {
+      "path": "packages/quds_arabic_morph/native/CMakeLists.txt",
+      "revision": "f69e774fbb32a103260541e4a28fb17600bfc17e",
+      "blob": "8d17e40a4f5411fbbbed2a65e3f08f48c39c20f9",
+      "bytes": 2757,
+      "sha256": "14aa1611ea151aec68dcb2654260ba55bbe73935398bd5642e04f73a17fd3ef4",
+      "old_blob": "a7f9f0cbbd0fa5d90b61103a2411df957b39d314",
+      "main_blob": "8d17e40a4f5411fbbbed2a65e3f08f48c39c20f9",
+      "candidate_equals_main": true
+    },
+    {
+      "path": "packages/quds_arabic_morph/native/src/quds_arabic_morph.cpp",
+      "revision": "f69e774fbb32a103260541e4a28fb17600bfc17e",
+      "blob": "75de1d1364e308b77e333d7fdb898cb31fd4ab58",
+      "bytes": 1937,
+      "sha256": "cfc838229f134903d6dd59bd2074667117bdc036d9b01d19e02acfeec5bc9cf1",
+      "old_blob": "9389515b7416617ce530b3ec088833addac78995",
+      "main_blob": "75de1d1364e308b77e333d7fdb898cb31fd4ab58",
+      "candidate_equals_main": true
+    },
+    {
+      "path": "packages/quds_arabic_morph/pubspec.yaml",
+      "revision": "f69e774fbb32a103260541e4a28fb17600bfc17e",
+      "blob": "6309deb778d8ee14eba53749c5bf659dcf9d9e7a",
+      "bytes": 427,
+      "sha256": "fc88256a998232198ac4e8e2f6daa9fb2a2d14a27f3df7ae4560019153efab2c",
+      "old_blob": "327db5434786f32b868c8e6117635afd8026cf57",
+      "main_blob": "6309deb778d8ee14eba53749c5bf659dcf9d9e7a",
+      "candidate_equals_main": true
+    },
+    {
+      "path": "packages/quds_arabic_morph/test/arabic_morph_native_test.dart",
+      "revision": "f69e774fbb32a103260541e4a28fb17600bfc17e",
+      "blob": "cb92e4e77bfa2bbee0a94703e7993a2c61570b26",
+      "bytes": 19639,
+      "sha256": "a893170ad20585b98af4348d38adfb16acc4c29be2f4b92d4dd11f48283cdda4",
+      "old_blob": "74e1e13c1dd3208f2682a30edce85f12e8c911f0",
+      "main_blob": "cb92e4e77bfa2bbee0a94703e7993a2c61570b26",
+      "candidate_equals_main": true
+    },
+    {
+      "path": "packages/quds_arabic_morph/test/arabic_morph_unit_test.dart",
+      "revision": "f69e774fbb32a103260541e4a28fb17600bfc17e",
+      "blob": "c19cbf247036b1b973cd92749137b2795031d9d8",
+      "bytes": 17541,
+      "sha256": "817f0b9e7e6548213997afa9c1962fafd8d49f4a24fce34c5d1ffb697079bd1e",
+      "old_blob": "55f5702c5c24709bfb3a8af12ee65b10ee36ea78",
+      "main_blob": "c19cbf247036b1b973cd92749137b2795031d9d8",
+      "candidate_equals_main": true
+    },
+    {
+      "path": "packages/quds_arabic_morph/tool/build.py",
+      "revision": "f69e774fbb32a103260541e4a28fb17600bfc17e",
+      "blob": "956e526c741b02f6a5459b66dac3dec4bd6a0122",
+      "bytes": 18900,
+      "sha256": "f1f4226943a95395ccd3641c05d9fa2aeb17cbf6232b6477414fc882554dd59e",
+      "old_blob": "9dc63a4784f45e55895d94cb05a7f4791b98fbc0",
+      "main_blob": "956e526c741b02f6a5459b66dac3dec4bd6a0122",
+      "candidate_equals_main": true
+    },
+    {
+      "path": "packages/quds_arabic_morph/tool/pud_rule_findings.dart",
+      "revision": "f69e774fbb32a103260541e4a28fb17600bfc17e",
+      "blob": "e2eb5f56bc4c1c09fc84d822c2cefa49e4766f76",
+      "bytes": 4823,
+      "sha256": "e037fb0013be8e79233cc33bf4ebc52b1c05dde8e96fdbd66603d458a32c0148",
+      "old_blob": "668da5c6a4c08bdfa3cf3575f4eb578caefdafac",
+      "main_blob": "e2eb5f56bc4c1c09fc84d822c2cefa49e4766f76",
+      "candidate_equals_main": true
+    },
+    {
+      "path": "packages/quds_arabic_morph/tool/web_smoke.mjs",
+      "revision": "f69e774fbb32a103260541e4a28fb17600bfc17e",
+      "blob": "383f66734813565768d18b648c62daa278cdbcf0",
+      "bytes": 7494,
+      "sha256": "310912e46d09414d06998b3b95204c7aab9d803bec646a0c3fbf1c595efe3fd1",
+      "old_blob": "a6ecbf4b74f3879624689a45929e8c83f0c60857",
+      "main_blob": "383f66734813565768d18b648c62daa278cdbcf0",
+      "candidate_equals_main": true
+    },
+    {
+      "path": "packages/quds_arabic_morph/web/arabic_morph_worker.mjs",
+      "revision": "f69e774fbb32a103260541e4a28fb17600bfc17e",
+      "blob": "a7e00cc75ff2572990c4a1b70f14ba736b241379",
+      "bytes": 9099,
+      "sha256": "321b17494c8757d1ce4a9a88716da5a53be5961ed5ac0ca6f6c9a012cb6fe63e",
+      "old_blob": "c9c28993c62d46cdf447cc70dc9b1d1ff9d7a0cd",
+      "main_blob": "a7e00cc75ff2572990c4a1b70f14ba736b241379",
+      "candidate_equals_main": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/assets/licenses/arabic_morph/camel-morph-msa-disambig-LICENSE",
+      "revision": "f69e774fbb32a103260541e4a28fb17600bfc17e",
+      "blob": "3d81e2028382972c6d96a802e8490e8e2c468339",
+      "bytes": 363,
+      "sha256": "ef2c6367af269181d259bbda4b6167684f85242bb04b28923f91e2861be4c695",
+      "old_blob": null,
+      "main_blob": "3d81e2028382972c6d96a802e8490e8e2c468339",
+      "candidate_equals_main": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/assets/licenses/arabic_morph/camel-morph-msa-disambig-NOTICE",
+      "revision": "f69e774fbb32a103260541e4a28fb17600bfc17e",
+      "blob": "e21a4c615ebc383c2a8a8bf5e177b3d0414061fd",
+      "bytes": 1484,
+      "sha256": "12f44e5787019e5eb5595663cb7275408d961f430b74d108fa77006235e2638b",
+      "old_blob": null,
+      "main_blob": "e21a4c615ebc383c2a8a8bf5e177b3d0414061fd",
+      "candidate_equals_main": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/assets/licenses/arabic_morph/manifest.json",
+      "revision": "f69e774fbb32a103260541e4a28fb17600bfc17e",
+      "blob": "f6c3dab50d838cc5dc156036803441549fd73b50",
+      "bytes": 5104,
+      "sha256": "9fb7d8ee44458c4b8d1dfd9038da46c1530b4b1ebb3c5c38b552c762ac08f899",
+      "old_blob": "8612abbc6b5a81dc90298749a0531935b15bc435",
+      "main_blob": "f6c3dab50d838cc5dc156036803441549fd73b50",
+      "candidate_equals_main": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_arabic_morph_host.dart",
+      "revision": "f69e774fbb32a103260541e4a28fb17600bfc17e",
+      "blob": "cfd98f5dfc6d467c49f4e617b6fe9d82f041d1e1",
+      "bytes": 4286,
+      "sha256": "fc858fcf6006454cbb67a55072c8481e627d68fd08cb9debc5154126ca916dd2",
+      "old_blob": "fc258ac2b6be56a4b20a5d60c4ed6071a7d13cfb",
+      "main_blob": "cfd98f5dfc6d467c49f4e617b6fe9d82f041d1e1",
+      "candidate_equals_main": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_arabic_morph_host_native.dart",
+      "revision": "f69e774fbb32a103260541e4a28fb17600bfc17e",
+      "blob": "78edc63763dfec72077854a8f303a0804ebbc9c5",
+      "bytes": 8345,
+      "sha256": "af646a6e825997c9eaa28a5040a557483051b629071b297fa79d31d246c0c154",
+      "old_blob": "7a64a361155d179844fc16cb8eb425f0b954010c",
+      "main_blob": "78edc63763dfec72077854a8f303a0804ebbc9c5",
+      "candidate_equals_main": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_arabic_morph_host_web.dart",
+      "revision": "f69e774fbb32a103260541e4a28fb17600bfc17e",
+      "blob": "738008f948712bc19642f2fa1672beb23b08ef09",
+      "bytes": 10669,
+      "sha256": "2fc00873314a18b20de8a94dce32a62e5c34574954de36eb0a1ca91c8f7021a9",
+      "old_blob": "bf27346e87c34fca4214ae05ff066692779e8f25",
+      "main_blob": "738008f948712bc19642f2fa1672beb23b08ef09",
+      "candidate_equals_main": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_de_strings.dart",
+      "revision": "f69e774fbb32a103260541e4a28fb17600bfc17e",
+      "blob": "dd04605a2a73bfc5f937118cf67efaa24c4d45d3",
+      "bytes": 13978,
+      "sha256": "5b21ab7c261ce7a434911f7a7a57c95e11bb196a7c0c60c0e465f16ac2166b95",
+      "old_blob": "2370b0d1c1c8569eb265c77373aa474e6a11bf0a",
+      "main_blob": "dd04605a2a73bfc5f937118cf67efaa24c4d45d3",
+      "candidate_equals_main": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_hunspell_setup.dart",
+      "revision": "f69e774fbb32a103260541e4a28fb17600bfc17e",
+      "blob": "45482ba679f09fba0b70ef68886ec7b2fa8e1d17",
+      "bytes": 15638,
+      "sha256": "a86775eef856a2e6d7b1805fbd5d1fab7acb34549aa7ac5d19240ff98e340d5c",
+      "old_blob": "0d644f920fe5b4f00536a27716201bba89030920",
+      "main_blob": "45482ba679f09fba0b70ef68886ec7b2fa8e1d17",
+      "candidate_equals_main": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_licenses.dart",
+      "revision": "f69e774fbb32a103260541e4a28fb17600bfc17e",
+      "blob": "9e2c46517bbfb54f824a7cd32f0df0da6bc225b5",
+      "bytes": 6670,
+      "sha256": "af647c64ecf91aca87d64eba06e802fc4e2dc65b5f4c0530601e154d04dbd518",
+      "old_blob": "c3c2f61f4fde61804599c390d5776ff3d38f4f7d",
+      "main_blob": "9e2c46517bbfb54f824a7cd32f0df0da6bc225b5",
+      "candidate_equals_main": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/suite_workspace.dart",
+      "revision": "f69e774fbb32a103260541e4a28fb17600bfc17e",
+      "blob": "995a30e44c5d3b09591cea8dd5ae2b9f1bec0cdc",
+      "bytes": 432522,
+      "sha256": "244f747213e65285ba57a6ee53dd1a2c69b728e803e84d16adf703f93bf9f9a9",
+      "old_blob": "e9ea54c1bfc4003b2f39582c223dca003c089b3e",
+      "main_blob": "995a30e44c5d3b09591cea8dd5ae2b9f1bec0cdc",
+      "candidate_equals_main": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_arabic_morph_setup_test.dart",
+      "revision": "f69e774fbb32a103260541e4a28fb17600bfc17e",
+      "blob": "baf90c62c3bd62b87f78b6f8c284e2a15bef628c",
+      "bytes": 10172,
+      "sha256": "cebb4715bbc4a3fb2ca1f5c3dc95278f2b7ae7026664e6af8e6bf60b921c5b61",
+      "old_blob": "83ae075ff1dd713e8f1a6dc6213c967d77ee1d54",
+      "main_blob": "baf90c62c3bd62b87f78b6f8c284e2a15bef628c",
+      "candidate_equals_main": true
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/proofing/arabic_grammar_rules.dart",
+      "revision": "f69e774fbb32a103260541e4a28fb17600bfc17e",
+      "blob": "628de2235e9e0ed582c276b300e38ce567e81e59",
+      "bytes": 60738,
+      "sha256": "f22861ac8c1ba0626dc800f084223109edf2c0f381fbc59ce05350ac073d99e4",
+      "old_blob": "05e7d071bc011b71d1db8ffa0ccd8207431f64a8",
+      "main_blob": "628de2235e9e0ed582c276b300e38ce567e81e59",
+      "candidate_equals_main": true
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/proofing/arabic_morphology.dart",
+      "revision": "f69e774fbb32a103260541e4a28fb17600bfc17e",
+      "blob": "d78eaeedf756df37904500bc5d2db1604e4c52b0",
+      "bytes": 6315,
+      "sha256": "00ea2f931fb5168acd5cf4b0390eef0d5724ba49d2e3197f444501a33fd5d129",
+      "old_blob": "f2073caec2974448823635a06116e798e24584d4",
+      "main_blob": "d78eaeedf756df37904500bc5d2db1604e4c52b0",
+      "candidate_equals_main": true
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/proofing/arabic_writing_rules.dart",
+      "revision": "f69e774fbb32a103260541e4a28fb17600bfc17e",
+      "blob": "0d7691897d5ad3ffcd33cef1123bfb65dc130518",
+      "bytes": 34115,
+      "sha256": "c40974c51b2edc9d4fa44bf510db58ab499589463d24affb3d6a409645c05963",
+      "old_blob": "fbf5a8061455c96c6f6bcb2363d4ada8dac81f72",
+      "main_blob": "0d7691897d5ad3ffcd33cef1123bfb65dc130518",
+      "candidate_equals_main": true
+    },
+    {
+      "path": "packages/quds_office_engine/test/proofing/arabic_grammar_context_test.dart",
+      "revision": "f69e774fbb32a103260541e4a28fb17600bfc17e",
+      "blob": "ab0f208d4a78d07adc92492077d746db924a3860",
+      "bytes": 9051,
+      "sha256": "727836bb81b5ae90f581995976521dcf3d1323cca490595ae4142e6b7de1f110",
+      "old_blob": null,
+      "main_blob": "ab0f208d4a78d07adc92492077d746db924a3860",
+      "candidate_equals_main": true
+    }
+  ],
+  "path_counts": {
+    "total": 38,
+    "packages": 37,
+    "dart": 23,
+    "roadmaps": 1
+  },
+  "source_checks": {
+    "exact_candidate_tree": true,
+    "exact_merge_parents": true,
+    "exact_38_path_main_delta": true,
+    "all_38_incoming_blobs_exact_main": true,
+    "arabic_pubspec_version_only": true,
+    "root_lock_unchanged": true,
+    "base_database_pin_unchanged": true,
+    "package_and_studio_manifest_equal": true,
+    "all_four_notice_pairs_equal_and_pinned": true,
+    "manifest_commit_matches_builder": true,
+    "manifest_source_hashes_match_builder": true,
+    "macos_build_script_unchanged": true,
+    "native_abi3_adapter2_check_present": true,
+    "worker_abi3_adapter2_check_present": true,
+    "cpp_adapter2_present": true,
+    "arabic_separate_build_install_library": true,
+    "spacy_separate_abi_namespace": true,
+    "primary_runner_pin_unchanged": true,
+    "arabic_adapter_pin_unchanged": true
+  },
+  "source_checks_all_passed": true,
+  "behavior": [
+    "Engine context morphology extends the existing ArabicMorphology interface; contextual grammar is the default with minimum margin 0.9; allAnalyses remains selectable.",
+    "Unavailable model, unsupported context morphology, malformed or failing contextual results use existing full-analysis fallback within the engine.",
+    "Model-optional behavior assumes a compatible runtime. Native and Web Worker loaders require ABI 3 and adapter 2 even without a context model; old Arabic ABI 2 binaries are not accepted.",
+    "The adapter enables the disambiguator only when opening a model, preserving any existing CRISPEMBED_AR_MORPH_DISAMBIG setting, including explicit 0.",
+    "Studio adds a separately downloaded context model, removal controls, settings propagation, and model attribution copies."
+  ],
+  "source_pins": {
+    "CRISPEMBED": {
+      "repository": "https://github.com/CrispStrobe/CrispEmbed",
+      "commit": "3bab324832ea911c2b1260a0d50f0ed898f47950",
+      "pull_request": 261
+    },
+    "SOURCES": {
+      "LICENSE": [
+        "a70d0ab5fb2dbab83d1a63071776891e6dfc7ba6e3063b3940c21274c1225a3e",
+        4739
+      ],
+      "src/arabic_morph.cpp": [
+        "c1547caf39aab9f74834cba9c782498e876357ba07ec6487d55b928c03f35400",
+        139469
+      ],
+      "src/arabic_morph.h": [
+        "cb7239fd6c727fd71d6f52240c380dd0914e6fb52418a7142bb7f8f81bcb0ed7",
+        11823
+      ],
+      "src/arabic_morph_tables.h": [
+        "72f9bf25aaaa0aa69b0fccfde2f97e97468c0dc8a523f4e012310d9b3bb5c174",
+        8028
+      ],
+      "src/core/env_gate.h": [
+        "2370e31636ea25bc1e5ca63e1e606f4cd3c07c65e0f4d1347b2ec6daf57eaa0e",
+        3245
+      ],
+      "src/core/json.h": [
+        "7e72a6359897e9397e5bee3edf7563476fc4bd41516bf5245a16df50dc54c589",
+        23378
+      ],
+      "src/core/json_value.h": [
+        "f6af418a13cc5285f977fd29c5644d7fc2cf957f5c4b6d31a3bf0c33243dacf4",
+        9017
+      ],
+      "src/core/py_str.h": [
+        "1936161cfea194de155ec58601a0ca7f36577f3c8973231e704a6dc0fcd315e7",
+        12423
+      ],
+      "src/core/py_str_tables.h": [
+        "c66cdf3e8b2dc40ee2e09e8dc2411af0ad7a43dedc107ce867d939aa7d55c8e8",
+        33940
+      ],
+      "src/core/sha256.h": [
+        "409ab494061b042d4a84698b7bf2caf6dd68f6639cbeb532cb47a2f2337d9a6f",
+        5024
+      ],
+      "src/core/shortest_double.c": [
+        "9d4e8d9d2be344ba17d141378274f9a19192b49e6995a9edb1e80f589c1e71c2",
+        246
+      ],
+      "src/core/shortest_double.h": [
+        "51f642d86c72d730426338ede6f603697dde1da556d96b53dffec9781416c60c",
+        282
+      ],
+      "src/core/third_party/ryu/LICENSE-Apache2": [
+        "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+        11357
+      ],
+      "src/core/third_party/ryu/README.md": [
+        "8ecc8a0aec4481a424349da8267c2cf76733a9b4187a981e8154ea648cd40e5b",
+        792
+      ],
+      "src/core/third_party/ryu/common.h": [
+        "0bbd71d26da6193e678d0776cf418f43f287c73d6fd6725353df0aadf70f2a19",
+        3648
+      ],
+      "src/core/third_party/ryu/d2s.c": [
+        "d24323c7eb77d63f1e52c415212b50060b776f0883525d907d04954fcd48cf64",
+        17705
+      ],
+      "src/core/third_party/ryu/d2s_full_table.h": [
+        "2618f6e5fae6c4443899b184efe3d08295dd267dc9f1a994c983c7caca59ebe6",
+        34501
+      ],
+      "src/core/third_party/ryu/d2s_intrinsics.h": [
+        "1d05702f2edacce428223d4b43dd3095c1bd1f3ad30128ce1761d84356dddc7d",
+        13015
+      ],
+      "src/core/third_party/ryu/d2s_small_table.h": [
+        "54fec51f1c5eed786a8ce6de881b81582dd71f0812dcd4324b37396617bb0fa9",
+        7641
+      ],
+      "src/core/third_party/ryu/digit_table.h": [
+        "8b782573abc0b8554d74163ae6c02f0beb5c30d1e63eaebdb0ddf2c98d817e01",
+        1745
+      ],
+      "src/core/third_party/ryu/ryu.h": [
+        "b7feab0ba1df5e9ef3d602f386592ad152491405e49b408fb21c0e0e9e6bfb16",
+        1360
+      ],
+      "tools/arabic_morph/THIRD_PARTY_NOTICES": [
+        "6e74d4648626177a13a8b41d45f62af1a6c97b7062e55c38c52c74c28e136e21",
+        1710
+      ],
+      "tools/arabic_morph/notices/CPython-LICENSE": [
+        "3b2f81fe21d181c499c59a256c8e1968455d6689d269aa85373bfb6af41da3bf",
+        13936
+      ],
+      "tools/arabic_morph/notices/Ryu-LICENSE-Apache2": [
+        "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+        11357
+      ],
+      "tools/arabic_morph/notices/Unicode-LICENSE.txt": [
+        "e7a93b009565cfce55919a381437ac4db883e9da2126fa28b91d12732bc53d96",
+        1995
+      ],
+      "tools/arabic_morph/notices/camel_tools-LICENSE": [
+        "7a3ef160e8957145490ff66591aa9cb8cb08601a2e9fb1673c5fb7af74c727f2",
+        1087
+      ]
+    },
+    "DATA_NOTICES": {
+      "camel-morph-msa-NOTICE": [
+        "ce2f9c051786a37e4eb72367e6a6c9ea256b702137d4187bb0bfbda38f860efd",
+        1799
+      ],
+      "camel-morph-msa-LICENSE": [
+        "214965747a90efe3e5268d367192bb077f1101620662cba71d59d902000b2d94",
+        442
+      ],
+      "camel-morph-msa-disambig-NOTICE": [
+        "12f44e5787019e5eb5595663cb7275408d961f430b74d108fa77006235e2638b",
+        1484
+      ],
+      "camel-morph-msa-disambig-LICENSE": [
+        "ef2c6367af269181d259bbda4b6167684f85242bb04b28923f91e2861be4c695",
+        363
+      ]
+    },
+    "LIBRARY": "quds_arabic_morph"
+  },
+  "model_pins": {
+    "id": "camel-morph-msa-disambig",
+    "repository": "cstr/camel-morph-msa-disambig",
+    "revision": "07fd9e65200a3ea92a081efa9b0714817178df5f",
+    "directory": "bigram-v1",
+    "license": "CC-BY-SA-4.0",
+    "artifacts": [
+      {
+        "file": "manifest.json",
+        "sha256": "02b8fc1cdfd8c925f6737029eafd79aea22148f2ce0af31b8b0e07a95053cbaa",
+        "bytes": 1753
+      },
+      {
+        "file": "camel_morph_msa_v1.0.disambig.cmdis",
+        "sha256": "987250d64ec36e631b125f9f7ba52f4e5fe48da694ea3a6a21786b4ac4aabf61",
+        "bytes": 4487296
+      },
+      {
+        "file": "NOTICE",
+        "sha256": "12f44e5787019e5eb5595663cb7275408d961f430b74d108fa77006235e2638b",
+        "bytes": 1484
+      },
+      {
+        "file": "LICENSE",
+        "sha256": "ef2c6367af269181d259bbda4b6167684f85242bb04b28923f91e2861be4c695",
+        "bytes": 363
+      }
+    ],
+    "total_bytes": 4490896
+  },
+  "notice_checks": [
+    {
+      "name": "camel-morph-msa-NOTICE",
+      "expected_sha256": "ce2f9c051786a37e4eb72367e6a6c9ea256b702137d4187bb0bfbda38f860efd",
+      "expected_bytes": 1799,
+      "package": {
+        "path": "packages/quds_arabic_morph/licenses/data/camel-morph-msa-NOTICE",
+        "revision": "f69e774fbb32a103260541e4a28fb17600bfc17e",
+        "blob": "07d3d5111a13f8b254609c0a0c9ebad6067273fc",
+        "bytes": 1799,
+        "sha256": "ce2f9c051786a37e4eb72367e6a6c9ea256b702137d4187bb0bfbda38f860efd"
+      },
+      "studio": {
+        "path": "packages/quds_office_editor/example/assets/licenses/arabic_morph/camel-morph-msa-NOTICE",
+        "revision": "f69e774fbb32a103260541e4a28fb17600bfc17e",
+        "blob": "07d3d5111a13f8b254609c0a0c9ebad6067273fc",
+        "bytes": 1799,
+        "sha256": "ce2f9c051786a37e4eb72367e6a6c9ea256b702137d4187bb0bfbda38f860efd"
+      },
+      "copies_equal": true,
+      "matches_pin": true
+    },
+    {
+      "name": "camel-morph-msa-LICENSE",
+      "expected_sha256": "214965747a90efe3e5268d367192bb077f1101620662cba71d59d902000b2d94",
+      "expected_bytes": 442,
+      "package": {
+        "path": "packages/quds_arabic_morph/licenses/data/camel-morph-msa-LICENSE",
+        "revision": "f69e774fbb32a103260541e4a28fb17600bfc17e",
+        "blob": "7ebcf9a3d2e36b39467b5886167a14d98db31942",
+        "bytes": 442,
+        "sha256": "214965747a90efe3e5268d367192bb077f1101620662cba71d59d902000b2d94"
+      },
+      "studio": {
+        "path": "packages/quds_office_editor/example/assets/licenses/arabic_morph/camel-morph-msa-LICENSE",
+        "revision": "f69e774fbb32a103260541e4a28fb17600bfc17e",
+        "blob": "7ebcf9a3d2e36b39467b5886167a14d98db31942",
+        "bytes": 442,
+        "sha256": "214965747a90efe3e5268d367192bb077f1101620662cba71d59d902000b2d94"
+      },
+      "copies_equal": true,
+      "matches_pin": true
+    },
+    {
+      "name": "camel-morph-msa-disambig-NOTICE",
+      "expected_sha256": "12f44e5787019e5eb5595663cb7275408d961f430b74d108fa77006235e2638b",
+      "expected_bytes": 1484,
+      "package": {
+        "path": "packages/quds_arabic_morph/licenses/data/camel-morph-msa-disambig-NOTICE",
+        "revision": "f69e774fbb32a103260541e4a28fb17600bfc17e",
+        "blob": "e21a4c615ebc383c2a8a8bf5e177b3d0414061fd",
+        "bytes": 1484,
+        "sha256": "12f44e5787019e5eb5595663cb7275408d961f430b74d108fa77006235e2638b"
+      },
+      "studio": {
+        "path": "packages/quds_office_editor/example/assets/licenses/arabic_morph/camel-morph-msa-disambig-NOTICE",
+        "revision": "f69e774fbb32a103260541e4a28fb17600bfc17e",
+        "blob": "e21a4c615ebc383c2a8a8bf5e177b3d0414061fd",
+        "bytes": 1484,
+        "sha256": "12f44e5787019e5eb5595663cb7275408d961f430b74d108fa77006235e2638b"
+      },
+      "copies_equal": true,
+      "matches_pin": true
+    },
+    {
+      "name": "camel-morph-msa-disambig-LICENSE",
+      "expected_sha256": "ef2c6367af269181d259bbda4b6167684f85242bb04b28923f91e2861be4c695",
+      "expected_bytes": 363,
+      "package": {
+        "path": "packages/quds_arabic_morph/licenses/data/camel-morph-msa-disambig-LICENSE",
+        "revision": "f69e774fbb32a103260541e4a28fb17600bfc17e",
+        "blob": "3d81e2028382972c6d96a802e8490e8e2c468339",
+        "bytes": 363,
+        "sha256": "ef2c6367af269181d259bbda4b6167684f85242bb04b28923f91e2861be4c695"
+      },
+      "studio": {
+        "path": "packages/quds_office_editor/example/assets/licenses/arabic_morph/camel-morph-msa-disambig-LICENSE",
+        "revision": "f69e774fbb32a103260541e4a28fb17600bfc17e",
+        "blob": "3d81e2028382972c6d96a802e8490e8e2c468339",
+        "bytes": 363,
+        "sha256": "ef2c6367af269181d259bbda4b6167684f85242bb04b28923f91e2861be4c695"
+      },
+      "copies_equal": true,
+      "matches_pin": true
+    }
+  ],
+  "manifest_checks": {
+    "paths": [
+      {
+        "path": "packages/quds_arabic_morph/licenses/manifest.json",
+        "revision": "f69e774fbb32a103260541e4a28fb17600bfc17e",
+        "blob": "f6c3dab50d838cc5dc156036803441549fd73b50",
+        "bytes": 5104,
+        "sha256": "9fb7d8ee44458c4b8d1dfd9038da46c1530b4b1ebb3c5c38b552c762ac08f899"
+      },
+      {
+        "path": "packages/quds_office_editor/example/assets/licenses/arabic_morph/manifest.json",
+        "revision": "f69e774fbb32a103260541e4a28fb17600bfc17e",
+        "blob": "f6c3dab50d838cc5dc156036803441549fd73b50",
+        "bytes": 5104,
+        "sha256": "9fb7d8ee44458c4b8d1dfd9038da46c1530b4b1ebb3c5c38b552c762ac08f899"
+      }
+    ],
+    "component_commit": "3bab324832ea911c2b1260a0d50f0ed898f47950",
+    "data_notices": {
+      "bundle": "huggingface.co/cstr/camel-morph-msa-v1.0@d5364e04af7a40b0c9044ed127606e585be15272/proofing-bin",
+      "files": {
+        "camel-morph-msa-LICENSE": "214965747a90efe3e5268d367192bb077f1101620662cba71d59d902000b2d94",
+        "camel-morph-msa-NOTICE": "ce2f9c051786a37e4eb72367e6a6c9ea256b702137d4187bb0bfbda38f860efd",
+        "camel-morph-msa-disambig-LICENSE": "ef2c6367af269181d259bbda4b6167684f85242bb04b28923f91e2861be4c695",
+        "camel-morph-msa-disambig-NOTICE": "12f44e5787019e5eb5595663cb7275408d961f430b74d108fa77006235e2638b"
+      },
+      "license": "CC-BY-4.0",
+      "model_bundle": "huggingface.co/cstr/camel-morph-msa-disambig@07fd9e65200a3ea92a081efa9b0714817178df5f/bigram-v1",
+      "model_license": "CC-BY-SA-4.0"
+    },
+    "scope": "Verifies local notice bytes and declared pins; not a legal determination or downloaded-model verification."
+  },
+  "package_constraints": {
+    "old_version": "0.2.0",
+    "new_version": "0.3.0",
+    "sdk": "^3.12.0",
+    "dependencies_and_assets_unchanged": true,
+    "root_lock_unchanged": true,
+    "dependency_reuse_proof": "dependency-reuse.json"
+  },
+  "macos_compatibility": {
+    "conclusion": "No source-level conflict with pinned spaCy. Arabic and spaCy are separately built/packaged libraries with separate ABI namespaces.",
+    "arabic_library": "libquds_arabic_morph.dylib",
+    "arabic_runtime_required": {
+      "abi": 3,
+      "adapter": 2
+    },
+    "macos_builder_invokes_current_arabic_build_and_install": true,
+    "spacy_library": "libcrispembed-spacy.dylib",
+    "spacy_bytes_sha256": "ccc96620e01164d18e8d2e46b9a383677e4430c8889833bedab5b56c16a1b40f",
+    "spacy_code_sha256": "f2022b1cf75d831cddbd047eec5f5ac759728fee169ed2b5b785ecda1a07efeb",
+    "records": [
+      {
+        "path": "packages/quds_office_editor/example/tool/build_macos_app.sh",
+        "revision": "f69e774fbb32a103260541e4a28fb17600bfc17e",
+        "blob": "7a519fbb41f8e28842b1df7dedfd9f049d4b3805",
+        "bytes": 21478,
+        "sha256": "da352b38e812b1cf873fb6bb39c66b6fab3bca84ad8bff3c8855cec79122c4f0"
+      },
+      {
+        "path": "packages/quds_arabic_morph/tool/build.py",
+        "revision": "f69e774fbb32a103260541e4a28fb17600bfc17e",
+        "blob": "956e526c741b02f6a5459b66dac3dec4bd6a0122",
+        "bytes": 18900,
+        "sha256": "f1f4226943a95395ccd3641c05d9fa2aeb17cbf6232b6477414fc882554dd59e"
+      },
+      {
+        "path": "packages/quds_arabic_morph/native/CMakeLists.txt",
+        "revision": "f69e774fbb32a103260541e4a28fb17600bfc17e",
+        "blob": "8d17e40a4f5411fbbbed2a65e3f08f48c39c20f9",
+        "bytes": 2757,
+        "sha256": "14aa1611ea151aec68dcb2654260ba55bbe73935398bd5642e04f73a17fd3ef4"
+      },
+      {
+        "path": "packages/quds_arabic_morph/lib/src/morph_transport_native.dart",
+        "revision": "f69e774fbb32a103260541e4a28fb17600bfc17e",
+        "blob": "bdad68afc065e37b538341ade4f5820902137678",
+        "bytes": 26585,
+        "sha256": "3152bd125ee486f0ef706df474e67baf21dc4289cf626706bf3780425585d0fa"
+      },
+      {
+        "path": "packages/quds_arabic_morph/web/arabic_morph_worker.mjs",
+        "revision": "f69e774fbb32a103260541e4a28fb17600bfc17e",
+        "blob": "a7e00cc75ff2572990c4a1b70f14ba736b241379",
+        "bytes": 9099,
+        "sha256": "321b17494c8757d1ce4a9a88716da5a53be5961ed5ac0ca6f6c9a012cb6fe63e"
+      },
+      {
+        "path": "packages/quds_arabic_morph/native/src/quds_arabic_morph.cpp",
+        "revision": "f69e774fbb32a103260541e4a28fb17600bfc17e",
+        "blob": "75de1d1364e308b77e333d7fdb898cb31fd4ab58",
+        "bytes": 1937,
+        "sha256": "cfc838229f134903d6dd59bd2074667117bdc036d9b01d19e02acfeec5bc9cf1"
+      },
+      {
+        "path": "packages/quds_proofing_spacy/lib/src/native_backend.dart",
+        "revision": "f69e774fbb32a103260541e4a28fb17600bfc17e",
+        "blob": "d501e60ad2399630693f4311b31b0ee792dd42b7",
+        "bytes": 27472,
+        "sha256": "7e142a7fc4fb94ae52cef3a7068be6101ba773271a216c82357f9526c0763af6"
+      }
+    ],
+    "boundary": "Source consistency only. Native builds, packaging/signing, real model execution and Wasm runtime acceptance were not performed by this review. Existing ABI 2 Arabic binaries must be rebuilt."
+  },
+  "author_qualification": {
+    "source": "pr231-metadata.json; docs/roadmaps/arabic-proofing.md at incoming main",
+    "claims_only": [
+      "engine proofing tests",
+      "Arabic package tests with pinned native library and real database/model",
+      "Node Web Worker smoke with pinned Wasm",
+      "Studio example suite with one unspecified baseline exception",
+      "dart analyze packages apps: zero errors/warnings",
+      "PUD and Wikipedia accuracy/rule A/B measurements"
+    ],
+    "source_bound_raw_native_receipts_in_38_path_delta": false,
+    "studio_exception": {
+      "quoted_description": "Studio example suite (only the known baseline failure)",
+      "test_name": null,
+      "file": null,
+      "trace": null,
+      "disposition": "Unattributed author exception. It cannot classify any fresh combined-source failure as baseline."
+    },
+    "new_native_test_requirements": [
+      "QUDS_ARABIC_MORPH_TEST_LIBRARY",
+      "QUDS_ARABIC_MORPH_TEST_BUNDLE",
+      "QUDS_ARABIC_MORPH_TEST_MODEL"
+    ]
+  },
+  "minimum_local_selection": {
+    "arabic-unit": {
+      "package": "packages/quds_arabic_morph",
+      "patterns": [],
+      "additional": [
+        "arabic_morph_unit_test.dart"
+      ],
+      "runner": "dart",
+      "files": [
+        {
+          "path": "packages/quds_arabic_morph/test/arabic_morph_unit_test.dart",
+          "revision": "f69e774fbb32a103260541e4a28fb17600bfc17e",
+          "blob": "c19cbf247036b1b973cd92749137b2795031d9d8",
+          "bytes": 17541,
+          "sha256": "817f0b9e7e6548213997afa9c1962fafd8d49f4a24fce34c5d1ffb697079bd1e"
+        }
+      ]
+    },
+    "engine-arabic": {
+      "package": "packages/quds_office_engine",
+      "patterns": [],
+      "additional": [
+        "proofing/arabic_grammar_context_test.dart",
+        "proofing/arabic_grammar_rules_test.dart",
+        "proofing/arabic_writing_rules_test.dart",
+        "proofing/arabic_extended_rules_test.dart"
+      ],
+      "runner": "dart",
+      "files": [
+        {
+          "path": "packages/quds_office_engine/test/proofing/arabic_grammar_context_test.dart",
+          "revision": "f69e774fbb32a103260541e4a28fb17600bfc17e",
+          "blob": "ab0f208d4a78d07adc92492077d746db924a3860",
+          "bytes": 9051,
+          "sha256": "727836bb81b5ae90f581995976521dcf3d1323cca490595ae4142e6b7de1f110"
+        },
+        {
+          "path": "packages/quds_office_engine/test/proofing/arabic_grammar_rules_test.dart",
+          "revision": "f69e774fbb32a103260541e4a28fb17600bfc17e",
+          "blob": "a6ff61e54f4abb513dbea9a96c899b034cb63cc3",
+          "bytes": 21457,
+          "sha256": "447298766165cf0b1dd12bae5e2642d51b06c60ea99308fff076ae40cd00162e"
+        },
+        {
+          "path": "packages/quds_office_engine/test/proofing/arabic_writing_rules_test.dart",
+          "revision": "f69e774fbb32a103260541e4a28fb17600bfc17e",
+          "blob": "a9bdd3d122c2fb4d4cc0ca2b07bd259d3f039275",
+          "bytes": 15892,
+          "sha256": "701a65066ee935fdf03bb31fefab3ff07cc46758cd674eda46ee37964925948b"
+        },
+        {
+          "path": "packages/quds_office_engine/test/proofing/arabic_extended_rules_test.dart",
+          "revision": "f69e774fbb32a103260541e4a28fb17600bfc17e",
+          "blob": "3b1fbeeabcb583a82427d28d99effbcbb60183fb",
+          "bytes": 35422,
+          "sha256": "912965d98ed9e627b1d079048a19b5a942fe83d6d5e4c27fcbc595ee86a86129"
+        }
+      ]
+    },
+    "studio-integration": {
+      "package": "packages/quds_office_editor/example",
+      "patterns": [],
+      "additional": [
+        "studio_arabic_morph_setup_test.dart",
+        "studio_downloads_manager_test.dart",
+        "studio_settings_test.dart",
+        "studio_linguistic_analysis_test.dart",
+        "studio_comment_draft_proofing_test.dart",
+        "studio_zotero_shortcuts_test.dart",
+        "studio_zotero_citing_transport_test.dart"
+      ],
+      "runner": "flutter",
+      "files": [
+        {
+          "path": "packages/quds_office_editor/example/test/studio_arabic_morph_setup_test.dart",
+          "revision": "f69e774fbb32a103260541e4a28fb17600bfc17e",
+          "blob": "baf90c62c3bd62b87f78b6f8c284e2a15bef628c",
+          "bytes": 10172,
+          "sha256": "cebb4715bbc4a3fb2ca1f5c3dc95278f2b7ae7026664e6af8e6bf60b921c5b61"
+        },
+        {
+          "path": "packages/quds_office_editor/example/test/studio_downloads_manager_test.dart",
+          "revision": "f69e774fbb32a103260541e4a28fb17600bfc17e",
+          "blob": "6cdbbb220e84a0e1d35789d6a1856fa93dab47fb",
+          "bytes": 15413,
+          "sha256": "13a5932a3f87abb336a27882881739cb0e2d50c77537e71c1d2a0b9a3ad477ad"
+        },
+        {
+          "path": "packages/quds_office_editor/example/test/studio_settings_test.dart",
+          "revision": "f69e774fbb32a103260541e4a28fb17600bfc17e",
+          "blob": "c64e51d809b8ac563ec952200d6e852d42a15efe",
+          "bytes": 3524,
+          "sha256": "41c067ff654bedc6cd744766cc59481e28cb9a60730e2ef87311ab8e6bf2e1b1"
+        },
+        {
+          "path": "packages/quds_office_editor/example/test/studio_linguistic_analysis_test.dart",
+          "revision": "f69e774fbb32a103260541e4a28fb17600bfc17e",
+          "blob": "bbaf6dfe89061cd5ae3892a6cd0e684dd5d406db",
+          "bytes": 24779,
+          "sha256": "a6e98808a0f3af8e1c44b184d15c4d18bded9dfba5c63b4280e9be8d290370f6"
+        },
+        {
+          "path": "packages/quds_office_editor/example/test/studio_comment_draft_proofing_test.dart",
+          "revision": "f69e774fbb32a103260541e4a28fb17600bfc17e",
+          "blob": "055410c2c2daa10cbc57071a8456c5d85387a296",
+          "bytes": 20240,
+          "sha256": "94933f99a7470db98014d0f227e7e14177856c3bf939f69c4ece96ab5f72fc88"
+        },
+        {
+          "path": "packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+          "revision": "f69e774fbb32a103260541e4a28fb17600bfc17e",
+          "blob": "4e62ab3326bdd745a305b187cc01dfd742ac58a8",
+          "bytes": 19641,
+          "sha256": "2e81a000c349808e3fefe599d8bfc722a44f7b57afe3a632d3b1aacd6747a4e9"
+        },
+        {
+          "path": "packages/quds_office_editor/example/test/studio_zotero_citing_transport_test.dart",
+          "revision": "f69e774fbb32a103260541e4a28fb17600bfc17e",
+          "blob": "ae85923e2732770db63e45c80a7b3ca329cedf9a",
+          "bytes": 20718,
+          "sha256": "a4a0028f663f5b983d14e961fcb580530446e74c11101c25ac20ca1c02a40773"
+        }
+      ]
+    }
+  },
+  "selection_scope": "1 morph unit file, 4 engine Arabic files, 7 Studio integration files. Fixture support is not selected as a suite. Primary guards/timeouts/accounting remain unchanged. Native, live-download and Chrome suites are excluded from this narrow VM qualification.",
+  "source_findings": [
+    {
+      "id": "arabic-web-remove-model-reuses-transferred-database",
+      "status_at_f69": "Source-level lifecycle defect identified; no browser runtime reproduction in this environment.",
+      "path": "packages/quds_office_editor/example/lib/studio_arabic_morph_host_web.dart",
+      "observation": "_activate stores the same MorphDatabaseBytes in _database and passes it to the transport; removeModel disposes the loaded worker and calls _activate with that cached object. The transport transfers the original Uint8List ArrayBuffers. MorphDatabaseBytes.verified makes an unmodifiable map but does not copy its lists.",
+      "consequence": "For JavaScript compilation, Uint8List.toJS casts without copying. Transferring detaches the retained buffers; reopening the base analyzer from those buffers after model removal can fail and lose base analysis. The session-only storage fallback cannot recover by reading persistent storage.",
+      "evidence": [
+        {
+          "path": "packages/quds_office_editor/example/lib/studio_arabic_morph_host_web.dart",
+          "revision": "f69e774fbb32a103260541e4a28fb17600bfc17e",
+          "blob": "738008f948712bc19642f2fa1672beb23b08ef09",
+          "bytes": 10669,
+          "sha256": "2fc00873314a18b20de8a94dce32a62e5c34574954de36eb0a1ca91c8f7021a9"
+        },
+        {
+          "path": "packages/quds_arabic_morph/lib/src/morph_transport_web.dart",
+          "revision": "f69e774fbb32a103260541e4a28fb17600bfc17e",
+          "blob": "6f85cda65e4ef22e75c733c045905318a84ba8dd",
+          "bytes": 9265,
+          "sha256": "d661b6e1bf5cb752eff761f2882124d80485d39bb7d3b8885bb7b2bc39f839ca"
+        },
+        {
+          "path": "packages/quds_arabic_morph/lib/src/morph_catalog.dart",
+          "revision": "f69e774fbb32a103260541e4a28fb17600bfc17e",
+          "blob": "ad1fb766b27f24377da0661d185f74e4ba77476d",
+          "bytes": 9602,
+          "sha256": "98d375cc3912ff4ab917defbf8e4cb2e3357492d3973caacbc9499352e7c9b1d"
+        },
+        {
+          "path": "packages/quds_office_editor/example/test/studio_web_persistence_test.dart",
+          "revision": "f69e774fbb32a103260541e4a28fb17600bfc17e",
+          "blob": "4827e3c214cf8e30647c1d85b028ffc2b959d7d4",
+          "bytes": 6458,
+          "sha256": "5b95ad0aacbff2d1d639aae002c94e797322379a720bc43c292808629f41e990"
+        }
+      ],
+      "local_sdk_documentation": {
+        "path": "/workspace/scratch/2c6eaad19389/zotero-toolchain/flutter-sdk/bin/cache/dart-sdk/lib/js_interop/js_interop.dart",
+        "sha256": "2396e8da3a3485b911a5c8c8744a519d5bde7938fac5a503c3e4bb6b232045e8",
+        "excerpt": "extension Uint8ListToJSUint8Array on Uint8List {\n  /// Converts this [Uint8List] to a [JSUint8Array] by either casting,\n  /// unwrapping, or cloning the [Uint8List].\n  ///\n  /// > [!NOTE]\n  /// > Depending on whether code is compiled to JavaScript or Wasm, this\n  /// > conversion will have different semantics.\n  ///\n  /// When compiling to JavaScript, all typed lists are the equivalent\n  /// JavaScript typed arrays, and therefore this getter simply casts.\n  ///\n  /// When compiling to Wasm, this [Uint8List] is a wrapper around a\n  /// `Uint8Array` if it was converted via [JSUint8ArrayToUint8List.toDart]. If\n  /// it is a wrapper, this getter unwraps it and returns the `Uint8Array`. If\n  /// it's instantiated in Dart, this getter clones this [Uint8List]'s values\n  /// into a new [JSUint8Array].\n  ///\n  /// Avoid assuming that modifications to this [Uint8List] will affect the\n  /// returned [JSUint8Array] and vice versa on all compilers unless it was\n  /// converted first via [JSUint8ArrayToUint8List.toDart].\n  external JSUint8Array get toJS;"
+      },
+      "fresh_VM_tests_do_not_cover_this_browser_transfer_path": true,
+      "resolution": "Requires an explicit source correction or disclosed browser limitation; not relabelled as an author baseline exception."
+    }
+  ],
+  "reproduction": "python3 review_incoming_arabic.py --repo <repo> --sdk <qualified-flutter-sdk> --output <new-output.json>",
+  "review_script_sha256": "f32fdb3bd4f53a256e3e3b8fd981d2b6af36ae70d104a867204a45b004a61846"
+}

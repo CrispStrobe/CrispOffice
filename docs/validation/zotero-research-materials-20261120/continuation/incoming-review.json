@@ -1,0 +1,635 @@
+{
+  "schema_version": 1,
+  "recorded_at_utc": "2026-11-20T05:34:14.605220+00:00",
+  "head": "f3f98987824e021ed22a4d909e38d6307495267b",
+  "tree": "6e4afd543376f3c5cc965e4b143bb453da71518e",
+  "status": "passed",
+  "scope": "Immutable incoming-blob preservation and syntax checks only. No macOS build, signing, native execution, or GitHub Actions execution is claimed.",
+  "preservation": [
+    {
+      "source": "current main",
+      "commit": "6b2f392c7301d4b19f16d6ccf150258f14bf7ad7",
+      "paths": [
+        {
+          "path": ".github/workflows/macos-app-weekly.yml",
+          "incoming_blob": "fa596d104d4700a27b7ee944bcd3e06730df3d82",
+          "final_blob": "7fc5cd5cd5f2ffce66ed7b3e6b3533ed1880e28b",
+          "identical_to_this_incoming": false,
+          "latest_selected_source": "bf606aa08f8905ceef35342772df91630840a9b2",
+          "latest_selected_blob": "7fc5cd5cd5f2ffce66ed7b3e6b3533ed1880e28b",
+          "identical_to_latest_selected_source": true,
+          "reviewed_combination": false
+        },
+        {
+          "path": "docs/release/macos-signing.md",
+          "incoming_blob": "0ad6e0a6ce04c5d42ccf4c75d593bbfd648073da",
+          "final_blob": "114d350db356daeffc9122d5065bb3e234b21d18",
+          "identical_to_this_incoming": false,
+          "latest_selected_source": "bf606aa08f8905ceef35342772df91630840a9b2",
+          "latest_selected_blob": "114d350db356daeffc9122d5065bb3e234b21d18",
+          "identical_to_latest_selected_source": true,
+          "reviewed_combination": false
+        },
+        {
+          "path": "docs/validation/native-spacy-grammar-v2-20261120/README.md",
+          "incoming_blob": "af27429832ec99a355d5ba60c17effdd25d2deb8",
+          "final_blob": "af27429832ec99a355d5ba60c17effdd25d2deb8",
+          "identical_to_this_incoming": true,
+          "latest_selected_source": "6b2f392c7301d4b19f16d6ccf150258f14bf7ad7",
+          "latest_selected_blob": "af27429832ec99a355d5ba60c17effdd25d2deb8",
+          "identical_to_latest_selected_source": true,
+          "reviewed_combination": false
+        },
+        {
+          "path": "docs/validation/native-spacy-grammar-v2-20261120/candidate-seal.json",
+          "incoming_blob": "35bafb6ffdf8d3e55e827e5f10cba12faf78e9fe",
+          "final_blob": "35bafb6ffdf8d3e55e827e5f10cba12faf78e9fe",
+          "identical_to_this_incoming": true,
+          "latest_selected_source": "6b2f392c7301d4b19f16d6ccf150258f14bf7ad7",
+          "latest_selected_blob": "35bafb6ffdf8d3e55e827e5f10cba12faf78e9fe",
+          "identical_to_latest_selected_source": true,
+          "reviewed_combination": false
+        },
+        {
+          "path": "docs/validation/native-spacy-grammar-v2-20261120/candidate-seal.json.consumed.json",
+          "incoming_blob": "36a1aaafbe29c97a1aaadc8c061a618dde7b1bcc",
+          "final_blob": "36a1aaafbe29c97a1aaadc8c061a618dde7b1bcc",
+          "identical_to_this_incoming": true,
+          "latest_selected_source": "6b2f392c7301d4b19f16d6ccf150258f14bf7ad7",
+          "latest_selected_blob": "36a1aaafbe29c97a1aaadc8c061a618dde7b1bcc",
+          "identical_to_latest_selected_source": true,
+          "reviewed_combination": false
+        },
+        {
+          "path": "docs/validation/native-spacy-grammar-v2-20261120/clean-corpus-gsd-test.json",
+          "incoming_blob": "332cc8329fea225611472813c7c80ebe4450bd13",
+          "final_blob": "332cc8329fea225611472813c7c80ebe4450bd13",
+          "identical_to_this_incoming": true,
+          "latest_selected_source": "6b2f392c7301d4b19f16d6ccf150258f14bf7ad7",
+          "latest_selected_blob": "332cc8329fea225611472813c7c80ebe4450bd13",
+          "identical_to_latest_selected_source": true,
+          "reviewed_combination": false
+        },
+        {
+          "path": "docs/validation/native-spacy-grammar-v2-20261120/clean-corpus-judgement.json",
+          "incoming_blob": "d38fea55f82a1e39e8cfba39a27bd6252e1f89e7",
+          "final_blob": "d38fea55f82a1e39e8cfba39a27bd6252e1f89e7",
+          "identical_to_this_incoming": true,
+          "latest_selected_source": "6b2f392c7301d4b19f16d6ccf150258f14bf7ad7",
+          "latest_selected_blob": "d38fea55f82a1e39e8cfba39a27bd6252e1f89e7",
+          "identical_to_latest_selected_source": true,
+          "reviewed_combination": false
+        },
+        {
+          "path": "docs/validation/native-spacy-grammar-v2-20261120/linux-replay/build-mode.txt",
+          "incoming_blob": "f7b6fad93cde98e0e3c1a549ff7d5d949213ae49",
+          "final_blob": "f7b6fad93cde98e0e3c1a549ff7d5d949213ae49",
+          "identical_to_this_incoming": true,
+          "latest_selected_source": "6b2f392c7301d4b19f16d6ccf150258f14bf7ad7",
+          "latest_selected_blob": "f7b6fad93cde98e0e3c1a549ff7d5d949213ae49",
+          "identical_to_latest_selected_source": true,
+          "reviewed_combination": false
+        },
+        {
+          "path": "docs/validation/native-spacy-grammar-v2-20261120/linux-replay/linux-replay-execution.json",
+          "incoming_blob": "ab9443bbd9c326e5b5ea03e8587de1b9b6e20402",
+          "final_blob": "ab9443bbd9c326e5b5ea03e8587de1b9b6e20402",
+          "identical_to_this_incoming": true,
+          "latest_selected_source": "6b2f392c7301d4b19f16d6ccf150258f14bf7ad7",
+          "latest_selected_blob": "ab9443bbd9c326e5b5ea03e8587de1b9b6e20402",
+          "identical_to_latest_selected_source": true,
+          "reviewed_combination": false
+        },
+        {
+          "path": "docs/validation/native-spacy-grammar-v2-20261120/linux-replay/linux-replay.json.gz",
+          "incoming_blob": "26a80014e899330afca5bd82d3b70f2a53efe4f5",
+          "final_blob": "26a80014e899330afca5bd82d3b70f2a53efe4f5",
+          "identical_to_this_incoming": true,
+          "latest_selected_source": "6b2f392c7301d4b19f16d6ccf150258f14bf7ad7",
+          "latest_selected_blob": "26a80014e899330afca5bd82d3b70f2a53efe4f5",
+          "identical_to_latest_selected_source": true,
+          "reviewed_combination": false
+        },
+        {
+          "path": "docs/validation/native-spacy-grammar-v2-20261120/protocol.json",
+          "incoming_blob": "d08723bf37cc7b15ccb96dc2a387bf89c1efd2b2",
+          "final_blob": "d08723bf37cc7b15ccb96dc2a387bf89c1efd2b2",
+          "identical_to_this_incoming": true,
+          "latest_selected_source": "6b2f392c7301d4b19f16d6ccf150258f14bf7ad7",
+          "latest_selected_blob": "d08723bf37cc7b15ccb96dc2a387bf89c1efd2b2",
+          "identical_to_latest_selected_source": true,
+          "reviewed_combination": false
+        },
+        {
+          "path": "docs/validation/native-spacy-grammar-v2-20261120/qualification-macos.json.gz",
+          "incoming_blob": "75f3ccc3f37a72acdf4e76ba5c102955186e7c45",
+          "final_blob": "75f3ccc3f37a72acdf4e76ba5c102955186e7c45",
+          "identical_to_this_incoming": true,
+          "latest_selected_source": "6b2f392c7301d4b19f16d6ccf150258f14bf7ad7",
+          "latest_selected_blob": "75f3ccc3f37a72acdf4e76ba5c102955186e7c45",
+          "identical_to_latest_selected_source": true,
+          "reviewed_combination": false
+        },
+        {
+          "path": "docs/validation/native-spacy-grammar-v2-20261120/qualification-macos.json.sha256",
+          "incoming_blob": "24d4ebfa2681743e352edf2449fb770377757fde",
+          "final_blob": "24d4ebfa2681743e352edf2449fb770377757fde",
+          "identical_to_this_incoming": true,
+          "latest_selected_source": "6b2f392c7301d4b19f16d6ccf150258f14bf7ad7",
+          "latest_selected_blob": "24d4ebfa2681743e352edf2449fb770377757fde",
+          "identical_to_latest_selected_source": true,
+          "reviewed_combination": false
+        },
+        {
+          "path": "docs/validation/native-spacy-grammar-v2-20261120/qualification-panel.json",
+          "incoming_blob": "36b50bb0eebaefc74e3f6c09e8202f26e0137e5a",
+          "final_blob": "36b50bb0eebaefc74e3f6c09e8202f26e0137e5a",
+          "identical_to_this_incoming": true,
+          "latest_selected_source": "6b2f392c7301d4b19f16d6ccf150258f14bf7ad7",
+          "latest_selected_blob": "36b50bb0eebaefc74e3f6c09e8202f26e0137e5a",
+          "identical_to_latest_selected_source": true,
+          "reviewed_combination": false
+        },
+        {
+          "path": "packages/quds_office_editor/example/lib/studio_spacy_host.dart",
+          "incoming_blob": "7ea02b687fde7fda286cd0fa2a24330b96ba1ebd",
+          "final_blob": "7ea02b687fde7fda286cd0fa2a24330b96ba1ebd",
+          "identical_to_this_incoming": true,
+          "latest_selected_source": "6b2f392c7301d4b19f16d6ccf150258f14bf7ad7",
+          "latest_selected_blob": "7ea02b687fde7fda286cd0fa2a24330b96ba1ebd",
+          "identical_to_latest_selected_source": true,
+          "reviewed_combination": false
+        },
+        {
+          "path": "packages/quds_office_editor/example/lib/studio_spacy_host_native.dart",
+          "incoming_blob": "44f9f6a60df68a8f142d03551be2226a19809614",
+          "final_blob": "44f9f6a60df68a8f142d03551be2226a19809614",
+          "identical_to_this_incoming": true,
+          "latest_selected_source": "6b2f392c7301d4b19f16d6ccf150258f14bf7ad7",
+          "latest_selected_blob": "44f9f6a60df68a8f142d03551be2226a19809614",
+          "identical_to_latest_selected_source": true,
+          "reviewed_combination": false
+        },
+        {
+          "path": "packages/quds_office_editor/example/lib/studio_spacy_setup.dart",
+          "incoming_blob": "67bae734eb60df5a49361316f36df42cdfdff427",
+          "final_blob": "67bae734eb60df5a49361316f36df42cdfdff427",
+          "identical_to_this_incoming": true,
+          "latest_selected_source": "6b2f392c7301d4b19f16d6ccf150258f14bf7ad7",
+          "latest_selected_blob": "67bae734eb60df5a49361316f36df42cdfdff427",
+          "identical_to_latest_selected_source": true,
+          "reviewed_combination": false
+        },
+        {
+          "path": "packages/quds_office_editor/example/lib/suite_workspace.dart",
+          "incoming_blob": "1283248c06d1c4890614d153b1be7d8e4f4378e6",
+          "final_blob": "cddbe90139062c773e4dfb582d199cd258e20c77",
+          "identical_to_this_incoming": false,
+          "latest_selected_source": "6b2f392c7301d4b19f16d6ccf150258f14bf7ad7",
+          "latest_selected_blob": "1283248c06d1c4890614d153b1be7d8e4f4378e6",
+          "identical_to_latest_selected_source": false,
+          "reviewed_combination": true
+        },
+        {
+          "path": "packages/quds_office_editor/example/macos/Runner/Info.plist",
+          "incoming_blob": "7b9be5c0d2c01c3073d2abcf4bb23da65c8e15a3",
+          "final_blob": "7b9be5c0d2c01c3073d2abcf4bb23da65c8e15a3",
+          "identical_to_this_incoming": true,
+          "latest_selected_source": "6b2f392c7301d4b19f16d6ccf150258f14bf7ad7",
+          "latest_selected_blob": "7b9be5c0d2c01c3073d2abcf4bb23da65c8e15a3",
+          "identical_to_latest_selected_source": true,
+          "reviewed_combination": false
+        },
+        {
+          "path": "packages/quds_office_editor/example/test/studio_macos_bundle_native_gate.dart",
+          "incoming_blob": "4f64974fa519b8ec59d98cf9285262663a0e551e",
+          "final_blob": "4f64974fa519b8ec59d98cf9285262663a0e551e",
+          "identical_to_this_incoming": true,
+          "latest_selected_source": "6b2f392c7301d4b19f16d6ccf150258f14bf7ad7",
+          "latest_selected_blob": "4f64974fa519b8ec59d98cf9285262663a0e551e",
+          "identical_to_latest_selected_source": true,
+          "reviewed_combination": false
+        },
+        {
+          "path": "packages/quds_office_editor/example/test/studio_spacy_bundle_native_gate.dart",
+          "incoming_blob": "2fcce1cb6e1fd2245eed071481f948d6d0258951",
+          "final_blob": "2fcce1cb6e1fd2245eed071481f948d6d0258951",
+          "identical_to_this_incoming": true,
+          "latest_selected_source": "6b2f392c7301d4b19f16d6ccf150258f14bf7ad7",
+          "latest_selected_blob": "2fcce1cb6e1fd2245eed071481f948d6d0258951",
+          "identical_to_latest_selected_source": true,
+          "reviewed_combination": false
+        },
+        {
+          "path": "packages/quds_office_editor/example/test/studio_spacy_grammar_native_gate.dart",
+          "incoming_blob": "33a308090d8519777bf597a87028f7b92cdcd8dd",
+          "final_blob": "33a308090d8519777bf597a87028f7b92cdcd8dd",
+          "identical_to_this_incoming": true,
+          "latest_selected_source": "6b2f392c7301d4b19f16d6ccf150258f14bf7ad7",
+          "latest_selected_blob": "33a308090d8519777bf597a87028f7b92cdcd8dd",
+          "identical_to_latest_selected_source": true,
+          "reviewed_combination": false
+        },
+        {
+          "path": "packages/quds_office_editor/example/test/studio_spacy_pin_test.dart",
+          "incoming_blob": "8fa18545f41d149bc7af8485b67731a8517b2cb2",
+          "final_blob": "8fa18545f41d149bc7af8485b67731a8517b2cb2",
+          "identical_to_this_incoming": true,
+          "latest_selected_source": "6b2f392c7301d4b19f16d6ccf150258f14bf7ad7",
+          "latest_selected_blob": "8fa18545f41d149bc7af8485b67731a8517b2cb2",
+          "identical_to_latest_selected_source": true,
+          "reviewed_combination": false
+        },
+        {
+          "path": "packages/quds_office_editor/example/test/studio_spacy_setup_test.dart",
+          "incoming_blob": "7e6f94754bc499e7a2bb611a87c9ef1ba69d5678",
+          "final_blob": "7e6f94754bc499e7a2bb611a87c9ef1ba69d5678",
+          "identical_to_this_incoming": true,
+          "latest_selected_source": "6b2f392c7301d4b19f16d6ccf150258f14bf7ad7",
+          "latest_selected_blob": "7e6f94754bc499e7a2bb611a87c9ef1ba69d5678",
+          "identical_to_latest_selected_source": true,
+          "reviewed_combination": false
+        },
+        {
+          "path": "packages/quds_office_editor/example/tool/build_macos_app.sh",
+          "incoming_blob": "9deb2039663ea0ee8e39842a9c626058eed01b56",
+          "final_blob": "be569c7f64ba5d95170f7ace8bb01a4be5803748",
+          "identical_to_this_incoming": false,
+          "latest_selected_source": "bf606aa08f8905ceef35342772df91630840a9b2",
+          "latest_selected_blob": "be569c7f64ba5d95170f7ace8bb01a4be5803748",
+          "identical_to_latest_selected_source": true,
+          "reviewed_combination": false
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/proofing/german_agreement_facts.dart",
+          "incoming_blob": "0736060f088ee35870b5eb7b87cd935b153313f1",
+          "final_blob": "0736060f088ee35870b5eb7b87cd935b153313f1",
+          "identical_to_this_incoming": true,
+          "latest_selected_source": "6b2f392c7301d4b19f16d6ccf150258f14bf7ad7",
+          "latest_selected_blob": "0736060f088ee35870b5eb7b87cd935b153313f1",
+          "identical_to_latest_selected_source": true,
+          "reviewed_combination": false
+        },
+        {
+          "path": "packages/quds_proofing_spacy/README.md",
+          "incoming_blob": "216d59f182053108a397439b5b57f4a49966ec50",
+          "final_blob": "216d59f182053108a397439b5b57f4a49966ec50",
+          "identical_to_this_incoming": true,
+          "latest_selected_source": "6b2f392c7301d4b19f16d6ccf150258f14bf7ad7",
+          "latest_selected_blob": "216d59f182053108a397439b5b57f4a49966ec50",
+          "identical_to_latest_selected_source": true,
+          "reviewed_combination": false
+        },
+        {
+          "path": "packages/quds_proofing_spacy/lib/quds_proofing_spacy.dart",
+          "incoming_blob": "f8d098d1ade3ff67cb55fcce12f767b38c0f5098",
+          "final_blob": "f8d098d1ade3ff67cb55fcce12f767b38c0f5098",
+          "identical_to_this_incoming": true,
+          "latest_selected_source": "6b2f392c7301d4b19f16d6ccf150258f14bf7ad7",
+          "latest_selected_blob": "f8d098d1ade3ff67cb55fcce12f767b38c0f5098",
+          "identical_to_latest_selected_source": true,
+          "reviewed_combination": false
+        },
+        {
+          "path": "packages/quds_proofing_spacy/lib/src/backend.dart",
+          "incoming_blob": "6cd100e9874731717fdd92ae464e505d7cff8710",
+          "final_blob": "6cd100e9874731717fdd92ae464e505d7cff8710",
+          "identical_to_this_incoming": true,
+          "latest_selected_source": "6b2f392c7301d4b19f16d6ccf150258f14bf7ad7",
+          "latest_selected_blob": "6cd100e9874731717fdd92ae464e505d7cff8710",
+          "identical_to_latest_selected_source": true,
+          "reviewed_combination": false
+        },
+        {
+          "path": "packages/quds_proofing_spacy/lib/src/distribution.dart",
+          "incoming_blob": "c681cdbd30d71dc626758e89ea58429807072089",
+          "final_blob": "684fe6254ad118b26091fa824f9aeb75ce2af713",
+          "identical_to_this_incoming": false,
+          "latest_selected_source": "bf606aa08f8905ceef35342772df91630840a9b2",
+          "latest_selected_blob": "53a3add99f0e817a04420eaeea8ffd668ee2c096",
+          "identical_to_latest_selected_source": false,
+          "reviewed_combination": true
+        },
+        {
+          "path": "packages/quds_proofing_spacy/lib/src/grammar_families.dart",
+          "incoming_blob": "5de9cb62a32832e7db65cfee4d80018b41623aa3",
+          "final_blob": "5de9cb62a32832e7db65cfee4d80018b41623aa3",
+          "identical_to_this_incoming": true,
+          "latest_selected_source": "6b2f392c7301d4b19f16d6ccf150258f14bf7ad7",
+          "latest_selected_blob": "5de9cb62a32832e7db65cfee4d80018b41623aa3",
+          "identical_to_latest_selected_source": true,
+          "reviewed_combination": false
+        },
+        {
+          "path": "packages/quds_proofing_spacy/lib/src/grammar_planner.dart",
+          "incoming_blob": "9d63f23c39003d6edba3e306e0a6da7a05e8b898",
+          "final_blob": "9d63f23c39003d6edba3e306e0a6da7a05e8b898",
+          "identical_to_this_incoming": true,
+          "latest_selected_source": "6b2f392c7301d4b19f16d6ccf150258f14bf7ad7",
+          "latest_selected_blob": "9d63f23c39003d6edba3e306e0a6da7a05e8b898",
+          "identical_to_latest_selected_source": true,
+          "reviewed_combination": false
+        },
+        {
+          "path": "packages/quds_proofing_spacy/lib/src/grammar_provider.dart",
+          "incoming_blob": "b82840d9cb88a5810399cb3a3a27a103f1743e0c",
+          "final_blob": "b82840d9cb88a5810399cb3a3a27a103f1743e0c",
+          "identical_to_this_incoming": true,
+          "latest_selected_source": "6b2f392c7301d4b19f16d6ccf150258f14bf7ad7",
+          "latest_selected_blob": "b82840d9cb88a5810399cb3a3a27a103f1743e0c",
+          "identical_to_latest_selected_source": true,
+          "reviewed_combination": false
+        },
+        {
+          "path": "packages/quds_proofing_spacy/lib/src/grammar_verbs.dart",
+          "incoming_blob": "9fcffb2cf020e3c6d7e39d4bbdfc77a416719688",
+          "final_blob": "9fcffb2cf020e3c6d7e39d4bbdfc77a416719688",
+          "identical_to_this_incoming": true,
+          "latest_selected_source": "6b2f392c7301d4b19f16d6ccf150258f14bf7ad7",
+          "latest_selected_blob": "9fcffb2cf020e3c6d7e39d4bbdfc77a416719688",
+          "identical_to_latest_selected_source": true,
+          "reviewed_combination": false
+        },
+        {
+          "path": "packages/quds_proofing_spacy/lib/src/macho_code_identity.dart",
+          "incoming_blob": "003b69a99fe699f5027915159bf2bab769f9857d",
+          "final_blob": "003b69a99fe699f5027915159bf2bab769f9857d",
+          "identical_to_this_incoming": true,
+          "latest_selected_source": "6b2f392c7301d4b19f16d6ccf150258f14bf7ad7",
+          "latest_selected_blob": "003b69a99fe699f5027915159bf2bab769f9857d",
+          "identical_to_latest_selected_source": true,
+          "reviewed_combination": false
+        },
+        {
+          "path": "packages/quds_proofing_spacy/lib/src/native_backend.dart",
+          "incoming_blob": "d501e60ad2399630693f4311b31b0ee792dd42b7",
+          "final_blob": "d501e60ad2399630693f4311b31b0ee792dd42b7",
+          "identical_to_this_incoming": true,
+          "latest_selected_source": "6b2f392c7301d4b19f16d6ccf150258f14bf7ad7",
+          "latest_selected_blob": "d501e60ad2399630693f4311b31b0ee792dd42b7",
+          "identical_to_latest_selected_source": true,
+          "reviewed_combination": false
+        },
+        {
+          "path": "packages/quds_proofing_spacy/test/distribution_test.dart",
+          "incoming_blob": "cdfb1d95158b44736ee30386ddb202a90c2ed52b",
+          "final_blob": "cdfb1d95158b44736ee30386ddb202a90c2ed52b",
+          "identical_to_this_incoming": true,
+          "latest_selected_source": "6b2f392c7301d4b19f16d6ccf150258f14bf7ad7",
+          "latest_selected_blob": "cdfb1d95158b44736ee30386ddb202a90c2ed52b",
+          "identical_to_latest_selected_source": true,
+          "reviewed_combination": false
+        },
+        {
+          "path": "packages/quds_proofing_spacy/test/grammar_families_test.dart",
+          "incoming_blob": "4b3372a428381b70be53bfc1cbe431af9d858448",
+          "final_blob": "4b3372a428381b70be53bfc1cbe431af9d858448",
+          "identical_to_this_incoming": true,
+          "latest_selected_source": "6b2f392c7301d4b19f16d6ccf150258f14bf7ad7",
+          "latest_selected_blob": "4b3372a428381b70be53bfc1cbe431af9d858448",
+          "identical_to_latest_selected_source": true,
+          "reviewed_combination": false
+        },
+        {
+          "path": "packages/quds_proofing_spacy/test/grammar_planner_test.dart",
+          "incoming_blob": "4576399c107571ea7fefa9e989b68bbc59882554",
+          "final_blob": "4576399c107571ea7fefa9e989b68bbc59882554",
+          "identical_to_this_incoming": true,
+          "latest_selected_source": "6b2f392c7301d4b19f16d6ccf150258f14bf7ad7",
+          "latest_selected_blob": "4576399c107571ea7fefa9e989b68bbc59882554",
+          "identical_to_latest_selected_source": true,
+          "reviewed_combination": false
+        },
+        {
+          "path": "packages/quds_proofing_spacy/test/grammar_provider_test.dart",
+          "incoming_blob": "aa5cd128e70ba644f555e111b3c7dd25030ba806",
+          "final_blob": "aa5cd128e70ba644f555e111b3c7dd25030ba806",
+          "identical_to_this_incoming": true,
+          "latest_selected_source": "6b2f392c7301d4b19f16d6ccf150258f14bf7ad7",
+          "latest_selected_blob": "aa5cd128e70ba644f555e111b3c7dd25030ba806",
+          "identical_to_latest_selected_source": true,
+          "reviewed_combination": false
+        },
+        {
+          "path": "packages/quds_proofing_spacy/test/macho_code_identity_test.dart",
+          "incoming_blob": "f58fa475cf8387e0843c76735b121cc591882ff1",
+          "final_blob": "f58fa475cf8387e0843c76735b121cc591882ff1",
+          "identical_to_this_incoming": true,
+          "latest_selected_source": "6b2f392c7301d4b19f16d6ccf150258f14bf7ad7",
+          "latest_selected_blob": "f58fa475cf8387e0843c76735b121cc591882ff1",
+          "identical_to_latest_selected_source": true,
+          "reviewed_combination": false
+        },
+        {
+          "path": "packages/quds_proofing_spacy/tool/dump_development_analysis.dart",
+          "incoming_blob": "55b1eb29dfb07a7c85bcb4a77567c66ec9d468b4",
+          "final_blob": "55b1eb29dfb07a7c85bcb4a77567c66ec9d468b4",
+          "identical_to_this_incoming": true,
+          "latest_selected_source": "6b2f392c7301d4b19f16d6ccf150258f14bf7ad7",
+          "latest_selected_blob": "55b1eb29dfb07a7c85bcb4a77567c66ec9d468b4",
+          "identical_to_latest_selected_source": true,
+          "reviewed_combination": false
+        },
+        {
+          "path": "packages/quds_proofing_spacy/tool/evaluate_grammar_v2.dart",
+          "incoming_blob": "a4a37fb85d1787b3b581726b634d5b42d197511b",
+          "final_blob": "a4a37fb85d1787b3b581726b634d5b42d197511b",
+          "identical_to_this_incoming": true,
+          "latest_selected_source": "6b2f392c7301d4b19f16d6ccf150258f14bf7ad7",
+          "latest_selected_blob": "a4a37fb85d1787b3b581726b634d5b42d197511b",
+          "identical_to_latest_selected_source": true,
+          "reviewed_combination": false
+        },
+        {
+          "path": "packages/quds_proofing_spacy/tool/macho_code_digest.dart",
+          "incoming_blob": "9a4ddc974e88984be1fb5c02c5e8eb719995f31b",
+          "final_blob": "9a4ddc974e88984be1fb5c02c5e8eb719995f31b",
+          "identical_to_this_incoming": true,
+          "latest_selected_source": "6b2f392c7301d4b19f16d6ccf150258f14bf7ad7",
+          "latest_selected_blob": "9a4ddc974e88984be1fb5c02c5e8eb719995f31b",
+          "identical_to_latest_selected_source": true,
+          "reviewed_combination": false
+        },
+        {
+          "path": "packages/quds_proofing_spacy/tool/replay_grammar_panels.dart",
+          "incoming_blob": "2439bdf97ab0c66aaaa23552ce0865c4f0d78aaf",
+          "final_blob": "2439bdf97ab0c66aaaa23552ce0865c4f0d78aaf",
+          "identical_to_this_incoming": true,
+          "latest_selected_source": "6b2f392c7301d4b19f16d6ccf150258f14bf7ad7",
+          "latest_selected_blob": "2439bdf97ab0c66aaaa23552ce0865c4f0d78aaf",
+          "identical_to_latest_selected_source": true,
+          "reviewed_combination": false
+        }
+      ]
+    },
+    {
+      "source": "macOS portability",
+      "commit": "bf606aa08f8905ceef35342772df91630840a9b2",
+      "paths": [
+        {
+          "path": ".github/workflows/macos-app-weekly.yml",
+          "incoming_blob": "7fc5cd5cd5f2ffce66ed7b3e6b3533ed1880e28b",
+          "final_blob": "7fc5cd5cd5f2ffce66ed7b3e6b3533ed1880e28b",
+          "identical_to_this_incoming": true,
+          "latest_selected_source": "bf606aa08f8905ceef35342772df91630840a9b2",
+          "latest_selected_blob": "7fc5cd5cd5f2ffce66ed7b3e6b3533ed1880e28b",
+          "identical_to_latest_selected_source": true,
+          "reviewed_combination": false
+        },
+        {
+          "path": "docs/release/macos-signing.md",
+          "incoming_blob": "114d350db356daeffc9122d5065bb3e234b21d18",
+          "final_blob": "114d350db356daeffc9122d5065bb3e234b21d18",
+          "identical_to_this_incoming": true,
+          "latest_selected_source": "bf606aa08f8905ceef35342772df91630840a9b2",
+          "latest_selected_blob": "114d350db356daeffc9122d5065bb3e234b21d18",
+          "identical_to_latest_selected_source": true,
+          "reviewed_combination": false
+        },
+        {
+          "path": "packages/quds_office_editor/example/tool/build_macos_app.sh",
+          "incoming_blob": "be569c7f64ba5d95170f7ace8bb01a4be5803748",
+          "final_blob": "be569c7f64ba5d95170f7ace8bb01a4be5803748",
+          "identical_to_this_incoming": true,
+          "latest_selected_source": "bf606aa08f8905ceef35342772df91630840a9b2",
+          "latest_selected_blob": "be569c7f64ba5d95170f7ace8bb01a4be5803748",
+          "identical_to_latest_selected_source": true,
+          "reviewed_combination": false
+        },
+        {
+          "path": "packages/quds_proofing_spacy/lib/src/distribution.dart",
+          "incoming_blob": "53a3add99f0e817a04420eaeea8ffd668ee2c096",
+          "final_blob": "684fe6254ad118b26091fa824f9aeb75ce2af713",
+          "identical_to_this_incoming": false,
+          "latest_selected_source": "bf606aa08f8905ceef35342772df91630840a9b2",
+          "latest_selected_blob": "53a3add99f0e817a04420eaeea8ffd668ee2c096",
+          "identical_to_latest_selected_source": false,
+          "reviewed_combination": true
+        }
+      ]
+    },
+    {
+      "source": "comment draft test",
+      "commit": "a56397df5f53b991f5016f3cc8e1ab53b7ce12f1",
+      "paths": [
+        {
+          "path": "packages/quds_office_editor/example/test/studio_comment_draft_proofing_test.dart",
+          "incoming_blob": "055410c2c2daa10cbc57071a8456c5d85387a296",
+          "final_blob": "055410c2c2daa10cbc57071a8456c5d85387a296",
+          "identical_to_this_incoming": true,
+          "latest_selected_source": "a56397df5f53b991f5016f3cc8e1ab53b7ce12f1",
+          "latest_selected_blob": "055410c2c2daa10cbc57071a8456c5d85387a296",
+          "identical_to_latest_selected_source": true,
+          "reviewed_combination": false
+        }
+      ]
+    }
+  ],
+  "combined_paths": {
+    "packages/quds_proofing_spacy/lib/src/distribution.dart": "All non-documentation lines exactly match current main; portable change is the reviewed stripped-form documentation.",
+    "packages/quds_office_editor/example/lib/suite_workspace.dart": "Exactly current main plus the previously qualified Zotero-branch transform copyWith replacement; every other byte matches current main."
+  },
+  "build_script": {
+    "path": "packages/quds_office_editor/example/tool/build_macos_app.sh",
+    "sha256": "2390d5dddb5e8b5047b0783bc527a4975cf35507ef151ed39ae915917ca148c8",
+    "command": "bash -n (exact committed bytes via stdin)",
+    "exit_code": 0
+  },
+  "workflow": {
+    "path": ".github/workflows/macos-app-weekly.yml",
+    "sha256": "66fa9feefff78e8594fa96b45a273bb986c003e2e9ca0767d679c67bb360cd1d",
+    "parser": "PyYAML BaseLoader",
+    "jobs": [
+      "build",
+      "signed"
+    ],
+    "shell_fragments": [
+      {
+        "job": "build",
+        "step": "Paths",
+        "exit_code": 0
+      },
+      {
+        "job": "build",
+        "step": "Tool versions",
+        "exit_code": 0
+      },
+      {
+        "job": "build",
+        "step": "Resolve workspace",
+        "exit_code": 0
+      },
+      {
+        "job": "build",
+        "step": "Analyze packages and apps",
+        "exit_code": 0
+      },
+      {
+        "job": "build",
+        "step": "Build the macOS app (ad hoc)",
+        "exit_code": 0
+      },
+      {
+        "job": "build",
+        "step": "spaCy bundle gate",
+        "exit_code": 0
+      },
+      {
+        "job": "build",
+        "step": "macOS bundle gate",
+        "exit_code": 0
+      },
+      {
+        "job": "build",
+        "step": "Bundle summary",
+        "exit_code": 0
+      },
+      {
+        "job": "signed",
+        "step": "Paths",
+        "exit_code": 0
+      },
+      {
+        "job": "signed",
+        "step": "Import signing material",
+        "exit_code": 0
+      },
+      {
+        "job": "signed",
+        "step": "Resolve workspace",
+        "exit_code": 0
+      },
+      {
+        "job": "signed",
+        "step": "Build and sign",
+        "exit_code": 0
+      },
+      {
+        "job": "signed",
+        "step": "Verify",
+        "exit_code": 0
+      },
+      {
+        "job": "signed",
+        "step": "Remove signing material",
+        "exit_code": 0
+      }
+    ],
+    "upload_paths": [
+      {
+        "job": "build",
+        "path": "${{ runner.temp }}/logs"
+      },
+      {
+        "job": "signed",
+        "path": "${{ runner.temp }}/signed/*.pkg\n${{ runner.temp }}/signed/*-macos.zip\n"
+      },
+      {
+        "job": "signed",
+        "path": "${{ runner.temp }}/logs"
+      }
+    ]
+  },
+  "verifier_sha256": "d3f360c664d0a1e3ffe20af592d3243b234a2406f03a1a01f54ca8354080624d",
+  "github_actions_queried": false
+}

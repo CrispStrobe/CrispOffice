@@ -1,0 +1,6 @@
+Resolving dependencies...
+Downloading packages...
+  js 0.6.7 (0.7.2 available)
+Got dependencies!
+1 package has newer versions incompatible with dependency constraints.
+Try `dart pub outdated` for more information.
