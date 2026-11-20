@@ -4,6 +4,11 @@ All notable changes to `quds_office_engine` are documented here.
 
 ## Unreleased
 
+- Add bounded, read-only Zotero child-note and attachment metadata pages with
+  exact parent/library validation, inert note markup, and explicit pagination.
+  Retain local database provenance on catalog snapshots so inspecting their
+  children requires the same identified Zotero 10+ database.
+
 - Keep imported slide runs as a source snapshot while applying scalar edits
   to derived rendering runs. Respect explicit plain-run overrides, inherited
   backgrounds, and PDF text tab-stop alignment.
