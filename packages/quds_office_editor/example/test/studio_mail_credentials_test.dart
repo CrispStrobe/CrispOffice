@@ -324,9 +324,11 @@ void main() {
         'read',
         'read',
         'write',
+        'read', // Verify the written catalog before proceeding.
         'read',
         'delete',
         'write',
+        'read', // Verify the cleared selected-account catalog.
       ]);
       expect(storage.raw, isNull);
       expect(storage.records.keys, ['crispoffice.mail.accounts.v2']);
@@ -826,7 +828,16 @@ void _registerPlatformCredentialTests() {
         release.complete();
         expect(await writing, isTrue);
         expect(await deleting, isTrue);
-        expect(calls, ['read', 'read', 'write', 'read', 'delete', 'write']);
+        expect(calls, [
+          'read',
+          'read',
+          'write',
+          'read',
+          'read',
+          'delete',
+          'write',
+          'read',
+        ]);
         expect(records.keys, ['crispoffice.mail.accounts.v2']);
         expect(await store.load(), isNull);
       },
