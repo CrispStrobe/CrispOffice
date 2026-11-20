@@ -2,13 +2,15 @@
 
 20 November 2026 · [PR #275](https://github.com/CrispStrobe/quds_office_suite/pull/275)
 
-**The bulk-mail implementation passed local acceptance at source checkpoint
-[`3645e8a4`](https://github.com/CrispStrobe/quds_office_suite/commit/3645e8a4db535fc0ab5ab0923ee7385e5c4e5195).**
-The retained branch is `work/mail-bulk-flags-20261120`. The
-[publication-time main reconciliation](main-reconciliation.md) records the later
-Word/font update, its separate qualification and final publication consistency.
-The immutable evidence in this directory remains bound to the source where each
-check actually ran; later results do not relabel an earlier failed run.
+**The final integrated source passed local acceptance at
+[`44f3f61f`](https://github.com/CrispStrobe/quds_office_suite/commit/44f3f61fa7d812971e973f1763ac8e04eb39785a).**
+The [final peer-main reconciliation](peer-reconciliation.md) records the last
+main advance, quota handling, complementary Word fixes and current acceptance.
+The retained branch is `work/mail-bulk-flags-20261120`. The earlier
+[Word/Zotero reconciliation](main-reconciliation.md) and mail baseline
+[`3645e8a4`](https://github.com/CrispStrobe/quds_office_suite/commit/3645e8a4db535fc0ab5ab0923ee7385e5c4e5195)
+retain their own source-specific results. The immutable evidence in this
+directory remains bound to the source where each check actually ran; later results do not relabel an earlier failed run.
 
 ## Delivered mail increment
 
@@ -29,7 +31,7 @@ the engine does not retry or replay them.
 | Receipt outcome | Meaning and next behavior |
 | --- | --- |
 | Confirmed | The provider acknowledged the requested state. Only that target flag is projected into the live view. |
-| Failed | Explicit evidence certifies that this command caused no remote change. Independent later messages may continue, except for cancellation or stale-scope results. |
+| Failed | Explicit evidence certifies that this command caused no remote change. Independent later messages may continue, except for cancellation, stale-scope or certified quota results. |
 | Uncertain | The write may have reached the server, or the reply lacks reliable mutation evidence. Further dispatch stops and refresh is required. |
 | Not attempted | No command was dispatched for this selected identity. |
 
@@ -38,6 +40,8 @@ message** lets its reply settle before preventing the remaining commands.
 Completed **Details** preserve the frozen subject and outcome for each message.
 An unknown unrelated flag remains unknown. A certified stale-scope rejection
 also blocks another batch until refresh while retaining its Failed outcome.
+Certified quota rejections stop the tail with a Failed outcome and display optional retry-delay guidance;
+there is no automatic retry, and quota alone does not require refresh.
 
 Selection, search, sorting and these bulk commands do not fetch message bodies
 or send mail. Core and host guards reject retired leases, account/folder changes,
@@ -104,7 +108,22 @@ are accounted for by the historical proofs. **GitHub Actions, workflow runs and
 status endpoints were neither queried nor awaited. No synthetic check statuses
 were created.**
 
-## Accepted local checks
+## Final integrated-source checks
+
+The [final publication supplement](peer-reconciliation.md) records **214 core
+VM**, **120 bulk Node**, **195 provider boundary**, **378 Studio mail**, **161
+shared UI**, **13 visual**, **929 Word VM**, **787 Word Node** and **244 focused
+layout/import** passes. The affected Zotero supplement passes **165 VM /117
+Node** cases. The editor/Zotero/layout/proofing cohort has **378 passes and eight
+existing image-only skips**, and the font suite passes **nine** cases.
+
+These cohorts overlap and must not be summed into one unique-test total.
+All current counts are tied to successful recorded invocations and exact source
+applicability. Earlier baseline and intermediate runs below remain historical;
+separate late evidence preserves every reconciliation failure, correction and
+accepted rerun. The new receipt/detail probes add six reviewed captures.
+
+## Baseline local checks
 
 These cohorts overlap and must not be added into one unique-test total.
 Archive member names below are paths inside [evidence.tar.gz](evidence.tar.gz).
