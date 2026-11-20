@@ -21,6 +21,7 @@ import 'studio_paragraph_dialog.dart';
 import 'studio_ribbon_customization.dart';
 import 'studio_review_strip.dart';
 import 'studio_ribbon_preferences.dart';
+import 'studio_settings.dart';
 import 'studio_desktop_menu.dart';
 import 'studio_files.dart';
 import 'studio_find_pane.dart';
@@ -39,6 +40,8 @@ import 'studio_spacy_host.dart';
 import 'studio_spacy_setup.dart';
 import 'studio_window.dart';
 import 'studio_zotero.dart';
+
+part 'suite_workspace_settings.dart';
 
 enum SuiteApp { word, excel, powerpoint, pdf }
 
@@ -67,6 +70,7 @@ class SuiteWorkspace extends StatefulWidget {
     super.key,
     this.zoteroTransportFactory,
     this.ribbonPreferences,
+    this.settingsStore,
   });
 
   /// Creates a connection owned by one Zotero workspace. Hosts may supply
@@ -75,6 +79,10 @@ class SuiteWorkspace extends StatefulWidget {
 
   /// Optional shared preferences; the host owns an injected instance.
   final StudioRibbonPreferences? ribbonPreferences;
+
+  /// Where the Studio settings persist; defaults to the platform store
+  /// (in memory under `flutter test`).
+  final StudioSettingsStore? settingsStore;
 
   @override
   State<SuiteWorkspace> createState() => _SuiteWorkspaceState();
@@ -103,6 +111,9 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   var _showComments = false;
   var _showOutline = false;
   late final StudioRibbonPreferences _ribbonPreferences;
+  late final _StudioSettingsBinding _settings = _StudioSettingsBinding(
+    widget.settingsStore ?? StudioSettingsStore(),
+  );
   OfficeLengthUnit _lengthUnit = OfficeLengthUnit.millimeters;
   var _showAnimPane = true;
   var _showSheetNav = true;
@@ -244,6 +255,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       StudioWindow.setTitle('$_chromeTitle — CrispOffice');
     });
+    unawaited(_restoreSettings());
   }
 
   /// Word notifies on every keystroke and caret move. Most of the chrome
@@ -558,6 +570,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
 
   @override
   Widget build(BuildContext context) {
+    _persistSettingsIfChanged();
     final bool dark = _look != SuiteLook.light;
     return Theme(
       data: _materialTheme,

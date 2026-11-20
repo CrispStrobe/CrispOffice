@@ -2767,10 +2767,36 @@ class WordEditorController extends OfficeController {
     }
     final List<WmlBlock> host = parent;
     final WmlTable snap = WordTable.snapshot(target);
+    // A bookmark cut by the table keeps its outside endpoint and is clamped
+    // to where the table was; ranges wholly inside the table go with it.
+    final List<WmlBookmarkBoundary> removedMarkers =
+        WordBookmarks.boundariesInBlocks(<WmlBlock>[target]);
+    WmlParagraph? markerAnchor;
+    var anchorAtStart = false;
+    List<WmlInline>? anchorSnap;
+    if (removedMarkers.isNotEmpty) {
+      final List<WmlParagraph> paras = document.paragraphs.toList();
+      final List<WmlParagraph> owned = WmlClone.paragraphsOf(target);
+      final int first = owned.isEmpty ? -1 : paras.indexOf(owned.first);
+      final int last = owned.isEmpty ? -1 : paras.indexOf(owned.last);
+      if (first >= 0 && last + 1 < paras.length) {
+        markerAnchor = paras[last + 1];
+        anchorAtStart = true;
+      } else if (first > 0) {
+        markerAnchor = paras[first - 1];
+      }
+      if (markerAnchor != null) anchorSnap = _cloneInlines(markerAnchor);
+    }
     commands.commit(
       _CallbackCommand(
         executeFn: () {
           host.remove(target);
+          WordBookmarks.clampRemoved(
+            document,
+            removedMarkers,
+            anchor: markerAnchor,
+            atStart: anchorAtStart,
+          );
           selectedTable = null;
           selectedTableBand = null;
           _ensureBodyHasParagraph();
@@ -2779,6 +2805,13 @@ class WordEditorController extends OfficeController {
           if (!host.contains(target)) {
             host.insert(at.clamp(0, host.length), target);
             WordTable.restore(target, snap);
+          }
+          final List<WmlInline>? inlines = anchorSnap;
+          final WmlParagraph? anchor = markerAnchor;
+          if (anchor != null && inlines != null) {
+            anchor.inlines
+              ..clear()
+              ..addAll(_cloneInlinesFrom(inlines));
           }
         },
       ),
@@ -4298,6 +4331,9 @@ class WordEditorController extends OfficeController {
       first.text.length,
     ).start;
     final int to = WmlRunEdit.normalizeRange(last, 0, range.endIdx).end;
+    final List<WmlBookmarkBoundary> removedMarkers = WordBookmarks.boundariesIn(
+      parent.sublist(range.startPara + 1, range.endPara),
+    );
     void restore() {
       parent
         ..clear()
@@ -4332,13 +4368,22 @@ class WordEditorController extends OfficeController {
           );
           WmlRunEdit.replaceRange(last, 0, to, '');
           WordRevisions.joinParagraphs(document, first, last);
+          // The deletion point: where the tail of `last` joins `first`.
+          final int join = first.inlines.length;
           first.inlines.addAll(
             _cloneInlinesFrom(
               last.inlines,
             ).where((inline) => inline is! WmlRun || inline.text.isNotEmpty),
           );
-          WmlRunEdit.coalesce(first);
           parent.removeRange(range.startPara + 1, range.endPara + 1);
+          WordBookmarks.clampRemoved(
+            document,
+            removedMarkers,
+            anchor: first,
+            atStart: false,
+            index: join,
+          );
+          WmlRunEdit.coalesce(first);
           WordRevisions.markDetached(document);
         },
         undoFn: restore,
@@ -4459,6 +4504,34 @@ class WordEditorController extends OfficeController {
         }
       }
     }
+    // Bookmark endpoints in removed paragraphs: a range wholly inside the
+    // deletion goes, one cut by it is clamped to the deletion point (Word).
+    final List<WmlBookmarkBoundary> removedMarkers =
+        WordBookmarks.boundariesInBlocks(remove);
+    final Set<WmlParagraph> removedParas = Set<WmlParagraph>.identity()
+      ..addAll(remove.expand(WmlClone.paragraphsOf));
+    WmlParagraph? markerAnchor;
+    var anchorAtStart = false;
+    if (removedMarkers.isNotEmpty) {
+      if (!removedParas.contains(paras[startPara])) {
+        markerAnchor = paras[startPara];
+      } else {
+        for (int p = startPara + 1; p < paras.length; p++) {
+          if (!removedParas.contains(paras[p])) {
+            markerAnchor = paras[p];
+            anchorAtStart = true;
+            break;
+          }
+        }
+        for (int p = startPara - 1; markerAnchor == null && p >= 0; p--) {
+          if (!removedParas.contains(paras[p])) markerAnchor = paras[p];
+        }
+      }
+      final WmlParagraph? anchor = markerAnchor;
+      if (anchor != null && !inlineSnaps.containsKey(anchor)) {
+        inlineSnaps[anchor] = _cloneInlines(anchor);
+      }
+    }
     commands.commit(
       _CallbackCommand(
         executeFn: () {
@@ -4487,6 +4560,12 @@ class WordEditorController extends OfficeController {
               WmlRunEdit.replaceRange(para, from, to, '');
             }
           }
+          WordBookmarks.clampRemoved(
+            document,
+            removedMarkers,
+            anchor: markerAnchor,
+            atStart: anchorAtStart,
+          );
           _ensureBodyHasParagraph();
           WordRevisions.markDetached(document);
           selectedTable = null;

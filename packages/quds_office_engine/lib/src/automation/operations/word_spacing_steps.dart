@@ -118,7 +118,11 @@ void _validateWordSpacingSource(
       continue;
     }
     final source = part.readText();
-    if (!source.contains('spacing') && !source.contains('pPr')) continue;
+    if (!beforeControl &&
+        !source.contains('spacing') &&
+        !source.contains('pPr')) {
+      continue;
+    }
     final root = XmlDocument.parse(source).root;
     if (root == null) {
       throw UnsupportedError('Missing native Word XML root.');
@@ -140,6 +144,9 @@ void _checkElement(
   final insideAlternative = alternative || isAlternative;
   final isParagraphProperties = _word(element, 'pPr');
   final insideProperties = paragraphProperties || isParagraphProperties;
+  if (beforeControl && _word(element, 'styles')) {
+    _checkBeforeStyleIdentities(element);
+  }
   // The live cascade does not project paragraph spacing from numbering
   // levels or these conditional table regions. A toggle cannot infer it.
   final unsupportedRegion =
@@ -197,6 +204,74 @@ void _checkElement(
       beforeControl: beforeControl,
       unmodeledBefore: unsupportedRegion,
     );
+  }
+}
+
+void _checkBeforeStyleIdentities(XmlElement root) {
+  String? attribute(XmlElement element, String name) {
+    final matches = element.attributes.where(
+      (a) => a.localName == name && a.namespaceUri == _w,
+    );
+    if (matches.length > 1) {
+      throw UnsupportedError('Ambiguous duplicate native style attribute.');
+    }
+    return matches.firstOrNull?.value;
+  }
+
+  final styles = <String, String?>{};
+  var defaults = 0;
+  for (final style in root.childElements.where(
+    (node) => _word(node, 'style'),
+  )) {
+    final id = attribute(style, 'styleId');
+    if (id == null || id.isEmpty || styles.containsKey(id)) {
+      throw UnsupportedError(
+        'Paragraph spacing controls require unique nonempty native style IDs.',
+      );
+    }
+    final defaultValue = attribute(style, 'default');
+    if (defaultValue != null &&
+        !const {
+          '0',
+          '1',
+          'false',
+          'true',
+          'off',
+          'on',
+        }.contains(defaultValue)) {
+      throw UnsupportedError('Ambiguous native default-style flag.');
+    }
+    if (attribute(style, 'type') == 'paragraph' &&
+        const {'1', 'true', 'on'}.contains(defaultValue)) {
+      defaults++;
+    }
+    final parents = style.childElements.where((node) => _word(node, 'basedOn'));
+    if (parents.length > 1) {
+      throw UnsupportedError('Ambiguous duplicate native style inheritance.');
+    }
+    final parent = parents.firstOrNull;
+    final parentId = parent == null ? null : attribute(parent, 'val');
+    if (parent != null && (parentId == null || parentId.isEmpty)) {
+      throw UnsupportedError('Missing native style inheritance reference.');
+    }
+    styles[id] = parentId;
+  }
+  if (defaults > 1) {
+    throw UnsupportedError('Ambiguous multiple default paragraph styles.');
+  }
+  final resolved = <String>{};
+  for (final id in styles.keys) {
+    final chain = <String>{};
+    String? current = id;
+    while (current != null && !resolved.contains(current)) {
+      if (!styles.containsKey(current) || !chain.add(current)) {
+        throw UnsupportedError(
+          'Paragraph spacing controls require complete acyclic style inheritance.',
+        );
+      }
+      current = styles[current];
+    }
+    resolved.addAll(chain);
   }
 }
 

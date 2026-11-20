@@ -354,6 +354,59 @@ void main() {
     });
   }
 
+  for (final (name, styles) in [
+    ('missing ID', '<w:style w:type="paragraph"><w:pPr/></w:style>'),
+    (
+      'duplicate ID',
+      '<w:style w:type="paragraph" w:styleId="A"/>'
+          '<w:style w:type="paragraph" w:styleId="A"/>',
+    ),
+    (
+      'duplicate expanded ID',
+      '<w:style xmlns:q="$_w" w:type="paragraph" '
+          'w:styleId="A" q:styleId="B"/>',
+    ),
+    (
+      'multiple defaults',
+      '<w:style w:type="paragraph" w:styleId="A" w:default="1"/>'
+          '<w:style w:type="paragraph" w:styleId="B" w:default="true"/>',
+    ),
+    (
+      'invalid default flag',
+      '<w:style w:type="paragraph" w:styleId="A" w:default="yes"/>',
+    ),
+    (
+      'missing parent ID',
+      '<w:style w:type="paragraph" w:styleId="A"><w:basedOn/></w:style>',
+    ),
+    (
+      'missing parent style',
+      '<w:style w:type="paragraph" w:styleId="A"><w:basedOn w:val="Missing"/></w:style>',
+    ),
+    (
+      'duplicate parent',
+      '<w:style w:type="paragraph" w:styleId="A">'
+          '<w:basedOn w:val="B"/><w:basedOn w:val="B"/></w:style>'
+          '<w:style w:type="paragraph" w:styleId="B"/>',
+    ),
+    (
+      'self cycle',
+      '<w:style w:type="paragraph" w:styleId="A"><w:basedOn w:val="A"/></w:style>',
+    ),
+    (
+      'two-style cycle',
+      '<w:style w:type="paragraph" w:styleId="A"><w:basedOn w:val="B"/></w:style>'
+          '<w:style w:type="paragraph" w:styleId="B"><w:basedOn w:val="A"/></w:style>',
+    ),
+  ]) {
+    test('ambiguous style source $name refuses before any mutation', () {
+      final document = _read(_fixture(styles: styles));
+      for (final action in ['open', 'close', 'toggle']) {
+        _refuses(document, _step(action));
+      }
+    });
+  }
+
   for (final attribute in [
     'w:beforeLines="0"',
     'w:beforeLines="100"',

@@ -126,10 +126,9 @@ Future<void> _script(
     } on UnsupportedError {
       return; // e.g. joining across a structural content control
     } on StateError catch (error) {
-      // A full relayout (unchanged by incremental layout) can reject a model
-      // that earlier scripted edits left inconsistent, e.g. a bookmark end
-      // without its start after a cross-paragraph delete. Not a layout
-      // mismatch: stop editing this document and report it.
+      // A full relayout (unchanged by incremental layout) rejects a model
+      // that earlier scripted edits left inconsistent. Not a layout
+      // mismatch: stop editing this document and fail with the reason.
       if (local) rethrow;
       run.modelErrors.add('$label: $name: $error');
       throw const _StopDocument();
@@ -256,8 +255,10 @@ Future<_Run> _runDocument(String label, WordEditorController c) async {
       await _script(c, p, '$label ¶$p', run);
     }
   } on _StopDocument {
-    // ignore: avoid_print
-    print('EQUIVALENCE_MODEL_ERROR ${run.modelErrors.join('; ')}');
+    // Cross-paragraph deletes keep paired markers consistent (bookmarks are
+    // clamped or removed with their range), so no scripted edit may leave a
+    // model a full relayout rejects.
+    fail('EQUIVALENCE_MODEL_ERROR ${run.modelErrors.join('; ')}');
   }
   return run;
 }

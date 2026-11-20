@@ -1,99 +1,424 @@
+import 'dart:convert';
+import 'dart:io';
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:quds_office_editor/quds_office_editor.dart';
-import 'package:quds_office_studio/main.dart';
+import 'package:quds_office_studio/studio_ribbon_preferences.dart';
+import 'package:quds_office_studio/studio_settings.dart';
+import 'package:quds_office_studio/studio_settings_backend_io.dart';
+import 'package:quds_office_studio/studio_web_data_store.dart';
+import 'package:quds_office_studio/suite_workspace.dart';
 
-Future<void> _pump(WidgetTester tester) async {
-  await tester.pump();
-  await tester.pump(const Duration(milliseconds: 350));
-  await tester.pump();
+/// [StudioWebDataStore] in memory, as Cache Storage behaves (whole entries).
+final class _MemoryWebStore implements StudioWebDataStore {
+  final entries = <String, Uint8List>{};
+  bool refuse = false;
+
+  @override
+  Future<Uint8List?> read(String key) async => entries[key];
+
+  @override
+  Future<bool> write(String key, Uint8List bytes) async {
+    if (refuse) return false;
+    entries[key] = Uint8List.fromList(bytes);
+    return true;
+  }
+
+  @override
+  Future<void> delete(String key) async => entries.remove(key);
 }
 
-QudsWordEditor _editor(WidgetTester tester) =>
-    tester.widget<QudsWordEditor>(find.byType(QudsWordEditor));
-
-Future<void> _settings(WidgetTester tester) async {
-  await tester.tap(find.byTooltip('Settings'));
-  await _pump(tester);
-  expect(find.byType(AlertDialog), findsOneWidget);
-}
-
-Future<void> _closeSettings(WidgetTester tester) async {
-  await tester.tap(
-    find.descendant(
-      of: find.byType(AlertDialog),
-      matching: find.widgetWithText(TextButton, 'Close'),
-    ),
-  );
-  await _pump(tester);
-}
+StudioSettings _changed() => StudioSettings.defaults().copyWith({
+  StudioSettingKeys.language: 'ar',
+  StudioSettingKeys.look: 'dark',
+  StudioSettingKeys.lengthUnit: 'inches',
+  StudioSettingKeys.wordRulers: false,
+  StudioSettingKeys.showComments: true,
+  StudioSettingKeys.pdfFitPolicy: 'page',
+  StudioSettingKeys.pdfNightMode: true,
+  StudioSettingKeys.checkAsYouType: false,
+  StudioSettingKeys.detectLanguage: false,
+  StudioSettingKeys.arabicContext: false,
+  StudioSettingKeys.personalWords: {
+    'de-DE': ['Quds', 'CrispOffice'],
+    'ar': ['قدس'],
+  },
+});
 
 void main() {
-  testWidgets('Show notes settings update the existing Word surface', (
+  late Directory directory;
+  late File file;
+
+  setUp(() async {
+    directory = await Directory.systemTemp.createTemp('crispoffice-settings-');
+    file = File('${directory.path}/settings/studio-settings.json');
+  });
+
+  tearDown(() async => directory.delete(recursive: true));
+
+  StudioSettingsStore store() =>
+      StudioSettingsStore(backend: FileStudioSettingsBackend(file));
+
+  group('round trip', () {
+    test('a fresh install loads defaults and writes nothing', () async {
+      final settings = await store().load();
+      expect(settings, StudioSettings.defaults());
+      expect(settings.choice(StudioSettingKeys.language), 'en');
+      expect(settings.flag(StudioSettingKeys.checkAsYouType), isTrue);
+      expect(file.existsSync(), isFalse);
+    });
+
+    test('every value survives save and load', () async {
+      final first = store();
+      await first.load();
+      await first.save(_changed());
+      expect(first.saveError, isNull);
+
+      final second = store();
+      final loaded = await second.load();
+      expect(second.source, StudioSettingsSource.stored);
+      expect(second.repaired, isEmpty);
+      expect(loaded, _changed());
+      expect(
+        loaded.choiceOf(
+          StudioSettingKeys.lengthUnit,
+          OfficeLengthUnit.values,
+          OfficeLengthUnit.millimeters,
+        ),
+        OfficeLengthUnit.inches,
+      );
+      expect(
+        loaded.choiceOf(
+          StudioSettingKeys.look,
+          SuiteLook.values,
+          SuiteLook.light,
+        ),
+        SuiteLook.dark,
+      );
+      expect(loaded.personalWords, {
+        'ar': ['قدس'],
+        'de-DE': ['CrispOffice', 'Quds'],
+      });
+      final json = jsonDecode(file.readAsStringSync()) as Map;
+      expect(json['format'], StudioSettingsStore.format);
+      expect(json['version'], StudioSettingsStore.version);
+    });
+
+    test('writes are atomic: no temporary file remains, the last save '
+        'wins and a failing write is reported, not thrown', () async {
+      final settings = store();
+      await settings.load();
+      final saves = [
+        for (final language in ['de', 'ar', 'en', 'de'])
+          settings.save(
+            StudioSettings.defaults().copyWith({
+              StudioSettingKeys.language: language,
+            }),
+          ),
+      ];
+      await Future.wait(saves);
+      await settings.flush();
+      expect(File('${file.path}.tmp').existsSync(), isFalse);
+      expect((await store().load()).choice(StudioSettingKeys.language), 'de');
+
+      // A directory where the document should be: the write fails.
+      final blocked = File('${directory.path}/blocked/doc.json');
+      Directory(blocked.path).createSync(recursive: true);
+      final failing = StudioSettingsStore(
+        backend: FileStudioSettingsBackend(blocked),
+      );
+      await failing.save(_changed());
+      expect(failing.saveError, isNotNull);
+    });
+
+    test('stores preferences only, never secrets', () async {
+      final text = StudioSettingsStore.encode(_changed());
+      final keys = ((jsonDecode(text) as Map)['settings'] as Map).keys;
+      expect(keys.toSet(), StudioSettings.specs.keys.toSet());
+      for (final key in keys.cast<String>()) {
+        expect(
+          key.toLowerCase(),
+          isNot(matches(RegExp('password|secret|token|credential|oauth'))),
+        );
+      }
+    });
+  });
+
+  group('corrupt or unknown values', () {
+    for (final (name, bytes) in <(String, List<int>)>[
+      ('not JSON', utf8.encode('{"format": "crispoffice-studio')),
+      ('not an object', utf8.encode('[1, 2, 3]')),
+      ('invalid UTF-8', [0xff, 0xfe, 0x7b, 0x00, 0xc3]),
+      (
+        'a foreign document',
+        utf8.encode('{"format": "other", "version": 1, "settings": {}}'),
+      ),
+      (
+        'settings that are not an object',
+        utf8.encode(
+          '{"format": "crispoffice-studio-settings", "version": 1, '
+          '"settings": "dark"}',
+        ),
+      ),
+    ]) {
+      test('$name: defaults, the file is set aside, saving works', () async {
+        file.parent.createSync(recursive: true);
+        file.writeAsBytesSync(bytes);
+        final settings = store();
+        expect(await settings.load(), StudioSettings.defaults());
+        expect(settings.source, StudioSettingsSource.corrupt);
+        expect(File('${file.path}.corrupt').readAsBytesSync(), bytes);
+
+        await settings.save(_changed());
+        expect(await store().load(), _changed());
+      });
+    }
+
+    test('invalid values fall back one by one; valid ones stay', () async {
+      file.parent.createSync(recursive: true);
+      file.writeAsStringSync(
+        jsonEncode({
+          'format': StudioSettingsStore.format,
+          'version': 1,
+          'settings': {
+            StudioSettingKeys.language: 'fr',
+            StudioSettingKeys.look: 'dark',
+            StudioSettingKeys.wordRulers: 'no',
+            StudioSettingKeys.showNotes: true,
+            StudioSettingKeys.pdfFitPolicy: 3,
+            StudioSettingKeys.personalWords: {
+              'de-DE': ['ok', 42, '', 'x' * 500],
+              'not a language!': ['dropped'],
+              'en-US': 'not a list',
+            },
+          },
+        }),
+      );
+      final settings = store();
+      final loaded = await settings.load();
+      expect(settings.source, StudioSettingsSource.stored);
+      expect(loaded.choice(StudioSettingKeys.language), 'en');
+      expect(loaded.choice(StudioSettingKeys.look), 'dark');
+      expect(loaded.flag(StudioSettingKeys.wordRulers), isTrue);
+      expect(loaded.flag(StudioSettingKeys.showNotes), isTrue);
+      expect(loaded.choice(StudioSettingKeys.pdfFitPolicy), 'width');
+      expect(loaded.personalWords, {
+        'de-DE': ['ok'],
+      });
+      expect(
+        settings.repaired,
+        unorderedEquals([
+          StudioSettingKeys.language,
+          StudioSettingKeys.wordRulers,
+          StudioSettingKeys.pdfFitPolicy,
+        ]),
+      );
+    });
+
+    test('copyWith rejects invalid values', () {
+      expect(
+        () => StudioSettings.defaults().copyWith({
+          StudioSettingKeys.language: 'xx',
+        }),
+        throwsArgumentError,
+      );
+      expect(
+        () => StudioSettings.defaults().copyWith({'no.such.key': true}),
+        throwsArgumentError,
+      );
+    });
+
+    test('unknown keys from a newer app are kept across saves', () async {
+      file.parent.createSync(recursive: true);
+      file.writeAsStringSync(
+        jsonEncode({
+          'format': StudioSettingsStore.format,
+          'version': 1,
+          'settings': {
+            StudioSettingKeys.look: 'highContrast',
+            'future.option': {'nested': true},
+          },
+        }),
+      );
+      final settings = store();
+      final loaded = await settings.load();
+      expect(loaded.unknown, {
+        'future.option': {'nested': true},
+      });
+      await settings.save(loaded.copyWith({StudioSettingKeys.language: 'de'}));
+      final saved = (jsonDecode(file.readAsStringSync()) as Map)['settings'];
+      expect(saved['future.option'], {'nested': true});
+      expect(saved[StudioSettingKeys.look], 'highContrast');
+      expect(saved[StudioSettingKeys.language], 'de');
+    });
+  });
+
+  group('schema version and migration', () {
+    test('an unversioned (version 0) document is migrated and rewritten '
+        'as the current version', () async {
+      file.parent.createSync(recursive: true);
+      file.writeAsStringSync(
+        jsonEncode({
+          StudioSettingKeys.language: 'de',
+          StudioSettingKeys.showOutline: true,
+        }),
+      );
+      final settings = store();
+      final loaded = await settings.load();
+      expect(settings.source, StudioSettingsSource.migrated);
+      expect(loaded.choice(StudioSettingKeys.language), 'de');
+      expect(loaded.flag(StudioSettingKeys.showOutline), isTrue);
+      await settings.save(loaded);
+      final json = jsonDecode(file.readAsStringSync()) as Map;
+      expect(json['version'], StudioSettingsStore.version);
+      expect(json['settings'][StudioSettingKeys.language], 'de');
+      final again = store();
+      expect(await again.load(), loaded);
+      expect(again.source, StudioSettingsSource.stored);
+    });
+
+    test('a newer version is read best effort and never overwritten', () async {
+      file.parent.createSync(recursive: true);
+      final newer = jsonEncode({
+        'format': StudioSettingsStore.format,
+        'version': StudioSettingsStore.version + 1,
+        'settings': {
+          StudioSettingKeys.language: 'ar',
+          'v2.only': [1, 2],
+        },
+      });
+      file.writeAsStringSync(newer);
+      final settings = store();
+      final loaded = await settings.load();
+      expect(settings.source, StudioSettingsSource.newer);
+      expect(settings.readOnly, isTrue);
+      expect(loaded.choice(StudioSettingKeys.language), 'ar');
+      await settings.save(_changed());
+      expect(file.readAsStringSync(), newer);
+    });
+
+    test('an invalid version is corrupt', () async {
+      file.parent.createSync(recursive: true);
+      file.writeAsStringSync(
+        jsonEncode({
+          'format': StudioSettingsStore.format,
+          'version': 'one',
+          'settings': {},
+        }),
+      );
+      final settings = store();
+      expect(await settings.load(), StudioSettings.defaults());
+      expect(settings.source, StudioSettingsSource.corrupt);
+    });
+  });
+
+  group('web backend (Cache Storage layer)', () {
+    test('round trip, corrupt bytes and a refusing browser', () async {
+      final web = _MemoryWebStore();
+      StudioSettingsStore create() => StudioSettingsStore(
+        backend: WebDataStoreStudioSettingsBackend(
+          web,
+          key: 'settings/studio-settings.json',
+        ),
+      );
+      final first = create();
+      await first.load();
+      await first.save(_changed());
+      expect(web.entries.keys, ['settings/studio-settings.json']);
+      expect(await create().load(), _changed());
+
+      web.entries['settings/studio-settings.json'] = Uint8List.fromList([
+        0xff,
+        0x00,
+      ]);
+      final corrupt = create();
+      expect(await corrupt.load(), StudioSettings.defaults());
+      expect(corrupt.source, StudioSettingsSource.corrupt);
+      expect(web.entries, contains('settings/studio-settings.json.corrupt'));
+
+      web.refuse = true;
+      await corrupt.save(_changed());
+      expect(corrupt.saveError, isNotNull);
+    });
+
+    test('ribbon preferences persist through a settings backend', () async {
+      final backend = MemoryStudioSettingsBackend();
+      final first = StudioRibbonPreferences(backend: backend);
+      await first.load();
+      first
+        ..setShowGroupLabels(false)
+        ..setVisible('tabs.word', 'review', false);
+      await first.flush();
+      first.dispose();
+      final restored = StudioRibbonPreferences(backend: backend);
+      await restored.load();
+      expect(restored.showGroupLabels, isFalse);
+      expect(restored.isVisible('tabs.word', 'review'), isFalse);
+      restored.dispose();
+    });
+  });
+
+  testWidgets('the workspace restores stored settings and saves changes', (
     tester,
   ) async {
+    final backend = MemoryStudioSettingsBackend(
+      StudioSettingsStore.encode(
+        StudioSettings.defaults().copyWith({
+          StudioSettingKeys.language: 'ar',
+          StudioSettingKeys.look: 'dark',
+          StudioSettingKeys.personalWords: {
+            'de-DE': ['Quds'],
+          },
+        }),
+      ),
+    );
+    final ribbon = StudioRibbonPreferences(persist: false);
     await tester.binding.setSurfaceSize(const Size(1440, 1000));
-    addTearDown(() => tester.binding.setSurfaceSize(null));
-    await tester.pumpWidget(const QudsOfficeStudioApp());
-    await tester.pump();
-    final controller = _editor(tester).controller;
-    controller.proofing.enabled = false;
-    controller.proofing.configure(OfficeProofingService(providers: []));
-    final note = WmlNote(
-      id: 1,
-      endnote: false,
-      paragraphs: [
-        WmlParagraph(inlines: [WmlRun(text: 'A retained footnote.')]),
-      ],
+    addTearDown(() async {
+      await tester.pumpWidget(const SizedBox.shrink());
+      ribbon.dispose();
+      await tester.binding.setSurfaceSize(null);
+    });
+    await tester.pumpWidget(
+      MaterialApp(
+        home: SuiteWorkspace(
+          ribbonPreferences: ribbon,
+          settingsStore: StudioSettingsStore(backend: backend),
+        ),
+      ),
     );
-    final document = WmlDocument.empty(text: 'Document body.')
-      ..footnotes.add(note);
-    controller.document = document;
-    controller.refresh();
-    await _pump(tester);
-
-    expect(find.byTooltip('Language'), findsOneWidget);
-    expect(_editor(tester).config!.showNotesPane, isFalse);
-    expect(controller.config.showNotesPane, isFalse);
-    expect(find.byType(WordNotesPane), findsNothing);
-
-    await _settings(tester);
-    final notes = find.widgetWithText(SwitchListTile, 'Show notes');
-    expect(tester.widget<SwitchListTile>(notes).value, isFalse);
-    await tester.ensureVisible(notes);
-    await tester.tap(notes);
     await tester.pump();
-    expect(tester.widget<SwitchListTile>(notes).value, isTrue);
-    await _closeSettings(tester);
-
-    expect(_editor(tester).controller, same(controller));
-    expect(_editor(tester).config!.showNotesPane, isTrue);
-    expect(controller.config.showNotesPane, isTrue);
-    expect(find.byType(WordNotesPane), findsOneWidget);
-    final field = find.byKey(const ValueKey<String>('notes-edit-1'));
-    expect(field, findsOneWidget);
+    await tester.pump(const Duration(milliseconds: 300));
+    // Restored: Arabic UI (right to left); nothing rewritten unchanged.
     expect(
-      tester.widget<TextField>(field).controller!.text,
-      'A retained footnote.',
+      tester
+          .widget<Directionality>(
+            find
+                .descendant(
+                  of: find.byType(SuiteWorkspace),
+                  matching: find.byType(Directionality),
+                )
+                .first,
+          )
+          .textDirection,
+      TextDirection.rtl,
     );
+    expect(backend.writes, 0);
 
-    await _settings(tester);
-    expect(tester.widget<SwitchListTile>(notes).value, isTrue);
-    await tester.ensureVisible(notes);
-    await tester.tap(notes);
+    // A change made in the workspace is saved.
+    final editor = tester.widget<QudsWordEditor>(find.byType(QudsWordEditor));
+    editor.controller.proofing.vocabulary.addWord('Strobe', language: 'de-DE');
+    editor.controller.proofing.enabled = false;
     await tester.pump();
-    expect(tester.widget<SwitchListTile>(notes).value, isFalse);
-    await _closeSettings(tester);
-
-    expect(_editor(tester).config!.showNotesPane, isFalse);
-    expect(controller.config.showNotesPane, isFalse);
-    expect(find.byType(WordNotesPane), findsNothing);
-    expect(controller.document, same(document));
-    expect(controller.document.footnotes.single, same(note));
-    expect(note.paragraphs.single.text, 'A retained footnote.');
-    expect(tester.takeException(), isNull);
-    await tester.pumpWidget(const SizedBox.shrink());
-    await tester.pump();
-    expect(tester.takeException(), isNull);
+    await tester.pump(const Duration(milliseconds: 500));
+    final saved = (jsonDecode(backend.contents!) as Map)['settings'] as Map;
+    expect(saved[StudioSettingKeys.language], 'ar');
+    expect(saved[StudioSettingKeys.look], 'dark');
+    expect(saved[StudioSettingKeys.checkAsYouType], isFalse);
+    expect(saved[StudioSettingKeys.personalWords], {
+      'de-DE': ['Quds', 'Strobe'],
+    });
   });
 }

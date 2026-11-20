@@ -112,6 +112,9 @@ header, footer, note, or comment story selector.
 | `range.ParagraphFormat.LineSpacingRule = value` | `docx.paragraphFormat` | `lineSpacingRule: auto`, `lineSpacing: 1`, `1.5`, or `2` |
 | Custom `LineSpacingRule` followed by `LineSpacing = points` | `docx.lineSpacing` | One paired edit with `rule: atLeast`, `exact`, or `multiple`, and `points` |
 | `range.ParagraphFormat.Space1`, `.Space15`, `.Space2` | `docx.paragraphFormat` | The corresponding single, 1.5-line, or double-line preset |
+| `paragraph.OpenUp` or `paragraph.Format.OpenUp` | `docx.paragraphSpaceBefore` | `action: open`; set before spacing to 12 points |
+| `paragraph.CloseUp` or `paragraph.Format.CloseUp` | `docx.paragraphSpaceBefore` | `action: close`; set before spacing to zero |
+| `paragraph.OpenOrCloseUp` or `paragraph.Format.OpenOrCloseUp` | `docx.paragraphSpaceBefore` | `action: toggle`; resolve current before spacing during native execution |
 | `paragraph.TabStops.Add position, alignment, leader` | `docx.tabStop` | `position` in points, `alignment`, and `leader` |
 | `paragraph.TabStops.ClearAll` | `docx.clearTabStops` | No additional arguments |
 | `range.ListFormat.ApplyBulletDefault` | `docx.listDefault` | `numbered: false` |
@@ -142,6 +145,86 @@ rule/amount operation. Repeated
 `InsertBefore` calls act on the paragraph as it exists at each step: inserting
 `"A"` and then `"B"` before `"tail"` produces `"BAtail"`. A later font operation
 formats the paragraph's current text, including text inserted by earlier steps.
+
+### Opening, closing and toggling paragraph spacing
+
+`Paragraph` and `ParagraphFormat` support the zero-argument `OpenUp`, `CloseUp`
+and `OpenOrCloseUp` methods. `Paragraph.Format` and
+`Paragraph.Range.ParagraphFormat` address the same selected paragraph. Bare
+statements, parenthesized statements, `Call target.OpenUp` and
+`Call target.OpenUp()` are supported, along with typed aliases, required `ByVal`
+helpers, named helper arguments and nested `With` blocks. The receiver is
+evaluated once. Collection-wide calls, direct `Range.OpenUp`, assigned return
+values, arguments and method reads are rejected, including in unused helpers
+and dead branches. The existing source work and operation limits still apply.
+
+```vb
+Sub Main()
+    Dim first As Paragraph
+    Dim format As ParagraphFormat
+    Set first = ActiveDocument.Paragraphs(1)
+    Set format = first.Format
+
+    first.CloseUp
+    With format
+        .OpenOrCloseUp
+        Call .OpenOrCloseUp()
+        .OpenUp
+    End With
+End Sub
+```
+
+This example finishes with 12 points of spacing before the first existing
+paragraph. `OpenUp` always sets 12 points; `CloseUp` sets zero. `OpenOrCloseUp`
+sets 12 points when the current spacing is zero, and zero when it is positive.
+The compiler emits the action rather than a guessed resulting value. Native
+execution resolves the current effective paragraph properties, including
+supported style inheritance and earlier operations in the same detached
+transaction. Two consecutive toggles both execute. Recording retains the
+toggle action, so replay resolves the spacing of the replay target. This does
+not expose document values to VBA expressions or add live property reads.
+
+Each method emits one `docx.paragraphSpaceBefore` operation with a zero-based
+`paragraph` and an exact `action` of `open`, `close` or `toggle`. A pending
+custom `LineSpacingRule` / `LineSpacing` pair must be completed before these
+methods, just as before any other document write. Body paragraph traversal,
+policy/allowlist checks, step limits, detached validation and all-or-nothing
+publication are unchanged. Empty paragraphs are supported without inserting
+text or changing paragraph structure.
+
+The edit owns only the native before-spacing group. Same-value writes become
+direct formatting; unedited after-spacing and line-spacing values continue to
+inherit and respond to later style edits. Unrelated direct properties, native
+style definitions, foreign attributes/children and opaque DOCM project/signature
+parts are preserved. An existing disabled `beforeAutospacing` attribute in the
+edited direct group can be removed; unedited groups retain their source data.
+Native style identities and `basedOn` links are resolved by namespace rather
+than prefix spelling, and default paragraph styles accept native `1`, `true`
+and `on` flags. Foreign style/attribute lookalikes remain source data.
+
+The supported input is nonnegative point spacing represented by exact integer
+twips in `0..2147483647`. The controls refuse native `beforeLines`, enabled or
+unknown `beforeAutospacing`, malformed/negative/noninteger/oversized native
+`before`, duplicate spacing or paragraph-property packets, spacing-bearing
+markup-compatibility alternatives, and unbalanced modeled field boundaries.
+They also refuse before-spacing declarations in numbering levels or unmodeled
+conditional table-style regions, and ambiguous style identities, duplicate
+defaults, missing `basedOn` targets or cyclic style inheritance. These checks
+scan stored Word XML parts conservatively, so a conflicting declaration in an
+unrelated style or story can cause refusal. They do not guess automatic spacing,
+silently round native values, or choose an ambiguous style.
+
+Supported table-style inheritance remains Quds's existing `wholeTable`, enabled
+horizontal bands and `firstRow` projection. The controls do not introduce
+complete conditional table-style parity. They follow the existing body selector
+contract and do not add arbitrary ranges, collections, `Selection`, COM or
+embedded VBA execution.
+
+The actual [word_paragraph_controls.bas](../packages/quds_office_engine/example/macros/word_paragraph_controls.bas)
+example requires three existing body paragraphs. Its ten operations finish at
+12, zero and 12 points and can run again on its own saved output. The
+[qualification record](validation/word-vba-paragraph-controls-20261120/README.md)
+also covers the incoming custom line-spacing continuation.
 
 ### Custom paragraph tab stops
 
