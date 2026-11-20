@@ -6,6 +6,7 @@ import 'package:enough_mail/enough_mail.dart' as mail;
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:quds_mail_core/quds_mail_core.dart';
+import 'package:quds_mail_mime/quds_mail_mime.dart';
 import 'package:quds_mail_ui/quds_mail_ui.dart';
 import 'package:quds_mail_store/quds_mail_store.dart';
 import 'package:quds_office_editor/quds_office_editor.dart';
@@ -78,6 +79,35 @@ mail.MimeMessage _message(String subject) => mail.MimeMessage.parseFromText(
   '\r\n'
   'Body of $subject.\r\n',
 );
+
+Uint8List _forwardWire({int count = 2}) {
+  final wire = StringBuffer(
+    'From: Original <original@example.invalid>\r\n'
+    'To: reader@example.invalid\r\n'
+    'Bcc: original-private@example.invalid\r\n'
+    'Subject: Original with files\r\n'
+    'Message-ID: <source@example.invalid>\r\n'
+    'References: <root@example.invalid>\r\n'
+    'MIME-Version: 1.0\r\n'
+    'Content-Type: multipart/mixed; boundary=forward-fixture\r\n\r\n'
+    '--forward-fixture\r\n'
+    'Content-Type: text/plain; charset=utf-8\r\n\r\n'
+    'The original body.\r\n',
+  );
+  for (var index = 0; index < count; index++) {
+    final disposition = index == 1 ? 'inline' : 'attachment';
+    final encoded = base64.encode([0, index, 128, 255]);
+    wire.write(
+      '--forward-fixture\r\n'
+      'Content-Type: application/octet-stream\r\n'
+      'Content-Disposition: $disposition; filename=file-$index.bin\r\n'
+      'Content-Transfer-Encoding: base64\r\n\r\n'
+      '$encoded\r\n',
+    );
+  }
+  wire.write('--forward-fixture--\r\n');
+  return Uint8List.fromList(utf8.encode(wire.toString()));
+}
 
 final class _Client extends Fake implements mail.MailClient {
   final boxes = <mail.Mailbox>[_box('INBOX'), _box('Archive')];
@@ -240,12 +270,14 @@ Future<void> _open(
   Future<mail.ClientConfig?> Function(String)? accountDiscovery,
   bool fillForm = true,
   bool nativeLoader = false,
+  MemoryStudioMailDrafts? drafts,
   StudioMailArchiveWriter? archiveWriter,
   StudioMailArchiveFolderWriter? archiveFolderWriter,
 }) async {
   await tester.binding.setSurfaceSize(const Size(1440, 1000));
   addTearDown(() => tester.binding.setSurfaceSize(null));
   mail.MailClient? createdClient;
+  final draftStorage = drafts ?? MemoryStudioMailDrafts();
   await tester.pumpWidget(
     MaterialApp(
       home: Builder(
@@ -254,7 +286,7 @@ Future<void> _open(
             onPressed: () => showDialog<void>(
               context: context,
               builder: (_) => StudioMailDialog(
-                draftStoreFactory: MemoryStudioMailDrafts().open,
+                draftStoreFactory: draftStorage.open,
                 strings: strings,
                 clientFactory: (account) =>
                     createdClient = clientFactory(account),
@@ -363,9 +395,13 @@ MailArchiveRunReport _folderReport() => MailArchiveRunReport(
 );
 
 void main() {
-  for (final forward in [false, true]) {
+  for (final (tooltip, forward, withAttachments) in [
+    (_strings.reply, false, false),
+    (_strings.forward, true, false),
+    (_strings.mailForwardWithAttachments, true, true),
+  ]) {
     testWidgets(
-      '${forward ? 'forward' : 'reply'} uses the exact loaded body and envelope, not the list header',
+      '$tooltip uses the exact loaded body and envelope, not the list header',
       (tester) async {
         final client = _Client();
         client.messages[0] = mail.MimeMessage.parseFromText(
@@ -393,7 +429,7 @@ void main() {
         await _pump(tester);
         expect(_reader(tester).decodedText, contains('Exact café body.'));
         await tester.tap(
-          find.byTooltip(forward ? _strings.forward : _strings.reply),
+          find.byTooltip(tooltip),
         );
         await _pump(tester);
 
@@ -418,7 +454,9 @@ void main() {
         expect(body, isNot(contains('list@example.invalid')));
         expect(body, isNot(contains('hidden@example.invalid')));
         expect(body, isNot(contains('Body of First message')));
-        if (forward) expect(body, contains(_strings.mailTextOnlyForward));
+        if (forward && !withAttachments) {
+          expect(body, contains(_strings.mailTextOnlyForward));
+        }
         expect(client.sent, isEmpty);
         await tester.ensureVisible(find.text(_strings.mailDraftSaveClose));
         await tester.tap(find.text(_strings.mailDraftSaveClose));
@@ -428,26 +466,75 @@ void main() {
     );
 
     testWidgets(
-      '${forward ? 'forward' : 'reply'} reports an HTML-only body without quoting presentation headers',
+      '$tooltip quotes only safe HTML body text when plain text is absent',
       (tester) async {
         final client = _Client();
-        final loader = _Loader(client)
-          ..onFetch = (_, _) async => Uint8List.fromList(
-            utf8.encode(
-              'From: writer@example.invalid\r\n'
-              'Subject: HTML message\r\n'
-              'Bcc: hidden@example.invalid\r\n'
-              'Content-Type: text/html; charset=utf-8\r\n\r\n'
-              '<p>HTML-only body.</p>',
-            ),
-          );
+        final raw = Uint8List.fromList(
+          utf8.encode(
+            'From: writer@example.invalid\r\n'
+            'Subject: HTML message\r\n'
+            'Bcc: hidden@example.invalid\r\n'
+            'Content-Type: text/html; charset=utf-8\r\n\r\n'
+            '<p>HTML-only body.</p>'
+            '<script>private-script-content</script>'
+            '<style>private-style-content</style>',
+          ),
+        );
+        final parsed = const QudsMimeCodec().parse(raw);
+        expect(parsed.status, MailParseStatus.complete);
+        expect(parsed.message!.body.plainText, isNull);
+        final loader = _Loader(client)..onFetch = (_, _) async => raw;
         await _open(tester, (_) => client, loaderFactory: (_) => loader);
         await _connect(tester);
         await tester.tap(find.text('First message'));
         await _pump(tester);
-        await tester.tap(
-          find.byTooltip(forward ? _strings.forward : _strings.reply),
+        await tester.tap(find.byTooltip(tooltip));
+        await _pump(tester);
+        expect(find.byType(StudioMailComposeDialog), findsOneWidget);
+        final body = tester
+            .widget<QudsWordEditor>(find.byType(QudsWordEditor))
+            .controller
+            .document
+            .paragraphs
+            .map((paragraph) => paragraph.text)
+            .join('\n');
+        expect(body, contains('HTML-only body.'));
+        expect(body, isNot(contains('hidden@example.invalid')));
+        expect(body, isNot(contains('private-script-content')));
+        expect(body, isNot(contains('private-style-content')));
+        expect(body, isNot(contains('Body of First message')));
+        expect(client.sent, isEmpty);
+        await tester.ensureVisible(find.text(_strings.mailDraftSaveClose));
+        await tester.tap(find.text(_strings.mailDraftSaveClose));
+        await _pump(tester);
+        await _close(tester);
+      },
+    );
+
+    testWidgets(
+      '$tooltip rejects a message with no quotable body without composing',
+      (tester) async {
+        final client = _Client();
+        final raw = Uint8List.fromList(
+          utf8.encode(
+            'From: writer@example.invalid\r\n'
+            'Subject: Opaque content\r\n'
+            'Content-Type: application/octet-stream\r\n'
+            'Content-Disposition: attachment; filename=opaque.bin\r\n'
+            'Content-Transfer-Encoding: base64\r\n\r\n'
+            'AAH/\r\n',
+          ),
         );
+        final parsed = const QudsMimeCodec().parse(raw);
+        expect(parsed.status, MailParseStatus.complete);
+        expect(parsed.message!.body.plainText, isNull);
+        expect(parsed.message!.body.html, isNull);
+        final loader = _Loader(client)..onFetch = (_, _) async => raw;
+        await _open(tester, (_) => client, loaderFactory: (_) => loader);
+        await _connect(tester);
+        await tester.tap(find.text('First message'));
+        await _pump(tester);
+        await tester.tap(find.byTooltip(tooltip));
         await _pump(tester);
         expect(find.text(_strings.mailPlainTextUnavailable), findsOneWidget);
         expect(find.byType(StudioMailComposeDialog), findsNothing);
@@ -457,7 +544,7 @@ void main() {
     );
 
     testWidgets(
-      '${forward ? 'forward' : 'reply'} cannot replace an uncertain draft; only confirmed discard releases it',
+      '$tooltip cannot replace an uncertain draft; only confirmed discard releases it',
       (tester) async {
         final client = _Client()
           ..onSend = (_) async => throw StateError('uncertain submission');
@@ -466,9 +553,7 @@ void main() {
         await _compose(tester);
         await tester.tap(find.text('First message'));
         await _pump(tester);
-        final action = find.byTooltip(
-          forward ? _strings.forward : _strings.reply,
-        );
+        final action = find.byTooltip(tooltip);
         await tester.tap(action);
         await _pump(tester);
         expect(find.text(_strings.mailRetainedDraft), findsOneWidget);
@@ -526,6 +611,120 @@ void main() {
       },
     );
   }
+
+  testWidgets(
+    'attachment forward survives save and reopen with inline and binary files',
+    (tester) async {
+      final client = _Client();
+      final raw = _forwardWire();
+      final source = const QudsMimeCodec().parse(raw);
+      expect(source.status, MailParseStatus.complete);
+      expect(source.message!.attachments, hasLength(2));
+      expect(source.message!.attachments.last.inline, isTrue);
+      final drafts = MemoryStudioMailDrafts();
+      final loader = _Loader(client)..onFetch = (_, _) async => raw;
+      await _open(
+        tester,
+        (_) => client,
+        loaderFactory: (_) => loader,
+        drafts: drafts,
+      );
+      await _connect(tester);
+      await tester.tap(find.text('First message'));
+      await _pump(tester);
+      await tester.tap(find.byTooltip(_strings.mailForwardWithAttachments));
+      await _pump(tester);
+      final initial = tester
+          .widget<StudioMailComposeDialog>(find.byType(StudioMailComposeDialog))
+          .initialDraft!;
+      expect(initial.to, isEmpty);
+      expect(initial.cc, isEmpty);
+      expect(initial.bcc, isEmpty);
+      expect(initial.thread.inReplyTo, isNull);
+      expect(initial.thread.references, isNull);
+      expect(initial.attachments.items, hasLength(2));
+      expect(initial.attachments.items.first.content.bytes, [0, 0, 128, 255]);
+      expect(initial.attachments.items.last.content.bytes, [0, 1, 128, 255]);
+      expect(initial.body, contains('The original body.'));
+      expect(initial.body, isNot(contains('original-private@example.invalid')));
+      expect(initial.body, isNot(contains(_strings.mailTextOnlyForward)));
+      expect(client.sent, isEmpty);
+      await tester.enterText(_field(_strings.to), 'forward@example.invalid');
+      await tester.ensureVisible(find.text(_strings.mailDraftSaveClose));
+      await tester.tap(find.text(_strings.mailDraftSaveClose));
+      await _pump(tester);
+      expect(drafts.records.values.single.draft.attachments.items, hasLength(2));
+      expect(drafts.records.values.single.submissionUncertain, isFalse);
+      expect(client.sent, isEmpty);
+
+      await tester.tap(find.widgetWithText(TextButton, _strings.compose));
+      await _pump(tester);
+      final recovered = tester
+          .widget<StudioMailComposeDialog>(find.byType(StudioMailComposeDialog))
+          .initialDraft!;
+      expect(recovered.to, 'forward@example.invalid');
+      expect(recovered.attachments.items.first.content.bytes, [0, 0, 128, 255]);
+      expect(recovered.attachments.items.last.content.bytes, [0, 1, 128, 255]);
+      final send = find.widgetWithText(FilledButton, _strings.send);
+      await tester.ensureVisible(send);
+      await tester.tap(send);
+      await _pump(tester);
+      final decoded = const QudsMimeCodec().parse(
+        utf8.encode(client.sent.single.renderMessage()),
+      );
+      expect(decoded.status, MailParseStatus.complete);
+      expect(decoded.message!.attachments, hasLength(2));
+      for (var index = 0; index < 2; index++) {
+        final attachment = decoded.message!.attachments[index];
+        expect(attachment.displayName, 'file-$index.bin');
+        expect(attachment.content.bytes, [0, index, 128, 255]);
+        expect(attachment.inline, isFalse);
+      }
+      expect(decoded.message!.envelope.inReplyTo, isNull);
+      expect(decoded.message!.envelope.references, isEmpty);
+      expect(decoded.message!.envelope.bcc, isEmpty);
+      expect(decoded.message!.envelope.to.single.address, 'forward@example.invalid');
+      expect(drafts.records, isEmpty);
+      await _close(tester);
+    },
+  );
+
+  testWidgets(
+    'too many forward attachments refuse the whole action and allow text only',
+    (tester) async {
+      final client = _Client();
+      final raw = _forwardWire(count: 11);
+      final parsed = const QudsMimeCodec().parse(raw);
+      expect(parsed.status, MailParseStatus.complete);
+      expect(parsed.message!.attachments, hasLength(11));
+      final loader = _Loader(client)..onFetch = (_, _) async => raw;
+      await _open(tester, (_) => client, loaderFactory: (_) => loader);
+      await _connect(tester);
+      await tester.tap(find.text('First message'));
+      await _pump(tester);
+      await tester.tap(find.byTooltip(_strings.mailForwardWithAttachments));
+      await _pump(tester);
+      expect(find.byType(StudioMailComposeDialog), findsNothing);
+      expect(
+        find.text(_strings.mailForwardAttachmentsUnavailable),
+        findsOneWidget,
+      );
+      expect(client.sent, isEmpty);
+      await tester.tap(find.byTooltip(_strings.forward));
+      await _pump(tester);
+      final draft = tester
+          .widget<StudioMailComposeDialog>(find.byType(StudioMailComposeDialog))
+          .initialDraft!;
+      expect(draft.attachments.isEmpty, isTrue);
+      expect(draft.body, contains(_strings.mailTextOnlyForward));
+      expect(draft.body, contains('The original body.'));
+      expect(client.sent, isEmpty);
+      await tester.ensureVisible(find.text(_strings.mailDraftSaveClose));
+      await tester.tap(find.text(_strings.mailDraftSaveClose));
+      await _pump(tester);
+      await _close(tester);
+    },
+  );
 
   testWidgets(
     'mark-read holds the UI busy and updates only after confirmation',
