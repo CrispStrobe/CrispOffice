@@ -1,9 +1,9 @@
 # VBA conformance cases, version 1
 
-The `vba-excel` and `vba-word` compilers share a versioned, document-independent
+The `vba-excel`, `vba-word`, and `vba-powerpoint` compilers share a versioned, document-independent
 corpus for supported language behavior and deliberate refusals. The suites
 cover String intrinsics, explicit Variant states/conversions, and the bounded
-Word paragraph adapter. Each executes the public compiler, compares
+Word paragraph and PowerPoint shape adapters. Each executes the public compiler, compares
 the complete native operation list or a positioned diagnostic, and checks
 native-plan JSON round trips for every successful case.
 
@@ -15,6 +15,7 @@ The canonical fixtures are:
 | [`variant_conversions_v1.json`](../packages/quds_office_engine/test/fixtures/vba_conformance/variant_conversions_v1.json) | 120 | Empty/Null lifecycle, operators, explicit conversions and deliberate limits |
 | [`variant_composition_v1.json`](../packages/quds_office_engine/test/fixtures/vba_conformance/variant_composition_v1.json) | 38 | Nested nullable results, unchanged strict operands and static scalar/object boundaries |
 | [`word_paragraphs_v1.json`](../packages/quds_office_engine/test/fixtures/vba_conformance/word_paragraphs_v1.json) | 44 | Word object bindings, prefix insertion, font/paragraph formatting, shared language behavior and deliberate refusals |
+| [`powerpoint_shapes_v1.json`](../packages/quds_office_engine/test/fixtures/vba_conformance/powerpoint_shapes_v1.json) | 20 | PowerPoint selectors and typed bindings, text/font/alignment/geometry mappings, explicit collection guards and positioned refusals |
 
 The same fixture bytes are consumed by each VM test and the portable
 JavaScript runner; there is no separately maintained copy of expected results.
@@ -26,8 +27,8 @@ produced the result. No case in any delivered corpus claims Office host executio
 ## Case format
 
 The root object contains exactly `schemaVersion`, `suite`, `dialect`, and
-`cases`. Version 1 uses `schemaVersion: 1`, a dialect of `"vba-excel"` or
-`"vba-word"`, a suite identifier, and a nonempty array of cases. Case identifiers
+`cases`. Version 1 uses `schemaVersion: 1`, a dialect of `"vba-excel"`,
+`"vba-word"`, or `"vba-powerpoint"`, a suite identifier, and a nonempty array of cases. Case identifiers
 must be unique. A suite admits only native operations for its selected format.
 Every case contains `id`, `feature`, `source`, `expected`, and `provenance`.
 
@@ -68,6 +69,7 @@ using the suite's dialect and the corresponding native format:
 | --- | --- | --- |
 | `vba-excel` | `xlsx` | `xlsx.` |
 | `vba-word` | `docx` | `docx.` |
+| `vba-powerpoint` | `pptx` | `pptx.` |
 
 Worksheet selectors in VBA source and supported Word paragraph selectors are
 one-based; native integer sheet and paragraph selectors are zero-based. Word
@@ -143,8 +145,17 @@ missing paragraph. See the [Word dialect contract](VBA_WORD_MACROS.md).
 The original three Excel fixture files and canonical receipt bytes remain
 unchanged by the Word extension. The portable harness checks their previously
 accepted receipt hashes as well as VM/JavaScript equality. The fourth suite
-adds 44 Word cases, for **271 canonical cases per runtime**. The receipt shape
+adds 44 Word cases. The PowerPoint suite adds 20 cases, for **291 canonical cases per runtime**. The receipt shape
 is unchanged: its existing `dialect` field identifies the selected adapter.
+
+The PowerPoint suite independently specifies explicit presentation/slide/shape
+and TextRange bindings, `.Item`, exact names, one-based index conversion,
+`ByVal` rebinding, MsoTriState and packed RGB values, point/degree geometry,
+all four supported alignments, Unicode, and shared source control flow.
+Refusals cover live reads in inactive code, cross-host objects, group paths,
+mixed/toggle formatting and unsupported publication values. Complete expected
+plans include `topLevel: true`; actual native collection identity and rollback
+are exercised separately by runtime tests and the portable transaction smoke.
 
 Fixtures remain schema version 1. New capabilities add suites and cases;
 the versioned schema does not promise that an intentionally unsupported syntax
@@ -164,12 +175,13 @@ dart test test/office_vba_conformance_test.dart \
   test/office_vba_string_intrinsics_integration_test.dart \
   test/office_vba_variant_conformance_test.dart \
   test/office_vba_word_conformance_test.dart \
+  test/office_vba_powerpoint_conformance_test.dart \
   test/office_vba_variant_conversions_test.dart \
   test/office_vba_variant_conversions_integration_test.dart \
   --concurrency 1 --timeout 4x
 
 mkdir -p build/macros
-for suite in string_intrinsics_v1 variant_conversions_v1 variant_composition_v1 word_paragraphs_v1; do
+for suite in string_intrinsics_v1 variant_conversions_v1 variant_composition_v1 word_paragraphs_v1 powerpoint_shapes_v1; do
   VBA_CASES_BASE64=$(python3 -c 'import base64,sys; from pathlib import Path; print(base64.b64encode(Path(sys.argv[1]).read_bytes()).decode())' "test/fixtures/vba_conformance/${suite}.json")
   dart --packages=../../.dart_tool/package_config.json \
     -DVBA_CONFORMANCE_BASE64="$VBA_CASES_BASE64" \

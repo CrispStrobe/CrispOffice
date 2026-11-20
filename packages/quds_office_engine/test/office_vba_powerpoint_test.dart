@@ -241,6 +241,33 @@ End Sub'''),
     );
   });
 
+  test('font names enforce native length and whitespace boundaries', () {
+    final valid = List<String>.filled(255, 'A').join();
+    final invalid = '${valid}A';
+    expect(
+      _compile(
+        _module('target.TextFrame.TextRange.Font.Name = "$valid"'),
+      ).steps.single.arguments['font'],
+      valid,
+    );
+    for (final value in <String>['   ', invalid, 'Font\u007fName']) {
+      _reject(
+        'target.TextFrame.TextRange.Font.Name = "$value"',
+        'vba_type_error',
+      );
+    }
+  });
+
+  test('font-name constraints do not trim or limit exact shape names', () {
+    final name = '  ${List<String>.filled(256, 'A').join()}  ';
+    final plan = _compile('''
+Sub Main()
+ActivePresentation.Slides(1).Shapes("$name").TextFrame.TextRange.Text = "x"
+End Sub
+''');
+    expect(plan.steps.single.arguments['shapeName'], name);
+  });
+
   for (final source in <String>[
     'value = target.TextFrame.TextRange.Text',
     'value = target.Width',

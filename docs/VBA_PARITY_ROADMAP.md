@@ -22,13 +22,19 @@ preserved as opaque package parts and are never executed on document open.
 
 The `vba-word` adapter shares that language implementation and adds explicit
 `ThisDocument`/paragraph/range bindings, paragraph-prefix insertion, supported
-font properties and paragraph alignment/spacing. It emits existing native Word
+font properties, all 18 underline styles, strikethrough, paragraph
+alignment/spacing, signed indentation and pagination. It emits native Word
 operations and keeps paragraph marks structural. This is an initial write-only
 Word object-model slice; stories, tables, arbitrary text ranges and live reads
-remain separate work. PowerPoint native operations do not yet have a VBA adapter.
+remain separate work. The `vba-powerpoint` adapter adds explicit presentation,
+slide, shape and text-range bindings, one-based/index-or-name selection,
+whole-shape text, font/alignment writes and geometry. Native collection guards
+refuse grouped or incompletely modeled slide collections. Rich text formatting
+retains source XML, fields and hyperlinks; explicit false and same-value
+assignments still take effect.
 There is no live document-value evaluation, VBA project loader, editor-host
 macro UI, or general VBA runtime. See the exact [Excel](VBA_MACROS.md) and
-[Word](VBA_WORD_MACROS.md) contracts
+[Word](VBA_WORD_MACROS.md) and [PowerPoint](VBA_POWERPOINT_MACROS.md) contracts
 and [the native macro contract](MACROS.md).
 
 ## Ordered milestones and acceptance
@@ -59,6 +65,13 @@ source-only Word paragraph adapter above; its remaining application models and
 Stages 5–7 remain planned work.
 Small tested adapter slices may run alongside shared language work when their
 prerequisites exist.
+
+The current Word/PowerPoint increment adds the Stage 4 write-only slices above
+without introducing Stage 3 document reads. Its exact branch integration,
+VM/JavaScript, native transaction and CLI/MCP evidence is retained in the
+[20 November qualification record](validation/office-vba-word-powerpoint-20261120/README.md).
+Groups, arbitrary text subranges, Word stories/tables, and live collection
+behavior remain separate increments with their own identity and range tests.
 
 ### Next increment
 

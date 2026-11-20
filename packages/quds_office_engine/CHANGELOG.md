@@ -4,6 +4,20 @@ All notable changes to `quds_office_engine` are documented here.
 
 ## Unreleased
 
+- Add the bounded `vba-powerpoint` adapter on the shared VBA compiler: explicit
+  slide/shape/text-range bindings, indexed or exact-name selectors, text,
+  font/alignment and geometry writes, with strict collection guards for
+  ungrouped, faithfully modeled slides. Add BAS CLI commands, default MCP
+  registration and specification-derived VM/JavaScript conformance cases.
+  Preserve imported rich text during native formatting, including explicit
+  false and same-value assignments, and retain atomic rollback and opaque
+  macro-project parts.
+
+- Extend `vba-word` with all 18 `WdUnderline` styles, strikethrough, signed
+  left/right/first-line indentation, keep-together and page-break-before.
+  Negative first-line indentation clears the first-line value and writes a
+  hanging indent; later positive/zero assignments clear that hanging indent.
+
 - Preserve Zotero research-note lists with up to nine mixed nesting levels,
   independent counters and starting numbers, and multiple paragraphs per item.
   Keep continuation paragraphs unnumbered at the correct indent, retaining

@@ -7,8 +7,9 @@ The portable entry point is
 `package:quds_office_engine/quds_office_automation.dart`.
 
 This is a headless engine capability with a command-line runner and an MCP
-stdio bridge. The bundled [`vba-excel` dialect](VBA_MACROS.md) and
-[`vba-word` dialect](VBA_WORD_MACROS.md) compile explicitly selected source into
+stdio bridge. The bundled [`vba-excel` dialect](VBA_MACROS.md),
+[`vba-word` dialect](VBA_WORD_MACROS.md), and
+[`vba-powerpoint` dialect](VBA_POWERPOINT_MACROS.md) compile explicitly selected source into
 the same native plans. Their shared language includes reusable in-module procedures, scalar functions, explicit
 `ByVal` arguments, fixed and dynamic one-dimensional scalar arrays, bounded
 `For`/`For Each`/`Do`/`While` loops, `Select Case`, and early exits. Its compiler evaluates those constructs before execution; document
@@ -19,8 +20,12 @@ state predicates and bounded conversions operate on source values. Empty cell
 writes clear values/formulas; Null publication fails before a plan is returned.
 The Word adapter targets explicit body paragraphs, inserts text before their
 content, and applies supported font and paragraph formatting. Its ranges retain
-the native paragraph boundaries. The [parity roadmap](VBA_PARITY_ROADMAP.md)
-records remaining language/runtime work, broader Word objects and PowerPoint.
+the native paragraph boundaries. Word formatting includes all underline styles,
+strikethrough, indentation and pagination. The PowerPoint adapter targets
+explicit top-level slide shapes for text, font, alignment and geometry edits,
+with source-preserving formatting and a strict native collection identity guard.
+The [parity roadmap](VBA_PARITY_ROADMAP.md) records remaining language/runtime
+work and broader application objects.
 It does not add a ribbon editor, a full VBA interpreter, document-open events,
 or editor undo integration. Existing opaque VBA project bytes remain inert and
 are preserved by the Office serializers.
@@ -141,7 +146,7 @@ heading, adds a net formula, and freezes the first row. Other examples cover a
 Word heading and presentation notes. The runner prints a JSON receipt on success
 and a JSON diagnostic to stderr on failure. `compile SOURCE.json OUTPUT.json`
 compiles a source envelope without running it; the default registry accepts
-`quds-json`, `vba-excel`, and `vba-word`.
+`quds-json`, `vba-excel`, `vba-word`, and `vba-powerpoint`.
 
 For an explicitly selected VBA source file:
 
@@ -176,6 +181,17 @@ remain inert. The [Word dialect contract](VBA_WORD_MACROS.md) describes paragrap
 selection, text boundaries, point units and supported formatting. For MCP,
 use a source envelope with `language: "vba-word"` and `format: "docx"`, then
 validate or execute the returned native plan through the same management tools.
+
+For PowerPoint source, use `compile-powerpoint-vba`, `validate-powerpoint-vba`,
+and `run-powerpoint-vba` with the same argument order, or use the source envelope
+`language: "vba-powerpoint"`, `format: "pptx"`. See the
+[PowerPoint contract](VBA_POWERPOINT_MACROS.md) and
+`example/macros/powerpoint_report.bas` for exact shapes, units and supported
+formatting. Native `shapeText`, `shapeFormat`, and `shapeGeometry` accept an
+exact `shapeName` instead of a numeric `shape`. Compiled PowerPoint plans also
+request `topLevel: true`, which refuses groups and unmodeled native objects
+instead of applying Office indices to flattened shapes.
+
 The `example/macros/procedural_report.bas` example demonstrates shared heading
 and row helpers, `Worksheet`/`Range` arguments, and nested scalar functions.
 The `example/macros/control_flow_report.bas` example combines conditional loops
@@ -365,7 +381,8 @@ immutable native plan, and execution applies the same operation allowlist,
 document admission, parameter checks, and transaction rules. Tests register an
 independent small compiler and execute its result through the real dispatcher.
 The default registry includes native JSON, `OfficeVbaMacroLanguage` as
-`vba-excel`, and `OfficeVbaWordMacroLanguage` as `vba-word`. Both VBA adapters
+`vba-excel`, `OfficeVbaWordMacroLanguage` as `vba-word`, and
+`OfficeVbaPowerPointMacroLanguage` as `vba-powerpoint`. All three VBA adapters
 share the parser, checker, evaluator and resource accounting. The generic language name `vba`
 remains unregistered so clients cannot infer full VBA support.
 

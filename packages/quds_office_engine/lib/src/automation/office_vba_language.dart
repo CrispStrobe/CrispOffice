@@ -4395,7 +4395,16 @@ class _Evaluator {
         normalized = _powerPointTriState(value, token);
       } else if (property == 'name') {
         field = 'font';
-        normalized = _powerPointText(value, token, name: true);
+        final family = _powerPointText(value, token, name: true);
+        if (family.trim().isEmpty ||
+            family.length > 255 ||
+            family.contains('\u007f')) {
+          context.type(
+            token,
+            'PowerPoint Font.Name requires a non-whitespace typeface name of at most 255 UTF-16 units, without control characters.',
+          );
+        }
+        normalized = family;
       } else {
         field = 'size';
         final points = _number(value, token);
