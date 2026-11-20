@@ -1197,8 +1197,10 @@ class RenderSlideStage extends RenderBox implements MouseTrackerAnnotation {
           );
         } else {
           final double radians = gradient.angleDegrees * math.pi / 180;
-          final double radius = r.longestSide / 2;
           final Offset direction = Offset(math.cos(radians), math.sin(radians));
+          final double radius =
+              (r.width * direction.dx.abs() + r.height * direction.dy.abs()) /
+              2;
           paint.shader = ui.Gradient.linear(
             r.center - direction * radius,
             r.center + direction * radius,

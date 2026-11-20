@@ -21,6 +21,7 @@ import 'package:quds_office_studio/studio_mail_archive_folder_action.dart';
 import 'package:quds_office_studio/studio_mail_archive_strings.dart';
 
 import 'support/mail_attachment_picker.dart';
+import 'support/mail_draft_store.dart';
 
 const _strings = StudioStrings(StudioLanguage.en);
 
@@ -46,6 +47,7 @@ final class _Provider extends Fake implements MailEwsProvider {
   String firstMessageId = 'one';
   bool replyParticipants = false;
   MailEnvelope? envelopeOverride;
+  void Function()? onSubmit;
   final List<MailCursor?> cursors = [];
   final List<MailOperation> commands = [];
   final List<MailPreparedMessage> submissions = [];
@@ -183,6 +185,7 @@ final class _Provider extends Fake implements MailEwsProvider {
     required String attemptId,
     required MailOperationLease lease,
   }) async {
+    onSubmit?.call();
     submissions.add(message);
     attempts.add(attemptId);
     lastLease = lease;
@@ -209,7 +212,9 @@ Future<void> _show(
   Size size = const Size(1280, 900),
   StudioMailArchiveWriter? archiveWriter,
   StudioMailArchiveFolderWriter? archiveFolderWriter,
+  MemoryStudioMailDrafts? drafts,
 }) async {
+  final draftStorage = drafts ?? MemoryStudioMailDrafts();
   tester.view
     ..physicalSize = size
     ..devicePixelRatio = 1;
@@ -223,6 +228,7 @@ Future<void> _show(
             onPressed: () => showDialog<void>(
               context: context,
               builder: (_) => StudioMailEwsDialog(
+                draftStoreFactory: draftStorage.open,
                 strings: _strings,
                 providerFactory: factory,
                 archiveWriter: archiveWriter,
@@ -322,6 +328,307 @@ MailArchiveRunReport _folderReport() => MailArchiveRunReport(
 );
 
 void main() {
+  testWidgets(
+    'EWS restores an unfinished draft after closing and reconnecting',
+    (tester) async {
+      final drafts = MemoryStudioMailDrafts();
+      final providers = <_Provider>[];
+      await _show(tester, (configuration, credentials) {
+        final provider = _Provider(configuration, credentials);
+        providers.add(provider);
+        return provider;
+      }, drafts: drafts);
+      await _connect(tester);
+      await tester.tap(find.byTooltip(_strings.compose));
+      await _pump(tester);
+      await tester.enterText(_composerField(_strings.to), 'Alice <unfinished');
+      await tester.enterText(
+        _composerField(_strings.subject),
+        'Recover EWS work',
+      );
+      tester
+          .widget<QudsWordEditor>(find.byType(QudsWordEditor))
+          .controller
+          .insertText('Still editing this body');
+      await tester.ensureVisible(find.text(_strings.mailDraftSaveClose));
+      await tester.tap(find.text(_strings.mailDraftSaveClose));
+      await _pump(tester);
+      expect(drafts.records.values.single.draft.to, 'Alice <unfinished');
+      expect(providers.single.submissions, isEmpty);
+      await tester.tap(find.byTooltip(_strings.close));
+      await _pump(tester);
+      expect(drafts.closes, 1);
+      await tester.tap(find.text('Open Exchange'));
+      await _pump(tester);
+      await _connect(tester);
+      expect(
+        drafts.identities.map((identity) => identity.account).toSet(),
+        hasLength(1),
+      );
+      expect(find.text(_strings.mailDraftRestored), findsOneWidget);
+      expect(providers.last.submissions, isEmpty);
+      await tester.tap(find.byTooltip(_strings.compose));
+      await _pump(tester);
+      expect(
+        tester.widget<TextField>(_composerField(_strings.to)).controller!.text,
+        'Alice <unfinished',
+      );
+      expect(
+        tester
+            .widget<TextField>(_composerField(_strings.subject))
+            .controller!
+            .text,
+        'Recover EWS work',
+      );
+      expect(
+        tester
+            .widget<QudsWordEditor>(find.byType(QudsWordEditor))
+            .controller
+            .document
+            .paragraphs
+            .single
+            .text,
+        'Still editing this body',
+      );
+      await tester.ensureVisible(find.text(_strings.mailDraftSaveClose));
+      await tester.tap(find.text(_strings.mailDraftSaveClose));
+      await _pump(tester);
+      expect(
+        providers.every((provider) => provider.submissions.isEmpty),
+        isTrue,
+      );
+      expect(tester.takeException(), isNull);
+    },
+  );
+
+  testWidgets(
+    'EWS waits for the durable uncertainty marker before submission',
+    (tester) async {
+      final drafts = MemoryStudioMailDrafts();
+      final markerGate = Completer<void>();
+      final deliveryGate = Completer<MailSubmissionResult>();
+      late _Provider provider;
+      bool? durableAtSubmission;
+      await _show(
+        tester,
+        (configuration, credentials) =>
+            provider = _Provider(configuration, credentials)
+              ..sendGate = deliveryGate
+              ..onSubmit = () => durableAtSubmission =
+                  drafts.records.values.single.submissionUncertain,
+        drafts: drafts,
+      );
+      await _connect(tester);
+      await _compose(
+        tester,
+        beforeSend: () async {
+          await tester.pump(const Duration(milliseconds: 500));
+          await tester.pump();
+          expect(drafts.saved.last.submissionUncertain, isFalse);
+          drafts.saveGate = markerGate;
+        },
+      );
+      expect(provider.submissions, isEmpty);
+      expect(drafts.records.values.single.submissionUncertain, isFalse);
+      markerGate.complete();
+      await _pump(tester);
+      expect(provider.submissions, hasLength(1));
+      expect(durableAtSubmission, isTrue);
+      expect(drafts.records.values.single.submissionUncertain, isTrue);
+      deliveryGate.complete(
+        MailSubmissionResult(
+          attemptId: provider.attempts.single,
+          outcome: MailSubmissionOutcome.accepted,
+        ),
+      );
+      await _pump(tester);
+      expect(drafts.clears, 1);
+      expect(drafts.records, isEmpty);
+      expect(find.text(_strings.ewsSubmissionAccepted), findsOneWidget);
+      expect(tester.takeException(), isNull);
+    },
+  );
+
+  testWidgets(
+    'EWS accepted cleanup failure remains uncertain after reconnect',
+    (tester) async {
+      final drafts = MemoryStudioMailDrafts()..failClear = true;
+      final providers = <_Provider>[];
+      await _show(tester, (configuration, credentials) {
+        final provider = _Provider(configuration, credentials);
+        providers.add(provider);
+        return provider;
+      }, drafts: drafts);
+      await _connect(tester);
+      await _compose(tester);
+      expect(providers.single.submissions, hasLength(1));
+      expect(
+        find.text(_strings.mailDraftAcceptedCleanupFailed),
+        findsOneWidget,
+      );
+      expect(drafts.records.values.single.submissionUncertain, isTrue);
+      await tester.pump(const Duration(seconds: 30));
+      expect(providers.single.submissions, hasLength(1));
+      await tester.tap(find.byTooltip(_strings.close));
+      await _pump(tester);
+      await tester.tap(find.text('Open Exchange'));
+      await _pump(tester);
+      await _connect(tester);
+      expect(find.text(_strings.mailSubmissionUncertain), findsOneWidget);
+      expect(providers.last.submissions, isEmpty);
+      await tester.tap(find.byTooltip(_strings.compose));
+      await _pump(tester);
+      expect(
+        tester
+            .widget<FilledButton>(
+              find.widgetWithText(FilledButton, _strings.send),
+            )
+            .onPressed,
+        isNull,
+      );
+      await tester.ensureVisible(find.text(_strings.mailDraftSaveClose));
+      await tester.tap(find.text(_strings.mailDraftSaveClose));
+      await _pump(tester);
+      expect(providers.last.submissions, isEmpty);
+      expect(tester.takeException(), isNull);
+    },
+  );
+
+  testWidgets(
+    'EWS can retry draft storage opening and never sends a failed save',
+    (tester) async {
+      final drafts = MemoryStudioMailDrafts()..failOpen = true;
+      late _Provider provider;
+      await _show(
+        tester,
+        (configuration, credentials) =>
+            provider = _Provider(configuration, credentials),
+        drafts: drafts,
+      );
+      await _connect(tester);
+      expect(find.text(_strings.mailDraftStorageFailed), findsOneWidget);
+      drafts.failOpen = false;
+      drafts.failSave = true;
+      await _compose(tester);
+      expect(provider.submissions, isEmpty);
+      expect(find.byType(StudioMailComposeDialog), findsOneWidget);
+      expect(find.text(_strings.mailDraftSaveFailed), findsOneWidget);
+      drafts.failSave = false;
+      await tester.ensureVisible(find.text(_strings.mailDraftRetrySave));
+      await tester.tap(find.text(_strings.mailDraftRetrySave));
+      await _pump(tester);
+      expect(find.text(_strings.mailDraftSaved), findsOneWidget);
+      await tester.ensureVisible(find.text(_strings.mailDraftSaveClose));
+      await tester.tap(find.text(_strings.mailDraftSaveClose));
+      await _pump(tester);
+      expect(drafts.records.values.single.draft.subject, 'EWS send');
+      expect(provider.submissions, isEmpty);
+      expect(tester.takeException(), isNull);
+    },
+  );
+
+  testWidgets('EWS rejected retry preserves an earlier uncertain submission', (
+    tester,
+  ) async {
+    final drafts = MemoryStudioMailDrafts();
+    late _Provider provider;
+    await _show(
+      tester,
+      (configuration, credentials) =>
+          provider = _Provider(configuration, credentials)
+            ..outcome = MailSubmissionOutcome.uncertain,
+      drafts: drafts,
+    );
+    await _connect(tester);
+    await _compose(tester);
+    expect(drafts.records.values.single.submissionUncertain, isTrue);
+    provider.outcome = MailSubmissionOutcome.rejected;
+    await tester.tap(find.byTooltip(_strings.compose));
+    await _pump(tester);
+    final acknowledge = find.byType(CheckboxListTile);
+    await tester.ensureVisible(acknowledge);
+    await tester.tap(acknowledge);
+    await tester.pump();
+    final send = find.widgetWithText(FilledButton, _strings.send);
+    await tester.ensureVisible(send);
+    await tester.tap(send);
+    await _pump(tester);
+    expect(provider.submissions, hasLength(2));
+    expect(drafts.records.values.single.submissionUncertain, isTrue);
+    await tester.tap(find.byTooltip(_strings.compose));
+    await _pump(tester);
+    expect(find.text(_strings.mailRetryAcknowledgement), findsOneWidget);
+    expect(tester.widget<FilledButton>(send).onPressed, isNull);
+    await tester.ensureVisible(find.text(_strings.mailDraftSaveClose));
+    await tester.tap(find.text(_strings.mailDraftSaveClose));
+    await _pump(tester);
+    expect(provider.submissions, hasLength(2));
+    expect(tester.takeException(), isNull);
+  });
+
+  testWidgets(
+    'EWS failed definite-result persistence retains the retry guard',
+    (tester) async {
+      final drafts = MemoryStudioMailDrafts();
+      late _Provider provider;
+      await _show(
+        tester,
+        (configuration, credentials) =>
+            provider = _Provider(configuration, credentials)
+              ..outcome = MailSubmissionOutcome.rejected
+              ..onSubmit = () => drafts.failSave = true,
+        drafts: drafts,
+      );
+      await _connect(tester);
+      await _compose(tester);
+      expect(provider.submissions, hasLength(1));
+      expect(drafts.records.values.single.submissionUncertain, isTrue);
+      expect(find.text(_strings.mailSubmissionUncertain), findsOneWidget);
+      drafts.failSave = false;
+      await tester.tap(find.byTooltip(_strings.compose));
+      await _pump(tester);
+      expect(find.text(_strings.mailRetryAcknowledgement), findsOneWidget);
+      expect(
+        tester
+            .widget<FilledButton>(
+              find.widgetWithText(FilledButton, _strings.send),
+            )
+            .onPressed,
+        isNull,
+      );
+      await tester.ensureVisible(find.text(_strings.mailDraftSaveClose));
+      await tester.tap(find.text(_strings.mailDraftSaveClose));
+      await _pump(tester);
+      expect(provider.submissions, hasLength(1));
+      expect(tester.takeException(), isNull);
+    },
+  );
+
+  testWidgets('EWS retires a draft store opened after its host was closed', (
+    tester,
+  ) async {
+    final gate = Completer<void>();
+    final drafts = MemoryStudioMailDrafts()..openGate = gate;
+    late _Provider provider;
+    await _show(
+      tester,
+      (configuration, credentials) =>
+          provider = _Provider(configuration, credentials),
+      drafts: drafts,
+    );
+    await _connect(tester);
+    expect(drafts.identities, hasLength(1));
+    await tester.tap(find.byTooltip(_strings.close));
+    await _pump(tester);
+    gate.complete();
+    await _pump(tester);
+    expect(drafts.closes, 1);
+    expect(drafts.records, isEmpty);
+    expect(provider.submissions, isEmpty);
+    expect(find.byType(StudioMailEwsDialog), findsNothing);
+    expect(tester.takeException(), isNull);
+  });
+
   testWidgets('native account setup exposes the Exchange Server entry', (
     tester,
   ) async {

@@ -19,6 +19,8 @@ import 'package:quds_office_studio/studio_mail_archive_action.dart';
 import 'package:quds_office_studio/studio_mail_archive_folder_action.dart';
 import 'package:quds_office_studio/studio_mail_archive_strings.dart';
 
+import 'support/mail_draft_store.dart';
+
 const _strings = StudioStrings(StudioLanguage.en);
 
 const _savedCredentials = StudioMailCredentials(
@@ -251,6 +253,7 @@ Future<void> _open(
             onPressed: () => showDialog<void>(
               context: context,
               builder: (_) => StudioMailDialog(
+                draftStoreFactory: MemoryStudioMailDrafts().open,
                 strings: strings,
                 clientFactory: (account) =>
                     createdClient = clientFactory(account),
@@ -416,7 +419,8 @@ void main() {
         expect(body, isNot(contains('Body of First message')));
         if (forward) expect(body, contains(_strings.mailTextOnlyForward));
         expect(client.sent, isEmpty);
-        await tester.tap(find.text(_strings.cancel));
+        await tester.ensureVisible(find.text(_strings.mailDraftSaveClose));
+        await tester.tap(find.text(_strings.mailDraftSaveClose));
         await _pump(tester);
         await _close(tester);
       },
@@ -484,7 +488,8 @@ void main() {
               .onPressed,
           isNull,
         );
-        await tester.tap(find.text(_strings.cancel));
+        await tester.ensureVisible(find.text(_strings.mailDraftSaveClose));
+        await tester.tap(find.text(_strings.mailDraftSaveClose));
         await _pump(tester);
 
         await tester.tap(find.byTooltip(_strings.mailDiscardDraft));
@@ -513,7 +518,8 @@ void main() {
           '${forward ? 'Fwd' : 'Re'}: First message',
         );
         expect(client.sent, hasLength(1));
-        await tester.tap(find.text(_strings.cancel));
+        await tester.ensureVisible(find.text(_strings.mailDraftSaveClose));
+        await tester.tap(find.text(_strings.mailDraftSaveClose));
         await _pump(tester);
         await _close(tester);
       },
@@ -1484,7 +1490,8 @@ void main() {
           .onPressed,
       isNull,
     );
-    await tester.tap(find.text(_strings.cancel));
+    await tester.ensureVisible(find.text(_strings.mailDraftSaveClose));
+    await tester.tap(find.text(_strings.mailDraftSaveClose));
     await _pump(tester);
     expect(find.text(_strings.mailSubmissionAccepted), findsNothing);
     await _close(tester);
@@ -1530,7 +1537,8 @@ void main() {
           '',
         );
         expect(find.text(strings.mailRetryAcknowledgement), findsNothing);
-        await tester.tap(find.text(strings.cancel));
+        await tester.ensureVisible(find.text(strings.mailDraftSaveClose));
+        await tester.tap(find.text(strings.mailDraftSaveClose));
         await _pump(tester);
         expect(client.sent, hasLength(1));
         await _close(tester, strings: strings);
@@ -1558,7 +1566,8 @@ void main() {
       'Controlled draft',
     );
     expect(find.text(_strings.mailRetryAcknowledgement), findsOneWidget);
-    await tester.tap(find.text(_strings.cancel));
+    await tester.ensureVisible(find.text(_strings.mailDraftSaveClose));
+    await tester.tap(find.text(_strings.mailDraftSaveClose));
     await _pump(tester);
     await _close(tester);
   });

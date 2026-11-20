@@ -1,0 +1,116 @@
+{
+  "schema": 1,
+  "at_utc": "2026-11-20T07:58:29.462983+00:00",
+  "ours": "6042874358fd7341df8cb2c9b69a418bcf351086",
+  "theirs": "81b0d7620bd7d57ee2d5fe878abbad85f0488a00",
+  "all_actual_common_bases": [
+    "2cfeca15d197110a65a1cbe7601e763ee281fc9d",
+    "9c544ecc0377222c1c491f34328b4a7a340fc02e"
+  ],
+  "selected_genuine_base": "2cfeca15d197110a65a1cbe7601e763ee281fc9d",
+  "raw_tree": "1a05629ef1e9c3e67029a998dc963212d45cae26",
+  "resolved_tree": "ad8f185df8599620f66ae8c37e1f0877de072541",
+  "resolution_files": [
+    {
+      "path": "packages/quds_office_editor/CHANGELOG.md",
+      "blob": "76c168d8dd7628b67d81308d9c9704e03adc693a",
+      "sha256": "42d7db05412abd0fce048ce4137200a293a767d94813efe0d2ee4dedc085d070"
+    },
+    {
+      "path": "packages/quds_office_editor/lib/src/editor_slide/render_slide_stage.dart",
+      "blob": "b049bf9f26f6ee1f67649bec1a092917449609c8",
+      "sha256": "20f9cedc604dbd73f7a6f8dc2f49cea060ee01073c9e90ef7d70d7f58bac12f3"
+    },
+    {
+      "path": "packages/quds_office_editor/lib/src/visual/paint_office_visual.dart",
+      "blob": "71cc361e1565dcae8d564403a116333c2781eaac",
+      "sha256": "afc7d6d53e5c17ad376e9c6a7adb58c2244a4e1d4d4c79ec075080ce548c1dff"
+    },
+    {
+      "path": "packages/quds_office_engine/CHANGELOG.md",
+      "blob": "b62f5b9cd9a1eb7e74cc1e09b2628a384e884e4b",
+      "sha256": "d0bc2775a552360a3b79e5a8811881bbf64d1b57f44980e911c712c1cb32a19a"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/pdf/office_pdf_export.dart",
+      "blob": "8238aacedcb773c8f9734f70635a4e0252023e72",
+      "sha256": "ea41d951ef249975e03926f1e1c6dd429b06e6eb0a15ed001b821d1788af055e"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/slide/model/pml_presentation.dart",
+      "blob": "ece6c363c3f0b966eab068d7b4533082df3ccc66",
+      "sha256": "87796a3c1b18f6cd9ad396d2e5b43b29382cc1a3a684d327c6f1cb6ca25370a4"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/slide/serial/slide_serial.dart",
+      "blob": "632f6b194840206def4b0e91b13ba5bf49422dc2",
+      "sha256": "4aa9ad3016b3bcaf4bf80f8e407fccd3a808024d688316d6b71e03eb01926b3e"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/slide/shapes/drawingml.dart",
+      "blob": "d6dc70f8a1864afaa40adf2822e3a25ca17bee99",
+      "sha256": "11fcb2312a0dd9aaae3d1335badf206df4cb23d79ab19ae5cd90e19241b0b723"
+    },
+    {
+      "path": "packages/quds_office_engine/test/slide_import_fidelity_test.dart",
+      "blob": "a96ad17af2db5217b79bcae4f0d53805027b2f73",
+      "sha256": "02bed49131b8513202fec25ec62965a03436ba867eac5335733d4642a0130861"
+    }
+  ],
+  "complete_changed_paths_from_ours": [
+    "A\tdocs/validation/mail-draft-recovery-20261120/incoming-office/README.md",
+    "A\tdocs/validation/mail-draft-recovery-20261120/incoming-office/editor-0.jsonl",
+    "A\tdocs/validation/mail-draft-recovery-20261120/incoming-office/editor-0.stderr.log",
+    "A\tdocs/validation/mail-draft-recovery-20261120/incoming-office/editor-receipt.json",
+    "A\tdocs/validation/mail-draft-recovery-20261120/incoming-office/engine-0.jsonl",
+    "A\tdocs/validation/mail-draft-recovery-20261120/incoming-office/engine-0.stderr.log",
+    "A\tdocs/validation/mail-draft-recovery-20261120/incoming-office/engine-receipt.json",
+    "A\tdocs/validation/mail-draft-recovery-20261120/incoming-office/run_validation.py",
+    "A\tdocs/validation/mail-draft-recovery-20261120/incoming-office/runtime.json",
+    "A\tdocs/validation/mail-draft-recovery-20261120/incoming-office/static-0.log",
+    "A\tdocs/validation/mail-draft-recovery-20261120/incoming-office/static-0.stderr.log",
+    "A\tdocs/validation/mail-draft-recovery-20261120/incoming-office/static-1.log",
+    "A\tdocs/validation/mail-draft-recovery-20261120/incoming-office/static-1.stderr.log",
+    "A\tdocs/validation/mail-draft-recovery-20261120/incoming-office/static-receipt.json",
+    "A\tdocs/validation/mail-draft-recovery-20261120/integration.md",
+    "M\tpackages/quds_mail_core/CHANGELOG.md",
+    "M\tpackages/quds_mail_core/lib/src/sync/outbox.dart",
+    "M\tpackages/quds_mail_store/CHANGELOG.md",
+    "M\tpackages/quds_mail_store/lib/src/codec.dart",
+    "M\tpackages/quds_mail_store/lib/src/repository.dart",
+    "A\tpackages/quds_mail_store/test/draft_editor_state_test.dart",
+    "M\tpackages/quds_office_editor/CHANGELOG.md",
+    "M\tpackages/quds_office_editor/example/lib/studio_mail_cloud.dart",
+    "M\tpackages/quds_office_editor/example/lib/studio_mail_compose.dart",
+    "A\tpackages/quds_office_editor/example/lib/studio_mail_draft_store.dart",
+    "A\tpackages/quds_office_editor/example/lib/studio_mail_draft_store_native.dart",
+    "M\tpackages/quds_office_editor/example/lib/studio_mail_ews.dart",
+    "M\tpackages/quds_office_editor/example/lib/studio_mail_native.dart",
+    "M\tpackages/quds_office_editor/example/lib/studio_mail_strings.dart",
+    "M\tpackages/quds_office_editor/example/test/studio_mail_cloud_test.dart",
+    "M\tpackages/quds_office_editor/example/test/studio_mail_credentials_test.dart",
+    "M\tpackages/quds_office_editor/example/test/studio_mail_discovery_test.dart",
+    "A\tpackages/quds_office_editor/example/test/studio_mail_draft_autosave_test.dart",
+    "A\tpackages/quds_office_editor/example/test/studio_mail_draft_store_test.dart",
+    "M\tpackages/quds_office_editor/example/test/studio_mail_ews_test.dart",
+    "M\tpackages/quds_office_editor/example/test/studio_mail_presets_test.dart",
+    "M\tpackages/quds_office_editor/example/test/studio_mail_session_test.dart",
+    "M\tpackages/quds_office_editor/example/test/studio_mail_test.dart",
+    "A\tpackages/quds_office_editor/example/test/support/mail_draft_store.dart",
+    "M\tpackages/quds_office_editor/lib/src/editor_slide/render_slide_stage.dart",
+    "M\tpackages/quds_office_editor/lib/src/visual/paint_office_visual.dart",
+    "A\tpackages/quds_office_editor/test/picture_adjustment_render_test.dart",
+    "M\tpackages/quds_office_editor/test/slide_incoming_pptx_regression_test.dart",
+    "M\tpackages/quds_office_engine/CHANGELOG.md",
+    "M\tpackages/quds_office_engine/lib/src/pdf/office_pdf_export.dart",
+    "M\tpackages/quds_office_engine/lib/src/slide/model/pml_presentation.dart",
+    "M\tpackages/quds_office_engine/lib/src/slide/serial/slide_serial.dart",
+    "M\tpackages/quds_office_engine/lib/src/slide/shapes/drawingml.dart",
+    "A\tpackages/quds_office_engine/test/slide_gradient_merge_test.dart",
+    "M\tpackages/quds_office_engine/test/slide_import_fidelity_test.dart"
+  ],
+  "exact_incoming_mail_paths_checked": 154,
+  "incoming_mail_differences": [],
+  "validation": "7 scratch Dart resolution files formatted successfully. 40 named test declarations in slide_import_fidelity_test.dart, no duplicate names. Product/runtime qualification pending; raw candidate had semantic duplicate classes repaired. Root worktree/index untouched.",
+  "policy": "No GitHub Actions/workflow/check/status access; no commit or ref update."
+}
