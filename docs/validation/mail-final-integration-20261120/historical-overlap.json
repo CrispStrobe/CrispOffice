@@ -1,0 +1,548 @@
+{
+  "counts_are_not_additive": true,
+  "current_cases": 1161,
+  "current_only_case_identities": [
+    [
+      "packages/quds_mail_core/test/bulk_flags_compatibility_test.dart",
+      "MailBulkFlagStopReason.invalidScope requires a fresh observation even without a dispatched write",
+      1
+    ],
+    [
+      "packages/quds_mail_core/test/bulk_flags_compatibility_test.dart",
+      "MailBulkFlagStopReason.scopeCheckFailed requires a fresh observation even without a dispatched write",
+      1
+    ],
+    [
+      "packages/quds_mail_core/test/bulk_flags_compatibility_test.dart",
+      "MailBulkFlagStopReason.staleScope requires a fresh observation even without a dispatched write",
+      1
+    ],
+    [
+      "packages/quds_mail_core/test/bulk_flags_compatibility_test.dart",
+      "a predispatch scope rejection consumes the single-use coordinator",
+      1
+    ],
+    [
+      "packages/quds_mail_core/test/bulk_flags_compatibility_test.dart",
+      "certified coordinator certified MailProblemCode.cancelled failure still stops further dispatch",
+      1
+    ],
+    [
+      "packages/quds_mail_core/test/bulk_flags_compatibility_test.dart",
+      "certified coordinator certified MailProblemCode.staleOperation failure still stops further dispatch",
+      1
+    ],
+    [
+      "packages/quds_mail_core/test/bulk_flags_compatibility_test.dart",
+      "certified coordinator receipt retains exact dispatched operations and problem evidence",
+      1
+    ],
+    [
+      "packages/quds_mail_core/test/bulk_flags_compatibility_test.dart",
+      "certified coordinator reentrant lease retirement in guard cannot dispatch (false)",
+      1
+    ],
+    [
+      "packages/quds_mail_core/test/bulk_flags_compatibility_test.dart",
+      "certified coordinator reentrant lease retirement in guard cannot dispatch (true)",
+      1
+    ],
+    [
+      "packages/quds_mail_core/test/bulk_flags_compatibility_test.dart",
+      "certified coordinator stop from progress retains confirmation even if display throws",
+      1
+    ],
+    [
+      "packages/quds_mail_core/test/bulk_flags_compatibility_test.dart",
+      "certified coordinator uncertainty dominates simultaneous stop and stale scope",
+      1
+    ],
+    [
+      "packages/quds_mail_core/test/bulk_flags_compatibility_test.dart",
+      "contradictory failed certificate never hides possible mutation",
+      1
+    ],
+    [
+      "packages/quds_mail_core/test/bulk_flags_compatibility_test.dart",
+      "explicit provider checks rather than changes the frozen namespace",
+      1
+    ],
+    [
+      "packages/quds_mail_core/test/bulk_flags_compatibility_test.dart",
+      "provider result adapter certified MailProblemCode.cancelled failure still stops further dispatch",
+      1
+    ],
+    [
+      "packages/quds_mail_core/test/bulk_flags_compatibility_test.dart",
+      "provider result adapter certified MailProblemCode.staleOperation failure still stops further dispatch",
+      1
+    ],
+    [
+      "packages/quds_mail_core/test/bulk_flags_compatibility_test.dart",
+      "provider result adapter receipt retains exact dispatched operations and problem evidence",
+      1
+    ],
+    [
+      "packages/quds_mail_core/test/bulk_flags_compatibility_test.dart",
+      "provider result adapter reentrant lease retirement in guard cannot dispatch (false)",
+      1
+    ],
+    [
+      "packages/quds_mail_core/test/bulk_flags_compatibility_test.dart",
+      "provider result adapter reentrant lease retirement in guard cannot dispatch (true)",
+      1
+    ],
+    [
+      "packages/quds_mail_core/test/bulk_flags_compatibility_test.dart",
+      "provider result adapter stop from progress retains confirmation even if display throws",
+      1
+    ],
+    [
+      "packages/quds_mail_core/test/bulk_flags_compatibility_test.dart",
+      "provider result adapter uncertainty dominates simultaneous stop and stale scope",
+      1
+    ],
+    [
+      "packages/quds_mail_core/test/bulk_flags_provider_results_test.dart",
+      "Stop after current preserves acknowledgement without cancelling lease",
+      1
+    ],
+    [
+      "packages/quds_mail_core/test/bulk_flags_provider_results_test.dart",
+      "Stop before dispatch (throws=false) leaves all unattempted",
+      1
+    ],
+    [
+      "packages/quds_mail_core/test/bulk_flags_provider_results_test.dart",
+      "Stop before dispatch (throws=true) leaves all unattempted",
+      1
+    ],
+    [
+      "packages/quds_mail_core/test/bulk_flags_provider_results_test.dart",
+      "callback exception after possible dispatch is uncertain",
+      1
+    ],
+    [
+      "packages/quds_mail_core/test/bulk_flags_provider_results_test.dart",
+      "cancellation before dispatch leaves all identities unattempted",
+      1
+    ],
+    [
+      "packages/quds_mail_core/test/bulk_flags_provider_results_test.dart",
+      "certified no-write failure permits independent later commands",
+      1
+    ],
+    [
+      "packages/quds_mail_core/test/bulk_flags_provider_results_test.dart",
+      "conflict code with certified no-write evidence is definite",
+      1
+    ],
+    [
+      "packages/quds_mail_core/test/bulk_flags_provider_results_test.dart",
+      "dispatch is sequential and progress snapshots remain immutable",
+      1
+    ],
+    [
+      "packages/quds_mail_core/test/bulk_flags_provider_results_test.dart",
+      "display observer exceptions cannot change command outcomes",
+      1
+    ],
+    [
+      "packages/quds_mail_core/test/bulk_flags_provider_results_test.dart",
+      "disposed account session cannot dispatch",
+      1
+    ],
+    [
+      "packages/quds_mail_core/test/bulk_flags_provider_results_test.dart",
+      "duplicate value identities are rejected even in different objects",
+      1
+    ],
+    [
+      "packages/quds_mail_core/test/bulk_flags_provider_results_test.dart",
+      "explicit flag freezes desired state and ordered IDs",
+      1
+    ],
+    [
+      "packages/quds_mail_core/test/bulk_flags_provider_results_test.dart",
+      "explicit markRead freezes desired state and ordered IDs",
+      1
+    ],
+    [
+      "packages/quds_mail_core/test/bulk_flags_provider_results_test.dart",
+      "explicit markUnread freezes desired state and ordered IDs",
+      1
+    ],
+    [
+      "packages/quds_mail_core/test/bulk_flags_provider_results_test.dart",
+      "explicit unflag freezes desired state and ordered IDs",
+      1
+    ],
+    [
+      "packages/quds_mail_core/test/bulk_flags_provider_results_test.dart",
+      "in-flight cancellation cannot erase confirmed acknowledgement",
+      1
+    ],
+    [
+      "packages/quds_mail_core/test/bulk_flags_provider_results_test.dart",
+      "initial progress observer can retire scope before any dispatch",
+      1
+    ],
+    [
+      "packages/quds_mail_core/test/bulk_flags_provider_results_test.dart",
+      "last progress observer cannot make a retired scope current",
+      1
+    ],
+    [
+      "packages/quds_mail_core/test/bulk_flags_provider_results_test.dart",
+      "mutation evidence null stops at uncertainty without replay",
+      1
+    ],
+    [
+      "packages/quds_mail_core/test/bulk_flags_provider_results_test.dart",
+      "mutation evidence true stops at uncertainty without replay",
+      1
+    ],
+    [
+      "packages/quds_mail_core/test/bulk_flags_provider_results_test.dart",
+      "opaque provider namespaces cannot mix in one selected mailbox",
+      1
+    ],
+    [
+      "packages/quds_mail_core/test/bulk_flags_provider_results_test.dart",
+      "plan bounds the selection and operation IDs before work",
+      1
+    ],
+    [
+      "packages/quds_mail_core/test/bulk_flags_provider_results_test.dart",
+      "plan freezes stable identities and rejects list mutation",
+      1
+    ],
+    [
+      "packages/quds_mail_core/test/bulk_flags_provider_results_test.dart",
+      "provider MailProblemCode.cancelled stops even when no mutation occurred",
+      1
+    ],
+    [
+      "packages/quds_mail_core/test/bulk_flags_provider_results_test.dart",
+      "provider MailProblemCode.staleOperation stops even when no mutation occurred",
+      1
+    ],
+    [
+      "packages/quds_mail_core/test/bulk_flags_provider_results_test.dart",
+      "provider result adaptation preserves evidence, not just error codes",
+      1
+    ],
+    [
+      "packages/quds_mail_core/test/bulk_flags_provider_results_test.dart",
+      "quota evidence false stops without retry or later dispatch",
+      1
+    ],
+    [
+      "packages/quds_mail_core/test/bulk_flags_provider_results_test.dart",
+      "quota evidence null stops without retry or later dispatch",
+      1
+    ],
+    [
+      "packages/quds_mail_core/test/bulk_flags_provider_results_test.dart",
+      "quota evidence true stops without retry or later dispatch",
+      1
+    ],
+    [
+      "packages/quds_mail_core/test/bulk_flags_provider_results_test.dart",
+      "scope retirement in progress callback prevents next command",
+      1
+    ],
+    [
+      "packages/quds_mail_core/test/bulk_flags_provider_results_test.dart",
+      "stale account lease cannot dispatch",
+      1
+    ],
+    [
+      "packages/quds_mail_core/test/bulk_flags_provider_results_test.dart",
+      "stale folder predicate (throws=false) rejects selection",
+      1
+    ],
+    [
+      "packages/quds_mail_core/test/bulk_flags_provider_results_test.dart",
+      "stale folder predicate (throws=true) rejects selection",
+      1
+    ],
+    [
+      "packages/quds_mail_core/test/bulk_flags_provider_results_test.dart",
+      "successful in-flight result survives scope change but stops next write",
+      1
+    ],
+    [
+      "packages/quds_mail_core/test/bulk_flags_provider_results_test.dart",
+      "wrong account, folder and mixed IMAP generations are rejected",
+      1
+    ],
+    [
+      "packages/quds_mail_core/test/bulk_flags_provider_results_test.dart",
+      "wrong-account lease cannot dispatch",
+      1
+    ],
+    [
+      "packages/quds_mail_transport/test/cloud_provider_test.dart",
+      "gmail dispatched HTTP 429 stops later bulk writes",
+      1
+    ],
+    [
+      "packages/quds_mail_transport/test/cloud_provider_test.dart",
+      "gmail dispatched HTTP 499 stops later bulk writes",
+      1
+    ],
+    [
+      "packages/quds_mail_transport/test/cloud_provider_test.dart",
+      "microsoft365 dispatched HTTP 429 stops later bulk writes",
+      1
+    ],
+    [
+      "packages/quds_mail_transport/test/cloud_provider_test.dart",
+      "microsoft365 dispatched HTTP 499 stops later bulk writes",
+      1
+    ],
+    [
+      "packages/quds_mail_ui/test/bulk_message_list_test.dart",
+      "refresh-required disables changes and clears the old selection",
+      1
+    ],
+    [
+      "packages/quds_mail_ui/test/message_list_bulk_test.dart",
+      "Escape clears checked rows without opening or changing mail",
+      1
+    ],
+    [
+      "packages/quds_mail_ui/test/message_list_bulk_test.dart",
+      "actual open popup rejects a filter change",
+      1
+    ],
+    [
+      "packages/quds_mail_ui/test/message_list_bulk_test.dart",
+      "actual open popup rejects a host change",
+      1
+    ],
+    [
+      "packages/quds_mail_ui/test/message_list_bulk_test.dart",
+      "actual open popup rejects a scope change",
+      1
+    ],
+    [
+      "packages/quds_mail_ui/test/message_list_bulk_test.dart",
+      "actual open popup rejects a selection change",
+      1
+    ],
+    [
+      "packages/quds_mail_ui/test/message_list_bulk_test.dart",
+      "actual open popup rejects a sort change",
+      1
+    ],
+    [
+      "packages/quds_office_editor/example/test/studio_mail_bulk_provider_test.dart",
+      "ews: folder A B A rejects callbacks from the earlier observation",
+      1
+    ],
+    [
+      "packages/quds_office_editor/example/test/studio_mail_bulk_provider_test.dart",
+      "ews: generic failure codes never certify an unchanged server",
+      1
+    ],
+    [
+      "packages/quds_office_editor/example/test/studio_mail_bulk_provider_test.dart",
+      "ews: request limit stops the tail and preserves retry guidance without refresh",
+      1
+    ],
+    [
+      "packages/quds_office_editor/example/test/studio_mail_bulk_provider_test.dart",
+      "ews: reversed subset freezes caller IDs and preserves the reader",
+      1
+    ],
+    [
+      "packages/quds_office_editor/example/test/studio_mail_bulk_provider_test.dart",
+      "gmail: folder A B A rejects callbacks from the earlier observation",
+      1
+    ],
+    [
+      "packages/quds_office_editor/example/test/studio_mail_bulk_provider_test.dart",
+      "gmail: generic failure codes never certify an unchanged server",
+      1
+    ],
+    [
+      "packages/quds_office_editor/example/test/studio_mail_bulk_provider_test.dart",
+      "gmail: request limit stops the tail and preserves retry guidance without refresh",
+      1
+    ],
+    [
+      "packages/quds_office_editor/example/test/studio_mail_bulk_provider_test.dart",
+      "gmail: reversed subset freezes caller IDs and preserves the reader",
+      1
+    ],
+    [
+      "packages/quds_office_editor/example/test/studio_mail_bulk_provider_test.dart",
+      "graph: folder A B A rejects callbacks from the earlier observation",
+      1
+    ],
+    [
+      "packages/quds_office_editor/example/test/studio_mail_bulk_provider_test.dart",
+      "graph: generic failure codes never certify an unchanged server",
+      1
+    ],
+    [
+      "packages/quds_office_editor/example/test/studio_mail_bulk_provider_test.dart",
+      "graph: request limit stops the tail and preserves retry guidance without refresh",
+      1
+    ],
+    [
+      "packages/quds_office_editor/example/test/studio_mail_bulk_provider_test.dart",
+      "graph: reversed subset freezes caller IDs and preserves the reader",
+      1
+    ],
+    [
+      "packages/quds_office_editor/example/test/studio_mail_bulk_visual_test.dart",
+      "ar per-message receipt and details at 1.4 scale",
+      1
+    ],
+    [
+      "packages/quds_office_editor/example/test/studio_mail_bulk_visual_test.dart",
+      "de per-message receipt and details at 1.4 scale",
+      1
+    ],
+    [
+      "packages/quds_office_editor/example/test/studio_mail_bulk_visual_test.dart",
+      "en per-message receipt and details at 1.4 scale",
+      1
+    ],
+    [
+      "packages/quds_office_editor/example/test/studio_mail_ews_test.dart",
+      "EWS bulk distinguishes explicit no-mutation MailProblemCode.cancelled evidence",
+      1
+    ],
+    [
+      "packages/quds_office_editor/example/test/studio_mail_ews_test.dart",
+      "EWS bulk distinguishes explicit no-mutation MailProblemCode.permissionDenied evidence",
+      1
+    ],
+    [
+      "packages/quds_office_editor/example/test/studio_mail_ews_test.dart",
+      "EWS bulk distinguishes explicit no-mutation MailProblemCode.staleOperation evidence",
+      1
+    ],
+    [
+      "packages/quds_office_editor/example/test/studio_mail_message_loader_test.dart",
+      "flag failure preserves mutation evidence false",
+      1
+    ],
+    [
+      "packages/quds_office_editor/example/test/studio_mail_message_loader_test.dart",
+      "flag failure preserves mutation evidence null",
+      1
+    ],
+    [
+      "packages/quds_office_editor/example/test/studio_mail_message_loader_test.dart",
+      "flag failure preserves mutation evidence true",
+      1
+    ],
+    [
+      "packages/quds_office_editor/example/test/studio_mail_message_loader_test.dart",
+      "provider construction failure certifies no mutation was invoked",
+      1
+    ],
+    [
+      "packages/quds_office_editor/example/test/studio_mail_message_loader_test.dart",
+      "read failure preserves mutation evidence false",
+      1
+    ],
+    [
+      "packages/quds_office_editor/example/test/studio_mail_message_loader_test.dart",
+      "read failure preserves mutation evidence null",
+      1
+    ],
+    [
+      "packages/quds_office_editor/example/test/studio_mail_message_loader_test.dart",
+      "read failure preserves mutation evidence true",
+      1
+    ],
+    [
+      "packages/quds_office_editor/example/test/studio_mail_workspace_test.dart",
+      "IMAP bulk distinguishes explicit no-mutation MailProblemCode.cancelled evidence",
+      1
+    ],
+    [
+      "packages/quds_office_editor/example/test/studio_mail_workspace_test.dart",
+      "IMAP bulk distinguishes explicit no-mutation MailProblemCode.permissionDenied evidence",
+      1
+    ],
+    [
+      "packages/quds_office_editor/example/test/studio_mail_workspace_test.dart",
+      "IMAP bulk distinguishes explicit no-mutation MailProblemCode.staleOperation evidence",
+      1
+    ],
+    [
+      "packages/quds_office_editor/example/test/studio_mail_workspace_test.dart",
+      "IMAP reconciled bulk scenarios MailBulkFlagAction.flag freezes reverse subset and keeps the opened reader",
+      1
+    ],
+    [
+      "packages/quds_office_editor/example/test/studio_mail_workspace_test.dart",
+      "IMAP reconciled bulk scenarios MailBulkFlagAction.markRead freezes reverse subset and keeps the opened reader",
+      1
+    ],
+    [
+      "packages/quds_office_editor/example/test/studio_mail_workspace_test.dart",
+      "IMAP reconciled bulk scenarios MailBulkFlagAction.markUnread freezes reverse subset and keeps the opened reader",
+      1
+    ],
+    [
+      "packages/quds_office_editor/example/test/studio_mail_workspace_test.dart",
+      "IMAP reconciled bulk scenarios MailBulkFlagAction.unflag freezes reverse subset and keeps the opened reader",
+      1
+    ],
+    [
+      "packages/quds_office_editor/example/test/studio_mail_workspace_test.dart",
+      "IMAP reconciled bulk scenarios a later selected UID change retires dispatch and projection",
+      1
+    ],
+    [
+      "packages/quds_office_editor/example/test/studio_mail_workspace_test.dart",
+      "IMAP reconciled bulk scenarios answered draft and deleted flags survive confirmed bulk edits",
+      1
+    ],
+    [
+      "packages/quds_office_editor/example/test/studio_mail_workspace_test.dart",
+      "IMAP reconciled bulk scenarios folder A to B to A rejects an old host callback",
+      1
+    ],
+    [
+      "packages/quds_office_editor/example/test/studio_mail_workspace_test.dart",
+      "IMAP reconciled bulk scenarios legacy action capability does not imply safe bulk identity",
+      1
+    ],
+    [
+      "packages/quds_office_editor/example/test/studio_mail_workspace_test.dart",
+      "IMAP reconciled bulk scenarios reconnect rejects old callback despite overlapping row IDs",
+      1
+    ],
+    [
+      "packages/quds_office_editor/example/test/studio_mail_workspace_test.dart",
+      "IMAP typed failure with mutation certainty null remains uncertain",
+      1
+    ],
+    [
+      "packages/quds_office_editor/example/test/studio_mail_workspace_test.dart",
+      "IMAP typed failure with mutation certainty true remains uncertain",
+      1
+    ]
+  ],
+  "current_source_head": "c62338c65571aa399da5592455b651fa5c6a9317",
+  "historical_cases": 1056,
+  "historical_only_case_identities": [
+    [
+      "packages/quds_mail_ui/test/bulk_message_list_test.dart",
+      "refresh-required clears selection and disables changes",
+      1
+    ]
+  ],
+  "historical_source_head": "cf25a0a3d80ee18d2550161af182bacc4e49d18f",
+  "matching_case_identities": 1055,
+  "note": "All current cases executed on c623; matching names do not claim unchanged behavior or retained earlier execution."
+}
