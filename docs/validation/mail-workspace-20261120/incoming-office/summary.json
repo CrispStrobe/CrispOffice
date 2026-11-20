@@ -1,0 +1,802 @@
+{
+  "engine": {
+    "exit_code": 0,
+    "passed": 78,
+    "failed": 0,
+    "skipped": 0,
+    "runner_success": true,
+    "stdout_sha256": "3f530b56d712fdbab1404df77e1befa09724afb69a6ced871f177ecb0adb2f40",
+    "tests": [
+      {
+        "name": "PPT PDF draws the authored picture border after crop=false",
+        "suite": "test/office_pdf_export_test.dart",
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "name": "PPT PDF draws the authored picture border after crop=true",
+        "suite": "test/office_pdf_export_test.dart",
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "name": "PPT PDF inherits the master background and honors a slide override",
+        "suite": "test/office_pdf_export_test.dart",
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "name": "shape import text boxes stay text; only p:pic becomes a picture",
+        "suite": "test/slide_import_fidelity_test.dart",
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "name": "PPT rich-text PDF reflects scalar edits and later text replacement",
+        "suite": "test/office_pdf_export_test.dart",
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "name": "shape import extLst a:ext never overrides the xfrm extents",
+        "suite": "test/slide_import_fidelity_test.dart",
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "name": "PPT rich-text PDF uses paragraph font defaults for unstyled runs",
+        "suite": "test/office_pdf_export_test.dart",
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "name": "shape import picture srcRect keeps deep crops and edge expansion",
+        "suite": "test/slide_import_fidelity_test.dart",
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "name": "PPT heading fit scales explicit and inherited run sizes once",
+        "suite": "test/office_pdf_export_test.dart",
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "name": "shape import rich text keeps run styles, paragraph defaults, and anchor",
+        "suite": "test/slide_import_fidelity_test.dart",
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "name": "PPT numeric-only text remains in authored left-to-right order",
+        "suite": "test/office_pdf_export_test.dart",
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "name": "shape import layout decorations paint behind slide content",
+        "suite": "test/slide_import_fidelity_test.dart",
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "name": "shape import decorations retain ownership, ordering and independent copies",
+        "suite": "test/slide_import_fidelity_test.dart",
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "name": "PPT autofit measures and paints numeric and blank line advances equally",
+        "suite": "test/office_pdf_export_test.dart",
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "name": "shape import showMasterSp honors both levels of decoration inheritance",
+        "suite": "test/slide_import_fidelity_test.dart",
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "name": "PPT autofit uses the same advance inside wrapped text and between paragraphs",
+        "suite": "test/office_pdf_export_test.dart",
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "name": "shape import master decorations precede layout and copy independently",
+        "suite": "test/slide_import_fidelity_test.dart",
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "name": "PPT autofit mixed runs honor metrics while fixed leading ignores reduction",
+        "suite": "test/office_pdf_export_test.dart",
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "name": "shape import slide showMasterSp=0 survives saving and copying",
+        "suite": "test/slide_import_fidelity_test.dart",
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "name": "PPT resolved empty decorations do not revive the global master",
+        "suite": "test/office_pdf_export_test.dart",
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "name": "shape import layout showMasterSp=0 retains its own decorations",
+        "suite": "test/slide_import_fidelity_test.dart",
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "name": "shape import slide showMasterSp=false survives saving and copying",
+        "suite": "test/slide_import_fidelity_test.dart",
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "name": "shape import layout showMasterSp=false retains its own decorations",
+        "suite": "test/slide_import_fidelity_test.dart",
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "name": "shape import block arrow presets survive import",
+        "suite": "test/slide_import_fidelity_test.dart",
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "name": "shape import flipped line connectors keep their slide direction",
+        "suite": "test/slide_import_fidelity_test.dart",
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "name": "Word PDF keeps pages, headers, tables, lists, and pictures",
+        "suite": "test/office_pdf_export_test.dart",
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "name": "shape import connector flips 1/0 survive a PPTX roundtrip",
+        "suite": "test/slide_import_fidelity_test.dart",
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "name": "shape import connector flips true/false survive a PPTX roundtrip",
+        "suite": "test/slide_import_fidelity_test.dart",
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "name": "shape import connector flips 0/1 survive a PPTX roundtrip",
+        "suite": "test/slide_import_fidelity_test.dart",
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "name": "shape import connector flips false/true survive a PPTX roundtrip",
+        "suite": "test/slide_import_fidelity_test.dart",
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "name": "shape import connector flips true/true survive a PPTX roundtrip",
+        "suite": "test/slide_import_fidelity_test.dart",
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "name": "shape import background blip becomes a full-slide decoration",
+        "suite": "test/slide_import_fidelity_test.dart",
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "name": "shape import common geometric presets survive import",
+        "suite": "test/slide_import_fidelity_test.dart",
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "name": "Excel PDF evaluates formulas and paginates every sheet",
+        "suite": "test/office_pdf_export_test.dart",
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "name": "shape import gradient background replaces inherited image exactly once",
+        "suite": "test/slide_import_fidelity_test.dart",
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "name": "PowerPoint PDF emits one page per slide including rotation",
+        "suite": "test/office_pdf_export_test.dart",
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "name": "PPT PDF uses changed master paper and preserves explicit slide fills",
+        "suite": "test/office_pdf_export_test.dart",
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "name": "shape import authored slide image replaces inherited images behind decorations",
+        "suite": "test/slide_import_fidelity_test.dart",
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "name": "PPT PDF applies scalar font edits to imported rich runs",
+        "suite": "test/office_pdf_export_test.dart",
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "name": "shape import copied authored background gets a valid new slide image relationship",
+        "suite": "test/slide_import_fidelity_test.dart",
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "name": "shape import explicit background edits clear imported fill and keep decorations",
+        "suite": "test/slide_import_fidelity_test.dart",
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "name": "shape import authored gradient retains all stops and inherited namespace bindings",
+        "suite": "test/slide_import_fidelity_test.dart",
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "name": "shape import authored noFill survives saving and suppresses inherited images",
+        "suite": "test/slide_import_fidelity_test.dart",
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "name": "shape import slide solid background suppresses inherited images",
+        "suite": "test/slide_import_fidelity_test.dart",
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "name": "shape import layout solid background suppresses inherited images",
+        "suite": "test/slide_import_fidelity_test.dart",
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "name": "shape import layout image replaces master image below ordinary decorations",
+        "suite": "test/slide_import_fidelity_test.dart",
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "name": "shape import slide showMasterSp hides decorations but keeps background image",
+        "suite": "test/slide_import_fidelity_test.dart",
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "name": "shape import layout showMasterSp hides decorations but keeps background image",
+        "suite": "test/slide_import_fidelity_test.dart",
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "name": "shape import authored image background does not need a layout relationship",
+        "suite": "test/slide_import_fidelity_test.dart",
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "name": "shape import gradient rendering follows slide layout and secondary master scope",
+        "suite": "test/slide_import_fidelity_test.dart",
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "name": "shape import normal autofit keeps its authored scale and spacing reduction",
+        "suite": "test/slide_import_fidelity_test.dart",
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "name": "shape import normal autofit accepts percentage strings and retains fixed leading",
+        "suite": "test/slide_import_fidelity_test.dart",
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "name": "shape import autofit model edits survive repeated saves and fresh deck copies",
+        "suite": "test/slide_import_fidelity_test.dart",
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "name": "shape import native autofit settings are serialized without changing default boxes",
+        "suite": "test/slide_import_fidelity_test.dart",
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "name": "shape import selected gradient survives copies and repeated saves then clears on edit",
+        "suite": "test/slide_import_fidelity_test.dart",
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "name": "shape import master gradient survives hidden decorations and layout solid overrides it",
+        "suite": "test/slide_import_fidelity_test.dart",
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "name": "shape import gradient fills retain stops and angle",
+        "suite": "test/slide_import_fidelity_test.dart",
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "name": "shape import master background resolves theme lumMod",
+        "suite": "test/slide_import_fidelity_test.dart",
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "name": "shape import explicit slide and layout fills remain independent of the master",
+        "suite": "test/slide_import_fidelity_test.dart",
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "name": "shape import imported secondary master paper survives until the master changes",
+        "suite": "test/slide_import_fidelity_test.dart",
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "name": "shape import direct background assignments and copies preserve authored paper",
+        "suite": "test/slide_import_fidelity_test.dart",
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "name": "shape import scalar edits preserve imported rich styles and restore on undo",
+        "suite": "test/slide_import_fidelity_test.dart",
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "name": "shape import scheme colors and p:style refs resolve through the theme",
+        "suite": "test/slide_import_fidelity_test.dart",
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "name": "layouts and placeholders placeholders inherit layout geometry, then master geometry",
+        "suite": "test/slide_import_fidelity_test.dart",
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "name": "layouts and placeholders layouts are listed without their prompt text",
+        "suite": "test/slide_import_fidelity_test.dart",
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "name": "slide order follows sldIdLst through presentation.xml.rels",
+        "suite": "test/slide_import_fidelity_test.dart",
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "name": "slide order saving keeps the order and points sldId at real relationships",
+        "suite": "test/slide_import_fidelity_test.dart",
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "name": "fromBytes dispatches Word, Excel, and PowerPoint packages",
+        "suite": "test/office_pdf_export_test.dart",
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "name": "transparent PNG pictures emit a DeviceGray SMask",
+        "suite": "test/office_pdf_export_test.dart",
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "name": "keeps a distinct image XObject for each picture",
+        "suite": "test/office_pdf_export_test.dart",
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "name": "Excel PDF uses Helvetica for Latin when the CID face lacks it",
+        "suite": "test/office_pdf_export_test.dart",
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "name": "Word PDF writes TOC and web link annotations",
+        "suite": "test/office_pdf_export_test.dart",
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "name": "Excel PDF honors column widths, merges, and print area",
+        "suite": "test/office_pdf_export_test.dart",
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "name": "OfficePrint forwards sheet and slide ranges",
+        "suite": "test/office_pdf_export_test.dart",
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "name": "PdfReportBuilder remaps subset glyph ids",
+        "suite": "test/office_pdf_export_test.dart",
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "name": "Excel PDF paints cell borders and header tokens",
+        "suite": "test/office_pdf_export_test.dart",
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "name": "PPT PDF strokes shapes and emits URI link annots",
+        "suite": "test/office_pdf_export_test.dart",
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "name": "chart serializers honor ChartDisplay.rtl",
+        "suite": "test/office_pdf_export_test.dart",
+        "result": "success",
+        "skipped": false
+      }
+    ]
+  },
+  "editor-serial": {
+    "exit_code": 0,
+    "passed": 38,
+    "failed": 0,
+    "skipped": 0,
+    "runner_success": true,
+    "stdout_sha256": "d4fb9e38211e55b956fdc6cd3d6a5f70d49882a09acec34b7f05a637e59a5ce4",
+    "tests": [
+      {
+        "name": "autofit scales all rich lines and their paragraph terminators",
+        "suite": "/workspace/scratch/8e9460dcd580/quds_office_suite/packages/quds_office_editor/test/slide_render_fidelity_test.dart",
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "name": "autofit spacing reduction reaches plain and rich rendering",
+        "suite": "/workspace/scratch/8e9460dcd580/quds_office_suite/packages/quds_office_editor/test/slide_render_fidelity_test.dart",
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "name": "autofit keeps every fitted line in a small frame",
+        "suite": "/workspace/scratch/8e9460dcd580/quds_office_suite/packages/quds_office_editor/test/slide_render_fidelity_test.dart",
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "name": "fixed rich leading is unchanged by autofit spacing reduction",
+        "suite": "/workspace/scratch/8e9460dcd580/quds_office_suite/packages/quds_office_editor/test/slide_render_fidelity_test.dart",
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "name": "slide animation cannot hide an inherited decoration with the same id",
+        "suite": "/workspace/scratch/8e9460dcd580/quds_office_suite/packages/quds_office_editor/test/slide_render_fidelity_test.dart",
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "name": "morph keeps inherited decorations when content ids match",
+        "suite": "/workspace/scratch/8e9460dcd580/quds_office_suite/packages/quds_office_editor/test/slide_render_fidelity_test.dart",
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "name": "inherited decorations retain their authored rotation",
+        "suite": "/workspace/scratch/8e9460dcd580/quds_office_suite/packages/quds_office_editor/test/slide_render_fidelity_test.dart",
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "name": "clicking the first painted PmlTextAnchor.center line selects that line",
+        "suite": "/workspace/scratch/8e9460dcd580/quds_office_suite/packages/quds_office_editor/test/slide_render_fidelity_test.dart",
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "name": "clicking the first painted PmlTextAnchor.bottom line selects that line",
+        "suite": "/workspace/scratch/8e9460dcd580/quds_office_suite/packages/quds_office_editor/test/slide_render_fidelity_test.dart",
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "name": "edited scalar size and ink replace stale imported rendering",
+        "suite": "/workspace/scratch/8e9460dcd580/quds_office_suite/packages/quds_office_editor/test/slide_render_fidelity_test.dart",
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "name": "rich runs without explicit size or ink inherit shape values",
+        "suite": "/workspace/scratch/8e9460dcd580/quds_office_suite/packages/quds_office_editor/test/slide_render_fidelity_test.dart",
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "name": "master decoration IDs do not inherit slide animation samples",
+        "suite": "/workspace/scratch/8e9460dcd580/quds_office_suite/packages/quds_office_editor/test/slide_render_fidelity_test.dart",
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "name": "dark slide text uses the decoration painted behind it",
+        "suite": "/workspace/scratch/8e9460dcd580/quds_office_suite/packages/quds_office_editor/test/slide_render_fidelity_test.dart",
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "name": "gradient reaches edge colors at 0.0 degrees",
+        "suite": "/workspace/scratch/8e9460dcd580/quds_office_suite/packages/quds_office_editor/test/slide_incoming_pptx_regression_test.dart",
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "name": "gradient reaches edge colors at 90.0 degrees",
+        "suite": "/workspace/scratch/8e9460dcd580/quds_office_suite/packages/quds_office_editor/test/slide_incoming_pptx_regression_test.dart",
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "name": "hidden master flag retains resolved layout decorations",
+        "suite": "/workspace/scratch/8e9460dcd580/quds_office_suite/packages/quds_office_editor/test/slide_incoming_pptx_regression_test.dart",
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "name": "connector H=false V=false paints its authored diagonal",
+        "suite": "/workspace/scratch/8e9460dcd580/quds_office_suite/packages/quds_office_editor/test/slide_incoming_pptx_regression_test.dart",
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "name": "connector H=true V=false paints its authored diagonal",
+        "suite": "/workspace/scratch/8e9460dcd580/quds_office_suite/packages/quds_office_editor/test/slide_incoming_pptx_regression_test.dart",
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "name": "connector H=false V=true paints its authored diagonal",
+        "suite": "/workspace/scratch/8e9460dcd580/quds_office_suite/packages/quds_office_editor/test/slide_incoming_pptx_regression_test.dart",
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "name": "connector H=true V=true paints its authored diagonal",
+        "suite": "/workspace/scratch/8e9460dcd580/quds_office_suite/packages/quds_office_editor/test/slide_incoming_pptx_regression_test.dart",
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "name": "legacy fill-only connectors remain visible in the editor",
+        "suite": "/workspace/scratch/8e9460dcd580/quds_office_suite/packages/quds_office_editor/test/slide_incoming_pptx_regression_test.dart",
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "name": "rotated single-axis connector keeps its authored diagonal",
+        "suite": "/workspace/scratch/8e9460dcd580/quds_office_suite/packages/quds_office_editor/test/slide_incoming_pptx_regression_test.dart",
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "name": "clipboard clones preserve connector flips, stroke and geometry",
+        "suite": "/workspace/scratch/8e9460dcd580/quds_office_suite/packages/quds_office_editor/test/slide_incoming_pptx_regression_test.dart",
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "name": "nudge, grouped edits and undo retain independent connector flips",
+        "suite": "/workspace/scratch/8e9460dcd580/quds_office_suite/packages/quds_office_editor/test/slide_incoming_pptx_regression_test.dart",
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "name": "morph paints sampled connector flips rather than target flags",
+        "suite": "/workspace/scratch/8e9460dcd580/quds_office_suite/packages/quds_office_editor/test/slide_incoming_pptx_regression_test.dart",
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "name": "foreground animation IDs never hide master decorations",
+        "suite": "/workspace/scratch/8e9460dcd580/quds_office_suite/packages/quds_office_editor/test/slide_incoming_pptx_regression_test.dart",
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "name": "morph foreground IDs never skip master decorations",
+        "suite": "/workspace/scratch/8e9460dcd580/quds_office_suite/packages/quds_office_editor/test/slide_incoming_pptx_regression_test.dart",
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "name": "master decoration rotation matches authored geometry",
+        "suite": "/workspace/scratch/8e9460dcd580/quds_office_suite/packages/quds_office_editor/test/slide_incoming_pptx_regression_test.dart",
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "name": "dark-slide ink respects a white master decoration behind text",
+        "suite": "/workspace/scratch/8e9460dcd580/quds_office_suite/packages/quds_office_editor/test/slide_incoming_pptx_regression_test.dart",
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "name": "curved decorations do not imply a uniform backing rectangle",
+        "suite": "/workspace/scratch/8e9460dcd580/quds_office_suite/packages/quds_office_editor/test/slide_incoming_pptx_regression_test.dart",
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "name": "single move retains connector orientation through history and saving",
+        "suite": "/workspace/scratch/8e9460dcd580/quds_office_suite/packages/quds_office_editor/test/slide_transform_orientation_test.dart",
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "name": "single resize retains connector orientation through history and saving",
+        "suite": "/workspace/scratch/8e9460dcd580/quds_office_suite/packages/quds_office_editor/test/slide_transform_orientation_test.dart",
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "name": "single rotate retains connector orientation through history and saving",
+        "suite": "/workspace/scratch/8e9460dcd580/quds_office_suite/packages/quds_office_editor/test/slide_transform_orientation_test.dart",
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "name": "group move retains connector orientation through history and saving",
+        "suite": "/workspace/scratch/8e9460dcd580/quds_office_suite/packages/quds_office_editor/test/slide_transform_orientation_test.dart",
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "name": "group resize retains connector orientation through history and saving",
+        "suite": "/workspace/scratch/8e9460dcd580/quds_office_suite/packages/quds_office_editor/test/slide_transform_orientation_test.dart",
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "name": "group rotate retains connector orientation through history and saving",
+        "suite": "/workspace/scratch/8e9460dcd580/quds_office_suite/packages/quds_office_editor/test/slide_transform_orientation_test.dart",
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "name": "keyboard and group moves retain each connector orientation",
+        "suite": "/workspace/scratch/8e9460dcd580/quds_office_suite/packages/quds_office_editor/test/slide_transform_orientation_test.dart",
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "name": "copy and paste retain frozen connector orientation",
+        "suite": "/workspace/scratch/8e9460dcd580/quds_office_suite/packages/quds_office_editor/test/slide_transform_orientation_test.dart",
+        "result": "success",
+        "skipped": false
+      }
+    ]
+  },
+  "editor": {
+    "exit_code": 1,
+    "passed": 0,
+    "failed": 3,
+    "skipped": 0,
+    "runner_success": false,
+    "stdout_sha256": "7a8aa652806d49bae2e4a333ddd02770134ab9c493e9091a8a4b4e40d1059d24",
+    "tests": [
+      {
+        "name": "loading /workspace/scratch/8e9460dcd580/quds_office_suite/packages/quds_office_editor/test/slide_render_fidelity_test.dart",
+        "suite": "/workspace/scratch/8e9460dcd580/quds_office_suite/packages/quds_office_editor/test/slide_render_fidelity_test.dart",
+        "result": "error",
+        "skipped": false
+      },
+      {
+        "name": "loading /workspace/scratch/8e9460dcd580/quds_office_suite/packages/quds_office_editor/test/slide_incoming_pptx_regression_test.dart",
+        "suite": "/workspace/scratch/8e9460dcd580/quds_office_suite/packages/quds_office_editor/test/slide_incoming_pptx_regression_test.dart",
+        "result": "error",
+        "skipped": false
+      },
+      {
+        "name": "loading /workspace/scratch/8e9460dcd580/quds_office_suite/packages/quds_office_editor/test/slide_transform_orientation_test.dart",
+        "suite": "/workspace/scratch/8e9460dcd580/quds_office_suite/packages/quds_office_editor/test/slide_transform_orientation_test.dart",
+        "result": "error",
+        "skipped": false
+      }
+    ]
+  },
+  "baseline-engine": {
+    "exit_code": 1,
+    "passed": 0,
+    "failed": 3,
+    "skipped": 0,
+    "runner_success": false,
+    "stdout_sha256": "1bbda1e28756d8577a417df264b205e410bef6ad4c6178d9dbdae7544b41979c",
+    "tests": [
+      {
+        "name": "PPT autofit measures and paints numeric and blank line advances equally",
+        "suite": "/workspace/scratch/8e9460dcd580/pptx-review/baseline_regression_test.dart",
+        "result": "failure",
+        "skipped": false
+      },
+      {
+        "name": "PPT autofit uses the same advance inside wrapped text and between paragraphs",
+        "suite": "/workspace/scratch/8e9460dcd580/pptx-review/baseline_regression_test.dart",
+        "result": "failure",
+        "skipped": false
+      },
+      {
+        "name": "native model autofit survives serialization",
+        "suite": "/workspace/scratch/8e9460dcd580/pptx-review/baseline_regression_test.dart",
+        "result": "failure",
+        "skipped": false
+      }
+    ]
+  },
+  "repaired-controls": {
+    "exit_code": 0,
+    "passed": 3,
+    "failed": 0,
+    "skipped": 0,
+    "runner_success": true,
+    "stdout_sha256": "bf085e7c682558e1cefb3b169fc1713eb7a68cdf3e419535201479adf53779e3",
+    "tests": [
+      {
+        "name": "PPT autofit measures and paints numeric and blank line advances equally",
+        "suite": "/workspace/scratch/8e9460dcd580/pptx-review/baseline_regression_test.dart",
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "name": "PPT autofit uses the same advance inside wrapped text and between paragraphs",
+        "suite": "/workspace/scratch/8e9460dcd580/pptx-review/baseline_regression_test.dart",
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "name": "native model autofit survives serialization",
+        "suite": "/workspace/scratch/8e9460dcd580/pptx-review/baseline_regression_test.dart",
+        "result": "success",
+        "skipped": false
+      }
+    ]
+  }
+}

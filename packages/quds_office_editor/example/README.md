@@ -153,11 +153,20 @@ The result is `build/macos/Build/Products/Release/CrispOffice.app` (bundle id
 `quds_office_studio.app` with bundle id `com.quds.qudsOfficeStudio`, whose
 sandbox container is separate: re-download dictionaries, language data and
 spaCy models in the new app and re-enter saved mail accounts, or copy the old
-data once with both apps closed:
+data once with both apps closed and before creating local Mail data in the
+new app. The first directory holds proofing/ribbon data; the second holds
+the Mail archive and durable drafts under the platform support directory:
 
 ```bash
 ditto "$HOME/Library/Containers/com.quds.qudsOfficeStudio/Data/Library/Application Support/quds_office_studio" "$HOME/Library/Containers/com.crispstrobe.crispoffice/Data/Library/Application Support/quds_office_studio"
+ditto "$HOME/Library/Containers/com.quds.qudsOfficeStudio/Data/Library/Application Support/com.quds.qudsOfficeStudio" "$HOME/Library/Containers/com.crispstrobe.crispoffice/Data/Library/Application Support/com.crispstrobe.crispoffice"
 ```
+
+Copy only directories that exist. Copying `quds_office_studio` alone does not
+move Mail drafts or the local archive. Re-enter account credentials and
+reconnect with the same account identity after copying; keychain entries are
+not migrated. If the new app already has local Mail data, preserve both copies
+first: these commands do not merge databases.
 
 Signing for release: [docs/release/macos-signing.md](../../../docs/release/macos-signing.md).
 

@@ -41,6 +41,14 @@ List<PmlTextParagraph> parsePmlRichText(
       if (pctVal != null && pctVal > 0) {
         out.lineSpacing = pctVal / 100000;
       }
+      final XmlElement? pts = line?.firstChild(
+        'spcPts',
+        namespaceUri: OfficeNamespaces.a,
+      );
+      final int? ptsVal = int.tryParse(pts?.getAttribute('val') ?? '');
+      if (ptsVal != null && ptsVal >= 0) {
+        out.lineSpacingPt = ptsVal / 100;
+      }
       out.spaceBeforePt = _spacing(pPr, 'spcBef');
       out.spaceAfterPt = _spacing(pPr, 'spcAft');
     }
