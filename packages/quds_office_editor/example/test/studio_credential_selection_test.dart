@@ -92,7 +92,8 @@ void main() {
       final raw = (await SharedPreferences.getInstance()).getString(
         StudioCredentialStorage.preferenceKey,
       )!;
-      expect(jsonDecode(raw)['mode'], 'session');
+      final value = jsonDecode(raw) as Map<String, Object?>;
+      expect(value['mode'], 'session');
       expect(raw, isNot(contains('private')));
       final restarted = StudioCredentialStorage();
       await restarted.loadSelection();
@@ -144,8 +145,9 @@ void main() {
       String? saved;
       final calls = <String>[];
       messenger.setMockMethodCallHandler(channel, (c) async {
-        final args = (c.arguments as Map);
-        expect((args['options'] as Map)['useDataProtectionKeyChain'], 'false');
+        final args = c.arguments as Map<Object?, Object?>;
+        final options = args['options'] as Map<Object?, Object?>;
+        expect(options['useDataProtectionKeyChain'], 'false');
         calls.add(c.method);
         switch (c.method) {
           case 'write':

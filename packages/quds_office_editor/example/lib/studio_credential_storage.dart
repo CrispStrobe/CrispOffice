@@ -48,7 +48,7 @@ class StudioCredentialStorage extends ChangeNotifier {
       preferenceKey,
     );
     if (raw != null) {
-      final value = jsonDecode(raw) as Map<String, dynamic>;
+      final value = jsonDecode(raw) as Map<String, Object?>;
       mode = StudioCredentialMode.values.byName(value['mode'] as String);
       customPath = value['path'] as String?;
       if (mode == StudioCredentialMode.customKeychain &&

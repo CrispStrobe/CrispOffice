@@ -88,8 +88,8 @@ class FileStorageBackend implements TransactionalWebStorageBackend {
     }
     try {
       // An existing empty/truncated file is corruption, not a new vault.
-      final decoded = jsonDecode(utf8.decode(bytes));
-      if (decoded is! Map) {
+      final Object? decoded = jsonDecode(utf8.decode(bytes));
+      if (decoded is! Map<Object?, Object?>) {
         throw const FormatException('Credential vault is not a JSON object');
       }
       final data = <String, String>{};
