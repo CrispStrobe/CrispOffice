@@ -1,4 +1,36 @@
-# Word VBA tab stops: source intake
+# Word VBA tab stops
+
+## Implementation and completed checks
+
+The bounded Word adapter now supports typed `TabStops` selectors, aliases,
+required `ByVal` helper arguments, `With`, named/optional `Add` arguments and
+`ClearAll`. Native operations preserve untouched direct and inherited stops,
+write clear records for effective custom stops, and retain the existing
+replace-all behavior of `paragraphFormat.tabs`. Default-tab interval settings,
+indentation, unrelated XML and opaque VBA package bytes remain preserved.
+See the [exact source contract](../../VBA_WORD_MACROS.md#custom-paragraph-tab-stops).
+
+Checkpoint `b5410b107a83f213e27c1476e766551b3f6cd6a4` combines the feature with
+the captured recent main, Zotero and Outbox work. The
+[refreshed reconciliation](reconciliation.md) accounts for 19 branches,
+255 PR heads and four upstream heads with zero uncovered inputs.
+
+Completed checks on that source include whole-engine strict analysis
+([receipt](analysis.json)) and execution of the actual seven-operation BAS
+example on Dart VM and compiled JavaScript, with matching canonical and raw
+JSON, native save/reopen, precision boundaries, named evaluation order and
+late-failure rollback ([receipt](portable.json), [semantic result](portable-result.json)).
+The [runtime record](environment.json) binds Dart 3.13.7 and the 56 hosted
+dependency versions matching the repository lockfile.
+
+The broader combined-source regression gate is still being completed; its
+final accepted count is not represented by the earlier development checks.
+[Development evidence](development-evidence.json) indexes the preserved
+development archive, including superseded test attempts, rejected empty
+JavaScript output, and the before/after markup-compatibility review probe.
+Those attempts will not inflate the final passing count.
+
+## Initial source intake
 
 This increment starts from remote checkpoint `49d0fe9966edff96e2cbda7e483a9ba8a689219a`, tree `0417c5d9c881cb7835c840419812cb909968ac48`. It preserves both integration parents:
 
