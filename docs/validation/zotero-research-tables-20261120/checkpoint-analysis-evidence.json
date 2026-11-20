@@ -28,6 +28,8 @@
     "all_checked_bytes_unchanged": true
   },
   "informational_findings": "Existing informational style findings in reader/credential sources and fixtures. No error, warning or new Zotero/layout/VBA/native-Mail/replay-helper finding was reported. This is not a diagnostic-free analysis claim.",
-  "contents": "Raw server requests, responses and stderr; exact94-file hashes; applicable analysis options/includes; diagnostics; runtime binary hashes; driver and API provenance; clean formatter receipt.",
-  "qualification": "Targeted analysis of the selected94 files, not a whole-repository analyzer run. Source remains frozen for final runtime qualification; subsequent documentation-only commits do not change these inputs."
+  "contents": "Raw server requests, responses and stderr; hashes for all 94 files; applicable analysis options/includes; diagnostics; runtime binary hashes; driver and API provenance; clean formatter receipt.",
+  "qualification": "Targeted analysis of the selected 94 files, not a whole-repository analyzer run. Source remains frozen for final runtime qualification; subsequent documentation-only commits do not change these inputs.",
+  "diagnostic_summary": "checkpoint-analysis-summary.json",
+  "analysis_context": "The current gate uses the repository's actual nearest per-package options and their explicit include chain. Earlier informational counts retain their historical analysis context; different counts are not presented as source cleanup."
 }
