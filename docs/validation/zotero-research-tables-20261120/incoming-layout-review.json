@@ -1,0 +1,52 @@
+{
+  "head": "d661e024cf7607bd0c87d0c5b9f5dd581b02625e",
+  "merge_base": "e59b8918db508da46039a943080dc4b7a5c7a0bb",
+  "changed_paths": {
+    "packages/quds_office_editor/lib/src/embed/office_controller.dart": {
+      "path": "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a13ef911ecbd482ffb4f7aadafe8cd424973fa66"
+    },
+    "packages/quds_office_engine/lib/src/word/layout/word_incremental_layout.dart": {
+      "path": "packages/quds_office_engine/lib/src/word/layout/word_incremental_layout.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2fc482f05b54052d205254b4798aeca68e3ea11d"
+    },
+    "packages/quds_office_engine/lib/src/word/layout/word_layout.dart": {
+      "path": "packages/quds_office_engine/lib/src/word/layout/word_layout.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6ebe704226f698a9fa69aa0c3b97746e9e440283"
+    }
+  },
+  "previous_paths": {
+    "packages/quds_office_editor/lib/src/embed/office_controller.dart": {
+      "path": "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "59b93ad137d8be8b811ae52ee154f23ce8efe1a5"
+    },
+    "packages/quds_office_engine/lib/src/word/layout/word_incremental_layout.dart": null,
+    "packages/quds_office_engine/lib/src/word/layout/word_layout.dart": {
+      "path": "packages/quds_office_engine/lib/src/word/layout/word_layout.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bcfad7a6a725bfc19495204e069260e14e11e4ba"
+    }
+  },
+  "integration": "Both modified files exactly match the captured head's merge base before intake; new incremental implementation is retained.",
+  "finding": "Equal vertical flow does not establish equal line/frame prefix lengths in a partial-page checkpoint, especially for a minimum-height table row.",
+  "resolution": "Convergence additionally requires equal current line and frame counts before reusing later checkpoints.",
+  "regression_cases": 2,
+  "execution": {
+    "status": "blocked",
+    "reason": "Execution environment exhausted shared disk and became unavailable.",
+    "passed": 0
+  },
+  "github_actions": {
+    "queried": false,
+    "awaited": false
+  }
+}

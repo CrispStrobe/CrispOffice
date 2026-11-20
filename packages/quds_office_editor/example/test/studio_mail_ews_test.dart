@@ -1541,7 +1541,9 @@ void main() {
       );
       expect(
         tester
-            .widget<IconButton>(_iconButton(_strings.mailForwardWithAttachments))
+            .widget<IconButton>(
+              _iconButton(_strings.mailForwardWithAttachments),
+            )
             .onPressed,
         isNull,
       );
@@ -2019,7 +2021,10 @@ void main() {
       );
       await tester.pump(const Duration(milliseconds: 500));
       await tester.pump();
-      expect(drafts.records.values.single.draft.attachments.items, hasLength(1));
+      expect(
+        drafts.records.values.single.draft.attachments.items,
+        hasLength(1),
+      );
       expect(drafts.records.values.single.submissionUncertain, isFalse);
       drafts.saveGate = markerGate;
       final send = find.widgetWithText(FilledButton, _strings.send);
@@ -2105,6 +2110,47 @@ void main() {
         await tester.ensureVisible(find.text(_strings.mailDraftSaveClose));
         await tester.tap(find.text(_strings.mailDraftSaveClose));
         await _pump(tester);
+        expect(tester.takeException(), isNull);
+      },
+    );
+  }
+
+  for (final tooltip in [
+    _strings.reply,
+    _strings.replyAll,
+    _strings.forward,
+    _strings.mailForwardWithAttachments,
+  ]) {
+    testWidgets(
+      'EWS $tooltip refuses a message with neither body nor attachments',
+      (tester) async {
+        late _Provider provider;
+        await _show(
+          tester,
+          (configuration, credentials) =>
+              provider = _Provider(configuration, credentials),
+        );
+        await _connect(tester);
+        final source = provider.message();
+        provider.messageGate = Completer<MailResult<MailMessage>>()
+          ..complete(
+            MailSuccess(
+              MailMessage(
+                raw: source.raw,
+                envelope: source.envelope,
+                body: const MailBody(),
+                remoteIdentity: source.remoteIdentity,
+                localId: source.localId,
+              ),
+            ),
+          );
+        await tester.tap(find.text('First Exchange message'));
+        await _pump(tester);
+        await tester.tap(find.byTooltip(tooltip));
+        await _pump(tester);
+        expect(find.byType(StudioMailComposeDialog), findsNothing);
+        expect(find.text(_strings.mailPlainTextUnavailable), findsOneWidget);
+        expect(provider.submissions, isEmpty);
         expect(tester.takeException(), isNull);
       },
     );

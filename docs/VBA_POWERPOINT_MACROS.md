@@ -91,6 +91,7 @@ below.
 | --- | --- | --- |
 | `shape.TextFrame.TextRange.Text` | `pptx.shapeText` | `text` |
 | `shape.TextFrame.VerticalAnchor` | `pptx.shapeTextFrame` | `anchor`: `top`, `center`, or `bottom` |
+| `shape.TextFrame.MarginLeft`, `.MarginTop`, `.MarginRight`, `.MarginBottom` | `pptx.shapeTextFrame` | `marginLeft`, `marginTop`, `marginRight`, `marginBottom`, in points |
 | `text.Font.Name` | `pptx.shapeFormat` | `font` |
 | `text.Font.Size` | `pptx.shapeFormat` | `size`, in points |
 | `text.Font.Bold`, `.Italic`, `.Underline` | `pptx.shapeFormat` | `bold`, `italic`, `underline` |
@@ -134,6 +135,36 @@ Their values are not approximated as top or bottom. An explicit assignment of
 Top still takes effect when the imported model's fallback was already top but
 the native XML used an unsupported anchor. Anchoring an empty supported shape
 creates an empty text body; it does not add visible text.
+
+## Text-frame margins
+
+The four `TextFrame.MarginLeft`, `MarginTop`, `MarginRight`, and `MarginBottom`
+writes use points and work through typed `TextFrame` aliases, `With`, and helper
+parameters. Each write changes one side and leaves the other sides, vertical
+anchor, rich text, fields, hyperlinks, writing direction and autofit untouched.
+Zero removes that side's inset. Explicit same-value assignments still write a
+direct native override; an omitted side remains omitted in the saved XML.
+
+Values must be actual finite nonnegative numbers whose point value converts
+exactly to an integer in `0..2147483647` EMUs at 12,700 EMUs per point. This is a
+bounded dialect precision rule; values are refused rather than rounded. For
+example, `0.1`, `12.5`, and `1 / 12700` are accepted, while `0.00001`, negative
+values, numeric Strings and Booleans are refused. The same validation applies
+to the native macro operation, which validates every supplied margin before
+changing the model.
+
+The model projects direct DrawingML `a:bodyPr` inset attributes and uses their
+standard defaults when absent (left/right 7.2 points; top/bottom 3.6 points).
+PDF placement and editor painting/hit-testing use this inset rectangle, including
+unequal top/bottom margins for middle and bottom anchors. Native overflow and
+zero-height autofit text remain visible. Layout/master **margin inheritance is
+not resolved by this live projection**: omitted native sides remain preserved
+for Office to inherit, but their inherited values are not claimed as rendered
+by this increment. Assign all four sides to make their values explicit.
+
+The [margin example](../packages/quds_office_engine/example/macros/powerpoint_text_margins.bas)
+uses all four sides and a middle anchor on the existing `Title` shape of slide 1.
+This does not add `WordWrap`, `AutoSize`, text-direction edits or live margin reads.
 
 ## Slide visibility and transitions
 
@@ -325,7 +356,11 @@ for source hashes, raw results and qualification boundaries.
 Specification-derived expectations are separate from observed Office-host
 fixtures; no installed Microsoft PowerPoint results are claimed.
 
-Live document reads, named/optional arguments, `ByRef`, events, shape creation,
+The shared [helper argument contract](VBA_ARGUMENTS.md) adds named and optional
+arguments to declared module procedures. Named/omitted arguments on built-in
+or object-model members remain unsupported.
+
+Live document reads, `ByRef`, events, shape creation,
 slides/masters manipulation, notes, COM, filesystem/network calls, project
 loading/editing, macro UI and debugger integration remain outside this adapter.
 The [parity roadmap](VBA_PARITY_ROADMAP.md) tracks these independently of test
@@ -342,6 +377,7 @@ counts. Existing embedded projects remain opaque and inert.
 - [Shape.Left](https://learn.microsoft.com/en-us/office/vba/api/powerpoint.shape.left) and [Shape.Rotation](https://learn.microsoft.com/en-us/office/vba/api/powerpoint.shape.rotation): geometry units.
 
 - [TextFrame.VerticalAnchor](https://learn.microsoft.com/en-us/office/vba/api/powerpoint.textframe.verticalanchor) and [MsoVerticalAnchor](https://learn.microsoft.com/en-us/office/vba/api/office.msoverticalanchor): anchor property and exact enum values.
+- [TextFrame.MarginLeft](https://learn.microsoft.com/en-us/office/vba/api/powerpoint.textframe.marginleft) and [TextFrame.MarginBottom](https://learn.microsoft.com/en-us/office/vba/api/powerpoint.textframe.marginbottom): margin units. [DrawingML LeftInset](https://learn.microsoft.com/en-us/dotnet/api/documentformat.openxml.drawing.bodyproperties.leftinset) describes the native attribute and its default.
 - [SlideShowTransition](https://learn.microsoft.com/en-us/office/vba/api/powerpoint.slideshowtransition), [Hidden](https://learn.microsoft.com/en-us/office/vba/api/powerpoint.slideshowtransition.hidden), and [AdvanceOnClick](https://learn.microsoft.com/en-us/office/vba/api/powerpoint.slideshowtransition.advanceonclick): slide visibility and click-advance properties.
 - [SlideShowTransition.Duration](https://learn.microsoft.com/en-us/office/vba/api/powerpoint.slideshowtransition.duration): duration measured in seconds.
 - [PpEntryEffect](https://learn.microsoft.com/en-us/office/vba/api/powerpoint.ppentryeffect): exact effect constants.

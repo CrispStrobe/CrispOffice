@@ -248,6 +248,11 @@ class _Recorder {
         flow.columnTop != cp.columnTop ||
         adjacentAfter != cp.adjacentAfter ||
         flow.hasContent != cp.hasContent ||
+        // Retained checkpoints address prefix slices on the partial page.
+        // Equal vertical flow alone does not preserve those slice lengths
+        // (for example, extra lines inside a fixed-height table row).
+        flow.current.length != cp.lines ||
+        flow.currentFrames.length != cp.frames ||
         cp.wrapFrames ||
         _hasWrapFrames(flow.currentFrames)) {
       return false;

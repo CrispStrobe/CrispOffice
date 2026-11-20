@@ -1,0 +1,38 @@
+{
+  "schema": "quds-incremental-layout-differential/v1",
+  "completed_at_utc": "2026-11-20T11:40:07.688738+00:00",
+  "source_commit": "9e0d8173fada4ae3f22ace5c5b896c21ab5191da",
+  "engine_lib_tree": "882cee381d42a4929b0b83a11e796860a337d900",
+  "test_path": "packages/quds_office_engine/test/word_incremental_layout_differential_test.dart",
+  "test_sha256": "c61a1b01b39627d0d46f138cb7d0e791f018d53809c920edf0bece821fc0e0dd",
+  "runtime": "Dart 3.13.7 Linux x64 VM",
+  "compiler": "source",
+  "tests_passed": 10,
+  "tests_failed": 0,
+  "tests_skipped": 0,
+  "fresh_engine_differential_comparisons": 302,
+  "runtime_exit_code": 0,
+  "raw_log": "passed.log",
+  "input_manifest": "source-manifest.json",
+  "input_hash_changes": [],
+  "independent_oracle": "Custom public line/glyph/page/box geometry snapshot; does not use production wordLayoutFingerprint",
+  "coverage": [
+    "same-height edits with asserted convergence and bounded laid-out blocks",
+    "six deterministic 48-edit scenarios across mixed-script text, run/paragraph properties, insert/remove/reorder and two-paragraph edits",
+    "three sections with continuous section, multiple columns, separators, first/even/default headers, page footer and line numbers",
+    "nested tables and wrapping frames",
+    "footnote/endnote full-layout fallback",
+    "invalidated state and section-list replacement fallback"
+  ],
+  "limits": [
+    "Pure Dart fallback metrics only; no Flutter controller or UI run",
+    "No installed Microsoft Word comparison",
+    "Production source reviewed; this is focused engine integration qualification rather than whole-app acceptance"
+  ],
+  "excluded_attempts": [
+    {
+      "log": "setup-failure.log",
+      "reason": "Runner could not create /tmp/dart_test.vm.*; no tests loaded; rerun used writable scratch TMPDIR."
+    }
+  ]
+}

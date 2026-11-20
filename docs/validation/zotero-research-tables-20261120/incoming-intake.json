@@ -1,0 +1,2336 @@
+{
+  "schema": "quds.incoming-intake.v1",
+  "captured_at_utc": "2026-11-20T11:23:33.736Z",
+  "repository": "CrispStrobe/quds_office_suite",
+  "main": "3ffa599ff003a6e678260df1237b01887693e546",
+  "source_urls": [
+    "https://api.github.com/repos/CrispStrobe/quds_office_suite/git/refs/heads",
+    "https://api.github.com/repos/MohammedAsaadAsaad/quds_office_suite/git/refs/heads"
+  ],
+  "scope": {
+    "branches": 18,
+    "recent_pr_records": 100,
+    "pr_numbers": "147–246",
+    "ci_status_workflow_endpoints_called": false
+  },
+  "branches": [
+    {
+      "ref": "refs/heads/codex/odt-field-continuation-20261117",
+      "sha": "c34945761e7991f5fe49037d79529acdd260b31c",
+      "relationship_to_main": "diverged",
+      "ahead_by": 2,
+      "behind_by": 1361,
+      "merge_base": "e3a38789359adaa33b2da1345c952fa1c2d8aebb",
+      "historical_equivalence": {
+        "historical_head": "c34945761e7991f5fe49037d79529acdd260b31c",
+        "accepted_ancestor": "2c47165d01d01cc883135a434ac9f6591ce6e770",
+        "accepted_is_ancestor_of_frozen_target": true,
+        "comparison_base": "e3a38789359adaa33b2da1345c952fa1c2d8aebb",
+        "changed_path_count": 37,
+        "all_changed_modes_types_objects_match": true,
+        "changed_path_entry_sha256": "0c5f29b144113a9cb80cbf6a87ef0d11267100171bef76d463f64a00662ecd84",
+        "historical_tree": "ab5ed01d0693ddbb3121ea9ca45721eb2a09f1a6",
+        "accepted_tree": "01df63630b58d6a4c578b2f12f5e68204d37eb9b",
+        "whole_tree_equal": false,
+        "different_paths": [],
+        "verified": true,
+        "rechecked_changed_entries_sha256": "788aea8250d00d988a6d34fb34f57acc9507fd3a08a1729606f42cdfc2dfad7d"
+      }
+    },
+    {
+      "ref": "refs/heads/codex/word-powerpoint-vba-continuation-20261120",
+      "sha": "d46d4ef394ed7cafd40bc266c793f8c0df6ec57f",
+      "relationship_to_main": "behind",
+      "ahead_by": 0,
+      "behind_by": 1,
+      "merge_base": "d46d4ef394ed7cafd40bc266c793f8c0df6ec57f"
+    },
+    {
+      "ref": "refs/heads/codex/zotero-note-targets-20261120",
+      "sha": "6c23d94472f741aceff6aef0de0e6ef847195afe",
+      "relationship_to_main": "behind",
+      "ahead_by": 0,
+      "behind_by": 40,
+      "merge_base": "6c23d94472f741aceff6aef0de0e6ef847195afe"
+    },
+    {
+      "ref": "refs/heads/codex/zotero-parity-continuation-20261120",
+      "sha": "40a8f8eb76bd9bf51205fa0cb9f576ba497ad76b",
+      "relationship_to_main": "behind",
+      "ahead_by": 0,
+      "behind_by": 117,
+      "merge_base": "40a8f8eb76bd9bf51205fa0cb9f576ba497ad76b"
+    },
+    {
+      "ref": "refs/heads/docs/ods-color-scale",
+      "sha": "58fdddfbcf198a8c0e38e32f6fcc9d6604e95283",
+      "relationship_to_main": "diverged",
+      "ahead_by": 1,
+      "behind_by": 1360,
+      "merge_base": "4584d5f319aab198f1d705f48b4d6647e6cbabea",
+      "historical_equivalence": {
+        "historical_head": "58fdddfbcf198a8c0e38e32f6fcc9d6604e95283",
+        "accepted_ancestor": "4eaca83b192897edad82658107dfeb5bcbed0920",
+        "accepted_is_ancestor_of_frozen_target": true,
+        "comparison_base": "4584d5f319aab198f1d705f48b4d6647e6cbabea",
+        "changed_path_count": 1,
+        "all_changed_modes_types_objects_match": true,
+        "changed_path_entry_sha256": "6612b38c618addcc6a46c3d558840d9004804365fcac771bf939ad0b4a79cf97",
+        "historical_tree": "3d828f3e1779b08ae84dc526e0c7236882d69a26",
+        "accepted_tree": "3d828f3e1779b08ae84dc526e0c7236882d69a26",
+        "whole_tree_equal": true,
+        "different_paths": [],
+        "verified": true,
+        "rechecked_changed_entries_sha256": "cb8efbc384ae43effb7e45fa5d24fc9b2673d4183f18516d028a27ff8ea19f20"
+      }
+    },
+    {
+      "ref": "refs/heads/docs/ods-data-bar",
+      "sha": "69d14f84cabd3931b7640c1654b401c89faba766",
+      "relationship_to_main": "diverged",
+      "ahead_by": 1,
+      "behind_by": 1356,
+      "merge_base": "b3f41eb4b4bca8ca13676b4114891ea6d9185043",
+      "historical_equivalence": {
+        "historical_head": "69d14f84cabd3931b7640c1654b401c89faba766",
+        "accepted_ancestor": "52c73ae4dbadf2ca00a5d619144350ccc353b31a",
+        "accepted_is_ancestor_of_frozen_target": true,
+        "comparison_base": "b3f41eb4b4bca8ca13676b4114891ea6d9185043",
+        "changed_path_count": 1,
+        "all_changed_modes_types_objects_match": true,
+        "changed_path_entry_sha256": "8cb104907241a13f7c4c29c331fabf47dff4550732520ae4e44735daf3802106",
+        "historical_tree": "fcceef2418d7463f2a566623f22f8f0862dd1d01",
+        "accepted_tree": "fcceef2418d7463f2a566623f22f8f0862dd1d01",
+        "whole_tree_equal": true,
+        "different_paths": [],
+        "verified": true,
+        "rechecked_changed_entries_sha256": "a79ba3d4c910315aac9e7afb5cef88846343b40428e6095c72ccbd309dfe6301"
+      }
+    },
+    {
+      "ref": "refs/heads/feat/downloads-manager-redesign-20261120",
+      "sha": "84d02025fade09c80f3f58942b466f4522eb4434",
+      "relationship_to_main": "diverged",
+      "ahead_by": 3,
+      "behind_by": 32,
+      "merge_base": "e59b8918db508da46039a943080dc4b7a5c7a0bb"
+    },
+    {
+      "ref": "refs/heads/feat/ods-color-scale",
+      "sha": "74ce9ffb816c70c0d2ae50b91ec52a614f26d688",
+      "relationship_to_main": "diverged",
+      "ahead_by": 1,
+      "behind_by": 1361,
+      "merge_base": "e3a38789359adaa33b2da1345c952fa1c2d8aebb",
+      "historical_equivalence": {
+        "historical_head": "74ce9ffb816c70c0d2ae50b91ec52a614f26d688",
+        "accepted_ancestor": "4584d5f319aab198f1d705f48b4d6647e6cbabea",
+        "accepted_is_ancestor_of_frozen_target": true,
+        "comparison_base": "e3a38789359adaa33b2da1345c952fa1c2d8aebb",
+        "changed_path_count": 7,
+        "all_changed_modes_types_objects_match": true,
+        "changed_path_entry_sha256": "5b8e489b56addfe658d01fcf0d3fad25b32f2239fdea7ce2547f495c9ce2f2b4",
+        "historical_tree": "8eaa993960d6fb6b6b484326d825a550f969ea0a",
+        "accepted_tree": "8eaa993960d6fb6b6b484326d825a550f969ea0a",
+        "whole_tree_equal": true,
+        "different_paths": [],
+        "verified": true,
+        "rechecked_changed_entries_sha256": "41b04b6762c51d928001275f049f413b9073a7920866050d57e019612db7d050"
+      }
+    },
+    {
+      "ref": "refs/heads/feat/ods-data-bar",
+      "sha": "0a53b8a70128870f3e1df6d18cdb177bb64290ee",
+      "relationship_to_main": "diverged",
+      "ahead_by": 2,
+      "behind_by": 1358,
+      "merge_base": "d754bf15b07a24c8a86c8dce339ca749fecd9531",
+      "historical_equivalence": {
+        "historical_head": "0a53b8a70128870f3e1df6d18cdb177bb64290ee",
+        "accepted_ancestor": "b3f41eb4b4bca8ca13676b4114891ea6d9185043",
+        "accepted_is_ancestor_of_frozen_target": true,
+        "comparison_base": "d754bf15b07a24c8a86c8dce339ca749fecd9531",
+        "changed_path_count": 8,
+        "all_changed_modes_types_objects_match": true,
+        "changed_path_entry_sha256": "4233248d14dabc535635c99e7e402b4dbb83adc420fe1993eddb387f5daad70c",
+        "historical_tree": "b3345f76c2e3cd8e1bad13b554f2d24555aea9ce",
+        "accepted_tree": "b3345f76c2e3cd8e1bad13b554f2d24555aea9ce",
+        "whole_tree_equal": true,
+        "different_paths": [],
+        "verified": true,
+        "rechecked_changed_entries_sha256": "2faba6f20e7ae771c9d935464bd1d1d56e86b36d89768bd2bee8cddb9bdc4349"
+      }
+    },
+    {
+      "ref": "refs/heads/feat/ods-dynamic-validation-links",
+      "sha": "68a0db23408e4c95d6d283219504c79aea33a6fe",
+      "relationship_to_main": "diverged",
+      "ahead_by": 1,
+      "behind_by": 1359,
+      "merge_base": "4eaca83b192897edad82658107dfeb5bcbed0920",
+      "historical_equivalence": {
+        "historical_head": "68a0db23408e4c95d6d283219504c79aea33a6fe",
+        "accepted_ancestor": "d754bf15b07a24c8a86c8dce339ca749fecd9531",
+        "accepted_is_ancestor_of_frozen_target": true,
+        "comparison_base": "4eaca83b192897edad82658107dfeb5bcbed0920",
+        "changed_path_count": 4,
+        "all_changed_modes_types_objects_match": true,
+        "changed_path_entry_sha256": "dfbec0c7ba330e88d6032271d9ff35600b55d33d6ce35012f62d4c76d99c81b8",
+        "historical_tree": "aea95c000855820c5ecf205d3833298539f01753",
+        "accepted_tree": "aea95c000855820c5ecf205d3833298539f01753",
+        "whole_tree_equal": true,
+        "different_paths": [],
+        "verified": true,
+        "rechecked_changed_entries_sha256": "b8495eb454eac8c2c67b4093db847f261ba1c282f743b592ec175b2d794ff359"
+      }
+    },
+    {
+      "ref": "refs/heads/feat/ods-icon-sets",
+      "sha": "005c708e9f747cb46cf02e12c869b0a2f85ac824",
+      "relationship_to_main": "diverged",
+      "ahead_by": 1,
+      "behind_by": 1345,
+      "merge_base": "16e2477ff93f7a1ec5c6ed78491f2716ce4d1658",
+      "historical_equivalence": {
+        "historical_head": "005c708e9f747cb46cf02e12c869b0a2f85ac824",
+        "accepted_ancestor": "c84d5e16024c502f6c451fd04b9807b1e65f20d3",
+        "accepted_is_ancestor_of_frozen_target": true,
+        "comparison_base": "16e2477ff93f7a1ec5c6ed78491f2716ce4d1658",
+        "changed_path_count": 7,
+        "all_changed_modes_types_objects_match": true,
+        "changed_path_entry_sha256": "0734ad4b1205144d82c13f9c00890c5216612c329b59528195ed2e10431c85a2",
+        "historical_tree": "097bb5511b2ddf2e00a398da7055b310693fe054",
+        "accepted_tree": "097bb5511b2ddf2e00a398da7055b310693fe054",
+        "whole_tree_equal": true,
+        "different_paths": [],
+        "verified": true,
+        "rechecked_changed_entries_sha256": "a5683e49e57631e5ac37b28e9ef06f4c93a205504707f73d9341722dfc311677"
+      }
+    },
+    {
+      "ref": "refs/heads/feat/ods-time-period-conditions",
+      "sha": "7ef09f2408f467c65427700e65907531ecb26acb",
+      "relationship_to_main": "diverged",
+      "ahead_by": 1,
+      "behind_by": 1341,
+      "merge_base": "4b2b4e78839d2997a583b7ab1346e2fa537a8ac4",
+      "historical_equivalence": {
+        "historical_head": "7ef09f2408f467c65427700e65907531ecb26acb",
+        "accepted_ancestor": "34dc6b6806869570e9ec342e4d7ee0d6951c0ba6",
+        "accepted_is_ancestor_of_frozen_target": true,
+        "comparison_base": "4b2b4e78839d2997a583b7ab1346e2fa537a8ac4",
+        "changed_path_count": 7,
+        "all_changed_modes_types_objects_match": true,
+        "changed_path_entry_sha256": "7c6769d3982ac938a23167db4fd16af473145c5b81bcda35f2f02978a7680810",
+        "historical_tree": "072bded0da30965ac975f9a8a3c08c7a46829460",
+        "accepted_tree": "072bded0da30965ac975f9a8a3c08c7a46829460",
+        "whole_tree_equal": true,
+        "different_paths": [],
+        "verified": true,
+        "rechecked_changed_entries_sha256": "ea9d38fb44a358f5876e2499eb5b6c135afbc240a46e3be9b8c9b7ab134b2cba"
+      }
+    },
+    {
+      "ref": "refs/heads/fix/mail-credential-stores-chrome-20261120",
+      "sha": "95bf6340400d8e16c4ef318ca6873f06fa300bc6",
+      "relationship_to_main": "diverged",
+      "ahead_by": 1,
+      "behind_by": 56,
+      "merge_base": "d95e814af9556dcea448ba5673e0ba4dc81007d0"
+    },
+    {
+      "ref": "refs/heads/integrate/office-union-148",
+      "sha": "3abf8f43b0e79c10271bbd046f391e462b8fe6b9",
+      "relationship_to_main": "diverged",
+      "ahead_by": 1,
+      "behind_by": 1157,
+      "merge_base": "e3831cdde529aa0c2368845cd72c1b9b65154665",
+      "historical_equivalence": {
+        "historical_head": "3abf8f43b0e79c10271bbd046f391e462b8fe6b9",
+        "accepted_ancestor": "4b2b4e78839d2997a583b7ab1346e2fa537a8ac4",
+        "accepted_is_ancestor_of_frozen_target": true,
+        "comparison_base": "bb5556e8cc4cb73e2c668b5319a2844a20c6c50c",
+        "changed_path_count": 221,
+        "all_changed_modes_types_objects_match": true,
+        "changed_path_entry_sha256": "03b47a0c999663f2ed102d04dba3ea530b55d216393529f5c68ad27d26386ded",
+        "historical_tree": "e3adc9e259c6120b4b1e3e03177391f880243e13",
+        "accepted_tree": "e3adc9e259c6120b4b1e3e03177391f880243e13",
+        "whole_tree_equal": true,
+        "different_paths": [],
+        "verified": true,
+        "rechecked_changed_entries_sha256": "c16b0e80761ef4a21126f4216c7433a19ebd41cd2859624e415165280fc6c16d"
+      }
+    },
+    {
+      "ref": "refs/heads/integrate/recent-pptx",
+      "sha": "4f5c153774ab7492430c2b68653c54e0c08dc2ad",
+      "relationship_to_main": "diverged",
+      "ahead_by": 3,
+      "behind_by": 34,
+      "merge_base": "e59b8918db508da46039a943080dc4b7a5c7a0bb"
+    },
+    {
+      "ref": "refs/heads/main",
+      "sha": "3ffa599ff003a6e678260df1237b01887693e546",
+      "relationship_to_main": "identical",
+      "ahead_by": 0,
+      "behind_by": 0,
+      "merge_base": "3ffa599ff003a6e678260df1237b01887693e546"
+    },
+    {
+      "ref": "refs/heads/perf/incremental-layout-20261120",
+      "sha": "d661e024cf7607bd0c87d0c5b9f5dd581b02625e",
+      "relationship_to_main": "diverged",
+      "ahead_by": 1,
+      "behind_by": 36,
+      "merge_base": "e59b8918db508da46039a943080dc4b7a5c7a0bb"
+    },
+    {
+      "ref": "refs/heads/work/mail-accounts-20261120",
+      "sha": "a059c0249a25bef602640c8b8d504bd8da41c619",
+      "relationship_to_main": "diverged",
+      "ahead_by": 3,
+      "behind_by": 14,
+      "merge_base": "c8b5080ad3d33abda44275a9b3679514d7526c58"
+    }
+  ],
+  "recent_pull_requests": [
+    {
+      "number": 246,
+      "title": "Fix analyze on main: font-pack stub signature, duplicate crypto dev dependency",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "head": "fix/font-pack-stub-packs-20261120",
+      "head_sha": "d0c9007480ba518022836e017802875614e6205c",
+      "base_sha": "e59b8918db508da46039a943080dc4b7a5c7a0bb",
+      "updated_at": "2026-11-20T11:17:22Z"
+    },
+    {
+      "number": 245,
+      "title": "Extend Word and PowerPoint VBA typography and slideshow support",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "head": "codex/word-powerpoint-vba-continuation-20261120",
+      "head_sha": "d46d4ef394ed7cafd40bc266c793f8c0df6ec57f",
+      "base_sha": "899df57d03e55bf73357136c5f21739c5c9b5719",
+      "updated_at": "2026-11-20T11:19:24Z"
+    },
+    {
+      "number": 244,
+      "title": "Typing/proofing: record hosted benchmark and suite results [skip ci]",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "head": "perf/typing-proofing-results-20261120",
+      "head_sha": "2fd61c3353dc22ee36ed1bc1a69df470a9423230",
+      "base_sha": "c028baf2491f701735a53552b4b3674914a4f830",
+      "updated_at": "2026-11-20T11:02:28Z"
+    },
+    {
+      "number": 243,
+      "title": "Mail: remembered accounts and safe switching [skip ci]",
+      "state": "open",
+      "merged": false,
+      "draft": true,
+      "head": "work/mail-accounts-20261120",
+      "head_sha": "a059c0249a25bef602640c8b8d504bd8da41c619",
+      "base_sha": "c028baf2491f701735a53552b4b3674914a4f830",
+      "updated_at": "2026-11-20T11:20:42Z"
+    },
+    {
+      "number": 242,
+      "title": "Redesign the Downloads manager (uniform grouped package list)",
+      "state": "open",
+      "merged": false,
+      "draft": false,
+      "head": "feat/downloads-manager-redesign-20261120",
+      "head_sha": "84d02025fade09c80f3f58942b466f4522eb4434",
+      "base_sha": "e59b8918db508da46039a943080dc4b7a5c7a0bb",
+      "updated_at": "2026-11-20T11:08:07Z"
+    },
+    {
+      "number": 241,
+      "title": "Mail: shared foreground navigation and reconciled qualification",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "head": "work/mail-workspace-20261120",
+      "head_sha": "aad737dd79c034b831a8957daa4165c6c64e35e5",
+      "base_sha": "d040c15a07f652d01e75363031d0efdee6357bda",
+      "updated_at": "2026-11-20T10:50:58Z"
+    },
+    {
+      "number": 240,
+      "title": "Extend Zotero research insertion to authored notes and selected text [skip ci]",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "head": "codex/zotero-note-targets-20261120",
+      "head_sha": "6c23d94472f741aceff6aef0de0e6ef847195afe",
+      "base_sha": "d95e814af9556dcea448ba5673e0ba4dc81007d0",
+      "updated_at": "2026-11-20T10:56:42Z"
+    },
+    {
+      "number": 239,
+      "title": "Extend Word and PowerPoint VBA; integrate recent work [skip ci]",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "head": "codex/word-powerpoint-vba-20261120",
+      "head_sha": "06f119566235aa3765445526f5ffab48832b1a31",
+      "base_sha": "33190e50cae486be362eedb5fa687dd9c82b0c51",
+      "updated_at": "2026-11-20T10:50:57Z"
+    },
+    {
+      "number": 238,
+      "title": "Complete Zotero image notes and structured lists; integrate incoming Office work",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "head": "codex/zotero-parity-continuation-20261120",
+      "head_sha": "40a8f8eb76bd9bf51205fa0cb9f576ba497ad76b",
+      "base_sha": "860c807bfd1385899eed130abfb8940f95bda113",
+      "updated_at": "2026-11-20T10:55:30Z"
+    },
+    {
+      "number": 237,
+      "title": "Typing: coalesce as-you-type proofing and status chrome (+ benchmark)",
+      "state": "closed",
+      "merged": true,
+      "draft": true,
+      "head": "perf/typing-proofing-20261120",
+      "head_sha": "712d0ea558a01cabff25a83294a29b8d57ec25d4",
+      "base_sha": "d040c15a07f652d01e75363031d0efdee6357bda",
+      "updated_at": "2026-11-20T11:01:18Z"
+    },
+    {
+      "number": 236,
+      "title": "Qualify manual German grammar on the Android arm64 spaCy library",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "head": "feat/android-spacy-grammar-20261120",
+      "head_sha": "7319b220ab2e64b440e6f63d299eb747366a24d3",
+      "base_sha": "5e38de19ab5af8d6811d601c7317cba7f69d516b",
+      "updated_at": "2026-11-20T09:31:52Z"
+    },
+    {
+      "number": 235,
+      "title": "Register the Android spaCy grammar replay workflow",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "head": "ci/android-spacy-grammar-workflow",
+      "head_sha": "596fb68f64c447177ed202a40f890c20205a0270",
+      "base_sha": "c16e121365b7c52c0b66371381c8c58f592e1d8e",
+      "updated_at": "2026-11-20T09:31:52Z"
+    },
+    {
+      "number": 234,
+      "title": "Rename built app artifacts and platform identities to CrispOffice",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "head": "feat/crispoffice-rename-20261120",
+      "head_sha": "228d13d949859c66c58cf51addfbb03b09c7365d",
+      "base_sha": "5e38de19ab5af8d6811d601c7317cba7f69d516b",
+      "updated_at": "2026-11-20T10:50:28Z"
+    },
+    {
+      "number": 233,
+      "title": "Persist native Mail drafts and reconcile current Office work [skip ci]",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "head": "work/mail-draft-recovery-20261120",
+      "head_sha": "20b2ecf572f8fd5663a728529da7bf5c7ebbda1d",
+      "base_sha": "e06eb3a7e21b71c1d5d4b1d2cc9abde24774eb26",
+      "updated_at": "2026-11-20T10:50:58Z"
+    },
+    {
+      "number": 232,
+      "title": "Native proofing libraries on iOS/iPadOS and Android (+ on-device gate, Android spaCy analysis record)",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "head": "feat/mobile-proofing-native-20261120",
+      "head_sha": "8b09e0ca6667c00db81b613c40b6d275bc20471a",
+      "base_sha": "098412152fa1d64796eb3fb9c06699ced0f0c44d",
+      "updated_at": "2026-11-20T06:59:54Z"
+    },
+    {
+      "number": 231,
+      "title": "Arabic grammar: context disambiguation over Camel Morph analyses [skip ci]",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "head": "feat/arabic-morph-disambig-20261120",
+      "head_sha": "754d30d199b6f7dfd52b2772a27cc37a3f8d3dd8",
+      "base_sha": "43db439e1e605d6329a6eabe6817b04ca44ba1aa",
+      "updated_at": "2026-11-20T06:43:26Z"
+    },
+    {
+      "number": 230,
+      "title": "Roadmap: GlotLID as optional second language identifier (feasibility)",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "head": "docs/glotlid-feasibility-20261120",
+      "head_sha": "3c137a66e8a434f5a90e80f5094bfaa25354067a",
+      "base_sha": "dbfbbd28caa064f4850dc81860a68de14d48fb35",
+      "updated_at": "2026-11-20T06:59:52Z"
+    },
+    {
+      "number": 229,
+      "title": "Persist verified web dictionaries and morphology data across sessions",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "head": "feat/web-proofing-persistence-20261120",
+      "head_sha": "0c12d087e1d21b710c9fe224a06a93d526f0721e",
+      "base_sha": "64f977ab003031d560c6564cf8895b1250d120d9",
+      "updated_at": "2026-11-20T06:03:05Z"
+    },
+    {
+      "number": 228,
+      "title": "macOS CI: portable paths; ship pinned spaCy bytes unchanged in ad hoc builds",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "head": "fix/macos-ci-portable-20261120",
+      "head_sha": "f3ed8d74a016bc1e826dbaf056397e887d765b43",
+      "base_sha": "b0b79d90b0f4ca0036483d73095b4821efddcc8e",
+      "updated_at": "2026-11-20T06:02:57Z"
+    },
+    {
+      "number": 227,
+      "title": "Extend Word and Excel VBA with explicit Variants and paragraph macros",
+      "state": "closed",
+      "merged": true,
+      "draft": true,
+      "head": "codex/vba-variant-conversions-20261120",
+      "head_sha": "1ceae221d37e733f0195d35622a05f896a2d13a1",
+      "base_sha": "5e38de19ab5af8d6811d601c7317cba7f69d516b",
+      "updated_at": "2026-11-20T10:50:57Z"
+    },
+    {
+      "number": 226,
+      "title": "Fix comment draft language test after language-download review",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "head": "fix/comment-draft-language-test-20261120",
+      "head_sha": "a56397df5f53b991f5016f3cc8e1ab53b7ce12f1",
+      "base_sha": "6b2f392c7301d4b19f16d6ccf150258f14bf7ad7",
+      "updated_at": "2026-11-20T06:03:06Z"
+    },
+    {
+      "number": 225,
+      "title": "Native spaCy German grammar v2: NP agreement, preposition case, verb position (+ experimental person)",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "head": "feat/spacy-grammar-v2-20261120",
+      "head_sha": "4973e712045bdcf45fd36dcfe37d380c52265d3c",
+      "base_sha": "85c019cd8fda1a735a727bff98c2a56fb25a368e",
+      "updated_at": "2026-11-20T05:13:51Z"
+    },
+    {
+      "number": 224,
+      "title": "macOS release signing with code-identity spaCy qualification; weekly macOS CI",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "head": "feat/macos-signing-ci-20261120",
+      "head_sha": "38c9c297c12fca3422b8f758e7b1afbdabbf064c",
+      "base_sha": "fe076d22a1b25d27c34b861fa5b0b2a32833b33e",
+      "updated_at": "2026-11-20T05:14:11Z"
+    },
+    {
+      "number": 223,
+      "title": "Extend Zotero research-material browsing and reconcile recent work [skip ci]",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "head": "codex/zotero-research-materials-20261120",
+      "head_sha": "a31616d3567a43307251e13a9728cf92fd8690c6",
+      "base_sha": "88905c56547fa91206acbc306616c3ad10f9d77b",
+      "updated_at": "2026-11-20T10:50:57Z"
+    },
+    {
+      "number": 222,
+      "title": "Extend VBA string conformance and reconcile current Office work [skip ci]",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "head": "codex/vba-string-conformance-20261120",
+      "head_sha": "7be53768501bb6df426eeb9d05c921e393ded02f",
+      "base_sha": "f9128aba7ace7f981746b7282d463cc25a1e6d87",
+      "updated_at": "2026-11-20T04:41:44Z"
+    },
+    {
+      "number": 221,
+      "title": "Add bounded mail attachments and reconcile current Office work",
+      "state": "closed",
+      "merged": true,
+      "draft": true,
+      "head": "work/mail-attachments-20261120",
+      "head_sha": "177f29d3f9450a58f41189b462b0814aad37e45c",
+      "base_sha": "3e5f44ae14926b8054b2e5c0558ce71477891a33",
+      "updated_at": "2026-11-20T10:50:58Z"
+    },
+    {
+      "number": 220,
+      "title": "Qualify the app-bundled macOS spaCy library for manual German grammar [skip ci]",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "head": "feat/spacy-macos-bundled-qualification-20261119",
+      "head_sha": "1441665236401e94ccf03ffa694c7434bb227ef3",
+      "base_sha": "3003272fc2bc1f77bdb1355aa7cb27356dfbc61b",
+      "updated_at": "2026-11-19T23:08:21Z"
+    },
+    {
+      "number": 219,
+      "title": "Extend VBA with dynamic arrays and reconcile current Office work",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "head": "codex/vba-dynamic-arrays-20261119",
+      "head_sha": "3003272fc2bc1f77bdb1355aa7cb27356dfbc61b",
+      "base_sha": "057fdb9325ec2f93d2ac0592217da8ad350b0664",
+      "updated_at": "2026-11-19T22:45:45Z"
+    },
+    {
+      "number": 218,
+      "title": "Extend Zotero tag discovery and source citation navigation",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "head": "codex/zotero-workflow-20261119",
+      "head_sha": "6626ad430a54122e4514cc2870fdcee18760682f",
+      "base_sha": "2170791c9250d72c9df31a065408365f9b50abaa",
+      "updated_at": "2026-11-19T22:45:46Z"
+    },
+    {
+      "number": 217,
+      "title": "Add To/Cc/Bcc and Reply all; reconcile concurrent fork work [skip ci]",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "head": "work/mail-continuation-20261119",
+      "head_sha": "fd17f6c4e0ffc22b71e52dcc7859fd95f72f30c7",
+      "base_sha": "88513f04cfbdec210340f2d70a674cf3f23e31c0",
+      "updated_at": "2026-11-19T22:45:46Z"
+    },
+    {
+      "number": 216,
+      "title": "Preserve mail reply threading and reconcile fork continuations",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "head": "work/mail-next-20261119",
+      "head_sha": "ab833975409abfb207f3a6a1a146183a4a5198fd",
+      "base_sha": "5715d56053e93dc11e8b5165bd13f8db2a1f3917",
+      "updated_at": "2026-11-19T22:45:46Z"
+    },
+    {
+      "number": 215,
+      "title": "Verify the saved spaCy setup before the first analysis [skip ci]",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "head": "fix/spacy-open-refresh-20261119",
+      "head_sha": "cc061e72bd167cdaf4a99d3c0b714f27cb93b2c8",
+      "base_sha": "9ceb994d8edce3989228f1244cda90ecc9884931",
+      "updated_at": "2026-11-19T19:53:18Z"
+    },
+    {
+      "number": 214,
+      "title": "Align bundled spaCy mode with NER state and the downloads manager [skip ci]",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "head": "fix/spacy-bundled-ner-20261119",
+      "head_sha": "dc93a176f8efc98feff9c25565fb036175793a54",
+      "base_sha": "4a4ea1f0d8c990cc74ce8f7233545a8a9dc0887c",
+      "updated_at": "2026-11-19T19:43:15Z"
+    },
+    {
+      "number": 213,
+      "title": "Bundle the spaCy runtime in the macOS app, register missing licences, harden the build [skip ci]",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "head": "fix/app-gaps-20261119",
+      "head_sha": "0e03878b028ec25ed3d84a790633433eafc3bede",
+      "base_sha": "d9bee6e507f6b631aee55bb8a89187119410847f",
+      "updated_at": "2026-11-19T19:43:15Z"
+    },
+    {
+      "number": 212,
+      "title": "Resume mail archive restores with durable destination checkpoints [skip ci]",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "head": "codex/mail-archive-resume-20261119",
+      "head_sha": "482fbd99dd8d3d5aff7d773fa87454f4d324028d",
+      "base_sha": "756885bc9cb1612f8d400889f8d3020cec9ad945",
+      "updated_at": "2026-11-19T22:45:45Z"
+    },
+    {
+      "number": 211,
+      "title": "Make Layout precise and compact, fix dark appearance, clarify document modes",
+      "state": "closed",
+      "merged": true,
+      "draft": true,
+      "head": "codex/crispoffice-layout-theme-20261119",
+      "head_sha": "cacae8569814e4cb81f58d358734d31431f102be",
+      "base_sha": "9f41e0427734d815b19149eba5eabef202f78ba6",
+      "updated_at": "2026-11-19T22:45:45Z"
+    },
+    {
+      "number": 210,
+      "title": "Extend VBA macros with bounded arrays and For Each; reconcile fork work",
+      "state": "closed",
+      "merged": true,
+      "draft": true,
+      "head": "codex/vba-arrays-foreach-20261119",
+      "head_sha": "3abffb94dcf33a2766a4579d296d0ef09c9e35cd",
+      "base_sha": "9f41e0427734d815b19149eba5eabef202f78ba6",
+      "updated_at": "2026-11-19T22:45:45Z"
+    },
+    {
+      "number": 209,
+      "title": "Restore exported mail archives with verified originals and provenance",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "head": "codex/mail-archive-restore-20261119",
+      "head_sha": "6275d21246040e03f6264b27171992c88d1474a2",
+      "base_sha": "cf59efa99232a3fd26cf21ce7f2382402e576f9b",
+      "updated_at": "2026-11-19T19:43:14Z"
+    },
+    {
+      "number": 208,
+      "title": "[skip ci] MacBook build integration: resolve temp folder in Studio directory-import tests",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "head": "integrate/macbook-build-20261119",
+      "head_sha": "de9d21f9014060c14263ce17fe323d5fdb063d11",
+      "base_sha": "0c29b5d8a0a92148dcd95f3282b4d43c462be20d",
+      "updated_at": "2026-11-19T17:40:45Z"
+    },
+    {
+      "number": 207,
+      "title": "Extend bounded VBA macros with conditional loops and Select Case",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "head": "codex/vba-control-flow-20261119",
+      "head_sha": "dde2b56066746223b2b313cbfb0ce8dba55dc6bd",
+      "base_sha": "0d87cebea232c3edf55c4f4a22f63684dbe5a3f5",
+      "updated_at": "2026-11-19T19:43:14Z"
+    },
+    {
+      "number": 206,
+      "title": "Improve CrispOffice ribbons and native desktop menus [skip ci]",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "head": "codex/crispoffice-gui-20261119",
+      "head_sha": "bba11ff1b23b2e8c0cdc0d872ce31394ada83bf2",
+      "base_sha": "0c29b5d8a0a92148dcd95f3282b4d43c462be20d",
+      "updated_at": "2026-11-19T19:43:14Z"
+    },
+    {
+      "number": 205,
+      "title": "Add resumable bulk mail export and recursive archive import [skip ci]",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "head": "codex/mail-archive-portability-20261119",
+      "head_sha": "82b20dc8b52d0b95efeff590c6023ed84704fa7a",
+      "base_sha": "304d4bff45da24f22cee420ec464882d7c7ce516",
+      "updated_at": "2026-11-19T17:40:21Z"
+    },
+    {
+      "number": 204,
+      "title": "Extend VBA macros with reusable procedures and scalar functions",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "head": "codex/vba-procedures-20261119",
+      "head_sha": "3db248be978b24d0693d1133505d9be200fd1256",
+      "base_sha": "81ae98688860599f118748afca19bdb2ec45da37",
+      "updated_at": "2026-11-19T17:40:22Z"
+    },
+    {
+      "number": 203,
+      "title": "Add durable mail archiving, indexing and search [skip ci]",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "head": "codex/mail-archive-search-20261119",
+      "head_sha": "aa9fb9de14347ed69182be90f13c99a443a0ecbb",
+      "base_sha": "e00ca1495551ffaf61dd9b3ee7770f8bfde7e897",
+      "updated_at": "2026-11-19T17:40:21Z"
+    },
+    {
+      "number": 202,
+      "title": "Extend Office macros with a bounded Excel VBA compiler",
+      "state": "closed",
+      "merged": false,
+      "draft": true,
+      "head": "codex/vba-excel-macros",
+      "head_sha": "d98c8ae020a60715fbb02f5332b2f3414fb6805b",
+      "base_sha": "3c1764f5ff8bf9f89e090ef4e04e3142c4ccf90a",
+      "updated_at": "2026-11-19T17:40:22Z"
+    },
+    {
+      "number": 201,
+      "title": "Add Office macros with shared MCP commands and language adapters",
+      "state": "closed",
+      "merged": true,
+      "draft": true,
+      "head": "codex/mcp-aligned-macros",
+      "head_sha": "3c1764f5ff8bf9f89e090ef4e04e3142c4ccf90a",
+      "base_sha": "e00ca1495551ffaf61dd9b3ee7770f8bfde7e897",
+      "updated_at": "2026-11-19T17:40:21Z"
+    },
+    {
+      "number": 200,
+      "title": "Add Gmail, Microsoft 365 and additional CrispOffice mail providers",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "head": "codex/mail-providers-20261119",
+      "head_sha": "4b2ad7995c1ddff052232c21749d847701d77f96",
+      "base_sha": "07b815a79d011f88b048900e22aa6544f44f2758",
+      "updated_at": "2026-11-19T14:55:59Z"
+    },
+    {
+      "number": 199,
+      "title": "Automatic per-paragraph language identification (bundled CLD3)",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "head": "feat/paragraph-language-id-20261119",
+      "head_sha": "107155216505590e2eabfb93fc67cb908ad6173d",
+      "base_sha": "07b815a79d011f88b048900e22aa6544f44f2758",
+      "updated_at": "2026-11-19T14:56:01Z"
+    },
+    {
+      "number": 198,
+      "title": "Complete Office validation recovery and reconcile language identification",
+      "state": "closed",
+      "merged": true,
+      "draft": true,
+      "head": "codex/office-validation-recovery-20261119",
+      "head_sha": "623057111a9179552eb02b21a753a1728de9905d",
+      "base_sha": "07b815a79d011f88b048900e22aa6544f44f2758",
+      "updated_at": "2026-11-19T17:40:21Z"
+    },
+    {
+      "number": 197,
+      "title": "Add on-premises Exchange EWS support",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "head": "feat/ews-on-premises",
+      "head_sha": "f20b3c61d28918cd75526c64852c41fae943acf3",
+      "base_sha": "0336116d6a07a16f5b46dbe07583b47ee9dcec83",
+      "updated_at": "2026-11-19T17:40:22Z"
+    },
+    {
+      "number": 196,
+      "title": "Arabic morphology: binary proofing bundle and compact ABI",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "head": "feat/arabic-morph-binary-20261119",
+      "head_sha": "555fc99fdeb8ef7f3043513203cb16b243a4a9d7",
+      "base_sha": "0336116d6a07a16f5b46dbe07583b47ee9dcec83",
+      "updated_at": "2026-11-19T17:40:22Z"
+    },
+    {
+      "number": 195,
+      "title": "Complete Office evidence reconciliation on current main [skip ci]",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "head": "codex/office-final-union-20261119",
+      "head_sha": "d42626a4c0742a955ab27b700c7138fd69d99298",
+      "base_sha": "4c25c0455cee867db4cfad0f737cb886f01c1936",
+      "updated_at": "2026-11-19T13:04:56Z"
+    },
+    {
+      "number": 194,
+      "title": "Complete Office reconciliation and preserve Mail and Word workflows",
+      "state": "closed",
+      "merged": false,
+      "draft": true,
+      "head": "codex/office-finish-20261119",
+      "head_sha": "e77d0dab229bc0ea4c195a164771d3c44809f0f0",
+      "base_sha": "b070e228a749e22cc8ce2098029a76ab5fb8eccb",
+      "updated_at": "2026-11-19T13:27:43Z"
+    },
+    {
+      "number": 193,
+      "title": "Finish Office continuation and qualify merged Mail, Word and Arabic work [skip ci]",
+      "state": "closed",
+      "merged": true,
+      "draft": true,
+      "head": "codex/office-continuation-20261119",
+      "head_sha": "4cf5831d01ace0ae804a176ec82ff2d27ce7fac3",
+      "base_sha": "b070e228a749e22cc8ce2098029a76ab5fb8eccb",
+      "updated_at": "2026-11-19T13:27:31Z"
+    },
+    {
+      "number": 192,
+      "title": "Complete Office reconciliation after modular Mail integration",
+      "state": "closed",
+      "merged": true,
+      "draft": true,
+      "head": "codex/office-resume-main-20261119",
+      "head_sha": "0601d2790c7636bc02d53430f6e99f471e8ac83e",
+      "base_sha": "666e9a2ea46f7aeaaa1d01b60aabea0c2fe6f0fd",
+      "updated_at": "2026-11-19T13:27:58Z"
+    },
+    {
+      "number": 191,
+      "title": "Reconcile Office and Mail continuations with preserved validation evidence [skip ci]",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "head": "codex/office-mail-continuation-20261119",
+      "head_sha": "1d762d4c369795175b55a4ecb9c44efd29f041b1",
+      "base_sha": "666e9a2ea46f7aeaaa1d01b60aabea0c2fe6f0fd",
+      "updated_at": "2026-11-19T12:55:23Z"
+    },
+    {
+      "number": 190,
+      "title": "Arabic proofing: clean-room morphology-based (T2) grammar rules",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "head": "feat/arabic-rules-t2-20261119",
+      "head_sha": "13d87f0f151a1f20e81402788c54beb9ada8f030",
+      "base_sha": "aae486af799381ccc4fbd702db582792d70e3002",
+      "updated_at": "2026-11-19T13:29:43Z"
+    },
+    {
+      "number": 189,
+      "title": "Arabic morphology: native Camel Morph MSA analyzer behind ArabicMorphology (noprob, user download)",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "head": "feat/arabic-morph-integration-20261119",
+      "head_sha": "37b8a738d7701b5e61ed282c0d9a25e6a73f97f9",
+      "base_sha": "e76635f325260aa1eba4ae2094187af743a50a11",
+      "updated_at": "2026-11-19T13:29:34Z"
+    },
+    {
+      "number": 188,
+      "title": "Arabic morphology analyzer interface [skip ci]",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "head": "feat/arabic-morph-interface-20261119",
+      "head_sha": "d2ec54dbfc6e42ea929b872fd0b36c751d4a7a33",
+      "base_sha": "4f80ba522ea9a1d029d24aaed99fe8ecfaee8330",
+      "updated_at": "2026-11-19T13:29:36Z"
+    },
+    {
+      "number": 187,
+      "title": "Arabic proofing: expand the T1 word and phrase lists (clean-room)",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "head": "feat/arabic-lists-20261119",
+      "head_sha": "217f2abb07eb690d52fd0d4cc513032aaa7f4105",
+      "base_sha": "9160eb0dba211225c85242114989631c0d14fb72",
+      "updated_at": "2026-11-19T13:29:32Z"
+    },
+    {
+      "number": 186,
+      "title": "Fix Studio example widget tests after CrispOffice rebrand; apply Show notes setting",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "head": "fix/studio-example-tests-20261119",
+      "head_sha": "98f7044252015e1d6a3bcddeb4e0133f6c88dbc6",
+      "base_sha": "00014577265d1f95d4c016159029510d3a10804b",
+      "updated_at": "2026-11-19T13:31:41Z"
+    },
+    {
+      "number": 185,
+      "title": "Arabic proofing in Studio: w:bidi routing, dictionary download UI, merged findings, packaging [skip ci]",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "head": "feat/arabic-host-wiring-20261119",
+      "head_sha": "e42ca64ba0dd4c687a56947ba0122cf53a15b843",
+      "base_sha": "b559f6c764fbfac143f593e89ddc1096ad8b5c4e",
+      "updated_at": "2026-11-19T13:29:31Z"
+    },
+    {
+      "number": 184,
+      "title": "Arabic proofing: clean-room T1 rules from the abstract spec (32 rule ids)",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "head": "feat/arabic-rules-t1-20261119",
+      "head_sha": "c19ac32d1e443ce277ccc80f7c80107e33fb40c3",
+      "base_sha": "f705d4ba70607ae630331847fc21986aa501b0f6",
+      "updated_at": "2026-11-19T13:29:41Z"
+    },
+    {
+      "number": 183,
+      "title": "Complete bounded Mail UID discovery and reconcile current Office work",
+      "state": "closed",
+      "merged": true,
+      "draft": true,
+      "head": "codex/mail-uid-pagination-20261119",
+      "head_sha": "f2b0769cf5533fd4e7ee335adab532c98c677857",
+      "base_sha": "00014577265d1f95d4c016159029510d3a10804b",
+      "updated_at": "2026-11-19T13:27:13Z"
+    },
+    {
+      "number": 182,
+      "title": "Clean-room Arabic rule specification [skip ci]",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "head": "docs/arabic-rule-spec-20261119",
+      "head_sha": "0cee7ea9701e2d75e1385f5e16ded69cbaf0e387",
+      "base_sha": "f1330255f6199acb10c473c0fc02209b1152b558",
+      "updated_at": "2026-11-19T13:28:49Z"
+    },
+    {
+      "number": 181,
+      "title": "Optional Hunspell spelling with a user-downloaded Arabic dictionary (AyaSpell) [skip ci]",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "head": "feat/hunspell-engine-20261119",
+      "head_sha": "906296bad785daaf7be85ec838361bee18ca88a9",
+      "base_sha": "f7117a493055008a72e6e16713dd67a4f7c2ad39",
+      "updated_at": "2026-11-19T13:30:04Z"
+    },
+    {
+      "number": 180,
+      "title": "Arabic proofing: roadmap, AyaSpell bundle, authored Arabic writing rules [skip ci]",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "head": "feat/arabic-rules-20261119",
+      "head_sha": "8717d8515f0f07875e0d7ed7a0ad73fa319cb594",
+      "base_sha": "f059065fa622da8cee7824d66d29a2aff414d529",
+      "updated_at": "2026-11-19T13:29:39Z"
+    },
+    {
+      "number": 179,
+      "title": "Complete Office integration, TLS cleanup and Arabic bundle controls",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "head": "codex/office-main-integration-20261119",
+      "head_sha": "5ec15bdd4c5016b320f0fe8edff36b1da69fa44f",
+      "base_sha": "f059065fa622da8cee7824d66d29a2aff414d529",
+      "updated_at": "2026-11-19T07:58:17Z"
+    },
+    {
+      "number": 178,
+      "title": "Reconcile Office branches, harden Mail sync and add Arabic rules [skip ci]",
+      "state": "closed",
+      "merged": false,
+      "draft": true,
+      "head": "codex/office-main-sync-20261119",
+      "head_sha": "2122066f0eccf06a6f2c3c523c5715a7233bb95d",
+      "base_sha": "f059065fa622da8cee7824d66d29a2aff414d529",
+      "updated_at": "2026-11-19T08:02:06Z"
+    },
+    {
+      "number": 177,
+      "title": "Reconcile current Office branches and qualify TLS cleanup [skip ci]",
+      "state": "closed",
+      "merged": true,
+      "draft": true,
+      "head": "codex/office-current-reconciliation-20261119",
+      "head_sha": "3f0277c8c4d317c3607e3bd6a2bf0e9aaf73bd3d",
+      "base_sha": "f059065fa622da8cee7824d66d29a2aff414d529",
+      "updated_at": "2026-11-19T07:58:17Z"
+    },
+    {
+      "number": 176,
+      "title": "Arabic proofing roadmap and published AyaSpell bundle [skip ci]",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "head": "feat/arabic-proofing-20261119",
+      "head_sha": "16cbbebdcf7781564658cc7636473c7d04846b38",
+      "base_sha": "55e262ef269634a0d618c0b5102dc9be5430a5f3",
+      "updated_at": "2026-11-19T13:29:37Z"
+    },
+    {
+      "number": 175,
+      "title": "Review Notes inline and navigate exact header/footer stories [skip ci]",
+      "state": "closed",
+      "merged": true,
+      "draft": true,
+      "head": "codex/document-review-notes-20261118",
+      "head_sha": "c320f28347f1cd292b848be2cf72998d41f8a6ac",
+      "base_sha": "690e6ac8a1f7d8f5c8d4bea69d989a6728f3b27e",
+      "updated_at": "2026-11-19T13:27:06Z"
+    },
+    {
+      "number": 174,
+      "title": "Integrate Office, Notes, Zotero and qualified native Mail [skip ci]",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "head": "codex/offline-thesaurus-20261118",
+      "head_sha": "59e0a7c232e7380021a8bda4477999205da0f8ae",
+      "base_sha": "690e6ac8a1f7d8f5c8d4bea69d989a6728f3b27e",
+      "updated_at": "2026-11-19T13:28:03Z"
+    },
+    {
+      "number": 173,
+      "title": "Complete Office reconciliation and harden native Mail [skip ci]",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "head": "codex/zotero-word-parity-20261118",
+      "head_sha": "b0a9bd3f1b46ac89021d1b7e49c32980ca4d181e",
+      "base_sha": "d41000336c84b6ebfe6b35f7f8335140b5d46038",
+      "updated_at": "2026-11-19T13:28:43Z"
+    },
+    {
+      "number": 172,
+      "title": "Finish Office reconciliation and Arabic Unicode fixes [skip ci]",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "head": "codex/mail-reader-20261118",
+      "head_sha": "0dc05c17844249b479357ea0ec5f8f02252a530f",
+      "base_sha": "b655b8a37fddc874bd42a453c371eed6253e82d8",
+      "updated_at": "2026-11-19T13:27:12Z"
+    },
+    {
+      "number": 171,
+      "title": "English and French local analysis (native spaCy v2 bundles) + incoming integration [skip ci]",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "head": "integrate/spacy-en-fr-20261118",
+      "head_sha": "637b67c58482e40a3244c590ce77c08b9fc2740e",
+      "base_sha": "4fbc8741f314af67592517595c760ba3036dedba",
+      "updated_at": "2026-11-19T13:31:57Z"
+    },
+    {
+      "number": 170,
+      "title": "Enable Zotero citations in Notes and native keyboard commands",
+      "state": "closed",
+      "merged": true,
+      "draft": true,
+      "head": "codex/zotero-note-workflow-20261118",
+      "head_sha": "ff1518517dd9f67e214ff56fe7eef06349f5223a",
+      "base_sha": "b5d4df516db210a6f8ea566b290988dab5652630",
+      "updated_at": "2026-11-18T19:26:47Z"
+    },
+    {
+      "number": 169,
+      "title": "Complete offline English and German thesaurus with local qualification",
+      "state": "closed",
+      "merged": true,
+      "draft": true,
+      "head": "codex/offline-thesaurus-20261118",
+      "head_sha": "4600c0ebc9ac5e6acabd92935821d1c15315f2c1",
+      "base_sha": "4fbc8741f314af67592517595c760ba3036dedba",
+      "updated_at": "2026-11-18T20:49:23Z"
+    },
+    {
+      "number": 168,
+      "title": "Improve Zotero citation commands, source selection and document unlinking [skip ci]",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "head": "codex/zotero-wordlike-20261118",
+      "head_sha": "6c993f7406037ba462c6aea32e7e6afeebd28c03",
+      "base_sha": "a77d67d04dfe4e1d61bc3dae5c96d5d9d3a4f1f4",
+      "updated_at": "2026-11-19T13:28:44Z"
+    },
+    {
+      "number": 167,
+      "title": "Save final Zotero citation workflow validation and audit evidence [skip ci]",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "head": "codex/zotero-citation-workflow-20261118",
+      "head_sha": "a40a26663f7a2c6b7fb8de91540fd04b9875ed9c",
+      "base_sha": "c32efc44a082ccc55249561f2e7e07b406b0ad74",
+      "updated_at": "2026-11-19T13:28:29Z"
+    },
+    {
+      "number": 166,
+      "title": "Reuse cited Zotero sources and edit citation source lists [skip ci]",
+      "state": "closed",
+      "merged": true,
+      "draft": true,
+      "head": "codex/zotero-citation-workflow-20261118",
+      "head_sha": "3668ed92829dfa012ec5b129943a86738ebb7992",
+      "base_sha": "3a36ae46ea99ceaa1c212ae5cfe08bc501bb0229",
+      "updated_at": "2026-11-18T17:01:06Z"
+    },
+    {
+      "number": 165,
+      "title": "Inspect stored Zotero references throughout the workspace [skip ci]",
+      "state": "closed",
+      "merged": false,
+      "draft": false,
+      "head": "codex/zotero-offline-workflow-20261118",
+      "head_sha": "8d74db5da2992e60c7f17b58cd354b874a1ce33a",
+      "base_sha": "fb1fd4dc3edda824c3e043c035dbfad1f0fe0869",
+      "updated_at": "2026-11-19T13:28:33Z"
+    },
+    {
+      "number": 164,
+      "title": "Improve Zotero import search and offline reference copying [skip ci]",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "head": "codex/zotero-continuation-20261118",
+      "head_sha": "fb1fd4dc3edda824c3e043c035dbfad1f0fe0869",
+      "base_sha": "f383c826205e321eda3ed3bdbcd584e9a2d4da14",
+      "updated_at": "2026-11-19T13:28:30Z"
+    },
+    {
+      "number": 163,
+      "title": "spaCy follow-up: opt-in NER and published macOS arm64 capsule pins [skip ci]",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "head": "integrate/spacy-ner-macos-followup-20261118",
+      "head_sha": "ce4d3d19a21eae96a473291ffb9f47ac3be6a74c",
+      "base_sha": "5588726c705700ab8ab08c34472e0f88d059cf29",
+      "updated_at": "2026-11-19T13:31:59Z"
+    },
+    {
+      "number": 162,
+      "title": "Add in-editor writing, change, and comment review",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "head": "codex/document-review-20261118",
+      "head_sha": "4600c0ebc9ac5e6acabd92935821d1c15315f2c1",
+      "base_sha": "4fbc8741f314af67592517595c760ba3036dedba",
+      "updated_at": "2026-11-19T13:27:03Z"
+    },
+    {
+      "number": 161,
+      "title": "Add Zotero reference details and selection review [skip ci]",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "head": "codex/zotero-workspace-20261118",
+      "head_sha": "acfa3c2bf543debd2fff518304ab514ab677418b",
+      "base_sha": "1e07cb852766f8651815138785be74c64a09ddc0",
+      "updated_at": "2026-11-19T13:28:46Z"
+    },
+    {
+      "number": 160,
+      "title": "Improve native spelling across soft hyphens and short accented words [skip ci]",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "head": "codex/native-spelling-continuation-20261118",
+      "head_sha": "8cbdb9d9a05ff7f0e795efe0ee7848b196f424a3",
+      "base_sha": "1e07cb852766f8651815138785be74c64a09ddc0",
+      "updated_at": "2026-11-19T13:27:17Z"
+    },
+    {
+      "number": 159,
+      "title": "Distribute native German spaCy from Hugging Face and wire setup, analysis and manual grammar into Studio [skip ci]",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "head": "integrate/native-spacy-distribution-20261118",
+      "head_sha": "2292548eb69de2dbb5240ab9da59256f362137c6",
+      "base_sha": "1ffcf91a3443caf9a6e8b45a3e6cab3f041831ae",
+      "updated_at": "2026-11-18T12:33:57Z"
+    },
+    {
+      "number": 158,
+      "title": "Add Zotero tag filtering on reconciled current main [skip ci]",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "head": "codex/zotero-tags-20261118",
+      "head_sha": "5dd3eb7c1434f0c1063290d5698fa5c760c201e2",
+      "base_sha": "1ffcf91a3443caf9a6e8b45a3e6cab3f041831ae",
+      "updated_at": "2026-11-19T13:28:41Z"
+    },
+    {
+      "number": 157,
+      "title": "Improve native spelling shortlists and Unicode correction guards [skip ci]",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "head": "codex/native-spelling-quality-20261118",
+      "head_sha": "9fc211f6c72be9495767bd7cacfd8df51abf2fad",
+      "base_sha": "1ffcf91a3443caf9a6e8b45a3e6cab3f041831ae",
+      "updated_at": "2026-11-19T13:27:19Z"
+    },
+    {
+      "number": 156,
+      "title": "Improve Zotero catalog search and connected citation aliases [skip ci]",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "head": "codex/zotero-capabilities-20261118",
+      "head_sha": "f4aa218c87293527b3e2b7514500a28d13bd8f70",
+      "base_sha": "c8eca37d1639ac1d20efb83ba2e9da51981a3ad4",
+      "updated_at": "2026-11-19T13:28:27Z"
+    },
+    {
+      "number": 155,
+      "title": "Improve native spelling and reconcile current Office work [skip ci]",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "head": "codex/native-spelling-20261118",
+      "head_sha": "536ee2086ce46ab629d4d77144d1ca22a43e3c19",
+      "base_sha": "c60fce9c37ca960eb64dd06c7ffc55b2fdbb2ed7",
+      "updated_at": "2026-11-19T13:27:15Z"
+    },
+    {
+      "number": 154,
+      "title": "Fix civil-date boundaries and complete local Office qualification",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "head": "codex/office-local-qualification-20261118",
+      "head_sha": "295752ff93b24bafc510e60197b62faa647e2aa3",
+      "base_sha": "482e08176dea6bd8f5fc80d1c0064d96b712db43",
+      "updated_at": "2026-11-19T13:27:46Z"
+    },
+    {
+      "number": 153,
+      "title": "Continue W7 spaCy packaging from the completed grammar qualification",
+      "state": "closed",
+      "merged": false,
+      "draft": true,
+      "head": "feat/native-spacy-w7-20261118",
+      "head_sha": "2e013f26c7d4db54ecabe2c955117cbce5379408",
+      "base_sha": "20026ff49ac37391e2a1fd0947560a587f2f7332",
+      "updated_at": "2026-11-19T13:30:07Z"
+    },
+    {
+      "number": 152,
+      "title": "Reconcile Office union qualification and frame bookmarks",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "head": "integrate/office-union-150",
+      "head_sha": "da9c956ec5d65c0e5a9f9ea84c2b0bca98e824a0",
+      "base_sha": "34dc6b6806869570e9ec342e4d7ee0d6951c0ba6",
+      "updated_at": "2026-11-19T13:31:55Z"
+    },
+    {
+      "number": 151,
+      "title": "Support calendar-relative conditional periods",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "head": "feat/ods-time-period-conditions",
+      "head_sha": "7ef09f2408f467c65427700e65907531ecb26acb",
+      "base_sha": "4b2b4e78839d2997a583b7ab1346e2fa537a8ac4",
+      "updated_at": "2026-11-17T22:05:17Z"
+    },
+    {
+      "number": 150,
+      "title": "Complete local Office union qualification and preserve recovery evidence",
+      "state": "closed",
+      "merged": false,
+      "draft": true,
+      "head": "codex/office-union-resume-20261118",
+      "head_sha": "6d97fedccde17244a917ee7d3372adebe5494089",
+      "base_sha": "4b2b4e78839d2997a583b7ab1346e2fa537a8ac4",
+      "updated_at": "2026-11-19T13:28:01Z"
+    },
+    {
+      "number": 149,
+      "title": "Reconcile Office union and finish ODT boundary qualification",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "head": "integrate/office-union-148",
+      "head_sha": "3abf8f43b0e79c10271bbd046f391e462b8fe6b9",
+      "base_sha": "bb5556e8cc4cb73e2c668b5319a2844a20c6c50c",
+      "updated_at": "2026-11-17T21:32:16Z"
+    },
+    {
+      "number": 148,
+      "title": "Reconcile recent Office work and finish local qualification",
+      "state": "closed",
+      "merged": false,
+      "draft": true,
+      "head": "codex/office-union-qualification-20261117",
+      "head_sha": "e3831cdde529aa0c2368845cd72c1b9b65154665",
+      "base_sha": "0ff7d23929e4640af6c1d57f87c7ac71b73d2ed4",
+      "updated_at": "2026-11-17T21:32:27Z"
+    },
+    {
+      "number": 147,
+      "title": "Reconcile ODT field, bookmark and column-break fidelity",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "head": "integrate/odt-column-boundary-144",
+      "head_sha": "cee6e2632f891a3fe21c5c02d6bf508805973051",
+      "base_sha": "0ff7d23929e4640af6c1d57f87c7ac71b73d2ed4",
+      "updated_at": "2026-11-19T13:31:53Z"
+    }
+  ],
+  "upstream": [
+    {
+      "ref": "refs/heads/ci/flutter-workspace",
+      "sha": "aca2f66941832bd0b19b436baeab1656a1b7de98"
+    },
+    {
+      "ref": "refs/heads/cursor/class-certificates-2db8",
+      "sha": "f45099688e7a3f67a1302efdb442830d052f2240"
+    },
+    {
+      "ref": "refs/heads/cursor/cloud-agent-1790580069020-0rk1h",
+      "sha": "9930be8df44ffe117fb22778c514eea0ee73ce21"
+    },
+    {
+      "ref": "refs/heads/main",
+      "sha": "15c5d29b63fb17a93c7fb3426a8fd4d95a32f1ba"
+    }
+  ],
+  "prior_manifest": {
+    "path": "docs/validation/office-vba-continuation-20261120/integration/final-inclusion.json",
+    "ref": "d46d4ef394ed7cafd40bc266c793f8c0df6ec57f",
+    "summary": {
+      "earlier_branch_count": 25,
+      "earlier_branches": {
+        "historically_superseded_equivalent": 9,
+        "ancestor": 16
+      },
+      "earlier_pull_request_count": 241,
+      "earlier_pull_requests": {
+        "ancestor": 227,
+        "historically_superseded_equivalent": 14
+      },
+      "final_live_branch_count": 16,
+      "final_live_branches": {
+        "historically_superseded_equivalent": 9,
+        "ancestor": 7
+      },
+      "final_live_pull_request_count": 244,
+      "final_live_pull_requests": {
+        "ancestor": 230,
+        "historically_superseded_equivalent": 14
+      },
+      "historical_proof_count": 14,
+      "historical_full_tree_matches": 13,
+      "historical_changed_path_matches": 14,
+      "upstream_head_count": 4,
+      "upstream_all_ancestors": true,
+      "five_refreshed_heads_all_ancestors": true,
+      "original_three_heads_all_ancestors": true,
+      "final_three_snapshot_heads_all_ancestors": true,
+      "all_live_snapshot_refs_accounted_for": true,
+      "acceptance_inputs_exact_to_080": true,
+      "final_delta_paths": 18,
+      "final_delta_exact_to_captured_head": 17,
+      "intentional_final_delta_paths": [
+        "packages/quds_office_editor/example/lib/studio_downloads_manager.dart"
+      ],
+      "unexpected_incoming_differences": 0,
+      "failure_count": 0
+    }
+  },
+  "recent_unintegrated_branches": [
+    {
+      "branch": "feat/downloads-manager-redesign-20261120",
+      "sha": "84d02025fade09c80f3f58942b466f4522eb4434",
+      "merge_base": "e59b8918db508da46039a943080dc4b7a5c7a0bb",
+      "commits": [
+        {
+          "sha": "0d7bb0f64ed8b2dfea5e06f1c69d7dc4c113ebd9",
+          "subject": "wip: font-pack tests, Downloads title, before screenshots [skip ci]",
+          "parents": [
+            "d886ee8eb985f34c2ce5a02cc6044d6f88132bf6"
+          ]
+        },
+        {
+          "sha": "48939dce4648e79024887b7891d05af8c6949376",
+          "subject": "Show font-pack descriptions; add after screenshots",
+          "parents": [
+            "0d7bb0f64ed8b2dfea5e06f1c69d7dc4c113ebd9"
+          ]
+        },
+        {
+          "sha": "84d02025fade09c80f3f58942b466f4522eb4434",
+          "subject": "Merge remote-tracking branch 'origin/main' into feat/downloads-manager-redesign-20261120",
+          "parents": [
+            "48939dce4648e79024887b7891d05af8c6949376",
+            "e59b8918db508da46039a943080dc4b7a5c7a0bb"
+          ]
+        }
+      ],
+      "files": [
+        {
+          "path": "docs/validation/downloads-manager-20261120/after/narrow-dark-rows.png",
+          "blob": "9c3b059b9e711fb29ccab91cb0ef4baf3dfc8365",
+          "status": "added",
+          "changes": 0
+        },
+        {
+          "path": "docs/validation/downloads-manager-20261120/after/narrow-dark.png",
+          "blob": "f76963428543e8112a767170062336821edbab98",
+          "status": "added",
+          "changes": 0
+        },
+        {
+          "path": "docs/validation/downloads-manager-20261120/after/narrow-light-rows.png",
+          "blob": "c94756105757f773fa39cbb1fb804029fb1b7e5f",
+          "status": "added",
+          "changes": 0
+        },
+        {
+          "path": "docs/validation/downloads-manager-20261120/after/narrow-light.png",
+          "blob": "46b888f954c7600c13ebccf140c26ab04e66b1ac",
+          "status": "added",
+          "changes": 0
+        },
+        {
+          "path": "docs/validation/downloads-manager-20261120/after/narrow-rtl-dark-rows.png",
+          "blob": "90ad4744ce95e467dc34c8d3de63d8aa6ce77bb9",
+          "status": "added",
+          "changes": 0
+        },
+        {
+          "path": "docs/validation/downloads-manager-20261120/after/narrow-rtl-dark.png",
+          "blob": "fc4e424f0a45b9938f8688186210db5dffcb2c01",
+          "status": "added",
+          "changes": 0
+        },
+        {
+          "path": "docs/validation/downloads-manager-20261120/after/wide-dark-rows.png",
+          "blob": "3a8df7037cba1f6ab587c87aaa51aead75e0c5f9",
+          "status": "added",
+          "changes": 0
+        },
+        {
+          "path": "docs/validation/downloads-manager-20261120/after/wide-dark.png",
+          "blob": "220292f0f60241c7785180f6c7f57c1bca1010ee",
+          "status": "added",
+          "changes": 0
+        },
+        {
+          "path": "docs/validation/downloads-manager-20261120/after/wide-german-rows.png",
+          "blob": "dc8aae34b8f1937f01d40dfac3fb9cfc9177cc3f",
+          "status": "added",
+          "changes": 0
+        },
+        {
+          "path": "docs/validation/downloads-manager-20261120/after/wide-german.png",
+          "blob": "0f058d02fbd6ea97e99dce36cf4afa29475be538",
+          "status": "added",
+          "changes": 0
+        },
+        {
+          "path": "docs/validation/downloads-manager-20261120/after/wide-light-rows.png",
+          "blob": "4d642db18fbf87bd4cdb9d5787d961456b65e3d9",
+          "status": "added",
+          "changes": 0
+        },
+        {
+          "path": "docs/validation/downloads-manager-20261120/after/wide-light.png",
+          "blob": "b99ff0b57cddba762dbc3ff16c9e110afda4ca3e",
+          "status": "added",
+          "changes": 0
+        },
+        {
+          "path": "docs/validation/downloads-manager-20261120/after/wide-rtl-rows.png",
+          "blob": "0183981e4bb2318f696bb99931195cb6eb7b40c8",
+          "status": "added",
+          "changes": 0
+        },
+        {
+          "path": "docs/validation/downloads-manager-20261120/after/wide-rtl.png",
+          "blob": "ebf968c7d85b8d1fa4736c27871435748867fd96",
+          "status": "added",
+          "changes": 0
+        },
+        {
+          "path": "docs/validation/downloads-manager-20261120/before/narrow-dark.png",
+          "blob": "84ed2d0999abb9e1b7c72f358dd9580b963641bb",
+          "status": "added",
+          "changes": 0
+        },
+        {
+          "path": "docs/validation/downloads-manager-20261120/before/narrow-light.png",
+          "blob": "53b437685d19cb97b87ae812d5f4bb0861b52109",
+          "status": "added",
+          "changes": 0
+        },
+        {
+          "path": "docs/validation/downloads-manager-20261120/before/narrow-rtl-dark.png",
+          "blob": "8fb66eb1575e9468b4b466be16a64224aee221fd",
+          "status": "added",
+          "changes": 0
+        },
+        {
+          "path": "docs/validation/downloads-manager-20261120/before/wide-dark.png",
+          "blob": "95b43b3abe892367be01194f3cd158791813eac6",
+          "status": "added",
+          "changes": 0
+        },
+        {
+          "path": "docs/validation/downloads-manager-20261120/before/wide-german.png",
+          "blob": "162c4f4e986a53dadbdbaafc2ec2db23cd1c69d3",
+          "status": "added",
+          "changes": 0
+        },
+        {
+          "path": "docs/validation/downloads-manager-20261120/before/wide-light.png",
+          "blob": "162c4f4e986a53dadbdbaafc2ec2db23cd1c69d3",
+          "status": "added",
+          "changes": 0
+        },
+        {
+          "path": "docs/validation/downloads-manager-20261120/before/wide-rtl.png",
+          "blob": "c2aefb67f70af7011243f3c408d564969d497717",
+          "status": "added",
+          "changes": 0
+        },
+        {
+          "path": "packages/quds_office_editor/example/lib/studio_download_catalog.dart",
+          "blob": "33c2b04afc99c08bc8db9fab26fe02f5dc1d0c45",
+          "status": "added",
+          "changes": 416
+        },
+        {
+          "path": "packages/quds_office_editor/example/lib/studio_download_strings.dart",
+          "blob": "dac9e1409040181606e5846230b8b2e2ddc5805e",
+          "status": "added",
+          "changes": 236
+        },
+        {
+          "path": "packages/quds_office_editor/example/lib/studio_downloads_manager.dart",
+          "blob": "50a66ac11cb5923cd7ec57c106818063ea8167c8",
+          "status": "modified",
+          "changes": 941
+        },
+        {
+          "path": "packages/quds_office_editor/example/lib/studio_hunspell_setup.dart",
+          "blob": "2dec31cb4e31898f99d133e74eba616f9bd07ad6",
+          "status": "modified",
+          "changes": 60
+        },
+        {
+          "path": "packages/quds_office_editor/example/lib/studio_spacy_setup.dart",
+          "blob": "3bfbe63a12a3a703aae5506dfecf4b78eb0a782b",
+          "status": "modified",
+          "changes": 37
+        },
+        {
+          "path": "packages/quds_office_editor/example/lib/suite_workspace.dart",
+          "blob": "406ef1cf1d5460b5348e6d2151544a287ac99e3b",
+          "status": "modified",
+          "changes": 6
+        },
+        {
+          "path": "packages/quds_office_editor/example/test/studio_downloads_capture_test.dart",
+          "blob": "6c13a0f337f1a7c8745b86e24c5c848fe267ef6d",
+          "status": "added",
+          "changes": 108
+        },
+        {
+          "path": "packages/quds_office_editor/example/test/studio_downloads_layout_test.dart",
+          "blob": "f1991e293231c8f742b1d9874dd7b7737ecec891",
+          "status": "added",
+          "changes": 442
+        },
+        {
+          "path": "packages/quds_office_editor/example/test/studio_downloads_manager_test.dart",
+          "blob": "7d538533f2a21f0013b5f7c0e05f5ec7c9560dad",
+          "status": "modified",
+          "changes": 33
+        },
+        {
+          "path": "packages/quds_office_editor/example/test/support/studio_download_fakes.dart",
+          "blob": "f9976e755ad729e6339c8fe8563ff9a7eaa69dd1",
+          "status": "added",
+          "changes": 266
+        }
+      ]
+    },
+    {
+      "branch": "fix/mail-credential-stores-chrome-20261120",
+      "sha": "95bf6340400d8e16c4ef318ca6873f06fa300bc6",
+      "merge_base": "d95e814af9556dcea448ba5673e0ba4dc81007d0",
+      "commits": [
+        {
+          "sha": "95bf6340400d8e16c4ef318ca6873f06fa300bc6",
+          "subject": "Add selectable Mail credential stores, multiple accounts and shared workspace chrome [skip ci]",
+          "parents": [
+            "d95e814af9556dcea448ba5673e0ba4dc81007d0"
+          ]
+        }
+      ],
+      "files": [
+        {
+          "path": "docs/validation/mail-credentials-chrome-20261120/README.md",
+          "blob": "8e8be736a05b646d6f8aafb0731c147606e95889",
+          "status": "added",
+          "changes": 58
+        },
+        {
+          "path": "packages/quds_mail_ui/lib/src/reader/message_view.dart",
+          "blob": "bbfedc796817cdb4383020aabe974f042f657cbb",
+          "status": "modified",
+          "changes": 475
+        },
+        {
+          "path": "packages/quds_mail_ui/lib/src/reader/selection_surface.dart",
+          "blob": "fc63c0013335d8d8c1ec4f55a12f85eeae9eeff0",
+          "status": "modified",
+          "changes": 35
+        },
+        {
+          "path": "packages/quds_mail_ui/test/reader_theme_scroll_test.dart",
+          "blob": "2f3f8a2574a270c36d66dfe378a0701a3b0b44c5",
+          "status": "added",
+          "changes": 76
+        },
+        {
+          "path": "packages/quds_office_editor/example/lib/credentials/README.md",
+          "blob": "598459f9d6a12bb9a1f985f47b736377ceb7a200",
+          "status": "added",
+          "changes": 8
+        },
+        {
+          "path": "packages/quds_office_editor/example/lib/credentials/credential_storage_diagnostics.dart",
+          "blob": "fa9712686ba47b53c304ff4e3f65c90d150d1a2d",
+          "status": "added",
+          "changes": 96
+        },
+        {
+          "path": "packages/quds_office_editor/example/lib/credentials/encryption_service.dart",
+          "blob": "3f8e997d2fa25e669fb8aa70a79fb4eeb12232ae",
+          "status": "added",
+          "changes": 125
+        },
+        {
+          "path": "packages/quds_office_editor/example/lib/credentials/log_service.dart",
+          "blob": "8bf80d9f8990e69c05b77743412ff865bb0c3081",
+          "status": "added",
+          "changes": 170
+        },
+        {
+          "path": "packages/quds_office_editor/example/lib/credentials/macos_keychain_lock_settings.dart",
+          "blob": "0991391540a8be1a47e458f8904f177d47778263",
+          "status": "added",
+          "changes": 51
+        },
+        {
+          "path": "packages/quds_office_editor/example/lib/credentials/native_system.dart",
+          "blob": "3e66d4584a2eae8c5d94c3b7efa8606e6efaa4b9",
+          "status": "added",
+          "changes": 1
+        },
+        {
+          "path": "packages/quds_office_editor/example/lib/credentials/native_system_io.dart",
+          "blob": "0844caca16ae23ea0bc3a8eeeeaea7255d77c039",
+          "status": "added",
+          "changes": 208
+        },
+        {
+          "path": "packages/quds_office_editor/example/lib/credentials/native_system_stub.dart",
+          "blob": "9d939a6d3d7e911bf3f34d9ab435845f77f77207",
+          "status": "added",
+          "changes": 15
+        },
+        {
+          "path": "packages/quds_office_editor/example/lib/credentials/secure_storage_file_io.dart",
+          "blob": "7d0f2738f27d51ded0239be6996a08fa8d3737f4",
+          "status": "added",
+          "changes": 364
+        },
+        {
+          "path": "packages/quds_office_editor/example/lib/credentials/secure_storage_macos_keychain.dart",
+          "blob": "d39baf1aa600d9a0d2f6391858343dab7ea658fb",
+          "status": "added",
+          "changes": 218
+        },
+        {
+          "path": "packages/quds_office_editor/example/lib/credentials/secure_storage_service.dart",
+          "blob": "756df92b80d93fd3f1383d535a81d9cd4444f795",
+          "status": "added",
+          "changes": 221
+        },
+        {
+          "path": "packages/quds_office_editor/example/lib/credentials/secure_storage_web.dart",
+          "blob": "ec26e6d19778fb572fe050534426ff43856eab67",
+          "status": "added",
+          "changes": 397
+        },
+        {
+          "path": "packages/quds_office_editor/example/lib/credentials/utils/async_lock.dart",
+          "blob": "f36da530319da874666d63b65b5b34ade3945b6b",
+          "status": "added",
+          "changes": 23
+        },
+        {
+          "path": "packages/quds_office_editor/example/lib/credentials/web_crypto_factory_io.dart",
+          "blob": "8ac9ee316126f985444d96354b37544da327d067",
+          "status": "added",
+          "changes": 3
+        },
+        {
+          "path": "packages/quds_office_editor/example/lib/credentials/web_crypto_provider.dart",
+          "blob": "92e95b557b5b909e4c137b0df1d96a2df3d1368f",
+          "status": "added",
+          "changes": 68
+        },
+        {
+          "path": "packages/quds_office_editor/example/lib/studio_credential_settings.dart",
+          "blob": "93fcb522ce2b0c26f45b8a6254d55fc2953763e4",
+          "status": "added",
+          "changes": 193
+        },
+        {
+          "path": "packages/quds_office_editor/example/lib/studio_credential_storage.dart",
+          "blob": "7a9efcfff2255fa96a7d0ad7ea58dfd65aa420c8",
+          "status": "added",
+          "changes": 116
+        },
+        {
+          "path": "packages/quds_office_editor/example/lib/studio_mail_credentials.dart",
+          "blob": "948e5f19514a61e6da108cefcbf2c9427b47a854",
+          "status": "modified",
+          "changes": 126
+        },
+        {
+          "path": "packages/quds_office_editor/example/lib/studio_mail_native.dart",
+          "blob": "6d60582ddf4a1bf8803483ce2b5dc422578844a2",
+          "status": "modified",
+          "changes": 353
+        },
+        {
+          "path": "packages/quds_office_editor/example/lib/studio_mail_strings.dart",
+          "blob": "de7ca20e8f54dea074100f04d5b4a66ec4df18ab",
+          "status": "modified",
+          "changes": 18
+        },
+        {
+          "path": "packages/quds_office_editor/example/lib/studio_mail_web.dart",
+          "blob": "7f766fbaa0f9e45e0ba3a08d52cba199de0be425",
+          "status": "modified",
+          "changes": 20
+        },
+        {
+          "path": "packages/quds_office_editor/example/lib/studio_strings.dart",
+          "blob": "3766b2512f56cb0d3b18622e2c0f1f1a8d77d7fa",
+          "status": "modified",
+          "changes": 6
+        },
+        {
+          "path": "packages/quds_office_editor/example/lib/suite_workspace.dart",
+          "blob": "c008799b4713f0a272cc46bcf11a3e3ccd43914f",
+          "status": "modified",
+          "changes": 69
+        },
+        {
+          "path": "packages/quds_office_editor/example/macos/Flutter/GeneratedPluginRegistrant.swift",
+          "blob": "c15b9bb28255e48ede8dcdc4e0885d21edbfdd35",
+          "status": "modified",
+          "changes": 2
+        },
+        {
+          "path": "packages/quds_office_editor/example/macos/Runner/AppDelegate.swift",
+          "blob": "ac8f394902c6a21a9977fb6a40917e712437c7aa",
+          "status": "modified",
+          "changes": 787
+        },
+        {
+          "path": "packages/quds_office_editor/example/macos/Runner/MainFlutterWindow.swift",
+          "blob": "271ebd6fed610a2f65c70a386215d29e292dbaee",
+          "status": "modified",
+          "changes": 2
+        },
+        {
+          "path": "packages/quds_office_editor/example/pubspec.yaml",
+          "blob": "a0ab1c9a7307ad56ae696b2e65a1e134d8d100ef",
+          "status": "modified",
+          "changes": 4
+        },
+        {
+          "path": "packages/quds_office_editor/example/test/studio_credential_selection_test.dart",
+          "blob": "171f01f18da462890e1398af55fe9bd65f7206e4",
+          "status": "added",
+          "changes": 99
+        },
+        {
+          "path": "packages/quds_office_editor/example/test/studio_layout_theme_test.dart",
+          "blob": "6c7931c62a0e14d471fb2ab040ea8db898c25471",
+          "status": "modified",
+          "changes": 177
+        },
+        {
+          "path": "packages/quds_office_editor/example/test/studio_mail_account_stores_test.dart",
+          "blob": "39252dcadf75d96d5908d3a601b5245b54cfe104",
+          "status": "added",
+          "changes": 100
+        },
+        {
+          "path": "packages/quds_office_editor/example/test/studio_mail_credentials_test.dart",
+          "blob": "52c1658c95997d55ec814e1bc5de4e63076a882a",
+          "status": "modified",
+          "changes": 2
+        },
+        {
+          "path": "packages/quds_office_editor/example/tool/build_macos_app.sh",
+          "blob": "8cebc58102a75134970311c32321aa3d37cae6ac",
+          "status": "modified",
+          "changes": 21
+        },
+        {
+          "path": "packages/quds_office_editor/example/tool/build_macos_local.sh",
+          "blob": "283dfb7b064c9b267b57635ae63a62f9e77c1ac7",
+          "status": "added",
+          "changes": 50
+        },
+        {
+          "path": "pubspec.lock",
+          "blob": "c677b8fbc9de6607a1c0af2608bec1c2d32fca6d",
+          "status": "modified",
+          "changes": 58
+        }
+      ]
+    },
+    {
+      "branch": "integrate/recent-pptx",
+      "sha": "4f5c153774ab7492430c2b68653c54e0c08dc2ad",
+      "merge_base": "e59b8918db508da46039a943080dc4b7a5c7a0bb",
+      "commits": [
+        {
+          "sha": "b6c278b1c153717d1c61cc34640182e2b601e886",
+          "subject": "Merge the grouped Downloads manager and add open font packs",
+          "parents": [
+            "9d49ed2a1d4e4039239c45350c5f1dc7074e2f42",
+            "8c6469851942dda8b117f327682d1dc9ac152e0d"
+          ]
+        },
+        {
+          "sha": "04d93c92042ba1fb83e1c514ca42bf3cca44ca09",
+          "subject": "Cover font packs in the grouped Downloads layout",
+          "parents": [
+            "b6c278b1c153717d1c61cc34640182e2b601e886"
+          ]
+        },
+        {
+          "sha": "4f5c153774ab7492430c2b68653c54e0c08dc2ad",
+          "subject": "Merge remote-tracking branch 'origin/main' into integrate/recent-pptx",
+          "parents": [
+            "04d93c92042ba1fb83e1c514ca42bf3cca44ca09",
+            "e59b8918db508da46039a943080dc4b7a5c7a0bb"
+          ]
+        }
+      ],
+      "files": [
+        {
+          "path": "packages/quds_office_editor/example/lib/studio_download_catalog.dart",
+          "blob": "e344eccd3bef59576727ee93a72f47bf328a3aea",
+          "status": "added",
+          "changes": 382
+        },
+        {
+          "path": "packages/quds_office_editor/example/lib/studio_download_strings.dart",
+          "blob": "26b224b7161a4a8f365380068490e141c372ad1a",
+          "status": "added",
+          "changes": 231
+        },
+        {
+          "path": "packages/quds_office_editor/example/lib/studio_downloads_manager.dart",
+          "blob": "fd8faf6c9e725861f0487a6276b9d6b1bfe642ea",
+          "status": "modified",
+          "changes": 941
+        },
+        {
+          "path": "packages/quds_office_editor/example/lib/studio_hunspell_setup.dart",
+          "blob": "2dec31cb4e31898f99d133e74eba616f9bd07ad6",
+          "status": "modified",
+          "changes": 60
+        },
+        {
+          "path": "packages/quds_office_editor/example/lib/studio_spacy_setup.dart",
+          "blob": "3bfbe63a12a3a703aae5506dfecf4b78eb0a782b",
+          "status": "modified",
+          "changes": 37
+        },
+        {
+          "path": "packages/quds_office_editor/example/lib/suite_workspace.dart",
+          "blob": "406ef1cf1d5460b5348e6d2151544a287ac99e3b",
+          "status": "modified",
+          "changes": 6
+        },
+        {
+          "path": "packages/quds_office_editor/example/test/studio_downloads_capture_test.dart",
+          "blob": "6c13a0f337f1a7c8745b86e24c5c848fe267ef6d",
+          "status": "added",
+          "changes": 108
+        },
+        {
+          "path": "packages/quds_office_editor/example/test/studio_downloads_layout_test.dart",
+          "blob": "16f65760bb67b36766a44aa0e9ee85e3d0d756f3",
+          "status": "added",
+          "changes": 395
+        },
+        {
+          "path": "packages/quds_office_editor/example/test/studio_downloads_manager_test.dart",
+          "blob": "7d538533f2a21f0013b5f7c0e05f5ec7c9560dad",
+          "status": "modified",
+          "changes": 33
+        },
+        {
+          "path": "packages/quds_office_editor/example/test/support/studio_download_fakes.dart",
+          "blob": "0a2be1976607bdb5d0e1035d88d05d3a26ecb2b8",
+          "status": "added",
+          "changes": 246
+        }
+      ]
+    },
+    {
+      "branch": "perf/incremental-layout-20261120",
+      "sha": "d661e024cf7607bd0c87d0c5b9f5dd581b02625e",
+      "merge_base": "e59b8918db508da46039a943080dc4b7a5c7a0bb",
+      "commits": [
+        {
+          "sha": "d661e024cf7607bd0c87d0c5b9f5dd581b02625e",
+          "subject": "Incremental Word relayout: resume at the first dirty block, splice the old tail on convergence [skip ci]",
+          "parents": [
+            "e59b8918db508da46039a943080dc4b7a5c7a0bb"
+          ]
+        }
+      ],
+      "files": [
+        {
+          "path": "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+          "blob": "a13ef911ecbd482ffb4f7aadafe8cd424973fa66",
+          "status": "modified",
+          "changes": 59
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/word/layout/word_incremental_layout.dart",
+          "blob": "2fc482f05b54052d205254b4798aeca68e3ea11d",
+          "status": "added",
+          "changes": 425
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/word/layout/word_layout.dart",
+          "blob": "6ebe704226f698a9fa69aa0c3b97746e9e440283",
+          "status": "modified",
+          "changes": 464
+        }
+      ]
+    },
+    {
+      "branch": "work/mail-accounts-20261120",
+      "sha": "a059c0249a25bef602640c8b8d504bd8da41c619",
+      "merge_base": "c8b5080ad3d33abda44275a9b3679514d7526c58",
+      "commits": [
+        {
+          "sha": "caca745d7ef88d83b756c5da8543ac034b00675a",
+          "subject": "Reconcile latest main and VBA compatibility fixes with Mail accounts [skip ci]",
+          "parents": [
+            "c8b5080ad3d33abda44275a9b3679514d7526c58",
+            "c028baf2491f701735a53552b4b3674914a4f830",
+            "b41add869e5118565935c995f6f5e9bb7437a670"
+          ]
+        },
+        {
+          "sha": "551e3bcabbb3969c9a223ef3be933067dbab08aa",
+          "subject": "Mail: distinguish saved account routes and preserve identity [skip ci]",
+          "parents": [
+            "caca745d7ef88d83b756c5da8543ac034b00675a"
+          ]
+        },
+        {
+          "sha": "a059c0249a25bef602640c8b8d504bd8da41c619",
+          "subject": "Mail: clarify account targets and close semantics test lifetime [skip ci]",
+          "parents": [
+            "551e3bcabbb3969c9a223ef3be933067dbab08aa"
+          ]
+        }
+      ],
+      "files": [
+        {
+          "path": "docs/roadmaps/mail/README.md",
+          "blob": "6d98ef28671c6f25327931fe958da59f17791d0f",
+          "status": "modified",
+          "changes": 4
+        },
+        {
+          "path": "docs/roadmaps/mail/remembered-accounts.md",
+          "blob": "31220e15ba0c613825d406ada21806a45e7b4950",
+          "status": "modified",
+          "changes": 29
+        },
+        {
+          "path": "docs/roadmaps/mail/status.md",
+          "blob": "ca76eda7a8a9fc63787ccaa2e99e45f798a5f549",
+          "status": "modified",
+          "changes": 38
+        },
+        {
+          "path": "docs/roadmaps/zotero/word-processor-parity.md",
+          "blob": "bc121d7a965fb3ad5f9abeee6de5ad8de209998f",
+          "status": "modified",
+          "changes": 4
+        },
+        {
+          "path": "docs/validation/mail-accounts-20261120/review.json",
+          "blob": "2e6c052a4c257ff741cc67b72d17cb9141535721",
+          "status": "added",
+          "changes": 29
+        },
+        {
+          "path": "docs/validation/office-vba-continuation-20261120/development/source-5cf0fb7b.json",
+          "blob": "5c34c28cf7d15569207a3aed96344a433dee8c75",
+          "status": "added",
+          "changes": 33
+        },
+        {
+          "path": "docs/validation/office-vba-continuation-20261120/development/source-5cf0fb7b.tar.gz",
+          "blob": "8c1238b57316f6f0e9fb17961f920f722e38700a",
+          "status": "added",
+          "changes": 0
+        },
+        {
+          "path": "docs/validation/zotero-note-targets-20261120/README.md",
+          "blob": "e94f8b547a5133f99b861b849bd084e3904e84d0",
+          "status": "modified",
+          "changes": 229
+        },
+        {
+          "path": "docs/validation/zotero-note-targets-20261120/analysis-followup.json",
+          "blob": "7366283dd54b67389c2e11adaf0685f520f2dfe3",
+          "status": "added",
+          "changes": 13
+        },
+        {
+          "path": "docs/validation/zotero-note-targets-20261120/analysis.json",
+          "blob": "f1cbfceeace2098b3c34d0dfd9c65ef38d296835",
+          "status": "added",
+          "changes": 191
+        },
+        {
+          "path": "docs/validation/zotero-note-targets-20261120/editor-analysis-evidence.tar.gz",
+          "blob": "428f9e95c33169a4505cebdde99865de4fc08821",
+          "status": "added",
+          "changes": 0
+        },
+        {
+          "path": "docs/validation/zotero-note-targets-20261120/editor-status.json",
+          "blob": "779d03d45520a55d8d20949aaefcee5c4482f27e",
+          "status": "added",
+          "changes": 78
+        },
+        {
+          "path": "docs/validation/zotero-note-targets-20261120/engine/invocation.json",
+          "blob": "ca64950ce15d76a4d12dfc9e248f31e93e42d75b",
+          "status": "added",
+          "changes": 8
+        },
+        {
+          "path": "docs/validation/zotero-note-targets-20261120/evidence-index.json",
+          "blob": "6f73812a9b2e2e1ce2dafec51591c4c748d9b5c3",
+          "status": "added",
+          "changes": 203
+        },
+        {
+          "path": "docs/validation/zotero-note-targets-20261120/format.json",
+          "blob": "84230c17828d673fc50fe7673831d2bab5526f6e",
+          "status": "added",
+          "changes": 49
+        },
+        {
+          "path": "docs/validation/zotero-note-targets-20261120/runtime-cleanup.json",
+          "blob": "3966e3ad2e7b2b21b340c167ccc76d552566e065",
+          "status": "added",
+          "changes": 10
+        },
+        {
+          "path": "docs/validation/zotero-note-targets-20261120/source-continuity.json",
+          "blob": "cec6cf974a93d5b4ff5aef38429d82dff480ad7e",
+          "status": "added",
+          "changes": 17
+        },
+        {
+          "path": "docs/validation/zotero-note-targets-20261120/validation-status.json",
+          "blob": "7bf88eb0dca0740066fa24732c3b4c976b0f776a",
+          "status": "added",
+          "changes": 71
+        },
+        {
+          "path": "docs/zotero-support.md",
+          "blob": "ba7313bfe5e44643314fde9a92c5abdfe09113fd",
+          "status": "modified",
+          "changes": 8
+        },
+        {
+          "path": "packages/quds_office_editor/example/lib/studio_mail_credentials.dart",
+          "blob": "7d899b0ea176df0ab969e72f16e33312b7791f41",
+          "status": "modified",
+          "changes": 61
+        },
+        {
+          "path": "packages/quds_office_editor/example/lib/studio_mail_native.dart",
+          "blob": "cf849b475df78cfeeb420b0551306ecb6b46c799",
+          "status": "modified",
+          "changes": 143
+        },
+        {
+          "path": "packages/quds_office_editor/example/lib/studio_mail_strings.dart",
+          "blob": "1165f7227328b50fe0d84b2cfa94e93e09710ec8",
+          "status": "modified",
+          "changes": 14
+        },
+        {
+          "path": "packages/quds_office_editor/example/test/studio_mail_account_catalog_test.dart",
+          "blob": "49e3405f8f9b21df6fbe91698555ffc727c159ce",
+          "status": "modified",
+          "changes": 121
+        },
+        {
+          "path": "packages/quds_office_editor/example/test/studio_mail_accounts_test.dart",
+          "blob": "8b9d68326b6e5a7b60fbc75a6dbf0d70c0f53ead",
+          "status": "modified",
+          "changes": 193
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/automation/office_vba_language.dart",
+          "blob": "5d0487241594ef6410e9f2a3788af73e887f63c8",
+          "status": "modified",
+          "changes": 27
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/automation/operations/slide_steps.dart",
+          "blob": "adb402535a0f136682a7dcb4309515f7367f738f",
+          "status": "modified",
+          "changes": 7
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/automation/operations/word_steps.dart",
+          "blob": "78c29e4ce2863817c6bd0c507e20560b1889c6d9",
+          "status": "modified",
+          "changes": 10
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/slide/anim/pml_motion_io.dart",
+          "blob": "e29f354491e8357b6d6cced8f1de550239f58609",
+          "status": "modified",
+          "changes": 104
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/slide/shapes/drawingml.dart",
+          "blob": "e018fc02354e6245652bbec8f9d20101f3692d3d",
+          "status": "modified",
+          "changes": 15
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/word/serial/word_property_io.dart",
+          "blob": "17cea17788cc14cd29fb8f8e1ceaf67db7c06468",
+          "status": "modified",
+          "changes": 3
+        },
+        {
+          "path": "packages/quds_office_engine/test/office_vba_powerpoint_layout_integration_test.dart",
+          "blob": "102935213f24ea09233f69fc09491373ba005d02",
+          "status": "modified",
+          "changes": 1174
+        },
+        {
+          "path": "packages/quds_office_engine/test/office_vba_powerpoint_layout_test.dart",
+          "blob": "3fddd8f896a09110d29b9d39335f0cb107b3c385",
+          "status": "modified",
+          "changes": 116
+        },
+        {
+          "path": "packages/quds_office_engine/test/office_vba_word_typography_integration_test.dart",
+          "blob": "024e797f496c85ffe8714df3c2efb62bc578777d",
+          "status": "modified",
+          "changes": 679
+        },
+        {
+          "path": "packages/quds_office_engine/test/office_vba_word_typography_test.dart",
+          "blob": "6314998589870ac17b2d8b9322d9bac860e4a5bf",
+          "status": "modified",
+          "changes": 98
+        },
+        {
+          "path": "packages/quds_office_engine/test/word_zotero_research_target_test.dart",
+          "blob": "9e88fa1a3c41b67ce4122c66d4342c55494250c8",
+          "status": "modified",
+          "changes": 72
+        },
+        {
+          "path": "packages/quds_office_engine/tool/macros/web_vba_office_layout_smoke.dart",
+          "blob": "16afc8d891d72d841b6ce75fee34c83fbd8cf952",
+          "status": "added",
+          "changes": 298
+        },
+        {
+          "path": "packages/quds_office_engine/tool/zotero/research_target_acceptance.dart",
+          "blob": "f2535ef1bfd9f36473e8bc0fe8ddac8326869245",
+          "status": "modified",
+          "changes": 12
+        }
+      ]
+    }
+  ],
+  "cautions": [
+    "GitHub compare file lists are merge-base diffs, not direct target-tree diffs; branches with multiple merge bases include already-integrated paths. Use exact local tree comparison and proper merge.",
+    "Historic equivalent branches must not be reintroduced blindly; prior manifest records accepted ancestors and byte identity.",
+    "Incremental layout branch has source changes but no new tests in its captured commit.",
+    "Incoming Mail account qualification is draft; inherited runtime claims do not establish execution for the combined source."
+  ],
+  "previous_pr_manifest_comparison": {
+    "prior_ref": "d46d4ef394ed7cafd40bc266c793f8c0df6ec57f",
+    "manifest": "docs/validation/office-vba-continuation-20261120/integration/final-inclusion.json",
+    "matched_unchanged_heads": 96,
+    "changed_or_new_heads": [
+      {
+        "number": 246,
+        "head": "d0c9007480ba518022836e017802875614e6205c"
+      },
+      {
+        "number": 245,
+        "head": "d46d4ef394ed7cafd40bc266c793f8c0df6ec57f"
+      },
+      {
+        "number": 243,
+        "head": "a059c0249a25bef602640c8b8d504bd8da41c619",
+        "previous": "c8b5080ad3d33abda44275a9b3679514d7526c58",
+        "priorDisposition": "ancestor"
+      },
+      {
+        "number": 242,
+        "head": "84d02025fade09c80f3f58942b466f4522eb4434",
+        "previous": "d886ee8eb985f34c2ce5a02cc6044d6f88132bf6",
+        "priorDisposition": "ancestor"
+      }
+    ]
+  }
+}

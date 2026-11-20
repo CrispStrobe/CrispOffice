@@ -397,6 +397,7 @@ MailArchiveRunReport _folderReport() => MailArchiveRunReport(
 void main() {
   for (final (tooltip, forward, withAttachments) in [
     (_strings.reply, false, false),
+    (_strings.replyAll, false, false),
     (_strings.forward, true, false),
     (_strings.mailForwardWithAttachments, true, true),
   ]) {
@@ -428,9 +429,7 @@ void main() {
         await tester.tap(find.text('First message'));
         await _pump(tester);
         expect(_reader(tester).decodedText, contains('Exact café body.'));
-        await tester.tap(
-          find.byTooltip(tooltip),
-        );
+        await tester.tap(find.byTooltip(tooltip));
         await _pump(tester);
 
         expect(find.byType(StudioMailComposeDialog), findsOneWidget);
@@ -512,7 +511,7 @@ void main() {
     );
 
     testWidgets(
-      '$tooltip rejects a message with no quotable body without composing',
+      '$tooltip handles an attachment-only message without inventing body text',
       (tester) async {
         final client = _Client();
         final raw = Uint8List.fromList(
@@ -536,8 +535,69 @@ void main() {
         await _pump(tester);
         await tester.tap(find.byTooltip(tooltip));
         await _pump(tester);
-        expect(find.text(_strings.mailPlainTextUnavailable), findsOneWidget);
+        if (withAttachments) {
+          expect(find.byType(StudioMailComposeDialog), findsOneWidget);
+          final draft = tester
+              .widget<StudioMailComposeDialog>(
+                find.byType(StudioMailComposeDialog),
+              )
+              .initialDraft!;
+          expect(draft.to, isEmpty);
+          expect(draft.attachments.items.single.name, 'opaque.bin');
+          expect(draft.attachments.items.single.content.bytes, [0, 1, 255]);
+          expect(draft.body, isNot(contains('AAH/')));
+          expect(client.sent, isEmpty);
+          await tester.ensureVisible(find.text(_strings.mailDraftSaveClose));
+          await tester.tap(find.text(_strings.mailDraftSaveClose));
+          await _pump(tester);
+        } else {
+          expect(find.text(_strings.mailPlainTextUnavailable), findsOneWidget);
+          expect(find.byType(StudioMailComposeDialog), findsNothing);
+        }
+        expect(client.sent, isEmpty);
+        await _close(tester);
+      },
+    );
+
+    testWidgets(
+      '$tooltip refuses a complete-looking HTML prefix from truncated MIME',
+      (tester) async {
+        final client = _Client();
+        final raw = Uint8List.fromList(
+          utf8.encode(
+            'From: writer@example.invalid\r\n'
+            'To: reader@example.invalid\r\n'
+            'Subject: Truncated HTML message\r\n'
+            'MIME-Version: 1.0\r\n'
+            'Content-Type: multipart/alternative; boundary=partial-html\r\n\r\n'
+            '--partial-html\r\n'
+            'Content-Type: text/html; charset=utf-8\r\n\r\n'
+            '<p>A complete-looking HTML prefix.</p>\r\n',
+          ),
+        );
+        final parsed = const QudsMimeCodec().parse(raw);
+        expect(parsed.status, MailParseStatus.partial);
+        expect(parsed.message!.body.plainText, isNull);
+        expect(
+          parsed.message!.body.html,
+          contains('A complete-looking HTML prefix.'),
+        );
+        final loader = _Loader(client)..onFetch = (_, _) async => raw;
+        await _open(tester, (_) => client, loaderFactory: (_) => loader);
+        await _connect(tester);
+        await tester.tap(find.text('First message'));
+        await _pump(tester);
+        await tester.tap(find.byTooltip(tooltip));
+        await _pump(tester);
         expect(find.byType(StudioMailComposeDialog), findsNothing);
+        expect(
+          find.text(
+            withAttachments
+                ? _strings.mailForwardAttachmentsUnavailable
+                : _strings.mailPlainTextUnavailable,
+          ),
+          findsOneWidget,
+        );
         expect(client.sent, isEmpty);
         await _close(tester);
       },
@@ -653,7 +713,10 @@ void main() {
       await tester.ensureVisible(find.text(_strings.mailDraftSaveClose));
       await tester.tap(find.text(_strings.mailDraftSaveClose));
       await _pump(tester);
-      expect(drafts.records.values.single.draft.attachments.items, hasLength(2));
+      expect(
+        drafts.records.values.single.draft.attachments.items,
+        hasLength(2),
+      );
       expect(drafts.records.values.single.submissionUncertain, isFalse);
       expect(client.sent, isEmpty);
 
@@ -683,7 +746,10 @@ void main() {
       expect(decoded.message!.envelope.inReplyTo, isNull);
       expect(decoded.message!.envelope.references, isEmpty);
       expect(decoded.message!.envelope.bcc, isEmpty);
-      expect(decoded.message!.envelope.to.single.address, 'forward@example.invalid');
+      expect(
+        decoded.message!.envelope.to.single.address,
+        'forward@example.invalid',
+      );
       expect(drafts.records, isEmpty);
       await _close(tester);
     },
@@ -695,10 +761,12 @@ void main() {
       final client = _Client();
       final raw = Uint8List.fromList(
         utf8.encode(
-          utf8.decode(_forwardWire()).replaceFirst(
-            'Content-Transfer-Encoding: base64',
-            'Content-Transfer-Encoding: x-private-transfer',
-          ),
+          utf8
+              .decode(_forwardWire())
+              .replaceFirst(
+                'Content-Transfer-Encoding: base64',
+                'Content-Transfer-Encoding: x-private-transfer',
+              ),
         ),
       );
       final parsed = const QudsMimeCodec().parse(raw);

@@ -1,0 +1,12 @@
+00:00 +0: [VM, Source] loading /workspace/scratch/f0616b02624b/word_incremental_layout_differential_test.dart
+00:00 +0: [VM, Source] same-height edits actually converge and reuse the tail
+00:00 +1: [VM, Source] seed 7 structures=false stays exact over 48 edits
+00:04 +2: [VM, Source] seed 43 structures=false stays exact over 48 edits
+00:08 +3: [VM, Source] seed 109 structures=false stays exact over 48 edits
+00:12 +4: [VM, Source] seed 7 structures=true stays exact over 48 edits
+00:18 +5: [VM, Source] seed 43 structures=true stays exact over 48 edits
+00:24 +6: [VM, Source] seed 109 structures=true stays exact over 48 edits
+00:29 +7: [VM, Source] notes endnote=false retain full-layout fallback
+00:29 +8: [VM, Source] notes endnote=true retain full-layout fallback
+00:29 +9: [VM, Source] discarded state and section-list changes use fresh flow
+00:30 +10: All tests passed!

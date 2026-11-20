@@ -1,0 +1,96 @@
+{
+  "schema": "quds-vba-expansion-refresh-review/v1",
+  "captured_inventory": "incoming-before-qualification.json",
+  "target": "40e6a71da76662e485fb406901b63b46b9b8909a",
+  "scope": "Read-only review of fetched captured refs. No runtime execution and no source edits.",
+  "summary": {
+    "branches": 24,
+    "pr_heads": 249,
+    "historical_equivalents_verified": 14,
+    "upstream_heads": 4,
+    "upstream_all_ancestors": true
+  },
+  "recommended_merge_order": [
+    {
+      "head": "0c2f09faf32cf5bdd2222cf73d0412abf954e260",
+      "branch": "work/mail-accounts-20261120",
+      "unique_obligations": [
+        "Preserve explicit fontPacks host override (already present).",
+        "Add safe font review lookup and no-op if host inventory item disappeared after rendering.",
+        "Retain explicit mutable FakeFontPacks inventory and three grouped/vanished/RTL widget regressions."
+      ],
+      "already_accepted_parents": [
+        "a059c0249a25bef602640c8b8d504bd8da41c619",
+        "3ffa599ff003a6e678260df1237b01887693e546",
+        "84d02025fade09c80f3f58942b466f4522eb4434",
+        "4f5c153774ab7492430c2b68653c54e0c08dc2ad"
+      ]
+    },
+    {
+      "head": "e6f70bffb3525b33616f0396e3d58c44432c5f7b",
+      "branch": "perf/incremental-layout-20261120",
+      "pr": 247,
+      "includes": [
+        "7e740a53d3fea4b6bd734537e89888b641a8b735",
+        "d5680c7066b971d67c335fe7cd9c4ab5c52b69a9"
+      ],
+      "unique_obligations": [
+        "6e0abf67 adds line-break cache for proven-clean top-level blocks with width/breaking/hyphenation/language environment matching, dirty neighboring blocks, wrapped-frame bypass, and breaksReused statistics.",
+        "0300bddc adds chrome-key-based Word workspace rebuild suppression with 400ms trailing refresh, proofing listener and direct status listener; adds benchmark workflow/documentation.",
+        "7e740a53 current main contains scoped keychain file grants, native Mail window titles, guarded selected backend/catalog migration, combined earlier reply-forward work, and isolated fixtures."
+      ],
+      "preservation_risks": [
+        "Engine layout source differs from the earlier independent qualification; rerun independent differential cases in final combined gate.",
+        "Workspace/editor changes need Flutter for execution; source review only here.",
+        "Keep main selected credential backend pinning, serialization, write verification, migration and account race guards while merging older Mail branch formatting."
+      ]
+    },
+    {
+      "head": "b2b7ec91e513b1773a8bd26775cde4fd87b738f8",
+      "branch": "work/mail-reply-forward-20261120",
+      "pr": 248,
+      "includes": [
+        "d5680c7066b971d67c335fe7cd9c4ab5c52b69a9",
+        "feffbfa437ee466a74801276fbeb178b548845e0",
+        "d6de5ef4707004d000fcf00935197e88fb0a4c1d"
+      ],
+      "unique_obligations": [
+        "Source MIME completeness is passed to HTML quotation; reject incomplete HTML quotations.",
+        "Admit complete attachment-only forwarding with an empty body without treating unsafe HTML as an empty body.",
+        "Retain all-or-none payload admission and Gmail/Microsoft 365/EWS recoverable forwarded-draft/provider host regressions.",
+        "Preserve later formatting and parity roadmap documentation."
+      ],
+      "preservation_risks": [
+        "Do not replace selected-store native Mail/chrome implementation wholesale with this older branch context; merge additive sourceStatus call changes into current main."
+      ]
+    },
+    {
+      "head": "03de5b6ad9eff4666c8e0963d1a6b059417951ed",
+      "branch": "codex/zotero-research-tables-20261120",
+      "pr": 249,
+      "unique_obligations": [
+        "824a2ca6 adds conservative equality of current line/frame prefix lengths before checkpoint convergence and two sequential fixed-height-table prefix regressions.",
+        "bce7bb65 adds bounded rectangular research-note tables, row-major citation/list ownership, native cell widths/fills, atomic detached insertion, note marker/separator preservation, and valid main-flow caret placement.",
+        "03de5b6a brackets direct/div-wrapped cell content to preserve leading/trailing soft breaks, and adds controller undo/cancel/stale-result cases."
+      ],
+      "preservation_risks": [
+        "This branch imports older d661e024 layout. Keep a66657ab/current shifted checkpoint page/lineDelta/frameDelta adjustment and value-based semantic fingerprint fixes.",
+        "Union prefix equality guards with the newer line-break cache.",
+        "Keep current controller relayout(localEdit: true), not older relayout() in the conflicting hunk.",
+        "Incoming author records runtime/analyzer/format execution blocked; these are unqualified until the final local gate."
+      ]
+    }
+  ],
+  "dependency_note": "The four minimal heads are mutually non-ancestors. Merging all four accounts for captured incoming work; e6f70bff also contains captured main. Recommended order minimizes old-source replacement risk, not a strict ancestry requirement.",
+  "required_final_engine_tests": [
+    "word_incremental_layout_differential_test.dart",
+    "word_incremental_layout_prefix_test.dart",
+    "word_incremental_layout_test.dart",
+    "word_zotero_note_table_test.dart",
+    "word_zotero_note_tables_integration_test.dart",
+    "word_zotero_add_note_test.dart",
+    "word_zotero_research_target_test.dart"
+  ],
+  "runtime_started": false,
+  "github_actions_queried_or_awaited": false
+}

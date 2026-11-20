@@ -1,0 +1,83 @@
+{
+  "schema": "quds.incoming-downloads-integration.v1",
+  "baseline": "f7bf155337b0ba77dc20c6be548ef38ac06c5c65",
+  "incoming": "4f5c153774ab7492430c2b68653c54e0c08dc2ad",
+  "already_integrated_newer_downloads": "84d02025fade09c80f3f58942b466f4522eb4434",
+  "method": "Read exact raw UTF-8 content at both commits for all ten changed paths returned by the captured branch comparison. Compare strings and enumerate line replacements. No workflow or CI endpoint called.",
+  "changed_paths": [
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_download_catalog.dart",
+      "byte_equal": false,
+      "source_diff_groups": 13,
+      "disposition": "Preserve newer semantically superseding implementation"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_download_strings.dart",
+      "byte_equal": false,
+      "source_diff_groups": 8,
+      "disposition": "Preserve newer semantically superseding implementation"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_downloads_manager.dart",
+      "byte_equal": false,
+      "source_diff_groups": 19,
+      "disposition": "Preserve current manager plus two incoming compatibility/defensive behaviors"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_hunspell_setup.dart",
+      "byte_equal": true,
+      "source_diff_groups": 0,
+      "disposition": "Retained unchanged"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_spacy_setup.dart",
+      "byte_equal": true,
+      "source_diff_groups": 0,
+      "disposition": "Retained unchanged"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/suite_workspace.dart",
+      "byte_equal": true,
+      "source_diff_groups": 0,
+      "disposition": "Retained unchanged"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_downloads_capture_test.dart",
+      "byte_equal": true,
+      "source_diff_groups": 0,
+      "disposition": "Retained unchanged"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_downloads_layout_test.dart",
+      "byte_equal": false,
+      "source_diff_groups": 15,
+      "disposition": "Preserve newer semantically superseding implementation"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_downloads_manager_test.dart",
+      "byte_equal": true,
+      "source_diff_groups": 0,
+      "disposition": "Retained unchanged"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/support/studio_download_fakes.dart",
+      "byte_equal": false,
+      "source_diff_groups": 4,
+      "disposition": "Preserve newer semantically superseding implementation"
+    }
+  ],
+  "differences": {
+    "catalog": "Current routes fonts through the common catalog, retains installed bytes, descriptions, OFL labels, final font group ordering and prerequisite behavior. Incoming ad hoc font list superseded.",
+    "strings": "Current retains translated font descriptions/status, explicit fontsUnavailable and isolated LTR prerequisite run; fontPack->fonts enum rename is internal and consistently applied.",
+    "manager": "Current retains installed-font Details/review/repair, font-host busy guards/progress/error, common RTL dialog direction and descriptions. Restore incoming wrapper fontPacks injection and stale-item safe return.",
+    "tests": "Newer tests include both font rows in every responsive/theme/RTL/catalog check, exact ordering, licences, review-before-install and removal, superseding single incoming font-row test.",
+    "fakes": "Newer two-pack fake covers installed and missing states plus removal and screenshot fixtures; earlier arbitrary fixed-inventory constructor no longer used by retained tests."
+  },
+  "preserved_narrow_changes": [
+    "Optional StudioFontPackHost? fontPacks on showStudioDownloadsManager forwards the supplied host or the existing default.",
+    "Capture selected font status before opening review; if host/item disappeared return without throwing while retaining Directionality wrapper."
+  ],
+  "resolved_manager_blob": "926e85320a6622cd0f16effe5a7f7ed1bdb05054",
+  "remote_readback": "exact source equality verified",
+  "qualification": "Source review only; unavailable execution environment prevents formatting/analyzer/Flutter execution. No claim of executed tests."
+}

@@ -1073,11 +1073,13 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
             ? buildStudioMailReplyAllDraft(
                 message,
                 sender: _sender,
+                sourceStatus: result.status,
                 truncationNotice: widget.strings.mailQuotedTextTruncated,
               )
             : buildStudioMailReplyDraft(
                 message,
                 forward: forward,
+                sourceStatus: result.status,
                 truncationNotice: widget.strings.mailQuotedTextTruncated,
                 forwardNotice: widget.strings.mailTextOnlyForward,
               ),

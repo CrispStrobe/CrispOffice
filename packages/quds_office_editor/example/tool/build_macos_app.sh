@@ -385,7 +385,12 @@ if [[ "${QUDS_SKIP_SPACY:-0}" != 1 ]]; then
     exit 1
   fi
 fi
-codesign "${SIGN_ARGS[@]}" --entitlements "$ENTITLEMENTS" "$SIGNED_APP"
+APP_IDENTITY_ARGS=()
+if [[ "$SIGN_MODE" != adhoc ]]; then
+  # Match local development builds so ordinary updates retain scoped grants.
+  APP_IDENTITY_ARGS=(--requirements "=designated => anchor apple generic and identifier \"$BUNDLE_ID\" and certificate leaf[subject.OU] = \"$TEAM_ID\"")
+fi
+codesign "${SIGN_ARGS[@]}" ${APP_IDENTITY_ARGS[@]+"${APP_IDENTITY_ARGS[@]}"} --entitlements "$ENTITLEMENTS" "$SIGNED_APP"
 
 log "Verify"
 codesign --verify --deep --strict --verbose=1 "$SIGNED_APP"
