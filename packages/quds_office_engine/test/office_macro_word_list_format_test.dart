@@ -441,4 +441,96 @@ void main() {
       expect(identical(doc.paragraphs.single.properties, before), isTrue);
     }
   });
+
+  for (final (label, extra) in <(String, String)>[
+    ('run formatting', '<w:rPr><w:b/></w:rPr>'),
+    ('suffix', '<w:suff w:val="nothing"/>'),
+    ('legal numbering', '<w:isLgl/>'),
+    ('legacy geometry', '<w:legacy w:legacy="1" w:legacySpace="99"/>'),
+  ]) {
+    test('default-marker $label conflict is refused before mutation', () {
+      final doc = _read(_fixture(numbering: ''));
+      native.applyStep(doc, {
+        'op': 'listDefault',
+        'paragraph': 0,
+        'numbered': false,
+      });
+      native.applyStep(doc, {'op': 'removeNumbers', 'paragraph': 0});
+      final part = doc.package!.getPart('/word/numbering.xml')!;
+      part.writeText(
+        part.readText().replaceFirst('</w:lvl>', '$extra</w:lvl>'),
+      );
+      final original = part.readText();
+      final properties = doc.paragraphs.single.properties;
+      expect(
+        () => native.applyStep(doc, {
+          'op': 'listDefault',
+          'paragraph': 0,
+          'numbered': false,
+        }),
+        throwsUnsupportedError,
+      );
+      expect(part.readText(), original);
+      expect(identical(doc.paragraphs.single.properties, properties), isTrue);
+    });
+  }
+
+  for (final (name, type, tag) in <(String, String, String)>[
+    ('header', OfficeContentTypes.wordHeader, 'hdr'),
+    ('footnotes', OfficeContentTypes.wordFootnotes, 'footnotes'),
+    ('comments', OfficeContentTypes.wordComments, 'comments'),
+  ]) {
+    test('unreferenced $name numbering IDs are reserved during allocation', () {
+      final doc = _read(_fixture(numbering: ''));
+      final xml =
+          '<w:$tag xmlns:w="$_w"><w:p><w:pPr><w:numPr><w:numId w:val="1"/></w:numPr></w:pPr></w:p></w:$tag>';
+      doc.package!.createPart(
+        '/word/unreferenced-$name.xml',
+        type,
+        utf8.encode(xml),
+      );
+      native.applyStep(doc, {
+        'op': 'listDefault',
+        'paragraph': 0,
+        'numbered': true,
+      });
+      expect(doc.paragraphs.single.properties.numId, isNot(1));
+      expect(
+        doc.package!.getPart('/word/unreferenced-$name.xml')!.readText(),
+        xml,
+      );
+    });
+  }
+
+  test('new unsaved header numbering IDs are reserved during allocation', () {
+    final doc = _read(_fixture(numbering: ''));
+    doc.sections.single.header.add(
+      WmlParagraph(properties: WmlParagraphProps(numId: 1)),
+    );
+    native.applyStep(doc, {
+      'op': 'listDefault',
+      'paragraph': 0,
+      'numbered': true,
+    });
+    expect(doc.paragraphs.single.properties.numId, isNot(1));
+    expect(doc.sections.single.header.single.properties.numId, 1);
+  });
+
+  for (final instruction in [r'LISTNUM\l 1', 'LISTNUM"LegalDefault"']) {
+    test(
+      'LISTNUM keyword boundary refuses $instruction without whitespace',
+      () {
+        final doc = _read(_fixture());
+        doc.paragraphs.single.inlines.add(
+          WmlRun(text: '1', fieldInstruction: instruction),
+        );
+        final before = doc.paragraphs.single.properties;
+        expect(
+          () => native.applyStep(doc, {'op': 'removeNumbers', 'paragraph': 0}),
+          throwsUnsupportedError,
+        );
+        expect(identical(doc.paragraphs.single.properties, before), isTrue);
+      },
+    );
+  }
 }

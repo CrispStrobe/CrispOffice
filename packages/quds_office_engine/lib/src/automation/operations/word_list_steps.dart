@@ -130,7 +130,9 @@ XmlElement _ensure(XmlElement parent, String name) {
 XmlElement _properties(WmlParagraph paragraph) {
   final original = paragraph.properties.sourcePropertiesXml;
   if (original != null && original.isNotEmpty) {
-    _checkProperties(_parseProperties(original));
+    final raw = _parseProperties(original);
+    _checkProperties(raw);
+    _one(raw, 'ind');
   }
   final source = WordSerializer().paragraphPropertiesXml(paragraph.properties);
   return _parseProperties(source);
@@ -352,6 +354,37 @@ class _NumberingSource {
       if (node.prefix == 'w' && node.namespaceUri != _w) {
         throw UnsupportedError('Misbound native numbering namespace.');
       }
+      if (const {
+            'abstractNum',
+            'num',
+            'abstractNumId',
+            'lvl',
+            'lvlOverride',
+            'numFmt',
+            'lvlText',
+            'lvlPicBulletId',
+            'numStyleLink',
+            'styleLink',
+          }.contains(node.localName) &&
+          node.namespaceUri != _w) {
+        throw UnsupportedError(
+          'Foreign numbering lookalikes are outside the native classification contract.',
+        );
+      }
+      if (node.namespaceUri == _w &&
+          node.attributes.any(
+            (attr) =>
+                const {
+                  'val',
+                  'ilvl',
+                  'numId',
+                  'abstractNumId',
+                }.contains(attr.localName) &&
+                attr.namespaceUri != _w &&
+                attr.prefix != 'xmlns',
+          )) {
+        throw UnsupportedError('Ambiguous foreign numbering attribute.');
+      }
       if (node.namespaceUri == OfficeNamespaces.mc &&
           node.localName == 'AlternateContent') {
         throw UnsupportedError(
@@ -481,10 +514,11 @@ class _NumberingSource {
     final used = <int>{
       ...abstracts.keys,
       ...instances.keys,
-      for (final p in document.paragraphs)
+      for (final p in _allParagraphs(document))
         if (p.properties.numId case final int id) id,
       for (final style in document.styles)
         if (style.numId case final int id) id,
+      ..._sourceNumberingReferences(package),
     };
     for (final entry in abstracts.entries) {
       final marker = _one(entry.value, 'name');
@@ -497,7 +531,10 @@ class _NumberingSource {
       for (final instance in instances.entries) {
         final ref = _one(instance.value, 'abstractNumId');
         if (ref == null || _value(ref, 'val') != '${entry.key}') continue;
-        if (_children(instance.value, 'lvlOverride').isNotEmpty) continue;
+        if (!_shape(instance.value, const {'numId'}, const {'abstractNumId'}) ||
+            !_shape(ref, const {'val'}, const {})) {
+          continue;
+        }
         return _PreparedNumbering(this, instance.key, changed: false);
       }
     }
@@ -541,15 +578,33 @@ class _NumberingSource {
   }
 
   bool _defaultShape(XmlElement definition, bool numbered) {
+    if (!_shape(
+      definition,
+      const {'abstractNumId'},
+      const {'multiLevelType', 'name', 'lvl'},
+    )) {
+      return false;
+    }
     final type = _one(definition, 'multiLevelType');
+    final name = _one(definition, 'name');
     final levels = _children(definition, 'lvl').toList();
     if (type == null ||
+        name == null ||
+        !_shape(type, const {'val'}, const {}) ||
+        !_shape(name, const {'val'}, const {}) ||
         _value(type, 'val') != 'singleLevel' ||
         levels.length != 1) {
       return false;
     }
     final level = levels.single;
-    if (_value(level, 'ilvl') != '0') return false;
+    if (_value(level, 'ilvl') != '0' ||
+        !_shape(
+          level,
+          const {'ilvl'},
+          const {'start', 'numFmt', 'lvlText', 'lvlJc', 'pPr'},
+        )) {
+      return false;
+    }
     for (final (key, expected) in <(String, String)>[
       ('start', '1'),
       ('numFmt', numbered ? 'decimal' : 'bullet'),
@@ -557,17 +612,95 @@ class _NumberingSource {
       ('lvlJc', 'left'),
     ]) {
       final node = _one(level, key);
-      if (node == null || _value(node, 'val') != expected) return false;
+      if (node == null ||
+          _value(node, 'val') != expected ||
+          !_shape(node, const {'val'}, const {})) {
+        return false;
+      }
     }
     final pp = _one(level, 'pPr');
     final indent = pp == null ? null : _one(pp, 'ind');
-    return indent != null &&
+    return pp != null &&
+        _shape(pp, const {}, const {'ind'}) &&
+        indent != null &&
+        _shape(indent, const {'left', 'hanging'}, const {}) &&
         _value(indent, 'left') == '360' &&
         _value(indent, 'hanging') == '180' &&
         _one(level, 'lvlPicBulletId') == null &&
         _one(definition, 'numStyleLink') == null &&
         _one(definition, 'styleLink') == null;
   }
+
+  // A marker is an identity hint, never permission to reuse a different native
+  // list. Compare the entire native semantic shape, retaining foreign metadata.
+  bool _shape(XmlElement node, Set<String> attributes, Set<String> children) {
+    final nativeAttributes = node.attributes
+        .where((a) => a.namespaceUri == _w)
+        .toList();
+    final nativeChildren = node.childElements
+        .where((c) => c.namespaceUri == _w)
+        .toList();
+    return nativeAttributes.length == attributes.length &&
+        nativeAttributes.every((a) => attributes.contains(a.localName)) &&
+        nativeChildren.length == children.length &&
+        nativeChildren.every((c) => children.contains(c.localName)) &&
+        nativeChildren.map((c) => c.localName).toSet().length ==
+            children.length;
+  }
+}
+
+Iterable<WmlParagraph> _allParagraphs(WmlDocument document) sync* {
+  yield* document.paragraphs;
+  for (final section in document.sections) {
+    for (final story in [
+      section.header,
+      section.footer,
+      section.firstHeader,
+      section.firstFooter,
+      section.evenHeader,
+      section.evenFooter,
+    ]) {
+      yield* WordTree.paragraphs(story);
+    }
+  }
+  for (final note in [...document.footnotes, ...document.endnotes]) {
+    yield* note.allParagraphs;
+  }
+  for (final comment in document.comments) {
+    yield* comment.paragraphs;
+  }
+}
+
+Set<int> _sourceNumberingReferences(OpcPackage package) {
+  final reserved = <int>{};
+  void reserve(String? value) {
+    final id = int.tryParse(value ?? '');
+    if (id != null && id >= 0 && id <= 2147483647) reserved.add(id);
+  }
+
+  for (final part in package.parts) {
+    final type = part.contentType;
+    if (!type.endsWith('+xml') ||
+        (!type.contains('wordprocessingml') && !type.contains('vnd.ms-word'))) {
+      continue;
+    }
+    final source = part.readText();
+    if (!source.contains('numId') && !source.contains('abstractNumId')) {
+      continue;
+    }
+    final reader = XmlPullReader(source);
+    while (reader.next()) {
+      if (reader.eventType != XmlEventType.startElement) continue;
+      // Reserve even namespace lookalikes conservatively: unmodeled source and
+      // older import projections must not acquire an unrelated new definition.
+      if (reader.localName == 'numId' || reader.localName == 'abstractNumId') {
+        reserve(reader.getAttribute('val'));
+      }
+      reserve(reader.getAttribute('numId'));
+      reserve(reader.getAttribute('abstractNumId'));
+    }
+  }
+  return reserved;
 }
 
 class _PreparedNumbering {
@@ -576,17 +709,18 @@ class _PreparedNumbering {
   final int id;
   final bool changed;
   void publish() {
-    if (!changed) return;
-    final xml = XmlDocument(root: source.root).toXmlString();
-    final part = source.package.getPart(source.uri);
-    if (part == null) {
-      source.package.createPart(
-        source.uri,
-        OfficeContentTypes.wordNumbering,
-        utf8.encode(xml),
-      );
-    } else {
-      part.writeText(xml);
+    if (changed) {
+      final xml = XmlDocument(root: source.root).toXmlString();
+      final part = source.package.getPart(source.uri);
+      if (part == null) {
+        source.package.createPart(
+          source.uri,
+          OfficeContentTypes.wordNumbering,
+          utf8.encode(xml),
+        );
+      } else {
+        part.writeText(xml);
+      }
     }
     if (!source.hasRelationship) {
       source.relationships.add(
@@ -600,7 +734,7 @@ class _PreparedNumbering {
 
 bool _listNum(String? instruction) =>
     instruction != null &&
-    RegExp(r'^\s*LISTNUM(?:\s|$)', caseSensitive: false).hasMatch(instruction);
+    RegExp(r'^\s*LISTNUM\b', caseSensitive: false).hasMatch(instruction);
 
 class _FieldScan {
   _FieldScan(this.touches);

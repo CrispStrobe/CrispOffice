@@ -278,7 +278,10 @@ New defaults use a native bullet or decimal scheme with a left indent of 18
 points, a hanging indent of 9 points and no first-line indent. They preserve the
 right indent and unrelated paragraph/run content. Imported numbering definitions
 are retained, new IDs avoid collisions, and only a validated Quds default scheme
-is reused. A matching toggle or `RemoveNumbers` writes an explicit native
+is reused. ID allocation reserves references in all live stories and stored Word
+XML, including unused/opaque source parts. A matching Quds marker with additional
+native semantics is refused instead of reusing a different scheme. A matching
+toggle or `RemoveNumbers` writes an explicit native
 numbering suppression, which survives style refresh and save/reopen, while
 retaining paragraph indentation. These defaults are Quds's defined host behavior;
 the adapter does not reproduce a user's customized Word list gallery or Word's
@@ -288,9 +291,19 @@ layout algorithms are not implemented.
 
 Classification uses native numbering IDs, abstract definitions, and the selected
 level/override, rather than visible labels or an assumption that ID 1 is a bullet.
-Missing or ambiguous native identities, unsupported linked/picture/outline
-numbering, and numbering-bearing markup-compatibility alternatives are refused
-before publication. Inheritance follows the existing Quds paragraph/default and
+Supported numeric formats are `decimal`, `decimalZero`, `upperRoman`, `lowerRoman`,
+`upperLetter`, `lowerLetter`, `ordinal`, `cardinalText`, `ordinalText`, `hex`, and
+`chicago`, with exactly one `%1` through `%9` placeholder in the selected level's
+label. Native `bullet` selects the bullet kind regardless of its glyph. Missing
+or ambiguous native identities and unsupported linked/picture/outline numbering
+are refused by the apply methods. A selected level override must supply a complete
+supported level; partial-override fallback is not introduced here. Duplicate or
+partial numbering properties without an explicit ID, foreign/misbound numbering
+lookalikes, tracked numbering, and numbering-bearing markup-compatibility alternatives are refused
+before mutation. Some source guards conservatively apply across the document,
+including its styles and alternative XML branches. `RemoveNumbers` does not
+classify the list kind and can suppress existing outline numbering. Inheritance
+follows the existing Quds paragraph/default and
 supported table-style layers; this does not add other conditional table regions.
 
 `RemoveNumbers NumberType:=wdNumberParagraph` removes paragraph numbering while
@@ -299,6 +312,10 @@ form additionally checks for `LISTNUM` fields and refuses if it cannot fulfill
 the requested removal without editing such fields. This includes split complex
 field instructions and fields spanning the selected paragraph. It never silently
 leaves a selected `LISTNUM` field behind while reporting an all-numbers removal.
+All-number removal also conservatively refuses any field-bearing alternative
+XML branch anywhere in stored Word parts and selected opaque/unbalanced fields
+whose removal cannot be determined. Paragraph-only removal preserves ordinary
+modeled fields and does not attempt to repair malformed field source.
 `wdNumberListNum = 2` is recognized but refused at compilation. The source adapter
 does not expose live list reads, `ListLevelNumber`, list templates/galleries,
 outline application, indent/outdent methods, or a document-wide list collection.
