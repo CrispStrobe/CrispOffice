@@ -1,0 +1,118 @@
+name: Incremental layout benchmark
+
+# Typing benchmark and the editor, engine and Studio suites, each on the
+# branch ("after") and on its merge base with main ("before"), on hosted
+# runners. The editor job lists failing test names so they can be compared
+# with the baseline (the editor suite has pre-existing golden failures, and
+# CI's editor job stops at analyze on main). See
+# docs/performance/incremental-layout-20261120.md.
+on:
+  workflow_dispatch:
+    inputs:
+      base:
+        description: Baseline commit ("before"); default = merge base with main
+        required: false
+        default: ''
+  push:
+    branches: ['perf/incremental-layout-*']
+
+jobs:
+  benchmark:
+    name: benchmark ${{ matrix.variant }} (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos-latest, ubuntu-latest]
+        variant: [before, after]
+    defaults:
+      run:
+        working-directory: packages/quds_office_editor/example
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Check out the baseline with the branch's benchmark
+        if: matrix.variant == 'before'
+        working-directory: .
+        env:
+          BASE: ${{ inputs.base }}
+        run: |
+          base="${BASE:-$(git merge-base HEAD origin/main)}"
+          cp packages/quds_office_editor/example/test/studio_typing_proofing_benchmark_test.dart "$RUNNER_TEMP/"
+          git checkout --quiet "$base"
+          cp "$RUNNER_TEMP/studio_typing_proofing_benchmark_test.dart" packages/quds_office_editor/example/test/
+          git log -1 --oneline
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          flutter-version: 3.47.8
+      - name: Resolve workspace
+        working-directory: .
+        run: flutter pub get
+      - name: Run benchmark (3 runs)
+        run: |
+          for run in 1 2 3; do
+            QUDS_TYPING_BENCHMARK=1 flutter test test/studio_typing_proofing_benchmark_test.dart 2>&1 \
+              | tee "$RUNNER_TEMP/run-$run.txt" | grep -E 'TYPING_BENCHMARK|Some tests failed|All tests passed'
+          done
+          {
+            echo "### ${{ matrix.variant }} on ${{ matrix.os }}"
+            echo '```'
+            grep -h TYPING_BENCHMARK "$RUNNER_TEMP"/run-*.txt
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+  suites:
+    name: ${{ matrix.suite }} suite ${{ matrix.variant }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        suite: [editor, engine, studio]
+        variant: [before, after]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Check out the baseline
+        if: matrix.variant == 'before'
+        env:
+          BASE: ${{ inputs.base }}
+        run: |
+          base="${BASE:-$(git merge-base HEAD origin/main)}"
+          git checkout --quiet "$base" && git log -1 --oneline
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          flutter-version: 3.47.8
+      - name: Resolve workspace
+        run: flutter pub get
+      - name: Test
+        run: |
+          case "${{ matrix.suite }}" in
+            editor) cd packages/quds_office_editor; cmd="flutter test --reporter expanded" ;;
+            engine) cd packages/quds_office_engine; cmd="dart test --reporter expanded" ;;
+            studio) cd packages/quds_office_editor/example; cmd="flutter test --reporter expanded" ;;
+          esac
+          set +e
+          $cmd > "$RUNNER_TEMP/out.txt" 2>&1
+          status=$?
+          set -e
+          tail -5 "$RUNNER_TEMP/out.txt"
+          grep -E '\[E\]$' "$RUNNER_TEMP/out.txt" \
+            | sed -E 's/^[0-9:]+ \+[0-9]+( ~[0-9]+)?( -[0-9]+)?: //; s/ \[E\]$//' \
+            | sort -u > "$RUNNER_TEMP/failures.txt"
+          {
+            echo "### ${{ matrix.suite }} ${{ matrix.variant }} (exit $status)"
+            echo '```'
+            tail -1 "$RUNNER_TEMP/out.txt"
+            echo "failing tests: $(wc -l < "$RUNNER_TEMP/failures.txt")"
+            cat "$RUNNER_TEMP/failures.txt"
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+          cp "$RUNNER_TEMP/failures.txt" "$GITHUB_WORKSPACE/failures-${{ matrix.suite }}-${{ matrix.variant }}.txt"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: failures-${{ matrix.suite }}-${{ matrix.variant }}
+          path: failures-${{ matrix.suite }}-${{ matrix.variant }}.txt

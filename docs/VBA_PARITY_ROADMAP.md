@@ -92,12 +92,27 @@ Flutter UI and installed Office hosts remain unexecuted. See the
 Full AllCaps rendering, paint provenance for Fill/Line writes, baseline text
 anchors and broader slideshow behavior remain separate work.
 
-### Next shared-language increment
+### Named helpers and further Word/PowerPoint formatting
 
-Add named arguments and optional parameters as a separate procedure milestone,
-with explicit omitted-argument/Missing semantics, declaration-time defaults,
-source-order evaluation, duplicate/unknown-name diagnostics, and conformance
-cases. Do not equate an omitted argument with explicit Empty or Null.
+The expansion adds case-insensitive named arguments and optional scalar
+`ByVal` parameters for declared module helpers. Supplied arguments evaluate in
+source order; defaults are checked in module scope, including unused helpers.
+An omitted optional Variant is distinct from Empty and Null and can be tested
+with bounded `IsMissing`. Named/omitted arguments on intrinsic or application
+members, optional objects, ByRef, and general Variant Error propagation remain
+unsupported. See the exact [argument contract](VBA_ARGUMENTS.md).
+
+Word adds typed Font/ParagraphFormat aliases and helpers, Paragraph.Format,
+explicit reading order, and single/1.5/double line-spacing presets. Granular
+spacing ownership preserves unedited native attributes and inheritance;
+foreign or nested layout properties remain opaque during projection.
+PowerPoint adds four precise text-frame margins, independent native ownership,
+and inset placement in PDF and the live model. Direct bodyPr values are
+projected; layout/master margin inheritance remains outside this rendering
+slice. The [expansion record](validation/office-vba-expansion-20261120/README.md)
+documents executed qualification separately from inherited or unexecuted work.
+
+### Next shared-language increments
 
 Keep multidimensional arrays and array parameter passing as separate increments
 with their own shape, ownership, aliasing and resource tests. Broader implicit
