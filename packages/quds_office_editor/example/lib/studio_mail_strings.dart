@@ -504,9 +504,9 @@ extension StudioMailFeedback on StudioStrings {
     'استخدام STARTTLS (المنفذان 143/587)',
   );
   String get rememberAccount => _mailText(
-    'Remember this account in the system keychain',
-    'Dieses Konto im Systemschlüsselbund speichern',
-    'حفظ هذا الحساب في سلسلة مفاتيح النظام',
+    'Remember this account in the selected credential store',
+    'Dieses Konto im gewählten Zugangsdaten-Speicher speichern',
+    'حفظ هذا الحساب في مخزن بيانات الاعتماد المحدد',
   );
   String get forgetAccount => _mailText(
     'Forget saved account',
@@ -520,13 +520,13 @@ extension StudioMailFeedback on StudioStrings {
   String get mailAccountForgetFailed => mailKeychainClearFailed;
 
   String get mailKeychainSaveFailed => _mailText(
-    'Connected, but the account could not be saved in the system keychain. This session remains available.',
-    'Verbunden, aber das Konto konnte nicht im Systemschlüsselbund gespeichert werden. Diese Sitzung bleibt verfügbar.',
-    'تم الاتصال، لكن تعذر حفظ الحساب في سلسلة مفاتيح النظام. تبقى هذه الجلسة متاحة.',
+    'Connected, but the account could not be saved in the selected credential store. This session remains available.',
+    'Verbunden, aber das Konto konnte nicht im gewählten Zugangsdaten-Speicher gespeichert werden. Diese Sitzung bleibt verfügbar.',
+    'تم الاتصال، لكن تعذر حفظ الحساب في مخزن بيانات الاعتماد المحدد. تبقى هذه الجلسة متاحة.',
   );
   String get mailKeychainClearFailed => _mailText(
-    'The saved account could not be removed from the system keychain. Try Forget saved account again.',
-    'Das gespeicherte Konto konnte nicht aus dem Systemschlüsselbund entfernt werden. „Gespeichertes Konto entfernen“ erneut versuchen.',
-    'تعذر إزالة الحساب المحفوظ من سلسلة مفاتيح النظام. حاول نسيان الحساب المحفوظ مجددًا.',
+    'The saved account could not be removed from the selected credential store. Try Forget saved account again.',
+    'Das gespeicherte Konto konnte nicht aus dem gewählten Zugangsdaten-Speicher entfernt werden. „Gespeichertes Konto entfernen“ erneut versuchen.',
+    'تعذر إزالة الحساب المحفوظ من مخزن بيانات الاعتماد المحدد. حاول نسيان الحساب المحفوظ مجددًا.',
   );
 }

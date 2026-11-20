@@ -21,6 +21,8 @@ class MainFlutterWindow: NSWindow {
     }
 
     RegisterGeneratedPlugins(registry: flutterViewController)
+    (NSApplication.shared.delegate as? AppDelegate)?.registerCustomKeychainChannel(
+      binaryMessenger: flutterViewController.engine.binaryMessenger)
 
     super.awakeFromNib()
   }

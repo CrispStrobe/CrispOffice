@@ -598,6 +598,7 @@ void main() {
         'read:$_catalogKey',
         'read:$_legacyKey',
         'write:$_catalogKey',
+        'read:$_catalogKey',
         'delete:$_legacyKey',
       ]);
       expect(storage.records.keys, [_catalogKey]);
