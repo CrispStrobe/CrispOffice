@@ -134,6 +134,19 @@ does not introduce live spacing reads or infer existing font metrics. See the
 [exact contract](VBA_WORD_MACROS.md#exact-minimum-and-multiple-line-spacing)
 and [local qualification](validation/word-vba-paragraph-spacing-20261120/README.md).
 
+### Paragraph spacing controls
+
+The paragraph-controls continuation adds `OpenUp`, `CloseUp` and
+`OpenOrCloseUp` on `Paragraph` and `ParagraphFormat`. The native operation
+resolves each toggle against the detached document after earlier plan edits;
+no document value is exposed to source expressions. Sparse before ownership
+preserves after/line inheritance, and conservative source guards refuse
+unmodeled automatic/line-based spacing and ambiguous styles. Default paragraph
+styles now recognize native Boolean flags and native namespace identities.
+This continuation also qualifies the incoming custom spacing work described
+below. See the [exact contract](VBA_WORD_MACROS.md#opening-closing-and-toggling-paragraph-spacing)
+and [local evidence](validation/word-vba-paragraph-controls-20261120/README.md).
+
 ### Next shared-language increments
 
 Keep multidimensional arrays and array parameter passing as separate increments

@@ -519,6 +519,34 @@ ActiveDocument.Paragraphs(99).Format.OpenOrCloseUp
   return {'failedStep': 2, 'validateAndRunRollback': true};
 }
 
+Future<Map<String, Object?>> runWordParagraphControlsNativeGuards() async {
+  // Exercise XML integer parsing and automatic-unit refusals on both hosts.
+  // The exact boundary is deliberately greater than signed 32-bit twips.
+  const variants = [
+    ('w:before="120"', 'w:before="2147483648"'),
+    ('w:before="120"', 'w:before="120" w:beforeLines="10"'),
+    ('w:beforeAutospacing="0"', 'w:beforeAutospacing="true"'),
+  ];
+  for (final (before, after) in variants) {
+    final package = OpcPackage.openBytes(wordParagraphControlsInput());
+    final part = package.getPart('/word/document.xml')!;
+    final source = part.readText();
+    final changed = source.replaceFirst(before, after);
+    _check(source != changed, 'Native refusal fixture did not alter XML');
+    part.writeText(changed);
+    await assertWordParagraphControlsRefusal(
+      package.save(),
+      wordParagraphControlsPlan('''
+ActiveDocument.Paragraphs(2).Range.Font.Bold = True
+ActiveDocument.Paragraphs(1).OpenOrCloseUp
+'''),
+      stepIndex: 1,
+      tool: 'docx.paragraphSpaceBefore',
+    );
+  }
+  return {'refusedSources': 3, 'validateAndRunRollback': true};
+}
+
 Future<Map<String, Object?>> runWordParagraphControlsRecording() async {
   final input = wordParagraphControlsInput();
   final session = OfficeMacroSession(input, format: OfficeMacroFormat.docx);
@@ -596,6 +624,7 @@ Future<void> main() async {
     'ownership': await runWordParagraphControlsStyleOwnership(),
     'policies': await runWordParagraphControlsPolicies(),
     'rollback': await runWordParagraphControlsRollback(),
+    'nativeGuards': await runWordParagraphControlsNativeGuards(),
     'recording': await runWordParagraphControlsRecording(),
   };
   print(jsonEncode(result));

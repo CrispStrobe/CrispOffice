@@ -30,12 +30,23 @@ class _StyleCascade {
     _missingStyles = part == null;
     final root = part == null ? null : XmlDocument.parse(part.readText()).root;
     defaults = _wordChild(root, 'docDefaults');
-    for (final style in root?.childrenNamed('style') ?? <XmlElement>[]) {
-      final id = style.getAttribute('styleId');
+    // Resolve native style identities by namespace, independently of prefix.
+    // Foreign lookalikes stay in the stored styles XML without entering the
+    // effective cascade. All three enabled ST_OnOff spellings are equivalent.
+    for (final style
+        in root?.childElements.where((element) => _word(element, 'style')) ??
+            <XmlElement>[]) {
+      final id = style.getAttribute(
+        'styleId',
+        namespaceUri: OfficeNamespaces.w,
+      );
       if (id == null) continue;
       styles[id] = style;
-      if (style.getAttribute('type') == 'paragraph' &&
-          style.getAttribute('default') == '1') {
+      if (style.getAttribute('type', namespaceUri: OfficeNamespaces.w) ==
+              'paragraph' &&
+          const {'1', 'true', 'on'}.contains(
+            style.getAttribute('default', namespaceUri: OfficeNamespaces.w),
+          )) {
         defaultParagraph = id;
       }
     }
@@ -613,8 +624,13 @@ class _StyleCascade {
       if (layers.isEmpty) XmlElement(localName: 'tableDefaults'),
       ...layers,
       for (final style in layers)
-        for (final region in style.childrenNamed('tblStylePr'))
-          if (conditional.contains(region.getAttribute('type'))) region,
+        for (final region in style.childElements.where(
+          (element) => _word(element, 'tblStylePr'),
+        ))
+          if (conditional.contains(
+            region.getAttribute('type', namespaceUri: OfficeNamespaces.w),
+          ))
+            region,
     ];
   }
 
@@ -624,7 +640,13 @@ class _StyleCascade {
     if (!seen.add(id)) return []; // Invalid cyclic input must terminate.
     final style = styles[id]!;
     return [
-      ...chain(style.firstChild('basedOn')?.getAttribute('val'), seen),
+      ...chain(
+        _wordChild(
+          style,
+          'basedOn',
+        )?.getAttribute('val', namespaceUri: OfficeNamespaces.w),
+        seen,
+      ),
       style,
     ];
   }

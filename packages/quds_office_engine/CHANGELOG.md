@@ -4,6 +4,15 @@ All notable changes to `quds_office_engine` are documented here.
 
 ## Unreleased
 
+- Extend Word VBA `Paragraph` and `ParagraphFormat` with `OpenUp`, `CloseUp`
+  and `OpenOrCloseUp`. Native `docx.paragraphSpaceBefore` resolves toggles after
+  earlier operations in the detached document, keeps same-value writes direct,
+  and preserves independent after/line spacing inheritance and opaque source
+  metadata. Refuse automatic, line-based, ambiguous or unsupported before
+  spacing rather than inferring it. Correct default paragraph style Boolean
+  flags and native style identity/based-on namespace handling. Keep ordinary
+  macro permissions, recording/replay and atomic rollback boundaries.
+
 - Extend Word VBA paragraph formatting with explicit exact, minimum and
   custom multiple line-spacing pairs, `Space1` / `Space15` / `Space2`, and
   `LinesToPoints` / `PointsToLines`. Lower each explicit rule/amount pair to
