@@ -8,6 +8,11 @@ import 'package:quds_office_studio/studio_spacy_host.dart';
 import 'package:quds_office_studio/studio_spacy_host_native.dart';
 import 'package:quds_office_studio/studio_spacy_setup.dart';
 import 'package:quds_proofing_spacy/quds_proofing_spacy.dart';
+import 'package:quds_proofing_spacy/quds_proofing_spacy_grammar.dart'
+    show
+        SpacyGrammarFamily,
+        spacyGrammarQualifiedFamilies,
+        spacyGrammarQualifiedFamilyIds;
 
 final class _Transport implements SpacyTransport {
   var disposals = 0;
@@ -72,6 +77,16 @@ class _FakeHost extends StudioSpacyHost {
   }
 
   @override
+  Future<void> setGrammarFamilies(Set<String> familyIds) async {
+    calls.add('families:${(familyIds.toList()..sort()).join(',')}');
+    current = _installed(
+      analysis: true,
+      grammar: _status.grammarEnabled,
+      families: familyIds,
+    );
+  }
+
+  @override
   Future<void> installLanguage(
     SpacyLanguage language, {
     void Function(int received, int total)? onProgress,
@@ -104,6 +119,7 @@ StudioSpacyStatus _installed({
   bool analysis = false,
   bool grammar = false,
   String library = spacyLinuxX64LibrarySha256,
+  Set<String> families = studioDefaultGrammarFamilyIds,
 }) => StudioSpacyStatus(
   platformLabel: 'linux-x86_64',
   source: StudioSpacySource.installed,
@@ -113,6 +129,7 @@ StudioSpacyStatus _installed({
   qualification: spacyQualificationFor(library),
   analysisEnabled: analysis,
   grammarEnabled: grammar,
+  grammarFamilies: families,
 );
 
 Future<void> _pumpSetup(WidgetTester tester, StudioSpacyHost host) async {
@@ -189,6 +206,43 @@ void main() {
     await tester.tap(find.byKey(const Key('spacy-setup-remove')));
     await tester.pump();
     expect(host.calls, contains('remove'));
+  });
+
+  testWidgets('grammar rule families are listed; only qualified ones are on', (
+    tester,
+  ) async {
+    final host = _FakeHost(_installed(analysis: true, grammar: true));
+    await _pumpSetup(tester, host);
+    for (final family in SpacyGrammarFamily.values) {
+      final tile = find.byKey(Key('spacy-setup-grammar-family-${family.id}'));
+      await tester.ensureVisible(tile);
+      expect(tile, findsOneWidget);
+      expect(
+        tester.widget<CheckboxListTile>(tile).value,
+        spacyGrammarQualifiedFamilies.contains(family),
+      );
+    }
+    final experimental = SpacyGrammarFamily.values.where(
+      (f) => !spacyGrammarQualifiedFamilies.contains(f),
+    );
+    if (experimental.isNotEmpty) {
+      final family = experimental.first;
+      final tile = find.byKey(Key('spacy-setup-grammar-family-${family.id}'));
+      await tester.ensureVisible(tile);
+      await tester.tap(tile);
+      await tester.pump();
+      expect(
+        host.calls.last,
+        'families:${([...spacyGrammarQualifiedFamilyIds, family.id]..sort()).join(',')}',
+      );
+    }
+  });
+
+  test('qualified family IDs match the qualified family set', () {
+    expect(spacyGrammarQualifiedFamilyIds, {
+      for (final f in spacyGrammarQualifiedFamilies) f.id,
+    });
+    expect(studioDefaultGrammarFamilyIds, spacyGrammarQualifiedFamilyIds);
   });
 
   testWidgets(
@@ -511,6 +565,36 @@ void main() {
       },
     );
 
+    test(
+      'a release-signed copy of the qualified code keeps its qualification',
+      () async {
+        Future<StudioSpacyStatus> statusFor(String? code) async {
+          final host = NativeStudioSpacyHost(
+            root: root,
+            environment: const {},
+            platform: SpacyPlatform.macosArm64,
+            bundledLibrary: StudioSpacyBundledLibrary(
+              path: '/app/Contents/Frameworks/libcrispembed-spacy.dylib',
+              sha256: 'd' * 64,
+              codeSha256: code,
+            ),
+          );
+          await host.refresh();
+          return host.status;
+        }
+
+        final resigned = await statusFor(spacyGrammarMacosBundledCodeSha256);
+        expect(resigned.librarySha256, 'd' * 64);
+        expect(resigned.qualification!.grammarQualified, isTrue);
+        expect(
+          resigned.qualification!.codeSha256,
+          spacyGrammarMacosBundledCodeSha256,
+        );
+        expect((await statusFor('e' * 64)).qualification, isNull);
+        expect((await statusFor(null)).qualification, isNull);
+      },
+    );
+
     test('the first analysis verifies the saved setup itself', () async {
       final host = NativeStudioSpacyHost(
         root: root,
@@ -556,7 +640,31 @@ void main() {
         executable: executable.path,
       );
       expect(found?.sha256, digest);
+      expect(found?.codeSha256, isNull);
       expect(found?.path, endsWith('Frameworks/libcrispembed-spacy.dylib'));
+      // A release-signed build also records the code digest.
+      description.writeAsStringSync(
+        '{"library":"libcrispembed-spacy.dylib","sha256":"$digest",'
+        '"code_sha256":"$spacyGrammarMacosBundledCodeSha256"}',
+      );
+      expect(
+        detectBundledSpacyLibrary(
+          const {},
+          executable: executable.path,
+        )?.codeSha256,
+        spacyGrammarMacosBundledCodeSha256,
+      );
+      description.writeAsStringSync(
+        '{"library":"libcrispembed-spacy.dylib","sha256":"$digest",'
+        '"code_sha256":"short"}',
+      );
+      expect(
+        detectBundledSpacyLibrary(const {}, executable: executable.path),
+        isNull,
+      );
+      description.writeAsStringSync(
+        '{"library":"libcrispembed-spacy.dylib","sha256":"$digest"}',
+      );
       expect(
         detectBundledSpacyLibrary(const {
           'QUDS_SPACY_BUNDLED': '0',

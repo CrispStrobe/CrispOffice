@@ -1,0 +1,25 @@
+{
+  "schema": "quds.spacy.grammar.v2.clean-corpus-judgement.v1",
+  "corpus": "clean-corpus-gsd-test.json",
+  "report": "qualification-macos.json.gz",
+  "judged_after_the_one_shot_run": true,
+  "findings": [
+    {
+      "id": "corpus:test-s60",
+      "rule_id": "de.spacy.np-agreement",
+      "original": "der",
+      "replacement": "des",
+      "context": "das Angebot der Tages",
+      "judgement": "genuine error: Tag is masculine; genitive singular is \"des Tages\"."
+    },
+    {
+      "id": "corpus:test-s250",
+      "rule_id": "de.spacy.np-agreement",
+      "original": "fairem",
+      "replacement": "fairen",
+      "context": "zu einem fairem Preis",
+      "judgement": "genuine error: after \"einem\" the adjective takes the weak/mixed ending -en."
+    }
+  ],
+  "other_families_findings": 0
+}
