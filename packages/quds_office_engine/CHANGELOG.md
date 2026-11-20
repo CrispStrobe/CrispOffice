@@ -4,6 +4,11 @@ All notable changes to `quds_office_engine` are documented here.
 
 ## Unreleased
 
+- Integrate inherited PPTX decorations, block arrows, short PDF heading fitting
+  and authored LTR numeric text. Preserve hidden-master flags and resolved empty
+  decoration lists through import/copy/save, retain background ownership and
+  rich-run overrides, and apply inherited PDF font scaling only once.
+
 - Add bounded, read-only Zotero child-note and attachment metadata pages with
   exact parent/library validation, inert note markup, and explicit pagination.
   Retain local database provenance on catalog snapshots so inspecting their
