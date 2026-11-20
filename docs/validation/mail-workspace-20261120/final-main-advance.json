@@ -1,0 +1,2658 @@
+{
+  "captured_at_utc": "2026-11-20T09:56:07.531308+00:00",
+  "new_main": "d040c15a07f652d01e75363031d0efdee6357bda",
+  "previous_main": "33190e50cae486be362eedb5fa687dd9c82b0c51",
+  "mail_task_before_merge": "811fb16297524ac3ea051f0d7f8bd264b45d4636",
+  "new_main_parents": [
+    "33190e50cae486be362eedb5fa687dd9c82b0c51",
+    "06f119566235aa3765445526f5ffab48832b1a31"
+  ],
+  "merge_bases": [
+    "33190e50cae486be362eedb5fa687dd9c82b0c51",
+    "44abcfa10367c8cf586ad3cf826feb3cb1de6dab"
+  ],
+  "new_main_delta_from_previous": [
+    {
+      "path": ".github/workflows/ci.yml",
+      "old_blob": "cfbc7ea2b5c3a3f743cb48ee7ccc010078efa4ce",
+      "new_blob": "3b0327ef86772af947a50a069cd4d22262bbbe22",
+      "status": "M"
+    },
+    {
+      "path": ".github/workflows/typing-proofing-benchmark.yml",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "4ff440842273b70a683cbecd35f4fb46d57b6b3e",
+      "status": "A"
+    },
+    {
+      "path": "README.md",
+      "old_blob": "1d44c4846f4e8a477a72b6b21259ecbf06e18047",
+      "new_blob": "291d4d9167ad09ce3b953b37f2576c3a6b10afba",
+      "status": "M"
+    },
+    {
+      "path": "docs/MACROS.md",
+      "old_blob": "905351997d2c8b94f75891d328c959e113eba628",
+      "new_blob": "5fc86c183cd01e4aa416de5c14fd48025e8f10d7",
+      "status": "M"
+    },
+    {
+      "path": "docs/VBA_CONFORMANCE.md",
+      "old_blob": "e79c4d56585f658a3547bd9bdf65d0761ba91ad9",
+      "new_blob": "752a883fe38df106efd150cf04ca26faa8a7dd0d",
+      "status": "M"
+    },
+    {
+      "path": "docs/VBA_PARITY_ROADMAP.md",
+      "old_blob": "8d1c137b359a4e553d0c03d0c08f88bfff80e38a",
+      "new_blob": "f1c86d80d5227ea31f7553f591e8ae4568537b26",
+      "status": "M"
+    },
+    {
+      "path": "docs/VBA_POWERPOINT_MACROS.md",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "141a2498a91326ab1fb4f5b5effa8069f4fb16bd",
+      "status": "A"
+    },
+    {
+      "path": "docs/VBA_WORD_MACROS.md",
+      "old_blob": "2e0973f69d90d091c46e3bfe35a80cbbfa0bdd59",
+      "new_blob": "3e94df7e7a71d7175a1395b3dbaad75b20d49e1d",
+      "status": "M"
+    },
+    {
+      "path": "docs/roadmaps/mail/README.md",
+      "old_blob": "15445bdbf9e99ceafd67dc537fc4edd5fe518688",
+      "new_blob": "17e5a1e62a24422e4c75c2fb1212f3d33269f485",
+      "status": "M"
+    },
+    {
+      "path": "docs/roadmaps/mail/implementation-plan.md",
+      "old_blob": "7ee5e548ec68d900244b527cd727a87034130652",
+      "new_blob": "a6d06666e6684c91e90a739e8fb585e7495de283",
+      "status": "M"
+    },
+    {
+      "path": "docs/roadmaps/mail/mailbox-workspace.md",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "b07ee6c3f7414f93929affb5704a60df255e1585",
+      "status": "A"
+    },
+    {
+      "path": "docs/roadmaps/mail/status.md",
+      "old_blob": "bd208abebbc96ecfdbadf5c91bb7c16cdb647e94",
+      "new_blob": "b79c9ccc091c464cc2d3b3b2d9a973b2178da277",
+      "status": "M"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/incoming-office-followup.md",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "664a6f9794f6d392ffa2da7b995ca049bd38d4ee",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/incoming-office-followup/analysis.txt",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "6708add1aab41c6319b8dfc2b2385a955820bbb9",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/incoming-office-followup/baseline.jsonl.gz",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "495e15d70606077eba42a2f526c0266a53802f7c",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/incoming-office-followup/baseline.stderr",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/incoming-office-followup/editor.jsonl.gz",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "36d078175d632cd3799658b26e7cc97ba5eba50b",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/incoming-office-followup/editor.stderr",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/incoming-office-followup/engine.jsonl.gz",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "4f6b8da70dad091b00f659760dbe5b7bd1c45822",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/incoming-office-followup/engine.stderr",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/incoming-office-followup/format.txt",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "0bac3c2ce0c5ae325940047a2c72a56b48d142d8",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/incoming-office-followup/inputs-after.json",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "e55d31e1a4e47b1e69a07f628fc055e8f5a87c43",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/incoming-office-followup/inputs-before.json",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "98a9041cae8c75169b18fba85f27379ef44d88ca",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/incoming-office-followup/probe.jsonl.gz",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "bdb870cc49bb5ec9c98d8678a5d73a9d7a0b9351",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/incoming-office-followup/probe.stderr",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/incoming-office-followup/summary.json",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "c9c888092992f1ddf0c94c6c7346e25e23236358",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/incoming-office.md",
+      "old_blob": "c89ed99a1ea8f216767dc3940afee9974966075f",
+      "new_blob": "e3772fd9c6d3cb4913460cbe59590749fcd748fe",
+      "status": "M"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/run_acceptance.py",
+      "old_blob": "466ba8c457b9ff9ae09907e650e8c691c3b458b5",
+      "new_blob": "2734e77b661bbdf3732d6de18ab360786b33a8e2",
+      "status": "M"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/runtime/README.md",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "e365e3a39143cec86873b88ba82ebd2870bdde24",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/runtime/bootstrap_runtime.executed.py",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "8c18b282465b976a35591031d9422f0a0c5479b9",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/runtime/current-runtime-pins.json",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "1a116a864f687c4a11d0e4306a216a736e7d2108",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/runtime/dependency-deduplication.json",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "fb2bebe1100f282acf1e3ee240a5a74a928fe14e",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/runtime/env.executed.sh",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "8f88f4cb52bd48eaee4ae822dba80a4b14683dcd",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/runtime/evidence-files.json",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "d1c2f65e5c1d462df1cb2a13d6e346f5b318c339",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/runtime/format-check.json",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "9d74d1764911af21d64f95571eb712f66493294c",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/runtime/logs/flutter-tools-pub-get.txt",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "f5d168e56be9e21e83996ffb02b1291f24b3096c",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/runtime/logs/flutter-version.txt",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "2c96318b2776496e146f43f8ac78dde9eaa3b834",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/runtime/logs/format-check.stderr",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/runtime/logs/format-check.stdout",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "a5a5dc41e1b9ff6c389ab83a3f9a31620c8887fc",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/runtime/logs/native-browse-window-analysis.txt",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "7d9fa45e4fa9b4b53b288df4bc9e03bb49501b63",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/runtime/logs/native-browse-window-qualified.jsonl.gz",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "362c71747437d4c0ee17952bb945b92c35fe873a",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/runtime/logs/native-browse-window-qualified.stderr",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/runtime/logs/native-browser-analysis.txt",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "91b2300e3513246078586cb8eb6d61b763defcd4",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/runtime/logs/sqlite-readiness.txt",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "55c7784eed468b9e15fbfaecfd7f9644f86d7db3",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/runtime/logs/workspace-pub-get.txt",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "acd3b16b139464fd59e9b702f765612ec16cb356",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/runtime/pub-cache-receipt.json",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "4a6e71bea89fc0d3f55e9320429fe4ba3058ab0c",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/runtime/readiness.json",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "a82beea153819f0ce082765c96b43db844c88b15",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/runtime/reduce_sdk_history.executed.py",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "f31c0c2786f9f63eefc4ed87ef4e3ad78745400d",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/runtime/runtime.json",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "c9ad195b0f2dfda8570fb2739c6ad87dc04322c8",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/runtime/sdk-deduplication.json",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "334ce3c3b1aee9d76fff90e693cd62b10d8c20fc",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/runtime/sdk-history-reduction.json",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "c8a13851bd1cbc90527831c434cae89ae50c0a63",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/runtime/sqlite-provenance.json",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "58d8d9173c6eb10834d20318f67ec87b58286163",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/runtime/sqlite_probe.dart",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "29663a5cd379b6b19a29cce3b2c6dc4d097a9a54",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/runtime/static-analysis.json",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "e64028529fc22fea8e95c3cfde9ae2c6953dc7ac",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/runtime/transport-development.json",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "ddb188826cfe4e78558889a597dcf685b3fbc135",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/test-cache-cleanup.json",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "fd854ac216f0cf2262c72ef18422ceb91cf82516",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/office-vba-word-powerpoint-20261120/README.md",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "42a64c1bbc44821f60fe2e2f7ebc440c3efd54ab",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/office-vba-word-powerpoint-20261120/development/vba-adapters-font-boundary.log.gz",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "6db83e2e8370ddd8f02169aab6106a2c9a3cb342",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/office-vba-word-powerpoint-20261120/development/vba-adapters-shared-regression.log.gz",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "fab92a7d1a5d659320a94a2de5eb051b95e70192",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/office-vba-word-powerpoint-20261120/development/vba-adapters-word-regression.log.gz",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "9cfe2e580ab5bd0ce281b9fd466a407301dd6793",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/office-vba-word-powerpoint-20261120/development/vba-same-text-analysis.log.gz",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "d2fb803d5dfcfcf4b2eae488a6a67579f052bf0f",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/office-vba-word-powerpoint-20261120/development/vba-same-text-before-fix.log.gz",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "76b2d146c439917dde76b88d24215d478975bff1",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/office-vba-word-powerpoint-20261120/development/vba-same-text-native-regression.log.gz",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "a2d81755c2450f0c6eda658fdc4e1a7c1a8f131c",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/office-vba-word-powerpoint-20261120/development/vba-same-text-source.json",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "3c49272a0e7b11a035dcedbdc4079bbb44b6fa0b",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/office-vba-word-powerpoint-20261120/development/vba-same-text.patch",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "589d976117fcf026cd0bee7da2f1c9f6c9d7ff94",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/office-vba-word-powerpoint-20261120/evidence-manifest.json",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "7e0c0c29e858008689adc8425d47e64403fc8dcd",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/office-vba-word-powerpoint-20261120/integration-reconciliation.md",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "42c8680923c428dd0ec80b37516abe89fa41894b",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/office-vba-word-powerpoint-20261120/integration/captured-refs.json",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "2393cb4dfec436f961b8e7d1a48c1d74c0f0fed6",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/office-vba-word-powerpoint-20261120/integration/checkpoints.json",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "8aec2dbe246db01a561ac352dc5e5af1cfb44ce6",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/office-vba-word-powerpoint-20261120/integration/inclusion-receipt.json",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "d149ff40a2072362c7e08587ae5cfcf57f1f3012",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/office-vba-word-powerpoint-20261120/integration/latest-main-reconciliation.json",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "9a12fe45ee531abc287408fe6e566851514b421c",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/office-vba-word-powerpoint-20261120/macro-gate/01-operations-runtime.log.gz",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "3ae3b73eb3cf702041454dd3308e4db5eb4458fe",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/office-vba-word-powerpoint-20261120/macro-gate/02-format-and-word-guards.log.gz",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "64c1b166927c151fb081ae21170819c816336f4f",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/office-vba-word-powerpoint-20261120/macro-gate/03-word-structure-and-sheet.log.gz",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "4ce4d7b2f06a219394a97aa00ec3ab1faa9da579",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/office-vba-word-powerpoint-20261120/macro-gate/04-word-powerpoint-transactions.log.gz",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "501af82d2f1150384f5f9bc51245fe2820022cc3",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/office-vba-word-powerpoint-20261120/macro-gate/05-slide-fidelity-and-variant.log.gz",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "c4c24db0a767f66a682b987ac4ee0a7a914f69b0",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/office-vba-word-powerpoint-20261120/macro-gate/06-conformance-and-word-format.log.gz",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "680b0bac10c21b21e6729054bd375cdedab8895c",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/office-vba-word-powerpoint-20261120/macro-gate/07-compiler-host-boundaries.log.gz",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "53dbbdb32500b99cbada479da8b52f495e07b2b3",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/office-vba-word-powerpoint-20261120/macro-gate/08-mcp-cli-bridge.log.gz",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "f887eb23d155ad13d63832ab316b0ff447476713",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/office-vba-word-powerpoint-20261120/macro-gate/09-native-macro-cli.log.gz",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "af4f6159137a262308ea4039ad3d452c5282924d",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/office-vba-word-powerpoint-20261120/macro-gate/10-word-vba-cli.log.gz",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "e9c1156f48e1b3042e3d7b51dac1bf2ecea9c9f9",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/office-vba-word-powerpoint-20261120/macro-gate/11-powerpoint-vba-cli.log.gz",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "979430e71332c39bc790f89abb7a6df5855231ed",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/office-vba-word-powerpoint-20261120/macro-gate/case-identifiers.json.gz",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "2c7307c53cc2bd5c25d62dd16e8aa7b038e91d54",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/office-vba-word-powerpoint-20261120/macro-gate/engine-analysis.log.gz",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "ca2401336d52224b25d89bcb3d818c8dc5ef9d26",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/office-vba-word-powerpoint-20261120/macro-gate/inputs-after.json.gz",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "835ad8ee0a2d6b72d2f35691072948d269017b3b",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/office-vba-word-powerpoint-20261120/macro-gate/inputs-before.json.gz",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "835ad8ee0a2d6b72d2f35691072948d269017b3b",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/office-vba-word-powerpoint-20261120/macro-gate/portable-conformance-receipt.json",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "cdad73387c3b326f0c96d27f438ce98464d8ecd0",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/office-vba-word-powerpoint-20261120/macro-gate/portable-conformance.log.gz",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "2c2aee0c083a0d45186059521e9ade6aef767add",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/office-vba-word-powerpoint-20261120/macro-gate/portable-smoke-receipt.json",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "95b871c6cbc94ec76324f5741176f28e7e697339",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/office-vba-word-powerpoint-20261120/macro-gate/portable-smoke.log.gz",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "976ecae2286bac2e519b75249f8066674164cd9c",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/office-vba-word-powerpoint-20261120/macro-gate/powerpoint-report-example.log.gz",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "6556905ae4efd6b8ac33abada1d9f6c69031d58d",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/office-vba-word-powerpoint-20261120/macro-gate/receipt.json.gz",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "601910641e97692e67afc725e8e93084f6479f69",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/office-vba-word-powerpoint-20261120/macro-gate/summary.json",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "45b2c12148956729dc46b94365452e8e598abdf4",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/office-vba-word-powerpoint-20261120/pdf-gate/final-pdf-import-batch3.log.gz",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "d8756f955d13d0be4b3eff10382bca63a20758de",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/office-vba-word-powerpoint-20261120/pdf-gate/final-pdf-incoming-batch1.log.gz",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "720300e073c09b91260575028722b25c2b882293",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/office-vba-word-powerpoint-20261120/pdf-gate/final-pdf-results.json",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "50d83ab3c327181b34eaf4bda72db98c70a391f1",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/office-vba-word-powerpoint-20261120/pdf-gate/final-pdf-retained-batch2.log.gz",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "83858103551d56fe4c167a4559de145d4b44c869",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/office-vba-word-powerpoint-20261120/pdf-gate/final-pdf-source-snapshot.json",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "2b150eda6f7b1013a9402a29434eee2be209f2fd",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/office-vba-word-powerpoint-20261120/portable/powerpoint-conformance-compile-js.log.gz",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "561b3cfe07b9d76e6af728feb54526095dda46a0",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/office-vba-word-powerpoint-20261120/portable/powerpoint-conformance-js.log.gz",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "6107a508a6f421ac9ddf223921b887a4654f9607",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/office-vba-word-powerpoint-20261120/portable/powerpoint-conformance-vm.log.gz",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "6107a508a6f421ac9ddf223921b887a4654f9607",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/office-vba-word-powerpoint-20261120/portable/powerpoint-smoke-compile-js.log.gz",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "55d05880acc120ec3501f19e50382c206f104752",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/office-vba-word-powerpoint-20261120/portable/powerpoint-smoke-js.log.gz",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "c3ce6eef45f2cbcb8202a550a30f1de192910c43",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/office-vba-word-powerpoint-20261120/portable/powerpoint-smoke-vm.log.gz",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "c3ce6eef45f2cbcb8202a550a30f1de192910c43",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/office-vba-word-powerpoint-20261120/runtime/audit_inclusion.executed.py",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "1beba8f645056a0c2796e56e41f16df01327ec0d",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/office-vba-word-powerpoint-20261120/runtime/bundle_evidence.executed.py",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "4022c7bafc8a2dc85c4d8c5336f02f1d5a05b88b",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/office-vba-word-powerpoint-20261120/runtime/check_powerpoint_report_example.dart",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "5b8f0a5a617246e984562a14c2e225f9c2bd4cb8",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/office-vba-word-powerpoint-20261120/runtime/environment.json",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "fdba9ac62eef021bd79348d8e8b681c55c21fa83",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/office-vba-word-powerpoint-20261120/runtime/record_latest_main_reconciliation.executed.py",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "b200bd803d825b879af5df26a6b56968fbfbefe0",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/office-vba-word-powerpoint-20261120/runtime/run_final_macro_gate.py",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "ab19e8831dff412effdf2b367519a79dcfe29528",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/office-vba-word-powerpoint-20261120/runtime/run_powerpoint_portable.py",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "afed4f10b5c283209c2827d7961059cda58f3207",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/zotero-parity-continuation-20261120/README.md",
+      "old_blob": "0b4401072e67a485360e4476bd2a5e9af8420ee3",
+      "new_blob": "c5b48f637e9076c77ce39f7dd6e157c771994db3",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_mail_ui/README.md",
+      "old_blob": "8c400443cc960a392533e36670729244326e37b5",
+      "new_blob": "6351085044755aac679c959d08221459a33e421d",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_editor/CHANGELOG.md",
+      "old_blob": "405e522899d15b6484f71193a37780fd0d9964c5",
+      "new_blob": "86f8122b5d94c6ab7f56c0240a8d70e65533240f",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_desktop_menu.dart",
+      "old_blob": "0c531dbe0a3c5785e7b94da5b1b2849883594bf3",
+      "new_blob": "a96420eb3752846779fe8f8c995b75e2fc81867c",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_review_strip.dart",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "776ae01481a57cce0075248b44acad0b77f28a1e",
+      "status": "A"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/suite_workspace.dart",
+      "old_blob": "915ec416ba1000a668b5b6dc88768811065a54f3",
+      "new_blob": "df880ee555c610b7ba1ec5d5884411c8ec2809a6",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_language_id_test.dart",
+      "old_blob": "334a2571d68faac083a4b793f6bfde7a86df1e27",
+      "new_blob": "719356c0ef600ea8617fb53b4b090ea6f4c31cf5",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_test.dart",
+      "old_blob": "f2e79fb37817654c015f577f1d1a17af218d9e88",
+      "new_blob": "30e43acafbf68b071defc9506497ad0b165b8596",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_review_pane_test.dart",
+      "old_blob": "1636cfba5308196a1f5dcfb5721f75fe866d322c",
+      "new_blob": "2dd5d33b75676ebc2b303d0489f0ea7186ed70c4",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_review_status_test.dart",
+      "old_blob": "a0a38e1612c5ab3ed26708da64bd0d59044bad69",
+      "new_blob": "08707b60d9e2ef3d49dd61d337dd00ab39a09c32",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_typing_proofing_benchmark_test.dart",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "e00aa69006d9e69907e1dffccf415ca7af30d0a9",
+      "status": "A"
+    },
+    {
+      "path": "packages/quds_office_editor/lib/src/editor_slide/render_slide_stage.dart",
+      "old_blob": "4317f0e2e80e3f502e376f7d62065076804aaa38",
+      "new_blob": "e1c7f7fb3b38bad26f0f6a1e2a214f9b66d3faa7",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+      "old_blob": "a9a963773423fe486fb8b90937ad0c3d7244a646",
+      "new_blob": "e2f483b7ca61e709cbbb6a735dcac13ca2014048",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_editor/lib/src/embed/office_editors.dart",
+      "old_blob": "16c2f9529efbfa1d45285a76adbf3b6c4288deac",
+      "new_blob": "15db4b1932075dee816e990551c355d8b6f54780",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_editor/lib/src/embed/word_review_status.dart",
+      "old_blob": "0040c99262efba644e8276f5f93a3385a2bca881",
+      "new_blob": "4f3f908bb3977bfd7aff4fff60c97d11ff9ce3f4",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_editor/lib/src/proofing/word_proofing.dart",
+      "old_blob": "891fea503e0fc6346dfd82d8ddd85b18902c514a",
+      "new_blob": "74b6cc058722f410004afe42144b32a0cb184642",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_editor/test/slide_render_fidelity_test.dart",
+      "old_blob": "bc12586066afe66aeaa9225e890eb42952047159",
+      "new_blob": "a30c86a09bb34b5d574fba627d17109ed133f38d",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_keyboard_review_identity_test.dart",
+      "old_blob": "1894a401448d61ab73bc7228b1957a911c78be17",
+      "new_blob": "900c7f10fe11ff1b05753b161e6ee62c03fa17b8",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_keyboard_review_test.dart",
+      "old_blob": "4a593cf6a9e10ed7f0574ec777acffc458c16606",
+      "new_blob": "490ea81d6f6092209b5bc7ac1ba4a6b3ff2da849",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_language_detection_test.dart",
+      "old_blob": "d1904d67b42f76f25f205aa4735c4386ef682899",
+      "new_blob": "61cac95f88ed298d0e18616b4927db8baf6ef04a",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_live_review_changes_test.dart",
+      "old_blob": "e7a6daaad91054b7ba9e78eac0e8c7c03696bfff",
+      "new_blob": "00910a1ac59c41a318645cf0abcf2ebf42e5d67a",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_live_review_surface_test.dart",
+      "old_blob": "803ca2a2b6b0e22fa89cbf29755d949f95a99e70",
+      "new_blob": "c4400766cdee8d9bab8c8238d08de2e50f934d95",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_review_pane_test.dart",
+      "old_blob": "9f4817dab750b549e6ff2bb6aad5dbc6015c9aa2",
+      "new_blob": "6ed901acaceb3a0cdf00eb90bc9032bdee6a54c4",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+      "old_blob": "9ad3687562deb4b191098c4fd6d8f0e4c76d544c",
+      "new_blob": "84f1fbbafe7b83db65084bb82398928f9524387e",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_text_proofing_pane_test.dart",
+      "old_blob": "6c9ad57b48146def4da53e2841d631457f739b2f",
+      "new_blob": "74ea081ba401d7a1c859c00ca3f7a8249dd95699",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_thesaurus_review_integration_test.dart",
+      "old_blob": "65d640825e69ed4c6d2d758d1a469ec06554e5bf",
+      "new_blob": "51b883ae4f3d3440289b325e2883711ed85ed9b7",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_typing_proofing_schedule_test.dart",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "a8c86d4a0177819df28dad9d0851268d1eb7e2a5",
+      "status": "A"
+    },
+    {
+      "path": "packages/quds_office_engine/CHANGELOG.md",
+      "old_blob": "ba9f80641f2bff06646e1512b052f21d75cc239d",
+      "new_blob": "8479535d4e47b8c7477face89adca50dae704610",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_engine/example/macros/powerpoint_report.bas",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "aa526dfaea4421cdf87746d5098be4a6df9305e2",
+      "status": "A"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/quds_office_automation.dart",
+      "old_blob": "a103892d51c0631d46e0399d72daf4ed4cc1030c",
+      "new_blob": "9422396b23bf6d284fcbb08dc639f53d84f7fd7c",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/automation/office_macro_language.dart",
+      "old_blob": "c2fdb09ede48194e1dfefda83a4d5af70fc837c8",
+      "new_blob": "900c615dcea65002b3cb00ac984564220bea20a1",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/automation/office_macro_mcp.dart",
+      "old_blob": "5d52562a0a451f41bf22866d21526a232ba375ce",
+      "new_blob": "5264451dd159ac99c1a840c918b76bd58538dba7",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/automation/office_vba_language.dart",
+      "old_blob": "281c7d3d2c3441a3d588eb1e2de47ac7a7777e41",
+      "new_blob": "104694f32a819cbe140dd98870b9d84be1ab1627",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/automation/operations/slide_steps.dart",
+      "old_blob": "dc6ef2d3d8f5e7785ce5ec1f71e7502fb15145d6",
+      "new_blob": "af91e120227cd8fd35f24bbdb2432df750420ed9",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/pdf/office_pdf_export.dart",
+      "old_blob": "a2f8a25cb58aef3eccb3c96528e2609c38025f6f",
+      "new_blob": "d93a1716e9e49855735cbbf1477e8fdc3a2f12d8",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/pdf/office_pdf_visuals.dart",
+      "old_blob": "8bba8c7081d48e9a283a795c8e49449274de06e9",
+      "new_blob": "abc6dfdb9b1fa49e508115943c09bff5d42fcfb6",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/pdf/pdf_canvas.dart",
+      "old_blob": "ad28c5cde7840e9551925a4f3afb5697e36c52be",
+      "new_blob": "936a36b789a8a744c9133ab2ce31e26717b109ac",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/pdf/pdf_document.dart",
+      "old_blob": "5aaaef1d77439b4c2fa59344b9842e4710855643",
+      "new_blob": "2c847443a0e6fecf668be90028a329e026bc24d3",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/slide/model/pml_presentation.dart",
+      "old_blob": "3035125ede5e0293841a9cf852552792df582815",
+      "new_blob": "c69ce675387ad5c611ed9dc3ce30a8b8cb28dce9",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/slide/serial/slide_serial.dart",
+      "old_blob": "66b86513700c6f46ad388afa8d7427226e6f61e1",
+      "new_blob": "a0761b32515e508defc72831822ecbca299bcbd4",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/slide/shapes/drawingml.dart",
+      "old_blob": "b827beeb15d47716c56310f7bba5c6d4097ffeaa",
+      "new_blob": "1fbb02b03c19914da7b82a6293d2a29efaed0bcf",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_engine/test/fixtures/vba_conformance/powerpoint_shapes_v1.json",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "2ac00f38adf1069fd9c34f64c79f856f2929fb93",
+      "status": "A"
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_macro_language_test.dart",
+      "old_blob": "b4e37c3d5e616d3b7823b515a75b1a2fb1032cb7",
+      "new_blob": "dcc024bfea68043bd6d7de55cab6bb08dec90f2f",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_macro_slide_format_test.dart",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "d9c317c59d0fd7431b2e8888323fd13e6a79c7c4",
+      "status": "A"
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_pdf_alpha_integration_test.dart",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "79029e3bdd64ed0d32b4a43eabb35c682c8b9ceb",
+      "status": "A"
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_vba_powerpoint_cli_test.dart",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "2de147c526bce81355fb53d91766c77c499dd8f8",
+      "status": "A"
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_vba_powerpoint_conformance_test.dart",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "af0558e8bccc4feb5851f62f8a253d9485be187a",
+      "status": "A"
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_vba_powerpoint_integration_test.dart",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "a71b7b18f93ba88f6a7ff87ab6baf830e63aba3f",
+      "status": "A"
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_vba_powerpoint_test.dart",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "095b048470268dd5db2ad0a828320353e443c1f3",
+      "status": "A"
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_vba_word_extensions_test.dart",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "41f4d802df7ce28c1391ec21ba10b1e39de0801f",
+      "status": "A"
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_vba_word_format_integration_test.dart",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "809dd88d63e8604cd32c5cb48049ed57265a71b4",
+      "status": "A"
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_vba_word_language_test.dart",
+      "old_blob": "f1eec845a022252dffef6ddb06ac6c2464a6da9f",
+      "new_blob": "e00f22144e0b09b534d7c579dc188d19a6d6bca5",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_engine/test/slide_gradient_merge_test.dart",
+      "old_blob": "02f787b65cf1d3c9358c4c2deeefbe9094da7649",
+      "new_blob": "72b8aaf38ac5789ec52816482a261a27ca54f379",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_engine/test/slide_radial_opacity_test.dart",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "f2f7741626108b78ac5d03da25e63cda7632c4c9",
+      "status": "A"
+    },
+    {
+      "path": "packages/quds_office_engine/test/support/vba_conformance.dart",
+      "old_blob": "9562bae3afe080b993c4422880bede1d90d1cbde",
+      "new_blob": "6274968065687cb03ce4e552650e7de3ac669359",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_engine/tool/macros/office_macro.dart",
+      "old_blob": "2b48a9d219f0fda538d5521dc63702b1dfa6f66e",
+      "new_blob": "ae3e23816da2ff5657b99c7a48d1a0b713af7f2b",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_engine/tool/macros/web_vba_conformance.dart",
+      "old_blob": "bf5640e5c431f3da28479331945335be21db6037",
+      "new_blob": "8c2e53ee5a48396db9895fd3bd80cbbe6c97eda0",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_engine/tool/macros/web_vba_powerpoint_smoke.dart",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "4106ada7045ab0d99a79ed83453e9acd5e1e11d6",
+      "status": "A"
+    }
+  ],
+  "new_main_delta_from_mail_task": [
+    {
+      "path": ".github/workflows/ci.yml",
+      "old_blob": "cfbc7ea2b5c3a3f743cb48ee7ccc010078efa4ce",
+      "new_blob": "3b0327ef86772af947a50a069cd4d22262bbbe22",
+      "status": "M"
+    },
+    {
+      "path": ".github/workflows/typing-proofing-benchmark.yml",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "4ff440842273b70a683cbecd35f4fb46d57b6b3e",
+      "status": "A"
+    },
+    {
+      "path": "README.md",
+      "old_blob": "1d44c4846f4e8a477a72b6b21259ecbf06e18047",
+      "new_blob": "291d4d9167ad09ce3b953b37f2576c3a6b10afba",
+      "status": "M"
+    },
+    {
+      "path": "docs/MACROS.md",
+      "old_blob": "905351997d2c8b94f75891d328c959e113eba628",
+      "new_blob": "5fc86c183cd01e4aa416de5c14fd48025e8f10d7",
+      "status": "M"
+    },
+    {
+      "path": "docs/VBA_CONFORMANCE.md",
+      "old_blob": "e79c4d56585f658a3547bd9bdf65d0761ba91ad9",
+      "new_blob": "752a883fe38df106efd150cf04ca26faa8a7dd0d",
+      "status": "M"
+    },
+    {
+      "path": "docs/VBA_PARITY_ROADMAP.md",
+      "old_blob": "8d1c137b359a4e553d0c03d0c08f88bfff80e38a",
+      "new_blob": "f1c86d80d5227ea31f7553f591e8ae4568537b26",
+      "status": "M"
+    },
+    {
+      "path": "docs/VBA_POWERPOINT_MACROS.md",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "141a2498a91326ab1fb4f5b5effa8069f4fb16bd",
+      "status": "A"
+    },
+    {
+      "path": "docs/VBA_WORD_MACROS.md",
+      "old_blob": "2e0973f69d90d091c46e3bfe35a80cbbfa0bdd59",
+      "new_blob": "3e94df7e7a71d7175a1395b3dbaad75b20d49e1d",
+      "status": "M"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/README.md",
+      "old_blob": "7083cc59002f192a3f7d43f3bc6558b14241379d",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/cache-preparation.json",
+      "old_blob": "c972f1ea888c19601c2b0eff3c08cc37ce24ecd8",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/checkpoints.json",
+      "old_blob": "b16959aba3775a51772058298fcadfd8ad3622d5",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/final-740f3e24/compressed-evidence.json",
+      "old_blob": "dc331a528bbe7422ad29f411baa23eac48ce64b5",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/final-740f3e24/core-analyze.stderr",
+      "old_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/final-740f3e24/core-analyze.stdout",
+      "old_blob": "4319e6045e8a1c150e98f6b64600443601010e6a",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/final-740f3e24/core-cases.json.gz",
+      "old_blob": "2c03a4c48508803e28e8202850e3c09f548a471b",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/final-740f3e24/core.jsonl.gz",
+      "old_blob": "995e7c712bb6838d4d54a39637c02de033ef71ba",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/final-740f3e24/core.stderr",
+      "old_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/final-740f3e24/format.stderr",
+      "old_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/final-740f3e24/format.stdout",
+      "old_blob": "427f3513cb2417618b4098bce02c219888d6f3d9",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/final-740f3e24/inputs-after.json.gz",
+      "old_blob": "ce2ff57b112034526c12e118a4e57f146474a793",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/final-740f3e24/inputs-before.json.gz",
+      "old_blob": "00ebcc3dbde0b9fef0300c880f746c73cf2565b0",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/final-740f3e24/receipt.json",
+      "old_blob": "708756a7845b29454365aeed53f28525c23d6b85",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/final-740f3e24/selection.json",
+      "old_blob": "0ab85e60056a77a1fc6eefdf58efb7130ba826f0",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/final-740f3e24/studio-analyze.stderr",
+      "old_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/final-740f3e24/studio-analyze.stdout",
+      "old_blob": "44c5bd5743c94868e7d4cc864342700d2cb242a4",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/final-740f3e24/studio-cases.json.gz",
+      "old_blob": "47e7bf141b6f9c8f13c4a9cc4d91ce3e39a2f817",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/final-740f3e24/studio.jsonl.gz",
+      "old_blob": "017f12d3a441acafde5ad1d03169186a39feab43",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/final-740f3e24/studio.stderr",
+      "old_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/final-740f3e24/transport-analyze.stderr",
+      "old_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/final-740f3e24/transport-analyze.stdout",
+      "old_blob": "a8fa33d7af35abaa7d8dee8a7c47243e94a6119c",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/final-740f3e24/transport-cases.json.gz",
+      "old_blob": "db7037c6a35cb9d485b90f69b9587d208cf9cdd2",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/final-740f3e24/transport-node-cases.json.gz",
+      "old_blob": "9deacb194f8779e0a4e3bca485521d61e6f58598",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/final-740f3e24/transport-node.jsonl.gz",
+      "old_blob": "8c936b6bcf6fe9eacd76fb6f072bff706ca46d4b",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/final-740f3e24/transport-node.stderr",
+      "old_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/final-740f3e24/transport.jsonl.gz",
+      "old_blob": "d0f0993dd3560979ad2b0a37508b279d5379398a",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/final-740f3e24/transport.stderr",
+      "old_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/final-740f3e24/ui-analyze.stderr",
+      "old_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/final-740f3e24/ui-analyze.stdout",
+      "old_blob": "1e8a5f7071a4e88a73874f82498606c0254e4e4b",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/final-740f3e24/ui-cases.json.gz",
+      "old_blob": "9517eca996f618419b98a8bffd78467a8d98cccb",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/final-740f3e24/ui.jsonl.gz",
+      "old_blob": "5bb4fa74667e3e06b26c97c56dec11bc8428d5e5",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/final-740f3e24/ui.stderr",
+      "old_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/incoming-office-followup.md",
+      "old_blob": "bc2701ec7b987defb97bd41d34b810be237fcb8e",
+      "new_blob": "664a6f9794f6d392ffa2da7b995ca049bd38d4ee",
+      "status": "M"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/initial-acceptance.md",
+      "old_blob": "1367578a0ea4b2671d3c43a2e87129f935b3cffa",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/main-advance.md",
+      "old_blob": "483369e3080000e6398bcf0ec1b67f4919352b80",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/main-advance/documentation-followup.json",
+      "old_blob": "5a7afe10c733d8a8b09bc2783edf9077ddbe4078",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/main-advance/pr-metadata.json",
+      "old_blob": "2ec56c21b24e1871ae95eaa8a6b82132069c6374",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/main-advance/product-paths.tsv",
+      "old_blob": "a63324a2aefb91e26cd6b3fc02886229d49a1110",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/main-advance/scope-and-provenance.json",
+      "old_blob": "b0c7cc571bf97f293e91de401a3e87ce334f045b",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/main-advance/source-delta.json",
+      "old_blob": "475fdbae3ecd9d0b795f0d5f35e82323882c0666",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/main-mail-continuity.json",
+      "old_blob": "8cb153a60737b1c9bc280c708ec061ad715b52f7",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/main-office.md",
+      "old_blob": "4967093cdcf3f7db961105125de9e463751b456f",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/main-office/analysis-automerge-duplicate.txt",
+      "old_blob": "d98c46664012ea4367fb34b35560f697a7f085d8",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/main-office/analysis.txt",
+      "old_blob": "0a29487169cbf60a02f7221b95b5fad03b078b9c",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/main-office/checkpoint-comparison.json",
+      "old_blob": "c5daec494e54add4d4e7c6066748d754b64d3166",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/main-office/editor.jsonl.gz",
+      "old_blob": "6f1486d20ef04cde00602af6cca554e4516391b5",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/main-office/editor.stderr",
+      "old_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/main-office/engine.jsonl.gz",
+      "old_blob": "8c3f2054f68a44880899976e85e612153494f302",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/main-office/engine.stderr",
+      "old_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/main-office/inputs-after.json",
+      "old_blob": "9296052ec7bdd54a4762334c1feaca405f7451ad",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/main-office/inputs-before.json",
+      "old_blob": "69f05bb45009ed8264372ee9931055c300b018bd",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/main-office/run.py",
+      "old_blob": "7f84d1390d7d3051e06f7644824bdc02e00461cd",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/main-office/selection.json",
+      "old_blob": "d7a66feed6467919a9cb529bb23423d54dd7af49",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/main-office/summary.json",
+      "old_blob": "fcea49f7df091e500ad4f4b20ddefb7113e53221",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/merged-01290cee/compressed-evidence.json",
+      "old_blob": "d894dba8f2acd3028ba8f9910e85a4d55aaaf8f0",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/merged-01290cee/format.stderr",
+      "old_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/merged-01290cee/format.stdout",
+      "old_blob": "cce10a3ff6c5e5270384a8368a71ffb37e1f31bb",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/merged-01290cee/incoming-spacy-cases.json.gz",
+      "old_blob": "9e567b4a46e912ac89eb20c91dd30be80c3332ed",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/merged-01290cee/incoming-spacy.jsonl.gz",
+      "old_blob": "ec43e0828dd1113a66999230fcc8465d15c8918c",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/merged-01290cee/incoming-spacy.stderr",
+      "old_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/merged-01290cee/inputs-after.json.gz",
+      "old_blob": "543549af255e2522b54949f3b6bd84cb235e59a6",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/merged-01290cee/inputs-before.json.gz",
+      "old_blob": "7bb361e59b23b18f8e32d2154f9f9238ef6e89da",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/merged-01290cee/main-acceptance-review.json",
+      "old_blob": "9e2ca35cf5c732f820d8993231b4aaf1ac66ceda",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/merged-01290cee/receipt.json",
+      "old_blob": "12b7e5cb55e197ab8202a3b1d5c53235e09fc7e5",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/merged-01290cee/selection.json",
+      "old_blob": "3171fd3d7e0ad82c2d54e5c59e2427ca8da4f302",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/merged-01290cee/studio-analyze.stderr",
+      "old_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/merged-01290cee/studio-analyze.stdout",
+      "old_blob": "74e7173037d56300b71c3707b79245e066436d93",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/merged-01290cee/studio-cases.json.gz",
+      "old_blob": "1d631f889f9d42993296078047af962ee3f4cfc5",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/merged-01290cee/studio-theme-cases.json.gz",
+      "old_blob": "c95f2a7a85e9c900bb15916cbb12fecb4f325e7e",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/merged-01290cee/studio-theme.jsonl.gz",
+      "old_blob": "2655b53c51779731cf1170de5b618d9df3f2ec5c",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/merged-01290cee/studio-theme.stderr",
+      "old_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/merged-01290cee/studio.jsonl.gz",
+      "old_blob": "5fdace03dbf36eef0719c9c51fa13f67c88f308a",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/merged-01290cee/studio.stderr",
+      "old_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/office-publication-comparison.json",
+      "old_blob": "06bda747e55ebb722832de0e569aa42b2c394e4e",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/prepublication-pr-check.json",
+      "old_blob": "a82ae5be7a4b214c33b5075a61214938b410addc",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/remote-refresh.md",
+      "old_blob": "7159136751ee574c85d73362b6ea7c3e3fcc6d4b",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/remote-refresh/android-tail.json",
+      "old_blob": "3f81d233f6a28a59c557b3a8278fbd3ccf7c46c5",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/remote-refresh/fetch-origin.stderr",
+      "old_blob": "0f10debd9c320a6a0d1d9d1e93db725a42774799",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/remote-refresh/fetch-origin.stdout",
+      "old_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/remote-refresh/fetch-upstream.stderr",
+      "old_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/remote-refresh/fetch-upstream.stdout",
+      "old_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/remote-refresh/git-refs.json",
+      "old_blob": "8ec721d4768fb5f33ffd80bfd6efbdb87674567c",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/remote-refresh/github-metadata.json",
+      "old_blob": "a70e2cb93a03c235df4ca125f1e592889aab76aa",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/remote-refresh/historical-equivalence.json",
+      "old_blob": "85c285f839247dc84e6077935f6e5972c3882be3",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/remote-refresh/integration-relationships.json",
+      "old_blob": "60639cfdfa45a8ae7b24651cd8f97181bb3433a1",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/remote-refresh/progress-markers.json",
+      "old_blob": "2182c03aa5541b0a98b26a84f37bf3c8992022fe",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/run_acceptance.py",
+      "old_blob": "128261ba5a6f823d5c0b971325012990e9d38204",
+      "new_blob": "2734e77b661bbdf3732d6de18ab360786b33a8e2",
+      "status": "M"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/studio-44abcfa1/acceptance-review.json",
+      "old_blob": "1b3b7331ac9aeefe9c247cbd476edcb953902576",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/studio-44abcfa1/compressed-evidence.json",
+      "old_blob": "a392ced0796ae0317ccdfbb78d844eb73fb42947",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/studio-44abcfa1/format.stderr",
+      "old_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/studio-44abcfa1/format.stdout",
+      "old_blob": "fb7d04da5505e6adab2229a4e6075a72435a939a",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/studio-44abcfa1/incoming-spacy-cases.json.gz",
+      "old_blob": "bea746b79bd88083f7105b37ab3f391cc42a7a4c",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/studio-44abcfa1/incoming-spacy.jsonl.gz",
+      "old_blob": "4ca085579551a926a403c1fce3366471fbdfe2a5",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/studio-44abcfa1/incoming-spacy.stderr",
+      "old_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/studio-44abcfa1/inputs-after.json.gz",
+      "old_blob": "b9c2e395bd1498ca54f51b76652d5b2f0c26deab",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/studio-44abcfa1/inputs-before.json.gz",
+      "old_blob": "69548d381055952735aaf166e9201a325ccad634",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/studio-44abcfa1/receipt.json",
+      "old_blob": "0e69565179aef349d0de78df33c62f89c7f76d92",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/studio-44abcfa1/selection.json",
+      "old_blob": "3a58ddfc10581c3f22c188360dfab0d77116d534",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/studio-44abcfa1/studio-analyze.stderr",
+      "old_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/studio-44abcfa1/studio-analyze.stdout",
+      "old_blob": "74e7173037d56300b71c3707b79245e066436d93",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/studio-44abcfa1/studio-cases.json.gz",
+      "old_blob": "1d631f889f9d42993296078047af962ee3f4cfc5",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/studio-44abcfa1/studio-paths-cases.json.gz",
+      "old_blob": "5ad436033dcad53888f384749c573180e6b636fb",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/studio-44abcfa1/studio-paths.jsonl.gz",
+      "old_blob": "1a6241228791a698f97f95859f9ee44cd65c2fd9",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/studio-44abcfa1/studio-paths.stderr",
+      "old_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/studio-44abcfa1/studio.jsonl.gz",
+      "old_blob": "397377d6fb97ceb6da76af150fb9fa01ae40ff63",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/studio-44abcfa1/studio.stderr",
+      "old_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/office-vba-word-powerpoint-20261120/README.md",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "42a64c1bbc44821f60fe2e2f7ebc440c3efd54ab",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/office-vba-word-powerpoint-20261120/development/vba-adapters-font-boundary.log.gz",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "6db83e2e8370ddd8f02169aab6106a2c9a3cb342",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/office-vba-word-powerpoint-20261120/development/vba-adapters-shared-regression.log.gz",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "fab92a7d1a5d659320a94a2de5eb051b95e70192",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/office-vba-word-powerpoint-20261120/development/vba-adapters-word-regression.log.gz",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "9cfe2e580ab5bd0ce281b9fd466a407301dd6793",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/office-vba-word-powerpoint-20261120/development/vba-same-text-analysis.log.gz",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "d2fb803d5dfcfcf4b2eae488a6a67579f052bf0f",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/office-vba-word-powerpoint-20261120/development/vba-same-text-before-fix.log.gz",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "76b2d146c439917dde76b88d24215d478975bff1",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/office-vba-word-powerpoint-20261120/development/vba-same-text-native-regression.log.gz",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "a2d81755c2450f0c6eda658fdc4e1a7c1a8f131c",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/office-vba-word-powerpoint-20261120/development/vba-same-text-source.json",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "3c49272a0e7b11a035dcedbdc4079bbb44b6fa0b",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/office-vba-word-powerpoint-20261120/development/vba-same-text.patch",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "589d976117fcf026cd0bee7da2f1c9f6c9d7ff94",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/office-vba-word-powerpoint-20261120/evidence-manifest.json",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "7e0c0c29e858008689adc8425d47e64403fc8dcd",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/office-vba-word-powerpoint-20261120/integration-reconciliation.md",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "42c8680923c428dd0ec80b37516abe89fa41894b",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/office-vba-word-powerpoint-20261120/integration/captured-refs.json",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "2393cb4dfec436f961b8e7d1a48c1d74c0f0fed6",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/office-vba-word-powerpoint-20261120/integration/checkpoints.json",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "8aec2dbe246db01a561ac352dc5e5af1cfb44ce6",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/office-vba-word-powerpoint-20261120/integration/inclusion-receipt.json",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "d149ff40a2072362c7e08587ae5cfcf57f1f3012",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/office-vba-word-powerpoint-20261120/integration/latest-main-reconciliation.json",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "9a12fe45ee531abc287408fe6e566851514b421c",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/office-vba-word-powerpoint-20261120/macro-gate/01-operations-runtime.log.gz",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "3ae3b73eb3cf702041454dd3308e4db5eb4458fe",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/office-vba-word-powerpoint-20261120/macro-gate/02-format-and-word-guards.log.gz",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "64c1b166927c151fb081ae21170819c816336f4f",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/office-vba-word-powerpoint-20261120/macro-gate/03-word-structure-and-sheet.log.gz",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "4ce4d7b2f06a219394a97aa00ec3ab1faa9da579",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/office-vba-word-powerpoint-20261120/macro-gate/04-word-powerpoint-transactions.log.gz",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "501af82d2f1150384f5f9bc51245fe2820022cc3",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/office-vba-word-powerpoint-20261120/macro-gate/05-slide-fidelity-and-variant.log.gz",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "c4c24db0a767f66a682b987ac4ee0a7a914f69b0",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/office-vba-word-powerpoint-20261120/macro-gate/06-conformance-and-word-format.log.gz",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "680b0bac10c21b21e6729054bd375cdedab8895c",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/office-vba-word-powerpoint-20261120/macro-gate/07-compiler-host-boundaries.log.gz",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "53dbbdb32500b99cbada479da8b52f495e07b2b3",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/office-vba-word-powerpoint-20261120/macro-gate/08-mcp-cli-bridge.log.gz",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "f887eb23d155ad13d63832ab316b0ff447476713",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/office-vba-word-powerpoint-20261120/macro-gate/09-native-macro-cli.log.gz",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "af4f6159137a262308ea4039ad3d452c5282924d",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/office-vba-word-powerpoint-20261120/macro-gate/10-word-vba-cli.log.gz",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "e9c1156f48e1b3042e3d7b51dac1bf2ecea9c9f9",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/office-vba-word-powerpoint-20261120/macro-gate/11-powerpoint-vba-cli.log.gz",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "979430e71332c39bc790f89abb7a6df5855231ed",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/office-vba-word-powerpoint-20261120/macro-gate/case-identifiers.json.gz",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "2c7307c53cc2bd5c25d62dd16e8aa7b038e91d54",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/office-vba-word-powerpoint-20261120/macro-gate/engine-analysis.log.gz",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "ca2401336d52224b25d89bcb3d818c8dc5ef9d26",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/office-vba-word-powerpoint-20261120/macro-gate/inputs-after.json.gz",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "835ad8ee0a2d6b72d2f35691072948d269017b3b",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/office-vba-word-powerpoint-20261120/macro-gate/inputs-before.json.gz",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "835ad8ee0a2d6b72d2f35691072948d269017b3b",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/office-vba-word-powerpoint-20261120/macro-gate/portable-conformance-receipt.json",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "cdad73387c3b326f0c96d27f438ce98464d8ecd0",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/office-vba-word-powerpoint-20261120/macro-gate/portable-conformance.log.gz",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "2c2aee0c083a0d45186059521e9ade6aef767add",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/office-vba-word-powerpoint-20261120/macro-gate/portable-smoke-receipt.json",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "95b871c6cbc94ec76324f5741176f28e7e697339",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/office-vba-word-powerpoint-20261120/macro-gate/portable-smoke.log.gz",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "976ecae2286bac2e519b75249f8066674164cd9c",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/office-vba-word-powerpoint-20261120/macro-gate/powerpoint-report-example.log.gz",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "6556905ae4efd6b8ac33abada1d9f6c69031d58d",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/office-vba-word-powerpoint-20261120/macro-gate/receipt.json.gz",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "601910641e97692e67afc725e8e93084f6479f69",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/office-vba-word-powerpoint-20261120/macro-gate/summary.json",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "45b2c12148956729dc46b94365452e8e598abdf4",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/office-vba-word-powerpoint-20261120/pdf-gate/final-pdf-import-batch3.log.gz",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "d8756f955d13d0be4b3eff10382bca63a20758de",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/office-vba-word-powerpoint-20261120/pdf-gate/final-pdf-incoming-batch1.log.gz",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "720300e073c09b91260575028722b25c2b882293",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/office-vba-word-powerpoint-20261120/pdf-gate/final-pdf-results.json",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "50d83ab3c327181b34eaf4bda72db98c70a391f1",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/office-vba-word-powerpoint-20261120/pdf-gate/final-pdf-retained-batch2.log.gz",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "83858103551d56fe4c167a4559de145d4b44c869",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/office-vba-word-powerpoint-20261120/pdf-gate/final-pdf-source-snapshot.json",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "2b150eda6f7b1013a9402a29434eee2be209f2fd",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/office-vba-word-powerpoint-20261120/portable/powerpoint-conformance-compile-js.log.gz",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "561b3cfe07b9d76e6af728feb54526095dda46a0",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/office-vba-word-powerpoint-20261120/portable/powerpoint-conformance-js.log.gz",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "6107a508a6f421ac9ddf223921b887a4654f9607",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/office-vba-word-powerpoint-20261120/portable/powerpoint-conformance-vm.log.gz",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "6107a508a6f421ac9ddf223921b887a4654f9607",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/office-vba-word-powerpoint-20261120/portable/powerpoint-smoke-compile-js.log.gz",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "55d05880acc120ec3501f19e50382c206f104752",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/office-vba-word-powerpoint-20261120/portable/powerpoint-smoke-js.log.gz",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "c3ce6eef45f2cbcb8202a550a30f1de192910c43",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/office-vba-word-powerpoint-20261120/portable/powerpoint-smoke-vm.log.gz",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "c3ce6eef45f2cbcb8202a550a30f1de192910c43",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/office-vba-word-powerpoint-20261120/runtime/audit_inclusion.executed.py",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "1beba8f645056a0c2796e56e41f16df01327ec0d",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/office-vba-word-powerpoint-20261120/runtime/bundle_evidence.executed.py",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "4022c7bafc8a2dc85c4d8c5336f02f1d5a05b88b",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/office-vba-word-powerpoint-20261120/runtime/check_powerpoint_report_example.dart",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "5b8f0a5a617246e984562a14c2e225f9c2bd4cb8",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/office-vba-word-powerpoint-20261120/runtime/environment.json",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "fdba9ac62eef021bd79348d8e8b681c55c21fa83",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/office-vba-word-powerpoint-20261120/runtime/record_latest_main_reconciliation.executed.py",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "b200bd803d825b879af5df26a6b56968fbfbefe0",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/office-vba-word-powerpoint-20261120/runtime/run_final_macro_gate.py",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "ab19e8831dff412effdf2b367519a79dcfe29528",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/office-vba-word-powerpoint-20261120/runtime/run_powerpoint_portable.py",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "afed4f10b5c283209c2827d7961059cda58f3207",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/zotero-parity-continuation-20261120/README.md",
+      "old_blob": "0b4401072e67a485360e4476bd2a5e9af8420ee3",
+      "new_blob": "c5b48f637e9076c77ce39f7dd6e157c771994db3",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_editor/CHANGELOG.md",
+      "old_blob": "25e5439b2f614d68567552923511f774a89f81f8",
+      "new_blob": "86f8122b5d94c6ab7f56c0240a8d70e65533240f",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_desktop_menu.dart",
+      "old_blob": "0c531dbe0a3c5785e7b94da5b1b2849883594bf3",
+      "new_blob": "a96420eb3752846779fe8f8c995b75e2fc81867c",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_review_strip.dart",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "776ae01481a57cce0075248b44acad0b77f28a1e",
+      "status": "A"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/suite_workspace.dart",
+      "old_blob": "915ec416ba1000a668b5b6dc88768811065a54f3",
+      "new_blob": "df880ee555c610b7ba1ec5d5884411c8ec2809a6",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_language_id_test.dart",
+      "old_blob": "334a2571d68faac083a4b793f6bfde7a86df1e27",
+      "new_blob": "719356c0ef600ea8617fb53b4b090ea6f4c31cf5",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_review_pane_test.dart",
+      "old_blob": "1636cfba5308196a1f5dcfb5721f75fe866d322c",
+      "new_blob": "2dd5d33b75676ebc2b303d0489f0ea7186ed70c4",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_review_status_test.dart",
+      "old_blob": "a0a38e1612c5ab3ed26708da64bd0d59044bad69",
+      "new_blob": "08707b60d9e2ef3d49dd61d337dd00ab39a09c32",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_typing_proofing_benchmark_test.dart",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "e00aa69006d9e69907e1dffccf415ca7af30d0a9",
+      "status": "A"
+    },
+    {
+      "path": "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+      "old_blob": "a9a963773423fe486fb8b90937ad0c3d7244a646",
+      "new_blob": "e2f483b7ca61e709cbbb6a735dcac13ca2014048",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_editor/lib/src/embed/office_editors.dart",
+      "old_blob": "16c2f9529efbfa1d45285a76adbf3b6c4288deac",
+      "new_blob": "15db4b1932075dee816e990551c355d8b6f54780",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_editor/lib/src/embed/word_review_status.dart",
+      "old_blob": "0040c99262efba644e8276f5f93a3385a2bca881",
+      "new_blob": "4f3f908bb3977bfd7aff4fff60c97d11ff9ce3f4",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_editor/lib/src/proofing/word_proofing.dart",
+      "old_blob": "891fea503e0fc6346dfd82d8ddd85b18902c514a",
+      "new_blob": "74b6cc058722f410004afe42144b32a0cb184642",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_keyboard_review_identity_test.dart",
+      "old_blob": "1894a401448d61ab73bc7228b1957a911c78be17",
+      "new_blob": "900c7f10fe11ff1b05753b161e6ee62c03fa17b8",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_keyboard_review_test.dart",
+      "old_blob": "4a593cf6a9e10ed7f0574ec777acffc458c16606",
+      "new_blob": "490ea81d6f6092209b5bc7ac1ba4a6b3ff2da849",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_language_detection_test.dart",
+      "old_blob": "d1904d67b42f76f25f205aa4735c4386ef682899",
+      "new_blob": "61cac95f88ed298d0e18616b4927db8baf6ef04a",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_live_review_changes_test.dart",
+      "old_blob": "e7a6daaad91054b7ba9e78eac0e8c7c03696bfff",
+      "new_blob": "00910a1ac59c41a318645cf0abcf2ebf42e5d67a",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_live_review_surface_test.dart",
+      "old_blob": "803ca2a2b6b0e22fa89cbf29755d949f95a99e70",
+      "new_blob": "c4400766cdee8d9bab8c8238d08de2e50f934d95",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_review_pane_test.dart",
+      "old_blob": "9f4817dab750b549e6ff2bb6aad5dbc6015c9aa2",
+      "new_blob": "6ed901acaceb3a0cdf00eb90bc9032bdee6a54c4",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_text_proofing_controls_test.dart",
+      "old_blob": "9ad3687562deb4b191098c4fd6d8f0e4c76d544c",
+      "new_blob": "84f1fbbafe7b83db65084bb82398928f9524387e",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_text_proofing_pane_test.dart",
+      "old_blob": "6c9ad57b48146def4da53e2841d631457f739b2f",
+      "new_blob": "74ea081ba401d7a1c859c00ca3f7a8249dd95699",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_thesaurus_review_integration_test.dart",
+      "old_blob": "65d640825e69ed4c6d2d758d1a469ec06554e5bf",
+      "new_blob": "51b883ae4f3d3440289b325e2883711ed85ed9b7",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_typing_proofing_schedule_test.dart",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "a8c86d4a0177819df28dad9d0851268d1eb7e2a5",
+      "status": "A"
+    },
+    {
+      "path": "packages/quds_office_engine/CHANGELOG.md",
+      "old_blob": "ba9f80641f2bff06646e1512b052f21d75cc239d",
+      "new_blob": "8479535d4e47b8c7477face89adca50dae704610",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_engine/example/macros/powerpoint_report.bas",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "aa526dfaea4421cdf87746d5098be4a6df9305e2",
+      "status": "A"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/quds_office_automation.dart",
+      "old_blob": "a103892d51c0631d46e0399d72daf4ed4cc1030c",
+      "new_blob": "9422396b23bf6d284fcbb08dc639f53d84f7fd7c",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/automation/office_macro_language.dart",
+      "old_blob": "c2fdb09ede48194e1dfefda83a4d5af70fc837c8",
+      "new_blob": "900c615dcea65002b3cb00ac984564220bea20a1",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/automation/office_macro_mcp.dart",
+      "old_blob": "5d52562a0a451f41bf22866d21526a232ba375ce",
+      "new_blob": "5264451dd159ac99c1a840c918b76bd58538dba7",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/automation/office_vba_language.dart",
+      "old_blob": "281c7d3d2c3441a3d588eb1e2de47ac7a7777e41",
+      "new_blob": "104694f32a819cbe140dd98870b9d84be1ab1627",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/automation/operations/slide_steps.dart",
+      "old_blob": "dc6ef2d3d8f5e7785ce5ec1f71e7502fb15145d6",
+      "new_blob": "af91e120227cd8fd35f24bbdb2432df750420ed9",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/pdf/office_pdf_export.dart",
+      "old_blob": "51b1ee628cd7389036b27538c7b8f9799fdab591",
+      "new_blob": "d93a1716e9e49855735cbbf1477e8fdc3a2f12d8",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/slide/model/pml_presentation.dart",
+      "old_blob": "9d3344f55e88329c76b76e597e50efab916dd8a0",
+      "new_blob": "c69ce675387ad5c611ed9dc3ce30a8b8cb28dce9",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/slide/serial/slide_serial.dart",
+      "old_blob": "d35d727dda2bc57c3d47cfc3c9c74061b7cbbd2c",
+      "new_blob": "a0761b32515e508defc72831822ecbca299bcbd4",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/slide/shapes/drawingml.dart",
+      "old_blob": "cbbbd8b658422099d65385e91f1e4a3a172e534b",
+      "new_blob": "1fbb02b03c19914da7b82a6293d2a29efaed0bcf",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_engine/test/fixtures/vba_conformance/powerpoint_shapes_v1.json",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "2ac00f38adf1069fd9c34f64c79f856f2929fb93",
+      "status": "A"
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_macro_language_test.dart",
+      "old_blob": "b4e37c3d5e616d3b7823b515a75b1a2fb1032cb7",
+      "new_blob": "dcc024bfea68043bd6d7de55cab6bb08dec90f2f",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_macro_slide_format_test.dart",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "d9c317c59d0fd7431b2e8888323fd13e6a79c7c4",
+      "status": "A"
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_pdf_alpha_integration_test.dart",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "79029e3bdd64ed0d32b4a43eabb35c682c8b9ceb",
+      "status": "A"
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_vba_powerpoint_cli_test.dart",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "2de147c526bce81355fb53d91766c77c499dd8f8",
+      "status": "A"
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_vba_powerpoint_conformance_test.dart",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "af0558e8bccc4feb5851f62f8a253d9485be187a",
+      "status": "A"
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_vba_powerpoint_integration_test.dart",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "a71b7b18f93ba88f6a7ff87ab6baf830e63aba3f",
+      "status": "A"
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_vba_powerpoint_test.dart",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "095b048470268dd5db2ad0a828320353e443c1f3",
+      "status": "A"
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_vba_word_extensions_test.dart",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "41f4d802df7ce28c1391ec21ba10b1e39de0801f",
+      "status": "A"
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_vba_word_format_integration_test.dart",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "809dd88d63e8604cd32c5cb48049ed57265a71b4",
+      "status": "A"
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_vba_word_language_test.dart",
+      "old_blob": "f1eec845a022252dffef6ddb06ac6c2464a6da9f",
+      "new_blob": "e00f22144e0b09b534d7c579dc188d19a6d6bca5",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_engine/test/slide_gradient_merge_test.dart",
+      "old_blob": "02f787b65cf1d3c9358c4c2deeefbe9094da7649",
+      "new_blob": "72b8aaf38ac5789ec52816482a261a27ca54f379",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_engine/test/slide_radial_opacity_test.dart",
+      "old_blob": "31dcb0bb803ec75b80fad2b383424212cdf614ef",
+      "new_blob": "f2f7741626108b78ac5d03da25e63cda7632c4c9",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_engine/test/support/vba_conformance.dart",
+      "old_blob": "9562bae3afe080b993c4422880bede1d90d1cbde",
+      "new_blob": "6274968065687cb03ce4e552650e7de3ac669359",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_engine/tool/macros/office_macro.dart",
+      "old_blob": "2b48a9d219f0fda538d5521dc63702b1dfa6f66e",
+      "new_blob": "ae3e23816da2ff5657b99c7a48d1a0b713af7f2b",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_engine/tool/macros/web_vba_conformance.dart",
+      "old_blob": "bf5640e5c431f3da28479331945335be21db6037",
+      "new_blob": "8c2e53ee5a48396db9895fd3bd80cbbe6c97eda0",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_engine/tool/macros/web_vba_powerpoint_smoke.dart",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "4106ada7045ab0d99a79ed83453e9acd5e1e11d6",
+      "status": "A"
+    }
+  ],
+  "mail_implementation_manifest_count": 122,
+  "mail_implementation_manifest_changed": [],
+  "mail_selection_reference": "main-advance/scope-and-provenance.json:mail_implementation_and_manifest_selection",
+  "dependency_toolchain_changes_vs_mail_task": [],
+  "workflow_changes_vs_mail_task": [
+    {
+      "path": ".github/workflows/ci.yml",
+      "old_blob": "cfbc7ea2b5c3a3f743cb48ee7ccc010078efa4ce",
+      "new_blob": "3b0327ef86772af947a50a069cd4d22262bbbe22",
+      "status": "M"
+    },
+    {
+      "path": ".github/workflows/typing-proofing-benchmark.yml",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "4ff440842273b70a683cbecd35f4fb46d57b6b3e",
+      "status": "A"
+    }
+  ],
+  "ancestry": [
+    {
+      "head": "b9e4f1d4bc691714f68e3685dbf729b09ccb0449",
+      "ancestor_of_new_main": true
+    },
+    {
+      "head": "06f119566235aa3765445526f5ffab48832b1a31",
+      "ancestor_of_new_main": true
+    },
+    {
+      "head": "a6068b4d46421e8a0c5921ba0b5cc24b4873ca12",
+      "ancestor_of_new_main": true
+    },
+    {
+      "head": "604e5f1ab3b70d1cd770e4413f54d167078185a4",
+      "ancestor_of_new_main": true
+    },
+    {
+      "head": "44abcfa10367c8cf586ad3cf826feb3cb1de6dab",
+      "ancestor_of_new_main": true
+    },
+    {
+      "head": "01290ceed6f9163023ce8f27bb74033f088b62e4",
+      "ancestor_of_new_main": false
+    },
+    {
+      "head": "33190e50cae486be362eedb5fa687dd9c82b0c51",
+      "ancestor_of_new_main": true
+    }
+  ],
+  "document_provenance": [
+    {
+      "path": "docs/validation/office-vba-word-powerpoint-20261120/README.md",
+      "blob": "42a64c1bbc44821f60fe2e2f7ebc440c3efd54ab",
+      "bytes": 12519,
+      "sha256": "4e450f9051445e8f315fe18bffac7c6c78b1ac7ba174bb4440c97a5fa6c58eea"
+    },
+    {
+      "path": "docs/validation/office-vba-word-powerpoint-20261120/macro-gate/summary.json",
+      "blob": "45b2c12148956729dc46b94365452e8e598abdf4",
+      "bytes": 22946,
+      "sha256": "0cd979c39680fa147dee8a39c7887ae0356a236e927b3679a8b9d031991ad9a0"
+    },
+    {
+      "path": "docs/validation/office-vba-word-powerpoint-20261120/macro-gate/portable-conformance-receipt.json",
+      "blob": "cdad73387c3b326f0c96d27f438ce98464d8ecd0",
+      "bytes": 15948,
+      "sha256": "7bc02af05a0e92fbea4a8e4a7ed7380aac352eeaaa53701aa9004ce5f8b32dd0"
+    },
+    {
+      "path": "docs/validation/office-vba-word-powerpoint-20261120/macro-gate/portable-smoke-receipt.json",
+      "blob": "95b871c6cbc94ec76324f5741176f28e7e697339",
+      "bytes": 4512,
+      "sha256": "ed0479b9d0823a270c1a895d627b4b7bd685b285dc875aa33901758d018652c8"
+    },
+    {
+      "path": "docs/validation/office-vba-word-powerpoint-20261120/pdf-gate/final-pdf-results.json",
+      "blob": "50d83ab3c327181b34eaf4bda72db98c70a391f1",
+      "bytes": 3244,
+      "sha256": "e42841129fda7fc975b935ac0a65eaac1e07cc1f1228e35620e385821cc73039"
+    },
+    {
+      "path": "docs/validation/office-vba-word-powerpoint-20261120/integration/latest-main-reconciliation.json",
+      "blob": "9a12fe45ee531abc287408fe6e566851514b421c",
+      "bytes": 5223,
+      "sha256": "adc404c8c4fc9fa521282ed082d50838ee09d69713f59ab31a55f5b3683ba1b9"
+    }
+  ],
+  "reported_macro_gate": {
+    "source_head_start": "fb09a29b70e469c2858bde48c8977590791b6ba7",
+    "source_head_finish": "55e52def1b964a85764eb9c4fcf8163fbdcee625",
+    "started_at_utc": "2026-11-20T09:31:39.962526+00:00",
+    "finished_at_utc": "2026-11-20T09:38:54.744631+00:00",
+    "selected_files": [
+      "test/office_operations_test.dart",
+      "test/office_steps_test.dart",
+      "test/office_macro_runtime_test.dart",
+      "test/office_macro_expansion_test.dart",
+      "test/office_macro_word_revision_guard_test.dart",
+      "test/office_macro_slide_format_test.dart",
+      "test/word_step_atomicity_test.dart",
+      "test/word_steps_vocabulary_test.dart",
+      "test/word_structure_steps_test.dart",
+      "test/table_grid_steps_test.dart",
+      "test/word_table_grid_addressing_test.dart",
+      "test/sheet_macro_preservation_test.dart",
+      "test/office_vba_word_integration_test.dart",
+      "test/office_vba_word_format_integration_test.dart",
+      "test/office_vba_powerpoint_integration_test.dart",
+      "test/slide_import_fidelity_test.dart",
+      "test/slide_text_fidelity_test.dart",
+      "test/slide_rich_text_explicit_style_test.dart",
+      "test/office_macro_language_test.dart",
+      "test/office_vba_variant_conversions_test.dart",
+      "test/office_vba_conformance_test.dart",
+      "test/office_vba_word_conformance_test.dart",
+      "test/office_vba_powerpoint_conformance_test.dart",
+      "test/office_vba_word_extensions_test.dart",
+      "test/office_vba_powerpoint_test.dart",
+      "test/office_vba_word_language_test.dart",
+      "test/office_vba_variant_conformance_test.dart",
+      "test/office_vba_language_test.dart",
+      "test/office_macro_mcp_test.dart",
+      "test/office_macro_cli_test.dart",
+      "test/office_vba_word_cli_test.dart",
+      "test/office_vba_powerpoint_cli_test.dart"
+    ],
+    "source_changes": {},
+    "all_stages_passed": true,
+    "totals": {
+      "executed_test_cases": 1221,
+      "passed": 1221,
+      "failed": 0,
+      "skipped": 0,
+      "unique_case_ids": 1220,
+      "peak_batch_temporary_bytes": 219439338
+    },
+    "product_commit": "55e52def1b964a85764eb9c4fcf8163fbdcee625",
+    "engine_tree": "aabb48ef7ab6a79904a889c50dc3756eab116e7c",
+    "verified_unchanged_inputs": 1041,
+    "test_timeout_factor": "4x",
+    "max_files_per_batch": 4
+  },
+  "reported_pdf_gate": {
+    "source_snapshot": "final-pdf-source-snapshot.json",
+    "source_hashes_unchanged": true,
+    "batches": [
+      {
+        "log": "final-pdf-incoming-batch1.log",
+        "passed": 39,
+        "sha256": "a2b4abf13c667d11f92ec2112597d2965ffbb4f7250b71e829523e01a8df267d",
+        "argv": [
+          "/workspace/scratch/f8bca915f70d/toolchains/dart",
+          "test",
+          "--reporter",
+          "expanded",
+          "--timeout",
+          "4x",
+          "--concurrency",
+          "1",
+          "test/slide_normal_autofit_test.dart",
+          "test/pdf_picture_opacity_test.dart",
+          "test/slide_radial_opacity_test.dart",
+          "test/slide_gradient_merge_test.dart"
+        ],
+        "working_directory": "/workspace/scratch/f8bca915f70d/validation-workspace/packages/quds_office_engine",
+        "test_files": [
+          "test/slide_normal_autofit_test.dart",
+          "test/pdf_picture_opacity_test.dart",
+          "test/slide_radial_opacity_test.dart",
+          "test/slide_gradient_merge_test.dart"
+        ],
+        "exit_code": 0
+      },
+      {
+        "log": "final-pdf-retained-batch2.log",
+        "passed": 119,
+        "sha256": "cc2d41d89ce737630cc9b68316e87270714d1356446943b8731f5fa26b86fdeb",
+        "argv": [
+          "/workspace/scratch/f8bca915f70d/toolchains/dart",
+          "test",
+          "--reporter",
+          "expanded",
+          "--timeout",
+          "4x",
+          "--concurrency",
+          "1",
+          "test/office_pdf_export_test.dart",
+          "test/slide_incoming_pptx_regression_test.dart",
+          "test/slide_gradient_publication_test.dart",
+          "test/slide_picture_background_test.dart"
+        ],
+        "working_directory": "/workspace/scratch/f8bca915f70d/validation-workspace/packages/quds_office_engine",
+        "test_files": [
+          "test/office_pdf_export_test.dart",
+          "test/slide_incoming_pptx_regression_test.dart",
+          "test/slide_gradient_publication_test.dart",
+          "test/slide_picture_background_test.dart"
+        ],
+        "exit_code": 0
+      },
+      {
+        "log": "final-pdf-import-batch3.log",
+        "passed": 55,
+        "sha256": "4fb945d2580531a36f5ab6c944dadeb5748bc0c6942c3965d3dd2f64ad88fe98",
+        "argv": [
+          "/workspace/scratch/f8bca915f70d/toolchains/dart",
+          "test",
+          "--reporter",
+          "expanded",
+          "--timeout",
+          "4x",
+          "--concurrency",
+          "1",
+          "test/slide_import_fidelity_test.dart",
+          "test/office_pdf_alpha_integration_test.dart"
+        ],
+        "working_directory": "/workspace/scratch/f8bca915f70d/validation-workspace/packages/quds_office_engine",
+        "test_files": [
+          "test/slide_import_fidelity_test.dart",
+          "test/office_pdf_alpha_integration_test.dart"
+        ],
+        "exit_code": 0
+      }
+    ],
+    "total_passed": 213,
+    "test_files": 10,
+    "max_files_per_process": 4,
+    "dart_sdk": "3.13.7",
+    "flags": [
+      "--reporter",
+      "expanded",
+      "--timeout",
+      "4x",
+      "--concurrency",
+      "1"
+    ],
+    "github_actions_used": false,
+    "flutter_tests_run": false,
+    "verified_source_commit": "fb09a29b70e469c2858bde48c8977590791b6ba7",
+    "published_product_commit": "55e52def1b964a85764eb9c4fcf8163fbdcee625",
+    "engine_tree": "aabb48ef7ab6a79904a889c50dc3756eab116e7c",
+    "published_engine_equals_qualified_source": true
+  },
+  "reported_portability": [
+    {
+      "receipt": "docs/validation/office-vba-word-powerpoint-20261120/macro-gate/portable-conformance-receipt.json",
+      "mode": "conformance",
+      "source_head": "55e52def1b964a85764eb9c4fcf8163fbdcee625",
+      "runtime": "Dart SDK 3.13.7 (archive SHA256 eb99aed266efbcb615c6ae21c12f52cfe935b9f208bccc5fea7f64c21e867229)",
+      "node": "v24.22.3",
+      "all_commands_passed": true,
+      "vm_js_byte_equal": true,
+      "inputs_changed": {},
+      "canonical_case_count": 20,
+      "command_exit_codes": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "receipt": "docs/validation/office-vba-word-powerpoint-20261120/macro-gate/portable-smoke-receipt.json",
+      "mode": "smoke",
+      "source_head": "55e52def1b964a85764eb9c4fcf8163fbdcee625",
+      "runtime": "Dart SDK 3.13.7 (archive SHA256 eb99aed266efbcb615c6ae21c12f52cfe935b9f208bccc5fea7f64c21e867229)",
+      "node": "v24.22.3",
+      "all_commands_passed": true,
+      "vm_js_byte_equal": true,
+      "inputs_changed": {},
+      "canonical_case_count": null,
+      "command_exit_codes": [
+        0,
+        0,
+        0
+      ]
+    }
+  ],
+  "reported_final_reconciliation": {
+    "published_commit": "a6068b4d46421e8a0c5921ba0b5cc24b4873ca12",
+    "qualified_input_count_rechecked": 1041,
+    "all_qualified_inputs_identical": true,
+    "qualified_engine_tree": "aabb48ef7ab6a79904a889c50dc3756eab116e7c",
+    "published_engine_tree": "aabb48ef7ab6a79904a889c50dc3756eab116e7c",
+    "flutter_runtime_tests_run": false,
+    "github_actions_used": false
+  },
+  "independent_engine_tree_identity": {
+    "at_new_main": "aabb48ef7ab6a79904a889c50dc3756eab116e7c",
+    "at_incoming_final_source": "aabb48ef7ab6a79904a889c50dc3756eab116e7c",
+    "matches_recorded_gate": true
+  },
+  "proofing_head": "604e5f1ab3b70d1cd770e4413f54d167078185a4",
+  "proofing_scope": "Incoming VBA report records source/call-site review only for inherited editor/proofing; its engine gate does not qualify Flutter runtime behavior. No workflow execution is inferred from committed configuration.",
+  "proofing_performance_document": {
+    "path": "docs/performance/typing-proofing-20261120.md",
+    "present": false
+  },
+  "audit_tests_executed": 0,
+  "audit_ci_queries": 0,
+  "audit_remote_ref_fetches": 0,
+  "count_attribution": "Other author's source-bound macro, PDF and portability gates; overlap retained and counts not added to this Mail task's local acceptance."
+}

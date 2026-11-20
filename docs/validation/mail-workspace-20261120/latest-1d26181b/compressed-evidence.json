@@ -1,0 +1,37 @@
+{
+  "encoding": "gzip, lossless, mtime=0",
+  "files": [
+    {
+      "original": "inputs-after.json",
+      "stored": "inputs-after.json.gz",
+      "original_bytes": 1035360,
+      "stored_bytes": 229748,
+      "original_sha256": "5d3fbfc1bea89fb6a5fbe59fdce68139a008e3dc0bc55e207c61fcd0c40dd079",
+      "stored_sha256": "f9a6c8b91ad91a74191b0881563ba3fdf039699a266efceae7b788e927ea4fe4"
+    },
+    {
+      "original": "inputs-before.json",
+      "stored": "inputs-before.json.gz",
+      "original_bytes": 1035360,
+      "stored_bytes": 229748,
+      "original_sha256": "2e34a8daa256157080677db275d3a65e98f4f15942f482c932d384a2c8c2943f",
+      "stored_sha256": "f2b07a71080cee7e009abfd97d80768c6069c29b768149c6f9877ea9d602de4e"
+    },
+    {
+      "original": "studio-cases.json",
+      "stored": "studio-cases.json.gz",
+      "original_bytes": 20869,
+      "stored_bytes": 3132,
+      "original_sha256": "1dd5e480a046eb76dd55c0e8aca448d1b9bd3c932a852e09ad6cc92fb9955382",
+      "stored_sha256": "df2bb52cb6e3d4c09ddec5fcc7cfc9c712bd5b30d43b0d7a73b6b4e5e312164b"
+    },
+    {
+      "original": "studio.jsonl",
+      "stored": "studio.jsonl.gz",
+      "original_bytes": 116869,
+      "stored_bytes": 7470,
+      "original_sha256": "93fd615d0d46b40c32f6676b9b322546d3af60642ab9db67239b0d6f22ff8f99",
+      "stored_sha256": "377852645a68556ed2c127b836eab0ff16b61d6161b27e6ee0c4b6bd7d55c025"
+    }
+  ]
+}
