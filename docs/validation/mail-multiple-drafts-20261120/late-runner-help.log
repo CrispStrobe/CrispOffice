@@ -1,0 +1,2 @@
+dart tool/incoming_reconciliation_acceptance.dart
+Runs the incoming Mail, credential, Downloads and reader regression files through the standard Flutter test CLI. Set FLUTTER_BIN to select Flutter.
