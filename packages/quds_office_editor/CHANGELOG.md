@@ -4,19 +4,19 @@ All notable changes to `quds_office_editor` are documented here.
 
 ## Unreleased
 
-- Recognize conventional lowercase Arial and Times New Roman font filenames
-  for regular, bold, italic and bold-italic faces, retaining metadata checks
-  and canonical candidate precedence.
+- Explain foreground bulk rate-limit stops and provider retry delays in English,
+  German and Arabic, including per-message details. Keep stale-scope refresh
+  guidance distinct from outcome certainty and prevent dismissal from clearing
+  its refresh requirement.
 
-- Show localized foreground bulk progress and per-message receipts with frozen
-  subjects, cancellation after the current message and refresh-aware dismissal.
-
-- Add foreground bulk read/unread/flag/unflag actions to connected IMAP, EWS,
-  Gmail and Microsoft 365. Freeze checked visible identities, run sequentially,
-  report confirmed/failed/uncertain/unattempted counts and stop on uncertainty.
-  Let users stop after the current request, require explicit refresh for an
-  unconfirmed write, preserve nullable flags and reject stale scope callbacks.
-  Keep cached mail read-only and preserve discovery state on same-folder refresh.
+- Add foreground bulk read/unread/flag/unflag actions for connected IMAP, EWS,
+  Gmail and Microsoft 365 mail. Freeze visible checked identities, preserve
+  nullable flag observations, report confirmed/failed/uncertain/unattempted
+  outcomes, stop after the current message, and require refresh on uncertainty.
+  Guard callbacks across selection, refresh and account changes; localize
+  selection, progress and per-message receipts in English, German and Arabic.
+  Same-folder refresh preserves query/sort while clearing checked rows.
+  Cached mail remains read-only; durable command/cache synchronization follows.
 
 - Accept horizontally merged Zotero research-note and annotation tables through
   the existing native commands. Preserve cell-owned rich text, lists, pictures

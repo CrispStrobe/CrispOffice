@@ -78,9 +78,9 @@ MailMessageList _list({
   items: items,
   strings: strings,
   scopeId: scope,
-  selectionScopeId: revision,
+  selectionRevision: revision,
   busy: busy,
-  bulkActionsEnabled: enabled,
+  bulkEnabled: enabled,
   onOpen: onOpen ?? (_) {},
   onBulkAction: onBulkAction,
   hasMore: onLoadMore != null,
@@ -89,7 +89,7 @@ MailMessageList _list({
 );
 
 Finder _key(String key) => find.byKey(ValueKey(key));
-Finder _check(String id) => _key('mail-list-check-$id');
+Finder _check(String id) => _key('mail-list-select-$id');
 
 Future<void> _tap(WidgetTester tester, Finder target) async {
   await tester.ensureVisible(target);
@@ -98,7 +98,7 @@ Future<void> _tap(WidgetTester tester, Finder target) async {
 }
 
 Future<void> _selectAll(WidgetTester tester) =>
-    _tap(tester, _key('mail-list-select-shown'));
+    _tap(tester, _key('mail-list-select-visible'));
 
 Future<void> _focusList(WidgetTester tester) async {
   tester.widget<Focus>(_key('mail-list-focus')).focusNode!.requestFocus();
@@ -131,7 +131,7 @@ void main() {
   testWidgets('cached hosts have no mutable bulk controls', (tester) async {
     await tester.pumpWidget(_app(_list()));
     expect(find.byType(Checkbox), findsNothing);
-    expect(_key('mail-list-select-shown'), findsNothing);
+    expect(_key('mail-list-select-visible'), findsNothing);
     expect(_key('mail-list-bulk-actions'), findsNothing);
     expect(_key('mail-list-selected-count'), findsNothing);
   });
@@ -379,7 +379,7 @@ void main() {
     (tester) async {
       await tester.pumpWidget(_app(_list(onBulkAction: (_, _) {})));
       final oldSelect = tester
-          .widget<TextButton>(_key('mail-list-select-shown'))
+          .widget<TextButton>(_key('mail-list-select-visible'))
           .onPressed!;
       await _selectAll(tester);
       final oldClear = tester
@@ -413,7 +413,7 @@ void main() {
       await tester.pumpWidget(app(busy: true));
       expect(tester.widget<Checkbox>(_check('z')).onChanged, isNull);
       expect(
-        tester.widget<TextButton>(_key('mail-list-select-shown')).onPressed,
+        tester.widget<TextButton>(_key('mail-list-select-visible')).onPressed,
         isNull,
       );
       expect(
@@ -544,7 +544,7 @@ void main() {
         count: _count,
         providerOrder: 'Ordnerreihenfolge',
         selectMessage: 'Nachricht auswählen',
-        selectShown: 'Sichtbare auswählen',
+        selectVisible: 'Sichtbare auswählen',
         clearSelection: 'Auswahl aufheben',
         selectedCount: _selectedDe,
         bulkActions: 'Ausgewählte Nachrichten',
@@ -569,7 +569,7 @@ void main() {
         count: _count,
         providerOrder: 'ترتيب المجلد',
         selectMessage: 'تحديد الرسالة',
-        selectShown: 'تحديد الظاهرة',
+        selectVisible: 'تحديد الظاهرة',
         clearSelection: 'مسح التحديد',
         selectedCount: _selectedAr,
         bulkActions: 'الرسائل المحددة',

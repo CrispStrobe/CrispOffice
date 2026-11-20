@@ -2,10 +2,10 @@
 
 This increment extends the shared connected and cached mailbox list. It does
 not change the independent archive's existing full-text search or saved searches.
-It is one completed discovery slice toward M04W; durable synchronization,
-account-wide search and conversations remain separate work. The subsequent
-[foreground bulk increment](bulk-actions.md) adds read/flag triage to connected
-hosts while keeping cached mail read-only.
+It is one completed discovery slice toward M04W. The later
+[foreground bulk read/flag increment](bulk-flags.md) builds on the same loaded
+list; durable synchronization and commands, account-wide search and
+conversations remain separate work.
 
 ## User path
 
@@ -59,8 +59,11 @@ retain their input order. Sorting never changes the provider cursor or saved
 cached order. A changed account/folder scope resets query, filters, ordering,
 scroll position and focus; a compact reader/Back transition preserves them.
 
-Row identities preserve keyboard focus and selection through filtering and
-sorting. A hidden open message is not replaced automatically. Stale pointer
+Row identities preserve keyboard focus and open-message identity through
+reordering. Checked bulk selections have a separate lifetime: filters prune
+hidden rows and refresh clears checks, as described in the
+[bulk contract](bulk-flags.md). A hidden open message is not replaced
+automatically. Stale pointer
 callbacks cannot activate hidden rows, invalid-query results or a later scope
 with overlapping row IDs; disposed callbacks are ignored. Only an explicit
 valid row activation opens a body. Help preserves the originating language
@@ -84,18 +87,18 @@ records actual commands, results, remote checkpoints and remaining boundaries.
 
 ## Next increments toward desktop-client parity
 
-The [foreground bulk read/flag increment](bulk-actions.md) now freezes selected
-account/folder/remote identities, reports confirmed, failed, uncertain and
-unattempted outcomes, and stops on uncertainty or stale scope. It preserves the
-nullable flag contract and does not introduce offline replay.
-
-1. Durable repository-driven sessions and a remote-command journal, with restart,
+1. **Completed:** [foreground bulk read/flag](bulk-flags.md) freezes selected
+   account/folder/remote identities, reports all four outcomes, preserves unknown
+   flags, stops uncertainty and rejects stale selection. The receipt is in-memory;
+   persistent command/cache synchronization remains separate.
+2. Durable repository-driven sessions and a remote-command journal, with restart,
    UIDVALIDITY, conflict, cancellation and offline/reconnect qualification.
-2. Account/unified search, saved live views and conversations over the durable
+3. Account/unified search, saved live views and conversations over the durable
    index, preserving explicit cache completeness and source-message identity.
-3. Rules and quick actions over those query/command contracts; rich authoring,
-   signatures/templates and Office attachment workflows can progress separately.
-4. Scheduling/Sent reconciliation, Calendar/People, shared mailboxes and security
+4. Consistent archive/move/delete, broader bulk commands, rules and quick actions
+   over those query/command contracts; rich authoring, signatures/templates and
+   Office attachment workflows can progress separately.
+5. Scheduling/Sent reconciliation, Calendar/People, shared mailboxes and security
    features retain provider-specific acceptance requirements in the main plan.
 
 This ordering is an engineering decision, not a claim of complete competitor

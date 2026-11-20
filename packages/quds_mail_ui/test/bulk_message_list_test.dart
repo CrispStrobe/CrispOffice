@@ -1,3 +1,8 @@
+// Adapted from work/mail-bulk-actions-20261120 at
+// b60c0ec26f2a80c984076fb1d480eb2e641b542e. Preserve peer scenarios while using
+// the accepted revision/status/frozen-menu API. Successful actions and
+// refresh-required transitions clear checked selection by design.
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -82,11 +87,17 @@ Future<void> _pump(
                   onOpen: onOpen ?? (_) {},
                   selectedId: selectedId,
                   scopeId: scope,
-                  selectionScopeId: selectionScope,
+                  selectionRevision: selectionScope,
                   busy: busy,
-                  bulkActionsEnabled: enabled,
+                  bulkEnabled: enabled,
                   onBulkAction: onAction,
-                  onCancelBulk: onCancel,
+                  bulkStatus: onCancel == null
+                      ? null
+                      : TextButton(
+                          key: const ValueKey('mail-list-stop-bulk'),
+                          onPressed: onCancel,
+                          child: const Text('Stop after current message'),
+                        ),
                 ),
               ),
             ),
@@ -99,7 +110,7 @@ Future<void> _pump(
 }
 
 Finder _key(String value) => find.byKey(ValueKey(value));
-Finder _check(String id) => _key('mail-list-check-$id');
+Finder _check(String id) => _key('mail-list-select-$id');
 
 Future<void> _tap(WidgetTester tester, Finder finder) async {
   await tester.ensureVisible(finder);
@@ -112,29 +123,29 @@ Future<void> _action(WidgetTester tester, MailBulkFlagAction action) async {
   await _tap(tester, _key('mail-list-bulk-${action.name}'));
 }
 
-// Retain the menu values as well as its callback, matching an open route.
-void Function(MailBulkFlagAction) _freezeMenu(WidgetTester tester) {
-  final finder = _key('mail-list-bulk-actions');
-  final menu = tester.widget<PopupMenuButton<Object>>(finder);
-  final entries = menu.itemBuilder(tester.element(finder));
-  final values = <MailBulkFlagAction, Object?>{
-    for (final action in MailBulkFlagAction.values)
-      action: entries
-          .whereType<PopupMenuItem<Object>>()
-          .singleWhere(
-            (entry) => entry.key == ValueKey('mail-list-bulk-${action.name}'),
-          )
-          .value,
-  };
-  // Keep the private choice parameter type when invoking the actual callback.
-  // ignore: avoid_dynamic_calls
-  final callback = (menu as dynamic).onSelected as Function;
-  return (action) => Function.apply(callback, [values[action]]);
-}
-
 Future<void> _focusList(WidgetTester tester) async {
   tester.widget<Focus>(_key('mail-list-focus')).focusNode!.requestFocus();
   await tester.pump();
+}
+
+// Frozen popup values are private in the accepted UI. Retain the peer's stale
+// callback scenarios using their actual payload rather than a bare action enum.
+void Function(MailBulkFlagAction) _freezeAction(WidgetTester tester) {
+  final finder = _key('mail-list-bulk-actions');
+  final menu = tester.widget<PopupMenuButton<dynamic>>(finder);
+  final entries = menu
+      .itemBuilder(tester.element(finder))
+      .whereType<PopupMenuItem<dynamic>>()
+      .toList();
+  // Preserve the private input type; a covariant getter would widen it.
+  // ignore: avoid_dynamic_calls
+  final callback = (menu as dynamic).onSelected as Function;
+  return (action) {
+    final entry = entries.singleWhere(
+      (entry) => entry.key == ValueKey('mail-list-bulk-${action.name}'),
+    );
+    Function.apply(callback, [entry.value]);
+  };
 }
 
 void main() {
@@ -190,7 +201,7 @@ void main() {
     );
     await tester.enterText(_key('mail-list-search'), 'from:alice');
     await tester.pump();
-    await _tap(tester, _key('mail-list-select-shown'));
+    await _tap(tester, _key('mail-list-select-visible'));
     await _action(tester, MailBulkFlagAction.flag);
     expect(commands.single.ids, ['one', 'three']);
     expect(find.text('0 selected'), findsOneWidget);
@@ -204,7 +215,7 @@ void main() {
       tester,
       onAction: (action, ids) => commands.add((action: action, ids: ids)),
     );
-    await _tap(tester, _key('mail-list-select-shown'));
+    await _tap(tester, _key('mail-list-select-visible'));
     expect(find.text('3 selected'), findsOneWidget);
     await _tap(tester, _key('mail-list-unread'));
     expect(find.text('1 selected'), findsOneWidget);
@@ -215,7 +226,7 @@ void main() {
     expect(find.text('0 selected'), findsOneWidget);
     expect(
       tester
-          .widget<PopupMenuButton<Object>>(_key('mail-list-bulk-actions'))
+          .widget<PopupMenuButton<dynamic>>(_key('mail-list-bulk-actions'))
           .enabled,
       isFalse,
     );
@@ -232,7 +243,7 @@ void main() {
         tester,
         onAction: (action, ids) => commands.add((action: action, ids: ids)),
       );
-      await _tap(tester, _key('mail-list-select-shown'));
+      await _tap(tester, _key('mail-list-select-visible'));
       await _tap(tester, _key('mail-list-sort'));
       await _tap(tester, _key('mail-list-sort-subjectAscending'));
       expect(find.text('3 selected'), findsOneWidget);
@@ -246,7 +257,7 @@ void main() {
   ) async {
     void action(MailBulkFlagAction _, List<String> _) {}
     await _pump(tester, onAction: action);
-    await _tap(tester, _key('mail-list-select-shown'));
+    await _tap(tester, _key('mail-list-select-visible'));
     const fourth = MailMessageListItem(id: 'four', subject: 'Date', sender: '');
     await _pump(tester, items: [..._items, fourth], onAction: action);
     expect(find.text('3 selected'), findsOneWidget);
@@ -286,9 +297,9 @@ void main() {
     await _pump(tester, onAction: action);
     await _tap(tester, _check('one'));
     final oldCheck = tester.widget<Checkbox>(_check('one')).onChanged!;
-    final oldAction = _freezeMenu(tester);
+    final oldAction = _freezeAction(tester);
     final oldSelect = tester
-        .widget<TextButton>(_key('mail-list-select-shown'))
+        .widget<TextButton>(_key('mail-list-select-visible'))
         .onPressed!;
     await _pump(tester, scope: 'account-b/inbox', onAction: action);
     await _pump(tester, scope: 'account-a/inbox', onAction: action);
@@ -309,7 +320,7 @@ void main() {
         onAction: (action, ids) => commands.add((action: action, ids: ids)),
       );
       await _tap(tester, _check('one'));
-      final oldAction = _freezeMenu(tester);
+      final oldAction = _freezeAction(tester);
       await _tap(tester, _check('two'));
       oldAction(MailBulkFlagAction.flag);
       expect(commands, isEmpty);
@@ -329,8 +340,8 @@ void main() {
       await tester.pump();
       await _tap(tester, _key('mail-list-sort'));
       await _tap(tester, _key('mail-list-sort-subjectAscending'));
-      await _tap(tester, _key('mail-list-select-shown'));
-      final oldAction = _freezeMenu(tester);
+      await _tap(tester, _key('mail-list-select-visible'));
+      final oldAction = _freezeAction(tester);
       await _pump(tester, selectionScope: '2', onAction: action);
       expect(find.text('0 selected'), findsOneWidget);
       expect(
@@ -347,7 +358,7 @@ void main() {
       );
       oldAction(MailBulkFlagAction.markRead);
       expect(commands, isEmpty);
-      await _tap(tester, _key('mail-list-select-shown'));
+      await _tap(tester, _key('mail-list-select-visible'));
       await _action(tester, MailBulkFlagAction.markRead);
       expect(commands.single.ids, ['three', 'one']);
     },
@@ -362,7 +373,7 @@ void main() {
         commands.add((action: action, ids: ids));
     await _pump(tester, onAction: action);
     await _tap(tester, _check('one'));
-    final oldAction = _freezeMenu(tester);
+    final oldAction = _freezeAction(tester);
     await _pump(tester, onAction: action, busy: true, onCancel: () => stops++);
     expect(tester.widget<Checkbox>(_check('one')).onChanged, isNull);
     oldAction(MailBulkFlagAction.unflag);
@@ -377,38 +388,36 @@ void main() {
     var calls = 0;
     await _pump(tester, onAction: (_, _) => calls++);
     await _tap(tester, _check('one'));
-    final action = _freezeMenu(tester);
+    final action = _freezeAction(tester);
     action(MailBulkFlagAction.flag);
     await tester.pump();
     action(MailBulkFlagAction.flag);
     expect(calls, 1);
-    expect(find.text('0 selected'), findsOneWidget);
     await _tap(tester, _check('one'));
     await _action(tester, MailBulkFlagAction.flag);
     expect(calls, 2);
   });
 
-  testWidgets(
-    'refresh-required disables changes and clears the old selection',
-    (tester) async {
-      void action(MailBulkFlagAction _, List<String> _) {}
-      await _pump(tester, onAction: action);
-      await _tap(tester, _check('one'));
-      await _pump(tester, onAction: action, enabled: false);
-      expect(tester.widget<Checkbox>(_check('one')).onChanged, isNull);
-      expect(
-        tester
-            .widget<PopupMenuButton<Object>>(_key('mail-list-bulk-actions'))
-            .enabled,
-        isFalse,
-      );
-      expect(find.text('0 selected'), findsOneWidget);
-      expect(
-        tester.widget<TextButton>(_key('mail-list-clear-selection')).onPressed,
-        isNull,
-      );
-    },
-  );
+  testWidgets('refresh-required clears selection and disables changes', (
+    tester,
+  ) async {
+    void action(MailBulkFlagAction _, List<String> _) {}
+    await _pump(tester, onAction: action);
+    await _tap(tester, _check('one'));
+    await _pump(tester, onAction: action, enabled: false);
+    expect(tester.widget<Checkbox>(_check('one')).onChanged, isNull);
+    expect(
+      tester
+          .widget<PopupMenuButton<dynamic>>(_key('mail-list-bulk-actions'))
+          .enabled,
+      isFalse,
+    );
+    expect(
+      tester.widget<TextButton>(_key('mail-list-clear-selection')).onPressed,
+      isNull,
+    );
+    expect(find.text('0 selected'), findsOneWidget);
+  });
 
   testWidgets('read-only hosts expose no mutation selection or shortcuts', (
     tester,
@@ -427,7 +436,7 @@ void main() {
     await _pump(tester, onAction: (_, _) => calls++);
     await _tap(tester, _check('one'));
     final check = tester.widget<Checkbox>(_check('one')).onChanged!;
-    final action = _freezeMenu(tester);
+    final action = _freezeAction(tester);
     await tester.pumpWidget(const SizedBox());
     check(true);
     action(MailBulkFlagAction.markRead);
@@ -450,7 +459,7 @@ void main() {
         expect(tester.takeException(), isNull);
         final list = tester.getRect(_key('mail-list-rows'));
         expect(list.height, greaterThanOrEqualTo(80));
-        await _tap(tester, _key('mail-list-select-shown'));
+        await _tap(tester, _key('mail-list-select-visible'));
         expect(find.text('3 selected'), findsOneWidget);
         await _tap(tester, _key('mail-list-bulk-actions'));
         final label = find.text(_strings.markRead);

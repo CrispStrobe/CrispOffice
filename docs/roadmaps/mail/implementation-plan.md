@@ -223,13 +223,13 @@ inspection receipt, not a complete dependency or runtime certification.
   filters, stable local sorting and localized help/errors. Preserve scope,
   IME input and stale-activation guards; never issue provider work from search.
   See [header-search.md](header-search.md). Full account search remains below.
-- [x] Add [foreground bulk read/flag](bulk-actions.md) with frozen visible
+- [x] Add [foreground bulk read/flag](bulk-flags.md) with frozen visible
   selections, exact account/provider/mailbox identities, sequential explicit
   assignments and confirmed/failed/uncertain/unattempted outcomes. Stop after
   the current request, require refresh after uncertainty, reject stale scopes
-  and preserve unknown independent flags. Show localized progress and frozen
-  per-message receipts. This does not satisfy durable
-  commands or offline replay below.
+  and preserve unknown independent flags. The provider runner and certified
+  single-use coordinator share one execution engine. In-memory receipts do not
+  satisfy durable commands, persistent-cache reconciliation or offline replay.
 
 - [x] Deliver the bounded foreground-list foundation: shared virtualized loaded-message list, stable identities, local subject/sender search, conjunctive unread/flagged filters, keyboard activation, compact reader/Back state and explicit 50-message pagination across native Studio hosts. Native IMAP browsing has its own scoped descending-UID cursor and a 1,000-loaded-message host ceiling; confirmed flag actions preserve nullable observations. See the [contract](mailbox-workspace.md) and [local evidence](../../validation/mail-workspace-20261120/README.md). This is a prerequisite slice and does not close the broader items below.
 - [x] Qualify the native [remembered IMAP/SMTP account chooser](remembered-accounts.md) with deterministic storage/provider fixtures: bounded selected-backend catalog, verified legacy migration, explicit selection/connection, selected-only Forget and unchanged per-account draft recovery. See the [local qualification and source-bound evidence](../../validation/mail-accounts-20261120/README.md). The provider-neutral repository-driven switching item below remains open.

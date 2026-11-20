@@ -894,7 +894,9 @@ with 72-point left indents, 18-point right indents, 12-point before spacing and
 **Numeric contract.** The portable dialect uses bounded binary64 `Double`
 arithmetic, including signed values and zero; it does not emulate the `Single`
 parameters/results documented for Microsoft Word. Both inputs and results must
-be finite and within magnitude `9007199254740991`. The physical ratios use
+be finite and within magnitude `9007199254740991`. Intermediate multiplication
+uses floating-point arithmetic to avoid signed-integer overflow on the Dart VM.
+The physical ratios use
 exactly 72 points and 25.4 millimeters per inch. Microsoft Learn's rounded
 metric descriptions (including inconsistent millimeter approximations) are
 not used as conversion constants. These are specification-derived expectations;
@@ -924,15 +926,7 @@ Sub Main()
 End Sub
 ```
 
-That example writes 28.35 points. The compiler does not silently add rounding,
-change a destination property's range limits, or emulate VBA `Single`
-coercion. Microsoft's API documentation identifies Single arguments/results
-and gives rounded metric conversion factors; the exact physical ratios above
-are the explicit Quds numeric contract, not a claim of observed Word binary32
-parity. They follow the exact ratios in Microsoft's
-[Office coordinate specification](https://learn.microsoft.com/en-us/openspecs/office_standards/ms-oi29500/afb7e140-b259-4901-8af4-d4a514f50db9)
-and [native unit definitions](https://learn.microsoft.com/en-us/windows/win32/vml/basic-vml-types).
-
+This writes 28.35 points because the source explicitly requests that rounding.
 Font sizes still require their existing half-point grid; tab stops, spacing
 and indentation retain their existing constraints. Pixel conversions,
 `Selection`, page-setup objects, arbitrary ranges and document property reads
@@ -945,7 +939,7 @@ ownership also remains unchanged: indentation edits replace the native
 `w:ind` property group, so foreign attributes inside that edited group are
 not promised to survive. Unrelated paragraph metadata, untouched paragraphs,
 style parts and opaque DOCM project/signature bytes are covered by the saved
-document tests. See the [local qualification record](validation/mail-bulk-actions-20261120/final-main-word-summary.md)
+document tests. See the [local qualification record](validation/mail-bulk-flags-20261120/README.md#incoming-word-qualification)
 for executed VM, JavaScript, CLI and MCP checks.
 
 Primary references: Microsoft Word's

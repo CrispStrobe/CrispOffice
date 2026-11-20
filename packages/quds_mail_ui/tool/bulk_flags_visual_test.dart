@@ -78,7 +78,7 @@ void main() {
                 child: Scaffold(
                   body: MailMessageList(
                     scopeId: 'visual-fixture/inbox',
-                    selectionScopeId: 1,
+                    selectionRevision: 1,
                     strings: strings,
                     onOpen: (_) => opens++,
                     onBulkAction: (_, _) => commands++,
@@ -128,7 +128,7 @@ void main() {
         ),
       );
       await tester.pumpAndSettle();
-      final select = find.byKey(const ValueKey('mail-list-select-shown'));
+      final select = find.byKey(const ValueKey('mail-list-select-visible'));
       await tester.ensureVisible(select);
       await tester.tap(select);
       await tester.pumpAndSettle();

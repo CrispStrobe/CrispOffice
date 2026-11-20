@@ -13,6 +13,7 @@ import 'package:quds_mail_ui/quds_mail_ui.dart';
 import 'package:quds_mail_store/quds_mail_store.dart';
 import 'package:quds_office_editor/quds_office_editor.dart';
 import 'package:quds_office_studio/studio_mail_compose.dart';
+import 'package:quds_office_studio/studio_mail_bulk_status.dart';
 import 'package:quds_office_studio/studio_mail_ews.dart';
 import 'package:quds_office_studio/studio_mail_native.dart';
 import 'package:quds_office_studio/studio_mail_strings.dart';
@@ -348,6 +349,27 @@ MailArchiveRunReport _folderReport() => MailArchiveRunReport(
 MailMessageList _bulkList(WidgetTester tester) =>
     tester.widget<MailMessageList>(find.byType(MailMessageList));
 
+StudioMailBulkStatus _bulkStatus(WidgetTester tester) =>
+    tester.widget<StudioMailBulkStatus>(find.byType(StudioMailBulkStatus));
+
+void _expectBulkCounts(
+  WidgetTester tester,
+  int confirmed,
+  int failed,
+  int uncertain,
+  int unattempted,
+) {
+  final report = _bulkStatus(tester).report;
+  expect(report.confirmedCount, confirmed);
+  expect(report.failedCount, failed);
+  expect(report.uncertainCount, uncertain);
+  expect(report.unattemptedCount, unattempted);
+  expect(find.text('Confirmed: $confirmed'), findsOneWidget);
+  expect(find.text('Failed: $failed'), findsOneWidget);
+  expect(find.text('Uncertain: $uncertain'), findsOneWidget);
+  expect(find.text('Not attempted: $unattempted'), findsOneWidget);
+}
+
 List<MailHeaderRecord> _bulkHeaders(_Provider provider) => [
   provider.header('one', 'First Exchange message'),
   provider.header('two', 'Second Exchange message'),
@@ -398,12 +420,7 @@ void main() {
       expect(provider.reads, 0);
       expect(provider.cursors, hasLength(1));
       expect(_bulkList(tester).selectedId, isNull);
-      expect(
-        find.textContaining(
-          '2 confirmed · 0 failed · 0 uncertain · 0 not attempted',
-        ),
-        findsOneWidget,
-      );
+      _expectBulkCounts(tester, 2, 0, 0, 0);
     },
   );
 
@@ -519,13 +536,8 @@ void main() {
           false,
           false,
         ]);
-        expect(_bulkList(tester).bulkActionsEnabled, isFalse);
-        expect(
-          find.textContaining(
-            '1 confirmed · 0 failed · 1 uncertain · 1 not attempted',
-          ),
-          findsOneWidget,
-        );
+        expect(_bulkList(tester).bulkEnabled, isFalse);
+        _expectBulkCounts(tester, 1, 0, 1, 1);
         expect(
           find.textContaining(_strings.mailWorkspaceRefreshRequired),
           findsOneWidget,
@@ -539,7 +551,7 @@ void main() {
         expect(provider.reads, 0);
         await tester.tap(find.byTooltip(_strings.refresh));
         await _pump(tester);
-        expect(_bulkList(tester).bulkActionsEnabled, isTrue);
+        expect(_bulkList(tester).bulkEnabled, isTrue);
         expect(provider.cursors, hasLength(2));
       },
     );
@@ -581,15 +593,8 @@ void main() {
           !stops,
           !stops,
         ]);
-        expect(_bulkList(tester).bulkActionsEnabled, !refreshRequired);
-        expect(
-          find.text(
-            stops
-                ? '0 confirmed · 1 failed · 0 uncertain · 2 not attempted'
-                : '2 confirmed · 1 failed · 0 uncertain · 0 not attempted',
-          ),
-          findsOneWidget,
-        );
+        expect(_bulkList(tester).bulkEnabled, !refreshRequired);
+        _expectBulkCounts(tester, stops ? 0 : 2, 1, 0, stops ? 2 : 0);
         expect(
           find.text(_strings.mailWorkspaceRefreshRequired),
           refreshRequired ? findsOneWidget : findsNothing,
@@ -622,7 +627,7 @@ void main() {
       ]);
       await _pump(tester);
       expect(provider.commands, hasLength(1));
-      _bulkList(tester).onCancelBulk!();
+      _bulkStatus(tester).onStop!();
       await _pump(tester);
       expect(_bulkList(tester).busy, isTrue);
       expect(provider.lastLease!.isCurrent, isTrue);
@@ -634,14 +639,9 @@ void main() {
         false,
         false,
       ]);
-      expect(_bulkList(tester).bulkActionsEnabled, isTrue);
-      expect(_bulkList(tester).onCancelBulk, isNull);
-      expect(
-        find.textContaining(
-          '1 confirmed · 0 failed · 0 uncertain · 2 not attempted',
-        ),
-        findsOneWidget,
-      );
+      expect(_bulkList(tester).bulkEnabled, isTrue);
+      expect(_bulkStatus(tester).onStop, isNull);
+      _expectBulkCounts(tester, 1, 0, 0, 2);
     },
   );
 
@@ -685,7 +685,7 @@ void main() {
       await _pump(tester);
       final refreshed = _bulkList(tester);
       expect(refreshed.scopeId, old.scopeId);
-      expect(refreshed.selectionScopeId, isNot(old.selectionScopeId));
+      expect(refreshed.selectionRevision, isNot(old.selectionRevision));
       expect(
         tester.widget<TextField>(_field('mail-list-search')).controller!.text,
         'Exchange',
@@ -768,7 +768,7 @@ void main() {
         _bulkList(tester).items.every((item) => item.isRead == false),
         isTrue,
       );
-      expect(find.textContaining('1 confirmed'), findsNothing);
+      expect(find.byType(StudioMailBulkStatus), findsNothing);
       expect(_bulkList(tester).busy, isFalse);
       expect(tester.takeException(), isNull);
     },

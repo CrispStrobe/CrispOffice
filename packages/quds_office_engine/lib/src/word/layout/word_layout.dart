@@ -180,7 +180,7 @@ class LaidOutLine {
       ? null
       : proofingOffsets![layoutOffset];
 
-  /// Default inner left/right padding for table-cell text, in points.
+  /// Default inner left/right pad for table-cell text (85 twips).
   static const double tableCellPad = 4.25;
 
   /// Inner pad for absolutely placed [WmlFrame] text.
@@ -1670,15 +1670,17 @@ class WordLayoutEngine {
     );
   }
 
+  static Iterable<LaidOutBox> _bodyFrames(LaidOutPage page) => page.frames
+      .take(page._origin?.bodyFrames ?? page.frames.length)
+      .where((frame) => !frame.isNoteContent);
+
   static double _contentBottom(LaidOutPage page, {required double fallback}) {
     var bottom = fallback;
     for (final LaidOutLine line in page.lines) {
       bottom = math.max(bottom, line.y + line.height);
     }
-    for (final LaidOutBox box in page.frames.take(
-      page._origin?.bodyFrames ?? page.frames.length,
-    )) {
-      if (!box.isNoteContent) bottom = math.max(bottom, box.y + box.height);
+    for (final LaidOutBox box in _bodyFrames(page)) {
+      bottom = math.max(bottom, box.y + box.height);
     }
     return bottom;
   }
@@ -1711,14 +1713,9 @@ class WordLayoutEngine {
       if (continuous && pages.isNotEmpty) {
         final LaidOutPage last = pages.removeLast();
         flow.current.addAll(last.lines);
-        flow.currentFrames.addAll(
-          // Chrome is rebuilt for the continuing section. Carry only the
-          // recorded body prefix; matching picture dimensions or assets cannot
-          // distinguish an old header/footer from authored body content.
-          last.frames
-              .take(last._origin?.bodyFrames ?? last.frames.length)
-              .where((LaidOutBox b) => !b.isNoteContent),
-        );
+        // Chrome is recreated for this section when the page is made again;
+        // carrying it here would duplicate it and count it as body content.
+        flow.currentFrames.addAll(_bodyFrames(last));
         flow.pageIndex = last.index;
         flow.y = _contentBottom(last, fallback: _bodyTopClearingLogo(section));
         flow.columnTop = flow.y;
@@ -3382,6 +3379,8 @@ class WordLayoutEngine {
               math.max(section.margins.footer, section.margins.bottom * 0.55)
         : section.margins.header;
     final List<LaidOutBox> frames = <LaidOutBox>[];
+    final listed = Set<WmlVisual>.identity()..addAll(visuals);
+    final placed = Set<WmlVisual>.identity();
     var x = section.margins.left;
     // Header/footer tables are flattened to their paragraphs by the source
     // model. Keep their inline pictures (typically the organisation logo)
@@ -3389,9 +3388,9 @@ class WordLayoutEngine {
     var inlineX = section.margins.left;
     for (final WmlVisual item in inlineVisuals) {
       final OfficeVisual visual = item.visual;
-      // Only the same model node is a duplicate representation. Distinct
-      // placements can share dimensions, image bytes, or an OfficeVisual asset.
-      if (visuals.any((candidate) => identical(candidate, item))) {
+      if (listed.contains(item) || !placed.add(item)) {
+        // One node may be exposed through both representations; its list
+        // placement owns that occurrence. Distinct nodes can share an asset.
         continue;
       }
       final double width = visual.width.clamp(16, section.contentWidth);
@@ -3415,6 +3414,9 @@ class WordLayoutEngine {
       inlineX += width + 8;
     }
     for (final WmlVisual item in visuals) {
+      // Repeated references to one node are one occurrence. Equal content or
+      // coordinates do not identify distinct authored nodes, even with alpha.
+      if (!placed.add(item)) continue;
       final OfficeVisual visual = item.visual;
       final double width = visual.width.clamp(16, section.pageSize.width);
       final double height = visual.height.clamp(12, 120);

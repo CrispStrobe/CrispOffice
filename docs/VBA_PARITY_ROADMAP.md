@@ -160,7 +160,7 @@ The original eight-operation `word_measurements.bas` and independent
 nine-operation `word_unit_conversions.bas` examples and their fixtures remain
 available alongside the thirteen-operation named-argument example. See the
 [measurement contract](VBA_WORD_MACROS.md#physical-measurement-conversions)
-and [qualification record](validation/mail-bulk-actions-20261120/final-main-word-summary.md).
+and [qualification record](validation/word-vba-unit-conversions-20261120/README.md).
 
 ### Next shared-language increments
 

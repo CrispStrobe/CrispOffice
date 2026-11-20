@@ -2,10 +2,14 @@
 
 ## Unreleased
 
-- Treat dispatched timeouts and unfamiliar client-error responses as uncertain;
-  explicit request, authorization, resource, precondition and documented rate
-  limit rejections certify no mutation. Preserve rate-limit retry guidance while
-  foreground bulk coordination stops later dispatches without automatic retry.
+- Certify documented Gmail/Graph HTTP 429 flag-update rejections as no effect,
+  preserving retry delay evidence and the separate submission outcome rules.
+  Unfamiliar post-dispatch failures remain uncertain.
+
+- Treat dispatched cloud message-mutation rate limits and unfamiliar client
+  errors as uncertain; only explicit request, authorization, resource or
+  precondition rejections certify no mutation. Preserve the separate submission
+  rejection and Retry-After contract.
 
 - Report explicit mutation-boundary evidence for failed IMAP, EWS, Gmail and
   Microsoft 365 operations. Foreground bulk commands can distinguish definite

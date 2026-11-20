@@ -9,6 +9,7 @@ import 'package:quds_mail_ui/quds_mail_ui.dart';
 import 'package:quds_office_studio/studio_mail_bulk_status.dart';
 import 'package:quds_office_studio/studio_mail_ews.dart';
 import 'package:quds_office_studio/studio_strings.dart';
+import 'package:quds_office_studio/studio_mail_workspace_strings.dart';
 
 import 'support/mail_draft_store.dart';
 
@@ -369,7 +370,7 @@ void main() {
           await _start(tester, MailBulkFlagAction.flag);
           _counts(tester, 0, 0, 1, 2);
           expect(harness.provider.commands, hasLength(before + 1));
-          expect(_list(tester).bulkActionsEnabled, isFalse);
+          expect(_list(tester).bulkEnabled, isFalse);
           await tester.tap(find.byTooltip(_strings.refresh));
           await _pump(tester);
         }
@@ -383,8 +384,8 @@ void main() {
         final harness = _Harness(kind);
         await _show(tester, harness);
         for (final action in MailBulkFlagAction.values) {
-          await tester.ensureVisible(_key('mail-list-select-shown'));
-          await tester.tap(_key('mail-list-select-shown'));
+          await tester.ensureVisible(_key('mail-list-select-visible'));
+          await tester.tap(_key('mail-list-select-visible'));
           await _pump(tester);
           await tester.tap(_key('mail-list-bulk-actions'));
           await _pump(tester);
@@ -419,6 +420,8 @@ void main() {
       },
     );
 
+    // Peer PR #273 adds certified quota handling; keep the stale-scope
+    // scenario below as an independent refresh guard.
     testWidgets(
       '${kind.name}: request limit stops the tail and preserves retry guidance without refresh',
       (tester) async {
@@ -441,7 +444,7 @@ void main() {
           MailBulkFlagStopReason.rateLimited,
         );
         expect(_status(tester).report.requiresRefresh, isFalse);
-        expect(_list(tester).bulkActionsEnabled, isTrue);
+        expect(_list(tester).bulkEnabled, isTrue);
         expect(find.textContaining('Request limit reached.'), findsOneWidget);
         expect(
           find.text('Wait at least 12 seconds before trying again.'),
@@ -450,6 +453,44 @@ void main() {
         expect(harness.provider.bodyReads, 0);
         expect(harness.provider.headerReads, 1);
         expect(tester.takeException(), isNull);
+      },
+    );
+
+    testWidgets(
+      '${kind.name}: certified stale scope requires refresh before a new batch',
+      (tester) async {
+        final harness = _Harness(kind);
+        await _show(tester, harness);
+        harness.provider.respond = (_, _) => const MailFailure(
+          MailProblem(
+            MailProblemCode.staleOperation,
+            mutationMayHaveOccurred: false,
+          ),
+        );
+        await _start(tester, MailBulkFlagAction.flag);
+        _counts(tester, 0, 1, 0, 2);
+        expect(harness.provider.commands, hasLength(1));
+        expect(_list(tester).bulkEnabled, isFalse);
+        expect(
+          find.textContaining('verify the current message state'),
+          findsOneWidget,
+        );
+        expect(_key('studio-mail-bulk-dismiss'), findsNothing);
+        expect(
+          find.text(_strings.mailWorkspaceRefreshRequired),
+          findsOneWidget,
+        );
+        _list(tester).onBulkAction!(MailBulkFlagAction.markRead, _ids(tester));
+        await _pump(tester);
+        expect(harness.provider.commands, hasLength(1));
+        harness.provider.respond = (_, _) => _success;
+        await tester.tap(find.byTooltip(_strings.refresh));
+        await _pump(tester);
+        expect(_list(tester).bulkEnabled, isTrue);
+        await _start(tester, MailBulkFlagAction.markRead);
+        _counts(tester, 3, 0, 0, 0);
+        expect(harness.provider.headerReads, 2);
+        expect(harness.provider.bodyReads, 0);
       },
     );
 
@@ -470,7 +511,7 @@ void main() {
           _list(tester).items.skip(1).map((item) => item.isRead),
           everyElement(isTrue),
         );
-        expect(_list(tester).bulkActionsEnabled, isTrue);
+        expect(_list(tester).bulkEnabled, isTrue);
         expect(harness.provider.bodyReads, 0);
       },
     );
@@ -492,13 +533,13 @@ void main() {
         expect(_list(tester).items.first.isRead, isTrue);
         expect(_list(tester).items[1].isRead, isFalse);
         expect(_list(tester).items.last.isRead, isNull);
-        expect(_list(tester).bulkActionsEnabled, isFalse);
+        expect(_list(tester).bulkEnabled, isFalse);
         oldCallback(MailBulkFlagAction.flag, selected);
         await _pump(tester);
         expect(harness.provider.commands, hasLength(2));
         await tester.tap(find.byTooltip(_strings.refresh));
         await _pump(tester);
-        expect(_list(tester).bulkActionsEnabled, isTrue);
+        expect(_list(tester).bulkEnabled, isTrue);
         oldCallback(MailBulkFlagAction.flag, selected);
         await _pump(tester);
         expect(harness.provider.commands, hasLength(2));
@@ -540,20 +581,20 @@ void main() {
         await _start(tester, MailBulkFlagAction.markRead);
         expect(harness.provider.commands, hasLength(1));
         expect(_status(tester).running, isTrue);
-        await tester.ensureVisible(_key('mail-list-stop-bulk'));
-        await tester.tap(_key('mail-list-stop-bulk'));
+        await tester.ensureVisible(_key('studio-mail-bulk-stop'));
+        await tester.tap(_key('studio-mail-bulk-stop'));
         await _pump(tester);
         expect(harness.provider.leases.single.isCurrent, isTrue);
         gate.complete(_success);
         await _pump(tester);
         _counts(tester, 1, 0, 0, 2);
         expect(
-          _status(tester).report.stopReason,
-          MailBulkFlagStopReason.cancelled,
+          _status(tester).report.stopProblem?.code,
+          MailProblemCode.cancelled,
         );
         expect(_status(tester).running, isFalse);
         expect(_list(tester).items.first.isRead, isTrue);
-        expect(_list(tester).bulkActionsEnabled, isTrue);
+        expect(_list(tester).bulkEnabled, isTrue);
         expect(harness.provider.commands, hasLength(1));
         expect(harness.provider.bodyReads, 0);
       },
@@ -648,21 +689,19 @@ void main() {
             ),
         ];
         var calls = 0;
-        final report = await MailBulkFlagCoordinator().run(
+        final report = await const MailBulkFlagRunner().run(
           plan: MailBulkFlagPlan(
             id: 'receipt',
             mailbox: MailMailboxId('inbox', account: account),
-            provider: MailProviderKind.ews,
             action: MailBulkFlagAction.markUnread,
             messages: identities,
           ),
           lease: session.begin(),
-          apply: (_, _) async =>
-              MailBulkFlagAttempt.fromResult(switch (++calls) {
-                1 => _success,
-                2 => _definiteFailure,
-                _ => _uncertain,
-              }),
+          apply: (_, _) async => switch (++calls) {
+            1 => _success,
+            2 => _definiteFailure,
+            _ => _uncertain,
+          },
           isScopeCurrent: () => true,
         );
         final direction = language == StudioLanguage.ar

@@ -4,13 +4,14 @@ All notable changes to `quds_office_engine` are documented here.
 
 ## Unreleased
 
-- Render inline header/footer pictures and retain distinct images when their
-  dimensions match. Keep continuous-section decoration separate from body
-  frames so incremental layout preserves the same pictures as full layout.
-  Resolve table-style header formatting through the existing cascade, preserving
-  direct run overrides and explicit border widths when style color fills an
-  automatic value. Keep imported compact spacing sparse on export so later style
-  changes remain effective. Retain the imported empty-paragraph border behavior.
+- Preserve distinct inline header/footer pictures and legitimate body frames
+  while reconciling the incoming Word renderer. Deduplicate repeated references
+  to one authored visual occurrence; retain distinct pictures even when content
+  and placement match. Include tall inline headers in body clearance and carry
+  only body frames across continuous sections so footer pictures cannot create
+  extra pages. Keep direct and inherited table formatting precedence, authored
+  border widths, inherited omitted widths and sparse spacing provenance through
+  save/reopen.
 
 - Preserve horizontal merged cells in Zotero Add Note/Add Annotation tables.
   Map bounded `colspan` to native `gridSpan`, reconcile `data-colwidth` vectors

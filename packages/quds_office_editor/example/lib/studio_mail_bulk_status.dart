@@ -15,7 +15,6 @@ class StudioMailBulkStatus extends StatelessWidget {
     required this.running,
     required this.subjects,
     this.onStop,
-    this.showStop = true,
     this.onDismiss,
   });
 
@@ -24,9 +23,6 @@ class StudioMailBulkStatus extends StatelessWidget {
   final bool running;
   final Map<MailRemoteIdentity, String> subjects;
   final VoidCallback? onStop;
-
-  /// Hosts with a toolbar stop control hide the duplicate control here.
-  final bool showStop;
   final VoidCallback? onDismiss;
 
   String _text(String en, String de, String ar) => switch (strings.language) {
@@ -96,6 +92,10 @@ class StudioMailBulkStatus extends StatelessWidget {
     ),
   };
 
+  bool get _requiresRefresh =>
+      report.requiresRefresh ||
+      report.stopReason == MailBulkFlagStopReason.staleScope;
+
   String _retryDelay(Duration delay) {
     final rounded = (delay.inMilliseconds / 1000).ceil();
     final seconds = rounded < 1 ? 1 : rounded;
@@ -107,9 +107,11 @@ class StudioMailBulkStatus extends StatelessWidget {
   }
 
   Duration? get _retryAfter {
-    for (final item in report.items) {
-      if (item.problem?.code == MailProblemCode.quotaExceeded) {
-        return item.problem?.retryAfter;
+    if (report.stopProblem?.retryAfter case final delay?) return delay;
+    for (final result in report.results) {
+      if (result.problem?.code == MailProblemCode.quotaExceeded &&
+          result.problem?.retryAfter != null) {
+        return result.problem!.retryAfter;
       }
     }
     return null;
@@ -146,10 +148,10 @@ class StudioMailBulkStatus extends StatelessWidget {
                     child: ListView.separated(
                       shrinkWrap: true,
                       padding: const EdgeInsets.symmetric(horizontal: 16),
-                      itemCount: report.items.length,
+                      itemCount: report.results.length,
                       separatorBuilder: (_, _) => const Divider(),
                       itemBuilder: (context, index) {
-                        final result = report.items[index];
+                        final result = report.results[index];
                         final subject = subjects[result.message];
                         return Padding(
                           key: ValueKey('studio-mail-bulk-result-$index'),
@@ -204,10 +206,10 @@ class StudioMailBulkStatus extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final attempted = report.items.length - report.unattemptedCount;
+    final attempted = report.results.length - report.unattemptedCount;
     return Material(
       key: const ValueKey('studio-mail-bulk-status'),
-      color: report.requiresRefresh
+      color: _requiresRefresh
           ? Theme.of(context).colorScheme.errorContainer
           : Theme.of(context).colorScheme.secondaryContainer,
       child: Padding(
@@ -236,7 +238,7 @@ class StudioMailBulkStatus extends StatelessWidget {
             if (running) ...[
               const SizedBox(height: 8),
               LinearProgressIndicator(
-                value: attempted / report.items.length,
+                value: attempted / report.results.length,
                 semanticsLabel: _text(
                   'Messages completed',
                   'Abgeschlossene Nachrichten',
@@ -244,7 +246,7 @@ class StudioMailBulkStatus extends StatelessWidget {
                 ),
               ),
             ],
-            if (report.requiresRefresh) ...[
+            if (_requiresRefresh) ...[
               const SizedBox(height: 8),
               Text(
                 _text(
@@ -264,7 +266,7 @@ class StudioMailBulkStatus extends StatelessWidget {
                 ),
               ),
               if (_retryAfter case final delay?) Text(_retryDelay(delay)),
-            ] else if (!running && report.stopReason != null) ...[
+            ] else if (!running && report.stopProblem != null) ...[
               const SizedBox(height: 8),
               Text(
                 _text(
@@ -277,7 +279,7 @@ class StudioMailBulkStatus extends StatelessWidget {
             Wrap(
               spacing: 8,
               children: [
-                if (running && showStop)
+                if (running)
                   TextButton(
                     key: const ValueKey('studio-mail-bulk-stop'),
                     onPressed: onStop,
@@ -300,7 +302,7 @@ class StudioMailBulkStatus extends StatelessWidget {
                   onPressed: running ? null : () => _details(context),
                   child: Text(_text('Details', 'Einzelheiten', 'التفاصيل')),
                 ),
-                if (!running && !report.requiresRefresh && onDismiss != null)
+                if (!running && !_requiresRefresh && onDismiss != null)
                   TextButton(
                     key: const ValueKey('studio-mail-bulk-dismiss'),
                     onPressed: onDismiss,

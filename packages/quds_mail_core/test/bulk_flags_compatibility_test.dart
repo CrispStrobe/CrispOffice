@@ -5,21 +5,20 @@ final _profile = MailProfileId('profile', hostId: 'bulk-compatibility');
 final _account = MailAccountId('account', profile: _profile);
 final _mailbox = MailMailboxId('inbox', account: _account);
 
-MailBulkFlagPlan _plan({MailProviderKind provider = MailProviderKind.graph}) =>
-    MailBulkFlagPlan(
-      id: 'compatibility',
-      mailbox: _mailbox,
-      provider: provider,
-      action: MailBulkFlagAction.markUnread,
-      messages: [
-        for (var index = 0; index < 3; index++)
-          MailOpaqueIdentity(
-            account: _account,
-            provider: MailProviderKind.graph,
-            value: '$index',
-          ),
-      ],
-    );
+MailBulkFlagPlan _plan({MailProviderKind? provider}) => MailBulkFlagPlan(
+  id: 'compatibility',
+  mailbox: _mailbox,
+  provider: provider,
+  action: MailBulkFlagAction.markUnread,
+  messages: [
+    for (var index = 0; index < 3; index++)
+      MailOpaqueIdentity(
+        account: _account,
+        provider: MailProviderKind.graph,
+        value: '$index',
+      ),
+  ],
+);
 
 void main() {
   test('explicit provider checks rather than changes the frozen namespace', () {
@@ -33,7 +32,7 @@ void main() {
   });
 
   for (final adapter in [false, true]) {
-    group(adapter ? 'certified coordinator' : 'provider result adapter', () {
+    group(adapter ? 'certified coordinator' : 'provider runner', () {
       Future<MailBulkFlagReport> run({
         required Future<MailBulkFlagAttempt> Function(MailOperation) apply,
         MailOperationLease? lease,
@@ -52,7 +51,7 @@ void main() {
             apply: (operation, lease) => apply(operation),
           );
         }
-        return MailBulkFlagCoordinator().run(
+        return const MailBulkFlagRunner().run(
           plan: _plan(),
           lease: actualLease,
           isScopeCurrent: isScopeCurrent ?? () => true,
@@ -61,13 +60,9 @@ void main() {
           apply: (operation, lease) async {
             final attempt = await apply(operation);
             if (attempt.outcome == MailBulkFlagOutcome.confirmed) {
-              return MailBulkFlagAttempt.fromResult(
-                const MailSuccess(MailUnit.value),
-              );
+              return const MailSuccess(MailUnit.value);
             }
-            return MailBulkFlagAttempt.fromResult(
-              MailFailure(attempt.problem!),
-            );
+            return MailFailure(attempt.problem!);
           },
         );
       }
@@ -95,11 +90,11 @@ void main() {
             'compatibility:1',
             'compatibility:2',
           ]);
-          expect(() => report.items.clear(), throwsUnsupportedError);
+          expect(report.items, same(report.results));
           expect(report.confirmedCount, 2);
           expect(report.failedCount, 1);
-          expect(report.requiresRefresh, isFalse);
           expect(report.items[1].problem, same(denied));
+          expect(report.stopProblem, isNull);
           expect(report.stopReason, isNull);
           for (var index = 0; index < commands.length; index++) {
             expect(report.items[index].operation, same(commands[index]));
@@ -132,11 +127,57 @@ void main() {
         );
         expect(calls, 1);
         expect(report.stopReason, MailBulkFlagStopReason.uncertain);
-        expect(report.items.first.problem, same(lostReply));
+        expect(report.stopProblem, same(lostReply));
         expect(report.requiresRefresh, isTrue);
         expect(report.uncertainCount, 1);
         expect(report.unattemptedCount, 2);
       });
+
+      for (final evidence in <bool?>[false, true, null]) {
+        test('quota evidence $evidence stops the pending tail', () async {
+          final problem = MailProblem(
+            MailProblemCode.quotaExceeded,
+            retryAfter: const Duration(seconds: 90),
+            mutationMayHaveOccurred: evidence,
+          );
+          final commands = <MailOperation>[];
+          var current = true;
+          var stopping = false;
+          final report = await run(
+            apply: (operation) async {
+              commands.add(operation);
+              if (commands.length == 1) {
+                return const MailBulkFlagAttempt.confirmed();
+              }
+              current = false;
+              stopping = true;
+              return MailBulkFlagAttempt.fromResult(MailFailure(problem));
+            },
+            isScopeCurrent: () => current,
+            shouldStop: () => stopping,
+          );
+          expect(commands.map((operation) => operation.id), [
+            'compatibility:0',
+            'compatibility:1',
+          ]);
+          expect(report.confirmedCount, 1);
+          expect(report.failedCount, evidence == false ? 1 : 0);
+          expect(report.uncertainCount, evidence == false ? 0 : 1);
+          expect(report.unattemptedCount, 1);
+          expect(report.items.last.outcome, MailBulkFlagOutcome.unattempted);
+          expect(report.items[1].operation, same(commands[1]));
+          expect(report.items[1].problem, same(problem));
+          expect(report.stopProblem, same(problem));
+          expect(report.stopProblem?.retryAfter, const Duration(seconds: 90));
+          expect(
+            report.stopReason,
+            evidence == false
+                ? MailBulkFlagStopReason.rateLimited
+                : MailBulkFlagStopReason.uncertain,
+          );
+          expect(report.requiresRefresh, evidence != false);
+        });
+      }
 
       test(
         'stop from progress retains confirmation even if display throws',
@@ -163,7 +204,6 @@ void main() {
           expect(report.confirmedCount, 1);
           expect(report.unattemptedCount, 2);
           expect(report.stopReason, MailBulkFlagStopReason.cancelled);
-          expect(report.requiresRefresh, isFalse);
         },
       );
 
@@ -183,11 +223,7 @@ void main() {
           expect(calls, 1);
           expect(report.failedCount, 1);
           expect(report.unattemptedCount, 2);
-          expect(report.items.first.problem, same(problem));
-          expect(
-            report.requiresRefresh,
-            code == MailProblemCode.staleOperation,
-          );
+          expect(report.stopProblem, same(problem));
           expect(
             report.stopReason,
             code == MailProblemCode.cancelled
@@ -216,7 +252,6 @@ void main() {
             );
             expect(report.unattemptedCount, 3);
             expect(report.stopReason, MailBulkFlagStopReason.staleScope);
-            expect(report.requiresRefresh, isTrue);
           },
         );
       }
@@ -245,7 +280,7 @@ void main() {
       expect(report.uncertainCount, 1);
       expect(report.unattemptedCount, 2);
       expect(report.stopReason, MailBulkFlagStopReason.uncertain);
-      expect(report.items.first.problem, same(problem));
+      expect(report.stopProblem, same(problem));
     },
   );
 
@@ -265,34 +300,4 @@ void main() {
       await expectLater(start(), throwsStateError);
     },
   );
-
-  for (final reason in [
-    MailBulkFlagStopReason.staleScope,
-    MailBulkFlagStopReason.invalidScope,
-    MailBulkFlagStopReason.scopeCheckFailed,
-  ]) {
-    test(
-      '$reason requires a fresh observation even without a dispatched write',
-      () async {
-        final account = reason == MailBulkFlagStopReason.invalidScope
-            ? MailAccountId('foreign', profile: _profile)
-            : _account;
-        final report = await MailBulkFlagCoordinator().run(
-          plan: _plan(),
-          lease: MailAccountSession(account).begin(),
-          isScopeCurrent: () {
-            if (reason == MailBulkFlagStopReason.scopeCheckFailed) {
-              throw StateError('Retired scope');
-            }
-            return false;
-          },
-          apply: (operation, lease) async => fail('Invalid scope dispatched.'),
-        );
-        expect(report.stopReason, reason);
-        expect(report.requiresRefresh, isTrue);
-        expect(report.unattemptedCount, 3);
-        expect(report.uncertainCount, 0);
-      },
-    );
-  }
 }

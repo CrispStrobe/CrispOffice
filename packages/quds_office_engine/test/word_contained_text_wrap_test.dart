@@ -210,7 +210,9 @@ void main() {
             WmlSection(
               blocks: [
                 WmlTable(
-                  grid: [42],
+                  // Keep the usable width fixed so each Indic cluster must
+                  // wrap intact, independently of the default cell padding.
+                  grid: [31.2 + 2 * LaidOutLine.tableCellPad],
                   rows: [
                     WmlTableRow(
                       cells: [

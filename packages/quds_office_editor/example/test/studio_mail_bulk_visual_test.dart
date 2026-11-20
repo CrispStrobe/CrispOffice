@@ -1,3 +1,5 @@
+// Adapted from peer commit 9109fcc645d0d95fbe7a7568ddf1e0ebc07bc384.
+// The host-owned status slot uses the accepted shared progress widget.
 // Always checks the actual localized controls with real bundled fonts.
 // Optional PNG evidence:
 // flutter test test/studio_mail_bulk_visual_test.dart \
@@ -95,6 +97,41 @@ Future<void> _loadFonts() async {
   )..addFont(rootBundle.load('fonts/MaterialIcons-Regular.otf'))).load();
 }
 
+// Obtain the runner's initial immutable progress snapshot without dispatching.
+Future<MailBulkFlagReport> _pendingReport() async {
+  final account = MailAccountId(
+    'visual',
+    profile: MailProfileId('visual', hostId: 'test'),
+  );
+  final session = MailAccountSession(account);
+  MailBulkFlagReport? initial;
+  try {
+    await const MailBulkFlagRunner().run(
+      plan: MailBulkFlagPlan(
+        id: 'visual-pending',
+        mailbox: MailMailboxId('inbox', account: account),
+        action: MailBulkFlagAction.markRead,
+        messages: [
+          MailOpaqueIdentity(
+            account: account,
+            provider: MailProviderKind.ews,
+            value: 'planning',
+          ),
+        ],
+      ),
+      lease: session.begin(),
+      isScopeCurrent: () => true,
+      shouldStop: () => true,
+      apply: (_, _) async =>
+          throw StateError('A visual fixture cannot dispatch mail.'),
+      onProgress: (report) => initial ??= report,
+    );
+    return initial!;
+  } finally {
+    session.dispose();
+  }
+}
+
 Finder _key(String value) => find.byKey(ValueKey(value));
 
 Future<void> _showControl(WidgetTester tester, Finder control) async {
@@ -108,7 +145,7 @@ void _expectRowsUsable(WidgetTester tester) {
   final rows = _key('mail-list-rows');
   expect(rows, findsOneWidget);
   expect(tester.getSize(rows).height, greaterThanOrEqualTo(48));
-  expect(_key('mail-list-check-planning').hitTestable(), findsOneWidget);
+  expect(_key('mail-list-select-planning').hitTestable(), findsOneWidget);
   expect(tester.takeException(), isNull);
 }
 
@@ -158,6 +195,7 @@ void main() {
       var busy = false;
       var commands = 0;
       var stops = 0;
+      final pending = await _pendingReport();
       await tester.pumpWidget(
         RepaintBoundary(
           key: _captureKey,
@@ -196,7 +234,7 @@ void main() {
                 body: MailMessageList(
                   key: const ValueKey('localized-bulk-list'),
                   scopeId: 'visual/${language.name}',
-                  selectionScopeId: '1',
+                  selectionRevision: '1',
                   strings: strings,
                   items: _rows(language),
                   busy: busy,
@@ -211,7 +249,19 @@ void main() {
                       busy = true;
                     });
                   },
-                  onCancelBulk: busy ? () => stops++ : null,
+                  bulkStatus: busy
+                      ? StudioMailBulkStatus(
+                          strings: StudioStrings(language),
+                          report: pending,
+                          running: true,
+                          subjects: {
+                            pending.plan.messages.single: _rows(
+                              language,
+                            ).first.subject,
+                          },
+                          onStop: () => stops++,
+                        )
+                      : null,
                 ),
               ),
             ),
@@ -230,7 +280,7 @@ void main() {
         expect(header.controller!.position.maxScrollExtent, greaterThan(0));
       }
 
-      final checkbox = _key('mail-list-check-planning');
+      final checkbox = _key('mail-list-select-planning');
       await tester.tap(checkbox);
       await tester.pumpAndSettle();
       expect(tester.widget<Checkbox>(checkbox).value, isTrue);
@@ -262,14 +312,14 @@ void main() {
       expect(tester.widget<Checkbox>(checkbox).onChanged, isNull);
       expect(
         tester
-            .widget<PopupMenuButton<Object>>(_key('mail-list-bulk-actions'))
+            .widget<PopupMenuButton<dynamic>>(_key('mail-list-bulk-actions'))
             .enabled,
         isFalse,
       );
-      await _showControl(tester, _key('mail-list-stop-bulk'));
+      await _showControl(tester, _key('studio-mail-bulk-stop'));
       _expectRowsUsable(tester);
       await _capture(tester, '$name-working');
-      await tester.tap(_key('mail-list-stop-bulk'));
+      await tester.tap(_key('studio-mail-bulk-stop'));
       await tester.pumpAndSettle();
       expect(stops, 1);
       expect(commands, 1);
@@ -277,6 +327,7 @@ void main() {
     });
   }
 
+  // Additional real-font receipt probes retained from peer PR #273.
   for (final language in StudioLanguage.values) {
     testWidgets(
       '${language.name} per-message receipt and details at 1.4 scale',

@@ -1,10 +1,11 @@
 ## 0.1.0
 
-- Add explicit multi-message selection and foreground read/unread/flag/unflag
-  callbacks, with immutable visible-order snapshots, keyboard controls,
-  stale-menu rejection, scope/revision resets and selection cleared at dispatch.
-- Keep read-only hosts free of mutation controls; expose accessible
-  stop-after-current controls and a scrollable host-owned progress/results slot.
+- Add explicit visible-message selection and foreground read/flag action
+  callbacks, with immutable ordered snapshots, Ctrl/Cmd+A and Space selection,
+  Escape to clear checked rows,
+  hidden-row pruning, scope/revision resets and stale-menu rejection.
+- Keep bulk controls absent in read-only hosts and unavailable while busy or
+  refresh is required; expose a scrollable host-owned progress/results slot.
 - Add bounded structured search of loaded message headers with localized syntax
   errors, recipient/date/state predicates, explicit clear and accessible help.
   Technical examples keep their left-to-right order within Arabic help.
