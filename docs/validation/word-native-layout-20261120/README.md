@@ -24,6 +24,10 @@ These are 16 synthetic documents, not a claim about arbitrary Word files.
 The old calculation adds about 63 pt of cumulative Calibri line-position drift
 over 40 lines and about 98 pt for Aptos. Typographic spacing removes that extra
 multiplier without fitting a replacement constant to one document.
+The [OpenType hhea specification](https://learn.microsoft.com/en-us/typography/opentype/spec/hhea)
+defines these ascent, descent and line-gap metrics and distinguishes platform
+usage. This qualification uses actual macOS Word output; it does not establish
+parity with every Windows font/Word combination.
 
 ## Measurement and results
 
