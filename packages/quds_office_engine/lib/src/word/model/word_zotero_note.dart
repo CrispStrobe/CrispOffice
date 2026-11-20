@@ -48,6 +48,7 @@ final class WordZoteroNoteText {
     final items = <WordZoteroNoteListItem>[];
     final tables = <WmlTable>[];
     final cells = <({WmlTable table, WmlTableCell cell})>[];
+    final columnWidths = <WmlTableCell, List<double?>>{};
     var listCount = 0;
     var activeLink = false;
     var elements = 0;
@@ -222,8 +223,19 @@ final class WordZoteroNoteText {
                   'The Zotero note exceeds the table cell bounds.',
                 );
               }
-              cell = _tableCell(attributes);
+              final parsedCell = _tableCell(attributes);
+              cell = parsedCell.cell;
+              final columns = owner.cells.fold<int>(
+                cell.gridSpan,
+                (sum, previous) => sum + previous.gridSpan,
+              );
+              if (columns > 32) {
+                throw const FormatException(
+                  'A Zotero note table has too many columns.',
+                );
+              }
               owner.cells.add(cell);
+              columnWidths[cell] = parsedCell.widths;
               cellIndex = cells.length;
               cells.add((table: activeTable, cell: cell));
             }
@@ -398,7 +410,7 @@ final class WordZoteroNoteText {
               canonical.write('<p>\uE000/c\uE001</p>');
             }
             if (element.table != null) {
-              _finishTable(element.table!);
+              _finishTable(element.table!, columnWidths);
               canonical.write('<p>\uE000/t\uE001</p>');
             }
             if (element.tag == 'p' ||
@@ -633,24 +645,41 @@ final class WordZoteroNoteText {
     return WordZoteroNoteText._(blocks, paragraphs, placeholders, listItems);
   }
 
-  static WmlTableCell _tableCell(Map<String, String> attributes) {
-    for (final name in ['colspan', 'rowspan']) {
-      final value = attributes[name];
-      if (value != null && value.trim() != '1') throw _unsupportedTable();
+  static ({WmlTableCell cell, List<double?> widths}) _tableCell(
+    Map<String, String> attributes,
+  ) {
+    final rowSpan = attributes['rowspan'];
+    if (rowSpan != null && rowSpan.trim() != '1') throw _unsupportedTable();
+    final rawSpan = attributes['colspan']?.trim();
+    if (rawSpan != null && !RegExp(r'^[1-9][0-9]?$').hasMatch(rawSpan)) {
+      throw _unsupportedTable();
     }
-    double? width;
+    final span = rawSpan == null ? 1 : int.parse(rawSpan);
+    if (span > 32) throw _unsupportedTable();
+    final widths = List<double?>.filled(span, null);
     final rawWidth = attributes['data-colwidth']?.trim();
     if (rawWidth != null) {
-      if (!RegExp(r'^[1-9][0-9]{0,3}$').hasMatch(rawWidth)) {
-        throw _unsupportedTable();
+      // ProseMirror records one width per logical column, using zero for a
+      // column that has not been resized. Bound the vector before splitting.
+      if (rawWidth.length > 159) throw _unsupportedTable();
+      final values = rawWidth.split(',');
+      if (values.length != span) throw _unsupportedTable();
+      for (var column = 0; column < span; column++) {
+        final value = values[column];
+        if (!RegExp(r'^(0|[1-9][0-9]{0,3})$').hasMatch(value)) {
+          throw _unsupportedTable();
+        }
+        final pixels = int.parse(value);
+        if (pixels > 4000) throw _unsupportedTable();
+        if (pixels != 0) widths[column] = pixels * 0.75;
       }
-      final pixels = int.parse(rawWidth);
-      if (pixels > 4000) throw _unsupportedTable();
-      width = pixels * 0.75;
     }
-    return WmlTableCell(
-      width: width,
-      fillColor: _cellFill(attributes['style']),
+    return (
+      cell: WmlTableCell(
+        gridSpan: span,
+        fillColor: _cellFill(attributes['style']),
+      ),
+      widths: widths,
     );
   }
 
@@ -697,22 +726,33 @@ final class WordZoteroNoteText {
     return fill;
   }
 
-  static void _finishTable(WmlTable table) {
+  static void _finishTable(
+    WmlTable table,
+    Map<WmlTableCell, List<double?>> columnWidths,
+  ) {
     if (table.rows.isEmpty || table.rows.first.cells.isEmpty) {
       throw _unsupportedTable();
     }
-    final columns = table.rows.first.cells.length;
+    final columns = table.rows.first.cells.fold<int>(
+      0,
+      (sum, cell) => sum + cell.gridSpan,
+    );
     final widths = List<double?>.filled(columns, null);
     for (final row in table.rows) {
-      if (row.cells.length != columns) throw _unsupportedTable();
-      for (var column = 0; column < columns; column++) {
-        final width = row.cells[column].width;
-        if (width == null) continue;
-        if (widths[column] != null && widths[column] != width) {
-          throw _unsupportedTable();
+      var column = 0;
+      for (final cell in row.cells) {
+        if (column + cell.gridSpan > columns) throw _unsupportedTable();
+        for (final width in columnWidths[cell]!) {
+          if (width != null) {
+            if (widths[column] != null && widths[column] != width) {
+              throw _unsupportedTable();
+            }
+            widths[column] = width;
+          }
+          column++;
         }
-        widths[column] = width;
       }
+      if (column != columns) throw _unsupportedTable();
     }
     final grid = [for (final width in widths) width ?? 120.0];
     if (grid.fold<double>(0, (sum, width) => sum + width) > 4000) {
@@ -720,14 +760,19 @@ final class WordZoteroNoteText {
     }
     table.grid.addAll(grid);
     for (final row in table.rows) {
-      for (var column = 0; column < columns; column++) {
-        row.cells[column].width = grid[column];
+      var column = 0;
+      for (final cell in row.cells) {
+        var width = 0.0;
+        for (var offset = 0; offset < cell.gridSpan; offset++) {
+          width += grid[column++];
+        }
+        cell.width = width;
       }
     }
   }
 
   static UnsupportedError _unsupportedTable() => UnsupportedError(
-    'This Zotero note needs rectangular, unmerged tables with supported cell widths and background colors. Nested tables and other table formatting are not supported. The document was kept unchanged.',
+    'This Zotero note needs rectangular tables with supported column spans, widths and background colors. Vertical merges, nested tables and other table formatting are not supported. The document was kept unchanged.',
   );
 
   static const _tableContainers = <String>{'table', 'tbody', 'tr'};

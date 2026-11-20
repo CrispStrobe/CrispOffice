@@ -1,0 +1,117 @@
+{
+  "status": "PASS",
+  "scope": "Captured incoming Word measurement/line-spacing and Mail bulk-flag regression suites; no Zotero feature or installed application acceptance claim.",
+  "local_source_commit": "3415e0289526facbb681db5b9e416cb4b390a302",
+  "published_source_commit": "835b8019cbb873c72424e63d4df292174edd3c3e",
+  "source_tree": "e234cdac0634ab037a529b3421cc6c06f464e470",
+  "runtime": {
+    "flutter": "3.47.8",
+    "dart": "3.13.7",
+    "test": "1.31.1",
+    "compiler": "source",
+    "concurrency": 1
+  },
+  "execution": {
+    "exit_code": 0,
+    "done_success": true,
+    "elapsed_ms": 29777,
+    "visible_cases": 724,
+    "word_visible_cases": 693,
+    "mail_visible_cases": 31,
+    "visible_suite_counts": {
+      "office_vba_word_measurements_test": 147,
+      "office_vba_word_measurements_integration_test": 10,
+      "office_vba_word_measurements_positional_test": 197,
+      "office_vba_word_measurements_positional_integration_test": 6,
+      "office_vba_word_unit_conversions_test": 201,
+      "office_vba_word_unit_conversions_integration_test": 6,
+      "office_vba_word_line_spacing_test": 103,
+      "office_vba_word_line_spacing_integration_test": 23,
+      "bulk_flags_test": 31
+    },
+    "hidden_successes": 2,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0,
+    "stderr_bytes": 0
+  },
+  "source_sha256": {
+    "packages/quds_office_engine/lib/src/automation/office_vba_language.dart": "41de865411b884d18c1097e9a80d68cd6bf1fb245e1844a46f72af05636f5ecd",
+    "packages/quds_mail_core/lib/src/sync/bulk_flags.dart": "ce2b319a35727917eda7926139d0fc5f301ecf30e02f9b3172fd2a7c5b77296b",
+    "packages/quds_mail_core/lib/quds_mail_core.dart": "cd206870c62bdce16c3f495e98c88e04c19d58ea8492ac9c0ba2af6a6dc81b19",
+    "packages/quds_mail_core/test/bulk_flags_test.dart": "9b189f4a5458172bb3463581da19832a21de7f988420f27a3bf29cfd0fef1e7f",
+    "pubspec.yaml": "453a1f8ab62db1c5577c424b058b50033a8d3b49b99c83862ab58a7e1108f74f",
+    "pubspec.lock": "0d64a732cd7f6c7cc4e1e01255276f081b59e6f43039636c3d36f6785a958ce2",
+    "packages/quds_office_engine/test/office_vba_word_measurements_test.dart": "7a92932fa02799bc0d826b4210214abb2da591a9b3772234e8059ebec0141e82",
+    "packages/quds_office_engine/test/office_vba_word_measurements_integration_test.dart": "0caa16770a279edf477a90d1d545c8e0ae9752ac8bc986549727df6f61cb89d3",
+    "packages/quds_office_engine/test/office_vba_word_measurements_positional_test.dart": "45768d1287088a69950fe956cd0c96f776212de2c60bbe56724fcece0c10b25f",
+    "packages/quds_office_engine/test/office_vba_word_measurements_positional_integration_test.dart": "3564d92ab717315e48721ebb5663d76123e97af3d49778a68159fc77c797251c",
+    "packages/quds_office_engine/test/office_vba_word_unit_conversions_test.dart": "0bb0fa0f0a0a594c655ff29229095277b5e012345143097f494afd5edc3caee4",
+    "packages/quds_office_engine/test/office_vba_word_unit_conversions_integration_test.dart": "6ae729c2f6d2d23a3ad3719574cc826ce33c41a8f64ba2dd574e580cb35e30f8",
+    "packages/quds_office_engine/test/office_vba_word_line_spacing_test.dart": "4c2aafd10b37579a5e51e748c4c52808e00ee8e28b155d1bcb5430e953f44d12",
+    "packages/quds_office_engine/test/office_vba_word_line_spacing_integration_test.dart": "4ab49bdd4633be2b66ddc6fd6385413c557516441e145f1930a78bd6bab96b80",
+    "packages/quds_office_engine/test/support/office_macro_cli.dart": "36c09b702282de22a95ab398393766dbd2931635830e59b7439983ed0692091e",
+    "packages/quds_office_engine/tool/macros/web_vba_word_measurements_smoke.dart": "e36943eff4c1f3f0413fd77ecb83016ea59149cbde061f277316cc09c3cfeae5",
+    "packages/quds_office_engine/tool/macros/web_vba_word_measurements_positional_smoke.dart": "d14f4aae6ac8f2f8efeea50d981c6fac4a4444ee318b86c70a520d182fd7a362",
+    "packages/quds_office_engine/example/macros/word_measurements.bas": "8255788a75f6ea75f193c3c58c717d0f0f743575ae9506374607a936106d2ccf",
+    "packages/quds_office_engine/example/macros/word_measurements_positional.bas": "dd62cd308c0517ef34ffc7567ffcfa102bc17b7d408b1acfd00ed77e237c0fbd",
+    "packages/quds_office_engine/example/macros/word_unit_conversions.bas": "960cdc52c5fa2ef9a54fc943b19539d1ad96f3f260d2c225cd299a0f577f283e"
+  },
+  "source_binding": "All listed working files were compared byte-for-byte to the local source commit after the successful run. The parent verified the published commit has the same complete Git tree.",
+  "runner": {
+    "path": "incoming-aggregation.dart.txt",
+    "sha256": "80f59991cd7f1b2ad63143741d2a306e25f3a808983bc9c8e71b14b86b2d1dfa",
+    "description": "Scratch entrypoint imports the nine original test files and invokes each original main inside a named group. Original assertions, hooks and cwd are preserved. Paths in this captured runner record this executor; regenerate imports with another checkout root when reproducing."
+  },
+  "command": [
+    "dart",
+    "--packages=<repo>/.dart_tool/package_config.json",
+    "<pub-cache>/hosted/pub.dev/test-1.31.1/bin/test.dart",
+    "--compiler=source",
+    "--concurrency=1",
+    "--reporter",
+    "json",
+    "<scratch>/incoming_word_mail_test.dart"
+  ],
+  "cwd": "<repo>/packages/quds_office_engine",
+  "required_environment": {
+    "TMPDIR": "writable workspace temporary directory",
+    "PUB_CACHE": "resolved real dependency cache",
+    "FLUTTER_ROOT": "real Flutter SDK",
+    "PATH": "Dart SDK bin and Flutter bin"
+  },
+  "analysis": {
+    "office_vba_language.dart": "No issues found; exit 0",
+    "bulk_flags.dart": "No issues found; exit 0"
+  },
+  "format": "12 changed Dart files formatted; five incoming fixture/driver files needed formatting.",
+  "prior_attempt": "The eight original Word suites first completed 693 cases with 685 successes and eight failures from one repeated fixture that declared a variable after an executable assignment. Moving the declaration before the assignment retained each numeric-error assertion. Initial /tmp startup failures preceded test execution and were resolved with TMPDIR.",
+  "artifacts": {
+    "incoming-tests.jsonl.gz": {
+      "uncompressed_bytes": 459512,
+      "uncompressed_sha256": "6492e292172ffa1661c3968e493ef31093368f2f38f8294c6d69bb282fd435e5",
+      "sha256": "487b940e0b6025b14c831e60d15d16897e7be3772989b28050eb08ef5bc6e68a"
+    },
+    "incoming-tests.stderr.gz": {
+      "uncompressed_bytes": 0,
+      "uncompressed_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+    },
+    "incoming-first-word-attempt.log.gz": {
+      "uncompressed_bytes": 119185,
+      "uncompressed_sha256": "4643d2ddee58ba648fc3a4c8578fe6ab440724c72972f4d18b1a7f5022b0373c",
+      "sha256": "3d618847d43c16bab2ba3194f5b9d9daf4bf398a6947b7dbebfbf8a26f3dd7ce"
+    },
+    "incoming-word-analysis.log.gz": {
+      "uncompressed_bytes": 55,
+      "uncompressed_sha256": "b4a878789d4e5a249f2bfa9ce12ef0c6e86b7217e5502f53425dbe542aecc26a",
+      "sha256": "9b4cb7a4576397fa7f3d31a0b5d4c05aafd10bb41296d2dbd04011b7e6c3ad04"
+    },
+    "incoming-mail-analysis.log.gz": {
+      "uncompressed_bytes": 46,
+      "uncompressed_sha256": "e8fbc7c874b1d098d03ca374e2abde14d9f558c30ff9bd9ac55e61bc910d2d8a",
+      "sha256": "5ff392dc622d4c8153b41e2dfef3983e001c486d631f89ce1671484ef61ddcfd"
+    }
+  },
+  "github_actions": "not queried or awaited"
+}

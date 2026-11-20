@@ -4,6 +4,22 @@ All notable changes to `quds_office_engine` are documented here.
 
 ## Unreleased
 
+- Preserve horizontal merged cells in Zotero Add Note/Add Annotation tables.
+  Map bounded `colspan` to native `gridSpan`, reconcile `data-colwidth` vectors
+  by logical column (including unspecified zero entries), and sum covered grid
+  widths for each cell. Retain rich text, lists, pictures and active citations
+  through body/note insertion, DOCX save/reopen and one undo/redo transaction.
+  Keep whole-note resource bounds and refuse vertical merges, nested tables,
+  unequal logical row widths and unsupported table groups/styles.
+- Advertise native Zotero citation merging and report adjacency to the next
+  enumerated field only for physically touching citation packets in the same
+  paragraph/story/note. Let Zotero own order, deduplication and formatting;
+  recheck packet adjacency before application and preserve atomic abort/stale
+  result handling. Structural boundaries and staged field changes do not bridge
+  a merge. See the
+  [continuation validation record](../../docs/validation/zotero-merged-cells-20261120/README.md)
+  for qualified local source checks and remaining installed-application acceptance.
+
 - Extend Word VBA with inches, centimeters, millimeters and picas conversions
   to/from points, plus official named arguments for all ten measurement
   functions. Preserve bounded Double arithmetic, exact native-unit checks,

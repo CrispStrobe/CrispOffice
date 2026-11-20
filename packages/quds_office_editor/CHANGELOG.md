@@ -4,6 +4,18 @@ All notable changes to `quds_office_editor` are documented here.
 
 ## Unreleased
 
+- Accept horizontally merged Zotero research-note and annotation tables through
+  the existing native commands. Preserve cell-owned rich text, lists, pictures
+  and active citations in body, footnote and endnote targets; retain span widths,
+  surrounding prose, the final caret and one undo/redo step through DOCX reopening.
+- Let native Zotero Refresh combine directly touching citation fields in one
+  paragraph/story/note using Zotero's item order and formatting. Keep separated
+  fields distinct, recheck physical adjacency before applying, and leave
+  cancelled or stale results detached. A completed refresh is one undo/redo
+  step. See the
+  [continuation validation record](../../docs/validation/zotero-merged-cells-20261120/README.md)
+  for local checks; installed Zotero/Word/LibreOffice acceptance remains separate.
+
 - Add foreground bulk read/unread/flag/unflag actions to connected IMAP, EWS,
   Gmail and Microsoft 365. Freeze checked visible identities, run sequentially,
   report confirmed/failed/uncertain/unattempted counts and stop on uncertainty.

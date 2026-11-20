@@ -84,9 +84,29 @@ sandbox has no `/tmp`; a writable workspace `TMPDIR` resolved that environment
 issue. The locked `test` 1.31.1 runner is invoked directly with the real package
 configuration, `--compiler=source` and `--concurrency=1`.
 
-At this source checkpoint the first eight-file Word run completed 693 cases:
-685 passed and eight exercised the malformed fixture described above. Its
-fixture correction is committed; the corrected acceptance run and the Mail
-suite are in progress. No final passing total is claimed at this checkpoint.
-Formatting completed on the 12 changed Dart files. Later qualification is
-recorded separately without rewriting the historical incoming branch records.
+The first eight-file Word run completed 693 cases: 685 passed and eight
+exercised the malformed fixture described above. After the declaration-order
+correction, the incoming baseline completed **724 passing cases**: 693 Word and
+31 Mail. The [incoming receipt](incoming-validation.json) binds that result to
+published source `835b8019cbb873c72424e63d4df292174edd3c3e` and preserves the
+original failure, unchanged assertions and corrected acceptance. Formatting
+completed on the 12 changed Dart files.
+
+The later current-main checkpoint `180399f99a3898501ab1959e3b845150d7da59fd`
+retains main `e975cec13b289fe067ef406cd3044701ecc44744` as its second parent.
+Its expanded 11-suite Word/Mail run completed **928 passing cases**, preserving
+canonical, named and positional measurement fixtures and main's large-scalar
+regression. Final current-main engine/editor runs completed 495 engine passes
+and 378 editor passes plus eight existing image-only layout skips. All 257
+Zotero editor cases executed and passed. The three final processes therefore
+record **1,801 passes and eight skips**, with successful terminal events, exit
+code 0 and zero failures or errors. All 769 engine and 904 editor captured input
+hashes remained stable before/after execution.
+
+The earlier `6a00886f2c7f2ceddf859fcc1ccb99fbfcbb989a` editor run also had 378
+passes and eight skips; its initial tally incorrectly included skipped success
+events as passes. The [historical continuation report](incoming-main-698-checkpoint.md) identifies those fixtures
+and the corrected classification. Publication targets remote `main` through
+the continuation pull request.
+Repeated populations are not added together, and historical incoming branch
+records retain their original attribution.
