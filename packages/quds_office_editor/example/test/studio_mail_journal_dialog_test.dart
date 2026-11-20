@@ -113,11 +113,7 @@ Future<void> _show(
   bool Function()? isCurrent,
 }) async {
   await tester.binding.setSurfaceSize(size);
-  addTearDown(() async {
-    debugPrint('surface teardown start');
-    await tester.binding.setSurfaceSize(null);
-    debugPrint('surface teardown done');
-  });
+  addTearDown(() => tester.binding.setSurfaceSize(null));
   final strings = StudioStrings(language);
   final direction = language == StudioLanguage.ar
       ? TextDirection.rtl
@@ -171,7 +167,7 @@ Future<void> _show(
 
 Future<void> _tap(WidgetTester tester, String key) async {
   await tester.ensureVisible(_key(key));
-  await tester.pumpAndSettle();
+  await tester.pump(const Duration(milliseconds: 300));
   await tester.tap(_key(key));
   await _settle(tester);
 }
@@ -263,11 +259,7 @@ void main() {
         await fixture.reopen();
         return fixture;
       }))!;
-      addTearDown(() async {
-        debugPrint('fixture teardown start');
-        await tester.runAsync(fixture.dispose);
-        debugPrint('fixture teardown done');
-      });
+      addTearDown(() => settleMailJournal(tester, fixture.dispose));
       final store = _RecordingStore(fixture.store);
       final dispatched = fixture.dispatched.length;
       await _show(tester, store);
@@ -296,7 +288,6 @@ void main() {
       await _tap(tester, 'studio-mail-bulk-details-close');
       await _tap(tester, 'studio-mail-activity-back');
       expect(find.byType(ListTile), findsNWidgets(25));
-      debugPrint('first body done');
     },
   );
 
@@ -312,14 +303,11 @@ void main() {
         await fixture.prepare('still-running', begin: true);
         return fixture;
       }))!;
-      addTearDown(() async {
-        debugPrint('fixture teardown start');
-        await tester.runAsync(fixture.dispose);
-        debugPrint('fixture teardown done');
-      });
+      addTearDown(() => settleMailJournal(tester, fixture.dispose));
       final store = _RecordingStore(fixture.store);
       await _show(tester, store);
-      await _tap(tester, 'studio-mail-activity-clear');
+      await tester.tap(_key('studio-mail-activity-clear'));
+      await tester.pump(const Duration(milliseconds: 300));
       await tester.tap(
         find.widgetWithText(
           TextButton,
@@ -329,7 +317,8 @@ void main() {
       await _settle(tester);
       expect(store.clears, 0);
       expect(find.byType(ListTile), findsNWidgets(4));
-      await _tap(tester, 'studio-mail-activity-clear');
+      await tester.tap(_key('studio-mail-activity-clear'));
+      await tester.pump(const Duration(milliseconds: 300));
       await _tap(tester, 'studio-mail-activity-confirm-clear');
       expect(store.clears, 1);
       expect(_key('studio-mail-activity-completed'), findsNothing);
@@ -350,7 +339,7 @@ void main() {
       expect(status.report.unattemptedCount, 2);
       expect(fixture.dispatched, hasLength(1));
       await tester.pumpWidget(const SizedBox.shrink());
-      await tester.runAsync(fixture.reopen);
+      await settleMailJournal(tester, fixture.reopen);
       final remaining = (await tester.runAsync(() => fixture.store.list()))!;
       expect(remaining.batches.map((batch) => batch.id).toSet(), {
         'interrupted',
@@ -370,11 +359,7 @@ void main() {
       return [first, other];
     }))!;
     for (final fixture in fixtures) {
-      addTearDown(() async {
-        debugPrint('fixture teardown start');
-        await tester.runAsync(fixture.dispose);
-        debugPrint('fixture teardown done');
-      });
+      addTearDown(() => settleMailJournal(tester, fixture.dispose));
     }
     final store = _RecordingStore(fixtures.first.store)
       ..listOverride = () => fixtures.last.store.list();
@@ -398,11 +383,7 @@ void main() {
         await fixture.run('late', count: 1);
         return fixture;
       }))!;
-      addTearDown(() async {
-        debugPrint('fixture teardown start');
-        await tester.runAsync(fixture.dispose);
-        debugPrint('fixture teardown done');
-      });
+      addTearDown(() => settleMailJournal(tester, fixture.dispose));
       final receipt = (await tester.runAsync(
         () => fixture.store.load('late'),
       ))!;
@@ -430,11 +411,7 @@ void main() {
     'storage errors show a fixed localized message and no private exception text',
     (tester) async {
       final fixture = (await tester.runAsync(TestMailFlagJournal.create))!;
-      addTearDown(() async {
-        debugPrint('fixture teardown start');
-        await tester.runAsync(fixture.dispose);
-        debugPrint('fixture teardown done');
-      });
+      addTearDown(() => settleMailJournal(tester, fixture.dispose));
       final store = _RecordingStore(fixture.store)
         ..listOverride = () async =>
             throw StateError('private-path password=synthetic-private-value');
@@ -478,11 +455,7 @@ void main() {
           await fixture.reopen();
           return fixture;
         }))!;
-        addTearDown(() async {
-        debugPrint('fixture teardown start');
-        await tester.runAsync(fixture.dispose);
-        debugPrint('fixture teardown done');
-      });
+        addTearDown(() => settleMailJournal(tester, fixture.dispose));
         final store = _RecordingStore(fixture.store);
         await _show(
           tester,

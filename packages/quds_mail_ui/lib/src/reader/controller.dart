@@ -115,13 +115,16 @@ final class MailReaderController extends ChangeNotifier {
   /// Only URLs exposed by the inert projection are accepted. Pixel dimensions
   /// are checked from the bytes, and the cumulative reader limits still apply.
   /// [expectedResult] prevents a late host completion attaching to a replacement.
-  void addImages(
+  /// Returns the number of newly admitted images. An unsupported image keeps
+  /// its placeholder; a batch admitting nothing leaves view state unchanged.
+  int addImages(
     Iterable<MailInlineImage> extra, {
     MailParseResult? expectedResult,
   }) {
     if (_disposed ||
+        _presentation.rejected ||
         expectedResult != null && !identical(expectedResult, _result)) {
-      return;
+      return 0;
     }
     final candidates = Map<String, MailInlineImage>.of(_externalImages);
     for (final image in extra.take(8)) {
@@ -136,25 +139,33 @@ final class MailReaderController extends ChangeNotifier {
         candidates.entries.every(
           (entry) => identical(entry.value, _externalImages[entry.key]),
         )) {
-      return;
+      return 0;
     }
-    _presentation = buildMailPresentation(
+    final rebuilt = buildMailPresentation(
       _result,
       budget: budget,
       preferHtml: _preferHtml,
       externalImages: candidates.values,
     );
+    if (rebuilt.rejected) return 0;
+    final admitted = {
+      for (final image in rebuilt.images)
+        if (image.attachment.partPath.startsWith('remote:'))
+          image.attachment.partPath: image,
+    };
+    final count = admitted.keys
+        .where((path) => !_externalImages.containsKey(path))
+        .length;
+    if (count == 0) return 0;
+    _presentation = rebuilt;
     _externalImages
       ..clear()
-      ..addEntries(
-        _presentation.images
-            .where((image) => image.attachment.partPath.startsWith('remote:'))
-            .map((image) => MapEntry(image.attachment.partPath, image)),
-      );
+      ..addAll(admitted);
     _selection = const TextSelection.collapsed(offset: 0);
     _runSearch();
     _revision++;
     notifyListeners();
+    return count;
   }
 
   /// Offsets use UTF-16 like Flutter. Selection snaps to grapheme boundaries.

@@ -1,11 +1,42 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:drift/drift.dart';
 import 'package:drift/native.dart';
+import 'package:flutter_test/flutter_test.dart';
 import 'package:quds_mail_core/quds_mail_core.dart';
 import 'package:quds_mail_store/quds_mail_store.dart';
 import 'package:quds_office_studio/studio_mail_draft_store.dart';
 import 'package:quds_office_studio/studio_mail_flag_journal.dart';
+
+/// Drain both Flutter's fake microtasks and the native executor while closing
+/// a queue that has already performed work in a widget's fake async zone.
+Future<void> settleMailJournal(
+  WidgetTester tester,
+  Future<void> Function() action,
+) async {
+  var complete = false;
+  Object? error;
+  StackTrace? trace;
+  unawaited(
+    action().then(
+      (_) => complete = true,
+      onError: (Object failure, StackTrace stack) {
+        error = failure;
+        trace = stack;
+        complete = true;
+      },
+    ),
+  );
+  for (var i = 0; i < 100 && !complete; i++) {
+    await tester.pump(const Duration(milliseconds: 5));
+    await tester.runAsync(
+      () => Future<void>.delayed(const Duration(milliseconds: 5)),
+    );
+  }
+  if (error != null) Error.throwWithStackTrace(error!, trace!);
+  expect(complete, isTrue, reason: 'The real SQLite host queue must settle.');
+}
 
 /// A real file-backed SQLite repository with the same host owner/queue adapter.
 /// All addresses and subjects are fixed synthetic fixtures; no transport exists.

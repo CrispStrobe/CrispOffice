@@ -870,7 +870,9 @@ final class _Projection {
         if (attachment != null &&
             dimensions != null &&
             (alreadyShown ||
-                attachment.content.length <= budget.maxAttachmentBytes &&
+                attachments.length + shownExternal.length <
+                        budget.maxAttachments &&
+                    attachment.content.length <= budget.maxAttachmentBytes &&
                     attachment.content.length <= remainingDecodedBytes &&
                     dimensions.$1 * dimensions.$2 <=
                         budget.maxImagePixels - pixels)) {

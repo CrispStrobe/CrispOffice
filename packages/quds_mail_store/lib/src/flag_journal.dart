@@ -389,19 +389,22 @@ extension MailFlagCommandJournal on SqliteMailRepository {
     // Null is a wholly unknown observation, not an empty flag set. A single
     // confirmed flag cannot make the other four unknown values authoritative.
     final rows = await _rows(
-      'SELECT id,flags FROM messages WHERE account=? AND remote=? AND flags IS NOT NULL',
+      'SELECT id,flags FROM messages WHERE account=? AND remote=?',
       [account.value, remote],
     );
     if (rows.isEmpty) return;
-    final old = rows.single.read<int>('flags');
-    MailStoreCodec.decodeFlags(old);
-    final updated = enabled ? old | bit : old & ~bit;
-    if (updated == old) return;
     final id = rows.single.read<String>('id');
-    await _db.customStatement(
-      'UPDATE messages SET flags=? WHERE account=? AND id=? AND remote=?',
-      [updated, account.value, id, remote],
-    );
+    final old = rows.single.readNullable<int>('flags');
+    if (old != null) {
+      MailStoreCodec.decodeFlags(old);
+      final updated = enabled ? old | bit : old & ~bit;
+      if (updated != old) {
+        await _db.customStatement(
+          'UPDATE messages SET flags=? WHERE account=? AND id=? AND remote=?',
+          [updated, account.value, id, remote],
+        );
+      }
+    }
     final affected = await _rows(
       'SELECT mailbox FROM mailbox_view_members WHERE account=? AND message=?',
       [account.value, id],
@@ -419,7 +422,8 @@ extension MailFlagCommandJournal on SqliteMailRepository {
     );
     for (final view in affected) {
       // The original capture time/completeness are preserved. Only the CAS
-      // revision changes, rejecting a stale cached-view writer.
+      // revision changes, rejecting a stale cached-view writer even when the
+      // snapshot is unknown or its target bit already matches the confirmation.
       await _db.customStatement(
         'UPDATE mailbox_views SET revision=? WHERE account=? AND mailbox=?',
         [counter + 1, account.value, view.read<String>('mailbox')],

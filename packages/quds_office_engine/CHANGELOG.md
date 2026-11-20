@@ -4,6 +4,11 @@ All notable changes to `quds_office_engine` are documented here.
 
 ## Unreleased
 
+- Read Zotero JSON citation placement consistently on the VM and JavaScript:
+  numeric values 0, 1 and 2 include equivalent decimal/exponent spellings;
+  fractional, out-of-range, string and boolean values remain invalid. Preserve
+  native XML's strict placement spellings and add literal-JSON parity cases.
+
 - Preserve vertical and combined row/column merges in Zotero research tables.
   Normalize a bounded logical grid into native restart/continuation cells and
   remap citation/list indexes by paragraph identity. Count generated cells and

@@ -547,6 +547,61 @@ void main() {
     },
   );
 
+  for (final knownFlags in [true, false]) {
+    test(
+      '${knownFlags ? 'unchanged' : 'unknown'} confirmed flags still reject a stale conflicting view writer',
+      () async {
+        final plan = _plan(count: 1);
+        MailHeaderRecord header(MailMessageFlags? flags) => MailHeaderRecord(
+          id: MailMessageId('cached'),
+          remote: plan.messages.first,
+          envelope: MailEnvelope(subject: 'cached'),
+          flags: flags,
+        );
+        final before = _value(
+          await store.saveMailboxView(
+            _box,
+            [
+              header(
+                knownFlags
+                    ? const MailMessageFlags(isRead: true, isFlagged: true)
+                    : null,
+              ),
+            ],
+            expectedRevision: null,
+            hasMore: true,
+            lease: session.begin(),
+          ),
+        );
+        final handle = await create(plan);
+        _value(await store.beginFlagAttempt(handle, 0, lease: session.begin()));
+        final confirmed = _result(plan, 0, MailBulkFlagOutcome.confirmed);
+        _value(await store.recordFlagResult(handle, 0, confirmed));
+        _problem(
+          await store.saveMailboxView(
+            _box,
+            [header(const MailMessageFlags(isFlagged: true))],
+            expectedRevision: before.revision,
+            hasMore: false,
+            lease: session.begin(),
+          ),
+          MailProblemCode.conflict,
+        );
+        final after = _value(await store.loadMailboxView(_box.id))!;
+        if (knownFlags) {
+          expect(after.headers.single.flags!.isRead, isTrue);
+          expect(after.headers.single.flags!.isFlagged, isTrue);
+        } else {
+          expect(after.headers.single.flags, isNull);
+        }
+        expect(after.revision, greaterThan(before.revision));
+        expect(after.capturedAt, before.capturedAt);
+        expect(after.hasMore, before.hasMore);
+        _value(await store.finishFlagBatch(handle, _report(plan, [confirmed])));
+      },
+    );
+  }
+
   test(
     'unknown cached flags remain unknown and old UIDVALIDITY cannot change newer message',
     () async {

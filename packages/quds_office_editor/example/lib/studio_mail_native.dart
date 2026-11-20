@@ -37,8 +37,8 @@ import 'studio_mail_outbox.dart';
 import 'studio_mail_outbox_dialog.dart';
 import 'studio_mail_outbox_strings.dart';
 import 'studio_mail_presets.dart';
-import 'studio_mail_reply.dart';
 import 'studio_mail_remote_images.dart';
+import 'studio_mail_reply.dart';
 import 'studio_mail_strings.dart';
 import 'studio_mail_workspace_strings.dart';
 import 'studio_mail_submission.dart';
@@ -59,6 +59,7 @@ class StudioMailDialog extends StatefulWidget {
     this.chromeBuilder,
     this.clientFactory,
     this.messageLoaderFactory,
+    this.autoConnectSavedAccount,
     this.accountDiscovery,
     this.credentialStore,
     this.credentialSettingsOpener,
@@ -87,6 +88,10 @@ class StudioMailDialog extends StatefulWidget {
   /// Creates a fresh client for each connection attempt. Tests use this seam
   /// to control network completions without contacting an external account.
   final mail.MailClient Function(mail.MailAccount account)? clientFactory;
+
+  /// Connect after adopting remembered credentials. Built-in clients enable
+  /// this by default; hosts supplying their own factories can opt in explicitly.
+  final bool? autoConnectSavedAccount;
 
   /// Resolves endpoint settings only; credentials are supplied after the
   /// discovery origin and IMAP/SMTP server types have been checked.
@@ -140,7 +145,7 @@ class _StudioMailDialogState extends State<StudioMailDialog>
   bool _startTls = false;
   bool _hasSavedCredentials = false;
   bool _credentialPending = false;
-  bool _autoConnectScheduled = false;
+  Object? _autoConnectTicket;
   bool _remoteImagesLoading = false;
   StudioMailRemoteImageLoader? _remoteImageLoader;
   MailReaderController? _remoteImageOwner;
@@ -205,6 +210,7 @@ class _StudioMailDialogState extends State<StudioMailDialog>
 
   void _settingsEdited() {
     _settingsRevision++;
+    _autoConnectTicket = null;
     // Keep the offline action in sync with the effective saved-account route.
     // Password edits retain the route; endpoint/sender/login edits may not.
     if (mounted && _selectedSavedAccountId != null) setState(() {});
@@ -229,6 +235,7 @@ class _StudioMailDialogState extends State<StudioMailDialog>
         credentialGeneration != _credentialGeneration) {
       return;
     }
+    var adopted = false;
     setState(() {
       _hasSavedCredentials = saved != null;
       if (saved == null ||
@@ -238,30 +245,59 @@ class _StudioMailDialogState extends State<StudioMailDialog>
         return;
       }
       _applyCredentials(saved);
+      adopted = true;
     });
-    _scheduleAutoConnect();
+    if (adopted) _scheduleAutoConnect();
   }
 
+  bool get _autoConnectEnabled =>
+      widget.autoConnectSavedAccount ??
+      (widget.clientFactory == null && widget.messageLoaderFactory == null);
+
   void _scheduleAutoConnect() {
-    if (widget.clientFactory != null ||
-        widget.messageLoaderFactory != null ||
-        _autoConnectScheduled ||
+    if (!_autoConnectEnabled ||
+        _autoConnectTicket != null ||
+        !_hasSavedCredentials ||
+        _credentialPending ||
+        _credentialSettingsOpen ||
+        _credentialStoreChangePending ||
+        _showSavedMessages ||
         _client != null ||
         _connecting ||
         _busy ||
+        _dialogOpen ||
         _email.text.trim().isEmpty ||
         _password.text.isEmpty) {
       return;
     }
-    _autoConnectScheduled = true;
+    final ticket = Object();
+    _autoConnectTicket = ticket;
+    final settings = _settingsRevision;
+    final credentials = _credentialGeneration;
+    final store = _credentialStoreRevision;
+    final session = _sessionGeneration;
+    final account = _selectedSavedAccountId;
     WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!identical(_autoConnectTicket, ticket)) return;
+      _autoConnectTicket = null;
       if (!mounted ||
+          !_autoConnectEnabled ||
+          settings != _settingsRevision ||
+          credentials != _credentialGeneration ||
+          store != _credentialStoreRevision ||
+          session != _sessionGeneration ||
+          account != _selectedSavedAccountId ||
+          !_hasSavedCredentials ||
+          _credentialPending ||
+          _credentialSettingsOpen ||
+          _credentialStoreChangePending ||
+          _showSavedMessages ||
           _client != null ||
           _connecting ||
           _busy ||
+          _dialogOpen ||
           _email.text.trim().isEmpty ||
           _password.text.isEmpty) {
-        _autoConnectScheduled = false;
         return;
       }
       unawaited(_connect());
@@ -321,6 +357,7 @@ class _StudioMailDialogState extends State<StudioMailDialog>
       );
     }
     if (!mounted || generation != _credentialGeneration) return;
+    var adopted = false;
     setState(() {
       _credentialPending = false;
       final current =
@@ -336,10 +373,13 @@ class _StudioMailDialogState extends State<StudioMailDialog>
       if (current) {
         _credentialError = null;
         final saved = result.catalog!.selectedAccount;
-        if (saved != null) _applySavedAccount(saved);
+        if (saved != null) {
+          _applySavedAccount(saved);
+          adopted = true;
+        }
       }
     });
-    _scheduleAutoConnect();
+    if (adopted) _scheduleAutoConnect();
   }
 
   Future<void> _selectSavedAccount(String id) async {
@@ -1697,11 +1737,13 @@ class _StudioMailDialogState extends State<StudioMailDialog>
   Future<void> _loadRemoteImages() async {
     final reader = _reader;
     if (reader == null ||
+        reader.isDisposed ||
         _remoteImagesLoading ||
         reader.presentation.remoteImageUrls.isEmpty) {
       return;
     }
     final result = reader.result;
+    final generation = _sessionGeneration;
     final loader =
         widget.remoteImageLoaderFactory?.call() ??
         StudioMailRemoteImageLoader();
@@ -1709,6 +1751,8 @@ class _StudioMailDialogState extends State<StudioMailDialog>
     _remoteImageOwner = reader;
     bool current() =>
         mounted &&
+        !reader.isDisposed &&
+        generation == _sessionGeneration &&
         identical(reader, _reader) &&
         identical(result, reader.result) &&
         identical(loader, _remoteImageLoader);
@@ -1717,17 +1761,7 @@ class _StudioMailDialogState extends State<StudioMailDialog>
       _error = null;
     });
     try {
-      final usedPixels = reader.presentation.images.fold<int>(
-        0,
-        (sum, image) => sum + image.width * image.height,
-      );
-      final loaded = await loader.load(
-        reader.presentation.remoteImageUrls,
-        isCurrent: current,
-        maxImagePixels: reader.budget.maxImagePixels - usedPixels,
-      );
-      if (!current()) return;
-      reader.addImages(loaded, expectedResult: result);
+      await loader.loadInto(reader, isCurrent: current);
     } finally {
       if (mounted && identical(loader, _remoteImageLoader)) {
         setState(() {

@@ -18,7 +18,7 @@ import 'package:quds_office_studio/studio_mail_draft_store.dart';
 import 'package:quds_office_studio/studio_mail_ews.dart';
 import 'package:quds_office_studio/studio_mail_message_loader.dart';
 import 'package:quds_office_studio/studio_mail_native.dart';
-import 'package:quds_office_studio/studio_mail_workspace_strings.dart';
+import 'package:quds_office_studio/studio_mail_strings.dart';
 import 'package:quds_office_studio/studio_strings.dart';
 
 import 'support/mail_flag_journal.dart';
@@ -302,8 +302,9 @@ final class _Harness {
     commands.add(operation);
     final id = operation.id.substring(0, operation.id.lastIndexOf(':'));
     final snapshot = await fixture.store.load(id);
-    if (snapshot == null)
+    if (snapshot == null) {
       throw StateError('Provider reached before durable intent.');
+    }
     atDispatch.add(snapshot);
     return respond == null ? _success : await respond!(operation);
   }
@@ -373,7 +374,7 @@ Future<void> _show(WidgetTester tester, _Harness harness) async {
     ..devicePixelRatio = 1;
   addTearDown(tester.view.resetPhysicalSize);
   addTearDown(tester.view.resetDevicePixelRatio);
-  addTearDown(() => tester.runAsync(harness.dispose));
+  addTearDown(() => settleMailJournal(tester, harness.dispose));
   await tester.pumpWidget(MaterialApp(home: harness.dialog()));
   await tester.pump(const Duration(milliseconds: 350));
   if (harness.kind == MailProviderKind.imap) {
@@ -477,11 +478,17 @@ void main() {
               _key('studio-mail-activity-dialog').evaluate().isNotEmpty &&
               find.byType(LinearProgressIndicator).evaluate().isEmpty,
         );
-        expect(find.byType(ListTile), findsNWidgets(2));
+        expect(
+          find.descendant(
+            of: _key('studio-mail-activity-dialog'),
+            matching: find.byType(ListTile),
+          ),
+          findsNWidgets(2),
+        );
         expect(harness.commands, hasLength(4));
         await tester.pumpWidget(const SizedBox.shrink());
         await tester.pump();
-        await tester.runAsync(harness.fixture.reopen);
+        await settleMailJournal(tester, harness.fixture.reopen);
         final page = (await tester.runAsync(
           () => harness.fixture.store.list(),
         ))!;
@@ -513,7 +520,7 @@ void main() {
         expect(_list(tester).bulkActionsEnabled, isFalse);
         await tester.pumpWidget(const SizedBox.shrink());
         await tester.pump();
-        await tester.runAsync(harness.fixture.reopen);
+        await settleMailJournal(tester, harness.fixture.reopen);
         expect(
           (await tester.runAsync(() => harness.fixture.store.list()))!.batches,
           isEmpty,
@@ -539,7 +546,7 @@ void main() {
             () => Future<void>.delayed(const Duration(milliseconds: 5)),
           );
         }
-        await tester.runAsync(harness.fixture.reopen);
+        await settleMailJournal(tester, harness.fixture.reopen);
         final page = (await tester.runAsync(
           () => harness.fixture.store.list(),
         ))!;
@@ -547,7 +554,7 @@ void main() {
         final saved = (await tester.runAsync(
           () => harness.fixture.store.load(page.batches.single.id),
         ))!;
-        expect(saved!.report.confirmedCount, 1);
+        expect(saved.report.confirmedCount, 1);
         expect(saved.report.uncertainCount, 0);
         expect(saved.report.unattemptedCount, 2);
         expect(harness.commands, hasLength(1));

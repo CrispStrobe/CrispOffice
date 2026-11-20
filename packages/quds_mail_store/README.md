@@ -144,8 +144,8 @@ and the logical archive-byte quota. Jobs cost 192 logical bytes and receipts
 256 each, without claiming actual disk usage. Records are never silently evicted.
 Management reads and explicit cleanup remain available under lower write quotas,
 within absolute supported read bounds. Archive schema v2 adds these tables and
-counters to v1 without replacing existing mail. The live-cache v3 schema is
-unchanged.
+counters to v1 without replacing existing mail. The archive schema evolves
+independently of the live-cache schema.
 
 ## Live account cache
 
@@ -268,17 +268,28 @@ A confirmed flag patches only that bit on an existing exact remote identity
 whose full flag snapshot was already known. Other bits, message payloads and
 folder completeness remain unchanged. Wholly unknown flags stay null. Affected
 cached views receive a new revision while keeping their original capture time,
-so an older cache writer cannot pass its previous compare-and-set check.
+even when the desired bit already matches or the snapshot is unknown. An older
+cache writer cannot pass its previous compare-and-set check and restore an
+observation made before the confirmed command.
 
 Each batch has at most 1,000 items (also bounded by `maxPageSize`), a subject
 limit of 4,096 UTF-16 code units per item, and a combined identity/subject budget
-of at most 2 Mi code units or the lower configured metadata limit. Account
-history retains at most 100 clean completed receipts and 100 unresolved/running
-receipts. Only clean completed receipts can be pruned or cleared. When unresolved
-work reaches its limit, new batches fail before provider dispatch. Listing uses
-explicit bounded pages and continuation offsets. Logical quotas reserve the
-bounded typed outcome metadata when creating intent; physical disk quota or
-I/O errors can still prevent a later commit.
+of at most 2 Mi code units or the lower configured metadata limit. Each account
+has a 200-batch ceiling. Creating or finishing a batch prunes clean completed
+history to at most 100 receipts, preserving the receipt just finalized. Recovery
+can turn additional undispatched batches into clean completed receipts; those
+remain within the 200-batch ceiling until the next pruning write or explicit
+cleanup. Running or uncertain batches are never pruned or cleared. Once 100
+unresolved/running batches exist, new batches fail with `quotaExceeded` before
+provider dispatch. Historical uncertainty currently has no reconciliation or
+acknowledgement API, so clearing clean history cannot remove that admission
+block. This requires a later explicit recovery workflow.
+
+Listing uses explicit bounded pages and continuation offsets. Logical account
+quotas include stored identity/subject bytes and reserve 256 bytes per batch
+and per item for bounded typed outcome metadata at creation. This reservation
+avoids new logical-byte admission for a reply; physical disk quota or I/O errors
+can still prevent a later commit. It is not an estimate of SQLite file size.
 
 The native opener uses SQLite WAL, `synchronous=FULL` and an exclusive profile
 owner. Durability is the completed SQLite transaction boundary, subject to the
@@ -352,7 +363,7 @@ Reopening under tighter limits can return `quotaExceeded` while retaining the
 stored content. Local indexing decodes metadata without loading original or
 attachment bytes, and it does not interpret HTML or fetch remote content.
 
-The current schema is version 4. The retained v1, v2 and v3 definitions support
+The current schema is version 6. The retained v1 through v5 definitions support
 reproducible upgrade fixtures. Version upgrades preserve existing rows and
 advance schema state transactionally. Existing messages acquire unknown flags,
 never an invented read/unread state. The nullable constrained bitset stores only
@@ -365,6 +376,9 @@ It admits at most 100 records, prevents identity replacement and compares the
 connection revision on shortcut removal. It does not store credentials or
 invoke providers. Removing a shortcut cannot cascade to account content. See
 the [offline-account guide](../../docs/roadmaps/mail/offline-accounts.md).
+Version 5 adds ordered, partial foreground mailbox views with capture times and
+revision checks; it does not replace synchronization cursors. Version 6 adds
+the foreground flag journal described above, preserving all prior tables.
 A failed migration rolls back, and an unknown future version returns
 `unsupported` instead of resetting the database.
 

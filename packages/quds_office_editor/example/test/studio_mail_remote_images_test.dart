@@ -69,16 +69,19 @@ void main() {
   );
 
   test(
-    'oversized declared bodies are rejected before stream subscription',
+    'oversized declared bodies are cancelled before any chunk is read',
     () async {
-      var subscribed = false;
+      var reads = 0;
+      var cancelled = false;
+      final body = StreamController<List<int>>(
+        onCancel: () => cancelled = true,
+      );
       final client = _Client(
         (_) async => response(
           length: 101,
-          stream: Stream<List<int>>.multi((sink) {
-            subscribed = true;
-            sink.add([1]);
-            sink.close();
+          stream: body.stream.map((chunk) {
+            reads++;
+            return chunk;
           }),
         ),
       );
@@ -87,8 +90,10 @@ void main() {
         maxImageBytes: 100,
       );
       expect(await loader.load([a], isCurrent: () => true), isEmpty);
-      expect(subscribed, isFalse);
+      expect(reads, 0);
+      expect(cancelled, isTrue);
       expect(client.closed, isTrue);
+      await body.close();
     },
   );
 

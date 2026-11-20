@@ -8,7 +8,8 @@
   logout preserve confirmations, recover applying markers as uncertain, and
   retain untouched items as not attempted without replaying provider commands.
   Atomically patch only a confirmed known cache flag and advance affected view
-  revisions. Preserve unrelated/unknown flags, old UIDVALIDITY namespaces,
+  revisions, including confirmations of already-matching or unknown snapshots.
+  Preserve unrelated/unknown flags, old UIDVALIDITY namespaces,
   drafts, Outbox and older schemas. Bound retained clean/unresolved receipts and
   reject oversized persisted metadata before transferring it to Dart.
 

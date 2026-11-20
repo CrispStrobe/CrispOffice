@@ -91,10 +91,12 @@ calls and does not resurrect commands. Tests include process termination
 before and after intent, applying-marker and acknowledgement commits; these
 exercise process-crash boundaries, not every hardware or filesystem failure.
 
-Each account retains at most 100 completed clean receipts and 100 unresolved
-receipts, within a 200-batch bound and the repository's storage budget. New
-clean receipts prune older clean history, while preserving the receipt just
-completed. Running or uncertain work is never evicted to admit a new command;
+Ordinary creation and completion retain the newest 100 clean receipts, within
+a 200-batch total bound and the repository's storage budget. Recovery can close
+prepared, never-dispatched batches as clean receipts without immediately pruning
+them; the next creation or completion enforces the ordinary clean-history
+window. Pruning preserves the receipt just completed. Running or uncertain work
+is never evicted to admit a new command;
 100 unresolved batches block new journaled flag operations with a quota result.
 The current UI cannot resolve historical uncertainty. Provider-observation
 reconciliation is the next recovery increment.

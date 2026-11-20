@@ -1,4 +1,6 @@
 import 'dart:async';
+import 'dart:convert';
+import 'dart:math' as math;
 import 'dart:typed_data';
 
 import 'package:http/http.dart' as http;
@@ -32,23 +34,85 @@ final class StudioMailRemoteImageLoader {
   final int maxImageBytes;
   final int maxTotalBytes;
   http.Client? _client;
+  StreamIterator<List<int>>? _body;
   bool _started = false;
   bool _cancelled = false;
   int _downloadedBytes = 0;
 
   void cancel() {
     _cancelled = true;
-    _client?.close();
+    final client = _client;
+    if (client != null) _close(client);
+    final body = _body;
+    if (body != null) unawaited(_cancelBody(body));
+  }
+
+  /// Runs an explicit action against a captured reader, with its remaining
+  /// decoded-byte and pixel budgets. Navigation and body-mode changes retire it.
+  /// The original MIME ownership and any earlier admitted images are retained.
+  Future<int> loadInto(
+    MailReaderController reader, {
+    required bool Function() isCurrent,
+  }) async {
+    final result = reader.result;
+    final revision = reader.revision;
+    bool current() =>
+        !reader.isDisposed &&
+        identical(reader.result, result) &&
+        reader.revision == revision &&
+        isCurrent();
+    if (!current() || reader.presentation.rejected) return 0;
+    final message = result.message!;
+    var usedBytes = 0;
+    for (final body in [message.body.plainText, message.body.html]) {
+      if (body != null) usedBytes += utf8.encode(body).length;
+    }
+    for (final attachment in message.attachments) {
+      usedBytes += attachment.content.length;
+    }
+    var usedPixels = 0;
+    for (final image in reader.presentation.images) {
+      usedPixels += image.width * image.height;
+      if (image.attachment.partPath.startsWith('remote:')) {
+        usedBytes += image.attachment.content.length;
+      }
+    }
+    final images = await _load(
+      reader.presentation.remoteImageUrls,
+      isCurrent: current,
+      maxImagePixels: reader.budget.maxImagePixels - usedPixels,
+      byteLimit: math.min(maxImageBytes, reader.budget.maxAttachmentBytes),
+      totalLimit: math.min(
+        maxTotalBytes,
+        reader.budget.maxDecodedBytes - usedBytes,
+      ),
+    );
+    if (!current()) return 0;
+    return reader.addImages(images, expectedResult: result);
   }
 
   Future<List<MailInlineImage>> load(
     Iterable<Uri> urls, {
     required bool Function() isCurrent,
     int maxImagePixels = 16 * 1024 * 1024,
+  }) => _load(
+    urls,
+    isCurrent: isCurrent,
+    maxImagePixels: maxImagePixels,
+    byteLimit: maxImageBytes,
+    totalLimit: maxTotalBytes,
+  );
+
+  Future<List<MailInlineImage>> _load(
+    Iterable<Uri> urls, {
+    required bool Function() isCurrent,
+    required int maxImagePixels,
+    required int byteLimit,
+    required int totalLimit,
   }) async {
     if (_started) throw StateError('An image loader can run only once.');
     _started = true;
-    if (maxImagePixels < 1) return const [];
+    if (maxImagePixels < 1 || byteLimit < 1 || totalLimit < 1) return const [];
     bool current() => !_cancelled && isCurrent();
     final loaded = <MailInlineImage>[];
     final seen = <Uri>{};
@@ -60,17 +124,25 @@ final class StudioMailRemoteImageLoader {
           uri.scheme != 'https' && uri.scheme != 'http') {
         continue;
       }
-      if (_downloadedBytes >= maxTotalBytes) break;
+      if (_downloadedBytes >= totalLimit || pixels >= maxImagePixels) break;
       final client = _clientFactory();
       _client = client;
       var timedOut = false;
       try {
         final attachment =
-            await _fetch(client, uri, () => !timedOut && current()).timeout(
+            await _fetch(
+              client,
+              uri,
+              () => !timedOut && current(),
+              byteLimit: byteLimit,
+              totalLimit: totalLimit,
+            ).timeout(
               timeout,
               onTimeout: () {
                 timedOut = true;
-                client.close();
+                _close(client);
+                final body = _body;
+                if (body != null) unawaited(_cancelBody(body));
                 return null;
               },
             );
@@ -92,7 +164,7 @@ final class StudioMailRemoteImageLoader {
       } on Object {
         // Optional remote content never replaces a readable decoded message.
       } finally {
-        client.close();
+        _close(client);
         if (identical(_client, client)) _client = null;
       }
     }
@@ -102,39 +174,75 @@ final class StudioMailRemoteImageLoader {
   Future<MailAttachment?> _fetch(
     http.Client client,
     Uri uri,
-    bool Function() isCurrent,
-  ) async {
+    bool Function() isCurrent, {
+    required int byteLimit,
+    required int totalLimit,
+  }) async {
     final request = http.Request('GET', uri)..followRedirects = false;
     final response = await client.send(request);
-    if (!isCurrent() || response.statusCode != 200) return null;
     final mediaType = response.headers['content-type']
         ?.split(';')
         .first
         .trim()
         .toLowerCase();
-    if (mediaType != 'image/png' && mediaType != 'image/jpeg') return null;
-    final available = maxTotalBytes - _downloadedBytes;
     final declared = response.contentLength;
-    if (declared != null &&
-        (declared > maxImageBytes || declared > available)) {
+    if (!isCurrent() ||
+        response.statusCode != 200 ||
+        (mediaType != 'image/png' && mediaType != 'image/jpeg') ||
+        (declared != null &&
+            (declared > byteLimit ||
+                declared > totalLimit - _downloadedBytes))) {
+      unawaited(_discard(response));
       return null;
     }
-    final bytes = BytesBuilder(copy: false);
-    await for (final chunk in response.stream) {
-      if (!isCurrent()) return null;
-      _downloadedBytes += chunk.length;
-      if (chunk.length > maxImageBytes - bytes.length ||
-          _downloadedBytes > maxTotalBytes) {
-        return null;
+    final body = StreamIterator<List<int>>(response.stream);
+    _body = body;
+    final bytes = BytesBuilder(copy: true);
+    try {
+      while (await body.moveNext()) {
+        if (!isCurrent()) return null;
+        final chunk = body.current;
+        _downloadedBytes += chunk.length;
+        if (chunk.length > byteLimit - bytes.length ||
+            _downloadedBytes > totalLimit) {
+          return null;
+        }
+        bytes.add(chunk);
       }
-      bytes.add(chunk);
+      if (!isCurrent()) return null;
+      return MailAttachment(
+        partPath: 'remote:$uri',
+        mediaType: mediaType!,
+        displayName: 'Image',
+        content: MailBytes(bytes.takeBytes()),
+      );
+    } finally {
+      if (identical(_body, body)) _body = null;
+      unawaited(_cancelBody(body));
     }
-    if (!isCurrent()) return null;
-    return MailAttachment(
-      partPath: 'remote:$uri',
-      mediaType: mediaType!,
-      displayName: 'Image',
-      content: MailBytes(bytes.takeBytes()),
-    );
+  }
+
+  static void _close(http.Client client) {
+    try {
+      client.close();
+    } on Object {
+      // Optional-resource cleanup cannot replace the decoded message.
+    }
+  }
+
+  static Future<void> _discard(http.StreamedResponse response) async {
+    try {
+      await response.stream.listen((_) {}).cancel();
+    } on Object {
+      // A late response still owns a stream even after its client was closed.
+    }
+  }
+
+  static Future<void> _cancelBody(StreamIterator<List<int>> body) async {
+    try {
+      await body.cancel();
+    } on Object {
+      // A backend cancellation failure does not escape the optional action.
+    }
   }
 }
