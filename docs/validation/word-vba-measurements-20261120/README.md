@@ -118,6 +118,14 @@ did not reproduce them or obtain raw result streams. They are not counted as
 verified qualification of the consolidated merge. The source file is adopted
 byte-for-byte from that incoming checkpoint.
 
+A final continuation checkpoint, `8ca1958d9eb737beb88269bb962a2418f7a3a44a`,
+arrived just before the first main merge. Its binary64 promotion is already in
+the adopted named-argument source. The follow-up preserves its six historical
+review records and additional large-scalar test expectations, recording that
+head as a real merge parent without changing production source. Its arithmetic
+harness is explicitly bound to the older positional-only compiler blob and
+must be reproduced at its recorded historical commit, not at current main.
+
 ### Late Mail work
 
 `work/mail-bulk-flags-20261120` at
