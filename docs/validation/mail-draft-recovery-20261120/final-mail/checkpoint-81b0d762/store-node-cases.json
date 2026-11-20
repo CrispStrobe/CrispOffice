@@ -1,0 +1,23 @@
+[
+  {
+    "id": 3,
+    "name": "DOM storage quota maps by name without copying private error text",
+    "suite_id": 0,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 4,
+    "name": "blocked and aborted browser storage have typed results",
+    "suite_id": 0,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 5,
+    "name": "typed SQLite and domain failures retain their classification",
+    "suite_id": 0,
+    "result": "success",
+    "skipped": false
+  }
+]

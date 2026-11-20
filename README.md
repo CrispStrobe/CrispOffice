@@ -552,8 +552,9 @@ The native store persists drafts, frozen outgoing payloads, mailbox changes,
 nullable standard flags and cursors transactionally, with schema-v3 migration,
 local full-text search and explicit interrupted-send recovery. File-backed
 migration and Linux process-crash tests exercise data preservation. These are
-storage-layer capabilities; the foreground Studio composer does not yet use
-them for durable drafts or a recoverable outbox. Its separately
+storage-layer capabilities; the foreground Studio composer now uses them for
+[durable local drafts](docs/roadmaps/mail/draft-recovery.md) and interrupted-send
+warnings. A queued outbox remains open. Its separately
 configured browser entry compiles, but actual
 browser storage, quota and reload behavior remain unqualified. The database is
 unencrypted, and process-crash tests do not establish power-loss durability.
@@ -584,8 +585,10 @@ Canonical MIME excludes Bcc; the separate envelope retains hidden recipients,
 and cloud adapters add them only to a private API request copy. The
 [attachment qualification](docs/validation/mail-attachments-20261120/README.md)
 records local checks, not real-provider delivery or recipient-facing privacy.
-Confirmed acceptance is distinguished from later cleanup failure. Drafts remain
-in memory for the current session, without autosave or automatic retry.
+Confirmed acceptance is distinguished from later cleanup failure. Drafts now
+autosave locally and recover after reconnect, including unfinished recipients,
+reply headers and attachments. Close/Send flush the latest revision; uncertain
+submissions remain guarded after restart. No automatic retry is introduced.
 Attach-current-document/PDF commands and Office/VBA mail APIs remain later work.
 The standalone Office host and CrispCloud migration remain later tasks; these
 packages do not qualify an application release.

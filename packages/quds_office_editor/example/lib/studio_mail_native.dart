@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:enough_mail/enough_mail.dart' as mail;
 import 'package:flutter/material.dart';
+import 'package:quds_mail_core/quds_mail_core.dart' show MailProblemCode;
 import 'package:quds_mail_mime/quds_mail_mime.dart';
 import 'package:quds_mail_store/quds_mail_store.dart';
 import 'package:quds_mail_transport/quds_mail_transport.dart';
@@ -12,6 +13,8 @@ import 'studio_mail_archive_folder_action.dart';
 import 'studio_mail_cloud.dart';
 import 'studio_mail_compose.dart';
 import 'studio_mail_credentials.dart';
+import 'studio_mail_draft_store.dart';
+import 'studio_mail_draft_store_native.dart';
 import 'studio_mail_ews.dart';
 import 'studio_mail_message_loader.dart';
 import 'studio_mail_operation.dart';
@@ -38,6 +41,7 @@ class StudioMailDialog extends StatefulWidget {
     this.credentialStore,
     this.archiveWriter,
     this.archiveFolderWriter,
+    this.draftStoreFactory,
   });
 
   final StudioStrings strings;
@@ -46,6 +50,7 @@ class StudioMailDialog extends StatefulWidget {
   final StudioMailCredentialStore? credentialStore;
   final StudioMailArchiveWriter? archiveWriter;
   final StudioMailArchiveFolderWriter? archiveFolderWriter;
+  final StudioMailDraftStoreFactory? draftStoreFactory;
 
   /// Creates a fresh client for each connection attempt. Tests use this seam
   /// to control network completions without contacting an external account.
@@ -93,6 +98,7 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
   mail.MimeMessage? _selected;
   MailReaderController? _reader;
   StudioMailDraft? _draft;
+  StudioMailDraftStore? _draftStore;
   bool _submissionUncertain = false;
   bool _busy = false;
   bool _dialogOpen = false;
@@ -232,6 +238,8 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
     _reader?.dispose();
     _messageLoader?.dispose();
     _pendingLoader?.dispose();
+    unawaited(_closeDraftStore(_draftStore));
+    _draftStore = null;
     unawaited(_disconnectQuietly(_client));
     unawaited(_disconnectQuietly(_pendingClient));
     super.dispose();
@@ -242,6 +250,77 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
 
   bool _currentSession(mail.MailClient client, int generation) =>
       _currentAttempt(generation) && identical(client, _client);
+
+  Future<void> _closeDraftStore(StudioMailDraftStore? store) async {
+    try {
+      await store?.close();
+    } on Object {
+      // Closing releases ownership; it never discards the persisted draft.
+    }
+  }
+
+  Future<bool> _restoreDraftStore(
+    mail.MailClient client,
+    mail.MailAccount account,
+    int generation,
+  ) async {
+    if (!_currentSession(client, generation)) return false;
+    if (_draftStore != null) return true;
+    setState(() => _busy = true);
+    StudioMailDraftStore? candidate;
+    try {
+      final incoming = account.incoming.serverConfig;
+      final authentication = account.incoming.authentication;
+      final identity = StudioMailDraftAccount(
+        provider: 'imap',
+        endpoint: Uri(
+          scheme: incoming.socketType == mail.SocketType.ssl ? 'imaps' : 'imap',
+          host: incoming.hostname,
+          port: incoming.port,
+        ).toString(),
+        login: authentication is mail.UserNameBasedAuthentication
+            ? authentication.userName
+            : account.email,
+        sender: account.email,
+      );
+      candidate = await (widget.draftStoreFactory ?? openStudioMailDraftStore)(
+        identity,
+      );
+      final restored = await candidate.load();
+      if (!_currentSession(client, generation)) {
+        await _closeDraftStore(candidate);
+        return false;
+      }
+      setState(() {
+        _draftStore = candidate;
+        _draft = restored?.draft;
+        _submissionUncertain = restored?.submissionUncertain ?? false;
+        _error = _submissionUncertain
+            ? widget.strings.mailSubmissionUncertain
+            : null;
+        if (restored != null) _notice = widget.strings.mailDraftRestored;
+      });
+      return true;
+    } on Object {
+      await _closeDraftStore(candidate);
+      if (_currentSession(client, generation)) {
+        setState(() => _error = widget.strings.mailDraftStorageFailed);
+      }
+      return false;
+    } finally {
+      if (_currentSession(client, generation)) setState(() => _busy = false);
+    }
+  }
+
+  Future<bool> _clearAcceptedDraft(StudioMailDraftStore store) async {
+    try {
+      await store.clear();
+      return true;
+    } on Object {
+      // The pre-submission marker remains uncertain if cleanup cannot commit.
+      return false;
+    }
+  }
 
   Future<void> _disconnectQuietly(
     mail.MailClient? client,
@@ -398,6 +477,7 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
       });
       adopted = true;
       _retireReader(previous);
+      await _restoreDraftStore(client, account, generation);
       await _persistCredentials(
         client,
         generation,
@@ -533,6 +613,10 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
     final client = _client;
     final account = _account;
     if (client == null || account == null || _busy || _dialogOpen) return;
+    final generation = _sessionGeneration;
+    if (!await _restoreDraftStore(client, account, generation)) return;
+    if (!mounted || !_currentSession(client, generation)) return;
+    final store = _draftStore!;
     if (initial != null && _draft != null) {
       setState(() {
         _error = widget.strings.mailRetainedDraft;
@@ -544,17 +628,30 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
       setState(() => _error = widget.strings.mailInvalidSender);
       return;
     }
-    final generation = _sessionGeneration;
     StudioMailDraft? draft;
     setState(() => _dialogOpen = true);
     try {
       draft = await showDialog<StudioMailDraft>(
         context: context,
+        barrierDismissible: false,
         builder: (context) => StudioMailComposeDialog(
           strings: widget.strings,
           from: account.email,
           initialDraft: initial ?? _draft,
           previousSubmissionUncertain: _submissionUncertain,
+          onSaveDraft: (snapshot) async {
+            if (!_currentSession(client, generation) ||
+                !identical(store, _draftStore)) {
+              throw const StudioMailDraftStoreException(
+                MailProblemCode.unavailable,
+              );
+            }
+            setState(() => _draft = snapshot);
+            await store.save(
+              snapshot,
+              submissionUncertain: _submissionUncertain,
+            );
+          },
         ),
       );
     } finally {
@@ -574,6 +671,9 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
     var attempted = false;
     try {
       final message = buildStudioMailMessage(draft, account.email);
+      await store.save(draft, submissionUncertain: true);
+      if (!_currentSession(client, generation)) return;
+      _submissionUncertain = true;
       attempted = true;
       await client.sendMessage(
         message,
@@ -583,25 +683,33 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
             mail.MailAddress('', address),
         ],
       );
+      final cleared = await _clearAcceptedDraft(store);
       if (_currentSession(client, generation)) {
         setState(() {
           _busy = false;
-          _draft = null;
-          _submissionUncertain = false;
-          _notice = widget.strings.mailSubmissionAccepted;
+          _draft = cleared ? null : draft;
+          _submissionUncertain = !cleared;
+          _notice = cleared
+              ? widget.strings.mailSubmissionAccepted
+              : widget.strings.mailDraftAcceptedCleanupFailed;
         });
       }
     } on mail.MailSendPostSubmissionException catch (error) {
+      final cleared = identical(error.mailClient, client)
+          ? await _clearAcceptedDraft(store)
+          : false;
       if (_currentSession(client, generation)) {
         setState(() {
           _busy = false;
           if (identical(error.mailClient, client)) {
             // SMTP acceptance is final for this draft even when subsequent
             // connection cleanup fails. Retrying would duplicate submission.
-            _draft = null;
-            _submissionUncertain = false;
+            _draft = cleared ? null : draft;
+            _submissionUncertain = !cleared;
             _error = null;
-            _notice = widget.strings.mailSubmissionFollowUpFailed;
+            _notice = cleared
+                ? widget.strings.mailSubmissionFollowUpFailed
+                : widget.strings.mailDraftAcceptedCleanupFailed;
           } else {
             // An outcome from another client cannot confirm this submission.
             _notice = null;
@@ -610,14 +718,16 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
           }
         });
       }
-    } on Object {
+    } on Object catch (error) {
       if (_currentSession(client, generation)) {
         setState(() {
           _busy = false;
           _notice = null;
-          _submissionUncertain = attempted;
+          _submissionUncertain = _submissionUncertain || attempted;
           _error = attempted
               ? widget.strings.mailSubmissionUncertain
+              : error is StudioMailDraftStoreException
+              ? widget.strings.mailDraftStorageFailed
               : widget.strings.mailInvalidSender;
         });
       }
@@ -710,7 +820,23 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
         !identical(_draft, retained)) {
       return;
     }
+    final store = _draftStore;
+    if (store == null) return;
+    setState(() => _busy = true);
+    try {
+      await store.clear();
+    } on Object {
+      if (_currentSession(client, generation)) {
+        setState(() {
+          _busy = false;
+          _error = widget.strings.mailDraftSaveFailed;
+        });
+      }
+      return;
+    }
+    if (!_currentSession(client, generation)) return;
     setState(() {
+      _busy = false;
       _draft = null;
       _submissionUncertain = false;
       _error = null;
@@ -771,6 +897,8 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
 
   void _disconnect() {
     _sessionGeneration++;
+    final draftStore = _draftStore;
+    _draftStore = null;
     final client = _client;
     final pending = _pendingClient;
     final loader = _messageLoader;
@@ -803,6 +931,7 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
     pendingLoader?.dispose();
     unawaited(_disconnectQuietly(client));
     unawaited(_disconnectQuietly(pending));
+    unawaited(_closeDraftStore(draftStore));
   }
 
   @override
