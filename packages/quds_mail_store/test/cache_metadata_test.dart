@@ -34,10 +34,12 @@ void _problem<T>(MailResult<T> result, MailProblemCode code) {
 
 final class _ReadProbe extends QueryInterceptor {
   int maximumText = 0;
+  int maximumBytes = 0;
   bool blobRead = false;
 
   void reset() {
     maximumText = 0;
+    maximumBytes = 0;
     blobRead = false;
   }
 
@@ -53,6 +55,9 @@ final class _ReadProbe extends QueryInterceptor {
       for (final value in row.values) {
         if (value is String && value.length > maximumText) {
           maximumText = value.length;
+        }
+        if (value is Uint8List && value.length > maximumBytes) {
+          maximumBytes = value.length;
         }
       }
     }
@@ -283,6 +288,58 @@ void main() {
       },
     );
   }
+
+  test(
+    'cleanup discards oversized corrupt envelope text without transferring it',
+    () async {
+      await store.close();
+      final database = sqlite.sqlite3.open(file.path);
+      database.execute('UPDATE messages SET envelope=?', ['x' * (1024 * 1024)]);
+      database.close();
+      store = await open(
+        limits: const MailStoreLimits(
+          maxMetadataCodeUnits: 64,
+          maxAccountBytes: 1,
+        ),
+      );
+      probe.reset();
+      final report = _value(await store.clearMailboxCache(_account));
+      expect(report.evictedBodies, 1);
+      expect(report.removedHeaders, 1);
+      expect(report.hasMore, isFalse);
+      expect(probe.maximumText, lessThan(64));
+      expect(probe.maximumBytes, 0);
+      expect(probe.blobRead, isFalse);
+      expect(_value(await store.search(_account, 'body')), isEmpty);
+    },
+  );
+
+  test(
+    'cleanup discards malformed envelope type without transferring its bytes',
+    () async {
+      await store.close();
+      final database = sqlite.sqlite3.open(file.path);
+      database.execute('UPDATE messages SET envelope=?', [
+        Uint8List(1024 * 1024),
+      ]);
+      database.close();
+      store = await open(
+        limits: const MailStoreLimits(
+          maxMetadataCodeUnits: 64,
+          maxAccountBytes: 1,
+        ),
+      );
+      probe.reset();
+      final report = _value(await store.clearMailboxCache(_account));
+      expect(report.evictedBodies, 1);
+      expect(report.removedHeaders, 1);
+      expect(report.hasMore, isFalse);
+      expect(probe.maximumText, lessThan(64));
+      expect(probe.maximumBytes, 0);
+      expect(probe.blobRead, isFalse);
+      expect(_value(await store.search(_account, 'body')), isEmpty);
+    },
+  );
 
   test(
     'bounded malformed JSON fails explicitly before raw or attachment reads',

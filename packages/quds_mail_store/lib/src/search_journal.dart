@@ -380,7 +380,11 @@ extension MailStoreLocalOperations on SqliteMailRepository {
     ];
   }
 
-  Future<int> _evictCacheBodies(MailAccountId account, int limit) async {
+  Future<int> _evictCacheBodies(
+    MailAccountId account,
+    int limit, {
+    bool retainHeaderIndex = true,
+  }) async {
     final ids = await _boundedCacheIds(
       'c.message',
       'FROM cached_messages c WHERE c.account=? AND NOT $_cachePinned '
@@ -388,27 +392,29 @@ extension MailStoreLocalOperations on SqliteMailRepository {
       [account.value, limit],
     );
     for (final id in ids) {
-      // Read one bounded envelope at a time, never the body being discarded.
-      final size = (await _rows(
-        'SELECT typeof(envelope) AS type,length(CAST(envelope AS BLOB)) AS bytes '
-        'FROM messages WHERE account=? AND id=?',
-        [account.value, id],
-      )).single;
-      if (size.read<String>('type') != 'text') {
-        SqliteMailRepository._fail(MailProblemCode.storageFailure);
-      }
-      if (size.read<int>('bytes') > limits.maxMetadataCodeUnits * 18) {
-        SqliteMailRepository._fail(MailProblemCode.quotaExceeded);
-      }
-      final row = (await _rows(
-        'SELECT envelope FROM messages WHERE account=? AND id=?',
-        [account.value, id],
-      )).single;
-      final envelope = MailStoreCodec.decodeEnvelope(
-        row.read<String>('envelope'),
-      );
-      if (_envelopeUnits(envelope) > limits.maxMetadataCodeUnits) {
-        SqliteMailRepository._fail(MailProblemCode.quotaExceeded);
+      MailEnvelope? envelope;
+      if (retainHeaderIndex) {
+        // Ordinary eviction preserves header search. Explicit quota recovery
+        // must instead discard the index without admitting existing metadata.
+        final size = (await _rows(
+          'SELECT typeof(envelope) AS type,length(CAST(envelope AS BLOB)) AS bytes '
+          'FROM messages WHERE account=? AND id=?',
+          [account.value, id],
+        )).single;
+        if (size.read<String>('type') != 'text') {
+          SqliteMailRepository._fail(MailProblemCode.storageFailure);
+        }
+        if (size.read<int>('bytes') > limits.maxMetadataCodeUnits * 18) {
+          SqliteMailRepository._fail(MailProblemCode.quotaExceeded);
+        }
+        final row = (await _rows(
+          'SELECT envelope FROM messages WHERE account=? AND id=?',
+          [account.value, id],
+        )).single;
+        envelope = MailStoreCodec.decodeEnvelope(row.read<String>('envelope'));
+        if (_envelopeUnits(envelope) > limits.maxMetadataCodeUnits) {
+          SqliteMailRepository._fail(MailProblemCode.quotaExceeded);
+        }
       }
       await _db.customStatement(
         'DELETE FROM cached_messages WHERE account=? AND message=?',
@@ -418,7 +424,18 @@ extension MailStoreLocalOperations on SqliteMailRepository {
         "DELETE FROM blob_refs WHERE account=? AND owner_kind='cache' AND owner_id=?",
         [account.value, id],
       );
-      await _index(account, MailMessageId(id), envelope, null);
+      if (envelope != null) {
+        await _index(account, MailMessageId(id), envelope, null);
+      } else {
+        await _db.customStatement(
+          'DELETE FROM mail_fts WHERE account=? AND message=?',
+          [account.value, id],
+        );
+        await _db.customStatement(
+          'DELETE FROM index_state WHERE account=? AND message=?',
+          [account.value, id],
+        );
+      }
     }
     return ids.length;
   }
@@ -428,6 +445,8 @@ extension MailStoreLocalOperations on SqliteMailRepository {
   /// transaction. No new quota admission is required to free existing space.
   /// Folder definitions, sync cursors/memberships, active pending operations,
   /// outgoing work and editor-pinned payloads remain intact.
+  /// Evicted bodies lose their entire search entry; retained authoritative
+  /// headers can be indexed again by [reindex] or the next synchronization.
   Future<MailResult<MailCacheCleanupReport>> clearMailboxCache(
     MailAccountId account, {
     int limit = 1000,
@@ -444,7 +463,11 @@ extension MailStoreLocalOperations on SqliteMailRepository {
     final removedViews = (await _rows(
       'SELECT changes() AS n',
     )).single.read<int>('n');
-    final evictedBodies = await _evictCacheBodies(account, limit);
+    final evictedBodies = await _evictCacheBodies(
+      account,
+      limit,
+      retainHeaderIndex: false,
+    );
     final ids = await _boundedCacheIds(
       'm.id',
       'FROM messages m WHERE m.account=? AND $_headerExpendable ORDER BY m.id LIMIT ?',

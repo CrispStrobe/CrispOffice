@@ -184,6 +184,35 @@ void main() {
   );
 
   test(
+    'cleanup admits no existing envelope under lower metadata and account quotas',
+    () async {
+      final box = _box('inbox');
+      final source = _header(1, box);
+      final header = MailHeaderRecord(
+        id: source.id,
+        remote: source.remote,
+        envelope: MailEnvelope(subject: 'x' * 4096),
+      );
+      await save(box, [header]);
+      await cache(header);
+      await store.close();
+      store = await open(
+        limits: const MailStoreLimits(
+          maxMetadataCodeUnits: 64,
+          maxAccountBytes: 1,
+        ),
+      );
+      final report = _value(await store.clearMailboxCache(_account));
+      expect(report.removedViews, 1);
+      expect(report.evictedBodies, 1);
+      expect(report.removedHeaders, 1);
+      expect(report.hasMore, isFalse);
+      expect(_value(await store.listMailboxViews(_account)), isEmpty);
+      expect(_value(await store.search(_account, 'Cached')), isEmpty);
+    },
+  );
+
+  test(
     'bounded batches report remaining eligible work and finish idempotently',
     () async {
       for (var i = 0; i < 3; i++) {
@@ -376,7 +405,12 @@ void main() {
       expect(finalReport.removedHeaders, 1);
       expect(finalReport.retainedBodies, 0);
       expect(finalReport.hasMore, isFalse);
+      expect(_value(await store.search(_account, 'Subject')), isEmpty);
+      // Retained authoritative/pending headers remain available for a bounded
+      // rebuild. The old cached body text must not survive explicit cleanup.
+      expect(_value(await store.reindex(_account)), 4);
       expect(_value(await store.search(_account, 'Subject')), hasLength(4));
+      expect(_value(await store.search(_account, 'Cached')), isEmpty);
     },
   );
 

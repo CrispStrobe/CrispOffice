@@ -11,6 +11,10 @@
   sync state and editor pins while freeing quota. Retain a durable view revision
   counter across cleanup/recreate, and preflight cached JSON before transferring
   it from SQLite, with exact decoded metadata budgets on reads.
+  Explicit cleanup invalidates evicted search entries without reading old
+  envelopes, so lowered metadata budgets and malformed envelopes do not block
+  body cleanup.
+  Retained authoritative headers can be rebuilt by bounded reindex or sync.
 
 - Add a bounded non-secret local account directory with additive schema-v4
   migration, immutable route identities, monotonic connection revisions and

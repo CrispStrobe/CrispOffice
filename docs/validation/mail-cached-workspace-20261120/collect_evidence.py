@@ -20,9 +20,11 @@ def main() -> None:
     directories = (
         'mail_intake_audit', 'store-mailbox-accepted', 'store-mailbox-reviewed',
         'mail-cached-store-full', 'mail-cached-store-final',
+        'mail-cached-store-final-recovery',
         'mail-cached-shared-full', 'mail-cached-shared-final',
+        'mail-cached-shared-final-recovery',
         'mail-cached-studio-full', 'mail-cached-studio-final',
-        'mail-cached-studio-final-rtl',
+        'mail-cached-studio-final-rtl', 'mail-cached-studio-final-recovery',
         'runtime/logs',
     )
     selected: dict[str, Path] = {}
@@ -33,9 +35,11 @@ def main() -> None:
     for pattern in (
         'mailbox-store-host-dev*', 'mailbox-store-host-cleanup*',
         'host-cache-analysis*', 'store-mailbox-focused*', 'store-cache-review-*',
+        'store-cache-recovery-*',
         'cache_review_probe*', 'cache-independent-review.json',
         'mail-cached-*-review.*', 'intake-api.json',
-        'runtime/*receipt.json', 'runtime/runtime.json', 'runtime/env.sh',
+        'runtime/*receipt.json', 'runtime/cached-mail-*.png',
+        'runtime/runtime.json', 'runtime/env.sh',
         'runtime/sdk-release.json', 'runtime/prefetch_locked.py',
     ):
         for path in scratch.glob(pattern):
