@@ -98,18 +98,21 @@ void _validateWordSpacingSource(
       'Line-spacing edits cannot preserve unbalanced modeled field boundaries.',
     );
   }
+  final styleTypes = <String, String>{};
+  final roots = <XmlElement>[];
   final source = paragraph.properties.sourcePropertiesXml;
   if (source != null && source.isNotEmpty) {
     final wrapper = XmlDocument.parse(
       '<w:context xmlns:w="$_w">$source</w:context>',
     ).root!;
-    final roots = wrapper.childElements.toList(growable: false);
-    if (roots.length != 1 || !_word(roots.single, 'pPr')) {
+    final propertyRoots = wrapper.childElements.toList(growable: false);
+    if (propertyRoots.length != 1 || !_word(propertyRoots.single, 'pPr')) {
       throw UnsupportedError(
         'Line-spacing edits require unambiguous native paragraph properties.',
       );
     }
-    _checkElement(roots.single, beforeControl: beforeControl);
+    _checkElement(propertyRoots.single, beforeControl: beforeControl);
+    if (beforeControl) roots.add(propertyRoots.single);
   }
   for (final part in document.package?.parts ?? <PackagePart>[]) {
     if (!part.contentType.endsWith('+xml') ||
@@ -127,7 +130,19 @@ void _validateWordSpacingSource(
     if (root == null) {
       throw UnsupportedError('Missing native Word XML root.');
     }
-    _checkElement(root, beforeControl: beforeControl);
+    _checkElement(root, beforeControl: beforeControl, styleTypes: styleTypes);
+    if (beforeControl) roots.add(root);
+  }
+  if (beforeControl) {
+    final selectedStyle = paragraph.properties.styleId;
+    if (selectedStyle != null && styleTypes[selectedStyle] != 'paragraph') {
+      throw UnsupportedError(
+        'Paragraph spacing controls require a resolved paragraph style.',
+      );
+    }
+    for (final root in roots) {
+      _checkBeforeStyleReferences(root, styleTypes);
+    }
   }
 }
 
@@ -137,6 +152,7 @@ void _checkElement(
   bool paragraphProperties = false,
   bool beforeControl = false,
   bool unmodeledBefore = false,
+  Map<String, String>? styleTypes,
 }) {
   final isAlternative =
       element.localName == 'AlternateContent' &&
@@ -145,7 +161,14 @@ void _checkElement(
   final isParagraphProperties = _word(element, 'pPr');
   final insideProperties = paragraphProperties || isParagraphProperties;
   if (beforeControl && _word(element, 'styles')) {
-    _checkBeforeStyleIdentities(element);
+    final types = _checkBeforeStyleIdentities(element);
+    for (final entry in types.entries) {
+      if (styleTypes?.containsKey(entry.key) == true &&
+          styleTypes![entry.key] != entry.value) {
+        throw UnsupportedError('Conflicting native style types across parts.');
+      }
+    }
+    styleTypes?.addAll(types);
   }
   // The live cascade does not project paragraph spacing from numbering
   // levels or these conditional table regions. A toggle cannot infer it.
@@ -203,11 +226,12 @@ void _checkElement(
       paragraphProperties: insideProperties,
       beforeControl: beforeControl,
       unmodeledBefore: unsupportedRegion,
+      styleTypes: styleTypes,
     );
   }
 }
 
-void _checkBeforeStyleIdentities(XmlElement root) {
+Map<String, String> _checkBeforeStyleIdentities(XmlElement root) {
   String? attribute(XmlElement element, String name) {
     final matches = element.attributes.where(
       (a) => a.localName == name && a.namespaceUri == _w,
@@ -219,6 +243,7 @@ void _checkBeforeStyleIdentities(XmlElement root) {
   }
 
   final styles = <String, String?>{};
+  final types = <String, String>{};
   var defaults = 0;
   for (final style in root.childElements.where(
     (node) => _word(node, 'style'),
@@ -241,7 +266,16 @@ void _checkBeforeStyleIdentities(XmlElement root) {
         }.contains(defaultValue)) {
       throw UnsupportedError('Ambiguous native default-style flag.');
     }
-    if (attribute(style, 'type') == 'paragraph' &&
+    final type = attribute(style, 'type') ?? 'paragraph';
+    if (!const {
+      'paragraph',
+      'character',
+      'table',
+      'numbering',
+    }.contains(type)) {
+      throw UnsupportedError('Unsupported native style type.');
+    }
+    if (type == 'paragraph' &&
         const {'1', 'true', 'on'}.contains(defaultValue)) {
       defaults++;
     }
@@ -255,9 +289,21 @@ void _checkBeforeStyleIdentities(XmlElement root) {
       throw UnsupportedError('Missing native style inheritance reference.');
     }
     styles[id] = parentId;
+    types[id] = type;
   }
   if (defaults > 1) {
     throw UnsupportedError('Ambiguous multiple default paragraph styles.');
+  }
+  for (final entry in styles.entries) {
+    final parent = entry.value;
+    if (parent != null &&
+        (types[entry.key] == 'numbering' ||
+            (types.containsKey(parent) && types[parent] != types[entry.key]))) {
+      throw UnsupportedError(
+        'Paragraph spacing controls do not resolve cross-type or numbering '
+        'style inheritance.',
+      );
+    }
   }
   final resolved = <String>{};
   for (final id in styles.keys) {
@@ -272,6 +318,57 @@ void _checkBeforeStyleIdentities(XmlElement root) {
       current = styles[current];
     }
     resolved.addAll(chain);
+  }
+  return types;
+}
+
+void _checkBeforeStyleReferences(
+  XmlElement element,
+  Map<String, String> types, {
+  XmlElement? parent,
+}) {
+  if ((_word(element, 'pPr') &&
+          element.childElements
+                  .where((child) => _word(child, 'pStyle'))
+                  .length >
+              1) ||
+      (_word(element, 'tblPr') &&
+          element.childElements
+                  .where((child) => _word(child, 'tblStyle'))
+                  .length >
+              1)) {
+    throw UnsupportedError('Ambiguous duplicate native style references.');
+  }
+  final expected = switch (element.localName) {
+    'pStyle' => 'paragraph',
+    'tblStyle' => 'table',
+    _ => null,
+  };
+  if (expected != null) {
+    final allowedParent =
+        parent != null &&
+        (expected == 'paragraph'
+            ? _word(parent, 'pPr') || _word(parent, 'lvl')
+            : _word(parent, 'tblPr'));
+    final ids = element.attributes.where(
+      (a) => a.localName == 'val' && a.namespaceUri == _w,
+    );
+    if (element.namespaceUri != _w ||
+        !allowedParent ||
+        element.attributes.any(
+          (a) => a.localName == 'val' && a.namespaceUri != _w,
+        ) ||
+        ids.length != 1 ||
+        ids.single.value.isEmpty ||
+        types[ids.single.value] != expected) {
+      throw UnsupportedError(
+        'Paragraph spacing controls require unambiguous native paragraph '
+        'and table style references of the correct type.',
+      );
+    }
+  }
+  for (final child in element.childElements) {
+    _checkBeforeStyleReferences(child, types, parent: element);
   }
 }
 

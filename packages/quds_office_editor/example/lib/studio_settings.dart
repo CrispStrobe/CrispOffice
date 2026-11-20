@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:convert';
-import 'dart:typed_data';
 
 import 'package:flutter/foundation.dart';
 import 'package:quds_office_editor/quds_office_editor.dart';
@@ -202,7 +201,7 @@ abstract final class StudioSettingKeys {
 /// app that this version does not know are carried along unchanged.
 @immutable
 final class StudioSettings {
-  StudioSettings._(this._values, this.unknown);
+  const StudioSettings._(this._values, this.unknown);
 
   /// The defaults: what a fresh install shows.
   factory StudioSettings.defaults() => StudioSettings._({

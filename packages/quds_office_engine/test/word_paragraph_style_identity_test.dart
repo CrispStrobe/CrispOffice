@@ -108,6 +108,66 @@ void main() {
     });
   }
 
+  for (final prefix in ['w', 'word']) {
+    for (final enabled in ['1', 'true', 'on']) {
+      test(
+        'omitted style type defaults to paragraph with $prefix $enabled',
+        () {
+          _checkBefore(
+            _fixture(
+              '<$prefix:style $prefix:default="$enabled" '
+              '$prefix:styleId="PositiveDefault"><$prefix:pPr>'
+              '<$prefix:spacing $prefix:before="120"/>'
+              '</$prefix:pPr></$prefix:style>',
+              prefix: prefix,
+            ),
+            6,
+            afterToggle: 0,
+          );
+        },
+      );
+    }
+  }
+
+  for (final foreignType in ['paragraph', 'character', 'table', 'numbering']) {
+    test(
+      'foreign type $foreignType does not override the paragraph default',
+      () {
+        _checkBefore(
+          _fixture(
+            '<w:style x:type="$foreignType" w:default="1" w:styleId="Native">'
+            '<w:pPr><w:spacing w:before="120"/></w:pPr></w:style>',
+          ),
+          6,
+          afterToggle: 0,
+        );
+      },
+    );
+  }
+
+  for (final (parentType, childType) in <(String, String)>[
+    ('', ''),
+    (' w:type="paragraph"', ''),
+    ('', ' w:type="paragraph"'),
+  ]) {
+    test(
+      'omitted type remains paragraph in basedOn $parentType / $childType',
+      () {
+        _checkBefore(
+          _fixture(
+            '<w:style$parentType w:styleId="Positive">'
+            '<w:pPr><w:spacing w:before="120"/></w:pPr></w:style>'
+            '<w:style$childType w:styleId="Native">'
+            '<w:basedOn w:val="Positive"/></w:style>',
+            properties: '<w:pStyle w:val="Native"/>',
+          ),
+          6,
+          afterToggle: 0,
+        );
+      },
+    );
+  }
+
   for (final (name, styles) in <(String, String)>[
     (
       'foreign style record',
@@ -126,11 +186,6 @@ void main() {
     (
       'foreign default attribute',
       '<w:style w:type="paragraph" x:default="1" w:styleId="Native">'
-          '<w:pPr><w:spacing w:before="120"/></w:pPr></w:style>',
-    ),
-    (
-      'foreign type attribute',
-      '<w:style x:type="paragraph" w:default="1" w:styleId="Native">'
           '<w:pPr><w:spacing w:before="120"/></w:pPr></w:style>',
     ),
     (

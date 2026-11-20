@@ -1,0 +1,115 @@
+name: App Store screenshots
+
+# Renders the six Mac App Store screenshots of CrispOffice (2880×1800 PNG,
+# a 1440×900 window at device pixel ratio 2, light theme) on a clean macOS
+# runner. The app is built with tool/build_macos_app.sh so that proofing in
+# the screenshots comes from the same native libraries the app ships;
+# dictionaries and models are installed by Studio's own hosts (verified
+# downloads from immutable revisions). The PNGs are uploaded as the
+# `app-store-screenshots` artifact; reviewed copies live in
+# docs/release/app-store-screenshots/.
+
+on:
+  workflow_dispatch:
+  push:
+    branches: ['feat/app-store-screenshots-*']
+    paths:
+      - .github/workflows/app-store-screenshots.yml
+      - packages/quds_office_editor/example/test/app_store_screenshots_gate.dart
+
+permissions:
+  contents: read
+
+concurrency:
+  group: app-store-screenshots-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  FLUTTER_VERSION: 3.47.8
+  QUDS_BUILD_JOBS: 4
+
+jobs:
+  screenshots:
+    name: Render screenshots
+    runs-on: macos-15
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v5
+      - name: Paths
+        run: |
+          echo "CARGO_TARGET_DIR=$HOME/.cache/shared-cargo-target" >>"$GITHUB_ENV"
+          echo "LOGS=$RUNNER_TEMP/logs" >>"$GITHUB_ENV"
+          echo "SHOTS=$RUNNER_TEMP/app-store-screenshots" >>"$GITHUB_ENV"
+          mkdir -p "$RUNNER_TEMP/logs" "$RUNNER_TEMP/app-store-screenshots" "$RUNNER_TEMP/studio-data"
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          cache: true
+      - name: Cache Cargo
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/registry/index
+            ~/.cargo/registry/cache
+            ~/.cargo/git/db
+            ~/.rustup/toolchains
+            ~/.cache/shared-cargo-target
+          key: cargo-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('packages/quds_proofing_harper/native/Cargo.lock', 'packages/quds_proofing_harper/native/rust-toolchain.toml') }}
+          restore-keys: cargo-${{ runner.os }}-${{ runner.arch }}-
+      - name: Resolve workspace
+        run: flutter pub get 2>&1 | tee "$LOGS/pub-get.log"
+      - name: Analyze the Studio example
+        working-directory: packages/quds_office_editor/example
+        run: |
+          set -o pipefail
+          dart analyze lib test/app_store_screenshots_gate.dart 2>&1 | tee "$LOGS/analyze.log"
+      - name: Build the macOS app with its native libraries
+        run: |
+          set -o pipefail
+          packages/quds_office_editor/example/tool/build_macos_app.sh 2>&1 \
+            | tee "$LOGS/build-macos-app.log"
+      - name: Render screenshots
+        working-directory: packages/quds_office_editor/example
+        run: |
+          set -o pipefail
+          export QUDS_STUDIO_APP="$PWD/build/macos/Build/Products/Release/CrispOffice.app"
+          export QUDS_STUDIO_DATA="$RUNNER_TEMP/studio-data"
+          export QUDS_SHOTS_DIR="$SHOTS"
+          flutter test --reporter expanded \
+            --dart-define=QUDS_HARPER_LIBRARY="$QUDS_STUDIO_APP/Contents/Frameworks/libquds_proofing_harper.dylib" \
+            test/app_store_screenshots_gate.dart 2>&1 \
+            | tee "$LOGS/render.log"
+      - name: Check sizes
+        if: always()
+        run: |
+          set -euo pipefail
+          count=0
+          for png in "$SHOTS"/*.png; do
+            [ -f "$png" ] || continue
+            w="$(sips -g pixelWidth "$png" | awk '/pixelWidth/ {print $2}')"
+            h="$(sips -g pixelHeight "$png" | awk '/pixelHeight/ {print $2}')"
+            echo "$(basename "$png"): ${w}x${h}" | tee -a "$LOGS/sizes.log"
+            [ "$w" = 2880 ] && [ "$h" = 1800 ] || { echo "::error::$png is ${w}x${h}"; exit 1; }
+            count=$((count + 1))
+          done
+          [ "$count" = 6 ] || { echo "::error::expected 6 screenshots, found $count"; exit 1; }
+      - name: Upload screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: app-store-screenshots
+          path: ${{ env.SHOTS }}
+          if-no-files-found: warn
+          retention-days: 30
+      - name: Upload logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: app-store-screenshots-logs
+          path: ${{ runner.temp }}/logs
+          if-no-files-found: warn
+          retention-days: 14

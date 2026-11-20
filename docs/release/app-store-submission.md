@@ -129,18 +129,28 @@ You can remove all local data by deleting the app and its container (~/Library/C
 Contact: <support address>
 ```
 
-## 7. Age rating
+## 7. Age rating (as submitted 20 November 2026)
 
-Answer **None / No** to every content question (violence, sexual content,
-profanity, horror, drugs, gambling, contests, medical). Capability questions:
+Step 1, in-app controls and capabilities:
 
-- Unrestricted web access: **No.** Links open in the user's browser. HTML mail
-  is converted to static styled text (`quds_mail_ui` reader presentation): no
-  source HTML or CSS reaches the rendering surface and nothing is loaded
-  remotely.
-- User-generated content shared with others / messaging: the app is an email
-  client for the user's own accounts with no in-app community. Answer per the
-  questionnaire's wording; expected result is the lowest rating.
+| Question | Answer | Basis |
+|---|---|---|
+| Parental Controls | No | none in the app |
+| Age Assurance | No | none in the app |
+| Unrestricted Web Access | No | links open in the user's browser; HTML mail is converted to static styled text (`quds_mail_ui` reader presentation), nothing loads remotely |
+| User-Generated Content | No | nothing users create is distributed through the app |
+| Social Media | No | no feed or publishing |
+| Social Media Disabled for Users Under 13 | No | not applicable |
+| Messaging and Chat | **Yes** | the mail client lets users write to other people |
+| Shared Location | No | |
+| Advertising | No | |
+
+Content steps: **None / No** throughout (profanity, horror, alcohol/drugs,
+dating, violence, sexual content, gambling, contests, medical). User documents
+and mail are not app content.
+
+Result: **4+** calculated; age category **Not Applicable** (not Made for Kids),
+no override, no age suitability URL.
 
 ## 8. Export compliance (encryption)
 

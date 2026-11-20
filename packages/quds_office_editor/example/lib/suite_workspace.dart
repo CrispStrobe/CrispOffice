@@ -71,6 +71,10 @@ class SuiteWorkspace extends StatefulWidget {
     this.zoteroTransportFactory,
     this.ribbonPreferences,
     this.settingsStore,
+    this.initialWord,
+    this.initialWorkbook,
+    this.initialPresentation,
+    this.mailBuilder,
   });
 
   /// Creates a connection owned by one Zotero workspace. Hosts may supply
@@ -83,6 +87,18 @@ class SuiteWorkspace extends StatefulWidget {
   /// Where the Studio settings persist; defaults to the platform store
   /// (in memory under `flutter test`).
   final StudioSettingsStore? settingsStore;
+
+  /// Documents (and their window titles) opened instead of the built-in
+  /// samples, e.g. for demos and store screenshots.
+  final ({String name, WmlDocument document})? initialWord;
+  final ({String name, SmlWorkbook workbook})? initialWorkbook;
+  final ({String name, PmlPresentation presentation})? initialPresentation;
+
+  /// Builds the Mail page instead of the default account session. It gets
+  /// the workspace strings and the title bar; hosts such as screenshot
+  /// tests use it to show Mail without contacting a server.
+  final Widget Function(StudioStrings strings, WidgetBuilder chrome)?
+  mailBuilder;
 
   @override
   State<SuiteWorkspace> createState() => _SuiteWorkspaceState();
@@ -218,10 +234,22 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
         });
       },
     );
-    _word = WordEditorController(document: SampleLibrary.wordBriefing());
+    _word = WordEditorController(
+      document: widget.initialWord?.document ?? SampleLibrary.wordBriefing(),
+    );
     _word.onFollowExternalLink = _openExternalLink;
-    _sheet = SheetEditorController(workbook: SampleLibrary.excelBudget());
-    _slides = SlideEditorController(presentation: SampleLibrary.slideDeck());
+    _sheet = SheetEditorController(
+      workbook:
+          widget.initialWorkbook?.workbook ?? SampleLibrary.excelBudget(),
+    );
+    _slides = SlideEditorController(
+      presentation:
+          widget.initialPresentation?.presentation ??
+          SampleLibrary.slideDeck(),
+    );
+    _wordName = widget.initialWord?.name ?? _wordName;
+    _sheetName = widget.initialWorkbook?.name ?? _sheetName;
+    _slideName = widget.initialPresentation?.name ?? _slideName;
     _pdf = PdfEditorController.fromBytes(studioSamplePdf());
     _bindHostActions(_word);
     _bindHostActions(_sheet);
@@ -1774,10 +1802,15 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
       MaterialPageRoute<void>(
         builder: (mailContext) => Theme(
           data: theme,
-          child: StudioMailDialog(
-            strings: _strings,
-            chromeBuilder: (_) => _titleBar(mailContext: mailContext),
-          ),
+          child:
+              widget.mailBuilder?.call(
+                _strings,
+                (_) => _titleBar(mailContext: mailContext),
+              ) ??
+              StudioMailDialog(
+                strings: _strings,
+                chromeBuilder: (_) => _titleBar(mailContext: mailContext),
+              ),
         ),
       ),
     );

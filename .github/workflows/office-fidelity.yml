@@ -31,9 +31,12 @@ jobs:
     timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
+      - id: sdk
+        name: Read repository SDK pin
+        run: python3 -c 'import json; print("flutter=" + json.load(open(".fvmrc"))["flutter"])' >> "$GITHUB_OUTPUT"
       - uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.44.0'
+          flutter-version: ${{ steps.sdk.outputs.flutter }}
           channel: stable
           cache: true
       - run: flutter pub get

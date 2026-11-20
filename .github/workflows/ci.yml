@@ -126,6 +126,14 @@ jobs:
         run: flutter pub get
       - run: flutter analyze
       - run: flutter test
+      - name: Upload golden failure diffs
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: editor-golden-failures
+          path: packages/quds_office_editor/test/failures/
+          if-no-files-found: ignore
+          retention-days: 7
 
   report_studio:
     name: quds_report_studio

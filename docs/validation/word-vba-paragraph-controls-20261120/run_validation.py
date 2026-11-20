@@ -14,9 +14,12 @@ import hashlib
 import json
 import os
 from pathlib import Path
+import shutil
+import signal
 import stat
 import subprocess
 import tarfile
+import tempfile
 import time
 from urllib.parse import unquote, urljoin, urlparse
 
@@ -298,6 +301,92 @@ def compare_previous(repo, selection, cases, source_inputs):
                 unchanged_cases=sum(item['previous_cases'] for item in comparisons if item['source_unchanged']))
 
 
+def run_regression_batches(out, runtime, engine, environment, batches, selected):
+    """Bound kernel-cache storage while keeping original independent VM suites."""
+    scheduled = [path for batch in batches for path in batch['files']]
+    if len(scheduled) != len(set(scheduled)) or set(scheduled) != set(selected):
+        raise ValueError('Regression batches are not a disjoint complete selection')
+    records, cases = [], []
+    problems, errors, per_file = [], [], {}
+    failed = skipped = hidden = starts = terminals = passed = 0
+    exit_code = 0
+    for batch in batches:
+        name = batch['name']
+        stdout, stderr = out / ('regression-' + name + '.jsonl'), out / ('regression-' + name + '.stderr')
+        temp = Path(tempfile.mkdtemp(prefix='quds-word-' + name + '-', dir=runtime / 'tmp'))
+        batch_environment = dict(environment, TMPDIR=str(temp))
+        command = dict(name=name, argv=batch['argv'], cwd=str(engine),
+                       files=batch['files'], environment_overrides={'TMPDIR': str(temp)})
+        write_json(out / ('regression-' + name + '-command.json'), command)
+        print(json.dumps(dict(phase='regression', batch=name, status='RUNNING',
+                              files=len(batch['files']), at=utc_now())), flush=True)
+        started, tick = utc_now(), time.monotonic()
+        process = None
+        try:
+            with stdout.open('wb') as output, stderr.open('wb') as error:
+                process = subprocess.Popen(batch['argv'], cwd=engine, env=batch_environment,
+                                           stdout=output, stderr=error, start_new_session=True)
+                try:
+                    code = process.wait()
+                except BaseException:
+                    if process.poll() is None:
+                        os.killpg(process.pid, signal.SIGTERM)
+                        try:
+                            process.wait(timeout=10)
+                        except subprocess.TimeoutExpired:
+                            os.killpg(process.pid, signal.SIGKILL)
+                            process.wait()
+                    raise
+        finally:
+            # This directory is owned by this completed runner only. Source,
+            # raw evidence, another runner's files and hosted inputs are retained.
+            if process is None or process.poll() is not None:
+                shutil.rmtree(temp)
+        parsed = parse_events(stdout, engine, batch['files'])
+        batch_cases = parsed.pop('cases')
+        for case in batch_cases:
+            case['batch'] = name
+        cases.extend(batch_cases)
+        overlap = set(per_file) & set(parsed['per_file_cases'])
+        if overlap:
+            problems.append('Duplicate original suites across batches: ' + str(sorted(overlap)))
+        per_file.update(parsed['per_file_cases'])
+        problems.extend(name + ': ' + item for item in parsed['problems'])
+        errors.extend(dict(batch=name, event=event) for event in parsed['errors'])
+        failed += parsed['failed_cases']; skipped += parsed['skipped_cases']
+        hidden += parsed['hidden_completions']; starts += parsed['start_events']
+        terminals += parsed['terminal_events']; passed += parsed['passing_cases']
+        record = dict(name=name, command=command, started_utc=started, finished_utc=utc_now(),
+                      seconds=round(time.monotonic() - tick, 3), exit_code=code,
+                      status='PASS' if code == 0 and parsed['accepted'] else 'FAIL',
+                      stdout=stdout.name, stderr=stderr.name,
+                      stdout_sha256=file_signature(stdout)['sha256'],
+                      stderr_sha256=file_signature(stderr)['sha256'],
+                      temporary_directory_removed=not temp.exists(), tests=parsed)
+        records.append(record)
+        write_json(out / ('regression-' + name + '-receipt.json'), record)
+        write_json(out / 'regression-batches.json', dict(batch_size=8, expected_files=selected, batches=records))
+        print(json.dumps(dict(phase='regression', batch=name, status=record['status'],
+                              passing_cases=parsed['passing_cases'], seconds=record['seconds'])), flush=True)
+        if record['status'] != 'PASS':
+            exit_code = code or 1
+            break
+    if len(records) != len(batches) or set(per_file) != set(selected):
+        problems.append('The full scheduled original-suite union did not complete')
+    if starts != len(batches) or terminals != len(batches):
+        problems.append('Each scheduled batch must have its own start and terminal')
+    accepted = (exit_code == 0 and not (problems or errors or failed or skipped)
+                and len(records) == len(batches) and all(item['status'] == 'PASS' for item in records))
+    result = dict(accepted=accepted, passing_cases=passed, failed_cases=failed,
+                  skipped_cases=skipped, error_events=len(errors), errors=errors,
+                  problems=problems, hidden_completions=hidden, file_count=len(per_file),
+                  per_file_cases=dict(sorted(per_file.items())), start_events=starts,
+                  terminal_events=terminals, terminal_success=accepted,
+                  batch_count=len(records), planned_batches=len(batches),
+                  execution='Original VM suites, disjoint batches of at most 8; one genuine kernel runner process per batch, concurrency 1.')
+    return exit_code, result, cases, records
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--repo', type=Path, required=True)
@@ -318,20 +407,25 @@ def main():
     changed = git(repo, 'diff', '--name-only', '-z', selection['format_baseline'], '--', ENGINE).decode().split('\0')
     untracked = git(repo, 'ls-files', '-z', '--others', '--exclude-standard', '--', ENGINE).decode().split('\0')
     format_paths = sorted({path for path in changed + untracked if path.endswith('.dart') and (repo / path).is_file()})
+    selected_paths = [entry['path'] for entry in selection['files']]
+    runner = [str(dart), '--old_gen_heap_size=768', '--packages=' + str(repo / '.dart_tool/package_config.json'),
+              str(runtime / 'test-runner/test-runner.dill'), '--compiler', 'kernel',
+              '--concurrency=1', '--timeout=4x', '--suite-load-timeout=3m',
+              '--fail-fast', '--reporter=json']
+    batches = [dict(name=f'batch-{index // 8 + 1:02d}', files=selected_paths[index:index + 8],
+                    argv=runner + selected_paths[index:index + 8])
+               for index in range(0, len(selected_paths), 8)]
     commands = {
-        'regression': [str(dart), '--old_gen_heap_size=768', '--packages=' + str(repo / '.dart_tool/package_config.json'),
-                       str(runtime / 'test-runner/test-runner.dill'), '--compiler', 'kernel',
-                       '--concurrency=1', '--timeout=4x', '--suite-load-timeout=3m',
-                       '--fail-fast', '--reporter=json', *[entry['path'] for entry in selection['files']]],
+        'regression': [batch['argv'] for batch in batches],
         'analysis': [str(dart), 'analyze', '--fatal-infos', '--fatal-warnings', '.'],
         'format': [str(dart), 'format', '--output=none', '--set-exit-if-changed',
                    *[str(repo / path) for path in format_paths]],
     }
     plan = dict(source_commit=head, source_tree=git(repo, 'rev-parse', 'HEAD^{tree}').decode().strip(),
                 engine_cwd=str(engine), phases=args.phase, commands={key: commands[key] for key in args.phase},
-                selection=selection, changed_dart_files=format_paths,
+                selection=selection, regression_batches=batches, changed_dart_files=format_paths,
                 github_actions='NOT QUERIED OR AWAITED',
-                execution='Genuine package:test; original test files are distinct VM suites; kernel compiler; concurrency 1.')
+                execution='Genuine package:test; original test files are distinct VM suites; kernel compiler; concurrency 1; disjoint batches of at most 8 use separate runner processes.')
     if args.plan_only:
         print(json.dumps(plan, indent=2))
         return 0
@@ -354,12 +448,20 @@ def main():
             raise ValueError('Source inputs are not all committed: ' + str(head_binding['mismatches']))
         write_gzip_json(out / (phase + '-source-before.json.gz'), before)
         write_gzip_json(out / (phase + '-runtime-before.json.gz'), runtime_before)
-        stdout = out / (phase + ('.jsonl' if phase == 'regression' else '.stdout'))
+        stdout = out / ('regression-batches.json' if phase == 'regression' else phase + '.stdout')
         stderr = out / (phase + '.stderr')
         started, tick = utc_now(), time.monotonic()
-        with stdout.open('wb') as output, stderr.open('wb') as error:
-            process = subprocess.run(commands[phase], cwd=engine, env=environment,
-                                     stdout=output, stderr=error)
+        if phase == 'regression':
+            exit_code, result, cases, batch_records = run_regression_batches(
+                out, runtime, engine, environment, batches, selected_paths,
+            )
+            # Retain actual per-batch stderr streams and a byte-exact aggregate.
+            stderr.write_bytes(b''.join((out / item['stderr']).read_bytes() for item in batch_records))
+        else:
+            with stdout.open('wb') as output, stderr.open('wb') as error:
+                process = subprocess.run(commands[phase], cwd=engine, env=environment,
+                                         stdout=output, stderr=error)
+            exit_code = process.returncode
         after = collect_source_inputs(repo)
         runtime_after = collect_runtime_inputs(repo, runtime)
         write_gzip_json(out / (phase + '-source-after.json.gz'), after)
@@ -367,19 +469,18 @@ def main():
         unchanged_head = git(repo, 'rev-parse', 'HEAD').decode().strip() == head
         check = dict(name=phase, command=commands[phase], cwd=str(engine),
                      started_utc=started, finished_utc=utc_now(), seconds=round(time.monotonic() - tick, 3),
-                     exit_code=process.returncode, source_entries=len(before),
+                     exit_code=exit_code, source_entries=len(before),
                      source_unchanged=before == after, source_matches_head=head_binding['matches'],
                      runtime_entries=len(runtime_before), runtime_unchanged=runtime_before == runtime_after,
                      head_unchanged=unchanged_head, stdout=stdout.name, stderr=stderr.name,
                      stdout_sha256=file_signature(stdout)['sha256'], stderr_sha256=file_signature(stderr)['sha256'])
-        accepted = process.returncode == 0 and before == after and runtime_before == runtime_after and unchanged_head
+        accepted = exit_code == 0 and before == after and runtime_before == runtime_after and unchanged_head
         if phase == 'regression':
-            result = parse_events(stdout, engine, [entry['path'] for entry in selection['files']])
-            cases = result.pop('cases')
             write_gzip_json(out / 'cases.json.gz', cases)
             comparison = compare_previous(repo, selection, cases, before)
             write_json(out / 'previous-case-comparison.json', comparison)
             check['tests'] = result
+            check['batches'] = batch_records
             check['previous_case_comparison'] = {key: value for key, value in comparison.items() if key != 'files'}
             accepted = accepted and result['accepted'] and comparison['accepted']
         elif phase == 'analysis':
