@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+- Retain uncertainty after a dispatched cloud mutation returns HTTP 410,
+  stopping later flag commands until refresh. Preserve the independent Send
+  rejection policy, with Gmail and Microsoft 365 regression coverage.
+
 - Treat dispatched timeouts and unfamiliar client-error responses as uncertain;
   explicit request, authorization, resource, precondition and documented rate
   limit rejections certify no mutation. Preserve rate-limit retry guidance while

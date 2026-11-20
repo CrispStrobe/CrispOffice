@@ -11,6 +11,7 @@ import 'package:quds_office_editor/quds_office_editor.dart';
 import 'package:quds_office_studio/main.dart';
 import 'package:quds_office_studio/studio_chrome.dart';
 import 'package:quds_office_studio/studio_mail.dart';
+import 'package:quds_office_studio/studio_saved_mail.dart';
 import 'package:quds_office_studio/studio_strings.dart';
 
 class _DeferredPicker extends FilePicker {
@@ -89,6 +90,18 @@ Future<void> _pump(WidgetTester tester) async {
   await tester.pump();
   await tester.pump(const Duration(milliseconds: 350));
   await tester.pump();
+}
+
+Future<void> _closeSavedMail(
+  WidgetTester tester, {
+  StudioStrings strings = const StudioStrings(StudioLanguage.en),
+}) async {
+  final close = find.descendant(
+    of: find.byType(StudioSavedMailView),
+    matching: find.byTooltip(strings.close),
+  );
+  expect(close, findsOneWidget);
+  await tester.tap(close);
 }
 
 Future<void> _openDialog(
@@ -174,7 +187,7 @@ void main() {
     expect(opened.isDisposed, isFalse);
     expect(find.text('CrispOffice Mail · Saved.eml'), findsOneWidget);
 
-    await tester.tap(find.byTooltip('Close'));
+    await _closeSavedMail(tester);
     await _pump(tester);
     expect(opened.isDisposed, isTrue);
     expect(find.byType(StudioMailDialog), findsNothing);
@@ -225,7 +238,7 @@ void main() {
       await _pump(tester);
       expect(_reader(tester), same(compact));
       expect(compact.result.original!.bytes, orderedEquals(expected));
-      await tester.tap(find.byTooltip('Close'));
+      await _closeSavedMail(tester);
       await _pump(tester);
       expect(compact.isDisposed, isTrue);
       expect(tester.takeException(), isNull);
@@ -261,7 +274,7 @@ void main() {
       expect(find.text(strings.openMessageFailed), findsOneWidget);
       expect(find.textContaining('private path'), findsNothing);
       expect(tester.takeException(), isNull);
-      await tester.tap(find.byTooltip(strings.close));
+      await _closeSavedMail(tester, strings: strings);
       await _pump(tester);
     });
 
@@ -279,7 +292,7 @@ void main() {
       } else {
         await tester.tap(find.text('Open message'));
       }
-      await tester.tap(find.byTooltip('Close'));
+      await _closeSavedMail(tester);
       await _pump(tester);
       expect(initial.isDisposed, isTrue);
       if (file != null) {
@@ -316,7 +329,7 @@ void main() {
     expect(_reader(tester).mode, MailReaderMode.preview);
     expect(_reader(tester).decodedText, contains('Saved message body.'));
     expect(find.text('CrispOffice Mail · Deferred.eml'), findsOneWidget);
-    await tester.tap(find.byTooltip('Close'));
+    await _closeSavedMail(tester);
     await _pump(tester);
     expect(tester.takeException(), isNull);
   });
@@ -327,7 +340,7 @@ void main() {
     await _openDialog(tester);
     final file = _DeferredFile();
     _openInFileZone(tester, file);
-    await tester.tap(find.byTooltip('Close'));
+    await _closeSavedMail(tester);
     await _pump(tester);
     picker.result.complete(_pickedPath(file));
     await _pump(tester);
@@ -347,7 +360,7 @@ void main() {
     expect(find.text('Open message'), findsOneWidget);
     expect(find.text('Compact'), findsOneWidget);
     expect(tester.takeException(), isNull);
-    await tester.tap(find.byTooltip('Close'));
+    await _closeSavedMail(tester);
     await _pump(tester);
   });
 
@@ -368,7 +381,7 @@ void main() {
         expect(_reader(tester), same(initial));
         expect(initial.isDisposed, isFalse);
         expect(find.text('CrispOffice Mail · Welcome.eml'), findsOneWidget);
-        await tester.tap(find.byTooltip('Close'));
+        await _closeSavedMail(tester);
         await _pump(tester);
         expect(initial.isDisposed, isTrue);
         expect(tester.takeException(), isNull);
@@ -383,7 +396,7 @@ void main() {
     final initial = _reader(tester);
     await tester.tap(find.text('Open message'));
     expect(picker.calls, 1);
-    await tester.tap(find.byTooltip('Close'));
+    await _closeSavedMail(tester);
     await _pump(tester);
     expect(initial.isDisposed, isTrue);
     picker.result.complete(_pickedMessage());
@@ -402,7 +415,7 @@ void main() {
     picker.result.complete(_pickedPath(file));
     await _pump(tester);
     expect(file.reads, 1);
-    await tester.tap(find.byTooltip('Close'));
+    await _closeSavedMail(tester);
     await _pump(tester);
     expect(initial.isDisposed, isTrue);
     file.result.complete(_message());

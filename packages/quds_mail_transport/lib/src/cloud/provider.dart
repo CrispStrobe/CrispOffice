@@ -364,10 +364,10 @@ final class ApiMailCloudProvider implements MailCloudProvider {
       }
       rethrow;
     }
-    // Foreground flags use explicit request/auth/resource/precondition and
-    // rate-limit rejection evidence. Timeouts and unfamiliar 4xx responses
-    // remain uncertain. Submission retains its established client-rejection
-    // and Retry-After contract independently of the foreground flag policy.
+    // Foreground mutations use a narrow no-write evidence set. A dispatched
+    // 410 response does not establish the requested flag's final state; retain
+    // uncertainty and stop the batch. Submission keeps its separate existing
+    // client-rejection and Retry-After contract.
     final rejectedWithoutMutation = operation.kind == MailCloudOperation.apply
         ? const {
             400,
@@ -375,7 +375,6 @@ final class ApiMailCloudProvider implements MailCloudProvider {
             403,
             404,
             409,
-            410,
             412,
             429,
           }.contains(response.statusCode)
