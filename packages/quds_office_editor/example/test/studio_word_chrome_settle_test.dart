@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:quds_office_editor/quds_office_editor.dart';
@@ -86,13 +88,17 @@ void main() {
       expect(find.text('${heading}AB'), findsNothing);
       expect(tester.binding.hasScheduledFrame, isFalse);
 
-      // Advance only the clock, without pumping a frame. A post-frame
-      // callback cannot run unless the trailing timer requests that frame.
-      await tester.binding.delayed(const Duration(milliseconds: 399));
+      // Observe the timer before pump draws a frame. The production timer
+      // was registered first, so it runs before this same-deadline observer.
+      await tester.pump(const Duration(milliseconds: 399));
       expect(tester.binding.hasScheduledFrame, isFalse);
-      await tester.binding.delayed(const Duration(milliseconds: 1));
+      bool? refreshRequestedFrame;
+      Timer(const Duration(milliseconds: 1), () {
+        refreshRequestedFrame = tester.binding.hasScheduledFrame;
+      });
+      await tester.pump(const Duration(milliseconds: 1));
       expect(
-        tester.binding.hasScheduledFrame,
+        refreshRequestedFrame,
         isTrue,
         reason: 'The 400 ms refresh must not wait for another user action.',
       );
@@ -107,7 +113,12 @@ void main() {
       await _frames(tester);
       await tester.pumpWidget(const SizedBox.shrink());
       await _frames(tester);
-      await tester.binding.delayed(const Duration(milliseconds: 401));
+      bool? disposedRefreshRequestedFrame;
+      Timer(const Duration(milliseconds: 401), () {
+        disposedRefreshRequestedFrame = tester.binding.hasScheduledFrame;
+      });
+      await tester.pump(const Duration(milliseconds: 401));
+      expect(disposedRefreshRequestedFrame, isFalse);
       expect(tester.binding.hasScheduledFrame, isFalse);
       expect(tester.takeException(), isNull);
     },
