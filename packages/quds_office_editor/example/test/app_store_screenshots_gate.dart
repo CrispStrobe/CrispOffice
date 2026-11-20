@@ -20,7 +20,6 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
-import 'dart:typed_data';
 import 'dart:ui' as ui;
 
 import 'package:enough_mail/enough_mail.dart' as mail;
@@ -211,8 +210,10 @@ WmlDocument _germanPractice() => WmlDocument(
           language: 'de-DE',
         ),
         _para('Vocabulary', style: 'Heading1'),
-        _para('das Sofa – the sofa · schlafen – to sleep · der Garten – the '
-            'garden · besuchen – to visit'),
+        _para(
+          'das Sofa – the sofa · schlafen – to sleep · der Garten – the '
+          'garden · besuchen – to visit',
+        ),
       ],
     ),
   ],
@@ -289,10 +290,26 @@ SmlWorkbook _salesWorkbook() {
           kind: OfficeVisualKind.chartColumn,
           title: 'Revenue by quarter (USD)',
           points: <ChartPoint>[
-            ChartPoint(label: 'Q1', value: quarter(0).toDouble(), color: '2B579A'),
-            ChartPoint(label: 'Q2', value: quarter(1).toDouble(), color: '217346'),
-            ChartPoint(label: 'Q3', value: quarter(2).toDouble(), color: 'B7472A'),
-            ChartPoint(label: 'Q4', value: quarter(3).toDouble(), color: 'ED7D31'),
+            ChartPoint(
+              label: 'Q1',
+              value: quarter(0).toDouble(),
+              color: '2B579A',
+            ),
+            ChartPoint(
+              label: 'Q2',
+              value: quarter(1).toDouble(),
+              color: '217346',
+            ),
+            ChartPoint(
+              label: 'Q3',
+              value: quarter(2).toDouble(),
+              color: 'B7472A',
+            ),
+            ChartPoint(
+              label: 'Q4',
+              value: quarter(3).toDouble(),
+              color: 'ED7D31',
+            ),
           ],
           width: 430,
           height: 250,
@@ -313,7 +330,13 @@ SmlWorkbook _salesWorkbook() {
               ChartPoint(
                 label: region.$1,
                 value: region.$2.fold(0, (a, b) => a + b).toDouble(),
-                color: const ['2B579A', '217346', 'B7472A', 'ED7D31', '7030A0'][i],
+                color: const [
+                  '2B579A',
+                  '217346',
+                  'B7472A',
+                  'ED7D31',
+                  '7030A0',
+                ][i],
               ),
           ],
           width: 430,
@@ -385,44 +408,135 @@ PmlPresentation _launchDeck() => PmlPresentation(
     PmlSlide(
       id: 256,
       shapes: <PmlShape>[
-        _box(id: 2, name: 'Background', text: '', fill: '1F3864', x: 0, y: 0, cx: 9144000, cy: 5143500),
-        _box(id: 3, name: 'Accent', text: '', fill: 'ED7D31', x: 600000, y: 2350000, cx: 1200000, cy: 60000),
-        _box(id: 4, name: 'Title', text: 'Product Launch Plan', fill: '1F3864', x: 560000, y: 1300000, cx: 8000000, cy: 950000, size: 40, bold: true),
-        _box(id: 5, name: 'Subtitle', text: 'Spring 2027 release · Marketing review', fill: '1F3864', x: 560000, y: 2550000, cx: 8000000, cy: 600000, size: 20, color: 'D9E2F3'),
+        _box(
+          id: 2,
+          name: 'Background',
+          text: '',
+          fill: '1F3864',
+          x: 0,
+          y: 0,
+          cx: 9144000,
+          cy: 5143500,
+        ),
+        _box(
+          id: 3,
+          name: 'Accent',
+          text: '',
+          fill: 'ED7D31',
+          x: 600000,
+          y: 2350000,
+          cx: 1200000,
+          cy: 60000,
+        ),
+        _box(
+          id: 4,
+          name: 'Title',
+          text: 'Product Launch Plan',
+          fill: '1F3864',
+          x: 560000,
+          y: 1300000,
+          cx: 8000000,
+          cy: 950000,
+          size: 40,
+          bold: true,
+        ),
+        _box(
+          id: 5,
+          name: 'Subtitle',
+          text: 'Spring 2027 release · Marketing review',
+          fill: '1F3864',
+          x: 560000,
+          y: 2550000,
+          cx: 8000000,
+          cy: 600000,
+          size: 20,
+          color: 'D9E2F3',
+        ),
       ],
     ),
     PmlSlide(
       id: 257,
       shapes: <PmlShape>[
-        _box(id: 2, name: 'Title', text: 'Launch timeline', fill: 'FFFFFF', color: '1F3864', x: 500000, y: 300000, cx: 8100000, cy: 700000, size: 30, bold: true),
+        _box(
+          id: 2,
+          name: 'Title',
+          text: 'Launch timeline',
+          fill: 'FFFFFF',
+          color: '1F3864',
+          x: 500000,
+          y: 300000,
+          cx: 8100000,
+          cy: 700000,
+          size: 30,
+          bold: true,
+        ),
         PmlShape(
           id: 3,
           name: 'Timeline',
           fillColor: 'FFFFFF',
-          transform: const PmlTransform(x: 500000, y: 1200000, cx: 8100000, cy: 2000000),
+          transform: const PmlTransform(
+            x: 500000,
+            y: 1200000,
+            cx: 8100000,
+            cy: 2000000,
+          ),
           visual: OfficeVisual(
             kind: OfficeVisualKind.diagramProcess,
             title: '',
             points: const <ChartPoint>[
               ChartPoint(label: 'Beta (Feb)', value: 1, color: '2B579A'),
-              ChartPoint(label: 'Press preview (Mar)', value: 1, color: '217346'),
+              ChartPoint(
+                label: 'Press preview (Mar)',
+                value: 1,
+                color: '217346',
+              ),
               ChartPoint(label: 'Launch (Apr)', value: 1, color: 'ED7D31'),
               ChartPoint(label: 'Review (May)', value: 1, color: '7030A0'),
             ],
           ),
         ),
-        _box(id: 4, name: 'Note', text: 'Each milestone has an owner, a budget and a go/no-go review one week before the date.', fill: 'F2F2F2', color: '404040', x: 500000, y: 3500000, cx: 8100000, cy: 900000, size: 16, anchor: PmlTextAnchor.center),
+        _box(
+          id: 4,
+          name: 'Note',
+          text:
+              'Each milestone has an owner, a budget and a go/no-go review one week before the date.',
+          fill: 'F2F2F2',
+          color: '404040',
+          x: 500000,
+          y: 3500000,
+          cx: 8100000,
+          cy: 900000,
+          size: 16,
+          anchor: PmlTextAnchor.center,
+        ),
       ],
     ),
     PmlSlide(
       id: 258,
       shapes: <PmlShape>[
-        _box(id: 2, name: 'Title', text: 'Early customer response', fill: 'FFFFFF', color: '1F3864', x: 500000, y: 300000, cx: 8100000, cy: 700000, size: 30, bold: true),
+        _box(
+          id: 2,
+          name: 'Title',
+          text: 'Early customer response',
+          fill: 'FFFFFF',
+          color: '1F3864',
+          x: 500000,
+          y: 300000,
+          cx: 8100000,
+          cy: 700000,
+          size: 30,
+          bold: true,
+        ),
         PmlShape(
           id: 3,
           name: 'Signups chart',
           fillColor: 'FFFFFF',
-          transform: const PmlTransform(x: 500000, y: 1150000, cx: 5000000, cy: 3500000),
+          transform: const PmlTransform(
+            x: 500000,
+            y: 1150000,
+            cx: 5000000,
+            cy: 3500000,
+          ),
           visual: OfficeVisual(
             kind: OfficeVisualKind.chartColumn,
             title: 'Beta sign-ups per week',
@@ -434,18 +548,48 @@ PmlPresentation _launchDeck() => PmlPresentation(
             ],
           ),
         ),
-        _box(id: 4, name: 'Takeaways', text: '2,960 beta sign-ups in four weeks\n\n87% would recommend the product\n\nMost requested: offline editing', fill: 'DEEAF6', color: '1F3864', x: 5800000, y: 1150000, cx: 2800000, cy: 3500000, size: 18, anchor: PmlTextAnchor.center),
+        _box(
+          id: 4,
+          name: 'Takeaways',
+          text:
+              '2,960 beta sign-ups in four weeks\n\n87% would recommend the product\n\nMost requested: offline editing',
+          fill: 'DEEAF6',
+          color: '1F3864',
+          x: 5800000,
+          y: 1150000,
+          cx: 2800000,
+          cy: 3500000,
+          size: 18,
+          anchor: PmlTextAnchor.center,
+        ),
       ],
     ),
     PmlSlide(
       id: 259,
       shapes: <PmlShape>[
-        _box(id: 2, name: 'Title', text: 'Channels and budget', fill: 'FFFFFF', color: '1F3864', x: 500000, y: 300000, cx: 8100000, cy: 700000, size: 30, bold: true),
+        _box(
+          id: 2,
+          name: 'Title',
+          text: 'Channels and budget',
+          fill: 'FFFFFF',
+          color: '1F3864',
+          x: 500000,
+          y: 300000,
+          cx: 8100000,
+          cy: 700000,
+          size: 30,
+          bold: true,
+        ),
         PmlShape(
           id: 3,
           name: 'Budget chart',
           fillColor: 'FFFFFF',
-          transform: const PmlTransform(x: 500000, y: 1150000, cx: 8100000, cy: 3500000),
+          transform: const PmlTransform(
+            x: 500000,
+            y: 1150000,
+            cx: 8100000,
+            cy: 3500000,
+          ),
           visual: OfficeVisual(
             kind: OfficeVisualKind.chartPie,
             title: 'Launch budget by channel',
@@ -462,8 +606,29 @@ PmlPresentation _launchDeck() => PmlPresentation(
     PmlSlide(
       id: 260,
       shapes: <PmlShape>[
-        _box(id: 2, name: 'Background', text: '', fill: '1F3864', x: 0, y: 0, cx: 9144000, cy: 5143500),
-        _box(id: 3, name: 'Closing', text: 'Questions and next steps', fill: '1F3864', x: 560000, y: 2000000, cx: 8000000, cy: 900000, size: 34, bold: true, align: PmlTextAlign.center),
+        _box(
+          id: 2,
+          name: 'Background',
+          text: '',
+          fill: '1F3864',
+          x: 0,
+          y: 0,
+          cx: 9144000,
+          cy: 5143500,
+        ),
+        _box(
+          id: 3,
+          name: 'Closing',
+          text: 'Questions and next steps',
+          fill: '1F3864',
+          x: 560000,
+          y: 2000000,
+          cx: 8000000,
+          cy: 900000,
+          size: 34,
+          bold: true,
+          align: PmlTextAlign.center,
+        ),
       ],
     ),
   ],
@@ -511,7 +676,9 @@ String _reportMessage() {
   final pdf = base64.encode(utf8.encode(_minimalPdf()));
   final wrapped = StringBuffer();
   for (var i = 0; i < pdf.length; i += 76) {
-    wrapped.write('${pdf.substring(i, i + 76 > pdf.length ? pdf.length : i + 76)}\r\n');
+    wrapped.write(
+      '${pdf.substring(i, i + 76 > pdf.length ? pdf.length : i + 76)}\r\n',
+    );
   }
   return 'From: Leo <leo@example.com>\r\n'
       'To: Anna <anna@example.com>\r\n'
@@ -552,13 +719,55 @@ String _reportMessage() {
 }
 
 const _inbox = <(int, String, String, String, bool)>[
-  (_reportUid, 'Leo <leo@example.com>', 'Q4 partner report and agenda for Thursday', 'Thu, 19 Nov 2026 09:42:00 +0100', false),
-  (107, 'Design Team <design@example.com>', 'New cover drafts for the style guide', 'Thu, 19 Nov 2026 08:15:00 +0100', false),
-  (106, 'Calendar <calendar@example.com>', 'Reminder: Editors’ training on Monday', 'Wed, 18 Nov 2026 17:30:00 +0100', true),
-  (105, 'Mia <mia@example.com>', 'Glossary: 120 new terms ready for review', 'Wed, 18 Nov 2026 14:05:00 +0100', true),
-  (104, 'Support <support@example.com>', 'Your workspace storage report', 'Tue, 17 Nov 2026 11:20:00 +0100', true),
-  (103, 'Omar <omar@example.com>', 'Translation of the spring announcement', 'Mon, 16 Nov 2026 16:48:00 +0100', true),
-  (102, 'Leo <leo@example.com>', 'Room booking confirmed', 'Mon, 16 Nov 2026 09:02:00 +0100', true),
+  (
+    _reportUid,
+    'Leo <leo@example.com>',
+    'Q4 partner report and agenda for Thursday',
+    'Thu, 19 Nov 2026 09:42:00 +0100',
+    false,
+  ),
+  (
+    107,
+    'Design Team <design@example.com>',
+    'New cover drafts for the style guide',
+    'Thu, 19 Nov 2026 08:15:00 +0100',
+    false,
+  ),
+  (
+    106,
+    'Calendar <calendar@example.com>',
+    'Reminder: Editors’ training on Monday',
+    'Wed, 18 Nov 2026 17:30:00 +0100',
+    true,
+  ),
+  (
+    105,
+    'Mia <mia@example.com>',
+    'Glossary: 120 new terms ready for review',
+    'Wed, 18 Nov 2026 14:05:00 +0100',
+    true,
+  ),
+  (
+    104,
+    'Support <support@example.com>',
+    'Your workspace storage report',
+    'Tue, 17 Nov 2026 11:20:00 +0100',
+    true,
+  ),
+  (
+    103,
+    'Omar <omar@example.com>',
+    'Translation of the spring announcement',
+    'Mon, 16 Nov 2026 16:48:00 +0100',
+    true,
+  ),
+  (
+    102,
+    'Leo <leo@example.com>',
+    'Room booking confirmed',
+    'Mon, 16 Nov 2026 09:02:00 +0100',
+    true,
+  ),
 ];
 
 mail.MimeMessage _envelope(int uid) {
@@ -600,7 +809,9 @@ final class _Client extends Fake implements mail.MailClient {
   mail.Mailbox? get selectedMailbox => _selected ?? boxes.first;
 
   @override
-  Future<void> connect({Duration timeout = const Duration(seconds: 20)}) async {}
+  Future<void> connect({
+    Duration timeout = const Duration(seconds: 20),
+  }) async {}
 
   @override
   Future<void> disconnect() async {}
@@ -734,364 +945,365 @@ Finder _field(String label) => find.byWidgetPredicate(
 void main() {
   final shotsDir = Platform.environment['QUDS_SHOTS_DIR'];
 
-  testWidgets(
-    'App Store screenshots',
-    (tester) async {
-      final app = _required('QUDS_STUDIO_APP');
-      final data = _required('QUDS_STUDIO_DATA');
-      final out = Directory(shotsDir ?? _required('QUDS_SHOTS_DIR'))
-        ..createSync(recursive: true);
-      const harper = String.fromEnvironment('QUDS_HARPER_LIBRARY');
-      final frameworks = '$app/Contents/Frameworks';
-      expect(harper, startsWith(frameworks));
-      final problems = <String>[];
+  testWidgets('App Store screenshots', (tester) async {
+    final app = _required('QUDS_STUDIO_APP');
+    final data = _required('QUDS_STUDIO_DATA');
+    final out = Directory(shotsDir ?? _required('QUDS_SHOTS_DIR'))
+      ..createSync(recursive: true);
+    const harper = String.fromEnvironment('QUDS_HARPER_LIBRARY');
+    final frameworks = '$app/Contents/Frameworks';
+    expect(harper, startsWith(frameworks));
+    final problems = <String>[];
 
-      await tester.runAsync(_loadFonts);
-      debugDisableShadows = false;
-      addTearDown(() => debugDisableShadows = true);
+    await tester.runAsync(_loadFonts);
+    debugDisableShadows = false;
+    addTearDown(() => debugDisableShadows = true);
 
-      // Native hosts, as in the bundle gates.
-      final root = Directory(data);
-      final hunspell = NativeStudioHunspellHost(
-        root: root,
-        libraryPath: '$frameworks/libquds_proofing_hunspell.dylib',
-      );
-      final morph = NativeStudioArabicMorphHost(
-        root: root,
-        libraryPath: '$frameworks/libquds_arabic_morph.dylib',
-      );
-      final languageId = BundledStudioLanguageIdHost(
-        createIdentifier: (model) => Cld3LanguageIdentifier(
-          model: model,
-          nativeLibraryPath: '$frameworks/libquds_language_id.dylib',
-        ),
-      );
-      final bundled = detectBundledSpacyLibrary(const {
-        'QUDS_SPACY_BUNDLED': '1',
-      }, executable: '$app/Contents/MacOS/CrispOffice');
-      expect(bundled, isNotNull, reason: 'no spacy-native.json in $app');
-      final spacy = NativeStudioSpacyHost(
-        root: Directory('$data/spacy'),
-        environment: const {},
-        platform: SpacyPlatform.macosArm64,
-        bundledLibrary: bundled,
-      );
-      await tester.runAsync(() async {
-        await hunspell.refresh();
-        await morph.refresh();
-        await spacy.refresh();
-        await HttpOverrides.runWithHttpOverrides(() async {
-          for (final item in hunspell.statuses) {
-            if (!item.installed) await hunspell.install(item.bundle);
-          }
-          if (!morph.status.installed) await morph.install();
-          if (spacy.status.source == StudioSpacySource.none) {
-            await spacy.install();
-          }
-        }, _RealHttpOverrides());
-        if (!spacy.status.analysisEnabled) {
-          await spacy.setAnalysisEnabled(true);
+    // Native hosts, as in the bundle gates.
+    final root = Directory(data);
+    final hunspell = NativeStudioHunspellHost(
+      root: root,
+      libraryPath: '$frameworks/libquds_proofing_hunspell.dylib',
+    );
+    final morph = NativeStudioArabicMorphHost(
+      root: root,
+      libraryPath: '$frameworks/libquds_arabic_morph.dylib',
+    );
+    final languageId = BundledStudioLanguageIdHost(
+      createIdentifier: (model) => Cld3LanguageIdentifier(
+        model: model,
+        nativeLibraryPath: '$frameworks/libquds_language_id.dylib',
+      ),
+    );
+    final bundled = detectBundledSpacyLibrary(const {
+      'QUDS_SPACY_BUNDLED': '1',
+    }, executable: '$app/Contents/MacOS/CrispOffice');
+    expect(bundled, isNotNull, reason: 'no spacy-native.json in $app');
+    final spacy = NativeStudioSpacyHost(
+      root: Directory('$data/spacy'),
+      environment: const {},
+      platform: SpacyPlatform.macosArm64,
+      bundledLibrary: bundled,
+    );
+    await tester.runAsync(() async {
+      await hunspell.refresh();
+      await morph.refresh();
+      await spacy.refresh();
+      await HttpOverrides.runWithHttpOverrides(() async {
+        for (final item in hunspell.statuses) {
+          if (!item.installed) await hunspell.install(item.bundle);
         }
-        await languageId.load();
-      });
-      expect(hunspell.statuses.single.installed, isTrue);
-      expect(morph.status.loaded, isTrue, reason: morph.status.problem);
-      expect(languageId.detector, isNotNull, reason: languageId.problem);
-      expect(spacy.status.grammarOffered, isTrue, reason: '${spacy.status}');
-      studioHunspellHost = hunspell;
-      studioArabicMorphHost = morph;
-      studioLanguageIdHost = languageId;
-      studioSpacyHost = spacy;
-
-      tester.view.physicalSize = _logical * _pixelRatio;
-      tester.view.devicePixelRatio = _pixelRatio;
-      addTearDown(tester.view.reset);
-
-      final boundary = GlobalKey();
-      final lights = ValueNotifier<Rect?>(null);
-
-      Future<void> settle([int rounds = 6]) async {
-        for (var i = 0; i < rounds; i++) {
-          await tester.runAsync(
-            () => Future<void>.delayed(const Duration(milliseconds: 150)),
-          );
-          await tester.pump(const Duration(milliseconds: 100));
+        if (!morph.status.installed) await morph.install();
+        if (spacy.status.source == StudioSpacySource.none) {
+          await spacy.install();
         }
+      }, _RealHttpOverrides());
+      if (!spacy.status.analysisEnabled) {
+        await spacy.setAnalysisEnabled(true);
       }
+      await languageId.load();
+    });
+    expect(hunspell.statuses.single.installed, isTrue);
+    expect(morph.status.loaded, isTrue, reason: morph.status.problem);
+    expect(languageId.detector, isNotNull, reason: languageId.problem);
+    expect(spacy.status.grammarOffered, isTrue, reason: '${spacy.status}');
+    studioHunspellHost = hunspell;
+    studioArabicMorphHost = morph;
+    studioLanguageIdHost = languageId;
+    studioSpacyHost = spacy;
 
-      Future<void> waitFor(
-        String what,
-        bool Function() done, {
-        Duration limit = const Duration(seconds: 90),
-      }) async {
-        final watch = Stopwatch()..start();
-        while (!done()) {
-          if (watch.elapsed > limit) {
-            problems.add('timed out waiting for $what');
-            return;
-          }
-          await tester.runAsync(
-            () => Future<void>.delayed(const Duration(milliseconds: 200)),
-          );
-          await tester.pump(const Duration(milliseconds: 50));
-        }
+    tester.view.physicalSize = _logical * _pixelRatio;
+    tester.view.devicePixelRatio = _pixelRatio;
+    addTearDown(tester.view.reset);
+
+    final boundary = GlobalKey();
+    final lights = ValueNotifier<Rect?>(null);
+
+    Future<void> settle([int rounds = 6]) async {
+      for (var i = 0; i < rounds; i++) {
+        await tester.runAsync(
+          () => Future<void>.delayed(const Duration(milliseconds: 150)),
+        );
+        await tester.pump(const Duration(milliseconds: 100));
       }
+    }
 
-      Future<void> pumpStudio(SuiteWorkspace workspace) async {
-        await tester.pumpWidget(const SizedBox.shrink());
-        await settle(2);
-        await tester.pumpWidget(
-          RepaintBoundary(
-            key: boundary,
-            child: Directionality(
-              textDirection: TextDirection.ltr,
-              child: Stack(
-                children: <Widget>[
-                  Positioned.fill(child: QudsOfficeStudioApp(home: workspace)),
-                  Positioned.fill(
-                    child: IgnorePointer(child: _TrafficLights(slot: lights)),
-                  ),
-                ],
-              ),
+    Future<void> waitFor(
+      String what,
+      bool Function() done, {
+      Duration limit = const Duration(seconds: 90),
+    }) async {
+      final watch = Stopwatch()..start();
+      while (!done()) {
+        if (watch.elapsed > limit) {
+          problems.add('timed out waiting for $what');
+          return;
+        }
+        await tester.runAsync(
+          () => Future<void>.delayed(const Duration(milliseconds: 200)),
+        );
+        await tester.pump(const Duration(milliseconds: 50));
+      }
+    }
+
+    Future<void> pumpStudio(SuiteWorkspace workspace) async {
+      await tester.pumpWidget(const SizedBox.shrink());
+      await settle(2);
+      await tester.pumpWidget(
+        RepaintBoundary(
+          key: boundary,
+          child: Directionality(
+            textDirection: TextDirection.ltr,
+            child: Stack(
+              children: <Widget>[
+                Positioned.fill(child: QudsOfficeStudioApp(home: workspace)),
+                Positioned.fill(
+                  child: IgnorePointer(child: _TrafficLights(slot: lights)),
+                ),
+              ],
             ),
           ),
-        );
-        await settle();
-      }
-
-      Future<void> capture(String name) async {
-        await settle(3);
-        final slot = _key('native-traffic-light-space');
-        lights.value = slot.evaluate().isEmpty
-            ? null
-            : tester.getRect(slot.first);
-        await tester.pump(const Duration(milliseconds: 50));
-        // Let the caret blink settle into its visible phase.
-        await tester.pump(const Duration(milliseconds: 600));
-        await tester.runAsync(() async {
-          final render =
-              boundary.currentContext!.findRenderObject()!
-                  as RenderRepaintBoundary;
-          final image = await render.toImage(pixelRatio: _pixelRatio);
-          final bytes = await image.toByteData(format: ui.ImageByteFormat.png);
-          File(
-            '${out.path}/$name.png',
-          ).writeAsBytesSync(bytes!.buffer.asUint8List());
-          // ignore: avoid_print
-          print('captured $name.png ${image.width}x${image.height}');
-          image.dispose();
-        });
-        final error = tester.takeException();
-        if (error != null) problems.add('$name: $error');
-      }
-
-      WordEditorController word() =>
-          tester.widget<QudsWordEditor>(find.byType(QudsWordEditor)).controller;
-
-      Map<String, Set<String>> findings(WordEditorController controller) {
-        final byText = <String, Set<String>>{};
-        controller.proofing.findingsByParagraph.forEach((paragraph, list) {
-          byText[paragraph.text] = {
-            for (final f in list) '${f.providerId}/${f.ruleId}',
-          };
-        });
-        return byText;
-      }
-
-      // --- 2: German grammar suggestion -------------------------------------
-      await pumpStudio(
-        SuiteWorkspace(
-          initialWord: (name: 'German practice.docx', document: _germanPractice()),
         ),
       );
-      {
-        final controller = word();
-        // Toggle the opt-in so the workspace registers the manual provider.
-        await tester.runAsync(() async {
-          if (spacy.status.grammarEnabled) await spacy.setGrammarEnabled(false);
-          await spacy.setGrammarEnabled(true);
-        });
-        await settle(10);
-        controller.openReviewPane();
-        WordProofingIssue? grammar() => controller.proofing.summary.issues
-            .where((i) => i.finding.providerId == spacyGrammarProviderId)
-            .firstOrNull;
-        final watch = Stopwatch()..start();
-        while (grammar() == null &&
-            watch.elapsed < const Duration(seconds: 120)) {
-          await tester.runAsync(() async {
-            try {
-              await controller.checkDocumentProofing().timeout(
-                const Duration(seconds: 40),
-              );
-            } on Object catch (error) {
-              // ignore: avoid_print
-              print('check: $error');
-            }
-          });
-          await settle(4);
-        }
-        final issue = grammar();
-        if (issue == null) {
-          problems.add(
-            'no spaCy grammar finding: ${controller.proofing.summary.statusMessage}',
-          );
-        } else {
-          // ignore: avoid_print
-          print(
-            'grammar: ${issue.finding.originalText} -> '
-            '${issue.finding.replacements}',
-          );
-          expect(issue.finding.originalText, 'schläft');
-          expect(issue.finding.replacements, contains('schlafen'));
-          final index = controller.document.paragraphs.toList().indexWhere(
-            (p) => p.text == _germanWrong,
-          );
-          controller.caret
-            ..paragraphIndex = index
-            ..logicalIndex = _germanWrong.indexOf('schläft') + 3
-            ..collapseSelection();
-          controller.selectProofingIssue(issue, reveal: false);
-          controller.refreshView();
-        }
-        await settle(6);
-        await capture('02-german-grammar');
-      }
+      await settle();
+    }
 
-      // --- 1, 6, 3, 4, 5: one workspace ------------------------------------
-      await pumpStudio(
-        SuiteWorkspace(
-          initialWord: (
-            name: 'Quarterly Partner Update.docx',
-            document: _partnerUpdate(),
-          ),
-          initialWorkbook: (
-            name: 'Regional Sales 2026.xlsx',
-            workbook: _salesWorkbook(),
-          ),
-          initialPresentation: (
-            name: 'Product Launch.pptx',
-            presentation: _launchDeck(),
-          ),
-          mailBuilder: (strings, chrome) => StudioMailDialog(
-            strings: strings,
-            chromeBuilder: chrome,
-            clientFactory: (_) => _Client(),
-            messageLoaderFactory: (_) => _Loader(),
-            credentialStore: _CredentialStore(),
-            draftStoreFactory: MemoryStudioMailDrafts().open,
-          ),
-        ),
-      );
-
-      // 1: Word, English and Arabic with live proofing.
-      {
-        final controller = word();
-        bool ready() {
-          final found = findings(controller);
-          bool has(String needle, bool Function(String) rule) => found.entries
-              .any((e) => e.key.contains(needle) && e.value.any(rule));
-          return has('recieved', (r) => r.startsWith('harper')) &&
-              has('الى', (r) => r.contains('ar.') || r.startsWith('hunspell')) &&
-              has('المرحله', (r) => r.contains('ar.') || r.startsWith('hunspell'));
-        }
-
-        await waitFor('English and Arabic proofing', ready);
-        // ignore: avoid_print
-        print('findings: ${findings(controller)}');
-        for (final mistake in _englishMistakes) {
-          if (!findings(controller).keys.any((k) => k.contains(mistake))) {
-            problems.add('no finding in the paragraph with "$mistake"');
-          }
-        }
-        controller.caret
-          ..paragraphIndex = 0
-          ..logicalIndex = 0
-          ..collapseSelection();
-        controller.refreshView();
-        await capture('01-word-english-arabic');
-      }
-
-      // 6: Downloads manager with the installed language packs.
-      {
-        final context = tester.element(find.byType(QudsWordEditor));
-        unawaited(
-          showStudioDownloadsManager(
-            context,
-            language: StudioLanguage.en,
-            fontPacks: FakeFontPacks(),
-          ),
-        );
-        await settle(10);
-        await capture('06-downloads');
-        Navigator.of(context).pop();
-        await settle(3);
-      }
-
-      // 3: Spreadsheet.
-      {
-        await tester.tap(find.byTooltip(_strings.spreadsheets).first);
-        await settle();
-        final sheet = tester
-            .widget<QudsSheetEditor>(find.byType(QudsSheetEditor))
-            .controller;
-        sheet.selection.selectCell(const SmlCellRef(5, 3));
-        sheet.refreshView();
-        await capture('03-excel');
-      }
-
-      // 4: Presentation, editing the second slide.
-      {
-        await tester.tap(find.byTooltip(_strings.presentations).first);
-        await settle();
-        final slides = tester
-            .widget<QudsSlideEditor>(find.byType(QudsSlideEditor))
-            .controller;
-        slides.setActiveSlide(2);
-        await settle(2);
-        slides.selectShape(slides.slide.shapes.last);
-        slides.refreshView();
-        await capture('04-powerpoint');
-      }
-
-      // 5: Mail reader with an attachment.
-      {
-        await tester.tap(find.byTooltip(_strings.mail).first);
-        await settle();
-        await tester.enterText(_field(_strings.emailAddress), 'anna@example.com');
-        await tester.enterText(_field(_strings.password), 'example-password');
-        await tester.tap(
-          find.widgetWithText(SwitchListTile, _strings.manualServers),
-        );
-        await settle(2);
-        await tester.enterText(_field(_strings.imapHost), 'imap.example.com');
-        await tester.enterText(_field(_strings.smtpHost), 'smtp.example.com');
-        final connect = find.widgetWithText(FilledButton, _strings.connect);
-        await tester.ensureVisible(connect);
-        await tester.tap(connect);
-        await settle(8);
-        await tester.tap(
-          find.text('Q4 partner report and agenda for Thursday').first,
-        );
-        await settle(8);
-        await capture('05-mail');
-      }
-
-      // Release native transports (bounded disposal grace timers).
-      await tester.pumpWidget(const SizedBox.shrink());
-      await tester.runAsync(
-        () => Future<void>.delayed(const Duration(milliseconds: 300)),
-      );
-      await tester.pump(const Duration(seconds: 11));
+    Future<void> capture(String name) async {
+      await settle(3);
+      final slot = _key('native-traffic-light-space');
+      lights.value = slot.evaluate().isEmpty
+          ? null
+          : tester.getRect(slot.first);
+      await tester.pump(const Duration(milliseconds: 50));
+      // Let the caret blink settle into its visible phase.
+      await tester.pump(const Duration(milliseconds: 600));
       await tester.runAsync(() async {
-        morph.dispose();
-        languageId.dispose();
+        final render =
+            boundary.currentContext!.findRenderObject()!
+                as RenderRepaintBoundary;
+        final image = await render.toImage(pixelRatio: _pixelRatio);
+        final bytes = await image.toByteData(format: ui.ImageByteFormat.png);
+        File(
+          '${out.path}/$name.png',
+        ).writeAsBytesSync(bytes!.buffer.asUint8List());
+        // ignore: avoid_print
+        print('captured $name.png ${image.width}x${image.height}');
+        image.dispose();
       });
+      final error = tester.takeException();
+      if (error != null) problems.add('$name: $error');
+    }
 
+    WordEditorController word() =>
+        tester.widget<QudsWordEditor>(find.byType(QudsWordEditor)).controller;
+
+    Map<String, Set<String>> findings(WordEditorController controller) {
+      final byText = <String, Set<String>>{};
+      controller.proofing.findingsByParagraph.forEach((paragraph, list) {
+        byText[paragraph.text] = {
+          for (final f in list) '${f.providerId}/${f.ruleId}',
+        };
+      });
+      return byText;
+    }
+
+    // --- 2: German grammar suggestion -------------------------------------
+    await pumpStudio(
+      SuiteWorkspace(
+        initialWord: (
+          name: 'German practice.docx',
+          document: _germanPractice(),
+        ),
+      ),
+    );
+    {
+      final controller = word();
+      // Toggle the opt-in so the workspace registers the manual provider.
+      await tester.runAsync(() async {
+        if (spacy.status.grammarEnabled) await spacy.setGrammarEnabled(false);
+        await spacy.setGrammarEnabled(true);
+      });
+      await settle(10);
+      controller.openReviewPane();
+      WordProofingIssue? grammar() => controller.proofing.summary.issues
+          .where((i) => i.finding.providerId == spacyGrammarProviderId)
+          .firstOrNull;
+      final watch = Stopwatch()..start();
+      while (grammar() == null &&
+          watch.elapsed < const Duration(seconds: 120)) {
+        await tester.runAsync(() async {
+          try {
+            await controller.checkDocumentProofing().timeout(
+              const Duration(seconds: 40),
+            );
+          } on Object catch (error) {
+            // ignore: avoid_print
+            print('check: $error');
+          }
+        });
+        await settle(4);
+      }
+      final issue = grammar();
+      if (issue == null) {
+        problems.add(
+          'no spaCy grammar finding: ${controller.proofing.summary.statusMessage}',
+        );
+      } else {
+        // ignore: avoid_print
+        print(
+          'grammar: ${issue.finding.originalText} -> '
+          '${issue.finding.replacements}',
+        );
+        expect(issue.finding.originalText, 'schläft');
+        expect(issue.finding.replacements, contains('schlafen'));
+        final index = controller.document.paragraphs.toList().indexWhere(
+          (p) => p.text == _germanWrong,
+        );
+        controller.caret
+          ..paragraphIndex = index
+          ..logicalIndex = _germanWrong.indexOf('schläft') + 3
+          ..collapseSelection();
+        controller.selectProofingIssue(issue, reveal: false);
+        controller.refreshView();
+      }
+      await settle(6);
+      await capture('02-german-grammar');
+    }
+
+    // --- 1, 6, 3, 4, 5: one workspace ------------------------------------
+    await pumpStudio(
+      SuiteWorkspace(
+        initialWord: (
+          name: 'Quarterly Partner Update.docx',
+          document: _partnerUpdate(),
+        ),
+        initialWorkbook: (
+          name: 'Regional Sales 2026.xlsx',
+          workbook: _salesWorkbook(),
+        ),
+        initialPresentation: (
+          name: 'Product Launch.pptx',
+          presentation: _launchDeck(),
+        ),
+        mailBuilder: (strings, chrome) => StudioMailDialog(
+          strings: strings,
+          chromeBuilder: chrome,
+          clientFactory: (_) => _Client(),
+          messageLoaderFactory: (_) => _Loader(),
+          credentialStore: _CredentialStore(),
+          draftStoreFactory: MemoryStudioMailDrafts().open,
+        ),
+      ),
+    );
+
+    // 1: Word, English and Arabic with live proofing.
+    {
+      final controller = word();
+      bool ready() {
+        final found = findings(controller);
+        bool has(String needle, bool Function(String) rule) => found.entries
+            .any((e) => e.key.contains(needle) && e.value.any(rule));
+        return has('recieved', (r) => r.startsWith('harper')) &&
+            has('الى', (r) => r.contains('ar.') || r.startsWith('hunspell')) &&
+            has(
+              'المرحله',
+              (r) => r.contains('ar.') || r.startsWith('hunspell'),
+            );
+      }
+
+      await waitFor('English and Arabic proofing', ready);
       // ignore: avoid_print
-      print('problems: $problems');
-      expect(problems, isEmpty);
-    },
-    timeout: const Timeout(Duration(minutes: 20)),
-  );
+      print('findings: ${findings(controller)}');
+      for (final mistake in _englishMistakes) {
+        if (!findings(controller).keys.any((k) => k.contains(mistake))) {
+          problems.add('no finding in the paragraph with "$mistake"');
+        }
+      }
+      controller.caret
+        ..paragraphIndex = 0
+        ..logicalIndex = 0
+        ..collapseSelection();
+      controller.refreshView();
+      await capture('01-word-english-arabic');
+    }
+
+    // 6: Downloads manager with the installed language packs.
+    {
+      final context = tester.element(find.byType(QudsWordEditor));
+      unawaited(
+        showStudioDownloadsManager(
+          context,
+          language: StudioLanguage.en,
+          fontPacks: FakeFontPacks(),
+        ),
+      );
+      await settle(10);
+      await capture('06-downloads');
+      Navigator.of(context).pop();
+      await settle(3);
+    }
+
+    // 3: Spreadsheet.
+    {
+      await tester.tap(find.byTooltip(_strings.spreadsheets).first);
+      await settle();
+      final sheet = tester
+          .widget<QudsSheetEditor>(find.byType(QudsSheetEditor))
+          .controller;
+      sheet.selection.selectCell(const SmlCellRef(5, 3));
+      sheet.refresh();
+      await capture('03-excel');
+    }
+
+    // 4: Presentation, editing the second slide.
+    {
+      await tester.tap(find.byTooltip(_strings.presentations).first);
+      await settle();
+      final slides = tester
+          .widget<QudsSlideEditor>(find.byType(QudsSlideEditor))
+          .controller;
+      slides.setActiveSlide(2);
+      await settle(2);
+      slides.selectShape(slides.slide.shapes.last);
+      await capture('04-powerpoint');
+    }
+
+    // 5: Mail reader with an attachment.
+    {
+      await tester.tap(find.byTooltip(_strings.mail).first);
+      await settle();
+      await tester.enterText(_field(_strings.emailAddress), 'anna@example.com');
+      await tester.enterText(_field(_strings.password), 'example-password');
+      await tester.tap(
+        find.widgetWithText(SwitchListTile, _strings.manualServers),
+      );
+      await settle(2);
+      await tester.enterText(_field(_strings.imapHost), 'imap.example.com');
+      await tester.enterText(_field(_strings.smtpHost), 'smtp.example.com');
+      final connect = find.widgetWithText(FilledButton, _strings.connect);
+      await tester.ensureVisible(connect);
+      await tester.tap(connect);
+      await settle(8);
+      await tester.tap(
+        find.text('Q4 partner report and agenda for Thursday').first,
+      );
+      await settle(8);
+      await capture('05-mail');
+    }
+
+    // Release native transports (bounded disposal grace timers).
+    await tester.pumpWidget(const SizedBox.shrink());
+    await tester.runAsync(
+      () => Future<void>.delayed(const Duration(milliseconds: 300)),
+    );
+    await tester.pump(const Duration(seconds: 11));
+    await tester.runAsync(() async {
+      morph.dispose();
+      languageId.dispose();
+    });
+
+    // ignore: avoid_print
+    print('problems: $problems');
+    expect(problems, isEmpty);
+  }, timeout: const Timeout(Duration(minutes: 20)));
 }

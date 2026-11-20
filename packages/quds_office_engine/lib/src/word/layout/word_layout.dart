@@ -1402,7 +1402,14 @@ class WordLayoutEngine {
     if (oldNotes != null) {
       // Labels in the body, note stories and their placement are valid only
       // while note order, labels, reference sections and content are equal.
-      if (!_sameObjects(
+      // Declared dirty note paragraphs may have changed mutable formatting
+      // without changing text or identity, including inside nested tables.
+      if (<WmlNote>[...document.footnotes, ...document.endnotes].any(
+            (note) => note.blocks.any(
+              (block) => _blockContainsAny(block, dirtyParagraphs),
+            ),
+          ) ||
+          !_sameObjects(
             oldNotes.numbering,
             _noteNumberingSignature(document),
           ) ||
