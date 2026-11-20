@@ -314,8 +314,8 @@ the corrected position-wise style cascade and the same table-layer limits.
 
 This slice supports statements whose `Add` return value is discarded. It does
 not introduce `TabStop` objects, indexing, `Count`, enumeration, collection-copy
-assignment, default-tab setters, `Selection`, unit-conversion intrinsics or live
-document reads. The actual [word_tabstops.bas](../packages/quds_office_engine/example/macros/word_tabstops.bas)
+assignment, default-tab setters, `Selection` or live document reads. Supported
+measurement conversions are documented separately below. The actual [word_tabstops.bas](../packages/quds_office_engine/example/macros/word_tabstops.bas)
 example requires three existing body paragraphs and is exercised on the Dart VM
 and compiled JavaScript by the portable regression driver. See the
 [qualification record](validation/word-vba-tabstops-20261120/README.md) for executed
@@ -876,6 +876,12 @@ The complete [word_measurements.bas](../packages/quds_office_engine/example/macr
 example uses all ten functions, typed format aliases, named helper arguments
 and two existing paragraphs. It is repeatable on its own output.
 
+The independently authored [word_unit_conversions.bas](../packages/quds_office_engine/example/macros/word_unit_conversions.bas)
+example is also retained. It uses the eight physical conversion functions and
+emits nine paragraph-format operations on two existing paragraphs. Both finish
+with 72-point left indents, 18-point right indents, 12-point before spacing and
+6-point after spacing; the first also has an 18-point hanging indent.
+
 **Numeric contract.** The portable dialect uses bounded binary64 `Double`
 arithmetic, including signed values and zero; it does not emulate the `Single`
 parameters/results documented for Microsoft Word. Both inputs and results must
@@ -899,6 +905,17 @@ receiving property's existing range and precision rules. For example,
 `CentimetersToPoints(1)` is a valid scalar value (about 28.34645669 points),
 but assigning it directly to `LeftIndent` is refused because it is not an exact
 twentieth-point. The adapter does not silently round that value to 28.35.
+A macro author can explicitly choose twip rounding with the existing
+ties-to-even `CLng` conversion:
+
+```vb
+Sub Main()
+    ActiveDocument.Paragraphs(1).Format.LeftIndent = _
+        CLng(CentimetersToPoints(1) * 20) / 20
+End Sub
+```
+
+This writes 28.35 points because the source explicitly requests that rounding.
 Font sizes still require their existing half-point grid; tab stops, spacing
 and indentation retain their existing constraints. Pixel conversions,
 `Selection`, page-setup objects, arbitrary ranges and document property reads

@@ -234,4 +234,109 @@ End Sub
     },
     timeout: officeMacroCliTestTimeout,
   );
+
+  test(
+    'converted tabs preserve existing stops and playback recording',
+    () async {
+      // The concurrent 4d0086ab fixture adds a tab without first clearing stops.
+      final input = WordSerializer().writeBytes(
+        WmlDocument(
+          sections: [
+            WmlSection(
+              blocks: [
+                WmlParagraph(
+                  properties: WmlParagraphProps(
+                    keepTogether: true,
+                    tabs: const [
+                      WmlTabStop(
+                        position: 54,
+                        alignment: WmlTabAlignment.center,
+                        leader: WmlTabLeader.hyphen,
+                      ),
+                    ],
+                  ),
+                  inlines: [
+                    WmlRun(
+                      text: 'Measure\tValue',
+                      properties: WmlRunProps(bold: true),
+                    ),
+                  ],
+                ),
+                WmlParagraph(),
+              ],
+            ),
+          ],
+        ),
+      );
+      final plan = portable.wordMeasurementPlan('''
+ActiveDocument.Paragraphs(1).TabStops.Add Position:=InchesToPoints(1.5), _
+    Alignment:=wdAlignTabRight, Leader:=wdTabLeaderDots
+ActiveDocument.Paragraphs(2).Format.LeftIndent = CentimetersToPoints(0.254)
+''');
+      final session = OfficeMacroSession(input, format: OfficeMacroFormat.docx);
+      session.startRecording('Measurement playback');
+      await session.validate(plan);
+      expect(session.bytes, input);
+      expect(session.revision, 0);
+      await session.run(plan);
+      expect(session.revision, 1);
+      expect(session.stopRecording().steps, isEmpty);
+
+      var saved = session.bytes;
+      for (var cycle = 0; cycle < 3; cycle++) {
+        final paragraphs = WordDeserializer()
+            .readBytes(saved)
+            .paragraphs
+            .toList();
+        expect(paragraphs, hasLength(2));
+        expect(paragraphs.first.text, 'Measure\tValue');
+        expect(paragraphs.first.properties.keepTogether, isTrue);
+        expect(
+          paragraphs.first.inlines.whereType<WmlRun>().every(
+            (run) => run.properties.bold,
+          ),
+          isTrue,
+        );
+        expect(
+          paragraphs.first.properties.tabs.map(
+            (tab) => (tab.position, tab.alignment, tab.leader),
+          ),
+          [
+            (54.0, WmlTabAlignment.center, WmlTabLeader.hyphen),
+            (108.0, WmlTabAlignment.right, WmlTabLeader.dot),
+          ],
+        );
+        expect(paragraphs.last.text, isEmpty);
+        expect(paragraphs.last.properties.indent.left, 7.2);
+        final nativeTabs = portable
+            .wordMeasurementProperties(saved, 0)
+            .firstChild('tabs', namespaceUri: OfficeNamespaces.w)!
+            .childrenNamed('tab', namespaceUri: OfficeNamespaces.w);
+        expect(
+          nativeTabs.map(
+            (tab) => tab.getAttribute('pos', namespaceUri: OfficeNamespaces.w),
+          ),
+          ['1080', '2160'],
+        );
+        expect(
+          portable
+              .wordMeasurementProperties(saved, 1)
+              .firstChild('ind', namespaceUri: OfficeNamespaces.w)!
+              .getAttribute('left', namespaceUri: OfficeNamespaces.w),
+          '144',
+        );
+        if (cycle < 2) {
+          saved = WordSerializer().writeBytes(
+            WordDeserializer().readBytes(saved),
+          );
+          final replay = OfficeMacroSession(
+            saved,
+            format: OfficeMacroFormat.docx,
+          );
+          await replay.run(plan);
+          saved = replay.bytes;
+        }
+      }
+    },
+  );
 }
