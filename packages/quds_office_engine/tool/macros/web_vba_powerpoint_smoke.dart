@@ -237,7 +237,8 @@ End Sub
       'fontSize': title.fontSizePt,
       'rgb': title.textColor,
       'left': title.transform.xPoints,
-      'rotation': title.transform.rotationDegrees,
+      // Report the exact integer units so VM/JS JSON numeric spelling agrees.
+      'rotationNativeUnits': title.transform.rot,
       'mcpText': finalDeck.slides[1].shapes.first.text,
       'revision': session.revision,
       'immutableValidation': true,
