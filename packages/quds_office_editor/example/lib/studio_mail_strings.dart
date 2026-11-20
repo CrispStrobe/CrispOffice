@@ -8,6 +8,38 @@ extension StudioMailFeedback on StudioStrings {
     StudioLanguage.ar => ar,
   };
 
+  String get mailSavedAccounts => _mailText(
+    'Saved IMAP accounts',
+    'Gespeicherte IMAP-Konten',
+    'حسابات IMAP المحفوظة',
+  );
+  String get mailChooseAccount =>
+      _mailText('Choose an account', 'Konto auswählen', 'اختر حسابًا');
+  String get mailNewAccount =>
+      _mailText('New account', 'Neues Konto', 'حساب جديد');
+  String get mailSwitchAccount =>
+      _mailText('Switch account', 'Konto wechseln', 'تبديل الحساب');
+  String get mailSavedAccountsHelp => _mailText(
+    'Choose a saved IMAP account, then Connect. New account keeps your other saved accounts. Forget removes only the selected sign-in; local drafts and saved messages stay on this device.',
+    'Ein gespeichertes IMAP-Konto auswählen und dann verbinden. „Neues Konto“ behält die anderen gespeicherten Konten. „Konto vergessen“ entfernt nur die ausgewählten Zugangsdaten; lokale Entwürfe und gespeicherte Nachrichten bleiben auf diesem Gerät.',
+    'اختر حساب IMAP محفوظًا ثم اتصل. يحتفظ الحساب الجديد بالحسابات المحفوظة الأخرى. يزيل نسيان الحساب بيانات الدخول المحددة فقط؛ وتبقى المسودات المحلية والرسائل المحفوظة على هذا الجهاز.',
+  );
+  String get mailAccountsLoadFailed => _mailText(
+    'Saved accounts could not be opened. You can enter account settings manually; existing saved accounts have not been replaced.',
+    'Gespeicherte Konten konnten nicht geöffnet werden. Kontoeinstellungen können manuell eingegeben werden; vorhandene gespeicherte Konten wurden nicht ersetzt.',
+    'تعذر فتح الحسابات المحفوظة. يمكنك إدخال إعدادات الحساب يدويًا؛ لم تُستبدل الحسابات المحفوظة الحالية.',
+  );
+  String get mailAccountSelectFailed => _mailText(
+    'Could not select this saved account. Your current settings are unchanged. Try again.',
+    'Das gespeicherte Konto konnte nicht ausgewählt werden. Die aktuellen Einstellungen bleiben erhalten. Erneut versuchen.',
+    'تعذر اختيار هذا الحساب المحفوظ. لم تتغير إعداداتك الحالية. حاول مجددًا.',
+  );
+  String get mailAccountLimitReached => _mailText(
+    'This device already remembers 20 IMAP accounts. The current connection is available for this session. Forget an account before saving another.',
+    'Auf diesem Gerät sind bereits 20 IMAP-Konten gespeichert. Die aktuelle Verbindung ist für diese Sitzung verfügbar. Vor dem Speichern eines weiteren Kontos eines der Konten vergessen.',
+    'يحفظ هذا الجهاز بالفعل 20 حساب IMAP. الاتصال الحالي متاح لهذه الجلسة. انسَ أحد الحسابات قبل حفظ حساب آخر.',
+  );
+
   String get mailDraftSaving => _mailText(
     'Saving draft…',
     'Entwurf wird gespeichert…',

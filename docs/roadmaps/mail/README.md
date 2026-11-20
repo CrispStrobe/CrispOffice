@@ -29,6 +29,11 @@ focused local tests and a remote source checkpoint before the next. Reconcile
 current main/branches/PRs before final publication. GitHub Actions queue time is
 not an acceptance dependency; record the actual local commands and scope.
 
+The [remembered-account guide](remembered-accounts.md) describes the next native
+IMAP/SMTP account-management increment and its exact scope. Its
+[local work record](../../validation/mail-accounts-20261120/README.md) tracks
+implementation and qualification separately from earlier results.
+
 The [foreground mailbox guide](mailbox-workspace.md) describes the delivered
 first workspace slice, including the 50-message pages, 1,000-loaded-message
 ceiling and loaded-only search boundary. M04W remains open: this reusable list
