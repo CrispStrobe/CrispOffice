@@ -84,6 +84,34 @@ class _FakeMorphHost extends StudioArabicMorphHost {
     calls.add('remove');
     _set(const StudioArabicMorphStatus(bundle: camelMorphMsaProofingBin));
   }
+
+  var _model = const StudioArabicMorphStatus(bundle: camelMorphMsaDisambig);
+
+  @override
+  StudioArabicMorphStatus get modelStatus => _model;
+
+  @override
+  Future<void> installModel({
+    void Function(int received, int total)? onProgress,
+    StudioHunspellCancellation? cancellation,
+  }) async {
+    calls.add('installModel');
+    onProgress?.call(1, 2);
+    _model = const StudioArabicMorphStatus(
+      bundle: camelMorphMsaDisambig,
+      installed: true,
+      loaded: true,
+      location: '/m',
+    );
+    notifyListeners();
+  }
+
+  @override
+  Future<void> removeModel() async {
+    calls.add('removeModel');
+    _model = const StudioArabicMorphStatus(bundle: camelMorphMsaDisambig);
+    notifyListeners();
+  }
 }
 
 Future<void> _open(WidgetTester tester, StudioArabicMorphHost host) async {
@@ -209,6 +237,45 @@ void main() {
     expect(Directory('${root.path}/arabic_morph').existsSync(), isFalse);
   });
 
+  testWidgets('the context model is a second explicit download', (
+    tester,
+  ) async {
+    final host = _FakeMorphHost();
+    await _open(tester, host);
+    final install = find.byKey(const ValueKey('arabic-morph-model-install'));
+    expect(find.text(camelMorphMsaDisambig.displayName), findsOneWidget);
+    expect(find.textContaining('CC BY-SA 4.0'), findsWidgets);
+    expect(find.textContaining('Install the morphology data first'), findsOne);
+    expect(tester.widget<FilledButton>(install).onPressed, isNull);
+
+    host._set(
+      const StudioArabicMorphStatus(
+        bundle: camelMorphMsaProofingBin,
+        installed: true,
+        loaded: true,
+        location: '/x',
+      ),
+    );
+    await tester.pumpAndSettle();
+    await tester.ensureVisible(install);
+    await tester.tap(install);
+    await tester.pumpAndSettle();
+    expect(host.calls, contains('installModel'));
+    expect(
+      find.byKey(const ValueKey('arabic-morph-model-loaded')),
+      findsOneWidget,
+    );
+    final configured = host.configurationKey;
+    host.grammarReading = ArabicGrammarReading.allAnalyses;
+    expect(host.configurationKey, isNot(configured));
+
+    final remove = find.byKey(const ValueKey('arabic-morph-model-remove'));
+    await tester.ensureVisible(remove);
+    await tester.tap(remove);
+    await tester.pumpAndSettle();
+    expect(host.calls, contains('removeModel'));
+  });
+
   testWidgets('the licence page lists the analyzer code and the CC BY data', (
     tester,
   ) async {
@@ -231,5 +298,11 @@ void main() {
     final data = textOf('Camel Morph MSA v1.0 (CC BY 4.0, downloaded data)');
     expect(data, contains('licensed under CC BY 4.0'));
     expect(data, contains('creativecommons.org/licenses/by/4.0'));
+    final model = textOf(
+      'Arabic context model for Camel Morph (CC BY-SA 4.0, downloaded data)',
+    );
+    expect(model, contains('Wikipedia contributors'));
+    expect(model, contains('creativecommons.org/licenses/by-sa/4.0'));
+    expect(model, contains('New York University Abu Dhabi'));
   });
 }

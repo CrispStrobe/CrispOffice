@@ -28,7 +28,7 @@ if(EMSCRIPTEN)
     # Plain (non-resizable) heap views: current Chrome's TextDecoder rejects
     # views of resizable buffers, which emscripten's runtime decodes paths with.
     -sGROWABLE_ARRAYBUFFERS=0
-    -sEXPORTED_FUNCTIONS=_quds_arabic_morph_adapter_version,_crispembed_ar_morph_abi_version,_crispembed_ar_morph_open,_crispembed_ar_morph_analyze,_crispembed_ar_morph_analyze_compact,_crispembed_ar_morph_buffer_free,_crispembed_ar_morph_string_free,_crispembed_ar_morph_info,_crispembed_ar_morph_free,_malloc,_free
+    -sEXPORTED_FUNCTIONS=_quds_arabic_morph_adapter_version,_quds_arabic_morph_enable_disambiguation,_crispembed_ar_morph_abi_version,_crispembed_ar_morph_open,_crispembed_ar_morph_analyze,_crispembed_ar_morph_analyze_compact,_crispembed_ar_morph_buffer_free,_crispembed_ar_morph_string_free,_crispembed_ar_morph_info,_crispembed_ar_morph_free,_crispembed_ar_morph_disambig_open,_crispembed_ar_morph_disambiguate,_crispembed_ar_morph_disambig_info,_crispembed_ar_morph_disambig_free,_malloc,_free
     -sEXPORTED_RUNTIME_METHODS=FS,stringToNewUTF8,lengthBytesUTF8,HEAPU8,HEAPU32
     -sINCOMING_MODULE_JS_API=locateFile,print,printErr)
   # The analyzer reports errors through C++ exceptions caught at the ABI;
