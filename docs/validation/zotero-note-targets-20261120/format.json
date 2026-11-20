@@ -1,0 +1,49 @@
+{
+  "command": [
+    "dart",
+    "format",
+    "--output=none",
+    "--set-exit-if-changed",
+    "packages/quds_office_engine/lib/src/word/model/word_zotero_citing.dart",
+    "packages/quds_office_engine/lib/src/word/serial/word_deserializer.dart",
+    "packages/quds_office_engine/test/word_zotero_research_target_test.dart",
+    "packages/quds_office_engine/test/word_zotero_add_note_test.dart",
+    "packages/quds_office_engine/tool/zotero/research_target_acceptance.dart",
+    "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+    "packages/quds_office_editor/lib/src/embed/word_zotero_dialog.dart",
+    "packages/quds_office_editor/test/word_proofing_session_test.dart",
+    "packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+    "packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart",
+    "packages/quds_office_editor/tool/zotero/research_target_acceptance.dart"
+  ],
+  "exit_code": 0,
+  "stdout": "Formatted 11 files (0 changed) in 0.99 seconds.\n",
+  "stderr": "",
+  "source_sha256_before": {
+    "packages/quds_office_engine/lib/src/word/model/word_zotero_citing.dart": "6a09b7802a99e108da376d27ac05e9af0237f8686130bdebc9fdf2e7d63304bf",
+    "packages/quds_office_engine/lib/src/word/serial/word_deserializer.dart": "7cbf6bf4a4747ffed87e237934a54dcdc6dc8c8d22ccb8f7eecce62c6ca653d3",
+    "packages/quds_office_engine/test/word_zotero_research_target_test.dart": "7bf142f5355cd423d0164b99b58a06719e43c4f19a17c87d2d40b30b82adb37a",
+    "packages/quds_office_engine/test/word_zotero_add_note_test.dart": "883e31707f1015705486646164136cba7f9befea3234013462161e8b9b16ee2c",
+    "packages/quds_office_engine/tool/zotero/research_target_acceptance.dart": "6c621c5d000834505334bd135703276a37b391b8d48a718c8e13107630936bda",
+    "packages/quds_office_editor/lib/src/embed/office_controller.dart": "4da8f60e88fb39831a1fd5e7235e798c3e413a1aa11af5280d1590933a1f20cb",
+    "packages/quds_office_editor/lib/src/embed/word_zotero_dialog.dart": "8f63cf9041ab7a71dacaf75415f89bcbca8245200f09bd0abe22d8400d0ebf6f",
+    "packages/quds_office_editor/test/word_proofing_session_test.dart": "a22d35f1f76f27c69319ec59cca028d5bc2419f26e31b8bd301710487e322329",
+    "packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart": "67daa9c51e7d54e2e67a7c3b4b76b777a0f17d3b90953c5fcba51a85f5ac1820",
+    "packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart": "c1e8d858791c16f01a2f95b4a793054eef8c31735a08b6c0a03db58feb815b4f",
+    "packages/quds_office_editor/tool/zotero/research_target_acceptance.dart": "1708c2563847444ef9f2ca8782e90fe48aa10cea7787206df2a235b3e3bf160b"
+  },
+  "source_sha256_after": {
+    "packages/quds_office_engine/lib/src/word/model/word_zotero_citing.dart": "6a09b7802a99e108da376d27ac05e9af0237f8686130bdebc9fdf2e7d63304bf",
+    "packages/quds_office_engine/lib/src/word/serial/word_deserializer.dart": "7cbf6bf4a4747ffed87e237934a54dcdc6dc8c8d22ccb8f7eecce62c6ca653d3",
+    "packages/quds_office_engine/test/word_zotero_research_target_test.dart": "7bf142f5355cd423d0164b99b58a06719e43c4f19a17c87d2d40b30b82adb37a",
+    "packages/quds_office_engine/test/word_zotero_add_note_test.dart": "883e31707f1015705486646164136cba7f9befea3234013462161e8b9b16ee2c",
+    "packages/quds_office_engine/tool/zotero/research_target_acceptance.dart": "6c621c5d000834505334bd135703276a37b391b8d48a718c8e13107630936bda",
+    "packages/quds_office_editor/lib/src/embed/office_controller.dart": "4da8f60e88fb39831a1fd5e7235e798c3e413a1aa11af5280d1590933a1f20cb",
+    "packages/quds_office_editor/lib/src/embed/word_zotero_dialog.dart": "8f63cf9041ab7a71dacaf75415f89bcbca8245200f09bd0abe22d8400d0ebf6f",
+    "packages/quds_office_editor/test/word_proofing_session_test.dart": "a22d35f1f76f27c69319ec59cca028d5bc2419f26e31b8bd301710487e322329",
+    "packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart": "67daa9c51e7d54e2e67a7c3b4b76b777a0f17d3b90953c5fcba51a85f5ac1820",
+    "packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart": "c1e8d858791c16f01a2f95b4a793054eef8c31735a08b6c0a03db58feb815b4f",
+    "packages/quds_office_editor/tool/zotero/research_target_acceptance.dart": "1708c2563847444ef9f2ca8782e90fe48aa10cea7787206df2a235b3e3bf160b"
+  },
+  "source_hashes_unchanged": true
+}

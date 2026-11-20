@@ -117,7 +117,8 @@ later citation and bibliography updates. Documents containing imported research
 notes retain the active fields through DOCX saving and reopening. Within an
 authored footnote/endnote, embedded citations inherit that note's ownership and
 reading order. They never create a nested note. A style requesting the opposite
-note kind is refused before application.
+note kind is refused before application. Numbered lists in each authored note
+retain their own visible labels and counters when the DOCX is reopened.
 
 The whole insertion, including new footnotes/endnotes, bibliography callbacks
 and document style preferences, is staged until completion and applied as one
@@ -132,7 +133,10 @@ fields and staged preference changes.
 
 Selections must stay within one editable paragraph. Cross-paragraph selections,
 existing fields, note references, pictures, commented text, protected
-ranges and structural selections are refused. Finish active text composition
+ranges and structural selections are refused. This includes ordinary complex
+Word fields such as DATE or REF, even when only their cached text is visible.
+Selections touching bookmark boundaries or empty atomic field tokens are also
+refused. Finish active text composition
 first; moving the selection or editing the destination while Zotero is open
 invalidates the staged result. Headers, footers, comments and text frames remain
 unsupported destinations. Tables in imported research content, lists deeper
