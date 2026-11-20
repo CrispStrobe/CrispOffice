@@ -336,7 +336,7 @@ bool _writePreservedTransition(XmlWriter writer, PmlSlideTransition transition) 
     if (!transition.isNone) {
       final effect = XmlElement(
         localName: _kindToXml(transition.kind),
-        prefix: 'p',
+        prefix: body.prefix,
         namespaceUri: OfficeNamespaces.p,
       );
       if (transition.kind == PmlTransitionKind.fadeThroughBlack) {
