@@ -1,8 +1,8 @@
 {
   "files": {
     "README.md": {
-      "bytes": 12850,
-      "sha256": "ec059c11ad8e69dac5e883f04fb8b380bf5c14bccf7ae35713e7011ab0dcc1d7"
+      "bytes": 13509,
+      "sha256": "199e09c3cab2f435cad063bfa48c2d7751f90b3cd3cd45a078deea8d839101fc"
     },
     "analysis-format.json": {
       "bytes": 3871,
@@ -184,6 +184,14 @@
       "bytes": 536,
       "sha256": "4ec8ea774f24cc95ac64579341b63a6b86e734cc6bd9f319b170ab29dd7e6cac"
     },
+    "main-reconciliation.json": {
+      "bytes": 9060,
+      "sha256": "5ec2765c54218e7d2befb21e7d56f942b103c58f086369521bcd6c4a8f28421b"
+    },
+    "main-reconciliation.md": {
+      "bytes": 1841,
+      "sha256": "4dc893bd763d9c615289c7edee2cda61ee4d3dfad72f554a13a003edf9bc7f62"
+    },
     "portable-result.json": {
       "bytes": 1393,
       "sha256": "f0fe334a367c08018ed63936f0cd690371cd85f4e1ca90d1a60de85483791e51"
@@ -208,9 +216,17 @@
       "bytes": 5735,
       "sha256": "73c09ee6c07393129fd9d3e5b76c451a58140e97d2a11b69bbf2fbeada744c1d"
     },
+    "prepare_main_reconciliation.py": {
+      "bytes": 8644,
+      "sha256": "2e83aba8e71cb8bea9e2ae1256992bc37b34bdc01f4d731031623f97d9389c21"
+    },
     "progress-checkpoint.md": {
       "bytes": 1652,
       "sha256": "a9be3ef4dd7e0f8589a73c471bc7e7a0def054912b3ffe3e85d079e0f0a0ae7c"
+    },
+    "publication-checkpoint-8b9be399.json": {
+      "bytes": 10876,
+      "sha256": "6d2ad6f4451bceb48b489f4b056df76f1a306696c1b6c1cf3e3839035c29ab15"
     },
     "publication-checkpoint-a6c9bb6a.json": {
       "bytes": 9311,
@@ -312,6 +328,10 @@
       "bytes": 8041,
       "sha256": "bc80a9cfdf9ede44773cac68ec4834fa79dd8d94e2ce8b23dac6d4d14aefe5e0"
     },
+    "verify_main_reconciliation.py": {
+      "bytes": 16889,
+      "sha256": "a719a8d92e7ce98bc7f33b1bd590f2414b1f68167582678f095104129c628245"
+    },
     "verify_publication_checkpoint.py": {
       "bytes": 17445,
       "sha256": "636883575f1139bf5e1a0383b9ac9db34a129c21be1eca101a496e63b92e4187"
@@ -321,8 +341,8 @@
       "sha256": "3376fc00406a89cd66b3d4446860bd5c07a2270100e2aa8c6c6390549c11c6b9"
     },
     "verify_word_spacing_publication.py": {
-      "bytes": 6772,
-      "sha256": "2a68e6ed2e58448963b663c75b334932de7d0a7051950496e896edea3c05d617"
+      "bytes": 6907,
+      "sha256": "c0ae2966f937333fcf86592129bd95724e2c95a6d2cfedfa5dafecefd70d393d"
     }
   },
   "scope": "Files in this validation directory; excludes this index to avoid recursion. Exact Git tree binding is verified after merge."

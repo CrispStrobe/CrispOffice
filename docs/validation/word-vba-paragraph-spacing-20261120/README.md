@@ -206,3 +206,14 @@ complete Word pagination, COM and embedded VBA execution remain outside scope.
 The Microsoft primary references are linked in the Word contract; expectations
 are specification-derived and the documented host subset, not installed-Office
 observations or a percentage of VBA parity.
+
+## Final live-main reconciliation
+
+The final [main reconciliation addendum](main-reconciliation.md) incorporates PR #267,
+which merged to remote main after the captured scope review. All nine incoming
+paths and the accepted Word source are preserved exactly. Its updated table
+supersedes the historical scope dispositions above: 26 of 33 branch heads and
+265 of 270 PR heads are incorporated or equivalent; 12 references to seven
+later heads remain deferred, with zero unclassified references. The preceding
+Word checkpoint `8b9be399` and newly observed main `d1e9cbc0` are both retained
+as actual merge parents. No new Arabic runtime validation is claimed.
