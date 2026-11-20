@@ -7,6 +7,10 @@ import 'pml_motion.dart';
 
 const _powerPoint2010 =
     'http://schemas.microsoft.com/office/powerpoint/2010/main';
+const _powerPoint2012 =
+    'http://schemas.microsoft.com/office/powerpoint/2012/main';
+const _powerPoint2015 =
+    'http://schemas.microsoft.com/office/powerpoint/2015/09/main';
 
 /// parseSlideMotion helper.
 void parseSlideMotion(String xml, PmlSlide slide) {
@@ -16,6 +20,9 @@ void parseSlideMotion(String xml, PmlSlide slide) {
   /// inTransition API.
   var inTransition = false;
   var hasTransition = false;
+  // Preserve the public helper's historical conventional-prefix fragment
+  // input. Real documents with declared namespaces still use URI matching.
+  var legacyFragment = false;
 
   /// inTiming API.
   var inTiming = false;
@@ -61,7 +68,7 @@ void parseSlideMotion(String xml, PmlSlide slide) {
   while (reader.next()) {
     if (reader.eventType == XmlEventType.endElement) {
       if (reader.localName == 'transition' &&
-          reader.namespaceUri == OfficeNamespaces.p &&
+          _isPresentationMotionElement(reader, legacyFragment) &&
           reader.depth == 1) {
         inTransition = false;
       } else if (reader.localName == 'timing') {
@@ -91,8 +98,14 @@ void parseSlideMotion(String xml, PmlSlide slide) {
     if (reader.eventType != XmlEventType.startElement) {
       continue;
     }
+    if (reader.depth == 1) {
+      legacyFragment =
+          reader.localName == 'sld' &&
+          reader.prefix == 'p' &&
+          reader.namespaceUri.isEmpty;
+    }
     if (reader.localName == 'transition' &&
-        reader.namespaceUri == OfficeNamespaces.p &&
+        _isPresentationMotionElement(reader, legacyFragment) &&
         reader.depth == 2) {
       inTransition = !reader.isEmptyElement;
       hasTransition = true;
@@ -113,7 +126,7 @@ void parseSlideMotion(String xml, PmlSlide slide) {
     } else if (inTransition &&
         kind == null &&
         reader.depth == 3 &&
-        reader.namespaceUri == OfficeNamespaces.p) {
+        _isTransitionEffectElement(reader, legacyFragment)) {
       if (reader.localName == 'prstTrans' &&
           reader.getAttribute('prst', namespaceUri: '') == 'morph') {
         kind = PmlTransitionKind.morph;
@@ -224,6 +237,21 @@ void parseSlideMotion(String xml, PmlSlide slide) {
     );
   }
 }
+
+bool _isPresentationMotionElement(XmlPullReader reader, bool legacyFragment) =>
+    reader.namespaceUri == OfficeNamespaces.p ||
+    (legacyFragment && reader.namespaceUri.isEmpty && reader.prefix == 'p');
+
+bool _isTransitionEffectElement(XmlPullReader reader, bool legacyFragment) =>
+    const <String>{
+      OfficeNamespaces.p,
+      _powerPoint2010,
+      _powerPoint2012,
+      _powerPoint2015,
+    }.contains(reader.namespaceUri) ||
+    (legacyFragment &&
+        reader.namespaceUri.isEmpty &&
+        const <String>{'p', 'p14', 'p15', 'p159'}.contains(reader.prefix));
 
 // Preserve the root namespace scope even when prefixes occur only in values,
 // such as mc:Choice@Requires. Ignorable is cumulative, and its prefixes must

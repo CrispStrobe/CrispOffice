@@ -3313,8 +3313,23 @@ class WordDeserializer {
     String docUri,
   ) {
     final Map<int, _NumberingLevel> levels = _readNumbering(package, docUri);
+    _applyStoryNumbering(document.paragraphs, levels);
+    // Note bodies are separate stories. Resolve their native list definitions
+    // without advancing counters in the body or in another note.
+    for (final WmlNote note in <WmlNote>[
+      ...document.footnotes,
+      ...document.endnotes,
+    ]) {
+      _applyStoryNumbering(note.allParagraphs, levels);
+    }
+  }
+
+  void _applyStoryNumbering(
+    Iterable<WmlParagraph> paragraphs,
+    Map<int, _NumberingLevel> levels,
+  ) {
     if (levels.isEmpty) {
-      for (final WmlParagraph paragraph in document.paragraphs) {
+      for (final WmlParagraph paragraph in paragraphs) {
         final int? numId = paragraph.properties.numId;
         if (numId != null && numId != 0) {
           paragraph.properties.listLabel ??= '• ';
@@ -3323,7 +3338,7 @@ class WordDeserializer {
       return;
     }
     final Map<String, List<int>> counters = <String, List<int>>{};
-    for (final WmlParagraph paragraph in document.paragraphs) {
+    for (final WmlParagraph paragraph in paragraphs) {
       final int? numId = paragraph.properties.numId;
       // `w:numId="0"` removes the paragraph from any list.
       if (numId == null || numId == 0) {
