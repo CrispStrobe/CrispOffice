@@ -13,6 +13,8 @@ class PmlTransform {
     this.cx = 914400,
     this.cy = 914400,
     this.rot = 0,
+    this.flipH = false,
+    this.flipV = false,
   });
 
   /// Offsets and extents in EMUs (1 pt = 12,700 EMUs).
@@ -29,6 +31,12 @@ class PmlTransform {
 
   /// rot API.
   final int rot;
+
+  /// Horizontal flip from `a:xfrm/@flipH`.
+  final bool flipH;
+
+  /// Vertical flip from `a:xfrm/@flipV`.
+  final bool flipV;
 
   /// xPoints API.
   double get xPoints => x / 12700;
@@ -47,7 +55,18 @@ class PmlTransform {
 }
 
 /// Enum PmlShapePreset.
-enum PmlShapePreset { rect, roundRect, ellipse, triangle, connector, freeform }
+enum PmlShapePreset {
+  rect,
+  roundRect,
+  ellipse,
+  triangle,
+  connector,
+  freeform,
+  downArrow,
+  upArrow,
+  leftArrow,
+  rightArrow,
+}
 
 /// Enum PmlTextAlign.
 enum PmlTextAlign { left, center, right, justify }
@@ -542,6 +561,7 @@ class PmlSlide {
     this.masterName = 'Office Theme',
     String background = '',
     bool? inheritsMasterBackground,
+    List<PmlShape>? backgroundShapes,
     this.notes = '',
     this.sourcePartUri,
     this.transition = const PmlSlideTransition(),
@@ -554,6 +574,7 @@ class PmlSlide {
        inheritsMasterBackground =
            inheritsMasterBackground ?? background.isEmpty,
        shapes = shapes ?? <PmlShape>[],
+       backgroundShapes = backgroundShapes ?? <PmlShape>[],
        animations = animations ?? <PmlShapeAnimation>[];
 
   /// id API.
@@ -561,6 +582,9 @@ class PmlSlide {
 
   /// shapes API.
   List<PmlShape> shapes;
+
+  /// Non-editable master/layout decorations painted behind [shapes].
+  final List<PmlShape> backgroundShapes;
 
   /// layoutName API.
   String layoutName;
@@ -643,6 +667,9 @@ class PmlSlide {
       background: background,
       inheritsMasterBackground: inheritsMasterBackground,
       notes: notes,
+      backgroundShapes: <PmlShape>[
+        for (final PmlShape shape in backgroundShapes) shape.copy(),
+      ],
       sourcePartUri: id == null || id == this.id ? sourcePartUri : null,
       transition: transition,
       hidden: hidden,

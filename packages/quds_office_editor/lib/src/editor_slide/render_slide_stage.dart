@@ -1132,9 +1132,68 @@ class RenderSlideStage extends RenderBox implements MouseTrackerAnnotation {
 
   /// Fill of a shape, or nothing when [PmlShape.fillColor] is empty (no fill).
   void _paintShapeFill(Canvas canvas, PmlShape shape, Rect r, String hex) {
+    if (shape.preset == PmlShapePreset.connector &&
+        shape.strokeColor.isNotEmpty) {
+      final int? stroke = int.tryParse(shape.strokeColor, radix: 16);
+      if (stroke != null) {
+        final bool flipH = shape.transform.flipH;
+        final bool flipV = shape.transform.flipV;
+        canvas.drawLine(
+          Offset(flipH ? r.right : r.left, flipV ? r.bottom : r.top),
+          Offset(flipH ? r.left : r.right, flipV ? r.top : r.bottom),
+          Paint()
+            ..color = Color(0xFF000000 | stroke)
+            ..strokeWidth = shape.strokeWidth <= 0 ? 1 : shape.strokeWidth,
+        );
+      }
+      return;
+    }
     final int? fill = int.tryParse(hex, radix: 16);
     if (fill != null) {
-      canvas.drawRect(r, Paint()..color = Color(0xFF000000 | fill));
+      final Paint paint = Paint()..color = Color(0xFF000000 | fill);
+      switch (shape.preset) {
+        case PmlShapePreset.rect:
+          canvas.drawRect(r, paint);
+        case PmlShapePreset.roundRect:
+          final double radius = math.min(8, r.shortestSide / 4);
+          canvas.drawRRect(
+            RRect.fromRectAndRadius(r, Radius.circular(radius)),
+            paint,
+          );
+        case PmlShapePreset.ellipse:
+          canvas.drawOval(r, paint);
+        case PmlShapePreset.triangle:
+          canvas.drawPath(
+            Path()
+              ..moveTo(r.center.dx, r.top)
+              ..lineTo(r.right, r.bottom)
+              ..lineTo(r.left, r.bottom)
+              ..close(),
+            paint,
+          );
+        case PmlShapePreset.connector:
+          break;
+        case PmlShapePreset.freeform:
+          final Path path = Path();
+          if (shape.path.isNotEmpty) {
+            path.moveTo(
+              r.left + shape.path.first.x / 12700,
+              r.top + shape.path.first.y / 12700,
+            );
+            for (final PmlPathPoint point in shape.path.skip(1)) {
+              path.lineTo(r.left + point.x / 12700, r.top + point.y / 12700);
+            }
+            path.close();
+          } else {
+            path.addRect(r);
+          }
+          canvas.drawPath(path, paint);
+        case PmlShapePreset.downArrow:
+        case PmlShapePreset.upArrow:
+        case PmlShapePreset.leftArrow:
+        case PmlShapePreset.rightArrow:
+          canvas.drawPath(_arrowPath(r, shape.preset), paint);
+      }
     } else if (shape.placeholder &&
         shape.text.isEmpty &&
         !presenting &&
@@ -1147,6 +1206,72 @@ class RenderSlideStage extends RenderBox implements MouseTrackerAnnotation {
           ..color = const Color(0x66808080),
       );
     }
+  }
+
+  Path _arrowPath(Rect r, PmlShapePreset preset) {
+    final bool vertical =
+        preset == PmlShapePreset.downArrow || preset == PmlShapePreset.upArrow;
+    final double shaft = (vertical ? r.width : r.height) * 0.48;
+    final double head = (vertical ? r.height : r.width) * 0.48;
+    final Path path = Path();
+    switch (preset) {
+      case PmlShapePreset.downArrow:
+        final double left = r.left + (r.width - shaft) / 2;
+        final double bottom = r.bottom - head;
+        path
+          ..moveTo(left, r.top)
+          ..lineTo(left + shaft, r.top)
+          ..lineTo(left + shaft, bottom)
+          ..lineTo(r.right, bottom)
+          ..lineTo(r.center.dx, r.bottom)
+          ..lineTo(r.left, bottom)
+          ..lineTo(left, bottom)
+          ..close();
+      case PmlShapePreset.upArrow:
+        final double left = r.left + (r.width - shaft) / 2;
+        final double top = r.top + head;
+        path
+          ..moveTo(left, r.bottom)
+          ..lineTo(left + shaft, r.bottom)
+          ..lineTo(left + shaft, top)
+          ..lineTo(r.right, top)
+          ..lineTo(r.center.dx, r.top)
+          ..lineTo(r.left, top)
+          ..lineTo(left, top)
+          ..close();
+      case PmlShapePreset.leftArrow:
+        final double top = r.top + (r.height - shaft) / 2;
+        final double right = r.right - head;
+        path
+          ..moveTo(r.right, top)
+          ..lineTo(r.right, top + shaft)
+          ..lineTo(right, top + shaft)
+          ..lineTo(right, r.bottom)
+          ..lineTo(r.left, r.center.dy)
+          ..lineTo(right, r.top)
+          ..lineTo(right, top)
+          ..close();
+      case PmlShapePreset.rightArrow:
+        final double top = r.top + (r.height - shaft) / 2;
+        final double left = r.left + head;
+        path
+          ..moveTo(r.left, top)
+          ..lineTo(r.left, top + shaft)
+          ..lineTo(left, top + shaft)
+          ..lineTo(left, r.bottom)
+          ..lineTo(r.right, r.center.dy)
+          ..lineTo(left, r.top)
+          ..lineTo(left, top)
+          ..close();
+      case PmlShapePreset.rect:
+      case PmlShapePreset.roundRect:
+      case PmlShapePreset.ellipse:
+      case PmlShapePreset.triangle:
+      case PmlShapePreset.connector:
+      case PmlShapePreset.freeform:
+        path.addRect(r);
+    }
+    return path;
   }
 
   TextPainter _shapePainter(
@@ -1603,6 +1728,20 @@ class RenderSlideStage extends RenderBox implements MouseTrackerAnnotation {
       Offset.zero & _slideSize,
       Paint()..color = _slidePaper(target),
     );
+    for (final PmlShape shape in target.backgroundShapes) {
+      if (skipIds != null && skipIds.contains(shape.id)) {
+        continue;
+      }
+      final PmlAnimSample sample = samples?[shape.id] ?? PmlAnimSample.identity;
+      if (!sample.visible || sample.opacity <= 0.01) {
+        continue;
+      }
+      final Rect r = _shapeRect(shape);
+      canvas.save();
+      PaintSlideMotion.applyShapeSample(canvas, r, sample);
+      _paintShapeInRect(canvas, shape, r);
+      canvas.restore();
+    }
     for (final PmlShape shape in target.shapes) {
       if (skipIds != null && skipIds.contains(shape.id)) {
         continue;
