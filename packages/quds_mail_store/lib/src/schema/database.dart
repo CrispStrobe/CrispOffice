@@ -13,7 +13,7 @@ final class MailStoreDatabase extends GeneratedDatabase {
   final MailStoreFaultInjector? faultInjector;
 
   @override
-  int get schemaVersion => 3;
+  int get schemaVersion => 4;
 
   @override
   Iterable<TableInfo<Table, Object?>> get allTables => const [];
@@ -31,11 +31,14 @@ final class MailStoreDatabase extends GeneratedDatabase {
       for (final statement in schemaV3) {
         await customStatement(statement);
       }
+      for (final statement in schemaV4) {
+        await customStatement(statement);
+      }
       // Include the version in the same transaction as schema creation.
-      await customStatement('PRAGMA user_version = 3');
+      await customStatement('PRAGMA user_version = 4');
     }),
     onUpgrade: (_, from, to) async {
-      if ((from != 1 && from != 2) || to != 3) {
+      if (from < 1 || from > 3 || to != 4) {
         throw const MailStoreStorageException(MailProblemCode.unsupported);
       }
       await transaction(() async {
@@ -44,11 +47,16 @@ final class MailStoreDatabase extends GeneratedDatabase {
             await customStatement(statement);
           }
         }
-        for (final statement in schemaV3) {
+        if (from < 3) {
+          for (final statement in schemaV3) {
+            await customStatement(statement);
+          }
+        }
+        for (final statement in schemaV4) {
           await customStatement(statement);
         }
         await faultInjector?.call(MailStoreCheckpoint.migrationCreated);
-        await customStatement('PRAGMA user_version = 3');
+        await customStatement('PRAGMA user_version = 4');
       });
     },
     beforeOpen: (_) async {
@@ -170,4 +178,14 @@ const schemaV2 = <String>[
 const schemaV3 = <String>[
   '''ALTER TABLE messages ADD COLUMN flags INTEGER
     CHECK(flags IS NULL OR (typeof(flags) = 'integer' AND flags BETWEEN 0 AND 31))''',
+];
+
+/// A profile-local directory only. Forgetting a route cannot cascade into
+/// cached messages, drafts, Outbox payloads, credentials or provider mail.
+const schemaV4 = <String>[
+  '''CREATE TABLE local_accounts (
+    id TEXT PRIMARY KEY, provider TEXT NOT NULL, endpoint TEXT NOT NULL,
+    login TEXT NOT NULL, sender TEXT NOT NULL, connected_at INTEGER NOT NULL
+      CHECK(connected_at >= 0)
+  )''',
 ];

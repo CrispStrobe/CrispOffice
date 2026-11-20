@@ -5,6 +5,7 @@ import 'studio_mail_archive_action.dart';
 import 'studio_mail_archive_folder_action.dart';
 import 'studio_mail_ews.dart';
 import 'studio_mail_draft_store.dart';
+import 'studio_mail_local_accounts.dart';
 import 'studio_strings.dart';
 
 /// Browser authorization and the shared guarded foreground mailbox view.
@@ -21,6 +22,7 @@ class StudioMailCloudDialog extends StatelessWidget {
     this.archiveWriter,
     this.archiveFolderWriter,
     this.draftStoreFactory,
+    this.localAccountStore,
   });
 
   final StudioStrings strings;
@@ -32,6 +34,7 @@ class StudioMailCloudDialog extends StatelessWidget {
   final StudioMailArchiveWriter? archiveWriter;
   final StudioMailArchiveFolderWriter? archiveFolderWriter;
   final StudioMailDraftStoreFactory? draftStoreFactory;
+  final StudioMailLocalAccountStore? localAccountStore;
 
   @override
   Widget build(BuildContext context) => StudioMailEwsDialog.cloud(
@@ -44,5 +47,6 @@ class StudioMailCloudDialog extends StatelessWidget {
     archiveWriter: archiveWriter,
     archiveFolderWriter: archiveFolderWriter,
     draftStoreFactory: draftStoreFactory,
+    localAccountStore: localAccountStore,
   );
 }
