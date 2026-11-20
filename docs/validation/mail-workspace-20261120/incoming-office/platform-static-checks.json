@@ -1,0 +1,10 @@
+{
+  "ios/Runner/Info.plist": "well-formed XML",
+  "macos/Runner/Info.plist": "well-formed XML",
+  "android/app/src/main/AndroidManifest.xml": "well-formed XML",
+  "macos/Runner/Base.lproj/MainMenu.xib": "well-formed XML",
+  "macos/Runner.xcodeproj/xcshareddata/xcschemes/Runner.xcscheme": "well-formed XML",
+  "android-identity": "namespace, application ID and activity package agree",
+  "macos-product": "product, test host and scheme agree",
+  "build_macos_app.sh": "bash -n passed"
+}

@@ -326,13 +326,19 @@ List<PmlShape> parseSlideShapes(
         'flowChartTerminator' => PmlShapePreset.roundRect,
         _ => PmlShapePreset.rect,
       };
-    } else if (reader.localName == 'normAutofit' && current != null) {
-      final int scale =
-          int.tryParse(reader.getAttribute('fontScale') ?? '') ?? 100000;
-      final int reduction =
-          int.tryParse(reader.getAttribute('lnSpcReduction') ?? '') ?? 0;
-      current.textScale = (scale / 100000).clamp(0.1, 1.0);
-      current.lineSpacingReduction = (reduction / 100000).clamp(0.0, 0.9);
+    } else if (reader.localName == 'normAutofit' &&
+        reader.namespaceUri == OfficeNamespaces.a &&
+        inTxBody &&
+        currentCell == null &&
+        current != null) {
+      current.textScale = _fitPercent(
+        reader.getAttribute('fontScale'),
+        fallback: 1,
+      ).clamp(0.00001, 1.0);
+      current.lineSpacingReduction = _fitPercent(
+        reader.getAttribute('lnSpcReduction'),
+        fallback: 0,
+      ).clamp(0.0, 1.0);
     } else if (reader.localName == 'bodyPr' && current != null) {
       current.textAnchor = switch (reader.getAttribute('anchor')) {
         'ctr' => PmlTextAnchor.center,
@@ -506,6 +512,8 @@ void _captureTextSources(
         textColor: current.textColor,
         textAlign: current.textAlign,
         rightToLeft: current.rightToLeft,
+        textScale: current.textScale,
+        lineSpacingReduction: current.lineSpacingReduction,
       );
       current.richText = parsePmlRichText(snapshot, colors);
     }
@@ -1006,6 +1014,17 @@ void _writeSlideShape(XmlWriter w, PmlShape shape) {
 XmlElement _textElement(String name) =>
     XmlElement(localName: name, prefix: 'a', namespaceUri: OfficeNamespaces.a);
 
+double _fitPercent(String? value, {required double fallback}) {
+  if (value == null) return fallback;
+  final String raw = value.trim();
+  final bool percent = raw.endsWith('%');
+  final double? number = double.tryParse(
+    percent ? raw.substring(0, raw.length - 1) : raw,
+  );
+  if (number == null || !number.isFinite) return fallback;
+  return number / (percent ? 100 : 100000);
+}
+
 Iterable<XmlElement> _textDescendants(XmlElement root, String name) sync* {
   for (final XmlElement child in root.childElements) {
     if (child.localName == name && child.namespaceUri == OfficeNamespaces.a) {
@@ -1039,6 +1058,49 @@ void _writeShapeText(XmlWriter writer, PmlShape shape) {
   if (source == null) {
     body.addChild(_textElement('bodyPr'));
     body.addChild(_textElement('lstStyle'));
+  }
+  if ((source == null &&
+          (shape.textScale != 1 || shape.lineSpacingReduction != 0)) ||
+      (source != null &&
+          (source.textScale != shape.textScale ||
+              source.lineSpacingReduction != shape.lineSpacingReduction))) {
+    XmlElement? props = body.firstChild(
+      'bodyPr',
+      namespaceUri: OfficeNamespaces.a,
+    );
+    if (props == null) {
+      props = _textElement('bodyPr')..parent = body;
+      body.children.insert(0, props);
+    }
+    props.children.removeWhere(
+      (XmlNode node) =>
+          node is XmlElement &&
+          node.namespaceUri == OfficeNamespaces.a &&
+          const {
+            'noAutofit',
+            'spAutoFit',
+            'normAutofit',
+          }.contains(node.localName),
+    );
+    final XmlElement fit = _textElement('normAutofit')
+      ..setAttribute('fontScale', '${(shape.textScale * 100000).round()}')
+      ..setAttribute(
+        'lnSpcReduction',
+        '${(shape.lineSpacingReduction * 100000).round()}',
+      )
+      ..parent = props;
+    // Autofit precedes 3D and extension properties in CT_TextBodyProperties.
+    final int tail = props.children.indexWhere(
+      (XmlNode node) =>
+          node is XmlElement &&
+          const {
+            'scene3d',
+            'sp3d',
+            'flatTx',
+            'extLst',
+          }.contains(node.localName),
+    );
+    props.children.insert(tail < 0 ? props.children.length : tail, fit);
   }
   final bool replace = source == null || source.text != shape.text;
   if (replace) {

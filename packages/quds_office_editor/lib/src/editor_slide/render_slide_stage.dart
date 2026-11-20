@@ -1392,11 +1392,15 @@ class RenderSlideStage extends RenderBox implements MouseTrackerAnnotation {
     Color color, {
     Color? background,
   }) {
-    final double baseSize = shape.fontSizePt > 0 ? shape.fontSizePt : 16;
+    final double baseSize =
+        (shape.fontSizePt > 0 ? shape.fontSizePt : 16) * shape.textScale;
+    final double lineHeight = 1 - shape.lineSpacingReduction;
 
     final int lines = _growsWithText(r)
         ? 32
-        : (r.height / (baseSize * 1.2)).ceil().clamp(1, 32);
+        : (r.height / (baseSize * 1.2 * math.max(0.1, lineHeight)))
+              .ceil()
+              .clamp(1, 32);
     final bool rtl = shape.rightToLeft ?? PaintRunText.looksRtl(text);
     final TextAlign align = switch (shape.textAlign) {
       PmlTextAlign.center => TextAlign.center,
@@ -1420,7 +1424,8 @@ class RenderSlideStage extends RenderBox implements MouseTrackerAnnotation {
     }
     return PaintRunText.plain(
       text: text,
-      fontSize: baseSize * shape.textScale,
+      fontSize: baseSize,
+      height: lineHeight,
       color: color,
       themeFamily: _theme.fontFamily,
       maxLines: lines,
@@ -1469,7 +1474,12 @@ class RenderSlideStage extends RenderBox implements MouseTrackerAnnotation {
             text: runText,
             style: TextStyle(
               fontSize: size,
-              height: 1.0,
+              height: paragraph.lineSpacingPt == null
+                  ? math.max(
+                      0,
+                      paragraph.lineSpacing - shape.lineSpacingReduction,
+                    )
+                  : paragraph.lineSpacingPt! / size,
               color: runColor,
               fontWeight:
                   run.bold &&
@@ -1498,13 +1508,23 @@ class RenderSlideStage extends RenderBox implements MouseTrackerAnnotation {
           ),
         );
       }
-      final double blankSize = paragraph.defaultFontSizePt > 0
-          ? paragraph.defaultFontSizePt
-          : (shape.fontSizePt > 0 ? shape.fontSizePt : 16);
+      final double blankSize =
+          (paragraph.defaultFontSizePt > 0
+              ? paragraph.defaultFontSizePt
+              : (shape.fontSizePt > 0 ? shape.fontSizePt : 16)) *
+          shape.textScale;
       spans.add(
         TextSpan(
           text: '\n',
-          style: TextStyle(fontSize: blankSize),
+          style: TextStyle(
+            fontSize: blankSize,
+            height: paragraph.lineSpacingPt == null
+                ? math.max(
+                    0,
+                    paragraph.lineSpacing - shape.lineSpacingReduction,
+                  )
+                : paragraph.lineSpacingPt! / blankSize,
+          ),
         ),
       );
     }

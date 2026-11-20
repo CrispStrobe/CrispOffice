@@ -114,17 +114,31 @@ files are verified downloads; install them again from the app (Review ›
 Proofing › Dictionaries and language data, Review › Analysis setup). Saved
 mail accounts are keychain items owned by the old app's identity and must be
 entered again; the old items stay in the keychain until removed with Keychain
-Access. Ribbon preferences and the local mail archive also live in the old
-container. To keep existing test data instead, quit both apps and copy the
-application-support directory once (macOS may ask to allow Terminal access to
-another app's data):
+Access. Ribbon preferences, the local Mail archive and saved drafts also live
+in the old container, but use two different support directories. Proofing and
+ribbon preferences use `quds_office_studio`. Mail uses the platform support
+directory, to which the pinned `path_provider_foundation` appends the bundle
+id, followed by `quds_mail` (drafts) or `quds_mail_archive` (archive).
+
+To keep existing test data, quit both apps and copy both support directories
+once, before creating local Mail data in the new app (macOS may ask to allow
+Terminal access to another app's data). If the new app already contains drafts
+or an archive, preserve both copies before attempting a migration; these
+commands are for an empty destination, not a database merge:
 
 ```bash
 ditto "$HOME/Library/Containers/com.quds.qudsOfficeStudio/Data/Library/Application Support/quds_office_studio" "$HOME/Library/Containers/com.crispstrobe.crispoffice/Data/Library/Application Support/quds_office_studio"
+ditto "$HOME/Library/Containers/com.quds.qudsOfficeStudio/Data/Library/Application Support/com.quds.qudsOfficeStudio" "$HOME/Library/Containers/com.crispstrobe.crispoffice/Data/Library/Application Support/com.crispstrobe.crispoffice"
 ```
 
-The data folder name inside the container (`quds_office_studio`) is an
-internal identifier and is unchanged. Point `QUDS_STUDIO_DATA` of the gate
+Copy a source directory only if it exists. Copying `quds_office_studio` alone
+does **not** migrate the Mail archive or draft database. Keep each complete
+Mail directory together, including any SQLite sidecar files; reconnect with
+the same provider/account identity to recover its draft. This does not move
+keychain credentials or enable access to the old keychain identity.
+
+The proofing data folder name inside the container (`quds_office_studio`) is
+an internal identifier and is unchanged. Point `QUDS_STUDIO_DATA` of the gate
 tests at `~/Library/Containers/com.crispstrobe.crispoffice/Data/Library/Application Support/quds_office_studio`
 or at a scratch directory.
 

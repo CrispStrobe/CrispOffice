@@ -171,6 +171,7 @@ class PmlTextParagraph {
     this.marginLeftPt = 0,
     this.indentPt = 0,
     this.lineSpacing = 1,
+    this.lineSpacingPt,
     this.spaceBeforePt = 0,
     this.spaceAfterPt = 0,
     this.rightToLeft = false,
@@ -187,6 +188,10 @@ class PmlTextParagraph {
   double marginLeftPt;
   double indentPt;
   double lineSpacing;
+
+  /// Fixed paragraph leading, when DrawingML uses `a:spcPts`.
+  /// Normal autofit reduces percentage leading only.
+  double? lineSpacingPt;
   double spaceBeforePt;
   double spaceAfterPt;
   bool rightToLeft;
@@ -203,6 +208,7 @@ class PmlTextParagraph {
     marginLeftPt: marginLeftPt,
     indentPt: indentPt,
     lineSpacing: lineSpacing,
+    lineSpacingPt: lineSpacingPt,
     spaceBeforePt: spaceBeforePt,
     spaceAfterPt: spaceAfterPt,
     rightToLeft: rightToLeft,
@@ -373,6 +379,8 @@ class PmlTextSource {
     required this.textColor,
     required this.textAlign,
     required this.rightToLeft,
+    this.textScale = 1,
+    this.lineSpacingReduction = 0,
   });
 
   /// Original DrawingML text body, including namespace declarations.
@@ -392,6 +400,9 @@ class PmlTextSource {
 
   /// Imported paragraph direction.
   final bool? rightToLeft;
+
+  final double textScale;
+  final double lineSpacingReduction;
 }
 
 /// Class PmlShape.
@@ -482,7 +493,7 @@ class PmlShape {
   /// Vertical text-frame placement from `a:bodyPr/@anchor`.
   PmlTextAnchor textAnchor;
 
-  /// `a:normAutofit/@fontScale`, normalized to 0.1–1.0.
+  /// `a:normAutofit/@fontScale`, normalized to a positive fraction no greater than 1.0.
   double textScale;
 
   /// `a:normAutofit/@lnSpcReduction`, normalized to 0.0–1.0.
