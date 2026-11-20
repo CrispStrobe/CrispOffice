@@ -300,13 +300,14 @@ void main() {
     tester,
   ) async {
     await _open(tester, language: StudioLanguage.de);
-    expect(find.text('Sprachdownloads'), findsOneWidget);
+    expect(find.text('Downloads'), findsOneWidget);
+    expect(find.text('Schriften'), findsOneWidget);
     expect(find.text('In der App enthalten'), findsOneWidget);
     expect(find.text('Arabisch'), findsOneWidget);
     expect(find.text('Installieren…'), findsWidgets);
     expect(find.text('Schließen'), findsOneWidget);
     await _open(tester, language: StudioLanguage.ar, rtl: true);
-    expect(find.text('تنزيلات اللغة'), findsOneWidget);
+    expect(find.text('التنزيلات'), findsOneWidget);
     expect(find.text('العربية'), findsOneWidget);
   });
 
@@ -334,10 +335,12 @@ void main() {
     final dictionaries = FakeDictionaries(installed: false);
     final morphology = FakeMorphology(installed: true);
     final models = FakeModels()..german = true;
+    final fonts = FakeFontPacks();
     final catalog = studioDownloadCatalog(
       hunspell: dictionaries,
       morphology: morphology,
       spacy: models,
+      fontPacks: fonts,
     );
     expect(catalog.map((item) => item.id), _ids);
     await tester.binding.setSurfaceSize(const Size(1200, 2400));
@@ -388,6 +391,20 @@ void main() {
     await tester.pumpAndSettle();
     expect(find.byKey(const Key('spacy-setup-source')), findsOneWidget);
     expect(find.byKey(const Key('spacy-setup-install')), findsOneWidget);
+
+    for (final status in fonts.statuses) {
+      expect(
+        catalog.singleWhere((item) => item.id == status.pack.id).review,
+        StudioDownloadReview.fontPack,
+      );
+      await tester.pumpWidget(
+        MaterialApp(
+          home: StudioFontPackSetupDialog(status: status, host: fonts),
+        ),
+      );
+      await tester.pumpAndSettle();
+      expect(find.text(status.pack.title), findsOneWidget);
+    }
   });
 
   testWidgets('font packs are listed last and reviewed before install', (

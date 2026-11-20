@@ -1,0 +1,29 @@
+{
+  "reviewed_mail_checkpoint": "c8b5080ad3d33abda44275a9b3679514d7526c58",
+  "integration_checkpoint": "caca745d7ef88d83b756c5da8543ac034b00675a",
+  "credential_backend": {
+    "result": "no blocking issue found in independent source review",
+    "covered": [
+      "acknowledge v2 keychain write before removing v1",
+      "authoritative empty catalog prevents legacy resurrection",
+      "invalid, newer-schema or unreadable data blocks mutation",
+      "interrupted cleanup is retried without fallback",
+      "failed operations release the isolate-wide queue",
+      "password-independent identity preserves exact login and sender case",
+      "selected-only legacy clear and explicit forget",
+      "redacted model, result and exception diagnostics"
+    ],
+    "limits": "Injected storage and same-isolate serialization; no new native-platform crash or cross-process atomicity claim."
+  },
+  "account_ui": {
+    "finding": "A save completing after disconnect could retain the old selected account beside newer form values.",
+    "resolution": "Retain the refreshed catalog but clear selected saved-account ownership after the owning session retires. Preserve newer fields and disable Forget until explicit selection.",
+    "regression": "Edit selected A into B without New account, connect with a pending save, disconnect and edit again, then complete save."
+  },
+  "word_merge": {
+    "current_main": "c028baf2491f701735a53552b4b3674914a4f830",
+    "incoming_vba": "b41add869e5118565935c995f6f5e9bb7437a670",
+    "resolution": "Retain current-main word_deserializer.dart exactly. Both branches implement the same isolated body/footnote/endnote numbering algorithm; their function bodies match after whitespace normalization.",
+    "test_preservation": "The automatic research-target merge adds exactly 72 lines and two cases. Removing the added template reproduces current-main test bytes; all 33 original cases remain."
+  }
+}

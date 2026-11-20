@@ -169,12 +169,20 @@ class FakeFontPacks extends StudioFontPackHost {
   bool coreInstalled = true;
   @override
   List<OfficeFontPackStatus> get statuses => <OfficeFontPackStatus>[
+    // Every argument is given: the native and web status classes differ in
+    // which parameters are required.
     OfficeFontPackStatus(
       pack: officeCoreFontPack,
       installed: coreInstalled,
       bytesOnDisk: coreInstalled ? officeCoreFontPack.bytes : 0,
+      directory: '/owned/fonts/${officeCoreFontPack.id}',
     ),
-    const OfficeFontPackStatus(pack: officeVisualFontPack),
+    const OfficeFontPackStatus(
+      pack: officeVisualFontPack,
+      installed: false,
+      bytesOnDisk: 0,
+      directory: '/owned/fonts/office-visual-v1',
+    ),
   ];
   @override
   Future<void> refresh() async => calls.add('refresh');
