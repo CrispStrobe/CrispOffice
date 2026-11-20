@@ -289,6 +289,113 @@ MailReaderPresentation buildMailPresentation(
   }
 }
 
+/// Projects only a decoded body for text quotation, without inspecting headers,
+/// attachment names or attachment bytes. No image can be loaded or fetched.
+///
+/// Plain text is preferred by default, including an explicitly empty string.
+/// HTML is used only when plain text is absent or [preferHtml] is true. Limits
+/// apply to the selected alternative's UTF-8 input, output, nodes and depth;
+/// the unselected alternative is not scanned. HTML uses the reader's inert
+/// subset, with generic notices for omitted images. Incomplete markup rejects
+/// the entire quotation instead of exposing a truncated successful prefix.
+///
+/// This API receives decoded content, not a MIME parse result. Callers remain
+/// responsible for checking the source parser's status and diagnostics before
+/// treating a quote as complete. It does not certify HTML/browser fidelity.
+MailReaderPresentation buildMailBodyPresentation(
+  MailBody body, {
+  MailReadBudget budget = const MailReadBudget(),
+  bool preferHtml = false,
+}) {
+  budget.validate();
+  final useHtml = body.html != null && (preferHtml || body.plainText == null);
+  final source = useHtml ? body.html : body.plainText;
+  MailReaderPresentation reject(
+    MailDiagnosticCode code,
+    String explanation, {
+    int? observed,
+    int? limit,
+  }) => MailReaderPresentation(
+    text: '',
+    runs: const [],
+    images: const [],
+    diagnostics: [
+      MailDiagnostic(
+        code: code,
+        message: explanation,
+        severity: MailDiagnosticSeverity.error,
+        observed: observed,
+        limit: limit,
+      ),
+    ],
+    rejected: true,
+    usedHtml: useHtml,
+  );
+
+  if (source == null) {
+    return reject(
+      MailDiagnosticCode.malformedMime,
+      'No decoded message body is available.',
+    );
+  }
+  final inputLimit = budget.maxBodyBytes < budget.maxDecodedBytes
+      ? budget.maxBodyBytes
+      : budget.maxDecodedBytes;
+  final inputBytes = _utf8Length(source, inputLimit);
+  if (inputBytes > budget.maxBodyBytes) {
+    return reject(
+      MailDiagnosticCode.bodyLimit,
+      'The selected body exceeds the quotation input limit.',
+      observed: inputBytes,
+      limit: budget.maxBodyBytes,
+    );
+  }
+  if (inputBytes > budget.maxDecodedBytes) {
+    return reject(
+      MailDiagnosticCode.decodedLimit,
+      'The selected body exceeds the decoded content limit.',
+      observed: inputBytes,
+      limit: budget.maxDecodedBytes,
+    );
+  }
+
+  final builder = _Projection(budget, const [], strictHtml: true);
+  try {
+    if (useHtml) {
+      builder.html(source);
+    } else {
+      builder.add(source);
+    }
+    final text = builder.text.toString();
+    return MailReaderPresentation(
+      text: text,
+      bodyText: text,
+      runs: builder.runs,
+      images: const [],
+      diagnostics: [
+        ...builder.diagnostics,
+        if (builder.blocked > 0)
+          const MailDiagnostic(
+            code: MailDiagnosticCode.renderLimit,
+            severity: MailDiagnosticSeverity.information,
+            message: 'Active markup and external resources were blocked.',
+          ),
+      ],
+      usedHtml: useHtml,
+      blockedResourceCount: builder.blocked,
+    );
+  } on _AdmissionFailure catch (failure) {
+    return reject(
+      failure.code,
+      failure.message,
+      observed: failure.observed,
+      limit: failure.limit,
+    );
+  } on _IncompleteHtml catch (failure) {
+    return reject(MailDiagnosticCode.malformedMime, failure.message);
+  }
+}
+
 String _headerText(String value) =>
     value.replaceAll(RegExp(r'[\x00-\x1f\x7f\u202a-\u202e\u2066-\u2069]'), ' ');
 
@@ -321,6 +428,11 @@ final class _AdmissionFailure implements Exception {
   final String message;
   final int observed;
   final int limit;
+}
+
+final class _IncompleteHtml implements Exception {
+  const _IncompleteHtml(this.message);
+  final String message;
 }
 
 final class _Tag {
@@ -408,7 +520,8 @@ const _blockTags = {
 };
 
 final class _Projection {
-  _Projection(this.budget, this.attachments);
+  _Projection(this.budget, this.attachments, {this.strictHtml = false});
+  final bool strictHtml;
   final MailReadBudget budget;
   final List<MailAttachment> attachments;
   final StringBuffer text = StringBuffer();
@@ -465,6 +578,10 @@ final class _Projection {
     if (!newline) add('\n');
   }
 
+  void incompleteHtml(String message) {
+    if (strictHtml) throw _IncompleteHtml(message);
+  }
+
   void html(String source) {
     var index = 0;
     while (index < source.length) {
@@ -481,6 +598,7 @@ final class _Projection {
       if (source.startsWith('<!--', index)) {
         final end = source.indexOf('-->', index + 4);
         if (end < 0) {
+          incompleteHtml('Unterminated HTML comment prevents complete quotation.');
           blocked++;
           break;
         }
@@ -500,6 +618,7 @@ final class _Projection {
         }
       }
       if (end == source.length) {
+        incompleteHtml('Unterminated HTML markup prevents complete quotation.');
         diagnostics.add(
           const MailDiagnostic(
             code: MailDiagnosticCode.malformedMime,
@@ -519,6 +638,7 @@ final class _Projection {
         r'^/?\s*([a-zA-Z][a-zA-Z0-9:-]*)',
       ).firstMatch(token);
       if (nameMatch == null) {
+        incompleteHtml('Unsupported HTML markup prevents complete quotation.');
         add('<');
         continue;
       }
@@ -535,7 +655,10 @@ final class _Projection {
           stack.any((tag) => tag.suppressed) || _blockedTags.contains(name);
       if (_blockedTags.contains(name)) blocked++;
       final attributes = _attributes(token, nameMatch.end);
-      if (name == 'plaintext') break;
+      if (name == 'plaintext') {
+        incompleteHtml('Unsupported HTML plaintext prevents complete quotation.');
+        break;
+      }
       if (name == 'script' ||
           name == 'style' ||
           name == 'xmp' ||
@@ -548,6 +671,7 @@ final class _Projection {
         if (matches.moveNext()) {
           index = matches.current.end;
         } else {
+          incompleteHtml('Unterminated active HTML prevents complete quotation.');
           index = source.length;
         }
         continue;
@@ -585,6 +709,9 @@ final class _Projection {
           ),
         );
       }
+    }
+    if (stack.any((tag) => tag.suppressed)) {
+      incompleteHtml('Unterminated active HTML prevents complete quotation.');
     }
   }
 
