@@ -972,6 +972,8 @@ void main() {
           layoutBackground: _gradientBackground('ABCDEF', 'FEDCBA'),
         );
         expect(overrides.slides.single.background, '123456');
+        // Gradients now have a selected paint snapshot, while the unrelated
+        // master picture must still be absent from this explicit override.
         expect(overrides.slides.single.backgroundShapes, hasLength(1));
         expect(
           overrides.slides.single.backgroundShapes.single.isBackgroundGradient,
