@@ -3,14 +3,13 @@ import 'dart:convert';
 import 'dart:typed_data';
 
 import 'package:enough_mail/enough_mail.dart' as mail;
+import 'package:flutter_test/flutter_test.dart';
 import 'package:quds_mail_core/quds_mail_core.dart';
 import 'package:quds_mail_mime/quds_mail_mime.dart';
 import 'package:quds_office_studio/studio_mail_draft.dart';
 import 'package:quds_office_studio/studio_mail_outbox.dart';
 import 'package:quds_office_studio/studio_mail_submission.dart';
 import 'package:quds_office_studio/studio_mail_threading.dart';
-import 'package:test/fake.dart';
-import 'package:test/test.dart';
 
 const _sender = 'writer@example.test';
 final _account = MailAccountId(
@@ -519,7 +518,9 @@ void main() {
         expect(parsed.status, MailParseStatus.complete);
         final message = parsed.message!;
         expect(message.envelope.subject, draft.subject);
-        expect(message.body.plainText, draft.body);
+        // The composer serializes line endings as canonical MIME CRLF once;
+        // both attempts above must still reproduce the exact frozen wire.
+        expect(message.body.plainText, draft.body.replaceAll('\n', '\r\n'));
         expect(message.envelope.bcc, isEmpty);
         expect(message.envelope.inReplyTo, '<parent@example.test>');
         expect(message.envelope.to.map((recipient) => recipient.address), [
