@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:quds_office_engine/quds_office_automation.dart';
 import 'package:test/test.dart';
 
@@ -74,6 +76,29 @@ void main() {
         ]);
       });
     }
+
+    test('preserves lone UTF-16 surrogates through native plan JSON', () {
+      final macro = _compile(
+        _module(r'''
+Worksheets(1).Range("A1").Value2 = Left$("😀", 1)
+Worksheets(1).Range("A2").Value2 = Right$("😀", 1)
+Worksheets(1).Range("A3").Value2 = Mid$("A😀B", 2, 1)
+Worksheets(1).Range("A4").Value2 = Mid$("A😀B", 3, 1)
+'''),
+      );
+      final saved = OfficeMacro.parse(utf8.decode(utf8.encode(macro.encode())));
+      for (final plan in <OfficeMacro>[macro, saved]) {
+        expect(
+          _values(plan).map((value) => (value! as String).codeUnits),
+          <List<int>>[
+            <int>[0xd83d],
+            <int>[0xde00],
+            <int>[0xd83d],
+            <int>[0xde00],
+          ],
+        );
+      }
+    });
 
     test(
       'accepts String and exact-number Variant values and array elements',

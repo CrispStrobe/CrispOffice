@@ -143,7 +143,7 @@ the affected final boundaries receive their own fresh execution evidence.
 
 Qualification uses repository-pinned Flutter 3.47.8 (Dart 3.13.7), with Node
 24.22.3 as the observed JavaScript runtime. The official Flutter archive SHA256 is
-`baf7dcc5a3dbba60fe863bf493a6cf203195621f7786eaa5a7f06a6e9cefe386fec8075865be93adfa`.
+`baf7dcc5a3dbba60fe863bf493a6cf203195621f7786eaa5a1bba02cd0d87dd2`.
 The runtime receipt records the framework revision, archive size, package
 integrity checks and dependency restoration. No dependency versions were
 upgraded for this task.
