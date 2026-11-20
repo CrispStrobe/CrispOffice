@@ -133,6 +133,55 @@ void main() {
       expect(failing.saveError, isNotNull);
     });
 
+    test('an oversized dictionary preserves the last good document and '
+        'a later valid save recovers', () async {
+      final backend = MemoryStudioSettingsBackend();
+      final settings = StudioSettingsStore(backend: backend);
+      await settings.load();
+      final lastGood = _changed();
+      await settings.save(lastGood);
+      final lastGoodDocument = backend.contents;
+      final lastGoodWrites = backend.writes;
+      final oversized = lastGood.copyWith({
+        StudioSettingKeys.personalWords: {
+          'en': List<String>.generate(
+            10000,
+            (index) => index.toString().padLeft(5, '0').padRight(100, 'x'),
+          ),
+        },
+      });
+      expect(oversized.personalWords['en'], hasLength(10000));
+      expect(
+        StudioSettingsStore.encode(oversized).length,
+        greaterThan(StudioSettingsStore.maxBytes),
+      );
+
+      await settings.save(oversized);
+      await settings.flush();
+      expect(
+        settings.saveError,
+        isA<FormatException>().having(
+          (error) => error.message,
+          'message',
+          contains('size limit'),
+        ),
+      );
+      expect(settings.source, StudioSettingsSource.stored);
+      expect(backend.writes, lastGoodWrites);
+      expect(backend.contents, lastGoodDocument);
+
+      final reloaded = StudioSettingsStore(backend: backend);
+      expect(await reloaded.load(), lastGood);
+      expect(reloaded.source, StudioSettingsSource.stored);
+      expect(backend.quarantined, isNull);
+
+      final recovered = lastGood.copyWith({StudioSettingKeys.language: 'de'});
+      await settings.save(recovered);
+      expect(settings.saveError, isNull);
+      expect(backend.writes, lastGoodWrites + 1);
+      expect(await reloaded.load(), recovered);
+    });
+
     test('stores preferences only, never secrets', () async {
       final text = StudioSettingsStore.encode(_changed());
       final keys = ((jsonDecode(text) as Map)['settings'] as Map).keys;

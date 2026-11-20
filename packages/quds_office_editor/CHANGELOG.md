@@ -4,6 +4,10 @@ All notable changes to `quds_office_editor` are documented here.
 
 ## Unreleased
 
+- Refuse an oversized Studio settings snapshot before replacing the last valid
+  saved settings. Keep the existing load budget and expose a recoverable save
+  error so accepted personal dictionaries cannot reset preferences on restart.
+
 - Add structured loaded-header search and stable local sorting to connected
   IMAP, EWS, Gmail and Microsoft 365 lists and offline cached mail. Search
   visible sender/To/Cc, subject, local calendar dates and observed read/flag

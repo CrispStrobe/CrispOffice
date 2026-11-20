@@ -122,6 +122,11 @@ String _defaultSearchError(MailHeaderSearchError error) => switch (error) {
     'Use separate terms to match all. Search operators are not supported.',
 };
 
+final _searchExampleLine = RegExp(
+  r'^\s*(?:from|subject|to|cc|is|before|after|on):',
+  caseSensitive: false,
+);
+
 /// Shared, virtualized foreground message navigation for native/cloud hosts.
 ///
 /// Structured header search, sorting and the conjunctive unread/flagged filters
@@ -337,7 +342,21 @@ class _MailMessageListState extends State<MailMessageList> {
           textDirection: direction,
           child: AlertDialog(
             title: Text(strings.searchHelpTitle),
-            content: SingleChildScrollView(child: Text(strings.searchHelpText)),
+            content: SingleChildScrollView(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  for (final line in strings.searchHelpText.split('\n'))
+                    Text(
+                      line.isEmpty ? ' ' : line,
+                      textDirection: _searchExampleLine.hasMatch(line)
+                          ? TextDirection.ltr
+                          : null,
+                    ),
+                ],
+              ),
+            ),
             actions: [
               TextButton(
                 onPressed: () => Navigator.of(context).pop(),

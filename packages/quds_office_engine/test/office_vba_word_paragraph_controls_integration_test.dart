@@ -7,6 +7,7 @@ import 'package:quds_office_engine/quds_office_engine.dart';
 import 'package:test/test.dart';
 
 import '../tool/macros/web_vba_word_paragraph_controls_smoke.dart' as portable;
+import 'support/office_macro_cli.dart';
 
 const _target = 'ActiveDocument.Paragraphs(1)';
 const _example = 'example/macros/word_paragraph_controls.bas';
@@ -25,12 +26,7 @@ Map<String, Object?> _sourceArguments(String source) => {
 };
 
 Future<ProcessResult> _cli(List<String> arguments) =>
-    Process.run(Platform.resolvedExecutable, [
-      if (Platform.packageConfig case final String packages)
-        '--packages=$packages',
-      'tool/macros/office_macro.dart',
-      ...arguments,
-    ]);
+    runOfficeMacroCli(arguments);
 
 Uint8List _changePart(String path, String Function(String) transform) {
   final package = OpcPackage.openBytes(portable.wordParagraphControlsInput());
@@ -52,6 +48,7 @@ Uint8List _beforeAttribute(String attribute) => _changePart(
 );
 
 void main() {
+  registerOfficeMacroCliCleanup();
   test('actual BAS publishes once and preserves DOCM across reopens', () async {
     final result = await portable.runWordParagraphControlsExample(
       File(_example).readAsStringSync(),
@@ -511,25 +508,30 @@ End Sub
       expect(states.take(3).map((state) => state['before']), [12, 0, 12]);
       expect(states.last, portable.wordParagraphControlsState(before).last);
     },
+    timeout: officeMacroCliTestTimeout,
   );
 
-  test('CLI native refusal preserves input and never creates output', () async {
-    final directory = Directory.systemTemp.createTempSync(
-      'quds-paragraph-controls-refusal-',
-    );
-    addTearDown(() => directory.deleteSync(recursive: true));
-    final input = File('${directory.path}/input.docm')
-      ..writeAsBytesSync(_beforeAttribute('w:before="120" w:beforeLines="10"'));
-    final original = input.readAsBytesSync();
-    final output = File('${directory.path}/output.docm');
-    final result = await _cli([
-      'run-word-vba',
-      input.path,
-      File(_example).absolute.path,
-      output.path,
-    ]);
-    expect(result.exitCode, isNot(0));
-    expect(input.readAsBytesSync(), original);
-    expect(output.existsSync(), isFalse);
-  });
+  test(
+    'CLI native refusal preserves input and never creates output',
+    () async {
+      final directory = Directory.systemTemp.createTempSync(
+        'quds-paragraph-controls-refusal-',
+      );
+      addTearDown(() => directory.deleteSync(recursive: true));
+      final input = File('${directory.path}/input.docm')
+        ..writeAsBytesSync(_beforeAttribute('w:before="120" w:beforeLines="10"'));
+      final original = input.readAsBytesSync();
+      final output = File('${directory.path}/output.docm');
+      final result = await _cli([
+        'run-word-vba',
+        input.path,
+        File(_example).absolute.path,
+        output.path,
+      ]);
+      expect(result.exitCode, isNot(0));
+      expect(input.readAsBytesSync(), original);
+      expect(output.existsSync(), isFalse);
+    },
+    timeout: officeMacroCliTestTimeout,
+  );
 }

@@ -880,6 +880,51 @@ void main() {
     expect(loads, 1);
   });
 
+  testWidgets(
+    'RTL help preserves prose and displays exact query examples LTR',
+    (tester) async {
+      const prose = 'استخدم العبارات التالية للبحث.';
+      const example = 'from:alice subject:"quarterly report"';
+      const recipientExample = '  TO:team@example.test cc:manager';
+      const closing = 'يشمل البحث الترويسات المحمّلة فقط.';
+      const localized = MailMessageListStrings(
+        searchLoaded: 'البحث',
+        unread: 'غير مقروءة',
+        flagged: 'معلّمة',
+        noMessages: 'لا رسائل',
+        noMatches: 'لا نتائج',
+        loadMore: 'المزيد',
+        loading: 'تحميل',
+        loadedScope: 'الترويسات المحمّلة',
+        count: _count,
+        searchHelpTitle: 'مساعدة البحث',
+        searchHelpText: '$prose\n\n$example\n$recipientExample\n\n$closing',
+      );
+      await tester.pumpWidget(
+        _app(_list(strings: localized), direction: TextDirection.rtl),
+      );
+      await tester.tap(find.byKey(const ValueKey('mail-list-search-help')));
+      await tester.pumpAndSettle();
+      for (final text in [example, recipientExample]) {
+        final rendered = tester.widget<Text>(find.text(text));
+        expect(rendered.data, text);
+        expect(rendered.textDirection, TextDirection.ltr);
+      }
+      for (final text in [prose, closing]) {
+        expect(tester.widget<Text>(find.text(text)).textDirection, isNull);
+        expect(
+          Directionality.of(tester.element(find.text(text))),
+          TextDirection.rtl,
+        );
+      }
+      expect(
+        find.descendant(of: find.byType(AlertDialog), matching: find.text(' ')),
+        findsNWidgets(2),
+      );
+      expect(tester.takeException(), isNull);
+    },
+  );
+
   for (final direction in TextDirection.values) {
     testWidgets('narrow $direction and enlarged text stay within the list', (
       tester,

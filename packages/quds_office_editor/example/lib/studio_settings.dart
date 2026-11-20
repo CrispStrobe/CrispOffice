@@ -464,7 +464,8 @@ class StudioSettingsStore {
 
   /// Saves [settings] after earlier saves; while one is running only the
   /// latest requested snapshot is written next. Failures are kept in
-  /// [saveError], never thrown.
+  /// [saveError], never thrown. A snapshot beyond the load size limit is
+  /// rejected before writing, leaving the last readable document intact.
   Future<void> save(StudioSettings settings) {
     if (readOnly) return _writes;
     final queued = _pending != null;
@@ -475,7 +476,13 @@ class StudioSettingsStore {
       _pending = null;
       if (next == null) return;
       try {
-        await backend.write(encode(next));
+        final contents = encode(next);
+        if (contents.length > maxBytes) {
+          throw const FormatException(
+            'Settings document exceeds the supported size limit.',
+          );
+        }
+        await backend.write(contents);
         _saveError = null;
         if (_source != StudioSettingsSource.newer) {
           _source = StudioSettingsSource.stored;
