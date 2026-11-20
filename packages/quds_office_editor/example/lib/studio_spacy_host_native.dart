@@ -4,6 +4,8 @@ import 'dart:io';
 
 import 'package:flutter/foundation.dart' show immutable;
 
+import 'package:quds_proofing_spacy/quds_proofing_spacy_grammar.dart'
+    show SpacyGrammarFamily;
 import 'package:quds_proofing_spacy/quds_proofing_spacy_install.dart';
 
 import 'studio_spacy_host.dart';
@@ -220,6 +222,7 @@ class NativeStudioSpacyHost extends StudioSpacyHost {
           installation != null &&
           settings.grammar &&
           (qualification?.grammarQualified ?? false),
+      grammarFamilies: settings.families,
       languages: languages,
     );
     notifyListeners();
@@ -240,16 +243,29 @@ class NativeStudioSpacyHost extends StudioSpacyHost {
     }
   }
 
-  ({bool analysis, bool grammar, bool ner}) _readSettings() {
-    const none = (analysis: false, grammar: false, ner: false);
+  ({bool analysis, bool grammar, bool ner, Set<String> families})
+  _readSettings() {
+    const none = (
+      analysis: false,
+      grammar: false,
+      ner: false,
+      families: studioDefaultGrammarFamilyIds,
+    );
     try {
       if (!_settings.existsSync()) return none;
       final decoded = jsonDecode(_settings.readAsStringSync());
       if (decoded is! Map<String, Object?>) return none;
+      final families = decoded['grammar_families'];
       return (
         analysis: decoded['analysis_enabled'] == true,
         grammar: decoded['grammar_enabled'] == true,
         ner: decoded['ner_enabled'] == true,
+        families: families is List
+            ? Set<String>.unmodifiable({
+                for (final id in families)
+                  if (id is String && SpacyGrammarFamily.byId(id) != null) id,
+              })
+            : studioDefaultGrammarFamilyIds,
       );
     } on Object {
       return none;
@@ -260,8 +276,10 @@ class NativeStudioSpacyHost extends StudioSpacyHost {
     required bool analysis,
     required bool grammar,
     bool? ner,
+    Set<String>? families,
   }) {
     ner ??= _readSettings().ner;
+    families ??= _readSettings().families;
     root.createSync(recursive: true);
     final temporary = File(
       '${root.path}/.settings-${DateTime.now().microsecondsSinceEpoch}.json',
@@ -272,6 +290,7 @@ class NativeStudioSpacyHost extends StudioSpacyHost {
         'analysis_enabled': analysis,
         'grammar_enabled': grammar,
         'ner_enabled': ner,
+        'grammar_families': families.toList()..sort(),
       }),
       flush: true,
     );
@@ -293,6 +312,7 @@ class NativeStudioSpacyHost extends StudioSpacyHost {
         qualification: base.qualification,
         analysisEnabled: true,
         grammarEnabled: settings.grammar,
+        grammarFamilies: settings.families,
         languages: await _languageStatuses(),
       );
       notifyListeners();
@@ -332,6 +352,7 @@ class NativeStudioSpacyHost extends StudioSpacyHost {
           installation != null &&
           settings.grammar &&
           (installation.qualification?.grammarQualified ?? false),
+      grammarFamilies: settings.families,
       languages: languages,
     );
     notifyListeners();
@@ -571,6 +592,20 @@ class NativeStudioSpacyHost extends StudioSpacyHost {
     _writeSettings(
       analysis: _readSettings().analysis || enabled,
       grammar: enabled,
+    );
+    await refresh();
+  }
+
+  @override
+  Future<void> setGrammarFamilies(Set<String> familyIds) async {
+    if (familyIds.any((id) => SpacyGrammarFamily.byId(id) == null)) {
+      throw ArgumentError('Unknown grammar rule family.');
+    }
+    final settings = _readSettings();
+    _writeSettings(
+      analysis: settings.analysis,
+      grammar: settings.grammar,
+      families: familyIds,
     );
     await refresh();
   }

@@ -1,0 +1,70 @@
+{
+  "schema": "quds.spacy.grammar.protocol.v2",
+  "created_date": "2026-11-20",
+  "status": "frozen-before-any-candidate-output-on-panel-or-clean-corpus",
+  "scope": "Manual de-DE grammar suggestions beyond noun/finite-verb number agreement, from the already qualified native spaCy analysis (de_core_news_sm 3.8.0, CPU/F32) plus pure-Dart planner logic and existing reviewed lexical facts. Native library bytes are unchanged; no new native qualification.",
+  "families": {
+    "np-agreement": {"rule_id": "de.spacy.np-agreement", "meaning": "determiner/adjective agreement with the lexical gender/number of the noun inside one parsed noun phrase (case-independent mismatch, or adjective ending wrong for every compatible determiner/noun reading)"},
+    "preposition-case": {"rule_id": "de.spacy.preposition-case", "meaning": "a noun phrase governed (parse: noun head = preposition, dep nk) by a closed list of fixed-case prepositions whose determiner/adjective/noun are internally consistent but not in the governed case; two-way prepositions never establish a case error"},
+    "subject-person": {"rule_id": "de.spacy.subject-person", "meaning": "person/number agreement between a parsed subject (dep sb) personal pronoun ich/du/er/wir/ihr/man or common noun and its present-indicative finite verb, using reviewed paradigms only; sie/Sie/es abstain"},
+    "verb-position": {"rule_id": "de.spacy.verb-position", "meaning": "narrow verb placement: (a) verb-third after one fronted adverbial/prepositional phrase at sentence start, (b) verb-second inside a dass/ob/wenn/obwohl/nachdem/bevor/falls/damit/sobald clause with no other verb or particle; weil-V2 is never flagged"}
+  },
+  "existing_rule": "de.spacy.noun-verb (W6/W7) is unchanged and remains enabled in the evaluated configuration; its findings are reported separately and do not count towards any new family.",
+  "native": {
+    "library_sha256_macos_bundled": "ccc96620e01164d18e8d2e46b9a383677e4430c8889833bedab5b56c16a1b40f",
+    "library_sha256_linux_x86_64": "ea89842ebf22c08508aff1cfbf18d78a107118af320523009616ff62b6e42977",
+    "bundle_manifest_sha256": "d599768375de3dc56abcca5cf1d49da0015857f9d3a10640aebb5317ef5d427e",
+    "native_bytes_changed": false
+  },
+  "qualification_panel": {
+    "path": "qualification-panel.json",
+    "sha256": "80997c7efbd7891e03510ff300d6d341fa29742c863f446224274be572d3c310",
+    "counts_per_family": {"error": 24, "valid": 24, "guard": 12},
+    "families": ["np-agreement", "preposition-case", "subject-person", "verb-position"],
+    "unsupported_locale_cases": 4,
+    "total": 244,
+    "authorship": "Hand-written by a separate assistant agent from a written brief, without access to the planner implementation or any model output; no external corpus text; no human gold claim.",
+    "outputs_seen_before_publication": false
+  },
+  "clean_corpus": {
+    "path": "clean-corpus-gsd-test.json",
+    "sha256": "c9e037eee897f27865d5462f5ce1bc4ffb235b34adc7e1a2ecfb81cfcc9bbf9b",
+    "source": "UD German-GSD r2.15 test split (977 sentences), CC BY-SA 4.0, sentence texts with attribution",
+    "development_counterpart": "UD German-GSD r2.15 dev split may be used freely during development (not redistributed here).",
+    "outputs_seen_before_publication": false
+  },
+  "development": {
+    "policy": "Implementation uses separate assistant-written development sentences and the GSD dev split only. They never enter a qualification denominator. Initial failures are retained in the record."
+  },
+  "configuration_evaluated": "SpacyGermanGrammarPlanner with families {noun-verb, np-agreement, preposition-case, subject-person, verb-position} all enabled; request origin 23; same scorer functions as W6 (arm/summarize) applied per family.",
+  "scoring": {
+    "arms": ["current deterministic GermanWritingRulesProvider", "native planner alone", "deterministic plus native secondary via mergeOfficeProofingReports"],
+    "exact_correction": "All single-replacement edits applied to the input equal the full expected string; multi-choice findings never count as exact.",
+    "per_family_rows": "Error coverage for family F uses the 24 error rows authored for F.",
+    "per_rule_precision": "A finding with rule F on ANY valid or guard row (of any family) or on any clean-corpus sentence counts against family F.",
+    "non_exact_native_proposal": "A native finding with rule F on an error row whose native-arm output is not exactly the gold.",
+    "recheck": "Every combined-exact error output is analyzed and planned again; any remaining native finding is counted.",
+    "parity": "Annotations, planner decisions and all arms must be identical case by case on the macOS bundled library and the Linux x86-64 library (only identity.library_sha256 may differ)."
+  },
+  "predeclared_gate_per_family": {
+    "maximum_native_findings_on_valid_controls": 0,
+    "maximum_native_findings_on_guard_controls": 0,
+    "clean_corpus": "0 findings, or every finding individually judged a genuine error in the source sentence (judgement recorded with the sentence id)",
+    "minimum_native_exact_error_fraction": 0.25,
+    "minimum_additional_combined_exact_over_baseline": 3,
+    "maximum_baseline_exact_corrections_lost": 0,
+    "maximum_non_exact_native_proposals_on_error_rows": 2,
+    "maximum_operational_failures": 0,
+    "maximum_native_findings_on_corrected_recheck": 0,
+    "cross_platform_parity_required": true,
+    "consequence": "A family that fails any gate stays default-off (setting) or is removed; a passing family may be default-on inside the already opt-in manual German grammar provider."
+  },
+  "execution_order": [
+    "Commit and push this protocol, the sealed panel and the clean corpus before running any candidate on them.",
+    "Develop on separate data only; record initial failures.",
+    "Commit the candidate and write a source seal (sha256 of planner, provider, engine facts and evaluator) before the one-shot run.",
+    "Run the qualification exactly once on the macOS bundled library; retain the report whatever the outcome; never rerun or tune against it.",
+    "Replay on the Linux x86-64 library on a hosted runner and compare case by case.",
+    "Publish the outcome per family; failing families stay default-off."
+  ]
+}

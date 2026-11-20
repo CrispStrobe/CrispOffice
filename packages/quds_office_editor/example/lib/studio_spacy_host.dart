@@ -1,5 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:quds_proofing_spacy/quds_proofing_spacy.dart';
+import 'package:quds_proofing_spacy/quds_proofing_spacy_grammar.dart'
+    show SpacyGrammarFamily, spacyGrammarQualifiedFamilyIds;
 
 import 'studio_spacy_host_unsupported.dart'
     if (dart.library.io) 'studio_spacy_host_native.dart'
@@ -40,6 +42,7 @@ class StudioSpacyStatus {
     this.nerProblem,
     this.languages = const [],
     this.bundledLibrary = false,
+    this.grammarFamilies = studioDefaultGrammarFamilyIds,
   });
 
   /// e.g. `macos-arm64`.
@@ -80,6 +83,10 @@ class StudioSpacyStatus {
   /// the bundled library's digest.
   final bool bundledLibrary;
 
+  /// Enabled manual grammar rule families ([SpacyGrammarFamily.id]). Only
+  /// families with a passed sealed qualification are on by default.
+  final Set<String> grammarFamilies;
+
   /// Bytes the German setup downloads now: the model files alone when the
   /// library is bundled, otherwise the complete platform package.
   int get downloadBytes => bundledLibrary
@@ -114,9 +121,13 @@ class StudioSpacyStatus {
     grammarEnabled,
     nerEnabled,
     bundledLibrary,
+    (grammarFamilies.toList()..sort()).join(','),
     for (final item in languages) item.configurationKey,
   ].join('|');
 }
+
+/// Family IDs enabled by default: exactly the qualified families.
+const studioDefaultGrammarFamilyIds = spacyGrammarQualifiedFamilyIds;
 
 /// One separately downloadable analysis language (English or French): its
 /// pinned bundle, the v2-capable native package that opens it, and whether
@@ -189,6 +200,12 @@ abstract class StudioSpacyHost extends ChangeNotifier {
   Future<void> remove();
   Future<void> setAnalysisEnabled(bool enabled);
   Future<void> setGrammarEnabled(bool enabled);
+
+  /// Selects which manual grammar rule families run (by
+  /// [SpacyGrammarFamily.id]). Families without a passed qualification are
+  /// listed as experimental and stay off unless the user switches them on.
+  Future<void> setGrammarFamilies(Set<String> familyIds) async =>
+      throw UnsupportedError('Grammar rule selection is unavailable here.');
 
   /// Downloads (when enabling) the optional verified NER model and toggles it.
   Future<void> removeNer() async =>
