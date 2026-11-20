@@ -308,6 +308,9 @@ void main() {
       document = WordDeserializer().readBytes(
         WordSerializer().writeBytes(document),
       );
+      expect(document.paragraphs.single.text, '\uFFFC');
+      expect(document.inlineVisuals, hasLength(1));
+      expect(document.sections.single.blocks.whereType<WmlVisual>(), isEmpty);
       expect(_images(document).single.imageBytes, png);
       expect(
         _images(document).single.picture.altDescription,
@@ -315,6 +318,93 @@ void main() {
       );
     }
   });
+
+  test(
+    'an image-only linked note keeps its inline caret and link through DOCX',
+    () {
+      final png = _picture();
+      var document = WmlDocument.empty(text: '');
+      final session = _session(document, offset: 0);
+      _start(
+        session,
+        '<p><a href="https://example.org/figure?x=1&amp;y=2">'
+        '${_image(png)}</a></p>',
+        0,
+      );
+      _finish(session);
+      for (var cycle = 0; cycle < 3; cycle++) {
+        final paragraph = document.paragraphs.single;
+        expect(paragraph.text, '\uFFFC', reason: 'cycle $cycle');
+        final run = paragraph.inlines.whereType<WmlRun>().singleWhere(
+          (run) => run.inlineVisual != null,
+        );
+        expect(run.isAtomic, isTrue);
+        expect(run.hyperlink!.url, 'https://example.org/figure?x=1&y=2');
+        final visual = run.inlineVisual!.visual;
+        expect(visual.imageBytes, png);
+        expect((visual.width, visual.height), (72, 36));
+        expect(visual.picture.altTitle, 'Research image');
+        expect(visual.picture.altDescription, 'Diagram & detail');
+        expect(document.sections.single.blocks.whereType<WmlVisual>(), isEmpty);
+        document = WordDeserializer().readBytes(
+          WordSerializer().writeBytes(document),
+        );
+      }
+      // The reopened picture still owns character zero. A new citation at the
+      // next caret position belongs beside it, not before a detached block.
+      final insertion = _session(document, offset: 1);
+      final field =
+          _call(insertion, 'Document.insertField', ['Http', 0])!
+              as Map<String, Object?>;
+      _setCitation(insertion, field, 'first', '(Source, p. 4)');
+      _finish(insertion);
+      expect(document.paragraphs.single.text, '\uFFFC(Source, p. 4)');
+      expect(document.inlineVisuals, hasLength(1));
+      expect(
+        WordZotero.fields(document).single.citation!.items.single.locator,
+        '4',
+      );
+    },
+  );
+
+  test(
+    'a native image-only hyperlink without direct properties stays inline',
+    () {
+      final png = _picture();
+      final document = WmlDocument.empty(text: '');
+      final session = _session(document, offset: 0);
+      _start(
+        session,
+        '<p><a href="https://example.org/figure">${_image(png)}</a></p>',
+        0,
+      );
+      _finish(session);
+      final package = WordSerializer().write(document);
+      final part = package.getPart('/word/document.xml')!;
+      // External native documents may omit all direct formatting. Their link
+      // still owns the picture; it is not an unstructured block-picture run.
+      part.writeText(
+        part.readText().replaceAll(
+          RegExp(r'<w:(pPr|rPr)\b[^>]*(?:/>|>.*?</w:\1>)', dotAll: true),
+          '',
+        ),
+      );
+      expect(part.readText(), isNot(contains('<w:pPr')));
+      expect(part.readText(), isNot(contains('<w:rPr')));
+      var reopened = WordDeserializer().read(package);
+      for (var cycle = 0; cycle < 3; cycle++) {
+        final paragraph = reopened.paragraphs.single;
+        expect(paragraph.text, '\uFFFC', reason: 'cycle $cycle');
+        final run = paragraph.inlines.whereType<WmlRun>().single;
+        expect(run.hyperlink!.url, 'https://example.org/figure');
+        expect(run.inlineVisual!.visual.imageBytes, png);
+        expect(reopened.sections.single.blocks.whereType<WmlVisual>(), isEmpty);
+        reopened = WordDeserializer().readBytes(
+          WordSerializer().writeBytes(reopened),
+        );
+      }
+    },
+  );
 
   test(
     'image hyperlinks and independent list numbering survive native export',

@@ -10,6 +10,11 @@ All notable changes to `quds_office_engine` are documented here.
   active citations and embedded pictures through the staged document operation
   and DOCX save/reopen.
 
+- Keep image-only authored Word paragraphs inline when their properties or
+  metadata carry list, heading, hyperlink, comment, field or revision ownership.
+  Preserve their one-character caret position on repeated DOCX reopen while
+  retaining the existing block-picture behavior for bare legacy paragraphs.
+
 - Accept bounded embedded PNG and supported upright RGB/YCbCr JPEG pictures in
   Zotero Add Note and Add Annotation responses. Preserve original image bytes,
   dimensions, alternative text, title, ordinary links and active citation

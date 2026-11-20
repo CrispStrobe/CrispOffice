@@ -81,6 +81,13 @@ repair is applied and retested. An earlier development run hit a temporary
 mid-edit PDF compile error, now fixed. These development runs are not the final
 combined-source acceptance.
 
+The subsequent image-ownership repair passes 54 distinct cases in the focused
+legacy-picture, image-note integration and structured-list selections, with no
+failure or skip and unchanged recorded inputs. The previous image-only
+round-trip failure is fixed. Bare legacy picture paragraphs keep their established
+block representation; authored inline picture paragraphs retain their metadata,
+list position and caret offset.
+
 ## Remaining publication gate
 
 Finish the focused repairs, run complete Zotero engine/editor and relevant
