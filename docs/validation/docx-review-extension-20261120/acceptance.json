@@ -3,7 +3,7 @@
   "engineTests": 69,
   "editorTests": 70,
   "finalEditorReplayTests": 6,
-  "uniqueTests": 139,
+  "uniqueTests": 140,
   "skipped": 0,
   "wordApplication": "Microsoft Word 16.111.1",
   "wordNativeRevisionTypes": [
@@ -26,5 +26,7 @@
     "word-native-types.txt": "fb347154464f0ab04fc848166f2fa13141919e556884aa88ad431fa8d6a971ae",
     "engine-tests.txt": "184ef4129ab88a9635e6d39b2e713f55f88b9a4f0a6e87346131be21e57a2705",
     "editor-final-replay.txt": "50964d95ab1e03c71608d6471d8bc357d2deb58de2285c331bbc4710c0867d00"
-  }
+  },
+  "additionalEmptyRunGuardTests": 1,
+  "emptyRunGuardRegressionReplay": 23
 }
