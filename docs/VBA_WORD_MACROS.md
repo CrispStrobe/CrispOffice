@@ -424,13 +424,21 @@ resolver: `decimal`, `decimalZero`, `upperRoman`, `lowerRoman`, `upperLetter`, a
 `lowerLetter`. This does not expand the separate legacy simple-default
 classification contract above.
 
+The new geometry writes retain right-indent inheritance when that value was
+not directly edited; a later style update can still change it. A deliberate
+earlier native right-indent write keeps its direct ownership, including a
+same-value write. Effective indentation now resolves native attributes using
+their namespace rather than their prefix spelling. This also corrects plain
+import and save/reopen of alternate-prefix indentation. Original paragraph and
+style XML retains extension metadata, and foreign `ind` lookalikes stay opaque.
+
 Each selected numeric level requires its own counter placeholder and may
 reference each existing ancestor counter once. Forward, repeated or unresolved
 references are refused. Levels must provide `start`, `numFmt` and `lvlText`,
 use left label alignment, and omit linked paragraph styles, legal-numbering,
 explicit level restart rules (`lvlRestart`), legacy or picture-bullet
-instructions. A complete level
-override and a valid positive `startOverride` can be preserved; partial level
+instructions. A complete level override and a valid positive `startOverride`
+can be preserved; partial level
 replacement is not inferred. Level changes invalidate the native model's
 derived label cache; normal save/reopen recomputes labels from the unchanged
 numbering definitions and story counters.

@@ -11,6 +11,9 @@ All notable changes to `quds_office_engine` are documented here.
   supported indentation instead of guessing from display labels or numbering
   IDs. Refuse missing levels, boundary overflow and unsupported source geometry;
   retain existing single-level defaults and serializer-sensitive field guards.
+  Preserve inherited right indentation during new list edits. Resolve native
+  indentation correctly when imported Word XML uses alternate or rebound
+  namespace prefixes, retaining original extension metadata over save/reopen.
 
 - Preserve foreign namespace bindings and attributes whose names collide with
   namespace prefixes during native Word list edits. Retain imported numbering

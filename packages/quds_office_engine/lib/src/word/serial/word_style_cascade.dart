@@ -658,6 +658,41 @@ class _StyleCascade {
     return projection;
   }
 
+  static XmlElement _indentProjection(XmlElement source) {
+    // Only the effective geometry is projected here. Keeping source prefixes
+    // on copied attributes can leave them unbound, or a later layer can rebind
+    // an earlier layer's prefix. Normalize native attributes in this detached
+    // projection; the full direct/style XML retains all extension metadata.
+    final result =
+        XmlElement(
+            localName: 'ind',
+            prefix: 'w',
+            namespaceUri: OfficeNamespaces.w,
+          )
+          ..attributes.add(
+            XmlAttribute(
+              localName: 'w',
+              prefix: 'xmlns',
+              namespaceUri: 'http://www.w3.org/2000/xmlns/',
+              value: OfficeNamespaces.w,
+            ),
+          );
+    for (final attribute in source.attributes) {
+      if (attribute.namespaceUri == OfficeNamespaces.w ||
+          (attribute.namespaceUri.isEmpty && attribute.prefix == 'w')) {
+        result.attributes.add(
+          XmlAttribute(
+            localName: attribute.localName,
+            prefix: 'w',
+            namespaceUri: OfficeNamespaces.w,
+            value: attribute.value,
+          ),
+        );
+      }
+    }
+    return result;
+  }
+
   XmlElement merged(
     String name,
     Iterable<XmlElement?> layers, {
@@ -670,10 +705,13 @@ class _StyleCascade {
       for (final incoming in layer.childElements) {
         final child = name == 'pPr' && _word(incoming, 'numPr')
             ? _numberingProjection(incoming)
+            : name == 'pPr' && _word(incoming, 'ind')
+            ? _indentProjection(incoming)
             : incoming;
         if (name == 'pPr' &&
             (child.localName == 'spacing' ||
                 child.localName == 'bidi' ||
+                child.localName == 'ind' ||
                 child.localName == 'tabs') &&
             child.namespaceUri != OfficeNamespaces.w &&
             !(child.namespaceUri.isEmpty && child.prefix == 'w')) {

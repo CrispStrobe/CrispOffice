@@ -545,7 +545,8 @@ void main() {
                 .firstChild('ind', namespaceUri: _w)!
                 .getAttribute(collision, namespaceUri: _x),
             'indent',
-              reason: 'Reopen cycle $cycle: ${XmlDocument(root: saved.copy()).toXmlString()}',
+            reason:
+                'Reopen cycle $cycle: ${XmlDocument(root: saved.copy()).toXmlString()}',
           );
           if (foreignWordPrefix) {
             expect(
@@ -701,6 +702,101 @@ void main() {
     _refuses(document, {'op': 'listLevel', 'paragraph': 0, 'level': 1});
     expect(document.paragraphs.single.properties.listRestart, 7);
   });
+
+  for (final direct in [false, true]) {
+    test(
+      'plain import and list edits retain ${direct ? 'direct' : 'inherited'} rebound-prefix geometry',
+      () async {
+        const extension = 'urn:list-level-style-extension';
+        final original =
+            '<q:ind q:left="1440" ${direct ? '' : 'q:right="240"'} '
+            'x:w1="source-indent"/>';
+        final styles =
+            '<w:style w:type="paragraph" w:styleId="P">'
+            '<q:pPr xmlns:q="$_w" xmlns:w="$extension" xmlns:x="$_x">'
+            '${direct ? '<q:ind q:right="240"/>' : original}'
+            '</q:pPr></w:style>';
+        final input = _fixture(
+          styles: styles,
+          body:
+              '<w:p><q:pPr xmlns:q="$_w" xmlns:w="$extension" xmlns:x="$_x">'
+              '<q:pStyle q:val="P"/><q:numPr><q:ilvl q:val="0"/><q:numId q:val="71"/></q:numPr>'
+              '${direct ? original : ''}</q:pPr><w:r><w:t>Original</w:t></w:r></w:p>',
+        );
+        var bytes = input;
+        for (var cycle = 0; cycle < 3; cycle++) {
+          final document = _read(bytes);
+          expect(document.paragraphs.single.properties.indent.left, 72);
+          expect(document.paragraphs.single.properties.indent.right, 12);
+          bytes = WordSerializer().writeBytes(document);
+        }
+        final session = OfficeMacroSession(
+          bytes,
+          format: OfficeMacroFormat.docx,
+        );
+        await session.run(_plan([_select(2)]));
+        bytes = session.bytes;
+        for (var cycle = 0; cycle < 3; cycle++) {
+          final document = _read(bytes);
+          expect(document.paragraphs.single.properties.indent.left, 54);
+          expect(document.paragraphs.single.properties.indent.right, 12);
+          expect(
+            _val(
+              _properties(bytes).firstChild('ind', namespaceUri: _w)!,
+              'right',
+            ),
+            isNull,
+          );
+          if (direct) {
+            expect(
+              _properties(bytes)
+                  .firstChild('ind', namespaceUri: _w)!
+                  .getAttribute('w1', namespaceUri: _x),
+              'source-indent',
+            );
+          } else {
+            expect(
+              OpcPackage.openBytes(
+                bytes,
+              ).getPart('/word/styles.xml')!.readText(),
+              contains('source-indent'),
+            );
+          }
+          bytes = WordSerializer().writeBytes(document);
+        }
+      },
+    );
+  }
+
+  test(
+    'foreign indentation lookalike stays opaque during effective projection',
+    () async {
+      final input = _fixture(
+        properties:
+            '$_list'
+            '<w:ind w:left="1440" w:right="240"/>'
+            '<x:ind x:left="99999" x:right="88888" x:keep="opaque"/>',
+      );
+      final document = _read(input);
+      expect(document.paragraphs.single.properties.indent.left, 72);
+      expect(document.paragraphs.single.properties.indent.right, 12);
+      final session = OfficeMacroSession(input, format: OfficeMacroFormat.docx);
+      await session.run(_plan([_select(2)]));
+      var bytes = session.bytes;
+      for (var cycle = 0; cycle < 3; cycle++) {
+        final reopened = _read(bytes);
+        expect(reopened.paragraphs.single.properties.indent.left, 54);
+        expect(reopened.paragraphs.single.properties.indent.right, 12);
+        expect(
+          _properties(bytes)
+              .firstChild('ind', namespaceUri: _x)!
+              .getAttribute('keep', namespaceUri: _x),
+          'opaque',
+        );
+        bytes = WordSerializer().writeBytes(reopened);
+      }
+    },
+  );
 
   test(
     'direct relative level moves preserve every package part and list identity',
