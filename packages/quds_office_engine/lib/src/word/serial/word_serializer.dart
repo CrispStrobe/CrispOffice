@@ -1471,6 +1471,13 @@ class WordSerializer {
       prefix: 'w',
       attributes: <String, String>{'w:val': r.color},
     );
+    if (r.kerningHalfPoints != null) {
+      w.writeEmptyElement(
+        'kern',
+        prefix: 'w',
+        attributes: {'w:val': '${r.kerningHalfPoints}'},
+      );
+    }
     w.writeEmptyElement(
       'sz',
       prefix: 'w',
