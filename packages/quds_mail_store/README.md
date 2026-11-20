@@ -6,8 +6,7 @@
 live account cache described below. Use `openNativeMailArchive` from
 `quds_mail_archive_native.dart` with an application-support directory and a
 stable host/profile identity. Its separate `quds_mail_archive` database survives
-live-account removal and cache deletion; it does not change the cache's v3
-schema. Persistent archive UI is currently native-only.
+live-account removal and cache deletion; it has an independent schema from the live cache. Persistent archive UI is currently native-only.
 
 Each import commits exact MIME bytes, SHA-256 identity, envelope, FTS5 index,
 and source/folder provenance in one transaction. Duplicate bytes share one
@@ -223,7 +222,7 @@ startup-recovery assumptions.
   cleanup journal. Account removal is destructive and local only. Removed
   account IDs cannot be reused. Retired profiles can reopen to finish vault
   cleanup but cannot create accounts or content.
-- Versioned transactional schema, v1/v2-to-v3 migration, and explicit bounded
+- Versioned transactional schema, additive v1/v2/v3-to-v4 migration, and explicit bounded
   reindexing of older content. Unknown schema versions are not reset.
 
 Content errors are typed and redacted. No SQL exception text is returned to the
@@ -297,12 +296,19 @@ Reopening under tighter limits can return `quotaExceeded` while retaining the
 stored content. Local indexing decodes metadata without loading original or
 attachment bytes, and it does not interpret HTML or fetch remote content.
 
-The current schema is version 3. The retained v1 and v2 definitions support
+The current schema is version 4. The retained v1, v2 and v3 definitions support
 reproducible upgrade fixtures. Version upgrades preserve existing rows and
 advance schema state transactionally. Existing messages acquire unknown flags,
 never an invented read/unread state. The nullable constrained bitset stores only
 the five durable standard flags. Version 1 content enters the FTS index only
 through bounded explicit `reindex` calls; the existing v2 index remains intact.
+Version 4 adds a separate bounded `local_accounts` directory without changing
+message, draft, Outbox, blob or search rows. `MailLocalAccountDirectory` records
+non-secret verified routes for hosts that already established a connection.
+It admits at most 100 records, prevents identity replacement and compares the
+connection revision on shortcut removal. It does not store credentials or
+invoke providers. Removing a shortcut cannot cascade to account content. See
+the [offline-account guide](../../docs/roadmaps/mail/offline-accounts.md).
 A failed migration rolls back, and an unknown future version returns
 `unsupported` instead of resetting the database.
 

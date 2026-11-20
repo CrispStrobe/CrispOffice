@@ -59,11 +59,6 @@
   ],
   "upstream": [
     {
-      "ref": "upstream",
-      "sha": "15c5d29b63fb17a93c7fb3426a8fd4d95a32f1ba",
-      "ancestor": true
-    },
-    {
       "ref": "upstream/ci/flutter-workspace",
       "sha": "aca2f66941832bd0b19b436baeab1656a1b7de98",
       "ancestor": true
