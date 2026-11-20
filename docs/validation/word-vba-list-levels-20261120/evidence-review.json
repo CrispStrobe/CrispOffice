@@ -1,0 +1,1044 @@
+{
+  "accepted": true,
+  "analysis_and_formatting": {
+    "analysis_clean": true,
+    "analysis_exit_code": 0,
+    "format_changed_count": 0,
+    "format_exit_code": 0,
+    "formatted_file_count": 9,
+    "formatted_files": [
+      "packages/quds_office_engine/lib/src/automation/office_vba_language.dart",
+      "packages/quds_office_engine/lib/src/automation/operations/word_list_steps.dart",
+      "packages/quds_office_engine/lib/src/automation/operations/word_steps.dart",
+      "packages/quds_office_engine/lib/src/word/serial/word_style_cascade.dart",
+      "packages/quds_office_engine/test/office_macro_word_list_levels_test.dart",
+      "packages/quds_office_engine/test/office_vba_word_list_levels_integration_test.dart",
+      "packages/quds_office_engine/test/office_vba_word_list_levels_test.dart",
+      "packages/quds_office_engine/test/office_vba_word_lists_test.dart",
+      "packages/quds_office_engine/tool/macros/web_vba_word_list_levels_smoke.dart"
+    ]
+  },
+  "audit_command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+    "/workspace/scratch/33048a5794d3/runtime/list-level-review/audit_final_evidence.py"
+  ],
+  "audit_cwd": "/workspace/scratch/33048a5794d3",
+  "audit_script": {
+    "bytes": 28816,
+    "sha256": "f746a379379f35bb78c4b3773eb05cda853f759716c0cf2045336c509f06e0f6"
+  },
+  "current_head_at_review": "3c87debcd4d50cac88981ec39255c3c6890fe8fa",
+  "evidence_files": {
+    "checks": {
+      "analysis.json": {
+        "bytes": 688,
+        "sha256": "26d102daab86a758b511c9e59405fe780269ca4a221b191729a40e14054f267f"
+      },
+      "analysis.stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "analysis.stdout": {
+        "bytes": 49,
+        "sha256": "c557a0c697cdb937104f1423d3c02d6a1062917cb0bcb2830d91db8cf6192af0"
+      },
+      "format.json": {
+        "bytes": 2170,
+        "sha256": "8475b9402678d4f844dce5a3ff58cb74e25cb9fdba5f501717c49b3bf606a6cd"
+      },
+      "format.stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "format.stdout": {
+        "bytes": 47,
+        "sha256": "42f9616538a1449a9e89b48755f5160514bb392fd5dfe5089ecde7d581891654"
+      },
+      "gate-helper.py": {
+        "bytes": 15865,
+        "sha256": "20f639dce2fa0b1e423deea4d74b86be0a8eb000988920617f9c61665114f124"
+      },
+      "inputs-after.json.gz": {
+        "bytes": 98443,
+        "sha256": "1af2cbecd2989174bb3a6e9b86e744ef18d5ac39dc8e99d58da7df2436d258a5"
+      },
+      "inputs-before.json.gz": {
+        "bytes": 98444,
+        "sha256": "99ae720a5ff66b52d267a9ab82df157aa9d454756b927f69b51bfa8d3154061d"
+      },
+      "plan.json": {
+        "bytes": 2515,
+        "sha256": "5255affaf3e84bb8662265313e4764d49723809e26eff62d1c0af892380c0494"
+      },
+      "runner.py": {
+        "bytes": 9095,
+        "sha256": "6151fb49c2e1892702c72450a5974f454d4c4430be89bedede19dde220dfe235"
+      },
+      "summary.json": {
+        "bytes": 6017,
+        "sha256": "659781a304b0604df24b36d5a3c8421c3b5f7d815caff6dc7aecdb581eeb42fa"
+      }
+    },
+    "portable": {
+      "actual-example.bas": {
+        "bytes": 1287,
+        "sha256": "c9f4cb3e07d65a103cc75a4bb308be51ac5aaebf1f9cf5b468c09d74301398a6"
+      },
+      "commands.json": {
+        "bytes": 5237,
+        "sha256": "df53cd319989c4276a09d2d30e4dea6f8a51b3b6d1a8b3aa4a3a00cdeedcb7b6"
+      },
+      "compile-js.stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "compile-js.stdout": {
+        "bytes": 114,
+        "sha256": "cd6548ab14d243e4116b5e4c22754abc0b7f0ab319aa56fa5678d70b2daf9021"
+      },
+      "gate-helper.py": {
+        "bytes": 15865,
+        "sha256": "20f639dce2fa0b1e423deea4d74b86be0a8eb000988920617f9c61665114f124"
+      },
+      "inputs-after.json.gz": {
+        "bytes": 98390,
+        "sha256": "3ccd1ca6cf63ed45498f2f4319da8dd2409e5be2960784f525907d42cf9a34af"
+      },
+      "inputs-before.json.gz": {
+        "bytes": 98391,
+        "sha256": "31a78c186f9184571f8f87131976e0b615a5cc56e41dd12a678bcf8976e844e3"
+      },
+      "node.stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "node.stdout": {
+        "bytes": 1553,
+        "sha256": "afb450d1cfd4dba6ee2b0fc8b1ca0dc639b410dd70a16c3eff1bb17fbe08bea8"
+      },
+      "result.json": {
+        "bytes": 1553,
+        "sha256": "7a9ec647658d5ee448107d9f358e15a75b16aa6bdd46f9465407043149d8a27c"
+      },
+      "runner.py": {
+        "bytes": 6504,
+        "sha256": "2790594787fb7773f8d9514b892c39f457bfab9eab927623bb19aa4d40fb4e5e"
+      },
+      "summary.json": {
+        "bytes": 6316,
+        "sha256": "c901a02a29cc3ad2a024029995cd89c71b8ff9fc82a312b77b43aeca67aceff1"
+      },
+      "vm.stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "vm.stdout": {
+        "bytes": 1553,
+        "sha256": "afb450d1cfd4dba6ee2b0fc8b1ca0dc639b410dd70a16c3eff1bb17fbe08bea8"
+      },
+      "word-list-levels.js": {
+        "bytes": 3120376,
+        "sha256": "5a33132c777a630ba60860ee7390eb3cc69b7ed11bd099e85dc5e324fbd1e419"
+      },
+      "word-list-levels.js.deps": {
+        "bytes": 128352,
+        "sha256": "138bb303d79d00225242fe4e167b84ed9ba78d85b5c53d93d9971963addcb826"
+      },
+      "word-list-levels.js.map": {
+        "bytes": 1085968,
+        "sha256": "b0c1c790a23b11f1a178edd704a7770604d23a520675ec8d25f2daefa313ea52"
+      }
+    },
+    "regression": {
+      "cases.json.gz": {
+        "bytes": 49617,
+        "sha256": "fd156808dba32ae43330da1cd82d4be72cfa886cedaf48a37256133e8c094828"
+      },
+      "command.json": {
+        "bytes": 521,
+        "sha256": "bf404c7f4faf9c3e67bf33b824802c1f3e9890bd9a272bf74c20cc2fa3e7fe9b"
+      },
+      "inputs-after.json.gz": {
+        "bytes": 97888,
+        "sha256": "bb9ae68a457ba7cb644389f3e6fc2ff29f14e78b741a9ccf99b4e2638303fe13"
+      },
+      "inputs-before.json.gz": {
+        "bytes": 97889,
+        "sha256": "38562a55089c2a541699082a8aa078b0f7dac6b98f452c1cf8763aeca7e01060"
+      },
+      "plan.json": {
+        "bytes": 23525,
+        "sha256": "b87e923a8b17cc11e045ad3981165641e3323f543e99e0d8795d8bfc8df1b62c"
+      },
+      "stderr.log": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stdout.jsonl": {
+        "bytes": 1737038,
+        "sha256": "38e057162390e31a12c2009e454c0421c8220dfa276ff240956ce7b6ed81c75b"
+      },
+      "summary.json": {
+        "bytes": 16035,
+        "sha256": "1eedba2558e02b43ac1185ebd580ed25b3a2fe63603e76acf0520018a0c66dc4"
+      },
+      "word_office_gate_test.bootstrap.isolate.dart": {
+        "bytes": 542,
+        "sha256": "21f750d807d97c2111684a35453d51f94ee7d635191e077546114a86e9a05e2b"
+      },
+      "word_office_gate_test.dart": {
+        "bytes": 14989,
+        "sha256": "ad850f046047c9c7e7a9e89fcf1f82a297244fc4979bc3c4fb866fc98ba035f6"
+      }
+    }
+  },
+  "frozen_source_commit": "3c87debcd4d50cac88981ec39255c3c6890fe8fa",
+  "frozen_source_tree": "9bd6e399e689cc12d6ff51090c038c72f4901d05",
+  "inputs": {
+    "checks": {
+      "before_after_match_frozen_commit_and_tree": true,
+      "complete_path_mode_blob_sha256_sets_equal": true,
+      "runtime_input_count": 20,
+      "runtime_sets_equal": true,
+      "source_input_count": 1123
+    },
+    "portable": {
+      "before_after_match_frozen_commit_and_tree": true,
+      "complete_path_mode_blob_sha256_sets_equal": true,
+      "runtime_input_count": 20,
+      "runtime_sets_equal": true,
+      "source_input_count": 1123
+    },
+    "regression": {
+      "before_after_match_frozen_commit_and_tree": true,
+      "complete_path_mode_blob_sha256_sets_equal": true,
+      "runtime_input_count": 11,
+      "runtime_sets_equal": true,
+      "source_input_count": 1123
+    }
+  },
+  "limits": [
+    "Supplemental18 reviewer probes and all development/superseded runs are excluded from the main regression total.",
+    "The gate uses one serial VM suite and separate Dart libraries, not separate test-file isolates.",
+    "Runtime binding covers the explicitly recorded input sets; it does not claim a hash of every installed SDK/dependency file.",
+    "This qualifies the selected Word/Office engine source; Mail, provider and Flutter runtimes keep separate validation scope.",
+    "No Microsoft Word COM or embedded VBA execution is claimed. No GitHub Actions endpoints were queried or waited on."
+  ],
+  "method": "Independent raw JSON reporter reconstruction, Git mode/type/blob and SHA256 comparison, exact command/BAS decoding and independent JSON canonicalization; no collector validation function reused.",
+  "outer_sequential_invocation": {
+    "file_identities": {
+      "final-analysis-format.stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "final-analysis-format.stdout": {
+        "bytes": 294,
+        "sha256": "59ed2c19a9fd3ffa4b6ee6b49d6418c5046e8350d74af4a43dae96854ff525ff"
+      },
+      "final-gates-invocation.json": {
+        "bytes": 2135,
+        "sha256": "5732e6a64ed900f5df07e11703cf31f11d669cd0f739b8d311fd871c4e9aa9df"
+      },
+      "final-portable.stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "final-portable.stdout": {
+        "bytes": 453,
+        "sha256": "29cfcb316e5fb069df554c160e2303198b79bb2272f724bad4e71dd00284af93"
+      },
+      "final-regression.stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "final-regression.stdout": {
+        "bytes": 185,
+        "sha256": "e8356f43a0e24b3e8c23b177e139f62ad8e334119b5e0ad56c4ab31025896237"
+      }
+    },
+    "record": {
+      "complete": true,
+      "cwd": "/workspace/scratch/33048a5794d3",
+      "finished_utc": "2026-11-20T16:49:42.453531+00:00",
+      "phases": [
+        {
+          "accepted": true,
+          "argv": [
+            "python",
+            "runtime/word_office_gate.py",
+            "run",
+            "--out",
+            "runtime/word-office-final"
+          ],
+          "exit_code": 0,
+          "finished_utc": "2026-11-20T16:48:44.752969+00:00",
+          "head_unchanged": true,
+          "name": "regression",
+          "seconds": 1250.206,
+          "started_utc": "2026-11-20T16:27:54.546694+00:00",
+          "stderr": "final-regression.stderr",
+          "stdout": "final-regression.stdout",
+          "summary": "runtime/word-office-final/summary.json",
+          "summary_accepted": true
+        },
+        {
+          "accepted": true,
+          "argv": [
+            "python",
+            "runtime/run_word_list_levels_checks.py",
+            "run",
+            "--out",
+            "runtime/list-level-final-checks"
+          ],
+          "exit_code": 0,
+          "finished_utc": "2026-11-20T16:49:07.217813+00:00",
+          "head_unchanged": true,
+          "name": "analysis-format",
+          "seconds": 22.453,
+          "started_utc": "2026-11-20T16:48:44.764678+00:00",
+          "stderr": "final-analysis-format.stderr",
+          "stdout": "final-analysis-format.stdout",
+          "summary": "runtime/list-level-final-checks/summary.json",
+          "summary_accepted": true
+        },
+        {
+          "accepted": true,
+          "argv": [
+            "python",
+            "runtime/run_word_list_levels_portable.py",
+            "--out",
+            "runtime/list-level-portable-final"
+          ],
+          "exit_code": 0,
+          "finished_utc": "2026-11-20T16:49:42.450048+00:00",
+          "head_unchanged": true,
+          "name": "portable",
+          "seconds": 35.225,
+          "started_utc": "2026-11-20T16:49:07.224970+00:00",
+          "stderr": "final-portable.stderr",
+          "stdout": "final-portable.stdout",
+          "summary": "runtime/list-level-portable-final/summary.json",
+          "summary_accepted": true
+        }
+      ],
+      "sequential": true,
+      "source_commit": "3c87debcd4d50cac88981ec39255c3c6890fe8fa",
+      "source_tree": "9bd6e399e689cc12d6ff51090c038c72f4901d05",
+      "started_utc": "2026-11-20T16:27:54.544082+00:00"
+    }
+  },
+  "portable": {
+    "actual_bas_bytes": 1287,
+    "actual_bas_sha256": "c9f4cb3e07d65a103cc75a4bb308be51ac5aaebf1f9cf5b468c09d74301398a6",
+    "both_command_payloads_match_exact_committed_bas": true,
+    "canonical_results_equal": true,
+    "canonical_sha256": "7a9ec647658d5ee448107d9f358e15a75b16aa6bdd46f9465407043149d8a27c",
+    "compiled_js": {
+      "bytes": 3120376,
+      "sha256": "5a33132c777a630ba60860ee7390eb3cc69b7ed11bd099e85dc5e324fbd1e419"
+    },
+    "driver_sha256": "bd7abf65cbd9891fed5a0ed870f0b25ef9cb6920c10e04d87226a0fe1605561d",
+    "raw_output_bytes": 1553,
+    "raw_output_sha256": "afb450d1cfd4dba6ee2b0fc8b1ca0dc639b410dd70a16c3eff1bb17fbe08bea8",
+    "raw_outputs_equal": true,
+    "semantic_result": {
+      "example": {
+        "additionalReopens": 2,
+        "opaqueVbaPreserved": true,
+        "operations": 13,
+        "paragraphs": [
+          {
+            "definedLevels": 9,
+            "firstLineTwips": 0,
+            "format": "decimal",
+            "hangingTwips": 180,
+            "label": "%1.%2.",
+            "leftTwips": 720,
+            "level": 1,
+            "numId": 3,
+            "rightTwips": 240,
+            "suppressed": false,
+            "text": "Outline section"
+          },
+          {
+            "definedLevels": 9,
+            "firstLineTwips": 0,
+            "format": "decimal",
+            "hangingTwips": 180,
+            "label": "%1.%2.%3.",
+            "leftTwips": 1080,
+            "level": 2,
+            "numId": 3,
+            "rightTwips": 160,
+            "suppressed": false,
+            "text": "Outline detail"
+          },
+          {
+            "definedLevels": 9,
+            "firstLineTwips": 0,
+            "format": "decimal",
+            "hangingTwips": 180,
+            "label": "%1.%2.%3.%4.%5.%6.%7.%8.%9.",
+            "leftTwips": 3240,
+            "level": 8,
+            "numId": 3,
+            "rightTwips": 0,
+            "suppressed": false,
+            "text": ""
+          },
+          {
+            "definedLevels": 9,
+            "firstLineTwips": 0,
+            "format": "decimal",
+            "hangingTwips": 120,
+            "label": "%1.%2",
+            "leftTwips": 840,
+            "level": 1,
+            "numId": 2,
+            "rightTwips": 140,
+            "suppressed": false,
+            "text": "Untouched imported outline"
+          }
+        ],
+        "revision": 1
+      },
+      "exampleReplay": {
+        "operationsPerRun": 13,
+        "revision": 2,
+        "sameSavedState": true
+      },
+      "nativeGuards": {
+        "refusedPlans": 9,
+        "validateAndRunRollback": true
+      },
+      "policies": {
+        "completeAllowlistRevision": 1,
+        "refusedPolicies": 4
+      },
+      "rawImports": [
+        {
+          "additionalReopens": 2,
+          "existingNodesPreserved": true,
+          "format": "decimal",
+          "level": 6,
+          "retainedNumId": 37
+        },
+        {
+          "additionalReopens": 2,
+          "existingNodesPreserved": true,
+          "format": "bullet",
+          "level": 6,
+          "retainedNumId": 37
+        }
+      ],
+      "recording": {
+        "failedCallExcluded": true,
+        "recordedSteps": 2,
+        "replayRevision": 1
+      },
+      "refusedSources": 12,
+      "transitions": {
+        "absoluteLevels": 9,
+        "relativeLevels": [
+          7,
+          8
+        ],
+        "retainedListIdentity": true,
+        "revision": 14,
+        "toggleOffRetainsIndent": true,
+        "toggleOnLevel": 0
+      }
+    },
+    "subprocess_exit_codes": {
+      "compile-js": 0,
+      "node": 0,
+      "vm": 0
+    }
+  },
+  "problems": [],
+  "regression": {
+    "changed_previous_modules": {
+      "office_macro_word_list_format_test.dart": {
+        "added_identities": [
+          [
+            "apply bullets preserves foreign namespace metadata with w-named attributes",
+            1
+          ],
+          [
+            "toggle numbers preserves foreign namespace metadata with w-named attributes",
+            1
+          ],
+          [
+            "remove numbers preserves foreign namespace metadata with w-named attributes",
+            1
+          ],
+          [
+            "apply bullets preserves foreign namespace metadata with a rebound w prefix",
+            1
+          ],
+          [
+            "toggle numbers preserves foreign namespace metadata with a rebound w prefix",
+            1
+          ],
+          [
+            "remove numbers preserves foreign namespace metadata with a rebound w prefix",
+            1
+          ]
+        ],
+        "current_cases": 67,
+        "previous_cases": 61,
+        "removed_identities": []
+      },
+      "office_vba_word_lists_test.dart": {
+        "added_identities": [
+          [
+            "refuses unsupported ListFormat shape: Dim value As Long\nvalue = ActiveDocument.Paragraphs(2).Range.ListFormat.ListLevelNumber",
+            1
+          ],
+          [
+            "refuses unsupported ListFormat shape: ActiveDocument.Paragraphs(2).Range.ListFormat.ListIndent 1",
+            1
+          ]
+        ],
+        "current_cases": 95,
+        "previous_cases": 95,
+        "removed_identities": [
+          [
+            "refuses unsupported ListFormat shape: ActiveDocument.Paragraphs(2).Range.ListFormat.ListLevelNumber = 2",
+            1
+          ],
+          [
+            "refuses unsupported ListFormat shape: ActiveDocument.Paragraphs(2).Range.ListFormat.ListIndent",
+            1
+          ]
+        ]
+      }
+    },
+    "exact_raw_case_manifest_reconstructed": true,
+    "failed_cases": 0,
+    "file_count": 70,
+    "hidden_completions": 1,
+    "matching_start_done_ids": true,
+    "newly_selected_modules": {
+      "numbering_collision_test.dart": 8,
+      "odt_paragraph_properties_test.dart": 18,
+      "office_macro_word_list_levels_test.dart": 101,
+      "office_vba_word_list_levels_integration_test.dart": 44,
+      "office_vba_word_list_levels_test.dart": 88,
+      "word_list_numbering_snapshot_test.dart": 5,
+      "word_style_introduction_test.dart": 4,
+      "xml_namespace_capture_test.dart": 3
+    },
+    "passing_cases": 2569,
+    "per_file_cases": {
+      "numbering_collision_test.dart": 8,
+      "odt_paragraph_properties_test.dart": 18,
+      "odt_tab_stop_fidelity_test.dart": 8,
+      "odt_tab_style_cache_test.dart": 5,
+      "odt_tab_style_fidelity_test.dart": 2,
+      "office_macro_expansion_test.dart": 5,
+      "office_macro_runtime_test.dart": 25,
+      "office_macro_word_list_format_test.dart": 67,
+      "office_macro_word_list_levels_test.dart": 101,
+      "office_macro_word_revision_guard_test.dart": 2,
+      "office_macro_word_tab_stops_test.dart": 40,
+      "office_operations_test.dart": 27,
+      "office_vba_arguments_integration_test.dart": 16,
+      "office_vba_arguments_test.dart": 68,
+      "office_vba_arrays_boundaries_test.dart": 144,
+      "office_vba_arrays_integration_test.dart": 11,
+      "office_vba_arrays_test.dart": 32,
+      "office_vba_conformance_test.dart": 115,
+      "office_vba_control_flow_boundaries_test.dart": 42,
+      "office_vba_control_flow_integration_test.dart": 9,
+      "office_vba_control_flow_test.dart": 35,
+      "office_vba_dynamic_arrays_integration_test.dart": 11,
+      "office_vba_dynamic_arrays_test.dart": 50,
+      "office_vba_integration_test.dart": 12,
+      "office_vba_language_test.dart": 55,
+      "office_vba_powerpoint_cli_test.dart": 2,
+      "office_vba_powerpoint_conformance_test.dart": 24,
+      "office_vba_powerpoint_integration_test.dart": 7,
+      "office_vba_powerpoint_layout_integration_test.dart": 46,
+      "office_vba_powerpoint_layout_test.dart": 41,
+      "office_vba_powerpoint_margins_integration_test.dart": 16,
+      "office_vba_powerpoint_margins_test.dart": 27,
+      "office_vba_powerpoint_test.dart": 63,
+      "office_vba_procedure_boundaries_test.dart": 19,
+      "office_vba_procedures_integration_test.dart": 10,
+      "office_vba_procedures_test.dart": 26,
+      "office_vba_string_intrinsics_integration_test.dart": 11,
+      "office_vba_string_intrinsics_test.dart": 102,
+      "office_vba_variant_conformance_test.dart": 162,
+      "office_vba_variant_conversions_integration_test.dart": 9,
+      "office_vba_variant_conversions_test.dart": 239,
+      "office_vba_word_argument_shapes_test.dart": 8,
+      "office_vba_word_cli_test.dart": 5,
+      "office_vba_word_conformance_test.dart": 46,
+      "office_vba_word_extensions_test.dart": 30,
+      "office_vba_word_format_integration_test.dart": 2,
+      "office_vba_word_integration_test.dart": 14,
+      "office_vba_word_language_test.dart": 156,
+      "office_vba_word_list_levels_integration_test.dart": 44,
+      "office_vba_word_list_levels_test.dart": 88,
+      "office_vba_word_lists_integration_test.dart": 22,
+      "office_vba_word_lists_test.dart": 95,
+      "office_vba_word_paragraph_layout_integration_test.dart": 17,
+      "office_vba_word_paragraph_layout_test.dart": 37,
+      "office_vba_word_tabstops_integration_test.dart": 10,
+      "office_vba_word_tabstops_test.dart": 85,
+      "office_vba_word_typography_integration_test.dart": 30,
+      "office_vba_word_typography_test.dart": 48,
+      "style_cascade_test.dart": 11,
+      "styleless_import_fidelity_test.dart": 5,
+      "word_compatibility_fidelity_test.dart": 5,
+      "word_fidelity_test.dart": 19,
+      "word_list_numbering_snapshot_test.dart": 5,
+      "word_package_preservation_test.dart": 32,
+      "word_paragraph_mark_layout_test.dart": 3,
+      "word_proofing_inheritance_test.dart": 16,
+      "word_referenced_styles_and_breaks_test.dart": 2,
+      "word_style_introduction_test.dart": 4,
+      "word_styles_layout_test.dart": 15,
+      "xml_namespace_capture_test.dart": 3
+    },
+    "raw_error_events": 0,
+    "skipped_cases": 0,
+    "source_isolation": "Original modules remain separate Dart libraries within one serial VM suite. Separate-file isolate boundaries are not claimed.",
+    "supplemental_or_development_runs_counted": false,
+    "test_done_count": 2570,
+    "test_start_count": 2570,
+    "unchanged_previous_cases": 2136,
+    "unchanged_previous_module_count": 60,
+    "unchanged_previous_modules": {
+      "odt_tab_stop_fidelity_test.dart": {
+        "cases": 8,
+        "exact_case_identities_retained": true
+      },
+      "odt_tab_style_cache_test.dart": {
+        "cases": 5,
+        "exact_case_identities_retained": true
+      },
+      "odt_tab_style_fidelity_test.dart": {
+        "cases": 2,
+        "exact_case_identities_retained": true
+      },
+      "office_macro_expansion_test.dart": {
+        "cases": 5,
+        "exact_case_identities_retained": true
+      },
+      "office_macro_runtime_test.dart": {
+        "cases": 25,
+        "exact_case_identities_retained": true
+      },
+      "office_macro_word_revision_guard_test.dart": {
+        "cases": 2,
+        "exact_case_identities_retained": true
+      },
+      "office_macro_word_tab_stops_test.dart": {
+        "cases": 40,
+        "exact_case_identities_retained": true
+      },
+      "office_operations_test.dart": {
+        "cases": 27,
+        "exact_case_identities_retained": true
+      },
+      "office_vba_arguments_integration_test.dart": {
+        "cases": 16,
+        "exact_case_identities_retained": true
+      },
+      "office_vba_arguments_test.dart": {
+        "cases": 68,
+        "exact_case_identities_retained": true
+      },
+      "office_vba_arrays_boundaries_test.dart": {
+        "cases": 144,
+        "exact_case_identities_retained": true
+      },
+      "office_vba_arrays_integration_test.dart": {
+        "cases": 11,
+        "exact_case_identities_retained": true
+      },
+      "office_vba_arrays_test.dart": {
+        "cases": 32,
+        "exact_case_identities_retained": true
+      },
+      "office_vba_conformance_test.dart": {
+        "cases": 115,
+        "exact_case_identities_retained": true
+      },
+      "office_vba_control_flow_boundaries_test.dart": {
+        "cases": 42,
+        "exact_case_identities_retained": true
+      },
+      "office_vba_control_flow_integration_test.dart": {
+        "cases": 9,
+        "exact_case_identities_retained": true
+      },
+      "office_vba_control_flow_test.dart": {
+        "cases": 35,
+        "exact_case_identities_retained": true
+      },
+      "office_vba_dynamic_arrays_integration_test.dart": {
+        "cases": 11,
+        "exact_case_identities_retained": true
+      },
+      "office_vba_dynamic_arrays_test.dart": {
+        "cases": 50,
+        "exact_case_identities_retained": true
+      },
+      "office_vba_integration_test.dart": {
+        "cases": 12,
+        "exact_case_identities_retained": true
+      },
+      "office_vba_language_test.dart": {
+        "cases": 55,
+        "exact_case_identities_retained": true
+      },
+      "office_vba_powerpoint_cli_test.dart": {
+        "cases": 2,
+        "exact_case_identities_retained": true
+      },
+      "office_vba_powerpoint_conformance_test.dart": {
+        "cases": 24,
+        "exact_case_identities_retained": true
+      },
+      "office_vba_powerpoint_integration_test.dart": {
+        "cases": 7,
+        "exact_case_identities_retained": true
+      },
+      "office_vba_powerpoint_layout_integration_test.dart": {
+        "cases": 46,
+        "exact_case_identities_retained": true
+      },
+      "office_vba_powerpoint_layout_test.dart": {
+        "cases": 41,
+        "exact_case_identities_retained": true
+      },
+      "office_vba_powerpoint_margins_integration_test.dart": {
+        "cases": 16,
+        "exact_case_identities_retained": true
+      },
+      "office_vba_powerpoint_margins_test.dart": {
+        "cases": 27,
+        "exact_case_identities_retained": true
+      },
+      "office_vba_powerpoint_test.dart": {
+        "cases": 63,
+        "exact_case_identities_retained": true
+      },
+      "office_vba_procedure_boundaries_test.dart": {
+        "cases": 19,
+        "exact_case_identities_retained": true
+      },
+      "office_vba_procedures_integration_test.dart": {
+        "cases": 10,
+        "exact_case_identities_retained": true
+      },
+      "office_vba_procedures_test.dart": {
+        "cases": 26,
+        "exact_case_identities_retained": true
+      },
+      "office_vba_string_intrinsics_integration_test.dart": {
+        "cases": 11,
+        "exact_case_identities_retained": true
+      },
+      "office_vba_string_intrinsics_test.dart": {
+        "cases": 102,
+        "exact_case_identities_retained": true
+      },
+      "office_vba_variant_conformance_test.dart": {
+        "cases": 162,
+        "exact_case_identities_retained": true
+      },
+      "office_vba_variant_conversions_integration_test.dart": {
+        "cases": 9,
+        "exact_case_identities_retained": true
+      },
+      "office_vba_variant_conversions_test.dart": {
+        "cases": 239,
+        "exact_case_identities_retained": true
+      },
+      "office_vba_word_argument_shapes_test.dart": {
+        "cases": 8,
+        "exact_case_identities_retained": true
+      },
+      "office_vba_word_cli_test.dart": {
+        "cases": 5,
+        "exact_case_identities_retained": true
+      },
+      "office_vba_word_conformance_test.dart": {
+        "cases": 46,
+        "exact_case_identities_retained": true
+      },
+      "office_vba_word_extensions_test.dart": {
+        "cases": 30,
+        "exact_case_identities_retained": true
+      },
+      "office_vba_word_format_integration_test.dart": {
+        "cases": 2,
+        "exact_case_identities_retained": true
+      },
+      "office_vba_word_integration_test.dart": {
+        "cases": 14,
+        "exact_case_identities_retained": true
+      },
+      "office_vba_word_language_test.dart": {
+        "cases": 156,
+        "exact_case_identities_retained": true
+      },
+      "office_vba_word_lists_integration_test.dart": {
+        "cases": 22,
+        "exact_case_identities_retained": true
+      },
+      "office_vba_word_paragraph_layout_integration_test.dart": {
+        "cases": 17,
+        "exact_case_identities_retained": true
+      },
+      "office_vba_word_paragraph_layout_test.dart": {
+        "cases": 37,
+        "exact_case_identities_retained": true
+      },
+      "office_vba_word_tabstops_integration_test.dart": {
+        "cases": 10,
+        "exact_case_identities_retained": true
+      },
+      "office_vba_word_tabstops_test.dart": {
+        "cases": 85,
+        "exact_case_identities_retained": true
+      },
+      "office_vba_word_typography_integration_test.dart": {
+        "cases": 30,
+        "exact_case_identities_retained": true
+      },
+      "office_vba_word_typography_test.dart": {
+        "cases": 48,
+        "exact_case_identities_retained": true
+      },
+      "style_cascade_test.dart": {
+        "cases": 11,
+        "exact_case_identities_retained": true
+      },
+      "styleless_import_fidelity_test.dart": {
+        "cases": 5,
+        "exact_case_identities_retained": true
+      },
+      "word_compatibility_fidelity_test.dart": {
+        "cases": 5,
+        "exact_case_identities_retained": true
+      },
+      "word_fidelity_test.dart": {
+        "cases": 19,
+        "exact_case_identities_retained": true
+      },
+      "word_package_preservation_test.dart": {
+        "cases": 32,
+        "exact_case_identities_retained": true
+      },
+      "word_paragraph_mark_layout_test.dart": {
+        "cases": 3,
+        "exact_case_identities_retained": true
+      },
+      "word_proofing_inheritance_test.dart": {
+        "cases": 16,
+        "exact_case_identities_retained": true
+      },
+      "word_referenced_styles_and_breaks_test.dart": {
+        "cases": 2,
+        "exact_case_identities_retained": true
+      },
+      "word_styles_layout_test.dart": {
+        "cases": 15,
+        "exact_case_identities_retained": true
+      }
+    }
+  },
+  "reviewed_utc": "2026-11-20T16:50:14.380181+00:00",
+  "schema": "quds-word-list-level-independent-final-evidence-review/v1",
+  "source_review_binding": {
+    "all11_reviewed_file_hashes_match_frozen_source": true,
+    "binding_note": "The earlier HEAD label records review timing; explicit file hashes, including uncommitted reviewed changes at that time, bind the accepted review to the frozen source. Later documentation wording is recorded separately and does not change the frozen runtime qualification.",
+    "files": {
+      "docs/VBA_WORD_MACROS.md": {
+        "current_identity": {
+          "bytes": 48625,
+          "sha256": "3729b43cda5d29f4a158b19a052f7f78666c6174de91d8a795d0bea716e9bb9f"
+        },
+        "frozen_identity": {
+          "bytes": 48625,
+          "sha256": "3729b43cda5d29f4a158b19a052f7f78666c6174de91d8a795d0bea716e9bb9f"
+        },
+        "later_docs_only_drift": false,
+        "receipt_matches_frozen_source": true,
+        "reviewed_identity": {
+          "bytes": 48625,
+          "sha256": "3729b43cda5d29f4a158b19a052f7f78666c6174de91d8a795d0bea716e9bb9f"
+        }
+      },
+      "packages/quds_office_engine/example/macros/word_list_levels.bas": {
+        "current_identity": {
+          "bytes": 1287,
+          "sha256": "c9f4cb3e07d65a103cc75a4bb308be51ac5aaebf1f9cf5b468c09d74301398a6"
+        },
+        "frozen_identity": {
+          "bytes": 1287,
+          "sha256": "c9f4cb3e07d65a103cc75a4bb308be51ac5aaebf1f9cf5b468c09d74301398a6"
+        },
+        "later_docs_only_drift": false,
+        "receipt_matches_frozen_source": true,
+        "reviewed_identity": {
+          "bytes": 1287,
+          "sha256": "c9f4cb3e07d65a103cc75a4bb308be51ac5aaebf1f9cf5b468c09d74301398a6"
+        }
+      },
+      "packages/quds_office_engine/lib/src/automation/office_vba_language.dart": {
+        "current_identity": {
+          "bytes": 185557,
+          "sha256": "04bbab3bccfb42ab2a551955a44b62fed17d184f878d1c3d61fc7e37105f8b16"
+        },
+        "frozen_identity": {
+          "bytes": 185557,
+          "sha256": "04bbab3bccfb42ab2a551955a44b62fed17d184f878d1c3d61fc7e37105f8b16"
+        },
+        "later_docs_only_drift": false,
+        "receipt_matches_frozen_source": true,
+        "reviewed_identity": {
+          "bytes": 185557,
+          "sha256": "04bbab3bccfb42ab2a551955a44b62fed17d184f878d1c3d61fc7e37105f8b16"
+        }
+      },
+      "packages/quds_office_engine/lib/src/automation/operations/word_list_steps.dart": {
+        "current_identity": {
+          "bytes": 47782,
+          "sha256": "979613809323fb5c07f2c900753f144bedb5e8ac84779d42fa48797705d8a645"
+        },
+        "frozen_identity": {
+          "bytes": 47782,
+          "sha256": "979613809323fb5c07f2c900753f144bedb5e8ac84779d42fa48797705d8a645"
+        },
+        "later_docs_only_drift": false,
+        "receipt_matches_frozen_source": true,
+        "reviewed_identity": {
+          "bytes": 47782,
+          "sha256": "979613809323fb5c07f2c900753f144bedb5e8ac84779d42fa48797705d8a645"
+        }
+      },
+      "packages/quds_office_engine/lib/src/automation/operations/word_steps.dart": {
+        "current_identity": {
+          "bytes": 31573,
+          "sha256": "96b6425a66932be414d1273da05bc5eef35995d367250f9f5dcf346c3a7bb6ee"
+        },
+        "frozen_identity": {
+          "bytes": 31573,
+          "sha256": "96b6425a66932be414d1273da05bc5eef35995d367250f9f5dcf346c3a7bb6ee"
+        },
+        "later_docs_only_drift": false,
+        "receipt_matches_frozen_source": true,
+        "reviewed_identity": {
+          "bytes": 31573,
+          "sha256": "96b6425a66932be414d1273da05bc5eef35995d367250f9f5dcf346c3a7bb6ee"
+        }
+      },
+      "packages/quds_office_engine/lib/src/word/serial/word_style_cascade.dart": {
+        "current_identity": {
+          "bytes": 38740,
+          "sha256": "94ef287abcbfeff5ecfe6937ddc30dad69fcd41b528966f1eb1eef202114ffd8"
+        },
+        "frozen_identity": {
+          "bytes": 38740,
+          "sha256": "94ef287abcbfeff5ecfe6937ddc30dad69fcd41b528966f1eb1eef202114ffd8"
+        },
+        "later_docs_only_drift": false,
+        "receipt_matches_frozen_source": true,
+        "reviewed_identity": {
+          "bytes": 38740,
+          "sha256": "94ef287abcbfeff5ecfe6937ddc30dad69fcd41b528966f1eb1eef202114ffd8"
+        }
+      },
+      "packages/quds_office_engine/test/office_macro_word_list_levels_test.dart": {
+        "current_identity": {
+          "bytes": 36861,
+          "sha256": "742a9a1d79cc4d73b6a5ff4df7fc506b8a766b2dba323c2b5d8201aae70018a8"
+        },
+        "frozen_identity": {
+          "bytes": 36861,
+          "sha256": "742a9a1d79cc4d73b6a5ff4df7fc506b8a766b2dba323c2b5d8201aae70018a8"
+        },
+        "later_docs_only_drift": false,
+        "receipt_matches_frozen_source": true,
+        "reviewed_identity": {
+          "bytes": 36861,
+          "sha256": "742a9a1d79cc4d73b6a5ff4df7fc506b8a766b2dba323c2b5d8201aae70018a8"
+        }
+      },
+      "packages/quds_office_engine/test/office_vba_word_list_levels_integration_test.dart": {
+        "current_identity": {
+          "bytes": 12293,
+          "sha256": "d8a83f0b13605f9eabc06b89fe72abd601fd9d2e59e86d7e7672e939474e371b"
+        },
+        "frozen_identity": {
+          "bytes": 12293,
+          "sha256": "d8a83f0b13605f9eabc06b89fe72abd601fd9d2e59e86d7e7672e939474e371b"
+        },
+        "later_docs_only_drift": false,
+        "receipt_matches_frozen_source": true,
+        "reviewed_identity": {
+          "bytes": 12293,
+          "sha256": "d8a83f0b13605f9eabc06b89fe72abd601fd9d2e59e86d7e7672e939474e371b"
+        }
+      },
+      "packages/quds_office_engine/test/office_vba_word_list_levels_test.dart": {
+        "current_identity": {
+          "bytes": 10277,
+          "sha256": "fce79a40639f1badc7e71f4ac71d58c689e48b081a1d12b343433d61b465fab2"
+        },
+        "frozen_identity": {
+          "bytes": 10277,
+          "sha256": "fce79a40639f1badc7e71f4ac71d58c689e48b081a1d12b343433d61b465fab2"
+        },
+        "later_docs_only_drift": false,
+        "receipt_matches_frozen_source": true,
+        "reviewed_identity": {
+          "bytes": 10277,
+          "sha256": "fce79a40639f1badc7e71f4ac71d58c689e48b081a1d12b343433d61b465fab2"
+        }
+      },
+      "packages/quds_office_engine/test/office_vba_word_lists_test.dart": {
+        "current_identity": {
+          "bytes": 9540,
+          "sha256": "e7809245cf5d675d8799d414e97633eaced57c91f873143ac9a4126363dd5edd"
+        },
+        "frozen_identity": {
+          "bytes": 9540,
+          "sha256": "e7809245cf5d675d8799d414e97633eaced57c91f873143ac9a4126363dd5edd"
+        },
+        "later_docs_only_drift": false,
+        "receipt_matches_frozen_source": true,
+        "reviewed_identity": {
+          "bytes": 9540,
+          "sha256": "e7809245cf5d675d8799d414e97633eaced57c91f873143ac9a4126363dd5edd"
+        }
+      },
+      "packages/quds_office_engine/tool/macros/web_vba_word_list_levels_smoke.dart": {
+        "current_identity": {
+          "bytes": 26727,
+          "sha256": "bd7abf65cbd9891fed5a0ed870f0b25ef9cb6920c10e04d87226a0fe1605561d"
+        },
+        "frozen_identity": {
+          "bytes": 26727,
+          "sha256": "bd7abf65cbd9891fed5a0ed870f0b25ef9cb6920c10e04d87226a0fe1605561d"
+        },
+        "later_docs_only_drift": false,
+        "receipt_matches_frozen_source": true,
+        "reviewed_identity": {
+          "bytes": 26727,
+          "sha256": "bd7abf65cbd9891fed5a0ed870f0b25ef9cb6920c10e04d87226a0fe1605561d"
+        }
+      }
+    },
+    "frozen_commit": "3c87debcd4d50cac88981ec39255c3c6890fe8fa",
+    "later_docs_only_drift": [],
+    "receipt_head_label": "2a474670d31ef9d0e72c3562d9e5179a7607f428",
+    "receipt_sha256": "1d80d38110051092362126e022c797fef4e0c5c9672df1a2ada141c1ad72c4b2"
+  }
+}

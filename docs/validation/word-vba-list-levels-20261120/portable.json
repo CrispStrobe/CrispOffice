@@ -1,0 +1,67 @@
+{
+  "bas_sha256": "c9f4cb3e07d65a103cc75a4bb308be51ac5aaebf1f9cf5b468c09d74301398a6",
+  "bas_snapshot": "actual-example.bas",
+  "canonical_results_equal": true,
+  "canonical_sha256": "7a9ec647658d5ee448107d9f358e15a75b16aa6bdd46f9465407043149d8a27c",
+  "commands": [
+    {
+      "argv": [
+        "/workspace/scratch/33048a5794d3/runtime/dart-sdk/bin/dart",
+        "--packages=/workspace/scratch/33048a5794d3/quds_office_suite/.dart_tool/package_config.json",
+        "-DWORD_LIST_LEVELS_BAS_BASE64=T3B0aW9uIEV4cGxpY2l0CgonIFJlcXVpcmVzIHRocmVlIGV4aXN0aW5nIGJvZHkgcGFyYWdyYXBocy4gRW1wdHkgcGFyYWdyYXBocyBhcmUgc3VwcG9ydGVkLgonIExpc3QgbGV2ZWxzIHVzZSBXb3JkJ3Mgb25lLWJhc2VkIHZhbHVlczogMSBpcyB0aGUgb3V0ZXJtb3N0LCA5IHRoZSBkZWVwZXN0LgonIFJlbW92ZSBwYXJhZ3JhcGggbnVtYmVyaW5nIGJlZm9yZSBhcHBseWluZyBhIGRlZmF1bHQgd2hlbiBhbiBvdXRsaW5lIG11c3QKJyBhbHdheXMgYmUgcHJlc2VudDogQXBwbHlPdXRsaW5lTnVtYmVyRGVmYXVsdCB0b2dnbGVzIGFuIGV4aXN0aW5nIG91dGxpbmUgb2ZmLgpTdWIgU2V0T3V0bGluZShCeVZhbCB0YXJnZXQgQXMgTGlzdEZvcm1hdCwgQnlWYWwgbGV2ZWxOdW1iZXIgQXMgTG9uZykKICAgIFdpdGggdGFyZ2V0CiAgICAgICAgLlJlbW92ZU51bWJlcnMgTnVtYmVyVHlwZTo9d2ROdW1iZXJQYXJhZ3JhcGgKICAgICAgICAuQXBwbHlPdXRsaW5lTnVtYmVyRGVmYXVsdCBEZWZhdWx0TGlzdEJlaGF2aW9yOj13ZFdvcmQ4TGlzdEJlaGF2aW9yCiAgICAgICAgLkxpc3RMZXZlbE51bWJlciA9IGxldmVsTnVtYmVyCiAgICBFbmQgV2l0aApFbmQgU3ViCgpTdWIgTWFpbigpCiAgICBEaW0gZmlyc3QgQXMgUGFyYWdyYXBoCiAgICBEaW0gdGFyZ2V0IEFzIExpc3RGb3JtYXQKICAgIFNldCBmaXJzdCA9IEFwcGxpY2F0aW9uLkFjdGl2ZURvY3VtZW50LlBhcmFncmFwaHMuSXRlbSgxKQogICAgU2V0IHRhcmdldCA9IGZpcnN0LlJhbmdlLkxpc3RGb3JtYXQKICAgIENhbGwgU2V0T3V0bGluZShsZXZlbE51bWJlcjo9MiwgdGFyZ2V0Oj10YXJnZXQpCiAgICBXaXRoIHRhcmdldAogICAgICAgIC5MaXN0SW5kZW50CiAgICAgICAgQ2FsbCAuTGlzdE91dGRlbnQoKQogICAgRW5kIFdpdGgKCiAgICBTZXQgdGFyZ2V0ID0gVGhpc0RvY3VtZW50LlBhcmFncmFwaHMoMikuUmFuZ2UuTGlzdEZvcm1hdAogICAgU2V0T3V0bGluZSB0YXJnZXQsIDMKCiAgICBXaXRoIEFjdGl2ZURvY3VtZW50LlBhcmFncmFwaHMoMykuUmFuZ2UKICAgICAgICBXaXRoIC5MaXN0Rm9ybWF0CiAgICAgICAgICAgIC5SZW1vdmVOdW1iZXJzIE51bWJlclR5cGU6PXdkTnVtYmVyUGFyYWdyYXBoCiAgICAgICAgICAgIENhbGwgLkFwcGx5T3V0bGluZU51bWJlckRlZmF1bHQoKQogICAgICAgICAgICAuTGlzdExldmVsTnVtYmVyID0gOQogICAgICAgICAgICBDYWxsIC5MaXN0T3V0ZGVudAogICAgICAgICAgICAuTGlzdEluZGVudCgpCiAgICAgICAgRW5kIFdpdGgKICAgIEVuZCBXaXRoCkVuZCBTdWIK",
+        "/workspace/scratch/33048a5794d3/quds_office_suite/packages/quds_office_engine/tool/macros/web_vba_word_list_levels_smoke.dart"
+      ],
+      "cwd": "/workspace/scratch/33048a5794d3/quds_office_suite/packages/quds_office_engine",
+      "exit_code": 0,
+      "name": "vm",
+      "seconds": 14.522,
+      "started_utc": "2026-11-20T16:49:08.472934+00:00"
+    },
+    {
+      "argv": [
+        "/workspace/scratch/33048a5794d3/runtime/dart-sdk/bin/dart",
+        "compile",
+        "js",
+        "-O1",
+        "--packages=/workspace/scratch/33048a5794d3/quds_office_suite/.dart_tool/package_config.json",
+        "-DWORD_LIST_LEVELS_BAS_BASE64=T3B0aW9uIEV4cGxpY2l0CgonIFJlcXVpcmVzIHRocmVlIGV4aXN0aW5nIGJvZHkgcGFyYWdyYXBocy4gRW1wdHkgcGFyYWdyYXBocyBhcmUgc3VwcG9ydGVkLgonIExpc3QgbGV2ZWxzIHVzZSBXb3JkJ3Mgb25lLWJhc2VkIHZhbHVlczogMSBpcyB0aGUgb3V0ZXJtb3N0LCA5IHRoZSBkZWVwZXN0LgonIFJlbW92ZSBwYXJhZ3JhcGggbnVtYmVyaW5nIGJlZm9yZSBhcHBseWluZyBhIGRlZmF1bHQgd2hlbiBhbiBvdXRsaW5lIG11c3QKJyBhbHdheXMgYmUgcHJlc2VudDogQXBwbHlPdXRsaW5lTnVtYmVyRGVmYXVsdCB0b2dnbGVzIGFuIGV4aXN0aW5nIG91dGxpbmUgb2ZmLgpTdWIgU2V0T3V0bGluZShCeVZhbCB0YXJnZXQgQXMgTGlzdEZvcm1hdCwgQnlWYWwgbGV2ZWxOdW1iZXIgQXMgTG9uZykKICAgIFdpdGggdGFyZ2V0CiAgICAgICAgLlJlbW92ZU51bWJlcnMgTnVtYmVyVHlwZTo9d2ROdW1iZXJQYXJhZ3JhcGgKICAgICAgICAuQXBwbHlPdXRsaW5lTnVtYmVyRGVmYXVsdCBEZWZhdWx0TGlzdEJlaGF2aW9yOj13ZFdvcmQ4TGlzdEJlaGF2aW9yCiAgICAgICAgLkxpc3RMZXZlbE51bWJlciA9IGxldmVsTnVtYmVyCiAgICBFbmQgV2l0aApFbmQgU3ViCgpTdWIgTWFpbigpCiAgICBEaW0gZmlyc3QgQXMgUGFyYWdyYXBoCiAgICBEaW0gdGFyZ2V0IEFzIExpc3RGb3JtYXQKICAgIFNldCBmaXJzdCA9IEFwcGxpY2F0aW9uLkFjdGl2ZURvY3VtZW50LlBhcmFncmFwaHMuSXRlbSgxKQogICAgU2V0IHRhcmdldCA9IGZpcnN0LlJhbmdlLkxpc3RGb3JtYXQKICAgIENhbGwgU2V0T3V0bGluZShsZXZlbE51bWJlcjo9MiwgdGFyZ2V0Oj10YXJnZXQpCiAgICBXaXRoIHRhcmdldAogICAgICAgIC5MaXN0SW5kZW50CiAgICAgICAgQ2FsbCAuTGlzdE91dGRlbnQoKQogICAgRW5kIFdpdGgKCiAgICBTZXQgdGFyZ2V0ID0gVGhpc0RvY3VtZW50LlBhcmFncmFwaHMoMikuUmFuZ2UuTGlzdEZvcm1hdAogICAgU2V0T3V0bGluZSB0YXJnZXQsIDMKCiAgICBXaXRoIEFjdGl2ZURvY3VtZW50LlBhcmFncmFwaHMoMykuUmFuZ2UKICAgICAgICBXaXRoIC5MaXN0Rm9ybWF0CiAgICAgICAgICAgIC5SZW1vdmVOdW1iZXJzIE51bWJlclR5cGU6PXdkTnVtYmVyUGFyYWdyYXBoCiAgICAgICAgICAgIENhbGwgLkFwcGx5T3V0bGluZU51bWJlckRlZmF1bHQoKQogICAgICAgICAgICAuTGlzdExldmVsTnVtYmVyID0gOQogICAgICAgICAgICBDYWxsIC5MaXN0T3V0ZGVudAogICAgICAgICAgICAuTGlzdEluZGVudCgpCiAgICAgICAgRW5kIFdpdGgKICAgIEVuZCBXaXRoCkVuZCBTdWIK",
+        "-o",
+        "/workspace/scratch/33048a5794d3/runtime/list-level-portable-final/word-list-levels.js",
+        "/workspace/scratch/33048a5794d3/quds_office_suite/packages/quds_office_engine/tool/macros/web_vba_word_list_levels_smoke.dart"
+      ],
+      "cwd": "/workspace/scratch/33048a5794d3/quds_office_suite/packages/quds_office_engine",
+      "exit_code": 0,
+      "name": "compile-js",
+      "seconds": 15.685,
+      "started_utc": "2026-11-20T16:49:22.996110+00:00"
+    },
+    {
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+        "-e",
+        "globalThis.self = globalThis; require(process.argv[1]);",
+        "/workspace/scratch/33048a5794d3/runtime/list-level-portable-final/word-list-levels.js"
+      ],
+      "cwd": "/workspace/scratch/33048a5794d3/quds_office_suite/packages/quds_office_engine",
+      "exit_code": 0,
+      "name": "node",
+      "seconds": 2.803,
+      "started_utc": "2026-11-20T16:49:38.681463+00:00"
+    }
+  ],
+  "commands_succeeded": true,
+  "complete_source_input_count": 1123,
+  "driver_sha256": "bd7abf65cbd9891fed5a0ed870f0b25ef9cb6920c10e04d87226a0fe1605561d",
+  "head_matches_worktree": true,
+  "head_matches_worktree_after": true,
+  "qualified": true,
+  "raw_output_bytes": 1553,
+  "raw_output_sha256": "afb450d1cfd4dba6ee2b0fc8b1ca0dc639b410dd70a16c3eff1bb17fbe08bea8",
+  "raw_outputs_equal": true,
+  "runner_sha256": "2790594787fb7773f8d9514b892c39f457bfab9eab927623bb19aa4d40fb4e5e",
+  "runtime_input_count": 20,
+  "runtime_inputs_unchanged": true,
+  "source_commit_before": "3c87debcd4d50cac88981ec39255c3c6890fe8fa",
+  "source_inputs_unchanged": true,
+  "source_tree_before": "9bd6e399e689cc12d6ff51090c038c72f4901d05"
+}

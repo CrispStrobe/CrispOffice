@@ -1,0 +1,257 @@
+[
+  {
+    "message": "Preserve reconciled Word VBA list-level intake and implementation plan [skip ci]",
+    "parent": "46e98c8c7ec65e67e8f71dc386804693e8ef1163",
+    "additionalParents": [],
+    "sha": "e60b1d8e270c260aeed52df82cbaa2938e5823f9",
+    "tree": "85dd89acf7279c95b101178b91f9c6a9e6ff5671",
+    "files": [
+      {
+        "path": "docs/validation/word-vba-list-levels-20261120/README.md",
+        "sha": "5adee63a23c086aa2a193589b5381a9f2cf8ce35",
+        "mode": "100644"
+      },
+      {
+        "path": "docs/validation/word-vba-list-levels-20261120/audit_intake.py",
+        "sha": "d822acbae1d2441d0332eb3935ea688f99ab190a",
+        "mode": "100644"
+      },
+      {
+        "path": "docs/validation/word-vba-list-levels-20261120/initial-intake.json",
+        "sha": "2badc4e34ca9673341e4c98eab307fd0be24738c",
+        "mode": "100644"
+      }
+    ],
+    "branch": "codex/word-vba-list-levels-20261120",
+    "ref": {
+      "success": true
+    },
+    "verified": true
+  },
+  {
+    "message": "Checkpoint Word VBA outline and list-level source adapter with compiler coverage [skip ci]",
+    "parent": "e60b1d8e270c260aeed52df82cbaa2938e5823f9",
+    "additionalParents": [],
+    "sha": "728812906819c78be6ba0059f5aa8c4407b268e8",
+    "tree": "00def21edea21de917016def94341ee84302e7a2",
+    "files": [
+      {
+        "path": "packages/quds_office_engine/lib/src/automation/office_vba_language.dart",
+        "sha": "075a2c59203d178a4bf34dddeab97d36cdfbf48d",
+        "mode": "100644"
+      },
+      {
+        "path": "packages/quds_office_engine/test/office_vba_word_list_levels_test.dart",
+        "sha": "297b3e0b326a083d88db38d3d79be7a77849ee8b",
+        "mode": "100644"
+      },
+      {
+        "path": "packages/quds_office_engine/test/office_vba_word_lists_test.dart",
+        "sha": "bdd62fbd64555a02e0546d0c6e49867cfea4023a",
+        "mode": "100644"
+      }
+    ],
+    "branch": "codex/word-vba-list-levels-20261120",
+    "ref": {
+      "success": true
+    },
+    "verified": true
+  },
+  {
+    "message": "Checkpoint guarded native outline and list-level edits with preservation coverage [skip ci]",
+    "parent": "728812906819c78be6ba0059f5aa8c4407b268e8",
+    "additionalParents": [],
+    "sha": "974dffe878344547903c82165ebeb7c1f0e59878",
+    "tree": "68bd33fc1b182c2d1a1cbce5071ffcc606f76770",
+    "files": [
+      {
+        "path": "docs/VBA_WORD_MACROS.md",
+        "sha": "acf3614f04aff3b34f5a2bf95e0d021102964b74",
+        "mode": "100644"
+      },
+      {
+        "path": "packages/quds_office_engine/CHANGELOG.md",
+        "sha": "4c79221e080e9ba26f85660cf7e0e30e4d269b7f",
+        "mode": "100644"
+      },
+      {
+        "path": "packages/quds_office_engine/lib/src/automation/operations/word_list_steps.dart",
+        "sha": "94e51d5cd4d45ff42d2656d78093088f96e451f4",
+        "mode": "100644"
+      },
+      {
+        "path": "packages/quds_office_engine/lib/src/automation/operations/word_steps.dart",
+        "sha": "8de16796a98eb782080e8b8dde525c4e412920da",
+        "mode": "100644"
+      },
+      {
+        "path": "packages/quds_office_engine/test/office_macro_word_list_levels_test.dart",
+        "sha": "6700c1f38798bcc78d2b04ec5e896011079c06c5",
+        "mode": "100644"
+      }
+    ],
+    "branch": "codex/word-vba-list-levels-20261120",
+    "ref": {
+      "success": true
+    },
+    "verified": true
+  },
+  {
+    "message": "Reconcile completed Mail qualification and current main before Word level gate [skip ci]",
+    "parent": "974dffe878344547903c82165ebeb7c1f0e59878",
+    "additionalParents": [
+      "bb5320a50f288d95844a6d60cfd72eab13a9befc"
+    ],
+    "sha": "fd77d0742b775476b071af6cfa6902c0019b934c",
+    "tree": "dc36e86e6422ce47ee2fd1358363a6f8a02987ec",
+    "files": [
+      {
+        "path": "docs/validation/mail-offline-accounts-20261120/README.md",
+        "sha": "a06d42d5b80a39ea61e332b4af2b9823339bf29a",
+        "mode": "100644"
+      },
+      {
+        "path": "docs/validation/mail-offline-accounts-20261120/collect_evidence.py",
+        "sha": "e8eef24926f476c74b3e1067dd0fa9c728131d60",
+        "mode": "100644"
+      },
+      {
+        "path": "docs/validation/mail-offline-accounts-20261120/evidence-files.json",
+        "sha": "19b68abf51b4545bd0c280c30632f6fc9ab39e7e",
+        "mode": "100644"
+      },
+      {
+        "path": "docs/validation/mail-offline-accounts-20261120/evidence.tar.xz",
+        "sha": "8e1b654d82ecd81fc6a28b5405fcf33fc25607d7",
+        "mode": "100644"
+      },
+      {
+        "path": "docs/validation/mail-offline-accounts-20261120/final-capture.json",
+        "sha": "e2916238c8fc8555e7ae8c2ea6fd3c8cb5555aea",
+        "mode": "100644"
+      },
+      {
+        "path": "docs/validation/mail-offline-accounts-20261120/final-reconciliation.json",
+        "sha": "101869a56b8114539b9dadffbdb41e597811b809",
+        "mode": "100644"
+      },
+      {
+        "path": "docs/validation/mail-offline-accounts-20261120/peer-review.md",
+        "sha": "1c916f58b98969f9604d29a80e9bb56a0951fe63",
+        "mode": "100644"
+      },
+      {
+        "path": "docs/validation/mail-offline-accounts-20261120/qualification.json",
+        "sha": "41ccbe94dde36375bd71aaff71d1814c7a37aed9",
+        "mode": "100644"
+      }
+    ],
+    "branch": "codex/word-vba-list-levels-20261120",
+    "ref": {
+      "success": true
+    },
+    "verified": true
+  },
+  {
+    "message": "Checkpoint executable outline macros, portable coverage and native preservation refinements [skip ci]",
+    "parent": "fd77d0742b775476b071af6cfa6902c0019b934c",
+    "additionalParents": [],
+    "sha": "2a474670d31ef9d0e72c3562d9e5179a7607f428",
+    "tree": "b4b1b37584796bd679bcede6c153fb54bb938800",
+    "files": [
+      {
+        "path": "packages/quds_office_engine/example/macros/word_list_levels.bas",
+        "sha": "fa4abcb5dff1196a453380550d0f55c341deb845",
+        "mode": "100644"
+      },
+      {
+        "path": "packages/quds_office_engine/lib/src/automation/operations/word_list_steps.dart",
+        "sha": "cdbd4f796298995d92d6da90f9ad7a932009851b",
+        "mode": "100644"
+      },
+      {
+        "path": "packages/quds_office_engine/test/office_macro_word_list_levels_test.dart",
+        "sha": "459270a0b1465cf2521a7ca236584e5edd2b5b99",
+        "mode": "100644"
+      },
+      {
+        "path": "packages/quds_office_engine/test/office_vba_word_list_levels_integration_test.dart",
+        "sha": "182adbce5de3800b267a9ced977daadf739263b4",
+        "mode": "100644"
+      },
+      {
+        "path": "packages/quds_office_engine/tool/macros/web_vba_word_list_levels_smoke.dart",
+        "sha": "ebc9fa30e9218248acea71e894898729fcf23c30",
+        "mode": "100644"
+      }
+    ],
+    "branch": "codex/word-vba-list-levels-20261120",
+    "ref": {
+      "success": true
+    },
+    "verified": true
+  },
+  {
+    "message": "Preserve native indentation namespaces and qualify list-level source refinements [skip ci]",
+    "parent": "2a474670d31ef9d0e72c3562d9e5179a7607f428",
+    "additionalParents": [],
+    "sha": "3c87debcd4d50cac88981ec39255c3c6890fe8fa",
+    "tree": "9bd6e399e689cc12d6ff51090c038c72f4901d05",
+    "files": [
+      {
+        "path": "docs/VBA_WORD_MACROS.md",
+        "sha": "674fb37a68c6f65673b7afc092eb74f18e920db8",
+        "mode": "100644"
+      },
+      {
+        "path": "packages/quds_office_engine/CHANGELOG.md",
+        "sha": "5468ccd9b90e283de2e225b42ee461d18b9dcb2a",
+        "mode": "100644"
+      },
+      {
+        "path": "packages/quds_office_engine/lib/src/word/serial/word_style_cascade.dart",
+        "sha": "f168a1707fed3fdc25f3b5612da91040f93f2b57",
+        "mode": "100644"
+      },
+      {
+        "path": "packages/quds_office_engine/test/office_macro_word_list_levels_test.dart",
+        "sha": "51c222bc7b2c77a0ecab4858221af4d18001e34a",
+        "mode": "100644"
+      }
+    ],
+    "branch": "codex/word-vba-list-levels-20261120",
+    "ref": {
+      "success": true
+    },
+    "verified": true
+  },
+  {
+    "message": "Preserve accepted Word qualification while reconciling concurrent Mail corrections [skip ci]",
+    "parent": "3c87debcd4d50cac88981ec39255c3c6890fe8fa",
+    "additionalParents": [],
+    "sha": "273d78f54d2d4448c25791060eb41ae65e3d3674",
+    "tree": "be48fba0b16cd6ede90677d309cd5b15b09e349a",
+    "files": [
+      {
+        "path": "docs/validation/word-vba-list-levels-20261120/README.md",
+        "sha": "d78b0bbaeed3104b57b528640a16b5d43451108a",
+        "mode": "100644"
+      },
+      {
+        "path": "docs/validation/word-vba-list-levels-20261120/word-gates-checkpoint.json",
+        "sha": "323bfc1d775f1bc6daf167478060a9653c246797",
+        "mode": "100644"
+      },
+      {
+        "path": "docs/validation/word-vba-list-levels-20261120/word-gates-checkpoint.tar.xz",
+        "sha": "e415d796e5ba86453430b7829ed875c3635937e7",
+        "mode": "100644"
+      }
+    ],
+    "branch": "codex/word-vba-list-levels-20261120",
+    "ref": {
+      "success": true
+    },
+    "verified": true
+  }
+]

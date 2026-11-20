@@ -1,0 +1,111 @@
+{
+  "excluded_self": "evidence-files.json",
+  "files": {
+    "README.md": {
+      "bytes": 17821,
+      "sha256": "98fe3b17a4f33394a3727d61969a122b8e8c3dd2df553c5eeda09b67a0019f2f"
+    },
+    "analysis-format.json": {
+      "bytes": 6017,
+      "sha256": "659781a304b0604df24b36d5a3c8421c3b5f7d815caff6dc7aecdb581eeb42fa"
+    },
+    "archive-members.json": {
+      "bytes": 52971,
+      "sha256": "86b106058d034b30e4385b32cb5f8be0a3ba726611964ac76205126ec70f090a"
+    },
+    "audit_intake.py": {
+      "bytes": 6195,
+      "sha256": "31736047b686f4735e6d6e3c65f1c59d60eeff5be1746387e2b730a7579f79da"
+    },
+    "checkpoints.json": {
+      "bytes": 8943,
+      "sha256": "b431f2f444396c4f2202b7e8c9a52cf4d081369c4de36e9039975ad56a0f4684"
+    },
+    "development-evidence.tar.xz": {
+      "bytes": 1135988,
+      "sha256": "61f7aa978eba0c2195863b2415b6b733132016b4eb9b658324ce96044b43bafe"
+    },
+    "environment.json": {
+      "bytes": 2222,
+      "sha256": "6e4b23ad60dd9768e9073b60c5e70965a2f71721a2063d089e92027836e775b0"
+    },
+    "evidence-review.json": {
+      "bytes": 37959,
+      "sha256": "a1e3c783ad9bd4eb50090e0fce4370b52083a51e86ae91bc162075911dce294b"
+    },
+    "final-gates-invocation.json": {
+      "bytes": 2135,
+      "sha256": "5732e6a64ed900f5df07e11703cf31f11d669cd0f739b8d311fd871c4e9aa9df"
+    },
+    "final-intake.json": {
+      "bytes": 292929,
+      "sha256": "08fd117ac9f4b94ba73889691be0fe8599a28a7c600e07268f59c6a67c781523"
+    },
+    "initial-intake.json": {
+      "bytes": 291967,
+      "sha256": "2dace8db66ecde4e3764f20d1b1d03552db3e4be113ea8526a2b7a21dd965818"
+    },
+    "packaging.json": {
+      "bytes": 8733,
+      "sha256": "728c00e57a15b487c1b361aded624f2cf728135d6cc82a92cb1fa9460cf7f3dc"
+    },
+    "portable-evidence.tar.xz": {
+      "bytes": 866216,
+      "sha256": "204bb9f1ffebe6668e6b3a2724aedd78f9bb07cf852815edd27a7c318397f9f0"
+    },
+    "portable-result.json": {
+      "bytes": 1553,
+      "sha256": "7a9ec647658d5ee448107d9f358e15a75b16aa6bdd46f9465407043149d8a27c"
+    },
+    "portable.json": {
+      "bytes": 6316,
+      "sha256": "c901a02a29cc3ad2a024029995cd89c71b8ff9fc82a312b77b43aeca67aceff1"
+    },
+    "pre-gate-intake.json": {
+      "bytes": 292271,
+      "sha256": "19c3ab6068835c6306a66a3d2a9aabfac1135858ea925355707048e290f54b2c"
+    },
+    "publication-scope-review.json": {
+      "bytes": 90609,
+      "sha256": "20e70be547eb28fa9366d0177bfe0f05e6985c94bffdb7bd5af6b5c4fe666551"
+    },
+    "qualification.json": {
+      "bytes": 7939,
+      "sha256": "aea825881757636ac9962df93b4feead8328a5356e01fbe771edb27e726474de"
+    },
+    "reconciliation-evidence.tar.xz": {
+      "bytes": 94056,
+      "sha256": "c610a52664258298da62b9f60970c4ac78e103625dd4eb9909bd5ca5e9548952"
+    },
+    "regression-evidence.tar.xz": {
+      "bytes": 296384,
+      "sha256": "bf695297c773d7e4352ed7fa592cb932bde9158c47333c540b7d6a1f50a50e7d"
+    },
+    "regression.json": {
+      "bytes": 16035,
+      "sha256": "1eedba2558e02b43ac1185ebd580ed25b3a2fe63603e76acf0520018a0c66dc4"
+    },
+    "runtime-verification.json": {
+      "bytes": 2565,
+      "sha256": "6067fb56640bf1b09657543d6f809167f68eba82e5022ace5bd4f3f0549de2f5"
+    },
+    "source-consistency.json.gz": {
+      "bytes": 91625,
+      "sha256": "137239b36ccfd601fd9cb3bd9ef9d063c468812ac6c4cf90d20d2d6335255162"
+    },
+    "source-review.json": {
+      "bytes": 8434,
+      "sha256": "1d80d38110051092362126e022c797fef4e0c5c9672df1a2ada141c1ad72c4b2"
+    },
+    "word-gates-checkpoint.json": {
+      "bytes": 19185,
+      "sha256": "eac39a21debe2b7bca9fab039236f69405d757fdde7cebe37c575602b4c63b74"
+    },
+    "word-gates-checkpoint.tar.xz": {
+      "bytes": 1052552,
+      "sha256": "0c02c2facb3f0cb44f3c14bce5117ed1e6d78030e66a54369d5d72483de7e494"
+    }
+  },
+  "schema": "quds-word-list-level-evidence-files/v1",
+  "scope": "Every regular file directly in this evidence directory, excluding this manifest itself; subdirectories and hidden entries are refused."
+}

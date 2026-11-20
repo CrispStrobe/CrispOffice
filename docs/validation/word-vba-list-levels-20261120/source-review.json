@@ -1,0 +1,114 @@
+{
+  "schema": "quds-word-list-level-independent-source-review/v1",
+  "reviewed_utc": "2026-11-20T16:26:06.472734+00:00",
+  "reviewer": "independent intake_audit agent; no product edits or Git ref mutations",
+  "head_at_receipt": "2a474670d31ef9d0e72c3562d9e5179a7607f428",
+  "disposition": "accepted within the documented bounded source-adapter and native operation contract",
+  "reviewed_files": {
+    "packages/quds_office_engine/lib/src/automation/office_vba_language.dart": {
+      "sha256": "04bbab3bccfb42ab2a551955a44b62fed17d184f878d1c3d61fc7e37105f8b16",
+      "bytes": 185557
+    },
+    "packages/quds_office_engine/lib/src/automation/operations/word_list_steps.dart": {
+      "sha256": "979613809323fb5c07f2c900753f144bedb5e8ac84779d42fa48797705d8a645",
+      "bytes": 47782
+    },
+    "packages/quds_office_engine/lib/src/automation/operations/word_steps.dart": {
+      "sha256": "96b6425a66932be414d1273da05bc5eef35995d367250f9f5dcf346c3a7bb6ee",
+      "bytes": 31573
+    },
+    "packages/quds_office_engine/lib/src/word/serial/word_style_cascade.dart": {
+      "sha256": "94ef287abcbfeff5ecfe6937ddc30dad69fcd41b528966f1eb1eef202114ffd8",
+      "bytes": 38740
+    },
+    "packages/quds_office_engine/test/office_vba_word_lists_test.dart": {
+      "sha256": "e7809245cf5d675d8799d414e97633eaced57c91f873143ac9a4126363dd5edd",
+      "bytes": 9540
+    },
+    "packages/quds_office_engine/test/office_vba_word_list_levels_test.dart": {
+      "sha256": "fce79a40639f1badc7e71f4ac71d58c689e48b081a1d12b343433d61b465fab2",
+      "bytes": 10277
+    },
+    "packages/quds_office_engine/test/office_macro_word_list_levels_test.dart": {
+      "sha256": "742a9a1d79cc4d73b6a5ff4df7fc506b8a766b2dba323c2b5d8201aae70018a8",
+      "bytes": 36861
+    },
+    "packages/quds_office_engine/test/office_vba_word_list_levels_integration_test.dart": {
+      "sha256": "d8a83f0b13605f9eabc06b89fe72abd601fd9d2e59e86d7e7672e939474e371b",
+      "bytes": 12293
+    },
+    "packages/quds_office_engine/tool/macros/web_vba_word_list_levels_smoke.dart": {
+      "sha256": "bd7abf65cbd9891fed5a0ed870f0b25ef9cb6920c10e04d87226a0fe1605561d",
+      "bytes": 26727
+    },
+    "packages/quds_office_engine/example/macros/word_list_levels.bas": {
+      "sha256": "c9f4cb3e07d65a103cc75a4bb308be51ac5aaebf1f9cf5b468c09d74301398a6",
+      "bytes": 1287
+    },
+    "docs/VBA_WORD_MACROS.md": {
+      "sha256": "3729b43cda5d29f4a158b19a052f7f78666c6174de91d8a795d0bea716e9bb9f",
+      "bytes": 48625
+    }
+  },
+  "production_bound_to_final_probe": true,
+  "probe_receipt": "probe-final-receipt.json",
+  "probe_receipt_sha256": "36392ec1f999fc3ecfc8d65199a7d05e1176e8907f2814a5337c78b016bd51cc",
+  "compiler_review": [
+    "Only the selected Word paragraph ListFormat object admits the new setter and methods; static receiver/member checks retain source-language isolation.",
+    "ListLevelNumber exact numeric 1..9 values lower to native 0..8; strings, Booleans, live reads, Set, indexed property forms, invalid shapes, and unsupported optional behaviors remain refused.",
+    "Assignment intentionally retains existing scalar RHS-then-selector order exactly once, while methods evaluate the receiver first; explicit regression tests and documentation disclose this adapter contract without claiming COM conformance.",
+    "Aliases, ByVal selector passing, nested With, step/execution budgets, method arity and named argument checks reuse existing adapter mechanisms."
+  ],
+  "native_review": [
+    "New operations validate detached state before publishing. Level changes preserve list identity and original native definitions, and resolve actual supported target indentation.",
+    "Missing lists/levels, boundaries, pending restart, duplicate/partial definitions, unsupported formats/linked or legacy semantics, forward/repeated counter references and invalid ancestor starts refuse atomically.",
+    "Outline identity uses explicit metadata and validated numeric levels; generated default reuse checks the entire scheme and IDs are allocated against existing references.",
+    "Foreign source metadata, right indentation ownership/inheritance and imported definition identity are tested across save/reopen; whole numbering-part byte identity is not promised for arbitrary raw input.",
+    "Inherited logical/character geometry and positive firstLine with hanging precedence are guarded; derived labels are recomputed on ordinary reopen.",
+    "Existing unbalanced-field and opaque-package preservation guards are retained rather than broad serializer behavior being changed by these new operations."
+  ],
+  "resolved_findings": [
+    {
+      "finding": "A hanging attribute, including zero, can suppress a positive firstLine in Word; inherited character/logical/hanging geometry can outrank new physical values.",
+      "resolution": "Positive firstLine writes omit hanging entirely; conflicting target/inherited hanging and inherited logical/character attributes are refused before publication. Independent probes cover successful and refused paths."
+    },
+    {
+      "finding": "Ancestor placeholders require valid referenced ancestor start overrides, not only selected-level checks.",
+      "resolution": "checkedLevel validates ancestor starts recursively with strictly decreasing level references; duplicate/nonpositive starts refuse and positive preserved starts pass."
+    },
+    {
+      "finding": "Ordinary serialization can normalize XML and add absent legacy numbering defaults, so raw complete-part byte equality overstates preservation.",
+      "resolution": "Documentation distinguishes unchanged original definitions from serializer normalization; raw-import tests compare complete original definition and instance nodes while normalized fixtures can compare full-part bytes."
+    },
+    {
+      "finding": "Generic serialization materializes inherited right indentation when list projection changes the aggregate indentation snapshot.",
+      "resolution": "New geometry paths retain original right-family direct ownership when imported right is unchanged; explicit prior writes remain direct. Independent probes follow with later style edits and repeated reopen."
+    },
+    {
+      "finding": "Detached effective indentation can lose a native prefix binding and cause generic property serialization to replace foreign indentation metadata.",
+      "resolution": "A new native-ind projection normalizes native attribute names only in detached effective geometry, alongside the unchanged numPr namespace-context projection. Raw direct/style XML remains intact and foreign ind lookalikes stay opaque. The final new-operation source, plain import, inherited style and rebound-prefix preservation probes were reviewed together; raw metadata and effective right/left/hanging values survive the operation and two additional save/reopen cycles."
+    },
+    {
+      "finding": "The third paragraph in the example applied a toggle without explicit removal and failed on its own prior output.",
+      "resolution": "The example now explicitly removes paragraph numbering on all three selected paragraphs, with replay validation."
+    }
+  ],
+  "verification_scope": {
+    "independent_probe_count": 18,
+    "independent_probe_passed": 18,
+    "inputs_unchanged_during_probes": true,
+    "native_and_compiler_suites": "Source coverage reviewed; owner/root execution receipts provide authoritative suite counts.",
+    "portable": "Portable runner and integration assertions reviewed, including exact BAS, dry run, atomic publication/rollback, DOCM/VBA opaque preservation, native IDs/definitions and replay; root/owner VM-JS receipts qualify execution.",
+    "no_github_actions_queries_or_waits": true,
+    "no_word_com_execution_claim": true,
+    "not_a_whole_repository_or_flutter_runtime_qualification": true
+  },
+  "primary_contract_references": [
+    "https://learn.microsoft.com/en-us/office/vba/api/word.listformat.applyoutlinenumberdefault",
+    "https://learn.microsoft.com/en-us/office/vba/api/word.listformat.listlevelnumber",
+    "https://learn.microsoft.com/en-us/office/vba/api/word.listformat.listindent",
+    "https://learn.microsoft.com/en-us/office/vba/api/word.listformat.listoutdent",
+    "https://learn.microsoft.com/en-us/openspecs/wordpad_standards_support/ms-wpe376/0c89d796-e1c8-447c-8f53-73cffb3117ed",
+    "https://learn.microsoft.com/en-us/openspecs/office_standards/ms-oi29500/138732dc-507a-4164-af66-808c2fd9f2f9"
+  ]
+}

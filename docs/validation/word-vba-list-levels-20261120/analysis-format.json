@@ -1,0 +1,144 @@
+{
+  "analysis_clean": true,
+  "checks_started": true,
+  "commands": [
+    {
+      "argv": [
+        "/workspace/scratch/33048a5794d3/runtime/dart-sdk/bin/dart",
+        "analyze",
+        "--fatal-infos",
+        "packages/quds_office_engine"
+      ],
+      "cwd": "/workspace/scratch/33048a5794d3/quds_office_suite",
+      "exit_code": 0,
+      "name": "analysis",
+      "seconds": 20.207,
+      "source_commit": "3c87debcd4d50cac88981ec39255c3c6890fe8fa",
+      "source_tree": "9bd6e399e689cc12d6ff51090c038c72f4901d05",
+      "started_utc": "2026-11-20T16:48:46.195905+00:00",
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stdout": {
+        "bytes": 49,
+        "sha256": "c557a0c697cdb937104f1423d3c02d6a1062917cb0bcb2830d91db8cf6192af0"
+      }
+    },
+    {
+      "argv": [
+        "/workspace/scratch/33048a5794d3/runtime/dart-sdk/bin/dart",
+        "format",
+        "--output=none",
+        "--set-exit-if-changed",
+        "packages/quds_office_engine/lib/src/automation/office_vba_language.dart",
+        "packages/quds_office_engine/lib/src/automation/operations/word_list_steps.dart",
+        "packages/quds_office_engine/lib/src/automation/operations/word_steps.dart",
+        "packages/quds_office_engine/lib/src/word/serial/word_style_cascade.dart",
+        "packages/quds_office_engine/test/office_macro_word_list_levels_test.dart",
+        "packages/quds_office_engine/test/office_vba_word_list_levels_integration_test.dart",
+        "packages/quds_office_engine/test/office_vba_word_list_levels_test.dart",
+        "packages/quds_office_engine/test/office_vba_word_lists_test.dart",
+        "packages/quds_office_engine/tool/macros/web_vba_word_list_levels_smoke.dart"
+      ],
+      "cwd": "/workspace/scratch/33048a5794d3/quds_office_suite",
+      "exit_code": 0,
+      "file_count": 9,
+      "files": [
+        "packages/quds_office_engine/lib/src/automation/office_vba_language.dart",
+        "packages/quds_office_engine/lib/src/automation/operations/word_list_steps.dart",
+        "packages/quds_office_engine/lib/src/automation/operations/word_steps.dart",
+        "packages/quds_office_engine/lib/src/word/serial/word_style_cascade.dart",
+        "packages/quds_office_engine/test/office_macro_word_list_levels_test.dart",
+        "packages/quds_office_engine/test/office_vba_word_list_levels_integration_test.dart",
+        "packages/quds_office_engine/test/office_vba_word_list_levels_test.dart",
+        "packages/quds_office_engine/test/office_vba_word_lists_test.dart",
+        "packages/quds_office_engine/tool/macros/web_vba_word_list_levels_smoke.dart"
+      ],
+      "name": "format",
+      "seconds": 0.274,
+      "source_commit": "3c87debcd4d50cac88981ec39255c3c6890fe8fa",
+      "source_tree": "9bd6e399e689cc12d6ff51090c038c72f4901d05",
+      "started_utc": "2026-11-20T16:49:06.403677+00:00",
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stdout": {
+        "bytes": 47,
+        "sha256": "42f9616538a1449a9e89b48755f5160514bb392fd5dfe5089ecde7d581891654"
+      }
+    }
+  ],
+  "formatted_file_count": 9,
+  "formatted_files": [
+    "packages/quds_office_engine/lib/src/automation/office_vba_language.dart",
+    "packages/quds_office_engine/lib/src/automation/operations/word_list_steps.dart",
+    "packages/quds_office_engine/lib/src/automation/operations/word_steps.dart",
+    "packages/quds_office_engine/lib/src/word/serial/word_style_cascade.dart",
+    "packages/quds_office_engine/test/office_macro_word_list_levels_test.dart",
+    "packages/quds_office_engine/test/office_vba_word_list_levels_integration_test.dart",
+    "packages/quds_office_engine/test/office_vba_word_list_levels_test.dart",
+    "packages/quds_office_engine/test/office_vba_word_lists_test.dart",
+    "packages/quds_office_engine/tool/macros/web_vba_word_list_levels_smoke.dart"
+  ],
+  "formatting_clean": true,
+  "hashes": {
+    "analysis.json": {
+      "bytes": 688,
+      "sha256": "26d102daab86a758b511c9e59405fe780269ca4a221b191729a40e14054f267f"
+    },
+    "analysis.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "analysis.stdout": {
+      "bytes": 49,
+      "sha256": "c557a0c697cdb937104f1423d3c02d6a1062917cb0bcb2830d91db8cf6192af0"
+    },
+    "format.json": {
+      "bytes": 2170,
+      "sha256": "8475b9402678d4f844dce5a3ff58cb74e25cb9fdba5f501717c49b3bf606a6cd"
+    },
+    "format.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "format.stdout": {
+      "bytes": 47,
+      "sha256": "42f9616538a1449a9e89b48755f5160514bb392fd5dfe5089ecde7d581891654"
+    },
+    "gate-helper.py": {
+      "bytes": 15865,
+      "sha256": "20f639dce2fa0b1e423deea4d74b86be0a8eb000988920617f9c61665114f124"
+    },
+    "inputs-after.json.gz": {
+      "bytes": 98443,
+      "sha256": "1af2cbecd2989174bb3a6e9b86e744ef18d5ac39dc8e99d58da7df2436d258a5"
+    },
+    "inputs-before.json.gz": {
+      "bytes": 98444,
+      "sha256": "99ae720a5ff66b52d267a9ab82df157aa9d454756b927f69b51bfa8d3154061d"
+    },
+    "plan.json": {
+      "bytes": 2515,
+      "sha256": "5255affaf3e84bb8662265313e4764d49723809e26eff62d1c0af892380c0494"
+    },
+    "runner.py": {
+      "bytes": 9095,
+      "sha256": "6151fb49c2e1892702c72450a5974f454d4c4430be89bedede19dde220dfe235"
+    }
+  },
+  "head_matches_worktree_after": true,
+  "head_matches_worktree_before": true,
+  "problems": [],
+  "qualified": true,
+  "runtime_input_count": 20,
+  "runtime_inputs_unchanged": true,
+  "source_commit": "3c87debcd4d50cac88981ec39255c3c6890fe8fa",
+  "source_commit_after": "3c87debcd4d50cac88981ec39255c3c6890fe8fa",
+  "source_input_count": 1123,
+  "source_inputs_unchanged": true,
+  "source_tree": "9bd6e399e689cc12d6ff51090c038c72f4901d05",
+  "source_tree_after": "9bd6e399e689cc12d6ff51090c038c72f4901d05"
+}
