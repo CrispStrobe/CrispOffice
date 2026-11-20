@@ -46,3 +46,7 @@ Each portable driver receives the Base64 encoding of the actual committed BAS by
 | named measurements | `example`, `guards` |
 
 These gates cover the local compiler, macro execution, integration and portable driver contracts. They do not claim a real Office application, installed platform release, browser or WASM run. Mail provider and UI acceptance is recorded separately. GitHub Actions, workflow runs and status endpoints were not queried or awaited.
+
+## Frozen cutoff supplement
+
+A later reconciliation of a branch already present in the frozen intake retained thirteen additional named compiler cases and one integration case. The [targeted qualification](intake-local-word-cutoff.md) records the 171 VM / 160 Node reruns, the unchanged production/BAS binding and the assembled final 771 VM / 725 Node cohorts. This original receipt remains unchanged evidence for its own source.

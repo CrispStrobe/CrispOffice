@@ -25,5 +25,6 @@
     "packages/quds_office_engine/test/office_vba_word_measurements_test.dart",
     "packages/quds_office_engine/test/office_vba_word_unit_conversions_test.dart"
   ],
-  "status": "RESOLVED_PENDING_TARGETED_QUALIFICATION"
+  "status": "RESOLVED_AND_QUALIFIED",
+  "targeted_qualification": "intake-local-word-cutoff-validation.json"
 }
