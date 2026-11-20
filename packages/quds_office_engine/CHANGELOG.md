@@ -11,6 +11,8 @@ All notable changes to `quds_office_engine` are documented here.
 - Keep native merged-table shading and borders on every occupied page, with
   source paragraph ownership distinct from physical row geometry. Retain the
   current conservative row-height allocation and reject invalid merge chains.
+- Preserve explicit per-cell border enable/disable overrides in DOCX export and
+  keep tall merged-cell page cuts open independently of inherited border style.
 
 - Preserve horizontal merged cells in Zotero Add Note/Add Annotation tables.
   Map bounded `colspan` to native `gridSpan`, reconcile `data-colwidth` vectors

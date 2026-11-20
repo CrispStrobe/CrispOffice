@@ -470,6 +470,11 @@ void main() {
         expect(harness.provider.commands, hasLength(1));
         expect(_list(tester).bulkEnabled, isFalse);
         expect(
+          find.textContaining('verify the current message state'),
+          findsOneWidget,
+        );
+        expect(_key('studio-mail-bulk-dismiss'), findsNothing);
+        expect(
           find.text(_strings.mailWorkspaceRefreshRequired),
           findsOneWidget,
         );

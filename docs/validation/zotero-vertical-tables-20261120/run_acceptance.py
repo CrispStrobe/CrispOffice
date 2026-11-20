@@ -28,10 +28,14 @@ def sources():
         ["git", "ls-files", "-z", "--", "packages", "pubspec.yaml",
          "pubspec.lock", "analysis_options.yaml", "dart_test.yaml"], cwd=ROOT,
     ).decode().split("\0")
-    # Documentation edits after qualification do not alter executable inputs.
+    # Prose edits after qualification do not alter executable inputs. The runner
+    # and auditor live under docs, but they are executable inputs and are sealed
+    # explicitly below alongside the generated dependency resolution.
     result = {p: sha256(ROOT / p) for p in sorted(set(paths))
               if p and not p.endswith(".md") and (ROOT / p).is_file()}
-    result[".dart_tool/package_config.json"] = sha256(ROOT / ".dart_tool/package_config.json")
+    for path in (ROOT / ".dart_tool/package_config.json", Path(__file__).resolve(),
+                 Path(__file__).resolve().with_name("audit_results.py")):
+        result[str(path.relative_to(ROOT))] = sha256(path)
     return result
 
 

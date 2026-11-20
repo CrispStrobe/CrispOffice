@@ -134,6 +134,52 @@ void main() {
         expect(report.unattemptedCount, 2);
       });
 
+      for (final evidence in <bool?>[false, true, null]) {
+        test('quota evidence $evidence stops the pending tail', () async {
+          final problem = MailProblem(
+            MailProblemCode.quotaExceeded,
+            retryAfter: const Duration(seconds: 90),
+            mutationMayHaveOccurred: evidence,
+          );
+          final commands = <MailOperation>[];
+          var current = true;
+          var stopping = false;
+          final report = await run(
+            apply: (operation) async {
+              commands.add(operation);
+              if (commands.length == 1) {
+                return const MailBulkFlagAttempt.confirmed();
+              }
+              current = false;
+              stopping = true;
+              return MailBulkFlagAttempt.fromResult(MailFailure(problem));
+            },
+            isScopeCurrent: () => current,
+            shouldStop: () => stopping,
+          );
+          expect(commands.map((operation) => operation.id), [
+            'compatibility:0',
+            'compatibility:1',
+          ]);
+          expect(report.confirmedCount, 1);
+          expect(report.failedCount, evidence == false ? 1 : 0);
+          expect(report.uncertainCount, evidence == false ? 0 : 1);
+          expect(report.unattemptedCount, 1);
+          expect(report.items.last.outcome, MailBulkFlagOutcome.unattempted);
+          expect(report.items[1].operation, same(commands[1]));
+          expect(report.items[1].problem, same(problem));
+          expect(report.stopProblem, same(problem));
+          expect(report.stopProblem?.retryAfter, const Duration(seconds: 90));
+          expect(
+            report.stopReason,
+            evidence == false
+                ? MailBulkFlagStopReason.rateLimited
+                : MailBulkFlagStopReason.uncertain,
+          );
+          expect(report.requiresRefresh, evidence != false);
+        });
+      }
+
       test(
         'stop from progress retains confirmation even if display throws',
         () async {

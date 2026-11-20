@@ -33,7 +33,7 @@ subject and outcome for every selected message:
 | Outcome | Meaning |
 | --- | --- |
 | Confirmed | The provider confirmed the requested flag state. |
-| Failed | The provider explicitly certifies that no mutation occurred. Other independent selected messages may continue. |
+| Failed | The provider explicitly certifies that no mutation occurred. Other independent selected messages may continue unless cancellation, stale scope or a rate limit stops the batch. |
 | Uncertain | A mutation may have reached the server, or the provider supplied no reliable mutation evidence. The batch stops here. |
 | Not attempted | No command was dispatched for this message. |
 
@@ -48,6 +48,13 @@ A stale-scope result also requires refresh when its original connection remains
 open, even if the provider proved no mutation occurred. Its per-message outcome
 remains Failed; requiring a fresh observation does not make that receipt
 uncertain. A user-requested stop alone does not require refresh.
+
+A certified rate-limit rejection also stops the remaining commands. The rejected
+message stays Failed and the tail stays Not attempted. When the provider supplies
+`retryAfter`, the summary and per-message details show the requested delay,
+rounded up to whole seconds. There is no automatic retry or countdown-driven
+dispatch, and a rate limit alone does not require refresh. A quota reply without
+reliable no-mutation evidence remains Uncertain and keeps the refresh requirement.
 
 Controls, progress and outcome details are localized in English, German and
 Arabic. Compact layouts keep controls scrollable and leave space for rows.
@@ -111,8 +118,10 @@ There is one execution engine with two entry points:
 Both expose `shouldStop` and immutable progress reports. A coordinator's
 `MailBulkFlagAttempt.failed` explicitly certifies no effect; a contradictory
 `mutationMayHaveOccurred: true` problem still becomes uncertain. Certified
-`cancelled` or `staleOperation` failures stop further dispatch. An uncertain
-reply takes precedence over concurrent cancellation or scope change.
+`cancelled`, `staleOperation` or `quotaExceeded` failures stop further dispatch.
+Certified quota failures use `MailBulkFlagStopReason.rateLimited`, retaining
+the exact problem and its optional retry delay. An uncertain reply takes
+precedence over quota, concurrent cancellation or scope change.
 
 `MailBulkFlagReport.items` and `results` are the same immutable ordered list.
 Each entry retains its frozen operation, identity, outcome and original problem.

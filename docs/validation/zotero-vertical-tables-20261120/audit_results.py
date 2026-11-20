@@ -68,6 +68,7 @@ def count(path):
 
 def audit(directory):
     results = {}
+    source_binding = None
     for name in ("engine", "editor", "incoming"):
         receipt = json.loads((directory / (name + "-receipt.json")).read_text())
         log = directory / (name + ".jsonl")
@@ -81,6 +82,11 @@ def audit(directory):
         after_path = directory / (name + "-sources-after.json")
         assert receipt["source_manifest_sha256"] == sha256(before_path), name
         assert before_path.read_bytes() == after_path.read_bytes(), name
+        binding = (receipt["head"], receipt["tree"], receipt["source_manifest_sha256"])
+        if source_binding is None:
+            source_binding = binding
+        else:
+            assert binding == source_binding, (name, "cohorts have different source bindings")
         results[name] = result
     return {"passed": sum(r["passed"] for r in results.values()),
             "skipped": sum(r["skipped"] for r in results.values()),

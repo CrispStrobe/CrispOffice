@@ -23,6 +23,11 @@ import '../../test/word_contained_text_wrap_test.dart' as suite17;
 
 import '../../test/word_vertical_table_row_geometry_test.dart' as suite18;
 
+import '../../test/word_header_visual_reconciliation_test.dart' as suite19;
+import '../../test/word_table_style_import_regression_test.dart' as suite20;
+
+import '../../test/word_table_cell_border_roundtrip_test.dart' as suite21;
+
 void main() {
   group('research_target_acceptance', research.main);
   group('word_table_test.dart', suite0.main);
@@ -44,4 +49,7 @@ void main() {
   group('word_styles_layout_test.dart', suite16.main);
   group('word_contained_text_wrap_test.dart', suite17.main);
   group('word_vertical_table_row_geometry_test.dart', suite18.main);
+  group('word_header_visual_reconciliation_test.dart', suite19.main);
+  group('word_table_style_import_regression_test.dart', suite20.main);
+  group('word_table_cell_border_roundtrip_test.dart', suite21.main);
 }

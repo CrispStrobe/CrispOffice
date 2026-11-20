@@ -2723,6 +2723,7 @@ class WordDeserializer {
         // style. In particular Medium Grid 3's white grid must stay white
         // instead of becoming a black rectangle around every cell.
         table.properties.borderColor = style.borderColor;
+        // Preserve an authored direct size; an omitted size still inherits.
         if (!_tablesWithOwnBorderWidths.contains(table)) {
           table.properties.borderWidth = style.borderWidth;
         }
@@ -2744,28 +2745,36 @@ class WordDeserializer {
             cell.fillColor ??= fill;
           }
         }
-        // The sparse style cascade has already applied conditional run
-        // formatting. Repainting it here would override direct formatting,
-        // explicit child-style false values, and nested table boundaries.
-
+        // Conditional run properties already went through _StyleCascade.
+        // Reapplying them here would replace direct/character overrides and
+        // reach into nested tables whose formatting belongs to another style.
         // Table styles in Word set the cell paragraph rhythm. Applying this
         // only to Table Grid left Medium Grid rows roughly 8 pt too tall.
         for (final WmlTableRow row in table.rows) {
           for (final WmlTableCell cell in row.cells) {
             for (final WmlBlock block in WordTree.visibleBlocks(cell.blocks)) {
               if (block is! WmlParagraph) continue;
-              if (!block.properties.explicitSpacingAfter) {
-                block.properties.spacingAfter = 0;
+              final properties = block.properties;
+              var changed = false;
+              if (!properties.explicitSpacingAfter &&
+                  properties.spacingAfter != 0) {
+                properties.spacingAfter = 0;
+                changed = true;
               }
-              if (!block.properties.explicitLineSpacing &&
-                  block.properties.lineSpacingRule == WmlLineSpacingRule.auto) {
-                block.properties.lineSpacing = 1.0;
+              if (!properties.explicitLineSpacing &&
+                  properties.lineSpacingRule == WmlLineSpacingRule.auto &&
+                  properties.lineSpacing != 1) {
+                properties.lineSpacing = 1;
+                changed = true;
               }
-              // This fallback belongs to the import, not an authored edit.
-              // Preserve sparse pPr on export so later style changes stay live.
-              block.properties.importedValues = WordPropertyIo.paragraphValues(
-                block.properties,
-              );
+              if (changed && properties.importedValues != null) {
+                // These are import defaults, not user edits. Keep them in the
+                // effective baseline so sparse export does not pin new direct
+                // spacing onto paragraphs that still inherit their styles.
+                properties.importedValues = WordPropertyIo.paragraphValues(
+                  properties,
+                );
+              }
             }
           }
         }

@@ -252,6 +252,127 @@ void main() {
     },
   );
 
+  for (final explicitBorder in [false, true]) {
+    for (final tableBorders in [false, true]) {
+      for (final reopen in [false, true]) {
+        test(
+          'tall merge keeps interior cuts open with explicit=$explicitBorder tableBorders=$tableBorders reopen=$reopen',
+          () {
+            final source = _table(rows: 2);
+            source.properties.borders = tableBorders;
+            source.rows.first
+              ..height = null
+              ..cantSplit = false;
+            source.rows.first.cells.first
+              ..borderTop = explicitBorder
+              ..borderBottom = explicitBorder
+              ..blocks = [
+                for (var i = 0; i < 35; i++) _paragraph('Master line $i'),
+              ];
+            var document = _document(source);
+            if (reopen) document = _reopen(document);
+            final table = document.sections.single.blocks.single as WmlTable;
+            final layout = WordLayoutEngine(font: null).layout(document);
+            final fragments = layout.pages
+                .expand((page) => page.frames)
+                .where(
+                  (box) =>
+                      identical(box.table, table) &&
+                      box.tableCol == 0 &&
+                      box.height > 0,
+                )
+                .toList();
+            expect(fragments.length, greaterThan(2));
+            for (var i = 0; i < fragments.length; i++) {
+              expect(fragments[i].strokeTop, explicitBorder && i == 0);
+              expect(
+                fragments[i].strokeBottom,
+                explicitBorder && i == fragments.length - 1,
+              );
+              expect(fragments[i].strokeLeft, tableBorders);
+              expect(fragments[i].strokeRight, tableBorders);
+            }
+          },
+        );
+
+        test(
+          'continuation-only pages inherit master edges with explicit=$explicitBorder tableBorders=$tableBorders reopen=$reopen',
+          () {
+            final source = _table();
+            source.properties.borders = tableBorders;
+            source.rows.first.cells.first
+              ..borderTop = explicitBorder
+              ..borderBottom = explicitBorder;
+            var document = _document(source);
+            if (reopen) document = _reopen(document);
+            final table = document.sections.single.blocks.single as WmlTable;
+            final layout = WordLayoutEngine(font: null).layout(document);
+            expect(layout.pages, hasLength(2));
+            for (final page in layout.pages) {
+              final fragment = page.frames.singleWhere(
+                (box) =>
+                    identical(box.table, table) &&
+                    box.tableCol == 0 &&
+                    box.height > 0,
+              );
+              // A page starting at a new physical continuation row has a
+              // complete outer edge, even when only the master enables it.
+              expect(fragment.strokeTop, explicitBorder);
+              expect(fragment.strokeBottom, explicitBorder);
+              expect(fragment.strokeLeft, tableBorders);
+              expect(fragment.strokeRight, tableBorders);
+            }
+          },
+        );
+      }
+    }
+  }
+
+  for (final endnote in [false, true]) {
+    for (final explicitBorder in [false, true]) {
+      test(
+        'reopened note clips master edges with explicit=$explicitBorder endnote=$endnote',
+        () {
+          final body = _paragraph('Body');
+          body.inlines.add(
+            WmlRun(text: '1', noteRefId: 1, noteRefEndnote: endnote),
+          );
+          final table = _table(rows: 6);
+          table.properties.borders = !explicitBorder;
+          table.rows.first.cells.first
+            ..borderTop = explicitBorder
+            ..borderBottom = explicitBorder;
+          var document = _document(table);
+          document.sections.single.blocks = [body];
+          final note = WmlNote(id: 1, endnote: endnote, blocks: [table]);
+          (endnote ? document.endnotes : document.footnotes).add(note);
+          document = _reopen(document);
+          final layout = WordLayoutEngine(font: null).layout(document);
+          final fragments = layout.pages
+              .expand((page) => page.frames)
+              .where(
+                (box) =>
+                    box.isNoteContent &&
+                    box.kind == LaidOutBoxKind.tableCell &&
+                    box.tableCol == 0 &&
+                    box.height > 0,
+              )
+              .toList();
+          expect(fragments.length, greaterThan(1));
+          for (var i = 0; i < fragments.length; i++) {
+            expect(fragments[i].strokeTop, explicitBorder && i == 0);
+            expect(
+              fragments[i].strokeBottom,
+              explicitBorder && i == fragments.length - 1,
+            );
+            expect(fragments[i].strokeLeft, !explicitBorder);
+            expect(fragments[i].strokeRight, !explicitBorder);
+          }
+        },
+      );
+    }
+  }
+
   for (final endnote in [false, true]) {
     for (final reopen in [false, true]) {
       test(

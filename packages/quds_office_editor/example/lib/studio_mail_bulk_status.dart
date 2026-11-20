@@ -107,9 +107,11 @@ class StudioMailBulkStatus extends StatelessWidget {
   }
 
   Duration? get _retryAfter {
-    for (final item in report.items) {
-      if (item.problem?.code == MailProblemCode.quotaExceeded) {
-        return item.problem?.retryAfter;
+    if (report.stopProblem?.retryAfter case final delay?) return delay;
+    for (final result in report.results) {
+      if (result.problem?.code == MailProblemCode.quotaExceeded &&
+          result.problem?.retryAfter != null) {
+        return result.problem!.retryAfter;
       }
     }
     return null;
