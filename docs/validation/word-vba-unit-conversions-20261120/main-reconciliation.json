@@ -1,0 +1,496 @@
+{
+  "schema_version": 1,
+  "purpose": "Reconcile PR #272's completed Word measurement/named-argument merge without losing this branch's incremental source, tests, review and original intake history.",
+  "old_branch_head": "c12ad8bc9c17f1849acdf92b2245e9198f1005b8",
+  "incorporated_main": {
+    "commit": "22cf73b816328cd5fe54ec1793c89f1cc322db3b",
+    "tree": "a566dec42ed55859563f0bb08f490d870e709c7e",
+    "word_measurement_parent": "b01cb23dc1b7bc94b691d68a2507b61dc6d48d7a",
+    "word_measurement_pull_request": 272
+  },
+  "required_ordered_parents": [
+    "c12ad8bc9c17f1849acdf92b2245e9198f1005b8",
+    "22cf73b816328cd5fe54ec1793c89f1cc322db3b"
+  ],
+  "construction": {
+    "base_tree": "a566dec42ed55859563f0bb08f490d870e709c7e",
+    "production_source_changes": 0,
+    "documentation_change": {
+      "path": "docs/validation/word-vba-unit-conversions-20261120/README.md",
+      "description": "Replace historical checkpoint narrative with a current index; all original snapshots and their source-bound results remain retained in history and as the listed evidence files."
+    },
+    "test_changes": 0,
+    "test_preservation": {
+      "path": "packages/quds_office_engine/test/office_vba_word_unit_conversions_test.dart",
+      "blob": "d5caee5321cbf18e65466c2bf43fcec49397e725",
+      "description": "All202 cases are already in incoming main22cf73b8, including this branch's large-scalar regression. Retained without changes."
+    }
+  },
+  "incoming_changed_paths_from_initial_main": [
+    {
+      "path": "docs/VBA_ARGUMENTS.md",
+      "sha": "4ce2c5292c747172f29c737778abac98e82f629d",
+      "status": "modified"
+    },
+    {
+      "path": "docs/VBA_PARITY_ROADMAP.md",
+      "sha": "24ddc2eee94206a39f92c4baa43cd8cf8caa9f1c",
+      "status": "modified"
+    },
+    {
+      "path": "docs/VBA_WORD_MACROS.md",
+      "sha": "e1ba38ca57f2c997cb3d978a4f3e24b3946fb4d9",
+      "status": "modified"
+    },
+    {
+      "path": "docs/validation/word-vba-measurements-20261120/README.md",
+      "sha": "1074938025e7802592389b3226d1559a49286aae",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/word-vba-measurements-20261120/arithmetic-model.js",
+      "sha": "189a6f2b033e6a34024ff0f7b1ede555038a3b7f",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/word-vba-measurements-20261120/intake.json",
+      "sha": "3573446cb2afaac8210229b0a2a288472549caf3",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/word-vba-measurements-20261120/source-review.json",
+      "sha": "924319a14f8ba19d4062ea6ec0cc2ec1b56d07af",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/word-vba-unit-conversions-20261120/README.md",
+      "sha": "5c21012875b19429a998ff2c3fb7cac9af035ec3",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/word-vba-unit-conversions-20261120/arithmetic-result.json",
+      "sha": "81d248e2fc7f2a0f0cd118750d6fbb1a2e4685cf",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/word-vba-unit-conversions-20261120/check-arithmetic.mjs",
+      "sha": "61b03f618f9162aa4a5b3329b9da0003371707ab",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/word-vba-unit-conversions-20261120/environment-blocker.json",
+      "sha": "0971be7729c09b56b8a8fbb40f4ab57e3278f7df",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/word-vba-unit-conversions-20261120/incoming-reconciliation.json",
+      "sha": "721525cf56082c1bb7cbe98bf75203d287fb69c2",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/word-vba-unit-conversions-20261120/incoming-reconciliation.md",
+      "sha": "48ea93b2ace840ead7fd3ade25b7197779f8f2c2",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/word-vba-unit-conversions-20261120/incoming-review.md",
+      "sha": "1c81ffc2ff18ff04a72abc64ad2e59cc64ec0341",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/word-vba-unit-conversions-20261120/intake.json",
+      "sha": "7a2eb643473a9cd55337a0f15fbc84d93a1cfa80",
+      "status": "added"
+    },
+    {
+      "path": "docs/validation/word-vba-unit-conversions-20261120/source-review-initial.json",
+      "sha": "7802ed0baccb0e4ce99e10b7a93302d879fdaa10",
+      "status": "added"
+    },
+    {
+      "path": "packages/quds_office_engine/CHANGELOG.md",
+      "sha": "966f0f26b3f608b8bf5bd50d6723c7d8f5dcc065",
+      "status": "modified"
+    },
+    {
+      "path": "packages/quds_office_engine/example/macros/word_measurements.bas",
+      "sha": "01834ab0fb95c43a4ff4a19e1c3bd7a9e554c2c5",
+      "status": "added"
+    },
+    {
+      "path": "packages/quds_office_engine/example/macros/word_named_measurements.bas",
+      "sha": "761c539c853170f43e0ae6e374a57e919923e274",
+      "status": "added"
+    },
+    {
+      "path": "packages/quds_office_engine/example/macros/word_unit_conversions.bas",
+      "sha": "cf996b99e767d1742557f257599bf0edf61eefa0",
+      "status": "added"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/automation/office_vba_language.dart",
+      "sha": "07dc3c5737661abaf3b17db24439c71482de22ed",
+      "status": "modified"
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_vba_word_line_spacing_test.dart",
+      "sha": "84de812b8c75b320394db3382b4b05564028d110",
+      "status": "modified"
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_vba_word_measurements_integration_test.dart",
+      "sha": "06fce3b528a20fb9f18e6868ffe1b17d12098536",
+      "status": "added"
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_vba_word_measurements_test.dart",
+      "sha": "9f5aac1d133bd93d62ca5a3cfdf60ad6169a8e74",
+      "status": "added"
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_vba_word_named_measurements_integration_test.dart",
+      "sha": "1a4ff8bbbea4399eb9a8be21e7ae05a5d88eed63",
+      "status": "added"
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_vba_word_named_measurements_test.dart",
+      "sha": "d74dc1fe2c1d55a450f109a4cc297cf9782a8531",
+      "status": "added"
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_vba_word_unit_conversions_integration_test.dart",
+      "sha": "d44ec892f13d9384ebed1e13b3f56e64c7959f2b",
+      "status": "added"
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_vba_word_unit_conversions_test.dart",
+      "sha": "d5caee5321cbf18e65466c2bf43fcec49397e725",
+      "status": "added"
+    },
+    {
+      "path": "packages/quds_office_engine/tool/macros/web_vba_word_measurements_smoke.dart",
+      "sha": "0023f1f9c594414c099bc38731f515dea3522ef7",
+      "status": "added"
+    },
+    {
+      "path": "packages/quds_office_engine/tool/macros/web_vba_word_named_measurements_smoke.dart",
+      "sha": "2f3fdd3f05c1786ba909ea0588e7f85d8c93ae5a",
+      "status": "added"
+    }
+  ],
+  "incoming_changed_paths_preserved_exactly": [
+    {
+      "path": "docs/VBA_ARGUMENTS.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4ce2c5292c747172f29c737778abac98e82f629d"
+    },
+    {
+      "path": "docs/VBA_PARITY_ROADMAP.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "24ddc2eee94206a39f92c4baa43cd8cf8caa9f1c"
+    },
+    {
+      "path": "docs/VBA_WORD_MACROS.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e1ba38ca57f2c997cb3d978a4f3e24b3946fb4d9"
+    },
+    {
+      "path": "docs/validation/word-vba-measurements-20261120/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1074938025e7802592389b3226d1559a49286aae"
+    },
+    {
+      "path": "docs/validation/word-vba-measurements-20261120/arithmetic-model.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "189a6f2b033e6a34024ff0f7b1ede555038a3b7f"
+    },
+    {
+      "path": "docs/validation/word-vba-measurements-20261120/intake.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3573446cb2afaac8210229b0a2a288472549caf3"
+    },
+    {
+      "path": "docs/validation/word-vba-measurements-20261120/source-review.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "924319a14f8ba19d4062ea6ec0cc2ec1b56d07af"
+    },
+    {
+      "path": "docs/validation/word-vba-unit-conversions-20261120/arithmetic-result.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "81d248e2fc7f2a0f0cd118750d6fbb1a2e4685cf"
+    },
+    {
+      "path": "docs/validation/word-vba-unit-conversions-20261120/check-arithmetic.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "61b03f618f9162aa4a5b3329b9da0003371707ab"
+    },
+    {
+      "path": "docs/validation/word-vba-unit-conversions-20261120/environment-blocker.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0971be7729c09b56b8a8fbb40f4ab57e3278f7df"
+    },
+    {
+      "path": "docs/validation/word-vba-unit-conversions-20261120/incoming-reconciliation.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "721525cf56082c1bb7cbe98bf75203d287fb69c2"
+    },
+    {
+      "path": "docs/validation/word-vba-unit-conversions-20261120/incoming-reconciliation.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "48ea93b2ace840ead7fd3ade25b7197779f8f2c2"
+    },
+    {
+      "path": "docs/validation/word-vba-unit-conversions-20261120/incoming-review.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1c81ffc2ff18ff04a72abc64ad2e59cc64ec0341"
+    },
+    {
+      "path": "docs/validation/word-vba-unit-conversions-20261120/intake.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7a2eb643473a9cd55337a0f15fbc84d93a1cfa80"
+    },
+    {
+      "path": "docs/validation/word-vba-unit-conversions-20261120/source-review-initial.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7802ed0baccb0e4ce99e10b7a93302d879fdaa10"
+    },
+    {
+      "path": "packages/quds_office_engine/CHANGELOG.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "966f0f26b3f608b8bf5bd50d6723c7d8f5dcc065"
+    },
+    {
+      "path": "packages/quds_office_engine/example/macros/word_measurements.bas",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "01834ab0fb95c43a4ff4a19e1c3bd7a9e554c2c5"
+    },
+    {
+      "path": "packages/quds_office_engine/example/macros/word_named_measurements.bas",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "761c539c853170f43e0ae6e374a57e919923e274"
+    },
+    {
+      "path": "packages/quds_office_engine/example/macros/word_unit_conversions.bas",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "cf996b99e767d1742557f257599bf0edf61eefa0"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/automation/office_vba_language.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "07dc3c5737661abaf3b17db24439c71482de22ed"
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_vba_word_line_spacing_test.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "84de812b8c75b320394db3382b4b05564028d110"
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_vba_word_measurements_integration_test.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "06fce3b528a20fb9f18e6868ffe1b17d12098536"
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_vba_word_measurements_test.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9f5aac1d133bd93d62ca5a3cfdf60ad6169a8e74"
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_vba_word_named_measurements_integration_test.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1a4ff8bbbea4399eb9a8be21e7ae05a5d88eed63"
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_vba_word_named_measurements_test.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d74dc1fe2c1d55a450f109a4cc297cf9782a8531"
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_vba_word_unit_conversions_integration_test.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d44ec892f13d9384ebed1e13b3f56e64c7959f2b"
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_vba_word_unit_conversions_test.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d5caee5321cbf18e65466c2bf43fcec49397e725"
+    },
+    {
+      "path": "packages/quds_office_engine/tool/macros/web_vba_word_measurements_smoke.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0023f1f9c594414c099bc38731f515dea3522ef7"
+    },
+    {
+      "path": "packages/quds_office_engine/tool/macros/web_vba_word_named_measurements_smoke.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2f3fdd3f05c1786ba909ea0588e7f85d8c93ae5a"
+    }
+  ],
+  "historical_evidence_retained": [
+    {
+      "path": "docs/validation/word-vba-unit-conversions-20261120/arithmetic-result.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "81d248e2fc7f2a0f0cd118750d6fbb1a2e4685cf"
+    },
+    {
+      "path": "docs/validation/word-vba-unit-conversions-20261120/check-arithmetic.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "61b03f618f9162aa4a5b3329b9da0003371707ab"
+    },
+    {
+      "path": "docs/validation/word-vba-unit-conversions-20261120/environment-blocker.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0971be7729c09b56b8a8fbb40f4ab57e3278f7df"
+    },
+    {
+      "path": "docs/validation/word-vba-unit-conversions-20261120/incoming-reconciliation.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "721525cf56082c1bb7cbe98bf75203d287fb69c2"
+    },
+    {
+      "path": "docs/validation/word-vba-unit-conversions-20261120/incoming-reconciliation.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "48ea93b2ace840ead7fd3ade25b7197779f8f2c2"
+    },
+    {
+      "path": "docs/validation/word-vba-unit-conversions-20261120/late-scope.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "432ad91fb30a1d09158f824d7f6a898fc1770b99"
+    },
+    {
+      "path": "docs/validation/word-vba-unit-conversions-20261120/late-scope.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "51a3dd97b3729ecc04591922ea6b415815df200b"
+    },
+    {
+      "path": "docs/validation/word-vba-unit-conversions-20261120/qualification.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "76035c9cc8917b3c2374e2d0de02d7c003ddef8c"
+    },
+    {
+      "path": "docs/validation/word-vba-unit-conversions-20261120/source-review-initial.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7802ed0baccb0e4ce99e10b7a93302d879fdaa10"
+    },
+    {
+      "path": "docs/validation/word-vba-unit-conversions-20261120/source-review.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "936a7094d1d1ab8bb6b64b609c0e396c42ebd8f8"
+    }
+  ],
+  "current_compiler": {
+    "path": "packages/quds_office_engine/lib/src/automation/office_vba_language.dart",
+    "blob": "07dc3c5737661abaf3b17db24439c71482de22ed",
+    "adopted_unchanged_from": "22cf73b816328cd5fe54ec1793c89f1cc322db3b"
+  },
+  "initial_intake": {
+    "references": 311,
+    "actual_ancestor_references": 288,
+    "equivalent_references": 23,
+    "excluded_references": 0,
+    "unclassified_references": 0,
+    "proof_files": [
+      "intake.json",
+      "incoming-reconciliation.json",
+      "incoming-reconciliation.md"
+    ]
+  },
+  "later_reference_dispositions": [
+    {
+      "ref": "codex/word-vba-measurements-20261120",
+      "sha": "4d0086aba52fc804424145d8eabe3c4c1c10f201",
+      "disposition": "incorporated through main b01cb23d / PR #272"
+    },
+    {
+      "ref": "codex/word-vba-unit-conversions-20261120",
+      "sha": "e08635b3f21c60ad21888821050dc97c2dbf7086",
+      "disposition": "incorporated through main b01cb23d / PR #272"
+    },
+    {
+      "ref": "work/mail-bulk-actions-20261120",
+      "sha": "69ab514b57a4d6d4db062d802eb853c2691d80fe",
+      "disposition": "preserved and deferred; active work first appeared after the complete initial intake; new Mail bulk coordinator, tests and overlapping Word state are not qualified by this increment"
+    },
+    {
+      "ref": "work/mail-bulk-flags-20261120",
+      "sha": "0cc6316c61efd8b39a9cb0cfed6b2879f7865d48",
+      "disposition": "preserved and deferred; active Mail intake work first appeared after the complete initial intake; no new Mail runtime qualification"
+    }
+  ],
+  "qualification": {
+    "current": "source-review-main.json and current-qualification.json bind the adopted compiler and retained tests",
+    "historical": "arithmetic-result.json, check-arithmetic.mjs, source-review.json and qualification.json bind the c12 compiler a105ddd7; they are not execution results for 07dc3c57",
+    "dart_tests": "not_run",
+    "dart_analyze": "not_run",
+    "dart_format": "not_run",
+    "compiled_dart_javascript": "not_run",
+    "native_runtime": "not_run",
+    "cli": "not_run",
+    "github_actions": "not_queried_or_awaited",
+    "execution_blocker": "Sandbox startup failed with ENOSPC, followed by unavailable exec-server errors before a Dart process could start."
+  },
+  "history_of_main_advances": [
+    {
+      "commit": "b01cb23dc1b7bc94b691d68a2507b61dc6d48d7a",
+      "tree": "30ff2f6628c07ed857868405440d1c9bfd13feb9",
+      "effect": "PR272 consolidated both Word branches and dd8, preserving official named-argument support"
+    },
+    {
+      "commit": "22cf73b816328cd5fe54ec1793c89f1cc322db3b",
+      "tree": "a566dec42ed55859563f0bb08f490d870e709c7e",
+      "effect": "Later merge preserved our8ca ancestry, d5 large-scalar test and six historical evidence files; production07dc unchanged"
+    }
+  ],
+  "current_source_evidence": [
+    {
+      "path": "docs/validation/word-vba-unit-conversions-20261120/check-main-arithmetic.mjs",
+      "blob": "53ae8838160899dd2eabd7d5adb75f01b92d6728"
+    },
+    {
+      "path": "docs/validation/word-vba-unit-conversions-20261120/main-arithmetic-result.json",
+      "blob": "cb4bef8fd056971324eab19296d924ac866432d0"
+    },
+    {
+      "path": "docs/validation/word-vba-unit-conversions-20261120/source-review-main.json",
+      "blob": "f2d33f4623d4844db8b5e530d9db636ce0018e11"
+    }
+  ]
+}

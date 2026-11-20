@@ -872,14 +872,16 @@ End Sub
 
 This produces a 36-point left indent, an 18-point hanging indent, 6 points
 before the paragraph, a tab at 72 points, and exact 18-point line spacing.
-The complete [word_measurements.bas](../packages/quds_office_engine/example/macros/word_measurements.bas)
+The complete [word_named_measurements.bas](../packages/quds_office_engine/example/macros/word_named_measurements.bas)
 example uses all ten functions, typed format aliases, named helper arguments
 and two existing paragraphs. It is repeatable on its own output.
 
 **Numeric contract.** The portable dialect uses bounded binary64 `Double`
 arithmetic, including signed values and zero; it does not emulate the `Single`
 parameters/results documented for Microsoft Word. Both inputs and results must
-be finite and within magnitude `9007199254740991`. The physical ratios use
+be finite and within magnitude `9007199254740991`. Intermediate multiplication
+uses floating-point arithmetic to avoid signed-integer overflow on the Dart VM.
+The physical ratios use
 exactly 72 points and 25.4 millimeters per inch. Microsoft Learn's rounded
 metric descriptions (including inconsistent millimeter approximations) are
 not used as conversion constants. These are specification-derived expectations;
@@ -912,7 +914,11 @@ precision contract. The independent
 [word_unit_conversions.bas](../packages/quds_office_engine/example/macros/word_unit_conversions.bas)
 and [word_measurements_positional.bas](../packages/quds_office_engine/example/macros/word_measurements_positional.bas)
 examples and their original regression suites remain available alongside the
-named-argument example.
+named-argument example. The canonical
+[word_measurements.bas](../packages/quds_office_engine/example/macros/word_measurements.bas)
+retains the earlier eight-helper example and its independent compiler, CLI/MCP
+and portable-driver cases. All examples require their documented existing
+paragraphs; no source fixture is silently replaced by a different contract.
 
 Font sizes still require their existing half-point grid; tab stops, spacing
 and indentation retain their existing constraints. Pixel conversions,

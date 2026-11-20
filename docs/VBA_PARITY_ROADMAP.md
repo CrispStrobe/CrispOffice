@@ -154,8 +154,10 @@ picas in both directions, and official named arguments for all ten unit
 conversions, including the existing line/point functions. It uses exact physical
 ratios with bounded Double arithmetic and exact native-grid canonicalization;
 it does not emulate VBA Single rounding or loosen property precision guards.
-The complete BAS example and source/integration checks exercise document
-publication, CLI/MCP paths and VM/JavaScript behavior. See the
+The complete BAS examples and source/integration checks cover document
+publication, CLI/MCP paths and the portable numeric contract. The combined
+source has local Dart acceptance; earlier arithmetic-model and authored
+JavaScript checks retain their separate execution status. See the
 [measurement contract](VBA_WORD_MACROS.md#physical-measurement-conversions)
 and [combined-source qualification](validation/zotero-merged-cells-20261120/intake.md).
 

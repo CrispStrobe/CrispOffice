@@ -1,0 +1,118 @@
+{
+  "schema_version": 1,
+  "compiler_blob": "07dc3c5737661abaf3b17db24439c71482de22ed",
+  "source_main": "b01cb23dc1b7bc94b691d68a2507b61dc6d48d7a",
+  "scope": "Exact-source-bound JavaScript numeric transcription and source-shape checks only. No Dart parsing, compilation, VM, compiled-Dart-JavaScript, native document or test execution.",
+  "table": {
+    "inchestopoints": {
+      "parameter": "inches",
+      "numerator": 72,
+      "denominator": 1
+    },
+    "centimeterstopoints": {
+      "parameter": "centimeters",
+      "numerator": 3600,
+      "denominator": 127
+    },
+    "millimeterstopoints": {
+      "parameter": "millimeters",
+      "numerator": 360,
+      "denominator": 127
+    },
+    "picastopoints": {
+      "parameter": "picas",
+      "numerator": 12,
+      "denominator": 1
+    },
+    "linestopoints": {
+      "parameter": "lines",
+      "numerator": 12,
+      "denominator": 1
+    },
+    "pointstoinches": {
+      "parameter": "points",
+      "numerator": 1,
+      "denominator": 72
+    },
+    "pointstocentimeters": {
+      "parameter": "points",
+      "numerator": 127,
+      "denominator": 3600
+    },
+    "pointstomillimeters": {
+      "parameter": "points",
+      "numerator": 127,
+      "denominator": 360
+    },
+    "pointstopicas": {
+      "parameter": "points",
+      "numerator": 1,
+      "denominator": 12
+    },
+    "pointstolines": {
+      "parameter": "points",
+      "numerator": 1,
+      "denominator": 12
+    }
+  },
+  "assertions": 246,
+  "counts": {
+    "source": 4,
+    "reference": 30,
+    "retained_canonical_fixture": 17,
+    "retained_native_precision_refusal": 6,
+    "retained_scalar_fixture": 6,
+    "legacy_inverse_fallback": 4,
+    "result_bound": 4,
+    "input_bound": 5,
+    "selected_twip_boundaries": 170
+  },
+  "passed": true,
+  "failures": [],
+  "inspected_native_precision_cases": [
+    {
+      "expression": "CentimetersToPoints(1)",
+      "value": 28.346456692913385,
+      "refused": true
+    },
+    {
+      "expression": "MillimetersToPoints(1)",
+      "value": 2.8346456692913384,
+      "refused": true
+    },
+    {
+      "expression": "InchesToPoints(0.20000000000000004)",
+      "value": 14.400000000000002,
+      "refused": true
+    },
+    {
+      "expression": "PicasToPoints(1.1499999999999997)",
+      "value": 13.799999999999997,
+      "refused": true
+    },
+    {
+      "expression": "CentimetersToPoints(2.5400000000000005)",
+      "value": 72.00000000000001,
+      "refused": true
+    },
+    {
+      "expression": "MillimetersToPoints(25.40000000000001)",
+      "value": 72.00000000000003,
+      "refused": true
+    }
+  ],
+  "dart_tests_executed": 0,
+  "execution": {
+    "runtime": "functions.exec V8 isolate",
+    "method": "The pure check core embedded in check-main-arithmetic.mjs was executed against the exact fetched compiler content. The standalone Node file wrapper was not launched.",
+    "standalone_node_wrapper_executed": false
+  },
+  "later_source_binding": {
+    "commit": "22cf73b816328cd5fe54ec1793c89f1cc322db3b",
+    "compiler_blob": "07dc3c5737661abaf3b17db24439c71482de22ed",
+    "source_bytes_identical": true,
+    "test_blob": "d5caee5321cbf18e65466c2bf43fcec49397e725",
+    "test_bytes_identical_to_reviewed_candidate": true
+  },
+  "script_blob": "53ae8838160899dd2eabd7d5adb75f01b92d6728"
+}

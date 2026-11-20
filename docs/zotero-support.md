@@ -149,8 +149,11 @@ result. Nothing is silently flattened to make these structures fit.
 
 ### Tables in notes and annotations
 
-Add Note and Add Annotation preserve supported rectangular tables as native
-Word tables. Cells can contain ordinary or empty paragraphs, soft line breaks,
+Add Note and Add Annotation preserve supported rectangular tables, including
+horizontal merged cells, as native Word tables. HTML `colspan` values from 1 to
+32 map to native `gridSpan`. Every row must cover the same number of logical
+columns, up to 32; rows may contain different numbers of authored cells.
+Cells can contain ordinary or empty paragraphs, soft line breaks,
 headings, supported character formatting, links, lists, pictures and active
 citation fields. Empty cells and an entirely empty table retain their structure.
 Header-cell text starts bold and retains explicit inline emphasis changes.
@@ -179,27 +182,36 @@ The additional table bounds are:
 | --- | --- |
 | Tables in one note | Up to 64 |
 | Rows per table | Up to 256 |
-| Columns per table | Up to 32 |
-| Cells across the complete note | Up to 4,096 |
-| Supplied column width | An integer from 1 to 4,000 CSS pixels |
+| Logical columns per table | Up to 32, equal across all rows |
+| Horizontal span per cell | An integer from 1 to 32 |
+| Authored cells across the complete note | Up to 4,096 |
+| Supplied column width | An integer from 1 to 4,000 CSS pixels; 0 means unspecified |
 | Total native table width | At most 4,000 points |
 
-Supplied widths for the same column must agree across rows. Widths use the
-same conversion as pictures: 96 CSS pixels become 72 points. A column with no
-supplied width uses a 120-point default. The existing table layout fits an
-oversized grid to the available display width. Cell backgrounds accept
+When present, a cell's `data-colwidth` vector must contain exactly one entry
+per logical column covered by its span. Each entry is an integer: 0 leaves
+that column unspecified, and 1–4,000 supplies its width in CSS pixels.
+Explicit widths for the same logical column must agree across rows, including
+rows with different merge patterns. Widths use the same conversion as pictures:
+96 CSS pixels become 72 points. After reconciling all rows, a column with no
+explicit width uses a 120-point default. Each cell's native width is the sum of
+the grid widths it covers. The existing table layout fits an oversized grid to
+the available display width. Cell backgrounds accept
 three- or six-digit hexadecimal colors, integer RGB colors, or transparent.
 
 The supported HTML structure is `table`, optional `tbody`, `tr`, `td` and
-`th`. Merged cells, nested tables, tables inside list items, unequal row lengths,
-separate header/footer row groups, captions, custom table classes and other
+`th`. Vertical merges (`rowspan` greater than 1), nested tables, tables inside
+list items, unequal logical row widths, separate header/footer row groups,
+captions, custom table classes and other
 table/row/cell styling are refused. A malformed table, unsupported image, or
 missing/repeated/unconverted citation placeholder refuses the entire staged
 result. The existing cancellation, stale-selection, composition and single-step
 undo guarantees apply to the table and its surrounding content together.
 
-The [table implementation and validation record](validation/zotero-research-tables-20261120/README.md)
-identifies the source checkpoints, checks and application-acceptance scope.
+The [horizontal-merge and Refresh validation record](validation/zotero-merged-cells-20261120/README.md)
+identifies this continuation's source checkpoints, checks and application-acceptance
+scope. The [earlier table record](validation/zotero-research-tables-20261120/README.md)
+retains its original evidence.
 Local model and controller checks are separate from opening and refreshing the
 result in an installed Word or LibreOffice application.
 
@@ -316,6 +328,29 @@ The **Preview / export style ID** and locale fields belong to the older
 individual-preview/export workflow; changing them does not switch the
 document's native CSL style. Zotero document preferences are saved as native
 `ZOTERO_PREF_*` custom properties and restored when the DOCX is reopened.
+
+### Combine directly adjacent citations during Refresh
+
+**Refresh citations** and **Refresh all with Zotero** let Zotero combine citation
+fields whose native packets directly touch within the same paragraph and the
+same document story or authored note. Zotero decides the combined item order,
+duplicate handling and CSL formatting. The resulting citation remains active
+through DOCX saving and reopening.
+
+Whitespace, zero-width text characters, bookmarks, comments, content controls,
+ordinary Word fields and bibliographies prevent a merge. Citations in separate
+paragraphs, table cells or notes remain separate. Staged insertion, deletion,
+unlinking or note conversion cannot create a merge across the intervening
+content. Visual proximity or equal visible-text offsets alone are insufficient.
+
+The HTTP client advertises the boolean `supportsCitationMerging` capability.
+Each enumerated field's `adjacent` flag describes whether **that field touches
+the next enumerated field**. Quds rechecks the physical citation packets before
+applying Zotero's result. A completed refresh, including any merges and
+bibliography changes, is one undo/redo step. Cancellation or a stale result
+leaves the detached changes unapplied. See the
+[merge validation record](validation/zotero-merged-cells-20261120/README.md) for
+the qualified local source and remaining installed-application acceptance.
 
 ### German “Ebd.”, numbering and disambiguation
 
@@ -1242,9 +1277,15 @@ to each new client. Clients sharing that state must use the same clock.
 
 ## Current and previous qualification evidence
 
-The [research-table work record](validation/zotero-research-tables-20261120/README.md)
-tracks this increment's incoming-work reconciliation, remote checkpoints,
-exact-source checks and remaining application acceptance. The
+The [horizontal-merge and Refresh work record](validation/zotero-merged-cells-20261120/README.md)
+tracks this continuation's incoming-work reconciliation, remote checkpoints,
+exact-source checks and remaining application acceptance. Its qualified source,
+`6a00886f2c7f2ceddf859fcc1ccb99fbfcbb989a`, passed 495 engine cases, 386 editor
+cases and 724 incoming Word/Mail product cases locally. These results do not
+claim a new installed Zotero, Word or LibreOffice run, complete plugin parity,
+or active ODT citation transfer. The
+[research-table work record](validation/zotero-research-tables-20261120/README.md)
+retains the preceding table increment's evidence. The
 [authored-note and selected-text record](validation/zotero-note-targets-20261120/README.md)
 retains the preceding increment's evidence and execution limits.
 
