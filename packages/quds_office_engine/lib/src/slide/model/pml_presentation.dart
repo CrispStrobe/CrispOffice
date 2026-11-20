@@ -562,11 +562,14 @@ class PmlSlide {
     String background = '',
     bool? inheritsMasterBackground,
     List<PmlShape>? backgroundShapes,
+    bool? backgroundShapesResolved,
+
     this.notes = '',
     this.sourcePartUri,
     this.transition = const PmlSlideTransition(),
     List<PmlShapeAnimation>? animations,
     this.hidden = false,
+    this.showMasterShapes = true,
   }) : _background = background,
        _primaryMasterBackground = background.isEmpty
            ? null
@@ -575,6 +578,9 @@ class PmlSlide {
            inheritsMasterBackground ?? background.isEmpty,
        shapes = shapes ?? <PmlShape>[],
        backgroundShapes = backgroundShapes ?? <PmlShape>[],
+       backgroundShapesResolved =
+           backgroundShapesResolved ?? (backgroundShapes != null),
+
        animations = animations ?? <PmlShapeAnimation>[];
 
   /// id API.
@@ -584,7 +590,12 @@ class PmlSlide {
   List<PmlShape> shapes;
 
   /// Non-editable master/layout decorations painted behind [shapes].
+  /// Import resolves master visibility here while retaining layout shapes.
   final List<PmlShape> backgroundShapes;
+
+  /// Whether this slide has its own resolved master/layout decorations.
+  /// A resolved empty list must not fall back to the presentation master.
+  final bool backgroundShapesResolved;
 
   /// layoutName API.
   String layoutName;
@@ -658,6 +669,10 @@ class PmlSlide {
   /// PowerPoint `p:sld/@show="0"` — skipped during a slide show.
   bool hidden;
 
+  /// The authored master-shape visibility flag (`p:sld/@showMasterSp`).
+  /// Layout shapes are unaffected; import resolves master shapes separately.
+  bool showMasterShapes;
+
   /// copy API.
   PmlSlide copy({int? id}) {
     return PmlSlide(
@@ -667,12 +682,14 @@ class PmlSlide {
       background: background,
       inheritsMasterBackground: inheritsMasterBackground,
       notes: notes,
+      backgroundShapesResolved: backgroundShapesResolved,
       backgroundShapes: <PmlShape>[
         for (final PmlShape shape in backgroundShapes) shape.copy(),
       ],
       sourcePartUri: id == null || id == this.id ? sourcePartUri : null,
       transition: transition,
       hidden: hidden,
+      showMasterShapes: showMasterShapes,
       animations: <PmlShapeAnimation>[
         for (final PmlShapeAnimation anim in animations) anim.copyWith(),
       ],

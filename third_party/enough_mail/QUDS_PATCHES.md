@@ -168,6 +168,15 @@ implemented Quds packages outside this directory keep their own MIT license.
     error and stack, and confirms that no submission or Sent copy is reported.
     This preserves the final-response acceptance checks and the distinction
     between submission failure and a failure after confirmed submission.
+21. Correct quoted-printable body encoding at line boundaries. Terminal spaces
+    and tabs are encoded so RFC 2045 transport-padding removal cannot lose text;
+    UTF-8 tokens are measured before writing so a multi-byte character cannot
+    push a soft-wrapped line beyond 76 columns. Header Q encoding is unchanged.
+    Regressions cover every wrap offset around the boundary, Unicode, equals,
+    CRLF/LF normalization, trailing whitespace and disabled soft wrapping. The
+    Studio attachment continuation also qualifies serialized MIME through an
+    independent Python receiver; its source-bound receipt is separate from the
+    historical portable-closure verification below.
 
 These native additions are covered by MPL-2.0. `UPSTREAM.json` remains the
 unchanged original-source inventory; local additions and modifications are

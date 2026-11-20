@@ -12,9 +12,11 @@ String _sld(
   String root = 'sld',
   String name = '',
   String background = '',
+  String? showMasterShapes,
 }) =>
     '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'
-    '<p:$root $_ns><p:cSld${name.isEmpty ? '' : ' name="$name"'}>$background'
+    '<p:$root $_ns${showMasterShapes == null ? '' : ' showMasterSp="$showMasterShapes"'}>'
+    '<p:cSld${name.isEmpty ? '' : ' name="$name"'}>$background'
     '<p:spTree>'
     '<p:nvGrpSpPr><p:cNvPr id="1" name=""/><p:cNvGrpSpPr/><p:nvPr/>'
     '</p:nvGrpSpPr><p:grpSpPr/>$shapes</p:spTree></p:cSld>'
@@ -68,9 +70,11 @@ PmlPresentation _deck(
   List<String> slides, {
   List<int>? order,
   String masterBackground = '',
-  String layoutShapes = '',
   String layoutBackground = '',
   String? secondaryMasterBackground,
+  String layoutShapes = '',
+  String masterShapes = '',
+  String? layoutShowMasterShapes,
 }) {
   final OpcPackage package = OpcPackage.create(OpcPackageKind.slide);
   final RelationshipCollection presRels = package.relationshipsFor(
@@ -103,7 +107,8 @@ PmlPresentation _deck(
               idx: 1,
               xfrm: _xfrm(1371600, 3886200, 6400800, 1752600),
               text: 'Click to edit Master text styles',
-            ),
+            ) +
+            masterShapes,
         root: 'sldMaster',
         background: masterBackground,
       ),
@@ -131,6 +136,7 @@ PmlPresentation _deck(
         root: 'sldLayout',
         name: 'Title Slide',
         background: layoutBackground,
+        showMasterShapes: layoutShowMasterShapes,
       ),
     ),
   );
@@ -323,6 +329,126 @@ void main() {
       expect(slide.backgroundShapes.single.fillColor, 'FFB300');
       expect(slide.shapes.single.name, 'TextBox 2');
     });
+
+    test('decorations retain ownership, ordering and independent copies', () {
+      final PmlPresentation deck = _deck(
+        <String>[_sld(_textBox(9, 'Slide A')), _sld(_textBox(9, 'Slide B'))],
+        masterShapes: _textBox(9, 'Master decoration'),
+        layoutShapes: _textBox(9, 'Layout decoration'),
+        layoutBackground:
+            '<p:bg><p:bgPr><a:solidFill><a:srgbClr val="FFFFFF"/>'
+            '</a:solidFill></p:bgPr></p:bg>',
+      );
+      final PmlSlide first = deck.slides.first;
+      expect(first.backgroundShapes.map((shape) => shape.text), <String>[
+        'Master decoration',
+        'Layout decoration',
+      ]);
+      expect(first.backgroundShapesResolved, isTrue);
+      expect(first.inheritsMasterBackground, isFalse);
+      expect(first.resolveBackground('112233'), 'FFFFFF');
+      final PmlSlide copy = first.copy(id: 999);
+      expect(copy.backgroundShapesResolved, isTrue);
+      expect(copy.inheritsMasterBackground, isFalse);
+      expect(copy.resolveBackground('112233'), 'FFFFFF');
+      copy.backgroundShapes.first.text = 'Changed copy';
+      expect(first.backgroundShapes.first.text, 'Master decoration');
+      first.backgroundShapes.last.text = 'Changed first';
+      expect(deck.slides.last.backgroundShapes.last.text, 'Layout decoration');
+      expect(first.shapes.single.text, 'Slide A');
+    });
+
+    test('showMasterSp honors both levels of decoration inheritance', () {
+      final PmlPresentation hiddenSlide = _deck(
+        <String>[_sld(_textBox(2, 'Slide'), showMasterShapes: '0')],
+        masterShapes: _textBox(9, 'Master decoration'),
+        layoutShapes: _textBox(9, 'Layout decoration'),
+      );
+      expect(
+        hiddenSlide.slides.single.backgroundShapes.map((shape) => shape.text),
+        <String>['Layout decoration'],
+      );
+      expect(hiddenSlide.slides.single.backgroundShapesResolved, isTrue);
+      expect(hiddenSlide.slides.single.showMasterShapes, isFalse);
+      expect(hiddenSlide.slides.single.copy(id: 999).showMasterShapes, isFalse);
+      final PmlPresentation hiddenMaster = _deck(
+        <String>[_sld(_textBox(2, 'Slide'))],
+        masterShapes: _textBox(9, 'Master decoration'),
+        layoutShapes: _textBox(9, 'Layout decoration'),
+        layoutShowMasterShapes: '0',
+      );
+      expect(
+        hiddenMaster.slides.single.backgroundShapes.map((shape) => shape.text),
+        <String>['Layout decoration'],
+      );
+      final PmlPresentation reopened = SlideDeserializer().readBytes(
+        SlideSerializer().writeBytes(hiddenSlide),
+      );
+      expect(
+        reopened.slides.single.backgroundShapes.map((shape) => shape.text),
+        <String>['Layout decoration'],
+      );
+      expect(reopened.slides.single.backgroundShapesResolved, isTrue);
+      expect(reopened.slides.single.showMasterShapes, isFalse);
+    });
+
+    test('master decorations precede layout and copy independently', () {
+      final PmlSlide slide = _deck(
+        <String>[_sld(_textBox(2, 'Slide'), showMasterShapes: 'true')],
+        masterShapes: _textBox(8, 'Master'),
+        layoutShapes: _textBox(9, 'Layout'),
+        layoutShowMasterShapes: '1',
+      ).slides.single;
+      expect(slide.backgroundShapes.map((shape) => shape.text), [
+        'Master',
+        'Layout',
+      ]);
+      final PmlSlide copied = slide.copy(id: 900);
+      expect(copied.showMasterShapes, isTrue);
+      copied.backgroundShapes.first.text = 'Copied master';
+      expect(slide.backgroundShapes.first.text, 'Master');
+      expect(copied.shapes.single.text, 'Slide');
+    });
+
+    for (final String hidden in ['0', 'false']) {
+      test('slide showMasterSp=$hidden survives saving and copying', () {
+        final PmlPresentation deck = _deck(
+          <String>[_sld(_textBox(2, 'Slide'), showMasterShapes: hidden)],
+          masterShapes: _textBox(8, 'Master'),
+          layoutShapes: _textBox(9, 'Layout'),
+        );
+        final PmlSlide slide = deck.slides.single;
+        expect(slide.showMasterShapes, isFalse);
+        expect(slide.copy().showMasterShapes, isFalse);
+        expect(slide.backgroundShapes.map((shape) => shape.text), ['Layout']);
+        final PmlSlide saved = SlideDeserializer()
+            .readBytes(SlideSerializer().writeBytes(deck))
+            .slides
+            .single;
+        expect(saved.showMasterShapes, isFalse);
+        expect(saved.backgroundShapes.map((shape) => shape.text), ['Layout']);
+        expect(saved.shapes.single.text, 'Slide');
+      });
+
+      test('layout showMasterSp=$hidden retains its own decorations', () {
+        final PmlPresentation deck = _deck(
+          <String>[_sld(_textBox(2, 'Slide'))],
+          masterShapes: _textBox(8, 'Master'),
+          layoutShapes: _textBox(9, 'Layout'),
+          layoutShowMasterShapes: hidden,
+        );
+        expect(deck.slides.single.showMasterShapes, isTrue);
+        expect(deck.slides.single.backgroundShapes.map((shape) => shape.text), [
+          'Layout',
+        ]);
+        final PmlSlide saved = SlideDeserializer()
+            .readBytes(SlideSerializer().writeBytes(deck))
+            .slides
+            .single;
+        expect(saved.backgroundShapes.map((shape) => shape.text), ['Layout']);
+        expect(saved.shapes.single.text, 'Slide');
+      });
+    }
 
     test('block arrow presets survive import', () {
       final PmlPresentation deck = _deck(<String>[

@@ -1069,7 +1069,9 @@ class RenderSlideStage extends RenderBox implements MouseTrackerAnnotation {
     final sample = samples?[shape.id] ?? PmlAnimSample.identity;
     if (!_staticSample(sample)) return null;
     final int? own = int.tryParse(shape.fillColor, radix: 16);
-    if (own != null && !_growsWithText(rect)) {
+    if (own != null &&
+        !_growsWithText(rect) &&
+        shape.preset == PmlShapePreset.rect) {
       return Color(0xFF000000 | own);
     }
     if (own != null) return null;
@@ -1080,40 +1082,50 @@ class RenderSlideStage extends RenderBox implements MouseTrackerAnnotation {
         ? Rect.fromLTWH(rect.left, rect.top, rect.width, 208)
         : rect;
     Color? background = _slidePaper(target);
-    for (final previous in target.shapes) {
-      if (identical(previous, shape)) break;
-      if (skipIds?.contains(previous.id) ?? false) continue;
-      final previousSample = samples?[previous.id] ?? PmlAnimSample.identity;
-      if (!previousSample.visible || previousSample.opacity <= 0.01) continue;
-      // Animated transforms/clips can expose arbitrary mixed backing. The
-      // authored colour is safer than treating it as untouched dark paper.
-      if (!_staticSample(previousSample)) return null;
-      final Rect previousRect = _shapeRect(previous);
-      final double radians = previous.transform.rotationDegrees * math.pi / 180;
-      final double cosine = math.cos(radians).abs();
-      final double sine = math.sin(radians).abs();
-      final Rect bounds = Rect.fromCenter(
-        center: previousRect.center,
-        width: previousRect.width * cosine + previousRect.height * sine,
-        height: previousRect.width * sine + previousRect.height * cosine,
-      );
-      if (!bounds.overlaps(textBounds)) continue;
-      if (previous.visual != null ||
-          previous.table != null ||
-          previous.hasMedia ||
-          previous.text.isNotEmpty ||
-          previous.transform.rotationDegrees.abs() >= 0.01) {
-        background = null;
-        continue;
+    for (final List<PmlShape> layer in <List<PmlShape>>[
+      target.backgroundShapes,
+      target.shapes,
+    ]) {
+      final bool decorations = identical(layer, target.backgroundShapes);
+      for (final previous in layer) {
+        if (!decorations && identical(previous, shape)) return background;
+        if (!decorations && (skipIds?.contains(previous.id) ?? false)) continue;
+        final previousSample = decorations
+            ? PmlAnimSample.identity
+            : samples?[previous.id] ?? PmlAnimSample.identity;
+        if (!previousSample.visible || previousSample.opacity <= 0.01) continue;
+        // Animated transforms/clips can expose arbitrary mixed backing. The
+        // authored colour is safer than treating it as untouched dark paper.
+        if (!_staticSample(previousSample)) return null;
+        final Rect previousRect = _shapeRect(previous);
+        final double radians =
+            previous.transform.rotationDegrees * math.pi / 180;
+        final double cosine = math.cos(radians).abs();
+        final double sine = math.sin(radians).abs();
+        final Rect bounds = Rect.fromCenter(
+          center: previousRect.center,
+          width: previousRect.width * cosine + previousRect.height * sine,
+          height: previousRect.width * sine + previousRect.height * cosine,
+        );
+        if (!bounds.overlaps(textBounds)) continue;
+        if (previous.visual != null ||
+            previous.table != null ||
+            previous.hasMedia ||
+            previous.text.isNotEmpty ||
+            previous.preset != PmlShapePreset.rect ||
+            previous.transform.rotationDegrees.abs() >= 0.01) {
+          background = null;
+          continue;
+        }
+        final int? fill = int.tryParse(previous.fillColor, radix: 16);
+        if (fill == null) continue;
+        final bool covers =
+            previousRect.left <= textBounds.left &&
+            previousRect.top <= textBounds.top &&
+            previousRect.right >= textBounds.right &&
+            previousRect.bottom >= textBounds.bottom;
+        background = covers ? Color(0xFF000000 | fill) : null;
       }
-      final int? fill = int.tryParse(previous.fillColor, radix: 16);
-      if (fill == null) continue;
-      final bool covers =
-          previousRect.left <= textBounds.left &&
-          previousRect.top <= textBounds.top &&
-          previousRect.right >= textBounds.right &&
-          previousRect.bottom >= textBounds.bottom;
-      background = covers ? Color(0xFF000000 | fill) : null;
     }
     return background;
   }
@@ -1281,8 +1293,8 @@ class RenderSlideStage extends RenderBox implements MouseTrackerAnnotation {
     Color color, {
     Color? background,
   }) {
-    final double autoSize = (r.height * 0.22).clamp(10.0, 18.0);
-    final double baseSize = shape.fontSizePt > 0 ? shape.fontSizePt : autoSize;
+    final double baseSize = shape.fontSizePt > 0 ? shape.fontSizePt : 16;
+
     final int lines = _growsWithText(r)
         ? 32
         : (r.height / (baseSize * 1.2)).ceil().clamp(1, 32);
@@ -1730,16 +1742,11 @@ class RenderSlideStage extends RenderBox implements MouseTrackerAnnotation {
       Paint()..color = _slidePaper(target),
     );
     for (final PmlShape shape in target.backgroundShapes) {
-      if (skipIds != null && skipIds.contains(shape.id)) {
-        continue;
-      }
-      final PmlAnimSample sample = samples?[shape.id] ?? PmlAnimSample.identity;
-      if (!sample.visible || sample.opacity <= 0.01) {
-        continue;
-      }
+      // Master/layout shape IDs are scoped to their source parts. Foreground
+      // animation and morph IDs must never hide or transform decorations.
       final Rect r = _shapeRect(shape);
       canvas.save();
-      PaintSlideMotion.applyShapeSample(canvas, r, sample);
+      _rotateCanvas(canvas, shape, r);
       _paintShapeInRect(canvas, shape, r);
       canvas.restore();
     }
