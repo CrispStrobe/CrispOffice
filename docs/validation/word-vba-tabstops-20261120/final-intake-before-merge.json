@@ -1,0 +1,2535 @@
+{
+  "schema": "quds-word-vba-final-intake-before-merge/v1",
+  "audited_at_utc": "2026-11-20T14:42:40.326804+00:00",
+  "repository": "CrispStrobe/quds_office_suite",
+  "target_commit": "5b4a85ccf796ad68c4f96edd4119280f11295e53",
+  "target_tree": "6eeb127a78a32ea11e045d4cf97a11c52a8a606c",
+  "qualified_source": "b5410b107a83f213e27c1476e766551b3f6cd6a4",
+  "branches": [
+    {
+      "ref": "refs/heads/codex/odt-field-continuation-20261117",
+      "sha": "c34945761e7991f5fe49037d79529acdd260b31c",
+      "status": "historically_superseded_equivalent",
+      "accepted_ancestor": "2c47165d01d01cc883135a434ac9f6591ce6e770"
+    },
+    {
+      "ref": "refs/heads/codex/word-powerpoint-vba-expansion-20261120",
+      "sha": "0f6239396ff3328473a5f57c280b982d57e33a08",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/heads/codex/word-vba-ranges-20261120",
+      "sha": "5b4a85ccf796ad68c4f96edd4119280f11295e53",
+      "status": "target"
+    },
+    {
+      "ref": "refs/heads/codex/zotero-research-tables-20261120",
+      "sha": "34491bca22a2989dd89d9da3c853f5e57de5464f",
+      "status": "uncovered"
+    },
+    {
+      "ref": "refs/heads/docs/ods-color-scale",
+      "sha": "58fdddfbcf198a8c0e38e32f6fcc9d6604e95283",
+      "status": "historically_superseded_equivalent",
+      "accepted_ancestor": "4eaca83b192897edad82658107dfeb5bcbed0920"
+    },
+    {
+      "ref": "refs/heads/docs/ods-data-bar",
+      "sha": "69d14f84cabd3931b7640c1654b401c89faba766",
+      "status": "historically_superseded_equivalent",
+      "accepted_ancestor": "52c73ae4dbadf2ca00a5d619144350ccc353b31a"
+    },
+    {
+      "ref": "refs/heads/feat/ods-color-scale",
+      "sha": "74ce9ffb816c70c0d2ae50b91ec52a614f26d688",
+      "status": "historically_superseded_equivalent",
+      "accepted_ancestor": "4584d5f319aab198f1d705f48b4d6647e6cbabea"
+    },
+    {
+      "ref": "refs/heads/feat/ods-data-bar",
+      "sha": "0a53b8a70128870f3e1df6d18cdb177bb64290ee",
+      "status": "historically_superseded_equivalent",
+      "accepted_ancestor": "b3f41eb4b4bca8ca13676b4114891ea6d9185043"
+    },
+    {
+      "ref": "refs/heads/feat/ods-dynamic-validation-links",
+      "sha": "68a0db23408e4c95d6d283219504c79aea33a6fe",
+      "status": "historically_superseded_equivalent",
+      "accepted_ancestor": "d754bf15b07a24c8a86c8dce339ca749fecd9531"
+    },
+    {
+      "ref": "refs/heads/feat/ods-icon-sets",
+      "sha": "005c708e9f747cb46cf02e12c869b0a2f85ac824",
+      "status": "historically_superseded_equivalent",
+      "accepted_ancestor": "c84d5e16024c502f6c451fd04b9807b1e65f20d3"
+    },
+    {
+      "ref": "refs/heads/feat/ods-time-period-conditions",
+      "sha": "7ef09f2408f467c65427700e65907531ecb26acb",
+      "status": "historically_superseded_equivalent",
+      "accepted_ancestor": "34dc6b6806869570e9ec342e4d7ee0d6951c0ba6"
+    },
+    {
+      "ref": "refs/heads/fix/mail-credential-stores-chrome-20261120",
+      "sha": "a652a205e6daf6b4b8e3baec04db1c1b52fabd0d",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/heads/integrate/office-union-148",
+      "sha": "3abf8f43b0e79c10271bbd046f391e462b8fe6b9",
+      "status": "historically_superseded_equivalent",
+      "accepted_ancestor": "4b2b4e78839d2997a583b7ab1346e2fa537a8ac4"
+    },
+    {
+      "ref": "refs/heads/integrate/recent-pptx",
+      "sha": "4f5c153774ab7492430c2b68653c54e0c08dc2ad",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/heads/main",
+      "sha": "7f2d51a5206059478ea81965ccc95b89a9274ca6",
+      "status": "uncovered"
+    },
+    {
+      "ref": "refs/heads/work/mail-accounts-20261120",
+      "sha": "86e44e87f829b0309ea7b84fd5d390f596fe7f26",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/heads/work/mail-multiple-drafts-20261120",
+      "sha": "b3abdf3b4628a8a703857d69b8f11cd21bc502e1",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/heads/work/mail-outbox-20261120",
+      "sha": "9443612b024114c424ba2f8146e04050d6e049b0",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/heads/work/mail-outbox-management-20261120",
+      "sha": "f682e18063931c8d1dc40c67a7264b9f32185255",
+      "status": "uncovered"
+    }
+  ],
+  "pull_requests": [
+    {
+      "ref": "refs/pull/1/head",
+      "sha": "54f0f8de01416640560519aa9d732f668f603709",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/2/head",
+      "sha": "08b09485588d2b6270f594a07c983689c087587d",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/3/head",
+      "sha": "e550723b0f2a7cd849970f58820d260c36857502",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/4/head",
+      "sha": "09f5ec4b8eba290ff4d65678179854fb6ff6a468",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/5/head",
+      "sha": "da0979a5c6c4273ea68f360ce9a079bfa747384f",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/6/head",
+      "sha": "78ed85f5fd19d44f672dee11420fed261c974f4a",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/7/head",
+      "sha": "e82c997b6df8746fe86fb83b9f416a89bb3e3b80",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/8/head",
+      "sha": "a86a360bf9bd45c729e00b31dd9a97492e23f2e7",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/9/head",
+      "sha": "58de54567d45e38c05dd77064b7607c577374b9d",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/10/head",
+      "sha": "1b1bac125f426b05f868d482e9fbd657d4ffb73a",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/11/head",
+      "sha": "5c1ab430c6911bb11f71d29efa35027ead5ac1d5",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/12/head",
+      "sha": "579f2105cf7fca61536f7e3f9b59004929bdb6c5",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/13/head",
+      "sha": "73b354efdf0f2e7fbe0e87bc67f332a9dfb4903e",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/14/head",
+      "sha": "d4e2a0fcf1fe18e0e5158ac7d86b1f71bf3b70da",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/15/head",
+      "sha": "448eff5aac55054a34eccd4f8a1e79e754909a05",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/16/head",
+      "sha": "78a7b6f4e613c7d18d4bcc6434cda12b50ed184e",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/17/head",
+      "sha": "89c7f06c592edde0c67774e9c7e087d96f52184b",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/18/head",
+      "sha": "f31cf308013ceb4527e3f4de677785894bb1bfc0",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/19/head",
+      "sha": "e8227569a3b90fb21db598483690bd13fe74ddef",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/20/head",
+      "sha": "5278aafd512640608fe06b8f7d357c4cffe8520a",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/21/head",
+      "sha": "1f30a823b30678e3684c98fee6a2cd5c4945c4f2",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/22/head",
+      "sha": "4637ddce4154f4b50105c7322fedc1c75fd02193",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/23/head",
+      "sha": "e002b9584bead9761fac8c7cf818431966d1b1c3",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/24/head",
+      "sha": "9cc8c6e91ff9acf0f52a68aea7c0da69934a2661",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/25/head",
+      "sha": "b6d27c84a72d622f670a7e646e36ba4bd920cfc8",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/26/head",
+      "sha": "5b9ac71db1934252c4b8ae48ac03d4cd976e15ae",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/27/head",
+      "sha": "cde05b85bcd00c26d519d43283fcc6b55a1884e7",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/28/head",
+      "sha": "a8cd28d8af8ca966e8c4259862587ecc9aade2f4",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/29/head",
+      "sha": "7fe296e29e2e1b173580f6854507fc060cb4f080",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/30/head",
+      "sha": "49b447324159595c59e64d8425b54a09f79ec736",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/31/head",
+      "sha": "912f26f21446ef9bdbf4f542535438dae0ded9a9",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/32/head",
+      "sha": "46850ae47e0241733750decb22417a0150e4b0e4",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/33/head",
+      "sha": "4c8036bbf16ac224c3fc102b5c44d8913a512b18",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/34/head",
+      "sha": "09a05d7d60d2a2e1d2547487ad4545c50472834b",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/35/head",
+      "sha": "e59751246a200e7477657d0e4835bf77b153422c",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/36/head",
+      "sha": "21de3c3963b0334068b87fb1c25c787660cb17cf",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/37/head",
+      "sha": "b0efe6c661009ffa463f2bf6d7945216ce1dae4c",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/38/head",
+      "sha": "752a94dfddf69522429f3025f9d25702499cb6da",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/39/head",
+      "sha": "b85501b2810e537e21040d82528d8dbaa6fdcf15",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/40/head",
+      "sha": "8855b88a96b5c94349e3b5278c339228a1688c3e",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/41/head",
+      "sha": "b69bad50fb235118a5334b325683cd1524b3e3d1",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/42/head",
+      "sha": "8fc3d06be36da5c2176feb107c14245f61650d75",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/43/head",
+      "sha": "20681b8658392212c128f51b4c91f0b638942448",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/44/head",
+      "sha": "866c14f0b3a876e11732bc544dc25a05d8f10524",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/45/head",
+      "sha": "0a26be7f136ad3e57dbe894b0bc4cdb0602addd0",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/46/head",
+      "sha": "e6fdd16849aaf7ccbaf50f2593d7a92b6a82e630",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/47/head",
+      "sha": "fc37658c907edf6687eccb9564d3046283b49a3a",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/48/head",
+      "sha": "d6d6866c0f4ddbbaa196e1a5eb7ff9e31007fdea",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/49/head",
+      "sha": "a5febc3362d2fccdb979f012a5296af72e465797",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/50/head",
+      "sha": "428679a33381f943a8ae63117d4207f01dd15462",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/51/head",
+      "sha": "8769019fb8be5483939edd4655dd88005e2515c4",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/52/head",
+      "sha": "01f62eb1812ca54827cc14e074e03abd82f963d7",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/53/head",
+      "sha": "2e3074c8e1860f9503b059a87870911afc3eee7d",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/54/head",
+      "sha": "49ba086251ba61032f15b3e7b726fc921874fd12",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/55/head",
+      "sha": "f5b67cc296b7d27e4f3a480dc46160f472d78694",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/56/head",
+      "sha": "ca9e4f052d988d77f9ded3a6b13f840f76a26159",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/57/head",
+      "sha": "0dd9dd9763c2eb6bdc4f6b6e30fb7726035e7d4b",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/58/head",
+      "sha": "864e674795eb422855df2b26ccc375d3255e61a2",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/59/head",
+      "sha": "e5daa20587e10971e8cb97d82a5495584b5c1553",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/60/head",
+      "sha": "988f423b9b95037d8f5273ee368b58ceedab0667",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/61/head",
+      "sha": "b23ee557ea121774833c7a188a49189e4f80ce70",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/62/head",
+      "sha": "089e53fce443ca2169fc44f3700e1b23780d2c95",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/63/head",
+      "sha": "2480f0988167068d9aeddf6573b9c2c6871a8481",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/64/head",
+      "sha": "4a122b3b71ddc539f8ffda5541b7e6ab0f1dce8f",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/65/head",
+      "sha": "3bb505ce5fea00236238e37c450ace8b18e4e34e",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/66/head",
+      "sha": "379fa8663c81f32b4328415f56c776746ccc23bc",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/67/head",
+      "sha": "0ee0a8320875248adac9718cae2e67875b6b932c",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/68/head",
+      "sha": "82215309dc64ef8c473fec3c4892cf0c9884bc91",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/69/head",
+      "sha": "ec94795114d11c73bd8fc689fde364cc110b5cd3",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/70/head",
+      "sha": "9ad9ba92133932b0a3824619168f07dd218c2b26",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/71/head",
+      "sha": "108b4087c15f5640dbc906ad243f3030b7592f3f",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/72/head",
+      "sha": "57bc0f98eb94997b73f22cc267bd8d61dccaee59",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/73/head",
+      "sha": "8a0107cbca4b00766a2a76d43a1db244c006e976",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/74/head",
+      "sha": "1675bbbb7c03090a87b6df783e3741e2cbc1768f",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/75/head",
+      "sha": "f27e9b0e7ee9b1db8f6b7393abd752dab67d1ca5",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/76/head",
+      "sha": "1deb61cf78add61f5d26bea36ff596d769d06a87",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/77/head",
+      "sha": "bb9866d25bf98e5aa42c10ce4679835dbc8617f1",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/78/head",
+      "sha": "27137499f8cc1a946bfcdd7446f43945ea81d2be",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/79/head",
+      "sha": "06828a5e63365495c86a4a0e1c68ecd113f891e5",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/80/head",
+      "sha": "5aa16674e64cc01b89aec017c85afd3899cd96d5",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/81/head",
+      "sha": "eb95211e4d82933ba5b1db23ea7b79938b77909f",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/82/head",
+      "sha": "4497c737623c1339d2422487d53941c20472bac9",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/83/head",
+      "sha": "331be9688e2de1feb52635490b534042dea10c27",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/84/head",
+      "sha": "846c15f0de92a17bb2720e295b9a40412ebcb6fb",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/85/head",
+      "sha": "9f2dbd81c2289a2285521e1491a9c860c4b59646",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/86/head",
+      "sha": "001367e89cb0034cf33467783d7258bb0800deb9",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/87/head",
+      "sha": "7dfcfe9fcbf7e6d0d0abc14de7ed1ed901fa99c2",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/88/head",
+      "sha": "5fb8762e771fe68be8bc8025fe26e159d14eda8e",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/89/head",
+      "sha": "31a26383639dc7f751cfb0ea543ec7454a537ff6",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/90/head",
+      "sha": "6da74faa9160275df9c10a864c758033c92f114d",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/91/head",
+      "sha": "5cff80ce4ba85e645f21a31efb4fa4d9043b7e79",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/92/head",
+      "sha": "e8cb60efc2360be9bb72db7af8e4c675edf5b76f",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/93/head",
+      "sha": "5088f3ab7e81f353593f16fcaa86d1467d4e1af9",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/94/head",
+      "sha": "8221b0081b02af33101ca7f58438e69e487d2bf6",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/95/head",
+      "sha": "f862fe550bc8b7d3afcdb74016ccfefd7477fd20",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/96/head",
+      "sha": "a733c9f3367b9833f242100fcda0cff9e92767ff",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/97/head",
+      "sha": "8e94cf878cfbdeb13482f37f7848ef5a400425f3",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/98/head",
+      "sha": "a920b13aef776e0fb8a2ce3cc32848c2e7c0166a",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/99/head",
+      "sha": "434a26933501eb288a1b16ffd9f971a5fe3b3bc7",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/100/head",
+      "sha": "946942a1e30332892aaf19a068ca5a29470d682a",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/101/head",
+      "sha": "cf60a17bcd825dc9b4ecdf840d54e6a0271d3647",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/102/head",
+      "sha": "1549a9c7884eb688732262398b5d9859a68103eb",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/103/head",
+      "sha": "e15205c97f0fe0c7fcc5c3441e72cb0e9a3bdc01",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/104/head",
+      "sha": "2a6f3a94ce1d4a5ba6cddc1687a075191448da3d",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/105/head",
+      "sha": "6f1abf273bd10d7ebe5641661dd307c492f897c2",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/106/head",
+      "sha": "7686ec52876288e6799023fd686af79228236826",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/107/head",
+      "sha": "8471633ed09e2a49ba35ff162a2bac5eb04073c9",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/108/head",
+      "sha": "3ec638bd7de5cb6648774abbf14da1c315f5e418",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/109/head",
+      "sha": "b842ae4b4df892ec5f058f6207589953f3e9dae9",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/110/head",
+      "sha": "35ae6328a884975c23d2aa5001bf0df05a436f91",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/111/head",
+      "sha": "d1738017afd3696adbd2e895678b1fa7d26065ec",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/112/head",
+      "sha": "12601a41b6785dcd1d617adba8e13297d9af4bc0",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/113/head",
+      "sha": "93c832f53982a9f5956f19ae0cb9418f55fac8c0",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/114/head",
+      "sha": "867df7f257eac69adfe3355c051cdb2f773c53ac",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/115/head",
+      "sha": "b54ef7d2955f44266a87d9067d0e4c332e868c54",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/116/head",
+      "sha": "6a32a919325d71c121c63e3879cfd1b28d64312e",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/117/head",
+      "sha": "8b19ead89800f81ed9743ffbaf3279ac88fdd06d",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/118/head",
+      "sha": "4391669c881cbcba372c742d2300c24cdc465a2f",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/119/head",
+      "sha": "2c7d58d2e83e542655db7e9bbcc04b6bade44902",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/120/head",
+      "sha": "e37ccdb47c047f6a0250585cf5cb20efc17573b4",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/121/head",
+      "sha": "a86a4ec6a231ed66cd868ea1ece3acc3aea2bb8f",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/122/head",
+      "sha": "54a3a8593bdb34dd7c1f737960aa732d401fc2da",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/123/head",
+      "sha": "1138cffdc4a1c909b2b149db80312037c21909d8",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/124/head",
+      "sha": "b005a46b32c8b3ec92d60bb99147f2aa3af51f06",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/125/head",
+      "sha": "af2a61862d23572b108bd7ef7719c7f575348d83",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/126/head",
+      "sha": "8fae38da39c3c45344e723abca92c9330f15a791",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/127/head",
+      "sha": "8b70fdb42fb2d974587c75437b3adb5018190159",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/128/head",
+      "sha": "814f165cb24a5b719dde65495f64d85f86563328",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/129/head",
+      "sha": "bb5a97a8d7c5f9ffa261e64753f53a3c044b610f",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/130/head",
+      "sha": "84076f8ec8e4604a631cbaad9b88b030e508f0bc",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/131/head",
+      "sha": "f965fce6a54141b753a22f1e1b6c2fabba44e389",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/132/head",
+      "sha": "0ecd1615b96d7b90156c1e913e105d467efe9a39",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/133/head",
+      "sha": "f87533cdbf9f98e5cfc11d21d8903f8501212ab8",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/134/head",
+      "sha": "128a187d69555db80890c2a1945a442b951f9c74",
+      "status": "historically_superseded_equivalent",
+      "accepted_ancestor": "d790bca444eef0e160a75ce3d8cb555af541004f"
+    },
+    {
+      "ref": "refs/pull/135/head",
+      "sha": "74ce9ffb816c70c0d2ae50b91ec52a614f26d688",
+      "status": "historically_superseded_equivalent",
+      "accepted_ancestor": "4584d5f319aab198f1d705f48b4d6647e6cbabea"
+    },
+    {
+      "ref": "refs/pull/136/head",
+      "sha": "58fdddfbcf198a8c0e38e32f6fcc9d6604e95283",
+      "status": "historically_superseded_equivalent",
+      "accepted_ancestor": "4eaca83b192897edad82658107dfeb5bcbed0920"
+    },
+    {
+      "ref": "refs/pull/137/head",
+      "sha": "68a0db23408e4c95d6d283219504c79aea33a6fe",
+      "status": "historically_superseded_equivalent",
+      "accepted_ancestor": "d754bf15b07a24c8a86c8dce339ca749fecd9531"
+    },
+    {
+      "ref": "refs/pull/138/head",
+      "sha": "b8ddaaeb581e010467de304c828764d353149102",
+      "status": "historically_superseded_equivalent",
+      "accepted_ancestor": "d6010059644b34accd6f188e0e2a4863ab63e318"
+    },
+    {
+      "ref": "refs/pull/139/head",
+      "sha": "6df76a0dff0051312faa04317af41d479dd94162",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/140/head",
+      "sha": "c34945761e7991f5fe49037d79529acdd260b31c",
+      "status": "historically_superseded_equivalent",
+      "accepted_ancestor": "2c47165d01d01cc883135a434ac9f6591ce6e770"
+    },
+    {
+      "ref": "refs/pull/141/head",
+      "sha": "0a53b8a70128870f3e1df6d18cdb177bb64290ee",
+      "status": "historically_superseded_equivalent",
+      "accepted_ancestor": "b3f41eb4b4bca8ca13676b4114891ea6d9185043"
+    },
+    {
+      "ref": "refs/pull/142/head",
+      "sha": "69d14f84cabd3931b7640c1654b401c89faba766",
+      "status": "historically_superseded_equivalent",
+      "accepted_ancestor": "52c73ae4dbadf2ca00a5d619144350ccc353b31a"
+    },
+    {
+      "ref": "refs/pull/143/head",
+      "sha": "83f8c380f9271b6bf34a300c3aedc19442cb61f1",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/144/head",
+      "sha": "a1e026b496f91b54bbd3017aae54717bf25a5586",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/145/head",
+      "sha": "005c708e9f747cb46cf02e12c869b0a2f85ac824",
+      "status": "historically_superseded_equivalent",
+      "accepted_ancestor": "c84d5e16024c502f6c451fd04b9807b1e65f20d3"
+    },
+    {
+      "ref": "refs/pull/146/head",
+      "sha": "a7f144cc983f2df7c16d88f8644ad67a9254c3d0",
+      "status": "historically_superseded_equivalent",
+      "accepted_ancestor": "0ff7d23929e4640af6c1d57f87c7ac71b73d2ed4"
+    },
+    {
+      "ref": "refs/pull/147/head",
+      "sha": "cee6e2632f891a3fe21c5c02d6bf508805973051",
+      "status": "historically_superseded_equivalent",
+      "accepted_ancestor": "bb5556e8cc4cb73e2c668b5319a2844a20c6c50c"
+    },
+    {
+      "ref": "refs/pull/148/head",
+      "sha": "e3831cdde529aa0c2368845cd72c1b9b65154665",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/149/head",
+      "sha": "3abf8f43b0e79c10271bbd046f391e462b8fe6b9",
+      "status": "historically_superseded_equivalent",
+      "accepted_ancestor": "4b2b4e78839d2997a583b7ab1346e2fa537a8ac4"
+    },
+    {
+      "ref": "refs/pull/150/head",
+      "sha": "6d97fedccde17244a917ee7d3372adebe5494089",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/151/head",
+      "sha": "7ef09f2408f467c65427700e65907531ecb26acb",
+      "status": "historically_superseded_equivalent",
+      "accepted_ancestor": "34dc6b6806869570e9ec342e4d7ee0d6951c0ba6"
+    },
+    {
+      "ref": "refs/pull/152/head",
+      "sha": "da9c956ec5d65c0e5a9f9ea84c2b0bca98e824a0",
+      "status": "historically_superseded_equivalent",
+      "accepted_ancestor": "23f3b4204fce45d38a103e3159bdc7f1e8d37c4e"
+    },
+    {
+      "ref": "refs/pull/153/head",
+      "sha": "2e013f26c7d4db54ecabe2c955117cbce5379408",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/154/head",
+      "sha": "295752ff93b24bafc510e60197b62faa647e2aa3",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/155/head",
+      "sha": "536ee2086ce46ab629d4d77144d1ca22a43e3c19",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/156/head",
+      "sha": "f4aa218c87293527b3e2b7514500a28d13bd8f70",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/157/head",
+      "sha": "9fc211f6c72be9495767bd7cacfd8df51abf2fad",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/158/head",
+      "sha": "5dd3eb7c1434f0c1063290d5698fa5c760c201e2",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/159/head",
+      "sha": "2292548eb69de2dbb5240ab9da59256f362137c6",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/160/head",
+      "sha": "8cbdb9d9a05ff7f0e795efe0ee7848b196f424a3",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/161/head",
+      "sha": "acfa3c2bf543debd2fff518304ab514ab677418b",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/162/head",
+      "sha": "4600c0ebc9ac5e6acabd92935821d1c15315f2c1",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/163/head",
+      "sha": "ce4d3d19a21eae96a473291ffb9f47ac3be6a74c",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/164/head",
+      "sha": "fb1fd4dc3edda824c3e043c035dbfad1f0fe0869",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/165/head",
+      "sha": "8d74db5da2992e60c7f17b58cd354b874a1ce33a",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/166/head",
+      "sha": "3668ed92829dfa012ec5b129943a86738ebb7992",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/167/head",
+      "sha": "a40a26663f7a2c6b7fb8de91540fd04b9875ed9c",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/168/head",
+      "sha": "6c993f7406037ba462c6aea32e7e6afeebd28c03",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/169/head",
+      "sha": "4600c0ebc9ac5e6acabd92935821d1c15315f2c1",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/170/head",
+      "sha": "ff1518517dd9f67e214ff56fe7eef06349f5223a",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/171/head",
+      "sha": "637b67c58482e40a3244c590ce77c08b9fc2740e",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/172/head",
+      "sha": "0dc05c17844249b479357ea0ec5f8f02252a530f",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/173/head",
+      "sha": "b0a9bd3f1b46ac89021d1b7e49c32980ca4d181e",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/174/head",
+      "sha": "59e0a7c232e7380021a8bda4477999205da0f8ae",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/175/head",
+      "sha": "c320f28347f1cd292b848be2cf72998d41f8a6ac",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/176/head",
+      "sha": "16cbbebdcf7781564658cc7636473c7d04846b38",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/177/head",
+      "sha": "3f0277c8c4d317c3607e3bd6a2bf0e9aaf73bd3d",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/178/head",
+      "sha": "2122066f0eccf06a6f2c3c523c5715a7233bb95d",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/179/head",
+      "sha": "5ec15bdd4c5016b320f0fe8edff36b1da69fa44f",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/180/head",
+      "sha": "8717d8515f0f07875e0d7ed7a0ad73fa319cb594",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/181/head",
+      "sha": "906296bad785daaf7be85ec838361bee18ca88a9",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/182/head",
+      "sha": "0cee7ea9701e2d75e1385f5e16ded69cbaf0e387",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/183/head",
+      "sha": "f2b0769cf5533fd4e7ee335adab532c98c677857",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/184/head",
+      "sha": "c19ac32d1e443ce277ccc80f7c80107e33fb40c3",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/185/head",
+      "sha": "e42ca64ba0dd4c687a56947ba0122cf53a15b843",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/186/head",
+      "sha": "98f7044252015e1d6a3bcddeb4e0133f6c88dbc6",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/187/head",
+      "sha": "217f2abb07eb690d52fd0d4cc513032aaa7f4105",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/188/head",
+      "sha": "d2ec54dbfc6e42ea929b872fd0b36c751d4a7a33",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/189/head",
+      "sha": "37b8a738d7701b5e61ed282c0d9a25e6a73f97f9",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/190/head",
+      "sha": "13d87f0f151a1f20e81402788c54beb9ada8f030",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/191/head",
+      "sha": "1d762d4c369795175b55a4ecb9c44efd29f041b1",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/192/head",
+      "sha": "0601d2790c7636bc02d53430f6e99f471e8ac83e",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/193/head",
+      "sha": "4cf5831d01ace0ae804a176ec82ff2d27ce7fac3",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/194/head",
+      "sha": "e77d0dab229bc0ea4c195a164771d3c44809f0f0",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/195/head",
+      "sha": "d42626a4c0742a955ab27b700c7138fd69d99298",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/196/head",
+      "sha": "555fc99fdeb8ef7f3043513203cb16b243a4a9d7",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/197/head",
+      "sha": "f20b3c61d28918cd75526c64852c41fae943acf3",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/198/head",
+      "sha": "623057111a9179552eb02b21a753a1728de9905d",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/199/head",
+      "sha": "107155216505590e2eabfb93fc67cb908ad6173d",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/200/head",
+      "sha": "4b2ad7995c1ddff052232c21749d847701d77f96",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/201/head",
+      "sha": "3c1764f5ff8bf9f89e090ef4e04e3142c4ccf90a",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/202/head",
+      "sha": "d98c8ae020a60715fbb02f5332b2f3414fb6805b",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/203/head",
+      "sha": "aa9fb9de14347ed69182be90f13c99a443a0ecbb",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/204/head",
+      "sha": "3db248be978b24d0693d1133505d9be200fd1256",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/205/head",
+      "sha": "82b20dc8b52d0b95efeff590c6023ed84704fa7a",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/206/head",
+      "sha": "bba11ff1b23b2e8c0cdc0d872ce31394ada83bf2",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/207/head",
+      "sha": "dde2b56066746223b2b313cbfb0ce8dba55dc6bd",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/208/head",
+      "sha": "de9d21f9014060c14263ce17fe323d5fdb063d11",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/209/head",
+      "sha": "6275d21246040e03f6264b27171992c88d1474a2",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/210/head",
+      "sha": "3abffb94dcf33a2766a4579d296d0ef09c9e35cd",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/211/head",
+      "sha": "cacae8569814e4cb81f58d358734d31431f102be",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/212/head",
+      "sha": "482fbd99dd8d3d5aff7d773fa87454f4d324028d",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/213/head",
+      "sha": "0e03878b028ec25ed3d84a790633433eafc3bede",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/214/head",
+      "sha": "dc93a176f8efc98feff9c25565fb036175793a54",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/215/head",
+      "sha": "cc061e72bd167cdaf4a99d3c0b714f27cb93b2c8",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/216/head",
+      "sha": "ab833975409abfb207f3a6a1a146183a4a5198fd",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/217/head",
+      "sha": "fd17f6c4e0ffc22b71e52dcc7859fd95f72f30c7",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/218/head",
+      "sha": "6626ad430a54122e4514cc2870fdcee18760682f",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/219/head",
+      "sha": "3003272fc2bc1f77bdb1355aa7cb27356dfbc61b",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/220/head",
+      "sha": "1441665236401e94ccf03ffa694c7434bb227ef3",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/221/head",
+      "sha": "177f29d3f9450a58f41189b462b0814aad37e45c",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/222/head",
+      "sha": "7be53768501bb6df426eeb9d05c921e393ded02f",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/223/head",
+      "sha": "a31616d3567a43307251e13a9728cf92fd8690c6",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/224/head",
+      "sha": "38c9c297c12fca3422b8f758e7b1afbdabbf064c",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/225/head",
+      "sha": "4973e712045bdcf45fd36dcfe37d380c52265d3c",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/226/head",
+      "sha": "a56397df5f53b991f5016f3cc8e1ab53b7ce12f1",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/227/head",
+      "sha": "1ceae221d37e733f0195d35622a05f896a2d13a1",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/228/head",
+      "sha": "f3ed8d74a016bc1e826dbaf056397e887d765b43",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/229/head",
+      "sha": "0c12d087e1d21b710c9fe224a06a93d526f0721e",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/230/head",
+      "sha": "3c137a66e8a434f5a90e80f5094bfaa25354067a",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/231/head",
+      "sha": "754d30d199b6f7dfd52b2772a27cc37a3f8d3dd8",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/232/head",
+      "sha": "8b09e0ca6667c00db81b613c40b6d275bc20471a",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/233/head",
+      "sha": "20b2ecf572f8fd5663a728529da7bf5c7ebbda1d",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/234/head",
+      "sha": "228d13d949859c66c58cf51addfbb03b09c7365d",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/235/head",
+      "sha": "596fb68f64c447177ed202a40f890c20205a0270",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/236/head",
+      "sha": "7319b220ab2e64b440e6f63d299eb747366a24d3",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/237/head",
+      "sha": "712d0ea558a01cabff25a83294a29b8d57ec25d4",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/238/head",
+      "sha": "40a8f8eb76bd9bf51205fa0cb9f576ba497ad76b",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/239/head",
+      "sha": "06f119566235aa3765445526f5ffab48832b1a31",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/240/head",
+      "sha": "6c23d94472f741aceff6aef0de0e6ef847195afe",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/241/head",
+      "sha": "aad737dd79c034b831a8957daa4165c6c64e35e5",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/242/head",
+      "sha": "84d02025fade09c80f3f58942b466f4522eb4434",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/243/head",
+      "sha": "a059c0249a25bef602640c8b8d504bd8da41c619",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/244/head",
+      "sha": "2fd61c3353dc22ee36ed1bc1a69df470a9423230",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/245/head",
+      "sha": "d46d4ef394ed7cafd40bc266c793f8c0df6ec57f",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/246/head",
+      "sha": "d0c9007480ba518022836e017802875614e6205c",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/247/head",
+      "sha": "baf6d1bc53b611e9fb37082ca69c409e5f8d6381",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/248/head",
+      "sha": "56d5fdf15a20ced764561a1ac2429c2c37a6e780",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/249/head",
+      "sha": "a2b87ee3f471da500423055e86ba2614fc053cae",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/250/head",
+      "sha": "9443612b024114c424ba2f8146e04050d6e049b0",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/251/head",
+      "sha": "86e44e87f829b0309ea7b84fd5d390f596fe7f26",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/252/head",
+      "sha": "0f6239396ff3328473a5f57c280b982d57e33a08",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/253/head",
+      "sha": "4b6bc01be2c95008c320b5a26615828191cf1d9e",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/254/head",
+      "sha": "f682e18063931c8d1dc40c67a7264b9f32185255",
+      "status": "uncovered"
+    },
+    {
+      "ref": "refs/pull/255/head",
+      "sha": "b3abdf3b4628a8a703857d69b8f11cd21bc502e1",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/pull/256/head",
+      "sha": "34491bca22a2989dd89d9da3c853f5e57de5464f",
+      "status": "uncovered"
+    }
+  ],
+  "upstream": [
+    {
+      "ref": "refs/remotes/upstream/ci/flutter-workspace",
+      "sha": "aca2f66941832bd0b19b436baeab1656a1b7de98",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/remotes/upstream/cursor/class-certificates-2db8",
+      "sha": "f45099688e7a3f67a1302efdb442830d052f2240",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/remotes/upstream/cursor/cloud-agent-1790580069020-0rk1h",
+      "sha": "9930be8df44ffe117fb22778c514eea0ee73ce21",
+      "status": "ancestor"
+    },
+    {
+      "ref": "refs/remotes/upstream/main",
+      "sha": "15c5d29b63fb17a93c7fb3426a8fd4d95a32f1ba",
+      "status": "ancestor"
+    }
+  ],
+  "historical_equivalence_proofs": [
+    {
+      "historical_head": "005c708e9f747cb46cf02e12c869b0a2f85ac824",
+      "accepted_ancestor": "c84d5e16024c502f6c451fd04b9807b1e65f20d3",
+      "comparison_base": "16e2477ff93f7a1ec5c6ed78491f2716ce4d1658",
+      "accepted_is_ancestor": true,
+      "changed_paths": [
+        "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_reader.dart",
+        "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_writer.dart",
+        "packages/quds_office_engine/lib/src/sheet/model/sml_analysis.dart",
+        "packages/quds_office_engine/lib/src/sheet/model/sml_conditional_format.dart",
+        "packages/quds_office_engine/lib/src/sheet/serial/sheet_serial.dart",
+        "packages/quds_office_engine/test/ods_sheet_writer_test.dart",
+        "packages/quds_office_engine/test/sheet_save_cache_and_freeze_test.dart"
+      ],
+      "changed_path_count": 7,
+      "matches_previous_path_inventory": true,
+      "changed_modes_types_objects_exact": true,
+      "historical_tree": "097bb5511b2ddf2e00a398da7055b310693fe054",
+      "accepted_tree": "097bb5511b2ddf2e00a398da7055b310693fe054",
+      "whole_tree_equal": true,
+      "verified": true
+    },
+    {
+      "historical_head": "0a53b8a70128870f3e1df6d18cdb177bb64290ee",
+      "accepted_ancestor": "b3f41eb4b4bca8ca13676b4114891ea6d9185043",
+      "comparison_base": "d754bf15b07a24c8a86c8dce339ca749fecd9531",
+      "accepted_is_ancestor": true,
+      "changed_paths": [
+        "docs/office-remaining-gaps.md",
+        "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_reader.dart",
+        "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_writer.dart",
+        "packages/quds_office_engine/lib/src/sheet/model/sml_analysis.dart",
+        "packages/quds_office_engine/lib/src/sheet/model/sml_conditional_format.dart",
+        "packages/quds_office_engine/lib/src/sheet/serial/sheet_serial.dart",
+        "packages/quds_office_engine/test/ods_sheet_writer_test.dart",
+        "packages/quds_office_engine/test/sheet_save_cache_and_freeze_test.dart"
+      ],
+      "changed_path_count": 8,
+      "matches_previous_path_inventory": true,
+      "changed_modes_types_objects_exact": true,
+      "historical_tree": "b3345f76c2e3cd8e1bad13b554f2d24555aea9ce",
+      "accepted_tree": "b3345f76c2e3cd8e1bad13b554f2d24555aea9ce",
+      "whole_tree_equal": true,
+      "verified": true
+    },
+    {
+      "historical_head": "128a187d69555db80890c2a1945a442b951f9c74",
+      "accepted_ancestor": "d790bca444eef0e160a75ce3d8cb555af541004f",
+      "comparison_base": "fdec8c24fde94fbffee212a7541b0cb236f682e4",
+      "accepted_is_ancestor": true,
+      "changed_paths": [
+        "docs/PROOFING.md"
+      ],
+      "changed_path_count": 1,
+      "matches_previous_path_inventory": true,
+      "changed_modes_types_objects_exact": true,
+      "historical_tree": "cc9dd97799056d82ee604ca071c023cd4a7d63c1",
+      "accepted_tree": "cc9dd97799056d82ee604ca071c023cd4a7d63c1",
+      "whole_tree_equal": true,
+      "verified": true
+    },
+    {
+      "historical_head": "3abf8f43b0e79c10271bbd046f391e462b8fe6b9",
+      "accepted_ancestor": "4b2b4e78839d2997a583b7ab1346e2fa537a8ac4",
+      "comparison_base": "bb5556e8cc4cb73e2c668b5319a2844a20c6c50c",
+      "accepted_is_ancestor": true,
+      "changed_paths": [
+        "docs/validation/gector-office-resume-20261117/README.md",
+        "docs/validation/gector-office-resume-20261117/dependency-baseline.json",
+        "docs/validation/gector-office-resume-20261117/dependency-current.json",
+        "docs/validation/gector-office-resume-20261117/dependency-delta.json",
+        "docs/validation/gector-office-resume-20261117/fetched-refs.json",
+        "docs/validation/gector-office-resume-20261117/initial-remote-refs.json",
+        "docs/validation/gector-office-resume-20261117/lexicon-merge-audit.json",
+        "docs/validation/gector-office-resume-20261117/merge-source-audit.json",
+        "docs/validation/gector-office-resume-20261117/original-to-latest-tree-differences.json",
+        "docs/validation/gector-office-resume-20261117/quds-complete-snapshot.json",
+        "docs/validation/gector-office-resume-20261117/remote-snapshot.json",
+        "docs/validation/gector-office-resume-20261117/restore_flutter.py",
+        "docs/validation/german-gector/2026-11-17-followup/EXACT_MODEL_RECOVERY.md",
+        "docs/validation/german-gector/2026-11-17-followup/README.md",
+        "docs/validation/german-gector/2026-11-17-followup/cooperating-ref-audit.json",
+        "docs/validation/german-gector/2026-11-17-followup/editor/README.md",
+        "docs/validation/german-gector/2026-11-17-followup/editor/development-evidence-index.json",
+        "docs/validation/german-gector/2026-11-17-followup/editor/editor-integration-after.jsonl.gz",
+        "docs/validation/german-gector/2026-11-17-followup/editor/editor-integration-after.stderr.gz",
+        "docs/validation/german-gector/2026-11-17-followup/editor/editor-proofing-final-receipt.json.gz",
+        "docs/validation/german-gector/2026-11-17-followup/editor/editor-proofing-final.jsonl.gz",
+        "docs/validation/german-gector/2026-11-17-followup/editor/editor-proofing-final.stderr.gz",
+        "docs/validation/german-gector/2026-11-17-followup/editor/editor-proofing-receipt.json.gz",
+        "docs/validation/german-gector/2026-11-17-followup/editor/editor-proofing.jsonl.gz",
+        "docs/validation/german-gector/2026-11-17-followup/editor/editor-proofing.stderr.gz",
+        "docs/validation/german-gector/2026-11-17-followup/editor/final-summary.json",
+        "docs/validation/german-gector/2026-11-17-followup/editor/studio-after.jsonl.gz",
+        "docs/validation/german-gector/2026-11-17-followup/editor/studio-after.stderr.gz",
+        "docs/validation/german-gector/2026-11-17-followup/editor/studio-before.jsonl.gz",
+        "docs/validation/german-gector/2026-11-17-followup/editor/studio-before.stderr.gz",
+        "docs/validation/german-gector/2026-11-17-followup/german-merge-resolution.json",
+        "docs/validation/german-gector/2026-11-17-followup/incoming-snapshot.json",
+        "docs/validation/german-gector/2026-11-17-followup/integration-decisions.json",
+        "docs/validation/german-gector/2026-11-17-followup/integration/equivalence-audit.json",
+        "docs/validation/german-gector/2026-11-17-followup/integration/fetched-reference-set.json",
+        "docs/validation/german-gector/2026-11-17-followup/integration/imported-historical-evidence.json",
+        "docs/validation/german-gector/2026-11-17-followup/integration/maximal-incoming-details.json",
+        "docs/validation/german-gector/2026-11-17-followup/integration/office-merge-notes.md",
+        "docs/validation/german-gector/2026-11-17-followup/integration/retention-decisions.json",
+        "docs/validation/german-gector/2026-11-17-followup/integration/vendor-equivalence.json",
+        "docs/validation/german-gector/2026-11-17-followup/merge-inputs-index.json",
+        "docs/validation/german-gector/2026-11-17-followup/merge-inputs.tar.xz",
+        "docs/validation/german-gector/2026-11-17-followup/native-threads/check_thread_sweep_audit.py",
+        "docs/validation/german-gector/2026-11-17-followup/native-threads/evidence-index.json",
+        "docs/validation/german-gector/2026-11-17-followup/native-threads/focused-analyze.log.gz",
+        "docs/validation/german-gector/2026-11-17-followup/native-threads/focused-focused-test-results.json.gz",
+        "docs/validation/german-gector/2026-11-17-followup/native-threads/focused-native-backend-config.jsonl.gz",
+        "docs/validation/german-gector/2026-11-17-followup/native-threads/focused-native-backend-config.stderr.gz",
+        "docs/validation/german-gector/2026-11-17-followup/native-threads/focused-runner-inputs-package-cwd.jsonl.gz",
+        "docs/validation/german-gector/2026-11-17-followup/native-threads/focused-runner-inputs-package-cwd.stderr.gz",
+        "docs/validation/german-gector/2026-11-17-followup/native-threads/focused-runner-inputs.jsonl.gz",
+        "docs/validation/german-gector/2026-11-17-followup/native-threads/focused-runner-inputs.stderr.gz",
+        "docs/validation/german-gector/2026-11-17-followup/native-threads/gector-analysis-command.json.gz",
+        "docs/validation/german-gector/2026-11-17-followup/native-threads/gector-analysis.stderr.gz",
+        "docs/validation/german-gector/2026-11-17-followup/native-threads/gector-analysis.stdout.gz",
+        "docs/validation/german-gector/2026-11-17-followup/native-threads/gector-full-command.json.gz",
+        "docs/validation/german-gector/2026-11-17-followup/native-threads/gector-full.stderr.gz",
+        "docs/validation/german-gector/2026-11-17-followup/native-threads/gector-full.stdout.gz",
+        "docs/validation/german-gector/2026-11-17-followup/native-threads/gector-test-identities.json.gz",
+        "docs/validation/german-gector/2026-11-17-followup/native-threads/python-results.json.gz",
+        "docs/validation/german-gector/2026-11-17-followup/native-threads/python-tooling-command.json.gz",
+        "docs/validation/german-gector/2026-11-17-followup/native-threads/python-tooling.stderr.gz",
+        "docs/validation/german-gector/2026-11-17-followup/native-threads/python-tooling.stdout.gz",
+        "docs/validation/german-gector/2026-11-17-followup/native-threads/run_native_thread_sweep.py",
+        "docs/validation/german-gector/2026-11-17-followup/native-threads/runtime-verification.json.gz",
+        "docs/validation/german-gector/2026-11-17-followup/native-threads/thread-sweep-audit-controls-recovery.json",
+        "docs/validation/german-gector/2026-11-17-followup/native-threads/validation-summary.json",
+        "docs/validation/german-gector/2026-11-17-followup/native-threads/workspace-resolution.json.gz",
+        "docs/validation/german-gector/2026-11-17-followup/office-consumer/POST_RESET_VALIDATION.md",
+        "docs/validation/german-gector/2026-11-17-followup/office-consumer/README.md",
+        "docs/validation/german-gector/2026-11-17-followup/office-consumer/SETUP.md",
+        "docs/validation/german-gector/2026-11-17-followup/office-consumer/emergency-recovery.json",
+        "docs/validation/german-gector/2026-11-17-followup/office-consumer/make_fixtures.dart",
+        "docs/validation/german-gector/2026-11-17-followup/office-consumer/post-reset-validation-1-index.json",
+        "docs/validation/german-gector/2026-11-17-followup/office-consumer/post-reset-validation-1.tar.xz",
+        "docs/validation/german-gector/2026-11-17-followup/office-consumer/probe_bookmark_consumers.py",
+        "docs/validation/german-gector/2026-11-17-followup/office-consumer/run_consumers.py",
+        "docs/validation/german-gector/2026-11-17-followup/office-consumer/run_office_cohort.py",
+        "docs/validation/german-gector/2026-11-17-followup/office-review/recovered-source-review-94efdd3c.json",
+        "docs/validation/german-gector/2026-11-17-followup/office/README.md",
+        "docs/validation/german-gector/2026-11-17-followup/office/office-regression-evidence-index.json",
+        "docs/validation/german-gector/2026-11-17-followup/office/office-regression-evidence.tar.xz",
+        "docs/validation/german-gector/2026-11-17-followup/quality/README.md",
+        "docs/validation/german-gector/2026-11-17-followup/quality/RECOVERY.md",
+        "docs/validation/german-gector/2026-11-17-followup/quality/baseline-baseline-replay-plan.json.gz",
+        "docs/validation/german-gector/2026-11-17-followup/quality/baseline-build.log.gz",
+        "docs/validation/german-gector/2026-11-17-followup/quality/baseline-controls.json.gz",
+        "docs/validation/german-gector/2026-11-17-followup/quality/baseline-offline-resolution.json.gz",
+        "docs/validation/german-gector/2026-11-17-followup/quality/baseline-offline-resolution.log.gz",
+        "docs/validation/german-gector/2026-11-17-followup/quality/baseline-quality-build.json.gz",
+        "docs/validation/german-gector/2026-11-17-followup/quality/baseline-snapshot.json.gz",
+        "docs/validation/german-gector/2026-11-17-followup/quality/compare_quality_replay.py",
+        "docs/validation/german-gector/2026-11-17-followup/quality/panels/completion-28.json",
+        "docs/validation/german-gector/2026-11-17-followup/quality/panels/context-83.json",
+        "docs/validation/german-gector/2026-11-17-followup/quality/panels/development-76.json",
+        "docs/validation/german-gector/2026-11-17-followup/quality/panels/holdout-104.json",
+        "docs/validation/german-gector/2026-11-17-followup/quality/panels/original-30.json",
+        "docs/validation/german-gector/2026-11-17-followup/quality/panels/panels.json",
+        "docs/validation/german-gector/2026-11-17-followup/quality/panels/syntax-56.json",
+        "docs/validation/german-gector/2026-11-17-followup/quality/preparation-index.json",
+        "docs/validation/german-gector/2026-11-17-followup/quality/preparation.json",
+        "docs/validation/german-gector/2026-11-17-followup/quality/prepare_panels.py",
+        "docs/validation/german-gector/2026-11-17-followup/quality/prepare_snapshot.py",
+        "docs/validation/german-gector/2026-11-17-followup/quality/recovered-baseline-observations.json",
+        "docs/validation/german-gector/2026-11-17-followup/quality/run_quality_replay.py",
+        "docs/validation/german-gector/2026-11-17-followup/recovery/complete_native_recovery.py",
+        "docs/validation/german-gector/2026-11-17-followup/recovery/dart-analytics-suppression-source-audit.json",
+        "docs/validation/german-gector/2026-11-17-followup/recovery/rebuild_pinned_native.py",
+        "docs/validation/german-gector/2026-11-17-followup/remote-checkpoints.json",
+        "docs/validation/german-gector/2026-11-17-followup/runtime-verification.json",
+        "docs/validation/german-gector/2026-11-17-followup/sein-participles/README.md",
+        "docs/validation/german-gector/2026-11-17-followup/sein-participles/german-full-after.jsonl.gz",
+        "docs/validation/german-gector/2026-11-17-followup/sein-participles/german-full-after.stderr.gz",
+        "docs/validation/german-gector/2026-11-17-followup/sein-participles/german-strict-analysis.txt.gz",
+        "docs/validation/german-gector/2026-11-17-followup/sein-participles/integrated-focused-fixed.jsonl.gz",
+        "docs/validation/german-gector/2026-11-17-followup/sein-participles/integrated-focused-fixed.stderr.gz",
+        "docs/validation/german-gector/2026-11-17-followup/sein-participles/integrated-focused.jsonl.gz",
+        "docs/validation/german-gector/2026-11-17-followup/sein-participles/integrated-focused.stderr.gz",
+        "docs/validation/german-gector/2026-11-17-followup/sein-participles/sein-fail-before.jsonl.gz",
+        "docs/validation/german-gector/2026-11-17-followup/sein-participles/sein-fail-before.stderr.gz",
+        "docs/validation/german-gector/2026-11-17-followup/sein-participles/sein-focused-after.jsonl.gz",
+        "docs/validation/german-gector/2026-11-17-followup/sein-participles/sein-focused-after.stderr.gz",
+        "docs/validation/german-gector/2026-11-17-followup/sein-participles/sein-node-after.jsonl.gz",
+        "docs/validation/german-gector/2026-11-17-followup/sein-participles/sein-node-after.stderr.gz",
+        "docs/validation/german-gector/2026-11-17-followup/sein-participles/summary.json",
+        "docs/validation/german-gector/2026-11-17-followup/workspace-resolution.json",
+        "docs/validation/german-gector/2026-11-17-resume/FINAL_VALIDATION_HARNESS.md",
+        "docs/validation/german-gector/2026-11-17-resume/README.md",
+        "docs/validation/german-gector/2026-11-17-resume/accusative/after-fix-1/focused-receipt.json.gz",
+        "docs/validation/german-gector/2026-11-17-resume/accusative/after-fix-1/focused.jsonl.gz",
+        "docs/validation/german-gector/2026-11-17-resume/accusative/after-fix-1/german_grammar.dart.gz",
+        "docs/validation/german-gector/2026-11-17-resume/accusative/after-fix-2/focused-receipt.json.gz",
+        "docs/validation/german-gector/2026-11-17-resume/accusative/after-fix-2/focused.jsonl.gz",
+        "docs/validation/german-gector/2026-11-17-resume/accusative/after-fix-2/german_grammar.dart.gz",
+        "docs/validation/german-gector/2026-11-17-resume/accusative/after-fix-3/analysis-receipt.json.gz",
+        "docs/validation/german-gector/2026-11-17-resume/accusative/after-fix-3/analysis.log.gz",
+        "docs/validation/german-gector/2026-11-17-resume/accusative/after-fix-3/focused-receipt.json.gz",
+        "docs/validation/german-gector/2026-11-17-resume/accusative/after-fix-3/focused.jsonl.gz",
+        "docs/validation/german-gector/2026-11-17-resume/accusative/archived-files.json",
+        "docs/validation/german-gector/2026-11-17-resume/accusative/before-fix/focused-receipt.json.gz",
+        "docs/validation/german-gector/2026-11-17-resume/accusative/before-fix/focused.jsonl.gz",
+        "docs/validation/german-gector/2026-11-17-resume/accusative/before-fix/german_verb_object_case_test.dart.gz",
+        "docs/validation/german-gector/2026-11-17-resume/accusative/checkpoint-2d7b2a39/regression-receipt.json.gz",
+        "docs/validation/german-gector/2026-11-17-resume/accusative/checkpoint-2d7b2a39/regression.jsonl.gz",
+        "docs/validation/german-gector/2026-11-17-resume/accusative/evidence-index.json.gz",
+        "docs/validation/german-gector/2026-11-17-resume/accusative/setup.log.gz",
+        "docs/validation/german-gector/2026-11-17-resume/accusative/validate_accusative.py.gz",
+        "docs/validation/german-gector/2026-11-17-resume/final-ancestry.json",
+        "docs/validation/german-gector/2026-11-17-resume/final-audit-evidence.index.json",
+        "docs/validation/german-gector/2026-11-17-resume/final-audit-evidence.tar.xz",
+        "docs/validation/german-gector/2026-11-17-resume/final-local-evidence.index.json",
+        "docs/validation/german-gector/2026-11-17-resume/final-local-evidence.tar.xz",
+        "docs/validation/german-gector/2026-11-17-resume/final-native-evidence.index.json",
+        "docs/validation/german-gector/2026-11-17-resume/final-native-evidence.tar.xz",
+        "docs/validation/german-gector/2026-11-17-resume/final-quality-evidence.index.json",
+        "docs/validation/german-gector/2026-11-17-resume/final-quality-evidence.tar.xz",
+        "docs/validation/german-gector/2026-11-17-resume/final-validation.json",
+        "docs/validation/german-gector/2026-11-17-resume/final_validation_suites.json",
+        "docs/validation/german-gector/2026-11-17-resume/latest-incoming-ancestry.json",
+        "docs/validation/german-gector/2026-11-17-resume/latest-incoming-snapshot.json",
+        "docs/validation/german-gector/2026-11-17-resume/latest-integration-decisions.json",
+        "docs/validation/german-gector/2026-11-17-resume/local-validation.json",
+        "docs/validation/german-gector/2026-11-17-resume/native-results.json",
+        "docs/validation/german-gector/2026-11-17-resume/office-columns/after-source-map.json.gz",
+        "docs/validation/german-gector/2026-11-17-resume/office-columns/analysis-command.json.gz",
+        "docs/validation/german-gector/2026-11-17-resume/office-columns/analysis.log.gz",
+        "docs/validation/german-gector/2026-11-17-resume/office-columns/analysis.stderr.gz",
+        "docs/validation/german-gector/2026-11-17-resume/office-columns/archived-files.json",
+        "docs/validation/german-gector/2026-11-17-resume/office-columns/before-command.json.gz",
+        "docs/validation/german-gector/2026-11-17-resume/office-columns/before-normalized-command.json.gz",
+        "docs/validation/german-gector/2026-11-17-resume/office-columns/before-normalized.jsonl.gz",
+        "docs/validation/german-gector/2026-11-17-resume/office-columns/before-normalized.stderr.gz",
+        "docs/validation/german-gector/2026-11-17-resume/office-columns/before.jsonl.gz",
+        "docs/validation/german-gector/2026-11-17-resume/office-columns/before.stderr.gz",
+        "docs/validation/german-gector/2026-11-17-resume/office-columns/focused-command.json.gz",
+        "docs/validation/german-gector/2026-11-17-resume/office-columns/focused.log.gz",
+        "docs/validation/german-gector/2026-11-17-resume/office-columns/focused.stderr.gz",
+        "docs/validation/german-gector/2026-11-17-resume/office-columns/report.json.gz",
+        "docs/validation/german-gector/2026-11-17-resume/quality-results.json",
+        "docs/validation/german-gector/2026-11-17-resume/recovery/python-reference-verification.json.gz",
+        "docs/validation/german-gector/2026-11-17-resume/remote-checkpoints.json",
+        "docs/validation/german-gector/2026-11-17-resume/reviews/accusative-independent-review.json.gz",
+        "docs/validation/german-gector/2026-11-17-resume/reviews/final-harness-review.json.gz",
+        "docs/validation/german-gector/2026-11-17-resume/reviews/runner-telemetry-independent-review.json.gz",
+        "docs/validation/german-gector/2026-11-17-resume/run_native_modes.py",
+        "docs/validation/german-gector/2026-11-17-resume/run_quality_panels.py",
+        "docs/validation/german-gector/2026-11-17-resume/tab-stops/final-development/archived-files.json",
+        "docs/validation/german-gector/2026-11-17-resume/tab-stops/final-development/odt-analysis-receipt.json.gz",
+        "docs/validation/german-gector/2026-11-17-resume/tab-stops/final-development/odt-analysis.log.gz",
+        "docs/validation/german-gector/2026-11-17-resume/tab-stops/final-development/odt-tests-receipt.json.gz",
+        "docs/validation/german-gector/2026-11-17-resume/tab-stops/final-development/odt-tests.jsonl.gz",
+        "docs/validation/german-gector/2026-11-17-resume/validate_final.py",
+        "docs/validation/office-improvements-20261117/README.md",
+        "docs/validation/office-improvements-20261117/evidence-index.json",
+        "docs/validation/office-improvements-20261117/evidence.tar.xz",
+        "docs/validation/office-improvements-20261117/independent-review.json",
+        "docs/validation/office-improvements-20261117/qualification.json",
+        "docs/validation/office-improvements-20261117/run_validation.py",
+        "docs/validation/office-improvements-20261117/source-equivalence.json",
+        "docs/validation/office-improvements-20261117/verify_delivery.py",
+        "docs/validation/office-reconcile-20261117/final-integration/conflict-references/docs__validation__german-gector__2026-11-17-long-input__README.md.incoming-main-13",
+        "docs/validation/office-reconcile-20261117/final-integration/conflict-references/docs__validation__office-resume-20261117__README.md.incoming-main-13",
+        "docs/validation/office-union-20261117/README.md",
+        "docs/validation/office-union-20261117/evidence/flutter-recovery.tar.index.json",
+        "docs/validation/office-union-20261117/evidence/flutter-recovery.tar.xz",
+        "docs/validation/office-union-20261117/evidence/native-recovery-20261117.tar.index.json",
+        "docs/validation/office-union-20261117/evidence/native-recovery-20261117.tar.xz",
+        "docs/validation/office-union-20261117/incoming-refs.json",
+        "docs/validation/office-union-20261117/reconciliation.json",
+        "docs/validation/office-union-20261117/setup/restore_flutter.py",
+        "packages/quds_office_editor/example/test/widget_test.dart",
+        "packages/quds_office_engine/CHANGELOG.md",
+        "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart",
+        "packages/quds_office_engine/test/odt_bookmark_end_fidelity_test.dart",
+        "packages/quds_office_engine/test/odt_complex_field_fidelity_test.dart",
+        "packages/quds_office_engine/test/odt_header_variant_comment_fidelity_test.dart",
+        "packages/quds_office_engine/test/odt_header_variant_order_test.dart",
+        "packages/quds_office_engine/test/odt_paragraph_decoration_resume_test.dart",
+        "packages/quds_office_engine/test/odt_section_fidelity_test.dart",
+        "packages/quds_office_engine/test/odt_table_tab_gector_fidelity_test.dart",
+        "tools/proofing/german_model/recover_exact_native_model.py"
+      ],
+      "changed_path_count": 221,
+      "matches_previous_path_inventory": true,
+      "changed_modes_types_objects_exact": true,
+      "historical_tree": "e3adc9e259c6120b4b1e3e03177391f880243e13",
+      "accepted_tree": "e3adc9e259c6120b4b1e3e03177391f880243e13",
+      "whole_tree_equal": true,
+      "verified": true
+    },
+    {
+      "historical_head": "58fdddfbcf198a8c0e38e32f6fcc9d6604e95283",
+      "accepted_ancestor": "4eaca83b192897edad82658107dfeb5bcbed0920",
+      "comparison_base": "4584d5f319aab198f1d705f48b4d6647e6cbabea",
+      "accepted_is_ancestor": true,
+      "changed_paths": [
+        "docs/office-remaining-gaps.md"
+      ],
+      "changed_path_count": 1,
+      "matches_previous_path_inventory": true,
+      "changed_modes_types_objects_exact": true,
+      "historical_tree": "3d828f3e1779b08ae84dc526e0c7236882d69a26",
+      "accepted_tree": "3d828f3e1779b08ae84dc526e0c7236882d69a26",
+      "whole_tree_equal": true,
+      "verified": true
+    },
+    {
+      "historical_head": "68a0db23408e4c95d6d283219504c79aea33a6fe",
+      "accepted_ancestor": "d754bf15b07a24c8a86c8dce339ca749fecd9531",
+      "comparison_base": "4eaca83b192897edad82658107dfeb5bcbed0920",
+      "accepted_is_ancestor": true,
+      "changed_paths": [
+        "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_reader.dart",
+        "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_writer.dart",
+        "packages/quds_office_engine/lib/src/sheet/model/sml_analysis.dart",
+        "packages/quds_office_engine/test/ods_sheet_writer_test.dart"
+      ],
+      "changed_path_count": 4,
+      "matches_previous_path_inventory": true,
+      "changed_modes_types_objects_exact": true,
+      "historical_tree": "aea95c000855820c5ecf205d3833298539f01753",
+      "accepted_tree": "aea95c000855820c5ecf205d3833298539f01753",
+      "whole_tree_equal": true,
+      "verified": true
+    },
+    {
+      "historical_head": "69d14f84cabd3931b7640c1654b401c89faba766",
+      "accepted_ancestor": "52c73ae4dbadf2ca00a5d619144350ccc353b31a",
+      "comparison_base": "b3f41eb4b4bca8ca13676b4114891ea6d9185043",
+      "accepted_is_ancestor": true,
+      "changed_paths": [
+        "docs/office-remaining-gaps.md"
+      ],
+      "changed_path_count": 1,
+      "matches_previous_path_inventory": true,
+      "changed_modes_types_objects_exact": true,
+      "historical_tree": "fcceef2418d7463f2a566623f22f8f0862dd1d01",
+      "accepted_tree": "fcceef2418d7463f2a566623f22f8f0862dd1d01",
+      "whole_tree_equal": true,
+      "verified": true
+    },
+    {
+      "historical_head": "74ce9ffb816c70c0d2ae50b91ec52a614f26d688",
+      "accepted_ancestor": "4584d5f319aab198f1d705f48b4d6647e6cbabea",
+      "comparison_base": "e3a38789359adaa33b2da1345c952fa1c2d8aebb",
+      "accepted_is_ancestor": true,
+      "changed_paths": [
+        "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_reader.dart",
+        "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_writer.dart",
+        "packages/quds_office_engine/lib/src/sheet/model/sml_analysis.dart",
+        "packages/quds_office_engine/lib/src/sheet/model/sml_conditional_format.dart",
+        "packages/quds_office_engine/lib/src/sheet/serial/sheet_serial.dart",
+        "packages/quds_office_engine/test/ods_sheet_writer_test.dart",
+        "packages/quds_office_engine/test/sheet_save_cache_and_freeze_test.dart"
+      ],
+      "changed_path_count": 7,
+      "matches_previous_path_inventory": true,
+      "changed_modes_types_objects_exact": true,
+      "historical_tree": "8eaa993960d6fb6b6b484326d825a550f969ea0a",
+      "accepted_tree": "8eaa993960d6fb6b6b484326d825a550f969ea0a",
+      "whole_tree_equal": true,
+      "verified": true
+    },
+    {
+      "historical_head": "7ef09f2408f467c65427700e65907531ecb26acb",
+      "accepted_ancestor": "34dc6b6806869570e9ec342e4d7ee0d6951c0ba6",
+      "comparison_base": "4b2b4e78839d2997a583b7ab1346e2fa537a8ac4",
+      "accepted_is_ancestor": true,
+      "changed_paths": [
+        "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_reader.dart",
+        "packages/quds_office_engine/lib/src/sheet/legacy/ods_sheet_writer.dart",
+        "packages/quds_office_engine/lib/src/sheet/model/sml_analysis.dart",
+        "packages/quds_office_engine/lib/src/sheet/model/sml_conditional_format.dart",
+        "packages/quds_office_engine/lib/src/sheet/serial/sheet_serial.dart",
+        "packages/quds_office_engine/test/ods_sheet_writer_test.dart",
+        "packages/quds_office_engine/test/sheet_save_cache_and_freeze_test.dart"
+      ],
+      "changed_path_count": 7,
+      "matches_previous_path_inventory": true,
+      "changed_modes_types_objects_exact": true,
+      "historical_tree": "072bded0da30965ac975f9a8a3c08c7a46829460",
+      "accepted_tree": "072bded0da30965ac975f9a8a3c08c7a46829460",
+      "whole_tree_equal": true,
+      "verified": true
+    },
+    {
+      "historical_head": "a7f144cc983f2df7c16d88f8644ad67a9254c3d0",
+      "accepted_ancestor": "0ff7d23929e4640af6c1d57f87c7ac71b73d2ed4",
+      "comparison_base": "c84d5e16024c502f6c451fd04b9807b1e65f20d3",
+      "accepted_is_ancestor": true,
+      "changed_paths": [
+        "docs/office-remaining-gaps.md"
+      ],
+      "changed_path_count": 1,
+      "matches_previous_path_inventory": true,
+      "changed_modes_types_objects_exact": true,
+      "historical_tree": "955a0d933240e0cc62eceff0ee11fd89e0f0caa2",
+      "accepted_tree": "955a0d933240e0cc62eceff0ee11fd89e0f0caa2",
+      "whole_tree_equal": true,
+      "verified": true
+    },
+    {
+      "historical_head": "b8ddaaeb581e010467de304c828764d353149102",
+      "accepted_ancestor": "d6010059644b34accd6f188e0e2a4863ab63e318",
+      "comparison_base": "d754bf15b07a24c8a86c8dce339ca749fecd9531",
+      "accepted_is_ancestor": true,
+      "changed_paths": [
+        "docs/office-remaining-gaps.md"
+      ],
+      "changed_path_count": 1,
+      "matches_previous_path_inventory": true,
+      "changed_modes_types_objects_exact": true,
+      "historical_tree": "7654a8905c705a04136e37a5271eb95d8a9a4e21",
+      "accepted_tree": "7654a8905c705a04136e37a5271eb95d8a9a4e21",
+      "whole_tree_equal": true,
+      "verified": true
+    },
+    {
+      "historical_head": "c34945761e7991f5fe49037d79529acdd260b31c",
+      "accepted_ancestor": "2c47165d01d01cc883135a434ac9f6591ce6e770",
+      "comparison_base": "e3a38789359adaa33b2da1345c952fa1c2d8aebb",
+      "accepted_is_ancestor": true,
+      "changed_paths": [
+        "docs/odf-export-fidelity.md",
+        "docs/validation/german-proofing-recovery-20261117/README.md",
+        "docs/validation/odt-field-continuation-20261117/README.md",
+        "docs/validation/odt-field-continuation-20261117/audit-portability.json",
+        "docs/validation/odt-field-continuation-20261117/audit_recovery.py",
+        "docs/validation/odt-field-continuation-20261117/evidence-index.json",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-analysis.inputs.json.gz",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-analysis.json",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-analysis.stderr.gz",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-analysis.stdout.gz",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-baseline.inputs.json.gz",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-baseline.json",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-baseline.stderr.gz",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-baseline.stdout.gz",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-node.inputs.json.gz",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-node.json",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-node.stderr.gz",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-node.stdout.gz",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-vm.inputs.json.gz",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-vm.json",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-vm.stderr.gz",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-vm.stdout.gz",
+        "docs/validation/odt-field-continuation-20261117/package-config.json",
+        "docs/validation/odt-field-continuation-20261117/pull-request-draft.md",
+        "docs/validation/odt-field-continuation-20261117/recovered-original-source.commit",
+        "docs/validation/odt-field-continuation-20261117/recovery-audit.json",
+        "docs/validation/odt-field-continuation-20261117/resolved-pubspec.lock",
+        "docs/validation/odt-field-continuation-20261117/run_logged.py",
+        "docs/validation/odt-field-continuation-20261117/runtime.json",
+        "docs/validation/odt-field-continuation-20261117/source-recovery.json",
+        "docs/validation/odt-field-continuation-20261117/test-workspace-pubspec.yaml",
+        "docs/validation/odt-field-continuation-20261117/verification.json",
+        "docs/validation/odt-field-continuation-20261117/verify_evidence.py",
+        "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart",
+        "packages/quds_office_engine/lib/src/word/serial/word_deserializer.dart",
+        "packages/quds_office_engine/test/odt_imported_field_fidelity_test.dart",
+        "packages/quds_office_engine/test/odt_page_field_fidelity_test.dart"
+      ],
+      "changed_path_count": 37,
+      "matches_previous_path_inventory": true,
+      "changed_modes_types_objects_exact": true,
+      "historical_tree": "ab5ed01d0693ddbb3121ea9ca45721eb2a09f1a6",
+      "accepted_tree": "01df63630b58d6a4c578b2f12f5e68204d37eb9b",
+      "whole_tree_equal": false,
+      "verified": true
+    },
+    {
+      "historical_head": "cee6e2632f891a3fe21c5c02d6bf508805973051",
+      "accepted_ancestor": "bb5556e8cc4cb73e2c668b5319a2844a20c6c50c",
+      "comparison_base": "0ff7d23929e4640af6c1d57f87c7ac71b73d2ed4",
+      "accepted_is_ancestor": true,
+      "changed_paths": [
+        "docs/PROOFING.md",
+        "docs/validation/office-reconcile-20261117/final-integration/bookmark-name-control-index.json",
+        "docs/validation/office-reconcile-20261117/final-integration/bookmark-name-control.tar.xz",
+        "docs/validation/office-reconcile-20261117/final-integration/column-bookmark-publication-map.json",
+        "docs/validation/office-reconcile-20261117/final-integration/consumer/README.md",
+        "docs/validation/office-reconcile-20261117/final-integration/consumer/consumer-evidence-index.json",
+        "docs/validation/office-reconcile-20261117/final-integration/consumer/consumer-evidence.tar.xz",
+        "docs/validation/office-reconcile-20261117/final-integration/consumer/docx-leading-inline-column-break.png",
+        "docs/validation/office-reconcile-20261117/final-integration/consumer/docx-midparagraph-inline-column-break.png",
+        "docs/validation/office-reconcile-20261117/final-integration/consumer/final-receipt.json",
+        "docs/validation/office-reconcile-20261117/final-integration/consumer/independent-harness-review.json",
+        "docs/validation/office-reconcile-20261117/final-integration/consumer/visual-review.json",
+        "docs/validation/office-reconcile-20261117/final-integration/generated-page-marker-control-index.json",
+        "docs/validation/office-reconcile-20261117/final-integration/generated-page-marker-control.tar.xz",
+        "docs/validation/office-reconcile-20261117/final-integration/generic-field-controls-README.md",
+        "docs/validation/office-reconcile-20261117/final-integration/generic-field-controls-evidence.index.json",
+        "docs/validation/office-reconcile-20261117/final-integration/generic-field-controls-evidence.tar.xz",
+        "docs/validation/office-reconcile-20261117/final-integration/generic-field-independent-review.json",
+        "docs/validation/office-reconcile-20261117/final-integration/inline-column-bookmark-README.md",
+        "docs/validation/office-reconcile-20261117/final-integration/inline-column-bookmark-controls-index.json",
+        "docs/validation/office-reconcile-20261117/final-integration/inline-column-bookmark-controls.tar.xz",
+        "docs/validation/office-reconcile-20261117/final-integration/main13-source-audit-index.json",
+        "docs/validation/office-reconcile-20261117/final-integration/main13-source-audit.tar.xz",
+        "docs/validation/office-reconcile-20261117/final-integration/merge-resolution.json",
+        "docs/validation/office-reconciled-20261117/README.md",
+        "docs/validation/office-reconciled-20261117/execution-recovery.json",
+        "docs/validation/office-reconciled-20261117/incoming-ancestry.json",
+        "docs/validation/office-reconciled-20261117/incoming-refs.json",
+        "docs/validation/office-reconciled-20261117/preserved-evidence.json",
+        "docs/validation/office-reconciled-20261117/proofing-integration.json",
+        "docs/validation/office-reconciled-20261117/qualification/historical-plan-179.json",
+        "docs/validation/office-reconciled-20261117/qualification/prepare_workspace.py",
+        "docs/validation/office-reconciled-20261117/qualification/prior_python_controls.py",
+        "docs/validation/office-reconciled-20261117/qualification/prior_run_qualification.py",
+        "docs/validation/office-reconciled-20261117/qualification/python_controls.py",
+        "docs/validation/office-reconciled-20261117/qualification/run_qualification.py",
+        "docs/validation/office-reconciled-20261117/recovered/README.md",
+        "docs/validation/office-reconciled-20261117/recovered/consumer-intermediate-1d8325d4.tar.index.json",
+        "docs/validation/office-reconciled-20261117/recovered/consumer-intermediate-1d8325d4.tar.xz",
+        "docs/validation/office-reconciled-20261117/recovered/focused-controls-1d8325d4.index.json",
+        "docs/validation/office-reconciled-20261117/recovered/focused-controls-1d8325d4.tar.xz",
+        "docs/validation/office-reconciled-20261117/recovered/format-preflight-947a6b57.index.json",
+        "docs/validation/office-reconciled-20261117/recovered/format-preflight-947a6b57.tar.xz",
+        "docs/validation/office-reconciled-20261117/recovered/host-data-bar-renderer-recovery.json",
+        "docs/validation/office-reconciled-20261117/recovered/host-data-bar-renderer-recovery.patch",
+        "docs/validation/office-reconciled-20261117/recovered/native-fixture-recovery.index.json",
+        "docs/validation/office-reconciled-20261117/recovered/native-fixture-recovery.tar.xz",
+        "docs/validation/office-reconciled-20261117/recovered/selection-audit-evidence.index.json",
+        "docs/validation/office-reconciled-20261117/recovered/selection-audit-evidence.tar.xz",
+        "docs/validation/office-reconciled-20261117/recovered/upstream-union-preflight-28041bd0.index.json",
+        "docs/validation/office-reconciled-20261117/recovered/upstream-union-preflight-28041bd0.tar.xz",
+        "docs/validation/office-reconciled-20261117/resume/README.md",
+        "docs/validation/office-reconciled-20261117/resume/consumer-new/README.md",
+        "docs/validation/office-reconciled-20261117/resume/consumer-new/audit_boundary_controls.py",
+        "docs/validation/office-reconciled-20261117/resume/consumer-new/field-review-summary.json",
+        "docs/validation/office-reconciled-20261117/resume/consumer-new/make_boundary_fixtures.dart",
+        "docs/validation/office-reconciled-20261117/resume/consumer-new/verify_boundary_consumers.py",
+        "docs/validation/office-reconciled-20261117/resume/consumer-source-bridge.json",
+        "docs/validation/office-reconciled-20261117/resume/current-session/evidence/canonical-portable-9e21.tar.index.json",
+        "docs/validation/office-reconciled-20261117/resume/current-session/evidence/canonical-portable-9e21.tar.xz",
+        "docs/validation/office-reconciled-20261117/resume/current-session/evidence/canonical-preflight-9e21.tar.index.json",
+        "docs/validation/office-reconciled-20261117/resume/current-session/evidence/canonical-preflight-9e21.tar.xz",
+        "docs/validation/office-reconciled-20261117/resume/current-session/evidence/canonical-zotero-9e21.tar.index.json",
+        "docs/validation/office-reconciled-20261117/resume/current-session/evidence/canonical-zotero-9e21.tar.xz",
+        "docs/validation/office-reconciled-20261117/resume/current-session/independent-source-history-review.json",
+        "docs/validation/office-reconciled-20261117/resume/current-session/start.json",
+        "docs/validation/office-reconciled-20261117/resume/evidence/column-boundary-controls.index.json",
+        "docs/validation/office-reconciled-20261117/resume/evidence/column-boundary-controls.tar.xz",
+        "docs/validation/office-reconciled-20261117/resume/evidence/consumers-9b33bec0.index.json",
+        "docs/validation/office-reconciled-20261117/resume/evidence/consumers-9b33bec0.tar.xz",
+        "docs/validation/office-reconciled-20261117/resume/evidence/editor-grammar-rule-id.index.json",
+        "docs/validation/office-reconciled-20261117/resume/evidence/editor-grammar-rule-id.tar.xz",
+        "docs/validation/office-reconciled-20261117/resume/evidence/intermediate-e95cb0ce.tar.index.json",
+        "docs/validation/office-reconciled-20261117/resume/evidence/intermediate-e95cb0ce.tar.xz",
+        "docs/validation/office-reconciled-20261117/resume/evidence/qualification-622f58c8-attempt.tar.index.json",
+        "docs/validation/office-reconciled-20261117/resume/evidence/qualification-622f58c8-attempt.tar.xz",
+        "docs/validation/office-reconciled-20261117/resume/evidence/qualification-9b33bec0-attempt.tar.index.json",
+        "docs/validation/office-reconciled-20261117/resume/evidence/qualification-9b33bec0-attempt.tar.xz",
+        "docs/validation/office-reconciled-20261117/resume/evidence/runtime-recovery.tar.index.json",
+        "docs/validation/office-reconciled-20261117/resume/evidence/runtime-recovery.tar.xz",
+        "docs/validation/office-reconciled-20261117/resume/incoming-refresh.json",
+        "docs/validation/office-reconciled-20261117/resume/incoming-refs.json",
+        "docs/validation/office-reconciled-20261117/resume/interruption-observations.json",
+        "docs/validation/office-reconciled-20261117/resume/package_checkpoint.py",
+        "docs/validation/office-reconciled-20261117/resume/peer-review.json",
+        "docs/validation/office-reconciled-20261117/resume/recovery-handoff.md",
+        "docs/validation/office-reconciled-20261117/resume/run_portable.py",
+        "docs/validation/office-reconciled-20261117/resume/verification.json",
+        "packages/quds_office_editor/test/word_german_grammar_integration_test.dart",
+        "packages/quds_office_engine/CHANGELOG.md",
+        "packages/quds_office_engine/lib/src/proofing/german_grammar.dart",
+        "packages/quds_office_engine/lib/src/proofing/german_spelling.dart",
+        "packages/quds_office_engine/lib/src/sheet/model/sml_analysis.dart",
+        "packages/quds_office_engine/lib/src/word/model/word_bookmarks.dart",
+        "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart",
+        "packages/quds_office_engine/test/odt_bookmark_name_ambiguity_test.dart",
+        "packages/quds_office_engine/test/odt_column_break_style_fidelity_test.dart",
+        "packages/quds_office_engine/test/odt_complex_field_fidelity_test.dart",
+        "packages/quds_office_engine/test/odt_inline_column_break_fidelity_test.dart",
+        "packages/quds_office_engine/test/odt_page_marker_column_break_test.dart",
+        "packages/quds_office_engine/test/proofing/german_participle_suggestions_test.dart",
+        "packages/quds_office_engine/test/proofing/german_verb_object_case_test.dart",
+        "packages/quds_proofing_gector/test/runner_inputs_test.dart",
+        "tools/proofing/german_model/LOCAL_PROVIDER.md",
+        "tools/proofing/german_model/run_gector_dart.dart"
+      ],
+      "changed_path_count": 105,
+      "matches_previous_path_inventory": true,
+      "changed_modes_types_objects_exact": true,
+      "historical_tree": "a30201059a62b8034ac747367c1af8de054a2afb",
+      "accepted_tree": "a30201059a62b8034ac747367c1af8de054a2afb",
+      "whole_tree_equal": true,
+      "verified": true
+    },
+    {
+      "historical_head": "da9c956ec5d65c0e5a9f9ea84c2b0bca98e824a0",
+      "accepted_ancestor": "23f3b4204fce45d38a103e3159bdc7f1e8d37c4e",
+      "comparison_base": "34dc6b6806869570e9ec342e4d7ee0d6951c0ba6",
+      "accepted_is_ancestor": true,
+      "changed_paths": [
+        "docs/validation/gector-office-resume-20261117/README.md",
+        "docs/validation/gector-office-resume-20261117/office-consumer/README.md",
+        "docs/validation/gector-office-resume-20261117/office-consumer/make_fixtures.dart",
+        "docs/validation/gector-office-resume-20261117/office-consumer/office-consumer-evidence.index.json",
+        "docs/validation/gector-office-resume-20261117/office-consumer/office-consumer-evidence.tar.xz",
+        "docs/validation/gector-office-resume-20261117/office-consumer/run_consumers.py",
+        "docs/validation/gector-office-resume-20261117/office-consumer/verification-summary.json",
+        "docs/validation/gector-office-resume-20261117/office-consumer/verify_frame_repair.py",
+        "docs/validation/gector-office-resume-20261117/qualification/first-attempt.tar.index.json",
+        "docs/validation/gector-office-resume-20261117/qualification/first-attempt.tar.xz",
+        "docs/validation/gector-office-resume-20261117/quality/baseline-complete.index.json",
+        "docs/validation/gector-office-resume-20261117/quality/baseline-complete.tar.xz",
+        "docs/validation/gector-office-resume-20261117/quality/baseline-summary.json",
+        "docs/validation/gector-office-resume-20261117/quality/current-quality-complete.index.json",
+        "docs/validation/gector-office-resume-20261117/quality/current-quality-complete.tar.xz",
+        "docs/validation/gector-office-resume-20261117/quality/current-quality-summary.json",
+        "docs/validation/gector-office-resume-20261117/recovery/consumer-runtime.index.json",
+        "docs/validation/gector-office-resume-20261117/recovery/consumer-runtime.tar.xz",
+        "docs/validation/gector-office-resume-20261117/recovery/flutter-recovery.json",
+        "docs/validation/gector-office-resume-20261117/recovery/flutter-tools-setup.log.gz",
+        "docs/validation/gector-office-resume-20261117/recovery/initial-cache-format-failure.json",
+        "docs/validation/gector-office-resume-20261117/recovery/initial-cache-format-failure.log.gz",
+        "docs/validation/gector-office-resume-20261117/recovery/native-recovery-summary.json",
+        "docs/validation/gector-office-resume-20261117/recovery/native-recovery.index.json",
+        "docs/validation/gector-office-resume-20261117/recovery/native-recovery.tar.xz",
+        "docs/validation/gector-office-resume-20261117/recovery/pub-cache-recovery.json",
+        "docs/validation/gector-office-resume-20261117/recovery/recover_native_exact.py",
+        "docs/validation/gector-office-resume-20261117/recovery/workspace-setup.json",
+        "docs/validation/gector-office-resume-20261117/recovery/workspace-setup.log.gz",
+        "docs/validation/gector-office-resume-20261117/restore_flutter.py",
+        "docs/validation/gector-office-resume-20261117/restore_pub_cache.py",
+        "docs/validation/gector-office-resume-20261117/retained-consumers/evidence.index.json",
+        "docs/validation/gector-office-resume-20261117/retained-consumers/evidence.tar.xz",
+        "docs/validation/gector-office-resume-20261117/retained-consumers/peer-review-initial.json",
+        "docs/validation/gector-office-resume-20261117/retained-consumers/selection-review.json",
+        "docs/validation/gector-office-resume-20261117/run_editor_example.py",
+        "docs/validation/gector-office-resume-20261117/run_portable.py",
+        "docs/validation/office-reconciled-20261117/resume/current-session/evidence/canonical-boundary-consumers-9e21.tar.index.json",
+        "docs/validation/office-reconciled-20261117/resume/current-session/evidence/canonical-boundary-consumers-9e21.tar.xz",
+        "docs/validation/office-reconciled-20261117/resume/current-session/evidence/canonical-consumers40-9e21.tar.index.json",
+        "docs/validation/office-reconciled-20261117/resume/current-session/evidence/canonical-consumers40-9e21.tar.xz",
+        "docs/validation/office-reconciled-20261117/resume/current-session/evidence/canonical-engine-integration-9e21.tar.index.json",
+        "docs/validation/office-reconciled-20261117/resume/current-session/evidence/canonical-engine-integration-9e21.tar.xz",
+        "docs/validation/office-union-20261117/README.md",
+        "docs/validation/office-union-20261117/evidence/consumer-prerequisites-20261117.tar.index.json",
+        "docs/validation/office-union-20261117/evidence/consumer-prerequisites-20261117.tar.xz",
+        "docs/validation/office-union-20261117/evidence/icon-set-development.tar.index.json",
+        "docs/validation/office-union-20261117/evidence/icon-set-development.tar.xz",
+        "docs/validation/office-union-20261117/evidence/preflight-0598a7b7-format-attempt.tar.index.json",
+        "docs/validation/office-union-20261117/evidence/preflight-0598a7b7-format-attempt.tar.xz",
+        "docs/validation/office-union-20261117/format-preflight-attempt.json",
+        "docs/validation/office-union-20261117/icon-set-repair.json",
+        "docs/validation/office-union-20261117/qualification-plan.json",
+        "docs/validation/office-union-20261117/second-refresh.json",
+        "docs/validation/office-union-20261117/setup/audit_receipts.py",
+        "docs/validation/office-union-20261117/setup/guard_frozen_run.py",
+        "docs/validation/office-union-20261117/setup/native-thread-sweep-plan.json",
+        "docs/validation/office-union-resume-20261117/README.md",
+        "docs/validation/office-union-resume-20261117/evidence/consumer-runtime-recovery.tar.index.json",
+        "docs/validation/office-union-resume-20261117/evidence/consumer-runtime-recovery.tar.xz",
+        "docs/validation/office-union-resume-20261117/evidence/native-runtime-recovery.tar.index.json",
+        "docs/validation/office-union-resume-20261117/evidence/native-runtime-recovery.tar.xz",
+        "docs/validation/office-union-resume-20261117/incoming-refs.json",
+        "docs/validation/office-union-resume-20261117/independent-source-review.json",
+        "docs/validation/office-union-resume-20261117/qualification-plan.json",
+        "docs/validation/office-union-resume-20261117/reconciliation.json",
+        "packages/quds_office_editor/example/test/widget_test.dart",
+        "packages/quds_office_engine/CHANGELOG.md",
+        "packages/quds_office_engine/lib/src/sheet/model/sml_analysis.dart",
+        "packages/quds_office_engine/lib/src/sheet/model/sml_conditional_format.dart",
+        "packages/quds_office_engine/lib/src/sheet/model/sml_workbook.dart",
+        "packages/quds_office_engine/lib/src/sheet/serial/sheet_serial.dart",
+        "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart",
+        "packages/quds_office_engine/test/odt_complex_field_fidelity_test.dart",
+        "packages/quds_office_engine/test/odt_frame_common_style_test.dart",
+        "packages/quds_office_engine/test/odt_inline_field_fidelity_test.dart",
+        "packages/quds_office_engine/test/odt_section_fidelity_test.dart",
+        "packages/quds_office_engine/test/sheet_conditional_fidelity_test.dart",
+        "packages/quds_office_engine/test/sheet_conditional_rendering_test.dart"
+      ],
+      "changed_path_count": 79,
+      "matches_previous_path_inventory": true,
+      "changed_modes_types_objects_exact": true,
+      "historical_tree": "b73ebcc6f72c49a2883c5749f6450d497c647324",
+      "accepted_tree": "b73ebcc6f72c49a2883c5749f6450d497c647324",
+      "whole_tree_equal": true,
+      "verified": true
+    }
+  ],
+  "summary": {
+    "branch_count": 19,
+    "branches": {
+      "historically_superseded_equivalent": 9,
+      "ancestor": 6,
+      "target": 1,
+      "uncovered": 3
+    },
+    "pr_count": 256,
+    "prs": {
+      "ancestor": 240,
+      "historically_superseded_equivalent": 14,
+      "uncovered": 2
+    },
+    "upstream_count": 4,
+    "upstream": {
+      "ancestor": 4
+    },
+    "uncovered_ref_entries": 5,
+    "uncovered_unique_heads": [
+      "34491bca22a2989dd89d9da3c853f5e57de5464f",
+      "7f2d51a5206059478ea81965ccc95b89a9274ca6",
+      "f682e18063931c8d1dc40c67a7264b9f32185255"
+    ],
+    "all_historical_proofs_verified": true
+  },
+  "minimal_integration_roots": [
+    {
+      "ref": "refs/heads/main",
+      "sha": "7f2d51a5206059478ea81965ccc95b89a9274ca6"
+    },
+    {
+      "ref": "refs/heads/work/mail-outbox-management-20261120",
+      "sha": "f682e18063931c8d1dc40c67a7264b9f32185255"
+    }
+  ],
+  "zotero_is_ancestor_of_captured_main": true,
+  "input_binding": {
+    "entries": 1110,
+    "path": "runtime/tabstops-parallel-gate/source-git-binding.json.gz",
+    "sha256": "86d70ab00f48fe934ad934b38d75d1ee1e1c57f43c23931ee8feeea9ea7ead95",
+    "identity_review": {
+      "own": {
+        "sha": "5b4a85ccf796ad68c4f96edd4119280f11295e53",
+        "checked_count": 1110,
+        "mismatches": []
+      },
+      "main": {
+        "sha": "7f2d51a5206059478ea81965ccc95b89a9274ca6",
+        "checked_count": 5,
+        "mismatches": []
+      },
+      "zotero": {
+        "sha": "34491bca22a2989dd89d9da3c853f5e57de5464f",
+        "checked_count": 5,
+        "mismatches": []
+      },
+      "outbox": {
+        "sha": "f682e18063931c8d1dc40c67a7264b9f32185255",
+        "checked_count": 5,
+        "mismatches": []
+      }
+    }
+  },
+  "incoming_delta_review": [
+    {
+      "name": "main",
+      "included_base": "243b99a5ee56e591991f381533b2363586bd5dd0",
+      "head": "7f2d51a5206059478ea81965ccc95b89a9274ca6",
+      "all_merge_bases": [
+        "24312d991915418fd6891736a1b427fa8dcbcb71",
+        "243b99a5ee56e591991f381533b2363586bd5dd0"
+      ],
+      "changed_paths_from_included_base": [
+        "docs/validation/zotero-research-tables-20261120/README.md",
+        "docs/validation/zotero-research-tables-20261120/audit_completed_replays.py",
+        "docs/validation/zotero-research-tables-20261120/checkpoint-231bd-lf-audit.json",
+        "docs/validation/zotero-research-tables-20261120/checkpoint-outbox-analysis-evidence.json",
+        "docs/validation/zotero-research-tables-20261120/checkpoint-outbox-analysis-evidence.tar.xz",
+        "docs/validation/zotero-research-tables-20261120/checkpoint-outbox-followup-evidence.json",
+        "docs/validation/zotero-research-tables-20261120/checkpoint-outbox-followup-evidence.tar.xz",
+        "docs/validation/zotero-research-tables-20261120/checkpoint-outbox-followup-summary.json",
+        "docs/validation/zotero-research-tables-20261120/final-main-adoption.json",
+        "docs/validation/zotero-research-tables-20261120/final-main-engine-adoption.json",
+        "docs/validation/zotero-research-tables-20261120/final-main-root-continuity.json"
+      ],
+      "qualified_input_intersection": [],
+      "paths_already_identical_to_current": [
+        "docs/validation/zotero-research-tables-20261120/audit_completed_replays.py",
+        "docs/validation/zotero-research-tables-20261120/checkpoint-231bd-lf-audit.json",
+        "docs/validation/zotero-research-tables-20261120/checkpoint-outbox-analysis-evidence.json",
+        "docs/validation/zotero-research-tables-20261120/checkpoint-outbox-analysis-evidence.tar.xz"
+      ],
+      "remaining_different_paths": [
+        "docs/validation/zotero-research-tables-20261120/README.md",
+        "docs/validation/zotero-research-tables-20261120/checkpoint-outbox-followup-evidence.json",
+        "docs/validation/zotero-research-tables-20261120/checkpoint-outbox-followup-evidence.tar.xz",
+        "docs/validation/zotero-research-tables-20261120/checkpoint-outbox-followup-summary.json",
+        "docs/validation/zotero-research-tables-20261120/final-main-adoption.json",
+        "docs/validation/zotero-research-tables-20261120/final-main-engine-adoption.json",
+        "docs/validation/zotero-research-tables-20261120/final-main-root-continuity.json"
+      ],
+      "github_changes": [],
+      "script_review": [
+        {
+          "path": "docs/validation/zotero-research-tables-20261120/audit_completed_replays.py",
+          "current_entry": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "1844f5ca9e475d3deffe277f07379b610963fea2"
+          },
+          "incoming_entry": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "1844f5ca9e475d3deffe277f07379b610963fea2"
+          },
+          "identical": true
+        }
+      ]
+    },
+    {
+      "name": "outbox",
+      "included_base": "d4497a689fa0e27517169bd964d0352ae6d4b2b1",
+      "head": "f682e18063931c8d1dc40c67a7264b9f32185255",
+      "all_merge_bases": [
+        "24312d991915418fd6891736a1b427fa8dcbcb71",
+        "243b99a5ee56e591991f381533b2363586bd5dd0",
+        "d4497a689fa0e27517169bd964d0352ae6d4b2b1",
+        "49d0fe9966edff96e2cbda7e483a9ba8a689219a"
+      ],
+      "changed_paths_from_included_base": [
+        "README.md",
+        "docs/roadmaps/mail/README.md",
+        "docs/roadmaps/mail/implementation-plan.md",
+        "docs/roadmaps/mail/multiple-drafts.md",
+        "docs/roadmaps/mail/outbox-management.md",
+        "docs/roadmaps/mail/outbox.md",
+        "docs/roadmaps/mail/status.md",
+        "docs/validation/mail-accounts-20261120/README.md",
+        "docs/validation/mail-accounts-20261120/final-integration-archive-verification.json",
+        "docs/validation/mail-accounts-20261120/final-integration-evidence-manifest.json",
+        "docs/validation/mail-accounts-20261120/final-integration-evidence.tar.xz",
+        "docs/validation/mail-accounts-20261120/final-integration-qualification.json",
+        "docs/validation/mail-accounts-20261120/final-integration-replay-verification.json",
+        "docs/validation/mail-accounts-20261120/final-integration.json",
+        "docs/validation/mail-accounts-20261120/historical-625f4d76.md",
+        "docs/validation/mail-accounts-20261120/source-continuity-625f4d76.json",
+        "docs/validation/mail-accounts-20261120/source-continuity.json",
+        "docs/validation/mail-multiple-drafts-20261120/README.md",
+        "docs/validation/mail-multiple-drafts-20261120/acceptance.json",
+        "docs/validation/mail-multiple-drafts-20261120/evidence-index.json",
+        "docs/validation/mail-multiple-drafts-20261120/evidence.tar.gz",
+        "docs/validation/mail-multiple-drafts-20261120/final-incoming-audit.json",
+        "docs/validation/mail-multiple-drafts-20261120/final-main-reconciliation.json",
+        "docs/validation/mail-multiple-drafts-20261120/late-runner-analysis.log",
+        "docs/validation/mail-multiple-drafts-20261120/late-runner-format.log",
+        "docs/validation/mail-multiple-drafts-20261120/late-runner-help.log",
+        "docs/validation/mail-multiple-drafts-20261120/late-zotero-audit.json",
+        "docs/validation/mail-multiple-drafts-20261120/late-zotero-reconciliation.json",
+        "docs/validation/mail-multiple-drafts-20261120/premerge-intake-audit.json",
+        "docs/validation/mail-multiple-drafts-20261120/review.json",
+        "docs/validation/mail-outbox-management-20261120/intake-initial.json",
+        "docs/validation/zotero-research-tables-20261120/audit_completed_replays.py",
+        "docs/validation/zotero-research-tables-20261120/checkpoint-231bd-lf-audit.json",
+        "docs/validation/zotero-research-tables-20261120/checkpoint-231bd-replay-evidence.json",
+        "docs/validation/zotero-research-tables-20261120/checkpoint-231bd-replay-evidence.tar.xz",
+        "docs/validation/zotero-research-tables-20261120/checkpoint-231bd-replay-summary.json",
+        "docs/validation/zotero-research-tables-20261120/checkpoint-outbox-analysis-evidence.json",
+        "docs/validation/zotero-research-tables-20261120/checkpoint-outbox-analysis-evidence.tar.xz",
+        "docs/validation/zotero-research-tables-20261120/checkpoint-reconciled-engine-summary.json",
+        "docs/validation/zotero-research-tables-20261120/latest-main-outbox-preservation.json",
+        "docs/validation/zotero-research-tables-20261120/latest-main-outbox-reconciliation.json",
+        "packages/quds_mail_core/CHANGELOG.md",
+        "packages/quds_mail_store/CHANGELOG.md",
+        "packages/quds_office_editor/CHANGELOG.md",
+        "packages/quds_office_editor/example/lib/studio_mail_credentials.dart",
+        "packages/quds_office_editor/example/lib/studio_mail_outbox_content.dart",
+        "packages/quds_office_editor/example/lib/studio_mail_outbox_strings.dart",
+        "packages/quds_office_editor/example/test/studio_credential_selection_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_drafts_dialog_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_ews_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_outbox_cloud_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_outbox_content_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_outbox_host_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_outbox_management_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_outbox_review_visual_test.dart",
+        "packages/quds_office_editor/example/test/studio_saved_mail_test.dart",
+        "packages/quds_office_editor/example/tool/incoming_reconciliation_acceptance.dart"
+      ],
+      "qualified_input_intersection": [],
+      "paths_already_identical_to_current": [
+        "docs/validation/mail-accounts-20261120/README.md",
+        "docs/validation/mail-accounts-20261120/final-integration-archive-verification.json",
+        "docs/validation/mail-accounts-20261120/final-integration-evidence-manifest.json",
+        "docs/validation/mail-accounts-20261120/final-integration-evidence.tar.xz",
+        "docs/validation/mail-accounts-20261120/final-integration-qualification.json",
+        "docs/validation/mail-accounts-20261120/final-integration-replay-verification.json",
+        "docs/validation/mail-accounts-20261120/final-integration.json",
+        "docs/validation/mail-accounts-20261120/historical-625f4d76.md",
+        "docs/validation/mail-accounts-20261120/source-continuity-625f4d76.json",
+        "docs/validation/mail-accounts-20261120/source-continuity.json",
+        "docs/validation/mail-multiple-drafts-20261120/README.md",
+        "docs/validation/mail-multiple-drafts-20261120/acceptance.json",
+        "docs/validation/mail-multiple-drafts-20261120/evidence-index.json",
+        "docs/validation/mail-multiple-drafts-20261120/evidence.tar.gz",
+        "docs/validation/mail-multiple-drafts-20261120/final-incoming-audit.json",
+        "docs/validation/mail-multiple-drafts-20261120/final-main-reconciliation.json",
+        "docs/validation/mail-multiple-drafts-20261120/late-runner-analysis.log",
+        "docs/validation/mail-multiple-drafts-20261120/late-runner-format.log",
+        "docs/validation/mail-multiple-drafts-20261120/late-runner-help.log",
+        "docs/validation/mail-multiple-drafts-20261120/late-zotero-audit.json",
+        "docs/validation/mail-multiple-drafts-20261120/late-zotero-reconciliation.json",
+        "docs/validation/mail-multiple-drafts-20261120/premerge-intake-audit.json",
+        "docs/validation/mail-multiple-drafts-20261120/review.json",
+        "docs/validation/zotero-research-tables-20261120/audit_completed_replays.py",
+        "docs/validation/zotero-research-tables-20261120/checkpoint-231bd-lf-audit.json",
+        "docs/validation/zotero-research-tables-20261120/checkpoint-231bd-replay-evidence.json",
+        "docs/validation/zotero-research-tables-20261120/checkpoint-231bd-replay-evidence.tar.xz",
+        "docs/validation/zotero-research-tables-20261120/checkpoint-231bd-replay-summary.json",
+        "docs/validation/zotero-research-tables-20261120/checkpoint-outbox-analysis-evidence.json",
+        "docs/validation/zotero-research-tables-20261120/checkpoint-outbox-analysis-evidence.tar.xz",
+        "docs/validation/zotero-research-tables-20261120/checkpoint-reconciled-engine-summary.json",
+        "docs/validation/zotero-research-tables-20261120/latest-main-outbox-preservation.json",
+        "docs/validation/zotero-research-tables-20261120/latest-main-outbox-reconciliation.json",
+        "packages/quds_office_editor/example/test/studio_mail_drafts_dialog_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_ews_test.dart",
+        "packages/quds_office_editor/example/test/studio_saved_mail_test.dart",
+        "packages/quds_office_editor/example/tool/incoming_reconciliation_acceptance.dart"
+      ],
+      "remaining_different_paths": [
+        "README.md",
+        "docs/roadmaps/mail/README.md",
+        "docs/roadmaps/mail/implementation-plan.md",
+        "docs/roadmaps/mail/multiple-drafts.md",
+        "docs/roadmaps/mail/outbox-management.md",
+        "docs/roadmaps/mail/outbox.md",
+        "docs/roadmaps/mail/status.md",
+        "docs/validation/mail-outbox-management-20261120/intake-initial.json",
+        "packages/quds_mail_core/CHANGELOG.md",
+        "packages/quds_mail_store/CHANGELOG.md",
+        "packages/quds_office_editor/CHANGELOG.md",
+        "packages/quds_office_editor/example/lib/studio_mail_credentials.dart",
+        "packages/quds_office_editor/example/lib/studio_mail_outbox_content.dart",
+        "packages/quds_office_editor/example/lib/studio_mail_outbox_strings.dart",
+        "packages/quds_office_editor/example/test/studio_credential_selection_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_outbox_cloud_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_outbox_content_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_outbox_host_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_outbox_management_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_outbox_review_visual_test.dart"
+      ],
+      "github_changes": [],
+      "script_review": [
+        {
+          "path": "docs/validation/zotero-research-tables-20261120/audit_completed_replays.py",
+          "current_entry": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "1844f5ca9e475d3deffe277f07379b610963fea2"
+          },
+          "incoming_entry": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "1844f5ca9e475d3deffe277f07379b610963fea2"
+          },
+          "identical": true
+        },
+        {
+          "path": "packages/quds_office_editor/example/tool/incoming_reconciliation_acceptance.dart",
+          "current_entry": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "55dc70ad3bd15b3cfb910c6a07e49f5c3dbb6534"
+          },
+          "incoming_entry": {
+            "mode": "100644",
+            "type": "blob",
+            "object": "55dc70ad3bd15b3cfb910c6a07e49f5c3dbb6534"
+          },
+          "identical": true
+        }
+      ]
+    }
+  ],
+  "all_merge_base_deltas": [
+    {
+      "head_name": "main",
+      "head": "7f2d51a5206059478ea81965ccc95b89a9274ca6",
+      "merge_base": "24312d991915418fd6891736a1b427fa8dcbcb71",
+      "changed_path_count": 123,
+      "input_intersection": [
+        "packages/quds_office_engine/lib/src/slide/model/pml_presentation.dart",
+        "packages/quds_office_engine/lib/src/slide/shapes/drawingml.dart",
+        "packages/quds_office_engine/lib/src/word/layout/word_incremental_layout.dart",
+        "packages/quds_office_engine/lib/src/word/layout/word_layout.dart",
+        "packages/quds_office_engine/test/slide_text_insets_preservation_test.dart"
+      ],
+      "github_paths": [],
+      "runner_paths": [
+        "docs/validation/mail-multiple-drafts-20261120/acceptance.json",
+        "docs/validation/mail-multiple-drafts-20261120/late-runner-analysis.log",
+        "docs/validation/mail-multiple-drafts-20261120/late-runner-format.log",
+        "docs/validation/mail-multiple-drafts-20261120/late-runner-help.log",
+        "docs/validation/office-vba-expansion-20261120/runtime/acceptance-evidence.tar.gz",
+        "docs/validation/office-vba-expansion-20261120/runtime/acceptance.json"
+      ]
+    },
+    {
+      "head_name": "main",
+      "head": "7f2d51a5206059478ea81965ccc95b89a9274ca6",
+      "merge_base": "243b99a5ee56e591991f381533b2363586bd5dd0",
+      "changed_path_count": 11,
+      "input_intersection": [],
+      "github_paths": [],
+      "runner_paths": []
+    },
+    {
+      "head_name": "zotero",
+      "head": "34491bca22a2989dd89d9da3c853f5e57de5464f",
+      "merge_base": "24312d991915418fd6891736a1b427fa8dcbcb71",
+      "changed_path_count": 123,
+      "input_intersection": [
+        "packages/quds_office_engine/lib/src/slide/model/pml_presentation.dart",
+        "packages/quds_office_engine/lib/src/slide/shapes/drawingml.dart",
+        "packages/quds_office_engine/lib/src/word/layout/word_incremental_layout.dart",
+        "packages/quds_office_engine/lib/src/word/layout/word_layout.dart",
+        "packages/quds_office_engine/test/slide_text_insets_preservation_test.dart"
+      ],
+      "github_paths": [],
+      "runner_paths": [
+        "docs/validation/mail-multiple-drafts-20261120/acceptance.json",
+        "docs/validation/mail-multiple-drafts-20261120/late-runner-analysis.log",
+        "docs/validation/mail-multiple-drafts-20261120/late-runner-format.log",
+        "docs/validation/mail-multiple-drafts-20261120/late-runner-help.log",
+        "docs/validation/office-vba-expansion-20261120/runtime/acceptance-evidence.tar.gz",
+        "docs/validation/office-vba-expansion-20261120/runtime/acceptance.json"
+      ]
+    },
+    {
+      "head_name": "zotero",
+      "head": "34491bca22a2989dd89d9da3c853f5e57de5464f",
+      "merge_base": "243b99a5ee56e591991f381533b2363586bd5dd0",
+      "changed_path_count": 11,
+      "input_intersection": [],
+      "github_paths": [],
+      "runner_paths": []
+    },
+    {
+      "head_name": "outbox",
+      "head": "f682e18063931c8d1dc40c67a7264b9f32185255",
+      "merge_base": "24312d991915418fd6891736a1b427fa8dcbcb71",
+      "changed_path_count": 140,
+      "input_intersection": [
+        "packages/quds_office_engine/lib/src/slide/model/pml_presentation.dart",
+        "packages/quds_office_engine/lib/src/slide/shapes/drawingml.dart",
+        "packages/quds_office_engine/lib/src/word/layout/word_incremental_layout.dart",
+        "packages/quds_office_engine/lib/src/word/layout/word_layout.dart",
+        "packages/quds_office_engine/test/slide_text_insets_preservation_test.dart"
+      ],
+      "github_paths": [],
+      "runner_paths": [
+        "docs/validation/mail-multiple-drafts-20261120/acceptance.json",
+        "docs/validation/mail-multiple-drafts-20261120/late-runner-analysis.log",
+        "docs/validation/mail-multiple-drafts-20261120/late-runner-format.log",
+        "docs/validation/mail-multiple-drafts-20261120/late-runner-help.log",
+        "docs/validation/office-vba-expansion-20261120/runtime/acceptance-evidence.tar.gz",
+        "docs/validation/office-vba-expansion-20261120/runtime/acceptance.json"
+      ]
+    },
+    {
+      "head_name": "outbox",
+      "head": "f682e18063931c8d1dc40c67a7264b9f32185255",
+      "merge_base": "243b99a5ee56e591991f381533b2363586bd5dd0",
+      "changed_path_count": 42,
+      "input_intersection": [],
+      "github_paths": [],
+      "runner_paths": []
+    },
+    {
+      "head_name": "outbox",
+      "head": "f682e18063931c8d1dc40c67a7264b9f32185255",
+      "merge_base": "d4497a689fa0e27517169bd964d0352ae6d4b2b1",
+      "changed_path_count": 57,
+      "input_intersection": [],
+      "github_paths": [],
+      "runner_paths": [
+        "docs/validation/mail-multiple-drafts-20261120/acceptance.json",
+        "docs/validation/mail-multiple-drafts-20261120/late-runner-analysis.log",
+        "docs/validation/mail-multiple-drafts-20261120/late-runner-format.log",
+        "docs/validation/mail-multiple-drafts-20261120/late-runner-help.log",
+        "packages/quds_office_editor/example/tool/incoming_reconciliation_acceptance.dart"
+      ]
+    },
+    {
+      "head_name": "outbox",
+      "head": "f682e18063931c8d1dc40c67a7264b9f32185255",
+      "merge_base": "49d0fe9966edff96e2cbda7e483a9ba8a689219a",
+      "changed_path_count": 73,
+      "input_intersection": [],
+      "github_paths": [],
+      "runner_paths": [
+        "docs/validation/mail-multiple-drafts-20261120/acceptance.json",
+        "docs/validation/mail-multiple-drafts-20261120/late-runner-analysis.log",
+        "docs/validation/mail-multiple-drafts-20261120/late-runner-format.log",
+        "docs/validation/mail-multiple-drafts-20261120/late-runner-help.log",
+        "packages/quds_office_editor/example/tool/incoming_reconciliation_acceptance.dart"
+      ]
+    }
+  ],
+  "github_actions_used": false,
+  "qualification_claim": "This is a pre-merge source audit with explicitly uncovered heads; no final inclusion or incoming runtime qualification is claimed."
+}

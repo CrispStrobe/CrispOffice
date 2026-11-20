@@ -155,6 +155,18 @@ const _wordConstants = <String, int>{
   'wdlinespaceatleast': 3,
   'wdlinespaceexactly': 4,
   'wdlinespacemultiple': 5,
+  'wdaligntableft': 0,
+  'wdaligntabcenter': 1,
+  'wdaligntabright': 2,
+  'wdaligntabdecimal': 3,
+  'wdaligntabbar': 4,
+  'wdaligntablist': 6,
+  'wdtableaderspaces': 0,
+  'wdtableaderdots': 1,
+  'wdtableaderdashes': 2,
+  'wdtableaderlines': 3,
+  'wdtableaderheavy': 4,
+  'wdtableadermiddledot': 5,
   'wdunderlinenone': 0,
   'wdunderlinesingle': 1,
   'wdunderlinewords': 2,
@@ -240,6 +252,7 @@ const _wordReserved = <String>{
   'document',
   'paragraph',
   'paragraphs',
+  'tabstops',
   'wdalignparagraphleft',
   'wdalignparagraphcenter',
   'wdalignparagraphright',
@@ -600,6 +613,7 @@ enum _Kind {
   paragraphs,
   paragraph,
   paragraphFormat,
+  wordTabStops,
   powerPointApplication,
   presentation,
   slides,
@@ -627,6 +641,7 @@ enum _Declared {
   paragraph,
   wordFont,
   wordParagraphFormat,
+  wordTabStops,
   presentation,
   slide,
   shape,
@@ -644,6 +659,7 @@ bool _objectType(_Declared type) =>
     type == _Declared.paragraph ||
     type == _Declared.wordFont ||
     type == _Declared.wordParagraphFormat ||
+    type == _Declared.wordTabStops ||
     type == _Declared.presentation ||
     type == _Declared.slide ||
     type == _Declared.shape ||
@@ -682,6 +698,7 @@ _Kind _kindOf(_Declared type) => switch (type) {
   _Declared.paragraph => _Kind.paragraph,
   _Declared.wordFont => _Kind.font,
   _Declared.wordParagraphFormat => _Kind.paragraphFormat,
+  _Declared.wordTabStops => _Kind.wordTabStops,
   _Declared.presentation => _Kind.presentation,
   _Declared.slide => _Kind.slide,
   _Declared.shape => _Kind.shape,
@@ -811,6 +828,11 @@ class _Clear extends _Statement {
 
 class _InsertBefore extends _Statement {
   const _InsertBefore(super.token, this.target);
+  final _Member target;
+}
+
+class _WordTabOperation extends _Statement {
+  const _WordTabOperation(super.token, this.target);
   final _Member target;
 }
 
@@ -1177,6 +1199,16 @@ class _Parser {
               );
             }
             result.add(_InsertBefore(target.token, target));
+          } else if (target is _Member &&
+              (target.token.lower == 'add' ||
+                  target.token.lower == 'clearall')) {
+            if (target.token.lower == 'add' && target.arguments == null) {
+              context.unsupported(
+                target.token,
+                'Call TabStops.Add requires parenthesized arguments.',
+              );
+            }
+            result.add(_WordTabOperation(target.token, target));
           } else if (target is _Call) {
             result.add(_Invoke(target.token, target.arguments));
           } else if (target is _Name) {
@@ -1414,7 +1446,11 @@ class _Parser {
             !isSet &&
             !isLet &&
             target is _Member &&
-            target.token.lower == 'insertbefore') {
+            const {
+              'insertbefore',
+              'add',
+              'clearall',
+            }.contains(target.token.lower)) {
           final arguments = target.arguments ?? <_Expr>[];
           if (target.arguments == null &&
               current.kind != _TokenKind.separator &&
@@ -1430,11 +1466,13 @@ class _Parser {
             } while (_take(','));
           }
           _endStatement();
+          final call = _bounded(
+            _Member(target.token, target.receiver, arguments),
+          );
           result.add(
-            _InsertBefore(
-              target.token,
-              _bounded(_Member(target.token, target.receiver, arguments)),
-            ),
+            target.token.lower == 'insertbefore'
+                ? _InsertBefore(target.token, call)
+                : _WordTabOperation(target.token, call),
           );
         } else if (!isSet &&
             !isLet &&
@@ -1577,6 +1615,7 @@ class _Parser {
       'paragraph' when context.isWord => _Declared.paragraph,
       'font' when context.isWord => _Declared.wordFont,
       'paragraphformat' when context.isWord => _Declared.wordParagraphFormat,
+      'tabstops' when context.isWord => _Declared.wordTabStops,
       'presentation' when context.isPowerPoint => _Declared.presentation,
       'slide' when context.isPowerPoint => _Declared.slide,
       'shape' when context.isPowerPoint => _Declared.shape,
@@ -1592,7 +1631,7 @@ class _Parser {
         context.isPowerPoint
             ? 'Supported declarations are Long, Double, String, Boolean, Variant, Presentation, Slide, Shape, TextFrame, TextRange, Font, ParagraphFormat, and SlideShowTransition.'
             : context.isWord
-            ? 'Supported declarations are Long, Double, String, Boolean, Variant, Document, Paragraph, Range, Font, and ParagraphFormat.'
+            ? 'Supported declarations are Long, Double, String, Boolean, Variant, Document, Paragraph, Range, Font, ParagraphFormat, and TabStops.'
             : 'Supported declarations are Long, Double, String, Boolean, Variant, Worksheet, and Range.',
       ),
     };
@@ -2351,6 +2390,8 @@ class _Checker {
             _expression(arguments.single),
             arguments.single.token,
           );
+        case _WordTabOperation():
+          _wordTabCall(statement.target);
         case _For():
           final counter = _symbol(statement.counter);
           if (counter.isConst ||
@@ -2450,7 +2491,8 @@ class _Checker {
                   kind == _Kind.paragraphs ||
                   kind == _Kind.paragraph ||
                   kind == _Kind.font ||
-                  kind == _Kind.paragraphFormat);
+                  kind == _Kind.paragraphFormat ||
+                  kind == _Kind.wordTabStops);
           final powerPointObject =
               context.isPowerPoint && _powerPointObjectKinds.contains(kind);
           if (kind != _Kind.worksheet &&
@@ -2462,7 +2504,7 @@ class _Checker {
               context.isPowerPoint
                   ? 'With requires an explicitly bound PowerPoint object.'
                   : context.isWord
-                  ? 'With requires a Document, Paragraph, Range, Font, or ParagraphFormat.'
+                  ? 'With requires a Document, Paragraph, Range, Font, ParagraphFormat, or TabStops.'
                   : 'With requires a Worksheet or Range.',
             );
           }
@@ -2496,6 +2538,74 @@ class _Checker {
           }
       }
     }
+  }
+
+  void _wordTabCall(_Member member) {
+    if (_expression(member.receiver) != _Kind.wordTabStops) {
+      context.type(
+        member.token,
+        '${member.token.text} requires Word TabStops.',
+      );
+    }
+    final arguments = member.arguments ?? const <_Expr>[];
+    if (member.token.lower == 'clearall') {
+      _count(member.token, arguments, 0);
+      return;
+    }
+    const parameters = <String>['position', 'alignment', 'leader'];
+    if (arguments.length > parameters.length) {
+      context.type(member.token, 'TabStops.Add received too many arguments.');
+    }
+    final assigned = <int>{};
+    final bindings = <int>[];
+    var positional = 0;
+    var sawNamed = false;
+    for (final argument in arguments) {
+      final int parameter;
+      final _Expr value;
+      if (argument is _NamedArgument) {
+        sawNamed = true;
+        parameter = parameters.indexOf(argument.token.lower);
+        if (parameter < 0) {
+          context.fail(
+            argument.token,
+            'vba_name_error',
+            'Unknown named argument ${argument.token.text} for TabStops.Add.',
+          );
+        }
+        value = argument.value;
+      } else {
+        if (sawNamed) {
+          context.type(
+            argument.token,
+            'Positional or omitted arguments cannot follow named arguments.',
+          );
+        }
+        parameter = positional++;
+        value = argument;
+      }
+      if (!assigned.add(parameter)) {
+        context.type(
+          argument.token,
+          'TabStops.Add parameter ${parameters[parameter]} is supplied more than once.',
+        );
+      }
+      bindings.add(parameter);
+      if (value is _OmittedArgument) {
+        if (parameter == 0) {
+          context.type(
+            value.token,
+            'Required argument Position cannot be omitted.',
+          );
+        }
+        continue;
+      }
+      _compatible(_Kind.number, _expression(value), value.token);
+    }
+    if (!assigned.contains(0)) {
+      context.type(member.token, 'Required argument Position is missing.');
+    }
+    argumentBindings[member.token] = bindings;
   }
 
   _Procedure _procedureCall(
@@ -2701,7 +2811,7 @@ class _Checker {
       case _NamedArgument() || _OmittedArgument():
         context.unsupported(
           expression.token,
-          'Named and omitted arguments are supported only for module helper calls.',
+          'Named and omitted arguments are unsupported on this callable.',
         );
       case _Literal():
         return expression.value is _VariantState
@@ -2877,6 +2987,12 @@ class _Checker {
           if (receiver == _Kind.paragraph && name == 'format') {
             _arguments(expression, 0, allowProperty: true);
             return _Kind.paragraphFormat;
+          }
+          if ((receiver == _Kind.paragraph ||
+                  receiver == _Kind.paragraphFormat) &&
+              name == 'tabstops') {
+            _arguments(expression, 0, allowProperty: true);
+            return _Kind.wordTabStops;
           }
           if (receiver == _Kind.range &&
               (name == 'font' || name == 'paragraphformat')) {
@@ -3105,7 +3221,7 @@ class _Checker {
       if (argument is _NamedArgument || argument is _OmittedArgument) {
         context.unsupported(
           argument.token,
-          'Named and omitted arguments are supported only for module helper calls.',
+          'Named and omitted arguments are unsupported on this callable.',
         );
       }
     }
@@ -3139,6 +3255,7 @@ class _Checker {
             expected == _Kind.paragraph ||
             expected == _Kind.font ||
             expected == _Kind.paragraphFormat ||
+            expected == _Kind.wordTabStops ||
             _powerPointObjectKinds.contains(expected))) {
       // Scalar Variant values may defer scalar checks until evaluation, but
       // cannot ever carry object bindings, including in unexecuted code.
@@ -3259,6 +3376,11 @@ class _WordFont {
 
 class _WordParagraphFormat {
   const _WordParagraphFormat(this.range);
+  final _WordRange range;
+}
+
+class _WordTabStops {
+  const _WordTabStops(this.range);
   final _WordRange range;
 }
 
@@ -3663,6 +3785,8 @@ class _Evaluator {
               'end': 0,
               'text': text,
             }, statement.target.token);
+          case _WordTabOperation():
+            _wordTabs(statement.target);
           case _With():
             withValues.add(_evaluate(statement.target));
             frames.add(_WithFrame());
@@ -3828,7 +3952,7 @@ class _Evaluator {
       case _NamedArgument() || _OmittedArgument():
         context.unsupported(
           expression.token,
-          'Argument markers require a checked module helper call.',
+          'Argument markers require a checked call.',
         );
       case _Literal():
         return expression.value;
@@ -3944,9 +4068,14 @@ class _Evaluator {
           }
           if (receiver is _WordParagraph) {
             final range = _WordRange(receiver);
-            return expression.token.lower == 'format'
-                ? _WordParagraphFormat(range)
-                : range;
+            return switch (expression.token.lower) {
+              'format' => _WordParagraphFormat(range),
+              'tabstops' => _WordTabStops(range),
+              _ => range,
+            };
+          }
+          if (receiver is _WordParagraphFormat) {
+            return _WordTabStops(receiver.range);
           }
           final range = receiver as _WordRange;
           return expression.token.lower == 'font'
@@ -4350,6 +4479,11 @@ class _Evaluator {
       case _Declared.wordParagraphFormat:
         if (value is! _WordParagraphFormat) {
           context.type(token, 'Set requires a Word ParagraphFormat.');
+        }
+        return value;
+      case _Declared.wordTabStops:
+        if (value is! _WordTabStops) {
+          context.type(token, 'Set requires Word TabStops.');
         }
         return value;
       case _Declared.presentation:
@@ -5080,6 +5214,66 @@ class _Evaluator {
       'slide': slide.index,
       ...fields,
     }, token);
+  }
+
+  void _wordTabs(_Member member) {
+    // Bind the receiver first, then evaluate each supplied argument exactly
+    // once in source order. Helpers may emit writes or rebind caller locals.
+    final tabs = _evaluate(member.receiver) as _WordTabStops;
+    if (member.token.lower == 'clearall') {
+      _emitWord(
+        tabs.range,
+        'clearTabStops',
+        const <String, Object?>{},
+        member.token,
+      );
+      return;
+    }
+    _charge(3, member.token);
+    final values = <Object>[0, 0, 0];
+    final arguments = member.arguments!;
+    final bindings = checker.argumentBindings[member.token]!;
+    for (var index = 0; index < arguments.length; index++) {
+      final argument = arguments[index];
+      if (argument is _OmittedArgument) {
+        _tick(argument.token);
+        continue;
+      }
+      final value = argument is _NamedArgument ? argument.value : argument;
+      values[bindings[index]] = _evaluate(value);
+    }
+    final points = _number(values[0], member.token);
+    final twips = points * 20;
+    if (points.abs() > 1584 || twips.round() / 20 != points) {
+      context.type(
+        member.token,
+        'TabStops.Add Position requires exact twentieth-points in -1584..1584.',
+      );
+    }
+    final alignment = _integer(values[1], member.token);
+    if (alignment < 0 || alignment > 3) {
+      context.unsupported(
+        member.token,
+        'TabStops.Add supports left, center, right, and decimal alignment.',
+      );
+    }
+    final leader = _integer(values[2], member.token);
+    if (leader < 0 || leader > 3) {
+      context.unsupported(
+        member.token,
+        'TabStops.Add supports spaces, dots, dashes, and lines leaders.',
+      );
+    }
+    _emitWord(tabs.range, 'tabStop', <String, Object?>{
+      'position': points,
+      'alignment': const <String>[
+        'left',
+        'center',
+        'right',
+        'decimal',
+      ][alignment],
+      'leader': const <String>['none', 'dot', 'hyphen', 'underscore'][leader],
+    }, member.token);
   }
 
   void _writeWord(

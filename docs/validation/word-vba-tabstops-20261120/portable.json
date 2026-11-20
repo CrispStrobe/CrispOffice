@@ -1,0 +1,50 @@
+{
+  "source_sha256": "2430f5c69412c6d900f81e5c00e22b30fc47a6e085bd0502fd158ddc26415128",
+  "source_bytes": 936,
+  "driver_sha256": "51e0b6d07f5d0979fb453a5511157da5e101c21c263b50b06b0f630184701403",
+  "attempts": [
+    {
+      "name": "vm",
+      "command": [
+        "/workspace/scratch/02ca2ade0467/runtime/dart-sdk/bin/dart",
+        "--old_gen_heap_size=512",
+        "--packages=/workspace/scratch/02ca2ade0467/runtime/validation-workspace/.dart_tool/package_config.json",
+        "-DWORD_TABSTOPS_BAS_BASE64=T3B0aW9uIEV4cGxpY2l0CgonIFJlcXVpcmVzIHRocmVlIGV4aXN0aW5nIGJvZHkgcGFyYWdyYXBocy4gRW1wdHkgcGFyYWdyYXBocyBhcmUgc3VwcG9ydGVkLgonIFBvc2l0aW9ucyBhcmUgcG9pbnRzOyBzdXBwb3J0ZWQgdmFsdWVzIHVzZSBleGFjdCB0d2VudGlldGgtcG9pbnQgaW5jcmVtZW50cy4KU3ViIFJlcG9ydFRhYnMoQnlWYWwgc3RvcHMgQXMgVGFiU3RvcHMsIE9wdGlvbmFsIEJ5VmFsIHJpZ2h0RWRnZSBBcyBEb3VibGUgPSA0MzIpCiAgICBXaXRoIHN0b3BzCiAgICAgICAgLkNsZWFyQWxsCiAgICAgICAgLkFkZCBQb3NpdGlvbjo9NzIsIEFsaWdubWVudDo9d2RBbGlnblRhYkxlZnQKICAgICAgICAuQWRkIHJpZ2h0RWRnZSwgd2RBbGlnblRhYlJpZ2h0LCB3ZFRhYkxlYWRlckRvdHMKICAgIEVuZCBXaXRoCkVuZCBTdWIKClN1YiBNYWluKCkKICAgIERpbSBmaXJzdCBBcyBQYXJhZ3JhcGgKICAgIERpbSBzdG9wcyBBcyBUYWJTdG9wcwogICAgU2V0IGZpcnN0ID0gQXBwbGljYXRpb24uQWN0aXZlRG9jdW1lbnQuUGFyYWdyYXBocy5JdGVtKDEpCiAgICBTZXQgc3RvcHMgPSBmaXJzdC5UYWJTdG9wcwogICAgQ2FsbCBSZXBvcnRUYWJzKHN0b3BzOj1zdG9wcykKCiAgICBXaXRoIEFjdGl2ZURvY3VtZW50LlBhcmFncmFwaHMoMikuRm9ybWF0LlRhYlN0b3BzCiAgICAgICAgLkFkZCBMZWFkZXI6PXdkVGFiTGVhZGVyRGFzaGVzLCBQb3NpdGlvbjo9MjE2LCBBbGlnbm1lbnQ6PXdkQWxpZ25UYWJDZW50ZXIKICAgICAgICAuQWRkIDMyNCwgLCB3ZFRhYkxlYWRlckxpbmVzCiAgICBFbmQgV2l0aAoKICAgIFNldCBzdG9wcyA9IFRoaXNEb2N1bWVudC5QYXJhZ3JhcGhzKDMpLlJhbmdlLlBhcmFncmFwaEZvcm1hdC5UYWJTdG9wcwogICAgc3RvcHMuQ2xlYXJBbGwKICAgIHN0b3BzLkFkZCAtMTgsIHdkQWxpZ25UYWJEZWNpbWFsCkVuZCBTdWIK",
+        "tool/macros/web_vba_word_tabstops_smoke.dart"
+      ],
+      "exit_code": 0,
+      "seconds": 16.951
+    },
+    {
+      "name": "js-compile",
+      "command": [
+        "/workspace/scratch/02ca2ade0467/runtime/dart-sdk/bin/dart",
+        "compile",
+        "js",
+        "-O1",
+        "--packages=/workspace/scratch/02ca2ade0467/runtime/validation-workspace/.dart_tool/package_config.json",
+        "-DWORD_TABSTOPS_BAS_BASE64=T3B0aW9uIEV4cGxpY2l0CgonIFJlcXVpcmVzIHRocmVlIGV4aXN0aW5nIGJvZHkgcGFyYWdyYXBocy4gRW1wdHkgcGFyYWdyYXBocyBhcmUgc3VwcG9ydGVkLgonIFBvc2l0aW9ucyBhcmUgcG9pbnRzOyBzdXBwb3J0ZWQgdmFsdWVzIHVzZSBleGFjdCB0d2VudGlldGgtcG9pbnQgaW5jcmVtZW50cy4KU3ViIFJlcG9ydFRhYnMoQnlWYWwgc3RvcHMgQXMgVGFiU3RvcHMsIE9wdGlvbmFsIEJ5VmFsIHJpZ2h0RWRnZSBBcyBEb3VibGUgPSA0MzIpCiAgICBXaXRoIHN0b3BzCiAgICAgICAgLkNsZWFyQWxsCiAgICAgICAgLkFkZCBQb3NpdGlvbjo9NzIsIEFsaWdubWVudDo9d2RBbGlnblRhYkxlZnQKICAgICAgICAuQWRkIHJpZ2h0RWRnZSwgd2RBbGlnblRhYlJpZ2h0LCB3ZFRhYkxlYWRlckRvdHMKICAgIEVuZCBXaXRoCkVuZCBTdWIKClN1YiBNYWluKCkKICAgIERpbSBmaXJzdCBBcyBQYXJhZ3JhcGgKICAgIERpbSBzdG9wcyBBcyBUYWJTdG9wcwogICAgU2V0IGZpcnN0ID0gQXBwbGljYXRpb24uQWN0aXZlRG9jdW1lbnQuUGFyYWdyYXBocy5JdGVtKDEpCiAgICBTZXQgc3RvcHMgPSBmaXJzdC5UYWJTdG9wcwogICAgQ2FsbCBSZXBvcnRUYWJzKHN0b3BzOj1zdG9wcykKCiAgICBXaXRoIEFjdGl2ZURvY3VtZW50LlBhcmFncmFwaHMoMikuRm9ybWF0LlRhYlN0b3BzCiAgICAgICAgLkFkZCBMZWFkZXI6PXdkVGFiTGVhZGVyRGFzaGVzLCBQb3NpdGlvbjo9MjE2LCBBbGlnbm1lbnQ6PXdkQWxpZ25UYWJDZW50ZXIKICAgICAgICAuQWRkIDMyNCwgLCB3ZFRhYkxlYWRlckxpbmVzCiAgICBFbmQgV2l0aAoKICAgIFNldCBzdG9wcyA9IFRoaXNEb2N1bWVudC5QYXJhZ3JhcGhzKDMpLlJhbmdlLlBhcmFncmFwaEZvcm1hdC5UYWJTdG9wcwogICAgc3RvcHMuQ2xlYXJBbGwKICAgIHN0b3BzLkFkZCAtMTgsIHdkQWxpZ25UYWJEZWNpbWFsCkVuZCBTdWIK",
+        "-o",
+        "/workspace/scratch/02ca2ade0467/runtime/word-tabstops-smoke.js",
+        "tool/macros/web_vba_word_tabstops_smoke.dart"
+      ],
+      "exit_code": 0,
+      "seconds": 18.165
+    },
+    {
+      "name": "js",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+        "-e",
+        "globalThis.self = globalThis; require(process.argv[1]);",
+        "/workspace/scratch/02ca2ade0467/runtime/word-tabstops-smoke.js"
+      ],
+      "exit_code": 0,
+      "seconds": 0.775
+    }
+  ],
+  "canonical_equal": true,
+  "canonical_sha256": "0057037ac911319140735416ce9c728db2212a2dae9f2e7f450eca3911702606",
+  "raw_equal": true,
+  "source_commit": "b5410b107a83f213e27c1476e766551b3f6cd6a4"
+}
