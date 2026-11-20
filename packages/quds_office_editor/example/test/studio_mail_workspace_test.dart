@@ -222,6 +222,10 @@ final class _Browser
 final class _BulkBrowser extends _Browser implements StudioMailMailboxRecords {
   final _observed = Map<mail.MimeMessage, MailHeaderRecord>.identity();
   mail.Mailbox? lastObservedMailbox;
+  MailAccountId? reportedAccount;
+
+  @override
+  MailAccountId get account => reportedAccount ?? super.account;
 
   @override
   Future<StudioMailHeaderPage> fetchHeaders(
@@ -658,6 +662,78 @@ void main() {
       },
     );
   }
+
+  testWidgets('IMAP legacy records cannot substitute another account', (
+    tester,
+  ) async {
+    final browser = _BulkBrowser();
+    await _show(tester, browser);
+    final header = browser._observed.keys.first;
+    final record = browser._observed[header]!;
+    final remote = record.remote as MailImapIdentity;
+    browser._observed[header] = MailHeaderRecord(
+      id: record.id,
+      remote: MailImapIdentity(
+        mailbox: MailMailboxId(
+          remote.mailbox.value,
+          account: MailAccountId(
+            'other-account',
+            profile: browser.account.profile,
+          ),
+        ),
+        uidValidity: remote.uidValidity,
+        uid: remote.uid,
+      ),
+      envelope: record.envelope,
+      flags: record.flags,
+    );
+    _bulkList(tester).onBulkAction!(MailBulkFlagAction.flag, [
+      'imap-message-91:300',
+    ]);
+    await _pump(tester);
+    expect(browser.changes, isEmpty);
+    expect(_bulkList(tester).bulkActionsEnabled, isFalse);
+    expect(_bulkList(tester).busy, isFalse);
+    expect(browser.reads, 0);
+  });
+
+  testWidgets('IMAP legacy account retirement stops an acknowledged batch', (
+    tester,
+  ) async {
+    final gate = Completer<void>();
+    final browser = _BulkBrowser()
+      ..mutationGate = gate
+      ..pages = (mailbox, cursor, limit) async =>
+          StudioMailHeaderPage(messages: _bulkHeaders());
+    await _show(tester, browser);
+    _bulkList(tester).onBulkAction!(MailBulkFlagAction.markRead, [
+      'imap-message-91:300',
+      'imap-message-91:200',
+    ]);
+    await _pump(tester);
+    browser.reportedAccount = MailAccountId(
+      'replacement-account',
+      profile: browser.account.profile,
+    );
+    gate.complete();
+    await _pump(tester);
+    expect(browser.changes, [('read', 300, true)]);
+    expect(
+      _bulkList(tester).items.every((item) => item.isRead == false),
+      isTrue,
+    );
+    final report =
+        (_bulkList(tester).bulkStatus! as StudioMailBulkStatus).report;
+    expect(report.confirmedCount, 1);
+    expect(report.unattemptedCount, 1);
+    expect(_bulkList(tester).bulkActionsEnabled, isFalse);
+    expect(_bulkList(tester).busy, isFalse);
+    expect(browser.reads, 0);
+    expect(
+      find.textContaining(_strings.mailWorkspaceRefreshRequired),
+      findsOneWidget,
+    );
+  });
 
   testWidgets(
     'IMAP stale bulk callback cannot mutate a later visit to the same folder',

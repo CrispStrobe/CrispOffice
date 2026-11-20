@@ -7,6 +7,9 @@ import 'package:quds_mail_ui/quds_mail_ui.dart';
 
 import 'studio_mail_cached_strings.dart';
 import 'studio_mail_draft_store.dart';
+import 'studio_mail_flag_journal.dart';
+import 'studio_mail_journal_dialog.dart';
+import 'studio_mail_journal_strings.dart';
 import 'studio_mail_draft_store_native.dart';
 import 'studio_mail_mailbox_store.dart';
 import 'studio_mail_workspace_strings.dart';
@@ -52,6 +55,7 @@ class _StudioMailCachedMailDialogState
   bool _showMessage = false;
   bool _missingBody = false;
   bool _confirmingCleanup = false;
+  bool _historyOpen = false;
   bool _closeRequested = false;
   bool _closingNavigation = false;
   bool _allowPop = false;
@@ -463,6 +467,32 @@ class _StudioMailCachedMailDialogState
     );
   }
 
+  Future<void> _openFlagHistory() async {
+    final owner = _owner;
+    if (!_current ||
+        _busy ||
+        _confirmingCleanup ||
+        _historyOpen ||
+        owner is! StudioMailFlagJournalOwner) {
+      return;
+    }
+    final store = (owner as StudioMailFlagJournalOwner).flagJournal;
+    if (store.account != widget.identity.account) return;
+    setState(() => _historyOpen = true);
+    try {
+      await showDialog<void>(
+        context: context,
+        builder: (_) => StudioMailJournalDialog(
+          strings: widget.strings,
+          store: store,
+          isCurrent: () => _current && identical(owner, _owner),
+        ),
+      );
+    } finally {
+      if (mounted) setState(() => _historyOpen = false);
+    }
+  }
+
   @override
   Widget build(BuildContext context) => PopScope<void>(
     canPop: _allowPop,
@@ -490,10 +520,26 @@ class _StudioMailCachedMailDialogState
                         style: Theme.of(context).textTheme.titleLarge,
                       ),
                     ),
+                    if (_owner is StudioMailFlagJournalOwner)
+                      IconButton(
+                        key: const ValueKey('studio-mail-open-activity'),
+                        tooltip: widget.strings.mailActivity,
+                        icon: const Icon(Icons.history),
+                        onPressed:
+                            _busy ||
+                                _confirmingCleanup ||
+                                _historyOpen ||
+                                !_current
+                            ? null
+                            : _openFlagHistory,
+                      ),
                     IconButton(
                       key: const ValueKey('studio-mail-cache-close'),
                       tooltip: widget.strings.close,
-                      onPressed: _closingNavigation || _confirmingCleanup
+                      onPressed:
+                          _closingNavigation ||
+                              _confirmingCleanup ||
+                              _historyOpen
                           ? null
                           : _closeAndPop,
                       icon: const Icon(Icons.close),
@@ -508,7 +554,11 @@ class _StudioMailCachedMailDialogState
                     padding: const EdgeInsets.symmetric(horizontal: 8),
                     child: TextButton.icon(
                       key: const ValueKey('studio-mail-cache-clear'),
-                      onPressed: _busy || _confirmingCleanup || !_current
+                      onPressed:
+                          _busy ||
+                              _confirmingCleanup ||
+                              _historyOpen ||
+                              !_current
                           ? null
                           : _clearCache,
                       icon: const Icon(Icons.delete_sweep_outlined),

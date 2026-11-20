@@ -3,6 +3,7 @@ import 'package:quds_mail_core/quds_mail_core.dart';
 
 import '../errors.dart';
 import '../models.dart';
+import 'flag_journal_schema.dart';
 
 /// Explicit SQL schema; public access is through typed repository DTOs.
 /// Drift owns query execution and transaction zones. The repository publishes
@@ -13,7 +14,7 @@ final class MailStoreDatabase extends GeneratedDatabase {
   final MailStoreFaultInjector? faultInjector;
 
   @override
-  int get schemaVersion => 5;
+  int get schemaVersion => 6;
 
   @override
   Iterable<TableInfo<Table, Object?>> get allTables => const [];
@@ -37,11 +38,14 @@ final class MailStoreDatabase extends GeneratedDatabase {
       for (final statement in schemaV5) {
         await customStatement(statement);
       }
+      for (final statement in schemaV6) {
+        await customStatement(statement);
+      }
       // Include the version in the same transaction as schema creation.
-      await customStatement('PRAGMA user_version = 5');
+      await customStatement('PRAGMA user_version = 6');
     }),
     onUpgrade: (_, from, to) async {
-      if (from < 1 || from > 4 || to != 5) {
+      if (from < 1 || from > 5 || to != 6) {
         throw const MailStoreStorageException(MailProblemCode.unsupported);
       }
       await transaction(() async {
@@ -60,11 +64,16 @@ final class MailStoreDatabase extends GeneratedDatabase {
             await customStatement(statement);
           }
         }
-        for (final statement in schemaV5) {
+        if (from < 5) {
+          for (final statement in schemaV5) {
+            await customStatement(statement);
+          }
+        }
+        for (final statement in schemaV6) {
           await customStatement(statement);
         }
         await faultInjector?.call(MailStoreCheckpoint.migrationCreated);
-        await customStatement('PRAGMA user_version = 5');
+        await customStatement('PRAGMA user_version = 6');
       });
     },
     beforeOpen: (_) async {

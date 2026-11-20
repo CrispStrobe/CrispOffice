@@ -17,6 +17,7 @@ enum MailBulkFlagStopReason {
   scopeCheckFailed,
   uncertain,
   rateLimited,
+  persistenceFailure,
 }
 
 /// Frozen identities selected from one observed foreground mailbox.
@@ -147,6 +148,26 @@ final class MailBulkFlagItemResult {
     this.problem,
   });
 
+  factory MailBulkFlagItemResult.restore({
+    required MailOperation operation,
+    required MailBulkFlagOutcome outcome,
+    MailProblem? problem,
+  }) {
+    if (operation is! MailSetRead && operation is! MailSetFlagged ||
+        ((outcome == MailBulkFlagOutcome.confirmed ||
+                outcome == MailBulkFlagOutcome.unattempted) &&
+            problem != null) ||
+        (outcome == MailBulkFlagOutcome.failed &&
+            (problem == null || problem.mutationMayHaveOccurred == true))) {
+      throw ArgumentError('Invalid flag receipt evidence.');
+    }
+    return MailBulkFlagItemResult(
+      operation: operation,
+      outcome: outcome,
+      problem: problem,
+    );
+  }
+
   final MailOperation operation;
   MailRemoteIdentity get message => operation.message;
   final MailBulkFlagOutcome outcome;
@@ -160,7 +181,48 @@ final class MailBulkFlagReport {
     required List<MailBulkFlagItemResult> results,
     this.stopProblem,
     this.stopReason,
+    this.persistenceProblem,
   }) : results = List.unmodifiable(results);
+
+  /// Restores read-only evidence. Result commands and ordering must exactly
+  /// match the frozen plan; this factory never executes that plan.
+  factory MailBulkFlagReport.restore({
+    required MailBulkFlagPlan plan,
+    required List<MailBulkFlagItemResult> results,
+    MailProblem? stopProblem,
+    MailBulkFlagStopReason? stopReason,
+    MailProblem? persistenceProblem,
+  }) {
+    if (results.length != plan.messages.length) {
+      throw ArgumentError('A receipt requires every frozen result.');
+    }
+    for (var i = 0; i < results.length; i++) {
+      final expected = plan.operationAt(i);
+      final actual = results[i].operation;
+      if (actual.id != expected.id ||
+          actual.message != expected.message ||
+          switch ((actual, expected)) {
+            (final MailSetRead a, final MailSetRead b) => a.read != b.read,
+            (final MailSetFlagged a, final MailSetFlagged b) =>
+              a.flagged != b.flagged,
+            _ => true,
+          }) {
+        throw ArgumentError('A receipt must retain its frozen commands.');
+      }
+      if ((results[i].outcome == MailBulkFlagOutcome.confirmed ||
+              results[i].outcome == MailBulkFlagOutcome.unattempted) &&
+          results[i].problem != null) {
+        throw ArgumentError('Only failed or uncertain results have problems.');
+      }
+    }
+    return MailBulkFlagReport._(
+      plan: plan,
+      results: results,
+      stopProblem: stopProblem,
+      stopReason: stopReason,
+      persistenceProblem: persistenceProblem,
+    );
+  }
 
   final MailBulkFlagPlan plan;
   final List<MailBulkFlagItemResult> results;
@@ -176,6 +238,9 @@ final class MailBulkFlagReport {
   /// Per-message acknowledgements are retained regardless of this reason.
   final MailBulkFlagStopReason? stopReason;
 
+  /// A local write failed. This never erases a provider acknowledgement.
+  final MailProblem? persistenceProblem;
+
   int count(MailBulkFlagOutcome outcome) =>
       results.where((result) => result.outcome == outcome).length;
   int get confirmedCount => count(MailBulkFlagOutcome.confirmed);
@@ -184,9 +249,22 @@ final class MailBulkFlagReport {
   int get unattemptedCount => count(MailBulkFlagOutcome.unattempted);
   bool get requiresRefresh =>
       uncertainCount != 0 ||
+      persistenceProblem != null ||
       stopReason == MailBulkFlagStopReason.staleScope ||
       stopReason == MailBulkFlagStopReason.invalidScope ||
       stopReason == MailBulkFlagStopReason.scopeCheckFailed;
+}
+
+/// Durable lifecycle for a foreground attempt. Every callback must commit
+/// before succeeding. Restored receipts never authorize a retry or dispatch.
+abstract interface class MailBulkFlagJournal {
+  Future<MailResult<MailUnit>> prepare(MailBulkFlagPlan plan);
+  Future<MailResult<MailUnit>> beginAttempt(int index);
+  Future<MailResult<MailUnit>> recordResult(
+    int index,
+    MailBulkFlagItemResult result,
+  );
+  Future<MailResult<MailUnit>> finish(MailBulkFlagReport report);
 }
 
 /// Foreground sequential execution without retries, storage or body fetching.
@@ -213,12 +291,14 @@ final class MailBulkFlagRunner {
     required bool Function() isScopeCurrent,
     bool Function()? shouldStop,
     void Function(MailBulkFlagReport report)? onProgress,
+    MailBulkFlagJournal? journal,
   }) => _runBulkFlags(
     plan: plan,
     lease: lease,
     isScopeCurrent: isScopeCurrent,
     shouldStop: shouldStop,
     onProgress: onProgress,
+    journal: journal,
     apply: (operation, lease) async =>
         MailBulkFlagAttempt.fromResult(await apply(operation, lease)),
   );
@@ -241,6 +321,7 @@ final class MailBulkFlagCoordinator {
     MailCancellationToken? cancellation,
     bool Function()? shouldStop,
     void Function(MailBulkFlagReport report)? onProgress,
+    MailBulkFlagJournal? journal,
   }) async {
     if (_started) {
       throw StateError('A bulk flag coordinator can only run once.');
@@ -254,6 +335,7 @@ final class MailBulkFlagCoordinator {
       cancellation: cancellation,
       shouldStop: shouldStop,
       onProgress: onProgress,
+      journal: journal,
     );
   }
 }
@@ -272,6 +354,7 @@ Future<MailBulkFlagReport> _runBulkFlags({
   MailCancellationToken? cancellation,
   bool Function()? shouldStop,
   void Function(MailBulkFlagReport report)? onProgress,
+  MailBulkFlagJournal? journal,
 }) async {
   final results = [
     for (var index = 0; index < plan.messages.length; index++)
@@ -282,11 +365,13 @@ Future<MailBulkFlagReport> _runBulkFlags({
   ];
   MailProblem? stopProblem;
   MailBulkFlagStopReason? stopReason;
+  MailProblem? persistenceProblem;
   MailBulkFlagReport snapshot() => MailBulkFlagReport._(
     plan: plan,
     results: results,
     stopProblem: stopProblem,
     stopReason: stopReason,
+    persistenceProblem: persistenceProblem,
   );
   void publish() {
     try {
@@ -378,10 +463,44 @@ Future<MailBulkFlagReport> _runBulkFlags({
     stopReason = current.reason;
   }
 
+  Future<bool> persist(Future<MailResult<MailUnit>> Function() write) async {
+    MailResult<MailUnit> result;
+    try {
+      result = await write();
+    } on Object {
+      result = const MailFailure(MailProblem(MailProblemCode.storageFailure));
+    }
+    if (result case MailFailure<MailUnit>(:final problem)) {
+      persistenceProblem ??= problem;
+      if (stopReason != MailBulkFlagStopReason.uncertain) {
+        stopProblem = problem;
+        stopReason = MailBulkFlagStopReason.persistenceFailure;
+      }
+      return false;
+    }
+    return true;
+  }
+
   publish();
+  var prepared = false;
+  if (journal != null) {
+    observeInterruption();
+    if (stopProblem == null) {
+      prepared = await persist(() => journal.prepare(plan));
+      // A persisted intent is not permission to dispatch into a retired view.
+      observeInterruption();
+    }
+  }
   for (var index = 0; index < plan.messages.length; index++) {
     observeInterruption();
     if (stopProblem != null) break;
+    if (journal != null) {
+      if (!await persist(() => journal.beginAttempt(index))) break;
+      // Cancellation can arrive while SQLite commits the dispatch marker.
+      // finish() then retains this item as definitely not attempted.
+      observeInterruption();
+      if (stopProblem != null) break;
+    }
     MailBulkFlagAttempt attempt;
     try {
       attempt = await apply(results[index].operation, lease);
@@ -417,12 +536,18 @@ Future<MailBulkFlagReport> _runBulkFlags({
       stopProblem = problem;
       stopReason = MailBulkFlagStopReason.rateLimited;
     }
+    if (journal != null) {
+      await persist(() => journal.recordResult(index, results[index]));
+    }
     observeInterruption();
     publish();
     if (stopProblem != null) break;
   }
   // A progress observer can retire the scope, including after the last item.
   observeInterruption();
-  final report = snapshot();
-  return report;
+  if (prepared && journal != null) {
+    await persist(() => journal.finish(snapshot()));
+  }
+  if (journal != null) publish();
+  return snapshot();
 }

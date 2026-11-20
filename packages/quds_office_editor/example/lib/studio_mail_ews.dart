@@ -10,6 +10,9 @@ import 'package:url_launcher/url_launcher.dart';
 
 import 'studio_mail_archive_action.dart';
 import 'studio_mail_bulk_status.dart';
+import 'studio_mail_flag_journal.dart';
+import 'studio_mail_journal_dialog.dart';
+import 'studio_mail_journal_strings.dart';
 import 'studio_mail_archive_folder_action.dart';
 import 'studio_mail_compose.dart';
 import 'studio_mail_outbox.dart';
@@ -154,7 +157,7 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
   bool _showMessage = false;
   bool _needsRefresh = false;
   int _mailboxGeneration = 0;
-  int _nextBulkOperation = 0;
+  Future<void>? _pendingFlagWrite;
   MailCancellationSource? _bulkCancellation;
   MailBulkFlagReport? _bulkReport;
   Map<MailRemoteIdentity, String> _bulkSubjects = const {};
@@ -594,6 +597,9 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
   }
 
   Future<void> _closeDraftStore(StudioMailDraftStore? store) async {
+    // Keep the owner alive until an in-flight server reply has a durable receipt.
+    // Cancelling the connection still prevents every subsequent dispatch.
+    await _pendingFlagWrite;
     final mailboxStore = switch (store) {
       StudioMailMailboxStoreOwner owner => owner.mailboxStore,
       _ => null,
@@ -647,6 +653,13 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
       if (candidate case StudioMailMailboxStoreOwner(
         :final mailboxStore,
       ) when mailboxStore.account != identity.account) {
+        throw const StudioMailDraftStoreException(
+          MailProblemCode.permissionDenied,
+        );
+      }
+      if (candidate case StudioMailFlagJournalOwner(
+        :final flagJournal,
+      ) when flagJournal.account != identity.account) {
         throw const StudioMailDraftStoreException(
           MailProblemCode.permissionDenied,
         );
@@ -938,6 +951,20 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
         command is MailMove && !_capabilities.supports(MailCapability.move)) {
       return;
     }
+    if (command is MailSetRead || command is MailSetFlagged) {
+      await _applyBulkFlags(
+        switch (command) {
+          MailSetRead(:final read) =>
+            read ? MailBulkFlagAction.markRead : MailBulkFlagAction.markUnread,
+          MailSetFlagged(:final flagged) =>
+            flagged ? MailBulkFlagAction.flag : MailBulkFlagAction.unflag,
+          _ => throw StateError('Unsupported flag operation'),
+        },
+        ['ews-message-${selected.id.value}'],
+        mailboxGeneration: _mailboxGeneration,
+      );
+      return;
+    }
     final lease = session.begin();
     setState(() {
       _busy = true;
@@ -1048,7 +1075,7 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
     }
     final lease = session.begin();
     final plan = MailBulkFlagPlan(
-      id: 'provider-bulk-${++_nextBulkOperation}',
+      id: newStudioMailFlagOperationId(),
       mailbox: mailbox.id,
       provider: selected.first.remote.provider,
       messages: [for (final header in selected) header.remote],
@@ -1066,6 +1093,9 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
     }
 
     final cancellation = MailCancellationSource();
+    final owner = _draftStore;
+    final settled = Completer<void>();
+    _pendingFlagWrite = settled.future;
     setState(() {
       _bulkCancellation = cancellation;
       _bulkReport = null;
@@ -1082,6 +1112,14 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
         lease: lease,
         cancellation: cancellation.token,
         isScopeCurrent: currentScope,
+        journal: studioMailFlagJournal(
+          owner: owner,
+          requireDurable: widget.draftStoreFactory == null,
+          sourceAccount: provider.account,
+          provider: plan.provider,
+          subjects: [for (final header in selected) header.envelope.subject],
+          isCurrent: () => currentScope() && identical(owner, _draftStore),
+        ),
         onProgress: (report) {
           if (currentScope() && identical(_bulkCancellation, cancellation)) {
             setState(() => _bulkReport = report);
@@ -1141,6 +1179,10 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
       // These are per-flag confirmations. Persisting a synthetic full snapshot
       // here would turn unknown flags into invented observations.
     } finally {
+      settled.complete();
+      if (identical(_pendingFlagWrite, settled.future)) {
+        _pendingFlagWrite = null;
+      }
       if (_current(provider, lease) &&
           identical(_bulkCancellation, cancellation)) {
         setState(() {
@@ -1789,6 +1831,34 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
     }
   }
 
+  Future<void> _openFlagHistory() async {
+    final provider = _provider;
+    final session = _session;
+    final owner = _draftStore;
+    if (provider == null ||
+        session == null ||
+        owner is! StudioMailFlagJournalOwner ||
+        _blocked) {
+      return;
+    }
+    final lease = session.begin();
+    bool current() =>
+        _current(provider, lease) && identical(owner, _draftStore);
+    setState(() => _dialogOpen = true);
+    try {
+      await showDialog<void>(
+        context: context,
+        builder: (_) => StudioMailJournalDialog(
+          strings: widget.strings,
+          store: (owner as StudioMailFlagJournalOwner).flagJournal,
+          isCurrent: current,
+        ),
+      );
+    } finally {
+      if (current()) setState(() => _dialogOpen = false);
+    }
+  }
+
   Widget _localAccountsButton() => OutlinedButton.icon(
     key: const ValueKey('studio-mail-known-drafts'),
     onPressed: _blocked ? null : _openLocalAccounts,
@@ -1820,6 +1890,13 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
               icon: const Icon(Icons.outbox_outlined),
               onPressed: _blocked || !_canSend ? null : _openOutbox,
             ),
+            if (_draftStore is StudioMailFlagJournalOwner)
+              IconButton(
+                key: const ValueKey('studio-mail-open-activity'),
+                icon: const Icon(Icons.history),
+                tooltip: widget.strings.mailActivity,
+                onPressed: _blocked ? null : _openFlagHistory,
+              ),
             IconButton(
               tooltip: widget.strings.refresh,
               icon: const Icon(Icons.refresh),

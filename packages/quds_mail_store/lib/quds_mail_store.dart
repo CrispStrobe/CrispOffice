@@ -11,5 +11,6 @@ export 'src/archive_restore_checkpoint_models.dart';
 export 'src/archive_restore_models.dart';
 export 'src/archive_runner.dart';
 export 'src/errors.dart' show MailStoreStorageException, mailStoreProblem;
+export 'src/flag_journal_models.dart';
 export 'src/models.dart';
 export 'src/repository.dart';

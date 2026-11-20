@@ -82,7 +82,7 @@ void main() {
       expect(_snapshot(file), before);
       final database = sqlite.sqlite3.open(file.path);
       try {
-        expect(database.userVersion, 5);
+        expect(database.userVersion, 6);
         expect(database.select('PRAGMA foreign_key_check'), isEmpty);
         expect(
           database.select('SELECT count(*) AS n FROM mail_fts').single['n'],
@@ -169,7 +169,7 @@ void main() {
 
       final database = sqlite.sqlite3.open(file.path);
       try {
-        expect(database.userVersion, 5);
+        expect(database.userVersion, 6);
         expect(database.select('PRAGMA foreign_key_check'), isEmpty);
         for (final invalid in <Object?>[-1, 32, 0.5, 'invalid']) {
           expect(
@@ -327,7 +327,7 @@ void main() {
       expect(_snapshot(file), before);
       final upgraded = sqlite.sqlite3.open(file.path);
       try {
-        expect(upgraded.userVersion, 5);
+        expect(upgraded.userVersion, 6);
       } finally {
         upgraded.close();
       }
@@ -403,7 +403,7 @@ void main() {
         await repository.close();
         expect(_snapshot(file), before);
         final current = sqlite.sqlite3.open(file.path);
-        expect(current.userVersion, 5);
+        expect(current.userVersion, 6);
         expect(current.select('PRAGMA foreign_key_check'), isEmpty);
         expect(
           current
@@ -554,7 +554,7 @@ void main() {
         expect(original(), before);
         final current = sqlite.sqlite3.open(file.path);
         try {
-          expect(current.userVersion, 5);
+          expect(current.userVersion, 6);
           expect(current.select('PRAGMA foreign_key_check'), isEmpty);
           expect(
             current.select(
