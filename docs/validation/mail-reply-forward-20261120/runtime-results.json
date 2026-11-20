@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "recorded_at_utc": "2026-11-20T12:11:37.591432+00:00",
+  "recorded_at_utc": "2026-11-20T12:14:56.294673+00:00",
   "target": {
     "repository": "CrispStrobe/quds_office_suite",
     "head": "4df7a148f156d9a697028994f14b171877d1d47c",
@@ -211,7 +211,35 @@
         }
       ]
     },
-    "sdk_git_history": "Shallow local clone of exact SDK HEAD; no runtime source/executable changes."
+    "sdk_git_history": "Shallow local clone of exact SDK HEAD; no runtime source/executable changes.",
+    "abandoned_generated_output_cleanup": {
+      "manifest_sha256": "40a243a69b9228b14eaedf235f5f33cfb8cf70d1b7a09989a02ba13560d78305",
+      "removed": [
+        {
+          "path": "/workspace/scratch/fdd3d324d4a7/validation_runtime/tmp/flutter_tools.DHZTBT",
+          "bytes": 2419
+        },
+        {
+          "path": "/workspace/scratch/fdd3d324d4a7/validation_runtime/tmp/flutter_tools.POTALM",
+          "bytes": 121544167
+        },
+        {
+          "path": "/workspace/scratch/fdd3d324d4a7/validation_repo/packages/quds_office_editor/example/build",
+          "bytes": 156712868
+        },
+        {
+          "path": "/workspace/scratch/fdd3d324d4a7/validation_repo/packages/quds_mail_ui/build",
+          "bytes": 50982346
+        }
+      ]
+    },
+    "final_test_flags": [
+      "--no-pub",
+      "--reporter=json",
+      "--concurrency=1",
+      "--no-track-widget-creation"
+    ],
+    "final_test_timeout_seconds_per_command": 150
   },
   "runs": [
     {
@@ -391,6 +419,196 @@
     "Unused web/DevTools/compiler artifacts and SDK Git history were reclaimed without changing required VM/analyzer/tester bytes.",
     "No GitHub CI actions were used or awaited."
   ],
+  "qualification_status": "in_progress",
+  "final_static_analysis": {
+    "source": {
+      "head": "4df7a148f156d9a697028994f14b171877d1d47c",
+      "tree": "4c13111ca189109e8f3ddf05e8f4012c3d03adab"
+    },
+    "checks": [
+      {
+        "command": [
+          "dart",
+          "format",
+          "--output=none",
+          "--set-exit-if-changed",
+          "packages/quds_mail_ui/lib/src/reader/presentation.dart",
+          "packages/quds_mail_ui/test/body_presentation_test.dart",
+          "packages/quds_office_editor/example/lib/studio_mail_attachment.dart",
+          "packages/quds_office_editor/example/lib/studio_mail_reply.dart",
+          "packages/quds_office_editor/example/lib/studio_mail_native.dart",
+          "packages/quds_office_editor/example/lib/studio_mail_ews.dart",
+          "packages/quds_office_editor/example/lib/studio_mail_strings.dart",
+          "packages/quds_office_editor/example/test/studio_mail_reply_test.dart",
+          "packages/quds_office_editor/example/test/studio_mail_forward_test.dart",
+          "packages/quds_office_editor/example/test/studio_mail_test.dart",
+          "packages/quds_office_editor/example/test/studio_mail_ews_test.dart",
+          "packages/quds_office_editor/example/test/studio_mail_cloud_test.dart"
+        ],
+        "exit_code": 0,
+        "timed_out": false,
+        "seconds": 0.5165248729999803,
+        "output": "Formatted 12 files (0 changed) in 0.43 seconds.\n",
+        "log_sha256": "34aba1e3fd438e90a4cdb7e4bb08d86c58269f0e8086ec7f3b5799d8f9c92503"
+      },
+      {
+        "command": [
+          "dart",
+          "analyze",
+          "--fatal-infos",
+          "packages/quds_mail_ui/lib/src/reader/presentation.dart"
+        ],
+        "exit_code": 0,
+        "timed_out": false,
+        "seconds": 0.36483972399992126,
+        "output": "Analyzing presentation.dart...\nNo issues found!\n",
+        "log_sha256": "7b2c463a33015c137d432b69f53d704f7f94643db5482d2e289e09762cf27b76"
+      },
+      {
+        "command": [
+          "dart",
+          "analyze",
+          "--fatal-infos",
+          "packages/quds_mail_ui/test/body_presentation_test.dart"
+        ],
+        "exit_code": 0,
+        "timed_out": false,
+        "seconds": 8.725083935999919,
+        "output": "Analyzing body_presentation_test.dart...\nNo issues found!\n",
+        "log_sha256": "c56047b21e65ec4b47d55ecb402c5e143a38220d97261e82f1ead90f404de5b5"
+      },
+      {
+        "command": [
+          "dart",
+          "analyze",
+          "--fatal-infos",
+          "packages/quds_office_editor/example/lib/studio_mail_attachment.dart"
+        ],
+        "exit_code": 0,
+        "timed_out": false,
+        "seconds": 0.21459415199979048,
+        "output": "Analyzing studio_mail_attachment.dart...\nNo issues found!\n",
+        "log_sha256": "2fa10d60935f3dc2840b289f945641021e32f455b01c25d7cf4e6e1e9e9043bb"
+      },
+      {
+        "command": [
+          "dart",
+          "analyze",
+          "--fatal-infos",
+          "packages/quds_office_editor/example/lib/studio_mail_reply.dart"
+        ],
+        "exit_code": 0,
+        "timed_out": false,
+        "seconds": 5.781517597999937,
+        "output": "Analyzing studio_mail_reply.dart...\nNo issues found!\n",
+        "log_sha256": "721affae58b5345e8e1935ec02ca5bad62af922a3a16c2e0a2b0d19d55f303de"
+      },
+      {
+        "command": [
+          "dart",
+          "analyze",
+          "--fatal-infos",
+          "packages/quds_office_editor/example/lib/studio_mail_native.dart"
+        ],
+        "exit_code": 0,
+        "timed_out": false,
+        "seconds": 16.59516250500019,
+        "output": "Analyzing studio_mail_native.dart...\nNo issues found!\n",
+        "log_sha256": "9a3cb25356d05cbd9ed72d018aaf4f62c7fc0be9cc02455501de947ad9e057bd"
+      },
+      {
+        "command": [
+          "dart",
+          "analyze",
+          "--fatal-infos",
+          "packages/quds_office_editor/example/lib/studio_mail_ews.dart"
+        ],
+        "exit_code": 0,
+        "timed_out": false,
+        "seconds": 15.531548401000236,
+        "output": "Analyzing studio_mail_ews.dart...\nNo issues found!\n",
+        "log_sha256": "651db22824abb3b3cb0b3215820518e865d26db26b88bb9a6f1ec7fa9107ce25"
+      },
+      {
+        "command": [
+          "dart",
+          "analyze",
+          "--fatal-infos",
+          "packages/quds_office_editor/example/lib/studio_mail_strings.dart"
+        ],
+        "exit_code": 0,
+        "timed_out": false,
+        "seconds": 0.2199271609997595,
+        "output": "Analyzing studio_mail_strings.dart...\nNo issues found!\n",
+        "log_sha256": "bc02c5d479472824c21d75cd3b8aaadff9d457865f02e0247096a45a1ee7eda9"
+      },
+      {
+        "command": [
+          "dart",
+          "analyze",
+          "--fatal-infos",
+          "packages/quds_office_editor/example/test/studio_mail_reply_test.dart"
+        ],
+        "exit_code": 0,
+        "timed_out": false,
+        "seconds": 10.223341876000177,
+        "output": "Analyzing studio_mail_reply_test.dart...\nNo issues found!\n",
+        "log_sha256": "45ccc7f3f274fd1ada84c2b51f8c4049bb03a251bbb5f8e532d9f10a22d38773"
+      },
+      {
+        "command": [
+          "dart",
+          "analyze",
+          "--fatal-infos",
+          "packages/quds_office_editor/example/test/studio_mail_forward_test.dart"
+        ],
+        "exit_code": 0,
+        "timed_out": false,
+        "seconds": 9.858220574999905,
+        "output": "Analyzing studio_mail_forward_test.dart...\nNo issues found!\n",
+        "log_sha256": "ce86b3483fbbb01bf14c22acb55109c9908355b883a7277cb7f000a6b2e0e6aa"
+      },
+      {
+        "command": [
+          "dart",
+          "analyze",
+          "--fatal-infos",
+          "packages/quds_office_editor/example/test/studio_mail_test.dart"
+        ],
+        "exit_code": 0,
+        "timed_out": false,
+        "seconds": 16.854890182999952,
+        "output": "Analyzing studio_mail_test.dart...\nNo issues found!\n",
+        "log_sha256": "a2cd8674a95f27b7eda2c0c9ec99315b1a22117f399dd28a64fb35054374d232"
+      },
+      {
+        "command": [
+          "dart",
+          "analyze",
+          "--fatal-infos",
+          "packages/quds_office_editor/example/test/studio_mail_ews_test.dart"
+        ],
+        "exit_code": 0,
+        "timed_out": false,
+        "seconds": 16.119419386000118,
+        "output": "Analyzing studio_mail_ews_test.dart...\nNo issues found!\n",
+        "log_sha256": "2e33743309d9692f2ba6b080c9c3615a1d877e3f0bbdb51808a1d6f918961ff1"
+      },
+      {
+        "command": [
+          "dart",
+          "analyze",
+          "--fatal-infos",
+          "packages/quds_office_editor/example/test/studio_mail_cloud_test.dart"
+        ],
+        "exit_code": 0,
+        "timed_out": false,
+        "seconds": 16.55639735099976,
+        "output": "Analyzing studio_mail_cloud_test.dart...\nNo issues found!\n",
+        "log_sha256": "e3e01d7f5cef4a419d22c166b53ee954532cdb7d82e6c15aefa58968ac614ce3"
+      }
+    ]
+  },
   "earlier_static_analysis": {
     "head": "c2b4f17bfc4baa433e90bbcbf537e4e0cd250988",
     "targets": [
