@@ -27,10 +27,19 @@
     "comparator-tests.log": "c0747563bda741b47b1f5f97348c77f1618bcd91c76f86cc78c986883707e5b6",
     "engine-accepted.log": "9fc4c00ee6a051a7ad129fd064c6f89e3dc025edb589b7eab13403fd3cb4cd03",
     "analysis-accepted.log": "7aa779a1091f722159c6b6dd3486402ed269f38c3c09142cfb359637897f32a9",
+    "reconciled-editor.log": "073ef782512f23c060a7d19a141f85cb6ae726f77b0b681029b4b54ebea3b39d",
+    "reconciled-engine.log": "c2d9ff9451a37d82971fffc3f810396ccff7bc826130195cba96b314194f8d82",
     "qualification-before.json": "9ec0dae5126b1b33e76b40c5f7b1b82ecc355eef26f8d2dd84d7efd6c00fe475",
     "qualification-after.json": "4a220e914df093e03f51ca157a5dcca493bb644c0e7f8cd2a3e79e93d6921809",
     "marked-word-export.log": "1000ef34e14d60b4dffebf8a5cd50a78fefc76533765fbccdfcd64366f80a92d",
+    "README.md": "97720db3fb147fae6d260ff795b3175f8bc581959a11fbd4afe84a6d1199eb1e",
+    "calibri-comparison.png": "8dea192ffa4b91acf13972aa5dbdd5f81fd06bdf9fd09695ca99c526376c5710",
     "editor-accepted.log": "565474d89605ca1f261ccb301d439ff8d3b0995cda86c1fefa491dd7f9bf0f49",
     "word-export.log": "aa76f147ae407185b9174c55ca59461cae4b01ab297ee29016f0afb62dc7360e"
-  }
+  },
+  "reconciledSourceCommit": "2c565d39e36c9604c62ecb24670dc8a6c7dd39ec",
+  "preservedHostOfficeCommit": "e7ba3544b17817fa1769688c56ed395bf627e63e",
+  "reconciliationEnginePassed": 57,
+  "reconciliationEditorPassed": 27,
+  "wordEngineAndCanvasUnchangedByReconciliation": true
 }

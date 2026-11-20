@@ -117,3 +117,16 @@ record does not qualify all engine PDF output at >95%.
 Every added corpus page must meet the same threshold individually. New
 references require actual Word output and retained source/font/version evidence;
 rebaselining Quds output against itself cannot close these gaps.
+
+## Host reconciliation
+
+Preserved CrispCloud's independently advanced Quds source `e7ba3544` by merging
+it into canonical Quds main before synchronizing the host. This retains the
+current geometry, picture-background/border, Zotero and mail work. Word engine,
+canvas and font-metric code is unchanged by that reconciliation; the two
+controller changes preserve slide transforms. An additional 57 engine and 27
+editor cases pass on the reconciled tree. These replay counts overlap earlier
+cases and are not added to the unique test totals above.
+
+[Visual comparison](calibri-comparison.png): the same crop from native Word,
+the prior canvas and the improved canvas, with no per-image alignment or scaling.
