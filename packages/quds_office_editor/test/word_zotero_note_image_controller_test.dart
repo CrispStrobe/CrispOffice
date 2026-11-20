@@ -124,8 +124,12 @@ void _insert(
   _call(transaction, 'Document.insertText', [html]);
 }
 
-void _stage(WordZoteroTransaction transaction, {int noteType = 0}) {
-  _insert(transaction, noteType: noteType);
+void _stage(
+  WordZoteroTransaction transaction, {
+  int noteType = 0,
+  String html = _html,
+}) {
+  _insert(transaction, noteType: noteType, html: html);
   final field =
       (_call(transaction, 'Document.convertPlaceholdersToFields', [
                 ['ABC123'],
@@ -399,6 +403,50 @@ Future<({int red, int green})> _paintedColors(WidgetTester tester) async {
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
   setUpAll(OfficeHostFonts.ensureRegistered);
+
+  test('ordinary note fractional image extents survive repeated DOCX saves', () {
+    final controller = _controller();
+    final transaction = _begin(controller, ZoteroCitingCommand.addNote);
+    // Zotero's note editor can fill a missing dimension from the natural aspect
+    // ratio without rounding it before serialization. This 3x2 image at width
+    // 53 therefore acquires height 35.333333333333336 CSS pixels.
+    _stage(
+      transaction,
+      html: _html.replaceFirst(
+        'width="96" height="64"',
+        'width="53" height="35.333333333333336"',
+      ),
+    );
+    transaction.apply();
+    var reopened = controller.document;
+    for (var cycle = 0; cycle < 4; cycle++) {
+      final image = reopened.paragraphs
+          .expand((paragraph) => paragraph.inlines.whereType<WmlRun>())
+          .singleWhere((run) => run.inlineVisual != null)
+          .inlineVisual!
+          .visual;
+      // One EMU is 1/12700 point; DOCX extents must keep native precision.
+      expect(image.width, closeTo(39.75, 1 / 12700));
+      expect(image.height, closeTo(26.5, 1 / 12700));
+      expect(image.imageBytes, orderedEquals(_png));
+      _expectCitation(reopened, 0);
+      expect(
+        reopened.paragraphs.first.text,
+        startsWith('BeforeFigure \uFFFC '),
+      );
+      expect(reopened.paragraphs.elementAt(1).text, 'FinishAfter');
+      if (cycle < 3) {
+        reopened = WordDeserializer().readBytes(
+          WordSerializer().writeBytes(reopened),
+        );
+      }
+    }
+    expect(controller.caret.paragraphIndex, 1);
+    expect(controller.caret.logicalIndex, 6);
+    controller.undo();
+    expect(controller.document.inlineVisuals, isEmpty);
+    expect(controller.canUndo, isFalse);
+  });
 
   for (final command in [
     ZoteroCitingCommand.addNote,

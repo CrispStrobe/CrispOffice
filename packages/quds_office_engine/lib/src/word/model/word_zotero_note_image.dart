@@ -164,12 +164,21 @@ final class WordZoteroNoteImageReader {
 
   static double? _dimension(String? value) {
     if (value == null) return null;
-    if (!RegExp(r'^[1-9][0-9]{0,5}$').hasMatch(value)) {
+    // The annotation exporter rounds these values, but the ordinary Zotero
+    // note editor stores aspect-ratio-derived dimensions as decimal numbers.
+    // Bound the lexical form before parsing; units, signs, and non-finite CSS
+    // values are not part of that native image contract.
+    final parsed =
+        value.length <= 32 &&
+            RegExp(r'^(?:[0-9]+(?:\.[0-9]+)?|\.[0-9]+)$').hasMatch(value)
+        ? double.tryParse(value)
+        : null;
+    if (parsed == null || !parsed.isFinite || parsed <= 0) {
       throw const FormatException(
         'A Zotero note image has invalid width or height. The document was kept unchanged.',
       );
     }
-    return int.parse(value).toDouble();
+    return parsed;
   }
 
   static int _base64Digit(int code) => switch (code) {

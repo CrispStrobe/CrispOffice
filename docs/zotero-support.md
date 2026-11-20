@@ -133,9 +133,10 @@ title and ordinary image hyperlink. Pictures occupy one native inline position,
 so adjacent citation placeholders retain their positions and reading order.
 A note containing only a picture is supported too.
 
-Zotero's integer HTML width/height values use CSS pixels: 96 pixels become
-72 points. When one dimension is missing, Quds derives it from the intrinsic
-aspect ratio; when both are missing, it uses the intrinsic pixel dimensions.
+Zotero's positive, finite HTML width/height values use CSS pixels: 96 pixels
+become 72 points. Fractional values produced by the note editor's resize and
+aspect-ratio calculations retain their precision. When one dimension is missing,
+Quds derives it from the intrinsic aspect ratio; when both are missing, it uses the intrinsic pixel dimensions.
 Both displayed dimensions must lie between 1 and 4000 points, matching the
 native image writer's supported extent. Resize an image in Zotero when its
 displayed dimensions fall outside that range.
@@ -144,8 +145,9 @@ The note payload remains limited to 8 MiB. It can contain up to 32 images and
 4 MiB of decoded image-file bytes in total. Each raster is limited to 8192
 pixels on either edge and 16,777,216 pixels; the complete note is limited to
 33,554,432 pixels. PNG scanline expansion is limited to 32 MiB per image and
-the aggregate decoded-image budget is 64 MiB. Compressed PNG metadata has a
-separate 1 MiB budget across the note. Encoded sizes, checksums, dimensions,
+the aggregate decoded raster-data budget is 64 MiB. These are data-size limits;
+decoder intermediate allocations can consume more memory. Compressed PNG metadata
+has a separate 1 MiB budget across the note. Encoded sizes, checksums, dimensions,
 pixel streams and expansion budgets are checked before applying the document
 transaction.
 

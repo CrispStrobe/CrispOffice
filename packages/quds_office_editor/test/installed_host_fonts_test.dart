@@ -392,4 +392,45 @@ void main() {
       );
     },
   );
+
+  test('pending internal paint names reject authored ownership', () async {
+    final seed = await installedFontFixture('Reserve Seed');
+    await OfficeHostFonts.registerInstalledFamily(
+      family: 'Reserve Seed',
+      faces: [ByteData.sublistView(seed)],
+    );
+    final sequence = int.parse(
+      OfficeHostFonts.registeredFamily('Reserve Seed')!.split(' ').last,
+    );
+    final reserved = 'Quds Installed ${sequence + 1}';
+    final owner = await installedFontFixture('Reserve Owner');
+    final collision = await installedFontFixture(
+      reserved,
+      file: 'LiberationSerif-Regular.ttf',
+    );
+    // The first load reserves an internal paint name before Flutter has
+    // finished accepting its bytes. A simultaneous authored name cannot take it.
+    final loadingOwner = OfficeHostFonts.registerInstalledFamily(
+      family: 'Reserve Owner',
+      faces: [ByteData.sublistView(owner)],
+    );
+    final conflicting = OfficeHostFonts.registerInstalledFamily(
+      family: reserved,
+      faces: [ByteData.sublistView(collision)],
+    );
+    await Future.wait([
+      loadingOwner,
+      expectLater(conflicting, throwsStateError),
+    ]);
+    expect(OfficeHostFonts.registeredFamily('Reserve Owner'), reserved);
+    expect(OfficeHostFonts.registeredFamily(reserved), reserved);
+    expect(
+      OfficeHostFonts.wordMetrics(
+        65,
+        24,
+        WmlRunProps(asciiFont: 'Reserve Owner'),
+      )!.font.bytes,
+      orderedEquals(owner),
+    );
+  });
 }

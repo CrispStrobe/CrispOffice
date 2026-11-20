@@ -1,0 +1,193 @@
+{
+  "files": {
+    "toolchains/logs/image-controller-analysis.log": {
+      "bytes": 74,
+      "sha256": "521dddd6a819ebf435ab7c04394e6a9894aca59eaa1683827b2a6503363a4ad5"
+    },
+    "toolchains/logs/image-controller-development-1-summary.json": {
+      "bytes": 1902,
+      "sha256": "8a0887b8c77d6a9d5508d79c195fa8620cdeb3cfcd9e3f950490993c03488aa1"
+    },
+    "toolchains/logs/image-controller-development-1.jsonl": {
+      "bytes": 10812,
+      "sha256": "3bbc615f5c54db6fce4a74e5263c4b90ab8255a2a0246d851c050611401a7f0d"
+    },
+    "toolchains/logs/image-controller-development-1.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "zotero-image-work/engine-integration-development-1.jsonl": {
+      "bytes": 5185,
+      "sha256": "bff1b83093f9b4b6c8b14b3cbee64903e61fa42985921b38e9f4e0cf8ffed950"
+    },
+    "zotero-image-work/engine-integration-development-1.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "zotero-image-work/engine-integration-development-2.jsonl": {
+      "bytes": 4420,
+      "sha256": "ab01903359ce48d5ba5b35dc8f984841ef29e0ad43e0e1f78ab0474f48b5f5f6"
+    },
+    "zotero-image-work/engine-integration-development-2.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "zotero-image-work/parser-analysis-corrected.log": {
+      "bytes": 115,
+      "sha256": "9bdee442f8e27180ef9d698d8ae938ee75fad1075be88c3998ebc153d120dad5"
+    },
+    "zotero-image-work/parser-analysis-development.log": {
+      "bytes": 682,
+      "sha256": "69297bd9f674d27c742748b0cb208df405e1f41119f29323bab6bcfbd9ac436d"
+    },
+    "zotero-image-work/parser-format-final.log": {
+      "bytes": 47,
+      "sha256": "e2b84052659d83c2c420ce83f6d7641cbe36d94e0ec22f6a58374d89233f5440"
+    },
+    "zotero-image-work/parser-regressions-development.log": {
+      "bytes": 11155,
+      "sha256": "8150b0f9770c120a2e2a05a64406f04e89cbd0e84350b4e20e5649527eecad12"
+    },
+    "zotero-image-work/parser-tested-source.json": {
+      "bytes": 568,
+      "sha256": "a2129e2a8fb7434f255858ff13c91e9c8ec9c7a6579f1353f4f97f3fe4998430"
+    },
+    "zotero-image-work/parser-tests-development.log": {
+      "bytes": 3890,
+      "sha256": "d1bccc81c5302e72d416caa418612768718195e657b8e3a2fac3251f42e531a5"
+    },
+    "zotero-image-work/portable/compile-js-development.log": {
+      "bytes": 112,
+      "sha256": "84a7c38bc4036425fde1d270dcad4340eeb5e013bffcbb62aee27660c4d1d830"
+    },
+    "zotero-image-work/portable/js-development.json": {
+      "bytes": 1969,
+      "sha256": "7ba209c1f03644a45f3117edcad31b1b144d7c97a78d237ed8aaff082953f0b6"
+    },
+    "zotero-image-work/portable/js-development.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "zotero-image-work/portable/vm-development.json": {
+      "bytes": 1969,
+      "sha256": "7ba209c1f03644a45f3117edcad31b1b144d7c97a78d237ed8aaff082953f0b6"
+    },
+    "zotero-image-work/portable/vm-development.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "zotero-image-work/review/README.md": {
+      "bytes": 9480,
+      "sha256": "250d2effb386e94d6f2ae95ee8944d4e2e60c2a1a906dcaf0409b93ab3e12552"
+    },
+    "zotero-image-work/review/fractional-and-portable-development-manifest.json": {
+      "bytes": 2106,
+      "sha256": "8c51a3eca719b57b17f7f238e630d492a2cfb669877fbb7be24e07d1b98bdc54"
+    },
+    "zotero-image-work/review/fractional-before-fix.log": {
+      "bytes": 1135,
+      "sha256": "b0e98971347c90980182b5cc378c7fe9b5f207b5de0ac3ef3851834154f3958a"
+    },
+    "zotero-image-work/review/fractional-controller-after.jsonl": {
+      "bytes": 2052,
+      "sha256": "de2759ae4eb52669f7af8e48ddcd19e58359e1630a26dd7ada86e921b9722978"
+    },
+    "zotero-image-work/review/fractional-controller-after.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "zotero-image-work/review/fractional-controller-analysis.log": {
+      "bytes": 74,
+      "sha256": "521dddd6a819ebf435ab7c04394e6a9894aca59eaa1683827b2a6503363a4ad5"
+    },
+    "zotero-image-work/review/fractional-controller-before.jsonl": {
+      "bytes": 3146,
+      "sha256": "7f74a6c068828cdaa934205ebffd4c5c09ffa74fd8debf5aaccb5e9465ae2169"
+    },
+    "zotero-image-work/review/fractional-controller-before.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "zotero-image-work/review/fractional-corrected-analysis.log": {
+      "bytes": 147,
+      "sha256": "f3fa7e067a650084f9d72d4c6c9aac992c3877614ac7efa9ac4c1e61a595b247"
+    },
+    "zotero-image-work/review/fractional-corrected-parser-suites.log": {
+      "bytes": 11456,
+      "sha256": "bb9793aacf949afeb0f96fea40639920ea7a21fa190993d453f165c50946bf0c"
+    },
+    "zotero-image-work/review/fractional-final-source/packages/quds_office_engine/lib/src/word/model/word_zotero_note.dart": {
+      "bytes": 20177,
+      "sha256": "77b031764bd602c7f45f8fbb9e67f2575f5efb8d40a6ad7a13a87a9f9dc83b46"
+    },
+    "zotero-image-work/review/fractional-final-source/packages/quds_office_engine/lib/src/word/model/word_zotero_note_image.dart": {
+      "bytes": 19838,
+      "sha256": "b8cbb3447ff47cd0d5c5f6aae0a4cf9998cfbc34734948045d19af3a56fa4135"
+    },
+    "zotero-image-work/review/fractional-final-source/packages/quds_office_engine/test/word_zotero_note_image_test.dart": {
+      "bytes": 20458,
+      "sha256": "6fd07cea0758f06917cf2295dabbc36a30d933e4488603ca6441492ef99f3e46"
+    },
+    "zotero-image-work/review/fractional-final-source/packages/quds_office_engine/tool/zotero/image_note_portable_smoke.dart": {
+      "bytes": 11283,
+      "sha256": "cf4e5a5f493b11783f4fcd327b208b223a55a2239d8c260e5ad5677fa1ba2b7a"
+    },
+    "zotero-image-work/review/fractional-format-final.log": {
+      "bytes": 47,
+      "sha256": "7477651517b81e82690cdc75609bc9e914fef11973ce522f1e8f33c5ed04d09b"
+    },
+    "zotero-image-work/review/review-receipt.json": {
+      "bytes": 4340,
+      "sha256": "b8ab98177ea17e46b1355fcebc969ffe3c4fdbcd400c06d1c34a493d9ddfe1e4"
+    },
+    "zotero-image-work/review/word_zotero_fractional_image_test.dart": {
+      "bytes": 1650,
+      "sha256": "4c2ca4a94240c453723f91c6b7e2eb88e7a3e89ce6a9eff03666254f5b748b53"
+    },
+    "zotero-image-work/word_zotero_note.dart": {
+      "bytes": 20177,
+      "sha256": "77b031764bd602c7f45f8fbb9e67f2575f5efb8d40a6ad7a13a87a9f9dc83b46"
+    },
+    "zotero-image-work/word_zotero_note_image.dart": {
+      "bytes": 19392,
+      "sha256": "19bb6e8e0f3451dd27da4b35d8bb049c9ebad20324fad6bd561e65a287caf872"
+    },
+    "zotero-image-work/word_zotero_note_image_controller_test.dart": {
+      "bytes": 23573,
+      "sha256": "e4a1f7edd6a7c2daa4924ee7961d4b4d753e87199550e5847c625d536c79cfdb"
+    },
+    "zotero-image-work/word_zotero_note_image_test.dart": {
+      "bytes": 19160,
+      "sha256": "33e9af9f2781aef8c5b11a79b4891ad763904de5283e4debb5ee7ae6fa851c84"
+    },
+    "zotero-image-work/word_zotero_note_images_integration_test.dart": {
+      "bytes": 11807,
+      "sha256": "e877ad26f5d560d01c5d30b72f1b7294853e6a68145a9e1f70000f6bae36458b"
+    }
+  },
+  "final_acceptance_outputs_included": false,
+  "omitted_regenerable_builds": {
+    "zotero-image-work/portable/image_note_smoke.js": {
+      "bytes": 376877,
+      "reason": "Regenerable JavaScript compiler output; source, command log, compiler identity, and VM/JS results are retained.",
+      "sha256": "44634ed5e68f1805eff823296243d3af86bdf90eb662d2895f2911028a0cea61"
+    },
+    "zotero-image-work/portable/image_note_smoke.js.deps": {
+      "bytes": 127857,
+      "reason": "Regenerable JavaScript compiler output; source, command log, compiler identity, and VM/JS results are retained.",
+      "sha256": "226f7ef385913ca29344070f800812cbe31a430c0428fc7595636941f6efce10"
+    },
+    "zotero-image-work/portable/image_note_smoke.js.map": {
+      "bytes": 324547,
+      "reason": "Regenerable JavaScript compiler output; source, command log, compiler identity, and VM/JS results are retained.",
+      "sha256": "962a70c44227e591fe983ddbb50d326a0c025c9f006103a27974ce2070254f98"
+    }
+  },
+  "preserved_failures": [
+    "Initial parser static-analysis diagnostics and development results",
+    "Initial engine integration failures caused by physical-field ordering assumptions",
+    "Fractional-dimension parser/controller failures before the upstream compatibility fix"
+  ],
+  "purpose": "Development evidence and independent source review only; not final committed-source qualification.",
+  "source_copy_scope": "Original scratch sources and later explicitly labeled snapshots are retained with their own hashes; they must not all be treated as the final source."
+}

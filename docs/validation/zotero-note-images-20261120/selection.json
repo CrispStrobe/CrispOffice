@@ -65,7 +65,8 @@
         "slide_picture_background_test.dart",
         "slide_geometric_presets_test.dart",
         "slide_background_publication_test.dart",
-        "slide_gradient_merge_test.dart"
+        "slide_gradient_merge_test.dart",
+        "slide_gradient_publication_test.dart"
       ]
     },
     "incoming-rendering-editor": {
@@ -83,7 +84,10 @@
         "slide_geometric_presets_test.dart",
         "slide_background_publication_test.dart",
         "picture_adjustment_render_test.dart",
-        "host_fonts_test.dart"
+        "host_fonts_test.dart",
+        "installed_host_fonts_test.dart",
+        "office_slide_effects_test.dart",
+        "office_system_fonts_test.dart"
       ]
     },
     "arabic-morph-lifecycle": {

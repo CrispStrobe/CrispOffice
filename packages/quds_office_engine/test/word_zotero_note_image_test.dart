@@ -395,13 +395,45 @@ void main() {
     }
   });
 
+  test('ordinary Zotero note keeps fractional aspect-ratio dimensions', () {
+    // Upstream note-editor bdf61e0c275e483c3068ce4fcb86b44691b22afc:
+    // node-views/image.js sends naturalHeight * width / naturalWidth unchanged
+    // through editor-core.js and commands.js into schema/nodes.js serialization.
+    const source =
+        'iVBORw0KGgoAAAANSUhEUgAAAAMAAAACCAYAAACddGYaAAAAF0lEQVR4nGP4z8DwHwwZ/v8HIyABZgEAqm8O8tH19KMAAAAASUVORK5CYII=';
+    final note = WordZoteroNoteText.fromHtml(
+      '<p>Before <img src="data:image/png;base64,$source" '
+      'width="53" height="35.333333333333336" alt="Sample"> '
+      '$_placeholder after</p>',
+    );
+    final visual = _pictures(note).single.inlineVisual!.visual;
+    expect(visual.imageBytes, base64.decode(source));
+    expect(visual.width, 39.75);
+    expect(visual.height, closeTo(26.5, 0.000000001));
+    expect(note.plainText, 'Before \uFFFC (Author) after');
+    expect(note.placeholders['ABC123']!.start, 9);
+    expect(note.placeholders['ABC123']!.end, 17);
+    expect(
+      _pictures(
+        WordZoteroNoteText.fromHtml(
+          _tag(attributes: 'width="80.5" height="40.25"'),
+        ),
+      ).single.inlineVisual!.visual.width,
+      60.375,
+    );
+  });
+
   test(
     'invalid or unrepresentable authored dimensions are refused explicitly',
     () {
       for (final dimension in [
         '0',
         '-1',
-        '2.5',
+        '2,5',
+        '2..5',
+        '+2',
+        'Infinity',
+        '1' * 33,
         '1e2',
         'NaN',
         '100%',

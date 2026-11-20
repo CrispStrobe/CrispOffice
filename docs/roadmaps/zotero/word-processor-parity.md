@@ -2,8 +2,10 @@
 
 This roadmap compares Quds' native desktop integration with Zotero's Word and
 LibreOffice workflows. It distinguishes implemented behavior, deliberate
-content limits and interoperability acceptance. The older OpenOffice naming
-does not change the need to test the actual target application and file format.
+content limits and interoperability acceptance. LibreOffice is the current
+supported comparison target in Zotero's [plugin requirements](https://www.zotero.org/support/system_requirements).
+Apache OpenOffice compatibility remains a separate, unqualified target; results
+from LibreOffice do not establish its application or plugin compatibility.
 
 The [usage guide](../../zotero-support.md) describes the current controls. The
 [embedded-image continuation](../../validation/zotero-note-images-20261120/README.md)
@@ -75,6 +77,8 @@ controller or Flutter raster tests.
    image/ink annotation insertion, bibliography refresh, saved-file reopening
    and return-to-writing focus. Record exact application versions, source and
    artifacts. Browser and mobile support require their own acceptance scope.
+   Qualify Apache OpenOffice separately with explicitly identified application,
+   Zotero and plugin versions before claiming that compatibility.
 
 Each step should begin with a bounded remote-ref intake, preserve original
 incoming ancestry, save incremental remote checkpoints, run meaningful local
@@ -83,6 +87,7 @@ path for these continuations.
 
 ## Primary references
 
+- [Current Zotero word-processor plugin requirements](https://www.zotero.org/support/system_requirements)
 - [Zotero Word plugin workflows](https://www.zotero.org/support/word_processor_plugin_usage)
 - [Zotero LibreOffice plugin workflows](https://www.zotero.org/support/libreoffice_writer_plugin_usage)
 - [Zotero 9 Add Annotation](https://www.zotero.org/blog/zotero-9/#add-annotation)
