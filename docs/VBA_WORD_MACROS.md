@@ -894,7 +894,9 @@ with 72-point left indents, 18-point right indents, 12-point before spacing and
 **Numeric contract.** The portable dialect uses bounded binary64 `Double`
 arithmetic, including signed values and zero; it does not emulate the `Single`
 parameters/results documented for Microsoft Word. Both inputs and results must
-be finite and within magnitude `9007199254740991`. The physical ratios use
+be finite and within magnitude `9007199254740991`. Intermediate multiplication
+uses floating-point arithmetic to avoid signed-integer overflow on the Dart VM.
+The physical ratios use
 exactly 72 points and 25.4 millimeters per inch. Microsoft Learn's rounded
 metric descriptions (including inconsistent millimeter approximations) are
 not used as conversion constants. These are specification-derived expectations;
