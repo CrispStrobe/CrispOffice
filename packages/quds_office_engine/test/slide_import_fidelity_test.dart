@@ -357,6 +357,8 @@ void main() {
         );
         final PmlSlide slide = deck.slides.single;
         expect(slide.showMasterShapes, isFalse);
+        expect(slide.backgroundShapesResolved, isTrue);
+        expect(slide.copy().backgroundShapesResolved, isTrue);
         expect(slide.copy().showMasterShapes, isFalse);
         expect(slide.backgroundShapes.map((shape) => shape.text), ['Layout']);
         final PmlSlide saved = SlideDeserializer()
@@ -364,6 +366,7 @@ void main() {
             .slides
             .single;
         expect(saved.showMasterShapes, isFalse);
+        expect(saved.backgroundShapesResolved, isTrue);
         expect(saved.backgroundShapes.map((shape) => shape.text), ['Layout']);
         expect(saved.shapes.single.text, 'Slide');
       });
@@ -387,6 +390,34 @@ void main() {
         expect(saved.shapes.single.text, 'Slide');
       });
     }
+
+    test('decorations retain ownership, ordering and independent copies', () {
+      final PmlPresentation deck = _deck(
+        <String>[_sld(_textBox(9, 'Slide A')), _sld(_textBox(9, 'Slide B'))],
+        masterShapes: _textBox(9, 'Master decoration'),
+        layoutShapes: _textBox(9, 'Layout decoration'),
+        layoutBackground:
+            '<p:bg><p:bgPr><a:solidFill><a:srgbClr val="FFFFFF"/>'
+            '</a:solidFill></p:bgPr></p:bg>',
+      );
+      final PmlSlide first = deck.slides.first;
+      expect(first.backgroundShapes.map((shape) => shape.text), <String>[
+        'Master decoration',
+        'Layout decoration',
+      ]);
+      expect(first.backgroundShapesResolved, isTrue);
+      expect(first.inheritsMasterBackground, isFalse);
+      expect(first.resolveBackground('112233'), 'FFFFFF');
+      final PmlSlide copy = first.copy(id: 999);
+      expect(copy.backgroundShapesResolved, isTrue);
+      expect(copy.inheritsMasterBackground, isFalse);
+      expect(copy.resolveBackground('112233'), 'FFFFFF');
+      copy.backgroundShapes.first.text = 'Changed copy';
+      expect(first.backgroundShapes.first.text, 'Master decoration');
+      first.backgroundShapes.last.text = 'Changed first';
+      expect(deck.slides.last.backgroundShapes.last.text, 'Layout decoration');
+      expect(first.shapes.single.text, 'Slide A');
+    });
 
     test('block arrow presets survive import', () {
       final PmlPresentation deck = _deck(<String>[

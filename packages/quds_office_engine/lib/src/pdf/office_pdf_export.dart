@@ -335,10 +335,7 @@ abstract final class OfficePdfExport {
         sink.canvas.translateScale(ox, oy, scale);
       }
       sink.canvas.fillRect(0, 0, slideW, slideH, _slideBackground(deck, slide));
-      for (final PmlShape shape
-          in slide.backgroundShapes.isNotEmpty || !slide.showMasterShapes
-              ? slide.backgroundShapes
-              : deck.master.shapes) {
+      for (final PmlShape shape in _slideBackgroundShapes(deck, slide)) {
         _paintShape(sink, deck, slide, shape);
       }
       for (final PmlShape shape in slide.shapes) {
@@ -378,12 +375,7 @@ abstract final class OfficePdfExport {
         }
       }
 
-      linkShapes(
-        slide.backgroundShapes.isNotEmpty || !slide.showMasterShapes
-            ? slide.backgroundShapes
-            : deck.master.shapes,
-        scaled: notes,
-      );
+      linkShapes(_slideBackgroundShapes(deck, slide), scaled: notes);
       linkShapes(slide.shapes, scaled: notes);
       if (notes) {
         sink.drawText(
@@ -465,10 +457,7 @@ abstract final class OfficePdfExport {
           slideH,
           _slideBackground(deck, slide),
         );
-        for (final PmlShape shape
-            in slide.backgroundShapes.isNotEmpty || !slide.showMasterShapes
-                ? slide.backgroundShapes
-                : deck.master.shapes) {
+        for (final PmlShape shape in _slideBackgroundShapes(deck, slide)) {
           _paintShape(sink, deck, slide, shape);
         }
         for (final PmlShape shape in slide.shapes) {
@@ -492,11 +481,7 @@ abstract final class OfficePdfExport {
           }
         }
 
-        linkShapes(
-          slide.backgroundShapes.isNotEmpty || !slide.showMasterShapes
-              ? slide.backgroundShapes
-              : deck.master.shapes,
-        );
+        linkShapes(_slideBackgroundShapes(deck, slide));
         linkShapes(slide.shapes);
         sink.drawText(
           '${index + 1} / ${deck.slides.length}',
@@ -1931,6 +1916,16 @@ abstract final class OfficePdfExport {
     }
   }
 
+  static List<PmlShape> _slideBackgroundShapes(
+    PmlPresentation deck,
+    PmlSlide slide,
+  ) {
+    if (slide.backgroundShapesResolved || slide.backgroundShapes.isNotEmpty) {
+      return slide.backgroundShapes;
+    }
+    return slide.showMasterShapes ? deck.master.shapes : const <PmlShape>[];
+  }
+
   static String _slideBackground(PmlPresentation deck, PmlSlide slide) {
     return slide.resolveBackground(deck.master.background);
   }
@@ -1991,13 +1986,12 @@ abstract final class OfficePdfExport {
       final PmlTextRun? run = _firstRichRun(paragraph);
       final String text = _paragraphText(paragraph);
       final bool blank = text.trim().isEmpty;
-      final double size =
-          ((run?.fontSizePt ?? 0) > 0
-              ? run!.fontSizePt
-              : (paragraph.defaultFontSizePt > 0
-                    ? paragraph.defaultFontSizePt
-                    : fallbackSize)) *
-          fitScale;
+      final double unscaledSize = (run?.fontSizePt ?? 0) > 0
+          ? run!.fontSizePt
+          : (paragraph.defaultFontSizePt > 0
+                ? paragraph.defaultFontSizePt
+                : fallbackSize);
+      final double size = unscaledSize * fitScale;
       final bool bold =
           (run?.bold ?? false) &&
           !(run?.fontFamily.toLowerCase().contains('microsoft sans serif') ??
@@ -2026,13 +2020,12 @@ abstract final class OfficePdfExport {
       final PmlTextRun? run = _firstRichRun(paragraph);
       final String text = _paragraphText(paragraph);
       final bool blank = text.trim().isEmpty;
-      final double size =
-          ((run?.fontSizePt ?? 0) > 0
-              ? run!.fontSizePt
-              : (paragraph.defaultFontSizePt > 0
-                    ? paragraph.defaultFontSizePt
-                    : fallbackSize)) *
-          fitScale;
+      final double unscaledSize = (run?.fontSizePt ?? 0) > 0
+          ? run!.fontSizePt
+          : (paragraph.defaultFontSizePt > 0
+                ? paragraph.defaultFontSizePt
+                : fallbackSize);
+      final double size = unscaledSize * fitScale;
       final String color = (run?.color ?? '').isNotEmpty
           ? run!.color
           : fallbackColor;
@@ -2117,7 +2110,7 @@ abstract final class OfficePdfExport {
           cy,
           maxWidth,
           align,
-          size,
+          unscaledSize,
           fallbackColor,
           fitScale,
         );

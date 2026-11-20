@@ -38,6 +38,25 @@ class PmlTransform {
   /// Vertical flip from `a:xfrm/@flipV`.
   final bool flipV;
 
+  /// Returns this geometry with only the supplied properties changed.
+  PmlTransform copyWith({
+    int? x,
+    int? y,
+    int? cx,
+    int? cy,
+    int? rot,
+    bool? flipH,
+    bool? flipV,
+  }) => PmlTransform(
+    x: x ?? this.x,
+    y: y ?? this.y,
+    cx: cx ?? this.cx,
+    cy: cy ?? this.cy,
+    rot: rot ?? this.rot,
+    flipH: flipH ?? this.flipH,
+    flipV: flipV ?? this.flipV,
+  );
+
   /// xPoints API.
   double get xPoints => x / 12700;
 
@@ -562,6 +581,7 @@ class PmlSlide {
     String background = '',
     bool? inheritsMasterBackground,
     List<PmlShape>? backgroundShapes,
+    bool? backgroundShapesResolved,
     this.showMasterShapes = true,
     this.notes = '',
     this.sourcePartUri,
@@ -576,6 +596,8 @@ class PmlSlide {
            inheritsMasterBackground ?? background.isEmpty,
        shapes = shapes ?? <PmlShape>[],
        backgroundShapes = backgroundShapes ?? <PmlShape>[],
+       backgroundShapesResolved =
+           backgroundShapesResolved ?? (backgroundShapes != null),
        animations = animations ?? <PmlShapeAnimation>[];
 
   /// id API.
@@ -586,6 +608,10 @@ class PmlSlide {
 
   /// Non-editable master/layout decorations painted behind [shapes].
   final List<PmlShape> backgroundShapes;
+
+  /// Whether this slide has its own resolved master/layout decorations.
+  /// A resolved empty list must not fall back to the presentation master.
+  final bool backgroundShapesResolved;
 
   /// The slide's authored `showMasterSp` flag, retained when saving/copying.
   bool showMasterShapes;
@@ -671,6 +697,7 @@ class PmlSlide {
       background: background,
       inheritsMasterBackground: inheritsMasterBackground,
       notes: notes,
+      backgroundShapesResolved: backgroundShapesResolved,
       backgroundShapes: <PmlShape>[
         for (final PmlShape shape in backgroundShapes) shape.copy(),
       ],

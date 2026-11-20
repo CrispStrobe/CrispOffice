@@ -57,7 +57,7 @@ class SlideDeserializer {
             relId = reader.attributeValue(a);
           }
         }
-        pres.slides.add(PmlSlide(id: id));
+        pres.slides.add(PmlSlide(id: id, backgroundShapesResolved: true));
         final PackageRelationship? rel = relId == null
             ? null
             : presentationRels.byId(relId);
@@ -216,6 +216,19 @@ class SlideDeserializer {
   /// readBytes API.
   PmlPresentation readBytes(Uint8List bytes, {String? password}) =>
       read(OpcPackage.openBytes(bytes, password: password));
+
+  static bool _showsMasterShapes(String xml) {
+    final XmlPullReader reader = XmlPullReader(xml);
+    while (reader.next()) {
+      if (reader.eventType == XmlEventType.startElement &&
+          reader.namespaceUri == OfficeNamespaces.p &&
+          (reader.localName == 'sld' || reader.localName == 'sldLayout')) {
+        final String? value = reader.getAttribute('showMasterSp');
+        return value != '0' && value != 'false';
+      }
+    }
+    return true;
+  }
 
   static bool _slideIsHidden(String xml) {
     final int start = xml.indexOf('<p:sld');

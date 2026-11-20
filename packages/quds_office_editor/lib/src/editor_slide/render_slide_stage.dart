@@ -618,13 +618,7 @@ class RenderSlideStage extends RenderBox implements MouseTrackerAnnotation {
     );
     final double deg =
         math.atan2(slide.dx - c.dx, c.dy - slide.dy) * 180 / math.pi;
-    shape.transform = PmlTransform(
-      x: start.x,
-      y: start.y,
-      cx: start.cx,
-      cy: start.cy,
-      rot: (deg * 60000).round(),
-    );
+    shape.transform = start.copyWith(rot: (deg * 60000).round());
   }
 
   static bool _sameTransform(PmlTransform a, PmlTransform b) {
@@ -632,7 +626,9 @@ class RenderSlideStage extends RenderBox implements MouseTrackerAnnotation {
         a.y == b.y &&
         a.cx == b.cx &&
         a.cy == b.cy &&
-        a.rot == b.rot;
+        a.rot == b.rot &&
+        a.flipH == b.flipH &&
+        a.flipV == b.flipV;
   }
 
   MouseCursor _cursorFor(Offset? local) {
@@ -1835,7 +1831,7 @@ class RenderSlideStage extends RenderBox implements MouseTrackerAnnotation {
   }
 
   void _applyRect(PmlShape shape, Rect rect) {
-    shape.transform = PmlTransform(
+    shape.transform = shape.transform.copyWith(
       x: (rect.left * 12700).round(),
       y: (rect.top * 12700).round(),
       cx: (rect.width * 12700).round().clamp(12700, 100000000),
@@ -1953,7 +1949,7 @@ class RenderSlideStage extends RenderBox implements MouseTrackerAnnotation {
         c.dx + p.dx * cos - p.dy * sin,
         c.dy + p.dx * sin + p.dy * cos,
       );
-      shape.transform = PmlTransform(
+      shape.transform = start.copyWith(
         x: ((np.dx - start.widthPoints / 2) * 12700).round(),
         y: ((np.dy - start.heightPoints / 2) * 12700).round(),
         cx: start.cx,
