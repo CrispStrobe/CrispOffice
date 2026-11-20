@@ -200,7 +200,9 @@ parts are preserved. An existing disabled `beforeAutospacing` attribute in the
 edited direct group can be removed; unedited groups retain their source data.
 Native style identities and `basedOn` links are resolved by namespace rather
 than prefix spelling, and default paragraph styles accept native `1`, `true`
-and `on` flags. Foreign style/attribute lookalikes remain source data.
+and `on` flags. An omitted native style type means `paragraph`; foreign type
+attributes do not override that default. Foreign style/attribute lookalikes
+remain source data.
 
 The supported input is nonnegative point spacing represented by exact integer
 twips in `0..2147483647`. The controls refuse native `beforeLines`, enabled or
@@ -209,7 +211,11 @@ unknown `beforeAutospacing`, malformed/negative/noninteger/oversized native
 markup-compatibility alternatives, and unbalanced modeled field boundaries.
 They also refuse before-spacing declarations in numbering levels or unmodeled
 conditional table-style regions, and ambiguous style identities, duplicate
-defaults, missing `basedOn` targets or cyclic style inheritance. These checks
+defaults, unknown style types, missing `basedOn` targets, cyclic inheritance,
+cross-type `basedOn` links or numbering-style `basedOn` links. Paragraph/table
+style selectors must resolve to native styles of the expected type; missing,
+foreign, nested, duplicate or ambiguously attributed selectors are refused.
+These checks
 scan stored Word XML parts conservatively, so a conflicting declaration in an
 unrelated style or story can cause refusal. They do not guess automatic spacing,
 silently round native values, or choose an ambiguous style.

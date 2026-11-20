@@ -242,7 +242,8 @@ void main() {
   test('toggle resolves document defaults and based-on styles', () {
     for (final styles in [
       '<w:docDefaults><w:pPrDefault><w:pPr><w:spacing w:before="120"/>'
-          '</w:pPr></w:pPrDefault></w:docDefaults>',
+          '</w:pPr></w:pPrDefault></w:docDefaults>'
+          '<w:style w:type="paragraph" w:styleId="Layout"/>',
       '<w:style w:type="paragraph" w:styleId="Base"><w:pPr>'
           '<w:spacing w:before="120"/></w:pPr></w:style>'
           '<w:style w:type="paragraph" w:styleId="Layout"><w:basedOn w:val="Base"/></w:style>',
@@ -376,6 +377,38 @@ void main() {
       '<w:style w:type="paragraph" w:styleId="A" w:default="yes"/>',
     ),
     (
+      'multiple defaults including omitted type',
+      '<w:style w:styleId="A" w:default="1"/>'
+          '<w:style w:type="paragraph" w:styleId="B" w:default="on"/>',
+    ),
+    ('invalid native type', '<w:style w:type="unknown" w:styleId="A"/>'),
+    ('empty native type', '<w:style w:type="" w:styleId="A"/>'),
+    (
+      'paragraph based on character',
+      '<w:style w:type="paragraph" w:styleId="A"><w:basedOn w:val="B"/></w:style>'
+          '<w:style w:type="character" w:styleId="B"/>',
+    ),
+    (
+      'omitted paragraph type based on table',
+      '<w:style w:styleId="A"><w:basedOn w:val="B"/></w:style>'
+          '<w:style w:type="table" w:styleId="B"/>',
+    ),
+    (
+      'character based on paragraph',
+      '<w:style w:type="character" w:styleId="A"><w:basedOn w:val="B"/></w:style>'
+          '<w:style w:type="paragraph" w:styleId="B"/>',
+    ),
+    (
+      'table based on character',
+      '<w:style w:type="table" w:styleId="A"><w:basedOn w:val="B"/></w:style>'
+          '<w:style w:type="character" w:styleId="B"/>',
+    ),
+    (
+      'numbering based on numbering',
+      '<w:style w:type="numbering" w:styleId="A"><w:basedOn w:val="B"/></w:style>'
+          '<w:style w:type="numbering" w:styleId="B"/>',
+    ),
+    (
       'missing parent ID',
       '<w:style w:type="paragraph" w:styleId="A"><w:basedOn/></w:style>',
     ),
@@ -401,6 +434,73 @@ void main() {
   ]) {
     test('ambiguous style source $name refuses before any mutation', () {
       final document = _read(_fixture(styles: styles));
+      for (final action in ['open', 'close', 'toggle']) {
+        _refuses(document, _step(action));
+      }
+    });
+  }
+
+  for (final type in ['character', 'table', 'numbering', 'missing']) {
+    test('paragraph selector with $type style refuses before mutation', () {
+      final document = _read(
+        _fixture(
+          properties: '<w:pStyle w:val="Target"/>',
+          styles: type == 'missing'
+              ? ''
+              : '<w:style w:type="$type" w:styleId="Target"><w:pPr>'
+                    '<w:spacing w:before="120"/></w:pPr></w:style>',
+        ),
+      );
+      for (final action in ['open', 'close', 'toggle']) {
+        _refuses(document, _step(action));
+      }
+    });
+  }
+
+  for (final type in ['paragraph', 'character', 'numbering', 'missing']) {
+    test('table selector with $type style refuses before mutation', () {
+      final document = _read(
+        _fixture(
+          body:
+              '<w:p/><w:tbl><w:tblPr><w:tblStyle w:val="Target"/></w:tblPr>'
+              '<w:tr><w:tc><w:p/></w:tc></w:tr></w:tbl>',
+          styles: type == 'missing'
+              ? ''
+              : '<w:style w:type="$type" w:styleId="Target"><w:pPr>'
+                    '<w:spacing w:before="120"/></w:pPr></w:style>',
+        ),
+      );
+      for (final action in ['open', 'close', 'toggle']) {
+        _refuses(document, _step(action));
+      }
+    });
+  }
+
+  for (final (name, properties) in [
+    ('foreign element', '<x:pStyle w:val="Target"/>'),
+    ('foreign value', '<w:pStyle x:val="Target"/>'),
+    ('foreign and native values', '<w:pStyle x:val="Zero" w:val="Target"/>'),
+    ('unqualified and native values', '<w:pStyle val="Zero" w:val="Target"/>'),
+    ('nested native', '<x:extension><w:pStyle w:val="Target"/></x:extension>'),
+    (
+      'duplicate native',
+      '<w:pStyle w:val="Target"/><w:pStyle w:val="Target"/>',
+    ),
+    (
+      'duplicate expanded value',
+      '<w:pStyle xmlns:q="$_w" w:val="Target" q:val="Target"/>',
+    ),
+  ]) {
+    test('$name paragraph style selector refuses before mutation', () {
+      final document = _read(
+        _fixture(
+          properties: properties,
+          styles:
+              '<w:style w:type="paragraph" w:styleId="Target"><w:pPr>'
+              '<w:spacing w:before="120"/></w:pPr></w:style>'
+              '<w:style w:type="paragraph" w:styleId="Zero"/>',
+        ),
+      );
       for (final action in ['open', 'close', 'toggle']) {
         _refuses(document, _step(action));
       }

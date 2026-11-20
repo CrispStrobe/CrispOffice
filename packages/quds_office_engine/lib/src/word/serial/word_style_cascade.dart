@@ -33,6 +33,7 @@ class _StyleCascade {
     // Resolve native style identities by namespace, independently of prefix.
     // Foreign lookalikes stay in the stored styles XML without entering the
     // effective cascade. All three enabled ST_OnOff spellings are equivalent.
+    // An omitted native type has the WordprocessingML default, paragraph.
     for (final style
         in root?.childElements.where((element) => _word(element, 'style')) ??
             <XmlElement>[]) {
@@ -42,8 +43,10 @@ class _StyleCascade {
       );
       if (id == null) continue;
       styles[id] = style;
-      if (style.getAttribute('type', namespaceUri: OfficeNamespaces.w) ==
-              'paragraph' &&
+      final type =
+          style.getAttribute('type', namespaceUri: OfficeNamespaces.w) ??
+          'paragraph';
+      if (type == 'paragraph' &&
           const {'1', 'true', 'on'}.contains(
             style.getAttribute('default', namespaceUri: OfficeNamespaces.w),
           )) {
