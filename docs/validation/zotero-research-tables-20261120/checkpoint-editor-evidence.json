@@ -12,7 +12,7 @@
     "unimported_deviation": {
       "path": "packages/quds_office_editor/example/test/studio_credential_selection_test.dart",
       "actual_blob": "60c3357085dbbe9ec76b88e362f866b8a3ef657d",
-      "reason": "Genuine formatter-only state, not imported by the editor aggregate. Final formatting and import ordering are subsequently published at0e84c635."
+      "reason": "Genuine formatter-only state, not imported by the editor aggregate. Final formatting and import ordering are subsequently published at 0e84c635."
     }
   },
   "result": {
@@ -37,7 +37,7 @@
   "chrome_control": {
     "context": "Ticker-muted home subtree with no unrelated frame pending; modal routes retain normal animation.",
     "red_original_workspace": "4595d8f638a1f9213ea229cf8f2aeaae0e2e7a5a",
-    "expected_red_failure": "At the400ms observer, no frame is scheduled.",
+    "expected_red_failure": "At the 400ms observer, no frame is scheduled.",
     "green": "Fixed production code passes; separate narrow replay also passes all six image guards.",
     "source_restored": true
   },

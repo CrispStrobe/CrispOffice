@@ -1,0 +1,23 @@
+{
+  "test": "test/word_incremental_layout_differential_test.dart",
+  "test_sha256": "b11b36d2a10105131a5912563418cd924f73ad5ddc6c7a354e3139cb662b32e2",
+  "passing_cases": 12,
+  "fresh_engine_geometry_comparisons": 308,
+  "execution_source_commit": "192ea2aedbf0b1494627953c79a7042037a63301",
+  "execution_source_kind": "rerun_final",
+  "derivation_kind": "Source-reviewed fixed loop bounds, tied to the final passing file; not a runtime counter",
+  "original": {
+    "cases": 10,
+    "comparisons": 302,
+    "formula": "10 + (2 structures * 3 seeds * 48 edits) + 2 note cases + 2 state/section comparisons",
+    "baseline_commit": "58000866a6a36d7cc29e2a5677ef23c2f71dff51",
+    "baseline_sha256": "c61a1b01b39627d0d46f138cb7d0e791f018d53809c920edf0bece821fc0e0dd",
+    "all_original_lines_preserved_in_order": true
+  },
+  "focused": {
+    "cases": 2,
+    "comparisons": 6,
+    "formula": "2 text/font edit cases * 3 before/during/after frame comparisons"
+  },
+  "metrics": "Pure Dart null-font fallback metrics; independent public geometry snapshot"
+}

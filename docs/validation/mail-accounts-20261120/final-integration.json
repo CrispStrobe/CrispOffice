@@ -1,0 +1,19 @@
+{
+  "status": "Source checkpoint; scoped requalification pending",
+  "incoming_main": "13be50464d1b43e9f2100fb9ccc12f8fe22eb55e",
+  "previous_publication": "e1fd2e14cf49f70532a7243e3e64330ac4ad80a6",
+  "followup_pr": 251,
+  "original_pr": {
+    "number": 243,
+    "merged_head": "a059c0249a25bef602640c8b8d504bd8da41c619",
+    "merge_commit": "f7bf155337b0ba77dc20c6be548ef38ac06c5c65"
+  },
+  "incoming_scope": "Durable Outbox provider/foreground integration and Word frame-cache repair",
+  "merge": "Native clean merge; no manual product resolution",
+  "prior_qualification": {
+    "commit": "625f4d76d10ddf2144220f25ae8d867452eeed61",
+    "cases": 699,
+    "scope": "Historical for this final combined source; not automatically requalified."
+  },
+  "ci": "No GitHub Actions/check/status polling or waiting"
+}

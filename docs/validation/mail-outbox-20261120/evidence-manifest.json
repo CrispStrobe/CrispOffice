@@ -1,0 +1,628 @@
+{
+  "archives": [
+    {
+      "path": "evidence/accepted-runs.tar.gz",
+      "bytes": 548687,
+      "sha256": "a6cc5e41c6557a978052fe3909df5b74b286f8f41f07def1775067d640ddbea5",
+      "members": [
+        {
+          "path": "archives-quds.json",
+          "bytes": 34628,
+          "sha256": "c7967c0095a36cc04944e6bcd79b1c17651c8a6925de1581f62002ce0a3c3277"
+        },
+        {
+          "path": "audit_studio_lf_final.py",
+          "bytes": 16209,
+          "sha256": "c99152cfdb799a82e8e9c8cfe56568b71bc739253181183538403b3de243df0b"
+        },
+        {
+          "path": "build_evidence_inventory.py",
+          "bytes": 29683,
+          "sha256": "48f312ddc877a702d6471f1a22efd611446330068a28b976b84be4031ef0dcd5"
+        },
+        {
+          "path": "env.sh",
+          "bytes": 647,
+          "sha256": "49720194c3f88c17beac8ad498690b02eb900d6e6dd932900dc59a83b6c4ba35"
+        },
+        {
+          "path": "evidence-development-notes.md",
+          "bytes": 8821,
+          "sha256": "5bc0a1fd18eb59effd6e1fd28bfa4d54515d4ed155f60fb769cf66b6bc690acc"
+        },
+        {
+          "path": "evidence-inventory.json",
+          "bytes": 105476,
+          "sha256": "4dcde32c2b6c32e97dd465f1486d82c9c81f451c2809ddea60759190c98aedb0"
+        },
+        {
+          "path": "final-dart/after-manifest.json",
+          "bytes": 273611,
+          "sha256": "267699ec5276f720f047b179fda6d321998f606a16992db1765d907b10e4d794"
+        },
+        {
+          "path": "final-dart/before-manifest.json",
+          "bytes": 273308,
+          "sha256": "00dce5f22e9d442357b40425e6536ea15e7a17439df88c4f62ddf8c15f691471"
+        },
+        {
+          "path": "final-dart/final-dart-core-store.audit.json",
+          "bytes": 53649,
+          "sha256": "7a0e2fbec9df01dd45e12262120435ea25dc8e7606d8a90e9f1262e623005595"
+        },
+        {
+          "path": "final-dart/final-dart-smtp.audit.json",
+          "bytes": 25835,
+          "sha256": "d28d51c10eab9ca24c71e847a15d586b011827b5a9b17cc386c54d85f07abd6c"
+        },
+        {
+          "path": "final-dart/final-dart-word-layout.audit.json",
+          "bytes": 9230,
+          "sha256": "1865b6c7927da4e702b3eebf6b0e05446acbe76a37e7f9b00883c44c868a1650"
+        },
+        {
+          "path": "final-dart/summary.json",
+          "bytes": 2312,
+          "sha256": "2d5737823efb8138c21837115c63cf5ec4c64c55ed33d431cd61a6539e800c31"
+        },
+        {
+          "path": "final-dart/ui-input-supplement.json",
+          "bytes": 710,
+          "sha256": "8ffaa054d446a24c5cf899f312d6f9b1afe6b99f187719dc3f0515c986e5ee38"
+        },
+        {
+          "path": "final-static.json",
+          "bytes": 8160,
+          "sha256": "de43452f11221974c0484f378af6659c4c12459171dbcc174cc0896038251bdd"
+        },
+        {
+          "path": "final-studio/after-manifest.json",
+          "bytes": 542421,
+          "sha256": "6bde1e79ef31e677430227931f79d18ce22853eac81254d693ec4bcfc6c076df"
+        },
+        {
+          "path": "final-studio/before-manifest.json",
+          "bytes": 542421,
+          "sha256": "7591307c98ec5233cdedad5b5bc1a904a8e7c22eaa254ade3a4ffe988a9ba8c0"
+        },
+        {
+          "path": "final-studio/lf-framing-audit.json",
+          "bytes": 209891,
+          "sha256": "6c03844bd8e34b64cd24e6592a08a81d9aecd36ceaf2eb87829fe406bfe7f2a7"
+        },
+        {
+          "path": "final-studio/runtime-after-supplement.json",
+          "bytes": 966,
+          "sha256": "eadc02d6ee361e828a1459e5994428a63e04886513fab53ffa197dd31dcca293"
+        },
+        {
+          "path": "final-studio/runtime-during-supplement.json",
+          "bytes": 1107,
+          "sha256": "d9e9f3007956ac36abc5e6d860138fe187c1a3de8506baa676aa0667169aea46"
+        },
+        {
+          "path": "final-studio/summary.json",
+          "bytes": 205235,
+          "sha256": "5dc9195de53771cce359d20a4fb1fc75d645d67edb227a9bf17412318ed6e987"
+        },
+        {
+          "path": "final-studio-driver.log",
+          "bytes": 4890,
+          "sha256": "dcb64db87f4dd85138966ee68734449ca6bab1d76a07fd9c05122ee5cc191f1a"
+        },
+        {
+          "path": "logs/final-dart-core-store.events.jsonl",
+          "bytes": 93017,
+          "sha256": "409dd1a9c08454141fcd051ae2e85b27c4535914c8fbb3b6090b77048a1b760e"
+        },
+        {
+          "path": "logs/final-dart-core-store.result.json",
+          "bytes": 1680,
+          "sha256": "52654480d0a16ab332ec2d8c8fff26b1870bfe29f73c056897ca3eb3bea0c7ea"
+        },
+        {
+          "path": "logs/final-dart-core-store.stderr.log",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "logs/final-dart-smtp.events.jsonl",
+          "bytes": 42541,
+          "sha256": "088c75abfa6efb464a765814f5c935f7066199400a8d6b192f9bad6b39c9a2e9"
+        },
+        {
+          "path": "logs/final-dart-smtp.result.json",
+          "bytes": 1982,
+          "sha256": "1e4108e237b59712672a9fe4166a18ba2669adc38f08c4d009628b1584da3456"
+        },
+        {
+          "path": "logs/final-dart-smtp.stderr.log",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "logs/final-dart-word-layout.events.jsonl",
+          "bytes": 10784,
+          "sha256": "2801d578dd4bcb76f178819601b77c6027ffb3d5caa9104b15f9ce7da1018838"
+        },
+        {
+          "path": "logs/final-dart-word-layout.result.json",
+          "bytes": 1459,
+          "sha256": "45b23bfbae45000b6bee5469193343f33c60ba2e5bbd09b0131552299401896f"
+        },
+        {
+          "path": "logs/final-dart-word-layout.stderr.log",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "logs/final-static-0.stderr.log",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "logs/final-static-0.stdout.log",
+          "bytes": 48,
+          "sha256": "dce79d5efbec4131dada8602fbd1a95dc957049b19bddbb7573f027a9c2d1a37"
+        },
+        {
+          "path": "logs/final-static-1.stderr.log",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "logs/final-static-1.stdout.log",
+          "bytes": 695,
+          "sha256": "c4e169c82992747f838b2d0a98248eb43961a76a2112653fdfd1244bcb21b1c7"
+        },
+        {
+          "path": "logs/final-static-2.stderr.log",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "logs/final-static-2.stdout.log",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "logs/final-studio-mail.events.jsonl",
+          "bytes": 341498,
+          "sha256": "0fa212da555a3cecdccc0dc17e00ce4c98d3d5e8ccf4a466eb4dcd1be454097a"
+        },
+        {
+          "path": "logs/final-studio-mail.result.json",
+          "bytes": 2114,
+          "sha256": "105a965029c705712fff7edf493b0ce5aaa2042594081d4e6baf3191138fad9c"
+        },
+        {
+          "path": "logs/final-studio-mail.stderr.log",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "outbox-ui-source-screenshot-receipt.json",
+          "bytes": 1556,
+          "sha256": "ce8dd95c27b50d98650e647f93f5c791f53173e481ce047e7d0b253a67adcb63"
+        },
+        {
+          "path": "package_outbox_evidence.py",
+          "bytes": 8553,
+          "sha256": "7172fce2a17cfb6331b5c9b9cd64700756c0f4881cface45c8c7b06d6d4ee8c9"
+        },
+        {
+          "path": "qualify_dart_final.py",
+          "bytes": 9001,
+          "sha256": "e226205d6de9a348374ee795a06702a6bfebba8b1d7aa17979b4ea4d7d11fddd"
+        },
+        {
+          "path": "qualify_studio_final.py",
+          "bytes": 5782,
+          "sha256": "fbcb4fe6f20db3e13910ea6e8ad559253172b5a99395bd0dd915e4f8ae0cd176"
+        },
+        {
+          "path": "run_test.py",
+          "bytes": 2799,
+          "sha256": "e3cca1a61564cfaea20a389782b11da5d20611ecfeddd7580b1d09808f4e5143"
+        },
+        {
+          "path": "setup-receipt.json",
+          "bytes": 3423,
+          "sha256": "42c88ed1fd3609fa40bb2dd726b46ac451b8d139a1c8343f3d71fc3f7663cff7"
+        },
+        {
+          "path": "validator-fix/after-fix.result.json",
+          "bytes": 1843,
+          "sha256": "f080a94ad9fdf1faf9b4b3c92bb2e422788d69be80b53f4597129bf5cf9b435a"
+        },
+        {
+          "path": "validator-fix/after-fix.stderr.log",
+          "bytes": 7792,
+          "sha256": "70b3cea2d6a6c15403057731305591721c7064f3aae0fc11ebf84502508495a6"
+        },
+        {
+          "path": "validator-fix/after-fix.stdout.log",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "validator-fix/before-fix-manifest.json",
+          "bytes": 310,
+          "sha256": "a1eada157921ada46529cab3ca346550fb049500c3fbe7552794c4c3c47b7606"
+        },
+        {
+          "path": "validator-fix/before-fix.result.json",
+          "bytes": 1858,
+          "sha256": "49b59a0fbbc2344a8ba4143b2fab40b593a2dacb8ddf71cee8c3613638528aac"
+        },
+        {
+          "path": "validator-fix/before-fix.stderr.log",
+          "bytes": 21641,
+          "sha256": "23f8d363cd0b113f1d2448004788c6cb6c442aa05556a8fcf406017f7d72e580"
+        },
+        {
+          "path": "validator-fix/before-fix.stdout.log",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "validator-fix/check_store-before.py",
+          "bytes": 19955,
+          "sha256": "0aff1311f094eeef819d27579f9df0991ae625a73067f1c15983a0ac2acba3c4"
+        },
+        {
+          "path": "validator-fix/check_store.py",
+          "bytes": 20143,
+          "sha256": "d56b7abce9d4693b21ea9d3f3cb81456a6712a4543323e58ac1c21169caed998"
+        },
+        {
+          "path": "validator-fix/final-fix.result.json",
+          "bytes": 1844,
+          "sha256": "0336b2b618da7e5760283cc6eafe6f2a4f74dd4ae664b6afca9e116df289eeb5"
+        },
+        {
+          "path": "validator-fix/final-fix.stderr.log",
+          "bytes": 7790,
+          "sha256": "bd1c3097a9c2dcf2b4b4c8a9fa467edfe8b72ad46fd2f6817b04b1c73421f5e0"
+        },
+        {
+          "path": "validator-fix/final-fix.stdout.log",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "validator-fix/test_check_store.py",
+          "bytes": 28191,
+          "sha256": "f414de6e298fbc1a0c7dfb4e9a322f2a0a74f5489812da19405125f80584f7b6"
+        },
+        {
+          "path": "write_outbox_readme.py",
+          "bytes": 12323,
+          "sha256": "1a2ae35f68d5e33b1add90352625ad0f25a63b0f2ee4362cc9ab6263bc4ecd64"
+        }
+      ]
+    },
+    {
+      "path": "evidence/development-and-supporting-runs.tar.gz",
+      "bytes": 47530,
+      "sha256": "0ff299c288a0b5316b59300625ddcedfc37d4c1c95d7bf64899f5e4e3e3c31ed",
+      "members": [
+        {
+          "path": "logs/download-locked.jsonl",
+          "bytes": 30440,
+          "sha256": "ed00a41457115c5248865166cb68198b96d94ef3dd768d3dc03e700f588bfa65"
+        },
+        {
+          "path": "logs/download-locked.stderr.log",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "logs/outbox-core-codec-direct.events.jsonl",
+          "bytes": 26155,
+          "sha256": "df79bf3021443a5588ad150ac3e3701aaec05b300ec157ff214e660f97e85c83"
+        },
+        {
+          "path": "logs/outbox-core-codec-direct.result.json",
+          "bytes": 1231,
+          "sha256": "16efa4b7f0e2823241e298a8ddbfed3fea17529ab9ad036280cddd2affcdb788"
+        },
+        {
+          "path": "logs/outbox-core-codec-direct.stderr.log",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "logs/outbox-core-store-first.events.jsonl",
+          "bytes": 66472,
+          "sha256": "2981a614938c62bbd544b1a86742ab31e30d2bfaae33855072958c09c65316a8"
+        },
+        {
+          "path": "logs/outbox-core-store-first.result.json",
+          "bytes": 34887,
+          "sha256": "c05542d4c46f3559640b60996d3cd0557fcda2f4afb4e7406c74c932ff77ce38"
+        },
+        {
+          "path": "logs/outbox-core-store-first.stderr.log",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "logs/outbox-core-store-regression.events.jsonl",
+          "bytes": 92685,
+          "sha256": "87526574a978938fe625ce0f5b198d9040399b82e61582796cc2c463680893ae"
+        },
+        {
+          "path": "logs/outbox-core-store-regression.result.json",
+          "bytes": 1603,
+          "sha256": "5e57527ab9f61593a24d2e18f1af1cf587378e8d899b25c14fdc3a4bfbcb88ac"
+        },
+        {
+          "path": "logs/outbox-core-store-regression.stderr.log",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "logs/outbox-dialog-dev.events.jsonl",
+          "bytes": 1690,
+          "sha256": "4092a4749d23572a1843e7ff2eeb0f3119a7bbf5e086ef521b1a6a9409b37bae"
+        },
+        {
+          "path": "logs/outbox-dialog-dev.result.json",
+          "bytes": 1392,
+          "sha256": "b7da45cf08c8ef890008eb7cc7a54461cf3e39b63ef978a72cfec31b57f1a403"
+        },
+        {
+          "path": "logs/outbox-dialog-dev.stderr.log",
+          "bytes": 103,
+          "sha256": "a3aad1b237654e7d9ac8ab74ed966458d99f6cb78dbd95f07e011d88f418a706"
+        },
+        {
+          "path": "logs/outbox-dialog-io-probe.events.jsonl",
+          "bytes": 1689,
+          "sha256": "ce0e242b8af389ccd25964b93a53e0e6ce1829639577d17b3df8bdcea72f2d4e"
+        },
+        {
+          "path": "logs/outbox-dialog-io-probe.result.json",
+          "bytes": 1465,
+          "sha256": "db583591b00f8c41ca3793c5475f3378bf3a59b5c4956906e1169f2b7e1f24c1"
+        },
+        {
+          "path": "logs/outbox-dialog-io-probe.stderr.log",
+          "bytes": 103,
+          "sha256": "a3aad1b237654e7d9ac8ab74ed966458d99f6cb78dbd95f07e011d88f418a706"
+        },
+        {
+          "path": "logs/outbox-transfer-direct.events.jsonl",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "logs/outbox-transfer-direct.result.json",
+          "bytes": 1330,
+          "sha256": "9b553e534141de5f43e9ab020f003d85513b93b0d44eb5a3bce7e88405335047"
+        },
+        {
+          "path": "logs/outbox-transfer-direct.stderr.log",
+          "bytes": 59,
+          "sha256": "6a0867e8d90671ca26723a1bd5720eb2ae9213e18b7ddfaf0d3631d3264382f2"
+        },
+        {
+          "path": "logs/outbox-transfer-final.events.jsonl",
+          "bytes": 17918,
+          "sha256": "8d34efc064d88f77430aa2de1d7c5bce8eb97a863473ebec9a2e8a4b51e1387e"
+        },
+        {
+          "path": "logs/outbox-transfer-final.result.json",
+          "bytes": 1184,
+          "sha256": "c927e82d7e8cb8d047274048b5f9685fb9608100b613b1482a9fa0f24d13a917"
+        },
+        {
+          "path": "logs/outbox-transfer-final.stderr.log",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "logs/outbox-transfer-native-map.events.jsonl",
+          "bytes": 17914,
+          "sha256": "f501b13641e5456260f9e880894b9934a15f9dbc025576cc34cfc54375baa055"
+        },
+        {
+          "path": "logs/outbox-transfer-native-map.result.json",
+          "bytes": 1200,
+          "sha256": "6492c12069556c476c137c0e09bf786ae63fcb49044a7675f44dc9acfb2f4952"
+        },
+        {
+          "path": "logs/outbox-transfer-native-map.stderr.log",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "logs/outbox-widget-clock-probe.events.jsonl",
+          "bytes": 5381,
+          "sha256": "7c1462d49e18b05a8faea988099d47f4381d779eb4c777c11bc7f3a39b659e0e"
+        },
+        {
+          "path": "logs/outbox-widget-clock-probe.result.json",
+          "bytes": 1376,
+          "sha256": "96315e11052b33316021d153907dbea56b41328b0b46956d9627fab1542336a3"
+        },
+        {
+          "path": "logs/outbox-widget-clock-probe.stderr.log",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "logs/outbox-widget-clock-verified.events.jsonl",
+          "bytes": 1689,
+          "sha256": "fea9009ecb2ef63cd492ff25c09b6c6ad0dbc249ebcea1f6f71891117694b4c3"
+        },
+        {
+          "path": "logs/outbox-widget-clock-verified.result.json",
+          "bytes": 1483,
+          "sha256": "a0fdde2d03b92104b8095655c1bfe8052c20bd9bc8c8db07f7b7b765176e35c7"
+        },
+        {
+          "path": "logs/outbox-widget-clock-verified.stderr.log",
+          "bytes": 103,
+          "sha256": "a3aad1b237654e7d9ac8ab74ed966458d99f6cb78dbd95f07e011d88f418a706"
+        },
+        {
+          "path": "logs/outbox-widget-teardown-probe.events.jsonl",
+          "bytes": 2917,
+          "sha256": "0fbd3d6bfae1f8e9fef415a9b697578c59e9b49ad8216eaf067d0710e45a9176"
+        },
+        {
+          "path": "logs/outbox-widget-teardown-probe.result.json",
+          "bytes": 1113,
+          "sha256": "b07b8e39ac223b73c720ee4ec498117f50b61a5214a7c6efc751ed2d730d25d1"
+        },
+        {
+          "path": "logs/outbox-widget-teardown-probe.stderr.log",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "logs/outbox-widgets-final-dev.events.jsonl",
+          "bytes": 9522,
+          "sha256": "2287e86f77f5bdb6bddf415370ee6acfc363fbef918d3fe2a97d94e60a5f472e"
+        },
+        {
+          "path": "logs/outbox-widgets-final-dev.result.json",
+          "bytes": 1088,
+          "sha256": "35b8cbe853d121afe052a1232e1fcdaf44ab88cc916670672bd55e1b7887302f"
+        },
+        {
+          "path": "logs/outbox-widgets-final-dev.stderr.log",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "logs/outbox-widgets-memory-dev.events.jsonl",
+          "bytes": 1690,
+          "sha256": "fced88af8289f2b871e2c3a6f90c21c27583b4ece90872cf49016ebed7595691"
+        },
+        {
+          "path": "logs/outbox-widgets-memory-dev.result.json",
+          "bytes": 1462,
+          "sha256": "81ed553ce3d5fa37797a919c04c8ed42f90487bc30aab934c8aedfc016486819"
+        },
+        {
+          "path": "logs/outbox-widgets-memory-dev.stderr.log",
+          "bytes": 103,
+          "sha256": "a3aad1b237654e7d9ac8ab74ed966458d99f6cb78dbd95f07e011d88f418a706"
+        },
+        {
+          "path": "logs/outbox-widgets-qualified-dev.events.jsonl",
+          "bytes": 32866,
+          "sha256": "320824edbb66c55ff9c69f3bf793ec21c55e148304dcd4465812301e94547511"
+        },
+        {
+          "path": "logs/outbox-widgets-qualified-dev.result.json",
+          "bytes": 2757,
+          "sha256": "af5beac4887c0db5376a4d6089d778663230800c5039171021c0d737f2c0b730"
+        },
+        {
+          "path": "logs/outbox-widgets-qualified-dev.stderr.log",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "logs/pub-get.log",
+          "bytes": 68,
+          "sha256": "d4cb7a3c68b4133b4f6e58c67ff5bfd13725d8021e930388cdc98da8a575919d"
+        },
+        {
+          "path": "logs/setup-draft-store.events.jsonl",
+          "bytes": 22676,
+          "sha256": "8ba9394c1976862ec13a11097cbfc504e8cb39ac2cd002d61b56105ed16be001"
+        },
+        {
+          "path": "logs/setup-draft-store.result.json",
+          "bytes": 1021,
+          "sha256": "19c497d9e157b7eda6f2136a43a8900dde95a7f703e98d52553b0f2c94c849da"
+        },
+        {
+          "path": "logs/setup-draft-store.stderr.log",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "logs/studio-outbox-cloud-dev1.events.jsonl",
+          "bytes": 3032,
+          "sha256": "8b70faa6361418a4d2a994811d4e665d98b98ab1571f9376fef63f4430291489"
+        },
+        {
+          "path": "logs/studio-outbox-cloud-dev1.result.json",
+          "bytes": 1040,
+          "sha256": "79876e6f72161b989658eb5957d38f41fffa657f44fa93fca27847529f66a8e4"
+        },
+        {
+          "path": "logs/studio-outbox-cloud-dev1.stderr.log",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "logs/studio-outbox-store-initial.events.jsonl",
+          "bytes": 8790,
+          "sha256": "d3709aa64b8d5a09189cb32cf9c48b0f0d089fc6cd2286ece42ca80801e18cd7"
+        },
+        {
+          "path": "logs/studio-outbox-store-initial.result.json",
+          "bytes": 1050,
+          "sha256": "b0234b9ace2c80588188630c773c0303b285849c4fd7e2a68840f1fe4e149a08"
+        },
+        {
+          "path": "logs/studio-outbox-store-initial.stderr.log",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "logs/studio-outbox-store-native.events.jsonl",
+          "bytes": 35038,
+          "sha256": "0fea7ccd9ba74f26df7d7b30ec587579d0c9e869f47cb9320ae13a73b14b0c34"
+        },
+        {
+          "path": "logs/studio-outbox-store-native.result.json",
+          "bytes": 1095,
+          "sha256": "cb54a4652e46f8ce45474357da626f85e09454e6d0012a8414a0026c68a7025e"
+        },
+        {
+          "path": "logs/studio-outbox-store-native.stderr.log",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "logs/studio-outbox-submission-direct.events.jsonl",
+          "bytes": 9465,
+          "sha256": "1a365012edfdbccbe83cfc628f0be6a19629d7f687d500e9f62f4bd5963b20d8"
+        },
+        {
+          "path": "logs/studio-outbox-submission-direct.result.json",
+          "bytes": 2011,
+          "sha256": "975a12e66b3d939f279054f4b6447f8e26b68ff688f93fe5fc157b7a2f9ff9bb"
+        },
+        {
+          "path": "logs/studio-outbox-submission-direct.stderr.log",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "logs/studio-outbox-submission-final.events.jsonl",
+          "bytes": 8972,
+          "sha256": "4846b8b0a5e7e025c5096c5bee64d19691954a2a1b7ee3df07fbf3f3864fddbc"
+        },
+        {
+          "path": "logs/studio-outbox-submission-final.result.json",
+          "bytes": 1065,
+          "sha256": "fc6dd8d77adb619229e62c05345e732ff1d9560acfe3ace368f757041740346e"
+        },
+        {
+          "path": "logs/studio-outbox-submission-final.stderr.log",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    }
+  ]
+}

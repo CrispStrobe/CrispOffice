@@ -17,7 +17,8 @@
     "all_process_exits": 0,
     "all_terminal_json_success": true,
     "tracked_source_hashes": 2214,
-    "unchanged_during_execution": true
+    "unchanged_during_execution": true,
+    "elapsed_seconds_combined": 400.93953227996826
   },
   "groups": {
     "credential_selection": 10,
@@ -51,5 +52,6 @@
     "scope": "Sequential replay completion-policy controls only; not product tests."
   },
   "qualification": "This accepted source precedes final reconciliation of main b42eca1d. Its results are exact-source evidence. Any later affected replay is recorded separately; the counts are not attributed to an unexecuted final tree.",
-  "contents": "Seven raw JSON streams and stderr/exit receipts, source manifests and per-file results; fresh callback red/green; authenticated SDK/dependency/bootstrap receipts; format receipt; explicitly labelled replay-helper controls."
+  "contents": "Seven raw JSON streams and stderr/exit receipts, source manifests and per-file results; fresh callback red/green; authenticated SDK/dependency/bootstrap receipts; format receipt; explicitly labelled replay-helper controls.",
+  "run_summary": "checkpoint-native-run-summary.json"
 }

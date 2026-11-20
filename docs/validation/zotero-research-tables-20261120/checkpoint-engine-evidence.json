@@ -34,5 +34,5 @@
     }
   },
   "contents": "Authenticated SDK/dependency and setup receipts, format receipts, failed early diagnostics, raw engine results/source hashes, red/green controls, credential analysis and failed e618 Flutter compilation. Final Flutter/controller and broader incoming execution evidence will follow.",
-  "performance_notes": "Incoming9b581e8a adds only author-reported local chrome A/B notes; those numbers are preserved with their original attribution and are not this branch's benchmark or hosted acceptance."
+  "performance_notes": "Incoming 9b581e8a adds only author-reported local chrome A/B notes; those numbers are preserved with their original attribution and are not this branch's benchmark or hosted acceptance."
 }

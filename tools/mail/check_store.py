@@ -129,7 +129,10 @@ def test_summary(log: Path) -> dict[str, object]:
     starts = 0
     terminals = 0
     terminal = None
-    for number, line in enumerate(log.read_text(errors='replace').splitlines(), 1):
+    # JSONL records are LF-framed. Unicode separators such as U+0085,
+    # U+2028 and U+2029 are legal inside JSON strings, not record boundaries.
+    content = log.read_bytes().decode('utf-8', errors='replace')
+    for number, line in enumerate(content.split('\n'), 1):
         # Native-assets progress may precede an event without a newline. Strip
         # only those known prefixes; searching for an opening brace can discard
         # malformed records, scalar/array JSON, or unexpected runner output.

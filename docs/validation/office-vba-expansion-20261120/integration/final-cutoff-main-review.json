@@ -1,0 +1,178 @@
+{
+  "schema": "quds-vba-expansion-final-cutoff-main-review/v1",
+  "audited_at_utc": "2026-11-20T13:22:59.361755+00:00",
+  "qualified_source": {
+    "commit": "192ea2aedbf0b1494627953c79a7042037a63301",
+    "tree": "1b8e807cd76f2bbc599780170d2a2e993ea4da62"
+  },
+  "included_main": {
+    "commit": "b42eca1db058f0def247b86c2f15dea90c11b4e8",
+    "tree": "1ec75f9744ec868648c06f4dddb729ac867d74d3",
+    "parents": [
+      "c3df77d01ea9df4846e18131e69160d858f174ac",
+      "baf6d1bc53b611e9fb37082ca69c409e5f8d6381"
+    ],
+    "capture_basis": "Frozen final branch/PR cutoff at2026-11-20T13:14:35.544281+00:00; no later live-main observation is claimed."
+  },
+  "ancestry": {
+    "included_main_is_ancestor_of_qualified": true,
+    "merge_base": "b42eca1db058f0def247b86c2f15dea90c11b4e8"
+  },
+  "prospective_merge": {
+    "method": "git merge-tree --write-tree",
+    "ordered_heads": [
+      "192ea2aedbf0b1494627953c79a7042037a63301",
+      "b42eca1db058f0def247b86c2f15dea90c11b4e8"
+    ],
+    "exit_code": 0,
+    "conflicts": [],
+    "tree": "1b8e807cd76f2bbc599780170d2a2e993ea4da62",
+    "whole_tree_equal_to_qualified": true,
+    "changed_paths": [],
+    "validated_input_differences": [],
+    "source_index_refs_mutated": false
+  },
+  "input_basis": {
+    "path": "docs/validation/office-vba-expansion-20261120/integration/final-cutoff-inclusion.json",
+    "sha256": "f860865abbcd44a0842c96627d458ecb71fbaded0c3a52e0807245709ced5adb",
+    "json_field": "target_gate_input_entries",
+    "path_count": 1164,
+    "input_entries_sha256": "efc153a454809c7d92e83e6bd06e7a5180d5f1007753aef6d562717978572d0d",
+    "manifest_union_sha256": "32fd6c393a392475fe806023b5daab496445726f2aec2e4f689d6d510b9478ff",
+    "digest_encoding": "Sorted compact JSON; ensure_ascii=True; UTF-8; no trailing newline"
+  },
+  "input_comparison": {
+    "qualified_to_prospective_exact_mode_type_blob_sha256_matches": 1164,
+    "qualified_to_prospective_mismatch_count": 0,
+    "included_main_direct_mismatches": [
+      {
+        "path": "packages/quds_office_engine/CHANGELOG.md",
+        "qualified": {
+          "mode": "100644",
+          "type": "blob",
+          "object": "9c8509eeaf61ee5bad41f7a55a725eeccd3b2924"
+        },
+        "included_main": {
+          "mode": "100644",
+          "type": "blob",
+          "object": "6266156b21838cfc006cc7ecc0b6dacf8cdb867d"
+        }
+      },
+      {
+        "path": "packages/quds_office_engine/lib/src/slide/model/pml_presentation.dart",
+        "qualified": {
+          "mode": "100644",
+          "type": "blob",
+          "object": "77fcccefe69bd486d03f7a2bd600ed891f0cceb7"
+        },
+        "included_main": {
+          "mode": "100644",
+          "type": "blob",
+          "object": "f884406159ef20c22517bc7d1de1dbf285bbe0de"
+        }
+      },
+      {
+        "path": "packages/quds_office_engine/lib/src/slide/shapes/drawingml.dart",
+        "qualified": {
+          "mode": "100644",
+          "type": "blob",
+          "object": "42fa88ca7cf68013f4bada4727640bf35a1daa38"
+        },
+        "included_main": {
+          "mode": "100644",
+          "type": "blob",
+          "object": "61ac74d03fa14313fa86684596514a9a530c88fc"
+        }
+      },
+      {
+        "path": "packages/quds_office_engine/lib/src/word/layout/word_incremental_layout.dart",
+        "qualified": {
+          "mode": "100644",
+          "type": "blob",
+          "object": "19643ad7627a00022c4478d7501764a4f414658b"
+        },
+        "included_main": {
+          "mode": "100644",
+          "type": "blob",
+          "object": "ba43bc5555bb805e190e6f26e8a94f8cedd43837"
+        }
+      },
+      {
+        "path": "packages/quds_office_engine/lib/src/word/layout/word_layout.dart",
+        "qualified": {
+          "mode": "100644",
+          "type": "blob",
+          "object": "182df2c9b54badd917b81bf2ae2098d84b3fac6a"
+        },
+        "included_main": {
+          "mode": "100644",
+          "type": "blob",
+          "object": "69c1d35b2ada46b6e6d24f6307e77faad68b5ed9"
+        }
+      },
+      {
+        "path": "packages/quds_office_engine/test/slide_text_insets_preservation_test.dart",
+        "qualified": {
+          "mode": "100644",
+          "type": "blob",
+          "object": "2b8fc5347cdfe9529ca86ea7cfc10adfea55bd1e"
+        },
+        "included_main": {
+          "mode": "100644",
+          "type": "blob",
+          "object": "de031f4b6e8383912da137298e04e25aac135c62"
+        }
+      },
+      {
+        "path": "packages/quds_office_engine/test/word_incremental_layout_differential_test.dart",
+        "qualified": {
+          "mode": "100644",
+          "type": "blob",
+          "object": "9cf81d15c2bf2efe07a03f8bfdd64e610535310b"
+        },
+        "included_main": {
+          "mode": "100644",
+          "type": "blob",
+          "object": "6caac2c0762630a407de323d548295053a1cd25e"
+        }
+      },
+      {
+        "path": "packages/quds_office_engine/test/word_incremental_layout_test.dart",
+        "qualified": {
+          "mode": "100644",
+          "type": "blob",
+          "object": "e0129b6356a03aea83a66f9619d20b26a1a756cf"
+        },
+        "included_main": {
+          "mode": "100644",
+          "type": "blob",
+          "object": "0e9edc1f261daaa6f452ce883b7cea34394f5465"
+        }
+      },
+      {
+        "path": "packages/quds_office_engine/tool/zotero/research_target_acceptance.dart",
+        "qualified": {
+          "mode": "100644",
+          "type": "blob",
+          "object": "7c3e82c6396cac8978a9771982d65d1758e45b8d"
+        },
+        "included_main": {
+          "mode": "100644",
+          "type": "blob",
+          "object": "48aab5a1b4220524a62768735110db17aad6cd88"
+        }
+      }
+    ],
+    "interpretation": "Zero differences concerns merging the already included main into the qualified source. The main snapshot itself does not contain all qualified branch features and is not asserted equal to the qualification inputs."
+  },
+  "network_used": false,
+  "refs_fetched": false,
+  "github_actions_used": false,
+  "actual_final_main_merge_claimed": false,
+  "limits": [
+    "Source-object preservation only; runtime results are separate.",
+    "Newly integrated work-in-progress Outbox core/store and Flutter hosts are outside the Office engine gate. Incoming runtime evidence remains historical and source-specific.",
+    "The receipt covers captured mainb42; root must separately reconcile any later main advance before the actual final merge.",
+    "Historical C9 main-review and inclusion receipts remain unchanged."
+  ]
+}
