@@ -3518,6 +3518,7 @@ class _PageSink {
         content: canvas.toStream(),
         images: List<PdfEmbeddedImage>.from(images),
         links: List<PdfLinkAnnot>.from(links),
+        extGStates: canvas.alphaStates,
       ),
     );
   }
