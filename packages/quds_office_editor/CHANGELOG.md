@@ -4,6 +4,10 @@ All notable changes to `quds_office_editor` are documented here.
 
 ## Unreleased
 
+- Recognize conventional lowercase Arial and Times New Roman font filenames
+  for regular, bold, italic and bold-italic faces, retaining metadata checks
+  and canonical candidate precedence.
+
 - Show localized foreground bulk progress and per-message receipts with frozen
   subjects, cancellation after the current message and refresh-aware dismissal.
 
