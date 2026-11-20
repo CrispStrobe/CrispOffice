@@ -300,7 +300,10 @@ void main() {
         text: ' Tail',
       );
       final paragraph = note.paragraphs.single;
-      paragraph.inlines.insert(0, WmlNoteMarker(endnote: endnote));
+      paragraph.inlines.insert(0, WmlNoteMarker(
+              endnote: endnote,
+              properties: WmlRunProps(),
+            ));
       final session = _session(document, paragraph);
       _start(session, _table('Left', 'Right'), type: type);
       _finish(session);
