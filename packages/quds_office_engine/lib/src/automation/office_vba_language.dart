@@ -164,7 +164,46 @@ const _wordConstants = <String, int>{
   'wdunderlinedashlong': 39,
   'wdunderlinewavydouble': 43,
   'wdunderlinedashlongheavy': 55,
+  'wdauto': 0,
+  'wdnohighlight': 0,
+  'wdblack': 1,
+  'wdblue': 2,
+  'wdturquoise': 3,
+  'wdbrightgreen': 4,
+  'wdpink': 5,
+  'wdred': 6,
+  'wdyellow': 7,
+  'wdwhite': 8,
+  'wddarkblue': 9,
+  'wdteal': 10,
+  'wdgreen': 11,
+  'wdviolet': 12,
+  'wddarkred': 13,
+  'wddarkyellow': 14,
+  'wdgray50': 15,
+  'wdgray25': 16,
+  'wdbyauthor': -1,
 };
+// WdColorIndex uses a fixed palette; zero clears Range highlighting.
+const _wordHighlights = <String?>[
+  null,
+  '000000',
+  '0000FF',
+  '00FFFF',
+  '00FF00',
+  'FF00FF',
+  'FF0000',
+  'FFFF00',
+  'FFFFFF',
+  '000080',
+  '008080',
+  '008000',
+  '800080',
+  '800000',
+  '808000',
+  '808080',
+  'C0C0C0',
+];
 const _wordUnderlines = <int, String>{
   0: 'none',
   1: 'single',
@@ -186,6 +225,7 @@ const _wordUnderlines = <int, String>{
   55: 'dashLongHeavy',
 };
 const _wordReserved = <String>{
+  'application',
   'thisdocument',
   'activedocument',
   'document',
@@ -523,7 +563,9 @@ enum _Kind {
   workbook,
   font,
   interior,
+  wordApplication,
   document,
+  paragraphs,
   paragraph,
   paragraphFormat,
   powerPointApplication,
@@ -2237,7 +2279,9 @@ class _Checker {
           final kind = _expression(statement.target);
           final wordObject =
               context.isWord &&
-              (kind == _Kind.document ||
+              (kind == _Kind.wordApplication ||
+                  kind == _Kind.document ||
+                  kind == _Kind.paragraphs ||
                   kind == _Kind.paragraph ||
                   kind == _Kind.font ||
                   kind == _Kind.paragraphFormat);
@@ -2359,10 +2403,16 @@ class _Checker {
       );
     }
     if (context.isWord) {
+      if (receiver == _Kind.range && property == 'highlightcolorindex') {
+        return _Kind.number;
+      }
       if (receiver == _Kind.font) {
         if (property == 'bold' ||
             property == 'italic' ||
-            property == 'strikethrough') {
+            property == 'strikethrough' ||
+            property == 'smallcaps' ||
+            property == 'superscript' ||
+            property == 'subscript') {
           return _Kind.boolean;
         }
         if (property == 'size' ||
@@ -2436,7 +2486,13 @@ class _Checker {
           }
         }
         if (context.isWord) {
-          if (expression.token.lower == 'thisdocument') return _Kind.document;
+          if (expression.token.lower == 'thisdocument' ||
+              expression.token.lower == 'activedocument') {
+            return _Kind.document;
+          }
+          if (expression.token.lower == 'application') {
+            return _Kind.wordApplication;
+          }
           if (_wordConstants.containsKey(expression.token.lower)) {
             return _Kind.number;
           }
@@ -2539,7 +2595,17 @@ class _Checker {
           return _powerPointMember(expression, receiver);
         }
         if (context.isWord) {
+          if (receiver == _Kind.wordApplication && name == 'activedocument') {
+            _arguments(expression, 0, allowProperty: true);
+            return _Kind.document;
+          }
           if (receiver == _Kind.document && name == 'paragraphs') {
+            if (expression.arguments == null) return _Kind.paragraphs;
+            final argument = _arguments(expression, 1).single;
+            _compatible(_Kind.number, _expression(argument), argument.token);
+            return _Kind.paragraph;
+          }
+          if (receiver == _Kind.paragraphs && name == 'item') {
             final argument = _arguments(expression, 1).single;
             _compatible(_Kind.number, _expression(argument), argument.token);
             return _Kind.paragraph;
@@ -2882,6 +2948,14 @@ class _Interior {
 
 class _WordDocument {
   const _WordDocument();
+}
+
+class _WordApplication {
+  const _WordApplication();
+}
+
+class _WordParagraphs {
+  const _WordParagraphs();
 }
 
 class _WordParagraph {
@@ -3449,8 +3523,12 @@ class _Evaluator {
           }
         }
         if (context.isWord) {
-          if (expression.token.lower == 'thisdocument') {
+          if (expression.token.lower == 'thisdocument' ||
+              expression.token.lower == 'activedocument') {
             return const _WordDocument();
+          }
+          if (expression.token.lower == 'application') {
+            return const _WordApplication();
           }
         } else if (context.isExcel &&
             expression.token.lower == 'thisworkbook') {
@@ -3516,7 +3594,11 @@ class _Evaluator {
           return _evaluatePowerPointMember(expression, receiver, arguments);
         }
         if (context.isWord) {
-          if (receiver is _WordDocument) {
+          if (receiver is _WordApplication) return const _WordDocument();
+          if (receiver is _WordDocument && expression.arguments == null) {
+            return const _WordParagraphs();
+          }
+          if (receiver is _WordDocument || receiver is _WordParagraphs) {
             final index = _integer(arguments.single, expression.token);
             if (index < 1) {
               context.type(
@@ -4510,13 +4592,33 @@ class _Evaluator {
     Object value,
     _Token token,
   ) {
+    if (receiver is _WordRange) {
+      final index = _integer(value, token);
+      if (index < 0 || index >= _wordHighlights.length) {
+        context.unsupported(
+          token,
+          'HighlightColorIndex requires wdNoHighlight or a fixed WdColorIndex color from 1 through 16.',
+        );
+      }
+      _emitWord(receiver, 'runFormat', <String, Object?>{
+        'highlight': _wordHighlights[index],
+      }, token);
+      return;
+    }
     if (receiver is _WordFont) {
       final String field;
       final Object normalized;
       if (property == 'bold' ||
           property == 'italic' ||
-          property == 'strikethrough') {
-        field = property == 'strikethrough' ? 'strike' : property;
+          property == 'strikethrough' ||
+          property == 'smallcaps' ||
+          property == 'superscript' ||
+          property == 'subscript') {
+        field = switch (property) {
+          'strikethrough' => 'strike',
+          'smallcaps' => 'smallCaps',
+          _ => property,
+        };
         normalized = _boolean(value, token);
       } else if (property == 'underline') {
         field = 'underline';
