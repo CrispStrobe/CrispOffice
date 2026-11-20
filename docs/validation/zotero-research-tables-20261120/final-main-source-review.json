@@ -1,0 +1,373 @@
+{
+  "reviewedFeature": "06defcfef83e1b33215441c92531c9467d3f89f4",
+  "lastKnownMain": "7e740a53d3fea4b6bd734537e89888b641a8b735",
+  "boundedObservedMain": "b42eca1db058f0def247b86c2f15dea90c11b4e8",
+  "publishedReconciliation": {
+    "commit": "231bd0403a3d2855dc23bf8dacefaedba01f2aab",
+    "tree": "fe67b5ddf50480db3815e1bf7bae75bfaab69f7c",
+    "parents": [
+      "dae988351b4a3694500f3d10a40162effbac830f",
+      "b42eca1db058f0def247b86c2f15dea90c11b4e8"
+    ],
+    "reportedAndIndependentlyVerifiedBy": "/root",
+    "commitMetadataReadBack": true
+  },
+  "observedPr": {
+    "number": 249,
+    "state": "open",
+    "draft": true,
+    "head": "06defcfef83e1b33215441c92531c9467d3f89f4",
+    "cachedBase": "7e740a53d3fea4b6bd734537e89888b641a8b735",
+    "cachedMergeable": false,
+    "note": "Metadata snapshot before reconciliation; not a claim about final PR state."
+  },
+  "mainDelta": {
+    "commits": 46,
+    "paths": 92,
+    "added": 49,
+    "modified": 43,
+    "deleted": 0
+  },
+  "recursiveMerge": {
+    "bases": [
+      "9b581e8a125f89c1974952d628bfe6e111a44bf6",
+      "03de5b6ad9eff4666c8e0963d1a6b059417951ed"
+    ],
+    "rawTree": "4b646e0e84f751b09f08c15f90947c51c7b5f2cc",
+    "textualConflicts": [
+      "packages/quds_office_engine/CHANGELOG.md",
+      "packages/quds_office_engine/lib/src/word/layout/word_layout.dart",
+      "packages/quds_office_engine/test/word_zotero_note_table_test.dart",
+      "packages/quds_office_engine/test/word_zotero_note_tables_integration_test.dart"
+    ],
+    "manifestBlob": "bca04a9a894f35314168d9c245d338ee9e5b7c4a",
+    "entries": 74,
+    "mainExactBlobs": 72,
+    "reviewedMergedBlobs": 2,
+    "deletions": 0,
+    "modeOrTypeChanges": 0,
+    "buildScriptMode": "100755"
+  },
+  "resolution": {
+    "native": {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_native.dart",
+      "old": "fdd51050b8390d01a07bf51df42eaa6cff5aedd9",
+      "merged": "45c83b75e2c9e42004131f509677a0364ad3d4c4",
+      "reason": "Exactly two sourceStatus: result.status arguments added at reply/reply-all construction. All existing credential selection revisions, backend captures, default-dialog listener and stale-operation fences retained."
+    },
+    "engineChangelog": {
+      "old": "13262af9b0ae951f7b5f897bd47c134c10393cae",
+      "incoming": "6266156b21838cfc006cc7ecc0b6dacf8cdb867d",
+      "merged": "8e3dab837737d311ebb8c540970163ae51cbbb8d",
+      "reason": "Both new Zotero-table and VBA-expansion entries retained above unchanged earlier history."
+    },
+    "editorChangelog": "Feature changelog retained; main contributes no different editor changelog entry.",
+    "preservedWholeFiles": [
+      {
+        "path": "packages/quds_office_engine/lib/src/word/layout/word_layout.dart",
+        "sha": "b50ee59383518783106875edc853b071685ea3f3"
+      },
+      {
+        "path": "packages/quds_office_engine/lib/src/word/layout/word_incremental_layout.dart",
+        "sha": "93c7e51944395cd0e23c0801fd47b0e7f54eebb2"
+      },
+      {
+        "path": "packages/quds_office_editor/example/lib/suite_workspace.dart",
+        "sha": "780aeb41d872df31e19d7b4b8bb7df1835dfb6e2"
+      },
+      {
+        "path": "packages/quds_office_engine/test/word_incremental_layout_test.dart",
+        "sha": "e0129b6356a03aea83a66f9619d20b26a1a756cf"
+      }
+    ],
+    "layoutReason": "Retain qualified engine ownership, dirty/full/empty/wrapped break-cache invalidation, trailing idle frame scheduling and three regressions. Main's wrapping-only invalidation is subsumed; carried-prefix delta logic remains intact.",
+    "tableFixtureCleanups": [
+      {
+        "path": "packages/quds_office_engine/test/word_zotero_note_table_test.dart",
+        "side": "ours",
+        "sha": "53bd2a620c07134397286df59ebfb13e29de3d0c",
+        "testRegistrations": 19,
+        "expectCalls": 68
+      },
+      {
+        "path": "packages/quds_office_engine/test/word_zotero_note_table_test.dart",
+        "side": "main",
+        "sha": "216eaa761a77dd552f52db6ad45f141a95cccf0f",
+        "testRegistrations": 19,
+        "expectCalls": 68
+      },
+      {
+        "path": "packages/quds_office_engine/test/word_zotero_note_tables_integration_test.dart",
+        "side": "ours",
+        "sha": "89a3b191470e97b454c426fddc5457b7cd916c47",
+        "testRegistrations": 13,
+        "expectCalls": 86
+      },
+      {
+        "path": "packages/quds_office_engine/test/word_zotero_note_tables_integration_test.dart",
+        "side": "main",
+        "sha": "ad18ba640ab42e8144d8181bf3b76882d5358b5b",
+        "testRegistrations": 13,
+        "expectCalls": 86
+      }
+    ],
+    "tableFixtureReason": "Incoming diffs only rewrite equivalent string concatenation/interpolation and direct constant-string arguments. No test registration, assertion or expected value changed.",
+    "downloads": "Incoming manager is equivalent to the reviewed feature behavior, differing only in a local lambda parameter name and comment; main's new inventory-change/RTL tests retained."
+  },
+  "newMainBehavior": {
+    "vba": "Word typed Font/ParagraphFormat helpers, reading order and preset line spacing; independently owned native spacing attributes; shared VBA named/optional/omitted arguments; PowerPoint per-side text margins, exact EMU validation, sparse native preservation and consistent live/PDF placement.",
+    "mail": "Pass actual parse status through native/EWS reply construction; refuse incomplete HTML fallback; allow complete attachment-only forwarded messages with an empty quote. Retain provider and all-or-none forwarding tests.",
+    "licenses": "Decode the font license asset inline to avoid compute-isolate completion under the widget test clock.",
+    "vbaAndSerializationSourceFiles": [
+      {
+        "path": "packages/quds_office_editor/lib/src/editor_slide/render_slide_stage.dart",
+        "sha": "901a791d95ee37436d86b434decbe71dfd42ea40"
+      },
+      {
+        "path": "packages/quds_office_engine/lib/src/automation/office_vba_language.dart",
+        "sha": "cd745dcb1cfabbed7a8430c9f7efd76ab07320dc"
+      },
+      {
+        "path": "packages/quds_office_engine/lib/src/automation/operations/slide_steps.dart",
+        "sha": "e109342b4075ed29eddf72767d9abac4d2532975"
+      },
+      {
+        "path": "packages/quds_office_engine/lib/src/automation/operations/word_steps.dart",
+        "sha": "f71bb330b9a537df97ae9d0ca93c815d2eee7f6e"
+      },
+      {
+        "path": "packages/quds_office_engine/lib/src/pdf/office_pdf_export.dart",
+        "sha": "729af5e3e7ed150618e43317d10eef102d7e0700"
+      },
+      {
+        "path": "packages/quds_office_engine/lib/src/slide/model/pml_presentation.dart",
+        "sha": "f884406159ef20c22517bc7d1de1dbf285bbe0de"
+      },
+      {
+        "path": "packages/quds_office_engine/lib/src/slide/shapes/drawingml.dart",
+        "sha": "61ac74d03fa14313fa86684596514a9a530c88fc"
+      },
+      {
+        "path": "packages/quds_office_engine/lib/src/word/serial/word_deserializer.dart",
+        "sha": "1dce00da7d88dfb5b642b17dfcbd9e1b3e67eb24"
+      },
+      {
+        "path": "packages/quds_office_engine/lib/src/word/serial/word_property_io.dart",
+        "sha": "129f1602f03360f1607f14f73cf6be6ed6b5c5c0"
+      },
+      {
+        "path": "packages/quds_office_engine/lib/src/word/serial/word_style_cascade.dart",
+        "sha": "2bbb48531fb88aaf14f1624ce9b8e01c13bc1ef6"
+      }
+    ],
+    "changedProductFiles": [
+      {
+        "path": "packages/quds_office_editor/example/lib/studio_downloads_manager.dart",
+        "sha": "0169f7b146eac6563eae61f27f87d75c43838b92"
+      },
+      {
+        "path": "packages/quds_office_editor/example/lib/studio_licenses.dart",
+        "sha": "d6912a9bea83fd979bd19c51a289b042420e3ec4"
+      },
+      {
+        "path": "packages/quds_office_editor/example/lib/studio_mail_ews.dart",
+        "sha": "83c050b588f6460ab6d7fcc0eb767828c00b0d24"
+      },
+      {
+        "path": "packages/quds_office_editor/example/lib/studio_mail_native.dart",
+        "sha": "45c83b75e2c9e42004131f509677a0364ad3d4c4"
+      },
+      {
+        "path": "packages/quds_office_editor/example/lib/studio_mail_reply.dart",
+        "sha": "5f8f372238f8af891f88af9e91fa2bea71f98b85"
+      },
+      {
+        "path": "packages/quds_office_editor/lib/src/editor_slide/render_slide_stage.dart",
+        "sha": "901a791d95ee37436d86b434decbe71dfd42ea40"
+      },
+      {
+        "path": "packages/quds_office_engine/lib/src/automation/office_vba_language.dart",
+        "sha": "cd745dcb1cfabbed7a8430c9f7efd76ab07320dc"
+      },
+      {
+        "path": "packages/quds_office_engine/lib/src/automation/operations/slide_steps.dart",
+        "sha": "e109342b4075ed29eddf72767d9abac4d2532975"
+      },
+      {
+        "path": "packages/quds_office_engine/lib/src/automation/operations/word_steps.dart",
+        "sha": "f71bb330b9a537df97ae9d0ca93c815d2eee7f6e"
+      },
+      {
+        "path": "packages/quds_office_engine/lib/src/pdf/office_pdf_export.dart",
+        "sha": "729af5e3e7ed150618e43317d10eef102d7e0700"
+      },
+      {
+        "path": "packages/quds_office_engine/lib/src/slide/model/pml_presentation.dart",
+        "sha": "f884406159ef20c22517bc7d1de1dbf285bbe0de"
+      },
+      {
+        "path": "packages/quds_office_engine/lib/src/slide/shapes/drawingml.dart",
+        "sha": "61ac74d03fa14313fa86684596514a9a530c88fc"
+      },
+      {
+        "path": "packages/quds_office_engine/lib/src/word/serial/word_deserializer.dart",
+        "sha": "1dce00da7d88dfb5b642b17dfcbd9e1b3e67eb24"
+      },
+      {
+        "path": "packages/quds_office_engine/lib/src/word/serial/word_property_io.dart",
+        "sha": "129f1602f03360f1607f14f73cf6be6ed6b5c5c0"
+      },
+      {
+        "path": "packages/quds_office_engine/lib/src/word/serial/word_style_cascade.dart",
+        "sha": "2bbb48531fb88aaf14f1624ce9b8e01c13bc1ef6"
+      }
+    ]
+  },
+  "replayScope": {
+    "status": "Root/validation_runtime own execution; final231bd replay is running, no pass count for that tree claimed here.",
+    "priorAcceptedGatesReportedByRoot": {
+      "engine": 399,
+      "editor": 313,
+      "native": 372,
+      "nativeOriginalFiles": 16,
+      "nativeProcesses": 7,
+      "nativeExactSourceHashCount": 2214,
+      "nativeSource": "2d617a31bce48a7312f31586f70f7472e3420406"
+    },
+    "engine": "Replay existing399 engine cohort because Word serialization changed and retain the two table test lint cleanups.",
+    "additionalEngineOriginals": [
+      "packages/quds_office_engine/test/office_vba_arguments_integration_test.dart",
+      "packages/quds_office_engine/test/office_vba_arguments_test.dart",
+      "packages/quds_office_engine/test/office_vba_powerpoint_margins_integration_test.dart",
+      "packages/quds_office_engine/test/office_vba_powerpoint_margins_test.dart",
+      "packages/quds_office_engine/test/office_vba_procedure_boundaries_test.dart",
+      "packages/quds_office_engine/test/office_vba_string_intrinsics_test.dart",
+      "packages/quds_office_engine/test/office_vba_word_argument_shapes_test.dart",
+      "packages/quds_office_engine/test/office_vba_word_paragraph_layout_integration_test.dart",
+      "packages/quds_office_engine/test/office_vba_word_paragraph_layout_test.dart",
+      "packages/quds_office_engine/test/slide_text_insets_preservation_test.dart",
+      "packages/quds_office_engine/test/word_incremental_layout_differential_test.dart"
+    ],
+    "editor": "Replay existing controller/Zotero/editor equivalence cohort with its exact fixture manifest; root reports42 available committed DOCX fixtures. Controller and equivalence source are unchanged.",
+    "exampleOriginals": [
+      "packages/quds_office_editor/example/test/studio_mail_test.dart",
+      "packages/quds_office_editor/example/test/studio_mail_ews_test.dart",
+      "packages/quds_office_editor/example/test/studio_mail_reply_test.dart",
+      "packages/quds_office_editor/example/test/studio_mail_cloud_test.dart",
+      "packages/quds_office_editor/example/test/studio_mail_forward_test.dart",
+      "packages/quds_office_editor/example/test/studio_downloads_capture_test.dart",
+      "packages/quds_office_editor/example/test/studio_downloads_layout_test.dart",
+      "packages/quds_office_editor/example/test/studio_downloads_manager_test.dart",
+      "packages/quds_office_editor/example/test/studio_layout_theme_test.dart"
+    ],
+    "unchangedCredentialBoundary": "Credential-only124 case result stays attributed to prior2d617 source; neither its production code nor fixtures changed in main reconciliation.",
+    "unchangedReaderBoundary": "Reader presentation and its tested source remain byte-identical; no new reader-specific behavior from b42."
+  },
+  "helperReview": {
+    "blob": "25d38f8f2cdcad7767702c3e3b20722d298017c4",
+    "result": "No concrete correctness issue found in source review.",
+    "guarantees": [
+      "Original file paths are correct from the helper's script location.",
+      "Each sequential Flutter CLI invocation uses concurrency1.",
+      "stdout and stderr drain concurrently before the result is accepted.",
+      "Acceptance requires exit0, exactly one JSON done event and success=true; absent/duplicate/unsuccessful terminal output fails closed."
+    ],
+    "limitation": "This source review is not an execution claim. Subsequent root helper1d0fe0c0 has a separate publication/evidence record."
+  },
+  "lateHeadAncestry": [
+    {
+      "name": "vba",
+      "sha": "89910ff6363cd45ced5faf0e48b11cac46754b28",
+      "ancestorOfB42": true
+    },
+    {
+      "name": "downloads",
+      "sha": "e6737bc6bccd521660dff0425ca620525dc04a58",
+      "ancestorOfB42": true
+    },
+    {
+      "name": "accounts",
+      "sha": "cb7f832590b77bd5be6e04814f1b64ae418b2b55",
+      "ancestorOfB42": false
+    },
+    {
+      "name": "mailhost",
+      "sha": "feffbfa437ee466a74801276fbeb178b548845e0",
+      "ancestorOfB42": true
+    },
+    {
+      "name": "reply",
+      "sha": "4df7a148f156d9a697028994f14b171877d1d47c",
+      "ancestorOfB42": true
+    },
+    {
+      "name": "validation",
+      "sha": "d6de5ef4707004d000fcf00935197e88fb0a4c1d",
+      "ancestorOfB42": true
+    }
+  ],
+  "pendingAccounts": {
+    "head": "cb7f832590b77bd5be6e04814f1b64ae418b2b55",
+    "result": "Pending; not proven whole-head equivalent. No ancestry-only merge recommended or performed.",
+    "uniqueNonMainCommits": [
+      {
+        "sha": "33b2eba965a58d09317ccdf060f1ae1704d735c3",
+        "parents": [
+          "0c2f09faf32cf5bdd2222cf73d0412abf954e260",
+          "a71a7f19e7146a19ecf79122477210fd71afb51b"
+        ],
+        "message": "Integrate captured credential-store and Mail chrome continuation [skip ci]"
+      },
+      {
+        "sha": "91645cd5da644a393f3827ed390b25b750b42c71",
+        "parents": [
+          "33b2eba965a58d09317ccdf060f1ae1704d735c3",
+          "56e1f58c19bbffc00465b8e4e48fa8fbca0c2015"
+        ],
+        "message": "Integrate Mail body projection and guard credential-store ownership [skip ci]"
+      },
+      {
+        "sha": "cb7f832590b77bd5be6e04814f1b64ae418b2b55",
+        "parents": [
+          "91645cd5da644a393f3827ed390b25b750b42c71",
+          "a66657ab4501e2a77852aa55a61d8b75aee60dec"
+        ],
+        "message": "Integrate captured incremental Word layout continuation [skip ci]"
+      }
+    ],
+    "allThreeUniqueCommitsAreMerges": true,
+    "recoveryDocumentAlreadyIncluded": {
+      "path": "docs/validation/mail-accounts-20261120/recovery.json",
+      "sha": "f9d6e35feb7f4d112f315d6607f3f105660e82c4"
+    },
+    "realRemainingDifferences": [
+      {
+        "path": "packages/quds_office_editor/example/lib/studio_credential_storage.dart",
+        "pendingBlob": "200b4500145974b50042e2f2cf96f653d74a73ba",
+        "retainedBlob": "e6d159e45bfce3a76cb11c8d812ab3de1bc04c13",
+        "difference": "Optional systemStorageFactory seam and a selection-generation check with putIfAbsent prevent an older asynchronous backend creation from replacing a newer cached instance after a switch away and back. Current captured-key and serialized-select logic is not asserted to cover this exact generation rule."
+      },
+      {
+        "path": "packages/quds_office_editor/example/lib/studio_mail_native.dart",
+        "pendingBlob": "326124126f293d744ac96e5d0110e422ccb02c53",
+        "retainedBlob": "45c83b75e2c9e42004131f509677a0364ad3d4c4",
+        "difference": "Optional credentialSettingsOpener seam and different pending-connection/backend-switch handling."
+      },
+      {
+        "path": "packages/quds_office_editor/example/test/studio_mail_credential_backend_switch_test.dart",
+        "pendingBlob": "5afebaced411c84ad9cddcdd17814320eed9f9ee",
+        "lines": 444,
+        "staticWidgetRegistrations": 6,
+        "expandedWidgetCases": 7,
+        "difference": "Dedicated backend-switch, pending-save and initial draft-restore controls absent from the final tree. Some older form-retention expectations differ from the current deliberately cleared-password contract, so this suite requires reconciliation rather than blind copying."
+      }
+    ],
+    "caution": "The branch also contains older layout/reader/credential implementations superseded by the reviewed final tree. Preserve the explicit pending boundary; do not overwrite current guarded sources to preserve its history."
+  },
+  "boundaries": {
+    "noBranchChasing": true,
+    "noCiActionsChecksOrStatusesQueried": true,
+    "sourceReviewOnly": true,
+    "noRemoteRefOrCommitMutationByReviewer": true
+  }
+}
