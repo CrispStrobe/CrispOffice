@@ -10,6 +10,7 @@ import '../../opc/opc_archive.dart';
 import '../../opc/package_part.dart';
 import '../../opc/relationships.dart';
 import '../../sheet/serial/sheet_drawing_io.dart';
+import '../../visual/drawingml_visual_io.dart';
 import '../../visual/office_visual.dart';
 import '../../visual/png_bytes.dart';
 import '../../xml/namespaces.dart';
@@ -119,10 +120,13 @@ class SlideDeserializer {
           slideXml,
           layout?.colors ?? templates.defaultColors,
         );
+        final bool ownsBackground = _hasBackground(slideXml);
         final String resolvedBackground =
-            slideBackground ?? layout?.background ?? pres.master.background;
-        if (slideBackground == null &&
-            (layout?.inheritsMasterBackground ?? true)) {
+            (ownsBackground
+                ? slideBackground ?? 'FFFFFF'
+                : layout?.background) ??
+            pres.master.background;
+        if (!ownsBackground && (layout?.inheritsMasterBackground ?? true)) {
           pres.slides[i].setInheritedBackground(
             resolvedBackground,
             masterBackground: pres.master.background,
@@ -130,22 +134,24 @@ class SlideDeserializer {
         } else {
           pres.slides[i].background = resolvedBackground;
         }
+        final PmlShape? backgroundImage = ownsBackground
+            ? _backgroundImageShape(
+                slideXml,
+                package,
+                package.relationshipsFor(uri),
+                pres.slideWidth,
+                pres.slideHeight,
+              )
+            : layout?.backgroundImage?.copy();
+        if (backgroundImage != null) {
+          pres.slides[i].backgroundShapes.add(backgroundImage);
+        }
         if (layout != null) {
           pres.slides[i].layoutName = layout.name;
           _inheritPlaceholders(shapes, positioned, <List<PmlShape>>[
             layout.placeholders,
             layout.master?.placeholders ?? const <PmlShape>[],
           ]);
-          final PmlShape? slideBackgroundImage = _backgroundImageShape(
-            slideXml,
-            package,
-            package.relationshipsFor(uri),
-            pres.slideWidth,
-            pres.slideHeight,
-          );
-          if (slideBackgroundImage != null) {
-            pres.slides[i].backgroundShapes.insert(0, slideBackgroundImage);
-          }
           pres.slides[i].backgroundShapes.addAll(<PmlShape>[
             if (pres.slides[i].showMasterShapes && layout.showsMasterShapes)
               for (final PmlShape shape
@@ -259,7 +265,20 @@ class SlideDeserializer {
     return RegExp(r'''\bshow\s*=\s*["'](?:0|false)["']''').hasMatch(attrs);
   }
 
-  /// Converts a `p:bg/a:blipFill` into a full-slide picture decoration.
+  /// Whether this part owns a background, even if its fill is unsupported.
+  static bool _hasBackground(String xml) {
+    final XmlPullReader reader = XmlPullReader(xml);
+    while (reader.next()) {
+      if (reader.eventType == XmlEventType.startElement &&
+          reader.localName == 'bg' &&
+          reader.namespaceUri == OfficeNamespaces.p) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  /// Converts an internal `p:bg/a:blipFill` into a full-slide picture.
   static PmlShape? _backgroundImageShape(
     String xml,
     OpcPackage package,
@@ -268,76 +287,101 @@ class SlideDeserializer {
     int height,
   ) {
     final XmlPullReader reader = XmlPullReader(xml);
+    final PictureAdjust picture = PictureAdjust();
     var inBg = false;
     var inFill = false;
+    PackagePart? image;
     while (reader.next()) {
       if (reader.eventType == XmlEventType.endElement) {
-        if (reader.localName == 'bg' || reader.localName == 'bgPr') {
-          inBg = false;
-          inFill = false;
+        if (reader.localName == 'bg' &&
+            reader.namespaceUri == OfficeNamespaces.p) {
+          break;
         } else if (reader.localName == 'blipFill') {
           inFill = false;
         }
         continue;
       }
       if (reader.eventType != XmlEventType.startElement) continue;
-      if (reader.localName == 'bg' || reader.localName == 'bgPr') {
+      if (reader.localName == 'bg' &&
+          reader.namespaceUri == OfficeNamespaces.p) {
         inBg = true;
-      } else if (inBg && reader.localName == 'blipFill') {
+      } else if (inBg &&
+          reader.localName == 'blipFill' &&
+          reader.namespaceUri == OfficeNamespaces.a) {
         inFill = true;
-      } else if (inBg && inFill && reader.localName == 'blip') {
-        final String? rid =
-            reader.getAttribute('embed') ?? reader.getAttribute('id');
-        final PackageRelationship? rel = rid == null ? null : rels.byId(rid);
-        if (rel == null) continue;
-        final PackagePart? part = package.getPart(rels.resolve(rel));
-        if (part == null) continue;
-        return PmlShape(
-          id: 1,
-          name: 'Background',
-          fillColor: '',
-          transform: PmlTransform(x: 0, y: 0, cx: width, cy: height),
-          visual: OfficeVisual(
-            kind: OfficeVisualKind.picture,
-            title: 'Background',
-            imageBytes: part.readBytes(),
-            width: width / 12700,
-            height: height / 12700,
-            picture: PictureAdjust(),
-          ),
-        );
+      } else if (inFill && reader.namespaceUri == OfficeNamespaces.a) {
+        if (reader.localName == 'blip') {
+          final String? rid = reader.getAttribute(
+            'embed',
+            namespaceUri: OfficeNamespaces.r,
+          );
+          final PackageRelationship? rel = rid == null ? null : rels.byId(rid);
+          if (rel != null &&
+              rel.type == RelationshipTypes.image &&
+              rel.targetMode != RelationshipTargetMode.external) {
+            image = package.getPart(rels.resolve(rel));
+          }
+        } else if (reader.localName == 'srcRect') {
+          DrawingmlVisualIo.applySrcRect(picture, reader);
+        } else if (reader.localName == 'lum') {
+          DrawingmlVisualIo.applyLum(picture, reader);
+        } else if (reader.localName == 'alphaModFix') {
+          picture.transparency = DrawingmlVisualIo.alphaToTransparency(
+            reader.getAttribute('amt'),
+          );
+        }
       }
     }
-    return null;
+    if (image == null) return null;
+    return PmlShape(
+      id: 1,
+      name: 'Background',
+      fillColor: '',
+      isBackgroundPicture: true,
+      transform: PmlTransform(x: 0, y: 0, cx: width, cy: height),
+      visual: OfficeVisual(
+        kind: OfficeVisualKind.picture,
+        title: 'Background',
+        imageBytes: image.readBytes(),
+        width: width / 12700,
+        height: height / 12700,
+        picture: picture,
+      ),
+    );
   }
 
-  /// Resolves a solid `p:bg` fill to `RRGGBB`, honoring theme variants.
+  /// Resolve a solid fill or the first gradient stop, never an effect color.
   static String? _backgroundOf(String xml, Map<String, String> colors) {
     final XmlPullReader reader = XmlPullReader(xml);
     var inBg = false;
-    var fillPending = false;
+    int? fillDepth;
     while (reader.next()) {
       if (reader.eventType == XmlEventType.endElement) {
-        if (reader.localName == 'bg' || reader.localName == 'bgPr') {
-          inBg = false;
-          fillPending = false;
+        if (reader.localName == 'bg' &&
+            reader.namespaceUri == OfficeNamespaces.p) {
+          break;
         }
+        if (fillDepth != null && reader.depth <= fillDepth) fillDepth = null;
         continue;
       }
       if (reader.eventType != XmlEventType.startElement) continue;
-      if (reader.localName == 'bg' || reader.localName == 'bgPr') {
+      if (reader.localName == 'bg' &&
+          reader.namespaceUri == OfficeNamespaces.p) {
         inBg = true;
-      } else if (reader.localName == 'solidFill' && inBg) {
-        fillPending = true;
-      } else if (fillPending &&
+      } else if (inBg &&
+          reader.namespaceUri == OfficeNamespaces.a &&
+          (reader.localName == 'solidFill' || reader.localName == 'gradFill')) {
+        fillDepth = reader.depth;
+      } else if (fillDepth != null &&
+          reader.namespaceUri == OfficeNamespaces.a &&
           const <String>{
             'srgbClr',
             'schemeClr',
             'sysClr',
             'prstClr',
           }.contains(reader.localName)) {
-        final String? val = resolveDrawingmlColor(reader, colors);
-        if (val != null && val.isNotEmpty) return val;
+        final String? value = resolveDrawingmlColor(reader, colors);
+        if (value != null && value.isNotEmpty) return value;
       }
     }
     return null;
@@ -351,38 +395,9 @@ class SlideDeserializer {
       '/ppt/slideMasters/slideMaster1.xml',
       '/ppt/slideMasters/slideMaster2.xml',
     ]) {
-      final part = package.getPart(uri);
-      if (part == null) {
-        continue;
-      }
-      final XmlPullReader reader = XmlPullReader(part.readText());
-      var inBg = false;
-      var fillPending = false;
-      while (reader.next()) {
-        if (reader.eventType == XmlEventType.endElement) {
-          if (reader.localName == 'bg' || reader.localName == 'bgPr') {
-            inBg = false;
-            fillPending = false;
-          }
-          continue;
-        }
-        if (reader.eventType != XmlEventType.startElement) {
-          continue;
-        }
-        if (reader.localName == 'bg' || reader.localName == 'bgPr') {
-          inBg = true;
-        } else if (reader.localName == 'solidFill' && inBg) {
-          fillPending = true;
-        } else if (inBg &&
-            const <String>{
-              'srgbClr',
-              'schemeClr',
-              'sysClr',
-              'prstClr',
-            }.contains(reader.localName)) {
-          final String? val = resolveDrawingmlColor(reader, colors);
-          if (val != null && val.isNotEmpty) return val;
-        }
+      final String? xml = package.getPart(uri)?.readText();
+      if (xml != null && _hasBackground(xml)) {
+        return _backgroundOf(xml, colors) ?? 'FFFFFF';
       }
     }
     return null;
@@ -447,6 +462,7 @@ class _SlideTemplate {
     required this.placeholders,
     required this.decorations,
     this.background,
+    this.backgroundImage,
     this.inheritsMasterBackground = false,
     this.showsMasterShapes = true,
     this.master,
@@ -457,6 +473,7 @@ class _SlideTemplate {
   final List<PmlShape> placeholders;
   final List<PmlShape> decorations;
   final String? background;
+  final PmlShape? backgroundImage;
   final bool inheritsMasterBackground;
   final bool showsMasterShapes;
   final _SlideTemplate? master;
@@ -538,6 +555,7 @@ class _SlideTemplates {
       );
     }
     final String? background = SlideDeserializer._backgroundOf(xml, colors);
+    final bool ownsBackground = SlideDeserializer._hasBackground(xml);
     return _layouts[uri] = _SlideTemplate(
       name: _cSldName(xml) ?? 'Layout',
       colors: colors,
@@ -545,9 +563,18 @@ class _SlideTemplates {
         for (final PmlShape shape in shapes)
           if (shape.placeholder && positioned.contains(shape)) shape,
       ],
-      decorations: _decorations(shapes, package, uri, background: background),
-      background: background ?? master?.background,
-      inheritsMasterBackground: background == null,
+      decorations: _decorations(shapes, package, uri),
+      background: ownsBackground ? background ?? 'FFFFFF' : master?.background,
+      backgroundImage: ownsBackground
+          ? SlideDeserializer._backgroundImageShape(
+              xml,
+              package,
+              package.relationshipsFor(uri),
+              slideWidth,
+              slideHeight,
+            )
+          : master?.backgroundImage,
+      inheritsMasterBackground: !ownsBackground,
       showsMasterShapes: SlideDeserializer._showsMasterShapes(xml),
       master: master,
     );
@@ -580,39 +607,29 @@ class _SlideTemplates {
         for (final PmlShape shape in shapes)
           if (shape.placeholder && positioned.contains(shape)) shape,
       ],
-      decorations: _decorations(
-        shapes,
-        package,
-        uri,
-        background: SlideDeserializer._backgroundOf(xml, colors),
-      ),
+      decorations: _decorations(shapes, package, uri),
       background: SlideDeserializer._backgroundOf(xml, colors),
+      backgroundImage: SlideDeserializer._backgroundImageShape(
+        xml,
+        package,
+        package.relationshipsFor(uri),
+        slideWidth,
+        slideHeight,
+      ),
     );
   }
 
-  List<PmlShape> _decorations(
+  static List<PmlShape> _decorations(
     List<PmlShape> shapes,
     OpcPackage package,
-    String uri, {
-    String? background,
-  }) {
+    String uri,
+  ) {
     final List<PmlShape> decorations = <PmlShape>[
       for (final PmlShape shape in shapes)
         if (!shape.placeholder) shape,
     ];
     final RelationshipCollection rels = package.relationshipsFor(uri);
     SlideDeserializer._bindShapeMedia(decorations, package, rels);
-    final String? xml = package.getPart(uri)?.readText();
-    if (xml != null) {
-      final PmlShape? image = SlideDeserializer._backgroundImageShape(
-        xml,
-        package,
-        rels,
-        slideWidth,
-        slideHeight,
-      );
-      if (image != null) decorations.insert(0, image);
-    }
     return decorations;
   }
 
@@ -808,7 +825,11 @@ class SlideSerializer {
     var mediaIndex = 1;
     var chartIndex = 1;
     final String owner = slideUri.split('/').last.replaceAll('.xml', '');
-    for (final PmlShape shape in slide.shapes) {
+    for (final PmlShape shape in <PmlShape>[
+      for (final shape in slide.backgroundShapes)
+        if (shape.isBackgroundPicture) shape,
+      ...slide.shapes,
+    ]) {
       final OfficeVisual? visual = shape.visual;
       if (visual == null) {
         continue;

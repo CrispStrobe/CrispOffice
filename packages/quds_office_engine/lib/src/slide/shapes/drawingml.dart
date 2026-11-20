@@ -661,6 +661,50 @@ String slideToXml(PmlSlide slide, {Map<PmlShape, String>? embedIds}) {
   /// writeStartElement API.
   w.writeStartElement('cSld', prefix: 'p');
 
+  // Resolved background pictures are native fills, not editable slide shapes.
+  // Publish the selected image once so copied slides get their own media link
+  // and retained layout/master images cannot reappear over a local override.
+  PmlShape? backgroundPicture;
+  for (final shape in slide.backgroundShapes) {
+    if (shape.isBackgroundPicture && (shape.visual?.isPicture ?? false)) {
+      backgroundPicture = shape;
+      break;
+    }
+  }
+  final String? backgroundEmbed = backgroundPicture == null
+      ? null
+      : embedIds?[backgroundPicture] ?? backgroundPicture.embedRelId;
+  final bool explicitColor =
+      !slide.inheritsMasterBackground && slide.background.isNotEmpty;
+  if (backgroundEmbed != null || explicitColor) {
+    w.writeStartElement('bg', prefix: 'p');
+    w.writeStartElement('bgPr', prefix: 'p');
+    if (backgroundEmbed != null) {
+      final PictureAdjust picture = backgroundPicture!.visual!.picture;
+      w.writeStartElement('blipFill', prefix: 'a');
+      DrawingmlVisualIo.writeBlip(
+        w,
+        relationshipId: backgroundEmbed,
+        adj: picture,
+      );
+      DrawingmlVisualIo.writeSrcRect(w, picture);
+      w.writeStartElement('stretch', prefix: 'a');
+      w.writeEmptyElement('fillRect', prefix: 'a');
+      w.writeEndElement();
+      w.writeEndElement();
+    } else {
+      w.writeStartElement('solidFill', prefix: 'a');
+      w.writeEmptyElement(
+        'srgbClr',
+        prefix: 'a',
+        attributes: <String, String>{'val': slide.background},
+      );
+      w.writeEndElement();
+    }
+    w.writeEndElement();
+    w.writeEndElement();
+  }
+
   /// writeStartElement API.
   w.writeStartElement('spTree', prefix: 'p');
 
