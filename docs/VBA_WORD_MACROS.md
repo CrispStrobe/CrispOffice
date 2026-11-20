@@ -699,13 +699,17 @@ prefixes; original paragraph/style XML stays intact.
 Custom edits refuse ambiguous duplicate native paragraph/spacing containers or
 line/rule attributes, and spacing-bearing markup-compatibility alternatives
 anywhere in the stored Word XML, including foreign spacing lookalikes inside
-alternatives. Unbalanced modeled field boundaries are refused before a custom
+alternatives. Alternatives within or wrapping native paragraph properties are
+also refused when they carry other metadata: choosing a branch would discard
+an unedited property packet. Unbalanced modeled field boundaries are refused before a custom
 edit can trigger lossy serialization. These conservative source guards are
 applied to `docx.lineSpacing` and to generic `docx.paragraphFormat` calls that
 write `lineSpacing` or `lineSpacingRule`, including presets and `Space1` /
 `Space15` / `Space2`. Before/after-only writes retain their existing behavior.
-Valid supported field
-packets and opaque DOCM VBA parts remain inert and preserved.
+Valid supported field packets and opaque DOCM VBA parts remain inert and preserved.
+Unrelated body drawing alternatives remain within the ordinary serializer's
+existing behavior. This increment does not promise whole-package byte identity
+or preservation of every unmodeled alternative outside paragraph properties.
 
 The existing native layout uses fixed, minimum and multiple line heights;
 installed Word pagination, font metrics and clipping parity are not claimed.
