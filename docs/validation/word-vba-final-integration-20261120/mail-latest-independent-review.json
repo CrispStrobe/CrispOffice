@@ -1,0 +1,46 @@
+{
+  "accepted_cases": 1471,
+  "accepted_source_head": "58cc4283b35b29a4036528f65ee0590230d583f6",
+  "accepted_source_tree": "1cba111d27e6b0699ffa65c7df5be2bbb53e8e59",
+  "accepted_suites": 70,
+  "accepted_union_sha256": "3ec54801e7ba86f2c737e519c9679590311225d6ff8981cc735751c879bd930d",
+  "actionable_findings": [],
+  "all_started_raw_tests_completed_once": true,
+  "auditor_sha256": "c3f37c50519f35ff46dba1947528a65bcf3d76819e7c85348c7eaee4e6b800fb",
+  "case_title_rename": {
+    "file": "packages/quds_office_editor/example/test/studio_mail_credential_backend_switch_test.dart",
+    "new": "pending account save disables storage in the ribbon",
+    "old": "pending account save also disables storage in the File menu"
+  },
+  "command_log_pairs_verified": 42,
+  "limits": [
+    "Read-only raw recount and source/evidence audit; no tests, captures, provider calls, CI, or repo/config edits.",
+    "The original18-failure aggregate stays failed and is preserved;171 whole-file cases are replaced, including153 earlier passes.",
+    "The26 identical visual artifacts cover the recorded bulk states; no new whole-native-ribbon screenshots are claimed.",
+    "These test populations overlap historical Word/Studio work and must not be summed with separate Word acceptance totals."
+  ],
+  "original_416_aggregate": {
+    "failed": 18,
+    "passed": 847,
+    "status": "failed",
+    "superseded_complete_file_population": 171
+  },
+  "platform_rechecks": {
+    "fresh_416": 131,
+    "identities_match_canonical_vm": true,
+    "retained_c623": 97,
+    "total": 228
+  },
+  "populations": {
+    "corrective_58cc": 171,
+    "retained_c623": 606,
+    "unchanged_successful_416": 694
+  },
+  "portable_verifier_outputs_byte_identical_to_owner": true,
+  "previously_reviewed_pngs_verified_byte_identical": 26,
+  "schema": 1,
+  "source_dependency_runtime_and_normalized_config_retention_verified": true,
+  "strict_analysis_and_format_receipts_verified": true,
+  "success": true,
+  "three_source_populations_git_hash_verified_by_reexecuted_portable_verifier": 17509
+}

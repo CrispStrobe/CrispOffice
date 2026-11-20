@@ -1,0 +1,217 @@
+{
+  "all_seven_selected_word_hashes_preserved": true,
+  "ancestry": [
+    {
+      "ancestor": "52eace9e151cff88c5908a049b0a51ade4c20b00",
+      "descendant": "58cc4283b35b29a4036528f65ee0590230d583f6",
+      "is_ancestor": true,
+      "proof": "Previously verified ancestor of416;58cc has416 as its sole parent"
+    },
+    {
+      "ancestor": "c62338c65571aa399da5592455b651fa5c6a9317",
+      "descendant": "58cc4283b35b29a4036528f65ee0590230d583f6",
+      "is_ancestor": true,
+      "proof": "Previously verified ancestor of416;58cc has416 as its sole parent"
+    },
+    {
+      "ancestor": "5e7e4d24284954603a0a5951699bea870ad1955f",
+      "descendant": "58cc4283b35b29a4036528f65ee0590230d583f6",
+      "is_ancestor": true,
+      "proof": "Previously verified ancestor of416;58cc has416 as its sole parent"
+    },
+    {
+      "ancestor": "22cf73b816328cd5fe54ec1793c89f1cc322db3b",
+      "descendant": "58cc4283b35b29a4036528f65ee0590230d583f6",
+      "is_ancestor": true,
+      "proof": "Previously verified ancestor of416;58cc has416 as its sole parent"
+    },
+    {
+      "ancestor": "c12ad8bc9c17f1849acdf92b2245e9198f1005b8",
+      "descendant": "58cc4283b35b29a4036528f65ee0590230d583f6",
+      "is_ancestor": true,
+      "proof": "Previously verified ancestor of416;58cc has416 as its sole parent"
+    },
+    {
+      "ancestor": "835b8019cbb873c72424e63d4df292174edd3c3e",
+      "descendant": "58cc4283b35b29a4036528f65ee0590230d583f6",
+      "is_ancestor": true,
+      "proof": "Previously verified ancestor of416;58cc has416 as its sole parent"
+    },
+    {
+      "ancestor": "9109fcc645d0d95fbe7a7568ddf1e0ebc07bc384",
+      "descendant": "58cc4283b35b29a4036528f65ee0590230d583f6",
+      "is_ancestor": true,
+      "proof": "Previously verified ancestor of416;58cc has416 as its sole parent"
+    },
+    {
+      "ancestor": "fcc7bd27f7df6200ac7d3174f6e21097f931cca0",
+      "descendant": "58cc4283b35b29a4036528f65ee0590230d583f6",
+      "is_ancestor": true,
+      "proof": "Previously verified ancestor of416;58cc has416 as its sole parent"
+    },
+    {
+      "ancestor": "4163368b63b35414f25c3830fcc49055e6088953",
+      "descendant": "58cc4283b35b29a4036528f65ee0590230d583f6",
+      "is_ancestor": true,
+      "proof": "Sole direct parent"
+    }
+  ],
+  "auditor_sha256": "a2627b1749c8c984f6e46f77be280d438ec1b04582daeb94d06948f2371e8a44",
+  "captured_inputs": 2859,
+  "current_main_329d_retained_through_416_parent": true,
+  "fixture_only_followup": {
+    "exact_changed_paths": [
+      "packages/quds_office_editor/example/test/studio_layout_theme_test.dart",
+      "packages/quds_office_editor/example/test/studio_mail_credential_backend_switch_test.dart",
+      "packages/quds_office_editor/example/test/studio_mail_lifecycle_test.dart",
+      "packages/quds_office_editor/example/test/studio_mail_test.dart",
+      "packages/quds_office_editor/example/test/studio_mail_workspace_test.dart",
+      "packages/quds_office_editor/example/test/studio_saved_mail_test.dart"
+    ],
+    "production_paths_changed": [],
+    "pure_word_layout_cases_unchanged": 8,
+    "pure_word_layout_prefix_bytes_identical": 17845,
+    "pure_word_layout_prefix_sha256": "176a95e5df85a03b6edb20ce84a7d49781c3afe1a4717d890f550a89f9ad927f",
+    "qualification_status": "Six Mail fixture suites require the separate final Mail follow-up receipt.",
+    "review_path": "mail-fixture-followup-review.json",
+    "review_sha256": "0ede1044dff82b2e2e3c4cbac41c2fa75e83a7db3e69bfd791a0277bfe147a23"
+  },
+  "historical_38_head_equivalence": "The previously verified29-ancestor/7-patch/2-squash inventory remains represented through preserved c623/cf25 ancestry; no feature-branch refresh was performed.",
+  "immutable_reference_fixture_blobs_preserved": 662,
+  "incoming_archive_preserved_sha256": "1ab839ebdeb86599af507d623f98d224620fdd533ff870118a58a8134e8711b8",
+  "incoming_audit_sha256": "f828d114b18b8760916407cf818d2ad0cae200f45cbd36ef03e89c90e205b56b",
+  "limits": [
+    "Read-only Git retention proof, no new test execution or repo/config changes.",
+    "Original416 proof and its auditor remain immutable.",
+    "All six differences are reviewed Mail test fixtures; final Mail acceptance must qualify their follow-up.",
+    "Prior/incoming Word runs keep their original source and runtime attribution."
+  ],
+  "previous_retention_proof": {
+    "path": "final-word-source-retention-416source.json",
+    "sha256": "c926f199abda8bffac957160980b6b3cd9fafc1d658b35844b1be68f3c91755f",
+    "source_head": "4163368b63b35414f25c3830fcc49055e6088953"
+  },
+  "qualified_word_head": "52eace9e151cff88c5908a049b0a51ade4c20b00",
+  "qualified_word_receipt_sha256": "d4704cfbad73f7333e16349ce76ca6ab00fdb70f51f43aaa4aba8aa02c6062ec",
+  "schema": 1,
+  "separately_owned_mail_differences": [
+    {
+      "classification": "separately qualified Mail scope",
+      "final_sha256": "d6ee6b6ca649968483b57e9d42b999ed1bd40822cd62c344a3723f91ab49723f",
+      "path": "packages/quds_mail_core/test/bulk_flags_compatibility_test.dart",
+      "qualified_word_snapshot_sha256": "8ca88d2c031fedcab60916c6fa9a86d4d1729a1ebbd964bd79ee3a40c06010ce"
+    },
+    {
+      "classification": "separately qualified Mail scope",
+      "final_sha256": "728ca73a343f26ee8cc283c47d57228eb77fe18753b8db19510d7aaeb50aee5c",
+      "path": "packages/quds_mail_transport/lib/src/cloud/provider.dart",
+      "qualified_word_snapshot_sha256": "a8b1e212c7b94b68b808942ab675a3b666906dc13d52dd3139280b7d07a715b5"
+    },
+    {
+      "classification": "separately qualified Mail scope",
+      "final_sha256": "9448dc4ed1aea9147014de9fc90a8b32d7cebcb87c0719fcf1e0b05f71188d39",
+      "path": "packages/quds_mail_transport/test/cloud_provider_test.dart",
+      "qualified_word_snapshot_sha256": "ddccd60461287564ce11807176201b658a005b6bcab0b8a9ad5dbca2499b026d"
+    },
+    {
+      "classification": "separately qualified Mail scope",
+      "final_sha256": "95b1bdd5651c24419ed3c1ffd427f7c4620664a33bdb5eaad780a2311ba81daa",
+      "path": "packages/quds_mail_ui/lib/src/reader/controller.dart",
+      "qualified_word_snapshot_sha256": "8b5afcd3e6208ea240d0b1d2ddb5735c17705f61f528c230234c81264be21510"
+    },
+    {
+      "classification": "separately qualified Mail scope",
+      "final_sha256": "d257ca0f1c24c99aba3d3e17f1ed70b93e24909f8c2208a323a5f102901d4fb9",
+      "path": "packages/quds_mail_ui/lib/src/reader/presentation.dart",
+      "qualified_word_snapshot_sha256": "ed6061d17927f5a1f487f87bb992712d5e216ae82b1466e154c38c4cbd8c14ad"
+    },
+    {
+      "classification": "separately qualified Mail scope",
+      "final_sha256": "ea9be9fbfe7c2c57b65420f81f49ec12bcd9ad52b8a1ea9a1034c5c7f131ecfa",
+      "path": "packages/quds_mail_ui/lib/src/workspace/message_list.dart",
+      "qualified_word_snapshot_sha256": "945512e679a84daade118f548a6e813df1e24fa70dc87740a8fb0e38419bb718"
+    },
+    {
+      "classification": "separately qualified Mail scope",
+      "final_sha256": "ee72d5ef31f577632e15b7453d99a7bd89e169d851282d240b2b52cc59bce8a8",
+      "path": "packages/quds_mail_ui/test/message_list_bulk_test.dart",
+      "qualified_word_snapshot_sha256": "2fa610f51645714b661e7ed9ebbd8bb8707233db2b77928d01983ff5c680ebff"
+    },
+    {
+      "classification": "separately qualified Mail scope",
+      "final_sha256": "69f84a5042a4aef0a71aadf8b1ff989a8a5947be9cb7d1bf37ee121aaa039935",
+      "path": "packages/quds_mail_ui/test/presentation_test.dart",
+      "qualified_word_snapshot_sha256": "f2f71b89f0283fda06002a2a103ba958bf911fc364110a202de29a4ca8a9bff9"
+    },
+    {
+      "classification": "separately qualified Mail scope",
+      "final_sha256": "d60b31d1f524188d0894b687144169e43f96f666d23672ee2bf5441b840877fd",
+      "path": "packages/quds_office_editor/example/lib/studio_mail_ews.dart",
+      "qualified_word_snapshot_sha256": "8662fee3d885f07b60941c227ddb14494f40ed3f5010fba49c81c2001734fe8c"
+    },
+    {
+      "classification": "separately qualified Mail scope",
+      "final_sha256": "b503594ee6975fdf95bb8c1130abee025deb608bda4cdd66c964d0b384526c91",
+      "path": "packages/quds_office_editor/example/lib/studio_mail_native.dart",
+      "qualified_word_snapshot_sha256": "92061fe1e08ce6a22acb1866ae1e281fd9fd7c124347753a0f0ed013db77d64c"
+    },
+    {
+      "classification": "Mail-only shared macOS fixture; eight preceding Word cases unchanged",
+      "final_sha256": "cbaa798930e3e26d6e6860580be6f43e9874ce87c45c516e6f00d3bce0a22645",
+      "path": "packages/quds_office_editor/example/test/studio_layout_theme_test.dart",
+      "qualified_word_snapshot_sha256": "3ba12fb043abd0cb8459665d9964e40b39ea7d1ae6e2c9d6efafe93862345a95"
+    },
+    {
+      "classification": "separately qualified Mail scope",
+      "final_sha256": "a37d88b993d29506dd5890ead9a66ebb2f3d8b7cd05c5c5fbe0459dea2ec3cd6",
+      "path": "packages/quds_office_editor/example/test/studio_mail_accounts_test.dart",
+      "qualified_word_snapshot_sha256": "853aba88427ddcc998826739d2216ca959b357a4f98e785bc0b9d2092a191a23"
+    },
+    {
+      "classification": "separately qualified Mail scope",
+      "final_sha256": "4dfbf48ebae4082e2db040474dc0bcef5919ca23509a611316ef2a67dd670e95",
+      "path": "packages/quds_office_editor/example/test/studio_mail_bulk_provider_test.dart",
+      "qualified_word_snapshot_sha256": "fde417e5458c5b10b45fe90621f49f8d908c312dea6ef811798a09f368bdbd9c"
+    },
+    {
+      "classification": "separately qualified Mail scope",
+      "final_sha256": "722201907f1933d819e755e3137e1a687c32929faa4a0a20fcf1ac3388b5ea20",
+      "path": "packages/quds_office_editor/example/test/studio_mail_credential_backend_switch_test.dart",
+      "qualified_word_snapshot_sha256": "c9f2785bb87ed04c7668b6ce5134da25b7f7b8bc5b4975986493b8ab6633c9fe"
+    },
+    {
+      "classification": "separately qualified Mail scope",
+      "final_sha256": "51b7251f826887f4d6e16b3e2847a1c7d253f3b310490a8ab0ee595055f66d55",
+      "path": "packages/quds_office_editor/example/test/studio_mail_lifecycle_test.dart",
+      "qualified_word_snapshot_sha256": "d884cc5c244e6c2141072f71ca8d42af530be964aec9202b5902d83c0dc405ca"
+    },
+    {
+      "classification": "separately qualified Mail scope",
+      "final_sha256": "738b9a153adb491816b3a9d62e89379c08bd3e28dd231d97f1865fdc8cbf7aa5",
+      "path": "packages/quds_office_editor/example/test/studio_mail_test.dart",
+      "qualified_word_snapshot_sha256": "cdf0b218a2a3f22c9ce92e1ff4bb3f0f72498af354b631552d3940f89a81ead2"
+    },
+    {
+      "classification": "separately qualified Mail scope",
+      "final_sha256": "80e95ba8ced0def5663e1fbf288296a0c0ce59be447502e7656c29c654c414c7",
+      "path": "packages/quds_office_editor/example/test/studio_mail_workspace_test.dart",
+      "qualified_word_snapshot_sha256": "9988a5368ea9cb3d751464b4989488733f262978622709dc65dbf0162f085817"
+    },
+    {
+      "classification": "separately qualified Mail scope",
+      "final_sha256": "5e12d10f08550e6c80b7a3dfccf074afb2ce3dc296b671305bb8f083a6b49545",
+      "path": "packages/quds_office_editor/example/test/studio_saved_mail_test.dart",
+      "qualified_word_snapshot_sha256": "6d457064daed188148d01a63511d8be4896e0b422d6b6702a6df1402161cbd62"
+    }
+  ],
+  "source_head": "58cc4283b35b29a4036528f65ee0590230d583f6",
+  "source_parents": [
+    "4163368b63b35414f25c3830fcc49055e6088953"
+  ],
+  "source_tree": "1cba111d27e6b0699ffa65c7df5be2bbb53e8e59",
+  "success": true,
+  "unchanged_captured_inputs": 2841,
+  "word_parser_editor_source_and_fixture_paths_identical": 2302,
+  "word_receipt_remains_applicable_without_rerun": true,
+  "workflow_dependency_manifest_analysis_policy_paths_unchanged_from_initial_main": 57
+}

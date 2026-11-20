@@ -1,0 +1,45 @@
+{
+  "qualified_source": "58cc4283b35b29a4036528f65ee0590230d583f6",
+  "qualified_tree": "1cba111d27e6b0699ffa65c7df5be2bbb53e8e59",
+  "evidence_checkpoint": "The commit containing this report.",
+  "merge_record": "https://github.com/CrispStrobe/quds_office_suite/pull/278",
+  "files": {
+    "README.md": {
+      "bytes": 9750,
+      "sha256": "f7acd6b08458dda8331aaee1194ea83b16d9b0f2e15b45852069e94de3c066da"
+    },
+    "final-delivery-summary.json": {
+      "bytes": 55421,
+      "sha256": "4d9d333b2b230b38bf4a1f5669b2aaf936ef33bdc572de7f1b9b34a760a1f682"
+    },
+    "mail-fixture-followup-review.json": {
+      "bytes": 3341,
+      "sha256": "0ede1044dff82b2e2e3c4cbac41c2fa75e83a7db3e69bfd791a0277bfe147a23"
+    },
+    "mail-latest-independent-package-review.json": {
+      "bytes": 1773,
+      "sha256": "073c477376d5d0bf70f12c44d32d50b076fb749cc5e1f526053b084a770fc9ac"
+    },
+    "mail-latest-independent-review.json": {
+      "bytes": 2052,
+      "sha256": "8b6061940aa5abda3130c4617cba313a6d885358e4b96c5f434c6a876f5cd1a5"
+    },
+    "native-case-union.json": {
+      "bytes": 108496,
+      "sha256": "4ce30557be30cdf4450c177ab90d1e1f56b1e4895aa9e155b8f7990d28769b8e"
+    },
+    "verify_remote_delivery.py": {
+      "bytes": 3030,
+      "sha256": "3f2ae803a1bdd9ed8b1bc06a11a028fe4b2664e3efb4c6b62f9fb59cca5cf01c"
+    },
+    "word-source-retention-416.json": {
+      "bytes": 7495,
+      "sha256": "c926f199abda8bffac957160980b6b3cd9fafc1d658b35844b1be68f3c91755f"
+    },
+    "word-source-retention.json": {
+      "bytes": 11585,
+      "sha256": "d2537febc49e8984278b85711fdb51d9fbc9fcceb74b9e8f48d78684949fd08f"
+    }
+  },
+  "self_exclusion": "This manifest does not hash itself."
+}
