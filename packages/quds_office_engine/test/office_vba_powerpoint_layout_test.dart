@@ -10,7 +10,8 @@ OfficeMacro _compile(String source) => OfficeMacroLanguages().compile(
   ),
 );
 
-String _module(String body) => '''
+String _module(String body) =>
+    '''
 Sub Main()
 Dim target As Shape, selected As Slide
 Set selected = ActivePresentation.Slides(2)
@@ -26,15 +27,19 @@ TypeMatcher<OfficeVbaCompileException> _error(String code) =>
         .having((error) => error.line, 'line', greaterThan(0))
         .having((error) => error.column, 'column', greaterThan(0));
 
-Map<String, Object?> _slideStep(String operation, Map<String, Object?> fields) =>
-    <String, Object?>{
-      'tool': 'pptx.$operation',
-      'arguments': <String, Object?>{'slide': 1, ...fields},
-    };
+Map<String, Object?> _slideStep(
+  String operation,
+  Map<String, Object?> fields,
+) => <String, Object?>{
+  'tool': 'pptx.$operation',
+  'arguments': <String, Object?>{'slide': 1, ...fields},
+};
 
 void main() {
-  test('typed frame, font, paragraph and transition aliases pass ByVal helpers', () {
-    final plan = _compile('''
+  test(
+    'typed frame, font, paragraph and transition aliases pass ByVal helpers',
+    () {
+      final plan = _compile('''
 Sub Main()
 Dim selected As Slide, frame As TextFrame, style As Font
 Dim paragraph As ParagraphFormat, movement As SlideShowTransition
@@ -59,28 +64,29 @@ With movement
 End With
 End Sub
 ''');
-    expect(plan.steps.map((step) => step.toJson()), <Object?>[
-      for (final entry in <(String, Map<String, Object?>)>[
-        ('shapeTextFrame', {'anchor': 'center'}),
-        ('shapeFormat', {'bold': true}),
-        ('shapeFormat', {'alignment': 'center'}),
-      ])
-        {
-          'tool': 'pptx.${entry.$1}',
-          'arguments': {
-            'topLevel': true,
-            'slide': 1,
-            'shapeName': 'Title',
-            ...entry.$2,
+      expect(plan.steps.map((step) => step.toJson()), <Object?>[
+        for (final entry in <(String, Map<String, Object?>)>[
+          ('shapeTextFrame', {'anchor': 'center'}),
+          ('shapeFormat', {'bold': true}),
+          ('shapeFormat', {'alignment': 'center'}),
+        ])
+          {
+            'tool': 'pptx.${entry.$1}',
+            'arguments': {
+              'topLevel': true,
+              'slide': 1,
+              'shapeName': 'Title',
+              ...entry.$2,
+            },
           },
-        },
-      _slideStep('slideHidden', {'hidden': false}),
-      _slideStep('slideTransition', {'advanceOnClick': false}),
-      _slideStep('slideTransition', {'durationMs': 1250}),
-      _slideStep('slideTransition', {'kind': 'push', 'direction': 'left'}),
-    ]);
-    expect(OfficeMacro.parse(plan.encode()).toJson(), plan.toJson());
-  });
+        _slideStep('slideHidden', {'hidden': false}),
+        _slideStep('slideTransition', {'advanceOnClick': false}),
+        _slideStep('slideTransition', {'durationMs': 1250}),
+        _slideStep('slideTransition', {'kind': 'push', 'direction': 'left'}),
+      ]);
+      expect(OfficeMacro.parse(plan.encode()).toJson(), plan.toJson());
+    },
+  );
 
   for (final anchor in <String, String>{
     'msoAnchorTop': 'top',
@@ -91,7 +97,9 @@ End Sub
     '4': 'bottom',
   }.entries) {
     test('VerticalAnchor ${anchor.key} has exact native mapping', () {
-      final plan = _compile(_module('target.TextFrame.VerticalAnchor = ${anchor.key}'));
+      final plan = _compile(
+        _module('target.TextFrame.VerticalAnchor = ${anchor.key}'),
+      );
       expect(plan.steps.single.tool, 'pptx.shapeTextFrame');
       expect(plan.steps.single.arguments, {
         'topLevel': true,
@@ -116,11 +124,16 @@ End Sub
     'ppEffectWipeDown': ('wipe', 'down'),
   }.entries) {
     test('EntryEffect ${entry.key} specifies only effect fields', () {
-      final plan = _compile(_module('selected.SlideShowTransition.EntryEffect = ${entry.key}'));
-      expect(plan.steps.single.toJson(), _slideStep('slideTransition', {
-        'kind': entry.value.$1,
-        if (entry.value.$2 != null) 'direction': entry.value.$2,
-      }));
+      final plan = _compile(
+        _module('selected.SlideShowTransition.EntryEffect = ${entry.key}'),
+      );
+      expect(
+        plan.steps.single.toJson(),
+        _slideStep('slideTransition', {
+          'kind': entry.value.$1,
+          if (entry.value.$2 != null) 'direction': entry.value.$2,
+        }),
+      );
     });
   }
 
@@ -131,8 +144,13 @@ End Sub
     '2147483.647': 2147483647,
   }.entries) {
     test('Duration ${value.key} seconds becomes exact milliseconds', () {
-      final plan = _compile(_module('selected.SlideShowTransition.Duration = ${value.key}'));
-      expect(plan.steps.single.toJson(), _slideStep('slideTransition', {'durationMs': value.value}));
+      final plan = _compile(
+        _module('selected.SlideShowTransition.Duration = ${value.key}'),
+      );
+      expect(
+        plan.steps.single.toJson(),
+        _slideStep('slideTransition', {'durationMs': value.value}),
+      );
     });
   }
 
@@ -145,7 +163,10 @@ End Sub
     'selected.SlideShowTransition.EntryEffect = -2',
   ]) {
     test('unsupported anchor/effect is positioned: $source', () {
-      expect(() => _compile(_module(source)), throwsA(_error('vba_unsupported')));
+      expect(
+        () => _compile(_module(source)),
+        throwsA(_error('vba_unsupported')),
+      );
     });
   }
 
@@ -163,23 +184,30 @@ End Sub
     'selected.SlideShowTransition.EntryEffect = False',
   ]) {
     test('invalid typed property is refused: $source', () {
-      expect(() => _compile(_module(source)), throwsA(_error('vba_type_error')));
+      expect(
+        () => _compile(_module(source)),
+        throwsA(_error('vba_type_error')),
+      );
     });
   }
 
   test('unused helper still rejects unsupported live reads', () {
-    expect(() => _compile('''
+    expect(
+      () => _compile('''
 Sub Main()
 End Sub
 Sub Unused(ByVal movement As SlideShowTransition)
 Dim duration As Double
 duration = movement.Duration
 End Sub
-'''), throwsA(_error('vba_unsupported')));
+'''),
+      throwsA(_error('vba_unsupported')),
+    );
   });
 
   test('bound frame cannot satisfy a font helper parameter', () {
-    expect(() => _compile('''
+    expect(
+      () => _compile('''
 Sub Main()
 Dim frame As TextFrame
 Set frame = ActivePresentation.Slides(1).Shapes(1).TextFrame
@@ -188,6 +216,8 @@ End Sub
 Sub Style(ByVal value As Font)
 value.Bold = True
 End Sub
-'''), throwsA(_error('vba_type_error')));
+'''),
+      throwsA(_error('vba_type_error')),
+    );
   });
 }

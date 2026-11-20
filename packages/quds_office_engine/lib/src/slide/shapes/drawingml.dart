@@ -372,7 +372,10 @@ List<PmlShape> parseSlideShapes(
         _ => PmlShapePreset.rect,
       };
     } else if (reader.localName == 'bodyPr' && current != null) {
-      current.textAnchor = switch (reader.getAttribute('anchor', namespaceUri: '')) {
+      current.textAnchor = switch (reader.getAttribute(
+        'anchor',
+        namespaceUri: '',
+      )) {
         'ctr' => PmlTextAnchor.center,
         'b' => PmlTextAnchor.bottom,
         _ => PmlTextAnchor.top,
@@ -1414,8 +1417,14 @@ void _writeShapeText(XmlWriter writer, PmlShape shape) {
     body.addChild(_textElement('bodyPr'));
     body.addChild(_textElement('lstStyle'));
   }
-  final properties = body.firstChild('bodyPr', namespaceUri: OfficeNamespaces.a);
-  final importedAnchor = switch (properties?.getAttribute('anchor', namespaceUri: '')) {
+  final properties = body.firstChild(
+    'bodyPr',
+    namespaceUri: OfficeNamespaces.a,
+  );
+  final importedAnchor = switch (properties?.getAttribute(
+    'anchor',
+    namespaceUri: '',
+  )) {
     'ctr' => PmlTextAnchor.center,
     'b' => PmlTextAnchor.bottom,
     _ => PmlTextAnchor.top,

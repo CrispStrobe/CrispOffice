@@ -1,0 +1,8 @@
+{
+  "cwd": "/workspace/scratch/d3ee9898a61b/quds_office_suite/packages/quds_office_engine",
+  "command": ". /workspace/scratch/d3ee9898a61b/runtime/env.sh\npython3 - <<'PY'\nfrom pathlib import Path\nrunner = Path('/workspace/scratch/d3ee9898a61b/runtime/run_engine_acceptance.py')\nsource = runner.read_text()\nold = \"STEM = RUNTIME / 'engine-acceptance-reviewed'\"\nnew = \"STEM = RUNTIME / 'engine-acceptance-integrated'\"\nassert source.count(old) == 1\nexec(compile(source.replace(old, new), str(runner), 'exec'))\nPY\n",
+  "record_note": "Exact command for the integrated run. Only the output artifact stem changed in memory; run.py is the original runner.",
+  "original_runner_sha256": "df5431ef07ad825678ca3ddf55c63020e74bb01a0c4db592dc2becc4d860c439",
+  "executed_source_sha256": "4b095a3dd6aceba9ba2741ab0af0290bbee56f56b1e77cb184b0cfe322b482c3",
+  "other_transformations": false
+}

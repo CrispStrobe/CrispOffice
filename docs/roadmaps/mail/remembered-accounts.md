@@ -29,8 +29,9 @@ credential-store embedders retain their supported injection interface.
 
 The catalog is one versioned keychain record, limited in account count and
 encoded size. Account identities exclude passwords. Endpoint and provider
-settings distinguish accounts; case-sensitive login and address local parts
-remain distinct. Password rotation does not strand an existing entry.
+settings distinguish accounts; complete authentication logins and sending
+addresses retain their exact case, while hostnames are normalized. Password
+rotation does not strand an existing entry.
 
 An existing v1 remembered account is migrated without removing the old record
 before its replacement is durable. The v2 catalog remains authoritative even
@@ -38,7 +39,7 @@ when empty, preventing an old record from silently reappearing. Invalid or
 unreadable catalogs are reported as failures; they are never treated as an
 empty catalog that can be overwritten by a new save.
 
-Keychain operations serialize across store instances. Selection and Forget
+Keychain operations serialize across store instances in the host isolate. Selection and Forget
 target an explicit saved account identity. Settings revisions and session
 generations prevent delayed reads, selection writes and connection callbacks
 from replacing a newer form or mailbox session. Keychain failure is visible;
@@ -46,7 +47,9 @@ the UI does not claim that a failed save or removal succeeded.
 
 The established draft account fingerprint is unchanged. Draft ownership still
 uses provider, incoming endpoint, login and sender. Switching closes the prior
-draft store and restores only the new account's draft after connection.
+draft store and restores the connected identity's draft. Configurations that
+differ only in SMTP settings continue to share that existing draft identity;
+the new catalog does not silently introduce a different draft namespace.
 
 ## Scope and next work
 

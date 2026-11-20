@@ -7,7 +7,8 @@ OfficeMacro _compile(String body, {String declarations = ''}) =>
         language: 'vba-word',
         format: OfficeMacroFormat.docx,
         moduleName: 'Typography',
-        source: '''
+        source:
+            '''
 Option Explicit
 Sub Main()
 $declarations
@@ -49,8 +50,10 @@ void main() {
     });
   }
 
-  test('application/paragraph collection With bindings retain one-based items', () {
-    final plan = _compile('''
+  test(
+    'application/paragraph collection With bindings retain one-based items',
+    () {
+      final plan = _compile('''
 With Application
   Set doc = .ActiveDocument
 End With
@@ -59,11 +62,12 @@ With doc.Paragraphs
 End With
 target.Font.Superscript = True
 ''', declarations: 'Dim doc As Document\nDim target As Range');
-    expect(plan.steps.single.arguments, <String, Object?>{
-      'paragraph': 2,
-      'superscript': true,
-    });
-  });
+      expect(plan.steps.single.arguments, <String, Object?>{
+        'paragraph': 2,
+        'superscript': true,
+      });
+    },
+  );
 
   test('typography assignments retain their ordered Boolean intent', () {
     final plan = _compile('''
@@ -131,20 +135,59 @@ End With
   });
 
   for (final (body, code) in <(String, String)>[
-    ('ActiveDocument.Paragraphs(1).Range.Font.SmallCaps = -1', 'vba_type_error'),
-    ('ActiveDocument.Paragraphs(1).Range.Font.Superscript = "True"', 'vba_type_error'),
-    ('ActiveDocument.Paragraphs(1).Range.Font.Subscript = 9999998', 'vba_type_error'),
-    ('ActiveDocument.Paragraphs(1).Range.HighlightColorIndex = True', 'vba_type_error'),
-    ('ActiveDocument.Paragraphs(1).Range.HighlightColorIndex = 1.5', 'vba_type_error'),
-    ('ActiveDocument.Paragraphs(1).Range.HighlightColorIndex = wdByAuthor', 'vba_unsupported'),
-    ('ActiveDocument.Paragraphs(1).Range.HighlightColorIndex = 17', 'vba_unsupported'),
-    ('Application.ActiveDocument.Paragraphs.Item(0).Range.Font.SmallCaps = True', 'vba_type_error'),
-    ('Application.ActiveDocument.Paragraphs.Item("1").Range.Font.SmallCaps = True', 'vba_type_error'),
-    ('Application.ActiveDocument.Paragraphs.Item(1, 2).Range.Font.SmallCaps = True', 'vba_type_error'),
-    ('Application.Paragraphs(1).Range.Font.SmallCaps = True', 'vba_unsupported'),
-    ('ActiveDocument.Paragraphs(1).Range.Font.AllCaps = True', 'vba_unsupported'),
+    (
+      'ActiveDocument.Paragraphs(1).Range.Font.SmallCaps = -1',
+      'vba_type_error',
+    ),
+    (
+      'ActiveDocument.Paragraphs(1).Range.Font.Superscript = "True"',
+      'vba_type_error',
+    ),
+    (
+      'ActiveDocument.Paragraphs(1).Range.Font.Subscript = 9999998',
+      'vba_type_error',
+    ),
+    (
+      'ActiveDocument.Paragraphs(1).Range.HighlightColorIndex = True',
+      'vba_type_error',
+    ),
+    (
+      'ActiveDocument.Paragraphs(1).Range.HighlightColorIndex = 1.5',
+      'vba_type_error',
+    ),
+    (
+      'ActiveDocument.Paragraphs(1).Range.HighlightColorIndex = wdByAuthor',
+      'vba_unsupported',
+    ),
+    (
+      'ActiveDocument.Paragraphs(1).Range.HighlightColorIndex = 17',
+      'vba_unsupported',
+    ),
+    (
+      'Application.ActiveDocument.Paragraphs.Item(0).Range.Font.SmallCaps = True',
+      'vba_type_error',
+    ),
+    (
+      'Application.ActiveDocument.Paragraphs.Item("1").Range.Font.SmallCaps = True',
+      'vba_type_error',
+    ),
+    (
+      'Application.ActiveDocument.Paragraphs.Item(1, 2).Range.Font.SmallCaps = True',
+      'vba_type_error',
+    ),
+    (
+      'Application.Paragraphs(1).Range.Font.SmallCaps = True',
+      'vba_unsupported',
+    ),
+    (
+      'ActiveDocument.Paragraphs(1).Range.Font.AllCaps = True',
+      'vba_unsupported',
+    ),
   ]) {
-    test('reject unsupported typography or selector: $body', () => _reject(body, code));
+    test(
+      'reject unsupported typography or selector: $body',
+      () => _reject(body, code),
+    );
   }
 
   for (final body in <String>[
@@ -155,7 +198,11 @@ End With
     'Application.Documents.Open "other.docx"',
   ]) {
     test('unsupported document reads stay rejected in unused code: $body', () {
-      _reject('If False Then\n$body\nEnd If', 'vba_unsupported', declarations: 'Dim value As Variant');
+      _reject(
+        'If False Then\n$body\nEnd If',
+        'vba_unsupported',
+        declarations: 'Dim value As Variant',
+      );
     });
   }
 
@@ -166,7 +213,12 @@ End With
     );
   });
 
-  for (final name in <String>['Application', 'ActiveDocument', 'wdGreen', 'wdNoHighlight']) {
+  for (final name in <String>[
+    'Application',
+    'ActiveDocument',
+    'wdGreen',
+    'wdNoHighlight',
+  ]) {
     test('session and color names cannot be shadowed: $name', () {
       _reject('', 'vba_name_error', declarations: 'Dim $name As Long');
     });

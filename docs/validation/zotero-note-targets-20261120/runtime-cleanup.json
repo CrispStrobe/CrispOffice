@@ -1,0 +1,10 @@
+{
+  "stage": "After completed engine execution, targeted analyzer and format checks; before publication",
+  "reason": "Shared filesystem reached zero free space again despite all test compilers having stopped.",
+  "removed": "Temporary official SDK cache at runtime/flutter, created by this task",
+  "repository_source_or_evidence_deleted": false,
+  "official_sdk_archive_sha256": "baf7dcc5a3dbba60fe863bf493a6cf203195621f7786eaa5a1bba02cd0d87dd2",
+  "replay_requirement": "Use a fresh genuine Flutter3.47.8/Dart3.13.7 installation. Historical runtime-ready receipts describe the state before this cleanup.",
+  "free_space_after_cleanup": "183 MiB observed",
+  "no_further_execution_claimed": true
+}

@@ -322,11 +322,11 @@ void applyStep(
               prefix: 'w',
               namespaceUri: OfficeNamespaces.w,
             )..setAttribute(
-                'val',
-                '0',
-                prefix: 'w',
-                namespaceUri: OfficeNamespaces.w,
-              ),
+              'val',
+              '0',
+              prefix: 'w',
+              namespaceUri: OfficeNamespaces.w,
+            ),
           );
           WordPropertyIo.orderChildren(source);
           r.sourcePropertiesXml = XmlDocument(

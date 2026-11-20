@@ -1,12 +1,16 @@
+import '../../xml/namespaces.dart';
+import '../../xml/xml_node.dart';
 import '../../xml/xml_reader.dart';
 import '../../xml/xml_writer.dart';
-import '../../xml/xml_node.dart';
-import '../../xml/namespaces.dart';
 import '../model/pml_presentation.dart';
 import 'pml_motion.dart';
 
 const _powerPoint2010 =
     'http://schemas.microsoft.com/office/powerpoint/2010/main';
+const _powerPoint2012 =
+    'http://schemas.microsoft.com/office/powerpoint/2012/main';
+const _powerPoint2015 =
+    'http://schemas.microsoft.com/office/powerpoint/2015/09/main';
 
 /// parseSlideMotion helper.
 void parseSlideMotion(String xml, PmlSlide slide) {
@@ -16,6 +20,9 @@ void parseSlideMotion(String xml, PmlSlide slide) {
   /// inTransition API.
   var inTransition = false;
   var hasTransition = false;
+  // Preserve the public helper's historical conventional-prefix fragment
+  // input. Real documents with declared namespaces still use URI matching.
+  var legacyFragment = false;
 
   /// inTiming API.
   var inTiming = false;
@@ -61,7 +68,8 @@ void parseSlideMotion(String xml, PmlSlide slide) {
   while (reader.next()) {
     if (reader.eventType == XmlEventType.endElement) {
       if (reader.localName == 'transition' &&
-          reader.namespaceUri == OfficeNamespaces.p && reader.depth == 1) {
+          _isPresentationMotionElement(reader, legacyFragment) &&
+          reader.depth == 1) {
         inTransition = false;
       } else if (reader.localName == 'timing') {
         inTiming = false;
@@ -90,8 +98,15 @@ void parseSlideMotion(String xml, PmlSlide slide) {
     if (reader.eventType != XmlEventType.startElement) {
       continue;
     }
+    if (reader.depth == 1) {
+      legacyFragment =
+          reader.localName == 'sld' &&
+          reader.prefix == 'p' &&
+          reader.namespaceUri.isEmpty;
+    }
     if (reader.localName == 'transition' &&
-        reader.namespaceUri == OfficeNamespaces.p && reader.depth == 2) {
+        _isPresentationMotionElement(reader, legacyFragment) &&
+        reader.depth == 2) {
       inTransition = !reader.isEmptyElement;
       hasTransition = true;
       durationMs = _spdToMs(reader.getAttribute('spd', namespaceUri: ''));
@@ -108,8 +123,10 @@ void parseSlideMotion(String xml, PmlSlide slide) {
       if (tm != null && tm > 0) {
         advAfter = tm;
       }
-    } else if (inTransition && kind == null && reader.depth == 3 &&
-        reader.namespaceUri == OfficeNamespaces.p) {
+    } else if (inTransition &&
+        kind == null &&
+        reader.depth == 3 &&
+        _isTransitionEffectElement(reader, legacyFragment)) {
       if (reader.localName == 'prstTrans' &&
           reader.getAttribute('prst', namespaceUri: '') == 'morph') {
         kind = PmlTransitionKind.morph;
@@ -221,6 +238,21 @@ void parseSlideMotion(String xml, PmlSlide slide) {
   }
 }
 
+bool _isPresentationMotionElement(XmlPullReader reader, bool legacyFragment) =>
+    reader.namespaceUri == OfficeNamespaces.p ||
+    (legacyFragment && reader.namespaceUri.isEmpty && reader.prefix == 'p');
+
+bool _isTransitionEffectElement(XmlPullReader reader, bool legacyFragment) =>
+    const <String>{
+      OfficeNamespaces.p,
+      _powerPoint2010,
+      _powerPoint2012,
+      _powerPoint2015,
+    }.contains(reader.namespaceUri) ||
+    (legacyFragment &&
+        reader.namespaceUri.isEmpty &&
+        const <String>{'p', 'p14', 'p15', 'p159'}.contains(reader.prefix));
+
 // Preserve the root namespace scope even when prefixes occur only in values,
 // such as mc:Choice@Requires. Ignorable is cumulative, and its prefixes must
 // retain the namespace meaning they had at the parent rather than a child
@@ -250,7 +282,9 @@ String? _inheritTransitionContext(XmlElement root, XmlElement fragment) {
     }
     final prefixes = <String>{
       if (own.isNotEmpty)
-        ...own.single.value.split(RegExp(r'\s+')).where((token) => token.isNotEmpty),
+        ...own.single.value
+            .split(RegExp(r'\s+'))
+            .where((token) => token.isNotEmpty),
     };
     for (final token in inherited.value.split(RegExp(r'\s+'))) {
       if (token.isEmpty) continue;
@@ -284,7 +318,11 @@ String? _inheritTransitionContext(XmlElement root, XmlElement fragment) {
   return null;
 }
 
-String _transitionContextPrefix(XmlElement fragment, String preferred, String uri) {
+String _transitionContextPrefix(
+  XmlElement fragment,
+  String preferred,
+  String uri,
+) {
   for (final declaration in fragment.attributes) {
     if (declaration.prefix == 'xmlns' && declaration.value == uri) {
       return declaration.localName;
@@ -310,8 +348,11 @@ bool _containsTransitionBranch(XmlElement container) {
       return true;
     }
     if (child.namespaceUri == OfficeNamespaces.mc &&
-        const <String>{'AlternateContent', 'Choice', 'Fallback'}
-            .contains(child.localName) &&
+        const <String>{
+          'AlternateContent',
+          'Choice',
+          'Fallback',
+        }.contains(child.localName) &&
         _containsTransitionBranch(child)) {
       return true;
     }
@@ -340,11 +381,7 @@ void _setTransitionDuration(XmlElement element, int milliseconds) {
     (attribute) => attribute.qualifiedName == 'xmlns:$prefix',
   )) {
     element.attributes.add(
-      XmlAttribute(
-        localName: prefix,
-        prefix: 'xmlns',
-        value: _powerPoint2010,
-      ),
+      XmlAttribute(localName: prefix, prefix: 'xmlns', value: _powerPoint2010),
     );
   }
   element.removeAttribute('dur', namespaceUri: _powerPoint2010);
@@ -359,7 +396,10 @@ void _setTransitionDuration(XmlElement element, int milliseconds) {
   );
 }
 
-bool _writePreservedTransition(XmlWriter writer, PmlSlideTransition transition) {
+bool _writePreservedTransition(
+  XmlWriter writer,
+  PmlSlideTransition transition,
+) {
   final source = transition.source;
   if (source == null) return false;
   final contextIssue = source.unsupportedContext;
@@ -385,13 +425,18 @@ bool _writePreservedTransition(XmlWriter writer, PmlSlideTransition transition) 
     body.writeTo(writer);
     return true;
   }
-  if (transition.durationOverride || transition.durationMs != before.durationMs) {
+  if (transition.durationOverride ||
+      transition.durationMs != before.durationMs) {
     _setTransitionAttribute(body, 'spd', _msToSpd(transition.durationMs));
     _setTransitionDuration(body, transition.durationMs);
   }
   if (transition.advanceOnClickOverride ||
       transition.advanceOnClick != before.advanceOnClick) {
-    _setTransitionAttribute(body, 'advClick', transition.advanceOnClick ? '1' : '0');
+    _setTransitionAttribute(
+      body,
+      'advClick',
+      transition.advanceOnClick ? '1' : '0',
+    );
   }
   if (transition.advanceAfterMs != before.advanceAfterMs) {
     if (transition.advanceAfterMs == null) {
@@ -404,7 +449,8 @@ bool _writePreservedTransition(XmlWriter writer, PmlSlideTransition transition) 
       transition.kind != before.kind ||
       transition.direction != before.direction) {
     body.children.removeWhere(
-      (node) => node is XmlElement &&
+      (node) =>
+          node is XmlElement &&
           !(node.namespaceUri == OfficeNamespaces.p &&
               (node.localName == 'sndAc' || node.localName == 'extLst')),
     );
@@ -454,16 +500,16 @@ void writeSlideMotion(XmlWriter w, PmlSlide slide) {
     if (!slide.transition.isNone) {
       final String name = _kindToXml(slide.transition.kind);
       w.writeStartElement(name, prefix: 'p');
-    if (slide.transition.kind == PmlTransitionKind.fadeThroughBlack) {
-      w.writeAttribute('thruBlk', '1');
-    }
-    if (slide.transition.kind == PmlTransitionKind.morph) {
-      w.writeAttribute('option', 'byObject');
-    }
-    final String? dir = _dirToXml(slide.transition);
-    if (dir != null) {
-      w.writeAttribute('dir', dir);
-    }
+      if (slide.transition.kind == PmlTransitionKind.fadeThroughBlack) {
+        w.writeAttribute('thruBlk', '1');
+      }
+      if (slide.transition.kind == PmlTransitionKind.morph) {
+        w.writeAttribute('option', 'byObject');
+      }
+      final String? dir = _dirToXml(slide.transition);
+      if (dir != null) {
+        w.writeAttribute('dir', dir);
+      }
       w.writeEndElement();
     }
     w.writeEndElement();

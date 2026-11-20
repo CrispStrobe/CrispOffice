@@ -185,8 +185,11 @@ void applySlideStep(
         advanceAfterMs: slide.transition.advanceAfterMs,
         source: slide.transition.source,
         effectOverride:
-            slide.transition.effectOverride || s.has('kind') || s.has('direction'),
-        durationOverride: slide.transition.durationOverride || s.has('durationMs'),
+            slide.transition.effectOverride ||
+            s.has('kind') ||
+            s.has('direction'),
+        durationOverride:
+            slide.transition.durationOverride || s.has('durationMs'),
         advanceOnClickOverride:
             slide.transition.advanceOnClickOverride || s.has('advanceOnClick'),
       );

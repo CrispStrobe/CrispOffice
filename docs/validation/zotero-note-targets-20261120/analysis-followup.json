@@ -1,0 +1,13 @@
+{
+  "command": [
+    "dart",
+    "analyze",
+    "packages/quds_office_engine/tool/zotero/research_target_acceptance.dart"
+  ],
+  "cwd": "/workspace/scratch/d3ee9898a61b/quds_office_suite",
+  "exit_code": 0,
+  "observed_output": "Analyzing research_target_acceptance.dart...\nNo issues found!\n",
+  "target_sha256": "6c621c5d000834505334bd135703276a37b391b8d48a718c8e13107630936bda",
+  "purpose": "Verify the import-order cleanup after the full11-file analyzer pass.",
+  "scope": "Only engine replay harness; product and original test files unchanged."
+}
