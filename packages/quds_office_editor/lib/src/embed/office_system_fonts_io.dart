@@ -1,0 +1,128 @@
+import 'dart:io';
+import 'dart:typed_data';
+
+import 'office_system_font_face.dart';
+import 'office_system_font_validation.dart';
+
+const String _officeFonts =
+    '/Applications/Microsoft PowerPoint.app/Contents/Resources/DFonts';
+const String _systemFonts = '/System/Library/Fonts/Supplemental';
+
+/// Known Office faces. TTC and variable colour fonts are deliberately skipped;
+/// the PDF engine embeds TrueType outlines.
+const List<(String file, String family, int weight, bool italic)> _faces =
+    <(String, String, int, bool)>[
+      ('Arial.ttf', 'Arial', 400, false),
+      ('Arial Bold.ttf', 'Arial', 700, false),
+      ('Arial Italic.ttf', 'Arial', 400, true),
+      ('Arial Bold Italic.ttf', 'Arial', 700, true),
+      ('Times New Roman.ttf', 'Times New Roman', 400, false),
+      ('Times New Roman Bold.ttf', 'Times New Roman', 700, false),
+      ('Times New Roman Italic.ttf', 'Times New Roman', 400, true),
+      ('Times New Roman Bold Italic.ttf', 'Times New Roman', 700, true),
+      ('Courier New.ttf', 'Courier New', 400, false),
+      ('Courier New Bold.ttf', 'Courier New', 700, false),
+      ('Courier New Italic.ttf', 'Courier New', 400, true),
+      ('Courier New Bold Italic.ttf', 'Courier New', 700, true),
+      ('Microsoft Sans Serif.ttf', 'Microsoft Sans Serif', 400, false),
+      ('Tahoma.ttf', 'Tahoma', 400, false),
+      ('Tahoma Bold.ttf', 'Tahoma', 700, false),
+      ('tahoma.ttf', 'Tahoma', 400, false),
+      ('tahomabd.ttf', 'Tahoma', 700, false),
+      ('Calibri.ttf', 'Calibri', 400, false),
+      ('Calibrib.ttf', 'Calibri', 700, false),
+      ('Calibrii.ttf', 'Calibri', 400, true),
+      ('Calibriz.ttf', 'Calibri', 700, true),
+      ('calibril.ttf', 'Calibri Light', 300, false),
+      ('calibrili.ttf', 'Calibri Light', 300, true),
+      ('Aptos.ttf', 'Aptos', 400, false),
+      ('Aptos-Bold.ttf', 'Aptos', 700, false),
+      ('Aptos-Italic.ttf', 'Aptos', 400, true),
+      ('Aptos-Bold-Italic.ttf', 'Aptos', 700, true),
+      ('Aptos-Light.ttf', 'Aptos Light', 300, false),
+      ('Aptos-Light-Italic.ttf', 'Aptos Light', 300, true),
+      ('Aptos-SemiBold.ttf', 'Aptos SemiBold', 600, false),
+      ('Aptos-SemiBold-Italic.ttf', 'Aptos SemiBold', 600, true),
+    ];
+
+Future<List<OfficeSystemFontFace>> load({
+  List<String>? searchDirectories,
+}) async {
+  if (!Platform.isMacOS && !Platform.isWindows && !Platform.isLinux) {
+    return const <OfficeSystemFontFace>[];
+  }
+  final List<String> dirs =
+      searchDirectories?.take(8).toList() ??
+      switch (Platform.operatingSystem) {
+        'macos' => <String>[_officeFonts, _systemFonts],
+        'windows' => <String>[
+          r'C:\Program Files\Microsoft Office\root\vfs\Fonts\private',
+          r'C:\Program Files (x86)\Microsoft Office\root\vfs\Fonts\private',
+          r'C:\Windows\Fonts',
+        ],
+        _ => <String>[
+          '/usr/share/fonts/truetype/msttcorefonts',
+          '/usr/share/fonts',
+        ],
+      };
+  final List<OfficeSystemFontFace> result = <OfficeSystemFontFace>[];
+  final Set<String> seen = <String>{};
+  var totalBytes = 0;
+  for (final dir in dirs) {
+    for (final spec in _faces) {
+      final key = '${spec.$2}|${spec.$3}|${spec.$4}';
+      if (seen.contains(key)) continue;
+      final file = File('$dir/${spec.$1}');
+      try {
+        final Uint8List? bytes = await _readFont(
+          file,
+          maxInstalledFontCollectionBytes - totalBytes,
+        );
+        if (bytes == null) continue;
+        final parsed = parseInstalledFont(spec.$2, bytes);
+        if (parsed == null ||
+            parsed.weight != spec.$3 ||
+            parsed.italic != spec.$4) {
+          continue;
+        }
+        result.add(
+          OfficeSystemFontFace(
+            family: spec.$2,
+            weight: parsed.weight,
+            italic: parsed.italic,
+            bytes: bytes,
+          ),
+        );
+        seen.add(key);
+        totalBytes += bytes.length;
+      } on Object {
+        // A missing or unreadable optional host face keeps bundled fallbacks.
+      }
+    }
+  }
+  return result;
+}
+
+Future<Uint8List?> _readFont(File file, int remainingBytes) async {
+  final handle = await file.open();
+  try {
+    final length = await handle.length();
+    if (length < 12 ||
+        length > maxInstalledFontBytes ||
+        length > remainingBytes) {
+      return null;
+    }
+    final header = await handle.read(12);
+    if (header.length != 12) return null;
+    final signature = ByteData.sublistView(header).getUint32(0);
+    if (signature != 0x00010000 && signature != 0x74727565) return null;
+    await handle.setPosition(0);
+    // The requested read remains bounded if an optional file changes while
+    // loading. A truncated or growing file is rejected rather than cached.
+    final bytes = await handle.read(length);
+    if (bytes.length != length || await handle.length() != length) return null;
+    return bytes;
+  } finally {
+    await handle.close();
+  }
+}

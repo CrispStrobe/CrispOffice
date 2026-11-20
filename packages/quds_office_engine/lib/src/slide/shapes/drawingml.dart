@@ -30,6 +30,10 @@ List<PmlShape> parseSlideShapes(
 
   /// fillPending API.
   var fillPending = false;
+  var inGradFill = false;
+  final List<PmlGradientStop> gradientStops = <PmlGradientStop>[];
+  double? gradientStopPosition;
+  double gradientAngle = 0;
 
   /// textFillPending API.
   var textFillPending = false;
@@ -89,10 +93,26 @@ List<PmlShape> parseSlideShapes(
       } else if (reader.localName == 'style') {
         inStyle = false;
         styleRef = null;
+      } else if (reader.localName == 'gradFill') {
+        if (current != null && gradientStops.isNotEmpty) {
+          final List<PmlGradientStop> stops = <PmlGradientStop>[
+            ...gradientStops,
+          ]..sort((a, b) => a.position.compareTo(b.position));
+          current.gradient = PmlGradientFill(
+            stops: stops,
+            angleDegrees: gradientAngle,
+          );
+          current.fillColor = stops.first.color;
+        }
+        inGradFill = false;
+        gradientStopPosition = null;
+        fillPending = false;
       } else if (reader.localName == 'spPr') {
         inSpPr = false;
         inLn = false;
         fillPending = false;
+        inGradFill = false;
+        gradientStopPosition = null;
       } else if (reader.localName == 'ln') {
         inLn = false;
         fillPending = false;
@@ -316,8 +336,14 @@ List<PmlShape> parseSlideShapes(
       current.fillColor = '';
       explicitFill = true;
       fillPending = false;
+    } else if (reader.localName == 'gradFill' && inSpPr && !inLn) {
+      inGradFill = true;
+      gradientStops.clear();
+      gradientStopPosition = null;
+      gradientAngle = 0;
+      fillPending = false;
+      explicitFill = true;
     } else if ((reader.localName == 'solidFill' ||
-            reader.localName == 'gradFill' ||
             reader.localName == 'pattFill') &&
         inSpPr &&
         !inLn) {
@@ -343,10 +369,23 @@ List<PmlShape> parseSlideShapes(
       currentRow.add(currentCell);
     } else if (reader.localName == 'tcPr' && currentCell != null) {
       inTcPr = true;
+    } else if (reader.localName == 'gs' && inGradFill) {
+      gradientStopPosition =
+          (int.tryParse(reader.getAttribute('pos') ?? '') ?? 0) / 100000;
+    } else if (reader.localName == 'lin' && inGradFill) {
+      gradientAngle =
+          (int.tryParse(reader.getAttribute('ang') ?? '') ?? 0) / 60000;
     } else if (_colorElements.contains(reader.localName) && current != null) {
       final String? val = resolveDrawingmlColor(reader, colors);
       if (val != null && val.isNotEmpty) {
-        if (inTcPr && currentCell != null) {
+        if (inGradFill && gradientStopPosition != null) {
+          gradientStops.add(
+            PmlGradientStop(
+              position: gradientStopPosition.clamp(0.0, 1.0),
+              color: val,
+            ),
+          );
+        } else if (inTcPr && currentCell != null) {
           currentCell.fillColor = val;
         } else if (strokePending) {
           current.strokeColor = val;
@@ -372,6 +411,7 @@ List<PmlShape> parseSlideShapes(
       textFillPending = false;
       strokePending = false;
       styleRef = null;
+      gradientStopPosition = null;
     } else if ((reader.localName == 'blip' || reader.localName == 'chart') &&
         current != null &&
         !inTxBody) {
@@ -680,10 +720,15 @@ String slideToXml(
   // Keep native fill inheritance when its source layout is retained. Other
   // resolved pictures become one native fill, never editable slide shapes.
   PmlShape? backgroundPicture;
+  PmlGradientFill? backgroundGradient;
   if (!preserveBackgroundInheritance) {
     for (final shape in slide.backgroundShapes) {
       if (shape.isBackgroundPicture && (shape.visual?.isPicture ?? false)) {
         backgroundPicture = shape;
+        break;
+      } else if (shape.isBackgroundGradient &&
+          (shape.gradient?.stops.length ?? 0) >= 2) {
+        backgroundGradient = shape.gradient;
         break;
       }
     }
@@ -706,7 +751,9 @@ String slideToXml(
           );
     }
     sourceBackground.writeTo(w);
-  } else if (backgroundEmbed != null || slide.writesSolidBackground) {
+  } else if (backgroundEmbed != null ||
+      backgroundGradient != null ||
+      slide.writesSolidBackground) {
     w.writeStartElement('bg', prefix: 'p');
     w.writeStartElement('bgPr', prefix: 'p');
     if (backgroundEmbed != null) {
@@ -738,6 +785,8 @@ String slideToXml(
       w.writeEmptyElement('fillRect', prefix: 'a');
       w.writeEndElement();
       w.writeEndElement();
+    } else if (backgroundGradient != null) {
+      _writeGradientFill(w, backgroundGradient);
     } else {
       w.writeStartElement('solidFill', prefix: 'a');
       w.writeEmptyElement(
@@ -832,6 +881,50 @@ String slideToXml(
   /// writeEndElement API.
   w.writeEndElement();
   return w.toXml();
+}
+
+void _writeGradientFill(XmlWriter w, PmlGradientFill gradient) {
+  w.writeStartElement('gradFill', prefix: 'a');
+  w.writeStartElement('gsLst', prefix: 'a');
+  for (final stop in gradient.stops) {
+    w.writeStartElement('gs', prefix: 'a');
+    w.writeAttribute(
+      'pos',
+      '${(stop.position.clamp(0.0, 1.0) * 100000).round()}',
+    );
+    w.writeEmptyElement(
+      'srgbClr',
+      prefix: 'a',
+      attributes: <String, String>{'val': stop.color},
+    );
+    w.writeEndElement();
+  }
+  w.writeEndElement();
+  if (gradient.radial) {
+    w.writeStartElement('path', prefix: 'a');
+    w.writeAttribute('path', 'circle');
+    w.writeEmptyElement(
+      'fillToRect',
+      prefix: 'a',
+      attributes: const <String, String>{
+        'l': '50000',
+        't': '50000',
+        'r': '50000',
+        'b': '50000',
+      },
+    );
+    w.writeEndElement();
+  } else {
+    w.writeEmptyElement(
+      'lin',
+      prefix: 'a',
+      attributes: <String, String>{
+        'ang': '${(gradient.angleDegrees * 60000).round()}',
+        'scaled': '0',
+      },
+    );
+  }
+  w.writeEndElement();
 }
 
 void _writeSlideShape(XmlWriter w, PmlShape shape) {
@@ -937,7 +1030,10 @@ void _writeSlideShape(XmlWriter w, PmlShape shape) {
       },
     },
   );
-  if (shape.fillColor.isNotEmpty) {
+  final PmlGradientFill? gradient = shape.gradient;
+  if (gradient != null && gradient.stops.length >= 2) {
+    _writeGradientFill(w, gradient);
+  } else if (shape.fillColor.isNotEmpty) {
     w.writeStartElement('solidFill', prefix: 'a');
     w.writeEmptyElement(
       'srgbClr',

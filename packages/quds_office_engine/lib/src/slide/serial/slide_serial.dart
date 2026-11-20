@@ -153,9 +153,20 @@ class SlideDeserializer {
                 pres.slideHeight,
               )
             : layout?.backgroundImage?.copy();
+        final PmlShape? backgroundGradient = backgroundImage != null
+            ? null
+            : ownsBackground
+            ? _backgroundGradientShape(
+                slideXml,
+                pres.slideWidth,
+                pres.slideHeight,
+                layout?.colors ?? templates.defaultColors,
+              )
+            : layout?.backgroundGradient?.copy();
         pres.slides[i].retainSourceBackground(
           sourceBackground,
           picture: backgroundImage,
+          gradient: backgroundGradient,
         );
         if (layout != null) {
           pres.slides[i].layoutName = layout.name;
@@ -377,6 +388,97 @@ class SlideDeserializer {
     );
   }
 
+  /// Converts the selected native gradient fill into a background snapshot.
+  /// Keep fill ownership separate from ordinary master/layout decorations.
+  static PmlShape? _backgroundGradientShape(
+    String xml,
+    int width,
+    int height,
+    Map<String, String> colors,
+  ) {
+    final XmlPullReader reader = XmlPullReader(xml);
+    int? backgroundDepth;
+    int? propertiesDepth;
+    int? gradientDepth;
+    int? stopDepth;
+    double? position;
+    double angle = 0;
+    var radial = false;
+    final List<PmlGradientStop> stops = <PmlGradientStop>[];
+    while (reader.next()) {
+      if (reader.eventType == XmlEventType.endElement) {
+        if (gradientDepth != null && reader.depth == gradientDepth) {
+          if (stops.length < 2) return null;
+          stops.sort((a, b) => a.position.compareTo(b.position));
+          return PmlShape(
+            id: 1,
+            name: 'Background',
+            isBackgroundGradient: true,
+            fillColor: stops.first.color,
+            gradient: PmlGradientFill(
+              stops: stops,
+              angleDegrees: angle,
+              radial: radial,
+            ),
+            transform: PmlTransform(x: 0, y: 0, cx: width, cy: height),
+          );
+        }
+        if (backgroundDepth != null && reader.depth == backgroundDepth) {
+          return null;
+        }
+        if (stopDepth != null && reader.depth == stopDepth) {
+          stopDepth = null;
+          position = null;
+        }
+        continue;
+      }
+      if (reader.eventType != XmlEventType.startElement) continue;
+      if (reader.localName == 'bg' &&
+          reader.namespaceUri == OfficeNamespaces.p) {
+        backgroundDepth = reader.depth;
+      } else if (backgroundDepth != null &&
+          reader.depth == backgroundDepth + 1 &&
+          reader.namespaceUri == OfficeNamespaces.p &&
+          reader.localName == 'bgPr') {
+        propertiesDepth = reader.depth;
+      } else if (propertiesDepth != null &&
+          reader.depth == propertiesDepth + 1 &&
+          reader.namespaceUri == OfficeNamespaces.a &&
+          reader.localName == 'gradFill') {
+        gradientDepth = reader.depth;
+      } else if (gradientDepth != null &&
+          reader.namespaceUri == OfficeNamespaces.a) {
+        if (reader.localName == 'gs' && reader.depth == gradientDepth + 2) {
+          stopDepth = reader.depth;
+          position =
+              ((int.tryParse(reader.getAttribute('pos') ?? '') ?? 0) / 100000)
+                  .clamp(0.0, 1.0);
+        } else if (reader.localName == 'lin' &&
+            reader.depth == gradientDepth + 1) {
+          angle = (int.tryParse(reader.getAttribute('ang') ?? '') ?? 0) / 60000;
+        } else if (reader.localName == 'path' &&
+            reader.depth == gradientDepth + 1) {
+          radial = true;
+        } else if (position != null &&
+            stopDepth != null &&
+            reader.depth == stopDepth + 1 &&
+            const <String>{
+              'srgbClr',
+              'schemeClr',
+              'sysClr',
+              'prstClr',
+            }.contains(reader.localName)) {
+          final String? color = resolveDrawingmlColor(reader, colors);
+          if (color != null && color.isNotEmpty) {
+            stops.add(PmlGradientStop(position: position, color: color));
+          }
+          position = null;
+        }
+      }
+    }
+    return null;
+  }
+
   /// Resolve a solid fill or the first gradient stop, never an effect color.
   static String? _backgroundOf(String xml, Map<String, String> colors) {
     final XmlPullReader reader = XmlPullReader(xml);
@@ -496,6 +598,7 @@ class _SlideTemplate {
     required this.decorations,
     this.background,
     this.backgroundImage,
+    this.backgroundGradient,
     this.inheritsMasterBackground = false,
     this.showsMasterShapes = true,
     this.master,
@@ -507,6 +610,7 @@ class _SlideTemplate {
   final List<PmlShape> decorations;
   final String? background;
   final PmlShape? backgroundImage;
+  final PmlShape? backgroundGradient;
   final bool inheritsMasterBackground;
   final bool showsMasterShapes;
   final _SlideTemplate? master;
@@ -607,6 +711,14 @@ class _SlideTemplates {
               slideHeight,
             )
           : master?.backgroundImage,
+      backgroundGradient: ownsBackground
+          ? SlideDeserializer._backgroundGradientShape(
+              xml,
+              slideWidth,
+              slideHeight,
+              colors,
+            )
+          : master?.backgroundGradient,
       inheritsMasterBackground: !ownsBackground,
       showsMasterShapes: SlideDeserializer._showsMasterShapes(xml),
       master: master,
@@ -648,6 +760,12 @@ class _SlideTemplates {
         package.relationshipsFor(uri),
         slideWidth,
         slideHeight,
+      ),
+      backgroundGradient: SlideDeserializer._backgroundGradientShape(
+        xml,
+        slideWidth,
+        slideHeight,
+        colors,
       ),
     );
   }
@@ -1010,9 +1128,7 @@ class SlideSerializer {
       }
       if (slide.inheritsMasterBackground) {
         slide.setInheritedBackground(resolved, masterBackground: color);
-        slide.backgroundShapes.removeWhere(
-          (shape) => shape.isBackgroundPicture,
-        );
+        slide.backgroundShapes.removeWhere((shape) => shape.isBackgroundFill);
       }
     }
     for (final uri in masterUris) {

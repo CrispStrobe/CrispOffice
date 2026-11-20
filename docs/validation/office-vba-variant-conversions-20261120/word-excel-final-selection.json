@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "capturedMain": "7501b604db23e2df3d765f2ea44f572b2ea43d97",
-  "purpose": "Fresh combined Word and Excel VBA qualification after all captured main advances, including the explicit Variant milestone, the Word paragraph frontend, native Word size projection, retained PPTX/Mail/Zotero/spaCy work, and Arabic lifecycle repairs. Each test file appears once in this selection.",
+  "purpose": "Fresh combined Word and Excel VBA qualification after the final captured fork/upstream/PR reconciliation, including the explicit Variant milestone, Word paragraph frontend and native size projection, retained Mail/Zotero/spaCy/mobile/Arabic work, and captured PPTX gradient, picture effect and installed-font repairs. Each test file appears once.",
   "cohorts": {
     "incoming-mail-host": {
       "package": "packages/quds_office_editor/example",
@@ -52,7 +52,10 @@
         "test/slide_section_reorder_test.dart",
         "test/slide_transform_orientation_test.dart",
         "test/slide_geometric_presets_test.dart",
-        "test/slide_background_publication_test.dart"
+        "test/slide_background_publication_test.dart",
+        "test/office_slide_effects_test.dart",
+        "test/installed_host_fonts_test.dart",
+        "test/office_system_fonts_test.dart"
       ]
     },
     "incoming-rendering-engine": {
@@ -72,7 +75,8 @@
         "test/office_pdf_export_test.dart",
         "test/slide_picture_background_test.dart",
         "test/slide_geometric_presets_test.dart",
-        "test/slide_background_publication_test.dart"
+        "test/slide_background_publication_test.dart",
+        "test/slide_gradient_publication_test.dart"
       ]
     },
     "incoming-spacy": {
