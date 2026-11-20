@@ -1,0 +1,276 @@
+{
+  "schema_version": 1,
+  "reviewed_commit": "e08635b3f21c60ad21888821050dc97c2dbf7086",
+  "production_file": "packages/quds_office_engine/lib/src/automation/office_vba_language.dart",
+  "production_blob": "07dc3c5737661abaf3b17db24439c71482de22ed",
+  "exact_remote_source_readback": true,
+  "base_commit": "c954d00d2fc85604ae394674bca91ea8a1dede0e",
+  "production_scope": "Word conversion metadata, checker and evaluator. Complete file adopted from e08635b3; no native operation/runtime/serializer changes.",
+  "independent_review": {
+    "result": "No blocking defect found by source inspection",
+    "scope": [
+      "conversion ratios and portable numeric bounds",
+      "global/member/With checker routes",
+      "Word-only name reservation",
+      "argument evaluation order and resource guards",
+      "legacy line conversion behavior",
+      "authored test API usage and expected native values",
+      "DOCM preservation fixture API",
+      "concurrent feature reconciliation",
+      "Later named-argument checker/evaluator integration; review completion recorded in final receipt."
+    ],
+    "limitations": [
+      "No Dart execution",
+      "No analyzer or formatter",
+      "No installed Microsoft Word comparison"
+    ]
+  },
+  "arithmetic_model": {
+    "qualification": "Independent V8 arithmetic model only; no Dart source, compiler, VM, JS compilation or native document runtime executed.",
+    "physicalCases": [
+      {
+        "name": "InchesToPoints",
+        "input": 0.5,
+        "expected": 36,
+        "actual": 36
+      },
+      {
+        "name": "PointsToInches",
+        "input": 36,
+        "expected": 0.5,
+        "actual": 0.5
+      },
+      {
+        "name": "CentimetersToPoints",
+        "input": 2.54,
+        "expected": 72,
+        "actual": 72
+      },
+      {
+        "name": "PointsToCentimeters",
+        "input": 72,
+        "expected": 2.54,
+        "actual": 2.54
+      },
+      {
+        "name": "MillimetersToPoints",
+        "input": 25.4,
+        "expected": 72,
+        "actual": 72
+      },
+      {
+        "name": "PointsToMillimeters",
+        "input": 72,
+        "expected": 25.4,
+        "actual": 25.4
+      },
+      {
+        "name": "PicasToPoints",
+        "input": 1.5,
+        "expected": 18,
+        "actual": 18
+      },
+      {
+        "name": "PointsToPicas",
+        "input": 18,
+        "expected": 1.5,
+        "actual": 1.5
+      },
+      {
+        "name": "InchesToPoints",
+        "input": 0.1,
+        "expected": 7.2,
+        "actual": 7.2
+      },
+      {
+        "name": "InchesToPoints",
+        "input": 0.15,
+        "expected": 10.8,
+        "actual": 10.8
+      },
+      {
+        "name": "PicasToPoints",
+        "input": 1.15,
+        "expected": 13.8,
+        "actual": 13.8
+      },
+      {
+        "name": "CentimetersToPoints",
+        "input": 1.27,
+        "expected": 36,
+        "actual": 36
+      },
+      {
+        "name": "MillimetersToPoints",
+        "input": 12.7,
+        "expected": 36,
+        "actual": 36
+      },
+      {
+        "name": "CentimetersToPoints",
+        "input": 0.127,
+        "expected": 3.6,
+        "actual": 3.6
+      },
+      {
+        "name": "MillimetersToPoints",
+        "input": 1.27,
+        "expected": 3.6,
+        "actual": 3.6
+      },
+      {
+        "name": "CentimetersToPoints",
+        "input": 200000000000000,
+        "expected": 5669291338582677,
+        "actual": 5669291338582677
+      },
+      {
+        "name": "MillimetersToPoints",
+        "input": 2000000000000000,
+        "expected": 5669291338582677,
+        "actual": 5669291338582677
+      },
+      {
+        "name": "PointsToMillimeters",
+        "input": 9007199254740991,
+        "expected": 3177539737089183,
+        "actual": 3177539737089183
+      },
+      {
+        "name": "InchesToPoints",
+        "input": 125099989649180,
+        "expected": 9007199254740960,
+        "actual": 9007199254740960
+      },
+      {
+        "name": "PicasToPoints",
+        "input": 750599937895082,
+        "expected": 9007199254740984,
+        "actual": 9007199254740984
+      },
+      {
+        "name": "MillimetersToPoints",
+        "input": 3177539737089183,
+        "expected": 9007199254740991,
+        "actual": 9007199254740991
+      }
+    ],
+    "signAndZeroChecks": 42,
+    "nativeRoundTrips": 76,
+    "nativePrecisionRefusals": [
+      {
+        "name": "InchesToPoints",
+        "input": 0.10000000000000002,
+        "result": 7.200000000000001,
+        "nativeExact": false
+      },
+      {
+        "name": "PicasToPoints",
+        "input": 1.1499999999999997,
+        "result": 13.799999999999997,
+        "nativeExact": false
+      },
+      {
+        "name": "CentimetersToPoints",
+        "input": 0.25400000000000006,
+        "result": 7.200000000000002,
+        "nativeExact": false
+      },
+      {
+        "name": "MillimetersToPoints",
+        "input": 2.5400000000000005,
+        "result": 7.200000000000002,
+        "nativeExact": false
+      },
+      {
+        "name": "InchesToPoints",
+        "input": 0.20000000000000004,
+        "result": 14.400000000000002,
+        "nativeExact": false
+      },
+      {
+        "name": "CentimetersToPoints",
+        "input": 2.5400000000000005,
+        "result": 72.00000000000001,
+        "nativeExact": false
+      },
+      {
+        "name": "MillimetersToPoints",
+        "input": 25.40000000000001,
+        "result": 72.00000000000003,
+        "nativeExact": false
+      },
+      {
+        "name": "CentimetersToPoints",
+        "input": 1,
+        "result": 28.346456692913385,
+        "nativeExact": false
+      },
+      {
+        "name": "MillimetersToPoints",
+        "input": 1,
+        "result": 2.8346456692913384,
+        "nativeExact": false
+      }
+    ],
+    "conversionOverflowRefusals": 14,
+    "status": "passed"
+  },
+  "dart": {
+    "tests": "not_run",
+    "analyze": "not_run",
+    "format": "not_run",
+    "vm": "not_run",
+    "compiled_javascript": "not_run",
+    "native_runtime": "not_run",
+    "cli": "not_run",
+    "reason": "Sandbox startup ENOSPC followed by unavailable exec service before checkout"
+  },
+  "github_actions": "not_queried_or_awaited",
+  "sources": [
+    "https://learn.microsoft.com/en-us/office/vba/api/word.application.inchestopoints",
+    "https://learn.microsoft.com/en-us/office/vba/api/word.application.pointstoinches",
+    "https://learn.microsoft.com/en-us/office/vba/api/word.application.centimeterstopoints",
+    "https://learn.microsoft.com/en-us/office/vba/api/word.application.pointstocentimeters",
+    "https://learn.microsoft.com/en-us/office/vba/api/word.application.millimeterstopoints",
+    "https://learn.microsoft.com/en-us/office/vba/api/word.application.pointstomillimeters",
+    "https://learn.microsoft.com/en-us/office/vba/api/word.application.picastopoints",
+    "https://learn.microsoft.com/en-us/office/vba/api/word.application.pointstopicas",
+    "https://learn.microsoft.com/en-us/openspecs/office_standards/ms-oi29500/afb7e140-b259-4901-8af4-d4a514f50db9"
+  ],
+  "incoming_preserved_blobs": [
+    {
+      "path": "docs/validation/word-vba-unit-conversions-20261120/intake.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7a2eb643473a9cd55337a0f15fbc84d93a1cfa80"
+    },
+    {
+      "path": "packages/quds_office_engine/example/macros/word_unit_conversions.bas",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "cf996b99e767d1742557f257599bf0edf61eefa0"
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_vba_word_unit_conversions_integration_test.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d44ec892f13d9384ebed1e13b3f56e64c7959f2b"
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_vba_word_unit_conversions_test.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "94d136ef0da9874f59611dbc42ef2f9b2a63fab8"
+    }
+  ],
+  "adopted_from": "e08635b3f21c60ad21888821050dc97c2dbf7086",
+  "incoming_test_reports": {
+    "source": "commit messages e15d97d0 and e08635b3",
+    "reported_source_cases": 147,
+    "reported_integration_cases": 10,
+    "reported_legacy_cases": 103,
+    "verification": "Not reproduced or counted as verified tests for this consolidated merge; raw execution results not available in this environment."
+  },
+  "additional_reviewed_checkpoint": "4d0086aba52fc804424145d8eabe3c4c1c10f201"
+}

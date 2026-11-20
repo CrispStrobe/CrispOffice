@@ -203,5 +203,29 @@
       ],
       "documentation": "Consolidate shared Word contract/changelog; retain incoming explicit CLng rounding guidance and both examples/suites."
     }
-  }
+  },
+  "concurrent_named": {
+    "branch": "codex/word-vba-unit-conversions-20261120",
+    "head": "e08635b3f21c60ad21888821050dc97c2dbf7086",
+    "production_blob": "07dc3c5737661abaf3b17db24439c71482de22ed",
+    "resolution": "Adopt complete coherent named-argument conversion implementation; preserve colliding fixtures under distinct named_measurements paths.",
+    "renamed_files": [
+      "packages/quds_office_engine/example/macros/word_named_measurements.bas",
+      "packages/quds_office_engine/test/office_vba_word_named_measurements_test.dart",
+      "packages/quds_office_engine/test/office_vba_word_named_measurements_integration_test.dart",
+      "packages/quds_office_engine/tool/macros/web_vba_word_named_measurements_smoke.dart"
+    ]
+  },
+  "late_unmerged_active_work": [
+    {
+      "branch": "work/mail-bulk-flags-20261120",
+      "head": "0cc6316c61efd8b39a9cb0cfed6b2879f7865d48",
+      "reason": "Created after initial intake; active Mail integration/intake checkpoint."
+    },
+    {
+      "branch": "work/mail-bulk-actions-20261120",
+      "head": "69ab514b57a4d6d4db062d802eb853c2691d80fe",
+      "reason": "Created after initial intake; unfinished unrelated core Mail coordinator work without provider/UI integration or completed qualification."
+    }
+  ]
 }

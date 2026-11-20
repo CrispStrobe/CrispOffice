@@ -150,7 +150,8 @@ and [local evidence](validation/word-vba-paragraph-controls-20261120/README.md).
 ### Physical Word measurements
 
 The measurement continuation adds eight inch/centimeter/millimeter/pica
-conversion helpers, globally and on `Application`. They compose through the
+conversion helpers, globally and on `Application`, and official named
+arguments for all ten physical/line conversion functions. They compose through the
 existing checked scalar language and emit no operations until a supported
 native property is written. Exact physical ratios, binary64 result bounds,
 Word-only names, refusal of implicit coercion and unchanged native precision

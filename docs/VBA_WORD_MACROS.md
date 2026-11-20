@@ -70,9 +70,10 @@ readable `Count` and cannot be enumerated.
 The shared [argument contract](VBA_ARGUMENTS.md) supports named calls and
 optional scalar ByVal parameters on declared module helpers. Required Word
 object parameters may be passed by name; optional object parameters remain
-unsupported. `TabStops.Add` and the supported `ListFormat` methods also accept
-named optional arguments as described below; other Word members retain their
-positional-only contract.
+unsupported. `TabStops.Add` and the supported `ListFormat` methods accept
+named optional arguments as described below. The ten Word measurement
+conversion functions also accept their official required argument names;
+other Word members retain their positional-only contract.
 
 The common source language includes the existing local procedures and scalar
 functions, bounded control flow, typed arrays, string intrinsics, and explicit
@@ -761,12 +762,13 @@ for all three rules, including a multiple of `1/240` line. This is a storage
 and model contract, not a claim about Word's user-interface limits.
 
 `LinesToPoints(value)` multiplies by 12 and `PointsToLines(value)` divides by 12.
-Both accept one positional actual finite numeric argument, including signed
-values and zero. They also work as `Application.LinesToPoints(...)`,
+Both accept one actual finite numeric argument, by position or the official
+name (`Lines` for `LinesToPoints`, `Points` for `PointsToLines`), including
+signed values and zero. They also work as `Application.LinesToPoints(...)`,
 `Application.PointsToLines(...)`, or leading-dot calls inside `With Application`.
 They are Word-only source functions; declarations cannot shadow their names.
-Named/omitted arguments, object arguments and implicit scalar coercions are
-unsupported. Conversion results must remain finite and within the shared
+Omitted arguments, unknown argument names, object arguments and implicit
+scalar coercions are unsupported. Conversion results must remain finite and within the shared
 numeric magnitude bound `9007199254740991`; later property writes apply their
 own precision/range checks. Inputs that exactly round-trip on the native
 twentieth-point / 1/240-line grid use integer-unit arithmetic. Thus common
@@ -823,15 +825,15 @@ and [Space2](https://learn.microsoft.com/en-us/office/vba/api/word.paragraphform
 
 The Word source adapter also supports the following scalar measurement helpers.
 Call them globally, through `Application`, or with a leading dot inside
-`With Application`. Each takes one positional actual numeric argument and
+`With Application`. Each takes one actual numeric argument, by position or its official name, and
 returns a document-independent numeric value.
 
-| To points | From points | Physical ratio |
+| To points (required name) | From points (required name) | Physical ratio |
 | --- | --- | --- |
-| `InchesToPoints(inches)` | `PointsToInches(points)` | 1 inch = 72 points |
-| `CentimetersToPoints(centimeters)` | `PointsToCentimeters(points)` | 2.54 centimeters = 72 points |
-| `MillimetersToPoints(millimeters)` | `PointsToMillimeters(points)` | 25.4 millimeters = 72 points |
-| `PicasToPoints(picas)` | `PointsToPicas(points)` | 1 pica = 12 points |
+| `InchesToPoints(Inches:=value)` | `PointsToInches(Points:=value)` | 1 inch = 72 points |
+| `CentimetersToPoints(Centimeters:=value)` | `PointsToCentimeters(Points:=value)` | 2.54 centimeters = 72 points |
+| `MillimetersToPoints(Millimeters:=value)` | `PointsToMillimeters(Points:=value)` | 25.4 millimeters = 72 points |
+| `PicasToPoints(Picas:=value)` | `PointsToPicas(Points:=value)` | 1 pica = 12 points |
 
 These helpers compose with the existing `LinesToPoints` / `PointsToLines`,
 scalar arithmetic, typed numeric variables, numeric Variants, arrays and
@@ -868,9 +870,12 @@ Intermediate multiplication uses floating-point arithmetic to avoid signed
 integer overflow on the Dart VM. Signed values and zero are valid scalar
 measurements; a later property can impose a nonnegative or positive range.
 
-An input that exactly round-trips on the conversion's common integer grid is
-converted using that grid. There is no epsilon-based snapping of neighboring
-inputs. Other inputs use ordinary arithmetic. Native property validation
+The converted value is canonicalized on the native twentieth-point grid only
+when an exact inverse calculation reproduces the original input double.
+Conversions from points likewise use that grid only for an exactly
+representable input. Integer products are bounded before use. There is no
+epsilon-based snapping of neighboring inputs; other values use ordinary
+numerator/divisor arithmetic. Native property validation
 checks the resulting number, including any ordinary binary64 rounding; an
 off-grid input is not automatically an invalid scalar.
 
@@ -901,6 +906,12 @@ nine paragraph-format writes on two existing paragraphs. The reconciliation
 keeps one conversion implementation and both independently authored fixture
 sets.
 
+The later [word_named_measurements.bas](../packages/quds_office_engine/example/macros/word_named_measurements.bas)
+example exercises the official named arguments, including the existing line
+conversions, and has its own compiler, CLI/MCP, DOCM and portable-driver fixtures.
+Those incoming files are retained under distinct names so earlier examples
+and regression cases remain available.
+
 The Microsoft methods use `Single` arguments/results. This bounded adapter
 uses its existing numeric model and does **not** emulate VBA `Single` rounding,
 numeric subtype identity, implicit numeric-string/Boolean conversion, or
@@ -909,9 +920,11 @@ numeric string before calling a helper. Empty, Null, an omitted optional
 Variant and object values are not measurements.
 
 All new names are reserved only in `vba-word`. Excel and PowerPoint do not gain
-Word methods. Named or omitted arguments to the conversions, argument-free
-property reads, calls on `Document`/`Paragraph`/`Range`, pixel conversions,
-application preferences and document reads remain unsupported. The checker
+Word methods. Argument names are case-insensitive. The ten conversions accept
+exactly one positional value or their official named value; omissions, duplicate
+bindings, extra arguments and unknown names are rejected. Argument-free property
+reads, calls on `Document`/`Paragraph`/`Range`, pixel conversions, application
+preferences and document reads remain unsupported. The checker
 validates call shapes and declared types throughout unused helpers and dead
 branches; runtime Variant contents are checked when evaluated. Argument
 expressions execute once through the existing evaluator and consume the
