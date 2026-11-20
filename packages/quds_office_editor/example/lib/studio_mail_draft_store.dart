@@ -67,13 +67,25 @@ final class StudioMailDraftAccount {
     return StudioMailDraftAccount._(
       kind.single,
       MailAccountId(fingerprint, profile: profile),
+      uri.toString(),
+      parts[1],
+      parts[2],
     );
   }
 
-  const StudioMailDraftAccount._(this.provider, this.account);
+  const StudioMailDraftAccount._(
+    this.provider,
+    this.account,
+    this.endpoint,
+    this.login,
+    this.sender,
+  );
 
   final MailProviderKind provider;
   final MailAccountId account;
+  final String endpoint;
+  final String login;
+  final String sender;
   MailProfileId get profile => account.profile;
 }
 

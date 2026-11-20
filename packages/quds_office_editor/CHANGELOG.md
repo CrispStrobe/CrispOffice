@@ -4,6 +4,13 @@ All notable changes to `quds_office_editor` are documented here.
 
 ## Unreleased
 
+- Add localized **Drafts for connected accounts** for native IMAP (including
+  discovery), EWS, Gmail and Microsoft 365. Persist verified non-secret routes
+  after successful connection and draft-store open, reuse exact historical
+  draft identities without authentication, and confirm shortcut-only removal.
+  Keep local composition save-only, release prior store ownership, and show
+  directory failures separately from existing interrupted-send warnings.
+
 - Add localized Outbox message review, byte-exact EML and private-envelope export, atomic edit-as-new-draft and explicit stop-retrying for unknown delivery. Preserve Bcc, attachments, threading and other drafts; refuse lossy projection. Keep account/session guards through file export and composer handoff.
 
 - Support independently identified local drafts through the Studio store's

@@ -19,6 +19,9 @@ import 'studio_mail_draft_store.dart';
 import 'studio_mail_draft_store_native.dart';
 import 'studio_mail_drafts_dialog.dart';
 import 'studio_mail_drafts_strings.dart';
+import 'studio_mail_local_accounts.dart';
+import 'studio_mail_local_accounts_dialog.dart';
+import 'studio_mail_local_accounts_strings.dart';
 import 'studio_mail_ews.dart';
 import 'studio_mail_local_drafts.dart';
 import 'studio_mail_message_loader.dart';
@@ -54,6 +57,7 @@ class StudioMailDialog extends StatefulWidget {
     this.archiveWriter,
     this.archiveFolderWriter,
     this.draftStoreFactory,
+    this.localAccountStore,
   });
 
   final StudioStrings strings;
@@ -68,6 +72,7 @@ class StudioMailDialog extends StatefulWidget {
   final StudioMailArchiveWriter? archiveWriter;
   final StudioMailArchiveFolderWriter? archiveFolderWriter;
   final StudioMailDraftStoreFactory? draftStoreFactory;
+  final StudioMailLocalAccountStore? localAccountStore;
 
   /// Creates a fresh client for each connection attempt. Tests use this seam
   /// to control network completions without contacting an external account.
@@ -86,6 +91,12 @@ class StudioMailDialog extends StatefulWidget {
 }
 
 class _StudioMailDialogState extends State<StudioMailDialog> {
+  StudioMailLocalAccountStore? get _localAccounts =>
+      widget.localAccountStore ??
+      (widget.draftStoreFactory == null
+          ? NativeStudioMailLocalAccountStore.instance
+          : null);
+
   final _email = TextEditingController();
   final _password = TextEditingController();
   final _imapHost = TextEditingController();
@@ -141,6 +152,7 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
   bool _showCompactMessage = false;
   String? _error;
   String? _notice;
+  String? _localAccountWarning;
   String? _credentialError;
 
   @override
@@ -551,7 +563,10 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
   ) async {
     if (!_currentSession(client, generation)) return false;
     if (_draftStore != null) return true;
-    setState(() => _busy = true);
+    setState(() {
+      _busy = true;
+      _localAccountWarning = null;
+    });
     StudioMailDraftStore? candidate;
     try {
       await _draftStoreClosing;
@@ -601,7 +616,20 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
             : null;
         if (restored != null) _notice = widget.strings.mailDraftRestored;
       });
-      return true;
+      final directory = _localAccounts;
+      if (directory != null && candidate is StudioMailDraftCatalog) {
+        try {
+          await directory.remember(identity);
+        } on Object {
+          if (_currentSession(client, generation)) {
+            setState(
+              () => _localAccountWarning =
+                  widget.strings.mailLocalAccountsSaveFailed,
+            );
+          }
+        }
+      }
+      return _currentSession(client, generation);
     } on Object {
       await _closeDraftStore(candidate);
       if (_currentSession(client, generation)) {
@@ -1743,6 +1771,49 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
     unawaited(_draftStoreClosing);
   }
 
+  Future<void> _openLocalAccounts() async {
+    final directory = _localAccounts;
+    if (directory == null ||
+        _client != null ||
+        _busy ||
+        _dialogOpen ||
+        _connecting ||
+        _credentialPending) {
+      return;
+    }
+    final generation = _sessionGeneration;
+    bool current() => _currentAttempt(generation) && _client == null;
+    setState(() {
+      _busy = true;
+      _dialogOpen = true;
+    });
+    try {
+      await _draftStoreClosing;
+      if (!mounted || !current()) return;
+      await showDialog<void>(
+        context: context,
+        barrierDismissible: false,
+        builder: (_) => StudioMailLocalAccountsDialog(
+          strings: widget.strings,
+          store: directory,
+          isCurrent: current,
+          draftStoreFactory: widget.draftStoreFactory,
+        ),
+      );
+    } on Object {
+      if (current()) {
+        setState(() => _error = widget.strings.mailLocalAccountsFailed);
+      }
+    } finally {
+      if (current()) {
+        setState(() {
+          _busy = false;
+          _dialogOpen = false;
+        });
+      }
+    }
+  }
+
   /// Only explicit server settings/presets reproduce the connected draft key.
   /// Historical autodiscovery records do not retain custom ports or logins.
   StudioMailSavedAccount? get _localDraftSavedAccount {
@@ -2176,6 +2247,22 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
                     ),
                   const Divider(height: 24),
                 ],
+                if (_localAccounts != null)
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 8),
+                    child: OutlinedButton.icon(
+                      key: const ValueKey('studio-mail-known-drafts'),
+                      onPressed:
+                          _connecting ||
+                              _busy ||
+                              _dialogOpen ||
+                              _credentialPending
+                          ? null
+                          : _openLocalAccounts,
+                      icon: const Icon(Icons.folder_open_outlined),
+                      label: Text(widget.strings.mailLocalAccounts),
+                    ),
+                  ),
                 if (_hasCredentialSettings)
                   TextButton.icon(
                     onPressed: _canChangeCredentialStorage
@@ -2198,6 +2285,8 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
                               builder: (_) => StudioMailCloudDialog(
                                 strings: widget.strings,
                                 service: service,
+                                draftStoreFactory: widget.draftStoreFactory,
+                                localAccountStore: _localAccounts,
                               ),
                             ),
                       icon: const Icon(Icons.cloud_outlined),
@@ -2214,8 +2303,11 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
                       ? null
                       : () => showDialog<void>(
                           context: context,
-                          builder: (_) =>
-                              StudioMailEwsDialog(strings: widget.strings),
+                          builder: (_) => StudioMailEwsDialog(
+                            strings: widget.strings,
+                            draftStoreFactory: widget.draftStoreFactory,
+                            localAccountStore: _localAccounts,
+                          ),
                         ),
                   icon: const Icon(Icons.dns_outlined),
                   label: Text(widget.strings.ewsTitle),
@@ -2623,6 +2715,14 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
         if (_busy) const LinearProgressIndicator(minHeight: 2),
         _folderArchiveAction(),
         if (_credentialError != null) _credentialFeedback(context),
+        if (_localAccountWarning case final warning?)
+          Material(
+            color: Theme.of(context).colorScheme.errorContainer,
+            child: Padding(
+              padding: const EdgeInsets.all(12),
+              child: Text(warning),
+            ),
+          ),
         if (_error != null || _notice != null)
           Material(
             color: _error == null

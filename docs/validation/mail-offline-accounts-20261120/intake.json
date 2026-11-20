@@ -1,0 +1,289 @@
+{
+  "captured_at_utc": "2026-11-20T15:08:14.288Z",
+  "initial_main": "5c48058bedc42dd8cbf3fb9d6f1fb492b2ac1eb8",
+  "branches": [
+    {
+      "name": "codex/odt-field-continuation-20261117",
+      "sha": "c34945761e7991f5fe49037d79529acdd260b31c"
+    },
+    {
+      "name": "codex/word-powerpoint-vba-expansion-20261120",
+      "sha": "0f6239396ff3328473a5f57c280b982d57e33a08"
+    },
+    {
+      "name": "codex/word-vba-compat-20261120-next",
+      "sha": "79e11935e16ea1d2fa576ead0712c83f22e15c28"
+    },
+    {
+      "name": "codex/word-vba-ranges-20261120",
+      "sha": "22e5960e99915e81a1b5997058cac44dac27ba1a"
+    },
+    {
+      "name": "codex/zotero-research-tables-20261120",
+      "sha": "34491bca22a2989dd89d9da3c853f5e57de5464f"
+    },
+    {
+      "name": "docs/ods-color-scale",
+      "sha": "58fdddfbcf198a8c0e38e32f6fcc9d6604e95283"
+    },
+    {
+      "name": "docs/ods-data-bar",
+      "sha": "69d14f84cabd3931b7640c1654b401c89faba766"
+    },
+    {
+      "name": "feat/ods-color-scale",
+      "sha": "74ce9ffb816c70c0d2ae50b91ec52a614f26d688"
+    },
+    {
+      "name": "feat/ods-data-bar",
+      "sha": "0a53b8a70128870f3e1df6d18cdb177bb64290ee"
+    },
+    {
+      "name": "feat/ods-dynamic-validation-links",
+      "sha": "68a0db23408e4c95d6d283219504c79aea33a6fe"
+    },
+    {
+      "name": "feat/ods-icon-sets",
+      "sha": "005c708e9f747cb46cf02e12c869b0a2f85ac824"
+    },
+    {
+      "name": "feat/ods-time-period-conditions",
+      "sha": "7ef09f2408f467c65427700e65907531ecb26acb"
+    },
+    {
+      "name": "fix/mail-credential-stores-chrome-20261120",
+      "sha": "a652a205e6daf6b4b8e3baec04db1c1b52fabd0d"
+    },
+    {
+      "name": "integrate/office-union-148",
+      "sha": "3abf8f43b0e79c10271bbd046f391e462b8fe6b9"
+    },
+    {
+      "name": "integrate/recent-pptx",
+      "sha": "4f5c153774ab7492430c2b68653c54e0c08dc2ad"
+    },
+    {
+      "name": "main",
+      "sha": "5c48058bedc42dd8cbf3fb9d6f1fb492b2ac1eb8"
+    },
+    {
+      "name": "work/mail-accounts-20261120",
+      "sha": "86e44e87f829b0309ea7b84fd5d390f596fe7f26"
+    },
+    {
+      "name": "work/mail-multiple-drafts-20261120",
+      "sha": "b3abdf3b4628a8a703857d69b8f11cd21bc502e1"
+    },
+    {
+      "name": "work/mail-outbox-20261120",
+      "sha": "9443612b024114c424ba2f8146e04050d6e049b0"
+    },
+    {
+      "name": "work/mail-outbox-management-20261120",
+      "sha": "79e11935e16ea1d2fa576ead0712c83f22e15c28"
+    }
+  ],
+  "recent_prs": [
+    {
+      "number": 254,
+      "title": "Mail: review, export and safely edit durable Outbox messages [skip ci]",
+      "state": "open",
+      "draft": true,
+      "head_ref": "work/mail-outbox-management-20261120",
+      "head_sha": "79e11935e16ea1d2fa576ead0712c83f22e15c28",
+      "merged_at": null,
+      "merge_sha": "aa6e790ddc7e469169bcdbb117dcdcfaf612b9df"
+    },
+    {
+      "number": 257,
+      "title": "Extend Word VBA custom tab stops and reconcile recent fork work [skip ci]",
+      "state": "closed",
+      "draft": false,
+      "head_ref": "codex/word-vba-ranges-20261120",
+      "head_sha": "22e5960e99915e81a1b5997058cac44dac27ba1a",
+      "merged_at": "2026-11-20T14:47:58Z",
+      "merge_sha": "5c48058bedc42dd8cbf3fb9d6f1fb492b2ac1eb8"
+    },
+    {
+      "number": 249,
+      "title": "Preserve Zotero research-note tables and active cell citations [skip ci]",
+      "state": "closed",
+      "draft": true,
+      "head_ref": "codex/zotero-research-tables-20261120",
+      "head_sha": "a2b87ee3f471da500423055e86ba2614fc053cae",
+      "merged_at": "2026-11-20T14:10:35Z",
+      "merge_sha": "b95f83db4f54b5e4e44e3bcb8c384ea7445e3970"
+    },
+    {
+      "number": 256,
+      "title": "Finalize Zotero table parity evidence and current-main qualification [skip ci]",
+      "state": "closed",
+      "draft": false,
+      "head_ref": "codex/zotero-research-tables-20261120",
+      "head_sha": "34491bca22a2989dd89d9da3c853f5e57de5464f",
+      "merged_at": "2026-11-20T14:27:36Z",
+      "merge_sha": "7f2d51a5206059478ea81965ccc95b89a9274ca6"
+    },
+    {
+      "number": 255,
+      "title": "Reconcile final Zotero evidence after the Mail draft milestone",
+      "state": "closed",
+      "draft": false,
+      "head_ref": "work/mail-multiple-drafts-20261120",
+      "head_sha": "b3abdf3b4628a8a703857d69b8f11cd21bc502e1",
+      "merged_at": "2026-11-20T14:10:33Z",
+      "merge_sha": "243b99a5ee56e591991f381533b2363586bd5dd0"
+    },
+    {
+      "number": 252,
+      "title": "Extend Word and PowerPoint VBA helpers, paragraph layout and text margins [skip ci]",
+      "state": "closed",
+      "draft": false,
+      "head_ref": "codex/word-powerpoint-vba-expansion-20261120",
+      "head_sha": "0f6239396ff3328473a5f57c280b982d57e33a08",
+      "merged_at": "2026-11-20T14:05:18Z",
+      "merge_sha": "e7ed2efd4e661ef244a21dd2836525c8e1531b7e"
+    },
+    {
+      "number": 253,
+      "title": "Add multiple local mail drafts and offline composition",
+      "state": "closed",
+      "draft": false,
+      "head_ref": "work/mail-multiple-drafts-20261120",
+      "head_sha": "4b6bc01be2c95008c320b5a26615828191cf1d9e",
+      "merged_at": "2026-11-20T14:05:16Z",
+      "merge_sha": "4df939eeed1bda9f9dbde8c8d2cbf0a4fe91b5b0"
+    },
+    {
+      "number": 251,
+      "title": "Mail: complete account ownership and Outbox integration",
+      "state": "closed",
+      "draft": false,
+      "head_ref": "work/mail-accounts-20261120",
+      "head_sha": "86e44e87f829b0309ea7b84fd5d390f596fe7f26",
+      "merged_at": "2026-11-20T14:02:54Z",
+      "merge_sha": "ae32c69000a33c37770f522ea1d54627bcf09a6b"
+    },
+    {
+      "number": 243,
+      "title": "Mail: add remembered native accounts and explicit switching",
+      "state": "closed",
+      "draft": true,
+      "head_ref": "work/mail-accounts-20261120",
+      "head_sha": "a059c0249a25bef602640c8b8d504bd8da41c619",
+      "merged_at": "2026-11-20T11:46:32Z",
+      "merge_sha": "f7bf155337b0ba77dc20c6be548ef38ac06c5c65"
+    },
+    {
+      "number": 250,
+      "title": "Mail: durable foreground Outbox with explicit recovery [skip ci]",
+      "state": "closed",
+      "draft": false,
+      "head_ref": "work/mail-outbox-20261120",
+      "head_sha": "9443612b024114c424ba2f8146e04050d6e049b0",
+      "merged_at": "2026-11-20T13:32:06Z",
+      "merge_sha": "13be50464d1b43e9f2100fb9ccc12f8fe22eb55e"
+    },
+    {
+      "number": 248,
+      "title": "Complete safe HTML replies and explicit attachment forwarding",
+      "state": "closed",
+      "draft": false,
+      "head_ref": "work/mail-reply-forward-20261120",
+      "head_sha": "56d5fdf15a20ced764561a1ac2429c2c37a6e780",
+      "merged_at": "2026-11-20T12:31:17Z",
+      "merge_sha": "c3df77d01ea9df4846e18131e69160d858f174ac"
+    },
+    {
+      "number": 238,
+      "title": "Complete Zotero image notes and structured lists; integrate incoming Office work",
+      "state": "closed",
+      "draft": false,
+      "head_ref": "codex/zotero-parity-continuation-20261120",
+      "head_sha": "40a8f8eb76bd9bf51205fa0cb9f576ba497ad76b",
+      "merged_at": "2026-11-20T10:55:29Z",
+      "merge_sha": "50e33639c545164af9f693265494c28b4ec8c15e"
+    },
+    {
+      "number": 240,
+      "title": "Extend Zotero research insertion to authored notes and selected text [skip ci]",
+      "state": "closed",
+      "draft": false,
+      "head_ref": "codex/zotero-note-targets-20261120",
+      "head_sha": "6c23d94472f741aceff6aef0de0e6ef847195afe",
+      "merged_at": "2026-11-20T10:55:27Z",
+      "merge_sha": "c028baf2491f701735a53552b4b3674914a4f830"
+    },
+    {
+      "number": 245,
+      "title": "Extend Word and PowerPoint VBA typography and slideshow support",
+      "state": "closed",
+      "draft": false,
+      "head_ref": "codex/word-powerpoint-vba-continuation-20261120",
+      "head_sha": "d46d4ef394ed7cafd40bc266c793f8c0df6ec57f",
+      "merged_at": "2026-11-20T11:19:24Z",
+      "merge_sha": "3ffa599ff003a6e678260df1237b01887693e546"
+    },
+    {
+      "number": 247,
+      "title": "Incremental Word relayout for local edits (typing lag)",
+      "state": "closed",
+      "draft": false,
+      "head_ref": "perf/incremental-layout-20261120",
+      "head_sha": "baf6d1bc53b611e9fb37082ca69c409e5f8d6381",
+      "merged_at": "2026-11-20T13:09:31Z",
+      "merge_sha": "b42eca1db058f0def247b86c2f15dea90c11b4e8"
+    },
+    {
+      "number": 242,
+      "title": "Redesign the Downloads manager (uniform grouped package list)",
+      "state": "closed",
+      "draft": false,
+      "head_ref": "feat/downloads-manager-redesign-20261120",
+      "head_sha": "84d02025fade09c80f3f58942b466f4522eb4434",
+      "merged_at": "2026-11-20T11:46:32Z",
+      "merge_sha": "7600f7fd71fdc7f01228155a22d600177f5afcb9"
+    },
+    {
+      "number": 246,
+      "title": "Fix analyze on main: font-pack stub signature, duplicate crypto dev dependency",
+      "state": "closed",
+      "draft": false,
+      "head_ref": "fix/font-pack-stub-packs-20261120",
+      "head_sha": "d0c9007480ba518022836e017802875614e6205c",
+      "merged_at": "2026-11-20T11:17:02Z",
+      "merge_sha": "899df57d03e55bf73357136c5f21739c5c9b5719"
+    },
+    {
+      "number": 244,
+      "title": "Typing/proofing: record hosted benchmark and suite results [skip ci]",
+      "state": "closed",
+      "draft": false,
+      "head_ref": "perf/typing-proofing-results-20261120",
+      "head_sha": "2fd61c3353dc22ee36ed1bc1a69df470a9423230",
+      "merged_at": "2026-11-20T11:01:51Z",
+      "merge_sha": "e59b8918db508da46039a943080dc4b7a5c7a0bb"
+    },
+    {
+      "number": 237,
+      "title": "Typing: coalesce as-you-type proofing and status chrome (+ benchmark)",
+      "state": "closed",
+      "draft": true,
+      "head_ref": "perf/typing-proofing-20261120",
+      "head_sha": "712d0ea558a01cabff25a83294a29b8d57ec25d4",
+      "merged_at": "2026-11-20T10:55:29Z",
+      "merge_sha": "e867ffaa1c434a019b9ea8ccdd8592918ada6c0d"
+    },
+    {
+      "number": 241,
+      "title": "Mail: shared foreground navigation and reconciled qualification",
+      "state": "closed",
+      "draft": false,
+      "head_ref": "work/mail-workspace-20261120",
+      "head_sha": "aad737dd79c034b831a8957daa4165c6c64e35e5",
+      "merged_at": "2026-11-20T10:28:08Z",
+      "merge_sha": "50b029b3747a6643df040dafb470e54fa8dd5466"
+    }
+  ],
+  "scope": "Reconcile recent work, extend verified offline local-draft access; exact implementation scope set after code review. No GitHub Actions polling."
+}

@@ -42,11 +42,12 @@ redirect an old save into another message.
 
 Historical autodiscovery records omit the exact discovered port and effective
 login, so this increment does not guess an offline account fingerprint for
-them. They still expose their drafts after reconnecting. Offline entry for
-those accounts, EWS and cloud accounts needs durable verified connection and
-session metadata in a subsequent increment. A locked credential backend can
-also prevent selecting a remembered account. This is local draft access, not an
-offline inbox or provider-side Drafts synchronization.
+them. The subsequent [verified-account increment](offline-accounts.md) records
+that exact metadata after a successful reconnect and adds credential-free
+**Drafts for connected accounts** for these accounts, EWS and cloud accounts.
+The original remembered-account entry still depends on selecting an unlocked
+credential record. Both entries provide local draft access; an offline inbox
+and provider-side Drafts synchronization remain separate work.
 
 ## Storage and recovery contract
 

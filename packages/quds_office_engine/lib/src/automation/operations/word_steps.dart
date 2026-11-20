@@ -2,6 +2,7 @@ import 'package:quds_office_engine/quds_office_engine.dart';
 import 'package:quds_office_engine/src/word/serial/word_property_io.dart';
 
 import 'step_input.dart';
+import 'word_list_steps.dart';
 import 'word_structure_steps.dart';
 
 const _storyFields = <String>['story', 'section', 'note', 'comment'];
@@ -66,6 +67,8 @@ const wordOperations = <String, List<String>>{
   'list': ['paragraph', 'numbered', 'level'],
   'listClear': ['paragraph'],
   'listRestart': ['paragraph', 'at'],
+  'listDefault': ['paragraph', 'numbered'],
+  'removeNumbers': ['paragraph', 'numberType'],
   'hyperlink': ['paragraph', 'run', 'target', ..._storyFields],
   'tableCellText': ['table', 'row', 'column', 'gridColumn', 'text'],
   'headerFooterText': ['section', 'story', 'paragraph', 'text'],
@@ -548,6 +551,14 @@ void applyStep(
         numbered: s.boolean('numbered'),
         level: s.integer('level', fallback: 0, max: 8),
         document: doc,
+      );
+    case 'listDefault':
+      applyDefaultWordList(doc, paragraph(), numbered: s.boolean('numbered'));
+    case 'removeNumbers':
+      removeWordNumbers(
+        doc,
+        paragraph(),
+        numberType: s.string('numberType', fallback: 'all'),
       );
     case 'listClear':
       WordLists.clear(paragraph());

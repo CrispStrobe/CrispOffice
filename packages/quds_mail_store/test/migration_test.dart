@@ -10,7 +10,7 @@ import 'package:quds_mail_core/quds_mail_core.dart';
 import 'package:quds_mail_store/quds_mail_store.dart';
 import 'package:quds_mail_store/src/codec.dart';
 import 'package:quds_mail_store/src/schema/database.dart'
-    show schemaV1, schemaV2;
+    show schemaV1, schemaV2, schemaV3;
 import 'package:sqlite3/sqlite3.dart' as sqlite;
 import 'package:test/test.dart';
 
@@ -82,7 +82,7 @@ void main() {
       expect(_snapshot(file), before);
       final database = sqlite.sqlite3.open(file.path);
       try {
-        expect(database.userVersion, 3);
+        expect(database.userVersion, 4);
         expect(database.select('PRAGMA foreign_key_check'), isEmpty);
         expect(
           database.select('SELECT count(*) AS n FROM mail_fts').single['n'],
@@ -169,7 +169,7 @@ void main() {
 
       final database = sqlite.sqlite3.open(file.path);
       try {
-        expect(database.userVersion, 3);
+        expect(database.userVersion, 4);
         expect(database.select('PRAGMA foreign_key_check'), isEmpty);
         for (final invalid in <Object?>[-1, 32, 0.5, 'invalid']) {
           expect(
@@ -327,14 +327,90 @@ void main() {
       expect(_snapshot(file), before);
       final upgraded = sqlite.sqlite3.open(file.path);
       try {
-        expect(upgraded.userVersion, 3);
+        expect(upgraded.userVersion, 4);
       } finally {
         upgraded.close();
       }
     },
   );
 
-  for (final version in [4, 9]) {
+  for (final interrupted in [false, true]) {
+    test(
+      'v3 account-directory migration preserves all content; interrupted=$interrupted',
+      () async {
+        _upgradeFixtureV2(file);
+        final old = sqlite.sqlite3.open(file.path);
+        for (final statement in schemaV3) {
+          old.execute(statement);
+        }
+        old.execute('UPDATE messages SET flags=3');
+        old.userVersion = 3;
+        old.close();
+        final before = _snapshot(file);
+        if (interrupted) {
+          final failed = await _open(
+            file,
+            faultInjector: (point) {
+              if (point == MailStoreCheckpoint.migrationCreated) {
+                throw const MailStoreStorageException(
+                  MailProblemCode.storageFailure,
+                );
+              }
+            },
+          );
+          expect(_problem(failed), MailProblemCode.storageFailure);
+          final check = sqlite.sqlite3.open(file.path);
+          expect(check.userVersion, 3);
+          expect(
+            check.select(
+              "SELECT name FROM sqlite_master WHERE name='local_accounts'",
+            ),
+            isEmpty,
+          );
+          check.close();
+          expect(_snapshot(file), before);
+        }
+        final repository = _value(await _open(file));
+        expect(_value(await repository.listLocalAccounts()), isEmpty);
+        expect(
+          _value(
+            await repository.listHeaders(_mailbox),
+          ).map((row) => row.flags!.isRead),
+          everyElement(isTrue),
+        );
+        expect(
+          _value(
+            await repository.loadDraft(_account, _draft.id),
+          )!.attachments.first.content.bytes,
+          _attachmentA.bytes,
+        );
+        expect(
+          _value(
+            await repository.recoverOutbox(_account),
+          ).single.prepared.wireHash,
+          _queued.prepared.wireHash,
+        );
+        expect(
+          _value(await repository.search(_account, 'seeded')).single.header.id,
+          MailMessageId('message-1'),
+        );
+        await repository.close();
+        expect(_snapshot(file), before);
+        final current = sqlite.sqlite3.open(file.path);
+        expect(current.userVersion, 4);
+        expect(current.select('PRAGMA foreign_key_check'), isEmpty);
+        expect(
+          current
+              .select('SELECT flags FROM messages')
+              .map((row) => row['flags']),
+          everyElement(3),
+        );
+        current.close();
+      },
+    );
+  }
+
+  for (final version in [5, 9]) {
     test(
       'future schema $version is rejected without changing existing data',
       () async {

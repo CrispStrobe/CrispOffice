@@ -378,7 +378,7 @@ void main() {
     final name = command.name;
     for (final reverse in [false, true]) {
       test(
-        '$name table replacement restores selection and native owners on undo',
+        '$name table replacement restores ${reverse ? 'backward' : 'forward'} selection and native owners on undo',
         () {
           final controller = _controller();
           controller.caret
@@ -1450,32 +1450,35 @@ void main() {
         },
       );
 
-      test('a moved note selection refuses a staged ${command.name}', () {
-        final document = _document();
-        final note = WordNotes.insert(
-          document,
-          document.paragraphs.last,
-          text: 'Authored',
-          endnote: endnote,
-        );
-        final controller = _controller(document: document);
-        controller.setNoteEditingTarget(
-          note,
-          const TextSelection(baseOffset: 1, extentOffset: 4),
-        );
-        final before = _state(document);
-        final transaction = _begin(controller, command: command);
-        _stageCitedNote(transaction);
-        _complete(transaction);
-        controller.setNoteEditingTarget(
-          note,
-          const TextSelection(baseOffset: 1, extentOffset: 5),
-        );
-        expect(transaction.apply, throwsStateError);
-        expect(_state(document), before);
-        expect(controller.canUndo, isFalse);
-        expect(controller.isDirty, isFalse);
-      });
+      test(
+        'a moved ${endnote ? 'endnote' : 'footnote'} selection refuses a staged ${command.name}',
+        () {
+          final document = _document();
+          final note = WordNotes.insert(
+            document,
+            document.paragraphs.last,
+            text: 'Authored',
+            endnote: endnote,
+          );
+          final controller = _controller(document: document);
+          controller.setNoteEditingTarget(
+            note,
+            const TextSelection(baseOffset: 1, extentOffset: 4),
+          );
+          final before = _state(document);
+          final transaction = _begin(controller, command: command);
+          _stageCitedNote(transaction);
+          _complete(transaction);
+          controller.setNoteEditingTarget(
+            note,
+            const TextSelection(baseOffset: 1, extentOffset: 5),
+          );
+          expect(transaction.apply, throwsStateError);
+          expect(_state(document), before);
+          expect(controller.canUndo, isFalse);
+          expect(controller.isDirty, isFalse);
+        },
+      );
     }
 
     for (final reverse in [false, true]) {

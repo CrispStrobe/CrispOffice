@@ -1,0 +1,65 @@
+{
+  "started_at_utc": "2026-11-20T15:31:50.064492+00:00",
+  "source_commit_at_start": "57456c602856a8ec56095352e9c1b9b17476ea69",
+  "source_sha256": "96ddf69952ce93af84949ac18e070e7b10de9a0f6882c6ca228eec4f400daf75",
+  "source_bytes": 1139,
+  "driver_sha256": "bc3322c4aa1d7630d7999d528bee6baa3a65340bc0558136fc419b3dd8748805",
+  "input_scopes": [
+    "packages/quds_office_engine/lib",
+    "packages/quds_office_engine/test",
+    "packages/quds_office_engine/tool",
+    "packages/quds_office_engine/example",
+    "packages/legacy_doc_parser/lib",
+    "packages/legacy_doc_parser/pubspec.yaml",
+    "packages/quds_office_engine/pubspec.yaml",
+    "pubspec.yaml",
+    "pubspec.lock",
+    "analysis_options.yaml"
+  ],
+  "input_count": 1116,
+  "attempts": [
+    {
+      "name": "vm",
+      "command": [
+        "/workspace/scratch/c7ec4681d1f4/runtime/dart-sdk/bin/dart",
+        "--old_gen_heap_size=512",
+        "--packages=/workspace/scratch/c7ec4681d1f4/quds_office_suite/.dart_tool/package_config.json",
+        "-DWORD_LISTS_BAS_BASE64=T3B0aW9uIEV4cGxpY2l0CgonIFJlcXVpcmVzIGZvdXIgZXhpc3RpbmcgYm9keSBwYXJhZ3JhcGhzLiBFbXB0eSBwYXJhZ3JhcGhzIGFyZSBzdXBwb3J0ZWQuCicgRGVmYXVsdCBtZXRob2RzIHRvZ2dsZSBhIG1hdGNoaW5nIGxpc3Q7IHJlbW92ZSBwYXJhZ3JhcGggbnVtYmVyaW5nIGZpcnN0Cicgd2hlbiB0aGUgaW50ZW5kZWQgcmVzdWx0IG11c3QgYWx3YXlzIGJlIGEgbmV3IGxldmVsLXplcm8gZGVmYXVsdCBsaXN0LgpTdWIgUmVzZXRMaXN0KEJ5VmFsIHRhcmdldCBBcyBMaXN0Rm9ybWF0LCBCeVZhbCBudW1iZXJlZCBBcyBCb29sZWFuKQogICAgV2l0aCB0YXJnZXQKICAgICAgICAuUmVtb3ZlTnVtYmVycyBOdW1iZXJUeXBlOj13ZE51bWJlclBhcmFncmFwaAogICAgICAgIElmIG51bWJlcmVkIFRoZW4KICAgICAgICAgICAgLkFwcGx5TnVtYmVyRGVmYXVsdCBEZWZhdWx0TGlzdEJlaGF2aW9yOj13ZFdvcmQ4TGlzdEJlaGF2aW9yCiAgICAgICAgRWxzZQogICAgICAgICAgICAuQXBwbHlCdWxsZXREZWZhdWx0CiAgICAgICAgRW5kIElmCiAgICBFbmQgV2l0aApFbmQgU3ViCgpTdWIgTWFpbigpCiAgICBEaW0gZmlyc3QgQXMgUGFyYWdyYXBoCiAgICBEaW0gdGFyZ2V0IEFzIExpc3RGb3JtYXQKICAgIFNldCBmaXJzdCA9IEFwcGxpY2F0aW9uLkFjdGl2ZURvY3VtZW50LlBhcmFncmFwaHMuSXRlbSgxKQogICAgU2V0IHRhcmdldCA9IGZpcnN0LlJhbmdlLkxpc3RGb3JtYXQKICAgIENhbGwgUmVzZXRMaXN0KG51bWJlcmVkOj1UcnVlLCB0YXJnZXQ6PXRhcmdldCkKCiAgICBTZXQgdGFyZ2V0ID0gQWN0aXZlRG9jdW1lbnQuUGFyYWdyYXBocygyKS5SYW5nZS5MaXN0Rm9ybWF0CiAgICBSZXNldExpc3QgdGFyZ2V0LCBGYWxzZQoKICAgIFdpdGggVGhpc0RvY3VtZW50LlBhcmFncmFwaHMoMykuUmFuZ2UuTGlzdEZvcm1hdAogICAgICAgIC5BcHBseU51bWJlckRlZmF1bHQKICAgICAgICBDYWxsIC5BcHBseU51bWJlckRlZmF1bHQoKQogICAgICAgIC5BcHBseUJ1bGxldERlZmF1bHQgMAogICAgRW5kIFdpdGgKCiAgICBDYWxsIEFjdGl2ZURvY3VtZW50LlBhcmFncmFwaHMoNCkuUmFuZ2UuTGlzdEZvcm1hdC5SZW1vdmVOdW1iZXJzKE51bWJlclR5cGU6PXdkTnVtYmVyQWxsTnVtYmVycykKRW5kIFN1Ygo=",
+        "/workspace/scratch/c7ec4681d1f4/quds_office_suite/packages/quds_office_engine/tool/macros/web_vba_word_lists_smoke.dart"
+      ],
+      "exit_code": 0,
+      "seconds": 14.497
+    },
+    {
+      "name": "js-compile",
+      "command": [
+        "/workspace/scratch/c7ec4681d1f4/runtime/dart-sdk/bin/dart",
+        "compile",
+        "js",
+        "-O1",
+        "--packages=/workspace/scratch/c7ec4681d1f4/quds_office_suite/.dart_tool/package_config.json",
+        "-DWORD_LISTS_BAS_BASE64=T3B0aW9uIEV4cGxpY2l0CgonIFJlcXVpcmVzIGZvdXIgZXhpc3RpbmcgYm9keSBwYXJhZ3JhcGhzLiBFbXB0eSBwYXJhZ3JhcGhzIGFyZSBzdXBwb3J0ZWQuCicgRGVmYXVsdCBtZXRob2RzIHRvZ2dsZSBhIG1hdGNoaW5nIGxpc3Q7IHJlbW92ZSBwYXJhZ3JhcGggbnVtYmVyaW5nIGZpcnN0Cicgd2hlbiB0aGUgaW50ZW5kZWQgcmVzdWx0IG11c3QgYWx3YXlzIGJlIGEgbmV3IGxldmVsLXplcm8gZGVmYXVsdCBsaXN0LgpTdWIgUmVzZXRMaXN0KEJ5VmFsIHRhcmdldCBBcyBMaXN0Rm9ybWF0LCBCeVZhbCBudW1iZXJlZCBBcyBCb29sZWFuKQogICAgV2l0aCB0YXJnZXQKICAgICAgICAuUmVtb3ZlTnVtYmVycyBOdW1iZXJUeXBlOj13ZE51bWJlclBhcmFncmFwaAogICAgICAgIElmIG51bWJlcmVkIFRoZW4KICAgICAgICAgICAgLkFwcGx5TnVtYmVyRGVmYXVsdCBEZWZhdWx0TGlzdEJlaGF2aW9yOj13ZFdvcmQ4TGlzdEJlaGF2aW9yCiAgICAgICAgRWxzZQogICAgICAgICAgICAuQXBwbHlCdWxsZXREZWZhdWx0CiAgICAgICAgRW5kIElmCiAgICBFbmQgV2l0aApFbmQgU3ViCgpTdWIgTWFpbigpCiAgICBEaW0gZmlyc3QgQXMgUGFyYWdyYXBoCiAgICBEaW0gdGFyZ2V0IEFzIExpc3RGb3JtYXQKICAgIFNldCBmaXJzdCA9IEFwcGxpY2F0aW9uLkFjdGl2ZURvY3VtZW50LlBhcmFncmFwaHMuSXRlbSgxKQogICAgU2V0IHRhcmdldCA9IGZpcnN0LlJhbmdlLkxpc3RGb3JtYXQKICAgIENhbGwgUmVzZXRMaXN0KG51bWJlcmVkOj1UcnVlLCB0YXJnZXQ6PXRhcmdldCkKCiAgICBTZXQgdGFyZ2V0ID0gQWN0aXZlRG9jdW1lbnQuUGFyYWdyYXBocygyKS5SYW5nZS5MaXN0Rm9ybWF0CiAgICBSZXNldExpc3QgdGFyZ2V0LCBGYWxzZQoKICAgIFdpdGggVGhpc0RvY3VtZW50LlBhcmFncmFwaHMoMykuUmFuZ2UuTGlzdEZvcm1hdAogICAgICAgIC5BcHBseU51bWJlckRlZmF1bHQKICAgICAgICBDYWxsIC5BcHBseU51bWJlckRlZmF1bHQoKQogICAgICAgIC5BcHBseUJ1bGxldERlZmF1bHQgMAogICAgRW5kIFdpdGgKCiAgICBDYWxsIEFjdGl2ZURvY3VtZW50LlBhcmFncmFwaHMoNCkuUmFuZ2UuTGlzdEZvcm1hdC5SZW1vdmVOdW1iZXJzKE51bWJlclR5cGU6PXdkTnVtYmVyQWxsTnVtYmVycykKRW5kIFN1Ygo=",
+        "-o",
+        "/workspace/scratch/c7ec4681d1f4/runtime/word-lists-portable-final-v2/word-lists-smoke.js",
+        "/workspace/scratch/c7ec4681d1f4/quds_office_suite/packages/quds_office_engine/tool/macros/web_vba_word_lists_smoke.dart"
+      ],
+      "exit_code": 0,
+      "seconds": 21.546
+    },
+    {
+      "name": "js",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+        "-e",
+        "globalThis.self = globalThis; require(process.argv[1]);",
+        "/workspace/scratch/c7ec4681d1f4/runtime/word-lists-portable-final-v2/word-lists-smoke.js"
+      ],
+      "exit_code": 0,
+      "seconds": 1.966
+    }
+  ],
+  "raw_equal": true,
+  "canonical_equal": true,
+  "canonical_sha256": "3ad9648c52a2495ffa433f629e97302edd94501b7393424036f6f81986e01def",
+  "source_inputs_unchanged_during_run": true
+}

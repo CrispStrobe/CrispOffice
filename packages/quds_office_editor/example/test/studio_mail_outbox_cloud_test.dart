@@ -16,6 +16,7 @@ import 'package:quds_office_studio/studio_mail_strings.dart';
 import 'package:quds_office_studio/studio_strings.dart';
 
 import 'support/mail_outbox_store.dart';
+import 'support/mail_local_accounts.dart';
 
 const _strings = StudioStrings(StudioLanguage.en);
 const _sender = 'reader@example.test';
@@ -175,8 +176,9 @@ Future<_Provider> _mountCloud(
   WidgetTester tester,
   SqliteOutboxFixture fixture,
   _CloudHarness harness,
-  MailCloudService service,
-) async {
+  MailCloudService service, {
+  MemoryMailLocalAccounts? localAccounts,
+}) async {
   await tester.pumpWidget(
     MaterialApp(
       home: Builder(
@@ -192,6 +194,7 @@ Future<_Provider> _mountCloud(
                 openBrowser: (_) async => true,
                 initialClientId: 'controlled-desktop-client',
                 draftStoreFactory: fixture.open,
+                localAccountStore: localAccounts,
               ),
             ),
             child: const Text('Open cloud outbox fixture'),
@@ -242,6 +245,54 @@ void _sameFrozenContent(
 }
 
 void main() {
+  for (final service in MailCloudService.values) {
+    testWidgets(
+      '${service.name} registers offline draft identity and opens without another authorization',
+      (tester) async {
+        final fixture = await _fixture(tester, service);
+        final seed = await awaitOutboxOperation(tester, fixture.openLoaded());
+        await awaitOutboxOperation(
+          tester,
+          seed.save(
+            const StudioMailDraft(
+              to: 'reader@example.test',
+              subject: 'Offline cloud draft',
+              body: 'Keep cloud work',
+            ),
+            submissionUncertain: false,
+          ),
+        );
+        await awaitOutboxOperation(tester, seed.close());
+        final directory = MemoryMailLocalAccounts();
+        final harness = _CloudHarness();
+        final provider = await _mountCloud(
+          tester,
+          fixture,
+          harness,
+          service,
+          localAccounts: directory,
+        );
+        expect(directory.remembered.single.account, fixture.identity.account);
+        await _press(tester, find.byTooltip(_strings.disconnect));
+        await _press(tester, _key('studio-mail-known-drafts'));
+        await _press(
+          tester,
+          _key('studio-mail-local-account-${fixture.identity.account.value}'),
+        );
+        await _press(tester, find.text('Offline cloud draft'));
+        final composer = tester.widget<StudioMailComposeDialog>(
+          find.byType(StudioMailComposeDialog),
+        );
+        expect(composer.canSend, isFalse);
+        expect(composer.onQueueDraft, isNull);
+        expect(harness.tokens, hasLength(1));
+        expect(harness.providers, hasLength(1));
+        expect(provider.submissions, isEmpty);
+        await tester.pumpWidget(const SizedBox.shrink());
+      },
+    );
+  }
+
   for (final service in [
     MailCloudService.gmail,
     MailCloudService.microsoft365,

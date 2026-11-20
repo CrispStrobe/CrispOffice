@@ -18,6 +18,9 @@ import 'studio_mail_draft_store.dart';
 import 'studio_mail_draft_store_native.dart';
 import 'studio_mail_drafts_dialog.dart';
 import 'studio_mail_drafts_strings.dart';
+import 'studio_mail_local_accounts.dart';
+import 'studio_mail_local_accounts_dialog.dart';
+import 'studio_mail_local_accounts_strings.dart';
 import 'studio_mail_operation.dart';
 import 'studio_mail_reply.dart';
 import 'studio_mail_strings.dart';
@@ -57,6 +60,7 @@ class StudioMailEwsDialog extends StatefulWidget {
     this.archiveWriter,
     this.archiveFolderWriter,
     this.draftStoreFactory,
+    this.localAccountStore,
   }) : cloudService = null,
        cloudAuthorizer = null,
        cloudProviderFactory = null,
@@ -74,6 +78,7 @@ class StudioMailEwsDialog extends StatefulWidget {
     this.archiveWriter,
     this.archiveFolderWriter,
     this.draftStoreFactory,
+    this.localAccountStore,
   }) : cloudService = service,
        providerFactory = null;
 
@@ -89,12 +94,19 @@ class StudioMailEwsDialog extends StatefulWidget {
   final StudioMailArchiveWriter? archiveWriter;
   final StudioMailArchiveFolderWriter? archiveFolderWriter;
   final StudioMailDraftStoreFactory? draftStoreFactory;
+  final StudioMailLocalAccountStore? localAccountStore;
 
   @override
   State<StudioMailEwsDialog> createState() => _StudioMailEwsDialogState();
 }
 
 class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
+  StudioMailLocalAccountStore? get _localAccounts =>
+      widget.localAccountStore ??
+      (widget.draftStoreFactory == null
+          ? NativeStudioMailLocalAccountStore.instance
+          : null);
+
   static const _pageSize = 50;
   static const _maxHeaders = 1000;
   final _endpoint = TextEditingController();
@@ -128,6 +140,7 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
   MailReaderController? _reader;
   StudioMailDraft? _draft;
   StudioMailDraftStore? _draftStore;
+  Future<void> _draftStoreClosing = Future<void>.value();
   StudioMailDraftAccount? _draftIdentity;
   bool _submissionUncertain = false;
   bool _connected = false;
@@ -137,6 +150,7 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
   bool _needsRefresh = false;
   String? _error;
   String? _notice;
+  String? _localAccountWarning;
   String _sender = '';
   int _serial = 0;
 
@@ -549,7 +563,10 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
       _sender = '';
     });
     _retire(old);
-    unawaited(_closeDraftStore(draftStore));
+    _draftStoreClosing = _draftStoreClosing.then(
+      (_) => _closeDraftStore(draftStore),
+    );
+    unawaited(_draftStoreClosing);
   }
 
   Future<void> _closeDraftStore(StudioMailDraftStore? store) async {
@@ -570,8 +587,13 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
     final identity = _draftIdentity;
     if (identity == null) return false;
     StudioMailDraftStore? candidate;
-    setState(() => _busy = true);
+    setState(() {
+      _busy = true;
+      _localAccountWarning = null;
+    });
     try {
+      await _draftStoreClosing;
+      if (!_current(provider, lease)) return false;
       candidate = await (widget.draftStoreFactory ?? openStudioMailDraftStore)(
         identity,
       );
@@ -603,7 +625,20 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
             : null;
         if (restored != null) _notice = widget.strings.mailDraftRestored;
       });
-      return true;
+      final directory = _localAccounts;
+      if (directory != null && candidate is StudioMailDraftCatalog) {
+        try {
+          await directory.remember(identity);
+        } on Object {
+          if (_current(provider, lease)) {
+            setState(
+              () => _localAccountWarning =
+                  widget.strings.mailLocalAccountsSaveFailed,
+            );
+          }
+        }
+      }
+      return _current(provider, lease);
     } on Object {
       await _closeDraftStore(candidate);
       if (_current(provider, lease)) {
@@ -1475,6 +1510,45 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
     });
   }
 
+  Future<void> _openLocalAccounts() async {
+    final directory = _localAccounts;
+    if (directory == null || _connected || _session != null || _blocked) return;
+    bool current() => mounted && !_connected && _session == null;
+    setState(() => _dialogOpen = true);
+    try {
+      await _draftStoreClosing;
+      if (!mounted || !current()) return;
+      await showDialog<void>(
+        context: context,
+        barrierDismissible: false,
+        builder: (_) => StudioMailLocalAccountsDialog(
+          strings: widget.strings,
+          store: directory,
+          provider: switch (widget.cloudService) {
+            MailCloudService.gmail => MailProviderKind.gmail,
+            MailCloudService.microsoft365 => MailProviderKind.graph,
+            null => MailProviderKind.ews,
+          },
+          isCurrent: current,
+          draftStoreFactory: widget.draftStoreFactory,
+        ),
+      );
+    } on Object {
+      if (current()) {
+        setState(() => _error = widget.strings.mailLocalAccountsFailed);
+      }
+    } finally {
+      if (current()) setState(() => _dialogOpen = false);
+    }
+  }
+
+  Widget _localAccountsButton() => OutlinedButton.icon(
+    key: const ValueKey('studio-mail-known-drafts'),
+    onPressed: _blocked ? null : _openLocalAccounts,
+    icon: const Icon(Icons.folder_open_outlined),
+    label: Text(widget.strings.mailLocalAccounts),
+  );
+
   @override
   Widget build(BuildContext context) => Dialog.fullscreen(
     child: Scaffold(
@@ -1566,6 +1640,7 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
+            if (_localAccounts != null) _localAccountsButton(),
             const Icon(Icons.cloud_outlined, size: 44),
             const SizedBox(height: 12),
             Text(
@@ -1656,6 +1731,7 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
+            if (_localAccounts != null) _localAccountsButton(),
             const Icon(Icons.dns_outlined, size: 44),
             const SizedBox(height: 12),
             Text(widget.strings.ewsSetupHelp, textAlign: TextAlign.center),
@@ -1797,6 +1873,14 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
     children: [
       if (_busy) const LinearProgressIndicator(minHeight: 2),
       _folderArchiveAction(),
+      if (_localAccountWarning case final warning?)
+        Material(
+          color: Theme.of(context).colorScheme.errorContainer,
+          child: Padding(
+            padding: const EdgeInsets.all(12),
+            child: Text(warning),
+          ),
+        ),
       if (_error != null || _notice != null)
         Material(
           color: _error == null

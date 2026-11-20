@@ -43,6 +43,73 @@ final class MailStoreLimits {
 
 enum MailStoredAccountState { active, loggedOut, removed }
 
+/// Non-secret route observed during a successful foreground connection.
+/// This is a local access directory, not an authentication or reconnect record.
+/// The host owns [id] and verifies it against its existing draft namespace.
+final class MailLocalAccountRecord {
+  const MailLocalAccountRecord({
+    required this.id,
+    required this.provider,
+    required this.endpoint,
+    required this.login,
+    required this.sender,
+    required this.lastConnectedAt,
+    this.revision = 0,
+  });
+
+  final String id;
+  final MailProviderKind provider;
+  final String endpoint;
+  final String login;
+  final String sender;
+  final DateTime lastConnectedAt;
+
+  /// Monotonic connection revision, independent of wall-clock precision.
+  final int revision;
+
+  bool get isValid {
+    bool text(String value, int limit) =>
+        value.isNotEmpty &&
+        value.length <= limit &&
+        value == value.trim() &&
+        !RegExp(r'[\x00-\x1f\x7f]').hasMatch(value);
+    final uri = Uri.tryParse(endpoint);
+    return text(id, 1024) &&
+        text(endpoint, 4096) &&
+        text(login, 4096) &&
+        text(sender, 320) &&
+        RegExp(r'^[^\s@]+@[^\s@]+$').hasMatch(sender) &&
+        lastConnectedAt.millisecondsSinceEpoch >= 0 &&
+        revision >= 0 &&
+        revision <= 9007199254740991 &&
+        uri != null &&
+        uri.hasAuthority &&
+        uri.host.isNotEmpty &&
+        uri.userInfo.isEmpty &&
+        !uri.hasQuery &&
+        !uri.hasFragment &&
+        uri.toString() == endpoint &&
+        switch (provider) {
+          MailProviderKind.imap =>
+            (uri.scheme == 'imap' || uri.scheme == 'imaps') && uri.path.isEmpty,
+          MailProviderKind.ews ||
+          MailProviderKind.gmail ||
+          MailProviderKind.graph => uri.scheme == 'https',
+          _ => false,
+        };
+  }
+
+  bool hasSameIdentity(MailLocalAccountRecord other) =>
+      id == other.id &&
+      provider == other.provider &&
+      endpoint == other.endpoint &&
+      login == other.login &&
+      sender == other.sender;
+
+  @override
+  String toString() => 'MailLocalAccountRecord(redacted)';
+}
+
 /// Configuration contains an opaque vault reference, never a password/token.
 final class MailStoreAccount {
   const MailStoreAccount({

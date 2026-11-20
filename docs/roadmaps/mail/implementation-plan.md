@@ -350,7 +350,9 @@ queue and exposes explicit send/retry/cancel with restart recovery. The
 [reply/forward continuation](reply-forward.md) adds complete supported attachment
 forwarding. The [multiple-draft continuation](multiple-drafts.md) adds independent
 local drafts and offline entry for remembered explicit-server/preset IMAP
-accounts. Richer bodies, broader offline sessions, server draft synchronization,
+accounts. The [verified-account continuation](offline-accounts.md) extends local
+draft entry to autodiscovered IMAP, EWS, Gmail and Microsoft 365 after successful
+connection. Richer bodies, cached offline mailboxes, server draft synchronization,
 Sent reconciliation and live-provider gates remain open; this does not complete
 M07 or the document-snapshot work in M08.
 
@@ -362,7 +364,8 @@ M07 or the document-snapshot work in M08.
 - [x] Reuse the Word custom RenderBox surface for the plain-text body, including IME, selection, undo, bidi and accessibility. Rich mail formatting remains below.
 - [x] Add a bounded local draft list with independent IDs/revisions, new/resume/delete actions, per-draft uncertainty and exact Outbox handoff. Preserve the legacy draft and reject stale selection callbacks. See [multiple-drafts.md](multiple-drafts.md).
 - [x] Add save-only offline draft entry for remembered IMAP accounts with explicit servers or a provider preset, without constructing a provider or discovering settings.
-- [ ] Persist verified offline connection/session metadata for autodiscovered IMAP, EWS and cloud accounts; add provider-side Drafts synchronization.
+- [x] Persist bounded non-secret verified connection identities for autodiscovered IMAP, EWS, Gmail and Microsoft 365; reopen their original local draft catalogs without credentials, discovery or provider construction. Preserve exact account fingerprints and compare shortcut removal revisions. See [offline-accounts.md](offline-accounts.md).
+- [ ] Add durable repository-backed account/session metadata for cached mailbox reads and synchronization commands, then provider-side Drafts synchronization with explicit conflicts. Local draft shortcuts do not complete this boundary.
 - [ ] Initial canonical body supports paragraphs, line breaks, emphasis, lists and links; add tables/inline images only with serializer/round-trip tests.
 - [ ] Generate multipart plain/HTML with deterministic boundaries and transfer encodings; preserve quoted original content as data.
 - [ ] Generate ASCII-safe wire MIME for the current text-oriented enough_mail SMTP API. Encode display names/subjects/filenames and payloads correctly. Handle non-ASCII mailbox local parts through negotiated SMTPUTF8 or explicit unsupported feedback.

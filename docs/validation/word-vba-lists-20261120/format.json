@@ -1,0 +1,33 @@
+{
+  "command": [
+    "/workspace/scratch/c7ec4681d1f4/runtime/dart-sdk/bin/dart",
+    "format",
+    "--output=none",
+    "--set-exit-if-changed",
+    "packages/quds_office_engine/lib/src/automation/office_vba_language.dart",
+    "packages/quds_office_engine/lib/src/automation/operations/word_list_steps.dart",
+    "packages/quds_office_engine/lib/src/automation/operations/word_steps.dart",
+    "packages/quds_office_engine/test/office_macro_word_list_format_test.dart",
+    "packages/quds_office_engine/test/office_vba_word_lists_integration_test.dart",
+    "packages/quds_office_engine/test/office_vba_word_lists_test.dart",
+    "packages/quds_office_engine/tool/macros/web_vba_word_lists_smoke.dart"
+  ],
+  "cwd": "/workspace/scratch/c7ec4681d1f4/quds_office_suite",
+  "exit_code": 0,
+  "file_count": 7,
+  "files": [
+    "packages/quds_office_engine/lib/src/automation/office_vba_language.dart",
+    "packages/quds_office_engine/lib/src/automation/operations/word_list_steps.dart",
+    "packages/quds_office_engine/lib/src/automation/operations/word_steps.dart",
+    "packages/quds_office_engine/test/office_macro_word_list_format_test.dart",
+    "packages/quds_office_engine/test/office_vba_word_lists_integration_test.dart",
+    "packages/quds_office_engine/test/office_vba_word_lists_test.dart",
+    "packages/quds_office_engine/tool/macros/web_vba_word_lists_smoke.dart"
+  ],
+  "seconds": 0.523,
+  "source_commit": "57456c602856a8ec56095352e9c1b9b17476ea69",
+  "source_tree": "ef086f4b2fe1d5a4db86f53e2da7bf210289dba7",
+  "started_at_utc": "2026-11-20T15:32:35.685084+00:00",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_sha256": "4cf0cb88f7f20a89962e7681f1474472130060660320d09e50f146f3273ba2ea"
+}

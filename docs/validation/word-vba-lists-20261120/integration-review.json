@@ -1,0 +1,46 @@
+{
+  "schema": "quds-word-vba-initial-integration-review/v1",
+  "reviewed_at_utc": "2026-11-20T15:02:57.479260+00:00",
+  "main_at_capture": "5c48058bedc42dd8cbf3fb9d6f1fb492b2ac1eb8",
+  "intake_target": "79e11935e16ea1d2fa576ead0712c83f22e15c28",
+  "target_tree": "7e95166b12dbec274b1be617eba5e95eafffd0d6",
+  "target_contains_main": true,
+  "new_history": [
+    "79e11935e16ea1d2fa576ead0712c83f22e15c28 c9066fd3a2b7751c14cbf1b614bd3b32481c7c66 5c48058bedc42dd8cbf3fb9d6f1fb492b2ac1eb8 Reconcile published Word tab stops and preserve qualified Mail management [skip ci]",
+    "c9066fd3a2b7751c14cbf1b614bd3b32481c7c66 f682e18063931c8d1dc40c67a7264b9f32185255 7f2d51a5206059478ea81965ccc95b89a9274ca6 Disambiguate inherited Zotero test scenarios and retain final published evidence [skip ci]"
+  ],
+  "changed_paths": [
+    "packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart"
+  ],
+  "review": "The only net change after the captured main is test-name disambiguation for forward/backward selections and footnote/endnote scenarios, with formatter reflow in the same test. No assertions or product implementation change.",
+  "new_executable_or_workflow_changes": [],
+  "earlier_word_qualified_input_identity": {
+    "qualified_source": "b5410b107a83f213e27c1476e766551b3f6cd6a4",
+    "scopes": [
+      "packages/quds_office_engine/lib",
+      "packages/quds_office_engine/test",
+      "packages/quds_office_engine/tool",
+      "packages/quds_office_engine/example",
+      "packages/quds_office_engine/pubspec.yaml",
+      "packages/legacy_doc_parser/lib",
+      "packages/legacy_doc_parser/pubspec.yaml",
+      "pubspec.yaml",
+      "pubspec.lock",
+      "analysis_options.yaml"
+    ],
+    "source_entry_count": 1110,
+    "target_entry_count": 1110,
+    "complete_path_mode_type_blob_sets_equal": true,
+    "changed_paths": []
+  },
+  "source_capture_window": "19 existing branches, 257 PR heads and 4 upstream branches before creation of codex/word-vba-compat-20261120-next; later heads need refreshed capture.",
+  "github_actions_used": false,
+  "limits": "Source integration review only. No new runtime claims for the editor test or independent Mail/provider workflows.",
+  "recommended_final_check": [
+    "Refresh all fork heads, all PR heads, and upstream heads, including the new work branch, immediately before publication.",
+    "Fetch exact newly observed objects; recompute ancestry/equivalence proofs only for exact captured SHAs. Integrate uncovered current work before final qualification.",
+    "Bind local gate to complete input scopes including path sets, Git modes/types/blob identities and manifests. Compare final publication tree against that bound source, including additions and deletions.",
+    "Pin PR merge to the exact reviewed head SHA and verify the resulting remote main contains the feature head and captured intake roots. Verify merged tree equals the reviewed feature tree when no new main change occurred.",
+    "If remote main advanced before merge, integrate it and repeat only validation needed for actual input changes; do not overwrite unseen commits or bypass required protections."
+  ]
+}
