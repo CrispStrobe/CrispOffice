@@ -171,8 +171,8 @@ final class MailBulkFlagReport {
   final MailProblem? stopProblem;
 
   /// Uncertainty wins over any concurrent cancellation or scope change.
-  /// Otherwise a certified cancelled/stale/quota provider result wins, followed
-  /// by foreign-account lease, cancellation, stale lease, scope and stop checks.
+  /// Otherwise a certified cancelled/stale provider result wins, followed by
+  /// foreign-account lease, cancellation, stale lease, scope and stop checks.
   /// Per-message acknowledgements are retained regardless of this reason.
   final MailBulkFlagStopReason? stopReason;
 
@@ -182,7 +182,11 @@ final class MailBulkFlagReport {
   int get failedCount => count(MailBulkFlagOutcome.failed);
   int get uncertainCount => count(MailBulkFlagOutcome.uncertain);
   int get unattemptedCount => count(MailBulkFlagOutcome.unattempted);
-  bool get requiresRefresh => uncertainCount != 0;
+  bool get requiresRefresh =>
+      uncertainCount != 0 ||
+      stopReason == MailBulkFlagStopReason.staleScope ||
+      stopReason == MailBulkFlagStopReason.invalidScope ||
+      stopReason == MailBulkFlagStopReason.scopeCheckFailed;
 }
 
 /// Foreground sequential execution without retries, storage or body fetching.
@@ -408,9 +412,8 @@ Future<MailBulkFlagReport> _runBulkFlags({
     } else if (problem?.code == MailProblemCode.staleOperation) {
       stopProblem = problem;
       stopReason = MailBulkFlagStopReason.staleScope;
-    } else if (problem?.code == MailProblemCode.quotaExceeded) {
-      // A definite quota rejection still requires stopping this foreground
-      // batch. Keep Retry-After evidence; do not retry or dispatch its tail.
+    } else if (outcome == MailBulkFlagOutcome.failed &&
+        problem?.code == MailProblemCode.quotaExceeded) {
       stopProblem = problem;
       stopReason = MailBulkFlagStopReason.rateLimited;
     }

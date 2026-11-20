@@ -1,9 +1,16 @@
 ## Unreleased
 
-- Stop foreground bulk dispatch after a certified quota rejection, retaining
-  the failed item, unattempted tail and provider retry delay. Keep uncertain
-  quota replies uncertain and preserve the existing refresh contract.
-
+- Add bounded foreground bulk read/flag plans and sequential, single-use
+  coordination. Every frozen identity has a confirmed, definitely failed,
+  uncertain or unattempted outcome. Stop on uncertainty, cancellation or stale
+  scope; preserve in-flight receipts without authorizing stale publication.
+  Preserve immutable progress snapshots and optional stop-after-current checks.
+  Add explicit optional mutation-boundary evidence to problems and map provider
+  results conservatively: only certified no-mutation failures are definite.
+  Recheck leases after caller guards, preserve uncertainty when a certificate
+  contradicts mutation evidence, and require refresh after invalidated scopes.
+  Stop the remaining selection on certified quota rejection without automatic
+  retry, preserving provider retry guidance and requiring no uncertainty refresh.
 - Add bounded frozen foreground bulk read/flag plans and sequential execution
   with confirmed, definite failed, uncertain and unattempted per-message results.
   Stop on uncertain writes or stale/cancelled scope without retrying. Add explicit

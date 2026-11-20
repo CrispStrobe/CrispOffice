@@ -1,0 +1,103 @@
+{
+  "word_branch": "codex/word-vba-unit-conversions-20261120",
+  "tip": "80e240ec1f557c1ac7c170a8273de41dfaac0f20",
+  "already_in_union": "cf25a0a3d80ee18d2550161af182bacc4e49d18f",
+  "publication_main": "0a2afc41bae4e719b77657a7e2d8d3e7ec02849b",
+  "audited_head": "3d527f530df0a467feeb38cf5a99ec120229c7c3",
+  "documentation_only_commits": [
+    {
+      "sha": "71f1c188f019ce539f0a7360a9df1a8e9b1e3df6",
+      "subject": "Preserve Word native integration qualification and explicit editor exclusions [skip ci]",
+      "paths": [
+        "docs/validation/word-main-integration-20261120/README.md",
+        "docs/validation/word-main-integration-20261120/accepted-summary.json",
+        "docs/validation/word-main-integration-20261120/focused-qualification.json",
+        "docs/validation/word-main-integration-20261120/initial-qualification.json",
+        "docs/validation/word-main-integration-20261120/local-qualification.tar.gz",
+        "docs/validation/word-main-integration-20261120/qualification-clarifications.md",
+        "docs/validation/word-main-integration-20261120/receipt-manifest.json",
+        "docs/validation/word-vba-unit-conversions-20261120/README.md"
+      ],
+      "all_docs": true
+    },
+    {
+      "sha": "d1c40f41abd81184db328d2aa6b827dd283ff71d",
+      "subject": "Preserve reconciled Mail qualification, runtime seals and reviewed visual evidence [skip ci]",
+      "paths": [
+        "docs/validation/mail-bulk-reconciliation-20261120/README.md",
+        "docs/validation/mail-bulk-reconciliation-20261120/SHA256SUMS",
+        "docs/validation/mail-bulk-reconciliation-20261120/accepted-test-cases.json",
+        "docs/validation/mail-bulk-reconciliation-20261120/accepted-union.json",
+        "docs/validation/mail-bulk-reconciliation-20261120/archive-manifest.json",
+        "docs/validation/mail-bulk-reconciliation-20261120/audit_mail_word_fixture.py",
+        "docs/validation/mail-bulk-reconciliation-20261120/incoming-heads.json",
+        "docs/validation/mail-bulk-reconciliation-20261120/mail-bulk-qualification.tar.xz",
+        "docs/validation/mail-bulk-reconciliation-20261120/nonmail-fixture-audit.json",
+        "docs/validation/mail-bulk-reconciliation-20261120/original-qualification.json",
+        "docs/validation/mail-bulk-reconciliation-20261120/package_evidence.py",
+        "docs/validation/mail-bulk-reconciliation-20261120/qualification.json",
+        "docs/validation/mail-bulk-reconciliation-20261120/qualify_mail_reconciled.py",
+        "docs/validation/mail-bulk-reconciliation-20261120/reproduce_flutter_runtime.py",
+        "docs/validation/mail-bulk-reconciliation-20261120/screenshots.json",
+        "docs/validation/mail-bulk-reconciliation-20261120/verify_mail_retention.py",
+        "docs/validation/mail-bulk-reconciliation-20261120/visual-review.json"
+      ],
+      "all_docs": true
+    }
+  ],
+  "runtime_paths": [
+    {
+      "path": "packages/quds_office_engine/lib/src/word/model/word_zotero.dart",
+      "blobs": {
+        "word_tip": "9982b851a441191eb15857f45861b34ae6a74e47",
+        "initial_main": "9982b851a441191eb15857f45861b34ae6a74e47",
+        "publication_main": "9982b851a441191eb15857f45861b34ae6a74e47",
+        "audited_head": "9982b851a441191eb15857f45861b34ae6a74e47"
+      },
+      "matches_initial_and_publication_main": true
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/model/word_zotero_citing.dart",
+      "blobs": {
+        "word_tip": "70c3dc118c59ac15bc672bfd3ea6d4f68d878e6b",
+        "initial_main": "70c3dc118c59ac15bc672bfd3ea6d4f68d878e6b",
+        "publication_main": "70c3dc118c59ac15bc672bfd3ea6d4f68d878e6b",
+        "audited_head": "70c3dc118c59ac15bc672bfd3ea6d4f68d878e6b"
+      },
+      "matches_initial_and_publication_main": true
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/model/word_zotero_note.dart",
+      "blobs": {
+        "word_tip": "fb757361ac427208c41777fbd3d322305ebbdd7c",
+        "initial_main": "fb757361ac427208c41777fbd3d322305ebbdd7c",
+        "publication_main": "fb757361ac427208c41777fbd3d322305ebbdd7c",
+        "audited_head": "4c1dabfed7a5ecdda4bb1cf1515fdf2cc96d7d8a"
+      },
+      "matches_initial_and_publication_main": true
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/zotero/zotero_citing.dart",
+      "blobs": {
+        "word_tip": "1e9d9910dba74f9429444ba54e1496ed32c0d07a",
+        "initial_main": "1e9d9910dba74f9429444ba54e1496ed32c0d07a",
+        "publication_main": "1e9d9910dba74f9429444ba54e1496ed32c0d07a",
+        "audited_head": "1e9d9910dba74f9429444ba54e1496ed32c0d07a"
+      },
+      "matches_initial_and_publication_main": true
+    }
+  ],
+  "conclusion": "No novel runtime changes beyond the accepted cf25 Word union and initial main698. Two documentation/evidence commits precede merge of initial main698. All four runtime files changed from cf25 to80 match initial and publication main blobs. Preserve new ancestry/evidence and retain current vertical-table parser.",
+  "merge_parents": [
+    "d1c40f41abd81184db328d2aa6b827dd283ff71d",
+    "698209aaa6e7f1350b6541df5eb192b7b233443d"
+  ],
+  "mail_last_arrival": {
+    "tip": "44f3f61fa7d812971e973f1763ac8e04eb39785a",
+    "parent": "64da231816b1b3ddab35e0e12d50d885bf24f75f",
+    "changed_paths": [
+      "packages/quds_office_editor/example/test/studio_mail_workspace_test.dart"
+    ],
+    "summary": "Test fixture cascade fix only; production source unchanged from64da. Other agent reviewing/integrating the Mail continuation."
+  }
+}

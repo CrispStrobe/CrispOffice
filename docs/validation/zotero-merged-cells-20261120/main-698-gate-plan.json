@@ -1,0 +1,70 @@
+{
+  "schema": 1,
+  "source_baseline": "cf25a0a3d80ee18d2550161af182bacc4e49d18f",
+  "incoming_main": "698209aaa6e7f1350b6541df5eb192b7b233443d",
+  "worktree": "/workspace/scratch/03cd41fa0e7e/quds_final_integration",
+  "execution_status": "Not run; await root published source and worktree-local ignored runtime mapping.",
+  "engine_tests": [
+    "packages/quds_office_engine/test/word_zotero_add_note_test.dart",
+    "packages/quds_office_engine/test/word_zotero_adjacent_citations_test.dart",
+    "packages/quds_office_engine/test/word_zotero_bibliography_layout_test.dart",
+    "packages/quds_office_engine/test/word_zotero_citing_test.dart",
+    "packages/quds_office_engine/test/word_zotero_note_images_integration_test.dart",
+    "packages/quds_office_engine/test/word_zotero_note_insertion_test.dart",
+    "packages/quds_office_engine/test/word_zotero_note_list_test.dart",
+    "packages/quds_office_engine/test/word_zotero_note_table_test.dart",
+    "packages/quds_office_engine/test/word_zotero_note_tables_integration_test.dart",
+    "packages/quds_office_engine/test/word_zotero_preference_flow_test.dart",
+    "packages/quds_office_engine/test/word_zotero_research_target_test.dart",
+    "packages/quds_office_engine/test/word_zotero_rich_edit_test.dart",
+    "packages/quds_office_engine/test/word_zotero_style_preferences_review_test.dart",
+    "packages/quds_office_engine/test/zotero_citing_test.dart"
+  ],
+  "editor_tests": [
+    "packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+    "packages/quds_office_editor/test/word_zotero_adjacent_citations_controller_test.dart",
+    "packages/quds_office_editor/test/word_zotero_bibliography_controller_test.dart",
+    "packages/quds_office_editor/test/word_zotero_citing_controller_test.dart",
+    "packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart",
+    "packages/quds_office_editor/test/word_zotero_direct_command_test.dart",
+    "packages/quds_office_editor/test/word_zotero_note_image_controller_test.dart",
+    "packages/quds_office_editor/test/word_zotero_note_target_test.dart",
+    "packages/quds_office_editor/test/word_zotero_rich_controller_test.dart"
+  ],
+  "historical_expected_counts_only": {
+    "engine": 470,
+    "editor": 257,
+    "not_current_execution_claim": true
+  },
+  "analysis": {
+    "engine": "Entire engine: dart analyze --fatal-infos",
+    "editor_paths": [
+      "packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+      "packages/quds_office_editor/test/word_zotero_adjacent_citations_controller_test.dart",
+      "packages/quds_office_editor/tool/zotero/research_target_acceptance.dart"
+    ]
+  },
+  "format_paths": [
+    "packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+    "packages/quds_office_editor/test/word_zotero_adjacent_citations_controller_test.dart",
+    "packages/quds_office_editor/tool/zotero/research_target_acceptance.dart",
+    "packages/quds_office_engine/lib/src/word/model/word_zotero.dart",
+    "packages/quds_office_engine/lib/src/word/model/word_zotero_citing.dart",
+    "packages/quds_office_engine/lib/src/word/model/word_zotero_note.dart",
+    "packages/quds_office_engine/lib/src/zotero/zotero_citing.dart",
+    "packages/quds_office_engine/test/word_zotero_add_note_test.dart",
+    "packages/quds_office_engine/test/word_zotero_adjacent_citations_test.dart",
+    "packages/quds_office_engine/test/word_zotero_citing_test.dart",
+    "packages/quds_office_engine/test/word_zotero_note_table_test.dart",
+    "packages/quds_office_engine/test/word_zotero_note_tables_integration_test.dart",
+    "packages/quds_office_engine/test/zotero_citing_test.dart",
+    "packages/quds_office_engine/tool/zotero/research_target_acceptance.dart"
+  ],
+  "incoming_acceptance_entrypoints": [
+    "packages/quds_office_engine/tool/zotero/research_target_acceptance.dart",
+    "packages/quds_office_editor/tool/zotero/research_target_acceptance.dart"
+  ],
+  "selection_rationale": "All Zotero suites from incoming entrypoints, covering six changed/new engine tests and both editor tests, protocol guards, native note/table save-reopen and controller undo/redo. Excludes unrelated slide/proofing and already-qualified generic incremental suites.",
+  "macro_consumption": "No calls/imports to the changed Zotero helpers in automation sources or office_macro/office_vba tests. Adjacent hints and note HTML parsing are confined to Zotero transactions. Serializer/layout and macro families remain byte-identical to cf25.",
+  "required_seals": "Published head/tree; exact worktree package roots; unchanged source/runtime before-after; complete per-case identities; no errors/skips/unfinished/duplicate completions; successful terminal events and process exits. Keep these counts separate from historical macro/Mail evidence."
+}

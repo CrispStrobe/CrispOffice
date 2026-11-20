@@ -4,19 +4,12 @@ All notable changes to `quds_office_editor` are documented here.
 
 ## Unreleased
 
-- Explain foreground bulk rate-limit stops and provider retry delays in English,
-  German and Arabic, including per-message details. Keep stale-scope refresh
-  guidance distinct from outcome certainty and prevent dismissal from clearing
-  its refresh requirement.
-
-- Add foreground bulk read/unread/flag/unflag actions for connected IMAP, EWS,
-  Gmail and Microsoft 365 mail. Freeze visible checked identities, preserve
-  nullable flag observations, report confirmed/failed/uncertain/unattempted
-  outcomes, stop after the current message, and require refresh on uncertainty.
-  Guard callbacks across selection, refresh and account changes; localize
-  selection, progress and per-message receipts in English, German and Arabic.
-  Same-folder refresh preserves query/sort while clearing checked rows.
-  Cached mail remains read-only; durable command/cache synchronization follows.
+- Accept vertical and combined row/column spans through Zotero Add Note and
+  Add Annotation in body, footnote and endnote targets. Preserve rich content,
+  active citations, one undo/redo transaction and repeated DOCX reopening.
+- Resolve continued merged-cell pointer/keyboard navigation to the originating
+  cell while retaining physical row handles; keep authored native continuation
+  content reachable and skip only validated structural empty placeholders.
 
 - Accept horizontally merged Zotero research-note and annotation tables through
   the existing native commands. Preserve cell-owned rich text, lists, pictures
@@ -29,6 +22,20 @@ All notable changes to `quds_office_editor` are documented here.
   step. See the
   [continuation validation record](../../docs/validation/zotero-merged-cells-20261120/README.md)
   for local checks; installed Zotero/Word/LibreOffice acceptance remains separate.
+
+- Recognize conventional lowercase Arial and Times New Roman font filenames
+  for regular, bold, italic and bold-italic faces, retaining metadata checks
+  and canonical candidate precedence.
+
+- Show localized foreground bulk progress and per-message receipts with frozen
+  subjects, cancellation after the current message and refresh-aware dismissal.
+
+- Add foreground bulk read/unread/flag/unflag actions to connected IMAP, EWS,
+  Gmail and Microsoft 365. Freeze checked visible identities, run sequentially,
+  report confirmed/failed/uncertain/unattempted counts and stop on uncertainty.
+  Let users stop after the current request, require explicit refresh for an
+  unconfirmed write, preserve nullable flags and reject stale scope callbacks.
+  Keep cached mail read-only and preserve discovery state on same-folder refresh.
 
 - Refuse an oversized Studio settings snapshot before replacing the last valid
   saved settings. Keep the existing load budget and expose a recoverable save

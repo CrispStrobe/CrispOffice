@@ -150,9 +150,13 @@ result. Nothing is silently flattened to make these structures fit.
 ### Tables in notes and annotations
 
 Add Note and Add Annotation preserve supported rectangular tables, including
-horizontal merged cells, as native Word tables. HTML `colspan` values from 1 to
-32 map to native `gridSpan`. Every row must cover the same number of logical
-columns, up to 32; rows may contain different numbers of authored cells.
+horizontal and vertical merged cells, as native Word tables. HTML `colspan`
+values from 1 to 32 map to native `gridSpan`; `rowspan` values from 1 to 256 map
+to native restart/continuation cells. Both spans can be combined in one cell.
+Every row must cover the same number of logical columns, up to 32, including
+positions occupied by preceding row spans. A fully covered row can contain no
+authored cells. Spans must fit the actual rows and stay within their row group;
+overlaps, uncovered positions and malformed spans refuse the whole insertion.
 Cells can contain ordinary or empty paragraphs, soft line breaks,
 headings, supported character formatting, links, lists, pictures and active
 citation fields. Empty cells and an entirely empty table retain their structure.
@@ -184,7 +188,9 @@ The additional table bounds are:
 | Rows per table | Up to 256 |
 | Logical columns per table | Up to 32, equal across all rows |
 | Horizontal span per cell | An integer from 1 to 32 |
-| Authored cells across the complete note | Up to 4,096 |
+| Vertical span per cell | An integer from 1 to 256, within its actual row group |
+| Native cells across the complete note | Up to 4,096, including generated continuation cells |
+| Native paragraphs across the complete note | Up to 10,000, including continuation-cell paragraphs |
 | Supplied column width | An integer from 1 to 4,000 CSS pixels; 0 means unspecified |
 | Total native table width | At most 4,000 points |
 
@@ -200,17 +206,24 @@ the available display width. Cell backgrounds accept
 three- or six-digit hexadecimal colors, integer RGB colors, or transparent.
 
 The supported HTML structure is `table`, optional `tbody`, `tr`, `td` and
-`th`. Vertical merges (`rowspan` greater than 1), nested tables, tables inside
-list items, unequal logical row widths, separate header/footer row groups,
+`th`. Nested tables, tables inside list items, unequal logical row widths,
+spans crossing row-group boundaries, separate header/footer row groups,
 captions, custom table classes and other
 table/row/cell styling are refused. A malformed table, unsupported image, or
 missing/repeated/unconverted citation placeholder refuses the entire staged
 result. The existing cancellation, stale-selection, composition and single-step
 undo guarantees apply to the table and its surrounding content together.
 
-The [horizontal-merge and Refresh validation record](validation/zotero-merged-cells-20261120/README.md)
+Merged-cell shading and borders continue on each page occupied by the cell.
+Clicks and navigation resolve to its originating paragraph; row handles retain
+physical row geometry. The layout currently assigns the originating cell's
+content height to its first row. Compact distribution of that height across
+several rows, as in Word, remains a separate fidelity item.
+
+The [vertical-table validation record](validation/zotero-vertical-tables-20261120/README.md)
 identifies this continuation's source checkpoints, checks and application-acceptance
-scope. The [earlier table record](validation/zotero-research-tables-20261120/README.md)
+scope. The [horizontal-merge and Refresh record](validation/zotero-merged-cells-20261120/README.md)
+retains the preceding increment's evidence. The [earlier table record](validation/zotero-research-tables-20261120/README.md)
 retains its original evidence.
 Local model and controller checks are separate from opening and refreshing the
 result in an installed Word or LibreOffice application.
@@ -1277,8 +1290,10 @@ to each new client. Clients sharing that state must use the same clock.
 
 ## Current and previous qualification evidence
 
-The [horizontal-merge and Refresh work record](validation/zotero-merged-cells-20261120/README.md)
-tracks this continuation's incoming-work reconciliation, remote checkpoints,
+The [vertical-table work record](validation/zotero-vertical-tables-20261120/README.md)
+tracks the latest implementation and qualification. The preceding
+[horizontal-merge and Refresh work record](validation/zotero-merged-cells-20261120/README.md)
+records its incoming-work reconciliation, remote checkpoints,
 exact-source checks and remaining application acceptance. Its qualified source,
 `180399f99a3898501ab1959e3b845150d7da59fd`, completed 495 engine passes, 378
 editor passes with eight skips, and 928 incoming Word/Mail passes: 1,801 passes
@@ -1286,7 +1301,7 @@ and eight skips across the three final processes, with zero failures or errors.
 All 257 Zotero editor cases executed and passed; the eight skipped cases are
 existing image-only layout fixtures, identified in the record. The same skips
 are excluded from the corrected earlier-source tally. Repeated runs are not
-added to the final total. Final merge into main remains pending. These results
+added to the final total. PR #276 merged into main as `698209aaa6e7f1350b6541df5eb192b7b233443d`. These results
 do not claim a new installed Zotero, Word or LibreOffice run, complete plugin
 parity, or active ODT citation transfer. The
 [research-table work record](validation/zotero-research-tables-20261120/README.md)

@@ -61,10 +61,9 @@ MailMessageList(
 );
 ```
 
-The list keeps checkboxes separate from the opened message. **Select visible**
+The list keeps checkboxes separate from the opened message. **Select shown**
 and Ctrl/Cmd+A, while the list owns focus, check only the currently matching
-loaded rows. Space checks the keyboard cursor; Escape clears checked rows;
-Enter opens the cursor. Selection itself
+loaded rows. Space checks the keyboard cursor; Enter opens it; Escape clears checks. Selection itself
 does not open messages, load pages, read bodies or invoke a mutation callback.
 Filtering prunes hidden checks permanently; newly loaded rows are not selected
 automatically. Sorting preserves checked identities.
@@ -76,6 +75,12 @@ scope/revision/filter/sort/selection changes, or disposal. Changing `scopeId` or
 `selectionRevision` clears the selection. The host must advance the revision
 when its account, provider session or mailbox identity observations change, and
 independently validate the submitted IDs before issuing provider commands.
+
+`selectionScopeId` and `selectionRevision` name the same observation revision;
+`bulkActionsEnabled` and `bulkEnabled` name the same enablement flag. Supplying
+both aliases requires equal values. `selectVisible` remains a strings alias for
+`selectShown`. `onCancelBulk` exposes an optional stop control independently of
+the host-owned `bulkStatus` slot.
 
 `busy` disables selection and mutation controls. `bulkEnabled: false` clears
 checks and keeps controls unavailable while the host requires a refresh. Omit
