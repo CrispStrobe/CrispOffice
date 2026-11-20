@@ -172,7 +172,7 @@ void main() {
         store.save(_draft, submissionUncertain: false),
       );
       await _mount(tester, store);
-    fixture.failNextCheckpoint = MailStoreCheckpoint.afterDraftBlobs;
+      fixture.failNextCheckpoint = MailStoreCheckpoint.afterDraftBlobs;
       await _tap(tester, find.byKey(const ValueKey('studio-mail-new-draft')));
       expect(find.byType(StudioMailDraftsDialog), findsOneWidget);
       expect(find.text(_strings.mailDraftListFailed), findsOneWidget);

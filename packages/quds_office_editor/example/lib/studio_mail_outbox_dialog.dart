@@ -5,6 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:quds_mail_core/quds_mail_core.dart';
 
 import 'studio_mail_outbox.dart';
+import 'studio_mail_draft.dart';
+import 'studio_mail_outbox_export.dart';
+import 'studio_mail_outbox_review.dart';
 import 'studio_mail_outbox_strings.dart';
 import 'studio_strings.dart';
 
@@ -16,12 +19,14 @@ class StudioMailOutboxDialog extends StatefulWidget {
     required this.store,
     required this.submit,
     required this.isCurrent,
+    this.exporter = exportStudioMailOutboxFile,
   });
 
   final StudioStrings strings;
   final StudioMailOutboxStore store;
   final StudioMailOutboxSubmit submit;
   final bool Function() isCurrent;
+  final StudioMailOutboxExporter exporter;
 
   @override
   State<StudioMailOutboxDialog> createState() => _StudioMailOutboxDialogState();
@@ -31,6 +36,11 @@ class _StudioMailOutboxDialogState extends State<StudioMailOutboxDialog> {
   List<MailOutboxEntry> _entries = const [];
   bool _busy = true;
   String? _error;
+
+  StudioMailOutboxManagementStore? get _management => switch (widget.store) {
+    StudioMailOutboxManagementStore value => value,
+    _ => null,
+  };
 
   @override
   void initState() {
@@ -177,10 +187,57 @@ class _StudioMailOutboxDialogState extends State<StudioMailOutboxDialog> {
   Future<void> _remove(MailOutboxEntry entry) => _run(() async {
     if (await _confirm(
           widget.strings.mailOutboxRemove,
-          widget.strings.mailOutboxRemoveExplanation,
+          entry.state == MailOutboxState.closedUncertain
+              ? widget.strings.mailOutboxRemoveUnknownExplanation
+              : widget.strings.mailOutboxRemoveExplanation,
         ) &&
         widget.isCurrent()) {
       await widget.store.removeOutbox(entry);
+    }
+  });
+
+  Future<void> _review(MailOutboxEntry entry) => _run(() async {
+    await showDialog<void>(
+      context: context,
+      barrierDismissible: false,
+      builder: (_) => StudioMailOutboxReviewDialog(
+        entry: entry,
+        strings: widget.strings,
+        isCurrent: () => mounted && widget.isCurrent(),
+        exporter: widget.exporter,
+      ),
+    );
+  });
+
+  Future<void> _edit(MailOutboxEntry entry) => _run(() async {
+    final management = _management;
+    if (management == null || !entry.canCancel) return;
+    if (!await _confirm(
+          widget.strings.mailOutboxEdit,
+          widget.strings.mailOutboxEditExplanation,
+        ) ||
+        !mounted ||
+        !widget.isCurrent()) {
+      return;
+    }
+    final draft = await management.editOutboxAsDraft(entry);
+    if (mounted && widget.isCurrent()) {
+      // The same owner has selected the newly saved draft. Return that exact
+      // snapshot so the host never reuses its previous selected-draft content.
+      Navigator.pop<StudioMailDraft>(context, draft);
+    }
+  });
+
+  Future<void> _closeUncertain(MailOutboxEntry entry) => _run(() async {
+    final management = _management;
+    if (management == null || !entry.canCloseUncertain) return;
+    if (await _confirm(
+          widget.strings.mailOutboxStopRetrying,
+          widget.strings.mailOutboxStopRetryingExplanation,
+        ) &&
+        mounted &&
+        widget.isCurrent()) {
+      await management.closeUncertainOutbox(entry);
     }
   });
 
@@ -262,12 +319,6 @@ class _StudioMailOutboxDialogState extends State<StudioMailOutboxDialog> {
                           itemCount: _entries.length,
                           itemBuilder: (context, index) {
                             final entry = _entries[index];
-                            final removable =
-                                entry.state == MailOutboxState.submitted ||
-                                entry.state == MailOutboxState.cancelled ||
-                                (entry.state ==
-                                        MailOutboxState.permanentFailure &&
-                                    !entry.priorSubmissionUncertain);
                             return Card(
                               key: ValueKey('studio-mail-outbox-${entry.id}'),
                               child: Padding(
@@ -300,7 +351,10 @@ class _StudioMailOutboxDialogState extends State<StudioMailOutboxDialog> {
                                         ),
                                       ],
                                     ),
-                                    if (entry.priorSubmissionUncertain ||
+                                    if (entry.state ==
+                                        MailOutboxState.closedUncertain)
+                                      Text(strings.mailOutboxClosedExplanation)
+                                    else if (entry.priorSubmissionUncertain ||
                                         entry.state ==
                                             MailOutboxState.uncertain)
                                       Text(
@@ -310,6 +364,20 @@ class _StudioMailOutboxDialogState extends State<StudioMailOutboxDialog> {
                                       spacing: 8,
                                       runSpacing: 4,
                                       children: [
+                                        TextButton.icon(
+                                          key: ValueKey(
+                                            'studio-mail-outbox-review-${entry.id}',
+                                          ),
+                                          onPressed: _busy
+                                              ? null
+                                              : () => _review(entry),
+                                          icon: const Icon(
+                                            Icons.preview_outlined,
+                                          ),
+                                          label: Text(
+                                            strings.mailOutboxPreview,
+                                          ),
+                                        ),
                                         if (entry.canBeginAttempt ||
                                             entry.canBeginAcknowledgedAttempt)
                                           FilledButton.icon(
@@ -342,7 +410,34 @@ class _StudioMailOutboxDialogState extends State<StudioMailOutboxDialog> {
                                               strings.mailOutboxCancel,
                                             ),
                                           ),
-                                        if (removable)
+                                        if (_management != null &&
+                                            entry.canCancel)
+                                          TextButton.icon(
+                                            key: ValueKey(
+                                              'studio-mail-outbox-edit-${entry.id}',
+                                            ),
+                                            onPressed: _busy
+                                                ? null
+                                                : () => _edit(entry),
+                                            icon: const Icon(
+                                              Icons.edit_outlined,
+                                            ),
+                                            label: Text(strings.mailOutboxEdit),
+                                          ),
+                                        if (_management != null &&
+                                            entry.canCloseUncertain)
+                                          TextButton(
+                                            key: ValueKey(
+                                              'studio-mail-outbox-stop-${entry.id}',
+                                            ),
+                                            onPressed: _busy
+                                                ? null
+                                                : () => _closeUncertain(entry),
+                                            child: Text(
+                                              strings.mailOutboxStopRetrying,
+                                            ),
+                                          ),
+                                        if (entry.canRemove)
                                           TextButton(
                                             key: ValueKey(
                                               'studio-mail-outbox-remove-${entry.id}',

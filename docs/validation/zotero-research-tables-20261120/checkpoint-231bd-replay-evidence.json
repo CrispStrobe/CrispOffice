@@ -1,0 +1,44 @@
+{
+  "schema": 1,
+  "date": "2026-11-20",
+  "file": "checkpoint-231bd-replay-evidence.tar.xz",
+  "bytes": 309760,
+  "sha256": "aabde1094c925d9561a10c74441f9f2c5236808d0530611c506291b97f2186ce",
+  "git_blob": "f84f48d83afb360cee48151ddb5b72abb0085dd8",
+  "members": 42,
+  "source": "231bd0403a3d2855dc23bf8dacefaedba01f2aab",
+  "run_summary": "checkpoint-231bd-replay-summary.json",
+  "accepted_processes": 6,
+  "successful_visible_executions": 1358,
+  "skipped_visible_cases": 8,
+  "failures": 0,
+  "errors": 0,
+  "all_process_exits_zero": true,
+  "all_terminal_events_unique_and_successful": true,
+  "source_hashes": {
+    "files": 2226,
+    "before_and_after_sha256": "17248fcc60854b7e947bfc9e45b52a05d9789f351c8ac253bcc8dec06a311d70",
+    "unchanged": true
+  },
+  "groups": {
+    "zotero_and_layout_engine": 399,
+    "incoming_vba_and_differential": 329,
+    "editor": {
+      "passed": 332,
+      "skipped": 8
+    },
+    "native_cloud_and_forward": 148,
+    "ews_and_reply": 104,
+    "downloads_and_theme": 46
+  },
+  "fixture_qualification": {
+    "discovered": 42,
+    "exercised": 34,
+    "skipped": 8,
+    "reason": "The unchanged edit-equivalence guard finds no paragraphs to edit in eight newly available authored floating-image fixtures. Every path and reason is retained."
+  },
+  "failed_attempt": "The default 30s incoming-engine run returned exit1 with three timeouts; its 326 successes are excluded. The unchanged 11-file replay with --timeout=2m passed all329 with exit0.",
+  "earlier_scopes": "The earlier credential124 and reader33 cases retain their separate 2d617 source attribution and are not added to1358.",
+  "later_main": "This bundle precedes the Mail Outbox main reconciliation at70e69c. It is not a claim that later modified Mail behavior has been executed.",
+  "contents": "All six closed accepted raw JSON/stderr streams, exact commands/exit/terminal receipts, per-file and per-group counts, source manifests, complete fixture results, and excluded timeout diagnostics."
+}

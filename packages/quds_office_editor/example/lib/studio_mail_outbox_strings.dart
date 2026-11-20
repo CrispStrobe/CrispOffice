@@ -91,6 +91,85 @@ extension StudioMailOutboxStrings on StudioStrings {
   );
   String get mailOutboxNoSubject =>
       _outboxText('(No subject)', '(Kein Betreff)', '(بلا موضوع)');
+  String get mailOutboxPreview =>
+      _outboxText('Review message', 'Nachricht prüfen', 'مراجعة الرسالة');
+  String get mailOutboxPreviewExplanation => _outboxText(
+    'This is the saved message. The body is shown as text; attachments are listed without opening them.',
+    'Dies ist die gespeicherte Nachricht. Der Inhalt wird als Text angezeigt; Anhänge werden aufgelistet, ohne sie zu öffnen.',
+    'هذه هي الرسالة المحفوظة. يُعرض المحتوى كنص وتُدرج المرفقات دون فتحها.',
+  );
+  String get mailOutboxPreviewUnavailable => _outboxText(
+    'This saved message cannot be safely shown or edited. You can still export its original EML and recipient record.',
+    'Diese gespeicherte Nachricht kann nicht sicher angezeigt oder bearbeitet werden. Die ursprüngliche EML und der Empfängerdatensatz lassen sich weiterhin exportieren.',
+    'لا يمكن عرض هذه الرسالة المحفوظة أو تحريرها بأمان. لا يزال بإمكانك تصدير ملف EML الأصلي وسجل المستلمين.',
+  );
+  String get mailOutboxBodyTruncated => _outboxText(
+    'This preview is shortened. Export and the editable draft retain the complete body.',
+    'Diese Vorschau ist gekürzt. Export und bearbeitbarer Entwurf enthalten den vollständigen Inhalt.',
+    'هذه المعاينة مختصرة. يحتفظ التصدير والمسودة القابلة للتحرير بالنص الكامل.',
+  );
+  String get mailOutboxSender => _outboxText('Sender', 'Absender', 'المرسل');
+  String get mailOutboxMessageId =>
+      _outboxText('Message ID', 'Nachrichten-ID', 'معرّف الرسالة');
+  String get mailOutboxMessageDate => _outboxText(
+    'Message date (UTC)',
+    'Nachrichtendatum (UTC)',
+    'تاريخ الرسالة (UTC)',
+  );
+  String get mailOutboxExport =>
+      _outboxText('Export EML', 'EML exportieren', 'تصدير EML');
+  String get mailOutboxExportEnvelope => _outboxText(
+    'Export private recipient record',
+    'Privaten Empfängerdatensatz exportieren',
+    'تصدير سجل المستلمين الخاص',
+  );
+  String get mailOutboxExportExplanation => _outboxText(
+    'EML preserves the original message bytes and attachments. Bcc recipients are absent from the EML headers; the separate private recipient record includes them.',
+    'EML bewahrt die ursprünglichen Nachrichtendaten und Anhänge. Bcc-Empfänger fehlen in den EML-Kopfzeilen; der separate private Empfängerdatensatz enthält sie.',
+    'يحفظ EML بيانات الرسالة الأصلية ومرفقاتها. لا تتضمن ترويساته مستلمي النسخة المخفية؛ يتضمنهم سجل المستلمين الخاص المنفصل.',
+  );
+  String get mailOutboxExportPrivateExplanation => _outboxText(
+    'Save the complete transport recipient list, including Bcc, to a separate JSON file? This private record can reveal hidden recipients to anyone you share it with.',
+    'Die vollständige Versandempfängerliste einschließlich Bcc in einer separaten JSON-Datei speichern? Dieser private Datensatz legt verborgene Empfänger gegenüber Personen offen, mit denen Sie ihn teilen.',
+    'حفظ قائمة مستلمي الإرسال الكاملة، بما في ذلك النسخة المخفية، في ملف JSON منفصل؟ قد يكشف هذا السجل الخاص المستلمين المخفيين لأي شخص تشاركه معه.',
+  );
+  String get mailOutboxExported =>
+      _outboxText('File saved.', 'Datei gespeichert.', 'حُفظ الملف.');
+  String get mailOutboxExportFailed => _outboxText(
+    'The file could not be saved. Choose a new filename in a writable folder. The saved Outbox message is unchanged.',
+    'Die Datei konnte nicht gespeichert werden. Wählen Sie einen neuen Dateinamen in einem beschreibbaren Ordner. Die Nachricht im Postausgang bleibt unverändert.',
+    'تعذر حفظ الملف. اختر اسم ملف جديدًا في مجلد قابل للكتابة. لم تتغير الرسالة المحفوظة في صندوق الصادر.',
+  );
+  String get mailOutboxEdit => _outboxText(
+    'Edit as new draft',
+    'Als neuen Entwurf bearbeiten',
+    'تحرير كمسودة جديدة',
+  );
+  String get mailOutboxEditExplanation => _outboxText(
+    'Cancel this queued message and open a new saved draft with its recipients, text and attachments? The original frozen copy remains in Outbox. Your other drafts are kept. Sending the edited draft creates a new message.',
+    'Diese wartende Nachricht abbrechen und einen neuen gespeicherten Entwurf mit Empfängern, Text und Anhängen öffnen? Die ursprüngliche Kopie bleibt im Postausgang. Andere Entwürfe bleiben erhalten. Das Senden des bearbeiteten Entwurfs erstellt eine neue Nachricht.',
+    'إلغاء هذه الرسالة المنتظرة وفتح مسودة جديدة محفوظة بمستلميها ونصها ومرفقاتها؟ تبقى النسخة الأصلية في صندوق الصادر وتُحفظ مسوداتك الأخرى. إرسال المسودة المعدلة ينشئ رسالة جديدة.',
+  );
+  String get mailOutboxStopRetrying => _outboxText(
+    'Stop retrying',
+    'Weitere Versuche beenden',
+    'إيقاف إعادة المحاولة',
+  );
+  String get mailOutboxStopRetryingExplanation => _outboxText(
+    'Close this local entry without sending again? Delivery remains unknown. This does not recall mail, mark it delivered or prove it failed. The original message and attempt history remain available until you separately remove the local record.',
+    'Diesen lokalen Eintrag ohne erneutes Senden abschließen? Die Zustellung bleibt unbekannt. Dies ruft keine Nachricht zurück und bestätigt weder Zustellung noch Fehlschlag. Die ursprüngliche Nachricht und der Versuchsverlauf bleiben bis zum separaten Entfernen des lokalen Eintrags verfügbar.',
+    'إغلاق هذا الإدخال المحلي دون الإرسال مجددًا؟ تبقى حالة التسليم مجهولة. لا يستدعي هذا البريد ولا يؤكد تسليمه أو فشله. تبقى الرسالة الأصلية وسجل المحاولة متاحين حتى تزيل السجل المحلي بشكل منفصل.',
+  );
+  String get mailOutboxClosedExplanation => _outboxText(
+    'Further sending is disabled for this entry. Delivery of an earlier attempt is still unknown.',
+    'Weiteres Senden ist für diesen Eintrag deaktiviert. Die Zustellung eines früheren Versuchs bleibt unbekannt.',
+    'عُطّل الإرسال مجددًا لهذا الإدخال. لا تزال حالة تسليم محاولة سابقة مجهولة.',
+  );
+  String get mailOutboxRemoveUnknownExplanation => _outboxText(
+    'Remove this local record and its message bytes? Delivery remains unknown, and this removes your local copy of the attempt history. This does not recall mail or remove a server copy.',
+    'Diesen lokalen Eintrag und seine Nachrichtendaten entfernen? Die Zustellung bleibt unbekannt; die lokale Kopie des Versuchsverlaufs wird entfernt. Dies ruft keine Nachricht zurück und entfernt keine Serverkopie.',
+    'إزالة هذا السجل المحلي وبيانات الرسالة؟ تبقى حالة التسليم مجهولة وستُحذف نسختك المحلية من سجل المحاولة. لا يستدعي هذا البريد ولا يحذف نسخة الخادم.',
+  );
   String mailOutboxAttempt(int count) =>
       _outboxText('Attempts: $count', 'Versuche: $count', 'المحاولات: $count');
   String mailOutboxState(MailOutboxState state) => switch (state) {
@@ -128,6 +207,11 @@ extension StudioMailOutboxStrings on StudioStrings {
       'Cancelled locally',
       'Lokal abgebrochen',
       'أُلغيت محليًا',
+    ),
+    MailOutboxState.closedUncertain => _outboxText(
+      'Closed locally — delivery unknown',
+      'Lokal abgeschlossen — Zustellung unbekannt',
+      'أُغلق محليًا — التسليم مجهول',
     ),
   };
 }

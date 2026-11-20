@@ -7,6 +7,7 @@ import 'package:quds_mail_store/quds_mail_store.dart';
 
 import 'studio_mail_draft.dart';
 import 'studio_mail_outbox.dart';
+import 'studio_mail_outbox_content.dart';
 import 'studio_mail_submission.dart';
 import 'studio_mail_threading.dart';
 
@@ -188,7 +189,8 @@ final class SqliteStudioMailDraftStore
     implements
         StudioMailDraftStore,
         StudioMailDraftCatalog,
-        StudioMailOutboxStore {
+        StudioMailOutboxStore,
+        StudioMailOutboxManagementStore {
   SqliteStudioMailDraftStore({
     required SqliteMailRepository repository,
     required this.account,
@@ -649,6 +651,56 @@ final class SqliteStudioMailDraftStore
           ),
         );
         return cancelled;
+      });
+
+  @override
+  Future<StudioMailDraft> editOutboxAsDraft(
+    MailOutboxEntry entry,
+  ) => _serializeSelection(() async {
+    _requireOutboxAccount(entry);
+    if (!entry.canCancel) _outboxConflict();
+    // Decode the bounded immutable snapshot before starting the storage
+    // transaction. Unsupported content leaves both queue and drafts intact.
+    final restored = StudioMailOutboxContent.fromEntry(entry).draft;
+    final id = _newOutboxIdentity('studio-draft');
+    final prepared = _prepareDraft(
+      restored,
+      id: id,
+      revision: 0,
+      uncertain: false,
+    );
+    _value(
+      await _repository.editOutboxAsDraft(
+        entry,
+        prepared,
+        now: _outboxTime(entry),
+        maxActiveDrafts: maxDrafts,
+      ),
+    );
+    // Only a successful atomic handoff changes selection. Existing drafts
+    // keep their IDs, bytes and revisions, including the original tombstone.
+    _selectedDraftId = id;
+    _revision = 0;
+    _loaded = true;
+    _submissionUncertain = false;
+    _selectionEpoch++;
+    return restored;
+  });
+
+  @override
+  Future<MailOutboxEntry> closeUncertainOutbox(MailOutboxEntry entry) =>
+      _serialize(() async {
+        _requireOutboxAccount(entry);
+        if (!entry.canCloseUncertain) _outboxConflict();
+        final closed = entry.closeUncertain(now: _outboxTime(entry));
+        _value(
+          await _repository.saveOutbox(
+            closed,
+            expectedState: entry.state,
+            expectedAttemptId: entry.attemptId,
+          ),
+        );
+        return closed;
       });
 
   @override

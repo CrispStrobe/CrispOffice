@@ -1136,25 +1136,73 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
       setState(() => _error = widget.strings.mailOutboxFailed);
       return;
     }
+    final draftOwner = _draftStore!;
+    final catalog = draftOwner is StudioMailDraftCatalog
+        ? draftOwner as StudioMailDraftCatalog
+        : null;
+    final originalEpoch = catalog?.selectionEpoch;
+    StudioMailDraft? edited;
+    var opened = false;
+    bool current() =>
+        _currentSession(client, generation) && identical(store, _draftStore);
     setState(() => _dialogOpen = true);
     try {
-      await showDialog<void>(
+      final retained = _draft;
+      if (retained != null) {
+        await draftOwner.save(
+          retained,
+          submissionUncertain: _submissionUncertain,
+        );
+      }
+      if (!mounted || !current()) return;
+      opened = true;
+      edited = await showDialog<StudioMailDraft>(
         context: context,
         barrierDismissible: false,
         builder: (_) => StudioMailOutboxDialog(
           strings: widget.strings,
           store: store,
           submit: _outboxSubmit(client, account, store, generation),
-          isCurrent: () =>
-              _currentSession(client, generation) &&
-              identical(store, _draftStore),
+          isCurrent: current,
         ),
       );
+      if (!current()) return;
+      if (edited != null || catalog?.selectionEpoch != originalEpoch) {
+        final selected = edited == null
+            ? await draftOwner.load()
+            : StudioMailStoredDraft(draft: edited, submissionUncertain: false);
+        if (!current()) return;
+        setState(() {
+          _draft = selected?.draft;
+          _submissionUncertain = selected?.submissionUncertain ?? false;
+          _error = null;
+          _notice = null;
+        });
+      }
+    } on Object {
+      if (current()) {
+        setState(() {
+          _error = widget.strings.mailOutboxFailed;
+          if (opened && catalog?.selectionEpoch != originalEpoch) {
+            _draftStore = null;
+            _draft = null;
+            _submissionUncertain = false;
+          }
+        });
+        if (opened && catalog?.selectionEpoch != originalEpoch) {
+          _draftStoreClosing = _draftStoreClosing.then(
+            (_) => _closeDraftStore(draftOwner),
+          );
+          await _draftStoreClosing;
+        }
+      }
+      edited = null;
     } finally {
       if (_currentSession(client, generation)) {
         setState(() => _dialogOpen = false);
       }
     }
+    if (edited != null && current()) await _openComposer(null);
   });
 
   Future<void> _sendThroughOutbox(
