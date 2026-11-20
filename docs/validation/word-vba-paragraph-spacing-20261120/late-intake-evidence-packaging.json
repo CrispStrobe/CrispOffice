@@ -1,0 +1,18 @@
+{
+  "archive": "late-intake-evidence.tar.xz",
+  "bytes": 36952,
+  "sha256": "d223283dae6098b89b4c0dce96ad036486fe993ddd687673ec7ae9abe8556b81",
+  "member_count": 249,
+  "member_index_sha256": "56f9c5a298422b2bb3a592f7b8169d08ecc256816a0617e2b24293f4fed3502f",
+  "all_members_verified": true,
+  "word_regression_total_contribution": 0,
+  "candidate_sha256": "8592dd41fb59da7fa3ead05287005cfa06d90c02bb5de495e9f985062ffff904",
+  "producer_isolated_checks": 61,
+  "independent_expectations": 36,
+  "actual_macos_build": false,
+  "actual_bash3_execution": false,
+  "excluded_recreatable_third_party_setup": [
+    "bash-3.2/",
+    "bash-3.2.tar.gz"
+  ]
+}

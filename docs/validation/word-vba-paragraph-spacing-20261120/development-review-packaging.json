@@ -1,0 +1,20 @@
+{
+  "accepted_independent_supplemental_expectations": 56,
+  "all_member_sizes_and_hashes_verified": true,
+  "archive": "/workspace/scratch/16bd38fb2cfb/runtime/line-spacing-development-review.tar.xz",
+  "bytes": 933452,
+  "development_publication_acceptance": false,
+  "github_actions": "NOT QUERIED OR AWAITED",
+  "included_compiled_javascript_and_maps": true,
+  "member_count": 110,
+  "member_index": "/workspace/scratch/16bd38fb2cfb/runtime/line-spacing-development-review/members.json",
+  "member_index_sha256": "c4262f7d9570ccc367a2062d1bd27e8c13051c9445f7bbb674620000d8d19a15",
+  "omitted_artifact_index": "/workspace/scratch/16bd38fb2cfb/runtime/line-spacing-development-review/omitted-artifacts.json",
+  "omitted_generated_artifact_count": 0,
+  "original_diagnostic_and_review_files_unchanged": true,
+  "packaging_verified": true,
+  "regression_total_contribution": 0,
+  "review_source_commit": "0201b549d0dc3f601c50e36255d557034cb01699",
+  "reviewed_sources_unchanged_through_packaging": true,
+  "sha256": "7fbfbd9b62133c114ce5ea402e61d502d8ade49608140b52545f3cdc6ed81df4"
+}

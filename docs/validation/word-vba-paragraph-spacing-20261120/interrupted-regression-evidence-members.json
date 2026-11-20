@@ -1,0 +1,94 @@
+{
+  "files": {
+    "create_progress_checkpoint.py": {
+      "bytes": 7969,
+      "mode": "0644",
+      "sha256": "e779f9d32eabde5132c47359f0c249767791fa23fbb5d7ef86edd9fdc396d639"
+    },
+    "run_word_spacing_full_gate.py": {
+      "bytes": 24931,
+      "mode": "0644",
+      "sha256": "ed4252a042e7804de9b92f4158818b63106e7ac921aba81a103232d46c402440"
+    },
+    "word-spacing-final-0201b549/command.json": {
+      "bytes": 4228,
+      "mode": "0644",
+      "sha256": "29f931fcd7a7eb97cef59eb5eb548876f5174918001d6de3a36e13eabbb3ce2a"
+    },
+    "word-spacing-final-0201b549/inputs-before.json.gz": {
+      "bytes": 282252,
+      "mode": "0644",
+      "sha256": "8ba988e8945a3b5c5848cd830ccd05addbb694955340a2c2db5d983ff7948841"
+    },
+    "word-spacing-final-0201b549/plan.json": {
+      "bytes": 11806,
+      "mode": "0644",
+      "sha256": "ba6165c29a73380150c6b364fbf545e732f85a109b0bc5c92a5d9ea6c8a5a634"
+    },
+    "word-spacing-final-0201b549/prior-cases.json.gz": {
+      "bytes": 49617,
+      "mode": "0644",
+      "sha256": "fd156808dba32ae43330da1cd82d4be72cfa886cedaf48a37256133e8c094828"
+    },
+    "word-spacing-final-0201b549/prior-evidence-audit.json": {
+      "bytes": 56597,
+      "mode": "0644",
+      "sha256": "e5e3f318b07d3b7a7a7bc1d1651562a9c47354158baf73330ffd4b7069935106"
+    },
+    "word-spacing-final-0201b549/prior-inputs-before.json.gz": {
+      "bytes": 97889,
+      "mode": "0644",
+      "sha256": "38562a55089c2a541699082a8aa078b0f7dac6b98f452c1cf8763aeca7e01060"
+    },
+    "word-spacing-final-0201b549/prior-report.json": {
+      "bytes": 16035,
+      "mode": "0644",
+      "sha256": "1eedba2558e02b43ac1185ebd580ed25b3a2fe63603e76acf0520018a0c66dc4"
+    },
+    "word-spacing-final-0201b549/prior-stdout.jsonl.gz": {
+      "bytes": 95177,
+      "mode": "0644",
+      "sha256": "f297c1c5a3066bd72e80fdd5c3b909d0f17a0d7ed6cd2e9583092b6139eff475"
+    },
+    "word-spacing-final-0201b549/stderr.log": {
+      "bytes": 0,
+      "mode": "0644",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "word-spacing-final-0201b549/stdout.jsonl": {
+      "bytes": 1344682,
+      "mode": "0644",
+      "sha256": "71e399799ecdf6cfb389cf2664f8e3d4f2c2682de3c277c6a25841d51761c502"
+    },
+    "word-spacing-final-launch.stderr": {
+      "bytes": 0,
+      "mode": "0644",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "word-spacing-final-launch.stdout": {
+      "bytes": 240,
+      "mode": "0644",
+      "sha256": "cc4e20a8d80e5e1657f34f0e1766697276ed8f39931d95ae659a1c3059acd4c0"
+    },
+    "word-spacing-interrupted-observation/inputs-at-observation.json.gz": {
+      "bytes": 282252,
+      "mode": "0644",
+      "sha256": "8ba988e8945a3b5c5848cd830ccd05addbb694955340a2c2db5d983ff7948841"
+    },
+    "word-spacing-interrupted-observation/observation.json": {
+      "bytes": 2351,
+      "mode": "0644",
+      "sha256": "8bca4ef39cb3cf7917aec1b1a0ba8a27174e5a3c79ac5fd6199c0a07389edea2"
+    }
+  },
+  "metadata": {
+    "completed_visible_cases": 2679,
+    "observed_suites": 64,
+    "process_exit_receipt_present": false,
+    "publication_acceptance": false,
+    "reason": "Coordinator process no longer existed; no observed test failure. Complete bounded-batch rerun required.",
+    "regression_total_contribution": 0,
+    "source_commit": "0201b549d0dc3f601c50e36255d557034cb01699",
+    "terminal_done_present": false
+  }
+}
