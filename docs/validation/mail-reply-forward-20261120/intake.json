@@ -1,0 +1,101 @@
+{
+  "date": "2026-11-20",
+  "lane": "HTML-only reply quotation and explicit forward with attachments",
+  "base": {
+    "sha": "f7bf155337b0ba77dc20c6be548ef38ac06c5c65",
+    "contains": [
+      "main at 3ffa599ff003a6e678260df1237b01887693e546",
+      "Downloads latest at 84d02025fade09c80f3f58942b466f4522eb4434",
+      "published mail account guards at a059c0249a25bef602640c8b8d504bd8da41c619"
+    ]
+  },
+  "branches": [
+    {
+      "branch": "codex/odt-field-continuation-20261117",
+      "sha": "c34945761e7991f5fe49037d79529acdd260b31c"
+    },
+    {
+      "branch": "codex/word-powerpoint-vba-continuation-20261120",
+      "sha": "d46d4ef394ed7cafd40bc266c793f8c0df6ec57f"
+    },
+    {
+      "branch": "codex/zotero-note-targets-20261120",
+      "sha": "6c23d94472f741aceff6aef0de0e6ef847195afe"
+    },
+    {
+      "branch": "codex/zotero-parity-continuation-20261120",
+      "sha": "40a8f8eb76bd9bf51205fa0cb9f576ba497ad76b"
+    },
+    {
+      "branch": "codex/zotero-research-tables-20261120",
+      "sha": "f7bf155337b0ba77dc20c6be548ef38ac06c5c65"
+    },
+    {
+      "branch": "docs/ods-color-scale",
+      "sha": "58fdddfbcf198a8c0e38e32f6fcc9d6604e95283"
+    },
+    {
+      "branch": "docs/ods-data-bar",
+      "sha": "69d14f84cabd3931b7640c1654b401c89faba766"
+    },
+    {
+      "branch": "feat/downloads-manager-redesign-20261120",
+      "sha": "84d02025fade09c80f3f58942b466f4522eb4434"
+    },
+    {
+      "branch": "feat/ods-color-scale",
+      "sha": "74ce9ffb816c70c0d2ae50b91ec52a614f26d688"
+    },
+    {
+      "branch": "feat/ods-data-bar",
+      "sha": "0a53b8a70128870f3e1df6d18cdb177bb64290ee"
+    },
+    {
+      "branch": "feat/ods-dynamic-validation-links",
+      "sha": "68a0db23408e4c95d6d283219504c79aea33a6fe"
+    },
+    {
+      "branch": "feat/ods-icon-sets",
+      "sha": "005c708e9f747cb46cf02e12c869b0a2f85ac824"
+    },
+    {
+      "branch": "feat/ods-time-period-conditions",
+      "sha": "7ef09f2408f467c65427700e65907531ecb26acb"
+    },
+    {
+      "branch": "fix/mail-credential-stores-chrome-20261120",
+      "sha": "95bf6340400d8e16c4ef318ca6873f06fa300bc6"
+    },
+    {
+      "branch": "integrate/office-union-148",
+      "sha": "3abf8f43b0e79c10271bbd046f391e462b8fe6b9"
+    },
+    {
+      "branch": "integrate/recent-pptx",
+      "sha": "4f5c153774ab7492430c2b68653c54e0c08dc2ad"
+    },
+    {
+      "branch": "main",
+      "sha": "3ffa599ff003a6e678260df1237b01887693e546"
+    },
+    {
+      "branch": "perf/incremental-layout-20261120",
+      "sha": "d661e024cf7607bd0c87d0c5b9f5dd581b02625e"
+    },
+    {
+      "branch": "work/mail-accounts-20261120",
+      "sha": "a059c0249a25bef602640c8b8d504bd8da41c619"
+    }
+  ],
+  "decisions": [
+    "Use the already published integration head; preserve its merged main, Downloads and account-ownership guards.",
+    "Do not reapply old non-ancestor ODS/Office heads: existing mail-accounts intake records tree-equivalent incorporated commits.",
+    "Account catalog and credential-backend work remain owned by the concurrent account lane; do not replace those paths with older branch versions.",
+    "Refresh remote main and concurrent branch heads before final merge.",
+    "Use incremental remote commits and normal non-forced updates; do not wait for GitHub Actions."
+  ],
+  "validation": {
+    "initial": "Local clone checkout failed with disk exhaustion; subsequent sandbox startup fails before commands can execute. Cleanup escalation was rejected by sandbox policy. GitHub connector operations remain available.",
+    "tests": "No new implementation tests executed at intake."
+  }
+}
