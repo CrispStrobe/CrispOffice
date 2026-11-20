@@ -1,0 +1,22 @@
+import 'package:test/test.dart';
+import 'file:///workspace/scratch/155e36affa71/quds_office_suite/packages/quds_office_engine/test/office_vba_word_measurements_test.dart' as suite0;
+import 'file:///workspace/scratch/155e36affa71/quds_office_suite/packages/quds_office_engine/test/office_vba_word_measurements_integration_test.dart' as suite1;
+import 'file:///workspace/scratch/155e36affa71/quds_office_suite/packages/quds_office_engine/test/office_vba_word_measurements_positional_test.dart' as suite2;
+import 'file:///workspace/scratch/155e36affa71/quds_office_suite/packages/quds_office_engine/test/office_vba_word_measurements_positional_integration_test.dart' as suite3;
+import 'file:///workspace/scratch/155e36affa71/quds_office_suite/packages/quds_office_engine/test/office_vba_word_unit_conversions_test.dart' as suite4;
+import 'file:///workspace/scratch/155e36affa71/quds_office_suite/packages/quds_office_engine/test/office_vba_word_unit_conversions_integration_test.dart' as suite5;
+import 'file:///workspace/scratch/155e36affa71/quds_office_suite/packages/quds_office_engine/test/office_vba_word_line_spacing_test.dart' as suite6;
+import 'file:///workspace/scratch/155e36affa71/quds_office_suite/packages/quds_office_engine/test/office_vba_word_line_spacing_integration_test.dart' as suite7;
+import 'file:///workspace/scratch/155e36affa71/quds_office_suite/packages/quds_mail_core/test/bulk_flags_test.dart' as suite8;
+
+void main() {
+  group('office_vba_word_measurements_test', suite0.main);
+  group('office_vba_word_measurements_integration_test', suite1.main);
+  group('office_vba_word_measurements_positional_test', suite2.main);
+  group('office_vba_word_measurements_positional_integration_test', suite3.main);
+  group('office_vba_word_unit_conversions_test', suite4.main);
+  group('office_vba_word_unit_conversions_integration_test', suite5.main);
+  group('office_vba_word_line_spacing_test', suite6.main);
+  group('office_vba_word_line_spacing_integration_test', suite7.main);
+  group('bulk_flags_test', suite8.main);
+}
