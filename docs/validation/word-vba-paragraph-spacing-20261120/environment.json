@@ -1,0 +1,17 @@
+{
+  "setup_finished_utc": "2026-11-20T17:39:03.769323+00:00",
+  "exit_code": 0,
+  "dart_version": "Dart SDK version: 3.14.1 (stable) (Tue Nov 17 00:01:24 2026 -0800) on \"linux_x64\"",
+  "sdk_archive_sha256": "759bed01e0aeb50e1a0b0a19474ba5c80c6087ce1d37b3214e475c81a44430e8",
+  "hosted_count": 56,
+  "version_mismatches": {},
+  "source_package_roots": {
+    "legacy_doc_parser": "file:///workspace/scratch/16bd38fb2cfb/quds_office_suite/packages/legacy_doc_parser",
+    "quds_office_engine": "file:///workspace/scratch/16bd38fb2cfb/quds_office_suite/packages/quds_office_engine"
+  },
+  "repo_head_at_setup_completion": "c7e721b7703766491fd4459b69de30bf68d9010d",
+  "tracked_file_mutations_by_setup": false,
+  "git_ref_mutations_by_setup": false,
+  "test_wrapper": "/workspace/scratch/16bd38fb2cfb/runtime/toolchain/run-engine-tests.sh",
+  "env_script": "/workspace/scratch/16bd38fb2cfb/runtime/toolchain/env.sh"
+}

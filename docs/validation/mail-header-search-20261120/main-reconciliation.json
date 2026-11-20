@@ -1,0 +1,59 @@
+{
+  "schema": "quds-mail-final-main-reconciliation/v1",
+  "status": "PASS",
+  "recorded_at_utc": "2026-11-20T19:30:58.026016+00:00",
+  "prior_saved_branch_commit": "78c7799c49c4b4824b9e47f3a6c3a7c160184da9",
+  "advanced_main_commit": "52c7f27fc7b6998e209e3ac8c815d6cf1ca6f867",
+  "merge_base": "d1e9cbc0c5dd38f0c8d28e3d76e7fdd59990f3f4",
+  "resolved_source_tree_before_supplement": "94ebdeda864ff5432152c0298ea24a3f670af9ab",
+  "tree_boundary": "This is the resolved index after the test update and before adding this supplement and updating README/validation. The final commit also includes those documentation changes.",
+  "unresolved_paths": [],
+  "scope": {
+    "inherited_word_validation_paths": 60,
+    "inherited_paths_exactly_match_main": true,
+    "changed_dart_paths": 0,
+    "unchanged_dart_files": 2427,
+    "unchanged_dart_manifest_sha256": "25701884d777941207a737f695f155e6fcefc3d6faec815b6d4aaf9ba70c993c",
+    "other_changes_before_supplement": [
+      "packages/quds_office_editor/example/tool/build_macos_app.sh",
+      "packages/quds_office_editor/example/tool/test_macos_minimum_version.py"
+    ]
+  },
+  "resolution": {
+    "guard_path": "packages/quds_office_editor/example/tool/build_macos_app.sh",
+    "selected_from_commit": "52c7f27fc7b6998e209e3ac8c815d6cf1ca6f867",
+    "guard_git_blob": "3b7cffe6852a4d9f68aacdc6014dc96ea11c7f1f",
+    "guard_sha256": "8592dd41fb59da7fa3ead05287005cfa06d90c02bb5de495e9f985062ffff904",
+    "test_path": "packages/quds_office_editor/example/tool/test_macos_minimum_version.py",
+    "test_git_blob": "8798e058d2297b1eb2737837b580cffb4b9e6c51",
+    "test_sha256": "a0e1597f83f92ae07e16f1872fe705e65ffaaf10279d3334e0019971ff10adfd",
+    "reason": "Preserve incoming main's strict decimal-string version comparison and validation of every modern/legacy deployment command and architecture; expand the focused tests for that implementation."
+  },
+  "validation": {
+    "test_groups_passed": 5,
+    "python_exit_code": 0,
+    "bash_syntax_exit_code": 0,
+    "source_unchanged_during_tests": true,
+    "receipt": "late-main-macos-receipt.json",
+    "receipt_sha256": "685faf7fb65e7ae7aa0eae2591a1b8b94a2deb5894d766d7902921674e41f828",
+    "log": "late-main-macos-tests.log",
+    "log_sha256": "45e026daa57e4e7e648552e209c07d4b0300edca4286096d41fe1c2de9502607"
+  },
+  "independent_review": {
+    "path": "late-main-review.json",
+    "sha256": "067bd81a2ed2e29b6febd5411faf6babf833c45f2cf7064b83be901303497f15",
+    "boundary": "Preserved read-only analysis of the earlier unresolved proposed tree. It is historical review evidence, not the resolved release tree; the resolution and scope above describe the selected result."
+  },
+  "prior_evidence": {
+    "qualified_source_commit": "1cf0c8e86403df8e48094cb6275cd697094b8015",
+    "archive": "evidence.tar.gz",
+    "archive_sha256": "dc8d4eca158a1a0e739063e36bcd39399727342c1f0c9a18a3efe4d008985f2f",
+    "unchanged": true,
+    "applicability": "All Dart objects remain identical. Prior Dart/Flutter results retain their documented source applicability. The original macOS guard run qualifies the prior helper only; the new focused receipt qualifies the selected incoming-main helper."
+  },
+  "limits": [
+    "The 60 Word-spacing validation paths are inherited from main; their recorded runs were not rerun or independently qualified by this reconciliation.",
+    "The full branch/PR intake remains the captured 18:41:35 UTC snapshot; this supplement records the specific later main advance.",
+    "No live providers, native macOS build, signing, browser/WASM qualification, or GitHub Actions/status endpoints were used for this reconciliation."
+  ]
+}

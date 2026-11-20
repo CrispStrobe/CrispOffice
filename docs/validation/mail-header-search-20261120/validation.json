@@ -330,5 +330,17 @@
     "Eight image-only editor fixtures had no paragraphs to edit and were skipped.",
     "Editor coverage combines four unchanged suites from a mixed run and a clean corrected Zotero rerun.",
     "Test cohorts overlap; no distinct-test grand total is claimed."
-  ]
+  ],
+  "publication_reconciliation": {
+    "record": "main-reconciliation.json",
+    "report": "main-reconciliation.md",
+    "prior_saved_branch_commit": "78c7799c49c4b4824b9e47f3a6c3a7c160184da9",
+    "advanced_main_commit": "52c7f27fc7b6998e209e3ac8c815d6cf1ca6f867",
+    "unchanged_dart_files": 2427,
+    "changed_dart_paths": 0,
+    "guard_git_blob": "3b7cffe6852a4d9f68aacdc6014dc96ea11c7f1f",
+    "final_guard_python_test_groups": 5,
+    "final_guard_receipt": "late-main-macos-receipt.json",
+    "prior_evidence_archive_unchanged": true
+  }
 }

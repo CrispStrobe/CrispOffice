@@ -2,7 +2,7 @@
 
 20 November 2026 · [CrispStrobe/quds_office_suite](https://github.com/CrispStrobe/quds_office_suite) · [PR #270](https://github.com/CrispStrobe/quds_office_suite/pull/270)
 
-**Local acceptance: passed, with eight documented image-only editor skips.** Qualified source checkpoint: [`1cf0c8e8`](https://github.com/CrispStrobe/quds_office_suite/commit/1cf0c8e86403df8e48094cb6275cd697094b8015). The machine-readable [validation record](validation.json) distinguishes exact-source checks, earlier applicable cohorts, and the composed editor result. The subsequent evidence commit changes documentation only. PR #270 records the observed publication transaction to remote `main`.
+**Local acceptance: passed, with eight documented image-only editor skips.** Qualified source checkpoint: [`1cf0c8e8`](https://github.com/CrispStrobe/quds_office_suite/commit/1cf0c8e86403df8e48094cb6275cd697094b8015). The machine-readable [validation record](validation.json) distinguishes exact-source checks, earlier applicable cohorts, and the composed editor result. The original evidence checkpoint changes documentation only. The later [main reconciliation](main-reconciliation.md) preserves all Dart objects and separately qualifies the selected macOS helper. PR #270 records the observed publication transaction to remote `main`.
 
 ## Delivered increment
 
@@ -39,6 +39,8 @@ Fourteen historical replacement proofs were independently recomputed from Git ob
 
 While validation ran, remote main advanced to `d1e9cbc0` by merging PR #267. Reconciliation commit `1cf0c8e8` incorporates that history with an identical source tree: the Arabic work was already present.
 
+After the evidence checkpoint `78c7799c`, main advanced again to `52c7f27` through PR #263. The [final reconciliation supplement](main-reconciliation.md) preserves its 60 inherited Word-validation paths and stronger macOS guard, expands the guard tests, and confirms all 2,427 Dart objects are unchanged. Five focused Python groups and shell syntax passed on the selected helper. The original evidence archive remains unchanged.
+
 The last full remote branch/PR refresh was captured at **18:41:35 UTC**; the owned working branch was refreshed after each later checkpoint. The final audit verifies this fetched inventory against the qualified source. It is a source-inclusion audit, not a claim that every historical runtime gate was rerun.
 
 The combined source includes Word spacing/controls/style identities, CLI cleanup, bookmarks and incremental layout, Studio settings persistence, macOS deployment requirements, Arabic worker packaging and fixtures, screenshot hooks, workflow fixes and release notes. The screenshot/settings conflict preserves both sets of constructor hooks and ordinary defaults. The explicitly temporary golden-regeneration workflow was removed before main. Authored App Store submission notes remain historical claims; this task did not submit an app or observe account state.
@@ -49,7 +51,7 @@ The combined source includes Word spacing/controls/style identities, CLI cleanup
 
 Counts describe the separate cohorts below. They overlap and must not be added as distinct test scenarios.
 
-| Cohort | Result | Evidence inside `evidence.tar.gz` |
+| Cohort | Result | Evidence (`records/` paths are inside `evidence.tar.gz`) |
 | --- | --- | --- |
 | Portable mail core, Dart VM | **94 passed**, including 27 new query cases; Europe/Berlin timezone | `records/core-validation-receipt.json`, `core-tests-direct.log` |
 | Portable query tests, JavaScript/Node | **27 passed**, Node 24.22.3, no custom shim | `records/core-header-search-node.log` |
@@ -58,7 +60,7 @@ Counts describe the separate cohorts below. They overlap and must not be added a
 | Studio integration | **190 passed**: 170 across four mail suites, 19 settings tests, one compact-navigation test | `records/mail-host-input.json`, `mail-host-summary.json`, `mail-host-accepted.jsonl` |
 | Word and incremental-layout engine | **486 passed** across nine files, zero skips/errors, 98.112 seconds | `records/incoming-engine-acceptance-summary.json` and associated input/raw logs |
 | Editor coverage | **204 passed, 8 skipped**, composed as explained below | `records/editor-validation-summary.json`, original five-suite log and clean Zotero rerun |
-| macOS minimum-version guard | **5 Python tests passed** | `records/macos-minimum-version-tests.log` |
+| macOS minimum-version guard | **5 expanded Python groups passed** on the final main helper; the original five-test run is retained as earlier evidence | [Final receipt](late-main-macos-receipt.json), [final log](late-main-macos-tests.log); original `records/macos-minimum-version-tests.log` |
 | Static analysis | Clean core and UI; **19 Studio, 17 engine and 6 editor files** covered | Per-domain analysis receipts/logs |
 | Strict formatting / whitespace | **22 owned Dart files, zero changes**; complete base-to-source whitespace check clean; corrected editor test formatted separately | `records/final-format.json`, `final-commit-whitespace.log` |
 
@@ -125,6 +127,7 @@ Without `--capture`, the checker verifies the committed ref snapshot and does no
 ## Evidence integrity and boundaries
 
 - [Machine-readable validation](validation.json)
+- [Late-main reconciliation and focused helper acceptance](main-reconciliation.md)
 - [Raw logs, commands, source receipts, diagnostic history and reproducible probes](evidence.tar.gz): **193,574 bytes**, SHA-256 `dc8d4eca158a1a0e739063e36bcd39399727342c1f0c9a18a3efe4d008985f2f`
 - [Archive member hashes](evidence-members.json): **88 members**
 - [Localized help comparison](visuals/help-locales.png) and [compact German/Arabic comparison](visuals/compact-locales.png)

@@ -1,0 +1,72 @@
+{
+  "status": "PASS",
+  "archive": "/workspace/scratch/16bd38fb2cfb/runtime/bounded-progress-checkpoint-files/bounded-progress-evidence.tar.xz",
+  "bytes": 401756,
+  "sha256": "c88bd97f9b7d74e4e995461b768323402fc16420d7129896a8706479fd341801",
+  "member_count": 67,
+  "index_sha256": "3a08ab0163dad992a9f59807db78960cbeb5774c35b92634d815f4f4a1454066",
+  "metadata": {
+    "accepted_batches": [
+      {
+        "batch": "batch-01",
+        "exit_code": 0,
+        "passing_cases": 335
+      },
+      {
+        "batch": "batch-02",
+        "exit_code": 0,
+        "passing_cases": 497
+      },
+      {
+        "batch": "batch-07",
+        "exit_code": 0,
+        "passing_cases": 140
+      },
+      {
+        "batch": "batch-08",
+        "exit_code": 0,
+        "passing_cases": 40
+      }
+    ],
+    "accepted_subset_cases": 1012,
+    "additional_regression_cases": 0,
+    "failed_attempts_contribution": 0,
+    "final_gate_complete": false,
+    "github_actions": "not queried or awaited",
+    "publication_acceptance": false,
+    "source_commit": "0201b549d0dc3f601c50e36255d557034cb01699"
+  },
+  "archived_member_hashes_modes_indexes_and_metadata_verified": true,
+  "accepted_batch_snapshots_independently_reconstructed": [
+    {
+      "batch_id": 1,
+      "passing_cases": 335,
+      "suites": 10
+    },
+    {
+      "batch_id": 2,
+      "passing_cases": 497,
+      "suites": 10
+    },
+    {
+      "batch_id": 7,
+      "passing_cases": 140,
+      "suites": 10
+    },
+    {
+      "batch_id": 8,
+      "passing_cases": 40,
+      "suites": 5
+    }
+  ],
+  "actual_frozen_batch_inputs_and_diagnostics_unchanged": true,
+  "evolving_reviewer_tool_snapshots": [
+    {
+      "member": "independent-review/verify_final_evidence.py",
+      "archived_sha256": "6583b6bcf927d707d591bbd7da6c89914f25c9d506d9649359c6adaa3e7f311b",
+      "current_sha256": "4f61f2a4eefb0c53cc6e446344f4be3af8fd9c308578cebeb519a9c383381a1e",
+      "classification": "Historical snapshot of an evolving review/packaging tool; not a frozen test input or final acceptance claim"
+    }
+  ],
+  "additional_word_regression_cases": 0
+}
