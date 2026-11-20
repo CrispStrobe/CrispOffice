@@ -1,0 +1,397 @@
+{
+  "schema_version": 1,
+  "repository": "CrispStrobe/quds_office_suite",
+  "reviewed_zotero_head": "e79c32e77f1990e303527e477e4909df993c1b9b",
+  "reviewed_main_head": "6b2f392c7301d4b19f16d6ccf150258f14bf7ad7",
+  "snapshot_policy": "Immutable bounded intake agreed during continuation. Initial API snapshot was older than the clone/direct-git observations for two evolving branches. Selected heads below are not a claim that no future commits exist.",
+  "source_observations": [
+    {
+      "source": "GitHub REST branches",
+      "source_url": "https://api.github.com/repos/CrispStrobe/quds_office_suite/branches?per_page=100",
+      "observed_branches": [
+        {
+          "name": "codex/odt-field-continuation-20261117",
+          "sha": "c34945761e7991f5fe49037d79529acdd260b31c"
+        },
+        {
+          "name": "codex/vba-variant-conversions-20261120",
+          "sha": "58f6d2117fbc729da6e5e14fa528c2a43001c839"
+        },
+        {
+          "name": "codex/zotero-research-materials-20261120",
+          "sha": "e79c32e77f1990e303527e477e4909df993c1b9b"
+        },
+        {
+          "name": "docs/ods-color-scale",
+          "sha": "58fdddfbcf198a8c0e38e32f6fcc9d6604e95283"
+        },
+        {
+          "name": "docs/ods-data-bar",
+          "sha": "69d14f84cabd3931b7640c1654b401c89faba766"
+        },
+        {
+          "name": "feat/ods-color-scale",
+          "sha": "74ce9ffb816c70c0d2ae50b91ec52a614f26d688"
+        },
+        {
+          "name": "feat/ods-data-bar",
+          "sha": "0a53b8a70128870f3e1df6d18cdb177bb64290ee"
+        },
+        {
+          "name": "feat/ods-dynamic-validation-links",
+          "sha": "68a0db23408e4c95d6d283219504c79aea33a6fe"
+        },
+        {
+          "name": "feat/ods-icon-sets",
+          "sha": "005c708e9f747cb46cf02e12c869b0a2f85ac824"
+        },
+        {
+          "name": "feat/ods-time-period-conditions",
+          "sha": "7ef09f2408f467c65427700e65907531ecb26acb"
+        },
+        {
+          "name": "fix/macos-ci-portable-20261120",
+          "sha": "bf606aa08f8905ceef35342772df91630840a9b2"
+        },
+        {
+          "name": "integrate/office-union-148",
+          "sha": "3abf8f43b0e79c10271bbd046f391e462b8fe6b9"
+        },
+        {
+          "name": "integrate/recent-pptx",
+          "sha": "c915fadad74ac239f03130e2ec4a994f3a974b2e"
+        },
+        {
+          "name": "main",
+          "sha": "6b2f392c7301d4b19f16d6ccf150258f14bf7ad7"
+        },
+        {
+          "name": "work/mail-attachments-20261120",
+          "sha": "e12910204ef77644c12bf06ef7030c11268ada86"
+        }
+      ],
+      "capture_time_note": "Exact wall-clock not retained by tool wrapper; captured during this continuation before the recorded_at_utc timestamp."
+    },
+    {
+      "source": "Local clone refs corroborated by direct git ls-remote",
+      "capture_time_note": "Direct git result arrived during this continuation before the recorded_at_utc timestamp.",
+      "changes_from_api": [
+        {
+          "name": "integrate/recent-pptx",
+          "sha": "e7ba3544b17817fa1769688c56ed395bf627e63e"
+        },
+        {
+          "name": "codex/vba-variant-conversions-20261120",
+          "sha": "034776797223ef4c49c1ce9520e7d93364966494"
+        },
+        {
+          "name": "fix/comment-draft-language-test-20261120",
+          "sha": "a56397df5f53b991f5016f3cc8e1ab53b7ce12f1"
+        }
+      ]
+    }
+  ],
+  "selected_new_heads": [
+    {
+      "name": "main",
+      "sha": "6b2f392c7301d4b19f16d6ccf150258f14bf7ad7",
+      "disposition": "integrate",
+      "reason": "Published main preserves merged PR224 macOS signing and PR225 grammar v2; author qualification remains separate from continuation validation."
+    },
+    {
+      "name": "fix/macos-ci-portable-20261120",
+      "sha": "bf606aa08f8905ceef35342772df91630840a9b2",
+      "disposition": "integrate",
+      "reason": "Focused portability repair atop PR224 merge: artifact/log/cache paths and same-tool stripped-library comparison; pinned code digest remains enforced.",
+      "evidence": "Commit message and complete four-path patch reviewed."
+    },
+    {
+      "name": "fix/comment-draft-language-test-20261120",
+      "sha": "a56397df5f53b991f5016f3cc8e1ab53b7ce12f1",
+      "disposition": "integrate",
+      "reason": "Seven-line test correction atop current main: asserts and declines the language-download modal before rechecking the draft language; original expectations unchanged.",
+      "evidence": "Commit message and complete single-path patch reviewed; addresses existing baseline failure described in PR224 and PR225."
+    },
+    {
+      "name": "work/mail-attachments-20261120",
+      "sha": "e12910204ef77644c12bf06ef7030c11268ada86",
+      "disposition": "retain separate: explicitly incomplete",
+      "reason": "Latest commit explicitly states a save/reopen background regression still requires completion and is not an acceptance checkpoint. PR221 remains draft. Earlier independently qualified Mail source already preserved in Zotero milestone.",
+      "evidence": {
+        "commit_message": "Preserve current Office reconciliation and recovered MIME evidence [skip ci]\n\nWork in progress: background precedence regressions are repaired, but a save/reopen background regression still requires completion. Not an acceptance checkpoint. Preserve captured main, PPTX, VBA reconciliation and portable macOS build commits. The independent attachment MIME probe passed; raw synthetic fixtures and receipts are retained.\nLocal candidate: 84eb237806a3110b36322382aa98a1897ebac204",
+        "pr": 221,
+        "pr_state": "open",
+        "pr_draft": true
+      }
+    },
+    {
+      "name": "codex/vba-variant-conversions-20261120",
+      "sha": "034776797223ef4c49c1ce9520e7d93364966494",
+      "disposition": "retain separate: feature qualification not complete",
+      "reason": "The captured head explicitly labels its validation README Work in progress: independent review and reconciliation remain underway, and the recorded development results are not the final combined-source gate. It adds new Variant states/conversions and picture-background changes beyond the accepted Zotero source.",
+      "evidence": {
+        "feature_commit": "ce02d89da9207b68d6497f5c20a327d67db9c6f5",
+        "picture_background_commit": "58f6d2117fbc729da6e5e14fa528c2a43001c839",
+        "latest_commit_message": "Document Variant contract and save runnable transaction qualification [skip ci]",
+        "validation_readme": "docs/validation/office-vba-variant-conversions-20261120/README.md at 034776797223ef4c49c1ce9520e7d93364966494",
+        "validation_readme_readiness": "Explicit Work in progress heading; final accepted source, tests, portable replay, static checks and remote reconciliation still to be recorded before main update."
+      }
+    },
+    {
+      "name": "integrate/recent-pptx",
+      "sha": "e7ba3544b17817fa1769688c56ed395bf627e63e",
+      "disposition": "retain separate: new unqualified rendering work",
+      "reason": "New picture-background/rendering changes overlap the regression explicitly recorded in the latest Mail checkpoint. Later commits add Mail setup theming and geometric/flowchart presets; no final acceptance record for this expanded head was observed.",
+      "evidence": {
+        "last_reviewed_commits": [
+          {
+            "sha": "e7ba3544b17817fa1769688c56ed395bf627e63e",
+            "subject": "Render common geometric and flow-chart shape presets"
+          },
+          {
+            "sha": "81d7adbe",
+            "subject": "Align Mail setup with the Studio theme system"
+          },
+          {
+            "sha": "c915fadad74ac239f03130e2ec4a994f3a974b2e",
+            "subject": "Merge remote-tracking branch 'origin/work/mail-attachments-20261120' into integrate/recent-pptx"
+          },
+          {
+            "sha": "23d409c9606035236102835d0aa5d327cede5771",
+            "subject": "Support picture backgrounds and gradient color fallbacks"
+          }
+        ]
+      }
+    }
+  ],
+  "recent_pull_requests": [
+    {
+      "number": 221,
+      "title": "Add bounded mail attachments and reconcile current Office work",
+      "head": "e12910204ef77644c12bf06ef7030c11268ada86",
+      "branch": "work/mail-attachments-20261120",
+      "state": "open",
+      "draft": true,
+      "merged_at": null,
+      "merge_commit_sha": "e5f2b6ebcfd1566aa2daad92f5a554abb6e85b4e",
+      "updated_at": "2026-11-20T05:25:00Z"
+    },
+    {
+      "number": 224,
+      "title": "macOS release signing with code-identity spaCy qualification; weekly macOS CI",
+      "head": "38c9c297c12fca3422b8f758e7b1afbdabbf064c",
+      "branch": "feat/macos-signing-ci-20261120",
+      "state": "closed",
+      "draft": false,
+      "merged_at": "2026-11-20T05:02:10Z",
+      "merge_commit_sha": "85c019cd8fda1a735a727bff98c2a56fb25a368e",
+      "updated_at": "2026-11-20T05:14:11Z"
+    },
+    {
+      "number": 225,
+      "title": "Native spaCy German grammar v2: NP agreement, preposition case, verb position (+ experimental person)",
+      "head": "4973e712045bdcf45fd36dcfe37d380c52265d3c",
+      "branch": "feat/spacy-grammar-v2-20261120",
+      "state": "closed",
+      "draft": false,
+      "merged_at": "2026-11-20T05:13:37Z",
+      "merge_commit_sha": "6b2f392c7301d4b19f16d6ccf150258f14bf7ad7",
+      "updated_at": "2026-11-20T05:13:51Z"
+    },
+    {
+      "number": 223,
+      "title": "Extend Zotero research-material browsing and reconcile recent work [skip ci]",
+      "head": "e79c32e77f1990e303527e477e4909df993c1b9b",
+      "branch": "codex/zotero-research-materials-20261120",
+      "state": "open",
+      "draft": false,
+      "merged_at": null,
+      "merge_commit_sha": "e0fbc96d90e9cc0c956d6a5397cfd05c5b029cd7",
+      "updated_at": "2026-11-20T05:11:43Z"
+    },
+    {
+      "number": 222,
+      "title": "Extend VBA string conformance and reconcile current Office work [skip ci]",
+      "head": "7be53768501bb6df426eeb9d05c921e393ded02f",
+      "branch": "codex/vba-string-conformance-20261120",
+      "state": "closed",
+      "draft": false,
+      "merged_at": "2026-11-20T04:41:16Z",
+      "merge_commit_sha": "1e22519d098d5e8103a92c581e281589f207cc4f",
+      "updated_at": "2026-11-20T04:41:44Z"
+    },
+    {
+      "number": 220,
+      "title": "Qualify the app-bundled macOS spaCy library for manual German grammar [skip ci]",
+      "head": "1441665236401e94ccf03ffa694c7434bb227ef3",
+      "branch": "feat/spacy-macos-bundled-qualification-20261119",
+      "state": "closed",
+      "draft": false,
+      "merged_at": "2026-11-19T22:30:15Z",
+      "merge_commit_sha": "096ddbef8a50fdbe446b72da7d79bed945d12a19",
+      "updated_at": "2026-11-19T23:08:21Z"
+    },
+    {
+      "number": 218,
+      "title": "Extend Zotero tag discovery and source citation navigation",
+      "head": "6626ad430a54122e4514cc2870fdcee18760682f",
+      "branch": "codex/zotero-workflow-20261119",
+      "state": "closed",
+      "draft": false,
+      "merged_at": "2026-11-19T21:31:47Z",
+      "merge_commit_sha": "88513f04cfbdec210340f2d70a674cf3f23e31c0",
+      "updated_at": "2026-11-19T22:45:46Z"
+    },
+    {
+      "number": 217,
+      "title": "Add To/Cc/Bcc and Reply all; reconcile concurrent fork work [skip ci]",
+      "head": "fd17f6c4e0ffc22b71e52dcc7859fd95f72f30c7",
+      "branch": "work/mail-continuation-20261119",
+      "state": "closed",
+      "draft": false,
+      "merged_at": "2026-11-19T21:41:20Z",
+      "merge_commit_sha": "057fdb9325ec2f93d2ac0592217da8ad350b0664",
+      "updated_at": "2026-11-19T22:45:46Z"
+    },
+    {
+      "number": 216,
+      "title": "Preserve mail reply threading and reconcile fork continuations",
+      "head": "ab833975409abfb207f3a6a1a146183a4a5198fd",
+      "branch": "work/mail-next-20261119",
+      "state": "closed",
+      "draft": false,
+      "merged_at": "2026-11-19T20:50:37Z",
+      "merge_commit_sha": "2170791c9250d72c9df31a065408365f9b50abaa",
+      "updated_at": "2026-11-19T22:45:46Z"
+    },
+    {
+      "number": 219,
+      "title": "Extend VBA with dynamic arrays and reconcile current Office work",
+      "head": "3003272fc2bc1f77bdb1355aa7cb27356dfbc61b",
+      "branch": "codex/vba-dynamic-arrays-20261119",
+      "state": "closed",
+      "draft": false,
+      "merged_at": "2026-11-19T22:01:27Z",
+      "merge_commit_sha": "3003272fc2bc1f77bdb1355aa7cb27356dfbc61b",
+      "updated_at": "2026-11-19T22:45:45Z"
+    },
+    {
+      "number": 212,
+      "title": "Resume mail archive restores with durable destination checkpoints [skip ci]",
+      "head": "482fbd99dd8d3d5aff7d773fa87454f4d324028d",
+      "branch": "codex/mail-archive-resume-20261119",
+      "state": "closed",
+      "draft": false,
+      "merged_at": "2026-11-19T20:16:03Z",
+      "merge_commit_sha": "5715d56053e93dc11e8b5165bd13f8db2a1f3917",
+      "updated_at": "2026-11-19T22:45:45Z"
+    },
+    {
+      "number": 211,
+      "title": "Make Layout precise and compact, fix dark appearance, clarify document modes",
+      "head": "cacae8569814e4cb81f58d358734d31431f102be",
+      "branch": "codex/crispoffice-layout-theme-20261119",
+      "state": "closed",
+      "draft": true,
+      "merged_at": "2026-11-19T20:50:38Z",
+      "merge_commit_sha": "2638a2c96ea5e66ace5884896fe09de92a7ce380",
+      "updated_at": "2026-11-19T22:45:45Z"
+    },
+    {
+      "number": 210,
+      "title": "Extend VBA macros with bounded arrays and For Each; reconcile fork work",
+      "head": "3abffb94dcf33a2766a4579d296d0ef09c9e35cd",
+      "branch": "codex/vba-arrays-foreach-20261119",
+      "state": "closed",
+      "draft": true,
+      "merged_at": "2026-11-19T20:50:38Z",
+      "merge_commit_sha": "2638a2c96ea5e66ace5884896fe09de92a7ce380",
+      "updated_at": "2026-11-19T22:45:45Z"
+    },
+    {
+      "number": 215,
+      "title": "Verify the saved spaCy setup before the first analysis [skip ci]",
+      "head": "cc061e72bd167cdaf4a99d3c0b714f27cb93b2c8",
+      "branch": "fix/spacy-open-refresh-20261119",
+      "state": "closed",
+      "draft": false,
+      "merged_at": "2026-11-19T19:53:14Z",
+      "merge_commit_sha": "53d5e43b1dec37c191d44dbff101c68f8221de7e",
+      "updated_at": "2026-11-19T19:53:18Z"
+    },
+    {
+      "number": 214,
+      "title": "Align bundled spaCy mode with NER state and the downloads manager [skip ci]",
+      "head": "dc93a176f8efc98feff9c25565fb036175793a54",
+      "branch": "fix/spacy-bundled-ner-20261119",
+      "state": "closed",
+      "draft": false,
+      "merged_at": "2026-11-19T19:42:42Z",
+      "merge_commit_sha": "9ceb994d8edce3989228f1244cda90ecc9884931",
+      "updated_at": "2026-11-19T19:43:15Z"
+    },
+    {
+      "number": 213,
+      "title": "Bundle the spaCy runtime in the macOS app, register missing licences, harden the build [skip ci]",
+      "head": "0e03878b028ec25ed3d84a790633433eafc3bede",
+      "branch": "fix/app-gaps-20261119",
+      "state": "closed",
+      "draft": false,
+      "merged_at": "2026-11-19T19:15:39Z",
+      "merge_commit_sha": "4a4ea1f0d8c990cc74ce8f7233545a8a9dc0887c",
+      "updated_at": "2026-11-19T19:43:15Z"
+    },
+    {
+      "number": 209,
+      "title": "Restore exported mail archives with verified originals and provenance",
+      "head": "6275d21246040e03f6264b27171992c88d1474a2",
+      "branch": "codex/mail-archive-restore-20261119",
+      "state": "closed",
+      "draft": false,
+      "merged_at": "2026-11-19T18:16:42Z",
+      "merge_commit_sha": "caf378f40fd5bda50f504a6816404d01d8bbb8f8",
+      "updated_at": "2026-11-19T19:43:14Z"
+    },
+    {
+      "number": 207,
+      "title": "Extend bounded VBA macros with conditional loops and Select Case",
+      "head": "dde2b56066746223b2b313cbfb0ce8dba55dc6bd",
+      "branch": "codex/vba-control-flow-20261119",
+      "state": "closed",
+      "draft": false,
+      "merged_at": "2026-11-19T17:49:23Z",
+      "merge_commit_sha": "cf59efa99232a3fd26cf21ce7f2382402e576f9b",
+      "updated_at": "2026-11-19T19:43:14Z"
+    },
+    {
+      "number": 206,
+      "title": "Improve CrispOffice ribbons and native desktop menus [skip ci]",
+      "head": "bba11ff1b23b2e8c0cdc0d872ce31394ada83bf2",
+      "branch": "codex/crispoffice-gui-20261119",
+      "state": "closed",
+      "draft": false,
+      "merged_at": "2026-11-19T17:40:16Z",
+      "merge_commit_sha": "0d87cebea232c3edf55c4f4a22f63684dbe5a3f5",
+      "updated_at": "2026-11-19T19:43:14Z"
+    },
+    {
+      "number": 208,
+      "title": "[skip ci] MacBook build integration: resolve temp folder in Studio directory-import tests",
+      "head": "de9d21f9014060c14263ce17fe323d5fdb063d11",
+      "branch": "integrate/macbook-build-20261119",
+      "state": "closed",
+      "draft": false,
+      "merged_at": "2026-11-19T17:39:56Z",
+      "merge_commit_sha": "bcb061e163834f9a5a6e0b61571ffda909bdd61e",
+      "updated_at": "2026-11-19T17:40:45Z"
+    }
+  ],
+  "historical_audit_path": "docs/validation/zotero-research-materials-20261120/final-reconciliation.json",
+  "policy": {
+    "github_actions_queried": false,
+    "github_actions_awaited": false,
+    "checks_or_status_endpoints_queried": false,
+    "remote_refs_mutated": false,
+    "product_source_mutated": false
+  }
+}

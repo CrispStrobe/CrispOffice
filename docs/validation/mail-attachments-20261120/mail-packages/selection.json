@@ -1,0 +1,116 @@
+{
+  "cohorts": [
+    {
+      "files": [
+        "test/cancellation_test.dart",
+        "test/ews_identity_test.dart",
+        "test/imap_sync_range_test.dart",
+        "test/models_test.dart",
+        "test/outbox_test.dart",
+        "test/sync_coordinator_test.dart"
+      ],
+      "name": "quds_mail_core-vm",
+      "package": "packages/quds_mail_core",
+      "platform": "vm"
+    },
+    {
+      "files": [
+        "test/eml_bytes_test.dart",
+        "test/mbox_test.dart",
+        "test/mime_encodings_test.dart",
+        "test/mime_limits_test.dart",
+        "test/mime_parts_test.dart",
+        "test/mime_review_regressions_test.dart",
+        "test/portable_import_test.dart"
+      ],
+      "name": "quds_mail_mime-vm",
+      "package": "packages/quds_mail_mime",
+      "platform": "vm"
+    },
+    {
+      "files": [
+        "test/adversarial_store_test.dart",
+        "test/archive_directory_native_test.dart",
+        "test/archive_export_manifest_test.dart",
+        "test/archive_export_native_test.dart",
+        "test/archive_export_plan_test.dart",
+        "test/archive_multi_origin_test.dart",
+        "test/archive_native_test.dart",
+        "test/archive_query_test.dart",
+        "test/archive_repository_test.dart",
+        "test/archive_restore_adversarial_test.dart",
+        "test/archive_restore_checkpoint_test.dart",
+        "test/archive_restore_native_test.dart",
+        "test/archive_restore_resume_test.dart",
+        "test/archive_runner_test.dart",
+        "test/codec_test.dart",
+        "test/crash_recovery_test.dart",
+        "test/ews_store_test.dart",
+        "test/imap_sync_range_test.dart",
+        "test/migration_test.dart",
+        "test/native_platform_test.dart",
+        "test/platform_configuration_test.dart",
+        "test/repository_test.dart"
+      ],
+      "name": "quds_mail_store-vm",
+      "package": "packages/quds_mail_store",
+      "platform": "vm"
+    },
+    {
+      "files": [
+        "test/browser_problem_test.dart"
+      ],
+      "name": "quds_mail_store-node",
+      "package": "packages/quds_mail_store",
+      "platform": "node"
+    },
+    {
+      "files": [
+        "test/cloud_http_test.dart",
+        "test/cloud_oauth_loopback_test.dart",
+        "test/cloud_oauth_test.dart",
+        "test/cloud_provider_test.dart",
+        "test/cloud_store_test.dart",
+        "test/configuration_test.dart",
+        "test/cursor_test.dart",
+        "test/ews_configuration_test.dart",
+        "test/ews_http_test.dart",
+        "test/ews_ntlm_test.dart",
+        "test/ews_provider_test.dart",
+        "test/ews_soap_test.dart",
+        "test/host_store_integration_test.dart",
+        "test/native_provider_test.dart",
+        "test/native_tls_cancellation_test.dart",
+        "test/native_tls_round_trip_test.dart",
+        "test/native_tls_test.dart",
+        "test/uid_discovery_test.dart"
+      ],
+      "name": "quds_mail_transport-vm",
+      "package": "packages/quds_mail_transport",
+      "platform": "vm"
+    },
+    {
+      "files": [
+        "test/cloud_unsupported_test.dart",
+        "test/ews_unsupported_test.dart",
+        "test/unsupported_test.dart"
+      ],
+      "name": "quds_mail_transport-node",
+      "package": "packages/quds_mail_transport",
+      "platform": "node"
+    },
+    {
+      "files": [
+        "test/codecs/quoted_printable_mail_codec_test.dart",
+        "test/message_builder_test.dart",
+        "test/quds_portable_mime_test.dart"
+      ],
+      "name": "vendor-mime",
+      "package": "third_party/enough_mail",
+      "platform": "vm"
+    }
+  ],
+  "scope": "All declared tests in the four mail packages; VM for native/default tests and Node/dart2js for declared js/node boundaries. Vendor codec, builder and portable MIME public-entry tests. No live account delivery.",
+  "source_head": "75083ea738d08be3eb9a3d983ac80a7f05a6201b",
+  "source_tree": "6aff53dc9b5e2c29854ad05703038c7362fdcc1f"
+}

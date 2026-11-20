@@ -1,0 +1,47 @@
+{
+  "mode": "editor",
+  "source_commit": "6dbd12f734d6f3249e7824a120ae581b1c77e94c",
+  "source_tree": "7946aa3a80e4cbf1f85a714928745d1242326ec9",
+  "source_inputs": {
+    "packages/quds_office_editor/lib/src/editor_slide/render_slide_stage.dart": "239cf21235ff40eb4769ea940d7a36c15a607f7ce46b4a3eac180a049b3bf861",
+    "packages/quds_office_editor/lib/src/visual/paint_office_visual.dart": "b86580f1ec8394aed0ead8d5fdb313ad49f858b308d7e680ebb2a9003c77695e",
+    "packages/quds_office_editor/test/picture_adjustment_render_test.dart": "b9bd18e41dcf024121f751a53c8ffcb1ac1ddd5de7bf3ac95bcfc39adac7451e",
+    "packages/quds_office_editor/test/slide_incoming_pptx_regression_test.dart": "61380393ed5ab06d1bc4bf22ac3c910606b251ebfee03f0be40f94239149a049",
+    "packages/quds_office_engine/lib/src/pdf/office_pdf_export.dart": "fbb4bd941e9735afa22a6849172db87bf029dee24492b7bce9dc76524c80fe9b",
+    "packages/quds_office_engine/lib/src/pdf/office_pdf_visuals.dart": "343586fe1eb0291201cf9c380cc756ba86c38da575896ff3ec2f9c542cbc2c6a",
+    "packages/quds_office_engine/lib/src/slide/model/pml_presentation.dart": "62fe3eceeaa995a36ba417fa78314fa00ebd26b75e469567e1d4c623ce111883",
+    "packages/quds_office_engine/lib/src/slide/serial/slide_serial.dart": "4603da1a3bd609cec50072222fe1d843bb47f5967eb47fad9fc8e66909a97574",
+    "packages/quds_office_engine/lib/src/slide/shapes/drawingml.dart": "b44e232925c04fc11c1f53c02eeb1512693ecc931b2ef13f7040cc357933da53",
+    "packages/quds_office_engine/test/slide_gradient_merge_test.dart": "aed24e953a11e203d420a8906305bced8c264768532f09723c1fc3ca66ab2bcf",
+    "packages/quds_office_engine/test/slide_import_fidelity_test.dart": "de85c823639863a89c3c028d3d7d73021ff780366df5bc6df63c34a6cd30032d",
+    "pubspec.yaml": "453a1f8ab62db1c5577c424b058b50033a8d3b49b99c83862ab58a7e1108f74f",
+    "pubspec.lock": "df9ff88b4df699b2420954d0ddc0dd7a1c40dbca8d9e3af3f25bec7e66700e7e",
+    ".dart_tool/package_config.json": "fcfa2da45c790f05cbec04f9fb1fd17b80685b35f754d8f371bc64c29407cf29"
+  },
+  "source_inputs_unchanged": true,
+  "runs": [
+    {
+      "command": [
+        "flutter",
+        "test",
+        "--no-pub",
+        "--reporter=json",
+        "test/picture_adjustment_render_test.dart",
+        "test/slide_incoming_pptx_regression_test.dart",
+        "test/slide_render_fidelity_test.dart"
+      ],
+      "cwd": "/workspace/scratch/70953f0172ce/office-integration/packages/quds_office_editor",
+      "exit_code": 0,
+      "seconds": 13.941,
+      "passing": 29,
+      "distinct_passing": 29,
+      "skipped": 0,
+      "errors": 0,
+      "finished": true,
+      "accepted": true,
+      "stdout_sha256": "afa5f558068de5230d7ded408e57b31cd03edf064b1ca4c40c6129da0e88715a",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "accepted": true
+}

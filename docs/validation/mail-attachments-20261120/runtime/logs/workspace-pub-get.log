@@ -1,0 +1,7 @@
+Resolving dependencies...
+Downloading packages...
+  image 4.13.1 (from direct dependency to transitive dependency)
+  js 0.6.7 (0.7.2 available)
+Would change 1 dependency.
+1 package has newer versions incompatible with dependency constraints.
+Try `dart pub outdated` for more information.

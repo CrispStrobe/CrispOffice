@@ -1,0 +1,20 @@
+{
+  "status": "passed",
+  "final_source_head": "f8f36eb87b051a0b26ee68747dfd24c4717eaec1",
+  "final_source_tree": "26f0d546e9d6ef29a3ab90ea0081425cba13c1d4",
+  "distinct_application_passes": 2049,
+  "failed_application_cases": 0,
+  "explicit_native_not_run_cases": 1,
+  "distinct_selected_test_files": 113,
+  "replacement_pin_cases": 1,
+  "replacement_pin_cases_added": 0,
+  "auxiliary_shell_scenarios": 8,
+  "auxiliary_scenarios_added_to_application_total": 0,
+  "final_static_62_verified": true,
+  "issues": [],
+  "earlier_audit_hashes_unchanged": {
+    "report.json": "c82f098ec6c209f736ea1ed5890991a120f193602a99416593219b9ea51a4b58",
+    "supplemental-validation-report.json": "37eb1018a153d9ba2600f0e7124dbf711fbde50545516f6aa4635b5f69e2e1df",
+    "supplemental-source-applicability.json": "06bf778d91330301e788de2acb87c82df172216184af506198b150927978c8a7"
+  }
+}

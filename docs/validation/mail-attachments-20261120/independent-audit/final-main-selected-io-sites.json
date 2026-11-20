@@ -1,0 +1,1968 @@
+{
+  "selected_file_count": 113,
+  "io_site_count": 327,
+  "sites": [
+    {
+      "path": "packages/quds_mail_store/test/adversarial_store_test.dart",
+      "line": 152,
+      "text": "Future<(File, MailProfileId, MailAccountId)> _persistentIdentity() async {",
+      "context": ");\n\nFuture<(File, MailProfileId, MailAccountId)> _persistentIdentity() async {\n  final directory = await Directory.systemTemp.createTemp('mail-adversarial-');\n  addTearDown(() => directory.delete(recursive: true));\n  final profile = MailProfileId('durable', hostId: 'independent-tests');"
+    },
+    {
+      "path": "packages/quds_mail_store/test/adversarial_store_test.dart",
+      "line": 153,
+      "text": "  final directory = await Directory.systemTemp.createTemp('mail-adversarial-');",
+      "context": "\nFuture<(File, MailProfileId, MailAccountId)> _persistentIdentity() async {\n  final directory = await Directory.systemTemp.createTemp('mail-adversarial-');\n  addTearDown(() => directory.delete(recursive: true));\n  final profile = MailProfileId('durable', hostId: 'independent-tests');\n  return ("
+    },
+    {
+      "path": "packages/quds_mail_store/test/adversarial_store_test.dart",
+      "line": 157,
+      "text": "    File('${directory.path}/mail.sqlite3'),",
+      "context": "  final profile = MailProfileId('durable', hostId: 'independent-tests');\n  return (\n    File('${directory.path}/mail.sqlite3'),\n    profile,\n    MailAccountId('account', profile: profile),\n  );"
+    },
+    {
+      "path": "packages/quds_mail_store/test/adversarial_store_test.dart",
+      "line": 164,
+      "text": "  File file,",
+      "context": "\nFuture<SqliteMailRepository> _open(\n  File file,\n  MailProfileId profile, {\n  MailStoreFaultInjector? fault,\n}) async {"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_directory_native_test.dart",
+      "line": 19,
+      "text": "  late Directory directory;",
+      "context": "\nvoid main() {\n  late Directory directory;\n\n  setUp(() async {\n    // Resolve the system temporary directory once: macOS commonly exposes /tmp"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_directory_native_test.dart",
+      "line": 24,
+      "text": "    final temporary = await Directory.systemTemp.resolveSymbolicLinks();",
+      "context": "    // Resolve the system temporary directory once: macOS commonly exposes /tmp\n    // through a link, which the production enumerator deliberately rejects.\n    final temporary = await Directory.systemTemp.resolveSymbolicLinks();\n    directory = await Directory(temporary).createTemp('mail-directory-test-');\n  });\n"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_directory_native_test.dart",
+      "line": 25,
+      "text": "    directory = await Directory(temporary).createTemp('mail-directory-test-');",
+      "context": "    // through a link, which the production enumerator deliberately rejects.\n    final temporary = await Directory.systemTemp.resolveSymbolicLinks();\n    directory = await Directory(temporary).createTemp('mail-directory-test-');\n  });\n\n  tearDown(() async {"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_directory_native_test.dart",
+      "line": 32,
+      "text": "  Future<File> write(String relative, [int bytes = 1]) async {",
+      "context": "  });\n\n  Future<File> write(String relative, [int bytes = 1]) async {\n    final file = File(p.join(directory.path, relative));\n    await file.parent.create(recursive: true);\n    return file.writeAsBytes(List<int>.filled(bytes, 65));"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_directory_native_test.dart",
+      "line": 33,
+      "text": "    final file = File(p.join(directory.path, relative));",
+      "context": "\n  Future<File> write(String relative, [int bytes = 1]) async {\n    final file = File(p.join(directory.path, relative));\n    await file.parent.create(recursive: true);\n    return file.writeAsBytes(List<int>.filled(bytes, 65));\n  }"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_directory_native_test.dart",
+      "line": 81,
+      "text": "      expect(await File(entry.absolutePath!).length(), entry.byteLength);",
+      "context": "      expect(p.isAbsolute(entry.absolutePath!), isTrue);\n      expect(p.isWithin(directory.path, entry.absolutePath!), isTrue);\n      expect(await File(entry.absolutePath!).length(), entry.byteLength);\n    }\n    expect(\n      files.singleWhere((entry) => entry.relativePath!.endsWith('.MbOx')).kind,"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_directory_native_test.dart",
+      "line": 136,
+      "text": "        await File(",
+      "context": "      expect(entries.last.progress.skippedEntries, 3);\n      expect(\n        await File(\n          p.join(directory.path, '.pending-partial/original.eml'),\n        ).length(),\n        3,"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_directory_native_test.dart",
+      "line": 148,
+      "text": "      Directory(p.join(directory.path, '.pending-partial')),",
+      "context": "    await write('.pending-partial/original.eml', 3);\n    final entries = await enumerateMailArchiveDirectory(\n      Directory(p.join(directory.path, '.pending-partial')),\n    ).toList();\n    expect(entries.single.issue, MailArchiveDirectoryIssue.exportStaging);\n    expect(entries.single.terminal, isTrue);"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_directory_native_test.dart",
+      "line": 164,
+      "text": "        Directory(p.join(directory.path, '.pending-user')),",
+      "context": "      expect(entries.last.progress.skippedEntries, 0);\n      final selected = await enumerateMailArchiveDirectory(\n        Directory(p.join(directory.path, '.pending-user')),\n      ).toList();\n      expect(_files(selected).single.relativePath, 'mail.eml');\n      expect(selected.last.progress.acceptedBytes, 3);"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_directory_native_test.dart",
+      "line": 192,
+      "text": "    await Directory(p.join(directory.path, 'manifest.json')).create();",
+      "context": "\n  test('a directory named manifest.json is not an export marker', () async {\n    await Directory(p.join(directory.path, 'manifest.json')).create();\n    await write('.pending-user/mail.eml', 3);\n    final entries = await enumerateMailArchiveDirectory(directory).toList();\n    expect(_files(entries).single.relativePath, '.pending-user/mail.eml');"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_directory_native_test.dart",
+      "line": 443,
+      "text": "      Directory(p.join(directory.path, 'missing-private-path')),",
+      "context": "    final cancellation = MailCancellationSource()..cancel();\n    final entries = await enumerateMailArchiveDirectory(\n      Directory(p.join(directory.path, 'missing-private-path')),\n      cancellation: cancellation.token,\n    ).toList();\n    expect(entries.single.outcome, MailArchiveDirectoryOutcome.cancelled);"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_directory_native_test.dart",
+      "line": 491,
+      "text": "          await Directory(entry.absolutePath!).delete(recursive: true);",
+      "context": "        if (entry.outcome == MailArchiveDirectoryOutcome.directory &&\n            entry.relativePath == 'child') {\n          await Directory(entry.absolutePath!).delete(recursive: true);\n        }\n      }\n      expect(_files(entries), isEmpty);"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_directory_native_test.dart",
+      "line": 507,
+      "text": "      Directory(p.join(directory.path, 'missing')),",
+      "context": "  test('missing root and file roots have typed terminal errors', () async {\n    final missing = await enumerateMailArchiveDirectory(\n      Directory(p.join(directory.path, 'missing')),\n    ).toList();\n    expect(missing.single.issue, MailArchiveDirectoryIssue.inaccessible);\n    expect(missing.single.terminal, isTrue);"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_directory_native_test.dart",
+      "line": 513,
+      "text": "      Directory(file.path),",
+      "context": "    final file = await write('not-a-directory.eml');\n    final notDirectory = await enumerateMailArchiveDirectory(\n      Directory(file.path),\n    ).toList();\n    expect(\n      notDirectory.single.issue,"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_directory_native_test.dart",
+      "line": 524,
+      "text": "      Directory('${directory.path}${p.separator}..${p.separator}outside'),",
+      "context": "  test('traversal root components are rejected before normalization', () async {\n    final entries = await enumerateMailArchiveDirectory(\n      Directory('${directory.path}${p.separator}..${p.separator}outside'),\n    ).toList();\n    expect(entries.single.issue, MailArchiveDirectoryIssue.invalidPath);\n    expect(entries.single.progress.entriesInspected, 0);"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_directory_native_test.dart",
+      "line": 532,
+      "text": "      Directory('${directory.path}\\nprivate'),",
+      "context": "  test('invalid root control metadata is not exposed by the result', () async {\n    final entries = await enumerateMailArchiveDirectory(\n      Directory('${directory.path}\\nprivate'),\n    ).toList();\n    expect(entries.single.issue, MailArchiveDirectoryIssue.invalidPath);\n    expect(entries.single.relativePath, isNull);"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_directory_native_test.dart",
+      "line": 540,
+      "text": "  if (!Platform.isWindows) {",
+      "context": "  });\n\n  if (!Platform.isWindows) {\n    test(\n      'a symlink named manifest.json is not followed as an export marker',\n      () async {"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_directory_native_test.dart",
+      "line": 590,
+      "text": "        Directory(link.path),",
+      "context": "      await link.create(p.join(directory.path, 'real'));\n      final entries = await enumerateMailArchiveDirectory(\n        Directory(link.path),\n      ).toList();\n      expect(entries.single.issue, MailArchiveDirectoryIssue.symbolicLink);\n      expect(entries.single.terminal, isTrue);"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_directory_native_test.dart",
+      "line": 602,
+      "text": "        Directory(p.join(link.path, 'nested')),",
+      "context": "      await link.create(p.join(directory.path, 'real'));\n      final entries = await enumerateMailArchiveDirectory(\n        Directory(p.join(link.path, 'nested')),\n      ).toList();\n      expect(entries.single.issue, MailArchiveDirectoryIssue.symbolicLink);\n      expect(entries.single.terminal, isTrue);"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_directory_native_test.dart",
+      "line": 612,
+      "text": "        final external = await Directory(",
+      "context": "      () async {\n        await write('replace/mail.eml');\n        final external = await Directory(\n          directory.parent.path,\n        ).createTemp('mail-external-');\n        addTearDown(() => external.delete(recursive: true));"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_directory_native_test.dart",
+      "line": 616,
+      "text": "        await File(",
+      "context": "        ).createTemp('mail-external-');\n        addTearDown(() => external.delete(recursive: true));\n        await File(\n          p.join(external.path, 'outside.eml'),\n        ).writeAsString('outside');\n        final entries = <MailArchiveDirectoryEntry>[];"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_directory_native_test.dart",
+      "line": 624,
+      "text": "            await Directory(entry.absolutePath!).delete(recursive: true);",
+      "context": "          if (entry.outcome == MailArchiveDirectoryOutcome.directory &&\n              entry.relativePath == 'replace') {\n            await Directory(entry.absolutePath!).delete(recursive: true);\n            await Link(entry.absolutePath!).create(external.path);\n          }\n        }"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_directory_native_test.dart",
+      "line": 636,
+      "text": "          await File(p.join(external.path, 'outside.eml')).readAsString(),",
+      "context": "        );\n        expect(\n          await File(p.join(external.path, 'outside.eml')).readAsString(),\n          'outside',\n        );\n      },"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_directory_native_test.dart",
+      "line": 663,
+      "text": "      final result = await Process.run('mkfifo', [",
+      "context": "\n    test('named pipes are skipped without opening or reading them', () async {\n      final result = await Process.run('mkfifo', [\n        p.join(directory.path, 'pipe.eml'),\n      ]);\n      expect(result.exitCode, 0);"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_export_native_test.dart",
+      "line": 69,
+      "text": "  late Directory parent;",
+      "context": "\nvoid main() {\n  late Directory parent;\n  late List<MailBytes> originals;\n  late List<String> loads;\n  late NativeMailArchiveExporter exporter;"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_export_native_test.dart",
+      "line": 75,
+      "text": "    parent = await Directory.systemTemp.createTemp('archive-export-test-');",
+      "context": "\n  setUp(() async {\n    parent = await Directory.systemTemp.createTemp('archive-export-test-');\n    originals = [\n      _bytes('Subject: First\\r\\n\\r\\nOriginal one'),\n      _bytes('Subject: Second\\r\\n\\r\\nOriginal two'),"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_export_native_test.dart",
+      "line": 96,
+      "text": "    final unrelated = File(",
+      "context": "\n  test('bulk export preserves exact originals and frozen provenance', () async {\n    final unrelated = File(\n      p.join(parent.path, '${originals.first.sha256}.eml'),\n    );\n    await unrelated.writeAsString('unrelated');"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_export_native_test.dart",
+      "line": 113,
+      "text": "    expect(await unrelated.readAsString(), 'unrelated');",
+      "context": "    expect(report.bytes, plan.totalBytes);\n    expect(report.processed, report.planned);\n    expect(await unrelated.readAsString(), 'unrelated');\n    final root = Directory(report.directoryPath!);\n    for (final original in originals) {\n      expect("
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_export_native_test.dart",
+      "line": 114,
+      "text": "    final root = Directory(report.directoryPath!);",
+      "context": "    expect(report.processed, report.planned);\n    expect(await unrelated.readAsString(), 'unrelated');\n    final root = Directory(report.directoryPath!);\n    for (final original in originals) {\n      expect(\n        await File(p.join(root.path, '${original.sha256}.eml')).readAsBytes(),"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_export_native_test.dart",
+      "line": 117,
+      "text": "        await File(p.join(root.path, '${original.sha256}.eml')).readAsBytes(),",
+      "context": "    for (final original in originals) {\n      expect(\n        await File(p.join(root.path, '${original.sha256}.eml')).readAsBytes(),\n        original.bytes,\n      );\n    }"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_export_native_test.dart",
+      "line": 121,
+      "text": "    final encoded = await File(",
+      "context": "      );\n    }\n    final encoded = await File(\n      p.join(root.path, 'manifest.json'),\n    ).readAsString();\n    final decoded = decodeMailArchiveExportManifest(encoded, _limits);"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_export_native_test.dart",
+      "line": 123,
+      "text": "    ).readAsString();",
+      "context": "    final encoded = await File(\n      p.join(root.path, 'manifest.json'),\n    ).readAsString();\n    final decoded = decodeMailArchiveExportManifest(encoded, _limits);\n    expect(decoded.profile, _profile);\n    expect(decoded.createdAt, plan.createdAt);"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_export_native_test.dart",
+      "line": 159,
+      "text": "      final root = Directory(first.directoryPath!);",
+      "context": "      expect(first.bytes, originals.first.length);\n      expect(loads, [originals.first.sha256]);\n      final root = Directory(first.directoryPath!);\n      await Directory(p.join(root.path, '.pending-crash')).create();\n      await File(\n        p.join(root.path, '.pending-crash', 'original.eml'),"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_export_native_test.dart",
+      "line": 160,
+      "text": "      await Directory(p.join(root.path, '.pending-crash')).create();",
+      "context": "      expect(loads, [originals.first.sha256]);\n      final root = Directory(first.directoryPath!);\n      await Directory(p.join(root.path, '.pending-crash')).create();\n      await File(\n        p.join(root.path, '.pending-crash', 'original.eml'),\n      ).writeAsString('incomplete staging');"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_export_native_test.dart",
+      "line": 161,
+      "text": "      await File(",
+      "context": "      final root = Directory(first.directoryPath!);\n      await Directory(p.join(root.path, '.pending-crash')).create();\n      await File(\n        p.join(root.path, '.pending-crash', 'original.eml'),\n      ).writeAsString('incomplete staging');\n      loads.clear();"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_export_native_test.dart",
+      "line": 171,
+      "text": "        File(p.join(root.path, '.pending-crash', 'original.eml')).existsSync(),",
+      "context": "      expect(loads, [originals.last.sha256]);\n      expect(\n        File(p.join(root.path, '.pending-crash', 'original.eml')).existsSync(),\n        isTrue,\n      );\n      loads.clear();"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_export_native_test.dart",
+      "line": 192,
+      "text": "    expect(parent.listSync(), isEmpty);",
+      "context": "    expect(report.status, MailArchiveExportStatus.cancelled);\n    expect(report.directoryPath, isNull);\n    expect(parent.listSync(), isEmpty);\n    expect(loads, isEmpty);\n  });\n"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_export_native_test.dart",
+      "line": 213,
+      "text": "      final resumed = await exporter.resume(Directory(initial.directoryPath!));",
+      "context": "      expect(initial.failed, 1);\n      expect(initial.failures.single.ordinal, 2);\n      final resumed = await exporter.resume(Directory(initial.directoryPath!));\n      expect(resumed.status, MailArchiveExportStatus.completed);\n      expect(resumed.existing, 1);\n      expect(resumed.written, 1);"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_export_native_test.dart",
+      "line": 232,
+      "text": "        Directory(report.directoryPath!).listSync().whereType<File>().where(",
+      "context": "      expect(report.failed, 2);\n      expect(\n        Directory(report.directoryPath!).listSync().whereType<File>().where(\n          (file) => file.path.endsWith('.eml'),\n        ),\n        isEmpty,"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_export_native_test.dart",
+      "line": 248,
+      "text": "        final root = Directory(first.directoryPath!);",
+      "context": "          parent: parent,\n        );\n        final root = Directory(first.directoryPath!);\n        final file = File(p.join(root.path, '${originals.first.sha256}.eml'));\n        final damaged = sameLength\n            ? List<int>.filled(originals.first.length, 65)"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_export_native_test.dart",
+      "line": 249,
+      "text": "        final file = File(p.join(root.path, '${originals.first.sha256}.eml'));",
+      "context": "        );\n        final root = Directory(first.directoryPath!);\n        final file = File(p.join(root.path, '${originals.first.sha256}.eml'));\n        final damaged = sameLength\n            ? List<int>.filled(originals.first.length, 65)\n            : <int>[1, 2];"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_export_native_test.dart",
+      "line": 260,
+      "text": "        expect(await file.readAsBytes(), damaged);",
+      "context": "        expect(resumed.existing, 1);\n        expect(resumed.written, 0);\n        expect(await file.readAsBytes(), damaged);\n        expect(loads, isEmpty);\n      },\n    );"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_export_native_test.dart",
+      "line": 270,
+      "text": "      final root = Directory(first.directoryPath!);",
+      "context": "    () async {\n      final first = await exporter.exportPlan(_plan(originals), parent: parent);\n      final root = Directory(first.directoryPath!);\n      final path = p.join(root.path, '${originals.first.sha256}.eml');\n      await File(path).delete();\n      final external = File(p.join(parent.path, 'external.eml'));"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_export_native_test.dart",
+      "line": 272,
+      "text": "      await File(path).delete();",
+      "context": "      final root = Directory(first.directoryPath!);\n      final path = p.join(root.path, '${originals.first.sha256}.eml');\n      await File(path).delete();\n      final external = File(p.join(parent.path, 'external.eml'));\n      await external.writeAsString('external contents');\n      await Link(path).create(external.path);"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_export_native_test.dart",
+      "line": 273,
+      "text": "      final external = File(p.join(parent.path, 'external.eml'));",
+      "context": "      final path = p.join(root.path, '${originals.first.sha256}.eml');\n      await File(path).delete();\n      final external = File(p.join(parent.path, 'external.eml'));\n      await external.writeAsString('external contents');\n      await Link(path).create(external.path);\n      final resumed = await exporter.resume(root);"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_export_native_test.dart",
+      "line": 279,
+      "text": "      expect(await external.readAsString(), 'external contents');",
+      "context": "      _problem(resumed, MailProblemCode.conflict);\n      expect(resumed.failed, 1);\n      expect(await external.readAsString(), 'external contents');\n      expect(\n        FileSystemEntity.typeSync(path, followLinks: false),\n        FileSystemEntityType.link,"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_export_native_test.dart",
+      "line": 294,
+      "text": "      final root = Directory(first.directoryPath!);",
+      "context": "    test('resume rejects a $name symlink before opening it', () async {\n      final first = await exporter.exportPlan(_plan(originals), parent: parent);\n      final root = Directory(first.directoryPath!);\n      final file = File(p.join(root.path, name));\n      if (file.existsSync()) await file.delete();\n      final external = File(p.join(parent.path, 'external'));"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_export_native_test.dart",
+      "line": 295,
+      "text": "      final file = File(p.join(root.path, name));",
+      "context": "      final first = await exporter.exportPlan(_plan(originals), parent: parent);\n      final root = Directory(first.directoryPath!);\n      final file = File(p.join(root.path, name));\n      if (file.existsSync()) await file.delete();\n      final external = File(p.join(parent.path, 'external'));\n      await external.writeAsString('external contents');"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_export_native_test.dart",
+      "line": 297,
+      "text": "      final external = File(p.join(parent.path, 'external'));",
+      "context": "      final file = File(p.join(root.path, name));\n      if (file.existsSync()) await file.delete();\n      final external = File(p.join(parent.path, 'external'));\n      await external.writeAsString('external contents');\n      await Link(file.path).create(external.path);\n      final resumed = await exporter.resume(root);"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_export_native_test.dart",
+      "line": 303,
+      "text": "      expect(await external.readAsString(), 'external contents');",
+      "context": "      _problem(resumed, MailProblemCode.conflict);\n      expect(resumed.processed, 0);\n      expect(await external.readAsString(), 'external contents');\n    });\n  }\n"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_export_native_test.dart",
+      "line": 311,
+      "text": "    final resumed = await exporter.resume(Directory(alias.path));",
+      "context": "    final alias = Link(p.join(parent.path, 'alias'));\n    await alias.create(first.directoryPath!);\n    final resumed = await exporter.resume(Directory(alias.path));\n    _problem(resumed, MailProblemCode.conflict);\n  });\n"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_export_native_test.dart",
+      "line": 322,
+      "text": "    expect(parent.listSync(), isEmpty);",
+      "context": "    final rejected = await foreign.exportPlan(_plan(originals), parent: parent);\n    _problem(rejected, MailProblemCode.permissionDenied);\n    expect(parent.listSync(), isEmpty);\n    final first = await exporter.exportPlan(_plan(originals), parent: parent);\n    final resumed = await foreign.resume(Directory(first.directoryPath!));\n    _problem(resumed, MailProblemCode.permissionDenied);"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_export_native_test.dart",
+      "line": 324,
+      "text": "    final resumed = await foreign.resume(Directory(first.directoryPath!));",
+      "context": "    expect(parent.listSync(), isEmpty);\n    final first = await exporter.exportPlan(_plan(originals), parent: parent);\n    final resumed = await foreign.resume(Directory(first.directoryPath!));\n    _problem(resumed, MailProblemCode.permissionDenied);\n    expect(resumed.processed, 0);\n  });"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_export_native_test.dart",
+      "line": 360,
+      "text": "      final root = parent.listSync().whereType<Directory>().single;",
+      "context": "      final pending = holding.exportPlan(_plan(originals), parent: parent);\n      await entered.future;\n      final root = parent.listSync().whereType<Directory>().single;\n      final conflicting = await exporter.resume(root);\n      _problem(conflicting, MailProblemCode.conflict);\n      release.complete();"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_export_native_test.dart",
+      "line": 394,
+      "text": "      final resumed = await exporter.resume(Directory(report.directoryPath!));",
+      "context": "      expect(report.status, MailArchiveExportStatus.completed);\n      expect(report.planned, 0);\n      final resumed = await exporter.resume(Directory(report.directoryPath!));\n      expect(resumed.status, MailArchiveExportStatus.completed);\n      expect(loads, isEmpty);\n    },"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_export_native_test.dart",
+      "line": 412,
+      "text": "    final root = Directory(first.directoryPath!);",
+      "context": "      },\n    );\n    final root = Directory(first.directoryPath!);\n    final mutating = NativeMailArchiveExporter(\n      profile: _profile,\n      loadOriginal: (id) async {"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_export_native_test.dart",
+      "line": 416,
+      "text": "        await File(p.join(root.path, 'manifest.json')).writeAsString('{}');",
+      "context": "      profile: _profile,\n      loadOriginal: (id) async {\n        await File(p.join(root.path, 'manifest.json')).writeAsString('{}');\n        return MailSuccess(originals.firstWhere((bytes) => bytes.sha256 == id));\n      },\n    );"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_export_native_test.dart",
+      "line": 437,
+      "text": "    final root = Directory(first.directoryPath!);",
+      "context": "      },\n    );\n    final root = Directory(first.directoryPath!);\n    var replaced = false;\n    final moving = NativeMailArchiveExporter(\n      profile: _profile,"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_export_native_test.dart",
+      "line": 453,
+      "text": "    expect(root.listSync(), isEmpty);",
+      "context": "    _problem(report, MailProblemCode.conflict);\n    expect(report.written, 0);\n    expect(root.listSync(), isEmpty);\n  });\n\n  group('strict bounded manifest', () {"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_export_native_test.dart",
+      "line": 732,
+      "text": "        final report = await limited.resume(Directory(initial.directoryPath!));",
+      "context": "          loadOriginal: (_) async => throw StateError('must not load'),\n        );\n        final report = await limited.resume(Directory(initial.directoryPath!));\n        _problem(report, MailProblemCode.quotaExceeded);\n      },\n    );"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_export_native_test.dart",
+      "line": 741,
+      "text": "      final library = await Isolate.resolvePackageUri(",
+      "context": "    'SIGKILL after first publication releases ownership and resumes twice',\n    () async {\n      final library = await Isolate.resolvePackageUri(\n        Uri.parse('package:quds_mail_store/quds_mail_store.dart'),\n      );\n      final package = File.fromUri(library!).parent.parent;"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_export_native_test.dart",
+      "line": 744,
+      "text": "      final package = File.fromUri(library!).parent.parent;",
+      "context": "        Uri.parse('package:quds_mail_store/quds_mail_store.dart'),\n      );\n      final package = File.fromUri(library!).parent.parent;\n      final dart = p.join(p.dirname(Platform.resolvedExecutable), 'dart');\n      final process = await Process.start(dart, [\n        'run',"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_export_native_test.dart",
+      "line": 745,
+      "text": "      final dart = p.join(p.dirname(Platform.resolvedExecutable), 'dart');",
+      "context": "      );\n      final package = File.fromUri(library!).parent.parent;\n      final dart = p.join(p.dirname(Platform.resolvedExecutable), 'dart');\n      final process = await Process.start(dart, [\n        'run',\n        p.join(package.path, 'tool/archive_export_crash_fixture.dart'),"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_export_native_test.dart",
+      "line": 746,
+      "text": "      final process = await Process.start(dart, [",
+      "context": "      final package = File.fromUri(library!).parent.parent;\n      final dart = p.join(p.dirname(Platform.resolvedExecutable), 'dart');\n      final process = await Process.start(dart, [\n        'run',\n        p.join(package.path, 'tool/archive_export_crash_fixture.dart'),\n        parent.path,"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_export_native_test.dart",
+      "line": 778,
+      "text": "        final root = Directory(barrier.$2);",
+      "context": "        final barrier = await ready.future.timeout(const Duration(seconds: 45));\n        child = barrier.$1;\n        final root = Directory(barrier.$2);\n        final values = fixture.exportCrashOriginals();\n        final recovery = NativeMailArchiveExporter(\n          profile: fixture.exportCrashProfile,"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_export_native_test.dart",
+      "line": 787,
+      "text": "        expect(Process.killPid(child, ProcessSignal.sigkill), isTrue);",
+      "context": "        final conflict = await recovery.resume(root);\n        _problem(conflict, MailProblemCode.conflict);\n        expect(Process.killPid(child, ProcessSignal.sigkill), isTrue);\n        final exit = await process.exitCode.timeout(\n          const Duration(seconds: 10),\n        );"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_export_native_test.dart",
+      "line": 799,
+      "text": "            await File(p.join(root.path, '${value.sha256}.eml')).readAsBytes(),",
+      "context": "        for (final value in values) {\n          expect(\n            await File(p.join(root.path, '${value.sha256}.eml')).readAsBytes(),\n            value.bytes,\n          );\n        }"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_export_native_test.dart",
+      "line": 808,
+      "text": "        if (child != null) Process.killPid(child, ProcessSignal.sigkill);",
+      "context": "        expect(again.written, 0);\n      } finally {\n        if (child != null) Process.killPid(child, ProcessSignal.sigkill);\n        process.kill(ProcessSignal.sigkill);\n        await stdout.cancel();\n        await stderr.cancel();"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_native_test.dart",
+      "line": 30,
+      "text": "  Directory directory, {",
+      "context": "\nFuture<SqliteMailArchive> _open(\n  Directory directory, {\n  MailProfileId? profile,\n  MailArchiveFaultInjector? fault,\n}) async => _value("
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_native_test.dart",
+      "line": 42,
+      "text": "String _archivePath(Directory directory, {MailProfileId? profile}) => p.join(",
+      "context": ");\n\nString _archivePath(Directory directory, {MailProfileId? profile}) => p.join(\n  directory.path,\n  'quds_mail_archive',\n  mailStoreNamespace(profile ?? fixture.archiveCrashProfile),"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_native_test.dart",
+      "line": 49,
+      "text": "String _snapshotArchiveRows(Directory directory) {",
+      "context": ");\n\nString _snapshotArchiveRows(Directory directory) {\n  final database = sqlite.sqlite3.open(_archivePath(directory));\n  try {\n    return jsonEncode({"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_native_test.dart",
+      "line": 78,
+      "text": "void _corruptPostingBlocks(Directory directory) {",
+      "context": "}\n\nvoid _corruptPostingBlocks(Directory directory) {\n  final database = sqlite.sqlite3.open(_archivePath(directory));\n  try {\n    // This synthetic corruption removes posting leaves while keeping the"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_native_test.dart",
+      "line": 95,
+      "text": "Future<void> _seed(Directory directory) async {",
+      "context": "}\n\nFuture<void> _seed(Directory directory) async {\n  final archive = await _open(directory);\n  try {\n    _value("
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_native_test.dart",
+      "line": 110,
+      "text": "  Directory directory,",
+      "context": "\nFuture<void> _killAtBarrier(\n  Directory directory,\n  fixture.ArchiveCrashScenario scenario,\n) async {\n  final library = await Isolate.resolvePackageUri("
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_native_test.dart",
+      "line": 113,
+      "text": "  final library = await Isolate.resolvePackageUri(",
+      "context": "  fixture.ArchiveCrashScenario scenario,\n) async {\n  final library = await Isolate.resolvePackageUri(\n    Uri.parse('package:quds_mail_store/quds_mail_archive_native.dart'),\n  );\n  final package = File.fromUri(library!).parent.parent;"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_native_test.dart",
+      "line": 116,
+      "text": "  final package = File.fromUri(library!).parent.parent;",
+      "context": "    Uri.parse('package:quds_mail_store/quds_mail_archive_native.dart'),\n  );\n  final package = File.fromUri(library!).parent.parent;\n  // A kernel test runner may be dartvm. The adjacent official Dart CLI runs\n  // the child through the same real native-assets hook as normal consumers.\n  final dart = p.join(p.dirname(Platform.resolvedExecutable), 'dart');"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_native_test.dart",
+      "line": 119,
+      "text": "  final dart = p.join(p.dirname(Platform.resolvedExecutable), 'dart');",
+      "context": "  // A kernel test runner may be dartvm. The adjacent official Dart CLI runs\n  // the child through the same real native-assets hook as normal consumers.\n  final dart = p.join(p.dirname(Platform.resolvedExecutable), 'dart');\n  final process = await Process.start(dart, [\n    'run',\n    p.join(package.path, 'tool/archive_crash_fixture.dart'),"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_native_test.dart",
+      "line": 120,
+      "text": "  final process = await Process.start(dart, [",
+      "context": "  // the child through the same real native-assets hook as normal consumers.\n  final dart = p.join(p.dirname(Platform.resolvedExecutable), 'dart');\n  final process = await Process.start(dart, [\n    'run',\n    p.join(package.path, 'tool/archive_crash_fixture.dart'),\n    directory.path,"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_native_test.dart",
+      "line": 179,
+      "text": "    expect(Process.killPid(child, ProcessSignal.sigkill), isTrue);",
+      "context": "      MailProblemCode.conflict,\n    );\n    expect(Process.killPid(child, ProcessSignal.sigkill), isTrue);\n    final code = await exit.timeout(const Duration(seconds: 10));\n    expect(code, isNot(0), reason: 'SIGKILL must terminate abnormally.');\n    if (child == process.pid) expect(code, -9);"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_native_test.dart",
+      "line": 192,
+      "text": "        Process.killPid(child, ProcessSignal.sigkill);",
+      "context": "    if (!exited) {\n      if (owner case final child?) {\n        Process.killPid(child, ProcessSignal.sigkill);\n      }\n      process.kill(ProcessSignal.sigkill);\n      await exit.timeout(const Duration(seconds: 10));"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_native_test.dart",
+      "line": 203,
+      "text": "  late Directory directory;",
+      "context": "\nvoid main() {\n  late Directory directory;\n  setUp(() async {\n    directory = await Directory.systemTemp.createTemp('crisp-archive-native-');\n  });"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_native_test.dart",
+      "line": 205,
+      "text": "    directory = await Directory.systemTemp.createTemp('crisp-archive-native-');",
+      "context": "  late Directory directory;\n  setUp(() async {\n    directory = await Directory.systemTemp.createTemp('crisp-archive-native-');\n  });\n  tearDown(() async => directory.delete(recursive: true));\n"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_native_test.dart",
+      "line": 397,
+      "text": "        expect(File(_archivePath(directory)).existsSync(), isTrue);",
+      "context": "          isNot(_archivePath(directory, profile: otherProfile)),\n        );\n        expect(File(_archivePath(directory)).existsSync(), isTrue);\n        expect(\n          File(_archivePath(directory, profile: otherProfile)).existsSync(),\n          isTrue,"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_native_test.dart",
+      "line": 399,
+      "text": "          File(_archivePath(directory, profile: otherProfile)).existsSync(),",
+      "context": "        expect(File(_archivePath(directory)).existsSync(), isTrue);\n        expect(\n          File(_archivePath(directory, profile: otherProfile)).existsSync(),\n          isTrue,\n        );\n      } finally {"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_native_test.dart",
+      "line": 477,
+      "text": "        await Directory(",
+      "context": "        expect(_value(await cache.listAccounts()), isEmpty);\n        await cache.close();\n        await Directory(\n          p.join(directory.path, 'quds_mail'),\n        ).delete(recursive: true);\n        expect("
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_native_test.dart",
+      "line": 703,
+      "text": "      skip: Platform.isWindows ? 'Requires POSIX SIGKILL.' : false,",
+      "context": "      },\n      timeout: const Timeout(Duration(seconds: 90)),\n      skip: Platform.isWindows ? 'Requires POSIX SIGKILL.' : false,\n    );\n  }\n}"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_restore_adversarial_test.dart",
+      "line": 78,
+      "text": "  late Directory parent;",
+      "context": "\nvoid main() {\n  late Directory parent;\n  late Directory source;\n  late sqlite.Database database;\n  late SqliteMailArchive archive;"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_restore_adversarial_test.dart",
+      "line": 79,
+      "text": "  late Directory source;",
+      "context": "void main() {\n  late Directory parent;\n  late Directory source;\n  late sqlite.Database database;\n  late SqliteMailArchive archive;\n  late MailArchiveExportPlan exported;"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_restore_adversarial_test.dart",
+      "line": 122,
+      "text": "      await File(",
+      "context": "    );\n    for (final original in originals) {\n      await File(\n        p.join(source.path, '${original.sha256}.eml'),\n      ).writeAsBytes(original.bytes);\n    }"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_restore_adversarial_test.dart",
+      "line": 126,
+      "text": "    await File(p.join(source.path, 'manifest.json')).writeAsString(",
+      "context": "      ).writeAsBytes(original.bytes);\n    }\n    await File(p.join(source.path, 'manifest.json')).writeAsString(\n      encodeMailArchiveExportManifest(\n        exported,\n        const MailArchiveExportLimits(),"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_restore_adversarial_test.dart",
+      "line": 161,
+      "text": "    final temporary = await Directory.systemTemp.createTemp(",
+      "context": "  setUp(() async {\n    driftRuntimeOptions.dontWarnAboutMultipleDatabases = true;\n    final temporary = await Directory.systemTemp.createTemp(\n      'archive-restore-adversarial-',\n    );\n    // Real macOS temporary paths may contain /var -> /private/var. The source"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_restore_adversarial_test.dart",
+      "line": 166,
+      "text": "    parent = Directory(await temporary.resolveSymbolicLinks());",
+      "context": "    // Real macOS temporary paths may contain /var -> /private/var. The source\n    // checks deliberately reject observed links, so use the real fixture root.\n    parent = Directory(await temporary.resolveSymbolicLinks());\n    source = await Directory(p.join(parent.path, 'selection')).create();\n    database = sqlite.sqlite3.openInMemory();\n    archiveOpen = false;"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_restore_adversarial_test.dart",
+      "line": 167,
+      "text": "    source = await Directory(p.join(parent.path, 'selection')).create();",
+      "context": "    // checks deliberately reject observed links, so use the real fixture root.\n    parent = Directory(await temporary.resolveSymbolicLinks());\n    source = await Directory(p.join(parent.path, 'selection')).create();\n    database = sqlite.sqlite3.openInMemory();\n    archiveOpen = false;\n    fault = null;"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_restore_adversarial_test.dart",
+      "line": 190,
+      "text": "      final file = File(p.join(source.path, 'manifest.json'));",
+      "context": "      );\n      final preview = _value(await restorer.inspect(source));\n      final file = File(p.join(source.path, 'manifest.json'));\n      final before = await file.readAsBytes();\n      final replacement = substitutedManifest();\n      expect(utf8.encode(replacement).length, before.length);"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_restore_adversarial_test.dart",
+      "line": 191,
+      "text": "      final before = await file.readAsBytes();",
+      "context": "      final preview = _value(await restorer.inspect(source));\n      final file = File(p.join(source.path, 'manifest.json'));\n      final before = await file.readAsBytes();\n      final replacement = substitutedManifest();\n      expect(utf8.encode(replacement).length, before.length);\n      await file.writeAsString(replacement);"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_restore_adversarial_test.dart",
+      "line": 203,
+      "text": "      expect(await file.readAsString(), replacement);",
+      "context": "      expect(codec.calls, 0);\n      expect((await stats()).messages, 0);\n      expect(await file.readAsString(), replacement);\n    },\n  );\n"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_restore_adversarial_test.dart",
+      "line": 214,
+      "text": "            final file = File(p.join(source.path, 'manifest.json'));",
+      "context": "        intercept: (_, call) {\n          if (call == 2) {\n            final file = File(p.join(source.path, 'manifest.json'));\n            final modified = file.statSync().modified;\n            file.writeAsStringSync(substitutedManifest());\n            file.setLastModifiedSync(modified.add(const Duration(seconds: 2)));"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_restore_adversarial_test.dart",
+      "line": 250,
+      "text": "      final file = File(p.join(source.path, '${originals.single.sha256}.eml'));",
+      "context": "    () async {\n      await writePackage(count: 1);\n      final file = File(p.join(source.path, '${originals.single.sha256}.eml'));\n      final corrupted = originals.single.copyBytes()..[0] ^= 1;\n      final codec = _InterceptingCodec(\n        intercept: (_, _) {"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_restore_adversarial_test.dart",
+      "line": 273,
+      "text": "      expect(await file.readAsBytes(), corrupted);",
+      "context": "      expect(report.originsAdded, 0);\n      expect((await stats()).messages, 0);\n      expect(await file.readAsBytes(), corrupted);\n    },\n  );\n"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_restore_adversarial_test.dart",
+      "line": 469,
+      "text": "          await File(",
+      "context": "        }\n        expect(\n          await File(\n            p.join(source.path, '${original.sha256}.eml'),\n          ).readAsBytes(),\n          original.bytes,"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_restore_adversarial_test.dart",
+      "line": 471,
+      "text": "          ).readAsBytes(),",
+      "context": "          await File(\n            p.join(source.path, '${original.sha256}.eml'),\n          ).readAsBytes(),\n          original.bytes,\n        );\n      },"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_restore_adversarial_test.dart",
+      "line": 629,
+      "text": "        Directory(p.join(alias.path, p.basename(source.path))),",
+      "context": "      );\n      final inspected = await restorer.inspect(\n        Directory(p.join(alias.path, p.basename(source.path))),\n      );\n\n      expect(inspected, isA<MailFailure<MailArchiveRestorePlan>>());"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_restore_adversarial_test.dart",
+      "line": 640,
+      "text": "    skip: Platform.isWindows",
+      "context": "      await alias.delete();\n    },\n    skip: Platform.isWindows\n        ? 'Creating links requires Windows privileges.'\n        : false,\n  );"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_restore_adversarial_test.dart",
+      "line": 670,
+      "text": "        await File(",
+      "context": "      expect((await stats()).messages, 0);\n      expect(\n        await File(\n          p.join(moved, '${originals.single.sha256}.eml'),\n        ).readAsBytes(),\n        originals.single.bytes,"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_restore_adversarial_test.dart",
+      "line": 672,
+      "text": "        ).readAsBytes(),",
+      "context": "        await File(\n          p.join(moved, '${originals.single.sha256}.eml'),\n        ).readAsBytes(),\n        originals.single.bytes,\n      );\n      await Link(source.path).delete();"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_restore_adversarial_test.dart",
+      "line": 677,
+      "text": "    skip: Platform.isWindows",
+      "context": "      await Link(source.path).delete();\n    },\n    skip: Platform.isWindows\n        ? 'Creating links requires Windows privileges.'\n        : false,\n  );"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_restore_native_test.dart",
+      "line": 93,
+      "text": "  late Directory root;",
+      "context": "\nvoid main() {\n  late Directory root;\n  late Directory package;\n  late List<MailBytes> originals;\n  late SqliteMailArchive target;"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_restore_native_test.dart",
+      "line": 94,
+      "text": "  late Directory package;",
+      "context": "void main() {\n  late Directory root;\n  late Directory package;\n  late List<MailBytes> originals;\n  late SqliteMailArchive target;\n  late NativeMailArchiveRestorer restorer;"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_restore_native_test.dart",
+      "line": 113,
+      "text": "    final created = await Directory.systemTemp.createTemp('archive-restore-');",
+      "context": "  setUp(() async {\n    driftRuntimeOptions.dontWarnAboutMultipleDatabases = true;\n    final created = await Directory.systemTemp.createTemp('archive-restore-');\n    root = Directory(await created.resolveSymbolicLinks());\n    originals = [_bytes('First'), _bytes('Second')];\n    final source = _value("
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_restore_native_test.dart",
+      "line": 114,
+      "text": "    root = Directory(await created.resolveSymbolicLinks());",
+      "context": "    driftRuntimeOptions.dontWarnAboutMultipleDatabases = true;\n    final created = await Directory.systemTemp.createTemp('archive-restore-');\n    root = Directory(await created.resolveSymbolicLinks());\n    originals = [_bytes('First'), _bytes('Second')];\n    final source = _value(\n      await openNativeMailArchive(appDirectory: root, profile: _sourceProfile),"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_restore_native_test.dart",
+      "line": 145,
+      "text": "      package = Directory(exported.directoryPath!);",
+      "context": "      ).exportPlan(plan, parent: root);\n      expect(exported.status, MailArchiveExportStatus.completed);\n      package = Directory(exported.directoryPath!);\n    } finally {\n      await source.close();\n    }"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_restore_native_test.dart",
+      "line": 174,
+      "text": "    await File(p.join(package.path, '${originals.first.sha256}.eml')).delete();",
+      "context": "    expect(preview.manifestSha256, matches(RegExp(r'^[0-9a-f]{64}$')));\n    expect(_value(await target.statistics()).messages, 0);\n    await File(p.join(package.path, '${originals.first.sha256}.eml')).delete();\n    expect(_value(await restorer.inspect(package)).messageCount, 2);\n    expect(_value(await target.statistics()).messages, 0);\n  });"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_restore_native_test.dart",
+      "line": 183,
+      "text": "        for (final file in package.listSync().whereType<File>())",
+      "context": "    () async {\n      final before = {\n        for (final file in package.listSync().whereType<File>())\n          p.basename(file.path): await file.readAsBytes(),\n      };\n      final events = <MailArchiveRestoreProgress>[];"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_restore_native_test.dart",
+      "line": 184,
+      "text": "          p.basename(file.path): await file.readAsBytes(),",
+      "context": "      final before = {\n        for (final file in package.listSync().whereType<File>())\n          p.basename(file.path): await file.readAsBytes(),\n      };\n      final events = <MailArchiveRestoreProgress>[];\n      final report = await restorer.restore(preview, onProgress: events.add);"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_restore_native_test.dart",
+      "line": 205,
+      "text": "      for (final file in package.listSync().whereType<File>()) {",
+      "context": "      expect(diagnosticText, isNot(contains('Secondary')));\n      expect(diagnosticText, isNot(contains(originals.first.sha256)));\n      for (final file in package.listSync().whereType<File>()) {\n        expect(await file.readAsBytes(), before[p.basename(file.path)]);\n      }\n      expect(package.listSync(), hasLength(before.length));"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_restore_native_test.dart",
+      "line": 206,
+      "text": "        expect(await file.readAsBytes(), before[p.basename(file.path)]);",
+      "context": "      expect(diagnosticText, isNot(contains(originals.first.sha256)));\n      for (final file in package.listSync().whereType<File>()) {\n        expect(await file.readAsBytes(), before[p.basename(file.path)]);\n      }\n      expect(package.listSync(), hasLength(before.length));\n      await target.close();"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_restore_native_test.dart",
+      "line": 208,
+      "text": "      expect(package.listSync(), hasLength(before.length));",
+      "context": "        expect(await file.readAsBytes(), before[p.basename(file.path)]);\n      }\n      expect(package.listSync(), hasLength(before.length));\n      await target.close();\n      target = await openTarget();\n      final stats = _value(await target.statistics());"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_restore_native_test.dart",
+      "line": 296,
+      "text": "      final missing = File(",
+      "context": "    'missing original reports a partial result and a retry fills the gap',\n    () async {\n      final missing = File(\n        p.join(package.path, '${originals.first.sha256}.eml'),\n      );\n      await missing.delete();"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_restore_native_test.dart",
+      "line": 315,
+      "text": "    final first = File(p.join(package.path, '${originals.first.sha256}.eml'));",
+      "context": "\n  test('wrong hashes and wrong sizes never enter the destination', () async {\n    final first = File(p.join(package.path, '${originals.first.sha256}.eml'));\n    final damaged = originals.first.bytes.toList()..[0] ^= 1;\n    await first.writeAsBytes(damaged);\n    await File("
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_restore_native_test.dart",
+      "line": 318,
+      "text": "    await File(",
+      "context": "    final damaged = originals.first.bytes.toList()..[0] ^= 1;\n    await first.writeAsBytes(damaged);\n    await File(\n      p.join(package.path, '${originals.last.sha256}.eml'),\n    ).writeAsString('short');\n    final report = await restorer.restore(preview);"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_restore_native_test.dart",
+      "line": 330,
+      "text": "    expect(await first.readAsBytes(), damaged);",
+      "context": "    );\n    expect(_value(await target.statistics()).messages, 0);\n    expect(await first.readAsBytes(), damaged);\n  });\n\n  test('staging and unrelated EML files are ignored', () async {"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_restore_native_test.dart",
+      "line": 334,
+      "text": "    final staging = await Directory(",
+      "context": "\n  test('staging and unrelated EML files are ignored', () async {\n    final staging = await Directory(\n      p.join(package.path, '.pending-unfinished'),\n    ).create();\n    await File("
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_restore_native_test.dart",
+      "line": 337,
+      "text": "    await File(",
+      "context": "      p.join(package.path, '.pending-unfinished'),\n    ).create();\n    await File(\n      p.join(staging.path, 'original.eml'),\n    ).writeAsString('incomplete');\n    await File(p.join(package.path, 'other.eml')).writeAsString('unrelated');"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_restore_native_test.dart",
+      "line": 340,
+      "text": "    await File(p.join(package.path, 'other.eml')).writeAsString('unrelated');",
+      "context": "      p.join(staging.path, 'original.eml'),\n    ).writeAsString('incomplete');\n    await File(p.join(package.path, 'other.eml')).writeAsString('unrelated');\n    final report = await restorer.restore(preview);\n    expect(report.status, MailArchiveRestoreStatus.completed);\n    expect(report.saved, 2);"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_restore_native_test.dart",
+      "line": 345,
+      "text": "    expect(File(p.join(staging.path, 'original.eml')).existsSync(), isTrue);",
+      "context": "    expect(report.saved, 2);\n    expect(_value(await target.statistics()).messages, 2);\n    expect(File(p.join(staging.path, 'original.eml')).existsSync(), isTrue);\n  });\n\n  test('observer exceptions cannot alter committed results', () async {"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_restore_native_test.dart",
+      "line": 397,
+      "text": "      final manifest = File(p.join(package.path, 'manifest.json'));",
+      "context": "    'invalid UTF-8 and malformed manifests fail safely before mutation',\n    () async {\n      final manifest = File(p.join(package.path, 'manifest.json'));\n      await manifest.writeAsBytes([255, 254, 0]);\n      _failure(await restorer.inspect(package), MailProblemCode.invalidInput);\n      await manifest.writeAsString('{\"version\":999}');"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_restore_native_test.dart",
+      "line": 428,
+      "text": "    final emptyRoot = await Directory(",
+      "context": "\n  test('empty exported selection completes without adding messages', () async {\n    final emptyRoot = await Directory(\n      p.join(root.path, 'empty-export'),\n    ).create();\n    await File(p.join(emptyRoot.path, 'manifest.json')).writeAsString("
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_restore_native_test.dart",
+      "line": 431,
+      "text": "    await File(p.join(emptyRoot.path, 'manifest.json')).writeAsString(",
+      "context": "      p.join(root.path, 'empty-export'),\n    ).create();\n    await File(p.join(emptyRoot.path, 'manifest.json')).writeAsString(\n      encodeMailArchiveExportManifest(\n        MailArchiveExportPlan(\n          profile: _sourceProfile,"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_restore_native_test.dart",
+      "line": 452,
+      "text": "      final library = await Isolate.resolvePackageUri(",
+      "context": "    'SIGKILL preserves a receipt, resumes unfinished originals and verifies reruns',\n    () async {\n      final library = await Isolate.resolvePackageUri(\n        Uri.parse('package:quds_mail_store/quds_mail_store.dart'),\n      );\n      final packageRoot = File.fromUri(library!).parent.parent;"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_restore_native_test.dart",
+      "line": 455,
+      "text": "      final packageRoot = File.fromUri(library!).parent.parent;",
+      "context": "        Uri.parse('package:quds_mail_store/quds_mail_store.dart'),\n      );\n      final packageRoot = File.fromUri(library!).parent.parent;\n      final destination = await Directory(\n        p.join(root.path, 'crash-target'),\n      ).create();"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_restore_native_test.dart",
+      "line": 456,
+      "text": "      final destination = await Directory(",
+      "context": "      );\n      final packageRoot = File.fromUri(library!).parent.parent;\n      final destination = await Directory(\n        p.join(root.path, 'crash-target'),\n      ).create();\n      final dart = p.join(p.dirname(Platform.resolvedExecutable), 'dart');"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_restore_native_test.dart",
+      "line": 459,
+      "text": "      final dart = p.join(p.dirname(Platform.resolvedExecutable), 'dart');",
+      "context": "        p.join(root.path, 'crash-target'),\n      ).create();\n      final dart = p.join(p.dirname(Platform.resolvedExecutable), 'dart');\n      final process = await Process.start(dart, [\n        'run',\n        p.join(packageRoot.path, 'tool/archive_restore_crash_fixture.dart'),"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_restore_native_test.dart",
+      "line": 460,
+      "text": "      final process = await Process.start(dart, [",
+      "context": "      ).create();\n      final dart = p.join(p.dirname(Platform.resolvedExecutable), 'dart');\n      final process = await Process.start(dart, [\n        'run',\n        p.join(packageRoot.path, 'tool/archive_restore_crash_fixture.dart'),\n        package.path,"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_restore_native_test.dart",
+      "line": 500,
+      "text": "        expect(Process.killPid(child, ProcessSignal.sigkill), isTrue);",
+      "context": "          MailProblemCode.conflict,\n        );\n        expect(Process.killPid(child, ProcessSignal.sigkill), isTrue);\n        expect(\n          await process.exitCode.timeout(const Duration(seconds: 10)),\n          isNot(0),"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_restore_native_test.dart",
+      "line": 527,
+      "text": "        final firstFile = File(",
+      "context": "        expect(recoveryPlan.checkpoint?.completedMessages, 1);\n        expect(recoveryPlan.checkpoint?.completedBytes, originals.first.length);\n        final firstFile = File(\n          p.join(package.path, '${originals.first.sha256}.eml'),\n        );\n        await firstFile.delete();"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_restore_native_test.dart",
+      "line": 562,
+      "text": "        if (child != null) Process.killPid(child, ProcessSignal.sigkill);",
+      "context": "      } finally {\n        await recovered?.close();\n        if (child != null) Process.killPid(child, ProcessSignal.sigkill);\n        process.kill(ProcessSignal.sigkill);\n        await stdout.cancel();\n        await stderr.cancel();"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_restore_resume_test.dart",
+      "line": 45,
+      "text": "  late Directory root;",
+      "context": "\nvoid main() {\n  late Directory root;\n  late Directory source;\n  late sqlite.Database database;\n  late SqliteMailArchive archive;"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_restore_resume_test.dart",
+      "line": 46,
+      "text": "  late Directory source;",
+      "context": "void main() {\n  late Directory root;\n  late Directory source;\n  late sqlite.Database database;\n  late SqliteMailArchive archive;\n  late NativeMailArchiveRestorer restorer;"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_restore_resume_test.dart",
+      "line": 84,
+      "text": "  File originalFile(int ordinal) =>",
+      "context": "  }\n\n  File originalFile(int ordinal) =>\n      File(p.join(source.path, '${originals[ordinal].sha256}.eml'));\n\n  setUp(() async {"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_restore_resume_test.dart",
+      "line": 85,
+      "text": "      File(p.join(source.path, '${originals[ordinal].sha256}.eml'));",
+      "context": "\n  File originalFile(int ordinal) =>\n      File(p.join(source.path, '${originals[ordinal].sha256}.eml'));\n\n  setUp(() async {\n    driftRuntimeOptions.dontWarnAboutMultipleDatabases = true;"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_restore_resume_test.dart",
+      "line": 89,
+      "text": "    final temporary = await Directory.systemTemp.createTemp('restore-resume-');",
+      "context": "  setUp(() async {\n    driftRuntimeOptions.dontWarnAboutMultipleDatabases = true;\n    final temporary = await Directory.systemTemp.createTemp('restore-resume-');\n    root = Directory(await temporary.resolveSymbolicLinks());\n    source = await Directory(p.join(root.path, 'export')).create();\n    database = sqlite.sqlite3.openInMemory();"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_restore_resume_test.dart",
+      "line": 90,
+      "text": "    root = Directory(await temporary.resolveSymbolicLinks());",
+      "context": "    driftRuntimeOptions.dontWarnAboutMultipleDatabases = true;\n    final temporary = await Directory.systemTemp.createTemp('restore-resume-');\n    root = Directory(await temporary.resolveSymbolicLinks());\n    source = await Directory(p.join(root.path, 'export')).create();\n    database = sqlite.sqlite3.openInMemory();\n    originals = ["
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_restore_resume_test.dart",
+      "line": 91,
+      "text": "    source = await Directory(p.join(root.path, 'export')).create();",
+      "context": "    final temporary = await Directory.systemTemp.createTemp('restore-resume-');\n    root = Directory(await temporary.resolveSymbolicLinks());\n    source = await Directory(p.join(root.path, 'export')).create();\n    database = sqlite.sqlite3.openInMemory();\n    originals = [\n      for (var i = 0; i < 3; i++)"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_restore_resume_test.dart",
+      "line": 113,
+      "text": "    await File(p.join(source.path, 'manifest.json')).writeAsString(",
+      "context": "      ],\n    );\n    await File(p.join(source.path, 'manifest.json')).writeAsString(\n      encodeMailArchiveExportManifest(export, const MailArchiveExportLimits()),\n    );\n    for (var i = 0; i < originals.length; i++) {"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_restore_resume_test.dart",
+      "line": 337,
+      "text": "      final manifest = File(p.join(source.path, 'manifest.json'));",
+      "context": "    () async {\n      expect((await restorer.restore(plan)).saved, 3);\n      final manifest = File(p.join(source.path, 'manifest.json'));\n      await manifest.writeAsString('${await manifest.readAsString()}\\n');\n      final stale = await restorer.restore(plan, resume: true);\n      expect(stale.status, MailArchiveRestoreStatus.failed);"
+    },
+    {
+      "path": "packages/quds_mail_store/test/archive_restore_resume_test.dart",
+      "line": 338,
+      "text": "      await manifest.writeAsString('${await manifest.readAsString()}\\n');",
+      "context": "      expect((await restorer.restore(plan)).saved, 3);\n      final manifest = File(p.join(source.path, 'manifest.json'));\n      await manifest.writeAsString('${await manifest.readAsString()}\\n');\n      final stale = await restorer.restore(plan, resume: true);\n      expect(stale.status, MailArchiveRestoreStatus.failed);\n      expect(stale.problem?.code, MailProblemCode.conflict);"
+    },
+    {
+      "path": "packages/quds_mail_store/test/crash_recovery_test.dart",
+      "line": 21,
+      "text": "Future<SqliteMailRepository> _open(Directory directory) async => _value(",
+      "context": "}\n\nFuture<SqliteMailRepository> _open(Directory directory) async => _value(\n  await openNativeMailStore(\n    appDirectory: directory,\n    profile: fixture.crashProfile,"
+    },
+    {
+      "path": "packages/quds_mail_store/test/crash_recovery_test.dart",
+      "line": 29,
+      "text": "Future<void> _seed(Directory directory) async {",
+      "context": ");\n\nFuture<void> _seed(Directory directory) async {\n  final store = await _open(directory);\n  try {\n    _value("
+    },
+    {
+      "path": "packages/quds_mail_store/test/crash_recovery_test.dart",
+      "line": 87,
+      "text": "  Directory directory,",
+      "context": "\nFuture<void> _killAtBarrier(\n  Directory directory,\n  fixture.TransactionCrashScenario scenario,\n) async {\n  final library = await Isolate.resolvePackageUri("
+    },
+    {
+      "path": "packages/quds_mail_store/test/crash_recovery_test.dart",
+      "line": 90,
+      "text": "  final library = await Isolate.resolvePackageUri(",
+      "context": "  fixture.TransactionCrashScenario scenario,\n) async {\n  final library = await Isolate.resolvePackageUri(\n    Uri.parse('package:quds_mail_store/quds_mail_store_native.dart'),\n  );\n  final package = File.fromUri(library!).parent.parent;"
+    },
+    {
+      "path": "packages/quds_mail_store/test/crash_recovery_test.dart",
+      "line": 93,
+      "text": "  final package = File.fromUri(library!).parent.parent;",
+      "context": "    Uri.parse('package:quds_mail_store/quds_mail_store_native.dart'),\n  );\n  final package = File.fromUri(library!).parent.parent;\n  // The test runner can be dartvm; invoke the adjacent official dart CLI so the\n  // child receives the same normal native-assets hook setup as other consumers.\n  final dart = p.join(p.dirname(Platform.resolvedExecutable), 'dart');"
+    },
+    {
+      "path": "packages/quds_mail_store/test/crash_recovery_test.dart",
+      "line": 96,
+      "text": "  final dart = p.join(p.dirname(Platform.resolvedExecutable), 'dart');",
+      "context": "  // The test runner can be dartvm; invoke the adjacent official dart CLI so the\n  // child receives the same normal native-assets hook setup as other consumers.\n  final dart = p.join(p.dirname(Platform.resolvedExecutable), 'dart');\n  final process = await Process.start(dart, [\n    'run',\n    p.join(package.path, 'tool/transaction_crash_fixture.dart'),"
+    },
+    {
+      "path": "packages/quds_mail_store/test/crash_recovery_test.dart",
+      "line": 97,
+      "text": "  final process = await Process.start(dart, [",
+      "context": "  // child receives the same normal native-assets hook setup as other consumers.\n  final dart = p.join(p.dirname(Platform.resolvedExecutable), 'dart');\n  final process = await Process.start(dart, [\n    'run',\n    p.join(package.path, 'tool/transaction_crash_fixture.dart'),\n    directory.path,"
+    },
+    {
+      "path": "packages/quds_mail_store/test/crash_recovery_test.dart",
+      "line": 157,
+      "text": "    expect(Process.killPid(child, ProcessSignal.sigkill), isTrue);",
+      "context": "    // Signal the process that owns the actual SQLite connection, as identified\n    // by the fixture itself, even if a future dart CLI uses a separate launcher.\n    expect(Process.killPid(child, ProcessSignal.sigkill), isTrue);\n    final code = await exit.timeout(const Duration(seconds: 5));\n    expect(\n      code,"
+    },
+    {
+      "path": "packages/quds_mail_store/test/crash_recovery_test.dart",
+      "line": 176,
+      "text": "        Process.killPid(child, ProcessSignal.sigkill);",
+      "context": "    if (!exited) {\n      if (ownerPid case final child?) {\n        Process.killPid(child, ProcessSignal.sigkill);\n      }\n      process.kill(ProcessSignal.sigkill);\n      await exit.timeout(const Duration(seconds: 5));"
+    },
+    {
+      "path": "packages/quds_mail_store/test/crash_recovery_test.dart",
+      "line": 214,
+      "text": "        final directory = await Directory.systemTemp.createTemp(",
+      "context": "      'SIGKILL ${scenario.name} preserves the correct durable transaction boundary',\n      () async {\n        final directory = await Directory.systemTemp.createTemp(\n          'mail-transaction-crash-',\n        );\n        try {"
+    },
+    {
+      "path": "packages/quds_mail_store/test/crash_recovery_test.dart",
+      "line": 292,
+      "text": "      skip: Platform.isWindows",
+      "context": "      },\n      timeout: const Timeout(Duration(seconds: 45)),\n      skip: Platform.isWindows\n          ? 'These crash boundaries require POSIX SIGKILL.'\n          : false,\n    );"
+    },
+    {
+      "path": "packages/quds_mail_store/test/migration_test.dart",
+      "line": 18,
+      "text": "  late Directory directory;",
+      "context": "\nvoid main() {\n  late Directory directory;\n  late File file;\n\n  setUp(() async {"
+    },
+    {
+      "path": "packages/quds_mail_store/test/migration_test.dart",
+      "line": 19,
+      "text": "  late File file;",
+      "context": "void main() {\n  late Directory directory;\n  late File file;\n\n  setUp(() async {\n    driftRuntimeOptions.dontWarnAboutMultipleDatabases = true;"
+    },
+    {
+      "path": "packages/quds_mail_store/test/migration_test.dart",
+      "line": 23,
+      "text": "    directory = await Directory.systemTemp.createTemp('quds-mail-migration-');",
+      "context": "  setUp(() async {\n    driftRuntimeOptions.dontWarnAboutMultipleDatabases = true;\n    directory = await Directory.systemTemp.createTemp('quds-mail-migration-');\n    file = File('${directory.path}/mail.sqlite3');\n    _seedV1(file);\n  });"
+    },
+    {
+      "path": "packages/quds_mail_store/test/migration_test.dart",
+      "line": 24,
+      "text": "    file = File('${directory.path}/mail.sqlite3');",
+      "context": "    driftRuntimeOptions.dontWarnAboutMultipleDatabases = true;\n    directory = await Directory.systemTemp.createTemp('quds-mail-migration-');\n    file = File('${directory.path}/mail.sqlite3');\n    _seedV1(file);\n  });\n  tearDown(() async => directory.delete(recursive: true));"
+    },
+    {
+      "path": "packages/quds_mail_store/test/migration_test.dart",
+      "line": 351,
+      "text": "        final before = await file.readAsBytes();",
+      "context": "          database.close();\n        }\n        final before = await file.readAsBytes();\n        expect(_problem(await _open(file)), MailProblemCode.unsupported);\n        expect(await file.readAsBytes(), before);\n        final reopened = sqlite.sqlite3.open(file.path);"
+    },
+    {
+      "path": "packages/quds_mail_store/test/migration_test.dart",
+      "line": 353,
+      "text": "        expect(await file.readAsBytes(), before);",
+      "context": "        final before = await file.readAsBytes();\n        expect(_problem(await _open(file)), MailProblemCode.unsupported);\n        expect(await file.readAsBytes(), before);\n        final reopened = sqlite.sqlite3.open(file.path);\n        try {\n          expect(reopened.userVersion, version);"
+    },
+    {
+      "path": "packages/quds_mail_store/test/migration_test.dart",
+      "line": 482,
+      "text": "void _seedV1(File file) {",
+      "context": ");\n\nvoid _seedV1(File file) {\n  final database = sqlite.sqlite3.open(file.path);\n  try {\n    database.execute('PRAGMA foreign_keys=ON');"
+    },
+    {
+      "path": "packages/quds_mail_store/test/migration_test.dart",
+      "line": 594,
+      "text": "void _upgradeFixtureV2(File file) {",
+      "context": "}\n\nvoid _upgradeFixtureV2(File file) {\n  final database = sqlite.sqlite3.open(file.path);\n  try {\n    database.execute('BEGIN');"
+    },
+    {
+      "path": "packages/quds_mail_store/test/migration_test.dart",
+      "line": 617,
+      "text": "  File file, {",
+      "context": "\nFuture<MailResult<SqliteMailRepository>> _open(\n  File file, {\n  MailStoreLimits limits = const MailStoreLimits(),\n  MailStoreFaultInjector? faultInjector,\n  _SelectCapture? capture,"
+    },
+    {
+      "path": "packages/quds_mail_store/test/migration_test.dart",
+      "line": 632,
+      "text": "Map<String, List<List<Object?>>> _snapshot(File file) {",
+      "context": "}\n\nMap<String, List<List<Object?>>> _snapshot(File file) {\n  final database = sqlite.sqlite3.open(file.path);\n  try {\n    return {"
+    },
+    {
+      "path": "packages/quds_mail_store/test/native_platform_test.dart",
+      "line": 24,
+      "text": "  late Directory directory;",
+      "context": "\nvoid main() {\n  late Directory directory;\n  final profile = MailProfileId('profile', hostId: 'office');\n  setUp(() async {\n    directory = await Directory.systemTemp.createTemp('quds-mail-native-');"
+    },
+    {
+      "path": "packages/quds_mail_store/test/native_platform_test.dart",
+      "line": 27,
+      "text": "    directory = await Directory.systemTemp.createTemp('quds-mail-native-');",
+      "context": "  final profile = MailProfileId('profile', hostId: 'office');\n  setUp(() async {\n    directory = await Directory.systemTemp.createTemp('quds-mail-native-');\n  });\n  tearDown(() async => directory.delete(recursive: true));\n"
+    },
+    {
+      "path": "packages/quds_mail_store/test/native_platform_test.dart",
+      "line": 103,
+      "text": "            .list(recursive: true)",
+      "context": "        expect(_value(await b.listAccounts()), isEmpty);\n        final databases = await directory\n            .list(recursive: true)\n            .where((entry) => p.basename(entry.path) == 'mail.sqlite3')\n            .toList();\n        expect(databases, hasLength(2));"
+    },
+    {
+      "path": "packages/quds_mail_store/test/native_platform_test.dart",
+      "line": 143,
+      "text": "            appDirectory: Directory('relative-container'),",
+      "context": "        _code(\n          await openNativeMailStore(\n            appDirectory: Directory('relative-container'),\n            profile: profile,\n          ),\n        ),"
+    },
+    {
+      "path": "packages/quds_mail_store/test/native_platform_test.dart",
+      "line": 149,
+      "text": "      expect(Directory('relative-container').existsSync(), isFalse);",
+      "context": "        MailProblemCode.invalidInput,\n      );\n      expect(Directory('relative-container').existsSync(), isFalse);\n    },\n  );\n"
+    },
+    {
+      "path": "packages/quds_mail_store/test/native_platform_test.dart",
+      "line": 154,
+      "text": "    final blocked = File(p.join(directory.path, 'file-instead-of-directory'));",
+      "context": "\n  test('an unavailable app container returns a typed failure', () async {\n    final blocked = File(p.join(directory.path, 'file-instead-of-directory'));\n    await blocked.writeAsString('fixture');\n    expect(\n      _code("
+    },
+    {
+      "path": "packages/quds_mail_store/test/native_platform_test.dart",
+      "line": 159,
+      "text": "          appDirectory: Directory(blocked.path),",
+      "context": "      _code(\n        await openNativeMailStore(\n          appDirectory: Directory(blocked.path),\n          profile: profile,\n        ),\n      ),"
+    },
+    {
+      "path": "packages/quds_mail_store/test/native_platform_test.dart",
+      "line": 170,
+      "text": "      final library = await Isolate.resolvePackageUri(",
+      "context": "    'process termination releases ownership and preserves committed data',\n    () async {\n      final library = await Isolate.resolvePackageUri(\n        Uri.parse('package:quds_mail_store/quds_mail_store_native.dart'),\n      );\n      final package = File.fromUri(library!).parent.parent;"
+    },
+    {
+      "path": "packages/quds_mail_store/test/native_platform_test.dart",
+      "line": 173,
+      "text": "      final package = File.fromUri(library!).parent.parent;",
+      "context": "        Uri.parse('package:quds_mail_store/quds_mail_store_native.dart'),\n      );\n      final package = File.fromUri(library!).parent.parent;\n      final dart = p.join(p.dirname(Platform.resolvedExecutable), 'dart');\n      final process = await Process.start(dart, [\n        'run',"
+    },
+    {
+      "path": "packages/quds_mail_store/test/native_platform_test.dart",
+      "line": 174,
+      "text": "      final dart = p.join(p.dirname(Platform.resolvedExecutable), 'dart');",
+      "context": "      );\n      final package = File.fromUri(library!).parent.parent;\n      final dart = p.join(p.dirname(Platform.resolvedExecutable), 'dart');\n      final process = await Process.start(dart, [\n        'run',\n        p.join(package.path, 'tool/native_crash_fixture.dart'),"
+    },
+    {
+      "path": "packages/quds_mail_store/test/native_platform_test.dart",
+      "line": 175,
+      "text": "      final process = await Process.start(dart, [",
+      "context": "      final package = File.fromUri(library!).parent.parent;\n      final dart = p.join(p.dirname(Platform.resolvedExecutable), 'dart');\n      final process = await Process.start(dart, [\n        'run',\n        p.join(package.path, 'tool/native_crash_fixture.dart'),\n        directory.path,"
+    },
+    {
+      "path": "packages/quds_mail_transport/test/ews_ntlm_test.dart",
+      "line": 61,
+      "text": "    final file = File('$prefix/loopback-cert.pem');",
+      "context": "    'packages/quds_mail_transport/test/fixtures/tls',\n  ]) {\n    final file = File('$prefix/loopback-cert.pem');\n    if (file.existsSync()) {\n      return base64.decode(\n        file.readAsStringSync().replaceAll(RegExp(r'-----[^-]+-----|\\s'), ''),"
+    },
+    {
+      "path": "packages/quds_mail_transport/test/ews_ntlm_test.dart",
+      "line": 64,
+      "text": "        file.readAsStringSync().replaceAll(RegExp(r'-----[^-]+-----|\\s'), ''),",
+      "context": "    if (file.existsSync()) {\n      return base64.decode(\n        file.readAsStringSync().replaceAll(RegExp(r'-----[^-]+-----|\\s'), ''),\n      );\n    }\n  }"
+    },
+    {
+      "path": "packages/quds_mail_transport/test/host_store_integration_test.dart",
+      "line": 20,
+      "text": "  late Directory directory;",
+      "context": "\nvoid main() {\n  late Directory directory;\n  late File databaseFile;\n  late SqliteMailRepository store;\n  MailStoreCheckpoint? failAt;"
+    },
+    {
+      "path": "packages/quds_mail_transport/test/host_store_integration_test.dart",
+      "line": 21,
+      "text": "  late File databaseFile;",
+      "context": "void main() {\n  late Directory directory;\n  late File databaseFile;\n  late SqliteMailRepository store;\n  MailStoreCheckpoint? failAt;\n"
+    },
+    {
+      "path": "packages/quds_mail_transport/test/host_store_integration_test.dart",
+      "line": 70,
+      "text": "    directory = await Directory.systemTemp.createTemp('quds-mail-host-store-');",
+      "context": "    driftRuntimeOptions.dontWarnAboutMultipleDatabases = true;\n    failAt = null;\n    directory = await Directory.systemTemp.createTemp('quds-mail-host-store-');\n    databaseFile = File('${directory.path}/mail.sqlite3');\n    await open();\n  });"
+    },
+    {
+      "path": "packages/quds_mail_transport/test/host_store_integration_test.dart",
+      "line": 71,
+      "text": "    databaseFile = File('${directory.path}/mail.sqlite3');",
+      "context": "    failAt = null;\n    directory = await Directory.systemTemp.createTemp('quds-mail-host-store-');\n    databaseFile = File('${directory.path}/mail.sqlite3');\n    await open();\n  });\n"
+    },
+    {
+      "path": "packages/quds_mail_transport/test/native_tls_round_trip_test.dart",
+      "line": 231,
+      "text": "File _fixture(String name) {",
+      "context": "}\n\nFile _fixture(String name) {\n  for (final directory in [\n    'test/support/tls',\n    'packages/quds_mail_transport/test/support/tls',"
+    },
+    {
+      "path": "packages/quds_mail_transport/test/native_tls_round_trip_test.dart",
+      "line": 236,
+      "text": "    final file = File('$directory/$name');",
+      "context": "    'packages/quds_mail_transport/test/support/tls',\n  ]) {\n    final file = File('$directory/$name');\n    if (file.existsSync()) return file;\n  }\n  throw FileSystemException("
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_attachment_loader_test.dart",
+      "line": 270,
+      "text": "    final directory = await Directory.systemTemp.createTemp('mail-attachment-');",
+      "context": "\n  test('native selected paths use bounded file streams', () async {\n    final directory = await Directory.systemTemp.createTemp('mail-attachment-');\n    addTearDown(() => directory.delete(recursive: true));\n    final path = directory.path;\n    final file = File('$path/picked.bin');"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_attachment_loader_test.dart",
+      "line": 273,
+      "text": "    final file = File('$path/picked.bin');",
+      "context": "    addTearDown(() => directory.delete(recursive: true));\n    final path = directory.path;\n    final file = File('$path/picked.bin');\n    await file.writeAsBytes([0, 128, 255]);\n    final result = await StudioMailAttachmentLoader().read([\n      PlatformFile(name: 'picked.bin', size: 3, path: file.path),"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_spacy_pin_test.dart",
+      "line": 17,
+      "text": "    final script = File('tool/build_macos_app.sh').readAsStringSync();",
+      "context": "void main() {\n  test('the app build installs the grammar-qualified spaCy library', () {\n    final script = File('tool/build_macos_app.sh').readAsStringSync();\n    final sha = _pin(script, 'SPACY_PIN_SHA256');\n    expect(sha, spacyGrammarMacosBundledSha256);\n    expect(spacyGrammarNativeSha256s, contains(sha));"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_spacy_setup_test.dart",
+      "line": 378,
+      "text": "    late Directory root;",
+      "context": "\n  group('native host without downloads', () {\n    late Directory root;\n    setUp(() => root = Directory.systemTemp.createTempSync('studio-spacy-'));\n    tearDown(() => root.deleteSync(recursive: true));\n"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_spacy_setup_test.dart",
+      "line": 379,
+      "text": "    setUp(() => root = Directory.systemTemp.createTempSync('studio-spacy-'));",
+      "context": "  group('native host without downloads', () {\n    late Directory root;\n    setUp(() => root = Directory.systemTemp.createTempSync('studio-spacy-'));\n    tearDown(() => root.deleteSync(recursive: true));\n\n    test('developer environment keeps precedence and its digest', () async {"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_spacy_setup_test.dart",
+      "line": 425,
+      "text": "      expect(Directory('${root.path}/packages').existsSync(), isFalse);",
+      "context": "        throwsA(isA<SpacyUnavailableException>()),\n      );\n      expect(Directory('${root.path}/packages').existsSync(), isFalse);\n    });\n\n    test('unpublished platform has a reason and refuses install', () async {"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_spacy_setup_test.dart",
+      "line": 473,
+      "text": "      expect(Directory('${root.path}/bundles').existsSync(), isFalse);",
+      "context": "        throwsA(isA<Exception>()),\n      );\n      expect(Directory('${root.path}/bundles').existsSync(), isFalse);\n    });\n\n    test('bundled library: model-only setup on any platform', () async {"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_spacy_setup_test.dart",
+      "line": 511,
+      "text": "      expect(Directory('${root.path}/packages').existsSync(), isFalse);",
+      "context": "        throwsA(isA<SpacyUnavailableException>()),\n      );\n      expect(Directory('${root.path}/packages').existsSync(), isFalse);\n      expect(Directory('${root.path}/bundles').existsSync(), isFalse);\n      // A damaged model-only tree is reported, not used.\n      Directory("
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_spacy_setup_test.dart",
+      "line": 512,
+      "text": "      expect(Directory('${root.path}/bundles').existsSync(), isFalse);",
+      "context": "      );\n      expect(Directory('${root.path}/packages').existsSync(), isFalse);\n      expect(Directory('${root.path}/bundles').existsSync(), isFalse);\n      // A damaged model-only tree is reported, not used.\n      Directory(\n        '${root.path}/bundles/$spacyBundleManifestSha256',"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_spacy_setup_test.dart",
+      "line": 514,
+      "text": "      Directory(",
+      "context": "      expect(Directory('${root.path}/bundles').existsSync(), isFalse);\n      // A damaged model-only tree is reported, not used.\n      Directory(\n        '${root.path}/bundles/$spacyBundleManifestSha256',\n      ).createSync(recursive: true);\n      await host.refresh();"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_spacy_setup_test.dart",
+      "line": 625,
+      "text": "      final contents = Directory('${root.path}/Studio.app/Contents');",
+      "context": "\n    test('bundled library is found next to the executable', () {\n      final contents = Directory('${root.path}/Studio.app/Contents');\n      final executable = File('${contents.path}/MacOS/Studio')\n        ..createSync(recursive: true);\n      File("
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_spacy_setup_test.dart",
+      "line": 626,
+      "text": "      final executable = File('${contents.path}/MacOS/Studio')",
+      "context": "    test('bundled library is found next to the executable', () {\n      final contents = Directory('${root.path}/Studio.app/Contents');\n      final executable = File('${contents.path}/MacOS/Studio')\n        ..createSync(recursive: true);\n      File(\n        '${contents.path}/Frameworks/libcrispembed-spacy.dylib',"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_spacy_setup_test.dart",
+      "line": 628,
+      "text": "      File(",
+      "context": "      final executable = File('${contents.path}/MacOS/Studio')\n        ..createSync(recursive: true);\n      File(\n        '${contents.path}/Frameworks/libcrispembed-spacy.dylib',\n      ).createSync(recursive: true);\n      final description = File('${contents.path}/Resources/spacy-native.json')"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_spacy_setup_test.dart",
+      "line": 631,
+      "text": "      final description = File('${contents.path}/Resources/spacy-native.json')",
+      "context": "        '${contents.path}/Frameworks/libcrispembed-spacy.dylib',\n      ).createSync(recursive: true);\n      final description = File('${contents.path}/Resources/spacy-native.json')\n        ..createSync(recursive: true);\n      const digest =\n          '66d54a6090ae65a8fd57d79115d1d1afcc4ab8d8dabcefb8c95bf38717224044';"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_spacy_setup_test.dart",
+      "line": 697,
+      "text": "      Directory(",
+      "context": "\n    test('damaged installation is reported, not used', () async {\n      Directory(\n        '${root.path}/packages/${spacyLinuxX64Package.archiveSha256}',\n      ).createSync(recursive: true);\n      final host = NativeStudioSpacyHost("
+    },
+    {
+      "path": "packages/quds_office_editor/test/slide_section_reorder_test.dart",
+      "line": 23,
+      "text": "    File(_fixture).readAsBytesSync(),",
+      "context": "SlideEditorController _controller({OfficeInteractionMode? mode}) {\n  final editor = SlideEditorController.fromBytes(\n    File(_fixture).readAsBytesSync(),\n    config: OfficeSurfaceConfig(mode: mode ?? OfficeInteractionMode.editing),\n  );\n  addTearDown(editor.dispose);"
+    },
+    {
+      "path": "packages/quds_office_editor/test/slide_section_reorder_test.dart",
+      "line": 42,
+      "text": "  final package = OpcPackage.openBytes(File(_fixture).readAsBytesSync());",
+      "context": "\nUint8List _ambiguousFixture() {\n  final package = OpcPackage.openBytes(File(_fixture).readAsBytesSync());\n  final part = package.getPart('/ppt/presentation.xml')!;\n  final document = XmlDocument.parse(part.readText());\n  final sections = document.root!"
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_tab_stops_editor_test.dart",
+      "line": 205,
+      "text": "        final output = File(",
+      "context": "        final bytes = await tester.runAsync(controller.saveBytesAsync);\n        expect(_native(bytes!), expected);\n        final output = File(\n          'build/fidelity-custom-tabs/editor-tabs-$cycle.docx',\n        );\n        output.parent.createSync(recursive: true);"
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_macro_cli_test.dart",
+      "line": 8,
+      "text": "    Process.run(Platform.resolvedExecutable, <String>[",
+      "context": "\nFuture<ProcessResult> _run(List<String> args) =>\n    Process.run(Platform.resolvedExecutable, <String>[\n      if (Platform.packageConfig case final String packages)\n        '--packages=$packages',\n      'tool/macros/office_macro.dart',"
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_macro_cli_test.dart",
+      "line": 9,
+      "text": "      if (Platform.packageConfig case final String packages)",
+      "context": "Future<ProcessResult> _run(List<String> args) =>\n    Process.run(Platform.resolvedExecutable, <String>[\n      if (Platform.packageConfig case final String packages)\n        '--packages=$packages',\n      'tool/macros/office_macro.dart',\n      ...args,"
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_macro_cli_test.dart",
+      "line": 21,
+      "text": "  late Directory temporary;",
+      "context": "\nvoid main() {\n  late Directory temporary;\n  setUp(() {\n    temporary = Directory.current.createTempSync('macro-cli-test-');\n  });"
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_macro_cli_test.dart",
+      "line": 23,
+      "text": "    temporary = Directory.current.createTempSync('macro-cli-test-');",
+      "context": "  late Directory temporary;\n  setUp(() {\n    temporary = Directory.current.createTempSync('macro-cli-test-');\n  });\n  tearDown(() => temporary.deleteSync(recursive: true));\n"
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_macro_cli_test.dart",
+      "line": 42,
+      "text": "        File(output).readAsBytesSync(),",
+      "context": "      expect(_json(result.stdout)['completedSteps'], 9);\n      final book = SheetDeserializer().readBytes(\n        File(output).readAsBytesSync(),\n      );\n      expect(book.sheets.first.cellA1('A1').value, 'November summary');\n      expect(book.sheets.first.cellA1('A1').fontBold, isTrue);"
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_macro_cli_test.dart",
+      "line": 55,
+      "text": "      final input = File('${temporary.path}/input.xlsx');",
+      "context": "    'later invalid step preserves existing input and output bytes',\n    () async {\n      final input = File('${temporary.path}/input.xlsx');\n      final original = File(\n        'test/fixtures/fidelity/native.xlsx',\n      ).readAsBytesSync();"
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_macro_cli_test.dart",
+      "line": 56,
+      "text": "      final original = File(",
+      "context": "    () async {\n      final input = File('${temporary.path}/input.xlsx');\n      final original = File(\n        'test/fixtures/fidelity/native.xlsx',\n      ).readAsBytesSync();\n      input.writeAsBytesSync(original);"
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_macro_cli_test.dart",
+      "line": 58,
+      "text": "      ).readAsBytesSync();",
+      "context": "      final original = File(\n        'test/fixtures/fidelity/native.xlsx',\n      ).readAsBytesSync();\n      input.writeAsBytesSync(original);\n      final output = File('${temporary.path}/output.xlsx')\n        ..writeAsBytesSync(<int>[4, 3, 2, 1]);"
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_macro_cli_test.dart",
+      "line": 60,
+      "text": "      final output = File('${temporary.path}/output.xlsx')",
+      "context": "      ).readAsBytesSync();\n      input.writeAsBytesSync(original);\n      final output = File('${temporary.path}/output.xlsx')\n        ..writeAsBytesSync(<int>[4, 3, 2, 1]);\n      final macro = File('${temporary.path}/bad.json')\n        ..writeAsStringSync("
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_macro_cli_test.dart",
+      "line": 62,
+      "text": "      final macro = File('${temporary.path}/bad.json')",
+      "context": "      final output = File('${temporary.path}/output.xlsx')\n        ..writeAsBytesSync(<int>[4, 3, 2, 1]);\n      final macro = File('${temporary.path}/bad.json')\n        ..writeAsStringSync(\n          jsonEncode(<String, Object?>{\n            'version': 1,"
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_macro_cli_test.dart",
+      "line": 98,
+      "text": "      expect(input.readAsBytesSync(), original);",
+      "context": "      expect(error['stepIndex'], 1);\n      expect(error['tool'], 'xlsx.cellFormat');\n      expect(input.readAsBytesSync(), original);\n      expect(output.readAsBytesSync(), <int>[4, 3, 2, 1]);\n      expect(temporary.listSync().whereType<Directory>(), isEmpty);\n    },"
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_macro_cli_test.dart",
+      "line": 99,
+      "text": "      expect(output.readAsBytesSync(), <int>[4, 3, 2, 1]);",
+      "context": "      expect(error['tool'], 'xlsx.cellFormat');\n      expect(input.readAsBytesSync(), original);\n      expect(output.readAsBytesSync(), <int>[4, 3, 2, 1]);\n      expect(temporary.listSync().whereType<Directory>(), isEmpty);\n    },\n  );"
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_macro_cli_test.dart",
+      "line": 100,
+      "text": "      expect(temporary.listSync().whereType<Directory>(), isEmpty);",
+      "context": "      expect(input.readAsBytesSync(), original);\n      expect(output.readAsBytesSync(), <int>[4, 3, 2, 1]);\n      expect(temporary.listSync().whereType<Directory>(), isEmpty);\n    },\n  );\n"
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_macro_cli_test.dart",
+      "line": 107,
+      "text": "      final input = File('${temporary.path}/input.xlsx');",
+      "context": "    'validate succeeds without changing the source or creating output',\n    () async {\n      final input = File('${temporary.path}/input.xlsx');\n      final bytes = File(\n        'test/fixtures/fidelity/native.xlsx',\n      ).readAsBytesSync();"
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_macro_cli_test.dart",
+      "line": 108,
+      "text": "      final bytes = File(",
+      "context": "    () async {\n      final input = File('${temporary.path}/input.xlsx');\n      final bytes = File(\n        'test/fixtures/fidelity/native.xlsx',\n      ).readAsBytesSync();\n      input.writeAsBytesSync(bytes);"
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_macro_cli_test.dart",
+      "line": 110,
+      "text": "      ).readAsBytesSync();",
+      "context": "      final bytes = File(\n        'test/fixtures/fidelity/native.xlsx',\n      ).readAsBytesSync();\n      input.writeAsBytesSync(bytes);\n      final result = await _run(<String>[\n        'validate',"
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_macro_cli_test.dart",
+      "line": 121,
+      "text": "      expect(input.readAsBytesSync(), bytes);",
+      "context": "      expect(_json(result.stdout)['validatedOnly'], isTrue);\n      expect(_json(result.stdout)['revision'], 0);\n      expect(input.readAsBytesSync(), bytes);\n      expect(temporary.listSync(), hasLength(1));\n    },\n  );"
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_macro_cli_test.dart",
+      "line": 122,
+      "text": "      expect(temporary.listSync(), hasLength(1));",
+      "context": "      expect(_json(result.stdout)['revision'], 0);\n      expect(input.readAsBytesSync(), bytes);\n      expect(temporary.listSync(), hasLength(1));\n    },\n  );\n"
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_macro_cli_test.dart",
+      "line": 129,
+      "text": "      final word = File('${temporary.path}/source.docx')",
+      "context": "    'Word and presentation examples use the same runnable macro format',\n    () async {\n      final word = File('${temporary.path}/source.docx')\n        ..writeAsBytesSync(\n          (DocxDocumentBuilder()..paragraph('Old title')).build(),\n        );"
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_macro_cli_test.dart",
+      "line": 133,
+      "text": "      final wordParameters = File('${temporary.path}/word.json')",
+      "context": "          (DocxDocumentBuilder()..paragraph('Old title')).build(),\n        );\n      final wordParameters = File('${temporary.path}/word.json')\n        ..writeAsStringSync('{\"title\":\"New title\"}');\n      final wordOutput = File('${temporary.path}/result.docx');\n      final wordRun = await _run(<String>["
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_macro_cli_test.dart",
+      "line": 135,
+      "text": "      final wordOutput = File('${temporary.path}/result.docx');",
+      "context": "      final wordParameters = File('${temporary.path}/word.json')\n        ..writeAsStringSync('{\"title\":\"New title\"}');\n      final wordOutput = File('${temporary.path}/result.docx');\n      final wordRun = await _run(<String>[\n        'run',\n        word.path,"
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_macro_cli_test.dart",
+      "line": 145,
+      "text": "        wordOutput.readAsBytesSync(),",
+      "context": "      expect(wordRun.exitCode, 0, reason: '${wordRun.stderr}');\n      final document = WordDeserializer().readBytes(\n        wordOutput.readAsBytesSync(),\n      );\n      expect(document.paragraphs.first.text, 'New title');\n      expect(document.paragraphs.first.properties.headingLevel, 1);"
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_macro_cli_test.dart",
+      "line": 150,
+      "text": "      final slideParameters = File('${temporary.path}/slide.json')",
+      "context": "      expect(document.paragraphs.first.properties.headingLevel, 1);\n\n      final slideParameters = File('${temporary.path}/slide.json')\n        ..writeAsStringSync('{\"notes\":\"Opening remarks\"}');\n      final slideOutput = File('${temporary.path}/result.pptx');\n      final slideRun = await _run(<String>["
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_macro_cli_test.dart",
+      "line": 152,
+      "text": "      final slideOutput = File('${temporary.path}/result.pptx');",
+      "context": "      final slideParameters = File('${temporary.path}/slide.json')\n        ..writeAsStringSync('{\"notes\":\"Opening remarks\"}');\n      final slideOutput = File('${temporary.path}/result.pptx');\n      final slideRun = await _run(<String>[\n        'run',\n        'test/fixtures/fidelity/native.pptx',"
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_macro_cli_test.dart",
+      "line": 163,
+      "text": "            .readBytes(slideOutput.readAsBytesSync())",
+      "context": "      expect(\n        SlideDeserializer()\n            .readBytes(slideOutput.readAsBytesSync())\n            .slides\n            .first\n            .notes,"
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_macro_cli_test.dart",
+      "line": 175,
+      "text": "      final wrong = File('${temporary.path}/wrong.xlsm');",
+      "context": "    'extension mismatch and unsupported VBA compilation do not create files',\n    () async {\n      final wrong = File('${temporary.path}/wrong.xlsm');\n      final result = await _run(<String>[\n        'run',\n        'test/fixtures/fidelity/native.xlsx',"
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_macro_cli_test.dart",
+      "line": 185,
+      "text": "      final source = File('${temporary.path}/source.json')",
+      "context": "      expect(wrong.existsSync(), isFalse);\n\n      final source = File('${temporary.path}/source.json')\n        ..writeAsStringSync(\n          jsonEncode(<String, Object?>{\n            'language': 'vba',"
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_macro_cli_test.dart",
+      "line": 193,
+      "text": "      final compiled = File('${temporary.path}/compiled.json');",
+      "context": "          }),\n        );\n      final compiled = File('${temporary.path}/compiled.json');\n      final compile = await _run(<String>[\n        'compile',\n        source.path,"
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_macro_runtime_test.dart",
+      "line": 64,
+      "text": "          File('test/fixtures/fidelity/native.xlsx').readAsBytesSync(),",
+      "context": "            'http://schemas.microsoft.com/office/2006/relationships/vbaProject';\n        final package = OpcPackage.openBytes(\n          File('test/fixtures/fidelity/native.xlsx').readAsBytesSync(),\n        );\n        package.getPart('/xl/workbook.xml')!.contentType = workbookType;\n        package.contentTypes.setOverride('/xl/workbook.xml', workbookType);"
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_pdf_export_test.dart",
+      "line": 993,
+      "text": "  if (!File(path).existsSync()) {",
+      "context": "\nSfntFont? _tryPath(String path) {\n  if (!File(path).existsSync()) {\n    return null;\n  }\n  return SfntFont.parse(File(path).readAsBytesSync());"
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_pdf_export_test.dart",
+      "line": 996,
+      "text": "  return SfntFont.parse(File(path).readAsBytesSync());",
+      "context": "    return null;\n  }\n  return SfntFont.parse(File(path).readAsBytesSync());\n}\n\nString _header(Uint8List pdf) => String.fromCharCodes(pdf.take(8));"
+    },
+    {
+      "path": "packages/quds_office_engine/test/slide_arrange_fidelity_test.dart",
+      "line": 35,
+      "text": "  final deck = SlideDeserializer().readBytes(File(_fixture).readAsBytesSync());",
+      "context": "\nPmlPresentation _groupedDeck() {\n  final deck = SlideDeserializer().readBytes(File(_fixture).readAsBytesSync());\n  final shapes = deck.slides.single.shapes;\n  PmlArrange.group(shapes.sublist(0, 2), allShapes: shapes);\n  PmlArrange.group(shapes.sublist(2, 4), allShapes: shapes);"
+    },
+    {
+      "path": "packages/quds_office_engine/test/slide_arrange_fidelity_test.dart",
+      "line": 204,
+      "text": "        final output = Directory('build/fidelity-slide-arrange')",
+      "context": "      () async {\n        var deck = _groupedDeck();\n        final output = Directory('build/fidelity-slide-arrange')\n          ..createSync(recursive: true);\n        File(\n          '${output.path}/source.pptx',"
+    },
+    {
+      "path": "packages/quds_office_engine/test/slide_arrange_fidelity_test.dart",
+      "line": 206,
+      "text": "        File(",
+      "context": "        final output = Directory('build/fidelity-slide-arrange')\n          ..createSync(recursive: true);\n        File(\n          '${output.path}/source.pptx',\n        ).writeAsBytesSync(File(_fixture).readAsBytesSync());\n        for (int cycle = 1; cycle <= 3; cycle++) {"
+    },
+    {
+      "path": "packages/quds_office_engine/test/slide_arrange_fidelity_test.dart",
+      "line": 208,
+      "text": "        ).writeAsBytesSync(File(_fixture).readAsBytesSync());",
+      "context": "        File(\n          '${output.path}/source.pptx',\n        ).writeAsBytesSync(File(_fixture).readAsBytesSync());\n        for (int cycle = 1; cycle <= 3; cycle++) {\n          final bytes = mode == 'direct'\n              ? SlideSerializer().writeBytes(deck)"
+    },
+    {
+      "path": "packages/quds_office_engine/test/slide_arrange_fidelity_test.dart",
+      "line": 214,
+      "text": "          File('${output.path}/$mode-$cycle.pptx').writeAsBytesSync(bytes);",
+      "context": "              : await OfficeIsolateSave.presentation(deck);\n          _expectNativeGroups(bytes);\n          File('${output.path}/$mode-$cycle.pptx').writeAsBytesSync(bytes);\n          deck = mode == 'direct'\n              ? SlideDeserializer().readBytes(bytes)\n              : await OfficeIsolateOpen.presentation(bytes);"
+    },
+    {
+      "path": "packages/quds_office_engine/test/slide_render_fidelity_test.dart",
+      "line": 52,
+      "text": "                  File(",
+      "context": "            ? OfficeFontSet(\n                primary: SfntFont.parse(\n                  File(\n                    '../quds_office_editor/fonts/LiberationSans-Regular.ttf',\n                  ).readAsBytesSync(),\n                ),"
+    },
+    {
+      "path": "packages/quds_office_engine/test/slide_render_fidelity_test.dart",
+      "line": 54,
+      "text": "                  ).readAsBytesSync(),",
+      "context": "                  File(\n                    '../quds_office_editor/fonts/LiberationSans-Regular.ttf',\n                  ).readAsBytesSync(),\n                ),\n              )\n            : const OfficeFontSet();"
+    },
+    {
+      "path": "packages/quds_office_engine/test/slide_section_fidelity_test.dart",
+      "line": 29,
+      "text": "    SlideDeserializer().readBytes(File(_fixture).readAsBytesSync());",
+      "context": "\nPmlPresentation _open() =>\n    SlideDeserializer().readBytes(File(_fixture).readAsBytesSync());\n\nvoid _expectState(PmlPresentation deck, String scenario) {\n  expect(deck.sectionSource?.issue, isNull);"
+    },
+    {
+      "path": "packages/quds_office_engine/test/slide_section_fidelity_test.dart",
+      "line": 84,
+      "text": "  final package = OpcPackage.openBytes(File(_fixture).readAsBytesSync());",
+      "context": "\nPmlPresentation _mutated(void Function(XmlElement) mutate) {\n  final package = OpcPackage.openBytes(File(_fixture).readAsBytesSync());\n  final part = package.getPart('/ppt/presentation.xml')!;\n  final document = XmlDocument.parse(part.readText());\n  mutate(document.root!);"
+    },
+    {
+      "path": "packages/quds_office_engine/test/slide_section_fidelity_test.dart",
+      "line": 115,
+      "text": "          final source = File(_fixture).readAsBytesSync();",
+      "context": "        '$mode $scenario retains section identity and membership through three saves',\n        () async {\n          final source = File(_fixture).readAsBytesSync();\n          var deck = mode == 'isolate'\n              ? await OfficeIsolateOpen.presentation(source)\n              : SlideDeserializer().readBytes(source);"
+    },
+    {
+      "path": "packages/quds_office_engine/test/slide_section_fidelity_test.dart",
+      "line": 119,
+      "text": "          final directory = Directory('build/fidelity-slide-sections/$mode')",
+      "context": "              ? await OfficeIsolateOpen.presentation(source)\n              : SlideDeserializer().readBytes(source);\n          final directory = Directory('build/fidelity-slide-sections/$mode')\n            ..createSync(recursive: true);\n          File('${directory.path}/source.pptx').writeAsBytesSync(source);\n          _edit(deck, scenario);"
+    },
+    {
+      "path": "packages/quds_office_engine/test/slide_section_fidelity_test.dart",
+      "line": 121,
+      "text": "          File('${directory.path}/source.pptx').writeAsBytesSync(source);",
+      "context": "          final directory = Directory('build/fidelity-slide-sections/$mode')\n            ..createSync(recursive: true);\n          File('${directory.path}/source.pptx').writeAsBytesSync(source);\n          _edit(deck, scenario);\n          _expectState(deck, scenario);\n          for (int cycle = 1; cycle <= 3; cycle++) {"
+    },
+    {
+      "path": "packages/quds_office_engine/test/slide_section_fidelity_test.dart",
+      "line": 128,
+      "text": "            File(",
+      "context": "                ? await OfficeIsolateSave.presentation(deck)\n                : SlideSerializer().writeBytes(deck);\n            File(\n              '${directory.path}/$scenario-$cycle.pptx',\n            ).writeAsBytesSync(bytes);\n            deck = mode == 'isolate'"
+    },
+    {
+      "path": "packages/quds_office_engine/test/slide_section_fidelity_test.dart",
+      "line": 287,
+      "text": "      final package = OpcPackage.openBytes(File(_fixture).readAsBytesSync());",
+      "context": "  ]) {\n    test('$issue guards section reorder and bypassed saves', () {\n      final package = OpcPackage.openBytes(File(_fixture).readAsBytesSync());\n      final rels = package.relationshipsFor('/ppt/presentation.xml');\n      final original = rels.firstByType(RelationshipTypes.slide)!;\n      if (issue == 'missing target part') {"
+    },
+    {
+      "path": "packages/quds_office_engine/test/slide_text_fidelity_test.dart",
+      "line": 51,
+      "text": "        File('test/fixtures/fidelity/native.pptx').readAsBytesSync(),",
+      "context": "    () async {\n      PmlPresentation deck = SlideDeserializer().readBytes(\n        File('test/fixtures/fidelity/native.pptx').readAsBytesSync(),\n      );\n      expect(deck.slides.first.shapes.first.fontSizePt, 24);\n      for (int cycle = 1; cycle <= 3; cycle++) {"
+    },
+    {
+      "path": "packages/quds_office_engine/test/slide_text_fidelity_test.dart",
+      "line": 97,
+      "text": "        Directory('build/fidelity-slide-text').createSync(recursive: true);",
+      "context": "        expect(body.firstChild('bodyPr')!.getAttribute('anchor'), 'ctr');\n        expect(_descendants(body, 'buChar').single.getAttribute('char'), '\u2022');\n        Directory('build/fidelity-slide-text').createSync(recursive: true);\n        File(\n          'build/fidelity-slide-text/rich-imported-$cycle.pptx',\n        ).writeAsBytesSync(bytes);"
+    },
+    {
+      "path": "packages/quds_office_engine/test/slide_text_fidelity_test.dart",
+      "line": 98,
+      "text": "        File(",
+      "context": "        expect(_descendants(body, 'buChar').single.getAttribute('char'), '\u2022');\n        Directory('build/fidelity-slide-text').createSync(recursive: true);\n        File(\n          'build/fidelity-slide-text/rich-imported-$cycle.pptx',\n        ).writeAsBytesSync(bytes);\n        deck = SlideDeserializer().readBytes(bytes);"
+    },
+    {
+      "path": "packages/quds_office_engine/test/slide_text_fidelity_test.dart",
+      "line": 157,
+      "text": "        Directory('build/fidelity-slide-text').createSync(recursive: true);",
+      "context": "        expect(pPr.getAttribute('algn'), 'ctr');\n        expect(pPr.getAttribute('rtl'), '0');\n        Directory('build/fidelity-slide-text').createSync(recursive: true);\n        File(\n          'build/fidelity-slide-text/rich-edited-$cycle.pptx',\n        ).writeAsBytesSync(bytes);"
+    },
+    {
+      "path": "packages/quds_office_engine/test/slide_text_fidelity_test.dart",
+      "line": 158,
+      "text": "        File(",
+      "context": "        expect(pPr.getAttribute('rtl'), '0');\n        Directory('build/fidelity-slide-text').createSync(recursive: true);\n        File(\n          'build/fidelity-slide-text/rich-edited-$cycle.pptx',\n        ).writeAsBytesSync(bytes);\n        deck = SlideDeserializer().readBytes(bytes);"
+    },
+    {
+      "path": "packages/quds_office_engine/test/slide_text_fidelity_test.dart",
+      "line": 233,
+      "text": "        File('test/fixtures/fidelity/native.pptx').readAsBytesSync(),",
+      "context": "    () async {\n      final PmlPresentation deck = SlideDeserializer().readBytes(\n        File('test/fixtures/fidelity/native.pptx').readAsBytesSync(),\n      );\n      deck.slides.first.transition = const PmlSlideTransition(\n        kind: PmlTransitionKind.wipe,"
+    },
+    {
+      "path": "packages/quds_office_engine/test/word_small_caps_test.dart",
+      "line": 306,
+      "text": "        File(",
+      "context": "      }\n      final font = SfntFont.parse(\n        File(\n          '../quds_office_editor/fonts/LiberationSans-Regular.ttf',\n        ).readAsBytesSync(),\n      );"
+    },
+    {
+      "path": "packages/quds_office_engine/test/word_small_caps_test.dart",
+      "line": 308,
+      "text": "        ).readAsBytesSync(),",
+      "context": "        File(\n          '../quds_office_editor/fonts/LiberationSans-Regular.ttf',\n        ).readAsBytesSync(),\n      );\n      final pdf = PdfFile.open(OfficePdfExport.word(document, font: font));\n      expect(PdfExtract.documentText(pdf).replaceAll('\\n', ''), 'a\u00df\ufb03b');"
+    },
+    {
+      "path": "packages/quds_office_engine/test/word_small_caps_test.dart",
+      "line": 317,
+      "text": "      File(",
+      "context": "  test('PDF paints actual capital outlines at the same scaled sizes', () {\n    final font = SfntFont.parse(\n      File(\n        '../quds_office_editor/fonts/LiberationSans-Regular.ttf',\n      ).readAsBytesSync(),\n    );"
+    },
+    {
+      "path": "packages/quds_office_engine/test/word_small_caps_test.dart",
+      "line": 319,
+      "text": "      ).readAsBytesSync(),",
+      "context": "      File(\n        '../quds_office_editor/fonts/LiberationSans-Regular.ttf',\n      ).readAsBytesSync(),\n    );\n    final document = _document('Smith');\n    final glyphs = WordLayoutEngine("
+    },
+    {
+      "path": "packages/quds_office_engine/test/word_small_caps_test.dart",
+      "line": 352,
+      "text": "          File(",
+      "context": "      () {\n        final font = SfntFont.parse(\n          File(\n            '../quds_office_editor/fonts/LiberationSans-Regular.ttf',\n          ).readAsBytesSync(),\n        );"
+    },
+    {
+      "path": "packages/quds_office_engine/test/word_small_caps_test.dart",
+      "line": 354,
+      "text": "          ).readAsBytesSync(),",
+      "context": "          File(\n            '../quds_office_editor/fonts/LiberationSans-Regular.ttf',\n          ).readAsBytesSync(),\n        );\n        final document = _document('Stra\u00dfe \ufb03');\n        document.paragraphs.single.inlines.add("
+    },
+    {
+      "path": "packages/quds_proofing_spacy/test/distribution_test.dart",
+      "line": 53,
+      "text": "  late Directory root;",
+      "context": "\nvoid main() {\n  late Directory root;\n  setUp(() => root = Directory.systemTemp.createTempSync('spacy-install-'));\n  tearDown(() => root.deleteSync(recursive: true));\n"
+    },
+    {
+      "path": "packages/quds_proofing_spacy/test/distribution_test.dart",
+      "line": 54,
+      "text": "  setUp(() => root = Directory.systemTemp.createTempSync('spacy-install-'));",
+      "context": "void main() {\n  late Directory root;\n  setUp(() => root = Directory.systemTemp.createTempSync('spacy-install-'));\n  tearDown(() => root.deleteSync(recursive: true));\n\n  test('catalog pins the published Linux capsule at an immutable revision', () {"
+    },
+    {
+      "path": "packages/quds_proofing_spacy/test/distribution_test.dart",
+      "line": 173,
+      "text": "    final damaged = Directory(",
+      "context": "    expect(await installer.installed(spacyLinuxX64Package), isNull);\n    expect(await installer.installedBundle(), isNull);\n    final damaged = Directory(\n      '${root.path}/packages/${spacyLinuxX64Package.archiveSha256}',\n    )..createSync(recursive: true);\n    File('${damaged.path}/distribution.json').writeAsStringSync('{}');"
+    },
+    {
+      "path": "packages/quds_proofing_spacy/test/distribution_test.dart",
+      "line": 176,
+      "text": "    File('${damaged.path}/distribution.json').writeAsStringSync('{}');",
+      "context": "      '${root.path}/packages/${spacyLinuxX64Package.archiveSha256}',\n    )..createSync(recursive: true);\n    File('${damaged.path}/distribution.json').writeAsStringSync('{}');\n    await expectLater(\n      installer.installed(spacyLinuxX64Package),\n      throwsA(isA<SpacyInstallException>()),"
+    },
+    {
+      "path": "packages/quds_proofing_spacy/test/distribution_test.dart",
+      "line": 206,
+      "text": "        expect(Directory('${root.path}/packages').existsSync(), isFalse);",
+      "context": "          ),\n        );\n        expect(Directory('${root.path}/packages').existsSync(), isFalse);\n        expect(\n          root.listSync().where((entity) => entity.path.contains('.staging-')),\n          isEmpty,"
+    },
+    {
+      "path": "packages/quds_proofing_spacy/test/distribution_test.dart",
+      "line": 208,
+      "text": "          root.listSync().where((entity) => entity.path.contains('.staging-')),",
+      "context": "        expect(Directory('${root.path}/packages').existsSync(), isFalse);\n        expect(\n          root.listSync().where((entity) => entity.path.contains('.staging-')),\n          isEmpty,\n        );\n      } finally {"
+    },
+    {
+      "path": "packages/quds_proofing_spacy/test/grammar_evaluation_harness_test.dart",
+      "line": 13,
+      "text": "  late Directory temporary;",
+      "context": "\nvoid main() {\n  late Directory temporary;\n  setUp(() {\n    temporary = Directory.current.createTempSync('harness-control-');\n  });"
+    },
+    {
+      "path": "packages/quds_proofing_spacy/test/grammar_evaluation_harness_test.dart",
+      "line": 15,
+      "text": "    temporary = Directory.current.createTempSync('harness-control-');",
+      "context": "  late Directory temporary;\n  setUp(() {\n    temporary = Directory.current.createTempSync('harness-control-');\n  });\n  tearDown(() {\n    temporary.deleteSync(recursive: true);"
+    },
+    {
+      "path": "packages/quds_proofing_spacy/test/grammar_evaluation_harness_test.dart",
+      "line": 24,
+      "text": "      final output = File('${temporary.path}/receipt.json')",
+      "context": "    'existing receipt rejects admission before reading missing assets',\n    () async {\n      final output = File('${temporary.path}/receipt.json')\n        ..writeAsStringSync('{\"retained\":true}\\n');\n      final original = output.readAsBytesSync();\n      await expectLater("
+    },
+    {
+      "path": "packages/quds_proofing_spacy/test/grammar_evaluation_harness_test.dart",
+      "line": 26,
+      "text": "      final original = output.readAsBytesSync();",
+      "context": "      final output = File('${temporary.path}/receipt.json')\n        ..writeAsStringSync('{\"retained\":true}\\n');\n      final original = output.readAsBytesSync();\n      await expectLater(\n        harness.main(_arguments(temporary, output)),\n        throwsA("
+    },
+    {
+      "path": "packages/quds_proofing_spacy/test/grammar_evaluation_harness_test.dart",
+      "line": 37,
+      "text": "      expect(output.readAsBytesSync(), original);",
+      "context": "        ),\n      );\n      expect(output.readAsBytesSync(), original);\n      expect(File('${output.path}.next').existsSync(), isFalse);\n    },\n  );"
+    },
+    {
+      "path": "packages/quds_proofing_spacy/test/grammar_evaluation_harness_test.dart",
+      "line": 38,
+      "text": "      expect(File('${output.path}.next').existsSync(), isFalse);",
+      "context": "      );\n      expect(output.readAsBytesSync(), original);\n      expect(File('${output.path}.next').existsSync(), isFalse);\n    },\n  );\n"
+    },
+    {
+      "path": "packages/quds_proofing_spacy/test/grammar_evaluation_harness_test.dart",
+      "line": 45,
+      "text": "      final output = File('${temporary.path}/receipt.json')",
+      "context": "    'checkpoint replacement preserves last complete report on pending collision',\n    () {\n      final output = File('${temporary.path}/receipt.json')\n        ..createSync(exclusive: true);\n      harness.writeReport(output, {'completed': false, 'text': '\u00c4 \ud83d\ude00'});\n      expect(jsonDecode(output.readAsStringSync()), {"
+    },
+    {
+      "path": "packages/quds_proofing_spacy/test/grammar_evaluation_harness_test.dart",
+      "line": 48,
+      "text": "      expect(jsonDecode(output.readAsStringSync()), {",
+      "context": "        ..createSync(exclusive: true);\n      harness.writeReport(output, {'completed': false, 'text': '\u00c4 \ud83d\ude00'});\n      expect(jsonDecode(output.readAsStringSync()), {\n        'completed': false,\n        'text': '\u00c4 \ud83d\ude00',\n      });"
+    },
+    {
+      "path": "packages/quds_proofing_spacy/test/grammar_evaluation_harness_test.dart",
+      "line": 52,
+      "text": "      expect(File('${output.path}.next').existsSync(), isFalse);",
+      "context": "        'text': '\u00c4 \ud83d\ude00',\n      });\n      expect(File('${output.path}.next').existsSync(), isFalse);\n      final original = output.readAsBytesSync();\n      final pending = File('${output.path}.next')\n        ..writeAsStringSync('retained interrupted checkpoint');"
+    },
+    {
+      "path": "packages/quds_proofing_spacy/test/grammar_evaluation_harness_test.dart",
+      "line": 53,
+      "text": "      final original = output.readAsBytesSync();",
+      "context": "      });\n      expect(File('${output.path}.next').existsSync(), isFalse);\n      final original = output.readAsBytesSync();\n      final pending = File('${output.path}.next')\n        ..writeAsStringSync('retained interrupted checkpoint');\n      expect("
+    },
+    {
+      "path": "packages/quds_proofing_spacy/test/grammar_evaluation_harness_test.dart",
+      "line": 54,
+      "text": "      final pending = File('${output.path}.next')",
+      "context": "      expect(File('${output.path}.next').existsSync(), isFalse);\n      final original = output.readAsBytesSync();\n      final pending = File('${output.path}.next')\n        ..writeAsStringSync('retained interrupted checkpoint');\n      expect(\n        () => harness.writeReport(output, {'completed': true}),"
+    },
+    {
+      "path": "packages/quds_proofing_spacy/test/grammar_evaluation_harness_test.dart",
+      "line": 60,
+      "text": "      expect(output.readAsBytesSync(), original);",
+      "context": "        throwsA(isA<FileSystemException>()),\n      );\n      expect(output.readAsBytesSync(), original);\n      expect(pending.readAsStringSync(), 'retained interrupted checkpoint');\n    },\n  );"
+    },
+    {
+      "path": "packages/quds_proofing_spacy/test/grammar_evaluation_harness_test.dart",
+      "line": 61,
+      "text": "      expect(pending.readAsStringSync(), 'retained interrupted checkpoint');",
+      "context": "      );\n      expect(output.readAsBytesSync(), original);\n      expect(pending.readAsStringSync(), 'retained interrupted checkpoint');\n    },\n  );\n"
+    },
+    {
+      "path": "packages/quds_proofing_spacy/test/grammar_evaluation_harness_test.dart",
+      "line": 69,
+      "text": "      final provider = File('${temporary.path}/$_provider');",
+      "context": "    () {\n      final fixture = _baselineFixture(temporary);\n      final provider = File('${temporary.path}/$_provider');\n      provider.writeAsStringSync(\n        \"${provider.readAsStringSync()}part 'german_agreement_facts.dart';\\n\",\n      );"
+    },
+    {
+      "path": "packages/quds_proofing_spacy/test/grammar_evaluation_harness_test.dart",
+      "line": 71,
+      "text": "        \"${provider.readAsStringSync()}part 'german_agreement_facts.dart';\\n\",",
+      "context": "      final provider = File('${temporary.path}/$_provider');\n      provider.writeAsStringSync(\n        \"${provider.readAsStringSync()}part 'german_agreement_facts.dart';\\n\",\n      );\n      expect(harness.verifyBaseline(temporary.path, fixture), hasLength(3));\n"
+    },
+    {
+      "path": "packages/quds_proofing_spacy/test/grammar_evaluation_harness_test.dart",
+      "line": 76,
+      "text": "        final file = File('${temporary.path}/$path');",
+      "context": "\n      for (final path in [_data, _zip]) {\n        final file = File('${temporary.path}/$path');\n        final original = file.readAsBytesSync();\n        file.writeAsStringSync('changed source\\n');\n        expect("
+    },
+    {
+      "path": "packages/quds_proofing_spacy/test/grammar_evaluation_harness_test.dart",
+      "line": 77,
+      "text": "        final original = file.readAsBytesSync();",
+      "context": "      for (final path in [_data, _zip]) {\n        final file = File('${temporary.path}/$path');\n        final original = file.readAsBytesSync();\n        file.writeAsStringSync('changed source\\n');\n        expect(\n          () => harness.verifyBaseline(temporary.path, fixture),"
+    },
+    {
+      "path": "packages/quds_proofing_spacy/test/grammar_evaluation_harness_test.dart",
+      "line": 120,
+      "text": "      final panelHash = harness.digest(panelFile.readAsBytesSync());",
+      "context": "        jsonEncode(panel),\n      );\n      final panelHash = harness.digest(panelFile.readAsBytesSync());\n      protocol['qualification_panel'] = {\n        'sha256': panelHash,\n        'total': 0,"
+    },
+    {
+      "path": "packages/quds_proofing_spacy/test/grammar_evaluation_harness_test.dart",
+      "line": 136,
+      "text": "      Directory(",
+      "context": "        _write(temporary, path, '// Synthetic source closure fixture.\\n');\n      }\n      Directory(\n        '${temporary.path}/packages/quds_proofing_spacy/lib',\n      ).createSync(recursive: true);\n      final seal = _write("
+    },
+    {
+      "path": "packages/quds_proofing_spacy/test/grammar_evaluation_harness_test.dart",
+      "line": 150,
+      "text": "      final claim = File('${seal.path}.consumed.json')",
+      "context": "        }),\n      );\n      final claim = File('${seal.path}.consumed.json')\n        ..writeAsStringSync('{\"prior_claim\":\"retain\"}\\n');\n      final claimBytes = claim.readAsBytesSync();\n      final output = File('${temporary.path}/new-receipt.json');"
+    },
+    {
+      "path": "packages/quds_proofing_spacy/test/grammar_evaluation_harness_test.dart",
+      "line": 152,
+      "text": "      final claimBytes = claim.readAsBytesSync();",
+      "context": "      final claim = File('${seal.path}.consumed.json')\n        ..writeAsStringSync('{\"prior_claim\":\"retain\"}\\n');\n      final claimBytes = claim.readAsBytesSync();\n      final output = File('${temporary.path}/new-receipt.json');\n      await expectLater(\n        harness.main(["
+    },
+    {
+      "path": "packages/quds_proofing_spacy/test/grammar_evaluation_harness_test.dart",
+      "line": 153,
+      "text": "      final output = File('${temporary.path}/new-receipt.json');",
+      "context": "        ..writeAsStringSync('{\"prior_claim\":\"retain\"}\\n');\n      final claimBytes = claim.readAsBytesSync();\n      final output = File('${temporary.path}/new-receipt.json');\n      await expectLater(\n        harness.main([\n          ..._arguments(temporary, output, phase: 'qualification'),"
+    },
+    {
+      "path": "packages/quds_proofing_spacy/test/grammar_evaluation_harness_test.dart",
+      "line": 162,
+      "text": "      expect(claim.readAsBytesSync(), claimBytes);",
+      "context": "        throwsA(isA<FileSystemException>()),\n      );\n      expect(claim.readAsBytesSync(), claimBytes);\n      final pending = jsonDecode(output.readAsStringSync()) as Map;\n      expect(pending['completed'], isFalse);\n      expect(pending['passed'], isFalse);"
+    },
+    {
+      "path": "packages/quds_proofing_spacy/test/grammar_evaluation_harness_test.dart",
+      "line": 163,
+      "text": "      final pending = jsonDecode(output.readAsStringSync()) as Map;",
+      "context": "      );\n      expect(claim.readAsBytesSync(), claimBytes);\n      final pending = jsonDecode(output.readAsStringSync()) as Map;\n      expect(pending['completed'], isFalse);\n      expect(pending['passed'], isFalse);\n      expect(pending.containsKey('identity'), isFalse);"
+    },
+    {
+      "path": "packages/quds_proofing_spacy/test/grammar_evaluation_harness_test.dart",
+      "line": 168,
+      "text": "      expect(File('${output.path}.next').existsSync(), isFalse);",
+      "context": "      expect(pending.containsKey('identity'), isFalse);\n      expect(pending['cases'], isEmpty);\n      expect(File('${output.path}.next').existsSync(), isFalse);\n    },\n  );\n"
+    },
+    {
+      "path": "packages/quds_proofing_spacy/test/grammar_evaluation_harness_test.dart",
+      "line": 321,
+      "text": "  Directory root,",
+      "context": "\nList<String> _arguments(\n  Directory root,\n  File output, {\n  String phase = 'development',\n}) => ["
+    },
+    {
+      "path": "packages/quds_proofing_spacy/test/grammar_evaluation_harness_test.dart",
+      "line": 322,
+      "text": "  File output, {",
+      "context": "List<String> _arguments(\n  Directory root,\n  File output, {\n  String phase = 'development',\n}) => [\n  '--root',"
+    },
+    {
+      "path": "packages/quds_proofing_spacy/test/grammar_evaluation_harness_test.dart",
+      "line": 345,
+      "text": "Map<String, dynamic> _baselineFixture(Directory root) {",
+      "context": "const _zip = 'packages/quds_office_engine/lib/src/opc/zip/synthetic_codec.dart';\n\nMap<String, dynamic> _baselineFixture(Directory root) {\n  for (final path in [_provider, _data, _zip]) {\n    _write(root, path, '// Synthetic baseline fixture for $path\\n');\n  }"
+    },
+    {
+      "path": "packages/quds_proofing_spacy/test/grammar_evaluation_harness_test.dart",
+      "line": 350,
+      "text": "    final result = Process.runSync('git', args, workingDirectory: root.path);",
+      "context": "  }\n  String git(List<String> args) {\n    final result = Process.runSync('git', args, workingDirectory: root.path);\n    if (result.exitCode != 0) {\n      throw StateError('Fixture git operation failed: ${result.stderr}');\n    }"
+    },
+    {
+      "path": "packages/quds_proofing_spacy/test/grammar_evaluation_harness_test.dart",
+      "line": 377,
+      "text": "          File('${root.path}/$_provider').readAsBytesSync(),",
+      "context": "      'ordinary_provider_sources_sha256': {\n        _provider: harness.digest(\n          File('${root.path}/$_provider').readAsBytesSync(),\n        ),\n      },\n    },"
+    },
+    {
+      "path": "packages/quds_proofing_spacy/test/grammar_evaluation_harness_test.dart",
+      "line": 384,
+      "text": "File _write(Directory root, String path, String text) {",
+      "context": "}\n\nFile _write(Directory root, String path, String text) {\n  final file = File('${root.path}/$path');\n  file.parent.createSync(recursive: true);\n  file.writeAsStringSync(text);"
+    },
+    {
+      "path": "packages/quds_proofing_spacy/test/grammar_evaluation_harness_test.dart",
+      "line": 385,
+      "text": "  final file = File('${root.path}/$path');",
+      "context": "\nFile _write(Directory root, String path, String text) {\n  final file = File('${root.path}/$path');\n  file.parent.createSync(recursive: true);\n  file.writeAsStringSync(text);\n  return file;"
+    },
+    {
+      "path": "packages/quds_proofing_spacy/test/language_catalog_test.dart",
+      "line": 30,
+      "text": "  late Directory root;",
+      "context": "\nvoid main() {\n  late Directory root;\n  setUp(() => root = Directory.systemTemp.createTempSync('spacy-language-'));\n  tearDown(() => root.deleteSync(recursive: true));\n"
+    },
+    {
+      "path": "packages/quds_proofing_spacy/test/language_catalog_test.dart",
+      "line": 31,
+      "text": "  setUp(() => root = Directory.systemTemp.createTempSync('spacy-language-'));",
+      "context": "void main() {\n  late Directory root;\n  setUp(() => root = Directory.systemTemp.createTempSync('spacy-language-'));\n  tearDown(() => root.deleteSync(recursive: true));\n\n  test('request locales map to exactly one analysis language', () {"
+    },
+    {
+      "path": "packages/quds_proofing_spacy/test/language_catalog_test.dart",
+      "line": 173,
+      "text": "    expect(root.listSync(), isEmpty, reason: 'nothing was downloaded');",
+      "context": "      throwsA(isA<SpacyInstallException>()),\n    );\n    expect(root.listSync(), isEmpty, reason: 'nothing was downloaded');\n  });\n\n  test('absent and damaged language trees are distinguished', () async {"
+    },
+    {
+      "path": "packages/quds_proofing_spacy/test/language_catalog_test.dart",
+      "line": 184,
+      "text": "    final damaged = Directory(",
+      "context": "    );\n    expect(await installer.hasLanguageBundle(spacyFrenchDownload), isFalse);\n    final damaged = Directory(\n      '${root.path}/bundles/${spacyFrenchDownload.bundle.manifestSha256}',\n    )..createSync(recursive: true);\n    File('${damaged.path}/model.gguf').writeAsStringSync('x');"
+    },
+    {
+      "path": "packages/quds_proofing_spacy/test/language_catalog_test.dart",
+      "line": 187,
+      "text": "    File('${damaged.path}/model.gguf').writeAsStringSync('x');",
+      "context": "      '${root.path}/bundles/${spacyFrenchDownload.bundle.manifestSha256}',\n    )..createSync(recursive: true);\n    File('${damaged.path}/model.gguf').writeAsStringSync('x');\n    await expectLater(\n      installer.installedLanguage(spacyFrenchDownload, runtime),\n      throwsA(isA<SpacyInstallException>()),"
+    },
+    {
+      "path": "packages/quds_proofing_spacy/test/language_catalog_test.dart",
+      "line": 222,
+      "text": "          root.listSync().where(",
+      "context": "        expect(server.paths.first, runtime.url.path);\n        expect(\n          root.listSync().where(\n            (entry) => !entry.path.split('/').last.startsWith('.'),\n          ),\n          isEmpty,"
+    },
+    {
+      "path": "packages/quds_proofing_spacy/test/macho_code_identity_test.dart",
+      "line": 115,
+      "text": "  final library = Platform.environment['QUDS_SPACY_MACOS_LIBRARY'];",
+      "context": "  // for example the file build_macos_app.sh downloads:\n  //   QUDS_SPACY_MACOS_LIBRARY=.../libcrispembed-spacy.dylib dart test\n  final library = Platform.environment['QUDS_SPACY_MACOS_LIBRARY'];\n  test(\n    'the qualified macOS library has the recorded code digest',\n    () {"
+    },
+    {
+      "path": "packages/quds_proofing_spacy/test/macho_code_identity_test.dart",
+      "line": 119,
+      "text": "      final bytes = File(library!).readAsBytesSync();",
+      "context": "    'the qualified macOS library has the recorded code digest',\n    () {\n      final bytes = File(library!).readAsBytesSync();\n      expect(sha256.convert(bytes).toString(), spacyGrammarMacosBundledSha256);\n      expect(machOCodeSha256(bytes), spacyGrammarMacosBundledCodeSha256);\n    },"
+    },
+    {
+      "path": "packages/quds_proofing_spacy/test/ner_removal_test.dart",
+      "line": 10,
+      "text": "      final root = await Directory.systemTemp.createTemp('ner-remove-');",
+      "context": "    'removing NER deletes only its content-addressed model, including disabled data',\n    () async {\n      final root = await Directory.systemTemp.createTemp('ner-remove-');\n      addTearDown(() => root.delete(recursive: true));\n      final ner = spacyNerDownload!;\n      final model = await Directory("
+    },
+    {
+      "path": "packages/quds_proofing_spacy/test/ner_removal_test.dart",
+      "line": 13,
+      "text": "      final model = await Directory(",
+      "context": "      addTearDown(() => root.delete(recursive: true));\n      final ner = spacyNerDownload!;\n      final model = await Directory(\n        '${root.path}/ner/${ner.sha256}',\n      ).create(recursive: true);\n      await File("
+    },
+    {
+      "path": "packages/quds_proofing_spacy/test/ner_removal_test.dart",
+      "line": 16,
+      "text": "      await File(",
+      "context": "        '${root.path}/ner/${ner.sha256}',\n      ).create(recursive: true);\n      await File(\n        '${model.path}/ner.gguf',\n      ).writeAsString('corrupt or disabled model');\n      final other = await File("
+    },
+    {
+      "path": "packages/quds_proofing_spacy/test/ner_removal_test.dart",
+      "line": 19,
+      "text": "      final other = await File(",
+      "context": "        '${model.path}/ner.gguf',\n      ).writeAsString('corrupt or disabled model');\n      final other = await File(\n        '${root.path}/runtime-sentinel',\n      ).writeAsString('keep');\n      await SpacyPackageInstaller(root: root).removeNer(ner);"
+    },
+    {
+      "path": "packages/quds_proofing_spacy/test/ner_removal_test.dart",
+      "line": 24,
+      "text": "      expect(await other.readAsString(), 'keep');",
+      "context": "      await SpacyPackageInstaller(root: root).removeNer(ner);\n      expect(model.existsSync(), isFalse);\n      expect(await other.readAsString(), 'keep');\n      await SpacyPackageInstaller(root: root).removeNer(ner);\n    },\n  );"
+    },
+    {
+      "path": "packages/quds_proofing_spacy/test/ner_removal_test.dart",
+      "line": 31,
+      "text": "      final root = await Directory.systemTemp.createTemp('ner-remove-');",
+      "context": "    'NER removal refuses invalid model identity and redirected model storage',\n    () async {\n      final root = await Directory.systemTemp.createTemp('ner-remove-');\n      final outside = await Directory.systemTemp.createTemp('ner-keep-');\n      addTearDown(() => root.delete(recursive: true));\n      addTearDown(() => outside.delete(recursive: true));"
+    },
+    {
+      "path": "packages/quds_proofing_spacy/test/ner_removal_test.dart",
+      "line": 32,
+      "text": "      final outside = await Directory.systemTemp.createTemp('ner-keep-');",
+      "context": "    () async {\n      final root = await Directory.systemTemp.createTemp('ner-remove-');\n      final outside = await Directory.systemTemp.createTemp('ner-keep-');\n      addTearDown(() => root.delete(recursive: true));\n      addTearDown(() => outside.delete(recursive: true));\n      final installer = SpacyPackageInstaller(root: root);"
+    },
+    {
+      "path": "packages/quds_proofing_spacy/test/ner_removal_test.dart",
+      "line": 54,
+      "text": "    skip: Platform.isWindows,",
+      "context": "      expect(outside.existsSync(), isTrue);\n    },\n    skip: Platform.isWindows,\n  );\n}\n"
+    },
+    {
+      "path": "packages/quds_proofing_spacy/test/worker_test.dart",
+      "line": 135,
+      "text": "      if (mode == 'exit') Isolate.exit();",
+      "context": "    try {\n      final mode = await gate.first;\n      if (mode == 'exit') Isolate.exit();\n      if (mode == 'throw') throw StateError('Injected inference failure');\n      if (mode == 'wrong-snapshot') {\n        return _success(_request(request.text, revision: request.revision + 1));"
+    },
+    {
+      "path": "third_party/enough_mail/test/message_builder_test.dart",
+      "line": 1033,
+      "text": "      final file = File('test/smtp/testimage.jpg');",
+      "context": "            ..addTextPlain(text)\n            ..addTextHtml('<p>$text</p>');\n      final file = File('test/smtp/testimage.jpg');\n      await originalBuilder.addFile(file, MediaSubtype.imageJpeg.mediaType);\n      final originalMessage = originalBuilder.buildMimeMessage();\n      // print('original:');"
+    },
+    {
+      "path": "third_party/enough_mail/test/message_builder_test.dart",
+      "line": 1128,
+      "text": "      final file = File('test/smtp/testimage.jpg');",
+      "context": "        ..addTextPlain(text)\n        ..addTextHtml('<p>$text</p>');\n      final file = File('test/smtp/testimage.jpg');\n      await originalBuilder.addFile(file, MediaSubtype.imageJpeg.mediaType);\n      final originalMessage = originalBuilder.buildMimeMessage();\n      // print('original:');"
+    },
+    {
+      "path": "third_party/enough_mail/test/message_builder_test.dart",
+      "line": 1179,
+      "text": "  group('File', () {",
+      "context": "  });\n\n  group('File', () {\n    test('addFile', () async {\n      final builder = MessageBuilder.prepareMultipartMixedMessage()\n        ..from = [const MailAddress('Personal Name', 'sender@domain.com')]"
+    },
+    {
+      "path": "third_party/enough_mail/test/message_builder_test.dart",
+      "line": 1189,
+      "text": "      final file = File('test/smtp/testimage.jpg');",
+      "context": "        ..addTextPlain('Hello world!');\n\n      final file = File('test/smtp/testimage.jpg');\n      await builder.addFile(file, MediaSubtype.imageJpeg.mediaType);\n      final message = builder.buildMimeMessage();\n      final rendered = message.renderMessage();"
+    },
+    {
+      "path": "third_party/enough_mail/test/message_builder_test.dart",
+      "line": 1218,
+      "text": "      final fileData = await file.readAsBytes();",
+      "context": "      final decoded = parsed.parts?[1].decodeContentBinary();\n      expect(decoded, isNotNull);\n      final fileData = await file.readAsBytes();\n      expect(decoded, fileData);\n    });\n"
+    },
+    {
+      "path": "third_party/enough_mail/test/message_builder_test.dart",
+      "line": 1231,
+      "text": "      final file = File('test/smtp/testimage-large.jpg');",
+      "context": "        ..addTextPlain('Hello world!');\n\n      final file = File('test/smtp/testimage-large.jpg');\n      await builder.addFile(file, MediaSubtype.imageJpeg.mediaType);\n      final message = builder.buildMimeMessage();\n      final rendered = message.renderMessage();"
+    },
+    {
+      "path": "third_party/enough_mail/test/message_builder_test.dart",
+      "line": 1260,
+      "text": "      final fileData = await file.readAsBytes();",
+      "context": "      final decoded = parsed.parts?[1].decodeContentBinary();\n      expect(decoded, isNotNull);\n      final fileData = await file.readAsBytes();\n      expect(decoded, fileData);\n    });\n  });"
+    }
+  ]
+}

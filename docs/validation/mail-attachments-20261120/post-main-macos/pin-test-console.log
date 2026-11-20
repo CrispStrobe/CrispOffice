@@ -1,0 +1,6 @@
+Acquiring the shared local validation lock
+Fingerprinting inputs for macos-pin-refresh: 1 suites
+Running macos-pin-refresh with unchanged application timeouts
+Auditing events and post-run inputs for macos-pin-refresh
+{"cohort": "macos-pin-refresh", "status": "passed", "passed": 1, "failed": 0, "skipped": 0, "suites": 1, "exit_code": 0, "guards": {"source_unchanged": true, "workspace_unchanged": true, "dependencies_unchanged": true, "runtime_unchanged": true, "host_fonts_unchanged": true, "source_matches_start_commit": true, "source_matches_finish_commit": true, "selection_unchanged": true, "all_requested_suites_executed_once": true, "every_started_test_finished_once": true, "unique_application_test_names": true, "final_event_success": true, "no_failures_skips_or_errors": true}}
+{"cohort": "macos-pin-refresh", "adapter_unchanged": true, "status": "passed"}

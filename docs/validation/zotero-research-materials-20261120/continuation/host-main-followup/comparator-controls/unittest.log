@@ -1,0 +1,13 @@
+test_added_ink_lowers_precision (captured_word_comparator_tests.NativeWordMetricTest.test_added_ink_lowers_precision) ... ok
+test_blank_whitespace_cannot_inflate_score (captured_word_comparator_tests.NativeWordMetricTest.test_blank_whitespace_cannot_inflate_score) ... ok
+test_duplicate_and_unsafe_fixture_names_fail (captured_word_comparator_tests.NativeWordMetricTest.test_duplicate_and_unsafe_fixture_names_fail) ... ok
+test_fixed_one_pixel_tolerance (captured_word_comparator_tests.NativeWordMetricTest.test_fixed_one_pixel_tolerance) ... ok
+test_missing_and_empty_corpora_fail (captured_word_comparator_tests.NativeWordMetricTest.test_missing_and_empty_corpora_fail) ... ok
+test_missing_ink_lowers_recall (captured_word_comparator_tests.NativeWordMetricTest.test_missing_ink_lowers_recall) ... ok
+test_page_size_is_not_rescaled_to_match (captured_word_comparator_tests.NativeWordMetricTest.test_page_size_is_not_rescaled_to_match) ... ok
+test_same_ink_passes (captured_word_comparator_tests.NativeWordMetricTest.test_same_ink_passes) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.019s
+
+OK

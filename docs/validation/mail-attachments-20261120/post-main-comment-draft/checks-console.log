@@ -1,0 +1,1 @@
+{"status": "passed", "guards": {"source_unchanged": true, "workspace_unchanged": true, "dependencies_unchanged": true, "runtime_unchanged": true, "host_fonts_unchanged": true, "source_matches_start_commit": true, "source_matches_finish_commit": true, "all_checks_exit_zero": true, "expected_head_unchanged": true}}

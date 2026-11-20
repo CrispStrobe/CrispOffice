@@ -558,7 +558,10 @@ MPL fork exposes a portable public MIME entry without socket/filesystem imports.
 The native store persists drafts, frozen outgoing payloads, mailbox changes,
 nullable standard flags and cursors transactionally, with schema-v3 migration,
 local full-text search and explicit interrupted-send recovery. File-backed
-migration and Linux process-crash tests exercise data preservation. Its separately
+migration and Linux process-crash tests exercise data preservation. These are
+storage-layer capabilities; the foreground Studio composer now uses them for
+[durable local drafts](docs/roadmaps/mail/draft-recovery.md) and interrupted-send
+warnings. A queued outbox remains open. Its separately
 configured browser entry compiles, but actual
 browser storage, quota and reload behavior remain unqualified. The database is
 unencrypted, and process-crash tests do not establish power-loss durability.
@@ -580,10 +583,20 @@ encrypted transfers and write lifecycle. External-provider and other-OS
 interoperability, host OAuth/refresh, large or sparse
 mailbox pagination and the shared mailbox workspace remain
 open. See the [implementation status and local checks](docs/roadmaps/mail/status.md).
-Studio now also provides a foreground account session and plain-text composer;
-its controlled SMTP checks do not qualify real-provider delivery or a durable
-outbox. Confirmed acceptance is distinguished from later cleanup failure, and
-unconfirmed submissions retain their session draft without automatic retry.
+Studio provides a foreground account session and plain-text composer with
+[To/Cc/Bcc and Reply all](docs/roadmaps/mail/recipients-and-reply-all.md) and
+[file attachments](docs/roadmaps/mail/attachments.md) for native SMTP, Exchange
+EWS, Gmail and Microsoft 365. Select up to ten files totaling 10 MiB; the draft
+retains immutable attachment bytes through an acknowledged uncertain-send retry.
+Canonical MIME excludes Bcc; the separate envelope retains hidden recipients,
+and cloud adapters add them only to a private API request copy. The
+[attachment qualification](docs/validation/mail-attachments-20261120/README.md)
+records local checks, not real-provider delivery or recipient-facing privacy.
+Confirmed acceptance is distinguished from later cleanup failure. Drafts now
+autosave locally and recover after reconnect, including unfinished recipients,
+reply headers and attachments. Close/Send flush the latest revision; uncertain
+submissions remain guarded after restart. No automatic retry is introduced.
+Attach-current-document/PDF commands and Office/VBA mail APIs remain later work.
 The standalone Office host and CrispCloud migration remain later tasks; these
 packages do not qualify an application release.
 

@@ -1,0 +1,32 @@
+{
+  "recordedAtUtc": "2026-11-20T05:31:37.972361+00:00",
+  "requestedExactMissingCommitObjects": [
+    "da9c956ec5d65c0e5a9f9ea84c2b0bca98e824a0",
+    "cee6e2632f891a3fe21c5c02d6bf508805973051"
+  ],
+  "command": [
+    "git",
+    "fetch",
+    "--no-write-fetch-head",
+    "--no-tags",
+    "origin",
+    "da9c956ec5d65c0e5a9f9ea84c2b0bca98e824a0",
+    "cee6e2632f891a3fe21c5c02d6bf508805973051"
+  ],
+  "exitCode": 0,
+  "destinationRefs": [],
+  "headDiscoveryPerformed": false,
+  "additionalExactCandidateFetch": {
+    "commit": "906843fbf2bfc20f8040543a122d88c93f20de83",
+    "command": [
+      "git",
+      "fetch",
+      "--no-write-fetch-head",
+      "--no-tags",
+      "origin",
+      "906843fbf2bfc20f8040543a122d88c93f20de83"
+    ],
+    "exitCode": 0,
+    "destinationRefs": []
+  }
+}

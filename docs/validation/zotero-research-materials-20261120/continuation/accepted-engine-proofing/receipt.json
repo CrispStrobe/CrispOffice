@@ -1,0 +1,679 @@
+{
+  "application_timeouts_modified": false,
+  "artifacts": {
+    "events.jsonl.gz": {
+      "bytes": 59306,
+      "git_blob_sha1": "ddf58046870ded925ae787dfc638a5f1bf70a7f8",
+      "sha256": "75be1e3c0e1af9e68f210f6551d90dd7fd6ff2e1dc02603e44acc104faa96ef0"
+    },
+    "input-check.json": {
+      "bytes": 1248,
+      "git_blob_sha1": "de0e82796ddc80275b834fba1aca7791fc7e6d76",
+      "sha256": "239a28053aa3f33ea70735b7ff1c97ef5892eea2dc518cba03a491bd52134a37"
+    },
+    "inputs.json.gz": {
+      "bytes": 469630,
+      "git_blob_sha1": "f359cd03e5f2c01f57c05460188923e03dec847e",
+      "sha256": "0295eed98735c4eb31ea917de0d01e1bdaa8a353c292f877914fb94f850d772d"
+    },
+    "selection-adapter.json": {
+      "bytes": 3514,
+      "git_blob_sha1": "c36e11ec4c843537b5c56c811d315035f779fec6",
+      "sha256": "a29d7abe6b93b1efb620d8ed5eb76759dfcd176f932af88d63dc7def436e624f"
+    },
+    "stderr.log.gz": {
+      "bytes": 31,
+      "git_blob_sha1": "87bfaf1cefef95e53a691da2269f30d7996d9c89",
+      "sha256": "b7368871ac9ce0ce08835c8c2fbf32d88bd56ee6bb93612434e3cc6bd4405e5e"
+    }
+  },
+  "cohort": "engine-proofing",
+  "command": [
+    "/workspace/scratch/2c6eaad19389/zotero-toolchain/flutter-sdk/bin/cache/dart-sdk/bin/dart",
+    "--packages=/workspace/scratch/2c6eaad19389/quds_office_suite/.dart_tool/package_config.json",
+    "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+    "--reporter",
+    "json",
+    "--concurrency",
+    "1",
+    "test/proofing/arabic_extended_rules_test.dart",
+    "test/proofing/arabic_grammar_rules_test.dart",
+    "test/proofing/arabic_writing_rules_test.dart",
+    "test/proofing/german_agreement_context_test.dart",
+    "test/proofing/german_agreement_facts_test.dart",
+    "test/proofing/german_context_completion_test.dart",
+    "test/proofing/german_context_test.dart",
+    "test/proofing/german_genitive_noun_test.dart",
+    "test/proofing/german_grammar_test.dart",
+    "test/proofing/german_lexical_gap_test.dart",
+    "test/proofing/german_lexicon_query_test.dart",
+    "test/proofing/german_literal_ranges_test.dart",
+    "test/proofing/german_morphology_completion_test.dart",
+    "test/proofing/german_morphology_grammar_test.dart",
+    "test/proofing/german_morphology_loading_test.dart",
+    "test/proofing/german_nominal_word_forms_test.dart",
+    "test/proofing/german_noun_agreement_test.dart",
+    "test/proofing/german_participle_suggestions_test.dart",
+    "test/proofing/german_release_context_test.dart",
+    "test/proofing/german_spelling_apostrophes_test.dart",
+    "test/proofing/german_spelling_compounds_test.dart",
+    "test/proofing/german_spelling_continuation_test.dart",
+    "test/proofing/german_spelling_projection_test.dart",
+    "test/proofing/german_spelling_quotes_test.dart",
+    "test/proofing/german_spelling_shortlist_test.dart",
+    "test/proofing/german_spelling_test.dart",
+    "test/proofing/german_suggestion_quality_test.dart",
+    "test/proofing/german_verb_object_case_test.dart",
+    "test/proofing/german_writing_rules_test.dart",
+    "test/proofing/language_identification_calibration_test.dart",
+    "test/proofing/language_identification_test.dart",
+    "test/proofing/office_proofing_merge_test.dart",
+    "test/proofing/office_proofing_test.dart",
+    "test/proofing/proofing_locale_test.dart",
+    "test/proofing/proofing_report_merge_test.dart",
+    "test/proofing/proofing_text_ranges_test.dart",
+    "test/proofing/word_proofing_language_test.dart"
+  ],
+  "concurrency": 1,
+  "counting_scope": "Application test cases only. Loader and group-lifecycle events are excluded from the passing count but any failures in them still reject acceptance. Development runs and other cohorts are not included.",
+  "cwd": "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/quds_office_engine",
+  "elapsed_seconds": 61.89618669099946,
+  "exit_code": 0,
+  "external_dependency_file_count": 2113,
+  "fingerprints": {
+    "after_sha256": {
+      "dependencies": "91ac38791512b4feb6a8bf14b45b2e2890162fff93bb6384f1aec356bddcc245",
+      "host_fonts": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "runtime": "9c58c139ade21dc3073e27df7a4627814f2ddc40c2b7b684706d390d6d3c5aac",
+      "source": "3eb2a9b4cb44d3b96c6cff14f5dac4a4fa17303102ef2f102674cdbc42fe7efd",
+      "workspace": "796c78924feaafc1773c00298a709fab93ec8388ecbc4a64d56c585279913b5c"
+    },
+    "before_sha256": {
+      "dependencies": "91ac38791512b4feb6a8bf14b45b2e2890162fff93bb6384f1aec356bddcc245",
+      "host_fonts": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "runtime": "9c58c139ade21dc3073e27df7a4627814f2ddc40c2b7b684706d390d6d3c5aac",
+      "source": "3eb2a9b4cb44d3b96c6cff14f5dac4a4fa17303102ef2f102674cdbc42fe7efd",
+      "workspace": "796c78924feaafc1773c00298a709fab93ec8388ecbc4a64d56c585279913b5c"
+    },
+    "changed_paths": {
+      "dependencies": [],
+      "host_fonts": [],
+      "runtime": [],
+      "source": [],
+      "workspace": []
+    },
+    "source_matches_finish": {
+      "different_paths": [],
+      "matches": true,
+      "uncommitted_paths": []
+    },
+    "source_matches_start": {
+      "different_paths": [],
+      "matches": true,
+      "uncommitted_paths": []
+    }
+  },
+  "finished_at_utc": "2026-11-20T05:38:55.881973+00:00",
+  "guards": {
+    "all_requested_suites_executed_once": true,
+    "dependencies_unchanged": true,
+    "every_started_test_finished_once": true,
+    "final_event_success": true,
+    "host_fonts_unchanged": true,
+    "no_failures_skips_or_errors": true,
+    "runtime_unchanged": true,
+    "selection_adapter_and_primary_runner_unchanged": true,
+    "selection_unchanged": true,
+    "source_matches_finish_commit": true,
+    "source_matches_start_commit": true,
+    "source_unchanged": true,
+    "unique_application_test_names": false,
+    "workspace_unchanged": true
+  },
+  "head_unchanged": true,
+  "no_github_ci_or_status_endpoints": true,
+  "package": "packages/quds_office_engine",
+  "runner": "dart",
+  "runtime": {
+    "dart_version": "Dart SDK version: 3.13.7 (stable) (Thu Oct 22 14:28:57 2026 -0700) on \"linux_x64\"",
+    "dart_version_command": [
+      "/workspace/scratch/2c6eaad19389/zotero-toolchain/flutter-sdk/bin/cache/dart-sdk/bin/dart",
+      "--version"
+    ],
+    "flutter": {
+      "channel": "stable",
+      "dartSdkVersion": "3.13.7",
+      "devToolsVersion": "2.60.0",
+      "engineBuildDate": "2026-10-22 20:34:48.330",
+      "engineCommitDate": "2026-10-23 02:13:38.000Z",
+      "engineContentHash": "dfd2e6cb7d319db05e3bf1503f3e2ac60f6288a2",
+      "engineRevision": "cf636b1dfb818dd6a3ff16e390e93b1a036969c8",
+      "flutterVersion": "3.47.8",
+      "frameworkCommitDate": "2026-10-22 21:37:31 -0700",
+      "frameworkRevision": "737ba8f885dc774b53b442759999a312c9461e4e",
+      "frameworkVersion": "3.47.8",
+      "repositoryUrl": "https://github.com/flutter/flutter.git"
+    },
+    "flutter_root": "/workspace/scratch/2c6eaad19389/zotero-toolchain/flutter-sdk",
+    "pub_cache": "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache"
+  },
+  "selected_files": [
+    "test/proofing/arabic_extended_rules_test.dart",
+    "test/proofing/arabic_grammar_rules_test.dart",
+    "test/proofing/arabic_writing_rules_test.dart",
+    "test/proofing/german_agreement_context_test.dart",
+    "test/proofing/german_agreement_facts_test.dart",
+    "test/proofing/german_context_completion_test.dart",
+    "test/proofing/german_context_test.dart",
+    "test/proofing/german_genitive_noun_test.dart",
+    "test/proofing/german_grammar_test.dart",
+    "test/proofing/german_lexical_gap_test.dart",
+    "test/proofing/german_lexicon_query_test.dart",
+    "test/proofing/german_literal_ranges_test.dart",
+    "test/proofing/german_morphology_completion_test.dart",
+    "test/proofing/german_morphology_grammar_test.dart",
+    "test/proofing/german_morphology_loading_test.dart",
+    "test/proofing/german_nominal_word_forms_test.dart",
+    "test/proofing/german_noun_agreement_test.dart",
+    "test/proofing/german_participle_suggestions_test.dart",
+    "test/proofing/german_release_context_test.dart",
+    "test/proofing/german_spelling_apostrophes_test.dart",
+    "test/proofing/german_spelling_compounds_test.dart",
+    "test/proofing/german_spelling_continuation_test.dart",
+    "test/proofing/german_spelling_projection_test.dart",
+    "test/proofing/german_spelling_quotes_test.dart",
+    "test/proofing/german_spelling_shortlist_test.dart",
+    "test/proofing/german_spelling_test.dart",
+    "test/proofing/german_suggestion_quality_test.dart",
+    "test/proofing/german_verb_object_case_test.dart",
+    "test/proofing/german_writing_rules_test.dart",
+    "test/proofing/language_identification_calibration_test.dart",
+    "test/proofing/language_identification_test.dart",
+    "test/proofing/office_proofing_merge_test.dart",
+    "test/proofing/office_proofing_test.dart",
+    "test/proofing/proofing_locale_test.dart",
+    "test/proofing/proofing_report_merge_test.dart",
+    "test/proofing/proofing_text_ranges_test.dart",
+    "test/proofing/word_proofing_language_test.dart"
+  ],
+  "selected_repository_paths": [
+    "packages/quds_office_engine/test/proofing/arabic_extended_rules_test.dart",
+    "packages/quds_office_engine/test/proofing/arabic_grammar_rules_test.dart",
+    "packages/quds_office_engine/test/proofing/arabic_writing_rules_test.dart",
+    "packages/quds_office_engine/test/proofing/german_agreement_context_test.dart",
+    "packages/quds_office_engine/test/proofing/german_agreement_facts_test.dart",
+    "packages/quds_office_engine/test/proofing/german_context_completion_test.dart",
+    "packages/quds_office_engine/test/proofing/german_context_test.dart",
+    "packages/quds_office_engine/test/proofing/german_genitive_noun_test.dart",
+    "packages/quds_office_engine/test/proofing/german_grammar_test.dart",
+    "packages/quds_office_engine/test/proofing/german_lexical_gap_test.dart",
+    "packages/quds_office_engine/test/proofing/german_lexicon_query_test.dart",
+    "packages/quds_office_engine/test/proofing/german_literal_ranges_test.dart",
+    "packages/quds_office_engine/test/proofing/german_morphology_completion_test.dart",
+    "packages/quds_office_engine/test/proofing/german_morphology_grammar_test.dart",
+    "packages/quds_office_engine/test/proofing/german_morphology_loading_test.dart",
+    "packages/quds_office_engine/test/proofing/german_nominal_word_forms_test.dart",
+    "packages/quds_office_engine/test/proofing/german_noun_agreement_test.dart",
+    "packages/quds_office_engine/test/proofing/german_participle_suggestions_test.dart",
+    "packages/quds_office_engine/test/proofing/german_release_context_test.dart",
+    "packages/quds_office_engine/test/proofing/german_spelling_apostrophes_test.dart",
+    "packages/quds_office_engine/test/proofing/german_spelling_compounds_test.dart",
+    "packages/quds_office_engine/test/proofing/german_spelling_continuation_test.dart",
+    "packages/quds_office_engine/test/proofing/german_spelling_projection_test.dart",
+    "packages/quds_office_engine/test/proofing/german_spelling_quotes_test.dart",
+    "packages/quds_office_engine/test/proofing/german_spelling_shortlist_test.dart",
+    "packages/quds_office_engine/test/proofing/german_spelling_test.dart",
+    "packages/quds_office_engine/test/proofing/german_suggestion_quality_test.dart",
+    "packages/quds_office_engine/test/proofing/german_verb_object_case_test.dart",
+    "packages/quds_office_engine/test/proofing/german_writing_rules_test.dart",
+    "packages/quds_office_engine/test/proofing/language_identification_calibration_test.dart",
+    "packages/quds_office_engine/test/proofing/language_identification_test.dart",
+    "packages/quds_office_engine/test/proofing/office_proofing_merge_test.dart",
+    "packages/quds_office_engine/test/proofing/office_proofing_test.dart",
+    "packages/quds_office_engine/test/proofing/proofing_locale_test.dart",
+    "packages/quds_office_engine/test/proofing/proofing_report_merge_test.dart",
+    "packages/quds_office_engine/test/proofing/proofing_text_ranges_test.dart",
+    "packages/quds_office_engine/test/proofing/word_proofing_language_test.dart"
+  ],
+  "selection_adapter": {
+    "adapter_command": [
+      "docs/validation/zotero-research-materials-20261120/continuation/run_continuation.py",
+      "engine-proofing",
+      "--repo",
+      "/workspace/scratch/2c6eaad19389/quds_office_suite",
+      "--expected-head",
+      "f3f98987824e021ed22a4d909e38d6307495267b",
+      "--output",
+      "/workspace/scratch/2c6eaad19389/quds_office_suite/docs/validation/zotero-research-materials-20261120/continuation/accepted-engine-proofing"
+    ],
+    "additive_catalog": {
+      "engine-proofing": {
+        "additional": [],
+        "package": "packages/quds_office_engine",
+        "patterns": [
+          "proofing/**/*_test.dart"
+        ],
+        "runner": "dart"
+      },
+      "spacy": {
+        "additional": [],
+        "package": "packages/quds_proofing_spacy",
+        "patterns": [
+          "**/*_test.dart"
+        ],
+        "runner": "dart"
+      },
+      "studio-integration": {
+        "additional": [
+          "studio_spacy_pin_test.dart",
+          "studio_spacy_setup_test.dart",
+          "studio_downloads_manager_test.dart",
+          "studio_linguistic_analysis_test.dart",
+          "studio_settings_test.dart",
+          "studio_language_id_test.dart",
+          "studio_comment_draft_proofing_test.dart",
+          "studio_zotero_shortcuts_test.dart",
+          "studio_zotero_citing_transport_test.dart"
+        ],
+        "package": "packages/quds_office_editor/example",
+        "patterns": [],
+        "runner": "flutter"
+      }
+    },
+    "code_after": {
+      "adapter": {
+        "bytes": 5049,
+        "path": "/workspace/scratch/2c6eaad19389/quds_office_suite/docs/validation/zotero-research-materials-20261120/continuation/run_continuation.py",
+        "sha256": "b6d42704ec385fd04ad33c691e8507f04e1f93dd130a04772aebc67a3a4494a4"
+      },
+      "primary_runner": {
+        "bytes": 29772,
+        "path": "/workspace/scratch/2c6eaad19389/quds_office_suite/docs/validation/zotero-research-materials-20261120/run_validation.py",
+        "sha256": "4d01ed59729abaa64e3ab643e8ebcb2f7136dd2d9f02cc4b07b81a06fbb919bf"
+      }
+    },
+    "code_before": {
+      "adapter": {
+        "bytes": 5049,
+        "path": "/workspace/scratch/2c6eaad19389/quds_office_suite/docs/validation/zotero-research-materials-20261120/continuation/run_continuation.py",
+        "sha256": "b6d42704ec385fd04ad33c691e8507f04e1f93dd130a04772aebc67a3a4494a4"
+      },
+      "primary_runner": {
+        "bytes": 29772,
+        "path": "/workspace/scratch/2c6eaad19389/quds_office_suite/docs/validation/zotero-research-materials-20261120/run_validation.py",
+        "sha256": "4d01ed59729abaa64e3ab643e8ebcb2f7136dd2d9f02cc4b07b81a06fbb919bf"
+      }
+    },
+    "code_unchanged": true,
+    "cohort": "engine-proofing",
+    "delegated_arguments": [
+      "/workspace/scratch/2c6eaad19389/quds_office_suite/docs/validation/zotero-research-materials-20261120/run_validation.py",
+      "engine-proofing",
+      "--repo",
+      "/workspace/scratch/2c6eaad19389/quds_office_suite",
+      "--timeout",
+      "1800",
+      "--output",
+      "/workspace/scratch/2c6eaad19389/quds_office_suite/docs/validation/zotero-research-materials-20261120/continuation/accepted-engine-proofing",
+      "--expected-head",
+      "f3f98987824e021ed22a4d909e38d6307495267b"
+    ],
+    "primary_runner_exit_code": 1,
+    "primary_test_audit_and_fingerprint_logic_unchanged": true,
+    "purpose": "Qualify the reviewed spaCy, proofing and Studio publication delta",
+    "selection": {
+      "additional": [],
+      "package": "packages/quds_office_engine",
+      "patterns": [
+        "proofing/**/*_test.dart"
+      ],
+      "runner": "dart"
+    },
+    "shared_sdk_validation_lock_unchanged": true
+  },
+  "source_file_count": 4004,
+  "source_head_at_finish": "f3f98987824e021ed22a4d909e38d6307495267b",
+  "source_head_at_start": "f3f98987824e021ed22a4d909e38d6307495267b",
+  "started_at_utc": "2026-11-20T05:37:50.078374+00:00",
+  "status": "failed",
+  "tests": {
+    "application_cases": 1713,
+    "duplicate_application_names": [
+      {
+        "count": 2,
+        "name": "context: Sie antwortet dem Lehrer.",
+        "suite": "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/quds_office_engine/test/proofing/german_context_test.dart"
+      },
+      {
+        "count": 2,
+        "name": "context: Wenn ich Zeit habe, lese ich ein Buch.",
+        "suite": "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/quds_office_engine/test/proofing/german_context_test.dart"
+      },
+      {
+        "count": 2,
+        "name": "context: Sie ist nach Hause gegangen.",
+        "suite": "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/quds_office_engine/test/proofing/german_context_test.dart"
+      },
+      {
+        "count": 2,
+        "name": "context: Wir helfen der Freundin.",
+        "suite": "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/quds_office_engine/test/proofing/german_release_context_test.dart"
+      },
+      {
+        "count": 2,
+        "name": "context: Wir helfen den Freundinnen.",
+        "suite": "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/quds_office_engine/test/proofing/german_release_context_test.dart"
+      },
+      {
+        "count": 2,
+        "name": "context: Wir stehen bei diesem Geb\u00e4ude.",
+        "suite": "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/quds_office_engine/test/proofing/german_release_context_test.dart"
+      },
+      {
+        "count": 2,
+        "name": "context: Wir sprechen mit dem Stra\u00dfenpolizisten.",
+        "suite": "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/quds_office_engine/test/proofing/german_release_context_test.dart"
+      },
+      {
+        "count": 2,
+        "name": "context: Wir sehen den Stra\u00dfenpolizisten.",
+        "suite": "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/quds_office_engine/test/proofing/german_release_context_test.dart"
+      }
+    ],
+    "duplicate_suite_ids": false,
+    "error_events": [],
+    "every_started_test_finished_once": true,
+    "excluded_failures": [],
+    "excluded_pseudo_cases": 37,
+    "excluded_reasons": {
+      "hidden_lifecycle": 37
+    },
+    "failed": 0,
+    "final_events": [
+      {
+        "success": true,
+        "time": 50515,
+        "type": "done"
+      }
+    ],
+    "flutter_notification_envelopes": 0,
+    "layout_or_tap_diagnostics": [],
+    "missing_start_test_ids": [],
+    "parse_errors": [],
+    "passed": 1713,
+    "skipped": 0,
+    "suite_count": 37,
+    "suites": [
+      {
+        "failed": 0,
+        "id": 0,
+        "passed": 311,
+        "path": "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/quds_office_engine/test/proofing/arabic_extended_rules_test.dart",
+        "skipped": 0
+      },
+      {
+        "failed": 0,
+        "id": 320,
+        "passed": 100,
+        "path": "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/quds_office_engine/test/proofing/arabic_grammar_rules_test.dart",
+        "skipped": 0
+      },
+      {
+        "failed": 0,
+        "id": 427,
+        "passed": 104,
+        "path": "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/quds_office_engine/test/proofing/arabic_writing_rules_test.dart",
+        "skipped": 0
+      },
+      {
+        "failed": 0,
+        "id": 534,
+        "passed": 140,
+        "path": "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/quds_office_engine/test/proofing/german_agreement_context_test.dart",
+        "skipped": 0
+      },
+      {
+        "failed": 0,
+        "id": 679,
+        "passed": 5,
+        "path": "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/quds_office_engine/test/proofing/german_agreement_facts_test.dart",
+        "skipped": 0
+      },
+      {
+        "failed": 0,
+        "id": 687,
+        "passed": 31,
+        "path": "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/quds_office_engine/test/proofing/german_context_completion_test.dart",
+        "skipped": 0
+      },
+      {
+        "failed": 0,
+        "id": 721,
+        "passed": 86,
+        "path": "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/quds_office_engine/test/proofing/german_context_test.dart",
+        "skipped": 0
+      },
+      {
+        "failed": 0,
+        "id": 810,
+        "passed": 52,
+        "path": "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/quds_office_engine/test/proofing/german_genitive_noun_test.dart",
+        "skipped": 0
+      },
+      {
+        "failed": 0,
+        "id": 865,
+        "passed": 171,
+        "path": "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/quds_office_engine/test/proofing/german_grammar_test.dart",
+        "skipped": 0
+      },
+      {
+        "failed": 0,
+        "id": 1041,
+        "passed": 6,
+        "path": "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/quds_office_engine/test/proofing/german_lexical_gap_test.dart",
+        "skipped": 0
+      },
+      {
+        "failed": 0,
+        "id": 1050,
+        "passed": 2,
+        "path": "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/quds_office_engine/test/proofing/german_lexicon_query_test.dart",
+        "skipped": 0
+      },
+      {
+        "failed": 0,
+        "id": 1055,
+        "passed": 14,
+        "path": "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/quds_office_engine/test/proofing/german_literal_ranges_test.dart",
+        "skipped": 0
+      },
+      {
+        "failed": 0,
+        "id": 1072,
+        "passed": 59,
+        "path": "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/quds_office_engine/test/proofing/german_morphology_completion_test.dart",
+        "skipped": 0
+      },
+      {
+        "failed": 0,
+        "id": 1134,
+        "passed": 73,
+        "path": "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/quds_office_engine/test/proofing/german_morphology_grammar_test.dart",
+        "skipped": 0
+      },
+      {
+        "failed": 0,
+        "id": 1210,
+        "passed": 1,
+        "path": "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/quds_office_engine/test/proofing/german_morphology_loading_test.dart",
+        "skipped": 0
+      },
+      {
+        "failed": 0,
+        "id": 1214,
+        "passed": 7,
+        "path": "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/quds_office_engine/test/proofing/german_nominal_word_forms_test.dart",
+        "skipped": 0
+      },
+      {
+        "failed": 0,
+        "id": 1224,
+        "passed": 66,
+        "path": "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/quds_office_engine/test/proofing/german_noun_agreement_test.dart",
+        "skipped": 0
+      },
+      {
+        "failed": 0,
+        "id": 1293,
+        "passed": 49,
+        "path": "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/quds_office_engine/test/proofing/german_participle_suggestions_test.dart",
+        "skipped": 0
+      },
+      {
+        "failed": 0,
+        "id": 1346,
+        "passed": 38,
+        "path": "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/quds_office_engine/test/proofing/german_release_context_test.dart",
+        "skipped": 0
+      },
+      {
+        "failed": 0,
+        "id": 1387,
+        "passed": 9,
+        "path": "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/quds_office_engine/test/proofing/german_spelling_apostrophes_test.dart",
+        "skipped": 0
+      },
+      {
+        "failed": 0,
+        "id": 1399,
+        "passed": 11,
+        "path": "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/quds_office_engine/test/proofing/german_spelling_compounds_test.dart",
+        "skipped": 0
+      },
+      {
+        "failed": 0,
+        "id": 1413,
+        "passed": 17,
+        "path": "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/quds_office_engine/test/proofing/german_spelling_continuation_test.dart",
+        "skipped": 0
+      },
+      {
+        "failed": 0,
+        "id": 1433,
+        "passed": 25,
+        "path": "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/quds_office_engine/test/proofing/german_spelling_projection_test.dart",
+        "skipped": 0
+      },
+      {
+        "failed": 0,
+        "id": 1461,
+        "passed": 18,
+        "path": "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/quds_office_engine/test/proofing/german_spelling_quotes_test.dart",
+        "skipped": 0
+      },
+      {
+        "failed": 0,
+        "id": 1482,
+        "passed": 14,
+        "path": "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/quds_office_engine/test/proofing/german_spelling_shortlist_test.dart",
+        "skipped": 0
+      },
+      {
+        "failed": 0,
+        "id": 1499,
+        "passed": 39,
+        "path": "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/quds_office_engine/test/proofing/german_spelling_test.dart",
+        "skipped": 0
+      },
+      {
+        "failed": 0,
+        "id": 1541,
+        "passed": 14,
+        "path": "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/quds_office_engine/test/proofing/german_suggestion_quality_test.dart",
+        "skipped": 0
+      },
+      {
+        "failed": 0,
+        "id": 1558,
+        "passed": 90,
+        "path": "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/quds_office_engine/test/proofing/german_verb_object_case_test.dart",
+        "skipped": 0
+      },
+      {
+        "failed": 0,
+        "id": 1651,
+        "passed": 37,
+        "path": "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/quds_office_engine/test/proofing/german_writing_rules_test.dart",
+        "skipped": 0
+      },
+      {
+        "failed": 0,
+        "id": 1691,
+        "passed": 20,
+        "path": "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/quds_office_engine/test/proofing/language_identification_calibration_test.dart",
+        "skipped": 0
+      },
+      {
+        "failed": 0,
+        "id": 1719,
+        "passed": 16,
+        "path": "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/quds_office_engine/test/proofing/language_identification_test.dart",
+        "skipped": 0
+      },
+      {
+        "failed": 0,
+        "id": 1738,
+        "passed": 6,
+        "path": "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/quds_office_engine/test/proofing/office_proofing_merge_test.dart",
+        "skipped": 0
+      },
+      {
+        "failed": 0,
+        "id": 1747,
+        "passed": 14,
+        "path": "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/quds_office_engine/test/proofing/office_proofing_test.dart",
+        "skipped": 0
+      },
+      {
+        "failed": 0,
+        "id": 1764,
+        "passed": 6,
+        "path": "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/quds_office_engine/test/proofing/proofing_locale_test.dart",
+        "skipped": 0
+      },
+      {
+        "failed": 0,
+        "id": 1773,
+        "passed": 20,
+        "path": "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/quds_office_engine/test/proofing/proofing_report_merge_test.dart",
+        "skipped": 0
+      },
+      {
+        "failed": 0,
+        "id": 1796,
+        "passed": 6,
+        "path": "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/quds_office_engine/test/proofing/proofing_text_ranges_test.dart",
+        "skipped": 0
+      },
+      {
+        "failed": 0,
+        "id": 1805,
+        "passed": 36,
+        "path": "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/quds_office_engine/test/proofing/word_proofing_language_test.dart",
+        "skipped": 0
+      }
+    ],
+    "test_done_events": 1750,
+    "test_start_events": 1750,
+    "unfinished_test_ids": []
+  },
+  "timed_out": false,
+  "validation_runner": {
+    "bytes": 29772,
+    "git_blob_sha1": "269eef52038d97ae307859439875a23f350e0b0a",
+    "path": "/workspace/scratch/2c6eaad19389/quds_office_suite/docs/validation/zotero-research-materials-20261120/run_validation.py",
+    "sha256": "4d01ed59729abaa64e3ab643e8ebcb2f7136dd2d9f02cc4b07b81a06fbb919bf"
+  },
+  "watchdog_seconds": 1800
+}

@@ -1,0 +1,265 @@
+{
+  "audited_at_utc": "2026-11-20T07:00:08.846384+00:00",
+  "case_identity_artifact": {
+    "bytes": 11957,
+    "git_blob_sha1": "3a5f4bcde49427774b81f6f3a7bf87719753a8cc",
+    "sha256": "535b712a3a599f62ff42a0554e26743369a8b69efecd7987a6a74b7986b9beab"
+  },
+  "cohorts": [
+    {
+      "files": 1,
+      "name": "arabic-unit",
+      "passed": 17,
+      "primary_failed_guards": [],
+      "primary_runner_status": "passed",
+      "receipt": {
+        "bytes": 11038,
+        "git_blob_sha1": "61e819d5aaaab82a40a465427556dfa3eeda9a67",
+        "sha256": "461b0ce4864f31d35acbc58bcf15113d5e5148bc1d2b873b514088f4250964a4"
+      },
+      "source_commit": "f69e774fbb32a103260541e4a28fb17600bfc17e"
+    },
+    {
+      "files": 4,
+      "name": "engine-arabic",
+      "passed": 526,
+      "primary_failed_guards": [],
+      "primary_runner_status": "passed",
+      "receipt": {
+        "bytes": 12569,
+        "git_blob_sha1": "9d1c2caa896ac6ad56022608e8dccb0c1318cc0d",
+        "sha256": "cb4b91682706ff510eb25ebed0babe5438b0332c7fcf68c55df7f324fc0ba655"
+      },
+      "source_commit": "f69e774fbb32a103260541e4a28fb17600bfc17e"
+    },
+    {
+      "files": 7,
+      "name": "studio-integration",
+      "passed": 90,
+      "primary_failed_guards": [],
+      "primary_runner_status": "passed",
+      "receipt": {
+        "bytes": 13743,
+        "git_blob_sha1": "7ce9fecbdfb2db7841fd284771e9bb269942aa70",
+        "sha256": "2036936458ae624f943421e959733e75ada35f41e1b5c84db2378fc6dee52eb8"
+      },
+      "source_commit": "f69e774fbb32a103260541e4a28fb17600bfc17e"
+    }
+  ],
+  "combined_cross_source_total_claimed": false,
+  "current_files_rehashed": 9476,
+  "dependency_reuse": {
+    "hosted_versions_and_archive_checksums": 126,
+    "morph_current_declared_version": "0.3.0",
+    "morph_saved_graph_version": "0.2.0",
+    "receipt": {
+      "bytes": 6273,
+      "git_blob_sha1": "57f331b36cafb1719368bf5d93b03558b1c5a58c",
+      "sha256": "0275e1294fcd2f270a71fd392229d372668e38d2a1655f3ef738f1945c1ae36a"
+    },
+    "rehashed_unchanged_inputs": {
+      "external_dependency_files": 4502,
+      "runtime_files": 12,
+      "workspace_configuration_files": 2
+    },
+    "saved_metadata_regeneration_claimed": false,
+    "status": "verified",
+    "studio_direct_web_edge_present_in_saved_graph": false,
+    "unchanged_virtual_closures": 152,
+    "web_receipt": {
+      "bytes": 4722,
+      "git_blob_sha1": "74da01b452eb5af286479be3d8b54ceccda93040",
+      "sha256": "66eeb3bb7823862b30997118eab8b936bb1bb93b01acad95b8bfdeee339cd214"
+    }
+  },
+  "distinct_passed_cases": 633,
+  "distinct_test_files": 12,
+  "failed_or_skipped_application_cases": 0,
+  "fresh_browser_application_acceptance_claimed": false,
+  "fresh_browser_execution_performed": false,
+  "github_actions_queried": false,
+  "incoming_browser_limitation": {
+    "browser_runtime_reproduced": false,
+    "classification": "Separate incoming Arabic browser limitation, source-identified only; no browser runtime execution or failure reproduction.",
+    "covered_by_fresh_vm_tests": false,
+    "finding_id": "arabic-web-remove-model-reuses-transferred-database",
+    "path": "web-model-removal-limitation.json",
+    "publication_disposition": "Preserved from incoming main. No product correction or new browser lifecycle milestone in this Zotero continuation. Fresh VM results do not qualify this transfer path.",
+    "record": {
+      "bytes": 4937,
+      "git_blob_sha1": "9dea26fbed895bd18c806367bb472ce9057a02e8",
+      "sha256": "d038f1e57708eae2e1098840eba90ea2d0694ab77702264e148acfd3e46d763e"
+    }
+  },
+  "incoming_source_review": {
+    "author_qualification": {
+      "claims_only": [
+        "engine proofing tests",
+        "Arabic package tests with pinned native library and real database/model",
+        "Node Web Worker smoke with pinned Wasm",
+        "Studio example suite with one unspecified baseline exception",
+        "dart analyze packages apps: zero errors/warnings",
+        "PUD and Wikipedia accuracy/rule A/B measurements"
+      ],
+      "new_native_test_requirements": [
+        "QUDS_ARABIC_MORPH_TEST_LIBRARY",
+        "QUDS_ARABIC_MORPH_TEST_BUNDLE",
+        "QUDS_ARABIC_MORPH_TEST_MODEL"
+      ],
+      "source": "pr231-metadata.json; docs/roadmaps/arabic-proofing.md at incoming main",
+      "source_bound_raw_native_receipts_in_38_path_delta": false,
+      "studio_exception": {
+        "disposition": "Unattributed author exception. It cannot classify any fresh combined-source failure as baseline.",
+        "file": null,
+        "quoted_description": "Studio example suite (only the known baseline failure)",
+        "test_name": null,
+        "trace": null
+      }
+    },
+    "metadata_record": {
+      "bytes": 3414,
+      "git_blob_sha1": "23356c16eed849b44d7734ca58a64ba92fedac72",
+      "sha256": "90c242a3f1f5635e4901b69f2c8bc034e80549a477f88c429ae987b8928287b9"
+    },
+    "path": "incoming-review.json",
+    "record": {
+      "bytes": 45717,
+      "git_blob_sha1": "536ff22c23e3388c7045e050a05ddf8edfd8c20a",
+      "sha256": "68df1ec1b5615b6e3a02d95e1cc637500bf3c1acc0ad11e1f740d7bab9fb6434"
+    }
+  },
+  "independent_audit": {
+    "path": "audit.json",
+    "record": {
+      "bytes": 15499,
+      "git_blob_sha1": "4dda71226025ec228dc9e2733e814c2e72c07552",
+      "sha256": "43b13e6e9e86ed5f2bd086b7f0b16afccb5d9d4e44f415f2943da3a09a18fb98"
+    }
+  },
+  "limits": [
+    "These12 selected files are a separate f69 VM/unit/widget population. Earlier356/27,2386/157,3201/129 and2886 historical counts remain source-attributed and overlap; they are not added.",
+    "VM tests use synthetic/fake transport and model behavior. They do not build or execute the native ABI3 or Wasm adapter2, rank a real context model, or qualify live downloads.",
+    "The unchanged earlier Chrome attempt belongs only to a45: one loader error, zero application cases. No fresh browser execution or pass is claimed for the changed f69 Arabic web source.",
+    "The incoming Arabic browser model-removal path retains a source-identified transferred-buffer reuse defect. It is disclosed separately, not runtime reproduced here, fixed, or covered by the selected VM tests.",
+    "All129 active changed package/third-party Dart targets pass strict analysis and format. Two unchanged historical Mail harnesses are bound as preserved artifacts; their older110-target failure remains unchanged and is not rerun or reclassified.",
+    "Saved dependency metadata is reused, with morph version0.2.0 versus current declaration0.3.0 and the absent Studio direct web edge disclosed. Effective dependency edges, reachable byte closures and external pins are verified unchanged; no resolver regeneration is claimed.",
+    "The complete38-path source audit binds native/worker/license files outside the primary runner input inventory without claiming VM execution covers those platforms."
+  ],
+  "native_abi3_or_wasm_adapter2_execution_qualified": false,
+  "previous_phase": {
+    "accepted_cases": 356,
+    "accepted_files": 27,
+    "browser_application_cases": 0,
+    "browser_launch_invocations": 4,
+    "browser_loader_errors": 1,
+    "raw_receipts_modified": false,
+    "relabelled_to_arabic_source": false,
+    "source": "a45ee3bf40dbb7e64a04f879fd6d574db7cb60b1",
+    "status": "partial_browser_environment_blocked",
+    "summary": {
+      "bytes": 11285,
+      "git_blob_sha1": "bbe05a954f492df0c7bdf2ae8b6bdc7a37a22482",
+      "sha256": "a947e3f44d34466c224bd358d92cf730eef5ef5afd2afbb4e510d016aea36a23"
+    }
+  },
+  "primary_guard_exceptions": [],
+  "product_files_modified": false,
+  "qualified_source": "f69e774fbb32a103260541e4a28fb17600bfc17e",
+  "real_disambiguation_model_execution_qualified": false,
+  "source_applicability": {
+    "path": "applicability.json",
+    "record": {
+      "bytes": 28501,
+      "git_blob_sha1": "6f19bd9967a4b3f8873453d635189e38d4f6b2b2",
+      "sha256": "ba3aebaec082e402933d69dc792841699a3a27ecde7b73699a17c5453393b208"
+    }
+  },
+  "source_blob_objects_rehashed": 3858,
+  "source_paths_rebound": 4019,
+  "source_tree": "1a45545ffa7f4c8548853a30c95bdb38309e3da9",
+  "static": {
+    "active_changed_dart_targets": 129,
+    "active_guard_exceptions": [],
+    "all_131_static_passed_claimed": false,
+    "all_changed_dart_inputs_bound": 131,
+    "analysis_log": {
+      "bytes": 3695,
+      "git_blob_sha1": "d4a768231d68936a1175dac909e8c5e19df14ae7",
+      "sha256": "ab37fcc0aee50a01216e2d6b3e7b05cb542634c87d3523b2a47832de581e936f"
+    },
+    "archive_static_rerun_claimed": false,
+    "excluded_historical_artifacts": {
+      "docs/validation/mail-attachments-20261120/arabic-composer/capture_mail_arabic_test.dart": {
+        "artifact_index_entry": {
+          "bytes": 4064,
+          "git_blob_sha1": "2537c3b211914cd1895bae98bc40dfdb61f2dc8c",
+          "path": "arabic-composer/capture_mail_arabic_test.dart",
+          "sha256": "f1a7bbe3b9cd6bd8cd5261f2401171edb7afd092068ca44df91d8ffc9f73b31c"
+        },
+        "bytes": 4064,
+        "context_receipt": "docs/validation/mail-attachments-20261120/arabic-composer/receipt.json",
+        "context_receipt_sha256": "47b3311d368df0b2e55b40d80229d933d2c279421f5a3572d10ddb2c7345348a",
+        "git_blob_sha1": "2537c3b211914cd1895bae98bc40dfdb61f2dc8c",
+        "incoming_mail_head": "177f29d3f9450a58f41189b462b0814aad37e45c",
+        "original_command": [
+          "/workspace/scratch/75dc9d25dfaf/runtime/flutter/bin/flutter",
+          "test",
+          "--no-pub",
+          "--reporter",
+          "json",
+          "--concurrency",
+          "1",
+          "/workspace/scratch/75dc9d25dfaf/final-validation/capture_mail_arabic_test.dart"
+        ],
+        "original_cwd": "/workspace/scratch/75dc9d25dfaf/quds_office_suite/packages/quds_office_editor/example",
+        "original_source_head": "58c6962ec3ea82811bfcafec42981385f216f892",
+        "reason": "Raw historical Arabic-composer capture harness. Its author receipt binds this exact source hash to a separate scratch invocation from the Studio package; it is retained as evidence, not current package code.",
+        "sha256": "f1a7bbe3b9cd6bd8cd5261f2401171edb7afd092068ca44df91d8ffc9f73b31c"
+      },
+      "docs/validation/mail-attachments-20261120/attachment-core/attachment_mime_probe.dart": {
+        "artifact_index_entry": {
+          "bytes": 5182,
+          "git_blob_sha1": "cf7e5bce9a9f67c3fa93d0cb45e575d77a8f5450",
+          "path": "attachment-core/attachment_mime_probe.dart",
+          "sha256": "35910df713469a7d37e467ce809b4d386d969e68214d54118f0944bbd33c7c1c"
+        },
+        "bytes": 5182,
+        "context_receipt": "docs/validation/mail-attachments-20261120/attachment-core/receipt.json",
+        "context_receipt_sha256": "18743327c9298c4d2d791b19faf85480663e29e0eb5461eb806e74fa751fff41",
+        "git_blob_sha1": "cf7e5bce9a9f67c3fa93d0cb45e575d77a8f5450",
+        "incoming_mail_head": "177f29d3f9450a58f41189b462b0814aad37e45c",
+        "original_command": [
+          "/workspace/scratch/75dc9d25dfaf/runtime/bin/dart",
+          "--packages=/workspace/scratch/75dc9d25dfaf/quds_office_suite/.dart_tool/package_config.json",
+          "/workspace/scratch/75dc9d25dfaf/mail-probe/attachment_mime_probe.dart",
+          "/workspace/scratch/75dc9d25dfaf/mail-probe/run-01/fixtures/fixtures.json",
+          "/workspace/scratch/75dc9d25dfaf/mail-probe/run-01"
+        ],
+        "original_cwd": null,
+        "original_source_head": null,
+        "reason": "Raw historical MIME probe. Its author receipt runs it from a separate scratch directory with an explicit package configuration. Reformatting or editing it would alter the indexed original execution input.",
+        "sha256": "35910df713469a7d37e467ce809b4d386d969e68214d54118f0944bbd33c7c1c"
+      }
+    },
+    "format_log": {
+      "bytes": 49,
+      "git_blob_sha1": "ece4100dbd692ff23266de1fed0758fa0ec8a199",
+      "sha256": "a8e861e184c77bd5a07913639ab3f43378b36e58cf84f3e57d08cb7cbd0d824b"
+    },
+    "old_110_failed_attempt_preserved": {
+      "accepted": false,
+      "original_head": "a45ee3bf40dbb7e64a04f879fd6d574db7cb60b1",
+      "original_target_count": 110,
+      "path": "docs/validation/zotero-research-materials-20261120/continuation/publication-final/static/receipt.json",
+      "sha256": "5b9722c9d4a77f737f11a1479c2f35b7ba5987adda21b90a41406c73771fe775"
+    },
+    "receipt": {
+      "bytes": 110794,
+      "git_blob_sha1": "d4f8324f9eb788cbbb548a790defc36727a77baf",
+      "sha256": "a38fb705e862931af3590a826551c421584e54700b395bee09e3281919ddd779"
+    },
+    "status": "passed"
+  },
+  "status": "passed_selected_vm_gates_native_and_browser_unqualified",
+  "successful_application_executions": 633
+}

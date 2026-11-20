@@ -1,0 +1,33 @@
+{
+  "status": "passed",
+  "original_source_head": "58c6962ec3ea82811bfcafec42981385f216f892",
+  "final_source_head": "6184051c75d882cac53be3c1a9384e4556588ad1",
+  "final_source_tree": "b5b9ffdf6f500a9047cd4d01f3aa6c1bf8e91190",
+  "original_distinct_passed_cases": 2034,
+  "supplemental_distinct_passed_cases": 15,
+  "combined_distinct_passed_cases": 2049,
+  "failed_cases": 0,
+  "explicit_not_run_cases": 1,
+  "distinct_selected_files": 113,
+  "distinct_cohorts": 15,
+  "hidden_loading_lifecycle_events_excluded": 119,
+  "original_audit_immutable_sha256": "c82f098ec6c209f736ea1ed5890991a120f193602a99416593219b9ea51a4b58",
+  "original_issues": [],
+  "supplemental_issues": [],
+  "not_run": [
+    {
+      "cohort": "spacy-package",
+      "file": "packages/quds_proofing_spacy/test/macho_code_identity_test.dart",
+      "platform": "vm",
+      "name": "the qualified macOS library has the recorded code digest",
+      "result": "not_run",
+      "skipReason": "set QUDS_SPACY_MACOS_LIBRARY to the qualified library"
+    }
+  ],
+  "audit_tool_diagnostic": "diagnostics/auditor-unicode-framing.json",
+  "limits": [
+    "Selected local suites only, not full-repository qualification.",
+    "The optional real macOS library identity case is NOT RUN.",
+    "Original acceptance remains bound to58c6962; final applicability and15 new cases are separately proven at6184051."
+  ]
+}

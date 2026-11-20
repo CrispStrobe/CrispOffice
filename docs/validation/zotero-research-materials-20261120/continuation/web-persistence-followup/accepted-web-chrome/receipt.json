@@ -1,0 +1,411 @@
+{
+  "application_timeouts_modified": false,
+  "artifacts": {
+    "chromium-launch-config.json": {
+      "bytes": 722,
+      "sha256": "c4c85bbe9919c6cef77acda429e6a875f11b73211f0bc66840f1f3f8378d8a59"
+    },
+    "chromium-launches.jsonl": {
+      "bytes": 7876,
+      "sha256": "8de25057ef09d76824bde150514189b89b107876fb89aa8d8ec6aed37961aae7"
+    },
+    "events.jsonl.gz": {
+      "bytes": 831,
+      "sha256": "efda2ff7d92cd1bc2aa659f3bb96c1d4626617d1dff7c0354ad9a74dc949777e"
+    },
+    "input-check.json": {
+      "bytes": 2225,
+      "sha256": "c9af58f1a2b176dda2b5de91ef0717780bca6bea6b4def15f0e2f42b474f646b"
+    },
+    "inputs-after.json.gz": {
+      "bytes": 768388,
+      "sha256": "838ca19a944ec84f6e3871eaae9b1e4cbd388941358a74368bd4485b85c67f8b"
+    },
+    "inputs.json.gz": {
+      "bytes": 769159,
+      "sha256": "afe6ac5e78f80defd81592d027d256a0136a8a6a2059cac2af9e00063b7f24f0"
+    },
+    "mutable-caches-after.json": {
+      "bytes": 352237,
+      "sha256": "9cfbe197ccea09eacada519f616b887e6c20c1903ac5924db0963d2368c22cb8"
+    },
+    "mutable-caches-before.json": {
+      "bytes": 351958,
+      "sha256": "0617531c3f5b198153662e6e118027e8f575f8d9225740b22c0e38b8371a315f"
+    },
+    "stderr.log.gz": {
+      "bytes": 715,
+      "sha256": "cb418c6250d506e62c0c4d7947a5fbf6d26811fb2a14389d2e5fc8d1a6ba503d"
+    },
+    "stdout.log.gz": {
+      "bytes": 910,
+      "sha256": "4e31f17f223b46b29dcba1b18f192e555555f92cdb3a87aec2887a6d6e790164"
+    }
+  },
+  "browser_manifest": {
+    "bytes": 71563,
+    "path": "/workspace/scratch/2c6eaad19389/quds_office_suite/docs/validation/zotero-research-materials-20261120/continuation/web-persistence-followup/chromium-baseline.json",
+    "sha256": "1381b12113a09d3dabbdd86814f4f407f0abb799c20514c6ceae5c8830f24c65"
+  },
+  "chromium_launches": [
+    {
+      "binary": "/usr/lib/chromium/chromium",
+      "binary_sha256": "ce1ff960ce428a4a88b1b1c38516bdf1954a57fc24036161b7a0d8d0f8aec511",
+      "disk_cache": "/workspace/scratch/2c6eaad19389/quds_office_suite/docs/validation/zotero-research-materials-20261120/continuation/web-persistence-followup/accepted-web-chrome/browser-disk-cache",
+      "executed_arguments": [
+        "--user-data-dir=/workspace/scratch/2c6eaad19389/quds_office_suite/docs/validation/zotero-research-materials-20261120/continuation/web-persistence-followup/accepted-web-chrome/browser-profile",
+        "--disk-cache-dir=/workspace/scratch/2c6eaad19389/quds_office_suite/docs/validation/zotero-research-materials-20261120/continuation/web-persistence-followup/accepted-web-chrome/browser-disk-cache",
+        "--remote-debugging-port=44679",
+        "--disable-background-timer-throttling",
+        "--disable-extensions",
+        "--disable-popup-blocking",
+        "--bwsi",
+        "--no-first-run",
+        "--no-default-browser-check",
+        "--disable-default-apps",
+        "--disable-translate",
+        "--disable-search-engine-choice-screen",
+        "--no-sandbox",
+        "--headless",
+        "--window-size=2400,1800",
+        "http://localhost:44109/static/index.html?managerUrl=ws%3A%2F%2Flocalhost%3A44109%2F0&debug=false"
+      ],
+      "no_sandbox_from_sdk": true,
+      "original_arguments": [
+        "--user-data-dir=/workspace/scratch/2c6eaad19389/zotero-toolchain/tmp/flutter_tools.DONFSY/flutter_tools_chrome_device.FHGCRU",
+        "--remote-debugging-port=44679",
+        "--disable-background-timer-throttling",
+        "--disable-extensions",
+        "--disable-popup-blocking",
+        "--bwsi",
+        "--no-first-run",
+        "--no-default-browser-check",
+        "--disable-default-apps",
+        "--disable-translate",
+        "--disable-search-engine-choice-screen",
+        "--no-sandbox",
+        "--headless",
+        "--window-size=2400,1800",
+        "http://localhost:44109/static/index.html?managerUrl=ws%3A%2F%2Flocalhost%3A44109%2F0&debug=false"
+      ],
+      "profile": "/workspace/scratch/2c6eaad19389/quds_office_suite/docs/validation/zotero-research-materials-20261120/continuation/web-persistence-followup/accepted-web-chrome/browser-profile"
+    },
+    {
+      "binary": "/usr/lib/chromium/chromium",
+      "binary_sha256": "ce1ff960ce428a4a88b1b1c38516bdf1954a57fc24036161b7a0d8d0f8aec511",
+      "disk_cache": "/workspace/scratch/2c6eaad19389/quds_office_suite/docs/validation/zotero-research-materials-20261120/continuation/web-persistence-followup/accepted-web-chrome/browser-disk-cache",
+      "executed_arguments": [
+        "--user-data-dir=/workspace/scratch/2c6eaad19389/quds_office_suite/docs/validation/zotero-research-materials-20261120/continuation/web-persistence-followup/accepted-web-chrome/browser-profile",
+        "--disk-cache-dir=/workspace/scratch/2c6eaad19389/quds_office_suite/docs/validation/zotero-research-materials-20261120/continuation/web-persistence-followup/accepted-web-chrome/browser-disk-cache",
+        "--remote-debugging-port=44679",
+        "--disable-background-timer-throttling",
+        "--disable-extensions",
+        "--disable-popup-blocking",
+        "--bwsi",
+        "--no-first-run",
+        "--no-default-browser-check",
+        "--disable-default-apps",
+        "--disable-translate",
+        "--disable-search-engine-choice-screen",
+        "--no-sandbox",
+        "--headless",
+        "--window-size=2400,1800",
+        "http://localhost:44109/static/index.html?managerUrl=ws%3A%2F%2Flocalhost%3A44109%2F0&debug=false"
+      ],
+      "no_sandbox_from_sdk": true,
+      "original_arguments": [
+        "--user-data-dir=/workspace/scratch/2c6eaad19389/zotero-toolchain/tmp/flutter_tools.DONFSY/flutter_tools_chrome_device.FHGCRU",
+        "--remote-debugging-port=44679",
+        "--disable-background-timer-throttling",
+        "--disable-extensions",
+        "--disable-popup-blocking",
+        "--bwsi",
+        "--no-first-run",
+        "--no-default-browser-check",
+        "--disable-default-apps",
+        "--disable-translate",
+        "--disable-search-engine-choice-screen",
+        "--no-sandbox",
+        "--headless",
+        "--window-size=2400,1800",
+        "http://localhost:44109/static/index.html?managerUrl=ws%3A%2F%2Flocalhost%3A44109%2F0&debug=false"
+      ],
+      "profile": "/workspace/scratch/2c6eaad19389/quds_office_suite/docs/validation/zotero-research-materials-20261120/continuation/web-persistence-followup/accepted-web-chrome/browser-profile"
+    },
+    {
+      "binary": "/usr/lib/chromium/chromium",
+      "binary_sha256": "ce1ff960ce428a4a88b1b1c38516bdf1954a57fc24036161b7a0d8d0f8aec511",
+      "disk_cache": "/workspace/scratch/2c6eaad19389/quds_office_suite/docs/validation/zotero-research-materials-20261120/continuation/web-persistence-followup/accepted-web-chrome/browser-disk-cache",
+      "executed_arguments": [
+        "--user-data-dir=/workspace/scratch/2c6eaad19389/quds_office_suite/docs/validation/zotero-research-materials-20261120/continuation/web-persistence-followup/accepted-web-chrome/browser-profile",
+        "--disk-cache-dir=/workspace/scratch/2c6eaad19389/quds_office_suite/docs/validation/zotero-research-materials-20261120/continuation/web-persistence-followup/accepted-web-chrome/browser-disk-cache",
+        "--remote-debugging-port=44679",
+        "--disable-background-timer-throttling",
+        "--disable-extensions",
+        "--disable-popup-blocking",
+        "--bwsi",
+        "--no-first-run",
+        "--no-default-browser-check",
+        "--disable-default-apps",
+        "--disable-translate",
+        "--disable-search-engine-choice-screen",
+        "--no-sandbox",
+        "--headless",
+        "--window-size=2400,1800",
+        "http://localhost:44109/static/index.html?managerUrl=ws%3A%2F%2Flocalhost%3A44109%2F0&debug=false"
+      ],
+      "no_sandbox_from_sdk": true,
+      "original_arguments": [
+        "--user-data-dir=/workspace/scratch/2c6eaad19389/zotero-toolchain/tmp/flutter_tools.DONFSY/flutter_tools_chrome_device.FHGCRU",
+        "--remote-debugging-port=44679",
+        "--disable-background-timer-throttling",
+        "--disable-extensions",
+        "--disable-popup-blocking",
+        "--bwsi",
+        "--no-first-run",
+        "--no-default-browser-check",
+        "--disable-default-apps",
+        "--disable-translate",
+        "--disable-search-engine-choice-screen",
+        "--no-sandbox",
+        "--headless",
+        "--window-size=2400,1800",
+        "http://localhost:44109/static/index.html?managerUrl=ws%3A%2F%2Flocalhost%3A44109%2F0&debug=false"
+      ],
+      "profile": "/workspace/scratch/2c6eaad19389/quds_office_suite/docs/validation/zotero-research-materials-20261120/continuation/web-persistence-followup/accepted-web-chrome/browser-profile"
+    },
+    {
+      "binary": "/usr/lib/chromium/chromium",
+      "binary_sha256": "ce1ff960ce428a4a88b1b1c38516bdf1954a57fc24036161b7a0d8d0f8aec511",
+      "disk_cache": "/workspace/scratch/2c6eaad19389/quds_office_suite/docs/validation/zotero-research-materials-20261120/continuation/web-persistence-followup/accepted-web-chrome/browser-disk-cache",
+      "executed_arguments": [
+        "--user-data-dir=/workspace/scratch/2c6eaad19389/quds_office_suite/docs/validation/zotero-research-materials-20261120/continuation/web-persistence-followup/accepted-web-chrome/browser-profile",
+        "--disk-cache-dir=/workspace/scratch/2c6eaad19389/quds_office_suite/docs/validation/zotero-research-materials-20261120/continuation/web-persistence-followup/accepted-web-chrome/browser-disk-cache",
+        "--remote-debugging-port=44679",
+        "--disable-background-timer-throttling",
+        "--disable-extensions",
+        "--disable-popup-blocking",
+        "--bwsi",
+        "--no-first-run",
+        "--no-default-browser-check",
+        "--disable-default-apps",
+        "--disable-translate",
+        "--disable-search-engine-choice-screen",
+        "--no-sandbox",
+        "--headless",
+        "--window-size=2400,1800",
+        "http://localhost:44109/static/index.html?managerUrl=ws%3A%2F%2Flocalhost%3A44109%2F0&debug=false"
+      ],
+      "no_sandbox_from_sdk": true,
+      "original_arguments": [
+        "--user-data-dir=/workspace/scratch/2c6eaad19389/zotero-toolchain/tmp/flutter_tools.DONFSY/flutter_tools_chrome_device.FHGCRU",
+        "--remote-debugging-port=44679",
+        "--disable-background-timer-throttling",
+        "--disable-extensions",
+        "--disable-popup-blocking",
+        "--bwsi",
+        "--no-first-run",
+        "--no-default-browser-check",
+        "--disable-default-apps",
+        "--disable-translate",
+        "--disable-search-engine-choice-screen",
+        "--no-sandbox",
+        "--headless",
+        "--window-size=2400,1800",
+        "http://localhost:44109/static/index.html?managerUrl=ws%3A%2F%2Flocalhost%3A44109%2F0&debug=false"
+      ],
+      "profile": "/workspace/scratch/2c6eaad19389/quds_office_suite/docs/validation/zotero-research-materials-20261120/continuation/web-persistence-followup/accepted-web-chrome/browser-profile"
+    }
+  ],
+  "cohort": "web-persistence-chrome",
+  "command": [
+    "/workspace/scratch/2c6eaad19389/zotero-toolchain/flutter-sdk/bin/flutter",
+    "test",
+    "--no-pub",
+    "--platform",
+    "chrome",
+    "--reporter",
+    "json",
+    "--file-reporter",
+    "json:/workspace/scratch/2c6eaad19389/quds_office_suite/docs/validation/zotero-research-materials-20261120/continuation/web-persistence-followup/accepted-web-chrome/events.jsonl",
+    "--concurrency",
+    "1",
+    "test/studio_web_persistence_test.dart"
+  ],
+  "counting_scope": "Exactly three fresh browser application cases; lifecycle/loading cases excluded from counts but failures reject acceptance. No native or real-model qualification.",
+  "cwd": "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/quds_office_editor/example",
+  "elapsed_seconds": 48.72301705999416,
+  "event_stream": "Official Flutter --file-reporter json; stdout and stderr also retained without filtering",
+  "exit_code": 1,
+  "expected_case_names": [
+    "a verified dictionary survives a new session and is removable",
+    "stored bytes that no longer match the pins are deleted",
+    "the morphology database is restored only after verification"
+  ],
+  "fingerprints": {
+    "after_sha256": {
+      "chromium": "288a51c54abcd0c97e52ad3554de83285ed9bc94af5d3d25ce20245fb5ce879f",
+      "dependencies": "3522c0e00ac142cc945a15dd4243afc938196806a38ddb9c89f372bdfcc6f846",
+      "host_fonts": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "qualification_tools": "744a560563fce35e8c3803261751a665e9639220a36dd563a716dc009733229a",
+      "runtime": "9c58c139ade21dc3073e27df7a4627814f2ddc40c2b7b684706d390d6d3c5aac",
+      "source": "373bf394f06212ad1196c694905a39d4d249cd4412ad91ff9a20b9f0b29ff38a",
+      "web_sdk_cache": "d6f5510e393739c62ad0f453e9acc34c16b8c3a8faaca17f5dee4850ace2c280",
+      "workspace": "796c78924feaafc1773c00298a709fab93ec8388ecbc4a64d56c585279913b5c"
+    },
+    "before_sha256": {
+      "chromium": "288a51c54abcd0c97e52ad3554de83285ed9bc94af5d3d25ce20245fb5ce879f",
+      "dependencies": "3522c0e00ac142cc945a15dd4243afc938196806a38ddb9c89f372bdfcc6f846",
+      "host_fonts": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "qualification_tools": "744a560563fce35e8c3803261751a665e9639220a36dd563a716dc009733229a",
+      "runtime": "9c58c139ade21dc3073e27df7a4627814f2ddc40c2b7b684706d390d6d3c5aac",
+      "source": "373bf394f06212ad1196c694905a39d4d249cd4412ad91ff9a20b9f0b29ff38a",
+      "web_sdk_cache": "d6f5510e393739c62ad0f453e9acc34c16b8c3a8faaca17f5dee4850ace2c280",
+      "workspace": "796c78924feaafc1773c00298a709fab93ec8388ecbc4a64d56c585279913b5c"
+    },
+    "changed_paths": {
+      "chromium": [],
+      "dependencies": [],
+      "host_fonts": [],
+      "qualification_tools": [],
+      "runtime": [],
+      "source": [],
+      "web_sdk_cache": [],
+      "workspace": []
+    },
+    "mutable_cache_manifests": {
+      "after_sha256": "2bc284fa5bb06989d26350dc2aa3e4eedef10e44ca37e8514723521605447175",
+      "before_sha256": "c7ba85c339aaf030a56bc7f7ba6c06b1255c059653fe658a68cb934a81dbb862",
+      "interpretation": "Compiler output, browser profile and Cache Storage are expected mutable outputs, not immutable executable-input equality guards"
+    },
+    "source_matches_finish": {
+      "different_paths": [],
+      "matches": true,
+      "uncommitted_paths": []
+    },
+    "source_matches_start": {
+      "different_paths": [],
+      "matches": true,
+      "uncommitted_paths": []
+    }
+  },
+  "finished_at_utc": "2026-11-20T06:36:53.808495+00:00",
+  "github_actions_queried": false,
+  "guards": {
+    "all_requested_suites_executed_once": true,
+    "chromium_unchanged": true,
+    "dependencies_unchanged": true,
+    "every_started_test_finished_once": true,
+    "evidence_local_browser_profile": true,
+    "exact_three_application_passes": false,
+    "exact_three_expected_case_names": false,
+    "final_event_success": false,
+    "host_fonts_unchanged": true,
+    "no_failures_skips_or_errors": false,
+    "pinned_chromium_launched": true,
+    "qualification_tools_unchanged": true,
+    "real_json_file_reporter_stream_present": true,
+    "runtime_unchanged": true,
+    "selection_unchanged": true,
+    "source_head_unchanged_and_exact": true,
+    "source_matches_finish_commit": true,
+    "source_matches_start_commit": true,
+    "source_unchanged": true,
+    "unique_application_test_names": true,
+    "web_sdk_cache_unchanged": true,
+    "workspace_unchanged": true
+  },
+  "head_unchanged": true,
+  "primary_runner": {
+    "bytes": 29772,
+    "path": "/workspace/scratch/2c6eaad19389/quds_office_suite/docs/validation/zotero-research-materials-20261120/run_validation.py",
+    "sha256": "4d01ed59729abaa64e3ab643e8ebcb2f7136dd2d9f02cc4b07b81a06fbb919bf"
+  },
+  "runtime": {
+    "chromium_binary": "/usr/lib/chromium/chromium",
+    "flutter": {
+      "channel": "stable",
+      "dartSdkVersion": "3.13.7",
+      "devToolsVersion": "2.60.0",
+      "engineBuildDate": "2026-10-22 20:34:48.330",
+      "engineCommitDate": "2026-10-23 02:13:38.000Z",
+      "engineContentHash": "dfd2e6cb7d319db05e3bf1503f3e2ac60f6288a2",
+      "engineRevision": "cf636b1dfb818dd6a3ff16e390e93b1a036969c8",
+      "flutterVersion": "3.47.8",
+      "frameworkCommitDate": "2026-10-22 21:37:31 -0700",
+      "frameworkRevision": "737ba8f885dc774b53b442759999a312c9461e4e",
+      "frameworkVersion": "3.47.8",
+      "repositoryUrl": "https://github.com/flutter/flutter.git"
+    },
+    "flutter_root": "/workspace/scratch/2c6eaad19389/zotero-toolchain/flutter-sdk",
+    "pub_cache": "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache"
+  },
+  "selected_repository_paths": [
+    "packages/quds_office_editor/example/test/studio_web_persistence_test.dart"
+  ],
+  "shared_sdk_validation_lock": "/workspace/scratch/2c6eaad19389/zotero-toolchain/qualified-local-validation.lock",
+  "source_head_at_finish": "a45ee3bf40dbb7e64a04f879fd6d574db7cb60b1",
+  "source_head_at_start": "a45ee3bf40dbb7e64a04f879fd6d574db7cb60b1",
+  "source_tree": "abb783deb0dcf32f5cd4a985818f040da6ac6229",
+  "started_at_utc": "2026-11-20T06:35:59.961378+00:00",
+  "status": "failed",
+  "tests": {
+    "application_cases": 0,
+    "duplicate_application_names": [],
+    "duplicate_suite_ids": false,
+    "error_events": [
+      {
+        "error": "Failed to load \"/workspace/scratch/2c6eaad19389/quds_office_suite/packages/quds_office_editor/example/test/studio_web_persistence_test.dart\": Failed to launch browser. Make sure you are using an up-to-date Chrome or Edge. Otherwise, consider using -d web-server instead and filing an issue at https://github.com/flutter/flutter/issues.",
+        "isFailure": false,
+        "stackTrace": "package:flutter_tools/src/base/common.dart 34:3                  throwToolExit\npackage:flutter_tools/src/web/chrome.dart 341:17                 ChromiumLauncher._spawnChromiumProcess.<fn>\ndart:async/stream_pipe.dart 14:23                                _runUserCode\ndart:async/stream.dart 1787:11                                   Stream.firstWhere.<fn>\n===== asynchronous gap ===========================\npackage:flutter_tools/src/web/chrome.dart 314:7                  ChromiumLauncher._spawnChromiumProcess\n===== asynchronous gap ===========================\npackage:flutter_tools/src/web/chrome.dart 254:29                 ChromiumLauncher.launch\n===== asynchronous gap ===========================\npackage:flutter_tools/src/test/flutter_web_platform.dart 874:29  BrowserManager.start\n===== asynchronous gap ===========================\npackage:flutter_tools/src/test/flutter_web_platform.dart 636:27  FlutterWebPlatform.load\n===== asynchronous gap ===========================\npackage:test_core/src/runner/loader.dart 249:27                  Loader.loadFile.<fn>\n===== asynchronous gap ===========================\npackage:test_core/src/runner/load_suite.dart 95:21               new LoadSuite.<fn>.<fn>\n",
+        "testID": 1,
+        "time": 1422,
+        "type": "error"
+      }
+    ],
+    "every_started_test_finished_once": true,
+    "excluded_failures": [
+      {
+        "hidden": false,
+        "result": "error",
+        "skipped": false,
+        "testID": 1,
+        "time": 1425,
+        "type": "testDone"
+      }
+    ],
+    "excluded_pseudo_cases": 1,
+    "excluded_reasons": {
+      "loading": 1
+    },
+    "failed": 0,
+    "final_events": [
+      {
+        "success": false,
+        "time": 1428,
+        "type": "done"
+      }
+    ],
+    "flutter_notification_envelopes": 0,
+    "layout_or_tap_diagnostics": [],
+    "missing_start_test_ids": [],
+    "parse_errors": [],
+    "passed": 0,
+    "skipped": 0,
+    "suite_count": 1,
+    "suites": [
+      {
+        "failed": 0,
+        "id": 0,
+        "passed": 0,
+        "path": "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/quds_office_editor/example/test/studio_web_persistence_test.dart",
+        "skipped": 0
+      }
+    ],
+    "test_done_events": 1,
+    "test_start_events": 1,
+    "unfinished_test_ids": []
+  },
+  "timed_out": false,
+  "whole_process_watchdog_seconds": 1800
+}

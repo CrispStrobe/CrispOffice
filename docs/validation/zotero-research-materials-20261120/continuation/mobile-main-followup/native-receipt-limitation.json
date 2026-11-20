@@ -1,0 +1,192 @@
+{
+  "schema_version": 1,
+  "status": "historical_arabic_mobile_receipt_does_not_qualify_current_abi3_source",
+  "recorded_at_utc": "2026-11-20T07:08:56.480402+00:00",
+  "source": "65ea4c3095ff5d821c57d4dced0ba50bdd9387e7",
+  "source_tree": "f1500a15749ec6cbb8556d852f22bcedf70afd83",
+  "incoming_main": "88905c56547fa91206acbc306616c3ad10f9d77b",
+  "scope": "Read-only Git-object review of preserved author native receipts and gate summaries; no native build, application test, input-inventory rehash or CI query.",
+  "author_artifacts": [
+    {
+      "path": "docs/validation/native-proofing-mobile-20261120/README.md",
+      "source": "65ea4c3095ff5d821c57d4dced0ba50bdd9387e7",
+      "bytes": 6358,
+      "sha256": "07b5bfed108e8b9dc3c910699f5b5bc84cd8946a0f1fd8f3732cc5c6f82d3593",
+      "git_blob_sha1": "c49d80578a5091628c78a6d04214619241e39e78"
+    },
+    {
+      "path": "docs/validation/native-proofing-mobile-20261120/android-emulator-gate.json",
+      "source": "65ea4c3095ff5d821c57d4dced0ba50bdd9387e7",
+      "bytes": 1946,
+      "sha256": "4bfc8b7aef52dc5f8a2a1d1b188a5552f45a9f3c98ff891bf916395c80e1af94",
+      "git_blob_sha1": "e1dc76470e26494a609a1de5e31655328d38fde5"
+    },
+    {
+      "path": "docs/validation/native-proofing-mobile-20261120/ios-simulator-gate.json",
+      "source": "65ea4c3095ff5d821c57d4dced0ba50bdd9387e7",
+      "bytes": 1645,
+      "sha256": "67ff11b87590bade7cca9b6a961708208a267bb92e7082f93088ed95d37f3173",
+      "git_blob_sha1": "0746336ccc96ba4adc74b3a39a3a206a921b18da"
+    },
+    {
+      "path": "docs/validation/native-proofing-mobile-20261120/receipts/quds_arabic_morph.json",
+      "source": "65ea4c3095ff5d821c57d4dced0ba50bdd9387e7",
+      "bytes": 1827,
+      "sha256": "dfc7e0522e3a49678df0d0f0e70a8a770e685485b8312ee712b4ffe82053ca85",
+      "git_blob_sha1": "57b4bf19e519d913eb9b16ce579a7eb7e641de51"
+    },
+    {
+      "path": "docs/validation/native-proofing-mobile-20261120/receipts/crispembed-spacy-mobile.json",
+      "source": "65ea4c3095ff5d821c57d4dced0ba50bdd9387e7",
+      "bytes": 2085,
+      "sha256": "1987b21bfceca46f304bc40041a7ad75c6824b61ce8c0bee79fdea3a280215cb",
+      "git_blob_sha1": "9bd907e4c63cab61019c9dd9b61c6ec5e092478c"
+    }
+  ],
+  "author_artifacts_exact_incoming_blobs": true,
+  "arabic_mismatch": {
+    "recorded_build": {
+      "receipt": {
+        "path": "docs/validation/native-proofing-mobile-20261120/receipts/quds_arabic_morph.json",
+        "source": "65ea4c3095ff5d821c57d4dced0ba50bdd9387e7",
+        "bytes": 1827,
+        "sha256": "dfc7e0522e3a49678df0d0f0e70a8a770e685485b8312ee712b4ffe82053ca85",
+        "git_blob_sha1": "57b4bf19e519d913eb9b16ce579a7eb7e641de51"
+      },
+      "crispembed": {
+        "commit": "0ed76631843cadd9b5c8296f25ed8a414d8f51db",
+        "pull_request": 255,
+        "repository": "https://github.com/CrispStrobe/CrispEmbed"
+      },
+      "adapter_sha256": "dbbd39b7506d6d0485e0fe04220de054651b1c56c41e9cc803608a92f39ec93b",
+      "license_manifest_sha256": "c28c0fa6a7b5083ee4fc7ba7908819d5cea3e18221143725868391f82ef0d137",
+      "binary_hashes": {
+        "android/arm64-v8a/libquds_arabic_morph.so": "3012d1b0b034268268986ad00a07ffbb441026f935b6a9f2e23ccc9023f1816a",
+        "android/x86_64/libquds_arabic_morph.so": "c1eab7bbeab65f3f087b277059292cb95160a72c8ebcdff73eafc4ba7683ff8b",
+        "ios/quds_arabic_morph.xcframework/Info.plist": "3208e7a33e03db5567d743f1384c48a5972135c6171f88b1f49bd78232f6a9c3",
+        "ios/quds_arabic_morph.xcframework/ios-arm64/quds_arabic_morph.framework/Info.plist": "a747b28cdcce311d377f69c4a0e64b990912c954f019944fc97df09723c421aa",
+        "ios/quds_arabic_morph.xcframework/ios-arm64/quds_arabic_morph.framework/_CodeSignature/CodeResources": "778099b6cd50e91d48e1d45ac7b0ec3ab7e6940c72b7936292674dfcbabcba9d",
+        "ios/quds_arabic_morph.xcframework/ios-arm64/quds_arabic_morph.framework/quds_arabic_morph": "868b7a28e75f59bb92936198f017ea0d4a4244803b8f7e960bd8abe33cda7027",
+        "ios/quds_arabic_morph.xcframework/ios-arm64_x86_64-simulator/quds_arabic_morph.framework/Info.plist": "f674997860162899f9adea3cc4732ad1bb1642894262215555c533728a9933de",
+        "ios/quds_arabic_morph.xcframework/ios-arm64_x86_64-simulator/quds_arabic_morph.framework/_CodeSignature/CodeResources": "76faad38a0605f88c08cb2e661aedac94f10635d002fe9e1141402ef71cc7673",
+        "ios/quds_arabic_morph.xcframework/ios-arm64_x86_64-simulator/quds_arabic_morph.framework/quds_arabic_morph": "ca5f3e228ae09f88267a656c45fe6783e50516416ef400515b49b146f372411a"
+      }
+    },
+    "pre_context_adapter_identity": {
+      "path": "packages/quds_arabic_morph/native/src/quds_arabic_morph.cpp",
+      "source": "43db439e1e605d6329a6eabe6817b04ca44ba1aa",
+      "bytes": 1063,
+      "sha256": "dbbd39b7506d6d0485e0fe04220de054651b1c56c41e9cc803608a92f39ec93b",
+      "git_blob_sha1": "9389515b7416617ce530b3ec088833addac78995"
+    },
+    "current_source": {
+      "crispembed_commit": "3bab324832ea911c2b1260a0d50f0ed898f47950",
+      "crispembed_pull_request": 261,
+      "required_native_abi": 3,
+      "required_adapter_version": 2,
+      "adapter": {
+        "path": "packages/quds_arabic_morph/native/src/quds_arabic_morph.cpp",
+        "source": "65ea4c3095ff5d821c57d4dced0ba50bdd9387e7",
+        "bytes": 1937,
+        "sha256": "cfc838229f134903d6dd59bd2074667117bdc036d9b01d19e02acfeec5bc9cf1",
+        "git_blob_sha1": "75de1d1364e308b77e333d7fdb898cb31fd4ab58"
+      },
+      "builder": {
+        "path": "packages/quds_arabic_morph/tool/build.py",
+        "source": "65ea4c3095ff5d821c57d4dced0ba50bdd9387e7",
+        "bytes": 17929,
+        "sha256": "2c73a601bd6ac86cada65024fb8f51d26897d639f8a42d2e53942aa61dc36c4a",
+        "git_blob_sha1": "4a973f95775de9b70d46b28e4c2028f93a253448"
+      },
+      "loader": {
+        "path": "packages/quds_arabic_morph/lib/src/morph_transport_native.dart",
+        "source": "65ea4c3095ff5d821c57d4dced0ba50bdd9387e7",
+        "bytes": 26718,
+        "sha256": "a6395ac4a3abd7d659c5760c2e547bcb56fc78e51d500544048489f4628346e9",
+        "git_blob_sha1": "b9460ae80720421aa7129c8fbed610b147a93c78"
+      },
+      "license_manifest": {
+        "path": "packages/quds_arabic_morph/licenses/manifest.json",
+        "source": "65ea4c3095ff5d821c57d4dced0ba50bdd9387e7",
+        "bytes": 5104,
+        "sha256": "9fb7d8ee44458c4b8d1dfd9038da46c1530b4b1ebb3c5c38b552c762ac08f899",
+        "git_blob_sha1": "f6c3dab50d838cc5dc156036803441549fd73b50"
+      }
+    },
+    "current_loader_guard": "if (abi() != 3 || adapter() != 2) { throw StateError(...) }",
+    "receipt_adapter_matches_pre_pr231_source": true,
+    "receipt_adapter_matches_current_source": false,
+    "gate_arabic_fields": {
+      "android-emulator-gate": {
+        "analyses": 2,
+        "first_lex": "كَتَب"
+      },
+      "ios-simulator-gate": {
+        "analyses": 2,
+        "first_lex": "كَتَب"
+      }
+    },
+    "gate_omits_arabic_binary_hash_and_abi_identity": true,
+    "conclusion": "The recorded Arabic mobile build uses the pre-PR231 adapter and upstream source. The merged loader still requires ABI3/adapter2. These receipts and sanitized base-word results cannot establish successful mobile Arabic execution for the combined current source; compatible rebuilt binaries require their own acceptance."
+  },
+  "gate_scope": {
+    "integration_gate_source": {
+      "path": "packages/quds_office_editor/example/integration_test/mobile_native_proofing_test.dart",
+      "source": "65ea4c3095ff5d821c57d4dced0ba50bdd9387e7",
+      "bytes": 10050,
+      "sha256": "e3f30d768f2098d53a1cda9e68631fcbd5044b9e59778bfb26e1f369dc3f94ea",
+      "git_blob_sha1": "4bbfed63a3de87a64738373ce47707d611086bef"
+    },
+    "author_reported_platforms": [
+      "iOS Simulator arm64 (iOS18.6)",
+      "Android emulator arm64 (Android16/API36)"
+    ],
+    "author_reported_backends": [
+      "Hunspell",
+      "Arabic morphology",
+      "CLD3",
+      "Harper",
+      "spaCy"
+    ],
+    "spacy_per_platform": {
+      "development_panel_cases": 16,
+      "tokens": 113,
+      "sentences": 22,
+      "compared_fields": 2571,
+      "differences": 0,
+      "grammar_qualified": false
+    },
+    "android_record_is_exact_binary_analysis_only": "ed730f629ce4eafe139885e9b1029a41fe05f3d5032fb992fb61eb834950f7ad",
+    "ios_recorded_distribution_qualification": false,
+    "artifacts_are_sanitized_gate_summaries_and_build_receipts": true,
+    "complete_raw_test_streams_or_combined_source_before_after_guards_provided": false,
+    "fresh_independent_native_reexecution_performed": false,
+    "local_pass_count_added": 0,
+    "not_qualified": [
+      "Physical iOS or Android hardware",
+      "Android x86_64 execution",
+      "Full Studio mobile UI",
+      "Mobile grammar/W6-W7-v2 panels",
+      "Mobile numerical-stage/ctest/C-text-API controls",
+      "Current ABI3 Arabic mobile binary or real context-model execution"
+    ]
+  },
+  "prior_phase_boundary": {
+    "previous_qualified_source": "f69e774fbb32a103260541e4a28fb17600bfc17e",
+    "previous_raw_receipts_remain_source_attributed": true,
+    "new_main_changed_previously_recorded_input_paths": 20,
+    "previous_12_selected_test_file_bytes_changed": false,
+    "whole_previous_source_or_lock_inventory_equality_claimed": false,
+    "new_lock_nodes": [
+      "flutter_driver",
+      "fuchsia_remote_debug_protocol",
+      "integration_test",
+      "sync_http0.3.1",
+      "webdriver3.2.0"
+    ],
+    "existing_lock_entries_changed": false,
+    "qualification_relabelled_to_new_source": false
+  },
+  "product_or_old_evidence_files_modified": false,
+  "github_actions_queried": false
+}

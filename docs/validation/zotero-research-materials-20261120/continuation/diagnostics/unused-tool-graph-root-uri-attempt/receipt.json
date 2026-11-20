@@ -1,0 +1,228 @@
+{
+  "cohorts": {
+    "engine-zotero": {
+      "test_files": 29,
+      "imported_files": 34,
+      "target_reachable": false
+    },
+    "editor-zotero": {
+      "test_files": 43,
+      "imported_files": 59,
+      "target_reachable": false
+    },
+    "engine-proofing": {
+      "test_files": 37,
+      "imported_files": 47,
+      "target_reachable": false
+    },
+    "spacy": {
+      "test_files": 11,
+      "imported_files": 22,
+      "target_reachable": false
+    },
+    "studio-integration": {
+      "test_files": 9,
+      "imported_files": 39,
+      "target_reachable": false
+    }
+  },
+  "target": "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/quds_proofing_spacy/tool/evaluate_grammar_v2.dart",
+  "target_sha256": "ccd67cee89f72718259504e5f7fdccee786d8b290b02e19453eda3ce1b241735",
+  "package_config_sha256": "0011318979bdc29c9637b857a5122ffea96d185f3d2dc50c5503904a9059d6a7",
+  "package_config_unchanged": true,
+  "dart_sdk_boundaries": [
+    "dart:async",
+    "dart:convert",
+    "dart:io",
+    "dart:isolate",
+    "dart:typed_data"
+  ],
+  "errors": [
+    {
+      "missing_import": "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/quds_office_editor/lib/studio_strings.dart"
+    },
+    {
+      "missing_import": "/workspace/scratch/2c6eaad19389/zotero-toolchain/flutter-sdk/packages/lib/flutter_test.dart"
+    },
+    {
+      "missing_import": "/workspace/scratch/2c6eaad19389/zotero-toolchain/flutter-sdk/packages/lib/material.dart"
+    },
+    {
+      "missing_import": "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/quds_office_editor/lib/studio_chrome.dart"
+    },
+    {
+      "missing_import": "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/lib/quds_office_editor.dart"
+    },
+    {
+      "missing_import": "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/quds_office_editor/lib/suite_workspace.dart"
+    },
+    {
+      "missing_import": "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/quds_office_editor/lib/studio_zotero.dart"
+    },
+    {
+      "missing_import": "/workspace/scratch/2c6eaad19389/zotero-toolchain/flutter-sdk/packages/lib/services.dart"
+    },
+    {
+      "missing_import": "/workspace/scratch/2c6eaad19389/zotero-toolchain/flutter-sdk/packages/lib/foundation.dart"
+    },
+    {
+      "missing_import": "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/lib/quds_office_engine.dart"
+    },
+    {
+      "missing_import": "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/lib/http.dart"
+    },
+    {
+      "missing_import": "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/lib/quds_proofing_spacy_grammar.dart"
+    },
+    {
+      "missing_import": "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/lib/quds_proofing_spacy.dart"
+    },
+    {
+      "missing_import": "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/quds_office_editor/lib/studio_spacy_setup.dart"
+    },
+    {
+      "missing_import": "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/quds_office_editor/lib/studio_spacy_host_native.dart"
+    },
+    {
+      "missing_import": "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/quds_office_editor/lib/studio_spacy_host.dart"
+    },
+    {
+      "missing_import": "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/quds_office_editor/lib/main.dart"
+    },
+    {
+      "missing_import": "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/quds_office_editor/lib/studio_linguistic_analysis.dart"
+    },
+    {
+      "missing_import": "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/quds_office_editor/lib/studio_licenses.dart"
+    },
+    {
+      "missing_import": "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/quds_office_editor/lib/studio_language_id_host.dart"
+    },
+    {
+      "missing_import": "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/lib/quds_language_id.dart"
+    },
+    {
+      "missing_import": "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/lib/quds_proofing_spacy_install.dart"
+    },
+    {
+      "missing_import": "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/quds_office_editor/lib/studio_arabic_morph_host.dart"
+    },
+    {
+      "missing_import": "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/quds_office_editor/lib/studio_hunspell_host.dart"
+    },
+    {
+      "missing_import": "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/quds_office_editor/lib/studio_downloads_manager.dart"
+    },
+    {
+      "missing_import": "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/quds_office_editor/lib/crisp_office_sample.dart"
+    },
+    {
+      "missing_import": "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/lib/quds_arabic_morph.dart"
+    },
+    {
+      "missing_import": "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/lib/quds_proofing_hunspell.dart"
+    },
+    {
+      "missing_import": "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/lib/test.dart"
+    },
+    {
+      "missing_import": "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/lib/src/worker_unsupported.dart"
+    },
+    {
+      "missing_import": "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/lib/src/source_text.dart"
+    },
+    {
+      "missing_import": "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/lib/crypto.dart"
+    },
+    {
+      "missing_import": "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/lib/src/grammar_planner.dart"
+    },
+    {
+      "missing_import": "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/lib/quds_proofing_spacy_native.dart"
+    },
+    {
+      "missing_import": "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/lib/src/proofing/office_proofing.dart"
+    },
+    {
+      "missing_import": "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/lib/src/proofing/german_writing_rules.dart"
+    },
+    {
+      "missing_import": "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/lib/src/proofing/german_spelling.dart"
+    },
+    {
+      "missing_import": "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/lib/src/proofing/german_morphology.dart"
+    },
+    {
+      "missing_import": "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/lib/src/proofing/german_literal_ranges.dart"
+    },
+    {
+      "missing_import": "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/lib/src/proofing/arabic_writing_rules.dart"
+    },
+    {
+      "missing_import": "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/lib/src/proofing/arabic_morphology.dart"
+    },
+    {
+      "missing_import": "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/lib/src/embed/word_zotero_tags.dart"
+    },
+    {
+      "missing_import": "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/lib/src/embed/word_zotero_stored_details.dart"
+    },
+    {
+      "missing_import": "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/lib/src/embed/word_zotero_library.dart"
+    },
+    {
+      "missing_import": "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/lib/src/embed/word_zotero_sources.dart"
+    },
+    {
+      "missing_import": "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/lib/src/embed/word_zotero_document_sources.dart"
+    },
+    {
+      "missing_import": "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/lib/src/embed/word_zotero_format.dart"
+    },
+    {
+      "missing_import": "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/lib/src/embed/word_zotero_snapshot.dart"
+    },
+    {
+      "missing_import": "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/lib/src/embed/word_zotero_note_preview.dart"
+    },
+    {
+      "missing_import": "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/lib/src/embed/word_zotero_import.dart"
+    },
+    {
+      "missing_import": "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/lib/src/embed/word_zotero_composer.dart"
+    },
+    {
+      "missing_import": "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/lib/src/embed/word_zotero_children.dart"
+    },
+    {
+      "missing_import": "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/lib/src/zotero/zotero_client.dart"
+    },
+    {
+      "missing_import": "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/lib/src/zotero/zotero_citing.dart"
+    },
+    {
+      "missing_import": "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/lib/src/word/model/word_zotero_note.dart"
+    }
+  ],
+  "source_changes_during_graph": [],
+  "target_directive_importers": [],
+  "reachable_files_mentioning_target": [],
+  "target_reachable": false,
+  "status": "failed",
+  "source_head": "f3f98987824e021ed22a4d909e38d6307495267b",
+  "source_head_after": "f3f98987824e021ed22a4d909e38d6307495267b",
+  "graph_files": 188,
+  "workspace_graph_files": 181,
+  "graph_sha256": "c42000962fdddec1d06cecce6c703dd8dc18ff9b23a00a9c1bc05cfcb31a546f",
+  "compressed_graph_sha256": "98f854147e9bca3a853c9e4f7c4b1f7ed6927dccc404ed6c1547296480a0564e",
+  "checker_sha256": "74b3c94649fcc0db80f17f3922ed3cf40cc637996acc65c69a1c874d5ed4e10a",
+  "dart_ast_source_sha256": "571115886250f1ca05ee0d03571954e29f882509d2cf4fc5d792a81638be196b",
+  "command": [
+    "/workspace/scratch/2c6eaad19389/zotero-toolchain/flutter-sdk/bin/cache/dart-sdk/bin/dart",
+    "--packages=/workspace/scratch/2c6eaad19389/quds_office_suite/.dart_tool/package_config.json",
+    "/workspace/scratch/2c6eaad19389/zotero-toolchain/tmp/unused-tool-imports-tajdqd7a/directives.dart",
+    "/workspace/scratch/2c6eaad19389/quds_office_suite/docs/validation/zotero-research-materials-20261120/continuation/unused-tool-import-graph/selection.json",
+    "/workspace/scratch/2c6eaad19389/zotero-toolchain/tmp/unused-tool-imports-tajdqd7a/graph.json"
+  ],
+  "semantics": "All import/export/part directives and conditional alternatives are traversed. dart: runtime libraries are recorded boundaries. No reachable source references the tool filename; arbitrary dynamic path construction is outside static import proof."
+}

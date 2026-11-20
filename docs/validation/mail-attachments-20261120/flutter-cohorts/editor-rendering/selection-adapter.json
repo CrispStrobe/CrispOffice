@@ -1,0 +1,103 @@
+{
+  "adapter_command": [
+    "/workspace/scratch/75dc9d25dfaf/final-validation/run_flutter_cohort.py",
+    "editor-rendering",
+    "--repo",
+    "/workspace/scratch/75dc9d25dfaf/quds_office_suite",
+    "--expected-head",
+    "b8686c05e055ca0395726fe528d585379597d628",
+    "--output",
+    "/workspace/scratch/75dc9d25dfaf/final-validation/flutter-cohorts/editor-rendering"
+  ],
+  "all_disjoint_selections": {
+    "editor-rendering": [
+      "packages/quds_office_editor/test/office_dark_slide_test.dart",
+      "packages/quds_office_editor/test/paint_run_text_unicode_test.dart",
+      "packages/quds_office_editor/test/slide_arrange_history_test.dart",
+      "packages/quds_office_editor/test/slide_incoming_pptx_regression_test.dart",
+      "packages/quds_office_editor/test/slide_notes_history_test.dart",
+      "packages/quds_office_editor/test/slide_render_fidelity_test.dart",
+      "packages/quds_office_editor/test/slide_section_reorder_test.dart",
+      "packages/quds_office_editor/test/slide_transform_orientation_test.dart",
+      "packages/quds_office_editor/test/word_small_caps_test.dart",
+      "packages/quds_office_editor/test/word_tab_stops_editor_test.dart"
+    ],
+    "editor-zotero-materials": [
+      "packages/quds_office_editor/test/word_zotero_children_dialog_test.dart",
+      "packages/quds_office_editor/test/word_zotero_children_test.dart",
+      "packages/quds_office_editor/test/word_zotero_note_preview_test.dart"
+    ],
+    "mail-host": [
+      "packages/quds_office_editor/example/test/studio_mail_attachment_compose_test.dart",
+      "packages/quds_office_editor/example/test/studio_mail_attachment_loader_test.dart",
+      "packages/quds_office_editor/example/test/studio_mail_attachment_test.dart",
+      "packages/quds_office_editor/example/test/studio_mail_cloud_test.dart",
+      "packages/quds_office_editor/example/test/studio_mail_compose_test.dart",
+      "packages/quds_office_editor/example/test/studio_mail_ews_test.dart",
+      "packages/quds_office_editor/example/test/studio_mail_recipients_test.dart",
+      "packages/quds_office_editor/example/test/studio_mail_reply_test.dart",
+      "packages/quds_office_editor/example/test/studio_mail_session_test.dart",
+      "packages/quds_office_editor/example/test/studio_mail_test.dart",
+      "packages/quds_office_editor/example/test/studio_mail_threading_test.dart"
+    ],
+    "studio-spacy": [
+      "packages/quds_office_editor/example/test/studio_spacy_pin_test.dart",
+      "packages/quds_office_editor/example/test/studio_spacy_setup_test.dart"
+    ]
+  },
+  "code_after": {
+    "adapter": {
+      "bytes": 4970,
+      "path": "/workspace/scratch/75dc9d25dfaf/final-validation/run_flutter_cohort.py",
+      "sha256": "5d0b15fa13c89a5ad9ff3968d46be0ba8baa4f9e270a9a65b194a0176b88760f"
+    },
+    "primary_runner": {
+      "bytes": 29772,
+      "path": "/workspace/scratch/75dc9d25dfaf/quds_office_suite/docs/validation/zotero-research-materials-20261120/run_validation.py",
+      "sha256": "4d01ed59729abaa64e3ab643e8ebcb2f7136dd2d9f02cc4b07b81a06fbb919bf"
+    }
+  },
+  "code_before": {
+    "adapter": {
+      "bytes": 4970,
+      "path": "/workspace/scratch/75dc9d25dfaf/final-validation/run_flutter_cohort.py",
+      "sha256": "5d0b15fa13c89a5ad9ff3968d46be0ba8baa4f9e270a9a65b194a0176b88760f"
+    },
+    "primary_runner": {
+      "bytes": 29772,
+      "path": "/workspace/scratch/75dc9d25dfaf/quds_office_suite/docs/validation/zotero-research-materials-20261120/run_validation.py",
+      "sha256": "4d01ed59729abaa64e3ab643e8ebcb2f7136dd2d9f02cc4b07b81a06fbb919bf"
+    }
+  },
+  "code_unchanged": true,
+  "cohort": "editor-rendering",
+  "delegated_arguments": [
+    "/workspace/scratch/75dc9d25dfaf/quds_office_suite/docs/validation/zotero-research-materials-20261120/run_validation.py",
+    "editor-rendering",
+    "--repo",
+    "/workspace/scratch/75dc9d25dfaf/quds_office_suite",
+    "--timeout",
+    "1800",
+    "--output",
+    "/workspace/scratch/75dc9d25dfaf/final-validation/flutter-cohorts/editor-rendering",
+    "--expected-head",
+    "b8686c05e055ca0395726fe528d585379597d628"
+  ],
+  "inherited_mail_host_and_editor_rendering_specs_unchanged": true,
+  "primary_runner_exit_code": 0,
+  "primary_test_audit_and_fingerprint_logic_unchanged": true,
+  "purpose": "Final combined-source Flutter validation with disjoint complete suites",
+  "selection": {
+    "additional": [
+      "office_dark_slide_test.dart",
+      "paint_run_text_unicode_test.dart",
+      "word_small_caps_test.dart",
+      "word_tab_stops_editor_test.dart"
+    ],
+    "package": "packages/quds_office_editor",
+    "patterns": [
+      "slide*_test.dart"
+    ],
+    "runner": "flutter"
+  }
+}

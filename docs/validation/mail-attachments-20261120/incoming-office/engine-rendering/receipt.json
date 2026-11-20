@@ -1,0 +1,286 @@
+{
+  "application_timeouts_modified": false,
+  "artifacts": {
+    "events.jsonl.gz": {
+      "bytes": 10158,
+      "git_blob_sha1": "f76ca1b7fba97378afa165f1000bdbe6f0a8ed74",
+      "sha256": "7c1459670d1f739baaf084f0c30f092182db36c1967caa5ad3416b96f984d603"
+    },
+    "input-check.json": {
+      "bytes": 1248,
+      "git_blob_sha1": "2e72d98c0aa14271bab77ac8a7162fe7422e4af2",
+      "sha256": "71b0f794e24c6f28cedb991dae51112f254f4f787d14ed16f641973b550c5191"
+    },
+    "inputs.json.gz": {
+      "bytes": 469951,
+      "git_blob_sha1": "f2e254ff1dbb6bba6e053cc5e53b953179e6927a",
+      "sha256": "fedfae8fd0b159e705d38998a0f03255af676130a29dd78d73e0b4ae46efbbdc"
+    },
+    "stderr.log.gz": {
+      "bytes": 31,
+      "git_blob_sha1": "87bfaf1cefef95e53a691da2269f30d7996d9c89",
+      "sha256": "b7368871ac9ce0ce08835c8c2fbf32d88bd56ee6bb93612434e3cc6bd4405e5e"
+    }
+  },
+  "cohort": "engine-rendering",
+  "command": [
+    "/workspace/scratch/75dc9d25dfaf/runtime/flutter/bin/cache/dart-sdk/bin/dart",
+    "--packages=/workspace/scratch/75dc9d25dfaf/quds_office_suite/.dart_tool/package_config.json",
+    "/workspace/scratch/75dc9d25dfaf/runtime/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+    "--reporter",
+    "json",
+    "--concurrency",
+    "1",
+    "test/office_pdf_export_test.dart",
+    "test/slide_arrange_fidelity_test.dart",
+    "test/slide_import_fidelity_test.dart",
+    "test/slide_incoming_pptx_regression_test.dart",
+    "test/slide_render_fidelity_test.dart",
+    "test/slide_rich_text_explicit_style_test.dart",
+    "test/slide_section_fidelity_test.dart",
+    "test/slide_table_cell_color_test.dart",
+    "test/slide_test.dart",
+    "test/slide_text_fidelity_test.dart",
+    "test/slide_transform_orientation_test.dart",
+    "test/word_small_caps_test.dart"
+  ],
+  "concurrency": 1,
+  "counting_scope": "Application test cases only. Loader and group-lifecycle events are excluded from the passing count but any failures in them still reject acceptance. Development runs and other cohorts are not included.",
+  "cwd": "/workspace/scratch/75dc9d25dfaf/quds_office_suite/packages/quds_office_engine",
+  "elapsed_seconds": 25.849426112999936,
+  "exit_code": 0,
+  "external_dependency_file_count": 2113,
+  "fingerprints": {
+    "after_sha256": {
+      "dependencies": "ae80abdf73d3be1b0d83aa29cfc28a1059aac0b9f5080d2e3ba3017fac56fadf",
+      "host_fonts": "4be4b92815b98d2a6f0d6825c864c1a068da7f899e44f9c7d604d697e81cbfc4",
+      "runtime": "9c58c139ade21dc3073e27df7a4627814f2ddc40c2b7b684706d390d6d3c5aac",
+      "source": "88bcfd0a686f6fafb56045095bb2fc5ad6fefef61b64cbc76518ef9b64e590b6",
+      "workspace": "7644370dd7b9d63170b84e5574dd5375ef6dc58d9183c3750940259f50d8f722"
+    },
+    "before_sha256": {
+      "dependencies": "ae80abdf73d3be1b0d83aa29cfc28a1059aac0b9f5080d2e3ba3017fac56fadf",
+      "host_fonts": "4be4b92815b98d2a6f0d6825c864c1a068da7f899e44f9c7d604d697e81cbfc4",
+      "runtime": "9c58c139ade21dc3073e27df7a4627814f2ddc40c2b7b684706d390d6d3c5aac",
+      "source": "88bcfd0a686f6fafb56045095bb2fc5ad6fefef61b64cbc76518ef9b64e590b6",
+      "workspace": "7644370dd7b9d63170b84e5574dd5375ef6dc58d9183c3750940259f50d8f722"
+    },
+    "changed_paths": {
+      "dependencies": [],
+      "host_fonts": [],
+      "runtime": [],
+      "source": [],
+      "workspace": []
+    },
+    "source_matches_finish": {
+      "different_paths": [],
+      "matches": true,
+      "uncommitted_paths": []
+    },
+    "source_matches_start": {
+      "different_paths": [],
+      "matches": true,
+      "uncommitted_paths": []
+    }
+  },
+  "finished_at_utc": "2026-11-20T05:35:31.889917+00:00",
+  "guards": {
+    "all_requested_suites_executed_once": true,
+    "dependencies_unchanged": true,
+    "every_started_test_finished_once": true,
+    "final_event_success": true,
+    "host_fonts_unchanged": true,
+    "no_failures_skips_or_errors": true,
+    "runtime_unchanged": true,
+    "selection_unchanged": true,
+    "source_matches_finish_commit": true,
+    "source_matches_start_commit": true,
+    "source_unchanged": true,
+    "unique_application_test_names": true,
+    "workspace_unchanged": true
+  },
+  "head_unchanged": true,
+  "no_github_ci_or_status_endpoints": true,
+  "package": "packages/quds_office_engine",
+  "runner": "dart",
+  "runtime": {
+    "dart_version": "Dart SDK version: 3.13.7 (stable) (Thu Oct 22 14:28:57 2026 -0700) on \"linux_x64\"",
+    "dart_version_command": [
+      "/workspace/scratch/75dc9d25dfaf/runtime/flutter/bin/cache/dart-sdk/bin/dart",
+      "--version"
+    ],
+    "flutter": {
+      "channel": "stable",
+      "dartSdkVersion": "3.13.7",
+      "devToolsVersion": "2.60.0",
+      "engineBuildDate": "2026-10-22 20:34:48.330",
+      "engineCommitDate": "2026-10-23 02:13:38.000Z",
+      "engineContentHash": "dfd2e6cb7d319db05e3bf1503f3e2ac60f6288a2",
+      "engineRevision": "cf636b1dfb818dd6a3ff16e390e93b1a036969c8",
+      "flutterVersion": "3.47.8",
+      "frameworkCommitDate": "2026-10-22 21:37:31 -0700",
+      "frameworkRevision": "737ba8f885dc774b53b442759999a312c9461e4e",
+      "frameworkVersion": "3.47.8",
+      "repositoryUrl": "https://github.com/flutter/flutter.git"
+    },
+    "flutter_root": "/workspace/scratch/75dc9d25dfaf/runtime/flutter",
+    "pub_cache": "/workspace/scratch/75dc9d25dfaf/runtime/pub-cache"
+  },
+  "selected_files": [
+    "test/office_pdf_export_test.dart",
+    "test/slide_arrange_fidelity_test.dart",
+    "test/slide_import_fidelity_test.dart",
+    "test/slide_incoming_pptx_regression_test.dart",
+    "test/slide_render_fidelity_test.dart",
+    "test/slide_rich_text_explicit_style_test.dart",
+    "test/slide_section_fidelity_test.dart",
+    "test/slide_table_cell_color_test.dart",
+    "test/slide_test.dart",
+    "test/slide_text_fidelity_test.dart",
+    "test/slide_transform_orientation_test.dart",
+    "test/word_small_caps_test.dart"
+  ],
+  "selected_repository_paths": [
+    "packages/quds_office_engine/test/office_pdf_export_test.dart",
+    "packages/quds_office_engine/test/slide_arrange_fidelity_test.dart",
+    "packages/quds_office_engine/test/slide_import_fidelity_test.dart",
+    "packages/quds_office_engine/test/slide_incoming_pptx_regression_test.dart",
+    "packages/quds_office_engine/test/slide_render_fidelity_test.dart",
+    "packages/quds_office_engine/test/slide_rich_text_explicit_style_test.dart",
+    "packages/quds_office_engine/test/slide_section_fidelity_test.dart",
+    "packages/quds_office_engine/test/slide_table_cell_color_test.dart",
+    "packages/quds_office_engine/test/slide_test.dart",
+    "packages/quds_office_engine/test/slide_text_fidelity_test.dart",
+    "packages/quds_office_engine/test/slide_transform_orientation_test.dart",
+    "packages/quds_office_engine/test/word_small_caps_test.dart"
+  ],
+  "source_file_count": 4006,
+  "source_head_at_finish": "58c6962ec3ea82811bfcafec42981385f216f892",
+  "source_head_at_start": "58c6962ec3ea82811bfcafec42981385f216f892",
+  "started_at_utc": "2026-11-20T05:35:03.614909+00:00",
+  "status": "passed",
+  "tests": {
+    "application_cases": 224,
+    "duplicate_application_names": [],
+    "duplicate_suite_ids": false,
+    "error_events": [],
+    "every_started_test_finished_once": true,
+    "excluded_failures": [],
+    "excluded_pseudo_cases": 12,
+    "excluded_reasons": {
+      "hidden_lifecycle": 12
+    },
+    "failed": 0,
+    "final_events": [
+      {
+        "success": true,
+        "time": 14503,
+        "type": "done"
+      }
+    ],
+    "flutter_notification_envelopes": 0,
+    "layout_or_tap_diagnostics": [],
+    "missing_start_test_ids": [],
+    "parse_errors": [],
+    "passed": 224,
+    "skipped": 0,
+    "suite_count": 12,
+    "suites": [
+      {
+        "failed": 0,
+        "id": 0,
+        "passed": 24,
+        "path": "/workspace/scratch/75dc9d25dfaf/quds_office_suite/packages/quds_office_engine/test/office_pdf_export_test.dart",
+        "skipped": 0
+      },
+      {
+        "failed": 0,
+        "id": 27,
+        "passed": 21,
+        "path": "/workspace/scratch/75dc9d25dfaf/quds_office_suite/packages/quds_office_engine/test/slide_arrange_fidelity_test.dart",
+        "skipped": 0
+      },
+      {
+        "failed": 0,
+        "id": 51,
+        "passed": 42,
+        "path": "/workspace/scratch/75dc9d25dfaf/quds_office_suite/packages/quds_office_engine/test/slide_import_fidelity_test.dart",
+        "skipped": 0
+      },
+      {
+        "failed": 0,
+        "id": 99,
+        "passed": 36,
+        "path": "/workspace/scratch/75dc9d25dfaf/quds_office_suite/packages/quds_office_engine/test/slide_incoming_pptx_regression_test.dart",
+        "skipped": 0
+      },
+      {
+        "failed": 0,
+        "id": 138,
+        "passed": 8,
+        "path": "/workspace/scratch/75dc9d25dfaf/quds_office_suite/packages/quds_office_engine/test/slide_render_fidelity_test.dart",
+        "skipped": 0
+      },
+      {
+        "failed": 0,
+        "id": 149,
+        "passed": 1,
+        "path": "/workspace/scratch/75dc9d25dfaf/quds_office_suite/packages/quds_office_engine/test/slide_rich_text_explicit_style_test.dart",
+        "skipped": 0
+      },
+      {
+        "failed": 0,
+        "id": 153,
+        "passed": 33,
+        "path": "/workspace/scratch/75dc9d25dfaf/quds_office_suite/packages/quds_office_engine/test/slide_section_fidelity_test.dart",
+        "skipped": 0
+      },
+      {
+        "failed": 0,
+        "id": 189,
+        "passed": 3,
+        "path": "/workspace/scratch/75dc9d25dfaf/quds_office_suite/packages/quds_office_engine/test/slide_table_cell_color_test.dart",
+        "skipped": 0
+      },
+      {
+        "failed": 0,
+        "id": 195,
+        "passed": 20,
+        "path": "/workspace/scratch/75dc9d25dfaf/quds_office_suite/packages/quds_office_engine/test/slide_test.dart",
+        "skipped": 0
+      },
+      {
+        "failed": 0,
+        "id": 218,
+        "passed": 6,
+        "path": "/workspace/scratch/75dc9d25dfaf/quds_office_suite/packages/quds_office_engine/test/slide_text_fidelity_test.dart",
+        "skipped": 0
+      },
+      {
+        "failed": 0,
+        "id": 227,
+        "passed": 18,
+        "path": "/workspace/scratch/75dc9d25dfaf/quds_office_suite/packages/quds_office_engine/test/slide_transform_orientation_test.dart",
+        "skipped": 0
+      },
+      {
+        "failed": 0,
+        "id": 248,
+        "passed": 12,
+        "path": "/workspace/scratch/75dc9d25dfaf/quds_office_suite/packages/quds_office_engine/test/word_small_caps_test.dart",
+        "skipped": 0
+      }
+    ],
+    "test_done_events": 236,
+    "test_start_events": 236,
+    "unfinished_test_ids": []
+  },
+  "timed_out": false,
+  "validation_runner": {
+    "bytes": 30338,
+    "git_blob_sha1": "df943ecfa0f0fe240787a8dc6c1f24384601c68a",
+    "path": "/workspace/scratch/75dc9d25dfaf/run_pure_dart_validation.py",
+    "sha256": "eab84beb3bda9c6b0dae9049cc35137abae1ce8b653f976f9f0c58f2dcfbaefd"
+  },
+  "watchdog_seconds": 1800
+}

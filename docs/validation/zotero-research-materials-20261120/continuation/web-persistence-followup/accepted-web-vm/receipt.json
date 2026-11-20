@@ -1,0 +1,310 @@
+{
+  "application_timeouts_modified": false,
+  "artifacts": {
+    "events.jsonl.gz": {
+      "bytes": 1517,
+      "git_blob_sha1": "65c1993e19dd03bd5a197bffb491445c606708a0",
+      "sha256": "4b9ea63913e9851fc9ca681cb74580b0cda1854bec6501ede943040fd0d69096"
+    },
+    "input-check.json": {
+      "bytes": 1248,
+      "git_blob_sha1": "7fea8bed368a19000cc020caefc1fed1df133e07",
+      "sha256": "a72cab5863a0fb1a2e331d5fbeedded6ed1c761e023b7be6226b730588c08684"
+    },
+    "inputs.json.gz": {
+      "bytes": 655812,
+      "git_blob_sha1": "b5bc7281aabda1c613b2c7f1cc0fbb2450d7978d",
+      "sha256": "12986724b3724a277dc4d1c01c181d5e13196f0e8ff6bf9610bd91d0a6972c99"
+    },
+    "selection-adapter.json": {
+      "bytes": 5973,
+      "git_blob_sha1": "364115bf94369b94d96147f4096dcd68be87eb23",
+      "sha256": "89d2b64198ef996accedc33d1aab0a2c6fed85af788b932ca04eadeefaa8e92e"
+    },
+    "stderr.log.gz": {
+      "bytes": 31,
+      "git_blob_sha1": "87bfaf1cefef95e53a691da2269f30d7996d9c89",
+      "sha256": "b7368871ac9ce0ce08835c8c2fbf32d88bd56ee6bb93612434e3cc6bd4405e5e"
+    }
+  },
+  "cohort": "web-persistence-vm",
+  "command": [
+    "/workspace/scratch/2c6eaad19389/zotero-toolchain/flutter-sdk/bin/flutter",
+    "test",
+    "--no-pub",
+    "--reporter",
+    "json",
+    "--concurrency",
+    "1",
+    "test/studio_downloads_manager_test.dart",
+    "test/studio_hunspell_web_cancellation_test.dart",
+    "test/studio_hunspell_web_host_test.dart"
+  ],
+  "concurrency": 1,
+  "counting_scope": "Application test cases only. Loader and group-lifecycle events are excluded from the passing count but any failures in them still reject acceptance. Development runs and other cohorts are not included.",
+  "cwd": "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/quds_office_editor/example",
+  "elapsed_seconds": 18.32317001699994,
+  "exit_code": 0,
+  "external_dependency_file_count": 4502,
+  "fingerprints": {
+    "after_sha256": {
+      "dependencies": "3522c0e00ac142cc945a15dd4243afc938196806a38ddb9c89f372bdfcc6f846",
+      "host_fonts": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "runtime": "9c58c139ade21dc3073e27df7a4627814f2ddc40c2b7b684706d390d6d3c5aac",
+      "source": "373bf394f06212ad1196c694905a39d4d249cd4412ad91ff9a20b9f0b29ff38a",
+      "workspace": "796c78924feaafc1773c00298a709fab93ec8388ecbc4a64d56c585279913b5c"
+    },
+    "before_sha256": {
+      "dependencies": "3522c0e00ac142cc945a15dd4243afc938196806a38ddb9c89f372bdfcc6f846",
+      "host_fonts": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "runtime": "9c58c139ade21dc3073e27df7a4627814f2ddc40c2b7b684706d390d6d3c5aac",
+      "source": "373bf394f06212ad1196c694905a39d4d249cd4412ad91ff9a20b9f0b29ff38a",
+      "workspace": "796c78924feaafc1773c00298a709fab93ec8388ecbc4a64d56c585279913b5c"
+    },
+    "changed_paths": {
+      "dependencies": [],
+      "host_fonts": [],
+      "runtime": [],
+      "source": [],
+      "workspace": []
+    },
+    "source_matches_finish": {
+      "different_paths": [],
+      "matches": true,
+      "uncommitted_paths": []
+    },
+    "source_matches_start": {
+      "different_paths": [],
+      "matches": true,
+      "uncommitted_paths": []
+    }
+  },
+  "finished_at_utc": "2026-11-20T06:35:52.271417+00:00",
+  "guards": {
+    "all_requested_suites_executed_once": true,
+    "dependencies_unchanged": true,
+    "every_started_test_finished_once": true,
+    "exact_nineteen_application_cases": true,
+    "final_event_success": true,
+    "host_fonts_unchanged": true,
+    "no_failures_skips_or_errors": true,
+    "qualification_adapter_code_unchanged": true,
+    "runtime_unchanged": true,
+    "selection_unchanged": true,
+    "source_head_unchanged_and_exact": true,
+    "source_matches_finish_commit": true,
+    "source_matches_start_commit": true,
+    "source_unchanged": true,
+    "unique_application_test_names": true,
+    "workspace_unchanged": true
+  },
+  "head_unchanged": true,
+  "no_github_ci_or_status_endpoints": true,
+  "package": "packages/quds_office_editor/example",
+  "runner": "flutter",
+  "runtime": {
+    "dart_version": "Dart SDK version: 3.13.7 (stable) (Thu Oct 22 14:28:57 2026 -0700) on \"linux_x64\"",
+    "dart_version_command": [
+      "/workspace/scratch/2c6eaad19389/zotero-toolchain/flutter-sdk/bin/cache/dart-sdk/bin/dart",
+      "--version"
+    ],
+    "flutter": {
+      "channel": "stable",
+      "dartSdkVersion": "3.13.7",
+      "devToolsVersion": "2.60.0",
+      "engineBuildDate": "2026-10-22 20:34:48.330",
+      "engineCommitDate": "2026-10-23 02:13:38.000Z",
+      "engineContentHash": "dfd2e6cb7d319db05e3bf1503f3e2ac60f6288a2",
+      "engineRevision": "cf636b1dfb818dd6a3ff16e390e93b1a036969c8",
+      "flutterVersion": "3.47.8",
+      "frameworkCommitDate": "2026-10-22 21:37:31 -0700",
+      "frameworkRevision": "737ba8f885dc774b53b442759999a312c9461e4e",
+      "frameworkVersion": "3.47.8",
+      "repositoryUrl": "https://github.com/flutter/flutter.git"
+    },
+    "flutter_root": "/workspace/scratch/2c6eaad19389/zotero-toolchain/flutter-sdk",
+    "pub_cache": "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache"
+  },
+  "selected_files": [
+    "test/studio_downloads_manager_test.dart",
+    "test/studio_hunspell_web_cancellation_test.dart",
+    "test/studio_hunspell_web_host_test.dart"
+  ],
+  "selected_repository_paths": [
+    "packages/quds_office_editor/example/test/studio_downloads_manager_test.dart",
+    "packages/quds_office_editor/example/test/studio_hunspell_web_cancellation_test.dart",
+    "packages/quds_office_editor/example/test/studio_hunspell_web_host_test.dart"
+  ],
+  "selection_adapter": {
+    "adapter_command": [
+      "docs/validation/zotero-research-materials-20261120/continuation/web-persistence-followup/run_web_vm.py",
+      "--repo",
+      ".",
+      "--output",
+      "docs/validation/zotero-research-materials-20261120/continuation/web-persistence-followup/accepted-web-vm",
+      "--expected-head",
+      "a45ee3bf40dbb7e64a04f879fd6d574db7cb60b1"
+    ],
+    "application_timeouts_modified": false,
+    "code_after": {
+      "/workspace/scratch/2c6eaad19389/quds_office_suite/docs/validation/zotero-research-materials-20261120/continuation/web-persistence-followup/chromium-baseline.json": {
+        "bytes": 71563,
+        "sha256": "1381b12113a09d3dabbdd86814f4f407f0abb799c20514c6ceae5c8830f24c65"
+      },
+      "/workspace/scratch/2c6eaad19389/quds_office_suite/docs/validation/zotero-research-materials-20261120/continuation/web-persistence-followup/chromium_wrapper.py": {
+        "bytes": 1838,
+        "sha256": "670ee75c18805c666ee47939e319766c85f32cade2ded45161ab6feebb0704e2"
+      },
+      "/workspace/scratch/2c6eaad19389/quds_office_suite/docs/validation/zotero-research-materials-20261120/continuation/web-persistence-followup/prepare_web_environment.py": {
+        "bytes": 3229,
+        "sha256": "dcfa2928a2eaee08c89a956fa167817f2e75fffc2f1bdcf4efe639338a104dfa"
+      },
+      "/workspace/scratch/2c6eaad19389/quds_office_suite/docs/validation/zotero-research-materials-20261120/continuation/web-persistence-followup/run_web_chrome.py": {
+        "bytes": 13313,
+        "sha256": "2e80bd5f858d5d9beb3a1a438f424cb793e9e491443d3eaadf55f289969a9c58"
+      },
+      "/workspace/scratch/2c6eaad19389/quds_office_suite/docs/validation/zotero-research-materials-20261120/continuation/web-persistence-followup/run_web_vm.py": {
+        "bytes": 3658,
+        "sha256": "cee353a7107a97e3ba0bdd268da130f330f55feed9f3ff891bbed69cdb390440"
+      },
+      "/workspace/scratch/2c6eaad19389/quds_office_suite/docs/validation/zotero-research-materials-20261120/continuation/web-persistence-followup/runner-support.json": {
+        "bytes": 2203,
+        "sha256": "4acb7c7b43e9f51ffa1943fbe2446dc7a05c49178af01f938ed0eee9e453bb0c"
+      },
+      "/workspace/scratch/2c6eaad19389/quds_office_suite/docs/validation/zotero-research-materials-20261120/continuation/web-persistence-followup/web_runner_support.py": {
+        "bytes": 5503,
+        "sha256": "f0ffcde25881dac2b885c0782766ab9bf0ff4d44ea379743808fba42b76b590c"
+      },
+      "/workspace/scratch/2c6eaad19389/quds_office_suite/docs/validation/zotero-research-materials-20261120/run_validation.py": {
+        "bytes": 29772,
+        "sha256": "4d01ed59729abaa64e3ab643e8ebcb2f7136dd2d9f02cc4b07b81a06fbb919bf"
+      }
+    },
+    "code_before": {
+      "/workspace/scratch/2c6eaad19389/quds_office_suite/docs/validation/zotero-research-materials-20261120/continuation/web-persistence-followup/chromium-baseline.json": {
+        "bytes": 71563,
+        "sha256": "1381b12113a09d3dabbdd86814f4f407f0abb799c20514c6ceae5c8830f24c65"
+      },
+      "/workspace/scratch/2c6eaad19389/quds_office_suite/docs/validation/zotero-research-materials-20261120/continuation/web-persistence-followup/chromium_wrapper.py": {
+        "bytes": 1838,
+        "sha256": "670ee75c18805c666ee47939e319766c85f32cade2ded45161ab6feebb0704e2"
+      },
+      "/workspace/scratch/2c6eaad19389/quds_office_suite/docs/validation/zotero-research-materials-20261120/continuation/web-persistence-followup/prepare_web_environment.py": {
+        "bytes": 3229,
+        "sha256": "dcfa2928a2eaee08c89a956fa167817f2e75fffc2f1bdcf4efe639338a104dfa"
+      },
+      "/workspace/scratch/2c6eaad19389/quds_office_suite/docs/validation/zotero-research-materials-20261120/continuation/web-persistence-followup/run_web_chrome.py": {
+        "bytes": 13313,
+        "sha256": "2e80bd5f858d5d9beb3a1a438f424cb793e9e491443d3eaadf55f289969a9c58"
+      },
+      "/workspace/scratch/2c6eaad19389/quds_office_suite/docs/validation/zotero-research-materials-20261120/continuation/web-persistence-followup/run_web_vm.py": {
+        "bytes": 3658,
+        "sha256": "cee353a7107a97e3ba0bdd268da130f330f55feed9f3ff891bbed69cdb390440"
+      },
+      "/workspace/scratch/2c6eaad19389/quds_office_suite/docs/validation/zotero-research-materials-20261120/continuation/web-persistence-followup/runner-support.json": {
+        "bytes": 2203,
+        "sha256": "4acb7c7b43e9f51ffa1943fbe2446dc7a05c49178af01f938ed0eee9e453bb0c"
+      },
+      "/workspace/scratch/2c6eaad19389/quds_office_suite/docs/validation/zotero-research-materials-20261120/continuation/web-persistence-followup/web_runner_support.py": {
+        "bytes": 5503,
+        "sha256": "f0ffcde25881dac2b885c0782766ab9bf0ff4d44ea379743808fba42b76b590c"
+      },
+      "/workspace/scratch/2c6eaad19389/quds_office_suite/docs/validation/zotero-research-materials-20261120/run_validation.py": {
+        "bytes": 29772,
+        "sha256": "4d01ed59729abaa64e3ab643e8ebcb2f7136dd2d9f02cc4b07b81a06fbb919bf"
+      }
+    },
+    "counting": "Fresh execution count; overlapping downloads-manager cases must not be added twice to distinct totals",
+    "delegated_arguments": [
+      "/workspace/scratch/2c6eaad19389/quds_office_suite/docs/validation/zotero-research-materials-20261120/run_validation.py",
+      "web-persistence-vm",
+      "--repo",
+      "/workspace/scratch/2c6eaad19389/quds_office_suite",
+      "--timeout",
+      "1800",
+      "--output",
+      "/workspace/scratch/2c6eaad19389/quds_office_suite/docs/validation/zotero-research-materials-20261120/continuation/web-persistence-followup/accepted-web-vm",
+      "--expected-head",
+      "a45ee3bf40dbb7e64a04f879fd6d574db7cb60b1"
+    ],
+    "expected_count_source": "Three unchanged author-selected VM files; PR229 reports 19 cases",
+    "original_primary_guard_logic_unchanged": true,
+    "selection": {
+      "additional": [
+        "studio_hunspell_web_host_test.dart",
+        "studio_hunspell_web_cancellation_test.dart",
+        "studio_downloads_manager_test.dart"
+      ],
+      "package": "packages/quds_office_editor/example",
+      "patterns": [],
+      "runner": "flutter"
+    },
+    "shared_validation_lock_unchanged": true
+  },
+  "source_file_count": 4016,
+  "source_head_at_finish": "a45ee3bf40dbb7e64a04f879fd6d574db7cb60b1",
+  "source_head_at_start": "a45ee3bf40dbb7e64a04f879fd6d574db7cb60b1",
+  "started_at_utc": "2026-11-20T06:35:31.129742+00:00",
+  "status": "passed",
+  "tests": {
+    "application_cases": 19,
+    "duplicate_application_names": [],
+    "duplicate_suite_ids": false,
+    "error_events": [],
+    "every_started_test_finished_once": true,
+    "excluded_failures": [],
+    "excluded_pseudo_cases": 3,
+    "excluded_reasons": {
+      "hidden_lifecycle": 3
+    },
+    "failed": 0,
+    "final_events": [
+      {
+        "success": true,
+        "time": 15745,
+        "type": "done"
+      }
+    ],
+    "flutter_notification_envelopes": 0,
+    "layout_or_tap_diagnostics": [],
+    "missing_start_test_ids": [],
+    "parse_errors": [],
+    "passed": 19,
+    "skipped": 0,
+    "suite_count": 3,
+    "suites": [
+      {
+        "failed": 0,
+        "id": 0,
+        "passed": 11,
+        "path": "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/quds_office_editor/example/test/studio_downloads_manager_test.dart",
+        "skipped": 0
+      },
+      {
+        "failed": 0,
+        "id": 14,
+        "passed": 4,
+        "path": "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/quds_office_editor/example/test/studio_hunspell_web_cancellation_test.dart",
+        "skipped": 0
+      },
+      {
+        "failed": 0,
+        "id": 21,
+        "passed": 4,
+        "path": "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/quds_office_editor/example/test/studio_hunspell_web_host_test.dart",
+        "skipped": 0
+      }
+    ],
+    "test_done_events": 22,
+    "test_start_events": 22,
+    "unfinished_test_ids": []
+  },
+  "timed_out": false,
+  "validation_runner": {
+    "bytes": 29772,
+    "git_blob_sha1": "269eef52038d97ae307859439875a23f350e0b0a",
+    "path": "/workspace/scratch/2c6eaad19389/quds_office_suite/docs/validation/zotero-research-materials-20261120/run_validation.py",
+    "sha256": "4d01ed59729abaa64e3ab643e8ebcb2f7136dd2d9f02cc4b07b81a06fbb919bf"
+  },
+  "watchdog_seconds": 1800
+}

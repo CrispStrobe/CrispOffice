@@ -1,0 +1,630 @@
+diff --git a/packages/quds_arabic_morph/README.md b/packages/quds_arabic_morph/README.md
+index 6af13c1a1..711b2e284 100644
+--- a/packages/quds_arabic_morph/README.md
++++ b/packages/quds_arabic_morph/README.md
+@@ -39,7 +39,8 @@ default.
+   The analyzer then checks the manifest against the pinned SHA-256, and every
+   listed file against the manifest, before it parses anything. On the web,
+   the host fetches the four files itself and passes them through
+-  `MorphDatabaseBytes.verified`.
++  `MorphDatabaseBytes.verified`; the Studio web host keeps them in the
++  browser's Cache Storage and verifies them the same way on every later load.
+ 
+ ## Why `noprob`, and why no ranking
+ 
+diff --git a/packages/quds_office_editor/example/lib/studio_arabic_morph_host_web.dart b/packages/quds_office_editor/example/lib/studio_arabic_morph_host_web.dart
+index 41ee1055b..bf27346e8 100644
+--- a/packages/quds_office_editor/example/lib/studio_arabic_morph_host_web.dart
++++ b/packages/quds_office_editor/example/lib/studio_arabic_morph_host_web.dart
+@@ -6,22 +6,39 @@ import 'package:quds_office_engine/quds_office_engine.dart';
+ 
+ import 'studio_arabic_morph_host.dart';
+ import 'studio_hunspell_host.dart' show StudioHunspellCancellation;
++import 'studio_web_data_store.dart';
+ 
+ StudioArabicMorphHost createHost() => WebStudioArabicMorphHost();
+ 
+-/// Browser host: the user's download (12 MB) is verified in memory and handed
+-/// to the bundled WebAssembly analyzer in a Web Worker for this session (the
+-/// worker keeps one copy of the binary database in its Wasm memory). Nothing
+-/// is stored; a reload needs a new download.
++/// Browser host: the user's download (12 MB) is verified and handed to the
++/// bundled WebAssembly analyzer in a Web Worker (the worker keeps one copy of
++/// the binary database in its Wasm memory). The verified files are kept in
++/// browser storage ([StudioWebDataStore]) and re-verified against the pins
++/// before every later load.
+ class WebStudioArabicMorphHost extends StudioArabicMorphHost {
+   WebStudioArabicMorphHost({
+     http.Client Function()? client,
+     this.bundle = camelMorphMsaProofingBin,
+     this.workerUrl,
++    StudioWebDataStore? store,
+   }) : _client = client ?? http.Client.new,
++       store = store ?? createDefaultStudioWebDataStore(),
+        _status = StudioArabicMorphStatus(bundle: bundle);
+ 
+   final http.Client Function() _client;
++
++  /// Where verified downloads are kept between sessions.
++  final StudioWebDataStore store;
++
++  String _key(MorphArtifact file) =>
++      'morph/${bundle.id}/${bundle.revision}/${file.file}';
++
++  Future<void> _forget() async {
++    for (final file in bundle.files) {
++      await store.delete(_key(file));
++    }
++  }
++
+   final MorphBundleDownload bundle;
+   final Uri? workerUrl;
+   StudioArabicMorphStatus _status;
+@@ -39,8 +56,40 @@ class WebStudioArabicMorphHost extends StudioArabicMorphHost {
+     notifyListeners();
+   }
+ 
++  /// Restores a database kept from an earlier session after verifying it
++  /// against the pins; a stored copy that fails is deleted.
+   @override
+-  Future<void> refresh() async {}
++  Future<void> refresh() async {
++    if (_status.installed) return;
++    final stored = <String, Uint8List>{};
++    for (final file in bundle.files) {
++      final bytes = await store.read(_key(file));
++      if (bytes != null) stored[file.file] = bytes;
++    }
++    if (stored.isEmpty) return;
++    final MorphDatabaseBytes database;
++    try {
++      if (stored.length != bundle.files.length) {
++        throw const FormatException('Incomplete stored database.');
++      }
++      database = MorphDatabaseBytes.verified(bundle, stored);
++    } on FormatException {
++      await _forget();
++      _set(
++        StudioArabicMorphStatus(
++          bundle: bundle,
++          problem:
++              'The morphology data stored in this browser failed '
++              'verification and was removed. Download it again.',
++        ),
++      );
++      return;
++    }
++    await _activate(database, studioWebStoredLocation(_bytes(stored)));
++  }
++
++  static int _bytes(Map<String, Uint8List> files) =>
++      files.values.fold(0, (sum, bytes) => sum + bytes.length);
+ 
+   @override
+   Future<void> install({
+@@ -83,6 +132,23 @@ class WebStudioArabicMorphHost extends StudioArabicMorphHost {
+     } finally {
+       client.close();
+     }
++    final files = <String, Uint8List>{
++      for (final file in bundle.files) file.file: database.files[file.file]!,
++    };
++    var kept = true;
++    for (final file in bundle.files) {
++      kept = kept && await store.write(_key(file), files[file.file]!);
++    }
++    if (!kept) await _forget();
++    await _activate(
++      database,
++      kept
++          ? studioWebStoredLocation(_bytes(files))
++          : 'This session only (the browser refused storage)',
++    );
++  }
++
++  Future<void> _activate(MorphDatabaseBytes database, String location) async {
+     await _morphology?.dispose();
+     final morphology = _morphology = CamelArabicMorphology(
+       database: database,
+@@ -92,7 +158,7 @@ class WebStudioArabicMorphHost extends StudioArabicMorphHost {
+       StudioArabicMorphStatus(
+         bundle: bundle,
+         installed: true,
+-        location: 'memory',
++        location: location,
+       ),
+     );
+     await morphology.load();
+@@ -102,7 +168,7 @@ class WebStudioArabicMorphHost extends StudioArabicMorphHost {
+         bundle: bundle,
+         installed: true,
+         loaded: morphology.isAvailable,
+-        location: 'memory',
++        location: location,
+         problem: morphology.failure == null
+             ? null
+             : 'Downloaded, but the analyzer could not load it: '
+@@ -116,6 +182,7 @@ class WebStudioArabicMorphHost extends StudioArabicMorphHost {
+     final previous = _morphology;
+     _morphology = null;
+     _set(StudioArabicMorphStatus(bundle: bundle));
++    await _forget();
+     await previous?.dispose();
+   }
+ }
+diff --git a/packages/quds_office_editor/example/lib/studio_hunspell_host_web.dart b/packages/quds_office_editor/example/lib/studio_hunspell_host_web.dart
+index 2bd66f377..64a30a0f9 100644
+--- a/packages/quds_office_editor/example/lib/studio_hunspell_host_web.dart
++++ b/packages/quds_office_editor/example/lib/studio_hunspell_host_web.dart
+@@ -6,19 +6,36 @@ import 'package:quds_office_engine/quds_office_engine.dart';
+ import 'package:quds_proofing_hunspell/quds_proofing_hunspell.dart';
+ 
+ import 'studio_hunspell_host.dart';
++import 'studio_web_data_store.dart';
+ 
+ StudioHunspellHost createHost() => WebStudioHunspellHost();
+ 
+-/// Browser host: the user's download is verified and kept in memory for the
+-/// session; the bundled WebAssembly engine runs it in a Web Worker.
++/// Browser host: the user's download is verified, kept in browser storage
++/// across sessions ([StudioWebDataStore], re-verified against the pins on
++/// every load) and run by the bundled WebAssembly engine in a Web Worker.
+ class WebStudioHunspellHost extends StudioHunspellHost {
+   WebStudioHunspellHost({
+     http.Client Function()? client,
+     List<HunspellBundleDownload> catalog = hunspellCatalog,
++    StudioWebDataStore? store,
+   }) : _client = client ?? http.Client.new,
++       store = store ?? createDefaultStudioWebDataStore(),
+        _statuses = [for (final b in catalog) StudioHunspellStatus(bundle: b)];
+ 
+   final http.Client Function() _client;
++
++  /// Where verified downloads are kept between sessions.
++  final StudioWebDataStore store;
++
++  static String _key(HunspellBundleDownload bundle, HunspellArtifact file) =>
++      'hunspell/${bundle.id}/${bundle.revision}/${file.file}';
++
++  Future<void> _forget(HunspellBundleDownload bundle) async {
++    for (final file in [bundle.aff, bundle.dic]) {
++      await store.delete(_key(bundle, file));
++    }
++  }
++
+   List<StudioHunspellStatus> _statuses;
+   final Map<String, HunspellDictionaryBytes> _bytes = {};
+ 
+@@ -33,8 +50,45 @@ class WebStudioHunspellHost extends StudioHunspellHost {
+     notifyListeners();
+   }
+ 
++  /// Restores dictionaries kept from an earlier session. Stored bytes are
++  /// verified against the compiled-in pins; anything else is deleted.
+   @override
+-  Future<void> refresh() async {}
++  Future<void> refresh() async {
++    for (final item in List.of(_statuses)) {
++      final bundle = item.bundle;
++      if (_bytes.containsKey(bundle.id)) continue;
++      final aff = await store.read(_key(bundle, bundle.aff));
++      final dic = await store.read(_key(bundle, bundle.dic));
++      if (aff == null && dic == null) continue;
++      try {
++        if (aff == null || dic == null) {
++          throw const FormatException('Incomplete stored dictionary.');
++        }
++        _bytes[bundle.id] = HunspellDictionaryBytes.verified(
++          bundle,
++          aff: aff,
++          dic: dic,
++        );
++        _set(
++          StudioHunspellStatus(
++            bundle: bundle,
++            installed: true,
++            location: studioWebStoredLocation(aff.length + dic.length),
++          ),
++        );
++      } on FormatException {
++        await _forget(bundle);
++        _set(
++          StudioHunspellStatus(
++            bundle: bundle,
++            problem:
++                'The dictionary stored in this browser failed verification '
++                'and was removed. Download it again.',
++          ),
++        );
++      }
++    }
++  }
+ 
+   @override
+   Future<void> install(
+@@ -95,11 +149,19 @@ class WebStudioHunspellHost extends StudioHunspellHost {
+       );
+       checkCancellation();
+       _bytes[bundle.id] = dictionary;
++      final stored =
++          await store.write(_key(bundle, bundle.aff), dictionary.aff) &&
++          await store.write(_key(bundle, bundle.dic), dictionary.dic);
++      if (!stored) await _forget(bundle);
+       _set(
+         StudioHunspellStatus(
+           bundle: bundle,
+           installed: true,
+-          location: 'memory',
++          location: stored
++              ? studioWebStoredLocation(
++                  dictionary.aff.length + dictionary.dic.length,
++                )
++              : 'This session only (the browser refused storage)',
+         ),
+       );
+     } on Object catch (error, stack) {
+@@ -117,6 +179,7 @@ class WebStudioHunspellHost extends StudioHunspellHost {
+   @override
+   Future<void> remove(HunspellBundleDownload bundle) async {
+     _bytes.remove(bundle.id);
++    await _forget(bundle);
+     _set(StudioHunspellStatus(bundle: bundle));
+   }
+ 
+diff --git a/packages/quds_office_editor/example/lib/studio_web_data_store.dart b/packages/quds_office_editor/example/lib/studio_web_data_store.dart
+new file mode 100644
+index 000000000..c22572b6d
+--- /dev/null
++++ b/packages/quds_office_editor/example/lib/studio_web_data_store.dart
+@@ -0,0 +1,31 @@
++import 'dart:typed_data';
++
++import 'studio_web_data_store_none.dart'
++    if (dart.library.js_interop) 'studio_web_data_store_cache.dart'
++    as platform;
++
++/// Keeps verified proofing downloads (dictionaries, morphology database)
++/// across browser sessions.
++///
++/// The store holds bytes only; it is never trusted. Every read is verified
++/// again by the caller against the same compiled-in SHA-256/length pins the
++/// native installers use, and anything that fails is deleted.
++abstract interface class StudioWebDataStore {
++  /// The stored bytes for [key], or null (also when storage is unavailable).
++  Future<Uint8List?> read(String key);
++
++  /// Stores [bytes]; returns false when the browser refused (quota, private
++  /// mode, insecure origin). The download still works for this session.
++  Future<bool> write(String key, Uint8List bytes);
++
++  Future<void> delete(String key);
++}
++
++/// Cache Storage in browsers; a store that keeps nothing elsewhere.
++StudioWebDataStore createDefaultStudioWebDataStore() =>
++    platform.createDefaultStudioWebDataStore();
++
++/// Status text for data kept in browser storage, with its size.
++String studioWebStoredLocation(int bytes) =>
++    'Stored in this browser (${(bytes / 1048576).toStringAsFixed(1)} MB, '
++    're-verified against its pins on load)';
+diff --git a/packages/quds_office_editor/example/lib/studio_web_data_store_cache.dart b/packages/quds_office_editor/example/lib/studio_web_data_store_cache.dart
+new file mode 100644
+index 000000000..43e2c92e8
+--- /dev/null
++++ b/packages/quds_office_editor/example/lib/studio_web_data_store_cache.dart
+@@ -0,0 +1,79 @@
++import 'dart:js_interop';
++import 'dart:typed_data';
++
++import 'package:web/web.dart' as web;
++
++import 'studio_web_data_store.dart';
++
++StudioWebDataStore createDefaultStudioWebDataStore() =>
++    const CacheStorageStudioWebDataStore();
++
++/// [StudioWebDataStore] on the browser's Cache Storage (origin-private,
++/// survives reloads, cleared with the site data). Keys become same-origin
++/// request paths that the app never serves.
++final class CacheStorageStudioWebDataStore implements StudioWebDataStore {
++  const CacheStorageStudioWebDataStore({
++    this.cacheName = 'quds-proofing-data-v1',
++  });
++
++  final String cacheName;
++
++  static String _request(String key) =>
++      '/__quds_proofing_data__/${Uri.encodeComponent(key)}';
++
++  Future<web.Cache?> _open() async {
++    try {
++      return await web.window.caches.open(cacheName).toDart;
++    } on Object {
++      return null;
++    }
++  }
++
++  @override
++  Future<Uint8List?> read(String key) async {
++    final cache = await _open();
++    if (cache == null) return null;
++    try {
++      final found = await cache.match(_request(key).toJS).toDart;
++      if (found == null) return null;
++      final buffer = await found.arrayBuffer().toDart;
++      return buffer.toDart.asUint8List();
++    } on Object {
++      return null;
++    }
++  }
++
++  @override
++  Future<bool> write(String key, Uint8List bytes) async {
++    final cache = await _open();
++    if (cache == null) return false;
++    try {
++      await cache
++          .put(
++            _request(key).toJS,
++            web.Response(
++              bytes.toJS,
++              web.ResponseInit(
++                headers: web.Headers()
++                  ..set('content-type', 'application/octet-stream'),
++              ),
++            ),
++          )
++          .toDart;
++      return true;
++    } on Object {
++      return false;
++    }
++  }
++
++  @override
++  Future<void> delete(String key) async {
++    final cache = await _open();
++    if (cache == null) return;
++    try {
++      await cache.delete(_request(key).toJS).toDart;
++    } on Object {
++      // Nothing stored or storage unavailable.
++    }
++  }
++}
+diff --git a/packages/quds_office_editor/example/lib/studio_web_data_store_none.dart b/packages/quds_office_editor/example/lib/studio_web_data_store_none.dart
+new file mode 100644
+index 000000000..51e2fcfa0
+--- /dev/null
++++ b/packages/quds_office_editor/example/lib/studio_web_data_store_none.dart
+@@ -0,0 +1,19 @@
++import 'dart:typed_data';
++
++import 'studio_web_data_store.dart';
++
++/// Outside the browser nothing is kept (the native hosts install to disk).
++StudioWebDataStore createDefaultStudioWebDataStore() => const _NoStore();
++
++final class _NoStore implements StudioWebDataStore {
++  const _NoStore();
++
++  @override
++  Future<Uint8List?> read(String key) async => null;
++
++  @override
++  Future<bool> write(String key, Uint8List bytes) async => false;
++
++  @override
++  Future<void> delete(String key) async {}
++}
+diff --git a/packages/quds_office_editor/example/pubspec.yaml b/packages/quds_office_editor/example/pubspec.yaml
+index 413384af3..b713be710 100644
+--- a/packages/quds_office_editor/example/pubspec.yaml
++++ b/packages/quds_office_editor/example/pubspec.yaml
+@@ -11,6 +11,7 @@ environment:
+ dependencies:
+   crypto: ^3.0.7
+   http: ^1.3.0
++  web: ^1.1.2
+   file_picker: ^10.3.10
+   path_provider: ^2.1.5
+   path: ^1.9.1
+diff --git a/packages/quds_office_editor/example/test/studio_web_persistence_test.dart b/packages/quds_office_editor/example/test/studio_web_persistence_test.dart
+new file mode 100644
+index 000000000..4827e3c21
+--- /dev/null
++++ b/packages/quds_office_editor/example/test/studio_web_persistence_test.dart
+@@ -0,0 +1,176 @@
++// Browser-only: flutter test --platform chrome test/studio_web_persistence_test.dart
++@TestOn('browser')
++library;
++
++import 'dart:convert';
++import 'dart:typed_data';
++
++import 'package:crypto/crypto.dart';
++import 'package:flutter_test/flutter_test.dart';
++import 'package:http/http.dart' as http;
++import 'package:http/testing.dart';
++import 'package:quds_arabic_morph/quds_arabic_morph.dart';
++import 'package:quds_office_engine/quds_office_engine.dart';
++import 'package:quds_office_studio/studio_arabic_morph_host_web.dart';
++import 'package:quds_office_studio/studio_hunspell_host_web.dart';
++import 'package:quds_office_studio/studio_web_data_store_cache.dart';
++import 'package:quds_proofing_hunspell/quds_proofing_hunspell.dart';
++
++const _revision = '0123456789abcdef0123456789abcdef01234567';
++final _aff = Uint8List.fromList(utf8.encode('SET UTF-8\n'));
++final _dic = Uint8List.fromList(utf8.encode('1\nword\n'));
++final _manifest = Uint8List.fromList(utf8.encode('{"variant":"test"}'));
++final _database = Uint8List.fromList(List<int>.generate(4096, (i) => i % 251));
++
++String _sha(List<int> bytes) => sha256.convert(bytes).toString();
++
++final _bundle = HunspellBundleDownload(
++  id: 'persist-test',
++  displayName: 'Persistence test',
++  languages: const {'xx'},
++  repository: 'test/persist',
++  revision: _revision,
++  license: 'test',
++  aff: HunspellArtifact('t.aff', _sha(_aff), _aff.length),
++  dic: HunspellArtifact('t.dic', _sha(_dic), _dic.length),
++  notices: const [],
++);
++
++final _morph = MorphBundleDownload(
++  id: 'persist-morph',
++  displayName: 'Morphology persistence test',
++  repository: 'test/morph',
++  revision: _revision,
++  directory: 'db',
++  license: 'test',
++  licenseUrl: 'https://example.invalid/license',
++  attribution: 'test',
++  sourceUrl: 'https://example.invalid/source',
++  manifest: MorphArtifact('manifest.json', _sha(_manifest), _manifest.length),
++  database: MorphArtifact('db.bin', _sha(_database), _database.length),
++  notices: const [],
++);
++
++/// The browser analyzer transfers database buffers to its worker (they are
++/// detached afterwards), so every use gets its own copy.
++Uint8List _copy(Uint8List bytes) => Uint8List.fromList(bytes);
++
++MockClient _server(Map<String, Uint8List> files, List<String> requests) =>
++    MockClient((request) async {
++      requests.add(request.url.pathSegments.last);
++      final body = files[request.url.pathSegments.last];
++      return body == null
++          ? http.Response('missing', 404)
++          : http.Response.bytes(_copy(body), 200);
++    });
++
++void main() {
++  var run = 0;
++  late CacheStorageStudioWebDataStore store;
++  setUp(() {
++    store = CacheStorageStudioWebDataStore(
++      cacheName:
++          'quds-proofing-test-${DateTime.now().microsecondsSinceEpoch}-${run++}',
++    );
++  });
++
++  test(
++    'a verified dictionary survives a new session and is removable',
++    () async {
++      final requests = <String>[];
++      final first = WebStudioHunspellHost(
++        client: () => _server({'t.aff': _aff, 't.dic': _dic}, requests),
++        catalog: [_bundle],
++        store: store,
++      );
++      await first.install(_bundle);
++      expect(requests, ['t.aff', 't.dic']);
++      expect(
++        first.status(_bundle).location,
++        contains('Stored in this browser'),
++      );
++
++      // A reload: a new host restores without any network request.
++      final second = WebStudioHunspellHost(
++        client: () => _server(const {}, requests),
++        catalog: [_bundle],
++        store: store,
++      );
++      await second.refresh();
++      expect(requests, ['t.aff', 't.dic']);
++      final restored = second.status(_bundle);
++      expect(restored.installed, isTrue);
++      expect(restored.location, contains('0.0 MB'));
++      expect(second.createProviders(OfficeProofingVocabulary()), hasLength(1));
++
++      await second.remove(_bundle);
++      final third = WebStudioHunspellHost(catalog: [_bundle], store: store);
++      await third.refresh();
++      expect(third.status(_bundle).installed, isFalse);
++      expect(
++        await store.read('hunspell/persist-test/$_revision/t.dic'),
++        isNull,
++      );
++    },
++  );
++
++  test('stored bytes that no longer match the pins are deleted', () async {
++    await store.write('hunspell/persist-test/$_revision/t.aff', _aff);
++    await store.write(
++      'hunspell/persist-test/$_revision/t.dic',
++      Uint8List.fromList(utf8.encode('1\nchanged\n')),
++    );
++    final host = WebStudioHunspellHost(catalog: [_bundle], store: store);
++    await host.refresh();
++    final status = host.status(_bundle);
++    expect(status.installed, isFalse);
++    expect(status.problem, contains('failed verification'));
++    expect(await store.read('hunspell/persist-test/$_revision/t.aff'), isNull);
++    expect(await store.read('hunspell/persist-test/$_revision/t.dic'), isNull);
++  });
++
++  test('the morphology database is restored only after verification', () async {
++    final requests = <String>[];
++    final first = WebStudioArabicMorphHost(
++      client: () =>
++          _server({'manifest.json': _manifest, 'db.bin': _database}, requests),
++      bundle: _morph,
++      store: store,
++    );
++    await first.install();
++    expect(first.status.installed, isTrue);
++    expect(first.status.location, contains('Stored in this browser'));
++    await first.remove();
++
++    // Removal deleted it; a fresh install stores it again.
++    final second = WebStudioArabicMorphHost(bundle: _morph, store: store);
++    await second.refresh();
++    expect(second.status.installed, isFalse);
++
++    for (final file in _morph.files) {
++      await store.write(
++        'morph/persist-morph/$_revision/${file.file}',
++        _copy(file.file == 'db.bin' ? _database : _manifest),
++      );
++    }
++    final third = WebStudioArabicMorphHost(bundle: _morph, store: store);
++    await third.refresh();
++    expect(third.status.installed, isTrue, reason: third.status.problem);
++    expect(third.status.location, contains('Stored in this browser'));
++    await third.remove();
++
++    await store.write(
++      'morph/persist-morph/$_revision/manifest.json',
++      _manifest,
++    );
++    await store.write(
++      'morph/persist-morph/$_revision/db.bin',
++      Uint8List.fromList(_database.reversed.toList()),
++    );
++    final tampered = WebStudioArabicMorphHost(bundle: _morph, store: store);
++    await tampered.refresh();
++    expect(tampered.status.installed, isFalse);
++    expect(tampered.status.problem, contains('failed verification'));
++    expect(await store.read('morph/persist-morph/$_revision/db.bin'), isNull);
++  });
++}
+diff --git a/packages/quds_proofing_hunspell/README.md b/packages/quds_proofing_hunspell/README.md
+index 31ffef228..0a77b5141 100644
+--- a/packages/quds_proofing_hunspell/README.md
++++ b/packages/quds_proofing_hunspell/README.md
+@@ -25,7 +25,10 @@ qualification.
+   and SHA-256 equal the compiled-in catalog (`hunspellCatalog`), publishes the
+   tree with one rename and verifies it again; `remove` renames before
+   deleting. On the web the host fetches the two dictionary files itself and
+-  passes them through `HunspellDictionaryBytes.verified`.
++  passes them through `HunspellDictionaryBytes.verified`. The Studio web host
++  keeps the verified files in the browser's Cache Storage and passes them
++  through the same check again on every load (a stored copy that fails is
++  deleted); removal in the download dialog deletes them.
+ 
+ ## Use
+ 

@@ -1,5 +1,8 @@
 ## Unreleased
 
+- Add optional typed draft editor state for lossless unfinished recipient text,
+  durable submission uncertainty and revision-preserving cleared markers.
+
 - Add `MailProviderKind.ews` for account-scoped opaque Exchange ItemIds, retaining
   existing provider names and enum positions. ChangeKey remains a concurrency
   token outside stable message identity.

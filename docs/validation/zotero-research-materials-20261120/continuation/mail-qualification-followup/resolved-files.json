@@ -1,0 +1,27 @@
+{
+  "packages/quds_office_engine/lib/src/slide/model/pml_presentation.dart": {
+    "mode": "100644",
+    "blob": "e9ebe1a5e99ee7c581ee2d9a7f8b2d82fb07c4d9",
+    "reason": "Mail authored-background ownership/copy fields with the exact current six geometry enum additions retained"
+  },
+  "packages/quds_office_engine/lib/src/slide/serial/slide_serial.dart": {
+    "mode": "100644",
+    "blob": "ad33531bfe788d7507e595dd8d0e7e7193c44cec",
+    "reason": "Take the completed Mail background inheritance/relationship/save implementation; its complete delta from current was reviewed"
+  },
+  "packages/quds_office_engine/lib/src/slide/shapes/drawingml.dart": {
+    "mode": "100644",
+    "blob": "03ae14b35d33a4885411fbd39f26ad6155de0ef6",
+    "reason": "Add only Mail background XML/media-id serialization; preserve every current geometry parser/writer line"
+  },
+  "packages/quds_office_engine/test/slide_import_fidelity_test.dart": {
+    "mode": "100644",
+    "blob": "7425dbf87a435ced34c1e0a049b48cd82e817755",
+    "reason": "Take Mail's background/copy/save regressions and retain the exact current geometric-presets test"
+  },
+  "packages/quds_office_engine/test/office_pdf_export_test.dart": {
+    "mode": "100644",
+    "blob": "af2e02b40d22175d8dde6e07c41007ca5999e1a4",
+    "reason": "Add the two completed cropped/uncropped picture-border assertions; existing source implementation is already present"
+  }
+}

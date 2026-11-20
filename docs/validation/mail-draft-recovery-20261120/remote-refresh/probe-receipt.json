@@ -1,0 +1,40 @@
+{
+  "source_commit": "7ea5572ee0c685f701261dc3834085801f9bd334",
+  "source_tree": "fdf7ea1694e4185a947085ef90d8e0c0e90f38bd",
+  "incoming_source": "9bd16ff4d97f2a63f450f161fe10eb3bb2808857",
+  "incoming_font_commit": "236850d387a6588807d2d4f5809818d8113186a6",
+  "host_registration_blob": "885d5a8873146a0c872b5c2df47104fccab9f904",
+  "host_registration_matches_incoming": true,
+  "command": [
+    "flutter",
+    "test",
+    "--no-pub",
+    "--reporter=json",
+    "/workspace/scratch/70953f0172ce/office-integration/docs/validation/mail-draft-recovery-20261120/remote-refresh/installed_font_ownership_probe_test.dart"
+  ],
+  "cwd": "/workspace/scratch/70953f0172ce/office-integration/packages/quds_office_editor",
+  "exit_code": 0,
+  "distinct_passing_probes": 3,
+  "probes": [
+    "incoming installed Arial call is refused after bundled registration",
+    "incoming installed Times New Roman call is refused after bundled registration",
+    "incoming installed Courier New call is refused after bundled registration"
+  ],
+  "errors": 0,
+  "skips": 0,
+  "interpretation": "Three probes successfully reproduce rejection of the new installed-font registration calls; this is evidence of an incomplete incoming feature, not acceptance of that feature.",
+  "package_sources_unchanged": true,
+  "input_sha256": {
+    "packages/quds_office_editor/lib/src/embed/office_host_fonts.dart": "990f9833246ec2403661a729c9592551127432a344bb4958f2814d2419120592",
+    "packages/quds_office_editor/pubspec.yaml": "60ec7e013d02c0766b98726754829e013f7733fea13d78a63cc2804c96a00f8a",
+    "pubspec.yaml": "453a1f8ab62db1c5577c424b058b50033a8d3b49b99c83862ab58a7e1108f74f",
+    "pubspec.lock": "df9ff88b4df699b2420954d0ddc0dd7a1c40dbca8d9e3af3f25bec7e66700e7e",
+    ".fvmrc": "90bf8f8884c05a407f51d6ef651ba033fef99a656010f8bfcb65951e921f4294",
+    "docs/validation/mail-draft-recovery-20261120/remote-refresh/installed_font_ownership_probe_test.dart": "af1b8baff66f10484fa111092fbcf437e298aa8fe7d0e58e10c782f98536521c"
+  },
+  "raw_sha256": {
+    "initial-root-launch-events.jsonl": "c745669ccc4ebc75c80fe7cd2fad7ca65c44ff56d74485319add249b5460436f",
+    "probe-events.jsonl": "d77cdfbb29a8162ac5254ba2fb0503e7ec89315ac546f7caa9c26f3466c6e499"
+  },
+  "launch_diagnostic": "The first invocation from the workspace root could not load editor font assets. Its three asset-loading errors are retained in initial-root-launch-events.jsonl. Re-running from the editor package supplied the required unchanged assets; no production source was altered."
+}

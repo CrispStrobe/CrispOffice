@@ -1,0 +1,8 @@
+{
+  "scope": "Audit-helper setup failure, not application execution",
+  "reason": "Walking a declaration beginToken chain is unsafe for annotated/commented AST nodes. The corrected helper walks the compilation unit token stream once, then selects lexemes within each AST source offset/end span.",
+  "failed_checker_sha256": "7fa5c04325c97d8fa36c78ee1278f145a6d09036ff2a2a53123f8949ec72377c",
+  "previous_boundary_hypothesis_was_insufficient": true,
+  "product_source_changed": false,
+  "application_tests_run": false
+}

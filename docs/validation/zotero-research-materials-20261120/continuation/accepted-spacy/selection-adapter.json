@@ -1,0 +1,96 @@
+{
+  "adapter_command": [
+    "/workspace/scratch/2c6eaad19389/quds_office_suite/docs/validation/zotero-research-materials-20261120/continuation/run_continuation.py",
+    "spacy",
+    "--repo",
+    "/workspace/scratch/2c6eaad19389/quds_office_suite",
+    "--expected-head",
+    "f3f98987824e021ed22a4d909e38d6307495267b",
+    "--output",
+    "/workspace/scratch/2c6eaad19389/quds_office_suite/docs/validation/zotero-research-materials-20261120/continuation/accepted-spacy"
+  ],
+  "additive_catalog": {
+    "engine-proofing": {
+      "additional": [],
+      "package": "packages/quds_office_engine",
+      "patterns": [
+        "proofing/**/*_test.dart"
+      ],
+      "runner": "dart"
+    },
+    "spacy": {
+      "additional": [],
+      "package": "packages/quds_proofing_spacy",
+      "patterns": [
+        "**/*_test.dart"
+      ],
+      "runner": "dart"
+    },
+    "studio-integration": {
+      "additional": [
+        "studio_spacy_pin_test.dart",
+        "studio_spacy_setup_test.dart",
+        "studio_downloads_manager_test.dart",
+        "studio_linguistic_analysis_test.dart",
+        "studio_settings_test.dart",
+        "studio_language_id_test.dart",
+        "studio_comment_draft_proofing_test.dart",
+        "studio_zotero_shortcuts_test.dart",
+        "studio_zotero_citing_transport_test.dart"
+      ],
+      "package": "packages/quds_office_editor/example",
+      "patterns": [],
+      "runner": "flutter"
+    }
+  },
+  "code_after": {
+    "adapter": {
+      "bytes": 5049,
+      "path": "/workspace/scratch/2c6eaad19389/quds_office_suite/docs/validation/zotero-research-materials-20261120/continuation/run_continuation.py",
+      "sha256": "b6d42704ec385fd04ad33c691e8507f04e1f93dd130a04772aebc67a3a4494a4"
+    },
+    "primary_runner": {
+      "bytes": 29772,
+      "path": "/workspace/scratch/2c6eaad19389/quds_office_suite/docs/validation/zotero-research-materials-20261120/run_validation.py",
+      "sha256": "4d01ed59729abaa64e3ab643e8ebcb2f7136dd2d9f02cc4b07b81a06fbb919bf"
+    }
+  },
+  "code_before": {
+    "adapter": {
+      "bytes": 5049,
+      "path": "/workspace/scratch/2c6eaad19389/quds_office_suite/docs/validation/zotero-research-materials-20261120/continuation/run_continuation.py",
+      "sha256": "b6d42704ec385fd04ad33c691e8507f04e1f93dd130a04772aebc67a3a4494a4"
+    },
+    "primary_runner": {
+      "bytes": 29772,
+      "path": "/workspace/scratch/2c6eaad19389/quds_office_suite/docs/validation/zotero-research-materials-20261120/run_validation.py",
+      "sha256": "4d01ed59729abaa64e3ab643e8ebcb2f7136dd2d9f02cc4b07b81a06fbb919bf"
+    }
+  },
+  "code_unchanged": true,
+  "cohort": "spacy",
+  "delegated_arguments": [
+    "/workspace/scratch/2c6eaad19389/quds_office_suite/docs/validation/zotero-research-materials-20261120/run_validation.py",
+    "spacy",
+    "--repo",
+    "/workspace/scratch/2c6eaad19389/quds_office_suite",
+    "--timeout",
+    "1800",
+    "--output",
+    "/workspace/scratch/2c6eaad19389/quds_office_suite/docs/validation/zotero-research-materials-20261120/continuation/accepted-spacy",
+    "--expected-head",
+    "f3f98987824e021ed22a4d909e38d6307495267b"
+  ],
+  "primary_runner_exit_code": 0,
+  "primary_test_audit_and_fingerprint_logic_unchanged": true,
+  "purpose": "Qualify the reviewed spaCy, proofing and Studio publication delta",
+  "selection": {
+    "additional": [],
+    "package": "packages/quds_proofing_spacy",
+    "patterns": [
+      "**/*_test.dart"
+    ],
+    "runner": "dart"
+  },
+  "shared_sdk_validation_lock_unchanged": true
+}

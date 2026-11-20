@@ -1,0 +1,103 @@
+00:00 +0: loading test/slide_import_fidelity_test.dart
+00:00 +0: test/slide_import_fidelity_test.dart: shape import text boxes stay text; only p:pic becomes a picture
+00:00 +1: test/office_pdf_export_test.dart: PPT PDF draws the authored picture border after crop=false
+00:00 +2: test/office_pdf_export_test.dart: PPT PDF draws the authored picture border after crop=false
+00:00 +3: test/word_kerning_properties_test.dart: adding a language to styleless imports preserves the kerning fallback
+00:00 +4: test/word_kerning_properties_test.dart: adding a language to styleless imports preserves the kerning fallback
+00:00 +5: test/word_kerning_properties_test.dart: adding a language to styleless imports preserves the kerning fallback
+00:00 +6: test/word_kerning_properties_test.dart: adding a language to styleless imports preserves the kerning fallback
+00:00 +7: test/word_kerning_properties_test.dart: adding a language to styleless imports preserves the kerning fallback
+00:00 +8: test/word_kerning_properties_test.dart: adding a language to styleless imports preserves the kerning fallback
+00:00 +9: test/word_kerning_properties_test.dart: adding a language to styleless imports preserves the kerning fallback
+00:01 +10: test/word_kerning_properties_test.dart: adding a language to styleless imports preserves the kerning fallback
+00:01 +11: test/word_kerning_properties_test.dart: adding a language to styleless imports preserves the kerning fallback
+00:01 +12: test/word_kerning_properties_test.dart: adding a language to styleless imports preserves the kerning fallback
+00:01 +13: test/word_kerning_properties_test.dart: adding a language to styleless imports preserves the kerning fallback
+00:01 +14: test/word_kerning_properties_test.dart: adding a language to styleless imports preserves the kerning fallback
+00:01 +15: test/word_kerning_properties_test.dart: adding a language to styleless imports preserves the kerning fallback
+00:01 +16: test/word_kerning_properties_test.dart: adding a language to styleless imports preserves the kerning fallback
+00:01 +17: test/word_kerning_properties_test.dart: adding a language to styleless imports preserves the kerning fallback
+00:01 +18: test/word_kerning_properties_test.dart: adding a language to styleless imports preserves the kerning fallback
+00:01 +19: test/word_kerning_properties_test.dart: adding a language to styleless imports preserves the kerning fallback
+00:01 +20: test/word_kerning_properties_test.dart: adding a language to styleless imports preserves the kerning fallback
+00:01 +21: test/word_kerning_properties_test.dart: adding a language to styleless imports preserves the kerning fallback
+00:01 +22: test/word_zotero_note_list_test.dart: independent lists retain boundaries, start and surrounding prose
+00:01 +23: test/word_zotero_note_list_test.dart: independent lists retain boundaries, start and surrounding prose
+00:01 +24: test/word_zotero_note_list_test.dart: independent lists retain boundaries, start and surrounding prose
+00:01 +25: test/word_zotero_note_list_test.dart: independent lists retain boundaries, start and surrounding prose
+00:01 +26: test/word_zotero_note_list_test.dart: independent lists retain boundaries, start and surrounding prose
+00:01 +27: test/word_zotero_note_list_test.dart: independent lists retain boundaries, start and surrounding prose
+00:01 +28: test/word_zotero_note_list_test.dart: independent lists retain boundaries, start and surrounding prose
+00:01 +29: test/word_zotero_note_list_test.dart: independent lists retain boundaries, start and surrounding prose
+00:02 +30: test/word_zotero_note_list_test.dart: independent lists retain boundaries, start and surrounding prose
+00:02 +31: test/word_zotero_note_list_test.dart: independent lists retain boundaries, start and surrounding prose
+00:02 +32: test/word_zotero_note_list_test.dart: independent lists retain boundaries, start and surrounding prose
+00:02 +33: test/word_zotero_note_list_test.dart: independent lists retain boundaries, start and surrounding prose
+00:02 +34: test/word_zotero_note_list_test.dart: independent lists retain boundaries, start and surrounding prose
+00:02 +35: test/word_zotero_note_list_test.dart: independent lists retain boundaries, start and surrounding prose
+00:02 +36: test/word_zotero_note_list_test.dart: independent lists retain boundaries, start and surrounding prose
+00:02 +37: test/word_zotero_note_list_test.dart: independent lists retain boundaries, start and surrounding prose
+00:02 +38: test/word_zotero_note_list_test.dart: independent lists retain boundaries, start and surrounding prose
+00:02 +39: test/word_zotero_note_list_test.dart: independent lists retain boundaries, start and surrounding prose
+00:02 +40: test/word_zotero_note_list_test.dart: independent lists retain boundaries, start and surrounding prose
+00:02 +41: test/office_pdf_export_test.dart: fromBytes dispatches Word, Excel, and PowerPoint packages
+00:02 +42: test/office_pdf_export_test.dart: fromBytes dispatches Word, Excel, and PowerPoint packages
+00:02 +43: test/office_pdf_export_test.dart: fromBytes dispatches Word, Excel, and PowerPoint packages
+00:02 +44: test/office_pdf_export_test.dart: fromBytes dispatches Word, Excel, and PowerPoint packages
+00:02 +45: test/office_pdf_export_test.dart: fromBytes dispatches Word, Excel, and PowerPoint packages
+00:02 +46: test/office_pdf_export_test.dart: fromBytes dispatches Word, Excel, and PowerPoint packages
+00:02 +47: test/office_pdf_export_test.dart: fromBytes dispatches Word, Excel, and PowerPoint packages
+00:03 +48: test/office_pdf_export_test.dart: fromBytes dispatches Word, Excel, and PowerPoint packages
+00:03 +49: test/office_pdf_export_test.dart: fromBytes dispatches Word, Excel, and PowerPoint packages
+00:03 +50: test/office_pdf_export_test.dart: fromBytes dispatches Word, Excel, and PowerPoint packages
+00:03 +51: test/office_pdf_export_test.dart: fromBytes dispatches Word, Excel, and PowerPoint packages
+00:03 +52: test/office_pdf_export_test.dart: fromBytes dispatches Word, Excel, and PowerPoint packages
+00:03 +53: test/office_pdf_export_test.dart: fromBytes dispatches Word, Excel, and PowerPoint packages
+00:03 +54: test/office_pdf_export_test.dart: fromBytes dispatches Word, Excel, and PowerPoint packages
+00:03 +55: test/office_pdf_export_test.dart: fromBytes dispatches Word, Excel, and PowerPoint packages
+00:03 +56: test/office_pdf_export_test.dart: fromBytes dispatches Word, Excel, and PowerPoint packages
+00:03 +57: test/office_pdf_export_test.dart: fromBytes dispatches Word, Excel, and PowerPoint packages
+00:03 +58: test/office_pdf_export_test.dart: fromBytes dispatches Word, Excel, and PowerPoint packages
+00:03 +59: test/office_pdf_export_test.dart: fromBytes dispatches Word, Excel, and PowerPoint packages
+00:03 +60: test/office_pdf_export_test.dart: fromBytes dispatches Word, Excel, and PowerPoint packages
+00:03 +61: test/office_pdf_export_test.dart: fromBytes dispatches Word, Excel, and PowerPoint packages
+00:03 +62: test/office_pdf_export_test.dart: fromBytes dispatches Word, Excel, and PowerPoint packages
+00:03 +63: test/office_pdf_export_test.dart: fromBytes dispatches Word, Excel, and PowerPoint packages
+00:03 +64: test/office_pdf_export_test.dart: fromBytes dispatches Word, Excel, and PowerPoint packages
+00:03 +65: test/office_pdf_export_test.dart: fromBytes dispatches Word, Excel, and PowerPoint packages
+00:03 +66: test/office_pdf_export_test.dart: fromBytes dispatches Word, Excel, and PowerPoint packages
+00:03 +67: test/office_pdf_export_test.dart: fromBytes dispatches Word, Excel, and PowerPoint packages
+00:03 +68: test/office_pdf_export_test.dart: fromBytes dispatches Word, Excel, and PowerPoint packages
+00:04 +69: test/office_pdf_export_test.dart: fromBytes dispatches Word, Excel, and PowerPoint packages
+00:04 +70: test/word_zotero_note_list_test.dart: later ordinary numbering stays separate after research list, reopened true
+00:04 +71: test/word_zotero_note_list_test.dart: later ordinary numbering stays separate after research list, reopened true
+00:04 +72: test/word_zotero_note_list_test.dart: later ordinary numbering stays separate after research list, reopened true
+00:04 +73: test/word_zotero_note_list_test.dart: later ordinary numbering stays separate after research list, reopened true
+00:04 +74: test/office_pdf_export_test.dart: Word PDF writes TOC and web link annotations
+00:04 +75: test/office_pdf_export_test.dart: Word PDF writes TOC and web link annotations
+00:04 +76: test/office_pdf_export_test.dart: Word PDF writes TOC and web link annotations
+00:04 +77: test/office_pdf_export_test.dart: Word PDF writes TOC and web link annotations
+00:04 +78: test/office_pdf_export_test.dart: Word PDF writes TOC and web link annotations
+00:04 +79: test/office_pdf_export_test.dart: Word PDF writes TOC and web link annotations
+00:04 +80: test/word_zotero_note_list_test.dart: unsupported list refuses complete insertion without package edits: <ol start="one"><li>Invalid</li></ol>
+00:04 +81: test/office_pdf_export_test.dart: Excel PDF honors column widths, merges, and print area
+00:04 +82: test/office_pdf_export_test.dart: Excel PDF honors column widths, merges, and print area
+00:04 +83: test/word_zotero_note_list_test.dart: unsupported list refuses complete insertion without package edits: <ol><li value="2">Custom item</li></ol>
+00:04 +84: test/office_pdf_export_test.dart: OfficePrint forwards sheet and slide ranges
+00:04 +85: test/word_zotero_note_list_test.dart: unsupported list refuses complete insertion without package edits: <ul><li><p>First</p><p>Second</p></li></ul>
+00:04 +86: test/word_zotero_note_list_test.dart: unsupported list refuses complete insertion without package edits: <ul><li><p>First</p><p>Second</p></li></ul>
+00:04 +87: test/office_pdf_export_test.dart: Excel PDF paints cell borders and header tokens
+00:04 +88: test/office_pdf_export_test.dart: Excel PDF paints cell borders and header tokens
+00:04 +89: test/office_pdf_export_test.dart: Excel PDF paints cell borders and header tokens
+00:04 +90: test/office_pdf_export_test.dart: Excel PDF paints cell borders and header tokens
+00:04 +91: test/office_pdf_export_test.dart: Excel PDF paints cell borders and header tokens
+00:04 +92: test/office_pdf_export_test.dart: Excel PDF paints cell borders and header tokens
+00:04 +93: test/office_pdf_export_test.dart: Excel PDF paints cell borders and header tokens
+00:04 +94: test/office_pdf_export_test.dart: Excel PDF paints cell borders and header tokens
+00:04 +95: test/office_pdf_export_test.dart: Excel PDF paints cell borders and header tokens
+00:04 +96: test/office_pdf_export_test.dart: Excel PDF paints cell borders and header tokens
+00:04 +97: test/office_pdf_export_test.dart: Excel PDF paints cell borders and header tokens
+00:04 +98: test/office_pdf_export_test.dart: Excel PDF paints cell borders and header tokens
+00:05 +99: test/office_pdf_export_test.dart: PPT PDF strokes shapes and emits URI link annots
+00:05 +100: test/office_pdf_export_test.dart: chart serializers honor ChartDisplay.rtl
+00:05 +101: All tests passed!

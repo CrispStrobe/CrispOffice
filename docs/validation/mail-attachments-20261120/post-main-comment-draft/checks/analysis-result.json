@@ -1,0 +1,25 @@
+{
+  "command": [
+    "/workspace/scratch/75dc9d25dfaf/runtime/flutter/bin/cache/dart-sdk/bin/dart",
+    "analyze",
+    "--fatal-infos",
+    "--fatal-warnings",
+    "packages/quds_office_editor/example/test/studio_comment_draft_proofing_test.dart"
+  ],
+  "cwd": "/workspace/scratch/75dc9d25dfaf/quds_office_suite",
+  "elapsed_seconds": 19.225508187999367,
+  "exit_code": 0,
+  "finished_at_utc": "2026-11-20T05:42:46.558129+00:00",
+  "name": "analysis",
+  "started_at_utc": "2026-11-20T05:42:27.332367+00:00",
+  "stderr": {
+    "bytes": 0,
+    "git_blob_sha1": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "stdout": {
+    "bytes": 70,
+    "git_blob_sha1": "a303e3dc9c19e704808556a234be6b02efc8883a",
+    "sha256": "08a60ff7d030530948202d7cfed760c3a2cdc5f6c5d9ee9550382963072e904a"
+  }
+}

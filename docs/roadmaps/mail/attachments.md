@@ -133,18 +133,21 @@ independent Python MIME inspection. Those receipts belong to their recorded
 source checkpoints; they are kept separate from the resumed mail runs below.
 
 The source-bound [attachment core evidence](../../validation/mail-attachments-20261120/attachment-core/README.md)
-contains 49 new model/MIME cases, the complete existing recipient/reply/threading
-cohort, vendor codec/builder regressions and an independent Python MIME receiver.
-It checks immutable ownership, empty and duplicate files, names and media-type
-admission, count/byte limits, exact attachment hashes, MIME structure, Bcc absence
-and reply threading. A maximum-size probe combines ten files totaling 10 MiB
-with a 1 MiB body of quotes, whose escaped HTML expands sixfold. Its complete
-message stays within the 22 MiB wire guard and the default 32 MiB cloud
-outer-base64 request budget, and the production codec recovers every file and
-the complete body. It is a bound probe, not a device-wide performance claim.
+contains a new independent Python MIME receiver and production-codec comparison.
+The [overall record](../../validation/mail-attachments-20261120/README.md)
+adds the complete model/MIME, recipient/reply/threading, vendor codec/builder,
+file-reader, composer and provider-host suites. Together they check immutable
+ownership, empty and duplicate files, names and media-type admission, count/byte
+limits, exact attachment hashes, MIME structure, Bcc absence and reply threading.
+A maximum-size probe combines ten files totaling 10 MiB with a 1 MiB body of
+quotes, whose escaped HTML expands sixfold. In the recorded run the canonical
+message is 21,986,572 bytes and its outer-base64 representation is 29,315,432
+bytes, below the 22 MiB wire guard and default 32 MiB cloud request budget.
+The production codec recovers every file and the complete body. The probe
+records a separate allowance estimate for the private Bcc header and request
+wrapper; it does not capture a live provider request or establish a server's
+quota. It is a serialization bound probe, not a device-wide performance claim.
 
-The overall record adds the file-reader, composer, host, package and incoming
-Office qualification. Hosted CI is not an acceptance gate for this continuation.
 Live-provider delivery, actual native picker behavior on each installed OS and
 real browser persistence remain separate qualifications.
 

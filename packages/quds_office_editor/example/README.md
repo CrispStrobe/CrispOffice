@@ -10,6 +10,20 @@ cd packages/quds_office_editor/example
 flutter run
 ```
 
+## Mail composition
+
+In native **Mail**, Compose, Reply, Reply all and Forward use the shared Word
+body editor. Enter bare addresses separated by commas or semicolons, reveal
+**Cc / Bcc** when needed, and choose **Attach files** to add up to ten files
+totaling 10 MiB. Remove attachments individually before sending. The same draft
+and MIME builder serve SMTP, Exchange EWS, Gmail and Microsoft 365.
+
+Failed or uncertain submissions retain their immutable draft and attachment
+bytes only for the current account session. An uncertain retry requires the
+delivery-check acknowledgement; there is no autosave or automatic resend.
+The [attachment guide](../../../docs/roadmaps/mail/attachments.md) records exact
+limits, Bcc handling, validation and remaining document-to-mail/VBA work.
+
 ## Ribbon and desktop menus
 
 The ribbon starts with compact icon buttons. Hover a button for its full name;

@@ -1,0 +1,1685 @@
+{
+  "binary": "/usr/lib/chromium/chromium",
+  "browser_launched": false,
+  "inventory": {
+    "binary": "/usr/lib/chromium/chromium",
+    "binary_sha256": "ce1ff960ce428a4a88b1b1c38516bdf1954a57fc24036161b7a0d8d0f8aec511",
+    "files": {
+      "/lib/x86_64-linux-gnu/libFLAC.so.14": {
+        "bytes": 427968,
+        "sha256": "b39619be623caffbf2b04e7a2c9cc51b4ef20af8ae0434fb2693b50ebff9090f"
+      },
+      "/lib/x86_64-linux-gnu/libX11-xcb.so.1": {
+        "bytes": 13944,
+        "sha256": "c73c2e98ad556a412dd6eef44b857dbd3cc02f191db8af30968084565f60f311"
+      },
+      "/lib/x86_64-linux-gnu/libX11.so.6": {
+        "bytes": 1342984,
+        "sha256": "b03e563b316b8b53c7988f0ee91d6656cc425538e00947a8b14482d179e80099"
+      },
+      "/lib/x86_64-linux-gnu/libXNVCtrl.so.0": {
+        "bytes": 26584,
+        "sha256": "9699f1f35c08d325e38d365012e219192f38de5361595469ab3b6e6b644c2147"
+      },
+      "/lib/x86_64-linux-gnu/libXau.so.6": {
+        "bytes": 14472,
+        "sha256": "4275ec5b14bec21770c44447b3a52977e211c7ba08745008f3a1783878e091bb"
+      },
+      "/lib/x86_64-linux-gnu/libXcomposite.so.1": {
+        "bytes": 14320,
+        "sha256": "b80f2a638fc5bb3ed9a400d48e758135687f10ee8e3b236c89bf0687250858db"
+      },
+      "/lib/x86_64-linux-gnu/libXdamage.so.1": {
+        "bytes": 14344,
+        "sha256": "e87b12f4208b53769802abfa4052147ffcc5f0f7d76d8bcd677126a593cc70fb"
+      },
+      "/lib/x86_64-linux-gnu/libXdmcp.so.6": {
+        "bytes": 26728,
+        "sha256": "761409b24c818719f8c8a2a64a61c8ac6a3067f3d8882485dca64a98d7500040"
+      },
+      "/lib/x86_64-linux-gnu/libXext.so.6": {
+        "bytes": 81568,
+        "sha256": "74cef58f0855cbbe23fce87566249f717e5c8ebeceee09efee393616a9b17697"
+      },
+      "/lib/x86_64-linux-gnu/libXfixes.so.3": {
+        "bytes": 26664,
+        "sha256": "85e29f4739a349d94d61db7a696f764d21dfe5c8db6ba7444af21416a0339187"
+      },
+      "/lib/x86_64-linux-gnu/libXi.so.6": {
+        "bytes": 76160,
+        "sha256": "8ca60a4e6a90bba494e601e03e792b2d440cced9985deca64431abbd78613adb"
+      },
+      "/lib/x86_64-linux-gnu/libXrandr.so.2": {
+        "bytes": 47384,
+        "sha256": "c99f3f78690b66428f91b5d66fa8531bcce8166e2324d34c911b61206b11ff52"
+      },
+      "/lib/x86_64-linux-gnu/libXrender.so.1": {
+        "bytes": 47608,
+        "sha256": "39fed75f787ac251cba86e30ccd979e3df1f84dd73c63a75eeb86a18fd413e64"
+      },
+      "/lib/x86_64-linux-gnu/libasound.so.2": {
+        "bytes": 1178192,
+        "sha256": "0faa79c7a37189b9efcd9bff5874cd1af1c05b0cc66831733087d84cbe87e811"
+      },
+      "/lib/x86_64-linux-gnu/libasyncns.so.0": {
+        "bytes": 22368,
+        "sha256": "03429d16fdb490790adb62a0140573111ff8ce2f2e17937a25b93096e8570051"
+      },
+      "/lib/x86_64-linux-gnu/libatk-1.0.so.0": {
+        "bytes": 165808,
+        "sha256": "07c8e8031a545009ab45cb317ff4b2ac712d50b5cc4e1fbb6b1fdf19016d321a"
+      },
+      "/lib/x86_64-linux-gnu/libatk-bridge-2.0.so.0": {
+        "bytes": 247728,
+        "sha256": "1cdf8a4540c1c7093de9afa2ad71180d8fe21f2dd049d463239820cc87416a8b"
+      },
+      "/lib/x86_64-linux-gnu/libatomic.so.1": {
+        "bytes": 30848,
+        "sha256": "9558489f171274c220104894258f483055853ed8a23d4ff754c850ce55765aa2"
+      },
+      "/lib/x86_64-linux-gnu/libatspi.so.0": {
+        "bytes": 252152,
+        "sha256": "133c9ad85748ed520c3fb6ffdd3fcdfc3068ad41c0946574b87b509b7c9c7cc0"
+      },
+      "/lib/x86_64-linux-gnu/libavahi-client.so.3": {
+        "bytes": 75952,
+        "sha256": "897e41ebed37dc9df9c835be3b3fe3c5d99d0c82268f6ca0dde636fb7d5e7533"
+      },
+      "/lib/x86_64-linux-gnu/libavahi-common.so.3": {
+        "bytes": 51568,
+        "sha256": "5b19f788782062294cc624d230fe5e2e622718c47b7d5e8d1290b21e212323ed"
+      },
+      "/lib/x86_64-linux-gnu/libblkid.so.1": {
+        "bytes": 396256,
+        "sha256": "116b712c143ac68bb59f6d8e32ed8e05e0772c730a9ba55ec544dd28916af58c"
+      },
+      "/lib/x86_64-linux-gnu/libbrotlicommon.so.1": {
+        "bytes": 141496,
+        "sha256": "0697dd09666e2a080974470950075ee959f2391ecb173ceee50423f969032d79"
+      },
+      "/lib/x86_64-linux-gnu/libbrotlidec.so.1": {
+        "bytes": 51376,
+        "sha256": "ff4baf3141862726c25ab08cdd94bced37dcae0c6827943d3e40fc1079969814"
+      },
+      "/lib/x86_64-linux-gnu/libbz2.so.1.0": {
+        "bytes": 74688,
+        "sha256": "c630f057efedc12f848710d71f40283895591e5b4608539f387895c64e0553da"
+      },
+      "/lib/x86_64-linux-gnu/libc.so.6": {
+        "bytes": 1995216,
+        "sha256": "9792e3cbb541c8f44c7acf5f14f4022ea62998ecc787d326bed4d8b6547dfd92"
+      },
+      "/lib/x86_64-linux-gnu/libcairo.so.2": {
+        "bytes": 1362632,
+        "sha256": "55e6961d9c35923426aca75b85e10d69977428ffb6569719be13a87eb4fcab66"
+      },
+      "/lib/x86_64-linux-gnu/libcap.so.2": {
+        "bytes": 47288,
+        "sha256": "41217b0af128444f66dee8adda52b2ceaf19da00e5b0b155e2b87b857671286b"
+      },
+      "/lib/x86_64-linux-gnu/libcom_err.so.2": {
+        "bytes": 18344,
+        "sha256": "dc4828400674492839b630c001db424cd38e5cecfcf46dbf705a637647e04bea"
+      },
+      "/lib/x86_64-linux-gnu/libcups.so.2": {
+        "bytes": 657360,
+        "sha256": "4a1b185e46ed19f279a437d16619c0bfec8a0c21a25afc1b3e85320f4d219e4c"
+      },
+      "/lib/x86_64-linux-gnu/libdatrie.so.1": {
+        "bytes": 34736,
+        "sha256": "ce632159af92e1d1ceec68652920c412fb105ea579c97c26896a29d1b876abde"
+      },
+      "/lib/x86_64-linux-gnu/libdav1d.so.7": {
+        "bytes": 1746880,
+        "sha256": "1d7a4182344230d5f4cf9f58bf4485da2801c411e9c9fd6d8471460c75ae8fbf"
+      },
+      "/lib/x86_64-linux-gnu/libdbus-1.so.3": {
+        "bytes": 350360,
+        "sha256": "f8c5475204730fa615547b10b642d7e27e5954ed1c12c47507743f2b486ba5a0"
+      },
+      "/lib/x86_64-linux-gnu/libdouble-conversion.so.3": {
+        "bytes": 88072,
+        "sha256": "e24833daaa56c3143a7c5d75c75e7357e3841061bd11ffee07d7ff5499da1c58"
+      },
+      "/lib/x86_64-linux-gnu/libdrm.so.2": {
+        "bytes": 92880,
+        "sha256": "eb7a0ac1a08aa514ed9615c137d72b4b5b84dc252aa2da30b6ae712ec6378e00"
+      },
+      "/lib/x86_64-linux-gnu/libexpat.so.1": {
+        "bytes": 186528,
+        "sha256": "36e7e50d21edcabed383bfddc594bb261c1c7cce456afdf23c5f53e849cda67c"
+      },
+      "/lib/x86_64-linux-gnu/libffi.so.8": {
+        "bytes": 47576,
+        "sha256": "922024ec5a23f7de1095b1cff2f6cbfb377b5d58cd51fd0ec2e8fe35427653e2"
+      },
+      "/lib/x86_64-linux-gnu/libfontconfig.so.1": {
+        "bytes": 317360,
+        "sha256": "d6344f71a0cfd5fcb154278f0be706021f75f79d1fcc973fc4ddb1dff40ab0ee"
+      },
+      "/lib/x86_64-linux-gnu/libfreetype.so.6": {
+        "bytes": 845736,
+        "sha256": "9e376992a91e92d86809893a3b9eea22a4e27849db1686f6ca58032f79cdafb5"
+      },
+      "/lib/x86_64-linux-gnu/libfribidi.so.0": {
+        "bytes": 121064,
+        "sha256": "bbd962bd1c3ac1c25dc983d2951962caf55acb46a80e33ef93e31392edd5a222"
+      },
+      "/lib/x86_64-linux-gnu/libgbm.so.1": {
+        "bytes": 18736,
+        "sha256": "ab1e16db65ef9809ee3bc2925c611dcb15e2d78a510c310f0193716c16ea6c2e"
+      },
+      "/lib/x86_64-linux-gnu/libgcc_s.so.1": {
+        "bytes": 182856,
+        "sha256": "30c61ab012a4241bed033725a09b61f5fdd3bb7df95ee852d0b096520524c7af"
+      },
+      "/lib/x86_64-linux-gnu/libgio-2.0.so.0": {
+        "bytes": 2051320,
+        "sha256": "ada55aa768da50c23a114736ac39dd8d8c62f77a5519747f99e8836e86a1fd35"
+      },
+      "/lib/x86_64-linux-gnu/libglib-2.0.so.0": {
+        "bytes": 1404320,
+        "sha256": "980ab64e995225de1543779e3bafafac9d705904d42ca3b5eb76e7a336cc5e1d"
+      },
+      "/lib/x86_64-linux-gnu/libgmodule-2.0.so.0": {
+        "bytes": 22584,
+        "sha256": "cb391dc09732706a0b2b9e2bf44ebe5539708cdeb8e8dd9c4ba910a958b78bb4"
+      },
+      "/lib/x86_64-linux-gnu/libgmp.so.10": {
+        "bytes": 566080,
+        "sha256": "d15e1585c6c267296459570c8ac217ca9123044bcd4e896d2f686b32333445d2"
+      },
+      "/lib/x86_64-linux-gnu/libgnutls.so.30": {
+        "bytes": 2246712,
+        "sha256": "4b14edde42e7cbeefd8a6d88d035e096f2e6412a535388bb1d073a1c196e2822"
+      },
+      "/lib/x86_64-linux-gnu/libgobject-2.0.so.0": {
+        "bytes": 403680,
+        "sha256": "ea1b3b14267d075022abfb2a8ab1c61d568124ebba97553d7b45a4f6444abebe"
+      },
+      "/lib/x86_64-linux-gnu/libgraphite2.so.3": {
+        "bytes": 166048,
+        "sha256": "5c4b17bdbd121d3c65f28c22d9c2a0504ca493d9e8fa7d7d31383c72237416b4"
+      },
+      "/lib/x86_64-linux-gnu/libgssapi_krb5.so.2": {
+        "bytes": 346904,
+        "sha256": "c290f761873ebeac539911010526e1c5db86218bfcb29672760da46841741de0"
+      },
+      "/lib/x86_64-linux-gnu/libharfbuzz-subset.so.0": {
+        "bytes": 1497224,
+        "sha256": "329eaf2cc92e5ca05b23ca65ab195dd7481ba3dbd4cd8275b4d86c33b5bb5a41"
+      },
+      "/lib/x86_64-linux-gnu/libharfbuzz.so.0": {
+        "bytes": 1310560,
+        "sha256": "c0cc41333a8fc0c24428a61ba0af6380aabb1f0d91ac48c13ed743b06c8ccc87"
+      },
+      "/lib/x86_64-linux-gnu/libhogweed.so.6": {
+        "bytes": 305144,
+        "sha256": "2663d9bdca20ba67d2d72f1d4c24b6fd0a3e97d5ee23e7b739788176cf904380"
+      },
+      "/lib/x86_64-linux-gnu/libidn2.so.0": {
+        "bytes": 202872,
+        "sha256": "299cdc741f1dd0834a49d5cb44f3da26b1960bb110c1f521a084400d9b603cbf"
+      },
+      "/lib/x86_64-linux-gnu/libjpeg.so.62": {
+        "bytes": 616512,
+        "sha256": "0928fd49fa79e10f72eb3276f1cf603d928201a628cd78e0118a2e9c01fd2dac"
+      },
+      "/lib/x86_64-linux-gnu/libk5crypto.so.3": {
+        "bytes": 187144,
+        "sha256": "c4c3221d0350f882cee0430b58d5fb289a5776c684d3156964864c8a9719dff1"
+      },
+      "/lib/x86_64-linux-gnu/libkeyutils.so.1": {
+        "bytes": 22448,
+        "sha256": "e5d5a7450d08eff7d4bbcaac75ef2b94d3447c81a1b2ddf3ab85d2de4709a9a8"
+      },
+      "/lib/x86_64-linux-gnu/libkrb5.so.3": {
+        "bytes": 883984,
+        "sha256": "c4ab64e6bc2874a83e649e4439be752465da027a0041e2bb5343f81c80f0882d"
+      },
+      "/lib/x86_64-linux-gnu/libkrb5support.so.0": {
+        "bytes": 52208,
+        "sha256": "f559f051ee5d39f151a57d79f2cde475c484030098b0c73f9f7035b421b187c4"
+      },
+      "/lib/x86_64-linux-gnu/liblcms2.so.2": {
+        "bytes": 422952,
+        "sha256": "a0afaac586186b4e6b06c157e48c49480fde35d671052ee1309f36881a4508e7"
+      },
+      "/lib/x86_64-linux-gnu/libm.so.6": {
+        "bytes": 977112,
+        "sha256": "6d567d53e895273ca14a1f9dc164fc6c8d39aed2f60aa46a733c2784228915f3"
+      },
+      "/lib/x86_64-linux-gnu/libminizip.so.1": {
+        "bytes": 55672,
+        "sha256": "33faf00f47852610409c6668689fbaaafbf81c9a5704acecc8fbcd86428a98ae"
+      },
+      "/lib/x86_64-linux-gnu/libmount.so.1": {
+        "bytes": 502512,
+        "sha256": "1654d2cf948e3608cc0d38340807d4ddac1114315a3a77f7b274c4c859cb2181"
+      },
+      "/lib/x86_64-linux-gnu/libmp3lame.so.0": {
+        "bytes": 305128,
+        "sha256": "98d0d7579c760053242a1deac2ebe335b8f8636f44235580f05b732f5fa207bb"
+      },
+      "/lib/x86_64-linux-gnu/libmpg123.so.0": {
+        "bytes": 381112,
+        "sha256": "b5963c5d72f19d4c86010150277a9630a13ce784b4f8af27659b66b69b25b3b8"
+      },
+      "/lib/x86_64-linux-gnu/libnettle.so.8": {
+        "bytes": 346216,
+        "sha256": "34ac695c167a593d3587bd88592d33d53e5dc4035984f84446100962f57376fd"
+      },
+      "/lib/x86_64-linux-gnu/libnspr4.so": {
+        "bytes": 258536,
+        "sha256": "bd0acf4c8a3e08970b0a187d4e2cbb52fefe2b5ccb9761d86b21d18d5f109830"
+      },
+      "/lib/x86_64-linux-gnu/libnss3.so": {
+        "bytes": 1443248,
+        "sha256": "b13e6eedabfe3d1cc2aa6d3d75da9cbfe894902d22a8012fff7f1ada25b7d0ed"
+      },
+      "/lib/x86_64-linux-gnu/libnssutil3.so": {
+        "bytes": 211248,
+        "sha256": "17048afceb6088836f42049dfbda80d2f096fb69a65786d51af8864fe783506e"
+      },
+      "/lib/x86_64-linux-gnu/libogg.so.0": {
+        "bytes": 38752,
+        "sha256": "642a3280273c5ecd8e1ff6c58c9fac3bffc1da41b878c9362473f59174937f77"
+      },
+      "/lib/x86_64-linux-gnu/libopenh264.so.8": {
+        "bytes": 1144840,
+        "sha256": "2b8a86d5facc5318353ac7a75d578f45b139e293e22ec32562b8829bde82e508"
+      },
+      "/lib/x86_64-linux-gnu/libopenjp2.so.7": {
+        "bytes": 465352,
+        "sha256": "aa1654c4757c8b37f744d1b12c75f19166b298c05c0c8dbcff5467e300e3da18"
+      },
+      "/lib/x86_64-linux-gnu/libopus.so.0": {
+        "bytes": 3549688,
+        "sha256": "621e97f23655dbf2727873b7717e3b65ae8c734f84a0848f88c21edb95202357"
+      },
+      "/lib/x86_64-linux-gnu/libp11-kit.so.0": {
+        "bytes": 1705664,
+        "sha256": "e4ae39be74740511cf8e49e80fdfc16aeee7b822ee313793da1b78ce148ba05f"
+      },
+      "/lib/x86_64-linux-gnu/libpango-1.0.so.0": {
+        "bytes": 458368,
+        "sha256": "3aeb194a48f427b907d77986cc8b1d7a2f43f8dab6a91abb3fa0416d5b071132"
+      },
+      "/lib/x86_64-linux-gnu/libpcre2-8.so.0": {
+        "bytes": 711216,
+        "sha256": "92e9b4167f9bbc237ca8f5526d82ee99ec9f8dbd0270ef1dd0ab24e2217f48e3"
+      },
+      "/lib/x86_64-linux-gnu/libpixman-1.so.0": {
+        "bytes": 706576,
+        "sha256": "806ef6cd6ff8dace4332b8d611afe2f1c5ec0c1b743ea7ed0ebd48ed307618cd"
+      },
+      "/lib/x86_64-linux-gnu/libplc4.so": {
+        "bytes": 22632,
+        "sha256": "6236e9a36b61830d671668d0db7311042b5b48a226702c29523a12c25906798f"
+      },
+      "/lib/x86_64-linux-gnu/libplds4.so": {
+        "bytes": 14472,
+        "sha256": "cb1c194a3c6c7e8e16fcc99d2b3bf1f71e35c599179bda43fa883ec23a195aef"
+      },
+      "/lib/x86_64-linux-gnu/libpng16.so.16": {
+        "bytes": 231416,
+        "sha256": "7dd8e62ca2f3b2b3bb642e485b1324b01950aad82eb63bad2c783ac94d80c001"
+      },
+      "/lib/x86_64-linux-gnu/libpulse.so.0": {
+        "bytes": 343088,
+        "sha256": "2bce57f25d08141a071c348021f5f3c94bc0fdcf644b3dd22a592d6f303ce8fa"
+      },
+      "/lib/x86_64-linux-gnu/libresolv.so.2": {
+        "bytes": 63936,
+        "sha256": "d41dd4adacf5a35df426461dd8a92d7bdd5ba29bb61a1c3531bec0ada386f8dd"
+      },
+      "/lib/x86_64-linux-gnu/libselinux.so.1": {
+        "bytes": 202984,
+        "sha256": "5cb5293b4e7590463b94f7b23152d54807a6a2ccaf8cac9e343908c6692c086c"
+      },
+      "/lib/x86_64-linux-gnu/libsmime3.so": {
+        "bytes": 211200,
+        "sha256": "959dc25a7396f70eefdccff49b246cb91224b52e5b1b4f7ab8a4879b5e070aee"
+      },
+      "/lib/x86_64-linux-gnu/libsndfile.so.1": {
+        "bytes": 574640,
+        "sha256": "643e4862f5847d6e5ecb442222d93735a6d4190283df26d4b63d104141a9a056"
+      },
+      "/lib/x86_64-linux-gnu/libstdc++.so.6": {
+        "bytes": 2497768,
+        "sha256": "972bb2a18b71140dab0240f8a1f68ab3fb1d56bcd4c4f824a91b70888faf5a00"
+      },
+      "/lib/x86_64-linux-gnu/libsystemd.so.0": {
+        "bytes": 1131784,
+        "sha256": "c59f9015342de9c2dcb2decccb3d83218849fe3e4388c723a6528254fd7606f0"
+      },
+      "/lib/x86_64-linux-gnu/libtasn1.so.6": {
+        "bytes": 88064,
+        "sha256": "cea637336b0855f91260714181894bcea9f345a3a97ce68d6447f6031728cabd"
+      },
+      "/lib/x86_64-linux-gnu/libthai.so.0": {
+        "bytes": 41000,
+        "sha256": "68da865e0efbc99eedc429f5e0c93a788cff55e85c0ecd37abc0279044a0cc32"
+      },
+      "/lib/x86_64-linux-gnu/libudev.so.1": {
+        "bytes": 280936,
+        "sha256": "902fd5e300dacfd8f8292ce18fb8aca4775d67218cb44414a2a6fd89e09cc9a9"
+      },
+      "/lib/x86_64-linux-gnu/libunistring.so.5": {
+        "bytes": 1996840,
+        "sha256": "9c200ec975ff24c0a259d4f6cf0d0fc1736d0c86da30fff3d499ad3d9a368b65"
+      },
+      "/lib/x86_64-linux-gnu/libvorbis.so.0": {
+        "bytes": 186280,
+        "sha256": "0685850ab1d1e71e4c162c18b26bfa41a9dd97ff22682a773df4ba6df3bc961a"
+      },
+      "/lib/x86_64-linux-gnu/libvorbisenc.so.2": {
+        "bytes": 694248,
+        "sha256": "db5b676baf57298eedf65528ec31837f8c6fd9b7c8f03b162fc1666ce127c347"
+      },
+      "/lib/x86_64-linux-gnu/libxcb-render.so.0": {
+        "bytes": 59656,
+        "sha256": "6ceffcf824902eb4d9566e2c646511d6914073d355016134f1260d8891e563b5"
+      },
+      "/lib/x86_64-linux-gnu/libxcb-shm.so.0": {
+        "bytes": 14392,
+        "sha256": "4a57cf736337398b8dda5fd842da9d8d040ff484ee7b418836f499f875623e9c"
+      },
+      "/lib/x86_64-linux-gnu/libxcb.so.1": {
+        "bytes": 170936,
+        "sha256": "a1cde2cec9b7b8b38e4cca450c55c63651efb80a2458d76964b56b763043f533"
+      },
+      "/lib/x86_64-linux-gnu/libxkbcommon.so.0": {
+        "bytes": 301760,
+        "sha256": "9f26c41577e0e036cbf42352e85b13db6bce953fb730555b4fc7de5362dc93bb"
+      },
+      "/lib/x86_64-linux-gnu/libz.so.1": {
+        "bytes": 125376,
+        "sha256": "6c13931760210e8b391b63a337dfe4071346c4ad6e3827694edb7b6989bb16dd"
+      },
+      "/lib/x86_64-linux-gnu/libzstd.so.1": {
+        "bytes": 825336,
+        "sha256": "27f07c9a49c2c956bcfb64cd4712976586a66facbf15fc7f09bc37413b5f2b21"
+      },
+      "/lib64/ld-linux-x86-64.so.2": {
+        "bytes": 225672,
+        "sha256": "c8438e4fde1934e61c88311633f00949ff645d5c04cdb8671fa3d78164d2f307"
+      },
+      "/usr/lib/chromium/chrome-sandbox": {
+        "bytes": 15472,
+        "sha256": "df25de1a557f1d038387c6ac8d1937490074121b59c809af07a50a7ba382e336"
+      },
+      "/usr/lib/chromium/chrome_100_percent.pak": {
+        "bytes": 583800,
+        "sha256": "69e8e1decf6b39ce8a8825c54483167a75377168d4e3ef43a2b2a7c8fb8e1895"
+      },
+      "/usr/lib/chromium/chrome_200_percent.pak": {
+        "bytes": 946505,
+        "sha256": "85765ba81bba01e3fdd0b762978ce778ec4bdd30105a5f4ece01f3652d6b310f"
+      },
+      "/usr/lib/chromium/chrome_crashpad_handler": {
+        "bytes": 3448120,
+        "sha256": "092f42697cd2b3ec1726203879f897c2843a97dc967b28d00e6868516362f798"
+      },
+      "/usr/lib/chromium/chromium": {
+        "bytes": 331234136,
+        "sha256": "ce1ff960ce428a4a88b1b1c38516bdf1954a57fc24036161b7a0d8d0f8aec511"
+      },
+      "/usr/lib/chromium/icudtl.dat": {
+        "bytes": 10824576,
+        "sha256": "e1ed8f674bb8449731b79cae956042da59f9ecbd37c8d3f86586a22b4836e5b2"
+      },
+      "/usr/lib/chromium/libEGL.so": {
+        "bytes": 3664,
+        "sha256": "b9ae4b32d6c6ac6d417631aa7b1a72f63bf6caab38587053bbcbdb629e4c7d0c"
+      },
+      "/usr/lib/chromium/libGLESv2.so": {
+        "bytes": 3664,
+        "sha256": "104c61a59f0003ee64fd939d00e99608e754cd64554f98ea9cc248e29136dcd6"
+      },
+      "/usr/lib/chromium/libVkICD_mock_icd.so": {
+        "bytes": 547360,
+        "sha256": "850d8e27979a6b957c8a9a7bf583ae22f91dc5f84a6f266d5f3dbed4fea889fa"
+      },
+      "/usr/lib/chromium/libVkICD_mock_icd.so.TOC": {
+        "bytes": 27730,
+        "sha256": "4ef6a6fedd0147a33a49f16bd5cf277b12f24bb4fcbf0a2cabca1cef9ebaa31c"
+      },
+      "/usr/lib/chromium/libVkLayer_khronos_validation.so": {
+        "bytes": 23666984,
+        "sha256": "9e38391f78102dfa65ff4f45313815efba5fd2b16d89b883fa96f7f3b16974bd"
+      },
+      "/usr/lib/chromium/libVkLayer_khronos_validation.so.TOC": {
+        "bytes": 117138,
+        "sha256": "b9c30cbd0af3882b12f3f6267a8db7ed223dc91e383640335eaef95a3c0f0725"
+      },
+      "/usr/lib/chromium/libvk_swiftshader.so": {
+        "bytes": 5410144,
+        "sha256": "0370ba973a74faa50a2d191fcc14e697b51e8485ec778bafb6539064e66b9a3a"
+      },
+      "/usr/lib/chromium/libvulkan.so.1": {
+        "bytes": 486992,
+        "sha256": "669578be5435f706fd8d5ff63d56b34988044de0d8e2d8d54519a143036ddd05"
+      },
+      "/usr/lib/chromium/libvulkan.so.1.TOC": {
+        "bytes": 8645,
+        "sha256": "71d60748e0a87fc5ddeef8e28ee079465ec536c83d76c9d1e8239521157ba0b9"
+      },
+      "/usr/lib/chromium/locales/af.pak.info": {
+        "bytes": 1283311,
+        "sha256": "ecf989aae2a1eb590e133202b673d0f98008d2102668932c58b973d2274ebde3"
+      },
+      "/usr/lib/chromium/locales/af_FEMININE.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/af_MASCULINE.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/af_NEUTER.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/am.pak": {
+        "bytes": 1034863,
+        "sha256": "ba6a97b201be15b229b7a370e29460c553cef0b9d7a1a726f64ef39f1b265544"
+      },
+      "/usr/lib/chromium/locales/am.pak.info": {
+        "bytes": 1283311,
+        "sha256": "ecf989aae2a1eb590e133202b673d0f98008d2102668932c58b973d2274ebde3"
+      },
+      "/usr/lib/chromium/locales/am_FEMININE.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/am_MASCULINE.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/am_NEUTER.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/ar.pak": {
+        "bytes": 1149594,
+        "sha256": "a7b83e69492183229c4a0eb6f5ebb0bb8b061835145c7c5aed1e0534ddc99638"
+      },
+      "/usr/lib/chromium/locales/ar.pak.info": {
+        "bytes": 1283311,
+        "sha256": "ecf989aae2a1eb590e133202b673d0f98008d2102668932c58b973d2274ebde3"
+      },
+      "/usr/lib/chromium/locales/ar_FEMININE.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/ar_MASCULINE.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/ar_NEUTER.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/bg.pak": {
+        "bytes": 1187809,
+        "sha256": "4f3084c789c3969e27c2839f07e3e67c04d514095cef0a8ab8f64ad2ba5d5e7b"
+      },
+      "/usr/lib/chromium/locales/bg.pak.info": {
+        "bytes": 1283311,
+        "sha256": "ecf989aae2a1eb590e133202b673d0f98008d2102668932c58b973d2274ebde3"
+      },
+      "/usr/lib/chromium/locales/bg_FEMININE.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/bg_MASCULINE.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/bg_NEUTER.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/bn.pak": {
+        "bytes": 1519081,
+        "sha256": "bbfd66b503cb664176754bfcb9f65421a79c7ba3df2b5ff612b0baddaebf6b64"
+      },
+      "/usr/lib/chromium/locales/bn.pak.info": {
+        "bytes": 1283311,
+        "sha256": "ecf989aae2a1eb590e133202b673d0f98008d2102668932c58b973d2274ebde3"
+      },
+      "/usr/lib/chromium/locales/bn_FEMININE.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/bn_MASCULINE.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/bn_NEUTER.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/ca.pak": {
+        "bytes": 731642,
+        "sha256": "9b48de45868a45c7f1d63967f1fc8d0d9dcae85dd4abe04201ad732fc039cfb7"
+      },
+      "/usr/lib/chromium/locales/ca.pak.info": {
+        "bytes": 1283311,
+        "sha256": "ecf989aae2a1eb590e133202b673d0f98008d2102668932c58b973d2274ebde3"
+      },
+      "/usr/lib/chromium/locales/ca_FEMININE.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/ca_MASCULINE.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/ca_NEUTER.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/cs.pak": {
+        "bytes": 753028,
+        "sha256": "cbd6c3298ec36f8b155c6ce0ab183f0d60a4634b02bf0ab96f46152429486bd2"
+      },
+      "/usr/lib/chromium/locales/cs.pak.info": {
+        "bytes": 1283311,
+        "sha256": "ecf989aae2a1eb590e133202b673d0f98008d2102668932c58b973d2274ebde3"
+      },
+      "/usr/lib/chromium/locales/cs_FEMININE.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/cs_MASCULINE.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/cs_NEUTER.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/da.pak": {
+        "bytes": 677330,
+        "sha256": "2b2a1e0e636745406206fa3baf07a57ea38555ac02fa9b8208e3612e1e2b0ddd"
+      },
+      "/usr/lib/chromium/locales/da.pak.info": {
+        "bytes": 1283311,
+        "sha256": "ecf989aae2a1eb590e133202b673d0f98008d2102668932c58b973d2274ebde3"
+      },
+      "/usr/lib/chromium/locales/da_FEMININE.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/da_MASCULINE.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/da_NEUTER.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/de.pak": {
+        "bytes": 735348,
+        "sha256": "ab278db48e88b704c8c72064f45342d2ebfd6c694fb3c12446e2c3d0fef025f3"
+      },
+      "/usr/lib/chromium/locales/de.pak.info": {
+        "bytes": 1283311,
+        "sha256": "ecf989aae2a1eb590e133202b673d0f98008d2102668932c58b973d2274ebde3"
+      },
+      "/usr/lib/chromium/locales/de_FEMININE.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/de_MASCULINE.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/de_NEUTER.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/el.pak": {
+        "bytes": 1305316,
+        "sha256": "eefba9f528ebd92006b88fbb4da0d0b1d7eebce95de6ef4e9941a61b44c74376"
+      },
+      "/usr/lib/chromium/locales/el.pak.info": {
+        "bytes": 1283311,
+        "sha256": "ecf989aae2a1eb590e133202b673d0f98008d2102668932c58b973d2274ebde3"
+      },
+      "/usr/lib/chromium/locales/el_FEMININE.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/el_MASCULINE.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/el_NEUTER.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/en-GB.pak.info": {
+        "bytes": 1283311,
+        "sha256": "ecf989aae2a1eb590e133202b673d0f98008d2102668932c58b973d2274ebde3"
+      },
+      "/usr/lib/chromium/locales/en-GB_FEMININE.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/en-GB_MASCULINE.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/en-GB_NEUTER.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/en-US.pak": {
+        "bytes": 592014,
+        "sha256": "4662b9ae940542a373d1e5e2df3c554cb1f14e2dff2bcddee5173e935d44f856"
+      },
+      "/usr/lib/chromium/locales/en-US.pak.info": {
+        "bytes": 1283311,
+        "sha256": "ecf989aae2a1eb590e133202b673d0f98008d2102668932c58b973d2274ebde3"
+      },
+      "/usr/lib/chromium/locales/en-US_FEMININE.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/en-US_MASCULINE.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/en-US_NEUTER.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/es-419.pak": {
+        "bytes": 716302,
+        "sha256": "e1a8bb751e96476d229d60776857131a7fc5cbb4e67f5aadf2055459e1b56cc2"
+      },
+      "/usr/lib/chromium/locales/es-419.pak.info": {
+        "bytes": 1283311,
+        "sha256": "ecf989aae2a1eb590e133202b673d0f98008d2102668932c58b973d2274ebde3"
+      },
+      "/usr/lib/chromium/locales/es-419_FEMININE.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/es-419_MASCULINE.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/es-419_NEUTER.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/es.pak": {
+        "bytes": 711171,
+        "sha256": "47acb1d84d2d14bfc99f99cfe77e1baf005a872a9282104ad9622d49bebea503"
+      },
+      "/usr/lib/chromium/locales/es.pak.info": {
+        "bytes": 1283311,
+        "sha256": "ecf989aae2a1eb590e133202b673d0f98008d2102668932c58b973d2274ebde3"
+      },
+      "/usr/lib/chromium/locales/es_FEMININE.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/es_MASCULINE.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/es_NEUTER.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/et.pak": {
+        "bytes": 651889,
+        "sha256": "792004fa1c492653414e26cca0ed4e0201adcca0559067d975e6c685e9942e1b"
+      },
+      "/usr/lib/chromium/locales/et.pak.info": {
+        "bytes": 1283311,
+        "sha256": "ecf989aae2a1eb590e133202b673d0f98008d2102668932c58b973d2274ebde3"
+      },
+      "/usr/lib/chromium/locales/et_FEMININE.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/et_MASCULINE.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/et_NEUTER.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/fa.pak": {
+        "bytes": 1074687,
+        "sha256": "e98afa81018ca5240c7238fb3bd4c8a841315c7e04262f63c22c70a3239f8977"
+      },
+      "/usr/lib/chromium/locales/fa.pak.info": {
+        "bytes": 1283311,
+        "sha256": "ecf989aae2a1eb590e133202b673d0f98008d2102668932c58b973d2274ebde3"
+      },
+      "/usr/lib/chromium/locales/fa_FEMININE.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/fa_MASCULINE.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/fa_NEUTER.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/fi.pak": {
+        "bytes": 662848,
+        "sha256": "62e8823d04596f8c353ef2439d2e99cb7a96f8fda2f0729bb5183478990ddf58"
+      },
+      "/usr/lib/chromium/locales/fi.pak.info": {
+        "bytes": 1283311,
+        "sha256": "ecf989aae2a1eb590e133202b673d0f98008d2102668932c58b973d2274ebde3"
+      },
+      "/usr/lib/chromium/locales/fi_FEMININE.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/fi_MASCULINE.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/fi_NEUTER.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/fil.pak": {
+        "bytes": 748151,
+        "sha256": "b9f702661d344d2aeef9bc2c30cb7ef68295f49b39b5f0fe2478d3d817567c54"
+      },
+      "/usr/lib/chromium/locales/fil.pak.info": {
+        "bytes": 1283311,
+        "sha256": "ecf989aae2a1eb590e133202b673d0f98008d2102668932c58b973d2274ebde3"
+      },
+      "/usr/lib/chromium/locales/fil_FEMININE.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/fil_MASCULINE.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/fil_NEUTER.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/fr.pak": {
+        "bytes": 778649,
+        "sha256": "2dfb51063ef546115f239fe9b4b97306e592a10e68f7b70f944223a09df7983e"
+      },
+      "/usr/lib/chromium/locales/fr.pak.info": {
+        "bytes": 1283311,
+        "sha256": "ecf989aae2a1eb590e133202b673d0f98008d2102668932c58b973d2274ebde3"
+      },
+      "/usr/lib/chromium/locales/fr_FEMININE.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/fr_MASCULINE.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/fr_NEUTER.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/gu.pak": {
+        "bytes": 1506195,
+        "sha256": "58212b4d9ca6f4a09c332af006404a10a8eb275357fbe792054121e75bd2d9d2"
+      },
+      "/usr/lib/chromium/locales/gu.pak.info": {
+        "bytes": 1283311,
+        "sha256": "ecf989aae2a1eb590e133202b673d0f98008d2102668932c58b973d2274ebde3"
+      },
+      "/usr/lib/chromium/locales/gu_FEMININE.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/gu_MASCULINE.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/gu_NEUTER.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/he.pak.info": {
+        "bytes": 1283311,
+        "sha256": "ecf989aae2a1eb590e133202b673d0f98008d2102668932c58b973d2274ebde3"
+      },
+      "/usr/lib/chromium/locales/he_FEMININE.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/he_MASCULINE.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/he_NEUTER.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/hi.pak": {
+        "bytes": 1608523,
+        "sha256": "f9d55efa8f5070f79ccea1be8fd1e33d7daf8b3a96ca1ad5186daf84b84ef5d3"
+      },
+      "/usr/lib/chromium/locales/hi.pak.info": {
+        "bytes": 1283311,
+        "sha256": "ecf989aae2a1eb590e133202b673d0f98008d2102668932c58b973d2274ebde3"
+      },
+      "/usr/lib/chromium/locales/hi_FEMININE.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/hi_MASCULINE.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/hi_NEUTER.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/hr.pak": {
+        "bytes": 724363,
+        "sha256": "991ea3ece876e55aa969ff3d4e659fe14925647f1309744fb3fb349580a6fad4"
+      },
+      "/usr/lib/chromium/locales/hr.pak.info": {
+        "bytes": 1283311,
+        "sha256": "ecf989aae2a1eb590e133202b673d0f98008d2102668932c58b973d2274ebde3"
+      },
+      "/usr/lib/chromium/locales/hr_FEMININE.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/hr_MASCULINE.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/hr_NEUTER.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/hu.pak": {
+        "bytes": 774499,
+        "sha256": "e0d10b3284a4386fc2c1b59c3a09f8cafcea0a5a17f5f9fc4b29432937dc7c79"
+      },
+      "/usr/lib/chromium/locales/hu.pak.info": {
+        "bytes": 1283311,
+        "sha256": "ecf989aae2a1eb590e133202b673d0f98008d2102668932c58b973d2274ebde3"
+      },
+      "/usr/lib/chromium/locales/hu_FEMININE.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/hu_MASCULINE.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/hu_NEUTER.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/id.pak": {
+        "bytes": 642817,
+        "sha256": "286f3dd244c08dbfa853772711472a2cbbda9b6e73de66524379cc000db43ae9"
+      },
+      "/usr/lib/chromium/locales/id.pak.info": {
+        "bytes": 1283311,
+        "sha256": "ecf989aae2a1eb590e133202b673d0f98008d2102668932c58b973d2274ebde3"
+      },
+      "/usr/lib/chromium/locales/id_FEMININE.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/id_MASCULINE.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/id_NEUTER.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/it.pak": {
+        "bytes": 707279,
+        "sha256": "277bc9ec679edb7b3b5bbdba35736a6587e643be7fef59e71763a130f7671830"
+      },
+      "/usr/lib/chromium/locales/it.pak.info": {
+        "bytes": 1283311,
+        "sha256": "ecf989aae2a1eb590e133202b673d0f98008d2102668932c58b973d2274ebde3"
+      },
+      "/usr/lib/chromium/locales/it_FEMININE.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/it_MASCULINE.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/it_NEUTER.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/ja.pak": {
+        "bytes": 856330,
+        "sha256": "536ef9ca6f5fe706b0fb724fea013730f3cdcbb7647fedd62685a5c0673c74b6"
+      },
+      "/usr/lib/chromium/locales/ja.pak.info": {
+        "bytes": 1283311,
+        "sha256": "ecf989aae2a1eb590e133202b673d0f98008d2102668932c58b973d2274ebde3"
+      },
+      "/usr/lib/chromium/locales/ja_FEMININE.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/ja_MASCULINE.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/ja_NEUTER.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/kn.pak": {
+        "bytes": 1728188,
+        "sha256": "f9797cde3918c3372d12f084a50730f114ba6c359b948574dcc3ab05f59e0abb"
+      },
+      "/usr/lib/chromium/locales/kn.pak.info": {
+        "bytes": 1283311,
+        "sha256": "ecf989aae2a1eb590e133202b673d0f98008d2102668932c58b973d2274ebde3"
+      },
+      "/usr/lib/chromium/locales/kn_FEMININE.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/kn_MASCULINE.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/kn_NEUTER.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/ko.pak": {
+        "bytes": 730176,
+        "sha256": "a683e5dac952fa41b085ec0bf8ee45f2b18e71f87f9a52569230865821e32280"
+      },
+      "/usr/lib/chromium/locales/ko.pak.info": {
+        "bytes": 1283311,
+        "sha256": "ecf989aae2a1eb590e133202b673d0f98008d2102668932c58b973d2274ebde3"
+      },
+      "/usr/lib/chromium/locales/ko_FEMININE.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/ko_MASCULINE.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/ko_NEUTER.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/lt.pak": {
+        "bytes": 787176,
+        "sha256": "478cc3edeb588cc946f06ae2d2311978c432ad8e36582815c33bb8c4b58251bb"
+      },
+      "/usr/lib/chromium/locales/lt.pak.info": {
+        "bytes": 1283311,
+        "sha256": "ecf989aae2a1eb590e133202b673d0f98008d2102668932c58b973d2274ebde3"
+      },
+      "/usr/lib/chromium/locales/lt_FEMININE.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/lt_MASCULINE.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/lt_NEUTER.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/lv.pak": {
+        "bytes": 783818,
+        "sha256": "ee90d42be059fefaf83a31f5046ec98910476f5df3ba09cc4e440ebe68898f4b"
+      },
+      "/usr/lib/chromium/locales/lv.pak.info": {
+        "bytes": 1283311,
+        "sha256": "ecf989aae2a1eb590e133202b673d0f98008d2102668932c58b973d2274ebde3"
+      },
+      "/usr/lib/chromium/locales/lv_FEMININE.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/lv_MASCULINE.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/lv_NEUTER.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/ml.pak": {
+        "bytes": 1774989,
+        "sha256": "194677b686927873c3152a94a6514cfc625e6948f445d71c553e80f827b4f0ea"
+      },
+      "/usr/lib/chromium/locales/ml.pak.info": {
+        "bytes": 1283311,
+        "sha256": "ecf989aae2a1eb590e133202b673d0f98008d2102668932c58b973d2274ebde3"
+      },
+      "/usr/lib/chromium/locales/ml_FEMININE.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/ml_MASCULINE.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/ml_NEUTER.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/mr.pak": {
+        "bytes": 1474480,
+        "sha256": "9f2038127ee313e184c3c7b5983e2cd2a1a0f9cc471e1f534f4430269753050c"
+      },
+      "/usr/lib/chromium/locales/mr.pak.info": {
+        "bytes": 1283311,
+        "sha256": "ecf989aae2a1eb590e133202b673d0f98008d2102668932c58b973d2274ebde3"
+      },
+      "/usr/lib/chromium/locales/mr_FEMININE.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/mr_MASCULINE.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/mr_NEUTER.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/ms.pak": {
+        "bytes": 676843,
+        "sha256": "f1b0e547a225f9c9d8671e2024fcc11f42325c64de705650432d78d1a529da61"
+      },
+      "/usr/lib/chromium/locales/ms.pak.info": {
+        "bytes": 1283311,
+        "sha256": "ecf989aae2a1eb590e133202b673d0f98008d2102668932c58b973d2274ebde3"
+      },
+      "/usr/lib/chromium/locales/ms_FEMININE.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/ms_MASCULINE.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/ms_NEUTER.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/nb.pak": {
+        "bytes": 643050,
+        "sha256": "e6bad2c0bd9a273dd9ca41c4cf561fe1fa4f4c300650b71d4aca452c0f207cae"
+      },
+      "/usr/lib/chromium/locales/nb.pak.info": {
+        "bytes": 1283311,
+        "sha256": "ecf989aae2a1eb590e133202b673d0f98008d2102668932c58b973d2274ebde3"
+      },
+      "/usr/lib/chromium/locales/nb_FEMININE.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/nb_MASCULINE.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/nb_NEUTER.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/nl.pak": {
+        "bytes": 671812,
+        "sha256": "c467c3f81b1bd06fe59df74c805d823101d3deacf2bb45e77401360cab8877da"
+      },
+      "/usr/lib/chromium/locales/nl.pak.info": {
+        "bytes": 1283311,
+        "sha256": "ecf989aae2a1eb590e133202b673d0f98008d2102668932c58b973d2274ebde3"
+      },
+      "/usr/lib/chromium/locales/nl_FEMININE.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/nl_MASCULINE.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/nl_NEUTER.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/pl.pak": {
+        "bytes": 753078,
+        "sha256": "baaa0182637888908b909f62d13a2e9d1531b87d98fd306a3fd861ebe4086af3"
+      },
+      "/usr/lib/chromium/locales/pl.pak.info": {
+        "bytes": 1283311,
+        "sha256": "ecf989aae2a1eb590e133202b673d0f98008d2102668932c58b973d2274ebde3"
+      },
+      "/usr/lib/chromium/locales/pl_FEMININE.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/pl_MASCULINE.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/pl_NEUTER.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/pt-BR.pak": {
+        "bytes": 705036,
+        "sha256": "e6cefdd8f0f2861bcee1eb150e8ae21c6a32a0d9c2ff0a4c05cdbf06e9edc649"
+      },
+      "/usr/lib/chromium/locales/pt-BR.pak.info": {
+        "bytes": 1283311,
+        "sha256": "ecf989aae2a1eb590e133202b673d0f98008d2102668932c58b973d2274ebde3"
+      },
+      "/usr/lib/chromium/locales/pt-BR_FEMININE.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/pt-BR_MASCULINE.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/pt-BR_NEUTER.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/pt-PT.pak": {
+        "bytes": 708606,
+        "sha256": "e129d4cd47d63dc072ab51fd4fe4816027beb28a3220116e521151d5158266fa"
+      },
+      "/usr/lib/chromium/locales/pt-PT.pak.info": {
+        "bytes": 1283311,
+        "sha256": "ecf989aae2a1eb590e133202b673d0f98008d2102668932c58b973d2274ebde3"
+      },
+      "/usr/lib/chromium/locales/pt-PT_FEMININE.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/pt-PT_MASCULINE.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/pt-PT_NEUTER.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/ro.pak": {
+        "bytes": 733169,
+        "sha256": "e94d490f64288b682cb1d5a75efac92c8a10aa2d290cb96fe7cf58673409ceb9"
+      },
+      "/usr/lib/chromium/locales/ro.pak.info": {
+        "bytes": 1283311,
+        "sha256": "ecf989aae2a1eb590e133202b673d0f98008d2102668932c58b973d2274ebde3"
+      },
+      "/usr/lib/chromium/locales/ro_FEMININE.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/ro_MASCULINE.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/ro_NEUTER.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/ru.pak": {
+        "bytes": 1213126,
+        "sha256": "06bca8e817ee85f15aba6261c63378a2224f8266f7ed2d35ed429cdf8fa45622"
+      },
+      "/usr/lib/chromium/locales/ru.pak.info": {
+        "bytes": 1283311,
+        "sha256": "ecf989aae2a1eb590e133202b673d0f98008d2102668932c58b973d2274ebde3"
+      },
+      "/usr/lib/chromium/locales/ru_FEMININE.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/ru_MASCULINE.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/ru_NEUTER.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/sk.pak": {
+        "bytes": 765319,
+        "sha256": "b759d3506854efa61302bff0a293df99a98804673c42aaf54629b4877bb400af"
+      },
+      "/usr/lib/chromium/locales/sk.pak.info": {
+        "bytes": 1283311,
+        "sha256": "ecf989aae2a1eb590e133202b673d0f98008d2102668932c58b973d2274ebde3"
+      },
+      "/usr/lib/chromium/locales/sk_FEMININE.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/sk_MASCULINE.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/sk_NEUTER.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/sl.pak": {
+        "bytes": 729800,
+        "sha256": "40bb2004e1f4f16d024c2ae618b411a14a67bbe1e21a7e0e3103e515cfa04fcb"
+      },
+      "/usr/lib/chromium/locales/sl.pak.info": {
+        "bytes": 1283311,
+        "sha256": "ecf989aae2a1eb590e133202b673d0f98008d2102668932c58b973d2274ebde3"
+      },
+      "/usr/lib/chromium/locales/sl_FEMININE.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/sl_MASCULINE.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/sl_NEUTER.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/sr.pak": {
+        "bytes": 1121680,
+        "sha256": "f6089013f6ba9f07120f240fc9569b4a3d185debb0d78dafd3af34902dd97dbf"
+      },
+      "/usr/lib/chromium/locales/sr.pak.info": {
+        "bytes": 1283311,
+        "sha256": "ecf989aae2a1eb590e133202b673d0f98008d2102668932c58b973d2274ebde3"
+      },
+      "/usr/lib/chromium/locales/sr_FEMININE.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/sr_MASCULINE.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/sr_NEUTER.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/sv.pak": {
+        "bytes": 654628,
+        "sha256": "a49f926c8b10c4a81449bd6cafc75a8059c4f61e21430626c4e20960e03d56e7"
+      },
+      "/usr/lib/chromium/locales/sv.pak.info": {
+        "bytes": 1283311,
+        "sha256": "ecf989aae2a1eb590e133202b673d0f98008d2102668932c58b973d2274ebde3"
+      },
+      "/usr/lib/chromium/locales/sv_FEMININE.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/sv_MASCULINE.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/sv_NEUTER.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/sw.pak": {
+        "bytes": 692236,
+        "sha256": "01e097494de313c9ddfb17e9f22d832acc13ca008a0c22a1edd6aef267a8a564"
+      },
+      "/usr/lib/chromium/locales/sw.pak.info": {
+        "bytes": 1283311,
+        "sha256": "ecf989aae2a1eb590e133202b673d0f98008d2102668932c58b973d2274ebde3"
+      },
+      "/usr/lib/chromium/locales/sw_FEMININE.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/sw_MASCULINE.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/sw_NEUTER.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/ta.pak": {
+        "bytes": 1768637,
+        "sha256": "a856659a27e878f3f27cfd7ae37820c598bf84245cc76c5d6e10d01588684fd8"
+      },
+      "/usr/lib/chromium/locales/ta.pak.info": {
+        "bytes": 1283311,
+        "sha256": "ecf989aae2a1eb590e133202b673d0f98008d2102668932c58b973d2274ebde3"
+      },
+      "/usr/lib/chromium/locales/ta_FEMININE.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/ta_MASCULINE.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/ta_NEUTER.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/te.pak": {
+        "bytes": 1639208,
+        "sha256": "831f41eb11a56e9ba10f16d94e9e91491d34d9912b414dc43a98f7b215e4d45b"
+      },
+      "/usr/lib/chromium/locales/te.pak.info": {
+        "bytes": 1283311,
+        "sha256": "ecf989aae2a1eb590e133202b673d0f98008d2102668932c58b973d2274ebde3"
+      },
+      "/usr/lib/chromium/locales/te_FEMININE.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/te_MASCULINE.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/te_NEUTER.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/th.pak": {
+        "bytes": 1371870,
+        "sha256": "f6396531cbf9a388c28100fcd67e9dae7d9386501c0e1f24674adfa09ccbdb38"
+      },
+      "/usr/lib/chromium/locales/th.pak.info": {
+        "bytes": 1283311,
+        "sha256": "ecf989aae2a1eb590e133202b673d0f98008d2102668932c58b973d2274ebde3"
+      },
+      "/usr/lib/chromium/locales/th_FEMININE.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/th_MASCULINE.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/th_NEUTER.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/tr.pak": {
+        "bytes": 706498,
+        "sha256": "d27603038a9b083c7367eac08f6e208a4d18e571c82cc1896d78e6fb5bbd87b7"
+      },
+      "/usr/lib/chromium/locales/tr.pak.info": {
+        "bytes": 1283311,
+        "sha256": "ecf989aae2a1eb590e133202b673d0f98008d2102668932c58b973d2274ebde3"
+      },
+      "/usr/lib/chromium/locales/tr_FEMININE.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/tr_MASCULINE.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/tr_NEUTER.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/uk.pak": {
+        "bytes": 1222803,
+        "sha256": "f7fa3a18fdeb6ac1b2f7cd9933cfa012ea6e3824fee6897b00fe928b4bab56ba"
+      },
+      "/usr/lib/chromium/locales/uk.pak.info": {
+        "bytes": 1283311,
+        "sha256": "ecf989aae2a1eb590e133202b673d0f98008d2102668932c58b973d2274ebde3"
+      },
+      "/usr/lib/chromium/locales/uk_FEMININE.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/uk_MASCULINE.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/uk_NEUTER.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/ur.pak": {
+        "bytes": 1053514,
+        "sha256": "bfa6669de01e66d108b2a723b11402f6fb120b25a77bace77ba3ae0c6eef518a"
+      },
+      "/usr/lib/chromium/locales/ur.pak.info": {
+        "bytes": 1283311,
+        "sha256": "ecf989aae2a1eb590e133202b673d0f98008d2102668932c58b973d2274ebde3"
+      },
+      "/usr/lib/chromium/locales/ur_FEMININE.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/ur_MASCULINE.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/ur_NEUTER.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/vi.pak": {
+        "bytes": 838614,
+        "sha256": "817c4e32e6682806dbe25af42b6416eb15e93b256ac987913590371877c399ef"
+      },
+      "/usr/lib/chromium/locales/vi.pak.info": {
+        "bytes": 1283311,
+        "sha256": "ecf989aae2a1eb590e133202b673d0f98008d2102668932c58b973d2274ebde3"
+      },
+      "/usr/lib/chromium/locales/vi_FEMININE.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/vi_MASCULINE.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/vi_NEUTER.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/zh-CN.pak": {
+        "bytes": 600708,
+        "sha256": "4d959e7ed863f2a3ba758fc6802735c066fb72493bbbe2ab6bb50b3726ae80f2"
+      },
+      "/usr/lib/chromium/locales/zh-CN.pak.info": {
+        "bytes": 1283311,
+        "sha256": "ecf989aae2a1eb590e133202b673d0f98008d2102668932c58b973d2274ebde3"
+      },
+      "/usr/lib/chromium/locales/zh-CN_FEMININE.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/zh-CN_MASCULINE.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/zh-CN_NEUTER.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/zh-TW.pak": {
+        "bytes": 594648,
+        "sha256": "b5968af18cbd88628792c988ff1221eaac12c7aaf5a54112b53988408a8e56ee"
+      },
+      "/usr/lib/chromium/locales/zh-TW.pak.info": {
+        "bytes": 1283311,
+        "sha256": "ecf989aae2a1eb590e133202b673d0f98008d2102668932c58b973d2274ebde3"
+      },
+      "/usr/lib/chromium/locales/zh-TW_FEMININE.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/zh-TW_MASCULINE.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/locales/zh-TW_NEUTER.pak.info": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "/usr/lib/chromium/resources.pak": {
+        "bytes": 20368365,
+        "sha256": "443e6f201153bbce1b273d741be342b011d6104587ebbf4f3676d4abb35b329e"
+      },
+      "/usr/lib/chromium/snapshot_blob.bin": {
+        "bytes": 374096,
+        "sha256": "e4eba34c7670ff6799a26f54199aff01454e6da7761dcdd2e5af52211e048dd7"
+      },
+      "/usr/lib/chromium/v8_context_snapshot.bin": {
+        "bytes": 753112,
+        "sha256": "608087aa3cda8f656a1d82502155d7b7bd5c41b919334b1a807ffaeee75518a4"
+      },
+      "/usr/lib/chromium/vk_swiftshader_icd.json": {
+        "bytes": 107,
+        "sha256": "c9eef28b6b984fec220ef0abfecc40b502d46946706e47bfe97707027cb818bd"
+      },
+      "/usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-17.0.so": {
+        "bytes": 551112,
+        "sha256": "916b99b9bf3d354bdffa0aedc26480655d1ecf697e0d481ef02dc7ba5039024f"
+      }
+    },
+    "inventory_sha256": "288a51c54abcd0c97e52ad3554de83285ed9bc94af5d3d25ce20245fb5ce879f",
+    "ldd_library_paths": [
+      "/lib/x86_64-linux-gnu/libFLAC.so.14",
+      "/lib/x86_64-linux-gnu/libX11-xcb.so.1",
+      "/lib/x86_64-linux-gnu/libX11.so.6",
+      "/lib/x86_64-linux-gnu/libXNVCtrl.so.0",
+      "/lib/x86_64-linux-gnu/libXau.so.6",
+      "/lib/x86_64-linux-gnu/libXcomposite.so.1",
+      "/lib/x86_64-linux-gnu/libXdamage.so.1",
+      "/lib/x86_64-linux-gnu/libXdmcp.so.6",
+      "/lib/x86_64-linux-gnu/libXext.so.6",
+      "/lib/x86_64-linux-gnu/libXfixes.so.3",
+      "/lib/x86_64-linux-gnu/libXi.so.6",
+      "/lib/x86_64-linux-gnu/libXrandr.so.2",
+      "/lib/x86_64-linux-gnu/libXrender.so.1",
+      "/lib/x86_64-linux-gnu/libasound.so.2",
+      "/lib/x86_64-linux-gnu/libasyncns.so.0",
+      "/lib/x86_64-linux-gnu/libatk-1.0.so.0",
+      "/lib/x86_64-linux-gnu/libatk-bridge-2.0.so.0",
+      "/lib/x86_64-linux-gnu/libatomic.so.1",
+      "/lib/x86_64-linux-gnu/libatspi.so.0",
+      "/lib/x86_64-linux-gnu/libavahi-client.so.3",
+      "/lib/x86_64-linux-gnu/libavahi-common.so.3",
+      "/lib/x86_64-linux-gnu/libblkid.so.1",
+      "/lib/x86_64-linux-gnu/libbrotlicommon.so.1",
+      "/lib/x86_64-linux-gnu/libbrotlidec.so.1",
+      "/lib/x86_64-linux-gnu/libbz2.so.1.0",
+      "/lib/x86_64-linux-gnu/libc.so.6",
+      "/lib/x86_64-linux-gnu/libcairo.so.2",
+      "/lib/x86_64-linux-gnu/libcap.so.2",
+      "/lib/x86_64-linux-gnu/libcom_err.so.2",
+      "/lib/x86_64-linux-gnu/libcups.so.2",
+      "/lib/x86_64-linux-gnu/libdatrie.so.1",
+      "/lib/x86_64-linux-gnu/libdav1d.so.7",
+      "/lib/x86_64-linux-gnu/libdbus-1.so.3",
+      "/lib/x86_64-linux-gnu/libdouble-conversion.so.3",
+      "/lib/x86_64-linux-gnu/libdrm.so.2",
+      "/lib/x86_64-linux-gnu/libexpat.so.1",
+      "/lib/x86_64-linux-gnu/libffi.so.8",
+      "/lib/x86_64-linux-gnu/libfontconfig.so.1",
+      "/lib/x86_64-linux-gnu/libfreetype.so.6",
+      "/lib/x86_64-linux-gnu/libfribidi.so.0",
+      "/lib/x86_64-linux-gnu/libgbm.so.1",
+      "/lib/x86_64-linux-gnu/libgcc_s.so.1",
+      "/lib/x86_64-linux-gnu/libgio-2.0.so.0",
+      "/lib/x86_64-linux-gnu/libglib-2.0.so.0",
+      "/lib/x86_64-linux-gnu/libgmodule-2.0.so.0",
+      "/lib/x86_64-linux-gnu/libgmp.so.10",
+      "/lib/x86_64-linux-gnu/libgnutls.so.30",
+      "/lib/x86_64-linux-gnu/libgobject-2.0.so.0",
+      "/lib/x86_64-linux-gnu/libgraphite2.so.3",
+      "/lib/x86_64-linux-gnu/libgssapi_krb5.so.2",
+      "/lib/x86_64-linux-gnu/libharfbuzz-subset.so.0",
+      "/lib/x86_64-linux-gnu/libharfbuzz.so.0",
+      "/lib/x86_64-linux-gnu/libhogweed.so.6",
+      "/lib/x86_64-linux-gnu/libidn2.so.0",
+      "/lib/x86_64-linux-gnu/libjpeg.so.62",
+      "/lib/x86_64-linux-gnu/libk5crypto.so.3",
+      "/lib/x86_64-linux-gnu/libkeyutils.so.1",
+      "/lib/x86_64-linux-gnu/libkrb5.so.3",
+      "/lib/x86_64-linux-gnu/libkrb5support.so.0",
+      "/lib/x86_64-linux-gnu/liblcms2.so.2",
+      "/lib/x86_64-linux-gnu/libm.so.6",
+      "/lib/x86_64-linux-gnu/libminizip.so.1",
+      "/lib/x86_64-linux-gnu/libmount.so.1",
+      "/lib/x86_64-linux-gnu/libmp3lame.so.0",
+      "/lib/x86_64-linux-gnu/libmpg123.so.0",
+      "/lib/x86_64-linux-gnu/libnettle.so.8",
+      "/lib/x86_64-linux-gnu/libnspr4.so",
+      "/lib/x86_64-linux-gnu/libnss3.so",
+      "/lib/x86_64-linux-gnu/libnssutil3.so",
+      "/lib/x86_64-linux-gnu/libogg.so.0",
+      "/lib/x86_64-linux-gnu/libopenh264.so.8",
+      "/lib/x86_64-linux-gnu/libopenjp2.so.7",
+      "/lib/x86_64-linux-gnu/libopus.so.0",
+      "/lib/x86_64-linux-gnu/libp11-kit.so.0",
+      "/lib/x86_64-linux-gnu/libpango-1.0.so.0",
+      "/lib/x86_64-linux-gnu/libpcre2-8.so.0",
+      "/lib/x86_64-linux-gnu/libpixman-1.so.0",
+      "/lib/x86_64-linux-gnu/libplc4.so",
+      "/lib/x86_64-linux-gnu/libplds4.so",
+      "/lib/x86_64-linux-gnu/libpng16.so.16",
+      "/lib/x86_64-linux-gnu/libpulse.so.0",
+      "/lib/x86_64-linux-gnu/libresolv.so.2",
+      "/lib/x86_64-linux-gnu/libselinux.so.1",
+      "/lib/x86_64-linux-gnu/libsmime3.so",
+      "/lib/x86_64-linux-gnu/libsndfile.so.1",
+      "/lib/x86_64-linux-gnu/libstdc++.so.6",
+      "/lib/x86_64-linux-gnu/libsystemd.so.0",
+      "/lib/x86_64-linux-gnu/libtasn1.so.6",
+      "/lib/x86_64-linux-gnu/libthai.so.0",
+      "/lib/x86_64-linux-gnu/libudev.so.1",
+      "/lib/x86_64-linux-gnu/libunistring.so.5",
+      "/lib/x86_64-linux-gnu/libvorbis.so.0",
+      "/lib/x86_64-linux-gnu/libvorbisenc.so.2",
+      "/lib/x86_64-linux-gnu/libxcb-render.so.0",
+      "/lib/x86_64-linux-gnu/libxcb-shm.so.0",
+      "/lib/x86_64-linux-gnu/libxcb.so.1",
+      "/lib/x86_64-linux-gnu/libxkbcommon.so.0",
+      "/lib/x86_64-linux-gnu/libz.so.1",
+      "/lib/x86_64-linux-gnu/libzstd.so.1",
+      "/lib64/ld-linux-x86-64.so.2",
+      "/usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-17.0.so"
+    ]
+  },
+  "prepared_at_utc": "2026-11-20T06:21:19.581591+00:00",
+  "purpose": "Explicit local browser/runtime pin for future source-bound qualification",
+  "tests_started": false
+}

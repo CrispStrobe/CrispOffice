@@ -1,0 +1,912 @@
+{
+  "packages/quds_office_engine/lib/src/slide/model/pml_presentation.dart": {
+    "after": {
+      "declarations": {
+        "EnumDeclarationImpl:1": {
+          "members": {},
+          "token_sha256": "e2d73db3f480f5fbeb4cdbec023dc49ca3fa0ee89d6cc824d67f9a2b12694111"
+        },
+        "EnumDeclarationImpl:2": {
+          "members": {},
+          "token_sha256": "c8a98164c8ea42295723fdce8745ca2986b1d79ad88986fb994e9763e78092da"
+        },
+        "EnumDeclarationImpl:3": {
+          "members": {},
+          "token_sha256": "9e8ecb12818ad240239f7073ba8bbebcb20fa28a362ec4316d6bdb99b2adddd5"
+        },
+        "class PmlLayout": {
+          "members": {
+            "constructor <default>": "f3c25651d1404d57c29c6b012180a2e20b07e7486d9ecda164bee56d255e40b8",
+            "instance fields name": "dac9c6610cc647f46edf0912957cb818a1addec3f693e922911d22b61484fef2",
+            "instance fields placeholderText": "bdaeca7e73d98df20cead4541bfe7c1d7e1b7920e63f090fb90ee3effd93728c",
+            "instance fields placeholders": "e0ed0389680d2a453a207af1cc43486062f69c30d51c29c4750683a913adea52"
+          },
+          "token_sha256": "7b717a0985f7c7613507a07d39796f094b517cf3c5991af4a430ba140069598f"
+        },
+        "class PmlMaster": {
+          "members": {
+            "constructor <default>": "78eff8c0afff3ca8c859e73662300719999b2978b7245d155d2dc5f82fb62760",
+            "instance fields background": "5a3bc7f72d98bed6f401de7cab155141177e32a9dc36f8eb126fc9a970bc2dbf",
+            "instance fields name": "dac9c6610cc647f46edf0912957cb818a1addec3f693e922911d22b61484fef2",
+            "instance fields shapes": "e8ce9f7a80c06e4f36ee6c29ea3fd4d679ad250fb84225b33fe0b358a89d22f3"
+          },
+          "token_sha256": "446b72c00136a647eff662f432196f5e50ff6e121d4b03a00fc04c312f32f11f"
+        },
+        "class PmlPathPoint": {
+          "members": {
+            "constructor <default>": "2013965edd720f4a1d86dcd094bf191d969a6f68eabaef9fa74e24554635ebd6",
+            "instance fields x": "11d13f40c06b36a7d019498445271ea2fa7222ad1676c43586a35957cb253601",
+            "instance fields y": "0d513c0d0af3efcfeed451ad0fa2b9366e44af2b5dadf3c4bff7f1a370c4dbc2"
+          },
+          "token_sha256": "4797598a81d42b07e8d0cbaa25c4ffb3d2ecb3740de4e53b1c81941f53a1ee70"
+        },
+        "class PmlPresentation": {
+          "members": {
+            "constructor <default>": "87a8b3de16807642f8cbc14d086efd7a4e39c16848ba73a1f6ee1b1f6f4d575b",
+            "instance fields layouts": "7b38b923390367eed1ec83b0fae564ff3b1ac66b0d0f831ca5600ae569eefd0c",
+            "instance fields master": "362afe7ab1db4228fecff1b239bde5b725bbaec2d329e1dc0dde09b440a90bdd",
+            "instance fields package": "a4b03645e98abf578c954d9a89c191866c2624929b8939a94c16621cfec77190",
+            "instance fields properties": "0af5ce7dca8fd6012642dae789cf53a901277f11cc44819a1b06a627b331be78",
+            "instance fields sectionSource": "c4a89e115f4e97f04e4b7ebc4967a292eaefd5222d717dd49618e46a9af60f8d",
+            "instance fields sections": "88dc9991615dd4e95331c3c5f6334d7bf3531164ae1c4a4cfb870a84b24fbfea",
+            "instance fields slideHeight": "d3312315f2e6935f68b1591f19cedd427024e61c30ec3175001489fd4f3e3a82",
+            "instance fields slideWidth": "47303176211b0010a1f2ce60aaaa520277a89c4d91d039d8f5d15f871895d317",
+            "instance fields slides": "c2de948c4b4a8de2a5a53e4aba338b5680ba7f6cb6a57d4b4b4bf2e3758b8220",
+            "method resolveText": "53c36719d3a681dfcf8c1f125dba4d467544f7e74f1e10e0894b423df9cca39c",
+            "method visibleIndexAfter": "8da9edb7edae922d968e27b107dc3090eccb3c8b929b381bd732f02fde5ee079"
+          },
+          "token_sha256": "12afd6d94b11074eccf7ab44bae10bf4c0179959fe51d18227449fd04ad3a4d1"
+        },
+        "class PmlSection": {
+          "members": {
+            "constructor <default>": "aa25281bc79e38d4d5e820d3173c377d4a78b612348d6b32ada4a26dd3e89373",
+            "instance fields id": "ee332facb36f5a8e9517283eb82d1164d34eab577d9370b75e445bf7de3b80ef",
+            "instance fields name": "dac9c6610cc647f46edf0912957cb818a1addec3f693e922911d22b61484fef2",
+            "instance fields nativeXml": "c70dfc36de265b6fac74e4b7e5a0077d3fc8aa6fa8129e2ccdbac3a5d2913008",
+            "instance fields startIndex": "5451813776877f735a9082971b49ea0b73d3e42331df6c55cfc94140edbedd4d"
+          },
+          "token_sha256": "83d01b72a8bcc796b5d5c05378c7dccbd6017df27348962d90c94b621e6915df"
+        },
+        "class PmlSectionSource": {
+          "members": {
+            "constructor <default>": "5a8beb3a02c1b5079fa9150940bbd30dad56ac1314a21f75c2430f30888a89b5",
+            "instance fields issue": "3ecb864e2ef3de1c29d2b08999b92c1054513659128de678beffbb3fefad8e07",
+            "instance fields slideIds": "f766b30b0980d3d3f346fad355afd5f2cabe29366ebf0be85050650e17ee3e11"
+          },
+          "token_sha256": "b70ae3dad000231a016d4246a86c845efa5491052ad9860904a7cf047f39c8f3"
+        },
+        "class PmlShape": {
+          "members": {
+            "constructor <default>": "96cd5945673921bf15be3ec564f36cd2c680465b8b43409d30e5eb5e825fcfcc",
+            "get hasCurrentRichText": "ceae98da7c8583a81294771b048f67736f9c081ea5382c2d25e08c34f6219cda",
+            "get hasMedia": "6695e97a112a65a7cbae2a6e7ee3cf0373c620495ae2f01217e860f00eb5a615",
+            "get resolvedRichText": "866d0f59e5293300f119d8377ed3d4e792513f9bf241ad34f6f39834a0066c5e",
+            "instance fields embedRelId": "46144f314c59d95ad87af2c94a54c31e3ae1dbd2ecd4957146dee013fc078be4",
+            "instance fields fillColor": "837abf31c9d2f4775b76859f69e4c804fe945c3bc91285e1ae8a9f0dc7a82df8",
+            "instance fields fontSizePt": "987ca7bc14400d721328fd94ac0221351737387cf1e0f0902ce7a2f73645e6d3",
+            "instance fields groupId": "33756ae63f42028f10c868fe8d2120f5abd086d2efcbe55f53c3519a09ad0152",
+            "instance fields hyperlinkUrl": "31475bcb1cb620e1677f7081140606b6a080414ca7c8b192ae29a238319ea71d",
+            "instance fields id": "4739bdc521790fa005cd2a3f48d104ccaf04da1c4194018c91ac6fa328bbbbaa",
+            "instance fields mediaBytes": "e44e63f5162623d267226be7647339bec44c2be967d224ebd2c2192c199f9a3f",
+            "instance fields mediaName": "e70466f553876c40d9a79f9c4d710dc556a3c8ff3969b99eaa3eefb66570b657",
+            "instance fields name": "dac9c6610cc647f46edf0912957cb818a1addec3f693e922911d22b61484fef2",
+            "instance fields path": "64bb91827bd90c88fd93156ebdc00329395c48f4cb6df87abf023bd12180b69e",
+            "instance fields placeholder": "82902c516829644e99097a266d53a4d190729abbd75665c94d29fb6db9a44433",
+            "instance fields placeholderIndex": "cfe7c9910bee2905210ccb3c95cefaa2d67441f8247a4aebecb9c7b478ca3baf",
+            "instance fields placeholderType": "43fda79c5d337abf1ce93fb9ccaa29511714661b69bb6aea46667ee5ecf238b3",
+            "instance fields preset": "6e752b8c2540991d0f90eea86d98eb777a9aab418701d4495357cc5a81a2ee0b",
+            "instance fields richText": "6f937791e1911a3624480bdcaa543bc5b53195af99f45ee0139431136a9ebb62",
+            "instance fields rightToLeft": "75937791647668f0004574b69164b7c70a179d246a3ca6608eef5ef07ee9fb06",
+            "instance fields strokeColor": "e7c5b3aa00ac555d64da36d504f1ed22d01881721e0dcf66ce3ca5b5b15a2b56",
+            "instance fields strokeWidth": "824c7a98b707f152dcb32e076d4650f8f4d9369e67767deb90b00ae36b28e15b",
+            "instance fields table": "e1f47f9cc245a453b90a2cdd53e108699cb37b9958afb88d1df8cbed44895b04",
+            "instance fields text": "4f8e0a62c24c286565fe8e82d3829e37348dfc481853bc5c62a4c723b36726d8",
+            "instance fields textAlign": "9d1e3174e9c8098cf8a9d63b53461a995dc9d6d8f3b123b35c65922bf0b7607a",
+            "instance fields textAnchor": "4c7fa11f50ff08789cd78f7ac0b1aa1e22a5927023967e61a2605b8180d04f58",
+            "instance fields textColor": "22792fa460839592e4595a41005a3c47ea19269b6621908532ff9d5c34240eca",
+            "instance fields textSource": "c1b0173f935f34e173385bf16e4898b4adcc2055789921fcf08ca1f1ebf484c5",
+            "instance fields transform": "2d9c17f6f044c478fcb99efdee4454fac184acc86353d23b31f42ef188391ff4",
+            "instance fields visual": "1e3b9f8a81f1299e4d5c472cca000038b646a47fceb925d5074599faefaf16a9",
+            "method copy": "8e30694b0da707aec3512af4327a8e31df969ff11338ed4b5e2cf83d22435425"
+          },
+          "token_sha256": "6e4744b5ad2052911c81ad81e7bec780c2fe4b41dfc8983febee91e1efc0503f"
+        },
+        "class PmlSlide": {
+          "members": {
+            "constructor <default>": "017bb20208dee42504bc5a19237d96dff9f12ee4563f0d9f84a623b611d90cc2",
+            "get background": "eab9bd081e34cb67b015dae78cd884a86f332ea1c481394e1cc6556a734202f1",
+            "get backgroundPicture": "fb9d7d84053c5e1bff14ada53535a04d12aa8e33cb7f4f40b575d9b73a88395e",
+            "get sourceBackground": "f82a9411b2118817735775468595bf0b62c0a688c154b2ef4fda2e8be9ac9e2d",
+            "get writesSolidBackground": "92f714641eb0d9cd7ad41c47d57b24c5a7907874bf3aa681901e3d0ccf6c533a",
+            "instance fields _background": "12d3800377fd0df377845f9ec79e360490a22bd60893bbb6eb702ec25bc20819",
+            "instance fields _backgroundFromSource": "8dc760fa4fd7dec7a60d9776c2e1c39a10a313b1fb2a5e0e4d5f72f59363fbbc",
+            "instance fields _backgroundPicture": "b0bb105eea62f771f5ae97270d9e2c5e843610e6605c908fca1fdbccd3a6b3d3",
+            "instance fields _primaryMasterBackground": "1de49da5247236f54bea709fe0b48ae7e8af1175d1843b729c9b27c4fe344c6a",
+            "instance fields _sourceBackground": "0db5a8ea602f1bc3fd3728642b10d6a9ee4a591e7769a57e06d5f125d3971e6c",
+            "instance fields animations": "c8d2ebb9c29e1186b9a43cb5d5d2c546a7e9a76cdc0fa8aff09eb2bfe80cb60e",
+            "instance fields backgroundShapes": "226421bd749f68fd7344010a8ceedb0779716b4294d69a3572674f8ff5f20daf",
+            "instance fields backgroundShapesResolved": "5c832dbedd47a371acaa8f1e4d3c3bddc8da20c7f69e0d4acfaa6ac46e85cc0e",
+            "instance fields hidden": "a359b53e96c25b29d1e7d47a21256c5da8d6944c13658b2fdb420764ea6df2d9",
+            "instance fields id": "4739bdc521790fa005cd2a3f48d104ccaf04da1c4194018c91ac6fa328bbbbaa",
+            "instance fields inheritsMasterBackground": "b66d8327d0057713acfca9b8e07b9172eda23bfc81aec601de64343bbfcefc47",
+            "instance fields layoutName": "0880ec3563cc32275d937788880b99cf4f32fc89943872277166f2a26dc3e08c",
+            "instance fields masterName": "b66625e79a9c999f9a5ad0078bdbfb13aa9c9e4d64b583cc88a8c15fc128fd3c",
+            "instance fields notes": "9c2dffb351e7c88a8dca3d8ee94ef66a23423109167225e8e3089d478197c6e3",
+            "instance fields shapes": "33ea48ac71b64a2fbf061dccef766fd1c7c0ecaaaf044033a191cea3163833c6",
+            "instance fields showMasterShapes": "0ccb95f79ba8a02b72b33afff4ed055342cb4edc822ee0c119b3a4bcae19a05a",
+            "instance fields sourcePartUri": "4a7cca171e94537ea2e8f7aa6e5b1378cac04d3bd4591647e35b89823b6fb7d2",
+            "instance fields transition": "a5fc09f1236ff538db7c5567e06c427fe27527e3789afa6ebafcaf1a63e0e01f",
+            "method _clearSourceBackground": "3629703be20d297117622a89cf7aada58f27b6ac1b65102bef959de6f69ed32e",
+            "method copy": "9755e04a2c2d78d1f812544dd1559b0778eb4761ba4b443549d2387be5f4f2b5",
+            "method resolveBackground": "52f360398f1d8bb31c1e109f73ee319ab391f963cbc254e50e6575452c5a1f73",
+            "method retainSourceBackground": "72080f4fa6b1cbe900988ce466b4d7989c7798c1726008264d545238e292a221",
+            "method setInheritedBackground": "4d7f93b3d9e5f3d7d2f37632fa5eddb4944f6faca06060d994517c1506cd23a7",
+            "method updateMasterBackground": "efff1d8b6450d52cd1bc4c83926067dc2356eac878cdeaccecdef5762524c535",
+            "set background": "6ac31c2f6c77cddb2b54572b1b625803c4370ad0c6a901b7dcaeb28efa87d54d"
+          },
+          "token_sha256": "6267409ddb7ceffa1c9052018cafe529f7bdb8e25ed2c20d93025b00b5084ff9"
+        },
+        "class PmlTable": {
+          "members": {
+            "constructor <default>": "ab6e79dab0f81ec57fcc42f04acb0547e5a0278646401089cdfe64bec5e45b22",
+            "get colCount": "77011057edd36da7e75c34a94d21026f0b940ed0838944e5601928dfc9148053",
+            "get rowCount": "5c9ffe5b8d8969fb62af74c374062cd9ab62003c80375987d1eafdcb7ce5d0c2",
+            "instance fields headerRow": "051c6220da84bafc9c419fe296ac0f1ea667c7a2feb6f8b7d4d362b8dd762d1c",
+            "instance fields rightToLeft": "bb11c15ac483a9dedb351ae2d2c85c07ce63ace144735f5cae6305295d95e4e4",
+            "instance fields rows": "f99e68a806b169f263933a11bae6a63e4ce2a190509e88f93ce3bd9b2985e3a4",
+            "method cellAt": "e002f7c7b0cb42159204595e4acb27d4a652e99bfb49e6732d7561c916bad574",
+            "method cellBounds": "34baffec8e7015252e462d07abaa5682433650d8406773f801037cab419b6f69",
+            "method copy": "04d5ed5354b4397adfc6c2985dd07cf475571b18f7c09377e6418fe111fd9337",
+            "method grid": "9953b15cbaa673e673389c2063be44467e07cc8c0c46d4493e06e19eb618a33a",
+            "method hitCell": "2d6d82e10e74043ef0f647d55125ce6eb10258b062be7158a7d49b924d9e7d69"
+          },
+          "token_sha256": "14e4d2e90ec28d7c596df31b23b60f2cd3af168e1c7bf7f6e3caadb7b5c5bc34"
+        },
+        "class PmlTableCell": {
+          "members": {
+            "constructor <default>": "a3ffdb5269d55bd6ef7774e2b816a36a763891cc1695bdbca5d6e745e3ead601",
+            "instance fields fillColor": "837abf31c9d2f4775b76859f69e4c804fe945c3bc91285e1ae8a9f0dc7a82df8",
+            "instance fields text": "4f8e0a62c24c286565fe8e82d3829e37348dfc481853bc5c62a4c723b36726d8",
+            "instance fields textColor": "22792fa460839592e4595a41005a3c47ea19269b6621908532ff9d5c34240eca",
+            "method copy": "0687ba070db523531fd127b7fd715ca809e03f3a8da3713812bd56e7a9bc7e22"
+          },
+          "token_sha256": "2a81c1cc78ffa6959a7fef39270064a5ed544c505f58b119c164eb335dcef2cc"
+        },
+        "class PmlTextParagraph": {
+          "members": {
+            "constructor <default>": "3abe5c38ca72ec04c86ba054263a8b869c8220abd5d8dac08f513f56a910d52e",
+            "instance fields align": "4142374638c03089b15fde71c6e5bd6722d57a7a8551eaef86a5f8275a2d04d7",
+            "instance fields defaultBold": "e47b7ae59623c2b6685e4739f10c8c583a182ac81463081e14f225d4181cd77a",
+            "instance fields defaultColor": "d3e645c188f3a639094ac102b4ea558dfb82e83a535b191655b17341984cd7c3",
+            "instance fields defaultFontSizePt": "2aae869574b4fd30b7ecf4b2029b6d50c0781f48ceb27ece20e6f3ca5f4e87c6",
+            "instance fields defaultItalic": "aa8c8bcdf509686373fb7311ba57eea51d8b30f43371c7af9feca77eaf37c919",
+            "instance fields defaultTabPt": "379b87fa728a409ba13e344dec76dc5f016b1adbd822333bc575939d5c72b298",
+            "instance fields indentPt": "ca4db9041742ea9ac5844022999046ba49b0e004ff25d73d0680695ca406c35b",
+            "instance fields level": "dbdf3932f96452983fc313e7f4f5c740a719bce0444db9490e8922ebb4495214",
+            "instance fields lineSpacing": "59ff4f12a85e0ba803ec8a6f7ba23bf413cc2782935c14f812ffc2ac2211a9c0",
+            "instance fields marginLeftPt": "eb1b9f8078aea915adb80a6d9d521cbbd625cd6d871a7afd14b9c989e0e62565",
+            "instance fields rightToLeft": "bb11c15ac483a9dedb351ae2d2c85c07ce63ace144735f5cae6305295d95e4e4",
+            "instance fields runs": "c0ab9aad0e4fd7f07a918bd688f87b0787a7f61482e04e19aa8ece764fcc2f5a",
+            "instance fields spaceAfterPt": "37cba373f81f8c67d5e13996a56e946ddb59c3a4d0d9e0f1171876724e5cf33a",
+            "instance fields spaceBeforePt": "0c966a3be58e42893c161132168ceeeac45af5fee806140c53ac48155ab66b29",
+            "method copy": "9776c3c20ffb7c7873cfd9d31f8c29a78eadbe96fef0714f505635aa454c4ded"
+          },
+          "token_sha256": "30616b428c323ee09d435c6c2ab7bdb882337070b25b61e76d7bf2b5e05e6ca7"
+        },
+        "class PmlTextRun": {
+          "members": {
+            "constructor <default>": "845bbd9d03c98bb7f8d893c26784001962dea740c9741ce9c965455eb76be7d3",
+            "instance fields baseline": "4d4ac8966d1f2a31febef26538b1b251d1cadb7e6af39b8d737da4e4e2ed562f",
+            "instance fields bold": "73f0e5c0f4c6ef6a49d1792fbb93cac1a31a8aa23e03c06af0e9aecb7535938c",
+            "instance fields color": "37da78c1da1b8175a8d8158ed3810707acc2931557b18889cf4f76862b6e8017",
+            "instance fields fontFamily": "42e943b8b6c77db17a1fa9f3e7524d43bb65456b001b858ba0b8c400c4a2d8d5",
+            "instance fields fontSizePt": "987ca7bc14400d721328fd94ac0221351737387cf1e0f0902ce7a2f73645e6d3",
+            "instance fields italic": "10b9d6af36f3c55ec616211aa8b35d4acb9375393872d0649ab573b48db407db",
+            "instance fields strike": "fe5a12b19a0ee8a440a024d87a2fcbb50623b4c3817427361e844d8255ed9d5c",
+            "instance fields text": "4f8e0a62c24c286565fe8e82d3829e37348dfc481853bc5c62a4c723b36726d8",
+            "instance fields underline": "e7a5b27e043d442c98841a649c28d7eab9bbaf448d8b9500c0a26f4a561e5353",
+            "method copy": "71e737dc1e213f6dbcd3343645920c284bc5b3ffb9bd0c6b34c7ef1ad22058dc"
+          },
+          "token_sha256": "3638662c991717232ced76c771bc61e8c67b66842f428e5ddd6192a78a8e7a7e"
+        },
+        "class PmlTextSource": {
+          "members": {
+            "constructor <default>": "fb5b689790d4f93bf1a9ae9eba539ea50c798efb54aeafd5aa55802dd4e6026e",
+            "instance fields fontSizePt": "af472a1f83e702e84729f0d0035d3607a7703fdd857a66595685bce3c23f72e0",
+            "instance fields rightToLeft": "60cfff0796898f466098680c42a68f4f972d1d6e96bd30fe7d764d3c3e8e1e1d",
+            "instance fields text": "b112e7f1127d7df47cdc166624772361e4d9163b8ab8d3a777da4f4a91024da5",
+            "instance fields textAlign": "e09db3130c3c03dbb8d7f422606baf6181aea83acbc8edd6a4cac44ba023adee",
+            "instance fields textColor": "e7bca654becfe2ec6cab4ccc8794fafbd58238babd971ade11b636aa2042e3b1",
+            "instance fields xml": "6b5082ce8b6987341fe2bbb65fef166a35b5a4603837888e04fb01f648d58439"
+          },
+          "token_sha256": "629bf76f8b82f16b94207c3d9f24f8ec1e667fbbe8312650b1082a657c004b03"
+        },
+        "class PmlTransform": {
+          "members": {
+            "constructor <default>": "dc35ff6b6129fd2f38161454228f1ecadf37c3829fe98d9796e4ecf118fbd638",
+            "get heightPoints": "bd65dad1efc01cb952e06ec357dd396e903492d5ac6724a677b4e19135551144",
+            "get rotationDegrees": "5fcb8a3137c934e74335f2960656848250cde60905cd69864247617a4d9e9cc6",
+            "get widthPoints": "60827fb4f646c08ba6a192881f1e9c2a769c6bdd796d922184b8d9c2c1cf423f",
+            "get xPoints": "68b686af863c626dc17a467d0ba40dbe18ae6b7ccd5b07ab0da3c1cd3d06522e",
+            "get yPoints": "3569c7105212d9d1c63d269c4516a22fa71dee33d304ee3b92d1df1d0b3508a1",
+            "instance fields cx": "ec985718286611df9045dcc2e6b63637cf244fe334baf86859b234235458403f",
+            "instance fields cy": "601d841cc018cecd25147f65a03352fcac3ed8285759281d99c5294b42b427e9",
+            "instance fields flipH": "82a8b10b16018dc984c077b3ca909217c1d546c737fa1f04d19834f30e15c4e7",
+            "instance fields flipV": "48acd9887c1337a65adb9bae32f8953fca0b287b469853d3abb4ec07fbf20de6",
+            "instance fields rot": "c88e6344abccadf5871e37e469f1bc9483cef4e2e16f529e47b9dff2348f8ec8",
+            "instance fields x": "11d13f40c06b36a7d019498445271ea2fa7222ad1676c43586a35957cb253601",
+            "instance fields y": "0d513c0d0af3efcfeed451ad0fa2b9366e44af2b5dadf3c4bff7f1a370c4dbc2",
+            "method copyWith": "51f260960381b58dded93be965a532ecf274c836dc09cdcb047d2aba1286133f"
+          },
+          "token_sha256": "8a157d9a55ddf80b7fcca318ba1377a96c989714100ffe56936a3ff3d820c882"
+        }
+      },
+      "directives": [
+        "713fdb6e8aaa02a535b49ce423c9a247f980dda3740aae16593ccf107d986df4",
+        "60a9dceb071ec0372605021c85fa8a7c6241db1636052ec779a3dd75b08526b8",
+        "0d7272a12edd7214843801d06ffe00bce5b8cb3298a2eafac26261994fc3b04a",
+        "239c37ed11f48971bcd9c108d33f4408a41ed4894eb8963d9dfdf7b227c053ef",
+        "eab204d83dd1935e8619e29e48e94617edd25e7a2a8dabbc83c898e05aafd4fb"
+      ],
+      "static_fields": {},
+      "top_level_variables": {}
+    },
+    "before": {
+      "declarations": {
+        "EnumDeclarationImpl:1": {
+          "members": {},
+          "token_sha256": "e2d73db3f480f5fbeb4cdbec023dc49ca3fa0ee89d6cc824d67f9a2b12694111"
+        },
+        "EnumDeclarationImpl:2": {
+          "members": {},
+          "token_sha256": "c8a98164c8ea42295723fdce8745ca2986b1d79ad88986fb994e9763e78092da"
+        },
+        "EnumDeclarationImpl:3": {
+          "members": {},
+          "token_sha256": "9e8ecb12818ad240239f7073ba8bbebcb20fa28a362ec4316d6bdb99b2adddd5"
+        },
+        "class PmlLayout": {
+          "members": {
+            "constructor <default>": "f3c25651d1404d57c29c6b012180a2e20b07e7486d9ecda164bee56d255e40b8",
+            "instance fields name": "dac9c6610cc647f46edf0912957cb818a1addec3f693e922911d22b61484fef2",
+            "instance fields placeholderText": "bdaeca7e73d98df20cead4541bfe7c1d7e1b7920e63f090fb90ee3effd93728c",
+            "instance fields placeholders": "e0ed0389680d2a453a207af1cc43486062f69c30d51c29c4750683a913adea52"
+          },
+          "token_sha256": "7b717a0985f7c7613507a07d39796f094b517cf3c5991af4a430ba140069598f"
+        },
+        "class PmlMaster": {
+          "members": {
+            "constructor <default>": "78eff8c0afff3ca8c859e73662300719999b2978b7245d155d2dc5f82fb62760",
+            "instance fields background": "5a3bc7f72d98bed6f401de7cab155141177e32a9dc36f8eb126fc9a970bc2dbf",
+            "instance fields name": "dac9c6610cc647f46edf0912957cb818a1addec3f693e922911d22b61484fef2",
+            "instance fields shapes": "e8ce9f7a80c06e4f36ee6c29ea3fd4d679ad250fb84225b33fe0b358a89d22f3"
+          },
+          "token_sha256": "446b72c00136a647eff662f432196f5e50ff6e121d4b03a00fc04c312f32f11f"
+        },
+        "class PmlPathPoint": {
+          "members": {
+            "constructor <default>": "2013965edd720f4a1d86dcd094bf191d969a6f68eabaef9fa74e24554635ebd6",
+            "instance fields x": "11d13f40c06b36a7d019498445271ea2fa7222ad1676c43586a35957cb253601",
+            "instance fields y": "0d513c0d0af3efcfeed451ad0fa2b9366e44af2b5dadf3c4bff7f1a370c4dbc2"
+          },
+          "token_sha256": "4797598a81d42b07e8d0cbaa25c4ffb3d2ecb3740de4e53b1c81941f53a1ee70"
+        },
+        "class PmlPresentation": {
+          "members": {
+            "constructor <default>": "87a8b3de16807642f8cbc14d086efd7a4e39c16848ba73a1f6ee1b1f6f4d575b",
+            "instance fields layouts": "7b38b923390367eed1ec83b0fae564ff3b1ac66b0d0f831ca5600ae569eefd0c",
+            "instance fields master": "362afe7ab1db4228fecff1b239bde5b725bbaec2d329e1dc0dde09b440a90bdd",
+            "instance fields package": "a4b03645e98abf578c954d9a89c191866c2624929b8939a94c16621cfec77190",
+            "instance fields properties": "0af5ce7dca8fd6012642dae789cf53a901277f11cc44819a1b06a627b331be78",
+            "instance fields sectionSource": "c4a89e115f4e97f04e4b7ebc4967a292eaefd5222d717dd49618e46a9af60f8d",
+            "instance fields sections": "88dc9991615dd4e95331c3c5f6334d7bf3531164ae1c4a4cfb870a84b24fbfea",
+            "instance fields slideHeight": "d3312315f2e6935f68b1591f19cedd427024e61c30ec3175001489fd4f3e3a82",
+            "instance fields slideWidth": "47303176211b0010a1f2ce60aaaa520277a89c4d91d039d8f5d15f871895d317",
+            "instance fields slides": "c2de948c4b4a8de2a5a53e4aba338b5680ba7f6cb6a57d4b4b4bf2e3758b8220",
+            "method resolveText": "53c36719d3a681dfcf8c1f125dba4d467544f7e74f1e10e0894b423df9cca39c",
+            "method visibleIndexAfter": "8da9edb7edae922d968e27b107dc3090eccb3c8b929b381bd732f02fde5ee079"
+          },
+          "token_sha256": "12afd6d94b11074eccf7ab44bae10bf4c0179959fe51d18227449fd04ad3a4d1"
+        },
+        "class PmlSection": {
+          "members": {
+            "constructor <default>": "aa25281bc79e38d4d5e820d3173c377d4a78b612348d6b32ada4a26dd3e89373",
+            "instance fields id": "ee332facb36f5a8e9517283eb82d1164d34eab577d9370b75e445bf7de3b80ef",
+            "instance fields name": "dac9c6610cc647f46edf0912957cb818a1addec3f693e922911d22b61484fef2",
+            "instance fields nativeXml": "c70dfc36de265b6fac74e4b7e5a0077d3fc8aa6fa8129e2ccdbac3a5d2913008",
+            "instance fields startIndex": "5451813776877f735a9082971b49ea0b73d3e42331df6c55cfc94140edbedd4d"
+          },
+          "token_sha256": "83d01b72a8bcc796b5d5c05378c7dccbd6017df27348962d90c94b621e6915df"
+        },
+        "class PmlSectionSource": {
+          "members": {
+            "constructor <default>": "5a8beb3a02c1b5079fa9150940bbd30dad56ac1314a21f75c2430f30888a89b5",
+            "instance fields issue": "3ecb864e2ef3de1c29d2b08999b92c1054513659128de678beffbb3fefad8e07",
+            "instance fields slideIds": "f766b30b0980d3d3f346fad355afd5f2cabe29366ebf0be85050650e17ee3e11"
+          },
+          "token_sha256": "b70ae3dad000231a016d4246a86c845efa5491052ad9860904a7cf047f39c8f3"
+        },
+        "class PmlShape": {
+          "members": {
+            "constructor <default>": "96cd5945673921bf15be3ec564f36cd2c680465b8b43409d30e5eb5e825fcfcc",
+            "get hasCurrentRichText": "ceae98da7c8583a81294771b048f67736f9c081ea5382c2d25e08c34f6219cda",
+            "get hasMedia": "6695e97a112a65a7cbae2a6e7ee3cf0373c620495ae2f01217e860f00eb5a615",
+            "get resolvedRichText": "866d0f59e5293300f119d8377ed3d4e792513f9bf241ad34f6f39834a0066c5e",
+            "instance fields embedRelId": "46144f314c59d95ad87af2c94a54c31e3ae1dbd2ecd4957146dee013fc078be4",
+            "instance fields fillColor": "837abf31c9d2f4775b76859f69e4c804fe945c3bc91285e1ae8a9f0dc7a82df8",
+            "instance fields fontSizePt": "987ca7bc14400d721328fd94ac0221351737387cf1e0f0902ce7a2f73645e6d3",
+            "instance fields groupId": "33756ae63f42028f10c868fe8d2120f5abd086d2efcbe55f53c3519a09ad0152",
+            "instance fields hyperlinkUrl": "31475bcb1cb620e1677f7081140606b6a080414ca7c8b192ae29a238319ea71d",
+            "instance fields id": "4739bdc521790fa005cd2a3f48d104ccaf04da1c4194018c91ac6fa328bbbbaa",
+            "instance fields mediaBytes": "e44e63f5162623d267226be7647339bec44c2be967d224ebd2c2192c199f9a3f",
+            "instance fields mediaName": "e70466f553876c40d9a79f9c4d710dc556a3c8ff3969b99eaa3eefb66570b657",
+            "instance fields name": "dac9c6610cc647f46edf0912957cb818a1addec3f693e922911d22b61484fef2",
+            "instance fields path": "64bb91827bd90c88fd93156ebdc00329395c48f4cb6df87abf023bd12180b69e",
+            "instance fields placeholder": "82902c516829644e99097a266d53a4d190729abbd75665c94d29fb6db9a44433",
+            "instance fields placeholderIndex": "cfe7c9910bee2905210ccb3c95cefaa2d67441f8247a4aebecb9c7b478ca3baf",
+            "instance fields placeholderType": "43fda79c5d337abf1ce93fb9ccaa29511714661b69bb6aea46667ee5ecf238b3",
+            "instance fields preset": "6e752b8c2540991d0f90eea86d98eb777a9aab418701d4495357cc5a81a2ee0b",
+            "instance fields richText": "6f937791e1911a3624480bdcaa543bc5b53195af99f45ee0139431136a9ebb62",
+            "instance fields rightToLeft": "75937791647668f0004574b69164b7c70a179d246a3ca6608eef5ef07ee9fb06",
+            "instance fields strokeColor": "e7c5b3aa00ac555d64da36d504f1ed22d01881721e0dcf66ce3ca5b5b15a2b56",
+            "instance fields strokeWidth": "824c7a98b707f152dcb32e076d4650f8f4d9369e67767deb90b00ae36b28e15b",
+            "instance fields table": "e1f47f9cc245a453b90a2cdd53e108699cb37b9958afb88d1df8cbed44895b04",
+            "instance fields text": "4f8e0a62c24c286565fe8e82d3829e37348dfc481853bc5c62a4c723b36726d8",
+            "instance fields textAlign": "9d1e3174e9c8098cf8a9d63b53461a995dc9d6d8f3b123b35c65922bf0b7607a",
+            "instance fields textAnchor": "4c7fa11f50ff08789cd78f7ac0b1aa1e22a5927023967e61a2605b8180d04f58",
+            "instance fields textColor": "22792fa460839592e4595a41005a3c47ea19269b6621908532ff9d5c34240eca",
+            "instance fields textSource": "c1b0173f935f34e173385bf16e4898b4adcc2055789921fcf08ca1f1ebf484c5",
+            "instance fields transform": "2d9c17f6f044c478fcb99efdee4454fac184acc86353d23b31f42ef188391ff4",
+            "instance fields visual": "1e3b9f8a81f1299e4d5c472cca000038b646a47fceb925d5074599faefaf16a9",
+            "method copy": "8e30694b0da707aec3512af4327a8e31df969ff11338ed4b5e2cf83d22435425"
+          },
+          "token_sha256": "6e4744b5ad2052911c81ad81e7bec780c2fe4b41dfc8983febee91e1efc0503f"
+        },
+        "class PmlSlide": {
+          "members": {
+            "constructor <default>": "017bb20208dee42504bc5a19237d96dff9f12ee4563f0d9f84a623b611d90cc2",
+            "get background": "eab9bd081e34cb67b015dae78cd884a86f332ea1c481394e1cc6556a734202f1",
+            "instance fields _background": "12d3800377fd0df377845f9ec79e360490a22bd60893bbb6eb702ec25bc20819",
+            "instance fields _primaryMasterBackground": "1de49da5247236f54bea709fe0b48ae7e8af1175d1843b729c9b27c4fe344c6a",
+            "instance fields animations": "c8d2ebb9c29e1186b9a43cb5d5d2c546a7e9a76cdc0fa8aff09eb2bfe80cb60e",
+            "instance fields backgroundShapes": "226421bd749f68fd7344010a8ceedb0779716b4294d69a3572674f8ff5f20daf",
+            "instance fields backgroundShapesResolved": "5c832dbedd47a371acaa8f1e4d3c3bddc8da20c7f69e0d4acfaa6ac46e85cc0e",
+            "instance fields hidden": "a359b53e96c25b29d1e7d47a21256c5da8d6944c13658b2fdb420764ea6df2d9",
+            "instance fields id": "4739bdc521790fa005cd2a3f48d104ccaf04da1c4194018c91ac6fa328bbbbaa",
+            "instance fields inheritsMasterBackground": "b66d8327d0057713acfca9b8e07b9172eda23bfc81aec601de64343bbfcefc47",
+            "instance fields layoutName": "0880ec3563cc32275d937788880b99cf4f32fc89943872277166f2a26dc3e08c",
+            "instance fields masterName": "b66625e79a9c999f9a5ad0078bdbfb13aa9c9e4d64b583cc88a8c15fc128fd3c",
+            "instance fields notes": "9c2dffb351e7c88a8dca3d8ee94ef66a23423109167225e8e3089d478197c6e3",
+            "instance fields shapes": "33ea48ac71b64a2fbf061dccef766fd1c7c0ecaaaf044033a191cea3163833c6",
+            "instance fields showMasterShapes": "0ccb95f79ba8a02b72b33afff4ed055342cb4edc822ee0c119b3a4bcae19a05a",
+            "instance fields sourcePartUri": "4a7cca171e94537ea2e8f7aa6e5b1378cac04d3bd4591647e35b89823b6fb7d2",
+            "instance fields transition": "a5fc09f1236ff538db7c5567e06c427fe27527e3789afa6ebafcaf1a63e0e01f",
+            "method copy": "5a1e93e39fd3395eb8f2496df4800249c73c044bd54c6f3dc328df1fa8c3185e",
+            "method resolveBackground": "52f360398f1d8bb31c1e109f73ee319ab391f963cbc254e50e6575452c5a1f73",
+            "method setInheritedBackground": "4baa2153bd54aef7d55e12c0a0ba2d5a1793465eed79497eecf425185e234543",
+            "method updateMasterBackground": "efff1d8b6450d52cd1bc4c83926067dc2356eac878cdeaccecdef5762524c535",
+            "set background": "10cdac576b1f1a649faf973bf48aceebb67d45f384b894b5ec9154dec0b4833d"
+          },
+          "token_sha256": "8169b7699af6cb811d8226c765617065c003df4cda6ec54266e2e5c4653152da"
+        },
+        "class PmlTable": {
+          "members": {
+            "constructor <default>": "ab6e79dab0f81ec57fcc42f04acb0547e5a0278646401089cdfe64bec5e45b22",
+            "get colCount": "77011057edd36da7e75c34a94d21026f0b940ed0838944e5601928dfc9148053",
+            "get rowCount": "5c9ffe5b8d8969fb62af74c374062cd9ab62003c80375987d1eafdcb7ce5d0c2",
+            "instance fields headerRow": "051c6220da84bafc9c419fe296ac0f1ea667c7a2feb6f8b7d4d362b8dd762d1c",
+            "instance fields rightToLeft": "bb11c15ac483a9dedb351ae2d2c85c07ce63ace144735f5cae6305295d95e4e4",
+            "instance fields rows": "f99e68a806b169f263933a11bae6a63e4ce2a190509e88f93ce3bd9b2985e3a4",
+            "method cellAt": "e002f7c7b0cb42159204595e4acb27d4a652e99bfb49e6732d7561c916bad574",
+            "method cellBounds": "34baffec8e7015252e462d07abaa5682433650d8406773f801037cab419b6f69",
+            "method copy": "04d5ed5354b4397adfc6c2985dd07cf475571b18f7c09377e6418fe111fd9337",
+            "method grid": "9953b15cbaa673e673389c2063be44467e07cc8c0c46d4493e06e19eb618a33a",
+            "method hitCell": "2d6d82e10e74043ef0f647d55125ce6eb10258b062be7158a7d49b924d9e7d69"
+          },
+          "token_sha256": "14e4d2e90ec28d7c596df31b23b60f2cd3af168e1c7bf7f6e3caadb7b5c5bc34"
+        },
+        "class PmlTableCell": {
+          "members": {
+            "constructor <default>": "a3ffdb5269d55bd6ef7774e2b816a36a763891cc1695bdbca5d6e745e3ead601",
+            "instance fields fillColor": "837abf31c9d2f4775b76859f69e4c804fe945c3bc91285e1ae8a9f0dc7a82df8",
+            "instance fields text": "4f8e0a62c24c286565fe8e82d3829e37348dfc481853bc5c62a4c723b36726d8",
+            "instance fields textColor": "22792fa460839592e4595a41005a3c47ea19269b6621908532ff9d5c34240eca",
+            "method copy": "0687ba070db523531fd127b7fd715ca809e03f3a8da3713812bd56e7a9bc7e22"
+          },
+          "token_sha256": "2a81c1cc78ffa6959a7fef39270064a5ed544c505f58b119c164eb335dcef2cc"
+        },
+        "class PmlTextParagraph": {
+          "members": {
+            "constructor <default>": "3abe5c38ca72ec04c86ba054263a8b869c8220abd5d8dac08f513f56a910d52e",
+            "instance fields align": "4142374638c03089b15fde71c6e5bd6722d57a7a8551eaef86a5f8275a2d04d7",
+            "instance fields defaultBold": "e47b7ae59623c2b6685e4739f10c8c583a182ac81463081e14f225d4181cd77a",
+            "instance fields defaultColor": "d3e645c188f3a639094ac102b4ea558dfb82e83a535b191655b17341984cd7c3",
+            "instance fields defaultFontSizePt": "2aae869574b4fd30b7ecf4b2029b6d50c0781f48ceb27ece20e6f3ca5f4e87c6",
+            "instance fields defaultItalic": "aa8c8bcdf509686373fb7311ba57eea51d8b30f43371c7af9feca77eaf37c919",
+            "instance fields defaultTabPt": "379b87fa728a409ba13e344dec76dc5f016b1adbd822333bc575939d5c72b298",
+            "instance fields indentPt": "ca4db9041742ea9ac5844022999046ba49b0e004ff25d73d0680695ca406c35b",
+            "instance fields level": "dbdf3932f96452983fc313e7f4f5c740a719bce0444db9490e8922ebb4495214",
+            "instance fields lineSpacing": "59ff4f12a85e0ba803ec8a6f7ba23bf413cc2782935c14f812ffc2ac2211a9c0",
+            "instance fields marginLeftPt": "eb1b9f8078aea915adb80a6d9d521cbbd625cd6d871a7afd14b9c989e0e62565",
+            "instance fields rightToLeft": "bb11c15ac483a9dedb351ae2d2c85c07ce63ace144735f5cae6305295d95e4e4",
+            "instance fields runs": "c0ab9aad0e4fd7f07a918bd688f87b0787a7f61482e04e19aa8ece764fcc2f5a",
+            "instance fields spaceAfterPt": "37cba373f81f8c67d5e13996a56e946ddb59c3a4d0d9e0f1171876724e5cf33a",
+            "instance fields spaceBeforePt": "0c966a3be58e42893c161132168ceeeac45af5fee806140c53ac48155ab66b29",
+            "method copy": "9776c3c20ffb7c7873cfd9d31f8c29a78eadbe96fef0714f505635aa454c4ded"
+          },
+          "token_sha256": "30616b428c323ee09d435c6c2ab7bdb882337070b25b61e76d7bf2b5e05e6ca7"
+        },
+        "class PmlTextRun": {
+          "members": {
+            "constructor <default>": "845bbd9d03c98bb7f8d893c26784001962dea740c9741ce9c965455eb76be7d3",
+            "instance fields baseline": "4d4ac8966d1f2a31febef26538b1b251d1cadb7e6af39b8d737da4e4e2ed562f",
+            "instance fields bold": "73f0e5c0f4c6ef6a49d1792fbb93cac1a31a8aa23e03c06af0e9aecb7535938c",
+            "instance fields color": "37da78c1da1b8175a8d8158ed3810707acc2931557b18889cf4f76862b6e8017",
+            "instance fields fontFamily": "42e943b8b6c77db17a1fa9f3e7524d43bb65456b001b858ba0b8c400c4a2d8d5",
+            "instance fields fontSizePt": "987ca7bc14400d721328fd94ac0221351737387cf1e0f0902ce7a2f73645e6d3",
+            "instance fields italic": "10b9d6af36f3c55ec616211aa8b35d4acb9375393872d0649ab573b48db407db",
+            "instance fields strike": "fe5a12b19a0ee8a440a024d87a2fcbb50623b4c3817427361e844d8255ed9d5c",
+            "instance fields text": "4f8e0a62c24c286565fe8e82d3829e37348dfc481853bc5c62a4c723b36726d8",
+            "instance fields underline": "e7a5b27e043d442c98841a649c28d7eab9bbaf448d8b9500c0a26f4a561e5353",
+            "method copy": "71e737dc1e213f6dbcd3343645920c284bc5b3ffb9bd0c6b34c7ef1ad22058dc"
+          },
+          "token_sha256": "3638662c991717232ced76c771bc61e8c67b66842f428e5ddd6192a78a8e7a7e"
+        },
+        "class PmlTextSource": {
+          "members": {
+            "constructor <default>": "fb5b689790d4f93bf1a9ae9eba539ea50c798efb54aeafd5aa55802dd4e6026e",
+            "instance fields fontSizePt": "af472a1f83e702e84729f0d0035d3607a7703fdd857a66595685bce3c23f72e0",
+            "instance fields rightToLeft": "60cfff0796898f466098680c42a68f4f972d1d6e96bd30fe7d764d3c3e8e1e1d",
+            "instance fields text": "b112e7f1127d7df47cdc166624772361e4d9163b8ab8d3a777da4f4a91024da5",
+            "instance fields textAlign": "e09db3130c3c03dbb8d7f422606baf6181aea83acbc8edd6a4cac44ba023adee",
+            "instance fields textColor": "e7bca654becfe2ec6cab4ccc8794fafbd58238babd971ade11b636aa2042e3b1",
+            "instance fields xml": "6b5082ce8b6987341fe2bbb65fef166a35b5a4603837888e04fb01f648d58439"
+          },
+          "token_sha256": "629bf76f8b82f16b94207c3d9f24f8ec1e667fbbe8312650b1082a657c004b03"
+        },
+        "class PmlTransform": {
+          "members": {
+            "constructor <default>": "dc35ff6b6129fd2f38161454228f1ecadf37c3829fe98d9796e4ecf118fbd638",
+            "get heightPoints": "bd65dad1efc01cb952e06ec357dd396e903492d5ac6724a677b4e19135551144",
+            "get rotationDegrees": "5fcb8a3137c934e74335f2960656848250cde60905cd69864247617a4d9e9cc6",
+            "get widthPoints": "60827fb4f646c08ba6a192881f1e9c2a769c6bdd796d922184b8d9c2c1cf423f",
+            "get xPoints": "68b686af863c626dc17a467d0ba40dbe18ae6b7ccd5b07ab0da3c1cd3d06522e",
+            "get yPoints": "3569c7105212d9d1c63d269c4516a22fa71dee33d304ee3b92d1df1d0b3508a1",
+            "instance fields cx": "ec985718286611df9045dcc2e6b63637cf244fe334baf86859b234235458403f",
+            "instance fields cy": "601d841cc018cecd25147f65a03352fcac3ed8285759281d99c5294b42b427e9",
+            "instance fields flipH": "82a8b10b16018dc984c077b3ca909217c1d546c737fa1f04d19834f30e15c4e7",
+            "instance fields flipV": "48acd9887c1337a65adb9bae32f8953fca0b287b469853d3abb4ec07fbf20de6",
+            "instance fields rot": "c88e6344abccadf5871e37e469f1bc9483cef4e2e16f529e47b9dff2348f8ec8",
+            "instance fields x": "11d13f40c06b36a7d019498445271ea2fa7222ad1676c43586a35957cb253601",
+            "instance fields y": "0d513c0d0af3efcfeed451ad0fa2b9366e44af2b5dadf3c4bff7f1a370c4dbc2",
+            "method copyWith": "51f260960381b58dded93be965a532ecf274c836dc09cdcb047d2aba1286133f"
+          },
+          "token_sha256": "8a157d9a55ddf80b7fcca318ba1377a96c989714100ffe56936a3ff3d820c882"
+        }
+      },
+      "directives": [
+        "713fdb6e8aaa02a535b49ce423c9a247f980dda3740aae16593ccf107d986df4",
+        "60a9dceb071ec0372605021c85fa8a7c6241db1636052ec779a3dd75b08526b8",
+        "0d7272a12edd7214843801d06ffe00bce5b8cb3298a2eafac26261994fc3b04a",
+        "239c37ed11f48971bcd9c108d33f4408a41ed4894eb8963d9dfdf7b227c053ef",
+        "eab204d83dd1935e8619e29e48e94617edd25e7a2a8dabbc83c898e05aafd4fb"
+      ],
+      "static_fields": {},
+      "top_level_variables": {}
+    }
+  },
+  "packages/quds_office_engine/lib/src/slide/serial/slide_serial.dart": {
+    "after": {
+      "declarations": {
+        "class SlideDeserializer": {
+          "members": {
+            "method _backgroundImageShape": "fb00d90094dceb71fe132536e4e474592b68b83ad00327cf3d8c03ed7c294af6",
+            "method _backgroundOf": "8fbe3e10030b24cdc93038b8b6f9c08372cf68698fff4ff383ecb483ceda08e2",
+            "method _bindShapeMedia": "9a391aa69d184ab235ffd070e0cfe024920fb2ecfbef88548339278aed20ffb2",
+            "method _bindSlideMedia": "e1986743afdf9d652b1748cf6cb1dd9a15cb05caaa5a934c889997ede4368ab6",
+            "method _inheritPlaceholders": "551047eabf84b24e9fea154cff40c76cf27dd205743bf09798fbad16f070281e",
+            "method _masterBackground": "30783701c3c8b2ef8fca7d2ff4016ba69ef0ee6f5d3083b8587319f1521326b9",
+            "method _matchPlaceholder": "6592c49389bb7b889f8b6b8b4ce4dd8f066e21fbcff3728d959cd656ecfa45f1",
+            "method _placeholderFamily": "ea38d3d055ba8f8f1efc24a4c0d0d0cb236a17049e1efa81596c839a29149dd9",
+            "method _showsMasterShapes": "98525597556c65e9163e03cc5a691763cfad914f551a11a68fcbea5a8c890fc0",
+            "method _slideIsHidden": "0c6ad1395b24675f10f902198081ca2afdf2a2d9dadb4c68f9d766e64c71c292",
+            "method _sourceBackgroundOf": "b4b0dbd03b37fc935dd0781dabf96b398cccee627fa921313d8e72930ee1e8fa",
+            "method read": "93527368fde4c75ecf403b51289238cc389f4231fb88fcc3d66bcefbf88b2fe7",
+            "method readBytes": "ec5ecee4f01779bba92f7ac9b3a5aeb28d46a9a582403c400f8f70242b8f5075"
+          },
+          "token_sha256": "93dccf07f5400ebfb1892371255a3f5d48873f129feabef84f7c16bb987f62f6"
+        },
+        "class SlideSerializer": {
+          "members": {
+            "method _chartXml": "a57bb6237c0ba1f71a84c30c0890fd6bf71a83973f8c02ff9a8983815a8e69fb",
+            "method _ensureTemplates": "d10b13930fb764bbc1868fc2fce01ac869835c43762cce548b2d2260d8242673",
+            "method _normalizeChartAxisIds": "9109e33d8d1341b5b921f30f14a9bcaf2f136076a7e758e256e71142088933b2",
+            "method _presentationXml": "db33351f91e46a374803f7a61b38346e757def0a3eaf2f5e59af1c7dd85a217d",
+            "method _syncNotesSlide": "3bd4a33df0dbefe9b1df8c67b592c103797304f7ebbcfad625d798683228c449",
+            "method _syncSlideVisuals": "ab8fda1faea8b49b660b98b4dcacec84a18363ef5d823815c7ce64ce097814eb",
+            "method write": "3d6acc9774da93ecf7d5bc55f30aff8f03b56838548d8144f737ba9f7cc5490d",
+            "method writeBytes": "ce1c71397a256242d72f36d1fefd6b8d3fd191a10437a63067031c5d6e84cd60"
+          },
+          "token_sha256": "523421bd40b0a1909d66527c57159bd83e18bafc6d40c0bd508ade616837f6d9"
+        },
+        "class _SlideTemplate": {
+          "members": {
+            "constructor <default>": "4393d1ad9207635419684265c7bdd7e52a8142968a1e878a60de91459be56785",
+            "instance fields background": "93855d6eb3aec4b737d6574f8a0e897b5642fe418a3a5ef1d835b91c1de17c25",
+            "instance fields backgroundImage": "7ae5f7bd600a7c06cd7e93231fccb3840d3071327fcd8df9026ca0851162c752",
+            "instance fields colors": "f88040f464db03e4fb4e8b24d6aa79b1206a1e49c58400370cd9a831a4d942a1",
+            "instance fields decorations": "587a7a0ede3b19261906bc13a734bab580e37802010578735ff3c0b634278024",
+            "instance fields inheritsMasterBackground": "faf055db02a1096f0a2cabe1a1b7c5de32b4232d31715198a0c1d6841cca69f9",
+            "instance fields master": "aef8756f499fb99dc79a81a8cb0d7239eb5d7ad900c30b9568f0a939dab687a5",
+            "instance fields name": "fc5d5d0e53a4d05982d5558489fe1853c55ca1b3cf6c84f598f1f3a1822cf2df",
+            "instance fields placeholders": "e0ed0389680d2a453a207af1cc43486062f69c30d51c29c4750683a913adea52",
+            "instance fields showsMasterShapes": "534bb43def35d606db0bd7b36ee7826e5f7cb084ff9f474bdb8427d234878c39"
+          },
+          "token_sha256": "e4a68af65ff649635c6d2a4b94f27133e7dec36bd97661493c695aad4259da6f"
+        },
+        "class _SlideTemplates": {
+          "members": {
+            "constructor <default>": "2a0a5b9498c4c088aea8ef904509be8f55f01c91655362b957fe8a0bc5551530",
+            "instance fields _layouts": "cc610a2d89590692b559b569d8ba8b86b35ded01fd2eec6b2dafdf475eb0a150",
+            "instance fields _masters": "8e0ea9ed75e2af4c49fe9243b6b5961ab0595fc601df687c337ccda807e04900",
+            "instance fields defaultColors": "c9d8bd2cd9c70fd7d193b09ae785a6cdf4c192e9fcc5ca137925efbf62d5ab48",
+            "instance fields package": "fd88b04c90c3653ca39da7c6243d98b3c6349f0d13cb215510e1c0b80690b21c",
+            "instance fields slideHeight": "8fc1fff6033189264a54833bf72e4f868b8eba5e70c72e147b64d213324bf34b",
+            "instance fields slideWidth": "2a63e6c04c8c9f7defba833365624cffaeb345b4affac1c0dc38c80a0440abe6",
+            "method _cSldName": "67a3f07cc57f44bf136f356d80373a1abaa702ca20cd09ce139c880a8bbdadd6",
+            "method _colorMap": "329b8f11d18e93ea13ae436954ddc7feae7b831f5033f8bd3bc98762a94f781e",
+            "method _decorations": "71db9a8053d521dee44ec96ac19d07179fe4ec21a1cfeda296e03fd246c04d70",
+            "method _layout": "a29bc67f8a7113ada55bc577ddcb14ef737872285e5b855d57aec4b6cb35f933",
+            "method _master": "620d16def482f1ae227c57e2053646d760ede6287a67cc724724818d04cb1926",
+            "method _target": "dcecf496e7da340731df2270e59a49570b54ec7135f0d601d5719cfc66382963",
+            "method allLayouts": "b642dc6cc406407be140e93e84f4c36772825ad3d9a0742e6c3e8f0fd3526067",
+            "method layoutOf": "6381e99937676cafa06d2d34174a7094674808b19074569d3967d75ad380e1aa",
+            "static fields _schemeSlots": "9d85af0b8ab6e8adc2c6bf58fbc5ac9dae68d915ee4cf4917e2ae0b0e404ef8a"
+          },
+          "token_sha256": "14880b86fbb28e85fc9a86dfc1db4cddd960b4e4ea626457bd3fa95fb818eb7e"
+        },
+        "function _descendants": {
+          "members": {},
+          "token_sha256": "eb1f5c1f1f0f399e97683502cd2b631725efd42eaa1b172e22efe05bffe90e22"
+        },
+        "globals _presentationUri": {
+          "members": {},
+          "token_sha256": "04d655847b8a623ac7ac4684d787087d84de3dea36dac6a23968e0a8cdf23d02"
+        }
+      },
+      "directives": [
+        "08a5cbdc588f73eee3f6da5f50dac3257c6149601ec1c736cae1b95ab429b366",
+        "ec171a9a4c22703ebb9f1dd4669a295c90cd8b5feecae8ea8b59104e611b7da4",
+        "43223ae25ee8b69d0b6ab829aca07e6504cdd2ea4a3c42ad8688b530b37f6963",
+        "39aa8787cfe4669685538c498456ad49c06cc9879fd4f0a5755c9d3ab5c8fbe8",
+        "898ed0fa31698f4390957e18d896471639347c0aeacbfe595c2cc0ef427367cc",
+        "713fdb6e8aaa02a535b49ce423c9a247f980dda3740aae16593ccf107d986df4",
+        "c0cda8c07ae696b25f6558a3120460aea8b3f855919fef2eee91a9d34d88c630",
+        "60a9dceb071ec0372605021c85fa8a7c6241db1636052ec779a3dd75b08526b8",
+        "9d40deb69c0d4ff8131770f692e6ef000483b0830831914e0b74f20a80f7b1e0",
+        "a446bb1ea0c05336f791eac9d624030bee3412bc16253b5a6f6ee0b6f50adeb4",
+        "2f59911dc5d866417db14111eecab0d7427639ab22736789ff8e02ee696cb395",
+        "0d7272a12edd7214843801d06ffe00bce5b8cb3298a2eafac26261994fc3b04a",
+        "c9e82295a32f5c2d58c6da303819bc08bd81ed4e32374b047a555464279d6d59",
+        "d92e67c68224b6b620214cee1c62ff57f9336d85c7f1cb78f3c7d8a98ab84c42",
+        "239c37ed11f48971bcd9c108d33f4408a41ed4894eb8963d9dfdf7b227c053ef",
+        "a0fbec7b8dec123dda78fbc0cc9b1a455f68624dfd3d08c47f189c5fccde8994",
+        "d88f22a05cef55eaa060d8b0edf77c77aff1a01cd49ff4b1ae5c296f1310cefa",
+        "08f6367e74dfe123c9daf83a7430196f64ff1291865667efc374db400762cf51",
+        "1971c614211c78676b9da3a5347b71753e96580cb1841e75c0bd5907d55cb634",
+        "a02f17181bd8c2e2474c542d3005c957404f3ca1b7c86bbf380aed2cb5182df1",
+        "fd5db57b34ab83537321243c61dbe424fc638649e6a8962d40110877c69c5c56"
+      ],
+      "static_fields": {
+        "class _SlideTemplates/static fields _schemeSlots": "9d85af0b8ab6e8adc2c6bf58fbc5ac9dae68d915ee4cf4917e2ae0b0e404ef8a"
+      },
+      "top_level_variables": {
+        "globals _presentationUri": "04d655847b8a623ac7ac4684d787087d84de3dea36dac6a23968e0a8cdf23d02"
+      }
+    },
+    "before": {
+      "declarations": {
+        "class SlideDeserializer": {
+          "members": {
+            "method _backgroundImageShape": "3c54f3ee6713db94cf58c39c0107b6de75bbaefd3459f521bac072d7df64f6d2",
+            "method _backgroundOf": "4c167a2a47c1af43826b9e80a9bbb0c8cbdc8c8675c4606d7ea21ab98a56e827",
+            "method _bindShapeMedia": "9a391aa69d184ab235ffd070e0cfe024920fb2ecfbef88548339278aed20ffb2",
+            "method _bindSlideMedia": "e1986743afdf9d652b1748cf6cb1dd9a15cb05caaa5a934c889997ede4368ab6",
+            "method _inheritPlaceholders": "551047eabf84b24e9fea154cff40c76cf27dd205743bf09798fbad16f070281e",
+            "method _masterBackground": "d287a7f228c751968bf99a874e573f63e05c07aaf81c5c052cd07c1ac461a36c",
+            "method _matchPlaceholder": "6592c49389bb7b889f8b6b8b4ce4dd8f066e21fbcff3728d959cd656ecfa45f1",
+            "method _placeholderFamily": "ea38d3d055ba8f8f1efc24a4c0d0d0cb236a17049e1efa81596c839a29149dd9",
+            "method _showsMasterShapes": "98525597556c65e9163e03cc5a691763cfad914f551a11a68fcbea5a8c890fc0",
+            "method _slideIsHidden": "0c6ad1395b24675f10f902198081ca2afdf2a2d9dadb4c68f9d766e64c71c292",
+            "method read": "80fdd94ffc4f53b45528e66436582e0a0e6b3c4d63c5b1f0e350eb82352f5af9",
+            "method readBytes": "ec5ecee4f01779bba92f7ac9b3a5aeb28d46a9a582403c400f8f70242b8f5075"
+          },
+          "token_sha256": "61c8ded0d58707a0fb80fc0ebf7152e944db66dddf689fecd6b72b09f80690f4"
+        },
+        "class SlideSerializer": {
+          "members": {
+            "method _chartXml": "a57bb6237c0ba1f71a84c30c0890fd6bf71a83973f8c02ff9a8983815a8e69fb",
+            "method _ensureTemplates": "d10b13930fb764bbc1868fc2fce01ac869835c43762cce548b2d2260d8242673",
+            "method _normalizeChartAxisIds": "9109e33d8d1341b5b921f30f14a9bcaf2f136076a7e758e256e71142088933b2",
+            "method _presentationXml": "db33351f91e46a374803f7a61b38346e757def0a3eaf2f5e59af1c7dd85a217d",
+            "method _syncNotesSlide": "3bd4a33df0dbefe9b1df8c67b592c103797304f7ebbcfad625d798683228c449",
+            "method _syncSlideVisuals": "6880574ddd059b51142ac597f4b6b19027f67327f2b9b8e9f2f9ba14a84b2ae4",
+            "method write": "3d6acc9774da93ecf7d5bc55f30aff8f03b56838548d8144f737ba9f7cc5490d",
+            "method writeBytes": "ce1c71397a256242d72f36d1fefd6b8d3fd191a10437a63067031c5d6e84cd60"
+          },
+          "token_sha256": "af8be8c469890ab3b348269c4deb78a45e0f2b895262cb2a4aec07119431002f"
+        },
+        "class _SlideTemplate": {
+          "members": {
+            "constructor <default>": "600474736aa630b8ce4d0514488ec6af1094536c415606089ed33fdaa65d6ca1",
+            "instance fields background": "93855d6eb3aec4b737d6574f8a0e897b5642fe418a3a5ef1d835b91c1de17c25",
+            "instance fields colors": "f88040f464db03e4fb4e8b24d6aa79b1206a1e49c58400370cd9a831a4d942a1",
+            "instance fields decorations": "587a7a0ede3b19261906bc13a734bab580e37802010578735ff3c0b634278024",
+            "instance fields inheritsMasterBackground": "faf055db02a1096f0a2cabe1a1b7c5de32b4232d31715198a0c1d6841cca69f9",
+            "instance fields master": "aef8756f499fb99dc79a81a8cb0d7239eb5d7ad900c30b9568f0a939dab687a5",
+            "instance fields name": "fc5d5d0e53a4d05982d5558489fe1853c55ca1b3cf6c84f598f1f3a1822cf2df",
+            "instance fields placeholders": "e0ed0389680d2a453a207af1cc43486062f69c30d51c29c4750683a913adea52",
+            "instance fields showsMasterShapes": "534bb43def35d606db0bd7b36ee7826e5f7cb084ff9f474bdb8427d234878c39"
+          },
+          "token_sha256": "f6e3a95e5402ba8ce8862b074e6d76d32f51f968a86d9abda3c8a3670c48dcd3"
+        },
+        "class _SlideTemplates": {
+          "members": {
+            "constructor <default>": "2a0a5b9498c4c088aea8ef904509be8f55f01c91655362b957fe8a0bc5551530",
+            "instance fields _layouts": "cc610a2d89590692b559b569d8ba8b86b35ded01fd2eec6b2dafdf475eb0a150",
+            "instance fields _masters": "8e0ea9ed75e2af4c49fe9243b6b5961ab0595fc601df687c337ccda807e04900",
+            "instance fields defaultColors": "c9d8bd2cd9c70fd7d193b09ae785a6cdf4c192e9fcc5ca137925efbf62d5ab48",
+            "instance fields package": "fd88b04c90c3653ca39da7c6243d98b3c6349f0d13cb215510e1c0b80690b21c",
+            "instance fields slideHeight": "8fc1fff6033189264a54833bf72e4f868b8eba5e70c72e147b64d213324bf34b",
+            "instance fields slideWidth": "2a63e6c04c8c9f7defba833365624cffaeb345b4affac1c0dc38c80a0440abe6",
+            "method _cSldName": "67a3f07cc57f44bf136f356d80373a1abaa702ca20cd09ce139c880a8bbdadd6",
+            "method _colorMap": "329b8f11d18e93ea13ae436954ddc7feae7b831f5033f8bd3bc98762a94f781e",
+            "method _decorations": "51daf47cbfca32e724905868a11d6447b2177266ecad2df48a48289538e6e8a4",
+            "method _layout": "c07e9f978ad5c4819744ef5e4ea012d30c821898d0a7f4698593e5091c6661d7",
+            "method _master": "64c6f54a8e0a13c21dc2241a6b914d8a7fd411e6e9aa294cdd97346dcb18c824",
+            "method _target": "dcecf496e7da340731df2270e59a49570b54ec7135f0d601d5719cfc66382963",
+            "method allLayouts": "b642dc6cc406407be140e93e84f4c36772825ad3d9a0742e6c3e8f0fd3526067",
+            "method layoutOf": "6381e99937676cafa06d2d34174a7094674808b19074569d3967d75ad380e1aa",
+            "static fields _schemeSlots": "9d85af0b8ab6e8adc2c6bf58fbc5ac9dae68d915ee4cf4917e2ae0b0e404ef8a"
+          },
+          "token_sha256": "f861c7a2ebb7d5bf30987f24cc59d9571597e3e39405c8ac3122f5d0ddee1f78"
+        },
+        "function _descendants": {
+          "members": {},
+          "token_sha256": "eb1f5c1f1f0f399e97683502cd2b631725efd42eaa1b172e22efe05bffe90e22"
+        },
+        "globals _presentationUri": {
+          "members": {},
+          "token_sha256": "04d655847b8a623ac7ac4684d787087d84de3dea36dac6a23968e0a8cdf23d02"
+        }
+      },
+      "directives": [
+        "08a5cbdc588f73eee3f6da5f50dac3257c6149601ec1c736cae1b95ab429b366",
+        "ec171a9a4c22703ebb9f1dd4669a295c90cd8b5feecae8ea8b59104e611b7da4",
+        "43223ae25ee8b69d0b6ab829aca07e6504cdd2ea4a3c42ad8688b530b37f6963",
+        "39aa8787cfe4669685538c498456ad49c06cc9879fd4f0a5755c9d3ab5c8fbe8",
+        "898ed0fa31698f4390957e18d896471639347c0aeacbfe595c2cc0ef427367cc",
+        "713fdb6e8aaa02a535b49ce423c9a247f980dda3740aae16593ccf107d986df4",
+        "c0cda8c07ae696b25f6558a3120460aea8b3f855919fef2eee91a9d34d88c630",
+        "60a9dceb071ec0372605021c85fa8a7c6241db1636052ec779a3dd75b08526b8",
+        "9d40deb69c0d4ff8131770f692e6ef000483b0830831914e0b74f20a80f7b1e0",
+        "a446bb1ea0c05336f791eac9d624030bee3412bc16253b5a6f6ee0b6f50adeb4",
+        "2f59911dc5d866417db14111eecab0d7427639ab22736789ff8e02ee696cb395",
+        "0d7272a12edd7214843801d06ffe00bce5b8cb3298a2eafac26261994fc3b04a",
+        "c9e82295a32f5c2d58c6da303819bc08bd81ed4e32374b047a555464279d6d59",
+        "d92e67c68224b6b620214cee1c62ff57f9336d85c7f1cb78f3c7d8a98ab84c42",
+        "239c37ed11f48971bcd9c108d33f4408a41ed4894eb8963d9dfdf7b227c053ef",
+        "a0fbec7b8dec123dda78fbc0cc9b1a455f68624dfd3d08c47f189c5fccde8994",
+        "d88f22a05cef55eaa060d8b0edf77c77aff1a01cd49ff4b1ae5c296f1310cefa",
+        "08f6367e74dfe123c9daf83a7430196f64ff1291865667efc374db400762cf51",
+        "1971c614211c78676b9da3a5347b71753e96580cb1841e75c0bd5907d55cb634",
+        "a02f17181bd8c2e2474c542d3005c957404f3ca1b7c86bbf380aed2cb5182df1",
+        "fd5db57b34ab83537321243c61dbe424fc638649e6a8962d40110877c69c5c56"
+      ],
+      "static_fields": {
+        "class _SlideTemplates/static fields _schemeSlots": "9d85af0b8ab6e8adc2c6bf58fbc5ac9dae68d915ee4cf4917e2ae0b0e404ef8a"
+      },
+      "top_level_variables": {
+        "globals _presentationUri": "04d655847b8a623ac7ac4684d787087d84de3dea36dac6a23968e0a8cdf23d02"
+      }
+    }
+  },
+  "packages/quds_office_engine/lib/src/slide/shapes/drawingml.dart": {
+    "after": {
+      "declarations": {
+        "function _applyLuminance": {
+          "members": {},
+          "token_sha256": "3f901eafe24381704961a7883c49ff390b977a481c5f83fdcdc7e1145906dd3b"
+        },
+        "function _captureTextSources": {
+          "members": {},
+          "token_sha256": "58724028e012be934213d0b33066f4fd8317c28aac7716c4810ca054dc10aeb4"
+        },
+        "function _mapChannels": {
+          "members": {},
+          "token_sha256": "d9821f0a2a41c80436bfc091237684f2a904a963b3ae2cea930cd287b6ff767f"
+        },
+        "function _normalHex": {
+          "members": {},
+          "token_sha256": "d371221b514a3ff1ec21fdceada4ec98811dc942dd576cd2bfcc75ce955f2d7b"
+        },
+        "function _readTextSourceRoot": {
+          "members": {},
+          "token_sha256": "0f0fb13d60696914d3f6438722bc2e8eece81702458c64b8fd257c31cb9489e8"
+        },
+        "function _textDescendants": {
+          "members": {},
+          "token_sha256": "1c5d37cb2dcaa402276e253f8aa393c652fb74a8d2204acc216ae25909cd5cbe"
+        },
+        "function _textElement": {
+          "members": {},
+          "token_sha256": "d961a3a3cbc1fededbb2716ef4c5b6191e08067c8110821e755d129631818a8b"
+        },
+        "function _writeShapeText": {
+          "members": {},
+          "token_sha256": "bab9ca8777217134f1391a95bce3d666d9a27f6ef575a9324a498fe668731a4f"
+        },
+        "function _writeSlideChart": {
+          "members": {},
+          "token_sha256": "b0b454df3ba66acdb7d5f61edc491b8c8c8aabdc28ca4fa5821ae12960d36422"
+        },
+        "function _writeSlidePicture": {
+          "members": {},
+          "token_sha256": "ac9a3fc4c4aaf5f1b4baa216c43d619a648104a0d7f4abc175a3f0cb3cf022bb"
+        },
+        "function _writeSlideShape": {
+          "members": {},
+          "token_sha256": "0d1d1f72a5becfe3343e37740da6922878677335c8ee4ac07d830217142865bd"
+        },
+        "function _writeSlideTable": {
+          "members": {},
+          "token_sha256": "c06fe80f8641962264f54be590d8e1fc0415cbffaf8886186d6f2ba9179f67ca"
+        },
+        "function parseChartVisual": {
+          "members": {},
+          "token_sha256": "38b94dad5da16b025c1f01365a9dc1df5f8538df56deaf06ba97e49ef8ff6513"
+        },
+        "function parseSlideShapes": {
+          "members": {},
+          "token_sha256": "3e4e77e9bf959fe4428450c900222cb526975fa5b75cb99182f9d9cbdbea7e1a"
+        },
+        "function resolveDrawingmlColor": {
+          "members": {},
+          "token_sha256": "b2c9c7cff6beb5e6c31604d43f01f4aa867bbf8ec2a4e6c35d0ce1188597a5e4"
+        },
+        "function slideToXml": {
+          "members": {},
+          "token_sha256": "217896805e511cd4365a49406cdac04169c93330e88dd24fe6d8f3c3361af2fc"
+        },
+        "globals _colorElements": {
+          "members": {},
+          "token_sha256": "095aa14bcc6f91313b3db9197af5de22ba0cc557a5295d9fd1abb6c1b45a5152"
+        },
+        "globals _presetColors": {
+          "members": {},
+          "token_sha256": "1412e6a97049a59a13a0a7cd455d0bda6fbbc851c58c1117ec36e99b21b0aaeb"
+        },
+        "globals _systemColors": {
+          "members": {},
+          "token_sha256": "eb9fdade4451e522d4680f80bac44e3e884e1f094b4b78dc7096fcf3a019ad09"
+        }
+      },
+      "directives": [
+        "781d68b8221da7b87c9fd9a81fe9e56db52edcc4d9054e069f815c21a14dfc24",
+        "0d7272a12edd7214843801d06ffe00bce5b8cb3298a2eafac26261994fc3b04a",
+        "d92e67c68224b6b620214cee1c62ff57f9336d85c7f1cb78f3c7d8a98ab84c42",
+        "239c37ed11f48971bcd9c108d33f4408a41ed4894eb8963d9dfdf7b227c053ef",
+        "a0fbec7b8dec123dda78fbc0cc9b1a455f68624dfd3d08c47f189c5fccde8994",
+        "64ea07ce57ba958161ee13ccb85008e9518c84aa4d7af97e6e61394119aa5722",
+        "d88f22a05cef55eaa060d8b0edf77c77aff1a01cd49ff4b1ae5c296f1310cefa",
+        "08f6367e74dfe123c9daf83a7430196f64ff1291865667efc374db400762cf51",
+        "1971c614211c78676b9da3a5347b71753e96580cb1841e75c0bd5907d55cb634",
+        "cef964b5bf6308f38ae4ba8733c6f236cd704baefa229da5f1d8f842e0340658"
+      ],
+      "static_fields": {},
+      "top_level_variables": {
+        "globals _colorElements": "095aa14bcc6f91313b3db9197af5de22ba0cc557a5295d9fd1abb6c1b45a5152",
+        "globals _presetColors": "1412e6a97049a59a13a0a7cd455d0bda6fbbc851c58c1117ec36e99b21b0aaeb",
+        "globals _systemColors": "eb9fdade4451e522d4680f80bac44e3e884e1f094b4b78dc7096fcf3a019ad09"
+      }
+    },
+    "before": {
+      "declarations": {
+        "function _applyLuminance": {
+          "members": {},
+          "token_sha256": "3f901eafe24381704961a7883c49ff390b977a481c5f83fdcdc7e1145906dd3b"
+        },
+        "function _captureTextSources": {
+          "members": {},
+          "token_sha256": "58724028e012be934213d0b33066f4fd8317c28aac7716c4810ca054dc10aeb4"
+        },
+        "function _mapChannels": {
+          "members": {},
+          "token_sha256": "d9821f0a2a41c80436bfc091237684f2a904a963b3ae2cea930cd287b6ff767f"
+        },
+        "function _normalHex": {
+          "members": {},
+          "token_sha256": "d371221b514a3ff1ec21fdceada4ec98811dc942dd576cd2bfcc75ce955f2d7b"
+        },
+        "function _readTextSourceRoot": {
+          "members": {},
+          "token_sha256": "0f0fb13d60696914d3f6438722bc2e8eece81702458c64b8fd257c31cb9489e8"
+        },
+        "function _textDescendants": {
+          "members": {},
+          "token_sha256": "1c5d37cb2dcaa402276e253f8aa393c652fb74a8d2204acc216ae25909cd5cbe"
+        },
+        "function _textElement": {
+          "members": {},
+          "token_sha256": "d961a3a3cbc1fededbb2716ef4c5b6191e08067c8110821e755d129631818a8b"
+        },
+        "function _writeShapeText": {
+          "members": {},
+          "token_sha256": "bab9ca8777217134f1391a95bce3d666d9a27f6ef575a9324a498fe668731a4f"
+        },
+        "function _writeSlideChart": {
+          "members": {},
+          "token_sha256": "b0b454df3ba66acdb7d5f61edc491b8c8c8aabdc28ca4fa5821ae12960d36422"
+        },
+        "function _writeSlidePicture": {
+          "members": {},
+          "token_sha256": "ac9a3fc4c4aaf5f1b4baa216c43d619a648104a0d7f4abc175a3f0cb3cf022bb"
+        },
+        "function _writeSlideShape": {
+          "members": {},
+          "token_sha256": "0d1d1f72a5becfe3343e37740da6922878677335c8ee4ac07d830217142865bd"
+        },
+        "function _writeSlideTable": {
+          "members": {},
+          "token_sha256": "c06fe80f8641962264f54be590d8e1fc0415cbffaf8886186d6f2ba9179f67ca"
+        },
+        "function parseChartVisual": {
+          "members": {},
+          "token_sha256": "38b94dad5da16b025c1f01365a9dc1df5f8538df56deaf06ba97e49ef8ff6513"
+        },
+        "function parseSlideShapes": {
+          "members": {},
+          "token_sha256": "3e4e77e9bf959fe4428450c900222cb526975fa5b75cb99182f9d9cbdbea7e1a"
+        },
+        "function resolveDrawingmlColor": {
+          "members": {},
+          "token_sha256": "b2c9c7cff6beb5e6c31604d43f01f4aa867bbf8ec2a4e6c35d0ce1188597a5e4"
+        },
+        "function slideToXml": {
+          "members": {},
+          "token_sha256": "90cc908114bfc893114af54e6aaed75a48a68d12c00ca1235e38684f8626d358"
+        },
+        "globals _colorElements": {
+          "members": {},
+          "token_sha256": "095aa14bcc6f91313b3db9197af5de22ba0cc557a5295d9fd1abb6c1b45a5152"
+        },
+        "globals _presetColors": {
+          "members": {},
+          "token_sha256": "1412e6a97049a59a13a0a7cd455d0bda6fbbc851c58c1117ec36e99b21b0aaeb"
+        },
+        "globals _systemColors": {
+          "members": {},
+          "token_sha256": "eb9fdade4451e522d4680f80bac44e3e884e1f094b4b78dc7096fcf3a019ad09"
+        }
+      },
+      "directives": [
+        "781d68b8221da7b87c9fd9a81fe9e56db52edcc4d9054e069f815c21a14dfc24",
+        "0d7272a12edd7214843801d06ffe00bce5b8cb3298a2eafac26261994fc3b04a",
+        "d92e67c68224b6b620214cee1c62ff57f9336d85c7f1cb78f3c7d8a98ab84c42",
+        "239c37ed11f48971bcd9c108d33f4408a41ed4894eb8963d9dfdf7b227c053ef",
+        "a0fbec7b8dec123dda78fbc0cc9b1a455f68624dfd3d08c47f189c5fccde8994",
+        "64ea07ce57ba958161ee13ccb85008e9518c84aa4d7af97e6e61394119aa5722",
+        "d88f22a05cef55eaa060d8b0edf77c77aff1a01cd49ff4b1ae5c296f1310cefa",
+        "08f6367e74dfe123c9daf83a7430196f64ff1291865667efc374db400762cf51",
+        "1971c614211c78676b9da3a5347b71753e96580cb1841e75c0bd5907d55cb634",
+        "cef964b5bf6308f38ae4ba8733c6f236cd704baefa229da5f1d8f842e0340658"
+      ],
+      "static_fields": {},
+      "top_level_variables": {
+        "globals _colorElements": "095aa14bcc6f91313b3db9197af5de22ba0cc557a5295d9fd1abb6c1b45a5152",
+        "globals _presetColors": "1412e6a97049a59a13a0a7cd455d0bda6fbbc851c58c1117ec36e99b21b0aaeb",
+        "globals _systemColors": "eb9fdade4451e522d4680f80bac44e3e884e1f094b4b78dc7096fcf3a019ad09"
+      }
+    }
+  }
+}
