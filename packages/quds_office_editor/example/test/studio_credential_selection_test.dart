@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
@@ -55,18 +56,60 @@ void main() {
           StudioCredentialMode.customKeychain,
           path: '/tmp/synthetic.keychain-db',
         ),
-        throwsA(isA<PlatformException>()),
+        Platform.isMacOS
+            ? throwsA(
+                isA<PlatformException>().having(
+                  (error) => error.code,
+                  'native denial',
+                  'custom_keychain_access_denied',
+                ),
+              )
+            : throwsA(
+                isA<ArgumentError>().having(
+                  (error) => error.message,
+                  'host admission',
+                  'Choose a macOS keychain file.',
+                ),
+              ),
       );
       expect(manager.mode, StudioCredentialMode.session);
       expect(await manager.storage, same(original));
-      expect(calls, ['initialize']);
+      // The manager uses dart:io admission. A Flutter target override does
+      // not turn a Linux/Windows test process into a macOS host.
+      expect(calls, Platform.isMacOS ? ['initialize'] : isEmpty);
     },
   );
+  test('custom keychain adapter retains native access-denial without fallback', () async {
+    debugDefaultTargetPlatformOverride = TargetPlatform.macOS;
+    addTearDown(() => debugDefaultTargetPlatformOverride = null);
+    const path = '/tmp/synthetic.keychain-db';
+    const channel = MethodChannel(MacOsCustomKeychainStorage.methodChannelName);
+    final messenger =
+        TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger;
+    final calls = <String>[];
+    messenger.setMockMethodCallHandler(channel, (call) async {
+      calls.add(call.method);
+      expect(call.arguments, {'path': path});
+      throw PlatformException(code: 'custom_keychain_access_denied');
+    });
+    addTearDown(() => messenger.setMockMethodCallHandler(channel, null));
+    final store = MacOsCustomKeychainStorage(path: path);
+    await expectLater(
+      store.initialize(),
+      throwsA(
+        isA<PlatformException>().having(
+          (error) => error.code,
+          'native denial',
+          'custom_keychain_access_denied',
+        ),
+      ),
+    );
+    expect(() => store.write('synthetic-key', 'synthetic-value'), throwsStateError);
+    expect(calls, ['initialize']);
+  });
   test(
-    'local macOS platform probe uses the file keychain and verifies read-back before deletion',
+    'platform probe selects host options and verifies read-back before deletion',
     () async {
-      debugDefaultTargetPlatformOverride = TargetPlatform.macOS;
-      addTearDown(() => debugDefaultTargetPlatformOverride = null);
       const channel = MethodChannel(
         'plugins.it_nomads.com/flutter_secure_storage',
       );
@@ -76,7 +119,14 @@ void main() {
       final calls = <String>[];
       messenger.setMockMethodCallHandler(channel, (c) async {
         final args = (c.arguments as Map);
-        expect((args['options'] as Map)['useDataProtectionKeyChain'], 'false');
+        final options = args['options'] as Map;
+        // flutter_secure_storage 9.2.4 chooses option maps with dart:io
+        // Platform, independently of Flutter's debug target override.
+        if (Platform.isMacOS) {
+          expect(options['useDataProtectionKeyChain'], 'false');
+        } else {
+          expect(options.containsKey('useDataProtectionKeyChain'), isFalse);
+        }
         calls.add(c.method);
         switch (c.method) {
           case 'write':
