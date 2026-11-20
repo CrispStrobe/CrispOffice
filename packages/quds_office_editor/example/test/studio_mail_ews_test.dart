@@ -2107,8 +2107,24 @@ void main() {
         final parsed = const QudsMimeCodec().parse(raw);
         expect(parsed.status, MailParseStatus.complete);
         expect(parsed.message!.body.plainText, isNull);
+        final header = provider.header(
+          provider.firstMessageId,
+          'First Exchange message',
+        );
+        final message = parsed.message!;
         provider.messageGate = Completer<MailResult<MailMessage>>()
-          ..complete(MailSuccess(parsed.message!));
+          ..complete(
+            MailSuccess(
+              MailMessage(
+                raw: message.raw,
+                envelope: message.envelope,
+                body: message.body,
+                attachments: message.attachments,
+                localId: header.id,
+                remoteIdentity: header.remote,
+              ),
+            ),
+          );
         await tester.tap(find.text('First Exchange message'));
         await _pump(tester);
         await tester.tap(find.byTooltip(tooltip));

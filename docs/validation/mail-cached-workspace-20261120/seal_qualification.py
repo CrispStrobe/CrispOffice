@@ -17,7 +17,7 @@ from check_store import test_summary  # noqa: E402
 RUNS = (
     ('mail-cached-store-final-recovery/receipt.json', None),
     ('mail-cached-shared-final-recovery/receipt.json', None),
-    ('mail-cached-studio-final-recovery/receipt.json', None),
+    ('mail-cached-studio-accepted/receipt.json', None),
     ('mail_intake_audit/word-qualification/receipt.json', ('word-regression',)),
     ('mail_intake_audit/word-portable-final/receipt.json', None),
 )
@@ -78,8 +78,13 @@ def main() -> None:
             if first in receipt:
                 require(receipt[first] == receipt[last], 'Runtime changed: ' + name)
                 for file, expected in receipt[first].items():
-                    require(expected is not None and sha(Path(file)) == expected,
-                            'Runtime input differs: ' + file)
+                    runtime_path = Path(file)
+                    if expected is None:
+                        require(not runtime_path.exists() and not runtime_path.is_symlink(),
+                                'Absent runtime override appeared: ' + file)
+                    else:
+                        require(sha(runtime_path) == expected,
+                                'Runtime input differs: ' + file)
         runtime = receipt.get('runtime')
         if runtime is not None:
             require(receipt['runtime_configuration_unchanged'], 'Word runtime changed')

@@ -25,6 +25,7 @@ def main() -> None:
         'mail-cached-shared-final-recovery',
         'mail-cached-studio-full', 'mail-cached-studio-final',
         'mail-cached-studio-final-rtl', 'mail-cached-studio-final-recovery',
+        'mail-cached-studio-accepted',
         'runtime/logs',
     )
     selected: dict[str, Path] = {}
@@ -37,6 +38,7 @@ def main() -> None:
         'host-cache-analysis*', 'store-mailbox-focused*', 'store-cache-review-*',
         'store-cache-recovery-*',
         'cache_review_probe*', 'cache-independent-review*.json',
+        'html-provider-fixture-*',
         'mail-cached-*-review.*', 'intake-api.json',
         'runtime/*receipt.json', 'runtime/cached-mail-*.png',
         'runtime/cached_mail_layout_probe_test.dart',

@@ -1664,8 +1664,22 @@ void main() {
         final parsed = const QudsMimeCodec().parse(raw);
         expect(parsed.status, MailParseStatus.complete);
         expect(parsed.message!.body.plainText, isNull);
-        harness.provider!.messageGate = Completer<MailResult<MailMessage>>()
-          ..complete(MailSuccess(parsed.message!));
+        final provider = harness.provider!;
+        final header = provider.header('cloud-message', 'Cloud message');
+        final message = parsed.message!;
+        provider.messageGate = Completer<MailResult<MailMessage>>()
+          ..complete(
+            MailSuccess(
+              MailMessage(
+                raw: message.raw,
+                envelope: message.envelope,
+                body: message.body,
+                attachments: message.attachments,
+                localId: header.id,
+                remoteIdentity: header.remote,
+              ),
+            ),
+          );
         await tester.tap(find.text('Cloud message'));
         await _pump(tester);
         await tester.tap(find.byTooltip(_strings.replyAll));
