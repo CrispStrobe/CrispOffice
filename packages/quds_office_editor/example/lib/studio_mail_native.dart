@@ -1082,9 +1082,13 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
 
   Future<void> _forward() => _composeFromMessage(forward: true);
 
+  Future<void> _forwardWithAttachments() =>
+      _composeFromMessage(forward: true, includeAttachments: true);
+
   Future<void> _composeFromMessage({
     required bool forward,
     bool replyAll = false,
+    bool includeAttachments = false,
   }) => runStudioMailOperation(() async {
     final account = _account;
     if (_busy || _dialogOpen || _client == null || account == null) return;
@@ -1097,10 +1101,17 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
     }
     // The list item contains only an envelope. Quote the authoritative
     // bounded raw-message parse, never the reader's header presentation.
-    final message = _reader?.result.message;
-    if (message == null) return;
+    final result = _reader?.result;
+    final message = result?.message;
+    if (result == null || message == null) return;
     try {
-      final draft = replyAll
+      final draft = includeAttachments
+          ? buildStudioMailForwardWithAttachmentsDraft(
+              result,
+              truncationNotice: widget.strings.mailQuotedTextTruncated,
+              forwardNotice: widget.strings.mailAttachedForwardNotice,
+            )
+          : replyAll
           ? buildStudioMailReplyAllDraft(
               message,
               sender: account.email,
@@ -1113,6 +1124,11 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
               forwardNotice: widget.strings.mailTextOnlyForward,
             );
       await _openComposer(draft);
+    } on StudioMailForwardAttachmentsUnavailable {
+      setState(() {
+        _error = widget.strings.mailForwardAttachmentsUnavailable;
+        _notice = null;
+      });
     } on StudioMailReplyRecipientsUnavailable {
       setState(() {
         _error = widget.strings.mailReplyRecipientsUnavailable;
@@ -2259,6 +2275,11 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
           onPressed: _busy ? null : _forward,
           tooltip: widget.strings.forward,
           icon: const Icon(Icons.forward_outlined),
+        ),
+        IconButton(
+          onPressed: _busy ? null : _forwardWithAttachments,
+          tooltip: widget.strings.mailForwardWithAttachments,
+          icon: const Icon(Icons.attach_email_outlined),
         ),
         if (_messageLoader is StudioMailMessageActions) ...[
           IconButton(
