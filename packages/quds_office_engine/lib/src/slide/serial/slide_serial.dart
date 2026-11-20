@@ -143,9 +143,18 @@ class SlideDeserializer {
                 pres.slideHeight,
               )
             : layout?.backgroundImage;
+        final PmlShape? backgroundGradient = hasSlideBackground
+            ? _backgroundGradientShape(
+                slideXml,
+                pres.slideWidth,
+                pres.slideHeight,
+                layout?.colors ?? templates.defaultColors,
+              )
+            : layout?.backgroundGradient;
         pres.slides[i].retainSourceBackground(
           sourceBackground,
           picture: backgroundImage?.copy(),
+          gradient: backgroundGradient?.copy(),
         );
         if (layout != null) {
           pres.slides[i].layoutName = layout.name;
@@ -336,8 +345,73 @@ class SlideDeserializer {
     return null;
   }
 
-  /// Resolves solid fills, or the first gradient stop as a solid fallback,
-  /// to `RRGGBB`, honoring theme variants. Gradient rendering remains partial.
+  /// Converts a `p:bg/a:gradFill` into a full-slide gradient decoration.
+  static PmlShape? _backgroundGradientShape(
+    String xml,
+    int width,
+    int height,
+    Map<String, String> colors,
+  ) {
+    final XmlPullReader reader = XmlPullReader(xml);
+    var inBg = false;
+    var inGrad = false;
+    double? position;
+    double angle = 0;
+    final List<PmlGradientStop> stops = <PmlGradientStop>[];
+    while (reader.next()) {
+      if (reader.eventType == XmlEventType.endElement) {
+        if (reader.localName == 'gradFill') {
+          if (stops.length >= 2) {
+            final List<PmlGradientStop> sorted = <PmlGradientStop>[...stops]
+              ..sort((a, b) => a.position.compareTo(b.position));
+            return PmlShape(
+              id: 1,
+              name: 'Background',
+              fillColor: sorted.first.color,
+              gradient: PmlGradientFill(stops: sorted, angleDegrees: angle),
+              transform: PmlTransform(x: 0, y: 0, cx: width, cy: height),
+            );
+          }
+          inGrad = false;
+        } else if (reader.localName == 'bg' || reader.localName == 'bgPr') {
+          inBg = false;
+          inGrad = false;
+        }
+        continue;
+      }
+      if (reader.eventType != XmlEventType.startElement) continue;
+      if (reader.localName == 'bg' || reader.localName == 'bgPr') {
+        inBg = true;
+      } else if (inBg && reader.localName == 'gradFill') {
+        inGrad = true;
+      } else if (inGrad && reader.localName == 'gs') {
+        position =
+            (int.tryParse(reader.getAttribute('pos') ?? '') ?? 0) / 100000;
+      } else if (inGrad && reader.localName == 'path') {
+        return null;
+      } else if (inGrad && reader.localName == 'lin') {
+        angle = (int.tryParse(reader.getAttribute('ang') ?? '') ?? 0) / 60000;
+      } else if (inGrad &&
+          position != null &&
+          const <String>{
+            'srgbClr',
+            'schemeClr',
+            'sysClr',
+            'prstClr',
+          }.contains(reader.localName)) {
+        final String? color = resolveDrawingmlColor(reader, colors);
+        if (color != null && color.isNotEmpty) {
+          stops.add(
+            PmlGradientStop(position: position.clamp(0.0, 1.0), color: color),
+          );
+        }
+        position = null;
+      }
+    }
+    return null;
+  }
+
+  /// Resolves a solid fill or first gradient stop to `RRGGBB`.
   static String? _backgroundOf(String xml, Map<String, String> colors) {
     final XmlPullReader reader = XmlPullReader(xml);
     var inBg = false;
@@ -451,6 +525,7 @@ class _SlideTemplate {
     required this.decorations,
     this.background,
     this.backgroundImage,
+    this.backgroundGradient,
     this.inheritsMasterBackground = false,
     this.showsMasterShapes = true,
     this.master,
@@ -462,6 +537,7 @@ class _SlideTemplate {
   final List<PmlShape> decorations;
   final String? background;
   final PmlShape? backgroundImage;
+  final PmlShape? backgroundGradient;
   final bool inheritsMasterBackground;
   final bool showsMasterShapes;
   final _SlideTemplate? master;
@@ -563,6 +639,14 @@ class _SlideTemplates {
               slideHeight,
             )
           : master?.backgroundImage,
+      backgroundGradient: hasBackground
+          ? SlideDeserializer._backgroundGradientShape(
+              xml,
+              slideWidth,
+              slideHeight,
+              colors,
+            )
+          : master?.backgroundGradient,
       inheritsMasterBackground: !hasBackground,
       showsMasterShapes: SlideDeserializer._showsMasterShapes(xml),
       master: master,
@@ -604,6 +688,12 @@ class _SlideTemplates {
         package.relationshipsFor(uri),
         slideWidth,
         slideHeight,
+      ),
+      backgroundGradient: SlideDeserializer._backgroundGradientShape(
+        xml,
+        slideWidth,
+        slideHeight,
+        colors,
       ),
     );
   }

@@ -30,6 +30,11 @@ List<PmlShape> parseSlideShapes(
 
   /// fillPending API.
   var fillPending = false;
+  var inGradFill = false;
+  final List<PmlGradientStop> gradientStops = <PmlGradientStop>[];
+  double? gradientStopPosition;
+  double gradientAngle = 0;
+  var gradientIsLinear = true;
 
   /// textFillPending API.
   var textFillPending = false;
@@ -89,10 +94,26 @@ List<PmlShape> parseSlideShapes(
       } else if (reader.localName == 'style') {
         inStyle = false;
         styleRef = null;
+      } else if (reader.localName == 'gradFill' && inGradFill) {
+        if (current != null && gradientStops.isNotEmpty) {
+          final List<PmlGradientStop> stops = <PmlGradientStop>[
+            ...gradientStops,
+          ]..sort((a, b) => a.position.compareTo(b.position));
+          current.gradient = gradientIsLinear
+              ? PmlGradientFill(stops: stops, angleDegrees: gradientAngle)
+              : null;
+          current.fillColor = stops.first.color;
+        }
+        inGradFill = false;
+        gradientStops.clear();
+        gradientStopPosition = null;
+        fillPending = false;
       } else if (reader.localName == 'spPr') {
         inSpPr = false;
         inLn = false;
         fillPending = false;
+        inGradFill = false;
+        gradientStopPosition = null;
       } else if (reader.localName == 'ln') {
         inLn = false;
         fillPending = false;
@@ -152,6 +173,9 @@ List<PmlShape> parseSlideShapes(
         current.visual = OfficeVisual(kind: OfficeVisualKind.picture);
       }
       shapes.add(current);
+      inGradFill = false;
+      gradientStops.clear();
+      gradientStopPosition = null;
       fillPending = false;
       textFillPending = false;
       strokePending = false;
@@ -315,8 +339,15 @@ List<PmlShape> parseSlideShapes(
       current.fillColor = '';
       explicitFill = true;
       fillPending = false;
+    } else if (reader.localName == 'gradFill' && inSpPr && !inLn) {
+      inGradFill = true;
+      gradientStops.clear();
+      gradientStopPosition = null;
+      gradientAngle = 0;
+      gradientIsLinear = true;
+      fillPending = false;
+      explicitFill = true;
     } else if ((reader.localName == 'solidFill' ||
-            reader.localName == 'gradFill' ||
             reader.localName == 'pattFill') &&
         inSpPr &&
         !inLn) {
@@ -342,10 +373,25 @@ List<PmlShape> parseSlideShapes(
       currentRow.add(currentCell);
     } else if (reader.localName == 'tcPr' && currentCell != null) {
       inTcPr = true;
+    } else if (reader.localName == 'gs' && inGradFill) {
+      gradientStopPosition =
+          (int.tryParse(reader.getAttribute('pos') ?? '') ?? 0) / 100000;
+    } else if (reader.localName == 'path' && inGradFill) {
+      gradientIsLinear = false;
+    } else if (reader.localName == 'lin' && inGradFill) {
+      gradientAngle =
+          (int.tryParse(reader.getAttribute('ang') ?? '') ?? 0) / 60000;
     } else if (_colorElements.contains(reader.localName) && current != null) {
       final String? val = resolveDrawingmlColor(reader, colors);
       if (val != null && val.isNotEmpty) {
-        if (inTcPr && currentCell != null) {
+        if (inGradFill && gradientStopPosition != null) {
+          gradientStops.add(
+            PmlGradientStop(
+              position: gradientStopPosition.clamp(0.0, 1.0),
+              color: val,
+            ),
+          );
+        } else if (inTcPr && currentCell != null) {
           currentCell.fillColor = val;
         } else if (strokePending) {
           current.strokeColor = val;
@@ -371,6 +417,7 @@ List<PmlShape> parseSlideShapes(
       textFillPending = false;
       strokePending = false;
       styleRef = null;
+      gradientStopPosition = null;
     } else if ((reader.localName == 'blip' || reader.localName == 'chart') &&
         current != null &&
         !inTxBody) {
@@ -890,7 +937,34 @@ void _writeSlideShape(XmlWriter w, PmlShape shape) {
       },
     },
   );
-  if (shape.fillColor.isNotEmpty) {
+  final PmlGradientFill? gradient = shape.gradient;
+  if (gradient != null && gradient.stops.length >= 2) {
+    w.writeStartElement('gradFill', prefix: 'a');
+    w.writeStartElement('gsLst', prefix: 'a');
+    for (final stop in gradient.stops) {
+      w.writeStartElement('gs', prefix: 'a');
+      w.writeAttribute(
+        'pos',
+        '${(stop.position.clamp(0.0, 1.0) * 100000).round()}',
+      );
+      w.writeEmptyElement(
+        'srgbClr',
+        prefix: 'a',
+        attributes: <String, String>{'val': stop.color},
+      );
+      w.writeEndElement();
+    }
+    w.writeEndElement();
+    w.writeEmptyElement(
+      'lin',
+      prefix: 'a',
+      attributes: <String, String>{
+        'ang': '${(gradient.angleDegrees * 60000).round()}',
+        'scaled': '0',
+      },
+    );
+    w.writeEndElement();
+  } else if (shape.fillColor.isNotEmpty) {
     w.writeStartElement('solidFill', prefix: 'a');
     w.writeEmptyElement(
       'srgbClr',

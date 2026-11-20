@@ -4,6 +4,10 @@ All notable changes to `quds_office_editor` are documented here.
 
 ## Unreleased
 
+- Render imported linear slide gradients across the full shape, including
+  narrow vertical fills. Apply picture transparency once and draw one soft
+  picture shadow while preserving existing inherited-background behavior.
+
 
 - Add outgoing file attachments to native Studio Mail with immutable byte
   snapshots, all-or-none cancellable selection, ten-file/10 MiB limits and
