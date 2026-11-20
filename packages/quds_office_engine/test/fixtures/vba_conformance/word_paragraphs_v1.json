@@ -914,7 +914,7 @@
       "source": "Sub Main()\n  ThisDocument.Paragraphs(1).Range.Font.Color = 16777216\nEnd Sub\n",
       "expected": {
         "diagnostic": {
-          "code": "vba_type_error",
+          "code": "vba_unsupported",
           "line": 2,
           "column": 41
         }
@@ -925,7 +925,7 @@
           "https://github.com/CrispStrobe/quds_office_suite/blob/main/docs/VBA_WORD_MACROS.md",
           "https://github.com/CrispStrobe/quds_office_suite/blob/main/docs/VBA_MACROS.md"
         ],
-        "note": "Color retains the shared packed RGB integer bound from zero through 16777215. No Office host was executed."
+        "note": "Exact integer colors outside zero through 16777215 use the existing shared unsupported-color diagnostic; system, palette and other non-RGB representations are outside the dialect. No Office host was executed."
       }
     },
     {

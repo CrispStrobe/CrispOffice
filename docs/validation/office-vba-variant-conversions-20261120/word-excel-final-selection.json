@@ -1,0 +1,279 @@
+{
+  "schema": 1,
+  "capturedMain": "098412152fa1d64796eb3fb9c06699ced0f0c44d",
+  "purpose": "Fresh combined Word and Excel VBA qualification after all captured main advances, including the explicit Variant milestone, the Word paragraph frontend, native Word size projection, retained PPTX/Mail/Zotero/spaCy work, and Arabic lifecycle repairs. Each test file appears once in this selection.",
+  "cohorts": {
+    "incoming-mail-host": {
+      "package": "packages/quds_office_editor/example",
+      "runner": "flutter",
+      "tests": [
+        "test/studio_mail_attachment_test.dart",
+        "test/studio_mail_attachment_loader_test.dart",
+        "test/studio_mail_attachment_compose_test.dart",
+        "test/studio_mail_cloud_test.dart",
+        "test/studio_mail_ews_test.dart",
+        "test/studio_mail_session_test.dart",
+        "test/studio_mail_compose_test.dart",
+        "test/studio_mail_recipients_test.dart",
+        "test/studio_mail_reply_test.dart",
+        "test/studio_mail_threading_test.dart",
+        "test/studio_mail_test.dart"
+      ]
+    },
+    "incoming-mail-mime": {
+      "package": "third_party/enough_mail",
+      "runner": "dart",
+      "tests": [
+        "test/codecs/quoted_printable_mail_codec_test.dart",
+        "test/message_builder_test.dart",
+        "test/quds_portable_mime_test.dart",
+        "test/mail/mail_send_transaction_test.dart",
+        "test/mail/mail_submission_acceptance_test.dart",
+        "test/smtp/smtp_transparency_test.dart"
+      ]
+    },
+    "incoming-mail-transport": {
+      "package": "packages/quds_mail_transport",
+      "runner": "dart",
+      "tests": [
+        "test/cloud_provider_test.dart",
+        "test/ews_provider_test.dart"
+      ]
+    },
+    "incoming-rendering-editor": {
+      "package": "packages/quds_office_editor",
+      "runner": "flutter",
+      "tests": [
+        "test/office_dark_slide_test.dart",
+        "test/slide_arrange_history_test.dart",
+        "test/slide_incoming_pptx_regression_test.dart",
+        "test/slide_notes_history_test.dart",
+        "test/slide_render_fidelity_test.dart",
+        "test/slide_section_reorder_test.dart",
+        "test/slide_transform_orientation_test.dart",
+        "test/slide_geometric_presets_test.dart",
+        "test/slide_background_publication_test.dart"
+      ]
+    },
+    "incoming-rendering-engine": {
+      "package": "packages/quds_office_engine",
+      "runner": "dart",
+      "tests": [
+        "test/slide_test.dart",
+        "test/slide_arrange_fidelity_test.dart",
+        "test/slide_import_fidelity_test.dart",
+        "test/slide_incoming_pptx_regression_test.dart",
+        "test/slide_render_fidelity_test.dart",
+        "test/slide_rich_text_explicit_style_test.dart",
+        "test/slide_section_fidelity_test.dart",
+        "test/slide_table_cell_color_test.dart",
+        "test/slide_text_fidelity_test.dart",
+        "test/slide_transform_orientation_test.dart",
+        "test/office_pdf_export_test.dart",
+        "test/slide_picture_background_test.dart",
+        "test/slide_geometric_presets_test.dart",
+        "test/slide_background_publication_test.dart"
+      ]
+    },
+    "incoming-spacy": {
+      "package": "packages/quds_proofing_spacy",
+      "runner": "dart",
+      "tests": [
+        "test/analysis_test.dart",
+        "test/bundle_test.dart",
+        "test/distribution_test.dart",
+        "test/grammar_evaluation_harness_test.dart",
+        "test/grammar_families_test.dart",
+        "test/grammar_planner_test.dart",
+        "test/grammar_provider_test.dart",
+        "test/language_catalog_test.dart",
+        "test/macho_code_identity_test.dart",
+        "test/ner_removal_test.dart",
+        "test/worker_test.dart"
+      ]
+    },
+    "incoming-spacy-engine": {
+      "package": "packages/quds_office_engine",
+      "runner": "dart",
+      "tests": [
+        "test/proofing/german_agreement_facts_test.dart"
+      ]
+    },
+    "incoming-spacy-studio": {
+      "package": "packages/quds_office_editor/example",
+      "runner": "flutter",
+      "tests": [
+        "test/studio_spacy_setup_test.dart",
+        "test/studio_spacy_pin_test.dart"
+      ]
+    },
+    "incoming-studio-regressions": {
+      "package": "packages/quds_office_editor/example",
+      "runner": "flutter",
+      "tests": [
+        "test/studio_comment_draft_proofing_test.dart",
+        "test/studio_material_theme_test.dart",
+        "test/studio_layout_theme_test.dart"
+      ]
+    },
+    "incoming-zotero-editor": {
+      "package": "packages/quds_office_editor",
+      "runner": "flutter",
+      "tests": [
+        "test/word_zotero_note_preview_test.dart",
+        "test/word_zotero_children_dialog_test.dart",
+        "test/word_zotero_children_test.dart",
+        "test/word_zotero_library_details_test.dart",
+        "test/word_zotero_stored_details_dialog_test.dart"
+      ]
+    },
+    "incoming-zotero-engine": {
+      "package": "packages/quds_office_engine",
+      "runner": "dart",
+      "tests": [
+        "test/zotero_item_children_test.dart",
+        "test/zotero_item_details_test.dart",
+        "test/zotero_identity_client_test.dart",
+        "test/zotero_backoff_state_test.dart"
+      ]
+    },
+    "macros": {
+      "package": "packages/quds_office_engine",
+      "runner": "dart",
+      "tests": [
+        "test/office_operations_test.dart",
+        "test/office_macro_runtime_test.dart",
+        "test/office_macro_word_revision_guard_test.dart",
+        "test/office_macro_language_test.dart",
+        "test/office_vba_language_test.dart",
+        "test/office_vba_integration_test.dart",
+        "test/office_vba_procedures_test.dart",
+        "test/office_vba_procedure_boundaries_test.dart",
+        "test/office_vba_procedures_integration_test.dart",
+        "test/office_vba_control_flow_test.dart",
+        "test/office_vba_control_flow_boundaries_test.dart",
+        "test/office_vba_control_flow_integration_test.dart",
+        "test/office_vba_arrays_test.dart",
+        "test/office_vba_arrays_boundaries_test.dart",
+        "test/office_vba_arrays_integration_test.dart",
+        "test/office_vba_dynamic_arrays_test.dart",
+        "test/office_vba_dynamic_arrays_integration_test.dart",
+        "test/office_vba_string_intrinsics_test.dart",
+        "test/office_vba_string_intrinsics_integration_test.dart",
+        "test/office_vba_conformance_test.dart",
+        "test/office_vba_variant_conversions_test.dart",
+        "test/office_vba_variant_conformance_test.dart",
+        "test/office_vba_variant_conversions_integration_test.dart",
+        "test/office_macro_expansion_test.dart",
+        "test/office_macro_mcp_test.dart",
+        "test/office_macro_cli_test.dart",
+        "test/office_steps_test.dart",
+        "test/word_step_atomicity_test.dart",
+        "test/word_steps_vocabulary_test.dart",
+        "test/word_structure_steps_test.dart",
+        "test/table_grid_steps_test.dart",
+        "test/word_table_grid_addressing_test.dart",
+        "test/sheet_macro_preservation_test.dart",
+        "test/office_vba_word_language_test.dart",
+        "test/office_vba_word_conformance_test.dart",
+        "test/office_vba_word_integration_test.dart",
+        "test/office_vba_word_cli_test.dart"
+      ]
+    },
+    "publication-word-engine": {
+      "package": "packages/quds_office_engine",
+      "runner": "dart",
+      "tests": [
+        "test/office_named_fonts_test.dart",
+        "test/rich_note_test.dart",
+        "test/style_cascade_test.dart",
+        "test/styleless_import_fidelity_test.dart",
+        "test/word_contained_text_wrap_test.dart",
+        "test/word_extended_revision_test.dart",
+        "test/word_font_line_metrics_test.dart",
+        "test/word_footnote_reference_test.dart",
+        "test/word_frame_wrap_test.dart",
+        "test/word_layout_test.dart",
+        "test/word_paragraph_mark_layout_test.dart",
+        "test/word_styles_layout_test.dart",
+        "test/word_table_picture_pagination_test.dart",
+        "test/word_table_tall_frame_layout_test.dart",
+        "test/word_table_tall_toc_layout_test.dart"
+      ]
+    },
+    "publication-word-editor": {
+      "package": "packages/quds_office_editor",
+      "runner": "flutter",
+      "tests": [
+        "test/host_fonts_test.dart",
+        "test/word_run_metrics_test.dart",
+        "test/word_shaped_wrap_test.dart",
+        "test/word_small_caps_test.dart",
+        "test/word_hyphenation_paint_test.dart"
+      ]
+    },
+    "publication-web-vm": {
+      "package": "packages/quds_office_editor/example",
+      "runner": "flutter",
+      "tests": [
+        "test/studio_hunspell_web_host_test.dart",
+        "test/studio_hunspell_web_cancellation_test.dart"
+      ]
+    },
+    "arabic-morph-lifecycle": {
+      "package": "packages/quds_arabic_morph",
+      "runner": "dart",
+      "tests": [
+        "test/arabic_morph_unit_test.dart",
+        "test/arabic_morph_lifecycle_test.dart"
+      ]
+    },
+    "arabic-engine": {
+      "package": "packages/quds_office_engine",
+      "runner": "dart",
+      "tests": [
+        "test/proofing/arabic_grammar_context_test.dart",
+        "test/proofing/arabic_grammar_rules_test.dart",
+        "test/proofing/arabic_extended_rules_test.dart",
+        "test/proofing/arabic_writing_rules_test.dart",
+        "test/proofing/office_proofing_test.dart",
+        "test/proofing/office_proofing_merge_test.dart"
+      ]
+    },
+    "arabic-studio": {
+      "package": "packages/quds_office_editor/example",
+      "runner": "flutter",
+      "tests": [
+        "test/studio_arabic_morph_setup_test.dart",
+        "test/studio_hunspell_setup_test.dart",
+        "test/studio_arabic_morph_web_lifecycle_test.dart"
+      ]
+    }
+  },
+  "runtime": "Use repository-pinned Flutter 3.47.8 / Dart 3.13.7 with the unchanged locked workspace. Run genuine Dart VM tests through dart, widget suites through flutter test --no-pub --concurrency=1. Record source head, selected files, raw machine events and exit status; do not count loader/setup events as tests. Serialize all Flutter CLI invocations globally to avoid concurrent SDK engine-stamp updates; pure-Dart package groups may run concurrently. Provide QUDS_SPACY_MACOS_LIBRARY pointing to the immutable, SHA-256-verified macOS library pinned by build_macos_app.sh for the hash-only identity test; it is not loaded or executed.",
+  "static": "Strict analyzer over affected engine/editor/Studio/spacy source and tests, formatting for changed Dart files, git diff --check. Whole-engine analysis also covers new macros.",
+  "caveats": [
+    "No GitHub CI, workflow, check-run or commit-status queries; no waiting.",
+    "Spacy tests above use synthetic annotations/backends and validate lifecycle/planner behavior. Fresh native model qualification is not implied. Preserve the original native receipts and their source/runtime attribution.",
+    "Do not rerun the consumed native qualification seal or rewrite its protocol/panel/results. The selected Mach-O identity test reads the exact pinned macOS binary as data; no native library or model is executed.",
+    "Mail/Zotero controlled transports exercise request and response behavior without sending real mail or writing to connected accounts.",
+    "This is a focused selection, not the entire Studio or repository suite. The main correction for the previously failing comment-draft language-change test is included and receives a fresh run.",
+    "PPTX regressions include nearest-background ownership, retained media identity, exact imported crop, edited master inheritance, PDF canvas state, and geometric preset identity and silhouettes.",
+    "The browser-only persistence file is outside the accepted VM/widget selection because local Chromium startup is blocked by socket permissions. Source analysis and web compilation do not establish browser runtime persistence.",
+    "Incoming macOS Word native benchmark passed its target on 20 of 24 pages; four exact-spacing pages remain below target. Fresh Linux regression tests do not replace those native observations.",
+    "Word and Excel source conformance expectations are specification-derived or intentional dialect limits; no fresh Microsoft Office host execution is claimed. Word source uses explicit body-paragraph indexes and does not read live document text.",
+    "Arabic unit and host lifecycle tests use controlled backends; worker protocol transfer controls and production JavaScript compilation are reported separately. No fresh native or Wasm grammar model execution is claimed."
+  ],
+  "blocked_browser_cohort": {
+    "package": "packages/quds_office_editor/example",
+    "runner": "flutter",
+    "extra_args": [
+      "--platform",
+      "chrome"
+    ],
+    "tests": [
+      "test/studio_web_persistence_test.dart"
+    ],
+    "reason": "Chromium startup aborts before application code: socket() failed with Operation not permitted in process_singleton_posix.cc. No browser case ran; no sandbox escalation or security relaxation was attempted."
+  }
+}
