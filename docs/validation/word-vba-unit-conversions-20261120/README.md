@@ -101,8 +101,8 @@ Source review and arithmetic checks are recorded separately when complete.
 ## Reviewed publication scope
 
 The historical initial intake above is superseded by the
-[incoming reconciliation](incoming-reconciliation.md). The publication
-checkpoint includes `332d7b26` as an actual merge parent, resolving its sole
+[incoming reconciliation](incoming-reconciliation.md). Checkpoint `8ca1958d9eb737beb88269bb962a2418f7a3a44a` includes
+`332d7b26` as an actual merge parent, resolving its sole
 modify/delete conflict by retaining main's deletion of the temporary workflow.
 All **311 initially captured references** are therefore represented:
 288 actual ancestors and 23 exact-tree or changed-file equivalents.
@@ -134,7 +134,9 @@ Independent source review covers dispatch/reservation/checker paths,
 single argument evaluation, numeric boundaries, native guard retention,
 the example's operation order, and the test expectations. The first review
 is retained in [source-review-initial.json](source-review-initial.json);
-the final candidate review and late-scope inventory are recorded separately.
+the [final source review](source-review.json) binds the final compiler, both
+suites, the BAS and the contract with no blocking findings. The
+[late-scope inventory](late-scope.md) records the four active later heads.
 
 ### Validation that did not run
 
@@ -176,3 +178,18 @@ fixtures; the other Word branch adds named application-function arguments.
 This increment keeps its reviewed positional-only contract. A fresh remote
 main check is required immediately before merging; any work actually added
 to main must be retained.
+
+## Remote checkpoint ledger
+
+| Checkpoint | Preserved state |
+| --- | --- |
+| `e938eebba6ee1b52868acdcd3a1f9d69b5af6891` | Complete initial intake audit, before implementation |
+| `dd8e73a7d6252b336b2e7a437c4931addc42d491` | Physical conversions, example, contract and two authored suites |
+| `8ca1958d9eb737beb88269bb962a2418f7a3a44a` | Actual incoming maintenance ancestry, reviewed numeric corrections and arithmetic evidence |
+| Final evidence checkpoint, identified in PR #271 | Final independent review, late-scope inventory and source binding |
+
+[qualification.json](qualification.json) binds the reviewed source and the
+precise validation limits. The final remote-main SHA, final checkpoint SHA,
+complete-tree equality and merge-parent verification are recorded in
+[PR #271](https://github.com/CrispStrobe/quds_office_suite/pull/271) after the
+merge, avoiding a self-referential commit hash inside this tree.

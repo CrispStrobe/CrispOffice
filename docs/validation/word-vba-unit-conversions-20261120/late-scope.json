@@ -1,0 +1,390 @@
+{
+  "schema_version": 1,
+  "scope": "Late active heads first observed after the initial 311-reference intake and implementation checkpoint dd8e73a7. These do not change the initial-snapshot accounting.",
+  "initial_main": "c954d00d2fc85604ae394674bca91ea8a1dede0e",
+  "feature_checkpoint": "dd8e73a7d6252b336b2e7a437c4931addc42d491",
+  "branch_snapshot": {
+    "count": 37,
+    "initial_branch_count": 33,
+    "new_branches": 5,
+    "removed_initial_branch": "chore/macos-13-minimum-20261120",
+    "removed_branch_head_preserved_as_initial_main_ancestor": "a51c20737b1932d9c6475ea6dddc33fbd50b2c17",
+    "main_unchanged_in_snapshot": true,
+    "other_initial_heads_unchanged": true,
+    "own_new_branch": "codex/word-vba-compatibility-20261120-continuation"
+  },
+  "pr_snapshot": {
+    "method": "Compared the latest 100 updated PRs against all 270 initial PRs; only new PR #271 was present. Rechecked the complete open-PR list (one entry).",
+    "open_pr_list_recorded_at_utc": "2026-11-20T20:39:01.379Z",
+    "open_prs": [
+      {
+        "number": 271,
+        "branch": "codex/word-vba-compatibility-20261120-continuation",
+        "head": "dd8e73a7d6252b336b2e7a437c4931addc42d491",
+        "title": "Extend Word VBA physical measurement conversions"
+      }
+    ],
+    "late_workstream_prs_at_capture": [],
+    "existing_pr_head_changes_detected": []
+  },
+  "deferred": [
+    {
+      "ref": "refs/heads/codex/word-vba-measurements-20261120",
+      "sha": "4d0086aba52fc804424145d8eabe3c4c1c10f201",
+      "classification": "deferred_post_intake_active_work",
+      "pr_at_capture": null,
+      "commit_subject": "Merge concurrent Word unit-conversion work and consolidate compatibility contract [skip ci]\n\nPreserve dd8e73a7's independent tests, example and intake evidence. Resolve overlapping production edits to one consistent Set/contains implementation with explicit binary64 intermediates and rational metric fallback order. Consolidate documentation, retain explicit CLng rounding guidance, and record the unavailable Dart execution environment without claiming test passes.",
+      "parents": [
+        "55249a21986c0698e49eedb6ea47c8929856e35a",
+        "dd8e73a7d6252b336b2e7a437c4931addc42d491"
+      ],
+      "comparison_to_initial_main": {
+        "status": "ahead",
+        "ahead_by": 7,
+        "behind_by": 0,
+        "changed_files": [
+          {
+            "path": "docs/VBA_PARITY_ROADMAP.md",
+            "status": "modified",
+            "additions": 17,
+            "deletions": 0
+          },
+          {
+            "path": "docs/VBA_WORD_MACROS.md",
+            "status": "modified",
+            "additions": 119,
+            "deletions": 1
+          },
+          {
+            "path": "docs/validation/word-vba-measurements-20261120/README.md",
+            "status": "added",
+            "additions": 143,
+            "deletions": 0
+          },
+          {
+            "path": "docs/validation/word-vba-measurements-20261120/intake.json",
+            "status": "added",
+            "additions": 207,
+            "deletions": 0
+          },
+          {
+            "path": "docs/validation/word-vba-unit-conversions-20261120/README.md",
+            "status": "added",
+            "additions": 104,
+            "deletions": 0
+          },
+          {
+            "path": "docs/validation/word-vba-unit-conversions-20261120/intake.json",
+            "status": "added",
+            "additions": 3238,
+            "deletions": 0
+          },
+          {
+            "path": "packages/quds_office_engine/CHANGELOG.md",
+            "status": "modified",
+            "additions": 8,
+            "deletions": 0
+          },
+          {
+            "path": "packages/quds_office_engine/example/macros/word_measurements.bas",
+            "status": "added",
+            "additions": 29,
+            "deletions": 0
+          },
+          {
+            "path": "packages/quds_office_engine/example/macros/word_unit_conversions.bas",
+            "status": "added",
+            "additions": 28,
+            "deletions": 0
+          },
+          {
+            "path": "packages/quds_office_engine/lib/src/automation/office_vba_language.dart",
+            "status": "modified",
+            "additions": 42,
+            "deletions": 11
+          },
+          {
+            "path": "packages/quds_office_engine/test/office_vba_word_measurements_integration_test.dart",
+            "status": "added",
+            "additions": 108,
+            "deletions": 0
+          },
+          {
+            "path": "packages/quds_office_engine/test/office_vba_word_measurements_test.dart",
+            "status": "added",
+            "additions": 323,
+            "deletions": 0
+          },
+          {
+            "path": "packages/quds_office_engine/test/office_vba_word_unit_conversions_integration_test.dart",
+            "status": "added",
+            "additions": 176,
+            "deletions": 0
+          },
+          {
+            "path": "packages/quds_office_engine/test/office_vba_word_unit_conversions_test.dart",
+            "status": "added",
+            "additions": 305,
+            "deletions": 0
+          },
+          {
+            "path": "packages/quds_office_engine/tool/macros/web_vba_word_measurements_smoke.dart",
+            "status": "added",
+            "additions": 265,
+            "deletions": 0
+          }
+        ]
+      },
+      "relationship": "Descendant of reviewed feature checkpoint dd8e73a7 (direct second parent); not incorporated by this feature's current checkpoint.",
+      "reason": "Post-intake active continuation already descends from dd8e73a7 and merges this increment, but selects an alternative Set/switch production implementation, different metric fallback operation order, additional fixtures and portable driver. Incorporating it requires coherent conflict resolution and validation of the combined source; that qualification was not performed by this increment.",
+      "branch_preserved": true
+    },
+    {
+      "ref": "refs/heads/codex/word-vba-unit-conversions-20261120",
+      "sha": "e08635b3f21c60ad21888821050dc97c2dbf7086",
+      "classification": "deferred_post_intake_active_work",
+      "pr_at_capture": null,
+      "commit_subject": "Test and document Word measurement macro workflows [skip ci]\n\nAdd all ten conversion call forms, numeric boundary/type/scope cases, a repeatable BAS example, saved DOCM/CLI/MCP integration and portable JavaScript checks. Document exact physical ratios, bounded Double semantics and existing native indentation ownership. Development gates pass 147 source and 10 integration cases.",
+      "parents": [
+        "e15d97d0b01e363e2bc0d33d99b487630d8b509f"
+      ],
+      "comparison_to_initial_main": {
+        "status": "ahead",
+        "ahead_by": 4,
+        "behind_by": 0,
+        "changed_files": [
+          {
+            "path": "docs/VBA_ARGUMENTS.md",
+            "status": "modified",
+            "additions": 8,
+            "deletions": 4
+          },
+          {
+            "path": "docs/VBA_PARITY_ROADMAP.md",
+            "status": "modified",
+            "additions": 12,
+            "deletions": 0
+          },
+          {
+            "path": "docs/VBA_WORD_MACROS.md",
+            "status": "modified",
+            "additions": 111,
+            "deletions": 5
+          },
+          {
+            "path": "docs/validation/word-vba-unit-conversions-20261120/incoming-review.md",
+            "status": "added",
+            "additions": 76,
+            "deletions": 0
+          },
+          {
+            "path": "packages/quds_office_engine/CHANGELOG.md",
+            "status": "modified",
+            "additions": 7,
+            "deletions": 0
+          },
+          {
+            "path": "packages/quds_office_engine/example/macros/word_measurements.bas",
+            "status": "added",
+            "additions": 47,
+            "deletions": 0
+          },
+          {
+            "path": "packages/quds_office_engine/lib/src/automation/office_vba_language.dart",
+            "status": "modified",
+            "additions": 93,
+            "deletions": 34
+          },
+          {
+            "path": "packages/quds_office_engine/test/office_vba_word_line_spacing_test.dart",
+            "status": "modified",
+            "additions": 7,
+            "deletions": 3
+          },
+          {
+            "path": "packages/quds_office_engine/test/office_vba_word_measurements_integration_test.dart",
+            "status": "added",
+            "additions": 237,
+            "deletions": 0
+          },
+          {
+            "path": "packages/quds_office_engine/test/office_vba_word_measurements_test.dart",
+            "status": "added",
+            "additions": 439,
+            "deletions": 0
+          },
+          {
+            "path": "packages/quds_office_engine/tool/macros/web_vba_word_measurements_smoke.dart",
+            "status": "added",
+            "additions": 431,
+            "deletions": 0
+          }
+        ]
+      },
+      "relationship": "Four commits ahead of fixed initial main; overlaps the same production/compiler and documentation surfaces.",
+      "reason": "Post-intake active continuation adds named arguments on conversion methods, a different evaluator/canonicalization path and conflicting measurement example/test/driver filenames. Named conversion arguments are beyond this increment's reviewed positional-only contract. Its commit message reports 147 source and 10 integration development passes, but that evidence and the combined implementation were not requalified here.",
+      "branch_preserved": true
+    },
+    {
+      "ref": "refs/heads/work/mail-bulk-actions-20261120",
+      "sha": "69ab514b57a4d6d4db062d802eb853c2691d80fe",
+      "classification": "deferred_post_intake_active_work",
+      "pr_at_capture": null,
+      "commit_subject": "mail: add bounded foreground bulk flag coordinator and explicit outcomes [skip ci]",
+      "parents": [
+        "d33875709546a323c786f1a0ec487e7ccdd1c03a"
+      ],
+      "comparison_to_initial_main": {
+        "status": "ahead",
+        "ahead_by": 8,
+        "behind_by": 0,
+        "changed_files": [
+          {
+            "path": "docs/validation/mail-bulk-actions-20261120/intake.json",
+            "status": "added",
+            "additions": 4382,
+            "deletions": 0
+          },
+          {
+            "path": "docs/validation/mail-bulk-actions-20261120/intake.md",
+            "status": "added",
+            "additions": 74,
+            "deletions": 0
+          },
+          {
+            "path": "docs/validation/word-vba-measurements-20261120/intake.json",
+            "status": "added",
+            "additions": 177,
+            "deletions": 0
+          },
+          {
+            "path": "docs/validation/word-vba-unit-conversions-20261120/README.md",
+            "status": "added",
+            "additions": 69,
+            "deletions": 0
+          },
+          {
+            "path": "docs/validation/word-vba-unit-conversions-20261120/intake.json",
+            "status": "added",
+            "additions": 3238,
+            "deletions": 0
+          },
+          {
+            "path": "packages/quds_mail_core/CHANGELOG.md",
+            "status": "modified",
+            "additions": 5,
+            "deletions": 0
+          },
+          {
+            "path": "packages/quds_mail_core/lib/quds_mail_core.dart",
+            "status": "modified",
+            "additions": 1,
+            "deletions": 0
+          },
+          {
+            "path": "packages/quds_mail_core/lib/src/sync/bulk_flags.dart",
+            "status": "added",
+            "additions": 259,
+            "deletions": 0
+          },
+          {
+            "path": "packages/quds_mail_core/test/bulk_flags_test.dart",
+            "status": "added",
+            "additions": 560,
+            "deletions": 0
+          },
+          {
+            "path": "packages/quds_office_engine/CHANGELOG.md",
+            "status": "modified",
+            "additions": 8,
+            "deletions": 0
+          },
+          {
+            "path": "packages/quds_office_engine/lib/src/automation/office_vba_language.dart",
+            "status": "modified",
+            "additions": 42,
+            "deletions": 11
+          }
+        ]
+      },
+      "relationship": "Eight commits ahead of fixed initial main; includes its own incoming integration snapshots.",
+      "reason": "Post-intake active Mail continuation adds a bounded foreground bulk-flag coordinator, exported API and new tests, and carries overlapping alternative Word-measurement source. These new Mail operations and the combined Word implementation were not reviewed or qualified as part of this positional Word conversion increment.",
+      "branch_preserved": true
+    },
+    {
+      "ref": "refs/heads/work/mail-bulk-flags-20261120",
+      "sha": "0cc6316c61efd8b39a9cb0cfed6b2879f7865d48",
+      "classification": "deferred_post_intake_active_work",
+      "pr_at_capture": null,
+      "commit_subject": "Integrate latest fork and upstream work before foreground mail bulk flags [skip ci]\n\nPreserve captured Word measurement changes, continuation intake, and concurrent mail maintenance documentation. Retain the removal of the temporary golden workflow. GitHub Actions are not queried or awaited; local validation follows in subsequent checkpoints.",
+      "parents": [
+        "c954d00d2fc85604ae394674bca91ea8a1dede0e",
+        "5c205504f3b2b6d33bc87d4a1a098791ff37a3d8",
+        "e938eebba6ee1b52868acdcd3a1f9d69b5af6891",
+        "b8b4d97934846fe44c370c4e86065a0b04c9fedd"
+      ],
+      "comparison_to_initial_main": {
+        "status": "ahead",
+        "ahead_by": 7,
+        "behind_by": 0,
+        "changed_files": [
+          {
+            "path": "docs/validation/mail-bulk-actions-20261120/intake.json",
+            "status": "added",
+            "additions": 4382,
+            "deletions": 0
+          },
+          {
+            "path": "docs/validation/mail-bulk-actions-20261120/intake.md",
+            "status": "added",
+            "additions": 74,
+            "deletions": 0
+          },
+          {
+            "path": "docs/validation/word-vba-measurements-20261120/intake.json",
+            "status": "added",
+            "additions": 177,
+            "deletions": 0
+          },
+          {
+            "path": "docs/validation/word-vba-unit-conversions-20261120/README.md",
+            "status": "added",
+            "additions": 69,
+            "deletions": 0
+          },
+          {
+            "path": "docs/validation/word-vba-unit-conversions-20261120/intake.json",
+            "status": "added",
+            "additions": 3238,
+            "deletions": 0
+          },
+          {
+            "path": "packages/quds_office_engine/CHANGELOG.md",
+            "status": "modified",
+            "additions": 8,
+            "deletions": 0
+          },
+          {
+            "path": "packages/quds_office_engine/lib/src/automation/office_vba_language.dart",
+            "status": "modified",
+            "additions": 42,
+            "deletions": 11
+          }
+        ]
+      },
+      "relationship": "Seven commits ahead of fixed initial main; merge parents include initial main, e938eebb and other active snapshots.",
+      "reason": "Post-intake active foreground bulk-flags intake checkpoint contains concurrent Mail and Word snapshots, including the alternative Word compiler. Its own commit states local validation follows in subsequent checkpoints. Preserved for that active workstream; not adopted piecemeal in this increment.",
+      "branch_preserved": true
+    }
+  ],
+  "disposition_policy": "Preserve the late active branches and record exact captured heads. Do not overwrite their work or adopt overlapping alternative implementations piecemeal. Incorporate any actual remote-main advance before final publication and report any remaining captured late heads honestly.",
+  "final_snapshot_distinction": {
+    "initial_captured_references": 311,
+    "initial_exclusions_after_reviewed_332d7b26_resolution": 0,
+    "additional_active_heads_explicitly_deferred": 4,
+    "unclassified_captured_late_heads": 0
+  },
+  "qualification_limit": "No fresh Mail runtime or alternative Word implementation qualification is claimed. No runtime passes are inferred from another branch's commit message.",
+  "github_actions_queried": false,
+  "github_actions_waited": false
+}
