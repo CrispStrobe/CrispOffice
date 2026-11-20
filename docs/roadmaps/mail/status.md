@@ -1,5 +1,43 @@
 # Mail implementation status — 20 November 2026
 
+## Remembered native IMAP/SMTP accounts
+
+The [remembered-account continuation](remembered-accounts.md) adds a bounded
+platform-keychain catalog and explicit account switching to native Studio Mail.
+Up to 20 IMAP/SMTP configurations can be remembered. Selecting an account fills
+setup and persists the selection; only Connect starts a provider session.
+Successful password updates replace the same identity, New account preserves
+the existing catalog, and Forget removes only the selected saved account.
+
+Entries with the same sender and IMAP host show differing effective logins,
+TLS settings or SMTP routes. Hover/long-press and accessibility descriptions
+expose complete sender and IMAP/SMTP route details, including the exact Forget
+target, without passwords or internal account IDs.
+
+The old single-account record migrates only after its complete replacement is
+durably acknowledged. An empty v2 catalog prevents stale legacy resurrection;
+unreadable, corrupt or newer-version data blocks mutations instead of silently
+replacing stored accounts. Operations serialize across host store instances in
+one isolate, and fixed error messages do not expose credentials.
+
+Switch account saves a retained draft before retiring the connection. Failure
+keeps the current session available. The existing provider/incoming-endpoint/
+login/sender draft identity is unchanged. Late keychain completions cannot
+replace newer settings or leave an unrelated account eligible for Forget.
+English, German and Arabic copy covers the workflow and failure states.
+
+This native IMAP/SMTP chooser supersedes earlier statements that only one
+account could be remembered or that persistent account switching was
+unavailable. Earlier sections retain their historical source and validation
+scope; broader mailbox sessions and other providers' authentication remain open.
+
+The [local record](../../validation/mail-accounts-20261120/README.md) tracks
+source, tests and integrated branches. M04W remains open: this increment does
+not provide simultaneous connected accounts, a unified/offline inbox,
+repository-driven mailbox sessions, persistent EWS/cloud tokens or bulk
+commands. Installed keychain behavior and live providers remain separate
+qualification scopes.
+
 ## Shared foreground mailbox navigation
 
 The [mailbox workspace continuation](mailbox-workspace.md) adds one reusable
