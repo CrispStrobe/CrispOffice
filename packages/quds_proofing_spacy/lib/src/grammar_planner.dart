@@ -14,6 +14,9 @@ import 'analysis.dart';
 import 'backend.dart';
 import 'distribution.dart'
     show spacyGrammarMacosBundledCodeSha256, spacyGrammarMacosBundledSha256;
+import 'grammar_families.dart';
+
+export 'grammar_families.dart' show SpacyGrammarFamily, spacyGrammarExplanation;
 
 const spacyGrammarProviderId = 'spacy-german-grammar';
 const spacyNounVerbRuleId = 'de.spacy.noun-verb';
@@ -114,8 +117,24 @@ final class SpacyGrammarPlan {
 /// other moods/tenses, unknown nouns and
 /// unresolved lexical readings cause abstention. This is not a general German
 /// grammar checker, and a model-selected reading never erases alternatives.
+///
+/// Grammar v2 adds opt-in rule [families] (noun-phrase agreement, case after
+/// prepositions, subject person, verb position). The default remains the
+/// original noun/verb family alone, so existing replays are unchanged; hosts
+/// select families explicitly (see [spacyGrammarQualifiedFamilies]).
 final class SpacyGermanGrammarPlanner {
-  const SpacyGermanGrammarPlanner();
+  const SpacyGermanGrammarPlanner({
+    this.families = const {SpacyGrammarFamily.nounVerb},
+    this.englishMessages = false,
+  });
+
+  /// Explanations in English instead of German (host UI language only;
+  /// decisions and replacements are identical).
+  final bool englishMessages;
+
+  /// Enabled rule families. [SpacyGrammarFamily.nounVerb] keeps the
+  /// original single-sentence W6 planner exactly; the others run per sentence.
+  final Set<SpacyGrammarFamily> families;
 
   Future<SpacyGrammarPlan> plan(
     OfficeProofingRequest request,
@@ -177,14 +196,16 @@ final class SpacyGermanGrammarPlanner {
             )) {
       return unavailable(OfficeProofingStatus.failed, 'runtime-mismatch');
     }
-    if (analysis.sentences.length > 1) {
-      return SpacyGrammarPlan(
-        result: OfficeProofingResult(
-          request: request,
-          providerId: spacyGrammarProviderId,
-          status: OfficeProofingStatus.success,
-        ),
-        decisions: [
+    final vocabulary = Set<String>.unmodifiable(
+      personalWords.map((word) => normalizeGermanWord(word).toLowerCase()),
+    );
+    final protected = OfficeProofingTextRanges(request.text);
+    final literals = GermanLiteralTextRanges(request.text);
+    final decisions = <SpacyGrammarDecision>[];
+    final findings = <OfficeProofingFinding>[];
+    if (families.contains(SpacyGrammarFamily.nounVerb)) {
+      if (analysis.sentences.length > 1) {
+        decisions.add(
           SpacyGrammarDecision(
             sentenceIndex: -1,
             start: 0,
@@ -192,45 +213,79 @@ final class SpacyGermanGrammarPlanner {
             action: 'abstained',
             reason: 'multiple-sentences',
           ),
-        ],
-      );
+        );
+      } else {
+        // Retain paragraph-wide protection even when the parser assigns
+        // quotation punctuation outside its one selected sentence.
+        final quotedContext = _quoteCharacters.hasMatch(request.text);
+        for (var index = 0; index < analysis.sentences.length; index++) {
+          final sentence = analysis.sentences[index];
+          final outcome = await _sentence(
+            request,
+            analysis,
+            sentence,
+            index,
+            vocabulary,
+            protected,
+            literals,
+            quotedContext,
+          );
+          decisions.add(outcome.decision);
+          if (outcome.finding != null) findings.add(outcome.finding!);
+        }
+        if (analysis.sentences.isEmpty) {
+          decisions.add(
+            SpacyGrammarDecision(
+              sentenceIndex: -1,
+              start: 0,
+              end: request.text.length,
+              action: 'abstained',
+              reason: 'empty-input',
+            ),
+          );
+        }
+      }
     }
-    final vocabulary = Set<String>.unmodifiable(
-      personalWords.map((word) => normalizeGermanWord(word).toLowerCase()),
-    );
-    final protected = OfficeProofingTextRanges(request.text);
-    final literals = GermanLiteralTextRanges(request.text);
-    // Retain paragraph-wide protection even when the parser assigns quotation
-    // punctuation outside its one selected sentence. Multi-sentence requests
-    // are separately outside this candidate's structural scope.
-    final quotedContext = _quoteCharacters.hasMatch(request.text);
-    final decisions = <SpacyGrammarDecision>[];
-    final findings = <OfficeProofingFinding>[];
-    for (var index = 0; index < analysis.sentences.length; index++) {
-      final sentence = analysis.sentences[index];
-      final outcome = await _sentence(
-        request,
-        analysis,
-        sentence,
-        index,
-        vocabulary,
-        protected,
-        literals,
-        quotedContext,
-      );
-      decisions.add(outcome.decision);
-      if (outcome.finding != null) findings.add(outcome.finding!);
-    }
-    if (analysis.sentences.isEmpty) {
-      decisions.add(
-        SpacyGrammarDecision(
-          sentenceIndex: -1,
-          start: 0,
-          end: request.text.length,
-          action: 'abstained',
-          reason: 'empty-input',
-        ),
-      );
+    final extended = families.difference({SpacyGrammarFamily.nounVerb});
+    if (extended.isNotEmpty) {
+      for (var index = 0; index < analysis.sentences.length; index++) {
+        final outcomes = await SpacyGrammarFamilyPlanner(
+          request: request,
+          analysis: analysis,
+          sentence: analysis.sentences[index],
+          families: extended,
+          personalWords: vocabulary,
+          protected: protected,
+          literals: literals,
+          englishMessages: englishMessages,
+        ).plan();
+        for (final outcome in outcomes) {
+          var action = outcome.action;
+          var reason = outcome.reason;
+          final finding = outcome.finding;
+          if (finding != null &&
+              findings.any(
+                (other) =>
+                    other.start < finding.end && finding.start < other.end,
+              )) {
+            action = 'abstained';
+            reason = 'overlapping-proposal';
+          } else if (finding != null) {
+            findings.add(finding);
+          }
+          decisions.add(
+            SpacyGrammarDecision(
+              sentenceIndex: index,
+              start: outcome.start,
+              end: outcome.end,
+              action: action,
+              reason: reason,
+              tokenIndices: outcome.tokenIndices,
+              evidence: outcome.evidence,
+            ),
+          );
+        }
+      }
     }
     return SpacyGrammarPlan(
       result: OfficeProofingResult(
@@ -492,8 +547,9 @@ final class SpacyGermanGrammarPlanner {
         start: verb.start,
         end: verb.end,
         ruleId: spacyNounVerbRuleId,
-        message:
-            'Diese Verbform passt nicht zum lexikalisch eindeutigen Singular oder Plural des analysierten Subjekts.',
+        message: englishMessages
+            ? SpacyGrammarFamily.nounVerb.explanationEn
+            : SpacyGrammarFamily.nounVerb.explanationDe,
         category: OfficeProofingCategory.grammar,
         replacements: [replacement],
       ),

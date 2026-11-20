@@ -2,6 +2,8 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:quds_proofing_spacy/quds_proofing_spacy.dart';
+import 'package:quds_proofing_spacy/quds_proofing_spacy_grammar.dart'
+    show SpacyGrammarFamily, spacyGrammarQualifiedFamilies;
 
 import 'studio_spacy_host.dart';
 
@@ -332,6 +334,41 @@ class _StudioSpacySetupDialogState extends State<StudioSpacySetupDialog> {
               ? null
               : (value) => _run(() => widget.host.setGrammarEnabled(value)),
         ),
+        if (status.grammarOffered)
+          Padding(
+            padding: const EdgeInsets.only(left: 16),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                for (final family in SpacyGrammarFamily.values)
+                  CheckboxListTile(
+                    key: Key('spacy-setup-grammar-family-${family.id}'),
+                    dense: true,
+                    contentPadding: EdgeInsets.zero,
+                    controlAffinity: ListTileControlAffinity.leading,
+                    title: Text('${family.labelEn} · ${family.labelDe}'),
+                    subtitle: Text(
+                      spacyGrammarQualifiedFamilies.contains(family)
+                          ? 'Qualified (${family.ruleId}). '
+                                '${family.explanationEn}'
+                          : 'Experimental, not qualified — off by default '
+                                '(${family.ruleId}).',
+                    ),
+                    value: status.grammarFamilies.contains(family.id),
+                    onChanged: _working || !status.grammarEnabled
+                        ? null
+                        : (value) => _run(
+                            () => widget.host.setGrammarFamilies({
+                              ...status.grammarFamilies.where(
+                                (id) => id != family.id,
+                              ),
+                              if (value ?? false) family.id,
+                            }),
+                          ),
+                  ),
+              ],
+            ),
+          ),
         if (status.nerOffered)
           SwitchListTile(
             key: const Key('spacy-setup-ner'),
