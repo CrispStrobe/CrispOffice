@@ -31,7 +31,13 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           theme: ThemeData(fontFamily: 'Liberation Sans'),
-          home: SuiteWorkspace(ribbonPreferences: preferences),
+          // Suppress the editor's continuous caret ticker so unrelated
+          // animation cannot supply the idle frame. Modal routes stay outside
+          // this home subtree and retain their ordinary transitions.
+          home: TickerMode(
+            enabled: false,
+            child: SuiteWorkspace(ribbonPreferences: preferences),
+          ),
         ),
       );
       await _frames(tester);
@@ -76,7 +82,7 @@ void main() {
       await tester.pump();
       await tester.tap(find.widgetWithText(TextButton, 'Close'));
       await _dialogFrames(tester);
-      // The editor's periodic caret must not supply the frame being tested.
+      // Release restored editing focus before the idle assertions.
       FocusManager.instance.primaryFocus?.unfocus();
       await _frames(tester);
       expect(find.text(heading), findsOneWidget);
