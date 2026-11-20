@@ -1,0 +1,5 @@
+Analyzing render_slide_stage.dart, paint_run_text.dart, office_host_fonts.dart, office_system_font_validation.dart, office_system_fonts_io.dart, office_pdf_visuals.dart, pdf_canvas.dart, pdf_document.dart, slide_serial.dart, drawingml.dart, office_pdf_export.dart, pml_presentation.dart, slide_radial_opacity_test.dart...
+
+  error - packages/quds_office_engine/lib/src/pdf/office_pdf_export.dart:3662:9 - The argument for the named parameter 'extGStates' was already specified. Try removing one of the named arguments, or correcting one of the names to reference a different named parameter. - duplicate_named_argument
+
+1 issue found.

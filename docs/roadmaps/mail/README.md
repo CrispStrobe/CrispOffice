@@ -113,7 +113,7 @@ Future provider implementations live under the provider boundary, with separate 
 
 Dependency direction is host -> UI/Office integration -> core/MIME/store/provider adapters. The document engine and editor do not depend on mail or either host. Do not put mail models into quds_office_engine.
 
-The local store drives connected-mail UI. Commands persist their intent before remote execution. Background workers update the same store. The saved-message reader can also operate entirely in memory with no mailbox account or database.
+The target connected-mail architecture is driven by the local store, with commands persisted before remote execution and background workers updating the same repository. The current Studio mailbox list remains a foreground session; connecting it to those durable streams and commands is the next M04W boundary. The saved-message reader can also operate entirely in memory with no mailbox account or database.
 
 ### Existing editor rules remain binding
 

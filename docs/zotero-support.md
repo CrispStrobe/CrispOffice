@@ -53,8 +53,9 @@ unchanged composing draft.
 
 ### Insert text and image annotations directly from Zotero
 
-With **Zotero 9 or later** running, place a collapsed caret in the document body,
-outside existing fields, and choose **Insert → References → Add Zotero
+With **Zotero 9 or later** running, place the caret or select ordinary text
+within one paragraph of the body or an authored footnote/endnote, outside
+existing fields, and choose **Insert → References → Add Zotero
 annotation**, or **Document → Add annotation from Zotero…** in the references
 workspace. Zotero opens its annotation picker, where you can browse or search
 and select one or more annotations. An intermediate Zotero library note is
@@ -65,7 +66,9 @@ introduced in [Zotero 9](https://www.zotero.org/support/9.0_changelog).
 Quds retains the selected annotation text, embedded PNG image/ink annotations,
 comments, supported formatting and links supplied by Zotero. Citation placeholders become active fields, with the
 source identity and locators supplied by Zotero. Their inline, footnote or
-endnote placement follows the document's Zotero preferences; subsequent
+endnote placement in the body follows the document's Zotero preferences.
+Inside an authored note, citations stay in that same note without creating
+nested notes; an incompatible footnote/endnote style is refused. Subsequent
 **Refresh citations** and **Bibliography** commands include them in the complete
 document sequence. The text, citation fields, any new notes and style preferences
 apply together as one undo step and survive Quds DOCX saving and reopening.
@@ -76,8 +79,8 @@ document after completion or cancellation. A changed insertion point, active
 text composition, unsupported content or incomplete citation conversion keeps
 the result from being applied.
 
-This command uses the same supported image formats, content bounds and body-caret
-requirements as Add Note below. Images arrive embedded in Zotero's response and
+This command uses the same supported image formats, content bounds and insertion
+targets as Add Note below. Images arrive embedded in Zotero's response and
 become native inline pictures; they are not downloaded from a separate URL.
 Zotero itself can replace an unavailable image with explanatory text or omit
 unavailable content before sending the result; Quds cannot restore content
@@ -87,11 +90,14 @@ Zotero. The command dialog and workspace tooltip identify the version requiremen
 
 ### Insert a Zotero research note
 
-Place a collapsed caret in the document body, outside existing fields, and
+Place the caret or select ordinary text within one paragraph of the body or
+an authored footnote/endnote, outside existing fields, and
 choose **Insert → References → Add Zotero note**, or **Document → Add note from
 Zotero…** in the references workspace. Select a research note in Zotero's native
-note picker. This imports a Zotero library note; the existing Notes-pane citation
-commands continue to work inside authored footnotes and endnotes.
+note picker. This imports the research content of a Zotero library note. When
+the Notes pane is active, the content goes into that authored footnote/endnote.
+A deliberate text selection is replaced only when Zotero supplies a complete,
+supported result. Cancelling preserves the selected text and its selection.
 
 Paragraphs, empty paragraphs, soft line breaks, heading levels 1–6, supported
 character formatting, and ordinary HTTP(S), mail and Zotero links are retained.
@@ -106,21 +112,35 @@ surrounding document lists.
 Default PDF annotation note wrappers and their title headings are recognized.
 Citation placeholders become active Zotero fields with the source data, rather
 than remaining ordinary hyperlinks. Zotero controls their formatting and
-inline/footnote/endnote placement and receives the complete document order for
+inline/footnote/endnote placement in the body and receives the complete document order for
 later citation and bibliography updates. Documents containing imported research
-notes retain the active fields through DOCX saving and reopening.
+notes retain the active fields through DOCX saving and reopening. Within an
+authored footnote/endnote, embedded citations inherit that note's ownership and
+reading order. They never create a nested note. A style requesting the opposite
+note kind is refused before application. Numbered lists in each authored note
+retain their own visible labels and counters when the DOCX is reopened.
 
 The whole insertion, including new footnotes/endnotes, bibliography callbacks
 and document style preferences, is staged until completion and applied as one
-undoable operation. The body caret finishes after the imported note. Surrounding
+undoable operation. The active body or Notes caret finishes after the imported
+content. Surrounding
 prose and its formatting remain intact; headings and list items occupy their own
-paragraphs. Undo also restores the previous numbering definitions; unrelated
+paragraphs. Undo restores the original selection, including its direction, and
+the previous numbering definitions; unrelated
 document parts and relationships remain intact after saving and undo/redo.
 Cancelling the note picker before it supplies any text also discards temporary
 fields and staged preference changes.
 
-Add Note currently starts from a body caret, not a text selection or an existing
-footnote/endnote. Tables, lists deeper than nine levels, custom or
+Selections must stay within one editable paragraph. Cross-paragraph selections,
+existing fields, note references, pictures, commented text, protected
+ranges and structural selections are refused. This includes ordinary complex
+Word fields such as DATE or REF, even when only their cached text is visible.
+Selections touching bookmark boundaries or empty atomic field tokens are also
+refused. Finish active text composition
+first; moving the selection or editing the destination while Zotero is open
+invalidates the staged result. Headers, footers, comments and text frames remain
+unsupported destinations. Tables in imported research content, lists deeper
+than nine levels, custom or
 reversed list markers, and unsupported custom formatting are
 refused with an explanation before application. Ordered-list starting numbers
 must be integers from 1 to 999999. Malformed,
@@ -220,7 +240,7 @@ results instead of applying them at another location.
 | **Document style…** | Opens Zotero's native document preferences, including the installed CSL style, language and note placement offered by that style |
 | **Refresh all with Zotero** | Lets Zotero process the document's complete supported citation sequence and bibliography together |
 | **Bibliography in Zotero…** | Adds or edits a bibliography through the same document processor |
-| **Add note from Zotero…** | Inserts a supported research note with its active citation fields at the body caret |
+| **Add note from Zotero…** | Inserts a supported research note with active citation fields at the body/Notes caret, or replaces a selection within one paragraph |
 | **Add annotation from Zotero…** | Opens Zotero 9+'s annotation picker and inserts selected text, image/ink annotations and comments with active citations |
 | Existing citation menu → **Edit in Zotero…** | Opens that citation in Zotero's native picker |
 | Library selection → **Insert with Zotero…** | Seeds the native picker with selected linked catalog sources, then applies Zotero's result |
@@ -1097,6 +1117,15 @@ preferences: this is the cancelled-picker path. Add Annotation requires Zotero
 9 or later and uses the native `addAnnotation` command, without an automatic
 fallback to a different picker.
 
+For a session constructed without the editor controller, `insertionParagraph`
+may be an anchored body or note paragraph. `insertionOffset` is the start of the
+insertion or replacement; the optional `insertionEndOffset` defaults to the start
+and must stay within that paragraph. The range uses native paragraph offsets,
+including any hidden note-reference separator. The controller maps the Notes
+pane's visible selection to those offsets. A nonempty range applies only to
+research-content insertion; ordinary citation commands keep their existing
+caret/field behavior. The surrounding rollback boundary is still required.
+
 ### Native bibliography layout contract
 
 The adapter accepts Zotero's
@@ -1149,7 +1178,10 @@ to each new client. Clients sharing that state must use the same clock.
 
 ## Previous continuation evidence and current qualification
 
-The embedded-image increment has a [separate local qualification report](validation/zotero-note-images-20261120/README.md).
+Embedded pictures and structured research lists have [completed local qualification](validation/zotero-parity-continuation-20261120/README.md)
+on the combined source at `708f2821`, including incoming Office and Mail
+regressions. The [earlier image checkpoint](validation/zotero-note-images-20261120/README.md)
+is retained with its original development status and attribution.
 The [Word/LibreOffice parity roadmap](roadmaps/zotero/word-processor-parity.md)
 separates implemented workflows, current content boundaries and remaining live
 interoperability acceptance. Earlier results below retain their original sources.
@@ -1158,7 +1190,8 @@ The research-note insertion, reference-navigation and direct-command continuatio
 has a [separate status report](validation/zotero-word-parity-20261118/README.md).
 Its implementation and incoming branch integration are saved remotely. The report
 separates completed development checks from the final exact-source run that was
-blocked by shared executor disk exhaustion; it has no final passing total yet.
+blocked by shared executor disk exhaustion. That historical source has no
+final passing total; the current combined source is qualified separately above.
 
 The previous continuation started from Quds
 `dc5f93b673e6087cccc6d66b33dfbfd099668f77` and CrispCloud

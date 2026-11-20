@@ -1,0 +1,140 @@
+{
+  "schema_version": 1,
+  "captured_at": "2026-11-20T09:18:35.781462+00:00",
+  "status": "pass",
+  "publication_commit": "740f3e247102734ab1e689dc9473efcb3543ed15",
+  "publication_tree": "66ba41f377830ba87ec4bc0b4c92af3778fbb00d",
+  "local_head": "740f3e247102734ab1e689dc9473efcb3543ed15",
+  "qualified_base_commit": "ffb8cee3acec878cdbe3c27e0bb82f228468a30f",
+  "method": "SHA-256 of each captured path compared with current worktree content and publication commit Git blobs; raw accepted JSON events independently recounted by runner suiteID and name. No tests rerun.",
+  "input_comparison": {
+    "captured_inputs": 1494,
+    "published_git_blobs_compared": 1493,
+    "git_modes": {
+      "100644": 1493
+    },
+    "local_only_runtime_inputs": [
+      ".dart_tool/package_config.json"
+    ],
+    "local_only_inputs_match": true,
+    "before_after_manifest_equal": true,
+    "published_blob_mismatches": [],
+    "worktree_mismatches": [],
+    "worktree_missing": []
+  },
+  "acceptance": {
+    "passed": 137,
+    "failed": 0,
+    "skipped": 0,
+    "duplicate_suite_name_pairs": [],
+    "suite_counts": {
+      "packages/quds_office_engine/test/office_pdf_export_test.dart": 27,
+      "packages/quds_office_engine/test/slide_import_fidelity_test.dart": 51,
+      "packages/quds_office_engine/test/slide_gradient_merge_test.dart": 6,
+      "packages/quds_office_engine/test/slide_radial_opacity_test.dart": 14,
+      "packages/quds_office_editor/test/slide_render_fidelity_test.dart": 14,
+      "packages/quds_office_editor/test/slide_incoming_pptx_regression_test.dart": 17,
+      "packages/quds_office_editor/test/slide_transform_orientation_test.dart": 8
+    },
+    "matches_expected_selection": true,
+    "logs": [
+      {
+        "cohort": "engine",
+        "raw_stdout_sha256": "3d5cfcc98c6e9d7a1b8451d627d2fc8b73a3127f78b801d346c7cf72463e90a6",
+        "matches_saved_summary": true,
+        "visible_cases": 98,
+        "process_exit": 0,
+        "runner_success": true
+      },
+      {
+        "cohort": "editor",
+        "raw_stdout_sha256": "93a38f04ebf13f95c2f5f9bc5d33546bea1a9ad041a3881ef28cdf8bd811cc94",
+        "matches_saved_summary": true,
+        "visible_cases": 39,
+        "process_exit": 0,
+        "runner_success": true
+      }
+    ],
+    "counting_rule": "Visible successful cases only; exclude hidden loader events, negative baseline, development probe and the overlapping earlier 116-case cohort."
+  },
+  "evidence_matches_publication": [
+    {
+      "path": "docs/validation/mail-workspace-20261120/incoming-office-followup/inputs-before.json",
+      "sha256": "a9840e75b41228cd74f71a628e8eeb4bf1b51d7a80521668927a65930a93dd1d",
+      "matches_commit": true
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/incoming-office-followup/inputs-after.json",
+      "sha256": "3417e0d364ad7dbbc76572ebb06b79c5d75508fa3c60945272f73632a4cedbc9",
+      "matches_commit": true
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/incoming-office-followup/summary.json",
+      "sha256": "108f35463c2b5a401adecdc0b860e1e6767e26780ea88431c8549328b4143d60",
+      "matches_commit": true
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/incoming-office-followup/engine.jsonl.gz",
+      "sha256": "077406363fd94b6433ba566de8bb9cdcb16029d72d750395bf2d7a3dc7edc715",
+      "matches_commit": true
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/incoming-office-followup/editor.jsonl.gz",
+      "sha256": "e5c58519a8b1ba67278df3824db26707faba18367240beacec1800b8591b47c8",
+      "matches_commit": true
+    }
+  ],
+  "runtime": {
+    "flutter": "3.47.8",
+    "framework_revision": "737ba8f885dc774b53b442759999a312c9461e4e",
+    "engine_revision": "cf636b1dfb818dd6a3ff16e390e93b1a036969c8",
+    "dart": "3.13.7",
+    "pins": [
+      {
+        "name": "dart",
+        "sha256": "01e869e4af277734b02ab8898b870c6b00c9bec61bbcf9c923cd14de7ed85fbb",
+        "matches_final_mail_start": true,
+        "matches_pre_office_runtime_pin": true
+      },
+      {
+        "name": "flutter_tester",
+        "sha256": "800f4ca182df7dd2fb46a42dea5d76277b9dbc5e8cd2915e02bcbc978681b45f",
+        "matches_final_mail_start": true,
+        "matches_pre_office_runtime_pin": true
+      },
+      {
+        "name": "flutter_tools_snapshot",
+        "sha256": "803f5eabe0f147bbd7cbfb5810d012f88d909d092d15de36a62be43c42af0da9",
+        "matches_final_mail_start": true,
+        "matches_pre_office_runtime_pin": true
+      },
+      {
+        "name": "sqlite3_native",
+        "sha256": "0a65852703763619a7a34633b4959b3b86c4103804a4dfe4e8b27b5de1c0647b",
+        "matches_final_mail_start": true,
+        "matches_pre_office_runtime_pin": true
+      },
+      {
+        "name": "package_configuration",
+        "sha256": "8eab41ca699dc7d09f48d2d845430dc09b57bf225cb202d67688c5da03d3edf2",
+        "matches_final_mail_start": true,
+        "matches_pre_office_runtime_pin": true
+      },
+      {
+        "name": "package_graph",
+        "sha256": "09b12d3718163b37c56c092d0d87d2f5a976bfb50f02009667efce07bd243c3e",
+        "matches_final_mail_start": true,
+        "matches_pre_office_runtime_pin": true
+      },
+      {
+        "name": "package_test_entry",
+        "sha256": "43c93a6773b13eecbf7e9d1c0511da4cb0b8b3cf55f051cf124f34d4843af008",
+        "matches_final_mail_start": true,
+        "matches_pre_office_runtime_pin": true
+      }
+    ],
+    "pin_scope": "Current binaries/configuration match both recorded pre-Office runtime pins and the final Mail run start; the 1,494 Office input capture itself did not independently snapshot all runtime binaries."
+  },
+  "carry_forward": "The 137-case Office gate applies to publication 740f3e24 because all 1,493 repository-backed qualified inputs and the one local package configuration match. This report does not imply new test execution or installed-platform qualification.",
+  "github_actions_used": false
+}

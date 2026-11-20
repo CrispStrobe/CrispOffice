@@ -1,0 +1,41 @@
+{
+  "kind": "source-review",
+  "reviewed_on": "2026-11-20",
+  "scope": "Authored-note and single-paragraph research insertion; no live application qualification.",
+  "engine_before_dart_format": {
+    "packages/quds_office_engine/lib/src/word/model/word_zotero_citing.dart": "05f7ec0fef1e0ebef5454283df0c8125ea1e29fa",
+    "packages/quds_office_engine/lib/src/word/serial/word_deserializer.dart": "0d16b6ab2a81db0abb1d92d9b48f9a7b5030c79f",
+    "packages/quds_office_engine/test/word_zotero_research_target_test.dart": "79c0f59988700f569c3e5fa2f63fc3012a3028b9"
+  },
+  "editor": {
+    "packages/quds_office_editor/lib/src/embed/office_controller.dart": "59b93ad137d8be8b811ae52ee154f23ce8efe1a5",
+    "packages/quds_office_editor/lib/src/embed/word_zotero_dialog.dart": "d786f522343726cd84b5c8076ba1c698c703d191",
+    "packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart": "a3b5c737f16751de3d348f7b811eb69cb0b5e96f",
+    "packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart": "1ee6d30918892243147f7c8a53cf7600a34678f9"
+  },
+  "formatter_result": [
+    {
+      "path": "packages/quds_office_engine/lib/src/word/model/word_zotero_citing.dart",
+      "sha": "db516b1cf783b5f738c7ef5264c45ea01a9ca529"
+    },
+    {
+      "path": "packages/quds_office_engine/test/word_zotero_research_target_test.dart",
+      "sha": "a99c9d86c36c404cd62edcbc54db2f417fcb6afa"
+    }
+  ],
+  "resolved_findings": [
+    "Protect complex native Word fields, including spanning/nested/empty results and ambiguous endpoints; refuse malformed packets before mutation.",
+    "Keep field scanning inside the selected body or note story; independent text-box stories cannot close or block body fields.",
+    "Refuse nonempty selections touching bookmark boundaries and empty atomic tokens.",
+    "Resolve DOCX numbering separately for authored footnotes and endnotes after notes/styles parse; existing body algorithm is unchanged apart from extraction into a shared helper.",
+    "Correct raw DOCX fixture to overwrite the existing main part; verify initial load and both subsequent reopens.",
+    "Use native list labels rather than transient listRestart state as reopen assertions."
+  ],
+  "editor_findings": [
+    "Normalize body selection bounds and preserve original selection direction in undo.",
+    "Translate Notes visible offsets including hidden note separators, retaining exact note ownership.",
+    "Retain detached staging, post-await stale-state checks, atomic rollback and one history boundary.",
+    "Refuse structural, composition and cross-paragraph targets before mutation."
+  ],
+  "outcome": "No remaining source-level blocker found. Execution evidence is recorded separately."
+}
