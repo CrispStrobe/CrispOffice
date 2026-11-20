@@ -1,0 +1,384 @@
+{
+  "schema": 1,
+  "created_utc": "2026-11-20T23:16:57.970402+00:00",
+  "scope": "Bounded incoming Word/Zotero acceptance, locally attributed Linux golden reconciliation, and preserved failed diagnostics. Overall Mail acceptance is assembled separately.",
+  "git_at_final_golden_run": "d35f37a458faca55fcdc705dcc193d7c8811704b",
+  "github_actions": "NOT QUERIED OR AWAITED",
+  "runtime": {
+    "flutter": "3.47.8",
+    "flutter_revision": "737ba8f885dc774b53b442759999a312c9461e4e",
+    "dart": "3.13.7",
+    "node": "24.22.3",
+    "platform": "Linux x86_64"
+  },
+  "final_golden_receipt": {
+    "command": [
+      "/home/agent/.codex/skills/remote-skills/quds-mail-work-20261120/runtime/flutter/bin/cache/dart-sdk/bin/dart",
+      "/home/agent/.codex/skills/remote-skills/quds-mail-work-20261120/runtime/flutter/bin/cache/flutter_tools.snapshot",
+      "test",
+      "--no-pub",
+      "--reporter=json",
+      "--concurrency=1",
+      "test/office_layout_goldens_test.dart",
+      "test/office_frame_wrap_golden_test.dart",
+      "test/office_fidelity_golden_test.dart",
+      "test/office_structure_goldens_test.dart",
+      "test/office_nested_table_golden_test.dart",
+      "test/office_story_golden_test.dart",
+      "test/office_table_grid_golden_test.dart"
+    ],
+    "cwd": "/workspace/scratch/1680c40b6915/quds-office-work/packages/quds_office_editor",
+    "head": "d35f37a458faca55fcdc705dcc193d7c8811704b",
+    "tree": "4032744b91b91ee5221319042bb6c46161b3edb0",
+    "started_utc": "2026-11-20T23:22:37.571832+00:00",
+    "source_scope": "Transitive Dart imports/exports/parts including conditional branches, package metadata, tracked fixture/font/golden/asset data, dependency config and lock, runner. External SDK/pub Dart sources included when reachable.",
+    "source_count": 4098,
+    "source_manifest_sha256": "0ec19d9db6b5c8556c203c214c998fc34df4babc67dbe8b62576be1ac4c1dc71",
+    "dart_version": "Dart SDK version: 3.13.7 (stable) (Thu Oct 22 14:28:57 2026 -0700) on \"linux_x64\"",
+    "node_version": "v24.22.3",
+    "flutter_revision": "737ba8f885dc774b53b442759999a312c9461e4e",
+    "exit_code": 0,
+    "seconds": 14.5,
+    "source_stable": true,
+    "changed_sources": [],
+    "log_sha256": "f9c43ad9f92fa25929274269afa787251d0e0dcffcb1a512677ac6e12b7035ef",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "counts": {
+      "success": 17
+    },
+    "errors": [],
+    "clean_terminal": true,
+    "accepted": true
+  },
+  "intended_padding_commit": "e975cec13b289fe067ef406cd3044701ecc44744",
+  "padding_points": {
+    "historical": 5.4,
+    "retained": 4.25
+  },
+  "causal_experiments": [
+    {
+      "source": "809cdbd7737cae61a45376e44d06ec3a00002294",
+      "modification": "none",
+      "results": {
+        "success": 16,
+        "error": 1
+      },
+      "meaning": "Refreshed baselines match their older source except preexisting nested heading paragraph-mark mismatch."
+    },
+    {
+      "source": "15271321a9f4550c1ab796a2cf9eaed910824574",
+      "modification": "none",
+      "results": {
+        "success": 6,
+        "error": 11
+      },
+      "meaning": "Maintenance merge already has the same failures; every emitted comparison testImage equals the initial integrated source byte-for-byte."
+    },
+    {
+      "source": "15271321a9f4550c1ab796a2cf9eaed910824574",
+      "modification": "isolated experiment only: tableCellPad4.25 to5.4; no other change",
+      "results": {
+        "success": 16,
+        "error": 1
+      },
+      "meaning": "All additional failures are caused by the retained intended padding change. Production remains4.25."
+    }
+  ],
+  "nested_fixture": {
+    "original_lineheight": 21.12,
+    "reopened_before_fix_lineheight": 26.4,
+    "intended_run_size_points": 16,
+    "default_native_heading1_mark_points": 20,
+    "fix": "Explicit16pt Heading1 style in authored fixture, plus precise lineheight and imported mark assertions. No production rendering change.",
+    "after_fix_all_four_render_sha256": "7b84d316c266a030bf046b7a1bc44ce6ee1056403c8f84e273d8165c785b2210"
+  },
+  "baseline_changes": [
+    {
+      "path": "packages/quds_office_editor/test/goldens/linux/office_fidelity_word.png",
+      "old_sha256": "fd6e14a690e66b437dbf6e3bb862a4b532969348627ea5f551ed40b4bfab61e8",
+      "new_sha256": "8d3cb6f2a8e82f6fc15e62c2c53ba9907cbf33ff9e213dbe1f4dfc46cfd74ace",
+      "captured_from": "goldens__linux__office_fidelity_word.png.0.png",
+      "render_count": 2
+    },
+    {
+      "path": "packages/quds_office_editor/test/goldens/linux/structure_create_1.png",
+      "old_sha256": "249a4afcdf2b5cf7be3d028511f9c960d68d2eada5064cd4f99072968436bb1a",
+      "new_sha256": "c6463da3a7dcc1d810593184b8d744a15bc7583dcef0c9ac726f535e9a274b33",
+      "captured_from": "goldens__linux__structure_create_1.png.0.png",
+      "render_count": 4
+    },
+    {
+      "path": "packages/quds_office_editor/test/goldens/linux/structure_edit_2.png",
+      "old_sha256": "d2774f99c3f6cbb93b8f535a63aba4ef016cd94732570277cc77405c4b403590",
+      "new_sha256": "51023661acc5bc8bc73bad912280683407c9bd0d735fee53c66ffcd84bff171e",
+      "captured_from": "goldens__linux__structure_edit_2.png.0.png",
+      "render_count": 4
+    },
+    {
+      "path": "packages/quds_office_editor/test/goldens/linux/structure_remove_1.png",
+      "old_sha256": "b5240de6afd8651bf46f91e117014da72a910233769aa1a9d497182f99b929a6",
+      "new_sha256": "e457b8cd86b3fee8eb72f5d9752a05c33ae1036771fcc44f24c619c3eb28c356",
+      "captured_from": "goldens__linux__structure_remove_1.png.0.png",
+      "render_count": 4
+    },
+    {
+      "path": "packages/quds_office_editor/test/goldens/nested_table_content.png",
+      "old_sha256": "83cc80a1882adb8516c1548a94acdfbae29995a7925be669252e9b7961a55481",
+      "new_sha256": "7b84d316c266a030bf046b7a1bc44ce6ee1056403c8f84e273d8165c785b2210",
+      "captured_from": "goldens__nested_table_content.png.0.png",
+      "render_count": 4
+    },
+    {
+      "path": "packages/quds_office_editor/test/goldens/rtl_1.png",
+      "old_sha256": "53ec58b3f996ff677d027e8bb2b643a5a6886d2a454b08ac8570bb6792f733cc",
+      "new_sha256": "be02bf74cfa9bf9eb021f58c5c83c9b5bd0362b172d34819bf7613c53729160c",
+      "captured_from": "goldens__rtl_1.png.0.png",
+      "render_count": 4
+    },
+    {
+      "path": "packages/quds_office_editor/test/goldens/table_grid_format.png",
+      "old_sha256": "2565057823bf3964aa59991135ebf8ee599ddc0c6ad6ae7f303bbf3456299999",
+      "new_sha256": "5ddd6f96865b19f2c73096717aefcc7f9aac89d56d964b46ecde6a39c081f7f6",
+      "captured_from": "goldens__table_grid_format.png.0.png",
+      "render_count": 1
+    },
+    {
+      "path": "packages/quds_office_editor/test/goldens/table_grid_replace.png",
+      "old_sha256": "0791848ac4ca6952797c58aeb034eb48f87618b2f068e82b3b3867ecf1af0cbc",
+      "new_sha256": "438fb0727e44bc3ab4393f87f2cde56796b241649668938df7fcfed71be48457",
+      "captured_from": "goldens__table_grid_replace.png.0.png",
+      "render_count": 1
+    },
+    {
+      "path": "packages/quds_office_editor/test/goldens/table_grid_unchanged.png",
+      "old_sha256": "2247fa4c213259a816caa537e8822db20fe29d803812b0cd5dc803ae90a512b9",
+      "new_sha256": "febba09d8100617dbdb65591468e8bf876e154a9a4c6e07ecdc6e9237c8b93dd",
+      "captured_from": "goldens__table_grid_unchanged.png.0.png",
+      "render_count": 1
+    },
+    {
+      "path": "packages/quds_office_editor/test/goldens/table_grid_unmerge.png",
+      "old_sha256": "94512eb5744a92ae5ccf84a91cd5045c522ec59461f3f21cddf1d443d792e9f6",
+      "new_sha256": "5dddd0679ef5560d0453c936cdc36f7e7af51bb03b49e0af177c4ba12dd498e1",
+      "captured_from": "goldens__table_grid_unmerge.png.0.png",
+      "render_count": 1
+    },
+    {
+      "path": "packages/quds_office_editor/test/goldens/tall_table_1.png",
+      "old_sha256": "bff48b5421260f7d5c23388b346cd5897bd95fd8481634337d3c93027d9933a4",
+      "new_sha256": "50444fc027363e4d81fd719f607c01eaa6bbd6814dc1cc1cea6da597e2d539ea",
+      "captured_from": "goldens__tall_table_1.png.0.png",
+      "render_count": 4
+    },
+    {
+      "path": "packages/quds_office_editor/test/goldens/tall_table_2.png",
+      "old_sha256": "ee949f1d6137653765b86e5bfa95094d4424a32fda72be1655dbedca23910810",
+      "new_sha256": "ef30e219763708d3dd06fce78d272dcc039a3b5b1b6bf677ee3885be11cdcf54",
+      "captured_from": "goldens__tall_table_2.png.0.png",
+      "render_count": 4
+    },
+    {
+      "path": "packages/quds_office_editor/test/goldens/tall_table_3.png",
+      "old_sha256": "ba7ac7098727ddbfa138a8c2129df8cd9eb86ee95bb94f5ede61285ea8469e31",
+      "new_sha256": "3cae20f90a57155332fc01ed350aad6725b806808b3ce34ba68d4593eecebc68",
+      "captured_from": "goldens__tall_table_3.png.0.png",
+      "render_count": 4
+    },
+    {
+      "path": "packages/quds_office_editor/test/goldens/tall_table_4.png",
+      "old_sha256": "4f83d5f2d1b8577e306f4a502fcf75f6a452dd3eb75d507049b42ddb81216e73",
+      "new_sha256": null,
+      "reason": "The retained85twip cell padding fits the complete120-token row, trailing paragraph and note on three pages; old fourth page is no longer rendered."
+    }
+  ],
+  "scene_counts": {
+    "incoming_baselines": 27,
+    "changed_and_visually_reviewed": 13,
+    "unchanged": 13,
+    "obsolete_fourth_table_page_removed": 1,
+    "final_live_scenes": 26,
+    "test_cases": 17
+  },
+  "update_method": "Captured original authored scenes in isolated worktree; repeated exact PNG equality and independent scripted table-grid pixel comparisons stayed active. Copied only13 inspected scenes; no --update-goldens was used. Final gate used original7 test files and default comparator with all assertions active.",
+  "historical_engine_vm": {
+    "passed": 825,
+    "meaning": "Accepted before later numeric-enum fix; current final engine acceptance is recorded by root separately."
+  },
+  "historical_engine_node": {
+    "passed": 807,
+    "errors": 17,
+    "failure": 1,
+    "meaning": "Failed full Node cohort retained.17 filesystem-only cases require VM;1 numeric1.0/int semantic mismatch corrected in later root work. This run is not acceptance."
+  },
+  "archive": {
+    "path": "office-qualification-evidence.tar.xz",
+    "bytes": 2092260,
+    "sha256": "3926c2643f37885f93f7899e615fc6bfd90b62f6e781b97889480e3f0a917227",
+    "entry_count": 217
+  },
+  "updated_utc": "2026-11-20T23:34:21.134703+00:00",
+  "editor_receipt": {
+    "command": [
+      "/home/agent/.codex/skills/remote-skills/quds-mail-work-20261120/runtime/flutter/bin/cache/dart-sdk/bin/dart",
+      "/home/agent/.codex/skills/remote-skills/quds-mail-work-20261120/runtime/flutter/bin/cache/flutter_tools.snapshot",
+      "test",
+      "--no-pub",
+      "--reporter=json",
+      "--concurrency=1",
+      "tool/zotero/vertical_table_acceptance.dart",
+      "test/embed_test.dart",
+      "test/word_header_footer_navigation_test.dart",
+      "test/office_system_fonts_test.dart"
+    ],
+    "cwd": "/workspace/scratch/1680c40b6915/quds-office-work/packages/quds_office_editor",
+    "head": "d35f37a458faca55fcdc705dcc193d7c8811704b",
+    "tree": "4032744b91b91ee5221319042bb6c46161b3edb0",
+    "started_utc": "2026-11-20T23:23:37.882546+00:00",
+    "source_scope": "Transitive Dart imports/exports/parts including conditional branches, package metadata, tracked fixture/font/golden/asset data, dependency config and lock, runner. External SDK/pub Dart sources included when reachable.",
+    "source_count": 5717,
+    "source_manifest_sha256": "2ba299ac344c3a37c033342d6e9cb9c365244568fb4de1818ef7b150e5c287c0",
+    "dart_version": "Dart SDK version: 3.13.7 (stable) (Thu Oct 22 14:28:57 2026 -0700) on \"linux_x64\"",
+    "node_version": "v24.22.3",
+    "flutter_revision": "737ba8f885dc774b53b442759999a312c9461e4e",
+    "exit_code": 0,
+    "seconds": 140.523,
+    "source_stable": true,
+    "changed_sources": [],
+    "log_sha256": "ff3fb184a5cda7bb07764419526ec14e0ff8791c42bdf13c526532b1c7120af1",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "counts": {
+      "success": 578,
+      "skipped": 8
+    },
+    "errors": [],
+    "clean_terminal": true,
+    "accepted": true
+  },
+  "editor_reference_supplement_receipt": {
+    "command": [
+      "/home/agent/.codex/skills/remote-skills/quds-mail-work-20261120/runtime/flutter/bin/cache/dart-sdk/bin/dart",
+      "/home/agent/.codex/skills/remote-skills/quds-mail-work-20261120/runtime/flutter/bin/cache/flutter_tools.snapshot",
+      "test",
+      "--no-pub",
+      "--reporter=json",
+      "--concurrency=1",
+      "--name",
+      "fixture .*docs/validation/(word-native-layout-20261120|word-line-boxes-20261120)",
+      "test/word_incremental_layout_equivalence_test.dart"
+    ],
+    "cwd": "/workspace/scratch/1680c40b6915/quds-office-work/packages/quds_office_editor",
+    "head": "f68611579d4d318fde00c5187ae9fdf4183bcb5d",
+    "tree": "a131f8313114156d87576f5194a71bf4e7d0ff70",
+    "started_utc": "2026-11-20T23:30:33.430024+00:00",
+    "source_scope": "Transitive Dart imports/exports/parts including conditional branches, package metadata, tracked fixture/font/golden/asset data, dependency config and lock, runner. External SDK/pub Dart sources included when reachable.",
+    "source_count": 4102,
+    "source_manifest_sha256": "50b40db8aa509a299a8f1686554a57a2e409ebe1e21530f6ae347fe2b1e6e657",
+    "dart_version": "Dart SDK version: 3.13.7 (stable) (Thu Oct 22 14:28:57 2026 -0700) on \"linux_x64\"",
+    "node_version": "v24.22.3",
+    "flutter_revision": "737ba8f885dc774b53b442759999a312c9461e4e",
+    "exit_code": 0,
+    "seconds": 14.466,
+    "source_stable": true,
+    "changed_sources": [],
+    "log_sha256": "c36694903a1d35941ab346a1409fc859c943aa9b987d0a4770f221439830070b",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "counts": {
+      "success": 20
+    },
+    "errors": [],
+    "clean_terminal": true,
+    "accepted": true
+  },
+  "editor_source_authored_skips": [
+    {
+      "test": "research_target_acceptance word_incremental_layout_equivalence_test.dart incremental layout equals full layout fixture legacy_doc_parser/test/fixtures/fidelity/image-appearance/authored/floating-both.docx",
+      "reason": "no paragraphs to edit"
+    },
+    {
+      "test": "research_target_acceptance word_incremental_layout_equivalence_test.dart incremental layout equals full layout fixture legacy_doc_parser/test/fixtures/fidelity/image-appearance/authored/floating-control.docx",
+      "reason": "no paragraphs to edit"
+    },
+    {
+      "test": "research_target_acceptance word_incremental_layout_equivalence_test.dart incremental layout equals full layout fixture legacy_doc_parser/test/fixtures/fidelity/image-appearance/authored/floating-horizontal.docx",
+      "reason": "no paragraphs to edit"
+    },
+    {
+      "test": "research_target_acceptance word_incremental_layout_equivalence_test.dart incremental layout equals full layout fixture legacy_doc_parser/test/fixtures/fidelity/image-appearance/authored/floating-margin-quarter.docx",
+      "reason": "no paragraphs to edit"
+    },
+    {
+      "test": "research_target_acceptance word_incremental_layout_equivalence_test.dart incremental layout equals full layout fixture legacy_doc_parser/test/fixtures/fidelity/image-appearance/authored/floating-negative-quarter.docx",
+      "reason": "no paragraphs to edit"
+    },
+    {
+      "test": "research_target_acceptance word_incremental_layout_equivalence_test.dart incremental layout equals full layout fixture legacy_doc_parser/test/fixtures/fidelity/image-appearance/authored/floating-outline-shadow.docx",
+      "reason": "no paragraphs to edit"
+    },
+    {
+      "test": "research_target_acceptance word_incremental_layout_equivalence_test.dart incremental layout equals full layout fixture legacy_doc_parser/test/fixtures/fidelity/image-appearance/authored/floating-quarter.docx",
+      "reason": "no paragraphs to edit"
+    },
+    {
+      "test": "research_target_acceptance word_incremental_layout_equivalence_test.dart incremental layout equals full layout fixture legacy_doc_parser/test/fixtures/fidelity/image-appearance/authored/floating-vertical.docx",
+      "reason": "no paragraphs to edit"
+    }
+  ],
+  "editor_counts": {
+    "main_passed": 578,
+    "reference_supplement_passed": 20,
+    "unique_passed": 598,
+    "source_authored_skips": 8,
+    "failures": 0
+  },
+  "editor_reference_supplement": {
+    "reason": "Sparse checkout omitted optional reference directories that the original test discovers dynamically. Materialized20 exact tracked DOCX files, enabled their directories in sparse patterns, and ran exactly those20 original cases with source seals. No assertions changed.",
+    "fixture_manifest_archive_path": "accepted/reference_supplement/fixture-inputs.json",
+    "baseline_absent_case_proof": "The578-pass main log contains no docs/validation reference cases. Every20-case supplement name contains docs/validation and refers to a different fixture from the main cohort."
+  },
+  "editor_current_source_bridge": {
+    "target_commit": "cc152e75dc6b7121fd5e6c6d58e304e9bb89de73",
+    "changed_paths": [
+      {
+        "path": "packages/quds_mail_transport/lib/src/cloud/provider.dart",
+        "qualified_old_sha256": "1cb1af18b6fff43f437573c743c11fd8b81fcf153f34d59532da33fbd3a76ec7",
+        "current_sha256": "b585fe778c32c762db5e9dd33de4a1a21b56c4dd6a5930663638ea1c6cdb553b"
+      }
+    ],
+    "scope": "The only later imported-source change is conservative cloud HTTP410 classification. It is outside Word/editor behavior. The original578-case run is not claimed rerun after that change; the new provider bytes are independently qualified by the105-case focused transport gate. Golden and20-case supplementary manifests still match all current sources exactly.",
+    "receipt": {
+      "command": [
+        "/home/agent/.codex/skills/remote-skills/quds-mail-work-20261120/runtime/flutter/bin/cache/dart-sdk/bin/dart",
+        "--packages=/workspace/scratch/1680c40b6915/quds-office-work/.dart_tool/package_config.json",
+        "/home/agent/.codex/skills/remote-skills/quds-mail-work-20261120/runtime/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+        "--reporter=json",
+        "--concurrency=1",
+        "test/cloud_provider_test.dart"
+      ],
+      "cwd": "/workspace/scratch/1680c40b6915/quds-office-work/packages/quds_mail_transport",
+      "excluded_filesystem_cases": [],
+      "head": "ea02d0e43c05a51d85acd93257d24d84383dd2be",
+      "tree": "c48e83f881024f169908165d8eb973fb572cb959",
+      "started_utc": "2026-11-20T23:28:38.348485+00:00",
+      "source_scope": "Transitive Dart imports/exports/parts including conditional branches, package metadata, tracked fixture/font/asset data (Office golden baselines excluded: these cohorts make no golden comparisons), dependency config and lock, runner. External SDK/pub Dart sources included when reachable.",
+      "source_count": 2093,
+      "source_manifest_sha256": "8f9caa51bd00acd0bffec8df3898c1f630b45ebb0b4867e9440b0bba6c8dde34",
+      "dart_version": "Dart SDK version: 3.13.7 (stable) (Thu Oct 22 14:28:57 2026 -0700) on \"linux_x64\"",
+      "node_version": "v24.22.3",
+      "flutter_revision": "737ba8f885dc774b53b442759999a312c9461e4e",
+      "exit_code": 0,
+      "seconds": 8.828,
+      "source_stable": true,
+      "changed_sources": [],
+      "log_sha256": "4f495c69841b744ea3a3f76da4d1a21c7366ba4d18467f16035be5f1e00551dc",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "counts": {
+        "success": 105
+      },
+      "errors": [],
+      "clean_terminal": true,
+      "accepted": true
+    },
+    "archive_prefix": "accepted/cloud_continuity/transport_flags",
+    "patch_archive_path": "accepted/cloud_continuity/provider-delta.patch"
+  }
+}

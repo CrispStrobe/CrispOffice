@@ -19,6 +19,7 @@ def main():
     parser.add_argument('--snapshot', type=Path, required=True)
     parser.add_argument('--target', default='HEAD')
     parser.add_argument('--output-dir', type=Path, required=True)
+    parser.add_argument('--artifact-prefix', choices=('', 'final-'), default='')
     args = parser.parse_args()
     env = dict(os.environ, GIT_NO_LAZY_FETCH='1', GIT_TERMINAL_PROMPT='0')
 
@@ -171,7 +172,7 @@ def main():
         'scope': 'Frozen source inclusion; ancestry does not certify retention of every overlapping line or runtime behavior.',
         'counts': {k: dict(v) for k, v in counts.items()},
         'uncovered': uncovered, 'missing_objects': missing,
-        'remote_snapshot_file': 'remote-refs.json',
+        'remote_snapshot_file': args.artifact_prefix + 'remote-refs.json',
         'remote_snapshot_sha256': digest(snapshot_bytes),
         'historical_proof_source': proof_path,
         'historical_proof_sha256': digest(proof_bytes),
@@ -182,8 +183,8 @@ def main():
         'git_network_access': 'DISABLED: GIT_NO_LAZY_FETCH=1; no fetch or network commands',
     }
     args.output_dir.mkdir(parents=True, exist_ok=True)
-    (args.output_dir / 'remote-refs.json').write_bytes(snapshot_bytes)
-    (args.output_dir / 'intake.json').write_text(json.dumps(result, indent=2) + '\n')
+    (args.output_dir / (args.artifact_prefix + 'remote-refs.json')).write_bytes(snapshot_bytes)
+    (args.output_dir / (args.artifact_prefix + 'intake.json')).write_text(json.dumps(result, indent=2) + '\n')
     print(json.dumps({'status': result['status'], 'target': target, 'counts': result['counts'],
                       'proofs': len(proofs), 'uncovered': uncovered, 'missing': missing}))
     return int(bool(uncovered))
