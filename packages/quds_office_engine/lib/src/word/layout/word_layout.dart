@@ -1730,6 +1730,13 @@ class WordLayoutEngine {
     _Flow? flow,
     bool allowBreak = true,
   }) {
+    if (!_breakCacheReadable) {
+      // Dirty blocks and full layouts cannot retain breaks from an earlier
+      // version of this paragraph. Clear before any empty or frame-wrapping
+      // path, which may produce no replacement cache entry; otherwise a later
+      // clean layout could resurrect those stale glyphs after the flow moves.
+      _breakCache[paragraph] = null;
+    }
     final WmlRunProps runProps = paragraph.inlines.isEmpty
         ? paragraph.properties.importedParagraphMark ??
               WmlRunEdit.propsAt(paragraph, 0)

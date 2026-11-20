@@ -4,6 +4,13 @@ All notable changes to `quds_office_editor` are documented here.
 
 ## Unreleased
 
+- Connect Studio Mail Send and Queue in Outbox to durable frozen messages across
+  native SMTP, EWS, Gmail and Microsoft 365. Add a visible account-scoped queue,
+  atomic draft transfer, restart recovery, explicitly acknowledged uncertain
+  retries, cancellation before possible acceptance and local terminal cleanup.
+  English, German and Arabic feedback distinguishes server acceptance from
+  delivery. Queue inspection and reconnect never send automatically.
+
 - Quote HTML-only messages through the bounded inert body projection in Reply,
   Reply all and forwarding. Prefer authoritative plain text, keep Bcc and
   attachment metadata out of quotes, and retain Unicode-safe truncation.

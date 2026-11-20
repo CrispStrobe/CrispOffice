@@ -215,7 +215,9 @@ enum MailOutboxState {
 }
 
 /// Immutable state transitions to persist transactionally before network work.
-/// No transition retries an uncertain attempt. Cancellation is pre-submission.
+/// Ordinary attempts never retry uncertainty. An explicit acknowledgement is
+/// required for each new attempt once an earlier submission may have succeeded.
+/// Cancellation is only possible when no attempt may already have succeeded.
 final class MailOutboxEntry {
   const MailOutboxEntry._({
     required this.id,
@@ -224,6 +226,7 @@ final class MailOutboxEntry {
     required this.createdAt,
     required this.updatedAt,
     required this.attemptNumber,
+    required this.priorSubmissionUncertain,
     this.attemptId,
     this.result,
   });
@@ -232,6 +235,7 @@ final class MailOutboxEntry {
     required String id,
     required MailPreparedMessage prepared,
     required DateTime now,
+    bool priorSubmissionUncertain = false,
   }) {
     if (id.isEmpty) throw ArgumentError('An outbox identity is required.');
     return MailOutboxEntry._(
@@ -241,6 +245,7 @@ final class MailOutboxEntry {
       createdAt: now,
       updatedAt: now,
       attemptNumber: 0,
+      priorSubmissionUncertain: priorSubmissionUncertain,
     );
   }
 
@@ -255,6 +260,7 @@ final class MailOutboxEntry {
     required int attemptNumber,
     String? attemptId,
     MailSubmissionResult? result,
+    bool priorSubmissionUncertain = false,
   }) {
     if (id.isEmpty ||
         attemptNumber < 0 ||
@@ -266,7 +272,8 @@ final class MailOutboxEntry {
         state != MailOutboxState.queued && state != MailOutboxState.cancelled;
     if ((needsAttempt && attemptNumber == 0) ||
         (state == MailOutboxState.queued && attemptNumber != 0) ||
-        (state == MailOutboxState.submitting && result != null)) {
+        (state == MailOutboxState.submitting && result != null) ||
+        (state == MailOutboxState.cancelled && priorSubmissionUncertain)) {
       throw ArgumentError('Persisted outbox state contradicts its attempt.');
     }
     final requiredOutcome = switch (state) {
@@ -302,6 +309,7 @@ final class MailOutboxEntry {
       attemptNumber: attemptNumber,
       attemptId: attemptId,
       result: result,
+      priorSubmissionUncertain: priorSubmissionUncertain,
     );
   }
 
@@ -313,9 +321,25 @@ final class MailOutboxEntry {
   final int attemptNumber;
   final String? attemptId;
   final MailSubmissionResult? result;
+
+  /// An older attempt may have been accepted, even if the latest attempt was
+  /// definitely rejected. This survives explicit retries and their outcomes.
+  /// It may also originate in a recovered composer from before outbox support.
+  final bool priorSubmissionUncertain;
+
   bool get canBeginAttempt =>
-      state == MailOutboxState.queued ||
-      state == MailOutboxState.retryableFailure;
+      !priorSubmissionUncertain &&
+      (state == MailOutboxState.queued ||
+          state == MailOutboxState.retryableFailure);
+
+  bool get canBeginAcknowledgedAttempt =>
+      state == MailOutboxState.uncertain ||
+      (priorSubmissionUncertain &&
+          (state == MailOutboxState.queued ||
+              state == MailOutboxState.retryableFailure ||
+              state == MailOutboxState.permanentFailure));
+
+  bool get canCancel => canBeginAttempt;
 
   MailOutboxEntry beginAttempt({
     required String attemptId,
@@ -324,6 +348,27 @@ final class MailOutboxEntry {
     if (!canBeginAttempt) {
       throw StateError('This outbox state cannot be submitted automatically.');
     }
+    return _beginAttempt(attemptId: attemptId, now: now, uncertain: false);
+  }
+
+  /// Call only after the user checks delivery and explicitly accepts the risk
+  /// of a duplicate. This does not establish that the earlier send failed and
+  /// does not authorize a later retry after another rejection or interruption.
+  MailOutboxEntry beginAcknowledgedAttempt({
+    required String attemptId,
+    required DateTime now,
+  }) {
+    if (!canBeginAcknowledgedAttempt) {
+      throw StateError('This outbox state has no uncertain attempt to retry.');
+    }
+    return _beginAttempt(attemptId: attemptId, now: now, uncertain: true);
+  }
+
+  MailOutboxEntry _beginAttempt({
+    required String attemptId,
+    required DateTime now,
+    required bool uncertain,
+  }) {
     if (attemptId.isEmpty || attemptId == this.attemptId) {
       throw ArgumentError(
         'Every submission attempt requires a fresh identity.',
@@ -337,6 +382,7 @@ final class MailOutboxEntry {
       updatedAt: now,
       attemptNumber: attemptNumber + 1,
       attemptId: attemptId,
+      priorSubmissionUncertain: uncertain,
     );
   }
 
@@ -370,6 +416,7 @@ final class MailOutboxEntry {
       attemptNumber: attemptNumber,
       attemptId: attemptId,
       result: result,
+      priorSubmissionUncertain: priorSubmissionUncertain,
     );
   }
 
@@ -386,7 +433,7 @@ final class MailOutboxEntry {
   }
 
   MailOutboxEntry cancel({required DateTime now}) {
-    if (!canBeginAttempt) {
+    if (!canCancel) {
       throw StateError(
         'Cancelling a UI wait does not cancel server acceptance.',
       );
@@ -400,6 +447,7 @@ final class MailOutboxEntry {
       attemptNumber: attemptNumber,
       attemptId: attemptId,
       result: result,
+      priorSubmissionUncertain: priorSubmissionUncertain,
     );
   }
 }

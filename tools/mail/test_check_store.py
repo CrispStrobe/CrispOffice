@@ -79,6 +79,79 @@ class TestStoreEventAccounting(unittest.TestCase):
         self.assertIs(summary['terminal_success'], True)
         self.assertEqual(len(summary['cases']), 2)
 
+    def test_unicode_separators_inside_json_names_preserve_cases(self):
+        for separator in ('\u0085', '\u2028', '\u2029', '\u0085\u2028\u2029'):
+            for escaped in (False, True):
+                with self.subTest(separator=repr(separator), escaped=escaped):
+                    events = dart_events()
+                    name = 'unsafe filename before' + separator + 'after.txt'
+                    events[6]['test']['name'] = name
+                    lines = [json.dumps(event, ensure_ascii=escaped) for event in events]
+                    if not escaped:
+                        self.assertIn(separator, lines[6])
+                    summary = self.summary(lines)
+                    self.assertTrue(summary['valid'])
+                    self.assertEqual(summary['passed'], 2)
+                    self.assertEqual(summary['protocol_errors'], 0)
+                    self.assertEqual(summary['incomplete'], 0)
+                    self.assertEqual(summary['cases'][0]['name'], name)
+
+    def test_non_lf_separators_cannot_frame_distinct_json_records(self):
+        for separator in ('\r', '\u0085', '\u2028', '\u2029'):
+            with self.subTest(separator=repr(separator)):
+                lines = event_lines(dart_events())
+                lines[:2] = [lines[0] + separator + lines[1]]
+                summary = self.summary(lines)
+                self.assertFalse(summary['valid'])
+                self.assertIn('Line 1: malformed JSON event', summary['protocol_issues'])
+
+    def test_crlf_framed_stream_remains_accepted(self):
+        summary = self.summary([line + '\r' for line in event_lines(dart_events())])
+        self.assertTrue(summary['valid'])
+        self.assertEqual(summary['passed'], 2)
+        self.assertEqual(summary['protocol_errors'], 0)
+
+    def test_unicode_separators_in_error_payload_do_not_hide_failure(self):
+        for separator in ('\u0085', '\u2028', '\u2029'):
+            with self.subTest(separator=repr(separator)):
+                events = dart_events()
+                events.insert(-1, {'type': 'error', 'testID': 3,
+                                   'error': 'failed before' + separator + 'after',
+                                   'isFailure': False, 'stackTrace': ''})
+                summary = self.summary([json.dumps(event, ensure_ascii=False)
+                                        for event in events])
+                self.assertFalse(summary['valid'])
+                self.assertEqual(summary['passed'], 2)
+                self.assertEqual(summary['errors'], 1)
+                self.assertEqual(summary['protocol_errors'], 0)
+
+    def test_truncated_json_with_unicode_separators_remains_rejected(self):
+        for separator in ('\u0085', '\u2028', '\u2029'):
+            with self.subTest(separator=repr(separator)):
+                lines = event_lines(dart_events())
+                lines.insert(-1, '{"type":"error","error":"before' + separator + 'after')
+                summary = self.summary(lines)
+                self.assertFalse(summary['valid'])
+                self.assertEqual(summary['protocol_issues'], ['Line 11: malformed JSON event'])
+                self.assertEqual(summary['passed'], 2)
+                self.assertIs(summary['terminal_success'], True)
+
+    def test_incomplete_case_with_unicode_separators_remains_rejected(self):
+        for separator in ('\u0085', '\u2028', '\u2029'):
+            with self.subTest(separator=repr(separator)):
+                events = dart_events()
+                name = 'incomplete before' + separator + 'after'
+                events[6]['test']['name'] = name
+                events = [event for event in events
+                          if not (event['type'] == 'testDone' and event['testID'] == 3)]
+                summary = self.summary([json.dumps(event, ensure_ascii=False)
+                                        for event in events])
+                self.assertFalse(summary['valid'])
+                self.assertEqual(summary['incomplete'], 1)
+                self.assertEqual(summary['passed'], 1)
+                self.assertEqual(summary['protocol_errors'], 0)
+                self.assertEqual(summary['cases'][0]['name'], name)
+
     def test_malformed_event_cannot_disappear_from_otherwise_passing_stream(self):
         lines = event_lines(dart_events())
         lines.insert(-1, '{"type":"testStart","test":malformed}')

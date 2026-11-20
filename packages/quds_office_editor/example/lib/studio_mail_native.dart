@@ -2,8 +2,7 @@ import 'dart:async';
 
 import 'package:enough_mail/enough_mail.dart' as mail;
 import 'package:flutter/material.dart';
-import 'package:quds_mail_core/quds_mail_core.dart'
-    show MailProblemCode, MailCursor;
+import 'package:quds_mail_core/quds_mail_core.dart';
 import 'package:quds_mail_mime/quds_mail_mime.dart';
 import 'package:quds_mail_store/quds_mail_store.dart';
 import 'package:quds_mail_transport/quds_mail_transport.dart';
@@ -21,6 +20,9 @@ import 'studio_mail_draft_store_native.dart';
 import 'studio_mail_ews.dart';
 import 'studio_mail_message_loader.dart';
 import 'studio_mail_operation.dart';
+import 'studio_mail_outbox.dart';
+import 'studio_mail_outbox_dialog.dart';
+import 'studio_mail_outbox_strings.dart';
 import 'studio_mail_presets.dart';
 import 'studio_mail_reply.dart';
 import 'studio_mail_strings.dart';
@@ -511,6 +513,13 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
       candidate = await (widget.draftStoreFactory ?? openStudioMailDraftStore)(
         identity,
       );
+      if (candidate case StudioMailOutboxStore(
+        :final account,
+      ) when account != identity.account) {
+        throw const StudioMailDraftStoreException(
+          MailProblemCode.permissionDenied,
+        );
+      }
       final restored = await candidate.load();
       if (!_currentSession(client, generation)) {
         await _closeDraftStore(candidate);
@@ -948,6 +957,117 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
 
   Future<void> _compose() => _openComposer(null);
 
+  StudioMailOutboxSubmit _outboxSubmit(
+    mail.MailClient client,
+    mail.MailAccount account,
+    StudioMailOutboxStore store,
+    int generation,
+  ) => (message, {required attemptId}) async {
+    if (!_currentSession(client, generation) ||
+        message.account != store.account ||
+        message.envelope.sender != account.email) {
+      return MailSubmissionResult(
+        attemptId: attemptId,
+        outcome: MailSubmissionOutcome.rejected,
+      );
+    }
+    return submitStudioMailNativeOutbox(client, message, attemptId: attemptId);
+  };
+
+  Future<void> _openOutbox() => runStudioMailOperation(() async {
+    final client = _client;
+    final account = _account;
+    if (client == null || account == null || _busy || _dialogOpen) return;
+    final generation = _sessionGeneration;
+    if (!await _restoreDraftStore(client, account, generation)) return;
+    if (!mounted || !_currentSession(client, generation)) return;
+    final store = switch (_draftStore) {
+      StudioMailOutboxStore value => value,
+      _ => null,
+    };
+    if (store == null) {
+      setState(() => _error = widget.strings.mailOutboxFailed);
+      return;
+    }
+    setState(() => _dialogOpen = true);
+    try {
+      await showDialog<void>(
+        context: context,
+        barrierDismissible: false,
+        builder: (_) => StudioMailOutboxDialog(
+          strings: widget.strings,
+          store: store,
+          submit: _outboxSubmit(client, account, store, generation),
+          isCurrent: () =>
+              _currentSession(client, generation) &&
+              identical(store, _draftStore),
+        ),
+      );
+    } finally {
+      if (_currentSession(client, generation)) {
+        setState(() => _dialogOpen = false);
+      }
+    }
+  });
+
+  Future<void> _sendThroughOutbox(
+    StudioMailDraft draft,
+    StudioMailOutboxStore store,
+    mail.MailClient client,
+    mail.MailAccount account,
+    int generation,
+  ) async {
+    final priorUncertainty = _submissionUncertain;
+    setState(() {
+      _draft = draft;
+      _busy = true;
+      _error = null;
+      _notice = null;
+    });
+    var queued = false;
+    try {
+      final entry = await store.enqueueOutbox(draft, account.email);
+      queued = true;
+      if (!_currentSession(client, generation)) return;
+      setState(() {
+        _draft = null;
+        _submissionUncertain = false;
+        _notice = widget.strings.sending;
+      });
+      final completed = await submitStudioMailOutbox(
+        store: store,
+        entry: entry,
+        submit: _outboxSubmit(client, account, store, generation),
+        isCurrent: () =>
+            _currentSession(client, generation) &&
+            identical(store, _draftStore),
+        acknowledgeUncertain: priorUncertainty,
+      );
+      if (!_currentSession(client, generation)) return;
+      setState(() {
+        _notice = completed.state == MailOutboxState.submitted
+            ? widget.strings.mailSubmissionAccepted
+            : '${widget.strings.mailOutboxState(completed.state)}. ${widget.strings.mailOutboxInspect}';
+        if (completed.state == MailOutboxState.uncertain ||
+            (completed.priorSubmissionUncertain &&
+                completed.state != MailOutboxState.submitted)) {
+          _error = widget.strings.mailOutboxUncertainExplanation;
+        }
+      });
+    } on Object {
+      if (_currentSession(client, generation)) {
+        setState(() {
+          _notice = null;
+          _error = queued
+              ? widget.strings.mailOutboxFailed
+              : widget.strings.mailQueueFailed;
+        });
+      }
+    } finally {
+      if (_currentSession(client, generation)) setState(() => _busy = false);
+    }
+  }
+
   Future<void> _openComposer(
     StudioMailDraft? initial,
   ) => runStudioMailOperation(() async {
@@ -958,6 +1078,10 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
     if (!await _restoreDraftStore(client, account, generation)) return;
     if (!mounted || !_currentSession(client, generation)) return;
     final store = _draftStore!;
+    final outbox = switch (store) {
+      StudioMailOutboxStore value => value,
+      _ => null,
+    };
     if (initial != null && _draft != null) {
       setState(() {
         _error = widget.strings.mailRetainedDraft;
@@ -980,6 +1104,25 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
           from: account.email,
           initialDraft: initial ?? _draft,
           previousSubmissionUncertain: _submissionUncertain,
+          onQueueDraft: outbox != null
+              ? (snapshot) async {
+                  if (!_currentSession(client, generation) ||
+                      !identical(store, _draftStore)) {
+                    throw const StudioMailDraftStoreException(
+                      MailProblemCode.unavailable,
+                    );
+                  }
+                  await outbox.enqueueOutbox(snapshot, account.email);
+                  if (_currentSession(client, generation)) {
+                    setState(() {
+                      _draft = null;
+                      _submissionUncertain = false;
+                      _error = null;
+                      _notice = widget.strings.mailQueued;
+                    });
+                  }
+                }
+              : null,
           onSaveDraft: (snapshot) async {
             if (!_currentSession(client, generation) ||
                 !identical(store, _draftStore)) {
@@ -1001,6 +1144,10 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
       }
     }
     if (draft == null || !_currentSession(client, generation)) return;
+    if (outbox != null) {
+      await _sendThroughOutbox(draft, outbox, client, account, generation);
+      return;
+    }
     // Preserve the immutable draft before handing anything to the transport.
     // An uncertain attempt is never automatically retried.
     setState(() {
@@ -1560,6 +1707,12 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
               icon: const Icon(Icons.edit_outlined),
               label: Text(widget.strings.compose),
             ),
+          IconButton(
+            key: const ValueKey('studio-mail-open-outbox'),
+            onPressed: _busy || _dialogOpen ? null : _openOutbox,
+            tooltip: widget.strings.mailOutbox,
+            icon: const Icon(Icons.outbox_outlined),
+          ),
           IconButton(
             onPressed: _busy || _mailbox == null
                 ? null
