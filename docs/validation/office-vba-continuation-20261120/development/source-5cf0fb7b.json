@@ -1,0 +1,33 @@
+{
+  "source_commit": "5cf0fb7bac00a5168115a65b696d856898b9f40e",
+  "source_tree": "633ac1d44ec8e337e30ac81025817869ac3eab6c",
+  "purpose": "Immutable development checkpoint before corrections exposed by the full native regression gate. This is not final acceptance.",
+  "passed": {
+    "engine_analysis": "No issues, --fatal-infos, exit0",
+    "new_properties": {
+      "passed": 159,
+      "failed": 0,
+      "skipped": 0,
+      "exit_code": 0
+    },
+    "actual_examples_vm_js": {
+      "each_native_steps": 12,
+      "all_commands_exit_zero": true,
+      "byte_equal_semantic_output": true
+    }
+  },
+  "native_attempt": {
+    "passed": 479,
+    "failed": 8,
+    "exit_code": 1,
+    "accepted": false,
+    "missing_sparse_font_fixture_failures": 5,
+    "morph_projection_regression": 1,
+    "preexisting_note_numbering_reader_gap_exposed_by_incoming_tests": 2
+  },
+  "source_unchanged_during_recorded_test_runs": true,
+  "archive": "source-5cf0fb7b.tar.gz",
+  "archive_sha256": "5847017c797e23c89932ab29d35e3d071ba5dc13301f3db055abc102a5534253",
+  "archive_bytes": 141020,
+  "remaining": "Complete running shared VBA/CLI gates; correct Morph projection and note numbering; rerun affected native/portable checks with restored font fixtures."
+}

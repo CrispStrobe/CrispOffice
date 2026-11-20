@@ -1,0 +1,198 @@
+[
+  {
+    "commit": "6b9ca183d5d7370c6fa14d453f00ac28508e20d3",
+    "tree": "c9f74ec5dcb171d9736bb0d4c1d6c634a3068527",
+    "parents": [
+      "d040c15a07f652d01e75363031d0efdee6357bda",
+      "afa9272a6e31e2cbd6b9896c450a7bccfd62c579"
+    ],
+    "subject": "Integrate recent typing and proofing work before macro extensions [skip ci]"
+  },
+  {
+    "commit": "4f311d42df1748128f0e4e76b32f427287ec281f",
+    "tree": "a6eddeb7b22cddb209d21477cc4b4f6e3e2c4d5a",
+    "parents": [
+      "6b9ca183d5d7370c6fa14d453f00ac28508e20d3",
+      "1d26181b0161d88abe5977f9848ffd4cd99e6259"
+    ],
+    "subject": "Integrate recent Mail and presentation serialization fixes [skip ci]"
+  },
+  {
+    "commit": "9aa177ba9abeae7179edd517da8924f16c4c78f4",
+    "tree": "3fcf9b0d252371b534a9e994d9252713d646e1ce",
+    "parents": [
+      "4f311d42df1748128f0e4e76b32f427287ec281f",
+      "40a8f8eb76bd9bf51205fa0cb9f576ba497ad76b"
+    ],
+    "subject": "Integrate final Zotero qualification records [skip ci]"
+  },
+  {
+    "commit": "dd415bfef2381c57c0a5b0e157056804b4d674da",
+    "tree": "53a2c48c966ec9166feeb986ef77475726282e7f",
+    "parents": [
+      "9aa177ba9abeae7179edd517da8924f16c4c78f4"
+    ],
+    "subject": "Record complete branch and PR intake before VBA continuation [skip ci]"
+  },
+  {
+    "commit": "81b91827a499fa7e8833c374ec0c598dd04b7b38",
+    "tree": "7819f09fef0f1360345e947f4ae229d2889ae04c",
+    "parents": [
+      "dd415bfef2381c57c0a5b0e157056804b4d674da"
+    ],
+    "subject": "Checkpoint Word typography and aliases with development tests; retain recovery state [skip ci]"
+  },
+  {
+    "commit": "8ad374c0b8a164e3077b446c4177b658db8744be",
+    "tree": "cb1a883d57eaacd9af5d0dd86867b1cdbb26ae0a",
+    "parents": [
+      "81b91827a499fa7e8833c374ec0c598dd04b7b38"
+    ],
+    "subject": "Checkpoint PowerPoint text-frame and slideshow VBA with exact recovery provenance [skip ci]"
+  },
+  {
+    "commit": "a528ec2ca1291713eac8dd57fcebeafed6b1649e",
+    "tree": "c6b2cd20e71c64149a072ffe246cc683c5a045ab",
+    "parents": [
+      "8ad374c0b8a164e3077b446c4177b658db8744be"
+    ],
+    "subject": "Preserve explicit Word typography clears and namespace attributes [skip ci]"
+  },
+  {
+    "commit": "118c5a81b94c0958850b1b1d3c7f3378e8cbca42",
+    "tree": "8f178f5d4a0116a707c098439e89790a4b28aa8e",
+    "parents": [
+      "a528ec2ca1291713eac8dd57fcebeafed6b1649e"
+    ],
+    "subject": "Preserve PowerPoint transition and anchor XML namespaces and opaque containers [skip ci]"
+  },
+  {
+    "commit": "e8f8210687429df8b338cfcd7b9c070d90cf4841",
+    "tree": "6637b93820b88dd53978209fd8dd1689ea417d55",
+    "parents": [
+      "118c5a81b94c0958850b1b1d3c7f3378e8cbca42"
+    ],
+    "subject": "Add native PowerPoint layout and transition preservation regressions [skip ci]"
+  },
+  {
+    "commit": "4054db3b2393ac83b8b3af20abe0dda627f771c3",
+    "tree": "d5ed4a2a0e2d68cece9e55ab0505ab1f6b17b45c",
+    "parents": [
+      "e8f8210687429df8b338cfcd7b9c070d90cf4841",
+      "50b029b3747a6643df040dafb470e54fa8dd5466"
+    ],
+    "subject": "Integrate latest Mail main before final macro qualification [skip ci]"
+  },
+  {
+    "commit": "7ec7614fefb830f727907b5f6ee9545abfbb335a",
+    "tree": "ad06240e4b4508c25547cb3b7719d999eb4eab7b",
+    "parents": [
+      "4054db3b2393ac83b8b3af20abe0dda627f771c3",
+      "712d0ea558a01cabff25a83294a29b8d57ec25d4"
+    ],
+    "subject": "Integrate latest typing scheduling and benchmark baseline [skip ci]"
+  },
+  {
+    "commit": "5a47bfbe4027242cb03cef655d528b5550f7cb38",
+    "tree": "7b992d7c868e9ef87bc77e0500cd280bc8a76cb7",
+    "parents": [
+      "7ec7614fefb830f727907b5f6ee9545abfbb335a",
+      "c201f68e67adbe11affc6bf6e8be1b19515f54dc"
+    ],
+    "subject": "Integrate Zotero note targets and reviewed citation refinements [skip ci]"
+  },
+  {
+    "commit": "016c9df98827ea9be848280ba366fdc98ae58a18",
+    "tree": "90c56ef2169ff61320a830621c04c9cad3037311",
+    "parents": [
+      "5a47bfbe4027242cb03cef655d528b5550f7cb38",
+      "9d49ed2a1d4e4039239c45350c5f1dc7074e2f42"
+    ],
+    "subject": "Integrate current fonts and verified font-pack downloads [skip ci]"
+  },
+  {
+    "commit": "3e5797480342b60a58424101ca33c2408cb4fa98",
+    "tree": "a4df75924aa888cb2f10dd8acbd36cbdc986a0ad",
+    "parents": [
+      "016c9df98827ea9be848280ba366fdc98ae58a18",
+      "8c6469851942dda8b117f327682d1dc9ac152e0d"
+    ],
+    "subject": "Integrate grouped localized Downloads manager [skip ci]"
+  },
+  {
+    "commit": "1ffc316931a95f2e41601fe767771b27f43da0bd",
+    "tree": "0e5ce45548eddd91f61f481e39a2aac1964edc99",
+    "parents": [
+      "3e5797480342b60a58424101ca33c2408cb4fa98"
+    ],
+    "subject": "Complete Word and PowerPoint preservation guards, examples and native regressions [skip ci]"
+  },
+  {
+    "commit": "5cf0fb7bac00a5168115a65b696d856898b9f40e",
+    "tree": "633ac1d44ec8e337e30ac81025817869ac3eab6c",
+    "parents": [
+      "1ffc316931a95f2e41601fe767771b27f43da0bd"
+    ],
+    "subject": "Add actual-example portable macro smoke and format final source [skip ci]"
+  },
+  {
+    "commit": "30a85d34a3abd7cf32918c3d7579a6a9b397df05",
+    "tree": "720cd4f5dd467076001b729954dccdc3323ded71",
+    "parents": [
+      "5cf0fb7bac00a5168115a65b696d856898b9f40e"
+    ],
+    "subject": "Preserve local analysis, portable examples and regression findings [skip ci]"
+  },
+  {
+    "commit": "d27d9f15284342767b045d87355e7257429ab909",
+    "tree": "83e0a0dc3260dc610bea7642ef8598db056227da",
+    "parents": [
+      "30a85d34a3abd7cf32918c3d7579a6a9b397df05"
+    ],
+    "subject": "Restore Morph compatibility and note-story list numbering found by regressions [skip ci]"
+  },
+  {
+    "commit": "b41add869e5118565935c995f6f5e9bb7437a670",
+    "tree": "76401d1af28bf1ce44025277fd00c9d754234755",
+    "parents": [
+      "d27d9f15284342767b045d87355e7257429ab909"
+    ],
+    "subject": "Format targeted compatibility corrections before final local gate [skip ci]"
+  },
+  {
+    "commit": "08020076b1552fef214d7625ace7ae087b70be88",
+    "tree": "76b0a8eb9625b45ec0deaa9a26baa1bb21db62c8",
+    "parents": [
+      "b41add869e5118565935c995f6f5e9bb7437a670",
+      "c028baf2491f701735a53552b4b3674914a4f830"
+    ],
+    "subject": "Reconcile latest accepted Zotero, PDF and font main before macro qualification [skip ci]"
+  },
+  {
+    "commit": "199755e266b1d1a7f149a3d2ade907d71bfa3466",
+    "tree": "b1b32a03e418197f04490ce01f4b32c1eacd3046",
+    "parents": [
+      "08020076b1552fef214d7625ace7ae087b70be88",
+      "e59b8918db508da46039a943080dc4b7a5c7a0bb"
+    ],
+    "subject": "Include final captured main documentation update [skip ci]"
+  },
+  {
+    "commit": "1ab9e297880016322035c3b2a10e07e8406eeba7",
+    "tree": "f88bd7549f4b0742705f208b78a1198d5de33018",
+    "parents": [
+      "199755e266b1d1a7f149a3d2ade907d71bfa3466",
+      "d886ee8eb985f34c2ce5a02cc6044d6f88132bf6"
+    ],
+    "subject": "Reconcile latest captured Downloads localization and font integration [skip ci]"
+  },
+  {
+    "commit": "153c818cd6dba07559fead6e86214a8482cf08b7",
+    "tree": "06255edcea0fa902e7ac0ee4f899c4276ee58072",
+    "parents": [
+      "1ab9e297880016322035c3b2a10e07e8406eeba7",
+      "c8b5080ad3d33abda44275a9b3679514d7526c58"
+    ],
+    "subject": "Integrate final captured Mail account switching and save ownership [skip ci]"
+  }
+]

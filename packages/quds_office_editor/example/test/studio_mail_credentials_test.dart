@@ -26,7 +26,16 @@ const _saved = StudioMailCredentials(
 );
 
 final class _Storage extends Fake implements FlutterSecureStorage {
-  String? raw;
+  final records = <String, String>{};
+  String? get raw => records['crispoffice.mail.account.v1'];
+  set raw(String? value) {
+    if (value == null) {
+      records.remove('crispoffice.mail.account.v1');
+    } else {
+      records['crispoffice.mail.account.v1'] = value;
+    }
+  }
+
   bool readFails = false;
   bool writeFails = false;
   bool deleteFails = false;
@@ -44,7 +53,7 @@ final class _Storage extends Fake implements FlutterSecureStorage {
   }) async {
     calls.add('read');
     if (readFails) throw StateError('private-keychain-error');
-    return raw;
+    return records[key];
   }
 
   @override
@@ -61,7 +70,7 @@ final class _Storage extends Fake implements FlutterSecureStorage {
     calls.add('write');
     if (writeGate != null) await writeGate!.future;
     if (writeFails) throw StateError('private-keychain-error');
-    raw = value;
+    records[key] = value!;
   }
 
   @override
@@ -76,7 +85,7 @@ final class _Storage extends Fake implements FlutterSecureStorage {
   }) async {
     calls.add('delete');
     if (deleteFails) throw StateError('private-keychain-error');
-    raw = null;
+    records.remove(key);
   }
 }
 
@@ -275,6 +284,8 @@ void main() {
       expect(await store.save(_saved), isFalse);
       storage.deleteFails = true;
       expect(await store.clear(), isFalse);
+      expect(storage.raw, jsonEncode(_saved.toJson()));
+      storage.writeFails = storage.deleteFails = false;
       expect((await store.load())!.password, _saved.password);
       storage.readFails = true;
       expect(await store.load(), isNull);
@@ -305,12 +316,21 @@ void main() {
       await Future<void>.delayed(Duration.zero);
       final clearing = second.clear();
       await Future<void>.delayed(Duration.zero);
-      expect(storage.calls, ['write']);
+      expect(storage.calls, ['read', 'read', 'write']);
       storage.writeGate!.complete();
       expect(await saving, isTrue);
       expect(await clearing, isTrue);
-      expect(storage.calls, ['write', 'delete']);
+      expect(storage.calls, [
+        'read',
+        'read',
+        'write',
+        'read',
+        'delete',
+        'write',
+      ]);
       expect(storage.raw, isNull);
+      expect(storage.records.keys, ['crispoffice.mail.accounts.v2']);
+      expect(await second.load(), isNull);
     },
   );
 
@@ -751,7 +771,7 @@ void _registerPlatformCredentialTests() {
         expect(records, hasLength(1));
         expect((await store.load())!.toJson(), _credentials.toJson());
         expect(await store.clear(), isTrue);
-        expect(records, isEmpty);
+        expect(records.keys, ['crispoffice.mail.accounts.v2']);
         expect(await store.load(), isNull);
       },
     );
@@ -783,8 +803,10 @@ void _registerPlatformCredentialTests() {
         expect(await store.clear(), isFalse);
         expect(records, original);
         failDelete = false;
+        failWrite = false;
         expect(await store.clear(), isTrue);
-        expect(records, isEmpty);
+        expect(records.keys, ['crispoffice.mail.accounts.v2']);
+        expect(await store.load(), isNull);
       },
     );
 
@@ -794,18 +816,18 @@ void _registerPlatformCredentialTests() {
         final started = Completer<void>();
         final release = Completer<void>();
         beforeWrite = () {
-          started.complete();
+          if (!started.isCompleted) started.complete();
           return release.future;
         };
         final writing = store.save(_credentials);
         final deleting = store.clear();
         await started.future;
-        expect(calls, ['write']);
+        expect(calls, ['read', 'read', 'write']);
         release.complete();
         expect(await writing, isTrue);
         expect(await deleting, isTrue);
-        expect(calls, ['write', 'delete']);
-        expect(records, isEmpty);
+        expect(calls, ['read', 'read', 'write', 'read', 'delete', 'write']);
+        expect(records.keys, ['crispoffice.mail.accounts.v2']);
         expect(await store.load(), isNull);
       },
     );
@@ -817,8 +839,8 @@ void _registerPlatformCredentialTests() {
         final writing = store.save(_credentials);
         final deleting = store.clear();
         expect(await writing, isFalse);
-        expect(await deleting, isTrue);
-        expect(calls, ['write', 'delete']);
+        expect(await deleting, isFalse);
+        expect(calls, ['read', 'read', 'write', 'read', 'read', 'write']);
         failWrite = false;
         expect(await store.save(_credentials), isTrue);
         expect((await store.load())!.email, _credentials.email);
