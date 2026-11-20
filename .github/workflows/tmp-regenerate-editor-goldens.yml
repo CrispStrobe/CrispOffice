@@ -10,7 +10,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        sha: [e86b9921, 8b760e6c, cbf00bac, 8c6acd04, 3e5f44ae, 88905c56, 5675d3e0, 1de104be, 46bb0898, 48123bf7, 50ae1754]
+        sha: [71c310e5, 7462e41c, 066e0797, fb5f138f, 976d05a3, 4d395da7, 52d6ae43, d3b37a99, b6a6b4c4, 8e017e8c]
     steps:
       - uses: actions/checkout@v4
         with:
@@ -25,7 +25,7 @@ jobs:
         working-directory: packages/quds_office_editor
         run: |
           files=""
-          for f in office_table_grid_golden_test office_layout_goldens_test office_structure_goldens_test office_frame_wrap_golden_test office_fidelity_golden_test office_story_golden_test office_nested_table_golden_test; do
+          for f in office_layout_goldens_test; do
             [ -f test/$f.dart ] && files="$files test/$f.dart"
           done
           flutter test --update-goldens $files || true
