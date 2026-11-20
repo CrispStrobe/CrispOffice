@@ -205,8 +205,9 @@ void main() {
           TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger;
       final systemReads = <String>[];
       messenger.setMockMethodCallHandler(channel, (call) async {
-        // No native credential service is touched by this test.
-        expect(call.method, 'read');
+        // No native credential service is touched by this test. This callback
+        // also runs while pumpAndSettle owns the test's asynchronous guard.
+        expectSync(call.method, 'read');
         systemReads.add((call.arguments as Map)['key'] as String);
         return null;
       });
