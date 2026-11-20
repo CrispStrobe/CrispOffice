@@ -104,7 +104,7 @@ abstract final class SampleLibrary {
     final SmlWorksheet catalog = SmlWorksheet(name: 'Catalog', sheetId: 3);
     final List<List<Object?>> items = <List<Object?>>[
       <Object?>['SKU', 'Item', 'Qty', 'Price', 'Amount'],
-      <Object?>['W-01', 'Word pack', 12, 9.5, null],
+      <Object?>['W-01', 'Writer pack', 12, 9.5, null],
       <Object?>['X-02', 'Sheet pack', 8, 11, null],
       <Object?>['P-03', 'Slide pack', 15, 8.25, null],
     ];
@@ -188,7 +188,7 @@ abstract final class SampleLibrary {
             box(
               id: 4,
               name: 'Subtitle',
-              text: 'Word · Excel · PowerPoint — full studio toolbar',
+              text: 'Writer · Spreadsheet · Presentation — full studio toolbar',
               fill: '2B579A',
               x: 600000,
               y: 2200000,
@@ -250,7 +250,7 @@ abstract final class SampleLibrary {
             box(
               id: 2,
               name: 'Head',
-              text: 'Word — document tools',
+              text: 'Writer — document tools',
               fill: '1F4E79',
               x: 400000,
               y: 300000,
@@ -316,7 +316,7 @@ abstract final class SampleLibrary {
             box(
               id: 2,
               name: 'Head',
-              text: 'Excel — grid tools',
+              text: 'Spreadsheet — grid tools',
               fill: '217346',
               x: 400000,
               y: 300000,
@@ -368,7 +368,7 @@ abstract final class SampleLibrary {
             box(
               id: 2,
               name: 'Head',
-              text: 'PowerPoint — stage tools',
+              text: 'Presentation — stage tools',
               fill: 'B7472A',
               x: 400000,
               y: 300000,
