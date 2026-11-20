@@ -373,7 +373,8 @@ final class WordZoteroNoteText {
                 table: table,
                 row: row,
                 cell: cell,
-                cellFlow: cell != null ||
+                cellFlow:
+                    cell != null ||
                     (tag == 'div' &&
                         stack.any((element) => element.cell != null)),
               ),
@@ -480,9 +481,7 @@ final class WordZoteroNoteText {
     WmlTableCell? currentCell;
     var tableMarks = 0;
     var cellMarks = 0;
-    final structure = RegExp(
-      r'^\uE000(t[0-9]+|c[0-9]+|/c|/t)\uE001$',
-    );
+    final structure = RegExp(r'^\uE000(t[0-9]+|c[0-9]+|/c|/t)\uE001$');
     final marker = RegExp(
       '\uE000([0-9]+|h[1-6]|/h|l[0-9]+|i[0-9]+)\uE001|\uE002',
     );
@@ -734,13 +733,7 @@ final class WordZoteroNoteText {
   static const _tableContainers = <String>{'table', 'tbody', 'tr'};
   static const _cellTags = <String>{'td', 'th'};
   static const _tableTags = <String>{..._tableContainers, ..._cellTags};
-  static const _cellBlockTags = <String>{
-    ..._headings,
-    'p',
-    'div',
-    'ul',
-    'ol',
-  };
+  static const _cellBlockTags = <String>{..._headings, 'p', 'div', 'ul', 'ol'};
 
   static void _checkMarkers(String value) {
     if (value.contains(RegExp('[\uE000-\uE002]'))) throw _malformed();
