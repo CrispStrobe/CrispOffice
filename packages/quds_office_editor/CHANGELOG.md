@@ -4,12 +4,15 @@ All notable changes to `quds_office_editor` are documented here.
 
 ## Unreleased
 
-- Remember up to 20 native IMAP/SMTP accounts in a bounded platform-keychain
-  catalog. Restore the selected account, choose another account explicitly,
+- Remember up to 20 native IMAP/SMTP accounts in a bounded catalog in the
+  selected credential store, including temporary session memory. Restore the
+  selected account, choose another account explicitly,
   and forget only that account. Migrate the previous single-account record
   without losing credentials or resurrecting a forgotten account. Switch
   connected accounts only after saving their retained local draft, preserving
-  existing per-account draft ownership and delayed-operation guards.
+  existing per-account draft ownership and delayed-operation guards. Keep
+  catalog transactions and delayed initialization bound to their selected
+  backend; clear the previous selection before loading another store.
 
 - Insert Zotero research notes and annotations at the active authored footnote
   or endnote caret, and replace deliberate text selections within one paragraph.

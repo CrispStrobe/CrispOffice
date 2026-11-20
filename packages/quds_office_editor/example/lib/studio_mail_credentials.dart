@@ -23,8 +23,8 @@ typedef StudioMailConnectionIdentity = ({
   String smtpLogin,
 });
 
-/// Host-owned credential record. Only the platform keychain receives its JSON;
-/// diagnostics and exception messages must never include the record's values.
+/// Host-owned credential record for the selected persistent or session backend.
+/// Diagnostics and exception messages must never include the record's values.
 class StudioMailCredentials {
   const StudioMailCredentials({
     required this.email,
