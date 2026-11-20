@@ -1,0 +1,47 @@
+{
+  "schema": "quds-github-intake-metadata/v1",
+  "repository": "CrispStrobe/quds_office_suite",
+  "captured_via": "GitHub plugin GET repository, branches, pulls, PR metadata and compare endpoints",
+  "captured_main": "5ad4461a93c835479bf67acab63623944b3900a3",
+  "api_branch_count": 24,
+  "pull_requests": [
+    {
+      "number": 262,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/262",
+      "title": "Mail: retain visited folders and opened messages for offline reading [skip ci]",
+      "state": "closed",
+      "merged": true,
+      "draft": true,
+      "head": "work/mail-cached-workspace-20261120",
+      "head_sha": "c7e721b7703766491fd4459b69de30bf68d9010d",
+      "merge_commit_sha": "c7e721b7703766491fd4459b69de30bf68d9010d",
+      "merged_at": "2026-11-20T17:55:16Z"
+    },
+    {
+      "number": 263,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/263",
+      "title": "Extend Word VBA custom paragraph spacing and unit conversions",
+      "state": "open",
+      "merged": false,
+      "draft": true,
+      "head": "codex/word-vba-paragraph-spacing-20261120",
+      "head_sha": "0201b549d0dc3f601c50e36255d557034cb01699",
+      "base_sha_reported": "3ee4e3622c9a2198d384ed1cb296ab092a8838d0"
+    }
+  ],
+  "spacing_delta": {
+    "base": "5ad4461a93c835479bf67acab63623944b3900a3",
+    "head": "0201b549d0dc3f601c50e36255d557034cb01699",
+    "ahead_by": 1,
+    "behind_by": 0,
+    "summary": "Strengthens guards for AlternateContent in or wrapping paragraph properties, adds decimal-conversion and preset rollback/recording regressions, and updates scope documentation.",
+    "acceptance": "Incoming README explicitly states final qualification pending."
+  },
+  "mail_status": {
+    "committed_final_seal": "PASS",
+    "qualified_source": "2c0c9bed091eb6bfa5a2aed153f48fc79569a433",
+    "sealed_head": "c7e721b7703766491fd4459b69de30bf68d9010d",
+    "scope": "Reported from committed source; not independently rerun in this reference audit."
+  },
+  "github_actions": "NOT QUERIED OR AWAITED"
+}
