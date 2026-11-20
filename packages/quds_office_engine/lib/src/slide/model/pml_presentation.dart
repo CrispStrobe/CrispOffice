@@ -579,7 +579,7 @@ class PmlShape {
     if (!explicit && (source == null || richText.isEmpty)) return richText;
     if (!explicit && source!.text != text) return const <PmlTextParagraph>[];
     final bool replace =
-        richText.isEmpty || (source != null && source.text != text);
+        source == null || richText.isEmpty || source.text != text;
     final bool fontChanged =
         textSizeOverride ||
         (source == null
@@ -608,7 +608,10 @@ class PmlShape {
       final lines = text.split('\n');
       originals = <PmlTextParagraph>[];
       for (var i = 0; i < lines.length; i++) {
-        final template = richText.isEmpty
+        // Without an imported XML source, export starts from the authored
+        // scalar text/style. Unsaved display runs are not its replacement
+        // template and must not leave stale text or styling in live output.
+        final template = source == null || richText.isEmpty
             ? PmlTextParagraph()
             : richText[i < richText.length ? i : richText.length - 1].copy();
         final run =

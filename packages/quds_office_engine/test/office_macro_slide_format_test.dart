@@ -81,6 +81,106 @@ void _format(PmlPresentation deck, Map<String, Object?> values) =>
 
 void main() {
   test(
+    'authored display runs cannot outlive native scalar text replacement',
+    () {
+      for (final format in [false, true]) {
+        final target = PmlShape(
+          id: 2,
+          name: 'Authored',
+          text: 'Original',
+          fontSizePt: 18,
+          textColor: '112233',
+          richText: [
+            PmlTextParagraph(
+              align: PmlTextAlign.right,
+              runs: [
+                PmlTextRun(
+                  text: 'Old display text',
+                  fontSizePt: 40,
+                  color: 'AA0000',
+                  fontFamily: 'Old face',
+                  bold: true,
+                  italic: true,
+                  underline: true,
+                ),
+              ],
+            ),
+          ],
+        );
+        final deck = PmlPresentation(
+          slides: [
+            PmlSlide(id: 256, shapes: [target]),
+          ],
+        );
+        applySlideStep(deck, {
+          'op': 'shapeText',
+          'shape': 0,
+          'text': 'Replacement\nNext',
+        });
+        if (format) {
+          _format(deck, {'font': 'Liberation Sans', 'bold': false});
+        }
+        final live = target.copy().resolvedRichText;
+        final saved = SlideDeserializer()
+            .readBytes(SlideSerializer().writeBytes(deck))
+            .slides
+            .single
+            .shapes
+            .single
+            .richText;
+        expect(live.map((p) => p.runs.single.text), ['Replacement', 'Next']);
+        expect(target.richText.single.runs.single.text, 'Old display text');
+        for (var index = 0; index < live.length; index++) {
+          final before = live[index].runs.single;
+          final after = saved[index].runs.single;
+          expect(live[index].align, PmlTextAlign.left);
+          expect(saved[index].align, live[index].align);
+          expect(
+            (
+              before.text,
+              before.fontSizePt,
+              before.color,
+              before.fontFamily,
+              before.bold,
+              before.italic,
+              before.underline,
+            ),
+            (
+              index == 0 ? 'Replacement' : 'Next',
+              18.0,
+              '112233',
+              format ? 'Liberation Sans' : '',
+              false,
+              false,
+              false,
+            ),
+          );
+          expect(
+            (
+              after.text,
+              after.fontSizePt,
+              after.color,
+              after.fontFamily,
+              after.bold,
+              after.italic,
+              after.underline,
+            ),
+            (
+              before.text,
+              before.fontSizePt,
+              before.color,
+              before.fontFamily,
+              before.bold,
+              before.italic,
+              before.underline,
+            ),
+          );
+        }
+      }
+    },
+  );
+
+  test(
     'default authored shape reopens and accepts native text replacement',
     () {
       final original = PmlPresentation(
