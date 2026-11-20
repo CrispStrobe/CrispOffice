@@ -1,0 +1,72 @@
+{
+  "adapter_command": [
+    "docs/validation/zotero-research-materials-20261120/continuation/publication-followup/run_studio_pin.py",
+    "studio-pin",
+    "--repo",
+    "/workspace/scratch/2c6eaad19389/quds_office_suite",
+    "--output",
+    "docs/validation/zotero-research-materials-20261120/continuation/publication-followup/accepted-studio-pin",
+    "--expected-head",
+    "6b917be36d5d54aa8a55ef3c8b9ce649aa8bab82"
+  ],
+  "additive_catalog": {
+    "studio-pin": {
+      "additional": [
+        "studio_spacy_pin_test.dart"
+      ],
+      "package": "packages/quds_office_editor/example",
+      "patterns": [],
+      "runner": "flutter"
+    }
+  },
+  "code_after": {
+    "adapter": {
+      "bytes": 4288,
+      "path": "/workspace/scratch/2c6eaad19389/quds_office_suite/docs/validation/zotero-research-materials-20261120/continuation/publication-followup/run_studio_pin.py",
+      "sha256": "f1eab70c9ed43824ffe48c1af82ebd9db7923a269306357e161fcf092ea17f75"
+    },
+    "primary_runner": {
+      "bytes": 29772,
+      "path": "/workspace/scratch/2c6eaad19389/quds_office_suite/docs/validation/zotero-research-materials-20261120/run_validation.py",
+      "sha256": "4d01ed59729abaa64e3ab643e8ebcb2f7136dd2d9f02cc4b07b81a06fbb919bf"
+    }
+  },
+  "code_before": {
+    "adapter": {
+      "bytes": 4288,
+      "path": "/workspace/scratch/2c6eaad19389/quds_office_suite/docs/validation/zotero-research-materials-20261120/continuation/publication-followup/run_studio_pin.py",
+      "sha256": "f1eab70c9ed43824ffe48c1af82ebd9db7923a269306357e161fcf092ea17f75"
+    },
+    "primary_runner": {
+      "bytes": 29772,
+      "path": "/workspace/scratch/2c6eaad19389/quds_office_suite/docs/validation/zotero-research-materials-20261120/run_validation.py",
+      "sha256": "4d01ed59729abaa64e3ab643e8ebcb2f7136dd2d9f02cc4b07b81a06fbb919bf"
+    }
+  },
+  "code_unchanged": true,
+  "cohort": "studio-pin",
+  "delegated_arguments": [
+    "/workspace/scratch/2c6eaad19389/quds_office_suite/docs/validation/zotero-research-materials-20261120/run_validation.py",
+    "studio-pin",
+    "--repo",
+    "/workspace/scratch/2c6eaad19389/quds_office_suite",
+    "--timeout",
+    "1800",
+    "--output",
+    "/workspace/scratch/2c6eaad19389/quds_office_suite/docs/validation/zotero-research-materials-20261120/continuation/publication-followup/accepted-studio-pin",
+    "--expected-head",
+    "6b917be36d5d54aa8a55ef3c8b9ce649aa8bab82"
+  ],
+  "primary_runner_exit_code": 0,
+  "primary_test_audit_and_fingerprint_logic_unchanged": true,
+  "purpose": "Qualify the publication-time build script consumed by the Studio spaCy pin test",
+  "selection": {
+    "additional": [
+      "studio_spacy_pin_test.dart"
+    ],
+    "package": "packages/quds_office_editor/example",
+    "patterns": [],
+    "runner": "flutter"
+  },
+  "shared_sdk_validation_lock_unchanged": true
+}

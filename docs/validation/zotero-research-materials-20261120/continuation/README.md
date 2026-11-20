@@ -3,8 +3,9 @@
 This continuation finishes [PR #223](https://github.com/CrispStrobe/quds_office_suite/pull/223), which was still open when the attached handoff ended. It restores and independently checks the saved qualification, reconciles the ready incoming work, and validates the combined source locally.
 
 **Freshly tested source:** `f3f98987824e021ed22a4d909e38d6307495267b`.
-**Final source correction:** `3cba1810b41a2fff5b2cd1eb355137a46b09f225`.
-The final correction only adds braces to an existing `if` statement in the standalone grammar evaluation tool. Application libraries, selected tests, fixtures, manifests and locks are unchanged after the fresh test runs. The exact difference and its import/use review are recorded in [the publication audit](publication-audit.json).
+**Dart lint correction:** `3cba1810b41a2fff5b2cd1eb355137a46b09f225`.
+**Final main follow-up source:** `6b917be36d5d54aa8a55ef3c8b9ce649aa8bab82`.
+The lint correction only adds braces to an existing `if` statement in the standalone grammar evaluation tool. At that step, application libraries, selected tests, fixtures, manifests and locks remain byte-identical to the fresh test source; [the publication audit](publication-audit.json) records that boundary. A subsequent main update changes the macOS build script and two documentation paths, including Dart documentation comments. Its separate [final follow-up audit](publication-followup/final-audit.json), one repeated pin test, ten controlled shell checks and fresh static analysis qualify that later delta without rewriting the earlier results.
 
 ## Delivered Zotero workflow
 
@@ -69,6 +70,14 @@ This is an explicit cutoff and readiness record, not a claim that those branches
 
 The [incoming review](incoming-review.json) checks 50 path observations across 46 unique paths at the tested source `f3f98987`, applying the later selected source where commits overlap. Two combined files preserve the exact reviewed changes from both sides. Local `bash -n`, YAML parsing and all 14 workflow shell-fragment syntax checks pass. These checks do not execute a GitHub workflow or a macOS build.
 
+### Publication follow-up: PR #228
+
+Main subsequently advanced to `3e5f44ae14926b8054b2e5c0558ce71477891a33` with the published macOS portability branch. Its new commit `aeb1f09dfb4b61ca30f8b6f086f0c60cf0607cf9` preserves the pinned spaCy bytes during ad hoc builds, verifies their existing signature, and retains the hard code-digest gate for release signing. The unsigned-file cross-check applies where the local signing tool reproduces its reference normalization. Source checkpoint `6b917be36d5d54aa8a55ef3c8b9ce649aa8bab82` preserves that main history and the earlier complete evidence checkpoint `f4b7f7af`.
+
+The exact three-path delta consists of the build script, release documentation and documentation comments in `distribution.dart`; every executable Dart token and every selected test remain unchanged. All script pins are unchanged. The [macOS build review](publication-followup/macos-build-review.json) passes exact-script Bash syntax and ten controlled cases for the changed signing and qualification branches, including signature failure, mismatched code, mismatched normalized bytes, rebuilds and explicit spaCy omission. Apple signing commands are stubbed in those checks; no native signing or macOS build is claimed.
+
+The one selected test that reads the build script, `studio_spacy_pin_test.dart`, passes again on the final source with all original runner guards. It is already included in the 3,201-case total and is not counted twice. [Final static checks](publication-followup/static/receipt.json) again pass all 83 changed Dart targets. The [follow-up audit](publication-followup/final-audit.json) binds this new source and its inputs separately; the earlier 3,209-execution evidence and accounting exception remain immutable. PR #228 is a further publication supplement to the bounded intake.
+
 ## Reproduction and publication
 
 Use the recorded source commit, official pinned runtime and unchanged locked dependencies. Set `FLUTTER_ROOT` and `PUB_CACHE`; use new output directories. The original runner is unchanged and the adapter records its pinned identity and its additive cohort selections.
@@ -85,6 +94,12 @@ python3 docs/validation/zotero-research-materials-20261120/continuation/run_spac
 ```
 
 The shared local lock preserves serial Flutter/compiler-cache access. Application timeouts are unchanged. No runner resolves packages, modifies source or contacts GitHub.
+
+At the final main follow-up source, reproduce the repeated one-file pin gate separately:
+
+```bash
+python3 docs/validation/zotero-research-materials-20261120/continuation/publication-followup/run_studio_pin.py studio-pin --repo . --output /path/to/fresh/studio-pin --expected-head 6b917be36d5d54aa8a55ef3c8b9ce649aa8bab82
+```
 
 Source and evidence checkpoints use non-forced remote updates with the expected previous head. Publication verifies the remote branch tree against the local candidate, refreshes main before merging, and verifies the resulting main tree and ancestry afterward. The PR description records the final merge identity.
 

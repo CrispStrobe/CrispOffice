@@ -4,14 +4,16 @@
 
 The [publication continuation](validation/zotero-research-materials-20261120/continuation/README.md)
 finishes this milestone after restoring and independently verifying the saved
-evidence. It preserves current main through PR #226, macOS portability and the
+evidence. It preserves current main through PR #228, macOS portability and the
 comment-language test repair. Fresh local runs cover **3,201 distinct passing
 cases in 129 files**, including both complete Zotero suites; all **83 final
 changed Dart targets** pass strict analysis and formatting. Eight identical
 pre-existing proofing fixture repeats are counted once in a separate explicit
 accounting audit. These fresh counts overlap the original acceptance below and
-are kept separate. The final source correction is a lint-only block in an
-evaluation tool outside the selected tests' imports.
+are kept separate. A lint-only block in an evaluation tool is isolated from
+the selected tests' imports. A later published macOS build-script correction
+has separate qualification: the repeated pin test, ten controlled shell
+checks and fresh full static analysis, without adding repeated case counts.
 
 Qualified product source: **`f0122cb5bff5b6cf6a6f69f043545dabc2930791`**,
 followed by current-main integration
