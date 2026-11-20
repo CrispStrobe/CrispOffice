@@ -1,0 +1,303 @@
+{
+  "description": "Lemma/POS/UPOS choices of the native library for disambig_parity_panel.json, recorded from CI run 44790315778 (native and Wasm identical: 49 tokens, 1797 analyses, bit-identical scores). A regression/parity anchor, not a quality gold standard.",
+  "model": "cstr/camel-morph-msa-disambig@07fd9e65200a3ea92a081efa9b0714817178df5f/bigram-v1",
+  "tokens": 49,
+  "analyses": 1797,
+  "web_buffer_sha256": "95f6bd7c9ddee948b10b17d62a8ad766f19f73a748327c4e16a5da76b74854a4",
+  "choices": [
+    {
+      "word": "قرأت",
+      "lex": "قَرَأ",
+      "pos": "verb",
+      "upos": "VERB"
+    },
+    {
+      "word": "ثلاثة",
+      "lex": "ثَلَاث",
+      "pos": "noun_num",
+      "upos": "NUM"
+    },
+    {
+      "word": "كتب",
+      "lex": "كِتَاب",
+      "pos": "noun",
+      "upos": "NOUN"
+    },
+    {
+      "word": "في",
+      "lex": "فِي",
+      "pos": "prep",
+      "upos": "ADP"
+    },
+    {
+      "word": "المكتبة",
+      "lex": "مَكْتَبَة",
+      "pos": "noun",
+      "upos": "NOUN"
+    },
+    {
+      "word": ".",
+      "lex": ".",
+      "pos": "punc",
+      "upos": "PUNCT"
+    },
+    {
+      "word": "كان",
+      "lex": "كَان",
+      "pos": "verb",
+      "upos": "VERB"
+    },
+    {
+      "word": "الطلاب",
+      "lex": "طَالِب",
+      "pos": "noun",
+      "upos": "NOUN"
+    },
+    {
+      "word": "مجتهدين",
+      "lex": "مُجْتَهِد",
+      "pos": "noun",
+      "upos": "NOUN"
+    },
+    {
+      "word": "!",
+      "lex": "!",
+      "pos": "punc",
+      "upos": "PUNCT"
+    },
+    {
+      "word": "ذهب",
+      "lex": "ذَهَّب",
+      "pos": "verb",
+      "upos": "VERB"
+    },
+    {
+      "word": "الولد",
+      "lex": "وَلَد",
+      "pos": "noun",
+      "upos": "NOUN"
+    },
+    {
+      "word": "إلى",
+      "lex": "إِلَى",
+      "pos": "prep",
+      "upos": "ADP"
+    },
+    {
+      "word": "المدرسة",
+      "lex": "مَدْرَسَة",
+      "pos": "noun",
+      "upos": "NOUN"
+    },
+    {
+      "word": "صباحا",
+      "lex": "صباح",
+      "pos": "noun_prop",
+      "upos": "PROPN"
+    },
+    {
+      "word": ".",
+      "lex": ".",
+      "pos": "punc",
+      "upos": "PUNCT"
+    },
+    {
+      "word": "كتب",
+      "lex": "كِتَاب",
+      "pos": "noun",
+      "upos": "NOUN"
+    },
+    {
+      "word": "الطالب",
+      "lex": "طَالِب",
+      "pos": "noun",
+      "upos": "NOUN"
+    },
+    {
+      "word": "الدرس",
+      "lex": "دَرْس",
+      "pos": "noun",
+      "upos": "NOUN"
+    },
+    {
+      "word": "في",
+      "lex": "فِي",
+      "pos": "prep",
+      "upos": "ADP"
+    },
+    {
+      "word": "الدفتر",
+      "lex": "دَفْتَر",
+      "pos": "noun",
+      "upos": "NOUN"
+    },
+    {
+      "word": ".",
+      "lex": ".",
+      "pos": "punc",
+      "upos": "PUNCT"
+    },
+    {
+      "word": "إن",
+      "lex": "أَنَّ",
+      "pos": "conj_sub",
+      "upos": "SCONJ"
+    },
+    {
+      "word": "العلم",
+      "lex": "عِلْم",
+      "pos": "noun",
+      "upos": "NOUN"
+    },
+    {
+      "word": "نور",
+      "lex": "نور",
+      "pos": "noun_prop",
+      "upos": "PROPN"
+    },
+    {
+      "word": "والجهل",
+      "lex": "جَهْل",
+      "pos": "noun",
+      "upos": "NOUN"
+    },
+    {
+      "word": "ظلام",
+      "lex": "ظَلَّام",
+      "pos": "noun",
+      "upos": "NOUN"
+    },
+    {
+      "word": ".",
+      "lex": ".",
+      "pos": "punc",
+      "upos": "PUNCT"
+    },
+    {
+      "word": "يعمل",
+      "lex": "عَمِل",
+      "pos": "verb",
+      "upos": "VERB"
+    },
+    {
+      "word": "المهندسون",
+      "lex": "مُهَنْدِس",
+      "pos": "noun",
+      "upos": "NOUN"
+    },
+    {
+      "word": "في",
+      "lex": "فِي",
+      "pos": "prep",
+      "upos": "ADP"
+    },
+    {
+      "word": "الشركة",
+      "lex": "شَرِكَة",
+      "pos": "noun",
+      "upos": "NOUN"
+    },
+    {
+      "word": "الجديدة",
+      "lex": "جَدِيد",
+      "pos": "adj",
+      "upos": "ADJ"
+    },
+    {
+      "word": "منذ",
+      "lex": "مُنْذُ",
+      "pos": "noun",
+      "upos": "NOUN"
+    },
+    {
+      "word": "سنتين",
+      "lex": "سن",
+      "pos": "noun_prop",
+      "upos": "PROPN"
+    },
+    {
+      "word": ".",
+      "lex": ".",
+      "pos": "punc",
+      "upos": "PUNCT"
+    },
+    {
+      "word": "هل",
+      "lex": "هَلْ",
+      "pos": "part_interrog",
+      "upos": "PART"
+    },
+    {
+      "word": "قرأت",
+      "lex": "قَرَأ",
+      "pos": "verb",
+      "upos": "VERB"
+    },
+    {
+      "word": "الكتاب",
+      "lex": "كِتَاب",
+      "pos": "noun",
+      "upos": "NOUN"
+    },
+    {
+      "word": "الذي",
+      "lex": "الَّذِي",
+      "pos": "pron_rel",
+      "upos": "PRON"
+    },
+    {
+      "word": "أعطيتك",
+      "lex": "أَعْطَى",
+      "pos": "verb",
+      "upos": "VERB"
+    },
+    {
+      "word": "إياه",
+      "lex": "أي",
+      "pos": "noun_prop",
+      "upos": "PROPN"
+    },
+    {
+      "word": "؟",
+      "lex": "؟",
+      "pos": "punc",
+      "upos": "PUNCT"
+    },
+    {
+      "word": "والمدرسة",
+      "lex": "مَدْرَسَة",
+      "pos": "noun",
+      "upos": "NOUN"
+    },
+    {
+      "word": "كبيرة",
+      "lex": "كَبِير",
+      "pos": "adj",
+      "upos": "ADJ"
+    },
+    {
+      "word": "وجميلة",
+      "lex": "جَمِيل",
+      "pos": "adj",
+      "upos": "ADJ"
+    },
+    {
+      "word": ".",
+      "lex": ".",
+      "pos": "punc",
+      "upos": "PUNCT"
+    },
+    {
+      "word": "xyzzy",
+      "lex": "xyzzy",
+      "pos": "foreign",
+      "upos": "X"
+    },
+    {
+      "word": "بيت",
+      "lex": "بيت",
+      "pos": "noun_prop",
+      "upos": "PROPN"
+    }
+  ]
+}
