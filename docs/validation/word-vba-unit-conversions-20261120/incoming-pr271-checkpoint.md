@@ -7,6 +7,9 @@
 > [current qualification](README.md) supersedes its implementation choice and
 > unexecuted validation status. The workflow-only history was subsequently
 > merged while retaining deletion of the temporary workflow.
+> PR #272 later retained this checkpoint in main `b01cb23d`; it remains under
+> this historical filename so the authoritative README can record actual
+> local qualification of the final reconciled source.
 
 ## Incoming work reconciled first
 

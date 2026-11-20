@@ -25,17 +25,20 @@ GitHub checkpoint publishes the resolved tree with `e08635b3` as its first
 parent and the three captured incoming heads as additional parents. It does
 not depend on the temporary local merge objects being present on GitHub.
 
-## Word conflict resolutions
+## Word resolutions before the PR #272 main refresh
 
 - Retain the production conversion map, checked official named arguments,
   binary64 numeric implementation and exact native-grid checks from
   `e08635b3`. The incoming alternatives add the same eight physical functions
   and introduce no additional native operation. The production file remains
   byte-identical to the previously qualified implementation.
-- Retain the current thirteen-operation `word_measurements.bas`, portable
-  driver, source/integration fixtures, named-argument documentation and
-  consolidated changelog. The original incoming examples and implementations
-  remain recoverable through the preserved merge parents.
+- At this preceding integration snapshot, retain the thirteen-operation
+  `word_measurements.bas`, portable driver, source/integration fixtures,
+  named-argument documentation and consolidated changelog. The later main
+  refresh below renames this family to `word_named_measurements` and restores
+  main's separate eight-operation `word_measurements` family. The original
+  incoming examples and implementations remain recoverable through the
+  preserved merge parents.
 - Preserve the independent `word_unit_conversions.bas` and both
   `office_vba_word_unit_conversions*_test.dart` suites. These add a distinct
   nine-operation example, explicit author-controlled `CLng` twip rounding,
@@ -53,10 +56,12 @@ not depend on the temporary local merge objects being present on GitHub.
 - Keep both incoming intake JSON files. Rename PR #271's historical README
   to [incoming-pr271-checkpoint.md](incoming-pr271-checkpoint.md), leaving the
   authoritative README for the actual reconciled qualification results.
-- Mark the [other measurements record](../word-vba-measurements-20261120/README.md)
+- At the preceding snapshot, mark the
+  [other measurements record](../word-vba-measurements-20261120/README.md)
   as historical at `4d0086ab`. Its referenced `source-review.json` was absent
-  from that captured tree. No such receipt was recovered, and its claimed
-  contents are not treated as available evidence.
+  from that captured tree and was not available as evidence then. The later
+  `6d370884` commit supplies that receipt; it is preserved by the main refresh
+  below and remains distinct from executed Dart qualification.
 
 ## Independent review of historical intake
 
@@ -94,3 +99,52 @@ These checks establish the content retained by the local merge. Execution of
 the added suites, reconciled analysis and portable driver is a separate gate;
 this receipt does not claim those subsequent runs have passed. The final
 qualification record must report their observed results.
+
+## Later main refresh: preserve all three example families
+
+Remote main subsequently advanced through PR #272 to
+`b01cb23dc1b7bc94b691d68a2507b61dc6d48d7a`. It already contains both Word
+continuations, the named-argument production implementation and new
+source-review/arithmetic-model evidence. This fixed main head was merged into
+the published integration checkpoint
+`1f6df2b5d5947056792ff9f880dd4a38fb07c03b` in the separate worktree.
+
+The reconciled naming follows current main:
+
+| Example and fixture family | Source example | Operations | Portable define |
+| --- | --- | ---: | --- |
+| Original physical measurements | `word_measurements.bas` | 8 | `WORD_MEASUREMENTS_BAS_BASE64` |
+| Independent physical-unit conversions | `word_unit_conversions.bas` | 9 | Covered by its source/integration suites |
+| Named measurements and line conversions | `word_named_measurements.bas` | 13 | `WORD_NAMED_MEASUREMENTS_BAS_BASE64` |
+
+All three BAS files are byte-identical to captured main. The original
+measurement example, its two suites and portable driver are retained from
+main. The independent unit-conversion example and two suites are likewise
+retained. Formatting was applied with the worktree's resolved package language
+configuration; no behavior changes were made to these incoming fixtures.
+
+The previously qualified measurement source/integration suites, including the
+thirteen compiler additions and one integration addition above, are preserved
+under `office_vba_word_named_measurements*_test.dart`. Their content is
+byte-identical to the prior integration checkpoint except for the integration
+suite's portable-helper import and BAS filename. The named portable driver is
+the prior thirteen-operation driver with only its required environment define
+renamed. The production file remains byte-identical to both captured main and
+the prior qualified source, with the SHA-256 recorded above.
+
+The detailed named-argument, precision, native-ownership and explicit `CLng`
+rounding contract is retained; its example links now match the three-family
+layout. Main's `source-review.json`, `arithmetic-model.js` and updated
+measurement intake JSON are retained byte-for-byte. The README in that
+measurement evidence directory is labeled historical at `b01cb23d` and
+distinguishes its source-review claims from later executed local tests.
+The source-review receipt was absent at `4d0086ab` and was subsequently added
+by `6d370884`; both facts remain explicit. PR #271's historical README remains
+under `incoming-pr271-checkpoint.md`, leaving the current README for final
+qualification.
+
+All four Mail files remain byte-identical to `69ab514b`, and both Mail intake
+records are preserved. The latest-main merge does not restore an older Mail
+or Word implementation. Six focused suites and both portable drivers require
+qualification against the final named layout; this merge record does not
+claim those new runs have passed.

@@ -848,8 +848,9 @@ ordinary source order, with the existing compiler work limits. Helpers,
 optional scalar defaults, arrays and arithmetic can supply measurements.
 Missing values, comma holes, duplicates, wrong names, object values and
 implicit conversion from String/Boolean/Empty/Null/omitted Variant are refused.
-Argument shapes and types are checked even in unreachable branches and unused
-helpers. Functions remain unavailable in Const/default expressions, which
+Call shapes and statically known argument types are checked even in unreachable
+branches and unused helpers. A Variant's contents are checked when its value is
+evaluated. Functions remain unavailable in Const/default expressions, which
 already disallow function calls. The names are reserved only in `vba-word`;
 they do not add builtins or new reservations to Excel or PowerPoint.
 
@@ -872,9 +873,17 @@ End Sub
 
 This produces a 36-point left indent, an 18-point hanging indent, 6 points
 before the paragraph, a tab at 72 points, and exact 18-point line spacing.
-The complete [word_measurements.bas](../packages/quds_office_engine/example/macros/word_measurements.bas)
+The complete [word_named_measurements.bas](../packages/quds_office_engine/example/macros/word_named_measurements.bas)
 example uses all ten functions, typed format aliases, named helper arguments
-and two existing paragraphs. It is repeatable on its own output.
+and two existing paragraphs. It emits thirteen operations and is repeatable
+on its own output. Its source, integration and portable-driver fixtures use
+the matching `word_named_measurements` filenames.
+
+The original [word_measurements.bas](../packages/quds_office_engine/example/macros/word_measurements.bas)
+example and its independent fixtures are also retained. That example emits
+eight writes, including a tab stop and custom line spacing, and requires two
+existing body paragraphs. Keeping distinct filenames preserves both examples
+and their native-document expectations.
 
 The independently authored [word_unit_conversions.bas](../packages/quds_office_engine/example/macros/word_unit_conversions.bas)
 example is also retained. It uses the eight physical conversion functions and
