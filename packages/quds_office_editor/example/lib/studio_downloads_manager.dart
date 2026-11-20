@@ -727,6 +727,11 @@ class StudioDownloadTile extends StatelessWidget {
             ],
           ),
         ),
+        if (item.description case final description?)
+          Padding(
+            padding: const EdgeInsets.only(top: 2),
+            child: Text(description, style: muted),
+          ),
         if (item.note case final note?)
           Padding(
             padding: const EdgeInsets.only(top: 2),
