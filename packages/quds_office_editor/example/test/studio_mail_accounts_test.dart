@@ -273,165 +273,171 @@ void main() {
     'duplicate account labels expose exact routes and Forget targets at compact width',
     (tester) async {
       final semantics = tester.ensureSemantics();
-      addTearDown(semantics.dispose);
-      final cases = [
-        (
-          name: 'Fastmail primary login',
-          first: _duplicateCredentials(
-            preset: StudioMailImapPreset.fastmail,
-            primaryLogin: 'alpha@fastmail.test',
+      try {
+        final cases = [
+          (
+            name: 'Fastmail primary login',
+            first: _duplicateCredentials(
+              preset: StudioMailImapPreset.fastmail,
+              primaryLogin: 'alpha@fastmail.test',
+            ),
+            second: _duplicateCredentials(
+              preset: StudioMailImapPreset.fastmail,
+              primaryLogin: 'beta@fastmail.test',
+            ),
+            firstQualifier: 'Login: alpha@fastmail.test',
+            secondQualifier: 'Login: beta@fastmail.test',
+            secondDetails:
+                'Sender: shared@example.test\n'
+                'IMAP login: beta@fastmail.test · imap.fastmail.com:993 TLS\n'
+                'SMTP login: beta@fastmail.test · smtp.fastmail.com:465 TLS',
           ),
-          second: _duplicateCredentials(
-            preset: StudioMailImapPreset.fastmail,
-            primaryLogin: 'beta@fastmail.test',
+          (
+            name: 'iCloud SMTP login with identical IMAP login',
+            first: _duplicateCredentials(
+              preset: StudioMailImapPreset.icloud,
+              primaryLogin: 'person@icloud.com',
+            ),
+            second: _duplicateCredentials(
+              preset: StudioMailImapPreset.icloud,
+              primaryLogin: 'person@me.com',
+            ),
+            firstQualifier: 'SMTP login: person@icloud.com',
+            secondQualifier: 'SMTP login: person@me.com',
+            secondDetails:
+                'Sender: shared@example.test\n'
+                'IMAP login: person · imap.mail.me.com:993 TLS\n'
+                'SMTP login: person@me.com · smtp.mail.me.com:587 STARTTLS',
           ),
-          firstQualifier: 'Login: alpha@fastmail.test',
-          secondQualifier: 'Login: beta@fastmail.test',
-          secondDetails:
-              'Sender: shared@example.test\n'
-              'IMAP login: beta@fastmail.test · imap.fastmail.com:993 TLS\n'
-              'SMTP login: beta@fastmail.test · smtp.fastmail.com:465 TLS',
-        ),
-        (
-          name: 'iCloud SMTP login with identical IMAP login',
-          first: _duplicateCredentials(
-            preset: StudioMailImapPreset.icloud,
-            primaryLogin: 'person@icloud.com',
+          (
+            name: 'manual SMTP route',
+            first: _duplicateCredentials(smtpHost: 'relay.one.test'),
+            second: _duplicateCredentials(smtpHost: 'relay.two.test'),
+            firstQualifier: 'SMTP: relay.one.test:465 TLS',
+            secondQualifier: 'SMTP: relay.two.test:465 TLS',
+            secondDetails:
+                'Sender: shared@example.test\n'
+                'IMAP login: shared@example.test · imap.shared.test:993 TLS\n'
+                'SMTP login: shared@example.test · relay.two.test:465 TLS',
           ),
-          second: _duplicateCredentials(
-            preset: StudioMailImapPreset.icloud,
-            primaryLogin: 'person@me.com',
+          (
+            name: 'manual TLS mode',
+            first: _duplicateCredentials(),
+            second: _duplicateCredentials(startTls: true),
+            firstQualifier: 'IMAP: 993 TLS',
+            secondQualifier: 'IMAP: 143 STARTTLS',
+            secondDetails:
+                'Sender: shared@example.test\n'
+                'IMAP login: shared@example.test · imap.shared.test:143 STARTTLS\n'
+                'SMTP login: shared@example.test · smtp.shared.test:587 STARTTLS',
           ),
-          firstQualifier: 'SMTP login: person@icloud.com',
-          secondQualifier: 'SMTP login: person@me.com',
-          secondDetails:
-              'Sender: shared@example.test\n'
-              'IMAP login: person · imap.mail.me.com:993 TLS\n'
-              'SMTP login: person@me.com · smtp.mail.me.com:587 STARTTLS',
-        ),
-        (
-          name: 'manual SMTP route',
-          first: _duplicateCredentials(smtpHost: 'relay.one.test'),
-          second: _duplicateCredentials(smtpHost: 'relay.two.test'),
-          firstQualifier: 'SMTP: relay.one.test:465 TLS',
-          secondQualifier: 'SMTP: relay.two.test:465 TLS',
-          secondDetails:
-              'Sender: shared@example.test\n'
-              'IMAP login: shared@example.test · imap.shared.test:993 TLS\n'
-              'SMTP login: shared@example.test · relay.two.test:465 TLS',
-        ),
-        (
-          name: 'manual TLS mode',
-          first: _duplicateCredentials(),
-          second: _duplicateCredentials(startTls: true),
-          firstQualifier: 'IMAP: 993 TLS',
-          secondQualifier: 'IMAP: 143 STARTTLS',
-          secondDetails:
-              'Sender: shared@example.test\n'
-              'IMAP login: shared@example.test · imap.shared.test:143 STARTTLS\n'
-              'SMTP login: shared@example.test · smtp.shared.test:587 STARTTLS',
-        ),
-      ];
-      for (final scenario in cases) {
-        final first = scenario.first;
-        final second = scenario.second;
-        final store = _Accounts()
-          ..catalog = StudioMailAccountCatalog(
-            accounts: [
-              StudioMailSavedAccount(id: first.accountId, credentials: first),
-              StudioMailSavedAccount(id: second.accountId, credentials: second),
-            ],
-            selectedAccountId: first.accountId,
+        ];
+        for (final scenario in cases) {
+          final first = scenario.first;
+          final second = scenario.second;
+          final store = _Accounts()
+            ..catalog = StudioMailAccountCatalog(
+              accounts: [
+                StudioMailSavedAccount(id: first.accountId, credentials: first),
+                StudioMailSavedAccount(
+                  id: second.accountId,
+                  credentials: second,
+                ),
+              ],
+              selectedAccountId: first.accountId,
+            );
+          var clientCreations = 0;
+          await _show(
+            tester,
+            store,
+            surfaceSize: const Size(560, 900),
+            clientFactory: (_) {
+              clientCreations++;
+              return _Client();
+            },
           );
-        var clientCreations = 0;
-        await _show(
-          tester,
-          store,
-          surfaceSize: const Size(560, 900),
-          clientFactory: (_) {
-            clientCreations++;
-            return _Client();
-          },
-        );
-        await _tap(tester, _key('studio-mail-saved-account'));
-        final firstLabel = tester
-            .widget<Text>(
-              _key('studio-mail-account-label-${first.accountId}').last,
-            )
-            .data!;
-        final secondLabelFinder = _key(
-          'studio-mail-account-label-${second.accountId}',
-        ).last;
-        final secondLabel = tester.widget<Text>(secondLabelFinder).data!;
-        expect(
-          firstLabel,
-          contains(scenario.firstQualifier),
-          reason: scenario.name,
-        );
-        expect(
-          secondLabel,
-          contains(scenario.secondQualifier),
-          reason: scenario.name,
-        );
-        expect(firstLabel, isNot(secondLabel), reason: scenario.name);
-        final secondTooltip = tester
-            .widget<Tooltip>(
-              _key('studio-mail-account-tooltip-${second.accountId}').last,
-            )
-            .message!;
-        expect(secondTooltip, scenario.secondDetails, reason: scenario.name);
-        for (final presentation in [firstLabel, secondLabel, secondTooltip]) {
-          expect(presentation, isNot(contains(first.password)));
-          expect(presentation, isNot(contains(first.accountId)));
-          expect(presentation, isNot(contains(second.accountId)));
-        }
-        expect(
-          tester
-              .getSemantics(
-                _key(
-                  'studio-mail-account-description-${second.accountId}',
-                ).last,
+          await _tap(tester, _key('studio-mail-saved-account'));
+          final firstLabel = tester
+              .widget<Text>(
+                _key('studio-mail-account-label-${first.accountId}').last,
               )
-              .getSemanticsData()
-              .label,
-          contains(scenario.secondDetails),
-          reason: scenario.name,
-        );
-        await tester.longPress(secondLabelFinder);
-        await _pump(tester);
-        expect(
-          find.text(scenario.secondDetails),
-          findsOneWidget,
-          reason: scenario.name,
-        );
-        await _tap(tester, secondLabelFinder);
-        expect(store.selectedIds, [second.accountId], reason: scenario.name);
-        expect(clientCreations, 0);
-        await tester.ensureVisible(_key('studio-mail-forget'));
-        await _pump(tester);
-        expect(
-          tester.widget<Tooltip>(_key('studio-mail-forget-tooltip')).message,
-          '${_strings.forgetAccount}\n${scenario.secondDetails}',
-          reason: scenario.name,
-        );
-        expect(
-          tester
-              .getSemantics(_key('studio-mail-forget-description'))
-              .getSemanticsData()
-              .label,
-          contains(scenario.secondDetails),
-          reason: scenario.name,
-        );
-        await _tap(tester, _key('studio-mail-forget'));
-        expect(store.forgottenIds, [second.accountId], reason: scenario.name);
-        expect(
-          store.catalog.accounts.single.id,
-          first.accountId,
-          reason: scenario.name,
-        );
-        expect(clientCreations, 0);
-        expect(tester.takeException(), isNull, reason: scenario.name);
-        await tester.pumpWidget(const SizedBox.shrink());
+              .data!;
+          final secondLabelFinder = _key(
+            'studio-mail-account-label-${second.accountId}',
+          ).last;
+          final secondLabel = tester.widget<Text>(secondLabelFinder).data!;
+          expect(
+            firstLabel,
+            contains(scenario.firstQualifier),
+            reason: scenario.name,
+          );
+          expect(
+            secondLabel,
+            contains(scenario.secondQualifier),
+            reason: scenario.name,
+          );
+          expect(firstLabel, isNot(secondLabel), reason: scenario.name);
+          final secondTooltip = tester
+              .widget<Tooltip>(
+                _key('studio-mail-account-tooltip-${second.accountId}').last,
+              )
+              .message!;
+          expect(secondTooltip, scenario.secondDetails, reason: scenario.name);
+          for (final presentation in [firstLabel, secondLabel, secondTooltip]) {
+            expect(presentation, isNot(contains(first.password)));
+            expect(presentation, isNot(contains(first.accountId)));
+            expect(presentation, isNot(contains(second.accountId)));
+          }
+          expect(
+            tester
+                .getSemantics(
+                  _key(
+                    'studio-mail-account-description-${second.accountId}',
+                  ).last,
+                )
+                .getSemanticsData()
+                .label,
+            contains(scenario.secondDetails),
+            reason: scenario.name,
+          );
+          await tester.longPress(secondLabelFinder);
+          await _pump(tester);
+          expect(
+            find.text(scenario.secondDetails),
+            findsOneWidget,
+            reason: scenario.name,
+          );
+          await _tap(tester, secondLabelFinder);
+          expect(store.selectedIds, [second.accountId], reason: scenario.name);
+          expect(clientCreations, 0);
+          await tester.ensureVisible(_key('studio-mail-forget'));
+          await _pump(tester);
+          expect(
+            tester.widget<Tooltip>(_key('studio-mail-forget-tooltip')).message,
+            '${_strings.forgetAccount}\n${scenario.secondDetails}',
+            reason: scenario.name,
+          );
+          expect(
+            tester
+                .getSemantics(_key('studio-mail-forget-description'))
+                .getSemanticsData()
+                .label,
+            contains(scenario.secondDetails),
+            reason: scenario.name,
+          );
+          await _tap(tester, _key('studio-mail-forget'));
+          expect(store.forgottenIds, [second.accountId], reason: scenario.name);
+          expect(
+            store.catalog.accounts.single.id,
+            first.accountId,
+            reason: scenario.name,
+          );
+          expect(clientCreations, 0);
+          expect(tester.takeException(), isNull, reason: scenario.name);
+          await tester.pumpWidget(const SizedBox.shrink());
+        }
+      } finally {
+        semantics.dispose();
       }
     },
   );

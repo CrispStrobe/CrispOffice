@@ -9,6 +9,11 @@ setup and persists the selection; only Connect starts a provider session.
 Successful password updates replace the same identity, New account preserves
 the existing catalog, and Forget removes only the selected saved account.
 
+Entries with the same sender and IMAP host show differing effective logins,
+TLS settings or SMTP routes. Hover/long-press and accessibility descriptions
+expose complete sender and IMAP/SMTP route details, including the exact Forget
+target, without passwords or internal account IDs.
+
 The old single-account record migrates only after its complete replacement is
 durably acknowledged. An empty v2 catalog prevents stale legacy resurrection;
 unreadable, corrupt or newer-version data blocks mutations instead of silently
@@ -20,6 +25,11 @@ keeps the current session available. The existing provider/incoming-endpoint/
 login/sender draft identity is unchanged. Late keychain completions cannot
 replace newer settings or leave an unrelated account eligible for Forget.
 English, German and Arabic copy covers the workflow and failure states.
+
+This native IMAP/SMTP chooser supersedes earlier statements that only one
+account could be remembered or that persistent account switching was
+unavailable. Earlier sections retain their historical source and validation
+scope; broader mailbox sessions and other providers' authentication remain open.
 
 The [local record](../../validation/mail-accounts-20261120/README.md) tracks
 source, tests and integrated branches. M04W remains open: this increment does

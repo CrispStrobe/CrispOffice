@@ -21,6 +21,13 @@ local draft recovery.
    It does not remove another account, delete server mail, or delete the local
    drafts and independently saved archive messages.
 
+Accounts sharing the same sender and IMAP host show their differing effective
+logins, TLS settings or SMTP route. Hover or long-press a choice to inspect its
+full sender, IMAP and SMTP logins, servers, ports and TLS modes. The same
+description is available to assistive technology and identifies the selected
+**Forget** target. Passwords and internal account IDs are never part of these
+descriptions; provider presets display the routes they actually use.
+
 English, German and Arabic labels cover the chooser, new-account action,
 switching, selected-account removal and catalog failures. Existing single-record
 credential-store embedders retain their supported injection interface.
@@ -58,10 +65,15 @@ and Fastmail presets. EWS and cloud-provider dialogs retain their existing
 authentication lifetime. This increment does not persist OAuth tokens, connect
 several accounts simultaneously, or provide a unified/offline inbox.
 
+Earlier status entries describe their original increments. This native
+IMAP/SMTP chooser supersedes their statements that only one account could be
+remembered or that persistent account switching was unavailable. Historical
+validation remains tied to its own source.
+
 The next M04W acceptance boundary is a repository-driven mailbox session:
-persist account/folder context, page cached headers with stable ordering,
-expose cached/offline/sync states, and reconcile supported mutations through
-durable commands. Then add source-aware unified views, bulk triage and
+persist mailbox/folder context beyond the selected sign-in, page cached headers
+with stable ordering, expose cached/offline/sync states, and reconcile supported
+mutations through durable commands. Then add source-aware unified views, bulk triage and
 account-wide search. The existing [ordered parity roadmap](README.md#desktop-mail-parity-ordered-increments)
 keeps queued sending, automation, rich authoring and Calendar/People separate.
 
