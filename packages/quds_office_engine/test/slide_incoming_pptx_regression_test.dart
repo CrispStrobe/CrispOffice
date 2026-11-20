@@ -30,6 +30,15 @@ PmlShape _textShape(
   ],
 );
 
+List<List<PdfDrawText>> _paintedLines(PdfFile file) {
+  final Map<double, List<PdfDrawText>> lines = {};
+  for (final PdfDrawText op
+      in file.displayList(0).ops.whereType<PdfDrawText>()) {
+    lines.putIfAbsent(op.y, () => []).add(op);
+  }
+  return lines.values.toList();
+}
+
 void main() {
   final SfntFont font = aliasTestFont();
   PdfFile export(PmlShape shape) => PdfFile.open(
@@ -158,6 +167,121 @@ void main() {
     expect(painted.map((op) => op.y).toSet().length, greaterThan(1));
     expect(painted.map((op) => op.text).join().replaceAll(' ', ''), '12345678');
     expect(painted.every((op) => op.x < 70), isTrue);
+  });
+
+  test('numeric spaced groups keep authored order across explicit breaks', () {
+    final PdfFile file = export(_textShape('12 34\n56 78'));
+    expect(
+      _paintedLines(file).map((line) => line.map((op) => op.text).join()),
+      ['12 34', '56 78'],
+    );
+    expect(PdfExtract.pageText(file, 0), isNot(matches('[\u200e\u202d]')));
+  });
+
+  test(
+    'numeric spaced groups keep authored order when several fit per wrap',
+    () {
+      final PdfFile file = export(_textShape('12 34 56 78', width: 80));
+      expect(
+        _paintedLines(file).map((line) => line.map((op) => op.text).join()),
+        ['12 34', '56 78'],
+      );
+      expect(PdfExtract.pageText(file, 0).replaceAll('\n', ''), '12 34 56 78');
+    },
+  );
+
+  for (final PmlTextAlign align in [
+    PmlTextAlign.left,
+    PmlTextAlign.center,
+    PmlTextAlign.right,
+  ]) {
+    for (final bool wrapped in [false, true]) {
+      test(
+        'numeric alignment $align uses consistent ${wrapped ? 'wrapped' : 'multiline'} measurements',
+        () {
+          final double boxWidth = wrapped ? 80 : 300;
+          final PmlShape shape = _textShape(
+            wrapped ? '12 34 56 78' : '12 34\n56 78',
+            width: boxWidth,
+          )..textAnchor = PmlTextAnchor.center;
+          shape.richText.single.align = align;
+          final List<List<PdfDrawText>> lines = _paintedLines(export(shape));
+          expect(lines, hasLength(2));
+          final double textWidth = '12 34'.runes.fold<double>(
+            0,
+            (width, cp) =>
+                width +
+                font.advanceWidth(font.glyphIdFor(cp)) / font.unitsPerEm * 20,
+          );
+          final double slack = boxWidth - 14.4 - textWidth;
+          final double offset = switch (align) {
+            PmlTextAlign.center => slack / 2,
+            PmlTextAlign.right => slack,
+            _ => 0,
+          };
+          for (final List<PdfDrawText> line in lines) {
+            expect(line.first.x, closeTo(20 + 7.2 + offset, 0.01));
+          }
+          // PdfDrawText reports the top of the font box (baseline minus size).
+          expect(lines.first.first.y, closeTo(55, 0.01));
+          expect(lines.last.first.y - lines.first.first.y, closeTo(25, 0.01));
+        },
+      );
+    }
+  }
+
+  test('numeric multiline Standard 14 fallback keeps authored order', () {
+    final PdfFile file = PdfFile.open(
+      OfficePdfExport.presentation(
+        PmlPresentation(
+          slides: [
+            PmlSlide(id: 256, shapes: [_textShape('12 34\n56 78')]),
+          ],
+        ),
+      ),
+    );
+    expect(
+      _paintedLines(file).map((line) => line.map((op) => op.text).join()),
+      ['12 34', '56 78'],
+    );
+    expect(PdfExtract.pageText(file, 0), isNot(matches('[\u200e\u202d]')));
+  });
+
+  test('RTL numeric spaced groups retain their existing bidi ordering', () {
+    final PdfFile file = export(_textShape('12 34\n56 78', rightToLeft: true));
+    expect(
+      _paintedLines(file).map((line) => line.map((op) => op.text).join()),
+      ['34 12', '78 56'],
+    );
+    expect(PdfExtract.pageText(file, 0), isNot(matches('[\u200e\u202d]')));
+  });
+
+  test('mixed numeric styles retain source order across line breaks', () {
+    final PdfFile file = export(
+      _textShape(
+        '12 34\n56 78',
+        runs: [
+          PmlTextRun(text: '12 ', fontSizePt: 20, color: 'FF0000'),
+          PmlTextRun(text: '34\n56 ', fontSizePt: 20, color: '0000FF'),
+          PmlTextRun(text: '78', fontSizePt: 20, color: 'FF0000'),
+        ],
+      ),
+    );
+    expect(
+      _paintedLines(file).map((line) => line.map((op) => op.text).join()),
+      ['1234', '5678'],
+    );
+    final List<PdfDrawText> painted = _paintedLines(
+      file,
+    ).expand((line) => line).toList();
+    expect(
+      painted.where((op) => op.color == 0xFFFF0000).map((op) => op.text).join(),
+      '1278',
+    );
+    expect(
+      painted.where((op) => op.color == 0xFF0000FF).map((op) => op.text).join(),
+      '3456',
+    );
   });
 
   test(
