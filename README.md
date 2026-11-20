@@ -32,13 +32,16 @@ cell enumeration and read-only row/column coordinates. String intrinsics
 Variants distinguish `Empty`/`Null`, with state predicates and explicit bounded
 `CVar`, `CBool`, `CDbl`, `CLng`, and `CStr` conversions. The
 [Word VBA subset](docs/VBA_WORD_MACROS.md) shares that language and adds explicit
-paragraph/range bindings, paragraph-prefix insertion, font formatting and
-paragraph alignment/spacing. Both adapters use
+paragraph/range bindings, paragraph-prefix insertion, all 18 underline styles,
+strikethrough, and paragraph alignment, spacing, indentation and pagination.
+The [PowerPoint VBA subset](docs/VBA_POWERPOINT_MACROS.md) adds explicit slide
+and shape selectors, text/font/alignment edits and shape geometry, with guarded
+top-level collection identity and preserved rich text. All three adapters use
 [versioned conformance cases](docs/VBA_CONFORMANCE.md) shared across VM and JavaScript. Source logic uses values
 known during compilation; worksheet formulas run against the detached workbook.
 VBA projects remain inert and preserved; full VBA execution and macro ribbon
 UI are not included. The [VBA parity roadmap](docs/VBA_PARITY_ROADMAP.md) tracks
-the remaining language/runtime work, broader Word objects and PowerPoint.
+the remaining language/runtime work and broader Word/PowerPoint objects.
 
 Word now includes an [offline English/German thesaurus](docs/roadmaps/thesaurus/README.md)
 with full OEWN 2025 and OpenThesaurus packs, alternatives grouped by meaning,

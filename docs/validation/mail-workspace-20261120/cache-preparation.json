@@ -1,0 +1,21 @@
+{
+  "captured_at_utc": "2026-11-20T09:16:26.294459+00:00",
+  "head": "740f3e247102734ab1e689dc9473efcb3543ed15",
+  "sparse_patterns": [
+    "/*",
+    "!/docs/validation/*",
+    "/docs/validation/mail-workspace-20261120/",
+    "/docs/validation/native-spacy-android-grammar-20261120/"
+  ],
+  "free_bytes_before": 889323520,
+  "free_bytes_after": 1440088064,
+  "product_changes": [],
+  "scope": "Remove duplicate working-tree copies of older validation artifacts only. All Git objects, references, product source, current evidence and runtime pins are retained. git sparse-checkout disable restores the complete working tree when capacity permits.",
+  "pre_run_failure": {
+    "stage": "Creating final-740f3e24 output directory",
+    "observed_error": "OSError: [Errno 28] No space left on device",
+    "test_cases_started": 0,
+    "output_directory_created": false
+  },
+  "stderr": ""
+}

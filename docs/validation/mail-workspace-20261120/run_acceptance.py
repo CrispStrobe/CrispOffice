@@ -21,7 +21,8 @@ REPO = Path(__file__).resolve().parents[3]
 HERE = Path(__file__).resolve().parent
 BASELINE = 'c16e121365b7c52c0b66371381c8c58f592e1d8e'
 KINDS = ['format', 'core-analyze', 'transport-analyze', 'ui-analyze', 'studio-analyze',
-         'core', 'transport', 'transport-node', 'ui', 'studio', 'incoming-spacy', 'studio-paths']
+         'core', 'transport', 'transport-node', 'ui', 'studio', 'incoming-spacy', 'studio-paths',
+         'studio-theme']
 
 
 def now():
@@ -82,7 +83,9 @@ def source_manifest(runtime):
 
 def parse_tests(path, cwd, selected):
     events = []
-    for line in path.read_text(errors='replace').splitlines():
+    # JSONL separates records with LF. Unicode separators such as U+0085,
+    # U+2028 and U+2029 can be literal characters inside a valid JSON string.
+    for line in path.read_text(errors='replace').split('\n'):
         try:
             event = json.loads(line)
         except json.JSONDecodeError:
@@ -126,6 +129,9 @@ def parse_tests(path, cwd, selected):
             'selected_suites': len(expected), 'loaded_suites': len(loaded),
             'missing_suites': sorted(expected - loaded),
             'unexpected_suites': sorted(loaded - expected),
+            'missing_case_metadata': [case['id'] for case in cases if
+                                      not isinstance(case['name'], str) or
+                                      case['suite_id'] is None],
             'errors': errors, 'cases': cases}
 
 
@@ -196,6 +202,7 @@ def main():
     studio_tests += ['test/studio_saved_mail_test.dart']
     spacy_tests = ['test/distribution_test.dart', 'test/grammar_planner_test.dart']
     path_tests = ['test/studio_native_paths_test.dart']
+    theme_tests = ['test/studio_material_theme_test.dart']
     prefix = [str(dart), '--packages=' + str(configuration), str(runner)]
     flutter_prefix = [str(flutter), 'test', '--no-pub', '--reporter=json', '--concurrency=1']
     jobs = {
@@ -217,6 +224,7 @@ def main():
         'incoming-spacy': (spacy, [*prefix, '--reporter=json', '--concurrency=2',
                                  *spacy_tests], spacy_tests),
         'studio-paths': (studio, [*flutter_prefix, *path_tests], path_tests),
+        'studio-theme': (studio, [*flutter_prefix, *theme_tests], theme_tests),
     }
     selected_jobs = args.only or KINDS
     write_json(out / 'selection.json', {
@@ -255,7 +263,7 @@ def main():
                     tests['passed'] > 0 and tests['failed'] == 0 and
                     tests['skipped'] == 0 and tests['hidden_skips'] == 0 and
                     not tests['missing_suites'] and not tests['unexpected_suites'] and
-                    not tests['errors'])
+                    not tests['missing_case_metadata'] and not tests['errors'])
             record['runs'].append(run)
             write_json(receipt, record)
             print(json.dumps({'name': name, 'exit_code': code,

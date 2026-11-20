@@ -5,6 +5,11 @@ reviewed the recent incoming work. No GitHub Actions, workflow run, check or
 commit-status endpoint was queried or awaited. The integration keeps original
 branch ancestry and does not overwrite or delete concurrent work branches.
 
+A later refresh also integrated the new radial-gradient and PDF-opacity commits.
+The [follow-up report](incoming-office-followup.md) records their corrections
+and a complete replacement **137-case** Office acceptance cohort. The 116 cases
+below remain the earlier stage's evidence and are not added to that later count.
+
 ## Captured incoming refs and dispositions
 
 | Source | Captured SHA | Disposition |

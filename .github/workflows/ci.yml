@@ -141,6 +141,8 @@ jobs:
         with:
           channel: stable
           flutter-version: 3.47.8
+      - name: Install pdftoppm (gallery rendering test)
+        run: brew install poppler
       - name: Resolve workspace
         working-directory: .
         run: flutter pub get

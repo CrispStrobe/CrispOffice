@@ -1,0 +1,29 @@
+{
+  "engine": [
+    "packages/quds_office_engine/test/slide_import_fidelity_test.dart",
+    "packages/quds_office_engine/test/office_pdf_export_test.dart",
+    "packages/quds_office_engine/test/slide_gradient_merge_test.dart",
+    "packages/quds_office_engine/test/slide_radial_opacity_test.dart",
+    "packages/quds_office_engine/test/slide_normal_autofit_test.dart",
+    "packages/quds_office_engine/test/pdf_picture_opacity_test.dart",
+    "packages/quds_office_engine/test/slide_gradient_publication_test.dart",
+    "packages/quds_office_engine/test/slide_background_publication_test.dart",
+    "packages/quds_office_engine/test/slide_geometric_presets_test.dart",
+    "packages/quds_office_engine/test/slide_picture_background_test.dart",
+    "packages/quds_office_engine/test/style_cascade_test.dart",
+    "packages/quds_office_engine/test/slide_transform_orientation_test.dart"
+  ],
+  "editor": [
+    "packages/quds_office_editor/test/slide_render_fidelity_test.dart",
+    "packages/quds_office_editor/test/slide_incoming_pptx_regression_test.dart",
+    "packages/quds_office_editor/test/slide_transform_orientation_test.dart",
+    "packages/quds_office_editor/test/installed_host_fonts_test.dart",
+    "packages/quds_office_editor/test/office_system_fonts_test.dart",
+    "packages/quds_office_editor/test/host_fonts_test.dart",
+    "packages/quds_office_editor/test/paint_font_fallback_test.dart",
+    "packages/quds_office_editor/test/slide_normal_autofit_test.dart",
+    "packages/quds_office_editor/test/office_slide_effects_test.dart",
+    "packages/quds_office_editor/test/slide_background_publication_test.dart",
+    "packages/quds_office_editor/test/slide_geometric_presets_test.dart"
+  ]
+}

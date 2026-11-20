@@ -1,0 +1,40 @@
+{
+  "scope": "Development analysis before final combined acceptance",
+  "commands": [
+    {
+      "command": [
+        "/workspace/scratch/8e9460dcd580/runtime/bin/dart",
+        "analyze",
+        "--fatal-infos",
+        "packages/quds_mail_core/lib/src/ports/provider.dart",
+        "packages/quds_mail_transport/lib/src/native/provider.dart",
+        "packages/quds_mail_transport/test/native_browse_test.dart",
+        "packages/quds_mail_transport/test/support/imap_fixture.dart"
+      ],
+      "cwd": "/workspace/scratch/8e9460dcd580/quds_office_suite",
+      "exit_code": 0,
+      "log": "logs/native-browse-window-analysis.txt",
+      "log_sha256": "701061264ba61b6352649e70d33c36000306876d6f81fe980f821858c61841db",
+      "result": "No issues found!"
+    },
+    {
+      "command": [
+        "/workspace/scratch/8e9460dcd580/runtime/bin/dart",
+        "analyze",
+        "--fatal-infos",
+        "packages/quds_mail_core/lib/src/ports/provider.dart",
+        "packages/quds_mail_transport/lib/src/cursor.dart",
+        "packages/quds_mail_transport/lib/src/native/provider.dart",
+        "packages/quds_mail_transport/test/native_browse_test.dart",
+        "packages/quds_office_editor/example/lib/studio_mail_message_loader.dart",
+        "packages/quds_office_editor/example/test/studio_mail_message_loader_test.dart"
+      ],
+      "cwd": "/workspace/scratch/8e9460dcd580/quds_office_suite",
+      "exit_code": 0,
+      "log": "logs/native-browser-analysis.txt",
+      "log_sha256": "bcf073e05c7b34e01a6055361fa2cd5768d8f5efc846c61c13722089171d97f2",
+      "result": "No issues found!",
+      "limitation": "This six-file check predates the bounded-window follow-up. The four-file follow-up above analyzes its affected code and fixture."
+    }
+  ]
+}

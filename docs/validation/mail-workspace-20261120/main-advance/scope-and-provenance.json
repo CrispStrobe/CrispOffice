@@ -1,0 +1,237 @@
+{
+  "captured_at_utc": "2026-11-20T09:35:50.796682+00:00",
+  "new_main": "860c807bfd1385899eed130abfb8940f95bda113",
+  "qualified_mail_source": "44abcfa10367c8cf586ad3cf826feb3cb1de6dab",
+  "mail_implementation_and_manifest_paths_compared": 122,
+  "mail_implementation_and_manifest_paths_changed": [],
+  "mail_implementation_and_manifest_selection": [
+    "packages/quds_mail_core/lib/quds_mail_core.dart",
+    "packages/quds_mail_core/lib/src/model/bytes.dart",
+    "packages/quds_mail_core/lib/src/model/capabilities.dart",
+    "packages/quds_mail_core/lib/src/model/identity.dart",
+    "packages/quds_mail_core/lib/src/model/message.dart",
+    "packages/quds_mail_core/lib/src/model/parse.dart",
+    "packages/quds_mail_core/lib/src/model/result.dart",
+    "packages/quds_mail_core/lib/src/ports/codec.dart",
+    "packages/quds_mail_core/lib/src/ports/hosts.dart",
+    "packages/quds_mail_core/lib/src/ports/provider.dart",
+    "packages/quds_mail_core/lib/src/ports/repository.dart",
+    "packages/quds_mail_core/lib/src/sync/cancellation.dart",
+    "packages/quds_mail_core/lib/src/sync/coordinator.dart",
+    "packages/quds_mail_core/lib/src/sync/outbox.dart",
+    "packages/quds_mail_core/pubspec.yaml",
+    "packages/quds_mail_mime/lib/quds_mail_mime.dart",
+    "packages/quds_mail_mime/lib/src/codec.dart",
+    "packages/quds_mail_mime/lib/src/mbox.dart",
+    "packages/quds_mail_mime/lib/src/scan.dart",
+    "packages/quds_mail_mime/lib/src/transfer.dart",
+    "packages/quds_mail_mime/pubspec.yaml",
+    "packages/quds_mail_store/lib/quds_mail_archive_native.dart",
+    "packages/quds_mail_store/lib/quds_mail_store.dart",
+    "packages/quds_mail_store/lib/quds_mail_store_native.dart",
+    "packages/quds_mail_store/lib/quds_mail_store_web.dart",
+    "packages/quds_mail_store/lib/src/archive_database.dart",
+    "packages/quds_mail_store/lib/src/archive_directory_native.dart",
+    "packages/quds_mail_store/lib/src/archive_export_models.dart",
+    "packages/quds_mail_store/lib/src/archive_export_native.dart",
+    "packages/quds_mail_store/lib/src/archive_export_plan.dart",
+    "packages/quds_mail_store/lib/src/archive_maintenance.dart",
+    "packages/quds_mail_store/lib/src/archive_models.dart",
+    "packages/quds_mail_store/lib/src/archive_query.dart",
+    "packages/quds_mail_store/lib/src/archive_repository.dart",
+    "packages/quds_mail_store/lib/src/archive_restore_checkpoint_models.dart",
+    "packages/quds_mail_store/lib/src/archive_restore_checkpoints.dart",
+    "packages/quds_mail_store/lib/src/archive_restore_models.dart",
+    "packages/quds_mail_store/lib/src/archive_restore_native.dart",
+    "packages/quds_mail_store/lib/src/archive_runner.dart",
+    "packages/quds_mail_store/lib/src/archive_settings.dart",
+    "packages/quds_mail_store/lib/src/archive_text.dart",
+    "packages/quds_mail_store/lib/src/browser_problem.dart",
+    "packages/quds_mail_store/lib/src/browser_setup.dart",
+    "packages/quds_mail_store/lib/src/codec.dart",
+    "packages/quds_mail_store/lib/src/errors.dart",
+    "packages/quds_mail_store/lib/src/models.dart",
+    "packages/quds_mail_store/lib/src/owner_locked_executor.dart",
+    "packages/quds_mail_store/lib/src/platform_configuration.dart",
+    "packages/quds_mail_store/lib/src/repository.dart",
+    "packages/quds_mail_store/lib/src/schema/database.dart",
+    "packages/quds_mail_store/lib/src/search_journal.dart",
+    "packages/quds_mail_store/pubspec.yaml",
+    "packages/quds_mail_transport/lib/quds_mail_transport.dart",
+    "packages/quds_mail_transport/lib/src/cloud/configuration.dart",
+    "packages/quds_mail_transport/lib/src/cloud/cursor.dart",
+    "packages/quds_mail_transport/lib/src/cloud/http.dart",
+    "packages/quds_mail_transport/lib/src/cloud/native/authorization.dart",
+    "packages/quds_mail_transport/lib/src/cloud/native/factory.dart",
+    "packages/quds_mail_transport/lib/src/cloud/native/http.dart",
+    "packages/quds_mail_transport/lib/src/cloud/oauth.dart",
+    "packages/quds_mail_transport/lib/src/cloud/provider.dart",
+    "packages/quds_mail_transport/lib/src/cloud/unsupported.dart",
+    "packages/quds_mail_transport/lib/src/configuration.dart",
+    "packages/quds_mail_transport/lib/src/cursor.dart",
+    "packages/quds_mail_transport/lib/src/ews/configuration.dart",
+    "packages/quds_mail_transport/lib/src/ews/cursor.dart",
+    "packages/quds_mail_transport/lib/src/ews/errors.dart",
+    "packages/quds_mail_transport/lib/src/ews/native/factory.dart",
+    "packages/quds_mail_transport/lib/src/ews/native/http_client.dart",
+    "packages/quds_mail_transport/lib/src/ews/native/ntlm.dart",
+    "packages/quds_mail_transport/lib/src/ews/native/provider.dart",
+    "packages/quds_mail_transport/lib/src/ews/soap.dart",
+    "packages/quds_mail_transport/lib/src/ews/unsupported.dart",
+    "packages/quds_mail_transport/lib/src/native/factory.dart",
+    "packages/quds_mail_transport/lib/src/native/provider.dart",
+    "packages/quds_mail_transport/lib/src/unsupported/provider.dart",
+    "packages/quds_mail_transport/pubspec.yaml",
+    "packages/quds_mail_ui/example/lib/main.dart",
+    "packages/quds_mail_ui/example/pubspec.yaml",
+    "packages/quds_mail_ui/lib/quds_mail_ui.dart",
+    "packages/quds_mail_ui/lib/src/reader/controller.dart",
+    "packages/quds_mail_ui/lib/src/reader/message_view.dart",
+    "packages/quds_mail_ui/lib/src/reader/presentation.dart",
+    "packages/quds_mail_ui/lib/src/reader/selection_surface.dart",
+    "packages/quds_mail_ui/lib/src/workspace/message_list.dart",
+    "packages/quds_mail_ui/pubspec.yaml",
+    "packages/quds_office_editor/example/lib/studio_mail.dart",
+    "packages/quds_office_editor/example/lib/studio_mail_archive.dart",
+    "packages/quds_office_editor/example/lib/studio_mail_archive_action.dart",
+    "packages/quds_office_editor/example/lib/studio_mail_archive_directory_import.dart",
+    "packages/quds_office_editor/example/lib/studio_mail_archive_folder_action.dart",
+    "packages/quds_office_editor/example/lib/studio_mail_archive_host.dart",
+    "packages/quds_office_editor/example/lib/studio_mail_archive_native.dart",
+    "packages/quds_office_editor/example/lib/studio_mail_archive_restore.dart",
+    "packages/quds_office_editor/example/lib/studio_mail_archive_restore_progress.dart",
+    "packages/quds_office_editor/example/lib/studio_mail_archive_restore_strings.dart",
+    "packages/quds_office_editor/example/lib/studio_mail_archive_strings.dart",
+    "packages/quds_office_editor/example/lib/studio_mail_archive_stub.dart",
+    "packages/quds_office_editor/example/lib/studio_mail_attachment.dart",
+    "packages/quds_office_editor/example/lib/studio_mail_attachment_loader.dart",
+    "packages/quds_office_editor/example/lib/studio_mail_cloud.dart",
+    "packages/quds_office_editor/example/lib/studio_mail_compose.dart",
+    "packages/quds_office_editor/example/lib/studio_mail_credentials.dart",
+    "packages/quds_office_editor/example/lib/studio_mail_draft.dart",
+    "packages/quds_office_editor/example/lib/studio_mail_draft_store.dart",
+    "packages/quds_office_editor/example/lib/studio_mail_draft_store_native.dart",
+    "packages/quds_office_editor/example/lib/studio_mail_ews.dart",
+    "packages/quds_office_editor/example/lib/studio_mail_file.dart",
+    "packages/quds_office_editor/example/lib/studio_mail_file_native.dart",
+    "packages/quds_office_editor/example/lib/studio_mail_file_web.dart",
+    "packages/quds_office_editor/example/lib/studio_mail_message_loader.dart",
+    "packages/quds_office_editor/example/lib/studio_mail_native.dart",
+    "packages/quds_office_editor/example/lib/studio_mail_operation.dart",
+    "packages/quds_office_editor/example/lib/studio_mail_presets.dart",
+    "packages/quds_office_editor/example/lib/studio_mail_recipients.dart",
+    "packages/quds_office_editor/example/lib/studio_mail_reply.dart",
+    "packages/quds_office_editor/example/lib/studio_mail_strings.dart",
+    "packages/quds_office_editor/example/lib/studio_mail_submission.dart",
+    "packages/quds_office_editor/example/lib/studio_mail_threading.dart",
+    "packages/quds_office_editor/example/lib/studio_mail_web.dart",
+    "packages/quds_office_editor/example/lib/studio_mail_workspace_strings.dart",
+    "packages/quds_office_editor/example/lib/studio_saved_mail.dart"
+  ],
+  "root_configs": [
+    {
+      "path": ".fvmrc",
+      "qualified_blob": "4e46fba09bb9c1d654a226b7285b55b6949b3767",
+      "new_main_blob": "4e46fba09bb9c1d654a226b7285b55b6949b3767",
+      "equal": true
+    },
+    {
+      "path": "pubspec.yaml",
+      "qualified_blob": "ba34bf9e2c1b0eb583e5f9e2d9ba9f236a660f96",
+      "new_main_blob": "ba34bf9e2c1b0eb583e5f9e2d9ba9f236a660f96",
+      "equal": true
+    },
+    {
+      "path": "pubspec.lock",
+      "qualified_blob": "1283d840c60c469bbadf2a133a13086c443a0488",
+      "new_main_blob": "1283d840c60c469bbadf2a133a13086c443a0488",
+      "equal": true
+    },
+    {
+      "path": "analysis_options.yaml",
+      "qualified_blob": "e40c961c5eda58a8470527fb768f093aa7dbbfff",
+      "new_main_blob": "e40c961c5eda58a8470527fb768f093aa7dbbfff",
+      "equal": true
+    }
+  ],
+  "progress_reports_at_new_main": [
+    {
+      "path": "docs/validation/office-vba-variant-conversions-20261120/README.md",
+      "blob": "0e8f664e52fc845951e0b9342cad50e35d7e0ed3",
+      "markers": [
+        {
+          "line": 9,
+          "text": "## Work in progress"
+        },
+        {
+          "line": 14,
+          "text": "Independent review and reconciliation of new remote advances are still in"
+        },
+        {
+          "line": 15,
+          "text": "progress; these development results are not the final combined-source gate."
+        },
+        {
+          "line": 17,
+          "text": "The final report will record the accepted source, exact selections, local test"
+        }
+      ]
+    },
+    {
+      "path": "docs/validation/zotero-note-images-20261120/README.md",
+      "blob": "7606f565d9ef62c4cce3934cca2135ce7150a60f",
+      "markers": [
+        {
+          "line": 3,
+          "text": "## In progress"
+        }
+      ]
+    },
+    {
+      "path": "docs/validation/zotero-parity-continuation-20261120/README.md",
+      "blob": "0b4401072e67a485360e4476bd2a5e9af8420ee3",
+      "markers": [
+        {
+          "line": 3,
+          "text": "## In progress"
+        },
+        {
+          "line": 8,
+          "text": "`codex/zotero-parity-continuation-20261120`. Main has not yet been published by"
+        },
+        {
+          "line": 81,
+          "text": "mid-edit PDF compile error, now fixed. These development runs are not the final"
+        },
+        {
+          "line": 91,
+          "text": "## Remaining publication gate"
+        },
+        {
+          "line": 93,
+          "text": "Finish the focused repairs, run complete Zotero engine/editor and relevant"
+        }
+      ]
+    }
+  ],
+  "workflow_changes": [
+    {
+      "path": ".github/workflows/office-macros.yml",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "bf9e461810e31dfd652d72405c3a7627c8f49d4c",
+      "new_blob": "0f864dd4659c74eba7ee950c7ac6648719391772",
+      "status": "M"
+    }
+  ],
+  "new_android_evidence_delta": [
+    "docs/validation/native-spacy-android-grammar-20261120/README.md",
+    "docs/validation/native-spacy-android-grammar-20261120/ci-x86_64-gate.json"
+  ],
+  "unmerged_branch_unique_nonmerge_commits": [],
+  "unmerged_branch_unique_merges": [
+    "b9e4f1d4bc691714f68e3685dbf729b09ccb0449 54d07bc32fb35a7aa4445971b3cd3604b7c5cf7f 7ac3d3be4a62bf9d2e0ab8a67f0e122568691b22 Reconcile optional Android grammar replay workflow [skip ci]",
+    "54d07bc32fb35a7aa4445971b3cd3604b7c5cf7f c224a66a4c1913690aff5273ab584621487305d1 20573cabfd4dcae091e4c705fd58277cc6372075 Integrate PPTX radial and alpha work with current layout [skip ci]",
+    "c224a66a4c1913690aff5273ab584621487305d1 aa51b5700a4791db088a2d47b66ff521540b42e0 6fea99ed24d7cfeeefca67f139505091de36c1f6 Reconcile incoming Mail workspace and presentation autofit [skip ci]"
+  ]
+}

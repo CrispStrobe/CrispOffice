@@ -1,0 +1,1917 @@
+{
+  "started_at": "2026-11-20T09:42:08.011674+00:00",
+  "head": "01290ceed6f9163023ce8f27bb74033f088b62e4",
+  "tree": "413a8ebc8f66c5b95584710aab7d8bb6fcc431fc",
+  "github_actions_used": false,
+  "status": "pass",
+  "cohorts": {
+    "engine": {
+      "passed": 217,
+      "failed": 0,
+      "skipped": 0,
+      "suite_counts": {
+        "packages/quds_office_engine/test/slide_import_fidelity_test.dart": 52,
+        "packages/quds_office_engine/test/office_pdf_export_test.dart": 27,
+        "packages/quds_office_engine/test/slide_gradient_merge_test.dart": 6,
+        "packages/quds_office_engine/test/slide_radial_opacity_test.dart": 14,
+        "packages/quds_office_engine/test/slide_normal_autofit_test.dart": 16,
+        "packages/quds_office_engine/test/pdf_picture_opacity_test.dart": 3,
+        "packages/quds_office_engine/test/slide_gradient_publication_test.dart": 24,
+        "packages/quds_office_engine/test/slide_background_publication_test.dart": 3,
+        "packages/quds_office_engine/test/slide_geometric_presets_test.dart": 11,
+        "packages/quds_office_engine/test/slide_picture_background_test.dart": 32,
+        "packages/quds_office_engine/test/style_cascade_test.dart": 11,
+        "packages/quds_office_engine/test/slide_transform_orientation_test.dart": 18
+      },
+      "cases": [
+        {
+          "suite": "packages/quds_office_engine/test/slide_import_fidelity_test.dart",
+          "name": "shape import text boxes stay text; only p:pic becomes a picture",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_import_fidelity_test.dart",
+          "name": "shape import extLst a:ext never overrides the xfrm extents",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_import_fidelity_test.dart",
+          "name": "shape import picture srcRect keeps deep crops and edge expansion",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_import_fidelity_test.dart",
+          "name": "shape import rich text keeps run styles, paragraph defaults, and anchor",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_import_fidelity_test.dart",
+          "name": "shape import layout decorations paint behind slide content",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_import_fidelity_test.dart",
+          "name": "shape import decorations retain ownership, ordering and independent copies",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_import_fidelity_test.dart",
+          "name": "shape import showMasterSp honors both levels of decoration inheritance",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_import_fidelity_test.dart",
+          "name": "shape import master decorations precede layout and copy independently",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_import_fidelity_test.dart",
+          "name": "shape import slide showMasterSp=0 survives saving and copying",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_import_fidelity_test.dart",
+          "name": "shape import layout showMasterSp=0 retains its own decorations",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_import_fidelity_test.dart",
+          "name": "shape import slide showMasterSp=false survives saving and copying",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_import_fidelity_test.dart",
+          "name": "shape import layout showMasterSp=false retains its own decorations",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_import_fidelity_test.dart",
+          "name": "shape import block arrow presets survive import",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_import_fidelity_test.dart",
+          "name": "shape import flipped line connectors keep their slide direction",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_import_fidelity_test.dart",
+          "name": "shape import connector flips 1/0 survive a PPTX roundtrip",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_import_fidelity_test.dart",
+          "name": "shape import connector flips true/false survive a PPTX roundtrip",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_import_fidelity_test.dart",
+          "name": "shape import connector flips 0/1 survive a PPTX roundtrip",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_import_fidelity_test.dart",
+          "name": "shape import connector flips false/true survive a PPTX roundtrip",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_import_fidelity_test.dart",
+          "name": "shape import connector flips true/true survive a PPTX roundtrip",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_import_fidelity_test.dart",
+          "name": "shape import background blip becomes a full-slide decoration",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_import_fidelity_test.dart",
+          "name": "shape import common geometric presets survive import",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_import_fidelity_test.dart",
+          "name": "shape import gradient background replaces inherited image exactly once",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_import_fidelity_test.dart",
+          "name": "shape import gradient fills retain stops and angle",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/office_pdf_export_test.dart",
+          "name": "PPT PDF draws the authored picture border after crop=false",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/office_pdf_export_test.dart",
+          "name": "PPT PDF draws the authored picture border after crop=true",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/office_pdf_export_test.dart",
+          "name": "PPT PDF inherits the master background and honors a slide override",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_import_fidelity_test.dart",
+          "name": "shape import authored slide image replaces inherited images behind decorations",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_import_fidelity_test.dart",
+          "name": "shape import copied authored background gets a valid new slide image relationship",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_import_fidelity_test.dart",
+          "name": "shape import explicit background edits clear imported fill and keep decorations",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/office_pdf_export_test.dart",
+          "name": "PPT rich-text PDF reflects scalar edits and later text replacement",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_import_fidelity_test.dart",
+          "name": "shape import authored gradient retains all stops and inherited namespace bindings",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/office_pdf_export_test.dart",
+          "name": "PPT rich-text PDF uses paragraph font defaults for unstyled runs",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_import_fidelity_test.dart",
+          "name": "shape import authored noFill survives saving and suppresses inherited images",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_import_fidelity_test.dart",
+          "name": "shape import slide solid background suppresses inherited images",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_import_fidelity_test.dart",
+          "name": "shape import layout solid background suppresses inherited images",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_import_fidelity_test.dart",
+          "name": "shape import layout image replaces master image below ordinary decorations",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/office_pdf_export_test.dart",
+          "name": "PPT heading fit scales explicit and inherited run sizes once",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_import_fidelity_test.dart",
+          "name": "shape import slide showMasterSp hides decorations but keeps background image",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/office_pdf_export_test.dart",
+          "name": "PPT numeric-only text remains in authored left-to-right order",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_import_fidelity_test.dart",
+          "name": "shape import layout showMasterSp hides decorations but keeps background image",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_import_fidelity_test.dart",
+          "name": "shape import authored image background does not need a layout relationship",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_import_fidelity_test.dart",
+          "name": "shape import gradient fallback follows slide layout and secondary master scope",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_import_fidelity_test.dart",
+          "name": "shape import normal autofit keeps its authored scale and spacing reduction",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_import_fidelity_test.dart",
+          "name": "shape import normal autofit accepts percentage strings and retains fixed leading",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_import_fidelity_test.dart",
+          "name": "shape import autofit model edits survive repeated saves and fresh deck copies",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_import_fidelity_test.dart",
+          "name": "shape import native autofit settings are serialized without changing default boxes",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/office_pdf_export_test.dart",
+          "name": "PPT autofit measures and paints numeric and blank line advances equally",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_import_fidelity_test.dart",
+          "name": "shape import selected gradient survives copies and repeated saves then clears on edit",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_import_fidelity_test.dart",
+          "name": "shape import master gradient survives hidden decorations and layout solid overrides it",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_import_fidelity_test.dart",
+          "name": "shape import master background resolves theme lumMod",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_import_fidelity_test.dart",
+          "name": "shape import explicit slide and layout fills remain independent of the master",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/office_pdf_export_test.dart",
+          "name": "PPT autofit uses the same advance inside wrapped text and between paragraphs",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_import_fidelity_test.dart",
+          "name": "shape import imported secondary master paper survives until the master changes",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/office_pdf_export_test.dart",
+          "name": "PPT autofit mixed runs honor metrics while fixed leading ignores reduction",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/office_pdf_export_test.dart",
+          "name": "PPT resolved empty decorations do not revive the global master",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_import_fidelity_test.dart",
+          "name": "shape import secondary master paper is consistent through same-color native saves",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_import_fidelity_test.dart",
+          "name": "shape import direct background assignments and copies preserve authored paper",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_import_fidelity_test.dart",
+          "name": "shape import scalar edits preserve imported rich styles and restore on undo",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_import_fidelity_test.dart",
+          "name": "shape import scheme colors and p:style refs resolve through the theme",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_import_fidelity_test.dart",
+          "name": "layouts and placeholders placeholders inherit layout geometry, then master geometry",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/office_pdf_export_test.dart",
+          "name": "Word PDF keeps pages, headers, tables, lists, and pictures",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_import_fidelity_test.dart",
+          "name": "layouts and placeholders layouts are listed without their prompt text",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_import_fidelity_test.dart",
+          "name": "slide order follows sldIdLst through presentation.xml.rels",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_import_fidelity_test.dart",
+          "name": "slide order saving keeps the order and points sldId at real relationships",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/office_pdf_export_test.dart",
+          "name": "Excel PDF evaluates formulas and paginates every sheet",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/office_pdf_export_test.dart",
+          "name": "PowerPoint PDF emits one page per slide including rotation",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/office_pdf_export_test.dart",
+          "name": "PPT PDF uses changed master paper and preserves explicit slide fills",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/office_pdf_export_test.dart",
+          "name": "PPT PDF applies scalar font edits to imported rich runs",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/office_pdf_export_test.dart",
+          "name": "fromBytes dispatches Word, Excel, and PowerPoint packages",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/office_pdf_export_test.dart",
+          "name": "transparent PNG pictures emit a DeviceGray SMask",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/office_pdf_export_test.dart",
+          "name": "keeps a distinct image XObject for each picture",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/office_pdf_export_test.dart",
+          "name": "Excel PDF uses Helvetica for Latin when the CID face lacks it",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/office_pdf_export_test.dart",
+          "name": "Word PDF writes TOC and web link annotations",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/office_pdf_export_test.dart",
+          "name": "Excel PDF honors column widths, merges, and print area",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/office_pdf_export_test.dart",
+          "name": "OfficePrint forwards sheet and slide ranges",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/office_pdf_export_test.dart",
+          "name": "PdfReportBuilder remaps subset glyph ids",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/office_pdf_export_test.dart",
+          "name": "Excel PDF paints cell borders and header tokens",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/office_pdf_export_test.dart",
+          "name": "PPT PDF strokes shapes and emits URI link annots",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/office_pdf_export_test.dart",
+          "name": "chart serializers honor ChartDisplay.rtl",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_gradient_merge_test.dart",
+          "name": "three-stop gradient is copied and round-tripped independently",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_gradient_merge_test.dart",
+          "name": "a later text gradient does not borrow a preceding shape fill",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_gradient_merge_test.dart",
+          "name": "path gradient retains radial stops and the first-color fallback",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_gradient_merge_test.dart",
+          "name": "picture shadow precedes the image in PDF export",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_gradient_merge_test.dart",
+          "name": "PDF receives gradient colors across every authored stop",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_gradient_merge_test.dart",
+          "name": "gradient on connector keeps stroke geometry instead of a filled box",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_radial_opacity_test.dart",
+          "name": "centered circle gradients parse without contaminating the next fill",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_radial_opacity_test.dart",
+          "name": "rectangular path retains the solid fallback in shapes and backgrounds",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_radial_opacity_test.dart",
+          "name": "shape path retains the solid fallback in shapes and backgrounds",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_radial_opacity_test.dart",
+          "name": "off-center focus retains the solid fallback in shapes and backgrounds",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_radial_opacity_test.dart",
+          "name": "custom tile retains the solid fallback in shapes and backgrounds",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_radial_opacity_test.dart",
+          "name": "omitted circle focus uses the Office default center in shapes and backgrounds",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_radial_opacity_test.dart",
+          "name": "native radial gradient survives repeated saves and a fresh deck copy",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_radial_opacity_test.dart",
+          "name": "imported centered radial background remains radial through saves",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_radial_opacity_test.dart",
+          "name": "radial PDF paints concentric rings with every color stop",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_radial_opacity_test.dart",
+          "name": "word PDF registers picture opacity and combines it with PNG alpha",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_radial_opacity_test.dart",
+          "name": "workbook PDF registers picture opacity and combines it with PNG alpha",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_radial_opacity_test.dart",
+          "name": "presentation PDF registers picture opacity and combines it with PNG alpha",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_radial_opacity_test.dart",
+          "name": "picture opacity restores its caller and keeps the border outside its state",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_radial_opacity_test.dart",
+          "name": "PDF alpha states reject invalid names and non-finite values",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_normal_autofit_test.dart",
+          "name": "fresh autofit values survive shape copy and two native saves",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_normal_autofit_test.dart",
+          "name": "modified imported values override retained source without losing text",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_normal_autofit_test.dart",
+          "name": "zero font scale is retained and does not paint invalid glyphs",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_normal_autofit_test.dart",
+          "name": "strict percent strings and explicit full reduction survive unchanged",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_normal_autofit_test.dart",
+          "name": "saving ordinary body properties preserves mode: ",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_normal_autofit_test.dart",
+          "name": "saving ordinary body properties preserves mode: <a:noAutofit/>",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_normal_autofit_test.dart",
+          "name": "saving ordinary body properties preserves mode: <a:spAutoFit/>",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_normal_autofit_test.dart",
+          "name": "authored native values replace competing source autofit mode",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_normal_autofit_test.dart",
+          "name": "extension and foreign normal-autofit nodes cannot override the body",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_normal_autofit_test.dart",
+          "name": "native autofit rejects nonfinite and out-of-range mutations",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_normal_autofit_test.dart",
+          "name": "PDF applies font scale to fresh plain and imported rich text",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_normal_autofit_test.dart",
+          "name": "PDF reduces actual paragraphs baselines consistently",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_normal_autofit_test.dart",
+          "name": "PDF reduces actual multiline baselines consistently",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_normal_autofit_test.dart",
+          "name": "PDF reduces actual mixed baselines consistently",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_normal_autofit_test.dart",
+          "name": "PDF subtracts reduction from percentage paragraph spacing",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_normal_autofit_test.dart",
+          "name": "fixed point line spacing excludes reduction and survives copies",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/pdf_picture_opacity_test.dart",
+          "name": "PPT picture opacity is resource-backed and scoped, crop=false",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/pdf_picture_opacity_test.dart",
+          "name": "PPT picture opacity is resource-backed and scoped, crop=true",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/pdf_picture_opacity_test.dart",
+          "name": "picture restores the caller opacity before its border and later paint",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_gradient_publication_test.dart",
+          "name": "selected background respects master gradient ownership",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_gradient_publication_test.dart",
+          "name": "selected background respects layout solid ownership",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_gradient_publication_test.dart",
+          "name": "selected background respects slide solid ownership",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_gradient_publication_test.dart",
+          "name": "selected background respects layout gradient ownership",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_gradient_publication_test.dart",
+          "name": "selected background respects slide gradient ownership",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_gradient_publication_test.dart",
+          "name": "master-shape suppression retains the selected native gradient",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_gradient_publication_test.dart",
+          "name": "native gradient keeps every stop and direction over three saves radial=false",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_gradient_publication_test.dart",
+          "name": "native gradient keeps every stop and direction over three saves radial=true",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_gradient_publication_test.dart",
+          "name": "copied inherited gradient persists in a fresh presentation",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_gradient_publication_test.dart",
+          "name": "same-package copy retains layout inheritance without local override",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_gradient_publication_test.dart",
+          "name": "master solid edit hides inherited gradient before save and retains decorations",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_gradient_publication_test.dart",
+          "name": "local gradient remains independent when the master changes",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_gradient_publication_test.dart",
+          "name": "foreign-namespace gradient markup is not promoted to a selected fill",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_gradient_publication_test.dart",
+          "name": "a later line gradient cannot reuse another shape fill",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_gradient_publication_test.dart",
+          "name": "a later text gradient cannot reuse another shape fill",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_gradient_publication_test.dart",
+          "name": "authored radial shape gradient keeps its marker on native save",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_gradient_publication_test.dart",
+          "name": "modified DrawingML colors remain owned gradient stops",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_gradient_publication_test.dart",
+          "name": "PDF multi-stop gradient reaches the correct bounds at 0.0 degrees",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_gradient_publication_test.dart",
+          "name": "PDF multi-stop gradient reaches the correct bounds at 90.0 degrees",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_gradient_publication_test.dart",
+          "name": "PDF gradient uses the exact PmlShapePreset.homePlate clip and restores it",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_gradient_publication_test.dart",
+          "name": "PDF gradient uses the exact PmlShapePreset.triangle clip and restores it",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_gradient_publication_test.dart",
+          "name": "PDF gradient uses the exact PmlShapePreset.rightArrow clip and restores it",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_gradient_publication_test.dart",
+          "name": "PDF gradient uses the exact PmlShapePreset.freeform clip and restores it",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_gradient_publication_test.dart",
+          "name": "picture shadow paints once and restores caller PDF fill color",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_background_publication_test.dart",
+          "name": "direct master solids suppress inherited gradients without saving",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_background_publication_test.dart",
+          "name": "direct master solids affect PDF immediately, retaining local fills",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_background_publication_test.dart",
+          "name": "fresh deck copies keep pictures unless a master solid is explicit",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_geometric_presets_test.dart",
+          "name": "diamond identity survives import, copy and PPTX round trip",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_geometric_presets_test.dart",
+          "name": "hexagon identity survives import, copy and PPTX round trip",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_geometric_presets_test.dart",
+          "name": "pentagon identity survives import, copy and PPTX round trip",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_geometric_presets_test.dart",
+          "name": "homePlate identity survives import, copy and PPTX round trip",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_geometric_presets_test.dart",
+          "name": "chevron identity survives import, copy and PPTX round trip",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_geometric_presets_test.dart",
+          "name": "parallelogram identity survives import, copy and PPTX round trip",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_geometric_presets_test.dart",
+          "name": "trapezoid identity survives import, copy and PPTX round trip",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_geometric_presets_test.dart",
+          "name": "pentagon PDF fill and outline have five convex vertices",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_geometric_presets_test.dart",
+          "name": "homePlate PDF keeps a flat back at 100 by 100",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_geometric_presets_test.dart",
+          "name": "homePlate PDF keeps a flat back at 200 by 80",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_geometric_presets_test.dart",
+          "name": "chevron retains six vertices and its inward notch",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_picture_background_test.dart",
+          "name": "picture background ownership slide picture wins over layout and master before decorations",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_picture_background_test.dart",
+          "name": "picture background ownership layout picture replaces the master picture",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_picture_background_test.dart",
+          "name": "picture background ownership absent local backgrounds inherit the master picture",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_picture_background_test.dart",
+          "name": "picture background ownership slide solid fill suppresses the inherited picture",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_picture_background_test.dart",
+          "name": "picture background ownership layout solid fill suppresses the inherited picture",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_picture_background_test.dart",
+          "name": "picture background ownership slide master-shape suppression preserves the inherited background",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_picture_background_test.dart",
+          "name": "picture background ownership layout master-shape suppression preserves the inherited background",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_picture_background_test.dart",
+          "name": "picture background ownership slide-owned picture is loaded without a layout relationship",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_picture_background_test.dart",
+          "name": "picture background ownership authored noFill does not reveal an inherited picture",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_picture_background_test.dart",
+          "name": "picture background ownership external background image is not resolved as package content",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_picture_background_test.dart",
+          "name": "picture background ownership a non-image relationship cannot become a picture background",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_picture_background_test.dart",
+          "name": "picture background ownership first gradient stop is used consistently at every owner",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_picture_background_test.dart",
+          "name": "picture background ownership an effect color never becomes the paper color",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_picture_background_test.dart",
+          "name": "picture background publication master picture survives two native saves without duplication",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_picture_background_test.dart",
+          "name": "picture background publication layout picture survives two native saves without duplication",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_picture_background_test.dart",
+          "name": "picture background publication slide picture survives two native saves without duplication",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_picture_background_test.dart",
+          "name": "picture background publication a copied slide retains its own background media relationship",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_picture_background_test.dart",
+          "name": "picture background publication cropping survives picture background import and save",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_picture_background_test.dart",
+          "name": "picture background publication assigning a solid slide fill replaces its picture background",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_picture_background_test.dart",
+          "name": "background integrity saving pictures never overwrites retained master or layout media",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_picture_background_test.dart",
+          "name": "background integrity deep and negative background crop survives repeated native saves",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_picture_background_test.dart",
+          "name": "background integrity negative only background crop survives repeated native saves",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_picture_background_test.dart",
+          "name": "background integrity master solid 112233 replaces inherited pictures and stays inherited",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_picture_background_test.dart",
+          "name": "background integrity master solid FFFFFF replaces inherited pictures and stays inherited",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_picture_background_test.dart",
+          "name": "background integrity an unchanged master picture remains editable after save and copy",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_picture_background_test.dart",
+          "name": "background integrity copied secondary-master picture retains its layout and inheritance",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_picture_background_test.dart",
+          "name": "background integrity master edits preserve explicit slide picture backgrounds",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_picture_background_test.dart",
+          "name": "background integrity master edits preserve explicit layout picture backgrounds",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_picture_background_test.dart",
+          "name": "background integrity a newly authored master solid fill is saved natively",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_picture_background_test.dart",
+          "name": "PDF picture borders follow the image after its crop clip is restored",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_picture_background_test.dart",
+          "name": "PDF picture border preserves caller graphics state crop=false",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_picture_background_test.dart",
+          "name": "PDF picture border preserves caller graphics state crop=true",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/style_cascade_test.dart",
+          "name": "regular font size projection direct regular size overrides default complex-script size",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/style_cascade_test.dart",
+          "name": "regular font size projection regular size wins with complex-script size last",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/style_cascade_test.dart",
+          "name": "regular font size projection regular size wins with reversed source element order",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/style_cascade_test.dart",
+          "name": "regular font size projection complex-script-only input retains the compatibility fallback",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/style_cascade_test.dart",
+          "name": "regular font size projection direct complex-script size does not replace inherited regular size",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/style_cascade_test.dart",
+          "name": "regular font size projection native regular size edits retain separate complex-script XML",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/style_cascade_test.dart",
+          "name": "scripts apply character/table styles and edit table run definitions",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_transform_orientation_test.dart",
+          "name": "left alignment preserves each connector orientation",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_transform_orientation_test.dart",
+          "name": "center alignment preserves each connector orientation",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_transform_orientation_test.dart",
+          "name": "right alignment preserves each connector orientation",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_transform_orientation_test.dart",
+          "name": "top alignment preserves each connector orientation",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_transform_orientation_test.dart",
+          "name": "middle alignment preserves each connector orientation",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_transform_orientation_test.dart",
+          "name": "bottom alignment preserves each connector orientation",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_transform_orientation_test.dart",
+          "name": "horizontal distribution retains flips while changing gaps",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_transform_orientation_test.dart",
+          "name": "vertical distribution retains flips while changing gaps",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/style_cascade_test.dart",
+          "name": "defaults basedOn theme character table and direct values survive 3 cycles",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/style_cascade_test.dart",
+          "name": "direct edits survive style refresh and inherited values remain editable",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/style_cascade_test.dart",
+          "name": "style toggles compose while direct on/off is absolute",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/style_cascade_test.dart",
+          "name": "custom style part location stays authoritative after style edits",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_transform_orientation_test.dart",
+          "name": "shapeGeometry x-only update preserves orientation through PPTX save",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_transform_orientation_test.dart",
+          "name": "shapeGeometry y-only update preserves orientation through PPTX save",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_transform_orientation_test.dart",
+          "name": "shapeGeometry width-only update preserves orientation through PPTX save",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_transform_orientation_test.dart",
+          "name": "shapeGeometry height-only update preserves orientation through PPTX save",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_transform_orientation_test.dart",
+          "name": "shapeGeometry rotation-only update preserves orientation through PPTX save",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_transform_orientation_test.dart",
+          "name": "morph retains shared flip state (true, false) throughout a move",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_transform_orientation_test.dart",
+          "name": "morph retains shared flip state (false, true) throughout a move",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_transform_orientation_test.dart",
+          "name": "morph retains shared flip state (true, true) throughout a move",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_transform_orientation_test.dart",
+          "name": "morph retains shared flip state (false, false) throughout a move",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_engine/test/slide_transform_orientation_test.dart",
+          "name": "morph endpoints retain their distinct authored orientations",
+          "result": "success",
+          "skipped": false
+        }
+      ],
+      "errors": [],
+      "runner_done": {
+        "success": true,
+        "type": "done",
+        "time": 11383
+      },
+      "command": [
+        "dart",
+        "--packages=/workspace/scratch/8e9460dcd580/quds_office_suite/.dart_tool/package_config.json",
+        "/workspace/scratch/8e9460dcd580/runtime/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+        "--reporter=json",
+        "--concurrency=2",
+        "test/slide_import_fidelity_test.dart",
+        "test/office_pdf_export_test.dart",
+        "test/slide_gradient_merge_test.dart",
+        "test/slide_radial_opacity_test.dart",
+        "test/slide_normal_autofit_test.dart",
+        "test/pdf_picture_opacity_test.dart",
+        "test/slide_gradient_publication_test.dart",
+        "test/slide_background_publication_test.dart",
+        "test/slide_geometric_presets_test.dart",
+        "test/slide_picture_background_test.dart",
+        "test/style_cascade_test.dart",
+        "test/slide_transform_orientation_test.dart"
+      ],
+      "cwd": "/workspace/scratch/8e9460dcd580/quds_office_suite/packages/quds_office_engine",
+      "started_at": "2026-11-20T09:42:08.023938+00:00",
+      "finished_at": "2026-11-20T09:42:31.005252+00:00",
+      "exit_code": 0,
+      "stdout_sha256": "7bc0c088728c4554e02b16db284da975d655a39c2e260d4cf4a96fc9fac3b8c1",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "editor": {
+      "passed": 83,
+      "failed": 0,
+      "skipped": 0,
+      "suite_counts": {
+        "packages/quds_office_editor/test/slide_render_fidelity_test.dart": 14,
+        "packages/quds_office_editor/test/slide_incoming_pptx_regression_test.dart": 17,
+        "packages/quds_office_editor/test/slide_transform_orientation_test.dart": 8,
+        "packages/quds_office_editor/test/installed_host_fonts_test.dart": 8,
+        "packages/quds_office_editor/test/office_system_fonts_test.dart": 7,
+        "packages/quds_office_editor/test/host_fonts_test.dart": 6,
+        "packages/quds_office_editor/test/paint_font_fallback_test.dart": 2,
+        "packages/quds_office_editor/test/slide_normal_autofit_test.dart": 5,
+        "packages/quds_office_editor/test/office_slide_effects_test.dart": 9,
+        "packages/quds_office_editor/test/slide_background_publication_test.dart": 4,
+        "packages/quds_office_editor/test/slide_geometric_presets_test.dart": 3
+      },
+      "cases": [
+        {
+          "suite": "packages/quds_office_editor/test/slide_render_fidelity_test.dart",
+          "name": "radial fills shade the center and equal radii in shapes and backgrounds",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_editor/test/slide_render_fidelity_test.dart",
+          "name": "autofit scales all rich lines and their paragraph terminators",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_editor/test/slide_render_fidelity_test.dart",
+          "name": "autofit spacing reduction reaches plain and rich rendering",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_editor/test/slide_render_fidelity_test.dart",
+          "name": "autofit keeps every fitted line in a small frame",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_editor/test/slide_render_fidelity_test.dart",
+          "name": "fixed rich leading is unchanged by autofit spacing reduction",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_editor/test/slide_render_fidelity_test.dart",
+          "name": "slide animation cannot hide an inherited decoration with the same id",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_editor/test/slide_render_fidelity_test.dart",
+          "name": "morph keeps inherited decorations when content ids match",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_editor/test/slide_render_fidelity_test.dart",
+          "name": "inherited decorations retain their authored rotation",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_editor/test/slide_render_fidelity_test.dart",
+          "name": "clicking the first painted PmlTextAnchor.center line selects that line",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_editor/test/slide_render_fidelity_test.dart",
+          "name": "clicking the first painted PmlTextAnchor.bottom line selects that line",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_editor/test/slide_render_fidelity_test.dart",
+          "name": "edited scalar size and ink replace stale imported rendering",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_editor/test/slide_render_fidelity_test.dart",
+          "name": "rich runs without explicit size or ink inherit shape values",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_editor/test/slide_render_fidelity_test.dart",
+          "name": "master decoration IDs do not inherit slide animation samples",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_editor/test/slide_render_fidelity_test.dart",
+          "name": "dark slide text uses the decoration painted behind it",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_editor/test/slide_incoming_pptx_regression_test.dart",
+          "name": "gradient reaches edge colors at 0.0 degrees",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_editor/test/slide_incoming_pptx_regression_test.dart",
+          "name": "gradient reaches edge colors at 90.0 degrees",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_editor/test/slide_incoming_pptx_regression_test.dart",
+          "name": "hidden master flag retains resolved layout decorations",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_editor/test/slide_incoming_pptx_regression_test.dart",
+          "name": "connector H=false V=false paints its authored diagonal",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_editor/test/slide_incoming_pptx_regression_test.dart",
+          "name": "connector H=true V=false paints its authored diagonal",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_editor/test/slide_incoming_pptx_regression_test.dart",
+          "name": "connector H=false V=true paints its authored diagonal",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_editor/test/slide_incoming_pptx_regression_test.dart",
+          "name": "connector H=true V=true paints its authored diagonal",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_editor/test/slide_incoming_pptx_regression_test.dart",
+          "name": "legacy fill-only connectors remain visible in the editor",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_editor/test/slide_incoming_pptx_regression_test.dart",
+          "name": "rotated single-axis connector keeps its authored diagonal",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_editor/test/slide_incoming_pptx_regression_test.dart",
+          "name": "clipboard clones preserve connector flips, stroke and geometry",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_editor/test/slide_incoming_pptx_regression_test.dart",
+          "name": "nudge, grouped edits and undo retain independent connector flips",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_editor/test/slide_incoming_pptx_regression_test.dart",
+          "name": "morph paints sampled connector flips rather than target flags",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_editor/test/slide_incoming_pptx_regression_test.dart",
+          "name": "foreground animation IDs never hide master decorations",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_editor/test/slide_incoming_pptx_regression_test.dart",
+          "name": "morph foreground IDs never skip master decorations",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_editor/test/slide_incoming_pptx_regression_test.dart",
+          "name": "master decoration rotation matches authored geometry",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_editor/test/slide_incoming_pptx_regression_test.dart",
+          "name": "dark-slide ink respects a white master decoration behind text",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_editor/test/slide_incoming_pptx_regression_test.dart",
+          "name": "curved decorations do not imply a uniform backing rectangle",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_editor/test/slide_transform_orientation_test.dart",
+          "name": "single move retains connector orientation through history and saving",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_editor/test/slide_transform_orientation_test.dart",
+          "name": "single resize retains connector orientation through history and saving",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_editor/test/slide_transform_orientation_test.dart",
+          "name": "single rotate retains connector orientation through history and saving",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_editor/test/slide_transform_orientation_test.dart",
+          "name": "group move retains connector orientation through history and saving",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_editor/test/slide_transform_orientation_test.dart",
+          "name": "group resize retains connector orientation through history and saving",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_editor/test/slide_transform_orientation_test.dart",
+          "name": "group rotate retains connector orientation through history and saving",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_editor/test/slide_transform_orientation_test.dart",
+          "name": "keyboard and group moves retain each connector orientation",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_editor/test/slide_transform_orientation_test.dart",
+          "name": "copy and paste retain frozen connector orientation",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_editor/test/installed_host_fonts_test.dart",
+          "name": "installed alias moves actual paint and metrics together exactly once",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_editor/test/installed_host_fonts_test.dart",
+          "name": "installed family cannot overwrite accepted bytes or custom host owners",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_editor/test/installed_host_fonts_test.dart",
+          "name": "new installed family preserves parsed styles and invalidates measured fallback",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_editor/test/installed_host_fonts_test.dart",
+          "name": "invalid installed bytes, families and bounded collections retain fallback",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_editor/test/installed_host_fonts_test.dart",
+          "name": "pending authored names cannot be reused as internal paint names",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_editor/test/installed_host_fonts_test.dart",
+          "name": "visual labels use installed paint bytes for their authored family",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_editor/test/installed_host_fonts_test.dart",
+          "name": "visual labels preserve families registered directly with Flutter",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_editor/test/installed_host_fonts_test.dart",
+          "name": "pending internal paint names reject authored ownership",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_editor/test/office_system_fonts_test.dart",
+          "name": "missing optional directories produce an empty collection",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_editor/test/office_system_fonts_test.dart",
+          "name": "unreadable candidates and mismatched metadata do not hide later valid faces",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_editor/test/office_system_fonts_test.dart",
+          "name": "collection signatures and malformed bytes are rejected despite ttf names",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_editor/test/office_system_fonts_test.dart",
+          "name": "oversized optional files are skipped before reading their body",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_editor/test/office_system_fonts_test.dart",
+          "name": "installed Franklin Gothic Book regular and italic are discovered",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_editor/test/office_system_fonts_test.dart",
+          "name": "first valid family and style wins with real style metadata",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_editor/test/office_system_fonts_test.dart",
+          "name": "direct validation rejects wrong family, unsupported headers and truncated tables",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_editor/test/host_fonts_test.dart",
+          "name": "Word pagination uses actual registered face and style metrics",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_editor/test/host_fonts_test.dart",
+          "name": "bundled names resolve only verified metric-compatible aliases",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_editor/test/host_fonts_test.dart",
+          "name": "host bytes and aliases register once and remain available after ensure",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_editor/test/host_fonts_test.dart",
+          "name": "host extensions cannot replace an existing alias",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_editor/test/host_fonts_test.dart",
+          "name": "empty or unbounded host requests fail before font loading",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_editor/test/host_fonts_test.dart",
+          "name": "late font registration invalidates widths measured with a fallback",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_editor/test/paint_font_fallback_test.dart",
+          "name": "unloaded document fonts use explicit bundled paint fallbacks",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_editor/test/paint_font_fallback_test.dart",
+          "name": "registered document faces keep their requested names",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_editor/test/slide_normal_autofit_test.dart",
+          "name": "autofit reduces actual plain line spacing",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_editor/test/slide_normal_autofit_test.dart",
+          "name": "autofit reduces actual rich line spacing",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_editor/test/slide_normal_autofit_test.dart",
+          "name": "autofit scales empty rich paragraphs with their surrounding text",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_editor/test/slide_normal_autofit_test.dart",
+          "name": "fixed-point paragraph spacing does not receive percentage reduction",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_editor/test/slide_normal_autofit_test.dart",
+          "name": "zero font scale paints no text and retains its authored text",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_editor/test/office_slide_effects_test.dart",
+          "name": "wide gradient reaches its endpoints at 0.0 degrees",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_editor/test/office_slide_effects_test.dart",
+          "name": "wide gradient reaches its endpoints at 90.0 degrees",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_editor/test/office_slide_effects_test.dart",
+          "name": "homePlate gradient keeps its flat back and clipped tip",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_editor/test/office_slide_effects_test.dart",
+          "name": "direct master edit respects gradient ownership inherited=true",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_editor/test/office_slide_effects_test.dart",
+          "name": "direct master edit respects gradient ownership inherited=false",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_editor/test/office_slide_effects_test.dart",
+          "name": "picture opacity applies once with brightness 0.0",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_editor/test/office_slide_effects_test.dart",
+          "name": "picture opacity applies once with brightness -0.2",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_editor/test/office_slide_effects_test.dart",
+          "name": "full picture transparency leaves the background visible",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_editor/test/office_slide_effects_test.dart",
+          "name": "picture shadow has one soft footprint without a second hard rectangle",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_editor/test/slide_background_publication_test.dart",
+          "name": "direct master 112233 replaces inherited gradient before saving",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_editor/test/slide_background_publication_test.dart",
+          "name": "direct master 112233 paints before saving or controller edits",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_editor/test/slide_background_publication_test.dart",
+          "name": "direct master FFFFFF replaces inherited gradient before saving",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_editor/test/slide_background_publication_test.dart",
+          "name": "direct master FFFFFF paints before saving or controller edits",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_editor/test/slide_geometric_presets_test.dart",
+          "name": "pentagon paints a convex body with sloping top corners",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_editor/test/slide_geometric_presets_test.dart",
+          "name": "homePlate paints a flat back and one outward point",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "suite": "packages/quds_office_editor/test/slide_geometric_presets_test.dart",
+          "name": "chevron keeps its inward notch",
+          "result": "success",
+          "skipped": false
+        }
+      ],
+      "errors": [],
+      "runner_done": {
+        "success": true,
+        "type": "done",
+        "time": 30780
+      },
+      "command": [
+        "flutter",
+        "test",
+        "--no-pub",
+        "--concurrency=1",
+        "--reporter=json",
+        "test/slide_render_fidelity_test.dart",
+        "test/slide_incoming_pptx_regression_test.dart",
+        "test/slide_transform_orientation_test.dart",
+        "test/installed_host_fonts_test.dart",
+        "test/office_system_fonts_test.dart",
+        "test/host_fonts_test.dart",
+        "test/paint_font_fallback_test.dart",
+        "test/slide_normal_autofit_test.dart",
+        "test/office_slide_effects_test.dart",
+        "test/slide_background_publication_test.dart",
+        "test/slide_geometric_presets_test.dart"
+      ],
+      "cwd": "/workspace/scratch/8e9460dcd580/quds_office_suite/packages/quds_office_editor",
+      "started_at": "2026-11-20T09:42:31.009239+00:00",
+      "finished_at": "2026-11-20T09:43:03.156453+00:00",
+      "exit_code": 0,
+      "stdout_sha256": "4970c54a06fe33872fec741dd896767df26acf985daad9ecdff0f6021688bd9e",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "finished_at": "2026-11-20T09:43:03.379662+00:00",
+  "input_count": 2204,
+  "changed_inputs": [],
+  "changed_runtime": [],
+  "duplicate_suite_name_pairs": [],
+  "accepted_passes": 300
+}

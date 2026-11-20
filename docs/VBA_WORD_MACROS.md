@@ -73,9 +73,16 @@ header, footer, note, or comment story selector.
 | `range.Font.Size = value` | `docx.runFormat` | `size: value` in points |
 | `range.Font.Name = value` | `docx.runFormat` | `font: value` |
 | `range.Font.Color = value` | `docx.runFormat` | `color` as six uppercase RGB hexadecimal digits |
+| `range.Font.Underline = value` | `docx.runFormat` | `underline`, one of the 18 documented `WdUnderline` styles |
+| `range.Font.StrikeThrough = value` | `docx.runFormat` | `strike: value` |
 | `range.ParagraphFormat.Alignment = value` | `docx.paragraphFormat` | `alignment: left`, `center`, `right`, or `justify` |
 | `range.ParagraphFormat.SpaceBefore = value` | `docx.paragraphFormat` | `before: value` in points |
 | `range.ParagraphFormat.SpaceAfter = value` | `docx.paragraphFormat` | `after: value` in points |
+| `range.ParagraphFormat.LeftIndent = value` | `docx.paragraphFormat` | `left: value` in points |
+| `range.ParagraphFormat.RightIndent = value` | `docx.paragraphFormat` | `right: value` in points |
+| `range.ParagraphFormat.FirstLineIndent = value` | `docx.paragraphFormat` | nonnegative `firstLine`/`hanging` in points, always clearing the opposite value |
+| `range.ParagraphFormat.KeepTogether = value` | `docx.paragraphFormat` | `keepTogether: value` |
+| `range.ParagraphFormat.PageBreakBefore = value` | `docx.paragraphFormat` | `pageBreakBefore: value` |
 
 For example, `ThisDocument.Paragraphs(2).Range.InsertBefore "Ready: "` emits:
 
@@ -144,16 +151,31 @@ Paragraph-format operations can target an empty paragraph.
 
 | Property | Accepted value |
 | --- | --- |
-| `Font.Bold`, `Font.Italic` | Actual `Boolean`; numeric `-1`/`0` and Strings require explicit conversion |
+| `Font.Bold`, `Font.Italic`, `Font.StrikeThrough`, `KeepTogether`, `PageBreakBefore` | Actual `Boolean`; numeric `-1`/`0` and Strings require explicit conversion |
+| `Font.Underline` | Exact numeric member of `WdUnderline`, including all 18 named constants; `True` is not an underline enum |
 | `Font.Size` | Actual finite number from `0.5` through `1638`, in exact half-point increments |
 | `Font.Name` | Nonempty XML-safe String; control whitespace in font names is unsupported |
 | `Font.Color` | Exact integer from `0` through `16777215`, using VBA's packed RGB representation; `RGB(r, g, b)` is supported |
 | `ParagraphFormat.Alignment` | Exact integer `0`, `1`, `2`, or `3`, including the named constants below |
 | `SpaceBefore`, `SpaceAfter` | Nonnegative finite number in exact `0.05`-point increments; the resulting twentieth-point integer must not exceed `2147483647` |
+| `LeftIndent`, `RightIndent`, `FirstLineIndent` | Signed finite number in exact `0.05`-point increments; absolute twentieth-point value must not exceed `2147483647` |
 
 The named alignment constants are `wdAlignParagraphLeft = 0`,
 `wdAlignParagraphCenter = 1`, `wdAlignParagraphRight = 2`, and
 `wdAlignParagraphJustify = 3`. Other Word alignment modes are unsupported.
+
+The underline constants retain Microsoft's exact enum values, including
+`wdUnderlineNone`, `wdUnderlineSingle`, `wdUnderlineWords`, double, dotted,
+dash, dot-dash, dot-dot-dash, long-dash, wavy and their heavy/double variants.
+They map to native Word underline styles without reducing them to a Boolean.
+For example, `wdUnderlineDotDashHeavy = 25` writes `w:u w:val="dashDotHeavy"`.
+`wdUnderlineNone` and `StrikeThrough = False` explicitly clear prior formatting.
+`wdToggle`, mixed-state values and automatic conversions remain unsupported.
+
+`FirstLineIndent = -12.5` sets a 12.5-point hanging indent and clears an existing
+first-line indent. A later positive or zero value clears the hanging indent.
+The left and right indent values remain independent. `KeepTogether` controls
+the paragraph's keep-lines property; it does not imply keep-with-next.
 
 Size and spacing restrictions avoid silently rounding requested values when
 the native serializer writes half-points and twentieth-points. The spacing
@@ -280,4 +302,7 @@ the explicit restrictions above. They do not certify this implementation:
 - [Range.InsertAfter](https://learn.microsoft.com/en-us/office/vba/api/word.range.insertafter): the ending paragraph mark and insertion boundary.
 - [Font.Size](https://learn.microsoft.com/en-us/office/vba/api/word.font.size) and [Font.Name](https://learn.microsoft.com/en-us/office/vba/api/word.font.name): point units and the named font property.
 - [WdParagraphAlignment](https://learn.microsoft.com/en-us/office/vba/api/word.wdparagraphalignment): numeric alignment constants.
+- [WdUnderline](https://learn.microsoft.com/en-us/office/vba/api/word.wdunderline) and [Font.StrikeThrough](https://learn.microsoft.com/en-us/office/vba/api/word.font.strikethrough): underline enum values and strike formatting.
+- [FirstLineIndent](https://learn.microsoft.com/en-us/office/vba/api/word.paragraphformat.firstlineindent): negative values mean hanging indentation.
+- [KeepTogether](https://learn.microsoft.com/en-us/office/vba/api/word.paragraphformat.keeptogether) and [PageBreakBefore](https://learn.microsoft.com/en-us/office/vba/api/word.paragraphformat.pagebreakbefore): paragraph pagination properties.
 - [ParagraphFormat.SpaceBefore](https://learn.microsoft.com/en-us/office/vba/api/word.paragraphformat.spacebefore) and [SpaceAfter](https://learn.microsoft.com/en-us/office/vba/api/word.paragraphformat.spaceafter): paragraph spacing in points.
