@@ -4,6 +4,22 @@ All notable changes to `quds_office_engine` are documented here.
 
 ## Unreleased
 
+- Extend Word VBA with typed Font/ParagraphFormat helpers, Paragraph.Format,
+  reading order and exact single/1.5/double line-spacing presets. Preserve
+  independent native spacing attributes and keep foreign/nested layout XML
+  opaque on reopen. Add PowerPoint text-frame margins with exact EMU validation,
+  per-side native ownership and matching inset placement in PDF/live models.
+  Compare margin edits with the imported baseline so unchanged native margins
+  preserve plain replacement behavior and direct edits back to defaults apply.
+  Shared module helpers gain named arguments, optional scalar defaults and
+  explicit omitted-Variant/IsMissing handling. These remain bounded adapters;
+  named application-member arguments and live document reads are not added.
+
+- Invalidate Word paragraph break caches before dirty or full-layout paths,
+  including frame wrapping and empty paragraphs that do not replace the cache.
+  Prevent stale glyphs reappearing when later edits move an unchanged paragraph
+  into ordinary flow, while retaining break reuse for proven-clean paragraphs.
+
 - Preserve bounded rectangular Zotero research-note and annotation tables as
   native Word blocks, including rich cell content, pictures, independent lists
   and active citations in row order. Map consistent column widths and supported
@@ -13,20 +29,6 @@ All notable changes to `quds_office_engine` are documented here.
   for table payloads before publication. See the
   [implementation and validation record](../../docs/validation/zotero-research-tables-20261120/README.md)
   for the tested source and remaining application acceptance.
-
-- Extend Word VBA with typed Font/ParagraphFormat helpers, Paragraph.Format,
-  reading order and exact single/1.5/double line-spacing presets. Preserve
-  independent native spacing attributes and keep foreign/nested layout XML
-  opaque on reopen. Add PowerPoint text-frame margins with exact EMU validation,
-  per-side native ownership and matching inset placement in PDF/live models.
-  Shared module helpers gain named arguments, optional scalar defaults and
-  explicit omitted-Variant/IsMissing handling. These remain bounded adapters;
-  named application-member arguments and live document reads are not added.
-
-- Invalidate Word paragraph break caches before dirty or full-layout paths,
-  including frame wrapping and empty paragraphs that do not replace the cache.
-  Prevent stale glyphs reappearing when later edits move an unchanged paragraph
-  into ordinary flow, while retaining break reuse for proven-clean paragraphs.
 
 - Continue the bounded Word/PowerPoint VBA adapters with Word document aliases,
   `Paragraphs.Item`, small caps, superscript/subscript and fixed-palette

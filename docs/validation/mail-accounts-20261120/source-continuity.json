@@ -1,0 +1,17 @@
+{
+  "schema": 1,
+  "qualified_source_commit": "c20b41d9c7eed574c02e49f1fd96789843aec2e6",
+  "qualified_source_tree": "6a4a3402f2156490d8a7c0b1cb8d9d21fcb3ef32",
+  "captured_main_commit": "13be50464d1b43e9f2100fb9ccc12f8fe22eb55e",
+  "allowed_documentation_paths": [
+    "docs/roadmaps/mail/implementation-plan.md",
+    "docs/performance/incremental-layout-20261120.md"
+  ],
+  "allowed_documentation_prefixes": [
+    "docs/validation/mail-accounts-20261120/"
+  ],
+  "protected_file_count": 18666,
+  "protected_entries_sha256": "6262d3c38a731ab21fe223ff7a4d53ed4e97f24a63103326caef8a60b2462904",
+  "scope": "Final combined source. Every tracked path outside the exact documentation allowlist, including product, tests, fixtures, dependency manifests and incoming qualification evidence.",
+  "full_manifest_archive_member": "validation-final/source-continuity.json"
+}

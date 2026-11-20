@@ -6,6 +6,8 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:quds_office_studio/studio_mail_credentials.dart';
 import 'package:quds_office_studio/studio_mail_draft.dart';
 import 'package:quds_office_studio/studio_mail_draft_store.dart';
+import 'package:quds_office_studio/studio_mail_drafts_dialog.dart';
+import 'package:quds_office_studio/studio_mail_local_drafts.dart';
 import 'package:quds_office_studio/studio_mail_message_loader.dart';
 import 'package:quds_office_studio/studio_mail_native.dart';
 import 'package:quds_office_studio/studio_mail_presets.dart';
@@ -13,6 +15,7 @@ import 'package:quds_office_studio/studio_mail_strings.dart';
 import 'package:quds_office_studio/studio_strings.dart';
 
 import 'support/mail_draft_store.dart';
+import 'support/mail_outbox_store.dart';
 
 const _strings = StudioStrings(StudioLanguage.en);
 const _a = StudioMailCredentials(
@@ -201,6 +204,7 @@ Future<void> _show(
   _Accounts store, {
   mail.MailClient Function(mail.MailAccount)? clientFactory,
   MemoryStudioMailDrafts? drafts,
+  StudioMailDraftStoreFactory? draftStoreFactory,
   Size surfaceSize = const Size(1280, 1500),
 }) async {
   await tester.binding.setSurfaceSize(surfaceSize);
@@ -212,7 +216,8 @@ Future<void> _show(
         credentialStore: store,
         clientFactory: clientFactory ?? (_) => _Client(),
         messageLoaderFactory: (_) => _Loader(),
-        draftStoreFactory: (drafts ?? MemoryStudioMailDrafts()).open,
+        draftStoreFactory:
+            draftStoreFactory ?? (drafts ?? MemoryStudioMailDrafts()).open,
       ),
     ),
   );
@@ -268,6 +273,140 @@ StudioMailCredentials _duplicateCredentials({
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
+
+  for (final preset in [null, StudioMailImapPreset.icloud]) {
+    testWidgets(
+      'local draft entry uses exact ${preset?.name ?? 'manual'} account without connecting',
+      (tester) async {
+        final credentials = preset == null
+            ? _a
+            : const StudioMailCredentials(
+                email: 'alias@icloud.com',
+                password: 'fixture-only',
+                imapHost: 'ignored.example.test',
+                smtpHost: 'ignored.example.test',
+                manual: false,
+                startTls: false,
+                preset: StudioMailImapPreset.icloud,
+                primaryLogin: 'primary@icloud.com',
+              );
+        final identity = StudioMailDraftAccount(
+          provider: 'imap',
+          endpoint: preset == null
+              ? 'imaps://imap.first.test:993'
+              : 'imaps://imap.mail.me.com:993',
+          login: preset == null ? _a.email : 'primary',
+          sender: credentials.email,
+        );
+        final fixture = await awaitOutboxOperation(
+          tester,
+          SqliteOutboxFixture.create(identity),
+        );
+        addTearDown(() => awaitOutboxOperation(tester, fixture.close()));
+        final accounts = _Accounts()
+          ..catalog = StudioMailAccountCatalog(
+            accounts: [
+              StudioMailSavedAccount(
+                id: credentials.accountId,
+                credentials: credentials,
+              ),
+            ],
+            selectedAccountId: credentials.accountId,
+          );
+        var clientCreations = 0;
+        var storeOpenings = 0;
+        await _show(
+          tester,
+          accounts,
+          clientFactory: (_) {
+            clientCreations++;
+            return _Client();
+          },
+          draftStoreFactory: (account) async {
+            storeOpenings++;
+            expectSync(account.account, identity.account);
+            return fixture.open(account);
+          },
+        );
+        final connect = tester
+            .widget<FilledButton>(
+              find.widgetWithText(FilledButton, _strings.connect),
+            )
+            .onPressed!;
+        await _tap(tester, _key('studio-mail-open-local-drafts'));
+        expect(find.byType(StudioMailLocalDraftsDialog), findsOneWidget);
+        expect(find.byType(StudioMailDraftsDialog), findsOneWidget);
+        expect(storeOpenings, 1);
+        connect(); // A retained setup callback cannot start a network session.
+        await _pump(tester);
+        expect(clientCreations, 0);
+        final close = find.descendant(
+          of: find.byType(StudioMailDraftsDialog),
+          matching: find.byTooltip(_strings.close),
+        );
+        await _tap(tester, close);
+        expect(find.byType(StudioMailLocalDraftsDialog), findsNothing);
+        expect(clientCreations, 0);
+        await _tap(tester, _key('studio-mail-open-local-drafts'));
+        expect(storeOpenings, 2);
+        expect(clientCreations, 0);
+        expect(tester.takeException(), isNull);
+      },
+    );
+  }
+
+  testWidgets(
+    'edited account settings cannot open a stale saved draft identity',
+    (tester) async {
+      var opens = 0;
+      await _show(
+        tester,
+        _Accounts(),
+        draftStoreFactory: (account) async {
+          opens++;
+          return MemoryStudioMailDrafts().open(account);
+        },
+      );
+      final open = tester
+          .widget<OutlinedButton>(_key('studio-mail-open-local-drafts'))
+          .onPressed!;
+      await tester.enterText(
+        _field(_strings.emailAddress),
+        'different@example.test',
+      );
+      open();
+      await _pump(tester);
+      expect(opens, 0);
+      expect(find.byType(StudioMailLocalDraftsDialog), findsNothing);
+    },
+  );
+
+  testWidgets(
+    'autodiscovered saved metadata does not guess an offline draft key',
+    (tester) async {
+      const credentials = StudioMailCredentials(
+        email: 'discovered@example.test',
+        password: 'fixture-only',
+        imapHost: 'discovered.example.test',
+        smtpHost: 'smtp.example.test',
+        manual: false,
+        startTls: false,
+      );
+      final accounts = _Accounts()
+        ..catalog = StudioMailAccountCatalog(
+          accounts: [
+            StudioMailSavedAccount(
+              id: credentials.accountId,
+              credentials: credentials,
+            ),
+          ],
+          selectedAccountId: credentials.accountId,
+        );
+      await _show(tester, accounts);
+      expect(_key('studio-mail-open-local-drafts'), findsNothing);
+      expect(find.text(_strings.connect), findsOneWidget);
+    },
+  );
 
   testWidgets(
     'duplicate account labels expose exact routes and Forget targets at compact width',

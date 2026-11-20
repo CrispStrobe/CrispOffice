@@ -250,6 +250,11 @@ class _Recorder {
         flow.columnTop != cp.columnTop ||
         adjacentAfter != cp.adjacentAfter ||
         flow.hasContent != cp.hasContent ||
+        // Retained checkpoints address prefix slices on the partial page.
+        // Equal vertical flow alone does not preserve those slice lengths
+        // (for example, extra lines inside a fixed-height table row).
+        flow.current.length != cp.lines ||
+        flow.currentFrames.length != cp.frames ||
         cp.wrapFrames ||
         _hasWrapFrames(flow.currentFrames)) {
       return false;
@@ -301,9 +306,9 @@ class _Recorder {
 /// A paragraph's line breaks with the environment they were made for. The
 /// paragraph's own content (text, run and paragraph properties) is not part
 /// of the key: entries are read only for blocks an incremental layout proved
-/// unchanged since the previous layout. Dirty or noncacheable layouts retire
-/// old entries before returning, so wrapped or empty content cannot leave stale
-/// unwrapped breaks behind.
+/// unchanged since the previous layout. Dirty blocks and full layouts discard
+/// old entries before shaping, including empty and frame-wrapping paths that
+/// do not produce replacement cache entries.
 class _BreakCache {
   _BreakCache(
     this.lines, {

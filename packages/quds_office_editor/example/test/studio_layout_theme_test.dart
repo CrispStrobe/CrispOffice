@@ -4,10 +4,12 @@ import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:quds_office_editor/quds_office_editor.dart';
 import 'package:quds_office_studio/studio_chrome.dart';
+import 'package:quds_office_studio/studio_credential_storage.dart';
 import 'package:quds_office_studio/studio_mail.dart';
 import 'package:quds_office_studio/studio_downloads_manager.dart';
 import 'package:quds_office_studio/studio_ribbon_preferences.dart';
 import 'package:quds_office_studio/suite_workspace.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'support/studio_document_mode.dart';
 import 'support/studio_test_settings.dart';
@@ -485,6 +487,16 @@ void main() {
   testWidgets(
     'Mail uses shared chrome without duplicate keys or traffic-light overlap',
     (tester) async {
+      // SuiteWorkspace owns the dialog, so isolate its default catalog through
+      // the public session backend without opening platform preferences.
+      SharedPreferences.setMockInitialValues(<String, Object>{});
+      final credentialSelection = StudioCredentialStorage.instance;
+      final previousMode = credentialSelection.mode;
+      final previousPath = credentialSelection.customPath;
+      await credentialSelection.select(StudioCredentialMode.session);
+      addTearDown(
+        () => credentialSelection.select(previousMode, path: previousPath),
+      );
       await _studio(tester);
       final mail = find.byWidgetPredicate(
         (w) => w is StudioAppSwitcher && w.label == 'Mail',

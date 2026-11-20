@@ -16,6 +16,8 @@ import 'studio_mail_outbox_dialog.dart';
 import 'studio_mail_outbox_strings.dart';
 import 'studio_mail_draft_store.dart';
 import 'studio_mail_draft_store_native.dart';
+import 'studio_mail_drafts_dialog.dart';
+import 'studio_mail_drafts_strings.dart';
 import 'studio_mail_operation.dart';
 import 'studio_mail_reply.dart';
 import 'studio_mail_strings.dart';
@@ -580,6 +582,13 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
           MailProblemCode.permissionDenied,
         );
       }
+      if (candidate case StudioMailDraftCatalog(
+        :final account,
+      ) when account != identity.account) {
+        throw const StudioMailDraftStoreException(
+          MailProblemCode.permissionDenied,
+        );
+      }
       final restored = await candidate.load();
       if (!_current(provider, lease)) {
         await _closeDraftStore(candidate);
@@ -1054,16 +1063,79 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
     }
   }
 
+  Future<void> _openDrafts() => runStudioMailOperation(() async {
+    final provider = _provider;
+    final session = _session;
+    if (provider == null || session == null || !_connected || _blocked) return;
+    final lease = session.begin();
+    if (!await _restoreDraftStore(provider, session, lease)) return;
+    if (!_current(provider, lease)) return;
+    final store = _draftStore!;
+    final catalog = switch (store) {
+      StudioMailDraftCatalog value => value,
+      _ => null,
+    };
+    if (catalog == null) {
+      setState(() => _error = widget.strings.mailDraftListFailed);
+      return;
+    }
+    bool current() =>
+        _current(provider, lease) && identical(store, _draftStore);
+    StudioMailStoredDraft? chosen;
+    var catalogOpened = false;
+    setState(() => _dialogOpen = true);
+    try {
+      final retained = _draft;
+      if (retained != null) {
+        await store.save(retained, submissionUncertain: _submissionUncertain);
+      }
+      if (!mounted || !current()) return;
+      catalogOpened = true;
+      chosen = await showDialog<StudioMailStoredDraft>(
+        context: context,
+        barrierDismissible: false,
+        builder: (_) => StudioMailDraftsDialog(
+          strings: widget.strings,
+          catalog: catalog,
+          isCurrent: current,
+        ),
+      );
+      if (!current()) return;
+      final selected = chosen ?? await store.load();
+      if (!current()) return;
+      setState(() {
+        _draft = selected?.draft;
+        _submissionUncertain = selected?.submissionUncertain ?? false;
+        _error = _submissionUncertain
+            ? widget.strings.mailSubmissionUncertain
+            : null;
+        _notice = null;
+      });
+    } on Object {
+      if (current()) {
+        setState(() {
+          _error = widget.strings.mailDraftListFailed;
+          if (catalogOpened) {
+            _draftStore = null;
+            _draft = null;
+            _submissionUncertain = false;
+          }
+        });
+        if (catalogOpened) await _closeDraftStore(store);
+      }
+      chosen = null;
+    } finally {
+      if (_current(provider, lease)) setState(() => _dialogOpen = false);
+    }
+    if (chosen != null && current()) await _compose();
+  });
+
   Future<void> _compose([
     StudioMailDraft? initial,
   ]) => runStudioMailOperation(() async {
     final provider = _provider;
     final session = _session;
-    if (provider == null ||
-        session == null ||
-        !_connected ||
-        !_canSend ||
-        _blocked) {
+    if (provider == null || session == null || !_connected || _blocked) {
       return;
     }
     final lease = session.begin();
@@ -1074,10 +1146,46 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
       StudioMailOutboxStore value => value,
       _ => null,
     };
-    if (initial != null && _draft != null) {
+    final catalog = switch (store) {
+      StudioMailDraftCatalog value => value,
+      _ => null,
+    };
+    if (initial != null && catalog != null) {
+      setState(() => _busy = true);
+      try {
+        final retained = _draft;
+        if (retained != null) {
+          await store.save(retained, submissionUncertain: _submissionUncertain);
+        }
+        if (!_current(provider, lease)) return;
+        final created = await catalog.createDraft(initial);
+        if (!_current(provider, lease)) return;
+        setState(() {
+          _draft = created.draft;
+          _submissionUncertain = created.submissionUncertain;
+          _error = null;
+          _notice = null;
+        });
+      } on Object {
+        if (_current(provider, lease)) {
+          setState(() => _error = widget.strings.mailDraftListFailed);
+        }
+        return;
+      } finally {
+        if (_current(provider, lease)) setState(() => _busy = false);
+      }
+    } else if (initial != null && _draft != null) {
       setState(() => _error = widget.strings.mailRetainedDraft);
       return;
     }
+    if (!mounted || !_current(provider, lease)) return;
+    final selectedId = catalog?.selectedDraftId;
+    final selectionEpoch = catalog?.selectionEpoch;
+    bool currentDraft() =>
+        _current(provider, lease) &&
+        identical(store, _draftStore) &&
+        catalog?.selectedDraftId == selectedId &&
+        catalog?.selectionEpoch == selectionEpoch;
     setState(() => _dialogOpen = true);
     final draft = await showDialog<StudioMailDraft>(
       context: context,
@@ -1085,12 +1193,12 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
       builder: (context) => StudioMailComposeDialog(
         strings: widget.strings,
         from: _sender,
+        canSend: _canSend,
         initialDraft: initial ?? _draft,
         previousSubmissionUncertain: _submissionUncertain,
-        onQueueDraft: outbox != null
+        onQueueDraft: outbox != null && _canSend
             ? (snapshot) async {
-                if (!_current(provider, lease) ||
-                    !identical(store, _draftStore)) {
+                if (!currentDraft()) {
                   throw const StudioMailDraftStoreException(
                     MailProblemCode.unavailable,
                   );
@@ -1107,7 +1215,7 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
               }
             : null,
         onSaveDraft: (snapshot) async {
-          if (!_current(provider, lease) || !identical(store, _draftStore)) {
+          if (!currentDraft()) {
             throw const StudioMailDraftStoreException(
               MailProblemCode.unavailable,
             );
@@ -1119,7 +1227,7 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
     );
     if (!_current(provider, lease)) return;
     setState(() => _dialogOpen = false);
-    if (draft == null) return;
+    if (draft == null || !currentDraft() || !_canSend) return;
     if (outbox != null) {
       await _sendThroughOutbox(draft, outbox, provider, lease);
       return;
@@ -1220,9 +1328,9 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
     final result = _reader?.result;
     final message = result?.message;
     if (result == null || message == null || !_canSend || _blocked) return;
-    // Retained drafts take precedence over validating/copying a new source.
+    // Legacy injected stores expose one slot; catalogs keep independent replies.
     // _compose also guards after asynchronous account-store restoration.
-    if (_draft != null) {
+    if (_draft != null && _draftStore is! StudioMailDraftCatalog) {
       setState(() {
         _error = widget.strings.mailRetainedDraft;
         _notice = null;
@@ -1331,7 +1439,13 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
             IconButton(
               tooltip: widget.strings.compose,
               icon: const Icon(Icons.edit_outlined),
-              onPressed: _blocked || !_canSend ? null : () => _compose(),
+              onPressed: _blocked ? null : () => _compose(),
+            ),
+            IconButton(
+              key: const ValueKey('studio-mail-open-drafts'),
+              tooltip: widget.strings.mailDrafts,
+              icon: const Icon(Icons.drafts_outlined),
+              onPressed: _blocked ? null : _openDrafts,
             ),
             IconButton(
               key: const ValueKey('studio-mail-open-outbox'),

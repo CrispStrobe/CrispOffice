@@ -22,7 +22,7 @@ class LogEntry {
   final LogLevel level;
   final String logger;
   final String message;
-  final Map<String, dynamic>? data;
+  final Map<String, Object?>? data;
   final Object? error;
   final StackTrace? stackTrace;
 
@@ -131,13 +131,13 @@ class Log {
 
   const Log(this.name);
 
-  void trace(String message, [Map<String, dynamic>? data]) =>
+  void trace(String message, [Map<String, Object?>? data]) =>
       _emit(LogLevel.trace, message, data: data);
 
-  void debug(String message, [Map<String, dynamic>? data]) =>
+  void debug(String message, [Map<String, Object?>? data]) =>
       _emit(LogLevel.debug, message, data: data);
 
-  void info(String message, [Map<String, dynamic>? data]) =>
+  void info(String message, [Map<String, Object?>? data]) =>
       _emit(LogLevel.info, message, data: data);
 
   void warn(String message, [Object? error, StackTrace? stackTrace]) =>
@@ -149,7 +149,7 @@ class Log {
   void _emit(
     LogLevel level,
     String message, {
-    Map<String, dynamic>? data,
+    Map<String, Object?>? data,
     Object? error,
     StackTrace? stackTrace,
   }) {

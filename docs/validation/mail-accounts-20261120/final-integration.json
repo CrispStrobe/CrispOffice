@@ -1,0 +1,34 @@
+{
+  "status": "Qualified combined source; documentation publication in follow-up PR251",
+  "incoming_main": "13be50464d1b43e9f2100fb9ccc12f8fe22eb55e",
+  "previous_publication": "e1fd2e14cf49f70532a7243e3e64330ac4ad80a6",
+  "followup_pr": 251,
+  "original_pr": {
+    "number": 243,
+    "merged_head": "a059c0249a25bef602640c8b8d504bd8da41c619",
+    "merge_commit": "f7bf155337b0ba77dc20c6be548ef38ac06c5c65"
+  },
+  "incoming_scope": "Durable Outbox provider/foreground integration and Word frame-cache repair",
+  "merge": "Native clean merge; no manual product resolution",
+  "prior_qualification": {
+    "commit": "625f4d76d10ddf2144220f25ae8d867452eeed61",
+    "cases": 699,
+    "scope": "Historical for this final combined source; not automatically requalified."
+  },
+  "ci": "No GitHub Actions/check/status polling or waiting",
+  "qualified_source": "c20b41d9c7eed574c02e49f1fd96789843aec2e6",
+  "qualified_tree": "6a4a3402f2156490d8a7c0b1cb8d9d21fcb3ef32",
+  "accepted_cases": 232,
+  "accepted_suites": 17,
+  "failed": 0,
+  "skipped": 0,
+  "strict_dart_targets": 19,
+  "source_continuity": "source-continuity.json",
+  "qualification": "final-integration-qualification.json",
+  "evidence_archive": {
+    "file": "final-integration-evidence.tar.xz",
+    "bytes": 660536,
+    "sha256": "afb908afca716a5922344800516a47cf82fc146b6f9a7891a23d430110fc7e21"
+  },
+  "publication_and_merge": "https://github.com/CrispStrobe/quds_office_suite/pull/251"
+}

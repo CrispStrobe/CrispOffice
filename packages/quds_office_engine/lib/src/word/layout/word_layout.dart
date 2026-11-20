@@ -1751,10 +1751,13 @@ class WordLayoutEngine {
     _Flow? flow,
     bool allowBreak = true,
   }) {
-    // Cached breaks belong to the previous layout's unchanged content.
-    // A dirty or full layout must retire them even if it exits before the
-    // ordinary breaker (empty text or wrapping frames).
-    if (!_breakCacheReadable) _breakCache[paragraph] = null;
+    if (!_breakCacheReadable) {
+      // Dirty blocks and full layouts cannot retain breaks from an earlier
+      // version of this paragraph. Clear before any empty or frame-wrapping
+      // path, which may produce no replacement cache entry; otherwise a later
+      // clean layout could resurrect those stale glyphs after the flow moves.
+      _breakCache[paragraph] = null;
+    }
     final WmlRunProps runProps = paragraph.inlines.isEmpty
         ? paragraph.properties.importedParagraphMark ??
               WmlRunEdit.propsAt(paragraph, 0)
@@ -2053,9 +2056,12 @@ class WordLayoutEngine {
         currentFrames.any(
           (box) => box.frame != null && box.frame!.wrap != WmlFrameWrap.none,
         );
-    // Wrapping is position dependent. If this layout cannot cache its new
-    // breaks, an older unwrapped entry must not survive for a later page.
-    if (wrapsFrames) _breakCache[paragraph] = null;
+    // Wrapping uses a separate breaker and does not replace the ordinary
+    // paragraph cache. Discard an older entry: a dirty paragraph may change
+    // its font or text while wrapping, then later move off the frame's page.
+    if (wrapsFrames) {
+      _breakCache[paragraph] = null;
+    }
     // Line breaks of a paragraph the caller proved unchanged since the last
     // layout (incremental layout, clean block) are reused when the width
     // environment is the same; shaping dominates layout cost.

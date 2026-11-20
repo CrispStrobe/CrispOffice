@@ -219,7 +219,7 @@ inspection receipt, not a complete dependency or runtime certification.
 **Depends on:** M04 and M05; connected acceptance also requires M06/M07. **Files:** quds_mail_ui/workspace.
 
 - [x] Deliver the bounded foreground-list foundation: shared virtualized loaded-message list, stable identities, local subject/sender search, conjunctive unread/flagged filters, keyboard activation, compact reader/Back state and explicit 50-message pagination across native Studio hosts. Native IMAP browsing has its own scoped descending-UID cursor and a 1,000-loaded-message host ceiling; confirmed flag actions preserve nullable observations. See the [contract](mailbox-workspace.md) and [local evidence](../../validation/mail-workspace-20261120/README.md). This is a prerequisite slice and does not close the broader items below.
-- [ ] Qualify the native [remembered IMAP/SMTP account chooser](remembered-accounts.md): bounded keychain catalog, legacy migration, explicit selection/connection, selected-only Forget and unchanged per-account draft recovery. This host increment does not close the provider-neutral repository-driven switching item below.
+- [x] Qualify the native [remembered IMAP/SMTP account chooser](remembered-accounts.md) with deterministic storage/provider fixtures: bounded selected-backend catalog, verified legacy migration, explicit selection/connection, selected-only Forget and unchanged per-account draft recovery. See the [local qualification and source-bound evidence](../../validation/mail-accounts-20261120/README.md). The provider-neutral repository-driven switching item below remains open.
 - [ ] Implement QudsMailWorkspace with account/folder or label navigation, paginated/virtualized message and conversation lists, stable selection and coordinated reader/composer sessions.
 - [ ] Drive lists, unread counts and local search from repository streams; keep loading, empty, offline, synchronizing, failed credentials and unsupported capabilities distinct.
 - [ ] Bind read/unread, flag, archive, move, delete and supported bulk actions to durable commands; expose failure/reconciliation status without discarding local state.
@@ -348,16 +348,21 @@ interrupted-send recovery to SMTP, EWS, Gmail and Graph. The later
 [Outbox continuation](outbox.md) atomically transfers a saved draft into a frozen
 queue and exposes explicit send/retry/cancel with restart recovery. The
 [reply/forward continuation](reply-forward.md) adds complete supported attachment
-forwarding. Multiple drafts, richer bodies, Sent reconciliation and live-provider
-gates remain open; this does not complete M07 or the document-snapshot work in M08.
+forwarding. The [multiple-draft continuation](multiple-drafts.md) adds independent
+local drafts and offline entry for remembered explicit-server/preset IMAP
+accounts. Richer bodies, broader offline sessions, server draft synchronization,
+Sent reconciliation and live-provider gates remain open; this does not complete
+M07 or the document-snapshot work in M08.
 
 - [x] Add bounded outgoing file attachments to the shared Studio foreground
   composer and retain their immutable bytes across rejected/uncertain attempts.
-- [x] Typed draft model, identity/To/Cc/Bcc, subject, attachments and reply/reply-all/forward, with one local autosaved draft per native account. Preserve incomplete recipient text separately from validated transport addresses.
+- [x] Typed draft model, identity/To/Cc/Bcc, subject, attachments and reply/reply-all/forward, with independently retained local drafts per native account. Preserve incomplete recipient text separately from validated transport addresses.
 - [x] Debounce saves, flush close/send, expose pending/saved/failure states, compare revisions, retain immutable attachment blobs and restore after reconnect. Explicit confirmed unsaved exit remains available during storage failure.
 - [x] Persist a possible-submission marker before provider invocation. Recover interrupted sends with explicit delivery-check acknowledgement; clear accepted/discarded drafts durably. Only a matching definite rejection can retire the current attempt's marker, preserving any earlier uncertainty.
 - [x] Reuse the Word custom RenderBox surface for the plain-text body, including IME, selection, undo, bidi and accessibility. Rich mail formatting remains below.
-- [ ] Add a local draft list with multiple simultaneous drafts, offline entry without reconnecting, explicit retention management and provider-side draft synchronization.
+- [x] Add a bounded local draft list with independent IDs/revisions, new/resume/delete actions, per-draft uncertainty and exact Outbox handoff. Preserve the legacy draft and reject stale selection callbacks. See [multiple-drafts.md](multiple-drafts.md).
+- [x] Add save-only offline draft entry for remembered IMAP accounts with explicit servers or a provider preset, without constructing a provider or discovering settings.
+- [ ] Persist verified offline connection/session metadata for autodiscovered IMAP, EWS and cloud accounts; add provider-side Drafts synchronization.
 - [ ] Initial canonical body supports paragraphs, line breaks, emphasis, lists and links; add tables/inline images only with serializer/round-trip tests.
 - [ ] Generate multipart plain/HTML with deterministic boundaries and transfer encodings; preserve quoted original content as data.
 - [ ] Generate ASCII-safe wire MIME for the current text-oriented enough_mail SMTP API. Encode display names/subjects/filenames and payloads correctly. Handle non-ASCII mailbox local parts through negotiated SMTPUTF8 or explicit unsupported feedback.

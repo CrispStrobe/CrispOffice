@@ -1,0 +1,442 @@
+{
+  "schema": 1,
+  "qualified_source_commit": "c20b41d9c7eed574c02e49f1fd96789843aec2e6",
+  "archive": {
+    "file": "final-integration-evidence.tar.xz",
+    "bytes": 660536,
+    "sha256": "afb908afca716a5922344800516a47cf82fc146b6f9a7891a23d430110fc7e21"
+  },
+  "members": [
+    {
+      "path": "validation-final/audit_main_refresh.py",
+      "bytes": 17429,
+      "sha256": "6f053152a1a6d537a42008b7bfb0e7f80d518d2a73b94f1e1819812b77b2d60c"
+    },
+    {
+      "path": "validation-final/cohort-plan.json",
+      "bytes": 1339,
+      "sha256": "64a3553bd19ad961ba58f4e106c947f5ef86b0ba0102855d4b077e110f63b949"
+    },
+    {
+      "path": "validation-final/final-integration-evidence-review.json",
+      "bytes": 225042,
+      "sha256": "89b2107464090451d635ed0c3ffe24aeefba80273bae8421d3d5114a18296cb8"
+    },
+    {
+      "path": "validation-final/main-refresh-review.json",
+      "bytes": 83132,
+      "sha256": "c28eede4516b41f13f4a686a040e2da9a67f2145670514555fafb97d1784b74e"
+    },
+    {
+      "path": "validation-final/monitors/outbox-core-c20b41d9.jsonl",
+      "bytes": 11662,
+      "sha256": "39e1e959646aa599cd368db80535d8140320aba894ee6cdf4ded8c52b3bbfd47"
+    },
+    {
+      "path": "validation-final/monitors/outbox-store-c20b41d9.jsonl",
+      "bytes": 12952,
+      "sha256": "5a71fffb6572da411afdee43dec88bae10746a13f65c082834bfa82d3eb35af2"
+    },
+    {
+      "path": "validation-final/monitors/outbox-store-native-c20b41d9.jsonl",
+      "bytes": 14382,
+      "sha256": "9d3db5f1982851286a2c378cafcc8bb04d92f59823e374b4b474e70449502736"
+    },
+    {
+      "path": "validation-final/monitors/outbox-studio-c20b41d9.jsonl",
+      "bytes": 86384,
+      "sha256": "24799281cc28d1fdee93b73832fd1d9b62d943e85052ecdcd194335261596fa8"
+    },
+    {
+      "path": "validation-final/monitors/word-frame-c20b41d9.jsonl",
+      "bytes": 37821,
+      "sha256": "2741beaca03ca1d9fcf448232a415d461b24683af40c7d6b98f38d4691d155de"
+    },
+    {
+      "path": "validation-final/native-assets-preparation.json",
+      "bytes": 1165,
+      "sha256": "6407e8d7c94f3e7f7242940916505772cbefd7f747a3dfb924f25eff5fbf2ecc"
+    },
+    {
+      "path": "validation-final/outbox-core-c20b41d9/events.jsonl",
+      "bytes": 7969,
+      "sha256": "72394330b19937618a1d73b2c23f9c1c977a458f60b794fe49a5b7d102079ee7"
+    },
+    {
+      "path": "validation-final/outbox-core-c20b41d9/inputs-after.json",
+      "bytes": 297365,
+      "sha256": "0ea11dd2cd01f136dc32b644afe1c79fa436200e459a5c42d3375e974bfab0f8"
+    },
+    {
+      "path": "validation-final/outbox-core-c20b41d9/inputs-before.json",
+      "bytes": 297365,
+      "sha256": "0ea11dd2cd01f136dc32b644afe1c79fa436200e459a5c42d3375e974bfab0f8"
+    },
+    {
+      "path": "validation-final/outbox-core-c20b41d9/process-exit.json",
+      "bytes": 132,
+      "sha256": "5fa587f06f2563ee8c04f52fcfe243d3f04fc9823d7324632fb561a0d9b98dc2"
+    },
+    {
+      "path": "validation-final/outbox-core-c20b41d9/run-start.json",
+      "bytes": 2582,
+      "sha256": "86afd542a6b41adef86fb7a90bc15e4e29f3d6c8879201416ccad0d9028694ad"
+    },
+    {
+      "path": "validation-final/outbox-core-c20b41d9/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "validation-final/outbox-core-c20b41d9/summary.json",
+      "bytes": 10563,
+      "sha256": "154adaf8a6f4b4bf9ace8989232afcf4f4fe9a2b5b379ab42759ccdaa9927b95"
+    },
+    {
+      "path": "validation-final/outbox-core-c20b41d9-driver.log",
+      "bytes": 4905,
+      "sha256": "e97aa269199482b54b05a43dbd5b1aac0289a4b9153913fb4397bb39cc7427cf"
+    },
+    {
+      "path": "validation-final/outbox-store-c20b41d9/events.jsonl",
+      "bytes": 62198,
+      "sha256": "b245d2d3b5f3b5bc7c6ebaee717891d8200a8c579876b975848f992434931b81"
+    },
+    {
+      "path": "validation-final/outbox-store-c20b41d9/inputs-after.json",
+      "bytes": 297641,
+      "sha256": "dce54f6cb4b32c32898fb69225d26caf2e3af517e3c42b520f1a6cf218ff352b"
+    },
+    {
+      "path": "validation-final/outbox-store-c20b41d9/inputs-before.json",
+      "bytes": 297641,
+      "sha256": "dce54f6cb4b32c32898fb69225d26caf2e3af517e3c42b520f1a6cf218ff352b"
+    },
+    {
+      "path": "validation-final/outbox-store-c20b41d9/process-exit.json",
+      "bytes": 132,
+      "sha256": "35d0bdcb85a63780236bc4986f86aaea9a00d8fa4d27ad5882df9f8213110d31"
+    },
+    {
+      "path": "validation-final/outbox-store-c20b41d9/run-start.json",
+      "bytes": 2823,
+      "sha256": "f8025b0c16764fac867cff19817da3673600e8fb389be945017779712d1aeb75"
+    },
+    {
+      "path": "validation-final/outbox-store-c20b41d9/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "validation-final/outbox-store-c20b41d9/summary.json",
+      "bytes": 58852,
+      "sha256": "78ad8297e7a45ecebaf6fffb5a33538650174e92d90c0e58876df3daaa0f8365"
+    },
+    {
+      "path": "validation-final/outbox-store-c20b41d9-driver.log",
+      "bytes": 17424,
+      "sha256": "837a8a5af4dc6dd1645740fad7db4c205186bc5076e8db8d932d109c7c7d88f5"
+    },
+    {
+      "path": "validation-final/outbox-store-native-c20b41d9/events.jsonl",
+      "bytes": 42738,
+      "sha256": "9496676af0d672484ad4b90170ac78ee049a5f2bd5f6ab4c16a9228d2fc18dca"
+    },
+    {
+      "path": "validation-final/outbox-store-native-c20b41d9/inputs-after.json",
+      "bytes": 298047,
+      "sha256": "4448f4998c67639e049d357e3acdd1977eabb2cfa811d000de439c4cce24002d"
+    },
+    {
+      "path": "validation-final/outbox-store-native-c20b41d9/inputs-before.json",
+      "bytes": 298047,
+      "sha256": "7822b8c713ecf829eda273519484003add185620dace629af1e68a5379f83407"
+    },
+    {
+      "path": "validation-final/outbox-store-native-c20b41d9/process-exit.json",
+      "bytes": 132,
+      "sha256": "a7dc99c93b83add8bb7b28a8ae5fbab4621977ecdf81f72cebca5ba601f6b220"
+    },
+    {
+      "path": "validation-final/outbox-store-native-c20b41d9/run-start.json",
+      "bytes": 3867,
+      "sha256": "e4ab4b78ec1c5fd149fc36cb67791542c168099fbfcd879373c2cf46a13519bf"
+    },
+    {
+      "path": "validation-final/outbox-store-native-c20b41d9/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "validation-final/outbox-store-native-c20b41d9/summary.json",
+      "bytes": 41029,
+      "sha256": "f4a38f5e21ef98e09e6aec3195dad4ad965065eb145f27014dbd3072c51a1737"
+    },
+    {
+      "path": "validation-final/outbox-store-native-c20b41d9-driver.log",
+      "bytes": 6569,
+      "sha256": "57a74696ad743d4b0ed3d9050bb956fa24a078d3707852c914f8c8d27d1b2f0c"
+    },
+    {
+      "path": "validation-final/outbox-studio-c20b41d9/events.jsonl",
+      "bytes": 98183,
+      "sha256": "fefcee5c4ad06f0bf8bb34c607d845e53cb6668596f56ef014ea71555c1b4259"
+    },
+    {
+      "path": "validation-final/outbox-studio-c20b41d9/inputs-after.json",
+      "bytes": 300845,
+      "sha256": "99ee1375ac435ab64e927756279a509ea3af96aaefbc0af4cfba711a30b4427f"
+    },
+    {
+      "path": "validation-final/outbox-studio-c20b41d9/inputs-before.json",
+      "bytes": 300845,
+      "sha256": "99ee1375ac435ab64e927756279a509ea3af96aaefbc0af4cfba711a30b4427f"
+    },
+    {
+      "path": "validation-final/outbox-studio-c20b41d9/process-exit.json",
+      "bytes": 132,
+      "sha256": "feb8aff744cbc45638c5e3c2be9131100206d1250cba2c841da17758708ae34f"
+    },
+    {
+      "path": "validation-final/outbox-studio-c20b41d9/run-start.json",
+      "bytes": 3283,
+      "sha256": "febce6044f9cdf0ae05b82e108f57919fafd76739916673f7443647f6aeb3b99"
+    },
+    {
+      "path": "validation-final/outbox-studio-c20b41d9/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "validation-final/outbox-studio-c20b41d9/summary.json",
+      "bytes": 99824,
+      "sha256": "43182f90b050ed4c48283793579f73e941984afe1fc44a1588507ade240812be"
+    },
+    {
+      "path": "validation-final/outbox-studio-c20b41d9-driver.log",
+      "bytes": 8041,
+      "sha256": "971dbb6955848cd9282899f454841bf803ad6c32836c208a3bf140dec079879e"
+    },
+    {
+      "path": "validation-final/prepare_replay_manifest.py",
+      "bytes": 10114,
+      "sha256": "48a5e9226c372af759866b6baef86052d87186a75835f34e5325bc9a39be8e02"
+    },
+    {
+      "path": "validation-final/qualification.json",
+      "bytes": 23678,
+      "sha256": "3195b193e27cefcde5819245c93e9d2b6862964cca960649d57648e33da0ca47"
+    },
+    {
+      "path": "validation-final/replay-offline-review.json",
+      "bytes": 225089,
+      "sha256": "a6bc003e469f27c6b4ff62ec8ecc8a47a3a94e08baa21be9fa08268b9280b8f8"
+    },
+    {
+      "path": "validation-final/replay-plan.json",
+      "bytes": 12299,
+      "sha256": "0b6494d4919240404f31b4b289a6d5539012acb02f90aa918780f5e23805a751"
+    },
+    {
+      "path": "validation-final/replay-root-verification.json",
+      "bytes": 225042,
+      "sha256": "083ca3d8f3fd80a6fecff9a6033109ace26688e1dd58dc65ef67d9df54ffe080"
+    },
+    {
+      "path": "validation-final/replay-runtime-sources/generated-input-0143eb87bb2fbfc4.json",
+      "bytes": 275,
+      "sha256": "0143eb87bb2fbfc448bcef0903e7238085b1e62f6e439d8da0572a04b75b9491"
+    },
+    {
+      "path": "validation-final/replay-runtime-sources/generated-input-0143eb87bb2fbfc4.yaml",
+      "bytes": 275,
+      "sha256": "0143eb87bb2fbfc448bcef0903e7238085b1e62f6e439d8da0572a04b75b9491"
+    },
+    {
+      "path": "validation-final/replay-runtime-sources/generated-input-ec17cebb7ec7bb1c.json",
+      "bytes": 39837,
+      "sha256": "ec17cebb7ec7bb1cbe890baf646320a4999b7626de385bbb23939d0e476638fc"
+    },
+    {
+      "path": "validation-final/replay-runtime-sources/test-entrypoint-43c93a6773b13eec.dart",
+      "bytes": 260,
+      "sha256": "43c93a6773b13eecbf7e9d1c0511da4cb0b8b3cf55f051cf124f34d4843af008"
+    },
+    {
+      "path": "validation-final/replay_evidence.py",
+      "bytes": 31904,
+      "sha256": "a35b058c7c0af0910e312843fefbccac4e7f5df5e28c2c4a350c8eb0544fd0a0"
+    },
+    {
+      "path": "validation-final/run_final_engine_gate.py",
+      "bytes": 18799,
+      "sha256": "a9e06613523703cd399118064cd59784b7d8e18204684f56b382da7aa8187dca"
+    },
+    {
+      "path": "validation-final/run_mail_gate.py",
+      "bytes": 12428,
+      "sha256": "df9a8f99d071cba6879476a68584c586d896068c686c5d82f8cc3365902e4740"
+    },
+    {
+      "path": "validation-final/run_selected_cohorts.py",
+      "bytes": 1646,
+      "sha256": "cff294da498ff8e643a0afdcdfb12f527a0cde888c12a2f7abf19ed84c61f6e7"
+    },
+    {
+      "path": "validation-final/run_static_delta.py",
+      "bytes": 3169,
+      "sha256": "8615dbb9e6b1a86a3ccacc96f118607a38a1e3d8d01543004075c8d3dd757dde"
+    },
+    {
+      "path": "validation-final/run_store_native_gate.py",
+      "bytes": 4257,
+      "sha256": "e51d9a06c7a2a1b5d889e137f0ed0e05de18c83b9f05b427781ffecdc14e47b1"
+    },
+    {
+      "path": "validation-final/source-bindings-c20b41d9.json",
+      "bytes": 609819,
+      "sha256": "15863a9ce4e76203acfac4a1749e790ce50e6dd08374392ffb1fd275886c1031"
+    },
+    {
+      "path": "validation-final/source-continuity.json",
+      "bytes": 3716400,
+      "sha256": "aaee74c21d3739dfda0cd59cb2804bcfa8bf9eb3c0139ea37009907b767a956d"
+    },
+    {
+      "path": "validation-final/sqlite-generated-native-assets.json",
+      "bytes": 275,
+      "sha256": "0143eb87bb2fbfc448bcef0903e7238085b1e62f6e439d8da0572a04b75b9491"
+    },
+    {
+      "path": "validation-final/sqlite-workspace-native-assets.yaml",
+      "bytes": 275,
+      "sha256": "0143eb87bb2fbfc448bcef0903e7238085b1e62f6e439d8da0572a04b75b9491"
+    },
+    {
+      "path": "validation-final/static-c20b41d9/credential_core-exit.json",
+      "bytes": 1338,
+      "sha256": "6de7a222482af9672f8dc827fec93721620577bc4a33f927d77b757b370cbf94"
+    },
+    {
+      "path": "validation-final/static-c20b41d9/credential_core-resources.jsonl",
+      "bytes": 4536,
+      "sha256": "281bcb38cf4a8474a993f6a00f355715d0d0bcae14c3248298ea532d2f72bf16"
+    },
+    {
+      "path": "validation-final/static-c20b41d9/credential_core.log",
+      "bytes": 47,
+      "sha256": "f563caa2a0664918ac5bfbb6ecf7aeaca338db9c4efa5291b6d77c6ace426f5a"
+    },
+    {
+      "path": "validation-final/static-c20b41d9/format.log",
+      "bytes": 48,
+      "sha256": "f5b5c05e10ce2f00e09aa4b3303d10e90789687ac772261a9dda5f67ccb509bb"
+    },
+    {
+      "path": "validation-final/static-c20b41d9/inputs-after.json",
+      "bytes": 2845,
+      "sha256": "e06c566336657ad6477ffc26592d8bcdff3fa2c64a81b47634da952fcf5169f6"
+    },
+    {
+      "path": "validation-final/static-c20b41d9/inputs-before.json",
+      "bytes": 2899,
+      "sha256": "4d40fb6613019660f2df4a307c3b5242d75fb967f156cfbf333031339647742c"
+    },
+    {
+      "path": "validation-final/static-c20b41d9/mail_ui-exit.json",
+      "bytes": 690,
+      "sha256": "cd7f071e2eb58187090343d1a1345976246524e82829fe79fc56284f38d5829b"
+    },
+    {
+      "path": "validation-final/static-c20b41d9/mail_ui-resources.jsonl",
+      "bytes": 8733,
+      "sha256": "83e2bdfaf8eb1ee6667a1a44f2f53c9784e14fe10b7300372489f2bd56e3930e"
+    },
+    {
+      "path": "validation-final/static-c20b41d9/mail_ui.log",
+      "bytes": 47,
+      "sha256": "84fa0fc2d28e20c177badf3f0c633eefdaecbacbd4bd86464f0bfb42d45af57a"
+    },
+    {
+      "path": "validation-final/static-c20b41d9/studio_host-exit.json",
+      "bytes": 1908,
+      "sha256": "89bae8bc7f29200734825e80c1f73452e68c1248d43a14f24740a58240bfbff1"
+    },
+    {
+      "path": "validation-final/static-c20b41d9/studio_host-resources.jsonl",
+      "bytes": 17519,
+      "sha256": "f363a3ec6a2e6dd9cc31cdac2b4861b1b48f6c7eac592050386cc61316367a02"
+    },
+    {
+      "path": "validation-final/static-c20b41d9/studio_host.log",
+      "bytes": 48,
+      "sha256": "7311293a486cdc2914e390858dc93d6c0e4a6a3127a90c1265a50b84954808f5"
+    },
+    {
+      "path": "validation-final/static-c20b41d9/summary.json",
+      "bytes": 6177,
+      "sha256": "33773192a37ffd85dabf9d9c365ff4f76f50aba6f50ca26667461e8a60b443cf"
+    },
+    {
+      "path": "validation-final/verify_archive.py",
+      "bytes": 2631,
+      "sha256": "ed769d0b845862c4ce6023583dbd6860009ad5a2ebdb5936c8d7c5d76d4875e0"
+    },
+    {
+      "path": "validation-final/verify_publication.py",
+      "bytes": 4045,
+      "sha256": "86fca1a09d667564c7b18620c50cba869e7a8a7391442c65caa0b3b33db7b413"
+    },
+    {
+      "path": "validation-final/word-frame-c20b41d9/events.jsonl",
+      "bytes": 11503,
+      "sha256": "a4ccd4b3006f13639b628c8dac024fdfc8e2646ea008cb80af41c1d05c210066"
+    },
+    {
+      "path": "validation-final/word-frame-c20b41d9/inputs-after.json",
+      "bytes": 79625,
+      "sha256": "520c38907a817e7d3252206153a883fc957cd90c1a23a7e4fbd7b0213d6612e3"
+    },
+    {
+      "path": "validation-final/word-frame-c20b41d9/inputs-before.json",
+      "bytes": 79625,
+      "sha256": "520c38907a817e7d3252206153a883fc957cd90c1a23a7e4fbd7b0213d6612e3"
+    },
+    {
+      "path": "validation-final/word-frame-c20b41d9/process-exit.json",
+      "bytes": 132,
+      "sha256": "51937314f5114480fecda1aac7a9211af462c5458dfca2141dbcd3705843006a"
+    },
+    {
+      "path": "validation-final/word-frame-c20b41d9/run-start.json",
+      "bytes": 2514,
+      "sha256": "cbcf5288e95b7bfcc575439e02847ff7761fd4f2012e1e434c4de8190991e18b"
+    },
+    {
+      "path": "validation-final/word-frame-c20b41d9/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "validation-final/word-frame-c20b41d9/summary.json",
+      "bytes": 13037,
+      "sha256": "8092f7ab10f87394f96e4c60a0af256bac5a6756fbd4e52d926b8bfaf4cc004d"
+    },
+    {
+      "path": "validation-final/word-frame-c20b41d9-driver.log",
+      "bytes": 5041,
+      "sha256": "c5712f905dd2dc0d4c55fc7986c89e71be5aa428b3386f9b397720b599ea8332"
+    },
+    {
+      "path": "runtime/monitor_process.py",
+      "bytes": 7212,
+      "sha256": "e48a0dd3481ddb90de5c875c97459133b47bef42b3162a411b436b319e4c2af7"
+    },
+    {
+      "path": "runtime/env.sh",
+      "bytes": 807,
+      "sha256": "bd7707ecaca0a5c3c3d10c0cffe767dc8f3610ce0ce7790354ae052cacd59fa0"
+    }
+  ],
+  "scope": "Final source-bound accepted/rejected raw events, input manifests, native asset map/receipt, strict static analysis, preservation audit, exact runners and portable replay. The SQLite binary and SDK/package caches are hash-bound rather than bundled. Earlier625 evidence remains a separate committed archive."
+}

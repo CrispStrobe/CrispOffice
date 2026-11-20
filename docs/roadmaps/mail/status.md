@@ -1,5 +1,22 @@
 # Mail implementation status — 20 November 2026
 
+## Multiple local drafts and offline composition
+
+The [multiple-draft continuation](multiple-drafts.md) adds a bounded,
+account-scoped draft chooser to native IMAP/SMTP and the shared EWS/Gmail/
+Microsoft 365 host. New messages and replies have independent IDs, revisions,
+attachment snapshots and earlier-send uncertainty. Selection and confirmed
+deletion reject stale account/revision snapshots; Outbox handoff affects only
+the chosen draft. The previous single-slot draft remains recoverable.
+
+Remembered explicit-server and preset IMAP accounts additionally offer **Local
+drafts** before connecting. This save-only workspace never creates a provider or
+invokes discovery; it releases its store lease before returning to connection
+setup. Historical autodiscovery records lack enough verified metadata for this
+offline entry. EWS/cloud offline sessions, provider Drafts synchronization and
+the repository-driven offline inbox remain future work. See the
+[source and validation record](../../validation/mail-multiple-drafts-20261120/README.md).
+
 ## Durable foreground Outbox
 
 The [Outbox continuation](outbox.md) connects native Studio Send and Queue in
@@ -13,8 +30,9 @@ cancellation and confirmed terminal-record cleanup are available.
 The production native host reuses its existing draft-store lease and account
 identity. Reconnect to that identity to inspect its queue after restart. This
 supersedes historical statements below that no visible durable outbox existed;
-their original qualification scope remains unchanged. Multiple drafts, offline
-entry, rich authoring, scheduling/undo-send, detailed SMTP recipient outcomes,
+their original qualification scope remains unchanged. The multiple-draft and
+limited offline-entry continuation is described above. Rich authoring,
+scheduling/undo-send, detailed SMTP recipient outcomes,
 Sent reconciliation and installed/live-provider qualification remain open.
 See the [local evidence](../../validation/mail-outbox-20261120/README.md).
 
@@ -47,28 +65,46 @@ later durable Outbox increment is described above.
 ## Remembered native IMAP/SMTP accounts
 
 The [remembered-account continuation](remembered-accounts.md) adds a bounded
-platform-keychain catalog and explicit account switching to native Studio Mail.
-Up to 20 IMAP/SMTP configurations can be remembered. Selecting an account fills
-setup and persists the selection; only Connect starts a provider session.
-Successful password updates replace the same identity, New account preserves
-the existing catalog, and Forget removes only the selected saved account.
+catalog in the selected credential backend and explicit account switching to
+native Studio Mail. Each backend's catalog can hold up to 20 IMAP/SMTP
+configurations. Selecting an account fills setup and remembers the selection;
+only Connect starts a provider session. Successful password updates replace
+the same identity, New account preserves the existing catalog, and Forget
+removes only the selected saved account.
+
+Credential storage offers the system credential store, a custom macOS
+keychain, an encrypted credential vault unlocked with a master password, or
+session-only memory. The persistent options retain credentials across app
+sessions when their selected backend is available. Session-only accounts are
+intentionally temporary even though the non-secret mode preference can persist.
+Storage changes do not copy or delete another backend's accounts, and an
+unavailable selected store never silently falls back to a different backend.
 
 Entries with the same sender and IMAP host show differing effective logins,
 TLS settings or SMTP routes. Hover/long-press and accessibility descriptions
 expose complete sender and IMAP/SMTP route details, including the exact Forget
 target, without passwords or internal account IDs.
 
-The old single-account record migrates only after its complete replacement is
-durably acknowledged. An empty v2 catalog prevents stale legacy resurrection;
-unreadable, corrupt or newer-version data blocks mutations instead of silently
-replacing stored accounts. Operations serialize across host store instances in
-one isolate, and fixed error messages do not expose credentials.
+The old single-account record migrates within its selected backend only after
+the complete v2 replacement is written and read back exactly. Every v2 write
+uses that verification; it checks acknowledged contents without claiming
+installed-OS durability or making session storage persistent. An empty v2
+catalog prevents stale legacy resurrection; unreadable, corrupt or newer-version
+data blocks mutations instead of silently replacing stored accounts. Operations
+serialize across host store instances in one isolate, keep one backend per
+transaction, and use fixed error messages that do not expose credentials.
 
 Switch account saves a retained draft before retiring the connection. Failure
 keeps the current session available. The existing provider/incoming-endpoint/
-login/sender draft identity is unchanged. Late keychain completions cannot
-replace newer settings or leave an unrelated account eligible for Forget.
-English, German and Arabic copy covers the workflow and failure states.
+login/sender draft identity is unchanged. Changing credential storage clears
+the old catalog selection and Forget association before reloading. Disconnected
+setup credentials are cleared; a live connection and newer edits made while
+loading remain protected. Delayed completions cannot
+replace newer settings or redirect an initialized backend into the new store's
+cache. Storage controls wait for busy Mail operations, including initial draft
+restore, pending credential operations and connections.
+English, German and Arabic copy covers the account chooser and catalog failure
+states; the new credential-storage settings and menus remain English.
 
 This native IMAP/SMTP chooser supersedes earlier statements that only one
 account could be remembered or that persistent account switching was
@@ -79,8 +115,8 @@ The [local record](../../validation/mail-accounts-20261120/README.md) tracks
 source, tests and integrated branches. M04W remains open: this increment does
 not provide simultaneous connected accounts, a unified/offline inbox,
 repository-driven mailbox sessions, persistent EWS/cloud tokens or bulk
-commands. Installed keychain behavior and live providers remain separate
-qualification scopes.
+commands. Installed-OS packaging, keychain permissions/unlocking, encrypted-vault
+unlock/durability and live providers remain separate qualification scopes.
 
 ## Shared foreground mailbox navigation
 

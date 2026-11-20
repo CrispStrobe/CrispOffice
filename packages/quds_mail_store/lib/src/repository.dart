@@ -773,11 +773,16 @@ final class SqliteMailRepository implements MailRepository {
   Future<MailResult<MailUnit>> saveDraft(
     MailDraft draft, {
     required int? expectedRevision,
+    int? maxActiveDrafts,
   }) => _write(() async {
     await _account(draft.account);
     _draftBudget(draft);
+    if (maxActiveDrafts != null &&
+        (maxActiveDrafts < 1 || maxActiveDrafts > 1000)) {
+      _fail(MailProblemCode.invalidInput);
+    }
     final existing = await _rows(
-      'SELECT revision FROM drafts WHERE account=? AND id=?',
+      'SELECT revision,data FROM drafts WHERE account=? AND id=?',
       [draft.account.value, draft.id],
     );
     final revision = existing.isEmpty
@@ -786,6 +791,23 @@ final class SqliteMailRepository implements MailRepository {
     if (revision != expectedRevision ||
         (revision != null && draft.revision != revision + 1)) {
       _fail(MailProblemCode.conflict);
+    }
+    if (maxActiveDrafts != null && draft.editorState?.isCleared != true) {
+      final previous = existing.isEmpty
+          ? null
+          : MailStoreCodec.decodeDraftSummary(
+              existing.single.read<String>('data'),
+              account: draft.account,
+              id: draft.id,
+              revision: revision!,
+            );
+      if (previous == null || previous.editorState?.isCleared == true) {
+        final count = (await _rows(
+          'SELECT count(*) AS n FROM drafts WHERE account=? AND data<>?',
+          [draft.account.value, _clearedDraftData(draft.account)],
+        )).single.read<int>('n');
+        if (count >= maxActiveDrafts) _fail(MailProblemCode.quotaExceeded);
+      }
     }
     final payload = MailStoreCodec.encodeDraft(draft);
     await _storePayload(draft.account, 'draft', draft.id, payload);
@@ -799,6 +821,60 @@ final class SqliteMailRepository implements MailRepository {
     await _quota(draft.account);
     return MailUnit.value;
   });
+
+  // A normal tombstone has exactly this canonical metadata, independent of its
+  // row ID/revision. Exclude only those known-valid empty records in SQL. Any
+  // noncanonical or malformed record is still validated before being skipped,
+  // so an unsupported version cannot masquerade as discarded content.
+  String _clearedDraftData(MailAccountId account) => MailStoreCodec.encodeDraft(
+    MailDraft(
+      id: 'catalog-tombstone',
+      account: account,
+      revision: 0,
+      envelope: MailEnvelope(),
+      body: const MailBody(),
+      editorState: MailDraftEditorState(isCleared: true),
+    ),
+  ).data;
+
+  /// Lists bounded draft metadata without loading attachment blobs.
+  /// Canonical cleared revision markers are skipped by the database. A rare
+  /// noncanonical cleared row may produce an empty page with a continuation;
+  /// callers must follow [MailDraftPage.nextAfterId] rather than infer EOF.
+  Future<MailResult<MailDraftPage>> listDrafts(
+    MailAccountId account, {
+    String? afterId,
+    int limit = 100,
+  }) => _run(
+    () => _db.transaction(() async {
+      await _account(account);
+      if (limit < 1 || limit > 100 || limit > limits.maxPageSize) {
+        _fail(MailProblemCode.invalidInput);
+      }
+      if (afterId != null) _id(afterId);
+      final rows = await _rows(
+        'SELECT id,revision,data FROM drafts '
+        'WHERE account=? AND data<>? AND id>? ORDER BY id LIMIT ?',
+        [account.value, _clearedDraftData(account), afterId ?? '', limit + 1],
+      );
+      final drafts = <MailDraftSummary>[];
+      for (final row in rows.take(limit)) {
+        final summary = MailStoreCodec.decodeDraftSummary(
+          row.read<String>('data'),
+          account: account,
+          id: row.read<String>('id'),
+          revision: row.read<int>('revision'),
+        );
+        if (summary.editorState?.isCleared != true) drafts.add(summary);
+      }
+      return MailDraftPage(
+        drafts: drafts,
+        nextAfterId: rows.length > limit
+            ? rows[limit - 1].read<String>('id')
+            : null,
+      );
+    }),
+  );
 
   @override
   Future<MailResult<MailDraft?>> loadDraft(

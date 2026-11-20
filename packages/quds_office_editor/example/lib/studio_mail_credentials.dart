@@ -434,7 +434,8 @@ final class _PlatformStudioMailCredentialStore
     final raw = await storage.read(_catalogKey);
     if (raw != null) {
       final catalog = _decodeCatalog(raw);
-      if (_decodeObject(raw, _maxCatalogCodeUnits)['accounts'] is Map) {
+      if (_decodeObject(raw, _maxCatalogCodeUnits)['accounts']
+          is Map<String, Object?>) {
         // The parallel selectable-store branch used a v2 map representation.
         // Validate and upgrade it in the same selected backend before cleanup.
         await _writeCatalog(storage, catalog);

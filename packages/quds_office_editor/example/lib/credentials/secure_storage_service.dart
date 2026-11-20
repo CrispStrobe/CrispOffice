@@ -40,7 +40,9 @@ abstract class SecureStorage {
     final raw = await read(key);
     if (raw == null) return null;
     try {
-      return Map<String, String>.from(json.decode(raw) as Map);
+      return Map<String, String>.from(
+        json.decode(raw) as Map<Object?, Object?>,
+      );
     } catch (e) {
       _secureLog.warn('Failed to decode map for key "$key"', e);
       return null;

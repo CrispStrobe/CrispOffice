@@ -1,0 +1,294 @@
+{
+  "source": "70e69c8854ab30f83d8711d3f4bf270385ed27b4",
+  "accepted": true,
+  "gates": [
+    {
+      "source": "70e69c8854ab30f83d8711d3f4bf270385ed27b4",
+      "gate": "engine-two-wrapped-cache-cases",
+      "command": [
+        "/workspace/scratch/a17412353cf6/runtime/dart-sdk/bin/dart",
+        "--packages=/workspace/scratch/a17412353cf6/runtime/engine_package_config.json",
+        "/workspace/scratch/a17412353cf6/runtime/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+        "--reporter=json",
+        "--concurrency=1",
+        "--compiler=source",
+        "test/word_incremental_layout_differential_test.dart",
+        "--name",
+        "edits while wrapping invalidate older unwrapped breaks"
+      ],
+      "cwd": "/workspace/scratch/a17412353cf6/quds_office_suite/packages/quds_office_engine",
+      "exit": 0,
+      "terminalEventCount": 1,
+      "jsonSuccess": true,
+      "counts": {
+        "success": 2
+      },
+      "protocolComplete": true,
+      "protocolAccepted": true,
+      "accepted": true,
+      "interrupted": false,
+      "seconds": 35.38388800621033,
+      "sourceFiles": 2237,
+      "sourceBeforeSha256": "327c8c16424c05630484a1ec094d99371888cb1265606353695bb273fe0bf5fb",
+      "sourceAfterSha256": "327c8c16424c05630484a1ec094d99371888cb1265606353695bb273fe0bf5fb",
+      "sourceHashesUnchanged": true,
+      "peakRssSumKB": 1078400,
+      "perOriginalFile": {
+        "packages/quds_office_engine/test/word_incremental_layout_differential_test.dart": {
+          "success": 2
+        }
+      },
+      "rawEventsSha256": "0e69595bb858745a83837bf51f2b1d98773adcead0ef801b6b2e2e91f2052713",
+      "unicodeSeparatorCaseNames": [],
+      "rawBytes": 1690
+    },
+    {
+      "source": "70e69c8854ab30f83d8711d3f4bf270385ed27b4",
+      "gate": "word-workspace-chrome-smoke",
+      "command": [
+        "/workspace/scratch/a17412353cf6/runtime/flutter/bin/flutter",
+        "test",
+        "--no-pub",
+        "--reporter=json",
+        "--concurrency=1",
+        "test/studio_word_chrome_settle_test.dart"
+      ],
+      "cwd": "/workspace/scratch/a17412353cf6/quds_office_suite/packages/quds_office_editor/example",
+      "exit": 0,
+      "terminalEventCount": 1,
+      "jsonSuccess": true,
+      "counts": {
+        "success": 1
+      },
+      "protocolComplete": true,
+      "protocolAccepted": true,
+      "accepted": true,
+      "interrupted": false,
+      "seconds": 15.527125597000122,
+      "sourceFiles": 2237,
+      "sourceBeforeSha256": "327c8c16424c05630484a1ec094d99371888cb1265606353695bb273fe0bf5fb",
+      "sourceAfterSha256": "327c8c16424c05630484a1ec094d99371888cb1265606353695bb273fe0bf5fb",
+      "sourceHashesUnchanged": true,
+      "peakRssSumKB": 1547448,
+      "perOriginalFile": {
+        "packages/quds_office_editor/example/test/studio_word_chrome_settle_test.dart": {
+          "success": 1
+        }
+      },
+      "rawEventsSha256": "58ad5afa3398e08f7ceda7d7a324925bf78cf12b808f865df566dfb6687b7e40",
+      "unicodeSeparatorCaseNames": [],
+      "rawBytes": 1527
+    },
+    {
+      "source": "70e69c8854ab30f83d8711d3f4bf270385ed27b4",
+      "gate": "outbox-cloud-submission",
+      "command": [
+        "/workspace/scratch/a17412353cf6/runtime/flutter/bin/flutter",
+        "test",
+        "--no-pub",
+        "--reporter=json",
+        "--concurrency=1",
+        "test/studio_mail_outbox_cloud_test.dart",
+        "test/studio_mail_outbox_submission_test.dart"
+      ],
+      "cwd": "/workspace/scratch/a17412353cf6/quds_office_suite/packages/quds_office_editor/example",
+      "exit": 0,
+      "terminalEventCount": 1,
+      "jsonSuccess": true,
+      "counts": {
+        "success": 22
+      },
+      "protocolComplete": true,
+      "protocolAccepted": true,
+      "accepted": true,
+      "interrupted": false,
+      "seconds": 19.131556749343872,
+      "sourceFiles": 2237,
+      "sourceBeforeSha256": "327c8c16424c05630484a1ec094d99371888cb1265606353695bb273fe0bf5fb",
+      "sourceAfterSha256": "327c8c16424c05630484a1ec094d99371888cb1265606353695bb273fe0bf5fb",
+      "sourceHashesUnchanged": true,
+      "peakRssSumKB": 1506116,
+      "perOriginalFile": {
+        "packages/quds_office_editor/example/test/studio_mail_outbox_cloud_test.dart": {
+          "success": 4
+        },
+        "packages/quds_office_editor/example/test/studio_mail_outbox_submission_test.dart": {
+          "success": 18
+        }
+      },
+      "rawEventsSha256": "4bd2eeef942a462b8b840b22d40561bcff3169939c1ba8e30e57525eb8c4e2cf",
+      "unicodeSeparatorCaseNames": [],
+      "rawBytes": 12194
+    },
+    {
+      "source": "70e69c8854ab30f83d8711d3f4bf270385ed27b4",
+      "gate": "outbox-dialog-host-store",
+      "command": [
+        "/workspace/scratch/a17412353cf6/runtime/flutter/bin/flutter",
+        "test",
+        "--no-pub",
+        "--reporter=json",
+        "--concurrency=1",
+        "test/studio_mail_outbox_dialog_test.dart",
+        "test/studio_mail_outbox_host_test.dart",
+        "test/studio_mail_outbox_store_test.dart"
+      ],
+      "cwd": "/workspace/scratch/a17412353cf6/quds_office_suite/packages/quds_office_editor/example",
+      "exit": 0,
+      "terminalEventCount": 1,
+      "jsonSuccess": true,
+      "counts": {
+        "success": 33
+      },
+      "protocolComplete": true,
+      "protocolAccepted": true,
+      "accepted": true,
+      "interrupted": false,
+      "seconds": 41.032235622406006,
+      "sourceFiles": 2237,
+      "sourceBeforeSha256": "327c8c16424c05630484a1ec094d99371888cb1265606353695bb273fe0bf5fb",
+      "sourceAfterSha256": "327c8c16424c05630484a1ec094d99371888cb1265606353695bb273fe0bf5fb",
+      "sourceHashesUnchanged": true,
+      "peakRssSumKB": 1578952,
+      "perOriginalFile": {
+        "packages/quds_office_editor/example/test/studio_mail_outbox_dialog_test.dart": {
+          "success": 10
+        },
+        "packages/quds_office_editor/example/test/studio_mail_outbox_host_test.dart": {
+          "success": 5
+        },
+        "packages/quds_office_editor/example/test/studio_mail_outbox_store_test.dart": {
+          "success": 18
+        }
+      },
+      "rawEventsSha256": "087cd717a9f9b7275a524db84967c0eac1b2cd35d1d8362950785bca9a3e9839",
+      "unicodeSeparatorCaseNames": [],
+      "rawBytes": 22484
+    },
+    {
+      "source": "70e69c8854ab30f83d8711d3f4bf270385ed27b4",
+      "gate": "existing-native-ews-interactions",
+      "command": [
+        "/workspace/scratch/a17412353cf6/runtime/flutter/bin/flutter",
+        "test",
+        "--no-pub",
+        "--reporter=json",
+        "--concurrency=1",
+        "test/studio_mail_test.dart",
+        "test/studio_mail_ews_test.dart"
+      ],
+      "cwd": "/workspace/scratch/a17412353cf6/quds_office_suite/packages/quds_office_editor/example",
+      "exit": 0,
+      "terminalEventCount": 1,
+      "jsonSuccess": true,
+      "counts": {
+        "success": 142
+      },
+      "protocolComplete": true,
+      "protocolAccepted": true,
+      "accepted": true,
+      "interrupted": false,
+      "seconds": 95.48732280731201,
+      "sourceFiles": 2237,
+      "sourceBeforeSha256": "327c8c16424c05630484a1ec094d99371888cb1265606353695bb273fe0bf5fb",
+      "sourceAfterSha256": "327c8c16424c05630484a1ec094d99371888cb1265606353695bb273fe0bf5fb",
+      "sourceHashesUnchanged": true,
+      "peakRssSumKB": 2032412,
+      "perOriginalFile": {
+        "packages/quds_office_editor/example/test/studio_mail_test.dart": {
+          "success": 81
+        },
+        "packages/quds_office_editor/example/test/studio_mail_ews_test.dart": {
+          "success": 61
+        }
+      },
+      "rawEventsSha256": "29b54ed264723e7f3341d2485dd6d96e1096d9de695650bd79b675ac4b6c2d7d",
+      "unicodeSeparatorCaseNames": [],
+      "rawBytes": 77571
+    },
+    {
+      "source": "70e69c8854ab30f83d8711d3f4bf270385ed27b4",
+      "gate": "existing-compose-draft-lifecycle",
+      "command": [
+        "/workspace/scratch/a17412353cf6/runtime/flutter/bin/flutter",
+        "test",
+        "--no-pub",
+        "--reporter=json",
+        "--concurrency=1",
+        "test/studio_mail_compose_test.dart",
+        "test/studio_mail_draft_autosave_test.dart",
+        "test/studio_mail_draft_store_test.dart"
+      ],
+      "cwd": "/workspace/scratch/a17412353cf6/quds_office_suite/packages/quds_office_editor/example",
+      "exit": 0,
+      "terminalEventCount": 1,
+      "jsonSuccess": true,
+      "counts": {
+        "success": 50
+      },
+      "protocolComplete": true,
+      "protocolAccepted": true,
+      "accepted": true,
+      "interrupted": false,
+      "seconds": 30.109636306762695,
+      "sourceFiles": 2237,
+      "sourceBeforeSha256": "327c8c16424c05630484a1ec094d99371888cb1265606353695bb273fe0bf5fb",
+      "sourceAfterSha256": "327c8c16424c05630484a1ec094d99371888cb1265606353695bb273fe0bf5fb",
+      "sourceHashesUnchanged": true,
+      "peakRssSumKB": 1491392,
+      "perOriginalFile": {
+        "packages/quds_office_editor/example/test/studio_mail_compose_test.dart": {
+          "success": 24
+        },
+        "packages/quds_office_editor/example/test/studio_mail_draft_autosave_test.dart": {
+          "success": 10
+        },
+        "packages/quds_office_editor/example/test/studio_mail_draft_store_test.dart": {
+          "success": 16
+        }
+      },
+      "rawEventsSha256": "92c1dd9cce6a39a3aa5ac86789360635679ad7b29438ac4b6097929af712d84b",
+      "unicodeSeparatorCaseNames": [],
+      "rawBytes": 41459
+    }
+  ],
+  "freshVisibleCounts": {
+    "success": 250
+  },
+  "sourceFiles": 2237,
+  "sourceHashesUnchangedThroughPackaging": true,
+  "sourceMatchesFrozenCheckoutIndex": true,
+  "scope": "Focused follow-up after incoming Outbox reconciliation. Counts are executions at this source; repeated existing native/EWS cases must not be added to earlier cohorts as distinct tests.",
+  "unchangedPriorGates": {
+    "source": "231bd0403a3d2855dc23bf8dacefaedba01f2aab",
+    "visibleSuccess": 1358,
+    "visibleSkip": 8,
+    "wholeWordReplayPerformed": false,
+    "continuity": "Root independently verified unchanged complete engine/lib, core editor/lib, editor/test, Word controllers/workspace/chrome, fixture and configuration trees."
+  },
+  "changedFileChecks": {
+    "analysisFiles": 23,
+    "analysisErrors": 0,
+    "analysisWarnings": 0,
+    "analysisInfos": 0,
+    "analysisExit": 0,
+    "formattedFiles": 23,
+    "formatChanges": 0,
+    "formatExit": 0,
+    "evidenceArchiveBlob": "4211f0d0dd100d871283db806f7795f857d487f2"
+  },
+  "incomingStandaloneEvidence": {
+    "source": "ce9ff1c8b155c03a0e2707d6fc8b41b52e611a93",
+    "coreStore": 172,
+    "smtp": 72,
+    "newLocalExecution": false,
+    "scope": "Original source attribution retained; independently SHA-verified published raw archive and LF-audited event streams. Package/config identity checked by root."
+  },
+  "pythonToolingOnly": {
+    "cases": 48,
+    "exit": 0,
+    "includedInProductTotals": false
+  },
+  "chromeQualification": "Original ticker-muted/no-frame-pending scheduling fixture, run through normal SuiteWorkspace imports. It does not establish default-caret latency or live external-app acceptance.",
+  "liveExternalAppAcceptancePerformed": false
+}

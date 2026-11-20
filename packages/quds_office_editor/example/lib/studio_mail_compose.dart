@@ -6,6 +6,7 @@ import 'package:quds_office_editor/quds_office_editor.dart';
 
 import 'studio_mail_attachment_loader.dart';
 import 'studio_mail_draft.dart';
+import 'studio_mail_drafts_strings.dart';
 import 'studio_mail_outbox_strings.dart';
 import 'studio_mail_strings.dart';
 import 'studio_mail_threading.dart';
@@ -24,12 +25,18 @@ class StudioMailComposeDialog extends StatefulWidget {
     this.previousSubmissionUncertain = false,
     this.onSaveDraft,
     this.onQueueDraft,
+    this.canSend = true,
   });
 
   final StudioStrings strings;
   final String from;
   final StudioMailDraft? initialDraft;
   final bool previousSubmissionUncertain;
+
+  /// Local-only workspaces save drafts without producing a transport request.
+  /// The finish handler also checks this, so a retained callback cannot send
+  /// after the host has disabled submission.
+  final bool canSend;
 
   /// Persists an immutable editor snapshot, including unfinished recipients.
   /// A failed save keeps the composer open and prevents submission.
@@ -197,6 +204,7 @@ class _StudioMailComposeDialogState extends State<StudioMailComposeDialog> {
   }
 
   Future<void> _finish({required bool send, bool queue = false}) async {
+    if ((send || queue) && !widget.canSend) return;
     if (_finishing || (send && _pickingAttachments)) return;
     if (send && widget.previousSubmissionUncertain && !_retryAcknowledged) {
       return;
@@ -224,6 +232,10 @@ class _StudioMailComposeDialogState extends State<StudioMailComposeDialog> {
     final saved = await _save();
     if (!mounted) return;
     if (!saved) {
+      setState(() => _finishing = false);
+      return;
+    }
+    if ((send || queue) && !widget.canSend) {
       setState(() => _finishing = false);
       return;
     }
@@ -624,6 +636,11 @@ class _StudioMailComposeDialogState extends State<StudioMailComposeDialog> {
                             color: Theme.of(context).colorScheme.error,
                           ),
                         ),
+                      if (!widget.canSend)
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 8),
+                          child: Text(strings.mailDraftConnectToSend),
+                        ),
                       OverflowBar(
                         alignment: MainAxisAlignment.end,
                         spacing: 8,
@@ -649,7 +666,8 @@ class _StudioMailComposeDialogState extends State<StudioMailComposeDialog> {
                             TextButton.icon(
                               key: const ValueKey('studio-mail-queue'),
                               onPressed:
-                                  _finishing ||
+                                  !widget.canSend ||
+                                      _finishing ||
                                       _pickingAttachments ||
                                       (widget.previousSubmissionUncertain &&
                                           !_retryAcknowledged)
@@ -660,7 +678,8 @@ class _StudioMailComposeDialogState extends State<StudioMailComposeDialog> {
                             ),
                           FilledButton.icon(
                             onPressed:
-                                _finishing ||
+                                !widget.canSend ||
+                                    _finishing ||
                                     _pickingAttachments ||
                                     (widget.previousSubmissionUncertain &&
                                         !_retryAcknowledged)
