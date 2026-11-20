@@ -387,6 +387,8 @@ class PmlTextSource {
     required this.textColor,
     required this.textAlign,
     required this.rightToLeft,
+    this.textScale = 1,
+    this.lineSpacingReduction = 0,
   });
 
   /// Original DrawingML text body, including namespace declarations.
@@ -406,6 +408,9 @@ class PmlTextSource {
 
   /// Imported paragraph direction.
   final bool? rightToLeft;
+
+  final double textScale;
+  final double lineSpacingReduction;
 }
 
 /// Class PmlShape.

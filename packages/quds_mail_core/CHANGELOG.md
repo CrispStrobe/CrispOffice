@@ -1,5 +1,8 @@
 ## Unreleased
 
+- Add the optional `MailImapHeaderBrowser` port for descending foreground pages
+  bound to an explicit mailbox generation, independent of durable sync cursors.
+
 - Add optional typed draft editor state for lossless unfinished recipient text,
   durable submission uncertainty and revision-preserving cleared markers.
 

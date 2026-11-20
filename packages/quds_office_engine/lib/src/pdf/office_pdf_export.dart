@@ -2209,14 +2209,16 @@ abstract final class OfficePdfExport {
       for (final PmlTextParagraph paragraph in paragraphs)
         if (_paragraphText(paragraph).trim().isNotEmpty) paragraph,
     ];
-    if (visible.length == 1 && h < fallbackSize * 3) {
+    if (visible.length == 1 && h < fallbackSize * shape.textScale * 3) {
       final PmlTextParagraph paragraph = visible.single;
       final PmlTextRun? run = _firstRichRun(paragraph);
-      final double size = (run?.fontSizePt ?? 0) > 0
-          ? run!.fontSizePt
-          : (paragraph.defaultFontSizePt > 0
-                ? paragraph.defaultFontSizePt
-                : fallbackSize);
+      final double size =
+          ((run?.fontSizePt ?? 0) > 0
+              ? run!.fontSizePt
+              : (paragraph.defaultFontSizePt > 0
+                    ? paragraph.defaultFontSizePt
+                    : fallbackSize)) *
+          shape.textScale;
       final String text = _paragraphText(paragraph);
       if (!text.contains('\t') && !text.contains('\n')) {
         final double natural = sink.measureStyled(
@@ -2238,114 +2240,127 @@ abstract final class OfficePdfExport {
         }
       }
     }
-    double total = 0;
-    for (final PmlTextParagraph paragraph in paragraphs) {
-      final PmlTextRun? run = _firstRichRun(paragraph);
-      final String text = _paragraphText(paragraph);
-      final bool blank = text.trim().isEmpty;
-      final double unscaledSize = (run?.fontSizePt ?? 0) > 0
-          ? run!.fontSizePt
-          : (paragraph.defaultFontSizePt > 0
-                ? paragraph.defaultFontSizePt
-                : fallbackSize);
-      final double size = unscaledSize * fitScale * shape.textScale;
-      final bool bold =
-          (run?.bold ?? false) &&
-          !(run?.fontFamily.toLowerCase().contains('microsoft sans serif') ??
-              false);
-      final int lines = blank
-          ? 1
-          : sink.lineCount(
-              text,
-              size,
-              maxWidth: math.max(8, width - paragraph.marginLeftPt),
-              bold: bold,
-              italic: run?.italic ?? false,
-              family: (run?.fontFamily ?? '').isEmpty ? null : run!.fontFamily,
-              baseLevel: paragraph.rightToLeft ? 1 : 0,
-            );
-      total +=
-          paragraph.spaceBeforePt +
-          lines *
-              _slideLineAdvance(
-                sink,
-                paragraph,
-                shape,
-                size,
-                bold: bold,
-                italic: run?.italic ?? false,
-                family: (run?.fontFamily ?? '').isEmpty
-                    ? null
-                    : run!.fontFamily,
-              ) +
-          paragraph.spaceAfterPt;
-    }
+    final double sizeScale = fitScale * shape.textScale;
+    double paragraphHeight(
+      PmlTextParagraph paragraph,
+      double top, {
+      bool paint = false,
+    }) => _paintRichParagraph(
+      sink,
+      shape,
+      paragraph,
+      x + leftInset,
+      top,
+      width,
+      fallbackSize,
+      fallbackColor,
+      sizeScale,
+      paint: paint,
+    );
+    final double total = paragraphs.fold<double>(
+      0,
+      (height, paragraph) => height + paragraphHeight(paragraph, 0),
+    );
     double cy = switch (shape.textAnchor) {
       PmlTextAnchor.center => y + (h - total) / 2,
       PmlTextAnchor.bottom => y + h - total - topInset,
       PmlTextAnchor.top => y + topInset,
     };
     for (final PmlTextParagraph paragraph in paragraphs) {
-      final PmlTextRun? run = _firstRichRun(paragraph);
-      final String text = _paragraphText(paragraph);
-      final bool blank = text.trim().isEmpty;
-      final double unscaledSize = (run?.fontSizePt ?? 0) > 0
-          ? run!.fontSizePt
-          : (paragraph.defaultFontSizePt > 0
-                ? paragraph.defaultFontSizePt
-                : fallbackSize);
-      final double size = unscaledSize * fitScale * shape.textScale;
-      final String color = (run?.color ?? '').isNotEmpty
-          ? run!.color
-          : fallbackColor;
-      // PowerPoint falls back to the regular face when only Microsoft Sans
-      // Serif Regular is installed; synthesising bold changes every metric.
-      final bool bold =
-          (run?.bold ?? false) &&
-          !(run?.fontFamily.toLowerCase().contains('microsoft sans serif') ??
-              false);
-      final bool italic = run?.italic ?? false;
-      final String? family = (run?.fontFamily ?? '').isEmpty
-          ? null
-          : run!.fontFamily;
-      final double lineAdvance = _slideLineAdvance(
-        sink,
-        paragraph,
-        shape,
-        size,
-        bold: bold,
-        italic: italic,
-        family: family,
-      );
-      cy += paragraph.spaceBeforePt;
-      if (blank) {
-        cy += lineAdvance;
-        cy += paragraph.spaceAfterPt;
-        continue;
-      }
-      final double px = x + leftInset + paragraph.marginLeftPt;
-      final double maxWidth = math.max(8, width - paragraph.marginLeftPt);
-      final _TextAlign align = switch (paragraph.align) {
-        PmlTextAlign.center => _TextAlign.center,
-        PmlTextAlign.right => _TextAlign.right,
-        PmlTextAlign.left || PmlTextAlign.justify => _TextAlign.left,
-      };
-      if (text.contains('\t')) {
-        final List<String> parts = text.split('\t');
-        final double tabBase = x + paragraph.marginLeftPt;
-        var cx = px;
-        final double tab = paragraph.defaultTabPt <= 0
-            ? 72
-            : paragraph.defaultTabPt;
-        for (final String part in parts) {
-          if (part.isNotEmpty) {
+      cy += paragraphHeight(paragraph, cy, paint: true);
+    }
+  }
+
+  // The dry run and painting share this layout path so anchoring uses exactly
+  // the advances that are emitted, including blank, mixed and numeric lines.
+  static double _paintRichParagraph(
+    _PageSink sink,
+    PmlShape shape,
+    PmlTextParagraph paragraph,
+    double x,
+    double y,
+    double width,
+    double fallbackSize,
+    String fallbackColor,
+    double sizeScale, {
+    required bool paint,
+  }) {
+    final PmlTextRun? run = _firstRichRun(paragraph);
+    final String text = _paragraphText(paragraph);
+    final double unscaledSize = (run?.fontSizePt ?? 0) > 0
+        ? run!.fontSizePt
+        : (paragraph.defaultFontSizePt > 0
+              ? paragraph.defaultFontSizePt
+              : fallbackSize);
+    final double size = unscaledSize * sizeScale;
+    final bool bold =
+        (run?.bold ?? false) &&
+        !(run?.fontFamily.toLowerCase().contains('microsoft sans serif') ??
+            false);
+    final bool italic = run?.italic ?? false;
+    final String? family = (run?.fontFamily ?? '').isEmpty
+        ? null
+        : run!.fontFamily;
+    final String color = (run?.color ?? '').isNotEmpty
+        ? run!.color
+        : fallbackColor;
+    final double spacingFactor = math.max(
+      0,
+      paragraph.lineSpacing - shape.lineSpacingReduction,
+    );
+    final double lineAdvance =
+        paragraph.lineSpacingPt ??
+        (shape.textScale == 1 && shape.lineSpacingReduction == 0
+                ? size * 1.25
+                : sink.lineHeight(
+                    size,
+                    bold: bold,
+                    italic: italic,
+                    family: family,
+                  )) *
+            spacingFactor;
+    final double cy = y + paragraph.spaceBeforePt;
+    final double px = x + paragraph.marginLeftPt;
+    final double maxWidth = math.max(8, width - paragraph.marginLeftPt);
+    final _TextAlign align = switch (paragraph.align) {
+      PmlTextAlign.center => _TextAlign.center,
+      PmlTextAlign.right => _TextAlign.right,
+      PmlTextAlign.left || PmlTextAlign.justify => _TextAlign.left,
+    };
+    double height;
+    if (text.trim().isEmpty) {
+      height = lineAdvance;
+    } else if (text.contains('\t')) {
+      final List<String> parts = text.split('\t');
+      var cx = px;
+      var lines = 1;
+      final double tab = paragraph.defaultTabPt <= 0
+          ? 72
+          : paragraph.defaultTabPt;
+      for (final String part in parts) {
+        if (part.isNotEmpty) {
+          final double remaining = math.max(8, px + maxWidth - cx);
+          lines = math.max(
+            lines,
+            sink.lineCount(
+              part,
+              size,
+              maxWidth: remaining,
+              bold: bold,
+              italic: italic,
+              family: family,
+              baseLevel: paragraph.rightToLeft ? 1 : 0,
+              forceLayout: true,
+            ),
+          );
+          if (paint) {
             sink.drawText(
               part,
               cx,
               cy + size,
               size,
               color,
-              maxWidth: px + maxWidth - cx,
+              maxWidth: remaining,
               align: _TextAlign.left,
               bold: bold,
               italic: italic,
@@ -2353,41 +2368,87 @@ abstract final class OfficePdfExport {
               baseLevel: paragraph.rightToLeft ? 1 : 0,
               lineAdvance: lineAdvance,
             );
-            cx += sink.measure(part, size);
           }
-          final double offset = math.max(0, cx - tabBase);
-          final double next = ((offset / tab).floor() + 1) * tab;
-          cx = math.min(px + maxWidth, tabBase + next);
+          cx += sink.measureStyled(
+            part,
+            size,
+            bold: bold,
+            italic: italic,
+            family: family,
+            baseLevel: paragraph.rightToLeft ? 1 : 0,
+          );
         }
-        cy += lineAdvance;
-      } else if (_hasMixedRichStyles(paragraph)) {
-        cy += _paintStyledParagraph(
-          sink,
-          paragraph,
-          px,
-          cy,
-          maxWidth,
-          align,
-          size,
-          fallbackColor,
-          fitScale * shape.textScale,
-          shape,
-        );
+        final double offset = math.max(0, cx - px);
+        cx = math.min(px + maxWidth, px + ((offset / tab).floor() + 1) * tab);
+      }
+      height = lines * lineAdvance;
+    } else if (_hasMixedRichStyles(paragraph)) {
+      height = _paintStyledParagraph(
+        sink,
+        paragraph,
+        px,
+        cy,
+        maxWidth,
+        align,
+        size,
+        fallbackColor,
+        sizeScale,
+        spacingFactor: spacingFactor,
+        naturalLeading: shape.textScale != 1 || shape.lineSpacingReduction != 0,
+        fixedLeading: paragraph.lineSpacingPt,
+        paint: paint,
+      );
+    } else {
+      final List<String>? plainLtrLines =
+          !paragraph.rightToLeft &&
+              !text.contains('\r') &&
+              !RegExp(r'\p{L}', unicode: true).hasMatch(text)
+          ? text.split('\n')
+          : null;
+      final bool plainLtrFits =
+          plainLtrLines?.every(
+            (line) =>
+                sink.plainWidth(
+                  line,
+                  size,
+                  bold: bold,
+                  italic: italic,
+                  family: family,
+                ) <=
+                maxWidth,
+          ) ??
+          false;
+      if (plainLtrLines != null && plainLtrFits) {
+        var baseline = cy + size;
+        for (final String line in plainLtrLines) {
+          if (paint) {
+            final double textWidth = sink.plainWidth(
+              line,
+              size,
+              bold: bold,
+              italic: italic,
+              family: family,
+            );
+            final double dx = switch (align) {
+              _TextAlign.center => (maxWidth - textWidth) / 2,
+              _TextAlign.right => maxWidth - textWidth,
+              _TextAlign.left || _TextAlign.auto => 0,
+            };
+            sink.drawPlainLtr(
+              line,
+              px + dx,
+              baseline,
+              size,
+              color,
+              bold: bold,
+              italic: italic,
+              family: family,
+            );
+          }
+          baseline += lineAdvance;
+        }
+        height = plainLtrLines.length * lineAdvance;
       } else {
-        sink.drawText(
-          text,
-          px,
-          cy + size,
-          size,
-          color,
-          maxWidth: maxWidth,
-          align: align,
-          bold: bold,
-          italic: italic,
-          family: family,
-          baseLevel: paragraph.rightToLeft ? 1 : 0,
-          lineAdvance: lineAdvance,
-        );
         final int lines = sink.lineCount(
           text,
           size,
@@ -2396,11 +2457,28 @@ abstract final class OfficePdfExport {
           italic: italic,
           family: family,
           baseLevel: paragraph.rightToLeft ? 1 : 0,
+          forceLayout: true,
         );
-        cy += lines * lineAdvance;
+        if (paint) {
+          sink.drawText(
+            text,
+            px,
+            cy + size,
+            size,
+            color,
+            maxWidth: maxWidth,
+            align: align,
+            bold: bold,
+            italic: italic,
+            family: family,
+            baseLevel: paragraph.rightToLeft ? 1 : 0,
+            lineAdvance: lineAdvance,
+          );
+        }
+        height = lines * lineAdvance;
       }
-      cy += paragraph.spaceAfterPt;
     }
+    return paragraph.spaceBeforePt + height + paragraph.spaceAfterPt;
   }
 
   static bool _hasMixedRichStyles(PmlTextParagraph paragraph) {
@@ -2427,9 +2505,12 @@ abstract final class OfficePdfExport {
     _TextAlign align,
     double fallbackSize,
     String fallbackColor,
-    double sizeScale,
-    PmlShape shape,
-  ) {
+    double sizeScale, {
+    double spacingFactor = 1,
+    bool naturalLeading = true,
+    double? fixedLeading,
+    bool paint = true,
+  }) {
     final List<_RichWord> words = <_RichWord>[];
     var segments = <_RichSegment>[];
     var spaceBefore = false;
@@ -2440,6 +2521,7 @@ abstract final class OfficePdfExport {
       final double size = run.fontSizePt > 0
           ? run.fontSizePt * sizeScale
           : fallbackSize;
+
       final String color = run.color.isEmpty ? fallbackColor : run.color;
       final bool bold =
           run.bold &&
@@ -2551,18 +2633,15 @@ abstract final class OfficePdfExport {
         }
         width += word.width(sink);
         for (final _RichSegment segment in word.segments) {
-          height = math.max(
-            height,
-            _slideLineAdvance(
-              sink,
-              paragraph,
-              shape,
-              segment.size,
-              bold: segment.bold,
-              italic: segment.italic,
-              family: segment.family.isEmpty ? null : segment.family,
-            ),
-          );
+          final double natural = !naturalLeading
+              ? segment.size * 1.25
+              : sink.lineHeight(
+                  segment.size,
+                  bold: segment.bold,
+                  italic: segment.italic,
+                  family: segment.family.isEmpty ? null : segment.family,
+                );
+          height = math.max(height, natural);
         }
       }
       var cx = x;
@@ -2584,17 +2663,19 @@ abstract final class OfficePdfExport {
           );
         }
         for (final _RichSegment segment in word.segments) {
-          sink.drawText(
-            segment.text,
-            cx,
-            cy + segment.size,
-            segment.size,
-            segment.color,
-            bold: segment.bold,
-            italic: segment.italic,
-            family: segment.family.isEmpty ? null : segment.family,
-            baseLevel: paragraph.rightToLeft ? 1 : 0,
-          );
+          if (paint) {
+            sink.drawText(
+              segment.text,
+              cx,
+              cy + segment.size,
+              segment.size,
+              segment.color,
+              bold: segment.bold,
+              italic: segment.italic,
+              family: segment.family.isEmpty ? null : segment.family,
+              baseLevel: paragraph.rightToLeft ? 1 : 0,
+            );
+          }
           cx += sink.measureStyled(
             segment.text,
             segment.size,
@@ -2605,7 +2686,10 @@ abstract final class OfficePdfExport {
           );
         }
       }
-      cy += height;
+      cy +=
+          fixedLeading ??
+          (height <= 0 ? sink.lineHeight(fallbackSize) : height) *
+              spacingFactor;
     }
     return cy - y;
   }
