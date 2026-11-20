@@ -13,9 +13,12 @@ LanguageIdTransport createLanguageIdTransport({
 }) => _NativeTransport(nativeLibraryPath);
 
 /// Default library file name for this platform.
+/// iOS apps embed it as a signed framework; Android loads it from jniLibs.
 String get languageIdLibraryName => Platform.isWindows
     ? 'quds_language_id.dll'
-    : Platform.isMacOS || Platform.isIOS
+    : Platform.isIOS
+    ? 'quds_language_id.framework/quds_language_id'
+    : Platform.isMacOS
     ? 'libquds_language_id.dylib'
     : 'libquds_language_id.so';
 

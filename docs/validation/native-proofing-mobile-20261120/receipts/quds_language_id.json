@@ -1,0 +1,37 @@
+{
+  "adapter": {
+    "native/CMakeLists.txt": "362b033d5b2eb47cffcbb7539fbd0a49e83556492aa89b502f209b330cbee610",
+    "native/shim/core/gguf_loader.h": "b137279524c3d62d828e038c1bc8532a9d8ad32ca8cd9fd211857686b4d7cefb",
+    "native/shim/ggml.h": "2f6e959ebe40b7434f171a1dbd1ce4d38ebdfdf62af0827bcf004b27002562bd",
+    "native/shim/gguf.h": "bca7cba113ac378583b953644414a0ad0ac4f6bd06e0c0faf3f68e2ca58e1ac8",
+    "native/src/gguf_shim.cpp": "1b21e71f5f478212350afd31f2b44ce5f39c8f5e31f87214e55c9d8b6c6eed44",
+    "native/src/gguf_shim.h": "1d6a14968d1ac94bfd15dec647be5ac9bb1b1516e9ad1c6e6793b18466c96edf",
+    "native/src/quds_language_id.cpp": "e0196da5a97dc36274dad4a42dcd57d571f6a03c0a45a04c05123eee0d7d3736"
+  },
+  "crispasr": {
+    "commit": "19d86f9b8c6b46bb35bef789c44ea403004f807c",
+    "repository": "https://github.com/CrispStrobe/CrispASR"
+  },
+  "files": {
+    "android/arm64-v8a/libquds_language_id.so": "25ae85b9a79f46058541e21bdad99e5a676692bfc6ac7c3921726ff53109a5f6",
+    "android/x86_64/libquds_language_id.so": "0129dfa183ac052aede486d464250aba65ff428e837d71e781c7ab57ef13cc66",
+    "ios/quds_language_id.xcframework/Info.plist": "1d9d9511210cea9113b12b93a6a278badcad0c6f5dae706602e15f99a132d9c2",
+    "ios/quds_language_id.xcframework/ios-arm64/quds_language_id.framework/Info.plist": "313e6d4708b8ca8a0686a2971c17c98f60fbd75b672a77dd03ca70f0b56aea0b",
+    "ios/quds_language_id.xcframework/ios-arm64/quds_language_id.framework/_CodeSignature/CodeResources": "11284094442c4d860dbcb5d0fb8a1f0a7aae197934388a88d725124c469f7374",
+    "ios/quds_language_id.xcframework/ios-arm64/quds_language_id.framework/quds_language_id": "ad9a2ab24f462436f1a08de495e623a767861e5b5489004b1e12d2b3a353b2b7",
+    "ios/quds_language_id.xcframework/ios-arm64_x86_64-simulator/quds_language_id.framework/Info.plist": "0d38218dabad580283678c7c65c1a4f284bbf938534ba833138409230984542a",
+    "ios/quds_language_id.xcframework/ios-arm64_x86_64-simulator/quds_language_id.framework/_CodeSignature/CodeResources": "96524530d5200bbca840a9c2a11d10a94ba49878ec904f0038fbd245421aa795",
+    "ios/quds_language_id.xcframework/ios-arm64_x86_64-simulator/quds_language_id.framework/quds_language_id": "344a112742c99d7b053c9399cd2202a0922a0e447546c1f2f3579d8f8377f0e3"
+  },
+  "license_manifest_sha256": "71a10f3d411cddc388e59d63aa124b43c47f8c6115876e8abb8f060cdc96c851",
+  "model": {
+    "bytes": 439712,
+    "file": "cld3-f16.gguf",
+    "license": "Apache-2.0",
+    "repository": "https://huggingface.co/cstr/cld3-GGUF",
+    "revision": "56e8a57d479faa184dceede5f985d08d9816e999",
+    "sha256": "900813b635fa7f472beac213f521d57dd12378099b0623a8a36de0310b6bf892",
+    "upstream": "https://github.com/google/cld3 (b48dc46512566f5a2d41118c8c1116c4f96dc661)"
+  },
+  "platform": "Darwin-25.2.0-arm64-arm-64bit-Mach-O"
+}

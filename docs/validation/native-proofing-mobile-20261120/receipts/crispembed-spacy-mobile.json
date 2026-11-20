@@ -1,0 +1,28 @@
+{
+  "android_platform": "android-24",
+  "crispembed": {
+    "commit": "45b057700880e125d701d941a9e3123679960d35",
+    "ggml": "3a27b6c665b191cb230be367db5c52d81dd3e2ac",
+    "repository": "https://github.com/CrispStrobe/CrispEmbed"
+  },
+  "file_prefix_map": "/quds-spacy-build",
+  "files": {
+    "android/arm64-v8a/libcrispembed-spacy.so": "ed730f629ce4eafe139885e9b1029a41fe05f3d5032fb992fb61eb834950f7ad",
+    "android/x86_64/libcrispembed-spacy.so": "0372f77d663318e58f72a34cd2400b346410ea2efb67aa396adc798c0498b2bb",
+    "ios/crispembed_spacy.xcframework/Info.plist": "d0ea8693e90b95a83ac853b1c8d86cdf742ff873be26d4ad9bb1cd91189f287f",
+    "ios/crispembed_spacy.xcframework/ios-arm64/crispembed_spacy.framework/Info.plist": "dc97c5006d1787c81af5f2978cc0ed45b9587aacbfaa4b9b77889067b097ccba",
+    "ios/crispembed_spacy.xcframework/ios-arm64/crispembed_spacy.framework/_CodeSignature/CodeResources": "2d52c0213f9f3c101f64a42cf432d3a708690080ca91819e91c5ffc67bcfb3f8",
+    "ios/crispembed_spacy.xcframework/ios-arm64/crispembed_spacy.framework/crispembed_spacy": "2a0ca967a76896d7a7ca56f96e43910a5ba5aeaecfa05daab7639b7586751792",
+    "ios/crispembed_spacy.xcframework/ios-arm64_x86_64-simulator/crispembed_spacy.framework/Info.plist": "7ff532668b0ae892163830700feb19ece24249bd618bd6bc40c5e6404509ae77",
+    "ios/crispembed_spacy.xcframework/ios-arm64_x86_64-simulator/crispembed_spacy.framework/_CodeSignature/CodeResources": "e4e5292beb3a2de621b5ac019e4f121a20ba0dfdbadc87f03e9e3a3939d6a0f0",
+    "ios/crispembed_spacy.xcframework/ios-arm64_x86_64-simulator/crispembed_spacy.framework/crispembed_spacy": "054c21e37f6e225f1cbb2a152bc7cdf237e15bc303fec90822ab2a28bb81f547"
+  },
+  "ios_deployment_target": "13.0",
+  "license_manifest_sha256": "2e505eb70761e0fb99d5593f602117fe429ae5389db64405e53bd6a290387242",
+  "pcre2": {
+    "commit": "b2bd4254b379b9d7dc9a3dda060a7e27009ccdff",
+    "repository": "https://github.com/PCRE2Project/pcre2.git"
+  },
+  "platform": "Darwin-25.2.0-arm64-arm-64bit-Mach-O",
+  "qualification": "none: a new binary until replayed on a device and recorded"
+}
