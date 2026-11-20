@@ -256,8 +256,8 @@ void main() {
     expect(cancelled, isTrue);
     expect(find.byType(StudioMailComposeDialog), findsNothing);
     expect(tester.takeException(), isNull);
-      unawaited(stream.close());
-      await tester.pump();
+    unawaited(stream.close());
+    await tester.pump();
   });
 
   testWidgets(

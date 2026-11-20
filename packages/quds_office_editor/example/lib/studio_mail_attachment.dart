@@ -96,10 +96,12 @@ final class StudioMailAttachment {
     final dot = name.lastIndexOf('.');
     if (dot <= 0) return 'application/octet-stream';
     return switch (name.substring(dot + 1).toLowerCase()) {
-      'docx' => 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+      'docx' =>
+        'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
       'xlsx' =>
         'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
-      'pptx' => 'application/vnd.openxmlformats-officedocument.presentationml.presentation',
+      'pptx' =>
+        'application/vnd.openxmlformats-officedocument.presentationml.presentation',
       'docm' => 'application/vnd.ms-word.document.macroenabled.12',
       'xlsm' => 'application/vnd.ms-excel.sheet.macroenabled.12',
       'pptm' => 'application/vnd.ms-powerpoint.presentation.macroenabled.12',
