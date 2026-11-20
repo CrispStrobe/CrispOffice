@@ -1,0 +1,429 @@
+{
+  "source": "231bd0403a3d2855dc23bf8dacefaedba01f2aab",
+  "sourceFiles": 2226,
+  "acceptedProcessCount": 6,
+  "successfulVisibleExecutions": 1358,
+  "skippedVisibleCases": 8,
+  "failures": 0,
+  "errors": 0,
+  "groups": {
+    "engine-zotero": {
+      "receipt": {
+        "source": "231bd0403a3d2855dc23bf8dacefaedba01f2aab",
+        "gate": "engine-zotero",
+        "command": [
+          "/workspace/scratch/a17412353cf6/runtime/dart-sdk/bin/dart",
+          "--packages=/workspace/scratch/a17412353cf6/runtime/engine_package_config.json",
+          "/workspace/scratch/a17412353cf6/runtime/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+          "--reporter=json",
+          "--concurrency=1",
+          "--compiler=source",
+          "tool/zotero/research_target_acceptance.dart"
+        ],
+        "cwd": "/workspace/scratch/a17412353cf6/quds_office_suite/packages/quds_office_engine",
+        "exit": 0,
+        "terminalEventCount": 1,
+        "jsonSuccess": true,
+        "counts": {
+          "success": 399
+        },
+        "accepted": true,
+        "interrupted": false,
+        "seconds": 50.26996564865112,
+        "sourceFiles": 2226,
+        "sourceBeforeSha256": "17248fcc60854b7e947bfc9e45b52a05d9789f351c8ac253bcc8dec06a311d70",
+        "sourceAfterSha256": "17248fcc60854b7e947bfc9e45b52a05d9789f351c8ac253bcc8dec06a311d70",
+        "sourceHashesUnchanged": true,
+        "peakRssSumKB": 1031572
+      },
+      "perOriginalFileOrHarness": {
+        "packages/quds_office_engine/tool/zotero/research_target_acceptance.dart": {
+          "success": 399
+        }
+      },
+      "namedGroups": null,
+      "skips": [],
+      "hiddenLoadingOrSetupEntriesExcluded": 1
+    },
+    "engine-incoming-timeout120": {
+      "receipt": {
+        "source": "231bd0403a3d2855dc23bf8dacefaedba01f2aab",
+        "gate": "engine-incoming-timeout120",
+        "command": [
+          "/workspace/scratch/a17412353cf6/runtime/dart-sdk/bin/dart",
+          "--packages=/workspace/scratch/a17412353cf6/runtime/engine_package_config.json",
+          "/workspace/scratch/a17412353cf6/runtime/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+          "--reporter=json",
+          "--concurrency=1",
+          "--compiler=source",
+          "--timeout=2m",
+          "test/office_vba_arguments_integration_test.dart",
+          "test/office_vba_arguments_test.dart",
+          "test/office_vba_powerpoint_margins_integration_test.dart",
+          "test/office_vba_powerpoint_margins_test.dart",
+          "test/office_vba_procedure_boundaries_test.dart",
+          "test/office_vba_string_intrinsics_test.dart",
+          "test/office_vba_word_argument_shapes_test.dart",
+          "test/office_vba_word_paragraph_layout_integration_test.dart",
+          "test/office_vba_word_paragraph_layout_test.dart",
+          "test/slide_text_insets_preservation_test.dart",
+          "test/word_incremental_layout_differential_test.dart"
+        ],
+        "cwd": "/workspace/scratch/a17412353cf6/quds_office_suite/packages/quds_office_engine",
+        "exit": 0,
+        "terminalEventCount": 1,
+        "jsonSuccess": true,
+        "counts": {
+          "success": 329
+        },
+        "accepted": true,
+        "interrupted": false,
+        "seconds": 329.6977996826172,
+        "sourceFiles": 2226,
+        "sourceBeforeSha256": "17248fcc60854b7e947bfc9e45b52a05d9789f351c8ac253bcc8dec06a311d70",
+        "sourceAfterSha256": "17248fcc60854b7e947bfc9e45b52a05d9789f351c8ac253bcc8dec06a311d70",
+        "sourceHashesUnchanged": true,
+        "peakRssSumKB": 1687016
+      },
+      "perOriginalFileOrHarness": {
+        "packages/quds_office_engine/test/office_vba_arguments_integration_test.dart": {
+          "success": 16
+        },
+        "packages/quds_office_engine/test/office_vba_arguments_test.dart": {
+          "success": 68
+        },
+        "packages/quds_office_engine/test/office_vba_powerpoint_margins_integration_test.dart": {
+          "success": 16
+        },
+        "packages/quds_office_engine/test/office_vba_powerpoint_margins_test.dart": {
+          "success": 27
+        },
+        "packages/quds_office_engine/test/office_vba_procedure_boundaries_test.dart": {
+          "success": 19
+        },
+        "packages/quds_office_engine/test/office_vba_string_intrinsics_test.dart": {
+          "success": 102
+        },
+        "packages/quds_office_engine/test/office_vba_word_argument_shapes_test.dart": {
+          "success": 8
+        },
+        "packages/quds_office_engine/test/office_vba_word_paragraph_layout_integration_test.dart": {
+          "success": 17
+        },
+        "packages/quds_office_engine/test/office_vba_word_paragraph_layout_test.dart": {
+          "success": 37
+        },
+        "packages/quds_office_engine/test/slide_text_insets_preservation_test.dart": {
+          "success": 9
+        },
+        "packages/quds_office_engine/test/word_incremental_layout_differential_test.dart": {
+          "success": 10
+        }
+      },
+      "namedGroups": null,
+      "skips": [],
+      "hiddenLoadingOrSetupEntriesExcluded": 11
+    },
+    "editor-zotero-layout": {
+      "receipt": {
+        "source": "231bd0403a3d2855dc23bf8dacefaedba01f2aab",
+        "gate": "editor-zotero-layout",
+        "command": [
+          "/workspace/scratch/a17412353cf6/runtime/flutter/bin/flutter",
+          "test",
+          "--no-pub",
+          "--reporter=json",
+          "--concurrency=1",
+          "tool/zotero/research_target_acceptance.dart"
+        ],
+        "cwd": "/workspace/scratch/a17412353cf6/quds_office_suite/packages/quds_office_editor",
+        "exit": 0,
+        "terminalEventCount": 1,
+        "jsonSuccess": true,
+        "counts": {
+          "success": 332,
+          "skip": 8
+        },
+        "accepted": true,
+        "interrupted": false,
+        "seconds": 302.6391701698303,
+        "sourceFiles": 2226,
+        "sourceBeforeSha256": "17248fcc60854b7e947bfc9e45b52a05d9789f351c8ac253bcc8dec06a311d70",
+        "sourceAfterSha256": "17248fcc60854b7e947bfc9e45b52a05d9789f351c8ac253bcc8dec06a311d70",
+        "sourceHashesUnchanged": true,
+        "peakRssSumKB": 2220336
+      },
+      "perOriginalFileOrHarness": {
+        "packages/quds_office_editor/tool/zotero/research_target_acceptance.dart": {
+          "success": 332,
+          "skip": 8
+        }
+      },
+      "namedGroups": {
+        "word_incremental_layout_equivalence_test.dart": {
+          "success": 42,
+          "skip": 8
+        },
+        "word_zotero_add_note_controller_test.dart": {
+          "success": 92
+        },
+        "word_zotero_note_target_test.dart": {
+          "success": 33
+        },
+        "word_zotero_note_image_controller_test.dart": {
+          "success": 21
+        },
+        "word_zotero_citing_controller_test.dart": {
+          "success": 21
+        },
+        "word_zotero_citing_dialog_test.dart": {
+          "success": 24
+        },
+        "word_zotero_direct_command_test.dart": {
+          "success": 23
+        },
+        "word_zotero_bibliography_controller_test.dart": {
+          "success": 13
+        },
+        "word_zotero_rich_controller_test.dart": {
+          "success": 8
+        },
+        "word_proofing_session_test.dart": {
+          "success": 35
+        },
+        "word_proofing_capture_cache_test.dart": {
+          "success": 4
+        },
+        "studio_comment_draft_proofing_test.dart": {
+          "success": 15
+        },
+        "studio_word_chrome_settle_test.dart": {
+          "success": 1
+        }
+      },
+      "skips": [
+        {
+          "name": "word_incremental_layout_equivalence_test.dart incremental layout equals full layout fixture legacy_doc_parser/test/fixtures/fidelity/image-appearance/authored/floating-both.docx",
+          "messages": [
+            "no paragraphs to edit"
+          ]
+        },
+        {
+          "name": "word_incremental_layout_equivalence_test.dart incremental layout equals full layout fixture legacy_doc_parser/test/fixtures/fidelity/image-appearance/authored/floating-control.docx",
+          "messages": [
+            "no paragraphs to edit"
+          ]
+        },
+        {
+          "name": "word_incremental_layout_equivalence_test.dart incremental layout equals full layout fixture legacy_doc_parser/test/fixtures/fidelity/image-appearance/authored/floating-horizontal.docx",
+          "messages": [
+            "no paragraphs to edit"
+          ]
+        },
+        {
+          "name": "word_incremental_layout_equivalence_test.dart incremental layout equals full layout fixture legacy_doc_parser/test/fixtures/fidelity/image-appearance/authored/floating-margin-quarter.docx",
+          "messages": [
+            "no paragraphs to edit"
+          ]
+        },
+        {
+          "name": "word_incremental_layout_equivalence_test.dart incremental layout equals full layout fixture legacy_doc_parser/test/fixtures/fidelity/image-appearance/authored/floating-negative-quarter.docx",
+          "messages": [
+            "no paragraphs to edit"
+          ]
+        },
+        {
+          "name": "word_incremental_layout_equivalence_test.dart incremental layout equals full layout fixture legacy_doc_parser/test/fixtures/fidelity/image-appearance/authored/floating-outline-shadow.docx",
+          "messages": [
+            "no paragraphs to edit"
+          ]
+        },
+        {
+          "name": "word_incremental_layout_equivalence_test.dart incremental layout equals full layout fixture legacy_doc_parser/test/fixtures/fidelity/image-appearance/authored/floating-quarter.docx",
+          "messages": [
+            "no paragraphs to edit"
+          ]
+        },
+        {
+          "name": "word_incremental_layout_equivalence_test.dart incremental layout equals full layout fixture legacy_doc_parser/test/fixtures/fidelity/image-appearance/authored/floating-vertical.docx",
+          "messages": [
+            "no paragraphs to edit"
+          ]
+        }
+      ],
+      "hiddenLoadingOrSetupEntriesExcluded": 7
+    },
+    "mail-native-cloud-forward": {
+      "receipt": {
+        "source": "231bd0403a3d2855dc23bf8dacefaedba01f2aab",
+        "gate": "mail-native-cloud-forward",
+        "command": [
+          "/workspace/scratch/a17412353cf6/runtime/flutter/bin/flutter",
+          "test",
+          "--no-pub",
+          "--reporter=json",
+          "--concurrency=1",
+          "test/studio_mail_test.dart",
+          "test/studio_mail_cloud_test.dart",
+          "test/studio_mail_forward_test.dart"
+        ],
+        "cwd": "/workspace/scratch/a17412353cf6/quds_office_suite/packages/quds_office_editor/example",
+        "exit": 0,
+        "terminalEventCount": 1,
+        "jsonSuccess": true,
+        "counts": {
+          "success": 148
+        },
+        "accepted": true,
+        "interrupted": false,
+        "seconds": 109.07127904891968,
+        "sourceFiles": 2226,
+        "sourceBeforeSha256": "17248fcc60854b7e947bfc9e45b52a05d9789f351c8ac253bcc8dec06a311d70",
+        "sourceAfterSha256": "17248fcc60854b7e947bfc9e45b52a05d9789f351c8ac253bcc8dec06a311d70",
+        "sourceHashesUnchanged": true,
+        "peakRssSumKB": 2243328
+      },
+      "perOriginalFileOrHarness": {
+        "packages/quds_office_editor/example/test/studio_mail_test.dart": {
+          "success": 81
+        },
+        "packages/quds_office_editor/example/test/studio_mail_cloud_test.dart": {
+          "success": 57
+        },
+        "packages/quds_office_editor/example/test/studio_mail_forward_test.dart": {
+          "success": 10
+        }
+      },
+      "namedGroups": null,
+      "skips": [],
+      "hiddenLoadingOrSetupEntriesExcluded": 3
+    },
+    "mail-ews-reply": {
+      "receipt": {
+        "source": "231bd0403a3d2855dc23bf8dacefaedba01f2aab",
+        "gate": "mail-ews-reply",
+        "command": [
+          "/workspace/scratch/a17412353cf6/runtime/flutter/bin/flutter",
+          "test",
+          "--no-pub",
+          "--reporter=json",
+          "--concurrency=1",
+          "test/studio_mail_ews_test.dart",
+          "test/studio_mail_reply_test.dart"
+        ],
+        "cwd": "/workspace/scratch/a17412353cf6/quds_office_suite/packages/quds_office_editor/example",
+        "exit": 0,
+        "terminalEventCount": 1,
+        "jsonSuccess": true,
+        "counts": {
+          "success": 104
+        },
+        "accepted": true,
+        "interrupted": false,
+        "seconds": 53.09654784202576,
+        "sourceFiles": 2226,
+        "sourceBeforeSha256": "17248fcc60854b7e947bfc9e45b52a05d9789f351c8ac253bcc8dec06a311d70",
+        "sourceAfterSha256": "17248fcc60854b7e947bfc9e45b52a05d9789f351c8ac253bcc8dec06a311d70",
+        "sourceHashesUnchanged": true,
+        "peakRssSumKB": 1732144
+      },
+      "perOriginalFileOrHarness": {
+        "packages/quds_office_editor/example/test/studio_mail_ews_test.dart": {
+          "success": 61
+        },
+        "packages/quds_office_editor/example/test/studio_mail_reply_test.dart": {
+          "success": 43
+        }
+      },
+      "namedGroups": null,
+      "skips": [],
+      "hiddenLoadingOrSetupEntriesExcluded": 2
+    },
+    "downloads-theme": {
+      "receipt": {
+        "source": "231bd0403a3d2855dc23bf8dacefaedba01f2aab",
+        "gate": "downloads-theme",
+        "command": [
+          "/workspace/scratch/a17412353cf6/runtime/flutter/bin/flutter",
+          "test",
+          "--no-pub",
+          "--reporter=json",
+          "--concurrency=1",
+          "test/studio_layout_theme_test.dart",
+          "test/studio_downloads_capture_test.dart",
+          "test/studio_downloads_layout_test.dart",
+          "test/studio_downloads_manager_test.dart"
+        ],
+        "cwd": "/workspace/scratch/a17412353cf6/quds_office_suite/packages/quds_office_editor/example",
+        "exit": 0,
+        "terminalEventCount": 1,
+        "jsonSuccess": true,
+        "counts": {
+          "success": 46
+        },
+        "accepted": true,
+        "interrupted": false,
+        "seconds": 62.38422632217407,
+        "sourceFiles": 2226,
+        "sourceBeforeSha256": "17248fcc60854b7e947bfc9e45b52a05d9789f351c8ac253bcc8dec06a311d70",
+        "sourceAfterSha256": "17248fcc60854b7e947bfc9e45b52a05d9789f351c8ac253bcc8dec06a311d70",
+        "sourceHashesUnchanged": true,
+        "peakRssSumKB": 1690476
+      },
+      "perOriginalFileOrHarness": {
+        "packages/quds_office_editor/example/test/studio_layout_theme_test.dart": {
+          "success": 9
+        },
+        "packages/quds_office_editor/example/test/studio_downloads_capture_test.dart": {
+          "success": 7
+        },
+        "packages/quds_office_editor/example/test/studio_downloads_layout_test.dart": {
+          "success": 19
+        },
+        "packages/quds_office_editor/example/test/studio_downloads_manager_test.dart": {
+          "success": 11
+        }
+      },
+      "namedGroups": null,
+      "skips": [],
+      "hiddenLoadingOrSetupEntriesExcluded": 6
+    }
+  },
+  "fixtureQualification": {
+    "discovered": 42,
+    "exercised": 34,
+    "skipped": 8,
+    "reason": "The existing unchanged guard reports no paragraphs to edit for eight newly available floating-image DOCX fixtures.",
+    "manifest": "equivalence-fixture-results-231bd.json"
+  },
+  "excludedFailedAttempt": {
+    "path": "final-gates-231bd040/engine-incoming",
+    "exit": 1,
+    "successfulEventsExcluded": 326,
+    "timeoutErrors": 3,
+    "resolution": "All11 incoming files rerun unchanged with supported bounded --timeout=2m;329 passed and the process exited0."
+  },
+  "earlierPreservedScopes": {
+    "source": "2d617a31bce48a7312f31586f70f7472e3420406",
+    "credentialSelectionAndCatalogCases": 124,
+    "readerCases": 33,
+    "note": "These cases are not added to the1358 final-source count; their exact-source evidence remains in checkpoint-native-evidence.tar.xz."
+  },
+  "analysis": {
+    "source": "231bd0403a3d2855dc23bf8dacefaedba01f2aab",
+    "files": 94,
+    "errors": 0,
+    "warnings": 0,
+    "infos": 15,
+    "rawArchiveGitBlob": "45f2ca01023da6b70109b027283f6baa25b82999"
+  },
+  "format": {
+    "files": 94,
+    "changes": 0
+  },
+  "runtimeProvenance": {
+    "rawArchiveGitBlob": "de951c0520c5c0afe49fcc26cc8a55b74cbb8635",
+    "sdk": "Fully SHA-verified official Flutter3.47.8 and Dart3.13.7; embedded1047 Dart files byte-matched;135 locked hosted dependency archives verified."
+  },
+  "scope": "These results are pinned to231bd. A later Outbox main reconciliation is pending and is not claimed as tested by this checkpoint."
+}
