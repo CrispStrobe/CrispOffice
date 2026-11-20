@@ -3,10 +3,10 @@
 00:01 +0 -1: adding a language to styleless imports preserves the kerning fallback [E]
   Expected: <1>
     Actual: <null>
-  
+
   package:matcher                              expect
   test/word_kerning_properties_test.dart 15:5  main.<fn>
-  
+
 00:01 +0 -1: inherited threshold stays sparse and direct edits survive save
 00:01 +1 -1: new documents retain explicit kerning across save and reopen
 00:02 +2 -1: native kerning thresholds resolve, clone, and round-trip sparsely

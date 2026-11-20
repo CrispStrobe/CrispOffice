@@ -21,7 +21,7 @@
 00:01 +19: test/line_breaker_controls_test.dart: zero width space offers an invisible source-preserving break: ​
 00:01 +20: test/line_breaker_controls_test.dart: zero width space offers an invisible source-preserving break: ​​
 00:01 +21: test/line_breaker_controls_test.dart: zero width space offers an invisible source-preserving break: ​‎
-00:01 +22: test/line_breaker_controls_test.dart: zero width space offers an invisible source-preserving break: ​   
+00:01 +22: test/line_breaker_controls_test.dart: zero width space offers an invisible source-preserving break: ​
 00:01 +23: test/line_breaker_controls_test.dart: zero width space preserves supplementary source offsets
 00:01 +24: test/line_breaker_controls_test.dart: word joiner suppresses a hyphen break: ⁠
 00:01 +25: test/line_breaker_controls_test.dart: word joiner suppresses the preceding space break: ⁠
@@ -64,8 +64,8 @@ Second
 
 Third
 
-00:02 +55: test/variable_line_breaker_test.dart: prepared line context matches fixed width 36.0:   Leading spaces and trailing spaces   
-00:02 +56: test/variable_line_breaker_test.dart: prepared line context matches fixed width 90.0:   Leading spaces and trailing spaces   
+00:02 +55: test/variable_line_breaker_test.dart: prepared line context matches fixed width 36.0:   Leading spaces and trailing spaces
+00:02 +56: test/variable_line_breaker_test.dart: prepared line context matches fixed width 90.0:   Leading spaces and trailing spaces
 00:02 +57: test/variable_line_breaker_test.dart: prepared line context matches fixed width 36.0: Emoji 😀 plus 🧭 and nonbreaking space.
 00:02 +58: test/variable_line_breaker_test.dart: prepared line context matches fixed width 90.0: Emoji 😀 plus 🧭 and nonbreaking space.
 00:02 +59: test/variable_line_breaker_test.dart: prepared line context matches fixed width 36.0: مرحبا بالعالم 123 test نهاية

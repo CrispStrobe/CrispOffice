@@ -40,7 +40,7 @@ The exception was caught asynchronously.
 00:01 +8 -1: Word-like selection golden (variant: TargetPlatform.macOS) [E]
   Test failed. See exception logs above.
   The test description was: Word-like selection golden (variant: TargetPlatform.macOS)
-  
+
 00:01 +8 -1: Word-like selection golden (Windows grey) (variant: TargetPlatform.windows)
 ══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
 The following assertion was thrown while running async test code:
@@ -73,7 +73,7 @@ The exception was caught asynchronously.
 00:01 +8 -2: Word-like selection golden (Windows grey) (variant: TargetPlatform.windows) [E]
   Test failed. See exception logs above.
   The test description was: Word-like selection golden (Windows grey) (variant: TargetPlatform.windows)
-  
+
 00:01 +8 -2: (tearDownAll)
 00:01 +8 -2: Some tests failed.
 

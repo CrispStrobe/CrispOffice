@@ -17,11 +17,57 @@ Or undo this operation with:
 
 Turn off this advice by setting config variable advice.detachedHead to false
 
-Updating files:  63% (10212/16076)Updating files:  64% (10289/16076)Updating files:  65% (10450/16076)Updating files:  66% (10611/16076)Updating files:  67% (10771/16076)Updating files:  68% (10932/16076)Updating files:  69% (11093/16076)Updating files:  70% (11254/16076)Updating files:  71% (11414/16076)Updating files:  72% (11575/16076)Updating files:  73% (11736/16076)Updating files:  74% (11897/16076)Updating files:  75% (12057/16076)Updating files:  76% (12218/16076)Updating files:  77% (12379/16076)Updating files:  78% (12540/16076)Updating files:  79% (12701/16076)Updating files:  80% (12861/16076)Updating files:  81% (13022/16076)Updating files:  82% (13183/16076)Updating files:  83% (13344/16076)Updating files:  84% (13504/16076)Updating files:  85% (13665/16076)Updating files:  86% (13826/16076)Updating files:  87% (13987/16076)Updating files:  88% (14147/16076)Updating files:  89% (14308/16076)Updating files:  90% (14469/16076)Updating files:  91% (14630/16076)Updating files:  92% (14790/16076)Updating files:  93% (14951/16076)Updating files:  94% (15112/16076)Updating files:  95% (15273/16076)Updating files:  96% (15433/16076)Updating files:  97% (15594/16076)Updating files:  98% (15755/16076)Updating files:  99% (15916/16076)Updating files: 100% (16076/16076)Updating files: 100% (16076/16076), done.
+Updating files:  63% (10212/16076)
+Updating files:  64% (10289/16076)
+Updating files:  65% (10450/16076)
+Updating files:  66% (10611/16076)
+Updating files:  67% (10771/16076)
+Updating files:  68% (10932/16076)
+Updating files:  69% (11093/16076)
+Updating files:  70% (11254/16076)
+Updating files:  71% (11414/16076)
+Updating files:  72% (11575/16076)
+Updating files:  73% (11736/16076)
+Updating files:  74% (11897/16076)
+Updating files:  75% (12057/16076)
+Updating files:  76% (12218/16076)
+Updating files:  77% (12379/16076)
+Updating files:  78% (12540/16076)
+Updating files:  79% (12701/16076)
+Updating files:  80% (12861/16076)
+Updating files:  81% (13022/16076)
+Updating files:  82% (13183/16076)
+Updating files:  83% (13344/16076)
+Updating files:  84% (13504/16076)
+Updating files:  85% (13665/16076)
+Updating files:  86% (13826/16076)
+Updating files:  87% (13987/16076)
+Updating files:  88% (14147/16076)
+Updating files:  89% (14308/16076)
+Updating files:  90% (14469/16076)
+Updating files:  91% (14630/16076)
+Updating files:  92% (14790/16076)
+Updating files:  93% (14951/16076)
+Updating files:  94% (15112/16076)
+Updating files:  95% (15273/16076)
+Updating files:  96% (15433/16076)
+Updating files:  97% (15594/16076)
+Updating files:  98% (15755/16076)
+Updating files:  99% (15916/16076)
+Updating files: 100% (16076/16076)
+Updating files: 100% (16076/16076), done.
 Downloading Linux x64 Dart SDK from Flutter engine cf636b1dfb818dd6a3ff16e390e93b1a036969c8...
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0  227M    0 85323    0     0   221k      0  0:17:35 --:--:--  0:17:35  221k 11  227M   11 26.6M    0     0  19.4M      0  0:00:11  0:00:01  0:00:10 19.4M 29  227M   29 66.9M    0     0  28.1M      0  0:00:08  0:00:02  0:00:06 28.1M 47  227M   47  108M    0     0  32.2M      0  0:00:07  0:00:03  0:00:04 32.2M 67  227M   67  154M    0     0  35.3M      0  0:00:06  0:00:04  0:00:02 35.3M 85  227M   85  195M    0     0  36.3M      0  0:00:06  0:00:05  0:00:01 39.0M100  227M  100  227M    0     0  36.7M      0  0:00:06  0:00:06 --:--:-- 41.6M
+
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+  0  227M    0 85323    0     0   221k      0  0:17:35 --:--:--  0:17:35  221k
+ 11  227M   11 26.6M    0     0  19.4M      0  0:00:11  0:00:01  0:00:10 19.4M
+ 29  227M   29 66.9M    0     0  28.1M      0  0:00:08  0:00:02  0:00:06 28.1M
+ 47  227M   47  108M    0     0  32.2M      0  0:00:07  0:00:03  0:00:04 32.2M
+ 67  227M   67  154M    0     0  35.3M      0  0:00:06  0:00:04  0:00:02 35.3M
+ 85  227M   85  195M    0     0  36.3M      0  0:00:06  0:00:05  0:00:01 39.0M
+100  227M  100  227M    0     0  36.7M      0  0:00:06  0:00:06 --:--:-- 41.6M
 Building flutter tool...
 Resolving dependencies...
 Downloading packages...
