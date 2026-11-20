@@ -222,7 +222,7 @@ startup-recovery assumptions.
   cleanup journal. Account removal is destructive and local only. Removed
   account IDs cannot be reused. Retired profiles can reopen to finish vault
   cleanup but cannot create accounts or content.
-- Versioned transactional schema, additive v1/v2/v3-to-v4 migration, and explicit bounded
+- Versioned transactional schema, additive v1–v5-to-v6 migration, and explicit bounded
   reindexing of older content. Unknown schema versions are not reset.
 
 Content errors are typed and redacted. No SQL exception text is returned to the
@@ -230,6 +230,62 @@ host. Logical per-account quotas include identities, cursor/journal metadata
 and blob references; actual SQLite/browser storage errors remain authoritative
 for physical capacity. The database is **not encrypted**. App-container access
 and vault storage do not constitute database encryption or secure erasure.
+
+## Durable foreground flag receipts
+
+The schema-v6 flag journal is separate from the older `pending_operations` API.
+It retains evidence for one explicitly selected foreground batch and exposes no
+method to replay a saved batch. The host binds a `MailBulkFlagJournal` adapter to
+the following repository operations:
+
+| Operation | Durable boundary |
+| --- | --- |
+| `createFlagBatch(plan, subjects:, lease:)` | Atomically retain all frozen identities, desired flags and subjects; return an opaque `MailFlagBatchHandle` |
+| `beginFlagAttempt(handle, index, lease:)` | Commit one applying marker before the host calls its provider |
+| `recordFlagResult(handle, index, result)` | Retain typed provider evidence and any exact-identity cache flag patch in one transaction |
+| `finishFlagBatch(handle, report)` | Retain the final ordered receipt, stop reason, persistence problem and untouched tail |
+| `listFlagBatches` / `loadFlagBatch` | Inspect bounded account-scoped history without provider calls or message body reads |
+| `clearCompletedFlagBatches` | Remove only finished receipts with no applying or uncertain items |
+
+The handle belongs to the repository instance that created it. Every mutation
+compares a monotonic revision, and dispatch also requires a live account lease.
+Recording a reply intentionally does not require the old view lease: an
+in-flight acknowledgement can survive folder navigation. The original account
+must still be active. Logout retires unfinished handles even if the account is
+later resumed; account/profile removal deletes their local receipts and rejects
+late callbacks. The host must let pending receipt writes settle before closing
+the owning repository.
+
+On exclusive reopen, a committed applying marker becomes **uncertain**, already
+recorded confirmations/failures remain intact, and undispatched items remain
+**not attempted**. The batch is closed as interrupted. There is no automatic
+retry, offline replay, provider reconciliation, or claim that a lost reply was
+a server rejection. A transient result-write failure may still be finalized
+once by its original owner; if storage cannot retain the known result, the
+committed applying marker preserves uncertainty across restart.
+
+A confirmed flag patches only that bit on an existing exact remote identity
+whose full flag snapshot was already known. Other bits, message payloads and
+folder completeness remain unchanged. Wholly unknown flags stay null. Affected
+cached views receive a new revision while keeping their original capture time,
+so an older cache writer cannot pass its previous compare-and-set check.
+
+Each batch has at most 1,000 items (also bounded by `maxPageSize`), a subject
+limit of 4,096 UTF-16 code units per item, and a combined identity/subject budget
+of at most 2 Mi code units or the lower configured metadata limit. Account
+history retains at most 100 clean completed receipts and 100 unresolved/running
+receipts. Only clean completed receipts can be pruned or cleared. When unresolved
+work reaches its limit, new batches fail before provider dispatch. Listing uses
+explicit bounded pages and continuation offsets. Logical quotas reserve the
+bounded typed outcome metadata when creating intent; physical disk quota or
+I/O errors can still prevent a later commit.
+
+The native opener uses SQLite WAL, `synchronous=FULL` and an exclusive profile
+owner. Durability is the completed SQLite transaction boundary, subject to the
+filesystem and device honoring flushes. This is local application storage, not
+a backup, synchronized multi-device history, encrypted database or a guarantee
+against device loss. Browser persistence requires its separately qualified
+safe-storage setup; portable core/Node tests do not qualify a browser database.
 
 ## Repository use and lifecycle
 

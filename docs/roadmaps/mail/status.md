@@ -1,4 +1,30 @@
-# Mail implementation status — 20 November 2026
+# Mail implementation status — 21 November 2026
+
+## Durable foreground read and flag commands
+
+The [command-journal continuation](command-journal.md) saves intent and each
+pre-dispatch marker before native IMAP, EWS, Gmail or Microsoft 365 flag calls.
+Single-message and bulk controls share this path. Typed outcomes survive restart;
+exclusive recovery preserves acknowledgements, marks unfinished dispatches
+Uncertain and leaves untouched messages Not attempted. Storage failure stops
+later dispatch, and recovery never replays a command.
+
+Confirmed results atomically update only the matching cached target flag while
+preserving other observations and unknown snapshots. Existing stable account,
+draft/cache ownership and view-revision guards remain in force. A retired view
+cannot publish into its replacement, while its in-flight acknowledgement may
+still be saved before the owner closes.
+
+**Mail activity** provides paginated read-only history and frozen per-message
+details from connected and cached accounts, with confirmed clean-history
+removal in English, German and Arabic. Schema v6 migrates versions 1–5. Bounded
+retention preserves running and uncertain receipts; explicit historical
+reconciliation and repository-driven sessions remain open. See the
+[local qualification record](../../validation/mail-command-journal-20261121/README.md).
+
+The same integration preserves recent Office/Zotero work and fixes reader
+whitespace and explicit remote-image loading: resources come from admitted
+inert image nodes, obey request/byte/pixel limits and reject stale completions.
 
 ## Foreground bulk read and flag triage
 
@@ -16,9 +42,10 @@ and single-use certified coordinator share one dispatch engine.
 Only confirmed target flags update the original foreground view. Scope and
 refresh generations reject stale callbacks, including A → B → A, while a
 same-folder refresh preserves query/sort and clears checked rows. Cached mail
-remains read-only. Reports and intent are not durable across restart, and bulk
-confirmation does not guarantee an immediate persistent-cache update. M04W and
-its repository-driven command journal remain open. The
+remains read-only. The original foreground milestone kept reports in memory;
+the durable continuation above now persists native single/bulk flags and exact
+cache updates. Repository-driven sessions and general remote commands remain
+open. The
 [local record](../../validation/mail-bulk-flags-20261120/README.md) separates
 actual execution, source integration and remaining provider/platform gates.
 
@@ -32,8 +59,8 @@ by newest/oldest, sender or subject while preserving stable row identities.
 English/German/Arabic help and controls describe the loaded-folder scope.
 Filtering, sorting and keyboard movement issue no provider/body/mutation work.
 
-This advances discovery within M04W. Account-wide search, durable command
-recovery, conversations and full offline synchronization remain open. The
+This advances discovery within M04W. Account-wide search, explicit uncertain
+command reconciliation, conversations and full offline synchronization remain open. The
 [local record](../../validation/mail-header-search-20261120/README.md) separates
 fresh validation from inherited evidence and live-provider/platform gates.
 

@@ -26,6 +26,11 @@ file, socket, credential-string, or `enough_mail` API dependency.
 - A bounded sync-page coordinator with injected provider/repository/session. The
   repository atomically commits records and cursor and rechecks its lease inside
   the transaction. Tests use a deterministic in-memory transaction fixture.
+- Frozen foreground read/unread/flag/unflag plans with per-message confirmed,
+  failed, uncertain and unattempted outcomes. Optional `MailBulkFlagJournal`
+  callbacks await durable intent, dispatch markers, outcomes and final receipts.
+  A failed local write stops the remaining selection while preserving remote
+  acknowledgements; a stale scope cannot authorize a later dispatch.
 - `MailImapSyncRange` marks an inclusive, fully observed UID range in one mailbox
   and UIDVALIDITY. The page's upserts are its authoritative survivors; the store
   reconciles absent existing memberships without inventing rows for numeric UID
@@ -39,6 +44,16 @@ final bytes = MailBytes(inputBytes); // Enforce the byte budget before this copy
 final message = MailMessage(raw: bytes, envelope: MailEnvelope(subject: 'Example'));
 final original = message.raw.copyBytes(); // Exact octets; independently writable.
 ```
+
+`MailBulkFlagJournal` contains no storage implementation. Its `prepare`,
+`beginAttempt`, `recordResult` and `finish` methods must commit before returning
+success. The runner checks the original lease and view after each awaited
+pre-dispatch callback, records settled provider evidence even when the view
+retires, and never retries. `persistenceProblem` remains separate from remote
+outcomes, so a confirmed command is still confirmed when its receipt could not
+be saved. The store implementation recovers a surviving applying marker as
+uncertain after restart. `MailBulkFlagReport.restore` validates a saved report's
+frozen identities, desired values and order; it does not execute the plan.
 
 The saved-message `MailCodec` only parses. Canonical composition is negotiated
 through the separate `MailComposer` port. An application cannot infer send
