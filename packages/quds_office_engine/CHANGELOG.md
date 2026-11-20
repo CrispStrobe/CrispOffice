@@ -4,6 +4,15 @@ All notable changes to `quds_office_engine` are documented here.
 
 ## Unreleased
 
+- Continue the bounded Word/PowerPoint VBA adapters with Word document aliases,
+  `Paragraphs.Item`, small caps, superscript/subscript and fixed-palette
+  highlighting; add PowerPoint typed text-frame/formatting/transition helpers,
+  vertical text anchors, slide visibility, click advancing, duration and eleven
+  supported entry effects. Preserve per-property transition source provenance
+  and explicit formatting intent. This branch's final local qualification is
+  pending after workspace disk exhaustion; see the continuation validation
+  record for exact completed checks and remaining gates.
+
 - Add the bounded `vba-powerpoint` adapter on the shared VBA compiler: explicit
   slide/shape/text-range bindings, indexed or exact-name selectors, text,
   font/alignment and geometry writes, with strict collection guards for

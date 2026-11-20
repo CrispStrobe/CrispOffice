@@ -221,6 +221,87 @@ void main() {
     }
   });
 
+  test('SmallCaps retains extension attributes named w without duplicate xmlns:w', () {
+    const extensionNamespace = 'urn:word-typography-test';
+    final props = WmlRunProps(bold: true)
+      // Keep x:w before xmlns:w so a local-name-only setter would overwrite
+      // the extension attribute rather than the actual namespace declaration.
+      ..sourcePropertiesXml =
+          '<w:rPr xmlns:x="$extensionNamespace" x:w="keep" '
+          'xmlns:w="${OfficeNamespaces.w}"><w:b/></w:rPr>'
+      ..importedValues = <String, String>{};
+    final paragraph = WmlParagraph(
+      inlines: [WmlRun(text: 'Namespace', properties: props)],
+    );
+    final doc = WmlDocument(sections: [WmlSection(blocks: [paragraph])]);
+    OfficeOperationCatalog.apply(
+      doc,
+      'docx.runFormat',
+      {'paragraph': 0, 'smallCaps': true},
+    );
+    final saved = WordSerializer().writeBytes(doc);
+    final properties = _elements(_xml(saved), 'rPr').single;
+    expect(
+      properties.getAttribute('w', namespaceUri: extensionNamespace),
+      'keep',
+    );
+    expect(
+      properties.attributes.where(
+        (attribute) => attribute.qualifiedName == 'xmlns:w',
+      ),
+      hasLength(1),
+    );
+    expect(_elements(properties, 'caps').map(_val), ['0']);
+    final reopened = _runs(saved).single.properties;
+    expect(reopened.smallCaps, isTrue);
+    expect(reopened.bold, isTrue);
+  });
+
+  for (final (field, mode) in <(String, WmlVertAlign)>[
+    ('superscript', WmlVertAlign.superscript),
+    ('subscript', WmlVertAlign.subscript),
+  ]) {
+    test('authored $field and highlight clears override inherited styles', () {
+      final bytes = _fixture(
+        '<w:r><w:rPr><w:rStyle w:val="Script"/></w:rPr>'
+        '<w:t>Authored style</w:t></w:r>',
+        styles: '<w:style w:type="character" w:styleId="Script"><w:rPr>'
+            '<w:vertAlign w:val="${mode.name}"/><w:highlight w:val="yellow"/>'
+            '</w:rPr></w:style>',
+      );
+      final doc = WordDeserializer().readBytes(bytes);
+      final original = doc.paragraphs.single.inlines.whereType<WmlRun>().single;
+      expect(original.properties.vertAlign, mode);
+      expect(original.properties.highlight, 'FFFF00');
+      // Keep the authored values and style reference, with no sparse import
+      // provenance. The full serializer must retain the following clears.
+      original.properties
+        ..sourcePropertiesXml = null
+        ..importedValues = null
+        ..explicitProperties.clear();
+      OfficeOperationCatalog.apply(
+        doc,
+        'docx.runFormat',
+        {'paragraph': 0, field: false, 'highlight': null},
+      );
+      final updated = doc.paragraphs.single.inlines.whereType<WmlRun>().single;
+      expect(updated.properties.vertAlign, WmlVertAlign.baseline);
+      expect(updated.properties.highlight, isNull);
+      var saved = WordSerializer().writeBytes(doc);
+      for (var reopen = 0; reopen < 2; reopen++) {
+        expect(_elements(_xml(saved), 'vertAlign').map(_val), ['baseline']);
+        expect(_elements(_xml(saved), 'highlight').map(_val), ['none']);
+        final restored = WordDeserializer().readBytes(saved);
+        final run = restored.paragraphs.single.inlines.whereType<WmlRun>().single;
+        expect(run.text, 'Authored style');
+        expect(run.properties.styleId, 'Script');
+        expect(run.properties.vertAlign, WmlVertAlign.baseline);
+        expect(run.properties.highlight, isNull);
+        saved = WordSerializer().writeBytes(restored);
+      }
+    });
+  }
+
   test('typography changes roll back when a later explicit paragraph is absent', () async {
     final bytes = _fixture(_mixedRuns, styles: _mixedStyles);
     final session = OfficeMacroSession(bytes, format: OfficeMacroFormat.docx);

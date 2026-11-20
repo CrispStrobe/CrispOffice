@@ -1,8 +1,8 @@
 # Office macros, MCP, and language extensions
 
 The fork provides explicitly invoked, parameterized native macros for Word,
-spreadsheets, and presentations. The same **67 document operations** power
-macro playback, direct MCP tools, and the existing fidelity command runner.
+spreadsheets, and presentations. The shared document operations power macro
+playback, direct MCP tools, and the existing fidelity command runner.
 The portable entry point is
 `package:quds_office_engine/quds_office_automation.dart`.
 
@@ -21,9 +21,14 @@ writes clear values/formulas; Null publication fails before a plan is returned.
 The Word adapter targets explicit body paragraphs, inserts text before their
 content, and applies supported font and paragraph formatting. Its ranges retain
 the native paragraph boundaries. Word formatting includes all underline styles,
-strikethrough, indentation and pagination. The PowerPoint adapter targets
-explicit top-level slide shapes for text, font, alignment and geometry edits,
-with source-preserving formatting and a strict native collection identity guard.
+strikethrough, indentation and pagination. The continuation adds small caps,
+superscript/subscript, fixed-palette highlighting, explicit active-document
+aliases and `Paragraphs.Item`. The PowerPoint adapter targets explicit top-level
+slide shapes for text, font, alignment and geometry edits, with source-preserving
+formatting and a strict native collection identity guard. Its continuation adds
+text-frame anchors, typed formatting helpers and bounded slideshow transitions.
+The continuation's final local qualification remains pending; see the
+[execution and recovery record](validation/office-vba-continuation-20261120/recovery/README.md).
 The [parity roadmap](VBA_PARITY_ROADMAP.md) records remaining language/runtime
 work and broader application objects.
 It does not add a ribbon editor, a full VBA interpreter, document-open events,
@@ -187,10 +192,25 @@ and `run-powerpoint-vba` with the same argument order, or use the source envelop
 `language: "vba-powerpoint"`, `format: "pptx"`. See the
 [PowerPoint contract](VBA_POWERPOINT_MACROS.md) and
 `example/macros/powerpoint_report.bas` for exact shapes, units and supported
-formatting. Native `shapeText`, `shapeFormat`, and `shapeGeometry` accept an
-exact `shapeName` instead of a numeric `shape`. Compiled PowerPoint plans also
+formatting. Native `shapeText`, `shapeFormat`, `shapeTextFrame`, and
+`shapeGeometry` accept an exact `shapeName` instead of a numeric `shape`. Compiled PowerPoint plans also
 request `topLevel: true`, which refuses groups and unmodeled native objects
 instead of applying Office indices to flattened shapes.
+
+Native `pptx.shapeTextFrame` accepts `anchor: "top"`, `"center"`, or `"bottom"`
+and uses the same text-shape and top-level collection guards. Native
+`pptx.slideTransition` updates only the supplied `kind`, `direction`,
+`durationMs`, and `advanceOnClick` fields; `kind` is optional. Omitted fields,
+including automatic advance timing, retain their current values. Source-level
+`SlideShowTransition.Duration` is expressed in seconds and compiles to exact
+integer milliseconds. Slide visibility uses the existing `pptx.slideHidden`.
+
+Native `docx.runFormat` additionally accepts Boolean `smallCaps`, `superscript`,
+and `subscript` fields. A single native call must not provide both script-mode
+fields. Enabling a mode selects it; disabling it preserves an existing opposite
+mode. `smallCaps: true` writes an explicit AllCaps-off override. Highlighting
+uses the existing `highlight` field with a palette RGB color or `null` to clear.
+These operations retain the ordinary nonempty text-range requirement.
 
 The `example/macros/procedural_report.bas` example demonstrates shared heading
 and row helpers, `Worksheet`/`Range` arguments, and nested scalar functions.

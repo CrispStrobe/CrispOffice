@@ -297,7 +297,19 @@ void applyStep(
           final source = WordPropertyIo.parse(
             WordSerializer().runPropertiesXml(r),
             'rPr',
-          )..setAttribute('w', OfficeNamespaces.w, prefix: 'xmlns');
+          );
+          // Namespace declarations can be stored without a namespace URI.
+          // Replace the declaration by qualified name, then use an explicit
+          // namespace so an unrelated source attribute such as x:w survives.
+          source.attributes.removeWhere(
+            (attribute) => attribute.qualifiedName == 'xmlns:w',
+          );
+          source.setAttribute(
+            'w',
+            OfficeNamespaces.w,
+            prefix: 'xmlns',
+            namespaceUri: 'http://www.w3.org/2000/xmlns/',
+          );
           source.children.removeWhere(
             (child) =>
                 child is XmlElement &&
