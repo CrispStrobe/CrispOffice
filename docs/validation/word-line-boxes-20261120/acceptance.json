@@ -18,5 +18,8 @@
   "comparatorControlsPassed": 10,
   "wordVersion": "16.111.1",
   "ciQueriedOrAwaited": false,
-  "scope": "Synthetic Latin text and described layout controls, not arbitrary Word documents. Native Word page oracle captured on macOS; Ubuntu verifies editor regression/selection references."
+  "scope": "Synthetic Latin text and described layout controls, not arbitrary Word documents. Native Word page oracle captured on macOS; Ubuntu verifies editor regression/selection references.",
+  "finalReconciledSource": "1af71e20",
+  "finalIntegrationTestsPassed": 101,
+  "hostTestsPassed": 41
 }
