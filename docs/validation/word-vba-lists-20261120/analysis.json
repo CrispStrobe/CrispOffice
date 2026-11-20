@@ -1,0 +1,16 @@
+{
+  "command": [
+    "/workspace/scratch/c7ec4681d1f4/runtime/dart-sdk/bin/dart",
+    "analyze",
+    "--fatal-infos",
+    "packages/quds_office_engine"
+  ],
+  "cwd": "/workspace/scratch/c7ec4681d1f4/quds_office_suite",
+  "exit_code": 0,
+  "seconds": 27.785,
+  "source_commit": "57456c602856a8ec56095352e9c1b9b17476ea69",
+  "source_tree": "ef086f4b2fe1d5a4db86f53e2da7bf210289dba7",
+  "started_at_utc": "2026-11-20T15:32:07.899384+00:00",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_sha256": "c557a0c697cdb937104f1423d3c02d6a1062917cb0bcb2830d91db8cf6192af0"
+}

@@ -1,0 +1,12 @@
+{
+  "source_commit": "57456c602856a8ec56095352e9c1b9b17476ea69",
+  "source_tree": "ef086f4b2fe1d5a4db86f53e2da7bf210289dba7",
+  "compared_commit": "fee58398c80ec811f4adfbbaef7ae08598abdda0",
+  "input_count": 1118,
+  "complete_path_sets_equal": true,
+  "modes_types_and_git_objects_equal": true,
+  "canonical_input_manifest_sha256": "2bb7c222c6959bea8639509478e8cb18ee713679b7bfb664b8e34b294f9ddb1b",
+  "manifest_definition": "UTF-8 JSON sorted by path and key, compact separators; values are Git mode/type/blob objects.",
+  "source_manifest": "regression-evidence.tar.xz:runtime/word-office-gate-final-v3/inputs-before.json.gz",
+  "guarantee": "All qualified input paths, modes, types and Git blob identities are retained. Publication and remote-main verification repeat this comparison after evidence-only or disjoint incoming changes."
+}

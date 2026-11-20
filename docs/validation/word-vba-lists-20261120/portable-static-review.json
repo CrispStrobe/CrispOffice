@@ -1,0 +1,163 @@
+{
+  "schema": "quds-word-vba-independent-portable-static-review/v1",
+  "reviewed_at_utc": "2026-11-20T15:47:35.417486+00:00",
+  "source_commit": "57456c602856a8ec56095352e9c1b9b17476ea69",
+  "source_tree": "ef086f4b2fe1d5a4db86f53e2da7bf210289dba7",
+  "accepted": true,
+  "checks": {
+    "frozen_tree_identity": true,
+    "current_source_review_bound_and_resolved": true,
+    "portable_three_commands_successful": true,
+    "portable_bound_to_frozen_commit": true,
+    "portable_raw_and_canonical_equal": true,
+    "portable_canonical_file_exact": true,
+    "portable_stderr_empty": true,
+    "portable_semantic_results": true,
+    "portable_complete_path_set": true,
+    "portable_input_hashes_modes_match_frozen_tree": true,
+    "portable_runner_observed_unchanged_inputs": true,
+    "portable_source_driver_hashes": true,
+    "actual_bas_bytes_in_both_executed_commands": true,
+    "js_executed_same_output_path_as_compiler": true,
+    "portable_wrapper_retrospective_hash_matches": true,
+    "portable_wrapper_record_names_actual_output_and_success": true,
+    "static_before_after_source_binding": true,
+    "static_before_after_inputs_identical": true,
+    "static_complete_input_path_set": true,
+    "static_input_blob_mode_length_hashes_match": true,
+    "static_summary_artifact_hashes": true,
+    "static_exact_two_checks_completed": true,
+    "static_commands_bound_and_successful": true,
+    "static_raw_output_hashes": true,
+    "static_stderr_empty": true,
+    "whole_engine_fatal_info_analysis_clean": true,
+    "format_exact_seven_reviewed_dart_files": true,
+    "format_raw_zero_changes": true,
+    "portable_scopes_consistent_with_static_bindings": true
+  },
+  "failed_checks": [],
+  "portable": {
+    "directory": "/workspace/scratch/c7ec4681d1f4/runtime/word-lists-portable-final-v2",
+    "input_count": 1116,
+    "raw_stdout_bytes": 1176,
+    "raw_sha256": "d07fce0fbc97acb402f7ef47fd79e746643418a3cd2b4a4cdb6a55ed0161b028",
+    "canonical_sha256": "3ad9648c52a2495ffa433f629e97302edd94501b7393424036f6f81986e01def",
+    "receipt_sha256": "c95ae609d69267838d6d3f14e869fdd05023ef8c25ab214990ed607b165f6076",
+    "semantic_result": {
+      "example": {
+        "operations": 8,
+        "revision": 1,
+        "additionalReopens": 2,
+        "paragraphs": [
+          {
+            "text": "Numbered report",
+            "kind": "decimal",
+            "level": 0,
+            "suppressed": false,
+            "leftTwips": 360,
+            "rightTwips": 240,
+            "firstLineTwips": 0,
+            "hangingTwips": 180
+          },
+          {
+            "text": "Bullet report",
+            "kind": "bullet",
+            "level": 0,
+            "suppressed": false,
+            "leftTwips": 360,
+            "rightTwips": 160,
+            "firstLineTwips": 0,
+            "hangingTwips": 180
+          },
+          {
+            "text": "",
+            "kind": "bullet",
+            "level": 0,
+            "suppressed": false,
+            "leftTwips": 360,
+            "rightTwips": 0,
+            "firstLineTwips": 0,
+            "hangingTwips": 180
+          },
+          {
+            "text": "Cleared existing bullet",
+            "kind": "none",
+            "level": 0,
+            "suppressed": true,
+            "leftTwips": 540,
+            "rightTwips": 100,
+            "firstLineTwips": 0,
+            "hangingTwips": 60
+          },
+          {
+            "text": "Untouched nested numbering",
+            "kind": "decimal",
+            "level": 1,
+            "suppressed": false,
+            "leftTwips": 840,
+            "rightTwips": 140,
+            "firstLineTwips": 0,
+            "hangingTwips": 120
+          }
+        ]
+      },
+      "toggleAndChangeKind": {
+        "kinds": [
+          "decimal",
+          "none",
+          "bullet",
+          "decimal",
+          "none"
+        ],
+        "revision": 5
+      },
+      "lateFailureRollback": true,
+      "fieldAndPolicyGuards": {
+        "allNumberRefusalRollback": true,
+        "paragraphModePreservesField": true,
+        "policyRefusals": 2
+      },
+      "opaqueBoundaryGuards": {
+        "cases": 4,
+        "allModeRollback": true,
+        "paragraphModeRefusals": 2,
+        "paragraphModePreservations": 2,
+        "additionalReopens": 2
+      },
+      "refusedSources": 8
+    }
+  },
+  "portable_wrapper": {
+    "invocation_record_sha256": "fab0fdea0df23be0ea6027476869ee486eb00912bb70adeea7542615b8416931",
+    "source_path": "/workspace/scratch/c7ec4681d1f4/runtime/development/run-word-lists-portable.py",
+    "source_sha256_at_recording": "b354ac1ca787395146f1219b909c7bb17ea8e79d942bd0362b4fe126c840f7e8",
+    "provenance": "Recorded retrospectively from the root tool invocation after successful completion. The wrapper source was not edited between invocation and this record. This is not a claim that its hash was captured before execution."
+  },
+  "static": {
+    "directory": "/workspace/scratch/c7ec4681d1f4/runtime/final-checks-v2",
+    "input_count": 1118,
+    "formatted_files": [
+      "packages/quds_office_engine/lib/src/automation/office_vba_language.dart",
+      "packages/quds_office_engine/lib/src/automation/operations/word_list_steps.dart",
+      "packages/quds_office_engine/lib/src/automation/operations/word_steps.dart",
+      "packages/quds_office_engine/test/office_macro_word_list_format_test.dart",
+      "packages/quds_office_engine/test/office_vba_word_lists_integration_test.dart",
+      "packages/quds_office_engine/test/office_vba_word_lists_test.dart",
+      "packages/quds_office_engine/tool/macros/web_vba_word_lists_smoke.dart"
+    ],
+    "summary_sha256": "7aa9f4059c3c7f5a9eac20e9026a4ba98613d7ae1bd570d9da0c51dd979da505",
+    "inputs_before_sha256": "98f6b8140dbdf2ed8cf2160bd0918a87bb6710ec1884a9cdfddffcd723420318",
+    "inputs_after_sha256": "09b3d448f8b0dc7da6c90f126ebb26933dd8763ff987069fa3c1dff81005c930"
+  },
+  "mismatches": {
+    "portable": [],
+    "static": []
+  },
+  "limits": [
+    "This audits existing raw outputs and manifests; no additional product tests were run.",
+    "The portable runner stores its first fingerprint and an end-of-run exact-equality result, rather than a second full portable manifest. The recorded first fingerprint is independently bound here to the frozen source, and the separately recorded static before/after manifests agree for their shared inputs.",
+    "The portable wrapper invocation record and source hash were recorded retrospectively by the executing root agent. This review verifies that recorded current hash and the child-command evidence; it does not treat the wrapper record as a pre-execution hash capture.",
+    "This report does not qualify the still-running full regression gate. Its separate completed raw reporter stream must be audited before final regression totals are accepted.",
+    "The earlier failed final portable attempt and older successful development attempt are excluded from final qualification."
+  ]
+}

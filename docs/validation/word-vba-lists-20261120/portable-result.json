@@ -1,0 +1,83 @@
+{
+  "example": {
+    "additionalReopens": 2,
+    "operations": 8,
+    "paragraphs": [
+      {
+        "firstLineTwips": 0,
+        "hangingTwips": 180,
+        "kind": "decimal",
+        "leftTwips": 360,
+        "level": 0,
+        "rightTwips": 240,
+        "suppressed": false,
+        "text": "Numbered report"
+      },
+      {
+        "firstLineTwips": 0,
+        "hangingTwips": 180,
+        "kind": "bullet",
+        "leftTwips": 360,
+        "level": 0,
+        "rightTwips": 160,
+        "suppressed": false,
+        "text": "Bullet report"
+      },
+      {
+        "firstLineTwips": 0,
+        "hangingTwips": 180,
+        "kind": "bullet",
+        "leftTwips": 360,
+        "level": 0,
+        "rightTwips": 0,
+        "suppressed": false,
+        "text": ""
+      },
+      {
+        "firstLineTwips": 0,
+        "hangingTwips": 60,
+        "kind": "none",
+        "leftTwips": 540,
+        "level": 0,
+        "rightTwips": 100,
+        "suppressed": true,
+        "text": "Cleared existing bullet"
+      },
+      {
+        "firstLineTwips": 0,
+        "hangingTwips": 120,
+        "kind": "decimal",
+        "leftTwips": 840,
+        "level": 1,
+        "rightTwips": 140,
+        "suppressed": false,
+        "text": "Untouched nested numbering"
+      }
+    ],
+    "revision": 1
+  },
+  "fieldAndPolicyGuards": {
+    "allNumberRefusalRollback": true,
+    "paragraphModePreservesField": true,
+    "policyRefusals": 2
+  },
+  "lateFailureRollback": true,
+  "opaqueBoundaryGuards": {
+    "additionalReopens": 2,
+    "allModeRollback": true,
+    "cases": 4,
+    "paragraphModePreservations": 2,
+    "paragraphModeRefusals": 2
+  },
+  "refusedSources": 8,
+  "toggleAndChangeKind": {
+    "kinds": [
+      "decimal",
+      "none",
+      "bullet",
+      "decimal",
+      "none"
+    ],
+    "revision": 5
+  }
+}

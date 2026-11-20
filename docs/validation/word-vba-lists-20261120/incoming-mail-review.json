@@ -1,0 +1,115 @@
+{
+  "source_commit": "63ff7f238c6c2871082cc4dc557552a04aecde68",
+  "source_base": "9c4fbb2b2783af4f15b96a4e1b4043a1f673f6a7",
+  "integrated_commit": "57456c602856a8ec56095352e9c1b9b17476ea69",
+  "integrated_tree": "ef086f4b2fe1d5a4db86f53e2da7bf210289dba7",
+  "recorded_at_utc": "2026-11-20T15:32:21.310098+00:00",
+  "source_is_ancestor": true,
+  "path_count": 17,
+  "entries": [
+    {
+      "path": "packages/quds_mail_store/lib/src/local_accounts.dart",
+      "incoming_entry": "100644 blob 9622b469dd1498d3f0b2d2c1e80e7cd9871923d7\tpackages/quds_mail_store/lib/src/local_accounts.dart",
+      "integrated_entry": "100644 blob 9622b469dd1498d3f0b2d2c1e80e7cd9871923d7\tpackages/quds_mail_store/lib/src/local_accounts.dart",
+      "exact": true
+    },
+    {
+      "path": "packages/quds_mail_store/lib/src/models.dart",
+      "incoming_entry": "100644 blob 0bdad7d5ef5d992d3ab796ceadfc7ccac2bde5b4\tpackages/quds_mail_store/lib/src/models.dart",
+      "integrated_entry": "100644 blob 0bdad7d5ef5d992d3ab796ceadfc7ccac2bde5b4\tpackages/quds_mail_store/lib/src/models.dart",
+      "exact": true
+    },
+    {
+      "path": "packages/quds_mail_store/lib/src/repository.dart",
+      "incoming_entry": "100644 blob 3dbcec1819579313c527cfd1b2405dcca7c7d330\tpackages/quds_mail_store/lib/src/repository.dart",
+      "integrated_entry": "100644 blob 3dbcec1819579313c527cfd1b2405dcca7c7d330\tpackages/quds_mail_store/lib/src/repository.dart",
+      "exact": true
+    },
+    {
+      "path": "packages/quds_mail_store/lib/src/schema/database.dart",
+      "incoming_entry": "100644 blob c1a7b492d7d54ab7f960b0a2226efb623e4ced3a\tpackages/quds_mail_store/lib/src/schema/database.dart",
+      "integrated_entry": "100644 blob c1a7b492d7d54ab7f960b0a2226efb623e4ced3a\tpackages/quds_mail_store/lib/src/schema/database.dart",
+      "exact": true
+    },
+    {
+      "path": "packages/quds_mail_store/lib/src/search_journal.dart",
+      "incoming_entry": "100644 blob e773a5560389ee6ffa7f3f2023373754be60f571\tpackages/quds_mail_store/lib/src/search_journal.dart",
+      "integrated_entry": "100644 blob e773a5560389ee6ffa7f3f2023373754be60f571\tpackages/quds_mail_store/lib/src/search_journal.dart",
+      "exact": true
+    },
+    {
+      "path": "packages/quds_mail_store/test/local_accounts_test.dart",
+      "incoming_entry": "100644 blob bee9cad10c6d6c0faa9016bc9ccfda574ffa3273\tpackages/quds_mail_store/test/local_accounts_test.dart",
+      "integrated_entry": "100644 blob bee9cad10c6d6c0faa9016bc9ccfda574ffa3273\tpackages/quds_mail_store/test/local_accounts_test.dart",
+      "exact": true
+    },
+    {
+      "path": "packages/quds_mail_store/test/migration_test.dart",
+      "incoming_entry": "100644 blob 2d474c690ec2e9c207e2da95138243df5f4d0083\tpackages/quds_mail_store/test/migration_test.dart",
+      "integrated_entry": "100644 blob 2d474c690ec2e9c207e2da95138243df5f4d0083\tpackages/quds_mail_store/test/migration_test.dart",
+      "exact": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_cloud.dart",
+      "incoming_entry": "100644 blob 766326ccd0d42b9e3dd8f529a684624bf47263ef\tpackages/quds_office_editor/example/lib/studio_mail_cloud.dart",
+      "integrated_entry": "100644 blob 766326ccd0d42b9e3dd8f529a684624bf47263ef\tpackages/quds_office_editor/example/lib/studio_mail_cloud.dart",
+      "exact": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_draft_store.dart",
+      "incoming_entry": "100644 blob 653cd9954603e0c4bef1168566f4b6f1911ae1d7\tpackages/quds_office_editor/example/lib/studio_mail_draft_store.dart",
+      "integrated_entry": "100644 blob 653cd9954603e0c4bef1168566f4b6f1911ae1d7\tpackages/quds_office_editor/example/lib/studio_mail_draft_store.dart",
+      "exact": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_ews.dart",
+      "incoming_entry": "100644 blob 08fd64cfa38976be24c04930dabd8fd593a84255\tpackages/quds_office_editor/example/lib/studio_mail_ews.dart",
+      "integrated_entry": "100644 blob 08fd64cfa38976be24c04930dabd8fd593a84255\tpackages/quds_office_editor/example/lib/studio_mail_ews.dart",
+      "exact": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_local_accounts.dart",
+      "incoming_entry": "100644 blob a37ffe3f0fa26e9e6f1dc1602d63766bf28fd926\tpackages/quds_office_editor/example/lib/studio_mail_local_accounts.dart",
+      "integrated_entry": "100644 blob a37ffe3f0fa26e9e6f1dc1602d63766bf28fd926\tpackages/quds_office_editor/example/lib/studio_mail_local_accounts.dart",
+      "exact": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_local_accounts_dialog.dart",
+      "incoming_entry": "100644 blob c26089637d9957873b2210f253c3847855f45f55\tpackages/quds_office_editor/example/lib/studio_mail_local_accounts_dialog.dart",
+      "integrated_entry": "100644 blob c26089637d9957873b2210f253c3847855f45f55\tpackages/quds_office_editor/example/lib/studio_mail_local_accounts_dialog.dart",
+      "exact": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_local_accounts_strings.dart",
+      "incoming_entry": "100644 blob dacd86427f00f80dcaaf681dc3db6a8d9e0fb7b3\tpackages/quds_office_editor/example/lib/studio_mail_local_accounts_strings.dart",
+      "integrated_entry": "100644 blob dacd86427f00f80dcaaf681dc3db6a8d9e0fb7b3\tpackages/quds_office_editor/example/lib/studio_mail_local_accounts_strings.dart",
+      "exact": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_native.dart",
+      "incoming_entry": "100644 blob 2e512349760b089d7522e3bbb9f4c315ad571597\tpackages/quds_office_editor/example/lib/studio_mail_native.dart",
+      "integrated_entry": "100644 blob 2e512349760b089d7522e3bbb9f4c315ad571597\tpackages/quds_office_editor/example/lib/studio_mail_native.dart",
+      "exact": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_local_accounts_dialog_test.dart",
+      "incoming_entry": "100644 blob b61e22df5df5ca91c15ba8b740e8a552fa3ec948\tpackages/quds_office_editor/example/test/studio_mail_local_accounts_dialog_test.dart",
+      "integrated_entry": "100644 blob b61e22df5df5ca91c15ba8b740e8a552fa3ec948\tpackages/quds_office_editor/example/test/studio_mail_local_accounts_dialog_test.dart",
+      "exact": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_local_accounts_test.dart",
+      "incoming_entry": "100644 blob 51cec263f5e96898a0fa3cad0dc04b273052eeef\tpackages/quds_office_editor/example/test/studio_mail_local_accounts_test.dart",
+      "integrated_entry": "100644 blob 51cec263f5e96898a0fa3cad0dc04b273052eeef\tpackages/quds_office_editor/example/test/studio_mail_local_accounts_test.dart",
+      "exact": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/support/mail_local_accounts.dart",
+      "incoming_entry": "100644 blob 5f4ceed49daada9376e0709e5fc2533bab008d3f\tpackages/quds_office_editor/example/test/support/mail_local_accounts.dart",
+      "integrated_entry": "100644 blob 5f4ceed49daada9376e0709e5fc2533bab008d3f\tpackages/quds_office_editor/example/test/support/mail_local_accounts.dart",
+      "exact": true
+    }
+  ],
+  "word_qualification_input_overlap": [],
+  "qualification": "Exact source inclusion and non-overlap only. Word/Office tests do not qualify incoming Mail store, provider, or Flutter runtime changes."
+}
