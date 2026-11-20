@@ -314,8 +314,9 @@ else
   # data protection keychain used for mail credentials needs them).
   ENTITLEMENTS="$SIGN_OUTPUT/entitlements.plist"
   cp "$EXAMPLE/macos/Runner/Release.entitlements" "$ENTITLEMENTS"
-  plutil -insert com.apple.application-identifier -string "$TEAM_ID.$BUNDLE_ID" "$ENTITLEMENTS"
-  plutil -insert com.apple.developer.team-identifier -string "$TEAM_ID" "$ENTITLEMENTS"
+  /usr/libexec/PlistBuddy \
+    -c "Add :com.apple.application-identifier string $TEAM_ID.$BUNDLE_ID" \
+    -c "Add :com.apple.developer.team-identifier string $TEAM_ID" "$ENTITLEMENTS"
 fi
 for library in "${LIBRARIES[@]}"; do
   codesign "${SIGN_ARGS[@]}" "$FRAMEWORKS/$library"
@@ -371,7 +372,8 @@ done
 if [[ "$SIGN_MODE" != adhoc ]]; then
   grep -q "$TEAM_ID.$BUNDLE_ID" <<<"$entitlements" \
     || { echo "application identifier entitlement missing" >&2; exit 1; }
-  codesign -dvv "$SIGNED_APP" 2>&1 | grep -q "flags=0x10000(runtime)" \
+  signature="$(codesign -dvv "$SIGNED_APP" 2>&1)"
+  grep -q "flags=0x10000(runtime)" <<<"$signature" \
     || { echo "hardened runtime missing" >&2; exit 1; }
   version="$(plutil -extract CFBundleShortVersionString raw -o - "$SIGNED_APP/Contents/Info.plist")"
   build="$(plutil -extract CFBundleVersion raw -o - "$SIGNED_APP/Contents/Info.plist")"
