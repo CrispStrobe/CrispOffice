@@ -923,6 +923,7 @@ void main() {
     final browser = _Browser();
     await _show(tester, browser);
     await tester.tap(_key('mail-list-unread'));
+    await tester.pump();
     await tester.tap(_key('imap-message-91:300'));
     await _pump(tester);
     browser.mutationGate = Completer<void>();

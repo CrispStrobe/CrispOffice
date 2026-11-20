@@ -383,8 +383,8 @@ void main() {
         final harness = _Harness(kind);
         await _show(tester, harness);
         for (final action in MailBulkFlagAction.values) {
-          await tester.ensureVisible(_key('mail-list-select-visible'));
-          await tester.tap(_key('mail-list-select-visible'));
+          await tester.ensureVisible(_key('mail-list-select-shown'));
+          await tester.tap(_key('mail-list-select-shown'));
           await _pump(tester);
           await tester.tap(_key('mail-list-bulk-actions'));
           await _pump(tester);
