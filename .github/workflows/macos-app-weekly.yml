@@ -1,0 +1,253 @@
+name: macOS app weekly
+
+# Weekly clean-runner build of the CrispOffice (Studio) macOS app with every
+# native library, followed by the two bundle acceptance gates against the
+# built app and a workspace analysis. Quds commits normally carry [skip ci];
+# scheduled and manually dispatched runs are not affected by that.
+#
+# The `signed` job runs only on manual dispatch with sign=appstore or
+# sign=developer-id and needs the repository secrets listed in
+# docs/release/macos-signing.md; it never uploads anything to Apple except a
+# notarization submission for developer-id.
+
+on:
+  schedule:
+    - cron: '17 3 * * 1' # Mondays 03:17 UTC
+  workflow_dispatch:
+    inputs:
+      sign:
+        description: Also build a release-signed app (needs signing secrets)
+        type: choice
+        options: [none, appstore, developer-id]
+        default: none
+
+permissions:
+  contents: read
+
+concurrency:
+  group: macos-app-weekly-${{ github.ref }}
+  cancel-in-progress: false
+
+env:
+  FLUTTER_VERSION: 3.47.8
+  CARGO_TARGET_DIR: ${{ github.workspace }}/../shared-cargo-target
+  QUDS_BUILD_JOBS: 4
+
+jobs:
+  build:
+    name: Build, gates, analyze (ad hoc)
+    runs-on: macos-15
+    timeout-minutes: 150
+    env:
+      LOGS: ${{ github.workspace }}/../logs
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          cache: true
+      - name: Cache Cargo
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/registry/index
+            ~/.cargo/registry/cache
+            ~/.cargo/git/db
+            ~/.rustup/toolchains
+            ${{ env.CARGO_TARGET_DIR }}
+          key: cargo-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('packages/quds_proofing_harper/native/Cargo.lock', 'packages/quds_proofing_harper/native/rust-toolchain.toml') }}
+          restore-keys: cargo-${{ runner.os }}-${{ runner.arch }}-
+      - name: Tool versions
+        run: |
+          mkdir -p "$LOGS"
+          {
+            sw_vers; uname -m; xcodebuild -version
+            flutter --version; python3 --version
+            cmake --version | head -1; git --version
+            rustup --version 2>&1 | head -1; cargo --version || true
+            df -h "$GITHUB_WORKSPACE" | tail -1
+          } 2>&1 | tee "$LOGS/tool-versions.log"
+      - name: Resolve workspace
+        run: flutter pub get 2>&1 | tee "$LOGS/pub-get.log"
+      - name: Analyze packages and apps
+        run: |
+          set -o pipefail
+          dart analyze packages apps 2>&1 | tee "$LOGS/dart-analyze.log"
+      - name: Build the macOS app (ad hoc)
+        run: |
+          set -o pipefail
+          packages/quds_office_editor/example/tool/build_macos_app.sh 2>&1 \
+            | tee "$LOGS/build-macos-app.log"
+      - name: spaCy bundle gate
+        working-directory: packages/quds_office_editor/example
+        run: |
+          set -o pipefail
+          export QUDS_STUDIO_APP="$PWD/build/macos/Build/Products/Release/quds_office_studio.app"
+          export QUDS_STUDIO_DATA="$RUNNER_TEMP/studio-data"
+          mkdir -p "$QUDS_STUDIO_DATA"
+          flutter test test/studio_spacy_bundle_native_gate.dart 2>&1 \
+            | tee "$LOGS/studio-spacy-bundle-gate.log"
+      - name: macOS bundle gate
+        working-directory: packages/quds_office_editor/example
+        run: |
+          set -o pipefail
+          export QUDS_STUDIO_APP="$PWD/build/macos/Build/Products/Release/quds_office_studio.app"
+          export QUDS_STUDIO_DATA="$RUNNER_TEMP/studio-data"
+          mkdir -p "$QUDS_STUDIO_DATA"
+          flutter test \
+            --dart-define=QUDS_HARPER_LIBRARY="$QUDS_STUDIO_APP/Contents/Frameworks/libquds_proofing_harper.dylib" \
+            test/studio_macos_bundle_native_gate.dart 2>&1 \
+            | tee "$LOGS/studio-macos-bundle-gate.log"
+      - name: Bundle summary
+        if: always()
+        working-directory: packages/quds_office_editor/example
+        run: |
+          app=build/macos/Build/Products/Release/quds_office_studio.app
+          [ -d "$app" ] || exit 0
+          {
+            codesign -dvv "$app" 2>&1
+            ls -l "$app/Contents/Frameworks"
+            cat "$app/Contents/Resources/spacy-native.json"
+            du -sh "$app"
+          } >"$LOGS/bundle-summary.log" 2>&1 || true
+      - name: Upload logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: macos-app-weekly-logs-${{ github.run_number }}
+          path: ${{ env.LOGS }}
+          if-no-files-found: error
+          retention-days: 30
+
+  signed:
+    name: Release-signed build (${{ inputs.sign }})
+    if: github.event_name == 'workflow_dispatch' && inputs.sign != 'none'
+    runs-on: macos-15
+    timeout-minutes: 150
+    env:
+      LOGS: ${{ github.workspace }}/../logs
+      SIGN_MODE: ${{ inputs.sign }}
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          cache: true
+      - name: Cache Cargo
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/registry/index
+            ~/.cargo/registry/cache
+            ~/.cargo/git/db
+            ~/.rustup/toolchains
+            ${{ env.CARGO_TARGET_DIR }}
+          key: cargo-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('packages/quds_proofing_harper/native/Cargo.lock', 'packages/quds_proofing_harper/native/rust-toolchain.toml') }}
+          restore-keys: cargo-${{ runner.os }}-${{ runner.arch }}-
+      - name: Import signing material
+        env:
+          APPSTORE_P12: ${{ secrets.DIST_CERT_P12_BASE64 }}
+          APPSTORE_P12_PASSWORD: ${{ secrets.DIST_CERT_PASSWORD }}
+          APPSTORE_PROFILE: ${{ secrets.MAC_PROFILE_BASE64 }}
+          DEVID_P12: ${{ secrets.MACOS_DEVELOPER_ID_P12_BASE64 }}
+          DEVID_P12_PASSWORD: ${{ secrets.MACOS_DEVELOPER_ID_P12_PASSWORD }}
+          DEVID_PROFILE: ${{ secrets.MACOS_DEVELOPER_ID_PROFILE_BASE64 }}
+          ASC_KEY: ${{ secrets.ASC_API_KEY_P8_BASE64 }}
+          ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
+          ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
+        run: |
+          set -euo pipefail
+          mkdir -p "$LOGS"
+          if [ "$SIGN_MODE" = appstore ]; then
+            p12="$APPSTORE_P12"; password="$APPSTORE_P12_PASSWORD"; profile="$APPSTORE_PROFILE"
+          else
+            p12="$DEVID_P12"; password="$DEVID_P12_PASSWORD"; profile="$DEVID_PROFILE"
+          fi
+          if [ -z "$p12" ] || [ -z "$password" ] || [ -z "$profile" ]; then
+            echo "::error::Signing secrets for $SIGN_MODE are not configured (see docs/release/macos-signing.md)."
+            exit 1
+          fi
+          keychain="$RUNNER_TEMP/signing.keychain-db"
+          keychain_password="$(openssl rand -hex 24)"
+          security create-keychain -p "$keychain_password" "$keychain"
+          security set-keychain-settings -lut 21600 "$keychain"
+          security unlock-keychain -p "$keychain_password" "$keychain"
+          printf '%s' "$p12" | base64 -D >"$RUNNER_TEMP/signing.p12"
+          security import "$RUNNER_TEMP/signing.p12" -k "$keychain" -P "$password" \
+            -T /usr/bin/codesign -T /usr/bin/productbuild >/dev/null
+          rm -f "$RUNNER_TEMP/signing.p12"
+          security set-key-partition-list -S apple-tool:,apple:,codesign:,productsign: \
+            -s -k "$keychain_password" "$keychain" >/dev/null
+          security list-keychains -d user -s "$keychain" $(security list-keychains -d user | tr -d '"')
+          printf '%s' "$profile" | base64 -D >"$RUNNER_TEMP/signing.provisionprofile"
+          {
+            echo "QUDS_SIGN_KEYCHAIN=$keychain"
+            echo "QUDS_PROVISIONING_PROFILE=$RUNNER_TEMP/signing.provisionprofile"
+            echo "QUDS_SIGN_OUTPUT=$RUNNER_TEMP/signed"
+          } >>"$GITHUB_ENV"
+          if [ "$SIGN_MODE" = developer-id ]; then
+            if [ -z "$ASC_KEY" ] || [ -z "$ASC_KEY_ID" ] || [ -z "$ASC_ISSUER_ID" ]; then
+              echo "::error::App Store Connect API key secrets are required for notarization."
+              exit 1
+            fi
+            umask 077
+            printf '%s' "$ASC_KEY" | base64 -D >"$RUNNER_TEMP/notary.p8"
+            {
+              echo "QUDS_NOTARY_KEY=$RUNNER_TEMP/notary.p8"
+              echo "QUDS_NOTARY_KEY_ID=$ASC_KEY_ID"
+              echo "QUDS_NOTARY_ISSUER=$ASC_ISSUER_ID"
+            } >>"$GITHUB_ENV"
+          fi
+      - name: Resolve workspace
+        run: flutter pub get
+      - name: Build and sign
+        run: |
+          set -o pipefail
+          packages/quds_office_editor/example/tool/build_macos_app.sh \
+            --sign "$SIGN_MODE" --build-number "${{ github.run_number }}" 2>&1 \
+            | tee "$LOGS/build-macos-app-$SIGN_MODE.log"
+      - name: Verify
+        run: |
+          set -o pipefail
+          app="$QUDS_SIGN_OUTPUT/CrispOffice.app"
+          {
+            codesign --verify --deep --strict --verbose=2 "$app"
+            codesign -dvv "$app"
+            cat "$app/Contents/Resources/spacy-native.json"
+            if [ "$SIGN_MODE" = appstore ]; then
+              pkgutil --check-signature "$QUDS_SIGN_OUTPUT"/*.pkg
+            else
+              spctl --assess --type execute -vv "$app"
+              xcrun stapler validate "$app"
+            fi
+          } 2>&1 | tee "$LOGS/verify-$SIGN_MODE.log"
+      - name: Upload signed output
+        uses: actions/upload-artifact@v4
+        with:
+          name: crispoffice-${{ inputs.sign }}-${{ github.run_number }}
+          path: |
+            ${{ env.QUDS_SIGN_OUTPUT }}/*.pkg
+            ${{ env.QUDS_SIGN_OUTPUT }}/*-macos.zip
+          if-no-files-found: error
+          retention-days: 7
+      - name: Upload logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: macos-app-signed-logs-${{ github.run_number }}
+          path: ${{ env.LOGS }}
+          if-no-files-found: warn
+          retention-days: 30
+      - name: Remove signing material
+        if: always()
+        run: |
+          security delete-keychain "$RUNNER_TEMP/signing.keychain-db" 2>/dev/null || true
+          rm -f "$RUNNER_TEMP/notary.p8" "$RUNNER_TEMP/signing.provisionprofile"

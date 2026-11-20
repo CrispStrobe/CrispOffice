@@ -127,6 +127,11 @@ incoming attachment into a new draft is separate work.
 
 ## Qualification and next increments
 
+The incoming [Zotero combined qualification](../../validation/zotero-research-materials-20261120/README.md)
+also retains controlled mail-host, provider, MIME and SMTP checks and an
+independent Python MIME inspection. Those receipts belong to their recorded
+source checkpoints; they are kept separate from the resumed mail runs below.
+
 The source-bound [attachment core evidence](../../validation/mail-attachments-20261120/attachment-core/README.md)
 contains 49 new model/MIME cases, the complete existing recipient/reply/threading
 cohort, vendor codec/builder regressions and an independent Python MIME receiver.

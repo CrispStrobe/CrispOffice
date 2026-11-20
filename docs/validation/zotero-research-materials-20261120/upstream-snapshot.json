@@ -1,0 +1,50 @@
+{
+  "repository": "MohammedAsaadAsaad/quds_office_suite",
+  "capturedAt": "2026-11-20T03:58:33.199Z",
+  "branches": [
+    {
+      "name": "ci/flutter-workspace",
+      "sha": "aca2f66941832bd0b19b436baeab1656a1b7de98"
+    },
+    {
+      "name": "cursor/class-certificates-2db8",
+      "sha": "f45099688e7a3f67a1302efdb442830d052f2240"
+    },
+    {
+      "name": "cursor/cloud-agent-1790580069020-0rk1h",
+      "sha": "9930be8df44ffe117fb22778c514eea0ee73ce21"
+    },
+    {
+      "name": "main",
+      "sha": "15c5d29b63fb17a93c7fb3426a8fd4d95a32f1ba"
+    }
+  ],
+  "pullRequests": [
+    {
+      "number": 7,
+      "state": "closed",
+      "sha": "f45099688e7a3f67a1302efdb442830d052f2240",
+      "mergedAt": "2026-10-12T18:08:30Z"
+    },
+    {
+      "number": 6,
+      "state": "closed",
+      "sha": "aca2f66941832bd0b19b436baeab1656a1b7de98",
+      "mergedAt": "2026-10-10T19:22:03Z"
+    },
+    {
+      "number": 5,
+      "state": "closed",
+      "sha": "9930be8df44ffe117fb22778c514eea0ee73ce21",
+      "mergedAt": "2026-10-10T19:13:47Z"
+    },
+    {
+      "number": 1,
+      "state": "closed",
+      "sha": "48c5156f459597ce3f8ec486b3c9a20fc5543807",
+      "mergedAt": "2026-09-28T08:36:16Z"
+    }
+  ],
+  "ciActionsQueried": false,
+  "ciActionsAwaited": false
+}

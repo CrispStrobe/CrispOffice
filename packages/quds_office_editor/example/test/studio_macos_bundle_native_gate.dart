@@ -11,9 +11,11 @@
 //   flutter test --dart-define=QUDS_HARPER_LIBRARY=$APP/Contents/Frameworks/libquds_proofing_harper.dylib \
 //     test/studio_macos_bundle_native_gate.dart
 //
-// QUDS_STUDIO_DATA must hold AyaSpell and the Camel Morph proofing-bin bundle
-// (installed from the app's Dictionaries dialog, or by the package
-// installers). Missing inputs fail; there are no skips or fallbacks.
+// QUDS_STUDIO_DATA may point at the app container or at an empty scratch
+// directory: AyaSpell and the Camel Morph proofing-bin bundle are installed
+// there with Studio's own hosts (verified downloads from their immutable
+// revisions) when they are missing, as the Dictionaries dialog would.
+// Missing inputs fail; there are no skips or fallbacks.
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -37,6 +39,9 @@ const _english =
     'published yesterday by the committee.';
 
 Finder _key(String value) => find.byKey(ValueKey<String>(value));
+
+/// dart:io's own [HttpClient], bypassing the test binding's mock.
+final class _RealHttpOverrides extends HttpOverrides {}
 
 void main() {
   final app = Platform.environment['QUDS_STUDIO_APP'];
@@ -83,6 +88,14 @@ void main() {
       await tester.runAsync(() async {
         await hunspell.refresh();
         await morph.refresh();
+        // The test binding answers every request with HTTP 400; downloads
+        // use a real client in this scope only.
+        await HttpOverrides.runWithHttpOverrides(() async {
+          for (final item in hunspell.statuses) {
+            if (!item.installed) await hunspell.install(item.bundle);
+          }
+          if (!morph.status.installed) await morph.install();
+        }, _RealHttpOverrides());
         await languageId.load();
       });
       expect(hunspell.statuses.single.installed, isTrue);

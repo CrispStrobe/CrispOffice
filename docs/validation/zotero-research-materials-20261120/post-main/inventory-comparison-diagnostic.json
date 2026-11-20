@@ -1,0 +1,18 @@
+{
+  "source_counts": [
+    3994,
+    3996
+  ],
+  "missing": [],
+  "changed": [],
+  "added": [
+    "packages/quds_office_engine/test/fixtures/word_reviews/.gitattributes",
+    "packages/quds_office_engine/test/office_macro_word_revision_guard_test.dart"
+  ],
+  "other_changes": {
+    "dependencies": [],
+    "host_fonts": [],
+    "runtime": [],
+    "workspace": []
+  }
+}

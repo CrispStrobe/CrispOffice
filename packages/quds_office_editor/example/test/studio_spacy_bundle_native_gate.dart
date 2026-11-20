@@ -67,6 +67,9 @@ void main() {
     final transport = await host.openTransport();
     try {
       expect(transport.identity.librarySha256, bundled.sha256);
+      if (bundled.codeSha256 != null) {
+        expect(transport.identity.codeSha256, bundled.codeSha256);
+      }
       final result = await transport.analyze(
         LinguisticAnalysisRequest(
           text: german,
@@ -92,7 +95,10 @@ void main() {
       await transport.dispose();
     }
 
-    if (spacyGrammarNativeSha256s.contains(bundled.sha256)) {
+    // The exact qualified bytes, or a release-signed copy of the same code
+    // (build_macos_app.sh --sign records its code digest).
+    if (spacyGrammarNativeSha256s.contains(bundled.sha256) ||
+        spacyGrammarCodeSha256s.contains(bundled.codeSha256)) {
       expect(host.status.qualification!.grammarQualified, isTrue);
       expect(host.status.grammarOffered, isTrue);
       final wasEnabled = host.status.grammarEnabled;
@@ -107,6 +113,15 @@ void main() {
       try {
         expect(grammarTransport.identity.librarySha256, bundled.sha256);
         expect(grammarTransport.identity.capabilityMask, 15);
+        // The worker measured the code digest from the bytes it loaded; the
+        // planner trusts only that, not spacy-native.json.
+        expect(
+          spacyGrammarQualifiedIdentity(grammarTransport.identity),
+          isTrue,
+        );
+        if (bundled.codeSha256 != null) {
+          expect(grammarTransport.identity.codeSha256, bundled.codeSha256);
+        }
         // W6 panel: subject with an intervening prepositional modifier.
         const sentence = 'Die Katzen auf dem Sofa schläft.';
         final result = await provider.check(
