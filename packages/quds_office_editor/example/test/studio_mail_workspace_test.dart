@@ -958,6 +958,21 @@ void _peerBulkWorkspaceTests() {
       expect(first.reads, 0);
       expect(second.reads, 0);
     });
+
+    testWidgets('disposed bulk callback cannot dispatch or change state', (
+      tester,
+    ) async {
+      final browser = _BulkBrowser();
+      await _show(tester, browser);
+      final stale = _mailList(tester).onBulkAction!;
+      await tester.pumpWidget(const SizedBox.shrink());
+      stale(MailBulkFlagAction.flag, ['imap-message-91:300']);
+      await _pump(tester);
+      expect(browser.bulkCommands, isEmpty);
+      expect(browser.changes, isEmpty);
+      expect(browser.reads, 0);
+      expect(tester.takeException(), isNull);
+    });
   });
 }
 
@@ -1104,12 +1119,19 @@ void _bulkWorkspaceTests() {
       (tester) async {
         final browser = _BulkBrowser();
         await _show(tester, browser);
+        await tester.enterText(_key('mail-list-search'), 'message');
+        await _pump(tester);
         final old = _mailList(tester);
         await tester.tap(_button(_strings.refresh));
         await _pump(tester);
+        expect(_mailList(tester).scopeId, old.scopeId);
         expect(
           _mailList(tester).selectionRevision,
           isNot(old.selectionRevision),
+        );
+        expect(
+          tester.widget<TextField>(_key('mail-list-search')).controller!.text,
+          'message',
         );
         old.onBulkAction!(MailBulkFlagAction.flag, [old.items.first.id]);
         await _pump(tester);
@@ -1125,6 +1147,7 @@ void _bulkWorkspaceTests() {
         ]);
         await _pump(tester);
         expect(browser.bulkCommands, isEmpty);
+        expect(browser.reads, 0);
       },
     );
 

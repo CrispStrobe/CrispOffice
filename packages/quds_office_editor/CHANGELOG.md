@@ -10,6 +10,7 @@ All notable changes to `quds_office_editor` are documented here.
   outcomes, stop after the current message, and require refresh on uncertainty.
   Guard callbacks across selection, refresh and account changes; localize
   selection, progress and per-message receipts in English, German and Arabic.
+  Same-folder refresh preserves query/sort while clearing checked rows.
   Cached mail remains read-only; durable command/cache synchronization follows.
 
 - Refuse an oversized Studio settings snapshot before replacing the last valid

@@ -76,6 +76,41 @@ even if scope changes while awaiting it, but the host must not project it into
 a new account, folder or observation. Reports are immutable and retain the
 original selection order.
 
+## Portable execution API
+
+[`MailBulkFlagPlan`](../../../packages/quds_mail_core/lib/src/sync/bulk_flags.dart)
+copies the selected identities and validates their shared scope. Its optional
+`provider` argument checks the namespace inferred from those identities. Plan
+IDs must be nonblank, contain no control characters and fit within 256
+characters; `operationAt(index)` produces an explicit desired-state operation
+with a stable `planId:index` ID.
+
+There is one execution engine with two entry points:
+
+- `MailBulkFlagRunner.run` accepts `MailResult<MailUnit>` callbacks, including
+  `MailProvider.apply`, and uses the mutation evidence described above.
+- `MailBulkFlagCoordinator.run` accepts `MailBulkFlagAttempt` callbacks from
+  adapters that already certify outcomes. The coordinator is single-use,
+  including when its first run fails a predispatch scope check. Its separate
+  cancellation token requests a stop after the current reply without cancelling
+  the provider lease. The stateless runner performs no automatic retry or replay.
+
+Both expose `shouldStop` and immutable progress reports. A coordinator's
+`MailBulkFlagAttempt.failed` explicitly certifies no effect; a contradictory
+`mutationMayHaveOccurred: true` problem still becomes uncertain. Certified
+`cancelled` or `staleOperation` failures stop further dispatch. An uncertain
+reply takes precedence over concurrent cancellation or scope change.
+
+`MailBulkFlagReport.items` and `results` are the same immutable ordered list.
+Each entry retains its frozen operation, identity, outcome and original problem.
+For attempted entries, the operation is the exact object passed to the callback.
+`stopReason` identifies why dispatch ended, while
+`stopProblem` retains the associated problem. A host may keep a confirmed
+in-flight receipt after its scope retires, but that receipt cannot authorize
+publication into a different view. These APIs reconcile the earlier
+[bulk-actions entry](bulk-actions.md) without introducing another runner or a
+different persistence contract.
+
 ## Foreground and cache boundary
 
 The report and command plan are in memory. There is no durable command journal,
@@ -96,8 +131,13 @@ and preserves raw logs and localized probes. Fake providers and protocol
 fixtures qualify the implementation contracts; live provider accounts and
 installed platform releases remain outside this increment.
 
-Next: durable repository-driven sessions and a remote-command journal with
-restart, offline/reconnect, cancellation, UIDVALIDITY and conflict handling.
-Then account-wide/unified search, saved live views and conversations can rely
-on an index with explicit cache completeness, followed by rules, authoring
-workflows and provider-specific capabilities.
+1. Durable repository-driven sessions and a remote-command journal: persist
+   intent before dispatch, retain uncertainty across restart, and qualify
+   offline/reconnect, cancellation, UIDVALIDITY, conflicts and explicit recovery.
+2. Account-wide/unified search, saved live views and conversations over a durable
+   index with explicit cache completeness and source-message identity.
+3. Consistent archive/move/delete, broader bulk commands, rules and quick actions
+   built on the same durable intent and recovery contracts.
+4. Rich authoring, signatures/templates and Office attachment workflows.
+   Scheduling/Sent reconciliation, Calendar/People, shared mailboxes and security
+   capabilities retain their provider-specific acceptance gates.

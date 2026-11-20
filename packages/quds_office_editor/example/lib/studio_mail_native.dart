@@ -1768,7 +1768,8 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
     final client = _client;
     final loader = _messageLoader;
     final mailbox = _messageMailbox;
-    if (client == null ||
+    if (!mounted ||
+        client == null ||
         loader == null ||
         loader is! StudioMailBulkMessageActions ||
         mailbox == null ||

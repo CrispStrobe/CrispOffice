@@ -1,9 +1,11 @@
 # Word VBA physical-unit conversions: intake and qualification
 
-> Historical checkpoint from the concurrent continuation. Its source, tests and
-> example are preserved by the [measurement reconciliation](../word-vba-measurements-20261120/README.md).
-> That record supersedes the implementation choice and records the later merge
-> of the workflow-only history while keeping the temporary workflow deleted.
+> Historical positional-only checkpoint at `8ca1958d9eb737beb88269bb962a2418f7a3a44a`.
+> Its implementation, counts and source-bound arithmetic harness describe that
+> commit, not the current named-argument implementation. Check out that exact
+> historical commit to reproduce its harness. The [consolidated Word record](../word-vba-measurements-20261120/README.md)
+> supersedes the implementation choice and preserves all of these tests and
+> records. Current conversion calls also support official named arguments.
 
 ## Incoming work reconciled first
 

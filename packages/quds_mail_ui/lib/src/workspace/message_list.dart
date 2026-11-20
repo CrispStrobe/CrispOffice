@@ -606,6 +606,7 @@ class _MailMessageListState extends State<MailMessageList> {
     final visible = _visible;
     final strings = widget.strings;
     final scaler = MediaQuery.textScalerOf(context);
+    final direction = Directionality.of(context);
     final generation = _interactionGeneration;
     _itemExtent = math.max(
       84.0,
@@ -763,9 +764,12 @@ class _MailMessageListState extends State<MailMessageList> {
                             PopupMenuItem(
                               key: ValueKey('mail-list-bulk-${action.name}'),
                               value: _BulkChoice(action, ids, menuGeneration),
-                              child: Text(
-                                _bulkLabel(action),
-                                textScaler: scaler,
+                              child: Directionality(
+                                textDirection: direction,
+                                child: Text(
+                                  _bulkLabel(action),
+                                  textScaler: scaler,
+                                ),
                               ),
                             ),
                         ];
