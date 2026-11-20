@@ -130,45 +130,47 @@ void _expectDark(WidgetTester tester, Finder finder) {
 }
 
 void main() {
-  testWidgets('Layout dropdown commands apply and Undo restores each setting', (
-    tester,
-  ) async {
-    final word = await _studio(tester);
-    final originalWidth = word.pageSize.width;
-    final originalHeight = word.pageSize.height;
-    await _tab(tester, 'layout');
-    expect(find.widgetWithText(MenuItemButton, 'Narrow'), findsNothing);
+  testWidgets(
+    'Layout dropdown commands apply and Undo restores each setting',
+    (tester) async {
+      final word = await _studio(tester);
+      final originalWidth = word.pageSize.width;
+      final originalHeight = word.pageSize.height;
+      await _tab(tester, 'layout');
+      expect(find.widgetWithText(MenuItemButton, 'Narrow'), findsNothing);
 
-    await _menu(tester, 'margins', 'Narrow');
-    expect(word.pageMargins.matches(WmlPageMargins.narrow), isTrue);
-    expect(
-      tester
-          .widget<StudioCommandMenu>(_key('ribbon-menu-word-layout-margins'))
-          .currentValue,
-      'Narrow',
-    );
-    await _undo(tester);
-    expect(word.pageMargins.matches(WmlPageMargins.normal), isTrue);
+      await _menu(tester, 'margins', 'Narrow');
+      expect(word.pageMargins.matches(WmlPageMargins.narrow), isTrue);
+      expect(
+        tester
+            .widget<StudioCommandMenu>(_key('ribbon-menu-word-layout-margins'))
+            .currentValue,
+        'Narrow',
+      );
+      await _undo(tester);
+      expect(word.pageMargins.matches(WmlPageMargins.normal), isTrue);
 
-    await _menu(tester, 'orientation', 'Landscape');
-    expect(word.pageSize.isLandscape, isTrue);
-    await _undo(tester);
-    expect(word.pageSize.width, originalWidth);
-    expect(word.pageSize.height, originalHeight);
+      await _menu(tester, 'orientation', 'Landscape');
+      expect(word.pageSize.isLandscape, isTrue);
+      await _undo(tester);
+      expect(word.pageSize.width, originalWidth);
+      expect(word.pageSize.height, originalHeight);
 
-    await _menu(tester, 'size', 'Legal');
-    expect(word.pageSize.portrait.matches(WmlPageSize.legal()), isTrue);
-    await _undo(tester);
-    expect(word.pageSize.width, originalWidth);
-    expect(word.pageSize.height, originalHeight);
+      await _menu(tester, 'size', 'Legal');
+      expect(word.pageSize.portrait.matches(WmlPageSize.legal()), isTrue);
+      await _undo(tester);
+      expect(word.pageSize.width, originalWidth);
+      expect(word.pageSize.height, originalHeight);
 
-    await _menu(tester, 'columns', 'Four');
-    expect(word.sectionAtCaret.columnCount, 4);
-    await _undo(tester);
-    expect(word.sectionAtCaret.columnCount, 1);
-    expect(word.document.paragraphs.single.text, 'Keep this paragraph.');
-    expect(tester.takeException(), isNull);
-  }, variant: TargetPlatformVariant.only(TargetPlatform.linux));
+      await _menu(tester, 'columns', 'Four');
+      expect(word.sectionAtCaret.columnCount, 4);
+      await _undo(tester);
+      expect(word.sectionAtCaret.columnCount, 1);
+      expect(word.document.paragraphs.single.text, 'Keep this paragraph.');
+      expect(tester.takeException(), isNull);
+    },
+    variant: TargetPlatformVariant.only(TargetPlatform.linux),
+  );
 
   testWidgets(
     'Paragraph presets switch exact spacing back to multiples without truncating custom spacing',
@@ -383,7 +385,7 @@ void main() {
   );
 
   testWidgets(
-    'Language downloads inherits dark Studio appearance from Settings',
+    'Downloads inherits dark Studio appearance from Settings',
     (tester) async {
       final word = await _studio(tester);
       expect(
@@ -401,7 +403,7 @@ void main() {
       _expectDark(tester, find.byType(AlertDialog));
       expect(word.config.theme.adaptDocumentColors, isTrue);
 
-      final downloads = find.widgetWithText(ListTile, 'Language downloads');
+      final downloads = find.widgetWithText(ListTile, 'Downloads');
       expect(downloads, findsOneWidget);
       await tester.ensureVisible(downloads);
       await tester.tap(downloads);

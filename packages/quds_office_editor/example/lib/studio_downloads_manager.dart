@@ -182,7 +182,7 @@ class _StudioDownloadsManagerState extends State<StudioDownloadsManager> {
           StudioFontPackSetupDialog(status: status, host: widget.fontPacks!),
     );
     return AlertDialog(
-      title: const Text('Language downloads'),
+      title: const Text('Downloads'),
       scrollable: true,
       content: SizedBox(
         width: 680,
@@ -191,7 +191,7 @@ class _StudioDownloadsManagerState extends State<StudioDownloadsManager> {
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             const Text(
-              'Review support, size, source and licence before installing. Downloads start only when you choose Install in the package review. Removing downloaded data leaves your documents unchanged.',
+              'Review language and font support, size, source and licence before installing. Downloads start only when you choose Install in the package review. Removing downloaded data leaves your documents unchanged.',
             ),
             for (final language in (widget.languages.toList()..sort()))
               Padding(
