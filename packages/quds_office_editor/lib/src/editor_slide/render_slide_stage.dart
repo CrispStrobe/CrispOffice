@@ -1069,7 +1069,9 @@ class RenderSlideStage extends RenderBox implements MouseTrackerAnnotation {
     final sample = samples?[shape.id] ?? PmlAnimSample.identity;
     if (!_staticSample(sample)) return null;
     final int? own = int.tryParse(shape.fillColor, radix: 16);
-    if (own != null && !_growsWithText(rect)) {
+    if (own != null &&
+        !_growsWithText(rect) &&
+        shape.preset == PmlShapePreset.rect) {
       return Color(0xFF000000 | own);
     }
     if (own != null) return null;
@@ -1084,7 +1086,7 @@ class RenderSlideStage extends RenderBox implements MouseTrackerAnnotation {
     var precedingIndex = 0;
     for (final previous in target.backgroundShapes.followedBy(target.shapes)) {
       final bool inherited = precedingIndex++ < inheritedCount;
-      if (identical(previous, shape)) break;
+      if (!inherited && identical(previous, shape)) break;
       if (!inherited && (skipIds?.contains(previous.id) ?? false)) continue;
       final previousSample = inherited
           ? PmlAnimSample.identity
@@ -1107,6 +1109,7 @@ class RenderSlideStage extends RenderBox implements MouseTrackerAnnotation {
           previous.table != null ||
           previous.hasMedia ||
           previous.text.isNotEmpty ||
+          previous.preset != PmlShapePreset.rect ||
           previous.transform.rotationDegrees.abs() >= 0.01) {
         background = null;
         continue;

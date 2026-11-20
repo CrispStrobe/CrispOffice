@@ -66,7 +66,8 @@ class SlideDeserializer {
             rel.targetMode == RelationshipTargetMode.external ||
             package.getPart(presentationRels.resolve(rel))?.contentType !=
                 OfficeContentTypes.slide) {
-          slideRelationshipIssue = 'Section membership requires modeled internal slide relationships.';
+          slideRelationshipIssue =
+              'Section membership requires modeled internal slide relationships.';
         }
         slideUris.add(
           rel != null && rel.type == RelationshipTypes.slide
@@ -102,6 +103,7 @@ class SlideDeserializer {
       final slidePart = package.getPart(uri);
       if (slidePart != null) {
         final String slideXml = slidePart.readText();
+        pres.slides[i].showMasterShapes = _showsMasterShapes(slideXml);
         final _SlideTemplate? layout = templates.layoutOf(uri);
         final Set<PmlShape> positioned = Set<PmlShape>.identity();
         final List<PmlShape> shapes = parseSlideShapes(
@@ -131,9 +133,10 @@ class SlideDeserializer {
             layout.master?.placeholders ?? const <PmlShape>[],
           ]);
           pres.slides[i].backgroundShapes.addAll(<PmlShape>[
-            for (final PmlShape shape
-                in layout.master?.decorations ?? const <PmlShape>[])
-              shape.copy(),
+            if (pres.slides[i].showMasterShapes && layout.showsMasterShapes)
+              for (final PmlShape shape
+                  in layout.master?.decorations ?? const <PmlShape>[])
+                shape.copy(),
             for (final PmlShape shape in layout.decorations) shape.copy(),
           ]);
         }
@@ -225,6 +228,19 @@ class SlideDeserializer {
     }
     final String attrs = xml.substring(start, end);
     return RegExp(r'''\bshow\s*=\s*["'](?:0|false)["']''').hasMatch(attrs);
+  }
+
+  /// `showMasterSp` hides master decorations without hiding layout shapes or
+  /// the editable slide content. XML Schema booleans default to true here.
+  static bool _showsMasterShapes(String xml) {
+    final XmlPullReader reader = XmlPullReader(xml);
+    while (reader.next()) {
+      if (reader.eventType == XmlEventType.startElement) {
+        final String? value = reader.getAttribute('showMasterSp')?.trim();
+        return value != '0' && value != 'false';
+      }
+    }
+    return true;
   }
 
   /// Resolves a solid `p:bg` fill to `RRGGBB`, honoring theme variants.
@@ -364,6 +380,7 @@ class _SlideTemplate {
     required this.decorations,
     this.background,
     this.inheritsMasterBackground = false,
+    this.showsMasterShapes = true,
     this.master,
   });
 
@@ -373,6 +390,7 @@ class _SlideTemplate {
   final List<PmlShape> decorations;
   final String? background;
   final bool inheritsMasterBackground;
+  final bool showsMasterShapes;
   final _SlideTemplate? master;
 }
 
@@ -457,6 +475,7 @@ class _SlideTemplates {
       decorations: _decorations(shapes, package, uri),
       background: background ?? master?.background,
       inheritsMasterBackground: background == null,
+      showsMasterShapes: SlideDeserializer._showsMasterShapes(xml),
       master: master,
     );
   }

@@ -336,7 +336,7 @@ abstract final class OfficePdfExport {
       }
       sink.canvas.fillRect(0, 0, slideW, slideH, _slideBackground(deck, slide));
       for (final PmlShape shape
-          in slide.backgroundShapes.isNotEmpty
+          in slide.backgroundShapes.isNotEmpty || !slide.showMasterShapes
               ? slide.backgroundShapes
               : deck.master.shapes) {
         _paintShape(sink, deck, slide, shape);
@@ -379,7 +379,7 @@ abstract final class OfficePdfExport {
       }
 
       linkShapes(
-        slide.backgroundShapes.isNotEmpty
+        slide.backgroundShapes.isNotEmpty || !slide.showMasterShapes
             ? slide.backgroundShapes
             : deck.master.shapes,
         scaled: notes,
@@ -466,7 +466,7 @@ abstract final class OfficePdfExport {
           _slideBackground(deck, slide),
         );
         for (final PmlShape shape
-            in slide.backgroundShapes.isNotEmpty
+            in slide.backgroundShapes.isNotEmpty || !slide.showMasterShapes
                 ? slide.backgroundShapes
                 : deck.master.shapes) {
           _paintShape(sink, deck, slide, shape);
@@ -493,7 +493,7 @@ abstract final class OfficePdfExport {
         }
 
         linkShapes(
-          slide.backgroundShapes.isNotEmpty
+          slide.backgroundShapes.isNotEmpty || !slide.showMasterShapes
               ? slide.backgroundShapes
               : deck.master.shapes,
         );
@@ -1792,10 +1792,17 @@ abstract final class OfficePdfExport {
         canvas.lineTo(flipH ? x : x + w, flipV ? y : y + h);
         canvas.stroke();
       case PmlShapePreset.downArrow:
+        _arrowPath(canvas, x, y, w, h, _ArrowDirection.down);
+        canvas.stroke();
       case PmlShapePreset.upArrow:
+        _arrowPath(canvas, x, y, w, h, _ArrowDirection.up);
+        canvas.stroke();
       case PmlShapePreset.leftArrow:
+        _arrowPath(canvas, x, y, w, h, _ArrowDirection.left);
+        canvas.stroke();
       case PmlShapePreset.rightArrow:
-        break;
+        _arrowPath(canvas, x, y, w, h, _ArrowDirection.right);
+        canvas.stroke();
       case PmlShapePreset.freeform:
         if (path.length >= 2) {
           canvas.moveTo(x + path.first.x / 12700, y + path.first.y / 12700);
@@ -2052,6 +2059,27 @@ abstract final class OfficePdfExport {
         PmlTextAlign.right => _TextAlign.right,
         PmlTextAlign.left || PmlTextAlign.justify => _TextAlign.left,
       };
+      // Keep authored order for numeric lines that fit. Wider content uses
+      // normal wrapping; explicit breaks also work with Standard 14 fonts.
+      final List<String>? plainLtrLines =
+          !paragraph.rightToLeft &&
+              !text.contains('\r') &&
+              !RegExp(r'\p{L}', unicode: true).hasMatch(text)
+          ? text.split('\n')
+          : null;
+      final bool plainLtrFits =
+          plainLtrLines?.every(
+            (line) =>
+                sink.plainWidth(
+                  line,
+                  size,
+                  bold: bold,
+                  italic: italic,
+                  family: family,
+                ) <=
+                maxWidth,
+          ) ??
+          false;
       if (text.contains('\t')) {
         final List<String> parts = text.split('\t');
         final double tabBase = x + paragraph.marginLeftPt;
@@ -2093,11 +2121,10 @@ abstract final class OfficePdfExport {
           fallbackColor,
           fitScale,
         );
-      } else if (!paragraph.rightToLeft &&
-          !RegExp(r'\p{L}', unicode: true).hasMatch(text)) {
+      } else if (plainLtrLines != null && plainLtrFits) {
         // Keep authored order within each numeric line without collapsing
         // explicit breaks, including blank lines, into one horizontal run.
-        for (final String line in text.split('\n')) {
+        for (final String line in plainLtrLines) {
           final double textWidth = sink.plainWidth(
             line,
             size,
@@ -3082,7 +3109,7 @@ class _PageSink {
     return true;
   }
 
-  /// Number of laid-out lines for [text] at [size].
+  /// Unshaped advance width for a single authored-order line.
   double plainWidth(
     String text,
     double size, {
@@ -3140,6 +3167,7 @@ class _PageSink {
     }
   }
 
+  /// Number of laid-out lines for [text] at [size].
   int lineCount(
     String text,
     double size, {
