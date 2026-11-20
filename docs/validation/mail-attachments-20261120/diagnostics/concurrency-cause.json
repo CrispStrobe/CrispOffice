@@ -1,0 +1,11 @@
+{
+  "status": "preliminary_not_acceptance",
+  "reason": "A concurrent root integration of integrate/recent-pptx staged a pubspec.lock metadata-only classification update while these suites ran. Root observed this in git diff --cached, restored authoritative committed lock, and requested an identical repeat. The change is not attributed to the test runners.",
+  "incoming_branch_head": "9d8a13733bde66f4a5cdb80e006a1637fc09bb77",
+  "incoming_lock_sha256": "72a5a52654a1484f4df646c631b4d1ea47e96025a671beff045eecf2b9e78e82",
+  "committed_restored_lock_sha256": "b71c74cada904d0a3fac7d057b7c718011c50d2e108b6cfd0390566f8abab202",
+  "delta": "Only image dependency classification: direct main \u2192 transitive; source, hosted URL, version 4.13.1, package archive SHA-256 and SDK constraints unchanged.",
+  "source_test_dependency_runtime_changes_other_than_lock": [],
+  "original_raw_receipts_preserved": true,
+  "next_action": "Run the same seven cohorts with restored committed lock and unchanged acceptance rules."
+}

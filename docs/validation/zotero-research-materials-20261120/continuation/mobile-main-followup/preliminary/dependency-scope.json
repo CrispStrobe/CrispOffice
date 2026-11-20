@@ -1,0 +1,29 @@
+{
+  "source_head": "65ea4c3095ff5d821c57d4dced0ba50bdd9387e7",
+  "scope": "Existing VM/Flutter host test closure only; current full mobile/integration dependency graph is not resolved or accepted.",
+  "configuration_hashes": {
+    ".dart_tool/package_config.json": "0011318979bdc29c9637b857a5122ffea96d185f3d2dc50c5503904a9059d6a7",
+    ".dart_tool/package_graph.json": "c4cf87e3f8b546649a30f1ad117cbb820b3757ba5b731af3b274a2e103585714"
+  },
+  "matches_prior_configuration": true,
+  "incoming_lock_sha256": "df9ff88b4df699b2420954d0ddc0dd7a1c40dbca8d9e3af3f25bec7e66700e7e",
+  "missing_from_saved_config": [
+    "integration_test",
+    "flutter_driver",
+    "fuchsia_remote_debug_protocol",
+    "sync_http",
+    "webdriver"
+  ],
+  "blocked_dependency": {
+    "dependency": "transitive",
+    "description": {
+      "name": "webdriver",
+      "sha256": "28b82ec894fed45dd71c23ba62d1af973ed97dd59a4f5790a4d38b0b13e5657e",
+      "url": "https://pub.dev"
+    },
+    "source": "hosted",
+    "version": "3.2.0"
+  },
+  "reason": "Exact locked webdriver3.2.0 is not cached. Cached3.1.0 was not substituted. No pub-get/configuration refresh, SDK update, package download or graph fabrication was performed.",
+  "native_mobile_acceptance": false
+}

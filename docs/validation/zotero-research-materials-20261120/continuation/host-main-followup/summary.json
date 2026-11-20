@@ -1,0 +1,150 @@
+{
+  "candidate_commit": "214c4ed80bef0cb871f74e90c506d508679d3d6e",
+  "candidate_preserves_all_recorded_source_inputs": true,
+  "candidate_recorded_source_differences": {},
+  "candidate_tree": "497db59c5683a3d5efb566b4930e5fbdce98a52f",
+  "cohorts": [
+    {
+      "distinct_passed_cases": 642,
+      "files": 29,
+      "name": "engine-zotero",
+      "passed": 642,
+      "primary_failed_guards": [],
+      "primary_runner_status": "passed",
+      "receipt_sha256": "827788dbb7f480813d7deb8bb507b3199805adfc05dbdece4a90759e567b6181",
+      "selection_provenance": "pinned_primary_runner_with_reviewed_catalog_adapter",
+      "source_commit": "214c4ed80bef0cb871f74e90c506d508679d3d6e"
+    },
+    {
+      "distinct_passed_cases": 632,
+      "files": 43,
+      "name": "editor-zotero",
+      "passed": 632,
+      "primary_failed_guards": [],
+      "primary_runner_status": "passed",
+      "receipt_sha256": "87739f11408e8daa8f6f50285b6528faabe4ed116244a38c02caa2cc73dc62a6",
+      "selection_provenance": "pinned_primary_runner_direct",
+      "source_commit": "214c4ed80bef0cb871f74e90c506d508679d3d6e"
+    },
+    {
+      "distinct_passed_cases": 214,
+      "files": 14,
+      "name": "engine-rendering",
+      "passed": 214,
+      "primary_failed_guards": [],
+      "primary_runner_status": "passed",
+      "receipt_sha256": "2538564b24dc1af4e3c839d92ff286c0d14e9728545dc7a91e67af80882e6f67",
+      "selection_provenance": "pinned_primary_runner_with_reviewed_catalog_adapter",
+      "source_commit": "214c4ed80bef0cb871f74e90c506d508679d3d6e"
+    },
+    {
+      "distinct_passed_cases": 109,
+      "files": 10,
+      "name": "editor-rendering",
+      "passed": 109,
+      "primary_failed_guards": [],
+      "primary_runner_status": "passed",
+      "receipt_sha256": "1213bed5daf39c5f1c9ad58fb9dd49ab03fc10cc1b62ada753dabf11bb17cf42",
+      "selection_provenance": "pinned_primary_runner_with_reviewed_catalog_adapter",
+      "source_commit": "214c4ed80bef0cb871f74e90c506d508679d3d6e"
+    },
+    {
+      "distinct_passed_cases": 232,
+      "files": 22,
+      "name": "engine-word-layout",
+      "passed": 232,
+      "primary_failed_guards": [],
+      "primary_runner_status": "passed",
+      "receipt_sha256": "3bd977fb31a7d8748fcda4f7772afb22f24de7b07f79f8ba04a1775620b65ebe",
+      "selection_provenance": "pinned_primary_runner_with_reviewed_catalog_adapter",
+      "source_commit": "214c4ed80bef0cb871f74e90c506d508679d3d6e"
+    },
+    {
+      "distinct_passed_cases": 87,
+      "files": 14,
+      "name": "editor-word-layout",
+      "passed": 87,
+      "primary_failed_guards": [],
+      "primary_runner_status": "passed",
+      "receipt_sha256": "e994304a7949b29c5e460432df9aff13aae7fcb9357c1558d2592606bcf141ee",
+      "selection_provenance": "pinned_primary_runner_with_reviewed_catalog_adapter",
+      "source_commit": "214c4ed80bef0cb871f74e90c506d508679d3d6e"
+    },
+    {
+      "distinct_passed_cases": 319,
+      "files": 11,
+      "name": "mail-host",
+      "passed": 319,
+      "primary_failed_guards": [],
+      "primary_runner_status": "passed",
+      "receipt_sha256": "aa052ea7df7e9aa1f2672dfef3c19394ff95c45c6bb880f9c6e31f94b9c8032b",
+      "selection_provenance": "pinned_primary_runner_with_reviewed_catalog_adapter",
+      "source_commit": "214c4ed80bef0cb871f74e90c506d508679d3d6e"
+    },
+    {
+      "distinct_passed_cases": 151,
+      "files": 14,
+      "name": "studio-integration",
+      "passed": 151,
+      "primary_failed_guards": [],
+      "primary_runner_status": "passed",
+      "receipt_sha256": "6c2f769b3873e8c1a90c1ae4ef47d9781e26bff46017956a5b4119b461de0d0c",
+      "selection_provenance": "pinned_primary_runner_with_reviewed_catalog_adapter",
+      "source_commit": "214c4ed80bef0cb871f74e90c506d508679d3d6e"
+    }
+  ],
+  "comparator_controls": {
+    "case_ids": [
+      "captured_word_comparator_tests.NativeWordMetricTest.test_added_ink_lowers_precision",
+      "captured_word_comparator_tests.NativeWordMetricTest.test_blank_whitespace_cannot_inflate_score",
+      "captured_word_comparator_tests.NativeWordMetricTest.test_duplicate_and_unsafe_fixture_names_fail",
+      "captured_word_comparator_tests.NativeWordMetricTest.test_fixed_one_pixel_tolerance",
+      "captured_word_comparator_tests.NativeWordMetricTest.test_missing_and_empty_corpora_fail",
+      "captured_word_comparator_tests.NativeWordMetricTest.test_missing_ink_lowers_recall",
+      "captured_word_comparator_tests.NativeWordMetricTest.test_page_size_is_not_rescaled_to_match",
+      "captured_word_comparator_tests.NativeWordMetricTest.test_same_ink_passes"
+    ],
+    "included_in_dart_test_total": false,
+    "log_sha256": "45cfd683439ffe9eb7ae571cfef019e5ec0918dcdef4f8d2a73b619640945f11",
+    "named_python_pillow_runtime_files_verified": 115,
+    "native_word_or_real_corpus_execution": false,
+    "receipt_sha256": "2eb140a57387a8527b764acf4bf7bfbe247fdc18092161cc06e54725aeb0d155",
+    "scope": "Synthetic metric and corpus-validation unit controls only; no native Word export, reference replacement, or real corpus comparison.",
+    "source_commit": "214c4ed80bef0cb871f74e90c506d508679d3d6e",
+    "source_files_verified": 2,
+    "status": "verified",
+    "synthetic_controls_passed": 8
+  },
+  "failed_or_skipped_application_executions": 0,
+  "fresh_distinct_passed_cases": 2386,
+  "fresh_distinct_test_files": 157,
+  "fresh_successful_application_executions": 2386,
+  "independent_audit": {
+    "path": "audit.json",
+    "sha256": "88cc667d19a5cb9ff4395173897404f124882d7ac800bcc869564df08003b1d7"
+  },
+  "limits": [
+    "This audit runs no application tests; it independently recounts the eight fresh raw streams and rehashes their saved Git inputs and available current external inputs.",
+    "The earlier 2,886-case milestone and 3,201-distinct-case continuation remain separate source-attributed populations. Their overlapping cases are not added to this count.",
+    "editor-zotero ran the pinned primary runner directly before the adapter was available. Its unchanged 43-file selector is independently verified equal to this reviewed catalog; no adapter receipt is fabricated.",
+    "The incoming author native Word corpus achieved 20 of 24 pages above its 95% threshold; its strict acceptance gate is not met. Local Dart/Flutter qualification does not replace that native corpus result.",
+    "No native macOS bundle, physical display, live Zotero account or live Mail service acceptance is established by these local tests.",
+    "Runtime inventory covers the named SDK files recorded by the runner, not every operating-system library or binary."
+  ],
+  "primary_guard_exceptions": [],
+  "primary_receipts_rejected": [],
+  "qualified_sources": [
+    "214c4ed80bef0cb871f74e90c506d508679d3d6e"
+  ],
+  "repeated_successful_executions_excluded_from_distinct_count": 0,
+  "static": {
+    "all_targets_preserved_at_candidate": true,
+    "baseline_commit": "a452efdadc9000c51a8e5e9ba2f16405d4979e2e",
+    "before_after_and_git_source_verified": true,
+    "candidate_changed_targets": [],
+    "receipt_sha256": "f6a5cf76ef2a1d02738811cc1cbf4ce356c34f63f8ec19f0c280a01be62a38e2",
+    "source_commit": "214c4ed80bef0cb871f74e90c506d508679d3d6e",
+    "target_count": 102
+  },
+  "status": "fresh_host_evidence_verified"
+}

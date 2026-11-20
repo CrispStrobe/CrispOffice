@@ -1,0 +1,87 @@
+{
+  "candidate_commit": "3cba1810b41a2fff5b2cd1eb355137a46b09f225",
+  "candidate_preserves_all_recorded_source_inputs": false,
+  "candidate_recorded_source_differences": {
+    "packages/quds_proofing_spacy/tool/evaluate_grammar_v2.dart": {
+      "candidate_blob": "8f27ae90b81c3cf3698341c46eee736c4fb140ad",
+      "qualified_blob": "a4a37fb85d1787b3b581726b634d5b42d197511b"
+    }
+  },
+  "cohorts": [
+    {
+      "distinct_passed_cases": 642,
+      "files": 29,
+      "name": "engine-zotero",
+      "passed": 642,
+      "primary_failed_guards": [],
+      "primary_runner_status": "passed",
+      "receipt_sha256": "3f13f09b1fa55d6f810a677acf6a29b36ae419e3d2d98a2d3394fb9e90736916"
+    },
+    {
+      "distinct_passed_cases": 632,
+      "files": 43,
+      "name": "editor-zotero",
+      "passed": 632,
+      "primary_failed_guards": [],
+      "primary_runner_status": "passed",
+      "receipt_sha256": "dd72a236432ba39de14aaffec07fb1a9c4e83e390df0d4b9d06738c037eebfd0"
+    },
+    {
+      "distinct_passed_cases": 1705,
+      "files": 37,
+      "name": "engine-proofing",
+      "passed": 1713,
+      "primary_failed_guards": [
+        "unique_application_test_names"
+      ],
+      "primary_runner_status": "failed",
+      "receipt_sha256": "aa0050bd3fa9d31ca0245c8d84a00f9cbe98de6f5919a5f27ccee3196ab1fdb7"
+    },
+    {
+      "distinct_passed_cases": 114,
+      "files": 11,
+      "name": "spacy",
+      "passed": 114,
+      "primary_failed_guards": [],
+      "primary_runner_status": "passed",
+      "receipt_sha256": "819ea1c28bcedb703a130b02809b8ed0530e4cfe1afc24a2b053e70cf407122e"
+    },
+    {
+      "distinct_passed_cases": 108,
+      "files": 9,
+      "name": "studio-integration",
+      "passed": 108,
+      "primary_failed_guards": [],
+      "primary_runner_status": "passed",
+      "receipt_sha256": "d8ea8094d8efd1d81b4364cc0ce630b1413103c9a848415598cf75956cedaf15"
+    }
+  ],
+  "failed_or_skipped_application_executions": 0,
+  "fresh_distinct_passed_cases": 3201,
+  "fresh_distinct_test_files": 129,
+  "fresh_successful_application_executions": 3209,
+  "independent_audit": {
+    "path": "evidence-audit/fresh-validation.json",
+    "sha256": "be404bafc453cad6010c6dd91630d7711429d693a4c4833ad9b647a549e299ee"
+  },
+  "limits": [
+    "This independent audit runs no application tests. It recounts all five fresh raw event streams and rehashes saved source objects plus available current runtime/dependency inputs.",
+    "The original 2,886 historical cases remain a separate source-attributed result; overlapping fresh Zotero cases must not be summed into that number.",
+    "The proofing primary receipt remains rejected for duplicate display names. A separate exact source-bound proof counts eight identical repeated fixture rows once; no source or original guard was changed.",
+    "Candidate differences are reported explicitly; no automatic claim that an untested source change is qualified is made.",
+    "Runtime inventory covers the named SDK files recorded by the runner, not every operating-system library or binary."
+  ],
+  "primary_receipts_rejected": [
+    {
+      "cohort": "engine-proofing",
+      "guard": "unique_application_test_names"
+    }
+  ],
+  "proofing_accounting": {
+    "path": "proofing-accounting.json",
+    "sha256": "26bc31def322fb4d823ca3b5a5d3fc69a4825cdcbdf4bca5defc7ac5c40437d9"
+  },
+  "qualified_source": "f3f98987824e021ed22a4d909e38d6307495267b",
+  "repeated_successful_executions_excluded_from_distinct_count": 8,
+  "status": "fresh_evidence_verified_with_documented_accounting_exception"
+}

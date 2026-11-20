@@ -1,0 +1,488 @@
+{
+  "status": "passed",
+  "base_source_head": "6184051c75d882cac53be3c1a9384e4556588ad1",
+  "final_source_head": "f8f36eb87b051a0b26ee68747dfd24c4717eaec1",
+  "final_source_tree": "26f0d546e9d6ef29a3ab90ea0081425cba13c1d4",
+  "combined_distinct_passed_cases_retained": 2049,
+  "explicit_not_run_cases_retained": 1,
+  "distinct_selected_files_retained": 113,
+  "replacement_pin_cases": 1,
+  "replacement_pin_cases_added_to_total": 0,
+  "auxiliary_shell_scenarios_added_to_total": 0,
+  "exact_changed_paths": [
+    "docs/release/macos-signing.md",
+    "packages/quds_office_editor/example/tool/build_macos_app.sh",
+    "packages/quds_proofing_spacy/lib/src/distribution.dart"
+  ],
+  "file_modes_and_types_unchanged": true,
+  "dart_delta_documentation_lines_only": true,
+  "dart_non_doc_sha256": "9d2502e90e82604daba7fc8dab589cf13300e85035e3af0867d16b3e4516b41e",
+  "pins_consumed_by_selected_test": {
+    "before": {
+      "SPACY_PIN_SHA256": "ccc96620e01164d18e8d2e46b9a383677e4430c8889833bedab5b56c16a1b40f",
+      "SPACY_PIN_REVISION": "2aa70083055073adf8d2ffbb0ff203cc4fcafd7e",
+      "SPACY_PIN_BYTES": "2322928",
+      "SPACY_PIN_REPOSITORY": "cstr/crispembed-spacy-de-core-news-sm-3.8.0",
+      "SPACY_PIN_CODE_SHA256": "f2022b1cf75d831cddbd047eec5f5ac759728fee169ed2b5b785ecda1a07efeb",
+      "SPACY_PIN_UNSIGNED_SHA256": "f62d2a0cf457a0ac577f45eceba93d8d5f2f450d4fd5a191f0cec61d88886ed2"
+    },
+    "after": {
+      "SPACY_PIN_SHA256": "ccc96620e01164d18e8d2e46b9a383677e4430c8889833bedab5b56c16a1b40f",
+      "SPACY_PIN_REVISION": "2aa70083055073adf8d2ffbb0ff203cc4fcafd7e",
+      "SPACY_PIN_BYTES": "2322928",
+      "SPACY_PIN_REPOSITORY": "cstr/crispembed-spacy-de-core-news-sm-3.8.0",
+      "SPACY_PIN_CODE_SHA256": "f2022b1cf75d831cddbd047eec5f5ac759728fee169ed2b5b785ecda1a07efeb",
+      "SPACY_PIN_UNSIGNED_SHA256": "f62d2a0cf457a0ac577f45eceba93d8d5f2f450d4fd5a191f0cec61d88886ed2"
+    },
+    "identical": true
+  },
+  "literal_build_script_references": [
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_spacy_host_native.dart",
+      "line": 45,
+      "text": "/// build_macos_app.sh), described by `Contents/Resources/spacy-native.json`.",
+      "full_line_comment": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_macos_bundle_native_gate.dart",
+      "line": 7,
+      "text": "//   packages/quds_office_editor/example/tool/build_macos_app.sh",
+      "full_line_comment": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_spacy_bundle_native_gate.dart",
+      "line": 9,
+      "text": "//   packages/quds_office_editor/example/tool/build_macos_app.sh",
+      "full_line_comment": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_spacy_bundle_native_gate.dart",
+      "line": 99,
+      "text": "    // (build_macos_app.sh --sign records its code digest).",
+      "full_line_comment": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_spacy_pin_test.dart",
+      "line": 17,
+      "text": "    final script = File('tool/build_macos_app.sh').readAsStringSync();",
+      "full_line_comment": false
+    },
+    {
+      "path": "packages/quds_proofing_spacy/lib/src/distribution.dart",
+      "line": 385,
+      "text": "/// does not normalize stripping, so build_macos_app.sh requires this",
+      "full_line_comment": true
+    },
+    {
+      "path": "packages/quds_proofing_spacy/lib/src/distribution.dart",
+      "line": 397,
+      "text": "  // and installed by build_macos_app.sh; `tool/build.py --native` reproduces",
+      "full_line_comment": true
+    },
+    {
+      "path": "packages/quds_proofing_spacy/test/macho_code_identity_test.dart",
+      "line": 113,
+      "text": "  // for example the file build_macos_app.sh downloads:",
+      "full_line_comment": true
+    }
+  ],
+  "only_non_comment_reference_is_pin_file_read": true,
+  "recorded_runtime_commands": [
+    {
+      "cohort": "quds_mail_core-vm",
+      "argv": [
+        "/workspace/scratch/75dc9d25dfaf/runtime/flutter/bin/cache/dart-sdk/bin/dart",
+        "--disable-dart-dev",
+        "--packages=/workspace/scratch/75dc9d25dfaf/quds_office_suite/.dart_tool/package_config.json",
+        "/workspace/scratch/75dc9d25dfaf/runtime/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+        "--platform=vm",
+        "--compiler=kernel",
+        "--concurrency=2",
+        "--reporter=json",
+        "test/cancellation_test.dart",
+        "test/ews_identity_test.dart",
+        "test/imap_sync_range_test.dart",
+        "test/models_test.dart",
+        "test/outbox_test.dart",
+        "test/sync_coordinator_test.dart"
+      ]
+    },
+    {
+      "cohort": "quds_mail_mime-vm",
+      "argv": [
+        "/workspace/scratch/75dc9d25dfaf/runtime/flutter/bin/cache/dart-sdk/bin/dart",
+        "--disable-dart-dev",
+        "--packages=/workspace/scratch/75dc9d25dfaf/quds_office_suite/.dart_tool/package_config.json",
+        "/workspace/scratch/75dc9d25dfaf/runtime/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+        "--platform=vm",
+        "--compiler=kernel",
+        "--concurrency=2",
+        "--reporter=json",
+        "test/eml_bytes_test.dart",
+        "test/mbox_test.dart",
+        "test/mime_encodings_test.dart",
+        "test/mime_limits_test.dart",
+        "test/mime_parts_test.dart",
+        "test/mime_review_regressions_test.dart",
+        "test/portable_import_test.dart"
+      ]
+    },
+    {
+      "cohort": "quds_mail_store-vm",
+      "argv": [
+        "/workspace/scratch/75dc9d25dfaf/runtime/flutter/bin/cache/dart-sdk/bin/dart",
+        "--disable-dart-dev",
+        "--packages=/workspace/scratch/75dc9d25dfaf/quds_office_suite/.dart_tool/package_config.json",
+        "/workspace/scratch/75dc9d25dfaf/runtime/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+        "--platform=vm",
+        "--compiler=kernel",
+        "--concurrency=2",
+        "--reporter=json",
+        "test/adversarial_store_test.dart",
+        "test/archive_directory_native_test.dart",
+        "test/archive_export_manifest_test.dart",
+        "test/archive_export_native_test.dart",
+        "test/archive_export_plan_test.dart",
+        "test/archive_multi_origin_test.dart",
+        "test/archive_native_test.dart",
+        "test/archive_query_test.dart",
+        "test/archive_repository_test.dart",
+        "test/archive_restore_adversarial_test.dart",
+        "test/archive_restore_checkpoint_test.dart",
+        "test/archive_restore_native_test.dart",
+        "test/archive_restore_resume_test.dart",
+        "test/archive_runner_test.dart",
+        "test/codec_test.dart",
+        "test/crash_recovery_test.dart",
+        "test/ews_store_test.dart",
+        "test/imap_sync_range_test.dart",
+        "test/migration_test.dart",
+        "test/native_platform_test.dart",
+        "test/platform_configuration_test.dart",
+        "test/repository_test.dart"
+      ]
+    },
+    {
+      "cohort": "quds_mail_store-node",
+      "argv": [
+        "/workspace/scratch/75dc9d25dfaf/runtime/flutter/bin/cache/dart-sdk/bin/dart",
+        "--disable-dart-dev",
+        "--packages=/workspace/scratch/75dc9d25dfaf/quds_office_suite/.dart_tool/package_config.json",
+        "/workspace/scratch/75dc9d25dfaf/runtime/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+        "--platform=node",
+        "--compiler=dart2js",
+        "--concurrency=2",
+        "--reporter=json",
+        "test/browser_problem_test.dart"
+      ]
+    },
+    {
+      "cohort": "quds_mail_transport-vm",
+      "argv": [
+        "/workspace/scratch/75dc9d25dfaf/runtime/flutter/bin/cache/dart-sdk/bin/dart",
+        "--disable-dart-dev",
+        "--packages=/workspace/scratch/75dc9d25dfaf/quds_office_suite/.dart_tool/package_config.json",
+        "/workspace/scratch/75dc9d25dfaf/runtime/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+        "--platform=vm",
+        "--compiler=kernel",
+        "--concurrency=2",
+        "--reporter=json",
+        "test/cloud_http_test.dart",
+        "test/cloud_oauth_loopback_test.dart",
+        "test/cloud_oauth_test.dart",
+        "test/cloud_provider_test.dart",
+        "test/cloud_store_test.dart",
+        "test/configuration_test.dart",
+        "test/cursor_test.dart",
+        "test/ews_configuration_test.dart",
+        "test/ews_http_test.dart",
+        "test/ews_ntlm_test.dart",
+        "test/ews_provider_test.dart",
+        "test/ews_soap_test.dart",
+        "test/host_store_integration_test.dart",
+        "test/native_provider_test.dart",
+        "test/native_tls_cancellation_test.dart",
+        "test/native_tls_round_trip_test.dart",
+        "test/native_tls_test.dart",
+        "test/uid_discovery_test.dart"
+      ]
+    },
+    {
+      "cohort": "quds_mail_transport-node",
+      "argv": [
+        "/workspace/scratch/75dc9d25dfaf/runtime/flutter/bin/cache/dart-sdk/bin/dart",
+        "--disable-dart-dev",
+        "--packages=/workspace/scratch/75dc9d25dfaf/quds_office_suite/.dart_tool/package_config.json",
+        "/workspace/scratch/75dc9d25dfaf/runtime/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+        "--platform=node",
+        "--compiler=dart2js",
+        "--concurrency=2",
+        "--reporter=json",
+        "test/cloud_unsupported_test.dart",
+        "test/ews_unsupported_test.dart",
+        "test/unsupported_test.dart"
+      ]
+    },
+    {
+      "cohort": "vendor-mime",
+      "argv": [
+        "/workspace/scratch/75dc9d25dfaf/runtime/flutter/bin/cache/dart-sdk/bin/dart",
+        "--disable-dart-dev",
+        "--packages=/workspace/scratch/75dc9d25dfaf/quds_office_suite/.dart_tool/package_config.json",
+        "/workspace/scratch/75dc9d25dfaf/runtime/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+        "--platform=vm",
+        "--compiler=kernel",
+        "--concurrency=2",
+        "--reporter=json",
+        "test/codecs/quoted_printable_mail_codec_test.dart",
+        "test/message_builder_test.dart",
+        "test/quds_portable_mime_test.dart"
+      ]
+    },
+    {
+      "cohort": "mail-host",
+      "argv": [
+        "/workspace/scratch/75dc9d25dfaf/runtime/flutter/bin/flutter",
+        "test",
+        "--no-pub",
+        "--reporter",
+        "json",
+        "--concurrency",
+        "1",
+        "test/studio_mail_attachment_compose_test.dart",
+        "test/studio_mail_attachment_loader_test.dart",
+        "test/studio_mail_attachment_test.dart",
+        "test/studio_mail_cloud_test.dart",
+        "test/studio_mail_compose_test.dart",
+        "test/studio_mail_ews_test.dart",
+        "test/studio_mail_recipients_test.dart",
+        "test/studio_mail_reply_test.dart",
+        "test/studio_mail_session_test.dart",
+        "test/studio_mail_test.dart",
+        "test/studio_mail_threading_test.dart"
+      ]
+    },
+    {
+      "cohort": "editor-rendering",
+      "argv": [
+        "/workspace/scratch/75dc9d25dfaf/runtime/flutter/bin/flutter",
+        "test",
+        "--no-pub",
+        "--reporter",
+        "json",
+        "--concurrency",
+        "1",
+        "test/office_dark_slide_test.dart",
+        "test/paint_run_text_unicode_test.dart",
+        "test/slide_arrange_history_test.dart",
+        "test/slide_incoming_pptx_regression_test.dart",
+        "test/slide_notes_history_test.dart",
+        "test/slide_render_fidelity_test.dart",
+        "test/slide_section_reorder_test.dart",
+        "test/slide_transform_orientation_test.dart",
+        "test/word_small_caps_test.dart",
+        "test/word_tab_stops_editor_test.dart"
+      ]
+    },
+    {
+      "cohort": "editor-zotero-materials",
+      "argv": [
+        "/workspace/scratch/75dc9d25dfaf/runtime/flutter/bin/flutter",
+        "test",
+        "--no-pub",
+        "--reporter",
+        "json",
+        "--concurrency",
+        "1",
+        "test/word_zotero_children_dialog_test.dart",
+        "test/word_zotero_children_test.dart",
+        "test/word_zotero_note_preview_test.dart"
+      ]
+    },
+    {
+      "cohort": "studio-spacy",
+      "argv": [
+        "/workspace/scratch/75dc9d25dfaf/runtime/flutter/bin/flutter",
+        "test",
+        "--no-pub",
+        "--reporter",
+        "json",
+        "--concurrency",
+        "1",
+        "test/studio_spacy_pin_test.dart",
+        "test/studio_spacy_setup_test.dart"
+      ]
+    },
+    {
+      "cohort": "engine-rendering",
+      "argv": [
+        "/workspace/scratch/75dc9d25dfaf/runtime/flutter/bin/cache/dart-sdk/bin/dart",
+        "--packages=/workspace/scratch/75dc9d25dfaf/quds_office_suite/.dart_tool/package_config.json",
+        "/workspace/scratch/75dc9d25dfaf/runtime/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+        "--reporter",
+        "json",
+        "--concurrency",
+        "1",
+        "test/office_pdf_export_test.dart",
+        "test/slide_arrange_fidelity_test.dart",
+        "test/slide_import_fidelity_test.dart",
+        "test/slide_incoming_pptx_regression_test.dart",
+        "test/slide_render_fidelity_test.dart",
+        "test/slide_rich_text_explicit_style_test.dart",
+        "test/slide_section_fidelity_test.dart",
+        "test/slide_table_cell_color_test.dart",
+        "test/slide_test.dart",
+        "test/slide_text_fidelity_test.dart",
+        "test/slide_transform_orientation_test.dart",
+        "test/word_small_caps_test.dart"
+      ]
+    },
+    {
+      "cohort": "spacy-package",
+      "argv": [
+        "/workspace/scratch/75dc9d25dfaf/runtime/flutter/bin/cache/dart-sdk/bin/dart",
+        "--packages=/workspace/scratch/75dc9d25dfaf/quds_office_suite/.dart_tool/package_config.json",
+        "/workspace/scratch/75dc9d25dfaf/runtime/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+        "--reporter",
+        "json",
+        "--concurrency",
+        "1",
+        "test/analysis_test.dart",
+        "test/bundle_test.dart",
+        "test/distribution_test.dart",
+        "test/grammar_evaluation_harness_test.dart",
+        "test/grammar_families_test.dart",
+        "test/grammar_planner_test.dart",
+        "test/grammar_provider_test.dart",
+        "test/language_catalog_test.dart",
+        "test/macho_code_identity_test.dart",
+        "test/ner_removal_test.dart",
+        "test/worker_test.dart"
+      ]
+    },
+    {
+      "cohort": "engine-macro-serialization",
+      "argv": [
+        "/workspace/scratch/75dc9d25dfaf/runtime/flutter/bin/cache/dart-sdk/bin/dart",
+        "--packages=/workspace/scratch/75dc9d25dfaf/quds_office_suite/.dart_tool/package_config.json",
+        "/workspace/scratch/75dc9d25dfaf/runtime/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+        "--reporter",
+        "json",
+        "--concurrency",
+        "1",
+        "test/office_macro_cli_test.dart",
+        "test/office_macro_language_test.dart",
+        "test/office_macro_runtime_test.dart"
+      ]
+    },
+    {
+      "cohort": "post-main-comment-draft",
+      "argv": [
+        "/workspace/scratch/75dc9d25dfaf/runtime/flutter/bin/flutter",
+        "test",
+        "--no-pub",
+        "--reporter",
+        "json",
+        "--concurrency",
+        "1",
+        "test/studio_comment_draft_proofing_test.dart"
+      ]
+    }
+  ],
+  "recorded_command_invokes_build_script": false,
+  "selected_test_io_review": {
+    "files": 113,
+    "sites": 327,
+    "artifact": "final-main-selected-io-sites.json",
+    "sha256": "1d4f77aaa3e501557d8be2e986c1b7b3d5b3d7507d12fae4707d194b13495dba",
+    "review": "Explicit subprocess targets are Dart mail crash fixtures, the Dart macro CLI, fixture git and mkfifo. Other reviewed reads use generated temporary data, committed fixtures/fonts, or injected fake providers. The changed build-script read is confined to the separately requalified pin test."
+  },
+  "replacement_pin_receipt_sha256": "a3d8105c313b9a17fdf9357595458008506920d77405daa0f06df6e90f60a835",
+  "macos_refresh_aggregate_sha256": "364f08f4752b01af8e46ca391dac82fe91fbb8945488ab54b905d760a7ad86df",
+  "replacement_input_verification": {
+    "source_files": 4006,
+    "dependency_files": 4502,
+    "all_source_records_match_final_tree": true,
+    "all_area_digests_recomputed": true
+  },
+  "final_static_62": {
+    "source_head": "58c6962ec3ea82811bfcafec42981385f216f892",
+    "selected_count": 62,
+    "receipt_sha256": "955d4b00583b1e6160b8d02443ef78de6b5288222d007ee2618ed294e006afbc",
+    "analysis_and_format_log_hashes_verified": true,
+    "status": "passed"
+  },
+  "auxiliary_shell_controls": {
+    "receipt_sha256": "018c727a12cde272bab61f5ee912d782643740f27002c94d35063e643e513e0d",
+    "syntax_exit_code": 0,
+    "scenarios": [
+      {
+        "name": "adhoc-pinned-bytes-preserved",
+        "expected_exit": 0,
+        "actual_exit": 0,
+        "accepted": true
+      },
+      {
+        "name": "release-normalized-crosscheck",
+        "expected_exit": 0,
+        "actual_exit": 0,
+        "accepted": true
+      },
+      {
+        "name": "release-older-strip-code-gate",
+        "expected_exit": 0,
+        "actual_exit": 0,
+        "accepted": true
+      },
+      {
+        "name": "release-code-drift-rejected",
+        "expected_exit": 1,
+        "actual_exit": 1,
+        "accepted": true
+      },
+      {
+        "name": "normalized-strip-drift-rejected",
+        "expected_exit": 1,
+        "actual_exit": 1,
+        "accepted": true
+      },
+      {
+        "name": "adhoc-rebuild-signed-unqualified",
+        "expected_exit": 0,
+        "actual_exit": 0,
+        "accepted": true
+      },
+      {
+        "name": "adhoc-invalid-signature-rejected",
+        "expected_exit": 7,
+        "actual_exit": 7,
+        "accepted": true
+      },
+      {
+        "name": "pinned-input-code-drift-rejected",
+        "expected_exit": 1,
+        "actual_exit": 1,
+        "accepted": true
+      }
+    ],
+    "qualification_limit": "Syntax and Linux Bash control-flow only. Verbatim changed script blocks execute against synthetic non-executable files, with codesign/code-digest/unsigned-digest calls stubbed. No macOS build, real Mach-O signing, signature verification, native library loading, notarization or shipping acceptance is established. Application test totals exclude these auxiliary scenarios."
+  },
+  "earlier_audit_hashes_unchanged": {
+    "report.json": "c82f098ec6c209f736ea1ed5890991a120f193602a99416593219b9ea51a4b58",
+    "supplemental-validation-report.json": "37eb1018a153d9ba2600f0e7124dbf711fbde50545516f6aa4635b5f69e2e1df",
+    "supplemental-source-applicability.json": "06bf778d91330301e788de2acb87c82df172216184af506198b150927978c8a7"
+  },
+  "source_delta_patch_sha256": "ae79c6a46a467b0ef39a01a2ff13e074c5fdcdea828a4123dde7a9170cf7bd2b",
+  "auditor": {
+    "bytes": 17645,
+    "sha256": "99ba5f1f0ca385982d31d6ccdaf649e4dc511e3895c88cbdac3891fb347ee89b",
+    "git_blob_sha1": "bc18b6ba651cbd21ad15f089ee74a9b96ba8ba0b"
+  },
+  "issues": [],
+  "limits": [
+    "No real macOS build/signing/native loading was executed or inferred.",
+    "Static I/O-site and literal-reference review is not a universal runtime file-access trace.",
+    "Reproduction requires the reconstructed original flat evidence layout and recorded Git/runtime/dependency inputs."
+  ],
+  "no_tests_or_analyzers_executed_by_independent_auditor": true
+}

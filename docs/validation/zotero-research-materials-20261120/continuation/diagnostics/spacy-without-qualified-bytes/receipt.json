@@ -1,0 +1,378 @@
+{
+  "application_timeouts_modified": false,
+  "artifacts": {
+    "events.jsonl.gz": {
+      "bytes": 6885,
+      "git_blob_sha1": "b67937a709e245c92915baf7260a59c2efef864f",
+      "sha256": "d158cdd0a84ff41280ee9a1a4deed7bf5418777687c1bdcd19052f5a6b691604"
+    },
+    "input-check.json": {
+      "bytes": 1248,
+      "git_blob_sha1": "de0e82796ddc80275b834fba1aca7791fc7e6d76",
+      "sha256": "239a28053aa3f33ea70735b7ff1c97ef5892eea2dc518cba03a491bd52134a37"
+    },
+    "inputs.json.gz": {
+      "bytes": 469641,
+      "git_blob_sha1": "49b01ea94c6c5eccd2c6755bf6e8d628495d7f0f",
+      "sha256": "7545739cfac1ff92bd44de721da59ccb76400851a488926b201cd356d120a532"
+    },
+    "selection-adapter.json": {
+      "bytes": 3456,
+      "git_blob_sha1": "e928f62ec8d543c15e5f0ecf585324a5ba53d60f",
+      "sha256": "f7b05de732af96f662706be8a142bad34245297f832651dd7db79e9b7c453123"
+    },
+    "stderr.log.gz": {
+      "bytes": 31,
+      "git_blob_sha1": "87bfaf1cefef95e53a691da2269f30d7996d9c89",
+      "sha256": "b7368871ac9ce0ce08835c8c2fbf32d88bd56ee6bb93612434e3cc6bd4405e5e"
+    }
+  },
+  "cohort": "spacy",
+  "command": [
+    "/workspace/scratch/2c6eaad19389/zotero-toolchain/flutter-sdk/bin/cache/dart-sdk/bin/dart",
+    "--packages=/workspace/scratch/2c6eaad19389/quds_office_suite/.dart_tool/package_config.json",
+    "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+    "--reporter",
+    "json",
+    "--concurrency",
+    "1",
+    "test/analysis_test.dart",
+    "test/bundle_test.dart",
+    "test/distribution_test.dart",
+    "test/grammar_evaluation_harness_test.dart",
+    "test/grammar_families_test.dart",
+    "test/grammar_planner_test.dart",
+    "test/grammar_provider_test.dart",
+    "test/language_catalog_test.dart",
+    "test/macho_code_identity_test.dart",
+    "test/ner_removal_test.dart",
+    "test/worker_test.dart"
+  ],
+  "concurrency": 1,
+  "counting_scope": "Application test cases only. Loader and group-lifecycle events are excluded from the passing count but any failures in them still reject acceptance. Development runs and other cohorts are not included.",
+  "cwd": "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/quds_proofing_spacy",
+  "elapsed_seconds": 30.7173751420014,
+  "exit_code": 0,
+  "external_dependency_file_count": 2113,
+  "fingerprints": {
+    "after_sha256": {
+      "dependencies": "91ac38791512b4feb6a8bf14b45b2e2890162fff93bb6384f1aec356bddcc245",
+      "host_fonts": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "runtime": "9c58c139ade21dc3073e27df7a4627814f2ddc40c2b7b684706d390d6d3c5aac",
+      "source": "3eb2a9b4cb44d3b96c6cff14f5dac4a4fa17303102ef2f102674cdbc42fe7efd",
+      "workspace": "796c78924feaafc1773c00298a709fab93ec8388ecbc4a64d56c585279913b5c"
+    },
+    "before_sha256": {
+      "dependencies": "91ac38791512b4feb6a8bf14b45b2e2890162fff93bb6384f1aec356bddcc245",
+      "host_fonts": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "runtime": "9c58c139ade21dc3073e27df7a4627814f2ddc40c2b7b684706d390d6d3c5aac",
+      "source": "3eb2a9b4cb44d3b96c6cff14f5dac4a4fa17303102ef2f102674cdbc42fe7efd",
+      "workspace": "796c78924feaafc1773c00298a709fab93ec8388ecbc4a64d56c585279913b5c"
+    },
+    "changed_paths": {
+      "dependencies": [],
+      "host_fonts": [],
+      "runtime": [],
+      "source": [],
+      "workspace": []
+    },
+    "source_matches_finish": {
+      "different_paths": [],
+      "matches": true,
+      "uncommitted_paths": []
+    },
+    "source_matches_start": {
+      "different_paths": [],
+      "matches": true,
+      "uncommitted_paths": []
+    }
+  },
+  "finished_at_utc": "2026-11-20T05:39:32.741627+00:00",
+  "guards": {
+    "all_requested_suites_executed_once": true,
+    "dependencies_unchanged": true,
+    "every_started_test_finished_once": true,
+    "final_event_success": true,
+    "host_fonts_unchanged": true,
+    "no_failures_skips_or_errors": false,
+    "runtime_unchanged": true,
+    "selection_adapter_and_primary_runner_unchanged": true,
+    "selection_unchanged": true,
+    "source_matches_finish_commit": true,
+    "source_matches_start_commit": true,
+    "source_unchanged": true,
+    "unique_application_test_names": true,
+    "workspace_unchanged": true
+  },
+  "head_unchanged": true,
+  "no_github_ci_or_status_endpoints": true,
+  "package": "packages/quds_proofing_spacy",
+  "runner": "dart",
+  "runtime": {
+    "dart_version": "Dart SDK version: 3.13.7 (stable) (Thu Oct 22 14:28:57 2026 -0700) on \"linux_x64\"",
+    "dart_version_command": [
+      "/workspace/scratch/2c6eaad19389/zotero-toolchain/flutter-sdk/bin/cache/dart-sdk/bin/dart",
+      "--version"
+    ],
+    "flutter": {
+      "channel": "stable",
+      "dartSdkVersion": "3.13.7",
+      "devToolsVersion": "2.60.0",
+      "engineBuildDate": "2026-10-22 20:34:48.330",
+      "engineCommitDate": "2026-10-23 02:13:38.000Z",
+      "engineContentHash": "dfd2e6cb7d319db05e3bf1503f3e2ac60f6288a2",
+      "engineRevision": "cf636b1dfb818dd6a3ff16e390e93b1a036969c8",
+      "flutterVersion": "3.47.8",
+      "frameworkCommitDate": "2026-10-22 21:37:31 -0700",
+      "frameworkRevision": "737ba8f885dc774b53b442759999a312c9461e4e",
+      "frameworkVersion": "3.47.8",
+      "repositoryUrl": "https://github.com/flutter/flutter.git"
+    },
+    "flutter_root": "/workspace/scratch/2c6eaad19389/zotero-toolchain/flutter-sdk",
+    "pub_cache": "/workspace/scratch/2c6eaad19389/zotero-toolchain/pub-cache"
+  },
+  "selected_files": [
+    "test/analysis_test.dart",
+    "test/bundle_test.dart",
+    "test/distribution_test.dart",
+    "test/grammar_evaluation_harness_test.dart",
+    "test/grammar_families_test.dart",
+    "test/grammar_planner_test.dart",
+    "test/grammar_provider_test.dart",
+    "test/language_catalog_test.dart",
+    "test/macho_code_identity_test.dart",
+    "test/ner_removal_test.dart",
+    "test/worker_test.dart"
+  ],
+  "selected_repository_paths": [
+    "packages/quds_proofing_spacy/test/analysis_test.dart",
+    "packages/quds_proofing_spacy/test/bundle_test.dart",
+    "packages/quds_proofing_spacy/test/distribution_test.dart",
+    "packages/quds_proofing_spacy/test/grammar_evaluation_harness_test.dart",
+    "packages/quds_proofing_spacy/test/grammar_families_test.dart",
+    "packages/quds_proofing_spacy/test/grammar_planner_test.dart",
+    "packages/quds_proofing_spacy/test/grammar_provider_test.dart",
+    "packages/quds_proofing_spacy/test/language_catalog_test.dart",
+    "packages/quds_proofing_spacy/test/macho_code_identity_test.dart",
+    "packages/quds_proofing_spacy/test/ner_removal_test.dart",
+    "packages/quds_proofing_spacy/test/worker_test.dart"
+  ],
+  "selection_adapter": {
+    "adapter_command": [
+      "docs/validation/zotero-research-materials-20261120/continuation/run_continuation.py",
+      "spacy",
+      "--repo",
+      "/workspace/scratch/2c6eaad19389/quds_office_suite",
+      "--expected-head",
+      "f3f98987824e021ed22a4d909e38d6307495267b",
+      "--output",
+      "/workspace/scratch/2c6eaad19389/quds_office_suite/docs/validation/zotero-research-materials-20261120/continuation/accepted-spacy"
+    ],
+    "additive_catalog": {
+      "engine-proofing": {
+        "additional": [],
+        "package": "packages/quds_office_engine",
+        "patterns": [
+          "proofing/**/*_test.dart"
+        ],
+        "runner": "dart"
+      },
+      "spacy": {
+        "additional": [],
+        "package": "packages/quds_proofing_spacy",
+        "patterns": [
+          "**/*_test.dart"
+        ],
+        "runner": "dart"
+      },
+      "studio-integration": {
+        "additional": [
+          "studio_spacy_pin_test.dart",
+          "studio_spacy_setup_test.dart",
+          "studio_downloads_manager_test.dart",
+          "studio_linguistic_analysis_test.dart",
+          "studio_settings_test.dart",
+          "studio_language_id_test.dart",
+          "studio_comment_draft_proofing_test.dart",
+          "studio_zotero_shortcuts_test.dart",
+          "studio_zotero_citing_transport_test.dart"
+        ],
+        "package": "packages/quds_office_editor/example",
+        "patterns": [],
+        "runner": "flutter"
+      }
+    },
+    "code_after": {
+      "adapter": {
+        "bytes": 5049,
+        "path": "/workspace/scratch/2c6eaad19389/quds_office_suite/docs/validation/zotero-research-materials-20261120/continuation/run_continuation.py",
+        "sha256": "b6d42704ec385fd04ad33c691e8507f04e1f93dd130a04772aebc67a3a4494a4"
+      },
+      "primary_runner": {
+        "bytes": 29772,
+        "path": "/workspace/scratch/2c6eaad19389/quds_office_suite/docs/validation/zotero-research-materials-20261120/run_validation.py",
+        "sha256": "4d01ed59729abaa64e3ab643e8ebcb2f7136dd2d9f02cc4b07b81a06fbb919bf"
+      }
+    },
+    "code_before": {
+      "adapter": {
+        "bytes": 5049,
+        "path": "/workspace/scratch/2c6eaad19389/quds_office_suite/docs/validation/zotero-research-materials-20261120/continuation/run_continuation.py",
+        "sha256": "b6d42704ec385fd04ad33c691e8507f04e1f93dd130a04772aebc67a3a4494a4"
+      },
+      "primary_runner": {
+        "bytes": 29772,
+        "path": "/workspace/scratch/2c6eaad19389/quds_office_suite/docs/validation/zotero-research-materials-20261120/run_validation.py",
+        "sha256": "4d01ed59729abaa64e3ab643e8ebcb2f7136dd2d9f02cc4b07b81a06fbb919bf"
+      }
+    },
+    "code_unchanged": true,
+    "cohort": "spacy",
+    "delegated_arguments": [
+      "/workspace/scratch/2c6eaad19389/quds_office_suite/docs/validation/zotero-research-materials-20261120/run_validation.py",
+      "spacy",
+      "--repo",
+      "/workspace/scratch/2c6eaad19389/quds_office_suite",
+      "--timeout",
+      "1800",
+      "--output",
+      "/workspace/scratch/2c6eaad19389/quds_office_suite/docs/validation/zotero-research-materials-20261120/continuation/accepted-spacy",
+      "--expected-head",
+      "f3f98987824e021ed22a4d909e38d6307495267b"
+    ],
+    "primary_runner_exit_code": 1,
+    "primary_test_audit_and_fingerprint_logic_unchanged": true,
+    "purpose": "Qualify the reviewed spaCy, proofing and Studio publication delta",
+    "selection": {
+      "additional": [],
+      "package": "packages/quds_proofing_spacy",
+      "patterns": [
+        "**/*_test.dart"
+      ],
+      "runner": "dart"
+    },
+    "shared_sdk_validation_lock_unchanged": true
+  },
+  "source_file_count": 4004,
+  "source_head_at_finish": "f3f98987824e021ed22a4d909e38d6307495267b",
+  "source_head_at_start": "f3f98987824e021ed22a4d909e38d6307495267b",
+  "started_at_utc": "2026-11-20T05:38:59.137177+00:00",
+  "status": "failed",
+  "tests": {
+    "application_cases": 114,
+    "duplicate_application_names": [],
+    "duplicate_suite_ids": false,
+    "error_events": [],
+    "every_started_test_finished_once": true,
+    "excluded_failures": [],
+    "excluded_pseudo_cases": 11,
+    "excluded_reasons": {
+      "hidden_lifecycle": 11
+    },
+    "failed": 0,
+    "final_events": [
+      {
+        "success": true,
+        "time": 16156,
+        "type": "done"
+      }
+    ],
+    "flutter_notification_envelopes": 0,
+    "layout_or_tap_diagnostics": [],
+    "missing_start_test_ids": [],
+    "parse_errors": [],
+    "passed": 113,
+    "skipped": 1,
+    "suite_count": 11,
+    "suites": [
+      {
+        "failed": 0,
+        "id": 0,
+        "passed": 12,
+        "path": "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/quds_proofing_spacy/test/analysis_test.dart",
+        "skipped": 0
+      },
+      {
+        "failed": 0,
+        "id": 15,
+        "passed": 3,
+        "path": "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/quds_proofing_spacy/test/bundle_test.dart",
+        "skipped": 0
+      },
+      {
+        "failed": 0,
+        "id": 21,
+        "passed": 14,
+        "path": "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/quds_proofing_spacy/test/distribution_test.dart",
+        "skipped": 0
+      },
+      {
+        "failed": 0,
+        "id": 39,
+        "passed": 9,
+        "path": "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/quds_proofing_spacy/test/grammar_evaluation_harness_test.dart",
+        "skipped": 0
+      },
+      {
+        "failed": 0,
+        "id": 51,
+        "passed": 12,
+        "path": "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/quds_proofing_spacy/test/grammar_families_test.dart",
+        "skipped": 0
+      },
+      {
+        "failed": 0,
+        "id": 66,
+        "passed": 21,
+        "path": "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/quds_proofing_spacy/test/grammar_planner_test.dart",
+        "skipped": 0
+      },
+      {
+        "failed": 0,
+        "id": 90,
+        "passed": 16,
+        "path": "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/quds_proofing_spacy/test/grammar_provider_test.dart",
+        "skipped": 0
+      },
+      {
+        "failed": 0,
+        "id": 109,
+        "passed": 8,
+        "path": "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/quds_proofing_spacy/test/language_catalog_test.dart",
+        "skipped": 0
+      },
+      {
+        "failed": 0,
+        "id": 120,
+        "passed": 2,
+        "path": "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/quds_proofing_spacy/test/macho_code_identity_test.dart",
+        "skipped": 1
+      },
+      {
+        "failed": 0,
+        "id": 126,
+        "passed": 2,
+        "path": "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/quds_proofing_spacy/test/ner_removal_test.dart",
+        "skipped": 0
+      },
+      {
+        "failed": 0,
+        "id": 131,
+        "passed": 14,
+        "path": "/workspace/scratch/2c6eaad19389/quds_office_suite/packages/quds_proofing_spacy/test/worker_test.dart",
+        "skipped": 0
+      }
+    ],
+    "test_done_events": 125,
+    "test_start_events": 125,
+    "unfinished_test_ids": []
+  },
+  "timed_out": false,
+  "validation_runner": {
+    "bytes": 29772,
+    "git_blob_sha1": "269eef52038d97ae307859439875a23f350e0b0a",
+    "path": "/workspace/scratch/2c6eaad19389/quds_office_suite/docs/validation/zotero-research-materials-20261120/run_validation.py",
+    "sha256": "4d01ed59729abaa64e3ab643e8ebcb2f7136dd2d9f02cc4b07b81a06fbb919bf"
+  },
+  "watchdog_seconds": 1800
+}

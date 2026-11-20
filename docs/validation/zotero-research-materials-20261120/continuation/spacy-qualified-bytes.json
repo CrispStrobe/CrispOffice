@@ -1,0 +1,13 @@
+{
+  "status": "verified_data_fixture",
+  "started_at_utc": "2026-11-20T05:41:48.039224+00:00",
+  "finished_at_utc": "2026-11-20T05:41:58.211941+00:00",
+  "url": "https://huggingface.co/cstr/crispembed-spacy-de-core-news-sm-3.8.0/resolve/2aa70083055073adf8d2ffbb0ff203cc4fcafd7e/app-bundled/macos-arm64/ccc96620e01164d18e8d2e46b9a383677e4430c8889833bedab5b56c16a1b40f/libcrispembed-spacy.dylib",
+  "source_pin_commit": "f3f98987824e021ed22a4d909e38d6307495267b",
+  "source_pin_path": "packages/quds_office_editor/example/tool/build_macos_app.sh",
+  "fixture_path": "/workspace/scratch/2c6eaad19389/zotero-toolchain/qualified-macos-bytes/ccc96620e01164d18e8d2e46b9a383677e4430c8889833bedab5b56c16a1b40f/libcrispembed-spacy.dylib",
+  "bytes": 2322928,
+  "sha256": "ccc96620e01164d18e8d2e46b9a383677e4430c8889833bedab5b56c16a1b40f",
+  "executed_or_loaded_as_native_code": false,
+  "purpose": "Read as bytes by the existing Mach-O code identity test on Linux; no dlopen, signing or macOS execution."
+}

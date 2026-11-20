@@ -1,0 +1,28 @@
+{
+  "phase": "serialization",
+  "startedAtUtc": "2026-11-20T05:27:53.805971+00:00",
+  "command": [
+    "/workspace/scratch/75dc9d25dfaf/runtime/flutter/bin/cache/dart-sdk/bin/dart",
+    "--packages=/workspace/scratch/75dc9d25dfaf/quds_office_suite/.dart_tool/package_config.json",
+    "/workspace/scratch/75dc9d25dfaf/runtime/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+    "packages/quds_office_engine/test/slide_import_fidelity_test.dart",
+    "--reporter=json",
+    "--concurrency=2"
+  ],
+  "exitCode": 0,
+  "elapsedSeconds": 13.406433219999599,
+  "inputCount": 416,
+  "inputsUnchanged": true,
+  "changedInputs": [],
+  "passed": 42,
+  "failed": 0,
+  "skipped": 0,
+  "failures": [],
+  "done": [
+    {
+      "success": true,
+      "type": "done",
+      "time": 3182
+    }
+  ]
+}

@@ -1,0 +1,108 @@
+{
+  "schema_version": 1,
+  "repository": "MohammedAsaadAsaad/quds_office_suite",
+  "transport": {
+    "repository": "MohammedAsaadAsaad/quds_office_suite",
+    "source_repository_field": "docs/validation/zotero-research-materials-20261120/upstream-snapshot.json",
+    "url": "https://github.com/MohammedAsaadAsaad/quds_office_suite.git",
+    "capture_started_at_utc": "2026-11-20T05:35:03.183003+00:00",
+    "captured_at_utc": "2026-11-20T05:35:05.917149+00:00",
+    "command": [
+      "git",
+      "ls-remote",
+      "https://github.com/MohammedAsaadAsaad/quds_office_suite.git",
+      "refs/heads/*",
+      "refs/pull/*/head"
+    ],
+    "refs": [
+      {
+        "sha": "aca2f66941832bd0b19b436baeab1656a1b7de98",
+        "ref": "refs/heads/ci/flutter-workspace"
+      },
+      {
+        "sha": "f45099688e7a3f67a1302efdb442830d052f2240",
+        "ref": "refs/heads/cursor/class-certificates-2db8"
+      },
+      {
+        "sha": "9930be8df44ffe117fb22778c514eea0ee73ce21",
+        "ref": "refs/heads/cursor/cloud-agent-1790580069020-0rk1h"
+      },
+      {
+        "sha": "15c5d29b63fb17a93c7fb3426a8fd4d95a32f1ba",
+        "ref": "refs/heads/main"
+      },
+      {
+        "sha": "48c5156f459597ce3f8ec486b3c9a20fc5543807",
+        "ref": "refs/pull/1/head"
+      },
+      {
+        "sha": "9930be8df44ffe117fb22778c514eea0ee73ce21",
+        "ref": "refs/pull/5/head"
+      },
+      {
+        "sha": "aca2f66941832bd0b19b436baeab1656a1b7de98",
+        "ref": "refs/pull/6/head"
+      },
+      {
+        "sha": "f45099688e7a3f67a1302efdb442830d052f2240",
+        "ref": "refs/pull/7/head"
+      }
+    ]
+  },
+  "open_pull_request_read": {
+    "url": "https://api.github.com/repos/MohammedAsaadAsaad/quds_office_suite/pulls?state=open&per_page=100",
+    "started_at_utc": "2026-11-20T05:35:03.032Z",
+    "captured_at_utc": "2026-11-20T05:35:03.506Z",
+    "pull_requests": [],
+    "error": null
+  },
+  "prior_snapshot": "docs/validation/zotero-research-materials-20261120/upstream-snapshot.json",
+  "target": "f3f98987824e021ed22a4d909e38d6307495267b",
+  "ancestry_evidence": "ref-audit.json (all eight identical immutable heads already freshly checked against target)",
+  "expected_retained_heads": [
+    {
+      "ref": "refs/heads/ci/flutter-workspace",
+      "sha": "aca2f66941832bd0b19b436baeab1656a1b7de98"
+    },
+    {
+      "ref": "refs/heads/cursor/class-certificates-2db8",
+      "sha": "f45099688e7a3f67a1302efdb442830d052f2240"
+    },
+    {
+      "ref": "refs/heads/cursor/cloud-agent-1790580069020-0rk1h",
+      "sha": "9930be8df44ffe117fb22778c514eea0ee73ce21"
+    },
+    {
+      "ref": "refs/heads/main",
+      "sha": "15c5d29b63fb17a93c7fb3426a8fd4d95a32f1ba"
+    },
+    {
+      "ref": "refs/pull/7/head",
+      "sha": "f45099688e7a3f67a1302efdb442830d052f2240"
+    },
+    {
+      "ref": "refs/pull/6/head",
+      "sha": "aca2f66941832bd0b19b436baeab1656a1b7de98"
+    },
+    {
+      "ref": "refs/pull/5/head",
+      "sha": "9930be8df44ffe117fb22778c514eea0ee73ce21"
+    },
+    {
+      "ref": "refs/pull/1/head",
+      "sha": "48c5156f459597ce3f8ec486b3c9a20fc5543807"
+    }
+  ],
+  "changes": [],
+  "summary": {
+    "branches": 4,
+    "pull_request_heads": 4,
+    "open_pull_requests": 0,
+    "all_eight_retained_heads_unchanged": true,
+    "all_current_upstream_heads_included": true,
+    "status": "passed"
+  },
+  "github_actions_queried": false,
+  "github_actions_awaited": false,
+  "remote_refs_mutated": false
+}

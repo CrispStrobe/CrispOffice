@@ -21,6 +21,7 @@ import 'package:quds_office_studio/studio_mail_archive_folder_action.dart';
 import 'package:quds_office_studio/studio_mail_archive_strings.dart';
 
 import 'support/mail_attachment_picker.dart';
+import 'support/mail_draft_store.dart';
 
 const _strings = StudioStrings(StudioLanguage.en);
 
@@ -46,6 +47,7 @@ final class _Provider extends Fake implements MailCloudProvider {
   MailAccountId? accountOverride;
   bool replyParticipants = false;
   MailEnvelope? envelopeOverride;
+  void Function()? onSubmit;
 
   @override
   MailAccountId get account => accountOverride ?? configuration.account;
@@ -173,6 +175,7 @@ final class _Provider extends Fake implements MailCloudProvider {
     required String attemptId,
     required MailOperationLease lease,
   }) async {
+    onSubmit?.call();
     submissions.add(message);
     lastLease = lease;
     return MailSubmissionResult(
@@ -252,7 +255,9 @@ Future<void> _show(
   Size size = const Size(1280, 900),
   StudioMailArchiveWriter? archiveWriter,
   StudioMailArchiveFolderWriter? archiveFolderWriter,
+  MemoryStudioMailDrafts? drafts,
 }) async {
+  final draftStorage = drafts ?? MemoryStudioMailDrafts();
   tester.view
     ..physicalSize = size
     ..devicePixelRatio = 1;
@@ -266,6 +271,7 @@ Future<void> _show(
             onPressed: () => showDialog<void>(
               context: context,
               builder: (_) => StudioMailCloudDialog(
+                draftStoreFactory: draftStorage.open,
                 strings: _strings,
                 service: service,
                 authorizer: harness.authorize,
@@ -360,6 +366,206 @@ MailArchiveRunReport _folderReport() => MailArchiveRunReport(
 );
 
 void main() {
+  for (final service in MailCloudService.values) {
+    testWidgets('${service.name} reopens its saved draft after reconnect', (
+      tester,
+    ) async {
+      final drafts = MemoryStudioMailDrafts();
+      final harness = _Harness();
+      await _show(tester, harness, service: service, drafts: drafts);
+      await _connect(tester);
+      final original = harness.provider!;
+      await tester.tap(find.byTooltip(_strings.compose));
+      await _pump(tester);
+      await tester.enterText(_composeField(_strings.to), 'Draft recipient <');
+      await tester.enterText(
+        _composeField(_strings.subject),
+        'Recovered cloud work',
+      );
+      tester
+          .widget<QudsWordEditor>(find.byType(QudsWordEditor))
+          .controller
+          .insertText('Saved before closing cloud mail');
+      await tester.ensureVisible(find.text(_strings.mailDraftSaveClose));
+      await tester.tap(find.text(_strings.mailDraftSaveClose));
+      await _pump(tester);
+      expect(original.submissions, isEmpty);
+      expect(drafts.records.values.single.draft.to, 'Draft recipient <');
+      await tester.tap(find.byTooltip(_strings.close));
+      await _pump(tester);
+      expect(drafts.closes, 1);
+      await tester.tap(find.text('Open cloud'));
+      await _pump(tester);
+      await _connect(tester);
+      expect(find.text(_strings.mailDraftRestored), findsOneWidget);
+      expect(
+        drafts.identities.map((identity) => identity.account).toSet(),
+        hasLength(1),
+      );
+      expect(
+        drafts.identities.last.provider,
+        service == MailCloudService.gmail
+            ? MailProviderKind.gmail
+            : MailProviderKind.graph,
+      );
+      expect(harness.provider!.submissions, isEmpty);
+      await tester.tap(find.byTooltip(_strings.compose));
+      await _pump(tester);
+      expect(
+        tester.widget<TextField>(_composeField(_strings.to)).controller!.text,
+        'Draft recipient <',
+      );
+      expect(
+        tester
+            .widget<TextField>(_composeField(_strings.subject))
+            .controller!
+            .text,
+        'Recovered cloud work',
+      );
+      expect(
+        tester
+            .widget<QudsWordEditor>(find.byType(QudsWordEditor))
+            .controller
+            .document
+            .paragraphs
+            .single
+            .text,
+        'Saved before closing cloud mail',
+      );
+      await tester.ensureVisible(find.text(_strings.mailDraftSaveClose));
+      await tester.tap(find.text(_strings.mailDraftSaveClose));
+      await _pump(tester);
+      expect(harness.provider!.submissions, isEmpty);
+      expect(tester.takeException(), isNull);
+    });
+  }
+
+  testWidgets(
+    'Gmail submits only after durable uncertainty and clears accepted work',
+    (tester) async {
+      final drafts = MemoryStudioMailDrafts();
+      final harness = _Harness();
+      final markerGate = Completer<void>();
+      bool? durableAtSubmission;
+      await _show(tester, harness, drafts: drafts);
+      await _connect(tester);
+      harness.provider!.onSubmit = () => durableAtSubmission =
+          drafts.records.values.single.submissionUncertain;
+      await _send(
+        tester,
+        beforeSend: () async {
+          await tester.pump(const Duration(milliseconds: 500));
+          await tester.pump();
+          expect(drafts.saved.last.submissionUncertain, isFalse);
+          drafts.saveGate = markerGate;
+        },
+      );
+      expect(harness.provider!.submissions, isEmpty);
+      expect(drafts.records.values.single.submissionUncertain, isFalse);
+      markerGate.complete();
+      await _pump(tester);
+      expect(harness.provider!.submissions, hasLength(1));
+      expect(durableAtSubmission, isTrue);
+      expect(drafts.saved.last.submissionUncertain, isTrue);
+      expect(drafts.clears, 1);
+      expect(drafts.records, isEmpty);
+      expect(find.text(_strings.mailCloudSubmissionAccepted), findsOneWidget);
+      expect(tester.takeException(), isNull);
+    },
+  );
+
+  testWidgets(
+    'Gmail accepted cleanup failure restores guarded draft without resend',
+    (tester) async {
+      final drafts = MemoryStudioMailDrafts()..failClear = true;
+      final harness = _Harness();
+      await _show(tester, harness, drafts: drafts);
+      await _connect(tester);
+      final original = harness.provider!;
+      await _send(tester);
+      expect(original.submissions, hasLength(1));
+      expect(
+        find.text(_strings.mailDraftAcceptedCleanupFailed),
+        findsOneWidget,
+      );
+      expect(drafts.records.values.single.submissionUncertain, isTrue);
+      await tester.pump(const Duration(seconds: 30));
+      expect(original.submissions, hasLength(1));
+      await tester.tap(find.byTooltip(_strings.close));
+      await _pump(tester);
+      await tester.tap(find.text('Open cloud'));
+      await _pump(tester);
+      await _connect(tester);
+      expect(find.text(_strings.mailSubmissionUncertain), findsOneWidget);
+      expect(harness.provider!.submissions, isEmpty);
+      await tester.tap(find.byTooltip(_strings.compose));
+      await _pump(tester);
+      expect(
+        tester
+            .widget<FilledButton>(
+              find.widgetWithText(FilledButton, _strings.send),
+            )
+            .onPressed,
+        isNull,
+      );
+      await tester.ensureVisible(find.text(_strings.mailDraftSaveClose));
+      await tester.tap(find.text(_strings.mailDraftSaveClose));
+      await _pump(tester);
+      expect(harness.provider!.submissions, isEmpty);
+      expect(tester.takeException(), isNull);
+    },
+  );
+
+  testWidgets(
+    'Gmail retries storage opening and blocks sends while saving fails',
+    (tester) async {
+      final drafts = MemoryStudioMailDrafts()..failOpen = true;
+      final harness = _Harness();
+      await _show(tester, harness, drafts: drafts);
+      await _connect(tester);
+      expect(find.text(_strings.mailDraftStorageFailed), findsOneWidget);
+      drafts.failOpen = false;
+      drafts.failSave = true;
+      await _send(tester);
+      expect(harness.provider!.submissions, isEmpty);
+      expect(find.byType(StudioMailComposeDialog), findsOneWidget);
+      expect(find.text(_strings.mailDraftSaveFailed), findsOneWidget);
+      drafts.failSave = false;
+      await tester.ensureVisible(find.text(_strings.mailDraftRetrySave));
+      await tester.tap(find.text(_strings.mailDraftRetrySave));
+      await _pump(tester);
+      await tester.ensureVisible(find.text(_strings.mailDraftSaveClose));
+      await tester.tap(find.text(_strings.mailDraftSaveClose));
+      await _pump(tester);
+      expect(drafts.records.values.single.draft.subject, 'Cloud send');
+      expect(harness.provider!.submissions, isEmpty);
+      expect(tester.takeException(), isNull);
+    },
+  );
+
+  testWidgets(
+    'Gmail closes late draft storage without adopting a retired session',
+    (tester) async {
+      final gate = Completer<void>();
+      final drafts = MemoryStudioMailDrafts()..openGate = gate;
+      final harness = _Harness();
+      await _show(tester, harness, drafts: drafts);
+      await _connect(tester);
+      expect(drafts.identities, hasLength(1));
+      final provider = harness.provider!;
+      await tester.tap(find.byTooltip(_strings.close));
+      await _pump(tester);
+      gate.complete();
+      await _pump(tester);
+      expect(drafts.closes, 1);
+      expect(drafts.records, isEmpty);
+      expect(provider.disposals, 1);
+      expect(provider.submissions, isEmpty);
+      expect(find.byType(StudioMailCloudDialog), findsNothing);
+      expect(tester.takeException(), isNull);
+    },
+  );
+
   testWidgets('native setup offers Gmail, Microsoft 365 and Exchange', (
     tester,
   ) async {
@@ -967,7 +1173,8 @@ void main() {
     'definite rejected sends retain drafts and show Retry-After without resending',
     (tester) async {
       final harness = _Harness();
-      await _show(tester, harness);
+      final drafts = MemoryStudioMailDrafts();
+      await _show(tester, harness, drafts: drafts);
       await _connect(tester);
       harness.provider!
         ..outcome = MailSubmissionOutcome.rejected
@@ -976,6 +1183,7 @@ void main() {
           retryAfter: Duration(seconds: 45),
         );
       await _send(tester);
+      expect(drafts.records.values.single.submissionUncertain, isFalse);
       expect(
         find.textContaining(_strings.mailCloudRetryAfter(45)),
         findsOneWidget,
@@ -996,6 +1204,14 @@ void main() {
         'Cloud send',
       );
       expect(find.text(_strings.mailRetryAcknowledgement), findsNothing);
+      expect(
+        tester
+            .widget<FilledButton>(
+              find.widgetWithText(FilledButton, _strings.send),
+            )
+            .onPressed,
+        isNotNull,
+      );
     },
   );
 

@@ -1,0 +1,26 @@
+{
+  "path": "web-persistence.patch",
+  "sha256": "2d8e9f7e482747a118da008d7afade1830a16e0c6b79e30e9a7a81188a55fcb8",
+  "whitespace_lines": [
+    12,
+    14,
+    20,
+    24,
+    26,
+    45,
+    66,
+    102,
+    161,
+    164,
+    166,
+    180,
+    197,
+    201,
+    242,
+    273,
+    628,
+    630
+  ],
+  "all_are_single_space_unified_diff_context": true,
+  "reason": "Preserve the exact hash-bound incoming unified diff. Its blank context lines necessarily contain the diff context prefix; they are not product source trailing whitespace. All other staged files pass git diff --check."
+}

@@ -1,0 +1,77 @@
+{
+  "repository": "CrispStrobe/quds_office_suite",
+  "starting_remote_head": "e79c32e77f1990e303527e477e4909df993c1b9b",
+  "source_checkpoints": [
+    {
+      "commit": "36fb7fd9c1422d1c8d60c8194e25f8ef4ed07170",
+      "tree": "b20b4cb8df4806f6ab09af94d0bebf943bde1075",
+      "parents": [
+        "e79c32e77f1990e303527e477e4909df993c1b9b",
+        "6b2f392c7301d4b19f16d6ccf150258f14bf7ad7"
+      ],
+      "committed_at": "2026-11-20T06:31:50+01:00",
+      "subject": "Reconcile current macOS signing and grammar work for Zotero delivery [skip ci]",
+      "branch": "codex/zotero-research-materials-20261120",
+      "ref_update_force": false,
+      "ref_update_expected_sha": "e79c32e77f1990e303527e477e4909df993c1b9b",
+      "local_tree_verified_equal_before_alignment": true
+    },
+    {
+      "commit": "c50a787c70219d3a3e6c9458ca09d6c4639f4122",
+      "tree": "82b51a53f402a26197b9d4fceb54ea0c28be5fd2",
+      "parents": [
+        "36fb7fd9c1422d1c8d60c8194e25f8ef4ed07170",
+        "bf606aa08f8905ceef35342772df91630840a9b2"
+      ],
+      "committed_at": "2026-11-20T06:31:53+01:00",
+      "subject": "Preserve macOS portability fixes in Zotero delivery [skip ci]",
+      "branch": "codex/zotero-research-materials-20261120",
+      "ref_update_force": false,
+      "ref_update_expected_sha": "36fb7fd9c1422d1c8d60c8194e25f8ef4ed07170",
+      "local_tree_verified_equal_before_alignment": true
+    },
+    {
+      "commit": "f3f98987824e021ed22a4d909e38d6307495267b",
+      "tree": "6e4afd543376f3c5cc965e4b143bb453da71518e",
+      "parents": [
+        "c50a787c70219d3a3e6c9458ca09d6c4639f4122",
+        "a56397df5f53b991f5016f3cc8e1ab53b7ce12f1"
+      ],
+      "committed_at": "2026-11-20T06:31:55+01:00",
+      "subject": "Preserve comment draft language regression repair [skip ci]",
+      "branch": "codex/zotero-research-materials-20261120",
+      "ref_update_force": false,
+      "ref_update_expected_sha": "c50a787c70219d3a3e6c9458ca09d6c4639f4122",
+      "local_tree_verified_equal_before_alignment": true
+    },
+    {
+      "commit": "3cba1810b41a2fff5b2cd1eb355137a46b09f225",
+      "tree": "f7d9d4a3f77483e3bfdcdc11e30227ac725bd21c",
+      "parents": [
+        "f3f98987824e021ed22a4d909e38d6307495267b"
+      ],
+      "committed_at": "2026-11-20T06:43:55+01:00",
+      "subject": "Use an explicit block in the grammar evaluation utility [skip ci]",
+      "branch": "codex/zotero-research-materials-20261120",
+      "ref_update_force": false,
+      "ref_update_expected_sha": "f3f98987824e021ed22a4d909e38d6307495267b",
+      "local_tree_verified_equal_before_alignment": true
+    },
+    {
+      "commit": "b1c8c8e534c41914b934defd6023839b851b28a2",
+      "tree": "f7d9d4a3f77483e3bfdcdc11e30227ac725bd21c",
+      "parents": [
+        "3cba1810b41a2fff5b2cd1eb355137a46b09f225",
+        "b0b79d90b0f4ca0036483d73095b4821efddcc8e"
+      ],
+      "committed_at": "2026-11-20T06:45:32+01:00",
+      "subject": "Preserve current main history with qualified source unchanged [skip ci]",
+      "branch": "codex/zotero-research-materials-20261120",
+      "ref_update_force": false,
+      "ref_update_expected_sha": "3cba1810b41a2fff5b2cd1eb355137a46b09f225",
+      "local_tree_verified_equal_before_alignment": true
+    }
+  ],
+  "evidence_publication_parent": "b1c8c8e534c41914b934defd6023839b851b28a2",
+  "note": "The final evidence-only checkpoint and normal main merge are recorded by the PR and Git history after this file is committed. Local staging commit IDs are not presented as remote checkpoints."
+}

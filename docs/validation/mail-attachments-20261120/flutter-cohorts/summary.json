@@ -1,0 +1,70 @@
+{
+  "status": "passed",
+  "application_cases_passed": 496,
+  "suite_count": 26,
+  "suites_are_disjoint": true,
+  "no_ci_waits_or_status_queries": true,
+  "cohorts": [
+    {
+      "cohort": "mail-host",
+      "status": "passed",
+      "passed": 319,
+      "failed": 0,
+      "skipped": 0,
+      "suite_count": 11,
+      "source_head_at_start": "b8686c05e055ca0395726fe528d585379597d628",
+      "source_head_at_finish": "b8686c05e055ca0395726fe528d585379597d628",
+      "all_guards_true": true,
+      "source_file_count": 4006,
+      "external_dependency_file_count": 4502,
+      "receipt": "mail-host/receipt.json",
+      "receipt_sha256": "92d47a0428b1eec22bf7dd9fa6d3cfcda4c231f3c74915e93e718b869fca7ace"
+    },
+    {
+      "cohort": "editor-rendering",
+      "status": "passed",
+      "passed": 109,
+      "failed": 0,
+      "skipped": 0,
+      "suite_count": 10,
+      "source_head_at_start": "b8686c05e055ca0395726fe528d585379597d628",
+      "source_head_at_finish": "b8686c05e055ca0395726fe528d585379597d628",
+      "all_guards_true": true,
+      "source_file_count": 4006,
+      "external_dependency_file_count": 2365,
+      "receipt": "editor-rendering/receipt.json",
+      "receipt_sha256": "d1362d9454fbbd068c0ce0d74f4f85e7b00d7ab9ca82ec21e9cb03e15e2b2dcb"
+    },
+    {
+      "cohort": "editor-zotero-materials",
+      "status": "passed",
+      "passed": 48,
+      "failed": 0,
+      "skipped": 0,
+      "suite_count": 3,
+      "source_head_at_start": "b8686c05e055ca0395726fe528d585379597d628",
+      "source_head_at_finish": "b8686c05e055ca0395726fe528d585379597d628",
+      "all_guards_true": true,
+      "source_file_count": 4006,
+      "external_dependency_file_count": 2365,
+      "receipt": "editor-zotero-materials/receipt.json",
+      "receipt_sha256": "f8703901ff5933b6b33b9862f9302bd1402fda6ec0f3eb80e8cd56b2e2247075"
+    },
+    {
+      "cohort": "studio-spacy",
+      "status": "passed",
+      "passed": 20,
+      "failed": 0,
+      "skipped": 0,
+      "suite_count": 2,
+      "source_head_at_start": "b8686c05e055ca0395726fe528d585379597d628",
+      "source_head_at_finish": "b8686c05e055ca0395726fe528d585379597d628",
+      "all_guards_true": true,
+      "source_file_count": 4006,
+      "external_dependency_file_count": 4502,
+      "receipt": "studio-spacy/receipt.json",
+      "receipt_sha256": "e2c333aeaf7450fb570a25f01233e44bc3160918ae88da4bad8943b7e451a78c"
+    }
+  ],
+  "scope": "Complete application tests in four disjoint selected Flutter cohorts. Loader/lifecycle events are excluded from counts but failures in them reject acceptance."
+}

@@ -1,0 +1,3072 @@
+{
+  "audited_at_utc": "2026-11-20T06:39:01.424741+00:00",
+  "auditor_record": {
+    "bytes": 23492,
+    "git_blob_sha1": "76e3f172f7f93b8fb9ae01243aa603f3d681c387",
+    "sha256": "29781e0213c7ba27bc213b328e718798899106c6947097498d10a510d3dde1b8"
+  },
+  "callsite_review": [
+    "Generic opening, macro opening and disk saving dispatch to the changed deserializer/serializer only for slide/PPTX data; Word and sheet branches retain their own unchanged implementations.",
+    "EmbeddedObjectHost.asPresentation checks kind==slide before calling SlideDeserializer. This can expose repaired backgrounds in an embedded slide package, but does not route Word packages through slide deserialization.",
+    "Controller presentation open/save/copy and PDF presentation export remain unchanged callers of the altered slide operations; the fresh rendering cohorts cover those model/import/export behaviors."
+  ],
+  "candidate_preserves_every_core_recorded_input": false,
+  "changed_core_recorded_source_paths": [
+    "packages/quds_office_editor/example/lib/studio_arabic_morph_host_web.dart",
+    "packages/quds_office_editor/example/lib/studio_hunspell_host_web.dart",
+    "packages/quds_office_editor/example/pubspec.yaml",
+    "packages/quds_office_engine/lib/src/slide/model/pml_presentation.dart",
+    "packages/quds_office_engine/lib/src/slide/serial/slide_serial.dart",
+    "packages/quds_office_engine/lib/src/slide/shapes/drawingml.dart",
+    "packages/quds_office_engine/test/office_pdf_export_test.dart",
+    "packages/quds_office_engine/test/slide_import_fidelity_test.dart"
+  ],
+  "changed_core_selected_files": [
+    "packages/quds_office_engine/test/office_pdf_export_test.dart",
+    "packages/quds_office_engine/test/slide_import_fidelity_test.dart"
+  ],
+  "complete_changed_path_count": 317,
+  "complete_changed_paths": {
+    "README.md": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "f04db8cd3bf3bbd8c08e42cb91cefad802a940c9"
+      },
+      "before": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "95185b60e73a54c159709c33625f39ca3b0e4ade"
+      }
+    },
+    "docs/roadmaps/glotlid-language-id.md": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "976744856ca2d0a799abe25066838f00ae2b87e8"
+      },
+      "before": null
+    },
+    "docs/roadmaps/mail/attachments.md": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "8fc721646e90d8ea48a93d852f2645ddf6704e9f"
+      },
+      "before": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "b0f128a057041b6d34ed446cd97b57265525747c"
+      }
+    },
+    "docs/roadmaps/mail/cloud-providers.md": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "36b184b514459aff1c0eebc41694f892ec760d16"
+      },
+      "before": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "8a6e92d698d16da50c7b86933d7f4858852072e0"
+      }
+    },
+    "docs/roadmaps/mail/exchange-ews.md": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "926cd1d10d2fae21f92d447d2bcd3d8354b2b38c"
+      },
+      "before": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "c070490adbdc898d10d90acdae49674196592b38"
+      }
+    },
+    "docs/roadmaps/mail/reply-threading.md": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "6f82fb2a92dac678b0e3433ad366e89ea8bc4213"
+      },
+      "before": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "0af994bb3536e2c3fea8772d59c91da2f1efe9ee"
+      }
+    },
+    "docs/roadmaps/mail/status.md": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "89a8dc7317c4f69c200a2ffa436f3fb1218cd6b8"
+      },
+      "before": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "45333c423de8cc2e2cbc1d2d30061c81f100ab0f"
+      }
+    },
+    "docs/validation/mail-attachments-20261120/README.md": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "bbca0bad3d58937a69972f6039442bcb03ec5571"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/arabic-composer/arabic-composer.png": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "f453ed45432af8d6660142b63987d73c829d1b2f"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/arabic-composer/capture_mail_arabic_test.dart": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "2537c3b211914cd1895bae98bc40dfdb61f2dc8c"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/arabic-composer/events.jsonl": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "e889c384af7844c8c9f5c7452b410fc352167823"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/arabic-composer/receipt.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "a4408a5ba926d6a4acd4ca0c1c55f6d971da2c96"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/arabic-composer/stderr.log": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/arabic-composer/visual-review.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "4f413b4f49a8aa09691779a281bcdb246db0d8af"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/artifact-index.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "b0a8db31425436fafe2f1f3d77e343105e962954"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/attachment-core/README.md": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "444daf6ba913b28b4d2ed6f9666d25ba272d58a7"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/attachment-core/attachment_mime_probe.dart": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "cf7e5bce9a9f67c3fa93d0cb45e575d77a8f5450"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/attachment-core/dart-results.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "198cc978b4ba5b34949bc633522ceb7ac9fed755"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/attachment-core/python-receiver-results.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "1686323d148bbe33ec466f6a3b8457deeb4738de"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/attachment-core/receipt.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "2f075cf598117f531273549b9e0d1513ca77acf7"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/attachment-core/run-01.index.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "fa0b880fd73907093b5377787df4d6a487c6369d"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/attachment-core/run-01.tar.gz": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "92211fa2029f8199dc4d527f29f90e51034b7e38"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/attachment-core/run_probe.py": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "3b50275ea91296dc05d365de13dba0c8b0f69928"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/attachment-core/source-inputs-before.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "90d2c9247559bb98399c2f60d36d5f999e3bd084"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/attachment-core/source-review.md": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "d0d14e74291a639d4a514d8e71b80e54e6f3e6f9"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/diagnostics/README.md": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "924d6fe9b76ad67408df121b3467781ad2f6677d"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/diagnostics/concurrency-cause.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "42b8dc4fc7c22fc44e54ed8002f31fb18da53f90"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/diagnostics/development.index.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "9f78302f0dd56adf2b7fd1de0cd17e9bcc7c607f"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/diagnostics/development.tar.xz": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "8283b6dd7be7f8f970c268abc44a490e3898e17d"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/diagnostics/preliminary-mail-packages.index.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "6219a3ed1cad508fde557a913719e5c36e13c9d0"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/diagnostics/preliminary-mail-packages.tar.xz": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "698d136e29573d53a3d1e46a57864a06b333a201"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/flutter-cohorts/editor-rendering-console.log": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "7520edc48c295492a01d2629541735045dc6bbb1"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/flutter-cohorts/editor-rendering/events.jsonl.gz": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "d67190f63bab1257515f71f2e535f9259647fddb"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/flutter-cohorts/editor-rendering/input-check.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "ce7067783bf1909650068ae7b24d983c7e3708f9"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/flutter-cohorts/editor-rendering/inputs.json.gz": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "f4ce83ec42f7f97511166d6720ad767a046e2dac"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/flutter-cohorts/editor-rendering/receipt.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "7c80936bfa90b282f65019ed99b9ecbe65ca06f2"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/flutter-cohorts/editor-rendering/selection-adapter.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "124e91b3c9008e0ee4e87893826a3b536e3ebbdb"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/flutter-cohorts/editor-rendering/stderr.log.gz": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "87bfaf1cefef95e53a691da2269f30d7996d9c89"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/flutter-cohorts/editor-zotero-materials-console.log": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "10f982f04969924e1bf58012a097ce93eb6d5d16"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/flutter-cohorts/editor-zotero-materials/events.jsonl.gz": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "d51d5138cd0ffc2975cca38a4344df52b0eea1a0"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/flutter-cohorts/editor-zotero-materials/input-check.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "ce7067783bf1909650068ae7b24d983c7e3708f9"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/flutter-cohorts/editor-zotero-materials/inputs.json.gz": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "f4ce83ec42f7f97511166d6720ad767a046e2dac"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/flutter-cohorts/editor-zotero-materials/receipt.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "6a8be882567dd27fe4a7b55968cb4d84dcd54a18"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/flutter-cohorts/editor-zotero-materials/selection-adapter.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "514472ee581a2029ed56eaeb4459f57b455cab89"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/flutter-cohorts/editor-zotero-materials/stderr.log.gz": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "87bfaf1cefef95e53a691da2269f30d7996d9c89"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/flutter-cohorts/final-input-audit/audit_flutter_final_inputs.py": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "ff37990614fe6df850a601fe4df5ce180159f5b8"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/flutter-cohorts/final-input-audit/current-inputs.json.gz": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "e4a7ad124d03a27fccffa6f87062a53d47978f70"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/flutter-cohorts/final-input-audit/final-source-delta.patch": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "7d86796d6a00a04f2215a527e019d0d6ac66cec8"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/flutter-cohorts/final-input-audit/receipt.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "55b13bf02173aff43160a4f6c90e8ea251f5a267"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/flutter-cohorts/mail-host-console.log": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "4c51318770a44e6b54b145a6eae539414de73f89"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/flutter-cohorts/mail-host/events.jsonl.gz": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "f6f83242feff0a347cb6a904a84aea98f6a5dc49"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/flutter-cohorts/mail-host/input-check.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "ed79c97523624b3ac75821e832de4ab241fb6c65"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/flutter-cohorts/mail-host/inputs.json.gz": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "a6c8ecd86441d7d141d0027c202eec2f31d3f9bc"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/flutter-cohorts/mail-host/receipt.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "50432063ced0837db4cbc3f5835b8fafb4df5f15"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/flutter-cohorts/mail-host/selection-adapter.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "8e9164f146de9e947e43202b4c26f639d701c958"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/flutter-cohorts/mail-host/stderr.log.gz": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "87bfaf1cefef95e53a691da2269f30d7996d9c89"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/flutter-cohorts/run_flutter_cohort.py": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "7465c7fb68fd91e12f54e288e3905337cfd88515"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/flutter-cohorts/studio-spacy-console.log": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "41a95ba22cd119664e37d49e0c27f6f96a3ac9ba"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/flutter-cohorts/studio-spacy/events.jsonl.gz": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "782af652dafc39a93784d90e2b5300c956c3d10e"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/flutter-cohorts/studio-spacy/input-check.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "ed79c97523624b3ac75821e832de4ab241fb6c65"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/flutter-cohorts/studio-spacy/inputs.json.gz": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "a6c8ecd86441d7d141d0027c202eec2f31d3f9bc"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/flutter-cohorts/studio-spacy/receipt.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "64ce1a3833e188b052e988c723367066e12eec28"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/flutter-cohorts/studio-spacy/selection-adapter.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "77b1cd0c50fc5a9350a1ad5506a8e1d52e997690"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/flutter-cohorts/studio-spacy/stderr.log.gz": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "87bfaf1cefef95e53a691da2269f30d7996d9c89"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/flutter-cohorts/summary.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "6035b089b3652c2bd94529b8dc01dd127522cb6b"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/incoming-office/README.md": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "ea9234764c0a18cc944e8312c224957a3ed4523b"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/incoming-office/analysis/input-check.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "2e72d98c0aa14271bab77ac8a7162fe7422e4af2"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/incoming-office/analysis/inputs.json.gz": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "e303d60c2d47e6a4060ba8ba732de89c1728852d"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/incoming-office/analysis/receipt.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "601d9bff5503605729c88d3f56d0e7fdc216b79c"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/incoming-office/analysis/run_engine_spacy_analysis.py": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "01e9fc489467acb7a49343555c2d47a9f66c840a"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/incoming-office/analysis/stderr.log": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/incoming-office/analysis/stdout.log": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "736c6dff393e60f9a37d6e5c9c8fc3fab5332c28"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/incoming-office/engine-rendering/events.jsonl.gz": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "f76ca1b7fba97378afa165f1000bdbe6f0a8ed74"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/incoming-office/engine-rendering/input-check.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "2e72d98c0aa14271bab77ac8a7162fe7422e4af2"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/incoming-office/engine-rendering/inputs.json.gz": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "f2e254ff1dbb6bba6e053cc5e53b953179e6927a"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/incoming-office/engine-rendering/receipt.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "6ebb2c582df605ef0fb7d96719d96602ba0902ab"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/incoming-office/engine-rendering/run_pure_dart_validation.py": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "df943ecfa0f0fe240787a8dc6c1f24384601c68a"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/incoming-office/engine-rendering/stderr.log.gz": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "87bfaf1cefef95e53a691da2269f30d7996d9c89"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/incoming-office/macros/events.jsonl.gz": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "ed2a98d01f45664c3a9c6f1b27a01cb98e96fa43"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/incoming-office/macros/input-check.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "81a350e500a12d581d0db015b57a50aa1c77c79d"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/incoming-office/macros/inputs.json.gz": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "4177cd87f19080ce9ed60761d2636348f48a158f"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/incoming-office/macros/receipt.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "2f58e863489fe721dc835eebaf1e3fa6839b9d8a"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/incoming-office/macros/run_pure_dart_validation.py": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "df943ecfa0f0fe240787a8dc6c1f24384601c68a"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/incoming-office/macros/stderr.log.gz": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "87bfaf1cefef95e53a691da2269f30d7996d9c89"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/incoming-office/run_pure_dart_validation.py": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "df943ecfa0f0fe240787a8dc6c1f24384601c68a"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/incoming-office/slide-background/README.md": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "499506a4346b481155915f0aa9917b8388732007"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/incoming-office/slide-background/analysis-receipt.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "cac0695fe26cbb46f1e01ea3518b65c30fa45985"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/incoming-office/slide-background/analysis.log": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "20ed47958e0ad10598286d0c4a8ed9b637e2e4b3"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/incoming-office/slide-background/autopub-attempt.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "dd7d376b5275593451325976a8e3ba7b5db30c84"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/incoming-office/slide-background/autopub-incoming-events.jsonl": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/incoming-office/slide-background/autopub-incoming-stderr.log": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/incoming-office/slide-background/incoming-events.jsonl": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "4f49f6a83edb73c75d236a8990ab293a59b24b7c"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/incoming-office/slide-background/incoming-inputs-after.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "de740f820d69ed0f425a9c8bd45b4c6caa6051e6"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/incoming-office/slide-background/incoming-inputs.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "de740f820d69ed0f425a9c8bd45b4c6caa6051e6"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/incoming-office/slide-background/incoming-receipt.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "4beaaa8f483c3701e7cfff593285589e65439486"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/incoming-office/slide-background/incoming-stderr.log": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/incoming-office/slide-background/merge-compile-events.jsonl": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "451936ae5f79f022b71aea307bcbdc838d0b3bbd"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/incoming-office/slide-background/merge-compile-inputs.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "3148cab6da9664e64d7116996921e4387e226a53"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/incoming-office/slide-background/merge-compile-receipt.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "b31ab85c599af228e6350603d4d0c170596ad545"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/incoming-office/slide-background/merge-compile-stderr.log": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/incoming-office/slide-background/repair-summary.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "764974437e38b52718816dc6679f7ed38ff34bf8"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/incoming-office/slide-background/repaired-events.jsonl": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "6d9be5acae6a93123da52bccfad059edbe097192"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/incoming-office/slide-background/repaired-inputs-after.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "5028a29aa08a4b28dd387f26c281df8e490c4763"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/incoming-office/slide-background/repaired-inputs.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "5028a29aa08a4b28dd387f26c281df8e490c4763"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/incoming-office/slide-background/repaired-receipt.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "6c8348c8c9e4d41b990fdd2e3249fa64b7bbf3a9"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/incoming-office/slide-background/repaired-stderr.log": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/incoming-office/slide-background/retained-analysis-receipt.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "6068141c8d452d22449df68be2b8ce6616d0cc5e"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/incoming-office/slide-background/retained-analysis.log": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "2ced44f9757ffc2154621490cb961b7698f2fa04"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/incoming-office/slide-background/retained-events.jsonl": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "362480e609310d5d1f885a01fe3ee055d8663f38"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/incoming-office/slide-background/retained-inputs-after.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "1ec5ba116e4f2a1ea6887c94e32dc23952911bde"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/incoming-office/slide-background/retained-inputs.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "1ec5ba116e4f2a1ea6887c94e32dc23952911bde"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/incoming-office/slide-background/retained-receipt.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "f2134b892c58a55620fae1303f1015695ecce4df"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/incoming-office/slide-background/retained-stderr.log": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/incoming-office/slide-background/run_background.py": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "cecf330751e8bdd6cc45c9d6485fe8fdccda0fd8"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/incoming-office/slide-background/serialization-analysis-receipt.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "978843ad7ddf714387046503d1db0a35b990d131"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/incoming-office/slide-background/serialization-analysis.log": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "3e27179ffca76676d92a3a114351eb18be6b28df"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/incoming-office/slide-background/serialization-events.jsonl": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "56a9298945098ab39c27da74a167c15f296d6a5e"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/incoming-office/slide-background/serialization-inputs-after.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "33da96b9a61840d332306d8abf221b9d7b8424f9"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/incoming-office/slide-background/serialization-inputs.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "33da96b9a61840d332306d8abf221b9d7b8424f9"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/incoming-office/slide-background/serialization-receipt.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "7223a7ae83ad816e51542f62f135766b036eba16"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/incoming-office/slide-background/serialization-stderr.log": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/incoming-office/spacy-package/controlled-suite-receipt.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "ffe954d98796c87e161b74480e7cf426dcfbf385"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/incoming-office/spacy-package/events.jsonl.gz": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "3137f56b37bc064b3f2e2d3dd8be332876fc94cc"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/incoming-office/spacy-package/input-check.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "81a350e500a12d581d0db015b57a50aa1c77c79d"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/incoming-office/spacy-package/inputs.json.gz": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "9eb16976748f18827f2ef92aa6a8f0ffef0632a1"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/incoming-office/spacy-package/receipt.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "cf56a1467e70f1c636deb73a9dc3fd51c7442053"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/incoming-office/spacy-package/record_spacy_controlled_receipt.py": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "e60a5fe59673650a569ea68a39de45c6ecd03588"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/incoming-office/spacy-package/run_pure_dart_validation.py": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "df943ecfa0f0fe240787a8dc6c1f24384601c68a"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/incoming-office/spacy-package/stderr.log.gz": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "87bfaf1cefef95e53a691da2269f30d7996d9c89"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/independent-audit/FINAL_MAIN.md": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "ce76c830cdbf57822f306f207b83ea7a1daa608e"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/independent-audit/README.md": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "b644760fb03bd1984dbcb1cc3b141a524b19ccbb"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/independent-audit/audit_final_main.py": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "bc18b6ba651cbd21ad15f089ee74a9b96ba8ba0b"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/independent-audit/audit_supplement.py": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "8d69793542c78b74e42cffc12e3585b2f5e82b0d"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/independent-audit/audit_validation.py": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "acffd6444b9171c9f21521aa9299cecbbd5c9572"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/independent-audit/diagnostics/auditor-unicode-framing.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "87d10e35c89ec68a68e946d2eaf63e2a093a2fa4"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/independent-audit/diagnostics/final-main-counter-constructor.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "c1802ad7b5089411a40778c5f0940e8627f31af6"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/independent-audit/final-main-applicability.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "0a39353cd4b049cd790714ff769cf0a92a7ad187"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/independent-audit/final-main-index.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "8dece7f59112f2bf5d42e65f8347dedce43e7d47"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/independent-audit/final-main-selected-io-sites.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "cde1a574dceb9636cdd3850bf260d98be4248bf7"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/independent-audit/final-main-source-delta.patch": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "6a7764b38ace8228e4a47189205015d2d9b581d2"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/independent-audit/final-main-summary.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "3d749c389d64d6ceb712ff3a30f5e2a13c646b42"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/independent-audit/index.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "2d45a63c838598be4b43174931fbf497478fc337"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/independent-audit/report-cases.json.gz": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "f9a240cd490a3a11dc508409d433c93c4e5ad55e"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/independent-audit/report.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "bb6c7dfd218dcb5d89fbdf3bc790a5d6f4bc8013"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/independent-audit/summary.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "c56185ff244b29b01e75dda2b16f685f0bd374ea"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/independent-audit/supplemental-source-applicability.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "58951fd93497ebd888d159867f6d96f82b6292a8"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/independent-audit/supplemental-source-delta.patch": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "ae41ca4c13fb01da9dd128fa3490400514382e0c"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/independent-audit/supplemental-validation-report.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "8aed811368ee769832abd4733f8408f7e90c0ed7"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/mail-packages/raw-evidence.index.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "eb79da8e5f4d568083f5cbe027f33dc845970f52"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/mail-packages/raw-evidence.tar.xz": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "3aab1b872bb1aed00e3f6993f8ff9779e2566cf0"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/mail-packages/receipt.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "16eb6e544c9dc04a830ba4967a78072dbca7b6f1"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/mail-packages/selection.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "1f603d2ffd780785e3596fe4b74ec0327d2a308e"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/mail-packages/source-after.json.gz": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "1a08faded6665439aac318b107aa8f67011c9331"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/mail-packages/source-before.json.gz": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "1a08faded6665439aac318b107aa8f67011c9331"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/post-main-comment-draft/README.md": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "96389d9133321cdc1f4875fcd11f81e8abe48a8a"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/post-main-comment-draft/checks-console.log": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "f97bd1e5ce7fe5ac90782f96eb018ebd35fc5159"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/post-main-comment-draft/checks/analysis-command.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "5a19e7f1fdaf13671468e106a51cd373a284fbbc"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/post-main-comment-draft/checks/analysis-result.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "d7c65c6d5f3b8b6a204fb8ee97bd64d4102ad002"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/post-main-comment-draft/checks/analysis-stderr.log": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/post-main-comment-draft/checks/analysis-stdout.log": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "a303e3dc9c19e704808556a234be6b02efc8883a"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/post-main-comment-draft/checks/format-command.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "b5c2c328de5b19cee5e7f15741a4a7f1e5aaeb73"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/post-main-comment-draft/checks/format-result.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "39483d93161059f6522e65d66189618dc3884f53"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/post-main-comment-draft/checks/format-stderr.log": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/post-main-comment-draft/checks/format-stdout.log": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "0ff065a128412c6a383c3def0e9e3a326c6b390c"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/post-main-comment-draft/checks/input-check.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "3de43e14c70a9890b6bfe5835955067e7d0982c2"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/post-main-comment-draft/checks/inputs.json.gz": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "e3baf8af0f21261318d329ee7e69e6efb0f3e47f"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/post-main-comment-draft/checks/receipt.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "16ae90316dc8646e250854ef8be0fcd882c7b061"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/post-main-comment-draft/checks/run_post_main_comment_draft_checks.py": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "2231162cb6aac559efc1badebddd0ecb71f1614a"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/post-main-comment-draft/receipt.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "ec35a9ce6384bdbd2853868c6268d09ddacafa53"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/post-main-comment-draft/run_post_main_comment_draft.py": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "e2f512ab59d29aa0b433b0c2851d0e7d1db8377a"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/post-main-comment-draft/run_post_main_comment_draft_all.py": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "50a5eb9bd651cc4666772f233d7e7a5901bf4334"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/post-main-comment-draft/tests-console.log": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "085d72e7736243768deedea5325674b43f187283"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/post-main-comment-draft/tests/events.jsonl.gz": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "c5689dd285426734c40810a14e361ddc988bab2c"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/post-main-comment-draft/tests/input-check.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "3de43e14c70a9890b6bfe5835955067e7d0982c2"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/post-main-comment-draft/tests/inputs.json.gz": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "0df20f44a54b19890568397924dee52898859de3"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/post-main-comment-draft/tests/receipt.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "d3b25d2fa45a700a530fe65c639da2eaa348e56d"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/post-main-comment-draft/tests/selection-adapter.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "78c8eed66983251087c767fbd170d5dd22f7305a"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/post-main-comment-draft/tests/stderr.log.gz": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "87bfaf1cefef95e53a691da2269f30d7996d9c89"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/post-main-macos/README.md": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "69f4d545cb4b0b74cd77de1f82a34edad990dbb2"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/post-main-macos/pin-test-console.log": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "b8246aee786eccbfabd4782c52198007d13a88dd"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/post-main-macos/pin-test/events.jsonl.gz": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "7c2b793587c5e61dc76a100937dfa17d5e5d2089"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/post-main-macos/pin-test/input-check.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "84d0de199edf416976a52d1b06be6b4891b69f7f"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/post-main-macos/pin-test/inputs.json.gz": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "b1facd058b58e151933c18354399a004a4054c8c"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/post-main-macos/pin-test/receipt.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "72720ef3cab685d0ca8f23c63c9111c9ec5214c6"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/post-main-macos/pin-test/selection-adapter.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "9bb78650c9d64098dc05a33a8ba3b85fc6574ba2"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/post-main-macos/pin-test/stderr.log.gz": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "87bfaf1cefef95e53a691da2269f30d7996d9c89"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/post-main-macos/receipt.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "4161457c54cbd74a9e42e57dd746960b39fc7fed"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/post-main-macos/run_macos_pin_refresh.py": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "eeec28e67270d81d2d502e0433a1e371ec239f91"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/post-main-macos/script-checks-console.log": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "1ea7bd073d89d46be4902903e90065fae4ad2c37"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/post-main-macos/script-checks/distribution-comment-only.diff": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "533f91545e15b787762c1f94b51ffe4e7361125c"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/post-main-macos/script-checks/inputs-after.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "6cb9d91f8693fe01d13927a9926bd5a1088783b5"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/post-main-macos/script-checks/inputs-before.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "6cb9d91f8693fe01d13927a9926bd5a1088783b5"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/post-main-macos/script-checks/raw-evidence.index.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "1057cb4caf1c34684a9998167309ce6319a09182"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/post-main-macos/script-checks/raw-evidence.tar.xz": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "778eb75b83497f28f1329e5895645c2f405d97b7"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/post-main-macos/script-checks/receipt.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "0d90b6080454034f941cbe5a816204970c8f263f"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/post-main-macos/script-checks/run_macos_portability_checks.py": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "b26ce4201b9c408d1c8bc399b8887416000882a4"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/restore_evidence.py": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "795c6a532b0c7daf110e1fc4d6492d08992c790b"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/resumed/local-source-checkpoints.bundle": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "88f70b9aaba15ee40b9b14243074d6d3d6a55992"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/resumed/prepublication-main-refresh.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "b41beaf5a0f36149b0a7d76a9a905844851fed93"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/resumed/publication-checkpoints.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "2ed3083c24b6cf630615b96102af1f2dd9685a61"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/resumed/publication-source-check-dabe.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "b76c7cc29a6350db9a9e763de6351a23d4fbe280"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/resumed/reconciliation/README.md": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "84c9b654f858511640ad5e1f5adc7ca4f7dcc620"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/resumed/reconciliation/audit_captured_work.py": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "4513152fe2db23447f491c7a55428d34ee0d6c7e"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/resumed/reconciliation/historical-mappings.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "8695e1613aca61edba48d20c8efc69e1deca7966"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/resumed/reconciliation/initial-remote-inventory.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "50bc934c84570b3d64dff2e8ac1e275b20320b44"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/resumed/reconciliation/object-fetch.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "2c5f564741ca5216eb7181c38ab0e740a17cce8c"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/resumed/reconciliation/reconciliation-906843.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "d4d265f5dbc4021229803642affc87866e7a8057"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/resumed/reconciliation/reconciliation-e129.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "3bc7c3ef386b7a2ad8a01fcedeafacd4b35d5f88"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/resumed/reconciliation/remote-intake-02.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "3fdfd9fce2c98d409f70bd4551d953212bdabdbe"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/resumed/reconciliation/summary.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "17b9a62b8141b003feb9ecb8fa94a222a0ce8ba7"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/resumed/remote-intake-02.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "3fdfd9fce2c98d409f70bd4551d953212bdabdbe"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/resumed/source-preservation-before-macos-refresh.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "e8e5434d5b63396486a48c5e33dc63640b3434dc"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/runtime/README.md": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "cad789c22120b1e212696f8e8d95039ab0e04ade"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/runtime/bootstrap-runtime.log": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "49400485778473369920f4af805b2333d07f3745"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/runtime/bootstrap_runtime.py": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "84b103cf22cbca8fcb77048ce8dfd3da1eeb3026"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/runtime/env.sh": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "09117062b06a4262c01521b1a105a655d6220a2d"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/runtime/logs/flutter-tools-pub-get.log": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "7b57222e52788be8db78d94ecb12fa751bf23f90"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/runtime/logs/flutter-version.log": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "e6b0a8cc58bcb3b6bb3216ea59aec700c3d32984"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/runtime/logs/native-sqlite-readiness.log": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "516a5c8665ab9caa2c309b1d902ffb45b10fa870"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/runtime/logs/workspace-pub-get.log": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "dc9496b96e6e486aaaac02765f63afa18544bc4b"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/runtime/native-readiness.log": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "5d3c15d993ae0ec27b5ba742759624db97c9416a"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/runtime/pub-cache-receipt.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "ad9d45b2d5d383718a096b22f569281a7897bbb0"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/runtime/readiness-receipt.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "3c4fe1fc4e650d82fa3229e3a3d8619fdfad4d7f"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/runtime/runtime.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "729a514ab571b7c50c2070552d4eac38b0f4a3ec"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/runtime/verify_native_readiness.py": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "544af2f41bec38c2437d85e11df6edd5fdbd36a5"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/static/analysis.log": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "2d904ec802258fffc78faf93f1ca5e5f6f57d13e"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/static/format.log": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "08e32cbbd4081bb05946a242c1cca53a6d47dfd2"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/static/receipt.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "4cad41fc8a47b2a4b4119566d9e44fe086996776"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/static/run_changed_static.py": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "528565451080e74d9ed6dc5acfaef1328c7d7a33"
+      },
+      "before": null
+    },
+    "docs/validation/mail-attachments-20261120/verify_publication_sources.py": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "acf1bea75fa0f13a01a00008191d5a996f7163a5"
+      },
+      "before": null
+    },
+    "docs/validation/zotero-research-materials-20261120/README.md": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "5a52f17b0fbf6074cf8a376309e686c16b1232f9"
+      },
+      "before": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "a4f7a7411344db67d2990ba4d92f86968540ddc7"
+      }
+    },
+    "docs/validation/zotero-research-materials-20261120/continuation/README.md": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "018de33df53575517a8516bd7b8527884e416588"
+      },
+      "before": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "9a2b7959eb57bfaec0db196c2e61372e63801f44"
+      }
+    },
+    "docs/validation/zotero-research-materials-20261120/continuation/host-main-followup/accepted-editor-rendering/events.jsonl.gz": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "74d0053422588f68fe0ceaa1db7d5c7fb6c3d55f"
+      },
+      "before": null
+    },
+    "docs/validation/zotero-research-materials-20261120/continuation/host-main-followup/accepted-editor-rendering/input-check.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "f2bba7ec626824fc0c1bbc3f47026eb76bc4e99f"
+      },
+      "before": null
+    },
+    "docs/validation/zotero-research-materials-20261120/continuation/host-main-followup/accepted-editor-rendering/inputs.json.gz": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "d034b6b4bbc1b78e5316f61dae3b3cc59a43d83a"
+      },
+      "before": null
+    },
+    "docs/validation/zotero-research-materials-20261120/continuation/host-main-followup/accepted-editor-rendering/receipt.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "0195046221b0a1b1274f8d7538fc104545b51665"
+      },
+      "before": null
+    },
+    "docs/validation/zotero-research-materials-20261120/continuation/host-main-followup/accepted-editor-rendering/selection-adapter.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "0f631a0823e5209738c4a3035817dedb3b26a1eb"
+      },
+      "before": null
+    },
+    "docs/validation/zotero-research-materials-20261120/continuation/host-main-followup/accepted-editor-rendering/stderr.log.gz": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "87bfaf1cefef95e53a691da2269f30d7996d9c89"
+      },
+      "before": null
+    },
+    "docs/validation/zotero-research-materials-20261120/continuation/host-main-followup/accepted-editor-word-layout/events.jsonl.gz": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "d0561dc89d926af23b7da09b8a2e9d1cc165cb2f"
+      },
+      "before": null
+    },
+    "docs/validation/zotero-research-materials-20261120/continuation/host-main-followup/accepted-editor-word-layout/input-check.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "f2bba7ec626824fc0c1bbc3f47026eb76bc4e99f"
+      },
+      "before": null
+    },
+    "docs/validation/zotero-research-materials-20261120/continuation/host-main-followup/accepted-editor-word-layout/inputs.json.gz": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "d034b6b4bbc1b78e5316f61dae3b3cc59a43d83a"
+      },
+      "before": null
+    },
+    "docs/validation/zotero-research-materials-20261120/continuation/host-main-followup/accepted-editor-word-layout/receipt.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "94259c9ece82c44f8b67b47c7bd3d97e2d504c7c"
+      },
+      "before": null
+    },
+    "docs/validation/zotero-research-materials-20261120/continuation/host-main-followup/accepted-editor-word-layout/selection-adapter.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "98597b6a5828c185c3e846d92873fa8306079776"
+      },
+      "before": null
+    },
+    "docs/validation/zotero-research-materials-20261120/continuation/host-main-followup/accepted-editor-word-layout/stderr.log.gz": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "87bfaf1cefef95e53a691da2269f30d7996d9c89"
+      },
+      "before": null
+    },
+    "docs/validation/zotero-research-materials-20261120/continuation/host-main-followup/accepted-editor-zotero/events.jsonl.gz": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "5ebc12cb84719194c96fcf6c685838207d3921cf"
+      },
+      "before": null
+    },
+    "docs/validation/zotero-research-materials-20261120/continuation/host-main-followup/accepted-editor-zotero/input-check.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "f2bba7ec626824fc0c1bbc3f47026eb76bc4e99f"
+      },
+      "before": null
+    },
+    "docs/validation/zotero-research-materials-20261120/continuation/host-main-followup/accepted-editor-zotero/inputs.json.gz": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "d034b6b4bbc1b78e5316f61dae3b3cc59a43d83a"
+      },
+      "before": null
+    },
+    "docs/validation/zotero-research-materials-20261120/continuation/host-main-followup/accepted-editor-zotero/receipt.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "73cdac035e4a71a48985395ec7b0dfe840d90888"
+      },
+      "before": null
+    },
+    "docs/validation/zotero-research-materials-20261120/continuation/host-main-followup/accepted-editor-zotero/stderr.log.gz": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "87bfaf1cefef95e53a691da2269f30d7996d9c89"
+      },
+      "before": null
+    },
+    "docs/validation/zotero-research-materials-20261120/continuation/host-main-followup/accepted-engine-rendering/events.jsonl.gz": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "324449c84fbd57fb765f1128dbdae4ca58054357"
+      },
+      "before": null
+    },
+    "docs/validation/zotero-research-materials-20261120/continuation/host-main-followup/accepted-engine-rendering/input-check.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "b1e19415765969f8c107561a5ca10d11f10a58ed"
+      },
+      "before": null
+    },
+    "docs/validation/zotero-research-materials-20261120/continuation/host-main-followup/accepted-engine-rendering/inputs.json.gz": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "113f11b0a004fafe0b5f48086848f50c9a40a439"
+      },
+      "before": null
+    },
+    "docs/validation/zotero-research-materials-20261120/continuation/host-main-followup/accepted-engine-rendering/receipt.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "998293b22b2da65b5a0834848bff8221d43382f2"
+      },
+      "before": null
+    },
+    "docs/validation/zotero-research-materials-20261120/continuation/host-main-followup/accepted-engine-rendering/selection-adapter.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "b1eecc424101211329a9b3d84453d7fe61fa4a26"
+      },
+      "before": null
+    },
+    "docs/validation/zotero-research-materials-20261120/continuation/host-main-followup/accepted-engine-rendering/stderr.log.gz": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "87bfaf1cefef95e53a691da2269f30d7996d9c89"
+      },
+      "before": null
+    },
+    "docs/validation/zotero-research-materials-20261120/continuation/host-main-followup/accepted-engine-word-layout/events.jsonl.gz": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "22312f15366b313b4e0a38f807b77d4ff9f8bd95"
+      },
+      "before": null
+    },
+    "docs/validation/zotero-research-materials-20261120/continuation/host-main-followup/accepted-engine-word-layout/input-check.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "bc627ced7f27849f69e0d2b36ccd456a4cb8ddf4"
+      },
+      "before": null
+    },
+    "docs/validation/zotero-research-materials-20261120/continuation/host-main-followup/accepted-engine-word-layout/inputs.json.gz": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "60345c07993926c5326c1d07b8a665c41103e7b3"
+      },
+      "before": null
+    },
+    "docs/validation/zotero-research-materials-20261120/continuation/host-main-followup/accepted-engine-word-layout/receipt.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "9933eba59fa5fd8be5f223b0b1ec5bfa969ce360"
+      },
+      "before": null
+    },
+    "docs/validation/zotero-research-materials-20261120/continuation/host-main-followup/accepted-engine-word-layout/selection-adapter.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "f882f5745a8a84dd2e9b832f22110d98ba21943a"
+      },
+      "before": null
+    },
+    "docs/validation/zotero-research-materials-20261120/continuation/host-main-followup/accepted-engine-word-layout/stderr.log.gz": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "87bfaf1cefef95e53a691da2269f30d7996d9c89"
+      },
+      "before": null
+    },
+    "docs/validation/zotero-research-materials-20261120/continuation/host-main-followup/accepted-engine-zotero/events.jsonl.gz": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "964875fda2f2be53cdd762253c7fc53635225ecf"
+      },
+      "before": null
+    },
+    "docs/validation/zotero-research-materials-20261120/continuation/host-main-followup/accepted-engine-zotero/input-check.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "bc627ced7f27849f69e0d2b36ccd456a4cb8ddf4"
+      },
+      "before": null
+    },
+    "docs/validation/zotero-research-materials-20261120/continuation/host-main-followup/accepted-engine-zotero/inputs.json.gz": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "60345c07993926c5326c1d07b8a665c41103e7b3"
+      },
+      "before": null
+    },
+    "docs/validation/zotero-research-materials-20261120/continuation/host-main-followup/accepted-engine-zotero/receipt.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "39fb884a7a767f15df4289b91a4b0f93be18a525"
+      },
+      "before": null
+    },
+    "docs/validation/zotero-research-materials-20261120/continuation/host-main-followup/accepted-engine-zotero/selection-adapter.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "f8d6dcd52be9a9a6b3fe08f5d9f68f2a709ea9dd"
+      },
+      "before": null
+    },
+    "docs/validation/zotero-research-materials-20261120/continuation/host-main-followup/accepted-engine-zotero/stderr.log.gz": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "87bfaf1cefef95e53a691da2269f30d7996d9c89"
+      },
+      "before": null
+    },
+    "docs/validation/zotero-research-materials-20261120/continuation/host-main-followup/accepted-mail-host/events.jsonl.gz": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "ea845bb24fbc19a7ef492e39448e468157071116"
+      },
+      "before": null
+    },
+    "docs/validation/zotero-research-materials-20261120/continuation/host-main-followup/accepted-mail-host/input-check.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "d5c472d48460f0af95d36b51e46140a0e9cd94ac"
+      },
+      "before": null
+    },
+    "docs/validation/zotero-research-materials-20261120/continuation/host-main-followup/accepted-mail-host/inputs.json.gz": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "8edd21e1e5572bfc2a39bcc5f2ed9609c25e3119"
+      },
+      "before": null
+    },
+    "docs/validation/zotero-research-materials-20261120/continuation/host-main-followup/accepted-mail-host/receipt.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "8461dcfe50ca5f44181fbe5c959e84c2d2d5a866"
+      },
+      "before": null
+    },
+    "docs/validation/zotero-research-materials-20261120/continuation/host-main-followup/accepted-mail-host/selection-adapter.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "72f1b0d5ae9f64196e12f50c64ef33bf9efe4807"
+      },
+      "before": null
+    },
+    "docs/validation/zotero-research-materials-20261120/continuation/host-main-followup/accepted-mail-host/stderr.log.gz": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "87bfaf1cefef95e53a691da2269f30d7996d9c89"
+      },
+      "before": null
+    },
+    "docs/validation/zotero-research-materials-20261120/continuation/host-main-followup/accepted-studio-integration/events.jsonl.gz": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "012d57149bcd169e5efd123e61c6e718fd5d876b"
+      },
+      "before": null
+    },
+    "docs/validation/zotero-research-materials-20261120/continuation/host-main-followup/accepted-studio-integration/input-check.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "d5c472d48460f0af95d36b51e46140a0e9cd94ac"
+      },
+      "before": null
+    },
+    "docs/validation/zotero-research-materials-20261120/continuation/host-main-followup/accepted-studio-integration/inputs.json.gz": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "8edd21e1e5572bfc2a39bcc5f2ed9609c25e3119"
+      },
+      "before": null
+    },
+    "docs/validation/zotero-research-materials-20261120/continuation/host-main-followup/accepted-studio-integration/receipt.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "8e7be2aed9bdadad4af61d590b3e822b3d816fdc"
+      },
+      "before": null
+    },
+    "docs/validation/zotero-research-materials-20261120/continuation/host-main-followup/accepted-studio-integration/selection-adapter.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "db33f91f68d123d1a99a0c40bb378515eeba8c00"
+      },
+      "before": null
+    },
+    "docs/validation/zotero-research-materials-20261120/continuation/host-main-followup/accepted-studio-integration/stderr.log.gz": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "87bfaf1cefef95e53a691da2269f30d7996d9c89"
+      },
+      "before": null
+    },
+    "docs/validation/zotero-research-materials-20261120/continuation/host-main-followup/audit.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "9db29604da5a5b8678014597b0dfc2a8cc24b1ec"
+      },
+      "before": null
+    },
+    "docs/validation/zotero-research-materials-20261120/continuation/host-main-followup/audit_host_followup.py": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "a38521f9c9a7f99ec0b6d6f8f5763012c76dfdf4"
+      },
+      "before": null
+    },
+    "docs/validation/zotero-research-materials-20261120/continuation/host-main-followup/check_dependency_delta.py": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "50f515f60265f1ad26de1f93728a2881f6516c8c"
+      },
+      "before": null
+    },
+    "docs/validation/zotero-research-materials-20261120/continuation/host-main-followup/comparator-controls/receipt.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "2ca05c0d067f1ab64cea350c1b2e052db935b823"
+      },
+      "before": null
+    },
+    "docs/validation/zotero-research-materials-20261120/continuation/host-main-followup/comparator-controls/unittest.log": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "591abffba39939cf998ee7a16080b9f7b98dded7"
+      },
+      "before": null
+    },
+    "docs/validation/zotero-research-materials-20261120/continuation/host-main-followup/dependency-delta.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "69292ca409dff156c7258b5bb9e4dad361f97eb0"
+      },
+      "before": null
+    },
+    "docs/validation/zotero-research-materials-20261120/continuation/host-main-followup/evidence-whitespace.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "67a37ba73341ed806862e0289a00f1cef4933f38"
+      },
+      "before": null
+    },
+    "docs/validation/zotero-research-materials-20261120/continuation/host-main-followup/gate-review.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "bcdf2bf9152867fbbfff7c0023d600446557c6d9"
+      },
+      "before": null
+    },
+    "docs/validation/zotero-research-materials-20261120/continuation/host-main-followup/incoming-review.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "b1962583b623d19f2b02578565f1ea1e0c3e3e6a"
+      },
+      "before": null
+    },
+    "docs/validation/zotero-research-materials-20261120/continuation/host-main-followup/pr229-metadata.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "b87d450f9adfc052f6c4fa1ca4ee568a3f03120b"
+      },
+      "before": null
+    },
+    "docs/validation/zotero-research-materials-20261120/continuation/host-main-followup/remote-snapshot.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "493aa584615d4a1300efd3895d4342a13e81eb70"
+      },
+      "before": null
+    },
+    "docs/validation/zotero-research-materials-20261120/continuation/host-main-followup/review_incoming_host_main.py": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "6484e5a8d36cc1ddbc24f92617c9afb951766dd7"
+      },
+      "before": null
+    },
+    "docs/validation/zotero-research-materials-20261120/continuation/host-main-followup/review_web_persistence.py": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "3671858ed322f548942c5fa3b8a5635a7bfbbf1b"
+      },
+      "before": null
+    },
+    "docs/validation/zotero-research-materials-20261120/continuation/host-main-followup/run_comparator_checks.py": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "2cfa3f7fa20e3c515a545114cc98f8db67a29a20"
+      },
+      "before": null
+    },
+    "docs/validation/zotero-research-materials-20261120/continuation/host-main-followup/run_host_followup.py": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "a6a83c79bee6f644496b4a1e9d38e84142088998"
+      },
+      "before": null
+    },
+    "docs/validation/zotero-research-materials-20261120/continuation/host-main-followup/static/analysis.log": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "00e97d9d52046ba9c7866c3526712705da6a8d0a"
+      },
+      "before": null
+    },
+    "docs/validation/zotero-research-materials-20261120/continuation/host-main-followup/static/format.log": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "ad47abcf8e4d218f11bed64845db56dc2a4899e5"
+      },
+      "before": null
+    },
+    "docs/validation/zotero-research-materials-20261120/continuation/host-main-followup/static/receipt.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "1615d83b77074f089a9c839f25186e549174e465"
+      },
+      "before": null
+    },
+    "docs/validation/zotero-research-materials-20261120/continuation/host-main-followup/summary.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "74869d89102a3d7f0f53bc4272cd621ce2a58640"
+      },
+      "before": null
+    },
+    "docs/validation/zotero-research-materials-20261120/continuation/host-main-followup/web-persistence-review.json": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "3cd71983824e4fdc12ec13d8e6bff2922313de75"
+      },
+      "before": null
+    },
+    "docs/validation/zotero-research-materials-20261120/continuation/host-main-followup/web-persistence.patch": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "c151076dcfec85e3cc13922e7ee508e1f7116ca8"
+      },
+      "before": null
+    },
+    "docs/zotero-validation.md": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "33acaa37f198e6d408d127e6d20ff930cca12b7b"
+      },
+      "before": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "58fc897a456f9324a7ecc45eb1c6b15db9554c5b"
+      }
+    },
+    "packages/quds_arabic_morph/README.md": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "711b2e284407296908c20eee20f5c5f2571b75c6"
+      },
+      "before": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "6af13c1a1b37b35778a8cb5e888f3991cdf0f42b"
+      }
+    },
+    "packages/quds_office_editor/example/README.md": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "73fce0a814361c7cdc719b683a28605ebf0bccb8"
+      },
+      "before": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "34e682ad44ed92607f63366e79565dd1e9f78625"
+      }
+    },
+    "packages/quds_office_editor/example/lib/studio_arabic_morph_host_web.dart": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "bf27346e87c34fca4214ae05ff066692779e8f25"
+      },
+      "before": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "41ee1055b0c23a110fd4eaa39149664697e052f3"
+      }
+    },
+    "packages/quds_office_editor/example/lib/studio_hunspell_host_web.dart": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "64a30a0f96f5e0c8d6e74ae21fbc0755bcaddcd9"
+      },
+      "before": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "2bd66f3776d6a60e4a25975df2dcc506bb2d6933"
+      }
+    },
+    "packages/quds_office_editor/example/lib/studio_web_data_store.dart": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "c22572b6d713a2b5d4e6cabea4386b42f9451d01"
+      },
+      "before": null
+    },
+    "packages/quds_office_editor/example/lib/studio_web_data_store_cache.dart": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "43e2c92e8ae51239b7fc1e5e86585678b8cb6fe8"
+      },
+      "before": null
+    },
+    "packages/quds_office_editor/example/lib/studio_web_data_store_none.dart": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "51e2fcfa02d6eee2b5a0012b792580a87c3cd3fd"
+      },
+      "before": null
+    },
+    "packages/quds_office_editor/example/pubspec.yaml": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "b713be710339952d2ab6b016a98e4c2f02ff2265"
+      },
+      "before": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "413384af320d3cad00e3820e62c87a96881e6415"
+      }
+    },
+    "packages/quds_office_editor/example/test/studio_web_persistence_test.dart": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "4827e3c214cf8e30647c1d85b028ffc2b959d7d4"
+      },
+      "before": null
+    },
+    "packages/quds_office_engine/CHANGELOG.md": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "14fa3aea54818cd583e00ac9ff15401ef3aba2ed"
+      },
+      "before": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "5674c0e738bf600160e001311101bfffcb3a554d"
+      }
+    },
+    "packages/quds_office_engine/lib/src/slide/model/pml_presentation.dart": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "e9ebe1a5e99ee7c581ee2d9a7f8b2d82fb07c4d9"
+      },
+      "before": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "0ca0af3d981852c3300aea6b75246f33e874da03"
+      }
+    },
+    "packages/quds_office_engine/lib/src/slide/serial/slide_serial.dart": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "ad33531bfe788d7507e595dd8d0e7e7193c44cec"
+      },
+      "before": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "a795c4a6e2e1618be70ac9a65917b4daa3d08c70"
+      }
+    },
+    "packages/quds_office_engine/lib/src/slide/shapes/drawingml.dart": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "03ae14b35d33a4885411fbd39f26ad6155de0ef6"
+      },
+      "before": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "a15e18af345372ed350ee1ef23c7c8b9f677ce54"
+      }
+    },
+    "packages/quds_office_engine/test/office_pdf_export_test.dart": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "af2e02b40d22175d8dde6e07c41007ca5999e1a4"
+      },
+      "before": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "f9198d9c0ac2330444a086fdd3f2b4c200c65b65"
+      }
+    },
+    "packages/quds_office_engine/test/slide_import_fidelity_test.dart": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "7425dbf87a435ced34c1e0a049b48cd82e817755"
+      },
+      "before": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "30241bbf882bb97af933194d0ae65ea92d0c030e"
+      }
+    },
+    "packages/quds_proofing_hunspell/README.md": {
+      "after": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "0a77b51414db34393b76227dd57d809ff227b186"
+      },
+      "before": {
+        "kind": "blob",
+        "mode": "100644",
+        "oid": "31ffef2281c4e5feeb2b69cb1ccff56682799990"
+      }
+    }
+  },
+  "core_evidence_checkpoint": "d4dda1c8cca43d126285973c374c88e5f1e8e281",
+  "core_recorded_source_paths": 4012,
+  "core_selected_files": 157,
+  "core_test_source": "214c4ed80bef0cb871f74e90c506d508679d3d6e",
+  "first_continuation_test_source": "f3f98987824e021ed22a4d909e38d6307495267b",
+  "github_actions_queried": false,
+  "historical_documentation_dart_inputs": {
+    "docs/validation/mail-attachments-20261120/arabic-composer/capture_mail_arabic_test.dart": {
+      "blob": "2537c3b211914cd1895bae98bc40dfdb61f2dc8c",
+      "matches_captured_mail": true
+    },
+    "docs/validation/mail-attachments-20261120/attachment-core/attachment_mime_probe.dart": {
+      "blob": "cf7e5bce9a9f67c3fa93d0cb45e575d77a8f5450",
+      "matches_captured_mail": true
+    }
+  },
+  "imported_helper_sha256": "55418e615c35d0add37b14edc2370074a288a0be6b194c7ac11d63f8175924b5",
+  "limits": [
+    "The earlier2386/157 and3201/129 results retain their original sources. This audit does not claim the entire earlier input inventory equals the final source or add historical counts together.",
+    "Import reachability is broader than executed behavior: all old core cohorts reach the three slide files through shared exports. The bounded declaration review and fresh rendering gates cover their changes; this is not dynamic call-coverage proof.",
+    "The full110-path static attempt remains rejected for two archived documentation harnesses. The separate108-path active-source gate must pass; original archive bytes and original rejection are retained.",
+    "Native Word visual parity, installed macOS behavior, live accounts and real downloaded Wasm model activation are outside these local regression gates."
+  ],
+  "mail_readiness_supplement": {
+    "captured_head": "177f29d3f9450a58f41189b462b0814aad37e45c",
+    "included_as_parent": true,
+    "new_behavior": "Only three slide/background libraries and two engine regression files change beyond the web/main checkpoint; existing Word, Zotero, Mail composition and Studio source stays preserved.",
+    "previous_host_review_retains_its_historical_observation": true
+  },
+  "native_factory_boundaries": {
+    "packages/quds_office_editor/example/lib/studio_arabic_morph_host.dart": {
+      "factory_blob": "fc258ac2b6be56a4b20a5d60c4ed6071a7d13cfb",
+      "native_blob": "7a64a361155d179844fc16cb8eb425f0b954010c",
+      "selection": {
+        "default_uri": "studio_arabic_morph_host_web.dart",
+        "directive": "import 'studio_arabic_morph_host_web.dart' if (dart.library.io) 'studio_arabic_morph_host_native.dart' as platform;",
+        "evaluated_conditions": [
+          {
+            "expected_value": "true",
+            "matches": true,
+            "name": "dart.library.io",
+            "uri": "studio_arabic_morph_host_native.dart"
+          }
+        ],
+        "possible_uris": [
+          "studio_arabic_morph_host_native.dart"
+        ]
+      }
+    },
+    "packages/quds_office_editor/example/lib/studio_hunspell_host.dart": {
+      "factory_blob": "ca4fa6efdf8c6692871687f81df768f508735973",
+      "native_blob": "171dfe5e0a7d0cbca85eaacfe68a9a9a2ab70bde",
+      "selection": {
+        "default_uri": "studio_hunspell_host_web.dart",
+        "directive": "import 'studio_hunspell_host_web.dart' if (dart.library.io) 'studio_hunspell_host_native.dart' as platform;",
+        "evaluated_conditions": [
+          {
+            "expected_value": "true",
+            "matches": true,
+            "name": "dart.library.io",
+            "uri": "studio_hunspell_host_native.dart"
+          }
+        ],
+        "possible_uris": [
+          "studio_hunspell_host_native.dart"
+        ]
+      }
+    }
+  },
+  "new_product_input_paths": [
+    "packages/quds_office_editor/example/lib/studio_web_data_store.dart",
+    "packages/quds_office_editor/example/lib/studio_web_data_store_cache.dart",
+    "packages/quds_office_editor/example/lib/studio_web_data_store_none.dart",
+    "packages/quds_office_editor/example/test/studio_web_persistence_test.dart"
+  ],
+  "preserved_main": "43db439e1e605d6329a6eabe6817b04ca44ba1aa",
+  "product_changed_paths": [
+    "packages/quds_office_editor/example/lib/studio_arabic_morph_host_web.dart",
+    "packages/quds_office_editor/example/lib/studio_hunspell_host_web.dart",
+    "packages/quds_office_editor/example/lib/studio_web_data_store.dart",
+    "packages/quds_office_editor/example/lib/studio_web_data_store_cache.dart",
+    "packages/quds_office_editor/example/lib/studio_web_data_store_none.dart",
+    "packages/quds_office_editor/example/pubspec.yaml",
+    "packages/quds_office_editor/example/test/studio_web_persistence_test.dart",
+    "packages/quds_office_engine/lib/src/slide/model/pml_presentation.dart",
+    "packages/quds_office_engine/lib/src/slide/serial/slide_serial.dart",
+    "packages/quds_office_engine/lib/src/slide/shapes/drawingml.dart",
+    "packages/quds_office_engine/test/office_pdf_export_test.dart",
+    "packages/quds_office_engine/test/slide_import_fidelity_test.dart"
+  ],
+  "product_dart_changed_path_count": 11,
+  "product_files_modified": false,
+  "production_delta_patch": {
+    "bytes": 58544,
+    "git_blob_sha1": "0975190a3eb3c4c6c8e6edd536200df32fc9f197",
+    "sha256": "e477a3e85b439492c6a00fa25eb3ee859301c77af3a89e0ccf5734718f880392"
+  },
+  "publication_parents": [
+    "c86e4d100920d64b5db004c374c818f5710b890d",
+    "177f29d3f9450a58f41189b462b0814aad37e45c"
+  ],
+  "publication_source": "a45ee3bf40dbb7e64a04f879fd6d574db7cb60b1",
+  "publication_tree": "abb783deb0dcf32f5cd4a985818f040da6ac6229",
+  "required_fresh_gates": [
+    "engine-rendering14",
+    "editor-rendering10",
+    "web-vm3-files19-cases",
+    "web-chrome1-file3-cases",
+    "strict-active-Dart-static108"
+  ],
+  "retained_evidence": {
+    "core_paths_preserved": 68,
+    "core_receipts": {
+      "editor-rendering": {
+        "bytes": 18026,
+        "git_blob_sha1": "0195046221b0a1b1274f8d7538fc104545b51665",
+        "sha256": "1213bed5daf39c5f1c9ad58fb9dd49ab03fc10cc1b62ada753dabf11bb17cf42"
+      },
+      "editor-word-layout": {
+        "bytes": 19910,
+        "git_blob_sha1": "94259c9ece82c44f8b67b47c7bd3d97e2d504c7c",
+        "sha256": "e994304a7949b29c5e460432df9aff13aae7fcb9357c1558d2592606bcf141ee"
+      },
+      "editor-zotero": {
+        "bytes": 23896,
+        "git_blob_sha1": "73cdac035e4a71a48985395ec7b0dfe840d90888",
+        "sha256": "87739f11408e8daa8f6f50285b6528faabe4ed116244a38c02caa2cc73dc62a6"
+      },
+      "engine-rendering": {
+        "bytes": 19624,
+        "git_blob_sha1": "998293b22b2da65b5a0834848bff8221d43382f2",
+        "sha256": "2538564b24dc1af4e3c839d92ff286c0d14e9728545dc7a91e67af80882e6f67"
+      },
+      "engine-word-layout": {
+        "bytes": 23785,
+        "git_blob_sha1": "9933eba59fa5fd8be5f223b0b1ec5bfa969ce360",
+        "sha256": "3bd977fb31a7d8748fcda4f7772afb22f24de7b07f79f8ba04a1775620b65ebe"
+      },
+      "engine-zotero": {
+        "bytes": 25565,
+        "git_blob_sha1": "39fb884a7a767f15df4289b91a4b0f93be18a525",
+        "sha256": "827788dbb7f480813d7deb8bb507b3199805adfc05dbdece4a90759e567b6181"
+      },
+      "mail-host": {
+        "bytes": 18801,
+        "git_blob_sha1": "8461dcfe50ca5f44181fbe5c959e84c2d2d5a866",
+        "sha256": "aa052ea7df7e9aa1f2672dfef3c19394ff95c45c6bb880f9c6e31f94b9c8032b"
+      },
+      "studio-integration": {
+        "bytes": 20309,
+        "git_blob_sha1": "8e7be2aed9bdadad4af61d590b3e822b3d816fdc",
+        "sha256": "6c2f769b3873e8c1a90c1ae4ef47d9781e26bff46017956a5b4119b461de0d0c"
+      }
+    },
+    "first_continuation_paths_preserved": 47,
+    "prior_receipts_or_reports_rewritten": false
+  },
+  "slide_declaration_scope": {
+    "ast_source_sha256": "7056146a758a8b768126ef529f027aa413b680b6435a019c4db4bfff00997edb",
+    "complete_identity_artifact": {
+      "bytes": 64031,
+      "git_blob_sha1": "8b40f9c6673c5ea8fe34f998d59bbb2cecadfb68",
+      "sha256": "cfc37ac6212bf4e0a12d73223537a8cf9ff6d91851e48af553352bcd2ce3aa61"
+    },
+    "dart_binary_record": {
+      "bytes": 4835712,
+      "git_blob_sha1": "3f2ebcf182d0783e2e24133364aa6ad802b8e96b",
+      "sha256": "01e869e4af277734b02ab8898b870c6b00c9bec61bbcf9c923cd14de7ed85fbb"
+    },
+    "files": {
+      "packages/quds_office_engine/lib/src/slide/model/pml_presentation.dart": {
+        "changed_declarations": [
+          "class PmlSlide"
+        ],
+        "changed_members": {
+          "class PmlSlide": {
+            "get backgroundPicture": {
+              "after_token_sha256": "fb9d7d84053c5e1bff14ada53535a04d12aa8e33cb7f4f40b575d9b73a88395e",
+              "before_token_sha256": null
+            },
+            "get sourceBackground": {
+              "after_token_sha256": "f82a9411b2118817735775468595bf0b62c0a688c154b2ef4fda2e8be9ac9e2d",
+              "before_token_sha256": null
+            },
+            "get writesSolidBackground": {
+              "after_token_sha256": "92f714641eb0d9cd7ad41c47d57b24c5a7907874bf3aa681901e3d0ccf6c533a",
+              "before_token_sha256": null
+            },
+            "instance fields _backgroundFromSource": {
+              "after_token_sha256": "8dc760fa4fd7dec7a60d9776c2e1c39a10a313b1fb2a5e0e4d5f72f59363fbbc",
+              "before_token_sha256": null
+            },
+            "instance fields _backgroundPicture": {
+              "after_token_sha256": "b0bb105eea62f771f5ae97270d9e2c5e843610e6605c908fca1fdbccd3a6b3d3",
+              "before_token_sha256": null
+            },
+            "instance fields _sourceBackground": {
+              "after_token_sha256": "0db5a8ea602f1bc3fd3728642b10d6a9ee4a591e7769a57e06d5f125d3971e6c",
+              "before_token_sha256": null
+            },
+            "method _clearSourceBackground": {
+              "after_token_sha256": "3629703be20d297117622a89cf7aada58f27b6ac1b65102bef959de6f69ed32e",
+              "before_token_sha256": null
+            },
+            "method copy": {
+              "after_token_sha256": "9755e04a2c2d78d1f812544dd1559b0778eb4761ba4b443549d2387be5f4f2b5",
+              "before_token_sha256": "5a1e93e39fd3395eb8f2496df4800249c73c044bd54c6f3dc328df1fa8c3185e"
+            },
+            "method retainSourceBackground": {
+              "after_token_sha256": "72080f4fa6b1cbe900988ce466b4d7989c7798c1726008264d545238e292a221",
+              "before_token_sha256": null
+            },
+            "method setInheritedBackground": {
+              "after_token_sha256": "4d7f93b3d9e5f3d7d2f37632fa5eddb4944f6faca06060d994517c1506cd23a7",
+              "before_token_sha256": "4baa2153bd54aef7d55e12c0a0ba2d5a1793465eed79497eecf425185e234543"
+            },
+            "set background": {
+              "after_token_sha256": "6ac31c2f6c77cddb2b54572b1b625803c4370ad0c6a901b7dcaeb28efa87d54d",
+              "before_token_sha256": "10cdac576b1f1a649faf973bf48aceebb67d45f384b894b5ec9154dec0b4833d"
+            }
+          }
+        },
+        "directives_unchanged": true,
+        "static_fields_unchanged": true,
+        "top_level_variables_unchanged": true,
+        "unchanged_declaration_count": 16
+      },
+      "packages/quds_office_engine/lib/src/slide/serial/slide_serial.dart": {
+        "changed_declarations": [
+          "class SlideDeserializer",
+          "class SlideSerializer",
+          "class _SlideTemplate",
+          "class _SlideTemplates"
+        ],
+        "changed_members": {
+          "class SlideDeserializer": {
+            "method _backgroundImageShape": {
+              "after_token_sha256": "fb00d90094dceb71fe132536e4e474592b68b83ad00327cf3d8c03ed7c294af6",
+              "before_token_sha256": "3c54f3ee6713db94cf58c39c0107b6de75bbaefd3459f521bac072d7df64f6d2"
+            },
+            "method _backgroundOf": {
+              "after_token_sha256": "8fbe3e10030b24cdc93038b8b6f9c08372cf68698fff4ff383ecb483ceda08e2",
+              "before_token_sha256": "4c167a2a47c1af43826b9e80a9bbb0c8cbdc8c8675c4606d7ea21ab98a56e827"
+            },
+            "method _masterBackground": {
+              "after_token_sha256": "30783701c3c8b2ef8fca7d2ff4016ba69ef0ee6f5d3083b8587319f1521326b9",
+              "before_token_sha256": "d287a7f228c751968bf99a874e573f63e05c07aaf81c5c052cd07c1ac461a36c"
+            },
+            "method _sourceBackgroundOf": {
+              "after_token_sha256": "b4b0dbd03b37fc935dd0781dabf96b398cccee627fa921313d8e72930ee1e8fa",
+              "before_token_sha256": null
+            },
+            "method read": {
+              "after_token_sha256": "93527368fde4c75ecf403b51289238cc389f4231fb88fcc3d66bcefbf88b2fe7",
+              "before_token_sha256": "80fdd94ffc4f53b45528e66436582e0a0e6b3c4d63c5b1f0e350eb82352f5af9"
+            }
+          },
+          "class SlideSerializer": {
+            "method _syncSlideVisuals": {
+              "after_token_sha256": "ab8fda1faea8b49b660b98b4dcacec84a18363ef5d823815c7ce64ce097814eb",
+              "before_token_sha256": "6880574ddd059b51142ac597f4b6b19027f67327f2b9b8e9f2f9ba14a84b2ae4"
+            }
+          },
+          "class _SlideTemplate": {
+            "constructor <default>": {
+              "after_token_sha256": "4393d1ad9207635419684265c7bdd7e52a8142968a1e878a60de91459be56785",
+              "before_token_sha256": "600474736aa630b8ce4d0514488ec6af1094536c415606089ed33fdaa65d6ca1"
+            },
+            "instance fields backgroundImage": {
+              "after_token_sha256": "7ae5f7bd600a7c06cd7e93231fccb3840d3071327fcd8df9026ca0851162c752",
+              "before_token_sha256": null
+            }
+          },
+          "class _SlideTemplates": {
+            "method _decorations": {
+              "after_token_sha256": "71db9a8053d521dee44ec96ac19d07179fe4ec21a1cfeda296e03fd246c04d70",
+              "before_token_sha256": "51daf47cbfca32e724905868a11d6447b2177266ecad2df48a48289538e6e8a4"
+            },
+            "method _layout": {
+              "after_token_sha256": "a29bc67f8a7113ada55bc577ddcb14ef737872285e5b855d57aec4b6cb35f933",
+              "before_token_sha256": "c07e9f978ad5c4819744ef5e4ea012d30c821898d0a7f4698593e5091c6661d7"
+            },
+            "method _master": {
+              "after_token_sha256": "620d16def482f1ae227c57e2053646d760ede6287a67cc724724818d04cb1926",
+              "before_token_sha256": "64c6f54a8e0a13c21dc2241a6b914d8a7fd411e6e9aa294cdd97346dcb18c824"
+            }
+          }
+        },
+        "directives_unchanged": true,
+        "static_fields_unchanged": true,
+        "top_level_variables_unchanged": true,
+        "unchanged_declaration_count": 2
+      },
+      "packages/quds_office_engine/lib/src/slide/shapes/drawingml.dart": {
+        "changed_declarations": [
+          "function slideToXml"
+        ],
+        "changed_members": {
+          "function slideToXml": {}
+        },
+        "directives_unchanged": true,
+        "static_fields_unchanged": true,
+        "top_level_variables_unchanged": true,
+        "unchanged_declaration_count": 18
+      }
+    },
+    "no_added_or_changed_top_level_variables_or_static_fields": true,
+    "package_language_version": "3.12"
+  },
+  "status": "verified_bounded_source_delta_and_applicability_scope",
+  "unchanged_core_recorded_source_paths": 4004,
+  "unchanged_core_selected_files": 155,
+  "unchanged_implementation_prefixes": {
+    "packages/quds_mail_transport/": 61,
+    "packages/quds_office_editor/lib/": 94,
+    "packages/quds_office_engine/lib/src/automation/": 13,
+    "packages/quds_office_engine/lib/src/proofing/": 48,
+    "packages/quds_office_engine/lib/src/word/": 64,
+    "packages/quds_office_engine/lib/src/zotero/": 4,
+    "packages/quds_proofing_spacy/": 63,
+    "third_party/enough_mail/": 272
+  },
+  "vm_import_scope": {
+    "changed_web_libraries_excluded_from_core_roots": true,
+    "cohorts": {
+      "editor-rendering": {
+        "changed_libraries_reachable": [
+          "packages/quds_office_engine/lib/src/slide/model/pml_presentation.dart",
+          "packages/quds_office_engine/lib/src/slide/serial/slide_serial.dart",
+          "packages/quds_office_engine/lib/src/slide/shapes/drawingml.dart"
+        ],
+        "reachable_files": 2115,
+        "root_count": 10
+      },
+      "editor-word-layout": {
+        "changed_libraries_reachable": [
+          "packages/quds_office_engine/lib/src/slide/model/pml_presentation.dart",
+          "packages/quds_office_engine/lib/src/slide/serial/slide_serial.dart",
+          "packages/quds_office_engine/lib/src/slide/shapes/drawingml.dart"
+        ],
+        "reachable_files": 2120,
+        "root_count": 14
+      },
+      "editor-zotero": {
+        "changed_libraries_reachable": [
+          "packages/quds_office_engine/lib/src/slide/model/pml_presentation.dart",
+          "packages/quds_office_engine/lib/src/slide/serial/slide_serial.dart",
+          "packages/quds_office_engine/lib/src/slide/shapes/drawingml.dart"
+        ],
+        "reachable_files": 2148,
+        "root_count": 43
+      },
+      "engine-rendering": {
+        "changed_libraries_reachable": [
+          "packages/quds_office_engine/lib/src/slide/model/pml_presentation.dart",
+          "packages/quds_office_engine/lib/src/slide/serial/slide_serial.dart",
+          "packages/quds_office_engine/lib/src/slide/shapes/drawingml.dart"
+        ],
+        "reachable_files": 1290,
+        "root_count": 14
+      },
+      "engine-word-layout": {
+        "changed_libraries_reachable": [
+          "packages/quds_office_engine/lib/src/slide/model/pml_presentation.dart",
+          "packages/quds_office_engine/lib/src/slide/serial/slide_serial.dart",
+          "packages/quds_office_engine/lib/src/slide/shapes/drawingml.dart"
+        ],
+        "reachable_files": 1300,
+        "root_count": 22
+      },
+      "engine-zotero": {
+        "changed_libraries_reachable": [
+          "packages/quds_office_engine/lib/src/slide/model/pml_presentation.dart",
+          "packages/quds_office_engine/lib/src/slide/serial/slide_serial.dart",
+          "packages/quds_office_engine/lib/src/slide/shapes/drawingml.dart"
+        ],
+        "reachable_files": 1294,
+        "root_count": 29
+      },
+      "mail-host": {
+        "changed_libraries_reachable": [
+          "packages/quds_office_engine/lib/src/slide/model/pml_presentation.dart",
+          "packages/quds_office_engine/lib/src/slide/serial/slide_serial.dart",
+          "packages/quds_office_engine/lib/src/slide/shapes/drawingml.dart"
+        ],
+        "reachable_files": 3708,
+        "root_count": 11
+      },
+      "studio-integration": {
+        "changed_libraries_reachable": [
+          "packages/quds_office_engine/lib/src/slide/model/pml_presentation.dart",
+          "packages/quds_office_engine/lib/src/slide/serial/slide_serial.dart",
+          "packages/quds_office_engine/lib/src/slide/shapes/drawingml.dart"
+        ],
+        "reachable_files": 3843,
+        "root_count": 14
+      },
+      "web-persistence-vm": {
+        "changed_libraries_reachable": [
+          "packages/quds_office_editor/example/lib/studio_hunspell_host_web.dart",
+          "packages/quds_office_editor/example/lib/studio_web_data_store.dart",
+          "packages/quds_office_editor/example/lib/studio_web_data_store_cache.dart",
+          "packages/quds_office_editor/example/lib/studio_web_data_store_none.dart",
+          "packages/quds_office_engine/lib/src/slide/model/pml_presentation.dart",
+          "packages/quds_office_engine/lib/src/slide/serial/slide_serial.dart",
+          "packages/quds_office_engine/lib/src/slide/shapes/drawingml.dart"
+        ],
+        "reachable_files": 3834,
+        "root_count": 3
+      }
+    },
+    "graph_files": 4117,
+    "historical_documentation_harnesses_reachable": false,
+    "receipt": {
+      "bytes": 9293,
+      "git_blob_sha1": "12e59252aea181974f04581092227a323ccb4f37",
+      "sha256": "59758f81b16fdf5e958ae0eff4f593120d13bff5d9a026ef8ac1c6191cd4b613"
+    },
+    "slide_libraries_reachable_via_exports": true,
+    "workspace_files": 999
+  }
+}

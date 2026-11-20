@@ -1,0 +1,45 @@
+{
+  "checks": [
+    "Exact-file format check",
+    "Exact-file strict analysis with fatal infos and warnings"
+  ],
+  "checks_guards": {
+    "all_checks_exit_zero": true,
+    "dependencies_unchanged": true,
+    "expected_head_unchanged": true,
+    "host_fonts_unchanged": true,
+    "runtime_unchanged": true,
+    "source_matches_finish_commit": true,
+    "source_matches_start_commit": true,
+    "source_unchanged": true,
+    "workspace_unchanged": true
+  },
+  "checks_receipt_sha256": "70041b4bf67261d28d37a389c8c06ef43134e7fa5a38aba03f6b0b300d2d3415",
+  "source_delta": "Seven incoming lines in studio_comment_draft_proofing_test.dart handling the existing language-download modal; production/configuration unchanged from qualified58c6962.",
+  "source_head": "6184051c75d882cac53be3c1a9384e4556588ad1",
+  "source_tree": "b5b9ffdf6f500a9047cd4d01f3aa6c1bf8e91190",
+  "status": "passed",
+  "test_guards": {
+    "all_requested_suites_executed_once": true,
+    "dependencies_unchanged": true,
+    "every_started_test_finished_once": true,
+    "final_event_success": true,
+    "host_fonts_unchanged": true,
+    "no_failures_skips_or_errors": true,
+    "runtime_unchanged": true,
+    "selection_adapter_and_primary_runner_unchanged": true,
+    "selection_unchanged": true,
+    "source_matches_finish_commit": true,
+    "source_matches_start_commit": true,
+    "source_unchanged": true,
+    "unique_application_test_names": true,
+    "workspace_unchanged": true
+  },
+  "test_receipt_sha256": "6f1c3a98636f9878de6bbe2e9980acaa1396b93a40bc4c4e0063d4c9cc8ec447",
+  "tests": {
+    "failed": 0,
+    "passed": 15,
+    "skipped": 0,
+    "suite_count": 1
+  }
+}

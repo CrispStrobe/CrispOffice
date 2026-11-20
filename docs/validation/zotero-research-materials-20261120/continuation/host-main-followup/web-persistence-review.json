@@ -1,0 +1,140 @@
+{
+  "schema": 1,
+  "generated_at_utc": "2026-11-20T06:11:40.585574+00:00",
+  "purpose": "Read-only assessment of later main after the frozen host/Word test source",
+  "base_main": "64f977ab003031d560c6564cf8895b1250d120d9",
+  "later_main": "dbfbbd28caa064f4850dc81860a68de14d48fb35",
+  "author_source": "fa46be92a1abb78914fb7dd7fb574bd7f50ade18",
+  "frozen_qualification_source": "214c4ed80bef0cb871f74e90c506d508679d3d6e",
+  "complete_delta": {
+    "path": "web-persistence.patch",
+    "sha256": "2d8e9f7e482747a118da008d7afade1830a16e0c6b79e30e9a7a81188a55fcb8",
+    "changed_paths": 9,
+    "changed_dart_paths": 6,
+    "insertions": 453,
+    "deletions": 13,
+    "paths": [
+      {
+        "path": "packages/quds_arabic_morph/README.md",
+        "base_blob": "6af13c1a1b37b35778a8cb5e888f3991cdf0f42b",
+        "main_blob": "711b2e284407296908c20eee20f5c5f2571b75c6",
+        "author_blob": "711b2e284407296908c20eee20f5c5f2571b75c6",
+        "frozen_source_blob": "6af13c1a1b37b35778a8cb5e888f3991cdf0f42b",
+        "main_exact_author_blob": true,
+        "frozen_exact_pre_merge_blob": true
+      },
+      {
+        "path": "packages/quds_office_editor/example/lib/studio_arabic_morph_host_web.dart",
+        "base_blob": "41ee1055b0c23a110fd4eaa39149664697e052f3",
+        "main_blob": "bf27346e87c34fca4214ae05ff066692779e8f25",
+        "author_blob": "bf27346e87c34fca4214ae05ff066692779e8f25",
+        "frozen_source_blob": "41ee1055b0c23a110fd4eaa39149664697e052f3",
+        "main_exact_author_blob": true,
+        "frozen_exact_pre_merge_blob": true
+      },
+      {
+        "path": "packages/quds_office_editor/example/lib/studio_hunspell_host_web.dart",
+        "base_blob": "2bd66f3776d6a60e4a25975df2dcc506bb2d6933",
+        "main_blob": "64a30a0f96f5e0c8d6e74ae21fbc0755bcaddcd9",
+        "author_blob": "64a30a0f96f5e0c8d6e74ae21fbc0755bcaddcd9",
+        "frozen_source_blob": "2bd66f3776d6a60e4a25975df2dcc506bb2d6933",
+        "main_exact_author_blob": true,
+        "frozen_exact_pre_merge_blob": true
+      },
+      {
+        "path": "packages/quds_office_editor/example/lib/studio_web_data_store.dart",
+        "base_blob": null,
+        "main_blob": "c22572b6d713a2b5d4e6cabea4386b42f9451d01",
+        "author_blob": "c22572b6d713a2b5d4e6cabea4386b42f9451d01",
+        "frozen_source_blob": null,
+        "main_exact_author_blob": true,
+        "frozen_exact_pre_merge_blob": true
+      },
+      {
+        "path": "packages/quds_office_editor/example/lib/studio_web_data_store_cache.dart",
+        "base_blob": null,
+        "main_blob": "43e2c92e8ae51239b7fc1e5e86585678b8cb6fe8",
+        "author_blob": "43e2c92e8ae51239b7fc1e5e86585678b8cb6fe8",
+        "frozen_source_blob": null,
+        "main_exact_author_blob": true,
+        "frozen_exact_pre_merge_blob": true
+      },
+      {
+        "path": "packages/quds_office_editor/example/lib/studio_web_data_store_none.dart",
+        "base_blob": null,
+        "main_blob": "51e2fcfa02d6eee2b5a0012b792580a87c3cd3fd",
+        "author_blob": "51e2fcfa02d6eee2b5a0012b792580a87c3cd3fd",
+        "frozen_source_blob": null,
+        "main_exact_author_blob": true,
+        "frozen_exact_pre_merge_blob": true
+      },
+      {
+        "path": "packages/quds_office_editor/example/pubspec.yaml",
+        "base_blob": "413384af320d3cad00e3820e62c87a96881e6415",
+        "main_blob": "b713be710339952d2ab6b016a98e4c2f02ff2265",
+        "author_blob": "b713be710339952d2ab6b016a98e4c2f02ff2265",
+        "frozen_source_blob": "413384af320d3cad00e3820e62c87a96881e6415",
+        "main_exact_author_blob": true,
+        "frozen_exact_pre_merge_blob": true
+      },
+      {
+        "path": "packages/quds_office_editor/example/test/studio_web_persistence_test.dart",
+        "base_blob": null,
+        "main_blob": "4827e3c214cf8e30647c1d85b028ffc2b959d7d4",
+        "author_blob": "4827e3c214cf8e30647c1d85b028ffc2b959d7d4",
+        "frozen_source_blob": null,
+        "main_exact_author_blob": true,
+        "frozen_exact_pre_merge_blob": true
+      },
+      {
+        "path": "packages/quds_proofing_hunspell/README.md",
+        "base_blob": "31ffef2281c4e5feeb2b69cb1ccff56682799990",
+        "main_blob": "0a77b51414db34393b76227dd57d809ff227b186",
+        "author_blob": "0a77b51414db34393b76227dd57d809ff227b186",
+        "frozen_source_blob": "31ffef2281c4e5feeb2b69cb1ccff56682799990",
+        "main_exact_author_blob": true,
+        "frozen_exact_pre_merge_blob": true
+      }
+    ],
+    "git_diff_check_exit_code": 0
+  },
+  "author_metadata": {
+    "path": "pr229-metadata.json",
+    "sha256": "6fe512a581a2139ad174e33c7d1159f5249d8a40896c06da751f124e7ba18ac7",
+    "reported_browser_cases": 3,
+    "reported_vm_cases": 19,
+    "fresh_case_total_added_by_this_review": 0,
+    "independent_event_receipt_audit_here": false
+  },
+  "behavior_review": [
+    "Three new store files select real browser Cache Storage with dart.library.js_interop and a no-op store on the VM.",
+    "Keys include data family, bundle id, pinned revision and filename; Cache Storage uses an encoded same-origin request path.",
+    "Both hosts re-run their unchanged verified-byte constructors before activating restored bytes, and delete corrupt or incomplete stored data.",
+    "Installation verifies downloaded bytes before writing; storage refusal clears partial writes and leaves an explicit session-only result.",
+    "Removal invokes per-file cache deletion and clears host state; browser storage failures are handled without claiming durable persistence.",
+    "The example manifest gains a direct web ^1.1.2 dependency; the imported package was already locked, but the new direct dependency still needs resolver/configuration proof."
+  ],
+  "scope_limits": [
+    "This source review is not fresh Chrome/VM execution or successful activation of real Wasm models.",
+    "The new test uses synthetic pinned byte fixtures and actual browser Cache Storage; its morphology case checks installed status rather than loaded-model success.",
+    "The three browser cases do not contain an explicit partial-file assertion, despite the PR body's broader incomplete-data coverage wording.",
+    "No new native model, real user download, live account or connected service is exercised by this audit."
+  ],
+  "minimum_validation_after_preservation": {
+    "working_directory": "packages/quds_office_editor/example",
+    "browser": [
+      "test/studio_web_persistence_test.dart"
+    ],
+    "browser_runner": "flutter test --no-pub --platform chrome --reporter json test/studio_web_persistence_test.dart",
+    "vm": [
+      "test/studio_hunspell_web_host_test.dart",
+      "test/studio_hunspell_web_cancellation_test.dart",
+      "test/studio_downloads_manager_test.dart"
+    ],
+    "static": "Analyze the six changed Dart paths against the preserved source; use the browser-capable analyzer for JS interop. Check lock/resolved package graph changes explicitly.",
+    "unaffected_receipts": "Preserve the existing core cohort receipts with source/input and conditional-import closure proofs; do not rerun unaffected Zotero, proofing, spaCy, or rendering cohorts solely for this nine-path addition."
+  },
+  "disposition": "Preserve merged upstream main after frozen core validation, then run the narrow host/browser validation and dependency/static checks. Later publication audit binds the final source.",
+  "github_actions_queried": false,
+  "product_files_modified": false
+}

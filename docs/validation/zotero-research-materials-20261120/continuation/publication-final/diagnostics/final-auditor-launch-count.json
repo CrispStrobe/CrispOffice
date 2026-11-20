@@ -1,0 +1,13 @@
+{
+  "scope": "Independent auditor assumption corrected; original browser receipt unchanged",
+  "initial_assumption": "SDK message after3tries meant3 total invocations",
+  "observed": {
+    "wrapper_invocations": 4,
+    "sdk_max_retries": 3,
+    "sdk_initial_retry_counter": 0
+  },
+  "resolution": "Record initial launch plus3 retries; still0 application cases and one loader error.",
+  "failed_auditor_sha256": "f90b6bbfedf7520fa5028454a8062051ef6a1438922b2694859bce789f60237d",
+  "application_tests_rerun": false,
+  "product_source_changed": false
+}

@@ -1,0 +1,46 @@
+{
+  "retrieved_at_utc": "2026-11-20T06:56:56.661Z",
+  "tool": "github_get_pr_info",
+  "request": {
+    "pr_number": 231,
+    "repository_full_name": "CrispStrobe/quds_office_suite"
+  },
+  "result": {
+    "url": "https://github.com/CrispStrobe/quds_office_suite/pull/231",
+    "number": 231,
+    "state": "closed",
+    "merged": true,
+    "mergeable": false,
+    "draft": false,
+    "body": "Raises recall of the Arabic T2 grammar rules with a licence-clean context model, keeping the old behaviour selectable.\n\n- **Engine**: `ArabicContextMorphology` / `ArabicContextReading` / `arabicContextSentences` (compatible extension of `ArabicMorphology`). `ArabicGrammarReading.contextual` (default): a word whose best reading in context leads the second by ≥ 0.9 is represented by that reading's analyses; otherwise all analyses, as before. `allAnalyses` restores the old behaviour. No model ⇒ identical to before.\n- **quds_arabic_morph 0.3.0**: `camelMorphMsaDisambig` bundle (`cstr/camel-morph-msa-disambig@07fd9e65`, 4.5 MB, CC BY-SA 4.0, pinned by SHA-256); native isolate and Web Worker support for CrispEmbed ABI 3 (pinned `3bab3248`, PR #261); adapter v2 enables CrispEmbed's default-off disambiguator only when a model is opened.\n- **Studio**: second download in the Dictionaries dialog, settings switch \"Arabic grammar: read words in context\", licences page entry (NOTICE/LICENSE of the model).\n- **Roadmap**: licence survey of Arabic resources, accuracy and rule A/B (`docs/roadmaps/arabic-proofing.md`, \"Context disambiguation\").\n\nUD Arabic-PUD top-1 in context: UPOS 47.0% (unranked) → **77.9%** (PATB-trained `full`: 77.9%), lemma 72.3% → 90.4% (full 88.2%).\nRule A/B (T2, default rules): PUD 0 → 1 (genuine: «ثلاثة أشجار»), Wikipedia sample (13,464 sentences) 7 → 8 (+2 genuine numeral-gender errors, −1 false positive «في لبانون»).\n\nLocal validation: engine proofing tests, quds_arabic_morph tests with the pinned native library + real bundle + model, web worker smoke (Node, pinned Wasm), Studio example suite (only the known baseline failure), `dart analyze packages apps` 0 errors/warnings.\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)",
+    "title": "Arabic grammar: context disambiguation over Camel Morph analyses [skip ci]",
+    "base": "main",
+    "base_sha": "43db439e1e605d6329a6eabe6817b04ca44ba1aa",
+    "head": "feat/arabic-morph-disambig-20261120",
+    "head_sha": "754d30d199b6f7dfd52b2772a27cc37a3f8d3dd8",
+    "head_repo_id": 1446096841,
+    "head_repo_full_name": "CrispStrobe/quds_office_suite",
+    "merge_commit_sha": "098412152fa1d64796eb3fb9c06699ced0f0c44d",
+    "user": {
+      "login": "CrispStrobe",
+      "name": "CrispStrobe",
+      "email": null,
+      "avatar_url": "https://avatars.githubusercontent.com/u/154636388?v=4",
+      "id": 154636388
+    },
+    "requested_reviewers": null,
+    "requested_team_reviewers": null,
+    "diff": null,
+    "comments": null,
+    "created_at": "2026-11-20T06:25:03Z",
+    "updated_at": "2026-11-20T06:43:26Z",
+    "closed_at": "2026-11-20T06:43:04Z",
+    "merged_at": "2026-11-20T06:43:03Z",
+    "commits": 3,
+    "changed_files": 38,
+    "additions": 2440,
+    "deletions": 91,
+    "display_url": "https://github.com/CrispStrobe/quds_office_suite/pull/231",
+    "display_title": "Arabic grammar: context disambiguation over Camel Morph analyses [skip ci]"
+  }
+}

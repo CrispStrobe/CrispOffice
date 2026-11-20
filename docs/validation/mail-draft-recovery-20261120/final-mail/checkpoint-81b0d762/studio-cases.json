@@ -1,0 +1,4384 @@
+[
+  {
+    "id": 5,
+    "name": "no selected original disables the action without opening storage",
+    "suite_id": 0,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 6,
+    "name": "pending action captures the original, prevents double submission and reports success",
+    "suite_id": 0,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 7,
+    "name": "a duplicate original has distinct accurate feedback",
+    "suite_id": 0,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 8,
+    "name": "typed failures retain their useful status without leaking exception details",
+    "suite_id": 0,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 9,
+    "name": "throwing writers produce sanitized failure and allow retry",
+    "suite_id": 0,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 10,
+    "name": "disposal cancels the owned operation and ignores late success",
+    "suite_id": 0,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 13,
+    "name": "replacement cancels the old message without overwriting new-operation feedback",
+    "suite_id": 0,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 14,
+    "name": "changing only provenance cancels a pending action",
+    "suite_id": 0,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 15,
+    "name": "equivalent provenance in a parent rebuild preserves a pending write",
+    "suite_id": 0,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 16,
+    "name": "an explicit cancellation exception has cancellation feedback",
+    "suite_id": 0,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 12,
+    "name": "nested EML and MBOX import exact bytes into a real native archive",
+    "suite_id": 2,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 19,
+    "name": "identical basenames retain distinct folders and stable source identities",
+    "suite_id": 2,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 20,
+    "name": "a root file joins provenance without an extra path segment",
+    "suite_id": 2,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 21,
+    "name": "nonrecursive import reports nested and unsupported entries as skipped",
+    "suite_id": 2,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 22,
+    "name": "pre-cancelled import never enumerates or commits",
+    "suite_id": 2,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 23,
+    "name": "cancellation immediately after a confirmed commit preserves its count",
+    "suite_id": 2,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 24,
+    "name": "progress observer exceptions do not change import correctness",
+    "suite_id": 2,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 25,
+    "name": "message cap stops a multi-message container with exact committed counts",
+    "suite_id": 2,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 26,
+    "name": "message exactly at the raw cap imports; over-cap record remains a failure",
+    "suite_id": 2,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 27,
+    "name": "scanner EML and aggregate byte caps are reported as limited work",
+    "suite_id": 2,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 28,
+    "name": "depth and file limits report incomplete scanning instead of completion",
+    "suite_id": 2,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 29,
+    "name": "a missing source directory reports a scan error and no saved mail",
+    "suite_id": 2,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 30,
+    "name": "malformed MBOX preamble is counted without stopping other files",
+    "suite_id": 2,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 31,
+    "name": "selected MBOX dialect is passed through without rewriting MIME bytes",
+    "suite_id": 2,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 32,
+    "name": "typed MailProblemCode.storageFailure storage failure stops with confirmed previous work counted",
+    "suite_id": 2,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 33,
+    "name": "typed MailProblemCode.permissionDenied storage failure stops with confirmed previous work counted",
+    "suite_id": 2,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 34,
+    "name": "typed MailProblemCode.unavailable storage failure stops with confirmed previous work counted",
+    "suite_id": 2,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 35,
+    "name": "typed MailProblemCode.quotaExceeded storage failure stops with confirmed previous work counted",
+    "suite_id": 2,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 36,
+    "name": "unexpected storage exception is sanitized and stops before later files",
+    "suite_id": 2,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 37,
+    "name": "invalid source/folder/budget is rejected before source enumeration",
+    "suite_id": 2,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 39,
+    "name": "folder profile and overlong provenance fingerprints are stable and bounded",
+    "suite_id": 17,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 41,
+    "name": "native read revalidation after scanning a valid scanned binary EML is returned byte for byte",
+    "suite_id": 2,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 43,
+    "name": "native read revalidation after scanning changed size before reading fails without returning message bytes",
+    "suite_id": 2,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 44,
+    "name": "native read revalidation after scanning a file replaced by a symlink is rejected before reading the target",
+    "suite_id": 2,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 45,
+    "name": "native read revalidation after scanning an ancestor replaced by a symlink is rejected after scan admission",
+    "suite_id": 2,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 46,
+    "name": "native read revalidation after scanning MBOX growth after a returned record cannot import appended messages",
+    "suite_id": 2,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 47,
+    "name": "native read revalidation after scanning file change after EML yield remains visible as a trailing conflict",
+    "suite_id": 2,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 49,
+    "name": "injected scanner and stream outcomes read failures and exceptions are counted without inventing originals",
+    "suite_id": 2,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 50,
+    "name": "injected scanner and stream outcomes scanner errors and skipped entries remain in the final report",
+    "suite_id": 2,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 51,
+    "name": "injected scanner and stream outcomes missing terminal scan event cannot be mistaken for completion",
+    "suite_id": 2,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 52,
+    "name": "injected scanner and stream outcomes unsafe relative metadata is rejected before a read",
+    "suite_id": 2,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 42,
+    "name": "disabled folder action cannot start or open an archive",
+    "suite_id": 17,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 57,
+    "name": "an EML file is admitted by length before bounded allocation",
+    "suite_id": 53,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 58,
+    "name": "EML input preserves every original byte including NUL and line endings",
+    "suite_id": 53,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 59,
+    "name": "empty, unsupported and missing sources return typed failures",
+    "suite_id": 53,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 60,
+    "name": "cancelled input never opens a missing file",
+    "suite_id": 53,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 61,
+    "name": "export publishes exact original bytes and cleans temporary files",
+    "suite_id": 53,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 62,
+    "name": "cancellation after save picker leaves an existing destination intact",
+    "suite_id": 53,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 63,
+    "name": "a cancelled save picker does not report an exported file",
+    "suite_id": 53,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 64,
+    "name": "export refuses an existing file without altering its contents",
+    "suite_id": 53,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 65,
+    "name": "export refuses an existing symlink without changing link or target",
+    "suite_id": 53,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 66,
+    "name": "a picker exception returns a sanitized failure and writes nothing",
+    "suite_id": 53,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 55,
+    "name": "selected folder waits for Start and passes explicit extraction settings",
+    "suite_id": 17,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 67,
+    "name": "native MBOX streaming restores the explicitly selected quoting rules",
+    "suite_id": 53,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 69,
+    "name": "selected-message helper forwards immutable content and closes its store",
+    "suite_id": 53,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 70,
+    "name": "selected-message helper returns the typed open failure without a write",
+    "suite_id": 53,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 71,
+    "name": "selected-message helper sanitizes thrown writes and still closes",
+    "suite_id": 53,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 72,
+    "name": "confirmed archive survives a later cancellation and close failure",
+    "suite_id": 53,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 73,
+    "name": "cancelled selected-message action never opens the archive",
+    "suite_id": 53,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 74,
+    "name": "cancelling during archive open closes the acquired owner before writing",
+    "suite_id": 53,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 68,
+    "name": "long Unicode mailbox paths keep their provenance with a bounded display name",
+    "suite_id": 17,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 77,
+    "name": "a run with only failed attempts reports failed, not partial",
+    "suite_id": 17,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 78,
+    "name": "cancel prevents dismissal until final committed counts are known",
+    "suite_id": 17,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 79,
+    "name": "throwing writer reports a fixed failure and retains prior saved counts",
+    "suite_id": 17,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 80,
+    "name": "run limits are described as incomplete without discarding committed messages",
+    "suite_id": 17,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 81,
+    "name": "partial results expose bounded fixed per-item reasons",
+    "suite_id": 17,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 82,
+    "name": "session replacement cancels the frozen run",
+    "suite_id": 17,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 83,
+    "name": "session replacement before Start never invokes the writer",
+    "suite_id": 17,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 84,
+    "name": "disposal cancels and ignores a late writer completion",
+    "suite_id": 17,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 85,
+    "name": "verbose progress is bounded and contains only fixed fields and counters",
+    "suite_id": 17,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 88,
+    "name": "folder controls and result remain scrollable at 320px in en",
+    "suite_id": 17,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 89,
+    "name": "folder controls and result remain scrollable at 320px in de",
+    "suite_id": 17,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 90,
+    "name": "folder controls and result remain scrollable at 320px in ar",
+    "suite_id": 17,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 91,
+    "name": "opening failures are typed and never start a provider run",
+    "suite_id": 17,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 92,
+    "name": "unsupported folder profiles cannot open or save an archive",
+    "suite_id": 17,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 93,
+    "name": "pre-cancelled helper does not open any archive",
+    "suite_id": 17,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 94,
+    "name": "owned folder archive preserves committed originals and profile after runner failure",
+    "suite_id": 17,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 95,
+    "name": "cancellation during open closes the owned store without saving settings or reading mail",
+    "suite_id": 17,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 99,
+    "name": "real MIME export restores exact originals, origins and searchable text",
+    "suite_id": 96,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 87,
+    "name": "resumable restore preview, result and progress management in StudioLanguage.en",
+    "suite_id": 75,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 102,
+    "name": "restore preview and result in StudioLanguage.en",
+    "suite_id": 75,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 103,
+    "name": "resumable restore preview, result and progress management in StudioLanguage.de",
+    "suite_id": 75,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 106,
+    "name": "restore preview and result in StudioLanguage.de",
+    "suite_id": 75,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 107,
+    "name": "resumable restore preview, result and progress management in StudioLanguage.ar",
+    "suite_id": 75,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 108,
+    "name": "restore preview and result in StudioLanguage.ar",
+    "suite_id": 75,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 109,
+    "name": "desktop portability controls, export confirmation and long destination",
+    "suite_id": 75,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 105,
+    "name": "preview requires confirmation and preserves the selection",
+    "suite_id": 100,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 110,
+    "name": "narrow Arabic portability controls and export report remain usable",
+    "suite_id": 75,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 111,
+    "name": "recorded progress defaults to resume and keeps the exact selection",
+    "suite_id": 100,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 114,
+    "name": "turning resume off requests full source verification without forgetting progress",
+    "suite_id": 100,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 115,
+    "name": "resumed progress and previous indexing warnings remain separate from this run",
+    "suite_id": 100,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 118,
+    "name": "restore progress management confirms forgetting and keeps messages untouched",
+    "suite_id": 100,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 119,
+    "name": "forget failure is sanitized and retains the listed progress",
+    "suite_id": 100,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 120,
+    "name": "disposing during progress listing drops a late dialog",
+    "suite_id": 100,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 121,
+    "name": "disposing during forgetting cancels its token and ignores the result",
+    "suite_id": 100,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 122,
+    "name": "dismissing preview performs no restore",
+    "suite_id": 100,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 123,
+    "name": "cancelling the folder picker performs no inspection",
+    "suite_id": 100,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 117,
+    "name": "bulk export freezes all pages of the applied search and shows its destination",
+    "suite_id": 112,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 124,
+    "name": "invalid export is reported before showing the preview",
+    "suite_id": 100,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 126,
+    "name": "unexpected inspection exceptions are sanitized",
+    "suite_id": 100,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 125,
+    "name": "cancelled export picker does not start file publication",
+    "suite_id": 112,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 128,
+    "name": "failed export plan reports its bound without starting a picker or export",
+    "suite_id": 112,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 127,
+    "name": "cancellation awaits confirmed counts and keeps earlier saves",
+    "suite_id": 100,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 129,
+    "name": "resume uses the saved export and archive profile without replanning current filters",
+    "suite_id": 112,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 130,
+    "name": "partial restore exposes bounded item failures",
+    "suite_id": 100,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 132,
+    "name": "disposing during inspection cancels and drops late preview",
+    "suite_id": 100,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 131,
+    "name": "export cancellation waits for the final confirmed publication counts",
+    "suite_id": 112,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 134,
+    "name": "disposed export planning cannot open a dialog or publish files",
+    "suite_id": 112,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 133,
+    "name": "disposing during restore ignores late progress and result",
+    "suite_id": 100,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 136,
+    "name": "narrow StudioLanguage.en resume and progress controls remain usable",
+    "suite_id": 100,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 135,
+    "name": "directory import exposes recursive choice and retains relative provenance",
+    "suite_id": 112,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 137,
+    "name": "narrow StudioLanguage.en preview supports long profile labels",
+    "suite_id": 100,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 138,
+    "name": "persistent search paginates with the complete query request",
+    "suite_id": 112,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 139,
+    "name": "narrow StudioLanguage.de resume and progress controls remain usable",
+    "suite_id": 100,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 141,
+    "name": "narrow StudioLanguage.de preview supports long profile labels",
+    "suite_id": 100,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 140,
+    "name": "filters reject invalid calendar dates and preserve inclusive UTC end days",
+    "suite_id": 112,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 143,
+    "name": "malformed query is rejected before backend and exposes fixed feedback",
+    "suite_id": 112,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 142,
+    "name": "narrow StudioLanguage.ar resume and progress controls remain usable",
+    "suite_id": 100,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 144,
+    "name": "late search completion cannot replace newer results",
+    "suite_id": 112,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 146,
+    "name": "a store acquired after dialog disposal is closed exactly once",
+    "suite_id": 112,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 145,
+    "name": "narrow StudioLanguage.ar preview supports long profile labels",
+    "suite_id": 100,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 147,
+    "name": "closing during original loading ignores late completion",
+    "suite_id": 112,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 150,
+    "name": "preview shows provenance and exports exact original bytes with a safe name",
+    "suite_id": 112,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 151,
+    "name": "saved search preserves filters and can be loaded and deleted",
+    "suite_id": 112,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 154,
+    "name": "partial import reports duplicates and typed per-file failures while retaining successes",
+    "suite_id": 112,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 155,
+    "name": "oversized injected records are rejected before MIME parsing or writes",
+    "suite_id": 112,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 153,
+    "name": "picker snapshots exact bytes and preserves edited Word body",
+    "suite_id": 148,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 156,
+    "name": "maintenance advances its cursor and reports all observed issues",
+    "suite_id": 112,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 157,
+    "name": "removing one duplicate name leaves the other and original draft intact",
+    "suite_id": 148,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 158,
+    "name": "maintenance cancellation stops before the next page",
+    "suite_id": 112,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 159,
+    "name": "failed multi-file selection adds no partial files and gives redacted feedback",
+    "suite_id": 148,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 160,
+    "name": "maintenance detects a nonadvancing cursor instead of looping",
+    "suite_id": 112,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 161,
+    "name": "cancelled selection keeps attachments and allows sending",
+    "suite_id": 148,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 163,
+    "name": "pending picker blocks send and late selection cannot publish after close",
+    "suite_id": 148,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 162,
+    "name": "verbose diagnostics are opt-in and a failing sink cannot break the dialog",
+    "suite_id": 112,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 164,
+    "name": "closing during file read cancels the active stream",
+    "suite_id": 148,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 165,
+    "name": "archive and preview fit 320px in en",
+    "suite_id": 112,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 167,
+    "name": "archive and preview fit 320px in de",
+    "suite_id": 112,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 166,
+    "name": "uncertain retry keeps attachments and thread behind acknowledgement",
+    "suite_id": 148,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 168,
+    "name": "archive and preview fit 320px in ar",
+    "suite_id": 112,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 170,
+    "name": "backend exceptions produce typed feedback without exception text",
+    "suite_id": 112,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 169,
+    "name": "narrow Arabic body stays visible and retains IME and undo through resize",
+    "suite_id": 148,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 171,
+    "name": "rebuild reparses originals with the selected attachment indexing policy",
+    "suite_id": 112,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 172,
+    "name": "attachment controls fit narrow StudioLanguage.en chrome",
+    "suite_id": 148,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 174,
+    "name": "attachment controls fit narrow StudioLanguage.de chrome",
+    "suite_id": 148,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 173,
+    "name": "MBOX import forwards the explicitly chosen dialect",
+    "suite_id": 112,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 175,
+    "name": "attachment controls fit narrow StudioLanguage.ar chrome",
+    "suite_id": 148,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 181,
+    "name": "reads selected streams in order and owns their exact bytes",
+    "suite_id": 176,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 182,
+    "name": "validates all names before starting the first file read",
+    "suite_id": 176,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 183,
+    "name": "preflights count and total metadata against existing selection",
+    "suite_id": 176,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 184,
+    "name": "refuses picker bytes whose actual size differs from 0",
+    "suite_id": 176,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 185,
+    "name": "refuses picker bytes whose actual size differs from 2",
+    "suite_id": 176,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 186,
+    "name": "refuses streams that grow or are truncated after selection",
+    "suite_id": 176,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 187,
+    "name": "actual stream quota is enforced before retaining a large chunk",
+    "suite_id": 176,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 188,
+    "name": "exact size boundary and empty streams are supported",
+    "suite_id": 176,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 189,
+    "name": "a failed selection leaves the previous immutable bundle untouched",
+    "suite_id": 176,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 190,
+    "name": "cancellation completes pending read without waiting for teardown",
+    "suite_id": 176,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 191,
+    "name": "total per-file deadline rejects an unresponsive source",
+    "suite_id": 176,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 192,
+    "name": "a loader cancelled before selection never subscribes",
+    "suite_id": 176,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 193,
+    "name": "native selected paths use bounded file streams",
+    "suite_id": 176,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 197,
+    "name": "ordinary const drafts retain an immutable empty attachment bundle",
+    "suite_id": 178,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 198,
+    "name": "attachments own input bytes and expose no writable view",
+    "suite_id": 178,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 199,
+    "name": "selection owns its list and preserves order and duplicate filenames",
+    "suite_id": 178,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 200,
+    "name": "allows zero-byte files and exactly ten attachments",
+    "suite_id": 178,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 201,
+    "name": "bounds iterator consumption before retaining an eleventh attachment",
+    "suite_id": 178,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 202,
+    "name": "enforces ten MiB cumulatively and on individual snapshots",
+    "suite_id": 178,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 203,
+    "name": "rejects unsafe filename \"\" before snapshotting",
+    "suite_id": 178,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 204,
+    "name": "rejects unsafe filename \" \" before snapshotting",
+    "suite_id": 178,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 205,
+    "name": "rejects unsafe filename \".\" before snapshotting",
+    "suite_id": 178,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 206,
+    "name": "rejects unsafe filename \"..\" before snapshotting",
+    "suite_id": 178,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 207,
+    "name": "rejects unsafe filename \"../private.txt\" before snapshotting",
+    "suite_id": 178,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 208,
+    "name": "rejects unsafe filename \"C:\\\\private.txt\" before snapshotting",
+    "suite_id": 178,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 209,
+    "name": "rejects unsafe filename \"/private.txt\" before snapshotting",
+    "suite_id": 178,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 210,
+    "name": "rejects unsafe filename \"private.txt\\r\\nBcc: secret@example.invalid\" before snapshotting",
+    "suite_id": 178,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 211,
+    "name": "rejects unsafe filename \"null\\u0000.txt\" before snapshotting",
+    "suite_id": 178,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 212,
+    "name": "rejects unsafe filename \"tab\\t.txt\" before snapshotting",
+    "suite_id": 178,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 213,
+    "name": "rejects unsafe filename \"delete.txt\" before snapshotting",
+    "suite_id": 178,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 214,
+    "name": null,
+    "suite_id": null,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 215,
+    "name": null,
+    "suite_id": null,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 216,
+    "name": null,
+    "suite_id": null,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 217,
+    "name": "rejects unsafe filename \"hidden‮exe.txt\" before snapshotting",
+    "suite_id": 178,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 218,
+    "name": "rejects unsafe filename \"isolate⁦.txt\" before snapshotting",
+    "suite_id": 178,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 219,
+    "name": "rejects unsafe filename \"mark‏.txt\" before snapshotting",
+    "suite_id": 178,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 220,
+    "name": "rejects unsafe filename \" leading.txt\" before snapshotting",
+    "suite_id": 178,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 221,
+    "name": "rejects unsafe filename \"trailing.txt \" before snapshotting",
+    "suite_id": 178,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 222,
+    "name": "rejects unsafe filename \"broken\\ud800.txt\" before snapshotting",
+    "suite_id": 178,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 223,
+    "name": "rejects unsafe filename \"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\" before snapshotting",
+    "suite_id": 178,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 224,
+    "name": "rejects unsafe filename \"éééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééé\" before snapshotting",
+    "suite_id": 178,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 225,
+    "name": "filename bound counts UTF-8 bytes and preserves supported Unicode",
+    "suite_id": 178,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 226,
+    "name": "fixed Office and generic type hints never inspect or rewrite bytes",
+    "suite_id": 178,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 227,
+    "name": "rejects unsafe or container media type \"\"",
+    "suite_id": 178,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 228,
+    "name": "rejects unsafe or container media type \"text\"",
+    "suite_id": 178,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 229,
+    "name": "rejects unsafe or container media type \"text/plain; charset=utf-8\"",
+    "suite_id": 178,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 230,
+    "name": "rejects unsafe or container media type \"text/plain\\r\\nX-Injected: yes\"",
+    "suite_id": 178,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 231,
+    "name": "rejects unsafe or container media type \"text/plain\\n\"",
+    "suite_id": 178,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 232,
+    "name": "rejects unsafe or container media type \" text/plain\"",
+    "suite_id": 178,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 233,
+    "name": "rejects unsafe or container media type \"text/plain \"",
+    "suite_id": 178,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 234,
+    "name": "rejects unsafe or container media type \"application/a b\"",
+    "suite_id": 178,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 235,
+    "name": "rejects unsafe or container media type \"image/صورة\"",
+    "suite_id": 178,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 236,
+    "name": "rejects unsafe or container media type \"multipart/mixed\"",
+    "suite_id": 178,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 237,
+    "name": "rejects unsafe or container media type \"message/rfc822\"",
+    "suite_id": 178,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 238,
+    "name": "rejects unsafe or container media type \"application/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\"",
+    "suite_id": 178,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 239,
+    "name": "typed failures never expose a filename or header fragment",
+    "suite_id": 178,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 240,
+    "name": "mixed MIME retains alternative body and exact binary attachment bytes",
+    "suite_id": 178,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 241,
+    "name": "Unicode and quoted filenames use ASCII-safe RFC 2231 parameters",
+    "suite_id": 178,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 242,
+    "name": "255-byte filename produces bounded MIME header lines",
+    "suite_id": 178,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 243,
+    "name": "attachments preserve reply threading and never add Bcc to headers",
+    "suite_id": 178,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 244,
+    "name": "editing another draft field can share immutable attachment snapshots",
+    "suite_id": 178,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 245,
+    "name": "plain drafts keep alternative MIME and wrap long ASCII body lines",
+    "suite_id": 178,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 251,
+    "name": "rejects unsupported recipient \"\"",
+    "suite_id": 246,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 252,
+    "name": "rejects unsupported recipient \"a@example.invalid,,b@example.invalid\"",
+    "suite_id": 246,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 253,
+    "name": "rejects unsupported recipient \"Name <a@example.invalid>\"",
+    "suite_id": 246,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 254,
+    "name": "rejects unsupported recipient \"a@\"",
+    "suite_id": 246,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 255,
+    "name": "rejects unsupported recipient \"@example.invalid\"",
+    "suite_id": 246,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 256,
+    "name": "rejects unsupported recipient \"a..b@example.invalid\"",
+    "suite_id": 246,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 257,
+    "name": "rejects unsupported recipient \".a@example.invalid\"",
+    "suite_id": 246,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 258,
+    "name": "rejects unsupported recipient \"a.@example.invalid\"",
+    "suite_id": 246,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 259,
+    "name": "rejects unsupported recipient \"a@-example.invalid\"",
+    "suite_id": 246,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 260,
+    "name": "rejects unsupported recipient \"a@exam ple.invalid\"",
+    "suite_id": 246,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 261,
+    "name": "rejects unsupported recipient \"a@example.invalid\\r\\nBcc: hidden@example.invalid\"",
+    "suite_id": 246,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 262,
+    "name": "rejects unsupported recipient \"مستخدم@example.invalid\"",
+    "suite_id": 246,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 263,
+    "name": "accepts supported mailbox punctuation and rejects header injection",
+    "suite_id": 246,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 264,
+    "name": "bounds encoded body size and rejects null characters",
+    "suite_id": 246,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 265,
+    "name": "Arabic subject and body produce ASCII-safe MIME with exact decoded content",
+    "suite_id": 246,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 266,
+    "name": "body uses the Word editor and snapshots undoable text before disposal",
+    "suite_id": 246,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 267,
+    "name": "invalid recipient keeps the draft open with bounded feedback",
+    "suite_id": 246,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 268,
+    "name": "uncertain draft is retained and requires explicit resend acknowledgement",
+    "suite_id": 246,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 249,
+    "name": "gmail reopens its saved draft after reconnect",
+    "suite_id": 194,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 269,
+    "name": "editing a reply preserves its immutable thread snapshot",
+    "suite_id": 246,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 271,
+    "name": "composer fits a narrow window without substituting a body text field",
+    "suite_id": 246,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 272,
+    "name": "Cc and Bcc remain editable and sendable in a narrow window",
+    "suite_id": 246,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 273,
+    "name": "invalid hidden recipient blocks submission without losing input",
+    "suite_id": 246,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 270,
+    "name": "microsoft365 reopens its saved draft after reconnect",
+    "suite_id": 194,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 274,
+    "name": "uncertain composer scrolls in a short landscape window",
+    "suite_id": 246,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 276,
+    "name": "uncertain composer scrolls in a short keyboard window",
+    "suite_id": 246,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 275,
+    "name": "Gmail submits only after durable uncertainty and clears accepted work",
+    "suite_id": 194,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 279,
+    "name": "Gmail accepted cleanup failure restores guarded draft without resend",
+    "suite_id": 194,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 283,
+    "name": "platform keychain boundary the platform record round-trips credentials and TLS settings",
+    "suite_id": 277,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 284,
+    "name": "platform keychain boundary malformed or unreadable platform records are unavailable",
+    "suite_id": 277,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 285,
+    "name": "platform keychain boundary failed writes and deletions report failure and preserve the record",
+    "suite_id": 277,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 286,
+    "name": "platform keychain boundary a later delete waits for a pending write and cannot be undone by it",
+    "suite_id": 277,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 287,
+    "name": "platform keychain boundary a failed operation does not prevent the next queued operation",
+    "suite_id": 277,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 288,
+    "name": "old keychain records remain readable and new preset settings round trip",
+    "suite_id": 277,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 289,
+    "name": "invalid persisted values cannot silently select security or provider settings",
+    "suite_id": 277,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 290,
+    "name": "platform keychain failures report failed save and clear without erasing prior values",
+    "suite_id": 277,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 291,
+    "name": "malformed or excessive keychain records fail closed",
+    "suite_id": 277,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 292,
+    "name": "a later Forget waits for an older write across store instances",
+    "suite_id": 277,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 293,
+    "name": "failed platform writes do not poison later keychain operations",
+    "suite_id": 277,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 280,
+    "name": "Gmail retries storage opening and blocks sends while saving fails",
+    "suite_id": 194,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 295,
+    "name": "Gmail closes late draft storage without adopting a retired session",
+    "suite_id": 194,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 296,
+    "name": "native setup offers Gmail, Microsoft 365 and Exchange",
+    "suite_id": 194,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 297,
+    "name": "gmail signs in and adopts the matching mailbox session",
+    "suite_id": 194,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 294,
+    "name": "late keychain load cannot replace newly typed account settings",
+    "suite_id": 277,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 298,
+    "name": "microsoft365 signs in and adopts the matching mailbox session",
+    "suite_id": 194,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 300,
+    "name": "invalid settings never authorize or construct a provider",
+    "suite_id": 194,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 299,
+    "name": "late keychain load cannot undo a newly selected provider",
+    "suite_id": 277,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 301,
+    "name": "authorization exceptions are redacted and leave retry available",
+    "suite_id": 194,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 302,
+    "name": "remembered iCloud settings restore the visible preset and login mode",
+    "suite_id": 277,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 303,
+    "name": "denied OAuth permissions use localized actionable feedback",
+    "suite_id": 194,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 305,
+    "name": "cancelled browser authorization rejects and disposes late tokens",
+    "suite_id": 194,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 304,
+    "name": "keychain save failure retains the connected mailbox and reports fixed feedback",
+    "suite_id": 277,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 306,
+    "name": "closing during authorization invalidates the lease and clears late tokens",
+    "suite_id": 194,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 308,
+    "name": "mailbox rejection closes provider and tokens without exposing metadata secret",
+    "suite_id": 194,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 307,
+    "name": "Remember opt-out clears the old account and reports success accurately",
+    "suite_id": 277,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 309,
+    "name": "wrong-account provider is rejected and disposed before mailbox reads",
+    "suite_id": 194,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 311,
+    "name": "provider construction errors retire the authorized tokens",
+    "suite_id": 194,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 312,
+    "name": "throttling displays the rounded delay without an automatic retry",
+    "suite_id": 194,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 310,
+    "name": "Remember opt-out clears the old account and reports failure accurately",
+    "suite_id": 277,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 313,
+    "name": "provider cleanup failure cannot prevent token cleanup or disconnect",
+    "suite_id": 194,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 314,
+    "name": "failed Forget preserves filled credentials and remains retryable",
+    "suite_id": 277,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 315,
+    "name": "disconnect ignores a pending message body and retires session resources",
+    "suite_id": 194,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 316,
+    "name": "late Forget failure cannot replace newer provider feedback",
+    "suite_id": 277,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 317,
+    "name": "verbose diagnostics opt in passes only structured safe events to the log",
+    "suite_id": 194,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 318,
+    "name": "late Forget failure cannot overwrite a newer successful remembered session",
+    "suite_id": 277,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 319,
+    "name": "cloud composition uses canonical MIME and does not overclaim delivery",
+    "suite_id": 194,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 320,
+    "name": "late saved-account completion cannot undo a newer Forget",
+    "suite_id": 277,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 321,
+    "name": "gmail host keeps hidden recipients out of canonical MIME",
+    "suite_id": 194,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 322,
+    "name": "closing while saving cannot update the disposed dialog",
+    "suite_id": 277,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 323,
+    "name": "microsoft365 host keeps hidden recipients out of canonical MIME",
+    "suite_id": 194,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 324,
+    "name": "explicit manual STARTTLS is honored without automatic authentication retry",
+    "suite_id": 277,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 326,
+    "name": "Yahoo Mail authentication failures never switch fixed transport settings",
+    "suite_id": 277,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 325,
+    "name": "gmail retains exact attachments through acknowledged retry",
+    "suite_id": 194,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 327,
+    "name": "iCloud Mail authentication failures never switch fixed transport settings",
+    "suite_id": 277,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 329,
+    "name": "Fastmail authentication failures never switch fixed transport settings",
+    "suite_id": 277,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 330,
+    "name": "closing an in-flight failed connection never creates a fallback client",
+    "suite_id": 277,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 328,
+    "name": "microsoft365 retains exact attachments through acknowledged retry",
+    "suite_id": 194,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 331,
+    "name": "mailbox.org keeps its known verified STARTTLS route without discovery",
+    "suite_id": 277,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 332,
+    "name": "uncertain cloud send retains draft and never automatically resubmits",
+    "suite_id": 194,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 335,
+    "name": "gmail Reply all submits visible groups and explicit Bcc with threading",
+    "suite_id": 194,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 336,
+    "name": "gmail Reply all refuses an ambiguous source address",
+    "suite_id": 194,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 339,
+    "name": "microsoft365 Reply all submits visible groups and explicit Bcc with threading",
+    "suite_id": 194,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 340,
+    "name": "microsoft365 Reply all refuses an ambiguous source address",
+    "suite_id": 194,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 341,
+    "name": "definite rejected sends retain drafts and show Retry-After without resending",
+    "suite_id": 194,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 342,
+    "name": "narrow cloud setup and mailbox remain usable without overflow",
+    "suite_id": 194,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 343,
+    "name": "gmail archive action preserves the exact fetched original and provider provenance",
+    "suite_id": 194,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 338,
+    "name": "HTTP discovery is rejected before credentials reach a client",
+    "suite_id": 333,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 344,
+    "name": "microsoft365 archive action preserves the exact fetched original and provider provenance",
+    "suite_id": 194,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 345,
+    "name": "POP-only discovery is rejected before credentials reach a client",
+    "suite_id": 333,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 346,
+    "name": "gmail folder archive receives the selected account and folder",
+    "suite_id": 194,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 348,
+    "name": "microsoft365 folder archive receives the selected account and folder",
+    "suite_id": 194,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 347,
+    "name": "non-SMTP outgoing discovery is rejected before credentials reach a client",
+    "suite_id": 333,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 351,
+    "name": "missing server discovery is rejected before credentials reach a client",
+    "suite_id": 333,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 352,
+    "name": "no discovery result is rejected before credentials reach a client",
+    "suite_id": 333,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 353,
+    "name": "trusted IMAP discovery creates SSL-only account endpoints",
+    "suite_id": 333,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 354,
+    "name": "discovery uses the credentials captured when connection begins",
+    "suite_id": 333,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 357,
+    "name": "closing during discovery ignores its late success",
+    "suite_id": 333,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 358,
+    "name": "closing during discovery ignores its late failure",
+    "suite_id": 333,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 356,
+    "name": "debounced autosave preserves incomplete recipients and Word edits",
+    "suite_id": 349,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 363,
+    "name": "save and close flushes latest text before allowing the route to pop",
+    "suite_id": 349,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 362,
+    "name": "file reopen preserves unfinished fields, reply chain and bytes",
+    "suite_id": 359,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 365,
+    "name": "uncertain send survives restart and ordinary autosave",
+    "suite_id": 359,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 366,
+    "name": "verified rejection of a new attempt persists safe ordinary retry",
+    "suite_id": 359,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 367,
+    "name": "rejected retry cannot erase an earlier uncertain submission",
+    "suite_id": 359,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 364,
+    "name": "asynchronous save failure remains retryable and prevents send",
+    "suite_id": 349,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 368,
+    "name": "failed rejection persistence retains the durable uncertainty marker",
+    "suite_id": 359,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 370,
+    "name": "a rejected outcome requires a preceding durable attempt marker",
+    "suite_id": 359,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 371,
+    "name": "confirmed clear survives restart and permits a fresh draft",
+    "suite_id": 359,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 369,
+    "name": "synchronous save failure remains retryable and prevents send",
+    "suite_id": 349,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 372,
+    "name": "identity isolates login, sender, endpoint and provider",
+    "suite_id": 359,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 374,
+    "name": "native owner lease rejects concurrent owner without data loss",
+    "suite_id": 359,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 375,
+    "name": "save and clear require an observed revision",
+    "suite_id": 359,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 376,
+    "name": "clear tombstone prevents stale overwrite and ABA resurrection",
+    "suite_id": 359,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 377,
+    "name": "failed save rolls back bytes and preserves the last durable draft",
+    "suite_id": 359,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 373,
+    "name": "unsaved close needs confirmation and never sends or saves after exit",
+    "suite_id": 349,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 378,
+    "name": "failed accepted cleanup retains uncertain recovery instead of resending",
+    "suite_id": 359,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 380,
+    "name": "raw editor text participates in quota and does not replace durable work",
+    "suite_id": 359,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 381,
+    "name": "close drains writes and refuses subsequent stale operations",
+    "suite_id": 359,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 382,
+    "name": "identity rejects embedded secrets and preserves case-sensitive logins",
+    "suite_id": 359,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 379,
+    "name": "editing during a delayed write saves newest snapshot serially",
+    "suite_id": 349,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 385,
+    "name": "Send waits for durable latest revision and cancels late autosave",
+    "suite_id": 349,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 386,
+    "name": "late invalid recipient is saved but revalidation prevents Send",
+    "suite_id": 349,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 387,
+    "name": "back navigation flushes unfinished work without returning a send",
+    "suite_id": 349,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 388,
+    "name": "attachment snapshots survive autosave and later removal independently",
+    "suite_id": 349,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 390,
+    "name": "EWS restores an unfinished draft after closing and reconnecting",
+    "suite_id": 383,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 394,
+    "name": "closing Mail ignores a pending file picker result",
+    "suite_id": 391,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 395,
+    "name": "EWS waits for the durable uncertainty marker before submission",
+    "suite_id": 383,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 401,
+    "name": "native IMAP folder archive collects exact originals across pages with bounded reads and no writes",
+    "suite_id": 396,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 402,
+    "name": "native IMAP folder archive freezes selected mailbox path and UIDVALIDITY before awaits",
+    "suite_id": 396,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 403,
+    "name": "native IMAP folder archive rejects incomplete, invalid and non-selectable snapshots before networking",
+    "suite_id": 396,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 404,
+    "name": "native IMAP folder archive rejects a foreign provider account before reading any page",
+    "suite_id": 396,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 405,
+    "name": "native IMAP folder archive sanitizes a throwing provider factory and leaves the loader reusable",
+    "suite_id": 396,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 406,
+    "name": "native IMAP folder archive validates the whole page before writes for a mismatched account",
+    "suite_id": 396,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 407,
+    "name": "native IMAP folder archive validates the whole page before writes for a mismatched mailbox",
+    "suite_id": 396,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 408,
+    "name": "native IMAP folder archive validates the whole page before writes for a mismatched provider",
+    "suite_id": 396,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 409,
+    "name": "native IMAP folder archive validates the whole page before writes for a mismatched generation",
+    "suite_id": 396,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 410,
+    "name": "native IMAP folder archive validates the whole page before writes for a mismatched local-id",
+    "suite_id": 396,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 411,
+    "name": "native IMAP folder archive validates the whole page before writes for a mismatched cursor",
+    "suite_id": 396,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 412,
+    "name": "native IMAP folder archive refuses oversized pages before reading any original",
+    "suite_id": 396,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 413,
+    "name": "native IMAP folder archive retains committed counts if the next page changes generation",
+    "suite_id": 396,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 398,
+    "name": "EWS accepted cleanup failure remains uncertain after reconnect",
+    "suite_id": 383,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 414,
+    "name": "native IMAP folder archive rejects mismatched fetched identities and continues the bounded page",
+    "suite_id": 396,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 416,
+    "name": "native IMAP folder archive starting archive cancels a stalled selected-message read",
+    "suite_id": 396,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 417,
+    "name": "native IMAP folder archive cancel releases stalled headers and ignores late completion",
+    "suite_id": 396,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 418,
+    "name": "native IMAP folder archive cancel releases stalled message and ignores late completion",
+    "suite_id": 396,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 419,
+    "name": "native IMAP folder archive dispose releases stalled headers and ignores late completion",
+    "suite_id": 396,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 420,
+    "name": "native IMAP folder archive dispose releases stalled message and ignores late completion",
+    "suite_id": 396,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 421,
+    "name": "native IMAP folder archive a replacement read cancels archive without its cleanup clearing the new read",
+    "suite_id": 396,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 422,
+    "name": "native IMAP folder archive pre-cancelled caller token does not start a provider",
+    "suite_id": 396,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 423,
+    "name": "native IMAP folder archive caller cancellation interrupts stalled reads and cancels its polling timer",
+    "suite_id": 396,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 424,
+    "name": "native IMAP folder archive normal completion also disposes its external cancellation timer",
+    "suite_id": 396,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 425,
+    "name": "native IMAP folder archive cancel before commit rolls back the complete original",
+    "suite_id": 396,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 426,
+    "name": "native IMAP folder archive dispose before commit rolls back the complete original",
+    "suite_id": 396,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 427,
+    "name": "native IMAP folder archive cancellation after a commit keeps saved counts and prevents another download",
+    "suite_id": 396,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 428,
+    "name": "native IMAP folder archive throwing progress observers cannot fail an otherwise valid archive",
+    "suite_id": 396,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 429,
+    "name": "native IMAP folder archive reconnecting a session deduplicates exact bytes and stable provenance",
+    "suite_id": 396,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 430,
+    "name": "native IMAP folder archive requires explicit mailbox profile scope without reading source mail",
+    "suite_id": 396,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 431,
+    "name": "mark-read freezes the full identity and requires provider success",
+    "suite_id": 396,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 432,
+    "name": "mark-read refuses incomplete or stale identities without networking",
+    "suite_id": 396,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 433,
+    "name": "mark-read never retries or turns an unconfirmed write into success",
+    "suite_id": 396,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 434,
+    "name": "mark-read rejects a provider from another account before writing",
+    "suite_id": 396,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 435,
+    "name": "a mark-read operation cancels an older read without replaying it",
+    "suite_id": 396,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 436,
+    "name": "a new read cancels a pending write and ignores late write completion",
+    "suite_id": 396,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 437,
+    "name": "dispose promptly cancels a pending mark-read and prohibits later writes",
+    "suite_id": 396,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 438,
+    "name": "returns exact original non-UTF8 octets in an independent copy",
+    "suite_id": 396,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 439,
+    "name": "freezes exact mailbox generation and UID, never sequence ID",
+    "suite_id": 396,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 440,
+    "name": "uses the decoded full path for international nested mailboxes",
+    "suite_id": 396,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 441,
+    "name": "passes every read budget and TLS transport bound unchanged",
+    "suite_id": 396,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 442,
+    "name": "full-message budget is the default",
+    "suite_id": 396,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 443,
+    "name": "rejects invalid UID and UIDVALIDITY before provider creation",
+    "suite_id": 396,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 444,
+    "name": "rejects invalid or unselectable mailbox before provider access",
+    "suite_id": 396,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 445,
+    "name": "rejects inconsistent envelope GUID before provider access",
+    "suite_id": 396,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 446,
+    "name": "accepts a matching high-level GUID with full identity",
+    "suite_id": 396,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 415,
+    "name": "EWS can retry draft storage opening and never sends a failed save",
+    "suite_id": 383,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 447,
+    "name": "rejects unsupported accounts and insecure modes without a provider",
+    "suite_id": 396,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 449,
+    "name": "rejects invalid credentials, endpoint and budgets before networking",
+    "suite_id": 396,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 450,
+    "name": "rejects wrong account, mailbox, UIDVALIDITY, UID or absent identity",
+    "suite_id": 396,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 451,
+    "name": "rejects excess raw bytes even when an injected provider returns success",
+    "suite_id": 396,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 452,
+    "name": "cancel settles a stalled request and prevents a late completion",
+    "suite_id": 396,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 453,
+    "name": "starting another read cancels the first lease and ignores its late error",
+    "suite_id": 396,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 454,
+    "name": "dispose cancels in-flight work, clears credentials and refuses reuse",
+    "suite_id": 396,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 455,
+    "name": "credentials are account-scoped and cannot be overwritten",
+    "suite_id": 396,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 456,
+    "name": "distinct account sessions never share identity or credentials",
+    "suite_id": 396,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 457,
+    "name": "provider failures are fixed typed errors without server details",
+    "suite_id": 396,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 448,
+    "name": "EWS rejected retry preserves an earlier uncertain submission",
+    "suite_id": 383,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 462,
+    "name": "contains synchronous protocol prints and preserves the return value",
+    "suite_id": 458,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 463,
+    "name": "contains asynchronous prints before and after an await",
+    "suite_id": 458,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 464,
+    "name": "registered future and timer callbacks retain the private zone",
+    "suite_id": 458,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 465,
+    "name": "stream listeners registered during client construction stay contained",
+    "suite_id": 458,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 466,
+    "name": "a pending Mail operation does not suppress unrelated output",
+    "suite_id": 458,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 467,
+    "name": "does not swallow or replace a synchronous failure",
+    "suite_id": 458,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 468,
+    "name": "does not swallow or replace an asynchronous failure",
+    "suite_id": 458,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 460,
+    "name": "EWS failed definite-result persistence retains the retry guard",
+    "suite_id": 383,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 473,
+    "name": "Yahoo uses authenticated implicit TLS and full-address login",
+    "suite_id": 469,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 474,
+    "name": "iCloud uses TLS IMAP, mandatory SMTP STARTTLS and separate login forms",
+    "suite_id": 469,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 475,
+    "name": "Fastmail preserves a primary login distinct from a custom sender",
+    "suite_id": 469,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 476,
+    "name": "iCloud offers Apple’s full-address IMAP login fallback explicitly",
+    "suite_id": 469,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 477,
+    "name": "presets reject malformed identity and credential settings before connection",
+    "suite_id": 469,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 471,
+    "name": "EWS retires a draft store opened after its host was closed",
+    "suite_id": 383,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 479,
+    "name": "native account setup exposes the Exchange Server entry",
+    "suite_id": 383,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 480,
+    "name": "manual NTLM connection loads bounded headers and clears the password field",
+    "suite_id": 383,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 481,
+    "name": "explicit read, flag and move actions use the EWS provider",
+    "suite_id": 383,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 478,
+    "name": "choosing a preset clears old credentials and exposes app-password guidance",
+    "suite_id": 469,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 482,
+    "name": "Basic authentication is available only by explicit selection",
+    "suite_id": 383,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 484,
+    "name": "read-only capabilities disable submission, reply and move actions",
+    "suite_id": 383,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 483,
+    "name": "preset connection uses explicit settings without discovery",
+    "suite_id": 469,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 485,
+    "name": "delete requires explicit confirmation before moving to Deleted Items",
+    "suite_id": 383,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 490,
+    "name": "parses all recipient groups with commas, semicolons and spaces",
+    "suite_id": 486,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 491,
+    "name": "deduplicates across groups with visible precedence and exact locals",
+    "suite_id": 486,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 492,
+    "name": "Cc-only and Bcc-only drafts need no fabricated visible recipient",
+    "suite_id": 486,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 493,
+    "name": "all exposed recipient groups are immutable snapshots",
+    "suite_id": 486,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 494,
+    "name": "admits exactly 100 entries across groups and rejects a 101st",
+    "suite_id": 486,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 495,
+    "name": "duplicate entries still count toward the manual input bound",
+    "suite_id": 486,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 496,
+    "name": "input character bound includes all groups before splitting",
+    "suite_id": 486,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 497,
+    "name": "empty optional groups are allowed but an empty envelope is not",
+    "suite_id": 486,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 498,
+    "name": "rejects unsupported input in every recipient group: [44]",
+    "suite_id": 486,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 499,
+    "name": "rejects unsupported input in every recipient group: [111, 110, 101, 64, 101, 120, 97, 109, 112, 108, 101, 46, 116, 101, 115, 116, 44]",
+    "suite_id": 486,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 500,
+    "name": "rejects unsupported input in every recipient group: [44, 111, 110, 101, 64, 101, 120, 97, 109, 112, 108, 101, 46, 116, 101, 115, 116]",
+    "suite_id": 486,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 501,
+    "name": "rejects unsupported input in every recipient group: [111, 110, 101, 64, 101, 120, 97, 109, 112, 108, 101, 46, 116, 101, 115, 116, 59, 59, 116, 119, 111, 64, 101, 120, 97, 109, 112, 108, 101, 46, 116, 101, 115, 116]",
+    "suite_id": 486,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 502,
+    "name": "rejects unsupported input in every recipient group: [78, 97, 109, 101, 32, 60, 111, 110, 101, 64, 101, 120, 97, 109, 112, 108, 101, 46, 116, 101, 115, 116, 62]",
+    "suite_id": 486,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 503,
+    "name": "rejects unsupported input in every recipient group: [84, 101, 97, 109, 58, 111, 110, 101, 64, 101, 120, 97, 109, 112, 108, 101, 46, 116, 101, 115, 116, 59]",
+    "suite_id": 486,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 504,
+    "name": "rejects unsupported input in every recipient group: [111, 110, 101, 64, 101, 120, 97, 109, 112, 108, 101, 46, 116, 101, 115, 116, 32, 40, 99, 111, 109, 109, 101, 110, 116, 41]",
+    "suite_id": 486,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 505,
+    "name": "rejects unsupported input in every recipient group: [34, 113, 117, 111, 116, 101, 100, 34, 64, 101, 120, 97, 109, 112, 108, 101, 46, 116, 101, 115, 116]",
+    "suite_id": 486,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 506,
+    "name": "rejects unsupported input in every recipient group: [111, 110, 101, 64, 101, 120, 97, 109, 112, 108, 101, 46, 116, 101, 115, 116, 32, 116, 119, 111, 64, 101, 120, 97, 109, 112, 108, 101, 46, 116, 101, 115, 116]",
+    "suite_id": 486,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 488,
+    "name": "failed write confirmation requires refresh before another change",
+    "suite_id": 383,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 507,
+    "name": "rejects unsupported input in every recipient group: [111, 110, 101, 64, 101, 120, 97, 109, 112, 108, 101, 46, 116, 101, 115, 116, 9]",
+    "suite_id": 486,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 509,
+    "name": "rejects unsupported input in every recipient group: [111, 110, 101, 64, 101, 120, 97, 109, 112, 108, 101, 46, 116, 101, 115, 116, 10]",
+    "suite_id": 486,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 510,
+    "name": "rejects unsupported input in every recipient group: [111, 110, 101, 64, 101, 120, 97, 109, 112, 108, 101, 46, 116, 101, 115, 116, 13, 10, 66, 99, 99, 58, 32, 104, 105, 100, 100, 101, 110, 64, 101, 120, 97, 109, 112, 108, 101, 46, 116, 101, 115, 116]",
+    "suite_id": 486,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 511,
+    "name": "rejects unsupported input in every recipient group: [111, 110, 101, 64, 101, 120, 97, 109, 112, 108, 101, 46, 116, 101, 115, 116, 0]",
+    "suite_id": 486,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 512,
+    "name": "rejects unsupported input in every recipient group: [111, 110, 101, 64, 101, 120, 97, 109, 112, 108, 101, 46, 116, 101, 115, 116, 127]",
+    "suite_id": 486,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 513,
+    "name": "rejects unsupported input in every recipient group: [111, 110, 101, 64, 101, 120, 97, 109, 112, 108, 101, 46, 116, 101, 115, 116, 160]",
+    "suite_id": 486,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 514,
+    "name": "rejects unsupported input in every recipient group: [1605, 1587, 1578, 1582, 1583, 1605, 64, 101, 120, 97, 109, 112, 108, 101, 46, 116, 101, 115, 116]",
+    "suite_id": 486,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 515,
+    "name": "rejects unsupported input in every recipient group: [111, 110, 101, 64, 91, 49, 50, 55, 46, 48, 46, 48, 46, 49, 93]",
+    "suite_id": 486,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 516,
+    "name": "rejects unsupported input in every recipient group: [111, 110, 101, 64, 45, 101, 120, 97, 109, 112, 108, 101, 46, 116, 101, 115, 116]",
+    "suite_id": 486,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 517,
+    "name": "rejects unsupported input in every recipient group: [111, 110, 101, 64, 101, 120, 97, 109, 112, 108, 101, 46, 46, 116, 101, 115, 116]",
+    "suite_id": 486,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 518,
+    "name": "rejects unsupported input in every recipient group: [111, 110, 101, 46, 46, 116, 119, 111, 64, 101, 120, 97, 109, 112, 108, 101, 46, 116, 101, 115, 116]",
+    "suite_id": 486,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 519,
+    "name": "mailbox limits preserve the complete 254-character address",
+    "suite_id": 486,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 520,
+    "name": "canonical MIME contains visible groups and excludes hidden addresses",
+    "suite_id": 486,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 521,
+    "name": "100 maximum-length recipients survive folded MIME round trips",
+    "suite_id": 486,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 508,
+    "name": "insecure endpoints fail before provider creation",
+    "suite_id": 383,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 524,
+    "name": "closing a pending connection invalidates its lease and clears credentials",
+    "suite_id": 383,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 525,
+    "name": "disconnect ignores late message bodies and returns to cleared setup",
+    "suite_id": 383,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 527,
+    "name": "reply uses authoritative Reply-To and quotes only decoded plain body",
+    "suite_id": 522,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 529,
+    "name": "reply falls back to From when no Reply-To exists",
+    "suite_id": 522,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 530,
+    "name": "missing source addresses require an explicit recipient before send",
+    "suite_id": 522,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 531,
+    "name": "forward requires a recipient and declares the text-only boundary",
+    "suite_id": 522,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 532,
+    "name": "existing reply prefix is not duplicated",
+    "suite_id": 522,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 533,
+    "name": "existing forward prefix is not duplicated",
+    "suite_id": 522,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 534,
+    "name": "quote cutoff preserves an emoji and explicitly identifies truncation",
+    "suite_id": 522,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 535,
+    "name": "an exact-boundary quote is preserved without a truncation notice",
+    "suite_id": 522,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 536,
+    "name": "HTML-only bodies produce a fixed typed unavailable outcome",
+    "suite_id": 522,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 537,
+    "name": "an explicitly empty plain body never falls back to HTML",
+    "suite_id": 522,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 538,
+    "name": "reply attaches only the authoritative decoded parent and ancestry",
+    "suite_id": 522,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 539,
+    "name": "forwarding starts a new thread even when the source has ancestry",
+    "suite_id": 522,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 540,
+    "name": "invalid parent metadata does not block an otherwise valid reply",
+    "suite_id": 522,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 541,
+    "name": "reply all keeps visible recipient roles and excludes the sender",
+    "suite_id": 522,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 542,
+    "name": "reply all uses every From mailbox only when Reply-To is absent",
+    "suite_id": 522,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 543,
+    "name": "reply all deduplicates with To precedence and exact local-part case",
+    "suite_id": 522,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 544,
+    "name": "reply all from a sent message targets its original participants",
+    "suite_id": 522,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 545,
+    "name": "empty and self-only reply-all targets leave an editable draft",
+    "suite_id": 522,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 546,
+    "name": "reply all never examines or copies even malformed oversized Bcc",
+    "suite_id": 522,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 547,
+    "name": "reply all preserves thread metadata and the bounded plain quote",
+    "suite_id": 522,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 548,
+    "name": "reply all refuses HTML-only quotation without a plain fallback",
+    "suite_id": 522,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 549,
+    "name": "reply all accepts 100 recipients and rejects 101 without truncating",
+    "suite_id": 522,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 550,
+    "name": "reply all bounds source scanning before deduplicating or removing self",
+    "suite_id": 522,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 551,
+    "name": "reply rejects unsupported single source mailbox \"one@example.invalid,two@example.invalid\"",
+    "suite_id": 522,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 552,
+    "name": "reply all rejects an unsupported participant \"one@example.invalid,two@example.invalid\"",
+    "suite_id": 522,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 553,
+    "name": "reply rejects unsupported single source mailbox \"one@example.invalid;two@example.invalid\"",
+    "suite_id": 522,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 554,
+    "name": "reply all rejects an unsupported participant \"one@example.invalid;two@example.invalid\"",
+    "suite_id": 522,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 555,
+    "name": "reply rejects unsupported single source mailbox \"one@example.invalid\\r\\nBcc: hidden@example.invalid\"",
+    "suite_id": 522,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 556,
+    "name": "reply all rejects an unsupported participant \"one@example.invalid\\r\\nBcc: hidden@example.invalid\"",
+    "suite_id": 522,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 557,
+    "name": "reply rejects unsupported single source mailbox \"Name <one@example.invalid>\"",
+    "suite_id": 522,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 558,
+    "name": "reply all rejects an unsupported participant \"Name <one@example.invalid>\"",
+    "suite_id": 522,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 559,
+    "name": "reply rejects unsupported single source mailbox \"مستخدم@example.invalid\"",
+    "suite_id": 522,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 560,
+    "name": "reply all rejects an unsupported participant \"مستخدم@example.invalid\"",
+    "suite_id": 522,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 561,
+    "name": "reply rejects unsupported single source mailbox \"one@\"",
+    "suite_id": 522,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 562,
+    "name": "reply all rejects an unsupported participant \"one@\"",
+    "suite_id": 522,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 563,
+    "name": "invalid Reply-To never falls back to a valid From in reply all",
+    "suite_id": 522,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 564,
+    "name": "reply all rejects an unsupported connected sender identity",
+    "suite_id": 522,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 565,
+    "name": "reply all ignores From as a recipient when valid Reply-To is present",
+    "suite_id": 522,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 566,
+    "name": "forward never turns a source address into an outgoing recipient",
+    "suite_id": 522,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 528,
+    "name": "composer supplies every To Cc and Bcc recipient to EWS without leaking Bcc",
+    "suite_id": 383,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 569,
+    "name": "EWS host preserves visible groups and hides Bcc from canonical MIME",
+    "suite_id": 383,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 570,
+    "name": "EWS keeps exact attachments and private recipients across acknowledged retry",
+    "suite_id": 383,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 573,
+    "name": "uncertain submissions retain the draft and require acknowledged retry",
+    "suite_id": 383,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 574,
+    "name": "EWS Reply all opens visible participants and preserves threading",
+    "suite_id": 383,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 575,
+    "name": "EWS reply actions reject ambiguous source recipients before composition",
+    "suite_id": 383,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 576,
+    "name": "disposing during send ignores a late acceptance",
+    "suite_id": 383,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 577,
+    "name": "provider exceptions stay redacted in connection feedback",
+    "suite_id": 383,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 578,
+    "name": "narrow Exchange layout keeps setup, message and actions usable",
+    "suite_id": 383,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 572,
+    "name": "reopened native session restores raw unfinished draft with stable identity",
+    "suite_id": 567,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 579,
+    "name": "EWS archive action preserves the fetched original and provenance without sending or mutating",
+    "suite_id": 383,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 581,
+    "name": "EWS folder archive uses the selected mailbox and a stable profile",
+    "suite_id": 383,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 582,
+    "name": "EWS selected message hashes an overlong opaque source ID",
+    "suite_id": 383,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 580,
+    "name": "native draft storage isolates a different connected account",
+    "suite_id": 567,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 585,
+    "name": "native send waits for durable uncertainty and restart never resends",
+    "suite_id": 567,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 588,
+    "name": "disconnect during durable send checkpoint cannot submit or auto-retry",
+    "suite_id": 567,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 589,
+    "name": "native storage open failure prevents composition and submission",
+    "suite_id": 567,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 590,
+    "name": "native composer save failure cannot send",
+    "suite_id": 567,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 587,
+    "name": "reply uses the exact loaded body and envelope, not the list header",
+    "suite_id": 583,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 591,
+    "name": "native submission checkpoint failure cannot send",
+    "suite_id": 567,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 592,
+    "name": "reply reports an HTML-only body without quoting presentation headers",
+    "suite_id": 583,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 593,
+    "name": "native acceptance clears the durable draft before another session",
+    "suite_id": 567,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 595,
+    "name": "native accepted cleanup failure retains uncertain draft and do-not-resend notice",
+    "suite_id": 567,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 594,
+    "name": "reply cannot replace an uncertain draft; only confirmed discard releases it",
+    "suite_id": 583,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 596,
+    "name": "a delayed native draft open cannot install the previous account store",
+    "suite_id": 567,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 597,
+    "name": "forward uses the exact loaded body and envelope, not the list header",
+    "suite_id": 583,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 598,
+    "name": "closing during connect aborts pending owned clients",
+    "suite_id": 567,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 600,
+    "name": "discovery uses the credentials captured when connect starts",
+    "suite_id": 567,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 599,
+    "name": "forward reports an HTML-only body without quoting presentation headers",
+    "suite_id": 583,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 601,
+    "name": "only nonselectable folders release both owned transports",
+    "suite_id": 567,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 603,
+    "name": "old mailbox results cannot replace a new session",
+    "suite_id": 567,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 604,
+    "name": "old mailbox failure cannot replace a new session",
+    "suite_id": 567,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 602,
+    "name": "forward cannot replace an uncertain draft; only confirmed discard releases it",
+    "suite_id": 583,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 605,
+    "name": "a draft from a disconnected session is not sent",
+    "suite_id": 567,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 606,
+    "name": "mark-read holds the UI busy and updates only after confirmation",
+    "suite_id": 583,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 607,
+    "name": "late send failure cannot alter a replacement session",
+    "suite_id": 567,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 608,
+    "name": "failed mark-read preserves unread status with fixed feedback",
+    "suite_id": 583,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 610,
+    "name": "failed mark-read allows an explicit successful retry",
+    "suite_id": 583,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 609,
+    "name": "native attachment snapshots survive an uncertain send and acknowledged retry",
+    "suite_id": 567,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 611,
+    "name": "mark-read completion cannot mark a header whose UID changed",
+    "suite_id": 583,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 612,
+    "name": "native composition submits To Cc and Bcc only in the explicit envelope",
+    "suite_id": 567,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 613,
+    "name": "mark-read late success cannot mutate a disconnected session",
+    "suite_id": 583,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 614,
+    "name": "native Reply all retains every recipient and thread through an uncertain retry",
+    "suite_id": 567,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 615,
+    "name": "mark-read late success preserves a replacement pending request",
+    "suite_id": 583,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 616,
+    "name": "disconnect contains cleanup errors and aborts both transports",
+    "suite_id": 567,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 617,
+    "name": "mark-read late failure cannot mutate a disconnected session",
+    "suite_id": 583,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 622,
+    "name": "empty thread and ordinary const drafts have no reply metadata",
+    "suite_id": 618,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 623,
+    "name": "a canonical parent starts the references chain without repair",
+    "suite_id": 618,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 624,
+    "name": "dot-atom identifiers preserve case and non-DNS atext punctuation",
+    "suite_id": 618,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 625,
+    "name": "missing parent cannot infer a reply identity from its ancestors",
+    "suite_id": 618,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 626,
+    "name": "malformed parents omit both headers even with valid ancestors",
+    "suite_id": 618,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 627,
+    "name": "identifier length admits 254 ASCII bytes and rejects 255",
+    "suite_id": 618,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 628,
+    "name": "valid ancestors are retained in order and the parent is last once",
+    "suite_id": 618,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 629,
+    "name": "message identifiers remain distinct when their case differs",
+    "suite_id": 618,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 630,
+    "name": "one invalid ancestor discards the complete inherited chain",
+    "suite_id": 618,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 631,
+    "name": "comment fragments cannot donate message IDs to inherited ancestry",
+    "suite_id": 618,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 632,
+    "name": "adjacent IDs in one reference token cannot supply ancestry",
+    "suite_id": 618,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 633,
+    "name": "an absent References chain falls back to one canonical In-Reply-To",
+    "suite_id": 618,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 634,
+    "name": "nonempty malformed References never activate In-Reply-To fallback",
+    "suite_id": 618,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 635,
+    "name": "a valid References chain takes precedence over In-Reply-To",
+    "suite_id": 618,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 636,
+    "name": "ambiguous or injected In-Reply-To is never copied as fallback",
+    "suite_id": 618,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 637,
+    "name": "a fallback equal to the parent does not duplicate the parent",
+    "suite_id": 618,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 638,
+    "name": "long chains retain the root and newest fitting contiguous tail",
+    "suite_id": 618,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 639,
+    "name": "exactly 900 reference bytes fit and an older overflow ID is dropped",
+    "suite_id": 618,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 640,
+    "name": "254-byte identifiers survive MIME without being split or rewritten",
+    "suite_id": 618,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 641,
+    "name": "a 1024-entry source keeps bounded root and tail ancestry",
+    "suite_id": 618,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 642,
+    "name": "an oversized source chain preserves only the valid parent",
+    "suite_id": 618,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 643,
+    "name": "a reply thread is a stable snapshot of source ancestry",
+    "suite_id": 618,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 644,
+    "name": "thread headers survive MIME serialization with bounded ASCII lines",
+    "suite_id": 618,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 645,
+    "name": "folded source ancestry survives the decode-reply-encode boundary",
+    "suite_id": 618,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 620,
+    "name": "mark-read late failure preserves a replacement pending request",
+    "suite_id": 583,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 648,
+    "name": "manual setup connects with secure settings and disconnects",
+    "suite_id": 583,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 649,
+    "name": "an untouched form loads the saved account and TLS choice",
+    "suite_id": 583,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 650,
+    "name": "a delayed saved account never overwrites edited fields",
+    "suite_id": 583,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 653,
+    "name": "a delayed saved account cannot enter a started session",
+    "suite_id": 583,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 654,
+    "name": "a failed keychain save keeps Mail connected with fixed feedback",
+    "suite_id": 583,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 655,
+    "name": "a failed keychain deletion remains visible and can be retried",
+    "suite_id": 583,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 652,
+    "name": "browser Mail explains account availability and opens saved bytes",
+    "suite_id": 646,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 656,
+    "name": "remember-off reports a failed deletion without losing Mail",
+    "suite_id": 583,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 659,
+    "name": "an old keychain save cannot publish into a replacement session",
+    "suite_id": 583,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 660,
+    "name": "late keychain failure preserves the SMTP acceptance receipt",
+    "suite_id": 583,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 661,
+    "name": "manual STARTTLS is selected before the only connection attempt",
+    "suite_id": 583,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 662,
+    "name": "mailbox.org uses verified STARTTLS settings without discovery",
+    "suite_id": 583,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 663,
+    "name": "native credential preflight rejects before authentication",
+    "suite_id": 583,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 664,
+    "name": "closing during connect ignores its late success and closes the client",
+    "suite_id": 583,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 667,
+    "name": "closing during connect ignores its late error and closes the client",
+    "suite_id": 583,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 668,
+    "name": "connect failure releases the candidate and allows a fresh connection",
+    "suite_id": 583,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 669,
+    "name": "closing during list ignores its late success and closes the client",
+    "suite_id": 583,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 670,
+    "name": "closing during list ignores its late error and closes the client",
+    "suite_id": 583,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 666,
+    "name": "Mail opens saved bytes and disposes replaced controllers",
+    "suite_id": 657,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 671,
+    "name": "list failure releases the candidate and allows a fresh connection",
+    "suite_id": 583,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 673,
+    "name": "closing during fetch ignores its late success and closes the client",
+    "suite_id": 583,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 672,
+    "name": "saved EML keeps exact octets across modes and account navigation",
+    "suite_id": 657,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 674,
+    "name": "closing during fetch ignores its late error and closes the client",
+    "suite_id": 583,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 675,
+    "name": "picker failure preserves the reader with localized feedback",
+    "suite_id": 657,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 676,
+    "name": "fetch failure releases the candidate and allows a fresh connection",
+    "suite_id": 583,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 677,
+    "name": "picker failure after closing saved Mail is ignored",
+    "suite_id": 657,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 678,
+    "name": "an account without a selectable mailbox is closed and reports its error",
+    "suite_id": 583,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 679,
+    "name": "file read failure preserves the reader with localized feedback",
+    "suite_id": 657,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 680,
+    "name": "a nonselectable INBOX falls back to a selectable mailbox",
+    "suite_id": 583,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 681,
+    "name": "file read failure after closing saved Mail is ignored",
+    "suite_id": 657,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 683,
+    "name": "a delayed saved-message path read replaces the chosen mode",
+    "suite_id": 657,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 682,
+    "name": "opening messages replaces and disposes readers; a failed read preserves the current message",
+    "suite_id": 583,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 684,
+    "name": "a late picker path after closing saved Mail is never read",
+    "suite_id": 657,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 685,
+    "name": "a message read success cannot alter a reconnected session",
+    "suite_id": 583,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 686,
+    "name": "saved reader toolbar fits a narrow enlarged-text window",
+    "suite_id": 657,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 688,
+    "name": "cancelling the picker preserves the current Mail message",
+    "suite_id": 657,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 687,
+    "name": "a message read error cannot alter a reconnected session",
+    "suite_id": 583,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 689,
+    "name": "an empty picker result preserves the current Mail message",
+    "suite_id": 657,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 690,
+    "name": "disconnect during mailbox select ignores a late success",
+    "suite_id": 583,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 691,
+    "name": "a picker result after closing Mail is discarded",
+    "suite_id": 657,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 693,
+    "name": "a file read finishing after closing Mail is discarded",
+    "suite_id": 657,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 692,
+    "name": "disconnect during mailbox select ignores a late error",
+    "suite_id": 583,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 695,
+    "name": "disconnect during mailbox fetch ignores a late success",
+    "suite_id": 583,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 696,
+    "name": "disconnect during mailbox fetch ignores a late error",
+    "suite_id": 583,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 697,
+    "name": "mailbox failure does not leave another folder’s messages visible",
+    "suite_id": 583,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 698,
+    "name": "SMTP recipient groups stay in the envelope and survive acknowledged retry",
+    "suite_id": 583,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 699,
+    "name": "composing sends the draft and reports success or failure",
+    "suite_id": 583,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 694,
+    "name": "Studio cycles languages and Mail preserves its active sheet",
+    "suite_id": 657,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 700,
+    "name": "confirmed submission with failed cleanup clears draft in en",
+    "suite_id": 583,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 701,
+    "name": "confirmed submission with failed cleanup clears draft in de",
+    "suite_id": 583,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 702,
+    "name": "confirmed submission with failed cleanup clears draft in ar",
+    "suite_id": 583,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 703,
+    "name": "foreign client outcome cannot confirm the active submission",
+    "suite_id": 583,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 704,
+    "name": "disconnect during send ignores its late success",
+    "suite_id": 583,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 705,
+    "name": "disconnect during send ignores its late error",
+    "suite_id": 583,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 706,
+    "name": "disconnect during send ignores its late accepted follow-up error",
+    "suite_id": 583,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 707,
+    "name": "search tolerates messages with an empty sender list",
+    "suite_id": 583,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 708,
+    "name": "disconnecting catches asynchronous cleanup errors",
+    "suite_id": 583,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 709,
+    "name": "closing catches asynchronous cleanup errors",
+    "suite_id": 583,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 710,
+    "name": "German Mail retains localized account controls and reading prompt",
+    "suite_id": 583,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 711,
+    "name": "narrow inbox supports folders, reading and back navigation",
+    "suite_id": 583,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 712,
+    "name": "saved-message navigation retains the connected account",
+    "suite_id": 583,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 713,
+    "name": "IMAP archive action stores the loaded original with Bcc and attachments without touching the mailbox",
+    "suite_id": 583,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 714,
+    "name": "disconnecting IMAP cancels a pending archive and suppresses its late feedback",
+    "suite_id": 583,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 715,
+    "name": "IMAP folder archiving requires an explicit loader capability",
+    "suite_id": 583,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 716,
+    "name": "IMAP selected-folder action freezes source and folder without changing the mailbox",
+    "suite_id": 583,
+    "result": "success",
+    "skipped": false
+  }
+]

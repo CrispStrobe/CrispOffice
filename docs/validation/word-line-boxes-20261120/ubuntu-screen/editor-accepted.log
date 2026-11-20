@@ -1,0 +1,69 @@
+00:00 +0: loading /mnt/volume1/quds-word-layout-20261120/source/packages/quds_office_editor/test/word_selection_paint_test.dart
+00:00 +0: /mnt/volume1/quds-word-layout-20261120/source/packages/quds_office_editor/test/word_selection_paint_test.dart: (setUpAll)
+00:00 +0: /mnt/volume1/quds-word-layout-20261120/source/packages/quds_office_editor/test/word_run_metrics_test.dart: (setUpAll)
+00:00 +1: /mnt/volume1/quds-word-layout-20261120/source/packages/quds_office_editor/test/word_run_metrics_test.dart: (setUpAll)
+00:00 +2: /mnt/volume1/quds-word-layout-20261120/source/packages/quds_office_editor/test/word_run_metrics_test.dart: (setUpAll)
+00:00 +3: /mnt/volume1/quds-word-layout-20261120/source/packages/quds_office_editor/test/word_run_metrics_test.dart: (setUpAll)
+00:00 +4: /mnt/volume1/quds-word-layout-20261120/source/packages/quds_office_editor/test/word_run_metrics_test.dart: (setUpAll)
+00:00 +5: /mnt/volume1/quds-word-layout-20261120/source/packages/quds_office_editor/test/word_run_metrics_test.dart: (setUpAll)
+00:00 +6: /mnt/volume1/quds-word-layout-20261120/source/packages/quds_office_editor/test/word_run_metrics_test.dart: (setUpAll)
+00:00 +7: /mnt/volume1/quds-word-layout-20261120/source/packages/quds_office_editor/test/word_run_metrics_test.dart: (setUpAll)
+00:00 +7: /mnt/volume1/quds-word-layout-20261120/source/packages/quds_office_editor/test/word_selection_paint_test.dart: whole cells are filled; a selection inside one cell is not
+00:00 +8: /mnt/volume1/quds-word-layout-20261120/source/packages/quds_office_editor/test/word_selection_paint_test.dart: whole cells are filled; a selection inside one cell is not
+00:00 +9: /mnt/volume1/quds-word-layout-20261120/source/packages/quds_office_editor/test/word_selection_paint_test.dart: whole cells are filled; a selection inside one cell is not
+00:00 +10: /mnt/volume1/quds-word-layout-20261120/source/packages/quds_office_editor/test/word_selection_paint_test.dart: whole cells are filled; a selection inside one cell is not
+00:00 +11: /mnt/volume1/quds-word-layout-20261120/source/packages/quds_office_editor/test/word_selection_paint_test.dart: whole cells are filled; a selection inside one cell is not
+00:00 +12: /mnt/volume1/quds-word-layout-20261120/source/packages/quds_office_editor/test/word_selection_paint_test.dart: whole cells are filled; a selection inside one cell is not
+00:00 +13: /mnt/volume1/quds-word-layout-20261120/source/packages/quds_office_editor/test/word_selection_paint_test.dart: whole cells are filled; a selection inside one cell is not
+00:00 +14: /mnt/volume1/quds-word-layout-20261120/source/packages/quds_office_editor/test/word_selection_paint_test.dart: whole cells are filled; a selection inside one cell is not
+00:00 +15: /mnt/volume1/quds-word-layout-20261120/source/packages/quds_office_editor/test/word_selection_paint_test.dart: whole cells are filled; a selection inside one cell is not
+00:00 +16: /mnt/volume1/quds-word-layout-20261120/source/packages/quds_office_editor/test/word_selection_paint_test.dart: whole cells are filled; a selection inside one cell is not
+00:00 +17: /mnt/volume1/quds-word-layout-20261120/source/packages/quds_office_editor/test/word_selection_paint_test.dart: whole cells are filled; a selection inside one cell is not
+00:00 +18: /mnt/volume1/quds-word-layout-20261120/source/packages/quds_office_editor/test/word_selection_paint_test.dart: whole cells are filled; a selection inside one cell is not
+00:00 +19: /mnt/volume1/quds-word-layout-20261120/source/packages/quds_office_editor/test/word_selection_paint_test.dart: whole cells are filled; a selection inside one cell is not
+00:00 +20: /mnt/volume1/quds-word-layout-20261120/source/packages/quds_office_editor/test/word_selection_paint_test.dart: whole cells are filled; a selection inside one cell is not
+00:00 +21: /mnt/volume1/quds-word-layout-20261120/source/packages/quds_office_editor/test/word_selection_paint_test.dart: whole cells are filled; a selection inside one cell is not
+00:01 +22: /mnt/volume1/quds-word-layout-20261120/source/packages/quds_office_editor/test/word_selection_paint_test.dart: Word-like selection golden (variant: TargetPlatform.macOS)
+00:01 +23: /mnt/volume1/quds-word-layout-20261120/source/packages/quds_office_editor/test/word_selection_paint_test.dart: Word-like selection golden (Windows grey) (variant: TargetPlatform.windows)
+00:01 +24: /mnt/volume1/quds-word-layout-20261120/source/packages/quds_office_editor/test/word_selection_paint_test.dart: (tearDownAll)
+00:02 +24: /mnt/volume1/quds-word-layout-20261120/source/packages/quds_office_editor/test/word_underline_paint_test.dart: (setUpAll)
+00:02 +24: /mnt/volume1/quds-word-layout-20261120/source/packages/quds_office_editor/test/word_underline_paint_test.dart: underline gaps preserve glyph ink and geometry at scale 1.0
+00:02 +25: /mnt/volume1/quds-word-layout-20261120/source/packages/quds_office_editor/test/word_underline_paint_test.dart: underline gaps preserve glyph ink and geometry at scale 2.0
+00:02 +26: /mnt/volume1/quds-word-layout-20261120/source/packages/quds_office_editor/test/word_underline_paint_test.dart: (tearDownAll)
+00:03 +26: /mnt/volume1/quds-word-layout-20261120/source/packages/quds_office_editor/test/paint_run_text_unicode_test.dart: (setUpAll)
+00:03 +26: /mnt/volume1/quds-word-layout-20261120/source/packages/quds_office_editor/test/paint_run_text_unicode_test.dart: logical slices retain whole Unicode graphemes at every UTF-16 unit
+00:03 +27: /mnt/volume1/quds-word-layout-20261120/source/packages/quds_office_editor/test/paint_run_text_unicode_test.dart: logical slices preserve the span between selected clusters
+00:03 +28: /mnt/volume1/quds-word-layout-20261120/source/packages/quds_office_editor/test/paint_run_text_unicode_test.dart: paint runs preserve supplementary scalars in logical and visual order
+00:03 +29: /mnt/volume1/quds-word-layout-20261120/source/packages/quds_office_editor/test/paint_run_text_unicode_test.dart: sparse paint runs copy complete scalars without unrelated text
+00:03 +30: /mnt/volume1/quds-word-layout-20261120/source/packages/quds_office_editor/test/paint_run_text_unicode_test.dart: paint runs retain long gaps made only of omitted source controls
+00:03 +31: /mnt/volume1/quds-word-layout-20261120/source/packages/quds_office_editor/test/paint_run_text_unicode_test.dart: short sparse runs do not borrow visible text or styled marks
+00:03 +32: /mnt/volume1/quds-word-layout-20261120/source/packages/quds_office_editor/test/paint_run_text_unicode_test.dart: Latin ZWSP retain source offsets through paint and hit testing
+00:03 +33: /mnt/volume1/quds-word-layout-20261120/source/packages/quds_office_editor/test/paint_run_text_unicode_test.dart: Arabic ZWNJ retain source offsets through paint and hit testing
+00:03 +34: /mnt/volume1/quds-word-layout-20261120/source/packages/quds_office_editor/test/paint_run_text_unicode_test.dart: paint runs normalize offsets within valid surrogate pairs
+00:03 +35: /mnt/volume1/quds-word-layout-20261120/source/packages/quds_office_editor/test/paint_run_text_unicode_test.dart: a paint run does not borrow a following differently styled mark
+00:03 +36: /mnt/volume1/quds-word-layout-20261120/source/packages/quds_office_editor/test/paint_run_text_unicode_test.dart: nested embeddings with equal direction keep separate paint runs
+00:03 +37: /mnt/volume1/quds-word-layout-20261120/source/packages/quds_office_editor/test/paint_run_text_unicode_test.dart: fitting and hit testing retain the ends of a supplementary run
+00:03 +38: /mnt/volume1/quds-word-layout-20261120/source/packages/quds_office_editor/test/paint_run_text_unicode_test.dart: (tearDownAll)
+00:04 +38: /mnt/volume1/quds-word-layout-20261120/source/packages/quds_office_editor/test/word_hyphenation_paint_test.dart: (setUpAll)
+00:04 +38: /mnt/volume1/quds-word-layout-20261120/source/packages/quds_office_editor/test/word_hyphenation_paint_test.dart: automatic break paints a hyphen and owns only its source boundary
+00:05 +39: /mnt/volume1/quds-word-layout-20261120/source/packages/quds_office_editor/test/word_hyphenation_paint_test.dart: selected soft hyphen paints visibly with its original UTF-16 span
+00:05 +40: /mnt/volume1/quds-word-layout-20261120/source/packages/quds_office_editor/test/word_hyphenation_paint_test.dart: selecting the next source span does not select an automatic hyphen
+00:05 +41: /mnt/volume1/quds-word-layout-20261120/source/packages/quds_office_editor/test/word_hyphenation_paint_test.dart: unselected soft hyphen remains invisible without shifting caret
+00:05 +42: /mnt/volume1/quds-word-layout-20261120/source/packages/quds_office_editor/test/word_hyphenation_paint_test.dart: surrogate pairs and combining marks next to a break stay complete
+00:05 +43: /mnt/volume1/quds-word-layout-20261120/source/packages/quds_office_editor/test/word_hyphenation_paint_test.dart: RTL discretionary breaks have no fabricated source unit
+00:05 +44: /mnt/volume1/quds-word-layout-20261120/source/packages/quds_office_editor/test/word_hyphenation_paint_test.dart: manual and automatic breaks keep distinct source offsets together
+00:05 +45: /mnt/volume1/quds-word-layout-20261120/source/packages/quds_office_editor/test/word_hyphenation_paint_test.dart: RTL explicit break hit testing follows the source direction
+00:05 +46: /mnt/volume1/quds-word-layout-20261120/source/packages/quds_office_editor/test/word_hyphenation_paint_test.dart: Word layout renders German automatic breaks from unchanged text
+00:05 +47: /mnt/volume1/quds-word-layout-20261120/source/packages/quds_office_editor/test/word_hyphenation_paint_test.dart: Word layout renders German automatic breaks from unchanged text
+00:05 +48: /mnt/volume1/quds-word-layout-20261120/source/packages/quds_office_editor/test/word_hyphenation_paint_test.dart: (tearDownAll)
+00:07 +48: /mnt/volume1/quds-word-layout-20261120/source/packages/quds_office_editor/test/host_fonts_test.dart: Word pagination uses actual registered face and style metrics
+00:07 +49: /mnt/volume1/quds-word-layout-20261120/source/packages/quds_office_editor/test/paint_font_fallback_test.dart: (setUpAll)
+00:07 +50: /mnt/volume1/quds-word-layout-20261120/source/packages/quds_office_editor/test/paint_font_fallback_test.dart: (setUpAll)
+00:07 +51: /mnt/volume1/quds-word-layout-20261120/source/packages/quds_office_editor/test/paint_font_fallback_test.dart: (setUpAll)
+00:07 +52: /mnt/volume1/quds-word-layout-20261120/source/packages/quds_office_editor/test/paint_font_fallback_test.dart: (setUpAll)
+00:07 +53: /mnt/volume1/quds-word-layout-20261120/source/packages/quds_office_editor/test/paint_font_fallback_test.dart: (setUpAll)
+00:07 +54: /mnt/volume1/quds-word-layout-20261120/source/packages/quds_office_editor/test/paint_font_fallback_test.dart: (setUpAll)
+00:07 +54: /mnt/volume1/quds-word-layout-20261120/source/packages/quds_office_editor/test/paint_font_fallback_test.dart: unloaded document fonts use explicit bundled paint fallbacks
+00:07 +55: /mnt/volume1/quds-word-layout-20261120/source/packages/quds_office_editor/test/paint_font_fallback_test.dart: registered document faces keep their requested names
+00:07 +56: /mnt/volume1/quds-word-layout-20261120/source/packages/quds_office_editor/test/paint_font_fallback_test.dart: (tearDownAll)
+00:07 +56: All tests passed!

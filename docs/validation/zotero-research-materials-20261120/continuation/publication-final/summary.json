@@ -1,0 +1,247 @@
+{
+  "accepted_cohorts": [
+    {
+      "files": 14,
+      "name": "engine-rendering",
+      "passed": 228,
+      "primary_failed_guards": [],
+      "primary_runner_status": "passed",
+      "receipt": {
+        "bytes": 19624,
+        "git_blob_sha1": "5a71f03a1ff99e91617dedaa2b1e0b08fbe99bae",
+        "sha256": "b9beba511cf43c00200c873833d38c61ff8cce68f8eeea6939049d39feecee26"
+      },
+      "source_commit": "a45ee3bf40dbb7e64a04f879fd6d574db7cb60b1"
+    },
+    {
+      "files": 10,
+      "name": "editor-rendering",
+      "passed": 109,
+      "primary_failed_guards": [],
+      "primary_runner_status": "passed",
+      "receipt": {
+        "bytes": 17976,
+        "git_blob_sha1": "5961fa90232004d377e8441d6b043ac17b9669e1",
+        "sha256": "e01bdd7d521a3e660ff3a0ba5cf45c5138907aab8c0fba57687f4c17df098dae"
+      },
+      "source_commit": "a45ee3bf40dbb7e64a04f879fd6d574db7cb60b1"
+    },
+    {
+      "files": 3,
+      "name": "web-persistence-vm",
+      "passed": 19,
+      "primary_failed_guards": [],
+      "primary_runner_status": "passed",
+      "receipt": {
+        "bytes": 13941,
+        "git_blob_sha1": "e96711746648474259785189a343740d07829dd0",
+        "sha256": "856dba48f1c4e8731f1f5c2e2afa9693f35e694bd4923a1a6270aa47a727ddb9"
+      },
+      "source_commit": "a45ee3bf40dbb7e64a04f879fd6d574db7cb60b1"
+    }
+  ],
+  "accepted_failed_or_skipped_application_cases": 0,
+  "accepted_primary_guard_exceptions": [],
+  "author_browser_evidence": {
+    "all_nine_incoming_web_paths_exact_author_blobs": true,
+    "author_source": "fa46be92a1abb78914fb7dd7fb574bd7f50ade18",
+    "independently_passed_here": false,
+    "reported_browser_cases": 3,
+    "source_review_record": {
+      "bytes": 7416,
+      "git_blob_sha1": "3cd71983824e4fdc12ec13d8e6bff2922313de75",
+      "sha256": "8035892014bb2ef4de947cd847dd92e806f5c8f3d06985df126b915f5a652ad2"
+    }
+  },
+  "browser_acceptance_met": false,
+  "browser_attempt": {
+    "all_recorded_executable_inputs_unchanged": true,
+    "application_cases_executed": 0,
+    "application_passes": 0,
+    "attempted_test_files": 1,
+    "cause": "Chromium process-singleton socket creation was denied with Operation not permitted before any application test ran.",
+    "failed_guards": [
+      "exact_three_application_passes",
+      "exact_three_expected_case_names",
+      "final_event_success",
+      "no_failures_skips_or_errors"
+    ],
+    "folder_name_is_not_acceptance_status": "The existing accepted-web-chrome directory name is retained; receipt.status remains failed.",
+    "launch_count_interpretation": "Initial launch plus3 retries; SDK text says after3tries but the pinned loop starts retry=0.",
+    "loading_errors": 1,
+    "native_or_browser_application_acceptance_claimed": false,
+    "original_failed_artifacts_preserved": true,
+    "pinned_browser_launch_invocations": 4,
+    "primary_receipt_status": "failed",
+    "receipt": {
+      "bytes": 20055,
+      "git_blob_sha1": "7946d5d6840ffb8419d1341d2a91f8cee1e58b4a",
+      "sha256": "7e535d0c8003e52c8c2ce5215b74fcbd1f67547d832c4fc6889de78ad6ef0ff1"
+    },
+    "sdk_max_retries": 3,
+    "status": "environment_blocked",
+    "verified_inputs": {
+      "chromium": 392,
+      "dependency_files": 4502,
+      "host_fonts": 0,
+      "qualification_tools": 8,
+      "runtime": 12,
+      "source": 4016,
+      "web_sdk_cache": 1975,
+      "workspace": 2
+    }
+  },
+  "dependency_reuse": {
+    "explanation": "The unchanged saved graph already reaches web through Studio\u2192file_picker\u2192web; adding the new direct edge changes none of its152 dependency closures.",
+    "new_direct_edge_recorded_in_saved_graph": false,
+    "receipt": {
+      "bytes": 4722,
+      "git_blob_sha1": "237309a855123577b9d3f649bd073edd9745ea34",
+      "sha256": "a54e8e6b2a675c8eaa77630fddf88afe4dd32930e30aa71fd039bbffc4c7371a"
+    },
+    "saved_graph_reused_without_regeneration": true,
+    "status": "verified",
+    "unchanged_reachable_package_closures": 152,
+    "unchanged_web_package_files": 192
+  },
+  "focused_distinct_passed_cases": 356,
+  "focused_distinct_test_files": 27,
+  "focused_successful_application_executions": 356,
+  "independent_audit": {
+    "path": "audit.json",
+    "record": {
+      "bytes": 16752,
+      "git_blob_sha1": "bee104879557a0ae4d4bc015de3d52010472a8b5",
+      "sha256": "034908ad4ff84658ea3f72434b5d85cc87467d19180d4f848664dac214c95991"
+    }
+  },
+  "limits": [
+    "The356 accepted cases are a separate final-source population. Earlier2386/157,3201/129 and2886 historical totals retain their own sources and overlap; they are not summed.",
+    "The unchanged Chrome attempt is failed: one loader error, zero application cases, no browser application acceptance. Source, dependency, SDK, Chromium and tool pins all remained unchanged.",
+    "The110-target static preflight remains failed for14 infos and one formatting difference in two preserved historical evidence harnesses. All108 active changed package/third-party Dart targets pass their own strict gate.",
+    "Earlier core input equality is not claimed for the final tree: the separate source audit identifies eight changed recorded inputs, four new inputs, native conditional boundaries and bounded slide declaration changes.",
+    "Author-reported Chrome cases are attributed separately. No native Word/macOS, live Zotero/Mail account or successful real Wasm-model activation is established by this local evidence."
+  ],
+  "overlap_with_prior_core": {
+    "combined_cross_source_total_claimed": false,
+    "new_case_identities_relative_to_core": 22,
+    "prior_source": "214c4ed80bef0cb871f74e90c506d508679d3d6e",
+    "repeated_case_identities": 334
+  },
+  "qualified_source": "a45ee3bf40dbb7e64a04f879fd6d574db7cb60b1",
+  "source_applicability": {
+    "path": "source-applicability.json",
+    "record": {
+      "bytes": 106899,
+      "git_blob_sha1": "e8b9a698be6db4426c262de27a94102bc1681294",
+      "sha256": "e5e18fa87f64fd38b2303b85c3eeb7061b237144ef851e0095bff846bbb98889"
+    }
+  },
+  "source_tree": "abb783deb0dcf32f5cd4a985818f040da6ac6229",
+  "static": {
+    "active_product_guard_exceptions": [],
+    "active_source": {
+      "analysis_log": {
+        "bytes": 3119,
+        "git_blob_sha1": "0d043feca1c99877bd218e00aad957ff0443b5ba",
+        "sha256": "f2a88e02e34eadbfb6258f31eae8cba9fea066f571e6474cd65499a0a032b73a"
+      },
+      "format_log": {
+        "bytes": 49,
+        "git_blob_sha1": "4ecb19c089afafb587ab13e0485c616e5a2b8f6b",
+        "sha256": "d1a674033f074eed7ad888d8a5fdfb5cdb659762457a3b375a8aad8648ed5f66"
+      },
+      "receipt": {
+        "bytes": 93967,
+        "git_blob_sha1": "08c6ea9e8df3e0fa556ea874d47defba4b44b59b",
+        "sha256": "a874706140acc20b5ee9a8792b00b82b5497546a3a0a5c7161e95ac5dd0de663"
+      },
+      "status": "passed",
+      "targets": 108
+    },
+    "all_110_passed": false,
+    "excluded_archive_inputs": {
+      "docs/validation/mail-attachments-20261120/arabic-composer/capture_mail_arabic_test.dart": {
+        "artifact_index_entry": {
+          "bytes": 4064,
+          "git_blob_sha1": "2537c3b211914cd1895bae98bc40dfdb61f2dc8c",
+          "path": "arabic-composer/capture_mail_arabic_test.dart",
+          "sha256": "f1a7bbe3b9cd6bd8cd5261f2401171edb7afd092068ca44df91d8ffc9f73b31c"
+        },
+        "bytes": 4064,
+        "context_receipt": "docs/validation/mail-attachments-20261120/arabic-composer/receipt.json",
+        "context_receipt_sha256": "47b3311d368df0b2e55b40d80229d933d2c279421f5a3572d10ddb2c7345348a",
+        "git_blob_sha1": "2537c3b211914cd1895bae98bc40dfdb61f2dc8c",
+        "incoming_mail_head": "177f29d3f9450a58f41189b462b0814aad37e45c",
+        "original_command": [
+          "/workspace/scratch/75dc9d25dfaf/runtime/flutter/bin/flutter",
+          "test",
+          "--no-pub",
+          "--reporter",
+          "json",
+          "--concurrency",
+          "1",
+          "/workspace/scratch/75dc9d25dfaf/final-validation/capture_mail_arabic_test.dart"
+        ],
+        "original_cwd": "/workspace/scratch/75dc9d25dfaf/quds_office_suite/packages/quds_office_editor/example",
+        "original_source_head": "58c6962ec3ea82811bfcafec42981385f216f892",
+        "reason": "Raw historical Arabic-composer capture harness. Its author receipt binds this exact source hash to a separate scratch invocation from the Studio package; it is retained as evidence, not current package code.",
+        "sha256": "f1a7bbe3b9cd6bd8cd5261f2401171edb7afd092068ca44df91d8ffc9f73b31c"
+      },
+      "docs/validation/mail-attachments-20261120/attachment-core/attachment_mime_probe.dart": {
+        "artifact_index_entry": {
+          "bytes": 5182,
+          "git_blob_sha1": "cf7e5bce9a9f67c3fa93d0cb45e575d77a8f5450",
+          "path": "attachment-core/attachment_mime_probe.dart",
+          "sha256": "35910df713469a7d37e467ce809b4d386d969e68214d54118f0944bbd33c7c1c"
+        },
+        "bytes": 5182,
+        "context_receipt": "docs/validation/mail-attachments-20261120/attachment-core/receipt.json",
+        "context_receipt_sha256": "18743327c9298c4d2d791b19faf85480663e29e0eb5461eb806e74fa751fff41",
+        "git_blob_sha1": "cf7e5bce9a9f67c3fa93d0cb45e575d77a8f5450",
+        "incoming_mail_head": "177f29d3f9450a58f41189b462b0814aad37e45c",
+        "original_command": [
+          "/workspace/scratch/75dc9d25dfaf/runtime/bin/dart",
+          "--packages=/workspace/scratch/75dc9d25dfaf/quds_office_suite/.dart_tool/package_config.json",
+          "/workspace/scratch/75dc9d25dfaf/mail-probe/attachment_mime_probe.dart",
+          "/workspace/scratch/75dc9d25dfaf/mail-probe/run-01/fixtures/fixtures.json",
+          "/workspace/scratch/75dc9d25dfaf/mail-probe/run-01"
+        ],
+        "original_cwd": null,
+        "original_source_head": null,
+        "reason": "Raw historical MIME probe. Its author receipt runs it from a separate scratch directory with an explicit package configuration. Reformatting or editing it would alter the indexed original execution input.",
+        "sha256": "35910df713469a7d37e467ce809b4d386d969e68214d54118f0944bbd33c7c1c"
+      }
+    },
+    "full_changed_path_preflight": {
+      "analysis_log": {
+        "bytes": 7255,
+        "git_blob_sha1": "5577f428c88fd735aaba6759548f7c46a8703b10",
+        "sha256": "37763be9be85e4ec90cf73752613100f2169e0c1c72eb7ec3ce754c7456198e4"
+      },
+      "diagnostic_paths": [
+        "docs/validation/mail-attachments-20261120/arabic-composer/capture_mail_arabic_test.dart",
+        "docs/validation/mail-attachments-20261120/attachment-core/attachment_mime_probe.dart"
+      ],
+      "format_log": {
+        "bytes": 142,
+        "git_blob_sha1": "a57ae7b37fe399c8028ff571d94eed9522d9f92d",
+        "sha256": "73d5a74a6ae636adfc8bdfaaa3eca05704f85f7702ca3436de79a7ab80dfd31c"
+      },
+      "infos": 14,
+      "inputs_unchanged": true,
+      "original_receipt_modified": false,
+      "receipt": {
+        "bytes": 57620,
+        "git_blob_sha1": "998cdaa6ce37f92c5cac1b4da220560a7011605a",
+        "sha256": "5b9722c9d4a77f737f11a1479c2f35b7ba5987adda21b90a41406c73771fe775"
+      },
+      "status": "failed",
+      "targets": 110,
+      "would_format_paths": [
+        "docs/validation/mail-attachments-20261120/attachment-core/attachment_mime_probe.dart"
+      ]
+    }
+  },
+  "status": "partial_browser_environment_blocked"
+}

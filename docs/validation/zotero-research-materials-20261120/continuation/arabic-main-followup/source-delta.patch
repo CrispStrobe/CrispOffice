@@ -1,0 +1,3450 @@
+diff --git a/docs/roadmaps/arabic-proofing.md b/docs/roadmaps/arabic-proofing.md
+index f96c6ce8c4792539c479fbf693395e62e2b080b1..9c0ebfe98262b6ad3e9c10f5c45ee74983e71a57 100644
+--- a/docs/roadmaps/arabic-proofing.md
++++ b/docs/roadmaps/arabic-proofing.md
+@@ -545,7 +545,9 @@ below. No Arabic resource is downloaded by default.
+    analyses, and the noprob fallback order is much worse: top-1 UPOS+lemma
+    against PUD gold falls from 73.0% to 47.0% (CrispEmbed
+    `docs/validation/camel-morph-msa-20261119/ranking-full-vs-noprob.json`).
+-   A top-1 analysis is therefore not a usable signal. `analyzeWords` returns
++   A top-1 analysis is therefore not a usable signal (superseded on
++   20 November 2026 by the context model, see
++   [Context disambiguation](#context-disambiguation-licence-survey-and-model-20-november-2026)). `analyzeWords` returns
+    the full unordered set, and rules must reason over all analyses. A rule
+    reports only when **no** analysis of a word is compatible with the
+    pattern, and a word without analyses (unknown, foreign name) is silent.
+@@ -649,6 +651,115 @@ below. No Arabic resource is downloaded by default.
+      weeks plus annotation cost; dependency parsing noticeably weaker.
+    Compute is not the bottleneck; licence-clean training data is.
+ 
++## Context disambiguation: licence survey and model (20 November 2026)
++
++Goal: rank Camel Morph analyses in context so the T2 rules can rely on a
++clearly leading reading, without LDC data and with commercial use allowed for
++the downloaded model.
++
++### Licence survey
++
++Checked against each resource's own licence page; "unverified" where the page
++could not be reached. Research survey, not legal advice.
++
++| Resource | Licence | Use here |
++|---|---|---|
++| [Arabic Wikipedia](https://foundation.wikimedia.org/wiki/Policy:Terms_of_Use) (dump `20231101.ar` via [HF wikimedia/wikipedia](https://huggingface.co/datasets/wikimedia/wikipedia)) | [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) + GFDL | **Training text** (raw, no annotation). Model licensed CC BY-SA 4.0 with attribution. |
++| [Arabic Wikinews](https://ar.wikinews.org/wiki/%D9%88%D9%8A%D9%83%D9%8A_%D8%A7%D9%84%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1:%D8%AD%D9%82%D9%88%D9%82_%D8%A7%D9%84%D9%86%D8%B3%D8%AE) | CC BY 2.5 (before Aug 2024), then CC BY-SA 4.0 | Usable (news register); not needed yet. |
++| [Hindawi Arabic E-Book Corpus](https://spraakbanken.gu.se/en/resources/arabic-ebooks) (Gothenburg) | [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) | Usable (81.5M words, varied genres); candidate for a later model. |
++| [Global Voices](https://globalvoices.org/about/global-voices-attribution-policy/) (OPUS) | CC BY 3.0 | Usable, small. |
++| [UN Parallel Corpus v1.0](https://opus.nlpl.eu/legacy/UNPC.php) | Custom: acknowledge the UN, no other restriction | Usable; very formal register. |
++| [Tatoeba](https://tatoeba.org/en/terms_of_use) | CC BY 2.0 FR / CC0 | Usable, small. |
++| [FineWeb-2 `arb_Arab`](https://huggingface.co/datasets/HuggingFaceFW/fineweb-2) | ODC-By 1.0 + Common Crawl terms | Possible, but the crawled text carries no licence; not used. |
++| [Camel Morph MSA v1.0](https://github.com/CAMeL-Lab/camel_morph) | CC BY 4.0 | Analyses and lexemes the model ranks (already shipped data). |
++| [UD Arabic-PUD](https://github.com/UniversalDependencies/UD_Arabic-PUD) | [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/) | **Evaluation only** (1,000 sentences). |
++| [UD Arabic-PADT](https://github.com/UniversalDependencies/UD_Arabic-PADT) | CC BY-NC-SA 3.0 | Excluded (non-commercial). |
++| [UD Arabic-NYUAD](https://github.com/UniversalDependencies/UD_Arabic-NYUAD), [Penn Arabic Treebank](https://catalog.ldc.upenn.edu/LDC2010T13) | LDC licence (text) | Excluded. |
++| [OSIAN](https://aclanthology.org/W19-4619), [KSUCCA](https://sourceforge.net/projects/ksucca-corpus/), [OpenITI](https://zenodo.org/records/10007820), TED2020, OPUS Tanzil, Hindawi HF scrape | CC BY-NC / NC-SA / NC-ND | Excluded. |
++| [Tashkeela](https://sourceforge.net/projects/tashkeela/), [Quranic Arabic Corpus](https://corpus.quran.com/license.jsp), [Arramooz](https://github.com/linuxscout/arramooz), camel_tools `calima-msa-r13` | GPL (QAC also forbids changes) | Excluded (avoid GPL data). |
++| Abu El-Khair / Arabic Billion Words, News-Commentary, Kalimat, OSCAR, CulturaX, Leipzig | No licence for the text, or unverified | Excluded. |
++| Camel Treebank, SAMER, Qabas, AlKhalil | Research-only or unverified | Excluded. |
++
++### Approach and result
++
++No licence-clean annotated Arabic corpus allows training a tagger, so the
++model is unsupervised: a bigram hidden Markov model whose states are the
++analyzer's own analyses grouped by tag (part of speech, proclitics, `enc0`,
++aspect, person, number), lemma and part of speech, trained by EM on 12M tokens
++of Arabic Wikipedia (CrispEmbed `tools/arabic_morph/disambig_train.py`; the
++1,600 Wikipedia evaluation articles below are excluded). Variants were chosen
++on PUD sentences 0–499 only.
++
++Top-1 in context on UD Arabic-PUD (15,482 tokens that are one UD word):
++
++| | noprob, all analyses (no ranking) | context model | `full` (PATB probabilities, not shippable) |
++|---|---:|---:|---:|
++| UPOS | 47.0% | **77.9%** | 77.9% |
++| lemma | 72.3% | **90.4%** | 88.2% |
++| both | 40.9% | **73.2%** | 74.1% |
++
++Held-out sentences 500–999: 78.1 / 90.8 / 73.4 against `full` 77.5 / 87.8 /
++73.5. (Word-type, out-of-context comparison with the earlier receipt: 79.4%
++vs 57.0% UPOS for `full` vs `noprob`.) The model closes the whole UPOS gap.
++CrispEmbed PR #261 (merge `3bab3248`), pinned by `tool/build.py`; receipt `docs/validation/camel-morph-disambig-20261120`.
++Model: [`cstr/camel-morph-msa-disambig@07fd9e65`](https://huggingface.co/cstr/camel-morph-msa-disambig/tree/07fd9e65200a3ea92a081efa9b0714817178df5f/bigram-v1)
++(`bigram-v1/`, 4.5 MB, CC BY-SA 4.0).
++
++### Rules
++
++`ArabicGrammarReading.contextual` (default): when the analyzer implements
++`ArabicContextMorphology` with the model loaded, a word whose best reading
++leads the second by at least 0.9 (≥ 0.95 against ≤ 0.05) is represented by
++that reading's analyses; every other word keeps all analyses, so the
++"no compatible analysis" principle is unchanged. `allAnalyses` restores the
++previous behaviour (Studio setting "Arabic grammar: read words in context").
++Without the model both modes are identical.
++
++A/B with the real analyzer (`tool/pud_rule_findings.dart`), default rule set,
++T2 findings:
++
++| Corpus | all analyses | contextual | new | gone |
++|---|---:|---:|---:|---:|
++| UD Arabic-PUD, 1,000 sentences | 0 | 1 | 1 | 0 |
++| Wikipedia sample, 13,464 sentences from 1,600 random `20231101.ar` articles (seed 20261120) | 7 | 8 | 2 | 1 |
++
++Every changed finding, judged:
++
++- PUD, new, `ar.numeral.gender`: «هناك **ثلاثة** أشجار نخيل» → `ثلاث`.
++  Genuine: the singular of أشجار is شجرة (feminine), so the numeral is
++  ثلاث (a collective شجر reading exists, which makes it a common slip
++  rather than a typo).
++- Wikipedia, new, `ar.numeral.gender`: «اقتحمَ **ثلاث** شبان» → `ثلاثة`.
++  Genuine (شاب is masculine).
++- Wikipedia, new, `ar.numeral.gender`: «في **ثلاث** أماكن» → `ثلاثة`.
++  Genuine (مكان is masculine).
++- Wikipedia, gone, `ar.grammar.preposition-case`: «ولد في **لبانون**» (the
++  town Lebanon, US). A false positive of the all-analyses mode: the context
++  model reads it as a proper noun.
++
++So the A/B shows no new false positive on clean text (the one PUD finding is
++a real agreement error), two more genuine Wikipedia findings and one fewer
++false positive; the contextual mode is the default. Margins 0.8 and 0.5 give
++exactly the same findings on both corpora. Cost: checking all of
++PUD takes 21.9 s instead of 4.8 s through the Dart API (each check
++disambiguates the sentences that hold a word a rule needs; results are cached
++per sentence).
++
++### Packaging
++
++The model is a second download in the Dictionaries dialog ("Arabic context
++model", 4.5 MB, needs the morphology data; pinned by SHA-256 like the
++database), listed on the licences page with its CC BY-SA 4.0 NOTICE.
++`CamelArabicMorphology` opens it in the same worker (native isolate and Web
++Worker). CrispEmbed's disambiguator is default-off
++(`CRISPEMBED_AR_MORPH_DISAMBIG`); the Quds adapter switches it on for the
++process only when the host loads a model, and an operator's `=0` still wins.
++
++Open: the recall gain is modest because most rule words were already
++unambiguous enough; richer tags (case, state) would let rules use more of
++the reading but need a sparse EM trainer. The web release still does not
++package the morphology worker.
++
+ ## LanguageTool Arabic assessment (v6.8)
+ 
+ Checked 19 November 2026 against the release tag `v6.8`. The assessment read
+diff --git a/packages/quds_arabic_morph/CHANGELOG.md b/packages/quds_arabic_morph/CHANGELOG.md
+index feb9770d27bfcbafc4437d0366a2aa59db37f288..84d2665d4f10e950eb56187150730b57bf933382 100644
+--- a/packages/quds_arabic_morph/CHANGELOG.md
++++ b/packages/quds_arabic_morph/CHANGELOG.md
+@@ -1,3 +1,20 @@
++## 0.3.0
++
++- Context disambiguation: `CamelArabicMorphology` implements the engine's
++  `ArabicContextMorphology` when the optional context model
++  (`camelMorphMsaDisambig`, Hugging Face `cstr/camel-morph-msa-disambig@07fd9e65`,
++  4.5 MB, CC BY-SA 4.0) is loaded (`disambiguator:` or `loadDisambiguator`).
++  `disambiguate` returns per token every analysis with its candidate's rank
++  and probability in context (CrispEmbed ABI 3,
++  `crispembed_ar_morph_disambiguate`), batched and cached per sentence.
++- On UD Arabic-PUD the best reading's UPOS is right for 77.9% of tokens
++  (all analyses unranked: 47.0%; the PATB-trained `full` ranking: 77.9%).
++- Adapter version 2 adds `quds_arabic_morph_enable_disambiguation` (the
++  CrispEmbed disambiguator is default-off); the worker protocol gains
++  `open_model` and `disambiguate`. `MorphInstaller.removeOtherBundles` takes
++  `alsoKeep`. `tool/pud_rule_findings.dart` gains `--model`, `--reading` and
++  `--margin`; `tool/web_smoke.mjs` an optional model check.
++
+ ## 0.2.0
+ 
+ - Switch to the `proofing-bin` bundle (`camelMorphMsaProofingBin`, Hugging
+diff --git a/packages/quds_arabic_morph/README.md b/packages/quds_arabic_morph/README.md
+index 711b2e284407296908c20eee20f5c5f2571b75c6..85a220550d21eb2d6295eb3f630d8a98888a4410 100644
+--- a/packages/quds_arabic_morph/README.md
++++ b/packages/quds_arabic_morph/README.md
+@@ -10,7 +10,7 @@ default.
+   `native/src/quds_arabic_morph.cpp` compiled with CrispEmbed's
+   `src/arabic_morph.cpp`. That file is MIT and keeps camel_tools' MIT notice.
+   Its header-only helpers and Ryu (Apache-2.0 option) are compiled in too.
+-  The sources come from CrispEmbed commit `0ed76631` (PR #255). Native
++  The sources come from CrispEmbed commit `3bab3248` (PR #261, ABI 3). Native
+   platforms load it as a shared library in a persistent Dart isolate. The web
+   build runs the same code as a bundled Emscripten WebAssembly module in a
+   module Web Worker. No analyzer code is ever downloaded (App Store guideline
+@@ -53,9 +53,29 @@ Only out-of-context ranking changes. Without the probabilities, camel_tools'
+ order falls back to the diacritized form, and top-1 UPOS+lemma accuracy drops
+ from 73.0% to 47.0%.
+ 
+-Quds therefore never ranks: `analyzeWords` returns every analysis in no
+-particular order. Rules reason over the whole set, for example by reporting
+-only when **no** analysis of a word is compatible.
++`analyzeWords` therefore returns every analysis in no particular order, and
++rules reason over the whole set, for example by reporting only when **no**
++analysis of a word is compatible.
++
++## Context model (optional second download)
++
++`camelMorphMsaDisambig` is a licence-clean replacement for the dropped
++probabilities: a bigram hidden Markov model over the database's own analyses,
++trained without annotations on Arabic Wikipedia (CC BY-SA 4.0) by CrispEmbed's
++`tools/arabic_morph/disambig_train.py`. With it loaded,
++`CamelArabicMorphology` is an `ArabicContextMorphology`: `disambiguate`
++ranks each token's analyses in its sentence (tokens from the engine's
++`arabicContextSentences`, punctuation included). On UD Arabic-PUD the best
++reading's UPOS is right for 77.9% of tokens, the same as the `full`
++ranking, and its lemma for 90.4% (`full`: 88.2%). The grammar rules use a
++reading only when it leads the second by at least 0.9
++(`ArabicGrammarReading.contextual`); see `docs/roadmaps/arabic-proofing.md`
++for the A/B. The model is 4.5 MB, CC BY-SA 4.0 (Wikipedia contributors;
++Camel Morph MSA v1.0 © 2024 NYU Abu Dhabi, CC BY 4.0), pinned by SHA-256 like
++the database; `licenses/data/camel-morph-msa-disambig-{NOTICE,LICENSE}` hold
++its attribution. CrispEmbed's disambiguator is default-off
++(`CRISPEMBED_AR_MORPH_DISAMBIG`); the adapter enables it for the process when
++a model is opened, unless the variable is already set.
+ 
+ ## The proofing feature profile
+ 
+@@ -181,7 +201,7 @@ python3 tool/build.py --install-licenses ../quds_office_editor/example/assets/li
+ ```
+ 
+ `build.py` downloads exactly the 26 CrispEmbed files it needs from
+-`raw.githubusercontent.com` at commit `0ed76631843cadd9b5c8296f25ed8a414d8f51db`.
++`raw.githubusercontent.com` at commit `3bab324832ea911c2b1260a0d50f0ed898f47950`.
+ It admits each one only when its length and SHA-256 equal the pins in the
+ script, and refuses to build if any compiled file or notice differs from
+ `licenses/manifest.json`. It writes `build-receipt.json` with the hash of
+@@ -220,10 +240,12 @@ Hosts must ship the notices with the binary (`--install-licenses`).
+ ```sh
+ QUDS_ARABIC_MORPH_TEST_LIBRARY=build/native/libquds_arabic_morph.dylib \
+ QUDS_ARABIC_MORPH_TEST_BUNDLE=/path/to/verified/proofing-bin \
++QUDS_ARABIC_MORPH_TEST_MODEL=/path/to/verified/bigram-v1 \
+ QUDS_ARABIC_MORPH_LIVE_DOWNLOAD=1 dart test
+ dart run tool/pud_benchmark.dart <library> <bundle dir> pud.txt
+ dart run tool/pud_rule_findings.dart <library> <bundle dir> pud.txt > findings.jsonl
+-node tool/web_smoke.mjs build/web <bundle dir> pud.txt
++dart run tool/pud_rule_findings.dart <library> <bundle dir> pud.txt --model <model dir> > contextual.jsonl
++node tool/web_smoke.mjs build/web <bundle dir> pud.txt [<model dir>]
+ dart compile js -O2 tool/browser_smoke.dart -o out/smoke.js
+ python3 tool/browser_smoke.py --script out/smoke.js --web build/web \
+   --bundle <bundle dir> --corpus pud.txt
+diff --git a/packages/quds_arabic_morph/lib/src/camel_arabic_morphology.dart b/packages/quds_arabic_morph/lib/src/camel_arabic_morphology.dart
+index 6dbbfddd6ca421628d2bc3945fa649fe6722a384..a442237d0b6d093e9cc1095fe78fcad1f6ca1180 100644
+--- a/packages/quds_arabic_morph/lib/src/camel_arabic_morphology.dart
++++ b/packages/quds_arabic_morph/lib/src/camel_arabic_morphology.dart
+@@ -11,23 +11,28 @@ import 'morph_transport_stub.dart'
+     as platform;
+ 
+ /// [ArabicMorphology] backed by the native Camel Morph analyzer (a C++ port
+-/// of camel_tools 1.6.0) over a verified, user-downloaded database.
++/// of camel_tools 1.6.0) over a verified, user-downloaded database. With a
++/// verified context disambiguation model ([disambiguator] or
++/// [loadDisambiguator]) it is also an [ArabicContextMorphology].
+ ///
+ /// One instance owns one worker (a persistent isolate natively, a module Web
+ /// Worker in browsers) and should live as long as the database is installed;
+ /// proofing providers are recreated per configuration, this object is not.
+ /// [isAvailable] turns true once [load] has opened the database. Results are
+ /// cached per session (bounded by [cacheWords] distinct words).
+-final class CamelArabicMorphology implements ArabicMorphology {
++final class CamelArabicMorphology implements ArabicContextMorphology {
+   CamelArabicMorphology({
+     required MorphDatabase database,
++    MorphDatabase? disambiguator,
+     String? nativeLibraryPath,
+     Uri? workerUrl,
+     ArabicMorphTransport? transport,
+     this.cacheWords = 4096,
+     this.batchWords = 512,
++    this.cacheSentences = 1024,
+   }) : bundle = database.bundle,
+        _database = database,
++       _pendingModel = disambiguator,
+        _transport =
+            transport ??
+            platform.createArabicMorphTransport(
+@@ -54,12 +59,23 @@ final class CamelArabicMorphology implements ArabicMorphology {
+   /// the worker or builds one huge message.
+   final int batchWords;
+ 
++  /// Sentences whose readings are kept (least recently used dropped first);
++  /// proofing checks the same paragraph again after every edit elsewhere.
++  final int cacheSentences;
++
+   final LinkedHashMap<String, List<ArabicAnalysis>> _cache = LinkedHashMap();
++  final LinkedHashMap<String, List<ArabicContextReading>> _readings =
++      LinkedHashMap();
+   Future<void>? _loading;
+   bool _available = false;
+   bool _disposed = false;
+   Object? _failure;
+   Map<String, Object?>? _info;
++  MorphDatabase? _pendingModel;
++  Future<void>? _loadingDisambiguator;
++  bool _canDisambiguate = false;
++  Object? _disambiguatorFailure;
++  Map<String, Object?>? _disambiguatorInfo;
+ 
+   @override
+   bool get isAvailable => _available && !_disposed;
+@@ -75,6 +91,117 @@ final class CamelArabicMorphology implements ArabicMorphology {
+   /// normally even when loading fails ([failure] tells why).
+   Future<void> load() => _loading ??= _open();
+ 
++  @override
++  bool get canDisambiguate => _canDisambiguate && isAvailable;
++
++  /// Why the disambiguation model could not be loaded, if it was not.
++  Object? get disambiguatorFailure => _disambiguatorFailure;
++
++  /// The model's description (format, hashes, tag and lexeme counts,
++  /// training metadata); null until loaded.
++  Map<String, Object?>? get disambiguatorInfo => _disambiguatorInfo;
++
++  /// Opens the context disambiguation model [model] once the database is
++  /// open; later calls return the same future until a failure
++  /// ([disambiguatorFailure]), after which a call retries.
++  Future<void> loadDisambiguator(MorphDatabase model) =>
++      _loadingDisambiguator ??= () async {
++        await load();
++        await _openModel(model);
++      }();
++
++  Future<void> _openModel(MorphDatabase model) async {
++    if (!isAvailable) {
++      _loadingDisambiguator = null;
++      return;
++    }
++    try {
++      _disambiguatorInfo = await _transport.openDisambiguator(model);
++      _canDisambiguate = !_disposed;
++      _disambiguatorFailure = null;
++    } on Object catch (error) {
++      _disambiguatorFailure = error;
++      _canDisambiguate = false;
++      _loadingDisambiguator = null;
++    }
++  }
++
++  @override
++  Future<List<List<ArabicContextReading>>> disambiguate(
++    List<List<String>> sentences,
++  ) async {
++    await load();
++    final pending = _loadingDisambiguator;
++    if (pending != null) await pending;
++    if (!canDisambiguate || sentences.isEmpty) {
++      return const <List<ArabicContextReading>>[];
++    }
++    final out = List<List<ArabicContextReading>?>.filled(
++      sentences.length,
++      null,
++    );
++    final missing = <int>[];
++    final repeats = <int, int>{}; // sentence -> earlier identical one
++    final firstOf = <String, int>{};
++    for (var i = 0; i < sentences.length; i++) {
++      final key = sentences[i].join('\u0000');
++      final cached = _readings.remove(key);
++      if (cached != null) {
++        _readings[key] = cached;
++        out[i] = cached;
++      } else if (firstOf[key] case final first?) {
++        repeats[i] = first;
++      } else {
++        firstOf[key] = i;
++        missing.add(i);
++      }
++    }
++    // Batches of whole sentences, about batchWords tokens each.
++    var start = 0;
++    while (start < missing.length) {
++      var end = start;
++      var tokens = 0;
++      while (end < missing.length &&
++          (end == start ||
++              tokens + sentences[missing[end]].length <= batchWords)) {
++        tokens += sentences[missing[end]].length;
++        end++;
++      }
++      final batch = [for (final i in missing.sublist(start, end)) sentences[i]];
++      final List<List<ArabicContextReading>> readings;
++      try {
++        readings = await _transport.disambiguate(batch);
++      } on ArabicMorphUnavailableException catch (error) {
++        _failure = error;
++        _available = false;
++        _canDisambiguate = false;
++        return const <List<ArabicContextReading>>[];
++      }
++      if (readings.length != batch.length) {
++        throw const FormatException(
++          'Malformed Arabic disambiguation response.',
++        );
++      }
++      for (var j = 0; j < batch.length; j++) {
++        if (readings[j].length != batch[j].length) {
++          throw const FormatException(
++            'Malformed Arabic disambiguation response.',
++          );
++        }
++        out[missing[start + j]] = readings[j];
++        if (cacheSentences > 0) {
++          _readings[batch[j].join('\u0000')] = readings[j];
++          while (_readings.length > cacheSentences) {
++            _readings.remove(_readings.keys.first);
++          }
++        }
++      }
++      start = end;
++    }
++    repeats.forEach((i, first) => out[i] = out[first]);
++    return [for (final r in out) r!];
++  }
++
+   Future<void> _open() async {
+     final database = _database;
+     _database = null;
+@@ -91,6 +218,11 @@ final class CamelArabicMorphology implements ArabicMorphology {
+       _failure = error;
+       _available = false;
+     }
++    final model = _pendingModel;
++    _pendingModel = null;
++    if (model != null && _available) {
++      await (_loadingDisambiguator ??= _openModel(model));
++    }
+   }
+ 
+   @override
+@@ -160,14 +292,19 @@ final class CamelArabicMorphology implements ArabicMorphology {
+   /// Number of words currently cached (diagnostics and tests).
+   int get cachedWords => _cache.length;
+ 
+-  /// Drops the session cache (the analyzer stays open).
+-  void clearCache() => _cache.clear();
++  /// Drops the session caches (the analyzer stays open).
++  void clearCache() {
++    _cache.clear();
++    _readings.clear();
++  }
+ 
+   Future<void> dispose() async {
+     if (_disposed) return;
+     _disposed = true;
+     _available = false;
++    _canDisambiguate = false;
+     _cache.clear();
++    _readings.clear();
+     await _transport.dispose();
+   }
+ }
+diff --git a/packages/quds_arabic_morph/lib/src/morph_analysis.dart b/packages/quds_arabic_morph/lib/src/morph_analysis.dart
+index 30618c6d3b7e37776075ceac8a06e2d94ae70d73..5d56dc0ac92209d795b72b42268fee4c36d82f4e 100644
+--- a/packages/quds_arabic_morph/lib/src/morph_analysis.dart
++++ b/packages/quds_arabic_morph/lib/src/morph_analysis.dart
+@@ -102,7 +102,8 @@ final class CompactArabicAnalysis extends UnmodifiableMapBase<String, String> {
+ /// Decodes the analyzer's compact output (`crispembed_ar_morph_analyze_compact`,
+ /// CrispEmbed ABI 2): one little-endian buffer per batch with, per word, a
+ /// status and a record of unique value strings plus analyses as
+-/// (key id, string index) pairs. No JSON is involved.
++/// (key id, string index) pairs. No JSON is involved. [decodeReadings] reads
++/// the context disambiguator's output, the same records followed by scores.
+ ///
+ /// Each word keeps its own record bytes (about 1-2 KB); the [ArabicAnalysis]
+ /// maps are views over them, and value strings are decoded on first read and
+@@ -126,6 +127,68 @@ final class CompactAnalysisDecoder {
+   /// Analyses of the [words] words of [buffer] in order; null marks a word
+   /// the analyzer rejected as input.
+   List<List<ArabicAnalysis>?> decode(Uint8List buffer, int words) {
++    final (out, end) = _records(buffer, words);
++    if (end != buffer.length) {
++      throw const FormatException('Malformed Arabic morphology buffer.');
++    }
++    return out;
++  }
++
++  /// `AMS1` little-endian: the score section of a disambiguation buffer.
++  static const scoresMagic = 0x31534D41;
++
++  /// Readings of a `crispembed_ar_morph_disambiguate` buffer (CrispEmbed ABI
++  /// 3): the compact records of [words] words followed by the score section,
++  /// per word the rank and score of every analysis's candidate. A rejected
++  /// word has no analyses.
++  List<ArabicContextReading> decodeReadings(Uint8List buffer, int words) {
++    final (analyses, start) = _records(buffer, words);
++    final data = ByteData.sublistView(buffer);
++    if (start + 8 > buffer.length ||
++        data.getUint32(start, Endian.little) != scoresMagic ||
++        data.getUint32(start + 4, Endian.little) != words) {
++      throw const FormatException('Malformed Arabic disambiguation buffer.');
++    }
++    var at = start + 8;
++    final out = <ArabicContextReading>[];
++    for (var w = 0; w < words; w++) {
++      if (at + 8 > buffer.length) {
++        throw const FormatException('Truncated Arabic disambiguation buffer.');
++      }
++      final count = data.getUint32(at, Endian.little);
++      final candidates = data.getUint32(at + 4, Endian.little);
++      at += 8;
++      final list = analyses[w] ?? const <ArabicAnalysis>[];
++      if (count != list.length ||
++          candidates == 0 ||
++          at + 8 * count > buffer.length) {
++        throw const FormatException('Malformed Arabic disambiguation buffer.');
++      }
++      final scores = Float64List(count);
++      final ranks = Int32List(count);
++      for (var a = 0; a < count; a++) {
++        final rank = data.getUint32(at, Endian.little);
++        final score = data.getFloat32(at + 4, Endian.little);
++        if (rank >= candidates || !(score >= 0 && score <= 1.0001)) {
++          throw const FormatException('Malformed Arabic disambiguation score.');
++        }
++        ranks[a] = rank;
++        scores[a] = score;
++        at += 8;
++      }
++      out.add(
++        count == 0
++            ? ArabicContextReading.none
++            : ArabicContextReading(list, scores, ranks),
++      );
++    }
++    if (at != buffer.length) {
++      throw const FormatException('Malformed Arabic disambiguation buffer.');
++    }
++    return out;
++  }
++
++  (List<List<ArabicAnalysis>?>, int) _records(Uint8List buffer, int words) {
+     final data = ByteData.sublistView(buffer);
+     if (buffer.length < 8 ||
+         data.getUint32(0, Endian.little) != magic ||
+@@ -155,10 +218,7 @@ final class CompactAnalysisDecoder {
+       }
+       at += length;
+     }
+-    if (at != buffer.length) {
+-      throw const FormatException('Malformed Arabic morphology buffer.');
+-    }
+-    return out;
++    return (out, at);
+   }
+ 
+   String _intern(String value) => _values.putIfAbsent(value, () => value);
+diff --git a/packages/quds_arabic_morph/lib/src/morph_catalog.dart b/packages/quds_arabic_morph/lib/src/morph_catalog.dart
+index ce0ef4f8d572b1547963fb7bb6fc775e2eaf2678..ad1fb766b27f24377da0661d185f74e4ba77476d 100644
+--- a/packages/quds_arabic_morph/lib/src/morph_catalog.dart
++++ b/packages/quds_arabic_morph/lib/src/morph_catalog.dart
+@@ -18,8 +18,8 @@ final class MorphArtifact {
+ 
+ String sha256Hex(List<int> data) => sha256.convert(data).toString();
+ 
+-/// A Camel Morph database bundle published at an immutable Hugging Face
+-/// revision. Every value is compiled into the app; downloaded files can never
++/// A Camel Morph database (or context model) bundle published at an
++/// immutable Hugging Face revision. Every value is compiled into the app; downloaded files can never
+ /// widen or replace these pins. Bundles hold data only (no executable code).
+ final class MorphBundleDownload {
+   const MorphBundleDownload({
+@@ -59,6 +59,8 @@ final class MorphBundleDownload {
+ 
+   /// `manifest.json`: its SHA-256 is the analyzer's trust anchor.
+   final MorphArtifact manifest;
++
++  /// The database (or, for a context model bundle, the model file).
+   final MorphArtifact database;
+ 
+   /// `NOTICE` and `LICENSE`, required next to the database by the manifest.
+@@ -171,6 +173,53 @@ const camelMorphMsaNoprob = MorphBundleDownload(
+   ],
+ );
+ 
++/// The context disambiguation model for [camelMorphMsaProofingBin]
++/// (CrispEmbed `crispembed-camel-morph-disambig-v1`): a bigram hidden Markov
++/// model over the database's analyses, trained without annotations on Arabic
++/// Wikipedia. It ranks each word's analyses in its sentence, so grammar rules
++/// can rely on a clearly leading reading. CC BY-SA 4.0 (Wikipedia
++/// contributors; Camel Morph MSA v1.0 (c) 2024 NYU Abu Dhabi, CC BY 4.0).
++/// Its `database` artifact is the model file.
++const camelMorphMsaDisambig = MorphBundleDownload(
++  id: 'camel-morph-msa-disambig',
++  displayName: 'Arabic context model (Camel Morph disambiguation)',
++  repository: 'cstr/camel-morph-msa-disambig',
++  revision: '07fd9e65200a3ea92a081efa9b0714817178df5f',
++  directory: 'bigram-v1',
++  license: 'CC-BY-SA-4.0',
++  licenseUrl: 'https://creativecommons.org/licenses/by-sa/4.0/',
++  attribution:
++      'Camel Morph MSA context disambiguation model, CC BY-SA 4.0. Trained on '
++      'Arabic Wikipedia text by Wikipedia contributors (CC BY-SA 4.0) over '
++      'Camel Morph MSA v1.0 (c) 2024 by New York University Abu Dhabi '
++      '(CC BY 4.0). Changes: the text was reduced to smoothed tag-transition '
++      'and lexeme probabilities; it contains no sentence of the text.',
++  sourceUrl:
++      'https://github.com/CrispStrobe/CrispEmbed/blob/main/docs/arabic-morph-disambig-format.md',
++  manifest: MorphArtifact(
++    'manifest.json',
++    '02b8fc1cdfd8c925f6737029eafd79aea22148f2ce0af31b8b0e07a95053cbaa',
++    1753,
++  ),
++  database: MorphArtifact(
++    'camel_morph_msa_v1.0.disambig.cmdis',
++    '987250d64ec36e631b125f9f7ba52f4e5fe48da694ea3a6a21786b4ac4aabf61',
++    4487296,
++  ),
++  notices: [
++    MorphArtifact(
++      'NOTICE',
++      '12f44e5787019e5eb5595663cb7275408d961f430b74d108fa77006235e2638b',
++      1484,
++    ),
++    MorphArtifact(
++      'LICENSE',
++      'ef2c6367af269181d259bbda4b6167684f85242bb04b28923f91e2861be4c695',
++      363,
++    ),
++  ],
++);
++
+ /// All morphology databases a host may offer for download.
+ const morphCatalog = [camelMorphMsaProofingBin];
+ 
+diff --git a/packages/quds_arabic_morph/lib/src/morph_installer_io.dart b/packages/quds_arabic_morph/lib/src/morph_installer_io.dart
+index e0ba02f173035dc90fa79a279415beca57007f93..ca5f8518bd4560ace206b26d1aa8e07f8522eb51 100644
+--- a/packages/quds_arabic_morph/lib/src/morph_installer_io.dart
++++ b/packages/quds_arabic_morph/lib/src/morph_installer_io.dart
+@@ -111,21 +111,27 @@ final class MorphInstaller {
+     }
+   }
+ 
+-  /// Removes every installed bundle other than [keep] (for example the
+-  /// earlier `noprob` text bundle once the binary proofing bundle replaced
+-  /// it) and leftovers of interrupted removals. Staging directories of a
+-  /// running installation are left alone. Returns the removed entry names.
+-  Future<List<String>> removeOtherBundles(MorphBundleDownload keep) async {
++  /// Removes every installed bundle other than [keep] and [alsoKeep] (for
++  /// example the earlier `noprob` text bundle once the binary proofing bundle
++  /// replaced it, or an earlier context model) and leftovers of interrupted
++  /// removals. Staging directories of a running installation are left alone.
++  /// Returns the removed entry names.
++  Future<List<String>> removeOtherBundles(
++    MorphBundleDownload keep, {
++    Iterable<MorphBundleDownload> alsoKeep = const [],
++  }) async {
+     final parent = Directory('${root.path}/arabic_morph');
+     if (FileSystemEntity.typeSync(parent.path, followLinks: false) !=
+         FileSystemEntityType.directory) {
+       return const [];
+     }
+-    final current = '${keep.revision}-${keep.id}';
++    final current = {
++      for (final b in [keep, ...alsoKeep]) '${b.revision}-${b.id}',
++    };
+     final removed = <String>[];
+     for (final entry in parent.listSync(followLinks: false)) {
+       final name = entry.uri.pathSegments.lastWhere((s) => s.isNotEmpty);
+-      if (name == current || name.startsWith('.staging-')) continue;
++      if (current.contains(name) || name.startsWith('.staging-')) continue;
+       if (name.startsWith('.removing-') ||
+           RegExp(r'^[0-9a-f]{40}-[A-Za-z0-9._-]+$').hasMatch(name)) {
+         try {
+diff --git a/packages/quds_arabic_morph/lib/src/morph_transport.dart b/packages/quds_arabic_morph/lib/src/morph_transport.dart
+index b733cf31366f0788e4852a5f25b86a332047b28c..f928abfbadc981909fe0c91dbf778b503f16c508 100644
+--- a/packages/quds_arabic_morph/lib/src/morph_transport.dart
++++ b/packages/quds_arabic_morph/lib/src/morph_transport.dart
+@@ -13,6 +13,16 @@ abstract interface class ArabicMorphTransport {
+   /// rejects as input (invalid UTF-8, over 4,096 bytes).
+   Future<List<List<ArabicAnalysis>?>> analyze(List<String> words);
+ 
++  /// Opens a context disambiguation model bundle next to the open database
++  /// (CrispEmbed ABI 3); completes with the model's `info` object.
++  Future<Map<String, Object?>> openDisambiguator(MorphDatabase model);
++
++  /// Readings of every token of [sentences] in order (one list per
++  /// sentence), ranked in context by the open model.
++  Future<List<List<ArabicContextReading>>> disambiguate(
++    List<List<String>> sentences,
++  );
++
+   Future<void> dispose();
+ }
+ 
+diff --git a/packages/quds_arabic_morph/lib/src/morph_transport_native.dart b/packages/quds_arabic_morph/lib/src/morph_transport_native.dart
+index 6bdc50d1e67747b870d0e182d67753427783f7af..bdad68afc065e37b538341ade4f5820902137678 100644
+--- a/packages/quds_arabic_morph/lib/src/morph_transport_native.dart
++++ b/packages/quds_arabic_morph/lib/src/morph_transport_native.dart
+@@ -187,6 +187,51 @@ final class _NativeTransport implements ArabicMorphTransport {
+     return decoder.decode(bytes, words.length);
+   }
+ 
++  @override
++  Future<Map<String, Object?>> openDisambiguator(MorphDatabase model) async {
++    if (model is! MorphDatabaseFiles) {
++      throw const ArabicMorphUnavailableException(
++        'The native Arabic morphology worker opens an installed bundle.',
++      );
++    }
++    final info = await _send([
++      'open_model',
++      model.manifestPath,
++      model.bundle.manifest.sha256,
++    ]);
++    return (jsonDecode(info! as String) as Map).cast<String, Object?>();
++  }
++
++  @override
++  Future<List<List<ArabicContextReading>>> disambiguate(
++    List<List<String>> sentences,
++  ) async {
++    if (sentences.isEmpty) return const [];
++    final words = [for (final s in sentences) ...s];
++    final result = await _send([
++      'disambiguate',
++      words,
++      [for (final s in sentences) s.length],
++    ]);
++    final decoder = _decoder;
++    if (decoder == null) {
++      throw const ArabicMorphUnavailableException(
++        'No Arabic morphology database is open.',
++      );
++    }
++    final bytes = (result! as TransferableTypedData)
++        .materialize()
++        .asUint8List();
++    final readings = decoder.decodeReadings(bytes, words.length);
++    final out = <List<ArabicContextReading>>[];
++    var at = 0;
++    for (final s in sentences) {
++      out.add(readings.sublist(at, at + s.length));
++      at += s.length;
++    }
++    return out;
++  }
++
+   @override
+   Future<void> dispose() => _disposal ??= _dispose();
+ 
+@@ -240,11 +285,14 @@ void _workerMain(List<Object?> arguments) {
+   }
+   host.send(input.sendPort);
+   Pointer<Void> handle = nullptr;
++  Pointer<Void> model = nullptr;
+   input.listen((Object? value) {
+     if (value case ['dispose']) {
+       try {
++        if (model != nullptr) bindings.modelFree(model);
+         if (handle != nullptr) bindings.free(handle);
+       } finally {
++        model = nullptr;
+         handle = nullptr;
+         bindings.dispose();
+         input.close();
+@@ -276,6 +324,52 @@ void _workerMain(List<Object?> arguments) {
+         }
+         handle = opened;
+         host.send(['result', id, bindings.info(handle)]);
++      } else if (value case [
++        _,
++        'open_model',
++        final String manifest,
++        final String manifestSha256,
++      ]) {
++        if (model != nullptr) {
++          bindings.modelFree(model);
++          model = nullptr;
++        }
++        final (opened, error) = bindings.openModel(manifest, manifestSha256);
++        if (opened == nullptr) {
++          host.send([
++            'error',
++            id,
++            'The disambiguation model could not be opened: $error',
++          ]);
++          return;
++        }
++        model = opened;
++        host.send(['result', id, bindings.modelInfo(model)]);
++      } else if (value case [
++        _,
++        'disambiguate',
++        final List<Object?> words,
++        final List<Object?> lengths,
++      ]) {
++        if (handle == nullptr || model == nullptr) {
++          host.send([
++            'error',
++            id,
++            'No Arabic morphology database or disambiguation model is open.',
++          ]);
++          return;
++        }
++        final bytes = bindings.disambiguate(
++          handle,
++          model,
++          words.cast<String>(),
++          lengths.cast<int>(),
++        );
++        host.send([
++          'result',
++          id,
++          TransferableTypedData.fromList([bytes]),
++        ]);
+       } else if (value case [_, 'analyze', final List<Object?> words]) {
+         if (handle == nullptr) {
+           host.send([
+@@ -296,6 +390,7 @@ void _workerMain(List<Object?> arguments) {
+ 
+ const _errorCapacity = 512;
+ const _compactMagic = 0x31434D41;
++const _scoresMagic = 0x31534D41;
+ const _compactDedup = 1;
+ // quds_arabic_morph_alloc's limit; batches are split to stay below it.
+ const _maxAllocation = 1 << 20;
+@@ -359,6 +454,66 @@ final class _Bindings {
+             Void Function(Pointer<Void>),
+             void Function(Pointer<Void>)
+           >('crispembed_ar_morph_free'),
++      _openModel = library
++          .lookupFunction<
++            Pointer<Void> Function(
++              Pointer<Uint8>,
++              Pointer<Uint8>,
++              Pointer<Uint8>,
++              Size,
++            ),
++            Pointer<Void> Function(
++              Pointer<Uint8>,
++              Pointer<Uint8>,
++              Pointer<Uint8>,
++              int,
++            )
++          >('crispembed_ar_morph_disambig_open'),
++      _disambiguate = library
++          .lookupFunction<
++            Int32 Function(
++              Pointer<Void>,
++              Pointer<Void>,
++              Pointer<Uint8>,
++              Pointer<Uint32>,
++              Uint32,
++              Pointer<Uint32>,
++              Uint32,
++              Uint32,
++              Pointer<Pointer<Uint8>>,
++              Pointer<Size>,
++              Pointer<Uint8>,
++              Size,
++            ),
++            int Function(
++              Pointer<Void>,
++              Pointer<Void>,
++              Pointer<Uint8>,
++              Pointer<Uint32>,
++              int,
++              Pointer<Uint32>,
++              int,
++              int,
++              Pointer<Pointer<Uint8>>,
++              Pointer<Size>,
++              Pointer<Uint8>,
++              int,
++            )
++          >('crispembed_ar_morph_disambiguate'),
++      _modelInfo = library
++          .lookupFunction<
++            Pointer<Uint8> Function(Pointer<Void>),
++            Pointer<Uint8> Function(Pointer<Void>)
++          >('crispembed_ar_morph_disambig_info'),
++      modelFree = library
++          .lookupFunction<
++            Void Function(Pointer<Void>),
++            void Function(Pointer<Void>)
++          >('crispembed_ar_morph_disambig_free'),
++      _enableDisambiguation = library
++          .lookupFunction<Int32 Function(), int Function()>(
++            'quds_arabic_morph_enable_disambiguation',
++          ),
+       _malloc = library
+           .lookupFunction<
+             Pointer<Uint8> Function(Size),
+@@ -375,7 +530,7 @@ final class _Bindings {
+     final adapter = library.lookupFunction<Uint32 Function(), int Function()>(
+       'quds_arabic_morph_adapter_version',
+     );
+-    if (abi() != 2 || adapter() != 1) {
++    if (abi() != 3 || adapter() != 2) {
+       throw StateError('Unsupported Arabic morphology ABI.');
+     }
+     try {
+@@ -408,6 +563,31 @@ final class _Bindings {
+     int,
+   )
+   _analyzeCompact;
++  final Pointer<Void> Function(
++    Pointer<Uint8>,
++    Pointer<Uint8>,
++    Pointer<Uint8>,
++    int,
++  )
++  _openModel;
++  final int Function(
++    Pointer<Void>,
++    Pointer<Void>,
++    Pointer<Uint8>,
++    Pointer<Uint32>,
++    int,
++    Pointer<Uint32>,
++    int,
++    int,
++    Pointer<Pointer<Uint8>>,
++    Pointer<Size>,
++    Pointer<Uint8>,
++    int,
++  )
++  _disambiguate;
++  final Pointer<Uint8> Function(Pointer<Void>) _modelInfo;
++  final void Function(Pointer<Void>) modelFree;
++  final int Function() _enableDisambiguation;
+   final void Function(Pointer<Uint8>) _bufferFree;
+   final Pointer<Uint8> Function(Pointer<Void>) _info;
+   final void Function(Pointer<Void>) free;
+@@ -473,6 +653,146 @@ final class _Bindings {
+ 
+   String info(Pointer<Void> handle) => _cString(_info(handle));
+ 
++  /// Opens a disambiguation model bundle. CrispEmbed's disambiguator is
++  /// default-off (CRISPEMBED_AR_MORPH_DISAMBIG); the adapter switches it on
++  /// for this process unless the environment already sets it, so an
++  /// operator's CRISPEMBED_AR_MORPH_DISAMBIG=0 still wins.
++  (Pointer<Void>, String) openModel(String manifest, String manifestSha256) {
++    _enableDisambiguation();
++    _error[0] = 0;
++    final handle = _withString(
++      manifest,
++      (m) => _withString(
++        manifestSha256,
++        (s) => _openModel(m, s, _error, _errorCapacity),
++      ),
++    );
++    return (handle, _cString(_error, _errorCapacity));
++  }
++
++  String modelInfo(Pointer<Void> model) => _cString(_modelInfo(model));
++
++  /// One disambiguation buffer for whole sentences ([lengths] words each),
++  /// split into native calls below the adapter's allocation limit and
++  /// joined: the compact records of every word, then their scores.
++  Uint8List disambiguate(
++    Pointer<Void> handle,
++    Pointer<Void> model,
++    List<String> words,
++    List<int> lengths,
++  ) {
++    final encoded = [for (final word in words) utf8.encode(word)];
++    final records = BytesBuilder(copy: false);
++    final scores = BytesBuilder(copy: false);
++    var word = 0;
++    var sentence = 0;
++    while (sentence < lengths.length) {
++      var end = sentence;
++      var bytes = 0;
++      var count = 0;
++      while (end < lengths.length) {
++        var size = 0;
++        for (var i = 0; i < lengths[end]; i++) {
++          size += encoded[word + count + i].length + 4;
++        }
++        if (end > sentence &&
++            bytes + size + 4 * (end - sentence + 1) >= _maxAllocation) {
++          break;
++        }
++        bytes += size;
++        count += lengths[end];
++        end++;
++      }
++      final part = _disambiguateChunk(
++        handle,
++        model,
++        encoded.sublist(word, word + count),
++        lengths.sublist(sentence, end),
++      );
++      final data = ByteData.sublistView(part);
++      // AMC1 n | records | AMS1 n | scores
++      var at = 8;
++      for (var i = 0; i < count; i++) {
++        at += 8 + data.getUint32(at + 4, Endian.little);
++      }
++      records.add(Uint8List.sublistView(part, 8, at));
++      scores.add(Uint8List.sublistView(part, at + 8));
++      word += count;
++      sentence = end;
++    }
++    final header = ByteData(8)
++      ..setUint32(0, _compactMagic, Endian.little)
++      ..setUint32(4, words.length, Endian.little);
++    final middle = ByteData(8)
++      ..setUint32(0, _scoresMagic, Endian.little)
++      ..setUint32(4, words.length, Endian.little);
++    return (BytesBuilder(copy: false)
++          ..add(header.buffer.asUint8List())
++          ..add(records.takeBytes())
++          ..add(middle.buffer.asUint8List())
++          ..add(scores.takeBytes()))
++        .takeBytes();
++  }
++
++  Uint8List _disambiguateChunk(
++    Pointer<Void> handle,
++    Pointer<Void> model,
++    List<Uint8List> words,
++    List<int> lengths,
++  ) {
++    final total = words.fold<int>(0, (sum, w) => sum + w.length);
++    if (total + 4 * words.length + 4 * lengths.length >= _maxAllocation) {
++      throw StateError('A sentence is too long to disambiguate.');
++    }
++    final text = _allocate(total == 0 ? 1 : total);
++    Pointer<Uint32> wordLengths = nullptr;
++    Pointer<Uint32> sentenceLengths = nullptr;
++    try {
++      wordLengths = _allocate(4 * (words.isEmpty ? 1 : words.length)).cast();
++      sentenceLengths = _allocate(4 * lengths.length).cast();
++      var at = 0;
++      final view = text.asTypedList(total == 0 ? 1 : total);
++      for (var i = 0; i < words.length; i++) {
++        view.setAll(at, words[i]);
++        at += words[i].length;
++        wordLengths[i] = words[i].length;
++      }
++      for (var i = 0; i < lengths.length; i++) {
++        sentenceLengths[i] = lengths[i];
++      }
++      _error[0] = 0;
++      final status = _disambiguate(
++        handle,
++        model,
++        text,
++        wordLengths,
++        words.length,
++        sentenceLengths,
++        lengths.length,
++        _compactDedup,
++        _out,
++        _outLength,
++        _error,
++        _errorCapacity,
++      );
++      if (status != 0) {
++        throw StateError(
++          'disambiguation failed ($status): ${_cString(_error, _errorCapacity)}',
++        );
++      }
++      final output = _out.value;
++      try {
++        return Uint8List.fromList(output.asTypedList(_outLength.value));
++      } finally {
++        _bufferFree(output);
++      }
++    } finally {
++      _free(text);
++      if (wordLengths != nullptr) _free(wordLengths.cast());
++      if (sentenceLengths != nullptr) _free(sentenceLengths.cast());
++    }
++  }
++
+   /// The compact results of [words] in the analyzer's batch format (`AMC1`,
+   /// word count, per-word status and record; duplicate analyses dropped),
+   /// as parts to concatenate. Words are sent in chunks below the adapter's
+diff --git a/packages/quds_arabic_morph/lib/src/morph_transport_stub.dart b/packages/quds_arabic_morph/lib/src/morph_transport_stub.dart
+index 6a49ecd61bbabb9d99f22a67bbbf7ed2b057735a..9ac14934c6a9fb3a8dc629afc752ad91abfb659a 100644
+--- a/packages/quds_arabic_morph/lib/src/morph_transport_stub.dart
++++ b/packages/quds_arabic_morph/lib/src/morph_transport_stub.dart
+@@ -19,5 +19,12 @@ final class _UnavailableTransport implements ArabicMorphTransport {
+   Future<List<List<ArabicAnalysis>?>> analyze(List<String> words) async =>
+       throw _error;
+   @override
++  Future<Map<String, Object?>> openDisambiguator(MorphDatabase model) async =>
++      throw _error;
++  @override
++  Future<List<List<ArabicContextReading>>> disambiguate(
++    List<List<String>> sentences,
++  ) async => throw _error;
++  @override
+   Future<void> dispose() async {}
+ }
+diff --git a/packages/quds_arabic_morph/lib/src/morph_transport_web.dart b/packages/quds_arabic_morph/lib/src/morph_transport_web.dart
+index 799385797abd7e3d4e99ceb7d249ad9e601de97d..6f85cda65e4ef22e75c733c045905318a84ba8dd 100644
+--- a/packages/quds_arabic_morph/lib/src/morph_transport_web.dart
++++ b/packages/quds_arabic_morph/lib/src/morph_transport_web.dart
+@@ -206,6 +206,57 @@ final class _WebTransport implements ArabicMorphTransport {
+     return decoder.decode(body, words.length);
+   }
+ 
++  @override
++  Future<Map<String, Object?>> openDisambiguator(MorphDatabase model) async {
++    if (model is! MorphDatabaseBytes) {
++      throw const ArabicMorphUnavailableException(
++        'The browser Arabic morphology worker opens verified bundle bytes.',
++      );
++    }
++    final buffers = <JSObject>[];
++    final files = <JSAny>[
++      for (final entry in model.files.entries)
++        JSObject()
++          ..setProperty('name'.toJS, entry.key.toJS)
++          ..setProperty('bytes'.toJS, _bytes(entry.value, buffers)),
++    ].toJS;
++    final request = JSObject()
++      ..setProperty('op'.toJS, 'open_model'.toJS)
++      ..setProperty('manifestSha256'.toJS, model.bundle.manifest.sha256.toJS)
++      ..setProperty('files'.toJS, files);
++    final body = _success(await _send(request, transfer: buffers.toJS));
++    return (body['info'] as Map).cast<String, Object?>();
++  }
++
++  @override
++  Future<List<List<ArabicContextReading>>> disambiguate(
++    List<List<String>> sentences,
++  ) async {
++    if (sentences.isEmpty) return const [];
++    final words = [for (final s in sentences) ...s];
++    final request = JSObject()
++      ..setProperty('op'.toJS, 'disambiguate'.toJS)
++      ..setProperty('words'.toJS, [for (final w in words) w.toJS].toJS)
++      ..setProperty(
++        'lengths'.toJS,
++        [for (final s in sentences) s.length.toJS].toJS,
++      );
++    final body = await _send(request);
++    final decoder = _decoder;
++    if (body is String) _success(body); // a failure report
++    if (body is! Uint8List || decoder == null) {
++      throw const FormatException('Malformed Arabic disambiguation response.');
++    }
++    final readings = decoder.decodeReadings(body, words.length);
++    final out = <List<ArabicContextReading>>[];
++    var at = 0;
++    for (final s in sentences) {
++      out.add(readings.sublist(at, at + s.length));
++      at += s.length;
++    }
++    return out;
++  }
++
+   @override
+   Future<void> dispose() async {
+     if (_disposed) return;
+diff --git a/packages/quds_arabic_morph/licenses/data/camel-morph-msa-disambig-LICENSE b/packages/quds_arabic_morph/licenses/data/camel-morph-msa-disambig-LICENSE
+new file mode 100644
+index 0000000000000000000000000000000000000000..3d81e2028382972c6d96a802e8490e8e2c468339
+--- /dev/null
++++ b/packages/quds_arabic_morph/licenses/data/camel-morph-msa-disambig-LICENSE
+@@ -0,0 +1,6 @@
++The Camel Morph MSA context disambiguation model in this directory is
++licensed under the Creative Commons Attribution-ShareAlike 4.0 International
++License (CC BY-SA 4.0): https://creativecommons.org/licenses/by-sa/4.0/
++
++It is derived from Arabic Wikipedia text (CC BY-SA 4.0) and Camel Morph MSA
++v1.0 (CC BY 4.0). See NOTICE for attribution and the changes made.
+diff --git a/packages/quds_arabic_morph/licenses/data/camel-morph-msa-disambig-NOTICE b/packages/quds_arabic_morph/licenses/data/camel-morph-msa-disambig-NOTICE
+new file mode 100644
+index 0000000000000000000000000000000000000000..e21a4c615ebc383c2a8a8bf5e177b3d0414061fd
+--- /dev/null
++++ b/packages/quds_arabic_morph/licenses/data/camel-morph-msa-disambig-NOTICE
+@@ -0,0 +1,25 @@
++Camel Morph MSA context disambiguation model (camel_morph_msa_v1.0.disambig.cmdis)
++
++A bigram hidden Markov model over the analyses of the Camel Morph MSA v1.0
++noprob database, trained without annotations by expectation maximization on
++raw Arabic Wikipedia text. It holds tag transition and lexeme probabilities
++only; it contains no sentence of the training text.
++
++Licence: CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0/).
++Produced with CrispEmbed (MIT): tools/arabic_morph/disambig_train.py.
++
++Attribution:
++- Training text: Arabic Wikipedia, "20231101.ar" dump, by Wikipedia contributors,
++  CC BY-SA 4.0 (https://ar.wikipedia.org/, licence
++  https://creativecommons.org/licenses/by-sa/4.0/). Retrieved through the
++  Hugging Face dataset wikimedia/wikipedia (20231101.ar); 12,000,927 tokens of
++  885,657 sentences were used. The 1600 articles drawn for evaluation were excluded.
++- Lexemes, parts of speech and the analyses the tags are built from: Camel
++  Morph MSA v1.0 (c) 2024 by New York University Abu Dhabi, CC BY 4.0
++  (https://github.com/CAMeL-Lab/camel_morph), in the noprob proofing-bin
++  variant (database SHA-256 fc9d9109ddb5430da94def715df05b563cb37ffaec508f3514668ded19438909); no Penn Arabic Treebank
++  probability was used.
++
++Changes (CC BY-SA 4.0 section 3(b), CC BY 4.0 section 3(a)(1)(B)): the text
++was tokenized, analyzed with the database and reduced to expected counts of
++tag bigrams and lexemes, which were smoothed and stored as log-probabilities.
+diff --git a/packages/quds_arabic_morph/licenses/manifest.json b/packages/quds_arabic_morph/licenses/manifest.json
+index 8612abbc6b5a81dc90298749a0531935b15bc435..f6c3dab50d838cc5dc156036803441549fd73b50 100644
+--- a/packages/quds_arabic_morph/licenses/manifest.json
++++ b/packages/quds_arabic_morph/licenses/manifest.json
+@@ -1,10 +1,10 @@
+ {
+   "component": {
+-    "commit": "0ed76631843cadd9b5c8296f25ed8a414d8f51db",
++    "commit": "3bab324832ea911c2b1260a0d50f0ed898f47950",
+     "files": {
+       "LICENSE": "a70d0ab5fb2dbab83d1a63071776891e6dfc7ba6e3063b3940c21274c1225a3e",
+-      "src/arabic_morph.cpp": "fff60440de9faaff4f5a5a0ec2c2b593a17eea8f94b6e55231d4059f361e910f",
+-      "src/arabic_morph.h": "98a2d0e6ec9ffed02c7d63e8e19c0ce7a46ed995859c2085fecad5b10620bc4c",
++      "src/arabic_morph.cpp": "c1547caf39aab9f74834cba9c782498e876357ba07ec6487d55b928c03f35400",
++      "src/arabic_morph.h": "cb7239fd6c727fd71d6f52240c380dd0914e6fb52418a7142bb7f8f81bcb0ed7",
+       "src/arabic_morph_tables.h": "72f9bf25aaaa0aa69b0fccfde2f97e97468c0dc8a523f4e012310d9b3bb5c174",
+       "src/core/env_gate.h": "2370e31636ea25bc1e5ca63e1e606f4cd3c07c65e0f4d1347b2ec6daf57eaa0e",
+       "src/core/json.h": "7e72a6359897e9397e5bee3edf7563476fc4bd41516bf5245a16df50dc54c589",
+@@ -36,16 +36,20 @@
+     ],
+     "license": "MIT",
+     "name": "crispembed-ar-morph",
+-    "pull_request": 255,
++    "pull_request": 261,
+     "source": "https://github.com/CrispStrobe/CrispEmbed"
+   },
+   "data_notices": {
+     "bundle": "huggingface.co/cstr/camel-morph-msa-v1.0@d5364e04af7a40b0c9044ed127606e585be15272/proofing-bin",
+     "files": {
+       "camel-morph-msa-LICENSE": "214965747a90efe3e5268d367192bb077f1101620662cba71d59d902000b2d94",
+-      "camel-morph-msa-NOTICE": "ce2f9c051786a37e4eb72367e6a6c9ea256b702137d4187bb0bfbda38f860efd"
++      "camel-morph-msa-NOTICE": "ce2f9c051786a37e4eb72367e6a6c9ea256b702137d4187bb0bfbda38f860efd",
++      "camel-morph-msa-disambig-LICENSE": "ef2c6367af269181d259bbda4b6167684f85242bb04b28923f91e2861be4c695",
++      "camel-morph-msa-disambig-NOTICE": "12f44e5787019e5eb5595663cb7275408d961f430b74d108fa77006235e2638b"
+     },
+-    "license": "CC-BY-4.0"
++    "license": "CC-BY-4.0",
++    "model_bundle": "huggingface.co/cstr/camel-morph-msa-disambig@07fd9e65200a3ea92a081efa9b0714817178df5f/bigram-v1",
++    "model_license": "CC-BY-SA-4.0"
+   },
+   "notices": {
+     "CPython-LICENSE": "3b2f81fe21d181c499c59a256c8e1968455d6689d269aa85373bfb6af41da3bf",
+@@ -55,6 +59,6 @@
+     "Unicode-LICENSE.txt": "e7a93b009565cfce55919a381437ac4db883e9da2126fa28b91d12732bc53d96",
+     "camel_tools-LICENSE": "7a3ef160e8957145490ff66591aa9cb8cb08601a2e9fb1673c5fb7af74c727f2"
+   },
+-  "policy": "MIT adapter and MIT CrispEmbed analyzer (a port of MIT camel_tools); Ryu under the Apache-2.0 option of its Apache-2.0/BSL-1.0 dual licence; Unicode/CPython character data under their notices. No GPL/LGPL code. The Camel Morph database (CC BY 4.0) is user-downloaded data, never part of the binary.",
++  "policy": "MIT adapter and MIT CrispEmbed analyzer (a port of MIT camel_tools); Ryu under the Apache-2.0 option of its Apache-2.0/BSL-1.0 dual licence; Unicode/CPython character data under their notices. No GPL/LGPL code. The Camel Morph database (CC BY 4.0) and its context model (CC BY-SA 4.0) are user-downloaded data, never part of the binary.",
+   "schema_version": 1
+ }
+diff --git a/packages/quds_arabic_morph/native/CMakeLists.txt b/packages/quds_arabic_morph/native/CMakeLists.txt
+index a7f9f0cbbd0fa5d90b61103a2411df957b39d314..8d17e40a4f5411fbbbed2a65e3f08f48c39c20f9 100644
+--- a/packages/quds_arabic_morph/native/CMakeLists.txt
++++ b/packages/quds_arabic_morph/native/CMakeLists.txt
+@@ -28,7 +28,7 @@ if(EMSCRIPTEN)
+     # Plain (non-resizable) heap views: current Chrome's TextDecoder rejects
+     # views of resizable buffers, which emscripten's runtime decodes paths with.
+     -sGROWABLE_ARRAYBUFFERS=0
+-    -sEXPORTED_FUNCTIONS=_quds_arabic_morph_adapter_version,_crispembed_ar_morph_abi_version,_crispembed_ar_morph_open,_crispembed_ar_morph_analyze,_crispembed_ar_morph_analyze_compact,_crispembed_ar_morph_buffer_free,_crispembed_ar_morph_string_free,_crispembed_ar_morph_info,_crispembed_ar_morph_free,_malloc,_free
++    -sEXPORTED_FUNCTIONS=_quds_arabic_morph_adapter_version,_quds_arabic_morph_enable_disambiguation,_crispembed_ar_morph_abi_version,_crispembed_ar_morph_open,_crispembed_ar_morph_analyze,_crispembed_ar_morph_analyze_compact,_crispembed_ar_morph_buffer_free,_crispembed_ar_morph_string_free,_crispembed_ar_morph_info,_crispembed_ar_morph_free,_crispembed_ar_morph_disambig_open,_crispembed_ar_morph_disambiguate,_crispembed_ar_morph_disambig_info,_crispembed_ar_morph_disambig_free,_malloc,_free
+     -sEXPORTED_RUNTIME_METHODS=FS,stringToNewUTF8,lengthBytesUTF8,HEAPU8,HEAPU32
+     -sINCOMING_MODULE_JS_API=locateFile,print,printErr)
+   # The analyzer reports errors through C++ exceptions caught at the ABI;
+diff --git a/packages/quds_arabic_morph/native/src/quds_arabic_morph.cpp b/packages/quds_arabic_morph/native/src/quds_arabic_morph.cpp
+index 9389515b7416617ce530b3ec088833addac78995..75de1d1364e308b77e333d7fdb898cb31fd4ab58 100644
+--- a/packages/quds_arabic_morph/native/src/quds_arabic_morph.cpp
++++ b/packages/quds_arabic_morph/native/src/quds_arabic_morph.cpp
+@@ -2,9 +2,11 @@
+ // pinned CrispEmbed native Camel Morph port (crispembed_ar_morph_* C ABI,
+ // MIT, see ../../licenses); this file only adds buffers for callers without a
+ // C allocator of their own (Dart FFI on every platform, including Windows
+-// where the process CRT is not reachable) and an adapter version.
++// where the process CRT is not reachable), an adapter version, and the
++// switch for CrispEmbed's default-off context disambiguator.
+ #include <cstddef>
+ #include <cstdint>
++#include <cstdlib>
+ #include <new>
+ 
+ #if defined(_WIN32)
+@@ -16,10 +18,27 @@
+ #define QUDS_EXPORT extern "C" __attribute__((visibility("default")))
+ #endif
+ 
+-QUDS_EXPORT std::uint32_t quds_arabic_morph_adapter_version() { return 1; }
++// Version 2 adds quds_arabic_morph_enable_disambiguation.
++QUDS_EXPORT std::uint32_t quds_arabic_morph_adapter_version() { return 2; }
+ 
+ QUDS_EXPORT void * quds_arabic_morph_alloc(std::size_t bytes) {
+     return bytes == 0 || bytes > (1u << 20) ? nullptr : ::operator new(bytes, std::nothrow);
+ }
+ 
+ QUDS_EXPORT void quds_arabic_morph_free(void * pointer) { ::operator delete(pointer); }
++
++// CrispEmbed's context disambiguator is gated default-off by the
++// CRISPEMBED_AR_MORPH_DISAMBIG environment variable. The host calls this
++// before opening a model it chose to use; an existing value (for example an
++// operator's CRISPEMBED_AR_MORPH_DISAMBIG=0) is kept. Returns 1 when the
++// variable is set afterwards.
++QUDS_EXPORT std::int32_t quds_arabic_morph_enable_disambiguation() {
++#if defined(_WIN32)
++    std::size_t length = 0;
++    if (getenv_s(&length, nullptr, 0, "CRISPEMBED_AR_MORPH_DISAMBIG") == 0 && length == 0)
++        _putenv_s("CRISPEMBED_AR_MORPH_DISAMBIG", "1");
++#else
++    setenv("CRISPEMBED_AR_MORPH_DISAMBIG", "1", 0);
++#endif
++    return std::getenv("CRISPEMBED_AR_MORPH_DISAMBIG") != nullptr ? 1 : 0;
++}
+diff --git a/packages/quds_arabic_morph/pubspec.yaml b/packages/quds_arabic_morph/pubspec.yaml
+index 327db5434786f32b868c8e6117635afd8026cf57..6309deb778d8ee14eba53749c5bf659dcf9d9e7a 100644
+--- a/packages/quds_arabic_morph/pubspec.yaml
++++ b/packages/quds_arabic_morph/pubspec.yaml
+@@ -1,6 +1,6 @@
+ name: quds_arabic_morph
+ description: Optional local Arabic morphological analysis (native Camel Morph analyzer, MIT) over the user-downloaded Camel Morph MSA database (CC BY 4.0) for Quds Office.
+-version: 0.2.0
++version: 0.3.0
+ publish_to: none
+ resolution: workspace
+ environment:
+diff --git a/packages/quds_arabic_morph/test/arabic_morph_native_test.dart b/packages/quds_arabic_morph/test/arabic_morph_native_test.dart
+index 74e1e13c1dd3208f2682a30edce85f12e8c911f0..cb92e4e77bfa2bbee0a94703e7993a2c61570b26 100644
+--- a/packages/quds_arabic_morph/test/arabic_morph_native_test.dart
++++ b/packages/quds_arabic_morph/test/arabic_morph_native_test.dart
+@@ -19,6 +19,13 @@ final Object _skip = _library == null || _bundle == null
+     ? 'Set QUDS_ARABIC_MORPH_TEST_LIBRARY and QUDS_ARABIC_MORPH_TEST_BUNDLE.'
+     : false;
+ 
++/// QUDS_ARABIC_MORPH_TEST_MODEL: the directory with the verified context
++/// model bundle (camelMorphMsaDisambig).
++final _model = Platform.environment['QUDS_ARABIC_MORPH_TEST_MODEL'];
++final Object _skipModel = _library == null || _bundle == null || _model == null
++    ? 'Set QUDS_ARABIC_MORPH_TEST_LIBRARY, _BUNDLE and _MODEL.'
++    : false;
++
+ MorphDatabaseFiles _files(String directory) => MorphDatabaseFiles(
+   camelMorphMsaProofingBin,
+   manifestPath: '$directory/manifest.json',
+@@ -46,6 +53,83 @@ int _databaseMappings(Directory bundle) {
+ }
+ 
+ void main() {
++  group('real library with the context model', () {
++    late CamelArabicMorphology morphology;
++    setUpAll(() async {
++      morphology = CamelArabicMorphology(
++        database: _files(_bundle!),
++        disambiguator: MorphDatabaseFiles(
++          camelMorphMsaDisambig,
++          manifestPath: '$_model/manifest.json',
++        ),
++        nativeLibraryPath: _library,
++      );
++      await morphology.load();
++    });
++    tearDownAll(() => morphology.dispose());
++
++    test('loads the pinned model and ranks readings in context', () async {
++      expect(morphology.canDisambiguate, isTrue);
++      expect(
++        morphology.disambiguatorInfo!['model_format'],
++        'crispembed-camel-morph-disambig-v1',
++      );
++      final sentences = [
++        for (final s in arabicContextSentences(
++          'قرأت ثلاثة كتب في المكتبة. كان الطلاب مجتهدين!',
++        ))
++          [for (final t in s) t.text],
++      ];
++      expect(sentences, hasLength(2));
++      final readings = await morphology.disambiguate(sentences);
++      expect(readings.map((s) => s.length), [6, 4]);
++      // كتب after a numeral is the plural of كتاب, في the preposition,
++      // كان the verb.
++      expect(readings[0][2].best.map((a) => a['lex']).toSet(), {'كِتَاب'});
++      expect(readings[0][3].best.first['pos'], 'prep');
++      expect(readings[1][0].best.first['pos'], 'verb');
++      for (final s in readings) {
++        for (final r in s) {
++          final best = r.bestScore;
++          expect(best, inInclusiveRange(0, 1.0001));
++          if (r.analyses.isNotEmpty) expect(r.margin, lessThanOrEqualTo(best));
++        }
++      }
++      expect(readings[0][5].analyses.single['pos'], 'punc');
++    });
++
++    test('a tampered model leaves analysis working without ranking', () async {
++      final copy = Directory.systemTemp.createTempSync('arabic-morph-model-');
++      addTearDown(() => copy.deleteSync(recursive: true));
++      for (final a in camelMorphMsaDisambig.files) {
++        File('$_model/${a.file}').copySync('${copy.path}/${a.file}');
++      }
++      final model = File('${copy.path}/${camelMorphMsaDisambig.database.file}');
++      final bytes = model.readAsBytesSync();
++      bytes[bytes.length ~/ 2] ^= 0x5a;
++      model.writeAsBytesSync(bytes);
++      final other = CamelArabicMorphology(
++        database: _files(_bundle!),
++        disambiguator: MorphDatabaseFiles(
++          camelMorphMsaDisambig,
++          manifestPath: '${copy.path}/manifest.json',
++        ),
++        nativeLibraryPath: _library,
++      );
++      addTearDown(other.dispose);
++      await other.load();
++      expect(other.isAvailable, isTrue);
++      expect(other.canDisambiguate, isFalse);
++      expect(other.disambiguatorFailure.toString(), contains('SHA-256'));
++      expect(
++        await other.disambiguate([
++          ['كتب'],
++        ]),
++        isEmpty,
++      );
++    });
++  }, skip: _skipModel);
++
+   test('a missing native library leaves the analyzer unavailable', () async {
+     final morphology = CamelArabicMorphology(
+       database: _files('/missing'),
+diff --git a/packages/quds_arabic_morph/test/arabic_morph_unit_test.dart b/packages/quds_arabic_morph/test/arabic_morph_unit_test.dart
+index 55f5702c5c24709bfb3a8af12ee65b10ee36ea78..c19cbf247036b1b973cd92749137b2795031d9d8 100644
+--- a/packages/quds_arabic_morph/test/arabic_morph_unit_test.dart
++++ b/packages/quds_arabic_morph/test/arabic_morph_unit_test.dart
+@@ -33,20 +33,82 @@ final class _FakeTransport implements ArabicMorphTransport {
+     ];
+   }
+ 
++  bool failModel = false;
++  final sentences = <List<List<String>>>[];
++
++  @override
++  Future<Map<String, Object?>> openDisambiguator(MorphDatabase model) async {
++    if (failModel) throw StateError('bad model');
++    return {'model_format': 'crispembed-camel-morph-disambig-v1'};
++  }
++
++  /// Every word reads as a noun (best, 0.9) or a verb (0.1).
++  @override
++  Future<List<List<ArabicContextReading>>> disambiguate(
++    List<List<String>> batch,
++  ) async {
++    sentences.add(batch);
++    return [
++      for (final s in batch)
++        [
++          for (final word in s)
++            ArabicContextReading(
++              [
++                {'lex': word, 'pos': 'noun'},
++                {'lex': word, 'pos': 'verb'},
++              ],
++              const [0.9, 0.1],
++              const [0, 1],
++            ),
++        ],
++    ];
++  }
++
+   @override
+   Future<void> dispose() async => disposed = true;
+ }
+ 
+-CamelArabicMorphology _morphology(_FakeTransport transport, {int cache = 10}) =>
+-    CamelArabicMorphology(
+-      database: const MorphDatabaseFiles(
+-        camelMorphMsaProofingBin,
+-        manifestPath: 'unused',
+-      ),
+-      transport: transport,
+-      cacheWords: cache,
+-      batchWords: 2,
+-    );
++CamelArabicMorphology _morphology(
++  _FakeTransport transport, {
++  int cache = 10,
++  bool model = false,
++}) => CamelArabicMorphology(
++  database: const MorphDatabaseFiles(
++    camelMorphMsaProofingBin,
++    manifestPath: 'unused',
++  ),
++  disambiguator: model
++      ? const MorphDatabaseFiles(
++          camelMorphMsaDisambig,
++          manifestPath: 'unused-model',
++        )
++      : null,
++  transport: transport,
++  cacheWords: cache,
++  batchWords: 2,
++);
++
++/// The score section of a disambiguation buffer: per word (rank, score)
++/// for each analysis and the candidate count.
++List<int> _scores(List<(int, List<(int, double)>)> words) {
++  final out = BytesBuilder();
++  void u32(int v) => out.add(
++    (ByteData(4)..setUint32(0, v, Endian.little)).buffer.asUint8List(),
++  );
++  u32(CompactAnalysisDecoder.scoresMagic);
++  u32(words.length);
++  for (final (candidates, analyses) in words) {
++    u32(analyses.length);
++    u32(candidates);
++    for (final (rank, score) in analyses) {
++      u32(rank);
++      out.add(
++        (ByteData(4)..setFloat32(0, score, Endian.little)).buffer.asUint8List(),
++      );
++    }
++  }
++  return out.takeBytes();
++}
+ 
+ /// One word record of the compact format: [analyses] as (key id, value)
+ /// lists, null values allowed.
+@@ -302,7 +364,136 @@ void main() {
+     });
+   });
+ 
++  group('disambiguation buffers', () {
++    const keys = ['lex', 'pos'];
++
++    test('readings carry ranks and scores per analysis', () {
++      final decoder = CompactAnalysisDecoder(keys);
++      final buffer = Uint8List.fromList([
++        ..._batch([
++          _record([
++            [(0, 'كِتَاب'), (1, 'noun')],
++            [(0, 'كَتَب'), (1, 'verb')],
++            [(0, 'كِتَاب'), (1, 'noun')],
++          ]),
++          null,
++          _record([]),
++        ]),
++        ..._scores([
++          (2, [(0, 0.96), (1, 0.04), (0, 0.96)]),
++          (1, []),
++          (1, []),
++        ]),
++      ]);
++      final readings = decoder.decodeReadings(buffer, 3);
++      expect(readings[0].best.map((a) => a['pos']), ['noun', 'noun']);
++      expect(readings[0].margin, closeTo(0.92, 1e-6));
++      expect(readings[0].confident(0.9), hasLength(2));
++      expect(readings[1].analyses, isEmpty);
++      expect(readings[2].confident(0), isNull);
++      // A plain compact decode refuses the trailing score section.
++      expect(() => decoder.decode(buffer, 3), throwsFormatException);
++    });
++
++    test('malformed score sections are rejected', () {
++      final decoder = CompactAnalysisDecoder(keys);
++      final record = _record([
++        [(0, 'a'), (1, 'noun')],
++      ]);
++      Uint8List buffer(List<(int, List<(int, double)>)> scores) =>
++          Uint8List.fromList([
++            ..._batch([record]),
++            ..._scores(scores),
++          ]);
++      expect(
++        decoder
++            .decodeReadings(
++              buffer([
++                (1, [(0, 1.0)]),
++              ]),
++              1,
++            )
++            .single
++            .bestScore,
++        1.0,
++      );
++      for (final bad in [
++        <(int, List<(int, double)>)>[(1, [])], // count mismatch
++        [
++          (1, [(1, 1.0)]),
++        ], // rank beyond the candidates
++        [
++          (0, [(0, 1.0)]),
++        ], // no candidate
++        [
++          (1, [(0, 2.0)]),
++        ], // score above 1
++      ]) {
++        expect(
++          () => decoder.decodeReadings(buffer(bad), 1),
++          throwsFormatException,
++        );
++      }
++      expect(
++        () => decoder.decodeReadings(_batch([record]), 1),
++        throwsFormatException,
++      );
++    });
++  });
++
+   group('CamelArabicMorphology', () {
++    test('disambiguates with a loaded model, batches and caches', () async {
++      final transport = _FakeTransport();
++      final morphology = _morphology(transport, model: true);
++      expect(morphology.canDisambiguate, isFalse);
++      final readings = await morphology.disambiguate([
++        ['a', 'b'],
++        ['c'],
++        ['a', 'b'],
++      ]);
++      expect(morphology.canDisambiguate, isTrue);
++      expect(readings.map((s) => s.length), [2, 1, 2]);
++      expect(readings[1].single.best.single['pos'], 'noun');
++      // Distinct sentences in batches of about two words.
++      expect(transport.sentences, [
++        [
++          ['a', 'b'],
++        ],
++        [
++          ['c'],
++        ],
++      ]);
++      await morphology.disambiguate([
++        ['c'],
++      ]);
++      expect(transport.sentences, hasLength(2), reason: 'cached');
++      expect(morphology.disambiguatorInfo, isNotNull);
++    });
++
++    test('a model can be loaded later; a failing one is optional', () async {
++      final transport = _FakeTransport()..failModel = true;
++      final morphology = _morphology(transport);
++      await morphology.load();
++      expect(morphology.canDisambiguate, isFalse);
++      expect(
++        await morphology.disambiguate([
++          ['a'],
++        ]),
++        isEmpty,
++      );
++      const model = MorphDatabaseFiles(
++        camelMorphMsaDisambig,
++        manifestPath: 'unused-model',
++      );
++      await morphology.loadDisambiguator(model);
++      expect(morphology.canDisambiguate, isFalse);
++      expect(morphology.disambiguatorFailure, isNotNull);
++      expect(morphology.isAvailable, isTrue, reason: 'analysis is unaffected');
++      transport.failModel = false;
++      await morphology.loadDisambiguator(model);
++      expect(morphology.canDisambiguate, isTrue);
++    });
++
+     test('is unavailable until loaded, then batches distinct words', () async {
+       final transport = _FakeTransport();
+       final morphology = _morphology(transport);
+@@ -365,8 +556,9 @@ void main() {
+       expect(second.isAvailable, isFalse);
+     });
+ 
+-    test('implements the engine interface', () {
++    test('implements the engine interfaces', () {
+       expect(_morphology(_FakeTransport()), isA<ArabicMorphology>());
++      expect(_morphology(_FakeTransport()), isA<ArabicContextMorphology>());
+     });
+   });
+ }
+diff --git a/packages/quds_arabic_morph/tool/build.py b/packages/quds_arabic_morph/tool/build.py
+index 9dc63a4784f45e55895d94cb05a7f4791b98fbc0..956e526c741b02f6a5459b66dac3dec4bd6a0122 100644
+--- a/packages/quds_arabic_morph/tool/build.py
++++ b/packages/quds_arabic_morph/tool/build.py
+@@ -30,16 +30,16 @@ NATIVE = PACKAGE / "native"
+ LICENSES = PACKAGE / "licenses"
+ CRISPEMBED = {
+     "repository": "https://github.com/CrispStrobe/CrispEmbed",
+-    "commit": "0ed76631843cadd9b5c8296f25ed8a414d8f51db",
+-    "pull_request": 255,
++    "commit": "3bab324832ea911c2b1260a0d50f0ed898f47950",
++    "pull_request": 261,
+ }
+ RAW = "https://raw.githubusercontent.com/CrispStrobe/CrispEmbed/{commit}/{path}"
+ # Every file fetched from CrispEmbed: path -> (SHA-256, bytes). Compiled
+ # sources and their notices; nothing else of CrispEmbed (no ggml) is used.
+ SOURCES = {
+     "LICENSE": ("a70d0ab5fb2dbab83d1a63071776891e6dfc7ba6e3063b3940c21274c1225a3e", 4739),
+-    "src/arabic_morph.cpp": ("fff60440de9faaff4f5a5a0ec2c2b593a17eea8f94b6e55231d4059f361e910f", 111218),
+-    "src/arabic_morph.h": ("98a2d0e6ec9ffed02c7d63e8e19c0ce7a46ed995859c2085fecad5b10620bc4c", 7377),
++    "src/arabic_morph.cpp": ("c1547caf39aab9f74834cba9c782498e876357ba07ec6487d55b928c03f35400", 139469),
++    "src/arabic_morph.h": ("cb7239fd6c727fd71d6f52240c380dd0914e6fb52418a7142bb7f8f81bcb0ed7", 11823),
+     "src/arabic_morph_tables.h": ("72f9bf25aaaa0aa69b0fccfde2f97e97468c0dc8a523f4e012310d9b3bb5c174", 8028),
+     "src/core/env_gate.h": ("2370e31636ea25bc1e5ca63e1e606f4cd3c07c65e0f4d1347b2ec6daf57eaa0e", 3245),
+     "src/core/json.h": ("7e72a6359897e9397e5bee3edf7563476fc4bd41516bf5245a16df50dc54c589", 23378),
+@@ -74,10 +74,13 @@ NOTICES = {
+     "CPython-LICENSE": "tools/arabic_morph/notices/CPython-LICENSE",
+ }
+ # Attribution of the user-downloaded data (never compiled in), copied from
+-# the pinned proofing-bin bundle so hosts can show it on their licence page.
++# the pinned proofing-bin bundle and the pinned context model bundle so hosts
++# can show it on their licence page.
+ DATA_NOTICES = {
+     "camel-morph-msa-NOTICE": ("ce2f9c051786a37e4eb72367e6a6c9ea256b702137d4187bb0bfbda38f860efd", 1799),
+     "camel-morph-msa-LICENSE": ("214965747a90efe3e5268d367192bb077f1101620662cba71d59d902000b2d94", 442),
++    "camel-morph-msa-disambig-NOTICE": ("12f44e5787019e5eb5595663cb7275408d961f430b74d108fa77006235e2638b", 1484),
++    "camel-morph-msa-disambig-LICENSE": ("ef2c6367af269181d259bbda4b6167684f85242bb04b28923f91e2861be4c695", 363),
+ }
+ LIBRARY = "quds_arabic_morph"
+ 
+@@ -122,8 +125,8 @@ def license_bundle(root: Path) -> dict:
+         "schema_version": 1,
+         "policy": "MIT adapter and MIT CrispEmbed analyzer (a port of MIT camel_tools); Ryu under the Apache-2.0 "
+                   "option of its Apache-2.0/BSL-1.0 dual licence; Unicode/CPython character data under their "
+-                  "notices. No GPL/LGPL code. The Camel Morph database (CC BY 4.0) is user-downloaded data, never "
+-                  "part of the binary.",
++                  "notices. No GPL/LGPL code. The Camel Morph database (CC BY 4.0) and its context model (CC BY-SA "
++                  "4.0) are user-downloaded data, never part of the binary.",
+         "component": {
+             "name": "crispembed-ar-morph", "source": CRISPEMBED["repository"], "commit": CRISPEMBED["commit"],
+             "pull_request": CRISPEMBED["pull_request"], "license": "MIT",
+@@ -138,6 +141,9 @@ def license_bundle(root: Path) -> dict:
+         "data_notices": {
+             "bundle": "huggingface.co/cstr/camel-morph-msa-v1.0@d5364e04af7a40b0c9044ed127606e585be15272/proofing-bin",
+             "license": "CC-BY-4.0",
++            "model_bundle": "huggingface.co/cstr/camel-morph-msa-disambig@07fd9e65200a3ea92a081efa9b0714817178df5f"
++                            "/bigram-v1",
++            "model_license": "CC-BY-SA-4.0",
+             "files": {name: digest for name, (digest, _) in sorted(DATA_NOTICES.items())},
+         },
+     }
+diff --git a/packages/quds_arabic_morph/tool/pud_rule_findings.dart b/packages/quds_arabic_morph/tool/pud_rule_findings.dart
+index 668da5c6a4c08bdfa3cf3575f4eb578caefdafac..e2eb5f56bc4c1c09fc84d822c2cefa49e4766f76 100644
+--- a/packages/quds_arabic_morph/tool/pud_rule_findings.dart
++++ b/packages/quds_arabic_morph/tool/pud_rule_findings.dart
+@@ -1,18 +1,79 @@
+ // Arabic rule findings over a corpus with the real analyzer, one JSON line
+-// per finding (sentence index, rule id, range, message), to compare backends
+-// or bundles finding by finding:
++// per finding (sentence index, rule id, range, message), to compare backends,
++// bundles or reading modes finding by finding:
+ //   dart run tool/pud_rule_findings.dart <library> <bundle dir> <corpus.txt>
++//       [--model <context model bundle dir>] [--reading all|contextual]
++//       [--margin <minimum lead of the best reading, default 0.9>]
+ // The corpus has one sentence per line; the bundle's manifest variant
+-// selects the pinned bundle (proofing-bin or the earlier noprob).
++// selects the pinned bundle (proofing-bin or the earlier noprob). A local
++// context model bundle is pinned by its own manifest (developer use, before
++// or after publication); --reading defaults to contextual.
+ import 'dart:convert';
+ import 'dart:io';
+ 
++import 'package:crypto/crypto.dart';
+ import 'package:quds_arabic_morph/quds_arabic_morph.dart';
+ import 'package:quds_office_engine/quds_office_engine.dart';
+ 
+-Future<void> main(List<String> args) async {
++/// A bundle pinned by the local manifest at [dir] (developer use only).
++MorphBundleDownload localBundle(String dir, MorphBundleDownload like) {
++  final manifestBytes = File('$dir/manifest.json').readAsBytesSync();
++  final manifest = jsonDecode(utf8.decode(manifestBytes)) as Map;
++  final main = (manifest['model'] ?? manifest['db']) as String;
++  MorphArtifact artifact(Map<Object?, Object?> f) => MorphArtifact(
++    f['path'] as String,
++    f['sha256'] as String,
++    f['size'] as int,
++  );
++  final files = [
++    for (final f in manifest['files'] as List)
++      artifact(f as Map<Object?, Object?>),
++  ];
++  return MorphBundleDownload(
++    id: like.id,
++    displayName: like.displayName,
++    repository: like.repository,
++    revision: like.revision,
++    directory: like.directory,
++    license: like.license,
++    licenseUrl: like.licenseUrl,
++    attribution: like.attribution,
++    sourceUrl: like.sourceUrl,
++    manifest: MorphArtifact(
++      'manifest.json',
++      sha256.convert(manifestBytes).toString(),
++      manifestBytes.length,
++    ),
++    database: files.firstWhere((f) => f.file == main),
++    notices: [
++      for (final f in files)
++        if (f.file != main) f,
++    ],
++  );
++}
++
++Future<void> main(List<String> arguments) async {
++  final args = List.of(arguments);
++  String? option(String name) {
++    final i = args.indexOf(name);
++    if (i < 0 || i + 1 >= args.length) return null;
++    final value = args[i + 1];
++    args.removeRange(i, i + 2);
++    return value;
++  }
++
++  final modelDir = option('--model');
++  final margin = double.parse(
++    option('--margin') ?? arabicContextMinMargin.toString(),
++  );
++  final reading = option('--reading') == 'all'
++      ? ArabicGrammarReading.allAnalyses
++      : ArabicGrammarReading.contextual;
+   if (args.length != 3) {
+-    stderr.writeln('usage: pud_rule_findings.dart <library> <bundle> <corpus>');
++    stderr.writeln(
++      'usage: pud_rule_findings.dart <library> <bundle> <corpus> '
++      '[--model <dir>] [--reading all|contextual]',
++    );
+     exit(64);
+   }
+   final [library, bundle, corpus] = args;
+@@ -24,13 +85,27 @@ Future<void> main(List<String> args) async {
+       variant == 'noprob' ? camelMorphMsaNoprob : camelMorphMsaProofingBin,
+       manifestPath: '$bundle/manifest.json',
+     ),
++    disambiguator: modelDir == null
++        ? null
++        : MorphDatabaseFiles(
++            localBundle(modelDir, camelMorphMsaDisambig),
++            manifestPath: '$modelDir/manifest.json',
++          ),
+     nativeLibraryPath: library,
+   );
+   await morphology.load();
+   if (!morphology.isAvailable) throw StateError('${morphology.failure}');
+-  final provider = ArabicWritingRulesProvider(morphology: morphology);
++  if (modelDir != null && !morphology.canDisambiguate) {
++    throw StateError('${morphology.disambiguatorFailure}');
++  }
++  final provider = ArabicWritingRulesProvider(
++    morphology: morphology,
++    grammarReading: reading,
++    contextMinMargin: margin,
++  );
+   final lines = File(corpus).readAsLinesSync();
+   var count = 0;
++  final watch = Stopwatch()..start();
+   for (var i = 0; i < lines.length; i++) {
+     final result = await provider.check(
+       OfficeProofingRequest(
+@@ -49,13 +124,23 @@ Future<void> main(List<String> args) async {
+           'rule': f.ruleId,
+           'start': f.start,
+           'end': f.end,
++          'text': lines[i].substring(f.start, f.end),
+           'message': f.message,
+           'replacements': f.replacements,
+         }),
+       );
+     }
+   }
+-  stderr.writeln(jsonEncode({'sentences': lines.length, 'findings': count}));
++  stderr.writeln(
++    jsonEncode({
++      'sentences': lines.length,
++      'findings': count,
++      'reading': reading.name,
++      'margin': margin,
++      'model': modelDir != null,
++      'seconds': watch.elapsedMilliseconds / 1000,
++    }),
++  );
+   await provider.dispose();
+   await morphology.dispose();
+ }
+diff --git a/packages/quds_arabic_morph/tool/web_smoke.mjs b/packages/quds_arabic_morph/tool/web_smoke.mjs
+index a6ecbf4b74f3879624689a45929e8c83f0c60857..383f66734813565768d18b648c62daa278cdbcf0 100644
+--- a/packages/quds_arabic_morph/tool/web_smoke.mjs
++++ b/packages/quds_arabic_morph/tool/web_smoke.mjs
+@@ -1,6 +1,8 @@
+ // Drives the shipped web worker (build/web/arabic_morph_worker.mjs + the
+ // bundled Emscripten module) through its message protocol in Node:
+-//   node tool/web_smoke.mjs <build/web dir> <bundle dir> [corpus.txt]
++//   node tool/web_smoke.mjs <build/web dir> <bundle dir> [corpus.txt] [model dir]
++// With a context model bundle dir, the worker also opens the model and
++// disambiguates a sentence (scores section after the compact records).
+ // The bundle dir holds a verified bundle (proofing-bin); its manifest lists
+ // the files. The corpus (one sentence per line, e.g. the UD Arabic-PUD
+ // `# text` lines) is split into distinct Arabic words and analyzed in
+@@ -10,7 +12,7 @@ import path from 'node:path';
+ import crypto from 'node:crypto';
+ import {pathToFileURL} from 'node:url';
+ 
+-const [webDir, bundleDir, corpus] = process.argv.slice(2);
++const [webDir, bundleDir, corpus, modelDir] = process.argv.slice(2);
+ const replies = new Map();
+ globalThis.self = {postMessage: message => replies.get(message.id)?.(message)};
+ await import(pathToFileURL(path.resolve(webDir, 'arabic_morph_worker.mjs')).href);
+@@ -90,6 +92,40 @@ const report = {
+   protocol_checks: 6, load_seconds: loadSeconds, wasm_heap_mb: mb(openBody.heapBytes),
+   process_rss_growth_mb: mb(process.memoryUsage().rss - rssBefore), info: openBody.info,
+ };
++if (modelDir) {
++  const readModel = name => fs.readFileSync(path.join(modelDir, name));
++  const modelManifest = readModel('manifest.json');
++  const modelNames = ['manifest.json', ...JSON.parse(modelManifest).files.map(f => f.path)];
++  const modelSha256 = crypto.createHash('sha256').update(modelManifest).digest('hex');
++  const openedModel = await send({op: 'open_model', manifestSha256: modelSha256,
++    files: modelNames.map(name => ({name, bytes: readModel(name)}))});
++  const modelBody = JSON.parse(openedModel.response);
++  assert(modelBody.status === 'success', `open_model: ${openedModel.response}`);
++  const words = ['قرأت', 'ثلاثة', 'كتب', 'في', 'المكتبة', '.'];
++  const reply = await send({op: 'disambiguate', words, lengths: [words.length]});
++  const buffer = reply.buffer;
++  const view = new DataView(buffer);
++  // Skip the compact records, then read the score section.
++  let at = 8;
++  for (let w = 0; w < words.length; w++) at += 8 + view.getUint32(at + 4, true);
++  const records = decode(buffer.slice(0, at), words.length);
++  assert(view.getUint32(at, true) === 0x31534D41 && view.getUint32(at + 4, true) === words.length, 'score header');
++  at += 8;
++  const best = [];
++  for (let w = 0; w < words.length; w++) {
++    const n = view.getUint32(at, true);
++    at += 8;
++    let top = null;
++    for (let a = 0; a < n; a++) {
++      if (view.getUint32(at, true) === 0) top ??= {analysis: records[w][a], score: view.getFloat32(at + 4, true)};
++      at += 8;
++    }
++    best.push(top);
++  }
++  assert(at === buffer.byteLength, 'score section length');
++  assert(best[2].analysis.lex === 'كِتَاب' && best[3].analysis.pos === 'prep', 'كتب is كِتَاب, في a preposition');
++  report.model = {info: modelBody.info.model_format, best: best.map(b => b && `${b.analysis.lex}/${b.analysis.pos}:${b.score.toFixed(3)}`)};
++}
+ if (corpus) {
+   const arabic = /[ؠ-يٮ-ۓ]/u;
+   const words = [...new Set(fs.readFileSync(corpus, 'utf8').split('\n')
+diff --git a/packages/quds_arabic_morph/web/arabic_morph_worker.mjs b/packages/quds_arabic_morph/web/arabic_morph_worker.mjs
+index c9c28993c62d46cdf447cc70dc9b1d1ff9d7a0cd..a7e00cc75ff2572990c4a1b70f14ba736b241379 100644
+--- a/packages/quds_arabic_morph/web/arabic_morph_worker.mjs
++++ b/packages/quds_arabic_morph/web/arabic_morph_worker.mjs
+@@ -6,11 +6,13 @@ import createArabicMorphModule from './quds_arabic_morph.mjs';
+ 
+ let module;
+ let handle = 0;
++let model = 0;
+ const BUNDLE = '/camel-morph';
++const MODEL = '/camel-morph-disambig';
+ 
+ async function load() {
+   const api = await createArabicMorphModule();
+-  if (api._quds_arabic_morph_adapter_version() !== 1 || api._crispembed_ar_morph_abi_version() !== 2) {
++  if (api._quds_arabic_morph_adapter_version() !== 2 || api._crispembed_ar_morph_abi_version() !== 3) {
+     throw new Error('Unsupported Arabic morphology ABI');
+   }
+   return api;
+@@ -35,6 +37,7 @@ function withString(api, value, body) {
+ 
+ // files: [{name, bytes}] of one verified bundle, manifest.json among them.
+ function open(api, files, manifestSha256) {
++  if (model) { api._crispembed_ar_morph_disambig_free(model); model = 0; }
+   if (handle) { api._crispembed_ar_morph_free(handle); handle = 0; }
+   try { api.FS.mkdir(BUNDLE); } catch (_) { /* exists */ }
+   const written = [];
+@@ -58,6 +61,68 @@ function open(api, files, manifestSha256) {
+   return text(api, api._crispembed_ar_morph_info(handle));
+ }
+ 
++// files: [{name, bytes}] of one verified disambiguation model bundle. The
++// disambiguator is default-off in CrispEmbed; the adapter enables it for
++// this module (the Wasm module has its own environment).
++function openModel(api, files, manifestSha256) {
++  if (!handle) throw new Error('No Arabic morphology database is open');
++  if (model) { api._crispembed_ar_morph_disambig_free(model); model = 0; }
++  try { api.FS.mkdir(MODEL); } catch (_) { /* exists */ }
++  const written = [];
++  const error = api._malloc(512);
++  try {
++    for (const {name, bytes} of files) {
++      if (!/^[A-Za-z0-9._-]+$/.test(name)) throw new Error('Invalid bundle file name');
++      api.FS.writeFile(`${MODEL}/${name}`, bytes instanceof Uint8Array ? bytes : new Uint8Array(bytes),
++        {canOwn: true});
++      written.push(`${MODEL}/${name}`);
++    }
++    api._quds_arabic_morph_enable_disambiguation();
++    model = withString(api, `${MODEL}/manifest.json`, m => withString(api, manifestSha256,
++      s => api._crispembed_ar_morph_disambig_open(m, s, error, 512)));
++    if (!model) throw new Error(`The disambiguation model could not be opened: ${text(api, error)}`);
++  } finally {
++    api._free(error);
++    for (const path of written) { try { api.FS.unlink(path); } catch (_) { /* gone */ } }
++  }
++  return text(api, api._crispembed_ar_morph_disambig_info(model));
++}
++
++// One disambiguation buffer: the compact records of every word, then the
++// score section (crispembed_ar_morph_disambiguate, duplicate analyses dropped).
++function disambiguate(api, words, lengths) {
++  const parts = words.map(word => encoder.encode(word));
++  const total = parts.reduce((sum, part) => sum + part.length, 0);
++  const input = api._malloc(Math.max(total, 1));
++  const wordLengths = api._malloc(4 * Math.max(parts.length, 1));
++  const sentenceLengths = api._malloc(4 * Math.max(lengths.length, 1));
++  const out = api._malloc(8);
++  const error = api._malloc(256);
++  try {
++    let at = 0;
++    parts.forEach((part, i) => {
++      api.HEAPU8.set(part, input + at);
++      api.HEAPU32[(wordLengths >> 2) + i] = part.length;
++      at += part.length;
++    });
++    lengths.forEach((length, i) => { api.HEAPU32[(sentenceLengths >> 2) + i] = length; });
++    const status = api._crispembed_ar_morph_disambiguate(handle, model, input, wordLengths, parts.length,
++      sentenceLengths, lengths.length, 1, out, out + 4, error, 256);
++    if (status !== 0) throw new Error(`disambiguation failed (${status}): ${text(api, error)}`);
++    const pointer = api.HEAPU32[out >> 2];
++    const length = api.HEAPU32[(out + 4) >> 2];
++    const result = api.HEAPU8.slice(pointer, pointer + length);
++    api._crispembed_ar_morph_buffer_free(pointer);
++    return result.buffer;
++  } finally {
++    api._free(input);
++    api._free(wordLengths);
++    api._free(sentenceLengths);
++    api._free(out);
++    api._free(error);
++  }
++}
++
+ // One compact batch buffer (crispembed_ar_morph_analyze_compact, duplicate
+ // analyses dropped): magic, word count, then per word a status (0 or 5 for a
+ // rejected word) and its record. Returned as a transferable ArrayBuffer.
+@@ -115,6 +180,15 @@ self.onmessage = event => {
+       } else if (request.op === 'analyze' && handle) {
+         const buffer = analyze(api, request.words);
+         self.postMessage({id, buffer}, [buffer]);
++      } else if (request.op === 'open_model') {
++        const info = openModel(api, request.files, request.manifestSha256);
++        self.postMessage({id, response: JSON.stringify({status: 'success', info: JSON.parse(info)})});
++      } else if (request.op === 'disambiguate' && handle && model) {
++        const buffer = disambiguate(api, request.words, request.lengths);
++        self.postMessage({id, buffer}, [buffer]);
++      } else if (request.op === 'disambiguate') {
++        self.postMessage({id, response: JSON.stringify({status: 'failed',
++          message: 'No Arabic morphology database or disambiguation model is open'})});
+       } else if (request.op === 'stats') {
+         self.postMessage({id, response: JSON.stringify({status: 'success', open: handle !== 0,
+           heapBytes: api.HEAPU32.buffer.byteLength})});
+@@ -122,7 +196,7 @@ self.onmessage = event => {
+         self.postMessage({id, unavailable: 'No Arabic morphology database is open'});
+       }
+     } catch (error) {
+-      self.postMessage({id, fatal: request.op !== 'open', response: JSON.stringify({status: 'failed',
++      self.postMessage({id, fatal: request.op !== 'open' && request.op !== 'open_model', response: JSON.stringify({status: 'failed',
+         message: `Arabic morphology failed: ${error.message}`})});
+     }
+   });
+diff --git a/packages/quds_office_editor/example/assets/licenses/arabic_morph/camel-morph-msa-disambig-LICENSE b/packages/quds_office_editor/example/assets/licenses/arabic_morph/camel-morph-msa-disambig-LICENSE
+new file mode 100644
+index 0000000000000000000000000000000000000000..3d81e2028382972c6d96a802e8490e8e2c468339
+--- /dev/null
++++ b/packages/quds_office_editor/example/assets/licenses/arabic_morph/camel-morph-msa-disambig-LICENSE
+@@ -0,0 +1,6 @@
++The Camel Morph MSA context disambiguation model in this directory is
++licensed under the Creative Commons Attribution-ShareAlike 4.0 International
++License (CC BY-SA 4.0): https://creativecommons.org/licenses/by-sa/4.0/
++
++It is derived from Arabic Wikipedia text (CC BY-SA 4.0) and Camel Morph MSA
++v1.0 (CC BY 4.0). See NOTICE for attribution and the changes made.
+diff --git a/packages/quds_office_editor/example/assets/licenses/arabic_morph/camel-morph-msa-disambig-NOTICE b/packages/quds_office_editor/example/assets/licenses/arabic_morph/camel-morph-msa-disambig-NOTICE
+new file mode 100644
+index 0000000000000000000000000000000000000000..e21a4c615ebc383c2a8a8bf5e177b3d0414061fd
+--- /dev/null
++++ b/packages/quds_office_editor/example/assets/licenses/arabic_morph/camel-morph-msa-disambig-NOTICE
+@@ -0,0 +1,25 @@
++Camel Morph MSA context disambiguation model (camel_morph_msa_v1.0.disambig.cmdis)
++
++A bigram hidden Markov model over the analyses of the Camel Morph MSA v1.0
++noprob database, trained without annotations by expectation maximization on
++raw Arabic Wikipedia text. It holds tag transition and lexeme probabilities
++only; it contains no sentence of the training text.
++
++Licence: CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0/).
++Produced with CrispEmbed (MIT): tools/arabic_morph/disambig_train.py.
++
++Attribution:
++- Training text: Arabic Wikipedia, "20231101.ar" dump, by Wikipedia contributors,
++  CC BY-SA 4.0 (https://ar.wikipedia.org/, licence
++  https://creativecommons.org/licenses/by-sa/4.0/). Retrieved through the
++  Hugging Face dataset wikimedia/wikipedia (20231101.ar); 12,000,927 tokens of
++  885,657 sentences were used. The 1600 articles drawn for evaluation were excluded.
++- Lexemes, parts of speech and the analyses the tags are built from: Camel
++  Morph MSA v1.0 (c) 2024 by New York University Abu Dhabi, CC BY 4.0
++  (https://github.com/CAMeL-Lab/camel_morph), in the noprob proofing-bin
++  variant (database SHA-256 fc9d9109ddb5430da94def715df05b563cb37ffaec508f3514668ded19438909); no Penn Arabic Treebank
++  probability was used.
++
++Changes (CC BY-SA 4.0 section 3(b), CC BY 4.0 section 3(a)(1)(B)): the text
++was tokenized, analyzed with the database and reduced to expected counts of
++tag bigrams and lexemes, which were smoothed and stored as log-probabilities.
+diff --git a/packages/quds_office_editor/example/assets/licenses/arabic_morph/manifest.json b/packages/quds_office_editor/example/assets/licenses/arabic_morph/manifest.json
+index 8612abbc6b5a81dc90298749a0531935b15bc435..f6c3dab50d838cc5dc156036803441549fd73b50 100644
+--- a/packages/quds_office_editor/example/assets/licenses/arabic_morph/manifest.json
++++ b/packages/quds_office_editor/example/assets/licenses/arabic_morph/manifest.json
+@@ -1,10 +1,10 @@
+ {
+   "component": {
+-    "commit": "0ed76631843cadd9b5c8296f25ed8a414d8f51db",
++    "commit": "3bab324832ea911c2b1260a0d50f0ed898f47950",
+     "files": {
+       "LICENSE": "a70d0ab5fb2dbab83d1a63071776891e6dfc7ba6e3063b3940c21274c1225a3e",
+-      "src/arabic_morph.cpp": "fff60440de9faaff4f5a5a0ec2c2b593a17eea8f94b6e55231d4059f361e910f",
+-      "src/arabic_morph.h": "98a2d0e6ec9ffed02c7d63e8e19c0ce7a46ed995859c2085fecad5b10620bc4c",
++      "src/arabic_morph.cpp": "c1547caf39aab9f74834cba9c782498e876357ba07ec6487d55b928c03f35400",
++      "src/arabic_morph.h": "cb7239fd6c727fd71d6f52240c380dd0914e6fb52418a7142bb7f8f81bcb0ed7",
+       "src/arabic_morph_tables.h": "72f9bf25aaaa0aa69b0fccfde2f97e97468c0dc8a523f4e012310d9b3bb5c174",
+       "src/core/env_gate.h": "2370e31636ea25bc1e5ca63e1e606f4cd3c07c65e0f4d1347b2ec6daf57eaa0e",
+       "src/core/json.h": "7e72a6359897e9397e5bee3edf7563476fc4bd41516bf5245a16df50dc54c589",
+@@ -36,16 +36,20 @@
+     ],
+     "license": "MIT",
+     "name": "crispembed-ar-morph",
+-    "pull_request": 255,
++    "pull_request": 261,
+     "source": "https://github.com/CrispStrobe/CrispEmbed"
+   },
+   "data_notices": {
+     "bundle": "huggingface.co/cstr/camel-morph-msa-v1.0@d5364e04af7a40b0c9044ed127606e585be15272/proofing-bin",
+     "files": {
+       "camel-morph-msa-LICENSE": "214965747a90efe3e5268d367192bb077f1101620662cba71d59d902000b2d94",
+-      "camel-morph-msa-NOTICE": "ce2f9c051786a37e4eb72367e6a6c9ea256b702137d4187bb0bfbda38f860efd"
++      "camel-morph-msa-NOTICE": "ce2f9c051786a37e4eb72367e6a6c9ea256b702137d4187bb0bfbda38f860efd",
++      "camel-morph-msa-disambig-LICENSE": "ef2c6367af269181d259bbda4b6167684f85242bb04b28923f91e2861be4c695",
++      "camel-morph-msa-disambig-NOTICE": "12f44e5787019e5eb5595663cb7275408d961f430b74d108fa77006235e2638b"
+     },
+-    "license": "CC-BY-4.0"
++    "license": "CC-BY-4.0",
++    "model_bundle": "huggingface.co/cstr/camel-morph-msa-disambig@07fd9e65200a3ea92a081efa9b0714817178df5f/bigram-v1",
++    "model_license": "CC-BY-SA-4.0"
+   },
+   "notices": {
+     "CPython-LICENSE": "3b2f81fe21d181c499c59a256c8e1968455d6689d269aa85373bfb6af41da3bf",
+@@ -55,6 +59,6 @@
+     "Unicode-LICENSE.txt": "e7a93b009565cfce55919a381437ac4db883e9da2126fa28b91d12732bc53d96",
+     "camel_tools-LICENSE": "7a3ef160e8957145490ff66591aa9cb8cb08601a2e9fb1673c5fb7af74c727f2"
+   },
+-  "policy": "MIT adapter and MIT CrispEmbed analyzer (a port of MIT camel_tools); Ryu under the Apache-2.0 option of its Apache-2.0/BSL-1.0 dual licence; Unicode/CPython character data under their notices. No GPL/LGPL code. The Camel Morph database (CC BY 4.0) is user-downloaded data, never part of the binary.",
++  "policy": "MIT adapter and MIT CrispEmbed analyzer (a port of MIT camel_tools); Ryu under the Apache-2.0 option of its Apache-2.0/BSL-1.0 dual licence; Unicode/CPython character data under their notices. No GPL/LGPL code. The Camel Morph database (CC BY 4.0) and its context model (CC BY-SA 4.0) are user-downloaded data, never part of the binary.",
+   "schema_version": 1
+ }
+diff --git a/packages/quds_office_editor/example/lib/studio_arabic_morph_host.dart b/packages/quds_office_editor/example/lib/studio_arabic_morph_host.dart
+index fc258ac2b6be56a4b20a5d60c4ed6071a7d13cfb..cfd98f5dfc6d467c49f4e617b6fe9d82f041d1e1 100644
+--- a/packages/quds_office_editor/example/lib/studio_arabic_morph_host.dart
++++ b/packages/quds_office_editor/example/lib/studio_arabic_morph_host.dart
+@@ -64,9 +64,40 @@ abstract class StudioArabicMorphHost extends ChangeNotifier {
+   /// configuration; this instance is not.
+   ArabicMorphology get morphology;
+ 
+-  /// Changes whenever [morphology] changes identity or availability.
++  /// The optional context disambiguation model ([camelMorphMsaDisambig]), a
++  /// second download that needs the database. `loaded` means the analyzer
++  /// ranks analyses in context ([ArabicContextMorphology.canDisambiguate]).
++  StudioArabicMorphStatus get modelStatus => const StudioArabicMorphStatus(
++    bundle: camelMorphMsaDisambig,
++    unavailableReason: 'This host does not offer the context model.',
++  );
++
++  /// Downloads, verifies and installs the context model (explicit user
++  /// action), then loads it next to the database.
++  Future<void> installModel({
++    void Function(int received, int total)? onProgress,
++    StudioHunspellCancellation? cancellation,
++  }) async => throw UnsupportedError('No context model on this host.');
++
++  /// Removes the context model; the analyzer keeps working without it.
++  Future<void> removeModel() async {}
++
++  /// How the Arabic grammar rules read words. [ArabicGrammarReading.contextual]
++  /// uses the context model when it is loaded (and is the same as
++  /// [ArabicGrammarReading.allAnalyses] without it).
++  ArabicGrammarReading get grammarReading => _grammarReading;
++  ArabicGrammarReading _grammarReading = ArabicGrammarReading.contextual;
++  set grammarReading(ArabicGrammarReading value) {
++    if (value == _grammarReading) return;
++    _grammarReading = value;
++    notifyListeners();
++  }
++
++  /// Changes whenever [morphology] changes identity or availability, the
++  /// context model loads or unloads, or [grammarReading] changes.
+   String get configurationKey => status.installed
+       ? '${status.bundle.id}@${status.bundle.revision}:${status.loaded}'
++            ':${modelStatus.loaded}:${grammarReading.name}'
+       : '';
+ }
+ 
+diff --git a/packages/quds_office_editor/example/lib/studio_arabic_morph_host_native.dart b/packages/quds_office_editor/example/lib/studio_arabic_morph_host_native.dart
+index 7a64a361155d179844fc16cb8eb425f0b954010c..78edc63763dfec72077854a8f303a0804ebbc9c5 100644
+--- a/packages/quds_office_editor/example/lib/studio_arabic_morph_host_native.dart
++++ b/packages/quds_office_editor/example/lib/studio_arabic_morph_host_native.dart
+@@ -43,18 +43,94 @@ class NativeStudioArabicMorphHost extends StudioArabicMorphHost {
+     this.libraryPath,
+     MorphInstaller? installer,
+     this.bundle = camelMorphMsaProofingBin,
++    this.modelBundle = camelMorphMsaDisambig,
+   }) : _installer = installer ?? MorphInstaller(root),
+-       _status = StudioArabicMorphStatus(bundle: bundle);
++       _status = StudioArabicMorphStatus(bundle: bundle),
++       _modelStatus = StudioArabicMorphStatus(bundle: modelBundle);
+ 
+   final MorphInstaller _installer;
+   final String? libraryPath;
+   final MorphBundleDownload bundle;
++
++  /// The context disambiguation model installed next to [bundle].
++  final MorphBundleDownload modelBundle;
+   StudioArabicMorphStatus _status;
++  StudioArabicMorphStatus _modelStatus;
+   CamelArabicMorphology? _morphology;
+ 
+   @override
+   StudioArabicMorphStatus get status => _status;
+ 
++  @override
++  StudioArabicMorphStatus get modelStatus => _modelStatus;
++
++  void _setModel(StudioArabicMorphStatus next) {
++    _modelStatus = next;
++    notifyListeners();
++  }
++
++  /// Loads the installed model [files] into the current analyzer.
++  Future<void> _activateModel(MorphDatabaseFiles files) async {
++    final morphology = _morphology;
++    final location = File(files.manifestPath).parent.path;
++    _setModel(
++      StudioArabicMorphStatus(
++        bundle: modelBundle,
++        installed: true,
++        location: location,
++      ),
++    );
++    if (morphology == null) return; // loaded with the database
++    await morphology.loadDisambiguator(files);
++    if (!identical(_morphology, morphology)) return;
++    _setModel(
++      StudioArabicMorphStatus(
++        bundle: modelBundle,
++        installed: true,
++        loaded: morphology.canDisambiguate,
++        location: location,
++        problem: morphology.disambiguatorFailure == null
++            ? null
++            : 'Installed, but the context model could not load: '
++                  '${morphology.disambiguatorFailure}',
++      ),
++    );
++  }
++
++  @override
++  Future<void> installModel({
++    void Function(int received, int total)? onProgress,
++    StudioHunspellCancellation? cancellation,
++  }) async {
++    final cancel = MorphInstallCancellation();
++    if (cancellation?.isCancelled ?? false) cancel.cancel();
++    cancellation?.addListener(cancel.cancel);
++    final MorphDatabaseFiles files;
++    try {
++      files = await _installer.install(
++        modelBundle,
++        onProgress: onProgress,
++        cancellation: cancel,
++      );
++    } on Object catch (error) {
++      _setModel(
++        StudioArabicMorphStatus(bundle: modelBundle, problem: '$error'),
++      );
++      rethrow;
++    }
++    await _activateModel(files);
++  }
++
++  @override
++  Future<void> removeModel() async {
++    _setModel(StudioArabicMorphStatus(bundle: modelBundle));
++    await _installer.remove(modelBundle);
++    // The analyzer keeps a loaded model; reopen the database without it.
++    final files = await _installer.installed(bundle);
++    await _deactivate();
++    if (files != null) await _activate(files);
++  }
++
+   @override
+   ArabicMorphology get morphology =>
+       _morphology ?? const UnavailableArabicMorphology();
+@@ -68,8 +144,17 @@ class NativeStudioArabicMorphHost extends StudioArabicMorphHost {
+   /// the outcome; the previous analyzer, if any, is disposed.
+   Future<void> _activate(MorphDatabaseFiles files) async {
+     final previous = _morphology;
++    MorphDatabaseFiles? model;
++    try {
++      model = await _installer.installed(modelBundle);
++    } on Object catch (error) {
++      _setModel(
++        StudioArabicMorphStatus(bundle: modelBundle, problem: '$error'),
++      );
++    }
+     final morphology = _morphology = CamelArabicMorphology(
+       database: files,
++      disambiguator: model,
+       nativeLibraryPath: libraryPath,
+     );
+     final location = File(files.manifestPath).parent.path;
+@@ -83,6 +168,18 @@ class NativeStudioArabicMorphHost extends StudioArabicMorphHost {
+     unawaited(previous?.dispose());
+     await morphology.load();
+     if (!identical(_morphology, morphology)) return;
++    if (model != null) {
++      _modelStatus = StudioArabicMorphStatus(
++        bundle: modelBundle,
++        installed: true,
++        loaded: morphology.canDisambiguate,
++        location: File(model.manifestPath).parent.path,
++        problem: morphology.disambiguatorFailure == null
++            ? null
++            : 'Installed, but the context model could not load: '
++                  '${morphology.disambiguatorFailure}',
++      );
++    }
+     _set(
+       StudioArabicMorphStatus(
+         bundle: bundle,
+@@ -108,10 +205,16 @@ class NativeStudioArabicMorphHost extends StudioArabicMorphHost {
+     try {
+       // Earlier bundles (the 78 MB noprob text database) are replaced, not
+       // migrated: they are removed and the user downloads this one.
+-      await _installer.removeOtherBundles(bundle);
++      await _installer.removeOtherBundles(bundle, alsoKeep: [modelBundle]);
+       final files = await _installer.installed(bundle);
+       if (files == null) {
+         await _deactivate();
++        final model = await _installer.installed(modelBundle);
++        _modelStatus = StudioArabicMorphStatus(
++          bundle: modelBundle,
++          installed: model != null,
++          location: model == null ? null : File(model.manifestPath).parent.path,
++        );
+         _set(StudioArabicMorphStatus(bundle: bundle));
+       } else if (_morphology == null) {
+         await _activate(files);
+diff --git a/packages/quds_office_editor/example/lib/studio_arabic_morph_host_web.dart b/packages/quds_office_editor/example/lib/studio_arabic_morph_host_web.dart
+index bf27346e87c34fca4214ae05ff066692779e8f25..738008f948712bc19642f2fa1672beb23b08ef09 100644
+--- a/packages/quds_office_editor/example/lib/studio_arabic_morph_host_web.dart
++++ b/packages/quds_office_editor/example/lib/studio_arabic_morph_host_web.dart
+@@ -14,39 +14,172 @@ StudioArabicMorphHost createHost() => WebStudioArabicMorphHost();
+ /// bundled WebAssembly analyzer in a Web Worker (the worker keeps one copy of
+ /// the binary database in its Wasm memory). The verified files are kept in
+ /// browser storage ([StudioWebDataStore]) and re-verified against the pins
+-/// before every later load.
++/// before every later load. The optional context model is handled the same
++/// way and loads next to the database.
+ class WebStudioArabicMorphHost extends StudioArabicMorphHost {
+   WebStudioArabicMorphHost({
+     http.Client Function()? client,
+     this.bundle = camelMorphMsaProofingBin,
++    this.modelBundle = camelMorphMsaDisambig,
+     this.workerUrl,
+     StudioWebDataStore? store,
+   }) : _client = client ?? http.Client.new,
+        store = store ?? createDefaultStudioWebDataStore(),
+-       _status = StudioArabicMorphStatus(bundle: bundle);
++       _status = StudioArabicMorphStatus(bundle: bundle),
++       _modelStatus = StudioArabicMorphStatus(bundle: modelBundle);
+ 
+   final http.Client Function() _client;
+ 
+   /// Where verified downloads are kept between sessions.
+   final StudioWebDataStore store;
+ 
+-  String _key(MorphArtifact file) =>
+-      'morph/${bundle.id}/${bundle.revision}/${file.file}';
++  String _key(MorphArtifact file, [MorphBundleDownload? of]) {
++    final b = of ?? bundle;
++    return 'morph/${b.id}/${b.revision}/${file.file}';
++  }
+ 
+-  Future<void> _forget() async {
+-    for (final file in bundle.files) {
+-      await store.delete(_key(file));
++  Future<void> _forget([MorphBundleDownload? of]) async {
++    for (final file in (of ?? bundle).files) {
++      await store.delete(_key(file, of));
+     }
+   }
+ 
+   final MorphBundleDownload bundle;
++
++  /// The context disambiguation model ([camelMorphMsaDisambig]).
++  final MorphBundleDownload modelBundle;
+   final Uri? workerUrl;
+   StudioArabicMorphStatus _status;
++  StudioArabicMorphStatus _modelStatus;
+   CamelArabicMorphology? _morphology;
+ 
+   @override
+   StudioArabicMorphStatus get status => _status;
+ 
++  @override
++  StudioArabicMorphStatus get modelStatus => _modelStatus;
++
++  void _setModel(StudioArabicMorphStatus next) {
++    _modelStatus = next;
++    notifyListeners();
++  }
++
++  /// The verified model kept in browser storage, or null (a stored copy that
++  /// fails verification is deleted).
++  Future<MorphDatabaseBytes?> _storedModel() async {
++    final stored = <String, Uint8List>{};
++    for (final file in modelBundle.files) {
++      final bytes = await store.read(_key(file, modelBundle));
++      if (bytes != null) stored[file.file] = bytes;
++    }
++    if (stored.isEmpty) return null;
++    try {
++      return MorphDatabaseBytes.verified(modelBundle, stored);
++    } on FormatException {
++      await _forget(modelBundle);
++      return null;
++    }
++  }
++
++  /// Opens [model] in the current analyzer and reports the outcome.
++  Future<void> _loadModel(MorphDatabaseBytes model, String location) async {
++    final morphology = _morphology;
++    if (morphology == null) return;
++    _setModel(
++      StudioArabicMorphStatus(
++        bundle: modelBundle,
++        installed: true,
++        location: location,
++      ),
++    );
++    await morphology.loadDisambiguator(model);
++    if (!identical(_morphology, morphology)) return;
++    _setModel(
++      StudioArabicMorphStatus(
++        bundle: modelBundle,
++        installed: true,
++        loaded: morphology.canDisambiguate,
++        location: location,
++        problem: morphology.disambiguatorFailure == null
++            ? null
++            : 'Downloaded, but the context model could not load: '
++                  '${morphology.disambiguatorFailure}',
++      ),
++    );
++  }
++
++  @override
++  Future<void> installModel({
++    void Function(int received, int total)? onProgress,
++    StudioHunspellCancellation? cancellation,
++  }) async {
++    if (_morphology == null || !_morphology!.isAvailable) {
++      throw StateError('Download the Arabic morphology data first.');
++    }
++    final client = _client();
++    var received = 0;
++    final MorphDatabaseBytes model;
++    try {
++      final files = <String, Uint8List>{};
++      for (final artifact in modelBundle.files) {
++        final response = await client.send(
++          http.Request('GET', modelBundle.url(artifact)),
++        );
++        if (response.statusCode != 200) {
++          throw StateError('Download failed (${response.statusCode}).');
++        }
++        final builder = BytesBuilder(copy: false);
++        await for (final chunk in response.stream) {
++          if (cancellation?.isCancelled ?? false) {
++            throw StateError('Download cancelled.');
++          }
++          builder.add(chunk);
++          received += chunk.length;
++          if (builder.length > artifact.bytes) {
++            throw StateError('Unexpected size for ${artifact.file}.');
++          }
++          onProgress?.call(received, modelBundle.totalBytes);
++        }
++        files[artifact.file] = builder.takeBytes();
++      }
++      model = MorphDatabaseBytes.verified(modelBundle, files);
++    } on Object catch (error) {
++      _setModel(
++        StudioArabicMorphStatus(bundle: modelBundle, problem: '$error'),
++      );
++      rethrow;
++    } finally {
++      client.close();
++    }
++    var kept = true;
++    for (final file in modelBundle.files) {
++      kept =
++          kept &&
++          await store.write(_key(file, modelBundle), model.files[file.file]!);
++    }
++    if (!kept) await _forget(modelBundle);
++    await _loadModel(
++      model,
++      kept
++          ? studioWebStoredLocation(_bytes(model.files))
++          : 'This session only (the browser refused storage)',
++    );
++  }
++
++  @override
++  Future<void> removeModel() async {
++    _setModel(StudioArabicMorphStatus(bundle: modelBundle));
++    await _forget(modelBundle);
++    // The worker keeps a loaded model: reopen the database without it.
++    final database = _database;
++    if (database != null && _status.installed) {
++      await _activate(database, _status.location ?? 'memory');
++    }
++  }
++
++  /// The verified database of this session, kept to reopen the analyzer.
++  MorphDatabaseBytes? _database;
++
+   @override
+   ArabicMorphology get morphology =>
+       _morphology ?? const UnavailableArabicMorphology();
+@@ -149,6 +282,7 @@ class WebStudioArabicMorphHost extends StudioArabicMorphHost {
+   }
+ 
+   Future<void> _activate(MorphDatabaseBytes database, String location) async {
++    _database = database;
+     await _morphology?.dispose();
+     final morphology = _morphology = CamelArabicMorphology(
+       database: database,
+@@ -175,12 +309,18 @@ class WebStudioArabicMorphHost extends StudioArabicMorphHost {
+                   '${morphology.failure}',
+       ),
+     );
++    final model = morphology.isAvailable ? await _storedModel() : null;
++    if (model != null && identical(_morphology, morphology)) {
++      await _loadModel(model, studioWebStoredLocation(_bytes(model.files)));
++    }
+   }
+ 
+   @override
+   Future<void> remove() async {
+     final previous = _morphology;
+     _morphology = null;
++    _database = null;
++    _modelStatus = StudioArabicMorphStatus(bundle: modelBundle);
+     _set(StudioArabicMorphStatus(bundle: bundle));
+     await _forget();
+     await previous?.dispose();
+diff --git a/packages/quds_office_editor/example/lib/studio_de_strings.dart b/packages/quds_office_editor/example/lib/studio_de_strings.dart
+index 2370b0d1c1c8569eb265c77373aa474e6a11bf0a..dd04605a2a73bfc5f937118cf67efaa24c4d45d3 100644
+--- a/packages/quds_office_editor/example/lib/studio_de_strings.dart
++++ b/packages/quds_office_editor/example/lib/studio_de_strings.dart
+@@ -94,6 +94,12 @@ const Map<String, String> studioGerman = <String, String>{
+   'Delete row': 'Zeile löschen',
+   'Delete table': 'Tabelle löschen',
+   'Design': 'Design',
++  'Arabic grammar: read words in context':
++      'Arabische Grammatik: Wörter im Kontext lesen',
++  'With the Arabic context model installed, grammar rules rely on the clearly most likely reading of each word. Off: a rule stays silent whenever any reading would fit.':
++      'Mit installiertem arabischem Kontextmodell stützen sich die '
++      'Grammatikregeln auf die eindeutig wahrscheinlichste Lesart jedes '
++      'Worts. Aus: Eine Regel schweigt, sobald irgendeine Lesart passt.',
+   'Detect language automatically': 'Sprache automatisch erkennen',
+   'Diagram': 'Diagramm',
+   'Dictionaries': 'Wörterbücher',
+diff --git a/packages/quds_office_editor/example/lib/studio_hunspell_setup.dart b/packages/quds_office_editor/example/lib/studio_hunspell_setup.dart
+index 0d644f920fe5b4f00536a27716201bba89030920..45482ba679f09fba0b70ef68886ec7b2fa8e1d17 100644
+--- a/packages/quds_office_editor/example/lib/studio_hunspell_setup.dart
++++ b/packages/quds_office_editor/example/lib/studio_hunspell_setup.dart
+@@ -128,6 +128,113 @@ class _StudioHunspellSetupDialogState extends State<StudioHunspellSetupDialog> {
+     );
+   }
+ 
++  Future<void> _installModel(StudioArabicMorphHost host) async {
++    final cancellation = StudioHunspellCancellation();
++    setState(() {
++      _cancellation = cancellation;
++      _progress = 0;
++    });
++    await _run(
++      () => host.installModel(
++        cancellation: cancellation,
++        onProgress: (received, total) {
++          if (mounted) setState(() => _progress = received / total);
++        },
++      ),
++      working: host.modelStatus.bundle.id,
++    );
++  }
++
++  /// The optional context model: a second download that needs the database.
++  Widget _modelEntry(StudioArabicMorphHost host, ThemeData theme) {
++    final status = host.modelStatus;
++    final bundle = status.bundle;
++    final busy = _working == bundle.id;
++    final ready = host.status.installed && host.status.loaded;
++    return Column(
++      key: const ValueKey('arabic-morph-model'),
++      crossAxisAlignment: CrossAxisAlignment.start,
++      children: [
++        Text(bundle.displayName, style: theme.textTheme.titleSmall),
++        const SizedBox(height: 4),
++        SelectableText(
++          'Optional context model for the Arabic grammar rules: it ranks '
++          'the analyses of each word in its sentence, so a rule can rely on '
++          'the clearly most likely reading instead of staying silent '
++          'whenever any reading would fit. Needs the morphology data above.\n'
++          'Source: ${bundle.browseUrl}\n'
++          'Format: ${bundle.sourceUrl}\n'
++          'Licence: CC BY-SA 4.0 (${bundle.licenseUrl})\n'
++          'Attribution: ${bundle.attribution}\n'
++          'Download: ${_megabytes(bundle.totalBytes)}, every file checked '
++          'against its pinned SHA-256 (manifest.json '
++          '${_short(bundle.manifest.sha256)}, model '
++          '${_short(bundle.database.sha256)}).',
++          style: theme.textTheme.bodySmall,
++        ),
++        const SizedBox(height: 8),
++        if (!status.offered)
++          Text(status.unavailableReason!)
++        else if (status.installed && status.loaded)
++          const Text(
++            'Installed, verified and loaded. Grammar rules use readings in '
++            'context.',
++            key: ValueKey('arabic-morph-model-loaded'),
++          )
++        else if (status.installed && status.problem == null)
++          const Text(
++            'Installed and verified; it loads with the morphology data.',
++            key: ValueKey('arabic-morph-model-installed'),
++          )
++        else if (!status.installed)
++          Text(
++            ready
++                ? 'Not installed. Nothing is downloaded until you ask.'
++                : 'Install the morphology data first.',
++          ),
++        if (status.problem != null)
++          Padding(
++            padding: const EdgeInsets.only(top: 4),
++            child: Text(
++              status.problem!,
++              style: TextStyle(color: theme.colorScheme.error),
++            ),
++          ),
++        if (busy) ...[
++          const SizedBox(height: 8),
++          LinearProgressIndicator(value: _progress),
++        ],
++        const SizedBox(height: 8),
++        Wrap(
++          spacing: 8,
++          children: [
++            if (status.offered && !status.installed && !busy)
++              FilledButton(
++                key: const ValueKey('arabic-morph-model-install'),
++                onPressed: _working == null && ready
++                    ? () => _installModel(host)
++                    : null,
++                child: const Text('Download'),
++              ),
++            if (busy)
++              TextButton(
++                onPressed: () => _cancellation?.cancel(),
++                child: const Text('Cancel'),
++              ),
++            if (status.installed && !busy)
++              TextButton(
++                key: const ValueKey('arabic-morph-model-remove'),
++                onPressed: _working == null
++                    ? () => _run(host.removeModel, working: bundle.id)
++                    : null,
++                child: const Text('Remove'),
++              ),
++          ],
++        ),
++      ],
++    );
++  }
++
+   Widget _morphEntry(StudioArabicMorphHost host, ThemeData theme) {
+     final status = host.status;
+     final bundle = status.bundle;
+@@ -307,6 +414,8 @@ class _StudioHunspellSetupDialogState extends State<StudioHunspellSetupDialog> {
+           ..add(const Divider())
+           ..add(const SizedBox(height: 8))
+           ..add(_morphEntry(morphHost, theme))
++          ..add(const SizedBox(height: 16))
++          ..add(_modelEntry(morphHost, theme))
+           ..add(const SizedBox(height: 16));
+       }
+     }
+diff --git a/packages/quds_office_editor/example/lib/studio_licenses.dart b/packages/quds_office_editor/example/lib/studio_licenses.dart
+index c3c2f61f4fde61804599c390d5776ff3d38f4f7d..9e2c46517bbfb54f824a7cd32f0df0da6bc225b5 100644
+--- a/packages/quds_office_editor/example/lib/studio_licenses.dart
++++ b/packages/quds_office_editor/example/lib/studio_licenses.dart
+@@ -132,5 +132,12 @@ void registerStudioLicenses() {
+       '${await load('camel-morph-msa-NOTICE')}\n\n'
+       '${await load('camel-morph-msa-LICENSE')}',
+     );
++    yield LicenseEntryWithLineBreaks(
++      const [
++        'Arabic context model for Camel Morph (CC BY-SA 4.0, downloaded data)',
++      ],
++      '${await load('camel-morph-msa-disambig-NOTICE')}\n\n'
++      '${await load('camel-morph-msa-disambig-LICENSE')}',
++    );
+   });
+ }
+diff --git a/packages/quds_office_editor/example/lib/suite_workspace.dart b/packages/quds_office_editor/example/lib/suite_workspace.dart
+index e9ea54c1bfc4003b2f39582c223dca003c089b3e..995a30e44c5d3b09591cea8dd5ae2b9f1bec0cdc 100644
+--- a/packages/quds_office_editor/example/lib/suite_workspace.dart
++++ b/packages/quds_office_editor/example/lib/suite_workspace.dart
+@@ -1493,6 +1493,46 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
+                                 value,
+                           ),
+                         ),
++                        SwitchListTile(
++                          key: const ValueKey<String>(
++                            'studio-setting-arabic-context',
++                          ),
++                          contentPadding: EdgeInsets.zero,
++                          title: Text(
++                            _t(
++                              'Arabic grammar: read words in context',
++                              StudioStrings.de(
++                                'Arabic grammar: read words in context',
++                              ),
++                              'القواعد العربية: قراءة الكلمات في سياقها',
++                            ),
++                          ),
++                          subtitle: Text(
++                            _t(
++                              'With the Arabic context model installed, grammar '
++                                  'rules rely on the clearly most likely reading '
++                                  'of each word. Off: a rule stays silent '
++                                  'whenever any reading would fit.',
++                              StudioStrings.de(
++                                'With the Arabic context model installed, '
++                                'grammar rules rely on the clearly most likely '
++                                'reading of each word. Off: a rule stays silent '
++                                'whenever any reading would fit.',
++                              ),
++                              'عند تثبيت نموذج السياق العربي تعتمد قواعد النحو '
++                                  'على القراءة الأرجح بوضوح لكل كلمة. عند '
++                                  'الإيقاف: تسكت القاعدة إذا صلحت أي قراءة.',
++                            ),
++                          ),
++                          value:
++                              studioArabicMorphHost.grammarReading ==
++                              ArabicGrammarReading.contextual,
++                          onChanged: (value) => changed(
++                            () => studioArabicMorphHost.grammarReading = value
++                                ? ArabicGrammarReading.contextual
++                                : ArabicGrammarReading.allAnalyses,
++                          ),
++                        ),
+                         SwitchListTile(
+                           contentPadding: EdgeInsets.zero,
+                           title: Text(_strings.showRibbonLabels),
+@@ -6744,7 +6784,10 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
+   /// otherwise [UnavailableArabicMorphology], so morphology-based rules stay
+   /// silent.
+   ArabicWritingRulesProvider _arabicWritingRules(ArabicMorphology morphology) =>
+-      ArabicWritingRulesProvider(morphology: morphology);
++      ArabicWritingRulesProvider(
++        morphology: morphology,
++        grammarReading: studioArabicMorphHost.grammarReading,
++      );
+ 
+   String? _arabicMorphKey;
+ 
+diff --git a/packages/quds_office_editor/example/test/studio_arabic_morph_setup_test.dart b/packages/quds_office_editor/example/test/studio_arabic_morph_setup_test.dart
+index 83ae075ff1dd713e8f1a6dc6213c967d77ee1d54..baf90c62c3bd62b87f78b6f8c284e2a15bef628c 100644
+--- a/packages/quds_office_editor/example/test/studio_arabic_morph_setup_test.dart
++++ b/packages/quds_office_editor/example/test/studio_arabic_morph_setup_test.dart
+@@ -84,6 +84,34 @@ class _FakeMorphHost extends StudioArabicMorphHost {
+     calls.add('remove');
+     _set(const StudioArabicMorphStatus(bundle: camelMorphMsaProofingBin));
+   }
++
++  var _model = const StudioArabicMorphStatus(bundle: camelMorphMsaDisambig);
++
++  @override
++  StudioArabicMorphStatus get modelStatus => _model;
++
++  @override
++  Future<void> installModel({
++    void Function(int received, int total)? onProgress,
++    StudioHunspellCancellation? cancellation,
++  }) async {
++    calls.add('installModel');
++    onProgress?.call(1, 2);
++    _model = const StudioArabicMorphStatus(
++      bundle: camelMorphMsaDisambig,
++      installed: true,
++      loaded: true,
++      location: '/m',
++    );
++    notifyListeners();
++  }
++
++  @override
++  Future<void> removeModel() async {
++    calls.add('removeModel');
++    _model = const StudioArabicMorphStatus(bundle: camelMorphMsaDisambig);
++    notifyListeners();
++  }
+ }
+ 
+ Future<void> _open(WidgetTester tester, StudioArabicMorphHost host) async {
+@@ -209,6 +237,45 @@ void main() {
+     expect(Directory('${root.path}/arabic_morph').existsSync(), isFalse);
+   });
+ 
++  testWidgets('the context model is a second explicit download', (
++    tester,
++  ) async {
++    final host = _FakeMorphHost();
++    await _open(tester, host);
++    final install = find.byKey(const ValueKey('arabic-morph-model-install'));
++    expect(find.text(camelMorphMsaDisambig.displayName), findsOneWidget);
++    expect(find.textContaining('CC BY-SA 4.0'), findsWidgets);
++    expect(find.textContaining('Install the morphology data first'), findsOne);
++    expect(tester.widget<FilledButton>(install).onPressed, isNull);
++
++    host._set(
++      const StudioArabicMorphStatus(
++        bundle: camelMorphMsaProofingBin,
++        installed: true,
++        loaded: true,
++        location: '/x',
++      ),
++    );
++    await tester.pumpAndSettle();
++    await tester.ensureVisible(install);
++    await tester.tap(install);
++    await tester.pumpAndSettle();
++    expect(host.calls, contains('installModel'));
++    expect(
++      find.byKey(const ValueKey('arabic-morph-model-loaded')),
++      findsOneWidget,
++    );
++    final configured = host.configurationKey;
++    host.grammarReading = ArabicGrammarReading.allAnalyses;
++    expect(host.configurationKey, isNot(configured));
++
++    final remove = find.byKey(const ValueKey('arabic-morph-model-remove'));
++    await tester.ensureVisible(remove);
++    await tester.tap(remove);
++    await tester.pumpAndSettle();
++    expect(host.calls, contains('removeModel'));
++  });
++
+   testWidgets('the licence page lists the analyzer code and the CC BY data', (
+     tester,
+   ) async {
+@@ -231,5 +298,11 @@ void main() {
+     final data = textOf('Camel Morph MSA v1.0 (CC BY 4.0, downloaded data)');
+     expect(data, contains('licensed under CC BY 4.0'));
+     expect(data, contains('creativecommons.org/licenses/by/4.0'));
++    final model = textOf(
++      'Arabic context model for Camel Morph (CC BY-SA 4.0, downloaded data)',
++    );
++    expect(model, contains('Wikipedia contributors'));
++    expect(model, contains('creativecommons.org/licenses/by-sa/4.0'));
++    expect(model, contains('New York University Abu Dhabi'));
+   });
+ }
+diff --git a/packages/quds_office_engine/lib/src/proofing/arabic_grammar_rules.dart b/packages/quds_office_engine/lib/src/proofing/arabic_grammar_rules.dart
+index 05e7d071bc011b71d1db8ffa0ccd8207431f64a8..628de2235e9e0ed582c276b300e38ce567e81e59 100644
+--- a/packages/quds_office_engine/lib/src/proofing/arabic_grammar_rules.dart
++++ b/packages/quds_office_engine/lib/src/proofing/arabic_grammar_rules.dart
+@@ -13,12 +13,33 @@ part of 'arabic_writing_rules.dart';
+ // The rules read camel_tools-style analyses through [ArabicMorphology]. The
+ // analyses carry no ranking, so every rule follows one principle: a finding
+ // is reported only when NO analysis of the word(s) concerned is compatible
+-// with the grammatical requirement. A word the analyzer does not know (an
++// with the grammatical requirement. With a context disambiguation model
++// ([ArabicGrammarReading.contextual]), a word whose best reading in its
++// sentence clearly leads is represented by that reading's analyses only; the
++// principle then applies to them. A word the analyzer does not know (an
+ // empty analysis list) never produces a finding. Particles and number words
+ // are matched by their spelling (the analyzer normalizes hamza, so it cannot
+ // tell أنّ from إنْ); only the words whose form decides the case are judged
+ // from their analyses.
+ 
++/// How the morphology-based rules read a word.
++enum ArabicGrammarReading {
++  /// Every analysis of a word: a rule reports only when no analysis is
++  /// compatible (the behaviour before context disambiguation).
++  allAnalyses,
++
++  /// When the analyzer is an [ArabicContextMorphology] with a loaded model
++  /// and a word's best reading in context leads the second by at least the
++  /// provider's margin, only that reading's analyses; otherwise every
++  /// analysis, as with [allAnalyses].
++  contextual,
++}
++
++/// Default lead of the best context reading over the second before the
++/// rules rely on it (on a probability scale: 0.9 means at least 0.95 against
++/// 0.05).
++const double arabicContextMinMargin = 0.9;
++
+ /// Morphology-based rule ids that run by default (when an analyzer is
+ /// installed).
+ const Set<String> arabicGrammarDefaultRuleIds = <String>{
+@@ -120,11 +141,13 @@ final class _ArabicGrammarRules {
+     this.morphology,
+     this.add,
+     this.enabled,
+-    this.reported,
+-  ) : bares = <String>[
+-        for (final RegExpMatch m in words)
+-          ArabicWritingRulesProvider._bare(m.group(0)!).$1,
+-      ];
++    this.reported, {
++    this.contextual = false,
++    this.contextMinMargin = arabicContextMinMargin,
++  }) : bares = <String>[
++         for (final RegExpMatch m in words)
++           ArabicWritingRulesProvider._bare(m.group(0)!).$1,
++       ];
+ 
+   final String text;
+   final List<RegExpMatch> words;
+@@ -133,6 +156,12 @@ final class _ArabicGrammarRules {
+   final bool Function(String ruleId) enabled;
+   final _ArabicReported reported;
+   final List<String> bares;
++  final bool contextual;
++  final double contextMinMargin;
++
++  /// Per word index: the analyses of its confident context reading.
++  Map<int, List<ArabicAnalysis>> _confident =
++      const <int, List<ArabicAnalysis>>{};
+ 
+   static final RegExp _spaces = RegExp(r'^[  ]+$');
+   static final RegExp _harakat = RegExp('[ً-ْٰـ]');
+@@ -546,8 +575,61 @@ final class _ArabicGrammarRules {
+ 
+   bool _adjacent(int w) => _adjacentPair(words, text, w);
+ 
++  /// The analyses a rule reasons over for word [w]: its confident context
++  /// reading when there is one, otherwise every analysis.
+   List<ArabicAnalysis> _of(int w) =>
+-      _analyses[words[w].group(0)!] ?? const <ArabicAnalysis>[];
++      _confident[w] ??
++      _analyses[words[w].group(0)!] ??
++      const <ArabicAnalysis>[];
++
++  /// Fills [_confident] for the words in [wanted] from the context model.
++  Future<void> _disambiguate(Set<String> wanted) async {
++    final ArabicMorphology analyzer = morphology;
++    if (!contextual ||
++        analyzer is! ArabicContextMorphology ||
++        !analyzer.canDisambiguate) {
++      return;
++    }
++    // Only the sentences holding a word some rule needs.
++    final List<List<ArabicContextToken>> sentences = <List<ArabicContextToken>>[
++      for (final List<ArabicContextToken> s in arabicContextSentences(text))
++        if (s.any((ArabicContextToken t) => wanted.contains(t.text))) s,
++    ];
++    if (sentences.isEmpty) return;
++    final List<List<ArabicContextReading>> readings;
++    try {
++      readings = await analyzer.disambiguate(<List<String>>[
++        for (final List<ArabicContextToken> s in sentences)
++          <String>[for (final ArabicContextToken t in s) t.text],
++      ]);
++    } on Object {
++      return;
++    }
++    if (readings.length != sentences.length) return;
++    final Map<int, ArabicContextReading> byStart =
++        <int, ArabicContextReading>{};
++    final Map<int, int> endOf = <int, int>{};
++    for (int s = 0; s < sentences.length; s++) {
++      if (readings[s].length != sentences[s].length) return;
++      for (int t = 0; t < sentences[s].length; t++) {
++        byStart[sentences[s][t].start] = readings[s][t];
++        endOf[sentences[s][t].start] = sentences[s][t].end;
++      }
++    }
++    final Map<int, List<ArabicAnalysis>> confident =
++        <int, List<ArabicAnalysis>>{};
++    for (int w = 0; w < words.length; w++) {
++      final RegExpMatch match = words[w];
++      if (!wanted.contains(match.group(0)) || endOf[match.start] != match.end) {
++        continue;
++      }
++      final List<ArabicAnalysis>? best = byStart[match.start]?.confident(
++        contextMinMargin,
++      );
++      if (best != null && best.isNotEmpty) confident[w] = best;
++    }
++    _confident = confident;
++  }
+ 
+   static bool _isProp(ArabicAnalysis a) => a['pos'] == 'noun_prop';
+ 
+@@ -665,6 +747,7 @@ final class _ArabicGrammarRules {
+     } on Object {
+       return;
+     }
++    await _disambiguate(wanted);
+ 
+     if (enabled('ar.grammar.preposition-case')) _prepositionCase();
+     if (enabled('ar.grammar.inna-case')) _innaCase();
+diff --git a/packages/quds_office_engine/lib/src/proofing/arabic_morphology.dart b/packages/quds_office_engine/lib/src/proofing/arabic_morphology.dart
+index f2073caec2974448823635a06116e798e24584d4..d78eaeedf756df37904500bc5d2db1604e4c52b0 100644
+--- a/packages/quds_office_engine/lib/src/proofing/arabic_morphology.dart
++++ b/packages/quds_office_engine/lib/src/proofing/arabic_morphology.dart
+@@ -11,6 +11,12 @@
+ /// Analyses carry no ranking: the `noprob` database has no corpus
+ /// probabilities, so rules must reason over the full analysis set (for
+ /// example: report only when no analysis of a word is compatible).
++///
++/// An implementation may also implement [ArabicContextMorphology]: with a
++/// downloaded context disambiguation model it ranks each word's analyses in
++/// its sentence ([ArabicContextReading]). Rules may then narrow a word to its
++/// best reading when that reading clearly leads, and keep reasoning over all
++/// analyses otherwise.
+ library;
+ 
+ /// One analysis: camel_tools feature name to value.
+@@ -45,3 +51,112 @@ class UnavailableArabicMorphology implements ArabicMorphology {
+     for (final word in words) word: const <ArabicAnalysis>[],
+   };
+ }
++
++/// One token's analyses ranked in its sentence by a context disambiguator.
++///
++/// Analyses that share the model's tag, lemma and part of speech form one
++/// candidate; [scores] gives each analysis its candidate's probability in
++/// context (the candidates of a token sum to 1) and [ranks] the candidate's
++/// rank (0 = best).
++final class ArabicContextReading {
++  ArabicContextReading(this.analyses, this.scores, this.ranks)
++    : assert(analyses.length == scores.length),
++      assert(analyses.length == ranks.length);
++
++  /// A token without analyses (unknown or rejected word).
++  static final ArabicContextReading none = ArabicContextReading(
++    const <ArabicAnalysis>[],
++    const <double>[],
++    const <int>[],
++  );
++
++  /// Every analysis, in the analyzer's order.
++  final List<ArabicAnalysis> analyses;
++  final List<double> scores;
++  final List<int> ranks;
++
++  /// Score of the best candidate (0 when there are no analyses).
++  double get bestScore {
++    for (int i = 0; i < ranks.length; i++) {
++      if (ranks[i] == 0) return scores[i];
++    }
++    return 0;
++  }
++
++  /// How far the best candidate leads the second (its score when it is the
++  /// only one).
++  double get margin {
++    double second = 0;
++    for (int i = 0; i < ranks.length; i++) {
++      if (ranks[i] == 1) second = scores[i];
++    }
++    return bestScore - second;
++  }
++
++  /// The analyses of the best candidate.
++  List<ArabicAnalysis> get best => <ArabicAnalysis>[
++    for (int i = 0; i < analyses.length; i++)
++      if (ranks[i] == 0) analyses[i],
++  ];
++
++  /// [best] when it leads by at least [minMargin], otherwise null.
++  List<ArabicAnalysis>? confident(double minMargin) =>
++      analyses.isNotEmpty && margin >= minMargin ? best : null;
++}
++
++/// An [ArabicMorphology] that can also rank analyses in context.
++abstract interface class ArabicContextMorphology implements ArabicMorphology {
++  /// Whether a context disambiguation model is installed and loaded.
++  bool get canDisambiguate;
++
++  /// Readings of every token of every sentence, in order. Tokens come from
++  /// [arabicContextSentences]: punctuation, numbers and Latin words are
++  /// tokens too, because they are context. Without a model (or when it
++  /// fails) the result is empty.
++  Future<List<List<ArabicContextReading>>> disambiguate(
++    List<List<String>> sentences,
++  );
++}
++
++/// A token of [arabicContextSentences]: its text and UTF-16 range.
++final class ArabicContextToken {
++  const ArabicContextToken(this.text, this.start, this.end);
++  final String text;
++  final int start;
++  final int end;
++}
++
++/// Tokens of [text] grouped into sentences, as the context disambiguation
++/// model was trained (CrispEmbed `tools/arabic_morph/disambig_train.py`): an
++/// Arabic word (a letter, then letters, harakat and tatweel), a number, a run
++/// of other letters, or any other single non-space character. A line break
++/// and the marks `. ! ? ؟ …` end a sentence (the mark stays in it).
++List<List<ArabicContextToken>> arabicContextSentences(String text) {
++  final List<List<ArabicContextToken>> sentences = <List<ArabicContextToken>>[];
++  List<ArabicContextToken> current = <ArabicContextToken>[];
++  int lineEnd = text.indexOf('\n');
++  for (final RegExpMatch m in _contextToken.allMatches(text)) {
++    while (lineEnd >= 0 && lineEnd < m.start) {
++      if (current.isNotEmpty) sentences.add(current);
++      current = <ArabicContextToken>[];
++      lineEnd = text.indexOf('\n', lineEnd + 1);
++    }
++    final String token = m.group(0)!;
++    current.add(ArabicContextToken(token, m.start, m.end));
++    if (_sentenceEnd.contains(token)) {
++      sentences.add(current);
++      current = <ArabicContextToken>[];
++    }
++  }
++  if (current.isNotEmpty) sentences.add(current);
++  return sentences;
++}
++
++final RegExp _contextToken = RegExp(
++  '[ء-غف-يٱ-ۓ][ء-غف-يٱ-ۓً-ٰٟـ]*'
++  r'|[0-9٠-٩۰-۹]+(?:[.,٫٬][0-9٠-٩۰-۹]+)*'
++  r'|[\p{L}\p{Nl}\p{No}]+'
++  r'|\S',
++  unicode: true,
++);
++const Set<String> _sentenceEnd = <String>{'.', '!', '?', '؟', '…'};
+diff --git a/packages/quds_office_engine/lib/src/proofing/arabic_writing_rules.dart b/packages/quds_office_engine/lib/src/proofing/arabic_writing_rules.dart
+index fbf5a8061455c96c6f6bcb2363d4ada8dac81f72..0d7691897d5ad3ffcd33cef1123bfb65dc130518 100644
+--- a/packages/quds_office_engine/lib/src/proofing/arabic_writing_rules.dart
++++ b/packages/quds_office_engine/lib/src/proofing/arabic_writing_rules.dart
+@@ -31,9 +31,15 @@ class ArabicWritingRulesProvider extends OfficeProofingProvider {
+   /// [morphology] feeds the morphology-based grammar rules
+   /// (`arabic_grammar_rules.dart`); with the default
+   /// [UnavailableArabicMorphology] those rules stay silent.
++  ///
++  /// [grammarReading] selects how those rules read a word (see
++  /// [ArabicGrammarReading]); [contextMinMargin] is the lead the best
++  /// context reading needs before a rule relies on it alone.
+   ArabicWritingRulesProvider({
+     Set<String> enabledOptionalRuleIds = const <String>{},
+     this.morphology = const UnavailableArabicMorphology(),
++    this.grammarReading = ArabicGrammarReading.contextual,
++    this.contextMinMargin = arabicContextMinMargin,
+   }) : enabledOptionalRuleIds = Set<String>.unmodifiable(
+          enabledOptionalRuleIds.intersection(_optionalRuleIds),
+        );
+@@ -43,6 +49,12 @@ class ArabicWritingRulesProvider extends OfficeProofingProvider {
+   /// Morphological analyzer for the grammar rules.
+   final ArabicMorphology morphology;
+ 
++  /// How the grammar rules read a word's analyses.
++  final ArabicGrammarReading grammarReading;
++
++  /// Minimum lead of the best context reading over the second.
++  final double contextMinMargin;
++
+   static const Set<String> _optionalRuleIds = <String>{
+     ...arabicExtendedOptionalRuleIds,
+     ...arabicGrammarOptionalRuleIds,
+@@ -1058,6 +1070,8 @@ class ArabicWritingRulesProvider extends OfficeProofingProvider {
+               f.start - request.startOffset < end &&
+               start < f.end - request.startOffset,
+         ),
++        contextual: grammarReading == ArabicGrammarReading.contextual,
++        contextMinMargin: contextMinMargin,
+       ).run();
+       if (_disposed) {
+         return OfficeProofingResult(
+diff --git a/packages/quds_office_engine/test/proofing/arabic_grammar_context_test.dart b/packages/quds_office_engine/test/proofing/arabic_grammar_context_test.dart
+new file mode 100644
+index 0000000000000000000000000000000000000000..ab0f208d4a78d07adc92492077d746db924a3860
+--- /dev/null
++++ b/packages/quds_office_engine/test/proofing/arabic_grammar_context_test.dart
+@@ -0,0 +1,269 @@
++// Context disambiguation in the tier-T2 Arabic grammar rules: a word whose
++// best reading in its sentence clearly leads is represented by that
++// reading's analyses; otherwise every analysis is used, as before. The
++// sentences are the ones arabic_grammar_rules_test.dart lists as silent
++// because of an unlikely reading.
++import 'package:quds_office_engine/src/proofing/arabic_morphology.dart';
++import 'package:quds_office_engine/src/proofing/arabic_writing_rules.dart';
++import 'package:quds_office_engine/src/proofing/office_proofing.dart';
++import 'package:test/test.dart';
++
++import 'arabic_grammar_rules_test.dart' show FakeArabicMorphology, fixture;
++
++/// A fixture analyzer with a fake context model: for a word in [preferred],
++/// the analyses the predicate accepts form the best candidate with score
++/// [score]; the rest share 1 - score.
++final class FakeContextMorphology implements ArabicContextMorphology {
++  FakeContextMorphology(
++    this.table, {
++    this.preferred = const <String, bool Function(ArabicAnalysis)>{},
++    this.score = 0.97,
++    this.loaded = true,
++  });
++
++  final Map<String, List<ArabicAnalysis>> table;
++
++  @override
++  bool get isAvailable => true;
++
++  @override
++  Future<Map<String, List<ArabicAnalysis>>> analyzeWords(
++    Iterable<String> words,
++  ) => FakeArabicMorphology(table).analyzeWords(words);
++
++  final Map<String, bool Function(ArabicAnalysis)> preferred;
++  final double score;
++  final bool loaded;
++  final List<List<List<String>>> calls = <List<List<String>>>[];
++
++  @override
++  bool get canDisambiguate => loaded;
++
++  @override
++  Future<List<List<ArabicContextReading>>> disambiguate(
++    List<List<String>> sentences,
++  ) async {
++    calls.add(sentences);
++    return <List<ArabicContextReading>>[
++      for (final List<String> s in sentences)
++        <ArabicContextReading>[for (final String token in s) _reading(token)],
++    ];
++  }
++
++  ArabicContextReading _reading(String token) {
++    final List<ArabicAnalysis> analyses =
++        table[token] ?? const <ArabicAnalysis>[];
++    if (analyses.isEmpty) return ArabicContextReading.none;
++    final bool Function(ArabicAnalysis)? best = preferred[token];
++    final List<bool> top = <bool>[
++      for (final ArabicAnalysis a in analyses) best == null || best(a),
++    ];
++    final bool split = top.contains(true) && top.contains(false);
++    return ArabicContextReading(
++      analyses,
++      <double>[for (final bool t in top) split ? (t ? score : 1 - score) : 1.0],
++      <int>[for (final bool t in top) split && !t ? 1 : 0],
++    );
++  }
++}
++
++Future<List<OfficeProofingFinding>> check(
++  String text,
++  ArabicMorphology morphology, {
++  ArabicGrammarReading reading = ArabicGrammarReading.contextual,
++}) async {
++  final ArabicWritingRulesProvider provider = ArabicWritingRulesProvider(
++    morphology: morphology,
++    grammarReading: reading,
++  );
++  final OfficeProofingResult result = await provider.check(
++    OfficeProofingRequest(
++      documentId: 'arabic-document',
++      blockId: 'paragraph',
++      revision: 1,
++      text: text,
++      language: 'ar',
++    ),
++  );
++  expect(result.status, OfficeProofingStatus.success);
++  final Set<String> grammar = <String>{
++    ...arabicGrammarDefaultRuleIds,
++    ...arabicGrammarOptionalRuleIds,
++  };
++  return <OfficeProofingFinding>[
++    for (final OfficeProofingFinding f in result.findings)
++      if (grammar.contains(f.ruleId)) f,
++  ];
++}
++
++bool kitabPlural(ArabicAnalysis a) => a['lex'] == 'كِتَاب';
++bool kanaVerb(ArabicAnalysis a) => a['pos'] == 'verb';
++
++void main() {
++  group('context disambiguation', () {
++    test('a confident noun reading reveals a numeral error', () async {
++      final FakeContextMorphology m = FakeContextMorphology(
++        fixture,
++        preferred: <String, bool Function(ArabicAnalysis)>{'كتب': kitabPlural},
++      );
++      final List<OfficeProofingFinding> findings = await check(
++        'قرأت ثلاث كتب.',
++        m,
++      );
++      expect(findings.single.ruleId, 'ar.numeral.gender');
++      expect(findings.single.replacements, <String>['ثلاثة']);
++      // The whole sentence is one call, punctuation included.
++      expect(m.calls.single, <List<String>>[
++        <String>['قرأت', 'ثلاث', 'كتب', '.'],
++      ]);
++    });
++
++    test('kana with confident verb and subject readings', () async {
++      final List<OfficeProofingFinding> findings = await check(
++        'كان الطلاب مجتهدون.',
++        FakeContextMorphology(
++          fixture,
++          preferred: <String, bool Function(ArabicAnalysis)>{
++            'كان': kanaVerb,
++            'الطلاب': (ArabicAnalysis a) =>
++                a.containsValue('Al_det') && a['stt'] == 'd',
++          },
++        ),
++      );
++      expect(findings.single.ruleId, 'ar.grammar.kana-predicate');
++    });
++
++    test('a reading below the margin keeps every analysis', () async {
++      expect(
++        await check(
++          'قرأت ثلاث كتب.',
++          FakeContextMorphology(
++            fixture,
++            preferred: <String, bool Function(ArabicAnalysis)>{
++              'كتب': kitabPlural,
++            },
++            score: 0.9, // leads by 0.8 < 0.9
++          ),
++        ),
++        isEmpty,
++      );
++    });
++
++    test('the all-analyses mode ignores the model', () async {
++      final FakeContextMorphology m = FakeContextMorphology(
++        fixture,
++        preferred: <String, bool Function(ArabicAnalysis)>{'كتب': kitabPlural},
++      );
++      expect(
++        await check(
++          'قرأت ثلاث كتب.',
++          m,
++          reading: ArabicGrammarReading.allAnalyses,
++        ),
++        isEmpty,
++      );
++      expect(m.calls, isEmpty);
++    });
++
++    test('without a loaded model every analysis is used', () async {
++      final FakeContextMorphology m = FakeContextMorphology(
++        fixture,
++        preferred: <String, bool Function(ArabicAnalysis)>{'كتب': kitabPlural},
++        loaded: false,
++      );
++      expect(await check('قرأت ثلاث كتب.', m), isEmpty);
++      expect(m.calls, isEmpty);
++    });
++
++    test('a plain analyzer is unaffected by the contextual mode', () async {
++      expect(
++        await check('قرأت ثلاث كتب.', FakeArabicMorphology(fixture)),
++        isEmpty,
++      );
++    });
++
++    test('only sentences with a needed word are sent', () async {
++      final FakeContextMorphology m = FakeContextMorphology(
++        fixture,
++        preferred: <String, bool Function(ArabicAnalysis)>{'كتب': kitabPlural},
++      );
++      await check('الجو جميل اليوم. قرأت ثلاث كتب.', m);
++      expect(m.calls.single, <List<String>>[
++        <String>['قرأت', 'ثلاث', 'كتب', '.'],
++      ]);
++    });
++
++    test('a failing or malformed model falls back to every analysis', () async {
++      expect(
++        await check('قرأت ثلاث كتب.', _BrokenContextMorphology(fixture)),
++        isEmpty,
++      );
++    });
++  });
++
++  group('arabicContextSentences', () {
++    String tokens(String text) => <String>[
++      for (final List<ArabicContextToken> s in arabicContextSentences(text))
++        s.map((ArabicContextToken t) => t.text).join(' '),
++    ].join(' | ');
++
++    test('words, numbers, Latin and punctuation are tokens', () {
++      expect(
++        tokens('قرأتُ «الكتاب» عام 2024، وPython 3.12 أيضاً؟ نعم!\nسطر'),
++        'قرأتُ « الكتاب » عام 2024 ، و Python 3.12 أيضاً ؟ | نعم ! | سطر',
++      );
++    });
++
++    test('offsets cover the source text', () {
++      const String text = 'في  البيت… ثم';
++      for (final List<ArabicContextToken> s in arabicContextSentences(text)) {
++        for (final ArabicContextToken t in s) {
++          expect(text.substring(t.start, t.end), t.text);
++        }
++      }
++      expect(tokens(text), 'في البيت … | ثم');
++    });
++
++    test('readings: best, margin and confident', () {
++      final ArabicContextReading r = ArabicContextReading(
++        const <ArabicAnalysis>[
++          <String, String>{'pos': 'noun'},
++          <String, String>{'pos': 'verb'},
++          <String, String>{'pos': 'noun'},
++        ],
++        const <double>[0.96, 0.04, 0.96],
++        const <int>[0, 1, 0],
++      );
++      expect(r.best.length, 2);
++      expect(r.margin, closeTo(0.92, 1e-9));
++      expect(r.confident(0.9), hasLength(2));
++      expect(r.confident(0.95), isNull);
++      expect(ArabicContextReading.none.confident(0), isNull);
++    });
++  });
++}
++
++final class _BrokenContextMorphology implements ArabicContextMorphology {
++  _BrokenContextMorphology(this.table);
++  final Map<String, List<ArabicAnalysis>> table;
++  int calls = 0;
++
++  @override
++  bool get isAvailable => true;
++
++  @override
++  Future<Map<String, List<ArabicAnalysis>>> analyzeWords(
++    Iterable<String> words,
++  ) => FakeArabicMorphology(table).analyzeWords(words);
++
++  @override
++  bool get canDisambiguate => true;
++
++  @override
++  Future<List<List<ArabicContextReading>>> disambiguate(
++    List<List<String>> sentences,
++  ) async {
++    if (calls++ == 0) throw StateError('model failed');
++    return const <List<ArabicContextReading>>[];
++  }
++}

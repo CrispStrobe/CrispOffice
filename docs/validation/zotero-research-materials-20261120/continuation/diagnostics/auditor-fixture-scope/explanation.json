@@ -1,0 +1,8 @@
+{
+  "kind": "independent_auditor_scope_error",
+  "application_test_results_affected": false,
+  "raw_events_modified": false,
+  "failure": "The first duplicate-fixture check compared every case in german_context_test.dart against only the context fixture table, thereby including three separately declared unknown-governor cases.",
+  "correction": "Limit the complete literal fixture comparison to the context: display-name namespace; all application events, lifecycle/error handling, duplicate identity restrictions and source guards remain checked.",
+  "rejected_auditor_sha256": "df6db1e67f80af0180a4bcdcad2b7b13e26f796ccb55edcfe431c4cecf5b6503"
+}

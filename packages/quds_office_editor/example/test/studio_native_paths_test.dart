@@ -21,7 +21,10 @@ void main() {
   });
 
   test('unparseable process information yields no directory', () {
-    expect(androidFilesDirectory(cmdline: '/system/bin/sh', status: ''), isNull);
+    expect(
+      androidFilesDirectory(cmdline: '/system/bin/sh', status: ''),
+      isNull,
+    );
     expect(
       androidFilesDirectory(cmdline: '../evil\u0000', status: 'Uid:\t1\n'),
       isNull,

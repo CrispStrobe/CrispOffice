@@ -600,7 +600,10 @@ final class SqliteMailRepository implements MailRepository {
         (draft.body.plainText?.length ?? 0) +
         (draft.body.html?.length ?? 0) +
         (draft.body.plainPartPath?.length ?? 0) +
-        (draft.body.htmlPartPath?.length ?? 0);
+        (draft.body.htmlPartPath?.length ?? 0) +
+        (draft.editorState?.to.length ?? 0) +
+        (draft.editorState?.cc.length ?? 0) +
+        (draft.editorState?.bcc.length ?? 0);
     if (draft.attachments.length > 128) _fail(MailProblemCode.quotaExceeded);
     var bytes = 0;
     final paths = <String>{};

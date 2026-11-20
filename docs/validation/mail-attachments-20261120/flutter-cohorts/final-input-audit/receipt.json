@@ -1,0 +1,257 @@
+{
+  "accepted_source_head": "b8686c05e055ca0395726fe528d585379597d628",
+  "all_application_libraries_unchanged": true,
+  "application_cases_retained": 496,
+  "audit_script": {
+    "bytes": 10869,
+    "git_blob_sha1": "ff37990614fe6df850a601fe4df5ce180159f5b8",
+    "sha256": "1a21f965451a69b14f56faf5a35f497a1cc833384554a3c4649851f5293908f9"
+  },
+  "cohorts": [
+    {
+      "accepted_source_head": "b8686c05e055ca0395726fe528d585379597d628",
+      "changed_files_after": {
+        "packages/quds_office_engine/test/office_pdf_export_test.dart": {
+          "bytes": 33218,
+          "git_blob_sha1": "af2e02b40d22175d8dde6e07c41007ca5999e1a4",
+          "sha256": "2be0d5599e4182e728b7db8c2eb031a153761ffe122fc2a92be774ddbae0f6e5"
+        },
+        "packages/quds_proofing_spacy/tool/evaluate_grammar_v2.dart": {
+          "bytes": 23753,
+          "git_blob_sha1": "8f27ae90b81c3cf3698341c46eee736c4fb140ad",
+          "sha256": "42b66d7e4fd1f81122245f4735f1fcfd4d18056c50a1d4fabe1ffae307b5d6e0"
+        }
+      },
+      "changed_files_before": {
+        "packages/quds_office_engine/test/office_pdf_export_test.dart": {
+          "bytes": 32856,
+          "git_blob_sha1": "1389133d1ac1bc5cb5c642362ddcee777c94dcf9",
+          "sha256": "6936ed42159210d6564b4a8cfee01ddf7b1ad800ee5f04d66e9cd092e9480bf4"
+        },
+        "packages/quds_proofing_spacy/tool/evaluate_grammar_v2.dart": {
+          "bytes": 23747,
+          "git_blob_sha1": "a4a37fb85d1787b3b581726b634d5b42d197511b",
+          "sha256": "ccd67cee89f72718259504e5f7fdccee786d8b290b02e19453eda3ce1b241735"
+        }
+      },
+      "changed_paths": {
+        "dependencies": [],
+        "host_fonts": [],
+        "runtime": [],
+        "source": [
+          "packages/quds_office_engine/test/office_pdf_export_test.dart",
+          "packages/quds_proofing_spacy/tool/evaluate_grammar_v2.dart"
+        ],
+        "workspace": []
+      },
+      "cohort": "mail-host",
+      "current_source_matches_final_commit": {
+        "different_paths": [],
+        "matches": true,
+        "uncommitted_paths": []
+      },
+      "final_area_sha256": {
+        "dependencies": "b579a0a8650bfab4b7567da5122fd44e067b03fed6e0648a4d1ce841002e6762",
+        "host_fonts": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+        "runtime": "9c58c139ade21dc3073e27df7a4627814f2ddc40c2b7b684706d390d6d3c5aac",
+        "source": "88bcfd0a686f6fafb56045095bb2fc5ad6fefef61b64cbc76518ef9b64e590b6",
+        "workspace": "7644370dd7b9d63170b84e5574dd5375ef6dc58d9183c3750940259f50d8f722"
+      },
+      "final_source_head": "58c6962ec3ea82811bfcafec42981385f216f892",
+      "original_passed_application_cases": 319,
+      "original_receipt_sha256": "92d47a0428b1eec22bf7dd9fa6d3cfcda4c231f3c74915e93e718b869fca7ace",
+      "original_suites": 11
+    },
+    {
+      "accepted_source_head": "b8686c05e055ca0395726fe528d585379597d628",
+      "changed_files_after": {
+        "packages/quds_office_engine/test/office_pdf_export_test.dart": {
+          "bytes": 33218,
+          "git_blob_sha1": "af2e02b40d22175d8dde6e07c41007ca5999e1a4",
+          "sha256": "2be0d5599e4182e728b7db8c2eb031a153761ffe122fc2a92be774ddbae0f6e5"
+        },
+        "packages/quds_proofing_spacy/tool/evaluate_grammar_v2.dart": {
+          "bytes": 23753,
+          "git_blob_sha1": "8f27ae90b81c3cf3698341c46eee736c4fb140ad",
+          "sha256": "42b66d7e4fd1f81122245f4735f1fcfd4d18056c50a1d4fabe1ffae307b5d6e0"
+        }
+      },
+      "changed_files_before": {
+        "packages/quds_office_engine/test/office_pdf_export_test.dart": {
+          "bytes": 32856,
+          "git_blob_sha1": "1389133d1ac1bc5cb5c642362ddcee777c94dcf9",
+          "sha256": "6936ed42159210d6564b4a8cfee01ddf7b1ad800ee5f04d66e9cd092e9480bf4"
+        },
+        "packages/quds_proofing_spacy/tool/evaluate_grammar_v2.dart": {
+          "bytes": 23747,
+          "git_blob_sha1": "a4a37fb85d1787b3b581726b634d5b42d197511b",
+          "sha256": "ccd67cee89f72718259504e5f7fdccee786d8b290b02e19453eda3ce1b241735"
+        }
+      },
+      "changed_paths": {
+        "dependencies": [],
+        "host_fonts": [],
+        "runtime": [],
+        "source": [
+          "packages/quds_office_engine/test/office_pdf_export_test.dart",
+          "packages/quds_proofing_spacy/tool/evaluate_grammar_v2.dart"
+        ],
+        "workspace": []
+      },
+      "cohort": "editor-rendering",
+      "current_source_matches_final_commit": {
+        "different_paths": [],
+        "matches": true,
+        "uncommitted_paths": []
+      },
+      "final_area_sha256": {
+        "dependencies": "933be403148951949732d7912c4e0b0c01f54a5f1b116d97c0bead7b5ed35b4c",
+        "host_fonts": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+        "runtime": "9c58c139ade21dc3073e27df7a4627814f2ddc40c2b7b684706d390d6d3c5aac",
+        "source": "88bcfd0a686f6fafb56045095bb2fc5ad6fefef61b64cbc76518ef9b64e590b6",
+        "workspace": "7644370dd7b9d63170b84e5574dd5375ef6dc58d9183c3750940259f50d8f722"
+      },
+      "final_source_head": "58c6962ec3ea82811bfcafec42981385f216f892",
+      "original_passed_application_cases": 109,
+      "original_receipt_sha256": "d1362d9454fbbd068c0ce0d74f4f85e7b00d7ab9ca82ec21e9cb03e15e2b2dcb",
+      "original_suites": 10
+    },
+    {
+      "accepted_source_head": "b8686c05e055ca0395726fe528d585379597d628",
+      "changed_files_after": {
+        "packages/quds_office_engine/test/office_pdf_export_test.dart": {
+          "bytes": 33218,
+          "git_blob_sha1": "af2e02b40d22175d8dde6e07c41007ca5999e1a4",
+          "sha256": "2be0d5599e4182e728b7db8c2eb031a153761ffe122fc2a92be774ddbae0f6e5"
+        },
+        "packages/quds_proofing_spacy/tool/evaluate_grammar_v2.dart": {
+          "bytes": 23753,
+          "git_blob_sha1": "8f27ae90b81c3cf3698341c46eee736c4fb140ad",
+          "sha256": "42b66d7e4fd1f81122245f4735f1fcfd4d18056c50a1d4fabe1ffae307b5d6e0"
+        }
+      },
+      "changed_files_before": {
+        "packages/quds_office_engine/test/office_pdf_export_test.dart": {
+          "bytes": 32856,
+          "git_blob_sha1": "1389133d1ac1bc5cb5c642362ddcee777c94dcf9",
+          "sha256": "6936ed42159210d6564b4a8cfee01ddf7b1ad800ee5f04d66e9cd092e9480bf4"
+        },
+        "packages/quds_proofing_spacy/tool/evaluate_grammar_v2.dart": {
+          "bytes": 23747,
+          "git_blob_sha1": "a4a37fb85d1787b3b581726b634d5b42d197511b",
+          "sha256": "ccd67cee89f72718259504e5f7fdccee786d8b290b02e19453eda3ce1b241735"
+        }
+      },
+      "changed_paths": {
+        "dependencies": [],
+        "host_fonts": [],
+        "runtime": [],
+        "source": [
+          "packages/quds_office_engine/test/office_pdf_export_test.dart",
+          "packages/quds_proofing_spacy/tool/evaluate_grammar_v2.dart"
+        ],
+        "workspace": []
+      },
+      "cohort": "editor-zotero-materials",
+      "current_source_matches_final_commit": {
+        "different_paths": [],
+        "matches": true,
+        "uncommitted_paths": []
+      },
+      "final_area_sha256": {
+        "dependencies": "933be403148951949732d7912c4e0b0c01f54a5f1b116d97c0bead7b5ed35b4c",
+        "host_fonts": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+        "runtime": "9c58c139ade21dc3073e27df7a4627814f2ddc40c2b7b684706d390d6d3c5aac",
+        "source": "88bcfd0a686f6fafb56045095bb2fc5ad6fefef61b64cbc76518ef9b64e590b6",
+        "workspace": "7644370dd7b9d63170b84e5574dd5375ef6dc58d9183c3750940259f50d8f722"
+      },
+      "final_source_head": "58c6962ec3ea82811bfcafec42981385f216f892",
+      "original_passed_application_cases": 48,
+      "original_receipt_sha256": "f8703901ff5933b6b33b9862f9302bd1402fda6ec0f3eb80e8cd56b2e2247075",
+      "original_suites": 3
+    },
+    {
+      "accepted_source_head": "b8686c05e055ca0395726fe528d585379597d628",
+      "changed_files_after": {
+        "packages/quds_office_engine/test/office_pdf_export_test.dart": {
+          "bytes": 33218,
+          "git_blob_sha1": "af2e02b40d22175d8dde6e07c41007ca5999e1a4",
+          "sha256": "2be0d5599e4182e728b7db8c2eb031a153761ffe122fc2a92be774ddbae0f6e5"
+        },
+        "packages/quds_proofing_spacy/tool/evaluate_grammar_v2.dart": {
+          "bytes": 23753,
+          "git_blob_sha1": "8f27ae90b81c3cf3698341c46eee736c4fb140ad",
+          "sha256": "42b66d7e4fd1f81122245f4735f1fcfd4d18056c50a1d4fabe1ffae307b5d6e0"
+        }
+      },
+      "changed_files_before": {
+        "packages/quds_office_engine/test/office_pdf_export_test.dart": {
+          "bytes": 32856,
+          "git_blob_sha1": "1389133d1ac1bc5cb5c642362ddcee777c94dcf9",
+          "sha256": "6936ed42159210d6564b4a8cfee01ddf7b1ad800ee5f04d66e9cd092e9480bf4"
+        },
+        "packages/quds_proofing_spacy/tool/evaluate_grammar_v2.dart": {
+          "bytes": 23747,
+          "git_blob_sha1": "a4a37fb85d1787b3b581726b634d5b42d197511b",
+          "sha256": "ccd67cee89f72718259504e5f7fdccee786d8b290b02e19453eda3ce1b241735"
+        }
+      },
+      "changed_paths": {
+        "dependencies": [],
+        "host_fonts": [],
+        "runtime": [],
+        "source": [
+          "packages/quds_office_engine/test/office_pdf_export_test.dart",
+          "packages/quds_proofing_spacy/tool/evaluate_grammar_v2.dart"
+        ],
+        "workspace": []
+      },
+      "cohort": "studio-spacy",
+      "current_source_matches_final_commit": {
+        "different_paths": [],
+        "matches": true,
+        "uncommitted_paths": []
+      },
+      "final_area_sha256": {
+        "dependencies": "b579a0a8650bfab4b7567da5122fd44e067b03fed6e0648a4d1ce841002e6762",
+        "host_fonts": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+        "runtime": "9c58c139ade21dc3073e27df7a4627814f2ddc40c2b7b684706d390d6d3c5aac",
+        "source": "88bcfd0a686f6fafb56045095bb2fc5ad6fefef61b64cbc76518ef9b64e590b6",
+        "workspace": "7644370dd7b9d63170b84e5574dd5375ef6dc58d9183c3750940259f50d8f722"
+      },
+      "final_source_head": "58c6962ec3ea82811bfcafec42981385f216f892",
+      "original_passed_application_cases": 20,
+      "original_receipt_sha256": "e2c333aeaf7450fb570a25f01233e44bc3160918ae88da4bad8943b7e451a78c",
+      "original_suites": 2
+    }
+  ],
+  "diff": {
+    "bytes": 2226,
+    "git_blob_sha1": "7d86796d6a00a04f2215a527e019d0d6ac66cec8",
+    "sha256": "82215d9549b9c4f42b7175b0e74aedb775d4c3bd1b098e5176e4386e4dfdd86c"
+  },
+  "engine_pdf_test_delta": "Test assertions recognize numeric 2.500 width formatting, whitespace between rectangle and stroke, and two explicit crop clip restorations. It is outside these Flutter selections; its execution is qualified separately by the engine cohort.",
+  "evaluator_delta_is_exact_single_return_bracing": true,
+  "final_source_head": "58c6962ec3ea82811bfcafec42981385f216f892",
+  "final_tree": "d38c7b44d4ec3f6f576f182f773096bd3534e6c5",
+  "inherited_runner": {
+    "bytes": 29772,
+    "git_blob_sha1": "269eef52038d97ae307859439875a23f350e0b0a",
+    "sha256": "4d01ed59729abaa64e3ab643e8ebcb2f7136dd2d9f02cc4b07b81a06fbb919bf"
+  },
+  "new_test_execution_claimed": false,
+  "only_changed_paths": [
+    "packages/quds_office_engine/test/office_pdf_export_test.dart",
+    "packages/quds_proofing_spacy/tool/evaluate_grammar_v2.dart"
+  ],
+  "original_acceptance_receipts_unchanged": true,
+  "status": "passed",
+  "suites_disjoint": true,
+  "unexecuted_delta_reference_audit": {
+    "filename_references_outside_changed_files": [],
+    "incoming_static_import_export_part_edges": [],
+    "scope": "All tracked Dart sources in the inherited complete local-package source inventory; all import/export/part string URIs, including conditional choices, resolved against the actual package map.",
+    "selected_entry_points_include_changed_files": false,
+    "tracked_dart_sources_scanned": 2051
+  }
+}

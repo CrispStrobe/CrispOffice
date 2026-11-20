@@ -1,0 +1,14 @@
+00:00 +0: loading /mnt/volume1/quds-word-layout-20261120/source/packages/quds_office_editor/test/word_selection_paint_test.dart
+00:00 +0: (setUpAll)
+00:00 +0: selection band geometry a line with mixed font sizes gets one even band
+00:00 +1: selection band geometry multi-line selection is seamless, stops at the text and adds a paragraph-mark block
+00:00 +2: selection band geometry a selection ending at the paragraph end leaves the mark out
+00:00 +3: selection band geometry paragraph spacing before and after is not highlighted
+00:00 +4: selection band geometry right-to-left paragraphs show the mark on the left
+00:00 +5: selection band geometry an empty paragraph shows only its mark block
+00:00 +6: selection colour defaults to Word's colour per platform and stays configurable
+00:00 +7: whole cells are filled; a selection inside one cell is not
+00:00 +8: Word-like selection golden (variant: TargetPlatform.macOS)
+00:01 +9: Word-like selection golden (Windows grey) (variant: TargetPlatform.windows)
+00:01 +10: (tearDownAll)
+00:01 +10: All tests passed!

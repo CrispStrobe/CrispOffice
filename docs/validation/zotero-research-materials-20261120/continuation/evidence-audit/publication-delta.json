@@ -1,0 +1,536 @@
+{
+  "application_paths": [
+    "packages/quds_office_editor/example/lib/studio_spacy_host.dart",
+    "packages/quds_office_editor/example/lib/studio_spacy_host_native.dart",
+    "packages/quds_office_editor/example/lib/studio_spacy_setup.dart",
+    "packages/quds_office_editor/example/lib/suite_workspace.dart",
+    "packages/quds_office_editor/example/macos/Runner/Info.plist",
+    "packages/quds_office_editor/example/test/studio_comment_draft_proofing_test.dart",
+    "packages/quds_office_editor/example/test/studio_macos_bundle_native_gate.dart",
+    "packages/quds_office_editor/example/test/studio_spacy_bundle_native_gate.dart",
+    "packages/quds_office_editor/example/test/studio_spacy_grammar_native_gate.dart",
+    "packages/quds_office_editor/example/test/studio_spacy_pin_test.dart",
+    "packages/quds_office_editor/example/test/studio_spacy_setup_test.dart",
+    "packages/quds_office_editor/example/tool/build_macos_app.sh",
+    "packages/quds_office_engine/lib/src/proofing/german_agreement_facts.dart",
+    "packages/quds_proofing_spacy/lib/quds_proofing_spacy.dart",
+    "packages/quds_proofing_spacy/lib/src/backend.dart",
+    "packages/quds_proofing_spacy/lib/src/distribution.dart",
+    "packages/quds_proofing_spacy/lib/src/grammar_families.dart",
+    "packages/quds_proofing_spacy/lib/src/grammar_planner.dart",
+    "packages/quds_proofing_spacy/lib/src/grammar_provider.dart",
+    "packages/quds_proofing_spacy/lib/src/grammar_verbs.dart",
+    "packages/quds_proofing_spacy/lib/src/macho_code_identity.dart",
+    "packages/quds_proofing_spacy/lib/src/native_backend.dart",
+    "packages/quds_proofing_spacy/test/distribution_test.dart",
+    "packages/quds_proofing_spacy/test/grammar_families_test.dart",
+    "packages/quds_proofing_spacy/test/grammar_planner_test.dart",
+    "packages/quds_proofing_spacy/test/grammar_provider_test.dart",
+    "packages/quds_proofing_spacy/test/macho_code_identity_test.dart",
+    "packages/quds_proofing_spacy/tool/dump_development_analysis.dart",
+    "packages/quds_proofing_spacy/tool/evaluate_grammar_v2.dart",
+    "packages/quds_proofing_spacy/tool/macho_code_digest.dart",
+    "packages/quds_proofing_spacy/tool/replay_grammar_panels.dart"
+  ],
+  "audited_at_utc": "2026-11-20T05:34:54.535731+00:00",
+  "base_commit": "e79c32e77f1990e303527e477e4909df993c1b9b",
+  "candidate_commit": "f3f98987824e021ed22a4d909e38d6307495267b",
+  "candidate_tree": "6e4afd543376f3c5cc965e4b143bb453da71518e",
+  "changed_path_count": 46,
+  "changed_paths": {
+    ".github/workflows/macos-app-weekly.yml": {
+      "after": {
+        "mode": "100644",
+        "oid": "7fc5cd5cd5f2ffce66ed7b3e6b3533ed1880e28b",
+        "type": "blob"
+      },
+      "before": null
+    },
+    "docs/release/macos-signing.md": {
+      "after": {
+        "mode": "100644",
+        "oid": "114d350db356daeffc9122d5065bb3e234b21d18",
+        "type": "blob"
+      },
+      "before": null
+    },
+    "docs/validation/native-spacy-grammar-v2-20261120/README.md": {
+      "after": {
+        "mode": "100644",
+        "oid": "af27429832ec99a355d5ba60c17effdd25d2deb8",
+        "type": "blob"
+      },
+      "before": null
+    },
+    "docs/validation/native-spacy-grammar-v2-20261120/candidate-seal.json": {
+      "after": {
+        "mode": "100644",
+        "oid": "35bafb6ffdf8d3e55e827e5f10cba12faf78e9fe",
+        "type": "blob"
+      },
+      "before": null
+    },
+    "docs/validation/native-spacy-grammar-v2-20261120/candidate-seal.json.consumed.json": {
+      "after": {
+        "mode": "100644",
+        "oid": "36a1aaafbe29c97a1aaadc8c061a618dde7b1bcc",
+        "type": "blob"
+      },
+      "before": null
+    },
+    "docs/validation/native-spacy-grammar-v2-20261120/clean-corpus-gsd-test.json": {
+      "after": {
+        "mode": "100644",
+        "oid": "332cc8329fea225611472813c7c80ebe4450bd13",
+        "type": "blob"
+      },
+      "before": null
+    },
+    "docs/validation/native-spacy-grammar-v2-20261120/clean-corpus-judgement.json": {
+      "after": {
+        "mode": "100644",
+        "oid": "d38fea55f82a1e39e8cfba39a27bd6252e1f89e7",
+        "type": "blob"
+      },
+      "before": null
+    },
+    "docs/validation/native-spacy-grammar-v2-20261120/linux-replay/build-mode.txt": {
+      "after": {
+        "mode": "100644",
+        "oid": "f7b6fad93cde98e0e3c1a549ff7d5d949213ae49",
+        "type": "blob"
+      },
+      "before": null
+    },
+    "docs/validation/native-spacy-grammar-v2-20261120/linux-replay/linux-replay-execution.json": {
+      "after": {
+        "mode": "100644",
+        "oid": "ab9443bbd9c326e5b5ea03e8587de1b9b6e20402",
+        "type": "blob"
+      },
+      "before": null
+    },
+    "docs/validation/native-spacy-grammar-v2-20261120/linux-replay/linux-replay.json.gz": {
+      "after": {
+        "mode": "100644",
+        "oid": "26a80014e899330afca5bd82d3b70f2a53efe4f5",
+        "type": "blob"
+      },
+      "before": null
+    },
+    "docs/validation/native-spacy-grammar-v2-20261120/protocol.json": {
+      "after": {
+        "mode": "100644",
+        "oid": "d08723bf37cc7b15ccb96dc2a387bf89c1efd2b2",
+        "type": "blob"
+      },
+      "before": null
+    },
+    "docs/validation/native-spacy-grammar-v2-20261120/qualification-macos.json.gz": {
+      "after": {
+        "mode": "100644",
+        "oid": "75f3ccc3f37a72acdf4e76ba5c102955186e7c45",
+        "type": "blob"
+      },
+      "before": null
+    },
+    "docs/validation/native-spacy-grammar-v2-20261120/qualification-macos.json.sha256": {
+      "after": {
+        "mode": "100644",
+        "oid": "24d4ebfa2681743e352edf2449fb770377757fde",
+        "type": "blob"
+      },
+      "before": null
+    },
+    "docs/validation/native-spacy-grammar-v2-20261120/qualification-panel.json": {
+      "after": {
+        "mode": "100644",
+        "oid": "36b50bb0eebaefc74e3f6c09e8202f26e0137e5a",
+        "type": "blob"
+      },
+      "before": null
+    },
+    "packages/quds_office_editor/example/lib/studio_spacy_host.dart": {
+      "after": {
+        "mode": "100644",
+        "oid": "7ea02b687fde7fda286cd0fa2a24330b96ba1ebd",
+        "type": "blob"
+      },
+      "before": {
+        "mode": "100644",
+        "oid": "b3b9dabdd511b34d36f695a86e1b71744cf65cbe",
+        "type": "blob"
+      }
+    },
+    "packages/quds_office_editor/example/lib/studio_spacy_host_native.dart": {
+      "after": {
+        "mode": "100644",
+        "oid": "44f9f6a60df68a8f142d03551be2226a19809614",
+        "type": "blob"
+      },
+      "before": {
+        "mode": "100644",
+        "oid": "126bb87ed7631b897214482aea51773b263d9e1c",
+        "type": "blob"
+      }
+    },
+    "packages/quds_office_editor/example/lib/studio_spacy_setup.dart": {
+      "after": {
+        "mode": "100644",
+        "oid": "67bae734eb60df5a49361316f36df42cdfdff427",
+        "type": "blob"
+      },
+      "before": {
+        "mode": "100644",
+        "oid": "520e1879626d75e3df5c1324a851a8a947da3d93",
+        "type": "blob"
+      }
+    },
+    "packages/quds_office_editor/example/lib/suite_workspace.dart": {
+      "after": {
+        "mode": "100644",
+        "oid": "cddbe90139062c773e4dfb582d199cd258e20c77",
+        "type": "blob"
+      },
+      "before": {
+        "mode": "100644",
+        "oid": "998207beaed97eb0823b821321bb76616e7e5f94",
+        "type": "blob"
+      }
+    },
+    "packages/quds_office_editor/example/macos/Runner/Info.plist": {
+      "after": {
+        "mode": "100644",
+        "oid": "7b9be5c0d2c01c3073d2abcf4bb23da65c8e15a3",
+        "type": "blob"
+      },
+      "before": {
+        "mode": "100644",
+        "oid": "d307e86d259d3e9f9a16f9e25488c213352f483e",
+        "type": "blob"
+      }
+    },
+    "packages/quds_office_editor/example/test/studio_comment_draft_proofing_test.dart": {
+      "after": {
+        "mode": "100644",
+        "oid": "055410c2c2daa10cbc57071a8456c5d85387a296",
+        "type": "blob"
+      },
+      "before": {
+        "mode": "100644",
+        "oid": "6c49ada8cb8a403094281be6df8d25054b163311",
+        "type": "blob"
+      }
+    },
+    "packages/quds_office_editor/example/test/studio_macos_bundle_native_gate.dart": {
+      "after": {
+        "mode": "100644",
+        "oid": "4f64974fa519b8ec59d98cf9285262663a0e551e",
+        "type": "blob"
+      },
+      "before": {
+        "mode": "100644",
+        "oid": "e26002ec7112ac275d308ce1ecfb70b908995aa9",
+        "type": "blob"
+      }
+    },
+    "packages/quds_office_editor/example/test/studio_spacy_bundle_native_gate.dart": {
+      "after": {
+        "mode": "100644",
+        "oid": "2fcce1cb6e1fd2245eed071481f948d6d0258951",
+        "type": "blob"
+      },
+      "before": {
+        "mode": "100644",
+        "oid": "72b1f42a3cfd9004407c199e72840c69766501f5",
+        "type": "blob"
+      }
+    },
+    "packages/quds_office_editor/example/test/studio_spacy_grammar_native_gate.dart": {
+      "after": {
+        "mode": "100644",
+        "oid": "33a308090d8519777bf597a87028f7b92cdcd8dd",
+        "type": "blob"
+      },
+      "before": {
+        "mode": "100644",
+        "oid": "66d1eb23686a19f9b0095a389ffd7e8dec433aa7",
+        "type": "blob"
+      }
+    },
+    "packages/quds_office_editor/example/test/studio_spacy_pin_test.dart": {
+      "after": {
+        "mode": "100644",
+        "oid": "8fa18545f41d149bc7af8485b67731a8517b2cb2",
+        "type": "blob"
+      },
+      "before": {
+        "mode": "100644",
+        "oid": "00a3023e4b618257accaf27973aff3c6395283b9",
+        "type": "blob"
+      }
+    },
+    "packages/quds_office_editor/example/test/studio_spacy_setup_test.dart": {
+      "after": {
+        "mode": "100644",
+        "oid": "7e6f94754bc499e7a2bb611a87c9ef1ba69d5678",
+        "type": "blob"
+      },
+      "before": {
+        "mode": "100644",
+        "oid": "54e57c537f8d46ecf3a831a9c7c75d33da7916ed",
+        "type": "blob"
+      }
+    },
+    "packages/quds_office_editor/example/tool/build_macos_app.sh": {
+      "after": {
+        "mode": "100755",
+        "oid": "be569c7f64ba5d95170f7ace8bb01a4be5803748",
+        "type": "blob"
+      },
+      "before": {
+        "mode": "100755",
+        "oid": "2fb7d6102e80320f7d4d8747baa993237a3b4a33",
+        "type": "blob"
+      }
+    },
+    "packages/quds_office_engine/lib/src/proofing/german_agreement_facts.dart": {
+      "after": {
+        "mode": "100644",
+        "oid": "0736060f088ee35870b5eb7b87cd935b153313f1",
+        "type": "blob"
+      },
+      "before": {
+        "mode": "100644",
+        "oid": "b657d1f531081cca83a54f02fa75eb5b41b64079",
+        "type": "blob"
+      }
+    },
+    "packages/quds_proofing_spacy/README.md": {
+      "after": {
+        "mode": "100644",
+        "oid": "216d59f182053108a397439b5b57f4a49966ec50",
+        "type": "blob"
+      },
+      "before": {
+        "mode": "100644",
+        "oid": "705f1c151f203c799861808f9338a2b48e008bab",
+        "type": "blob"
+      }
+    },
+    "packages/quds_proofing_spacy/lib/quds_proofing_spacy.dart": {
+      "after": {
+        "mode": "100644",
+        "oid": "f8d098d1ade3ff67cb55fcce12f767b38c0f5098",
+        "type": "blob"
+      },
+      "before": {
+        "mode": "100644",
+        "oid": "2621b391436749ad3c59ea7e2d477a4d470e292e",
+        "type": "blob"
+      }
+    },
+    "packages/quds_proofing_spacy/lib/src/backend.dart": {
+      "after": {
+        "mode": "100644",
+        "oid": "6cd100e9874731717fdd92ae464e505d7cff8710",
+        "type": "blob"
+      },
+      "before": {
+        "mode": "100644",
+        "oid": "f29d338936f5d92915d5c08b2c1aa50c0968a659",
+        "type": "blob"
+      }
+    },
+    "packages/quds_proofing_spacy/lib/src/distribution.dart": {
+      "after": {
+        "mode": "100644",
+        "oid": "684fe6254ad118b26091fa824f9aeb75ce2af713",
+        "type": "blob"
+      },
+      "before": {
+        "mode": "100644",
+        "oid": "eb3b2cf21c0c461529a835f263b9d0d0ac7da802",
+        "type": "blob"
+      }
+    },
+    "packages/quds_proofing_spacy/lib/src/grammar_families.dart": {
+      "after": {
+        "mode": "100644",
+        "oid": "5de9cb62a32832e7db65cfee4d80018b41623aa3",
+        "type": "blob"
+      },
+      "before": null
+    },
+    "packages/quds_proofing_spacy/lib/src/grammar_planner.dart": {
+      "after": {
+        "mode": "100644",
+        "oid": "9d63f23c39003d6edba3e306e0a6da7a05e8b898",
+        "type": "blob"
+      },
+      "before": {
+        "mode": "100644",
+        "oid": "a23bfee7bcd220e3dd07fccc6e69e140f025053c",
+        "type": "blob"
+      }
+    },
+    "packages/quds_proofing_spacy/lib/src/grammar_provider.dart": {
+      "after": {
+        "mode": "100644",
+        "oid": "b82840d9cb88a5810399cb3a3a27a103f1743e0c",
+        "type": "blob"
+      },
+      "before": {
+        "mode": "100644",
+        "oid": "9e765d2d7a4db0fce8eb1bbd16594d552c5af92b",
+        "type": "blob"
+      }
+    },
+    "packages/quds_proofing_spacy/lib/src/grammar_verbs.dart": {
+      "after": {
+        "mode": "100644",
+        "oid": "9fcffb2cf020e3c6d7e39d4bbdfc77a416719688",
+        "type": "blob"
+      },
+      "before": null
+    },
+    "packages/quds_proofing_spacy/lib/src/macho_code_identity.dart": {
+      "after": {
+        "mode": "100644",
+        "oid": "003b69a99fe699f5027915159bf2bab769f9857d",
+        "type": "blob"
+      },
+      "before": null
+    },
+    "packages/quds_proofing_spacy/lib/src/native_backend.dart": {
+      "after": {
+        "mode": "100644",
+        "oid": "d501e60ad2399630693f4311b31b0ee792dd42b7",
+        "type": "blob"
+      },
+      "before": {
+        "mode": "100644",
+        "oid": "4e629afa0503b89112b39b90c4452916f10a022f",
+        "type": "blob"
+      }
+    },
+    "packages/quds_proofing_spacy/test/distribution_test.dart": {
+      "after": {
+        "mode": "100644",
+        "oid": "cdfb1d95158b44736ee30386ddb202a90c2ed52b",
+        "type": "blob"
+      },
+      "before": {
+        "mode": "100644",
+        "oid": "9c19f504a320db83232ca8bd55bdf55b88da059e",
+        "type": "blob"
+      }
+    },
+    "packages/quds_proofing_spacy/test/grammar_families_test.dart": {
+      "after": {
+        "mode": "100644",
+        "oid": "4b3372a428381b70be53bfc1cbe431af9d858448",
+        "type": "blob"
+      },
+      "before": null
+    },
+    "packages/quds_proofing_spacy/test/grammar_planner_test.dart": {
+      "after": {
+        "mode": "100644",
+        "oid": "4576399c107571ea7fefa9e989b68bbc59882554",
+        "type": "blob"
+      },
+      "before": {
+        "mode": "100644",
+        "oid": "35a46235cf4519b28f911f557d93a259bdf3ea24",
+        "type": "blob"
+      }
+    },
+    "packages/quds_proofing_spacy/test/grammar_provider_test.dart": {
+      "after": {
+        "mode": "100644",
+        "oid": "aa5cd128e70ba644f555e111b3c7dd25030ba806",
+        "type": "blob"
+      },
+      "before": {
+        "mode": "100644",
+        "oid": "6c2ba29a8c156132936903fb9494d9d6077225d5",
+        "type": "blob"
+      }
+    },
+    "packages/quds_proofing_spacy/test/macho_code_identity_test.dart": {
+      "after": {
+        "mode": "100644",
+        "oid": "f58fa475cf8387e0843c76735b121cc591882ff1",
+        "type": "blob"
+      },
+      "before": null
+    },
+    "packages/quds_proofing_spacy/tool/dump_development_analysis.dart": {
+      "after": {
+        "mode": "100644",
+        "oid": "55b1eb29dfb07a7c85bcb4a77567c66ec9d468b4",
+        "type": "blob"
+      },
+      "before": null
+    },
+    "packages/quds_proofing_spacy/tool/evaluate_grammar_v2.dart": {
+      "after": {
+        "mode": "100644",
+        "oid": "a4a37fb85d1787b3b581726b634d5b42d197511b",
+        "type": "blob"
+      },
+      "before": null
+    },
+    "packages/quds_proofing_spacy/tool/macho_code_digest.dart": {
+      "after": {
+        "mode": "100644",
+        "oid": "9a4ddc974e88984be1fb5c02c5e8eb719995f31b",
+        "type": "blob"
+      },
+      "before": null
+    },
+    "packages/quds_proofing_spacy/tool/replay_grammar_panels.dart": {
+      "after": {
+        "mode": "100644",
+        "oid": "2439bdf97ab0c66aaaa23552ce0865c4f0d78aaf",
+        "type": "blob"
+      },
+      "before": {
+        "mode": "100644",
+        "oid": "f0fe621473ebde4b3fda84daaa471dead7d5e3b8",
+        "type": "blob"
+      }
+    }
+  },
+  "editor_library_changes": [],
+  "engine_appended_fact_bytes": 5272,
+  "engine_existing_facts_bytes_preserved_as_exact_prefix": true,
+  "engine_production_changes": [
+    "packages/quds_office_engine/lib/src/proofing/german_agreement_facts.dart"
+  ],
+  "fresh_gate_selection": {
+    "engine-proofing": "All 37 proofing test files, including top-level and nested paths.",
+    "spacy": "All 11 package test files.",
+    "static": "Strict analysis and formatting of the final changed Dart targets.",
+    "studio-integration": "Nine explicit setup, pin, downloads, language, comment and Zotero integration files.",
+    "zotero": "All 29 engine and 43 editor Zotero test files."
+  },
+  "limits": [
+    "This assessment runs no tests; fresh gate results are recorded separately.",
+    "The aggregate engine import closure includes the appended German facts, so it is not byte-identical to historical acceptance.",
+    "VBA, rendering, DOCX and Mail implementation/test paths are unchanged; their saved tests retain their original source attribution.",
+    "Linux gates do not rerun native macOS signing, installed-application, live-account or Office interoperability acceptance."
+  ],
+  "mail_source_and_test_changes": [],
+  "manifest_lock_analysis_changes": [],
+  "reviewed_behavior": [
+    "The engine changes only append read-only German grammar fact classes; all prior bytes in that part remain identical.",
+    "Studio changes add native grammar family settings and synchronize grammar provider configuration when UI language changes.",
+    "The spaCy package adds optional grammar families and signature-independent Mach-O code identity support.",
+    "A follow-on Studio test explicitly sets its German document language; macOS packaging fixes remain separate incoming work."
+  ],
+  "status": "reviewed_publication_delta",
+  "verifier_sha256": "265f817dd6fe717dd0d00c11cf94c57e65c37014af5c03eb90eebea73f9f952b",
+  "zotero_source_and_test_changes": []
+}
