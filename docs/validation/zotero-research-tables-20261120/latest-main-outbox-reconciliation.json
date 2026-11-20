@@ -1,0 +1,399 @@
+{
+  "featureBase": "93dc987cf993787bd613018b3028e7ad60d5472a",
+  "incomingMain": "13be50464d1b43e9f2100fb9ccc12f8fe22eb55e",
+  "previousMain": "b42eca1db058f0def247b86c2f15dea90c11b4e8",
+  "mainAncestry": "13be is10 commits ahead ofb42; b42 is its first parent. Retain13be as an explicit merge parent.",
+  "mainDelta": {
+    "paths": 47,
+    "added": 25,
+    "modified": 22,
+    "deleted": 0
+  },
+  "entryCount": 45,
+  "entries": [
+    {
+      "path": "docs/roadmaps/mail/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ed32bdd7e95a01794870204f17c68205a33cd50b"
+    },
+    {
+      "path": "docs/roadmaps/mail/implementation-plan.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6c49ee6a2628b54cc2164c57b2d09f871f00fdc8"
+    },
+    {
+      "path": "docs/roadmaps/mail/outbox.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "672ba412fc76d4f82ba799bd03bcf8a55d91554f"
+    },
+    {
+      "path": "docs/roadmaps/mail/status.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c750f233e8657e4a8ca7c173166d2cebfbbe6cb8"
+    },
+    {
+      "path": "docs/validation/mail-outbox-20261120/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3ec6b9f94b764b9fb180868e0dc829d312f09d36"
+    },
+    {
+      "path": "docs/validation/mail-outbox-20261120/acceptance.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c7cdab5011feb238cc4b685eb9bcbb12dcdafca1"
+    },
+    {
+      "path": "docs/validation/mail-outbox-20261120/evidence-manifest.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "66376a85c03f7bf082716dfe020e0e7b75992042"
+    },
+    {
+      "path": "docs/validation/mail-outbox-20261120/evidence/accepted-runs.tar.gz",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "276707328265ce791b40492163de895723367fe4"
+    },
+    {
+      "path": "docs/validation/mail-outbox-20261120/evidence/development-and-supporting-runs.tar.gz",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "49ccfae1c9c81fdc82e9c465cc0a47503705ca6f"
+    },
+    {
+      "path": "docs/validation/mail-outbox-20261120/intake-dispositions.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "820636d886fd8f2123a8e3fc5bd117d72fef55c5"
+    },
+    {
+      "path": "docs/validation/mail-outbox-20261120/intake-final.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bf0a346f1b36f76fd6ebef176fbb75cc9aedab7d"
+    },
+    {
+      "path": "docs/validation/mail-outbox-20261120/intake-final.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "60f9d1d544b559d19c178c4c9a84b16d329356e0"
+    },
+    {
+      "path": "docs/validation/mail-outbox-20261120/intake-initial.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9299effddba2e1709e10e7c897d75acef434c23b"
+    },
+    {
+      "path": "docs/validation/mail-outbox-20261120/review.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "846a41b694c18594dafa449eccd161afb6d1fc74"
+    },
+    {
+      "path": "docs/validation/mail-outbox-20261120/visuals/outbox-ar.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4c9732296256b11611a43e98c4090e08708abbde"
+    },
+    {
+      "path": "docs/validation/mail-outbox-20261120/visuals/outbox-de.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "194683a5fdeb061d5e807d73169d3eff9143cf12"
+    },
+    {
+      "path": "docs/validation/mail-outbox-20261120/visuals/outbox-en.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "63d4f0f11099881996dbfa037044fd8fde752b2a"
+    },
+    {
+      "path": "packages/quds_mail_core/CHANGELOG.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d0eec0c0e15dc4e02f1d807d8037b4bc9dccf317"
+    },
+    {
+      "path": "packages/quds_mail_core/lib/src/sync/outbox.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "70ccce29d3c4c119f7a719ee4101d0659c6bfbd2"
+    },
+    {
+      "path": "packages/quds_mail_core/test/outbox_test.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2bd60f3b4ff489c3fce50100c6d2347aa8a68286"
+    },
+    {
+      "path": "packages/quds_mail_store/CHANGELOG.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "436a317a1892a74e46aff4bfdcb0277f8b82fbf7"
+    },
+    {
+      "path": "packages/quds_mail_store/lib/src/codec.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "aafd9b4a0a6f376c36160f2c7408635f2a3eef1b"
+    },
+    {
+      "path": "packages/quds_mail_store/lib/src/repository.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a04340ba69b060d8ecff74f7fd92dc74f9428aa0"
+    },
+    {
+      "path": "packages/quds_mail_store/test/codec_test.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e1244df927710dd971494c9b83b3e1908746d616"
+    },
+    {
+      "path": "packages/quds_mail_store/test/outbox_draft_transfer_test.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "142a6ce4679149b4dc4d7dd07620f255b77d1cb6"
+    },
+    {
+      "path": "packages/quds_mail_store/test/support/outbox_widget_database.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2a81d6348313dc07cca5575fed12dca5ae959d63"
+    },
+    {
+      "path": "packages/quds_office_editor/CHANGELOG.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0a5899f9a145bdfa37b51da956deaba2e6b9ef6d"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_compose.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "266e42a140559e851a8ff65789c9ce777f79872f"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_draft_store.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3a9bbe3fde952965f334b2d5d76f82152a54b326"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_ews.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "696c233b2f6bc2ef5ce125b82f4a3c53a299d363"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_native.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "45d68cddf5fc43b108d6e7582bdebc5bad9fdb2f"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_outbox.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c77b885d3bef42981e5769d703d98c34ae63e6b8"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_outbox_dialog.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1a91ce2b9f39848e404f86fedc3a78f1a5f4ac67"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_outbox_strings.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6a05c197ac4377cc8b54d84201ed61541657c75f"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_submission.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9448ee331a244cd43b29390a19053a562fccfac5"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_outbox_cloud_test.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "39975403c5ff085f6731e67e8f8e33e0b85463fb"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_outbox_dialog_test.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c0a5f057b454ee63061690e39fe0f6a18dab7bf5"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_outbox_host_test.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ce29d115a770e03ecbf54d34d547ea2a8a02886a"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_outbox_store_test.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "aca841c9c5001e458106e98e72d49068afcfaf76"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_outbox_submission_test.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2cd68bb53462203d344dfdff6ec45be97133e374"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/support/mail_outbox_store.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "417de0cf1d3439a40fbd59abcee600b9efe040cb"
+    },
+    {
+      "path": "packages/quds_office_engine/CHANGELOG.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "68df014f91dbb802de6dd51bff1d412273eb395b"
+    },
+    {
+      "path": "packages/quds_office_engine/test/word_incremental_layout_differential_test.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9cf81d15c2bf2efe07a03f8bfdd64e610535310b"
+    },
+    {
+      "path": "tools/mail/check_store.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "25eebddd9083711b8b6b4099390a8d258551949c"
+    },
+    {
+      "path": "tools/mail/test_check_store.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0dd57301fe8202fd6cbc1cd0cacd7eb4d2eaecde"
+    }
+  ],
+  "exactIncomingBlobs": 42,
+  "reviewedMergedBlobs": 3,
+  "modeAndTypeVerification": "All47 changed paths were independently read from the pinned13be Git tree (31 nonrecursive subtrees); every mode100644/typeblob and SHA matches comparison metadata. No deletion entries.",
+  "preservedSources": [
+    {
+      "path": "packages/quds_office_engine/lib/src/word/layout/word_incremental_layout.dart",
+      "sha": "93c7e51944395cd0e23c0801fd47b0e7f54eebb2"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/layout/word_layout.dart",
+      "sha": "b50ee59383518783106875edc853b071685ea3f3"
+    }
+  ],
+  "mergedSources": [
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_native.dart",
+      "base": "ecb7464b0b13927e7cb258951775a1975a91c29e",
+      "ours": "45c83b75e2c9e42004131f509677a0364ad3d4c4",
+      "incoming": "9ae96e5b7c2b087bcf133ec3164c47018ef0a324",
+      "merged": "45d68cddf5fc43b108d6e7582bdebc5bad9fdb2f",
+      "method": "All8 incoming unified hunks applied uniquely with exact context to our source. Same patch applied to b42 reconstructed13be byte-for-byte. Feature native read directly at93dc and matched45c. All pre-existing credential guards and the earlier2 sourceStatus arguments remain."
+    },
+    {
+      "path": "packages/quds_office_engine/CHANGELOG.md",
+      "ours": "8e3dab837737d311ebb8c540970163ae51cbbb8d",
+      "incoming": "3ab6810b1d64fd842fa881af6c95ffe70e8351f8",
+      "merged": "68df014f91dbb802de6dd51bff1d412273eb395b",
+      "method": "Add incoming cache-invalidation entry to combined Zotero/VBA history; exact patch control against b42 passed."
+    },
+    {
+      "path": "packages/quds_office_editor/CHANGELOG.md",
+      "base": "c391a3569cb83072deec6107acfbf34af6490558",
+      "ours": "6ffea91e04b53f3d17e2e59b199da2a037a79a1b",
+      "incoming": "3d2f123db6b567f9e1f502ece06a6c92790e5f48",
+      "merged": "0a5899f9a145bdfa37b51da956deaba2e6b9ef6d",
+      "method": "Retain feature Zotero entry and incoming Outbox entry above byte-identical earlier history."
+    }
+  ],
+  "runtimeImpact": {
+    "substantive": true,
+    "changedProductFiles": [
+      {
+        "path": "packages/quds_mail_core/lib/src/sync/outbox.dart",
+        "sha": "70ccce29d3c4c119f7a719ee4101d0659c6bfbd2"
+      },
+      {
+        "path": "packages/quds_mail_store/lib/src/codec.dart",
+        "sha": "aafd9b4a0a6f376c36160f2c7408635f2a3eef1b"
+      },
+      {
+        "path": "packages/quds_mail_store/lib/src/repository.dart",
+        "sha": "a04340ba69b060d8ecff74f7fd92dc74f9428aa0"
+      },
+      {
+        "path": "packages/quds_office_editor/example/lib/studio_mail_compose.dart",
+        "sha": "266e42a140559e851a8ff65789c9ce777f79872f"
+      },
+      {
+        "path": "packages/quds_office_editor/example/lib/studio_mail_draft_store.dart",
+        "sha": "3a9bbe3fde952965f334b2d5d76f82152a54b326"
+      },
+      {
+        "path": "packages/quds_office_editor/example/lib/studio_mail_ews.dart",
+        "sha": "696c233b2f6bc2ef5ce125b82f4a3c53a299d363"
+      },
+      {
+        "path": "packages/quds_office_editor/example/lib/studio_mail_native.dart",
+        "sha": "45d68cddf5fc43b108d6e7582bdebc5bad9fdb2f"
+      },
+      {
+        "path": "packages/quds_office_editor/example/lib/studio_mail_outbox.dart",
+        "sha": "c77b885d3bef42981e5769d703d98c34ae63e6b8"
+      },
+      {
+        "path": "packages/quds_office_editor/example/lib/studio_mail_outbox_dialog.dart",
+        "sha": "1a91ce2b9f39848e404f86fedc3a78f1a5f4ac67"
+      },
+      {
+        "path": "packages/quds_office_editor/example/lib/studio_mail_outbox_strings.dart",
+        "sha": "6a05c197ac4377cc8b54d84201ed61541657c75f"
+      },
+      {
+        "path": "packages/quds_office_editor/example/lib/studio_mail_submission.dart",
+        "sha": "9448ee331a244cd43b29390a19053a562fccfac5"
+      }
+    ],
+    "description": "Durable foreground Mail Outbox: atomic saved-draft transfer, frozen wire/envelope persistence, restart recovery, explicit guarded send/retry/cancel/terminal cleanup, native SMTP/EWS/Gmail/Graph integration and localized visible queue.",
+    "unchangedWordGraph": "The incoming dirty/full-layout clearing is already implemented in the retained source; the other layout change is documentation. Engine/core editor/config/fixture product graph remains unchanged for Zotero. Existing incoming differential file adds2 text/font wrapping cases to its10 tests.",
+    "selectedEngineReplay": {
+      "path": "packages/quds_office_engine/test/word_incremental_layout_differential_test.dart",
+      "newCases": 2,
+      "wholeFileCases": 12,
+      "namePattern": "edits while wrapping invalidate older unwrapped breaks"
+    },
+    "changedTestOriginals": [
+      "packages/quds_mail_core/test/outbox_test.dart",
+      "packages/quds_mail_store/test/codec_test.dart",
+      "packages/quds_mail_store/test/outbox_draft_transfer_test.dart",
+      "packages/quds_office_editor/example/test/studio_mail_outbox_cloud_test.dart",
+      "packages/quds_office_editor/example/test/studio_mail_outbox_dialog_test.dart",
+      "packages/quds_office_editor/example/test/studio_mail_outbox_host_test.dart",
+      "packages/quds_office_editor/example/test/studio_mail_outbox_store_test.dart",
+      "packages/quds_office_editor/example/test/studio_mail_outbox_submission_test.dart",
+      "packages/quds_office_engine/test/word_incremental_layout_differential_test.dart"
+    ],
+    "evidenceParser": {
+      "path": "tools/mail/check_store.py",
+      "change": "Respect LF JSONL framing without splitting legal Unicode separators inside JSON strings.",
+      "regression": "python3 -m unittest tools/mail/test_check_store.py"
+    },
+    "recommendation": "Run new Outbox/core/store originals, affected existing Mail hosts/draft/compose tests and the2 new differential cases; retain prior engine399+329 and editor332pass/8knownskip results at their original exact source. A fresh example workspace compile/chrome smoke can detect the combined host import boundary. Do not repeat unrelated credential or full Word gates solely for inherited layout comments."
+  },
+  "qualification": "Source/merge review only. New combined tree replay remains with root and validation_runtime; incoming Outbox evidence is retained separately. No CI/Actions/status queries, late-branch refresh or remote ref/commit mutation by this reviewer.",
+  "pendingAccountsUnchanged": "cb7f832590b77bd5be6e04814f1b64ae418b2b55 remains the previously documented pending boundary; this bounded review does not refresh it."
+}

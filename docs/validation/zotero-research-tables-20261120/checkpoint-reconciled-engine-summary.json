@@ -1,0 +1,200 @@
+{
+  "source": "231bd0403a3d2855dc23bf8dacefaedba01f2aab",
+  "sourceFileCount": 2226,
+  "accepted": {
+    "engine-zotero": {
+      "receipt": {
+        "source": "231bd0403a3d2855dc23bf8dacefaedba01f2aab",
+        "gate": "engine-zotero",
+        "command": [
+          "/workspace/scratch/a17412353cf6/runtime/dart-sdk/bin/dart",
+          "--packages=/workspace/scratch/a17412353cf6/runtime/engine_package_config.json",
+          "/workspace/scratch/a17412353cf6/runtime/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+          "--reporter=json",
+          "--concurrency=1",
+          "--compiler=source",
+          "tool/zotero/research_target_acceptance.dart"
+        ],
+        "cwd": "/workspace/scratch/a17412353cf6/quds_office_suite/packages/quds_office_engine",
+        "exit": 0,
+        "terminalEventCount": 1,
+        "jsonSuccess": true,
+        "counts": {
+          "success": 399
+        },
+        "accepted": true,
+        "interrupted": false,
+        "seconds": 50.26996564865112,
+        "sourceFiles": 2226,
+        "sourceBeforeSha256": "17248fcc60854b7e947bfc9e45b52a05d9789f351c8ac253bcc8dec06a311d70",
+        "sourceAfterSha256": "17248fcc60854b7e947bfc9e45b52a05d9789f351c8ac253bcc8dec06a311d70",
+        "sourceHashesUnchanged": true,
+        "peakRssSumKB": 1031572
+      },
+      "perOriginalFileOrHarness": {
+        "tool/zotero/research_target_acceptance.dart": {
+          "success": 399
+        }
+      },
+      "hiddenEntriesExcluded": 1
+    },
+    "engine-incoming-timeout120": {
+      "receipt": {
+        "source": "231bd0403a3d2855dc23bf8dacefaedba01f2aab",
+        "gate": "engine-incoming-timeout120",
+        "command": [
+          "/workspace/scratch/a17412353cf6/runtime/dart-sdk/bin/dart",
+          "--packages=/workspace/scratch/a17412353cf6/runtime/engine_package_config.json",
+          "/workspace/scratch/a17412353cf6/runtime/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+          "--reporter=json",
+          "--concurrency=1",
+          "--compiler=source",
+          "--timeout=2m",
+          "test/office_vba_arguments_integration_test.dart",
+          "test/office_vba_arguments_test.dart",
+          "test/office_vba_powerpoint_margins_integration_test.dart",
+          "test/office_vba_powerpoint_margins_test.dart",
+          "test/office_vba_procedure_boundaries_test.dart",
+          "test/office_vba_string_intrinsics_test.dart",
+          "test/office_vba_word_argument_shapes_test.dart",
+          "test/office_vba_word_paragraph_layout_integration_test.dart",
+          "test/office_vba_word_paragraph_layout_test.dart",
+          "test/slide_text_insets_preservation_test.dart",
+          "test/word_incremental_layout_differential_test.dart"
+        ],
+        "cwd": "/workspace/scratch/a17412353cf6/quds_office_suite/packages/quds_office_engine",
+        "exit": 0,
+        "terminalEventCount": 1,
+        "jsonSuccess": true,
+        "counts": {
+          "success": 329
+        },
+        "accepted": true,
+        "interrupted": false,
+        "seconds": 329.6977996826172,
+        "sourceFiles": 2226,
+        "sourceBeforeSha256": "17248fcc60854b7e947bfc9e45b52a05d9789f351c8ac253bcc8dec06a311d70",
+        "sourceAfterSha256": "17248fcc60854b7e947bfc9e45b52a05d9789f351c8ac253bcc8dec06a311d70",
+        "sourceHashesUnchanged": true,
+        "peakRssSumKB": 1687016
+      },
+      "perOriginalFileOrHarness": {
+        "test/office_vba_arguments_integration_test.dart": {
+          "success": 16
+        },
+        "test/office_vba_arguments_test.dart": {
+          "success": 68
+        },
+        "test/office_vba_powerpoint_margins_integration_test.dart": {
+          "success": 16
+        },
+        "test/office_vba_powerpoint_margins_test.dart": {
+          "success": 27
+        },
+        "test/office_vba_procedure_boundaries_test.dart": {
+          "success": 19
+        },
+        "test/office_vba_string_intrinsics_test.dart": {
+          "success": 102
+        },
+        "test/office_vba_word_argument_shapes_test.dart": {
+          "success": 8
+        },
+        "test/office_vba_word_paragraph_layout_integration_test.dart": {
+          "success": 17
+        },
+        "test/office_vba_word_paragraph_layout_test.dart": {
+          "success": 37
+        },
+        "test/slide_text_insets_preservation_test.dart": {
+          "success": 9
+        },
+        "test/word_incremental_layout_differential_test.dart": {
+          "success": 10
+        }
+      },
+      "hiddenEntriesExcluded": 11
+    }
+  },
+  "failedAttempts": {
+    "engine-incoming": {
+      "receipt": {
+        "source": "231bd0403a3d2855dc23bf8dacefaedba01f2aab",
+        "gate": "engine-incoming",
+        "command": [
+          "/workspace/scratch/a17412353cf6/runtime/dart-sdk/bin/dart",
+          "--packages=/workspace/scratch/a17412353cf6/runtime/engine_package_config.json",
+          "/workspace/scratch/a17412353cf6/runtime/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+          "--reporter=json",
+          "--concurrency=1",
+          "--compiler=source",
+          "test/office_vba_arguments_integration_test.dart",
+          "test/office_vba_arguments_test.dart",
+          "test/office_vba_powerpoint_margins_integration_test.dart",
+          "test/office_vba_powerpoint_margins_test.dart",
+          "test/office_vba_procedure_boundaries_test.dart",
+          "test/office_vba_string_intrinsics_test.dart",
+          "test/office_vba_word_argument_shapes_test.dart",
+          "test/office_vba_word_paragraph_layout_integration_test.dart",
+          "test/office_vba_word_paragraph_layout_test.dart",
+          "test/slide_text_insets_preservation_test.dart",
+          "test/word_incremental_layout_differential_test.dart"
+        ],
+        "cwd": "/workspace/scratch/a17412353cf6/quds_office_suite/packages/quds_office_engine",
+        "exit": 1,
+        "terminalEventCount": 1,
+        "jsonSuccess": false,
+        "counts": {
+          "success": 326,
+          "error": 3
+        },
+        "accepted": false,
+        "interrupted": false,
+        "seconds": 324.83853816986084,
+        "sourceFiles": 2226,
+        "sourceBeforeSha256": "17248fcc60854b7e947bfc9e45b52a05d9789f351c8ac253bcc8dec06a311d70",
+        "sourceAfterSha256": "17248fcc60854b7e947bfc9e45b52a05d9789f351c8ac253bcc8dec06a311d70",
+        "sourceHashesUnchanged": true,
+        "peakRssSumKB": 2186732
+      },
+      "perOriginalFileOrHarness": {
+        "test/office_vba_arguments_integration_test.dart": {
+          "success": 13,
+          "error": 3
+        },
+        "test/office_vba_arguments_test.dart": {
+          "success": 68
+        },
+        "test/office_vba_powerpoint_margins_integration_test.dart": {
+          "success": 16
+        },
+        "test/office_vba_powerpoint_margins_test.dart": {
+          "success": 27
+        },
+        "test/office_vba_procedure_boundaries_test.dart": {
+          "success": 19
+        },
+        "test/office_vba_string_intrinsics_test.dart": {
+          "success": 102
+        },
+        "test/office_vba_word_argument_shapes_test.dart": {
+          "success": 8
+        },
+        "test/office_vba_word_paragraph_layout_integration_test.dart": {
+          "success": 17
+        },
+        "test/office_vba_word_paragraph_layout_test.dart": {
+          "success": 37
+        },
+        "test/slide_text_insets_preservation_test.dart": {
+          "success": 9
+        },
+        "test/word_incremental_layout_differential_test.dart": {
+          "success": 10
+        }
+      },
+      "hiddenEntriesExcluded": 11
+    }
+  },
+  "note": "Only closed engine processes are included. The Flutter editor/native replays are still running or pending and are not included in these accepted counts."
+}

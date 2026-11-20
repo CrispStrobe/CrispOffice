@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:enough_mail/enough_mail.dart' as mail;
+import 'package:quds_mail_core/quds_mail_core.dart';
 
 import 'studio_mail_draft.dart';
 
@@ -79,3 +80,52 @@ mail.MimeMessage buildStudioMailMessage(StudioMailDraft draft, String sender) {
 
 String _rfc2231Filename(String name) =>
     "utf-8''${utf8.encode(name).map((byte) => '%${byte.toRadixString(16).padLeft(2, '0').toUpperCase()}').join()}";
+
+/// Replays frozen ASCII MIME without rebuilding Date, Message-ID, boundaries or
+/// attachments. The explicit envelope retains Bcc without adding a wire header.
+Future<MailSubmissionResult> submitStudioMailNativeOutbox(
+  mail.MailClient client,
+  MailPreparedMessage prepared, {
+  required String attemptId,
+}) async {
+  final mail.MimeMessage message;
+  try {
+    final wire = ascii.decode(prepared.wire.bytes);
+    message = mail.MimeMessage.parseFromText(wire);
+    if (message.renderMessage() != wire) throw const FormatException();
+  } on Object {
+    return MailSubmissionResult(
+      attemptId: attemptId,
+      outcome: MailSubmissionOutcome.rejected,
+    );
+  }
+  try {
+    await client.sendMessage(
+      message,
+      from: mail.MailAddress('', prepared.envelope.sender),
+      appendToSent: false,
+      recipients: [
+        for (final address in prepared.envelope.recipients)
+          mail.MailAddress('', address),
+      ],
+    );
+    return MailSubmissionResult(
+      attemptId: attemptId,
+      outcome: MailSubmissionOutcome.accepted,
+    );
+  } on mail.MailSendPostSubmissionException catch (error) {
+    return MailSubmissionResult(
+      attemptId: attemptId,
+      outcome: identical(error.mailClient, client)
+          ? MailSubmissionOutcome.accepted
+          : MailSubmissionOutcome.uncertain,
+    );
+  } on Object {
+    // The aggregate native API cannot prove whether DATA was accepted after
+    // arbitrary connection failures. Do not convert them to safe auto-retries.
+    return MailSubmissionResult(
+      attemptId: attemptId,
+      outcome: MailSubmissionOutcome.uncertain,
+    );
+  }
+}

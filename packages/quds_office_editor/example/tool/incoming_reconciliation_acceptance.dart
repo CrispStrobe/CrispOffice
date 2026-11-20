@@ -60,6 +60,17 @@ Future<void> main(List<String> arguments) async {
       tests: ['studio_mail_cloud_test.dart', 'studio_mail_forward_test.dart'],
     ),
     (
+      name: 'Mail Outbox',
+      directory: example,
+      tests: [
+        'studio_mail_outbox_cloud_test.dart',
+        'studio_mail_outbox_dialog_test.dart',
+        'studio_mail_outbox_host_test.dart',
+        'studio_mail_outbox_store_test.dart',
+        'studio_mail_outbox_submission_test.dart',
+      ],
+    ),
+    (
       name: 'Downloads and theme',
       directory: example,
       tests: [

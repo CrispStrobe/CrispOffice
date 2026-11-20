@@ -198,20 +198,7 @@ abstract final class MailStoreCodec {
     required String id,
     required Map<String, MailBytes> blobs,
   }) => _guard(() {
-    final object = _object(_parse(data), const [
-      'version',
-      'draftId',
-      'draftRevision',
-      'wire',
-      'envelope',
-      'state',
-      'createdAt',
-      'updatedAt',
-      'attemptNumber',
-      'attemptId',
-      'result',
-    ]);
-    _version(object);
+    final object = _outboxObject(_parse(data));
     final envelope = _object(object['envelope'], const [
       'sender',
       'recipients',
@@ -236,6 +223,9 @@ abstract final class MailStoreCodec {
       result: object['result'] == null
           ? null
           : _resultFromJson(object['result']),
+      priorSubmissionUncertain: object['version'] == 2
+          ? _boolean(object['priorSubmissionUncertain'])
+          : false,
     );
     _validateOutbox(entry);
     return entry;
@@ -266,16 +256,24 @@ abstract final class MailStoreCodec {
         return jsonEncode(_outboxToJson(previous)) ==
             jsonEncode(_outboxToJson(next));
       }
+      if (next.state == MailOutboxState.submitting) {
+        final ordinary = previous.canBeginAttempt;
+        final acknowledged = previous.canBeginAcknowledgedAttempt;
+        return (ordinary || acknowledged) &&
+            next.attemptNumber == previous.attemptNumber + 1 &&
+            next.attemptId != previous.attemptId &&
+            next.priorSubmissionUncertain == acknowledged &&
+            next.result == null;
+      }
+      if (next.priorSubmissionUncertain != previous.priorSubmissionUncertain) {
+        return false;
+      }
       switch (previous.state) {
         case MailOutboxState.queued:
         case MailOutboxState.retryableFailure:
-          if (next.state == MailOutboxState.submitting) {
-            return next.attemptNumber == previous.attemptNumber + 1 &&
-                next.attemptId != previous.attemptId &&
-                next.result == null;
-          }
           if (next.state == MailOutboxState.cancelled) {
-            return next.attemptNumber == previous.attemptNumber &&
+            return previous.canCancel &&
+                next.attemptNumber == previous.attemptNumber &&
                 next.attemptId == previous.attemptId &&
                 jsonEncode(_nullableResult(previous.result)) ==
                     jsonEncode(_nullableResult(next.result));
@@ -453,8 +451,28 @@ MailBytes _blobFromJson(Object? value, Map<String, MailBytes> blobs) {
   return content;
 }
 
+_JsonObject _outboxObject(Object? value) {
+  if (value is! _JsonObject) _invalid();
+  final version = value['version'];
+  if (version != 1 && version != 2) _invalid();
+  return _object(value, [
+    'version',
+    'draftId',
+    'draftRevision',
+    'wire',
+    'envelope',
+    'state',
+    'createdAt',
+    'updatedAt',
+    'attemptNumber',
+    'attemptId',
+    'result',
+    if (version == 2) 'priorSubmissionUncertain',
+  ]);
+}
+
 _JsonObject _outboxToJson(MailOutboxEntry entry) => {
-  'version': 1,
+  'version': 2,
   'draftId': entry.prepared.draftId,
   'draftRevision': entry.prepared.draftRevision,
   'wire': _blobToJson(entry.prepared.wire),
@@ -467,6 +485,7 @@ _JsonObject _outboxToJson(MailOutboxEntry entry) => {
   'updatedAt': _dateToJson(entry.updatedAt),
   'attemptNumber': entry.attemptNumber,
   'attemptId': entry.attemptId,
+  'priorSubmissionUncertain': entry.priorSubmissionUncertain,
   'result': _nullableResult(entry.result),
 };
 
@@ -552,6 +571,7 @@ void _validateOutbox(MailOutboxEntry entry) {
     attemptNumber: entry.attemptNumber,
     attemptId: entry.attemptId,
     result: entry.result,
+    priorSubmissionUncertain: entry.priorSubmissionUncertain,
   );
   if (entry.updatedAt.isBefore(entry.createdAt) ||
       (entry.result?.problem?.retryAfter?.isNegative ?? false) ||

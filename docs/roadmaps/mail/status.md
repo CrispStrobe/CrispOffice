@@ -1,5 +1,23 @@
 # Mail implementation status — 20 November 2026
 
+## Durable foreground Outbox
+
+The [Outbox continuation](outbox.md) connects native Studio Send and Queue in
+Outbox to atomic SQLite draft transfer, frozen MIME/transport recipients,
+durable pre-provider attempt markers and a visible account-scoped list for SMTP,
+EWS, Gmail and Microsoft 365. Recovery never sends automatically. Uncertain
+attempts require explicit delivery-check acknowledgement on every retry;
+rejection of a later attempt cannot erase earlier uncertainty. Safe pre-send
+cancellation and confirmed terminal-record cleanup are available.
+
+The production native host reuses its existing draft-store lease and account
+identity. Reconnect to that identity to inspect its queue after restart. This
+supersedes historical statements below that no visible durable outbox existed;
+their original qualification scope remains unchanged. Multiple drafts, offline
+entry, rich authoring, scheduling/undo-send, detailed SMTP recipient outcomes,
+Sent reconciliation and installed/live-provider qualification remain open.
+See the [local evidence](../../validation/mail-outbox-20261120/README.md).
+
 ## Reply and forwarding fidelity
 
 The [reply/forward continuation](reply-forward.md) completes two existing
@@ -23,8 +41,8 @@ guards. No new transport, automatic retry or account state is introduced.
 The [source and qualification record](../../validation/mail-reply-forward-20261120/README.md)
 records incremental remote checkpoints, actual tests and remaining boundaries.
 This closes text quotation and explicit file-forwarding gaps; rich HTML
-composition, preserved inline layout, signatures/templates and a visible durable
-outbox remain open.
+composition, preserved inline layout and signatures/templates remain open. The
+later durable Outbox increment is described above.
 
 ## Remembered native IMAP/SMTP accounts
 

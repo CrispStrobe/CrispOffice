@@ -11,6 +11,9 @@ import 'package:url_launcher/url_launcher.dart';
 import 'studio_mail_archive_action.dart';
 import 'studio_mail_archive_folder_action.dart';
 import 'studio_mail_compose.dart';
+import 'studio_mail_outbox.dart';
+import 'studio_mail_outbox_dialog.dart';
+import 'studio_mail_outbox_strings.dart';
 import 'studio_mail_draft_store.dart';
 import 'studio_mail_draft_store_native.dart';
 import 'studio_mail_operation.dart';
@@ -570,6 +573,13 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
       candidate = await (widget.draftStoreFactory ?? openStudioMailDraftStore)(
         identity,
       );
+      if (candidate case StudioMailOutboxStore(
+        :final account,
+      ) when account != identity.account) {
+        throw const StudioMailDraftStoreException(
+          MailProblemCode.permissionDenied,
+        );
+      }
       final restored = await candidate.load();
       if (!_current(provider, lease)) {
         await _closeDraftStore(candidate);
@@ -913,6 +923,137 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
     }
   }
 
+  StudioMailOutboxSubmit _outboxSubmit(
+    MailProvider provider,
+    MailSubmissionProvider submission,
+    MailOperationLease lease,
+    StudioMailOutboxStore store,
+    String sender,
+  ) => (message, {required attemptId}) async {
+    if (!_current(provider, lease) ||
+        message.account != store.account ||
+        message.envelope.sender != sender) {
+      return MailSubmissionResult(
+        attemptId: attemptId,
+        outcome: MailSubmissionOutcome.rejected,
+      );
+    }
+    // The disk identity is stable across connections; provider identities belong
+    // to this verified live session. Rebind only identity, never MIME/envelope.
+    return submission.submit(
+      MailPreparedMessage(
+        account: provider.account,
+        draftId: message.draftId,
+        draftRevision: message.draftRevision,
+        wire: message.wire,
+        envelope: message.envelope,
+      ),
+      attemptId: attemptId,
+      lease: lease,
+    );
+  };
+
+  Future<void> _openOutbox() => runStudioMailOperation(() async {
+    final provider = _provider;
+    final session = _session;
+    final submission = _submission;
+    if (provider == null ||
+        session == null ||
+        submission == null ||
+        !_connected ||
+        _blocked) {
+      return;
+    }
+    final lease = session.begin();
+    if (!await _restoreDraftStore(provider, session, lease)) return;
+    if (!mounted || !_current(provider, lease)) return;
+    final store = switch (_draftStore) {
+      StudioMailOutboxStore value => value,
+      _ => null,
+    };
+    if (store == null) {
+      setState(() => _error = widget.strings.mailOutboxFailed);
+      return;
+    }
+    final sender = _sender;
+    setState(() => _dialogOpen = true);
+    try {
+      await showDialog<void>(
+        context: context,
+        barrierDismissible: false,
+        builder: (_) => StudioMailOutboxDialog(
+          strings: widget.strings,
+          store: store,
+          submit: _outboxSubmit(provider, submission, lease, store, sender),
+          isCurrent: () =>
+              _current(provider, lease) && identical(store, _draftStore),
+        ),
+      );
+    } finally {
+      if (_current(provider, lease)) setState(() => _dialogOpen = false);
+    }
+  });
+
+  Future<void> _sendThroughOutbox(
+    StudioMailDraft draft,
+    StudioMailOutboxStore store,
+    MailProvider provider,
+    MailOperationLease lease,
+  ) async {
+    final priorUncertainty = _submissionUncertain;
+    final sender = _sender;
+    final submission = _submission!;
+    setState(() {
+      _draft = draft;
+      _busy = true;
+      _error = null;
+      _notice = null;
+    });
+    var queued = false;
+    try {
+      final entry = await store.enqueueOutbox(draft, sender);
+      queued = true;
+      if (!_current(provider, lease)) return;
+      setState(() {
+        _draft = null;
+        _submissionUncertain = false;
+        _notice = widget.strings.sending;
+      });
+      final completed = await submitStudioMailOutbox(
+        store: store,
+        entry: entry,
+        submit: _outboxSubmit(provider, submission, lease, store, sender),
+        isCurrent: () =>
+            _current(provider, lease) && identical(store, _draftStore),
+        acknowledgeUncertain: priorUncertainty,
+      );
+      if (!_current(provider, lease)) return;
+      setState(() {
+        _notice = completed.state == MailOutboxState.submitted
+            ? (_cloud
+                  ? widget.strings.mailCloudSubmissionAccepted
+                  : widget.strings.ewsSubmissionAccepted)
+            : '${widget.strings.mailOutboxState(completed.state)}. ${widget.strings.mailOutboxInspect}';
+        if (completed.state == MailOutboxState.uncertain ||
+            (completed.priorSubmissionUncertain &&
+                completed.state != MailOutboxState.submitted)) {
+          _error = widget.strings.mailOutboxUncertainExplanation;
+        }
+      });
+    } on Object {
+      if (_current(provider, lease)) {
+        setState(() {
+          _notice = null;
+          _error = queued
+              ? widget.strings.mailOutboxFailed
+              : widget.strings.mailQueueFailed;
+        });
+      }
+    } finally {
+      if (_current(provider, lease)) setState(() => _busy = false);
+    }
+  }
+
   Future<void> _compose([
     StudioMailDraft? initial,
   ]) => runStudioMailOperation(() async {
@@ -929,6 +1070,10 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
     if (!await _restoreDraftStore(provider, session, lease)) return;
     if (!mounted || !_current(provider, lease)) return;
     final store = _draftStore!;
+    final outbox = switch (store) {
+      StudioMailOutboxStore value => value,
+      _ => null,
+    };
     if (initial != null && _draft != null) {
       setState(() => _error = widget.strings.mailRetainedDraft);
       return;
@@ -942,6 +1087,25 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
         from: _sender,
         initialDraft: initial ?? _draft,
         previousSubmissionUncertain: _submissionUncertain,
+        onQueueDraft: outbox != null
+            ? (snapshot) async {
+                if (!_current(provider, lease) ||
+                    !identical(store, _draftStore)) {
+                  throw const StudioMailDraftStoreException(
+                    MailProblemCode.unavailable,
+                  );
+                }
+                await outbox.enqueueOutbox(snapshot, _sender);
+                if (_current(provider, lease)) {
+                  setState(() {
+                    _draft = null;
+                    _submissionUncertain = false;
+                    _error = null;
+                    _notice = widget.strings.mailQueued;
+                  });
+                }
+              }
+            : null,
         onSaveDraft: (snapshot) async {
           if (!_current(provider, lease) || !identical(store, _draftStore)) {
             throw const StudioMailDraftStoreException(
@@ -956,6 +1120,10 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
     if (!_current(provider, lease)) return;
     setState(() => _dialogOpen = false);
     if (draft == null) return;
+    if (outbox != null) {
+      await _sendThroughOutbox(draft, outbox, provider, lease);
+      return;
+    }
     setState(() {
       _draft = draft;
       _busy = true;
@@ -1164,6 +1332,12 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
               tooltip: widget.strings.compose,
               icon: const Icon(Icons.edit_outlined),
               onPressed: _blocked || !_canSend ? null : () => _compose(),
+            ),
+            IconButton(
+              key: const ValueKey('studio-mail-open-outbox'),
+              tooltip: widget.strings.mailOutbox,
+              icon: const Icon(Icons.outbox_outlined),
+              onPressed: _blocked || !_canSend ? null : _openOutbox,
             ),
             IconButton(
               tooltip: widget.strings.refresh,
