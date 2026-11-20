@@ -1,0 +1,58 @@
+{
+  "schema": "quds-remote-checkpoints/v1",
+  "branch": "codex/word-vba-paragraph-controls-20261120",
+  "source_freeze": "aacc5e7e2edd0cb6345e6e0140796f0f1382f574",
+  "remote_updates": "Expected-head, non-forced GitHub ref updates; exact staged-tree equality checked before each update.",
+  "github_actions": "NOT QUERIED OR AWAITED",
+  "entries": [
+    {
+      "commit": "0201b549d0dc3f601c50e36255d557034cb01699",
+      "tree": "86531c002a6b1d6e748849f7370a87072a5fa768",
+      "parents": [
+        "5ad4461a93c835479bf67acab63623944b3900a3"
+      ],
+      "purpose": "Incoming baseline; checkpoint branch creation"
+    },
+    {
+      "commit": "3bbd414d8f1129bd802b33c3af961d5c12489da2",
+      "tree": "64076b4481aa24da707c027c7f4f8a2fc7abd6ee",
+      "parents": [
+        "0201b549d0dc3f601c50e36255d557034cb01699"
+      ],
+      "purpose": "Verified initial intake"
+    },
+    {
+      "commit": "489d2808c30fb42ea02c7cd7616a1a99e1ef0b58",
+      "tree": "2cf47d5ef3679eaeab7d603fbe339e8275108cc6",
+      "parents": [
+        "3bbd414d8f1129bd802b33c3af961d5c12489da2"
+      ],
+      "purpose": "Implementation and focused coverage"
+    },
+    {
+      "commit": "03e6927436984d22438f080f54f89371859abf16",
+      "tree": "358c27413eec1c5395c87859890592b7deee08cf",
+      "parents": [
+        "489d2808c30fb42ea02c7cd7616a1a99e1ef0b58"
+      ],
+      "purpose": "Review corrections and documented contract"
+    },
+    {
+      "commit": "7c64246b5bb7c441206ae0bca99948f33b091f13",
+      "tree": "41e380d1b5a3231b54e43aec9b46c3362de3f5f1",
+      "parents": [
+        "03e6927436984d22438f080f54f89371859abf16"
+      ],
+      "purpose": "First source freeze and reproducible gates; interrupted gate not accepted"
+    },
+    {
+      "commit": "aacc5e7e2edd0cb6345e6e0140796f0f1382f574",
+      "tree": "92892e26090e5f9e7964346cb244a03fc3d748e4",
+      "parents": [
+        "7c64246b5bb7c441206ae0bca99948f33b091f13"
+      ],
+      "purpose": "Corrected style type/selector admission and bounded final gate"
+    }
+  ],
+  "note": "Ledger through source freeze. Subsequent evidence/publication checkpoints and final main verification are recorded on PR #268."
+}

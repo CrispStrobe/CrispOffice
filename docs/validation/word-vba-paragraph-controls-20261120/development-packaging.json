@@ -1,0 +1,10 @@
+{
+  "archive": "/workspace/scratch/b77d79e8305c/runtime/paragraph-controls-development-evidence.tar.xz",
+  "bytes": 2107336,
+  "members_including_manifest": 102,
+  "members_verified": true,
+  "recovered_executed_portable_runner_sha256": "ae8b32d36ac46cb6d7fe622b10c94434e233a22367f6aa6d03208a0b04f7e0c0",
+  "recovered_interrupted_collector_sha256": "fb79259daeed4eb5cb63a4a998f04f20ca0811723462dd6371bf8aa77ae9db86",
+  "scope": "Setup/development/failed qualification only; excluded from final passing totals",
+  "sha256": "8b5311e1e1f9991c503ca577c6935811e7d19b896ae79a870d359dcb8aed3ced"
+}
