@@ -1,0 +1,268 @@
+{
+  "captured_at_utc": "2026-11-20T09:46:26.656323+00:00",
+  "prior_main": "860c807bfd1385899eed130abfb8940f95bda113",
+  "documentation_main": "33190e50cae486be362eedb5fa687dd9c82b0c51",
+  "documentation_commit_parents": [
+    "860c807bfd1385899eed130abfb8940f95bda113"
+  ],
+  "changed_paths": [
+    "docs/validation/macbook-office-integration-20261120/README.md",
+    "docs/validation/macbook-office-integration-20261120/summary.json"
+  ],
+  "all_changes_under_documentation": true,
+  "product_config_path_changes": [],
+  "identity_checks": [
+    {
+      "path": "packages",
+      "before_git_object": "fb7ba7aea60b149e68a72e2611db3d6030af97b2",
+      "after_git_object": "fb7ba7aea60b149e68a72e2611db3d6030af97b2",
+      "identical": true
+    },
+    {
+      "path": "apps",
+      "before_git_object": "e97767581d70416a246cd149cdcd5e0a8d3f2352",
+      "after_git_object": "e97767581d70416a246cd149cdcd5e0a8d3f2352",
+      "identical": true
+    },
+    {
+      "path": ".github",
+      "before_git_object": "bf4f4a70a1372868d63dac5e60caad2954f408b7",
+      "after_git_object": "bf4f4a70a1372868d63dac5e60caad2954f408b7",
+      "identical": true
+    },
+    {
+      "path": ".fvmrc",
+      "before_git_object": "4e46fba09bb9c1d654a226b7285b55b6949b3767",
+      "after_git_object": "4e46fba09bb9c1d654a226b7285b55b6949b3767",
+      "identical": true
+    },
+    {
+      "path": "pubspec.yaml",
+      "before_git_object": "ba34bf9e2c1b0eb583e5f9e2d9ba9f236a660f96",
+      "after_git_object": "ba34bf9e2c1b0eb583e5f9e2d9ba9f236a660f96",
+      "identical": true
+    },
+    {
+      "path": "pubspec.lock",
+      "before_git_object": "1283d840c60c469bbadf2a133a13086c443a0488",
+      "after_git_object": "1283d840c60c469bbadf2a133a13086c443a0488",
+      "identical": true
+    },
+    {
+      "path": "analysis_options.yaml",
+      "before_git_object": "e40c961c5eda58a8470527fb768f093aa7dbbfff",
+      "after_git_object": "e40c961c5eda58a8470527fb768f093aa7dbbfff",
+      "identical": true
+    }
+  ],
+  "documents": [
+    {
+      "path": "docs/validation/macbook-office-integration-20261120/README.md",
+      "blob": "3a1738c5b9def6ef9900499035d219a640e8d8d6",
+      "bytes": 1945,
+      "sha256": "50ceadd95fe9c057441490c11c6ca5d291606949124b1c2b4a33b962e0432983"
+    },
+    {
+      "path": "docs/validation/macbook-office-integration-20261120/summary.json",
+      "blob": "ed7a55b6c8487540eb22c4dd5ac9cfcdc1426e10",
+      "bytes": 669154,
+      "sha256": "9078ffe7bd9140231330b18ea40bbf9578de76fe21cea9654292a832159c6e47"
+    }
+  ],
+  "evidence_attribution": "Other contributor's committed native VPS / Mac / portable qualification; this audit reads the existing Git blobs only and executes no gate. Reported snapshot Git IDs are transferred source snapshots, not upstream commit IDs. Counts overlap and are not added to this task's local acceptance totals.",
+  "reported_native_environment": "Native Ubuntu on an existing VPS, Flutter 3.47.8; README reports no Docker or hosted CI status/job queries.",
+  "reported_candidate_snapshot_mapping": [
+    {
+      "candidate_commit": "55115f33c6de44b2f7dfe537c0db244a7fb8ef9f",
+      "transferred_snapshot": "88e1fdc487a517dee697ea4a026a7353d1a38715",
+      "native_batch": "office-next-acceptance",
+      "mapping_basis": "Committed README describes original candidate; summary identifies transferred snapshot."
+    },
+    {
+      "candidate_commit": "b8f4a7be7cc5ac1a6d9c1d89d999c5e6f3e13fb6",
+      "transferred_snapshot": "24dde27282abad736983544f21ce987498106a3a",
+      "native_batch": "office-final-acceptance",
+      "mapping_basis": "Committed README describes newer reconciliation; summary identifies transferred snapshot."
+    }
+  ],
+  "reported_native_batches": {
+    "office-next-acceptance": {
+      "cohort_count": 15,
+      "passed": 2800,
+      "failed": 0,
+      "skipped": 1,
+      "runner_error_events": 0,
+      "source_heads": [
+        "88e1fdc487a517dee697ea4a026a7353d1a38715"
+      ],
+      "cohorts_not_accepted": [
+        {
+          "cohort": "incoming-spacy",
+          "passed": 114,
+          "failed": 0,
+          "skipped": 1,
+          "errors": 0,
+          "accepted": false,
+          "source_head": "88e1fdc487a517dee697ea4a026a7353d1a38715"
+        }
+      ]
+    },
+    "office-final-acceptance": {
+      "cohort_count": 17,
+      "passed": 2454,
+      "failed": 2,
+      "skipped": 0,
+      "runner_error_events": 2,
+      "source_heads": [
+        "24dde27282abad736983544f21ce987498106a3a"
+      ],
+      "cohorts_not_accepted": [
+        {
+          "cohort": "incoming-mail-host",
+          "passed": 477,
+          "failed": 1,
+          "skipped": 0,
+          "errors": 1,
+          "accepted": false,
+          "source_head": "24dde27282abad736983544f21ce987498106a3a"
+        },
+        {
+          "cohort": "incoming-spacy",
+          "passed": 114,
+          "failed": 1,
+          "skipped": 0,
+          "errors": 1,
+          "accepted": false,
+          "source_head": "24dde27282abad736983544f21ce987498106a3a"
+        }
+      ]
+    },
+    "office-spacy-retry": {
+      "cohort_count": 1,
+      "passed": 115,
+      "failed": 0,
+      "skipped": 0,
+      "runner_error_events": 0,
+      "source_heads": [
+        "24dde27282abad736983544f21ce987498106a3a"
+      ],
+      "cohorts_not_accepted": []
+    }
+  },
+  "reported_corrections": [
+    "Initial macOS-library fixture used an earlier artifact; the fresh published ccc96620 artifact passed all 115 spaCy tests without skips in office-spacy-retry.",
+    "Mail empty-search regression expected obsolete empty-mailbox text after adoption of shared message list. Its dedicated follow-up passed with the current no-matches label; production mail source unchanged."
+  ],
+  "reported_portable": {
+    "accepted": true,
+    "canonical_cases_per_runtime": 271,
+    "source_head": "24dde27282abad736983544f21ce987498106a3a",
+    "input_check": {
+      "after_manifest_sha256": "c85b3b46c1bdf8c466557c3f7f29826ed16faa6ad6818ac68232ba03449af094",
+      "before_manifest_sha256": "c85b3b46c1bdf8c466557c3f7f29826ed16faa6ad6818ac68232ba03449af094",
+      "changed": [],
+      "checked_at": "2026-11-20T09:37:21.012252+00:00",
+      "input_count": 5624,
+      "unchanged": true
+    },
+    "corpora": [
+      {
+        "accepted": true,
+        "case_count": 69,
+        "fixture_sha256": "5f44d870fea259ad89f171739583b93252e37b997c1fef91d3cb1e1d54fa9bd0",
+        "javascript_sha256": "f8825a3d8e0eb5d8dad5b87323d444cc2b321a155bc764059d0ee4261559a71c",
+        "name": "string_intrinsics_v1",
+        "original_excel_receipt_sha256": "8703d19a7f50f9dceab688ba49bb657fbc29f34c6eea277807be157ac1f42dbd",
+        "receipt_sha256": "8703d19a7f50f9dceab688ba49bb657fbc29f34c6eea277807be157ac1f42dbd",
+        "receipts_byte_identical": true
+      },
+      {
+        "accepted": true,
+        "case_count": 120,
+        "fixture_sha256": "ddcdf7cfef0926a2a6634fb7116623951afea4a3be76035759077be1f4bb34ce",
+        "javascript_sha256": "4fdde566cda09634989b0e16eac7770509adae29f8641e5e06fead5abbadbe2b",
+        "name": "variant_conversions_v1",
+        "original_excel_receipt_sha256": "0ccceebcb1bac7707fa7ba4756f48e29323a03b6840c26e78f054402b11e35bc",
+        "receipt_sha256": "0ccceebcb1bac7707fa7ba4756f48e29323a03b6840c26e78f054402b11e35bc",
+        "receipts_byte_identical": true
+      },
+      {
+        "accepted": true,
+        "case_count": 38,
+        "fixture_sha256": "c554defa81099730169cc4a41e8b54405b5ebe354aa951c5528331e99b9e0a7b",
+        "javascript_sha256": "91b99d798f0c5947eda57a93ec2c1cb060f08c970254fecdc18b1a0ee6217774",
+        "name": "variant_composition_v1",
+        "original_excel_receipt_sha256": "80c295dbff1477d79dd4e1706159ea502ca4c07b26476e00d14e7d0e8d3c4858",
+        "receipt_sha256": "80c295dbff1477d79dd4e1706159ea502ca4c07b26476e00d14e7d0e8d3c4858",
+        "receipts_byte_identical": true
+      },
+      {
+        "accepted": true,
+        "case_count": 44,
+        "fixture_sha256": "53e4d4d5099778b4386b24f4ad9306c3a322bfb68801987825f79a75b8b4b37e",
+        "javascript_sha256": "39673582a3c23114b8a153718ddceb5003e455dd9fcf7f4aeba83a2e20fb2348",
+        "name": "word_paragraphs_v1",
+        "receipt_sha256": "ebe5980e850477a79c6d3749303eae4d97c35dde61cb8e1d7b31b29c800c5f6d",
+        "receipts_byte_identical": true
+      }
+    ],
+    "smoke_programs": [
+      {
+        "accepted": true,
+        "javascript_sha256": "2d67d13a409f4def4ce5e2c60b3077da54b9249fac5cf89374f91bf745308357",
+        "name": "web_smoke",
+        "stdout_sha256": "733f79b8c8c236f674a733d3c205f6f46c6a52d4a6da005729755db94d853971"
+      },
+      {
+        "accepted": true,
+        "javascript_sha256": "102566f4ad13febeb155f6a4e589bb8b4eac52edbeb9c80b0dfe1d88f0fcebf3",
+        "name": "web_vba_smoke",
+        "stdout_sha256": "3a1c1b101e95e74f978cbb811033185b9a34908200d38d509e6a907b746eefc8"
+      },
+      {
+        "accepted": true,
+        "javascript_sha256": "a8ccbab01b14938df7810bcc9b282054d4494401f700b9f1f625a878b0717922",
+        "name": "web_vba_procedures_smoke",
+        "stdout_sha256": "b97b85b585bbc40e339293fec350fa8cd8f916aa6861fabf8fb3326d7235a3d4"
+      },
+      {
+        "accepted": true,
+        "javascript_sha256": "50113924375d8c26ae673415a56d029e004de92abad4bcefc682c5c6deac7388",
+        "name": "web_vba_control_flow_smoke",
+        "stdout_sha256": "4cbea514876f652fac9ad4cb832d003ebc99ecc02015a62686e495a6afc731fb"
+      },
+      {
+        "accepted": true,
+        "javascript_sha256": "89b00bc17a92e61f028f90544b81dd75163f5e06e9b46a2f409979b62829acdb",
+        "name": "web_vba_arrays_smoke",
+        "stdout_sha256": "f4ec0fda78a40375c6ee3beb04fe4126a2b5c81726fe946bf59f6f9c8326d6aa"
+      },
+      {
+        "accepted": true,
+        "javascript_sha256": "82b342299aaf596c3ec7c9e2e74d718b57d037ad082dc2bfd11b682311aa9d95",
+        "name": "web_vba_dynamic_arrays_smoke",
+        "stdout_sha256": "5529e665b8ed1f73582686f38ecb80bff05e6c50c2f5d845a5bfdc8706ff2b1c"
+      },
+      {
+        "accepted": true,
+        "javascript_sha256": "37953bc6e1d351149d719bf4e79d3bac126f631ff3ac5942d2ce73c2a9a8b2b9",
+        "name": "web_vba_word_smoke",
+        "stdout_sha256": "1fb8306c1f06be714542c837c8fc9e81ca647864638d6bc5afef20ad95e395ee"
+      }
+    ]
+  },
+  "reported_portable_command_count": 28,
+  "reported_portable_command_exit_codes": [
+    0
+  ],
+  "reported_mac_followup": "README separately reports seven installed-font tests with synthetic metadata fixtures and a real installed Franklin Gothic Book DOCX paint check. The excerpt supplies no separate exact source receipt for this Mac follow-up. No proprietary/user document or font artifact is included.",
+  "runtime_tests_executed_by_this_audit": 0,
+  "ci_queries_by_this_audit": 0,
+  "scope_limits": [
+    "No full VBA, Zotero, Word, or Mail-client parity claim.",
+    "No independent rerun or reconstruction of the external source snapshots by this audit.",
+    "Wrapper tests do not establish native inference quality.",
+    "Native cohort totals overlap and must not be summed across batches or with this task's acceptance.",
+    "Documentation-only change leaves product/config object identities unchanged."
+  ]
+}

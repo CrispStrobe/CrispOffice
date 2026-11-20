@@ -1,0 +1,68 @@
+{
+  "branch": "work/mail-workspace-20261120",
+  "published_before_final_acceptance": [
+    {
+      "sha": "4f2f81086f34fd15b3f0d1738d66c4a359ad241b",
+      "tree": "96037a8d32ee7f5118f3914134365241465ddbd2",
+      "parents": "c16e121365b7c52c0b66371381c8c58f592e1d8e afc3524eb896c496475d6763ab4b37dddfe68932 fa8b71b03dcecd583a2056df2358772505bd793e 596fb68f64c447177ed202a40f890c20205a0270 0e1d6d8c19087c8861f46565aa8a42b8fc9b9ee7",
+      "subject": "Checkpoint incoming Office branches for Mail workspace reconciliation [skip ci]"
+    },
+    {
+      "sha": "a8a29f2b44cc664ba56ec3fff9149a9d2e2b8334",
+      "tree": "be12aec40bf730ca5dd0ef1572b18cadc03dc576",
+      "parents": "4f2f81086f34fd15b3f0d1738d66c4a359ad241b",
+      "subject": "Share loaded mailbox filtering and keyboard navigation across cloud hosts [skip ci]"
+    },
+    {
+      "sha": "6fea99ed24d7cfeeefca67f139505091de36c1f6",
+      "tree": "12ad905b7e84a5ab4630db7b07b4e3de3b8e3e9e",
+      "parents": "a8a29f2b44cc664ba56ec3fff9149a9d2e2b8334",
+      "subject": "Qualify incoming Office autofit and preserve Mail data migration guidance [skip ci]"
+    },
+    {
+      "sha": "ffb8cee3acec878cdbe3c27e0bb82f228468a30f",
+      "tree": "24b345097fd981383019ee8955a8986b4cf36389",
+      "parents": "6fea99ed24d7cfeeefca67f139505091de36c1f6 20573cabfd4dcae091e4c705fd58277cc6372075 5e38de19ab5af8d6811d601c7317cba7f69d516b 7ac3d3be4a62bf9d2e0ab8a67f0e122568691b22",
+      "subject": "Add bounded IMAP mailbox browsing and confirmed message controls [skip ci]"
+    },
+    {
+      "sha": "e7fa9095bf1e0a9f80a0c87b6d46d7d4f5a585cd",
+      "tree": "c26aa44afb9989ad46302197b465532bef46c729",
+      "parents": "ffb8cee3acec878cdbe3c27e0bb82f228468a30f",
+      "subject": "Complete foreground mailbox contract and qualify incoming radial rendering [skip ci]"
+    },
+    {
+      "sha": "740f3e247102734ab1e689dc9473efcb3543ed15",
+      "tree": "66ba41f377830ba87ec4bc0b4c92af3778fbb00d",
+      "parents": "e7fa9095bf1e0a9f80a0c87b6d46d7d4f5a585cd 67a4917b33dcd578333adabac1c50db0fc2a62b6",
+      "subject": "Record combined Office qualification and latest ready Android integration [skip ci]"
+    }
+  ],
+  "publication_method": "Authenticated Git data API, exact local/remote tree comparison, optimistic reference updates; original incoming source-head ancestry retained.",
+  "final_evidence_commit": "The descendant containing the completed acceptance report; see Git history.",
+  "github_actions_queried_or_awaited": false,
+  "correction_checkpoint": {
+    "sha": "44abcfa10367c8cf586ad3cf826feb3cb1de6dab",
+    "tree": "a80b7b1a13d58276205c1669fe4c1fa7cb2c9b94",
+    "parents": "740f3e247102734ab1e689dc9473efcb3543ed15",
+    "subject": "Align legacy Mail search assertion and preserve Unicode test metadata [skip ci]"
+  },
+  "first_attempt_source": "740f3e247102734ab1e689dc9473efcb3543ed15",
+  "studio_followup_source": "44abcfa10367c8cf586ad3cf826feb3cb1de6dab",
+  "correction_scope": "Only the existing Studio test assertion/import/formatting and the evidence runner changed; product implementations remain identical.",
+  "initial_evidence_checkpoint": {
+    "sha": "ba1800f6556484dd9d4e89e1b0b38a512c44a6a0",
+    "tree": "c42a81457aed0140aad53e445034a7ec50bcd453",
+    "parents": "44abcfa10367c8cf586ad3cf826feb3cb1de6dab",
+    "subject": "Record accepted Mail workspace gate and final integration audit [skip ci]"
+  },
+  "merged_source_checkpoint": {
+    "sha": "01290ceed6f9163023ce8f27bb74033f088b62e4",
+    "tree": "413a8ebc8f66c5b95584710aab7d8bb6fcc431fc",
+    "parents": "ba1800f6556484dd9d4e89e1b0b38a512c44a6a0 860c807bfd1385899eed130abfb8940f95bda113",
+    "subject": "Reconcile concurrent published Office main with qualified Mail source [skip ci]"
+  },
+  "final_qualified_product_source": "01290ceed6f9163023ce8f27bb74033f088b62e4",
+  "retained_documentation_main": "33190e50cae486be362eedb5fa687dd9c82b0c51",
+  "published_checkpoints_before_final_evidence": 9
+}
