@@ -275,7 +275,7 @@ final class _Harness {
 
 void main() {
   for (final service in MailCloudService.values) {
-    for (final status in [429, 499]) {
+    for (final status in [429, 499, 410]) {
       test(
         '${service.name} dispatched HTTP $status stops later bulk writes',
         () async {
@@ -817,6 +817,19 @@ void main() {
             requestMayHaveReachedServer: true,
           );
           expect((await h.send()).outcome, MailSubmissionOutcome.uncertain);
+        },
+      );
+
+      test(
+        'unfamiliar explicit send rejection retains submission policy',
+        () async {
+          final h = _Harness(service);
+          h.transport.handler = (_) => _error(499);
+          final result = await h.send();
+          expect(result.outcome, MailSubmissionOutcome.retryableFailure);
+          expect(result.problem?.code, MailProblemCode.providerFailure);
+          expect(result.problem?.mutationMayHaveOccurred, isFalse);
+          expect(h.transport.mailRequests, hasLength(1));
         },
       );
 

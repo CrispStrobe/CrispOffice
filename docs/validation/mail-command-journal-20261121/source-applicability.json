@@ -1,0 +1,518 @@
+{
+  "format_version": 1,
+  "audit_kind": "Source applicability; not a new test execution",
+  "initial_requested_publication": "cc152e75dc6b7121fd5e6c6d58e304e9bb89de73",
+  "evaluated_publication": "19eccc016fd14bea52c095db917a28b5ce3cdd5c",
+  "evaluated_tree": "39e5a1911a06c3a6888ed465d6dea9df06ff6b42",
+  "status": "applicable_with_explicit_deltas",
+  "blockers": [],
+  "method": [
+    "Recount accepted raw test events and check receipt/log/source-manifest hashes, observed exit 0, clean terminal, exact case list and equal before/after snapshots.",
+    "Compare every repository source entry in each recorded manifest with SHA-256 of the immutable selected Git publication blob. Working bytes are used only after their Git blob ID matches that published blob; otherwise git show reads the published bytes.",
+    "Compare generated local execution inputs and reachable external source hashes separately. Those paths are not claimed to be versioned Git publication files.",
+    "Retain original manifests unchanged. Later focused receipts cover declared source deltas; historical full runs are not relabeled as runs of the later source."
+  ],
+  "cohorts": [
+    {
+      "id": "integrated-acceptance/engine_vm",
+      "evidence_receipt": "integrated-acceptance/engine_vm-receipt.json",
+      "receipt_sha256": "f9653f27ba25d50d1886f8d0db6564a0b67a1fa498a1d4aa1b187e250cd66d41",
+      "source_manifest": "integrated-acceptance/engine_vm-sources-before.json",
+      "source_manifest_sha256": "7d43911471d26fb56dec355105bddbc8d46e6560fb1ec53b88310ea94fa9064e",
+      "log_sha256": "58794ab483366ea67cd6fef4f54f3a47e80336101a669086a3b08b7774d6be39",
+      "accepted_executions": 836,
+      "observed_exit_code": 0,
+      "source_stable_during_run": true,
+      "raw_events_recounted": true,
+      "non_json_log_lines": 0,
+      "recorded_head_context": "a2f000982870ad19fc45fe0d7844581a27d4ee75",
+      "recorded_command": [
+        "/home/agent/.codex/skills/remote-skills/quds-mail-work-20261120/runtime/flutter/bin/cache/dart-sdk/bin/dart",
+        "--packages=/workspace/scratch/1680c40b6915/quds-office-work/.dart_tool/package_config.json",
+        "/home/agent/.codex/skills/remote-skills/quds-mail-work-20261120/runtime/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+        "--reporter=json",
+        "--concurrency=1",
+        "tool/zotero/vertical_table_acceptance.dart"
+      ],
+      "excluded_filesystem_cases": [],
+      "source_comparison": {
+        "published_repository_inputs": 2082,
+        "unchanged_published_inputs": 2081,
+        "published_changes": [
+          {
+            "path": "packages/quds_office_editor/example/pubspec.yaml",
+            "recorded_sha256": "0e477e4fb8c8537fdc7cab3e78cb9003187638352a05bc973f12e79c7f6a5b96",
+            "published_sha256": "c8013ca83a8ca96c39ed46b068fc2615c6cb1ede3d2b71092e55ba01a33830ac",
+            "kind": "non_runtime_development_dependency_metadata",
+            "disposition": "applicable_with_declared_metadata_exception"
+          }
+        ],
+        "generated_local_inputs": [
+          {
+            "path": ".dart_tool/lib/libsqlite3.so",
+            "recorded_sha256": "0a65852703763619a7a34633b4959b3b86c4103804a4dfe4e8b27b5de1c0647b",
+            "current_sha256": "0a65852703763619a7a34633b4959b3b86c4103804a4dfe4e8b27b5de1c0647b",
+            "unchanged": true,
+            "note": "Generated runtime input; not represented by a published Git blob."
+          },
+          {
+            "path": ".dart_tool/native_assets.yaml",
+            "recorded_sha256": "ab28c30255fe9d0339ea68e4ec36a00894786c4b3fd1bf9d53ff89bfe1ea7dce",
+            "current_sha256": "ab28c30255fe9d0339ea68e4ec36a00894786c4b3fd1bf9d53ff89bfe1ea7dce",
+            "unchanged": true,
+            "note": "Generated runtime input; not represented by a published Git blob."
+          },
+          {
+            "path": ".dart_tool/package_config.json",
+            "recorded_sha256": "b8484352f8e744aea71c1210e293eedf7a70425bc4c9c4f82afff93d16e5a0ab",
+            "current_sha256": "b8484352f8e744aea71c1210e293eedf7a70425bc4c9c4f82afff93d16e5a0ab",
+            "unchanged": true,
+            "note": "Generated runtime input; not represented by a published Git blob."
+          }
+        ],
+        "external_input_count": 906,
+        "external_changes": [
+          {
+            "recorded_path": "/workspace/scratch/1680c40b6915/run_integrated_acceptance.py",
+            "recorded_sha256": "f929650149d012093655ea1406ded8393c316dd233ad63943aecb30548ef0d90",
+            "current_path_sha256": "0f146b2e747a50da13e41ec34e61dd9b9c25eb61ee2f9ec9f56bf11749e8e204",
+            "disposition": "exact_historical_runner_preserved",
+            "preserved_at": "integrated-acceptance/run_integrated_acceptance.py",
+            "preserved_sha256": "f929650149d012093655ea1406ded8393c316dd233ad63943aecb30548ef0d90"
+          }
+        ]
+      },
+      "lock_and_resolved_package_config_unchanged": true,
+      "exact_published_repository_inputs_match": false,
+      "applicability": "applicable_with_explicit_delta_coverage"
+    },
+    {
+      "id": "integrated-acceptance/engine_node",
+      "evidence_receipt": "integrated-acceptance/engine_node-receipt.json",
+      "receipt_sha256": "3ecb4f05ee7d394aa99a4d8a91046649f206321131da2c620e85bceaf880435a",
+      "source_manifest": "integrated-acceptance/engine_node-sources-before.json",
+      "source_manifest_sha256": "4051f353e59f8765a3290a6808c31f1ef7270bb6d9451aa6b05a169a5939ced7",
+      "log_sha256": "4604d44e086346dbf1bf78cbc545a5b27880dd185985c57d3455ebd7f20ff938",
+      "accepted_executions": 819,
+      "observed_exit_code": 0,
+      "source_stable_during_run": true,
+      "raw_events_recounted": true,
+      "non_json_log_lines": 0,
+      "recorded_head_context": "a2f000982870ad19fc45fe0d7844581a27d4ee75",
+      "recorded_command": [
+        "/home/agent/.codex/skills/remote-skills/quds-mail-work-20261120/runtime/flutter/bin/cache/dart-sdk/bin/dart",
+        "--packages=/workspace/scratch/1680c40b6915/quds-office-work/.dart_tool/package_config.json",
+        "/home/agent/.codex/skills/remote-skills/quds-mail-work-20261120/runtime/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+        "--reporter=json",
+        "--concurrency=1",
+        "--platform=node",
+        "--name=^(?!(?:research_target_acceptance\\ zotero_citing_test\\.dart\\ replays\\ command\\ shapes\\ generated\\ by\\ the\\ pinned\\ Zotero\\ HTTP\\ wrapper|research_target_acceptance\\ word_zotero_citing_test\\.dart\\ real\\ Zotero\\ processor\\ German\\ ibid\\ and\\ locators\\ survive\\ whole\\-document\\ refresh|research_target_acceptance\\ word_zotero_citing_test\\.dart\\ real\\ numeric\\ processor\\ output\\ renumbers\\ existing\\ citations\\ after\\ a\\ preceding\\ insertion|research_target_acceptance\\ word_zotero_citing_test\\.dart\\ real\\ author\\-year\\ disambiguation\\ updates\\ both\\ existing\\ and\\ newly\\ inserted\\ citations|word_table_grid_addressing_test\\.dart\\ logical\\ edit\\ and\\ continuation\\ unmerge\\ survive\\ three\\ direct/isolate\\ saves|word_table_grid_addressing_test\\.dart\\ native\\ omitted\\-grid\\ source\\ remains\\ unchanged\\ through\\ three\\ saves|word_table_grid_addressing_test\\.dart\\ physical\\ text\\ edits\\ preserve\\ omitted\\-grid\\ metadata\\ through\\ three\\ saves|word_footnote_reference_test\\.dart\\ imported\\ footnote\\ references\\ are\\ superscript\\ and\\ notes\\ are\\ laid\\ out|word_note_script_break_test\\.dart\\ scripted\\ whole\\-note\\ replacement\\ keeps\\ one\\ paragraph\\ and\\ native\\ hard\\ break\\ for\\ imported\\ rich\\ notes|rich_note_test\\.dart\\ rich\\ note\\ layout\\ retains\\ styles,\\ wraps,\\ tables,\\ pictures\\ and\\ links|rich_note_test\\.dart\\ body\\ pictures\\ skip\\ pages\\ occupied\\ by\\ continuing\\ footnotes|rich_note_test\\.dart\\ rich\\ note\\ blocks,\\ run\\ styles\\ and\\ part\\-owned\\ media\\ survive\\ editing|rich_note_test\\.dart\\ legacy\\ paragraph\\ view\\ edits\\ keep\\ nonparagraph\\ note\\ blocks|word_contained_text_wrap_test\\.dart\\ unchanged\\ nested\\ cells\\ display\\ complete\\ words\\ through\\ both\\ save\\ paths|word_contained_text_wrap_test\\.dart\\ format\\ nested\\ cells\\ display\\ complete\\ words\\ through\\ both\\ save\\ paths|word_contained_text_wrap_test\\.dart\\ replace\\ nested\\ cells\\ display\\ complete\\ words\\ through\\ both\\ save\\ paths|word_contained_text_wrap_test\\.dart\\ unmerge\\ nested\\ cells\\ display\\ complete\\ words\\ through\\ both\\ save\\ paths)$)",
+        "tool/zotero/vertical_table_acceptance.dart"
+      ],
+      "excluded_filesystem_cases": [
+        "research_target_acceptance zotero_citing_test.dart replays command shapes generated by the pinned Zotero HTTP wrapper",
+        "research_target_acceptance word_zotero_citing_test.dart real Zotero processor German ibid and locators survive whole-document refresh",
+        "research_target_acceptance word_zotero_citing_test.dart real numeric processor output renumbers existing citations after a preceding insertion",
+        "research_target_acceptance word_zotero_citing_test.dart real author-year disambiguation updates both existing and newly inserted citations",
+        "word_table_grid_addressing_test.dart logical edit and continuation unmerge survive three direct/isolate saves",
+        "word_table_grid_addressing_test.dart native omitted-grid source remains unchanged through three saves",
+        "word_table_grid_addressing_test.dart physical text edits preserve omitted-grid metadata through three saves",
+        "word_footnote_reference_test.dart imported footnote references are superscript and notes are laid out",
+        "word_note_script_break_test.dart scripted whole-note replacement keeps one paragraph and native hard break for imported rich notes",
+        "rich_note_test.dart rich note layout retains styles, wraps, tables, pictures and links",
+        "rich_note_test.dart body pictures skip pages occupied by continuing footnotes",
+        "rich_note_test.dart rich note blocks, run styles and part-owned media survive editing",
+        "rich_note_test.dart legacy paragraph view edits keep nonparagraph note blocks",
+        "word_contained_text_wrap_test.dart unchanged nested cells display complete words through both save paths",
+        "word_contained_text_wrap_test.dart format nested cells display complete words through both save paths",
+        "word_contained_text_wrap_test.dart replace nested cells display complete words through both save paths",
+        "word_contained_text_wrap_test.dart unmerge nested cells display complete words through both save paths"
+      ],
+      "source_comparison": {
+        "published_repository_inputs": 2082,
+        "unchanged_published_inputs": 2081,
+        "published_changes": [
+          {
+            "path": "packages/quds_office_editor/example/pubspec.yaml",
+            "recorded_sha256": "0e477e4fb8c8537fdc7cab3e78cb9003187638352a05bc973f12e79c7f6a5b96",
+            "published_sha256": "c8013ca83a8ca96c39ed46b068fc2615c6cb1ede3d2b71092e55ba01a33830ac",
+            "kind": "non_runtime_development_dependency_metadata",
+            "disposition": "applicable_with_declared_metadata_exception"
+          }
+        ],
+        "generated_local_inputs": [
+          {
+            "path": ".dart_tool/lib/libsqlite3.so",
+            "recorded_sha256": "0a65852703763619a7a34633b4959b3b86c4103804a4dfe4e8b27b5de1c0647b",
+            "current_sha256": "0a65852703763619a7a34633b4959b3b86c4103804a4dfe4e8b27b5de1c0647b",
+            "unchanged": true,
+            "note": "Generated runtime input; not represented by a published Git blob."
+          },
+          {
+            "path": ".dart_tool/native_assets.yaml",
+            "recorded_sha256": "ab28c30255fe9d0339ea68e4ec36a00894786c4b3fd1bf9d53ff89bfe1ea7dce",
+            "current_sha256": "ab28c30255fe9d0339ea68e4ec36a00894786c4b3fd1bf9d53ff89bfe1ea7dce",
+            "unchanged": true,
+            "note": "Generated runtime input; not represented by a published Git blob."
+          },
+          {
+            "path": ".dart_tool/package_config.json",
+            "recorded_sha256": "b8484352f8e744aea71c1210e293eedf7a70425bc4c9c4f82afff93d16e5a0ab",
+            "current_sha256": "b8484352f8e744aea71c1210e293eedf7a70425bc4c9c4f82afff93d16e5a0ab",
+            "unchanged": true,
+            "note": "Generated runtime input; not represented by a published Git blob."
+          }
+        ],
+        "external_input_count": 907,
+        "external_changes": [
+          {
+            "recorded_path": "/workspace/scratch/1680c40b6915/run_integrated_acceptance.py",
+            "recorded_sha256": "f929650149d012093655ea1406ded8393c316dd233ad63943aecb30548ef0d90",
+            "current_path_sha256": "0f146b2e747a50da13e41ec34e61dd9b9c25eb61ee2f9ec9f56bf11749e8e204",
+            "disposition": "exact_historical_runner_preserved",
+            "preserved_at": "integrated-acceptance/run_integrated_acceptance.py",
+            "preserved_sha256": "f929650149d012093655ea1406ded8393c316dd233ad63943aecb30548ef0d90"
+          }
+        ]
+      },
+      "lock_and_resolved_package_config_unchanged": true,
+      "exact_published_repository_inputs_match": false,
+      "applicability": "applicable_with_explicit_delta_coverage"
+    },
+    {
+      "id": "final-mail-acceptance/mail_ui",
+      "evidence_receipt": "final-mail-acceptance/mail_ui-receipt.json",
+      "receipt_sha256": "e778e01171bbe2234e23624c242907dd593d5dd1d1f48e42e9d2d35fe79e8b40",
+      "source_manifest": "final-mail-acceptance/mail_ui-sources-before.json",
+      "source_manifest_sha256": "c60aa63439667b81e6f4740a4cb93575da38419c9cb9796afeba7a9c2d153e31",
+      "log_sha256": "bd72f5aef324d6ac6e8cf3702e0c7e1af2fd086c8d6fc50222d463358f136d69",
+      "accepted_executions": 200,
+      "observed_exit_code": 0,
+      "source_stable_during_run": true,
+      "raw_events_recounted": true,
+      "non_json_log_lines": 0,
+      "recorded_head_context": "ea02d0e43c05a51d85acd93257d24d84383dd2be",
+      "recorded_command": [
+        "/home/agent/.codex/skills/remote-skills/quds-mail-work-20261120/runtime/flutter/bin/cache/dart-sdk/bin/dart",
+        "/home/agent/.codex/skills/remote-skills/quds-mail-work-20261120/runtime/flutter/bin/cache/flutter_tools.snapshot",
+        "test",
+        "--no-pub",
+        "--reporter=json",
+        "--concurrency=1",
+        "test/body_presentation_contract_test.dart",
+        "test/body_presentation_test.dart",
+        "test/bulk_api_aliases_test.dart",
+        "test/bulk_message_list_test.dart",
+        "test/controller_test.dart",
+        "test/example_test.dart",
+        "test/message_list_bulk_test.dart",
+        "test/message_list_test.dart",
+        "test/message_view_test.dart",
+        "test/presentation_test.dart",
+        "test/presentation_whitespace_test.dart",
+        "test/reader_image_updates_test.dart",
+        "test/reader_theme_scroll_test.dart",
+        "test/remote_images_test.dart"
+      ],
+      "excluded_filesystem_cases": [],
+      "source_comparison": {
+        "published_repository_inputs": 1725,
+        "unchanged_published_inputs": 1725,
+        "published_changes": [],
+        "generated_local_inputs": [
+          {
+            "path": ".dart_tool/lib/libsqlite3.so",
+            "recorded_sha256": "0a65852703763619a7a34633b4959b3b86c4103804a4dfe4e8b27b5de1c0647b",
+            "current_sha256": "0a65852703763619a7a34633b4959b3b86c4103804a4dfe4e8b27b5de1c0647b",
+            "unchanged": true,
+            "note": "Generated runtime input; not represented by a published Git blob."
+          },
+          {
+            "path": ".dart_tool/native_assets.yaml",
+            "recorded_sha256": "ab28c30255fe9d0339ea68e4ec36a00894786c4b3fd1bf9d53ff89bfe1ea7dce",
+            "current_sha256": "ab28c30255fe9d0339ea68e4ec36a00894786c4b3fd1bf9d53ff89bfe1ea7dce",
+            "unchanged": true,
+            "note": "Generated runtime input; not represented by a published Git blob."
+          },
+          {
+            "path": ".dart_tool/package_config.json",
+            "recorded_sha256": "b8484352f8e744aea71c1210e293eedf7a70425bc4c9c4f82afff93d16e5a0ab",
+            "current_sha256": "b8484352f8e744aea71c1210e293eedf7a70425bc4c9c4f82afff93d16e5a0ab",
+            "unchanged": true,
+            "note": "Generated runtime input; not represented by a published Git blob."
+          }
+        ],
+        "external_input_count": 1350,
+        "external_changes": []
+      },
+      "lock_and_resolved_package_config_unchanged": true,
+      "exact_published_repository_inputs_match": true,
+      "applicability": "exact_published_inputs"
+    },
+    {
+      "id": "final-mail-acceptance/host_existing",
+      "evidence_receipt": "final-mail-acceptance/host_existing-receipt.json",
+      "receipt_sha256": "344ef0be57bd97a42a3183fc57fb528918347705480ad38af34c9763f7f0a761",
+      "source_manifest": "final-mail-acceptance/host_existing-sources-before.json",
+      "source_manifest_sha256": "37d3edf7cbaf71a729a294bdb8d21b0e2628762c4c2e483e25cb08c90da809d9",
+      "log_sha256": "1ba156000439d48384e19c6cc77c3450745001e8be0d3e820df4348e07c95cf6",
+      "accepted_executions": 505,
+      "observed_exit_code": 0,
+      "source_stable_during_run": true,
+      "raw_events_recounted": true,
+      "non_json_log_lines": 0,
+      "recorded_head_context": "ea02d0e43c05a51d85acd93257d24d84383dd2be",
+      "recorded_command": [
+        "/home/agent/.codex/skills/remote-skills/quds-mail-work-20261120/runtime/flutter/bin/cache/dart-sdk/bin/dart",
+        "/home/agent/.codex/skills/remote-skills/quds-mail-work-20261120/runtime/flutter/bin/cache/flutter_tools.snapshot",
+        "test",
+        "--no-pub",
+        "--reporter=json",
+        "--concurrency=1",
+        "test/studio_mail_workspace_test.dart",
+        "test/studio_mail_ews_test.dart",
+        "test/studio_mail_cloud_test.dart",
+        "test/studio_mail_cached_mail_test.dart",
+        "test/studio_mail_cached_host_test.dart",
+        "test/studio_mail_message_loader_test.dart",
+        "test/studio_mail_bulk_provider_test.dart",
+        "test/studio_mail_remote_images_test.dart",
+        "test/studio_mail_remote_images_host_test.dart",
+        "test/studio_mail_remote_images_incoming_test.dart",
+        "test/studio_mail_autoconnect_test.dart",
+        "test/studio_mail_accounts_test.dart",
+        "test/studio_mail_credential_backend_switch_test.dart",
+        "test/studio_mail_flag_journal_test.dart",
+        "test/studio_mail_journal_dialog_test.dart",
+        "test/studio_mail_journal_host_test.dart"
+      ],
+      "excluded_filesystem_cases": [],
+      "source_comparison": {
+        "published_repository_inputs": 2451,
+        "unchanged_published_inputs": 2448,
+        "published_changes": [
+          {
+            "path": "packages/quds_mail_transport/lib/src/cloud/provider.dart",
+            "recorded_sha256": "1cb1af18b6fff43f437573c743c11fd8b81fcf153f34d59532da33fbd3a76ec7",
+            "published_sha256": "b585fe778c32c762db5e9dd33de4a1a21b56c4dd6a5930663638ea1c6cdb553b",
+            "kind": "runtime_behavior",
+            "disposition": "covered_by_later_focused_run",
+            "coverage_cohort": "final-mail-acceptance/transport_flags",
+            "coverage_hash_matches": true
+          },
+          {
+            "path": "packages/quds_office_editor/example/test/studio_mail_credential_backend_switch_test.dart",
+            "recorded_sha256": "dfc84c5d2a580e5ee72300c1cc5a828f0c13b73ab5d3f3e4887a5ca4534c9526",
+            "published_sha256": "d5d5497d65c4429bf0e0c83ae6ed25b6dab0e56037b8884b7ef6ecccaa2747b9",
+            "kind": "test_and_fixture_expansion",
+            "disposition": "covered_by_later_focused_run",
+            "coverage_cohort": "late-mail-acceptance/attempt-2/late_host",
+            "coverage_hash_matches": true,
+            "focused_sha256": "d5d5497d65c4429bf0e0c83ae6ed25b6dab0e56037b8884b7ef6ecccaa2747b9"
+          },
+          {
+            "path": "packages/quds_office_editor/example/test/studio_mail_workspace_test.dart",
+            "recorded_sha256": "d08e5875fdac212141ab8c7f127ce9ada142ca6ef22b9f0065602584f374d3be",
+            "published_sha256": "1310dd88488715cc90dc4b4d998e68f86a758a39951b6ceb4e87e4de412acae3",
+            "kind": "test_and_fixture_expansion",
+            "disposition": "covered_by_later_focused_run",
+            "coverage_cohort": "late-mail-acceptance/attempt-2/late_host",
+            "coverage_hash_matches": true,
+            "focused_sha256": "1310dd88488715cc90dc4b4d998e68f86a758a39951b6ceb4e87e4de412acae3"
+          }
+        ],
+        "generated_local_inputs": [
+          {
+            "path": ".dart_tool/lib/libsqlite3.so",
+            "recorded_sha256": "0a65852703763619a7a34633b4959b3b86c4103804a4dfe4e8b27b5de1c0647b",
+            "current_sha256": "0a65852703763619a7a34633b4959b3b86c4103804a4dfe4e8b27b5de1c0647b",
+            "unchanged": true,
+            "note": "Generated runtime input; not represented by a published Git blob."
+          },
+          {
+            "path": ".dart_tool/native_assets.yaml",
+            "recorded_sha256": "ab28c30255fe9d0339ea68e4ec36a00894786c4b3fd1bf9d53ff89bfe1ea7dce",
+            "current_sha256": "ab28c30255fe9d0339ea68e4ec36a00894786c4b3fd1bf9d53ff89bfe1ea7dce",
+            "unchanged": true,
+            "note": "Generated runtime input; not represented by a published Git blob."
+          },
+          {
+            "path": ".dart_tool/package_config.json",
+            "recorded_sha256": "b8484352f8e744aea71c1210e293eedf7a70425bc4c9c4f82afff93d16e5a0ab",
+            "current_sha256": "b8484352f8e744aea71c1210e293eedf7a70425bc4c9c4f82afff93d16e5a0ab",
+            "unchanged": true,
+            "note": "Generated runtime input; not represented by a published Git blob."
+          }
+        ],
+        "external_input_count": 3053,
+        "external_changes": []
+      },
+      "lock_and_resolved_package_config_unchanged": true,
+      "exact_published_repository_inputs_match": false,
+      "applicability": "applicable_with_explicit_delta_coverage"
+    },
+    {
+      "id": "final-mail-acceptance/transport_flags",
+      "evidence_receipt": "final-mail-acceptance/transport_flags-receipt.json",
+      "receipt_sha256": "8de5e9e994adaa49d42aa3defe4247f311445cdef305069f9fba0ca6254c2837",
+      "source_manifest": "final-mail-acceptance/transport_flags-sources-before.json",
+      "source_manifest_sha256": "8f9caa51bd00acd0bffec8df3898c1f630b45ebb0b4867e9440b0bba6c8dde34",
+      "log_sha256": "4f495c69841b744ea3a3f76da4d1a21c7366ba4d18467f16035be5f1e00551dc",
+      "accepted_executions": 105,
+      "observed_exit_code": 0,
+      "source_stable_during_run": true,
+      "raw_events_recounted": true,
+      "non_json_log_lines": 0,
+      "recorded_head_context": "ea02d0e43c05a51d85acd93257d24d84383dd2be",
+      "recorded_command": [
+        "/home/agent/.codex/skills/remote-skills/quds-mail-work-20261120/runtime/flutter/bin/cache/dart-sdk/bin/dart",
+        "--packages=/workspace/scratch/1680c40b6915/quds-office-work/.dart_tool/package_config.json",
+        "/home/agent/.codex/skills/remote-skills/quds-mail-work-20261120/runtime/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+        "--reporter=json",
+        "--concurrency=1",
+        "test/cloud_provider_test.dart"
+      ],
+      "excluded_filesystem_cases": [],
+      "source_comparison": {
+        "published_repository_inputs": 1706,
+        "unchanged_published_inputs": 1706,
+        "published_changes": [],
+        "generated_local_inputs": [
+          {
+            "path": ".dart_tool/lib/libsqlite3.so",
+            "recorded_sha256": "0a65852703763619a7a34633b4959b3b86c4103804a4dfe4e8b27b5de1c0647b",
+            "current_sha256": "0a65852703763619a7a34633b4959b3b86c4103804a4dfe4e8b27b5de1c0647b",
+            "unchanged": true,
+            "note": "Generated runtime input; not represented by a published Git blob."
+          },
+          {
+            "path": ".dart_tool/native_assets.yaml",
+            "recorded_sha256": "ab28c30255fe9d0339ea68e4ec36a00894786c4b3fd1bf9d53ff89bfe1ea7dce",
+            "current_sha256": "ab28c30255fe9d0339ea68e4ec36a00894786c4b3fd1bf9d53ff89bfe1ea7dce",
+            "unchanged": true,
+            "note": "Generated runtime input; not represented by a published Git blob."
+          },
+          {
+            "path": ".dart_tool/package_config.json",
+            "recorded_sha256": "b8484352f8e744aea71c1210e293eedf7a70425bc4c9c4f82afff93d16e5a0ab",
+            "current_sha256": "b8484352f8e744aea71c1210e293eedf7a70425bc4c9c4f82afff93d16e5a0ab",
+            "unchanged": true,
+            "note": "Generated runtime input; not represented by a published Git blob."
+          }
+        ],
+        "external_input_count": 384,
+        "external_changes": []
+      },
+      "lock_and_resolved_package_config_unchanged": true,
+      "exact_published_repository_inputs_match": true,
+      "applicability": "exact_published_inputs"
+    },
+    {
+      "id": "late-mail-acceptance/attempt-2/late_host",
+      "evidence_receipt": "late-mail-acceptance/attempt-2/late_host-receipt.json",
+      "receipt_sha256": "fdc3af1fa8bfc63b13c2a4921432833f55f5c29bdd99e7f4198f3636f6362258",
+      "source_manifest": "late-mail-acceptance/attempt-2/late_host-sources-before.json",
+      "source_manifest_sha256": "98335f5ee73302739b767a6e0369691c63fea7c70898d294a0aafa2b7302f553",
+      "log_sha256": "5c71eea71c2ac5c17d77cde83785001c369e6623f8b09e6eed07147bfb18d5d9",
+      "accepted_executions": 176,
+      "observed_exit_code": 0,
+      "source_stable_during_run": true,
+      "raw_events_recounted": true,
+      "non_json_log_lines": 0,
+      "recorded_head_context": "cc152e75dc6b7121fd5e6c6d58e304e9bb89de73",
+      "recorded_command": [
+        "/home/agent/.codex/skills/remote-skills/quds-mail-work-20261120/runtime/flutter/bin/cache/dart-sdk/bin/dart",
+        "/home/agent/.codex/skills/remote-skills/quds-mail-work-20261120/runtime/flutter/bin/cache/flutter_tools.snapshot",
+        "test",
+        "--no-pub",
+        "--reporter=json",
+        "--concurrency=1",
+        "test/studio_layout_theme_test.dart",
+        "test/studio_mail_credential_backend_switch_test.dart",
+        "test/studio_mail_lifecycle_test.dart",
+        "test/studio_mail_test.dart",
+        "test/studio_mail_workspace_test.dart",
+        "test/studio_saved_mail_test.dart"
+      ],
+      "excluded_filesystem_cases": [],
+      "source_comparison": {
+        "published_repository_inputs": 2577,
+        "unchanged_published_inputs": 2577,
+        "published_changes": [],
+        "generated_local_inputs": [
+          {
+            "path": ".dart_tool/lib/libsqlite3.so",
+            "recorded_sha256": "0a65852703763619a7a34633b4959b3b86c4103804a4dfe4e8b27b5de1c0647b",
+            "current_sha256": "0a65852703763619a7a34633b4959b3b86c4103804a4dfe4e8b27b5de1c0647b",
+            "unchanged": true,
+            "note": "Generated runtime input; not represented by a published Git blob."
+          },
+          {
+            "path": ".dart_tool/native_assets.yaml",
+            "recorded_sha256": "ab28c30255fe9d0339ea68e4ec36a00894786c4b3fd1bf9d53ff89bfe1ea7dce",
+            "current_sha256": "ab28c30255fe9d0339ea68e4ec36a00894786c4b3fd1bf9d53ff89bfe1ea7dce",
+            "unchanged": true,
+            "note": "Generated runtime input; not represented by a published Git blob."
+          },
+          {
+            "path": ".dart_tool/package_config.json",
+            "recorded_sha256": "b8484352f8e744aea71c1210e293eedf7a70425bc4c9c4f82afff93d16e5a0ab",
+            "current_sha256": "b8484352f8e744aea71c1210e293eedf7a70425bc4c9c4f82afff93d16e5a0ab",
+            "unchanged": true,
+            "note": "Generated runtime input; not represented by a published Git blob."
+          }
+        ],
+        "external_input_count": 3054,
+        "external_changes": []
+      },
+      "lock_and_resolved_package_config_unchanged": true,
+      "exact_published_repository_inputs_match": true,
+      "applicability": "exact_published_inputs"
+    }
+  ],
+  "metadata_exception": {
+    "path": "packages/quds_office_editor/example/pubspec.yaml",
+    "only_semantic_change": {
+      "dev_dependencies.drift": "2.35.4"
+    },
+    "original_sha256": "0e477e4fb8c8537fdc7cab3e78cb9003187638352a05bc973f12e79c7f6a5b96",
+    "published_sha256": "c8013ca83a8ca96c39ed46b068fc2615c6cb1ede3d2b71092e55ba01a33830ac",
+    "selected_drift_version_before_and_after": "2.35.4",
+    "lock_sha256": "0d64a732cd7f6c7cc4e1e01255276f081b59e6f43039636c3d36f6785a958ce2",
+    "resolved_package_config_sha256": "b8484352f8e744aea71c1210e293eedf7a70425bc4c9c4f82afff93d16e5a0ab",
+    "reason": "Explicit example-host test dependency declaration for already-selected Drift. The Office engine runtime imports no example-host tests, and resolved dependencies remained byte-identical."
+  },
+  "declared_change_notes": {
+    "packages/quds_mail_transport/lib/src/cloud/provider.dart": "Remove HTTP 410 from the certified no-mutation set for dispatched cloud flag operations. The cloud105 run binds the published source and includes Gmail and Microsoft 365 HTTP410 bulk-stop cases; submission semantics remain separately tested.",
+    "packages/quds_office_editor/example/test/studio_mail_credential_backend_switch_test.dart": "Add explicit taps on disabled credential settings commands and verify no settings callback opens. The later six-suite host run must bind the exact published test bytes.",
+    "packages/quds_office_editor/example/test/studio_mail_workspace_test.dart": "Add explicit-image loading/lifecycle and stale-response cleanup cases. The first later attempt stalled in an awaited test stream close; attempt-2 removes that test-only awaited close and must match publication before this delta can be accepted."
+  },
+  "engine_portability": {
+    "vm": 836,
+    "node": 819,
+    "vm_only_filesystem_cases": 17,
+    "all_node_cases_passed_on_vm": true,
+    "exact_vm_minus_node_matches_declared_exclusions": true
+  },
+  "counting_boundary": {
+    "baseline_runtime_executions": 2465,
+    "later_focused_host_executions": 176,
+    "not_distinct_test_case_total": true,
+    "note": "Focused host cases overlap the earlier host cohort. Counts describe separate accepted executions, not one full rerun or distinct scenarios."
+  },
+  "diagnostic_exclusion": {
+    "late_mail_attempt_1": "Interrupted after 125 successful cases without a clean terminal; rejected and excluded from accepted coverage.",
+    "cloud_provider_410_before": "Retained failing pre-correction focused run; excluded from accepted coverage."
+  },
+  "resolved_initial_publication_difference": {
+    "earlier_publication": "cc152e75dc6b7121fd5e6c6d58e304e9bb89de73",
+    "path": "packages/quds_office_editor/example/test/studio_mail_workspace_test.dart",
+    "earlier_published_sha256": "8f42cee1648cc2fb2d26ec9f3c021fd68df6473826be0f3815e4589977ae80ff",
+    "accepted_later_sha256": "1310dd88488715cc90dc4b4d998e68f86a758a39951b6ceb4e87e4de412acae3",
+    "current_published_sha256": "1310dd88488715cc90dc4b4d998e68f86a758a39951b6ceb4e87e4de412acae3",
+    "resolved": true,
+    "resolution_publication": "19eccc016fd14bea52c095db917a28b5ce3cdd5c",
+    "exact_test_only_cleanup": true,
+    "explanation": "The initial cc152 publication still awaited close on a cancelled test stream and did not match accepted late attempt-2. Publication of the one-line test-only cleanup closes that mismatch; it changes no runtime source and does not require rerunning unchanged engine cases."
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "github_actions_used": false,
+  "heads": {
+    "baseline_mail_source": {
+      "parents": [
+        "039b6e97cbbc01ce1d69c0bcf982fb7147643a3e",
+        "0a2afc41bae4e719b77657a7e2d8d3e7ec02849b"
+      ],
+      "sha": "c62338c65571aa399da5592455b651fa5c6a9317",
+      "tree": "d8e43e6f43b0726e8fefded52c185e387291916d"
+    },
+    "corrected_fixture_source": {
+      "parents": [
+        "4163368b63b35414f25c3830fcc49055e6088953"
+      ],
+      "sha": "58cc4283b35b29a4036528f65ee0590230d583f6",
+      "tree": "1cba111d27e6b0699ffa65c7df5be2bbb53e8e59"
+    },
+    "incoming_pr275_reconciliation": {
+      "parents": [
+        "0a2afc41bae4e719b77657a7e2d8d3e7ec02849b",
+        "bf0effdcc8f690972d762c5b53079e8847a5e65e"
+      ],
+      "sha": "f67c18574176d34f48ddab14918aee5a787c3843",
+      "tree": "ea639d0d4a27cf93747ba616108b982304f42188"
+    },
+    "incoming_reader_warm_session_main": {
+      "parents": [
+        "f67c18574176d34f48ddab14918aee5a787c3843"
+      ],
+      "sha": "5e7e4d24284954603a0a5951699bea870ad1955f",
+      "tree": "3337b03e3b374d67d293b539677c4de53404e4fa"
+    },
+    "incoming_tab_account_main": {
+      "parents": [
+        "5e7e4d24284954603a0a5951699bea870ad1955f"
+      ],
+      "sha": "329d03914808589d3e7650fa870df15a2408afe2",
+      "tree": "22a97447c6d268aec2e822a1275998519efe9e32"
+    },
+    "integrated_mail_source": {
+      "parents": [
+        "e7d9055f20462f37c74a38a761d5c092f48ab973",
+        "329d03914808589d3e7650fa870df15a2408afe2"
+      ],
+      "sha": "4163368b63b35414f25c3830fcc49055e6088953",
+      "tree": "7fcfa56a06e7ba8afdfde7419afd7d1839f3fa81"
+    },
+    "saved_prior_evidence_checkpoint": {
+      "parents": [
+        "52eace9e151cff88c5908a049b0a51ade4c20b00"
+      ],
+      "sha": "e7d9055f20462f37c74a38a761d5c092f48ab973",
+      "tree": "e5029a40f1104bce91474060d9ec65a1e294ae36"
+    }
+  },
+  "note": "Fixed captured sources only. Earlier branch intake and remote checkpoints remain in their historical evidence folders.",
+  "schema_version": 1
+}

@@ -348,6 +348,8 @@ void main() {
     );
 
     expect(find.byTooltip('Credential storage'), findsOneWidget);
+    await _tap(tester, _key('studio-mail-credential-storage'));
+    expect(opened, 0);
     // The Home ribbon replaced the old File submenu. Its disabled command
     // and a callback retained before the save obey the same storage guard.
     earlierSettingsAction();
@@ -406,6 +408,8 @@ void main() {
           isNull,
         );
         expect(find.byTooltip('Credential storage'), findsOneWidget);
+        await _tap(tester, _key('studio-mail-credential-storage'));
+        expect(openedSettings, 0);
 
         // A callback captured before connection must obey the same guard as
         // the newly disabled controls.

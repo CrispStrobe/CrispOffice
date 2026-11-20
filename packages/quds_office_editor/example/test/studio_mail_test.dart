@@ -10,6 +10,7 @@ import 'package:quds_mail_mime/quds_mail_mime.dart';
 import 'package:quds_mail_ui/quds_mail_ui.dart';
 import 'package:quds_mail_store/quds_mail_store.dart';
 import 'package:quds_office_editor/quds_office_editor.dart';
+import 'package:quds_office_studio/studio_chrome.dart';
 import 'package:quds_office_studio/studio_mail_message_loader.dart';
 import 'package:quds_office_studio/studio_mail_compose.dart';
 import 'package:quds_office_studio/studio_mail_credentials.dart';
@@ -336,7 +337,22 @@ Future<void> _close(
   WidgetTester tester, {
   StudioStrings strings = _strings,
 }) async {
-  await tester.tap(find.byTooltip(strings.close));
+  final ribbon = find.descendant(
+    of: find.byType(StudioMailDialog),
+    matching: find.byType(StudioRibbonStrip),
+  );
+  expect(ribbon, findsOneWidget);
+  final close = find.descendant(
+    of: ribbon,
+    matching: find.byTooltip(strings.close),
+  );
+  await tester.scrollUntilVisible(
+    close,
+    200,
+    scrollable: find.descendant(of: ribbon, matching: find.byType(Scrollable)),
+  );
+  expect(close, findsOneWidget);
+  await tester.tap(close);
   await _pump(tester);
   expect(find.byType(StudioMailDialog), findsNothing);
   expect(tester.takeException(), isNull);

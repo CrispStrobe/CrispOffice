@@ -572,8 +572,14 @@ storage-layer capabilities; the foreground Studio composer now uses them for
 [durable Outbox](docs/roadmaps/mail/outbox.md), and
 [message review, export and safe editing](docs/roadmaps/mail/outbox-management.md),
 including explicit management of interrupted-send uncertainty. Its separately
-configured browser entry compiles, but actual
-browser storage, quota and reload behavior remain unqualified. The database is
+configured browser entry compiles, but actual browser storage, quota and reload
+behavior remain unqualified. Native Studio now also uses a
+[durable command journal](docs/roadmaps/mail/command-journal.md) for single/bulk
+read and flag changes across IMAP, EWS, Gmail and Microsoft 365. Intent precedes
+dispatch, exact cached target flags update transactionally, and connected or
+offline **Mail activity** retains restart evidence without replaying commands.
+Explicit uncertain-command reconciliation and repository-driven sessions are
+the next [desktop-mail parity increments](docs/roadmaps/mail/README.md#desktop-mail-parity-ordered-increments). The database is
 unencrypted, and process-crash tests do not establish power-loss durability.
 
 The [Office synchronization report](docs/validation/office-main-sync-20261119/README.md)

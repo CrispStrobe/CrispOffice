@@ -1,5 +1,13 @@
 # Foreground bulk mail actions: local acceptance
 
+> Historical source-bound evidence: this record describes the incoming PR #273
+> implementation published at `79e10ef8375aa9950d624eb9702ba1ff19a19e8c`,
+> carried through head `1584a2da8b23128c113d95c3b05b6a12d2d3861e` into
+> main `0a2afc41bae4e719b77657a7e2d8d3e7ec02849b`. The later Mail API union
+> preserves its archives and receipts unchanged and has separate qualification.
+> Counts below are not newly executed results for that later union.
+
+
 This increment adds checked multi-message read/unread/flag/unflag operations to
 the connected IMAP, EWS, Gmail and Microsoft 365 hosts. The
 [behavior contract](../../roadmaps/mail/bulk-actions.md) defines selection,

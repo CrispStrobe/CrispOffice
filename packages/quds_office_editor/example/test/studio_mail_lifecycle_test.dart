@@ -6,6 +6,7 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:quds_mail_ui/quds_mail_ui.dart';
+import 'package:quds_office_studio/studio_chrome.dart';
 import 'package:quds_office_studio/studio_mail.dart';
 import 'package:quds_office_studio/studio_strings.dart';
 
@@ -46,7 +47,17 @@ void main() {
     expect(picker.calls, 1);
     expect(picker.result.isCompleted, isFalse);
 
-    await tester.tap(find.byTooltip('Close'));
+    final ribbon = find.descendant(
+      of: find.byType(StudioMailDialog),
+      matching: find.byType(StudioRibbonStrip),
+    );
+    expect(ribbon, findsOneWidget);
+    final close = find.descendant(
+      of: ribbon,
+      matching: find.byTooltip('Close'),
+    );
+    expect(close, findsOneWidget);
+    await tester.tap(close);
     await tester.pumpAndSettle();
     expect(find.byType(StudioMailDialog), findsNothing);
     expect(controller.isDisposed, isTrue);

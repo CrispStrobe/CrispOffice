@@ -1,0 +1,2594 @@
+{
+  "bridge_cases": 71,
+  "bridge_replaces_prior_identities": true,
+  "bridge_source": "52eace9e151cff88c5908a049b0a51ade4c20b00",
+  "counting_rule": "398 source-bound native identities plus29 disjoint incoming identities;71 bridge executions replace existing identities. This is a coverage ledger, not427 executions at one SHA.",
+  "incoming_audit_sha256": "f828d114b18b8760916407cf818d2ad0cae200f45cbd36ef03e89c90e205b56b",
+  "incoming_execution_source": "44f3f61fa7d812971e973f1763ac8e04eb39785a",
+  "native_files": 34,
+  "native_identity_union": 427,
+  "new_case_identities": [
+    {
+      "file": "packages/quds_office_engine/test/word_table_style_import_regression_test.dart",
+      "name": "header style preserves direct run color and explicit bold off",
+      "occurrence": 1,
+      "result": "passed"
+    },
+    {
+      "file": "packages/quds_office_engine/test/word_table_style_import_regression_test.dart",
+      "name": "character style remains above conditional table run formatting",
+      "occurrence": 1,
+      "result": "passed"
+    },
+    {
+      "file": "packages/quds_office_engine/test/word_table_style_import_regression_test.dart",
+      "name": "child table region can turn inherited bold off",
+      "occurrence": 1,
+      "result": "passed"
+    },
+    {
+      "file": "packages/quds_office_engine/test/word_table_style_import_regression_test.dart",
+      "name": "automatic child region color overrides inherited explicit color",
+      "occurrence": 1,
+      "result": "passed"
+    },
+    {
+      "file": "packages/quds_office_engine/test/word_table_style_import_regression_test.dart",
+      "name": "conditional run formatting does not require cell shading",
+      "occurrence": 1,
+      "result": "passed"
+    },
+    {
+      "file": "packages/quds_office_engine/test/word_table_style_import_regression_test.dart",
+      "name": "outer header formatting does not enter a separately styled nested table",
+      "occurrence": 1,
+      "result": "passed"
+    },
+    {
+      "file": "packages/quds_office_engine/test/word_table_style_import_regression_test.dart",
+      "name": "table default spacing stays inherited when saved and style changes",
+      "occurrence": 1,
+      "result": "passed"
+    },
+    {
+      "file": "packages/quds_office_engine/test/word_table_style_import_regression_test.dart",
+      "name": "table style spacing remains above native table defaults",
+      "occurrence": 1,
+      "result": "passed"
+    },
+    {
+      "file": "packages/quds_office_engine/test/word_table_style_import_regression_test.dart",
+      "name": "paragraph style spacing remains above native table defaults",
+      "occurrence": 1,
+      "result": "passed"
+    },
+    {
+      "file": "packages/quds_office_engine/test/word_table_style_import_regression_test.dart",
+      "name": "direct paragraph spacing remains above native table defaults",
+      "occurrence": 1,
+      "result": "passed"
+    },
+    {
+      "file": "packages/quds_office_engine/test/word_table_style_import_regression_test.dart",
+      "name": "automatic direct border takes style color without replacing its width",
+      "occurrence": 1,
+      "result": "passed"
+    },
+    {
+      "file": "packages/quds_office_engine/test/word_table_style_import_regression_test.dart",
+      "name": "paragraph border none does not acquire a visible color",
+      "occurrence": 1,
+      "result": "passed"
+    },
+    {
+      "file": "packages/quds_office_engine/test/word_table_style_import_regression_test.dart",
+      "name": "paragraph border nil does not acquire a visible color",
+      "occurrence": 1,
+      "result": "passed"
+    },
+    {
+      "file": "packages/quds_office_engine/test/word_table_style_import_regression_test.dart",
+      "name": "visible automatic paragraph border retains the black fallback",
+      "occurrence": 1,
+      "result": "passed"
+    },
+    {
+      "file": "packages/quds_office_engine/test/word_header_visual_reconciliation_test.dart",
+      "name": "one visual node represented inline and separately paints once",
+      "occurrence": 1,
+      "result": "passed"
+    },
+    {
+      "file": "packages/quds_office_engine/test/word_header_visual_reconciliation_test.dart",
+      "name": "same-size inline and separate pictures retain both identities",
+      "occurrence": 1,
+      "result": "passed"
+    },
+    {
+      "file": "packages/quds_office_engine/test/word_header_visual_reconciliation_test.dart",
+      "name": "equal byte counts and placement do not equate distinct picture content",
+      "occurrence": 1,
+      "result": "passed"
+    },
+    {
+      "file": "packages/quds_office_engine/test/word_header_visual_reconciliation_test.dart",
+      "name": "matching image content at distinct vertical placements remains visible",
+      "occurrence": 1,
+      "result": "passed"
+    },
+    {
+      "file": "packages/quds_office_engine/test/word_header_visual_reconciliation_test.dart",
+      "name": "distinct chrome nodes at one placement retain both occurrences",
+      "occurrence": 1,
+      "result": "passed"
+    },
+    {
+      "file": "packages/quds_office_engine/test/word_header_visual_reconciliation_test.dart",
+      "name": "repeated references to one listed node paint one occurrence",
+      "occurrence": 1,
+      "result": "passed"
+    },
+    {
+      "file": "packages/quds_office_engine/test/word_header_visual_reconciliation_test.dart",
+      "name": "transparent authored nodes stay separate, shared=false",
+      "occurrence": 1,
+      "result": "passed"
+    },
+    {
+      "file": "packages/quds_office_engine/test/word_header_visual_reconciliation_test.dart",
+      "name": "transparent authored nodes stay separate, shared=true",
+      "occurrence": 1,
+      "result": "passed"
+    },
+    {
+      "file": "packages/quds_office_engine/test/word_header_visual_reconciliation_test.dart",
+      "name": "same content and placement preserve different picture adjustments",
+      "occurrence": 1,
+      "result": "passed"
+    },
+    {
+      "file": "packages/quds_office_engine/test/word_header_visual_reconciliation_test.dart",
+      "name": "header duplicate suppression never removes body frames or their reuse",
+      "occurrence": 1,
+      "result": "passed"
+    },
+    {
+      "file": "packages/quds_office_engine/test/word_header_visual_reconciliation_test.dart",
+      "name": "header and footer preserve independent copies of one image",
+      "occurrence": 1,
+      "result": "passed"
+    },
+    {
+      "file": "packages/quds_office_engine/test/word_header_visual_reconciliation_test.dart",
+      "name": "inline header pictures render without changing the authored story",
+      "occurrence": 1,
+      "result": "passed"
+    },
+    {
+      "file": "packages/quds_office_engine/test/word_header_visual_reconciliation_test.dart",
+      "name": "continuous sections paint a shared header once",
+      "occurrence": 1,
+      "result": "passed"
+    },
+    {
+      "file": "packages/quds_office_engine/test/word_header_visual_reconciliation_test.dart",
+      "name": "continuous sections retain body frames and only current chrome through reuse",
+      "occurrence": 1,
+      "result": "passed"
+    },
+    {
+      "file": "packages/quds_office_engine/test/word_header_visual_reconciliation_test.dart",
+      "name": "footer chrome does not move continuous body to page bottom",
+      "occurrence": 1,
+      "result": "passed"
+    }
+  ],
+  "new_incoming_cases": 29,
+  "new_incoming_files": {
+    "packages/quds_office_engine/test/word_header_visual_reconciliation_test.dart": 15,
+    "packages/quds_office_engine/test/word_table_style_import_regression_test.dart": 14
+  },
+  "new_test_and_library_hashes": {
+    "packages/quds_office_engine/lib/src/word/layout/word_layout.dart": "145e4a217a3be912e39ba15c4563662537daed2906d1b0c9f52a44855338b0e2",
+    "packages/quds_office_engine/lib/src/word/serial/word_deserializer.dart": "f497d871548a813fbb399370930b105696e43980801e283dcad86b8be16a9286",
+    "packages/quds_office_engine/test/word_header_visual_reconciliation_test.dart": "ce5eeff6a26217e7465aa9fcfa25c2accca2592f6665a104452db76fe5d0ed93",
+    "packages/quds_office_engine/test/word_table_style_import_regression_test.dart": "3c0b8d76a20fae56a2a40e6cc7111a391be09f6f857fbac817ce0d1b59cb5cb8"
+  },
+  "not_a_427_case_rerun_on_latest_source": true,
+  "prior_case_identities": [
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_compatibility_fidelity_test.dart",
+      "name": "MC selects one supported Choice or Fallback in every Word story",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_compatibility_fidelity_test.dart",
+      "name": "Requires resolves aliases in scope and rejects unbound or partial namespaces",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_compatibility_fidelity_test.dart",
+      "name": "source section properties survive unrelated edits over three saves",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_compatibility_fidelity_test.dart",
+      "name": "source section properties survive modeled edits over three saves",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_compatibility_fidelity_test.dart",
+      "name": "section clone carries independent stories and immutable imported metadata",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_contained_text_wrap_test.dart",
+      "name": "unchanged nested cells display complete words through both save paths",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_contained_text_wrap_test.dart",
+      "name": "format nested cells display complete words through both save paths",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_contained_text_wrap_test.dart",
+      "name": "replace nested cells display complete words through both save paths",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_contained_text_wrap_test.dart",
+      "name": "unmerge nested cells display complete words through both save paths",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_contained_text_wrap_test.dart",
+      "name": "cell wraps without changing body word policy",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_contained_text_wrap_test.dart",
+      "name": "frame wraps without changing body word policy",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_contained_text_wrap_test.dart",
+      "name": "Indic cell clusters keep their owners through direct and isolate saves",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_contained_text_wrap_test.dart",
+      "name": "Unicode segmentation contract segments exact authored clusters: [2325, 2381]",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_contained_text_wrap_test.dart",
+      "name": "Unicode segmentation contract segments exact authored clusters: [2325, 2381, 2359]",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_contained_text_wrap_test.dart",
+      "name": "Unicode segmentation contract segments exact authored clusters: [2325, 2381, 8205, 2359]",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_contained_text_wrap_test.dart",
+      "name": "Unicode segmentation contract segments exact authored clusters: [2453, 2494, 2453, 2496]",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_contained_text_wrap_test.dart",
+      "name": "Unicode segmentation contract segments exact authored clusters: [2965, 3006, 2965, 3007]",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_contained_text_wrap_test.dart",
+      "name": "Unicode segmentation contract segments exact authored clusters: [3349, 3405, 3349]",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_contained_text_wrap_test.dart",
+      "name": "Unicode segmentation contract segments exact authored clusters: [1513, 1473]",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_contained_text_wrap_test.dart",
+      "name": "Unicode segmentation contract segments exact authored clusters: [1536, 65]",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_contained_text_wrap_test.dart",
+      "name": "Unicode segmentation contract segments exact authored clusters: [97, 8205, 128105]",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_contained_text_wrap_test.dart",
+      "name": "Unicode segmentation contract segments exact authored clusters: [65, 13, 10, 66]",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_contained_text_wrap_test.dart",
+      "name": "Unicode segmentation contract segments exact authored clusters: []",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_contained_text_wrap_test.dart",
+      "name": "Unicode segmentation contract caret lookup retains exact UTF-16 offsets across cluster types",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_contained_text_wrap_test.dart",
+      "name": "fixed-container line breaks long words split only when explicitly requested",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_contained_text_wrap_test.dart",
+      "name": "fixed-container line breaks a fitting word moves intact before emergency splitting",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_contained_text_wrap_test.dart",
+      "name": "fixed-container line breaks a long unbroken token makes bounded forward progress",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_contained_text_wrap_test.dart",
+      "name": "fixed-container line breaks repair also bounds a normally overflowing final line",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_contained_text_wrap_test.dart",
+      "name": "fixed-container line breaks hard breaks and blank lines preserve every source offset",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_contained_text_wrap_test.dart",
+      "name": "fixed-container line breaks keeps authored Unicode clusters intact: a\u0301b\u0308c\u0302",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_contained_text_wrap_test.dart",
+      "name": "fixed-container line breaks keeps authored Unicode clusters intact: \ud83d\ude00\ud83e\udded\ud83d\ude80",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_contained_text_wrap_test.dart",
+      "name": "fixed-container line breaks keeps authored Unicode clusters intact: \ud83c\uddf5\ud83c\uddf8\ud83c\uddec\ud83c\udde7\ud83c\uddfa\ud83c\uddf8",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_contained_text_wrap_test.dart",
+      "name": "fixed-container line breaks keeps authored Unicode clusters intact: \ud83d\udc4d\ud83c\udffd\ud83d\udc4d\ud83c\udffb",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_contained_text_wrap_test.dart",
+      "name": "fixed-container line breaks keeps authored Unicode clusters intact: \ud83d\udc69\ud83c\udffd\u200d\ud83d\udcbb\ud83d\udc68\u200d\ud83d\udc69\u200d\ud83d\udc67\u200d\ud83d\udc66",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_contained_text_wrap_test.dart",
+      "name": "fixed-container line breaks keeps authored Unicode clusters intact: \ud83d\udc69\u0301\u200d\ud83d\udcbba\u0301",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_contained_text_wrap_test.dart",
+      "name": "fixed-container line breaks keeps authored Unicode clusters intact: \u1100\u1161\u11a8\u1102\u1161\u11ab",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_contained_text_wrap_test.dart",
+      "name": "fixed-container line breaks keeps authored Unicode clusters intact: \u0915\u094dA\u0915\u094d",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_contained_text_wrap_test.dart",
+      "name": "fixed-container line breaks keeps authored Unicode clusters intact: \u0915\u094d\u0937\u0915\u094d\u0937",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_contained_text_wrap_test.dart",
+      "name": "fixed-container line breaks keeps authored Unicode clusters intact: \u0915\u094d\u200d\u0937\u0915\u094d\u200d\u0937",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_contained_text_wrap_test.dart",
+      "name": "fixed-container line breaks keeps authored Unicode clusters intact: \u0995\u09be\u0995\u09c0",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_contained_text_wrap_test.dart",
+      "name": "fixed-container line breaks a cluster wider than its box stays whole and makes progress",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_contained_text_wrap_test.dart",
+      "name": "fixed-container line breaks regional indicators pair from the start of each uninterrupted run",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_contained_text_wrap_test.dart",
+      "name": "fixed-container line breaks modifier sequences stay whole even with one-codepoint capacity",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_contained_text_wrap_test.dart",
+      "name": "fixed-container line breaks supplementary line ends use UTF-16 units in both modes",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_contained_text_wrap_test.dart",
+      "name": "fixed-container line breaks RTL Hebrew marks retain cluster order and line ownership",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_contained_text_wrap_test.dart",
+      "name": "fixed-container line breaks Arabic joining and lam-alef ghosts survive emergency breaks",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_fidelity_test.dart",
+      "name": "page numbers increment on each laid-out page",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_fidelity_test.dart",
+      "name": "footer PAGE field keeps the title suffix",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_fidelity_test.dart",
+      "name": "named Word highlights map to RGB",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_fidelity_test.dart",
+      "name": "layout stores highlight RGB and list markers",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_fidelity_test.dart",
+      "name": "deserializer reads lists, footer PAGE field, and skips instrText",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_fidelity_test.dart",
+      "name": "deserializer keeps only w:t and maps cell shade + highlight",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_fidelity_test.dart",
+      "name": "run edit extracts and inserts formatted spans",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_fidelity_test.dart",
+      "name": "Word pictures round-trip as DrawingML, not placeholder text",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_fidelity_test.dart",
+      "name": "Word charts write DrawingML chart parts, not placeholder text",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_fidelity_test.dart",
+      "name": "Word picture properties round-trip through DrawingML",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_fidelity_test.dart",
+      "name": "Word chart display flags persist in the chart part",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_fidelity_test.dart",
+      "name": "Excel drawings write pictures and charts and read them back",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_fidelity_test.dart",
+      "name": "PowerPoint pictures and charts persist on save",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_fidelity_test.dart",
+      "name": "Docx builder images deserialize as Word visuals",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_fidelity_test.dart",
+      "name": "Word columns and frames round-trip through document.xml",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_fidelity_test.dart",
+      "name": "Word serializer keeps multiple sections",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_fidelity_test.dart",
+      "name": "Word columns stay on their own section after a single-column page",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_fidelity_test.dart",
+      "name": "inline tabs serialize as w:tab and round-trip",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_fidelity_test.dart",
+      "name": "round-trips paragraph w:bidi and justification",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_frame_wrap_test.dart",
+      "name": "square frames exclude nearby lines then restore full body width",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_frame_wrap_test.dart",
+      "name": "WmlFrameWrap.none keeps its distinct native and layout meaning",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_frame_wrap_test.dart",
+      "name": "WmlFrameWrap.square keeps its distinct native and layout meaning",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_frame_wrap_test.dart",
+      "name": "WmlFrameWrap.topBottom keeps its distinct native and layout meaning",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_frame_wrap_test.dart",
+      "name": "several exclusions choose a free interval and keep Unicode offsets",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_frame_wrap_test.dart",
+      "name": "a frame in another column does not exclude this column",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_frame_wrap_test.dart",
+      "name": "full-column exclusion advances and does not leak into the next page",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_frame_wrap_test.dart",
+      "name": "unbreakable words clear a frame before using full-width overflow",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_frame_wrap_test.dart",
+      "name": "TOCs use the same exclusions as following body paragraphs",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_frame_wrap_test.dart",
+      "name": "RTL flow chooses the right equal-width band without losing offsets",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_frame_wrap_test.dart",
+      "name": "note reservation retries the wrapped line on its new page",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_header_picture_identity_test.dart",
+      "name": "header inline picture remains visible after native roundtrip",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_header_picture_identity_test.dart",
+      "name": "header shared node at the same placement paints exactly once",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_header_picture_identity_test.dart",
+      "name": "header distinct nodes may reuse one asset at the same placement",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_header_picture_identity_test.dart",
+      "name": "header distinct inline and anchored pictures of one size survive",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_header_picture_identity_test.dart",
+      "name": "footer inline picture remains visible after native roundtrip",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_header_picture_identity_test.dart",
+      "name": "footer shared node at the same placement paints exactly once",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_header_picture_identity_test.dart",
+      "name": "footer distinct nodes may reuse one asset at the same placement",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_header_picture_identity_test.dart",
+      "name": "footer distinct inline and anchored pictures of one size survive",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_header_picture_identity_test.dart",
+      "name": "distinct anchored pictures are not identified by payload length",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_header_picture_identity_test.dart",
+      "name": "the same image content at distinct vertical positions survives",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_header_picture_identity_test.dart",
+      "name": "shared inline and anchored identity retains distinct placements",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_header_picture_identity_test.dart",
+      "name": "body pictures near the header are never removed by header dedup",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_header_picture_identity_test.dart",
+      "name": "continuous sections regenerate page chrome without copying it into body",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_inline_picture_test.dart",
+      "name": "a picture inside a sentence stays inside it",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_inline_picture_test.dart",
+      "name": "a picture-only paragraph keeps its block representation",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_inline_picture_test.dart",
+      "name": "image steps reach inline pictures",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_inline_picture_test.dart",
+      "name": "a header picture stays inline and keeps its media",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_inline_picture_test.dart",
+      "name": "layout the picture sits on the baseline inside its line",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_inline_picture_test.dart",
+      "name": "layout a picture taller than the text grows its line",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_line_box_fidelity_test.dart",
+      "name": "each line uses its own size after a larger opening run",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_line_box_fidelity_test.dart",
+      "name": "mixed run sizes share the fixed-height baseline without shifting small text",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_line_box_fidelity_test.dart",
+      "name": "adjacent spacing uses the greater value and preserves model properties",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_line_box_fidelity_test.dart",
+      "name": "paragraph gaps do not collapse across an explicit page break",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_line_box_fidelity_test.dart",
+      "name": "center and right tabs position their following fields at real stops",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_line_box_fidelity_test.dart",
+      "name": "default tabs advance to the next half-inch grid rather than add 36pt",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_line_box_fidelity_test.dart",
+      "name": "decimal-point tabs align the decimal rather than the field end",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_media_dedupe_test.dart",
+      "name": "an imported picture is not stored twice on save",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_native_presentation_test.dart",
+      "name": "native TOC bookmark keeps exact title/page range false through three saves",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_native_presentation_test.dart",
+      "name": "native TOC bookmark keeps exact title/page range true through three saves",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_native_presentation_test.dart",
+      "name": "native TOC control keeps exact title/page range true through three saves",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_native_presentation_test.dart",
+      "name": "native TOC bookmark regeneration fails before model or package mutation",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_native_presentation_test.dart",
+      "name": "native TOC control regeneration fails before model or package mutation",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_native_presentation_test.dart",
+      "name": "settings edits preserve foreign w bindings with aliased Word elements",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_native_presentation_test.dart",
+      "name": "settings edits preserve foreign w bindings with default Word elements",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_native_presentation_test.dart",
+      "name": "native display math keeps its wrapper through clone and three saves",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_native_presentation_test.dart",
+      "name": "native inline math keeps its wrapper through clone and three saves",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_native_presentation_test.dart",
+      "name": "native TOC shared field paragraphs retain omission, rich suffix and live edits for three saves",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_native_presentation_test.dart",
+      "name": "native TOC separate field paragraphs retain omission, rich suffix and live edits for three saves",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_native_presentation_test.dart",
+      "name": "native TOC without a title does not acquire an invented heading",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_native_presentation_test.dart",
+      "name": "TOC setting changes and explicit refresh select generated presentation",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_native_presentation_test.dart",
+      "name": "native frame insets and host properties survive clone and three saves: <wps:bodyPr/>",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_native_presentation_test.dart",
+      "name": "native frame insets and host properties survive clone and three saves: <wps:bodyPr lIns=\"0\" tIns=\"0\" rIns=\"0\" bIns=\"0\"/>",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_native_presentation_test.dart",
+      "name": "native frame insets and host properties survive clone and three saves: <wps:bodyPr lIns=\"127000\" bIns=\"63500\" vert=\"vert\" anchor=\"ctr\"><a:noAutofit/></wps:bodyPr>",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_native_presentation_test.dart",
+      "name": "native frame line omissions and properties survive clone, color edit and three saves: ",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_native_presentation_test.dart",
+      "name": "native frame line omissions and properties survive clone, color edit and three saves: <a:ln><a:solidFill><a:srgbClr val=\"355C7D\"/></a:solidFill></a:ln>",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_native_presentation_test.dart",
+      "name": "native frame line omissions and properties survive clone, color edit and three saves: <a:ln w=\"38100\" cap=\"rnd\" cmpd=\"sng\" algn=\"ctr\"><a:solidFill><a:srgbClr val=\"355C7D\"/></a:solidFill><a:prstDash val=\"dash\"/><a:round/></a:ln>",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_native_presentation_test.dart",
+      "name": "new frame native insets match the eight-point editor default",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_native_presentation_test.dart",
+      "name": "frame inset edit changes only its attribute and retains native host spacing",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_native_presentation_test.dart",
+      "name": "absent native settings retain their distinction through three saves",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_native_presentation_test.dart",
+      "name": "empty native settings retain their distinction through three saves",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_native_presentation_test.dart",
+      "name": "owned settings parse their own flags and preserve native values and part ownership for three saves",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_native_presentation_test.dart",
+      "name": "live settings edits preserve protection metadata and insert owned nodes in schema order",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_native_presentation_test.dart",
+      "name": "requested live settings create an owned settings part when absent",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_package_preservation_test.dart",
+      "name": "docm retains native main part and opaque bytes over three edits: word/document.xml",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_package_preservation_test.dart",
+      "name": "docm retains native main part and opaque bytes over three edits: content/manuscript.xml",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_package_preservation_test.dart",
+      "name": "docm retains native main part and opaque bytes over three edits: content/manuscript%20draft.xml",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_package_preservation_test.dart",
+      "name": "dotm retains native main part and opaque bytes over three edits: word/document.xml",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_package_preservation_test.dart",
+      "name": "dotm retains native main part and opaque bytes over three edits: content/manuscript.xml",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_package_preservation_test.dart",
+      "name": "dotm retains native main part and opaque bytes over three edits: content/manuscript%20draft.xml",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_package_preservation_test.dart",
+      "name": "dotx retains native main part and opaque bytes over three edits: word/document.xml",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_package_preservation_test.dart",
+      "name": "dotx retains native main part and opaque bytes over three edits: content/manuscript.xml",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_package_preservation_test.dart",
+      "name": "dotx retains native main part and opaque bytes over three edits: content/manuscript%20draft.xml",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_package_preservation_test.dart",
+      "name": "unsupported extensions do not inspect or execute package contents",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_package_preservation_test.dart",
+      "name": "filename type mismatch has the same precise public error",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_package_preservation_test.dart",
+      "name": "rejects mime loss before a host replaces its original",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_package_preservation_test.dart",
+      "name": "rejects missing loss before a host replaces its original",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_package_preservation_test.dart",
+      "name": "rejects mutated loss before a host replaces its original",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_package_preservation_test.dart",
+      "name": "rejects binary-mime loss before a host replaces its original",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_package_preservation_test.dart",
+      "name": "rejects relationship loss before a host replaces its original",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_package_preservation_test.dart",
+      "name": "rejects signature-relationship loss before a host replaces its original",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_package_preservation_test.dart",
+      "name": "package signatures are rejected before editing",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_package_preservation_test.dart",
+      "name": "relationships to an opaque part remain protected without VBA names: word/embeddings/object1.bin",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_package_preservation_test.dart",
+      "name": "relationships to an opaque part remain protected without VBA names: customUI/customUI.xml",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_package_preservation_test.dart",
+      "name": "outgoing relationships owned by a non-VBA binary part are protected",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_package_preservation_test.dart",
+      "name": "root relationships select the native main part, including strict types",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_package_preservation_test.dart",
+      "name": "unsafe native main target is rejected: ../outside.xml",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_package_preservation_test.dart",
+      "name": "unsafe native main target is rejected: %2e%2e/outside.xml",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_package_preservation_test.dart",
+      "name": "unsafe native main target is rejected: https://example.test/main.xml",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_package_preservation_test.dart",
+      "name": "unsafe native main target is rejected: word/document.xml?x=1",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_package_preservation_test.dart",
+      "name": "declared part, cumulative, file and member budgets reject before expansion",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_package_preservation_test.dart",
+      "name": "actual inflated bytes cannot bypass a forged small size declaration",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_package_preservation_test.dart",
+      "name": "duplicate ZIP members are not silently collapsed by the package reader",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_package_preservation_test.dart",
+      "name": "malformed content-type metadata cannot look like a valid package: <Types",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_package_preservation_test.dart",
+      "name": "malformed content-type metadata cannot look like a valid package: <Types xmlns=\"http://schemas.openxmlformats.org/package/2006/content-types\">",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_package_preservation_test.dart",
+      "name": "malformed content-type metadata cannot look like a valid package: <wrong/>",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_picture_distance_fidelity_test.dart",
+      "name": "imported inline omitted distances remain exact for three cycles",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_picture_distance_fidelity_test.dart",
+      "name": "imported inline explicit zero distances remain exact for three cycles",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_picture_distance_fidelity_test.dart",
+      "name": "imported inline below eight points distances remain exact for three cycles",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_picture_distance_fidelity_test.dart",
+      "name": "imported inline mixed existing values distances remain exact for three cycles",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_picture_distance_fidelity_test.dart",
+      "name": "imported inline mixed omitted and explicit values distances remain exact for three cycles",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_picture_distance_fidelity_test.dart",
+      "name": "cloned omissions remain absent while deliberate zero and small edits emit",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_picture_distance_fidelity_test.dart",
+      "name": "clearing explicit nonzero distances writes zero and keeps other omissions",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_picture_distance_fidelity_test.dart",
+      "name": "new picture distances use model values, floating=false",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_picture_distance_fidelity_test.dart",
+      "name": "new picture distances use model values, floating=true",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_section_clone_fidelity_test.dart",
+      "name": "cloned section histories receive distinct stable IDs over three saves",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_section_clone_fidelity_test.dart",
+      "name": "repeated synchronous saves do not consume or mutate source history IDs",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_styles_layout_test.dart",
+      "name": "Word body layout body text uses fallbackWidthFactor, not the table-cell em",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_styles_layout_test.dart",
+      "name": "Word body layout paragraph indents are subtracted once",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_styles_layout_test.dart",
+      "name": "Word body layout a host measure drives the line breaks",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_styles_layout_test.dart",
+      "name": "Word body layout table cells keep the wider em so text stays inside the border",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_styles_layout_test.dart",
+      "name": "Word styles numbering defined in a paragraph style gives a list marker",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_styles_layout_test.dart",
+      "name": "Word styles a direct numId 0 switches the style list off",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_styles_layout_test.dart",
+      "name": "Word styles paragraph w:start / w:end indents are read",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_styles_layout_test.dart",
+      "name": "Word table styles first-row table style preserves direct run colors",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_styles_layout_test.dart",
+      "name": "Word table styles first-row table style preserves directly disabled bold",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_styles_layout_test.dart",
+      "name": "Word table styles borders and region shading come from the style",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_styles_layout_test.dart",
+      "name": "Word table styles direct tblBorders win over the style",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_styles_layout_test.dart",
+      "name": "Word table styles a style whose borders are all nil draws no borders",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_styles_layout_test.dart",
+      "name": "Word table styles a style missing from styles.xml falls back to the id guess",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_styles_layout_test.dart",
+      "name": "files saved by LibreOffice a \"none\" outline level adds no label",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_styles_layout_test.dart",
+      "name": "files saved by LibreOffice runs inherit bold, italic, and color from the style chain",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_styles_layout_test.dart",
+      "name": "files saved by LibreOffice a run that turns bold off keeps it off",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_styles_layout_test.dart",
+      "name": "files saved by LibreOffice a style with w:b=\"false\" is not bold",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_table_direction_test.dart",
+      "name": "table direction uses native on/off values across edits and saves",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_table_grid_addressing_test.dart",
+      "name": "all slots in a native two-dimensional merge resolve to its master",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_table_grid_addressing_test.dart",
+      "name": "physical selectors retain their meaning while logical selectors edit masters",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_table_grid_addressing_test.dart",
+      "name": "tableCellText rejects ambiguous and invalid logical selectors atomically",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_table_grid_addressing_test.dart",
+      "name": "tableCellFormat rejects ambiguous and invalid logical selectors atomically",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_table_grid_addressing_test.dart",
+      "name": "tableUnmerge rejects ambiguous and invalid logical selectors atomically",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_table_grid_addressing_test.dart",
+      "name": "invalid cell properties leave resolved native masters unchanged",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_table_grid_addressing_test.dart",
+      "name": "partial vertical merge rectangles reject without stranding continuations",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_table_grid_addressing_test.dart",
+      "name": "a containing merge preserves ordered content and untouched neighbors",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_table_grid_addressing_test.dart",
+      "name": "orphan topology rejects grid access and unmerge before mutation",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_table_grid_addressing_test.dart",
+      "name": "span mismatch topology rejects grid access and unmerge before mutation",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_table_grid_addressing_test.dart",
+      "name": "shifted continuation topology rejects grid access and unmerge before mutation",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_table_grid_addressing_test.dart",
+      "name": "ragged topology rejects grid access and unmerge before mutation",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_table_grid_addressing_test.dart",
+      "name": "invalid span topology rejects grid access and unmerge before mutation",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_table_grid_addressing_test.dart",
+      "name": "logical edit and continuation unmerge survive three direct/isolate saves",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_table_grid_addressing_test.dart",
+      "name": "inspect exposes both coordinate systems without changing physical cell order",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_table_grid_addressing_test.dart",
+      "name": "native omitted-grid source remains unchanged through three saves",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_table_grid_addressing_test.dart",
+      "name": "physical text edits preserve omitted-grid metadata through three saves",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_table_grid_addressing_test.dart",
+      "name": "current row omissions do not come from nested prior row properties",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_table_grid_addressing_test.dart",
+      "name": "column story replacement preflights a cross-cell bookmark",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_table_grid_addressing_test.dart",
+      "name": "gridColumn story replacement preflights a cross-cell bookmark",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_table_grid_addressing_test.dart",
+      "name": "whole in-cell bookmarks can be removed without dangling identities",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_table_grid_addressing_test.dart",
+      "name": "pending revisions cannot be detached and legacy later targets stay bound",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_table_test.dart",
+      "name": "locationOfIndex finds the caret cell",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_table_test.dart",
+      "name": "insertRow adds an empty row and keeps column count",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_table_test.dart",
+      "name": "insertColumn copies the previous column formatting",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_table_test.dart",
+      "name": "autoFit window keeps the table inside the page width",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_table_test.dart",
+      "name": "insertColumn inserts at the boundary and grows the grid",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_table_test.dart",
+      "name": "deleteRow and deleteColumn refuse to remove the last axis",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_table_test.dart",
+      "name": "clone keeps heading and table fill independent",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_table_test.dart",
+      "name": "canMerge is false for a single already-merged cell",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_table_test.dart",
+      "name": "merge joins consecutive cells and unmerge splits them",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_table_test.dart",
+      "name": "merge can span a rectangle vertically",
+      "occurrence": 1
+    },
+    {
+      "evidence": "fresh-c62338c6-native",
+      "file": "packages/quds_office_engine/test/word_table_test.dart",
+      "name": "snapshot restore reverts an insert",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_header_picture_layout_regression_test.dart",
+      "name": "header shared inline/list node paints exactly once",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_header_picture_layout_regression_test.dart",
+      "name": "header preserves distinct equal-sized inline/list pictures",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_header_picture_layout_regression_test.dart",
+      "name": "header distinct nodes may reuse one visual asset",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_header_picture_layout_regression_test.dart",
+      "name": "footer shared inline/list node paints exactly once",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_header_picture_layout_regression_test.dart",
+      "name": "footer preserves distinct equal-sized inline/list pictures",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_header_picture_layout_regression_test.dart",
+      "name": "footer distinct nodes may reuse one visual asset",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_header_picture_layout_regression_test.dart",
+      "name": "equal-size header pictures at different positions both survive",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_header_picture_layout_regression_test.dart",
+      "name": "same-size body pictures near the page top are never chrome duplicates",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_header_picture_layout_regression_test.dart",
+      "name": "continuous sections retain body frames and rebuild chrome once",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_header_picture_layout_regression_test.dart",
+      "name": "a tall inline header picture participates in body clearance",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_header_picture_layout_regression_test.dart",
+      "name": "body pictures and chrome remain equivalent after a local text edit",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_table_style_precedence_test.dart",
+      "name": "conditional table run formatting first-row color and bold apply with shading true",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_table_style_precedence_test.dart",
+      "name": "conditional table run formatting first-row color and bold apply with shading false",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_table_style_precedence_test.dart",
+      "name": "conditional table run formatting direct color and bold=0 survive import and export",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_table_style_precedence_test.dart",
+      "name": "conditional table run formatting direct color and bold=false survive import and export",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_table_style_precedence_test.dart",
+      "name": "conditional table run formatting direct color and bold=off survive import and export",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_table_style_precedence_test.dart",
+      "name": "conditional table run formatting child first-row false and color override the parent",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_table_style_precedence_test.dart",
+      "name": "conditional table run formatting an omitted child bold declaration preserves the parent",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_table_style_precedence_test.dart",
+      "name": "conditional table run formatting firstRow disabled leaves header text and fill unchanged",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_table_style_precedence_test.dart",
+      "name": "conditional table run formatting an outer first-row style does not repaint a nested table",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_table_style_precedence_test.dart",
+      "name": "direct table border width direct size 4 survives style color fallback ",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_table_style_precedence_test.dart",
+      "name": "direct table border width direct size 16 survives style color fallback ",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_table_style_precedence_test.dart",
+      "name": "direct table border width direct size 4 survives style color fallback  w:color=\"auto\"",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_table_style_precedence_test.dart",
+      "name": "direct table border width direct size 16 survives style color fallback  w:color=\"auto\"",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_table_style_precedence_test.dart",
+      "name": "direct table border width an omitted direct size inherits the style size",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_table_style_precedence_test.dart",
+      "name": "direct table border width a direct border color and size both win over the style",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_table_style_precedence_test.dart",
+      "name": "direct table border width explicit nil borders stay disabled",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_table_style_precedence_test.dart",
+      "name": "table paragraph spacing precedence document defaults retain their declared spacing",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_table_style_precedence_test.dart",
+      "name": "table paragraph spacing precedence table style retain their declared spacing",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_table_style_precedence_test.dart",
+      "name": "table paragraph spacing precedence paragraph style retain their declared spacing",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_table_style_precedence_test.dart",
+      "name": "table paragraph spacing precedence direct zero and single retain their declared spacing",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_table_style_precedence_test.dart",
+      "name": "table paragraph spacing precedence an otherwise unformatted styled cell keeps the compact fallback",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_table_style_precedence_test.dart",
+      "name": "table paragraph spacing precedence the compact fallback stays inherited after an untouched export",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/table_border_fidelity_test.dart",
+      "name": "native imported table borders survive three async saves",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/table_border_fidelity_test.dart",
+      "name": "native edited table borders survive three async saves",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/table_border_fidelity_test.dart",
+      "name": "table clone retains sparse source properties independently",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/table_border_fidelity_test.dart",
+      "name": "new tables keep their explicit default borders",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_paragraph_style_identity_test.dart",
+      "name": "default style 1 resolves with native prefix w",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_paragraph_style_identity_test.dart",
+      "name": "default style true resolves with native prefix w",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_paragraph_style_identity_test.dart",
+      "name": "default style on resolves with native prefix w",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_paragraph_style_identity_test.dart",
+      "name": "default style 1 resolves with native prefix word",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_paragraph_style_identity_test.dart",
+      "name": "default style true resolves with native prefix word",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_paragraph_style_identity_test.dart",
+      "name": "default style on resolves with native prefix word",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_paragraph_style_identity_test.dart",
+      "name": "disabled default marker 0 cannot supply before spacing",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_paragraph_style_identity_test.dart",
+      "name": "disabled default marker false cannot supply before spacing",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_paragraph_style_identity_test.dart",
+      "name": "disabled default marker off cannot supply before spacing",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_paragraph_style_identity_test.dart",
+      "name": "omitted style type defaults to paragraph with w 1",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_paragraph_style_identity_test.dart",
+      "name": "omitted style type defaults to paragraph with w true",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_paragraph_style_identity_test.dart",
+      "name": "omitted style type defaults to paragraph with w on",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_paragraph_style_identity_test.dart",
+      "name": "omitted style type defaults to paragraph with word 1",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_paragraph_style_identity_test.dart",
+      "name": "omitted style type defaults to paragraph with word true",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_paragraph_style_identity_test.dart",
+      "name": "omitted style type defaults to paragraph with word on",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_paragraph_style_identity_test.dart",
+      "name": "foreign type paragraph does not override the paragraph default",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_paragraph_style_identity_test.dart",
+      "name": "foreign type character does not override the paragraph default",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_paragraph_style_identity_test.dart",
+      "name": "foreign type table does not override the paragraph default",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_paragraph_style_identity_test.dart",
+      "name": "foreign type numbering does not override the paragraph default",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_paragraph_style_identity_test.dart",
+      "name": "omitted type remains paragraph in basedOn  / ",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_paragraph_style_identity_test.dart",
+      "name": "omitted type remains paragraph in basedOn  w:type=\"paragraph\" / ",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_paragraph_style_identity_test.dart",
+      "name": "omitted type remains paragraph in basedOn  /  w:type=\"paragraph\"",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_paragraph_style_identity_test.dart",
+      "name": "foreign style record stays opaque during the native cascade",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_paragraph_style_identity_test.dart",
+      "name": "foreign style cannot replace the native id stays opaque during the native cascade",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_paragraph_style_identity_test.dart",
+      "name": "foreign default attribute stays opaque during the native cascade",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_paragraph_style_identity_test.dart",
+      "name": "foreign style id attribute stays opaque during the native cascade",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_paragraph_style_identity_test.dart",
+      "name": "foreign basedOn element stays opaque during the native cascade",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_paragraph_style_identity_test.dart",
+      "name": "foreign basedOn value attribute stays opaque during the native cascade",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_paragraph_style_identity_test.dart",
+      "name": "native default wins over a preceding foreign default",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_paragraph_style_identity_test.dart",
+      "name": "native type wins over a preceding foreign type",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_paragraph_style_identity_test.dart",
+      "name": "native id wins over a preceding foreign id",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_paragraph_style_identity_test.dart",
+      "name": "native basedOn wins over a preceding foreign element",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_paragraph_style_identity_test.dart",
+      "name": "native basedOn value wins over a preceding foreign value",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_paragraph_style_identity_test.dart",
+      "name": "alternate-prefix basedOn and default retain sparse property ownership",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_paragraph_style_identity_test.dart",
+      "name": "foreign identity packets remain inert when default formatting toggles",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_paragraph_style_identity_test.dart",
+      "name": "native wholeTable region resolves with prefix w",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_paragraph_style_identity_test.dart",
+      "name": "native wholeTable region resolves with prefix word",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_paragraph_style_identity_test.dart",
+      "name": "foreign table region stays opaque during import and toggle",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_paragraph_style_identity_test.dart",
+      "name": "foreign table region type cannot activate a native region",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_paragraph_style_identity_test.dart",
+      "name": "native table region type wins over a foreign type attribute",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_style_introduction_test.dart",
+      "name": "new TOC link appearance survives its first export",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_style_introduction_test.dart",
+      "name": "unrelated style catalog false retains native paragraph defaults",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_style_introduction_test.dart",
+      "name": "unrelated style catalog true retains native paragraph defaults",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_style_introduction_test.dart",
+      "name": "declared defaults still cascade and explicit zero overrides them",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_layout_test.dart",
+      "name": "table cells are laid out in columns, not stacked",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_layout_test.dart",
+      "name": "RTL table paints the first logical column on the right",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_layout_test.dart",
+      "name": "superscript and subscript shrink and shift the baseline",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_layout_test.dart",
+      "name": "full-page pictures paginate flush to the page",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_layout_test.dart",
+      "name": "section columns fill left then right on the same page",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_layout_test.dart",
+      "name": "column break moves the next paragraph to the second column",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_layout_test.dart",
+      "name": "absolute frames do not advance the story and keep inner text",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_layout_test.dart",
+      "name": "layout keeps global paragraph indices across sections",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_layout_test.dart",
+      "name": "explicit paragraph bidi sets the layout base level",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_layout_test.dart",
+      "name": "justified wrapped lines stretch spaces to the column edge",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_layout_test.dart",
+      "name": "tab advances to the next default half-inch stop",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_layout_test.dart",
+      "name": "tab-only paragraph still lays out a tab glyph",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_layout_test.dart",
+      "name": "long table cell text wraps inside the column",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_layout_test.dart",
+      "name": "incremental layout reuses earlier sections",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_layout_test.dart",
+      "name": "paragraph content box matches table cell, column, and frame origins",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_layout_test.dart",
+      "name": "continuous two-column section starts below a full-width heading",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_table_picture_pagination_test.dart",
+      "name": "live 500pt inline picture fits at table depth 1",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_table_picture_pagination_test.dart",
+      "name": "live 500pt inline picture fits at table depth 2",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_table_picture_pagination_test.dart",
+      "name": "live 500pt inline picture fits at table depth 3",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_table_picture_pagination_test.dart",
+      "name": "live nested note-cell image uses the physical page height",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_table_picture_pagination_test.dart",
+      "name": "live tall-row behind picture keeps absolute source placement after earlier flow",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_table_picture_pagination_test.dart",
+      "name": "live tall-row behind picture keeps absolute source placement at final boundary",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_table_picture_pagination_test.dart",
+      "name": "live tall-row inFront picture keeps absolute source placement after earlier flow",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_table_picture_pagination_test.dart",
+      "name": "live tall-row inFront picture keeps absolute source placement at final boundary",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_table_picture_pagination_test.dart",
+      "name": "reopened 500pt inline picture fits at table depth 1",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_table_picture_pagination_test.dart",
+      "name": "reopened 500pt inline picture fits at table depth 2",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_table_picture_pagination_test.dart",
+      "name": "reopened 500pt inline picture fits at table depth 3",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_table_picture_pagination_test.dart",
+      "name": "reopened nested note-cell image uses the physical page height",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_table_picture_pagination_test.dart",
+      "name": "reopened tall-row behind picture keeps absolute source placement after earlier flow",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_table_picture_pagination_test.dart",
+      "name": "reopened tall-row behind picture keeps absolute source placement at final boundary",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_table_picture_pagination_test.dart",
+      "name": "reopened tall-row inFront picture keeps absolute source placement after earlier flow",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_table_picture_pagination_test.dart",
+      "name": "reopened tall-row inFront picture keeps absolute source placement at final boundary",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_table_picture_pagination_test.dart",
+      "name": "an image with no remaining physical height reports the nesting bound",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_table_nested_layout_test.dart",
+      "name": "live cell picture is visible within the cell before following text",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_table_nested_layout_test.dart",
+      "name": "live nested table paints child cells without stealing following paragraph identities",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_table_nested_layout_test.dart",
+      "name": "live absolute cell frame paints its own text and keeps following identities",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_table_nested_layout_test.dart",
+      "name": "live cell TOC paints title, each entry and correct following paragraphs",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_table_nested_layout_test.dart",
+      "name": "live continued sibling cells retain source paragraph identities",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_table_nested_layout_test.dart",
+      "name": "live narrow picture-only cell does not claim sibling paragraph identity",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_table_nested_layout_test.dart",
+      "name": "native reopened cell picture is visible within the cell before following text",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_table_nested_layout_test.dart",
+      "name": "native reopened nested table paints child cells without stealing following paragraph identities",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_table_nested_layout_test.dart",
+      "name": "native reopened absolute cell frame paints its own text and keeps following identities",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_table_nested_layout_test.dart",
+      "name": "native reopened cell TOC paints title, each entry and correct following paragraphs",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_table_nested_layout_test.dart",
+      "name": "native reopened continued sibling cells retain source paragraph identities",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_table_nested_layout_test.dart",
+      "name": "native reopened narrow picture-only cell does not claim sibling paragraph identity",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_table_tall_frame_layout_test.dart",
+      "name": "live tall-row page frame at a later source position keeps absolute coordinates, child identity and its footnote page",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_table_tall_frame_layout_test.dart",
+      "name": "live tall-row page frame at final boundary keeps absolute coordinates, child identity and its footnote page",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_table_tall_frame_layout_test.dart",
+      "name": "live tall-row margin frame at a later source position keeps absolute coordinates, child identity and its footnote page",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_table_tall_frame_layout_test.dart",
+      "name": "live tall-row margin frame at final boundary keeps absolute coordinates, child identity and its footnote page",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_table_tall_frame_layout_test.dart",
+      "name": "reopened tall-row page frame at a later source position keeps absolute coordinates, child identity and its footnote page",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_table_tall_frame_layout_test.dart",
+      "name": "reopened tall-row page frame at final boundary keeps absolute coordinates, child identity and its footnote page",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_table_tall_frame_layout_test.dart",
+      "name": "reopened tall-row margin frame at a later source position keeps absolute coordinates, child identity and its footnote page",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_table_tall_frame_layout_test.dart",
+      "name": "reopened tall-row margin frame at final boundary keeps absolute coordinates, child identity and its footnote page",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_table_tall_toc_layout_test.dart",
+      "name": "live tall-row TOC retains global links and final page overlay",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_table_tall_toc_layout_test.dart",
+      "name": "live tall-row TOC retains global links and suppressed page overlay",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_table_tall_toc_layout_test.dart",
+      "name": "native reopened tall-row TOC retains global links and final page overlay",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_table_tall_toc_layout_test.dart",
+      "name": "native reopened tall-row TOC retains global links and suppressed page overlay",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_incremental_layout_test.dart",
+      "name": "typing converges after the edited paragraph",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_incremental_layout_test.dart",
+      "name": "growing and shrinking a paragraph shifts pages both ways",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_incremental_layout_test.dart",
+      "name": "inserting and removing paragraphs renumbers reused lines",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_incremental_layout_test.dart",
+      "name": "edits in a table cell, in columns and in a later section",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_incremental_layout_test.dart",
+      "name": "property changes inside the declared paragraphs",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_incremental_layout_test.dart",
+      "name": "missing state, footnotes and the switch fall back",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_incremental_layout_test.dart",
+      "name": "removing a wrapping frame discards older breaks (empty intermediate: false)",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_incremental_layout_test.dart",
+      "name": "removing a wrapping frame discards older breaks (empty intermediate: true)",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_incremental_layout_test.dart",
+      "name": "foreign engine reuse remeasures every section with current metrics",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_incremental_layout_prefix_test.dart",
+      "name": "sequential edits retain page prefixes after fixed-height row line changes",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_incremental_layout_prefix_test.dart",
+      "name": "sequential edits retain page prefixes after fixed-height row frame changes",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_incremental_layout_differential_test.dart",
+      "name": "same-height edits actually converge and reuse the tail",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_incremental_layout_differential_test.dart",
+      "name": "text edits while wrapping invalidate older unwrapped breaks",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_incremental_layout_differential_test.dart",
+      "name": "font edits while wrapping invalidate older unwrapped breaks",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_incremental_layout_differential_test.dart",
+      "name": "seed 7 structures=false stays exact over 48 edits",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_incremental_layout_differential_test.dart",
+      "name": "seed 43 structures=false stays exact over 48 edits",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_incremental_layout_differential_test.dart",
+      "name": "seed 109 structures=false stays exact over 48 edits",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_incremental_layout_differential_test.dart",
+      "name": "seed 7 structures=true stays exact over 48 edits",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_incremental_layout_differential_test.dart",
+      "name": "seed 43 structures=true stays exact over 48 edits",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_incremental_layout_differential_test.dart",
+      "name": "seed 109 structures=true stays exact over 48 edits",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_incremental_layout_differential_test.dart",
+      "name": "notes endnote=false reuse unchanged content and invalidate changed text",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_incremental_layout_differential_test.dart",
+      "name": "note run formatting endnote=false invalidates reuse",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_incremental_layout_differential_test.dart",
+      "name": "note paragraph formatting endnote=false invalidates reuse",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_incremental_layout_differential_test.dart",
+      "name": "notes endnote=true reuse unchanged content and invalidate changed text",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_incremental_layout_differential_test.dart",
+      "name": "note run formatting endnote=true invalidates reuse",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_incremental_layout_differential_test.dart",
+      "name": "note paragraph formatting endnote=true invalidates reuse",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_incremental_layout_differential_test.dart",
+      "name": "discarded state and section-list changes use fresh flow",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_preserved_header_test.dart",
+      "name": "opaque header fallback discards revisions from its abandoned model",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_preserved_header_test.dart",
+      "name": "a preserved header cannot leak open fields into the footer",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_preserved_header_test.dart",
+      "name": "a header with a control around a table and logo is kept verbatim",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_preserved_header_test.dart",
+      "name": "new header content replaces a preserved header",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/header_footer_sdt_test.dart",
+      "name": "a docPartObj page-number footer opens with its text",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/header_footer_sdt_test.dart",
+      "name": "a bare footer wrapper without properties opens",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/header_footer_sdt_test.dart",
+      "name": "a tagged footer content control keeps its exact native wrapper",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_paragraph_mark_layout_test.dart",
+      "name": "empty paragraph uses the authored mark font instead of an invented 11pt run",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_paragraph_mark_layout_test.dart",
+      "name": "mark resolves document defaults and paragraph style, not visible run overrides",
+      "occurrence": 1
+    },
+    {
+      "evidence": "audited-incoming-word-vm",
+      "file": "packages/quds_office_engine/test/word_paragraph_mark_layout_test.dart",
+      "name": "mark metadata is independent in clones and survives three isolate saves",
+      "occurrence": 1
+    }
+  ],
+  "prior_files": 32,
+  "prior_native_cases": 398,
+  "prior_package_archive_sha256": "5f17f54e93db5d36970c31f06668113add960320f22b5fcbccab344879a9ea1e",
+  "prior_source": "c62338c65571aa399da5592455b651fa5c6a9317",
+  "shared_new_and_prior_identities": 0,
+  "status": "identity_union_proved_with_source_boundaries"
+}

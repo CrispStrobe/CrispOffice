@@ -102,11 +102,12 @@ does not revive an older callback.
 
 ## Persistence and provider boundaries
 
-This is a foreground session operation. Reports are not a durable command
-journal and do not survive closing the view or restarting the application.
-Cached mail stays read-only. Bulk actions do not fabricate a complete cached
-flag snapshot from one confirmed field; cached views retain their last fetched
-provider observations until the ordinary folder refresh saves a new view.
+The original milestone was a foreground session operation. The later
+[command journal](command-journal.md) persists native single/bulk flag intent
+and receipts across restart and exposes read-only activity history from
+connected or cached accounts. Cached mail stays read-only. Confirmed journaled
+results atomically patch only an existing exact-identity cached target flag;
+an unknown full flag snapshot remains unknown.
 
 Native IMAP reuses the existing bounded action adapter, including server
 UIDVALIDITY/existence checks and confirmation. EWS/cloud reuse their existing
@@ -130,9 +131,9 @@ or real sends.
 
 ## Next increments toward full parity
 
-1. Repository-driven foreground sessions and a durable remote-command journal:
-   persist intent before dispatch, retain uncertain outcomes across restart,
-   qualify cancellation, UIDVALIDITY changes, conflicts and explicit recovery.
+1. Explicit historical uncertainty reconciliation and repository-driven
+   foreground sessions, building on durable flag receipts with fresh provider
+   observations, UIDVALIDITY changes and conflict-aware recovery.
 2. Account-wide/unified search, saved live views and conversations over the
    durable index, with explicit cache completeness and source identity.
 3. Consistent archive/move/delete and broader bulk commands, rules and quick

@@ -4,6 +4,16 @@ All notable changes to `quds_office_editor` are documented here.
 
 ## Unreleased
 
+- Journal native IMAP, EWS, Gmail and Microsoft 365 single/bulk read and flag
+  commands before dispatch, retain late acknowledgements under their original
+  store owner, and stop further work on persistence failure. Add connected and
+  offline **Mail activity** with paginated frozen receipts, interrupted status
+  and confirmed clean-history removal in English, German and Arabic.
+- Preserve inert reader whitespace and user-loaded images across body-mode
+  changes. Bound explicit image loading by request count, deadlines, streamed
+  bytes and decoded image budgets; reject stale request ownership and keep
+  failed or over-budget images visibly blocked.
+
 - Accept vertical and combined row/column spans through Zotero Add Note and
   Add Annotation in body, footnote and endnote targets. Preserve rich content,
   active citations, one undo/redo transaction and repeated DOCX reopening.

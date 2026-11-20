@@ -189,10 +189,10 @@ void main() {
       controller.selectAll();
       final oldEnd = controller.selection.end;
       expect(controller.addImages([_remoteImage(url)]), 1);
-      expect(controller.decodedText.length, lessThan(oldEnd));
+      expect(controller.decodedText.length, isNot(oldEnd));
       expect(controller.selection, const TextSelection.collapsed(offset: 0));
       expect(controller.selectedText, isEmpty);
-      expect(controller.searchMatches.single.start, lessThan(oldMatch.start));
+      expect(controller.searchMatches.single.start, isNot(oldMatch.start));
       expect(
         controller.searchMatches.single.start,
         controller.decodedText.indexOf('needle'),
@@ -273,7 +273,7 @@ void main() {
   );
 
   test(
-    'oversized, malformed and unrelated remote batches leave the view unchanged',
+    'invalid remote images leave the view unchanged and cannot erase a valid peer',
     () {
       const a = 'https://images.invalid/a';
       const b = 'https://images.invalid/b';
@@ -292,10 +292,17 @@ void main() {
         final before = controller.presentation;
         controller.selectAll();
         final selection = controller.selection;
-        expect(controller.addImages([_remoteImage(a), invalid]), 0);
+        expect(controller.addImages([invalid]), 0);
         expect(controller.presentation, same(before));
         expect(controller.selection, selection);
         expect(controller.revision, 0);
+        expect(controller.addImages([_remoteImage(a), invalid]), 1);
+        expect(
+          controller.presentation.images.single.attachment.partPath,
+          'remote:$a',
+        );
+        expect(controller.presentation.remoteImageUrls, [Uri.parse(b)]);
+        expect(controller.presentation.blockedResourceCount, 1);
         controller.dispose();
       }
     },

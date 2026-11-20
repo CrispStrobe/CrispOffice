@@ -1,0 +1,46 @@
+{
+  "base_source": "4163368b63b35414f25c3830fcc49055e6088953",
+  "case_identity_rename": {
+    "new": "pending account save disables storage in the ribbon",
+    "old": "pending account save also disables storage in the File menu"
+  },
+  "changed_paths": [
+    "packages/quds_office_editor/example/test/studio_layout_theme_test.dart",
+    "packages/quds_office_editor/example/test/studio_mail_credential_backend_switch_test.dart",
+    "packages/quds_office_editor/example/test/studio_mail_lifecycle_test.dart",
+    "packages/quds_office_editor/example/test/studio_mail_test.dart",
+    "packages/quds_office_editor/example/test/studio_mail_workspace_test.dart",
+    "packages/quds_office_editor/example/test/studio_saved_mail_test.dart"
+  ],
+  "diagnostic_probe_files": {
+    "cancel-zone-probe.log": "0004ec5f7aece92e1c2c940f14be8be92e2c1ecf7c803b594f2de2e8930e4c92",
+    "cancel_zone_probe.dart": "f9e4351e2b4b0b8917e022649674657ded26d7587972c4a793c4da41608b6368"
+  },
+  "limits": [
+    "Read-only staged source review, Git tree snapshot and diagnostic evidence review; no tests executed or source/index edits by reviewer.",
+    "All six affected suites still require source-bound follow-up execution."
+  ],
+  "preserved_semantics": [
+    "Shared macOS case now targets one Mail ribbon/Home tab and verifies it sits below the reserved traffic-light region; all8 preceding pure Word cases unchanged.",
+    "Credential controls are exercised disabled in the ribbon; original stale-callback/backend/account/save/connection assertions retained.",
+    "Lifecycle closes the outer dialog ribbon; saved-mail tests close their own saved-message view, preserving disposal and late-result checks.",
+    "Narrow inbox helper scrolls lazy ribbon controls into view before closing; navigation, reader disposal and error checks retained.",
+    "Late image response uses an explicit async cancellation future in the widget test zone and asserts body cancellation; no15s fake-clock advance or product change."
+  ],
+  "production_paths_changed": [],
+  "pure_word_layout_prefix_bytes_identical": 17845,
+  "pure_word_layout_prefix_sha256": "176a95e5df85a03b6edb20ce84a7d49781c3afe1a4717d890f550a89f9ad927f",
+  "remaining_blockers": [],
+  "result": "PASS: reviewed six test-only corrections; no post-correction test pass claimed.",
+  "schema": 1,
+  "staged_sha256": {
+    "packages/quds_office_editor/example/test/studio_layout_theme_test.dart": "cbaa798930e3e26d6e6860580be6f43e9874ce87c45c516e6f00d3bce0a22645",
+    "packages/quds_office_editor/example/test/studio_mail_credential_backend_switch_test.dart": "722201907f1933d819e755e3137e1a687c32929faa4a0a20fcf1ac3388b5ea20",
+    "packages/quds_office_editor/example/test/studio_mail_lifecycle_test.dart": "51b7251f826887f4d6e16b3e2847a1c7d253f3b310490a8ab0ee595055f66d55",
+    "packages/quds_office_editor/example/test/studio_mail_test.dart": "738b9a153adb491816b3a9d62e89379c08bd3e28dd231d97f1865fdc8cbf7aa5",
+    "packages/quds_office_editor/example/test/studio_mail_workspace_test.dart": "80e95ba8ced0def5663e1fbf288296a0c0ce59be447502e7656c29c654c414c7",
+    "packages/quds_office_editor/example/test/studio_saved_mail_test.dart": "5e12d10f08550e6c80b7a3dfccf074afb2ce3dc296b671305bb8f083a6b49545"
+  },
+  "staged_tree": "1cba111d27e6b0699ffa65c7df5be2bbb53e8e59",
+  "unrelated_unstaged_changes": false
+}

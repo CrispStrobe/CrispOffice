@@ -195,6 +195,7 @@ Future<void> _killAtBarrier(
 Future<void> _checkBaseline(
   SqliteMailRepository store, {
   bool committedView = false,
+  bool confirmedFlag = false,
 }) async {
   expect(
     _value(await store.readCursor(fixture.crashMailbox))!.value,
@@ -208,7 +209,8 @@ Future<void> _checkBaseline(
     committedView ? hasLength(1) : isEmpty,
   );
   final view = _value(await store.loadMailboxView(fixture.crashMailbox))!;
-  expect(view.revision, committedView ? 2 : 1);
+  expect(view.revision, committedView || confirmedFlag ? 2 : 1);
+  expect(view.headers.single.flags, isNull);
   expect(view.hasMore, committedView);
   expect(
     view.mailbox.displayName,
@@ -250,7 +252,54 @@ void main() {
               committedView:
                   scenario ==
                   fixture.TransactionCrashScenario.committedMailboxView,
+              confirmedFlag:
+                  scenario ==
+                      fixture.TransactionCrashScenario.committedFlagReceipt ||
+                  scenario ==
+                      fixture.TransactionCrashScenario.committedFlagFinish,
             );
+            if (scenario.name.contains('Flag')) {
+              final batch = _value(
+                await store.loadFlagBatch(fixture.crashAccount, 'crash-flags'),
+              );
+              if (scenario ==
+                  fixture.TransactionCrashScenario.beforeFlagIntentCommit) {
+                expect(batch, isNull);
+              } else {
+                expect(batch, isNotNull);
+                final acknowledged =
+                    scenario ==
+                        fixture.TransactionCrashScenario.committedFlagReceipt ||
+                    scenario ==
+                        fixture.TransactionCrashScenario.committedFlagFinish;
+                final dispatched =
+                    scenario ==
+                        fixture
+                            .TransactionCrashScenario
+                            .committedFlagDispatch ||
+                    scenario ==
+                        fixture
+                            .TransactionCrashScenario
+                            .beforeFlagReceiptCommit;
+                expect(batch!.report.confirmedCount, acknowledged ? 1 : 0);
+                expect(batch.report.uncertainCount, dispatched ? 1 : 0);
+                expect(
+                  batch.report.unattemptedCount,
+                  acknowledged || dispatched ? 2 : 3,
+                );
+                expect(batch.summary.complete, isTrue);
+                expect(
+                  batch.summary.interrupted,
+                  scenario !=
+                      fixture.TransactionCrashScenario.committedFlagFinish,
+                );
+                expect(batch.subjects, [
+                  'First frozen subject',
+                  'Second frozen subject',
+                  'Third frozen subject',
+                ]);
+              }
+            }
             final recovered = _value(
               await store.recoverOutbox(fixture.crashAccount),
             ).single;

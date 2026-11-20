@@ -228,15 +228,22 @@ inspection receipt, not a complete dependency or runtime certification.
   assignments and confirmed/failed/uncertain/unattempted outcomes. Stop after
   the current request, require refresh after uncertainty, reject stale scopes
   and preserve unknown independent flags. Show localized progress and frozen
-  per-message receipts. This does not satisfy durable
-  commands or offline replay below.
+  per-message receipts. The durable continuation is recorded next.
+- [x] Journal native single/bulk read and flag commands before dispatch; retain
+  typed outcomes, interrupted uncertainty and definitely unattempted tails across
+  restart. Atomically patch exact cached flags, preserve owner/revision guards
+  and expose paginated connected/offline history with bounded safe cleanup.
+  See [command-journal.md](command-journal.md). No automatic replay is enabled.
+- [ ] Reconcile historical uncertainty against explicit fresh provider
+  observations, retaining evidence and detecting UIDVALIDITY, identity and
+  concurrent-change conflicts before closing unresolved receipts.
 
 - [x] Deliver the bounded foreground-list foundation: shared virtualized loaded-message list, stable identities, local subject/sender search, conjunctive unread/flagged filters, keyboard activation, compact reader/Back state and explicit 50-message pagination across native Studio hosts. Native IMAP browsing has its own scoped descending-UID cursor and a 1,000-loaded-message host ceiling; confirmed flag actions preserve nullable observations. See the [contract](mailbox-workspace.md) and [local evidence](../../validation/mail-workspace-20261120/README.md). This is a prerequisite slice and does not close the broader items below.
 - [x] Qualify the native [remembered IMAP/SMTP account chooser](remembered-accounts.md) with deterministic storage/provider fixtures: bounded selected-backend catalog, verified legacy migration, explicit selection/connection, selected-only Forget and unchanged per-account draft recovery. See the [local qualification and source-bound evidence](../../validation/mail-accounts-20261120/README.md). The provider-neutral repository-driven switching item below remains open.
 - [x] Persist dated ordered views of visited folders and explicitly opened body/attachment snapshots for credential-free cached reading across native IMAP, EWS, Gmail and Microsoft 365. Preserve stable identities, exclusive draft/cache ownership, transactional revision/lease checks and separate sync cursors. See [cached-mailboxes.md](cached-mailboxes.md). Loaded windows do not imply complete or currently synchronized folders.
 - [ ] Implement QudsMailWorkspace with account/folder or label navigation, paginated/virtualized message and conversation lists, stable selection and coordinated reader/composer sessions.
 - [ ] Drive lists, unread counts and local search from repository streams; keep loading, empty, offline, synchronizing, failed credentials and unsupported capabilities distinct.
-- [ ] Bind read/unread, flag, archive, move, delete and supported bulk actions to durable commands; expose failure/reconciliation status without discarding local state.
+- [ ] Extend the durable read/unread/flag foundation to archive, move, delete and broader bulk actions; expose failure/reconciliation status without discarding local state.
 - [ ] Provide responsive single-pane mobile and multi-pane desktop layouts, keyboard actions and accessible focus movement. Lists/navigation are host chrome, not replacement document editors.
 - [ ] Switch accounts/profiles without retaining the previous account's selection, attachment handles, credentials or callbacks. Restore draft sessions under their owning identity.
 - [ ] Accept host navigation/attachment/composer services by injection; do not instantiate CrispCloud or standalone global services.
@@ -382,7 +389,8 @@ M07 or the document-snapshot work in M08.
 - [x] Add save-only offline draft entry for remembered IMAP accounts with explicit servers or a provider preset, without constructing a provider or discovering settings.
 - [x] Persist bounded non-secret verified connection identities for autodiscovered IMAP, EWS, Gmail and Microsoft 365; reopen their original local draft catalogs without credentials, discovery or provider construction. Preserve exact account fingerprints and compare shortcut removal revisions. See [offline-accounts.md](offline-accounts.md).
 - [x] Bind cached mailbox reads to stable account identities and durable visited-folder views, without credentials or provider construction. Preserve local drafts/Outbox and expose missing bodies explicitly.
-- [ ] Add durable synchronization commands and repository-driven foreground account/folder sessions, then provider-side Drafts synchronization with explicit conflicts. Cached browse windows do not complete this boundary.
+- [x] Persist foreground read/flag commands and their recovery evidence separately from drafts and outgoing-message submission. See [command-journal.md](command-journal.md).
+- [ ] Add general durable synchronization commands and repository-driven foreground account/folder sessions, then provider-side Drafts synchronization with explicit conflicts. Cached browse windows and the flag journal do not complete this boundary.
 - [ ] Initial canonical body supports paragraphs, line breaks, emphasis, lists and links; add tables/inline images only with serializer/round-trip tests.
 - [ ] Generate multipart plain/HTML with deterministic boundaries and transfer encodings; preserve quoted original content as data.
 - [ ] Generate ASCII-safe wire MIME for the current text-oriented enough_mail SMTP API. Encode display names/subjects/filenames and payloads correctly. Handle non-ASCII mailbox local parts through negotiated SMTPUTF8 or explicit unsupported feedback.

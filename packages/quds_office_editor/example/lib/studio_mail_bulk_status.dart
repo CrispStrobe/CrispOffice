@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:quds_mail_core/quds_mail_core.dart';
 
 import 'studio_strings.dart';
+import 'studio_mail_journal_strings.dart';
 
 /// Foreground progress and an immutable, per-message command receipt.
 ///
@@ -244,6 +245,13 @@ class StudioMailBulkStatus extends StatelessWidget {
                   'Abgeschlossene Nachrichten',
                   'الرسائل المكتملة',
                 ),
+              ),
+            ],
+            if (report.persistenceProblem != null) ...[
+              const SizedBox(height: 8),
+              Text(
+                strings.mailActivityPersistenceFailed,
+                key: const ValueKey('studio-mail-bulk-persistence-failed'),
               ),
             ],
             if (report.requiresRefresh) ...[

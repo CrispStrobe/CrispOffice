@@ -1,0 +1,77 @@
+{
+  "scope": "Rendered deterministic Flutter widget captures; no live account or installed-platform claim.",
+  "images": [
+    {
+      "path": "visuals/ar-compact-details.png",
+      "sha256": "1e8622220c49304b149774fac764ddac39c58cad0fe26f46466be5e7f6ebcfac",
+      "bytes": 66722,
+      "width": 540,
+      "height": 960,
+      "review": "Visually inspected: readable history/receipt/details, reachable close controls, no observed overflow. German/Arabic compact cases use 1.4x text scale."
+    },
+    {
+      "path": "visuals/ar-compact-history.png",
+      "sha256": "b0ba7764e29f6d3ed7722b869f2f533f54fdc51c6e1595a25daf7bdf2066b675",
+      "bytes": 62692,
+      "width": 540,
+      "height": 960,
+      "review": "Visually inspected: readable history/receipt/details, reachable close controls, no observed overflow. German/Arabic compact cases use 1.4x text scale."
+    },
+    {
+      "path": "visuals/ar-compact-receipt.png",
+      "sha256": "c4afee3d28e685167567248d1ec4b525e050b14c0a5a0ab0fd7f219cc745368f",
+      "bytes": 65269,
+      "width": 540,
+      "height": 960,
+      "review": "Visually inspected: readable history/receipt/details, reachable close controls, no observed overflow. German/Arabic compact cases use 1.4x text scale."
+    },
+    {
+      "path": "visuals/de-compact-details.png",
+      "sha256": "5e517caddce0c5d510b42e395d13392df440353c132522475f331005326d0ec7",
+      "bytes": 83079,
+      "width": 540,
+      "height": 960,
+      "review": "Visually inspected: readable history/receipt/details, reachable close controls, no observed overflow. German/Arabic compact cases use 1.4x text scale."
+    },
+    {
+      "path": "visuals/de-compact-history.png",
+      "sha256": "39705cf8a718b4ca7398fee9f30a691379035acd911fb53c5d3ef549d288b788",
+      "bytes": 89772,
+      "width": 540,
+      "height": 960,
+      "review": "Visually inspected: readable history/receipt/details, reachable close controls, no observed overflow. German/Arabic compact cases use 1.4x text scale."
+    },
+    {
+      "path": "visuals/de-compact-receipt.png",
+      "sha256": "1bba797003733193a6e0367be1c2ea1819b9abdcce268d174d7b5b7ce9e39e0d",
+      "bytes": 101184,
+      "width": 540,
+      "height": 960,
+      "review": "Visually inspected: readable history/receipt/details, reachable close controls, no observed overflow. German/Arabic compact cases use 1.4x text scale."
+    },
+    {
+      "path": "visuals/en-desktop-details.png",
+      "sha256": "7c6131d8a853a1db67f0cd97b67de2a0d14d6c404b0b2973f0c1cec45ee739f5",
+      "bytes": 85838,
+      "width": 1350,
+      "height": 1080,
+      "review": "Visually inspected: readable history/receipt/details, reachable close controls, no observed overflow. German/Arabic compact cases use 1.4x text scale."
+    },
+    {
+      "path": "visuals/en-desktop-history.png",
+      "sha256": "f3c5cd8fe4c275c62fd2a58d75b8dd7538daa8d6cbe7285d93f7a2ecea5c216b",
+      "bytes": 50485,
+      "width": 1350,
+      "height": 1080,
+      "review": "Visually inspected: readable history/receipt/details, reachable close controls, no observed overflow. German/Arabic compact cases use 1.4x text scale."
+    },
+    {
+      "path": "visuals/en-desktop-receipt.png",
+      "sha256": "0594642efc77dbd8735568e175a24ac46243e3da219cbe2d7abbbac5995b0025",
+      "bytes": 54312,
+      "width": 1350,
+      "height": 1080,
+      "review": "Visually inspected: readable history/receipt/details, reachable close controls, no observed overflow. German/Arabic compact cases use 1.4x text scale."
+    }
+  ]
+}

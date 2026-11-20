@@ -1,5 +1,12 @@
 ## Unreleased
 
+- Add an optional awaited `MailBulkFlagJournal` lifecycle to the shared runner
+  and coordinator. Persist the frozen intent and dispatch marker before network
+  work, recheck scope after each awaited write, and retain each result before
+  continuing. Persistence failures stop further dispatch without erasing known
+  provider acknowledgements. Expose separate persistence problems and validated
+  read-only receipt restoration; no retry or background replay is introduced.
+
 - Add bounded foreground bulk read/flag plans and sequential, single-use
   coordination. Every frozen identity has a confirmed, definitely failed,
   uncertain or unattempted outcome. Stop on uncertainty, cancellation or stale

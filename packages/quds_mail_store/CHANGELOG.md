@@ -2,6 +2,17 @@
 
 ## Unreleased
 
+- Add schema-v6 durable bulk flag journals with frozen selections/subjects,
+  sequential dispatch markers, typed outcomes, owner-bound revision checks,
+  history paging and bounded completed-history cleanup. Exclusive reopen and
+  logout preserve confirmations, recover applying markers as uncertain, and
+  retain untouched items as not attempted without replaying provider commands.
+  Atomically patch only a confirmed known cache flag and advance affected view
+  revisions, including confirmations of already-matching or unknown snapshots.
+  Preserve unrelated/unknown flags, old UIDVALIDITY namespaces,
+  drafts, Outbox and older schemas. Bound retained clean/unresolved receipts and
+  reject oversized persisted metadata before transferring it to Dart.
+
 - Retain bounded, ordered foreground mailbox windows with timestamps, explicit
   partial scope, transactional revision checks and lease cancellation. Keep
   browse references separate from synchronization cursors and authoritative

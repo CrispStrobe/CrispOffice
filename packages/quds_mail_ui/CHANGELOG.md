@@ -1,5 +1,11 @@
 ## 0.1.0
 
+- Preserve meaningful inline HTML separators, preformatted whitespace and
+  nonbreaking spaces while collapsing wrapper indentation. Keep explicit image
+  loading tied to admitted inert nodes with cumulative byte/pixel budgets,
+  retained placeholders and stale-result rejection; preserve images when
+  switching body alternatives and update selection/search after projection.
+
 - Add explicit multi-message selection and foreground read/unread/flag/unflag
   callbacks, with immutable visible-order snapshots, keyboard controls,
   stale-menu rejection, scope/revision resets and selection cleared at dispatch.

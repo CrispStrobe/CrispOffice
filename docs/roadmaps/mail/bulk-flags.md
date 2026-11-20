@@ -135,15 +135,17 @@ different persistence contract.
 
 ## Foreground and cache boundary
 
-The report and command plan are in memory. There is no durable command journal,
-offline queue, restart recovery, automatic replay or undo promise. Bulk changes
-are reflected in the live view; reconnect and cached-mail views require a fresh
-folder observation to retain the latest confirmed flags. This milestone does
-not claim synchronized persistent-cache updates after every foreground change.
+The original foreground milestone kept reports in memory. The later
+[command journal](command-journal.md) persists native single/bulk flag intent,
+pre-dispatch markers and typed outcomes through schema v6. Confirmed results
+atomically patch the exact cached target flag without inventing unknown
+observations. Connected and cached workspaces can inspect saved receipts.
 
-No dependency versions, authentication flow or database schema change is
-required. Move, delete, archive, rules and scheduled operations are separate
-capabilities with their own acceptance requirements.
+There is no automatic replay, general offline queue or undo promise. Historical
+uncertainty remains evidence until explicit reconciliation is implemented.
+Move, delete, archive, rules and scheduled operations are separate capabilities
+with their own acceptance requirements. Authentication and dependency versions
+remain unchanged by the journal increment.
 
 ## Validation and continuation
 
@@ -153,9 +155,9 @@ and preserves raw logs and localized probes. Fake providers and protocol
 fixtures qualify the implementation contracts; live provider accounts and
 installed platform releases remain outside this increment.
 
-1. Durable repository-driven sessions and a remote-command journal: persist
-   intent before dispatch, retain uncertainty across restart, and qualify
-   offline/reconnect, cancellation, UIDVALIDITY, conflicts and explicit recovery.
+1. Explicit historical uncertainty reconciliation and repository-driven
+   sessions: build on the durable flag journal with provider observations,
+   UIDVALIDITY checks, conflicts and bounded recovery.
 2. Account-wide/unified search, saved live views and conversations over a durable
    index with explicit cache completeness and source-message identity.
 3. Consistent archive/move/delete, broader bulk commands, rules and quick actions
