@@ -4,6 +4,13 @@ All notable changes to `quds_office_engine` are documented here.
 
 ## Unreleased
 
+- Preserve distinct inline header/footer pictures and legitimate body frames
+  while reconciling the incoming Word renderer. Deduplicate equivalent chrome
+  only at the same placement, and carry only body frames across continuous
+  sections so footer pictures cannot create extra pages. Keep direct and
+  inherited table formatting precedence, authored border widths and sparse
+  spacing provenance through save/reopen.
+
 - Preserve horizontal merged cells in Zotero Add Note/Add Annotation tables.
   Map bounded `colspan` to native `gridSpan`, reconcile `data-colwidth` vectors
   by logical column (including unspecified zero entries), and sum covered grid

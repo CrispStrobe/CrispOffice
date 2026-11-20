@@ -1659,13 +1659,17 @@ class WordLayoutEngine {
     );
   }
 
+  static Iterable<LaidOutBox> _bodyFrames(LaidOutPage page) => page.frames
+      .take(page._origin?.bodyFrames ?? page.frames.length)
+      .where((frame) => !frame.isNoteContent);
+
   static double _contentBottom(LaidOutPage page, {required double fallback}) {
     var bottom = fallback;
     for (final LaidOutLine line in page.lines) {
       bottom = math.max(bottom, line.y + line.height);
     }
-    for (final LaidOutBox box in page.frames) {
-      if (!box.isNoteContent) bottom = math.max(bottom, box.y + box.height);
+    for (final LaidOutBox box in _bodyFrames(page)) {
+      bottom = math.max(bottom, box.y + box.height);
     }
     return bottom;
   }
@@ -1698,9 +1702,9 @@ class WordLayoutEngine {
       if (continuous && pages.isNotEmpty) {
         final LaidOutPage last = pages.removeLast();
         flow.current.addAll(last.lines);
-        flow.currentFrames.addAll(
-          last.frames.where((LaidOutBox b) => !b.isNoteContent),
-        );
+        // Chrome is recreated for this section when the page is made again;
+        // carrying it here would duplicate it and count it as body content.
+        flow.currentFrames.addAll(_bodyFrames(last));
         flow.pageIndex = last.index;
         flow.y = _contentBottom(last, fallback: _bodyTopClearingLogo(section));
         flow.columnTop = flow.y;
