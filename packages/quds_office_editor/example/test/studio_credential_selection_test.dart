@@ -6,9 +6,9 @@ import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../lib/studio_credential_storage.dart';
 import '../lib/credentials/secure_storage_macos_keychain.dart';
 import '../lib/credentials/secure_storage_service.dart';
+import '../lib/studio_credential_storage.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
@@ -79,34 +79,42 @@ void main() {
       expect(calls, Platform.isMacOS ? ['initialize'] : isEmpty);
     },
   );
-  test('custom keychain adapter retains native access-denial without fallback', () async {
-    debugDefaultTargetPlatformOverride = TargetPlatform.macOS;
-    addTearDown(() => debugDefaultTargetPlatformOverride = null);
-    const path = '/tmp/synthetic.keychain-db';
-    const channel = MethodChannel(MacOsCustomKeychainStorage.methodChannelName);
-    final messenger =
-        TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger;
-    final calls = <String>[];
-    messenger.setMockMethodCallHandler(channel, (call) async {
-      calls.add(call.method);
-      expect(call.arguments, {'path': path});
-      throw PlatformException(code: 'custom_keychain_access_denied');
-    });
-    addTearDown(() => messenger.setMockMethodCallHandler(channel, null));
-    final store = MacOsCustomKeychainStorage(path: path);
-    await expectLater(
-      store.initialize(),
-      throwsA(
-        isA<PlatformException>().having(
-          (error) => error.code,
-          'native denial',
-          'custom_keychain_access_denied',
+  test(
+    'custom keychain adapter retains native access-denial without fallback',
+    () async {
+      debugDefaultTargetPlatformOverride = TargetPlatform.macOS;
+      addTearDown(() => debugDefaultTargetPlatformOverride = null);
+      const path = '/tmp/synthetic.keychain-db';
+      const channel = MethodChannel(
+        MacOsCustomKeychainStorage.methodChannelName,
+      );
+      final messenger =
+          TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger;
+      final calls = <String>[];
+      messenger.setMockMethodCallHandler(channel, (call) async {
+        calls.add(call.method);
+        expect(call.arguments, {'path': path});
+        throw PlatformException(code: 'custom_keychain_access_denied');
+      });
+      addTearDown(() => messenger.setMockMethodCallHandler(channel, null));
+      final store = MacOsCustomKeychainStorage(path: path);
+      await expectLater(
+        store.initialize(),
+        throwsA(
+          isA<PlatformException>().having(
+            (error) => error.code,
+            'native denial',
+            'custom_keychain_access_denied',
+          ),
         ),
-      ),
-    );
-    expect(() => store.write('synthetic-key', 'synthetic-value'), throwsStateError);
-    expect(calls, ['initialize']);
-  });
+      );
+      expect(
+        () => store.write('synthetic-key', 'synthetic-value'),
+        throwsStateError,
+      );
+      expect(calls, ['initialize']);
+    },
+  );
   test(
     'platform probe selects host options and verifies read-back before deletion',
     () async {
