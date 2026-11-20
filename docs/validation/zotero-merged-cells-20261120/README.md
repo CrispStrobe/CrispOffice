@@ -17,10 +17,22 @@ remain available. Those executions belong to the identified earlier source;
 their totals must not be added to later reruns or presented as a new combined
 qualification.
 
-The [reconciliation account](reconciliation-698.md) records source preservation
-and the focused final scope. Qualification of the combined checkpoint is
-pending publication of its immutable remote source identity. This record does
-not claim that the combined Zotero gate has passed.
+The [reconciliation account](reconciliation-698.md) records the initial source
+preservation and focused scope. The combined qualification is now accepted at
+published source `c62338c65571aa399da5592455b651fa5c6a9317`, after the subsequent
+main `0a2afc41` reconciliation. The
+[final Word/Zotero report](../word-final-integration-20261120/README.md) binds the
+470 engine and 257 editor Zotero case identities to that source: 188 engine
+and 143 editor cases ran fresh, while 282 engine and 114 editor cases retain
+independently audited incoming raw results and exact relevant source inputs.
+These are identity-preserving populations, not totals to add to earlier runs.
+
+The earlier `80e240ec` attempt remains historical and unaccepted: its test
+commands passed, but a collector path-resolution interruption required a
+recount of the original events, and strict analysis then found a missing-braces
+lint in the protocol test. The final report preserves that failed receipt and
+collector history. Incoming main supplied the braces correction; the final
+whole-engine and selected editor fatal-info analyses pass.
 
 ## Scope and boundaries
 
