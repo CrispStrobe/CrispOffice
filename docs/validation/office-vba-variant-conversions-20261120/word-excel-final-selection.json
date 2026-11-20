@@ -55,7 +55,10 @@
         "test/slide_background_publication_test.dart",
         "test/office_slide_effects_test.dart",
         "test/installed_host_fonts_test.dart",
-        "test/office_system_fonts_test.dart"
+        "test/office_system_fonts_test.dart",
+        "test/paint_font_fallback_test.dart",
+        "test/sheet_normal_font_metrics_test.dart",
+        "test/sheet_normal_font_auto_test.dart"
       ]
     },
     "incoming-rendering-engine": {

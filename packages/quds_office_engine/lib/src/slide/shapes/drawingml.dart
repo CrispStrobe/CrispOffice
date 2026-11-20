@@ -31,9 +31,13 @@ List<PmlShape> parseSlideShapes(
   /// fillPending API.
   var fillPending = false;
   var inGradFill = false;
+  int? shapePropertiesDepth;
+  int? gradientDepth;
+  int? gradientStopDepth;
   final List<PmlGradientStop> gradientStops = <PmlGradientStop>[];
   double? gradientStopPosition;
   double gradientAngle = 0;
+  var gradientRadial = false;
 
   /// textFillPending API.
   var textFillPending = false;
@@ -93,7 +97,10 @@ List<PmlShape> parseSlideShapes(
       } else if (reader.localName == 'style') {
         inStyle = false;
         styleRef = null;
-      } else if (reader.localName == 'gradFill') {
+      } else if (reader.localName == 'gradFill' &&
+          inGradFill &&
+          gradientDepth != null &&
+          reader.depth == gradientDepth - 1) {
         if (current != null && gradientStops.isNotEmpty) {
           final List<PmlGradientStop> stops = <PmlGradientStop>[
             ...gradientStops,
@@ -101,17 +108,30 @@ List<PmlShape> parseSlideShapes(
           current.gradient = PmlGradientFill(
             stops: stops,
             angleDegrees: gradientAngle,
+            radial: gradientRadial,
           );
           current.fillColor = stops.first.color;
         }
         inGradFill = false;
+        gradientDepth = null;
+        gradientStopDepth = null;
+        gradientStops.clear();
         gradientStopPosition = null;
         fillPending = false;
       } else if (reader.localName == 'spPr') {
         inSpPr = false;
+        shapePropertiesDepth = null;
         inLn = false;
         fillPending = false;
         inGradFill = false;
+        gradientDepth = null;
+        gradientStopDepth = null;
+        gradientStops.clear();
+        gradientStopPosition = null;
+      } else if (reader.localName == 'gs' &&
+          gradientStopDepth != null &&
+          reader.depth == gradientStopDepth - 1) {
+        gradientStopDepth = null;
         gradientStopPosition = null;
       } else if (reader.localName == 'ln') {
         inLn = false;
@@ -139,6 +159,12 @@ List<PmlShape> parseSlideShapes(
           reader.localName == 'graphicFrame') {
         current = null;
         inSpPr = false;
+        shapePropertiesDepth = null;
+        inGradFill = false;
+        gradientDepth = null;
+        gradientStopDepth = null;
+        gradientStops.clear();
+        gradientStopPosition = null;
         inTxBody = false;
         inLn = false;
         inXfrm = false;
@@ -176,6 +202,12 @@ List<PmlShape> parseSlideShapes(
       textFillPending = false;
       strokePending = false;
       inSpPr = false;
+      shapePropertiesDepth = null;
+      inGradFill = false;
+      gradientDepth = null;
+      gradientStopDepth = null;
+      gradientStops.clear();
+      gradientStopPosition = null;
       inTxBody = false;
       inLn = false;
       inXfrm = false;
@@ -202,6 +234,7 @@ List<PmlShape> parseSlideShapes(
       };
     } else if (reader.localName == 'spPr') {
       inSpPr = current != null;
+      shapePropertiesDepth = current != null ? reader.depth : null;
       inLn = false;
     } else if (reader.localName == 'ln' && inSpPr) {
       inLn = true;
@@ -336,11 +369,19 @@ List<PmlShape> parseSlideShapes(
       current.fillColor = '';
       explicitFill = true;
       fillPending = false;
-    } else if (reader.localName == 'gradFill' && inSpPr && !inLn) {
+    } else if (reader.localName == 'gradFill' &&
+        reader.namespaceUri == OfficeNamespaces.a &&
+        inSpPr &&
+        !inLn &&
+        shapePropertiesDepth != null &&
+        reader.depth == shapePropertiesDepth + 1) {
       inGradFill = true;
+      gradientDepth = reader.depth;
+      gradientStopDepth = null;
       gradientStops.clear();
       gradientStopPosition = null;
       gradientAngle = 0;
+      gradientRadial = false;
       fillPending = false;
       explicitFill = true;
     } else if ((reader.localName == 'solidFill' ||
@@ -369,16 +410,36 @@ List<PmlShape> parseSlideShapes(
       currentRow.add(currentCell);
     } else if (reader.localName == 'tcPr' && currentCell != null) {
       inTcPr = true;
-    } else if (reader.localName == 'gs' && inGradFill) {
+    } else if (reader.localName == 'gs' &&
+        reader.namespaceUri == OfficeNamespaces.a &&
+        inGradFill &&
+        reader.depth == gradientDepth! + 2) {
+      gradientStopDepth = reader.depth;
       gradientStopPosition =
           (int.tryParse(reader.getAttribute('pos') ?? '') ?? 0) / 100000;
-    } else if (reader.localName == 'lin' && inGradFill) {
+    } else if (reader.localName == 'lin' &&
+        reader.namespaceUri == OfficeNamespaces.a &&
+        inGradFill &&
+        reader.depth == gradientDepth! + 1) {
       gradientAngle =
           (int.tryParse(reader.getAttribute('ang') ?? '') ?? 0) / 60000;
+    } else if (reader.localName == 'path' &&
+        reader.namespaceUri == OfficeNamespaces.a &&
+        inGradFill &&
+        reader.depth == gradientDepth! + 1) {
+      gradientRadial = true;
     } else if (_colorElements.contains(reader.localName) && current != null) {
+      // Color modifiers are consumed by the resolver, changing reader.depth.
+      // Capture fill ownership while still positioned on the color start.
+      final bool isGradientStopColor =
+          inGradFill &&
+          gradientStopPosition != null &&
+          gradientStopDepth != null &&
+          reader.depth == gradientStopDepth + 1 &&
+          reader.namespaceUri == OfficeNamespaces.a;
       final String? val = resolveDrawingmlColor(reader, colors);
       if (val != null && val.isNotEmpty) {
-        if (inGradFill && gradientStopPosition != null) {
+        if (isGradientStopColor) {
           gradientStops.add(
             PmlGradientStop(
               position: gradientStopPosition.clamp(0.0, 1.0),

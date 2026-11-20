@@ -895,7 +895,20 @@ void main() {
           layoutBackground: _gradientBackground('ABCDEF', 'FEDCBA'),
         );
         expect(overrides.slides.single.background, '123456');
-        expect(overrides.slides.single.backgroundShapes, isEmpty);
+        // Gradients now have a selected paint snapshot, while the unrelated
+        // master picture must still be absent from this explicit override.
+        expect(overrides.slides.single.backgroundShapes, hasLength(1));
+        expect(
+          overrides.slides.single.backgroundShapes.single.isBackgroundGradient,
+          isTrue,
+        );
+        expect(
+          overrides.slides.single.backgroundGradient!.gradient!.stops.map(
+            (stop) => stop.color,
+          ),
+          ['123456', '654321'],
+        );
+        expect(overrides.slides.single.backgroundPicture, isNull);
         expect(overrides.slides.single.inheritsMasterBackground, isFalse);
         final PmlPresentation layout = _deck(
           <String>[_sld('')],
@@ -904,7 +917,18 @@ void main() {
           layoutBackground: _gradientBackground('ABCDEF', 'FEDCBA'),
         );
         expect(layout.slides.single.background, 'ABCDEF');
-        expect(layout.slides.single.backgroundShapes, isEmpty);
+        expect(layout.slides.single.backgroundShapes, hasLength(1));
+        expect(
+          layout.slides.single.backgroundShapes.single.isBackgroundGradient,
+          isTrue,
+        );
+        expect(
+          layout.slides.single.backgroundGradient!.gradient!.stops.map(
+            (stop) => stop.color,
+          ),
+          ['ABCDEF', 'FEDCBA'],
+        );
+        expect(layout.slides.single.backgroundPicture, isNull);
         expect(layout.slides.single.inheritsMasterBackground, isFalse);
       },
     );

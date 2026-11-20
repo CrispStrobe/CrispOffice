@@ -407,7 +407,10 @@ class SlideDeserializer {
     final List<PmlGradientStop> stops = <PmlGradientStop>[];
     while (reader.next()) {
       if (reader.eventType == XmlEventType.endElement) {
-        if (gradientDepth != null && reader.depth == gradientDepth) {
+        // The pull reader reports end events after popping the element.
+        if (gradientDepth != null &&
+            reader.depth == gradientDepth - 1 &&
+            reader.localName == 'gradFill') {
           if (stops.length < 2) return null;
           stops.sort((a, b) => a.position.compareTo(b.position));
           return PmlShape(
@@ -423,10 +426,14 @@ class SlideDeserializer {
             transform: PmlTransform(x: 0, y: 0, cx: width, cy: height),
           );
         }
-        if (backgroundDepth != null && reader.depth == backgroundDepth) {
+        if (backgroundDepth != null &&
+            reader.depth == backgroundDepth - 1 &&
+            reader.localName == 'bg') {
           return null;
         }
-        if (stopDepth != null && reader.depth == stopDepth) {
+        if (stopDepth != null &&
+            reader.depth == stopDepth - 1 &&
+            reader.localName == 'gs') {
           stopDepth = null;
           position = null;
         }

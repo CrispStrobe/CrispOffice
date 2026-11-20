@@ -1,5 +1,3 @@
-import 'dart:typed_data';
-
 import 'package:flutter/services.dart';
 import 'package:quds_office_engine/quds_office_engine.dart';
 
@@ -69,7 +67,8 @@ abstract final class OfficeHostFonts {
   /// fallback before an asynchronous registration completed.
   static int get registrationRevision => _revision;
 
-  /// The actual bundled family behind a successfully loaded name or alias.
+  /// The loaded paint family behind a successfully registered name or alias.
+  /// Installed replacements use an internal name so old aliases cannot win.
   /// Unknown/unloaded names and unavailable italic faces stay unresolved;
   /// callers must not silently measure a platform fallback as that font.
   static String? registeredFamily(String family, {bool italic = false}) {
@@ -229,7 +228,8 @@ abstract final class OfficeHostFonts {
     do {
       paintName = 'Quds Installed ${++_installedSequence}';
     } while (_registeredFaces.containsKey(paintName.toLowerCase()) ||
-        _extensionOwners.containsKey(paintName.toLowerCase()));
+        _extensionOwners.containsKey(paintName.toLowerCase()) ||
+        _installedNames.contains(paintName.toLowerCase()));
     final paintKey = paintName.toLowerCase();
     _installedNames.add(paintKey);
     final loader = FontLoader(paintName);
