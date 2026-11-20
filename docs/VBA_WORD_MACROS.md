@@ -70,10 +70,10 @@ readable `Count` and cannot be enumerated.
 The shared [argument contract](VBA_ARGUMENTS.md) supports named calls and
 optional scalar ByVal parameters on declared module helpers. Required Word
 object parameters may be passed by name; optional object parameters remain
-unsupported. `TabStops.Add` and the supported `ListFormat` methods accept
-named optional arguments as described below. The ten Word measurement
-conversion functions also accept their official required argument names;
-other Word members retain their positional-only contract.
+unsupported. `TabStops.Add` and the supported `ListFormat` methods also accept
+named optional arguments as described below. The measurement conversion
+functions accept their one required argument by position or by its official
+name; other Word members retain their positional-only contract.
 
 The common source language includes the existing local procedures and scalar
 functions, bounded control flow, typed arrays, string intrinsics, and explicit
@@ -314,7 +314,7 @@ the corrected position-wise style cascade and the same table-layer limits.
 
 This slice supports statements whose `Add` return value is discarded. It does
 not introduce `TabStop` objects, indexing, `Count`, enumeration, collection-copy
-assignment, default-tab setters, `Selection`, pixel conversions or live
+assignment, default-tab setters, `Selection`, unit-conversion intrinsics or live
 document reads. The actual [word_tabstops.bas](../packages/quds_office_engine/example/macros/word_tabstops.bas)
 example requires three existing body paragraphs and is exercised on the Dart VM
 and compiled JavaScript by the portable regression driver. See the
@@ -762,13 +762,12 @@ for all three rules, including a multiple of `1/240` line. This is a storage
 and model contract, not a claim about Word's user-interface limits.
 
 `LinesToPoints(value)` multiplies by 12 and `PointsToLines(value)` divides by 12.
-Both accept one actual finite numeric argument, by position or the official
-name (`Lines` for `LinesToPoints`, `Points` for `PointsToLines`), including
-signed values and zero. They also work as `Application.LinesToPoints(...)`,
+Both accept one actual finite numeric argument, including signed values and
+zero, supplied positionally or as `Lines:=` / `Points:=`. They also work as `Application.LinesToPoints(...)`,
 `Application.PointsToLines(...)`, or leading-dot calls inside `With Application`.
 They are Word-only source functions; declarations cannot shadow their names.
-Omitted arguments, unknown argument names, object arguments and implicit
-scalar coercions are unsupported. Conversion results must remain finite and within the shared
+Omitted arguments, object arguments and implicit scalar coercions are
+unsupported. Conversion results must remain finite and within the shared
 numeric magnitude bound `9007199254740991`; later property writes apply their
 own precision/range checks. Inputs that exactly round-trip on the native
 twentieth-point / 1/240-line grid use integer-unit arithmetic. Thus common
@@ -823,72 +822,86 @@ and [Space2](https://learn.microsoft.com/en-us/office/vba/api/word.paragraphform
 
 ### Physical measurement conversions
 
-The Word source adapter also supports the following scalar measurement helpers.
-Call them globally, through `Application`, or with a leading dot inside
-`With Application`. Each takes one actual numeric argument, by position or its official name, and
-returns a document-independent numeric value.
+Word layout macros can convert inches, centimeters, millimeters and picas to
+points and back, alongside the existing line/point conversions. These are
+document-independent functions: compilation neither reads a document nor
+queries screen resolution, fonts, locale or a running Word application.
 
-| To points (required name) | From points (required name) | Physical ratio |
+| Function | Required argument name | Conversion |
 | --- | --- | --- |
-| `InchesToPoints(Inches:=value)` | `PointsToInches(Points:=value)` | 1 inch = 72 points |
-| `CentimetersToPoints(Centimeters:=value)` | `PointsToCentimeters(Points:=value)` | 2.54 centimeters = 72 points |
-| `MillimetersToPoints(Millimeters:=value)` | `PointsToMillimeters(Points:=value)` | 25.4 millimeters = 72 points |
-| `PicasToPoints(Picas:=value)` | `PointsToPicas(Points:=value)` | 1 pica = 12 points |
+| `InchesToPoints` | `Inches` | inches × 72 |
+| `CentimetersToPoints` | `Centimeters` | centimeters × 3600 / 127 |
+| `MillimetersToPoints` | `Millimeters` | millimeters × 360 / 127 |
+| `PicasToPoints` | `Picas` | picas × 12 |
+| `LinesToPoints` | `Lines` | lines × 12 |
+| `PointsToInches` | `Points` | points / 72 |
+| `PointsToCentimeters` | `Points` | points × 127 / 3600 |
+| `PointsToMillimeters` | `Points` | points × 127 / 360 |
+| `PointsToPicas` | `Points` | points / 12 |
+| `PointsToLines` | `Points` | points / 12 |
 
-These helpers compose with the existing `LinesToPoints` / `PointsToLines`,
-scalar arithmetic, typed numeric variables, numeric Variants, arrays and
-declared `ByVal` helpers. They do not emit operations themselves. The native
-plan contains the point values ultimately passed to supported Word writes.
+Every function accepts exactly one actual number or numeric Variant. The
+argument can be positional or use the official name above, case-insensitively.
+Global calls, `Application.Function(...)` and leading-dot calls inside
+`With Application` all work. A supplied expression is evaluated once, in its
+ordinary source order, with the existing compiler work limits. Helpers,
+optional scalar defaults, arrays and arithmetic can supply measurements.
+Missing values, comma holes, duplicates, wrong names, object values and
+implicit conversion from String/Boolean/Empty/Null/omitted Variant are refused.
+Argument shapes and types are checked even in unreachable branches and unused
+helpers. Functions remain unavailable in Const/default expressions, which
+already disallow function calls. The names are reserved only in `vba-word`;
+they do not add builtins or new reservations to Excel or PowerPoint.
 
-~~~vb
-Option Explicit
+```vb
 Sub Main()
     Dim inset As Double
     With Application
-        inset = .PointsToInches(.MillimetersToPoints(12.7))
+        inset = .CentimetersToPoints(Centimeters:=1.27)
+        With .ActiveDocument.Paragraphs(1).Format
+            .LeftIndent = inset
+            .FirstLineIndent = -InchesToPoints(Inches:=0.25)
+            .SpaceBefore = PicasToPoints(0.5)
+            .TabStops.Add Position:=MillimetersToPoints(25.4)
+            .LineSpacingRule = wdLineSpaceExactly
+            .LineSpacing = InchesToPoints(0.25)
+        End With
     End With
-    With ActiveDocument.Paragraphs(1).Format
-        .LeftIndent = InchesToPoints(inset)
-        .RightIndent = CentimetersToPoints(1.27)
-        .FirstLineIndent = -PicasToPoints(1.5)
-        .SpaceAfter = PicasToPoints(0.5)
-    End With
-    ActiveDocument.Paragraphs(1).TabStops.Add Position:=InchesToPoints(1.5)
 End Sub
-~~~
+```
 
-The example writes 36-point left and right indents, an 18-point hanging indent,
-6-point after spacing and a 108-point tab stop. The separate
-[word_measurements.bas](../packages/quds_office_engine/example/macros/word_measurements.bas)
-example exercises all eight new helpers, custom line spacing, named helper
-arguments and an empty target paragraph. It requires two existing body paragraphs.
+This produces a 36-point left indent, an 18-point hanging indent, 6 points
+before the paragraph, a tab at 72 points, and exact 18-point line spacing.
+The complete [word_named_measurements.bas](../packages/quds_office_engine/example/macros/word_named_measurements.bas)
+example uses all ten functions, typed format aliases, named helper arguments
+and two existing paragraphs. It is repeatable on its own output.
 
-**Numeric contract.** Conversions use binary64 arithmetic, exact physical
-ratios and the existing portable magnitude bound of `9007199254740991`.
-Both the input and computed result must be finite and within that bound.
-Intermediate multiplication uses floating-point arithmetic to avoid signed
-integer overflow on the Dart VM. Signed values and zero are valid scalar
-measurements; a later property can impose a nonnegative or positive range.
+**Numeric contract.** The portable dialect uses bounded binary64 `Double`
+arithmetic, including signed values and zero; it does not emulate the `Single`
+parameters/results documented for Microsoft Word. Both inputs and results must
+be finite and within magnitude `9007199254740991`. Intermediate multiplication
+uses floating-point arithmetic to avoid signed-integer overflow on the Dart VM.
+The physical ratios use
+exactly 72 points and 25.4 millimeters per inch. Microsoft Learn's rounded
+metric descriptions (including inconsistent millimeter approximations) are
+not used as conversion constants. These are specification-derived expectations;
+an installed Microsoft Word host has not been used to establish bit-for-bit
+VBA behavior.
 
-The converted value is canonicalized on the native twentieth-point grid only
-when an exact inverse calculation reproduces the original input double.
-Conversions from points likewise use that grid only for an exactly
-representable input. Integer products are bounded before use. There is no
-epsilon-based snapping of neighboring inputs; other values use ordinary
-numerator/divisor arithmetic. Native property validation
-checks the resulting number, including any ordinary binary64 rounding; an
-off-grid input is not automatically an invalid scalar.
+Exact native-grid values are canonicalized only when converting the candidate
+integer twip count back reproduces the input double exactly. This keeps
+`InchesToPoints(0.65) = 46.8`, `CentimetersToPoints(1.27) = 36` and
+`PicasToPoints(1.15) = 13.8` usable without a tolerance that would snap adjacent
+values. Off-grid inputs retain ordinary arithmetic. Inverse/forward round-trips
+preserve native twip values, including one twip, within the existing signed-Long
+document bound.
 
-**Conversion does not relax native write precision.** Metric values need not
-land on the existing twentieth-point grid. `CentimetersToPoints(1)` produces
-approximately `28.346456692913385` as a scalar, but assigning that result to
-`LeftIndent` is refused because it is not an exact multiple of 0.05 points.
-`CentimetersToPoints(1.27)` produces exactly 36 points and is accepted.
-`MillimetersToPoints(1)` has the same distinction. Font-size, tab-position,
-spacing and indentation writes retain their own precision and bounds.
-No implicit rounding to native twips is added.
-
-Macro authors can explicitly select native twip rounding with the existing
+**Property precision remains explicit.** The result must still satisfy the
+receiving property's existing range and precision rules. For example,
+`CentimetersToPoints(1)` is a valid scalar value (about 28.34645669 points),
+but assigning it directly to `LeftIndent` is refused because it is not an exact
+twentieth-point. The adapter does not silently round that value to 28.35.
+Macro authors can explicitly request native twip rounding using the existing
 ties-to-even `CLng` conversion:
 
 ~~~vb
@@ -896,59 +909,43 @@ ActiveDocument.Paragraphs(1).Format.LeftIndent = _
     CLng(CentimetersToPoints(1) * 20) / 20
 ~~~
 
-This writes 28.35 points. The source explicitly requests rounding; the
-conversion itself does not change the destination's precision contract.
-
-The concurrently developed
+This requests 28.35 points explicitly without changing the conversion's
+precision contract. The independent
 [word_unit_conversions.bas](../packages/quds_office_engine/example/macros/word_unit_conversions.bas)
-example and its two regression suites are also retained. That example performs
-nine paragraph-format writes on two existing paragraphs. The reconciliation
-keeps one conversion implementation and both independently authored fixture
-sets.
+and [word_measurements_positional.bas](../packages/quds_office_engine/example/macros/word_measurements_positional.bas)
+examples and their original regression suites remain available alongside the
+named-argument example. The canonical
+[word_measurements.bas](../packages/quds_office_engine/example/macros/word_measurements.bas)
+retains the earlier eight-helper example and its independent compiler, CLI/MCP
+and portable-driver cases. All examples require their documented existing
+paragraphs; no source fixture is silently replaced by a different contract.
 
-The later [word_named_measurements.bas](../packages/quds_office_engine/example/macros/word_named_measurements.bas)
-example exercises the official named arguments, including the existing line
-conversions, and has its own compiler, CLI/MCP, DOCM and portable-driver fixtures.
-Those incoming files are retained under distinct names so earlier examples
-and regression cases remain available.
+Font sizes still require their existing half-point grid; tab stops, spacing
+and indentation retain their existing constraints. Pixel conversions,
+`Selection`, page-setup objects, arbitrary ranges and document property reads
+remain outside this slice.
 
-The Microsoft methods use `Single` arguments/results. This bounded adapter
-uses its existing numeric model and does **not** emulate VBA `Single` rounding,
-numeric subtype identity, implicit numeric-string/Boolean conversion, or
-locale-sensitive input. `CDbl` remains an explicit way to convert a supported
-numeric string before calling a helper. Empty, Null, an omitted optional
-Variant and object values are not measurements.
+Conversions emit no native operation themselves. Resulting writes use the
+same detached transaction, permissions, allowlists, operation limits,
+cancellation and atomic publication as other Word macros. Native formatting
+ownership also remains unchanged: indentation edits replace the native
+`w:ind` property group, so foreign attributes inside that edited group are
+not promised to survive. Unrelated paragraph metadata, untouched paragraphs,
+style parts and opaque DOCM project/signature bytes are covered by the saved
+document tests. See the [integration record](validation/zotero-merged-cells-20261120/intake.md)
+for checks performed on the combined source. Earlier work records retain their
+original execution status.
 
-All new names are reserved only in `vba-word`. Excel and PowerPoint do not gain
-Word methods. Argument names are case-insensitive. The ten conversions accept
-exactly one positional value or their official named value; omissions, duplicate
-bindings, extra arguments and unknown names are rejected. Argument-free property
-reads, calls on `Document`/`Paragraph`/`Range`, pixel conversions, application
-preferences and document reads remain unsupported. The checker
-validates call shapes and declared types throughout unused helpers and dead
-branches; runtime Variant contents are checked when evaluated. Argument
-expressions execute once through the existing evaluator and consume the
-shared work budget. The resulting native plan retains ordinary permissions,
-allowlists, operation limits and detached atomic publication.
-
-The [validation record](validation/word-vba-measurements-20261120/README.md)
-separates source review and arithmetic-model checks from the authored Dart
-regressions, which could not be executed in the unavailable local environment.
-It does not claim VM/compiled-JavaScript parity or an installed Word-host run.
-
-Primary method references:
+Primary references: Microsoft Word's
 [InchesToPoints](https://learn.microsoft.com/en-us/office/vba/api/word.application.inchestopoints),
-[PointsToInches](https://learn.microsoft.com/en-us/office/vba/api/word.application.pointstoinches),
 [CentimetersToPoints](https://learn.microsoft.com/en-us/office/vba/api/word.application.centimeterstopoints),
-[PointsToCentimeters](https://learn.microsoft.com/en-us/office/vba/api/word.application.pointstocentimeters),
 [MillimetersToPoints](https://learn.microsoft.com/en-us/office/vba/api/word.application.millimeterstopoints),
-[PointsToMillimeters](https://learn.microsoft.com/en-us/office/vba/api/word.application.pointstomillimeters),
-[PicasToPoints](https://learn.microsoft.com/en-us/office/vba/api/word.application.picastopoints)
-and [PointsToPicas](https://learn.microsoft.com/en-us/office/vba/api/word.application.pointstopicas).
-The exact metric ratio follows the
-[Office coordinate units](https://learn.microsoft.com/en-us/openspecs/office_standards/ms-oi29500/afb7e140-b259-4901-8af4-d4a514f50db9)
-of 914400 units per inch and 360000 per centimeter. Rounded prose ratios on
-individual API pages are not substituted for this exact physical relationship.
+[PicasToPoints](https://learn.microsoft.com/en-us/office/vba/api/word.application.picastopoints),
+[PointsToInches](https://learn.microsoft.com/en-us/office/vba/api/word.application.pointstoinches),
+[PointsToCentimeters](https://learn.microsoft.com/en-us/office/vba/api/word.application.pointstocentimeters),
+[PointsToMillimeters](https://learn.microsoft.com/en-us/office/vba/api/word.application.pointstomillimeters)
+and [PointsToPicas](https://learn.microsoft.com/en-us/office/vba/api/word.application.pointstopicas),
+and [NIST's exact inch definition](https://www.nist.gov/pml/owm/si-units-length).
 
 ### Typography and highlighting
 

@@ -63,7 +63,9 @@ Map<String, Object?> wordMeasurementState(Uint8List bytes) {
       paragraphs[1].text.isNotEmpty ||
       paragraphs[2].text != 'Untouched' ||
       paragraphs[2].properties.spacingBefore != 9) {
-    throw StateError('Measurement formatting changed unrelated paragraph content');
+    throw StateError(
+      'Measurement formatting changed unrelated paragraph content',
+    );
   }
   final first = paragraphs[0].properties;
   if (first.indent.left != 36 ||
@@ -88,7 +90,9 @@ Map<String, Object?> wordMeasurementState(Uint8List bytes) {
       paragraphs[0].inlines.whereType<WmlRun>().any(
         (run) => !run.properties.bold,
       )) {
-    throw StateError('Measurements lost an existing tab stop or run formatting');
+    throw StateError(
+      'Measurements lost an existing tab stop or run formatting',
+    );
   }
   final root = XmlDocument.parse(
     OpcPackage.openBytes(bytes).getPart('/word/document.xml')!.readText(),
@@ -226,11 +230,7 @@ Future<void> _mcp(String source) async {
   );
   final mcp = OfficeMacroMcp(session);
   final compiled = await mcp.callTool('office_macro_compile', {
-    'source': {
-      'language': 'vba-word',
-      'format': 'docx',
-      'source': source,
-    },
+    'source': {'language': 'vba-word', 'format': 'docx', 'source': source},
   });
   if (compiled['isError'] != false || session.revision != 0) {
     throw StateError('MCP measurement compilation failed or published bytes');

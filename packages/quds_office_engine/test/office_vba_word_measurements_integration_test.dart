@@ -95,14 +95,9 @@ ActiveDocument.Paragraphs(99).TabStops.Add CentimetersToPoints(2.54)
       await guard.validateSaved(saved);
       final reopened = OpcPackage.openBytes(saved);
       expect(reopened.getPart('/word/vbaProject.bin')!.readBytes(), project);
-      expect(
-        reopened.getPart('/word/document.xml')!.contentType,
-        documentType,
-      );
+      expect(reopened.getPart('/word/document.xml')!.contentType, documentType);
       portable.wordMeasurementState(saved);
-      saved = WordSerializer().writeBytes(
-        WordDeserializer().readBytes(saved),
-      );
+      saved = WordSerializer().writeBytes(WordDeserializer().readBytes(saved));
     }
   });
 }
