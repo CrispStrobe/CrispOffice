@@ -342,6 +342,18 @@ void main() {
     WordRevisions.rejectAll(doc);
     expect(reopen(doc).revisions, isEmpty);
   });
+  test(
+    'ambiguous or removed empty formatting targets fail without losing history',
+    () {
+      final duplicate = read('<w:p>${changedRun('')}${changedRun('')}</w:p>');
+      expect(duplicate.revisions, hasLength(2));
+      expect(() => WordSerializer().writeBytes(duplicate), throwsStateError);
+      final removed = read('<w:p>${changedRun('')}</w:p>');
+      removed.paragraphs.first.inlines.clear();
+      expect(() => WordSerializer().writeBytes(removed), throwsStateError);
+      expect(removed.revisions, hasLength(1));
+    },
+  );
   test('write a native tracked formatting and move interoperability fixture', () {
     final d = read(
       '<w:p>${changedRun('Changed formatting')}</w:p><w:p>${move('moveFrom', 'paired', 2, run('Moved sentence.'))}${run('Some other text.')}${move('moveTo', 'paired', 4, run('Moved sentence.'))}</w:p><w:p><w:pPr><w:jc w:val="center"/><w:pPrChange $meta><w:pPr><w:jc w:val="right"/></w:pPr></w:pPrChange></w:pPr>${run('Paragraph formatting')}</w:p>',

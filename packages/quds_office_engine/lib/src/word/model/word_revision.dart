@@ -538,6 +538,22 @@ abstract final class WordRevisions {
         'saved: $problem',
       );
     }
+    if (revision.kind == WmlRevisionKind.runFormat &&
+        revision.start == revision.end) {
+      var offset = 0;
+      var emptyRuns = 0;
+      for (final run in paragraph!.inlines.whereType<WmlRun>()) {
+        if (offset == revision.start && run.text.isEmpty) {
+          emptyRuns++;
+        }
+        offset += run.text.length;
+      }
+      if (emptyRuns != 1) {
+        throw StateError(
+          'The empty formatting run no longer has an unambiguous target.',
+        );
+      }
+    }
     final range = WmlRunEdit.normalizeRange(
       paragraph!,
       revision.kind == WmlRevisionKind.paragraphFormat ? 0 : revision.start,
@@ -597,7 +613,11 @@ abstract final class WordRevisions {
           !identical(targetOf(other), paragraph)) {
         continue;
       }
-      if (range.start < other.end && other.start < range.end) {
+      if (range.start < other.end && other.start < range.end ||
+          revision.kind == WmlRevisionKind.runFormat &&
+              revision.start == revision.end &&
+              other.start == other.end &&
+              revision.start == other.start) {
         throw StateError(
           'Tracked changes ${revision.id} and ${other.id} '
           'overlap. Resolve their attribution before resolving or saving.',
