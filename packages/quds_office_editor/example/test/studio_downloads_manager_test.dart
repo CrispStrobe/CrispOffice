@@ -252,7 +252,10 @@ void main() {
       expect(morphology.calls, <String>['refresh']);
       expect(models.calls, <String>['refresh']);
       expect(find.text('Not now'), findsOneWidget);
-      expect(find.textContaining('Remove downloaded data'), findsWidgets);
+      expect(
+        find.byKey(ValueKey('download-${ayaspellArabic.id}-remove')),
+        findsOneWidget,
+      );
     },
   );
   testWidgets('removing a dictionary leaves models and morphology untouched', (
@@ -273,14 +276,7 @@ void main() {
       ),
     );
     await tester.pumpAndSettle();
-    final card = find.ancestor(
-      of: find.text(ayaspellArabic.displayName),
-      matching: find.byType(Card),
-    );
-    final remove = find.descendant(
-      of: card,
-      matching: find.widgetWithText(TextButton, 'Remove downloaded data'),
-    );
+    final remove = find.byKey(ValueKey('download-${ayaspellArabic.id}-remove'));
     await tester.ensureVisible(remove);
     await tester.tap(remove);
     await tester.pumpAndSettle();
@@ -305,14 +301,8 @@ void main() {
       ),
     );
     await tester.pumpAndSettle();
-    final card = find.ancestor(
-      of: find.text('German named-entity model (NER)'),
-      matching: find.byType(Card),
-    );
-    final remove = find.descendant(
-      of: card,
-      matching: find.widgetWithText(TextButton, 'Remove downloaded data'),
-    );
+    expect(find.text('German named-entity model (NER)'), findsOneWidget);
+    final remove = find.byKey(const ValueKey('download-spacy-ner-de-remove'));
     await tester.ensureVisible(remove);
     await tester.tap(remove);
     await tester.pumpAndSettle();
@@ -362,14 +352,15 @@ void main() {
         ),
       );
       await tester.pumpAndSettle();
-      final card = find.ancestor(
-        of: find.text(
+      expect(
+        find.text(
           fixture.bundled
               ? 'German spaCy analysis model'
               : 'German spaCy analysis package',
         ),
-        matching: find.byType(Card),
+        findsOneWidget,
       );
+      final card = find.byKey(const ValueKey('download-spacy-de'));
       expect(
         find.descendant(
           of: card,
@@ -408,7 +399,7 @@ void main() {
     expect(find.text('German spaCy analysis model'), findsOneWidget);
     expect(find.text('German spaCy analysis package'), findsNothing);
     expect(
-      find.textContaining('model files only (library built into the app)'),
+      find.textContaining('Model files only (library built into the app)'),
       findsOneWidget,
     );
   });

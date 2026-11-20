@@ -6826,7 +6826,11 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   Future<void> _showLanguageDownloads({
     Set<String> languages = const <String>{},
   }) async {
-    await showStudioDownloadsManager(_themedContext, languages: languages);
+    await showStudioDownloadsManager(
+      _themedContext,
+      languages: languages,
+      language: _language,
+    );
     if (!mounted) return;
     switch (_app) {
       case SuiteApp.word:
