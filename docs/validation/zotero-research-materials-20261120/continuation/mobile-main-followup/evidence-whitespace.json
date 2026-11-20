@@ -1,0 +1,17 @@
+{
+  "status": "passed_with_exact_raw_diff_exception",
+  "exception_path": "docs/validation/zotero-research-materials-20261120/continuation/mobile-main-followup/formatter.diff",
+  "sha256": "b9b610ebf278b5a36fd1d6f8bd46b8d08c2885b543e1c054f8626a7a63b06587",
+  "reason": "Standard unified-diff blank context line consists of the mandatory context-prefix space. The exact formatter diff is retained as evidence, not rewritten.",
+  "scoped_command": [
+    "git",
+    "diff",
+    "--cached",
+    "--check",
+    "--",
+    ".",
+    ":!docs/validation/zotero-research-materials-20261120/continuation/mobile-main-followup/formatter.diff"
+  ],
+  "exit_code": 0,
+  "output": ""
+}

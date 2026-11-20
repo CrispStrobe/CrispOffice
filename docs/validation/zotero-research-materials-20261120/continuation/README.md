@@ -7,7 +7,20 @@ This continuation finishes [PR #223](https://github.com/CrispStrobe/quds_office_
 **macOS-only follow-up source:** `6b917be36d5d54aa8a55ef3c8b9ce649aa8bab82`.
 **Broad core qualification source:** `214c4ed80bef0cb871f74e90c506d508679d3d6e`.
 **Mail/web combined source:** `a45ee3bf40dbb7e64a04f879fd6d574db7cb60b1`.
-**Latest combined source:** `f69e774fbb32a103260541e4a28fb17600bfc17e`.
+**Arabic follow-up source:** `f69e774fbb32a103260541e4a28fb17600bfc17e`.
+**Mobile-main integration source:** `65ea4c3095ff5d821c57d4dced0ba50bdd9387e7`.
+**Final formatter source:** `2b74f1091c8fb968f1cb53c803bdd2a0b395159d`.
+The [final mobile-main supplement](mobile-main-followup/README.md) preserves
+PR #232 without changing the Zotero implementation. Its incoming native
+mobile evidence retains its author/source attribution; the Arabic mobile
+receipt predates the currently required ABI 3 / adapter 2 and does not qualify
+that combined native source. Earlier test populations remain bound to their
+recorded source revisions.
+The final supplement's fixed-configuration host runs pass **51 cases in five
+files** at `65ea4c30`; the later source formats one incoming test call and
+retains the original failed formatting receipt separately. Its two affected
+cases pass again, and all **18 final changed Dart targets** pass strict
+analysis and formatting at `2b74f109`; repeated cases are not added twice.
 The later Word/slide/host integration has its own fresh core qualification below; earlier results retain their exact original source attribution.
 The lint correction only adds braces to an existing `if` statement in the standalone grammar evaluation tool. At that step, application libraries, selected tests, fixtures, manifests and locks remain byte-identical to the fresh test source; [the publication audit](publication-audit.json) records that boundary. A subsequent main update changes the macOS build script and two documentation paths, including Dart documentation comments. Its separate [final follow-up audit](publication-followup/final-audit.json), one repeated pin test, ten controlled shell checks and fresh static analysis qualify that later delta without rewriting the earlier results.
 
