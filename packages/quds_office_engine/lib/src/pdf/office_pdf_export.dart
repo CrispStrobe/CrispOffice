@@ -1925,8 +1925,6 @@ abstract final class OfficePdfExport {
     PmlPresentation deck,
     PmlSlide slide,
   ) {
-    // Resolved decorations already exclude hidden master shapes. Layout
-    // decorations remain visible even when the slide hides its master.
     if (slide.backgroundShapesResolved || slide.backgroundShapes.isNotEmpty) {
       return slide.backgroundShapes;
     }
@@ -2062,6 +2060,28 @@ abstract final class OfficePdfExport {
         PmlTextAlign.right => _TextAlign.right,
         PmlTextAlign.left || PmlTextAlign.justify => _TextAlign.left,
       };
+      // Keep authored order for numeric lines that fit. Wider content uses
+      // normal wrapping; explicit breaks also work with Standard 14 fonts.
+      final List<String>? plainLtrLines =
+          !paragraph.rightToLeft &&
+              !text.contains('\r') &&
+              !RegExp(r'\p{L}', unicode: true).hasMatch(text)
+          ? text.split('\n')
+          : null;
+      final bool plainLtrFits =
+          plainLtrLines?.every(
+            (line) =>
+                sink.plainWidth(
+                  line,
+                  size,
+                  bold: bold,
+                  italic: italic,
+                  family: family,
+                ) <=
+                maxWidth,
+          ) ??
+          false;
+
       if (text.contains('\t')) {
         final List<String> parts = text.split('\t');
         final double tabBase = x + paragraph.marginLeftPt;
@@ -2099,10 +2119,38 @@ abstract final class OfficePdfExport {
           cy,
           maxWidth,
           align,
-          unscaledSize,
+          size,
           fallbackColor,
           fitScale,
         );
+      } else if (plainLtrLines != null && plainLtrFits) {
+        // Keep authored order within each numeric line without collapsing
+        // explicit breaks, including blank lines, into one horizontal run.
+        for (final String line in plainLtrLines) {
+          final double textWidth = sink.plainWidth(
+            line,
+            size,
+            bold: bold,
+            italic: italic,
+            family: family,
+          );
+          final double dx = switch (align) {
+            _TextAlign.center => (maxWidth - textWidth) / 2,
+            _TextAlign.right => maxWidth - textWidth,
+            _TextAlign.left || _TextAlign.auto => 0,
+          };
+          sink.drawPlainLtr(
+            line,
+            px + dx,
+            cy + size,
+            size,
+            color,
+            bold: bold,
+            italic: italic,
+            family: family,
+          );
+          cy += size * 1.25;
+        }
       } else {
         sink.drawText(
           text,
@@ -2164,10 +2212,11 @@ abstract final class OfficePdfExport {
     var pendingSpace = false;
     var pendingBreak = false;
     for (final PmlTextRun run in paragraph.runs) {
-      // The caller passes the unscaled inherited paragraph size. Apply the
-      // fit exactly once to both inherited and explicit run sizes.
-      final double size =
-          (run.fontSizePt > 0 ? run.fontSizePt : fallbackSize) * sizeScale;
+      // The paragraph fallback is already scaled by the caller.
+      final double size = run.fontSizePt > 0
+          ? run.fontSizePt * sizeScale
+          : fallbackSize;
+
       final String color = run.color.isEmpty ? fallbackColor : run.color;
       final bool bold =
           run.bold &&
@@ -3128,6 +3177,63 @@ class _PageSink {
   }
 
   /// Number of laid-out lines for [text] at [size].
+  double plainWidth(
+    String text,
+    double size, {
+    bool bold = false,
+    bool italic = false,
+    String? family,
+  }) {
+    var width = 0.0;
+    for (final int cp in text.runes) {
+      if (cp < 32) continue;
+      width += pack.widthOf(
+        cp,
+        size,
+        family: family,
+        weight: bold ? 700 : 400,
+        italic: italic,
+      );
+    }
+    return width;
+  }
+
+  void drawPlainLtr(
+    String text,
+    double x,
+    double baseline,
+    double size,
+    String color, {
+    bool bold = false,
+    bool italic = false,
+    String? family,
+  }) {
+    var cx = x;
+    for (final int cp in text.runes) {
+      if (cp < 32) continue;
+      final double advance = pack.widthOf(
+        cp,
+        size,
+        family: family,
+        weight: bold ? 700 : 400,
+        italic: italic,
+      );
+      _emit(
+        oldGid: 0,
+        codePoint: cp,
+        x: cx,
+        y: baseline,
+        size: size,
+        color: color,
+        bold: bold,
+        italic: italic,
+        family: family,
+        advance: advance,
+      );
+      cx += advance;
+    }
+  }
+
   int lineCount(
     String text,
     double size, {

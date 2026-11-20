@@ -618,15 +618,7 @@ class RenderSlideStage extends RenderBox implements MouseTrackerAnnotation {
     );
     final double deg =
         math.atan2(slide.dx - c.dx, c.dy - slide.dy) * 180 / math.pi;
-    shape.transform = PmlTransform(
-      x: start.x,
-      y: start.y,
-      cx: start.cx,
-      cy: start.cy,
-      rot: (deg * 60000).round(),
-      flipH: start.flipH,
-      flipV: start.flipV,
-    );
+    shape.transform = start.copyWith(rot: (deg * 60000).round());
   }
 
   static bool _sameTransform(PmlTransform a, PmlTransform b) {
@@ -1086,50 +1078,46 @@ class RenderSlideStage extends RenderBox implements MouseTrackerAnnotation {
         ? Rect.fromLTWH(rect.left, rect.top, rect.width, 208)
         : rect;
     Color? background = _slidePaper(target);
-    for (final List<PmlShape> layer in <List<PmlShape>>[
-      target.backgroundShapes,
-      target.shapes,
-    ]) {
-      final bool decorations = identical(layer, target.backgroundShapes);
-      for (final previous in layer) {
-        if (!decorations && identical(previous, shape)) return background;
-        if (!decorations && (skipIds?.contains(previous.id) ?? false)) continue;
-        final previousSample = decorations
-            ? PmlAnimSample.identity
-            : samples?[previous.id] ?? PmlAnimSample.identity;
-        if (!previousSample.visible || previousSample.opacity <= 0.01) continue;
-        // Animated transforms/clips can expose arbitrary mixed backing. The
-        // authored colour is safer than treating it as untouched dark paper.
-        if (!_staticSample(previousSample)) return null;
-        final Rect previousRect = _shapeRect(previous);
-        final double radians =
-            previous.transform.rotationDegrees * math.pi / 180;
-        final double cosine = math.cos(radians).abs();
-        final double sine = math.sin(radians).abs();
-        final Rect bounds = Rect.fromCenter(
-          center: previousRect.center,
-          width: previousRect.width * cosine + previousRect.height * sine,
-          height: previousRect.width * sine + previousRect.height * cosine,
-        );
-        if (!bounds.overlaps(textBounds)) continue;
-        if (previous.visual != null ||
-            previous.table != null ||
-            previous.hasMedia ||
-            previous.text.isNotEmpty ||
-            previous.preset != PmlShapePreset.rect ||
-            previous.transform.rotationDegrees.abs() >= 0.01) {
-          background = null;
-          continue;
-        }
-        final int? fill = int.tryParse(previous.fillColor, radix: 16);
-        if (fill == null) continue;
-        final bool covers =
-            previousRect.left <= textBounds.left &&
-            previousRect.top <= textBounds.top &&
-            previousRect.right >= textBounds.right &&
-            previousRect.bottom >= textBounds.bottom;
-        background = covers ? Color(0xFF000000 | fill) : null;
+    final int inheritedCount = target.backgroundShapes.length;
+    var precedingIndex = 0;
+    for (final previous in target.backgroundShapes.followedBy(target.shapes)) {
+      final bool inherited = precedingIndex++ < inheritedCount;
+      if (!inherited && identical(previous, shape)) break;
+      if (!inherited && (skipIds?.contains(previous.id) ?? false)) continue;
+      final previousSample = inherited
+          ? PmlAnimSample.identity
+          : samples?[previous.id] ?? PmlAnimSample.identity;
+      if (!previousSample.visible || previousSample.opacity <= 0.01) continue;
+      // Animated transforms/clips can expose arbitrary mixed backing. The
+      // authored colour is safer than treating it as untouched dark paper.
+      if (!_staticSample(previousSample)) return null;
+      final Rect previousRect = _shapeRect(previous);
+      final double radians = previous.transform.rotationDegrees * math.pi / 180;
+      final double cosine = math.cos(radians).abs();
+      final double sine = math.sin(radians).abs();
+      final Rect bounds = Rect.fromCenter(
+        center: previousRect.center,
+        width: previousRect.width * cosine + previousRect.height * sine,
+        height: previousRect.width * sine + previousRect.height * cosine,
+      );
+      if (!bounds.overlaps(textBounds)) continue;
+      if (previous.visual != null ||
+          previous.table != null ||
+          previous.hasMedia ||
+          previous.text.isNotEmpty ||
+          previous.preset != PmlShapePreset.rect ||
+          previous.transform.rotationDegrees.abs() >= 0.01) {
+        background = null;
+        continue;
       }
+      final int? fill = int.tryParse(previous.fillColor, radix: 16);
+      if (fill == null) continue;
+      final bool covers =
+          previousRect.left <= textBounds.left &&
+          previousRect.top <= textBounds.top &&
+          previousRect.right >= textBounds.right &&
+          previousRect.bottom >= textBounds.bottom;
+      background = covers ? Color(0xFF000000 | fill) : null;
     }
     return background;
   }
@@ -1760,8 +1748,9 @@ class RenderSlideStage extends RenderBox implements MouseTrackerAnnotation {
       Paint()..color = _slidePaper(target),
     );
     for (final PmlShape shape in target.backgroundShapes) {
-      // Master/layout shape IDs are scoped to their source parts. Foreground
-      // animation and morph IDs must never hide or transform decorations.
+      // Master/layout shape ids belong to their own parts. Slide animations
+      // and morph matching must never apply to a coincident decoration id.
+
       final Rect r = _shapeRect(shape);
       canvas.save();
       _rotateCanvas(canvas, shape, r);
@@ -1858,7 +1847,7 @@ class RenderSlideStage extends RenderBox implements MouseTrackerAnnotation {
   }
 
   void _applyRect(PmlShape shape, Rect rect) {
-    shape.transform = PmlTransform(
+    shape.transform = shape.transform.copyWith(
       x: (rect.left * 12700).round(),
       y: (rect.top * 12700).round(),
       cx: (rect.width * 12700).round().clamp(12700, 100000000),
@@ -1978,7 +1967,7 @@ class RenderSlideStage extends RenderBox implements MouseTrackerAnnotation {
         c.dx + p.dx * cos - p.dy * sin,
         c.dy + p.dx * sin + p.dy * cos,
       );
-      shape.transform = PmlTransform(
+      shape.transform = start.copyWith(
         x: ((np.dx - start.widthPoints / 2) * 12700).round(),
         y: ((np.dy - start.heightPoints / 2) * 12700).round(),
         cx: start.cx,

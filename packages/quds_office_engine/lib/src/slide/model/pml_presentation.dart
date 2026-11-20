@@ -38,6 +38,25 @@ class PmlTransform {
   /// Vertical flip from `a:xfrm/@flipV`.
   final bool flipV;
 
+  /// Returns this geometry with only the supplied properties changed.
+  PmlTransform copyWith({
+    int? x,
+    int? y,
+    int? cx,
+    int? cy,
+    int? rot,
+    bool? flipH,
+    bool? flipV,
+  }) => PmlTransform(
+    x: x ?? this.x,
+    y: y ?? this.y,
+    cx: cx ?? this.cx,
+    cy: cy ?? this.cy,
+    rot: rot ?? this.rot,
+    flipH: flipH ?? this.flipH,
+    flipV: flipV ?? this.flipV,
+  );
+
   /// xPoints API.
   double get xPoints => x / 12700;
 
@@ -563,13 +582,13 @@ class PmlSlide {
     bool? inheritsMasterBackground,
     List<PmlShape>? backgroundShapes,
     bool? backgroundShapesResolved,
+    this.showMasterShapes = true,
 
     this.notes = '',
     this.sourcePartUri,
     this.transition = const PmlSlideTransition(),
     List<PmlShapeAnimation>? animations,
     this.hidden = false,
-    this.showMasterShapes = true,
   }) : _background = background,
        _primaryMasterBackground = background.isEmpty
            ? null
@@ -596,6 +615,9 @@ class PmlSlide {
   /// Whether this slide has its own resolved master/layout decorations.
   /// A resolved empty list must not fall back to the presentation master.
   final bool backgroundShapesResolved;
+
+  /// The slide's authored `showMasterSp` flag, retained when saving/copying.
+  bool showMasterShapes;
 
   /// layoutName API.
   String layoutName;
@@ -669,10 +691,6 @@ class PmlSlide {
   /// PowerPoint `p:sld/@show="0"` — skipped during a slide show.
   bool hidden;
 
-  /// The authored master-shape visibility flag (`p:sld/@showMasterSp`).
-  /// Layout shapes are unaffected; import resolves master shapes separately.
-  bool showMasterShapes;
-
   /// copy API.
   PmlSlide copy({int? id}) {
     return PmlSlide(
@@ -681,6 +699,7 @@ class PmlSlide {
       masterName: masterName,
       background: background,
       inheritsMasterBackground: inheritsMasterBackground,
+      showMasterShapes: showMasterShapes,
       notes: notes,
       backgroundShapesResolved: backgroundShapesResolved,
       backgroundShapes: <PmlShape>[
@@ -689,7 +708,6 @@ class PmlSlide {
       sourcePartUri: id == null || id == this.id ? sourcePartUri : null,
       transition: transition,
       hidden: hidden,
-      showMasterShapes: showMasterShapes,
       animations: <PmlShapeAnimation>[
         for (final PmlShapeAnimation anim in animations) anim.copyWith(),
       ],

@@ -133,7 +133,7 @@ class SlideDeserializer {
             layout.master?.placeholders ?? const <PmlShape>[],
           ]);
           pres.slides[i].backgroundShapes.addAll(<PmlShape>[
-            if (pres.slides[i].showMasterShapes && layout.showMasterShapes)
+            if (pres.slides[i].showMasterShapes && layout.showsMasterShapes)
               for (final PmlShape shape
                   in layout.master?.decorations ?? const <PmlShape>[])
                 shape.copy(),
@@ -217,7 +217,9 @@ class SlideDeserializer {
   PmlPresentation readBytes(Uint8List bytes, {String? password}) =>
       read(OpcPackage.openBytes(bytes, password: password));
 
-  /// `showMasterSp` hides master decorations while retaining layout shapes.
+  /// `showMasterSp` hides master decorations without hiding layout shapes or
+  /// the editable slide content. XML Schema booleans default to true here.
+
   static bool _showsMasterShapes(String xml) {
     final XmlPullReader reader = XmlPullReader(xml);
     while (reader.next()) {
@@ -381,7 +383,8 @@ class _SlideTemplate {
     required this.decorations,
     this.background,
     this.inheritsMasterBackground = false,
-    this.showMasterShapes = true,
+    this.showsMasterShapes = true,
+
     this.master,
   });
 
@@ -391,7 +394,8 @@ class _SlideTemplate {
   final List<PmlShape> decorations;
   final String? background;
   final bool inheritsMasterBackground;
-  final bool showMasterShapes;
+  final bool showsMasterShapes;
+
   final _SlideTemplate? master;
 }
 
@@ -476,7 +480,7 @@ class _SlideTemplates {
       decorations: _decorations(shapes, package, uri),
       background: background ?? master?.background,
       inheritsMasterBackground: background == null,
-      showMasterShapes: SlideDeserializer._showsMasterShapes(xml),
+      showsMasterShapes: SlideDeserializer._showsMasterShapes(xml),
 
       master: master,
     );

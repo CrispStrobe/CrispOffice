@@ -14924,7 +14924,7 @@ class SlideEditorController extends OfficeController {
     }
     final Map<PmlShape, PmlTransform> next = <PmlShape, PmlTransform>{
       for (final PmlShape shape in targets)
-        shape: PmlTransform(
+        shape: shape.transform.copyWith(
           x: shape.transform.x + dxEmu,
           y: shape.transform.y + dyEmu,
           cx: shape.transform.cx,
@@ -15073,7 +15073,7 @@ class SlideEditorController extends OfficeController {
       for (final PmlShape mate in mates)
         mate: identical(mate, shape)
             ? next
-            : PmlTransform(
+            : mate.transform.copyWith(
                 x: mate.transform.x + dx,
                 y: mate.transform.y + dy,
                 cx: mate.transform.cx,
