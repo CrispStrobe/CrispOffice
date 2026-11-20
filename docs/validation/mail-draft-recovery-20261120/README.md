@@ -36,6 +36,8 @@ or branch-protection change is part of the workflow.
 | `5b072494af4f142aa03654884856c5a9359dc968` | Typed editor persistence, native draft store and file-backed regressions |
 | `191605e3cc06d5ac2efbb2d9f60b6b2bd07d7903` | Reconciled previously unmerged PowerPoint gradient/shadow/transparency work; original incoming parent `9c544ecc` retained |
 | `81b0d7620bd7d57ee2d5fe878abbad85f0488a00` | Shared composer autosave, native/EWS/cloud recovery, confirmed-rejection handling and host regression tests |
+| `bbc114d4aee1d54564edb4c6f333830d5a8fdeea` | Delivered behavior, recovery contract and ordered parity roadmap |
+| `793dae7de10848b5a1ec0762e0fc4b55b70296f3` | Latest main reconciliation with original `e06eb3a7` ancestry, preservation receipts and remote freshness review |
 
 The [incoming-work inventory](integration.md) records all fourteen captured
 branches, upstream, patch-equivalent historical work and the active VBA PR.
@@ -54,9 +56,25 @@ All eleven changed Office Dart files were preserved byte-for-byte during that
 publication. See [the recorded Office gate](incoming-office/README.md).
 
 Remote main subsequently advanced to `e06eb3a7`. Its Word/kerning work and full
-gradient background changes are being reconciled separately before the final
-merge. Draft PR #227 remained active and under qualification at the last capture
-(`4b8ad781`); it is fetched and preserved, not treated as completed work.
+gradient background changes are incorporated in `793dae7d`. The isolated source
+merge `233b506e`, tree `e7c3f5520342e8a28ad44cd160afd56670e5fc99`, passed 53
+targeted engine cases plus strict analysis and formatting of the two resolved
+files. Its preservation receipt verifies all 86 selected incoming Word/bidi/
+controller files against main and all 79 selected prior PPTX files against
+`191605e3`. The published merge retains the later Mail implementation. See
+[main refresh acceptance](main-refresh/README.md). The independent
+[publication comparison](publication-preservation.json) confirms that all 31
+incoming product files match the qualified source, and all 196 Mail package
+files plus 67 Studio Mail host/test/tool files remain identical to `81b0d762`.
+There are no mismatches, and original main/PPTX/Mail ancestry is retained.
+
+The [final remote review](remote-refresh.md) records a newer font checkpoint on
+`integrate/recent-pptx` (`9bd16ff4`) and active draft PR #227 (`656e7b96`). Three
+bounded probes reproduced the standalone font loader's rejection of already
+owned fallback aliases. The draft PR contains active repair work but still
+expressly reports final qualification in progress. Both heads remain fetched
+and preserved; those unfinished later changes are excluded from this Mail
+increment. No new ready PR was found in that capture.
 
 ## Local validation
 
@@ -72,7 +90,17 @@ native/EWS/cloud host recovery cases. The confirmed-rejection follow-up passed
 82 selected cases (29 EWS, 37 cloud, 16 store); these overlap later aggregate
 runs and must not be added as distinct tests. Initial failures caused by the
 changed close lifecycle and old Cancel-button expectations were corrected and
-rerun. The final recorded Mail selection is written under `final-mail/`.
+rerun. The [source-bound Mail acceptance](final-mail/README.md) records 1,245
+successful executions at the frozen Mail checkpoint: 54 core, 562 store,
+3 store Node boundary and 626 Studio cases across all 29 selected Studio files.
+All eight static/test gates passed with no failed or skipped cases and an exact
+before/after comparison of 4,419 product inputs plus seven pinned inputs. The
+separate Studio follow-up at combined source `793dae7d` passed all 626 cases
+again with 4,424 product inputs unchanged before/after. The reuse receipt
+proves that 96 relevant core/store/root inputs, all seven pinned inputs and the
+60-package dependency resolution did not change. Its 619 core/store/Node
+executions remain valid; the repeated Studio cases replace their earlier
+contribution, so the combined accepted Mail count remains **1,245**.
 
 Flutter 3.47.8 / Dart 3.13.7 and the enforced locked dependency graph are used.
 GitHub Actions are neither queried nor awaited. Detailed commands, hashes and

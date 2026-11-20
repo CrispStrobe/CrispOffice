@@ -83,3 +83,19 @@ the unfinished font/Variant changes as excluded pending their own completed
 review and local qualification. No product source was changed by this final
 freshness review. Recheck main once immediately before the final remote merge
 because other contributors can continue publishing.
+
+## Publication preflight
+
+The final fetch before the evidence checkpoint again found main at `e06eb3a7`.
+PR #227 remained open and draft at `656e7b96`, with the same explicit
+qualification-in-progress description. The later exact refs and dispositions
+are retained in [merge-preflight.json](merge-preflight.json).
+
+The new Zotero branch advanced to `6042874358fd7341df8cb2c9b69a418bcf351086`.
+It combines main with the older active VBA snapshot `4b8ad781` and adds Zotero
+image-support planning/evidence. Its README is explicitly headed **In progress**
+and says implementation, final reconciliation and local qualification are still
+to be performed. No Zotero product file differs at that checkpoint. This
+concurrent unfinished branch is fetched and retained for its owner alongside
+the active VBA/font work; it is not a new completed prerequisite for the
+qualified Mail merge. No branch was overwritten or deleted.
