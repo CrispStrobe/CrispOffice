@@ -39,11 +39,11 @@
 # Release signing changes the spaCy library's file bytes, so its grammar
 # qualification is carried by code identity rather than by file digest: the
 # script requires the shipped library's machOCodeSha256 to equal
-# SPACY_PIN_CODE_SHA256 before and after signing, and `codesign
-# --remove-signature` of the signed library to equal the same operation on the
-# verified pinned input byte for byte (stripping output depends on the
-# codesign version, so both sides use this machine's tool;
-# SPACY_PIN_UNSIGNED_SHA256 is the value Xcode 26 produces). Studio
+# SPACY_PIN_CODE_SHA256 before and after signing. Where the local codesign
+# strips the pinned input to SPACY_PIN_UNSIGNED_SHA256 (Xcode 26), it also
+# requires `codesign --remove-signature` of the signed library to equal that
+# byte for byte; Xcode 16 does not normalize stripping, so there only the
+# code digest applies. Ad hoc builds ship the pinned bytes unchanged. Studio
 # re-measures the code digest from the bytes it loads.
 #
 # The spaCy library is not rebuilt by default: the script downloads the exact
@@ -304,9 +304,15 @@ if [[ "${QUDS_SKIP_SPACY:-0}" != 1 && "$REBUILD_SPACY" != 1 ]]; then
   # it for the comparison after signing.
   [[ "$(code_sha256 "$FRAMEWORKS/libcrispembed-spacy.dylib")" == "$SPACY_PIN_CODE_SHA256" ]] \
     || { echo "pinned spaCy library: unexpected code digest" >&2; exit 1; }
+  # Apple's cross-check is meaningful only with a codesign whose
+  # --remove-signature output does not depend on the signature (Xcode 26
+  # strips the pinned library to the reference; Xcode 16 does not).
   SPACY_INPUT_UNSIGNED="$(unsigned_sha256 "$FRAMEWORKS/libcrispembed-spacy.dylib")"
-  [[ "$SPACY_INPUT_UNSIGNED" == "$SPACY_PIN_UNSIGNED_SHA256" ]] \
-    || echo "note: this codesign strips the pinned library to $SPACY_INPUT_UNSIGNED (Xcode 26: $SPACY_PIN_UNSIGNED_SHA256)"
+  if [[ "$SPACY_INPUT_UNSIGNED" != "$SPACY_PIN_UNSIGNED_SHA256" ]]; then
+    echo "note: this codesign strips the pinned library to $SPACY_INPUT_UNSIGNED, not the" \
+      "Xcode 26 reference; the codesign cross-check is skipped, the code digest still applies"
+    SPACY_INPUT_UNSIGNED=""
+  fi
 fi
 
 log "Sign ($SIGN_MODE)"
@@ -324,6 +330,14 @@ else
     -c "Add :com.apple.developer.team-identifier string $TEAM_ID" "$ENTITLEMENTS"
 fi
 for library in "${LIBRARIES[@]}"; do
+  # The pinned spaCy library already carries the ad hoc signature it was
+  # qualified with; ad hoc re-signing is not reproducible across codesign
+  # versions, so ad hoc builds ship those exact bytes.
+  if [[ "$SIGN_MODE" == adhoc && "$library" == libcrispembed-spacy.dylib \
+    && "$REBUILD_SPACY" != 1 ]]; then
+    codesign --verify --strict "$FRAMEWORKS/$library"
+    continue
+  fi
   codesign "${SIGN_ARGS[@]}" "$FRAMEWORKS/$library"
 done
 if [[ "$SIGN_MODE" != adhoc ]]; then
@@ -342,10 +356,10 @@ if [[ "${QUDS_SKIP_SPACY:-0}" != 1 ]]; then
   printf '{"library":"libcrispembed-spacy.dylib","sha256":"%s","code_sha256":"%s"}\n' \
     "$spacy_sha" "$spacy_code" >"$RESOURCES/spacy-native.json"
   if [[ "$spacy_sha" == "$SPACY_PIN_SHA256" ]]; then
-    # Ad hoc signing is deterministic, so re-signing the pinned bytes keeps them.
     SPACY_NOTE="spaCy library $spacy_sha: qualified (analysis and manual German grammar)"
-  elif [[ "$spacy_code" == "$SPACY_PIN_CODE_SHA256" \
-    && "$(unsigned_sha256 "$spacy_library")" == "${SPACY_INPUT_UNSIGNED:-}" ]]; then
+  elif [[ "$REBUILD_SPACY" != 1 && "$spacy_code" == "$SPACY_PIN_CODE_SHA256" ]] \
+    && [[ -z "${SPACY_INPUT_UNSIGNED:-}" \
+      || "$(unsigned_sha256 "$spacy_library")" == "$SPACY_INPUT_UNSIGNED" ]]; then
     SPACY_NOTE="spaCy library $spacy_sha: qualified code $spacy_code re-signed ($SIGN_MODE; analysis and manual German grammar)"
   elif [[ "$REBUILD_SPACY" == 1 ]]; then
     SPACY_NOTE="spaCy library $spacy_sha: UNQUALIFIED rebuild (analysis only; no grammar suggestions)"
