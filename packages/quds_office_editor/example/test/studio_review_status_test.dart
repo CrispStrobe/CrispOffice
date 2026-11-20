@@ -218,7 +218,7 @@ void main() {
     expect(tester.takeException(), isNull);
   });
 
-  testWidgets('footer labels a pending typing debounce as waiting', (
+  testWidgets('footer keeps the settled result while typing waits', (
     tester,
   ) async {
     final provider = _StatusProvider();
@@ -230,8 +230,9 @@ void main() {
     await tester.pump();
     expect(controller.proofing.summary.scheduled, isTrue);
     expect(provider.calls, calls);
-    _expectStatus('Waiting to check…', Icons.more_horiz);
-    expect(find.text('No writing issues'), findsNothing);
+    // No per-keystroke "waiting" flicker over a settled result.
+    _expectStatus('No writing issues', Icons.check_circle_outline);
+    expect(find.text('Waiting to check…'), findsNothing);
     await _finish(tester, controller, controller.proofing.checkNow());
     expect(controller.proofing.summary.complete, isTrue);
     _expectStatus('No writing issues', Icons.check_circle_outline);
@@ -249,6 +250,9 @@ void main() {
       await tester.pump(const Duration(milliseconds: 1));
       expect(provider.calls, 1);
       expect(controller.proofing.summary.checking, isTrue);
+      // Short passes never flash "Checking…".
+      expect(find.text('Checking…'), findsNothing);
+      await tester.pump(WordProofingTiming.checkingIndicatorDelay);
       _expectStatus('Checking…', Icons.hourglass_top);
       expect(find.text('No writing issues'), findsNothing);
       release.complete();
@@ -426,7 +430,7 @@ void main() {
   });
 
   testWidgets(
-    'compact footer exposes waiting until the pending check finishes',
+    'compact footer keeps the settled result until the pending check finishes',
     (tester) async {
       final provider = _StatusProvider();
       final controller = await _studio(
@@ -441,8 +445,12 @@ void main() {
       await tester.pump();
       expect(controller.proofing.summary.scheduled, isTrue);
       expect(provider.calls, calls);
-      _expectCompactStatus(tester, 'Waiting to check…', Icons.more_horiz);
-      expect(_compactStatusButton('No writing issues'), findsNothing);
+      _expectCompactStatus(
+        tester,
+        'No writing issues',
+        Icons.check_circle_outline,
+      );
+      expect(_compactStatusButton('Waiting to check…'), findsNothing);
       await _finish(tester, controller, controller.proofing.checkNow());
       expect(controller.proofing.summary.complete, isTrue);
       _expectCompactStatus(
@@ -482,6 +490,7 @@ void main() {
       await tester.pump(const Duration(milliseconds: 1));
       expect(blocked.calls, 1);
       expect(controller.proofing.summary.checking, isTrue);
+      await tester.pump(WordProofingTiming.checkingIndicatorDelay);
       _expectCompactStatus(tester, 'Checking…', Icons.hourglass_top);
       expect(_compactStatusButton('No writing issues'), findsNothing);
       release.complete();

@@ -12,6 +12,9 @@ import 'package:quds_office_studio/main.dart';
 import 'package:quds_office_studio/studio_language_id_host.dart';
 import 'package:quds_office_studio/studio_licenses.dart';
 
+/// The typing pause before a background pass, plus a frame of margin.
+final _debounce = WordProofingTiming.idle + const Duration(milliseconds: 50);
+
 final class _FakeIdentifier implements LanguageIdentifier {
   @override
   bool get isAvailable => true;
@@ -31,7 +34,7 @@ const _arabic = 'وقد نشر التقرير أمس وأثار ضجة كبير�
 
 Future<void> _pump(WidgetTester tester) async {
   await tester.pump();
-  await tester.pump(const Duration(milliseconds: 450));
+  await tester.pump(_debounce);
   for (var i = 0; i < 12; i++) {
     await tester.pump(const Duration(milliseconds: 1));
   }
