@@ -36,10 +36,7 @@ subject and outcome for every selected message:
 | Uncertain | A mutation may have reached the server, or the provider supplied no reliable mutation evidence. The batch stops here. |
 | Not attempted | No command was dispatched for this message. |
 
-After an uncertain result, refresh the folder before another flag mutation. A
-provider's certified stale-scope rejection also requires refresh, even when it
-proves that this particular message was not changed; it remains a failed result,
-not an uncertain result. The
+After an uncertain result, refresh the folder before another flag mutation. The
 uncertainty explanation remains available until refresh; dismissing a receipt
 cannot clear the refresh requirement. A refresh obtains new observations and
 does not replay the batch. Closing the view or changing the account prevents

@@ -1,0 +1,103 @@
+{
+  "schema": "quds-mail-bulk-flags-validation/v1",
+  "baseline_status": "PASS",
+  "qualified_source": {
+    "commit": "3645e8a4db535fc0ab5ab0923ee7385e5c4e5195",
+    "tree": "0df4f1db0f920cf3adf3c5abcf8e22abdd8ee007"
+  },
+  "pull_request": 275,
+  "branch": "work/mail-bulk-flags-20261120",
+  "publication_supplement": "main-reconciliation.md",
+  "github_actions": "NOT QUERIED OR AWAITED",
+  "runtime": {
+    "flutter": "3.47.8",
+    "dart": "3.13.7",
+    "node": "24.22.3",
+    "verified_locked_archives": 202,
+    "workspace_lock_sha256": "0d64a732cd7f6c7cc4e1e01255276f081b59e6f43039636c3d36f6785a958ce2"
+  },
+  "cohorts": [
+    {
+      "name": "core_vm",
+      "passed": 205,
+      "receipt": "core-provider-results/accepted/receipt.json"
+    },
+    {
+      "name": "bulk_node",
+      "passed": 111,
+      "receipt": "core-provider-results/accepted/receipt.json"
+    },
+    {
+      "name": "provider_boundaries",
+      "passed": 195,
+      "receipt": "core-provider-results/accepted/receipt.json"
+    },
+    {
+      "name": "mail_ui",
+      "passed": 161,
+      "receipt": "ui/cutoff-peer-receipt.json"
+    },
+    {
+      "name": "native_workspace",
+      "passed": 42,
+      "receipt": "ui/cutoff-peer-receipt.json",
+      "overlaps": "studio_hosts"
+    },
+    {
+      "name": "studio_hosts",
+      "passed": 374,
+      "composition": [
+        338,
+        36
+      ],
+      "original_mixed_run_exit": 1,
+      "receipt": "hosts/receipt.json"
+    },
+    {
+      "name": "localized_visuals",
+      "passed": 10,
+      "captures": 20,
+      "receipt": "ui/cutoff-peer-receipt.json"
+    },
+    {
+      "name": "word_vm_baseline",
+      "passed": 867,
+      "composition": [
+        853,
+        14
+      ],
+      "receipt": "word/qualification.json"
+    },
+    {
+      "name": "word_node_baseline",
+      "passed": 725,
+      "composition": [
+        712,
+        13
+      ],
+      "receipt": "word/qualification.json"
+    }
+  ],
+  "cohort_totals_are_not_additive": true,
+  "source_applicability": {
+    "file": "source-applicability.json",
+    "sha256": "6b1eac482c8bfb926de8e977cb019d3b35da1dfa7b2619127489ea94ada3f352",
+    "receipt_cohorts": 29
+  },
+  "archive": {
+    "bytes": 2472242,
+    "path": "evidence.tar.gz",
+    "sha256": "63e9efefcf3eb36ef3ae06483cd1d8da622560265494a3c8de9e0f8713d65074"
+  },
+  "member_manifest": {
+    "file": "evidence-members.json",
+    "sha256": "0e9e772f9ea3e7e7f2a9b76e8b92eb0f59c9310cfcee549aedcc14348d0750fd",
+    "members": 180
+  },
+  "limits": [
+    "No live provider accounts or real sends",
+    "No installed platform releases or macOS font-discovery execution",
+    "Node is compiled JavaScript, not browser/WASM UI acceptance",
+    "Foreground receipts and flags do not provide durable command/cache synchronization"
+  ]
+}
