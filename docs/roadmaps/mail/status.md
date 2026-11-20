@@ -1,5 +1,22 @@
 # Mail implementation status — 20 November 2026
 
+## Native reader and mailbox session continuity
+
+The captured main update adds native ribbon commands, a single reconnect attempt
+from remembered account settings, and an explicit **Show remote images** action.
+Returning to the app preserves the current mailbox and reader instead of
+refreshing implicitly. The reader collapses transactional HTML indentation while
+preserving inline spaces and preformatted content.
+
+Remote images remain blocked during parsing and normal reading. The explicit
+host action requests at most eight inert image candidates; it refuses redirects,
+caps each streamed body at 4 MiB and applies the reader's image budgets. Retiring
+the captured reader closes its client and rejects late completions. Failed or
+unrequested image alternatives remain visible, and original message bytes remain
+unchanged. This is separate from automatic resource loading or browser HTML
+layout. Focused source tests cover these boundaries; execution is recorded in
+the source-bound validation receipts rather than inferred from this status page.
+
 ## Foreground bulk read and flag triage
 
 The [bulk-action continuation](bulk-actions.md) adds checked visible selections,

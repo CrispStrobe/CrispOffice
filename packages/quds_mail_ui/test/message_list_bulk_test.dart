@@ -490,6 +490,36 @@ void main() {
     expect(opens, 0);
   });
 
+  testWidgets('Escape with no checked rows remains available to the host', (
+    tester,
+  ) async {
+    var escapes = 0;
+    await tester.pumpWidget(
+      _app(
+        Focus(
+          onKeyEvent: (_, event) {
+            if (event is KeyDownEvent &&
+                event.logicalKey == LogicalKeyboardKey.escape) {
+              escapes++;
+              return KeyEventResult.handled;
+            }
+            return KeyEventResult.ignored;
+          },
+          child: _list(onBulkAction: (_, _) {}),
+        ),
+      ),
+    );
+    await _focusList(tester);
+    await tester.sendKeyEvent(LogicalKeyboardKey.escape);
+    expect(escapes, 1);
+    await _selectAll(tester);
+    await _focusList(tester);
+    await tester.sendKeyEvent(LogicalKeyboardKey.escape);
+    await tester.pumpAndSettle();
+    expect(escapes, 1);
+    expect(find.text('0 selected'), findsOneWidget);
+  });
+
   testWidgets('search editing keeps Ctrl+A and Space without checking mail', (
     tester,
   ) async {

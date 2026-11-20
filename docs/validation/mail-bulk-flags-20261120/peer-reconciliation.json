@@ -1,0 +1,68 @@
+{
+  "schema": "quds-mail-final-peer-reconciliation/v1",
+  "status": "PASS",
+  "qualified_source": {
+    "commit": "44f3f61fa7d812971e973f1763ac8e04eb39785a",
+    "tree": "9ad9555b01e5c0a0872f868356c232e669a8b977"
+  },
+  "production_source": "64da231816b1b3ddab35e0e12d50d885bf24f75f",
+  "incoming_main": "0a2afc41bae4e719b77657a7e2d8d3e7ec02849b",
+  "prior_qualification": "main-reconciliation.json",
+  "host_cohorts": {
+    "hosts": {
+      "passed": 378,
+      "skipped": 0
+    },
+    "ui": {
+      "passed": 161,
+      "skipped": 0
+    },
+    "ui-visual": {
+      "passed": 5,
+      "skipped": 0
+    },
+    "studio-visual": {
+      "passed": 8,
+      "skipped": 0
+    },
+    "zotero-editor": {
+      "passed": 362,
+      "skipped": 8
+    },
+    "zotero-studio": {
+      "passed": 16,
+      "skipped": 0
+    },
+    "font-tests": {
+      "passed": 9,
+      "skipped": 0
+    }
+  },
+  "core": {
+    "vm": 214,
+    "node": 120,
+    "provider_boundaries": 195,
+    "unsupported_node": 6
+  },
+  "word": {
+    "vm": 929,
+    "node": 787,
+    "focused_vm": 244
+  },
+  "zotero_affected": {
+    "vm": 165,
+    "node": 117
+  },
+  "totals_are_not_additive": true,
+  "archive": {
+    "path": "late-evidence.tar.gz",
+    "bytes": 4736442,
+    "sha256": "1ab839ebdeb86599af507d623f98d224620fdd533ff870118a58a8134e8711b8"
+  },
+  "source_applicability": {
+    "path": "late-source-applicability.json",
+    "sha256": "d72933d1a787e48ad827d6120e7ef9a92dddd932dafe921ff216b8a744de4497"
+  },
+  "publication_result": "PR #275 body records observed remote merge/tree/ancestry verification",
+  "github_actions": "NOT QUERIED OR AWAITED"
+}

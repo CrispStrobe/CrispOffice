@@ -6,6 +6,7 @@ import 'package:enough_mail/enough_mail.dart' as mail;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show LogicalKeyboardKey;
 import 'package:flutter_test/flutter_test.dart';
+import 'package:http/http.dart' as http;
 import 'package:quds_mail_core/quds_mail_core.dart';
 import 'package:quds_mail_ui/quds_mail_ui.dart';
 import 'package:quds_office_studio/studio_mail_message_loader.dart';
@@ -219,6 +220,44 @@ class _Browser
   }
 }
 
+final class _ImageBrowser extends _Browser {
+  @override
+  Future<Uint8List> fetch(mail.Mailbox mailbox, mail.MimeMessage header) async {
+    reads++;
+    return Uint8List.fromList(
+      utf8.encode(
+        'From: Writer <writer@example.test>\r\nSubject: ${header.decodeSubject()}\r\n'
+        'Content-Type: text/html; charset=utf-8\r\n\r\n'
+        '<p>Message ${header.uid}</p><img src="https://images.example.test/one.png" alt="Remote">',
+      ),
+    );
+  }
+}
+
+final class _ImageClient extends http.BaseClient {
+  final requests = <http.BaseRequest>[];
+  Completer<http.StreamedResponse>? pending;
+  bool closed = false;
+  @override
+  Future<http.StreamedResponse> send(http.BaseRequest request) async {
+    requests.add(request);
+    return pending?.future ?? response();
+  }
+
+  http.StreamedResponse response() => http.StreamedResponse(
+    Stream.value(
+      base64Decode(
+        'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR4nGMwaDjwHwAExAJwNooHGQAAAABJRU5ErkJggg==',
+      ),
+    ),
+    200,
+    headers: {'content-type': 'image/png'},
+  );
+
+  @override
+  void close() => closed = true;
+}
+
 final class _BulkBrowser extends _Browser implements StudioMailMailboxRecords {
   final _observed = Map<mail.MimeMessage, MailHeaderRecord>.identity();
   mail.Mailbox? lastObservedMailbox;
@@ -344,6 +383,7 @@ Future<_Client> _show(
   _Browser browser, {
   bool compact = false,
   _Browser? reconnectBrowser,
+  http.Client Function()? remoteImageClientFactory,
 }) async {
   final client = _Client();
   var connections = 0;
@@ -362,6 +402,7 @@ Future<_Client> _show(
         messageLoaderFactory: (_) =>
             connections++ == 0 ? browser : reconnectBrowser ?? browser,
         draftStoreFactory: drafts.open,
+        remoteImageClientFactory: remoteImageClientFactory,
       ),
     ),
   );
@@ -399,6 +440,70 @@ void _expectBulkCounts(
 
 void main() {
   _peerBulkWorkspaceTests();
+  testWidgets(
+    'remote images require the explicit action and resume keeps the reader',
+    (tester) async {
+      final browser = _ImageBrowser();
+      final images = _ImageClient();
+      await _show(tester, browser, remoteImageClientFactory: () => images);
+      _mailList(tester).onOpen(_mailList(tester).items.first.id);
+      await _pump(tester);
+      final reader = tester
+          .widget<MailMessageView>(find.byType(MailMessageView))
+          .controller;
+      expect(reader.presentation.images, isEmpty);
+      expect(images.requests, isEmpty);
+      tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.inactive);
+      tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.resumed);
+      await _pump(tester);
+      expect(
+        tester.widget<MailMessageView>(find.byType(MailMessageView)).controller,
+        same(reader),
+      );
+      expect(browser.reads, 1);
+      expect(browser.requests, hasLength(1));
+      await tester.tap(_key('studio-mail-show-images'));
+      await _pump(tester);
+      expect(images.requests, hasLength(1));
+      expect(images.closed, isTrue);
+      expect(reader.presentation.images, hasLength(1));
+      expect(
+        reader.decodedText,
+        isNot(contains('[External image blocked: Remote]')),
+      );
+      expect(tester.takeException(), isNull);
+    },
+  );
+
+  testWidgets(
+    'changing mailbox closes remote image work and ignores its late response',
+    (tester) async {
+      final browser = _ImageBrowser();
+      final images = _ImageClient()
+        ..pending = Completer<http.StreamedResponse>();
+      await _show(tester, browser, remoteImageClientFactory: () => images);
+      _mailList(tester).onOpen(_mailList(tester).items.first.id);
+      await _pump(tester);
+      await tester.tap(_key('studio-mail-show-images'));
+      await tester.pump();
+      expect(images.requests, hasLength(1));
+      await tester.tap(find.widgetWithText(ListTile, 'Archive'));
+      await _pump(tester);
+      expect(images.closed, isTrue);
+      _mailList(tester).onOpen(_mailList(tester).items.first.id);
+      await _pump(tester);
+      final current = tester
+          .widget<MailMessageView>(find.byType(MailMessageView))
+          .controller;
+      images.pending!.complete(images.response());
+      await _pump(tester);
+      expect(current.presentation.images, isEmpty);
+      expect(current.decodedText, contains('Message 50'));
+      expect(current.decodedText, contains('[External image blocked: Remote]'));
+      expect(images.requests, hasLength(1));
+      expect(tester.takeException(), isNull);
+    },
+  );
   testWidgets('IMAP bulk commands require immutable record capability', (
     tester,
   ) async {
@@ -1379,6 +1484,67 @@ final class _TypedBulkBrowser extends _BulkBrowser
 // adapter/status API. Reconnect is an additional positive/negative control for
 // the session-capture difference found during the concurrent source review.
 void _peerBulkWorkspaceTests() {
+  testWidgets(
+    'certified native quota stops the tail and keeps retry guidance without refresh',
+    (tester) async {
+      final browser = _TypedBulkBrowser();
+      browser.pages = (_, _, _) async => StudioMailHeaderPage(
+        messages: [
+          for (final uid in [300, 200, 100]) _header(uid, 'Message $uid'),
+        ],
+      );
+      browser.bulkAnswer = (_) async => const MailFailure(
+        MailProblem(
+          MailProblemCode.quotaExceeded,
+          retryAfter: Duration(milliseconds: 1250),
+          mutationMayHaveOccurred: false,
+        ),
+      );
+      await _show(tester, browser);
+      _mailList(tester).onBulkAction!(MailBulkFlagAction.flag, [
+        'imap-message-91:300',
+        'imap-message-91:200',
+        'imap-message-91:100',
+      ]);
+      await _pump(tester);
+      expect(browser.bulkCommands, hasLength(1));
+      expect(browser.changes, isEmpty);
+      final report = _bulkStatus(tester).report;
+      expect(report.stopReason, MailBulkFlagStopReason.rateLimited);
+      expect(report.confirmedCount, 0);
+      expect(report.failedCount, 1);
+      expect(report.uncertainCount, 0);
+      expect(report.unattemptedCount, 2);
+      expect(report.requiresRefresh, isFalse);
+      expect(_mailList(tester).bulkEnabled, isTrue);
+      expect(_mailList(tester).busy, isFalse);
+      expect(_mailList(tester).items.map((row) => row.isFlagged), [
+        false,
+        false,
+        false,
+      ]);
+      expect(find.text(_strings.mailWorkspaceRefreshRequired), findsNothing);
+      expect(find.textContaining('Request limit reached.'), findsOneWidget);
+      expect(
+        find.text('Wait at least 2 seconds before trying again.'),
+        findsOneWidget,
+      );
+      await tester.ensureVisible(_key('studio-mail-bulk-details'));
+      await tester.tap(_key('studio-mail-bulk-details'));
+      await _pump(tester);
+      expect(
+        find.descendant(
+          of: _key('studio-mail-bulk-result-0'),
+          matching: find.text('Wait at least 2 seconds before trying again.'),
+        ),
+        findsOneWidget,
+      );
+      expect(browser.bulkCommands, hasLength(1));
+      expect(browser.reads, 0);
+      expect(browser.requests, hasLength(1));
+      expect(tester.takeException(), isNull);
+    },
+  );
   group('IMAP reconciled bulk scenarios', () {
     testWidgets('legacy action capability does not imply safe bulk identity', (
       tester,

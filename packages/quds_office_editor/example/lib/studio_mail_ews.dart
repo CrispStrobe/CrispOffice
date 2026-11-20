@@ -997,10 +997,16 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
       if (!scopeCurrent() || !lease.isCurrent || !identical(_bulkRun, run)) {
         return false;
       }
-      final observed = {
-        for (final header in _headers) header.id: header.remote,
-      };
-      return selected.every((header) => observed[header.id] == header.remote);
+      try {
+        final observed = {
+          for (final header in _headers) header.id: header.remote,
+        };
+        return observed.length == _headers.length &&
+            provider.account == mailbox.account &&
+            selected.every((header) => observed[header.id] == header.remote);
+      } on Object {
+        return false;
+      }
     }
 
     setState(() {
@@ -1080,7 +1086,18 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
       shouldStop: () => _bulkStopRequested,
       onProgress: observe,
     );
-    if (!current()) return;
+    if (!current()) {
+      if (scopeCurrent() && identical(_bulkRun, run)) {
+        setState(() {
+          _bulkReport = report;
+          _bulkRunning = false;
+          _busy = false;
+          _needsRefresh = true;
+          _error = widget.strings.mailWorkspaceRefreshRequired;
+        });
+      }
+      return;
+    }
     observe(report);
     setState(() {
       _bulkRunning = false;

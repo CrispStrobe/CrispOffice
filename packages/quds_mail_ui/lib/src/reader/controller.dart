@@ -58,6 +58,7 @@ final class MailReaderController extends ChangeNotifier {
   late MailReaderPresentation _presentation;
   bool _preferHtml;
   bool _disposed = false;
+  final List<MailInlineImage> _externalImages = [];
   int _revision = 0;
   TextSelection _selection = const TextSelection.collapsed(offset: 0);
   List<TextRange> _matches = const [];
@@ -83,6 +84,7 @@ final class MailReaderController extends ChangeNotifier {
   void replaceResult(MailParseResult value) {
     if (_disposed) return;
     _result = value;
+    _externalImages.clear();
     _revision++;
     _presentation = buildMailPresentation(
       value,
@@ -98,14 +100,99 @@ final class MailReaderController extends ChangeNotifier {
     if (_disposed || _preferHtml == value) return;
     _preferHtml = value;
     _revision++;
-    _presentation = buildMailPresentation(
-      _result,
-      budget: budget,
-      preferHtml: value,
-    );
+    _presentation = _withExternalImages();
     _selection = const TextSelection.collapsed(offset: 0);
     _runSearch();
     notifyListeners();
+  }
+
+  /// Appends host-loaded, already validated remote images. Nothing is fetched
+  /// here; the host performs the explicit user-approved request.
+  void addImages(Iterable<MailInlineImage> extra) {
+    if (_disposed) return;
+    final additions = extra.toList(growable: false);
+    if (additions.isEmpty || _presentation.rejected) return;
+    var pixels = _presentation.images.fold<int>(
+      0,
+      (total, image) => total + image.width * image.height,
+    );
+    var imageCount =
+        (_result.message?.attachments.length ?? 0) + _externalImages.length;
+    final known = {
+      for (final image in [..._presentation.images, ..._externalImages])
+        image.attachment.partPath,
+    };
+    var added = false;
+    for (final image in additions) {
+      final dimensions = mailRasterDimensions(image.attachment);
+      final count = image.width * image.height;
+      if (dimensions != (image.width, image.height) ||
+          count > budget.maxImagePixels - pixels ||
+          image.attachment.content.length > budget.maxAttachmentBytes ||
+          imageCount >= budget.maxAttachments ||
+          !known.add(image.attachment.partPath)) {
+        continue;
+      }
+      pixels += count;
+      imageCount++;
+      _externalImages.add(image);
+      added = true;
+    }
+    if (!added) return;
+    _presentation = _withExternalImages();
+    _revision++;
+    _selection = const TextSelection.collapsed(offset: 0);
+    _runSearch();
+    notifyListeners();
+  }
+
+  MailReaderPresentation _withExternalImages() {
+    final base = buildMailPresentation(
+      _result,
+      budget: budget,
+      preferHtml: _preferHtml,
+    );
+    if (base.rejected) return base;
+    var pixels = base.images.fold<int>(
+      0,
+      (total, image) => total + image.width * image.height,
+    );
+    var count = _result.message?.attachments.length ?? 0;
+    final admitted = <MailInlineImage>[];
+    for (final image in _externalImages) {
+      final imagePixels = image.width * image.height;
+      if (imagePixels > budget.maxImagePixels - pixels ||
+          count >= budget.maxAttachments) {
+        continue;
+      }
+      pixels += imagePixels;
+      count++;
+      admitted.add(image);
+    }
+    if (admitted.isEmpty) return base;
+    final loadedUris = <Uri>{
+      for (final image in admitted)
+        if (image.attachment.partPath.startsWith('remote:'))
+          ?Uri.tryParse(image.attachment.partPath.substring(7)),
+    };
+    final rebuilt = buildMailPresentation(
+      _result,
+      budget: budget,
+      preferHtml: _preferHtml,
+      loadedRemoteImageUris: loadedUris,
+    );
+    if (rebuilt.rejected) return rebuilt;
+    return MailReaderPresentation(
+      text: rebuilt.text,
+      bodyText: rebuilt.bodyText,
+      runs: rebuilt.runs,
+      images: <MailInlineImage>[...rebuilt.images, ...admitted],
+      remoteImageUris: rebuilt.remoteImageUris,
+      diagnostics: rebuilt.diagnostics,
+      rejected: rebuilt.rejected,
+      usedHtml: rebuilt.usedHtml,
+      blockedResourceCount: rebuilt.blockedResourceCount,
+    );
   }
 
   /// Offsets use UTF-16 like Flutter. Selection snaps to grapheme boundaries.

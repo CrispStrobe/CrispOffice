@@ -77,3 +77,14 @@ retain their exact historical source bindings. The final API union requires
 its own source-bound acceptance; prior receipts are not relabeled current.
 Deterministic tests do not claim real-account access or installed-platform
 qualification.
+
+## Latest main reconciliation
+
+The later core runner/coordinator test files are byte-identical relocations of
+the retained test families, so their existing paths remain authoritative. The
+shared core implementation and both public entry points stay unchanged; the
+additional quota-evidence cases exercise the same policy on both paths.
+Native quota detail/retry guidance and provider stale-scope refresh tests remain
+independent. EWS rechecks the provider account and selected remote identities
+before publishing a receipt; stale completion keeps evidence while refusing
+projection into the current view.

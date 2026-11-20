@@ -4,6 +4,13 @@ All notable changes to `quds_office_editor` are documented here.
 
 ## Unreleased
 
+- Explain foreground bulk rate-limit stops and provider retry delays in English,
+  German and Arabic, including per-message details. Preserve refresh requirements
+  when a receipt is dismissed after the account or folder scope becomes stale.
+
+- Keep mailbox sessions warm across repeated reads while retaining account,
+  folder and revision guards on asynchronous publication.
+
 - Recognize conventional lowercase Arial and Times New Roman font filenames
   for regular, bold, italic and bold-italic faces, retaining metadata checks
   and canonical candidate precedence.

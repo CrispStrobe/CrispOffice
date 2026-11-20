@@ -1,5 +1,11 @@
 ## 0.1.0
 
+- Collapse HTML indentation while preserving inline word boundaries, nonbreaking
+  spaces and preformatted text. Expose bounded inert image candidates to hosts;
+  admitted host-loaded rasters retain source bytes, refresh selection/search
+  offsets and share image budgets with CID images across preference changes.
+  Keep blocked alternatives visible unless their exact URI was loaded.
+- Let Escape propagate to the host when no bulk rows are checked.
 - Add explicit multi-message selection and foreground read/unread/flag/unflag
   callbacks, with immutable visible-order snapshots, keyboard controls,
   stale-menu rejection, scope/revision resets and selection cleared at dispatch.

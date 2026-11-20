@@ -1,0 +1,340 @@
+{
+  "status": "PASS",
+  "qualified_source_commit": "3645e8a4db535fc0ab5ab0923ee7385e5c4e5195",
+  "qualified_source_tree": "0df4f1db0f920cf3adf3c5abcf8e22abdd8ee007",
+  "receipt_checks": [
+    {
+      "receipt": "bulk-core-provider-results-validation/accepted/receipt.json",
+      "name": "core-vm",
+      "exit_code": 0,
+      "source_file_count": 80,
+      "recorded_sources_stable": true,
+      "current_source_differences": [],
+      "receipt_sha256": "78ed863dd723b9d78a2ca85473b73d03cd6adb4246f7eee053048c69f058a33d"
+    },
+    {
+      "receipt": "bulk-core-provider-results-validation/accepted/receipt.json",
+      "name": "transport-boundaries",
+      "exit_code": 0,
+      "source_file_count": 80,
+      "recorded_sources_stable": true,
+      "current_source_differences": [],
+      "receipt_sha256": "78ed863dd723b9d78a2ca85473b73d03cd6adb4246f7eee053048c69f058a33d"
+    },
+    {
+      "receipt": "bulk-core-provider-results-validation/accepted/receipt.json",
+      "name": "bulk-node",
+      "exit_code": 0,
+      "source_file_count": 80,
+      "recorded_sources_stable": true,
+      "current_source_differences": [],
+      "receipt_sha256": "78ed863dd723b9d78a2ca85473b73d03cd6adb4246f7eee053048c69f058a33d"
+    },
+    {
+      "receipt": "bulk-core-provider-results-validation/accepted/receipt.json",
+      "name": "core-analyze",
+      "exit_code": 0,
+      "source_file_count": 80,
+      "recorded_sources_stable": true,
+      "current_source_differences": [],
+      "receipt_sha256": "78ed863dd723b9d78a2ca85473b73d03cd6adb4246f7eee053048c69f058a33d"
+    },
+    {
+      "receipt": "bulk-core-provider-results-validation/accepted/receipt.json",
+      "name": "transport-analyze",
+      "exit_code": 0,
+      "source_file_count": 80,
+      "recorded_sources_stable": true,
+      "current_source_differences": [],
+      "receipt_sha256": "78ed863dd723b9d78a2ca85473b73d03cd6adb4246f7eee053048c69f058a33d"
+    },
+    {
+      "receipt": "mail-ui-validation/cutoff-peer-receipt.json",
+      "name": "ui-cutoff-peer",
+      "exit_code": 0,
+      "source_file_count": 123,
+      "recorded_sources_stable": true,
+      "current_source_differences": [],
+      "receipt_sha256": "462fb68ed0d9a461abcdd5f58f173d1d35411787f84133b3b0069ce7a6bc3b36"
+    },
+    {
+      "receipt": "mail-ui-validation/cutoff-peer-receipt.json",
+      "name": "native-workspace-cutoff-peer",
+      "exit_code": 0,
+      "source_file_count": 123,
+      "recorded_sources_stable": true,
+      "current_source_differences": [],
+      "receipt_sha256": "462fb68ed0d9a461abcdd5f58f173d1d35411787f84133b3b0069ce7a6bc3b36"
+    },
+    {
+      "receipt": "mail-ui-validation/cutoff-peer-receipt.json",
+      "name": "ui-visual-cutoff-peer",
+      "exit_code": 0,
+      "source_file_count": 123,
+      "recorded_sources_stable": true,
+      "current_source_differences": [],
+      "receipt_sha256": "462fb68ed0d9a461abcdd5f58f173d1d35411787f84133b3b0069ce7a6bc3b36"
+    },
+    {
+      "receipt": "mail-ui-validation/cutoff-peer-receipt.json",
+      "name": "studio-visual-cutoff-peer",
+      "exit_code": 0,
+      "source_file_count": 123,
+      "recorded_sources_stable": true,
+      "current_source_differences": [],
+      "receipt_sha256": "462fb68ed0d9a461abcdd5f58f173d1d35411787f84133b3b0069ce7a6bc3b36"
+    },
+    {
+      "receipt": "mail-host-validation/receipt.json",
+      "name": "provider-rerun",
+      "exit_code": 0,
+      "source_file_count": 108,
+      "recorded_sources_stable": true,
+      "current_source_differences": [],
+      "receipt_sha256": "956bdcd42dc03508ce1ec9e813674426d9040511851e3cb7a5819b866eca28c8"
+    },
+    {
+      "receipt": "mail-host-validation/receipt.json",
+      "name": "host-analysis",
+      "exit_code": 0,
+      "source_file_count": 108,
+      "recorded_sources_stable": true,
+      "current_source_differences": [],
+      "receipt_sha256": "956bdcd42dc03508ce1ec9e813674426d9040511851e3cb7a5819b866eca28c8"
+    },
+    {
+      "receipt": "mail-host-validation/late-intake-initial/receipt.json",
+      "name": "host-tests",
+      "exit_code": 1,
+      "source_file_count": 108,
+      "recorded_sources_stable": true,
+      "current_source_differences": [
+        "packages/quds_office_editor/example/test/studio_mail_bulk_provider_test.dart"
+      ],
+      "receipt_sha256": "f695146ae7c833fc84b10c26d9b97820267c7fcb1bf0afc74263a87a20262de7"
+    },
+    {
+      "receipt": "runtime/word-validation/word-vm.json",
+      "name": "word-vm",
+      "exit_code": 0,
+      "source_file_count": 412,
+      "recorded_sources_stable": true,
+      "current_source_differences": [
+        "packages/quds_office_engine/test/office_vba_word_named_measurements_integration_test.dart",
+        "packages/quds_office_engine/test/office_vba_word_named_measurements_test.dart"
+      ],
+      "receipt_sha256": "942d486ce332b833320da3f7acc26554da6fd29785cf8c6d8174bc2408d16c75"
+    },
+    {
+      "receipt": "runtime/word-validation/word-node.json",
+      "name": "word-node",
+      "exit_code": 0,
+      "source_file_count": 412,
+      "recorded_sources_stable": true,
+      "current_source_differences": [
+        "packages/quds_office_engine/test/office_vba_word_named_measurements_integration_test.dart",
+        "packages/quds_office_engine/test/office_vba_word_named_measurements_test.dart"
+      ],
+      "receipt_sha256": "780ea88d45c764f23d04ab0f347c5cd0b6afa5e2ddbd077c9ae5e37cb93c2b52"
+    },
+    {
+      "receipt": "runtime/word-validation/measurements-driver-vm.json",
+      "name": "measurements-driver-vm",
+      "exit_code": 0,
+      "source_file_count": 412,
+      "recorded_sources_stable": true,
+      "current_source_differences": [
+        "packages/quds_office_engine/test/office_vba_word_named_measurements_integration_test.dart",
+        "packages/quds_office_engine/test/office_vba_word_named_measurements_test.dart"
+      ],
+      "receipt_sha256": "2b3f0548c6d47464036c1182996ae2acfeea2c2e7058ac092c6896061d945c55"
+    },
+    {
+      "receipt": "runtime/word-validation/measurements-driver-js-compile.json",
+      "name": "measurements-driver-js-compile",
+      "exit_code": 0,
+      "source_file_count": 412,
+      "recorded_sources_stable": true,
+      "current_source_differences": [
+        "packages/quds_office_engine/test/office_vba_word_named_measurements_integration_test.dart",
+        "packages/quds_office_engine/test/office_vba_word_named_measurements_test.dart"
+      ],
+      "receipt_sha256": "059c6c684af3d9dcbc417bb7ed2b01d3527f8af96080935c30367c57695136e0"
+    },
+    {
+      "receipt": "runtime/word-validation/measurements-driver-js-run.json",
+      "name": "measurements-driver-js-run",
+      "exit_code": 0,
+      "source_file_count": 412,
+      "recorded_sources_stable": true,
+      "current_source_differences": [
+        "packages/quds_office_engine/test/office_vba_word_named_measurements_integration_test.dart",
+        "packages/quds_office_engine/test/office_vba_word_named_measurements_test.dart"
+      ],
+      "receipt_sha256": "4a3a80371e0cbcc93d1b82e0a388609ef036eef0982e9ac53e89738c7cbd17f4"
+    },
+    {
+      "receipt": "runtime/word-validation/named_measurements-driver-vm.json",
+      "name": "named_measurements-driver-vm",
+      "exit_code": 0,
+      "source_file_count": 412,
+      "recorded_sources_stable": true,
+      "current_source_differences": [
+        "packages/quds_office_engine/test/office_vba_word_named_measurements_integration_test.dart",
+        "packages/quds_office_engine/test/office_vba_word_named_measurements_test.dart"
+      ],
+      "receipt_sha256": "fa9753b0b67eac0d97b46a1a3ecc646f8b5223469447764dcc2b9c2c5def5319"
+    },
+    {
+      "receipt": "runtime/word-validation/named_measurements-driver-js-compile.json",
+      "name": "named_measurements-driver-js-compile",
+      "exit_code": 0,
+      "source_file_count": 412,
+      "recorded_sources_stable": true,
+      "current_source_differences": [
+        "packages/quds_office_engine/test/office_vba_word_named_measurements_integration_test.dart",
+        "packages/quds_office_engine/test/office_vba_word_named_measurements_test.dart"
+      ],
+      "receipt_sha256": "0a19a3f63c4cce227a5f2a336bbe19517322478f13e80fa0548ef47750dff789"
+    },
+    {
+      "receipt": "runtime/word-validation/named_measurements-driver-js-run.json",
+      "name": "named_measurements-driver-js-run",
+      "exit_code": 0,
+      "source_file_count": 412,
+      "recorded_sources_stable": true,
+      "current_source_differences": [
+        "packages/quds_office_engine/test/office_vba_word_named_measurements_integration_test.dart",
+        "packages/quds_office_engine/test/office_vba_word_named_measurements_test.dart"
+      ],
+      "receipt_sha256": "5f7e068826efe126118c0aec799d9932173e5d5e72845e481b44c3f0e8b6bc26"
+    },
+    {
+      "receipt": "runtime/word-validation/word-analyze.json",
+      "name": "word-analyze",
+      "exit_code": 0,
+      "source_file_count": 412,
+      "recorded_sources_stable": true,
+      "current_source_differences": [
+        "packages/quds_office_engine/test/office_vba_word_named_measurements_integration_test.dart",
+        "packages/quds_office_engine/test/office_vba_word_named_measurements_test.dart"
+      ],
+      "receipt_sha256": "945fbc0ae44e952d44a91cdfa86d8ccd0061eb0fc995345d8fefc2c66cc14243"
+    },
+    {
+      "receipt": "runtime/word-validation/word-format-check.json",
+      "name": "word-format-check",
+      "exit_code": 0,
+      "source_file_count": 412,
+      "recorded_sources_stable": true,
+      "current_source_differences": [
+        "packages/quds_office_engine/test/office_vba_word_named_measurements_integration_test.dart",
+        "packages/quds_office_engine/test/office_vba_word_named_measurements_test.dart"
+      ],
+      "receipt_sha256": "2c583ae8ebb4667b1a8a4c9c35efab9ae6f7ecb6b3a69e6e1abf7103956c9a41"
+    },
+    {
+      "receipt": "runtime/word-validation/word-supplement-vm.json",
+      "name": "word-supplement-vm",
+      "exit_code": 0,
+      "source_file_count": 412,
+      "recorded_sources_stable": true,
+      "current_source_differences": [],
+      "receipt_sha256": "52a20c5760eb409fc087f4f61facd7530a2d2033a5c4d228d296937a90e2ff9f"
+    },
+    {
+      "receipt": "runtime/word-validation/word-supplement-node.json",
+      "name": "word-supplement-node",
+      "exit_code": 0,
+      "source_file_count": 412,
+      "recorded_sources_stable": true,
+      "current_source_differences": [],
+      "receipt_sha256": "492d3add647722bc6de72b0714b01f69711834a7ad2038c639c2717f85c10024"
+    },
+    {
+      "receipt": "runtime/word-validation/word-supplement-analyze.json",
+      "name": "word-supplement-analyze",
+      "exit_code": 0,
+      "source_file_count": 412,
+      "recorded_sources_stable": true,
+      "current_source_differences": [],
+      "receipt_sha256": "a28bb355e2ef380f797e4045e1e58f27eb69712c4664edbffbb9671586e7e8d8"
+    },
+    {
+      "receipt": "runtime/word-validation/word-supplement-format.json",
+      "name": "word-supplement-format",
+      "exit_code": 0,
+      "source_file_count": 412,
+      "recorded_sources_stable": true,
+      "current_source_differences": [],
+      "receipt_sha256": "8ae2d456a2cd6675e2b7c2771f9a19b1c4d35bca0b4b626a170aa66deccde644"
+    },
+    {
+      "receipt": "final-checks/receipt.json",
+      "name": "format",
+      "exit_code": 0,
+      "source_file_count": 43,
+      "recorded_sources_stable": true,
+      "current_source_differences": [],
+      "receipt_sha256": "9856a8e36de400c9a9cccc65984940426b5e7df014511445ea2d19896910b480"
+    },
+    {
+      "receipt": "final-checks/receipt.json",
+      "name": "source-whitespace",
+      "exit_code": 0,
+      "source_file_count": 43,
+      "recorded_sources_stable": true,
+      "current_source_differences": [],
+      "receipt_sha256": "9856a8e36de400c9a9cccc65984940426b5e7df014511445ea2d19896910b480"
+    },
+    {
+      "receipt": "final-checks/receipt.json",
+      "name": "intake-replay",
+      "exit_code": 0,
+      "source_file_count": 43,
+      "recorded_sources_stable": true,
+      "current_source_differences": [],
+      "receipt_sha256": "9856a8e36de400c9a9cccc65984940426b5e7df014511445ea2d19896910b480"
+    }
+  ],
+  "host_composition": {
+    "accepted_unique_cases": 374,
+    "unchanged_suites_passed": 338,
+    "corrected_provider_suite_passed": 36,
+    "original_run_exit_code": 1,
+    "original_failure": "Provider test suite failed to load because its newly used localized extension was not imported.",
+    "repair": {
+      "path": "packages/quds_office_editor/example/test/studio_mail_bulk_provider_test.dart",
+      "inserted_line": "import 'package:quds_office_studio/studio_mail_workspace_strings.dart';",
+      "before_sha256": "dc57d1b3ff03ac554837db8e8ab6dc91d1cecd237565033da64482b399b5da06",
+      "after_sha256": "5d147421a2b4c2b6d5c385c7857ded1d7593c8dcbdec93ea448baf1852c88f25",
+      "assertions_changed": false
+    },
+    "interpretation": "Six unchanged suites passed in the original mixed run; only the corrected provider suite was rerun. The original run remains failed."
+  },
+  "word_composition": {
+    "vm": 867,
+    "node": 725,
+    "original_vm": 853,
+    "original_node": 712,
+    "added_vm": 14,
+    "added_node": 13,
+    "additive_fixture_proof": [
+      {
+        "path": "packages/quds_office_engine/test/office_vba_word_named_measurements_test.dart",
+        "inserted_lines": 43,
+        "removed_lines": 0,
+        "before_sha256": "7a92932fa02799bc0d826b4210214abb2da591a9b3772234e8059ebec0141e82",
+        "after_sha256": "79c48eeb04c463ceda403c142ec4c0aab69f9336eaaa75b0df9fd186e9bcbb5c"
+      },
+      {
+        "path": "packages/quds_office_engine/test/office_vba_word_named_measurements_integration_test.dart",
+        "inserted_lines": 105,
+        "removed_lines": 0,
+        "before_sha256": "0f8b2ca17cb2ecca2ee26c93e356a0e53e689279d2c87ec5ec11f914e680ee0e",
+        "after_sha256": "b42fcd0ea4055ce24867ecaef23a298bd53160703f62c6e4c5bf9ae6c756d9d2"
+      }
+    ],
+    "interpretation": "Composed distinct executed cases, not single invocations of these totals. All previous test text, production code, examples and drivers are unchanged."
+  }
+}

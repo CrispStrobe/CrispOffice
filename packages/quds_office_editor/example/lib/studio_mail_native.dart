@@ -2,12 +2,14 @@ import 'dart:async';
 
 import 'package:enough_mail/enough_mail.dart' as mail;
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 import 'package:quds_mail_core/quds_mail_core.dart';
 import 'package:quds_mail_mime/quds_mail_mime.dart';
 import 'package:quds_mail_store/quds_mail_store.dart';
 import 'package:quds_mail_transport/quds_mail_transport.dart';
 import 'package:quds_mail_ui/quds_mail_ui.dart';
 
+import 'studio_chrome.dart';
 import 'studio_credential_settings.dart';
 import 'studio_credential_storage.dart';
 import 'studio_mail_archive_action.dart';
@@ -34,6 +36,7 @@ import 'studio_mail_outbox_dialog.dart';
 import 'studio_mail_outbox_strings.dart';
 import 'studio_mail_presets.dart';
 import 'studio_mail_reply.dart';
+import 'studio_mail_remote_images.dart';
 import 'studio_mail_strings.dart';
 import 'studio_mail_workspace_strings.dart';
 import 'studio_mail_submission.dart';
@@ -61,6 +64,7 @@ class StudioMailDialog extends StatefulWidget {
     this.archiveFolderWriter,
     this.draftStoreFactory,
     this.localAccountStore,
+    this.remoteImageClientFactory,
   });
 
   final StudioStrings strings;
@@ -76,6 +80,9 @@ class StudioMailDialog extends StatefulWidget {
   final StudioMailArchiveFolderWriter? archiveFolderWriter;
   final StudioMailDraftStoreFactory? draftStoreFactory;
   final StudioMailLocalAccountStore? localAccountStore;
+
+  /// Owns requests made only by the explicit remote-image action.
+  final http.Client Function()? remoteImageClientFactory;
 
   /// Creates a fresh client for each connection attempt. Tests use this seam
   /// to control network completions without contacting an external account.
@@ -93,7 +100,8 @@ class StudioMailDialog extends StatefulWidget {
   State<StudioMailDialog> createState() => _StudioMailDialogState();
 }
 
-class _StudioMailDialogState extends State<StudioMailDialog> {
+class _StudioMailDialogState extends State<StudioMailDialog>
+    with WidgetsBindingObserver {
   StudioMailLocalAccountStore? get _localAccounts =>
       widget.localAccountStore ??
       (widget.draftStoreFactory == null
@@ -134,6 +142,11 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
   bool _startTls = false;
   bool _hasSavedCredentials = false;
   bool _credentialPending = false;
+  bool _autoConnectScheduled = false;
+  bool _remoteImagesLoading = false;
+  bool _remoteImagesLoaded = false;
+  http.Client? _remoteImageClient;
+  MailReaderController? _remoteImageReader;
   int _settingsRevision = 0;
   int _credentialGeneration = 0;
 
@@ -172,6 +185,7 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addObserver(this);
     _credentials = widget.credentialStore ?? StudioMailCredentialStore();
     _accountCatalogStore = switch (_credentials) {
       StudioMailAccountCatalogStore store => store,
@@ -227,6 +241,33 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
         return;
       }
       _applyCredentials(saved);
+    });
+    _scheduleAutoConnect();
+  }
+
+  void _scheduleAutoConnect() {
+    if (widget.clientFactory != null ||
+        widget.messageLoaderFactory != null ||
+        _autoConnectScheduled ||
+        _client != null ||
+        _connecting ||
+        _busy ||
+        _email.text.trim().isEmpty ||
+        _password.text.isEmpty) {
+      return;
+    }
+    _autoConnectScheduled = true;
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted ||
+          _client != null ||
+          _connecting ||
+          _busy ||
+          _email.text.trim().isEmpty ||
+          _password.text.isEmpty) {
+        _autoConnectScheduled = false;
+        return;
+      }
+      unawaited(_connect());
     });
   }
 
@@ -301,6 +342,7 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
         if (saved != null) _applySavedAccount(saved);
       }
     });
+    _scheduleAutoConnect();
   }
 
   Future<void> _selectSavedAccount(String id) async {
@@ -533,7 +575,15 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
   }
 
   @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    // Keep the current mailbox and open message intact when the app returns
+    // from another desktop. An eager refresh cleared the reader before its
+    // network round-trip completed, which looked like a disconnect.
+  }
+
+  @override
   void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
     if (widget.credentialStore == null) {
       StudioCredentialStorage.instance.removeListener(
         _credentialStorageChanged,
@@ -548,6 +598,7 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
     _imapHost.dispose();
     _smtpHost.dispose();
     _primaryLogin.dispose();
+    _remoteImageClient?.close();
     _reader?.dispose();
     _messageLoader?.dispose();
     _pendingLoader?.dispose();
@@ -765,6 +816,12 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
 
   void _retireReader(MailReaderController? reader) {
     if (reader == null) return;
+    if (identical(reader, _remoteImageReader)) {
+      _remoteImageClient?.close();
+      _remoteImageClient = null;
+      _remoteImageReader = null;
+      _remoteImagesLoading = false;
+    }
     WidgetsBinding.instance.addPostFrameCallback((_) => reader.dispose());
   }
 
@@ -1159,6 +1216,7 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
           setState(() {
             _selected = message;
             _reader = reader;
+            _remoteImagesLoaded = false;
             _showCompactMessage = true;
           });
           _retireReader(previous);
@@ -1628,6 +1686,52 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
       }
     }
   });
+
+  Future<void> _loadRemoteImages() async {
+    final reader = _reader;
+    if (reader == null ||
+        _remoteImagesLoading ||
+        _remoteImagesLoaded ||
+        reader.presentation.remoteImageUris.isEmpty) {
+      return;
+    }
+    final generation = _sessionGeneration;
+    final client = widget.remoteImageClientFactory?.call() ?? http.Client();
+    _remoteImageClient = client;
+    _remoteImageReader = reader;
+    bool current() =>
+        mounted &&
+        generation == _sessionGeneration &&
+        identical(reader, _reader) &&
+        identical(client, _remoteImageClient);
+    setState(() {
+      _remoteImagesLoading = true;
+      _error = null;
+    });
+    try {
+      final usedPixels = reader.presentation.images.fold<int>(
+        0,
+        (total, image) => total + image.width * image.height,
+      );
+      final loaded = await loadStudioMailRemoteImages(
+        candidates: reader.presentation.remoteImageUris,
+        client: client,
+        isCurrent: current,
+        budget: reader.budget,
+        availablePixels: reader.budget.maxImagePixels - usedPixels,
+      );
+      if (!current()) return;
+      reader.addImages(loaded);
+      setState(() => _remoteImagesLoaded = true);
+    } finally {
+      client.close();
+      if (current()) {
+        setState(() => _remoteImagesLoading = false);
+        _remoteImageClient = null;
+        _remoteImageReader = null;
+      }
+    }
+  }
 
   Future<void> _reply() => _composeFromMessage(forward: false);
 
@@ -2306,7 +2410,7 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
           widget.chromeBuilder!(context)
         else if (Theme.of(context).platform == TargetPlatform.macOS)
           const SizedBox(height: 32),
-        _mailMenus(context),
+        _mailChrome(context),
         Expanded(
           child: RepaintBoundary(
             child: LayoutBuilder(
@@ -2402,171 +2506,184 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
     await _reloadSelectedCredentialStore();
   }
 
-  Widget _mailMenus(BuildContext context) => MenuBar(
-    style: MenuStyle(
-      backgroundColor: WidgetStatePropertyAll(
-        Theme.of(context).colorScheme.surface,
+  Widget _mailChrome(BuildContext context) {
+    final theme = Theme.of(context);
+    final Color foreground = theme.colorScheme.onSurface;
+    Widget command({
+      Key? key,
+      required IconData icon,
+      required String tooltip,
+      VoidCallback? onPressed,
+      bool selected = false,
+    }) => IconButton(
+      key: key,
+      tooltip: tooltip,
+      onPressed: onPressed,
+      visualDensity: VisualDensity.compact,
+      constraints: const BoxConstraints.tightFor(width: 38, height: 38),
+      iconSize: 19,
+      icon: Icon(
+        icon,
+        color: onPressed == null
+            ? theme.disabledColor
+            : selected
+            ? theme.colorScheme.primary
+            : foreground,
       ),
-    ),
-    children: [
-      SubmenuButton(
-        menuChildren: [
-          if (_hasCredentialSettings)
-            MenuItemButton(
-              onPressed: _canChangeCredentialStorage
-                  ? _openCredentialStorage
-                  : null,
-              child: const Text('Credential storage…'),
-            ),
-          MenuItemButton(
-            onPressed: () => setState(() {
-              _savedMessagesVisited = true;
-              _showSavedMessages = true;
-            }),
-            child: Text(widget.strings.savedMessages),
-          ),
-          MenuItemButton(
-            onPressed: () => Navigator.of(context).pop(),
-            child: Text(widget.strings.close),
-          ),
-        ],
-        child: const Text('File'),
-      ),
-      SubmenuButton(
-        menuChildren: [
-          MenuItemButton(
+    );
+    final groups = <StudioRibbonGroup>[
+      StudioRibbonGroup(
+        id: 'compose',
+        title: 'Compose',
+        children: <Widget>[
+          TextButton.icon(
+            key: const ValueKey('studio-mail-compose'),
             onPressed: _client == null || _busy ? null : _compose,
-            child: Text(widget.strings.compose),
-          ),
-          MenuItemButton(
-            onPressed: _busy || _mailbox == null
-                ? null
-                : () => _selectMailbox(_mailbox!),
-            child: Text(widget.strings.refresh),
-          ),
-          MenuItemButton(
-            onPressed: _client == null ? null : _disconnect,
-            child: Text(widget.strings.disconnect),
-          ),
-        ],
-        child: Text(widget.strings.mail),
-      ),
-      SubmenuButton(
-        menuChildren: [
-          MenuItemButton(
-            onPressed: () => setState(() => _showSavedMessages = false),
-            child: const Text('Accounts'),
-          ),
-          MenuItemButton(
-            onPressed: () => setState(() {
-              _savedMessagesVisited = true;
-              _showSavedMessages = true;
-            }),
-            child: Text(widget.strings.savedMessages),
-          ),
-        ],
-        child: const Text('View'),
-      ),
-    ],
-  );
-
-  Widget _accountView(
-    BuildContext context, {
-    required bool compact,
-  }) => Scaffold(
-    backgroundColor: Theme.of(context).colorScheme.surface,
-    appBar: AppBar(
-      backgroundColor: Theme.of(context).colorScheme.surfaceContainerHighest,
-      foregroundColor: Theme.of(context).colorScheme.onSurface,
-      surfaceTintColor: Colors.transparent,
-      automaticallyImplyLeading: false,
-      title: Text(widget.strings.mailTitle, overflow: TextOverflow.ellipsis),
-      actions: <Widget>[
-        if (_hasCredentialSettings)
-          IconButton(
-            key: const ValueKey('studio-mail-credential-storage'),
-            tooltip: 'Credential storage',
-            icon: const Icon(Icons.key),
-            onPressed: _canChangeCredentialStorage
-                ? _openCredentialStorage
-                : null,
-          ),
-        IconButton(
-          onPressed: _busy || _connecting
-              ? null
-              : () => setState(() {
-                  _savedMessagesVisited = true;
-                  _showSavedMessages = true;
-                }),
-          tooltip: widget.strings.savedMessages,
-          icon: const Icon(Icons.folder_open_outlined),
-        ),
-        if (_client != null) ...<Widget>[
-          if (compact)
-            IconButton(
-              onPressed: _busy ? null : _compose,
-              tooltip: widget.strings.compose,
-              icon: const Icon(Icons.edit_outlined),
-            )
-          else
-            TextButton.icon(
-              onPressed: _busy ? null : _compose,
-              icon: const Icon(Icons.edit_outlined),
-              label: Text(widget.strings.compose),
-            ),
-          IconButton(
-            key: const ValueKey('studio-mail-open-drafts'),
-            onPressed: _busy || _dialogOpen ? null : _openDrafts,
-            tooltip: widget.strings.mailDrafts,
-            icon: const Icon(Icons.drafts_outlined),
-          ),
-          IconButton(
-            key: const ValueKey('studio-mail-open-outbox'),
-            onPressed: _busy || _dialogOpen ? null : _openOutbox,
-            tooltip: widget.strings.mailOutbox,
-            icon: const Icon(Icons.outbox_outlined),
-          ),
-          IconButton(
-            onPressed: _busy || _mailbox == null
-                ? null
-                : () => _selectMailbox(_mailbox!),
-            tooltip: widget.strings.refresh,
-            icon: const Icon(Icons.refresh),
+            icon: const Icon(Icons.edit_outlined, size: 18),
+            label: Text(widget.strings.compose),
           ),
           if (_draft != null)
-            IconButton(
-              onPressed: _busy || _dialogOpen ? null : _discardDraft,
+            command(
+              icon: Icons.delete_outline,
               tooltip: widget.strings.mailDiscardDraft,
-              icon: const Icon(Icons.delete_outline),
+              onPressed: _busy || _dialogOpen ? null : _discardDraft,
             ),
+        ],
+      ),
+      StudioRibbonGroup(
+        id: 'mailbox',
+        title: 'Mailbox',
+        children: <Widget>[
+          command(
+            icon: Icons.refresh,
+            tooltip: widget.strings.refresh,
+            onPressed: _client != null && !_busy && _mailbox != null
+                ? () => _selectMailbox(_mailbox!)
+                : null,
+          ),
+          command(
+            key: const ValueKey('studio-mail-open-drafts'),
+            icon: Icons.drafts_outlined,
+            tooltip: widget.strings.mailDrafts,
+            onPressed: _client == null || _busy || _dialogOpen
+                ? null
+                : _openDrafts,
+          ),
+          command(
+            key: const ValueKey('studio-mail-open-outbox'),
+            icon: Icons.outbox_outlined,
+            tooltip: widget.strings.mailOutbox,
+            onPressed: _client == null || _busy || _dialogOpen
+                ? null
+                : _openOutbox,
+          ),
           if (_accountCatalogStore != null)
-            IconButton(
+            command(
               key: const ValueKey('studio-mail-switch-account'),
+              icon: Icons.switch_account_outlined,
+              tooltip: widget.strings.mailSwitchAccount,
               onPressed: _busy || _dialogOpen || _credentialPending
                   ? null
                   : _switchAccount,
-              tooltip: widget.strings.mailSwitchAccount,
-              icon: const Icon(Icons.switch_account_outlined),
             ),
-          IconButton(
-            onPressed: _disconnect,
+          command(
+            icon: Icons.logout,
             tooltip: widget.strings.disconnect,
-            icon: const Icon(Icons.logout),
+            onPressed: _client == null ? null : _disconnect,
           ),
         ],
-        const SizedBox(width: 8),
-        IconButton(
-          onPressed: () => Navigator.of(context).pop(),
-          tooltip: widget.strings.close,
-          icon: const Icon(Icons.close),
+      ),
+      StudioRibbonGroup(
+        id: 'view',
+        title: 'View',
+        children: <Widget>[
+          command(
+            key: const ValueKey('studio-mail-show-images'),
+            icon: _remoteImagesLoading
+                ? Icons.hourglass_top
+                : Icons.image_outlined,
+            tooltip: 'Show remote images',
+            onPressed:
+                _reader == null ||
+                    _remoteImagesLoaded ||
+                    _remoteImagesLoading ||
+                    _reader!.presentation.remoteImageUris.isEmpty
+                ? null
+                : _loadRemoteImages,
+          ),
+          command(
+            key: const ValueKey('studio-mail-saved-messages'),
+            icon: Icons.folder_open_outlined,
+            tooltip: widget.strings.savedMessages,
+            selected: _showSavedMessages,
+            onPressed: _busy || _connecting
+                ? null
+                : () => setState(() {
+                    _savedMessagesVisited = true;
+                    _showSavedMessages = true;
+                  }),
+          ),
+          if (_hasCredentialSettings)
+            command(
+              key: const ValueKey('studio-mail-credential-storage'),
+              icon: Icons.key,
+              tooltip: 'Credential storage',
+              onPressed: _canChangeCredentialStorage
+                  ? _openCredentialStorage
+                  : null,
+            ),
+          command(
+            icon: Icons.close,
+            tooltip: widget.strings.close,
+            onPressed: () => Navigator.of(context).maybePop(),
+          ),
+        ],
+      ),
+    ];
+    return StudioRibbonStyle(
+      compact: false,
+      showCommandLabels: false,
+      showGroupLabels: true,
+      child: Material(
+        color: theme.colorScheme.surface,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            Container(
+              height: 38,
+              padding: const EdgeInsetsDirectional.only(start: 8),
+              alignment: AlignmentDirectional.centerStart,
+              decoration: BoxDecoration(
+                border: Border(
+                  bottom: BorderSide(color: theme.colorScheme.outlineVariant),
+                ),
+              ),
+              child: StudioTabChip(
+                label: 'Home',
+                selected: true,
+                accent: theme.colorScheme.primary,
+                onTap: () {},
+              ),
+            ),
+            SizedBox(
+              height: StudioRibbonStrip.preferredHeight(
+                context,
+                compact: false,
+                showCommandLabels: false,
+                showGroupLabels: true,
+              ),
+              child: StudioRibbonStrip(groups: groups),
+            ),
+          ],
         ),
-        const SizedBox(width: 8),
-      ],
-    ),
-    body: _client == null
-        ? _accountSetup(context)
-        : _inbox(context, compact: compact),
-  );
+      ),
+    );
+  }
+
+  Widget _accountView(BuildContext context, {required bool compact}) =>
+      _client == null
+      ? _accountSetup(context)
+      : _inbox(context, compact: compact);
 
   Widget _accountSetup(BuildContext context) => Center(
     child: SingleChildScrollView(
@@ -3049,15 +3166,16 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
                   },
           ),
         ),
-        Align(
-          alignment: AlignmentDirectional.centerStart,
-          child: TextButton.icon(
-            key: const ValueKey('studio-mail-new-account'),
-            onPressed: _connecting || _credentialPending ? null : _newAccount,
-            icon: const Icon(Icons.person_add_alt_outlined),
-            label: Text(widget.strings.mailNewAccount),
+        if (_selectedSavedAccountId != null)
+          Align(
+            alignment: AlignmentDirectional.centerStart,
+            child: TextButton.icon(
+              key: const ValueKey('studio-mail-new-account'),
+              onPressed: _connecting || _credentialPending ? null : _newAccount,
+              icon: const Icon(Icons.person_add_alt_outlined),
+              label: Text(widget.strings.mailNewAccount),
+            ),
           ),
-        ),
         Text(
           widget.strings.mailSavedAccountsHelp,
           style: Theme.of(context).textTheme.bodySmall,

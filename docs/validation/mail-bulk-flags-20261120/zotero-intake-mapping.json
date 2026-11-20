@@ -1,0 +1,39 @@
+{
+  "incoming_commit": "835b8019cbb873c72424e63d4df292174edd3c3e",
+  "retained_source": "bfe915a0c",
+  "reason": "Consolidate opposite naming schemes for the same independent positional and named Word suites; preserve positional suite under measurements and named suite under named_measurements.",
+  "records": [
+    {
+      "incoming_path": "packages/quds_office_engine/example/macros/word_measurements_positional.bas",
+      "retained_path": "packages/quds_office_engine/example/macros/word_measurements.bas",
+      "incoming_blob": "01834ab0fb95c43a4ff4a19e1c3bd7a9e554c2c5",
+      "retained_blob": "01834ab0fb95c43a4ff4a19e1c3bd7a9e554c2c5",
+      "proof": "identical blob",
+      "retained_sha256": "dd62cd308c0517ef34ffc7567ffcfa102bc17b7d408b1acfd00ed77e237c0fbd"
+    },
+    {
+      "incoming_path": "packages/quds_office_engine/test/office_vba_word_measurements_positional_test.dart",
+      "retained_path": "packages/quds_office_engine/test/office_vba_word_measurements_test.dart",
+      "incoming_blob": "eb78cf4e18994c001f2785d0dd9d1f8abbccc3b3",
+      "retained_blob": "eb78cf4e18994c001f2785d0dd9d1f8abbccc3b3",
+      "proof": "identical blob",
+      "retained_sha256": "45768d1287088a69950fe956cd0c96f776212de2c60bbe56724fcece0c10b25f"
+    },
+    {
+      "incoming_path": "packages/quds_office_engine/test/office_vba_word_measurements_positional_integration_test.dart",
+      "retained_path": "packages/quds_office_engine/test/office_vba_word_measurements_integration_test.dart",
+      "incoming_blob": "1fedccd86989692db7d8e58edc7e6e57c65b2bc9",
+      "retained_blob": "6c46344b5cb05a13b7ff4a5e79cccd0502602d50",
+      "proof": "identical after exact driver import/example filename substitution and import line wrapping",
+      "retained_sha256": "3113c470dfc7784a9fec8fe9a9634db633f134985fbb38c3c835ab0f4773dfdc"
+    },
+    {
+      "incoming_path": "packages/quds_office_engine/tool/macros/web_vba_word_measurements_positional_smoke.dart",
+      "retained_path": "packages/quds_office_engine/tool/macros/web_vba_word_measurements_smoke.dart",
+      "incoming_blob": "bd5707ab5cc784b7e7bbade7aaa7e42f2bf5b312",
+      "retained_blob": "bd5707ab5cc784b7e7bbade7aaa7e42f2bf5b312",
+      "proof": "identical blob",
+      "retained_sha256": "d14f4aae6ac8f2f8efeea50d981c6fac4a4444ee318b86c70a520d182fd7a362"
+    }
+  ]
+}

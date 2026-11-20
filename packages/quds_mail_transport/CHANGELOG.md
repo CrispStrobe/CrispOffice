@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- Keep foreground mutation certainty separate from submission rejection policy.
+  Unfamiliar apply failures and HTTP 410 remain uncertain; explicit send client
+  rejections retain their existing unsent/retry guidance without automatic retry.
 - Treat dispatched timeouts and unfamiliar client-error responses as uncertain;
   explicit request, authorization, resource, precondition and documented rate
   limit rejections certify no mutation. Preserve rate-limit retry guidance while
