@@ -1,0 +1,3936 @@
+[
+  {
+    "id": 9,
+    "name": "competing pages cannot overwrite a concurrently advanced cursor",
+    "suite_id": 0,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 11,
+    "name": "manifest byte boundary: 0 originals, Unicode: false",
+    "suite_id": 4,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 15,
+    "name": "manifest byte boundary: 0 originals, Unicode: true",
+    "suite_id": 4,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 16,
+    "name": "manifest byte boundary: 1 originals, Unicode: false",
+    "suite_id": 4,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 14,
+    "name": "lease invalidated after cursor write rolls back the complete page",
+    "suite_id": 0,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 17,
+    "name": "manifest byte boundary: 1 originals, Unicode: true",
+    "suite_id": 4,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 19,
+    "name": "manifest byte boundary: 3 originals, Unicode: false",
+    "suite_id": 4,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 20,
+    "name": "manifest byte boundary: 3 originals, Unicode: true",
+    "suite_id": 4,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 13,
+    "name": "empty root has one inspected entry and an explicit completion",
+    "suite_id": 2,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 18,
+    "name": "rolled back notifications never reach repository observers",
+    "suite_id": 0,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 25,
+    "name": "files carry exact independent portable folder provenance",
+    "suite_id": 2,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 27,
+    "name": "unsupported files are visible and do not stop supported files",
+    "suite_id": 2,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 28,
+    "name": "export staging is explicitly skipped without importing partial EML",
+    "suite_id": 2,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 26,
+    "name": "UID validity reset preserves pending intent and its cached evidence",
+    "suite_id": 0,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 29,
+    "name": "directly selected export staging is rejected as a root",
+    "suite_id": 2,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 30,
+    "name": "a tombstone removes only its label membership",
+    "suite_id": 0,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 31,
+    "name": "ordinary pending directories without a manifest remain user input",
+    "suite_id": 2,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 33,
+    "name": "export marker applies only to pending directories in its own parent",
+    "suite_id": 2,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 24,
+    "name": "bulk export preserves exact originals and frozen provenance",
+    "suite_id": 6,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 32,
+    "name": "cache eviction preserves draft, outbox and active-editor byte owners",
+    "suite_id": 0,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 34,
+    "name": "a directory named manifest.json is not an export marker",
+    "suite_id": 2,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 37,
+    "name": "nonrecursive mode explicitly skips child directories",
+    "suite_id": 2,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 36,
+    "name": "frozen outbox payload and uncertain state cannot be replaced through restore",
+    "suite_id": 0,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 38,
+    "name": "depth cap rejects a subtree and preserves allowed siblings",
+    "suite_id": 2,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 40,
+    "name": "open iterator budget is checked before descending",
+    "suite_id": 2,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 35,
+    "name": "cancel after publication reports it and resume verifies before skipping",
+    "suite_id": 6,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 42,
+    "name": "pre-cancelled export leaves no destination or source load",
+    "suite_id": 6,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 41,
+    "name": "entry budget counts root, unsupported files and directories",
+    "suite_id": 2,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 39,
+    "name": "an older attempt identity cannot be reused after a newer retry",
+    "suite_id": 0,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 44,
+    "name": "exact entry budget can still report a fully scanned directory",
+    "suite_id": 2,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 45,
+    "name": "failed draft replacement retains its old revision and every old blob",
+    "suite_id": 0,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 46,
+    "name": "file cap stops before accepting an excess file",
+    "suite_id": 2,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 43,
+    "name": "source failure keeps successful originals and retry restores the gap",
+    "suite_id": 6,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 48,
+    "name": "zero file cap is a valid empty acceptance budget",
+    "suite_id": 2,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 49,
+    "name": "loader cannot substitute different bytes for the frozen original",
+    "suite_id": 6,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 50,
+    "name": "oversized EML is visible while MBOX remains streamable",
+    "suite_id": 2,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 52,
+    "name": "aggregate byte budget stops without accepting oversized MBOX",
+    "suite_id": 2,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 53,
+    "name": "aggregate byte budget accepts an exact boundary",
+    "suite_id": 2,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 51,
+    "name": "resume refuses changed EML (same length: false) without overwrite",
+    "suite_id": 6,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 54,
+    "name": "zero byte budgets accept only an empty supported file",
+    "suite_id": 2,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 58,
+    "name": "path budget rejects metadata before constructing a child path",
+    "suite_id": 2,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 47,
+    "name": "durable recovery rolls back on failure and remains uncertain after reopening",
+    "suite_id": 0,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 59,
+    "name": "root path budget fails before a walk starts",
+    "suite_id": 2,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 55,
+    "name": "resume refuses changed EML (same length: true) without overwrite",
+    "suite_id": 6,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 61,
+    "name": "root component budget fails before ancestor checks",
+    "suite_id": 2,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 63,
+    "name": "invalid entries limit produces a sanitized terminal error",
+    "suite_id": 2,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 64,
+    "name": "invalid files limit produces a sanitized terminal error",
+    "suite_id": 2,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 65,
+    "name": "invalid depth limit produces a sanitized terminal error",
+    "suite_id": 2,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 66,
+    "name": "invalid iterators limit produces a sanitized terminal error",
+    "suite_id": 2,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 67,
+    "name": "invalid total bytes limit produces a sanitized terminal error",
+    "suite_id": 2,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 68,
+    "name": "invalid EML bytes limit produces a sanitized terminal error",
+    "suite_id": 2,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 69,
+    "name": "invalid path limit produces a sanitized terminal error",
+    "suite_id": 2,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 70,
+    "name": "invalid root components limit produces a sanitized terminal error",
+    "suite_id": 2,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 62,
+    "name": "observed EML symlink is rejected and its target is untouched",
+    "suite_id": 6,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 71,
+    "name": "cancelled token performs no filesystem inspection",
+    "suite_id": 2,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 60,
+    "name": "a corrupt persisted blob is rejected instead of silently served",
+    "suite_id": 0,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 73,
+    "name": "mid-walk cancellation preserves the accepted counters",
+    "suite_id": 2,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 75,
+    "name": "consumer cancellation releases open directory iterators",
+    "suite_id": 2,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 72,
+    "name": "resume rejects a manifest.json symlink before opening it",
+    "suite_id": 6,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 76,
+    "name": "disappearing directories produce explicit errors without raw paths",
+    "suite_id": 2,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 78,
+    "name": "missing root and file roots have typed terminal errors",
+    "suite_id": 2,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 79,
+    "name": "traversal root components are rejected before normalization",
+    "suite_id": 2,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 80,
+    "name": "invalid root control metadata is not exposed by the result",
+    "suite_id": 2,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 77,
+    "name": "resume rejects a .export-owner.sqlite3 symlink before opening it",
+    "suite_id": 6,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 74,
+    "name": "identical profile labels cannot open another host database",
+    "suite_id": 0,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 81,
+    "name": "a symlink named manifest.json is not followed as an export marker",
+    "suite_id": 2,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 82,
+    "name": "resume rejects a .export-owner.sqlite3-journal symlink before opening it",
+    "suite_id": 6,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 84,
+    "name": "links to files, directories and missing targets are never followed",
+    "suite_id": 2,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 86,
+    "name": "a selected root link is rejected",
+    "suite_id": 2,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 87,
+    "name": "a link in a selected root ancestor is rejected",
+    "suite_id": 2,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 85,
+    "name": "resume rejects a symlink selected as the export directory",
+    "suite_id": 6,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 88,
+    "name": "directory replacement by a link is caught before traversal",
+    "suite_id": 2,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 83,
+    "name": "profile removal can resume outstanding vault cleanup after reopening",
+    "suite_id": 0,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 89,
+    "name": "foreign archive profile cannot start or resume this export",
+    "suite_id": 6,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 91,
+    "name": "oversized provider identity is rejected before writing its cursor",
+    "suite_id": 0,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 90,
+    "name": "backslash and control names are rejected without metadata rewriting",
+    "suite_id": 2,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 92,
+    "name": "observer exceptions are counted without affecting exported originals",
+    "suite_id": 6,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 93,
+    "name": "tombstone-only pages consume account quota and roll back their cursor",
+    "suite_id": 0,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 94,
+    "name": "named pipes are skipped without opening or reading them",
+    "suite_id": 2,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 95,
+    "name": "overlapping exporters reject the same directory and release ownership",
+    "suite_id": 6,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 96,
+    "name": "foreign-profile logout is a typed rejection without invalidating either session",
+    "suite_id": 0,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 99,
+    "name": "bounded failures keep truthful totals without message identifiers",
+    "suite_id": 6,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 57,
+    "name": "plans all filtered results, ignoring pagination and preserving sort",
+    "suite_id": 21,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 102,
+    "name": "empty selection exports a valid manifest and resumes without loading",
+    "suite_id": 6,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 104,
+    "name": "manifest mutation during export prevents a completed result",
+    "suite_id": 6,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 103,
+    "name": "captures every origin of each selected original without duplicating bytes",
+    "suite_id": 21,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 105,
+    "name": "replacing the export directory during a load is detected",
+    "suite_id": 6,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 106,
+    "name": "empty match is an explicit zero-message plan",
+    "suite_id": 21,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 108,
+    "name": "strict bounded manifest plan and item lists are immutable snapshots",
+    "suite_id": 6,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 110,
+    "name": "strict bounded manifest changed digest is refused",
+    "suite_id": 6,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 109,
+    "name": "uses the same structured date, size and descendant filters as search",
+    "suite_id": 21,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 111,
+    "name": "strict bounded manifest unknown version and extra envelope keys are rejected",
+    "suite_id": 6,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 112,
+    "name": "refuses invalid queries and invalid bounds",
+    "suite_id": 21,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 113,
+    "name": "strict bounded manifest unsafe identity is rejected: ../outside",
+    "suite_id": 6,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 115,
+    "name": "strict bounded manifest unsafe identity is rejected: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "suite_id": 6,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 116,
+    "name": "strict bounded manifest unsafe identity is rejected: AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+    "suite_id": 6,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 114,
+    "name": "enforces message count, individual and aggregate byte limits before originals load",
+    "suite_id": 21,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 117,
+    "name": "strict bounded manifest unsafe identity is rejected: gggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg",
+    "suite_id": 6,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 119,
+    "name": "strict bounded manifest invalid provenance folder is rejected: \"relative\"",
+    "suite_id": 6,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 120,
+    "name": "strict bounded manifest invalid provenance folder is rejected: \"/../outside\"",
+    "suite_id": 6,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 121,
+    "name": "strict bounded manifest invalid provenance folder is rejected: \"/one//two\"",
+    "suite_id": 6,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 118,
+    "name": "bounds provenance count and encoded manifest allocation",
+    "suite_id": 21,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 122,
+    "name": "strict bounded manifest invalid provenance folder is rejected: \"/one\\\\two\"",
+    "suite_id": 6,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 124,
+    "name": "strict bounded manifest invalid provenance folder is rejected: \"/bad\\u0000path\"",
+    "suite_id": 6,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 125,
+    "name": "strict bounded manifest duplicate original identities and origins are rejected",
+    "suite_id": 6,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 126,
+    "name": "strict bounded manifest message, item, origin, aggregate and encoded limits are enforced",
+    "suite_id": 6,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 127,
+    "name": "strict bounded manifest preflight bounds shallow {} values before JSON allocation",
+    "suite_id": 6,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 128,
+    "name": "strict bounded manifest preflight bounds shallow [] values before JSON allocation",
+    "suite_id": 6,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 123,
+    "name": "accepts a plan at its exact encoded manifest byte limit",
+    "suite_id": 21,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 129,
+    "name": "strict bounded manifest preflight bounds shallow 0 values before JSON allocation",
+    "suite_id": 6,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 131,
+    "name": "strict bounded manifest preflight bounds shallow \"\" values before JSON allocation",
+    "suite_id": 6,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 132,
+    "name": "strict bounded manifest preflight bounds shallow true values before JSON allocation",
+    "suite_id": 6,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 133,
+    "name": "strict bounded manifest preflight bounds shallow null values before JSON allocation",
+    "suite_id": 6,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 134,
+    "name": "strict bounded manifest preflight permits the exact legitimate message and origin budgets",
+    "suite_id": 6,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 130,
+    "name": "cancelled plans leave originals and provenance unchanged",
+    "suite_id": 21,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 135,
+    "name": "strict bounded manifest preflight accepts the longest folder written with Unicode escapes",
+    "suite_id": 6,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 137,
+    "name": "strict bounded manifest preflight bounds an oversized unterminated string before decoding",
+    "suite_id": 6,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 138,
+    "name": "strict bounded manifest preflight bounds UTF-8 bytes without materializing an encoding",
+    "suite_id": 6,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 139,
+    "name": "strict bounded manifest invalid configuration and deep or malformed JSON are rejected",
+    "suite_id": 6,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 136,
+    "name": "missing or unsafe persisted provenance cannot enter a portable plan",
+    "suite_id": 21,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 141,
+    "name": "preflights NUL-containing oversized persisted metadata before hydration",
+    "suite_id": 21,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 142,
+    "name": "refuses corrupt raw lengths without exporting partial originals",
+    "suite_id": 21,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 140,
+    "name": "strict bounded manifest oversized file is rejected before manifest materialization",
+    "suite_id": 6,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 143,
+    "name": "closed archive cannot create a new export plan",
+    "suite_id": 21,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 148,
+    "name": "multi-origin write is one original and one index with exact provenance count",
+    "suite_id": 97,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 151,
+    "name": "normalized repeated origins coalesce without overcounting",
+    "suite_id": 97,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 152,
+    "name": "invalid later origin rejects the entire new message",
+    "suite_id": 97,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 153,
+    "name": "empty provenance is rejected without an orphan original",
+    "suite_id": 97,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 154,
+    "name": "commit fault rolls back original, all origins and FTS content",
+    "suite_id": 97,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 155,
+    "name": "late cancellation rolls back every new origin on an existing original",
+    "suite_id": 97,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 156,
+    "name": "global origin quota rolls back additions on existing content",
+    "suite_id": 97,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 157,
+    "name": "origin list is copied before asynchronous storage can observe caller edits",
+    "suite_id": 97,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 158,
+    "name": "single-origin API retains legacy result semantics",
+    "suite_id": 97,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 163,
+    "name": "archive query grammar and limits blank search compiles to all archived rows",
+    "suite_id": 145,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 164,
+    "name": "archive query grammar and limits query arguments are immutable and never copied into SQL",
+    "suite_id": 145,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 165,
+    "name": "archive query grammar and limits uppercase operators differ from lowercase literal terms",
+    "suite_id": 145,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 166,
+    "name": "archive query grammar and limits field aliases map only to the declared archive index columns",
+    "suite_id": 145,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 167,
+    "name": "archive query grammar and limits escaped quotes and backslashes remain bound FTS literals",
+    "suite_id": 145,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 168,
+    "name": "archive query grammar and limits prefix asterisk is outside the safely quoted FTS literal",
+    "suite_id": 145,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 169,
+    "name": "archive query grammar and limits exact length and term limits are accepted",
+    "suite_id": 145,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 170,
+    "name": "archive query grammar and limits one excess UTF-16 code unit has a bounded typed error",
+    "suite_id": 145,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 171,
+    "name": "archive query grammar and limits one excess term is rejected before SQL execution",
+    "suite_id": 145,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 172,
+    "name": "archive query grammar and limits negation, parentheses and alternative nesting share a depth budget",
+    "suite_id": 145,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 150,
+    "name": "native restart preserves binary MIME, Unicode headers and provenance",
+    "suite_id": 100,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 173,
+    "name": "archive query grammar and limits invalid or unbounded caller limits fail safely",
+    "suite_id": 145,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 175,
+    "name": "archive query grammar and limits invalid syntax case 1 returns MailArchiveQueryError.unknownField",
+    "suite_id": 145,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 176,
+    "name": "archive query grammar and limits invalid syntax case 2 returns MailArchiveQueryError.missingValue",
+    "suite_id": 145,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 177,
+    "name": "archive query grammar and limits invalid syntax case 3 returns MailArchiveQueryError.missingValue",
+    "suite_id": 145,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 178,
+    "name": "archive query grammar and limits invalid syntax case 4 returns MailArchiveQueryError.missingValue",
+    "suite_id": 145,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 179,
+    "name": "archive query grammar and limits invalid syntax case 5 returns MailArchiveQueryError.unclosedQuote",
+    "suite_id": 145,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 180,
+    "name": "archive query grammar and limits invalid syntax case 6 returns MailArchiveQueryError.unclosedGroup",
+    "suite_id": 145,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 181,
+    "name": "archive query grammar and limits invalid syntax case 7 returns MailArchiveQueryError.unclosedGroup",
+    "suite_id": 145,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 182,
+    "name": "archive query grammar and limits invalid syntax case 8 returns MailArchiveQueryError.unexpectedToken",
+    "suite_id": 145,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 183,
+    "name": "archive query grammar and limits invalid syntax case 9 returns MailArchiveQueryError.unexpectedToken",
+    "suite_id": 145,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 184,
+    "name": "archive query grammar and limits invalid syntax case 10 returns MailArchiveQueryError.unexpectedToken",
+    "suite_id": 145,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 185,
+    "name": "archive query grammar and limits invalid syntax case 11 returns MailArchiveQueryError.unexpectedToken",
+    "suite_id": 145,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 186,
+    "name": "archive query grammar and limits invalid syntax case 12 returns MailArchiveQueryError.unexpectedToken",
+    "suite_id": 145,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 187,
+    "name": "archive query grammar and limits invalid syntax case 13 returns MailArchiveQueryError.unexpectedToken",
+    "suite_id": 145,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 188,
+    "name": "archive query grammar and limits invalid syntax case 14 returns MailArchiveQueryError.unexpectedToken",
+    "suite_id": 145,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 189,
+    "name": "archive query grammar and limits invalid syntax case 15 returns MailArchiveQueryError.unexpectedToken",
+    "suite_id": 145,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 190,
+    "name": "archive query grammar and limits invalid syntax case 16 returns MailArchiveQueryError.unexpectedToken",
+    "suite_id": 145,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 191,
+    "name": "archive query grammar and limits invalid syntax case 17 returns MailArchiveQueryError.unexpectedToken",
+    "suite_id": 145,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 192,
+    "name": "archive query grammar and limits invalid syntax case 18 returns MailArchiveQueryError.unexpectedToken",
+    "suite_id": 145,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 193,
+    "name": "archive query grammar and limits invalid syntax case 19 returns MailArchiveQueryError.unexpectedToken",
+    "suite_id": 145,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 194,
+    "name": "archive query grammar and limits invalid syntax case 20 returns MailArchiveQueryError.unexpectedToken",
+    "suite_id": 145,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 174,
+    "name": "exclusive native owner rejects peers and is released by idempotent close",
+    "suite_id": 100,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 195,
+    "name": "archive query grammar and limits invalid syntax case 21 returns MailArchiveQueryError.unsupportedWildcard",
+    "suite_id": 145,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 197,
+    "name": "archive query grammar and limits invalid syntax case 22 returns MailArchiveQueryError.unsupportedWildcard",
+    "suite_id": 145,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 198,
+    "name": "archive query grammar and limits invalid syntax case 23 returns MailArchiveQueryError.unsupportedWildcard",
+    "suite_id": 145,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 199,
+    "name": "archive query grammar and limits invalid syntax case 24 returns MailArchiveQueryError.unsupportedWildcard",
+    "suite_id": 145,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 200,
+    "name": "archive query grammar and limits invalid syntax case 25 returns MailArchiveQueryError.unsupportedWildcard",
+    "suite_id": 145,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 201,
+    "name": "archive query grammar and limits invalid syntax case 26 returns MailArchiveQueryError.unsupportedWildcard",
+    "suite_id": 145,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 202,
+    "name": "archive query grammar and limits invalid syntax case 27 returns MailArchiveQueryError.emptyTerm",
+    "suite_id": 145,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 203,
+    "name": "archive query grammar and limits invalid syntax case 28 returns MailArchiveQueryError.emptyTerm",
+    "suite_id": 145,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 204,
+    "name": "archive query grammar and limits invalid syntax case 29 returns MailArchiveQueryError.emptyTerm",
+    "suite_id": 145,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 205,
+    "name": "archive query grammar and limits invalid syntax case 30 returns MailArchiveQueryError.emptyTerm",
+    "suite_id": 145,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 206,
+    "name": "archive query grammar and limits invalid syntax case 31 returns MailArchiveQueryError.emptyTerm",
+    "suite_id": 145,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 207,
+    "name": "archive query grammar and limits invalid syntax case 32 returns MailArchiveQueryError.invalidEscape",
+    "suite_id": 145,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 208,
+    "name": "archive query grammar and limits invalid syntax case 33 returns MailArchiveQueryError.invalidCharacter",
+    "suite_id": 145,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 209,
+    "name": "archive query grammar and limits invalid syntax case 34 returns MailArchiveQueryError.invalidCharacter",
+    "suite_id": 145,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 210,
+    "name": "archive query grammar and limits invalid syntax case 35 returns MailArchiveQueryError.invalidCharacter",
+    "suite_id": 145,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 211,
+    "name": "archive query grammar and limits errors never reveal query contents through their diagnostic",
+    "suite_id": 145,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 196,
+    "name": "native close keeps ownership until the accepted transaction finishes",
+    "suite_id": 100,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 213,
+    "name": "archive query against real SQLite FTS5 semantic search case 1: ",
+    "suite_id": 145,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 215,
+    "name": "archive query against real SQLite FTS5 semantic search case 2: invoice",
+    "suite_id": 145,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 216,
+    "name": "archive query against real SQLite FTS5 semantic search case 3: subject:invoice",
+    "suite_id": 145,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 217,
+    "name": "archive query against real SQLite FTS5 semantic search case 4: SUBJECT:invoice",
+    "suite_id": 145,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 218,
+    "name": "archive query against real SQLite FTS5 semantic search case 5: from:alice",
+    "suite_id": 145,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 219,
+    "name": "archive query against real SQLite FTS5 semantic search case 6: to:alice",
+    "suite_id": 145,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 220,
+    "name": "archive query against real SQLite FTS5 semantic search case 7: cc:finance",
+    "suite_id": 145,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 221,
+    "name": "archive query against real SQLite FTS5 semantic search case 8: bcc:hidden",
+    "suite_id": 145,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 222,
+    "name": "archive query against real SQLite FTS5 semantic search case 9: bcc:hidden2",
+    "suite_id": 145,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 223,
+    "name": "archive query against real SQLite FTS5 semantic search case 10: bcontent:invoice",
+    "suite_id": 145,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 224,
+    "name": "archive query against real SQLite FTS5 semantic search case 11: acontent:confidential",
+    "suite_id": 145,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 225,
+    "name": "archive query against real SQLite FTS5 semantic search case 12: attachment:report.txt",
+    "suite_id": 145,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 226,
+    "name": "archive query against real SQLite FTS5 semantic search case 13: attachment:confidential",
+    "suite_id": 145,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 227,
+    "name": "archive query against real SQLite FTS5 semantic search case 14: acontent:report.txt",
+    "suite_id": 145,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 228,
+    "name": "archive query against real SQLite FTS5 semantic search case 15: from:\"alice@example.test\"",
+    "suite_id": 145,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 229,
+    "name": "archive query against real SQLite FTS5 semantic search case 16: subject:\"quarterly invoice\"",
+    "suite_id": 145,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 230,
+    "name": "archive query against real SQLite FTS5 semantic search case 17: \"quick brown fox\"",
+    "suite_id": 145,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 231,
+    "name": "archive query against real SQLite FTS5 semantic search case 18: quick fox",
+    "suite_id": 145,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 232,
+    "name": "archive query against real SQLite FTS5 semantic search case 19: quick AND fox",
+    "suite_id": 145,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 214,
+    "name": "future native schema is refused without alteration or a leaked owner",
+    "suite_id": 100,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 233,
+    "name": "archive query against real SQLite FTS5 semantic search case 20: subject:invo*",
+    "suite_id": 145,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 235,
+    "name": "archive query against real SQLite FTS5 semantic search case 21: bcontent:pay*",
+    "suite_id": 145,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 236,
+    "name": "archive query against real SQLite FTS5 semantic search case 22: -invoice",
+    "suite_id": 145,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 237,
+    "name": "archive query against real SQLite FTS5 semantic search case 23: NOT invoice",
+    "suite_id": 145,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 238,
+    "name": "archive query against real SQLite FTS5 semantic search case 24: -bcc:hidden",
+    "suite_id": 145,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 239,
+    "name": "archive query against real SQLite FTS5 semantic search case 25: invoice -subject:invoice",
+    "suite_id": 145,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 240,
+    "name": "archive query against real SQLite FTS5 semantic search case 26: subject:invoice OR subject:Support",
+    "suite_id": 145,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 241,
+    "name": "archive query against real SQLite FTS5 semantic search case 27: subject:invoice OR subject:Support bcontent:absent",
+    "suite_id": 145,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 242,
+    "name": "archive query against real SQLite FTS5 semantic search case 28: (subject:invoice OR subject:Support) bcontent:absent",
+    "suite_id": 145,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 243,
+    "name": "archive query against real SQLite FTS5 semantic search case 29: -[subject:invoice subject:Support]",
+    "suite_id": 145,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 244,
+    "name": "archive query against real SQLite FTS5 semantic search case 30: [subject:invoice subject:Support]",
+    "suite_id": 145,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 245,
+    "name": "archive query against real SQLite FTS5 semantic search case 31: [subject:invoice OR subject:Support] -bcontent:overdue",
+    "suite_id": 145,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 246,
+    "name": "archive query against real SQLite FTS5 semantic search case 32: [(Project alpha) (quick brown)]",
+    "suite_id": 145,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 247,
+    "name": "archive query against real SQLite FTS5 semantic search case 33: NOT (invoice OR forecast)",
+    "suite_id": 145,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 248,
+    "name": "archive query against real SQLite FTS5 semantic search case 34: --invoice",
+    "suite_id": 145,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 249,
+    "name": "archive query against real SQLite FTS5 semantic search case 35: cafe resume",
+    "suite_id": 145,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 250,
+    "name": "archive query against real SQLite FTS5 semantic search case 36: \"OR\"",
+    "suite_id": 145,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 251,
+    "name": "archive query against real SQLite FTS5 semantic search case 37: or",
+    "suite_id": 145,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 252,
+    "name": "archive query against real SQLite FTS5 semantic search case 38: subject:العقد",
+    "suite_id": 145,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 253,
+    "name": "archive query against real SQLite FTS5 semantic search case 39: bcontent:الفاتورة",
+    "suite_id": 145,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 254,
+    "name": "archive query against real SQLite FTS5 semantic search case 40: attachment:اتفاق",
+    "suite_id": 145,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 255,
+    "name": "archive query against real SQLite FTS5 semantic search case 41: acontent:العربية",
+    "suite_id": 145,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 256,
+    "name": "archive query against real SQLite FTS5 semantic search case 42: \"say \\\"hello\\\"\"",
+    "suite_id": 145,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 257,
+    "name": "archive query against real SQLite FTS5 semantic search case 43: \"invoice OR subject:Support\"",
+    "suite_id": 145,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 234,
+    "name": "identical profile IDs in different hosts have distinct native archives",
+    "suite_id": 100,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 258,
+    "name": "archive query against real SQLite FTS5 semantic search case 44: \"x\\\"\\\" OR 1=1 --\"",
+    "suite_id": 145,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 260,
+    "name": "archive query against real SQLite FTS5 field conditions cannot broaden a separately bound archive filter",
+    "suite_id": 145,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 261,
+    "name": "archive query against real SQLite FTS5 quoted SQL punctuation cannot execute statements or broaden results",
+    "suite_id": 145,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 262,
+    "name": "archive query against real SQLite FTS5 all accepted adversarial tokens execute without FTS grammar errors",
+    "suite_id": 145,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 259,
+    "name": "removing a live account and its cache container preserves the separate archive",
+    "suite_id": 100,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 266,
+    "name": "archives original bytes, headers, source and searchable data without an account",
+    "suite_id": 159,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 268,
+    "name": "deduplication is content-based and additional provenance is retained",
+    "suite_id": 159,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 267,
+    "name": "clean native integrity verification leaves every persisted row unchanged",
+    "suite_id": 100,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 271,
+    "name": "different original bytes with the same Message-ID remain separate",
+    "suite_id": 159,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 273,
+    "name": "reopening retains original bytes, search and provenance",
+    "suite_id": 159,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 274,
+    "name": "a different profile cannot open the existing archive",
+    "suite_id": 159,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 275,
+    "name": "fielded archive search matches subject:quarterly",
+    "suite_id": 159,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 276,
+    "name": "fielded archive search matches from:Alice",
+    "suite_id": 159,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 277,
+    "name": "fielded archive search matches to:Bob",
+    "suite_id": 159,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 278,
+    "name": "fielded archive search matches cc:copy",
+    "suite_id": 159,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 279,
+    "name": "fielded archive search matches bcc:hidden",
+    "suite_id": 159,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 272,
+    "name": "corrupt native FTS postings are detected and rebuilt without changing original bytes",
+    "suite_id": 100,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 280,
+    "name": "fielded archive search matches bcontent:\"project budget\"",
+    "suite_id": 159,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 282,
+    "name": "fielded archive search matches [rejected approved]",
+    "suite_id": 159,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 283,
+    "name": "fielded archive search matches subject:quart* -from:carol",
+    "suite_id": 159,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 284,
+    "name": "HTML-only bodies index visible text and entities without executable markup",
+    "suite_id": 159,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 285,
+    "name": "attachment names index by default while text is opt-in",
+    "suite_id": 159,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 281,
+    "name": "failure before native repair commit rolls back the structural FTS rebuild",
+    "suite_id": 100,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 286,
+    "name": "opt-in supported attachment text: text/plain",
+    "suite_id": 159,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 288,
+    "name": "opt-in supported attachment text: text/csv",
+    "suite_id": 159,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 270,
+    "name": "a same-size redigested manifest invalidates the confirmed preview",
+    "suite_id": 263,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 289,
+    "name": "opt-in supported attachment text: text/tab-separated-values",
+    "suite_id": 159,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 291,
+    "name": "opt-in supported attachment text: application/json",
+    "suite_id": 159,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 292,
+    "name": "opt-in supported attachment text: text/xml",
+    "suite_id": 159,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 293,
+    "name": "opt-in supported attachment text: application/xml",
+    "suite_id": 159,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 294,
+    "name": "opt-in supported attachment text: text/html",
+    "suite_id": 159,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 295,
+    "name": "unsupported binary and malformed text remain archived and visibly skipped",
+    "suite_id": 159,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 296,
+    "name": "UTF-16 BOM attachment text is decoded without altering originals",
+    "suite_id": 159,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 290,
+    "name": "a manifest change while parsing stops before the current commit",
+    "suite_id": 263,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 297,
+    "name": "attachment extraction has an aggregate byte budget",
+    "suite_id": 159,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 299,
+    "name": "index truncation is explicit and never truncates original MIME",
+    "suite_id": 159,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 300,
+    "name": "source and folder filters refer to the same provenance, with literal wildcard characters",
+    "suite_id": 159,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 298,
+    "name": "same-size source mutation after decoding does not commit the item",
+    "suite_id": 263,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 301,
+    "name": "date filters normalize UTC with inclusive lower and exclusive upper bounds",
+    "suite_id": 159,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 303,
+    "name": "archive date and message date are independent filters",
+    "suite_id": 159,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 304,
+    "name": "size bounds are inclusive and attachment filters distinguish both states",
+    "suite_id": 159,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 302,
+    "name": "a codec cannot replace verified MIME with another original",
+    "suite_id": 263,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 305,
+    "name": "pagination is stable for tied timestamps and contains no duplicates",
+    "suite_id": 159,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 307,
+    "name": "invalid search request is rejected without SQL leakage (/0/0/null/null/null)",
+    "suite_id": 159,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 308,
+    "name": "invalid search request is rejected without SQL leakage (/201/0/null/null/null)",
+    "suite_id": 159,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 309,
+    "name": "invalid search request is rejected without SQL leakage (/50/-1/null/null/null)",
+    "suite_id": 159,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 310,
+    "name": "invalid search request is rejected without SQL leakage (/50/0/-1/null/null)",
+    "suite_id": 159,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 311,
+    "name": "invalid search request is rejected without SQL leakage (/50/0/10/null/null)",
+    "suite_id": 159,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 312,
+    "name": "invalid search request is rejected without SQL leakage (/50/0/null/null/)",
+    "suite_id": 159,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 313,
+    "name": "invalid search request is rejected without SQL leakage (/50/0/null/../secret/null)",
+    "suite_id": 159,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 306,
+    "name": "cancellation from confirmed storage diagnostics retains the commit count",
+    "suite_id": 263,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 314,
+    "name": "invalid search request is rejected without SQL leakage (unknown:needle/50/0/null/null/null)",
+    "suite_id": 159,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 316,
+    "name": "invalid search request is rejected without SQL leakage (/50/0/null/null/null)",
+    "suite_id": 159,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 317,
+    "name": "saved searches retain all criteria across restart and reset pagination",
+    "suite_id": 159,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 315,
+    "name": "late cancellation also counts new provenance on a duplicate original",
+    "suite_id": 263,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 318,
+    "name": "profile changes and deletion preserve archived messages and origins",
+    "suite_id": 159,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 320,
+    "name": "canonical folder overflow cannot persist unreadable profiles or origins",
+    "suite_id": 159,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 319,
+    "name": "cancellation just before commit leaves original, FTS and provenance absent",
+    "suite_id": 263,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 321,
+    "name": "exact canonical folder boundary survives profile and origin round trips",
+    "suite_id": 159,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 323,
+    "name": "saved-search and profile limits roll back the attempted insert",
+    "suite_id": 159,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 322,
+    "name": "a corrupt existing raw record never receives new provenance",
+    "suite_id": 263,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 324,
+    "name": "unknown saved-search schema fails explicitly and is preserved",
+    "suite_id": 159,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 326,
+    "name": "message and origin quotas roll back raw content, indexes and provenance",
+    "suite_id": 159,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 325,
+    "name": "a corrupt existing metadata record never receives new provenance",
+    "suite_id": 263,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 327,
+    "name": "logical-byte quota includes metadata and rolls back a first import",
+    "suite_id": 159,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 329,
+    "name": "transaction fault at afterContent leaves no partial archive",
+    "suite_id": 159,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 328,
+    "name": "restore reapplies tighter limits to a previously valid preview",
+    "suite_id": 263,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 330,
+    "name": "transaction fault at afterIndex leaves no partial archive",
+    "suite_id": 159,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 332,
+    "name": "transaction fault at beforeCommit leaves no partial archive",
+    "suite_id": 159,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 333,
+    "name": "pre-cancelled and cancelled-before-commit imports cannot leave content",
+    "suite_id": 159,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 331,
+    "name": "destination quota rolls back all provenance and indexing on a duplicate",
+    "suite_id": 263,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 334,
+    "name": "close waits for an accepted write and rejects new work",
+    "suite_id": 159,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 335,
+    "name": "failure samples stay bounded and observer errors do not expose content",
+    "suite_id": 263,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 336,
+    "name": "verbose logs have operation boundaries and contain no private content",
+    "suite_id": 159,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 338,
+    "name": "nonverbose logging records only sanitized failures",
+    "suite_id": 159,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 339,
+    "name": "raw corruption is detected and cannot be exported or accepted as duplicate",
+    "suite_id": 159,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 337,
+    "name": "two restorer instances cannot overlap on one archive",
+    "suite_id": 263,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 340,
+    "name": "metadata corruption is detected and rebuild preserves the evidence",
+    "suite_id": 159,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 341,
+    "name": "inspection rejects a symbolic-link ancestor of a regular source directory",
+    "suite_id": 263,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 342,
+    "name": "missing and incorrect index rows are detected and rebuilt from originals",
+    "suite_id": 159,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 343,
+    "name": "a source directory replaced by a link during parsing cannot commit",
+    "suite_id": 263,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 344,
+    "name": "reindex failure rolls the entire page back to the original index state",
+    "suite_id": 159,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 347,
+    "name": "reindex cancellation retains old search rows and original MIME",
+    "suite_id": 159,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 348,
+    "name": "maintenance continuation covers each record once",
+    "suite_id": 159,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 349,
+    "name": "missing provenance is reported without silently inventing a source",
+    "suite_id": 159,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 350,
+    "name": "codec-driven rebuild refreshes extraction but keeps byte-for-byte originals",
+    "suite_id": 159,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 351,
+    "name": "codec cannot replace originals during rebuild",
+    "suite_id": 159,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 352,
+    "name": "tighter reopening bounds detect oversized content before loading it",
+    "suite_id": 159,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 353,
+    "name": "duplicate import rejects corrupt metadata instead of reporting success",
+    "suite_id": 159,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 354,
+    "name": "duplicate import restores a missing index without changing original bytes",
+    "suite_id": 159,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 355,
+    "name": "provider session invalidation before commit rolls back archival",
+    "suite_id": 159,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 356,
+    "name": "empty reference identifiers cannot bypass metadata cardinality limits",
+    "suite_id": 159,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 357,
+    "name": "attachment text separators count against the shared index budget",
+    "suite_id": 159,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 358,
+    "name": "oversized derived preview is rejected before search hydration",
+    "suite_id": 159,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 359,
+    "name": "oversized damaged FTS values stop whole-index work before hydration",
+    "suite_id": 159,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 360,
+    "name": "oversized stored search and profile records fail before decoding",
+    "suite_id": 159,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 361,
+    "name": "NUL-prefixed preview of 5000 units cannot bypass read limits",
+    "suite_id": 159,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 362,
+    "name": "NUL-prefixed preview of 16000 units cannot bypass read limits",
+    "suite_id": 159,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 363,
+    "name": "NUL-prefixed FTS text cannot bypass whole-index byte limits",
+    "suite_id": 159,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 364,
+    "name": "astral text uses exact UTF-16 limits after bounded SQLite hydration",
+    "suite_id": 159,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 365,
+    "name": "NUL-prefixed persisted settings and provenance stay bounded",
+    "suite_id": 159,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 366,
+    "name": "whole-index row quota prevents processing an unbounded damaged index",
+    "suite_id": 159,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 367,
+    "name": "rebuild does not load a damaged BLOB beyond its stored size",
+    "suite_id": 159,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 368,
+    "name": "duplicate reindex respects a tighter reopened index budget",
+    "suite_id": 159,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 372,
+    "name": "fresh archive has no checkpoint and reads do not create metadata",
+    "suite_id": 345,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 373,
+    "name": "one-based noncontiguous receipts survive reopen with exact counts",
+    "suite_id": 345,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 376,
+    "name": "repeated commits preserve receipt identity and all prior origins",
+    "suite_id": 345,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 377,
+    "name": "receipts retain warnings from skipped attachment text",
+    "suite_id": 345,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 378,
+    "name": "invalid one-based ordinal -1 cannot create a receipt",
+    "suite_id": 345,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 379,
+    "name": "invalid one-based ordinal 0 cannot create a receipt",
+    "suite_id": 345,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 380,
+    "name": "invalid one-based ordinal 4 cannot create a receipt",
+    "suite_id": 345,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 381,
+    "name": "mismatched message size or hash cannot satisfy another ordinal",
+    "suite_id": 345,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 382,
+    "name": "empty selection has no work and cannot manufacture a completion",
+    "suite_id": 345,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 383,
+    "name": "version-one migration preserves originals, origins and FTS bytes",
+    "suite_id": 345,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 384,
+    "name": "fault at afterContent rolls back original, index, origins and receipt",
+    "suite_id": 345,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 385,
+    "name": "fault at afterIndex rolls back original, index, origins and receipt",
+    "suite_id": 345,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 386,
+    "name": "fault at beforeCommit rolls back original, index, origins and receipt",
+    "suite_id": 345,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 387,
+    "name": "late cancellation rolls back new origins and receipt on a duplicate",
+    "suite_id": 345,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 388,
+    "name": "receipt quota rolls back new content and permits duplicate retries",
+    "suite_id": 345,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 389,
+    "name": "job quota never evicts old progress or adds duplicate provenance",
+    "suite_id": 345,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 390,
+    "name": "fixed metadata bytes are counted once and released by cleanup",
+    "suite_id": 345,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 391,
+    "name": "logical byte quota includes receipt metadata atomically",
+    "suite_id": 345,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 392,
+    "name": "missing expected provenance requires an atomic retry repair",
+    "suite_id": 345,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 393,
+    "name": "corrupted size metadata never authorizes a completed receipt",
+    "suite_id": 345,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 394,
+    "name": "corrupted message metadata never authorizes a completed receipt",
+    "suite_id": 345,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 395,
+    "name": "corrupted ordinal metadata never authorizes a completed receipt",
+    "suite_id": 345,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 396,
+    "name": "corrupted job metadata never authorizes a completed receipt",
+    "suite_id": 345,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 397,
+    "name": "damaged destination raw fails receipt reuse",
+    "suite_id": 345,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 398,
+    "name": "damaged destination metadata fails receipt reuse",
+    "suite_id": 345,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 399,
+    "name": "damaged destination missing index fails receipt reuse",
+    "suite_id": 345,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 400,
+    "name": "damaged destination stale index fails receipt reuse",
+    "suite_id": 345,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 401,
+    "name": "damaged destination duplicate index fails receipt reuse",
+    "suite_id": 345,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 402,
+    "name": "receipt relation prevents deleting its original",
+    "suite_id": 345,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 375,
+    "name": "read-only preview identifies the full exported selection",
+    "suite_id": 369,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 403,
+    "name": "forgetting progress preserves every original, origin and search row",
+    "suite_id": 345,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 405,
+    "name": "cleanup cancellation preserves the complete checkpoint transaction",
+    "suite_id": 345,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 406,
+    "name": "explicit cleanup remains possible under tighter reopened limits",
+    "suite_id": 345,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 407,
+    "name": "cancelled reads report cancellation without modifying receipts",
+    "suite_id": 345,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 408,
+    "name": "source path changes retain identity while manifest changes isolate work",
+    "suite_id": 345,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 409,
+    "name": "same exported manifest has independent progress in two destination profiles",
+    "suite_id": 345,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 410,
+    "name": "overlapping duplicate writes converge on one original and one receipt",
+    "suite_id": 345,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 411,
+    "name": "checkpoint limits reject invalid zero and unbounded configurations",
+    "suite_id": 345,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 404,
+    "name": "restores exact originals and all origins into a different persistent profile",
+    "suite_id": 369,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 414,
+    "name": "rerunning verifies duplicates and never accumulates provenance or counts",
+    "suite_id": 369,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 417,
+    "name": "merges exported origins with an existing destination origin",
+    "suite_id": 369,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 416,
+    "name": "reopened destination resumes without reading committed source files",
+    "suite_id": 412,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 419,
+    "name": "sparse successful receipts retry a failed middle item only",
+    "suite_id": 412,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 418,
+    "name": "cancel after one commit retains all its origins and a rerun completes",
+    "suite_id": 369,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 420,
+    "name": "moving an unchanged export retains progress, full verification still reads it",
+    "suite_id": 412,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 421,
+    "name": "missing original reports a partial result and a retry fills the gap",
+    "suite_id": 369,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 422,
+    "name": "a supplied preview count cannot manufacture a destination receipt",
+    "suite_id": 412,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 423,
+    "name": "wrong hashes and wrong sizes never enter the destination",
+    "suite_id": 369,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 424,
+    "name": "resume refuses corrupted destination originals before using their receipt",
+    "suite_id": 412,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 426,
+    "name": "missing provenance is repaired before the message is confirmed again",
+    "suite_id": 412,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 425,
+    "name": "staging and unrelated EML files are ignored",
+    "suite_id": 369,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 427,
+    "name": "forgetting progress preserves originals and makes the next run verify all files",
+    "suite_id": 412,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 429,
+    "name": "index warnings remain separate for resumed and current messages",
+    "suite_id": 412,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 428,
+    "name": "observer exceptions cannot alter committed results",
+    "suite_id": 369,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 430,
+    "name": "cancellation during confirmation preserves durable progress and exact run counts",
+    "suite_id": 412,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 431,
+    "name": "pre-cancelled inspection and restore leave destination empty",
+    "suite_id": 369,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 432,
+    "name": "exact manifest bytes bind progress and a changed confirmed preview is rejected",
+    "suite_id": 412,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 433,
+    "name": "new restore limits revalidate a preview without silently truncating",
+    "suite_id": 369,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 434,
+    "name": "losing the destination stops after one failed receipt lookup",
+    "suite_id": 412,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 436,
+    "name": "destination per-message bounds also apply to previously committed items",
+    "suite_id": 412,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 435,
+    "name": "invalid UTF-8 and malformed manifests fail safely before mutation",
+    "suite_id": 369,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 439,
+    "name": "partial parsing preserves original and exposes index warnings",
+    "suite_id": 369,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 440,
+    "name": "empty exported selection completes without adding messages",
+    "suite_id": 369,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 443,
+    "name": "archives full originals across pages without mutating the provider",
+    "suite_id": 437,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 444,
+    "name": "reruns start from page one and deduplicate persistent raw originals",
+    "suite_id": 437,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 445,
+    "name": "reconnecting with a fresh live account reuses stable profile provenance",
+    "suite_id": 437,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 446,
+    "name": "distinct stable profiles cannot collapse the same remote provenance",
+    "suite_id": 437,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 447,
+    "name": "provider namespace and case-sensitive opaque identity remain in provenance",
+    "suite_id": 437,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 448,
+    "name": "IMAP provenance retains both UIDVALIDITY and UID",
+    "suite_id": 437,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 449,
+    "name": "equal originals in different remote items retain separate origins",
+    "suite_id": 437,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 144,
+    "name": "SIGKILL after first publication releases ownership and resumes twice",
+    "suite_id": 6,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 450,
+    "name": "same source identity with changed raw bytes creates another original",
+    "suite_id": 437,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 453,
+    "name": "valid empty mailbox completes without pretending an unsupported call succeeded",
+    "suite_id": 437,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 454,
+    "name": "a failed item is isolated and later originals are saved",
+    "suite_id": 437,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 455,
+    "name": "provider exceptions are redacted and a later item can succeed",
+    "suite_id": 437,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 456,
+    "name": "consecutive provider failures abort before unbounded requests",
+    "suite_id": 437,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 457,
+    "name": "successful fetches reset the consecutive-failure bound",
+    "suite_id": 437,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 458,
+    "name": "failure detail retention is bounded independently from counters",
+    "suite_id": 437,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 459,
+    "name": "authentication, permission and throttling failures stop without retry",
+    "suite_id": 437,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 460,
+    "name": "a page error after a committed page retains the exact prior counts",
+    "suite_id": 437,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 461,
+    "name": "unsupported headers fail explicitly and fetch no messages",
+    "suite_id": 437,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 463,
+    "name": "ownership and page validation before any write wrong account in a later header",
+    "suite_id": 437,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 464,
+    "name": "ownership and page validation before any write wrong IMAP mailbox",
+    "suite_id": 437,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 465,
+    "name": "ownership and page validation before any write duplicate local identifier",
+    "suite_id": 437,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 466,
+    "name": "ownership and page validation before any write duplicate remote identifier",
+    "suite_id": 437,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 467,
+    "name": "ownership and page validation before any write mixed provider namespaces",
+    "suite_id": 437,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 468,
+    "name": "ownership and page validation before any write wrong cursor mailbox",
+    "suite_id": 437,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 469,
+    "name": "ownership and page validation before any write wrong cursor account",
+    "suite_id": 437,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 470,
+    "name": "ownership and page validation before any write empty cursor",
+    "suite_id": 437,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 471,
+    "name": "ownership and page validation before any write control-bearing cursor",
+    "suite_id": 437,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 472,
+    "name": "ownership and page validation before any write oversized cursor",
+    "suite_id": 437,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 473,
+    "name": "ownership and page validation before any write page exceeding the requested limit is rejected whole",
+    "suite_id": 437,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 474,
+    "name": "ownership and page validation before any write provider namespace cannot change between pages",
+    "suite_id": 437,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 475,
+    "name": "ownership and page validation before any write repeated cursor rejects its page before storing any of that page",
+    "suite_id": 437,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 476,
+    "name": "ownership and page validation before any write cursor cycles are rejected even when not consecutive",
+    "suite_id": 437,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 477,
+    "name": "fetched message must retain exact requested remote and optional local ID",
+    "suite_id": 437,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 478,
+    "name": "empty originals are never represented as a successful archive",
+    "suite_id": 437,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 479,
+    "name": "provider raw-budget violation is isolated from the next smaller item",
+    "suite_id": 437,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 483,
+    "name": "provider raw budget is clamped to archive capacity and preserves MIME limits",
+    "suite_id": 437,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 482,
+    "name": "standard flag codec unknown flags remain distinct from an observed empty set",
+    "suite_id": 451,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 485,
+    "name": "standard flag codec every durable flag survives alone and in a combined snapshot",
+    "suite_id": 451,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 484,
+    "name": "archive total quota stops further fetching and preserves the earlier commit",
+    "suite_id": 437,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 486,
+    "name": "standard flag codec reserved flag bits and negative masks fail with redacted errors",
+    "suite_id": 451,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 487,
+    "name": "archive write error rolls back and stops further provider work",
+    "suite_id": 437,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 490,
+    "name": "closed archive fails once without repeatedly downloading originals",
+    "suite_id": 437,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 489,
+    "name": "metadata codec envelope round trip preserves every header field and timestamp",
+    "suite_id": 451,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 492,
+    "name": "metadata codec nullable empty metadata and local absolute timestamps round trip",
+    "suite_id": 451,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 491,
+    "name": "message and page limits report limited without an extra request",
+    "suite_id": 437,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 493,
+    "name": "metadata codec envelope rejects unknown field",
+    "suite_id": 451,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 495,
+    "name": "metadata codec envelope rejects missing nullable field",
+    "suite_id": 451,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 496,
+    "name": "metadata codec envelope rejects future version",
+    "suite_id": 451,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 497,
+    "name": "metadata codec envelope rejects wrong subject type",
+    "suite_id": 451,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 498,
+    "name": "metadata codec envelope rejects wrong reference type",
+    "suite_id": 451,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 499,
+    "name": "metadata codec envelope rejects wrong address shape",
+    "suite_id": 451,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 500,
+    "name": "metadata codec envelope rejects unknown address field",
+    "suite_id": 451,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 494,
+    "name": "exact count limit can complete if no continuation exists",
+    "suite_id": 437,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 501,
+    "name": "metadata codec envelope rejects wrong nullable address type",
+    "suite_id": 451,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 503,
+    "name": "metadata codec envelope rejects normalized invalid date",
+    "suite_id": 451,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 504,
+    "name": "metadata codec envelope rejects offset date instead of canonical instant",
+    "suite_id": 451,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 502,
+    "name": "empty advancing pages are still bounded by maxPages",
+    "suite_id": 437,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 505,
+    "name": "metadata codec envelope rejects wrong UTC type",
+    "suite_id": 451,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 507,
+    "name": "metadata codec duplicate literal and escaped keys are rejected before JSON collapse",
+    "suite_id": 451,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 506,
+    "name": "invalid request limits, folder and profile scope perform no I/O",
+    "suite_id": 437,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 508,
+    "name": "metadata codec bounded parser rejects deep nesting and redacts malformed content",
+    "suite_id": 451,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 511,
+    "name": "provider identity codec canonical IMAP key preserves UIDVALIDITY and scope is supplied separately",
+    "suite_id": 451,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 509,
+    "name": "canonical folder overflow is rejected before any provider fetch",
+    "suite_id": 437,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 512,
+    "name": "provider identity codec graph identity preserves exact opaque value",
+    "suite_id": 451,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 514,
+    "name": "provider identity codec gmail identity preserves exact opaque value",
+    "suite_id": 451,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 515,
+    "name": "provider identity codec jmap identity preserves exact opaque value",
+    "suite_id": 451,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 516,
+    "name": "provider identity codec remote codec rejects invalid provider, field set and IMAP range",
+    "suite_id": 451,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 513,
+    "name": "exact canonical folder boundary remains archivable and searchable",
+    "suite_id": 437,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 519,
+    "name": "account mismatch is rejected before provider calls",
+    "suite_id": 437,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 520,
+    "name": "one provider cannot have concurrent runs through different runner instances",
+    "suite_id": 437,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 518,
+    "name": "draft payload body projection validates metadata without requiring payload bytes",
+    "suite_id": 451,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 521,
+    "name": "throwing progress observers cannot interrupt committed work or leak data",
+    "suite_id": 437,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 522,
+    "name": "draft payload metadata and deduplicated immutable blobs round trip separately",
+    "suite_id": 451,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 525,
+    "name": "draft payload draft rejects missing, corrupted or mismatched-length attachment bytes",
+    "suite_id": 451,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 524,
+    "name": "lease and cancellation boundaries pre-cancellation and disposed sessions make no provider calls",
+    "suite_id": 437,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 526,
+    "name": "draft payload draft rejects wrong metadata types, unknown fields and malformed hash",
+    "suite_id": 451,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 527,
+    "name": "lease and cancellation boundaries stale header response is rejected before any message fetch",
+    "suite_id": 437,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 530,
+    "name": "lease and cancellation boundaries cancelled fetched message is not committed",
+    "suite_id": 437,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 529,
+    "name": "outbox payload every state round trips frozen bytes, recipients, result and attempt",
+    "suite_id": 451,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 531,
+    "name": "lease and cancellation boundaries cancellation during archive transaction rolls back all of the item",
+    "suite_id": 437,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 532,
+    "name": "outbox payload restored in-flight entry becomes uncertain and never retryable",
+    "suite_id": 451,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 533,
+    "name": "lease and cancellation boundaries session invalidation during archive transaction rolls back the item",
+    "suite_id": 437,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 534,
+    "name": "outbox payload wire integrity and internal result/state consistency are enforced",
+    "suite_id": 451,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 537,
+    "name": "outbox persistence transitions new entries must be initial queued and all legitimate transitions pass",
+    "suite_id": 451,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 535,
+    "name": "lease and cancellation boundaries cancellation immediately after a committed item retains its counts",
+    "suite_id": 437,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 538,
+    "name": "outbox persistence transitions prepared bytes, envelope, revision, creation and ownership cannot change",
+    "suite_id": 451,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 540,
+    "name": "outbox persistence transitions attempt numbers, fresh identity and monotonic time are mandatory",
+    "suite_id": 451,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 539,
+    "name": "lease and cancellation boundaries provider-reported cancellation stops without counting a failed item",
+    "suite_id": 437,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 541,
+    "name": "outbox persistence transitions same-state saves are exact idempotence and terminal rewrites fail",
+    "suite_id": 451,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 544,
+    "name": "outbox persistence transitions cancellation must retain the previous definite failure result",
+    "suite_id": 451,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 550,
+    "name": "old draft payloads still decode without synthetic editor state",
+    "suite_id": 545,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 551,
+    "name": "typed editor payload preserves arbitrary unfinished recipient input",
+    "suite_id": 545,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 552,
+    "name": "editor fields are validated even for a body-only projection",
+    "suite_id": 545,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 553,
+    "name": "unknown draft version and cross-version field mixing fail closed",
+    "suite_id": 545,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 554,
+    "name": "cleared input cannot conceal raw recipients or uncertain submission",
+    "suite_id": 545,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 558,
+    "name": "EWS account and opaque item keys round trip without migration",
+    "suite_id": 555,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 559,
+    "name": "incremental read changes preserve local identity and exact sync state",
+    "suite_id": 555,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 560,
+    "name": "upserts, deletions and Exchange sync state roll back together",
+    "suite_id": 555,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 561,
+    "name": "a stale Exchange page cannot replace an already committed cursor",
+    "suite_id": 555,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 562,
+    "name": "an EWS tombstone affects only its folder membership",
+    "suite_id": 555,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 563,
+    "name": "equal server IDs in separate Exchange accounts remain independent",
+    "suite_id": 555,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 564,
+    "name": "sync reset reconciles pending edits to removed EWS identities",
+    "suite_id": 555,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 565,
+    "name": "a conflicting local ID cannot hide an Exchange ItemId replacement",
+    "suite_id": 555,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 287,
+    "name": "SIGKILL afterContent honors the durable archive transaction boundary",
+    "suite_id": 100,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 570,
+    "name": "sparse full-width ranges create tombstones only for stored absences",
+    "suite_id": 566,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 571,
+    "name": "empty observations advance the cursor without materializing UID holes",
+    "suite_id": 566,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 572,
+    "name": "inclusive range removal preserves mailbox, account and validity isolation",
+    "suite_id": 566,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 573,
+    "name": "absent queued and applying edits reconcile while their cached bytes survive",
+    "suite_id": 566,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 574,
+    "name": "range deletes, edits, indexes and cursor roll back at afterSyncRecords then retry",
+    "suite_id": 566,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 575,
+    "name": "range deletes, edits, indexes and cursor roll back at beforeSyncCursor then retry",
+    "suite_id": 566,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 576,
+    "name": "range deletes, edits, indexes and cursor roll back at beforeCommit then retry",
+    "suite_id": 566,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 577,
+    "name": "stale range observations cannot delete the winning page or its pending edits",
+    "suite_id": 566,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 578,
+    "name": "account lease invalidation rolls back range removals and reconciliation",
+    "suite_id": 566,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 579,
+    "name": "page limits, duplicate identities and metadata fail before range removals",
+    "suite_id": 566,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 580,
+    "name": "empty IMAP ranges reject a non-IMAP account and foreign account lease",
+    "suite_id": 566,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 581,
+    "name": "reopening above the configured scan bound refuses range work without data loss",
+    "suite_id": 566,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 582,
+    "name": "existing range removals may exceed the incoming page row count",
+    "suite_id": 566,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 583,
+    "name": "explicit tombstones coexist with authoritative range removals",
+    "suite_id": 566,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 584,
+    "name": "resetRequired retains full-mailbox reset across ranges and UID generations",
+    "suite_id": 566,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 588,
+    "name": "v1 upgrade preserves scoped records, draft, cache and immutable queue bytes",
+    "suite_id": 585,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 589,
+    "name": "v2 upgrade preserves existing search and flags survive file reopen",
+    "suite_id": 585,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 590,
+    "name": "interrupted v2 flag migration rolls back the column and retains FTS",
+    "suite_id": 585,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 591,
+    "name": "upgraded FTS requires bounded backfill without loading attachment or raw bytes",
+    "suite_id": 585,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 592,
+    "name": "interrupted v1 migration rolls back schema and version, then retries without losing data",
+    "suite_id": 585,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 593,
+    "name": "future schema 4 is rejected without changing existing data",
+    "suite_id": 585,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 594,
+    "name": "future schema 9 is rejected without changing existing data",
+    "suite_id": 585,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 595,
+    "name": "stricter individual blob limits reject persisted draft before transferring blobs",
+    "suite_id": 585,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 596,
+    "name": "stricter aggregate payload limits reject persisted draft before transferring blobs",
+    "suite_id": 585,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 600,
+    "name": "native committed accounts survive close and reopen",
+    "suite_id": 597,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 601,
+    "name": "a second live owner conflicts; a closed owner releases its lease",
+    "suite_id": 597,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 602,
+    "name": "same profile names in different hosts use separate containers",
+    "suite_id": 597,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 603,
+    "name": "migration failure releases ownership and rolls back before reopening",
+    "suite_id": 597,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 604,
+    "name": "a relative container is rejected without choosing a global directory",
+    "suite_id": 597,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 605,
+    "name": "an unavailable app container returns a typed failure",
+    "suite_id": 597,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 441,
+    "name": "SIGKILL preserves a receipt, resumes unfinished originals and verifies reruns",
+    "suite_id": 369,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 610,
+    "name": "database identity separates hosts, profiles and browser namespaces",
+    "suite_id": 607,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 611,
+    "name": "browser namespaces are explicit and bounded",
+    "suite_id": 607,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 612,
+    "name": "relative and absolute same-origin assets resolve explicitly",
+    "suite_id": 607,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 613,
+    "name": "assets reject remote origins, credentials, fragments and non-HTTP",
+    "suite_id": 607,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 617,
+    "name": "observed flags persist while an omitted snapshot preserves them",
+    "suite_id": 614,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 618,
+    "name": "flag mutation and cursor roll back together on transaction failure",
+    "suite_id": 614,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 619,
+    "name": "flag snapshots stay scoped to account, mailbox and UIDVALIDITY",
+    "suite_id": 614,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 620,
+    "name": "commits headers and cursor with a compare-and-set precondition",
+    "suite_id": 614,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 621,
+    "name": "failure after records rolls back rows and cursor together",
+    "suite_id": 614,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 548,
+    "name": "SIGKILL afterSyncRecords preserves the correct durable transaction boundary",
+    "suite_id": 542,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 622,
+    "name": "lease invalidation at the final commit boundary rolls back",
+    "suite_id": 614,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 624,
+    "name": "header stream never exposes rolled-back or half-applied pages",
+    "suite_id": 614,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 625,
+    "name": "draft revisions reject lost updates and attachment rollback",
+    "suite_id": 614,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 626,
+    "name": "new and terminal outbox states cannot be forged",
+    "suite_id": 614,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 627,
+    "name": "recovery does not relabel an attempt started by this live owner",
+    "suite_id": 614,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 628,
+    "name": "older attempt identifiers cannot be reused after multiple retries",
+    "suite_id": 614,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 629,
+    "name": "cache eviction preserves shared draft attachments and editor pins",
+    "suite_id": 614,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 630,
+    "name": "local FTS uses literal tokens and never indexes active HTML",
+    "suite_id": 614,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 631,
+    "name": "tombstone preserves a pending intent for explicit reconciliation",
+    "suite_id": 614,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 632,
+    "name": "UIDVALIDITY reset keeps local work and rejects stale cursor pages",
+    "suite_id": 614,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 633,
+    "name": "logout preserves local drafts and queues durable vault cleanup",
+    "suite_id": 614,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 634,
+    "name": "account removal retires identity and rejects late writes",
+    "suite_id": 614,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 635,
+    "name": "profile and account scope reject matching foreign identifiers",
+    "suite_id": 614,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 636,
+    "name": "SQLite full has a typed redacted failure and leaves no partial write",
+    "suite_id": 614,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 568,
+    "name": "SIGKILL afterIndex honors the durable archive transaction boundary",
+    "suite_id": 100,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 606,
+    "name": "process termination releases ownership and preserves committed data",
+    "suite_id": 597,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 623,
+    "name": "SIGKILL beforeSyncCursor preserves the correct durable transaction boundary",
+    "suite_id": 542,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 637,
+    "name": "SIGKILL beforeCommit honors the durable archive transaction boundary",
+    "suite_id": 100,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 638,
+    "name": "SIGKILL afterDraftBlobs preserves the correct durable transaction boundary",
+    "suite_id": 542,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 639,
+    "name": "SIGKILL committed honors the durable archive transaction boundary",
+    "suite_id": 100,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 640,
+    "name": "SIGKILL afterOutboxWrite preserves the correct durable transaction boundary",
+    "suite_id": 542,
+    "result": "success",
+    "skipped": false
+  },
+  {
+    "id": 641,
+    "name": "SIGKILL committedSubmitting preserves the correct durable transaction boundary",
+    "suite_id": 542,
+    "result": "success",
+    "skipped": false
+  }
+]

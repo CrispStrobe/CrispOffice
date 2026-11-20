@@ -8,6 +8,8 @@ import 'package:quds_office_studio/studio_mail_native.dart';
 import 'package:quds_office_studio/studio_mail_strings.dart';
 import 'package:quds_office_studio/studio_strings.dart';
 
+import 'support/mail_draft_store.dart';
+
 const _strings = StudioStrings(StudioLanguage.en);
 
 mail.ClientConfig _config({
@@ -116,6 +118,7 @@ Future<void> _open(
             onPressed: () => showDialog<void>(
               context: context,
               builder: (_) => StudioMailDialog(
+                draftStoreFactory: MemoryStudioMailDrafts().open,
                 strings: _strings,
                 accountDiscovery: discovery,
                 clientFactory: client,

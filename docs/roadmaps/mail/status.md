@@ -1,5 +1,32 @@
 # Mail implementation status — 20 November 2026
 
+## Durable local drafts and safe reconnect
+
+The [draft recovery continuation](draft-recovery.md) connects the existing
+transactional SQLite store to the shared native Studio composer for IMAP/SMTP,
+Exchange EWS, Gmail and Microsoft 365. One draft per provider/endpoint/login/
+sender identity now survives closing Mail and reconnecting. To/Cc/Bcc editor
+text is preserved even while incomplete, along with subject, plain body,
+reply-thread metadata and immutable attachment bytes. The optional typed editor
+payload is backward compatible with existing stored drafts; no database schema
+reset or dependency change is required.
+
+Edits autosave after 500 ms, with visible pending/saved/failure feedback. Close
+and Send wait for the latest revision. Storage failure keeps the composer open
+and blocks sending; an explicit confirmed unsaved close remains possible. A
+possible-submission marker commits before transport invocation. Interrupted or
+ambiguous sends remain guarded after reconnect and never resend automatically.
+Confirmed acceptance clears the draft; cleanup failure retains guarded content
+and tells the user not to resend. A matching definite rejection retires only
+that attempt's marker, retaining uncertainty from any earlier attempt.
+
+The [local report](../../validation/mail-draft-recovery-20261120/README.md)
+separates persistence, host fixtures and actual provider/installed-OS limits.
+This is native local recovery after reconnect, not server-side Drafts sync,
+offline account navigation, a multiple-draft manager or a queued outbox. M04W
+and M07 remain open. The historical session-only boundaries below describe
+their original increments and are superseded for local drafts by this section.
+
 ## Outgoing file attachments
 
 The shared native Studio composer now supports [bounded file attachments](attachments.md)
@@ -18,9 +45,10 @@ checks, including the narrow/right-to-left composer, IME and resize regressions.
 The incoming Zotero and earlier mail receipts retain their own original source
 identities and scope.
 
-This remains foreground, session-only composition: no local autosave, durable
-outbox, automatic attachment copying on forward, current-document/PDF attachment
-command or VBA mail surface is added. Live-provider delivery and installed-OS
+The attachment increment originally used session-only composition; the draft
+recovery continuation above now persists it locally. Durable outbox, automatic
+attachment copying on forward, current-document/PDF attachment commands and the
+VBA mail surface remain open. Live-provider delivery and installed-OS
 picker interoperability remain separate gates. M07 and M08 remain open.
 
 ## Durable archive, indexing and search
@@ -61,8 +89,9 @@ entry with explicit HTTPS configuration, NTLMv2 by default, host-owned
 credentials, folder/header browsing, incremental message sync, on-demand MIME,
 guarded mailbox mutations and EWS sending with Sent filing. Existing opaque
 identities and atomic storage transactions require no schema migration. Browser
-EWS remains explicitly unsupported. Connection and draft state remain
-session-only; explicit archived copies use the independent durable archive.
+EWS remains explicitly unsupported. Connection state remains session-only;
+drafts now use the local recovery continuation above, and explicit archived
+copies use the independent durable archive.
 
 The [focused validation record](../../validation/mail-ews-20261119/README.md)
 separates new source-bound checks from historical IMAP/Office evidence. No live

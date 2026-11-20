@@ -6,6 +6,8 @@ import 'package:quds_office_studio/studio_mail_presets.dart';
 import 'package:quds_office_studio/studio_mail_strings.dart';
 import 'package:quds_office_studio/studio_strings.dart';
 
+import 'support/mail_draft_store.dart';
+
 const _strings = StudioStrings(StudioLanguage.en);
 Finder _input(String label) => find.byWidgetPredicate(
   (widget) => widget is TextField && widget.decoration?.labelText == label,
@@ -171,6 +173,7 @@ void main() {
     await tester.pumpWidget(
       MaterialApp(
         home: StudioMailDialog(
+          draftStoreFactory: MemoryStudioMailDrafts().open,
           strings: _strings,
           accountDiscovery: (_) async {
             discoveries++;

@@ -10,12 +10,14 @@ import 'package:quds_mail_core/quds_mail_core.dart';
 import 'package:quds_mail_mime/quds_mail_mime.dart';
 import 'package:quds_office_editor/quds_office_editor.dart';
 import 'package:quds_office_studio/studio_mail_compose.dart';
+import 'package:quds_office_studio/studio_mail_draft_store.dart';
 import 'package:quds_office_studio/studio_mail_message_loader.dart';
 import 'package:quds_office_studio/studio_mail_native.dart';
 import 'package:quds_office_studio/studio_mail_strings.dart';
 import 'package:quds_office_studio/studio_strings.dart';
 
 import 'support/mail_attachment_picker.dart';
+import 'support/mail_draft_store.dart';
 
 const _strings = StudioStrings(StudioLanguage.en);
 
@@ -78,6 +80,7 @@ class _Client extends Fake implements mail.MailClient {
   int fetches = 0;
   int sends = 0;
   int disconnects = 0;
+  void Function()? onSend;
   final sentMessages = <mail.MimeMessage>[];
   final sentRecipients = <List<String>>[];
   final sentAppendToSent = <bool>[];
@@ -137,6 +140,7 @@ class _Client extends Fake implements mail.MailClient {
     bool use8BitEncoding = false,
     List<mail.MailAddress>? recipients,
   }) async {
+    onSend?.call();
     sends++;
     sentMessages.add(mail.MimeMessage.parseFromText(message.renderMessage()));
     sentRecipients.add([
@@ -192,7 +196,10 @@ Future<void> _show(
   mail.MailClient Function(mail.MailAccount) factory, {
   Future<mail.ClientConfig?> Function(String)? discover,
   _Loader? loader,
+  MemoryStudioMailDrafts? drafts,
+  String email = 'reader@example.invalid',
 }) async {
+  final draftStorage = drafts ?? MemoryStudioMailDrafts();
   tester.view
     ..physicalSize = const Size(1300, 1000)
     ..devicePixelRatio = 1;
@@ -206,6 +213,7 @@ Future<void> _show(
             onPressed: () => showDialog<void>(
               context: context,
               builder: (_) => StudioMailDialog(
+                draftStoreFactory: draftStorage.open,
                 strings: _strings,
                 clientFactory: factory,
                 accountDiscovery: discover,
@@ -220,10 +228,7 @@ Future<void> _show(
   );
   await tester.tap(find.text('Open session'));
   await _pump(tester);
-  await tester.enterText(
-    _field(_strings.emailAddress),
-    'reader@example.invalid',
-  );
+  await tester.enterText(_field(_strings.emailAddress), email);
   await tester.enterText(_field(_strings.password), 'original-test-password');
 }
 
@@ -245,8 +250,16 @@ Future<void> _connected(
   WidgetTester tester,
   _Client client, {
   _Loader? loader,
+  MemoryStudioMailDrafts? drafts,
+  String email = 'reader@example.invalid',
 }) async {
-  await _show(tester, (_) => client, loader: loader);
+  await _show(
+    tester,
+    (_) => client,
+    loader: loader,
+    drafts: drafts,
+    email: email,
+  );
   await _manual(tester);
   await _connect(tester);
   await _pump(tester);
@@ -269,6 +282,34 @@ Future<void> _compose(WidgetTester tester) async {
       .controller
       .insertText('Draft body.');
   await tester.pump();
+}
+
+String _composeBody(WidgetTester tester) => tester
+    .widget<QudsWordEditor>(find.byType(QudsWordEditor))
+    .controller
+    .document
+    .paragraphs
+    .map((paragraph) => paragraph.text)
+    .join('\n');
+
+Future<void> _saveAndCloseCompose(WidgetTester tester) async {
+  final close = find.text(_strings.mailDraftSaveClose);
+  await tester.ensureVisible(close);
+  await tester.tap(close);
+  await _pump(tester);
+  expect(find.byType(StudioMailComposeDialog), findsNothing);
+}
+
+Future<void> _autosave(WidgetTester tester) async {
+  await tester.pump(const Duration(milliseconds: 600));
+  await _pump(tester);
+}
+
+Future<void> _send(WidgetTester tester) async {
+  final send = find.widgetWithIcon(FilledButton, Icons.send);
+  await tester.ensureVisible(send);
+  await tester.tap(send);
+  await _pump(tester);
 }
 
 mail.ClientConfig _configuration() {
@@ -297,6 +338,375 @@ mail.ClientConfig _configuration() {
 }
 
 void main() {
+  testWidgets(
+    'reopened native session restores raw unfinished draft with stable identity',
+    (tester) async {
+      final drafts = MemoryStudioMailDrafts();
+      final first = _Client();
+      await _connected(tester, first, drafts: drafts);
+      await _compose(tester);
+      await tester.enterText(_field(_strings.to), '  unfinished recipient @  ');
+      await tester.enterText(
+        _field(_strings.subject),
+        '  Unfinished subject  ',
+      );
+      await tester.tap(find.text(_strings.mailCopyRecipients));
+      await _pump(tester);
+      await tester.enterText(
+        _field(_strings.mailCc),
+        ' copied@example.invalid; ',
+      );
+      await tester.enterText(_field(_strings.mailBcc), ' hidden @ ');
+      tester
+          .widget<QudsWordEditor>(find.byType(QudsWordEditor))
+          .controller
+          .insertText('\nSecond line – العربية');
+      final expectedBody = _composeBody(tester);
+      await _saveAndCloseCompose(tester);
+      final key = drafts.identities.single.account.value;
+      final saved = drafts.records[key]!;
+      expect(saved.draft.to, '  unfinished recipient @  ');
+      expect(saved.draft.cc, ' copied@example.invalid; ');
+      expect(saved.draft.bcc, ' hidden @ ');
+      expect(saved.draft.subject, '  Unfinished subject  ');
+      expect(saved.draft.body, expectedBody);
+      expect(saved.submissionUncertain, isFalse);
+      await tester.tap(find.byTooltip(_strings.close));
+      await _pump(tester);
+      expect(drafts.closes, 1);
+      final reopened = _Client();
+      await _show(tester, (_) => reopened, drafts: drafts);
+      await tester.enterText(_field(_strings.password), 'a-new-test-password');
+      await _manual(tester);
+      await _connect(tester);
+      await _pump(tester);
+      expect(drafts.identities.last.account.value, key);
+      expect(find.text(_strings.mailDraftRestored), findsOneWidget);
+      expect(reopened.sends, 0);
+      await tester.tap(find.widgetWithIcon(TextButton, Icons.edit_outlined));
+      await _pump(tester);
+      expect(
+        tester.widget<TextField>(_field(_strings.to)).controller!.text,
+        saved.draft.to,
+      );
+      expect(
+        tester.widget<TextField>(_field(_strings.mailCc)).controller!.text,
+        saved.draft.cc,
+      );
+      expect(
+        tester.widget<TextField>(_field(_strings.mailBcc)).controller!.text,
+        saved.draft.bcc,
+      );
+      expect(
+        tester.widget<TextField>(_field(_strings.subject)).controller!.text,
+        saved.draft.subject,
+      );
+      expect(_composeBody(tester), expectedBody);
+      expect(first.sends, 0);
+      await _saveAndCloseCompose(tester);
+      expect(tester.takeException(), isNull);
+    },
+  );
+
+  testWidgets('native draft storage isolates a different connected account', (
+    tester,
+  ) async {
+    final drafts = MemoryStudioMailDrafts();
+    final first = _Client();
+    await _connected(tester, first, drafts: drafts);
+    await _compose(tester);
+    await _saveAndCloseCompose(tester);
+    final firstKey = drafts.identities.single.account.value;
+    await tester.tap(find.byTooltip(_strings.close));
+    await _pump(tester);
+    final second = _Client();
+    await _connected(
+      tester,
+      second,
+      drafts: drafts,
+      email: 'other@example.invalid',
+    );
+    final secondKey = drafts.identities.last.account.value;
+    expect(secondKey, isNot(firstKey));
+    expect(find.text(_strings.mailDraftRestored), findsNothing);
+    await tester.tap(find.widgetWithIcon(TextButton, Icons.edit_outlined));
+    await _pump(tester);
+    expect(
+      tester.widget<TextField>(_field(_strings.to)).controller!.text,
+      isEmpty,
+    );
+    expect(
+      tester.widget<TextField>(_field(_strings.subject)).controller!.text,
+      isEmpty,
+    );
+    expect(_composeBody(tester), isEmpty);
+    await tester.enterText(_field(_strings.subject), 'Other account draft');
+    await _saveAndCloseCompose(tester);
+    expect(drafts.records, hasLength(2));
+    expect(drafts.records[firstKey]!.draft.subject, 'Session draft');
+    expect(drafts.records[secondKey]!.draft.subject, 'Other account draft');
+    expect(first.sends + second.sends, 0);
+    expect(tester.takeException(), isNull);
+  });
+
+  testWidgets(
+    'native send waits for durable uncertainty and restart never resends',
+    (tester) async {
+      final drafts = MemoryStudioMailDrafts();
+      StudioMailStoredDraft? atSend;
+      final first = _Client()
+        ..sendGate = Completer<void>()
+        ..onSend = () => atSend = drafts.records.values.single;
+      await _connected(tester, first, drafts: drafts);
+      await _compose(tester);
+      await _autosave(tester);
+      expect(drafts.records.values.single.submissionUncertain, isFalse);
+      final saveGate = Completer<void>();
+      drafts.saveGate = saveGate;
+      await _send(tester);
+      expect(first.sends, 0);
+      expect(atSend, isNull);
+      expect(drafts.records.values.single.submissionUncertain, isFalse);
+      saveGate.complete();
+      await _pump(tester);
+      expect(first.sends, 1);
+      expect(atSend, isNotNull);
+      expect(atSend!.submissionUncertain, isTrue);
+      expect(atSend!.draft.to, 'recipient@example.invalid');
+      expect(atSend!.draft.body, 'Draft body.');
+      await tester.tap(find.byTooltip(_strings.close));
+      await _pump(tester);
+      final reopened = _Client();
+      await _connected(tester, reopened, drafts: drafts);
+      // The delivery warning takes precedence over the ordinary restore notice.
+      expect(find.text(_strings.mailSubmissionUncertain), findsOneWidget);
+      await tester.pump(const Duration(minutes: 1));
+      expect(reopened.sends, 0);
+      first.sendGate!.completeError(StateError('late transport failure'));
+      await _pump(tester);
+      expect(find.textContaining('late transport failure'), findsNothing);
+      await tester.tap(find.widgetWithIcon(TextButton, Icons.edit_outlined));
+      await _pump(tester);
+      expect(_composeBody(tester), 'Draft body.');
+      expect(
+        tester
+            .widget<FilledButton>(find.widgetWithIcon(FilledButton, Icons.send))
+            .onPressed,
+        isNull,
+      );
+      expect(
+        tester.widget<CheckboxListTile>(find.byType(CheckboxListTile)).value,
+        isFalse,
+      );
+      expect(first.sends, 1);
+      expect(reopened.sends, 0);
+      await _saveAndCloseCompose(tester);
+      expect(drafts.records.values.single.submissionUncertain, isTrue);
+      expect(tester.takeException(), isNull);
+    },
+  );
+
+  testWidgets(
+    'disconnect during durable send checkpoint cannot submit or auto-retry',
+    (tester) async {
+      final drafts = MemoryStudioMailDrafts();
+      final first = _Client();
+      await _connected(tester, first, drafts: drafts);
+      await _compose(tester);
+      await _autosave(tester);
+      final saveGate = Completer<void>();
+      drafts.saveGate = saveGate;
+      await _send(tester);
+      expect(first.sends, 0);
+      await tester.tap(find.byTooltip(_strings.disconnect));
+      await _pump(tester);
+      saveGate.complete();
+      await _pump(tester);
+      expect(first.sends, 0);
+      _expectClosed(first);
+      final reopened = _Client();
+      await tester.tap(find.byTooltip(_strings.close));
+      await _pump(tester);
+      await _connected(tester, reopened, drafts: drafts);
+      expect(find.text(_strings.mailSubmissionUncertain), findsOneWidget);
+      await tester.pump(const Duration(minutes: 1));
+      expect(reopened.sends, 0);
+      expect(tester.takeException(), isNull);
+    },
+  );
+
+  testWidgets(
+    'native storage open failure prevents composition and submission',
+    (tester) async {
+      final drafts = MemoryStudioMailDrafts()..failOpen = true;
+      final client = _Client();
+      await _connected(tester, client, drafts: drafts);
+      expect(find.text(_strings.mailDraftStorageFailed), findsOneWidget);
+      await tester.tap(find.widgetWithIcon(TextButton, Icons.edit_outlined));
+      await _pump(tester);
+      expect(find.byType(StudioMailComposeDialog), findsNothing);
+      expect(find.text(_strings.mailDraftStorageFailed), findsOneWidget);
+      expect(drafts.records, isEmpty);
+      expect(client.sends, 0);
+      expect(tester.takeException(), isNull);
+    },
+  );
+
+  for (final bool preSubmission in [false, true]) {
+    testWidgets(
+      'native ${preSubmission ? 'submission checkpoint' : 'composer save'} failure cannot send',
+      (tester) async {
+        final drafts = MemoryStudioMailDrafts();
+        final client = _Client();
+        await _connected(tester, client, drafts: drafts);
+        await _compose(tester);
+        if (preSubmission) await _autosave(tester);
+        drafts.failSave = true;
+        await _send(tester);
+        expect(client.sends, 0);
+        if (preSubmission) {
+          expect(find.byType(StudioMailComposeDialog), findsNothing);
+          expect(find.text(_strings.mailDraftStorageFailed), findsOneWidget);
+          expect(drafts.records.values.single.submissionUncertain, isFalse);
+          expect(drafts.records.values.single.draft.body, 'Draft body.');
+        } else {
+          expect(find.byType(StudioMailComposeDialog), findsOneWidget);
+          expect(find.text(_strings.mailDraftSaveFailed), findsOneWidget);
+          expect(_composeBody(tester), 'Draft body.');
+          drafts.failSave = false;
+          await _saveAndCloseCompose(tester);
+        }
+        expect(tester.takeException(), isNull);
+      },
+    );
+  }
+
+  testWidgets(
+    'native acceptance clears the durable draft before another session',
+    (tester) async {
+      final drafts = MemoryStudioMailDrafts();
+      final first = _Client()..sendGate = Completer<void>();
+      await _connected(tester, first, drafts: drafts);
+      await _compose(tester);
+      await _send(tester);
+      expect(first.sends, 1);
+      expect(drafts.records.values.single.submissionUncertain, isTrue);
+      first.sendGate!.complete();
+      await _pump(tester);
+      expect(drafts.clears, 1);
+      expect(drafts.records, isEmpty);
+      expect(find.text(_strings.mailSubmissionAccepted), findsOneWidget);
+      await tester.tap(find.byTooltip(_strings.close));
+      await _pump(tester);
+      final reopened = _Client();
+      await _connected(tester, reopened, drafts: drafts);
+      expect(find.text(_strings.mailDraftRestored), findsNothing);
+      expect(find.text(_strings.mailSubmissionUncertain), findsNothing);
+      expect(reopened.sends, 0);
+      expect(tester.takeException(), isNull);
+    },
+  );
+
+  testWidgets(
+    'native accepted cleanup failure retains uncertain draft and do-not-resend notice',
+    (tester) async {
+      final drafts = MemoryStudioMailDrafts()..failClear = true;
+      final first = _Client();
+      await _connected(tester, first, drafts: drafts);
+      await _compose(tester);
+      await _send(tester);
+      expect(first.sends, 1);
+      expect(
+        find.text(_strings.mailDraftAcceptedCleanupFailed),
+        findsOneWidget,
+      );
+      expect(drafts.records.values.single.submissionUncertain, isTrue);
+      expect(drafts.records.values.single.draft.body, 'Draft body.');
+      expect(drafts.clears, 0);
+      await tester.pump(const Duration(minutes: 1));
+      expect(first.sends, 1);
+      await tester.tap(find.byTooltip(_strings.close));
+      await _pump(tester);
+      final reopened = _Client();
+      await _connected(tester, reopened, drafts: drafts);
+      expect(find.text(_strings.mailSubmissionUncertain), findsOneWidget);
+      expect(reopened.sends, 0);
+      await tester.tap(find.widgetWithIcon(TextButton, Icons.edit_outlined));
+      await _pump(tester);
+      expect(_composeBody(tester), 'Draft body.');
+      expect(
+        tester
+            .widget<FilledButton>(find.widgetWithIcon(FilledButton, Icons.send))
+            .onPressed,
+        isNull,
+      );
+      await _saveAndCloseCompose(tester);
+      expect(tester.takeException(), isNull);
+    },
+  );
+
+  testWidgets(
+    'a delayed native draft open cannot install the previous account store',
+    (tester) async {
+      final openGate = Completer<void>();
+      final drafts = MemoryStudioMailDrafts()..openGate = openGate;
+      final first = _Client();
+      final second = _Client()..messages = [_message('Second account message')];
+      var attempts = 0;
+      await _show(
+        tester,
+        (_) => attempts++ == 0 ? first : second,
+        drafts: drafts,
+      );
+      await _manual(tester);
+      await _connect(tester);
+      await _pump(tester);
+      final oldKey = drafts.identities.single.account.value;
+      drafts.records[oldKey] = const StudioMailStoredDraft(
+        draft: StudioMailDraft(
+          to: 'old@example.invalid',
+          subject: 'Old account draft',
+          body: 'Old account body',
+        ),
+        submissionUncertain: true,
+      );
+      await tester.tap(find.byTooltip(_strings.disconnect));
+      await _pump(tester);
+      drafts.openGate = null;
+      await tester.enterText(
+        _field(_strings.emailAddress),
+        'other@example.invalid',
+      );
+      await tester.enterText(_field(_strings.password), 'other-test-password');
+      await _connect(tester);
+      await _pump(tester);
+      expect(find.text('Second account message'), findsOneWidget);
+      await _compose(tester);
+      await tester.enterText(_field(_strings.subject), 'Current account draft');
+      await _saveAndCloseCompose(tester);
+      final newKey = drafts.identities.last.account.value;
+      expect(newKey, isNot(oldKey));
+      expect(drafts.records[newKey]!.draft.subject, 'Current account draft');
+      openGate.complete();
+      await _pump(tester);
+      expect(drafts.closes, 1);
+      expect(find.text('Second account message'), findsOneWidget);
+      expect(find.text(_strings.mailSubmissionUncertain), findsNothing);
+      await tester.tap(find.widgetWithIcon(TextButton, Icons.edit_outlined));
+      await _pump(tester);
+      expect(
+        tester.widget<TextField>(_field(_strings.subject)).controller!.text,
+        'Current account draft',
+      );
+      expect(_composeBody(tester), 'Draft body.');
+      expect(find.byType(CheckboxListTile), findsNothing);
+      expect(first.sends + second.sends, 0);
+      await _saveAndCloseCompose(tester);
+      expect(drafts.records[oldKey]!.draft.body, 'Old account body');
+      expect(tester.takeException(), isNull);
+    },
+  );
+
   testWidgets('closing during connect aborts pending owned clients', (
     tester,
   ) async {

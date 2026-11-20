@@ -8,6 +8,56 @@ extension StudioMailFeedback on StudioStrings {
     StudioLanguage.ar => ar,
   };
 
+  String get mailDraftSaving => _mailText(
+    'Saving draft…',
+    'Entwurf wird gespeichert…',
+    'جارٍ حفظ المسودة…',
+  );
+  String get mailDraftSaved => _mailText(
+    'Draft saved on this device.',
+    'Entwurf auf diesem Gerät gespeichert.',
+    'حُفظت المسودة على هذا الجهاز.',
+  );
+  String get mailDraftAutosave => _mailText(
+    'Draft changes are saved on this device.',
+    'Entwurfsänderungen werden auf diesem Gerät gespeichert.',
+    'تُحفظ تعديلات المسودة على هذا الجهاز.',
+  );
+  String get mailDraftCloseUnsaved => _mailText(
+    'Close without saving',
+    'Ohne Speichern schließen',
+    'إغلاق دون حفظ',
+  );
+  String get mailDraftCloseUnsavedExplanation => _mailText(
+    'The latest changes have not been saved and may be lost when you leave Mail. Previously saved draft content stays on this device. Close anyway?',
+    'Die letzten Änderungen wurden nicht gespeichert und können beim Verlassen von Mail verloren gehen. Zuvor gespeicherte Entwurfsinhalte bleiben auf diesem Gerät. Trotzdem schließen?',
+    'لم تُحفظ آخر التعديلات وقد تفقدها عند مغادرة البريد. تبقى محتويات المسودة المحفوظة سابقًا على هذا الجهاز. هل تريد الإغلاق؟',
+  );
+  String get mailDraftSaveFailed => _mailText(
+    'Could not save the draft. Keep this window open and try again.',
+    'Der Entwurf konnte nicht gespeichert werden. Dieses Fenster offen lassen und erneut versuchen.',
+    'تعذر حفظ المسودة. أبقِ هذه النافذة مفتوحة وحاول مجددًا.',
+  );
+  String get mailDraftRetrySave =>
+      _mailText('Retry saving', 'Erneut speichern', 'إعادة محاولة الحفظ');
+  String get mailDraftSaveClose =>
+      _mailText('Save and close', 'Speichern und schließen', 'حفظ وإغلاق');
+  String get mailDraftRestored => _mailText(
+    'A draft was restored from this device. Open Compose to continue.',
+    'Ein Entwurf wurde von diesem Gerät wiederhergestellt. Mit „Verfassen“ fortfahren.',
+    'استُعيدت مسودة من هذا الجهاز. افتح إنشاء رسالة للمتابعة.',
+  );
+  String get mailDraftStorageFailed => _mailText(
+    'Local drafts are unavailable. Open Compose to retry. No message was sent.',
+    'Lokale Entwürfe sind nicht verfügbar. Mit „Verfassen“ erneut versuchen. Es wurde keine Nachricht gesendet.',
+    'المسودات المحلية غير متاحة. افتح إنشاء رسالة للمحاولة مجددًا. لم تُرسل أي رسالة.',
+  );
+  String get mailDraftAcceptedCleanupFailed => _mailText(
+    'The server accepted this message, but the local draft could not be cleared. Do not resend it. A recovered copy will require a delivery check.',
+    'Der Server hat diese Nachricht angenommen, aber der lokale Entwurf konnte nicht entfernt werden. Nicht erneut senden. Eine wiederhergestellte Kopie erfordert eine Zustellungsprüfung.',
+    'قبل الخادم هذه الرسالة، لكن تعذر حذف المسودة المحلية. لا تُعد إرسالها. ستتطلب النسخة المستعادة التحقق من التسليم.',
+  );
+
   String get mailInvalidRecipient => _mailText(
     'Enter 1–100 email addresses without display names, separated by commas or semicolons.',
     '1–100 E-Mail-Adressen ohne Anzeigenamen eingeben, durch Kommas oder Semikolons getrennt.',
@@ -80,9 +130,9 @@ extension StudioMailFeedback on StudioStrings {
     'قبل خادم الإرسال الرسالة، لكن التنظيف اللاحق فشل. لا ترسل هذه الرسالة مجددًا. لا تحفظ هذه الجلسة نسخة في البريد المرسل.',
   );
   String get mailSubmissionUncertain => _mailText(
-    'Submission could not be confirmed. Your draft is retained for this session. Check delivery before sending it again.',
-    'Der Versand konnte nicht bestätigt werden. Der Entwurf bleibt in dieser Sitzung erhalten. Vor einem erneuten Versand die Zustellung prüfen.',
-    'تعذر تأكيد الإرسال. حُفظت المسودة لهذه الجلسة. تحقق من التسليم قبل إرسالها مجددًا.',
+    'Submission could not be confirmed. Your draft is retained. Check delivery before sending it again.',
+    'Der Versand konnte nicht bestätigt werden. Der Entwurf bleibt erhalten. Vor einem erneuten Versand die Zustellung prüfen.',
+    'تعذر تأكيد الإرسال. حُفظت المسودة. تحقق من التسليم قبل إرسالها مجددًا.',
   );
   String get mailRetryAcknowledgement => _mailText(
     'I checked delivery and want to send this draft again.',
@@ -125,9 +175,9 @@ extension StudioMailFeedback on StudioStrings {
     'حذف المسودة المحفوظة',
   );
   String get mailDiscardDraftExplanation => _mailText(
-    'This removes only the draft kept in this session. It does not cancel a message already submitted. Check delivery before sending another copy.',
-    'Dies entfernt nur den in dieser Sitzung gespeicherten Entwurf. Eine bereits übermittelte Nachricht wird dadurch nicht zurückgerufen. Vor dem Senden einer weiteren Kopie die Zustellung prüfen.',
-    'يؤدي هذا إلى حذف المسودة المحفوظة في هذه الجلسة فقط. ولا يلغي رسالة أُرسلت بالفعل. تحقق من التسليم قبل إرسال نسخة أخرى.',
+    'This removes the local draft and its saved attachments. It does not cancel a message already submitted. Check delivery before sending another copy.',
+    'Dies entfernt den lokalen Entwurf und seine gespeicherten Anhänge. Eine bereits übermittelte Nachricht wird dadurch nicht zurückgerufen. Vor dem Senden einer weiteren Kopie die Zustellung prüfen.',
+    'يؤدي هذا إلى حذف المسودة المحلية ومرفقاتها المحفوظة. ولا يلغي رسالة أُرسلت بالفعل. تحقق من التسليم قبل إرسال نسخة أخرى.',
   );
   String get mailPlainTextUnavailable => _mailText(
     'This message has no plain-text body to quote. Use Compose to write a new message.',

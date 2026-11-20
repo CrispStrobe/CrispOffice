@@ -9,6 +9,33 @@ archive, Studio workflows and remaining MailStore parity work.
 **Canonical repository:** CrispStrobe/quds_office_suite, branch main.
 **Entry point for a fresh coding agent:** read this file, then [implementation-plan.md](implementation-plan.md). The [CrispCloud contract](crispcloud-integration.md) and [licensing/App Store requirements](licensing-and-app-store.md) are part of the same specification. No prior chat is required.
 
+## Desktop mail parity: ordered increments
+
+Outlook, Thunderbird and eM Client are comparison targets for complete workflows,
+reliability and usability. The following order extends the existing M00–M14
+plan rather than treating provider connectivity as full product parity.
+
+| Order | Workflow | Current position | Next acceptance boundary |
+| --- | --- | --- | --- |
+| 1 | Recoverable composition | Local autosave, attachment/reply recovery and interrupted-send warnings now connected to native hosts | Multiple drafts, offline draft entry and provider-side Drafts synchronization |
+| 2 | Everyday mailbox workspace (M04W/M06) | Reader and separate foreground hosts; durable repository already exists | Shared paginated repository-driven lists, account switching/unified inbox, consistent read/flag/move/delete, keyboard/focus and unread filters |
+| 3 | Sending and outbox (M07) | Foreground submission and durable draft safety; core outbox/store contracts exist | Visible queued messages, immutable prepared MIME/envelopes, crash recovery, explicit retry/cancel, then undo-send and scheduled send |
+| 4 | Efficient discovery and organization | Independent archive FTS, saved archive searches and bounded mailbox filtering | Full account search, conversations, tags/categories, bulk commands and ordered rule execution with preview/recovery |
+| 5 | Rich authoring and Office workflows (M07/M08) | Word-based plain text, To/Cc/Bcc, reply all, file attachments | Signatures/templates, HTML alternatives, inline images, attach current document/PDF and edit a copy of a received attachment |
+| 6 | Integrated productivity and release (M09–M13) | Provider adapters and shared foundations available | Calendar/People, invitation workflows, provider-specific shared mailboxes, encryption/signatures where supported, installed-platform and live-provider qualification |
+
+Each increment needs an actual user path, typed failure/recovery behavior,
+focused local tests and a remote source checkpoint before the next. Reconcile
+current main/branches/PRs before final publication. GitHub Actions queue time is
+not an acceptance dependency; record the actual local commands and scope.
+
+Comparison references checked 20 November 2026: Thunderbird's
+[quick filters](https://support.mozilla.org/en-US/kb/quick-filter-toolbar),
+[eM Client email capabilities](https://www.emclient.com/features-email), and
+[Outlook rules](https://support.microsoft.com/en-gb/outlook/mail/manage-email-messages-by-using-rules-in-outlook).
+Feature availability depends on the provider and product version; the matrix
+does not claim identical behavior across every comparator edition.
+
 ## 1. Product decisions
 
 Build one reusable Mail implementation with two consumers:
