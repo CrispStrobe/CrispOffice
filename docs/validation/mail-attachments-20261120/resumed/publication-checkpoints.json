@@ -1,0 +1,22 @@
+{
+  "repository": "CrispStrobe/quds_office_suite",
+  "branch": "work/mail-attachments-20261120",
+  "prior_checkpoint": "f80b46e2115d32b11b633cc47acec820aecf2db4",
+  "updates": [
+    {
+      "ordinal": 1,
+      "remote_sha": "2c3479838721632167933eb99b78beaac285e862",
+      "local_candidate": "75083ea738d08be3eb9a3d983ac80a7f05a6201b",
+      "tree": "6aff53dc9b5e2c29854ad05703038c7362fdcc1f",
+      "parents": [
+        "f80b46e2115d32b11b633cc47acec820aecf2db4",
+        "85c019cd8fda1a735a727bff98c2a56fb25a368e",
+        "e79c32e77f1990e303527e477e4909df993c1b9b",
+        "4973e712045bdcf45fd36dcfe37d380c52265d3c"
+      ],
+      "purpose": "Recover remote work and initial inventory",
+      "expected_previous_sha": "f80b46e2115d32b11b633cc47acec820aecf2db4"
+    }
+  ],
+  "policy": "Every published tree is compared with the local candidate tree before creating the commit. Branch updates use expected_sha and force=false. Original incoming commits remain ordered parents or ancestors."
+}

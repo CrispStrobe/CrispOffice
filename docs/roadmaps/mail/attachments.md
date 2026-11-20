@@ -127,13 +127,23 @@ incoming attachment into a new draft is separate work.
 
 ## Qualification and next increments
 
-The [combined local qualification](../../validation/zotero-research-materials-20261120/README.md)
-records the captured Mail/VBA/Office heads, exact source and runtime, host and
-provider tests, MIME/SMTP regressions, and an independent Python MIME inspection.
-These checks use synthetic messages and controlled transports; they do not send
-mail through a live account. That record applies to its captured source. The
-later narrow and right-to-left composer changes are reconciled here and receive
-their own combined-source checks before this continuation is published.
+The incoming [Zotero combined qualification](../../validation/zotero-research-materials-20261120/README.md)
+also retains controlled mail-host, provider, MIME and SMTP checks and an
+independent Python MIME inspection. Those receipts belong to their recorded
+source checkpoints; they are kept separate from the resumed mail runs below.
+
+The source-bound [attachment core evidence](../../validation/mail-attachments-20261120/attachment-core/README.md)
+contains a new independent Python MIME receiver and production-codec comparison.
+The [overall record](../../validation/mail-attachments-20261120/README.md)
+adds the complete model/MIME, recipient/reply/threading, vendor codec/builder,
+file-reader, composer and provider-host suites. Together they check immutable
+ownership, empty and duplicate files, names and media-type admission, count/byte
+limits, exact attachment hashes, MIME structure, Bcc absence and reply threading.
+A maximum-size probe combines ten files totaling 10 MiB
+with a 1 MiB body of quotes, whose escaped HTML expands sixfold. Its complete
+message stays within the 22 MiB wire guard and the default 32 MiB cloud
+outer-base64 request budget, and the production codec recovers every file and
+the complete body. It is a bound probe, not a device-wide performance claim.
 
 Live-provider delivery, actual native picker behavior on each installed OS and
 real browser persistence remain separate qualifications.

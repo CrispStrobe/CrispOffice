@@ -613,8 +613,9 @@ class PmlSlide {
   /// shapes API.
   List<PmlShape> shapes;
 
-  /// Non-editable master/layout decorations painted behind [shapes].
-  /// Import resolves master visibility here while retaining layout shapes.
+  /// The selected background picture and non-editable master/layout decorations
+  /// painted behind [shapes]. Import resolves master-shape visibility while
+  /// retaining the selected background fill and layout shapes.
   final List<PmlShape> backgroundShapes;
 
   /// Whether this slide has its own resolved master/layout decorations.

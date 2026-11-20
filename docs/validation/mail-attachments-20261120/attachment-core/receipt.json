@@ -1,0 +1,24 @@
+{
+  "startedAt": "2026-11-20T05:16:46.103514+00:00",
+  "gitHead": "75083ea738d08be3eb9a3d983ac80a7f05a6201b",
+  "gitTree": "6aff53dc9b5e2c29854ad05703038c7362fdcc1f",
+  "pythonVersion": "3.12.14",
+  "dartVersion": "Dart SDK version: 3.13.7 (stable) (Thu Oct 22 14:28:57 2026 -0700) on \"linux_x64\"",
+  "command": [
+    "/workspace/scratch/75dc9d25dfaf/runtime/bin/dart",
+    "--packages=/workspace/scratch/75dc9d25dfaf/quds_office_suite/.dart_tool/package_config.json",
+    "/workspace/scratch/75dc9d25dfaf/mail-probe/attachment_mime_probe.dart",
+    "/workspace/scratch/75dc9d25dfaf/mail-probe/run-01/fixtures/fixtures.json",
+    "/workspace/scratch/75dc9d25dfaf/mail-probe/run-01"
+  ],
+  "sourceFileCount": 191,
+  "status": "passed",
+  "scope": "Production builder and codec; independent Python MIME receiver. Synthetic fixtures only. No real account or live submission.",
+  "dartExitCode": 0,
+  "cases": 3,
+  "sourceUnchangedDuringRun": true,
+  "pythonReceiverVerified": true,
+  "dartProductionRoundtripVerified": true,
+  "elapsedSeconds": 8.96,
+  "finishedAt": "2026-11-20T05:16:55.074529+00:00"
+}

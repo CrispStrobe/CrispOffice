@@ -141,10 +141,9 @@ ran on pinned Dart through a separate cached dependency graph; unavailable
 dependencies prevented MIME/provider and Flutter widget qualification then.
 The [original validation record](../../validation/mail-recipients-20261119/README.md)
 retains that boundary and its PPTX reconciliation. The
-[20 November combined qualification](../../validation/zotero-research-materials-20261120/README.md)
-subsequently exercised the captured recipient/reply/threading, provider-host
-and composer cohorts against the locked workspace. Its exact selection and
-source identities are recorded separately from later composer changes.
+[20 November attachment continuation](../../validation/mail-attachments-20261120/README.md)
+subsequently ran the complete recipient/reply/threading, provider-host and
+composer suites against the actual locked workspace, without omitted cases.
 
 This does **not** close M04W or M07: accounts/drafts remain session-only, there is
 no repository-driven mailbox or durable outbox, and no automatic resend is added.
@@ -160,8 +159,9 @@ The earlier Studio continuation saved its combined source remotely, but its
 aggregate qualification failed before completion and subsequent filesystem tool
 launches reported no space left on device. No accepted aggregate result is
 claimed for that earlier source. Its report retains exact source identities,
-attempts and replay instructions; the new attachment record above documents the
-freshly qualified cohorts, and previous totals below remain historical.
+attempts and replay instructions; the combined qualification record above documents its captured cohorts, and
+previous totals below remain historical. Later changes have separately bound
+results.
 
 ## Delivered code
 

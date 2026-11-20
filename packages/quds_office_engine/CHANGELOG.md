@@ -17,8 +17,8 @@ All notable changes to `quds_office_engine` are documented here.
   VM/JavaScript receipts. Refuse malformed UTF-16 at workbook-write boundaries
   while preserving valid internal substring operations and transactional runs.
 
-- Preserve nearest authored PPTX picture-background ownership independently
-  of master-shape visibility, with slide copies, cropping and repeated native
+- Preserve nearest authored PPTX picture-background ownership and gradient
+  fallback independently of master-shape visibility, with slide copies, cropping and repeated native
   saves. Keep explicit solid fills authoritative and preserve PDF picture
   outlines. Add focused ownership, package, copy and save regressions.
 
