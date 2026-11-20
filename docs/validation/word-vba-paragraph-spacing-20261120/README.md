@@ -133,6 +133,19 @@ and 5,648 source bindings were independently rechecked. This continuation does
 not claim a fresh Mail suite run. That formerly deferred work is now included
 as real ancestry, together with prior Word main `3ee4e362`.
 
+The historical [incoming JSON](incoming-review.json) is preserved unchanged.
+The scope report references a subsequent review timestamp, whose exact bytes
+are retained in [scope-incoming-review.json](scope-incoming-review.json).
+The [scope source binding](scope-source-bindings.json) resolves both hashes
+and verifies that only `reviewed_at_utc` differs. All substantive intake
+contents and reference classifications are identical.
+The [historical checkpoint diagnostic](publication-checkpoint-a6c9bb6a.json)
+and its [exact verifier](verify_publication_checkpoint_a6c9bb6a.py) are retained.
+The corrected checkpoint is independently checked with
+[the updated verifier](verify_publication_checkpoint.py); its accepted report
+and the post-merge proof are preserved in PR #263 to avoid a self-referential
+commit hash inside the reviewed tree.
+
 The selected late [publication intake](publication-intake.json) accounts for
 27 fork branches, 265 PR heads, 4 upstream branches
 and 4 upstream PR heads, with no uncovered references. Its 14 historical equivalence proofs are recomputed: 13 complete trees
@@ -173,6 +186,7 @@ independent scope report. No deferred branch is deleted or rewritten.
 | `07860e6b` | Completed portable/static/source-review evidence and interruption diagnostics |
 | `d906a2d3` | First accepted bounded batches and timeout diagnostics |
 | `ed750f1f` | Actual late-head ancestry, reviewed macOS correction and source-preservation proof |
+| `a6c9bb6a` | Complete accepted regression/evidence packet and latest captured scope |
 
 Later reconciliation and evidence checkpoints, including remote evidence
 checkpoints `07860e6b` and `d906a2d3`, are recorded in Git history and retained on

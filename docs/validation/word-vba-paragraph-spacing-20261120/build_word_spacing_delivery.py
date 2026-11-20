@@ -44,6 +44,25 @@ scope=load(REVIEW/'publication-scope-review.json')
 assert scope['status']=='PASS_WITH_EXPLICIT_DEFERRALS'
 assert scope['all_initial_captured_work_included'] and scope['all_selected_late_heads_integrated']
 assert scope['unclassified_references']==0
+scope_incoming_path=REVIEW/'incoming-review.json'
+historical_incoming_path=REPO/'docs/validation/word-vba-paragraph-spacing-20261120/incoming-review.json'
+scope_incoming_bytes=scope_incoming_path.read_bytes()
+historical_incoming_bytes=historical_incoming_path.read_bytes()
+scope_incoming=json.loads(scope_incoming_bytes)
+historical_incoming=json.loads(historical_incoming_bytes)
+different_keys=sorted(k for k in set(scope_incoming)|set(historical_incoming) if scope_incoming.get(k)!=historical_incoming.get(k))
+assert digest(scope_incoming_bytes)==scope['initial_review_sha256']
+assert different_keys==['reviewed_at_utc']
+assert scope_incoming_bytes.replace(scope_incoming['reviewed_at_utc'].encode(),historical_incoming['reviewed_at_utc'].encode(),1)==historical_incoming_bytes
+assert digest(historical_incoming_bytes)==intake['initial_review_sha256']
+save('scope-source-bindings.json',{
+ 'schema':'quds-word-spacing-scope-source-bindings/v1',
+ 'scope_report':{'path':'publication-scope-review.json','bytes':(REVIEW/'publication-scope-review.json').stat().st_size,'sha256':digest((REVIEW/'publication-scope-review.json').read_bytes()),'initial_review_sha256':scope['initial_review_sha256']},
+ 'scope_incoming_review':{'path':'scope-incoming-review.json','bytes':len(scope_incoming_bytes),'sha256':digest(scope_incoming_bytes),'reviewed_at_utc':scope_incoming['reviewed_at_utc']},
+ 'historical_incoming_review':{'path':'incoming-review.json','bytes':len(historical_incoming_bytes),'sha256':digest(historical_incoming_bytes),'reviewed_at_utc':historical_incoming['reviewed_at_utc']},
+ 'different_top_level_keys':different_keys,'only_timestamp_bytes_differ':True,
+ 'substantive_contents_identical':True,'historical_payload_preserved':True,
+})
 scope_captures={}
 for capture in scope['captures']:
  capture_path=ROOT/capture['path']
@@ -108,6 +127,7 @@ for src,name in [
  (REVIEW/'source-review.md','source-review.md'),
  (REVIEW/'publication-scope-review.json','publication-scope-review.json'),
  (REVIEW/'publication-scope-review.md','publication-scope-review.md'),
+ (scope_incoming_path,'scope-incoming-review.json'),
  (REVIEW/'audit_publication_scope.py','audit_publication_scope.py'),
  (scope_captures['fork'],'latest-captured-fork-refs.txt'),
  (scope_captures['upstream'],'latest-captured-upstream-refs.txt'),
@@ -288,6 +308,19 @@ and 5,648 source bindings were independently rechecked. This continuation does
 not claim a fresh Mail suite run. That formerly deferred work is now included
 as real ancestry, together with prior Word main `3ee4e362`.
 
+The historical [incoming JSON](incoming-review.json) is preserved unchanged.
+The scope report references a subsequent review timestamp, whose exact bytes
+are retained in [scope-incoming-review.json](scope-incoming-review.json).
+The [scope source binding](scope-source-bindings.json) resolves both hashes
+and verifies that only `reviewed_at_utc` differs. All substantive intake
+contents and reference classifications are identical.
+The [historical checkpoint diagnostic](publication-checkpoint-a6c9bb6a.json)
+and its [exact verifier](verify_publication_checkpoint_a6c9bb6a.py) are retained.
+The corrected checkpoint is independently checked with
+[the updated verifier](verify_publication_checkpoint.py); its accepted report
+and the post-merge proof are preserved in PR #263 to avoid a self-referential
+commit hash inside the reviewed tree.
+
 The selected late [publication intake](publication-intake.json) accounts for
 {fork_branches} fork branches, {fork_prs} PR heads, {upstream_branches} upstream branches
 and {upstream_prs} upstream PR heads, with no uncovered references. Its 14 historical equivalence proofs are recomputed: 13 complete trees
@@ -325,6 +358,7 @@ independent scope report. No deferred branch is deleted or rewritten.
 | `07860e6b` | Completed portable/static/source-review evidence and interruption diagnostics |
 | `d906a2d3` | First accepted bounded batches and timeout diagnostics |
 | `ed750f1f` | Actual late-head ancestry, reviewed macOS correction and source-preservation proof |
+| `a6c9bb6a` | Complete accepted regression/evidence packet and latest captured scope |
 
 Later reconciliation and evidence checkpoints, including remote evidence
 checkpoints `07860e6b` and `d906a2d3`, are recorded in Git history and retained on

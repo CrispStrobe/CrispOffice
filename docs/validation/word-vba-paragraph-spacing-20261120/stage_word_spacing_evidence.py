@@ -46,7 +46,7 @@ if a.include_final_review:
  final=json.loads((review/'evidence-review.json').read_text())
  assert final.get('status') in ('ACCEPTED','PASS') or final.get('accepted') is True
  files.extend([(review/'evidence-review.json','evidence-review.json'),(review/'evidence-review.md','evidence-review.md')])
- for name in ['verify_final_evidence.py','audit_batched_regression.py','audit_checkpoint_archives.py','audit_bounded_progress_archive.py','checkpoint-archives-review.json','bounded-progress-archive-review.json','bounded-timeout-diagnostics-review.json']:
+ for name in ['verify_final_evidence.py','audit_batched_regression.py','audit_checkpoint_archives.py','audit_bounded_progress_archive.py','checkpoint-archives-review.json','bounded-progress-archive-review.json','bounded-timeout-diagnostics-review.json','verify_publication_checkpoint.py','verify_publication_checkpoint_a6c9bb6a.py','publication-checkpoint-a6c9bb6a.json']:
   source=review/name
   if source.is_file():files.append((source,name))
 for source,name in files:

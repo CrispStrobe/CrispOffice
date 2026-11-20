@@ -1,8 +1,8 @@
 {
   "files": {
     "README.md": {
-      "bytes": 11922,
-      "sha256": "39c7088dc73489a4d5fa9435189fe4b17316b909ebb8962f83539f6f9fe475db"
+      "bytes": 12850,
+      "sha256": "ec059c11ad8e69dac5e883f04fb8b380bf5c14bccf7ae35713e7011ab0dcc1d7"
     },
     "analysis-format.json": {
       "bytes": 3871,
@@ -53,16 +53,16 @@
       "sha256": "9c124a5133fbd2f55ba9032c2fb086342115a5b87dfd4ce471704a654f887051"
     },
     "build_word_spacing_delivery.py": {
-      "bytes": 21259,
-      "sha256": "c03473b209cd3ad6b66c369c251f16f6a62d5c539e54738822f4ea8b22a5ab8c"
+      "bytes": 23981,
+      "sha256": "99d68b1ade1c2003e69fab74fb7e9e613f5e4dca75c27e48b2154f359cc940af"
     },
     "checkpoint-archives-review.json": {
       "bytes": 2025,
       "sha256": "016758a309f3db26ae37ba7874f2c0f041a794785528db4786eedfca43725adf"
     },
     "checkpoints.json": {
-      "bytes": 3900,
-      "sha256": "780af9b9837a4267cadc256bdf8be4961d9745bb60c6ca3812c00a580dece715"
+      "bytes": 4376,
+      "sha256": "3200e4b2544f60735d07626a44dcd6f5c8ef335709a3cd0c55942984d6ae8469"
     },
     "development-attempts.json": {
       "bytes": 7258,
@@ -212,6 +212,10 @@
       "bytes": 1652,
       "sha256": "a9be3ef4dd7e0f8589a73c471bc7e7a0def054912b3ffe3e85d079e0f0a0ae7c"
     },
+    "publication-checkpoint-a6c9bb6a.json": {
+      "bytes": 9311,
+      "sha256": "e0c369b9fd26e4f93e75b01e1dbd94b8ac53d44f664ff5bce00aa222bcfaea83"
+    },
     "publication-fork-refs.txt": {
       "bytes": 18019,
       "sha256": "8d6ab182bcd31ea842a040f3d0c1f02a4b947d1086c373c726544236009604a5"
@@ -238,7 +242,7 @@
     },
     "qualification.json": {
       "bytes": 1805,
-      "sha256": "bc418e9243649b1d3fe38b51e9783d0d3d57991230eff8afd0db47fec8d57fd4"
+      "sha256": "30a7f9f68d33d9e5bb7bf0b940faf217bbee6de1caa5b34065789de0f81a9fe8"
     },
     "recovery-scope-fork-refs.txt": {
       "bytes": 18759,
@@ -268,9 +272,17 @@
       "bytes": 216099,
       "sha256": "c3bb038e4e9d830e0841944e01e150a9c333004b97c0a8fd5b74b7b97bf7a0fd"
     },
+    "scope-incoming-review.json": {
+      "bytes": 137762,
+      "sha256": "6a01e8165781ff327ca7171073125f429a7ee39436f1ca81e4484c1dbd700b86"
+    },
+    "scope-source-bindings.json": {
+      "bytes": 982,
+      "sha256": "c387675bfa3826cd52d95a1a5638d653c47be0a1f1ffb7d9934ae477bdb7fe42"
+    },
     "source-consistency.json.gz": {
-      "bytes": 91595,
-      "sha256": "a7ae9efe730cee5c0f3a30c2f1261fcbd3e49a9ec3cb956050ca7516d97faef5"
+      "bytes": 91594,
+      "sha256": "22f4f96baa1c2d4095e6f28f2293da4479c82588f1c23a9389f2044e7828f49f"
     },
     "source-review.json": {
       "bytes": 11468,
@@ -281,8 +293,8 @@
       "sha256": "32cc573f2556438bb038e3e5ff8967fa424d478f95822c5dd76ff2e5c6c990b5"
     },
     "stage_word_spacing_evidence.py": {
-      "bytes": 3582,
-      "sha256": "0cbca37dd1a790ba0e8587e10533eaf9149678eecc25811bc7a41839fca79d3d"
+      "bytes": 3700,
+      "sha256": "9e4272d37f4ad19938471ef6157ebb7f213f22d3c769a531959cc805d56ec496"
     },
     "upstream-remote-refs.txt": {
       "bytes": 536,
@@ -300,9 +312,17 @@
       "bytes": 8041,
       "sha256": "bc80a9cfdf9ede44773cac68ec4834fa79dd8d94e2ce8b23dac6d4d14aefe5e0"
     },
+    "verify_publication_checkpoint.py": {
+      "bytes": 17445,
+      "sha256": "636883575f1139bf5e1a0383b9ac9db34a129c21be1eca101a496e63b92e4187"
+    },
+    "verify_publication_checkpoint_a6c9bb6a.py": {
+      "bytes": 13970,
+      "sha256": "3376fc00406a89cd66b3d4446860bd5c07a2270100e2aa8c6c6390549c11c6b9"
+    },
     "verify_word_spacing_publication.py": {
-      "bytes": 6727,
-      "sha256": "16493b9b0e1e95dd4e3006658e882f46265ea10a5f29759dbab8328acd9dae27"
+      "bytes": 6772,
+      "sha256": "2a68e6ed2e58448963b663c75b334932de7d0a7051950496e896edea3c05d617"
     }
   },
   "scope": "Files in this validation directory; excludes this index to avoid recursion. Exact Git tree binding is verified after merge."
