@@ -153,8 +153,8 @@ void main() {
     ' leading.txt',
     'trailing.txt ',
     'broken\ud800.txt',
-    '${'a' * 256}',
-    '${'é' * 128}',
+    'a' * 256,
+    'é' * 128,
   ]) {
     test('rejects unsafe filename ${jsonEncode(name)} before snapshotting', () {
       expect(StudioMailAttachment.isSupportedName(name), isFalse);
@@ -183,38 +183,37 @@ void main() {
     }
   });
 
-  test(
-    'fixed Office and generic type hints never inspect or rewrite bytes',
-    () {
-      final expected = <String, String>{
-        'Report.DOCX': 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
-        'Budget.xlsx':
-            'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
-        'Deck.pptx': 'application/vnd.openxmlformats-officedocument.presentationml.presentation',
-        'Macro.xlsm': 'application/vnd.ms-excel.sheet.macroenabled.12',
-        'Document.pdf': 'application/pdf',
-        'Data.csv': 'text/csv',
-        'Image.png': 'image/png',
-        'Archive.zip': 'application/zip',
-        'Original.eml': 'application/octet-stream',
-        'unknown.custom': 'application/octet-stream',
-        '.pdf': 'application/octet-stream',
-      };
-      for (final entry in expected.entries) {
-        final attachment = _attachment(entry.key, [255, 0, 128]);
-        expect(attachment.mediaType, entry.value);
-        expect(attachment.content.bytes, [255, 0, 128]);
-      }
-      expect(
-        StudioMailAttachment(
-          name: 'data.custom',
-          bytes: Uint8List(0),
-          mediaType: 'APPLICATION/PDF',
-        ).mediaType,
-        'application/pdf',
-      );
-    },
-  );
+  test('fixed Office and generic type hints never inspect or rewrite bytes', () {
+    final expected = <String, String>{
+      'Report.DOCX':
+          'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+      'Budget.xlsx':
+          'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+      'Deck.pptx':
+          'application/vnd.openxmlformats-officedocument.presentationml.presentation',
+      'Macro.xlsm': 'application/vnd.ms-excel.sheet.macroenabled.12',
+      'Document.pdf': 'application/pdf',
+      'Data.csv': 'text/csv',
+      'Image.png': 'image/png',
+      'Archive.zip': 'application/zip',
+      'Original.eml': 'application/octet-stream',
+      'unknown.custom': 'application/octet-stream',
+      '.pdf': 'application/octet-stream',
+    };
+    for (final entry in expected.entries) {
+      final attachment = _attachment(entry.key, [255, 0, 128]);
+      expect(attachment.mediaType, entry.value);
+      expect(attachment.content.bytes, [255, 0, 128]);
+    }
+    expect(
+      StudioMailAttachment(
+        name: 'data.custom',
+        bytes: Uint8List(0),
+        mediaType: 'APPLICATION/PDF',
+      ).mediaType,
+      'application/pdf',
+    );
+  });
 
   for (final type in <String>[
     '',

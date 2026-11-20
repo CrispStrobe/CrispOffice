@@ -32,26 +32,43 @@ class QuotedPrintableMailCodec extends MailCodec {
 
     for (var i = 0; i < runeCount; i++) {
       final rune = runes[i];
-      if ((rune >= 32 && rune <= 60) ||
-          (rune >= 62 && rune <= 126) ||
-          rune == 9) {
-        buffer.writeCharCode(rune);
-        lineCharacterCount++;
-      } else {
-        if (i < runeCount - 1 &&
-            rune == AsciiRunes.runeCarriageReturn &&
-            runes[i + 1] == AsciiRunes.runeLineFeed) {
-          buffer.write('\r\n');
-          i++;
-          lineCharacterCount = 0;
-        } else if (rune == AsciiRunes.runeLineFeed) {
-          buffer.write('\r\n');
-          lineCharacterCount = 0;
-        } else {
-          //TODO some characters consist of more than a single rune
-          lineCharacterCount += _writeQuotedPrintable(rune, buffer, codec);
-        }
+      if (i < runeCount - 1 &&
+          rune == AsciiRunes.runeCarriageReturn &&
+          runes[i + 1] == AsciiRunes.runeLineFeed) {
+        buffer.write('\r\n');
+        i++;
+        lineCharacterCount = 0;
+        continue;
+      } else if (rune == AsciiRunes.runeLineFeed) {
+        buffer.write('\r\n');
+        lineCharacterCount = 0;
+        continue;
       }
+      // RFC 2045 section 6.7 requires encoding whitespace at a hard line end.
+      // Decoders must discard literal terminal space/tab as transport padding.
+      final atLineEnd =
+          i == runeCount - 1 ||
+          runes[i + 1] == AsciiRunes.runeLineFeed ||
+          (i + 2 < runeCount &&
+              runes[i + 1] == AsciiRunes.runeCarriageReturn &&
+              runes[i + 2] == AsciiRunes.runeLineFeed);
+      final literal =
+          (rune >= 33 && rune <= 60) ||
+          (rune >= 62 && rune <= 126) ||
+          ((rune == 32 || rune == 9) && !atLineEnd);
+      final encoded = literal
+          ? String.fromCharCode(rune)
+          : _encodeQuotedPrintableChar(rune, codec);
+      // Reserve the final column for '=' before adding a multi-byte rune.
+      // Checking only after writing it could produce lines longer than 76.
+      if (wrap &&
+          lineCharacterCount + encoded.length >
+              MailConventions.textLineMaxLength - 1) {
+        buffer.write('=\r\n');
+        lineCharacterCount = 0;
+      }
+      buffer.write(encoded);
+      lineCharacterCount += encoded.length;
       if (wrap && lineCharacterCount >= MailConventions.textLineMaxLength - 1) {
         buffer.write('=\r\n'); // soft line break
         lineCharacterCount = 0;
