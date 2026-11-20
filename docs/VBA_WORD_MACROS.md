@@ -53,6 +53,13 @@ bindings and `ByVal` helper parameters. `With` may target these supported
 objects or the range's `Font` and `ParagraphFormat`. All bindings remain
 document-independent selectors; they never expose text or formatting reads.
 
+`ActiveDocument` and `Application.ActiveDocument` both bind the document
+explicitly supplied to the macro session, as does `ThisDocument`. They do not
+consult a focused native application, discover another document, or open a
+file. `Paragraphs.Item(i)` is equivalent to `Paragraphs(i)`. `With Application`
+and `With doc.Paragraphs` allow those same bindings; the collection has no
+readable `Count` and cannot be enumerated.
+
 The common source language includes the existing local procedures and scalar
 functions, bounded control flow, typed arrays, string intrinsics, and explicit
 Variant states and conversions described in [the shared language
@@ -75,6 +82,10 @@ header, footer, note, or comment story selector.
 | `range.Font.Color = value` | `docx.runFormat` | `color` as six uppercase RGB hexadecimal digits |
 | `range.Font.Underline = value` | `docx.runFormat` | `underline`, one of the 18 documented `WdUnderline` styles |
 | `range.Font.StrikeThrough = value` | `docx.runFormat` | `strike: value` |
+| `range.Font.SmallCaps = value` | `docx.runFormat` | `smallCaps: value`; `True` also writes an explicit native AllCaps-off override |
+| `range.Font.Superscript = value` | `docx.runFormat` | `superscript: value` |
+| `range.Font.Subscript = value` | `docx.runFormat` | `subscript: value` |
+| `range.HighlightColorIndex = value` | `docx.runFormat` | `highlight`: the fixed palette RGB color, or `null` for `wdNoHighlight` |
 | `range.ParagraphFormat.Alignment = value` | `docx.paragraphFormat` | `alignment: left`, `center`, `right`, or `justify` |
 | `range.ParagraphFormat.SpaceBefore = value` | `docx.paragraphFormat` | `before: value` in points |
 | `range.ParagraphFormat.SpaceAfter = value` | `docx.paragraphFormat` | `after: value` in points |
@@ -105,7 +116,7 @@ formats the paragraph's current text, including text inserted by earlier steps.
 
 ### Paragraph selectors
 
-`ThisDocument.Paragraphs(i)` requires an actual numeric value that is an exact
+`ThisDocument.Paragraphs(i)` and `.Paragraphs.Item(i)` require an actual numeric value that is an exact
 integer from `1` through `9007199254740991`. Numeric strings and Booleans are
 not implicitly converted. Whether that paragraph exists is checked when the
 native plan runs; compilation does not inspect the document.
@@ -151,12 +162,13 @@ Paragraph-format operations can target an empty paragraph.
 
 | Property | Accepted value |
 | --- | --- |
-| `Font.Bold`, `Font.Italic`, `Font.StrikeThrough`, `KeepTogether`, `PageBreakBefore` | Actual `Boolean`; numeric `-1`/`0` and Strings require explicit conversion |
+| `Font.Bold`, `Font.Italic`, `Font.StrikeThrough`, `Font.SmallCaps`, `Font.Superscript`, `Font.Subscript`, `KeepTogether`, `PageBreakBefore` | Actual `Boolean`; numeric `-1`/`0` and Strings require explicit conversion |
 | `Font.Underline` | Exact numeric member of `WdUnderline`, including all 18 named constants; `True` is not an underline enum |
 | `Font.Size` | Actual finite number from `0.5` through `1638`, in exact half-point increments |
 | `Font.Name` | Nonempty XML-safe String; control whitespace in font names is unsupported |
 | `Font.Color` | Exact integer from `0` through `16777215`, using VBA's packed RGB representation; `RGB(r, g, b)` is supported |
 | `ParagraphFormat.Alignment` | Exact integer `0`, `1`, `2`, or `3`, including the named constants below |
+| `Range.HighlightColorIndex` | Exact integer `0..16`, including the named `WdColorIndex` constants; `0` removes highlighting |
 | `SpaceBefore`, `SpaceAfter` | Nonnegative finite number in exact `0.05`-point increments; the resulting twentieth-point integer must not exceed `2147483647` |
 | `LeftIndent`, `RightIndent`, `FirstLineIndent` | Signed finite number in exact `0.05`-point increments; absolute twentieth-point value must not exceed `2147483647` |
 
@@ -176,6 +188,61 @@ For example, `wdUnderlineDotDashHeavy = 25` writes `w:u w:val="dashDotHeavy"`.
 first-line indent. A later positive or zero value clears the hanging indent.
 The left and right indent values remain independent. `KeepTogether` controls
 the paragraph's keep-lines property; it does not imply keep-with-next.
+
+### Typography and highlighting
+
+`SmallCaps` changes native formatting without uppercasing the authored text.
+Setting it to `True` explicitly clears native `w:caps`, including a value
+inherited from a style, because Word makes small capitals and all capitals
+mutually exclusive. Setting it to `False` changes only small-cap formatting;
+an unrelated native all-cap property is preserved. `Font.AllCaps` remains
+unsupported because the current live model does not render that property.
+
+`Superscript = True` selects native superscript and clears subscript;
+`Subscript = True` does the reverse. A `False` assignment clears only the named
+mode on each run: superscript-off leaves existing subscript intact, and
+subscript-off leaves existing superscript intact. Runs in the cleared mode
+receive an explicit `baseline` override so style inheritance cannot revive it
+on save/reopen. These are whole-paragraph **text** operations, retaining the
+existing paragraph-mark boundary. Mixed run formats remain distinct until a
+write actually changes them. Numeric toggle and mixed-state values are refused.
+
+Highlight constants use this exact fixed palette. The compiler emits native
+RGB fields; DOCX serialization writes the corresponding named
+`w:highlight` token. Clearing uses explicit `w:highlight w:val="none"`, including
+when the previous color came from a style.
+
+| Constant | Value | RGB / effect |
+| --- | ---: | --- |
+| `wdNoHighlight`, `wdAuto` | 0 | Remove highlighting |
+| `wdBlack` | 1 | `000000` |
+| `wdBlue` | 2 | `0000FF` |
+| `wdTurquoise` | 3 | `00FFFF` |
+| `wdBrightGreen` | 4 | `00FF00` |
+| `wdPink` | 5 | `FF00FF` |
+| `wdRed` | 6 | `FF0000` |
+| `wdYellow` | 7 | `FFFF00` |
+| `wdWhite` | 8 | `FFFFFF` |
+| `wdDarkBlue` | 9 | `000080` |
+| `wdTeal` | 10 | `008080` |
+| `wdGreen` | 11 | `008000` |
+| `wdViolet` | 12 | `800080` |
+| `wdDarkRed` | 13 | `800000` |
+| `wdDarkYellow` | 14 | `808000` |
+| `wdGray50` | 15 | `808080` |
+| `wdGray25` | 16 | `C0C0C0` |
+
+The aliases `wdAuto` and `wdNoHighlight` have the same numeric value; on this
+specific property it means removal. `wdByAuthor = -1` is declared for a precise
+unsupported-value diagnostic and is not a highlight color. This does not add
+`Font.ColorIndex`, theme color resolution, or automatic foreground colors.
+
+[`word_typography.bas`](../packages/quds_office_engine/example/macros/word_typography.bas)
+demonstrates the session document aliases, explicit collection `Item`, a typed
+Range helper, small capitals, highlighting, and script-mode writes. It needs
+three existing body paragraphs and prefixes the source text before formatting
+them. Its native plan remains subject to the same permissions and transaction
+boundary as other Word macros.
 
 Size and spacing restrictions avoid silently rounding requested values when
 the native serializer writes half-points and twentieth-points. The spacing
@@ -286,7 +353,12 @@ precision, transaction rollback, revision history, and opaque macro-part
 preservation. The conformance runner also supports compiled JavaScript. These
 checks do not claim observed Microsoft Word host results.
 
-Unsupported scope includes document-content reads, `ActiveDocument`,
+The typography continuation passes its compiler/native regressions within the
+[final combined local gate](validation/office-vba-continuation-20261120/README.md).
+The actual `word_typography.bas` example also produces identical native
+transaction and repeated-save results on VM and compiled JavaScript.
+
+Unsupported scope includes document-content reads,
 `Selection`, `Paragraphs.Count`, live collection iteration, editable character
 subranges, paragraph creation, whole-document ranges, tables as Word objects,
 headers and footers as Word objects, event entry points, COM, external files,
@@ -298,11 +370,14 @@ The following Microsoft references inform the supported source vocabulary and
 the explicit restrictions above. They do not certify this implementation:
 
 - [Paragraphs object](https://learn.microsoft.com/en-us/office/vba/api/word.paragraphs): indexed paragraph access and main-story collection scope.
+- [Paragraphs.Item](https://learn.microsoft.com/en-us/office/vba/api/word.paragraphs.item) and [Application.ActiveDocument](https://learn.microsoft.com/en-us/office/vba/api/word.application.activedocument): source vocabulary; the Quds session binding is explicitly scoped above.
 - [Range.InsertBefore](https://learn.microsoft.com/en-us/office/vba/api/word.range.insertbefore): insertion before a range and range expansion; full Word also supports structural characters excluded here.
 - [Range.InsertAfter](https://learn.microsoft.com/en-us/office/vba/api/word.range.insertafter): the ending paragraph mark and insertion boundary.
 - [Font.Size](https://learn.microsoft.com/en-us/office/vba/api/word.font.size) and [Font.Name](https://learn.microsoft.com/en-us/office/vba/api/word.font.name): point units and the named font property.
 - [WdParagraphAlignment](https://learn.microsoft.com/en-us/office/vba/api/word.wdparagraphalignment): numeric alignment constants.
 - [WdUnderline](https://learn.microsoft.com/en-us/office/vba/api/word.wdunderline) and [Font.StrikeThrough](https://learn.microsoft.com/en-us/office/vba/api/word.font.strikethrough): underline enum values and strike formatting.
+- [Font.SmallCaps](https://learn.microsoft.com/en-us/office/vba/api/word.font.smallcaps), [Superscript](https://learn.microsoft.com/en-us/office/vba/api/word.font.superscript), and [Subscript](https://learn.microsoft.com/en-us/office/vba/api/word.font.subscript): formatting flags and mutual exclusion; these checks contain no installed Word-host observations.
+- [Range.HighlightColorIndex](https://learn.microsoft.com/en-us/office/vba/api/word.range.highlightcolorindex) and [WdColorIndex](https://learn.microsoft.com/en-us/office/vba/api/word.wdcolorindex): fixed color vocabulary and highlighting removal.
 - [FirstLineIndent](https://learn.microsoft.com/en-us/office/vba/api/word.paragraphformat.firstlineindent): negative values mean hanging indentation.
 - [KeepTogether](https://learn.microsoft.com/en-us/office/vba/api/word.paragraphformat.keeptogether) and [PageBreakBefore](https://learn.microsoft.com/en-us/office/vba/api/word.paragraphformat.pagebreakbefore): paragraph pagination properties.
 - [ParagraphFormat.SpaceBefore](https://learn.microsoft.com/en-us/office/vba/api/word.paragraphformat.spacebefore) and [SpaceAfter](https://learn.microsoft.com/en-us/office/vba/api/word.paragraphformat.spaceafter): paragraph spacing in points.

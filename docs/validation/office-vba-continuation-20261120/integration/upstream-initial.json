@@ -1,0 +1,66 @@
+{
+  "repository": "MohammedAsaadAsaad/quds_office_suite",
+  "source": "git ls-remote corroborated by GitHub branches API",
+  "heads": [
+    {
+      "branch": "ci/flutter-workspace",
+      "sha": "aca2f66941832bd0b19b436baeab1656a1b7de98",
+      "captured_main": {
+        "ancestor": true,
+        "returncode": 0,
+        "error": ""
+      },
+      "integrated_target": {
+        "ancestor": true,
+        "returncode": 0,
+        "error": ""
+      },
+      "commit": "2026-10-10T22:19:21+03:00 Skip the local al_tahreer pixel-compare test when its PDF is absent"
+    },
+    {
+      "branch": "cursor/class-certificates-2db8",
+      "sha": "f45099688e7a3f67a1302efdb442830d052f2240",
+      "captured_main": {
+        "ancestor": true,
+        "returncode": 0,
+        "error": ""
+      },
+      "integrated_target": {
+        "ancestor": true,
+        "returncode": 0,
+        "error": ""
+      },
+      "commit": "2026-10-12T17:56:21Z Release 1.2.0 with one-page-per-row reports."
+    },
+    {
+      "branch": "cursor/cloud-agent-1790580069020-0rk1h",
+      "sha": "9930be8df44ffe117fb22778c514eea0ee73ce21",
+      "captured_main": {
+        "ancestor": true,
+        "returncode": 0,
+        "error": ""
+      },
+      "integrated_target": {
+        "ancestor": true,
+        "returncode": 0,
+        "error": ""
+      },
+      "commit": "2026-10-10T22:12:10+03:00 Release engine 0.6.0 and editor 0.6.0: band reports, designer, Report Studio"
+    },
+    {
+      "branch": "main",
+      "sha": "15c5d29b63fb17a93c7fb3426a8fd4d95a32f1ba",
+      "captured_main": {
+        "ancestor": true,
+        "returncode": 0,
+        "error": ""
+      },
+      "integrated_target": {
+        "ancestor": true,
+        "returncode": 0,
+        "error": ""
+      },
+      "commit": "2026-10-20T08:47:54+03:00 Release engine 1.5.0, reports 1.5.0, and editor 1.6.0."
+    }
+  ]
+}

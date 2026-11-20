@@ -1,0 +1,57 @@
+{
+  "smoke": "vba-office-layout-v1",
+  "word": {
+    "example": "word_typography.bas",
+    "sourceBytes": 843,
+    "steps": 12,
+    "revision": 1,
+    "paragraphs": [
+      "Research note original heading",
+      "Reference marker original marker",
+      "Formula annotation original formula",
+      "Untouched paragraph"
+    ],
+    "headingSmallCaps": true,
+    "headingBold": true,
+    "scriptModes": [
+      "baseline",
+      "superscript",
+      "subscript"
+    ],
+    "highlightRgb": [
+      "FFFF00",
+      null,
+      "C0C0C0"
+    ]
+  },
+  "powerpoint": {
+    "example": "powerpoint_slideshow.bas",
+    "sourceBytes": 1488,
+    "steps": 12,
+    "revision": 1,
+    "slideIds": [
+      256,
+      257
+    ],
+    "hidden": [
+      false,
+      true
+    ],
+    "title": "Quarterly report",
+    "verticalAnchor": "center",
+    "alignment": "center",
+    "fontFamily": "Arial",
+    "bold": true,
+    "fontSizeHundredths": 2800,
+    "textRgb": "1F4E79",
+    "effect": "fade",
+    "durationMs": 1250,
+    "advanceOnClick": true,
+    "advanceAfterMs": 2500,
+    "untouchedBody": "Untouched body",
+    "untouchedAppendix": "Untouched appendix"
+  },
+  "immutableValidation": true,
+  "unchangedCallerInput": true,
+  "secondSaveSemanticMatch": true
+}
