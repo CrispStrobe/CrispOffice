@@ -1,5 +1,10 @@
 ## Unreleased
 
+- Add bounded foreground bulk read/flag plans and sequential, single-use
+  coordination. Every frozen identity has a confirmed, definitely failed,
+  uncertain or unattempted outcome. Stop on uncertainty, cancellation or stale
+  scope; preserve in-flight receipts without authorizing stale publication.
+
 - Add bounded portable loaded-header search with field-scoped text, quoted
   phrases, observed read/flag states and strict local-calendar date predicates.
   Queries are conjunctive, reject unsupported syntax explicitly and never fetch

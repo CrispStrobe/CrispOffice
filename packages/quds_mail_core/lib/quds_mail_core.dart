@@ -12,6 +12,7 @@ export 'src/ports/hosts.dart';
 export 'src/ports/provider.dart';
 export 'src/ports/repository.dart';
 export 'src/search/header_search.dart';
+export 'src/sync/bulk_flags.dart';
 export 'src/sync/cancellation.dart';
 export 'src/sync/coordinator.dart';
 export 'src/sync/outbox.dart';

@@ -147,6 +147,18 @@ This continuation also qualifies the incoming custom spacing work described
 below. See the [exact contract](VBA_WORD_MACROS.md#opening-closing-and-toggling-paragraph-spacing)
 and [local evidence](validation/word-vba-paragraph-controls-20261120/README.md).
 
+### Physical Word measurements
+
+The Word measurement continuation adds inches, centimeters, millimeters and
+picas in both directions, and official named arguments for all ten unit
+conversions, including the existing line/point functions. It uses exact physical
+ratios with bounded Double arithmetic and exact native-grid canonicalization;
+it does not emulate VBA Single rounding or loosen property precision guards.
+The complete BAS example and source/integration checks exercise document
+publication, CLI/MCP paths and VM/JavaScript behavior. See the
+[measurement contract](VBA_WORD_MACROS.md#physical-measurement-conversions)
+and [combined-source qualification](validation/zotero-merged-cells-20261120/intake.md).
+
 ### Next shared-language increments
 
 Keep multidimensional arrays and array parameter passing as separate increments
