@@ -119,7 +119,8 @@ class SlideDeserializer {
           slideXml,
           layout?.colors ?? templates.defaultColors,
         );
-        final bool hasSlideBackground = _hasBackground(slideXml);
+        final XmlElement? sourceBackground = _sourceBackgroundOf(slideXml);
+        final bool hasSlideBackground = sourceBackground != null;
         final String resolvedBackground =
             slideBackground ?? layout?.background ?? pres.master.background;
         if (!hasSlideBackground && (layout?.inheritsMasterBackground ?? true)) {
@@ -142,9 +143,10 @@ class SlideDeserializer {
                 pres.slideHeight,
               )
             : layout?.backgroundImage;
-        if (backgroundImage != null) {
-          pres.slides[i].backgroundShapes.add(backgroundImage.copy());
-        }
+        pres.slides[i].retainSourceBackground(
+          sourceBackground,
+          picture: backgroundImage?.copy(),
+        );
         if (layout != null) {
           pres.slides[i].layoutName = layout.name;
           _inheritPlaceholders(shapes, positioned, <List<PmlShape>>[
@@ -265,16 +267,16 @@ class SlideDeserializer {
   }
 
   /// An explicit background overrides inheritance even without a solid color.
-  static bool _hasBackground(String xml) {
+  static XmlElement? _sourceBackgroundOf(String xml) {
     final XmlPullReader reader = XmlPullReader(xml);
     while (reader.next()) {
       if (reader.eventType == XmlEventType.startElement &&
           reader.namespaceUri == OfficeNamespaces.p &&
           reader.localName == 'bg') {
-        return true;
+        return XmlDocument.readElement(reader);
       }
     }
-    return false;
+    return null;
   }
 
   /// Converts a `p:bg/a:blipFill` into a full-slide picture decoration.
@@ -318,6 +320,7 @@ class SlideDeserializer {
           id: 1,
           name: 'Background',
           fillColor: '',
+          embedRelId: rid,
           transform: PmlTransform(x: 0, y: 0, cx: width, cy: height),
           visual: OfficeVisual(
             kind: OfficeVisualKind.picture,
@@ -540,7 +543,8 @@ class _SlideTemplates {
       );
     }
     final String? background = SlideDeserializer._backgroundOf(xml, colors);
-    final bool hasBackground = SlideDeserializer._hasBackground(xml);
+    final bool hasBackground =
+        SlideDeserializer._sourceBackgroundOf(xml) != null;
     return _layouts[uri] = _SlideTemplate(
       name: _cSldName(xml) ?? 'Layout',
       colors: colors,
@@ -810,7 +814,11 @@ class SlideSerializer {
     var mediaIndex = 1;
     var chartIndex = 1;
     final String owner = slideUri.split('/').last.replaceAll('.xml', '');
-    for (final PmlShape shape in slide.shapes) {
+    for (final PmlShape shape in <PmlShape>[
+      if (slide.sourceBackground != null && slide.backgroundPicture != null)
+        slide.backgroundPicture!,
+      ...slide.shapes,
+    ]) {
       final OfficeVisual? visual = shape.visual;
       if (visual == null) {
         continue;

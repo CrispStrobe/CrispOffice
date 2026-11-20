@@ -6,6 +6,8 @@ All notable changes to `quds_office_engine` are documented here.
 
 - Resolve PPTX picture and gradient background ownership per slide, layout and
   master, preserving authored overrides independently of hidden master shapes.
+  Retain authored background XML and image relationships through copying and
+  save/reopen; explicit solid edits replace the original fill without reviving it.
   Draw authored picture borders after cropping in PDF export and retain the
   existing numeric text, font fitting and connector regressions.
 

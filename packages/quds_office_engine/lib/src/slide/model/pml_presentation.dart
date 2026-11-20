@@ -626,12 +626,45 @@ class PmlSlide {
 
   String _background;
   String? _primaryMasterBackground;
+  XmlElement? _sourceBackground;
+  PmlShape? _backgroundPicture;
+  bool _backgroundFromSource = false;
+
+  /// Authored slide fill retained with its namespace bindings for serialization.
+  /// Layout/master fills remain in their owning package parts.
+  XmlElement? get sourceBackground => _sourceBackground;
+
+  /// The selected imported picture, also present first in [backgroundShapes].
+  PmlShape? get backgroundPicture => _backgroundPicture;
+
+  /// A direct solid-color assignment must be serialized as an authored fill.
+  bool get writesSolidBackground =>
+      !_backgroundFromSource &&
+      !inheritsMasterBackground &&
+      _background.isNotEmpty;
+
+  /// Retains an imported fill after its displayed color and image are resolved.
+  void retainSourceBackground(XmlElement? source, {PmlShape? picture}) {
+    _clearSourceBackground();
+    _sourceBackground = source?.copy();
+    _backgroundFromSource = true;
+    _backgroundPicture = picture;
+    if (picture != null) backgroundShapes.insert(0, picture);
+  }
+
+  void _clearSourceBackground() {
+    if (_backgroundPicture != null) backgroundShapes.remove(_backgroundPicture);
+    _sourceBackground = null;
+    _backgroundPicture = null;
+    _backgroundFromSource = false;
+  }
 
   /// Resolved solid background (`RRGGBB`); empty uses the current master.
   /// Assigning a nonempty color records an explicit slide override.
   String get background => _background;
 
   set background(String value) {
+    _clearSourceBackground();
     _background = value;
     inheritsMasterBackground = value.isEmpty;
     _primaryMasterBackground = null;
@@ -647,6 +680,7 @@ class PmlSlide {
     String value, {
     required String masterBackground,
   }) {
+    _clearSourceBackground();
     _background = value;
     inheritsMasterBackground = true;
     _primaryMasterBackground = masterBackground.isEmpty
@@ -692,7 +726,7 @@ class PmlSlide {
 
   /// copy API.
   PmlSlide copy({int? id}) {
-    return PmlSlide(
+    final PmlSlide result = PmlSlide(
       id: id ?? this.id,
       layoutName: layoutName,
       masterName: masterName,
@@ -712,6 +746,15 @@ class PmlSlide {
       ],
       shapes: <PmlShape>[for (final PmlShape shape in shapes) shape.copy()],
     ).._primaryMasterBackground = _primaryMasterBackground;
+    result._sourceBackground = _sourceBackground?.copy();
+    result._backgroundFromSource = _backgroundFromSource;
+    if (_backgroundPicture != null) {
+      final int index = backgroundShapes.indexOf(_backgroundPicture!);
+      if (index >= 0) {
+        result._backgroundPicture = result.backgroundShapes[index];
+      }
+    }
+    return result;
   }
 }
 

@@ -646,6 +646,144 @@ void main() {
       },
     );
 
+    test(
+      'copied authored background gets a valid new slide image relationship',
+      () {
+        final Uint8List png = _backgroundPng(240, 120, 20);
+        final PmlPresentation deck = _deck(<String>[
+          _sld('', background: _pictureBackground),
+        ], backgroundImage: png);
+        final PmlSlide original = deck.slides.single;
+        final PmlSlide copy = original.copy(id: 999);
+        expect(copy.sourcePartUri, isNull);
+        expect(
+          identical(copy.sourceBackground, original.sourceBackground),
+          isFalse,
+        );
+        expect(
+          identical(copy.backgroundPicture, original.backgroundPicture),
+          isFalse,
+        );
+        deck.slides.add(copy);
+
+        final PmlPresentation reopened = SlideDeserializer().readBytes(
+          SlideSerializer().writeBytes(deck),
+        );
+        expect(reopened.slides, hasLength(2));
+        expect(
+          reopened.slides.map((slide) => slide.sourcePartUri).toSet(),
+          hasLength(2),
+        );
+        for (final PmlSlide slide in reopened.slides) {
+          expect(slide.backgroundPicture?.visual?.imageBytes, png);
+          final RelationshipCollection rels = reopened.package!
+              .relationshipsFor(slide.sourcePartUri!);
+          final PackageRelationship? rel = rels.byId(
+            slide.backgroundPicture!.embedRelId!,
+          );
+          expect(rel?.type, RelationshipTypes.image);
+          expect(rel?.targetMode, RelationshipTargetMode.internal);
+          expect(
+            reopened.package!.getPart(rels.resolve(rel!))?.readBytes(),
+            png,
+          );
+        }
+      },
+    );
+
+    test(
+      'explicit background edits clear imported fill and keep decorations',
+      () {
+        final PmlPresentation deck = _deck(
+          <String>[_sld('', background: _pictureBackground)],
+          backgroundImage: _backgroundPng(240, 120, 20),
+          layoutBackground: _pictureBackground,
+          layoutBackgroundImage: _backgroundPng(20, 120, 240),
+          masterShapes: _textBox(8, 'Master decoration'),
+        );
+        final PmlSlide slide = deck.slides.single;
+        final PmlSlide untouched = slide.copy();
+        slide.background = '112233';
+        expect(slide.sourceBackground, isNull);
+        expect(slide.backgroundPicture, isNull);
+        expect(slide.backgroundShapes.map((shape) => shape.text), <String>[
+          'Master decoration',
+        ]);
+        expect(untouched.backgroundPicture, isNotNull);
+        final PmlSlide saved = SlideDeserializer()
+            .readBytes(SlideSerializer().writeBytes(deck))
+            .slides
+            .single;
+        expect(saved.background, '112233');
+        expect(saved.backgroundPicture, isNull);
+        expect(saved.inheritsMasterBackground, isFalse);
+
+        slide.background = '';
+        final PmlSlide inherited = SlideDeserializer()
+            .readBytes(SlideSerializer().writeBytes(deck))
+            .slides
+            .single;
+        expect(inherited.sourceBackground, isNull);
+        expect(
+          inherited.backgroundPicture?.visual?.imageBytes,
+          _backgroundPng(20, 120, 240),
+        );
+      },
+    );
+
+    test(
+      'authored gradient retains all stops and inherited namespace bindings',
+      () {
+        final String xml = _sld(
+          '',
+          background: _gradientBackground(
+            '123456',
+            '654321',
+          ).replaceAll('a:', 'ink:'),
+        ).replaceFirst('<p:sld ', '<p:sld xmlns:ink="${OfficeNamespaces.a}" ');
+        final PmlPresentation reopened = SlideDeserializer().readBytes(
+          SlideSerializer().writeBytes(_deck(<String>[xml])),
+        );
+        final PmlSlide slide = reopened.slides.single;
+        expect(slide.background, '123456');
+        final XmlElement? stops = slide.sourceBackground
+            ?.firstChild('bgPr', namespaceUri: OfficeNamespaces.p)
+            ?.firstChild('gradFill', namespaceUri: OfficeNamespaces.a)
+            ?.firstChild('gsLst', namespaceUri: OfficeNamespaces.a);
+        expect(stops, isNotNull);
+        expect(
+          stops!.childElements.map(
+            (stop) => stop
+                .firstChild('srgbClr', namespaceUri: OfficeNamespaces.a)
+                ?.getAttribute('val'),
+          ),
+          <String>['123456', '654321'],
+        );
+      },
+    );
+
+    test('authored noFill survives saving and suppresses inherited images', () {
+      final PmlPresentation deck = _deck(
+        <String>[
+          _sld('', background: '<p:bg><p:bgPr><a:noFill/></p:bgPr></p:bg>'),
+        ],
+        masterBackground: _pictureBackground,
+        masterBackgroundImage: _backgroundPng(20, 120, 240),
+      );
+      final PmlSlide slide = SlideDeserializer()
+          .readBytes(SlideSerializer().writeBytes(deck))
+          .slides
+          .single;
+      expect(slide.backgroundShapes, isEmpty);
+      expect(slide.inheritsMasterBackground, isFalse);
+      expect(
+        slide.sourceBackground
+            ?.firstChild('bgPr', namespaceUri: OfficeNamespaces.p)
+            ?.firstChild('noFill', namespaceUri: OfficeNamespaces.a),
+        isNotNull,
+      );
+    });
+
     for (final bool local in <bool>[true, false]) {
       test(
         '${local ? 'slide' : 'layout'} solid background suppresses inherited images',
