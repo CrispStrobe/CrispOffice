@@ -6,7 +6,8 @@ This continuation finishes [PR #223](https://github.com/CrispStrobe/quds_office_
 **Dart lint correction:** `3cba1810b41a2fff5b2cd1eb355137a46b09f225`.
 **macOS-only follow-up source:** `6b917be36d5d54aa8a55ef3c8b9ce649aa8bab82`.
 **Broad core qualification source:** `214c4ed80bef0cb871f74e90c506d508679d3d6e`.
-**Final combined source:** `a45ee3bf40dbb7e64a04f879fd6d574db7cb60b1`.
+**Mail/web combined source:** `a45ee3bf40dbb7e64a04f879fd6d574db7cb60b1`.
+**Latest combined source:** `f69e774fbb32a103260541e4a28fb17600bfc17e`.
 The later Word/slide/host integration has its own fresh core qualification below; earlier results retain their exact original source attribution.
 The lint correction only adds braces to an existing `if` statement in the standalone grammar evaluation tool. At that step, application libraries, selected tests, fixtures, manifests and locks remain byte-identical to the fresh test source; [the publication audit](publication-audit.json) records that boundary. A subsequent main update changes the macOS build script and two documentation paths, including Dart documentation comments. Its separate [final follow-up audit](publication-followup/final-audit.json), one repeated pin test, ten controlled shell checks and fresh static analysis qualify that later delta without rewriting the earlier results.
 
@@ -152,9 +153,9 @@ It adds a narrow web data-store and host integration; it is not included in
 the `214c4ed8` execution source above. Its completed reconciliation, passing VM qualification and blocked Chrome
 launch are recorded in the final combined-source supplement below.
 
-### Final combined source: web persistence and qualified Mail reconciliation
+### Combined source: web persistence and qualified Mail reconciliation
 
-The final combined source is **`a45ee3bf40dbb7e64a04f879fd6d574db7cb60b1`**,
+The Mail/web combined source is **`a45ee3bf40dbb7e64a04f879fd6d574db7cb60b1`**,
 tree `abb783deb0dcf32f5cd4a985818f040da6ac6229`. It preserves published main
 `43db439e1e605d6329a6eabe6817b04ca44ba1aa` (web persistence in PR #229 and
 the documentation-only GlotLID feasibility note in PR #230), plus the captured
@@ -244,6 +245,77 @@ silhouette limitation and the incoming native Word result of **20/24 pages
 above the strict threshold** remain disclosed. No new live Zotero/Mail account,
 native macOS bundle, actual Word export or LibreOffice acceptance is claimed.
 
+### Latest main follow-up: Arabic morphology and grammar
+
+The latest combined source is **`f69e774fbb32a103260541e4a28fb17600bfc17e`**,
+tree `1a45545ffa7f4c8548853a30c95bdb38309e3da9`. It preserves published main
+`098412152fa1d64796eb3fb9c06699ced0f0c44d` (PR #231) and the complete earlier
+source/evidence checkpoint `a3373021`. The ordinary merge is conflict-free;
+all 38 incoming paths, including 23 Dart paths, match main exactly. The
+[incoming review](arabic-main-followup/incoming-review.json) covers the Arabic
+context-morphology API, host setup, transport, grammar rules, pins and notices.
+
+| Fresh Arabic follow-up gate | Distinct passing cases | Files |
+| --- | ---: | ---: |
+| [Morphology unit](arabic-main-followup/accepted-arabic-unit/receipt.json) | 17 | 1 |
+| [Engine Arabic rules](arabic-main-followup/accepted-engine-arabic/receipt.json) | 526 | 4 |
+| [Studio integration](arabic-main-followup/accepted-studio-integration/receipt.json) | 90 | 7 |
+| **Latest focused total** | **633** | **12** |
+
+Every selected case passes with all original source, runtime, dependency,
+configuration, coverage and event-accounting guards; there are no failures or
+skips in these three cohorts. The Studio selection includes new Arabic setup,
+downloads, settings, linguistic analysis, comment drafts, Zotero shortcuts and
+citing transport. The author's unspecified Studio baseline exception is not
+used to excuse any failure here. The [independent summary](arabic-main-followup/summary.json)
+and [source applicability](arabic-main-followup/applicability.json) preserve
+all earlier raw receipts and their original source attribution. These 633
+cases overlap earlier proofing/Studio selections and are not added to earlier
+totals. Word, Zotero, slide and Mail implementations remain exact; changed
+Arabic and Studio paths receive this separate qualification.
+
+**All 129 active changed Dart targets pass strict analysis and formatting.**
+The [static receipt](arabic-main-followup/static/receipt.json) captures all 131
+changed-file fingerprints, including the same two byte-preserved historical
+Mail harnesses excluded from the active selection. The earlier 110-path
+archive-inclusive diagnostic remains unchanged; it is not relabeled or rerun
+as this source's acceptance.
+
+The [dependency proof](arabic-main-followup/dependency-reuse.json) explicitly
+records the local morphology manifest's version change from 0.2.0 to 0.3.0.
+Dependency edges, unversioned local path consumers, hosted versions/hashes and
+resolved paths are unchanged. The saved graph retains its prior 0.2.0 label
+and the earlier indirect Studio-to-web edge; neither is claimed to have been
+regenerated. All 126 hosted versions/hashes, 4,502 dependency files, 12 runtime
+records and both configurations match their prior inputs. The effective 152
+package dependency closures remain equal. No package resolution or runtime
+replacement was required for these tests.
+
+Arabic's updated native ABI 3 / adapter 2 requirement is distinct from the
+unchanged spaCy library. The macOS build script builds and installs the Arabic
+library separately, and its updated builder pins the compatible revision.
+Existing ABI 2 Arabic libraries require rebuilding. This is a source-level
+compatibility review; the native build, real model execution and WebAssembly
+runtime are not freshly qualified in this environment.
+
+**Browser qualification remains unavailable.** The earlier blocked Chrome
+attempt belongs to `a45ee3bf`; no fresh browser application cases execute at
+this later source. In particular, the earlier PR #229 nine-path equivalence
+is superseded where the Arabic README and web host changed. The
+[web model-removal limitation](arabic-main-followup/web-model-removal-limitation.json)
+records an additional source-identified concern: the web host retains a
+verified database object whose buffers are transferred to its worker, then
+reuses that object when removing the optional model. On the JavaScript path,
+those retained buffers can already be detached, so restoring the base analyzer
+is at risk. This is a source finding, not a reproduced browser result, and it
+is retained as an incoming Arabic limitation outside the Zotero workflow.
+
+Reproduce the three selections using `arabic-main-followup/run_arabic_followup.py`
+with `--expected-head f69e774fbb32a103260541e4a28fb17600bfc17e` and fresh output
+directories. Use `arabic-main-followup/run_product_static.py` for its exact
+active-source static selection. The summary retains native/browser scope and
+all source boundaries explicitly.
+
 ## Reproduction and publication
 
 Use the recorded source commit, official pinned runtime and unchanged locked dependencies. Set `FLUTTER_ROOT` and `PUB_CACHE`; use new output directories. The original runner is unchanged and the adapter records its pinned identity and its additive cohort selections.
@@ -273,7 +345,7 @@ For the later core source, run all eight named selections in
 controls have a separate `run_comparator_checks.py` runner. The independent
 auditor is `host-main-followup/audit_host_followup.py`.
 
-At the final combined source, repeat the two rendering selections with the
+At the earlier Mail/web combined source, repeat the two rendering selections with the
 same host adapter and `--expected-head a45ee3bf40dbb7e64a04f879fd6d574db7cb60b1`.
 Use the [web adapters](web-persistence-followup/README.md) for the separate VM
 and Chrome cases, and `publication-final/run_product_static.py` for the exact

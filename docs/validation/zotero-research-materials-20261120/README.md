@@ -1,14 +1,14 @@
 # Zotero research materials — 20 November 2026
 
 **Publication continuation:** the [continuation report](continuation/README.md)
-records current main and qualified Mail reconciliation, **2,386 distinct cases /
-157 files** on the broad integration source, and **356 focused cases / 27 files**
-on the final combined source. Fresh Chrome is environment-blocked before any
-application case; its failed launch remains separate. All **108 active changed Dart targets** pass strict
-static checks; two preserved historical evidence harnesses have explicit separate
-diagnostics. An earlier **3,201-case / 129-file** proofing/spaCy gate retains its
-own source and duplicate-fixture accounting. These populations overlap and are
-not added to each other or to the original milestone evidence below.
+records current main and qualified Mail reconciliation. The latest Arabic/main
+follow-up passes **633 cases / 12 files** and **129 active changed Dart static
+targets** at `f69e774f`. Earlier source-bound gates remain separate: **2,386 / 157**
+after broad host integration, **356 / 27** for Mail/web rendering and VM paths,
+and **3,201 / 129** for the first proofing/spaCy integration. Counts overlap and
+are not added to one another or to the original milestone evidence below.
+The report preserves blocked browser and native limits, the incoming Arabic
+web concern, and the precise historical-artifact static exceptions.
 
 **Qualified product source:** `f0122cb5bff5b6cf6a6f69f043545dabc2930791`, on
 `codex/zotero-research-materials-20261120`,

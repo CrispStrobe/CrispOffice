@@ -3,22 +3,21 @@
 ## 20 November 2026 — browse reference notes and attachment metadata
 
 The [publication continuation](validation/zotero-research-materials-20261120/continuation/README.md)
-finishes this milestone with current main and the qualified Mail/background
-checkpoint preserved. Its broad gate passes **2,386 distinct local cases in
-157 files** at `214c4ed8`; a separate final **356-case / 27-file** rendering and
-web-VM gate passes on `a45ee3bf`. All **108 active changed Dart targets**
-pass strict analysis and formatting. Two byte-preserved historical Mail harnesses
-have separate archived diagnostics and are explicitly outside that active gate.
-The fresh Chrome attempt is blocked before application cases by the workspace
-Unix-socket restriction; its failed launch receipt is retained.
+finishes this milestone with current main and qualified Mail reconciliation.
+Its latest Arabic/main follow-up passes **633 cases in 12 files** on `f69e774f`,
+with **129 active changed Dart targets** passing strict analysis and formatting.
+It preserves the broad **2,386-case / 157-file** gate at `214c4ed8` and the
+**356-case / 27-file** rendering/web-VM gate at `a45ee3bf`. Earlier proofing/spaCy
+and original milestone evidence retain their own source and accounting.
+These overlapping populations are not added together.
 
-Eight synthetic Word-comparator controls pass separately. Incoming native Word
-evidence remains 20/24 pages above its threshold. The earlier proofing/spaCy
-integration separately passes 3,201 distinct cases in 129 files, with eight
-identical proofing repeats counted once in an explicit audit. These source-bound
-results overlap each other and the original milestone below; they are not added
-together. The report preserves raw evidence, every source boundary, conflict
-resolutions, known limitations, remote checkpoints and reproduction instructions.
+The report separately records the blocked Chrome launch (zero application
+cases), a source-identified incoming Arabic web model-removal concern, native
+Word's 20/24-page threshold result, the existing shape limitation, and two
+preserved historical Mail harnesses with archived static diagnostics. Native
+Arabic ABI/model/Wasm execution remains outside the fresh local acceptance.
+Raw evidence, incoming reviews, source boundaries, remote checkpoints and
+reproduction instructions are retained in the continuation report.
 
 Qualified product source: **`f0122cb5bff5b6cf6a6f69f043545dabc2930791`**,
 followed by current-main integration
