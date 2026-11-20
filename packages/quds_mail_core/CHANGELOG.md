@@ -4,8 +4,15 @@
   coordination. Every frozen identity has a confirmed, definitely failed,
   uncertain or unattempted outcome. Stop on uncertainty, cancellation or stale
   scope; preserve in-flight receipts without authorizing stale publication.
-  Adapt provider mutation evidence through the same coordinator, with immutable
-  progress and per-message reports; absent evidence remains uncertain.
+  Preserve immutable progress snapshots and optional stop-after-current checks.
+  Keep the provider-result runner, report aliases and inferred-provider plans
+  compatible; both entry points use the same coordinator and result adapter.
+  Add explicit optional mutation-boundary evidence to problems and map provider
+  results conservatively: only certified no-mutation failures are definite.
+  Recheck leases after caller guards, preserve uncertainty when a certificate
+  contradicts mutation evidence, and require refresh after invalidated scopes.
+  Stop the remaining selection on certified quota rejection without automatic
+  retry, preserving provider retry guidance and requiring no uncertainty refresh.
 
 - Add bounded portable loaded-header search with field-scoped text, quoted
   phrases, observed read/flag states and strict local-calendar date predicates.

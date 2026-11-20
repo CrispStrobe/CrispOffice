@@ -8,7 +8,7 @@ remain the next increment.
 
 ## User path
 
-Select individual checkboxes or **Select visible**, then choose **Mark read**,
+Select individual checkboxes or **Select shown**, then choose **Mark read**,
 **Mark unread**, **Flag** or **Unflag**. Selection covers only currently matching,
 already loaded headers in this folder, in their displayed order. It never means
 all server messages. Newly loaded rows remain unchecked. Changing a filter prunes
@@ -35,6 +35,10 @@ subject and outcome for every selected message:
 | Failed | The provider explicitly certifies that no mutation occurred. Other independent selected messages may continue. |
 | Uncertain | A mutation may have reached the server, or the provider supplied no reliable mutation evidence. The batch stops here. |
 | Not attempted | No command was dispatched for this message. |
+
+A certified quota rejection stops later requests and retains provider retry
+guidance without an automatic retry. It does not by itself require a refresh.
+Retired or invalid scope checks do require a fresh observation.
 
 After an uncertain result, refresh the folder before another flag mutation. The
 uncertainty explanation remains available until refresh; dismissing a receipt
@@ -98,8 +102,14 @@ installed platform releases remain outside this increment.
 
 The [shared coordinator and compatibility contract](bulk-actions.md) records
 the retained single-use API, strict plan bounds, provider-result adapter and
-conservative support for earlier native action adapters. Both independently
-authored test families remain in the reconciled source.
+conservative support for earlier native action adapters. Explicit typed loader
+evidence is retained; absent evidence remains uncertain. Both independently
+authored test families remain in the reconciled source, including the newer
+quota, guard-reentrancy and contradiction regressions.
+
+The incoming [PR #273 evidence](../../validation/mail-bulk-actions-20261120/README.md)
+is retained at its declared source. Final union acceptance is recorded
+separately; neither historical aggregate is relabeled as a fresh final run.
 
 Next: durable repository-driven sessions and a remote-command journal with
 restart, offline/reconnect, cancellation, UIDVALIDITY and conflict handling.

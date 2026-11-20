@@ -12,6 +12,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:quds_mail_core/quds_mail_core.dart';
 import 'package:quds_mail_ui/quds_mail_ui.dart';
+import 'package:quds_office_studio/studio_mail_bulk_status.dart';
 import 'package:quds_office_studio/studio_mail_workspace_strings.dart';
 import 'package:quds_office_studio/studio_strings.dart';
 
@@ -107,7 +108,7 @@ void _expectRowsUsable(WidgetTester tester) {
   final rows = _key('mail-list-rows');
   expect(rows, findsOneWidget);
   expect(tester.getSize(rows).height, greaterThanOrEqualTo(48));
-  expect(_key('mail-list-select-planning').hitTestable(), findsOneWidget);
+  expect(_key('mail-list-check-planning').hitTestable(), findsOneWidget);
   expect(tester.takeException(), isNull);
 }
 
@@ -195,7 +196,7 @@ void main() {
                 body: MailMessageList(
                   key: const ValueKey('localized-bulk-list'),
                   scopeId: 'visual/${language.name}',
-                  selectionRevision: '1',
+                  selectionScopeId: '1',
                   strings: strings,
                   items: _rows(language),
                   busy: busy,
@@ -210,20 +211,7 @@ void main() {
                       busy = true;
                     });
                   },
-                  bulkStatus: busy
-                      ? TextButton(
-                          key: const ValueKey('mail-list-stop-bulk'),
-                          onPressed: () => stops++,
-                          child: Text(
-                            _text(
-                              language,
-                              'Stop after current message',
-                              'Nach aktueller Nachricht anhalten',
-                              'توقف بعد الرسالة الحالية',
-                            ),
-                          ),
-                        )
-                      : null,
+                  onCancelBulk: busy ? () => stops++ : null,
                 ),
               ),
             ),
@@ -242,7 +230,7 @@ void main() {
         expect(header.controller!.position.maxScrollExtent, greaterThan(0));
       }
 
-      final checkbox = _key('mail-list-select-planning');
+      final checkbox = _key('mail-list-check-planning');
       await tester.tap(checkbox);
       await tester.pumpAndSettle();
       expect(tester.widget<Checkbox>(checkbox).value, isTrue);
@@ -274,7 +262,7 @@ void main() {
       expect(tester.widget<Checkbox>(checkbox).onChanged, isNull);
       expect(
         tester
-            .widget<PopupMenuButton<dynamic>>(_key('mail-list-bulk-actions'))
+            .widget<PopupMenuButton<Object>>(_key('mail-list-bulk-actions'))
             .enabled,
         isFalse,
       );
@@ -287,5 +275,136 @@ void main() {
       expect(commands, 1);
       expect(tester.takeException(), isNull);
     });
+  }
+
+  for (final language in StudioLanguage.values) {
+    testWidgets(
+      '${language.name} per-message receipt and details at 1.4 scale',
+      (tester) async {
+        await tester.binding.setSurfaceSize(const Size(440, 850));
+        addTearDown(() => tester.binding.setSurfaceSize(null));
+        final account = MailAccountId(
+          'visual-receipt',
+          profile: MailProfileId('visual', hostId: 'test'),
+        );
+        final session = MailAccountSession(account);
+        addTearDown(session.dispose);
+        final identities = [
+          for (var index = 0; index < 4; index++)
+            MailOpaqueIdentity(
+              account: account,
+              provider: MailProviderKind.ews,
+              value: 'visual-$index',
+            ),
+        ];
+        var calls = 0;
+        final report = await MailBulkFlagCoordinator().run(
+          plan: MailBulkFlagPlan(
+            id: 'visual-receipt',
+            mailbox: MailMailboxId('inbox', account: account),
+            provider: MailProviderKind.ews,
+            messages: identities,
+            action: MailBulkFlagAction.markRead,
+          ),
+          lease: session.begin(),
+          isScopeCurrent: () => true,
+          apply: (_, _) async => switch (++calls) {
+            1 => const MailBulkFlagAttempt.confirmed(),
+            2 => const MailBulkFlagAttempt.failed(
+              MailProblem(
+                MailProblemCode.permissionDenied,
+                mutationMayHaveOccurred: false,
+              ),
+            ),
+            _ => const MailBulkFlagAttempt.uncertain(
+              MailProblem(MailProblemCode.unavailable),
+            ),
+          },
+        );
+        final subjects = [
+          for (final row in _rows(language)) row.subject,
+          _text(
+            language,
+            'Follow-up notes',
+            'Weitere Notizen',
+            'ملاحظات المتابعة',
+          ),
+        ];
+        final direction = language == StudioLanguage.ar
+            ? TextDirection.rtl
+            : TextDirection.ltr;
+        await tester.pumpWidget(
+          RepaintBoundary(
+            key: _captureKey,
+            child: MaterialApp(
+              debugShowCheckedModeBanner: false,
+              theme: ThemeData(
+                useMaterial3: true,
+                colorScheme: ColorScheme.fromSeed(
+                  seedColor: const Color(0xff256356),
+                ),
+                fontFamily: language == StudioLanguage.ar
+                    ? 'MailBulkArabic'
+                    : 'MailBulkLatin',
+                fontFamilyFallback: const ['MailBulkArabic', 'MailBulkLatin'],
+              ),
+              builder: (context, child) => MediaQuery(
+                data: MediaQuery.of(
+                  context,
+                ).copyWith(textScaler: const TextScaler.linear(1.4)),
+                child: Directionality(textDirection: direction, child: child!),
+              ),
+              home: Scaffold(
+                appBar: AppBar(
+                  title: Text(
+                    _text(
+                      language,
+                      'Mail action results',
+                      'Ergebnisse der E-Mail-Aktion',
+                      'نتائج إجراء البريد',
+                    ),
+                  ),
+                ),
+                body: SingleChildScrollView(
+                  padding: const EdgeInsets.all(12),
+                  child: StudioMailBulkStatus(
+                    strings: StudioStrings(language),
+                    report: report,
+                    running: false,
+                    subjects: Map.unmodifiable({
+                      for (var i = 0; i < identities.length; i++)
+                        identities[i]: subjects[i],
+                    }),
+                  ),
+                ),
+              ),
+            ),
+          ),
+        );
+        await tester.pumpAndSettle();
+        for (final outcome in MailBulkFlagOutcome.values) {
+          expect(
+            tester
+                .widget<Text>(_key('studio-mail-bulk-count-${outcome.name}'))
+                .data,
+            endsWith(': 1'),
+          );
+        }
+        await _capture(tester, '${language.name}-receipt');
+        await _showControl(tester, _key('studio-mail-bulk-details'));
+        await tester.tap(_key('studio-mail-bulk-details'));
+        await tester.pumpAndSettle();
+        expect(_key('studio-mail-bulk-details-dialog'), findsOneWidget);
+        expect(
+          Directionality.of(tester.element(_key('studio-mail-bulk-result-0'))),
+          direction,
+        );
+        expect(find.text(subjects.first), findsOneWidget);
+        await _capture(tester, '${language.name}-receipt-details');
+        await tester.tap(_key('studio-mail-bulk-details-close'));
+        await tester.pumpAndSettle();
+        expect(tester.takeException(), isNull);
+      },
+    );
   }
 }

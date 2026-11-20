@@ -52,20 +52,23 @@ void main() {
 
       fixture.closeAfterMutation = true;
       final provider = fixture.provider();
-      final report = await const MailBulkFlagRunner().run(
+      final report = await MailBulkFlagCoordinator().run(
         plan: MailBulkFlagPlan(
           id: 'uncertain-imap',
           mailbox: fixture.mailbox,
+          provider: MailProviderKind.imap,
           action: MailBulkFlagAction.markRead,
           messages: [_identity(fixture, 1), _identity(fixture, 2)],
         ),
         lease: _lease(fixture),
-        apply: provider.apply,
+        apply: (operation, lease) async => MailBulkFlagAttempt.fromResult(
+          await provider.apply(operation, lease),
+        ),
         isScopeCurrent: () => true,
       );
       expect(report.uncertainCount, 1);
       expect(report.unattemptedCount, 1);
-      expect(report.results.first.problem?.mutationMayHaveOccurred, isTrue);
+      expect(report.items.first.problem?.mutationMayHaveOccurred, isTrue);
       expect(
         fixture.commands.where((command) => command.startsWith('UID STORE ')),
         hasLength(1),
@@ -80,10 +83,11 @@ void main() {
     () async {
       final fixture = ImapFixture(messages: {1: _message(), 3: _message()});
       final provider = fixture.provider();
-      final report = await const MailBulkFlagRunner().run(
+      final report = await MailBulkFlagCoordinator().run(
         plan: MailBulkFlagPlan(
           id: 'missing-imap',
           mailbox: fixture.mailbox,
+          provider: MailProviderKind.imap,
           action: MailBulkFlagAction.flag,
           messages: [
             _identity(fixture, 1),
@@ -92,12 +96,14 @@ void main() {
           ],
         ),
         lease: _lease(fixture),
-        apply: provider.apply,
+        apply: (operation, lease) async => MailBulkFlagAttempt.fromResult(
+          await provider.apply(operation, lease),
+        ),
         isScopeCurrent: () => true,
       );
       expect(report.confirmedCount, 2);
       expect(report.failedCount, 1);
-      expect(report.results[1].problem?.mutationMayHaveOccurred, isFalse);
+      expect(report.items[1].problem?.mutationMayHaveOccurred, isFalse);
       expect(report.requiresRefresh, isFalse);
       expect(
         fixture.commands.where((command) => command.startsWith('UID STORE ')),

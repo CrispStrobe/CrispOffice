@@ -38,6 +38,8 @@ def main():
     parser.add_argument('--target')
     parser.add_argument('--capture', action='store_true')
     parser.add_argument('--report-prefix', default='intake-local')
+    parser.add_argument('--cutoff-manifest', type=Path,
+                        help='Use a saved immutable ref manifest instead of live refs')
     args = parser.parse_args()
     if not re.fullmatch(r'intake-local(?:-[a-z0-9]+)*', args.report_prefix):
         parser.error('report-prefix must start with intake-local')
@@ -107,10 +109,29 @@ def main():
         )
     require(len(proofs) == 14, 'Historical proof set changed unexpectedly')
 
+    cutoff = None
+    cutoff_path = (args.cutoff_manifest if args.capture else
+                   Path(previous['cutoff_snapshot']['path'])
+                   if previous.get('cutoff_snapshot') else None)
+    if cutoff_path is not None:
+        manifest_path = (repo / cutoff_path).resolve()
+        manifest_bytes = manifest_path.read_bytes()
+        manifest = json.loads(manifest_bytes)
+        cutoff = dict(
+            path=str(manifest_path.relative_to(repo)),
+            sha256=hashlib.sha256(manifest_bytes).hexdigest(),
+            inventory_recorded_at_utc=manifest['inventory_recorded_at_utc'],
+            latest_fetched_ref_file_mtime_utc=manifest[
+                'latest_fetched_ref_file_mtime_utc'],
+            note='Frozen source cutoff; no later branch or PR heads are implied.',
+        )
+
     if args.capture:
         refs = {category: {} for category in NAMESPACES}
-        raw = git('for-each-ref', '--format=%(refname) %(objectname) %(symref)',
-                  *NAMESPACES.values()).decode()
+        raw = ('\n'.join(row['ref'] + ' ' + row['sha'] for row in manifest['refs'])
+               if cutoff is not None else
+               git('for-each-ref', '--format=%(refname) %(objectname) %(symref)',
+                   *NAMESPACES.values()).decode())
         for row in raw.splitlines():
             fields = row.split()
             if len(fields) != 2:
@@ -173,9 +194,28 @@ def main():
         scope='Independent local Git ancestry, complete-tree/changed-path proofs and reconciliation binding. No runtime qualification claim.',
         github_actions='NOT QUERIED OR AWAITED',
     )
+    if cutoff is not None:
+        result['cutoff_snapshot'] = cutoff
     if args.capture:
         report_path.write_text(json.dumps(result, indent=2) + '\n')
         totals = {category: len(names) for category, names in refs.items()}
+        cutoff_text = ('' if cutoff is None else
+                       '## Frozen source cutoff\n\n'
+                       f"Inventory: `{cutoff['path']}` (SHA-256 "
+                       f"`{cutoff['sha256']}`). Latest fetched ref timestamp: "
+                       f"`{cutoff['latest_fetched_ref_file_mtime_utc']}`; "
+                       f"manifest recorded `{cutoff['inventory_recorded_at_utc']}`. "
+                       'This audit uses those saved heads. It does not imply '
+                       'coverage of later concurrent branch or PR changes. '
+                       'Latest main is checked separately before publication.\n\n')
+        capture_text = (
+            'To refresh, fetch fork/upstream branches and PR heads into the dedicated '
+            '`refs/audit-bulk/` namespaces, then add `--capture --target <commit>`. '
+            if cutoff is None else
+            'To rebind this same frozen cutoff to a later target, add '
+            f"`--capture --target <commit> --cutoff-manifest {cutoff['path']}` "
+            'with a new report prefix. No ref fetch is needed. '
+        )
         (out / (args.report_prefix + '.md')).write_text(
             '# Mail bulk actions: independent local intake\n\n'
             f"Status: **{result['status']}** at `{target}`.\n\n"
@@ -195,12 +235,12 @@ def main():
             f'and `{WIP}`. Its complete Git tree equals main’s tree '
             f'`{tree_id(BASE)}`; the temporary golden workflow remains absent. '
             'The reconciliation is an ancestor of this reviewed target.\n\n'
+            + cutoff_text +
             '## Replay\n\n'
             'From the repository root, with the recorded objects available:\n\n'
             '```sh\npython3 docs/validation/mail-bulk-actions-20261120/intake-local.py '
             '--report-prefix ' + args.report_prefix + '\n```\n\n'
-            'To refresh, fetch fork/upstream branches and PR heads into the dedicated '
-            '`refs/audit-bulk/` namespaces, then add `--capture --target <commit>`. '
+            + capture_text +
             'The checker writes only its own report files. Unknown heads fail the '
             'audit. Incoming runtime evidence is not a new test run. GitHub Actions, '
             'workflow runs and status endpoints were neither queried nor awaited.\n'

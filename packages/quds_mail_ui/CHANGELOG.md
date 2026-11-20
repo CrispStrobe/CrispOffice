@@ -1,10 +1,12 @@
 ## 0.1.0
 
 - Add explicit multi-message selection and foreground read/unread/flag/unflag
-  requests, with visible-only selection, keyboard controls, immutable command
-  snapshots, stale-callback guards and Escape to clear. A scrollable host-owned
-  status slot preserves progress, outcomes and stop-after-current controls while
-  ordinary selection and opening are blocked during execution.
+  callbacks, with immutable visible-order snapshots, keyboard controls,
+  stale-menu rejection, scope/revision resets and selection cleared at dispatch.
+- Keep read-only hosts free of mutation controls; expose accessible
+  stop-after-current controls and a scrollable host-owned progress/results slot.
+  Retain the earlier selection-revision, bulk-enabled and selection-label API
+  names as aliases while exposing the same guards through the newer names.
 - Add bounded structured search of loaded message headers with localized syntax
   errors, recipient/date/state predicates, explicit clear and accessible help.
   Technical examples keep their left-to-right order within Arabic help.

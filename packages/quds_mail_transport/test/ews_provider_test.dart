@@ -231,10 +231,11 @@ void main() {
         ],
       ]);
       final provider = fixture.provider();
-      final report = await const MailBulkFlagRunner().run(
+      final report = await MailBulkFlagCoordinator().run(
         plan: MailBulkFlagPlan(
           id: 'ews-bulk',
           mailbox: _mailbox,
+          provider: MailProviderKind.ews,
           action: MailBulkFlagAction.markRead,
           messages: [
             _identity('one'),
@@ -244,17 +245,19 @@ void main() {
           ],
         ),
         lease: fixture.session.begin(),
-        apply: provider.apply,
+        apply: (operation, lease) async => MailBulkFlagAttempt.fromResult(
+          await provider.apply(operation, lease),
+        ),
         isScopeCurrent: () => true,
       );
-      expect(report.results.map((result) => result.outcome), [
+      expect(report.items.map((result) => result.outcome), [
         MailBulkFlagOutcome.confirmed,
         MailBulkFlagOutcome.failed,
         MailBulkFlagOutcome.uncertain,
         MailBulkFlagOutcome.unattempted,
       ]);
-      expect(report.results[1].problem?.mutationMayHaveOccurred, isFalse);
-      expect(report.results[2].problem?.mutationMayHaveOccurred, isTrue);
+      expect(report.items[1].problem?.mutationMayHaveOccurred, isFalse);
+      expect(report.items[2].problem?.mutationMayHaveOccurred, isTrue);
       expect(fixture.clients, hasLength(3));
       expect(
         fixture.clients

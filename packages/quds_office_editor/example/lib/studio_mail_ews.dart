@@ -976,7 +976,10 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
     };
     // Reject the whole selection if even one row no longer belongs to this
     // captured provider/folder generation. Never execute a silently smaller set.
-    if (ids.any((id) => !rows.containsKey(id))) return;
+    if (rows.length != _headers.length ||
+        ids.any((id) => !rows.containsKey(id))) {
+      return;
+    }
     final selected = [for (final id in ids) rows[id]!];
     final plan = MailBulkFlagPlan(
       id: 'bulk-${++_serial}',
@@ -990,8 +993,16 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
     final lease = session.begin();
     final run = Object();
     final projected = <MailRemoteIdentity>{};
-    bool current() =>
-        scopeCurrent() && lease.isCurrent && identical(_bulkRun, run);
+    bool current() {
+      if (!scopeCurrent() || !lease.isCurrent || !identical(_bulkRun, run)) {
+        return false;
+      }
+      final observed = {
+        for (final header in _headers) header.id: header.remote,
+      };
+      return selected.every((header) => observed[header.id] == header.remote);
+    }
+
     setState(() {
       _busy = true;
       _error = null;
@@ -1074,25 +1085,30 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
     setState(() {
       _bulkRunning = false;
       _busy = false;
+      _notice = widget.strings.mailBulkSummary(report);
     });
+  }
+
+  VoidCallback? _bulkStopCallback() {
+    final run = _bulkRun;
+    if (!_bulkRunning || _bulkStopRequested) return null;
+    return () {
+      if (mounted && identical(_bulkRun, run) && _bulkRunning) {
+        setState(() => _bulkStopRequested = true);
+      }
+    };
   }
 
   Widget? _bulkStatus() {
     final report = _bulkReport;
-    final run = _bulkRun;
     if (report == null) return null;
     return StudioMailBulkStatus(
       strings: widget.strings,
       report: report,
       running: _bulkRunning,
       subjects: _bulkSubjects,
-      onStop: !_bulkRunning || _bulkStopRequested
-          ? null
-          : () {
-              if (mounted && identical(_bulkRun, run) && _bulkRunning) {
-                setState(() => _bulkStopRequested = true);
-              }
-            },
+      showStop: false,
+      onStop: _bulkStopCallback(),
       onDismiss: _bulkRunning
           ? null
           : () {
@@ -2340,6 +2356,7 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
           bulkEnabled: !_blocked && !_needsRefresh,
           onBulkAction: _bulkActionCallback(),
           bulkStatus: _bulkStatus(),
+          onCancelBulk: _bulkStopCallback(),
           strings: widget.strings.mailMessageListStrings,
           items: [
             for (final header in _headers)

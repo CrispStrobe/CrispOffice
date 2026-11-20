@@ -1795,7 +1795,10 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
     final generation = _sessionGeneration;
     final headers = _messages;
     final byId = {for (final header in headers) _messageKey(header): header};
-    if (ids.any((id) => !byId.containsKey(id))) return;
+    if (byId.length != headers.length ||
+        ids.any((id) => !byId.containsKey(id))) {
+      return;
+    }
     final frozen = <MailRemoteIdentity, mail.MimeMessage>{};
     final observedIds = <MailRemoteIdentity, MailMessageId>{};
     MailImapIdentity identityFor(mail.MimeMessage header) =>
@@ -1868,10 +1871,9 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
       if (bulkActions != null) {
         return bulkActions.applyBulkFlag(command, lease);
       }
-      // Keep the earlier immutable-record/action capability usable. Its
-      // legacy exception contract contains no mutation-boundary evidence, so
-      // every invoked failure is uncertain. Readers without immutable remote
-      // records never receive this fallback or visible bulk controls.
+      // Preserve immutable-record/action adapters. Only explicit no-mutation
+      // evidence certifies a rejection; older exceptions remain uncertain.
+      // Readers without immutable identities never receive this fallback.
       try {
         final header = frozen[command.message]!;
         switch (command) {
@@ -1893,7 +1895,12 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
         }
         return const MailSuccess(MailUnit.value);
       } on StudioMailMessageLoadException catch (error) {
-        return MailFailure(MailProblem(error.code));
+        return MailFailure(
+          MailProblem(
+            error.code,
+            mutationMayHaveOccurred: error.mutationMayHaveOccurred,
+          ),
+        );
       } on Object {
         return const MailFailure(MailProblem(MailProblemCode.providerFailure));
       }
@@ -1968,6 +1975,7 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
         project(report);
         _bulkRunning = false;
         _busy = false;
+        _notice = widget.strings.mailBulkSummary(report);
         if (report.requiresRefresh) {
           _error = widget.strings.mailWorkspaceRefreshRequired;
         }
@@ -3387,6 +3395,16 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
     return MailMessageList(
       selectionRevision: revision,
       bulkEnabled: !_needsRefresh,
+      onCancelBulk: _bulkRunning && !_bulkStopRequested
+          ? () {
+              if (!mounted ||
+                  !_bulkRunning ||
+                  !identical(_bulkSession, bulkSession)) {
+                return;
+              }
+              setState(() => _bulkStopRequested = true);
+            }
+          : null,
       onBulkAction:
           loader is StudioMailBulkMessageActions ||
               loader is StudioMailMailboxRecords &&
@@ -3407,6 +3425,7 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
               report: bulkReport,
               running: _bulkRunning,
               subjects: _bulkSubjects,
+              showStop: false,
               onStop: _bulkRunning && !_bulkStopRequested
                   ? () {
                       if (!mounted ||

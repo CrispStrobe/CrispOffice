@@ -83,7 +83,12 @@ void main() {
         MailMove(id: 'move', message: remote, destination: mailbox),
         MailDelete(id: 'delete', message: remote),
       ]) {
-        unsupported(await provider.apply(command, lease));
+        final result = await provider.apply(command, lease);
+        unsupported(result);
+        expect(
+          MailBulkFlagAttempt.fromResult(result).outcome,
+          MailBulkFlagOutcome.failed,
+        );
       }
       final sent = await provider.submit(
         MailPreparedMessage(

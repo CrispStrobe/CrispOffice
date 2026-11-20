@@ -555,6 +555,63 @@ void main() {
     );
   }
 
+  for (final problem in [
+    MailProblemCode.permissionDenied,
+    MailProblemCode.cancelled,
+    MailProblemCode.staleOperation,
+  ]) {
+    testWidgets(
+      'EWS bulk distinguishes explicit no-mutation $problem evidence',
+      (tester) async {
+        final stops = problem != MailProblemCode.permissionDenied;
+        final refreshRequired = problem == MailProblemCode.staleOperation;
+        late _Provider provider;
+        await _show(tester, (configuration, credentials) {
+          provider = _Provider(configuration, credentials);
+          provider.headerPage = (mailbox, cursor) =>
+              MailHeaderPage(messages: _bulkHeaders(provider));
+          provider.mutationHandler = (operation, lease) async =>
+              provider.commands.length == 1
+              ? MailFailure(
+                  MailProblem(problem, mutationMayHaveOccurred: false),
+                )
+              : const MailSuccess(MailUnit.value);
+          return provider;
+        });
+        await _connect(tester);
+        _bulkList(tester).onBulkAction!(MailBulkFlagAction.markRead, [
+          'ews-message-one',
+          'ews-message-two',
+          'ews-message-three',
+        ]);
+        await _pump(tester);
+        expect(provider.commands, hasLength(stops ? 1 : 3));
+        expect(_bulkList(tester).items.map((item) => item.isRead), [
+          false,
+          !stops,
+          !stops,
+        ]);
+        expect(_bulkList(tester).bulkActionsEnabled, !refreshRequired);
+        expect(
+          find.text(
+            stops
+                ? '0 confirmed · 1 failed · 0 uncertain · 2 not attempted'
+                : '2 confirmed · 1 failed · 0 uncertain · 0 not attempted',
+          ),
+          findsOneWidget,
+        );
+        expect(
+          find.text(_strings.mailWorkspaceRefreshRequired),
+          refreshRequired ? findsOneWidget : findsNothing,
+        );
+        expect(provider.reads, 0);
+        expect(provider.cursors, hasLength(1));
+        expect(_bulkList(tester).busy, isFalse);
+        expect(tester.takeException(), isNull);
+      },
+    );
+  }
+
   testWidgets(
     'EWS bulk cancellation retains current reply without cancelling its lease',
     (tester) async {

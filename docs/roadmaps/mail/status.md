@@ -4,7 +4,8 @@
 
 The [bulk-action continuation](bulk-actions.md) adds checked visible selections,
 explicit read/unread/flag/unflag commands, keyboard selection and localized
-outcome summaries to connected IMAP, EWS, Gmail and Microsoft 365. Plans freeze
+progress, outcome summaries and per-message details to connected IMAP, EWS,
+Gmail and Microsoft 365. Plans freeze
 remote identities; sequential execution records confirmed, failed, uncertain
 and unattempted items. Unknown confirmation stops later dispatches and requires
 an explicit refresh. Stop waits for the current request without auto-retrying.

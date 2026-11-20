@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+- Treat dispatched timeouts and unfamiliar client-error responses as uncertain;
+  explicit request, authorization, resource, precondition and documented rate
+  limit rejections certify no mutation. Preserve rate-limit retry guidance while
+  foreground bulk coordination stops later dispatches without automatic retry.
+
 - Report explicit mutation-boundary evidence for failed IMAP, EWS, Gmail and
   Microsoft 365 operations. Foreground bulk commands can distinguish definite
   no-write failures from uncertain writes without guessing from a problem code.

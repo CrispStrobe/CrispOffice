@@ -78,9 +78,9 @@ MailMessageList _list({
   items: items,
   strings: strings,
   scopeId: scope,
-  selectionRevision: revision,
+  selectionScopeId: revision,
   busy: busy,
-  bulkEnabled: enabled,
+  bulkActionsEnabled: enabled,
   onOpen: onOpen ?? (_) {},
   onBulkAction: onBulkAction,
   hasMore: onLoadMore != null,
@@ -89,7 +89,7 @@ MailMessageList _list({
 );
 
 Finder _key(String key) => find.byKey(ValueKey(key));
-Finder _check(String id) => _key('mail-list-select-$id');
+Finder _check(String id) => _key('mail-list-check-$id');
 
 Future<void> _tap(WidgetTester tester, Finder target) async {
   await tester.ensureVisible(target);
@@ -98,7 +98,7 @@ Future<void> _tap(WidgetTester tester, Finder target) async {
 }
 
 Future<void> _selectAll(WidgetTester tester) =>
-    _tap(tester, _key('mail-list-select-visible'));
+    _tap(tester, _key('mail-list-select-shown'));
 
 Future<void> _focusList(WidgetTester tester) async {
   tester.widget<Focus>(_key('mail-list-focus')).focusNode!.requestFocus();
@@ -131,7 +131,7 @@ void main() {
   testWidgets('cached hosts have no mutable bulk controls', (tester) async {
     await tester.pumpWidget(_app(_list()));
     expect(find.byType(Checkbox), findsNothing);
-    expect(_key('mail-list-select-visible'), findsNothing);
+    expect(_key('mail-list-select-shown'), findsNothing);
     expect(_key('mail-list-bulk-actions'), findsNothing);
     expect(_key('mail-list-selected-count'), findsNothing);
   });
@@ -325,6 +325,41 @@ void main() {
     });
   }
 
+  for (final change in ['scope', 'filter', 'selection', 'sort', 'host']) {
+    testWidgets('actual open popup rejects a $change change', (tester) async {
+      var actions = 0;
+      Widget app({String scope = 'a/inbox'}) =>
+          _app(_list(scope: scope, onBulkAction: (_, _) => actions++));
+      await tester.pumpWidget(app());
+      await _selectAll(tester);
+      await _tap(tester, _key('mail-list-bulk-actions'));
+      switch (change) {
+        case 'scope':
+          await tester.pumpWidget(app(scope: 'b/inbox'));
+          await tester.pumpWidget(app());
+        case 'filter':
+          final field = tester.widget<TextField>(_key('mail-list-search'));
+          field.controller!.text = 'project';
+          field.onChanged!('project');
+        case 'selection':
+          tester.widget<Checkbox>(_check('z')).onChanged!(false);
+        case 'sort':
+          tester
+              .widget<PopupMenuButton<MailMessageListSort>>(
+                _key('mail-list-sort'),
+              )
+              .onSelected!(MailMessageListSort.subjectAscending);
+        case 'host':
+          await tester.pumpWidget(app());
+      }
+      await tester.pumpAndSettle();
+      expect(_key('mail-list-bulk-markRead'), findsOneWidget);
+      await _tap(tester, _key('mail-list-bulk-markRead'));
+      expect(actions, 0);
+      expect(tester.takeException(), isNull);
+    });
+  }
+
   testWidgets('actual open popup is inert after host refresh', (tester) async {
     var actions = 0;
     Widget app(int revision) =>
@@ -344,7 +379,7 @@ void main() {
     (tester) async {
       await tester.pumpWidget(_app(_list(onBulkAction: (_, _) {})));
       final oldSelect = tester
-          .widget<TextButton>(_key('mail-list-select-visible'))
+          .widget<TextButton>(_key('mail-list-select-shown'))
           .onPressed!;
       await _selectAll(tester);
       final oldClear = tester
@@ -378,7 +413,7 @@ void main() {
       await tester.pumpWidget(app(busy: true));
       expect(tester.widget<Checkbox>(_check('z')).onChanged, isNull);
       expect(
-        tester.widget<TextButton>(_key('mail-list-select-visible')).onPressed,
+        tester.widget<TextButton>(_key('mail-list-select-shown')).onPressed,
         isNull,
       );
       expect(
@@ -434,6 +469,27 @@ void main() {
     });
   }
 
+  testWidgets('Escape clears checked rows without opening or changing mail', (
+    tester,
+  ) async {
+    var opens = 0;
+    var actions = 0;
+    await tester.pumpWidget(
+      _app(_list(onOpen: (_) => opens++, onBulkAction: (_, _) => actions++)),
+    );
+    await _selectAll(tester);
+    await _focusList(tester);
+    await tester.sendKeyEvent(LogicalKeyboardKey.escape);
+    await tester.pumpAndSettle();
+    expect(find.text('0 selected'), findsOneWidget);
+    expect(opens, 0);
+    expect(actions, 0);
+    await tester.sendKeyEvent(LogicalKeyboardKey.space);
+    await tester.pumpAndSettle();
+    expect(find.text('1 selected'), findsOneWidget);
+    expect(opens, 0);
+  });
+
   testWidgets('search editing keeps Ctrl+A and Space without checking mail', (
     tester,
   ) async {
@@ -488,7 +544,7 @@ void main() {
         count: _count,
         providerOrder: 'Ordnerreihenfolge',
         selectMessage: 'Nachricht auswählen',
-        selectVisible: 'Sichtbare auswählen',
+        selectShown: 'Sichtbare auswählen',
         clearSelection: 'Auswahl aufheben',
         selectedCount: _selectedDe,
         bulkActions: 'Ausgewählte Nachrichten',
@@ -513,7 +569,7 @@ void main() {
         count: _count,
         providerOrder: 'ترتيب المجلد',
         selectMessage: 'تحديد الرسالة',
-        selectVisible: 'تحديد الظاهرة',
+        selectShown: 'تحديد الظاهرة',
         clearSelection: 'مسح التحديد',
         selectedCount: _selectedAr,
         bulkActions: 'الرسائل المحددة',

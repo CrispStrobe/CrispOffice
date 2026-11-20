@@ -15,6 +15,7 @@ class StudioMailBulkStatus extends StatelessWidget {
     required this.running,
     required this.subjects,
     this.onStop,
+    this.showStop = true,
     this.onDismiss,
   });
 
@@ -23,6 +24,9 @@ class StudioMailBulkStatus extends StatelessWidget {
   final bool running;
   final Map<MailRemoteIdentity, String> subjects;
   final VoidCallback? onStop;
+
+  /// Hosts with a toolbar stop control hide the duplicate control here.
+  final bool showStop;
   final VoidCallback? onDismiss;
 
   String _text(String en, String de, String ar) => switch (strings.language) {
@@ -92,6 +96,25 @@ class StudioMailBulkStatus extends StatelessWidget {
     ),
   };
 
+  String _retryDelay(Duration delay) {
+    final rounded = (delay.inMilliseconds / 1000).ceil();
+    final seconds = rounded < 1 ? 1 : rounded;
+    return _text(
+      'Wait at least $seconds ${seconds == 1 ? 'second' : 'seconds'} before trying again.',
+      'Warten Sie vor einem erneuten Versuch mindestens $seconds ${seconds == 1 ? 'Sekunde' : 'Sekunden'}.',
+      'انتظر $seconds ثانية على الأقل قبل إعادة المحاولة.',
+    );
+  }
+
+  Duration? get _retryAfter {
+    for (final item in report.items) {
+      if (item.problem?.code == MailProblemCode.quotaExceeded) {
+        return item.problem?.retryAfter;
+      }
+    }
+    return null;
+  }
+
   Future<void> _details(BuildContext context) async {
     final direction = Directionality.of(context);
     final media = MediaQuery.of(context);
@@ -123,10 +146,10 @@ class StudioMailBulkStatus extends StatelessWidget {
                     child: ListView.separated(
                       shrinkWrap: true,
                       padding: const EdgeInsets.symmetric(horizontal: 16),
-                      itemCount: report.results.length,
+                      itemCount: report.items.length,
                       separatorBuilder: (_, _) => const Divider(),
                       itemBuilder: (context, index) {
-                        final result = report.results[index];
+                        final result = report.items[index];
                         final subject = subjects[result.message];
                         return Padding(
                           key: ValueKey('studio-mail-bulk-result-$index'),
@@ -151,6 +174,8 @@ class StudioMailBulkStatus extends StatelessWidget {
                               const SizedBox(height: 4),
                               Text(_outcome(result.outcome)),
                               Text(_explanation(result.outcome)),
+                              if (result.problem?.retryAfter case final delay?)
+                                Text(_retryDelay(delay)),
                             ],
                           ),
                         );
@@ -179,7 +204,7 @@ class StudioMailBulkStatus extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final attempted = report.results.length - report.unattemptedCount;
+    final attempted = report.items.length - report.unattemptedCount;
     return Material(
       key: const ValueKey('studio-mail-bulk-status'),
       color: report.requiresRefresh
@@ -193,21 +218,25 @@ class StudioMailBulkStatus extends StatelessWidget {
           children: [
             Text(_action, style: const TextStyle(fontWeight: FontWeight.w600)),
             const SizedBox(height: 4),
-            Wrap(
-              spacing: 12,
-              runSpacing: 4,
-              children: [
-                for (final outcome in MailBulkFlagOutcome.values)
-                  Text(
-                    '${running && outcome == MailBulkFlagOutcome.unattempted ? _text('Pending', 'Ausstehend', 'قيد الانتظار') : _outcome(outcome)}: ${report.count(outcome)}',
-                    key: ValueKey('studio-mail-bulk-count-${outcome.name}'),
-                  ),
-              ],
+            Semantics(
+              key: const ValueKey('studio-mail-bulk-counts'),
+              liveRegion: true,
+              child: Wrap(
+                spacing: 12,
+                runSpacing: 4,
+                children: [
+                  for (final outcome in MailBulkFlagOutcome.values)
+                    Text(
+                      '${running && outcome == MailBulkFlagOutcome.unattempted ? _text('Pending', 'Ausstehend', 'قيد الانتظار') : _outcome(outcome)}: ${report.count(outcome)}',
+                      key: ValueKey('studio-mail-bulk-count-${outcome.name}'),
+                    ),
+                ],
+              ),
             ),
             if (running) ...[
               const SizedBox(height: 8),
               LinearProgressIndicator(
-                value: attempted / report.results.length,
+                value: attempted / report.items.length,
                 semanticsLabel: _text(
                   'Messages completed',
                   'Abgeschlossene Nachrichten',
@@ -219,12 +248,23 @@ class StudioMailBulkStatus extends StatelessWidget {
               const SizedBox(height: 8),
               Text(
                 _text(
-                  'Stopped after an uncertain result. Refresh the folder before another change.',
-                  'Nach einem ungewissen Ergebnis angehalten. Aktualisieren Sie den Ordner vor einer weiteren Änderung.',
-                  'توقفت العملية بعد نتيجة غير مؤكدة. حدّث المجلد قبل إجراء تغيير آخر.',
+                  'Refresh the folder to verify the current message state before another change.',
+                  'Aktualisieren Sie den Ordner, um den aktuellen Nachrichtenstatus vor einer weiteren Änderung zu prüfen.',
+                  'حدّث المجلد للتحقق من الحالة الحالية للرسائل قبل إجراء تغيير آخر.',
                 ),
               ),
-            ] else if (!running && report.stopProblem != null) ...[
+            ] else if (!running &&
+                report.stopReason == MailBulkFlagStopReason.rateLimited) ...[
+              const SizedBox(height: 8),
+              Text(
+                _text(
+                  'Request limit reached. Remaining messages were not attempted.',
+                  'Anfragelimit erreicht. Verbleibende Nachrichten wurden nicht versucht.',
+                  'تم بلوغ حد الطلبات. لم تُحاول الرسائل المتبقية.',
+                ),
+              ),
+              if (_retryAfter case final delay?) Text(_retryDelay(delay)),
+            ] else if (!running && report.stopReason != null) ...[
               const SizedBox(height: 8),
               Text(
                 _text(
@@ -237,7 +277,7 @@ class StudioMailBulkStatus extends StatelessWidget {
             Wrap(
               spacing: 8,
               children: [
-                if (running)
+                if (running && showStop)
                   TextButton(
                     key: const ValueKey('studio-mail-bulk-stop'),
                     onPressed: onStop,
