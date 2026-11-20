@@ -618,15 +618,7 @@ class RenderSlideStage extends RenderBox implements MouseTrackerAnnotation {
     );
     final double deg =
         math.atan2(slide.dx - c.dx, c.dy - slide.dy) * 180 / math.pi;
-    shape.transform = PmlTransform(
-      x: start.x,
-      y: start.y,
-      cx: start.cx,
-      cy: start.cy,
-      rot: (deg * 60000).round(),
-      flipH: start.flipH,
-      flipV: start.flipV,
-    );
+    shape.transform = start.copyWith(rot: (deg * 60000).round());
   }
 
   static bool _sameTransform(PmlTransform a, PmlTransform b) {
@@ -1086,16 +1078,13 @@ class RenderSlideStage extends RenderBox implements MouseTrackerAnnotation {
         ? Rect.fromLTWH(rect.left, rect.top, rect.width, 208)
         : rect;
     Color? background = _slidePaper(target);
-    final List<PmlShape> backing = <PmlShape>[
-      ...target.backgroundShapes,
-      ...target.shapes,
-    ];
-    for (var index = 0; index < backing.length; index++) {
-      final PmlShape previous = backing[index];
-      final bool decoration = index < target.backgroundShapes.length;
-      if (!decoration && identical(previous, shape)) break;
-      if (!decoration && (skipIds?.contains(previous.id) ?? false)) continue;
-      final previousSample = decoration
+    final int inheritedCount = target.backgroundShapes.length;
+    var precedingIndex = 0;
+    for (final previous in target.backgroundShapes.followedBy(target.shapes)) {
+      final bool inherited = precedingIndex++ < inheritedCount;
+      if (!inherited && identical(previous, shape)) break;
+      if (!inherited && (skipIds?.contains(previous.id) ?? false)) continue;
+      final previousSample = inherited
           ? PmlAnimSample.identity
           : samples?[previous.id] ?? PmlAnimSample.identity;
       if (!previousSample.visible || previousSample.opacity <= 0.01) continue;
@@ -1220,6 +1209,13 @@ class RenderSlideStage extends RenderBox implements MouseTrackerAnnotation {
         case PmlShapePreset.leftArrow:
         case PmlShapePreset.rightArrow:
           canvas.drawPath(_arrowPath(r, shape.preset), paint);
+        case PmlShapePreset.diamond:
+        case PmlShapePreset.hexagon:
+        case PmlShapePreset.pentagon:
+        case PmlShapePreset.chevron:
+        case PmlShapePreset.parallelogram:
+        case PmlShapePreset.trapezoid:
+          canvas.drawPath(_shapePath(r, shape.preset), paint);
       }
     } else if (shape.placeholder &&
         shape.text.isEmpty &&
@@ -1290,6 +1286,13 @@ class RenderSlideStage extends RenderBox implements MouseTrackerAnnotation {
           ..lineTo(left, r.top)
           ..lineTo(left, top)
           ..close();
+      case PmlShapePreset.diamond:
+      case PmlShapePreset.hexagon:
+      case PmlShapePreset.pentagon:
+      case PmlShapePreset.chevron:
+      case PmlShapePreset.parallelogram:
+      case PmlShapePreset.trapezoid:
+        return _shapePath(r, preset);
       case PmlShapePreset.rect:
       case PmlShapePreset.roundRect:
       case PmlShapePreset.ellipse:
@@ -1301,6 +1304,67 @@ class RenderSlideStage extends RenderBox implements MouseTrackerAnnotation {
     return path;
   }
 
+  Path _shapePath(Rect r, PmlShapePreset preset) {
+    final Path path = Path();
+    switch (preset) {
+      case PmlShapePreset.diamond:
+        path
+          ..moveTo(r.center.dx, r.top)
+          ..lineTo(r.right, r.center.dy)
+          ..lineTo(r.center.dx, r.bottom)
+          ..lineTo(r.left, r.center.dy);
+      case PmlShapePreset.hexagon:
+        path
+          ..moveTo(r.left + r.width * 0.25, r.top)
+          ..lineTo(r.left + r.width * 0.75, r.top)
+          ..lineTo(r.right, r.center.dy)
+          ..lineTo(r.left + r.width * 0.75, r.bottom)
+          ..lineTo(r.left + r.width * 0.25, r.bottom)
+          ..lineTo(r.left, r.center.dy);
+      case PmlShapePreset.pentagon:
+        path
+          ..moveTo(r.left, r.top)
+          ..lineTo(r.left + r.width * 0.75, r.top)
+          ..lineTo(r.right, r.center.dy)
+          ..lineTo(r.left + r.width * 0.75, r.bottom)
+          ..lineTo(r.left, r.bottom)
+          ..lineTo(r.left + r.width * 0.25, r.center.dy);
+      case PmlShapePreset.chevron:
+        path
+          ..moveTo(r.left, r.top)
+          ..lineTo(r.left + r.width * 0.75, r.top)
+          ..lineTo(r.right, r.center.dy)
+          ..lineTo(r.left + r.width * 0.75, r.bottom)
+          ..lineTo(r.left, r.bottom)
+          ..lineTo(r.left + r.width * 0.25, r.center.dy);
+      case PmlShapePreset.parallelogram:
+        path
+          ..moveTo(r.left + r.width * 0.25, r.top)
+          ..lineTo(r.right, r.top)
+          ..lineTo(r.left + r.width * 0.75, r.bottom)
+          ..lineTo(r.left, r.bottom);
+      case PmlShapePreset.trapezoid:
+        path
+          ..moveTo(r.left + r.width * 0.2, r.top)
+          ..lineTo(r.left + r.width * 0.8, r.top)
+          ..lineTo(r.right, r.bottom)
+          ..lineTo(r.left, r.bottom);
+      case PmlShapePreset.rect:
+      case PmlShapePreset.roundRect:
+      case PmlShapePreset.ellipse:
+      case PmlShapePreset.triangle:
+      case PmlShapePreset.connector:
+      case PmlShapePreset.freeform:
+      case PmlShapePreset.downArrow:
+      case PmlShapePreset.upArrow:
+      case PmlShapePreset.leftArrow:
+      case PmlShapePreset.rightArrow:
+        path.addRect(r);
+    }
+    path.close();
+    return path;
+  }
+
   TextPainter _shapePainter(
     PmlShape shape,
     String text,
@@ -1309,6 +1373,7 @@ class RenderSlideStage extends RenderBox implements MouseTrackerAnnotation {
     Color? background,
   }) {
     final double baseSize = shape.fontSizePt > 0 ? shape.fontSizePt : 16;
+
     final int lines = _growsWithText(r)
         ? 32
         : (r.height / (baseSize * 1.2)).ceil().clamp(1, 32);
@@ -1758,8 +1823,9 @@ class RenderSlideStage extends RenderBox implements MouseTrackerAnnotation {
       Paint()..color = _slidePaper(target),
     );
     for (final PmlShape shape in target.backgroundShapes) {
-      // Master/layout shape IDs are scoped to their source parts. Foreground
-      // animation and morph IDs must never hide or transform decorations.
+      // Master/layout shape ids belong to their own parts. Slide animations
+      // and morph matching must never apply to a coincident decoration id.
+
       final Rect r = _shapeRect(shape);
       canvas.save();
       _rotateCanvas(canvas, shape, r);
@@ -1856,7 +1922,7 @@ class RenderSlideStage extends RenderBox implements MouseTrackerAnnotation {
   }
 
   void _applyRect(PmlShape shape, Rect rect) {
-    shape.transform = PmlTransform(
+    shape.transform = shape.transform.copyWith(
       x: (rect.left * 12700).round(),
       y: (rect.top * 12700).round(),
       cx: (rect.width * 12700).round().clamp(12700, 100000000),
@@ -1976,7 +2042,7 @@ class RenderSlideStage extends RenderBox implements MouseTrackerAnnotation {
         c.dx + p.dx * cos - p.dy * sin,
         c.dy + p.dx * sin + p.dy * cos,
       );
-      shape.transform = PmlTransform(
+      shape.transform = start.copyWith(
         x: ((np.dx - start.widthPoints / 2) * 12700).round(),
         y: ((np.dy - start.heightPoints / 2) * 12700).round(),
         cx: start.cx,

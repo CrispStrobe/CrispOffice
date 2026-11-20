@@ -1,0 +1,961 @@
+{
+  "aggregate": {
+    "completed_verified_cohorts": 9,
+    "cross_cohort_duplicate_identities": [],
+    "observed_unique_application_identities": 2881,
+    "source_inventory_sha256": [
+      "f39450039b903bfced17893fb8f969b58739f01df21bad2c455b9819a2b421ef"
+    ],
+    "verified_passed": 2566,
+    "verified_suites": 123
+  },
+  "application_cases_artifact": {
+    "bytes": 66757,
+    "git_blob_sha1": "082c7aa9b6adfda7ee6082e896a316bac9ffa6dd",
+    "sha256": "50d2657b28a33cd6c55cee5a0249c4c81ea1b20c9e5e3fcb7cf97fa18868177a"
+  },
+  "audit_kind": "Independent raw-event recount and cryptographic verification; this script executes no application tests.",
+  "audited_at_utc": "2026-11-20T04:59:49.500920+00:00",
+  "auditor_sha256": "061d45d7f0035cf470a8138164b110f26f5f2a64c1919096d95ba0912c2b18b5",
+  "cli": {
+    "basis": "The selected source-located CLI cases call Process.run on Platform.resolvedExecutable, forward Platform.packageConfig, invoke the real macro script and assert process results/output. Their cohort is launched with the ELF Dart VM, not flutter_tester. Count is test cases, not number of child process invocations.",
+    "case_names": [
+      {
+        "name": "committed monthly example runs and recalculates its net formula",
+        "suite": "packages/quds_office_engine/test/office_macro_cli_test.dart"
+      },
+      {
+        "name": "later invalid step preserves existing input and output bytes",
+        "suite": "packages/quds_office_engine/test/office_macro_cli_test.dart"
+      },
+      {
+        "name": "validate succeeds without changing the source or creating output",
+        "suite": "packages/quds_office_engine/test/office_macro_cli_test.dart"
+      },
+      {
+        "name": "Word and presentation examples use the same runnable macro format",
+        "suite": "packages/quds_office_engine/test/office_macro_cli_test.dart"
+      },
+      {
+        "name": "extension mismatch and unsupported VBA compilation do not create files",
+        "suite": "packages/quds_office_engine/test/office_macro_cli_test.dart"
+      },
+      {
+        "name": "array and For Each source through actual CLI processes BAS and saved native plans produce the same report",
+        "suite": "packages/quds_office_engine/test/office_vba_arrays_integration_test.dart"
+      },
+      {
+        "name": "array and For Each source through actual CLI processes a custom entry can use local arrays in reusable helpers",
+        "suite": "packages/quds_office_engine/test/office_vba_arrays_integration_test.dart"
+      },
+      {
+        "name": "array and For Each source through actual CLI processes late sheet failure preserves existing input and output files",
+        "suite": "packages/quds_office_engine/test/office_vba_arrays_integration_test.dart"
+      },
+      {
+        "name": "array and For Each source through actual CLI processes an indexed-write compile failure preserves workbook files",
+        "suite": "packages/quds_office_engine/test/office_vba_arrays_integration_test.dart"
+      },
+      {
+        "name": "array and For Each source through actual CLI processes an array allocation limit preserves a previously saved plan",
+        "suite": "packages/quds_office_engine/test/office_vba_arrays_integration_test.dart"
+      },
+      {
+        "name": "conditional control flow through actual CLI processes BAS and saved native plans produce the same report",
+        "suite": "packages/quds_office_engine/test/office_vba_control_flow_integration_test.dart"
+      },
+      {
+        "name": "conditional control flow through actual CLI processes a custom entry invokes loops and cases in helpers",
+        "suite": "packages/quds_office_engine/test/office_vba_control_flow_integration_test.dart"
+      },
+      {
+        "name": "conditional control flow through actual CLI processes late selected-case failure preserves existing input and output files",
+        "suite": "packages/quds_office_engine/test/office_vba_control_flow_integration_test.dart"
+      },
+      {
+        "name": "conditional control flow through actual CLI processes a compile work limit preserves a previously saved plan",
+        "suite": "packages/quds_office_engine/test/office_vba_control_flow_integration_test.dart"
+      },
+      {
+        "name": "dynamic array source through actual CLI processes BAS and saved plan produce the same report",
+        "suite": "packages/quds_office_engine/test/office_vba_dynamic_arrays_integration_test.dart"
+      },
+      {
+        "name": "dynamic array source through actual CLI processes selected entry can resize and erase local helper arrays",
+        "suite": "packages/quds_office_engine/test/office_vba_dynamic_arrays_integration_test.dart"
+      },
+      {
+        "name": "dynamic array source through actual CLI processes compile and late runtime failures preserve existing outputs",
+        "suite": "packages/quds_office_engine/test/office_vba_dynamic_arrays_integration_test.dart"
+      },
+      {
+        "name": "dynamic array source through actual CLI processes resize quota failure leaves a previously saved plan untouched",
+        "suite": "packages/quds_office_engine/test/office_vba_dynamic_arrays_integration_test.dart"
+      },
+      {
+        "name": "VBA command line committed BAS monthly example calculates the complete report",
+        "suite": "packages/quds_office_engine/test/office_vba_integration_test.dart"
+      },
+      {
+        "name": "VBA command line raw BAS compilation and explicit entry point run the same plan",
+        "suite": "packages/quds_office_engine/test/office_vba_integration_test.dart"
+      },
+      {
+        "name": "VBA command line failed raw BAS execution preserves existing input and output",
+        "suite": "packages/quds_office_engine/test/office_vba_integration_test.dart"
+      },
+      {
+        "name": "VBA command line unsupported BAS preserves an existing compiled output",
+        "suite": "packages/quds_office_engine/test/office_vba_integration_test.dart"
+      },
+      {
+        "name": "VBA command line Excel BAS cannot publish over a Word document",
+        "suite": "packages/quds_office_engine/test/office_vba_integration_test.dart"
+      },
+      {
+        "name": "VBA helpers through actual CLI processes BAS and saved native plans produce the same report",
+        "suite": "packages/quds_office_engine/test/office_vba_procedures_integration_test.dart"
+      },
+      {
+        "name": "VBA helpers through actual CLI processes custom entry selection can invoke parameterized helpers",
+        "suite": "packages/quds_office_engine/test/office_vba_procedures_integration_test.dart"
+      },
+      {
+        "name": "VBA helpers through actual CLI processes late helper failure preserves existing input and output files",
+        "suite": "packages/quds_office_engine/test/office_vba_procedures_integration_test.dart"
+      },
+      {
+        "name": "VBA helpers through actual CLI processes recursive source leaves a previously compiled output untouched",
+        "suite": "packages/quds_office_engine/test/office_vba_procedures_integration_test.dart"
+      },
+      {
+        "name": "string intrinsics through actual CLI processes BAS and saved plan produce the same report",
+        "suite": "packages/quds_office_engine/test/office_vba_string_intrinsics_integration_test.dart"
+      },
+      {
+        "name": "string intrinsics through actual CLI processes compile and late runtime failures preserve existing workbooks",
+        "suite": "packages/quds_office_engine/test/office_vba_string_intrinsics_integration_test.dart"
+      },
+      {
+        "name": "string intrinsics through actual CLI processes copy-work exhaustion leaves a previously saved plan untouched",
+        "suite": "packages/quds_office_engine/test/office_vba_string_intrinsics_integration_test.dart"
+      }
+    ],
+    "completed_actual_process_cases": 30,
+    "executable": "/workspace/scratch/ee4fc9e59992/zotero-toolchain/flutter-sdk/bin/cache/dart-sdk/bin/dart",
+    "native_dart_elf": true,
+    "source_suites": {
+      "packages/quds_office_engine/test/office_macro_cli_test.dart": {
+        "invokes_actual_macro_script": true,
+        "selected": true,
+        "sha256": "a04e5b2742096010e6d8b6525d458565a429215724d7baaadd379f65a0619a33",
+        "uses_package_config": true,
+        "uses_resolved_executable": true
+      },
+      "packages/quds_office_engine/test/office_vba_arrays_integration_test.dart": {
+        "invokes_actual_macro_script": true,
+        "selected": true,
+        "sha256": "3540195984eda2cd9067b9efaf9313662294f789d5886f47c0e9b499a9cf3ed3",
+        "uses_package_config": true,
+        "uses_resolved_executable": true
+      },
+      "packages/quds_office_engine/test/office_vba_control_flow_integration_test.dart": {
+        "invokes_actual_macro_script": true,
+        "selected": true,
+        "sha256": "e52b56e5343c5c1f0e7a11a0087bf321890bc3a4fdd5767c0b4eb9c6225adf94",
+        "uses_package_config": true,
+        "uses_resolved_executable": true
+      },
+      "packages/quds_office_engine/test/office_vba_dynamic_arrays_integration_test.dart": {
+        "invokes_actual_macro_script": true,
+        "selected": true,
+        "sha256": "34a87ce3d0173c801b49701384b356b6d4f281dad619149af60e27dab364604c",
+        "uses_package_config": true,
+        "uses_resolved_executable": true
+      },
+      "packages/quds_office_engine/test/office_vba_integration_test.dart": {
+        "invokes_actual_macro_script": true,
+        "selected": true,
+        "sha256": "8c227d8f20ee48c15f032691d331266dd4fbb7fe6ca32e5540a8a38c1f50a4e9",
+        "uses_package_config": true,
+        "uses_resolved_executable": true
+      },
+      "packages/quds_office_engine/test/office_vba_procedures_integration_test.dart": {
+        "invokes_actual_macro_script": true,
+        "selected": true,
+        "sha256": "9f7b5f864e3203faed9d18f774580bc528354747e4a47b81ec71f39075bcf7f5",
+        "uses_package_config": true,
+        "uses_resolved_executable": true
+      },
+      "packages/quds_office_engine/test/office_vba_string_intrinsics_integration_test.dart": {
+        "invokes_actual_macro_script": true,
+        "selected": true,
+        "sha256": "197f639911a80b69c8b5e1d423ac91d6e3af383df717a212e0cb0b19bfade813",
+        "uses_package_config": true,
+        "uses_resolved_executable": true
+      }
+    }
+  },
+  "cohorts": {
+    "editor-docx": {
+      "command": [
+        "/workspace/scratch/ee4fc9e59992/zotero-toolchain/flutter-sdk/bin/flutter",
+        "test",
+        "--no-pub",
+        "--reporter",
+        "json",
+        "--concurrency",
+        "1",
+        "test/word_extended_review_test.dart"
+      ],
+      "event_log_sha256": "18550be7b5d385a2072ff75c7632961b116e62b9ebd098c5b61ed15c289d45ef",
+      "excluded_lifecycle_cases": 1,
+      "failed": 0,
+      "failures": [],
+      "inputs": {
+        "failures": [],
+        "runtime_inventory_sha256": "9c58c139ade21dc3073e27df7a4627814f2ddc40c2b7b684706d390d6d3c5aac",
+        "source_inventory_sha256": "f39450039b903bfced17893fb8f969b58739f01df21bad2c455b9819a2b421ef",
+        "verified": {
+          "dependency_files": 2365,
+          "runtime": 12,
+          "source": 3994,
+          "workspace": 2
+        },
+        "workspace_inventory_sha256": "fcccb20167d94e2aff8a2e273e16d559c3ea222e6002fa83269d603c34cdd758"
+      },
+      "passed": 6,
+      "receipt_sha256": "1e702fcc52749d00216b3fc35dd1b1cd2a44990a1eff24cbcadd1ed37959157c",
+      "skipped": 0,
+      "status": "verified",
+      "suites": 1,
+      "test_done_events": 7,
+      "test_start_events": 7
+    },
+    "editor-rendering": {
+      "command": [
+        "/workspace/scratch/ee4fc9e59992/zotero-toolchain/flutter-sdk/bin/flutter",
+        "test",
+        "--no-pub",
+        "--reporter",
+        "json",
+        "--concurrency",
+        "1",
+        "test/office_dark_slide_test.dart",
+        "test/paint_run_text_unicode_test.dart",
+        "test/slide_arrange_history_test.dart",
+        "test/slide_incoming_pptx_regression_test.dart",
+        "test/slide_notes_history_test.dart",
+        "test/slide_render_fidelity_test.dart",
+        "test/slide_section_reorder_test.dart",
+        "test/word_small_caps_test.dart",
+        "test/word_tab_stops_editor_test.dart"
+      ],
+      "event_log_sha256": "d38088d5a5f7bce79608aacdeb12ec39886e08909c1ee995b0ecaecbc7ed3eb8",
+      "excluded_lifecycle_cases": 15,
+      "failed": 0,
+      "failures": [],
+      "inputs": {
+        "failures": [],
+        "runtime_inventory_sha256": "9c58c139ade21dc3073e27df7a4627814f2ddc40c2b7b684706d390d6d3c5aac",
+        "source_inventory_sha256": "f39450039b903bfced17893fb8f969b58739f01df21bad2c455b9819a2b421ef",
+        "verified": {
+          "dependency_files": 2365,
+          "runtime": 12,
+          "source": 3994,
+          "workspace": 2
+        },
+        "workspace_inventory_sha256": "fcccb20167d94e2aff8a2e273e16d559c3ea222e6002fa83269d603c34cdd758"
+      },
+      "passed": 101,
+      "receipt_sha256": "d63dd2d8e88d441fd520712533db1b7d1d3f43f88d2f3c1fdc63c2fba84f04e8",
+      "skipped": 0,
+      "status": "verified",
+      "suites": 9,
+      "test_done_events": 116,
+      "test_start_events": 116
+    },
+    "editor-zotero": {
+      "command": [
+        "/workspace/scratch/ee4fc9e59992/zotero-toolchain/flutter-sdk/bin/flutter",
+        "test",
+        "--no-pub",
+        "--reporter",
+        "json",
+        "--concurrency",
+        "1",
+        "test/word_zotero_add_note_controller_test.dart",
+        "test/word_zotero_backoff_session_test.dart",
+        "test/word_zotero_bibliography_controller_test.dart",
+        "test/word_zotero_catalog_citing_test.dart",
+        "test/word_zotero_catalog_query_test.dart",
+        "test/word_zotero_children_dialog_test.dart",
+        "test/word_zotero_children_test.dart",
+        "test/word_zotero_citing_controller_test.dart",
+        "test/word_zotero_citing_dialog_test.dart",
+        "test/word_zotero_collection_pagination_test.dart",
+        "test/word_zotero_composer_test.dart",
+        "test/word_zotero_connected_alias_test.dart",
+        "test/word_zotero_controller_test.dart",
+        "test/word_zotero_dialog_scaling_test.dart",
+        "test/word_zotero_dialog_test.dart",
+        "test/word_zotero_direct_command_test.dart",
+        "test/word_zotero_document_actions_test.dart",
+        "test/word_zotero_document_reuse_test.dart",
+        "test/word_zotero_document_source_picker_test.dart",
+        "test/word_zotero_document_sources_test.dart",
+        "test/word_zotero_field_at_caret_test.dart",
+        "test/word_zotero_format_test.dart",
+        "test/word_zotero_import_search_test.dart",
+        "test/word_zotero_library_details_test.dart",
+        "test/word_zotero_navigation_dialog_test.dart",
+        "test/word_zotero_navigation_pane_test.dart",
+        "test/word_zotero_navigation_test.dart",
+        "test/word_zotero_note_preview_test.dart",
+        "test/word_zotero_note_target_test.dart",
+        "test/word_zotero_notes_pane_test.dart",
+        "test/word_zotero_occurrence_navigation_test.dart",
+        "test/word_zotero_rich_controller_test.dart",
+        "test/word_zotero_saved_search_test.dart",
+        "test/word_zotero_snapshot_test.dart",
+        "test/word_zotero_source_identity_test.dart",
+        "test/word_zotero_source_occurrences_dialog_test.dart",
+        "test/word_zotero_source_occurrences_test.dart",
+        "test/word_zotero_source_resolver_test.dart",
+        "test/word_zotero_stored_details_dialog_test.dart",
+        "test/word_zotero_stored_details_test.dart",
+        "test/word_zotero_tag_browser_test.dart",
+        "test/word_zotero_tag_filter_test.dart",
+        "test/word_zotero_unlink_all_test.dart"
+      ],
+      "event_log_sha256": "929027aa9f771e49c7e205bfc683af01ab6919aa31389926f001b96f4d0180b1",
+      "excluded_lifecycle_cases": 47,
+      "failed": 0,
+      "failures": [],
+      "inputs": {
+        "failures": [],
+        "runtime_inventory_sha256": "9c58c139ade21dc3073e27df7a4627814f2ddc40c2b7b684706d390d6d3c5aac",
+        "source_inventory_sha256": "f39450039b903bfced17893fb8f969b58739f01df21bad2c455b9819a2b421ef",
+        "verified": {
+          "dependency_files": 2365,
+          "runtime": 12,
+          "source": 3994,
+          "workspace": 2
+        },
+        "workspace_inventory_sha256": "fcccb20167d94e2aff8a2e273e16d559c3ea222e6002fa83269d603c34cdd758"
+      },
+      "passed": 632,
+      "receipt_sha256": "8a033678761262a514eb178875fcd18583911eed845c4e7bd260ed8b511cb26e",
+      "skipped": 0,
+      "status": "verified",
+      "suites": 43,
+      "test_done_events": 679,
+      "test_start_events": 679
+    },
+    "engine-docx": {
+      "command": [
+        "/workspace/scratch/ee4fc9e59992/zotero-toolchain/flutter-sdk/bin/cache/dart-sdk/bin/dart",
+        "--packages=/workspace/scratch/ee4fc9e59992/quds_office_suite/.dart_tool/package_config.json",
+        "/workspace/scratch/ee4fc9e59992/zotero-toolchain/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+        "--reporter",
+        "json",
+        "--concurrency",
+        "1",
+        "test/word_extended_revision_test.dart"
+      ],
+      "event_log_sha256": "5ae1afa4612a1a19b311a71b47c166bdb63ef0bc9f4cbfbcf4670653aa3a1031",
+      "excluded_lifecycle_cases": 1,
+      "failed": 0,
+      "failures": [],
+      "inputs": {
+        "failures": [],
+        "runtime_inventory_sha256": "9c58c139ade21dc3073e27df7a4627814f2ddc40c2b7b684706d390d6d3c5aac",
+        "source_inventory_sha256": "f39450039b903bfced17893fb8f969b58739f01df21bad2c455b9819a2b421ef",
+        "verified": {
+          "dependency_files": 2113,
+          "runtime": 12,
+          "source": 3994,
+          "workspace": 2
+        },
+        "workspace_inventory_sha256": "fcccb20167d94e2aff8a2e273e16d559c3ea222e6002fa83269d603c34cdd758"
+      },
+      "passed": 23,
+      "receipt_sha256": "860d5fba7d03e3af7ea146981bc8b32a6c81f9cda35a8312cd47d7454256d302",
+      "skipped": 0,
+      "status": "verified",
+      "suites": 1,
+      "test_done_events": 24,
+      "test_start_events": 24
+    },
+    "engine-rendering": {
+      "command": [
+        "/workspace/scratch/ee4fc9e59992/zotero-toolchain/flutter-sdk/bin/cache/dart-sdk/bin/dart",
+        "--packages=/workspace/scratch/ee4fc9e59992/quds_office_suite/.dart_tool/package_config.json",
+        "/workspace/scratch/ee4fc9e59992/zotero-toolchain/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+        "--reporter",
+        "json",
+        "--concurrency",
+        "1",
+        "test/office_pdf_export_test.dart",
+        "test/slide_arrange_fidelity_test.dart",
+        "test/slide_import_fidelity_test.dart",
+        "test/slide_incoming_pptx_regression_test.dart",
+        "test/slide_render_fidelity_test.dart",
+        "test/slide_rich_text_explicit_style_test.dart",
+        "test/slide_section_fidelity_test.dart",
+        "test/slide_table_cell_color_test.dart",
+        "test/slide_test.dart",
+        "test/slide_text_fidelity_test.dart",
+        "test/word_small_caps_test.dart"
+      ],
+      "event_log_sha256": "9e264434dd2c5fc704d16c69c799be8207c09c390dc2fef8b6dac9ed20573da5",
+      "excluded_lifecycle_cases": 11,
+      "failed": 0,
+      "failures": [],
+      "inputs": {
+        "failures": [],
+        "runtime_inventory_sha256": "9c58c139ade21dc3073e27df7a4627814f2ddc40c2b7b684706d390d6d3c5aac",
+        "source_inventory_sha256": "f39450039b903bfced17893fb8f969b58739f01df21bad2c455b9819a2b421ef",
+        "verified": {
+          "dependency_files": 2113,
+          "host_fonts": 2,
+          "runtime": 12,
+          "source": 3994,
+          "workspace": 2
+        },
+        "workspace_inventory_sha256": "fcccb20167d94e2aff8a2e273e16d559c3ea222e6002fa83269d603c34cdd758"
+      },
+      "passed": 191,
+      "receipt_sha256": "03af2b8866ffa4cca896dbc7bae81515fc06fe9d1e623066c5272b6c98279590",
+      "skipped": 0,
+      "status": "verified",
+      "suites": 11,
+      "test_done_events": 202,
+      "test_start_events": 202
+    },
+    "engine-vba": {
+      "command": [
+        "/workspace/scratch/ee4fc9e59992/zotero-toolchain/flutter-sdk/bin/cache/dart-sdk/bin/dart",
+        "--packages=/workspace/scratch/ee4fc9e59992/quds_office_suite/.dart_tool/package_config.json",
+        "/workspace/scratch/ee4fc9e59992/zotero-toolchain/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+        "--reporter",
+        "json",
+        "--concurrency",
+        "1",
+        "test/office_macro_cli_test.dart",
+        "test/office_macro_expansion_test.dart",
+        "test/office_macro_language_test.dart",
+        "test/office_macro_mcp_test.dart",
+        "test/office_macro_runtime_test.dart",
+        "test/office_vba_arrays_boundaries_test.dart",
+        "test/office_vba_arrays_integration_test.dart",
+        "test/office_vba_arrays_test.dart",
+        "test/office_vba_conformance_test.dart",
+        "test/office_vba_control_flow_boundaries_test.dart",
+        "test/office_vba_control_flow_integration_test.dart",
+        "test/office_vba_control_flow_test.dart",
+        "test/office_vba_dynamic_arrays_integration_test.dart",
+        "test/office_vba_dynamic_arrays_test.dart",
+        "test/office_vba_integration_test.dart",
+        "test/office_vba_language_test.dart",
+        "test/office_vba_procedure_boundaries_test.dart",
+        "test/office_vba_procedures_integration_test.dart",
+        "test/office_vba_procedures_test.dart",
+        "test/office_vba_string_intrinsics_integration_test.dart",
+        "test/office_vba_string_intrinsics_test.dart"
+      ],
+      "event_log_sha256": "96689b66469fcbc5f290e58bee0acd539fe0cae1abb0f0aa7e6985f2ffe5f29c",
+      "excluded_lifecycle_cases": 21,
+      "failed": 0,
+      "failures": [],
+      "inputs": {
+        "failures": [],
+        "runtime_inventory_sha256": "9c58c139ade21dc3073e27df7a4627814f2ddc40c2b7b684706d390d6d3c5aac",
+        "source_inventory_sha256": "f39450039b903bfced17893fb8f969b58739f01df21bad2c455b9819a2b421ef",
+        "verified": {
+          "dependency_files": 2113,
+          "runtime": 12,
+          "source": 3994,
+          "workspace": 2
+        },
+        "workspace_inventory_sha256": "fcccb20167d94e2aff8a2e273e16d559c3ea222e6002fa83269d603c34cdd758"
+      },
+      "passed": 743,
+      "receipt_sha256": "bebafc7d166b00cc1f48d9e10f8163563a16c069e4c701a76111944b836c969f",
+      "skipped": 0,
+      "status": "verified",
+      "suites": 21,
+      "test_done_events": 764,
+      "test_start_events": 764
+    },
+    "engine-zotero": {
+      "command": [
+        "/workspace/scratch/ee4fc9e59992/zotero-toolchain/flutter-sdk/bin/cache/dart-sdk/bin/dart",
+        "--packages=/workspace/scratch/ee4fc9e59992/quds_office_suite/.dart_tool/package_config.json",
+        "/workspace/scratch/ee4fc9e59992/zotero-toolchain/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+        "--reporter",
+        "json",
+        "--concurrency",
+        "1",
+        "test/word_zotero_add_note_test.dart",
+        "test/word_zotero_bibliography_layout_test.dart",
+        "test/word_zotero_caret_test.dart",
+        "test/word_zotero_citing_test.dart",
+        "test/word_zotero_document_data_test.dart",
+        "test/word_zotero_formatted_bibliography_test.dart",
+        "test/word_zotero_note_insertion_test.dart",
+        "test/word_zotero_note_list_test.dart",
+        "test/word_zotero_preference_flow_test.dart",
+        "test/word_zotero_rich_edit_test.dart",
+        "test/word_zotero_scaling_test.dart",
+        "test/word_zotero_simple_field_test.dart",
+        "test/word_zotero_source_identity_test.dart",
+        "test/word_zotero_style_preferences_review_test.dart",
+        "test/word_zotero_test.dart",
+        "test/zotero_add_note_protocol_test.dart",
+        "test/zotero_backoff_state_test.dart",
+        "test/zotero_catalog_query_test.dart",
+        "test/zotero_citing_test.dart",
+        "test/zotero_client_test.dart",
+        "test/zotero_formatted_text_test.dart",
+        "test/zotero_identity_client_test.dart",
+        "test/zotero_item_children_test.dart",
+        "test/zotero_item_details_test.dart",
+        "test/zotero_metadata_batch_test.dart",
+        "test/zotero_paragraph_runs_test.dart",
+        "test/zotero_saved_search_test.dart",
+        "test/zotero_tag_catalog_test.dart",
+        "test/zotero_tag_filter_test.dart"
+      ],
+      "event_log_sha256": "f0b031b9ab069de6c34fd96570f3773e7295e45d3c3b611aaa7b45f9a39030ff",
+      "excluded_lifecycle_cases": 29,
+      "failed": 0,
+      "failures": [],
+      "inputs": {
+        "failures": [],
+        "runtime_inventory_sha256": "9c58c139ade21dc3073e27df7a4627814f2ddc40c2b7b684706d390d6d3c5aac",
+        "source_inventory_sha256": "f39450039b903bfced17893fb8f969b58739f01df21bad2c455b9819a2b421ef",
+        "verified": {
+          "dependency_files": 2113,
+          "runtime": 12,
+          "source": 3994,
+          "workspace": 2
+        },
+        "workspace_inventory_sha256": "fcccb20167d94e2aff8a2e273e16d559c3ea222e6002fa83269d603c34cdd758"
+      },
+      "passed": 642,
+      "receipt_sha256": "f8c20c2cda68b97d8809cada71326f0647ab9bc09f069acd1e83131b58ad54b7",
+      "skipped": 0,
+      "status": "verified",
+      "suites": 29,
+      "test_done_events": 671,
+      "test_start_events": 671
+    },
+    "mail-host": {
+      "command": [
+        "/workspace/scratch/ee4fc9e59992/zotero-toolchain/flutter-sdk/bin/flutter",
+        "test",
+        "--no-pub",
+        "--reporter",
+        "json",
+        "--concurrency",
+        "1",
+        "test/studio_mail_attachment_compose_test.dart",
+        "test/studio_mail_attachment_loader_test.dart",
+        "test/studio_mail_attachment_test.dart",
+        "test/studio_mail_cloud_test.dart",
+        "test/studio_mail_compose_test.dart",
+        "test/studio_mail_ews_test.dart",
+        "test/studio_mail_recipients_test.dart",
+        "test/studio_mail_reply_test.dart",
+        "test/studio_mail_session_test.dart",
+        "test/studio_mail_test.dart",
+        "test/studio_mail_threading_test.dart"
+      ],
+      "event_log_sha256": "22e31388884a72b6d0c0da7558504efa1cde83565cdd359d5e7052d518018ce3",
+      "excluded_lifecycle_cases": 11,
+      "failed": 0,
+      "failures": [
+        {
+          "line": 95,
+          "text": "{\"test\":{\"id\":49,\"name\":\"rejects unsafe filename \\\"next"
+        },
+        {
+          "line": 96,
+          "text": "line.txt\\\" before snapshotting\",\"suiteID\":29,\"groupIDs\":[31],\"metadata\":{\"skip\":false,\"skipReason\":null},\"line\":159,\"column\":5,\"url\":\"file:///workspace/scratch/ee4fc9e59992/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_attachment_test.dart\"},\"type\":\"testStart\",\"time\":26178}"
+        },
+        {
+          "line": 98,
+          "text": "{\"test\":{\"id\":50,\"name\":\"rejects unsafe filename \\\"separator"
+        },
+        {
+          "line": 99,
+          "text": ".txt\\\" before snapshotting\",\"suiteID\":29,\"groupIDs\":[31],\"metadata\":{\"skip\":false,\"skipReason\":null},\"line\":159,\"column\":5,\"url\":\"file:///workspace/scratch/ee4fc9e59992/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_attachment_test.dart\"},\"type\":\"testStart\",\"time\":26180}"
+        },
+        {
+          "line": 101,
+          "text": "{\"test\":{\"id\":51,\"name\":\"rejects unsafe filename \\\"paragraph"
+        },
+        {
+          "line": 102,
+          "text": ".txt\\\" before snapshotting\",\"suiteID\":29,\"groupIDs\":[31],\"metadata\":{\"skip\":false,\"skipReason\":null},\"line\":159,\"column\":5,\"url\":\"file:///workspace/scratch/ee4fc9e59992/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_attachment_test.dart\"},\"type\":\"testStart\",\"time\":26183}"
+        },
+        "Started/completed test IDs do not match exactly once",
+        {
+          "missing_start": 49
+        },
+        {
+          "missing_start": 50
+        },
+        {
+          "missing_start": 51
+        },
+        "Independent event accounting differs: passed",
+        "Independent event accounting differs: application_cases",
+        "Independent event accounting differs: test_start_events",
+        "Per-suite count differs: packages/quds_office_editor/example/test/studio_mail_attachment_test.dart"
+      ],
+      "inputs": {
+        "failures": [],
+        "runtime_inventory_sha256": "9c58c139ade21dc3073e27df7a4627814f2ddc40c2b7b684706d390d6d3c5aac",
+        "source_inventory_sha256": "f39450039b903bfced17893fb8f969b58739f01df21bad2c455b9819a2b421ef",
+        "verified": {
+          "dependency_files": 4502,
+          "runtime": 12,
+          "source": 3994,
+          "workspace": 2
+        },
+        "workspace_inventory_sha256": "fcccb20167d94e2aff8a2e273e16d559c3ea222e6002fa83269d603c34cdd758"
+      },
+      "passed": 315,
+      "receipt_sha256": "3e712db9c785a5ca8894e5df600c8e4d131c89c363012d01ca12c351c7a83e5c",
+      "skipped": 0,
+      "status": "rejected",
+      "suites": 11,
+      "test_done_events": 329,
+      "test_start_events": 326
+    },
+    "mail-mime": {
+      "command": [
+        "/workspace/scratch/ee4fc9e59992/zotero-toolchain/flutter-sdk/bin/cache/dart-sdk/bin/dart",
+        "--packages=/workspace/scratch/ee4fc9e59992/quds_office_suite/.dart_tool/package_config.json",
+        "/workspace/scratch/ee4fc9e59992/zotero-toolchain/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+        "--reporter",
+        "json",
+        "--concurrency",
+        "1",
+        "test/codecs/quoted_printable_mail_codec_test.dart",
+        "test/mail/mail_send_transaction_test.dart",
+        "test/mail/mail_submission_acceptance_test.dart",
+        "test/message_builder_test.dart",
+        "test/quds_portable_mime_test.dart",
+        "test/smtp/smtp_transparency_test.dart"
+      ],
+      "event_log_sha256": "8686a17504ff961319eec1f8365a663975641532ac414eca6095ee8f112ab0d6",
+      "excluded_lifecycle_cases": 6,
+      "failed": 0,
+      "failures": [],
+      "inputs": {
+        "failures": [],
+        "runtime_inventory_sha256": "9c58c139ade21dc3073e27df7a4627814f2ddc40c2b7b684706d390d6d3c5aac",
+        "source_inventory_sha256": "f39450039b903bfced17893fb8f969b58739f01df21bad2c455b9819a2b421ef",
+        "verified": {
+          "dependency_files": 2794,
+          "runtime": 12,
+          "source": 3994,
+          "workspace": 2
+        },
+        "workspace_inventory_sha256": "fcccb20167d94e2aff8a2e273e16d559c3ea222e6002fa83269d603c34cdd758"
+      },
+      "passed": 115,
+      "receipt_sha256": "3e6c1c5229622895104843c3cb6bfec9879d564fa5f3e77c2282310f0a95489f",
+      "skipped": 0,
+      "status": "verified",
+      "suites": 6,
+      "test_done_events": 121,
+      "test_start_events": 121
+    },
+    "mail-transport": {
+      "command": [
+        "/workspace/scratch/ee4fc9e59992/zotero-toolchain/flutter-sdk/bin/cache/dart-sdk/bin/dart",
+        "--packages=/workspace/scratch/ee4fc9e59992/quds_office_suite/.dart_tool/package_config.json",
+        "/workspace/scratch/ee4fc9e59992/zotero-toolchain/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+        "--reporter",
+        "json",
+        "--concurrency",
+        "1",
+        "test/cloud_provider_test.dart",
+        "test/ews_provider_test.dart"
+      ],
+      "event_log_sha256": "cb66453bfe14a369a13a1d49db053a666ed610b55c8a5d6af179effa5e8fc85a",
+      "excluded_lifecycle_cases": 2,
+      "failed": 0,
+      "failures": [],
+      "inputs": {
+        "failures": [],
+        "runtime_inventory_sha256": "9c58c139ade21dc3073e27df7a4627814f2ddc40c2b7b684706d390d6d3c5aac",
+        "source_inventory_sha256": "f39450039b903bfced17893fb8f969b58739f01df21bad2c455b9819a2b421ef",
+        "verified": {
+          "dependency_files": 3180,
+          "runtime": 12,
+          "source": 3994,
+          "workspace": 2
+        },
+        "workspace_inventory_sha256": "fcccb20167d94e2aff8a2e273e16d559c3ea222e6002fa83269d603c34cdd758"
+      },
+      "passed": 113,
+      "receipt_sha256": "b5307b7a8331662e8af6b2beea2aa474222d515caff3f466ed33405a0b897dab",
+      "skipped": 0,
+      "status": "verified",
+      "suites": 2,
+      "test_done_events": 115,
+      "test_start_events": 115
+    }
+  },
+  "current_head": "f0122cb5bff5b6cf6a6f69f043545dabc2930791",
+  "failures": [],
+  "frozen_product_commit": "f0122cb5bff5b6cf6a6f69f043545dabc2930791",
+  "limits": [
+    "Counts cover the named local suites and controlled transports; no installed-app/live-account acceptance or external Office compatibility run is implied.",
+    "The original runner fingerprints named runtime files. The supplemental full compiler/core-library/launcher inventory begins at its recorded later timestamp; no earlier baseline is claimed.",
+    "Dependency fingerprints cover reachable library/bin/declared-asset files and manifests. Operating-system libraries and tools are not exhaustively fingerprinted."
+  ],
+  "runner_sha256": "4d01ed59729abaa64e3ab643e8ebcb2f7136dd2d9f02cc4b07b81a06fbb919bf",
+  "runtime_supplement": {
+    "capture_finished_utc": "2026-11-20T04:39:57.186999+00:00",
+    "capture_started_utc": "2026-11-20T04:39:55.233963+00:00",
+    "cohort_receipts_at_capture_finish": [],
+    "cohort_receipts_at_capture_start": [],
+    "earlier_supplement": {
+      "capture_started_utc": "2026-11-20T04:31:01.283106+00:00",
+      "changed_paths": [],
+      "inventory_sha256": "5718abd7a54534a39d452c0f65bea26be215307ac01f165c77e80b9f0471f075",
+      "unchanged": true
+    },
+    "file_count": 1144,
+    "frozen_product_commit": "f0122cb5bff5b6cf6a6f69f043545dabc2930791",
+    "inventory_sha256": "5718abd7a54534a39d452c0f65bea26be215307ac01f165c77e80b9f0471f075",
+    "observed_core_start_times": {
+      "editor-docx": "2026-11-20T04:59:06.198433+00:00",
+      "editor-rendering": "2026-11-20T04:46:08.253596+00:00",
+      "editor-zotero": "2026-11-20T04:41:20.637853+00:00",
+      "engine-docx": "2026-11-20T04:58:48.714044+00:00",
+      "engine-rendering": "2026-11-20T04:45:38.233427+00:00",
+      "engine-vba": "2026-11-20T04:46:30.275944+00:00",
+      "engine-zotero": "2026-11-20T04:40:39.714508+00:00",
+      "mail-host": "2026-11-20T04:56:15.300642+00:00",
+      "mail-mime": "2026-11-20T04:58:26.506694+00:00",
+      "mail-transport": "2026-11-20T04:58:03.940271+00:00"
+    },
+    "precedes_all_observed_core_starts": true,
+    "scope": "Entire Dart SDK including bin executables/snapshots and core libraries; Flutter launcher bin/flutter and bin/dart; bin/internal shell helpers; Linux engine artifacts; debug/product patched SDK; Flutter tools snapshot and version manifest. No operating-system shared library fingerprint is claimed.",
+    "sdk_root": "/workspace/scratch/ee4fc9e59992/zotero-toolchain/flutter-sdk",
+    "supplemental_timing": {
+      "basis": "qualified/supplemental/commands.json; fresh capture predates core10 starts, but is not claimed as pre-run for this supplemental command. Earlier04:31 SDK inventory predates the command and remains byte-identical.",
+      "capture_was_during_vba_vm": true,
+      "vba_vm_finished_utc": "2026-11-20T04:40:01.088299+00:00",
+      "vba_vm_started_utc": "2026-11-20T04:39:47.827648+00:00"
+    },
+    "timing_limitation": "Fresh baseline for final f012 qualification. Exact receipt statuses at capture boundaries are recorded below; pre-run timing is only claimed if their start times follow capture_finished_utc. Earlier original 0aac supplement was captured during that superseded wave and is not relabeled.",
+    "total_bytes": 874486271
+  },
+  "selection": {
+    "changed_test_files_not_selected": [],
+    "changed_test_files_since_initial_main": 22,
+    "cohort_count": 10,
+    "counts": {
+      "editor-docx": 1,
+      "editor-rendering": 9,
+      "editor-zotero": 43,
+      "engine-docx": 1,
+      "engine-rendering": 11,
+      "engine-vba": 21,
+      "engine-zotero": 29,
+      "mail-host": 11,
+      "mail-mime": 6,
+      "mail-transport": 2
+    },
+    "overlaps": [],
+    "paths": {
+      "editor-docx": [
+        "packages/quds_office_editor/test/word_extended_review_test.dart"
+      ],
+      "editor-rendering": [
+        "packages/quds_office_editor/test/office_dark_slide_test.dart",
+        "packages/quds_office_editor/test/paint_run_text_unicode_test.dart",
+        "packages/quds_office_editor/test/slide_arrange_history_test.dart",
+        "packages/quds_office_editor/test/slide_incoming_pptx_regression_test.dart",
+        "packages/quds_office_editor/test/slide_notes_history_test.dart",
+        "packages/quds_office_editor/test/slide_render_fidelity_test.dart",
+        "packages/quds_office_editor/test/slide_section_reorder_test.dart",
+        "packages/quds_office_editor/test/word_small_caps_test.dart",
+        "packages/quds_office_editor/test/word_tab_stops_editor_test.dart"
+      ],
+      "editor-zotero": [
+        "packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+        "packages/quds_office_editor/test/word_zotero_backoff_session_test.dart",
+        "packages/quds_office_editor/test/word_zotero_bibliography_controller_test.dart",
+        "packages/quds_office_editor/test/word_zotero_catalog_citing_test.dart",
+        "packages/quds_office_editor/test/word_zotero_catalog_query_test.dart",
+        "packages/quds_office_editor/test/word_zotero_children_dialog_test.dart",
+        "packages/quds_office_editor/test/word_zotero_children_test.dart",
+        "packages/quds_office_editor/test/word_zotero_citing_controller_test.dart",
+        "packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart",
+        "packages/quds_office_editor/test/word_zotero_collection_pagination_test.dart",
+        "packages/quds_office_editor/test/word_zotero_composer_test.dart",
+        "packages/quds_office_editor/test/word_zotero_connected_alias_test.dart",
+        "packages/quds_office_editor/test/word_zotero_controller_test.dart",
+        "packages/quds_office_editor/test/word_zotero_dialog_scaling_test.dart",
+        "packages/quds_office_editor/test/word_zotero_dialog_test.dart",
+        "packages/quds_office_editor/test/word_zotero_direct_command_test.dart",
+        "packages/quds_office_editor/test/word_zotero_document_actions_test.dart",
+        "packages/quds_office_editor/test/word_zotero_document_reuse_test.dart",
+        "packages/quds_office_editor/test/word_zotero_document_source_picker_test.dart",
+        "packages/quds_office_editor/test/word_zotero_document_sources_test.dart",
+        "packages/quds_office_editor/test/word_zotero_field_at_caret_test.dart",
+        "packages/quds_office_editor/test/word_zotero_format_test.dart",
+        "packages/quds_office_editor/test/word_zotero_import_search_test.dart",
+        "packages/quds_office_editor/test/word_zotero_library_details_test.dart",
+        "packages/quds_office_editor/test/word_zotero_navigation_dialog_test.dart",
+        "packages/quds_office_editor/test/word_zotero_navigation_pane_test.dart",
+        "packages/quds_office_editor/test/word_zotero_navigation_test.dart",
+        "packages/quds_office_editor/test/word_zotero_note_preview_test.dart",
+        "packages/quds_office_editor/test/word_zotero_note_target_test.dart",
+        "packages/quds_office_editor/test/word_zotero_notes_pane_test.dart",
+        "packages/quds_office_editor/test/word_zotero_occurrence_navigation_test.dart",
+        "packages/quds_office_editor/test/word_zotero_rich_controller_test.dart",
+        "packages/quds_office_editor/test/word_zotero_saved_search_test.dart",
+        "packages/quds_office_editor/test/word_zotero_snapshot_test.dart",
+        "packages/quds_office_editor/test/word_zotero_source_identity_test.dart",
+        "packages/quds_office_editor/test/word_zotero_source_occurrences_dialog_test.dart",
+        "packages/quds_office_editor/test/word_zotero_source_occurrences_test.dart",
+        "packages/quds_office_editor/test/word_zotero_source_resolver_test.dart",
+        "packages/quds_office_editor/test/word_zotero_stored_details_dialog_test.dart",
+        "packages/quds_office_editor/test/word_zotero_stored_details_test.dart",
+        "packages/quds_office_editor/test/word_zotero_tag_browser_test.dart",
+        "packages/quds_office_editor/test/word_zotero_tag_filter_test.dart",
+        "packages/quds_office_editor/test/word_zotero_unlink_all_test.dart"
+      ],
+      "engine-docx": [
+        "packages/quds_office_engine/test/word_extended_revision_test.dart"
+      ],
+      "engine-rendering": [
+        "packages/quds_office_engine/test/office_pdf_export_test.dart",
+        "packages/quds_office_engine/test/slide_arrange_fidelity_test.dart",
+        "packages/quds_office_engine/test/slide_import_fidelity_test.dart",
+        "packages/quds_office_engine/test/slide_incoming_pptx_regression_test.dart",
+        "packages/quds_office_engine/test/slide_render_fidelity_test.dart",
+        "packages/quds_office_engine/test/slide_rich_text_explicit_style_test.dart",
+        "packages/quds_office_engine/test/slide_section_fidelity_test.dart",
+        "packages/quds_office_engine/test/slide_table_cell_color_test.dart",
+        "packages/quds_office_engine/test/slide_test.dart",
+        "packages/quds_office_engine/test/slide_text_fidelity_test.dart",
+        "packages/quds_office_engine/test/word_small_caps_test.dart"
+      ],
+      "engine-vba": [
+        "packages/quds_office_engine/test/office_macro_cli_test.dart",
+        "packages/quds_office_engine/test/office_macro_expansion_test.dart",
+        "packages/quds_office_engine/test/office_macro_language_test.dart",
+        "packages/quds_office_engine/test/office_macro_mcp_test.dart",
+        "packages/quds_office_engine/test/office_macro_runtime_test.dart",
+        "packages/quds_office_engine/test/office_vba_arrays_boundaries_test.dart",
+        "packages/quds_office_engine/test/office_vba_arrays_integration_test.dart",
+        "packages/quds_office_engine/test/office_vba_arrays_test.dart",
+        "packages/quds_office_engine/test/office_vba_conformance_test.dart",
+        "packages/quds_office_engine/test/office_vba_control_flow_boundaries_test.dart",
+        "packages/quds_office_engine/test/office_vba_control_flow_integration_test.dart",
+        "packages/quds_office_engine/test/office_vba_control_flow_test.dart",
+        "packages/quds_office_engine/test/office_vba_dynamic_arrays_integration_test.dart",
+        "packages/quds_office_engine/test/office_vba_dynamic_arrays_test.dart",
+        "packages/quds_office_engine/test/office_vba_integration_test.dart",
+        "packages/quds_office_engine/test/office_vba_language_test.dart",
+        "packages/quds_office_engine/test/office_vba_procedure_boundaries_test.dart",
+        "packages/quds_office_engine/test/office_vba_procedures_integration_test.dart",
+        "packages/quds_office_engine/test/office_vba_procedures_test.dart",
+        "packages/quds_office_engine/test/office_vba_string_intrinsics_integration_test.dart",
+        "packages/quds_office_engine/test/office_vba_string_intrinsics_test.dart"
+      ],
+      "engine-zotero": [
+        "packages/quds_office_engine/test/word_zotero_add_note_test.dart",
+        "packages/quds_office_engine/test/word_zotero_bibliography_layout_test.dart",
+        "packages/quds_office_engine/test/word_zotero_caret_test.dart",
+        "packages/quds_office_engine/test/word_zotero_citing_test.dart",
+        "packages/quds_office_engine/test/word_zotero_document_data_test.dart",
+        "packages/quds_office_engine/test/word_zotero_formatted_bibliography_test.dart",
+        "packages/quds_office_engine/test/word_zotero_note_insertion_test.dart",
+        "packages/quds_office_engine/test/word_zotero_note_list_test.dart",
+        "packages/quds_office_engine/test/word_zotero_preference_flow_test.dart",
+        "packages/quds_office_engine/test/word_zotero_rich_edit_test.dart",
+        "packages/quds_office_engine/test/word_zotero_scaling_test.dart",
+        "packages/quds_office_engine/test/word_zotero_simple_field_test.dart",
+        "packages/quds_office_engine/test/word_zotero_source_identity_test.dart",
+        "packages/quds_office_engine/test/word_zotero_style_preferences_review_test.dart",
+        "packages/quds_office_engine/test/word_zotero_test.dart",
+        "packages/quds_office_engine/test/zotero_add_note_protocol_test.dart",
+        "packages/quds_office_engine/test/zotero_backoff_state_test.dart",
+        "packages/quds_office_engine/test/zotero_catalog_query_test.dart",
+        "packages/quds_office_engine/test/zotero_citing_test.dart",
+        "packages/quds_office_engine/test/zotero_client_test.dart",
+        "packages/quds_office_engine/test/zotero_formatted_text_test.dart",
+        "packages/quds_office_engine/test/zotero_identity_client_test.dart",
+        "packages/quds_office_engine/test/zotero_item_children_test.dart",
+        "packages/quds_office_engine/test/zotero_item_details_test.dart",
+        "packages/quds_office_engine/test/zotero_metadata_batch_test.dart",
+        "packages/quds_office_engine/test/zotero_paragraph_runs_test.dart",
+        "packages/quds_office_engine/test/zotero_saved_search_test.dart",
+        "packages/quds_office_engine/test/zotero_tag_catalog_test.dart",
+        "packages/quds_office_engine/test/zotero_tag_filter_test.dart"
+      ],
+      "mail-host": [
+        "packages/quds_office_editor/example/test/studio_mail_attachment_compose_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_attachment_loader_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_attachment_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_cloud_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_compose_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_ews_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_recipients_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_reply_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_session_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_threading_test.dart"
+      ],
+      "mail-mime": [
+        "third_party/enough_mail/test/codecs/quoted_printable_mail_codec_test.dart",
+        "third_party/enough_mail/test/mail/mail_send_transaction_test.dart",
+        "third_party/enough_mail/test/mail/mail_submission_acceptance_test.dart",
+        "third_party/enough_mail/test/message_builder_test.dart",
+        "third_party/enough_mail/test/quds_portable_mime_test.dart",
+        "third_party/enough_mail/test/smtp/smtp_transparency_test.dart"
+      ],
+      "mail-transport": [
+        "packages/quds_mail_transport/test/cloud_provider_test.dart",
+        "packages/quds_mail_transport/test/ews_provider_test.dart"
+      ]
+    },
+    "suite_count": 134
+  },
+  "source_verification_mode": "current worktree bytes and frozen Git object identity",
+  "static": {
+    "artifacts": {
+      "analysis.log": {
+        "bytes": 1601,
+        "git_blob_sha1": "777a9ec2fcffb6e4fdd43e1883536af2335141d3",
+        "sha256": "58e4c781f803b9416ff0fa57536038ff985368fe793baab6a6bce699773973a2"
+      },
+      "format.log": {
+        "bytes": 48,
+        "git_blob_sha1": "3ef03fd43bc489f5f5b6c9b08db33c350e477a78",
+        "sha256": "2ee8da1789312043dfa11a2ba4f2037effc083f292e27c28e75f5dd2bb2a7d83"
+      },
+      "receipt.json": {
+        "bytes": 28891,
+        "git_blob_sha1": "e1aec245290d6ee1f1674be809e1971d9bef73e0",
+        "sha256": "24b9803941d78a3bec4f91b48fbf48d14bd458f363692abe4460811700ed114d"
+      }
+    },
+    "failures": [],
+    "status": "verified",
+    "target_count": 54
+  },
+  "status": "rejected"
+}

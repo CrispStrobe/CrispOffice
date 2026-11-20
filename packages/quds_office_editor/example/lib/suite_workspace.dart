@@ -9247,18 +9247,8 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     final int nextY = y == null
         ? t.y
         : ((_slides.presentation.slideHeight - t.cy) * y).round();
-    _slides.applyTransform(
-      shape,
-      PmlTransform(
-        x: nextX,
-        y: nextY,
-        cx: t.cx,
-        cy: t.cy,
-        rot: t.rot,
-        flipH: t.flipH,
-        flipV: t.flipV,
-      ),
-    );
+    _slides.applyTransform(shape, t.copyWith(x: nextX, y: nextY));
+
     _slides.refresh();
   }
 

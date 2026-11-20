@@ -1,0 +1,80 @@
+{
+  "status": "verified_complete",
+  "aggregate": {
+    "completed_verified_cohorts": 10,
+    "verified_passed": 2884,
+    "verified_suites": 134,
+    "observed_unique_application_identities": 2884,
+    "cross_cohort_duplicate_identities": [],
+    "source_inventory_sha256": [
+      "f39450039b903bfced17893fb8f969b58739f01df21bad2c455b9819a2b421ef"
+    ]
+  },
+  "static": {
+    "status": "verified",
+    "targets": 54
+  },
+  "cohorts": {
+    "engine-zotero": {
+      "status": "verified",
+      "passed": 642,
+      "suites": 29,
+      "failures": []
+    },
+    "editor-zotero": {
+      "status": "verified",
+      "passed": 632,
+      "suites": 43,
+      "failures": []
+    },
+    "engine-rendering": {
+      "status": "verified",
+      "passed": 191,
+      "suites": 11,
+      "failures": []
+    },
+    "editor-rendering": {
+      "status": "verified",
+      "passed": 101,
+      "suites": 9,
+      "failures": []
+    },
+    "engine-vba": {
+      "status": "verified",
+      "passed": 743,
+      "suites": 21,
+      "failures": []
+    },
+    "mail-host": {
+      "status": "verified",
+      "passed": 318,
+      "suites": 11,
+      "failures": []
+    },
+    "mail-mime": {
+      "status": "verified",
+      "passed": 115,
+      "suites": 6,
+      "failures": []
+    },
+    "mail-transport": {
+      "status": "verified",
+      "passed": 113,
+      "suites": 2,
+      "failures": []
+    },
+    "engine-docx": {
+      "status": "verified",
+      "passed": 23,
+      "suites": 1,
+      "failures": []
+    },
+    "editor-docx": {
+      "status": "verified",
+      "passed": 6,
+      "suites": 1,
+      "failures": []
+    }
+  },
+  "failures": []
+}

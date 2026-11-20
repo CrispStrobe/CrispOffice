@@ -1,0 +1,107 @@
+{
+  "recordedAtUtc": "2026-11-20T04:07:09.303779+00:00",
+  "baseCommit": "3670f16ab80581cdcea9c1d08debf10b5c2c2566",
+  "runtime": {
+    "flutter": "3.47.8",
+    "dart": "3.13.7",
+    "workspaceLockUnchanged": false,
+    "lockComparison": {
+      "kind": "dependency_classification_only",
+      "path": "pubspec.lock",
+      "package": "image",
+      "committedDependency": "direct main",
+      "observedDependency": "transitive",
+      "versionAndContentHashChanged": false,
+      "committedLockSha256": "b71c74cada904d0a3fac7d057b7c718011c50d2e108b6cfd0390566f8abab202",
+      "observedLockSha256": "72a5a52654a1484f4df646c631b4d1ea47e96025a671beff045eecf2b9e78e82",
+      "packageVersionsAndSourceHashesMatchCommittedLock": true
+    }
+  },
+  "commands": [
+    {
+      "package": "packages/quds_office_engine",
+      "command": "dart test test/slide_import_fidelity_test.dart test/slide_rich_text_explicit_style_test.dart test/slide_text_fidelity_test.dart test/slide_render_fidelity_test.dart test/office_pdf_export_test.dart test/pdf_logical_text_export_test.dart --reporter expanded",
+      "testsPassed": 67,
+      "exitCode": 0,
+      "log": "slide-engine-tests.log",
+      "logSha256": "41f3de757de05d997a35ae7f6a1162ab68e5981ec7e5e46222ba9ac17ecedcec"
+    },
+    {
+      "package": "packages/quds_office_editor",
+      "command": "flutter test --no-pub test/slide_render_fidelity_test.dart test/office_dark_slide_test.dart test/paint_run_text_unicode_test.dart --reporter expanded",
+      "testsPassed": 31,
+      "exitCode": 0,
+      "log": "slide-editor-tests-final.log",
+      "logSha256": "b18fac9671d9571cb47dd76bb8c186f21aae981f773e2e211557771dbcc7dc6a"
+    },
+    {
+      "package": "packages/quds_office_engine",
+      "command": "dart analyze lib/src/pdf/office_pdf_export.dart test/slide_render_fidelity_test.dart",
+      "result": "No issues found",
+      "exitCode": 0,
+      "log": "slide-engine-analysis.log",
+      "logSha256": "8a419ac9533e4c5ab35e02ddce9d9d3f72765de0a8a3eb9ca2c60d3ec94dd896"
+    },
+    {
+      "package": "repository root",
+      "command": "dart analyze packages/quds_office_editor/lib/src/editor_slide/render_slide_stage.dart packages/quds_office_editor/test/office_dark_slide_test.dart packages/quds_office_editor/test/slide_render_fidelity_test.dart",
+      "result": "No issues found",
+      "exitCode": 0,
+      "log": "slide-editor-analysis-final.log",
+      "logSha256": "05d0f3a98a52e41f049f8ff22366f6d4630092a674bc66f739d243a2a67bf9d4"
+    }
+  ],
+  "newRegressions": 7,
+  "notes": [
+    "The first six new cases ran after their fixes. The inherited-decoration contrast regression was also executed before its fix and failed observably, then passed in the final 31-case editor cohort.",
+    "Complete listed suites ran without omissions. Resolved package versions/source hashes match the committed workspace lock; one dependency-classification-only metadata drift is recorded above.",
+    "GitHub Actions were neither queried nor awaited."
+  ],
+  "sourceSha256": {
+    "packages/quds_office_editor/lib/src/editor_slide/render_slide_stage.dart": "4f2559cb12451bc1738099a3e9ced541b0c05d6477fdfaf4ecbeaed02425a965",
+    "packages/quds_office_editor/lib/src/editor_word/paint_run_text.dart": "6b895db55b5fef58b54d5ba084eb78063e0f56bc2ee7fc26e5657f4daa89b668",
+    "packages/quds_office_engine/lib/src/pdf/office_pdf_export.dart": "70a682f7238c34949e5afd01715446bb78dadac10b04ffdceefac4d0c0324c2d",
+    "packages/quds_office_engine/lib/src/slide/model/pml_presentation.dart": "d365dfcb9b3957f4f0fc9dc71308530150a5be2a66342b6f396b75cbde4964b6",
+    "packages/quds_office_engine/lib/src/slide/serial/slide_serial.dart": "1f5fed5dce1adda645b855bfcb8cbce37098fa71d8e500901b367cf4d1665e1c",
+    "packages/quds_office_engine/lib/src/slide/shapes/drawingml.dart": "02a90a65dc3283f93a011a45409282c8768093524f2e98dc461c317cf8c1da86",
+    "packages/quds_office_engine/test/slide_import_fidelity_test.dart": "4cf88a8c5cccaa5427c53b7d92c66623fa9e028e6f7fc712065bc95a5608843a",
+    "packages/quds_office_engine/test/slide_rich_text_explicit_style_test.dart": "d68a16cd7fea8ca3ff9bceccd453a4549db76a441d46f55a03260bb3a5693fff",
+    "packages/quds_office_engine/test/slide_text_fidelity_test.dart": "be1b167a1cd9c929f058c724f8c80d6138fb0bf1918f30cba0835381dadfea66",
+    "packages/quds_office_engine/test/slide_render_fidelity_test.dart": "f0fd88c706e618d70eda5e9b1b991aa50e9ce1188f93203e41a6c9720fc5ffb7",
+    "packages/quds_office_engine/test/office_pdf_export_test.dart": "bb32ff0d7fdac9f362fe8b946e026292816226b8d33fb4f7b9078bec61b027de",
+    "packages/quds_office_engine/test/pdf_logical_text_export_test.dart": "30e15e5f6ff1f3b2b1c6729db728fbc12c55475a6f27674dd72ab7ed1ee7097d",
+    "packages/quds_office_editor/test/slide_render_fidelity_test.dart": "a6042b695f0401cb93f8d5761db1aecc02b242fb0c13074a30ceb41440b39d24",
+    "packages/quds_office_editor/test/office_dark_slide_test.dart": "80d1e959bebc3a14296aa52496f343fa557bb35045767278c7fbc04120f4454a",
+    "packages/quds_office_editor/test/paint_run_text_unicode_test.dart": "48060e559c5c350551d2e7f2a781d9c3d8f9b845d67995f4aedee9dec12129eb",
+    "pubspec.lock": "72a5a52654a1484f4df646c631b4d1ea47e96025a671beff045eecf2b9e78e82",
+    ".dart_tool/package_config.json": "765a8bf8f1ddffee1627ac648a145eedcdbcddd02570a0f37275a66b588e96d8"
+  },
+  "priorEditorRuns": [
+    {
+      "package": "packages/quds_office_editor",
+      "command": "flutter test --no-pub test/slide_render_fidelity_test.dart test/office_dark_slide_test.dart test/paint_run_text_unicode_test.dart --reporter expanded",
+      "testsPassed": 30,
+      "exitCode": 0,
+      "log": "slide-editor-tests.log",
+      "logSha256": "bcc1a79b7ba96c4648f02634b3d571f4d1845e501278db58a5132f22ee680f22"
+    },
+    {
+      "package": "packages/quds_office_editor",
+      "command": "dart analyze lib/src/editor_slide/render_slide_stage.dart test/slide_render_fidelity_test.dart",
+      "result": "No issues found",
+      "exitCode": 0,
+      "log": "slide-editor-analysis.log",
+      "logSha256": "4febfffc9acc0a99051470a9d0dc22e8815ac0654d3e481f563c22a8580551c5"
+    }
+  ],
+  "expectedPreFixFailure": {
+    "command": "flutter test --no-pub test/office_dark_slide_test.dart --plain-name \"unfilled slide text stays readable over inherited decorations\" --reporter expanded",
+    "package": "packages/quds_office_editor",
+    "exitCode": 1,
+    "failure": "Expected more than 25 black ink pixels on inherited white decoration; observed 0.",
+    "log": "slide-inherited-contrast-before.log",
+    "logSha256": "e1730f065df6b367f2037f0a0fca7598daf76537b7be8a558b38b57a392d4f21"
+  },
+  "totalFocusedTestsPassed": 98,
+  "qualificationScope": "Historical intermediate source qualification only. This record is not final-tree acceptance; its exact source hashes and logs are retained separately from the final cohort."
+}

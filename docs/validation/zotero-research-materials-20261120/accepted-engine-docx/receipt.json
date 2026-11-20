@@ -1,0 +1,176 @@
+{
+  "application_timeouts_modified": false,
+  "artifacts": {
+    "events.jsonl.gz": {
+      "bytes": 1588,
+      "git_blob_sha1": "1e70d8a2643438f8a4054d11134af5e0bad400ff",
+      "sha256": "5ae1afa4612a1a19b311a71b47c166bdb63ef0bc9f4cbfbcf4670653aa3a1031"
+    },
+    "input-check.json": {
+      "bytes": 1248,
+      "git_blob_sha1": "f23c45e573416b02a2591468ef1e16cca8a8d52a",
+      "sha256": "2129093948606f5c91dbdcec84f9bafb4839897454658f34a98f04a75f552a85"
+    },
+    "inputs.json.gz": {
+      "bytes": 468824,
+      "git_blob_sha1": "09a3b93dadf676052671e9637befd770ed0f5375",
+      "sha256": "855646f266248199c0f022e8e88ac9f1a434277594e1b4fccf3ade284260e812"
+    },
+    "stderr.log.gz": {
+      "bytes": 31,
+      "git_blob_sha1": "87bfaf1cefef95e53a691da2269f30d7996d9c89",
+      "sha256": "b7368871ac9ce0ce08835c8c2fbf32d88bd56ee6bb93612434e3cc6bd4405e5e"
+    }
+  },
+  "cohort": "engine-docx",
+  "command": [
+    "/workspace/scratch/ee4fc9e59992/zotero-toolchain/flutter-sdk/bin/cache/dart-sdk/bin/dart",
+    "--packages=/workspace/scratch/ee4fc9e59992/quds_office_suite/.dart_tool/package_config.json",
+    "/workspace/scratch/ee4fc9e59992/zotero-toolchain/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+    "--reporter",
+    "json",
+    "--concurrency",
+    "1",
+    "test/word_extended_revision_test.dart"
+  ],
+  "concurrency": 1,
+  "counting_scope": "Application test cases only. Loader and group-lifecycle events are excluded from the passing count but any failures in them still reject acceptance. Development runs and other cohorts are not included.",
+  "cwd": "/workspace/scratch/ee4fc9e59992/quds_office_suite/packages/quds_office_engine",
+  "elapsed_seconds": 13.55011484699935,
+  "exit_code": 0,
+  "external_dependency_file_count": 2113,
+  "fingerprints": {
+    "after_sha256": {
+      "dependencies": "04a7629d1b1c222f0375e2c11778440af170e2225930e6120a858de4f8b1204b",
+      "host_fonts": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "runtime": "9c58c139ade21dc3073e27df7a4627814f2ddc40c2b7b684706d390d6d3c5aac",
+      "source": "f39450039b903bfced17893fb8f969b58739f01df21bad2c455b9819a2b421ef",
+      "workspace": "fcccb20167d94e2aff8a2e273e16d559c3ea222e6002fa83269d603c34cdd758"
+    },
+    "before_sha256": {
+      "dependencies": "04a7629d1b1c222f0375e2c11778440af170e2225930e6120a858de4f8b1204b",
+      "host_fonts": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "runtime": "9c58c139ade21dc3073e27df7a4627814f2ddc40c2b7b684706d390d6d3c5aac",
+      "source": "f39450039b903bfced17893fb8f969b58739f01df21bad2c455b9819a2b421ef",
+      "workspace": "fcccb20167d94e2aff8a2e273e16d559c3ea222e6002fa83269d603c34cdd758"
+    },
+    "changed_paths": {
+      "dependencies": [],
+      "host_fonts": [],
+      "runtime": [],
+      "source": [],
+      "workspace": []
+    },
+    "source_matches_finish": {
+      "different_paths": [],
+      "matches": true,
+      "uncommitted_paths": []
+    },
+    "source_matches_start": {
+      "different_paths": [],
+      "matches": true,
+      "uncommitted_paths": []
+    }
+  },
+  "finished_at_utc": "2026-11-20T04:59:04.000013+00:00",
+  "guards": {
+    "all_requested_suites_executed_once": true,
+    "dependencies_unchanged": true,
+    "every_started_test_finished_once": true,
+    "final_event_success": true,
+    "host_fonts_unchanged": true,
+    "no_failures_skips_or_errors": true,
+    "runtime_unchanged": true,
+    "selection_unchanged": true,
+    "source_matches_finish_commit": true,
+    "source_matches_start_commit": true,
+    "source_unchanged": true,
+    "unique_application_test_names": true,
+    "workspace_unchanged": true
+  },
+  "head_unchanged": true,
+  "no_github_ci_or_status_endpoints": true,
+  "package": "packages/quds_office_engine",
+  "runner": "dart",
+  "runtime": {
+    "dart_version": "Dart SDK version: 3.13.7 (stable) (Thu Oct 22 14:28:57 2026 -0700) on \"linux_x64\"",
+    "dart_version_command": [
+      "/workspace/scratch/ee4fc9e59992/zotero-toolchain/flutter-sdk/bin/cache/dart-sdk/bin/dart",
+      "--version"
+    ],
+    "flutter": {
+      "channel": "stable",
+      "dartSdkVersion": "3.13.7",
+      "devToolsVersion": "2.60.0",
+      "engineBuildDate": "2026-10-22 20:34:48.330",
+      "engineCommitDate": "2026-10-23 02:13:38.000Z",
+      "engineContentHash": "dfd2e6cb7d319db05e3bf1503f3e2ac60f6288a2",
+      "engineRevision": "cf636b1dfb818dd6a3ff16e390e93b1a036969c8",
+      "flutterVersion": "3.47.8",
+      "frameworkCommitDate": "2026-10-22 21:37:31 -0700",
+      "frameworkRevision": "737ba8f885dc774b53b442759999a312c9461e4e",
+      "frameworkVersion": "3.47.8",
+      "repositoryUrl": "https://github.com/flutter/flutter.git"
+    },
+    "flutter_root": "/workspace/scratch/ee4fc9e59992/zotero-toolchain/flutter-sdk",
+    "pub_cache": "/workspace/scratch/ee4fc9e59992/zotero-toolchain/pub-cache"
+  },
+  "selected_files": [
+    "test/word_extended_revision_test.dart"
+  ],
+  "selected_repository_paths": [
+    "packages/quds_office_engine/test/word_extended_revision_test.dart"
+  ],
+  "source_file_count": 3994,
+  "source_head_at_finish": "f0122cb5bff5b6cf6a6f69f043545dabc2930791",
+  "source_head_at_start": "f0122cb5bff5b6cf6a6f69f043545dabc2930791",
+  "started_at_utc": "2026-11-20T04:58:48.714044+00:00",
+  "status": "passed",
+  "tests": {
+    "application_cases": 23,
+    "duplicate_application_names": [],
+    "duplicate_suite_ids": false,
+    "error_events": [],
+    "every_started_test_finished_once": true,
+    "excluded_failures": [],
+    "excluded_pseudo_cases": 1,
+    "excluded_reasons": {
+      "hidden_lifecycle": 1
+    },
+    "failed": 0,
+    "final_events": [
+      {
+        "success": true,
+        "time": 2479,
+        "type": "done"
+      }
+    ],
+    "flutter_notification_envelopes": 0,
+    "layout_or_tap_diagnostics": [],
+    "missing_start_test_ids": [],
+    "parse_errors": [],
+    "passed": 23,
+    "skipped": 0,
+    "suite_count": 1,
+    "suites": [
+      {
+        "failed": 0,
+        "id": 0,
+        "passed": 23,
+        "path": "/workspace/scratch/ee4fc9e59992/quds_office_suite/packages/quds_office_engine/test/word_extended_revision_test.dart",
+        "skipped": 0
+      }
+    ],
+    "test_done_events": 24,
+    "test_start_events": 24,
+    "unfinished_test_ids": []
+  },
+  "timed_out": false,
+  "validation_runner": {
+    "bytes": 29772,
+    "git_blob_sha1": "269eef52038d97ae307859439875a23f350e0b0a",
+    "path": "/workspace/scratch/ee4fc9e59992/final-validation/run_validation.py",
+    "sha256": "4d01ed59729abaa64e3ab643e8ebcb2f7136dd2d9f02cc4b07b81a06fbb919bf"
+  },
+  "watchdog_seconds": 1800
+}

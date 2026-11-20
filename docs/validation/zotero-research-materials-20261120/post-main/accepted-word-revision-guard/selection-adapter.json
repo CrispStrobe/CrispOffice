@@ -1,0 +1,60 @@
+{
+  "adapter_command": [
+    "final-validation/run_revision_guard.py",
+    "--repo",
+    "quds_office_suite",
+    "--expected-head",
+    "d1b8f9be24f08b2e4de7292c8727eddbd77bbf55",
+    "--output",
+    "final-validation/qualified/post-main/accepted-word-revision-guard"
+  ],
+  "code_after": {
+    "adapter": {
+      "bytes": 4281,
+      "path": "/workspace/scratch/ee4fc9e59992/final-validation/run_revision_guard.py",
+      "sha256": "05948848ca260398505f78e430291524e490447b75dd3a30a45e99c8ca8bbdc0"
+    },
+    "primary_runner": {
+      "bytes": 29772,
+      "path": "/workspace/scratch/ee4fc9e59992/final-validation/run_validation.py",
+      "sha256": "4d01ed59729abaa64e3ab643e8ebcb2f7136dd2d9f02cc4b07b81a06fbb919bf"
+    }
+  },
+  "code_before": {
+    "adapter": {
+      "bytes": 4281,
+      "path": "/workspace/scratch/ee4fc9e59992/final-validation/run_revision_guard.py",
+      "sha256": "05948848ca260398505f78e430291524e490447b75dd3a30a45e99c8ca8bbdc0"
+    },
+    "primary_runner": {
+      "bytes": 29772,
+      "path": "/workspace/scratch/ee4fc9e59992/final-validation/run_validation.py",
+      "sha256": "4d01ed59729abaa64e3ab643e8ebcb2f7136dd2d9f02cc4b07b81a06fbb919bf"
+    }
+  },
+  "code_unchanged": true,
+  "cohort": "word-revision-guard",
+  "delegated_arguments": [
+    "/workspace/scratch/ee4fc9e59992/final-validation/run_validation.py",
+    "word-revision-guard",
+    "--repo",
+    "/workspace/scratch/ee4fc9e59992/quds_office_suite",
+    "--timeout",
+    "1800",
+    "--output",
+    "/workspace/scratch/ee4fc9e59992/final-validation/qualified/post-main/accepted-word-revision-guard",
+    "--expected-head",
+    "d1b8f9be24f08b2e4de7292c8727eddbd77bbf55"
+  ],
+  "primary_runner_exit_code": 0,
+  "primary_test_audit_and_fingerprint_logic_unchanged": true,
+  "purpose": "One new two-case regression suite added after the primary frozen qualification wave",
+  "selection": {
+    "additional": [
+      "office_macro_word_revision_guard_test.dart"
+    ],
+    "package": "packages/quds_office_engine",
+    "patterns": [],
+    "runner": "dart"
+  }
+}
