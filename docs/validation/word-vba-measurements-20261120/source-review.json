@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "reviewed_commit": "e08635b3f21c60ad21888821050dc97c2dbf7086",
+  "reviewed_commit": "9f0c23c4364195eabab6023ea0778380c50d249c",
   "production_file": "packages/quds_office_engine/lib/src/automation/office_vba_language.dart",
   "production_blob": "07dc3c5737661abaf3b17db24439c71482de22ed",
   "exact_remote_source_readback": true,
   "base_commit": "c954d00d2fc85604ae394674bca91ea8a1dede0e",
   "production_scope": "Word conversion metadata, checker and evaluator. Complete file adopted from e08635b3; no native operation/runtime/serializer changes.",
   "independent_review": {
-    "result": "No blocking defect found by source inspection",
+    "result": "No blocking defect found in original fixtures, concurrent reconciliation or final named-conversion source by source inspection.",
     "scope": [
       "conversion ratios and portable numeric bounds",
       "global/member/With checker routes",
@@ -17,13 +17,20 @@
       "authored test API usage and expected native values",
       "DOCM preservation fixture API",
       "concurrent feature reconciliation",
-      "Later named-argument checker/evaluator integration; review completion recorded in final receipt."
+      "Named-call checker/evaluator, exact official argument names and bounded native-grid arithmetic of adopted source blob 07dc3c5737661abaf3b17db24439c71482de22ed"
     ],
     "limitations": [
       "No Dart execution",
       "No analyzer or formatter",
       "No installed Microsoft Word comparison"
-    ]
+    ],
+    "additional_v8_arithmetic": {
+      "inverse_forward_native_twip_cases": 316805,
+      "signed_native_twip_boundary_cases": 30,
+      "off_grid_refusal_fixtures": 10,
+      "mismatches": 0,
+      "qualification": "Arithmetic model only; not Dart/compiler execution."
+    }
   },
   "arithmetic_model": {
     "qualification": "Independent V8 arithmetic model only; no Dart source, compiler, VM, JS compilation or native document runtime executed.",
@@ -272,5 +279,36 @@
     "reported_legacy_cases": 103,
     "verification": "Not reproduced or counted as verified tests for this consolidated merge; raw execution results not available in this environment."
   },
-  "additional_reviewed_checkpoint": "4d0086aba52fc804424145d8eabe3c4c1c10f201"
+  "additional_reviewed_checkpoint": "4d0086aba52fc804424145d8eabe3c4c1c10f201",
+  "final_checkpoint_readback": {
+    "checkpoint": "9f0c23c4364195eabab6023ea0778380c50d249c",
+    "checks": [
+      {
+        "path": "packages/quds_office_engine/lib/src/automation/office_vba_language.dart",
+        "sha": "07dc3c5737661abaf3b17db24439c71482de22ed",
+        "passed": true
+      },
+      {
+        "path": "packages/quds_office_engine/test/office_vba_word_named_measurements_integration_test.dart",
+        "sha": "1a4ff8bbbea4399eb9a8be21e7ae05a5d88eed63",
+        "passed": true
+      },
+      {
+        "path": "packages/quds_office_engine/tool/macros/web_vba_word_named_measurements_smoke.dart",
+        "sha": "2f3fdd3f05c1786ba909ea0588e7f85d8c93ae5a",
+        "passed": true
+      },
+      {
+        "path": "docs/VBA_WORD_MACROS.md",
+        "sha": "e1ba38ca57f2c997cb3d978a4f3e24b3946fb4d9",
+        "passed": true
+      },
+      {
+        "path": "docs/validation/word-vba-measurements-20261120/README.md",
+        "sha": "d0b31654f157ed3e333080dc5580dd30acb2963b",
+        "passed": true
+      }
+    ]
+  },
+  "pull_request": 272
 }

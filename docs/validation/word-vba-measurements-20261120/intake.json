@@ -227,5 +227,31 @@
       "head": "69ab514b57a4d6d4db062d802eb853c2691d80fe",
       "reason": "Created after initial intake; unfinished unrelated core Mail coordinator work without provider/UI integration or completed qualification."
     }
-  ]
+  ],
+  "final_refresh": {
+    "observed_main": "c954d00d2fc85604ae394674bca91ea8a1dede0e",
+    "branch_count": 38,
+    "word_heads": [
+      {
+        "branch": "codex/word-vba-compatibility-20261120-continuation",
+        "head": "dd8e73a7d6252b336b2e7a437c4931addc42d491"
+      },
+      {
+        "branch": "codex/word-vba-unit-conversions-20261120",
+        "head": "e08635b3f21c60ad21888821050dc97c2dbf7086"
+      }
+    ],
+    "late_mail_heads": [
+      {
+        "branch": "work/mail-bulk-actions-20261120",
+        "head": "b60c0ec26f2a80c984076fb1d480eb2e641b542e",
+        "disposition": "Active overlapping Mail development introduced after initial intake; preserved remotely, not integrated into this Word change."
+      },
+      {
+        "branch": "work/mail-bulk-flags-20261120",
+        "head": "034d73d2d09245c4a151de37bf522664ea5b4a80",
+        "disposition": "Active overlapping Mail development introduced after initial intake; preserved remotely, not integrated into this Word change."
+      }
+    ]
+  }
 }
