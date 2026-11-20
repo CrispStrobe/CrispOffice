@@ -13,6 +13,7 @@ import 'package:quds_office_studio/studio_mail_message_loader.dart';
 import 'package:quds_office_studio/studio_mail_compose.dart';
 import 'package:quds_office_studio/studio_mail_credentials.dart';
 import 'package:quds_office_studio/studio_mail_strings.dart';
+import 'package:quds_office_studio/studio_mail_workspace_strings.dart';
 import 'package:quds_office_studio/studio_mail_native.dart';
 import 'package:quds_office_studio/studio_strings.dart';
 import 'package:quds_office_studio/studio_mail_archive_action.dart';
@@ -1619,7 +1620,10 @@ void main() {
     await _connect(tester);
     await tester.enterText(find.byType(TextField), 'unmatched');
     await _pump(tester);
-    expect(find.text(_strings.noMessages), findsOneWidget);
+    expect(
+      find.text(_strings.mailMessageListStrings.noMatches),
+      findsOneWidget,
+    );
     expect(tester.takeException(), isNull);
     await _close(tester);
   });
