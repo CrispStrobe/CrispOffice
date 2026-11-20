@@ -330,6 +330,40 @@ void main() {
       expect(slide.shapes.single.name, 'TextBox 2');
     });
 
+    test('showMasterSp honors both levels of decoration inheritance', () {
+      final PmlPresentation hiddenSlide = _deck(
+        <String>[_sld(_textBox(2, 'Slide'), showMasterShapes: '0')],
+        masterShapes: _textBox(9, 'Master decoration'),
+        layoutShapes: _textBox(9, 'Layout decoration'),
+      );
+      expect(
+        hiddenSlide.slides.single.backgroundShapes.map((shape) => shape.text),
+        <String>['Layout decoration'],
+      );
+      expect(hiddenSlide.slides.single.backgroundShapesResolved, isTrue);
+      expect(hiddenSlide.slides.single.showMasterShapes, isFalse);
+      expect(hiddenSlide.slides.single.copy(id: 999).showMasterShapes, isFalse);
+      final PmlPresentation hiddenMaster = _deck(
+        <String>[_sld(_textBox(2, 'Slide'))],
+        masterShapes: _textBox(9, 'Master decoration'),
+        layoutShapes: _textBox(9, 'Layout decoration'),
+        layoutShowMasterShapes: '0',
+      );
+      expect(
+        hiddenMaster.slides.single.backgroundShapes.map((shape) => shape.text),
+        <String>['Layout decoration'],
+      );
+      final PmlPresentation reopened = SlideDeserializer().readBytes(
+        SlideSerializer().writeBytes(hiddenSlide),
+      );
+      expect(
+        reopened.slides.single.backgroundShapes.map((shape) => shape.text),
+        <String>['Layout decoration'],
+      );
+      expect(reopened.slides.single.backgroundShapesResolved, isTrue);
+      expect(reopened.slides.single.showMasterShapes, isFalse);
+    });
+
     test('master decorations precede layout and copy independently', () {
       final PmlSlide slide = _deck(
         <String>[_sld(_textBox(2, 'Slide'), showMasterShapes: 'true')],
@@ -357,6 +391,8 @@ void main() {
         );
         final PmlSlide slide = deck.slides.single;
         expect(slide.showMasterShapes, isFalse);
+        expect(slide.backgroundShapesResolved, isTrue);
+        expect(slide.copy().backgroundShapesResolved, isTrue);
         expect(slide.copy().showMasterShapes, isFalse);
         expect(slide.backgroundShapes.map((shape) => shape.text), ['Layout']);
         final PmlSlide saved = SlideDeserializer()
@@ -364,6 +400,7 @@ void main() {
             .slides
             .single;
         expect(saved.showMasterShapes, isFalse);
+        expect(saved.backgroundShapesResolved, isTrue);
         expect(saved.backgroundShapes.map((shape) => shape.text), ['Layout']);
         expect(saved.shapes.single.text, 'Slide');
       });
@@ -387,6 +424,34 @@ void main() {
         expect(saved.shapes.single.text, 'Slide');
       });
     }
+
+    test('decorations retain ownership, ordering and independent copies', () {
+      final PmlPresentation deck = _deck(
+        <String>[_sld(_textBox(9, 'Slide A')), _sld(_textBox(9, 'Slide B'))],
+        masterShapes: _textBox(9, 'Master decoration'),
+        layoutShapes: _textBox(9, 'Layout decoration'),
+        layoutBackground:
+            '<p:bg><p:bgPr><a:solidFill><a:srgbClr val="FFFFFF"/>'
+            '</a:solidFill></p:bgPr></p:bg>',
+      );
+      final PmlSlide first = deck.slides.first;
+      expect(first.backgroundShapes.map((shape) => shape.text), <String>[
+        'Master decoration',
+        'Layout decoration',
+      ]);
+      expect(first.backgroundShapesResolved, isTrue);
+      expect(first.inheritsMasterBackground, isFalse);
+      expect(first.resolveBackground('112233'), 'FFFFFF');
+      final PmlSlide copy = first.copy(id: 999);
+      expect(copy.backgroundShapesResolved, isTrue);
+      expect(copy.inheritsMasterBackground, isFalse);
+      expect(copy.resolveBackground('112233'), 'FFFFFF');
+      copy.backgroundShapes.first.text = 'Changed copy';
+      expect(first.backgroundShapes.first.text, 'Master decoration');
+      first.backgroundShapes.last.text = 'Changed first';
+      expect(deck.slides.last.backgroundShapes.last.text, 'Layout decoration');
+      expect(first.shapes.single.text, 'Slide A');
+    });
 
     test('block arrow presets survive import', () {
       final PmlPresentation deck = _deck(<String>[
@@ -419,6 +484,50 @@ void main() {
       expect(connector.transform.flipV, isTrue);
       expect(connector.strokeColor, 'C8C8C8');
     });
+
+    for (final (horizontal, vertical, flipH, flipV)
+        in <(String, String, bool, bool)>[
+          ('1', '0', true, false),
+          ('true', 'false', true, false),
+          ('0', '1', false, true),
+          ('false', 'true', false, true),
+          ('true', 'true', true, true),
+        ]) {
+      test(
+        'connector flips $horizontal/$vertical survive a PPTX roundtrip',
+        () {
+          final PmlPresentation deck = _deck(<String>[
+            _sld(
+              '<p:cxnSp><p:nvCxnSpPr><p:cNvPr id="2" name="Connector"/>'
+              '<p:cNvCxnSpPr/><p:nvPr/></p:nvCxnSpPr><p:spPr>'
+              '<a:xfrm flipH="$horizontal" flipV="$vertical">'
+              '<a:off x="127000" y="254000"/>'
+              '<a:ext cx="914400" cy="457200"/></a:xfrm>'
+              '<a:prstGeom prst="line"><a:avLst/></a:prstGeom>'
+              '<a:ln w="12700"><a:solidFill><a:srgbClr val="C8C8C8"/>'
+              '</a:solidFill></a:ln></p:spPr></p:cxnSp>',
+            ),
+          ]);
+          final PmlShape imported = deck.slides.single.shapes.single;
+          expect(imported.transform.flipH, flipH);
+          expect(imported.transform.flipV, flipV);
+          final PmlSlide copied = deck.slides.single.copy();
+          expect(copied.shapes.single.transform.flipH, flipH);
+          expect(copied.shapes.single.transform.flipV, flipV);
+          final PmlPresentation reopened = SlideDeserializer().readBytes(
+            SlideSerializer().writeBytes(deck),
+          );
+          final PmlShape saved = reopened.slides.single.shapes.single;
+          expect(saved.preset, PmlShapePreset.connector);
+          expect(saved.transform.flipH, flipH);
+          expect(saved.transform.flipV, flipV);
+          expect(saved.transform.x, 127000);
+          expect(saved.transform.y, 254000);
+          expect(saved.transform.cx, 914400);
+          expect(saved.transform.cy, 457200);
+        },
+      );
+    }
 
     test('master background resolves theme lumMod', () {
       final PmlPresentation deck = _deck(

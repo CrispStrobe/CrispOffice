@@ -151,6 +151,69 @@ void main() {
         'this contains the formula c^2=3Da^2+b^2.',
       );
     });
+
+    test(
+      'encodes terminal spaces and tabs before CRLF, LF and end of input',
+      () {
+        const input = 'one \r\ntwo\t\nend \t';
+        final encoded = MailCodec.quotedPrintable.encodeText(input);
+        expect(encoded, 'one=20\r\ntwo=09\r\nend =09');
+        // A conforming receiver removes transport-added terminal whitespace.
+        // Applying that rule must not remove any of the original text.
+        final receiver = encoded
+            .split('\r\n')
+            .map((line) => line.replaceFirst(RegExp(r'[ \t]+$'), ''))
+            .join('\r\n');
+        expect(
+          MailCodec.quotedPrintable.decodeText(receiver, convert.utf8),
+          'one \r\ntwo\t\r\nend \t',
+        );
+      },
+    );
+
+    test('wraps before a multi-byte rune would exceed the 76-column limit', () {
+      final input = '${'x' * 74}😀${'é' * 80}';
+      final encoded = MailCodec.quotedPrintable.encodeText(input);
+      expect(encoded.split('\r\n').every((line) => line.length <= 76), isTrue);
+      expect(encoded, startsWith('${'x' * 74}=\r\n=F0=9F=98=80'));
+      expect(
+        MailCodec.quotedPrintable.decodeText(encoded, convert.utf8),
+        input,
+      );
+    });
+
+    test('every body wrap offset preserves Unicode, equals and whitespace', () {
+      for (var prefix = 0; prefix < 78; prefix++) {
+        final input = '${'a' * prefix}😀é=\t \r\nمتن \t';
+        final encoded = MailCodec.quotedPrintable.encodeText(input);
+        for (final line in encoded.split('\r\n')) {
+          expect(line.length, lessThanOrEqualTo(76), reason: 'prefix $prefix');
+          expect(RegExp(r'[ \t]$').hasMatch(line), isFalse);
+        }
+        expect(
+          MailCodec.quotedPrintable.decodeText(encoded, convert.utf8),
+          input,
+          reason: 'prefix $prefix',
+        );
+      }
+    });
+
+    test(
+      'wrap false still protects terminal whitespace without soft breaks',
+      () {
+        final input = '${'x' * 80} \t';
+        final encoded = MailCodec.quotedPrintable.encodeText(
+          input,
+          wrap: false,
+        );
+        expect(encoded, '${'x' * 80} =09');
+        expect(encoded, isNot(contains('=\r\n')));
+        expect(
+          MailCodec.quotedPrintable.decodeText(encoded, convert.utf8),
+          input,
+        );
+      },
+    );
   });
 
   group('Q Encoding', () {

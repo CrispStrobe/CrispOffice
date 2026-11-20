@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:typed_data';
 
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:quds_mail_core/quds_mail_core.dart';
@@ -17,6 +19,8 @@ import 'package:quds_office_studio/studio_strings.dart';
 import 'package:quds_office_studio/studio_mail_archive_action.dart';
 import 'package:quds_office_studio/studio_mail_archive_folder_action.dart';
 import 'package:quds_office_studio/studio_mail_archive_strings.dart';
+
+import 'support/mail_attachment_picker.dart';
 
 const _strings = StudioStrings(StudioLanguage.en);
 
@@ -299,6 +303,7 @@ Future<void> _send(
   String to = 'recipient@example.test',
   String cc = '',
   String bcc = '',
+  Future<void> Function()? beforeSend,
 }) async {
   await tester.tap(find.byTooltip(_strings.compose));
   await _pump(tester);
@@ -315,6 +320,7 @@ Future<void> _send(
       .controller
       .insertText('Sent from CrispOffice.');
   await tester.pump();
+  await beforeSend?.call();
   final send = find.widgetWithText(FilledButton, _strings.send);
   await tester.ensureVisible(send);
   await tester.tap(send);
@@ -712,6 +718,88 @@ void main() {
           utf8.decode(submission.wire.bytes),
           isNot(contains('hidden@example.test')),
         );
+        expect(find.text(_strings.mailCloudSubmissionAccepted), findsOneWidget);
+        expect(tester.takeException(), isNull);
+      },
+    );
+  }
+
+  for (final service in MailCloudService.values) {
+    testWidgets(
+      '${service.name} retains exact attachments through acknowledged retry',
+      (tester) async {
+        final source = Uint8List.fromList([0, 255, 128, 13, 10, 42]);
+        final expected = Uint8List.fromList(source);
+        final picker = MailAttachmentPickerFixture(
+          () async => FilePickerResult([
+            PlatformFile(
+              name: 'Cloud snapshot.pptx',
+              size: source.length,
+              readStream: Stream<List<int>>.value(source),
+            ),
+          ]),
+        );
+        FilePicker.platform = picker;
+        addTearDown(() => FilePicker.platform = FilePickerIO());
+        final harness = _Harness();
+        await _show(tester, harness, service: service);
+        await _connect(tester);
+        final provider = harness.provider!
+          ..outcome = MailSubmissionOutcome.uncertain;
+        await _send(
+          tester,
+          cc: 'copied@example.test',
+          bcc: 'hidden@example.test',
+          beforeSend: () async {
+            final add = find.byKey(
+              const ValueKey('studio-mail-add-attachments'),
+            );
+            await tester.ensureVisible(add);
+            await tester.tap(add);
+            await _pump(tester);
+            expect(find.text('Cloud snapshot.pptx'), findsOneWidget);
+            source.fillRange(0, source.length, 17);
+          },
+        );
+        expect(provider.submissions, hasLength(1));
+        expect(find.text(_strings.mailSubmissionUncertain), findsOneWidget);
+        await tester.pump(const Duration(minutes: 1));
+        expect(provider.submissions, hasLength(1));
+        await tester.tap(find.byTooltip(_strings.compose));
+        await _pump(tester);
+        expect(find.text('Cloud snapshot.pptx'), findsOneWidget);
+        expect(picker.calls, 1);
+        final send = find.widgetWithText(FilledButton, _strings.send);
+        expect(tester.widget<FilledButton>(send).onPressed, isNull);
+        provider.outcome = MailSubmissionOutcome.accepted;
+        await tester.ensureVisible(find.byType(CheckboxListTile));
+        await tester.tap(find.byType(CheckboxListTile));
+        await _pump(tester);
+        await tester.ensureVisible(send);
+        await tester.tap(send);
+        await _pump(tester);
+        expect(provider.submissions, hasLength(2));
+        for (final submission in provider.submissions) {
+          expect(submission.envelope.recipients, [
+            'recipient@example.test',
+            'copied@example.test',
+            'hidden@example.test',
+          ]);
+          final wire = ascii.decode(submission.wire.bytes);
+          expect(wire, contains('multipart/mixed'));
+          expect(wire, contains('multipart/alternative'));
+          expect(wire, isNot(contains('hidden@example.test')));
+          final decoded = const QudsMimeCodec().parse(submission.wire.bytes);
+          expect(decoded.status, MailParseStatus.complete);
+          expect(decoded.message!.body.plainText, 'Sent from CrispOffice.');
+          expect(decoded.message!.attachments, hasLength(1));
+          expect(
+            decoded.message!.attachments.single.displayName,
+            'Cloud snapshot.pptx',
+          );
+          expect(decoded.message!.attachments.single.content.bytes, expected);
+          expect(decoded.message!.envelope.bcc, isEmpty);
+        }
         expect(find.text(_strings.mailCloudSubmissionAccepted), findsOneWidget);
         expect(tester.takeException(), isNull);
       },

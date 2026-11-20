@@ -1,0 +1,22 @@
+{
+  "primary_source": "f0122cb5bff5b6cf6a6f69f043545dabc2930791",
+  "additional_source": "d1b8f9be24f08b2e4de7292c8727eddbd77bbf55",
+  "primary_cases": 2884,
+  "primary_files": 134,
+  "additional_cases": 2,
+  "additional_files": 1,
+  "combined_distinct_application_cases": 2886,
+  "combined_distinct_test_files": 135,
+  "primary_input_files_preserved_identically": 3994,
+  "post_main_input_file_count": 3996,
+  "removed_input_files": [],
+  "changed_existing_input_files": [],
+  "added_input_files": [
+    "packages/quds_office_engine/test/fixtures/word_reviews/.gitattributes",
+    "packages/quds_office_engine/test/office_macro_word_revision_guard_test.dart"
+  ],
+  "engine_dependency_workspace_and_runtime_inventories_identical": true,
+  "post_main_artifacts_match_sha256": true,
+  "additional_receipt_sha256": "6e877f1e134c86fd4c33bcd975ab4a9b64aee31d0f9c46bd8c151f8db32865ff",
+  "note": "The primary 134 suites ran at f012; only the newly added suite ran at d1b8. Existing qualified input bytes match exactly between both inventories. Parity cases and independent MIME assertions are not added to application-case totals. Independent raw-event recount is separate."
+}

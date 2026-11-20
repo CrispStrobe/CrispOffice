@@ -216,7 +216,7 @@ PmlShape cloneClipboardShape(
     id: id == 0 ? source.id : id,
     name: source.name,
     preset: source.preset,
-    transform: PmlTransform(
+    transform: source.transform.copyWith(
       x: source.transform.x + nudgeEmu,
       y: source.transform.y + nudgeEmu,
       cx: source.transform.cx,

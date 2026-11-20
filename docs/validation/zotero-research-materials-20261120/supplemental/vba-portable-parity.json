@@ -1,0 +1,13 @@
+{
+  "additionalDistinctUnitTests": 0,
+  "caseCount": 69,
+  "compiledJavascriptSha256": "d897bb9d523fd7fff206ebf012d4296b4cbc66a92f74442b0a0145f496793b93",
+  "completeCaseIdentitiesMatchFixture": true,
+  "fixtureSha256": "a1f82c1931e78212fe9beddb47e5fcca098ffa09c133e91ab8d3819d268f9151",
+  "javascriptCaseCount": 69,
+  "javascriptReceiptSha256": "a873a66a08bd5632adaea09491476b48ae1dc71a7274c57101af71a6153357c4",
+  "reason": "Same 69 corpus cases are already counted in office_vba_conformance_test.dart.",
+  "receiptsByteIdentical": true,
+  "vmCaseCount": 69,
+  "vmReceiptSha256": "a873a66a08bd5632adaea09491476b48ae1dc71a7274c57101af71a6153357c4"
+}

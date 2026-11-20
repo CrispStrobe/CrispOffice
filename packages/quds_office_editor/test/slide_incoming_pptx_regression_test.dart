@@ -320,6 +320,23 @@ void main() {
     );
   });
 
+  testWidgets('hidden master flag retains resolved layout decorations', (
+    tester,
+  ) async {
+    final _Raster raster = await _render(
+      tester,
+      PmlSlide(
+        id: 256,
+        background: 'FFFFFF',
+        showMasterShapes: false,
+        backgroundShapes: [_shape(2)],
+        shapes: [_shape(3, x: 220, fill: '0000FF')],
+      ),
+    );
+    expect(raster.count(0xFF0000), greaterThan(3000));
+    expect(raster.count(0x0000FF), greaterThan(3000));
+  });
+
   testWidgets('foreground animation IDs never hide master decorations', (
     tester,
   ) async {

@@ -1,0 +1,106 @@
+{
+  "additionalDistinctUnitTests": 0,
+  "changedInputs": {
+    "dependencies": [],
+    "host_fonts": [],
+    "qualification_helpers": [],
+    "runtime": [],
+    "source": [],
+    "supplemental_runtime": [],
+    "workspace": []
+  },
+  "failure": null,
+  "finishedAt": "2026-11-20T04:40:22.124844+00:00",
+  "inputInventoryAfterSha256": "68b82bd1d8a70e41bbfc1a3bbf4ccfbc3bf4bcd9bf48220fbb6a3029352e0ce3",
+  "inputInventoryBeforeSha256": "68b82bd1d8a70e41bbfc1a3bbf4ccfbc3bf4bcd9bf48220fbb6a3029352e0ce3",
+  "mimeInspection": {
+    "allChecksPassed": true,
+    "checkCount": 30
+  },
+  "passed": true,
+  "policy": {
+    "ciActionsAwaited": false,
+    "ciActionsQueried": false,
+    "packageResolutionMutations": false,
+    "sourceMutations": false
+  },
+  "portableVba": {
+    "additionalDistinctUnitTests": 0,
+    "caseCount": 69,
+    "compiledJavascriptSha256": "d897bb9d523fd7fff206ebf012d4296b4cbc66a92f74442b0a0145f496793b93",
+    "completeCaseIdentitiesMatchFixture": true,
+    "fixtureSha256": "a1f82c1931e78212fe9beddb47e5fcca098ffa09c133e91ab8d3819d268f9151",
+    "javascriptCaseCount": 69,
+    "javascriptReceiptSha256": "a873a66a08bd5632adaea09491476b48ae1dc71a7274c57101af71a6153357c4",
+    "reason": "Same 69 corpus cases are already counted in office_vba_conformance_test.dart.",
+    "receiptsByteIdentical": true,
+    "vmCaseCount": 69,
+    "vmReceiptSha256": "a873a66a08bd5632adaea09491476b48ae1dc71a7274c57101af71a6153357c4"
+  },
+  "pythonVersion": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+  "scope": "Local portable compiler receipt parity and Python standard-library MIME interpretation of synthetic actual Studio builder output. No network, mail send, provider account, installed Office or native-app claim.",
+  "sourceHead": "f0122cb5bff5b6cf6a6f69f043545dabc2930791",
+  "sourceHeadAfter": "f0122cb5bff5b6cf6a6f69f043545dabc2930791",
+  "sourceMatchesHeadAfter": {
+    "different_paths": [],
+    "matches": true,
+    "uncommitted_paths": []
+  },
+  "sourceMatchesHeadBefore": {
+    "different_paths": [],
+    "matches": true,
+    "uncommitted_paths": []
+  },
+  "sourceRuntimeAndDependenciesUnchanged": true,
+  "startedAt": "2026-11-20T04:39:47.814723+00:00",
+  "steps": [
+    {
+      "cwd": "/workspace/scratch/ee4fc9e59992/quds_office_suite",
+      "elapsedSeconds": 0.004,
+      "finishedAt": "2026-11-20T04:39:47.818662+00:00",
+      "label": "dart-version",
+      "returnCode": 0,
+      "startedAt": "2026-11-20T04:39:47.814787+00:00"
+    },
+    {
+      "cwd": "/workspace/scratch/ee4fc9e59992/quds_office_suite",
+      "elapsedSeconds": 0.008,
+      "finishedAt": "2026-11-20T04:39:47.826647+00:00",
+      "label": "node-version",
+      "returnCode": 0,
+      "startedAt": "2026-11-20T04:39:47.818861+00:00"
+    },
+    {
+      "cwd": "/workspace/scratch/ee4fc9e59992/quds_office_suite/packages/quds_office_engine",
+      "elapsedSeconds": 13.261,
+      "finishedAt": "2026-11-20T04:40:01.088299+00:00",
+      "label": "vba-vm",
+      "returnCode": 0,
+      "startedAt": "2026-11-20T04:39:47.827648+00:00"
+    },
+    {
+      "cwd": "/workspace/scratch/ee4fc9e59992/quds_office_suite/packages/quds_office_engine",
+      "elapsedSeconds": 8.545,
+      "finishedAt": "2026-11-20T04:40:09.633915+00:00",
+      "label": "vba-dart2js",
+      "returnCode": 0,
+      "startedAt": "2026-11-20T04:40:01.089039+00:00"
+    },
+    {
+      "cwd": "/workspace/scratch/ee4fc9e59992/quds_office_suite/packages/quds_office_engine",
+      "elapsedSeconds": 0.265,
+      "finishedAt": "2026-11-20T04:40:09.899621+00:00",
+      "label": "vba-node",
+      "returnCode": 0,
+      "startedAt": "2026-11-20T04:40:09.634652+00:00"
+    },
+    {
+      "cwd": "/workspace/scratch/ee4fc9e59992/quds_office_suite",
+      "elapsedSeconds": 7.852,
+      "finishedAt": "2026-11-20T04:40:17.754209+00:00",
+      "label": "studio-mime-export",
+      "returnCode": 0,
+      "startedAt": "2026-11-20T04:40:09.902418+00:00"
+    }
+  ]
+}

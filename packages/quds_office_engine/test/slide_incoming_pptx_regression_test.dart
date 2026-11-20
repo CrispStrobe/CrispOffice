@@ -537,6 +537,49 @@ void main() {
   });
 
   test(
+    'hidden master flag retains resolved layout decoration text and links',
+    () {
+      final PmlPresentation deck = PmlPresentation(
+        master: PmlMaster(
+          name: 'Master',
+          shapes: [_textShape('Hidden master')],
+        ),
+        slides: [
+          PmlSlide(
+            id: 256,
+            showMasterShapes: false,
+            backgroundShapes: [
+              _textShape('Layout decoration')
+                ..hyperlinkUrl = 'https://example.org/layout',
+            ],
+          ),
+        ],
+      );
+      for (final PdfSlideExportMode mode in PdfSlideExportMode.values) {
+        for (final int perPage in [1, 2]) {
+          final PdfFile file = PdfFile.open(
+            OfficePdfExport.presentation(
+              deck,
+              mode: mode,
+              slidesPerPage: perPage,
+              font: font,
+            ),
+          );
+          expect(PdfExtract.documentText(file), contains('Layout decoration'));
+          expect(
+            PdfExtract.documentText(file),
+            isNot(contains('Hidden master')),
+          );
+          expect(
+            file.annotsOn(0).map((link) => link.uri),
+            contains('https://example.org/layout'),
+          );
+        }
+      }
+    },
+  );
+
+  test(
     'hidden master shapes stay absent in PDF with an empty decoration list',
     () {
       final PmlPresentation deck = PmlPresentation(

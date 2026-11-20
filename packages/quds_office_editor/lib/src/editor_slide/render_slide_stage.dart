@@ -618,15 +618,7 @@ class RenderSlideStage extends RenderBox implements MouseTrackerAnnotation {
     );
     final double deg =
         math.atan2(slide.dx - c.dx, c.dy - slide.dy) * 180 / math.pi;
-    shape.transform = PmlTransform(
-      x: start.x,
-      y: start.y,
-      cx: start.cx,
-      cy: start.cy,
-      rot: (deg * 60000).round(),
-      flipH: start.flipH,
-      flipV: start.flipV,
-    );
+    shape.transform = start.copyWith(rot: (deg * 60000).round());
   }
 
   static bool _sameTransform(PmlTransform a, PmlTransform b) {
@@ -1086,16 +1078,13 @@ class RenderSlideStage extends RenderBox implements MouseTrackerAnnotation {
         ? Rect.fromLTWH(rect.left, rect.top, rect.width, 208)
         : rect;
     Color? background = _slidePaper(target);
-    final List<PmlShape> backing = <PmlShape>[
-      ...target.backgroundShapes,
-      ...target.shapes,
-    ];
-    for (var index = 0; index < backing.length; index++) {
-      final PmlShape previous = backing[index];
-      final bool decoration = index < target.backgroundShapes.length;
-      if (!decoration && identical(previous, shape)) break;
-      if (!decoration && (skipIds?.contains(previous.id) ?? false)) continue;
-      final previousSample = decoration
+    final int inheritedCount = target.backgroundShapes.length;
+    var precedingIndex = 0;
+    for (final previous in target.backgroundShapes.followedBy(target.shapes)) {
+      final bool inherited = precedingIndex++ < inheritedCount;
+      if (!inherited && identical(previous, shape)) break;
+      if (!inherited && (skipIds?.contains(previous.id) ?? false)) continue;
+      final previousSample = inherited
           ? PmlAnimSample.identity
           : samples?[previous.id] ?? PmlAnimSample.identity;
       if (!previousSample.visible || previousSample.opacity <= 0.01) continue;
@@ -1856,7 +1845,7 @@ class RenderSlideStage extends RenderBox implements MouseTrackerAnnotation {
   }
 
   void _applyRect(PmlShape shape, Rect rect) {
-    shape.transform = PmlTransform(
+    shape.transform = shape.transform.copyWith(
       x: (rect.left * 12700).round(),
       y: (rect.top * 12700).round(),
       cx: (rect.width * 12700).round().clamp(12700, 100000000),
@@ -1976,7 +1965,7 @@ class RenderSlideStage extends RenderBox implements MouseTrackerAnnotation {
         c.dx + p.dx * cos - p.dy * sin,
         c.dy + p.dx * sin + p.dy * cos,
       );
-      shape.transform = PmlTransform(
+      shape.transform = start.copyWith(
         x: ((np.dx - start.widthPoints / 2) * 12700).round(),
         y: ((np.dy - start.heightPoints / 2) * 12700).round(),
         cx: start.cx,
