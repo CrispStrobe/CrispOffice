@@ -301,7 +301,10 @@ void main() {
       final rows = list.items;
       expect(list.onBulkAction, isNull);
       expect(list.bulkStatus, isNull);
-      expect(find.byKey(const ValueKey('mail-list-bulk-actions')), findsNothing);
+      expect(
+        find.byKey(const ValueKey('mail-list-bulk-actions')),
+        findsNothing,
+      );
       expect(find.byType(Checkbox), findsNothing);
       expect(rows.first.date, date);
       expect(rows.first.to, contains('Project Team <team@example.test>'));
