@@ -56,5 +56,6 @@
   "distinct_case_labels": 2189,
   "repeated_labels": {
     "test/office_macro_slide_format_test.dart::strict Office shape collection refuses <p:grpSp> before a target": 2
-  }
+  },
+  "post_qualification_main_reconciliation": "integration/final-main-reconciliation.json"
 }

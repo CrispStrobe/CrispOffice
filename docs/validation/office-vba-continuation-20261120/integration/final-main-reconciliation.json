@@ -1,0 +1,15 @@
+{
+  "previous_main": "e59b8918db508da46039a943080dc4b7a5c7a0bb",
+  "incoming_main": "899df57d03e55bf73357136c5f21739c5c9b5719",
+  "incoming_change": "d0c90074",
+  "reason": "GitHub rejected the first PR245 merge because main advanced concurrently through PR246. Reconciled the accepted editor-only fixes before retrying.",
+  "changed_paths": [
+    "packages/quds_office_editor/lib/src/embed/office_font_pack_store_stub.dart",
+    "packages/quds_office_editor/pubspec.yaml"
+  ],
+  "behavior": "Preserve optional font-pack catalog injection in the platform stub and remove the duplicate crypto dev dependency; existing runtime dependency remains.",
+  "acceptance_source": "08020076b1552fef214d7625ace7ae087b70be88",
+  "acceptance_input_changes": [],
+  "rerun_required": false,
+  "rerun_reason": "All recorded engine/test/tool/example/font/lockfile inputs remain byte-identical; no additional runtime claim is made for the accepted editor changes."
+}

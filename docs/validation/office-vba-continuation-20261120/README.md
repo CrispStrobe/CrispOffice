@@ -13,7 +13,8 @@ The accepted engine source is `08020076b1552fef214d7625ace7ae087b70be88`
 (tree `76b0a8eb9625b45ec0deaa9a26baa1bb21db62c8`). The later integration checkpoint
 `153c818cd6dba07559fead6e86214a8482cf08b7` includes the final captured remote snapshot. Every input in
 the recorded engine/test/tool/example/font/lockfile scope is byte-identical to
-the accepted source. Subsequent delivery changes are documentation and evidence.
+the accepted source. Subsequent delivery includes the accepted main editor-only correction described
+below, plus documentation and evidence, without changing those inputs.
 
 | Gate | Executed result |
 | --- | --- |
@@ -114,6 +115,15 @@ supported `package:test --compiler source` strategy with concurrency 4 and
 fail-fast enabled, avoiding test-kernel cache duplication. Failed and interrupted
 attempts are historical evidence only; see [recovery history](recovery/README.md)
 and [the earlier source checkpoint](development/source-5cf0fb7b.json).
+
+## Final merge-time main reconciliation
+
+GitHub rejected the initial PR245 merge because main advanced concurrently to
+`899df57d03e55bf73357136c5f21739c5c9b5719` through PR246. Its two editor-only
+changes accept the optional font-pack catalog in the platform stub and remove
+a duplicate crypto development dependency. Both are preserved. Exact comparison
+confirms every recorded acceptance input still equals `08020076`; the completed
+gate remains applicable. See [the reconciliation receipt](integration/final-main-reconciliation.json).
 
 ## Qualification boundaries
 
