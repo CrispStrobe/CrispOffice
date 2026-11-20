@@ -1,0 +1,43 @@
+{
+  "mode": "engine",
+  "source_commit": "233b506e341bc2e299e7e1021910a94858eb9e35",
+  "source_parents": [
+    "191605e3cc06d5ac2efbb2d9f60b6b2bd07d7903",
+    "e06eb3a7e21b71c1d5d4b1d2cc9abde24774eb26"
+  ],
+  "tracked_package_sources_clean": true,
+  "source_tree": "e7c3f5520342e8a28ad44cd160afd56670e5fc99",
+  "source_inputs": {
+    "packages/quds_office_engine/lib/src/slide/serial/slide_serial.dart": "e6d35b0602bad3db38fb9ad46ebf9ebbed97dac4ce06175c595a1ab476742e38",
+    "packages/quds_office_engine/test/slide_import_fidelity_test.dart": "a92d7e531ada882fd2e5482a417097aec33c54f8b65fa171eeb57a97850b8ec6",
+    "packages/quds_office_engine/test/slide_gradient_merge_test.dart": "aed24e953a11e203d420a8906305bced8c264768532f09723c1fc3ca66ab2bcf",
+    "pubspec.yaml": "453a1f8ab62db1c5577c424b058b50033a8d3b49b99c83862ab58a7e1108f74f",
+    "pubspec.lock": "df9ff88b4df699b2420954d0ddc0dd7a1c40dbca8d9e3af3f25bec7e66700e7e",
+    ".dart_tool/package_config.json": "fcfa2da45c790f05cbec04f9fb1fd17b80685b35f754d8f371bc64c29407cf29"
+  },
+  "source_inputs_unchanged": true,
+  "runs": [
+    {
+      "command": [
+        "dart",
+        "--packages=/workspace/scratch/70953f0172ce/office-integration/.dart_tool/package_config.json",
+        "/workspace/scratch/70953f0172ce/toolchains/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+        "--reporter=json",
+        "test/slide_import_fidelity_test.dart",
+        "test/slide_gradient_merge_test.dart"
+      ],
+      "cwd": "/workspace/scratch/70953f0172ce/office-integration/packages/quds_office_engine",
+      "exit_code": 0,
+      "seconds": 14.263,
+      "passing": 53,
+      "distinct_passing": 53,
+      "skipped": 0,
+      "errors": 0,
+      "finished": true,
+      "accepted": true,
+      "stdout_sha256": "ab384e9dc48375eb7ad699130ae80cc378aa38c7deec7854934e932445f51f32",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "accepted": true
+}

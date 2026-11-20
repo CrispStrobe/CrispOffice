@@ -110,7 +110,7 @@ abstract final class MailStoreCodec {
     }
     return MailStorePayload(
       data: jsonEncode(<String, Object?>{
-        'version': 1,
+        'version': draft.editorState == null ? 1 : 2,
         'envelope': _envelopeToJson(draft.envelope),
         'body': <String, Object?>{
           'plainText': draft.body.plainText,
@@ -119,6 +119,14 @@ abstract final class MailStoreCodec {
           'htmlPartPath': draft.body.htmlPartPath,
         },
         'attachments': attachments,
+        if (draft.editorState case final editor?)
+          'editorState': <String, Object?>{
+            'to': editor.to,
+            'cc': editor.cc,
+            'bcc': editor.bcc,
+            'submissionUncertain': editor.submissionUncertain,
+            'isCleared': editor.isCleared,
+          },
       }),
       blobs: blobs,
     );
@@ -156,6 +164,9 @@ abstract final class MailStoreCodec {
       envelope: _envelopeFromJson(object['envelope']),
       body: _bodyFromJson(object['body']),
       attachments: attachments,
+      editorState: object['version'] == 2
+          ? _editorStateFromJson(object['editorState'])
+          : null,
     );
   });
 
@@ -359,14 +370,35 @@ _JsonObject _blobToJson(MailBytes content) => {
 };
 
 _JsonObject _draftObject(Object? value) {
-  final object = _object(value, const [
+  if (value is! _JsonObject) _invalid();
+  final version = _integer(value['version']);
+  if (version != 1 && version != 2) _invalid();
+  final object = _object(value, [
     'version',
     'envelope',
     'body',
     'attachments',
+    if (version == 2) 'editorState',
   ]);
-  _version(object);
+  if (version == 2) _editorStateFromJson(object['editorState']);
   return object;
+}
+
+MailDraftEditorState _editorStateFromJson(Object? value) {
+  final state = _object(value, const [
+    'to',
+    'cc',
+    'bcc',
+    'submissionUncertain',
+    'isCleared',
+  ]);
+  return MailDraftEditorState(
+    to: _string(state['to']),
+    cc: _string(state['cc']),
+    bcc: _string(state['bcc']),
+    submissionUncertain: _boolean(state['submissionUncertain']),
+    isCleared: _boolean(state['isCleared']),
+  );
 }
 
 MailBody _bodyFromJson(Object? value) {

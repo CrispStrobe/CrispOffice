@@ -11,16 +11,19 @@ import 'package:url_launcher/url_launcher.dart';
 import 'studio_mail_archive_action.dart';
 import 'studio_mail_archive_folder_action.dart';
 import 'studio_mail_compose.dart';
+import 'studio_mail_draft_store.dart';
+import 'studio_mail_draft_store_native.dart';
 import 'studio_mail_operation.dart';
 import 'studio_mail_reply.dart';
 import 'studio_mail_strings.dart';
 import 'studio_mail_submission.dart';
 import 'studio_strings.dart';
 
-typedef StudioEwsProviderFactory = MailEwsProvider Function(
-  MailEwsConfiguration configuration,
-  MailCredentialStore credentials,
-);
+typedef StudioEwsProviderFactory =
+    MailEwsProvider Function(
+      MailEwsConfiguration configuration,
+      MailCredentialStore credentials,
+    );
 
 typedef StudioCloudAuthorizer =
     Future<MailResult<MailCloudTokenSource>> Function({
@@ -31,14 +34,15 @@ typedef StudioCloudAuthorizer =
       MailCloudLogSink? log,
     });
 
-typedef StudioCloudProviderFactory = MailCloudProvider Function({
-  required MailCloudConfiguration configuration,
-  required MailCloudTokenSource tokenSource,
-  MailCloudLogSink? log,
-});
+typedef StudioCloudProviderFactory =
+    MailCloudProvider Function({
+      required MailCloudConfiguration configuration,
+      required MailCloudTokenSource tokenSource,
+      MailCloudLogSink? log,
+    });
 
 /// Foreground Exchange Server or cloud mailbox host. Credentials, downloaded
-/// messages and unsent drafts are retained only for the current dialog session.
+/// messages belong to this session; draft snapshots use account-scoped storage.
 class StudioMailEwsDialog extends StatefulWidget {
   const StudioMailEwsDialog({
     super.key,
@@ -46,6 +50,7 @@ class StudioMailEwsDialog extends StatefulWidget {
     this.providerFactory,
     this.archiveWriter,
     this.archiveFolderWriter,
+    this.draftStoreFactory,
   }) : cloudService = null,
        cloudAuthorizer = null,
        cloudProviderFactory = null,
@@ -62,6 +67,7 @@ class StudioMailEwsDialog extends StatefulWidget {
     this.initialClientId,
     this.archiveWriter,
     this.archiveFolderWriter,
+    this.draftStoreFactory,
   }) : cloudService = service,
        providerFactory = null;
 
@@ -76,6 +82,7 @@ class StudioMailEwsDialog extends StatefulWidget {
   final String? initialClientId;
   final StudioMailArchiveWriter? archiveWriter;
   final StudioMailArchiveFolderWriter? archiveFolderWriter;
+  final StudioMailDraftStoreFactory? draftStoreFactory;
 
   @override
   State<StudioMailEwsDialog> createState() => _StudioMailEwsDialogState();
@@ -109,6 +116,8 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
   MailHeaderRecord? _selected;
   MailReaderController? _reader;
   StudioMailDraft? _draft;
+  StudioMailDraftStore? _draftStore;
+  StudioMailDraftAccount? _draftIdentity;
   bool _submissionUncertain = false;
   bool _connected = false;
   bool _busy = false;
@@ -209,6 +218,8 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
     _reader?.dispose();
     _reader = null;
     _draft = null;
+    unawaited(_closeDraftStore(_draftStore));
+    _draftStore = null;
     _headers = const [];
     _password.clear();
     for (final controller in [
@@ -291,6 +302,12 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
       _submission = provider;
       _session = session;
       _credentials = credentials;
+      _draftIdentity = StudioMailDraftAccount(
+        provider: 'ews',
+        endpoint: configuration.endpoint.toString(),
+        login: jsonEncode([configuration.domain, configuration.username]),
+        sender: sender,
+      );
       _busy = true;
       _error = null;
       _notice = null;
@@ -347,6 +364,7 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
         _password.clear();
         _clientSecret.clear();
       });
+      await _restoreDraftStore(provider, session, lease);
     } on Object catch (error) {
       if (!_current(provider, lease)) return;
       session.dispose();
@@ -403,6 +421,18 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
         mounted && identical(_session, session) && lease.isCurrent;
     setState(() {
       _session = session;
+      _draftIdentity = StudioMailDraftAccount(
+        provider: widget.cloudService == MailCloudService.gmail
+            ? 'gmail'
+            : 'graph',
+        endpoint: widget.cloudService == MailCloudService.gmail
+            ? 'https://gmail.googleapis.com/gmail/v1'
+            : 'https://graph.microsoft.com/v1.0',
+        login: widget.cloudService == MailCloudService.gmail
+            ? sender
+            : jsonEncode([authorization.tenant, sender]),
+        sender: sender,
+      );
       _busy = true;
       _error = null;
       _notice = null;
@@ -461,6 +491,9 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
   }
 
   void _disconnect() {
+    final draftStore = _draftStore;
+    _draftStore = null;
+    _draftIdentity = null;
     _session?.dispose();
     _credentials?.clear();
     _closeCloud();
@@ -492,6 +525,65 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
       _sender = '';
     });
     _retire(old);
+    unawaited(_closeDraftStore(draftStore));
+  }
+
+  Future<void> _closeDraftStore(StudioMailDraftStore? store) async {
+    try {
+      await store?.close();
+    } on Object {
+      // Local draft content survives releasing the database owner.
+    }
+  }
+
+  Future<bool> _restoreDraftStore(
+    MailProvider provider,
+    MailAccountSession session,
+    MailOperationLease lease,
+  ) async {
+    if (!_current(provider, lease)) return false;
+    if (_draftStore != null) return true;
+    final identity = _draftIdentity;
+    if (identity == null) return false;
+    StudioMailDraftStore? candidate;
+    setState(() => _busy = true);
+    try {
+      candidate = await (widget.draftStoreFactory ?? openStudioMailDraftStore)(
+        identity,
+      );
+      final restored = await candidate.load();
+      if (!_current(provider, lease)) {
+        await _closeDraftStore(candidate);
+        return false;
+      }
+      setState(() {
+        _draftStore = candidate;
+        _draft = restored?.draft;
+        _submissionUncertain = restored?.submissionUncertain ?? false;
+        _error = _submissionUncertain
+            ? widget.strings.mailSubmissionUncertain
+            : null;
+        if (restored != null) _notice = widget.strings.mailDraftRestored;
+      });
+      return true;
+    } on Object {
+      await _closeDraftStore(candidate);
+      if (_current(provider, lease)) {
+        setState(() => _error = widget.strings.mailDraftStorageFailed);
+      }
+      return false;
+    } finally {
+      if (_current(provider, lease)) setState(() => _busy = false);
+    }
+  }
+
+  Future<bool> _clearAcceptedDraft(StudioMailDraftStore store) async {
+    try {
+      await store.clear();
+      return true;
+    } on Object {
+      return false;
+    }
   }
 
   Future<void> _loadHeaders(MailMailbox mailbox, {bool more = false}) async {
@@ -735,99 +827,136 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
     }
   }
 
-  Future<void> _compose([StudioMailDraft? initial]) =>
-      runStudioMailOperation(() async {
-        final provider = _provider;
-        final session = _session;
-        if (provider == null ||
-            session == null ||
-            !_connected ||
-            !_canSend ||
-            _blocked) {
-          return;
-        }
-        if (initial != null && _draft != null) {
-          setState(() => _error = widget.strings.mailRetainedDraft);
-          return;
-        }
-        final lease = session.begin();
-        setState(() => _dialogOpen = true);
-        final draft = await showDialog<StudioMailDraft>(
-          context: context,
-          builder: (context) => StudioMailComposeDialog(
-            strings: widget.strings,
-            from: _sender,
-            initialDraft: initial ?? _draft,
-            previousSubmissionUncertain: _submissionUncertain,
-          ),
+  Future<void> _compose([
+    StudioMailDraft? initial,
+  ]) => runStudioMailOperation(() async {
+    final provider = _provider;
+    final session = _session;
+    if (provider == null ||
+        session == null ||
+        !_connected ||
+        !_canSend ||
+        _blocked) {
+      return;
+    }
+    final lease = session.begin();
+    if (!await _restoreDraftStore(provider, session, lease)) return;
+    if (!mounted || !_current(provider, lease)) return;
+    final store = _draftStore!;
+    if (initial != null && _draft != null) {
+      setState(() => _error = widget.strings.mailRetainedDraft);
+      return;
+    }
+    setState(() => _dialogOpen = true);
+    final draft = await showDialog<StudioMailDraft>(
+      context: context,
+      barrierDismissible: false,
+      builder: (context) => StudioMailComposeDialog(
+        strings: widget.strings,
+        from: _sender,
+        initialDraft: initial ?? _draft,
+        previousSubmissionUncertain: _submissionUncertain,
+        onSaveDraft: (snapshot) async {
+          if (!_current(provider, lease) || !identical(store, _draftStore)) {
+            throw const StudioMailDraftStoreException(
+              MailProblemCode.unavailable,
+            );
+          }
+          setState(() => _draft = snapshot);
+          await store.save(snapshot, submissionUncertain: _submissionUncertain);
+        },
+      ),
+    );
+    if (!_current(provider, lease)) return;
+    setState(() => _dialogOpen = false);
+    if (draft == null) return;
+    setState(() {
+      _draft = draft;
+      _busy = true;
+      _error = null;
+      _notice = widget.strings.sending;
+    });
+    var attempted = false;
+    final wasPreviouslyUncertain = _submissionUncertain;
+    try {
+      final wire = buildStudioMailMessage(draft, _sender).renderMessage();
+      final attempt = '${_cloud ? 'cloud' : 'ews'}-send-${++_serial}';
+      final message = MailPreparedMessage(
+        account: provider.account,
+        draftId: 'session-draft',
+        draftRevision: _serial,
+        wire: MailBytes(utf8.encode(wire)),
+        envelope: MailTransportEnvelope(
+          sender: _sender,
+          recipients: draft.recipients.envelope,
+        ),
+      );
+      lease.checkCurrent();
+      await store.save(draft, submissionUncertain: true);
+      lease.checkCurrent();
+      _submissionUncertain = true;
+      attempted = true;
+      final result = await _submission!.submit(
+        message,
+        attemptId: attempt,
+        lease: lease,
+      );
+      final outcome = result.attemptId == attempt
+          ? result.outcome
+          : MailSubmissionOutcome.uncertain;
+      if (outcome == MailSubmissionOutcome.rejected ||
+          outcome == MailSubmissionOutcome.retryableFailure) {
+        // Only a matching, definite provider result can retire this attempt's
+        // marker. An earlier uncertain attempt remains guarded independently.
+        await store.saveRejectedDraft(
+          draft,
+          wasPreviouslyUncertain: wasPreviouslyUncertain,
         );
-        if (!_current(provider, lease)) return;
-        setState(() => _dialogOpen = false);
-        if (draft == null) return;
-        setState(() {
-          _draft = draft;
-          _busy = true;
-          _error = null;
-          _notice = widget.strings.sending;
-        });
-        var attempted = false;
-        try {
-          final wire = buildStudioMailMessage(draft, _sender).renderMessage();
-          final attempt = '${_cloud ? 'cloud' : 'ews'}-send-${++_serial}';
-          final message = MailPreparedMessage(
-            account: provider.account,
-            draftId: 'session-draft',
-            draftRevision: _serial,
-            wire: MailBytes(utf8.encode(wire)),
-            envelope: MailTransportEnvelope(
-              sender: _sender,
-              recipients: draft.recipients.envelope,
-            ),
-          );
-          lease.checkCurrent();
-          attempted = true;
-          final result = await _submission!.submit(
-            message,
-            attemptId: attempt,
-            lease: lease,
-          );
-          if (!_current(provider, lease)) return;
-          final outcome = result.attemptId == attempt
-              ? result.outcome
-              : MailSubmissionOutcome.uncertain;
-          setState(() {
-            _busy = false;
-            _notice = null;
-            _submissionUncertain = outcome == MailSubmissionOutcome.uncertain;
-            if (outcome == MailSubmissionOutcome.accepted) {
-              _draft = null;
-              _notice = _cloud
-                  ? widget.strings.mailCloudSubmissionAccepted
-                  : widget.strings.ewsSubmissionAccepted;
-            } else {
-              final feedback = _cloud && result.problem != null
-                  ? _problem(result.problem!, '')
-                  : '';
-              _error = _submissionUncertain
-                  ? widget.strings.mailSubmissionUncertain
-                  : [
-                      if (feedback.isNotEmpty) feedback,
-                      widget.strings.ewsSubmissionRejected,
-                    ].join(' ');
-            }
-          });
-        } on Object {
-          if (!_current(provider, lease)) return;
-          setState(() {
-            _busy = false;
-            _notice = null;
-            _submissionUncertain = _submissionUncertain || attempted;
-            _error = _submissionUncertain
-                ? widget.strings.mailSubmissionUncertain
-                : widget.strings.ewsSubmissionRejected;
-          });
+      }
+      final cleared = outcome == MailSubmissionOutcome.accepted
+          ? await _clearAcceptedDraft(store)
+          : false;
+      if (!_current(provider, lease)) return;
+      setState(() {
+        _busy = false;
+        _notice = null;
+        _submissionUncertain = outcome == MailSubmissionOutcome.accepted
+            ? !cleared
+            : outcome == MailSubmissionOutcome.uncertain ||
+                  wasPreviouslyUncertain;
+        if (outcome == MailSubmissionOutcome.accepted) {
+          _draft = cleared ? null : draft;
+          _notice = !cleared
+              ? widget.strings.mailDraftAcceptedCleanupFailed
+              : _cloud
+              ? widget.strings.mailCloudSubmissionAccepted
+              : widget.strings.ewsSubmissionAccepted;
+        } else {
+          final feedback = _cloud && result.problem != null
+              ? _problem(result.problem!, '')
+              : '';
+          _error = outcome == MailSubmissionOutcome.uncertain
+              ? widget.strings.mailSubmissionUncertain
+              : [
+                  if (feedback.isNotEmpty) feedback,
+                  widget.strings.ewsSubmissionRejected,
+                ].join(' ');
         }
       });
+    } on Object catch (error) {
+      if (!_current(provider, lease)) return;
+      setState(() {
+        _busy = false;
+        _notice = null;
+        _submissionUncertain = _submissionUncertain || attempted;
+        _error = _submissionUncertain
+            ? widget.strings.mailSubmissionUncertain
+            : error is StudioMailDraftStoreException
+            ? widget.strings.mailDraftStorageFailed
+            : widget.strings.ewsSubmissionRejected;
+      });
+    }
+  });
 
   Future<void> _reply({required bool forward, bool replyAll = false}) async {
     final message = _reader?.result.message;
@@ -884,6 +1013,20 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
       ),
     );
     if (!_current(provider, lease)) return;
+    if (discard == true) {
+      try {
+        await _draftStore!.clear();
+      } on Object {
+        if (_current(provider, lease)) {
+          setState(() {
+            _dialogOpen = false;
+            _error = widget.strings.mailDraftSaveFailed;
+          });
+        }
+        return;
+      }
+      if (!_current(provider, lease)) return;
+    }
     setState(() {
       _dialogOpen = false;
       if (discard == true) {

@@ -35,6 +35,36 @@ final class MailTransportEnvelope {
   final List<String> recipients;
 }
 
+/// Lossless editor input that is not yet a validated transport envelope.
+///
+/// Incomplete recipient text must survive autosave without being promoted to an
+/// address. Uncertain submission is durable and never grants permission to
+/// resend. A cleared marker retains the revision after explicit removal, so a
+/// stale editor cannot recreate deleted content through a revision ABA race.
+final class MailDraftEditorState {
+  MailDraftEditorState({
+    this.to = '',
+    this.cc = '',
+    this.bcc = '',
+    this.submissionUncertain = false,
+    this.isCleared = false,
+  }) {
+    if (isCleared &&
+        (to.isNotEmpty ||
+            cc.isNotEmpty ||
+            bcc.isNotEmpty ||
+            submissionUncertain)) {
+      throw ArgumentError('A cleared draft cannot contain editor input.');
+    }
+  }
+
+  final String to;
+  final String cc;
+  final String bcc;
+  final bool submissionUncertain;
+  final bool isCleared;
+}
+
 /// A local draft revision. All attachment payloads are already frozen snapshots.
 final class MailDraft {
   MailDraft({
@@ -44,6 +74,7 @@ final class MailDraft {
     required this.envelope,
     required this.body,
     List<MailAttachment> attachments = const [],
+    this.editorState,
   }) : attachments = List.unmodifiable(attachments) {
     if (id.isEmpty || revision < 0) {
       throw ArgumentError('Invalid draft identity or revision.');
@@ -55,6 +86,7 @@ final class MailDraft {
   final MailEnvelope envelope;
   final MailBody body;
   final List<MailAttachment> attachments;
+  final MailDraftEditorState? editorState;
 }
 
 /// Frozen bytes/revision/envelope. Later edits cannot modify queued submission.
