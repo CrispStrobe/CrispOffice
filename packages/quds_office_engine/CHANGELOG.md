@@ -4,6 +4,15 @@ All notable changes to `quds_office_engine` are documented here.
 
 ## Unreleased
 
+- Extend Word VBA with typed `Range.ListFormat` selectors, aliases, helpers and
+  `With`; add `ApplyBulletDefault`, `ApplyNumberDefault`, and `RemoveNumbers`
+  with named optional enum arguments. Resolve apply/remove toggles at native
+  execution time using guarded numbering definitions, preserve imported lists
+  and opaque content, and retain atomic publication. New lists use deterministic
+  Quds defaults; all-number removal refuses selected LISTNUM fields, while
+  paragraph-only removal preserves them. See the Word dialect contract for
+  supported list behavior values and remaining gallery/layout limits.
+
 - Extend Word VBA with typed `TabStops` selectors, aliases and helpers,
   `Add` with named/optional numeric arguments, and `ClearAll`. Add native
   single-position tab updates and inherited custom-tab clearing, retaining

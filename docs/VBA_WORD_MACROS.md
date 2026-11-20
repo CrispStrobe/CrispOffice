@@ -48,7 +48,7 @@ Sub Main()
 End Sub
 ```
 
-`Document`, `Paragraph`, `Range`, `Font`, `ParagraphFormat`, and `TabStops` declarations
+`Document`, `Paragraph`, `Range`, `Font`, `ParagraphFormat`, `TabStops`, and `ListFormat` declarations
 support explicit `Set` bindings and `ByVal` helper parameters. `With` may target
 these supported objects or the range's `Font` and `ParagraphFormat`. All bindings remain
 document-independent selectors; they never expose text or formatting reads.
@@ -70,8 +70,9 @@ readable `Count` and cannot be enumerated.
 The shared [argument contract](VBA_ARGUMENTS.md) supports named calls and
 optional scalar ByVal parameters on declared module helpers. Required Word
 object parameters may be passed by name; optional object parameters remain
-unsupported. `TabStops.Add` also accepts named and omitted optional arguments
-as described below; other Word members retain their positional-only contract.
+unsupported. `TabStops.Add` and the supported `ListFormat` methods also accept
+named optional arguments as described below; other Word members retain their
+positional-only contract.
 
 The common source language includes the existing local procedures and scalar
 functions, bounded control flow, typed arrays, string intrinsics, and explicit
@@ -111,6 +112,9 @@ header, footer, note, or comment story selector.
 | `range.ParagraphFormat.LineSpacingRule = value` | `docx.paragraphFormat` | `lineSpacingRule: auto`, `lineSpacing: 1`, `1.5`, or `2` |
 | `paragraph.TabStops.Add position, alignment, leader` | `docx.tabStop` | `position` in points, `alignment`, and `leader` |
 | `paragraph.TabStops.ClearAll` | `docx.clearTabStops` | No additional arguments |
+| `range.ListFormat.ApplyBulletDefault` | `docx.listDefault` | `numbered: false` |
+| `range.ListFormat.ApplyNumberDefault` | `docx.listDefault` | `numbered: true` |
+| `range.ListFormat.RemoveNumbers` | `docx.removeNumbers` | `numberType: all` or `paragraph` |
 
 For example, `ThisDocument.Paragraphs(2).Range.InsertBefore "Ready: "` emits:
 
@@ -224,6 +228,94 @@ Primary contracts: Microsoft's [TabStops.Add](https://learn.microsoft.com/en-us/
 [WdTabAlignment](https://learn.microsoft.com/en-us/office/vba/api/word.wdtabalignment),
 [WdTabLeader](https://learn.microsoft.com/en-us/office/vba/api/word.wdtableader), and
 [native tab-position bounds](https://learn.microsoft.com/en-us/openspecs/office_standards/ms-oe376/bca28b4c-9ef6-4eb4-b749-f5ea55b22dc4).
+
+### Paragraph list formatting
+
+`Paragraph.Range.ListFormat` selects one existing body paragraph's list
+formatting. It supports `Dim format As ListFormat`, `Set` aliases, nested `With`,
+and required `ByVal` helper parameters. Rebinding an alias or a helper parameter
+does not rebind other aliases. Empty paragraphs are valid targets.
+
+```vb
+Sub MakeNumbered(ByVal target As ListFormat)
+    target.RemoveNumbers NumberType:=wdNumberParagraph
+    target.ApplyNumberDefault DefaultListBehavior:=wdWord8ListBehavior
+End Sub
+
+Sub Main()
+    Dim format As ListFormat
+    Set format = ActiveDocument.Paragraphs(1).Range.ListFormat
+    MakeNumbered target:=format
+    With ActiveDocument.Paragraphs(2).Range.ListFormat
+        .RemoveNumbers wdNumberParagraph
+        .ApplyBulletDefault
+    End With
+End Sub
+```
+
+The three methods accept bare statements, parenthesized statements, and `Call`
+forms, including zero-argument `Call format.ApplyBulletDefault`. Each has at most
+one optional numeric argument. Argument names are case-insensitive; unknown
+names and excess/duplicate bindings are refused during checking, including in
+dead branches and unused helpers. The receiver is evaluated before its supplied
+argument, and each expression executes exactly once. Numeric strings, Booleans,
+Empty, Null, fractions, and unhandled missing Variants are not enum values.
+
+| Method | Optional argument | Accepted values |
+| --- | --- | --- |
+| `ApplyBulletDefault` | `DefaultListBehavior` | Omitted or `wdWord8ListBehavior = 0` |
+| `ApplyNumberDefault` | `DefaultListBehavior` | Omitted or `wdWord8ListBehavior = 0` |
+| `RemoveNumbers` | `NumberType` | Omitted / `wdNumberAllNumbers = 3`, or `wdNumberParagraph = 1` |
+
+The apply methods are **toggles**. At native execution time, a paragraph already
+using the requested bullet/number kind loses its paragraph numbering. Otherwise,
+the operation applies a deterministic Quds single-level default at level zero.
+Each step sees earlier operations in the same plan. The compiler never guesses
+the input document's list state. Explicitly removing paragraph numbering before
+applying a default, as above, makes the result independent of its previous kind.
+
+New defaults use a native bullet or decimal scheme with a left indent of 18
+points, a hanging indent of 9 points and no first-line indent. They preserve the
+right indent and unrelated paragraph/run content. Imported numbering definitions
+are retained, new IDs avoid collisions, and only a validated Quds default scheme
+is reused. A matching toggle or `RemoveNumbers` writes an explicit native
+numbering suppression, which survives style refresh and save/reopen, while
+retaining paragraph indentation. These defaults are Quds's defined host behavior;
+the adapter does not reproduce a user's customized Word list gallery or Word's
+complete indentation-reset behavior. `wdWord9ListBehavior = 1` and
+`wdWord10ListBehavior = 2` are recognized but refused because their distinct
+layout algorithms are not implemented.
+
+Classification uses native numbering IDs, abstract definitions, and the selected
+level/override, rather than visible labels or an assumption that ID 1 is a bullet.
+Missing or ambiguous native identities, unsupported linked/picture/outline
+numbering, and numbering-bearing markup-compatibility alternatives are refused
+before publication. Inheritance follows the existing Quds paragraph/default and
+supported table-style layers; this does not add other conditional table regions.
+
+`RemoveNumbers NumberType:=wdNumberParagraph` removes paragraph numbering while
+preserving field instructions/results. The omitted or explicit `wdNumberAllNumbers`
+form additionally checks for `LISTNUM` fields and refuses if it cannot fulfill
+the requested removal without editing such fields. This includes split complex
+field instructions and fields spanning the selected paragraph. It never silently
+leaves a selected `LISTNUM` field behind while reporting an all-numbers removal.
+`wdNumberListNum = 2` is recognized but refused at compilation. The source adapter
+does not expose live list reads, `ListLevelNumber`, list templates/galleries,
+outline application, indent/outdent methods, or a document-wide list collection.
+
+The executable [word_lists.bas](../packages/quds_office_engine/example/macros/word_lists.bas)
+uses aliases, helpers, `With`, named arguments and `Call`. The
+[validation record](validation/word-vba-lists-20261120/README.md) identifies the
+executed source and tests. Native `docx.listDefault` and `docx.removeNumbers`
+retain ordinary mutation permissions, admission, resource limits and detached
+transaction publication; opaque VBA project bytes remain inert and preserved.
+
+Primary contracts: Microsoft's [ListFormat](https://learn.microsoft.com/en-us/office/vba/api/word.listformat),
+[ApplyBulletDefault](https://learn.microsoft.com/en-us/office/vba/api/word.listformat.applybulletdefault),
+[ApplyNumberDefault](https://learn.microsoft.com/en-us/office/vba/api/word.listformat.applynumberdefault),
+[RemoveNumbers](https://learn.microsoft.com/en-us/office/vba/api/word.listformat.removenumbers),
+[WdDefaultListBehavior](https://learn.microsoft.com/en-us/office/vba/api/word.wddefaultlistbehavior),
+and [WdNumberType](https://learn.microsoft.com/en-us/office/vba/api/word.wdnumbertype).
 
 ### Paragraph selectors
 

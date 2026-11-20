@@ -231,6 +231,16 @@ existing whole-table, horizontal-band and first-row layers; other conditional
 table regions remain unmodeled. Ambiguous source definitions
 are rejected before mutation; see the [Word contract](VBA_WORD_MACROS.md#custom-paragraph-tab-stops).
 
+Native `docx.listDefault` takes `paragraph` and Boolean `numbered`. It toggles
+off matching native paragraph numbering or applies a deterministic Quds
+single-level default when the kind differs. Native `docx.removeNumbers` takes
+`paragraph` and optional `numberType` (`all`, the default, or `paragraph`).
+The `all` form refuses selected LISTNUM fields; paragraph-only removal preserves
+them. Both write persistent paragraph-numbering suppression when clearing and
+preserve unrelated native content. These operations address body paragraphs;
+the [ListFormat contract](VBA_WORD_MACROS.md#paragraph-list-formatting) documents
+source arguments, default layout, inheritance, ambiguity guards and limits.
+
 The `example/macros/procedural_report.bas` example demonstrates shared heading
 and row helpers, `Worksheet`/`Range` arguments, and nested scalar functions.
 The `example/macros/control_flow_report.bas` example combines conditional loops
@@ -436,7 +446,8 @@ documents supported types, syntax, members, and limits.
 
 The Word adapter lowers explicit `ThisDocument.Paragraphs(i).Range` operations
 to `docx.replaceText`, `docx.runFormat` and `docx.paragraphFormat`, and custom-tab
-selectors to `docx.tabStop` and `docx.clearTabStops`. `InsertBefore`
+selectors to `docx.tabStop` and `docx.clearTabStops`. Typed `Range.ListFormat`
+selectors emit `docx.listDefault` and `docx.removeNumbers`. `InsertBefore`
 uses the empty range at paragraph offset zero, preserving the paragraph mark.
 Word and Excel retain separate typed object members and native output formats;
 neither adapter receives a live document during compilation. Inactive branches
