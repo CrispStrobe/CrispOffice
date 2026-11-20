@@ -99,6 +99,10 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
   final _password = TextEditingController();
   final _messageListKey = GlobalKey(debugLabel: 'mail-provider-list');
   final _usedHeaderCursors = <String>{};
+  // A confirmed mutation observes only its target flag. Keep that observation
+  // separate from a possibly unobserved provider flag snapshot.
+  final _confirmedRead = <MailRemoteIdentity, bool>{};
+  final _confirmedFlagged = <MailRemoteIdentity, bool>{};
   MailEwsAuthentication _authentication = MailEwsAuthentication.ntlm;
   MailProvider? _provider;
   MailSubmissionProvider? _submission;
@@ -173,6 +177,12 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
 
   bool get _blocked => _busy || _dialogOpen;
   bool get _canSend => _capabilities.supports(MailCapability.send);
+  bool? _isRead(MailHeaderRecord? header) => header == null
+      ? null
+      : _confirmedRead[header.remote] ?? header.flags?.isRead;
+  bool? _isFlagged(MailHeaderRecord? header) => header == null
+      ? null
+      : _confirmedFlagged[header.remote] ?? header.flags?.isFlagged;
   bool _current(MailProvider provider, MailOperationLease lease) =>
       mounted && identical(_provider, provider) && lease.isCurrent;
 
@@ -223,6 +233,8 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
     unawaited(_closeDraftStore(_draftStore));
     _draftStore = null;
     _headers = const [];
+    _confirmedRead.clear();
+    _confirmedFlagged.clear();
     _password.clear();
     for (final controller in [
       _endpoint,
@@ -356,6 +368,8 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
       _validateHeaderPage(page, inbox.id, limit: _pageSize);
       setState(() {
         _usedHeaderCursors.clear();
+        _confirmedRead.clear();
+        _confirmedFlagged.clear();
         _connected = true;
         _capabilities = supported;
         _busy = false;
@@ -513,6 +527,8 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
       _mailboxes = const [];
       _mailbox = null;
       _headers = const [];
+      _confirmedRead.clear();
+      _confirmedFlagged.clear();
       _next = null;
       _selected = null;
       _reader = null;
@@ -596,12 +612,19 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
     required int limit,
   }) {
     final next = page.next;
+    final kind = switch (widget.cloudService) {
+      MailCloudService.gmail => MailProviderKind.gmail,
+      MailCloudService.microsoft365 => MailProviderKind.graph,
+      null => MailProviderKind.ews,
+    };
     if (page.messages.length > limit ||
         _usedHeaderCursors.length >= _maxHeaders) {
       throw const _EwsUiFailure(MailProblem(MailProblemCode.quotaExceeded));
     }
     if (page.messages.any(
-          (header) => header.remote.account != mailbox.account,
+          (header) =>
+              header.remote.account != mailbox.account ||
+              header.remote.provider != kind,
         ) ||
         page.messages.map((header) => header.remote).toSet().length !=
             page.messages.length ||
@@ -640,6 +663,8 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
         _selected = null;
         _reader = null;
         _headers = const [];
+        _confirmedRead.clear();
+        _confirmedFlagged.clear();
         _next = null;
         _usedHeaderCursors.clear();
         _showMessage = false;
@@ -669,6 +694,14 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
       }
       setState(() {
         if (cursor != null) _usedHeaderCursors.add(cursor.value);
+        for (final header in page.messages) {
+          // A later observed snapshot supersedes a confirmed local command.
+          // An omitted snapshot has observed neither flag and cannot do so.
+          if (header.flags != null) {
+            _confirmedRead.remove(header.remote);
+            _confirmedFlagged.remove(header.remote);
+          }
+        }
         _headers = byId.values.toList();
         if (more && _selected != null) _selected = byId[_selected!.remote];
         _next = page.next;
@@ -764,6 +797,8 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
       MailReaderController? old;
       setState(() {
         if (command is MailMove || command is MailDelete) {
+          _confirmedRead.remove(selected.remote);
+          _confirmedFlagged.remove(selected.remote);
           _headers = _headers
               .where((header) => header.remote != selected.remote)
               .toList();
@@ -775,6 +810,11 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
           // from a refreshed folder rather than reusing that earlier cursor.
           _next = null;
         } else {
+          if (command is MailSetRead) {
+            _confirmedRead[selected.remote] = command.read;
+          } else if (command is MailSetFlagged) {
+            _confirmedFlagged[selected.remote] = command.flagged;
+          }
           final flags = selected.flags;
           final updated = MailHeaderRecord(
             id: selected.id,
@@ -1547,8 +1587,8 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
                     )
                     .join(', '),
                 dateLabel: header.envelope.sentAt?.toLocal().toString(),
-                isRead: header.flags?.isRead,
-                isFlagged: header.flags?.isFlagged,
+                isRead: _isRead(header),
+                isFlagged: _isFlagged(header),
               ),
           ],
           selectedId: _selected == null
@@ -1626,11 +1666,11 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
                 : () => _reply(forward: true),
           ),
           IconButton(
-            tooltip: selected?.flags?.isRead == true
+            tooltip: _isRead(selected) == true
                 ? widget.strings.ewsMarkUnread
                 : widget.strings.markRead,
             icon: Icon(
-              selected?.flags?.isRead == true
+              _isRead(selected) == true
                   ? Icons.mark_email_unread_outlined
                   : Icons.mark_email_read_outlined,
             ),
@@ -1640,18 +1680,16 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
                     MailSetRead(
                       id: 'read-${++_serial}',
                       message: selected.remote,
-                      read: selected.flags?.isRead != true,
+                      read: _isRead(selected) != true,
                     ),
                   ),
           ),
           IconButton(
-            tooltip: selected?.flags?.isFlagged == true
+            tooltip: _isFlagged(selected) == true
                 ? widget.strings.ewsUnflag
                 : widget.strings.ewsFlag,
             icon: Icon(
-              selected?.flags?.isFlagged == true
-                  ? Icons.flag
-                  : Icons.outlined_flag,
+              _isFlagged(selected) == true ? Icons.flag : Icons.outlined_flag,
             ),
             onPressed: !canChange
                 ? null
@@ -1659,7 +1697,7 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
                     MailSetFlagged(
                       id: 'flag-${++_serial}',
                       message: selected.remote,
-                      flagged: selected.flags?.isFlagged != true,
+                      flagged: _isFlagged(selected) != true,
                     ),
                   ),
           ),

@@ -96,3 +96,61 @@ final class ImapScanCursor {
     );
   }
 }
+
+/// Foreground browsing descends within a fixed initial UID boundary. This
+/// token cannot be substituted for the ascending durable synchronization token.
+final class ImapBrowseCursor {
+  const ImapBrowseCursor({
+    required this.uidValidity,
+    required this.initialCeiling,
+    required this.nextCeiling,
+  });
+
+  final int uidValidity;
+  final int initialCeiling;
+  final int nextCeiling;
+
+  MailCursor encode(MailMailboxId mailbox) => MailCursor(
+    mailbox: mailbox,
+    value: jsonEncode(<Object>[
+      'quds-imap-browse-v1',
+      mailboxScope(mailbox),
+      uidValidity,
+      initialCeiling,
+      nextCeiling,
+    ]),
+  );
+
+  static ImapBrowseCursor? decode(MailCursor? cursor, MailMailboxId mailbox) {
+    if (cursor == null) return null;
+    if (cursor.mailbox != mailbox || cursor.value.length > 256) {
+      throw const FormatException('Invalid IMAP browse cursor scope');
+    }
+    final Object? value = jsonDecode(cursor.value);
+    if (value is! List<Object?> ||
+        value.length != 5 ||
+        value[0] != 'quds-imap-browse-v1' ||
+        value[1] != mailboxScope(mailbox)) {
+      throw const FormatException('Invalid IMAP browse cursor');
+    }
+    final validity = value[2];
+    final initial = value[3];
+    final next = value[4];
+    if (validity is! int ||
+        validity < 1 ||
+        validity > 0xffffffff ||
+        initial is! int ||
+        initial < 2 ||
+        initial > 0xffffffff ||
+        next is! int ||
+        next < 1 ||
+        next >= initial) {
+      throw const FormatException('Invalid IMAP browse cursor position');
+    }
+    return ImapBrowseCursor(
+      uidValidity: validity,
+      initialCeiling: initial,
+      nextCeiling: next,
+    );
+  }
+}
