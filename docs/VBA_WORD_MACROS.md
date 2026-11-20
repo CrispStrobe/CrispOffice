@@ -924,7 +924,15 @@ Sub Main()
 End Sub
 ```
 
-This writes 28.35 points because the source explicitly requests that rounding.
+That example writes 28.35 points. The compiler does not silently add rounding,
+change a destination property's range limits, or emulate VBA `Single`
+coercion. Microsoft's API documentation identifies Single arguments/results
+and gives rounded metric conversion factors; the exact physical ratios above
+are the explicit Quds numeric contract, not a claim of observed Word binary32
+parity. They follow the exact ratios in Microsoft's
+[Office coordinate specification](https://learn.microsoft.com/en-us/openspecs/office_standards/ms-oi29500/afb7e140-b259-4901-8af4-d4a514f50db9)
+and [native unit definitions](https://learn.microsoft.com/en-us/windows/win32/vml/basic-vml-types).
+
 Font sizes still require their existing half-point grid; tab stops, spacing
 and indentation retain their existing constraints. Pixel conversions,
 `Selection`, page-setup objects, arbitrary ranges and document property reads
@@ -937,7 +945,7 @@ ownership also remains unchanged: indentation edits replace the native
 `w:ind` property group, so foreign attributes inside that edited group are
 not promised to survive. Unrelated paragraph metadata, untouched paragraphs,
 style parts and opaque DOCM project/signature bytes are covered by the saved
-document tests. See the [local qualification record](validation/word-vba-unit-conversions-20261120/README.md)
+document tests. See the [local qualification record](validation/mail-bulk-actions-20261120/final-main-word-summary.md)
 for executed VM, JavaScript, CLI and MCP checks.
 
 Primary references: Microsoft Word's

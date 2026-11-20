@@ -3,16 +3,16 @@
   "accepted_suites": 50,
   "archive": {
     "all_member_contents_verified": true,
-    "bytes": 1789408,
+    "bytes": 1788972,
     "deterministic_rebuild_equal": true,
     "member_count": 143,
     "name": "mail-bulk-qualification.tar.xz",
-    "sha256": "b4ed2b6b4ba55d4a7d886aefeca8c67701f1fc62246fb3cbcc1c1d9c2b267165",
+    "sha256": "ac9cf260c0d7e056c8c982102e181ad8572a3c72a8e29a760a436acd5c1db02b",
     "tar_gid": 0,
     "tar_mode": "0644",
     "tar_mtime": 0,
     "tar_uid": 0,
-    "uncompressed_member_bytes": 13501522
+    "uncompressed_member_bytes": 13501687
   },
   "corrective_status": "passed",
   "excluded": [
@@ -26,7 +26,7 @@
   "members": {
     "MANIFEST.json": {
       "bytes": 22956,
-      "sha256": "30605823ca5393fc8cd5b555005313f098b41b7ed926cc63a1e08397ca912c07"
+      "sha256": "db2af1c9022c1e9ee77e281907e82f96cf83a8d2ba95f738ac7e08765a480bf2"
     },
     "corrective/accepted-test-cases.json": {
       "bytes": 348312,
@@ -497,8 +497,8 @@
       "sha256": "390efdf91d1c63d32c5013ad47c7cf0c74b77bf3b40a992deec006977e9058b8"
     },
     "review/README.md": {
-      "bytes": 13762,
-      "sha256": "608c4a327eac3c9f4562d77059242aea0727ccd7460a1126d02c52b985d3bdb6"
+      "bytes": 13927,
+      "sha256": "72aaf12ce36e2b6202e86684a3e1ea5a6731fd04297122e1a074e725e94b99f2"
     },
     "review/incoming-heads.json": {
       "bytes": 3016,
@@ -600,8 +600,8 @@
   "original_aggregate_status": "failed",
   "readable_exports": {
     "README.md": {
-      "bytes": 13762,
-      "sha256": "608c4a327eac3c9f4562d77059242aea0727ccd7460a1126d02c52b985d3bdb6"
+      "bytes": 13927,
+      "sha256": "72aaf12ce36e2b6202e86684a3e1ea5a6731fd04297122e1a074e725e94b99f2"
     },
     "accepted-test-cases.json": {
       "bytes": 348312,

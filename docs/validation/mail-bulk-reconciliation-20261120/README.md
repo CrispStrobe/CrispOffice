@@ -204,9 +204,13 @@ hash-verified Pub archives, then resolves Flutter tooling and the fresh workspac
 offline with `--enforce-lockfile`. It creates runtime files and ignored workspace
 configuration. Use fresh runtime and output directories.
 
-From a checkout containing the captured commit, create a separate worktree:
+From the repository root of a checkout containing the captured commit, enter
+this evidence directory so the companion scripts and checksum files resolve,
+then create a separate worktree:
 
 ```bash
+cd docs/validation/mail-bulk-reconciliation-20261120
+
 git worktree add --detach /absolute/path/mail-repro \
   cf25a0a3d80ee18d2550161af182bacc4e49d18f
 

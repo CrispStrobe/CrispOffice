@@ -4,6 +4,14 @@ All notable changes to `quds_office_engine` are documented here.
 
 ## Unreleased
 
+- Render inline header/footer pictures and retain distinct images when their
+  dimensions match. Keep continuous-section decoration separate from body
+  frames so incremental layout preserves the same pictures as full layout.
+  Resolve table-style header formatting through the existing cascade, preserving
+  direct run overrides and explicit border widths when style color fills an
+  automatic value. Keep imported compact spacing sparse on export so later style
+  changes remain effective. Retain the imported empty-paragraph border behavior.
+
 - Preserve horizontal merged cells in Zotero Add Note/Add Annotation tables.
   Map bounded `colspan` to native `gridSpan`, reconcile `data-colwidth` vectors
   by logical column (including unspecified zero entries), and sum covered grid
@@ -28,15 +36,6 @@ All notable changes to `quds_office_engine` are documented here.
   JavaScript checks; retain the independent eight-, nine- and thirteen-operation
   examples under distinct filenames. Document the Single-precision and native
   ownership limits.
-
-- Preserve distinct header/footer pictures and separate placements when
-  projecting inline and anchored visuals. Suppress only the same visual at
-  the same placement, and regenerate header/footer frames across continuous
-  sections without treating them as body content.
-
-- Preserve explicitly authored table-header run colors and bold-off values
-  when applying first-row table styles, while retaining the style defaults
-  for runs without those direct properties.
 
 - Fall back to full Word layout for changed footnote/endnote paragraphs,
   including nested note tables, so formatting edits cannot reuse stale note
@@ -122,8 +121,9 @@ All notable changes to `quds_office_engine` are documented here.
   and active citations in row order. Map consistent column widths and supported
   cell fills while sharing whole-note resource budgets. Preserve surrounding
   prose, authored-note markers and a main-flow caret after trailing tables.
-  Refuse merged/nested tables, unsupported styling and table-cell destinations
-  for table payloads before publication. See the
+  Initially refuse merged/nested tables, unsupported styling and table-cell
+  destinations for table payloads before publication; the continuation above
+  adds horizontal merged cells. See the
   [implementation and validation record](../../docs/validation/zotero-research-tables-20261120/README.md)
   for the tested source and remaining application acceptance.
 

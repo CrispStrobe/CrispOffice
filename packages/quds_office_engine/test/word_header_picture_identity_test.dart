@@ -89,16 +89,37 @@ void main() {
       }
     });
 
-    test('$story shared visual at the same placement paints exactly once', () {
+    test('$story shared node at the same placement paints exactly once', () {
       final visual = _picture(_red);
-      final document = WmlDocument(
-        sections: [
-          _section(inline: visual, anchored: [visual], footer: footer),
-        ],
+      final node = WmlVisual(visual: visual);
+      final section = _section(footer: footer);
+      final paragraphs = footer ? section.footer : section.header;
+      final anchored = footer ? section.footerVisuals : section.headerVisuals;
+      paragraphs.add(
+        WmlParagraph(
+          inlines: [WmlRun(text: '\uFFFC', inlineVisual: node)],
+        ),
       );
+      anchored.add(node);
+      final document = WmlDocument(sections: [section]);
       final pictures = _pictures(document);
       expect(pictures, hasLength(1));
       expect(pictures.single.visual, same(visual));
+    });
+
+    test('$story distinct nodes may reuse one asset at the same placement', () {
+      final visual = _picture(_red);
+      final pictures = _pictures(
+        WmlDocument(
+          sections: [
+            _section(inline: visual, anchored: [visual], footer: footer),
+          ],
+        ),
+      );
+      expect(pictures, hasLength(2));
+      expect(pictures.map((frame) => frame.visual), [visual, visual]);
+      expect(pictures.first.x, pictures.last.x);
+      expect(pictures.first.y, pictures.last.y);
     });
 
     test(

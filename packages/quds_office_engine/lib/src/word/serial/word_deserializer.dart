@@ -107,6 +107,7 @@ class WordDeserializer {
   WmlNote? _readingNote;
   bool _noteMarkCaptured = false;
   final Set<WmlTable> _tablesWithOwnBorders = Set<WmlTable>.identity();
+  final Set<WmlTable> _tablesWithOwnBorderWidths = Set<WmlTable>.identity();
   final Set<WmlRunProps> _notBold = Set<WmlRunProps>.identity();
   final Set<WmlRunProps> _notItalic = Set<WmlRunProps>.identity();
   final Map<WmlTable, _TableLook> _tableLooks =
@@ -123,6 +124,7 @@ class WordDeserializer {
     _paragraphFormatChanges.clear();
     _moveRanges.clear();
     _tablesWithOwnBorders.clear();
+    _tablesWithOwnBorderWidths.clear();
     _tableLooks.clear();
     _notBold.clear();
     _notItalic.clear();
@@ -2621,7 +2623,9 @@ class WordDeserializer {
         );
       } else if (reader.localName == 'tblBorders') {
         _tablesWithOwnBorders.add(table);
-        _readTblBorders(reader, table.properties);
+        if (_readTblBorders(reader, table.properties)) {
+          _tablesWithOwnBorderWidths.add(table);
+        }
       } else if (reader.localName == 'tblLook') {
         _tableLooks[table] = _TableLook.read(reader);
       } else if (reader.localName == 'bidiVisual') {
@@ -2636,10 +2640,12 @@ class WordDeserializer {
     }
   }
 
-  void _readTblBorders(XmlPullReader reader, WmlTableProps props) {
+  /// Returns whether a drawn direct border declares its own width.
+  bool _readTblBorders(XmlPullReader reader, WmlTableProps props) {
     if (reader.isEmptyElement) {
-      return;
+      return false;
     }
+    var hasDirectWidth = false;
     final int depth = reader.depth;
     while (reader.next() && reader.depth >= depth) {
       if (reader.eventType != XmlEventType.startElement) {
@@ -2662,12 +2668,14 @@ class WordDeserializer {
       );
       if (sz != null) {
         props.borderWidth = (int.tryParse(sz) ?? 4) / 8.0;
+        hasDirectWidth = true;
       }
       if (color != null && color.isNotEmpty && color.toLowerCase() != 'auto') {
         props.borderColor = color;
       }
       props.borders = true;
     }
+    return hasDirectWidth;
   }
 
   /// Applies `styles.xml` table styles (borders, header row and banded row
@@ -2714,9 +2722,10 @@ class WordDeserializer {
         // Word resolves an omitted/automatic direct border from the table
         // style. In particular Medium Grid 3's white grid must stay white
         // instead of becoming a black rectangle around every cell.
-        table.properties
-          ..borderColor = style.borderColor
-          ..borderWidth = style.borderWidth;
+        table.properties.borderColor = style.borderColor;
+        if (!_tablesWithOwnBorderWidths.contains(table)) {
+          table.properties.borderWidth = style.borderWidth;
+        }
       }
       if (style != null) {
         final _TableLook look = _tableLooks[table] ?? const _TableLook();
@@ -2733,31 +2742,12 @@ class WordDeserializer {
           }
           for (final WmlTableCell cell in table.rows[r].cells) {
             cell.fillColor ??= fill;
-            if (header && (style.firstRowColor != null || style.firstRowBold)) {
-              for (final WmlBlock block in WordTree.visibleBlocks(
-                cell.blocks,
-              )) {
-                for (final WmlParagraph paragraph in WmlClone.paragraphsOf(
-                  block,
-                )) {
-                  for (final WmlRun run
-                      in paragraph.inlines.whereType<WmlRun>()) {
-                    // Direct formatting takes precedence over table defaults,
-                    // including an explicit default color or bold turned off.
-                    if (style.firstRowColor != null &&
-                        !run.properties.explicitProperties.contains('color')) {
-                      run.properties.color = style.firstRowColor!;
-                    }
-                    if (style.firstRowBold &&
-                        !run.properties.explicitProperties.contains('b')) {
-                      run.properties.bold = true;
-                    }
-                  }
-                }
-              }
-            }
           }
         }
+        // The sparse style cascade has already applied conditional run
+        // formatting. Repainting it here would override direct formatting,
+        // explicit child-style false values, and nested table boundaries.
+
         // Table styles in Word set the cell paragraph rhythm. Applying this
         // only to Table Grid left Medium Grid rows roughly 8 pt too tall.
         for (final WmlTableRow row in table.rows) {
@@ -2771,6 +2761,11 @@ class WordDeserializer {
                   block.properties.lineSpacingRule == WmlLineSpacingRule.auto) {
                 block.properties.lineSpacing = 1.0;
               }
+              // This fallback belongs to the import, not an authored edit.
+              // Preserve sparse pPr on export so later style changes stay live.
+              block.properties.importedValues = WordPropertyIo.paragraphValues(
+                block.properties,
+              );
             }
           }
         }
@@ -2795,6 +2790,7 @@ class WordDeserializer {
       _walkTables(note.blocks, applyTo);
     }
     _tablesWithOwnBorders.clear();
+    _tablesWithOwnBorderWidths.clear();
     _tableLooks.clear();
   }
 
@@ -4377,8 +4373,6 @@ class _TableStyle {
   String? borderColor;
   double borderWidth = 0.5;
   String? firstRowFill;
-  String? firstRowColor;
-  bool firstRowBold = false;
   String? band1Fill;
 
   static _TableStyle? resolve(
@@ -4407,8 +4401,6 @@ class _TableStyle {
           ? style.borderWidth
           : parent.borderWidth
       ..firstRowFill = style.firstRowFill ?? parent.firstRowFill
-      ..firstRowColor = style.firstRowColor ?? parent.firstRowColor
-      ..firstRowBold = style.firstRowBold || parent.firstRowBold
       ..band1Fill = style.band1Fill ?? parent.band1Fill;
     return merged;
   }
@@ -4482,19 +4474,6 @@ class _TableStyle {
                 : color
             ..borderWidth = sz == null ? 0.5 : sz / 8.0;
         }
-      } else if (name == 'color' && region == 'firstRow') {
-        final String? color = reader.getAttribute(
-          'val',
-          namespaceUri: OfficeNamespaces.w,
-        );
-        if (color != null &&
-            color.isNotEmpty &&
-            color.toLowerCase() != 'auto') {
-          current.firstRowColor = color;
-        }
-      } else if (name == 'b' && region == 'firstRow') {
-        current.firstRowBold =
-            val == null || val == '1' || val == 'true' || val == 'on';
       } else if (name == 'shd' &&
           (region == 'firstRow' || region == 'band1Horz')) {
         final String? fill = reader.getAttribute(
