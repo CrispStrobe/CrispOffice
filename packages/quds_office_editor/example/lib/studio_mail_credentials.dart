@@ -1,12 +1,28 @@
 import 'dart:convert';
-
 import 'package:crypto/crypto.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
+import 'credentials/secure_storage_service.dart';
+import 'credentials/utils/async_lock.dart';
+import 'studio_credential_storage.dart';
 import 'studio_mail_presets.dart';
 import 'studio_mail_recipients.dart';
 
-/// Host-owned credential record. Only the platform keychain receives its JSON;
+/// Immutable effective route fields for account identity and chooser labels.
+/// Credentials and tokens are deliberately absent from this presentation value.
+typedef StudioMailConnectionIdentity = ({
+  String sender,
+  String imapHost,
+  int imapPort,
+  bool imapStartTls,
+  String imapLogin,
+  String smtpHost,
+  int smtpPort,
+  bool smtpStartTls,
+  String smtpLogin,
+});
+
+/// Host-owned credential record. Only the selected secure store receives its JSON;
 /// diagnostics and exception messages must never include the record's values.
 class StudioMailCredentials {
   const StudioMailCredentials({
@@ -31,12 +47,9 @@ class StudioMailCredentials {
   final String primaryLogin;
   final bool icloudFullAddressLogin;
 
-  /// Stable identity of the effective endpoints, logins and sending address.
-  /// Password rotation does not create another account. Hostname casing is
-  /// insignificant; the complete authentication login and sending address stay
-  /// exact, matching the existing connection and local-draft identity contract.
-  /// The digest contains no credential bytes and is not a credential itself.
-  String get accountId {
+  /// Uses the same preset precedence and login choices as account connection.
+  /// Hostnames are canonicalized; complete login and sender casing stays exact.
+  StudioMailConnectionIdentity get connectionIdentity {
     final sender = email.trim();
     final login = preset == null || primaryLogin.trim().isEmpty
         ? sender
@@ -49,20 +62,40 @@ class StudioMailCredentials {
     final outgoingStartTls = preset == null
         ? startTls
         : preset == StudioMailImapPreset.icloud;
+    return (
+      sender: sender,
+      imapHost: (preset?.imapHost ?? imapHost).trim().toLowerCase(),
+      imapPort: incomingStartTls ? 143 : 993,
+      imapStartTls: incomingStartTls,
+      imapLogin: incomingLogin,
+      smtpHost: (preset?.smtpHost ?? smtpHost).trim().toLowerCase(),
+      smtpPort: outgoingStartTls ? 587 : 465,
+      smtpStartTls: outgoingStartTls,
+      smtpLogin: login,
+    );
+  }
+
+  /// Stable identity of the effective endpoints, logins and sending address.
+  /// Password rotation does not create another account. Hostname casing is
+  /// insignificant; the complete authentication login and sending address stay
+  /// exact, matching the existing connection and local-draft identity contract.
+  /// The digest contains no credential bytes and is not a credential itself.
+  String get accountId {
+    final identity = connectionIdentity;
     return sha256
         .convert(
           utf8.encode(
             jsonEncode([
               'studio-imap-smtp-account-v2',
-              (preset?.imapHost ?? imapHost).trim().toLowerCase(),
-              incomingStartTls ? 143 : 993,
-              incomingStartTls ? 'starttls' : 'tls',
-              incomingLogin,
-              (preset?.smtpHost ?? smtpHost).trim().toLowerCase(),
-              outgoingStartTls ? 587 : 465,
-              outgoingStartTls ? 'starttls' : 'tls',
-              login,
-              sender,
+              identity.imapHost,
+              identity.imapPort,
+              identity.imapStartTls ? 'starttls' : 'tls',
+              identity.imapLogin,
+              identity.smtpHost,
+              identity.smtpPort,
+              identity.smtpStartTls ? 'starttls' : 'tls',
+              identity.smtpLogin,
+              identity.sender,
             ]),
           ),
         )
@@ -145,7 +178,7 @@ final class StudioMailSavedAccount {
   String toString() => 'StudioMailSavedAccount(redacted)';
 }
 
-/// Immutable snapshot of the bounded native keychain catalog.
+/// Immutable snapshot of the bounded native credential catalog.
 final class StudioMailAccountCatalog {
   StudioMailAccountCatalog({
     required List<StudioMailSavedAccount> accounts,
@@ -208,8 +241,14 @@ abstract interface class StudioMailAccountCatalogStore {
 /// platform implementation also offers [StudioMailAccountCatalogStore]. Writes
 /// report actual success. [clear] forgets only the selected remembered account.
 abstract interface class StudioMailCredentialStore {
-  factory StudioMailCredentialStore({FlutterSecureStorage? storage}) =
-      _PlatformStudioMailCredentialStore;
+  factory StudioMailCredentialStore({
+    FlutterSecureStorage? storage,
+    Future<SecureStorage> Function()? backend,
+  }) => backend != null
+      ? _PlatformStudioMailCredentialStore(selectedStorage: backend)
+      : storage == null
+      ? StudioMailAccountsStore()
+      : _PlatformStudioMailCredentialStore(storage: storage);
 
   Future<StudioMailCredentials?> load();
 
@@ -223,23 +262,27 @@ abstract interface class StudioMailCredentialStore {
 
 final class _PlatformStudioMailCredentialStore
     implements StudioMailCredentialStore, StudioMailAccountCatalogStore {
-  _PlatformStudioMailCredentialStore({FlutterSecureStorage? storage})
-    : _storage = storage ?? const FlutterSecureStorage();
+  _PlatformStudioMailCredentialStore({
+    FlutterSecureStorage? storage,
+    Future<SecureStorage> Function()? selectedStorage,
+  }) : _storage =
+           selectedStorage ??
+           (() async =>
+               _FlutterMailStorage(storage ?? const FlutterSecureStorage())),
+       _verifyWrites = true;
 
   static const _legacyKey = 'crispoffice.mail.account.v1';
   static const _catalogKey = 'crispoffice.mail.accounts.v2';
   static const _maxLegacyCodeUnits = 256 * 1024;
   static const _maxCatalogCodeUnits = 4 * 1024 * 1024;
-  static Future<void> _queue = Future<void>.value();
-  final FlutterSecureStorage _storage;
+  static final _operations = AsyncLock();
+  final Future<SecureStorage> Function() _storage;
+  final bool _verifyWrites;
 
   // Serialize even across dialog instances. A later Forget must not be undone
   // by an older slow keychain write, and a failed operation must release the queue.
-  Future<T> _ordered<T>(Future<T> Function() operation) {
-    final result = _queue.then((_) => operation());
-    _queue = result.then<void>((_) {}, onError: (Object _, StackTrace _) {});
-    return result;
-  }
+  Future<T> _ordered<T>(Future<T> Function() operation) =>
+      _operations.synchronized(operation);
 
   @override
   Future<StudioMailCredentials?> load() async =>
@@ -251,14 +294,15 @@ final class _PlatformStudioMailCredentialStore
 
   @override
   Future<bool> clear() async => (await _perform(() async {
-    final catalog = await _readCatalog();
+    final storage = await _storage();
+    final catalog = await _readCatalog(storage);
     final selected = catalog.selectedAccountId;
-    return _forget(catalog, selected);
+    return _forget(storage, catalog, selected);
   })).isSuccess;
 
   @override
   Future<StudioMailAccountCatalogResult> loadAccounts() =>
-      _perform(_readCatalog);
+      _perform(() async => _readCatalog(await _storage()));
 
   @override
   Future<StudioMailAccountCatalogResult> saveAccount(
@@ -271,7 +315,8 @@ final class _PlatformStudioMailCredentialStore
     if (snapshot == null) {
       throw const _CatalogFailure(StudioMailAccountCatalogProblem.invalid);
     }
-    final catalog = await _readCatalog();
+    final storage = await _storage();
+    final catalog = await _readCatalog(storage);
     final accounts = List<StudioMailSavedAccount>.of(catalog.accounts);
     final id = snapshot.accountId;
     final index = accounts.indexWhere((account) => account.id == id);
@@ -287,6 +332,7 @@ final class _PlatformStudioMailCredentialStore
       accounts[index] = saved;
     }
     return _writeCatalog(
+      storage,
       StudioMailAccountCatalog(accounts: accounts, selectedAccountId: id),
     );
   });
@@ -294,11 +340,13 @@ final class _PlatformStudioMailCredentialStore
   @override
   Future<StudioMailAccountCatalogResult> selectAccount(String id) =>
       _perform(() async {
-        final catalog = await _readCatalog();
+        final storage = await _storage();
+        final catalog = await _readCatalog(storage);
         if (!catalog.accounts.any((account) => account.id == id)) {
           throw const _CatalogFailure(StudioMailAccountCatalogProblem.notFound);
         }
         return _writeCatalog(
+          storage,
           StudioMailAccountCatalog(
             accounts: catalog.accounts,
             selectedAccountId: id,
@@ -309,14 +357,16 @@ final class _PlatformStudioMailCredentialStore
   @override
   Future<StudioMailAccountCatalogResult> forgetAccount(String id) =>
       _perform(() async {
-        final catalog = await _readCatalog();
+        final storage = await _storage();
+        final catalog = await _readCatalog(storage);
         if (!catalog.accounts.any((account) => account.id == id)) {
           throw const _CatalogFailure(StudioMailAccountCatalogProblem.notFound);
         }
-        return _forget(catalog, id);
+        return _forget(storage, catalog, id);
       });
 
   Future<StudioMailAccountCatalog> _forget(
+    SecureStorage storage,
     StudioMailAccountCatalog catalog,
     String? id,
   ) async {
@@ -330,6 +380,7 @@ final class _PlatformStudioMailCredentialStore
     // Retain even an empty v2 record. Deleting the catalog could let an old v1
     // record left by an interrupted migration resurrect a forgotten account.
     return _writeCatalog(
+      storage,
       StudioMailAccountCatalog(accounts: accounts, selectedAccountId: selected),
     );
   }
@@ -348,17 +399,22 @@ final class _PlatformStudioMailCredentialStore
     }
   });
 
-  Future<StudioMailAccountCatalog> _readCatalog() async {
-    final raw = await _storage.read(key: _catalogKey);
+  Future<StudioMailAccountCatalog> _readCatalog(SecureStorage storage) async {
+    final raw = await storage.read(_catalogKey);
     if (raw != null) {
       final catalog = _decodeCatalog(raw);
+      if (_decodeObject(raw, _maxCatalogCodeUnits)['accounts'] is Map) {
+        // The parallel selectable-store branch used a v2 map representation.
+        // Validate and upgrade it in the same selected backend before cleanup.
+        await _writeCatalog(storage, catalog);
+      }
       // v2 is authoritative. Finish interrupted legacy cleanup before exposing
       // a successful operation, including after process restart. A failed
       // cleanup never falls back to or overwrites the obsolete record.
-      await _storage.delete(key: _legacyKey);
+      await storage.delete(_legacyKey);
       return catalog;
     }
-    final legacy = await _storage.read(key: _legacyKey);
+    final legacy = await storage.read(_legacyKey);
     if (legacy == null) return StudioMailAccountCatalog(accounts: const []);
     final value = _decodeObject(legacy, _maxLegacyCodeUnits);
     final credentials = StudioMailCredentials.fromJson(value);
@@ -373,12 +429,13 @@ final class _PlatformStudioMailCredentialStore
     // Do not delete v1 until its complete replacement is durably acknowledged.
     // If either write or cleanup fails, the next operation re-reads actual
     // keychain state; it never trusts a partially updated in-memory catalog.
-    await _writeCatalog(migrated);
-    await _storage.delete(key: _legacyKey);
+    await _writeCatalog(storage, migrated);
+    await storage.delete(_legacyKey);
     return migrated;
   }
 
   Future<StudioMailAccountCatalog> _writeCatalog(
+    SecureStorage storage,
     StudioMailAccountCatalog catalog,
   ) async {
     final raw = jsonEncode(<String, Object?>{
@@ -395,7 +452,10 @@ final class _PlatformStudioMailCredentialStore
     if (raw.length > _maxCatalogCodeUnits) {
       throw const _CatalogFailure(StudioMailAccountCatalogProblem.limitReached);
     }
-    await _storage.write(key: _catalogKey, value: raw);
+    await storage.write(_catalogKey, raw);
+    if (_verifyWrites && await storage.read(_catalogKey) != raw) {
+      throw const _CatalogFailure(StudioMailAccountCatalogProblem.unavailable);
+    }
     return catalog;
   }
 
@@ -415,6 +475,9 @@ final class _PlatformStudioMailCredentialStore
   static StudioMailAccountCatalog _decodeCatalog(String raw) {
     final value = _decodeObject(raw, _maxCatalogCodeUnits);
     final records = value['accounts'];
+    if (records is Map<String, Object?>) {
+      return _decodeLegacyMapCatalog(value, records);
+    }
     final selected = value['selectedAccountId'];
     if (value['version'] is! int ||
         value['version'] != 2 ||
@@ -450,6 +513,60 @@ final class _PlatformStudioMailCredentialStore
       selectedAccountId: selected as String?,
     );
   }
+
+  static StudioMailAccountCatalog _decodeLegacyMapCatalog(
+    Map<String, Object?> value,
+    Map<String, Object?> records,
+  ) {
+    final active = value['active'];
+    if (value['version'] is! int ||
+        value['version'] != 2 ||
+        !value.containsKey('active') ||
+        value.containsKey('selectedAccountId') ||
+        records.length > StudioMailAccountCatalog.maxAccounts ||
+        active != null && active is! String) {
+      throw const _CatalogFailure(StudioMailAccountCatalogProblem.invalid);
+    }
+    final accounts = <StudioMailSavedAccount>[];
+    final ids = <String>{};
+    final migratedIds = <String, String>{};
+    for (final entry in records.entries) {
+      final encoded = entry.value;
+      final credentials = encoded is Map<String, Object?>
+          ? StudioMailCredentials.fromJson(encoded)
+          : null;
+      if (credentials == null) {
+        throw const _CatalogFailure(StudioMailAccountCatalogProblem.invalid);
+      }
+      final oldId = sha256
+          .convert(
+            utf8.encode(
+              [
+                credentials.email.trim().toLowerCase(),
+                credentials.imapHost.toLowerCase(),
+                credentials.preset?.name ?? '',
+              ].join('\n'),
+            ),
+          )
+          .toString();
+      final id = credentials.accountId;
+      if (entry.key != oldId || !ids.add(id)) {
+        throw const _CatalogFailure(StudioMailAccountCatalogProblem.invalid);
+      }
+      migratedIds[entry.key] = id;
+      accounts.add(StudioMailSavedAccount(id: id, credentials: credentials));
+    }
+    final selected = active == null
+        ? accounts.firstOrNull?.id
+        : migratedIds[active];
+    if (active != null && selected == null) {
+      throw const _CatalogFailure(StudioMailAccountCatalogProblem.invalid);
+    }
+    return StudioMailAccountCatalog(
+      accounts: accounts,
+      selectedAccountId: selected,
+    );
+  }
 }
 
 final class _CatalogFailure implements Exception {
@@ -459,4 +576,92 @@ final class _CatalogFailure implements Exception {
 
   @override
   String toString() => 'StudioMailAccountCatalogFailure(${problem.name})';
+}
+
+/// Selected secure storage with the same bounded catalog, stable account
+/// identities, migration and operation ordering as the platform test seam.
+/// A backend is captured once per serialized operation, so switching settings
+/// cannot split a read/write across two credential stores.
+final class StudioMailAccountsStore
+    implements StudioMailCredentialStore, StudioMailAccountCatalogStore {
+  StudioMailAccountsStore({Future<SecureStorage> Function()? storage})
+    : _repository = _PlatformStudioMailCredentialStore(
+        selectedStorage:
+            storage ?? (() => StudioCredentialStorage.instance.storage),
+      );
+
+  final _PlatformStudioMailCredentialStore _repository;
+
+  @override
+  Future<StudioMailCredentials?> load() => _repository.load();
+
+  @override
+  Future<bool> save(StudioMailCredentials credentials) =>
+      _repository.save(credentials);
+
+  @override
+  Future<bool> clear() => _repository.clear();
+
+  @override
+  Future<StudioMailAccountCatalogResult> loadAccounts() =>
+      _repository.loadAccounts();
+
+  @override
+  Future<StudioMailAccountCatalogResult> saveAccount(
+    StudioMailCredentials credentials,
+  ) => _repository.saveAccount(credentials);
+
+  /// Retains the selectable-store branch's credential-object call form while
+  /// exposing canonical ID selection through [StudioMailAccountCatalogStore].
+  @override
+  Future<StudioMailAccountCatalogResult> selectAccount(Object account) {
+    final id = switch (account) {
+      String id => id,
+      StudioMailCredentials credentials => credentials.accountId,
+      _ => null,
+    };
+    if (id == null) {
+      return Future.value(
+        const StudioMailAccountCatalogResult.failure(
+          StudioMailAccountCatalogProblem.invalid,
+        ),
+      );
+    }
+    return _repository.selectAccount(id);
+  }
+
+  @override
+  Future<StudioMailAccountCatalogResult> forgetAccount(String id) =>
+      _repository.forgetAccount(id);
+
+  Future<List<StudioMailCredentials>> accounts() async {
+    final result = await loadAccounts();
+    if (!result.isSuccess) {
+      throw StateError('Credential catalog is unavailable.');
+    }
+    final accounts = [
+      for (final saved in result.catalog!.accounts) saved.credentials,
+    ];
+    accounts.sort((a, b) => a.email.compareTo(b.email));
+    return accounts;
+  }
+}
+
+/// Adapts the established injected Flutter keychain seam without changing its
+/// acknowledged-write contract or touching any other credential keys.
+final class _FlutterMailStorage extends SecureStorage {
+  _FlutterMailStorage(this._storage);
+  final FlutterSecureStorage _storage;
+
+  @override
+  Future<String?> read(String key) => _storage.read(key: key);
+  @override
+  Future<void> write(String key, String value) =>
+      _storage.write(key: key, value: value);
+  @override
+  Future<void> delete(String key) => _storage.delete(key: key);
+  @override
+  Future<bool> containsKey(String key) => _storage.containsKey(key: key);
+  @override
+  Future<void> deleteAll() => _storage.deleteAll();
 }

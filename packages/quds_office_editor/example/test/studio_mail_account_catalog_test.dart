@@ -145,6 +145,127 @@ Map<String, Object?> _encoded(
 
 void main() {
   group('remembered account identity', () {
+    // Frozen pre-refactor SHA-256 values of the exact v2 canonical identity
+    // encoding. Loading these literal IDs also guards existing keychain data.
+    for (final vector in [
+      (
+        name: 'manual STARTTLS',
+        credentials: _credentials(
+          email: 'CaseSensitive@Example.TEST',
+          imapHost: 'IMAP.Example.TEST',
+          smtpHost: 'SMTP.Example.TEST',
+          startTls: true,
+          primaryLogin: 'ignored@example.test',
+        ),
+        id: '7d2517cddbed9ca0f96383320b510ac0a5443396ac5da7aabe23f5eafb3047c3',
+      ),
+      (
+        name: 'iCloud local-part login',
+        credentials: _credentials(
+          email: 'Alias@Example.TEST',
+          preset: StudioMailImapPreset.icloud,
+          primaryLogin: 'Primary@iCloud.COM',
+        ),
+        id: 'f23c81845bae3c057aa300361619f6a89f0996dfe7fb2fdced5e39a9bea4bf44',
+      ),
+      (
+        name: 'iCloud full-address login',
+        credentials: _credentials(
+          email: 'Alias@Example.TEST',
+          preset: StudioMailImapPreset.icloud,
+          primaryLogin: 'Primary@iCloud.COM',
+          icloudFullAddressLogin: true,
+        ),
+        id: '5ebf9f7fddb945727690d7e3da0e1d3d29b345b044644a72c72defe12b5aa858',
+      ),
+    ]) {
+      test(
+        '${vector.name} keeps its existing v2 identity and catalog',
+        () async {
+          expect(vector.credentials.accountId, vector.id);
+          final storage = _Storage()
+            ..records[_catalogKey] = jsonEncode(<String, Object?>{
+              'version': 2,
+              'selectedAccountId': vector.id,
+              'accounts': [
+                <String, Object?>{
+                  'id': vector.id,
+                  'credentials': vector.credentials.toJson(),
+                },
+              ],
+            });
+          final before = storage.records[_catalogKey];
+          final loaded = _success(await _store(storage).loadAccounts());
+          expect(loaded.selectedAccountId, vector.id);
+          expect(
+            loaded.selectedAccount!.credentials.toJson(),
+            vector.credentials.toJson(),
+          );
+          expect(storage.records[_catalogKey], before);
+        },
+      );
+    }
+
+    test(
+      'effective manual descriptors expose exact routes without secrets',
+      () {
+        final credentials = _credentials(
+          email: 'CaseSensitive@Example.TEST',
+          imapHost: 'IMAP.Example.TEST',
+          smtpHost: 'SMTP.Example.TEST',
+          startTls: true,
+          primaryLogin: 'ignored@example.test',
+        );
+        expect(credentials.connectionIdentity, (
+          sender: 'CaseSensitive@Example.TEST',
+          imapHost: 'imap.example.test',
+          imapPort: 143,
+          imapStartTls: true,
+          imapLogin: 'CaseSensitive@Example.TEST',
+          smtpHost: 'smtp.example.test',
+          smtpPort: 587,
+          smtpStartTls: true,
+          smtpLogin: 'CaseSensitive@Example.TEST',
+        ));
+        expect(
+          credentials.connectionIdentity.toString(),
+          isNot(contains(credentials.password)),
+        );
+      },
+    );
+
+    test(
+      'iCloud descriptor distinguishes incoming and outgoing identities',
+      () {
+        final credentials = _credentials(
+          email: 'Alias@Example.TEST',
+          preset: StudioMailImapPreset.icloud,
+          primaryLogin: 'Primary@iCloud.COM',
+        );
+        expect(credentials.connectionIdentity, (
+          sender: 'Alias@Example.TEST',
+          imapHost: 'imap.mail.me.com',
+          imapPort: 993,
+          imapStartTls: false,
+          imapLogin: 'Primary',
+          smtpHost: 'smtp.mail.me.com',
+          smtpPort: 587,
+          smtpStartTls: true,
+          smtpLogin: 'Primary@iCloud.COM',
+        ));
+        final rotated = StudioMailCredentials.fromJson({
+          ...credentials.toJson(),
+          'password': 'rotated-private-secret',
+        })!;
+        expect(rotated.connectionIdentity, credentials.connectionIdentity);
+        expect(rotated.accountId, credentials.accountId);
+        expect(
+          rotated.connectionIdentity.toString(),
+          isNot(contains(rotated.password)),
+        );
+      },
+    );
+
     test('password rotation retains identity without disclosing input', () {
       final original = _credentials();
       final rotated = _credentials(password: 'different-private-password');
@@ -477,6 +598,7 @@ void main() {
         'read:$_catalogKey',
         'read:$_legacyKey',
         'write:$_catalogKey',
+        'read:$_catalogKey',
         'delete:$_legacyKey',
       ]);
       expect(storage.records.keys, [_catalogKey]);

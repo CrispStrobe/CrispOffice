@@ -19,6 +19,20 @@ extension StudioMailFeedback on StudioStrings {
       _mailText('New account', 'Neues Konto', 'حساب جديد');
   String get mailSwitchAccount =>
       _mailText('Switch account', 'Konto wechseln', 'تبديل الحساب');
+  String mailAccountSender(String sender) =>
+      _mailText('Sender: $sender', 'Absender: $sender', 'المرسل: $sender');
+  String mailAccountLogin(String login) =>
+      _mailText('Login: $login', 'Anmeldename: $login', 'اسم الدخول: $login');
+  String mailAccountImapLogin(String login) => _mailText(
+    'IMAP login: $login',
+    'IMAP-Anmeldename: $login',
+    'اسم دخول IMAP: $login',
+  );
+  String mailAccountSmtpLogin(String login) => _mailText(
+    'SMTP login: $login',
+    'SMTP-Anmeldename: $login',
+    'اسم دخول SMTP: $login',
+  );
   String get mailSavedAccountsHelp => _mailText(
     'Choose a saved IMAP account, then Connect. New account keeps your other saved accounts. Forget removes only the selected sign-in; local drafts and saved messages stay on this device.',
     'Ein gespeichertes IMAP-Konto auswählen und dann verbinden. „Neues Konto“ behält die anderen gespeicherten Konten. „Konto vergessen“ entfernt nur die ausgewählten Zugangsdaten; lokale Entwürfe und gespeicherte Nachrichten bleiben auf diesem Gerät.',
@@ -212,9 +226,9 @@ extension StudioMailFeedback on StudioStrings {
     'يؤدي هذا إلى حذف المسودة المحلية ومرفقاتها المحفوظة. ولا يلغي رسالة أُرسلت بالفعل. تحقق من التسليم قبل إرسال نسخة أخرى.',
   );
   String get mailPlainTextUnavailable => _mailText(
-    'This message has no plain-text body to quote. Use Compose to write a new message.',
-    'Diese Nachricht enthält keinen Klartext zum Zitieren. Mit „Verfassen“ eine neue Nachricht schreiben.',
-    'لا تحتوي هذه الرسالة على نص عادي للاقتباس. استخدم إنشاء رسالة لكتابة رسالة جديدة.',
+    'This message has no safely quotable body. Use Compose to write a new message.',
+    'Der Nachrichtentext kann nicht sicher zitiert werden. Mit „Verfassen“ eine neue Nachricht schreiben.',
+    'لا يوجد نص يمكن اقتباسه بأمان في هذه الرسالة. استخدم إنشاء رسالة لكتابة رسالة جديدة.',
   );
   String get mailQuotedTextTruncated => _mailText(
     '[Quoted text truncated.]',
@@ -226,10 +240,29 @@ extension StudioMailFeedback on StudioStrings {
     '[Weiterleitung nur als Text; Anlagen sind nicht enthalten.]',
     '[إعادة توجيه النص فقط؛ المرفقات غير مضمنة.]',
   );
+  String get mailForwardWithAttachments => _mailText(
+    'Forward with attachments',
+    'Mit Anhängen weiterleiten',
+    'إعادة التوجيه مع المرفقات',
+  );
+  String get mailAttachedForwardNotice => _mailText(
+    '[Forwarded as text with original attachments. Inline images are attached as files.]',
+    '[Als Text mit den ursprünglichen Anhängen weitergeleitet. Eingebettete Bilder sind als Dateien angehängt.]',
+    '[أُعيد التوجيه كنص مع المرفقات الأصلية. تُرفق الصور المضمنة كملفات.]',
+  );
+  String get mailForwardAttachmentsUnavailable => _mailText(
+    'Attachments could not be forwarded as a complete set. Use Forward text only or add files manually (up to 10 files / 10 MiB).',
+    'Die Anhänge können nicht vollständig weitergeleitet werden. Nur Text weiterleiten oder Dateien manuell hinzufügen (bis zu 10 Dateien / 10 MiB).',
+    'تعذر إعادة توجيه جميع المرفقات معًا. أعد توجيه النص فقط أو أضف الملفات يدويًا (حتى 10 ملفات / 10 ميبيبايت).',
+  );
   String get reply => _mailText('Reply', 'Antworten', 'رد');
   String get replyAll =>
       _mailText('Reply all', 'Allen antworten', 'رد على الجميع');
-  String get forward => _mailText('Forward', 'Weiterleiten', 'إعادة توجيه');
+  String get forward => _mailText(
+    'Forward text only',
+    'Nur Text weiterleiten',
+    'إعادة توجيه النص فقط',
+  );
   String get markRead =>
       _mailText('Mark as read', 'Als gelesen markieren', 'وضع علامة كمقروء');
 
@@ -490,9 +523,9 @@ extension StudioMailFeedback on StudioStrings {
     'استخدام STARTTLS (المنفذان 143/587)',
   );
   String get rememberAccount => _mailText(
-    'Remember this account in the system keychain',
-    'Dieses Konto im Systemschlüsselbund speichern',
-    'حفظ هذا الحساب في سلسلة مفاتيح النظام',
+    'Remember this account in the selected credential store',
+    'Dieses Konto im gewählten Zugangsdaten-Speicher speichern',
+    'حفظ هذا الحساب في مخزن بيانات الاعتماد المحدد',
   );
   String get forgetAccount => _mailText(
     'Forget saved account',
@@ -506,13 +539,13 @@ extension StudioMailFeedback on StudioStrings {
   String get mailAccountForgetFailed => mailKeychainClearFailed;
 
   String get mailKeychainSaveFailed => _mailText(
-    'Connected, but the account could not be saved in the system keychain. This session remains available.',
-    'Verbunden, aber das Konto konnte nicht im Systemschlüsselbund gespeichert werden. Diese Sitzung bleibt verfügbar.',
-    'تم الاتصال، لكن تعذر حفظ الحساب في سلسلة مفاتيح النظام. تبقى هذه الجلسة متاحة.',
+    'Connected, but the account could not be saved in the selected credential store. This session remains available.',
+    'Verbunden, aber das Konto konnte nicht im gewählten Zugangsdaten-Speicher gespeichert werden. Diese Sitzung bleibt verfügbar.',
+    'تم الاتصال، لكن تعذر حفظ الحساب في مخزن بيانات الاعتماد المحدد. تبقى هذه الجلسة متاحة.',
   );
   String get mailKeychainClearFailed => _mailText(
-    'The saved account could not be removed from the system keychain. Try Forget saved account again.',
-    'Das gespeicherte Konto konnte nicht aus dem Systemschlüsselbund entfernt werden. „Gespeichertes Konto entfernen“ erneut versuchen.',
-    'تعذر إزالة الحساب المحفوظ من سلسلة مفاتيح النظام. حاول نسيان الحساب المحفوظ مجددًا.',
+    'The saved account could not be removed from the selected credential store. Try Forget saved account again.',
+    'Das gespeicherte Konto konnte nicht aus dem gewählten Zugangsdaten-Speicher entfernt werden. „Gespeichertes Konto entfernen“ erneut versuchen.',
+    'تعذر إزالة الحساب المحفوظ من مخزن بيانات الاعتماد المحدد. حاول نسيان الحساب المحفوظ مجددًا.',
   );
 }

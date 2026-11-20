@@ -1,3 +1,4 @@
+import 'support/mail_credentials.dart';
 import 'dart:async';
 import 'dart:convert';
 import 'dart:typed_data';
@@ -213,6 +214,7 @@ Future<void> _show(
             onPressed: () => showDialog<void>(
               context: context,
               builder: (_) => StudioMailDialog(
+                credentialStore: SessionMailCredentials(),
                 draftStoreFactory: draftStorage.open,
                 strings: _strings,
                 clientFactory: factory,

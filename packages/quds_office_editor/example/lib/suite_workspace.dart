@@ -1170,9 +1170,14 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     return true;
   }
 
-  Widget _titleBar() {
+  Widget _titleBar({BuildContext? mailContext}) {
+    void switchFromMail(SuiteApp app) {
+      if (mailContext != null) Navigator.of(mailContext).pop();
+      _switchApp(app);
+    }
+
     return Material(
-      color: _appAccent,
+      color: mailContext == null ? _appAccent : const Color(0xFF285A93),
       child: Directionality(
         textDirection: TextDirection.ltr,
         child: SizedBox(
@@ -1225,43 +1230,53 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
                               ],
                             ),
                           ),
-                          if (StudioWindow.isDesktop && !StudioWindow.isMacOS)
+                          if (mailContext == null &&
+                              StudioWindow.isDesktop &&
+                              !StudioWindow.isMacOS)
                             StudioFileMenu(
                               label: _t('File', 'Datei', 'ملف'),
                               groups: _desktopFileGroups,
                             ),
-                          _titleQuickAccess(),
+                          if (mailContext == null) _titleQuickAccess(),
                           Row(
                             children: <Widget>[
                               StudioAppSwitcher(
                                 label: _strings.documents,
                                 icon: Icons.description_outlined,
-                                selected: _app == SuiteApp.word,
-                                onTap: () => _switchApp(SuiteApp.word),
+                                selected:
+                                    mailContext == null &&
+                                    _app == SuiteApp.word,
+                                onTap: () => switchFromMail(SuiteApp.word),
                               ),
                               StudioAppSwitcher(
                                 label: _strings.spreadsheets,
                                 icon: Icons.grid_on_outlined,
-                                selected: _app == SuiteApp.excel,
-                                onTap: () => _switchApp(SuiteApp.excel),
+                                selected:
+                                    mailContext == null &&
+                                    _app == SuiteApp.excel,
+                                onTap: () => switchFromMail(SuiteApp.excel),
                               ),
                               StudioAppSwitcher(
                                 label: _strings.presentations,
                                 icon: Icons.slideshow_outlined,
-                                selected: _app == SuiteApp.powerpoint,
-                                onTap: () => _switchApp(SuiteApp.powerpoint),
+                                selected:
+                                    mailContext == null &&
+                                    _app == SuiteApp.powerpoint,
+                                onTap: () =>
+                                    switchFromMail(SuiteApp.powerpoint),
                               ),
                               StudioAppSwitcher(
                                 label: _strings.pdf,
                                 icon: Icons.picture_as_pdf_outlined,
-                                selected: _app == SuiteApp.pdf,
-                                onTap: () => _switchApp(SuiteApp.pdf),
+                                selected:
+                                    mailContext == null && _app == SuiteApp.pdf,
+                                onTap: () => switchFromMail(SuiteApp.pdf),
                               ),
                               StudioAppSwitcher(
                                 label: _strings.mail,
                                 icon: Icons.mail_outline,
-                                selected: false,
-                                onTap: _openMail,
+                                selected: mailContext != null,
+                                onTap: mailContext == null ? _openMail : () {},
                               ),
                             ],
                           ),
@@ -1275,7 +1290,9 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
                                     horizontal: 10,
                                   ),
                                   child: Text(
-                                    _documentLabel,
+                                    mailContext == null
+                                        ? _documentLabel
+                                        : _strings.mailTitle,
                                     maxLines: 1,
                                     overflow: TextOverflow.ellipsis,
                                     textAlign: TextAlign.center,
@@ -1296,7 +1313,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
                     ),
                   ),
                   IconButton(
-                    key: _settingsButtonKey,
+                    key: mailContext == null ? _settingsButtonKey : null,
                     tooltip: _strings.settings,
                     visualDensity: VisualDensity.compact,
                     padding: EdgeInsets.zero,
@@ -1312,7 +1329,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
                     onPressed: _openSettings,
                   ),
                   IconButton(
-                    key: _accountButtonKey,
+                    key: mailContext == null ? _accountButtonKey : null,
                     tooltip: _strings.account,
                     visualDensity: VisualDensity.compact,
                     padding: EdgeInsets.zero,
@@ -1733,10 +1750,23 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     );
   }
 
-  Future<void> _openMail() => showDialog<void>(
-    context: _themedContext,
-    builder: (BuildContext context) => StudioMailDialog(strings: _strings),
-  );
+  Future<void> _openMail() async {
+    final theme = _materialTheme;
+    await StudioWindow.setTitle('${_strings.mailTitle} — CrispOffice');
+    if (!mounted) return;
+    await Navigator.of(_themedContext).push<void>(
+      MaterialPageRoute<void>(
+        builder: (mailContext) => Theme(
+          data: theme,
+          child: StudioMailDialog(
+            strings: _strings,
+            chromeBuilder: (_) => _titleBar(mailContext: mailContext),
+          ),
+        ),
+      ),
+    );
+    if (mounted) await StudioWindow.setTitle('$_chromeTitle — CrispOffice');
+  }
 
   void _cycleLanguage() {
     setState(() {

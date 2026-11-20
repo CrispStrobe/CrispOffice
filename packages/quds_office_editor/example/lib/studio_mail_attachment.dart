@@ -151,6 +151,43 @@ final class StudioMailAttachments {
     return StudioMailAttachments._(List.unmodifiable(selected), bytes);
   }
 
+  /// Copies the complete decoded source set into ordinary outgoing files.
+  ///
+  /// Inline parts are included as files; no content IDs or inline rendering
+  /// relationships are carried into the text draft. All names, types and byte
+  /// counts are admitted before copying any payload. Nothing is silently
+  /// dropped, renamed or relabeled, including unsupported message containers.
+  factory StudioMailAttachments.forwarded(List<MailAttachment> attachments) {
+    if (attachments.length > maxCount) {
+      throw const StudioMailAttachmentException(
+        StudioMailAttachmentProblem.tooMany,
+      );
+    }
+    var bytes = 0;
+    for (final attachment in attachments) {
+      if (attachment.content.length > maxTotalBytes - bytes) {
+        throw const StudioMailAttachmentException(
+          StudioMailAttachmentProblem.tooLarge,
+        );
+      }
+      bytes += attachment.content.length;
+      StudioMailAttachment.validateName(attachment.displayName);
+      if (!StudioMailAttachment._isSupportedMediaType(attachment.mediaType)) {
+        throw const StudioMailAttachmentException(
+          StudioMailAttachmentProblem.invalidMediaType,
+        );
+      }
+    }
+    return StudioMailAttachments.from([
+      for (final attachment in attachments)
+        StudioMailAttachment(
+          name: attachment.displayName,
+          bytes: attachment.content.bytes,
+          mediaType: attachment.mediaType,
+        ),
+    ]);
+  }
+
   const StudioMailAttachments._(this.items, this.totalBytes);
 
   static const maxCount = 10;

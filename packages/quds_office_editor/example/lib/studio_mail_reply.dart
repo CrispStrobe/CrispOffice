@@ -1,15 +1,25 @@
 import 'package:quds_mail_core/quds_mail_core.dart';
+import 'package:quds_mail_ui/quds_mail_ui.dart' show buildMailBodyPresentation;
 
 import 'studio_mail_draft.dart';
 import 'studio_mail_recipients.dart';
 import 'studio_mail_threading.dart';
 
-/// An HTML-only or unsupported body cannot become a plain-text quote silently.
+/// A missing, unsupported or over-budget body cannot become a text quote.
 final class StudioMailReplyUnavailable implements Exception {
   const StudioMailReplyUnavailable();
 
   @override
-  String toString() => 'No decoded plain-text body is available.';
+  String toString() => 'No safely quotable body is available.';
+}
+
+/// The full attachment set is unavailable or outside the composer contract.
+/// This failure never exposes source names, bytes or MIME diagnostics.
+final class StudioMailForwardAttachmentsUnavailable implements Exception {
+  const StudioMailForwardAttachmentsUnavailable();
+
+  @override
+  String toString() => 'The complete attachment set cannot be forwarded.';
 }
 
 /// Source addresses cannot safely become a complete supported recipient list.
@@ -24,12 +34,13 @@ final class StudioMailReplyRecipientsUnavailable implements Exception {
 
 /// Builds a bounded text quote from the authoritative, decoded raw message.
 ///
-/// Only the plain body is quoted. Reader presentation headers, Bcc addresses,
-/// HTML and attachment names/content are never used as a fallback. Forwarding
-/// requires the user to choose a recipient and explicitly identifies the
-/// text-only boundary. Replies carry bounded, validated thread identifiers;
-/// forwards never inherit them. Attachment forwarding remains outside this
-/// draft contract. Attribution dates use UTC to avoid host-zone ambiguity.
+/// Plain text is authoritative, including an explicitly empty alternative.
+/// HTML-only bodies use the bounded inert body projection. Reader headers,
+/// Bcc addresses and attachment names/content never become quoted text.
+/// Forwarding requires the user to choose a recipient. This entry never
+/// copies attachments; use [buildStudioMailForwardWithAttachmentsDraft] for
+/// that explicit action. Replies carry validated thread identifiers; forwards
+/// never inherit them. Attribution dates use UTC to avoid host-zone ambiguity.
 StudioMailDraft buildStudioMailReplyDraft(
   MailMessage message, {
   required bool forward,
@@ -55,6 +66,38 @@ StudioMailDraft buildStudioMailReplyDraft(
     to: recipient,
     truncationNotice: truncationNotice,
     forwardNotice: forwardNotice,
+  );
+}
+
+/// Starts a new text forward with every decoded attachment included as a file.
+///
+/// The authoritative parse must be complete: a partial result may have omitted
+/// source parts, even when its visible attachment list meets composer limits.
+/// Admission is all-or-none, including inline parts. No transport operation or
+/// source mutation occurs here; the host opens its normal recoverable composer.
+StudioMailDraft buildStudioMailForwardWithAttachmentsDraft(
+  MailParseResult result, {
+  String truncationNotice = '[Quoted text truncated.]',
+  String forwardNotice =
+      '[Forwarded as text with original attachments. Inline images are attached as files.]',
+}) {
+  final message = result.message;
+  if (result.status != MailParseStatus.complete || message == null) {
+    throw const StudioMailForwardAttachmentsUnavailable();
+  }
+  late final StudioMailAttachments attachments;
+  try {
+    attachments = StudioMailAttachments.forwarded(message.attachments);
+  } on StudioMailAttachmentException {
+    throw const StudioMailForwardAttachmentsUnavailable();
+  }
+  return _buildStudioMailDraft(
+    message,
+    forward: true,
+    to: '',
+    truncationNotice: truncationNotice,
+    forwardNotice: forwardNotice,
+    attachments: attachments,
   );
 }
 
@@ -131,9 +174,9 @@ StudioMailDraft _buildStudioMailDraft(
   String cc = '',
   required String truncationNotice,
   String forwardNotice = '[Text-only forward; attachments are not included.]',
+  StudioMailAttachments attachments = const StudioMailAttachments.empty(),
 }) {
-  final plain = message.body.plainText;
-  if (plain == null) throw const StudioMailReplyUnavailable();
+  final plain = message.body.plainText ?? _projectHtmlQuote(message.body);
 
   final envelope = message.envelope;
   final subject = envelope.subject;
@@ -173,6 +216,7 @@ StudioMailDraft _buildStudioMailDraft(
   return StudioMailDraft(
     to: to,
     cc: cc,
+    attachments: attachments,
     thread: forward
         ? const StudioMailThread.empty()
         : StudioMailThread.replyTo(envelope),
@@ -181,4 +225,10 @@ StudioMailDraft _buildStudioMailDraft(
         : '$prefix$subject',
     body: '\n\n$header$quoted${truncated ? '\n\n$truncationNotice' : ''}',
   );
+}
+
+String _projectHtmlQuote(MailBody body) {
+  final presentation = buildMailBodyPresentation(body);
+  if (presentation.rejected) throw const StudioMailReplyUnavailable();
+  return presentation.bodyText;
 }

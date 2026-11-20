@@ -1044,12 +1044,32 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
     }
   });
 
-  Future<void> _reply({required bool forward, bool replyAll = false}) async {
-    final message = _reader?.result.message;
-    if (message == null || !_canSend || _blocked) return;
+  Future<void> _reply({
+    required bool forward,
+    bool replyAll = false,
+    bool includeAttachments = false,
+  }) async {
+    final result = _reader?.result;
+    final message = result?.message;
+    if (result == null || message == null || !_canSend || _blocked) return;
+    // Retained drafts take precedence over validating/copying a new source.
+    // _compose also guards after asynchronous account-store restoration.
+    if (_draft != null) {
+      setState(() {
+        _error = widget.strings.mailRetainedDraft;
+        _notice = null;
+      });
+      return;
+    }
     try {
       await _compose(
-        replyAll
+        includeAttachments
+            ? buildStudioMailForwardWithAttachmentsDraft(
+                result,
+                truncationNotice: widget.strings.mailQuotedTextTruncated,
+                forwardNotice: widget.strings.mailAttachedForwardNotice,
+              )
+            : replyAll
             ? buildStudioMailReplyAllDraft(
                 message,
                 sender: _sender,
@@ -1062,6 +1082,13 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
                 forwardNotice: widget.strings.mailTextOnlyForward,
               ),
       );
+    } on StudioMailForwardAttachmentsUnavailable {
+      if (mounted) {
+        setState(() {
+          _error = widget.strings.mailForwardAttachmentsUnavailable;
+          _notice = null;
+        });
+      }
     } on StudioMailReplyRecipientsUnavailable {
       if (mounted) {
         setState(() => _error = widget.strings.mailReplyRecipientsUnavailable);
@@ -1664,6 +1691,13 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
             onPressed: _blocked || !_canSend
                 ? null
                 : () => _reply(forward: true),
+          ),
+          IconButton(
+            tooltip: widget.strings.mailForwardWithAttachments,
+            icon: const Icon(Icons.attach_email_outlined),
+            onPressed: _blocked || !_canSend
+                ? null
+                : () => _reply(forward: true, includeAttachments: true),
           ),
           IconButton(
             tooltip: _isRead(selected) == true
