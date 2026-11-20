@@ -169,9 +169,37 @@ closing and retry after a failed worker preserve native resource ownership.
 `quds_proofing_spacy_grammar.dart` exports `SpacyGermanGrammarPlanner` and
 `SpacyGrammarProvider`. The [W6 evidence and scope](../../docs/validation/native-spacy-w6-20261117/README.md)
 describe the separate development panel, predeclared qualification protocol and
-real editor controls. This is a bounded experiment for noun/finite-verb number
-agreement in `de-DE`, using the exact accepted native library. It is not a
-general German grammar checker or a released model/runtime distribution.
+real editor controls. It started as a bounded experiment for noun/finite-verb
+number agreement in `de-DE` on the exact accepted native library. Grammar v2
+adds four rule families (below). It is not a general German grammar checker or
+a released model/runtime distribution.
+
+### Rule families (grammar v2)
+
+`SpacyGrammarFamily` lists every family with a stable rule ID, German and
+English labels and explanations, and the deterministic rule IDs whose ignore
+also suppresses it. The [grammar v2 evidence](../../docs/validation/native-spacy-grammar-v2-20261120/README.md)
+records a sealed per-family qualification on both qualified digests. The
+macOS bundled run and the Linux replay are identical on all 1,221 rows.
+
+| Family | Rule ID | State |
+| --- | --- | --- |
+| Subject/verb number (W6/W7) | `de.spacy.noun-verb` | qualified, on |
+| Article/adjective/noun agreement | `de.spacy.np-agreement` | qualified, on |
+| Case after fixed-case prepositions | `de.spacy.preposition-case` | qualified, on |
+| Finite verb position (V3 after a fronted adverbial; V2 in dass/ob/wenn/… clauses) | `de.spacy.verb-position` | qualified, on |
+| Subject/verb person | `de.spacy.subject-person` | failed one valid control; experimental, off |
+
+`spacyGrammarQualifiedFamilies` is the provider's default. Pass
+`families: {...}` to `SpacyGrammarProvider.load`/`.withTransport` to choose
+others, and `englishMessages: true` for English explanations.
+`SpacyGermanGrammarPlanner()` without arguments still plans only the original
+noun/verb family, so the consumed W6/W7 replays are unchanged. The new
+families are pure Dart. They take structure (heads, `nk`/`sb`/`cp` labels,
+tags) from the native parse. Every corrected form comes from reviewed facts:
+the noun lexicon, closed determiner and adjective-ending tables, the fixed-case
+preposition list, and reviewed verb paradigms. Each family abstains on
+ambiguity, coordination, quotations, protected text and personal words.
 
 After an explicit user action, a host with a verified installation may load a
 dedicated provider and attach it to the editor's **manual** proofing service:
@@ -206,6 +234,10 @@ barrier should await the provider's idempotent `dispose()` future after session
 disposal or detachment. An active native call retains its context until it
 finishes safely. The stock Studio analysis dialog remains an annotation view;
 this change does not add a grammar toggle or register a grammar provider there.
+Studio's **Analysis setup** lists the rule families under **Manual German
+grammar suggestions**. Qualified families are ticked by default, and
+experimental ones are marked and off. The choice is stored with the other
+spaCy settings.
 
 The planner accepts one bounded sentence with a reviewed common-noun subject
 and third-person present-indicative finite verb, including selected intervening
@@ -217,7 +249,9 @@ abstain. Native parses cannot override lexical ambiguity. Every edit is a
 single reviewed replacement with exact original UTF-16/grapheme boundaries.
 
 Use the stable rule ID `de.spacy.noun-verb` to ignore the optional rule; the
-existing `de.grammar.noun-verb` ignore also suppresses it. Personal/ignored words
+existing `de.grammar.noun-verb` ignore also suppresses it. The v2 families
+are likewise suppressed by their own IDs or by `de.grammar.phrase-agreement`/
+`adjective-ending`, `preposition-case`, `pronoun-verb` and `word-order`. Personal/ignored words
 are captured with their vocabulary revision. Changed documents, requests,
 configuration and vocabulary invalidate pending results. Unsupported locales
 and missing/failed native execution remain explicit outcomes. Suggestions use

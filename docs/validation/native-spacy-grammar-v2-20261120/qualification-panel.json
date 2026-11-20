@@ -1,0 +1,3092 @@
+{
+  "schema": "quds.spacy.grammar.panel.v1",
+  "split": "qualification",
+  "panel": "native-spacy-grammar-v2-20261120",
+  "authorship": "Hand-authored by an independent assistant agent from a written brief, before any model or planner output; no external corpus text; no human gold claim.",
+  "sources": "hand-written",
+  "cases": [
+    {
+      "id": "npa-error-01",
+      "kind": "error",
+      "family": "np-agreement",
+      "subtype": "object-indefinite-adjective",
+      "locale": "de-DE",
+      "text": "Wir haben gestern einen neuer Kühlschrank für die Küche bestellt.",
+      "expected": "Wir haben gestern einen neuen Kühlschrank für die Küche bestellt.",
+      "start_offset": 23,
+      "target": {
+        "original": "neuer",
+        "replacement": "neuen"
+      },
+      "note": "Kühlschrank is masculine; accusative after einen requires weak/mixed ending -en."
+    },
+    {
+      "id": "npa-error-02",
+      "kind": "error",
+      "family": "np-agreement",
+      "subtype": "genitive-possessive-adjective",
+      "locale": "de-DE",
+      "text": "Der Bericht liegt auf dem Schreibtisch meines neue Kollegen.",
+      "expected": "Der Bericht liegt auf dem Schreibtisch meines neuen Kollegen.",
+      "start_offset": 23,
+      "target": {
+        "original": "neue",
+        "replacement": "neuen"
+      },
+      "note": "Masculine genitive singular after meines requires adjective ending -en."
+    },
+    {
+      "id": "npa-error-03",
+      "kind": "error",
+      "family": "np-agreement",
+      "subtype": "object-demonstrative-number",
+      "locale": "de-DE",
+      "text": "Diese Buch habe ich meiner Schwester zum Geburtstag geschenkt.",
+      "expected": "Dieses Buch habe ich meiner Schwester zum Geburtstag geschenkt.",
+      "start_offset": 23,
+      "target": {
+        "original": "Diese",
+        "replacement": "Dieses"
+      },
+      "note": "Buch is neuter singular; demonstrative must be dieses."
+    },
+    {
+      "id": "npa-error-04",
+      "kind": "error",
+      "family": "np-agreement",
+      "subtype": "subject-definite-gender",
+      "locale": "de-DE",
+      "text": "Der Mädchen aus der dritten Klasse hat den Preis gewonnen.",
+      "expected": "Das Mädchen aus der dritten Klasse hat den Preis gewonnen.",
+      "start_offset": 23,
+      "target": {
+        "original": "Der",
+        "replacement": "Das"
+      },
+      "note": "Mädchen is neuter; nominative article is das."
+    },
+    {
+      "id": "npa-error-05",
+      "kind": "error",
+      "family": "np-agreement",
+      "subtype": "subject-possessive-gender",
+      "locale": "de-DE",
+      "text": "Mein Schwester arbeitet seit zwei Jahren in einer Apotheke.",
+      "expected": "Meine Schwester arbeitet seit zwei Jahren in einer Apotheke.",
+      "start_offset": 23,
+      "target": {
+        "original": "Mein",
+        "replacement": "Meine"
+      },
+      "note": "Schwester is feminine; possessive takes -e in the nominative."
+    },
+    {
+      "id": "npa-error-06",
+      "kind": "error",
+      "family": "np-agreement",
+      "subtype": "object-indefinite-adjective",
+      "locale": "de-DE",
+      "text": "Unsere Nachbarn haben einen großes Garten hinter dem Haus.",
+      "expected": "Unsere Nachbarn haben einen großen Garten hinter dem Haus.",
+      "start_offset": 23,
+      "target": {
+        "original": "großes",
+        "replacement": "großen"
+      },
+      "note": "Garten is masculine accusative after einen; adjective ending -en."
+    },
+    {
+      "id": "npa-error-07",
+      "kind": "error",
+      "family": "np-agreement",
+      "subtype": "object-definite-adjective",
+      "locale": "de-DE",
+      "text": "Bitte nehmen Sie den blaue Ordner aus dem Regal.",
+      "expected": "Bitte nehmen Sie den blauen Ordner aus dem Regal.",
+      "start_offset": 23,
+      "target": {
+        "original": "blaue",
+        "replacement": "blauen"
+      },
+      "note": "Masculine accusative after den requires weak ending -en."
+    },
+    {
+      "id": "npa-error-08",
+      "kind": "error",
+      "family": "np-agreement",
+      "subtype": "genitive-definite-gender",
+      "locale": "de-DE",
+      "text": "Das Ergebnis des letzten Sitzung war ein großer Erfolg für das ganze Team.",
+      "expected": "Das Ergebnis der letzten Sitzung war ein großer Erfolg für das ganze Team.",
+      "start_offset": 23,
+      "target": {
+        "original": "des",
+        "replacement": "der"
+      },
+      "note": "Sitzung is feminine; genitive article is der."
+    },
+    {
+      "id": "npa-error-09",
+      "kind": "error",
+      "family": "np-agreement",
+      "subtype": "pp-indefinite-adjective",
+      "locale": "de-DE",
+      "text": "Er hat gestern mit einer alter Freundin telefoniert.",
+      "expected": "Er hat gestern mit einer alten Freundin telefoniert.",
+      "start_offset": 23,
+      "target": {
+        "original": "alter",
+        "replacement": "alten"
+      },
+      "note": "Feminine dative after einer requires adjective ending -en."
+    },
+    {
+      "id": "npa-error-10",
+      "kind": "error",
+      "family": "np-agreement",
+      "subtype": "subject-definite-gender",
+      "locale": "de-DE",
+      "text": "Das Konferenzraum im zweiten Stock ist heute leider belegt.",
+      "expected": "Der Konferenzraum im zweiten Stock ist heute leider belegt.",
+      "start_offset": 23,
+      "target": {
+        "original": "Das",
+        "replacement": "Der"
+      },
+      "note": "Konferenzraum is masculine (der Raum)."
+    },
+    {
+      "id": "npa-error-11",
+      "kind": "error",
+      "family": "np-agreement",
+      "subtype": "object-definite-adjective",
+      "locale": "de-DE",
+      "text": "Kannst du mir bitte das scharfe Messer und den kleine Löffel geben?",
+      "expected": "Kannst du mir bitte das scharfe Messer und den kleinen Löffel geben?",
+      "start_offset": 23,
+      "target": {
+        "original": "kleine",
+        "replacement": "kleinen"
+      },
+      "note": "Löffel is masculine accusative after den; ending -en."
+    },
+    {
+      "id": "npa-error-12",
+      "kind": "error",
+      "family": "np-agreement",
+      "subtype": "subject-indefinite-adjective",
+      "locale": "de-DE",
+      "text": "Ein kaltes Wind wehte gestern über das leere Feld.",
+      "expected": "Ein kalter Wind wehte gestern über das leere Feld.",
+      "start_offset": 23,
+      "target": {
+        "original": "kaltes",
+        "replacement": "kalter"
+      },
+      "note": "Wind is masculine; nominative after ein takes strong ending -er."
+    },
+    {
+      "id": "npa-error-13",
+      "kind": "error",
+      "family": "np-agreement",
+      "subtype": "object-indefinite-adjective-rare-noun",
+      "locale": "de-DE",
+      "text": "Die Gemeinde hat einen neues Bebauungsplan veröffentlicht.",
+      "expected": "Die Gemeinde hat einen neuen Bebauungsplan veröffentlicht.",
+      "start_offset": 23,
+      "target": {
+        "original": "neues",
+        "replacement": "neuen"
+      },
+      "note": "Bebauungsplan is masculine (der Plan); accusative after einen takes -en."
+    },
+    {
+      "id": "npa-error-14",
+      "kind": "error",
+      "family": "np-agreement",
+      "subtype": "subject-quantifier-plural-adjective",
+      "locale": "de-DE",
+      "text": "Alle neue Mitarbeiter bekommen in der ersten Woche eine Einführung.",
+      "expected": "Alle neuen Mitarbeiter bekommen in der ersten Woche eine Einführung.",
+      "start_offset": 23,
+      "target": {
+        "original": "neue",
+        "replacement": "neuen"
+      },
+      "note": "After alle the adjective takes the weak plural ending -en."
+    },
+    {
+      "id": "npa-error-15",
+      "kind": "error",
+      "family": "np-agreement",
+      "subtype": "object-indefinite-adjective-rare-adjective",
+      "locale": "de-DE",
+      "text": "Ihr Vorschlag hat einen nachhaltige Eindruck bei der Geschäftsleitung hinterlassen.",
+      "expected": "Ihr Vorschlag hat einen nachhaltigen Eindruck bei der Geschäftsleitung hinterlassen.",
+      "start_offset": 23,
+      "target": {
+        "original": "nachhaltige",
+        "replacement": "nachhaltigen"
+      },
+      "note": "Eindruck is masculine accusative after einen; ending -en."
+    },
+    {
+      "id": "npa-error-16",
+      "kind": "error",
+      "family": "np-agreement",
+      "subtype": "subject-quantifier-gender",
+      "locale": "de-DE",
+      "text": "Jeder Teilnehmerin erhält am Eingang ein Namensschild.",
+      "expected": "Jede Teilnehmerin erhält am Eingang ein Namensschild.",
+      "start_offset": 23,
+      "target": {
+        "original": "Jeder",
+        "replacement": "Jede"
+      },
+      "note": "Teilnehmerin is feminine nominative; jede."
+    },
+    {
+      "id": "npa-error-17",
+      "kind": "error",
+      "family": "np-agreement",
+      "subtype": "object-indefinite-adjective",
+      "locale": "de-DE",
+      "text": "Wir suchen eine erfahrenen Buchhalterin für unsere Filiale in Köln.",
+      "expected": "Wir suchen eine erfahrene Buchhalterin für unsere Filiale in Köln.",
+      "start_offset": 23,
+      "target": {
+        "original": "erfahrenen",
+        "replacement": "erfahrene"
+      },
+      "note": "Feminine accusative after eine takes ending -e."
+    },
+    {
+      "id": "npa-error-18",
+      "kind": "error",
+      "family": "np-agreement",
+      "subtype": "genitive-demonstrative-gender",
+      "locale": "de-DE",
+      "text": "Die Farbe dieser alten Schrankes gefällt mir nicht mehr.",
+      "expected": "Die Farbe dieses alten Schrankes gefällt mir nicht mehr.",
+      "start_offset": 23,
+      "target": {
+        "original": "dieser",
+        "replacement": "dieses"
+      },
+      "note": "Schrank is masculine; genitive demonstrative is dieses (noun already has -es)."
+    },
+    {
+      "id": "npa-error-19",
+      "kind": "error",
+      "family": "np-agreement",
+      "subtype": "subject-negative-case",
+      "locale": "de-DE",
+      "text": "Keinen Kunde hat sich bisher über die Lieferung beschwert.",
+      "expected": "Kein Kunde hat sich bisher über die Lieferung beschwert.",
+      "start_offset": 23,
+      "target": {
+        "original": "Keinen",
+        "replacement": "Kein"
+      },
+      "note": "Kunde is the masculine nominative subject; kein."
+    },
+    {
+      "id": "npa-error-20",
+      "kind": "error",
+      "family": "np-agreement",
+      "subtype": "object-definite-gender",
+      "locale": "de-DE",
+      "text": "Der Hausmeister repariert heute das defekte Heizung im Keller.",
+      "expected": "Der Hausmeister repariert heute die defekte Heizung im Keller.",
+      "start_offset": 23,
+      "target": {
+        "original": "das",
+        "replacement": "die"
+      },
+      "note": "Heizung is feminine; accusative article die."
+    },
+    {
+      "id": "npa-error-21",
+      "kind": "error",
+      "family": "np-agreement",
+      "subtype": "subject-possessive-gender",
+      "locale": "de-DE",
+      "text": "Unser Firma feiert im nächsten Jahr ihr fünfzigjähriges Jubiläum.",
+      "expected": "Unsere Firma feiert im nächsten Jahr ihr fünfzigjähriges Jubiläum.",
+      "start_offset": 23,
+      "target": {
+        "original": "Unser",
+        "replacement": "Unsere"
+      },
+      "note": "Firma is feminine; possessive unsere."
+    },
+    {
+      "id": "npa-error-22",
+      "kind": "error",
+      "family": "np-agreement",
+      "subtype": "object-indefinite-adjective-rare-noun",
+      "locale": "de-DE",
+      "text": "Am Wochenende besuchen wir ein bekannter Weingut an der Mosel.",
+      "expected": "Am Wochenende besuchen wir ein bekanntes Weingut an der Mosel.",
+      "start_offset": 23,
+      "target": {
+        "original": "bekannter",
+        "replacement": "bekanntes"
+      },
+      "note": "Weingut is neuter accusative after ein; strong ending -es."
+    },
+    {
+      "id": "npa-error-23",
+      "kind": "error",
+      "family": "np-agreement",
+      "subtype": "genitive-demonstrative-gender",
+      "locale": "de-DE",
+      "text": "Die Lösung dieser schwierigen Problems hat viel Zeit gekostet.",
+      "expected": "Die Lösung dieses schwierigen Problems hat viel Zeit gekostet.",
+      "start_offset": 23,
+      "target": {
+        "original": "dieser",
+        "replacement": "dieses"
+      },
+      "note": "Problem is neuter; genitive demonstrative dieses matches the noun form Problems."
+    },
+    {
+      "id": "npa-error-24",
+      "kind": "error",
+      "family": "np-agreement",
+      "subtype": "object-coordinated-adjective",
+      "locale": "de-DE",
+      "text": "Sie trug ein elegantes Kleid und einen rote Schal.",
+      "expected": "Sie trug ein elegantes Kleid und einen roten Schal.",
+      "start_offset": 23,
+      "target": {
+        "original": "rote",
+        "replacement": "roten"
+      },
+      "note": "Schal is masculine accusative after einen; ending -en."
+    },
+    {
+      "id": "npa-valid-01",
+      "kind": "valid",
+      "family": "np-agreement",
+      "subtype": "corrected-object-indefinite-adjective",
+      "locale": "de-DE",
+      "text": "Wir haben gestern einen neuen Kühlschrank für die Küche bestellt.",
+      "expected": "Wir haben gestern einen neuen Kühlschrank für die Küche bestellt.",
+      "start_offset": 23,
+      "note": "Corrected form of npa-error-01."
+    },
+    {
+      "id": "npa-valid-02",
+      "kind": "valid",
+      "family": "np-agreement",
+      "subtype": "corrected-subject-possessive-gender",
+      "locale": "de-DE",
+      "text": "Meine Schwester arbeitet seit zwei Jahren in einer Apotheke.",
+      "expected": "Meine Schwester arbeitet seit zwei Jahren in einer Apotheke.",
+      "start_offset": 23,
+      "note": "Corrected form of npa-error-05."
+    },
+    {
+      "id": "npa-valid-03",
+      "kind": "valid",
+      "family": "np-agreement",
+      "subtype": "corrected-genitive-definite-gender",
+      "locale": "de-DE",
+      "text": "Das Ergebnis der letzten Sitzung war ein großer Erfolg für das ganze Team.",
+      "expected": "Das Ergebnis der letzten Sitzung war ein großer Erfolg für das ganze Team.",
+      "start_offset": 23,
+      "note": "Corrected form of npa-error-08."
+    },
+    {
+      "id": "npa-valid-04",
+      "kind": "valid",
+      "family": "np-agreement",
+      "subtype": "corrected-subject-definite-gender",
+      "locale": "de-DE",
+      "text": "Der Konferenzraum im zweiten Stock ist heute leider belegt.",
+      "expected": "Der Konferenzraum im zweiten Stock ist heute leider belegt.",
+      "start_offset": 23,
+      "note": "Corrected form of npa-error-10."
+    },
+    {
+      "id": "npa-valid-05",
+      "kind": "valid",
+      "family": "np-agreement",
+      "subtype": "corrected-object-indefinite-adjective-rare-noun",
+      "locale": "de-DE",
+      "text": "Die Gemeinde hat einen neuen Bebauungsplan veröffentlicht.",
+      "expected": "Die Gemeinde hat einen neuen Bebauungsplan veröffentlicht.",
+      "start_offset": 23,
+      "note": "Corrected form of npa-error-13."
+    },
+    {
+      "id": "npa-valid-06",
+      "kind": "valid",
+      "family": "np-agreement",
+      "subtype": "corrected-subject-quantifier-gender",
+      "locale": "de-DE",
+      "text": "Jede Teilnehmerin erhält am Eingang ein Namensschild.",
+      "expected": "Jede Teilnehmerin erhält am Eingang ein Namensschild.",
+      "start_offset": 23,
+      "note": "Corrected form of npa-error-16."
+    },
+    {
+      "id": "npa-valid-07",
+      "kind": "valid",
+      "family": "np-agreement",
+      "subtype": "corrected-object-indefinite-adjective",
+      "locale": "de-DE",
+      "text": "Wir suchen eine erfahrene Buchhalterin für unsere Filiale in Köln.",
+      "expected": "Wir suchen eine erfahrene Buchhalterin für unsere Filiale in Köln.",
+      "start_offset": 23,
+      "note": "Corrected form of npa-error-17."
+    },
+    {
+      "id": "npa-valid-08",
+      "kind": "valid",
+      "family": "np-agreement",
+      "subtype": "corrected-genitive-demonstrative-gender",
+      "locale": "de-DE",
+      "text": "Die Farbe dieses alten Schrankes gefällt mir nicht mehr.",
+      "expected": "Die Farbe dieses alten Schrankes gefällt mir nicht mehr.",
+      "start_offset": 23,
+      "note": "Corrected form of npa-error-18."
+    },
+    {
+      "id": "npa-valid-09",
+      "kind": "valid",
+      "family": "np-agreement",
+      "subtype": "corrected-object-definite-gender",
+      "locale": "de-DE",
+      "text": "Der Hausmeister repariert heute die defekte Heizung im Keller.",
+      "expected": "Der Hausmeister repariert heute die defekte Heizung im Keller.",
+      "start_offset": 23,
+      "note": "Corrected form of npa-error-20."
+    },
+    {
+      "id": "npa-valid-10",
+      "kind": "valid",
+      "family": "np-agreement",
+      "subtype": "corrected-subject-possessive-gender",
+      "locale": "de-DE",
+      "text": "Unsere Firma feiert im nächsten Jahr ihr fünfzigjähriges Jubiläum.",
+      "expected": "Unsere Firma feiert im nächsten Jahr ihr fünfzigjähriges Jubiläum.",
+      "start_offset": 23,
+      "note": "Corrected form of npa-error-21."
+    },
+    {
+      "id": "npa-valid-11",
+      "kind": "valid",
+      "family": "np-agreement",
+      "subtype": "corrected-genitive-demonstrative-gender",
+      "locale": "de-DE",
+      "text": "Die Lösung dieses schwierigen Problems hat viel Zeit gekostet.",
+      "expected": "Die Lösung dieses schwierigen Problems hat viel Zeit gekostet.",
+      "start_offset": 23,
+      "note": "Corrected form of npa-error-23."
+    },
+    {
+      "id": "npa-valid-12",
+      "kind": "valid",
+      "family": "np-agreement",
+      "subtype": "corrected-object-coordinated-adjective",
+      "locale": "de-DE",
+      "text": "Sie trug ein elegantes Kleid und einen roten Schal.",
+      "expected": "Sie trug ein elegantes Kleid und einen roten Schal.",
+      "start_offset": 23,
+      "note": "Corrected form of npa-error-24."
+    },
+    {
+      "id": "npa-valid-13",
+      "kind": "valid",
+      "family": "np-agreement",
+      "subtype": "new-control",
+      "locale": "de-DE",
+      "text": "Der alte Drucker im Flur druckt nur noch schwarzweiß.",
+      "expected": "Der alte Drucker im Flur druckt nur noch schwarzweiß.",
+      "start_offset": 23,
+      "note": "Independent correct control sentence of similar structure."
+    },
+    {
+      "id": "npa-valid-14",
+      "kind": "valid",
+      "family": "np-agreement",
+      "subtype": "new-control",
+      "locale": "de-DE",
+      "text": "Wir danken allen freiwilligen Helferinnen und Helfern für ihren großartigen Einsatz.",
+      "expected": "Wir danken allen freiwilligen Helferinnen und Helfern für ihren großartigen Einsatz.",
+      "start_offset": 23,
+      "note": "Independent correct control sentence of similar structure."
+    },
+    {
+      "id": "npa-valid-15",
+      "kind": "valid",
+      "family": "np-agreement",
+      "subtype": "new-control",
+      "locale": "de-DE",
+      "text": "Mit diesem kurzen Schreiben bestätigen wir den Eingang Ihrer Bestellung.",
+      "expected": "Mit diesem kurzen Schreiben bestätigen wir den Eingang Ihrer Bestellung.",
+      "start_offset": 23,
+      "note": "Independent correct control sentence of similar structure."
+    },
+    {
+      "id": "npa-valid-16",
+      "kind": "valid",
+      "family": "np-agreement",
+      "subtype": "new-control",
+      "locale": "de-DE",
+      "text": "Das kleine Café an der Ecke hat einen ausgezeichneten Ruf.",
+      "expected": "Das kleine Café an der Ecke hat einen ausgezeichneten Ruf.",
+      "start_offset": 23,
+      "note": "Independent correct control sentence of similar structure."
+    },
+    {
+      "id": "npa-valid-17",
+      "kind": "valid",
+      "family": "np-agreement",
+      "subtype": "new-control",
+      "locale": "de-DE",
+      "text": "Ein freundlicher Herr hat vorhin nach Ihnen gefragt.",
+      "expected": "Ein freundlicher Herr hat vorhin nach Ihnen gefragt.",
+      "start_offset": 23,
+      "note": "Independent correct control sentence of similar structure."
+    },
+    {
+      "id": "npa-valid-18",
+      "kind": "valid",
+      "family": "np-agreement",
+      "subtype": "new-control",
+      "locale": "de-DE",
+      "text": "Die Ergebnisse der jährlichen Umfrage werden nächste Woche veröffentlicht.",
+      "expected": "Die Ergebnisse der jährlichen Umfrage werden nächste Woche veröffentlicht.",
+      "start_offset": 23,
+      "note": "Independent correct control sentence of similar structure."
+    },
+    {
+      "id": "npa-valid-19",
+      "kind": "valid",
+      "family": "np-agreement",
+      "subtype": "new-control",
+      "locale": "de-DE",
+      "text": "Jedes Jahr pflanzt der Verein einen jungen Baum im Stadtpark.",
+      "expected": "Jedes Jahr pflanzt der Verein einen jungen Baum im Stadtpark.",
+      "start_offset": 23,
+      "note": "Independent correct control sentence of similar structure."
+    },
+    {
+      "id": "npa-valid-20",
+      "kind": "valid",
+      "family": "np-agreement",
+      "subtype": "new-control",
+      "locale": "de-DE",
+      "text": "Der Geschmack dieses würzigen Käses erinnert mich an Frankreich.",
+      "expected": "Der Geschmack dieses würzigen Käses erinnert mich an Frankreich.",
+      "start_offset": 23,
+      "note": "Independent correct control sentence of similar structure."
+    },
+    {
+      "id": "npa-valid-21",
+      "kind": "valid",
+      "family": "np-agreement",
+      "subtype": "new-control",
+      "locale": "de-DE",
+      "text": "Unsere Abteilung braucht dringend einen zuverlässigen Laptop.",
+      "expected": "Unsere Abteilung braucht dringend einen zuverlässigen Laptop.",
+      "start_offset": 23,
+      "note": "Independent correct control sentence of similar structure."
+    },
+    {
+      "id": "npa-valid-22",
+      "kind": "valid",
+      "family": "np-agreement",
+      "subtype": "new-control",
+      "locale": "de-DE",
+      "text": "Welches Datum passt Ihnen für das nächste Treffen?",
+      "expected": "Welches Datum passt Ihnen für das nächste Treffen?",
+      "start_offset": 23,
+      "note": "Independent correct control sentence of similar structure."
+    },
+    {
+      "id": "npa-valid-23",
+      "kind": "valid",
+      "family": "np-agreement",
+      "subtype": "new-control",
+      "locale": "de-DE",
+      "text": "Viele erfahrene Kollegen arbeiten lieber im Büro als zu Hause.",
+      "expected": "Viele erfahrene Kollegen arbeiten lieber im Büro als zu Hause.",
+      "start_offset": 23,
+      "note": "Independent correct control sentence of similar structure."
+    },
+    {
+      "id": "npa-valid-24",
+      "kind": "valid",
+      "family": "np-agreement",
+      "subtype": "new-control",
+      "locale": "de-DE",
+      "text": "Kein vernünftiger Mensch würde bei diesem Wetter draußen joggen.",
+      "expected": "Kein vernünftiger Mensch würde bei diesem Wetter draußen joggen.",
+      "start_offset": 23,
+      "note": "Independent correct control sentence of similar structure."
+    },
+    {
+      "id": "npa-guard-01",
+      "kind": "guard",
+      "family": "np-agreement",
+      "subtype": "coordination",
+      "locale": "de-DE",
+      "text": "Der Drucker und die Kaffeemaschine sind seit Montag defekt.",
+      "expected": "Der Drucker und die Kaffeemaschine sind seit Montag defekt.",
+      "start_offset": 23,
+      "note": "Two singular NPs of different gender coordinated; each NP agrees internally."
+    },
+    {
+      "id": "npa-guard-02",
+      "kind": "guard",
+      "family": "np-agreement",
+      "subtype": "homograph-plural",
+      "locale": "de-DE",
+      "text": "Die Leiter der beiden Abteilungen treffen sich am Montag.",
+      "expected": "Die Leiter der beiden Abteilungen treffen sich am Montag.",
+      "start_offset": 23,
+      "note": "Leiter is masculine plural here (heads), so die is correct; not die Leiter (ladder) vs der Leiter."
+    },
+    {
+      "id": "npa-guard-03",
+      "kind": "guard",
+      "family": "np-agreement",
+      "subtype": "proper-name",
+      "locale": "de-DE",
+      "text": "Die Deutsche Bahn hat neue Fahrpläne für den Winter veröffentlicht.",
+      "expected": "Die Deutsche Bahn hat neue Fahrpläne für den Winter veröffentlicht.",
+      "start_offset": 23,
+      "note": "Company name; capitalized adjective is part of the name and agrees."
+    },
+    {
+      "id": "npa-guard-04",
+      "kind": "guard",
+      "family": "np-agreement",
+      "subtype": "nominalized-adjective",
+      "locale": "de-DE",
+      "text": "Der Alte saß den ganzen Nachmittag auf der Bank vor dem Haus.",
+      "expected": "Der Alte saß den ganzen Nachmittag auf der Bank vor dem Haus.",
+      "start_offset": 23,
+      "note": "Nominalized adjective der Alte, no noun head."
+    },
+    {
+      "id": "npa-guard-05",
+      "kind": "guard",
+      "family": "np-agreement",
+      "subtype": "feminine-dative",
+      "locale": "de-DE",
+      "text": "Der Lehrerin wurde gestern ein Preis für ihr Engagement verliehen.",
+      "expected": "Der Lehrerin wurde gestern ein Preis für ihr Engagement verliehen.",
+      "start_offset": 23,
+      "note": "Der is the feminine dative article (indirect object), not a masculine nominative."
+    },
+    {
+      "id": "npa-guard-06",
+      "kind": "guard",
+      "family": "np-agreement",
+      "subtype": "numbers-dates",
+      "locale": "de-DE",
+      "text": "Wir haben am 3. Mai die 12 neuen Bürostühle geliefert bekommen.",
+      "expected": "Wir haben am 3. Mai die 12 neuen Bürostühle geliefert bekommen.",
+      "start_offset": 23,
+      "note": "Ordinal date and cardinal digits inside the NP; die … neuen Bürostühle is plural and correct."
+    },
+    {
+      "id": "npa-guard-07",
+      "kind": "guard",
+      "family": "np-agreement",
+      "subtype": "title-in-quotes",
+      "locale": "de-DE",
+      "text": "Dr. Weber hat den Vortrag über „Die Zukunft des Handels“ gehalten.",
+      "expected": "Dr. Weber hat den Vortrag über „Die Zukunft des Handels“ gehalten.",
+      "start_offset": 23,
+      "note": "Quoted title starts with Die after über; title is not re-declined."
+    },
+    {
+      "id": "npa-guard-08",
+      "kind": "guard",
+      "family": "np-agreement",
+      "subtype": "proper-name-party",
+      "locale": "de-DE",
+      "text": "Die Grünen haben im Stadtrat einen eigenen Antrag eingebracht.",
+      "expected": "Die Grünen haben im Stadtrat einen eigenen Antrag eingebracht.",
+      "start_offset": 23,
+      "note": "Party name, nominalized plural adjective."
+    },
+    {
+      "id": "npa-guard-09",
+      "kind": "guard",
+      "family": "np-agreement",
+      "subtype": "nominalized-adjective-quantifier",
+      "locale": "de-DE",
+      "text": "Viele Deutsche verbringen ihren Urlaub gern an der Ostsee.",
+      "expected": "Viele Deutsche verbringen ihren Urlaub gern an der Ostsee.",
+      "start_offset": 23,
+      "note": "After viele the nominalized adjective takes the strong plural ending -e."
+    },
+    {
+      "id": "npa-guard-10",
+      "kind": "guard",
+      "family": "np-agreement",
+      "subtype": "predicative-adjective",
+      "locale": "de-DE",
+      "text": "Die Suppe ist heiß, aber das Brot ist leider alt.",
+      "expected": "Die Suppe ist heiß, aber das Brot ist leider alt.",
+      "start_offset": 23,
+      "note": "Predicative adjectives are uninflected."
+    },
+    {
+      "id": "npa-guard-11",
+      "kind": "guard",
+      "family": "np-agreement",
+      "subtype": "ignored-rule",
+      "locale": "de-DE",
+      "text": "Gestern stand das neue Lampe noch im Flur.",
+      "expected": "Gestern stand das neue Lampe noch im Flur.",
+      "start_offset": 23,
+      "note": "Contains an agreement error (die neue Lampe) but the np-agreement rule is ignored, so no change is expected.",
+      "ignored_rule_ids": [
+        "de.spacy.np-agreement"
+      ]
+    },
+    {
+      "id": "npa-guard-12",
+      "kind": "guard",
+      "family": "np-agreement",
+      "subtype": "personal-word",
+      "locale": "de-DE",
+      "text": "Die Kollegen nutzen seit März das Tool Planwerk für die Dienstpläne.",
+      "expected": "Die Kollegen nutzen seit März das Tool Planwerk für die Dienstpläne.",
+      "start_offset": 23,
+      "note": "Planwerk is a user-dictionary product name in apposition to das Tool; must not be treated as a mismatched noun.",
+      "personal_words": [
+        "Planwerk"
+      ]
+    },
+    {
+      "id": "pc-error-01",
+      "kind": "error",
+      "family": "preposition-case",
+      "subtype": "dative-mit",
+      "locale": "de-DE",
+      "text": "Am Sonntag gehe ich mit der Hund im Park spazieren.",
+      "expected": "Am Sonntag gehe ich mit dem Hund im Park spazieren.",
+      "start_offset": 23,
+      "target": {
+        "original": "der",
+        "replacement": "dem"
+      },
+      "note": "mit governs the dative; Hund is masculine: dem."
+    },
+    {
+      "id": "pc-error-02",
+      "kind": "error",
+      "family": "preposition-case",
+      "subtype": "accusative-fuer",
+      "locale": "de-DE",
+      "text": "Das Geschenk ist für dem Kind meiner Schwester.",
+      "expected": "Das Geschenk ist für das Kind meiner Schwester.",
+      "start_offset": 23,
+      "target": {
+        "original": "dem",
+        "replacement": "das"
+      },
+      "note": "für governs the accusative; Kind is neuter: das."
+    },
+    {
+      "id": "pc-error-03",
+      "kind": "error",
+      "family": "preposition-case",
+      "subtype": "genitive-waehrend",
+      "locale": "de-DE",
+      "text": "Während die Besprechung hat niemand auf das Handy geschaut.",
+      "expected": "Während der Besprechung hat niemand auf das Handy geschaut.",
+      "start_offset": 23,
+      "target": {
+        "original": "die",
+        "replacement": "der"
+      },
+      "note": "Preposition während (no finite verb follows, so not the conjunction) governs the genitive: der Besprechung."
+    },
+    {
+      "id": "pc-error-04",
+      "kind": "error",
+      "family": "preposition-case",
+      "subtype": "accusative-durch",
+      "locale": "de-DE",
+      "text": "Wir sind durch dem Wald bis zum Aussichtspunkt gelaufen.",
+      "expected": "Wir sind durch den Wald bis zum Aussichtspunkt gelaufen.",
+      "start_offset": 23,
+      "target": {
+        "original": "dem",
+        "replacement": "den"
+      },
+      "note": "durch governs the accusative; Wald is masculine: den."
+    },
+    {
+      "id": "pc-error-05",
+      "kind": "error",
+      "family": "preposition-case",
+      "subtype": "accusative-ohne",
+      "locale": "de-DE",
+      "text": "Ohne meinem Schlüssel komme ich nicht ins Büro.",
+      "expected": "Ohne meinen Schlüssel komme ich nicht ins Büro.",
+      "start_offset": 23,
+      "target": {
+        "original": "meinem",
+        "replacement": "meinen"
+      },
+      "note": "ohne governs the accusative; masculine: meinen."
+    },
+    {
+      "id": "pc-error-06",
+      "kind": "error",
+      "family": "preposition-case",
+      "subtype": "dative-seit",
+      "locale": "de-DE",
+      "text": "Seit einen Monat warte ich auf eine Antwort vom Amt.",
+      "expected": "Seit einem Monat warte ich auf eine Antwort vom Amt.",
+      "start_offset": 23,
+      "target": {
+        "original": "einen",
+        "replacement": "einem"
+      },
+      "note": "seit governs the dative; Monat is masculine: einem."
+    },
+    {
+      "id": "pc-error-07",
+      "kind": "error",
+      "family": "preposition-case",
+      "subtype": "dative-bei",
+      "locale": "de-DE",
+      "text": "Sie übernachtet heute bei ihre Freundin.",
+      "expected": "Sie übernachtet heute bei ihrer Freundin.",
+      "start_offset": 23,
+      "target": {
+        "original": "ihre",
+        "replacement": "ihrer"
+      },
+      "note": "bei governs the dative; feminine possessive ihrer."
+    },
+    {
+      "id": "pc-error-08",
+      "kind": "error",
+      "family": "preposition-case",
+      "subtype": "genitive-trotz",
+      "locale": "de-DE",
+      "text": "Trotz die schlechte Wettervorhersage findet das Fest im Freien statt.",
+      "expected": "Trotz der schlechten Wettervorhersage findet das Fest im Freien statt.",
+      "start_offset": 23,
+      "target": {
+        "original": "die schlechte",
+        "replacement": "der schlechten"
+      },
+      "note": "trotz governs the genitive; feminine: der schlechten (nominative/accusative is a clear error)."
+    },
+    {
+      "id": "pc-error-09",
+      "kind": "error",
+      "family": "preposition-case",
+      "subtype": "accusative-gegen",
+      "locale": "de-DE",
+      "text": "Gegen dem Vorschlag hatte in der Sitzung niemand etwas einzuwenden.",
+      "expected": "Gegen den Vorschlag hatte in der Sitzung niemand etwas einzuwenden.",
+      "start_offset": 23,
+      "target": {
+        "original": "dem",
+        "replacement": "den"
+      },
+      "note": "gegen governs the accusative; Vorschlag is masculine: den."
+    },
+    {
+      "id": "pc-error-10",
+      "kind": "error",
+      "family": "preposition-case",
+      "subtype": "genitive-wegen",
+      "locale": "de-DE",
+      "text": "Wegen die Baustelle ist die Straße bis Freitag gesperrt.",
+      "expected": "Wegen der Baustelle ist die Straße bis Freitag gesperrt.",
+      "start_offset": 23,
+      "target": {
+        "original": "die",
+        "replacement": "der"
+      },
+      "note": "wegen governs the genitive; feminine: der (accusative die is a clear error)."
+    },
+    {
+      "id": "pc-error-11",
+      "kind": "error",
+      "family": "preposition-case",
+      "subtype": "dative-aus",
+      "locale": "de-DE",
+      "text": "Aus den Fenster sieht man den ganzen Hafen.",
+      "expected": "Aus dem Fenster sieht man den ganzen Hafen.",
+      "start_offset": 23,
+      "target": {
+        "original": "den",
+        "replacement": "dem"
+      },
+      "note": "aus governs the dative; Fenster here is neuter singular (no plural -n): dem."
+    },
+    {
+      "id": "pc-error-12",
+      "kind": "error",
+      "family": "preposition-case",
+      "subtype": "dative-gegenueber",
+      "locale": "de-DE",
+      "text": "Gegenüber das Rathaus befindet sich eine kleine Bäckerei.",
+      "expected": "Gegenüber dem Rathaus befindet sich eine kleine Bäckerei.",
+      "start_offset": 23,
+      "target": {
+        "original": "das",
+        "replacement": "dem"
+      },
+      "note": "gegenüber governs the dative; Rathaus is neuter: dem."
+    },
+    {
+      "id": "pc-error-13",
+      "kind": "error",
+      "family": "preposition-case",
+      "subtype": "dative-bei",
+      "locale": "de-DE",
+      "text": "Er arbeitet seit Jahren bei einen großen Versicherungskonzern.",
+      "expected": "Er arbeitet seit Jahren bei einem großen Versicherungskonzern.",
+      "start_offset": 23,
+      "target": {
+        "original": "einen",
+        "replacement": "einem"
+      },
+      "note": "bei governs the dative; Konzern is masculine: einem."
+    },
+    {
+      "id": "pc-error-14",
+      "kind": "error",
+      "family": "preposition-case",
+      "subtype": "dative-gemaess",
+      "locale": "de-DE",
+      "text": "Die Lieferung erfolgt gemäß den Vertrag vom vergangenen März.",
+      "expected": "Die Lieferung erfolgt gemäß dem Vertrag vom vergangenen März.",
+      "start_offset": 23,
+      "target": {
+        "original": "den",
+        "replacement": "dem"
+      },
+      "note": "gemäß governs the dative; Vertrag is masculine singular: dem."
+    },
+    {
+      "id": "pc-error-15",
+      "kind": "error",
+      "family": "preposition-case",
+      "subtype": "dative-entgegen",
+      "locale": "de-DE",
+      "text": "Entgegen den Rat seines Arztes ist er wieder zur Arbeit gegangen.",
+      "expected": "Entgegen dem Rat seines Arztes ist er wieder zur Arbeit gegangen.",
+      "start_offset": 23,
+      "target": {
+        "original": "den",
+        "replacement": "dem"
+      },
+      "note": "entgegen governs the dative; Rat is masculine singular: dem."
+    },
+    {
+      "id": "pc-error-16",
+      "kind": "error",
+      "family": "preposition-case",
+      "subtype": "accusative-um",
+      "locale": "de-DE",
+      "text": "Wir sind am Sonntag um dem See gewandert.",
+      "expected": "Wir sind am Sonntag um den See gewandert.",
+      "start_offset": 23,
+      "target": {
+        "original": "dem",
+        "replacement": "den"
+      },
+      "note": "um governs the accusative; See (lake) is masculine: den."
+    },
+    {
+      "id": "pc-error-17",
+      "kind": "error",
+      "family": "preposition-case",
+      "subtype": "genitive-innerhalb",
+      "locale": "de-DE",
+      "text": "Innerhalb eine Woche müssen alle Formulare zurückgeschickt werden.",
+      "expected": "Innerhalb einer Woche müssen alle Formulare zurückgeschickt werden.",
+      "start_offset": 23,
+      "target": {
+        "original": "eine",
+        "replacement": "einer"
+      },
+      "note": "innerhalb governs the genitive; feminine: einer."
+    },
+    {
+      "id": "pc-error-18",
+      "kind": "error",
+      "family": "preposition-case",
+      "subtype": "genitive-aufgrund",
+      "locale": "de-DE",
+      "text": "Aufgrund die hohen Nachfrage ist der Artikel zurzeit ausverkauft.",
+      "expected": "Aufgrund der hohen Nachfrage ist der Artikel zurzeit ausverkauft.",
+      "start_offset": 23,
+      "target": {
+        "original": "die",
+        "replacement": "der"
+      },
+      "note": "aufgrund governs the genitive; feminine: der hohen Nachfrage."
+    },
+    {
+      "id": "pc-error-19",
+      "kind": "error",
+      "family": "preposition-case",
+      "subtype": "genitive-anhand",
+      "locale": "de-DE",
+      "text": "Anhand die Unterlagen lässt sich der Fehler leicht finden.",
+      "expected": "Anhand der Unterlagen lässt sich der Fehler leicht finden.",
+      "start_offset": 23,
+      "target": {
+        "original": "die",
+        "replacement": "der"
+      },
+      "note": "anhand governs the genitive; plural genitive der Unterlagen."
+    },
+    {
+      "id": "pc-error-20",
+      "kind": "error",
+      "family": "preposition-case",
+      "subtype": "genitive-ausserhalb",
+      "locale": "de-DE",
+      "text": "Außerhalb die Öffnungszeiten erreichen Sie uns per E-Mail.",
+      "expected": "Außerhalb der Öffnungszeiten erreichen Sie uns per E-Mail.",
+      "start_offset": 23,
+      "target": {
+        "original": "die",
+        "replacement": "der"
+      },
+      "note": "außerhalb governs the genitive; plural genitive der Öffnungszeiten."
+    },
+    {
+      "id": "pc-error-21",
+      "kind": "error",
+      "family": "preposition-case",
+      "subtype": "dative-zu",
+      "locale": "de-DE",
+      "text": "Bitte kommen Sie pünktlich zu unsere Besprechung am Montag.",
+      "expected": "Bitte kommen Sie pünktlich zu unserer Besprechung am Montag.",
+      "start_offset": 23,
+      "target": {
+        "original": "unsere",
+        "replacement": "unserer"
+      },
+      "note": "zu governs the dative; feminine possessive unserer."
+    },
+    {
+      "id": "pc-error-22",
+      "kind": "error",
+      "family": "preposition-case",
+      "subtype": "dative-von",
+      "locale": "de-DE",
+      "text": "Ich habe von meinen Bruder ein Paket bekommen.",
+      "expected": "Ich habe von meinem Bruder ein Paket bekommen.",
+      "start_offset": 23,
+      "target": {
+        "original": "meinen",
+        "replacement": "meinem"
+      },
+      "note": "von governs the dative; singular Bruder: meinem."
+    },
+    {
+      "id": "pc-error-23",
+      "kind": "error",
+      "family": "preposition-case",
+      "subtype": "dative-nach",
+      "locale": "de-DE",
+      "text": "Nach den Unterricht gehen die Kinder direkt nach Hause.",
+      "expected": "Nach dem Unterricht gehen die Kinder direkt nach Hause.",
+      "start_offset": 23,
+      "target": {
+        "original": "den",
+        "replacement": "dem"
+      },
+      "note": "nach governs the dative; Unterricht is masculine singular: dem."
+    },
+    {
+      "id": "pc-error-24",
+      "kind": "error",
+      "family": "preposition-case",
+      "subtype": "accusative-fuer",
+      "locale": "de-DE",
+      "text": "Ich habe ein Geschenk für meinem Vater gekauft.",
+      "expected": "Ich habe ein Geschenk für meinen Vater gekauft.",
+      "start_offset": 23,
+      "target": {
+        "original": "meinem",
+        "replacement": "meinen"
+      },
+      "note": "für governs the accusative; masculine: meinen."
+    },
+    {
+      "id": "pc-valid-01",
+      "kind": "valid",
+      "family": "preposition-case",
+      "subtype": "corrected-dative-mit",
+      "locale": "de-DE",
+      "text": "Am Sonntag gehe ich mit dem Hund im Park spazieren.",
+      "expected": "Am Sonntag gehe ich mit dem Hund im Park spazieren.",
+      "start_offset": 23,
+      "note": "Corrected form of pc-error-01."
+    },
+    {
+      "id": "pc-valid-02",
+      "kind": "valid",
+      "family": "preposition-case",
+      "subtype": "corrected-accusative-fuer",
+      "locale": "de-DE",
+      "text": "Das Geschenk ist für das Kind meiner Schwester.",
+      "expected": "Das Geschenk ist für das Kind meiner Schwester.",
+      "start_offset": 23,
+      "note": "Corrected form of pc-error-02."
+    },
+    {
+      "id": "pc-valid-03",
+      "kind": "valid",
+      "family": "preposition-case",
+      "subtype": "corrected-genitive-waehrend",
+      "locale": "de-DE",
+      "text": "Während der Besprechung hat niemand auf das Handy geschaut.",
+      "expected": "Während der Besprechung hat niemand auf das Handy geschaut.",
+      "start_offset": 23,
+      "note": "Corrected form of pc-error-03."
+    },
+    {
+      "id": "pc-valid-04",
+      "kind": "valid",
+      "family": "preposition-case",
+      "subtype": "corrected-accusative-ohne",
+      "locale": "de-DE",
+      "text": "Ohne meinen Schlüssel komme ich nicht ins Büro.",
+      "expected": "Ohne meinen Schlüssel komme ich nicht ins Büro.",
+      "start_offset": 23,
+      "note": "Corrected form of pc-error-05."
+    },
+    {
+      "id": "pc-valid-05",
+      "kind": "valid",
+      "family": "preposition-case",
+      "subtype": "corrected-dative-seit",
+      "locale": "de-DE",
+      "text": "Seit einem Monat warte ich auf eine Antwort vom Amt.",
+      "expected": "Seit einem Monat warte ich auf eine Antwort vom Amt.",
+      "start_offset": 23,
+      "note": "Corrected form of pc-error-06."
+    },
+    {
+      "id": "pc-valid-06",
+      "kind": "valid",
+      "family": "preposition-case",
+      "subtype": "corrected-dative-bei",
+      "locale": "de-DE",
+      "text": "Sie übernachtet heute bei ihrer Freundin.",
+      "expected": "Sie übernachtet heute bei ihrer Freundin.",
+      "start_offset": 23,
+      "note": "Corrected form of pc-error-07."
+    },
+    {
+      "id": "pc-valid-07",
+      "kind": "valid",
+      "family": "preposition-case",
+      "subtype": "corrected-genitive-wegen",
+      "locale": "de-DE",
+      "text": "Wegen der Baustelle ist die Straße bis Freitag gesperrt.",
+      "expected": "Wegen der Baustelle ist die Straße bis Freitag gesperrt.",
+      "start_offset": 23,
+      "note": "Corrected form of pc-error-10."
+    },
+    {
+      "id": "pc-valid-08",
+      "kind": "valid",
+      "family": "preposition-case",
+      "subtype": "corrected-dative-gegenueber",
+      "locale": "de-DE",
+      "text": "Gegenüber dem Rathaus befindet sich eine kleine Bäckerei.",
+      "expected": "Gegenüber dem Rathaus befindet sich eine kleine Bäckerei.",
+      "start_offset": 23,
+      "note": "Corrected form of pc-error-12."
+    },
+    {
+      "id": "pc-valid-09",
+      "kind": "valid",
+      "family": "preposition-case",
+      "subtype": "corrected-genitive-innerhalb",
+      "locale": "de-DE",
+      "text": "Innerhalb einer Woche müssen alle Formulare zurückgeschickt werden.",
+      "expected": "Innerhalb einer Woche müssen alle Formulare zurückgeschickt werden.",
+      "start_offset": 23,
+      "note": "Corrected form of pc-error-17."
+    },
+    {
+      "id": "pc-valid-10",
+      "kind": "valid",
+      "family": "preposition-case",
+      "subtype": "corrected-genitive-aufgrund",
+      "locale": "de-DE",
+      "text": "Aufgrund der hohen Nachfrage ist der Artikel zurzeit ausverkauft.",
+      "expected": "Aufgrund der hohen Nachfrage ist der Artikel zurzeit ausverkauft.",
+      "start_offset": 23,
+      "note": "Corrected form of pc-error-18."
+    },
+    {
+      "id": "pc-valid-11",
+      "kind": "valid",
+      "family": "preposition-case",
+      "subtype": "corrected-dative-von",
+      "locale": "de-DE",
+      "text": "Ich habe von meinem Bruder ein Paket bekommen.",
+      "expected": "Ich habe von meinem Bruder ein Paket bekommen.",
+      "start_offset": 23,
+      "note": "Corrected form of pc-error-22."
+    },
+    {
+      "id": "pc-valid-12",
+      "kind": "valid",
+      "family": "preposition-case",
+      "subtype": "corrected-dative-nach",
+      "locale": "de-DE",
+      "text": "Nach dem Unterricht gehen die Kinder direkt nach Hause.",
+      "expected": "Nach dem Unterricht gehen die Kinder direkt nach Hause.",
+      "start_offset": 23,
+      "note": "Corrected form of pc-error-23."
+    },
+    {
+      "id": "pc-valid-13",
+      "kind": "valid",
+      "family": "preposition-case",
+      "subtype": "new-control",
+      "locale": "de-DE",
+      "text": "Zum Glück hat der Zug heute keine Verspätung.",
+      "expected": "Zum Glück hat der Zug heute keine Verspätung.",
+      "start_offset": 23,
+      "note": "Independent correct control sentence of similar structure."
+    },
+    {
+      "id": "pc-valid-14",
+      "kind": "valid",
+      "family": "preposition-case",
+      "subtype": "new-control",
+      "locale": "de-DE",
+      "text": "Kannst du mich bitte zur Haltestelle bringen?",
+      "expected": "Kannst du mich bitte zur Haltestelle bringen?",
+      "start_offset": 23,
+      "note": "Independent correct control sentence of similar structure."
+    },
+    {
+      "id": "pc-valid-15",
+      "kind": "valid",
+      "family": "preposition-case",
+      "subtype": "new-control",
+      "locale": "de-DE",
+      "text": "Beim Frühstück lese ich gern die Zeitung.",
+      "expected": "Beim Frühstück lese ich gern die Zeitung.",
+      "start_offset": 23,
+      "note": "Independent correct control sentence of similar structure."
+    },
+    {
+      "id": "pc-valid-16",
+      "kind": "valid",
+      "family": "preposition-case",
+      "subtype": "new-control",
+      "locale": "de-DE",
+      "text": "Das Paket kommt direkt vom Hersteller.",
+      "expected": "Das Paket kommt direkt vom Hersteller.",
+      "start_offset": 23,
+      "note": "Independent correct control sentence of similar structure."
+    },
+    {
+      "id": "pc-valid-17",
+      "kind": "valid",
+      "family": "preposition-case",
+      "subtype": "new-control",
+      "locale": "de-DE",
+      "text": "Wir sind den ganzen Nachmittag den Fluss entlang gefahren.",
+      "expected": "Wir sind den ganzen Nachmittag den Fluss entlang gefahren.",
+      "start_offset": 23,
+      "note": "Independent correct control sentence of similar structure."
+    },
+    {
+      "id": "pc-valid-18",
+      "kind": "valid",
+      "family": "preposition-case",
+      "subtype": "new-control",
+      "locale": "de-DE",
+      "text": "Ab dem ersten Dezember gelten neue Öffnungszeiten.",
+      "expected": "Ab dem ersten Dezember gelten neue Öffnungszeiten.",
+      "start_offset": 23,
+      "note": "Independent correct control sentence of similar structure."
+    },
+    {
+      "id": "pc-valid-19",
+      "kind": "valid",
+      "family": "preposition-case",
+      "subtype": "new-control",
+      "locale": "de-DE",
+      "text": "Das Hotelzimmer wurde samt Frühstück gebucht.",
+      "expected": "Das Hotelzimmer wurde samt Frühstück gebucht.",
+      "start_offset": 23,
+      "note": "Independent correct control sentence of similar structure."
+    },
+    {
+      "id": "pc-valid-20",
+      "kind": "valid",
+      "family": "preposition-case",
+      "subtype": "new-control",
+      "locale": "de-DE",
+      "text": "Entgegen allen Erwartungen hat unsere Mannschaft gewonnen.",
+      "expected": "Entgegen allen Erwartungen hat unsere Mannschaft gewonnen.",
+      "start_offset": 23,
+      "note": "Independent correct control sentence of similar structure."
+    },
+    {
+      "id": "pc-valid-21",
+      "kind": "valid",
+      "family": "preposition-case",
+      "subtype": "new-control",
+      "locale": "de-DE",
+      "text": "Mittels eines kurzen Fragebogens wurde die Zufriedenheit gemessen.",
+      "expected": "Mittels eines kurzen Fragebogens wurde die Zufriedenheit gemessen.",
+      "start_offset": 23,
+      "note": "Independent correct control sentence of similar structure."
+    },
+    {
+      "id": "pc-valid-22",
+      "kind": "valid",
+      "family": "preposition-case",
+      "subtype": "new-control",
+      "locale": "de-DE",
+      "text": "Statt eines Geschenks haben wir Blumen mitgebracht.",
+      "expected": "Statt eines Geschenks haben wir Blumen mitgebracht.",
+      "start_offset": 23,
+      "note": "Independent correct control sentence of similar structure."
+    },
+    {
+      "id": "pc-valid-23",
+      "kind": "valid",
+      "family": "preposition-case",
+      "subtype": "new-control",
+      "locale": "de-DE",
+      "text": "Bis nächsten Mittwoch brauche ich Ihre Unterlagen.",
+      "expected": "Bis nächsten Mittwoch brauche ich Ihre Unterlagen.",
+      "start_offset": 23,
+      "note": "Independent correct control sentence of similar structure."
+    },
+    {
+      "id": "pc-valid-24",
+      "kind": "valid",
+      "family": "preposition-case",
+      "subtype": "new-control",
+      "locale": "de-DE",
+      "text": "Trotz des Regens sind viele Besucher zum Stadtfest gekommen.",
+      "expected": "Trotz des Regens sind viele Besucher zum Stadtfest gekommen.",
+      "start_offset": 23,
+      "note": "Independent correct control sentence of similar structure."
+    },
+    {
+      "id": "pc-guard-01",
+      "kind": "guard",
+      "family": "preposition-case",
+      "subtype": "colloquial-wegen-dative",
+      "locale": "de-DE",
+      "text": "Wegen dem schlechten Wetter fällt das Training heute aus.",
+      "expected": "Wegen dem schlechten Wetter fällt das Training heute aus.",
+      "start_offset": 23,
+      "note": "Dative after wegen is accepted colloquial usage; not a clear error."
+    },
+    {
+      "id": "pc-guard-02",
+      "kind": "guard",
+      "family": "preposition-case",
+      "subtype": "two-way-both-cases",
+      "locale": "de-DE",
+      "text": "Wir fahren morgen in die Stadt und essen dort in der Altstadt.",
+      "expected": "Wir fahren morgen in die Stadt und essen dort in der Altstadt.",
+      "start_offset": 23,
+      "note": "in takes accusative (direction) and dative (location); both are correct here."
+    },
+    {
+      "id": "pc-guard-03",
+      "kind": "guard",
+      "family": "preposition-case",
+      "subtype": "two-way-both-cases",
+      "locale": "de-DE",
+      "text": "Stell die Vase auf den Tisch, die Kerzen stehen schon auf dem Regal.",
+      "expected": "Stell die Vase auf den Tisch, die Kerzen stehen schon auf dem Regal.",
+      "start_offset": 23,
+      "note": "auf with accusative for direction and dative for location."
+    },
+    {
+      "id": "pc-guard-04",
+      "kind": "guard",
+      "family": "preposition-case",
+      "subtype": "two-way-idiom",
+      "locale": "de-DE",
+      "text": "Zwischen den Jahren ist unser Büro geschlossen.",
+      "expected": "Zwischen den Jahren ist unser Büro geschlossen.",
+      "start_offset": 23,
+      "note": "Two-way preposition with dative plural in a fixed expression."
+    },
+    {
+      "id": "pc-guard-05",
+      "kind": "guard",
+      "family": "preposition-case",
+      "subtype": "quotation-metalinguistic",
+      "locale": "de-DE",
+      "text": "„Mit der Hund“ ist ein typischer Fehler von Deutschlernenden.",
+      "expected": "„Mit der Hund“ ist ein typischer Fehler von Deutschlernenden.",
+      "start_offset": 23,
+      "note": "The erroneous phrase is quoted as an example and must not be corrected."
+    },
+    {
+      "id": "pc-guard-06",
+      "kind": "guard",
+      "family": "preposition-case",
+      "subtype": "conjunction-waehrend",
+      "locale": "de-DE",
+      "text": "Die Kinder spielen draußen, während die Eltern im Garten Kaffee trinken.",
+      "expected": "Die Kinder spielen draußen, während die Eltern im Garten Kaffee trinken.",
+      "start_offset": 23,
+      "note": "während is a subordinating conjunction here; die Eltern is the nominative subject."
+    },
+    {
+      "id": "pc-guard-07",
+      "kind": "guard",
+      "family": "preposition-case",
+      "subtype": "conjunction-seit",
+      "locale": "de-DE",
+      "text": "Seit die neue Kollegin da ist, läuft alles viel besser.",
+      "expected": "Seit die neue Kollegin da ist, läuft alles viel besser.",
+      "start_offset": 23,
+      "note": "seit is a conjunction introducing a clause; die neue Kollegin is the subject."
+    },
+    {
+      "id": "pc-guard-08",
+      "kind": "guard",
+      "family": "preposition-case",
+      "subtype": "conjunction-bis",
+      "locale": "de-DE",
+      "text": "Bitte warte hier, bis der Techniker kommt.",
+      "expected": "Bitte warte hier, bis der Techniker kommt.",
+      "start_offset": 23,
+      "note": "bis is a conjunction; der Techniker is nominative subject."
+    },
+    {
+      "id": "pc-guard-09",
+      "kind": "guard",
+      "family": "preposition-case",
+      "subtype": "feminine-dative",
+      "locale": "de-DE",
+      "text": "Mit der Bahn fahren wir zur Konferenz nach Hamburg.",
+      "expected": "Mit der Bahn fahren wir zur Konferenz nach Hamburg.",
+      "start_offset": 23,
+      "note": "der is the feminine dative article after mit (die Bahn)."
+    },
+    {
+      "id": "pc-guard-10",
+      "kind": "guard",
+      "family": "preposition-case",
+      "subtype": "postposed-gegenueber",
+      "locale": "de-DE",
+      "text": "Die Bank liegt dem Bahnhof direkt gegenüber.",
+      "expected": "Die Bank liegt dem Bahnhof direkt gegenüber.",
+      "start_offset": 23,
+      "note": "Postposed gegenüber with dative object."
+    },
+    {
+      "id": "pc-guard-11",
+      "kind": "guard",
+      "family": "preposition-case",
+      "subtype": "ignored-rule",
+      "locale": "de-DE",
+      "text": "Trotz der Regen gingen wir am Abend spazieren.",
+      "expected": "Trotz der Regen gingen wir am Abend spazieren.",
+      "start_offset": 23,
+      "note": "Contains a case error (des Regens) but the preposition-case rule is ignored, so no change is expected.",
+      "ignored_rule_ids": [
+        "de.spacy.preposition-case"
+      ]
+    },
+    {
+      "id": "pc-guard-12",
+      "kind": "guard",
+      "family": "preposition-case",
+      "subtype": "statt-infinitive",
+      "locale": "de-DE",
+      "text": "Statt zu warten, rief sie direkt beim Kundendienst an.",
+      "expected": "Statt zu warten, rief sie direkt beim Kundendienst an.",
+      "start_offset": 23,
+      "note": "statt introduces an infinitive clause, not a genitive NP."
+    },
+    {
+      "id": "sp-error-01",
+      "kind": "error",
+      "family": "subject-person",
+      "subtype": "pronoun-1sg-adjacent",
+      "locale": "de-DE",
+      "text": "Ich geht heute früher nach Hause, weil ich Kopfschmerzen habe.",
+      "expected": "Ich gehe heute früher nach Hause, weil ich Kopfschmerzen habe.",
+      "start_offset": 23,
+      "target": {
+        "original": "geht",
+        "replacement": "gehe"
+      },
+      "note": "ich requires 1st person singular gehe."
+    },
+    {
+      "id": "sp-error-02",
+      "kind": "error",
+      "family": "subject-person",
+      "subtype": "pronoun-2sg-adjacent",
+      "locale": "de-DE",
+      "text": "Du arbeitet zu viel und schläfst zu wenig.",
+      "expected": "Du arbeitest zu viel und schläfst zu wenig.",
+      "start_offset": 23,
+      "target": {
+        "original": "arbeitet",
+        "replacement": "arbeitest"
+      },
+      "note": "du requires 2nd person singular arbeitest."
+    },
+    {
+      "id": "sp-error-03",
+      "kind": "error",
+      "family": "subject-person",
+      "subtype": "pronoun-1pl-adjacent",
+      "locale": "de-DE",
+      "text": "Wir kommt morgen gegen acht Uhr ins Büro.",
+      "expected": "Wir kommen morgen gegen acht Uhr ins Büro.",
+      "start_offset": 23,
+      "target": {
+        "original": "kommt",
+        "replacement": "kommen"
+      },
+      "note": "wir requires kommen."
+    },
+    {
+      "id": "sp-error-04",
+      "kind": "error",
+      "family": "subject-person",
+      "subtype": "noun-subject-2sg-form",
+      "locale": "de-DE",
+      "text": "Der Lehrer kommst heute etwas später in die Schule.",
+      "expected": "Der Lehrer kommt heute etwas später in die Schule.",
+      "start_offset": 23,
+      "target": {
+        "original": "kommst",
+        "replacement": "kommt"
+      },
+      "note": "Noun subject is 3rd person singular: kommt."
+    },
+    {
+      "id": "sp-error-05",
+      "kind": "error",
+      "family": "subject-person",
+      "subtype": "inversion-fronted-adverbial",
+      "locale": "de-DE",
+      "text": "Morgen fahren ich mit dem Zug nach Berlin.",
+      "expected": "Morgen fahre ich mit dem Zug nach Berlin.",
+      "start_offset": 23,
+      "target": {
+        "original": "fahren",
+        "replacement": "fahre"
+      },
+      "note": "Inverted subject ich after fronted adverb requires fahre."
+    },
+    {
+      "id": "sp-error-06",
+      "kind": "error",
+      "family": "subject-person",
+      "subtype": "subordinate-verb-final",
+      "locale": "de-DE",
+      "text": "Ich kann nicht kommen, weil ich morgen arbeitet.",
+      "expected": "Ich kann nicht kommen, weil ich morgen arbeite.",
+      "start_offset": 23,
+      "target": {
+        "original": "arbeitet",
+        "replacement": "arbeite"
+      },
+      "note": "Verb-final in weil-clause, subject ich: arbeite."
+    },
+    {
+      "id": "sp-error-07",
+      "kind": "error",
+      "family": "subject-person",
+      "subtype": "intensifier-selbst",
+      "locale": "de-DE",
+      "text": "Ich selbst habt keine Ahnung, wo die Akten sind.",
+      "expected": "Ich selbst habe keine Ahnung, wo die Akten sind.",
+      "start_offset": 23,
+      "target": {
+        "original": "habt",
+        "replacement": "habe"
+      },
+      "note": "ich selbst is 1st person singular: habe."
+    },
+    {
+      "id": "sp-error-08",
+      "kind": "error",
+      "family": "subject-person",
+      "subtype": "modal-question-inversion",
+      "locale": "de-DE",
+      "text": "Kannst ihr mir bitte beim Umzug helfen?",
+      "expected": "Könnt ihr mir bitte beim Umzug helfen?",
+      "start_offset": 23,
+      "target": {
+        "original": "Kannst",
+        "replacement": "Könnt"
+      },
+      "note": "ihr requires könnt."
+    },
+    {
+      "id": "sp-error-09",
+      "kind": "error",
+      "family": "subject-person",
+      "subtype": "auxiliary-haben",
+      "locale": "de-DE",
+      "text": "Wir hat das Problem gestern gemeinsam gelöst.",
+      "expected": "Wir haben das Problem gestern gemeinsam gelöst.",
+      "start_offset": 23,
+      "target": {
+        "original": "hat",
+        "replacement": "haben"
+      },
+      "note": "wir requires haben."
+    },
+    {
+      "id": "sp-error-10",
+      "kind": "error",
+      "family": "subject-person",
+      "subtype": "auxiliary-sein",
+      "locale": "de-DE",
+      "text": "Ihr bist heute aber früh aufgestanden.",
+      "expected": "Ihr seid heute aber früh aufgestanden.",
+      "start_offset": 23,
+      "target": {
+        "original": "bist",
+        "replacement": "seid"
+      },
+      "note": "ihr requires seid."
+    },
+    {
+      "id": "sp-error-11",
+      "kind": "error",
+      "family": "subject-person",
+      "subtype": "copula-sein",
+      "locale": "de-DE",
+      "text": "Du ist wirklich eine große Hilfe für das ganze Team.",
+      "expected": "Du bist wirklich eine große Hilfe für das ganze Team.",
+      "start_offset": 23,
+      "target": {
+        "original": "ist",
+        "replacement": "bist"
+      },
+      "note": "du requires bist."
+    },
+    {
+      "id": "sp-error-12",
+      "kind": "error",
+      "family": "subject-person",
+      "subtype": "separable-verb",
+      "locale": "de-DE",
+      "text": "Er rufen dich heute Abend noch einmal an.",
+      "expected": "Er ruft dich heute Abend noch einmal an.",
+      "start_offset": 23,
+      "target": {
+        "original": "rufen",
+        "replacement": "ruft"
+      },
+      "note": "er requires ruft (anrufen, separated)."
+    },
+    {
+      "id": "sp-error-13",
+      "kind": "error",
+      "family": "subject-person",
+      "subtype": "separable-verb",
+      "locale": "de-DE",
+      "text": "Ich steigst an der nächsten Haltestelle aus.",
+      "expected": "Ich steige an der nächsten Haltestelle aus.",
+      "start_offset": 23,
+      "target": {
+        "original": "steigst",
+        "replacement": "steige"
+      },
+      "note": "ich requires steige (aussteigen)."
+    },
+    {
+      "id": "sp-error-14",
+      "kind": "error",
+      "family": "subject-person",
+      "subtype": "coordinated-subject-with-ich",
+      "locale": "de-DE",
+      "text": "Meine Kollegin und ich bereitet die Präsentation vor.",
+      "expected": "Meine Kollegin und ich bereiten die Präsentation vor.",
+      "start_offset": 23,
+      "target": {
+        "original": "bereitet",
+        "replacement": "bereiten"
+      },
+      "note": "X und ich is 1st person plural: bereiten."
+    },
+    {
+      "id": "sp-error-15",
+      "kind": "error",
+      "family": "subject-person",
+      "subtype": "subordinate-verb-final",
+      "locale": "de-DE",
+      "text": "Wenn du Zeit hat, können wir zusammen essen gehen.",
+      "expected": "Wenn du Zeit hast, können wir zusammen essen gehen.",
+      "start_offset": 23,
+      "target": {
+        "original": "hat",
+        "replacement": "hast"
+      },
+      "note": "du requires hast."
+    },
+    {
+      "id": "sp-error-16",
+      "kind": "error",
+      "family": "subject-person",
+      "subtype": "noun-subject-subordinate",
+      "locale": "de-DE",
+      "text": "Können Sie mir sagen, wann der Zug ankommst?",
+      "expected": "Können Sie mir sagen, wann der Zug ankommt?",
+      "start_offset": 23,
+      "target": {
+        "original": "ankommst",
+        "replacement": "ankommt"
+      },
+      "note": "der Zug is 3rd person singular: ankommt."
+    },
+    {
+      "id": "sp-error-17",
+      "kind": "error",
+      "family": "subject-person",
+      "subtype": "noun-subject-plural",
+      "locale": "de-DE",
+      "text": "Die Kinder spielst seit dem Mittag im Garten.",
+      "expected": "Die Kinder spielen seit dem Mittag im Garten.",
+      "start_offset": 23,
+      "target": {
+        "original": "spielst",
+        "replacement": "spielen"
+      },
+      "note": "Plural noun subject: spielen."
+    },
+    {
+      "id": "sp-error-18",
+      "kind": "error",
+      "family": "subject-person",
+      "subtype": "pronoun-es",
+      "locale": "de-DE",
+      "text": "Es regnest schon den ganzen Tag.",
+      "expected": "Es regnet schon den ganzen Tag.",
+      "start_offset": 23,
+      "target": {
+        "original": "regnest",
+        "replacement": "regnet"
+      },
+      "note": "Impersonal es: regnet."
+    },
+    {
+      "id": "sp-error-19",
+      "kind": "error",
+      "family": "subject-person",
+      "subtype": "modal-1sg",
+      "locale": "de-DE",
+      "text": "Ich musst heute leider länger im Büro bleiben.",
+      "expected": "Ich muss heute leider länger im Büro bleiben.",
+      "start_offset": 23,
+      "target": {
+        "original": "musst",
+        "replacement": "muss"
+      },
+      "note": "ich requires muss."
+    },
+    {
+      "id": "sp-error-20",
+      "kind": "error",
+      "family": "subject-person",
+      "subtype": "modal-question-inversion",
+      "locale": "de-DE",
+      "text": "Darf wir hier unser Auto parken?",
+      "expected": "Dürfen wir hier unser Auto parken?",
+      "start_offset": 23,
+      "target": {
+        "original": "Darf",
+        "replacement": "Dürfen"
+      },
+      "note": "wir requires dürfen."
+    },
+    {
+      "id": "sp-error-21",
+      "kind": "error",
+      "family": "subject-person",
+      "subtype": "auxiliary-sein-inversion",
+      "locale": "de-DE",
+      "text": "Gestern ist ich nach der Arbeit sofort eingeschlafen.",
+      "expected": "Gestern bin ich nach der Arbeit sofort eingeschlafen.",
+      "start_offset": 23,
+      "target": {
+        "original": "ist",
+        "replacement": "bin"
+      },
+      "note": "ich requires bin."
+    },
+    {
+      "id": "sp-error-22",
+      "kind": "error",
+      "family": "subject-person",
+      "subtype": "subordinate-verb-final",
+      "locale": "de-DE",
+      "text": "Ich frage mich, ob ihr morgen pünktlich kommen.",
+      "expected": "Ich frage mich, ob ihr morgen pünktlich kommt.",
+      "start_offset": 23,
+      "target": {
+        "original": "kommen",
+        "replacement": "kommt"
+      },
+      "note": "ihr requires kommt."
+    },
+    {
+      "id": "sp-error-23",
+      "kind": "error",
+      "family": "subject-person",
+      "subtype": "noun-subject-2sg-form",
+      "locale": "de-DE",
+      "text": "Mein Vater kaufst jeden Samstag frische Brötchen beim Bäcker.",
+      "expected": "Mein Vater kauft jeden Samstag frische Brötchen beim Bäcker.",
+      "start_offset": 23,
+      "target": {
+        "original": "kaufst",
+        "replacement": "kauft"
+      },
+      "note": "Noun subject is 3rd person singular: kauft."
+    },
+    {
+      "id": "sp-error-24",
+      "kind": "error",
+      "family": "subject-person",
+      "subtype": "auxiliary-haben",
+      "locale": "de-DE",
+      "text": "Wir habt schon alles für die Reise eingepackt.",
+      "expected": "Wir haben schon alles für die Reise eingepackt.",
+      "start_offset": 23,
+      "target": {
+        "original": "habt",
+        "replacement": "haben"
+      },
+      "note": "wir requires haben."
+    },
+    {
+      "id": "sp-valid-01",
+      "kind": "valid",
+      "family": "subject-person",
+      "subtype": "corrected-pronoun-1sg-adjacent",
+      "locale": "de-DE",
+      "text": "Ich gehe heute früher nach Hause, weil ich Kopfschmerzen habe.",
+      "expected": "Ich gehe heute früher nach Hause, weil ich Kopfschmerzen habe.",
+      "start_offset": 23,
+      "note": "Corrected form of sp-error-01."
+    },
+    {
+      "id": "sp-valid-02",
+      "kind": "valid",
+      "family": "subject-person",
+      "subtype": "corrected-pronoun-2sg-adjacent",
+      "locale": "de-DE",
+      "text": "Du arbeitest zu viel und schläfst zu wenig.",
+      "expected": "Du arbeitest zu viel und schläfst zu wenig.",
+      "start_offset": 23,
+      "note": "Corrected form of sp-error-02."
+    },
+    {
+      "id": "sp-valid-03",
+      "kind": "valid",
+      "family": "subject-person",
+      "subtype": "corrected-inversion-fronted-adverbial",
+      "locale": "de-DE",
+      "text": "Morgen fahre ich mit dem Zug nach Berlin.",
+      "expected": "Morgen fahre ich mit dem Zug nach Berlin.",
+      "start_offset": 23,
+      "note": "Corrected form of sp-error-05."
+    },
+    {
+      "id": "sp-valid-04",
+      "kind": "valid",
+      "family": "subject-person",
+      "subtype": "corrected-subordinate-verb-final",
+      "locale": "de-DE",
+      "text": "Ich kann nicht kommen, weil ich morgen arbeite.",
+      "expected": "Ich kann nicht kommen, weil ich morgen arbeite.",
+      "start_offset": 23,
+      "note": "Corrected form of sp-error-06."
+    },
+    {
+      "id": "sp-valid-05",
+      "kind": "valid",
+      "family": "subject-person",
+      "subtype": "corrected-modal-question-inversion",
+      "locale": "de-DE",
+      "text": "Könnt ihr mir bitte beim Umzug helfen?",
+      "expected": "Könnt ihr mir bitte beim Umzug helfen?",
+      "start_offset": 23,
+      "note": "Corrected form of sp-error-08."
+    },
+    {
+      "id": "sp-valid-06",
+      "kind": "valid",
+      "family": "subject-person",
+      "subtype": "corrected-separable-verb",
+      "locale": "de-DE",
+      "text": "Er ruft dich heute Abend noch einmal an.",
+      "expected": "Er ruft dich heute Abend noch einmal an.",
+      "start_offset": 23,
+      "note": "Corrected form of sp-error-12."
+    },
+    {
+      "id": "sp-valid-07",
+      "kind": "valid",
+      "family": "subject-person",
+      "subtype": "corrected-coordinated-subject-with-ich",
+      "locale": "de-DE",
+      "text": "Meine Kollegin und ich bereiten die Präsentation vor.",
+      "expected": "Meine Kollegin und ich bereiten die Präsentation vor.",
+      "start_offset": 23,
+      "note": "Corrected form of sp-error-14."
+    },
+    {
+      "id": "sp-valid-08",
+      "kind": "valid",
+      "family": "subject-person",
+      "subtype": "corrected-subordinate-verb-final",
+      "locale": "de-DE",
+      "text": "Wenn du Zeit hast, können wir zusammen essen gehen.",
+      "expected": "Wenn du Zeit hast, können wir zusammen essen gehen.",
+      "start_offset": 23,
+      "note": "Corrected form of sp-error-15."
+    },
+    {
+      "id": "sp-valid-09",
+      "kind": "valid",
+      "family": "subject-person",
+      "subtype": "corrected-noun-subject-subordinate",
+      "locale": "de-DE",
+      "text": "Können Sie mir sagen, wann der Zug ankommt?",
+      "expected": "Können Sie mir sagen, wann der Zug ankommt?",
+      "start_offset": 23,
+      "note": "Corrected form of sp-error-16."
+    },
+    {
+      "id": "sp-valid-10",
+      "kind": "valid",
+      "family": "subject-person",
+      "subtype": "corrected-pronoun-es",
+      "locale": "de-DE",
+      "text": "Es regnet schon den ganzen Tag.",
+      "expected": "Es regnet schon den ganzen Tag.",
+      "start_offset": 23,
+      "note": "Corrected form of sp-error-18."
+    },
+    {
+      "id": "sp-valid-11",
+      "kind": "valid",
+      "family": "subject-person",
+      "subtype": "corrected-auxiliary-sein-inversion",
+      "locale": "de-DE",
+      "text": "Gestern bin ich nach der Arbeit sofort eingeschlafen.",
+      "expected": "Gestern bin ich nach der Arbeit sofort eingeschlafen.",
+      "start_offset": 23,
+      "note": "Corrected form of sp-error-21."
+    },
+    {
+      "id": "sp-valid-12",
+      "kind": "valid",
+      "family": "subject-person",
+      "subtype": "corrected-noun-subject-2sg-form",
+      "locale": "de-DE",
+      "text": "Mein Vater kauft jeden Samstag frische Brötchen beim Bäcker.",
+      "expected": "Mein Vater kauft jeden Samstag frische Brötchen beim Bäcker.",
+      "start_offset": 23,
+      "note": "Corrected form of sp-error-23."
+    },
+    {
+      "id": "sp-valid-13",
+      "kind": "valid",
+      "family": "subject-person",
+      "subtype": "new-control",
+      "locale": "de-DE",
+      "text": "Seid ihr schon mit dem Bericht fertig?",
+      "expected": "Seid ihr schon mit dem Bericht fertig?",
+      "start_offset": 23,
+      "note": "Independent correct control sentence of similar structure."
+    },
+    {
+      "id": "sp-valid-14",
+      "kind": "valid",
+      "family": "subject-person",
+      "subtype": "new-control",
+      "locale": "de-DE",
+      "text": "Ich selbst kümmere mich um die Reservierung.",
+      "expected": "Ich selbst kümmere mich um die Reservierung.",
+      "start_offset": 23,
+      "note": "Independent correct control sentence of similar structure."
+    },
+    {
+      "id": "sp-valid-15",
+      "kind": "valid",
+      "family": "subject-person",
+      "subtype": "new-control",
+      "locale": "de-DE",
+      "text": "Du darfst heute ausnahmsweise etwas länger bleiben.",
+      "expected": "Du darfst heute ausnahmsweise etwas länger bleiben.",
+      "start_offset": 23,
+      "note": "Independent correct control sentence of similar structure."
+    },
+    {
+      "id": "sp-valid-16",
+      "kind": "valid",
+      "family": "subject-person",
+      "subtype": "new-control",
+      "locale": "de-DE",
+      "text": "Am Freitag haben wir das Projekt endlich abgeschlossen.",
+      "expected": "Am Freitag haben wir das Projekt endlich abgeschlossen.",
+      "start_offset": 23,
+      "note": "Independent correct control sentence of similar structure."
+    },
+    {
+      "id": "sp-valid-17",
+      "kind": "valid",
+      "family": "subject-person",
+      "subtype": "new-control",
+      "locale": "de-DE",
+      "text": "Sobald ich zu Hause bin, schreibe ich dir eine Nachricht.",
+      "expected": "Sobald ich zu Hause bin, schreibe ich dir eine Nachricht.",
+      "start_offset": 23,
+      "note": "Independent correct control sentence of similar structure."
+    },
+    {
+      "id": "sp-valid-18",
+      "kind": "valid",
+      "family": "subject-person",
+      "subtype": "new-control",
+      "locale": "de-DE",
+      "text": "Habt ihr schon gehört, dass die Kantine renoviert wird?",
+      "expected": "Habt ihr schon gehört, dass die Kantine renoviert wird?",
+      "start_offset": 23,
+      "note": "Independent correct control sentence of similar structure."
+    },
+    {
+      "id": "sp-valid-19",
+      "kind": "valid",
+      "family": "subject-person",
+      "subtype": "new-control",
+      "locale": "de-DE",
+      "text": "Die Nachbarn feiern heute Abend im Hof ein Sommerfest.",
+      "expected": "Die Nachbarn feiern heute Abend im Hof ein Sommerfest.",
+      "start_offset": 23,
+      "note": "Independent correct control sentence of similar structure."
+    },
+    {
+      "id": "sp-valid-20",
+      "kind": "valid",
+      "family": "subject-person",
+      "subtype": "new-control",
+      "locale": "de-DE",
+      "text": "Er hat versprochen, dass er morgen früher kommt.",
+      "expected": "Er hat versprochen, dass er morgen früher kommt.",
+      "start_offset": 23,
+      "note": "Independent correct control sentence of similar structure."
+    },
+    {
+      "id": "sp-valid-21",
+      "kind": "valid",
+      "family": "subject-person",
+      "subtype": "new-control",
+      "locale": "de-DE",
+      "text": "Wir stellen Ihnen gern ein Angebot zusammen.",
+      "expected": "Wir stellen Ihnen gern ein Angebot zusammen.",
+      "start_offset": 23,
+      "note": "Independent correct control sentence of similar structure."
+    },
+    {
+      "id": "sp-valid-22",
+      "kind": "valid",
+      "family": "subject-person",
+      "subtype": "new-control",
+      "locale": "de-DE",
+      "text": "Kommst du heute Abend mit ins Theater?",
+      "expected": "Kommst du heute Abend mit ins Theater?",
+      "start_offset": 23,
+      "note": "Independent correct control sentence of similar structure."
+    },
+    {
+      "id": "sp-valid-23",
+      "kind": "valid",
+      "family": "subject-person",
+      "subtype": "new-control",
+      "locale": "de-DE",
+      "text": "Meine Eltern ziehen nächsten Monat nach Freiburg um.",
+      "expected": "Meine Eltern ziehen nächsten Monat nach Freiburg um.",
+      "start_offset": 23,
+      "note": "Independent correct control sentence of similar structure."
+    },
+    {
+      "id": "sp-valid-24",
+      "kind": "valid",
+      "family": "subject-person",
+      "subtype": "new-control",
+      "locale": "de-DE",
+      "text": "Es gibt im Moment leider keine freien Termine.",
+      "expected": "Es gibt im Moment leider keine freien Termine.",
+      "start_offset": 23,
+      "note": "Independent correct control sentence of similar structure."
+    },
+    {
+      "id": "sp-guard-01",
+      "kind": "guard",
+      "family": "subject-person",
+      "subtype": "konjunktiv-i",
+      "locale": "de-DE",
+      "text": "Der Sprecher sagte, er habe von dem Vorfall nichts gewusst.",
+      "expected": "Der Sprecher sagte, er habe von dem Vorfall nichts gewusst.",
+      "start_offset": 23,
+      "note": "Konjunktiv I in reported speech: er habe is correct."
+    },
+    {
+      "id": "sp-guard-02",
+      "kind": "guard",
+      "family": "subject-person",
+      "subtype": "konjunktiv-i-recipe",
+      "locale": "de-DE",
+      "text": "Man nehme zwei Eier, etwas Mehl und eine Prise Salz.",
+      "expected": "Man nehme zwei Eier, etwas Mehl und eine Prise Salz.",
+      "start_offset": 23,
+      "note": "Jussive Konjunktiv I with man."
+    },
+    {
+      "id": "sp-guard-03",
+      "kind": "guard",
+      "family": "subject-person",
+      "subtype": "imperative",
+      "locale": "de-DE",
+      "text": "Kommt bitte alle pünktlich um neun Uhr in den Besprechungsraum!",
+      "expected": "Kommt bitte alle pünktlich um neun Uhr in den Besprechungsraum!",
+      "start_offset": 23,
+      "note": "Plural imperative without overt subject."
+    },
+    {
+      "id": "sp-guard-04",
+      "kind": "guard",
+      "family": "subject-person",
+      "subtype": "homograph-sie",
+      "locale": "de-DE",
+      "text": "Die Kollegen sagen, sie kommen später, aber die Chefin sagt, sie kommt gleich.",
+      "expected": "Die Kollegen sagen, sie kommen später, aber die Chefin sagt, sie kommt gleich.",
+      "start_offset": 23,
+      "note": "sie is plural in the first clause and singular in the second; both verbs agree."
+    },
+    {
+      "id": "sp-guard-05",
+      "kind": "guard",
+      "family": "subject-person",
+      "subtype": "coordinated-subject-with-ich",
+      "locale": "de-DE",
+      "text": "Mein Bruder und ich fahren im Sommer nach Schweden.",
+      "expected": "Mein Bruder und ich fahren im Sommer nach Schweden.",
+      "start_offset": 23,
+      "note": "Coordinated subject with ich takes 1st person plural; ich directly before fahren is not an error."
+    },
+    {
+      "id": "sp-guard-06",
+      "kind": "guard",
+      "family": "subject-person",
+      "subtype": "quotation",
+      "locale": "de-DE",
+      "text": "„Ich geht nach Hause“, schrieb das Kind in sein Heft.",
+      "expected": "„Ich geht nach Hause“, schrieb das Kind in sein Heft.",
+      "start_offset": 23,
+      "note": "Quoted child's sentence with an error is reproduced verbatim."
+    },
+    {
+      "id": "sp-guard-07",
+      "kind": "guard",
+      "family": "subject-person",
+      "subtype": "cleft-relative",
+      "locale": "de-DE",
+      "text": "Ich bin es, der das Fenster offen gelassen hat.",
+      "expected": "Ich bin es, der das Fenster offen gelassen hat.",
+      "start_offset": 23,
+      "note": "Relative clause with der takes a 3rd person verb even with antecedent ich."
+    },
+    {
+      "id": "sp-guard-08",
+      "kind": "guard",
+      "family": "subject-person",
+      "subtype": "resumptive-pronoun",
+      "locale": "de-DE",
+      "text": "Du und dein Bruder, ihr seid herzlich eingeladen.",
+      "expected": "Du und dein Bruder, ihr seid herzlich eingeladen.",
+      "start_offset": 23,
+      "note": "Left dislocation resumed by ihr; seid is correct."
+    },
+    {
+      "id": "sp-guard-09",
+      "kind": "guard",
+      "family": "subject-person",
+      "subtype": "weder-noch",
+      "locale": "de-DE",
+      "text": "Weder ich noch mein Kollege haben die E-Mail bekommen.",
+      "expected": "Weder ich noch mein Kollege haben die E-Mail bekommen.",
+      "start_offset": 23,
+      "note": "Plural verb is accepted with weder … noch."
+    },
+    {
+      "id": "sp-guard-10",
+      "kind": "guard",
+      "family": "subject-person",
+      "subtype": "expletive-es",
+      "locale": "de-DE",
+      "text": "Es kommen heute drei neue Praktikanten in unsere Abteilung.",
+      "expected": "Es kommen heute drei neue Praktikanten in unsere Abteilung.",
+      "start_offset": 23,
+      "note": "Expletive es; verb agrees with plural logical subject."
+    },
+    {
+      "id": "sp-guard-11",
+      "kind": "guard",
+      "family": "subject-person",
+      "subtype": "gapping",
+      "locale": "de-DE",
+      "text": "Ich nehme den Bus, mein Bruder das Fahrrad.",
+      "expected": "Ich nehme den Bus, mein Bruder das Fahrrad.",
+      "start_offset": 23,
+      "note": "Second conjunct omits the verb; mein Bruder has no finite verb of its own."
+    },
+    {
+      "id": "sp-guard-12",
+      "kind": "guard",
+      "family": "subject-person",
+      "subtype": "ignored-rule",
+      "locale": "de-DE",
+      "text": "Du kommt heute schon wieder zu spät.",
+      "expected": "Du kommt heute schon wieder zu spät.",
+      "start_offset": 23,
+      "note": "Contains a person error (kommst) but the subject-person rule is ignored, so no change is expected.",
+      "ignored_rule_ids": [
+        "de.spacy.subject-person"
+      ]
+    },
+    {
+      "id": "vp-error-01",
+      "kind": "error",
+      "family": "verb-position",
+      "subtype": "main-v3-adverb",
+      "locale": "de-DE",
+      "text": "Heute ich gehe nach der Arbeit ins Kino.",
+      "expected": "Heute gehe ich nach der Arbeit ins Kino.",
+      "start_offset": 23,
+      "target": {
+        "original": "ich gehe",
+        "replacement": "gehe ich"
+      },
+      "note": "Fronted adverb occupies position 1; finite verb must be second."
+    },
+    {
+      "id": "vp-error-02",
+      "kind": "error",
+      "family": "verb-position",
+      "subtype": "main-v3-adverb",
+      "locale": "de-DE",
+      "text": "Morgen wir fahren mit den Kindern an den See.",
+      "expected": "Morgen fahren wir mit den Kindern an den See.",
+      "start_offset": 23,
+      "target": {
+        "original": "wir fahren",
+        "replacement": "fahren wir"
+      },
+      "note": "Finite verb must follow the fronted adverb."
+    },
+    {
+      "id": "vp-error-03",
+      "kind": "error",
+      "family": "verb-position",
+      "subtype": "dass-verb-final",
+      "locale": "de-DE",
+      "text": "Ich weiß, dass er hat keine Zeit.",
+      "expected": "Ich weiß, dass er keine Zeit hat.",
+      "start_offset": 23,
+      "target": {
+        "original": "hat keine Zeit",
+        "replacement": "keine Zeit hat"
+      },
+      "note": "dass-clause requires verb-final order."
+    },
+    {
+      "id": "vp-error-04",
+      "kind": "error",
+      "family": "verb-position",
+      "subtype": "ob-verb-final-modal",
+      "locale": "de-DE",
+      "text": "Sie fragt, ob du kannst morgen kommen.",
+      "expected": "Sie fragt, ob du morgen kommen kannst.",
+      "start_offset": 23,
+      "target": {
+        "original": "kannst morgen kommen",
+        "replacement": "morgen kommen kannst"
+      },
+      "note": "ob-clause requires the finite modal in final position."
+    },
+    {
+      "id": "vp-error-05",
+      "kind": "error",
+      "family": "verb-position",
+      "subtype": "wenn-verb-final",
+      "locale": "de-DE",
+      "text": "Wenn ich habe Zeit, rufe ich dich an.",
+      "expected": "Wenn ich Zeit habe, rufe ich dich an.",
+      "start_offset": 23,
+      "target": {
+        "original": "habe Zeit",
+        "replacement": "Zeit habe"
+      },
+      "note": "wenn-clause requires verb-final order."
+    },
+    {
+      "id": "vp-error-06",
+      "kind": "error",
+      "family": "verb-position",
+      "subtype": "obwohl-verb-final",
+      "locale": "de-DE",
+      "text": "Obwohl es regnet stark, gehen wir spazieren.",
+      "expected": "Obwohl es stark regnet, gehen wir spazieren.",
+      "start_offset": 23,
+      "target": {
+        "original": "regnet stark",
+        "replacement": "stark regnet"
+      },
+      "note": "obwohl-clause requires verb-final order."
+    },
+    {
+      "id": "vp-error-07",
+      "kind": "error",
+      "family": "verb-position",
+      "subtype": "main-v3-pp",
+      "locale": "de-DE",
+      "text": "Am Montag die neue Kollegin beginnt ihre Einarbeitung.",
+      "expected": "Am Montag beginnt die neue Kollegin ihre Einarbeitung.",
+      "start_offset": 23,
+      "target": {
+        "original": "die neue Kollegin beginnt",
+        "replacement": "beginnt die neue Kollegin"
+      },
+      "note": "Fronted PP; finite verb must be second."
+    },
+    {
+      "id": "vp-error-08",
+      "kind": "error",
+      "family": "verb-position",
+      "subtype": "main-v3-adverb",
+      "locale": "de-DE",
+      "text": "Leider der Drucker funktioniert schon wieder nicht.",
+      "expected": "Leider funktioniert der Drucker schon wieder nicht.",
+      "start_offset": 23,
+      "target": {
+        "original": "der Drucker funktioniert",
+        "replacement": "funktioniert der Drucker"
+      },
+      "note": "Sentence adverb leider in position 1 without comma; verb second required."
+    },
+    {
+      "id": "vp-error-09",
+      "kind": "error",
+      "family": "verb-position",
+      "subtype": "da-verb-final",
+      "locale": "de-DE",
+      "text": "Er bleibt heute zu Hause, da er ist krank.",
+      "expected": "Er bleibt heute zu Hause, da er krank ist.",
+      "start_offset": 23,
+      "target": {
+        "original": "ist krank",
+        "replacement": "krank ist"
+      },
+      "note": "Causal da (unlike colloquial weil) does not allow verb-second."
+    },
+    {
+      "id": "vp-error-10",
+      "kind": "error",
+      "family": "verb-position",
+      "subtype": "dass-verb-final",
+      "locale": "de-DE",
+      "text": "Ich hoffe, dass ihr habt einen schönen Urlaub.",
+      "expected": "Ich hoffe, dass ihr einen schönen Urlaub habt.",
+      "start_offset": 23,
+      "target": {
+        "original": "habt einen schönen Urlaub",
+        "replacement": "einen schönen Urlaub habt"
+      },
+      "note": "dass-clause requires verb-final order."
+    },
+    {
+      "id": "vp-error-11",
+      "kind": "error",
+      "family": "verb-position",
+      "subtype": "main-v3-pp",
+      "locale": "de-DE",
+      "text": "Nach dem Essen wir trinken noch einen Kaffee.",
+      "expected": "Nach dem Essen trinken wir noch einen Kaffee.",
+      "start_offset": 23,
+      "target": {
+        "original": "wir trinken",
+        "replacement": "trinken wir"
+      },
+      "note": "Fronted PP; finite verb must be second."
+    },
+    {
+      "id": "vp-error-12",
+      "kind": "error",
+      "family": "verb-position",
+      "subtype": "indirect-question-verb-final",
+      "locale": "de-DE",
+      "text": "Kannst du mir sagen, wann beginnt der Kurs?",
+      "expected": "Kannst du mir sagen, wann der Kurs beginnt?",
+      "start_offset": 23,
+      "target": {
+        "original": "beginnt der Kurs",
+        "replacement": "der Kurs beginnt"
+      },
+      "note": "Embedded wh-question requires verb-final order."
+    },
+    {
+      "id": "vp-error-13",
+      "kind": "error",
+      "family": "verb-position",
+      "subtype": "main-v3-pp",
+      "locale": "de-DE",
+      "text": "In diesem Jahr unsere Firma feiert ihr Jubiläum.",
+      "expected": "In diesem Jahr feiert unsere Firma ihr Jubiläum.",
+      "start_offset": 23,
+      "target": {
+        "original": "unsere Firma feiert",
+        "replacement": "feiert unsere Firma"
+      },
+      "note": "Fronted PP; finite verb must be second."
+    },
+    {
+      "id": "vp-error-14",
+      "kind": "error",
+      "family": "verb-position",
+      "subtype": "bevor-verb-final",
+      "locale": "de-DE",
+      "text": "Bevor wir gehen nach Hause, räumen wir auf.",
+      "expected": "Bevor wir nach Hause gehen, räumen wir auf.",
+      "start_offset": 23,
+      "target": {
+        "original": "gehen nach Hause",
+        "replacement": "nach Hause gehen"
+      },
+      "note": "bevor-clause requires verb-final order."
+    },
+    {
+      "id": "vp-error-15",
+      "kind": "error",
+      "family": "verb-position",
+      "subtype": "main-v3-adverb",
+      "locale": "de-DE",
+      "text": "Gestern ich habe meinen Schlüssel im Büro vergessen.",
+      "expected": "Gestern habe ich meinen Schlüssel im Büro vergessen.",
+      "start_offset": 23,
+      "target": {
+        "original": "ich habe",
+        "replacement": "habe ich"
+      },
+      "note": "Finite auxiliary must follow the fronted adverb."
+    },
+    {
+      "id": "vp-error-16",
+      "kind": "error",
+      "family": "verb-position",
+      "subtype": "dass-verb-final",
+      "locale": "de-DE",
+      "text": "Es ist wichtig, dass alle Mitarbeiter lesen die Hinweise.",
+      "expected": "Es ist wichtig, dass alle Mitarbeiter die Hinweise lesen.",
+      "start_offset": 23,
+      "target": {
+        "original": "lesen die Hinweise",
+        "replacement": "die Hinweise lesen"
+      },
+      "note": "dass-clause requires verb-final order."
+    },
+    {
+      "id": "vp-error-17",
+      "kind": "error",
+      "family": "verb-position",
+      "subtype": "falls-verb-final",
+      "locale": "de-DE",
+      "text": "Falls Sie haben Fragen, melden Sie sich bitte.",
+      "expected": "Falls Sie Fragen haben, melden Sie sich bitte.",
+      "start_offset": 23,
+      "target": {
+        "original": "haben Fragen",
+        "replacement": "Fragen haben"
+      },
+      "note": "falls-clause requires verb-final order."
+    },
+    {
+      "id": "vp-error-18",
+      "kind": "error",
+      "family": "verb-position",
+      "subtype": "main-v3-adverb",
+      "locale": "de-DE",
+      "text": "Deshalb wir müssen den Termin verschieben.",
+      "expected": "Deshalb müssen wir den Termin verschieben.",
+      "start_offset": 23,
+      "target": {
+        "original": "wir müssen",
+        "replacement": "müssen wir"
+      },
+      "note": "Fronted deshalb occupies position 1; modal must be second."
+    },
+    {
+      "id": "vp-error-19",
+      "kind": "error",
+      "family": "verb-position",
+      "subtype": "dass-verb-final",
+      "locale": "de-DE",
+      "text": "Ich glaube nicht, dass das ist eine gute Idee.",
+      "expected": "Ich glaube nicht, dass das eine gute Idee ist.",
+      "start_offset": 23,
+      "target": {
+        "original": "ist eine gute Idee",
+        "replacement": "eine gute Idee ist"
+      },
+      "note": "dass-clause requires verb-final order."
+    },
+    {
+      "id": "vp-error-20",
+      "kind": "error",
+      "family": "verb-position",
+      "subtype": "als-verb-final",
+      "locale": "de-DE",
+      "text": "Als ich kam nach Hause, schliefen alle schon.",
+      "expected": "Als ich nach Hause kam, schliefen alle schon.",
+      "start_offset": 23,
+      "target": {
+        "original": "kam nach Hause",
+        "replacement": "nach Hause kam"
+      },
+      "note": "als-clause requires verb-final order."
+    },
+    {
+      "id": "vp-error-21",
+      "kind": "error",
+      "family": "verb-position",
+      "subtype": "main-v3-temporal-np",
+      "locale": "de-DE",
+      "text": "Jeden Morgen meine Nachbarin joggt durch den Park.",
+      "expected": "Jeden Morgen joggt meine Nachbarin durch den Park.",
+      "start_offset": 23,
+      "target": {
+        "original": "meine Nachbarin joggt",
+        "replacement": "joggt meine Nachbarin"
+      },
+      "note": "Fronted temporal NP; finite verb must be second."
+    },
+    {
+      "id": "vp-error-22",
+      "kind": "error",
+      "family": "verb-position",
+      "subtype": "ob-verb-final-auxiliary",
+      "locale": "de-DE",
+      "text": "Er weiß noch nicht, ob er wird die Stelle annehmen.",
+      "expected": "Er weiß noch nicht, ob er die Stelle annehmen wird.",
+      "start_offset": 23,
+      "target": {
+        "original": "wird die Stelle annehmen",
+        "replacement": "die Stelle annehmen wird"
+      },
+      "note": "ob-clause requires the finite auxiliary in final position."
+    },
+    {
+      "id": "vp-error-23",
+      "kind": "error",
+      "family": "verb-position",
+      "subtype": "main-v3-pp-separable",
+      "locale": "de-DE",
+      "text": "Um zehn Uhr der Zug fährt ab.",
+      "expected": "Um zehn Uhr fährt der Zug ab.",
+      "start_offset": 23,
+      "target": {
+        "original": "der Zug fährt",
+        "replacement": "fährt der Zug"
+      },
+      "note": "Fronted PP; finite verb must be second, particle stays final."
+    },
+    {
+      "id": "vp-error-24",
+      "kind": "error",
+      "family": "verb-position",
+      "subtype": "wenn-verb-final",
+      "locale": "de-DE",
+      "text": "Wir freuen uns, wenn Sie besuchen uns bald wieder.",
+      "expected": "Wir freuen uns, wenn Sie uns bald wieder besuchen.",
+      "start_offset": 23,
+      "target": {
+        "original": "besuchen uns bald wieder",
+        "replacement": "uns bald wieder besuchen"
+      },
+      "note": "wenn-clause requires verb-final order."
+    },
+    {
+      "id": "vp-valid-01",
+      "kind": "valid",
+      "family": "verb-position",
+      "subtype": "corrected-main-v3-adverb",
+      "locale": "de-DE",
+      "text": "Heute gehe ich nach der Arbeit ins Kino.",
+      "expected": "Heute gehe ich nach der Arbeit ins Kino.",
+      "start_offset": 23,
+      "note": "Corrected form of vp-error-01."
+    },
+    {
+      "id": "vp-valid-02",
+      "kind": "valid",
+      "family": "verb-position",
+      "subtype": "corrected-dass-verb-final",
+      "locale": "de-DE",
+      "text": "Ich weiß, dass er keine Zeit hat.",
+      "expected": "Ich weiß, dass er keine Zeit hat.",
+      "start_offset": 23,
+      "note": "Corrected form of vp-error-03."
+    },
+    {
+      "id": "vp-valid-03",
+      "kind": "valid",
+      "family": "verb-position",
+      "subtype": "corrected-ob-verb-final-modal",
+      "locale": "de-DE",
+      "text": "Sie fragt, ob du morgen kommen kannst.",
+      "expected": "Sie fragt, ob du morgen kommen kannst.",
+      "start_offset": 23,
+      "note": "Corrected form of vp-error-04."
+    },
+    {
+      "id": "vp-valid-04",
+      "kind": "valid",
+      "family": "verb-position",
+      "subtype": "corrected-wenn-verb-final",
+      "locale": "de-DE",
+      "text": "Wenn ich Zeit habe, rufe ich dich an.",
+      "expected": "Wenn ich Zeit habe, rufe ich dich an.",
+      "start_offset": 23,
+      "note": "Corrected form of vp-error-05."
+    },
+    {
+      "id": "vp-valid-05",
+      "kind": "valid",
+      "family": "verb-position",
+      "subtype": "corrected-main-v3-pp",
+      "locale": "de-DE",
+      "text": "Am Montag beginnt die neue Kollegin ihre Einarbeitung.",
+      "expected": "Am Montag beginnt die neue Kollegin ihre Einarbeitung.",
+      "start_offset": 23,
+      "note": "Corrected form of vp-error-07."
+    },
+    {
+      "id": "vp-valid-06",
+      "kind": "valid",
+      "family": "verb-position",
+      "subtype": "corrected-da-verb-final",
+      "locale": "de-DE",
+      "text": "Er bleibt heute zu Hause, da er krank ist.",
+      "expected": "Er bleibt heute zu Hause, da er krank ist.",
+      "start_offset": 23,
+      "note": "Corrected form of vp-error-09."
+    },
+    {
+      "id": "vp-valid-07",
+      "kind": "valid",
+      "family": "verb-position",
+      "subtype": "corrected-indirect-question-verb-final",
+      "locale": "de-DE",
+      "text": "Kannst du mir sagen, wann der Kurs beginnt?",
+      "expected": "Kannst du mir sagen, wann der Kurs beginnt?",
+      "start_offset": 23,
+      "note": "Corrected form of vp-error-12."
+    },
+    {
+      "id": "vp-valid-08",
+      "kind": "valid",
+      "family": "verb-position",
+      "subtype": "corrected-bevor-verb-final",
+      "locale": "de-DE",
+      "text": "Bevor wir nach Hause gehen, räumen wir auf.",
+      "expected": "Bevor wir nach Hause gehen, räumen wir auf.",
+      "start_offset": 23,
+      "note": "Corrected form of vp-error-14."
+    },
+    {
+      "id": "vp-valid-09",
+      "kind": "valid",
+      "family": "verb-position",
+      "subtype": "corrected-falls-verb-final",
+      "locale": "de-DE",
+      "text": "Falls Sie Fragen haben, melden Sie sich bitte.",
+      "expected": "Falls Sie Fragen haben, melden Sie sich bitte.",
+      "start_offset": 23,
+      "note": "Corrected form of vp-error-17."
+    },
+    {
+      "id": "vp-valid-10",
+      "kind": "valid",
+      "family": "verb-position",
+      "subtype": "corrected-dass-verb-final",
+      "locale": "de-DE",
+      "text": "Ich glaube nicht, dass das eine gute Idee ist.",
+      "expected": "Ich glaube nicht, dass das eine gute Idee ist.",
+      "start_offset": 23,
+      "note": "Corrected form of vp-error-19."
+    },
+    {
+      "id": "vp-valid-11",
+      "kind": "valid",
+      "family": "verb-position",
+      "subtype": "corrected-ob-verb-final-auxiliary",
+      "locale": "de-DE",
+      "text": "Er weiß noch nicht, ob er die Stelle annehmen wird.",
+      "expected": "Er weiß noch nicht, ob er die Stelle annehmen wird.",
+      "start_offset": 23,
+      "note": "Corrected form of vp-error-22."
+    },
+    {
+      "id": "vp-valid-12",
+      "kind": "valid",
+      "family": "verb-position",
+      "subtype": "corrected-wenn-verb-final",
+      "locale": "de-DE",
+      "text": "Wir freuen uns, wenn Sie uns bald wieder besuchen.",
+      "expected": "Wir freuen uns, wenn Sie uns bald wieder besuchen.",
+      "start_offset": 23,
+      "note": "Corrected form of vp-error-24."
+    },
+    {
+      "id": "vp-valid-13",
+      "kind": "valid",
+      "family": "verb-position",
+      "subtype": "new-control",
+      "locale": "de-DE",
+      "text": "Am Abend lesen die Kinder gern Comics.",
+      "expected": "Am Abend lesen die Kinder gern Comics.",
+      "start_offset": 23,
+      "note": "Independent correct control sentence of similar structure."
+    },
+    {
+      "id": "vp-valid-14",
+      "kind": "valid",
+      "family": "verb-position",
+      "subtype": "new-control",
+      "locale": "de-DE",
+      "text": "Ob das Paket heute noch ankommt, ist unklar.",
+      "expected": "Ob das Paket heute noch ankommt, ist unklar.",
+      "start_offset": 23,
+      "note": "Independent correct control sentence of similar structure."
+    },
+    {
+      "id": "vp-valid-15",
+      "kind": "valid",
+      "family": "verb-position",
+      "subtype": "new-control",
+      "locale": "de-DE",
+      "text": "Dass du gekommen bist, freut mich sehr.",
+      "expected": "Dass du gekommen bist, freut mich sehr.",
+      "start_offset": 23,
+      "note": "Independent correct control sentence of similar structure."
+    },
+    {
+      "id": "vp-valid-16",
+      "kind": "valid",
+      "family": "verb-position",
+      "subtype": "new-control",
+      "locale": "de-DE",
+      "text": "Sobald die Ergebnisse vorliegen, informieren wir Sie.",
+      "expected": "Sobald die Ergebnisse vorliegen, informieren wir Sie.",
+      "start_offset": 23,
+      "note": "Independent correct control sentence of similar structure."
+    },
+    {
+      "id": "vp-valid-17",
+      "kind": "valid",
+      "family": "verb-position",
+      "subtype": "new-control",
+      "locale": "de-DE",
+      "text": "Vielleicht sollten wir das Meeting auf Donnerstag verschieben.",
+      "expected": "Vielleicht sollten wir das Meeting auf Donnerstag verschieben.",
+      "start_offset": 23,
+      "note": "Independent correct control sentence of similar structure."
+    },
+    {
+      "id": "vp-valid-18",
+      "kind": "valid",
+      "family": "verb-position",
+      "subtype": "new-control",
+      "locale": "de-DE",
+      "text": "Nachdem er die E-Mail gelesen hatte, rief er sofort den Kunden an.",
+      "expected": "Nachdem er die E-Mail gelesen hatte, rief er sofort den Kunden an.",
+      "start_offset": 23,
+      "note": "Independent correct control sentence of similar structure."
+    },
+    {
+      "id": "vp-valid-19",
+      "kind": "valid",
+      "family": "verb-position",
+      "subtype": "new-control",
+      "locale": "de-DE",
+      "text": "Wann fängt die Veranstaltung morgen an?",
+      "expected": "Wann fängt die Veranstaltung morgen an?",
+      "start_offset": 23,
+      "note": "Independent correct control sentence of similar structure."
+    },
+    {
+      "id": "vp-valid-20",
+      "kind": "valid",
+      "family": "verb-position",
+      "subtype": "new-control",
+      "locale": "de-DE",
+      "text": "Der Techniker meinte, dass das Update noch heute installiert werden kann.",
+      "expected": "Der Techniker meinte, dass das Update noch heute installiert werden kann.",
+      "start_offset": 23,
+      "note": "Independent correct control sentence of similar structure."
+    },
+    {
+      "id": "vp-valid-21",
+      "kind": "valid",
+      "family": "verb-position",
+      "subtype": "new-control",
+      "locale": "de-DE",
+      "text": "Wenn es morgen nicht regnet, grillen wir im Garten.",
+      "expected": "Wenn es morgen nicht regnet, grillen wir im Garten.",
+      "start_offset": 23,
+      "note": "Independent correct control sentence of similar structure."
+    },
+    {
+      "id": "vp-valid-22",
+      "kind": "valid",
+      "family": "verb-position",
+      "subtype": "new-control",
+      "locale": "de-DE",
+      "text": "Trotzdem hat sich die Mühe am Ende gelohnt.",
+      "expected": "Trotzdem hat sich die Mühe am Ende gelohnt.",
+      "start_offset": 23,
+      "note": "Independent correct control sentence of similar structure."
+    },
+    {
+      "id": "vp-valid-23",
+      "kind": "valid",
+      "family": "verb-position",
+      "subtype": "new-control",
+      "locale": "de-DE",
+      "text": "Die Präsentation, die du gestern gehalten hast, war sehr überzeugend.",
+      "expected": "Die Präsentation, die du gestern gehalten hast, war sehr überzeugend.",
+      "start_offset": 23,
+      "note": "Independent correct control sentence of similar structure."
+    },
+    {
+      "id": "vp-valid-24",
+      "kind": "valid",
+      "family": "verb-position",
+      "subtype": "new-control",
+      "locale": "de-DE",
+      "text": "Obwohl der Zug Verspätung hatte, kamen wir pünktlich an.",
+      "expected": "Obwohl der Zug Verspätung hatte, kamen wir pünktlich an.",
+      "start_offset": 23,
+      "note": "Independent correct control sentence of similar structure."
+    },
+    {
+      "id": "vp-guard-01",
+      "kind": "guard",
+      "family": "verb-position",
+      "subtype": "weil-v2",
+      "locale": "de-DE",
+      "text": "Ich komme etwas später, weil ich muss noch einkaufen.",
+      "expected": "Ich komme etwas später, weil ich muss noch einkaufen.",
+      "start_offset": 23,
+      "note": "weil with verb-second is accepted in spoken German."
+    },
+    {
+      "id": "vp-guard-02",
+      "kind": "guard",
+      "family": "verb-position",
+      "subtype": "embedded-v2-no-complementizer",
+      "locale": "de-DE",
+      "text": "Er sagte, er hat heute keine Zeit.",
+      "expected": "Er sagte, er hat heute keine Zeit.",
+      "start_offset": 23,
+      "note": "Reported clause without dass correctly has verb-second order."
+    },
+    {
+      "id": "vp-guard-03",
+      "kind": "guard",
+      "family": "verb-position",
+      "subtype": "imperative-v1",
+      "locale": "de-DE",
+      "text": "Schließ bitte die Tür, wenn du gehst!",
+      "expected": "Schließ bitte die Tür, wenn du gehst!",
+      "start_offset": 23,
+      "note": "Imperative is verb-first."
+    },
+    {
+      "id": "vp-guard-04",
+      "kind": "guard",
+      "family": "verb-position",
+      "subtype": "yes-no-question-v1",
+      "locale": "de-DE",
+      "text": "Hast du die Unterlagen schon an Frau Dr. Bauer geschickt?",
+      "expected": "Hast du die Unterlagen schon an Frau Dr. Bauer geschickt?",
+      "start_offset": 23,
+      "note": "Yes/no question is verb-first; abbreviation Dr. is not a sentence boundary."
+    },
+    {
+      "id": "vp-guard-05",
+      "kind": "guard",
+      "family": "verb-position",
+      "subtype": "parenthesis",
+      "locale": "de-DE",
+      "text": "Heute, ich schwöre es, mache ich endlich Sport.",
+      "expected": "Heute, ich schwöre es, mache ich endlich Sport.",
+      "start_offset": 23,
+      "note": "Parenthetical clause between position 1 and the finite verb."
+    },
+    {
+      "id": "vp-guard-06",
+      "kind": "guard",
+      "family": "verb-position",
+      "subtype": "denn-v2",
+      "locale": "de-DE",
+      "text": "Ich gehe jetzt nach Hause, denn ich bin sehr müde.",
+      "expected": "Ich gehe jetzt nach Hause, denn ich bin sehr müde.",
+      "start_offset": 23,
+      "note": "denn is coordinating and takes verb-second order."
+    },
+    {
+      "id": "vp-guard-07",
+      "kind": "guard",
+      "family": "verb-position",
+      "subtype": "conditional-v1",
+      "locale": "de-DE",
+      "text": "Kommt er heute nicht, verschieben wir das Treffen.",
+      "expected": "Kommt er heute nicht, verschieben wir das Treffen.",
+      "start_offset": 23,
+      "note": "Verb-first conditional clause without wenn."
+    },
+    {
+      "id": "vp-guard-08",
+      "kind": "guard",
+      "family": "verb-position",
+      "subtype": "quotation",
+      "locale": "de-DE",
+      "text": "„Wir haben keine Zeit“, sagte die Projektleiterin.",
+      "expected": "„Wir haben keine Zeit“, sagte die Projektleiterin.",
+      "start_offset": 23,
+      "note": "Quoted clause occupies position 1; sagte is second."
+    },
+    {
+      "id": "vp-guard-09",
+      "kind": "guard",
+      "family": "verb-position",
+      "subtype": "headline",
+      "locale": "de-DE",
+      "text": "Neue Öffnungszeiten ab Montag: Bibliothek bleibt mittwochs geschlossen.",
+      "expected": "Neue Öffnungszeiten ab Montag: Bibliothek bleibt mittwochs geschlossen.",
+      "start_offset": 23,
+      "note": "Headline style with elliptical NP and dropped article."
+    },
+    {
+      "id": "vp-guard-10",
+      "kind": "guard",
+      "family": "verb-position",
+      "subtype": "gapping",
+      "locale": "de-DE",
+      "text": "Anna liest einen Roman und Paul eine Zeitschrift.",
+      "expected": "Anna liest einen Roman und Paul eine Zeitschrift.",
+      "start_offset": 23,
+      "note": "Second conjunct omits the finite verb."
+    },
+    {
+      "id": "vp-guard-11",
+      "kind": "guard",
+      "family": "verb-position",
+      "subtype": "interjection-prefield",
+      "locale": "de-DE",
+      "text": "Na ja, ich habe es zumindest versucht.",
+      "expected": "Na ja, ich habe es zumindest versucht.",
+      "start_offset": 23,
+      "note": "Interjection set off by a comma does not occupy position 1."
+    },
+    {
+      "id": "vp-guard-12",
+      "kind": "guard",
+      "family": "verb-position",
+      "subtype": "ignored-rule",
+      "locale": "de-DE",
+      "text": "Morgen ich fahre nach Leipzig zu meiner Tante.",
+      "expected": "Morgen ich fahre nach Leipzig zu meiner Tante.",
+      "start_offset": 23,
+      "note": "Contains a verb-second error but the verb-position rule is ignored, so no change is expected.",
+      "ignored_rule_ids": [
+        "de.spacy.verb-position"
+      ]
+    },
+    {
+      "id": "locale-unsupported-01",
+      "kind": "unsupported",
+      "family": "locale",
+      "subtype": "unsupported-locale",
+      "locale": "en-US",
+      "text": "The new printer in the office is broken again.",
+      "expected": "The new printer in the office is broken again.",
+      "start_offset": 23,
+      "note": "Unsupported locale; no change expected even if the text contains errors."
+    },
+    {
+      "id": "locale-unsupported-02",
+      "kind": "unsupported",
+      "family": "locale",
+      "subtype": "unsupported-locale",
+      "locale": "fr-FR",
+      "text": "Nous avons rendez-vous demain matin à neuf heures.",
+      "expected": "Nous avons rendez-vous demain matin à neuf heures.",
+      "start_offset": 23,
+      "note": "Unsupported locale; no change expected even if the text contains errors."
+    },
+    {
+      "id": "locale-unsupported-03",
+      "kind": "unsupported",
+      "family": "locale",
+      "subtype": "unsupported-locale",
+      "locale": "de-AT",
+      "text": "Morgen wir fahren mit den Kinder nach Graz.",
+      "expected": "Morgen wir fahren mit den Kinder nach Graz.",
+      "start_offset": 23,
+      "note": "Unsupported locale; no change expected even if the text contains errors."
+    },
+    {
+      "id": "locale-unsupported-04",
+      "kind": "unsupported",
+      "family": "locale",
+      "subtype": "unsupported-locale",
+      "locale": "de-CH",
+      "text": "Ich geht am Samstag mit dem Velo an den Zürichsee.",
+      "expected": "Ich geht am Samstag mit dem Velo an den Zürichsee.",
+      "start_offset": 23,
+      "note": "Unsupported locale; no change expected even if the text contains errors."
+    }
+  ]
+}
