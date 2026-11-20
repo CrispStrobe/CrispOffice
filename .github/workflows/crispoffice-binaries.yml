@@ -35,18 +35,18 @@ jobs:
         run: |
           python3 packages/quds_proofing_hunspell/tool/build.py --native \
             --output build/hunspell-macos \
-            --install-native packages/quds_office_editor/example/build/macos/Build/Products/Release/quds_office_studio.app/Contents/Frameworks \
-            --install-licenses packages/quds_office_editor/example/build/macos/Build/Products/Release/quds_office_studio.app/Contents/Resources/hunspell-licenses
+            --install-native packages/quds_office_editor/example/build/macos/Build/Products/Release/CrispOffice.app/Contents/Frameworks \
+            --install-licenses packages/quds_office_editor/example/build/macos/Build/Products/Release/CrispOffice.app/Contents/Resources/hunspell-licenses
           codesign --force --sign - \
-            packages/quds_office_editor/example/build/macos/Build/Products/Release/quds_office_studio.app/Contents/Frameworks/libquds_proofing_hunspell.dylib
+            packages/quds_office_editor/example/build/macos/Build/Products/Release/CrispOffice.app/Contents/Frameworks/libquds_proofing_hunspell.dylib
           codesign --force --deep --sign - \
             --entitlements packages/quds_office_editor/example/macos/Runner/Release.entitlements \
-            packages/quds_office_editor/example/build/macos/Build/Products/Release/quds_office_studio.app
+            packages/quds_office_editor/example/build/macos/Build/Products/Release/CrispOffice.app
       - name: Package
         run: |
           cd packages/quds_office_editor/example
           ditto -c -k --sequesterRsrc --keepParent \
-            build/macos/Build/Products/Release/quds_office_studio.app \
+            build/macos/Build/Products/Release/CrispOffice.app \
             "$GITHUB_WORKSPACE/crispoffice-macos.zip"
       - uses: actions/upload-artifact@v4
         with:
