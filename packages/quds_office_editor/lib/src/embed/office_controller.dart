@@ -1432,8 +1432,10 @@ class WordEditorController extends OfficeController {
     final int fromSection = incremental ? sectionIndexAtCaret : 0;
     if (incremental && WordLayoutEngine.incrementalLayout) {
       final LaidOutDocument previous = documentLaidOut;
-      // A layout whose lines were paint-fitted in place cannot be reused
-      // line by line; lay out once from the start to record fresh state.
+      // Paint-fitted lines get their engine values back first, so they can
+      // be reused line by line (the new layout is unfitted, as a full
+      // relayout after an edit is).
+      _FittedLines.restore(previous);
       documentLaidOut = previous.supportsIncrementalReuse
           ? engine.layout(
               document,
@@ -1445,6 +1447,11 @@ class WordEditorController extends OfficeController {
             )
           : engine.layout(document, updateFields: false);
     } else {
+      // The section-level path reuses earlier pages as they are (fitted),
+      // without recording incremental state from them.
+      if (incremental && _FittedLines.of(documentLaidOut) != null) {
+        documentLaidOut.discardIncrementalState();
+      }
       documentLaidOut = engine.layout(
         document,
         updateFields: !incremental,
@@ -2179,7 +2186,13 @@ class WordEditorController extends OfficeController {
     String? themeFamily,
   ) {
     // Fitting moves glyphs in place; such lines are no longer engine output.
-    laid.discardIncrementalState();
+    // Keep the engine values so the next local edit can put them back and
+    // relayout incrementally instead of discarding the layout state.
+    if (laid.supportsIncrementalReuse && _FittedLines.of(laid) == null) {
+      _FittedLines.capture(laid);
+    } else if (_FittedLines.of(laid) == null) {
+      laid.discardIncrementalState();
+    }
     void fit(LaidOutLine line) {
       final String text =
           line.sourceText ??
@@ -16111,4 +16124,62 @@ class _CallbackCommand implements OfficeCommand {
   /// invert API.
   OfficeCommand invert() =>
       _CallbackCommand(executeFn: undoFn, undoFn: executeFn);
+}
+
+/// Engine values of lines paint-fitted in place ([LaidOutLine.x], width and
+/// each glyph's x and advance — everything fitting changes), so a fitted
+/// layout can still seed an incremental relayout.
+final class _FittedLines {
+  _FittedLines._(this.lines, this.values);
+
+  static final Expando<_FittedLines> _byLayout = Expando<_FittedLines>(
+    'fitted lines',
+  );
+
+  final List<LaidOutLine> lines;
+  final Float64List values;
+
+  static _FittedLines? of(LaidOutDocument laid) => _byLayout[laid];
+
+  static void capture(LaidOutDocument laid) {
+    final List<LaidOutLine> lines = <LaidOutLine>[
+      for (final LaidOutPage page in laid.pages) ...<LaidOutLine>[
+        ...page.lines,
+        ...page.header,
+        ...page.footer,
+      ],
+    ];
+    var n = 0;
+    for (final LaidOutLine line in lines) {
+      n += 2 + 2 * line.glyphs.length;
+    }
+    final Float64List values = Float64List(n);
+    var i = 0;
+    for (final LaidOutLine line in lines) {
+      values[i++] = line.x;
+      values[i++] = line.width;
+      for (final LaidOutGlyph glyph in line.glyphs) {
+        values[i++] = glyph.x;
+        values[i++] = glyph.advance;
+      }
+    }
+    _byLayout[laid] = _FittedLines._(lines, values);
+  }
+
+  /// Puts the engine values back; [laid] is then engine output again.
+  static void restore(LaidOutDocument laid) {
+    final _FittedLines? fitted = _byLayout[laid];
+    if (fitted == null) return;
+    _byLayout[laid] = null;
+    var i = 0;
+    final Float64List values = fitted.values;
+    for (final LaidOutLine line in fitted.lines) {
+      line.x = values[i++];
+      line.width = values[i++];
+      for (final LaidOutGlyph glyph in line.glyphs) {
+        glyph.x = values[i++];
+        glyph.advance = values[i++];
+      }
+    }
+  }
 }
