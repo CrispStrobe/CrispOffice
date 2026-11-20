@@ -1,0 +1,80 @@
+{
+  "kind": "source-bound JavaScript arithmetic transcription",
+  "limitations": "Not Dart execution, Dart analysis, compiled Dart JavaScript, native package tests, CLI tests, or installed Microsoft Word differential testing.",
+  "baselineCompilerBlob": "bc00a76840eb300b5f955c0cf119e70ad4ac5829",
+  "totals": {
+    "sourceAssertions": 4,
+    "physicalTwipRoundTrips": 200010,
+    "legacyLineComparisons": 10024,
+    "decimalCases": 12,
+    "boundaryCases": 19
+  },
+  "totalAssertions": 210069,
+  "passed": true,
+  "failures": [],
+  "physicalRatios": {
+    "linestopoints": [
+      240,
+      20
+    ],
+    "pointstolines": [
+      20,
+      240
+    ],
+    "inchestopoints": [
+      1440,
+      20
+    ],
+    "pointstoinches": [
+      20,
+      1440
+    ],
+    "centimeterstopoints": [
+      72000,
+      2540
+    ],
+    "pointstocentimeters": [
+      2540,
+      72000
+    ],
+    "millimeterstopoints": [
+      7200,
+      2540
+    ],
+    "pointstomillimeters": [
+      2540,
+      7200
+    ],
+    "picastopoints": [
+      240,
+      20
+    ],
+    "pointstopicas": [
+      20,
+      240
+    ]
+  },
+  "twipProbeRange": {
+    "first": -10000,
+    "last": 10000
+  },
+  "legacyRandomSeed": "0x51dbeab",
+  "integerPromotion": {
+    "kind": "V8 plus BigInt simulation of signed 64-bit integer scale intermediates",
+    "cases": 60144,
+    "passed": true,
+    "failures": [],
+    "limits": "Arithmetic model only, not Dart execution; checks grid decisions for permitted integer inputs."
+  },
+  "source": {
+    "path": "packages/quds_office_engine/lib/src/automation/office_vba_language.dart",
+    "gitBlob": "a105ddd700c3822cb775d6a5ee9385bc380f4e8f",
+    "baselineCommit": "c954d00d2fc85604ae394674bca91ea8a1dede0e"
+  },
+  "execution": {
+    "environment": "functions.exec V8",
+    "date": "2026-11-20",
+    "dartExecuted": false,
+    "githubActionsQueried": false
+  }
+}

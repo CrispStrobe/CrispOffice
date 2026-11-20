@@ -888,7 +888,9 @@ change a destination property's range limits, or emulate VBA `Single`
 coercion. Microsoft's API documentation identifies Single arguments/results
 and gives rounded metric conversion factors; the exact physical ratios above
 are the explicit Quds numeric contract, not a claim of observed Word binary32
-parity.
+parity. They follow the exact ratios in Microsoft's
+[Office coordinate specification](https://learn.microsoft.com/en-us/openspecs/office_standards/ms-oi29500/afb7e140-b259-4901-8af4-d4a514f50db9)
+and [native unit definitions](https://learn.microsoft.com/en-us/windows/win32/vml/basic-vml-types).
 
 The actual [word_unit_conversions.bas](../packages/quds_office_engine/example/macros/word_unit_conversions.bas)
 example uses all eight physical conversion functions, a typed ByVal helper,

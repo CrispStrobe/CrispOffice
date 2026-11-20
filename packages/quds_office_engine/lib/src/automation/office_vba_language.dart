@@ -5776,7 +5776,9 @@ class _Evaluator {
   }
 
   Object _wordUnitConversion(_Token token, Object value) {
-    final number = _number(value, token);
+    // Every allowed integer is exactly representable as binary64. Promote
+    // before scaling so large metric intermediates cannot wrap on the VM.
+    final number = _number(value, token).toDouble();
     final (unitsPerInput, unitsPerOutput) = _wordUnitConversions[token.lower]!;
     final toPoints = token.lower.endsWith('topoints');
     final factor = toPoints
@@ -5785,7 +5787,7 @@ class _Evaluator {
     final units = number * unitsPerInput;
     // Use the integral conversion grid only when the input round-trips on it.
     // This keeps 1.15 lines -> 13.8 points and 2.54 cm -> 72 points canonical
-    // without snapping neighboring off-grid inputs or rounding all inputs.
+    // without epsilon rounding or blanket snapping of off-grid inputs.
     // The destination property's independent precision checks still apply.
     final onGrid =
         units.isFinite &&
