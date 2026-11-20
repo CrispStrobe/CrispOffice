@@ -68,6 +68,72 @@ Future<void> _mount(
   expect(tester.takeException(), isNull);
 }
 
+Future<void> _present(
+  WidgetTester tester,
+  PmlSlide slide, {
+  Map<int, PmlAnimSample>? samples,
+  PmlSlide? outgoing,
+}) async {
+  await tester.pumpWidget(
+    Directionality(
+      textDirection: TextDirection.ltr,
+      child: Align(
+        alignment: Alignment.topLeft,
+        child: RepaintBoundary(
+          key: _boundaryKey,
+          child: SizedBox(
+            width: 720,
+            height: 405,
+            child: SlideStage(
+              slide: slide,
+              presenting: true,
+              animSamples: samples,
+              outgoingSlide: outgoing,
+              transitionProgress: outgoing == null ? 1 : 0.5,
+              playingTransition: outgoing == null
+                  ? null
+                  : const PmlSlideTransition(kind: PmlTransitionKind.morph),
+              config: const OfficeSurfaceConfig(showSlideHandles: false),
+            ),
+          ),
+        ),
+      ),
+    ),
+  );
+  await tester.pump();
+  expect(tester.takeException(), isNull);
+}
+
+PmlSlide _decoratedSlide() => PmlSlide(
+  id: 256,
+  backgroundShapes: <PmlShape>[
+    PmlShape(
+      id: 2,
+      name: 'Master decoration',
+      fillColor: 'FF0000',
+      transform: const PmlTransform(
+        x: 30 * 12700,
+        y: 40 * 12700,
+        cx: 60 * 12700,
+        cy: 40 * 12700,
+      ),
+    ),
+  ],
+  shapes: <PmlShape>[
+    PmlShape(
+      id: 2,
+      name: 'Slide content',
+      fillColor: '0000FF',
+      transform: const PmlTransform(
+        x: 180 * 12700,
+        y: 40 * 12700,
+        cx: 60 * 12700,
+        cy: 40 * 12700,
+      ),
+    ),
+  ],
+);
+
 Future<Rect?> _inkBounds(WidgetTester tester, int rgb) async {
   final RenderRepaintBoundary boundary = tester.renderObject(
     find.byKey(_boundaryKey),
@@ -133,6 +199,55 @@ void _captureRichRuns(PmlShape shape) {
 }
 
 void main() {
+  testWidgets(
+    'slide animation cannot hide an inherited decoration with the same id',
+    (WidgetTester tester) async {
+      final PmlSlide slide = _decoratedSlide();
+      await _present(tester, slide);
+      final Rect decoration = (await _inkBounds(tester, 0xFF0000))!;
+      expect(await _inkBounds(tester, 0x0000FF), isNotNull);
+
+      await _present(
+        tester,
+        slide,
+        samples: <int, PmlAnimSample>{2: PmlAnimSample.hidden},
+      );
+      expect(await _inkBounds(tester, 0x0000FF), isNull);
+      expect(await _inkBounds(tester, 0xFF0000), decoration);
+    },
+  );
+
+  testWidgets('morph keeps inherited decorations when content ids match', (
+    WidgetTester tester,
+  ) async {
+    final PmlSlide outgoing = _decoratedSlide();
+    final PmlSlide incoming = outgoing.copy(id: 257);
+    await _present(tester, outgoing);
+    final Rect decoration = (await _inkBounds(tester, 0xFF0000))!;
+
+    await _present(tester, incoming, outgoing: outgoing);
+    expect(await _inkBounds(tester, 0xFF0000), decoration);
+    expect(await _inkBounds(tester, 0x0000FF), isNotNull);
+  });
+
+  testWidgets('inherited decorations retain their authored rotation', (
+    WidgetTester tester,
+  ) async {
+    final PmlSlide slide = _decoratedSlide();
+    final PmlTransform original = slide.backgroundShapes.single.transform;
+    slide.backgroundShapes.single.transform = PmlTransform(
+      x: original.x,
+      y: original.y,
+      cx: original.cx,
+      cy: original.cy,
+      rot: 90 * 60000,
+    );
+    await _present(tester, slide);
+    final Rect decoration = (await _inkBounds(tester, 0xFF0000))!;
+    expect(decoration.width, closeTo(40, 1));
+    expect(decoration.height, closeTo(60, 1));
+  });
+
   for (final PmlTextAnchor anchor in <PmlTextAnchor>[
     PmlTextAnchor.center,
     PmlTextAnchor.bottom,
