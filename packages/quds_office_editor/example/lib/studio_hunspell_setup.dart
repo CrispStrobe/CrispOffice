@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:quds_proofing_hunspell/quds_proofing_hunspell.dart';
 
 import 'studio_arabic_morph_host.dart';
+import 'studio_download_catalog.dart';
 import 'studio_hunspell_host.dart';
 
 String _short(String hash) =>
@@ -99,15 +100,20 @@ class _StudioHunspellSetupDialogState extends State<StudioHunspellSetupDialog> {
       _cancellation = cancellation;
       _progress = 0;
     });
-    await _run(
-      () => widget.host.install(
-        bundle,
-        cancellation: cancellation,
-        onProgress: (received, total) {
-          if (mounted) setState(() => _progress = received / total);
-        },
+    await studioDownloadActivity.track(
+      bundle.id,
+      cancel: cancellation.cancel,
+      download: (report) => _run(
+        () => widget.host.install(
+          bundle,
+          cancellation: cancellation,
+          onProgress: (received, total) {
+            report(received, total);
+            if (mounted) setState(() => _progress = received / total);
+          },
+        ),
+        working: bundle.id,
       ),
-      working: bundle.id,
     );
   }
 
@@ -117,14 +123,19 @@ class _StudioHunspellSetupDialogState extends State<StudioHunspellSetupDialog> {
       _cancellation = cancellation;
       _progress = 0;
     });
-    await _run(
-      () => host.install(
-        cancellation: cancellation,
-        onProgress: (received, total) {
-          if (mounted) setState(() => _progress = received / total);
-        },
+    await studioDownloadActivity.track(
+      host.status.bundle.id,
+      cancel: cancellation.cancel,
+      download: (report) => _run(
+        () => host.install(
+          cancellation: cancellation,
+          onProgress: (received, total) {
+            report(received, total);
+            if (mounted) setState(() => _progress = received / total);
+          },
+        ),
+        working: host.status.bundle.id,
       ),
-      working: host.status.bundle.id,
     );
   }
 
@@ -134,14 +145,19 @@ class _StudioHunspellSetupDialogState extends State<StudioHunspellSetupDialog> {
       _cancellation = cancellation;
       _progress = 0;
     });
-    await _run(
-      () => host.installModel(
-        cancellation: cancellation,
-        onProgress: (received, total) {
-          if (mounted) setState(() => _progress = received / total);
-        },
+    await studioDownloadActivity.track(
+      host.modelStatus.bundle.id,
+      cancel: cancellation.cancel,
+      download: (report) => _run(
+        () => host.installModel(
+          cancellation: cancellation,
+          onProgress: (received, total) {
+            report(received, total);
+            if (mounted) setState(() => _progress = received / total);
+          },
+        ),
+        working: host.modelStatus.bundle.id,
       ),
-      working: host.modelStatus.bundle.id,
     );
   }
 

@@ -5,6 +5,7 @@ import 'package:quds_proofing_spacy/quds_proofing_spacy.dart';
 import 'package:quds_proofing_spacy/quds_proofing_spacy_grammar.dart'
     show SpacyGrammarFamily, spacyGrammarQualifiedFamilies;
 
+import 'studio_download_catalog.dart';
 import 'studio_spacy_host.dart';
 
 String _short(String hash) =>
@@ -82,12 +83,17 @@ class _StudioSpacySetupDialogState extends State<StudioSpacySetupDialog> {
       _cancellation = cancellation;
       _progress = 0;
     });
-    await _run(
-      () => widget.host.install(
-        cancellation: cancellation,
-        onProgress: (received, total) {
-          if (mounted) setState(() => _progress = received / total);
-        },
+    await studioDownloadActivity.track(
+      studioSpacyGermanId,
+      cancel: cancellation.cancel,
+      download: (report) => _run(
+        () => widget.host.install(
+          cancellation: cancellation,
+          onProgress: (received, total) {
+            report(received, total);
+            if (mounted) setState(() => _progress = received / total);
+          },
+        ),
       ),
     );
   }
@@ -98,13 +104,18 @@ class _StudioSpacySetupDialogState extends State<StudioSpacySetupDialog> {
       _cancellation = cancellation;
       _progress = 0;
     });
-    await _run(
-      () => widget.host.installLanguage(
-        language,
-        cancellation: cancellation,
-        onProgress: (received, total) {
-          if (mounted) setState(() => _progress = received / total);
-        },
+    await studioDownloadActivity.track(
+      studioSpacyLanguageId(language),
+      cancel: cancellation.cancel,
+      download: (report) => _run(
+        () => widget.host.installLanguage(
+          language,
+          cancellation: cancellation,
+          onProgress: (received, total) {
+            report(received, total);
+            if (mounted) setState(() => _progress = received / total);
+          },
+        ),
       ),
     );
   }
