@@ -180,7 +180,7 @@ class LaidOutLine {
       ? null
       : proofingOffsets![layoutOffset];
 
-  /// Inner left/right pad for table-cell text (`tblCellMar` 108 twips).
+  /// Default inner left/right padding for table-cell text, in points.
   static const double tableCellPad = 4.25;
 
   /// Inner pad for absolutely placed [WmlFrame] text.
@@ -1064,7 +1064,7 @@ class WordLayoutEngine {
   /// Tallest header logo height for [section] (0 if none).
   static double _headerLogoHeight(WmlSection section) {
     var maxH = 0.0;
-    void consider(List<WmlVisual> visuals) {
+    void consider(Iterable<WmlVisual> visuals) {
       for (final WmlVisual item in visuals) {
         maxH = math.max(maxH, item.visual.height);
       }
@@ -1073,6 +1073,17 @@ class WordLayoutEngine {
     consider(section.headerVisuals);
     consider(section.firstHeaderVisuals);
     consider(section.evenHeaderVisuals);
+    for (final story in [
+      section.header,
+      section.firstHeader,
+      section.evenHeader,
+    ]) {
+      consider([
+        for (final paragraph in story)
+          for (final run in paragraph.inlines.whereType<WmlRun>())
+            if (run.inlineVisual != null) run.inlineVisual!,
+      ]);
+    }
     return maxH;
   }
 
@@ -1664,7 +1675,9 @@ class WordLayoutEngine {
     for (final LaidOutLine line in page.lines) {
       bottom = math.max(bottom, line.y + line.height);
     }
-    for (final LaidOutBox box in page.frames) {
+    for (final LaidOutBox box in page.frames.take(
+      page._origin?.bodyFrames ?? page.frames.length,
+    )) {
       if (!box.isNoteContent) bottom = math.max(bottom, box.y + box.height);
     }
     return bottom;
@@ -1699,7 +1712,12 @@ class WordLayoutEngine {
         final LaidOutPage last = pages.removeLast();
         flow.current.addAll(last.lines);
         flow.currentFrames.addAll(
-          last.frames.where((LaidOutBox b) => !b.isNoteContent),
+          // Chrome is rebuilt for the continuing section. Carry only the
+          // recorded body prefix; matching picture dimensions or assets cannot
+          // distinguish an old header/footer from authored body content.
+          last.frames
+              .take(last._origin?.bodyFrames ?? last.frames.length)
+              .where((LaidOutBox b) => !b.isNoteContent),
         );
         flow.pageIndex = last.index;
         flow.y = _contentBottom(last, fallback: _bodyTopClearingLogo(section));
@@ -3371,7 +3389,9 @@ class WordLayoutEngine {
     var inlineX = section.margins.left;
     for (final WmlVisual item in inlineVisuals) {
       final OfficeVisual visual = item.visual;
-      if (visuals.any((candidate) => identical(candidate.visual, visual))) {
+      // Only the same model node is a duplicate representation. Distinct
+      // placements can share dimensions, image bytes, or an OfficeVisual asset.
+      if (visuals.any((candidate) => identical(candidate, item))) {
         continue;
       }
       final double width = visual.width.clamp(16, section.contentWidth);
@@ -3396,13 +3416,6 @@ class WordLayoutEngine {
     }
     for (final WmlVisual item in visuals) {
       final OfficeVisual visual = item.visual;
-      if (inlineVisuals.any((inline) {
-        final OfficeVisual other = inline.visual;
-        return (other.width - visual.width).abs() < 1 &&
-            (other.height - visual.height).abs() < 1;
-      })) {
-        continue;
-      }
       final double width = visual.width.clamp(16, section.pageSize.width);
       final double height = visual.height.clamp(12, 120);
       final double vx = visual.offsetX != 0
@@ -3785,21 +3798,6 @@ class WordLayoutEngine {
         height: footerH,
       ),
     );
-    // Continuous sections can contribute the same header logo twice on one
-    // page. Keep one painted picture at each header position/size.
-    final Set<String> seenHeaderPictures = <String>{};
-    page.frames.removeWhere((frame) {
-      if (frame.kind != LaidOutBoxKind.picture ||
-          frame.visual == null ||
-          frame.y > page.headerBand.height + 40) {
-        return false;
-      }
-      final int bytes = frame.visual!.imageBytes?.length ?? 0;
-      final String key =
-          '${frame.x.toStringAsFixed(1)}|${frame.width.toStringAsFixed(1)}|'
-          '${frame.height.toStringAsFixed(1)}|$bytes';
-      return !seenHeaderPictures.add(key);
-    });
     page._origin = _PageOrigin(
       section,
       sectionIndex,

@@ -4,6 +4,14 @@ All notable changes to `quds_office_engine` are documented here.
 
 ## Unreleased
 
+- Render inline header/footer pictures and retain distinct images when their
+  dimensions match. Keep continuous-section decoration separate from body
+  frames so incremental layout preserves the same pictures as full layout.
+  Resolve table-style header formatting through the existing cascade, preserving
+  direct run overrides and explicit border widths when style color fills an
+  automatic value. Keep imported compact spacing sparse on export so later style
+  changes remain effective. Retain the imported empty-paragraph border behavior.
+
 - Preserve horizontal merged cells in Zotero Add Note/Add Annotation tables.
   Map bounded `colspan` to native `gridSpan`, reconcile `data-colwidth` vectors
   by logical column (including unspecified zero entries), and sum covered grid
@@ -25,7 +33,9 @@ All notable changes to `quds_office_engine` are documented here.
   functions. Preserve bounded Double arithmetic, exact native-unit checks,
   document-independent compilation and atomic publication. Add a repeatable
   Word layout example and source, saved-document, CLI/MCP and portable
-  JavaScript checks; document the Single-precision and native ownership limits.
+  JavaScript checks; retain the independent eight-, nine- and thirteen-operation
+  examples under distinct filenames. Document the Single-precision and native
+  ownership limits.
 
 - Fall back to full Word layout for changed footnote/endnote paragraphs,
   including nested note tables, so formatting edits cannot reuse stale note

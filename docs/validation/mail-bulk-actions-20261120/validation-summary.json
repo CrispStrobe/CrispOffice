@@ -1,0 +1,187 @@
+{
+  "milestone": "foreground bulk mail read/unread/flag/unflag",
+  "status": "PASS: foreground Mail and latest-main combined source locally accepted",
+  "frozen_intake_target": "4772d52492076241c39fdee0990c950c92367b1f",
+  "github_actions_queried": false,
+  "github_actions_awaited": false,
+  "counts_overlap": true,
+  "archive": {
+    "bytes": 3021830,
+    "path": "evidence.tar.gz",
+    "sha256": "5ff4d171e28d83ea8804b5e112efe31725b7e9c83c2b81230223c09b3bfa6121"
+  },
+  "archive_members": 264,
+  "unique_bound_inputs": 1107,
+  "frozen_refs": 320,
+  "uncovered_refs": 0,
+  "historical_replacement_proofs": 14,
+  "checkpoint_note": "This list ends before the final evidence-only checkpoint containing this report. The complete branch save count and final main merge/tree checks are recorded on PR273.",
+  "final_product_source": "79e10ef8375aa9950d624eb9702ba1ff19a19e8c",
+  "latest_main_incorporated": "698209aaa6e7f1350b6541df5eb192b7b233443d",
+  "baseline_cohorts": {
+    "core_vm": 181,
+    "core_bulk_node": 87,
+    "transport_vm": 415,
+    "transport_cloud_node": 107,
+    "shared_ui": 161,
+    "hosts_consolidated": 352,
+    "visual_tests": 8,
+    "visual_captures_inspected": 21,
+    "word_vm_assembled": 771,
+    "word_node_assembled": 725,
+    "bas_vm_node_semantic_matches": 3
+  },
+  "publication_acceptance": {
+    "purpose": "Final publication acceptance after latest main Zotero integration",
+    "accepted_source": "79e10ef8375aa9950d624eb9702ba1ff19a19e8c",
+    "accepted_tree": "d3a472f1e23bb98c1898087bdbd1ddf9d07f4c8d",
+    "recorded_at_utc": "2026-11-20T21:55:28.058879+00:00",
+    "incorporated_main": "698209aaa6e7f1350b6541df5eb192b7b233443d",
+    "main_reconciliation_checkpoint": "5034494d68257d9dc89493dd11f408c1c1165fae",
+    "local_gates": {
+      "zotero_engine_qualified": 282,
+      "zotero_engine_unchanged_suites": 234,
+      "zotero_protocol_clean_rerun": 48,
+      "zotero_editor": 114,
+      "mail_hosts": 352,
+      "visual_probes": 8,
+      "identical_inspected_images": 21
+    },
+    "counts_overlap": true,
+    "earlier_unchanged_scope_gates": {
+      "core_vm": 181,
+      "core_bulk_node": 87,
+      "transport_vm": 415,
+      "transport_cloud_node": 107,
+      "shared_ui": 161,
+      "font_loader": 9
+    },
+    "prior_word_gates": {
+      "source": "3f9d3647a20b06c73f5bfd0ade2846e7859e4502",
+      "vm": 961,
+      "node": 758,
+      "bas_semantic_pairs": 3,
+      "unchanged_inputs": 488,
+      "changed_zotero_libraries": 4,
+      "note": "Prior full scope is not relabeled current. Changed dependencies are covered by fresh Zotero engine/editor gates; no complete Word rerun after Zotero is claimed."
+    },
+    "current_mail_package_files_identical": 222,
+    "current_mail_dart_feature_files_identical": 211,
+    "frozen_intake_refs": 320,
+    "frozen_intake_uncovered_refs": 0,
+    "historical_replacement_proofs": 14,
+    "github_actions": "NOT QUERIED OR AWAITED",
+    "status": "PASS"
+  },
+  "archives": [
+    {
+      "bytes": 3021830,
+      "path": "evidence.tar.gz",
+      "sha256": "5ff4d171e28d83ea8804b5e112efe31725b7e9c83c2b81230223c09b3bfa6121"
+    },
+    {
+      "bytes": 2614173,
+      "path": "evidence-final-main.tar.gz",
+      "sha256": "ed060f4d17229239a05c64d33c7b14a4fdab134175af97d1823bcde4440ba205"
+    },
+    {
+      "bytes": 1143658,
+      "path": "evidence-publication.tar.gz",
+      "sha256": "ac2606e994cb91ca4d37eb099fb374d6a0d76902542f47a37d8c910837f3e814"
+    }
+  ],
+  "saved_remote_checkpoints_before_final_evidence": [
+    {
+      "sha": "4d9cddeea2608ac1d7a8f1acfdd5ecc1482f5114",
+      "title": "Reconcile remaining CI branch history; retain temporary workflow removal [skip ci]"
+    },
+    {
+      "sha": "b8b4d97934846fe44c370c4e86065a0b04c9fedd",
+      "title": "Record refreshed fork and upstream source intake for bulk mail milestone [skip ci]"
+    },
+    {
+      "sha": "d33875709546a323c786f1a0ec487e7ccdd1c03a",
+      "title": "Integrate concurrent Word measurement work and source inventory [skip ci]"
+    },
+    {
+      "sha": "69ab514b57a4d6d4db062d802eb853c2691d80fe",
+      "title": "mail: add bounded foreground bulk flag coordinator and explicit outcomes [skip ci]"
+    },
+    {
+      "sha": "b60c0ec26f2a80c984076fb1d480eb2e641b542e",
+      "title": "mail: wire visible bulk selection and guarded foreground host actions [skip ci]"
+    },
+    {
+      "sha": "9861fae8f6ac2eead50fd89123e678478b704d15",
+      "title": "Refine bulk refresh and localized controls; qualify incoming Word measurements [skip ci]"
+    },
+    {
+      "sha": "802fc11f5c265b3656dbbde66956c66e1d8dfa9f",
+      "title": "Guard bulk actions across reconnect and preserve status semantics [skip ci]"
+    },
+    {
+      "sha": "9109fcc645d0d95fbe7a7568ddf1e0ebc07bc384",
+      "title": "Integrate latest main and named Word measurement contracts [skip ci]"
+    },
+    {
+      "sha": "cebd8e10bc303885f39befbb2903c18617b480e1",
+      "title": "Reconcile parallel Word conversion proofs and overflow regression [skip ci]"
+    },
+    {
+      "sha": "639ea75a813d558cb5a1a848a6242fbf17bcf0c3",
+      "title": "Unify concurrent bulk mail work with provider certainty and frozen menu choices [skip ci]"
+    },
+    {
+      "sha": "e3fcf3d16222a9a95d28c70aab6631b73966393a",
+      "title": "Cover unavailable-provider receipts and correct Word test declaration order [skip ci]"
+    },
+    {
+      "sha": "0d2fb8d1baceba6340e0d8cd6fdf3e81aa53d5cd",
+      "title": "Reconcile latest main validation history without changing accepted Word source [skip ci]"
+    },
+    {
+      "sha": "65468fdff43c3acec20fd0d7fd8d4ae9d254d572",
+      "title": "Reconcile concurrent mail receipts and qualify Word continuation [skip ci]"
+    },
+    {
+      "sha": "f74c670bf731b2fbabd22907d5950a7b104362dd",
+      "title": "Align host regression interactions and preserve final intake diagnostics [skip ci]"
+    },
+    {
+      "sha": "e85faffbee0b4d61dd794954a6bc8cd16e354948",
+      "title": "Preserve captured Word named-measurement regressions and reconciliation records [skip ci]"
+    },
+    {
+      "sha": "4772d52492076241c39fdee0990c950c92367b1f",
+      "title": "Account for captured Zotero merge with exact source equivalence [skip ci]"
+    },
+    {
+      "sha": "511990e9b81ff5d6ef2ed1488ff31e2565f21618",
+      "title": "Preserve complete bulk mail acceptance and frozen source audit [skip ci]"
+    },
+    {
+      "sha": "75da007cc238673c9f0eed5a83e24f11d3de625a",
+      "title": "Integrate final main Word rendering and font updates [skip ci]"
+    },
+    {
+      "sha": "d9b86f633e8b3b71551a913100d3a2b163b8fbba",
+      "title": "Preserve Word formatting precedence and cover system font aliases [skip ci]"
+    },
+    {
+      "sha": "3f9d3647a20b06c73f5bfd0ade2846e7859e4502",
+      "title": "Preserve header pictures and continuous Word body layout [skip ci]"
+    },
+    {
+      "sha": "4b77659ea434c0613b30c1b1a1abec0d739640f1",
+      "title": "Preserve final main rendering and mail requalification evidence [skip ci]"
+    },
+    {
+      "sha": "5034494d68257d9dc89493dd11f408c1c1165fae",
+      "title": "Integrate latest main Zotero parity work while retaining accepted mail and Word source [skip ci]"
+    },
+    {
+      "sha": "79e10ef8375aa9950d624eb9702ba1ff19a19e8c",
+      "title": "Keep incoming Zotero protocol regression strict-analysis clean [skip ci]"
+    }
+  ]
+}

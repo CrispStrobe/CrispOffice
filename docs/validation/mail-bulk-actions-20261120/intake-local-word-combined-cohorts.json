@@ -1,0 +1,95 @@
+{
+  "schema": "quds-mail-bulk-combined-word-cohorts/v1",
+  "status": "PASS",
+  "baseline_receipt": "intake-local-word-final-validation.json",
+  "baseline_receipt_sha256": "1aa364b0e2944106eabbbb0ab7363318fad98ea01410ca8d03b40a8bdade4c19",
+  "focused_receipt": "intake-local-word-cutoff-validation.json",
+  "focused_receipt_sha256": "4fc3ef7ec27bce8d1369ebe8f9aec5d839ec904c166f974999e78f674f4c3030",
+  "changed_scoped_inputs": [
+    "packages/quds_office_engine/test/office_vba_word_named_measurements_integration_test.dart",
+    "packages/quds_office_engine/test/office_vba_word_named_measurements_test.dart"
+  ],
+  "unchanged_scoped_input_count": 367,
+  "cohorts": {
+    "vm": {
+      "original_run_passed": 757,
+      "focused_rerun_passed": 171,
+      "qualified_suite_counts": {
+        "test/office_vba_word_bulk_intake_conversions_test.dart": 63,
+        "test/office_vba_word_line_spacing_test.dart": 103,
+        "test/office_vba_word_line_spacing_integration_test.dart": 23,
+        "test/office_vba_word_measurements_test.dart": 197,
+        "test/office_vba_word_measurements_integration_test.dart": 6,
+        "test/office_vba_word_named_measurements_test.dart": 160,
+        "test/office_vba_word_named_measurements_integration_test.dart": 11,
+        "test/office_vba_word_unit_conversions_test.dart": 202,
+        "test/office_vba_word_unit_conversions_integration_test.dart": 6
+      },
+      "qualified_case_total": 771,
+      "replaced_suites": {
+        "test/office_vba_word_named_measurements_test.dart": {
+          "previous_passed": 147,
+          "new_passed": 160,
+          "added_cases": [
+            "CentimetersToPoints accepts an explicitly converted numeric string",
+            "InchesToPoints accepts an explicitly converted numeric string",
+            "LinesToPoints accepts an explicitly converted numeric string",
+            "MillimetersToPoints accepts an explicitly converted numeric string",
+            "PicasToPoints accepts an explicitly converted numeric string",
+            "PointsToCentimeters accepts an explicitly converted numeric string",
+            "PointsToInches accepts an explicitly converted numeric string",
+            "PointsToLines accepts an explicitly converted numeric string",
+            "PointsToMillimeters accepts an explicitly converted numeric string",
+            "PointsToPicas accepts an explicitly converted numeric string",
+            "conversion-only loops retain the shared source work budget",
+            "converted tab positions retain the exact native upper boundary",
+            "large metric conversions retain portable numeric results"
+          ]
+        },
+        "test/office_vba_word_named_measurements_integration_test.dart": {
+          "previous_passed": 10,
+          "new_passed": 11,
+          "added_cases": [
+            "converted tabs preserve existing stops and playback recording"
+          ]
+        }
+      },
+      "qualification": "Union of unchanged suites from the original run and the full rerun of expanded suites, not a claim that every final case ran in a single invocation."
+    },
+    "node": {
+      "original_run_passed": 712,
+      "focused_rerun_passed": 160,
+      "qualified_suite_counts": {
+        "test/office_vba_word_bulk_intake_conversions_test.dart": 63,
+        "test/office_vba_word_line_spacing_test.dart": 103,
+        "test/office_vba_word_measurements_test.dart": 197,
+        "test/office_vba_word_named_measurements_test.dart": 160,
+        "test/office_vba_word_unit_conversions_test.dart": 202
+      },
+      "qualified_case_total": 725,
+      "replaced_suites": {
+        "test/office_vba_word_named_measurements_test.dart": {
+          "previous_passed": 147,
+          "new_passed": 160,
+          "added_cases": [
+            "CentimetersToPoints accepts an explicitly converted numeric string",
+            "InchesToPoints accepts an explicitly converted numeric string",
+            "LinesToPoints accepts an explicitly converted numeric string",
+            "MillimetersToPoints accepts an explicitly converted numeric string",
+            "PicasToPoints accepts an explicitly converted numeric string",
+            "PointsToCentimeters accepts an explicitly converted numeric string",
+            "PointsToInches accepts an explicitly converted numeric string",
+            "PointsToLines accepts an explicitly converted numeric string",
+            "PointsToMillimeters accepts an explicitly converted numeric string",
+            "PointsToPicas accepts an explicitly converted numeric string",
+            "conversion-only loops retain the shared source work budget",
+            "converted tab positions retain the exact native upper boundary",
+            "large metric conversions retain portable numeric results"
+          ]
+        }
+      },
+      "qualification": "Union of unchanged suites from the original run and the full rerun of expanded suites, not a claim that every final case ran in a single invocation."
+    }
+  },
+  "portable_probes": "All three BAS/driver inputs and all production sources remain identical to the accepted VM/JS probes in the baseline receipt. No extra portable rerun is claimed."
+}

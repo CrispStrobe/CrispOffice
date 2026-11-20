@@ -297,9 +297,12 @@ void main() {
       );
       mailbox.views[view.mailbox.id] = view;
       await _show(tester, identity, (_) async => owner);
-      final rows = tester
-          .widget<MailMessageList>(find.byType(MailMessageList))
-          .items;
+      final list = tester.widget<MailMessageList>(find.byType(MailMessageList));
+      final rows = list.items;
+      expect(list.onBulkAction, isNull);
+      expect(list.onCancelBulk, isNull);
+      expect(find.byKey(const ValueKey('mail-list-bulk-actions')), findsNothing);
+      expect(find.byType(Checkbox), findsNothing);
       expect(rows.first.date, date);
       expect(rows.first.to, contains('Project Team <team@example.test>'));
       expect(rows.first.cc, contains('reviewer@example.test'));

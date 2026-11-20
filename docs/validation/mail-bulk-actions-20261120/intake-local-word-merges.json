@@ -1,0 +1,20 @@
+{
+  "schema": "quds-mail-bulk-word-conflict-resolution/v1",
+  "resolutions": [
+    {
+      "resolved_at_utc": "2026-11-20T20:49:25.385332+00:00",
+      "merge_head": "b01cb23dc1b7bc94b691d68a2507b61dc6d48d7a",
+      "local_head": "802fc11f5c265b3656dbbde66956c66e1d8dfa9f",
+      "path": "packages/quds_office_engine/lib/src/automation/office_vba_language.dart",
+      "base_blob": "44d5bc8f492b35db6106c8e41c49086907971881",
+      "local_blob": "5691d55cda88625b172879b260f510e025d242fc",
+      "incoming_blob": "07dc3c5737661abaf3b17db24439c71482de22ed",
+      "resolution": "Preserve the incoming main named-argument checker/evaluator and inverse-tested ratio implementation. The only local-vs-base change was formatting in the superseded evaluator."
+    }
+  ],
+  "compatibility_merge": {
+    "incoming": "8ca1958d9eb737beb88269bb962a2418f7a3a44a",
+    "source_resolution": "Retain main named-argument evaluator and ratio map; double promotion already present. Preserve incoming large-scalar conversion regression and all evidence files.",
+    "documentation_resolution": "Retain the incoming exact-ratio specification citations and explicit Quds numeric-contract qualification; preserve all main named-argument documentation."
+  }
+}

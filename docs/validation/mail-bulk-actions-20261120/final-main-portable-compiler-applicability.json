@@ -1,0 +1,38 @@
+{
+  "schema": "quds-mail-final-main-portable-qualification/v1",
+  "status": "PASS",
+  "decision": "Freshly compile and execute all five prior portable compiler suites plus new layout/style regression suites, and all three actual BAS probes. Do not infer acceptance solely from unchanged test files or potentially unused changed imports.",
+  "incoming_main": "e975cec13b289fe067ef406cd3044701ecc44744",
+  "prior_receipt": "intake-local-word-cutoff-validation.json",
+  "fresh_receipt": "final-main-word-validation.json",
+  "fresh_receipt_sha256": "e9fa867cd90b72c71033cb1a1006e1162def28570a8391d9729ac66af2ba9b03",
+  "prior_compiler_test_inputs_unchanged": true,
+  "prior_compiler_test_paths": [
+    "packages/quds_office_engine/test/office_vba_word_bulk_intake_conversions_test.dart",
+    "packages/quds_office_engine/test/office_vba_word_line_spacing_test.dart",
+    "packages/quds_office_engine/test/office_vba_word_measurements_test.dart",
+    "packages/quds_office_engine/test/office_vba_word_named_measurements_test.dart",
+    "packages/quds_office_engine/test/office_vba_word_unit_conversions_test.dart"
+  ],
+  "changed_previously_scoped_inputs": [
+    "packages/quds_office_engine/lib/src/word/layout/word_layout.dart",
+    "packages/quds_office_engine/lib/src/word/serial/word_deserializer.dart"
+  ],
+  "node_cases": 758,
+  "node_suite_paths": [
+    "test/office_vba_word_bulk_intake_conversions_test.dart",
+    "test/office_vba_word_line_spacing_test.dart",
+    "test/office_vba_word_measurements_test.dart",
+    "test/office_vba_word_named_measurements_test.dart",
+    "test/office_vba_word_unit_conversions_test.dart",
+    "test/word_header_picture_layout_regression_test.dart",
+    "test/word_table_style_precedence_test.dart"
+  ],
+  "three_bas_semantic_equal": {
+    "line_spacing": true,
+    "measurements": true,
+    "named_measurements": true
+  },
+  "source_unchanged": true,
+  "source_path_count": 492
+}

@@ -135,7 +135,7 @@ final class ApiMailCloudProvider implements MailCloudProvider {
   );
 
   MailFailure<T> _failure<T>(MailProblemCode code) =>
-      MailFailure(MailProblem(code));
+      MailFailure(MailProblem(code, mutationMayHaveOccurred: false));
 
   bool _mailboxValid(MailMailboxId mailbox) =>
       mailbox.account == account && _validId(mailbox.value);
@@ -244,7 +244,13 @@ final class ApiMailCloudProvider implements MailCloudProvider {
             : MailCloudLogStage.failed,
         problem: reported,
       );
-      return MailFailure(reported);
+      return MailFailure(
+        MailProblem(
+          reported.code,
+          retryAfter: reported.retryAfter,
+          mutationMayHaveOccurred: operation.mutationPossible,
+        ),
+      );
     } finally {
       operation.stopped = true;
       poll?.cancel();
@@ -358,12 +364,20 @@ final class ApiMailCloudProvider implements MailCloudProvider {
       }
       rethrow;
     }
-    // A confirmed client rejection is safe to report even if cancellation raced
-    // its response. Server failures may follow a committed mutation.
+    // Only explicit request/auth/resource/precondition rejection statuses prove
+    // no write, including documented rate-limit rejection. Timeouts and
+    // unfamiliar 4xx responses remain uncertain after a possible commit.
     if (mutation &&
-        response.statusCode >= 400 &&
-        response.statusCode < 500 &&
-        response.statusCode != 408) {
+        const {
+          400,
+          401,
+          403,
+          404,
+          409,
+          410,
+          412,
+          429,
+        }.contains(response.statusCode)) {
       operation.mutationPossible = false;
     }
     operation.check();
