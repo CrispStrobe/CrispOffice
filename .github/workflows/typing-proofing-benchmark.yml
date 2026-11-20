@@ -1,0 +1,93 @@
+name: Typing proofing benchmark
+
+# Studio typing/proofing benchmark and the Studio example suite, each on the
+# branch ("after") and on its merge base with main ("before"), so before and
+# after numbers come from the same hosted runner type instead of a loaded
+# development machine. See docs/performance/typing-proofing-20261120.md.
+on:
+  workflow_dispatch:
+  push:
+    branches: ['perf/typing-proofing-*']
+
+jobs:
+  benchmark:
+    name: benchmark ${{ matrix.variant }} (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos-latest, ubuntu-latest]
+        variant: [before, after]
+    defaults:
+      run:
+        working-directory: packages/quds_office_editor/example
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Check out the merge base with the branch's benchmark
+        if: matrix.variant == 'before'
+        working-directory: .
+        run: |
+          cp packages/quds_office_editor/example/test/studio_typing_proofing_benchmark_test.dart "$RUNNER_TEMP/"
+          git checkout --quiet "$(git merge-base HEAD origin/main)"
+          cp "$RUNNER_TEMP/studio_typing_proofing_benchmark_test.dart" packages/quds_office_editor/example/test/
+          git log -1 --oneline
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          flutter-version: 3.47.8
+      - name: Resolve workspace
+        working-directory: .
+        run: flutter pub get
+      - name: Run benchmark (3 runs)
+        run: |
+          for run in 1 2 3; do
+            QUDS_TYPING_BENCHMARK=1 flutter test test/studio_typing_proofing_benchmark_test.dart 2>&1 \
+              | tee "$RUNNER_TEMP/run-$run.txt" | grep -E 'TYPING_BENCHMARK|Some tests failed|All tests passed'
+          done
+          {
+            echo "### ${{ matrix.variant }} on ${{ matrix.os }}"
+            echo '```'
+            grep -h TYPING_BENCHMARK "$RUNNER_TEMP"/run-*.txt
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+  studio:
+    name: Studio example tests ${{ matrix.variant }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        variant: [before, after]
+    defaults:
+      run:
+        working-directory: packages/quds_office_editor/example
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Check out the merge base
+        if: matrix.variant == 'before'
+        working-directory: .
+        run: git checkout --quiet "$(git merge-base HEAD origin/main)" && git log -1 --oneline
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          flutter-version: 3.47.8
+      - name: Resolve workspace
+        working-directory: .
+        run: flutter pub get
+      - name: Analyze
+        run: flutter analyze lib test
+      - name: Test
+        run: |
+          flutter test --reporter expanded 2>&1 | tee "$RUNNER_TEMP/studio.txt"
+          status=${PIPESTATUS[0]}
+          {
+            echo "### Studio tests ${{ matrix.variant }}"
+            echo '```'
+            grep -E '^[0-9:]+ \+[0-9]+.*(\[E\]|Some tests failed|All tests passed)' "$RUNNER_TEMP/studio.txt" | tail -40
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+          exit $status
