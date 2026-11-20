@@ -1,5 +1,42 @@
 # Zotero validation
 
+## 20 November 2026 — horizontal merged cells and adjacent-citation Refresh
+
+Add Note and Add Annotation preserve bounded horizontal table merges as native
+`gridSpan`, including logical-column width reconciliation, rich cell content,
+active citations and body/footnote/endnote ownership. Native Refresh advertises
+citation merging only for packets that directly touch in the same paragraph,
+story and note. Zotero owns ordering, deduplication and formatting; physical
+adjacency is rechecked before one atomic undo/redo transaction.
+
+The [continuation report](validation/zotero-merged-cells-20261120/README.md)
+qualifies current-main source `180399f99a3898501ab1959e3b845150d7da59fd`, tree
+`500931fdbb32699dcce23e3f4eb293b9141168b2`, preserving main `e975cec1` as its
+second parent. The three final processes completed **1,801 passes and eight
+skips**: 495 engine passes, 378 editor passes/eight skips and 928 incoming
+Word/Mail passes across 11 suites. Each process exited zero with a successful
+terminal event and zero failures or errors; 769 engine and 904 editor input
+hashes stayed unchanged.
+
+All **257 Zotero editor cases executed and passed**. The eight skips are existing
+image-only `word_incremental_layout_equivalence_test.dart` fixtures with
+`no paragraphs to edit`. The report lists their names and corrects the earlier
+`6a00886f` editor tally, which had counted skipped success events as passes;
+that run also had 378 actual passes and eight skips. The older 724-case incoming
+receipt remains source-attributed, and repeated runs are not added to the final
+total. **Publication targets remote `main` through the continuation pull request.**
+
+The fixed initial intake accounts for all 316 refs through 293 ancestors and
+23 refs at 14 independently verified historical equivalents. Four maximal
+incoming heads retain their ancestry; the retired temporary workflow stays
+deleted. Later unfinished Mail draft work and a later unit branch remain outside
+this bounded milestone. Remote checkpoints preserve progress; no GitHub
+Actions/check/status endpoints were called or awaited.
+
+This adds no installed Zotero, Word or LibreOffice acceptance, active ODT
+citation transfer or complete parity claim. Vertical merges, nested tables,
+broader structural selections and release-host acceptance remain next work.
+
 ## 20 November 2026 — browse reference notes and attachment metadata
 
 The [publication continuation](validation/zotero-research-materials-20261120/continuation/README.md)

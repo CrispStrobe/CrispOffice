@@ -155,11 +155,15 @@ successful refresh is one undo/redo step, and aborted or stale results stay
 detached.
 
 The [continuation validation record](../../validation/zotero-merged-cells-20261120/README.md)
-qualifies source `6a00886f2c7f2ceddf859fcc1ccb99fbfcbb989a` with 495 engine,
-386 editor and 724 incoming Word/Mail product cases passing locally. This is
-local source qualification; no new installed Zotero, Word or LibreOffice run,
-active ODT transfer or complete parity is claimed. Earlier records retain their
-original evidence and source attribution.
+qualifies source `180399f99a3898501ab1959e3b845150d7da59fd` with 495 engine
+passes, 378 editor passes/eight skips and 928 incoming Word/Mail passes. The
+three final processes total 1,801 passes and eight skips, with zero failures or
+errors. All 257 Zotero editor cases executed and passed. The eight skips are
+existing image-only layout fixtures; they are also excluded from the corrected
+earlier-source tally. Repeated runs are not added together. Final merge into
+main remains pending. This is local source qualification; no new installed
+Zotero, Word or LibreOffice run, active ODT transfer or complete parity is
+claimed. Earlier records retain their original evidence and source attribution.
 
 ## Next implementation and acceptance steps
 

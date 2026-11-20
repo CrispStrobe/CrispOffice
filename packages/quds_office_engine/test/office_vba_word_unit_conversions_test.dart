@@ -218,12 +218,15 @@ End Sub
     });
   }
 
-  test('explicit CLng lets the author choose twip rounding for metric input', () {
-    final plan = _compile(
-      '$_target.LeftIndent = CLng(CentimetersToPoints(1) * 20) / 20',
-    );
-    expect(plan.steps.single.arguments['left'], 28.35);
-  });
+  test(
+    'explicit CLng lets the author choose twip rounding for metric input',
+    () {
+      final plan = _compile(
+        '$_target.LeftIndent = CLng(CentimetersToPoints(1) * 20) / 20',
+      );
+      expect(plan.steps.single.arguments['left'], 28.35);
+    },
+  );
 
   test('legacy PointsToLines keeps division on the off-grid fallback', () {
     final plan = _compile('''
@@ -245,10 +248,7 @@ End If
     'PicasToPoints',
   ]) {
     test('$name refuses output beyond the portable numeric bound', () {
-      _reject(
-        'Dim n As Double\nn = $name(9007199254740991)',
-        'vba_type_error',
-      );
+      _reject('Dim n As Double\nn = $name(9007199254740991)', 'vba_type_error');
     });
   }
 
@@ -263,9 +263,11 @@ End If
     );
   });
 
-  test('omitted Optional Variant cannot silently become a zero measurement', () {
-    expect(
-      () => _source('''
+  test(
+    'omitted Optional Variant cannot silently become a zero measurement',
+    () {
+      expect(
+        () => _source('''
 Sub Convert(Optional ByVal amount As Variant)
   Dim n As Double
   n = InchesToPoints(amount)
@@ -274,9 +276,10 @@ Sub Main()
   Convert
 End Sub
 '''),
-      throwsA(isA<OfficeVbaCompileException>()),
-    );
-  });
+        throwsA(isA<OfficeVbaCompileException>()),
+      );
+    },
+  );
 
   test('conversion composes with a pending custom line-spacing pair', () {
     final plan = _compile('''
@@ -292,9 +295,11 @@ $_target.LineSpacing = n
     });
   });
 
-  test('argument side effects still cannot interrupt a pending spacing pair', () {
-    expect(
-      () => _source('''
+  test(
+    'argument side effects still cannot interrupt a pending spacing pair',
+    () {
+      expect(
+        () => _source('''
 Function Amount() As Double
   $_range.InsertBefore "intervening write"
   Amount = 1
@@ -304,13 +309,14 @@ Sub Main()
   $_target.LineSpacing = InchesToPoints(Amount())
 End Sub
 '''),
-      throwsA(
-        isA<OfficeVbaCompileException>().having(
-          (error) => error.code,
-          'code',
-          'vba_unsupported',
+        throwsA(
+          isA<OfficeVbaCompileException>().having(
+            (error) => error.code,
+            'code',
+            'vba_unsupported',
+          ),
         ),
-      ),
-    );
-  });
+      );
+    },
+  );
 }

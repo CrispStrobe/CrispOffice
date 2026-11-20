@@ -1280,10 +1280,15 @@ to each new client. Clients sharing that state must use the same clock.
 The [horizontal-merge and Refresh work record](validation/zotero-merged-cells-20261120/README.md)
 tracks this continuation's incoming-work reconciliation, remote checkpoints,
 exact-source checks and remaining application acceptance. Its qualified source,
-`6a00886f2c7f2ceddf859fcc1ccb99fbfcbb989a`, passed 495 engine cases, 386 editor
-cases and 724 incoming Word/Mail product cases locally. These results do not
-claim a new installed Zotero, Word or LibreOffice run, complete plugin parity,
-or active ODT citation transfer. The
+`180399f99a3898501ab1959e3b845150d7da59fd`, completed 495 engine passes, 378
+editor passes with eight skips, and 928 incoming Word/Mail passes: 1,801 passes
+and eight skips across the three final processes, with zero failures or errors.
+All 257 Zotero editor cases executed and passed; the eight skipped cases are
+existing image-only layout fixtures, identified in the record. The same skips
+are excluded from the corrected earlier-source tally. Repeated runs are not
+added to the final total. Final merge into main remains pending. These results
+do not claim a new installed Zotero, Word or LibreOffice run, complete plugin
+parity, or active ODT citation transfer. The
 [research-table work record](validation/zotero-research-tables-20261120/README.md)
 retains the preceding table increment's evidence. The
 [authored-note and selected-text record](validation/zotero-note-targets-20261120/README.md)
