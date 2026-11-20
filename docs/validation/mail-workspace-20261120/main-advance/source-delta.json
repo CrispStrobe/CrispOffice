@@ -1,0 +1,2940 @@
+{
+  "captured_at_utc": "2026-11-20T09:35:11.214884+00:00",
+  "prior_main": "5e38de19ab5af8d6811d601c7317cba7f69d516b",
+  "new_main": "860c807bfd1385899eed130abfb8940f95bda113",
+  "qualified_mail_source": "44abcfa10367c8cf586ad3cf826feb3cb1de6dab",
+  "working_head_observed": "ba1800f6556484dd9d4e89e1b0b38a512c44a6a0",
+  "merge_bases": [
+    "67a4917b33dcd578333adabac1c50db0fc2a62b6",
+    "ffb8cee3acec878cdbe3c27e0bb82f228468a30f"
+  ],
+  "first_parent_main_advance": [
+    "860c807bfd1385899eed130abfb8940f95bda113 7c82a286e22a4e37e58b79edafa4c5a8c089fc41 7c562b635f932372a310b78a78eb20bdb9df626d Merge remote-tracking branch 'origin/main' into fix/word-line-boxes-20261120",
+    "7c82a286e22a4e37e58b79edafa4c5a8c089fc41 f6db35129e5ecd37197a2b9c0ead7de3cf5f7618 Support long synthetic font family names in installed-font controls [skip ci]",
+    "f6db35129e5ecd37197a2b9c0ead7de3cf5f7618 238ad2ed69890d0bde9fc1a5c77ab747cbbc5cfd Discover installed Franklin Gothic and align shared mailbox empty-filter regression [skip ci]",
+    "238ad2ed69890d0bde9fc1a5c77ab747cbbc5cfd b8f4a7be7cc5ac1a6d9c1d89d999c5e6f3e13fb6 1eddb91495bd405a1dfb3b1e8734e93e85b04b1d Merge remote-tracking branch 'origin/integrate/recent-pptx' into fix/word-line-boxes-20261120",
+    "b8f4a7be7cc5ac1a6d9c1d89d999c5e6f3e13fb6 daf8bf6f03a5aeb06f7933561a9e6ffdab1886c3 Carry PDF rich paragraph measurement dependencies through reconciliation [skip ci]",
+    "daf8bf6f03a5aeb06f7933561a9e6ffdab1886c3 ec69fab12e32cd714bbe130f2c0a21a10300ba98 ffb8cee3acec878cdbe3c27e0bb82f228468a30f Reconcile incoming Mail with retained Office geometry and font metrics [skip ci]",
+    "ec69fab12e32cd714bbe130f2c0a21a10300ba98 3d67261b7d6ad6fd3f6103fd651b57707137cdb3 a4ed68f2c78e0f41013c2af160fe84e27d9d84ad Merge remote-tracking branch 'origin/codex/zotero-parity-continuation-20261120' into fix/word-line-boxes-20261120",
+    "3d67261b7d6ad6fd3f6103fd651b57707137cdb3 55115f33c6de44b2f7dfe537c0db244a7fb8ef9f 1ceae221d37e733f0195d35622a05f896a2d13a1 Merge remote-tracking branch 'origin/codex/vba-variant-conversions-20261120' into fix/word-line-boxes-20261120",
+    "55115f33c6de44b2f7dfe537c0db244a7fb8ef9f 4adc3f2e39fd59df60802d09ba0290c1cdc93644 1fe093a217741d228c86bad4e6a5a13f777ed851 Integrate published Office VBA, font and rendering work for local qualification [skip ci]",
+    "4adc3f2e39fd59df60802d09ba0290c1cdc93644 c16e121365b7c52c0b66371381c8c58f592e1d8e afc3524eb896c496475d6763ab4b37dddfe68932 Integrate CrispOffice product and artifact naming [skip ci]"
+  ],
+  "all_tree_changes": [
+    {
+      "path": ".github/workflows/office-macros.yml",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "bf9e461810e31dfd652d72405c3a7627c8f49d4c",
+      "new_blob": "0f864dd4659c74eba7ee950c7ac6648719391772",
+      "status": "M"
+    },
+    {
+      "path": "README.md",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "ad72f44727f4fddd7fa094fc0a97bcba0371afee",
+      "new_blob": "1d44c4846f4e8a477a72b6b21259ecbf06e18047",
+      "status": "M"
+    },
+    {
+      "path": "docs/MACROS.md",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "53f5ab13efbb390f4ce25cebbed1894332d89eb9",
+      "new_blob": "905351997d2c8b94f75891d328c959e113eba628",
+      "status": "M"
+    },
+    {
+      "path": "docs/VBA_CONFORMANCE.md",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "a9e0e05886a1bbbad225617ccb3bdc032fe9e2eb",
+      "new_blob": "e79c4d56585f658a3547bd9bdf65d0761ba91ad9",
+      "status": "M"
+    },
+    {
+      "path": "docs/VBA_MACROS.md",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "f1163ce29af88acf330f6b78a2068e2ae961eead",
+      "new_blob": "08f77a682491698baa80b549f442d3be04fd084a",
+      "status": "M"
+    },
+    {
+      "path": "docs/VBA_PARITY_ROADMAP.md",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "6d577c14539106c4f1e5c01ecddc92d6e568341a",
+      "new_blob": "8d1c137b359a4e553d0c03d0c08f88bfff80e38a",
+      "status": "M"
+    },
+    {
+      "path": "docs/VBA_WORD_MACROS.md",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "2e0973f69d90d091c46e3bfe35a80cbbfa0bdd59",
+      "status": "A"
+    },
+    {
+      "path": "docs/roadmaps/mail/README.md",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "17e5a1e62a24422e4c75c2fb1212f3d33269f485",
+      "new_blob": "15445bdbf9e99ceafd67dc537fc4edd5fe518688",
+      "status": "M"
+    },
+    {
+      "path": "docs/roadmaps/mail/draft-recovery.md",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "2f8aceef3f292697cd2ac3aedc204f66b2cff9b1",
+      "new_blob": "0e2b911e11b6459b3aae3b81c28e86e5fe5c1f34",
+      "status": "M"
+    },
+    {
+      "path": "docs/roadmaps/mail/implementation-plan.md",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "a6d06666e6684c91e90a739e8fb585e7495de283",
+      "new_blob": "7ee5e548ec68d900244b527cd727a87034130652",
+      "status": "M"
+    },
+    {
+      "path": "docs/roadmaps/mail/mailbox-workspace.md",
+      "old_mode": "100644",
+      "new_mode": "000000",
+      "old_blob": "b07ee6c3f7414f93929affb5704a60df255e1585",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/roadmaps/mail/recipients-and-reply-all.md",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "e5f2151cce012e9a3a48e1678ba738090139e847",
+      "new_blob": "dfd15d1ab214442ecb952085ef70d22342d4271c",
+      "status": "M"
+    },
+    {
+      "path": "docs/roadmaps/mail/status.md",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "d9d9c71a6e77527205b2d6cec0b866dfcd8d8678",
+      "new_blob": "bd208abebbc96ecfdbadf5c91bb7c16cdb647e94",
+      "status": "M"
+    },
+    {
+      "path": "docs/roadmaps/zotero/word-processor-parity.md",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "9d34cf31db81a22c9ebe8982c77d134b86d2acb7",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/incoming-office-followup.md",
+      "old_mode": "100644",
+      "new_mode": "000000",
+      "old_blob": "664a6f9794f6d392ffa2da7b995ca049bd38d4ee",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/incoming-office-followup/analysis.txt",
+      "old_mode": "100644",
+      "new_mode": "000000",
+      "old_blob": "6708add1aab41c6319b8dfc2b2385a955820bbb9",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/incoming-office-followup/baseline.jsonl.gz",
+      "old_mode": "100644",
+      "new_mode": "000000",
+      "old_blob": "495e15d70606077eba42a2f526c0266a53802f7c",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/incoming-office-followup/baseline.stderr",
+      "old_mode": "100644",
+      "new_mode": "000000",
+      "old_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/incoming-office-followup/editor.jsonl.gz",
+      "old_mode": "100644",
+      "new_mode": "000000",
+      "old_blob": "36d078175d632cd3799658b26e7cc97ba5eba50b",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/incoming-office-followup/editor.stderr",
+      "old_mode": "100644",
+      "new_mode": "000000",
+      "old_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/incoming-office-followup/engine.jsonl.gz",
+      "old_mode": "100644",
+      "new_mode": "000000",
+      "old_blob": "4f6b8da70dad091b00f659760dbe5b7bd1c45822",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/incoming-office-followup/engine.stderr",
+      "old_mode": "100644",
+      "new_mode": "000000",
+      "old_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/incoming-office-followup/format.txt",
+      "old_mode": "100644",
+      "new_mode": "000000",
+      "old_blob": "0bac3c2ce0c5ae325940047a2c72a56b48d142d8",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/incoming-office-followup/inputs-after.json",
+      "old_mode": "100644",
+      "new_mode": "000000",
+      "old_blob": "e55d31e1a4e47b1e69a07f628fc055e8f5a87c43",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/incoming-office-followup/inputs-before.json",
+      "old_mode": "100644",
+      "new_mode": "000000",
+      "old_blob": "98a9041cae8c75169b18fba85f27379ef44d88ca",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/incoming-office-followup/probe.jsonl.gz",
+      "old_mode": "100644",
+      "new_mode": "000000",
+      "old_blob": "bdb870cc49bb5ec9c98d8678a5d73a9d7a0b9351",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/incoming-office-followup/probe.stderr",
+      "old_mode": "100644",
+      "new_mode": "000000",
+      "old_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/incoming-office-followup/summary.json",
+      "old_mode": "100644",
+      "new_mode": "000000",
+      "old_blob": "c9c888092992f1ddf0c94c6c7346e25e23236358",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/incoming-office.md",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "e3772fd9c6d3cb4913460cbe59590749fcd748fe",
+      "new_blob": "c89ed99a1ea8f216767dc3940afee9974966075f",
+      "status": "M"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/run_acceptance.py",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "2734e77b661bbdf3732d6de18ab360786b33a8e2",
+      "new_blob": "466ba8c457b9ff9ae09907e650e8c691c3b458b5",
+      "status": "M"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/runtime/README.md",
+      "old_mode": "100644",
+      "new_mode": "000000",
+      "old_blob": "e365e3a39143cec86873b88ba82ebd2870bdde24",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/runtime/bootstrap_runtime.executed.py",
+      "old_mode": "100644",
+      "new_mode": "000000",
+      "old_blob": "8c18b282465b976a35591031d9422f0a0c5479b9",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/runtime/current-runtime-pins.json",
+      "old_mode": "100644",
+      "new_mode": "000000",
+      "old_blob": "1a116a864f687c4a11d0e4306a216a736e7d2108",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/runtime/dependency-deduplication.json",
+      "old_mode": "100644",
+      "new_mode": "000000",
+      "old_blob": "fb2bebe1100f282acf1e3ee240a5a74a928fe14e",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/runtime/env.executed.sh",
+      "old_mode": "100644",
+      "new_mode": "000000",
+      "old_blob": "8f88f4cb52bd48eaee4ae822dba80a4b14683dcd",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/runtime/evidence-files.json",
+      "old_mode": "100644",
+      "new_mode": "000000",
+      "old_blob": "d1c2f65e5c1d462df1cb2a13d6e346f5b318c339",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/runtime/format-check.json",
+      "old_mode": "100644",
+      "new_mode": "000000",
+      "old_blob": "9d74d1764911af21d64f95571eb712f66493294c",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/runtime/logs/flutter-tools-pub-get.txt",
+      "old_mode": "100644",
+      "new_mode": "000000",
+      "old_blob": "f5d168e56be9e21e83996ffb02b1291f24b3096c",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/runtime/logs/flutter-version.txt",
+      "old_mode": "100644",
+      "new_mode": "000000",
+      "old_blob": "2c96318b2776496e146f43f8ac78dde9eaa3b834",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/runtime/logs/format-check.stderr",
+      "old_mode": "100644",
+      "new_mode": "000000",
+      "old_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/runtime/logs/format-check.stdout",
+      "old_mode": "100644",
+      "new_mode": "000000",
+      "old_blob": "a5a5dc41e1b9ff6c389ab83a3f9a31620c8887fc",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/runtime/logs/native-browse-window-analysis.txt",
+      "old_mode": "100644",
+      "new_mode": "000000",
+      "old_blob": "7d9fa45e4fa9b4b53b288df4bc9e03bb49501b63",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/runtime/logs/native-browse-window-qualified.jsonl.gz",
+      "old_mode": "100644",
+      "new_mode": "000000",
+      "old_blob": "362c71747437d4c0ee17952bb945b92c35fe873a",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/runtime/logs/native-browse-window-qualified.stderr",
+      "old_mode": "100644",
+      "new_mode": "000000",
+      "old_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/runtime/logs/native-browser-analysis.txt",
+      "old_mode": "100644",
+      "new_mode": "000000",
+      "old_blob": "91b2300e3513246078586cb8eb6d61b763defcd4",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/runtime/logs/sqlite-readiness.txt",
+      "old_mode": "100644",
+      "new_mode": "000000",
+      "old_blob": "55c7784eed468b9e15fbfaecfd7f9644f86d7db3",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/runtime/logs/workspace-pub-get.txt",
+      "old_mode": "100644",
+      "new_mode": "000000",
+      "old_blob": "acd3b16b139464fd59e9b702f765612ec16cb356",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/runtime/pub-cache-receipt.json",
+      "old_mode": "100644",
+      "new_mode": "000000",
+      "old_blob": "4a6e71bea89fc0d3f55e9320429fe4ba3058ab0c",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/runtime/readiness.json",
+      "old_mode": "100644",
+      "new_mode": "000000",
+      "old_blob": "a82beea153819f0ce082765c96b43db844c88b15",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/runtime/reduce_sdk_history.executed.py",
+      "old_mode": "100644",
+      "new_mode": "000000",
+      "old_blob": "f31c0c2786f9f63eefc4ed87ef4e3ad78745400d",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/runtime/runtime.json",
+      "old_mode": "100644",
+      "new_mode": "000000",
+      "old_blob": "c9ad195b0f2dfda8570fb2739c6ad87dc04322c8",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/runtime/sdk-deduplication.json",
+      "old_mode": "100644",
+      "new_mode": "000000",
+      "old_blob": "334ce3c3b1aee9d76fff90e693cd62b10d8c20fc",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/runtime/sdk-history-reduction.json",
+      "old_mode": "100644",
+      "new_mode": "000000",
+      "old_blob": "c8a13851bd1cbc90527831c434cae89ae50c0a63",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/runtime/sqlite-provenance.json",
+      "old_mode": "100644",
+      "new_mode": "000000",
+      "old_blob": "58d8d9173c6eb10834d20318f67ec87b58286163",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/runtime/sqlite_probe.dart",
+      "old_mode": "100644",
+      "new_mode": "000000",
+      "old_blob": "29663a5cd379b6b19a29cce3b2c6dc4d097a9a54",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/runtime/static-analysis.json",
+      "old_mode": "100644",
+      "new_mode": "000000",
+      "old_blob": "e64028529fc22fea8e95c3cfde9ae2c6953dc7ac",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/runtime/transport-development.json",
+      "old_mode": "100644",
+      "new_mode": "000000",
+      "old_blob": "ddb188826cfe4e78558889a597dcf685b3fbc135",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/mail-workspace-20261120/test-cache-cleanup.json",
+      "old_mode": "100644",
+      "new_mode": "000000",
+      "old_blob": "fd854ac216f0cf2262c72ef18422ceb91cf82516",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "docs/validation/native-spacy-android-grammar-20261120/README.md",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "0001ef110757b7d791f8e5561a5b162932f859d2",
+      "new_blob": "277022ab1f33fa83895ded19f38aa2eed44dadd0",
+      "status": "M"
+    },
+    {
+      "path": "docs/validation/native-spacy-android-grammar-20261120/ci-x86_64-gate.json",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "dac79f5c3b9c74952078f298136d1332c3c986e2",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/office-vba-variant-conversions-20261120/README.md",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "0e8f664e52fc845951e0b9342cad50e35d7e0ed3",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/office-vba-variant-conversions-20261120/audit-initial-index.json",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "113563340fe3bfdf6abd46e9bce1c640f9e53d8e",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/office-vba-variant-conversions-20261120/audit-initial.tar.gz",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "8775d0132f8adb4bc65ce3a290aac32c6c4f15c8",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/office-vba-variant-conversions-20261120/development-index.json",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "622fca13cc56cd206050d9d6234ab0cbb6518b0e",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/office-vba-variant-conversions-20261120/development.tar.gz",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "a91650c21dee0e0a631d21e52b9574fc2d6a979d",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/office-vba-variant-conversions-20261120/main-followup-selection.json",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "b97cb58b995de5472b3728e7f2e59bc0b21943cb",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/office-vba-variant-conversions-20261120/run_portable.py",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "acfd2372580650dcd2ebaff4a2ec9cb02d8e9ba3",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/office-vba-variant-conversions-20261120/run_validation.py",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "38c69322dd09cf84fa4f3e5a6cfec2ee6b22580b",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/office-vba-variant-conversions-20261120/selection.json",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "c4da7d3e3455abfd6d6902f65f79ffd671f20464",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/office-vba-variant-conversions-20261120/word-excel-final-selection.json",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "cc00c125818e93589957e9609cc856a1ac18f616",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/office-vba-variant-conversions-20261120/word-excel-publication-selection.json",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "acb2c97069c2df31a5c957cfcc00ac31280dca6d",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/zotero-note-images-20261120/README.md",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "7606f565d9ef62c4cce3934cca2135ce7150a60f",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/zotero-note-images-20261120/development/zotero-image-development-archive-receipt.json",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "b55a6e95b5d8f172ca80f86790ebc6a6d42a21b5",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/zotero-note-images-20261120/development/zotero-image-development-evidence.tar.gz",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "d1c28a6ab75b466c906c9c85e1652a8e9a3214c5",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/zotero-note-images-20261120/development/zotero-image-development-inventory.json",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "fed535f467b1acbc66c659951822bdfdc94cbe47",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/zotero-note-images-20261120/initial-refs.json",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "98ca7250a070a4dcb4a12d924d3a90aab9a80035",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/zotero-note-images-20261120/intake/arabic-worker-review.json",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "8aaa31b1de5e5ccf6152acb5ed3ddded11a41aea",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/zotero-note-images-20261120/intake/audit.py",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "a3cfe6732a52450f09c59d64d6e88b29486fa616",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/zotero-note-images-20261120/intake/changed-dart-scope-final.json",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "55f2d8edc4e2100e906a430fce2831c12e80000c",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/zotero-note-images-20261120/intake/final-intake-audit.json",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "1f970b316cfdc9e46612ffcbaadd3ae808c55a45",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/zotero-note-images-20261120/intake/final-required-ancestry.json",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "aa178383032da2e662bb1836186a39a7aca8650f",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/zotero-note-images-20261120/intake/incoming-review-final.index.json",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "ab6149439c0e648022cc50ec6addd8ddc46e3340",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/zotero-note-images-20261120/intake/incoming-review-final.tar.gz",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "46dcf785d06edbbec7f5348d20e7f70118ee9a89",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/zotero-note-images-20261120/intake/intake-audit.json",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "6cb338a1f546ffa1cfb2e2fa2ced79df3b837dc9",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/zotero-note-images-20261120/intake/mail-merge-proposal.json",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "cd49fe4f2dac6937f971cd46595502ac421e3f33",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/zotero-note-images-20261120/intake/mail-resolution.diff",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "3042a75a6156e969f00ce0dafb56ecd4363893a5",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/zotero-note-images-20261120/intake/proposed-incoming-selection.json",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "a98fbfb75e44d155ec73248fa022e6db5ab63229",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/zotero-note-images-20261120/intake/superseded-font-review-index.json",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "df5f0c647e7dcf6b5fa738d78e56ec652ceaad15",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/zotero-note-images-20261120/intake/superseded-font-review.tar.gz",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "62ee899c7cf0e8a9e71329f72bffea932f6d2d09",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/zotero-note-images-20261120/portable-and-preflight/evidence-9d7472a0.index.json",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "f6daab78c24f1c8b9953bc009c9fdb3bf31e0674",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/zotero-note-images-20261120/portable-and-preflight/evidence-9d7472a0.tar.gz",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "abea0556fb4b08125e44bed6a753aef59d6689e6",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/zotero-note-images-20261120/run_image_portable.py",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "1e49ee1d92669fecd8c8ad60ca80cc44f9ecfa3d",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/zotero-note-images-20261120/run_static.py",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "47cdaf880feabe5f1e3f4c8eab382e370d0769fb",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/zotero-note-images-20261120/run_validation.py",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "c7757e682af42ca414e9e845135e518b0e44ab17",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/zotero-note-images-20261120/runtime/runtime-ready.json",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "c7e2acd8850c8926ed3900bc98ba281c40429e90",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/zotero-note-images-20261120/runtime/runtime-setup-evidence.tar.gz",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "9e3ebaf8bf768acec60fc623f91c137b177d67a1",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/zotero-note-images-20261120/runtime/setup-evidence-manifest.json",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "e09aab6b01999faa47cb2157add2367e3241e85e",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/zotero-note-images-20261120/selection.json",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "e90e2cd4d1b9931e0353395ad33507277a06262b",
+      "status": "A"
+    },
+    {
+      "path": "docs/validation/zotero-parity-continuation-20261120/README.md",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "0b4401072e67a485360e4476bd2a5e9af8420ee3",
+      "status": "A"
+    },
+    {
+      "path": "docs/zotero-support.md",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "4d98d9001fec8cd819c8880d292a250e3bec8122",
+      "new_blob": "eaa3b9b68c0f629d37d6008bd54f49ae94c9b2d2",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_arabic_morph/CHANGELOG.md",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "84d2665d4f10e950eb56187150730b57bf933382",
+      "new_blob": "a9965bd027d2fe91afd9db5854868ffe5e1f739e",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_arabic_morph/lib/src/camel_arabic_morphology.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "a442237d0b6d093e9cc1095fe78fcad1f6ca1180",
+      "new_blob": "a5709fadf9772bf2dd783c0630471e4aea0bb54a",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_arabic_morph/lib/src/morph_transport.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "f928abfbadc981909fe0c91dbf778b503f16c508",
+      "new_blob": "0c9a362078b123fa6b18acd61a2d0dbc28435848",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_arabic_morph/lib/src/morph_transport_native.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "b9460ae80720421aa7129c8fbed610b147a93c78",
+      "new_blob": "b8437c9ec35ba8c226cd0ec3716c3a0927bbb60b",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_arabic_morph/lib/src/morph_transport_stub.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "9ac14934c6a9fb3a8dc629afc752ad91abfb659a",
+      "new_blob": "7e7f8359c85d4140f1a1054f1db6339f8c5046ac",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_arabic_morph/lib/src/morph_transport_web.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "6f85cda65e4ef22e75c733c045905318a84ba8dd",
+      "new_blob": "1ec2cd734171eefed6a768f6ca60b7cb797593a1",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_arabic_morph/test/arabic_morph_lifecycle_test.dart",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "bdd2e926ba888babeaa02ebe6cb29c1a224b5864",
+      "status": "A"
+    },
+    {
+      "path": "packages/quds_arabic_morph/test/arabic_morph_unit_test.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "c19cbf247036b1b973cd92749137b2795031d9d8",
+      "new_blob": "573e9fcc598274fa4f460e65561bf1b171cd3aff",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_arabic_morph/tool/worker_lifecycle_test.mjs",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "7a72affff4d6f61ab7f000924ecaef97c6540147",
+      "status": "A"
+    },
+    {
+      "path": "packages/quds_arabic_morph/web/arabic_morph_worker.mjs",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "a7e00cc75ff2572990c4a1b70f14ba736b241379",
+      "new_blob": "f44cfc6c298fa9e1fb7b22928e3c6a2cc44166b9",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_mail_ui/README.md",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "6351085044755aac679c959d08221459a33e421d",
+      "new_blob": "8c400443cc960a392533e36670729244326e37b5",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_editor/CHANGELOG.md",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "462f277724f838f90b3e67aeef815f0a830e1721",
+      "new_blob": "405e522899d15b6484f71193a37780fd0d9964c5",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/sample_library.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "2a07ab71cd039adb64b2a302da2d569470ead879",
+      "new_blob": "89bd491a0026a083201e0c26f7b11bb34073f1c7",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_arabic_morph_host_web.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "738008f948712bc19642f2fa1672beb23b08ef09",
+      "new_blob": "e2cbb93145e1a97dd3213561247aebc322f7e2b6",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_de_strings.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "dd04605a2a73bfc5f937118cf67efaa24c4d45d3",
+      "new_blob": "eab3de5c14c65dd0ef38d68b233575fd4e77c76d",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_desktop_menu.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "20cb53887e936198d52c31b5eecdf1aed398b1c4",
+      "new_blob": "0c531dbe0a3c5785e7b94da5b1b2849883594bf3",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_files.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "0ad3619ea1549171d4c760fab64fd1e4181669b0",
+      "new_blob": "e81b1ae23f9c23b291904326e16b34a69de5f24d",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_fonts.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "961aeea868999e469fb5b67bd540c9c12037d2e6",
+      "new_blob": "5b7c42215363f36f4fe251c7264d2bcf527fdaeb",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_material_theme.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "644971de60199b0763ff8c685826551d5adba9ea",
+      "new_blob": "fcd8d748043b07889977a25f97b3d044d9c8b4d1",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_pdf_gallery.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "e4dd3d23338cfbf6ff60fde85c5a4701ca7787c1",
+      "new_blob": "0b0b512cb2652c23f0838c32b0532a4971bc8109",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_pdf_office.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "e2c011d2a149e326dafbaaedd29add442f9e5f78",
+      "new_blob": "6569a3a37d5261ae6d0dcb6056b9d925ae02bfb2",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_strings.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "d1195fceb267d6d520c0d1684b8b18e069be13d2",
+      "new_blob": "14e2b691b2f400fe87533c56f91e047a2b8a671e",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/suite_workspace.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "995a30e44c5d3b09591cea8dd5ae2b9f1bec0cdc",
+      "new_blob": "915ec416ba1000a668b5b6dc88768811065a54f3",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_arabic_morph_web_lifecycle_test.dart",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "b0c3a4470ad914587cfffff161bc763f98bb54f4",
+      "status": "A"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_test.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "30e43acafbf68b071defc9506497ad0b165b8596",
+      "new_blob": "f2e79fb37817654c015f577f1d1a17af218d9e88",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_material_theme_test.dart",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "4084fb0d7b265e778a0125e635f17d61bfb40896",
+      "status": "A"
+    },
+    {
+      "path": "packages/quds_office_editor/lib/src/editor_slide/render_slide_stage.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "3acd1c7c98364a0c459c400fa11bd3b2a9f67591",
+      "new_blob": "4317f0e2e80e3f502e376f7d62065076804aaa38",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_editor/lib/src/editor_word/paint_run_text.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "e79eb99d1f4e11491a2c11b32086f0c200129ea0",
+      "new_blob": "d01243278896bc792bc0087de47b0a87439195bd",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "2d6a8e1d8ff38ddabedebda852ac0d4d76c916cf",
+      "new_blob": "a9a963773423fe486fb8b90937ad0c3d7244a646",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_editor/lib/src/embed/office_editors.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "6d27403883adaf933b972caebc0526e4feaa8cc3",
+      "new_blob": "16c2f9529efbfa1d45285a76adbf3b6c4288deac",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_editor/lib/src/embed/office_host_fonts.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "885d5a8873146a0c872b5c2df47104fccab9f904",
+      "new_blob": "7ee3e193d8634daf4eb51fbcf4c5516d780ef4e1",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_editor/lib/src/embed/office_system_font_validation.dart",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "39ba2d9d41427284d941a799c630e79700e87976",
+      "status": "A"
+    },
+    {
+      "path": "packages/quds_office_editor/lib/src/embed/office_system_fonts_io.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "01008abf81a2031d4fd0b2bb09df14611ad32075",
+      "new_blob": "39ebd9d2533e462e736e3de2432dbc2e5898bd44",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_editor/lib/src/embed/word_zotero_dialog.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "eef4e45e95c7c6238ccf52207edbd184cc132b3f",
+      "new_blob": "f4c079ce477c4e43d210b464ce563ab8f3d640e0",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_editor/lib/src/visual/paint_office_visual.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "772480fb7a09f7360400f602719d161f892cbc0f",
+      "new_blob": "c02e958c6ff29186b871dcc0314e8fdb7e603087",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_editor/test/installed_host_fonts_test.dart",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "9e1432d30df746ee25de73040073561dfadf6f29",
+      "status": "A"
+    },
+    {
+      "path": "packages/quds_office_editor/test/office_slide_effects_test.dart",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "ea447df5d47be6e15028088efd77964271461a0e",
+      "status": "A"
+    },
+    {
+      "path": "packages/quds_office_editor/test/office_system_fonts_test.dart",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "074378954502b6fde2c5d1306b63fef4ca7aa5ce",
+      "status": "A"
+    },
+    {
+      "path": "packages/quds_office_editor/test/slide_background_publication_test.dart",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "57327fd65edc4bcfe7b1d83c37dc33ba07500e5d",
+      "status": "A"
+    },
+    {
+      "path": "packages/quds_office_editor/test/slide_geometric_presets_test.dart",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "19fcd627160a227328ccce7f500d4134031ee6b3",
+      "status": "A"
+    },
+    {
+      "path": "packages/quds_office_editor/test/slide_normal_autofit_test.dart",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "3df43e02615c6a708b7dae989cbe882d37e5ef9a",
+      "status": "A"
+    },
+    {
+      "path": "packages/quds_office_editor/test/slide_render_fidelity_test.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "a30c86a09bb34b5d574fba627d17109ed133f38d",
+      "new_blob": "bc12586066afe66aeaa9225e890eb42952047159",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_editor/test/support/installed_font_fixture.dart",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "7b31a1d12639d85aecec4646b4bcbe29c3efca43",
+      "status": "A"
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "0d8869b671df74f333db7ec30ed9b59e2d046364",
+      "new_blob": "a5aa59050070bca9171b3f9ac365182470ec9a3a",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "8ea62cbe3ebd152195a2cf34f395765e1a7d4e6e",
+      "new_blob": "8197b43842c56e053a3745fdbdb698bc52826c95",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_zotero_direct_command_test.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "1ba13825985520cae5292d5b4e9ae2ac0e507243",
+      "new_blob": "a34fbfdab393790cd91fd6b13d4dc55fee466992",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_zotero_note_image_controller_test.dart",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "c8c40a17a236b09b9e1352501aca1f1527786b81",
+      "status": "A"
+    },
+    {
+      "path": "packages/quds_office_engine/CHANGELOG.md",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "c5e05ed9edac6e945dae10af57713b0f8169fc47",
+      "new_blob": "ba9f80641f2bff06646e1512b052f21d75cc239d",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_engine/example/macros/variant_report.bas",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "a8f53ed2bb0badf9431d83e2453f4e3d91ad6f3f",
+      "status": "A"
+    },
+    {
+      "path": "packages/quds_office_engine/example/macros/word_report.bas",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "dee4d0eda00149759b813ff2002deef9cd524309",
+      "status": "A"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/quds_office_automation.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "91ca2d5a759777b4fede55919c170cfe2fb6273e",
+      "new_blob": "a103892d51c0631d46e0399d72daf4ed4cc1030c",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/automation/office_macro_language.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "af9d43dab0f5d66af8d5ee2b183cbeae39f3191b",
+      "new_blob": "c2fdb09ede48194e1dfefda83a4d5af70fc837c8",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/automation/office_macro_mcp.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "cb11be8be0fab9295a5f193e4d77fd6b0f0bc663",
+      "new_blob": "5d52562a0a451f41bf22866d21526a232ba375ce",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/automation/office_vba_language.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "961aefdb604e8f5db36deb69aa7b731e7b947710",
+      "new_blob": "281c7d3d2c3441a3d588eb1e2de47ac7a7777e41",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/pdf/office_pdf_export.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "7dc2da5e1d92313b1bfd6ebda5fd0315c015aac4",
+      "new_blob": "a2f8a25cb58aef3eccb3c96528e2609c38025f6f",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/pdf/office_pdf_visuals.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "236b6dac9ecf79016aae8fb7155d7fd02f796cf3",
+      "new_blob": "8bba8c7081d48e9a283a795c8e49449274de06e9",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/pdf/pdf_canvas.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "3adae9d4e0210e9443a8a9661bb6876065301ed4",
+      "new_blob": "ad28c5cde7840e9551925a4f3afb5697e36c52be",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/pdf/pdf_document.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "2c847443a0e6fecf668be90028a329e026bc24d3",
+      "new_blob": "5aaaef1d77439b4c2fa59344b9842e4710855643",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/slide/model/pml_presentation.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "08e06c962a73c4abb1ad024ac79b62d7bc98d8d3",
+      "new_blob": "3035125ede5e0293841a9cf852552792df582815",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/slide/serial/slide_serial.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "2d74f80b16d6b276ea876174c4356f5cfded9852",
+      "new_blob": "66b86513700c6f46ad388afa8d7427226e6f61e1",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/slide/shapes/drawingml.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "bf213308447ad77b382c84561495fd3686123765",
+      "new_blob": "b827beeb15d47716c56310f7bba5c6d4097ffeaa",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/slide/shapes/slide_rich_text.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "4994e24e524f27f6d190ab9dce88df58a470f905",
+      "new_blob": "c046f8cf7716d1982b90cd9c4a7e08a650235f39",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/model/word_lists.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "a6266ad1253b023ef17e1ef16ec9228355c786a5",
+      "new_blob": "1fe12aebd640eb7ca001702e3ea02709372753bd",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/model/word_zotero_citing.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "2f23ac40db8d69c9e191f38d713b1f592fc3ce3d",
+      "new_blob": "2246c0f4cd3c39850187d048ebac6c4862c9c8a4",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/model/word_zotero_note.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "d59fe0247cc811fc9edffcda20987276c0ee3efa",
+      "new_blob": "ae0732b80ed439cda983214783cb40df8f68b3c5",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/model/word_zotero_note_image.dart",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "169cddfa04450745934a35616b29aff3d2daba1f",
+      "status": "A"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/serial/word_deserializer.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "b186cf17fc5e21e78370313a13f25598eb2c461a",
+      "new_blob": "53fbc4a217b0b85186ebdb1904e9662a11c2d79a",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/serial/word_property_io.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "911d9ef616174925482bd1ce99b850c5e9bc1756",
+      "new_blob": "8870cd42f07b78a3c8e4fc7fc4a54816d09d16f2",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_engine/test/fixtures/vba_conformance/string_intrinsics_v1.json",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "a01f3ad9b9f6356adf3a1c3526a298461be19686",
+      "new_blob": "47cca210856609062e34e4d68057d89fedac7339",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_engine/test/fixtures/vba_conformance/variant_composition_v1.json",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "bc3727c45a408a19d6d86ae9b02eefdb093ab450",
+      "status": "A"
+    },
+    {
+      "path": "packages/quds_office_engine/test/fixtures/vba_conformance/variant_conversions_v1.json",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "6eabb7778cd89e4a5b9c35eeb8c17f13df1ca4c4",
+      "status": "A"
+    },
+    {
+      "path": "packages/quds_office_engine/test/fixtures/vba_conformance/word_paragraphs_v1.json",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "51500248e4c5deb8b31a9b652785890dc3922c04",
+      "status": "A"
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_macro_language_test.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "b5537ad9a2225e253290f13393e242da7e278e29",
+      "new_blob": "b4e37c3d5e616d3b7823b515a75b1a2fb1032cb7",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_vba_arrays_boundaries_test.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "a37ce216e7143a512b8167881d3a8801fa286e1a",
+      "new_blob": "a4224e43e9a3d49fe6f56950a76248a16fb934a8",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_vba_conformance_test.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "de4e708b65135c420655771484b3cab2d954386b",
+      "new_blob": "8f00cd54c2fb18c1730f0da27c89cc2845ff305a",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_vba_dynamic_arrays_test.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "166ee1643dce19392cce09573f71cf53bcc8814b",
+      "new_blob": "0e82c3e5e24461173ae46c95fdbb877f63f1e147",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_vba_language_test.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "d9580f4afaaf0800150c414dab25d2d8bbc5825c",
+      "new_blob": "d6b0f968aaee2da18bedf0c9e1a5306ea5b6bfed",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_vba_procedure_boundaries_test.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "1bfc747f7813c0ddaf30d8d19f759e1dcfa04b21",
+      "new_blob": "debe6b760a927c48929cd0f9e72621ac31099eed",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_vba_string_intrinsics_test.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "b2f7cd85c71cb51a7e90d8a479f6846a4c6a2058",
+      "new_blob": "0d85f279f9701a00274600628adef83d9624db79",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_vba_variant_conformance_test.dart",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "99ca36be92abdcfb790c334dce4db812baa5db34",
+      "status": "A"
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_vba_variant_conversions_integration_test.dart",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "123809bd5f848d473d8cea3d8439c89cb0974675",
+      "status": "A"
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_vba_variant_conversions_test.dart",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "e8425c1f9bcc67035b47134a3e2bdedabb0f6ed9",
+      "status": "A"
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_vba_word_cli_test.dart",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "fdfdb0b8e207a64e985c87e7a7ef63d2c575777a",
+      "status": "A"
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_vba_word_conformance_test.dart",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "42bdcff850ec431180fb30775dcf30de755698b0",
+      "status": "A"
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_vba_word_integration_test.dart",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "67af98d80b1226bd4be2b8986784f7ad21cb5314",
+      "status": "A"
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_vba_word_language_test.dart",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "f1eec845a022252dffef6ddb06ac6c2464a6da9f",
+      "status": "A"
+    },
+    {
+      "path": "packages/quds_office_engine/test/pdf_picture_opacity_test.dart",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "b4d6ee5e40d3976f5fdc3032f200349bdbb8c8d8",
+      "status": "A"
+    },
+    {
+      "path": "packages/quds_office_engine/test/slide_background_publication_test.dart",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "a48bb1ebb464da5eb930ce6ff8987df13479b1b3",
+      "status": "A"
+    },
+    {
+      "path": "packages/quds_office_engine/test/slide_geometric_presets_test.dart",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "d702b8c5ba7b65a771a2f4b0fe623cd39f26d9ff",
+      "status": "A"
+    },
+    {
+      "path": "packages/quds_office_engine/test/slide_gradient_merge_test.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "a464a2925fe48ef26844c88ff3f86ba6e50df4df",
+      "new_blob": "02f787b65cf1d3c9358c4c2deeefbe9094da7649",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_engine/test/slide_gradient_publication_test.dart",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "6e52dd7f4e6d82619bb91b3c6e3bae88746c69ca",
+      "status": "A"
+    },
+    {
+      "path": "packages/quds_office_engine/test/slide_import_fidelity_test.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "23a42a2ae2cbf8b9a9f6767d658368386ef06cf8",
+      "new_blob": "18f2c05f580620147966d1a87bd87a102b4f2ff5",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_engine/test/slide_normal_autofit_test.dart",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "091fed5e5bdcc7f975b73a478febb84665c184aa",
+      "status": "A"
+    },
+    {
+      "path": "packages/quds_office_engine/test/slide_picture_background_test.dart",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "611677426bc21863792700a9514f4c9542a9ff82",
+      "status": "A"
+    },
+    {
+      "path": "packages/quds_office_engine/test/slide_radial_opacity_test.dart",
+      "old_mode": "100644",
+      "new_mode": "000000",
+      "old_blob": "f2f7741626108b78ac5d03da25e63cda7632c4c9",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "packages/quds_office_engine/test/style_cascade_test.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "b4e47e645e89e2b7ae567201c68bf007c63aefdb",
+      "new_blob": "129fe2600a0c7e281a9dcc07da75d71e013509a1",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_engine/test/support/vba_conformance.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "5ce02705a845aecccc1fce98d1cf11dc4a6a6368",
+      "new_blob": "9562bae3afe080b993c4422880bede1d90d1cbde",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_engine/test/word_zotero_note_image_test.dart",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "3e534bb3f10dcacf4bbcbd749c27c02ddc8d49d2",
+      "status": "A"
+    },
+    {
+      "path": "packages/quds_office_engine/test/word_zotero_note_images_integration_test.dart",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "9fc23ea6e64b7c16903da7fed70c7164eb568465",
+      "status": "A"
+    },
+    {
+      "path": "packages/quds_office_engine/test/word_zotero_note_list_test.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "01d67622deeae0607aef5bf65edc60d78588f7f4",
+      "new_blob": "6ec1d11e176dd1946e36a2b389fe4d6c9c2e41b1",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_engine/tool/macros/office_macro.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "d4dd49cd262ada6d94a54078a6b243f51a8acc7c",
+      "new_blob": "2b48a9d219f0fda538d5521dc63702b1dfa6f66e",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_engine/tool/macros/web_vba_conformance.dart",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "bf5640e5c431f3da28479331945335be21db6037",
+      "status": "A"
+    },
+    {
+      "path": "packages/quds_office_engine/tool/macros/web_vba_string_conformance.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "2ca364c2b0d1765b08bc6dfc17002c3ccae50a03",
+      "new_blob": "1a483ae4785a509ba1e3451da8e5c3ab7f449c3b",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_engine/tool/macros/web_vba_word_smoke.dart",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "ca598f16c1133ad2307966d126fd215eec1aec53",
+      "status": "A"
+    },
+    {
+      "path": "packages/quds_office_engine/tool/zotero/image_note_portable_smoke.dart",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "a3b22da3ddf8d9637877818d704dad393110bc3f",
+      "status": "A"
+    }
+  ],
+  "package_and_app_changes": [
+    {
+      "path": "packages/quds_arabic_morph/CHANGELOG.md",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "84d2665d4f10e950eb56187150730b57bf933382",
+      "new_blob": "a9965bd027d2fe91afd9db5854868ffe5e1f739e",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_arabic_morph/lib/src/camel_arabic_morphology.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "a442237d0b6d093e9cc1095fe78fcad1f6ca1180",
+      "new_blob": "a5709fadf9772bf2dd783c0630471e4aea0bb54a",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_arabic_morph/lib/src/morph_transport.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "f928abfbadc981909fe0c91dbf778b503f16c508",
+      "new_blob": "0c9a362078b123fa6b18acd61a2d0dbc28435848",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_arabic_morph/lib/src/morph_transport_native.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "b9460ae80720421aa7129c8fbed610b147a93c78",
+      "new_blob": "b8437c9ec35ba8c226cd0ec3716c3a0927bbb60b",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_arabic_morph/lib/src/morph_transport_stub.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "9ac14934c6a9fb3a8dc629afc752ad91abfb659a",
+      "new_blob": "7e7f8359c85d4140f1a1054f1db6339f8c5046ac",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_arabic_morph/lib/src/morph_transport_web.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "6f85cda65e4ef22e75c733c045905318a84ba8dd",
+      "new_blob": "1ec2cd734171eefed6a768f6ca60b7cb797593a1",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_arabic_morph/test/arabic_morph_lifecycle_test.dart",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "bdd2e926ba888babeaa02ebe6cb29c1a224b5864",
+      "status": "A"
+    },
+    {
+      "path": "packages/quds_arabic_morph/test/arabic_morph_unit_test.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "c19cbf247036b1b973cd92749137b2795031d9d8",
+      "new_blob": "573e9fcc598274fa4f460e65561bf1b171cd3aff",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_arabic_morph/tool/worker_lifecycle_test.mjs",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "7a72affff4d6f61ab7f000924ecaef97c6540147",
+      "status": "A"
+    },
+    {
+      "path": "packages/quds_arabic_morph/web/arabic_morph_worker.mjs",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "a7e00cc75ff2572990c4a1b70f14ba736b241379",
+      "new_blob": "f44cfc6c298fa9e1fb7b22928e3c6a2cc44166b9",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_mail_ui/README.md",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "6351085044755aac679c959d08221459a33e421d",
+      "new_blob": "8c400443cc960a392533e36670729244326e37b5",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_editor/CHANGELOG.md",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "462f277724f838f90b3e67aeef815f0a830e1721",
+      "new_blob": "405e522899d15b6484f71193a37780fd0d9964c5",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/sample_library.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "2a07ab71cd039adb64b2a302da2d569470ead879",
+      "new_blob": "89bd491a0026a083201e0c26f7b11bb34073f1c7",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_arabic_morph_host_web.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "738008f948712bc19642f2fa1672beb23b08ef09",
+      "new_blob": "e2cbb93145e1a97dd3213561247aebc322f7e2b6",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_de_strings.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "dd04605a2a73bfc5f937118cf67efaa24c4d45d3",
+      "new_blob": "eab3de5c14c65dd0ef38d68b233575fd4e77c76d",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_desktop_menu.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "20cb53887e936198d52c31b5eecdf1aed398b1c4",
+      "new_blob": "0c531dbe0a3c5785e7b94da5b1b2849883594bf3",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_files.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "0ad3619ea1549171d4c760fab64fd1e4181669b0",
+      "new_blob": "e81b1ae23f9c23b291904326e16b34a69de5f24d",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_fonts.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "961aeea868999e469fb5b67bd540c9c12037d2e6",
+      "new_blob": "5b7c42215363f36f4fe251c7264d2bcf527fdaeb",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_material_theme.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "644971de60199b0763ff8c685826551d5adba9ea",
+      "new_blob": "fcd8d748043b07889977a25f97b3d044d9c8b4d1",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_pdf_gallery.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "e4dd3d23338cfbf6ff60fde85c5a4701ca7787c1",
+      "new_blob": "0b0b512cb2652c23f0838c32b0532a4971bc8109",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_pdf_office.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "e2c011d2a149e326dafbaaedd29add442f9e5f78",
+      "new_blob": "6569a3a37d5261ae6d0dcb6056b9d925ae02bfb2",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_strings.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "d1195fceb267d6d520c0d1684b8b18e069be13d2",
+      "new_blob": "14e2b691b2f400fe87533c56f91e047a2b8a671e",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/suite_workspace.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "995a30e44c5d3b09591cea8dd5ae2b9f1bec0cdc",
+      "new_blob": "915ec416ba1000a668b5b6dc88768811065a54f3",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_arabic_morph_web_lifecycle_test.dart",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "b0c3a4470ad914587cfffff161bc763f98bb54f4",
+      "status": "A"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_test.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "30e43acafbf68b071defc9506497ad0b165b8596",
+      "new_blob": "f2e79fb37817654c015f577f1d1a17af218d9e88",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_material_theme_test.dart",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "4084fb0d7b265e778a0125e635f17d61bfb40896",
+      "status": "A"
+    },
+    {
+      "path": "packages/quds_office_editor/lib/src/editor_slide/render_slide_stage.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "3acd1c7c98364a0c459c400fa11bd3b2a9f67591",
+      "new_blob": "4317f0e2e80e3f502e376f7d62065076804aaa38",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_editor/lib/src/editor_word/paint_run_text.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "e79eb99d1f4e11491a2c11b32086f0c200129ea0",
+      "new_blob": "d01243278896bc792bc0087de47b0a87439195bd",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "2d6a8e1d8ff38ddabedebda852ac0d4d76c916cf",
+      "new_blob": "a9a963773423fe486fb8b90937ad0c3d7244a646",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_editor/lib/src/embed/office_editors.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "6d27403883adaf933b972caebc0526e4feaa8cc3",
+      "new_blob": "16c2f9529efbfa1d45285a76adbf3b6c4288deac",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_editor/lib/src/embed/office_host_fonts.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "885d5a8873146a0c872b5c2df47104fccab9f904",
+      "new_blob": "7ee3e193d8634daf4eb51fbcf4c5516d780ef4e1",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_editor/lib/src/embed/office_system_font_validation.dart",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "39ba2d9d41427284d941a799c630e79700e87976",
+      "status": "A"
+    },
+    {
+      "path": "packages/quds_office_editor/lib/src/embed/office_system_fonts_io.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "01008abf81a2031d4fd0b2bb09df14611ad32075",
+      "new_blob": "39ebd9d2533e462e736e3de2432dbc2e5898bd44",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_editor/lib/src/embed/word_zotero_dialog.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "eef4e45e95c7c6238ccf52207edbd184cc132b3f",
+      "new_blob": "f4c079ce477c4e43d210b464ce563ab8f3d640e0",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_editor/lib/src/visual/paint_office_visual.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "772480fb7a09f7360400f602719d161f892cbc0f",
+      "new_blob": "c02e958c6ff29186b871dcc0314e8fdb7e603087",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_editor/test/installed_host_fonts_test.dart",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "9e1432d30df746ee25de73040073561dfadf6f29",
+      "status": "A"
+    },
+    {
+      "path": "packages/quds_office_editor/test/office_slide_effects_test.dart",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "ea447df5d47be6e15028088efd77964271461a0e",
+      "status": "A"
+    },
+    {
+      "path": "packages/quds_office_editor/test/office_system_fonts_test.dart",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "074378954502b6fde2c5d1306b63fef4ca7aa5ce",
+      "status": "A"
+    },
+    {
+      "path": "packages/quds_office_editor/test/slide_background_publication_test.dart",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "57327fd65edc4bcfe7b1d83c37dc33ba07500e5d",
+      "status": "A"
+    },
+    {
+      "path": "packages/quds_office_editor/test/slide_geometric_presets_test.dart",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "19fcd627160a227328ccce7f500d4134031ee6b3",
+      "status": "A"
+    },
+    {
+      "path": "packages/quds_office_editor/test/slide_normal_autofit_test.dart",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "3df43e02615c6a708b7dae989cbe882d37e5ef9a",
+      "status": "A"
+    },
+    {
+      "path": "packages/quds_office_editor/test/slide_render_fidelity_test.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "a30c86a09bb34b5d574fba627d17109ed133f38d",
+      "new_blob": "bc12586066afe66aeaa9225e890eb42952047159",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_editor/test/support/installed_font_fixture.dart",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "7b31a1d12639d85aecec4646b4bcbe29c3efca43",
+      "status": "A"
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "0d8869b671df74f333db7ec30ed9b59e2d046364",
+      "new_blob": "a5aa59050070bca9171b3f9ac365182470ec9a3a",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "8ea62cbe3ebd152195a2cf34f395765e1a7d4e6e",
+      "new_blob": "8197b43842c56e053a3745fdbdb698bc52826c95",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_zotero_direct_command_test.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "1ba13825985520cae5292d5b4e9ae2ac0e507243",
+      "new_blob": "a34fbfdab393790cd91fd6b13d4dc55fee466992",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_zotero_note_image_controller_test.dart",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "c8c40a17a236b09b9e1352501aca1f1527786b81",
+      "status": "A"
+    },
+    {
+      "path": "packages/quds_office_engine/CHANGELOG.md",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "c5e05ed9edac6e945dae10af57713b0f8169fc47",
+      "new_blob": "ba9f80641f2bff06646e1512b052f21d75cc239d",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_engine/example/macros/variant_report.bas",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "a8f53ed2bb0badf9431d83e2453f4e3d91ad6f3f",
+      "status": "A"
+    },
+    {
+      "path": "packages/quds_office_engine/example/macros/word_report.bas",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "dee4d0eda00149759b813ff2002deef9cd524309",
+      "status": "A"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/quds_office_automation.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "91ca2d5a759777b4fede55919c170cfe2fb6273e",
+      "new_blob": "a103892d51c0631d46e0399d72daf4ed4cc1030c",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/automation/office_macro_language.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "af9d43dab0f5d66af8d5ee2b183cbeae39f3191b",
+      "new_blob": "c2fdb09ede48194e1dfefda83a4d5af70fc837c8",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/automation/office_macro_mcp.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "cb11be8be0fab9295a5f193e4d77fd6b0f0bc663",
+      "new_blob": "5d52562a0a451f41bf22866d21526a232ba375ce",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/automation/office_vba_language.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "961aefdb604e8f5db36deb69aa7b731e7b947710",
+      "new_blob": "281c7d3d2c3441a3d588eb1e2de47ac7a7777e41",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/pdf/office_pdf_export.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "7dc2da5e1d92313b1bfd6ebda5fd0315c015aac4",
+      "new_blob": "a2f8a25cb58aef3eccb3c96528e2609c38025f6f",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/pdf/office_pdf_visuals.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "236b6dac9ecf79016aae8fb7155d7fd02f796cf3",
+      "new_blob": "8bba8c7081d48e9a283a795c8e49449274de06e9",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/pdf/pdf_canvas.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "3adae9d4e0210e9443a8a9661bb6876065301ed4",
+      "new_blob": "ad28c5cde7840e9551925a4f3afb5697e36c52be",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/pdf/pdf_document.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "2c847443a0e6fecf668be90028a329e026bc24d3",
+      "new_blob": "5aaaef1d77439b4c2fa59344b9842e4710855643",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/slide/model/pml_presentation.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "08e06c962a73c4abb1ad024ac79b62d7bc98d8d3",
+      "new_blob": "3035125ede5e0293841a9cf852552792df582815",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/slide/serial/slide_serial.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "2d74f80b16d6b276ea876174c4356f5cfded9852",
+      "new_blob": "66b86513700c6f46ad388afa8d7427226e6f61e1",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/slide/shapes/drawingml.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "bf213308447ad77b382c84561495fd3686123765",
+      "new_blob": "b827beeb15d47716c56310f7bba5c6d4097ffeaa",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/slide/shapes/slide_rich_text.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "4994e24e524f27f6d190ab9dce88df58a470f905",
+      "new_blob": "c046f8cf7716d1982b90cd9c4a7e08a650235f39",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/model/word_lists.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "a6266ad1253b023ef17e1ef16ec9228355c786a5",
+      "new_blob": "1fe12aebd640eb7ca001702e3ea02709372753bd",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/model/word_zotero_citing.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "2f23ac40db8d69c9e191f38d713b1f592fc3ce3d",
+      "new_blob": "2246c0f4cd3c39850187d048ebac6c4862c9c8a4",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/model/word_zotero_note.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "d59fe0247cc811fc9edffcda20987276c0ee3efa",
+      "new_blob": "ae0732b80ed439cda983214783cb40df8f68b3c5",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/model/word_zotero_note_image.dart",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "169cddfa04450745934a35616b29aff3d2daba1f",
+      "status": "A"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/serial/word_deserializer.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "b186cf17fc5e21e78370313a13f25598eb2c461a",
+      "new_blob": "53fbc4a217b0b85186ebdb1904e9662a11c2d79a",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/serial/word_property_io.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "911d9ef616174925482bd1ce99b850c5e9bc1756",
+      "new_blob": "8870cd42f07b78a3c8e4fc7fc4a54816d09d16f2",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_engine/test/fixtures/vba_conformance/string_intrinsics_v1.json",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "a01f3ad9b9f6356adf3a1c3526a298461be19686",
+      "new_blob": "47cca210856609062e34e4d68057d89fedac7339",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_engine/test/fixtures/vba_conformance/variant_composition_v1.json",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "bc3727c45a408a19d6d86ae9b02eefdb093ab450",
+      "status": "A"
+    },
+    {
+      "path": "packages/quds_office_engine/test/fixtures/vba_conformance/variant_conversions_v1.json",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "6eabb7778cd89e4a5b9c35eeb8c17f13df1ca4c4",
+      "status": "A"
+    },
+    {
+      "path": "packages/quds_office_engine/test/fixtures/vba_conformance/word_paragraphs_v1.json",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "51500248e4c5deb8b31a9b652785890dc3922c04",
+      "status": "A"
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_macro_language_test.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "b5537ad9a2225e253290f13393e242da7e278e29",
+      "new_blob": "b4e37c3d5e616d3b7823b515a75b1a2fb1032cb7",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_vba_arrays_boundaries_test.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "a37ce216e7143a512b8167881d3a8801fa286e1a",
+      "new_blob": "a4224e43e9a3d49fe6f56950a76248a16fb934a8",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_vba_conformance_test.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "de4e708b65135c420655771484b3cab2d954386b",
+      "new_blob": "8f00cd54c2fb18c1730f0da27c89cc2845ff305a",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_vba_dynamic_arrays_test.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "166ee1643dce19392cce09573f71cf53bcc8814b",
+      "new_blob": "0e82c3e5e24461173ae46c95fdbb877f63f1e147",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_vba_language_test.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "d9580f4afaaf0800150c414dab25d2d8bbc5825c",
+      "new_blob": "d6b0f968aaee2da18bedf0c9e1a5306ea5b6bfed",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_vba_procedure_boundaries_test.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "1bfc747f7813c0ddaf30d8d19f759e1dcfa04b21",
+      "new_blob": "debe6b760a927c48929cd0f9e72621ac31099eed",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_vba_string_intrinsics_test.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "b2f7cd85c71cb51a7e90d8a479f6846a4c6a2058",
+      "new_blob": "0d85f279f9701a00274600628adef83d9624db79",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_vba_variant_conformance_test.dart",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "99ca36be92abdcfb790c334dce4db812baa5db34",
+      "status": "A"
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_vba_variant_conversions_integration_test.dart",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "123809bd5f848d473d8cea3d8439c89cb0974675",
+      "status": "A"
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_vba_variant_conversions_test.dart",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "e8425c1f9bcc67035b47134a3e2bdedabb0f6ed9",
+      "status": "A"
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_vba_word_cli_test.dart",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "fdfdb0b8e207a64e985c87e7a7ef63d2c575777a",
+      "status": "A"
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_vba_word_conformance_test.dart",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "42bdcff850ec431180fb30775dcf30de755698b0",
+      "status": "A"
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_vba_word_integration_test.dart",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "67af98d80b1226bd4be2b8986784f7ad21cb5314",
+      "status": "A"
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_vba_word_language_test.dart",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "f1eec845a022252dffef6ddb06ac6c2464a6da9f",
+      "status": "A"
+    },
+    {
+      "path": "packages/quds_office_engine/test/pdf_picture_opacity_test.dart",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "b4d6ee5e40d3976f5fdc3032f200349bdbb8c8d8",
+      "status": "A"
+    },
+    {
+      "path": "packages/quds_office_engine/test/slide_background_publication_test.dart",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "a48bb1ebb464da5eb930ce6ff8987df13479b1b3",
+      "status": "A"
+    },
+    {
+      "path": "packages/quds_office_engine/test/slide_geometric_presets_test.dart",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "d702b8c5ba7b65a771a2f4b0fe623cd39f26d9ff",
+      "status": "A"
+    },
+    {
+      "path": "packages/quds_office_engine/test/slide_gradient_merge_test.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "a464a2925fe48ef26844c88ff3f86ba6e50df4df",
+      "new_blob": "02f787b65cf1d3c9358c4c2deeefbe9094da7649",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_engine/test/slide_gradient_publication_test.dart",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "6e52dd7f4e6d82619bb91b3c6e3bae88746c69ca",
+      "status": "A"
+    },
+    {
+      "path": "packages/quds_office_engine/test/slide_import_fidelity_test.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "23a42a2ae2cbf8b9a9f6767d658368386ef06cf8",
+      "new_blob": "18f2c05f580620147966d1a87bd87a102b4f2ff5",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_engine/test/slide_normal_autofit_test.dart",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "091fed5e5bdcc7f975b73a478febb84665c184aa",
+      "status": "A"
+    },
+    {
+      "path": "packages/quds_office_engine/test/slide_picture_background_test.dart",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "611677426bc21863792700a9514f4c9542a9ff82",
+      "status": "A"
+    },
+    {
+      "path": "packages/quds_office_engine/test/slide_radial_opacity_test.dart",
+      "old_mode": "100644",
+      "new_mode": "000000",
+      "old_blob": "f2f7741626108b78ac5d03da25e63cda7632c4c9",
+      "new_blob": "0000000000000000000000000000000000000000",
+      "status": "D"
+    },
+    {
+      "path": "packages/quds_office_engine/test/style_cascade_test.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "b4e47e645e89e2b7ae567201c68bf007c63aefdb",
+      "new_blob": "129fe2600a0c7e281a9dcc07da75d71e013509a1",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_engine/test/support/vba_conformance.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "5ce02705a845aecccc1fce98d1cf11dc4a6a6368",
+      "new_blob": "9562bae3afe080b993c4422880bede1d90d1cbde",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_engine/test/word_zotero_note_image_test.dart",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "3e534bb3f10dcacf4bbcbd749c27c02ddc8d49d2",
+      "status": "A"
+    },
+    {
+      "path": "packages/quds_office_engine/test/word_zotero_note_images_integration_test.dart",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "9fc23ea6e64b7c16903da7fed70c7164eb568465",
+      "status": "A"
+    },
+    {
+      "path": "packages/quds_office_engine/test/word_zotero_note_list_test.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "01d67622deeae0607aef5bf65edc60d78588f7f4",
+      "new_blob": "6ec1d11e176dd1946e36a2b389fe4d6c9c2e41b1",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_engine/tool/macros/office_macro.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "d4dd49cd262ada6d94a54078a6b243f51a8acc7c",
+      "new_blob": "2b48a9d219f0fda538d5521dc63702b1dfa6f66e",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_engine/tool/macros/web_vba_conformance.dart",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "bf5640e5c431f3da28479331945335be21db6037",
+      "status": "A"
+    },
+    {
+      "path": "packages/quds_office_engine/tool/macros/web_vba_string_conformance.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "2ca364c2b0d1765b08bc6dfc17002c3ccae50a03",
+      "new_blob": "1a483ae4785a509ba1e3451da8e5c3ab7f449c3b",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_engine/tool/macros/web_vba_word_smoke.dart",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "ca598f16c1133ad2307966d126fd215eec1aec53",
+      "status": "A"
+    },
+    {
+      "path": "packages/quds_office_engine/tool/zotero/image_note_portable_smoke.dart",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "a3b22da3ddf8d9637877818d704dad393110bc3f",
+      "status": "A"
+    }
+  ],
+  "implementation_changes": [
+    {
+      "path": "packages/quds_arabic_morph/lib/src/camel_arabic_morphology.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "a442237d0b6d093e9cc1095fe78fcad1f6ca1180",
+      "new_blob": "a5709fadf9772bf2dd783c0630471e4aea0bb54a",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_arabic_morph/lib/src/morph_transport.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "f928abfbadc981909fe0c91dbf778b503f16c508",
+      "new_blob": "0c9a362078b123fa6b18acd61a2d0dbc28435848",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_arabic_morph/lib/src/morph_transport_native.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "b9460ae80720421aa7129c8fbed610b147a93c78",
+      "new_blob": "b8437c9ec35ba8c226cd0ec3716c3a0927bbb60b",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_arabic_morph/lib/src/morph_transport_stub.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "9ac14934c6a9fb3a8dc629afc752ad91abfb659a",
+      "new_blob": "7e7f8359c85d4140f1a1054f1db6339f8c5046ac",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_arabic_morph/lib/src/morph_transport_web.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "6f85cda65e4ef22e75c733c045905318a84ba8dd",
+      "new_blob": "1ec2cd734171eefed6a768f6ca60b7cb797593a1",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_arabic_morph/web/arabic_morph_worker.mjs",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "a7e00cc75ff2572990c4a1b70f14ba736b241379",
+      "new_blob": "f44cfc6c298fa9e1fb7b22928e3c6a2cc44166b9",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/sample_library.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "2a07ab71cd039adb64b2a302da2d569470ead879",
+      "new_blob": "89bd491a0026a083201e0c26f7b11bb34073f1c7",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_arabic_morph_host_web.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "738008f948712bc19642f2fa1672beb23b08ef09",
+      "new_blob": "e2cbb93145e1a97dd3213561247aebc322f7e2b6",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_de_strings.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "dd04605a2a73bfc5f937118cf67efaa24c4d45d3",
+      "new_blob": "eab3de5c14c65dd0ef38d68b233575fd4e77c76d",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_desktop_menu.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "20cb53887e936198d52c31b5eecdf1aed398b1c4",
+      "new_blob": "0c531dbe0a3c5785e7b94da5b1b2849883594bf3",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_files.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "0ad3619ea1549171d4c760fab64fd1e4181669b0",
+      "new_blob": "e81b1ae23f9c23b291904326e16b34a69de5f24d",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_fonts.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "961aeea868999e469fb5b67bd540c9c12037d2e6",
+      "new_blob": "5b7c42215363f36f4fe251c7264d2bcf527fdaeb",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_material_theme.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "644971de60199b0763ff8c685826551d5adba9ea",
+      "new_blob": "fcd8d748043b07889977a25f97b3d044d9c8b4d1",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_pdf_gallery.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "e4dd3d23338cfbf6ff60fde85c5a4701ca7787c1",
+      "new_blob": "0b0b512cb2652c23f0838c32b0532a4971bc8109",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_pdf_office.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "e2c011d2a149e326dafbaaedd29add442f9e5f78",
+      "new_blob": "6569a3a37d5261ae6d0dcb6056b9d925ae02bfb2",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_strings.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "d1195fceb267d6d520c0d1684b8b18e069be13d2",
+      "new_blob": "14e2b691b2f400fe87533c56f91e047a2b8a671e",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/suite_workspace.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "995a30e44c5d3b09591cea8dd5ae2b9f1bec0cdc",
+      "new_blob": "915ec416ba1000a668b5b6dc88768811065a54f3",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_editor/lib/src/editor_slide/render_slide_stage.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "3acd1c7c98364a0c459c400fa11bd3b2a9f67591",
+      "new_blob": "4317f0e2e80e3f502e376f7d62065076804aaa38",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_editor/lib/src/editor_word/paint_run_text.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "e79eb99d1f4e11491a2c11b32086f0c200129ea0",
+      "new_blob": "d01243278896bc792bc0087de47b0a87439195bd",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "2d6a8e1d8ff38ddabedebda852ac0d4d76c916cf",
+      "new_blob": "a9a963773423fe486fb8b90937ad0c3d7244a646",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_editor/lib/src/embed/office_editors.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "6d27403883adaf933b972caebc0526e4feaa8cc3",
+      "new_blob": "16c2f9529efbfa1d45285a76adbf3b6c4288deac",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_editor/lib/src/embed/office_host_fonts.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "885d5a8873146a0c872b5c2df47104fccab9f904",
+      "new_blob": "7ee3e193d8634daf4eb51fbcf4c5516d780ef4e1",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_editor/lib/src/embed/office_system_font_validation.dart",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "39ba2d9d41427284d941a799c630e79700e87976",
+      "status": "A"
+    },
+    {
+      "path": "packages/quds_office_editor/lib/src/embed/office_system_fonts_io.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "01008abf81a2031d4fd0b2bb09df14611ad32075",
+      "new_blob": "39ebd9d2533e462e736e3de2432dbc2e5898bd44",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_editor/lib/src/embed/word_zotero_dialog.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "eef4e45e95c7c6238ccf52207edbd184cc132b3f",
+      "new_blob": "f4c079ce477c4e43d210b464ce563ab8f3d640e0",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_editor/lib/src/visual/paint_office_visual.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "772480fb7a09f7360400f602719d161f892cbc0f",
+      "new_blob": "c02e958c6ff29186b871dcc0314e8fdb7e603087",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/quds_office_automation.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "91ca2d5a759777b4fede55919c170cfe2fb6273e",
+      "new_blob": "a103892d51c0631d46e0399d72daf4ed4cc1030c",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/automation/office_macro_language.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "af9d43dab0f5d66af8d5ee2b183cbeae39f3191b",
+      "new_blob": "c2fdb09ede48194e1dfefda83a4d5af70fc837c8",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/automation/office_macro_mcp.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "cb11be8be0fab9295a5f193e4d77fd6b0f0bc663",
+      "new_blob": "5d52562a0a451f41bf22866d21526a232ba375ce",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/automation/office_vba_language.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "961aefdb604e8f5db36deb69aa7b731e7b947710",
+      "new_blob": "281c7d3d2c3441a3d588eb1e2de47ac7a7777e41",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/pdf/office_pdf_export.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "7dc2da5e1d92313b1bfd6ebda5fd0315c015aac4",
+      "new_blob": "a2f8a25cb58aef3eccb3c96528e2609c38025f6f",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/pdf/office_pdf_visuals.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "236b6dac9ecf79016aae8fb7155d7fd02f796cf3",
+      "new_blob": "8bba8c7081d48e9a283a795c8e49449274de06e9",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/pdf/pdf_canvas.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "3adae9d4e0210e9443a8a9661bb6876065301ed4",
+      "new_blob": "ad28c5cde7840e9551925a4f3afb5697e36c52be",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/pdf/pdf_document.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "2c847443a0e6fecf668be90028a329e026bc24d3",
+      "new_blob": "5aaaef1d77439b4c2fa59344b9842e4710855643",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/slide/model/pml_presentation.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "08e06c962a73c4abb1ad024ac79b62d7bc98d8d3",
+      "new_blob": "3035125ede5e0293841a9cf852552792df582815",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/slide/serial/slide_serial.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "2d74f80b16d6b276ea876174c4356f5cfded9852",
+      "new_blob": "66b86513700c6f46ad388afa8d7427226e6f61e1",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/slide/shapes/drawingml.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "bf213308447ad77b382c84561495fd3686123765",
+      "new_blob": "b827beeb15d47716c56310f7bba5c6d4097ffeaa",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/slide/shapes/slide_rich_text.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "4994e24e524f27f6d190ab9dce88df58a470f905",
+      "new_blob": "c046f8cf7716d1982b90cd9c4a7e08a650235f39",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/model/word_lists.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "a6266ad1253b023ef17e1ef16ec9228355c786a5",
+      "new_blob": "1fe12aebd640eb7ca001702e3ea02709372753bd",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/model/word_zotero_citing.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "2f23ac40db8d69c9e191f38d713b1f592fc3ce3d",
+      "new_blob": "2246c0f4cd3c39850187d048ebac6c4862c9c8a4",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/model/word_zotero_note.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "d59fe0247cc811fc9edffcda20987276c0ee3efa",
+      "new_blob": "ae0732b80ed439cda983214783cb40df8f68b3c5",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/model/word_zotero_note_image.dart",
+      "old_mode": "000000",
+      "new_mode": "100644",
+      "old_blob": "0000000000000000000000000000000000000000",
+      "new_blob": "169cddfa04450745934a35616b29aff3d2daba1f",
+      "status": "A"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/serial/word_deserializer.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "b186cf17fc5e21e78370313a13f25598eb2c461a",
+      "new_blob": "53fbc4a217b0b85186ebdb1904e9662a11c2d79a",
+      "status": "M"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/serial/word_property_io.dart",
+      "old_mode": "100644",
+      "new_mode": "100644",
+      "old_blob": "911d9ef616174925482bd1ce99b850c5e9bc1756",
+      "new_blob": "8870cd42f07b78a3c8e4fc7fc4a54816d09d16f2",
+      "status": "M"
+    }
+  ],
+  "dependency_and_toolchain_changes_vs_qualified": [],
+  "dependency_and_toolchain_changes_vs_prior_main": [],
+  "reachability": [
+    {
+      "head": "1fe093a217741d228c86bad4e6a5a13f777ed851",
+      "is_ancestor_of_new_main": true,
+      "subject": "Reconcile current main with Word layout and durable Mail drafts [skip ci]"
+    },
+    {
+      "head": "1ceae221d37e733f0195d35622a05f896a2d13a1",
+      "is_ancestor_of_new_main": true,
+      "subject": "Preserve manual Android replay workflow from current main [skip ci]"
+    },
+    {
+      "head": "3100725d07a715f230c263f640dbd588c7c75660",
+      "is_ancestor_of_new_main": true,
+      "subject": "Preserve portability evidence and complete local qualification inputs [skip ci]"
+    },
+    {
+      "head": "aa51b5700a4791db088a2d47b66ff521540b42e0",
+      "is_ancestor_of_new_main": true,
+      "subject": "Keep image-only Zotero paragraphs linked to their native Word structure [skip ci]"
+    },
+    {
+      "head": "a4ed68f2c78e0f41013c2af160fe84e27d9d84ad",
+      "is_ancestor_of_new_main": true,
+      "subject": "Reconcile radial fills and register scoped PDF picture opacity [skip ci]"
+    },
+    {
+      "head": "b9e4f1d4bc691714f68e3685dbf729b09ccb0449",
+      "is_ancestor_of_new_main": false,
+      "subject": "Reconcile optional Android grammar replay workflow [skip ci]"
+    },
+    {
+      "head": "afc3524eb896c496475d6763ab4b37dddfe68932",
+      "is_ancestor_of_new_main": true,
+      "subject": "Add a manual full Studio example suite to CI"
+    },
+    {
+      "head": "67a4917b33dcd578333adabac1c50db0fc2a62b6",
+      "is_ancestor_of_new_main": true,
+      "subject": "Android grammar workflow: add the Rust target to Harper's pinned toolchain [skip ci]"
+    },
+    {
+      "head": "7319b220ab2e64b440e6f63d299eb747366a24d3",
+      "is_ancestor_of_new_main": true,
+      "subject": "Android grammar evidence: x86_64 CI gate (no claim) and build-host dependence [skip ci]"
+    },
+    {
+      "head": "ffb8cee3acec878cdbe3c27e0bb82f228468a30f",
+      "is_ancestor_of_new_main": true,
+      "subject": "Add bounded IMAP mailbox browsing and confirmed message controls [skip ci]"
+    },
+    {
+      "head": "44abcfa10367c8cf586ad3cf826feb3cb1de6dab",
+      "is_ancestor_of_new_main": false,
+      "subject": "Align legacy Mail search assertion and preserve Unicode test metadata [skip ci]"
+    },
+    {
+      "head": "20573cabfd4dcae091e4c705fd58277cc6372075",
+      "is_ancestor_of_new_main": true,
+      "subject": "Render radial gradient fills"
+    },
+    {
+      "head": "1eddb91495bd405a1dfb3b1e8734e93e85b04b1d",
+      "is_ancestor_of_new_main": true,
+      "subject": "Merge remote-tracking branch 'origin/main' into integrate/recent-pptx"
+    },
+    {
+      "head": "7c562b635f932372a310b78a78eb20bdb9df626d",
+      "is_ancestor_of_new_main": true,
+      "subject": "Merge pull request #236 from CrispStrobe/feat/android-spacy-grammar-20261120"
+    },
+    {
+      "head": "5e38de19ab5af8d6811d601c7317cba7f69d516b",
+      "is_ancestor_of_new_main": true,
+      "subject": "Merge pull request #235 from CrispStrobe/ci/android-spacy-grammar-workflow"
+    }
+  ]
+}

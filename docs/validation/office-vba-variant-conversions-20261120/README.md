@@ -6,7 +6,17 @@ recent fork branches with original ancestry and qualifies the combined source
 locally. GitHub Actions, workflow runs, checks and commit-status endpoints are
 not queried or awaited.
 
-## Work in progress
+## Completed continuation
+
+The combined product source at `708f2821` now has completed local
+qualification in the [Zotero parity continuation report](../zotero-parity-continuation-20261120/README.md).
+That report supplies the final selections, raw receipts, source identities
+and publication record, including this saved increment. The earlier status
+below is retained as a historical checkpoint; its development results are
+not added to the final totals. Live host acceptance retains its original
+scope and attribution.
+
+## Historical checkpoint status
 
 The compiler, independent conformance corpus, Variant report, transaction
 regressions and incoming picture-background repairs are incrementally saved.

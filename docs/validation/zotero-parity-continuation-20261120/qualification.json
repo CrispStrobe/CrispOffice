@@ -1,0 +1,613 @@
+{
+  "schema": 1,
+  "accepted": true,
+  "source_commit": "708f2821f5563912642d8062ea4db126462a67a1",
+  "source_tree": "447c9f79b2e0cf400ec2c58d7dba18bafab18206",
+  "captured_main": "5e38de19ab5af8d6811d601c7317cba7f69d516b",
+  "checkpoint_branch": "codex/zotero-parity-continuation-20261120",
+  "test_file_count": 151,
+  "test_selections_disjoint": true,
+  "visible_passed": 3437,
+  "failed": 0,
+  "skipped": 0,
+  "root_visible_passed": 1897,
+  "root_cohorts": {
+    "arabic-lifecycle": {
+      "package": "packages/quds_arabic_morph",
+      "test_files": [
+        "test/arabic_morph_lifecycle_test.dart",
+        "test/arabic_morph_unit_test.dart"
+      ],
+      "passed": 25,
+      "failed": 0,
+      "skipped": [],
+      "seconds": 8.308,
+      "guarded_inputs": 5768,
+      "accepted": true
+    },
+    "editor-pptx": {
+      "package": "packages/quds_office_editor",
+      "test_files": [
+        "test/slide_normal_autofit_test.dart",
+        "test/slide_render_fidelity_test.dart",
+        "test/slide_incoming_pptx_regression_test.dart",
+        "test/slide_transform_orientation_test.dart",
+        "test/office_slide_effects_test.dart",
+        "test/office_dark_slide_test.dart",
+        "test/picture_adjustment_render_test.dart",
+        "test/slide_background_publication_test.dart",
+        "test/slide_geometric_presets_test.dart"
+      ],
+      "passed": 74,
+      "failed": 0,
+      "skipped": [],
+      "seconds": 10.279,
+      "guarded_inputs": 5768,
+      "accepted": true
+    },
+    "editor-zotero": {
+      "package": "packages/quds_office_editor",
+      "test_files": [
+        "test/word_zotero_add_note_controller_test.dart",
+        "test/word_zotero_backoff_session_test.dart",
+        "test/word_zotero_bibliography_controller_test.dart",
+        "test/word_zotero_catalog_citing_test.dart",
+        "test/word_zotero_catalog_query_test.dart",
+        "test/word_zotero_children_dialog_test.dart",
+        "test/word_zotero_children_test.dart",
+        "test/word_zotero_citing_controller_test.dart",
+        "test/word_zotero_citing_dialog_test.dart",
+        "test/word_zotero_collection_pagination_test.dart",
+        "test/word_zotero_composer_test.dart",
+        "test/word_zotero_connected_alias_test.dart",
+        "test/word_zotero_controller_test.dart",
+        "test/word_zotero_dialog_scaling_test.dart",
+        "test/word_zotero_dialog_test.dart",
+        "test/word_zotero_direct_command_test.dart",
+        "test/word_zotero_document_actions_test.dart",
+        "test/word_zotero_document_reuse_test.dart",
+        "test/word_zotero_document_source_picker_test.dart",
+        "test/word_zotero_document_sources_test.dart",
+        "test/word_zotero_field_at_caret_test.dart",
+        "test/word_zotero_format_test.dart",
+        "test/word_zotero_import_search_test.dart",
+        "test/word_zotero_library_details_test.dart",
+        "test/word_zotero_navigation_dialog_test.dart",
+        "test/word_zotero_navigation_pane_test.dart",
+        "test/word_zotero_navigation_test.dart",
+        "test/word_zotero_note_image_controller_test.dart",
+        "test/word_zotero_note_preview_test.dart",
+        "test/word_zotero_note_target_test.dart",
+        "test/word_zotero_notes_pane_test.dart",
+        "test/word_zotero_occurrence_navigation_test.dart",
+        "test/word_zotero_rich_controller_test.dart",
+        "test/word_zotero_saved_search_test.dart",
+        "test/word_zotero_snapshot_test.dart",
+        "test/word_zotero_source_identity_test.dart",
+        "test/word_zotero_source_occurrences_dialog_test.dart",
+        "test/word_zotero_source_occurrences_test.dart",
+        "test/word_zotero_source_resolver_test.dart",
+        "test/word_zotero_stored_details_dialog_test.dart",
+        "test/word_zotero_stored_details_test.dart",
+        "test/word_zotero_tag_browser_test.dart",
+        "test/word_zotero_tag_filter_test.dart",
+        "test/word_zotero_unlink_all_test.dart",
+        "test/word_inline_picture_history_test.dart",
+        "test/word_note_numbering_test.dart",
+        "test/installed_host_fonts_test.dart",
+        "test/office_system_fonts_test.dart"
+      ],
+      "passed": 685,
+      "failed": 0,
+      "skipped": [],
+      "seconds": 156.368,
+      "guarded_inputs": 5768,
+      "accepted": true
+    },
+    "engine-pptx": {
+      "package": "packages/quds_office_engine",
+      "test_files": [
+        "test/slide_normal_autofit_test.dart",
+        "test/pdf_picture_opacity_test.dart",
+        "test/slide_import_fidelity_test.dart",
+        "test/slide_render_fidelity_test.dart",
+        "test/office_pdf_export_test.dart",
+        "test/slide_gradient_merge_test.dart",
+        "test/slide_gradient_publication_test.dart",
+        "test/slide_picture_background_test.dart",
+        "test/slide_geometric_presets_test.dart",
+        "test/slide_incoming_pptx_regression_test.dart"
+      ],
+      "passed": 215,
+      "failed": 0,
+      "skipped": [],
+      "seconds": 7.298,
+      "guarded_inputs": 5768,
+      "accepted": true
+    },
+    "engine-zotero": {
+      "package": "packages/quds_office_engine",
+      "test_files": [
+        "test/word_zotero_add_note_test.dart",
+        "test/word_zotero_bibliography_layout_test.dart",
+        "test/word_zotero_caret_test.dart",
+        "test/word_zotero_citing_test.dart",
+        "test/word_zotero_document_data_test.dart",
+        "test/word_zotero_formatted_bibliography_test.dart",
+        "test/word_zotero_note_image_test.dart",
+        "test/word_zotero_note_images_integration_test.dart",
+        "test/word_zotero_note_insertion_test.dart",
+        "test/word_zotero_note_list_test.dart",
+        "test/word_zotero_preference_flow_test.dart",
+        "test/word_zotero_rich_edit_test.dart",
+        "test/word_zotero_scaling_test.dart",
+        "test/word_zotero_simple_field_test.dart",
+        "test/word_zotero_source_identity_test.dart",
+        "test/word_zotero_style_preferences_review_test.dart",
+        "test/word_zotero_test.dart",
+        "test/zotero_add_note_protocol_test.dart",
+        "test/zotero_backoff_state_test.dart",
+        "test/zotero_catalog_query_test.dart",
+        "test/zotero_citing_test.dart",
+        "test/zotero_client_test.dart",
+        "test/zotero_formatted_text_test.dart",
+        "test/zotero_identity_client_test.dart",
+        "test/zotero_item_children_test.dart",
+        "test/zotero_item_details_test.dart",
+        "test/zotero_metadata_batch_test.dart",
+        "test/zotero_paragraph_runs_test.dart",
+        "test/zotero_saved_search_test.dart",
+        "test/zotero_tag_catalog_test.dart",
+        "test/zotero_tag_filter_test.dart",
+        "test/word_inline_picture_test.dart",
+        "test/word_list_numbering_snapshot_test.dart",
+        "test/numbering_collision_test.dart",
+        "test/word_note_numbering_test.dart"
+      ],
+      "passed": 733,
+      "failed": 0,
+      "skipped": [],
+      "seconds": 16.556,
+      "guarded_inputs": 5768,
+      "accepted": true
+    },
+    "mail-workspace": {
+      "package": "packages/quds_mail_ui",
+      "test_files": [
+        "test/message_list_test.dart"
+      ],
+      "passed": 19,
+      "failed": 0,
+      "skipped": [],
+      "seconds": 15.72,
+      "guarded_inputs": 5768,
+      "accepted": true
+    },
+    "spacy-incoming": {
+      "package": "packages/quds_proofing_spacy",
+      "test_files": [
+        "test/distribution_test.dart",
+        "test/grammar_planner_test.dart"
+      ],
+      "passed": 36,
+      "failed": 0,
+      "skipped": [],
+      "seconds": 8.089,
+      "guarded_inputs": 5768,
+      "accepted": true
+    },
+    "studio-host": {
+      "package": "packages/quds_office_editor/example",
+      "test_files": [
+        "test/studio_zotero_shortcuts_test.dart",
+        "test/studio_zotero_citing_transport_test.dart",
+        "test/studio_native_paths_test.dart",
+        "test/studio_material_theme_test.dart",
+        "test/studio_arabic_morph_web_lifecycle_test.dart",
+        "test/studio_mail_ews_test.dart",
+        "test/studio_mail_cloud_test.dart"
+      ],
+      "passed": 110,
+      "failed": 0,
+      "skipped": [],
+      "seconds": 82.765,
+      "guarded_inputs": 5768,
+      "accepted": true
+    }
+  },
+  "vba": {
+    "accepted": true,
+    "native": {
+      "accepted": true,
+      "cohorts": [
+        {
+          "accepted": true,
+          "error_messages": [],
+          "errors": 0,
+          "exit_code": 0,
+          "failed": 0,
+          "passed": 120,
+          "runner_success": true,
+          "selected_files": [
+            "test/office_operations_test.dart",
+            "test/office_macro_runtime_test.dart",
+            "test/office_macro_word_revision_guard_test.dart",
+            "test/office_macro_language_test.dart",
+            "test/office_vba_language_test.dart"
+          ],
+          "skipped": 0
+        },
+        {
+          "accepted": true,
+          "error_messages": [],
+          "errors": 0,
+          "exit_code": 0,
+          "failed": 0,
+          "passed": 102,
+          "runner_success": true,
+          "selected_files": [
+            "test/office_vba_integration_test.dart",
+            "test/office_vba_procedures_test.dart",
+            "test/office_vba_procedure_boundaries_test.dart",
+            "test/office_vba_procedures_integration_test.dart",
+            "test/office_vba_control_flow_test.dart"
+          ],
+          "skipped": 0
+        },
+        {
+          "accepted": true,
+          "error_messages": [],
+          "errors": 0,
+          "exit_code": 0,
+          "failed": 0,
+          "passed": 238,
+          "runner_success": true,
+          "selected_files": [
+            "test/office_vba_control_flow_boundaries_test.dart",
+            "test/office_vba_control_flow_integration_test.dart",
+            "test/office_vba_arrays_test.dart",
+            "test/office_vba_arrays_boundaries_test.dart",
+            "test/office_vba_arrays_integration_test.dart"
+          ],
+          "skipped": 0
+        },
+        {
+          "accepted": true,
+          "error_messages": [],
+          "errors": 0,
+          "exit_code": 0,
+          "failed": 0,
+          "passed": 289,
+          "runner_success": true,
+          "selected_files": [
+            "test/office_vba_dynamic_arrays_test.dart",
+            "test/office_vba_dynamic_arrays_integration_test.dart",
+            "test/office_vba_string_intrinsics_test.dart",
+            "test/office_vba_string_intrinsics_integration_test.dart",
+            "test/office_vba_conformance_test.dart"
+          ],
+          "skipped": 0
+        },
+        {
+          "accepted": true,
+          "error_messages": [],
+          "errors": 0,
+          "exit_code": 0,
+          "failed": 0,
+          "passed": 430,
+          "runner_success": true,
+          "selected_files": [
+            "test/office_vba_variant_conversions_test.dart",
+            "test/office_vba_variant_conformance_test.dart",
+            "test/office_vba_variant_conversions_integration_test.dart",
+            "test/office_macro_expansion_test.dart",
+            "test/office_macro_mcp_test.dart"
+          ],
+          "skipped": 0
+        },
+        {
+          "accepted": true,
+          "error_messages": [],
+          "errors": 0,
+          "exit_code": 0,
+          "failed": 0,
+          "passed": 66,
+          "runner_success": true,
+          "selected_files": [
+            "test/office_macro_cli_test.dart",
+            "test/office_steps_test.dart",
+            "test/word_step_atomicity_test.dart",
+            "test/word_steps_vocabulary_test.dart",
+            "test/word_structure_steps_test.dart"
+          ],
+          "skipped": 0
+        },
+        {
+          "accepted": true,
+          "error_messages": [],
+          "errors": 0,
+          "exit_code": 0,
+          "failed": 0,
+          "passed": 276,
+          "runner_success": true,
+          "selected_files": [
+            "test/table_grid_steps_test.dart",
+            "test/word_table_grid_addressing_test.dart",
+            "test/sheet_macro_preservation_test.dart",
+            "test/office_vba_word_language_test.dart",
+            "test/office_vba_word_conformance_test.dart"
+          ],
+          "skipped": 0
+        },
+        {
+          "accepted": true,
+          "error_messages": [],
+          "errors": 0,
+          "exit_code": 0,
+          "failed": 0,
+          "passed": 19,
+          "runner_success": true,
+          "selected_files": [
+            "test/office_vba_word_integration_test.dart",
+            "test/office_vba_word_cli_test.dart"
+          ],
+          "skipped": 0
+        }
+      ],
+      "error_messages": [],
+      "errors": 0,
+      "failed": 0,
+      "passed": 1540,
+      "runner_success": true,
+      "selected_files": [
+        "test/office_operations_test.dart",
+        "test/office_macro_runtime_test.dart",
+        "test/office_macro_word_revision_guard_test.dart",
+        "test/office_macro_language_test.dart",
+        "test/office_vba_language_test.dart",
+        "test/office_vba_integration_test.dart",
+        "test/office_vba_procedures_test.dart",
+        "test/office_vba_procedure_boundaries_test.dart",
+        "test/office_vba_procedures_integration_test.dart",
+        "test/office_vba_control_flow_test.dart",
+        "test/office_vba_control_flow_boundaries_test.dart",
+        "test/office_vba_control_flow_integration_test.dart",
+        "test/office_vba_arrays_test.dart",
+        "test/office_vba_arrays_boundaries_test.dart",
+        "test/office_vba_arrays_integration_test.dart",
+        "test/office_vba_dynamic_arrays_test.dart",
+        "test/office_vba_dynamic_arrays_integration_test.dart",
+        "test/office_vba_string_intrinsics_test.dart",
+        "test/office_vba_string_intrinsics_integration_test.dart",
+        "test/office_vba_conformance_test.dart",
+        "test/office_vba_variant_conversions_test.dart",
+        "test/office_vba_variant_conformance_test.dart",
+        "test/office_vba_variant_conversions_integration_test.dart",
+        "test/office_macro_expansion_test.dart",
+        "test/office_macro_mcp_test.dart",
+        "test/office_macro_cli_test.dart",
+        "test/office_steps_test.dart",
+        "test/word_step_atomicity_test.dart",
+        "test/word_steps_vocabulary_test.dart",
+        "test/word_structure_steps_test.dart",
+        "test/table_grid_steps_test.dart",
+        "test/word_table_grid_addressing_test.dart",
+        "test/sheet_macro_preservation_test.dart",
+        "test/office_vba_word_language_test.dart",
+        "test/office_vba_word_conformance_test.dart",
+        "test/office_vba_word_integration_test.dart",
+        "test/office_vba_word_cli_test.dart"
+      ],
+      "skipped": 0
+    },
+    "input_check": {
+      "after_manifest_sha256": "3c9ee40aaafea2cdd4179b202072a5e8968ee982348040839ab9a498acb4b0af",
+      "all_scoped_inputs_unchanged": true,
+      "before_manifest_sha256": "3c9ee40aaafea2cdd4179b202072a5e8968ee982348040839ab9a498acb4b0af",
+      "groups": {
+        "other_engine_library_dependencies": {
+          "changed": [],
+          "file_count_before": 331,
+          "unchanged": true
+        },
+        "runtime_configuration": {
+          "changed": [],
+          "file_count_before": 6,
+          "unchanged": true
+        },
+        "tests_fixtures_macro_tools": {
+          "changed": [],
+          "file_count_before": 67,
+          "unchanged": true
+        },
+        "vba_automation_word_properties": {
+          "changed": [],
+          "file_count_before": 16,
+          "unchanged": true
+        }
+      },
+      "head_after": "708f2821f5563912642d8062ea4db126462a67a1",
+      "head_before": "708f2821f5563912642d8062ea4db126462a67a1",
+      "scope_note": "Only the enumerated primary product, engine dependencies, tests/tools/fixtures and runtime configuration are guarded. No whole-repository stability claim."
+    },
+    "smoke_programs": [
+      {
+        "accepted": true,
+        "javascript_sha256": "2d67d13a409f4def4ce5e2c60b3077da54b9249fac5cf89374f91bf745308357",
+        "name": "web_smoke",
+        "stdout_sha256": "733f79b8c8c236f674a733d3c205f6f46c6a52d4a6da005729755db94d853971"
+      },
+      {
+        "accepted": true,
+        "javascript_sha256": "102566f4ad13febeb155f6a4e589bb8b4eac52edbeb9c80b0dfe1d88f0fcebf3",
+        "name": "web_vba_smoke",
+        "stdout_sha256": "3a1c1b101e95e74f978cbb811033185b9a34908200d38d509e6a907b746eefc8"
+      },
+      {
+        "accepted": true,
+        "javascript_sha256": "a8ccbab01b14938df7810bcc9b282054d4494401f700b9f1f625a878b0717922",
+        "name": "web_vba_procedures_smoke",
+        "stdout_sha256": "b97b85b585bbc40e339293fec350fa8cd8f916aa6861fabf8fb3326d7235a3d4"
+      },
+      {
+        "accepted": true,
+        "javascript_sha256": "50113924375d8c26ae673415a56d029e004de92abad4bcefc682c5c6deac7388",
+        "name": "web_vba_control_flow_smoke",
+        "stdout_sha256": "4cbea514876f652fac9ad4cb832d003ebc99ecc02015a62686e495a6afc731fb"
+      },
+      {
+        "accepted": true,
+        "javascript_sha256": "89b00bc17a92e61f028f90544b81dd75163f5e06e9b46a2f409979b62829acdb",
+        "name": "web_vba_arrays_smoke",
+        "stdout_sha256": "f4ec0fda78a40375c6ee3beb04fe4126a2b5c81726fe946bf59f6f9c8326d6aa"
+      },
+      {
+        "accepted": true,
+        "javascript_sha256": "82b342299aaf596c3ec7c9e2e74d718b57d037ad082dc2bfd11b682311aa9d95",
+        "name": "web_vba_dynamic_arrays_smoke",
+        "stdout_sha256": "5529e665b8ed1f73582686f38ecb80bff05e6c50c2f5d845a5bfdc8706ff2b1c"
+      },
+      {
+        "accepted": true,
+        "javascript_sha256": "37953bc6e1d351149d719bf4e79d3bac126f631ff3ac5942d2ce73c2a9a8b2b9",
+        "name": "web_vba_word_smoke",
+        "stdout_sha256": "1fb8306c1f06be714542c837c8fc9e81ca647864638d6bc5afef20ad95e395ee"
+      }
+    ],
+    "corpora": [
+      {
+        "accepted": true,
+        "case_count": 69,
+        "fixture_sha256": "5f44d870fea259ad89f171739583b93252e37b997c1fef91d3cb1e1d54fa9bd0",
+        "javascript_sha256": "f8825a3d8e0eb5d8dad5b87323d444cc2b321a155bc764059d0ee4261559a71c",
+        "name": "string_intrinsics_v1",
+        "original_excel_receipt_sha256": "8703d19a7f50f9dceab688ba49bb657fbc29f34c6eea277807be157ac1f42dbd",
+        "receipt_sha256": "8703d19a7f50f9dceab688ba49bb657fbc29f34c6eea277807be157ac1f42dbd",
+        "receipts_byte_identical": true
+      },
+      {
+        "accepted": true,
+        "case_count": 120,
+        "fixture_sha256": "ddcdf7cfef0926a2a6634fb7116623951afea4a3be76035759077be1f4bb34ce",
+        "javascript_sha256": "4fdde566cda09634989b0e16eac7770509adae29f8641e5e06fead5abbadbe2b",
+        "name": "variant_conversions_v1",
+        "original_excel_receipt_sha256": "0ccceebcb1bac7707fa7ba4756f48e29323a03b6840c26e78f054402b11e35bc",
+        "receipt_sha256": "0ccceebcb1bac7707fa7ba4756f48e29323a03b6840c26e78f054402b11e35bc",
+        "receipts_byte_identical": true
+      },
+      {
+        "accepted": true,
+        "case_count": 38,
+        "fixture_sha256": "c554defa81099730169cc4a41e8b54405b5ebe354aa951c5528331e99b9e0a7b",
+        "javascript_sha256": "91b99d798f0c5947eda57a93ec2c1cb060f08c970254fecdc18b1a0ee6217774",
+        "name": "variant_composition_v1",
+        "original_excel_receipt_sha256": "80c295dbff1477d79dd4e1706159ea502ca4c07b26476e00d14e7d0e8d3c4858",
+        "receipt_sha256": "80c295dbff1477d79dd4e1706159ea502ca4c07b26476e00d14e7d0e8d3c4858",
+        "receipts_byte_identical": true
+      },
+      {
+        "accepted": true,
+        "case_count": 44,
+        "fixture_sha256": "53e4d4d5099778b4386b24f4ad9306c3a322bfb68801987825f79a75b8b4b37e",
+        "javascript_sha256": "39673582a3c23114b8a153718ddceb5003e455dd9fcf7f4aeba83a2e20fb2348",
+        "name": "word_paragraphs_v1",
+        "original_excel_receipt_sha256": null,
+        "receipt_sha256": "ebe5980e850477a79c6d3749303eae4d97c35dde61cb8e1d7b31b29c800c5f6d",
+        "receipts_byte_identical": true
+      }
+    ],
+    "canonical_cases_per_runtime": 271,
+    "limitations": [
+      "No installed Microsoft Office host executed.",
+      "JavaScript executes under Node, not a browser UI.",
+      "Fixtures are specification-derived or intentional dialect contracts.",
+      "Mail, native spaCy, Zotero Desktop and platform deployment were not exercised."
+    ]
+  },
+  "image_and_worker_portable": {
+    "source_commit": "708f2821f5563912642d8062ea4db126462a67a1",
+    "source_tree": "447c9f79b2e0cf400ec2c58d7dba18bafab18206",
+    "dirty_paths": "",
+    "start_utc": "2026-11-20T09:18:36Z",
+    "commands": [
+      {
+        "name": "image-vm",
+        "command": [
+          "/workspace/scratch/825411e3c403/zotero-toolchain/flutter/bin/cache/dart-sdk/bin/dart",
+          "--packages=/workspace/scratch/825411e3c403/quds_office_suite/.dart_tool/package_config.json",
+          "/workspace/scratch/825411e3c403/quds_office_suite/packages/quds_office_engine/tool/zotero/image_note_portable_smoke.dart"
+        ],
+        "exit_code": 0,
+        "seconds": 10.585
+      },
+      {
+        "name": "image-compile",
+        "command": [
+          "/workspace/scratch/825411e3c403/zotero-toolchain/flutter/bin/cache/dart-sdk/bin/dart",
+          "compile",
+          "js",
+          "--packages=/workspace/scratch/825411e3c403/quds_office_suite/.dart_tool/package_config.json",
+          "-O2",
+          "-o",
+          "/workspace/scratch/825411e3c403/zotero-portable-final/image-note.js",
+          "/workspace/scratch/825411e3c403/quds_office_suite/packages/quds_office_engine/tool/zotero/image_note_portable_smoke.dart"
+        ],
+        "exit_code": 0,
+        "seconds": 9.1
+      },
+      {
+        "name": "image-js",
+        "command": [
+          "node",
+          "/workspace/scratch/825411e3c403/zotero-portable-final/image-note.js"
+        ],
+        "exit_code": 0,
+        "seconds": 0.187
+      },
+      {
+        "name": "arabic-worker",
+        "command": [
+          "node",
+          "/workspace/scratch/825411e3c403/quds_office_suite/packages/quds_arabic_morph/tool/worker_lifecycle_test.mjs"
+        ],
+        "exit_code": 0,
+        "seconds": 0.073
+      }
+    ],
+    "image_behavior_count": 10,
+    "image_vm_passed": 10,
+    "image_js_passed": 10,
+    "image_vm_js_identical": true,
+    "compiled_js_sha256": "169b40a7a6b8726b83780e71522729a748f53f2bb3527637b36920c0fc602343",
+    "arabic_worker_controls": 3,
+    "arabic_worker_scope": "real worker protocol and Node transfers; controlled Wasm API",
+    "guarded_inputs": 355,
+    "changed_inputs": [],
+    "accepted": true
+  },
+  "static": {
+    "selected_count": 106,
+    "guarded_file_count": 2194,
+    "source_guard_passed": true,
+    "head_unchanged": true,
+    "tree_unchanged": true,
+    "worktree_clean": true,
+    "changed_guarded_files": [],
+    "added_guarded_files": []
+  },
+  "evidence_archive": {
+    "path": "local-validation.tar.gz",
+    "sha256": "447ee2e9623b2971d08c114f63d5ecd8642f7c2df7f2cc7b15904a5404013b95",
+    "bytes": 5158402
+  },
+  "limits": [
+    "No new live Zotero, Microsoft Word, LibreOffice or Apache OpenOffice acceptance.",
+    "No native release application build or native Mail migration executed.",
+    "Node JavaScript is not browser UI acceptance.",
+    "Arabic worker uses the real protocol and transfers with a controlled Wasm API.",
+    "No native spaCy model acceptance executed.",
+    "No active ODT document-transfer qualification.",
+    "Only the bounded captured incoming snapshot is included.",
+    "GitHub Actions, checks, statuses and workflow runs were neither queried nor awaited."
+  ]
+}

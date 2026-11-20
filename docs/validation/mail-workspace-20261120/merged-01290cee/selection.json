@@ -1,0 +1,81 @@
+{
+  "jobs": [
+    "format",
+    "studio-analyze",
+    "studio",
+    "incoming-spacy",
+    "studio-theme"
+  ],
+  "format_targets": [
+    "packages/quds_mail_core/lib/src/ports/provider.dart",
+    "packages/quds_mail_transport/lib/src/cursor.dart",
+    "packages/quds_mail_transport/lib/src/native/provider.dart",
+    "packages/quds_mail_transport/test/native_browse_test.dart",
+    "packages/quds_mail_transport/test/support/imap_fixture.dart",
+    "packages/quds_mail_ui/lib/quds_mail_ui.dart",
+    "packages/quds_mail_ui/lib/src/workspace/message_list.dart",
+    "packages/quds_mail_ui/test/message_list_test.dart",
+    "packages/quds_office_editor/example/lib/studio_mail_ews.dart",
+    "packages/quds_office_editor/example/lib/studio_mail_message_loader.dart",
+    "packages/quds_office_editor/example/lib/studio_mail_native.dart",
+    "packages/quds_office_editor/example/lib/studio_mail_workspace_strings.dart",
+    "packages/quds_office_editor/example/test/studio_mail_cloud_test.dart",
+    "packages/quds_office_editor/example/test/studio_mail_ews_test.dart",
+    "packages/quds_office_editor/example/test/studio_mail_message_loader_test.dart",
+    "packages/quds_office_editor/example/test/studio_mail_test.dart",
+    "packages/quds_office_editor/example/test/studio_mail_workspace_test.dart"
+  ],
+  "studio_analysis_targets": [
+    "lib/studio_mail_ews.dart",
+    "lib/studio_mail_message_loader.dart",
+    "lib/studio_mail_native.dart",
+    "lib/studio_mail_workspace_strings.dart",
+    "test/studio_mail_cloud_test.dart",
+    "test/studio_mail_ews_test.dart",
+    "test/studio_mail_message_loader_test.dart",
+    "test/studio_mail_test.dart",
+    "test/studio_mail_workspace_test.dart"
+  ],
+  "test_files": {
+    "studio": [
+      "test/studio_mail_archive_action_test.dart",
+      "test/studio_mail_archive_directory_import_test.dart",
+      "test/studio_mail_archive_folder_action_test.dart",
+      "test/studio_mail_archive_host_test.dart",
+      "test/studio_mail_archive_portability_visual_test.dart",
+      "test/studio_mail_archive_restore_native_test.dart",
+      "test/studio_mail_archive_restore_test.dart",
+      "test/studio_mail_archive_test.dart",
+      "test/studio_mail_attachment_compose_test.dart",
+      "test/studio_mail_attachment_loader_test.dart",
+      "test/studio_mail_attachment_test.dart",
+      "test/studio_mail_cloud_test.dart",
+      "test/studio_mail_compose_test.dart",
+      "test/studio_mail_credentials_test.dart",
+      "test/studio_mail_discovery_test.dart",
+      "test/studio_mail_draft_autosave_test.dart",
+      "test/studio_mail_draft_store_test.dart",
+      "test/studio_mail_ews_test.dart",
+      "test/studio_mail_lifecycle_test.dart",
+      "test/studio_mail_message_loader_test.dart",
+      "test/studio_mail_operation_test.dart",
+      "test/studio_mail_presets_test.dart",
+      "test/studio_mail_recipients_test.dart",
+      "test/studio_mail_reply_test.dart",
+      "test/studio_mail_session_test.dart",
+      "test/studio_mail_test.dart",
+      "test/studio_mail_threading_test.dart",
+      "test/studio_mail_web_test.dart",
+      "test/studio_mail_workspace_test.dart",
+      "test/studio_saved_mail_test.dart"
+    ],
+    "incoming-spacy": [
+      "test/distribution_test.dart",
+      "test/grammar_planner_test.dart"
+    ],
+    "studio-theme": [
+      "test/studio_material_theme_test.dart"
+    ]
+  },
+  "platform_selection": "Three @TestOn(js) transport boundary suites execute separately on Node. All other transport suites execute on VM. UI, Studio and native-path test suites execute on Flutter VM on Linux x64."
+}
