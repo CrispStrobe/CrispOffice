@@ -7,7 +7,7 @@ import 'package:quds_office_editor/quds_office_editor.dart';
 
 const _boundary = ValueKey('direct-master-background');
 
-PmlPresentation _deck({required bool inherited}) {
+PmlPresentation _deck({required bool inherited, bool gradient = false}) {
   final bytes = PngBytes.rgb(
     width: 1,
     height: 1,
@@ -17,7 +17,7 @@ PmlPresentation _deck({required bool inherited}) {
       rgb[2] = 0;
     },
   );
-  return PmlPresentation(
+  final deck = PmlPresentation(
     master: PmlMaster(name: 'Imported')..setImportedBackground('FFFFFF'),
     slides: [
       PmlSlide(
@@ -50,6 +50,27 @@ PmlPresentation _deck({required bool inherited}) {
       ),
     ],
   );
+  if (gradient) {
+    final slide = deck.slides.single;
+    slide.backgroundShapes.removeAt(0);
+    slide.retainSourceBackground(
+      null,
+      gradient: PmlShape(
+        id: 1,
+        name: 'Background gradient',
+        isBackgroundGradient: true,
+        fillColor: 'FF0000',
+        gradient: PmlGradientFill(
+          stops: [
+            PmlGradientStop(position: 0, color: 'FF0000'),
+            PmlGradientStop(position: 1, color: 'FF0000'),
+          ],
+        ),
+        transform: const PmlTransform(cx: 9144000, cy: 5143500),
+      ),
+    );
+  }
+  return deck;
 }
 
 Future<List<int>> _paint(
@@ -121,6 +142,27 @@ int _pixel(List<int> bytes, int x, int y) {
 
 void main() {
   for (final color in ['112233', 'FFFFFF']) {
+    testWidgets(
+      'direct master $color replaces inherited gradient before saving',
+      (tester) async {
+        for (final inherited in [true, false]) {
+          final deck = _deck(inherited: inherited, gradient: true);
+          final selected = deck.slides.single.backgroundGradient;
+          final before = await _paint(tester, deck);
+          expect(_pixel(before, 100, 100), 0xFF0000);
+          deck.master.background = color;
+          final after = await _paint(tester, deck);
+          expect(
+            _pixel(after, 100, 100),
+            inherited ? int.parse(color, radix: 16) : 0xFF0000,
+          );
+          expect(_pixel(after, 30, 30), 0x0000FF);
+          expect(deck.slides.single.backgroundGradient, same(selected));
+          expect(deck.slides.single.backgroundShapes, hasLength(2));
+        }
+      },
+    );
+
     testWidgets(
       'direct master $color paints before saving or controller edits',
       (tester) async {

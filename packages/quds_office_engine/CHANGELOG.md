@@ -4,6 +4,32 @@ All notable changes to `quds_office_engine` are documented here.
 
 ## Unreleased
 
+- Preserve normal-autofit values on authored and edited presentation shapes,
+  including percent-form attributes and exact zero/full-scale bounds. Apply
+  reduced line advances consistently in PDF while respecting fixed-point
+  paragraph spacing and retaining ordinary text-box defaults.
+
+- Preserve Zotero research-note lists with up to nine mixed nesting levels,
+  independent counters and starting numbers, and multiple paragraphs per item.
+  Keep continuation paragraphs unnumbered at the correct indent, retaining
+  active citations and embedded pictures through the staged document operation
+  and DOCX save/reopen.
+
+- Keep image-only authored Word paragraphs inline when their properties or
+  metadata carry list, heading, hyperlink, comment, field or revision ownership.
+  Preserve their one-character caret position on repeated DOCX reopen while
+  retaining the existing block-picture behavior for bare legacy paragraphs.
+
+- Accept bounded embedded PNG and supported upright RGB/YCbCr JPEG pictures in
+  Zotero Add Note and Add Annotation responses. Preserve original image bytes,
+  dimensions, alternative text, title, ordinary links and active citation
+  offsets as native inline Word pictures. Validate complete raster streams and
+  resource budgets before publication; unsupported content refuses the entire
+  staged insertion. Preserve refresh and DOCX save/reopen behavior.
+
+- Hide the selected inherited slide gradient immediately after a direct master
+  background edit in PDF export, while retaining authored slide/layout fills.
+
 - Add the bounded `vba-word` adapter on the shared VBA compiler. Target explicit
   document paragraphs, insert text before their content, and apply supported
   font and paragraph formatting through existing atomic Word operations.

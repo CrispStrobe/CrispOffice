@@ -1,0 +1,51 @@
+{
+  "source_head": "64e3f71b2d3b72064d8eaef03e9a6699b7d8b54a",
+  "required": {
+    "original_user_checkpoint": {
+      "sha": "7501b604db23e2df3d765f2ea44f572b2ea43d97",
+      "is_ancestor": true
+    },
+    "initial_main": {
+      "sha": "e06eb3a7e21b71c1d5d4b1d2cc9abde24774eb26",
+      "is_ancestor": true
+    },
+    "latest_main": {
+      "sha": "c16e121365b7c52c0b66371381c8c58f592e1d8e",
+      "is_ancestor": true
+    },
+    "original_vba": {
+      "sha": "4b8ad78188f2d1f4031887cd51262b07e865a552",
+      "is_ancestor": true
+    },
+    "latest_vba": {
+      "sha": "e656bc17a98db5a1b44f8ac643b4d982800775e3",
+      "is_ancestor": true
+    },
+    "original_mail": {
+      "sha": "81b0d7620bd7d57ee2d5fe878abbad85f0488a00",
+      "is_ancestor": true
+    },
+    "latest_mail": {
+      "sha": "20b2ecf572f8fd5663a728529da7bf5c7ebbda1d",
+      "is_ancestor": true
+    },
+    "font_head": {
+      "sha": "9bd16ff4d97f2a63f450f161fe10eb3bb2808857",
+      "is_ancestor": true
+    }
+  },
+  "external_ref_count": 256,
+  "own_continuation_ref_count": 1,
+  "summary": {
+    "fork_branches": 15,
+    "fork_pull_request_heads": 233,
+    "upstream_branches": 4,
+    "upstream_pull_request_heads": 4,
+    "dispositions": {
+      "included_by_exact_historical_equivalence": 23,
+      "included_by_ancestry": 233
+    },
+    "historical_proofs_passed": 14,
+    "original_delta_paths_checked": 480
+  }
+}

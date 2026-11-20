@@ -613,6 +613,29 @@ void main() {
       expect(image.transform.cy, deck.slideHeight);
     });
 
+    test('common geometric presets survive import', () {
+      for (final (String prst, PmlShapePreset preset)
+          in <(String, PmlShapePreset)>[
+            ('diamond', PmlShapePreset.diamond),
+            ('hexagon', PmlShapePreset.hexagon),
+            ('pentagon', PmlShapePreset.pentagon),
+            ('chevron', PmlShapePreset.chevron),
+            ('parallelogram', PmlShapePreset.parallelogram),
+            ('trapezoid', PmlShapePreset.trapezoid),
+          ]) {
+        final PmlPresentation deck = _deck(<String>[
+          _sld(
+            '<p:sp><p:nvSpPr><p:cNvPr id="2" name="Shape"/>'
+            '<p:cNvSpPr/><p:nvPr/></p:nvSpPr><p:spPr>'
+            '${_xfrm(0, 0, 914400, 914400)}'
+            '<a:prstGeom prst="$prst"><a:avLst/></a:prstGeom>'
+            '</p:spPr></p:sp>',
+          ),
+        ]);
+        expect(deck.slides.single.shapes.single.preset, preset);
+      }
+    });
+
     test('gradient background replaces inherited image exactly once', () {
       const gradient =
           '<p:bg><p:bgPr><a:gradFill><a:gsLst>'
@@ -636,6 +659,35 @@ void main() {
         expect(slide.backgroundShapes.single.gradient?.angleDegrees, 90);
         expect(slide.backgroundShapes.single.visual?.imageBytes, isNull);
       }
+    });
+
+    test('gradient fills retain stops and angle', () {
+      final PmlPresentation deck = _deck(<String>[
+        _sld(
+          '<p:sp><p:nvSpPr><p:cNvPr id="2" name="Gradient"/>'
+          '<p:cNvSpPr/><p:nvPr/></p:nvSpPr><p:spPr>'
+          '${_xfrm(0, 0, 914400, 914400)}'
+          '<a:prstGeom prst="rect"><a:avLst/></a:prstGeom>'
+          '<a:gradFill><a:gsLst>'
+          '<a:gs pos="0"><a:srgbClr val="112233"/></a:gs>'
+          '<a:gs pos="100000"><a:srgbClr val="AABBCC"/></a:gs>'
+          '</a:gsLst><a:lin ang="5400000"/></a:gradFill>'
+          '</p:spPr></p:sp>',
+        ),
+      ]);
+      final PmlShape shape = deck.slides.single.shapes.single;
+      expect(shape.gradient?.stops, hasLength(2));
+      expect(shape.gradient!.stops.first.color, '112233');
+      expect(shape.gradient!.stops.last.color, 'AABBCC');
+      expect(shape.gradient!.angleDegrees, 90);
+      expect(shape.fillColor, '112233');
+      final PmlPresentation reopened = SlideDeserializer().readBytes(
+        SlideSerializer().writeBytes(deck),
+      );
+      expect(
+        reopened.slides.single.shapes.single.gradient?.stops,
+        hasLength(2),
+      );
     });
 
     test(
@@ -958,27 +1010,21 @@ void main() {
       },
     );
 
-    test('common geometric presets survive import', () {
-      for (final (String prst, PmlShapePreset preset)
-          in <(String, PmlShapePreset)>[
-            ('diamond', PmlShapePreset.diamond),
-            ('hexagon', PmlShapePreset.hexagon),
-            ('pentagon', PmlShapePreset.pentagon),
-            ('chevron', PmlShapePreset.chevron),
-            ('parallelogram', PmlShapePreset.parallelogram),
-            ('trapezoid', PmlShapePreset.trapezoid),
-          ]) {
-        final PmlPresentation deck = _deck(<String>[
-          _sld(
-            '<p:sp><p:nvSpPr><p:cNvPr id="2" name="Shape"/>'
-            '<p:cNvSpPr/><p:nvPr/></p:nvSpPr><p:spPr>'
-            '${_xfrm(0, 0, 914400, 914400)}'
-            '<a:prstGeom prst="$prst"><a:avLst/></a:prstGeom>'
-            '</p:spPr></p:sp>',
-          ),
-        ]);
-        expect(deck.slides.single.shapes.single.preset, preset);
-      }
+    test('normal autofit keeps its authored scale and spacing reduction', () {
+      final PmlPresentation deck = _deck(<String>[
+        _sld(
+          '<p:sp><p:nvSpPr><p:cNvPr id="2" name="Fitted"/>'
+          '<p:cNvSpPr txBox="1"/><p:nvPr/></p:nvSpPr><p:spPr>'
+          '${_xfrm(0, 0, 9144000, 914400)}</p:spPr><p:txBody>'
+          '<a:bodyPr><a:normAutofit fontScale="80000" '
+          'lnSpcReduction="10000"/></a:bodyPr><a:p><a:r>'
+          '<a:rPr sz="1800"/><a:t>Fitted</a:t></a:r></a:p>'
+          '</p:txBody></p:sp>',
+        ),
+      ]);
+      final PmlShape shape = deck.slides.single.shapes.single;
+      expect(shape.textScale, closeTo(0.8, 0.00001));
+      expect(shape.lineSpacingReduction, closeTo(0.1, 0.00001));
     });
 
     test(
@@ -1057,35 +1103,6 @@ void main() {
         expect(overridden.background, '778899');
       },
     );
-
-    test('gradient fills retain stops and angle', () {
-      final PmlPresentation deck = _deck(<String>[
-        _sld(
-          '<p:sp><p:nvSpPr><p:cNvPr id="2" name="Gradient"/>'
-          '<p:cNvSpPr/><p:nvPr/></p:nvSpPr><p:spPr>'
-          '${_xfrm(0, 0, 914400, 914400)}'
-          '<a:prstGeom prst="rect"><a:avLst/></a:prstGeom>'
-          '<a:gradFill><a:gsLst>'
-          '<a:gs pos="0"><a:srgbClr val="112233"/></a:gs>'
-          '<a:gs pos="100000"><a:srgbClr val="AABBCC"/></a:gs>'
-          '</a:gsLst><a:lin ang="5400000"/></a:gradFill>'
-          '</p:spPr></p:sp>',
-        ),
-      ]);
-      final PmlShape shape = deck.slides.single.shapes.single;
-      expect(shape.gradient?.stops, hasLength(2));
-      expect(shape.gradient!.stops.first.color, '112233');
-      expect(shape.gradient!.stops.last.color, 'AABBCC');
-      expect(shape.gradient!.angleDegrees, 90);
-      expect(shape.fillColor, '112233');
-      final PmlPresentation reopened = SlideDeserializer().readBytes(
-        SlideSerializer().writeBytes(deck),
-      );
-      expect(
-        reopened.slides.single.shapes.single.gradient?.stops,
-        hasLength(2),
-      );
-    });
 
     test('master background resolves theme lumMod', () {
       final PmlPresentation deck = _deck(

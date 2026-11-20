@@ -2379,17 +2379,35 @@ class WordDeserializer {
 
   static const String _inlinePictureChar = '\uFFFC';
 
-  /// Inline pictures stay inline only in paragraphs that also hold text.
-  /// A paragraph with nothing but pictures keeps the established block
-  /// representation (the pictures follow the paragraph as visuals).
+  /// Keep the legacy block representation only for bare picture paragraphs.
+  /// Moving an authored run out of its paragraph discards its hyperlink,
+  /// formatting, list/heading ownership, and its one-character editor offset.
+  /// Native inline runs written by this suite include paragraph/run properties;
+  /// the separate block-picture writer deliberately emits neither.
   void _settleInlinePictures(WmlParagraph paragraph) {
     final runs = paragraph.inlines
         .whereType<WmlRun>()
         .where((run) => run.inlineVisual != null)
         .toList();
     if (runs.isEmpty) return;
-    final text = paragraph.text.replaceAll(_inlinePictureChar, '');
-    if (text.trim().isNotEmpty) return;
+    if ((paragraph.properties.sourcePropertiesXml?.isNotEmpty ?? false) ||
+        paragraph.contentControlWrappers.isNotEmpty ||
+        paragraph.inlines.length != runs.length ||
+        runs.any(
+          (run) =>
+              run.text != _inlinePictureChar ||
+              run.hyperlink != null ||
+              run.commentIds.isNotEmpty ||
+              run.fieldInstruction != null ||
+              run.noteRefId != null ||
+              (run.properties.sourcePropertiesXml?.isNotEmpty ?? false),
+        ) ||
+        (_document?.revisions.any(
+              (revision) => identical(revision.targetParagraph, paragraph),
+            ) ??
+            false)) {
+      return;
+    }
     for (final run in runs) {
       _pendingVisuals.add(run.inlineVisual!);
     }

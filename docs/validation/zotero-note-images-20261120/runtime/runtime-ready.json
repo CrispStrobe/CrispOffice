@@ -1,0 +1,162 @@
+{
+  "status": "ready",
+  "started_at_utc": "2026-11-20T07:52:35.154514+00:00",
+  "recorded_at_utc": "2026-11-20T08:01:11.821858+00:00",
+  "source_head_at_start": "e06eb3a7e21b71c1d5d4b1d2cc9abde24774eb26",
+  "source_head_at_finish": "5b81fe13c786268b5c549c2cc4a363fecb2156b0",
+  "source": "/workspace/scratch/0faa407ae6ae/quds_office_suite",
+  "sdk": "/workspace/scratch/0faa407ae6ae/toolchains/flutter-sdk",
+  "environment_script": "/workspace/scratch/0faa407ae6ae/toolchains/env.sh",
+  "runtime": {
+    "frameworkVersion": "3.47.8",
+    "channel": "stable",
+    "repositoryUrl": "https://github.com/flutter/flutter.git",
+    "frameworkRevision": "737ba8f885dc774b53b442759999a312c9461e4e",
+    "frameworkCommitDate": "2026-10-22 21:37:31 -0700",
+    "engineRevision": "cf636b1dfb818dd6a3ff16e390e93b1a036969c8",
+    "engineCommitDate": "2026-10-23 02:13:38.000Z",
+    "engineContentHash": "dfd2e6cb7d319db05e3bf1503f3e2ac60f6288a2",
+    "engineBuildDate": "2026-10-22 20:34:48.330",
+    "dartSdkVersion": "3.13.7",
+    "devToolsVersion": "2.60.0",
+    "flutterVersion": "3.47.8",
+    "flutterRoot": "/workspace/scratch/0faa407ae6ae/toolchains/flutter-sdk"
+  },
+  "archive": {
+    "url": "https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_3.47.8-stable.tar.xz",
+    "sha256": "baf7dcc5a3dbba60fe863bf493a6cf203195621f7786eaa5a1bba02cd0d87dd2",
+    "bytes": 1581444364,
+    "seconds": 30.220328456998686
+  },
+  "executable_sha256": {
+    "bin/cache/dart-sdk/bin/dart": "01e869e4af277734b02ab8898b870c6b00c9bec61bbcf9c923cd14de7ed85fbb",
+    "bin/cache/artifacts/engine/linux-x64/flutter_tester": "800f4ca182df7dd2fb46a42dea5d76277b9dbc5e8cd2915e02bcbc978681b45f"
+  },
+  "manifest_locks_unchanged": {
+    "apps/quds_report_studio/pubspec.yaml": true,
+    "docs/validation/mail-recipients-20261119/mail-source-harness/pubspec.lock": true,
+    "docs/validation/mail-recipients-20261119/mail-source-harness/pubspec.yaml": true,
+    "docs/validation/proofing-20261116/final/pubspec.lock": true,
+    "docs/validation/proofing-en-de-20261117/integration/pubspec.lock": true,
+    "docs/validation/proofing-grammar-expansion-20261117/integration/pubspec.lock": true,
+    "docs/validation/zotero-continuation-20261116/live-zotero/runtime/pubspec.lock": true,
+    "docs/validation/zotero-continuation-20261116/live-zotero/runtime/pubspec.yaml": true,
+    "docs/validation/zotero-desktop-20261115/pubspec.lock": true,
+    "docs/validation/zotero-desktop-20261115/pubspec.yaml": true,
+    "docs/validation/zotero-optimization-20261116/benchmark/inputs/pubspec.lock": true,
+    "docs/validation/zotero-optimization-20261116/benchmark/inputs/pubspec.yaml": true,
+    "packages/legacy_doc_parser/pubspec.yaml": true,
+    "packages/quds_arabic_morph/pubspec.yaml": true,
+    "packages/quds_language_id/pubspec.yaml": true,
+    "packages/quds_mail_core/pubspec.yaml": true,
+    "packages/quds_mail_mime/pubspec.yaml": true,
+    "packages/quds_mail_store/pubspec.yaml": true,
+    "packages/quds_mail_transport/pubspec.yaml": true,
+    "packages/quds_mail_ui/example/pubspec.yaml": true,
+    "packages/quds_mail_ui/pubspec.yaml": true,
+    "packages/quds_office_editor/example/pubspec.yaml": true,
+    "packages/quds_office_editor/pubspec.yaml": true,
+    "packages/quds_office_engine/example/pubspec.yaml": true,
+    "packages/quds_office_engine/pubspec.yaml": true,
+    "packages/quds_proofing_gector/pubspec.yaml": true,
+    "packages/quds_proofing_harper/pubspec.yaml": true,
+    "packages/quds_proofing_hunspell/pubspec.yaml": true,
+    "packages/quds_proofing_spacy/pubspec.yaml": true,
+    "packages/quds_reports/pubspec.yaml": true,
+    "pubspec.lock": true,
+    "pubspec.yaml": true,
+    "third_party/enough_mail/pubspec.yaml": true
+  },
+  "flutter_tools_lock_sha256": "6a98afb61c0cc72f31631ab444932f072fd275aa04d56cde2bf6831ba02fc8f8",
+  "framework_tracked_changes": "",
+  "package_config_before": {},
+  "package_config_after": {
+    ".dart_tool/package_config.json": "5b3bf38e7cfa331dd3754b952f3d07cd22f9dc7a6c2475b1f32e2c85d84697aa",
+    ".dart_tool/package_graph.json": "09b12d3718163b37c56c092d0d87d2f5a976bfb50f02009667efce07bd243c3e"
+  },
+  "commands": [
+    {
+      "label": "workspace-pub-get",
+      "command": [
+        "/workspace/scratch/0faa407ae6ae/toolchains/flutter-sdk/bin/cache/dart-sdk/bin/dart",
+        "pub",
+        "get",
+        "--offline",
+        "--enforce-lockfile"
+      ],
+      "cwd": "/workspace/scratch/0faa407ae6ae/quds_office_suite",
+      "exit_code": 0,
+      "seconds": 0.3653634510046686,
+      "log": "logs/workspace-pub-get.log"
+    },
+    {
+      "label": "flutter-tools-pub-get",
+      "command": [
+        "/workspace/scratch/0faa407ae6ae/toolchains/flutter-sdk/bin/cache/dart-sdk/bin/dart",
+        "pub",
+        "get",
+        "--offline",
+        "--enforce-lockfile"
+      ],
+      "cwd": "/workspace/scratch/0faa407ae6ae/toolchains/flutter-sdk/packages/flutter_tools",
+      "exit_code": 0,
+      "seconds": 0.2668758739964687,
+      "log": "logs/flutter-tools-pub-get.log"
+    },
+    {
+      "label": "dart-version",
+      "command": [
+        "/workspace/scratch/0faa407ae6ae/toolchains/flutter-sdk/bin/cache/dart-sdk/bin/dart",
+        "--version"
+      ],
+      "cwd": "/workspace/scratch/0faa407ae6ae/quds_office_suite",
+      "exit_code": 0,
+      "seconds": 0.0038150239997776225,
+      "log": "logs/dart-version.log"
+    },
+    {
+      "label": "flutter-version",
+      "command": [
+        "/workspace/scratch/0faa407ae6ae/toolchains/flutter-sdk/bin/flutter",
+        "--version",
+        "--machine"
+      ],
+      "cwd": "/workspace/scratch/0faa407ae6ae/quds_office_suite",
+      "exit_code": 0,
+      "seconds": 0.11837205899792025,
+      "log": "logs/flutter-version.log"
+    },
+    {
+      "label": "setup-format-smoke",
+      "command": [
+        "/workspace/scratch/0faa407ae6ae/toolchains/flutter-sdk/bin/flutter",
+        "test",
+        "--no-pub",
+        "test/word_zotero_format_test.dart",
+        "--reporter",
+        "json",
+        "--concurrency",
+        "1"
+      ],
+      "cwd": "/workspace/scratch/0faa407ae6ae/quds_office_suite/packages/quds_office_editor",
+      "exit_code": 0,
+      "seconds": 24.201698248005414,
+      "log": "logs/setup-format-smoke.log"
+    }
+  ],
+  "prefetch_evidence": "setup/locked-archive-audit.json",
+  "setup_smoke": {
+    "source_head_at_start": "5b81fe13c786268b5c549c2cc4a363fecb2156b0",
+    "test_source_sha256": "6c9cd8a8130c1fcbdca6a4834e18c08590994ceb970efe6a0a6209e70025c650",
+    "counted_as_product_acceptance": false,
+    "passed": 31,
+    "failed": 0,
+    "skipped": 0,
+    "done_success": [
+      true
+    ]
+  },
+  "product_acceptance_tests_run": 0,
+  "no_ci_actions_used": true,
+  "post_smoke_integrity_audit": "setup/post-smoke-audit.json"
+}

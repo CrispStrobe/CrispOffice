@@ -204,6 +204,7 @@ abstract final class OfficeHostFonts {
     }
     final existing = _registeredFaces[key]?.$1.toLowerCase();
     if (_extensionOwners.containsKey(key) ||
+        _installedNames.contains(key) ||
         (existing != null && existing != _replaceableBundledAliases[key])) {
       throw StateError('Another font already owns this family name.');
     }

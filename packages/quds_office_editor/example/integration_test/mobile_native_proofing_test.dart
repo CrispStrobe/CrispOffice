@@ -23,6 +23,7 @@ import 'package:quds_office_studio/studio_data_root.dart';
 import 'package:quds_office_studio/studio_native_paths.dart';
 import 'package:quds_proofing_harper/quds_proofing_harper.dart';
 import 'package:quds_proofing_hunspell/quds_proofing_hunspell.dart';
+import 'package:quds_proofing_spacy/quds_proofing_spacy_grammar.dart';
 import 'package:quds_proofing_spacy/quds_proofing_spacy_install.dart';
 import 'package:quds_office_studio/studio_spacy_host_native.dart';
 
@@ -240,5 +241,78 @@ void main() {
     };
     expect(differences, isEmpty);
     expect([tokens, sentences], [113, 22]);
+  }, timeout: const Timeout(Duration(minutes: 10)));
+
+  // Manual German grammar through the Studio host, as the app offers it: the
+  // option is offered only for a build with a recorded grammar claim, and the
+  // provider runs on the host's grammar worker (no NER, capability mask 15).
+  // The consumed panels themselves replay in
+  // mobile_spacy_grammar_replay_test.dart.
+  test('spaCy manual German grammar through the Studio host', () async {
+    final bundled = detectMobileBundledSpacyLibrary();
+    expect(bundled, isNotNull, reason: 'crispembed-spacy is not packaged');
+    final host = NativeStudioSpacyHost(
+      root: Directory(studioSpacyDataDirectory()),
+      environment: Platform.environment,
+    );
+    await host.refresh();
+    if (!host.status.analysisEnabled) await host.install();
+    final qualified =
+        spacyQualificationForHostBundled(
+          librarySha256: bundled!.sha256,
+          codeSha256: bundled.codeSha256,
+        )?.grammarQualified ??
+        false;
+    expect(host.status.grammarOffered, qualified);
+    report['spacy_grammar_offered'] = qualified;
+    if (!qualified) {
+      await expectLater(
+        host.setGrammarEnabled(true),
+        throwsA(isA<SpacyUnavailableException>()),
+      );
+      return;
+    }
+    await host.setGrammarEnabled(true);
+    expect(host.status.grammarEnabled, isTrue);
+    final transport = await host.openGrammarTransport();
+    final provider = SpacyGrammarProvider.withTransport(
+      transport: transport,
+      enabled: true,
+    );
+    try {
+      expect(transport.identity.librarySha256, bundled.sha256);
+      expect(transport.identity.capabilityMask, 15);
+      expect(spacyGrammarQualifiedIdentity(transport.identity), isTrue);
+      // W6 panel: subject with an intervening prepositional modifier; and a
+      // grammar v2 preposition-case example from the evidence README.
+      final found = <String, String>{};
+      for (final (id, sentence) in const [
+        ('w6', 'Die Katzen auf dem Sofa schläft.'),
+        ('v2', 'Am Sonntag gehe ich mit der Hund spazieren.'),
+      ]) {
+        final result = await provider.check(
+          OfficeProofingRequest(
+            documentId: 'gate',
+            blockId: id,
+            revision: 1,
+            text: sentence,
+            language: 'de-DE',
+          ),
+        );
+        expect(result.status, OfficeProofingStatus.success);
+        final finding = result.findings.single;
+        found[id] =
+            '${finding.ruleId}:${finding.originalText}->'
+            '${finding.replacements.join('|')}';
+      }
+      expect(found, {
+        'w6': '$spacyNounVerbRuleId:schläft->schlafen',
+        'v2': 'de.spacy.preposition-case:der->dem',
+      });
+      report['spacy_grammar'] = found;
+    } finally {
+      await provider.dispose();
+      await host.setGrammarEnabled(false);
+    }
   }, timeout: const Timeout(Duration(minutes: 10)));
 }

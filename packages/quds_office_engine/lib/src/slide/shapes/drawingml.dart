@@ -544,6 +544,17 @@ void _captureTextSources(
         reader.namespaceUri == OfficeNamespaces.p &&
         current != null) {
       final XmlElement body = XmlDocument.readElement(reader);
+      final XmlElement? autofit = body
+          .firstChild('bodyPr', namespaceUri: OfficeNamespaces.a)
+          ?.firstChild('normAutofit', namespaceUri: OfficeNamespaces.a);
+      current.textScale = _readAutofitRatio(
+        autofit?.getAttribute('fontScale'),
+        1,
+      );
+      current.lineSpacingReduction = _readAutofitRatio(
+        autofit?.getAttribute('lnSpcReduction'),
+        0,
+      );
       final String snapshot = XmlDocument(
         root: body,
       ).toXmlString(declaration: false);
@@ -1129,6 +1140,77 @@ void _writeSlideShape(XmlWriter w, PmlShape shape) {
 XmlElement _textElement(String name) =>
     XmlElement(localName: name, prefix: 'a', namespaceUri: OfficeNamespaces.a);
 
+double _readAutofitRatio(String? text, double fallback) {
+  if (text == null) return fallback;
+  final String value = text.trim();
+  final bool percent = value.endsWith('%');
+  final double? number = percent
+      ? double.tryParse(value.substring(0, value.length - 1))
+      : int.tryParse(value)?.toDouble();
+  if (number == null || !number.isFinite) return fallback;
+  return (number / (percent ? 100 : 100000)).clamp(0.0, 1.0);
+}
+
+void _writeAutofit(XmlElement body, PmlShape shape) {
+  XmlElement? properties = body.firstChild(
+    'bodyPr',
+    namespaceUri: OfficeNamespaces.a,
+  );
+  XmlElement? autofit = properties?.firstChild(
+    'normAutofit',
+    namespaceUri: OfficeNamespaces.a,
+  );
+  if (autofit == null &&
+      shape.textScale == 1 &&
+      shape.lineSpacingReduction == 0) {
+    // An ordinary text box must not acquire normal autofit merely by saving.
+    return;
+  }
+  if (properties == null) {
+    properties = _textElement('bodyPr')..parent = body;
+    body.children.insert(0, properties);
+  }
+  final bool created = autofit == null;
+  if (created) {
+    properties.children.removeWhere(
+      (XmlNode node) =>
+          node is XmlElement &&
+          node.namespaceUri == OfficeNamespaces.a &&
+          (node.localName == 'noAutofit' || node.localName == 'spAutoFit'),
+    );
+    autofit = _textElement('normAutofit');
+    final int laterProperty = properties.children.indexWhere(
+      (XmlNode node) =>
+          node is XmlElement &&
+          node.namespaceUri == OfficeNamespaces.a &&
+          const <String>{
+            'scene3d',
+            'sp3d',
+            'flatTx',
+            'extLst',
+          }.contains(node.localName),
+    );
+    autofit.parent = properties;
+    properties.children.insert(
+      laterProperty < 0 ? properties.children.length : laterProperty,
+      autofit,
+    );
+  }
+  if (created ||
+      _readAutofitRatio(autofit.getAttribute('fontScale'), 1) !=
+          shape.textScale) {
+    autofit.setAttribute('fontScale', '${(shape.textScale * 100000).round()}');
+  }
+  if (created ||
+      _readAutofitRatio(autofit.getAttribute('lnSpcReduction'), 0) !=
+          shape.lineSpacingReduction) {
+    autofit.setAttribute(
+      'lnSpcReduction',
+      '${(shape.lineSpacingReduction * 100000).round()}',
+    );
+  }
+}
+
 Iterable<XmlElement> _textDescendants(XmlElement root, String name) sync* {
   for (final XmlElement child in root.childElements) {
     if (child.localName == name && child.namespaceUri == OfficeNamespaces.a) {
@@ -1163,6 +1245,7 @@ void _writeShapeText(XmlWriter writer, PmlShape shape) {
     body.addChild(_textElement('bodyPr'));
     body.addChild(_textElement('lstStyle'));
   }
+  _writeAutofit(body, shape);
   final bool replace = source == null || source.text != shape.text;
   if (replace) {
     final List<XmlElement> original = body.childrenNamed(

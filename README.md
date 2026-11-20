@@ -225,6 +225,13 @@ Linux x86-64/AVX2 dependency limits. The
 pins, licensing decisions and earlier qualification boundaries. The manual
 provider stays disabled by default, with no automatic Studio registration;
 hosted distribution, other targets and production activation remain separate.
+Platform status for manual German grammar: it is qualified per exact native
+library, on Linux x86-64/AVX2, in the Studio macOS arm64 app and, since
+20 November 2026, in the Studio Android arm64 APK
+([Android evidence](docs/validation/native-spacy-android-grammar-20261120/README.md)).
+Studio offers the opt-in **Manual German grammar suggestions** only there. On
+iOS, analysis runs but grammar is refused, because the device library has no
+recorded run.
 
 Legacy `.doc`/`.dot` parsing and separate DOCX/DOCM conversion are maintained in [legacy-doc-parser](https://github.com/CrispStrobe/legacy-doc-parser). The engine exposes compatibility exports from the pinned workspace copy in `packages/legacy_doc_parser`; its `UPSTREAM.json` records the source and workspace-only patches. The suite's MIT license does not replace that dependency's MPL-2.0 license or its third-party notices.
 
