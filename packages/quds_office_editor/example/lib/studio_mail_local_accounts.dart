@@ -109,6 +109,9 @@ final class NativeStudioMailLocalAccountStore
     );
     studioMailLocalAccountIdentity(record);
     return _withStore((repository) async {
+      for (final existing in _value(await repository.listLocalAccounts())) {
+        studioMailLocalAccountIdentity(existing);
+      }
       _value(await repository.rememberLocalAccount(record));
     });
   }

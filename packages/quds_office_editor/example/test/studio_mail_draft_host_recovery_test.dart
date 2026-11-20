@@ -19,6 +19,9 @@ import 'package:quds_office_studio/studio_mail_strings.dart';
 import 'package:quds_office_studio/studio_strings.dart';
 
 import 'support/mail_outbox_store.dart';
+import 'support/mail_local_accounts.dart';
+import 'package:quds_office_studio/studio_mail_local_accounts_strings.dart';
+import 'package:quds_office_studio/studio_mail_local_accounts_dialog.dart';
 
 const _strings = StudioStrings(StudioLanguage.en);
 const _sender = 'reader@example.test';
@@ -252,12 +255,16 @@ Future<void> _press(WidgetTester tester, Finder finder) async {
   await pumpOutboxWidgets(tester);
 }
 
-Future<SqliteOutboxFixture> _fixture(WidgetTester tester, bool ews) async {
+Future<SqliteOutboxFixture> _fixture(
+  WidgetTester tester,
+  bool ews, {
+  StudioMailDraftAccount? identity,
+}) async {
   await tester.binding.setSurfaceSize(const Size(1440, 1050));
   addTearDown(() => tester.binding.setSurfaceSize(null));
   final fixture = await awaitOutboxOperation(
     tester,
-    SqliteOutboxFixture.create(_identity(ews)),
+    SqliteOutboxFixture.create(identity ?? _identity(ews)),
   );
   addTearDown(() => awaitOutboxOperation(tester, fixture.close()));
   final seed = await awaitOutboxOperation(tester, fixture.openLoaded());
@@ -276,6 +283,8 @@ Future<List<_CatalogProxy>> _mount(
   bool ews, {
   bool foreign = false,
   bool canSend = true,
+  MemoryMailLocalAccounts? localAccounts,
+  Future<mail.ClientConfig?> Function(String)? discovery,
 }) async {
   final proxies = <_CatalogProxy>[];
   Future<StudioMailDraftStore> open(StudioMailDraftAccount identity) async {
@@ -296,13 +305,16 @@ Future<List<_CatalogProxy>> _mount(
           providerFactory: (configuration, _) =>
               _Provider(configuration, canSend: canSend),
           draftStoreFactory: open,
+          localAccountStore: localAccounts,
         )
       : StudioMailDialog(
           strings: _strings,
           clientFactory: (_) => _Client(),
+          accountDiscovery: discovery,
           messageLoaderFactory: (_) => _Loader(),
           credentialStore: _Credentials(),
           draftStoreFactory: open,
+          localAccountStore: localAccounts,
         );
   await tester.pumpWidget(
     MaterialApp(
@@ -333,12 +345,14 @@ Future<List<_CatalogProxy>> _mount(
   } else {
     await tester.enterText(_field(_strings.emailAddress), _sender);
     await tester.enterText(_field(_strings.password), 'fixture');
-    await _press(
-      tester,
-      find.widgetWithText(SwitchListTile, _strings.manualServers),
-    );
-    await tester.enterText(_field(_strings.imapHost), 'imap.example.test');
-    await tester.enterText(_field(_strings.smtpHost), 'smtp.example.test');
+    if (discovery == null) {
+      await _press(
+        tester,
+        find.widgetWithText(SwitchListTile, _strings.manualServers),
+      );
+      await tester.enterText(_field(_strings.imapHost), 'imap.example.test');
+      await tester.enterText(_field(_strings.smtpHost), 'smtp.example.test');
+    }
     await _press(tester, find.widgetWithText(FilledButton, _strings.connect));
   }
   expect(_openDrafts, findsOneWidget);
@@ -359,6 +373,131 @@ T _value<T>(MailResult<T> result) {
 }
 
 void main() {
+  for (final ews in [false, true]) {
+    testWidgets(
+      '${ews ? 'EWS' : 'IMAP'} registers a verified route and resumes offline after disconnect',
+      (tester) async {
+        final fixture = await _fixture(tester, ews);
+        final directory = MemoryMailLocalAccounts();
+        await _mount(tester, fixture, ews, localAccounts: directory);
+        expect(directory.remembered.single.account, fixture.identity.account);
+        await _press(tester, find.byTooltip(_strings.disconnect));
+        await _press(
+          tester,
+          find.byKey(const ValueKey('studio-mail-known-drafts')),
+        );
+        expect(find.byType(StudioMailLocalAccountsDialog), findsOneWidget);
+        await _press(tester, find.byType(ListTile).last);
+        await _press(tester, find.text('Independent B'));
+        final composer = tester.widget<StudioMailComposeDialog>(
+          find.byType(StudioMailComposeDialog),
+        );
+        expect(composer.canSend, isFalse);
+        expect(composer.onQueueDraft, isNull);
+        expect(directory.remembered, hasLength(1));
+        await tester.pumpWidget(const SizedBox.shrink());
+      },
+    );
+
+    testWidgets(
+      '${ews ? 'EWS' : 'IMAP'} directory save failure is visible and leaves connected draft editing usable',
+      (tester) async {
+        final fixture = await _fixture(tester, ews);
+        final directory = MemoryMailLocalAccounts()..failRemember = true;
+        await _mount(tester, fixture, ews, localAccounts: directory);
+        expect(find.text(_strings.mailLocalAccountsSaveFailed), findsOneWidget);
+        expect(directory.records, isEmpty);
+        await _compose(tester, ews);
+        expect(find.byType(StudioMailComposeDialog), findsOneWidget);
+        await tester.pumpWidget(const SizedBox.shrink());
+      },
+    );
+
+    testWidgets(
+      '${ews ? 'EWS' : 'IMAP'} rejects a foreign draft owner before registering offline metadata',
+      (tester) async {
+        final fixture = await _fixture(tester, ews);
+        final directory = MemoryMailLocalAccounts();
+        await _mount(
+          tester,
+          fixture,
+          ews,
+          foreign: true,
+          localAccounts: directory,
+        );
+        expect(directory.records, isEmpty);
+        expect(find.text(_strings.mailDraftStorageFailed), findsOneWidget);
+        await tester.pumpWidget(const SizedBox.shrink());
+      },
+    );
+  }
+
+  testWidgets(
+    'autodiscovery preserves its custom port and effective login for offline drafts',
+    (tester) async {
+      final identity = StudioMailDraftAccount(
+        provider: 'imap',
+        endpoint: 'imaps://imap.discovered.test:1993',
+        login: 'reader',
+        sender: _sender,
+      );
+      final fixture = await _fixture(tester, false, identity: identity);
+      final directory = MemoryMailLocalAccounts();
+      var discoveries = 0;
+      final provider = mail.ConfigEmailProvider()
+        ..addIncomingServer(
+          const mail.ServerConfig(
+            type: mail.ServerType.imap,
+            hostname: 'imap.discovered.test',
+            port: 1993,
+            socketType: mail.SocketType.ssl,
+            authentication: mail.Authentication.passwordClearText,
+            usernameType: mail.UsernameType.emailLocalPart,
+          ),
+        )
+        ..addOutgoingServer(
+          const mail.ServerConfig(
+            type: mail.ServerType.smtp,
+            hostname: 'smtp.discovered.test',
+            port: 1587,
+            socketType: mail.SocketType.starttls,
+            authentication: mail.Authentication.passwordClearText,
+            usernameType: mail.UsernameType.emailAddress,
+          ),
+        );
+      await _mount(
+        tester,
+        fixture,
+        false,
+        localAccounts: directory,
+        discovery: (_) async {
+          discoveries++;
+          return mail.ClientConfig(emailProviders: [provider]);
+        },
+      );
+      final saved = directory.records.values.single;
+      expect(saved.endpoint, 'imaps://imap.discovered.test:1993');
+      expect(saved.login, 'reader');
+      await _press(tester, find.byTooltip(_strings.disconnect));
+      await _press(
+        tester,
+        find.byKey(const ValueKey('studio-mail-known-drafts')),
+      );
+      await _press(tester, find.byType(ListTile).last);
+      await _press(tester, find.text('Independent B'));
+      expect(
+        tester
+            .widget<StudioMailComposeDialog>(
+              find.byType(StudioMailComposeDialog),
+            )
+            .canSend,
+        isFalse,
+      );
+      expect(discoveries, 1);
+      await tester.pumpWidget(const SizedBox.shrink());
+    },
+  );
+
   testWidgets(
     'read-only EWS account can resume and save local drafts without sending',
     (tester) async {

@@ -186,6 +186,8 @@ const schemaV4 = <String>[
   '''CREATE TABLE local_accounts (
     id TEXT PRIMARY KEY, provider TEXT NOT NULL, endpoint TEXT NOT NULL,
     login TEXT NOT NULL, sender TEXT NOT NULL, connected_at INTEGER NOT NULL
-      CHECK(connected_at >= 0)
+      CHECK(connected_at >= 0),
+    revision INTEGER NOT NULL DEFAULT 0
+      CHECK(typeof(revision) = 'integer' AND revision BETWEEN 0 AND 9007199254740991)
   )''',
 ];

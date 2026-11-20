@@ -5,6 +5,19 @@ part of 'repository.dart';
 extension MailLocalAccountDirectory on SqliteMailRepository {
   static const maxAccounts = 100;
 
+  Future<void> _checkLocalAccountSizes() async {
+    // Inspect sizes before transferring stored text to Dart. Corrupt metadata
+    // must fail explicitly, rather than disappear from a filtered result.
+    final bad = (await _rows(
+      'SELECT count(*) AS n FROM local_accounts WHERE '
+      'length(id)>1024 OR length(endpoint)>4096 OR length(login)>4096 OR '
+      'length(sender)>320 OR length(id)+length(endpoint)+length(login)+'
+      'length(sender)>?',
+      [limits.maxMetadataCodeUnits],
+    )).single.read<int>('n');
+    if (bad != 0) SqliteMailRepository._fail(MailProblemCode.storageFailure);
+  }
+
   MailLocalAccountRecord _localAccount(QueryRow row) {
     final record = MailLocalAccountRecord(
       id: row.read<String>('id'),
@@ -16,6 +29,7 @@ extension MailLocalAccountDirectory on SqliteMailRepository {
         row.read<int>('connected_at'),
         isUtc: true,
       ),
+      revision: row.read<int>('revision'),
     );
     if (!record.isValid) {
       SqliteMailRepository._fail(MailProblemCode.storageFailure);
@@ -25,6 +39,7 @@ extension MailLocalAccountDirectory on SqliteMailRepository {
 
   Future<MailResult<List<MailLocalAccountRecord>>> listLocalAccounts() =>
       _run(() async {
+        await _checkLocalAccountSizes();
         final rows = await _rows(
           'SELECT * FROM local_accounts ORDER BY connected_at DESC,id LIMIT ?',
           [maxAccounts + 1],
@@ -43,6 +58,14 @@ extension MailLocalAccountDirectory on SqliteMailRepository {
     if (!record.isValid) {
       SqliteMailRepository._fail(MailProblemCode.invalidInput);
     }
+    if (record.id.length +
+            record.endpoint.length +
+            record.login.length +
+            record.sender.length >
+        limits.maxMetadataCodeUnits) {
+      SqliteMailRepository._fail(MailProblemCode.quotaExceeded);
+    }
+    await _checkLocalAccountSizes();
     final profileRow = (await _rows(
       'SELECT removed FROM store_profile',
     )).single;
@@ -67,7 +90,8 @@ extension MailLocalAccountDirectory on SqliteMailRepository {
     await _db.customStatement(
       'INSERT INTO local_accounts(id,provider,endpoint,login,sender,connected_at) '
       'VALUES(?,?,?,?,?,?) ON CONFLICT(id) DO UPDATE SET '
-      'connected_at=MAX(local_accounts.connected_at,excluded.connected_at)',
+      'connected_at=MAX(local_accounts.connected_at,excluded.connected_at),'
+      'revision=local_accounts.revision+1',
       [
         record.id,
         record.provider.name,
@@ -88,12 +112,14 @@ extension MailLocalAccountDirectory on SqliteMailRepository {
     if (!record.isValid) {
       SqliteMailRepository._fail(MailProblemCode.invalidInput);
     }
+    await _checkLocalAccountSizes();
     final rows = await _rows('SELECT * FROM local_accounts WHERE id=?', [
       record.id,
     ]);
     if (rows.isEmpty) SqliteMailRepository._fail(MailProblemCode.conflict);
     final current = _localAccount(rows.single);
     if (!current.hasSameIdentity(record) ||
+        current.revision != record.revision ||
         current.lastConnectedAt.millisecondsSinceEpoch !=
             record.lastConnectedAt.millisecondsSinceEpoch) {
       SqliteMailRepository._fail(MailProblemCode.conflict);

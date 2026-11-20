@@ -134,6 +134,57 @@ void main() {
   });
 
   test(
+    'same-clock and older reconnects invalidate removal snapshots',
+    () async {
+      _value(await store.rememberLocalAccount(_record()));
+      final original = _value(await store.listLocalAccounts()).single;
+      _value(await store.rememberLocalAccount(_record()));
+      final refreshed = _value(await store.listLocalAccounts()).single;
+      expect(refreshed.lastConnectedAt, original.lastConnectedAt);
+      expect(refreshed.revision, original.revision + 1);
+      _problem(
+        await store.forgetLocalAccount(original),
+        MailProblemCode.conflict,
+      );
+      _value(
+        await store.rememberLocalAccount(
+          _record(time: _now.subtract(const Duration(days: 1))),
+        ),
+      );
+      _problem(
+        await store.forgetLocalAccount(refreshed),
+        MailProblemCode.conflict,
+      );
+      final latest = _value(await store.listLocalAccounts()).single;
+      expect(latest.lastConnectedAt, original.lastConnectedAt);
+      expect(latest.revision, original.revision + 2);
+      _value(await store.forgetLocalAccount(latest));
+    },
+  );
+
+  test(
+    'host metadata budget rejects admission without a partial row',
+    () async {
+      final bounded = _value(
+        await SqliteMailRepository.open(
+          executor: NativeDatabase.memory(),
+          profile: _profile,
+          limits: const MailStoreLimits(maxMetadataCodeUnits: 16),
+        ),
+      );
+      try {
+        _problem(
+          await bounded.rememberLocalAccount(_record()),
+          MailProblemCode.quotaExceeded,
+        );
+        expect(_value(await bounded.listLocalAccounts()), isEmpty);
+      } finally {
+        await bounded.close();
+      }
+    },
+  );
+
+  test(
     'directory admission is bounded but existing rows remain refreshable',
     () async {
       for (var i = 0; i < MailLocalAccountDirectory.maxAccounts; i++) {
@@ -338,4 +389,55 @@ void main() {
       await directory.delete(recursive: true);
     }
   });
+
+  test(
+    'oversized stored metadata fails before copying or overwriting it',
+    () async {
+      final directory = await Directory.systemTemp.createTemp(
+        'mail-account-limit-',
+      );
+      final file = File('${directory.path}/mail.sqlite3');
+      Future<SqliteMailRepository> open() async => _value(
+        await SqliteMailRepository.open(
+          executor: NativeDatabase(file),
+          profile: _profile,
+        ),
+      );
+      try {
+        var disk = await open();
+        _value(await disk.rememberLocalAccount(_record()));
+        await disk.close();
+        final raw = sqlite.sqlite3.open(file.path);
+        raw.execute('UPDATE local_accounts SET login=?', ['x' * 4097]);
+        raw.close();
+        disk = await open();
+        try {
+          _problem(
+            await disk.listLocalAccounts(),
+            MailProblemCode.storageFailure,
+          );
+          _problem(
+            await disk.rememberLocalAccount(_record()),
+            MailProblemCode.storageFailure,
+          );
+          _problem(
+            await disk.forgetLocalAccount(_record()),
+            MailProblemCode.storageFailure,
+          );
+        } finally {
+          await disk.close();
+        }
+        final check = sqlite.sqlite3.open(file.path);
+        expect(
+          check
+              .select('SELECT length(login) AS n FROM local_accounts')
+              .single['n'],
+          4097,
+        );
+        check.close();
+      } finally {
+        await directory.delete(recursive: true);
+      }
+    },
+  );
 }

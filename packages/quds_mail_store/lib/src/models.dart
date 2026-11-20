@@ -54,6 +54,7 @@ final class MailLocalAccountRecord {
     required this.login,
     required this.sender,
     required this.lastConnectedAt,
+    this.revision = 0,
   });
 
   final String id;
@@ -62,6 +63,9 @@ final class MailLocalAccountRecord {
   final String login;
   final String sender;
   final DateTime lastConnectedAt;
+
+  /// Monotonic connection revision, independent of wall-clock precision.
+  final int revision;
 
   bool get isValid {
     bool text(String value, int limit) =>
@@ -76,6 +80,8 @@ final class MailLocalAccountRecord {
         text(sender, 320) &&
         RegExp(r'^[^\s@]+@[^\s@]+$').hasMatch(sender) &&
         lastConnectedAt.millisecondsSinceEpoch >= 0 &&
+        revision >= 0 &&
+        revision <= 9007199254740991 &&
         uri != null &&
         uri.hasAuthority &&
         uri.host.isNotEmpty &&

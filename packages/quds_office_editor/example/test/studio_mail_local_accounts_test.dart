@@ -7,7 +7,6 @@ import 'package:quds_office_studio/studio_mail_draft.dart';
 import 'package:quds_office_studio/studio_mail_draft_store.dart';
 import 'package:quds_office_studio/studio_mail_draft_store_native.dart';
 import 'package:quds_office_studio/studio_mail_local_accounts.dart';
-import 'package:sqlite3/sqlite3.dart' as sqlite;
 
 StudioMailDraftAccount _identity(
   String provider, {
@@ -129,14 +128,24 @@ void main() {
     'mismatched persisted id fails closed without rewriting the directory',
     () async {
       await store.remember(_identity('ews'));
-      final files = await directory
-          .list(recursive: true)
-          .where((entry) => entry.path.endsWith('/mail.sqlite3'))
-          .toList();
-      expect(files, hasLength(1));
-      final raw = sqlite.sqlite3.open(files.single.path);
-      raw.execute("UPDATE local_accounts SET id='redirected-id'");
-      raw.close();
+      final original = (await store.load()).single;
+      final opened = await openNativeMailStore(
+        appDirectory: directory,
+        profile: NativeStudioMailLocalAccountStore.profile,
+      );
+      final raw = (opened as MailSuccess<SqliteMailRepository>).value;
+      final inserted = await raw.rememberLocalAccount(
+        MailLocalAccountRecord(
+          id: 'redirected-id',
+          provider: original.provider,
+          endpoint: original.endpoint,
+          login: original.login,
+          sender: original.sender,
+          lastConnectedAt: original.lastConnectedAt,
+        ),
+      );
+      expect(inserted, isA<MailSuccess<MailUnit>>());
+      await raw.close();
       await expectLater(
         store.load(),
         throwsA(
@@ -147,12 +156,22 @@ void main() {
           ),
         ),
       );
-      final check = sqlite.sqlite3.open(files.single.path);
-      expect(
-        check.select('SELECT id FROM local_accounts').single['id'],
-        'redirected-id',
+      await expectLater(
+        store.remember(_identity('gmail')),
+        throwsA(isA<StudioMailDraftStoreException>()),
       );
-      check.close();
+      final inspected = await openNativeMailStore(
+        appDirectory: directory,
+        profile: NativeStudioMailLocalAccountStore.profile,
+      );
+      final check = (inspected as MailSuccess<SqliteMailRepository>).value;
+      final rows =
+          (await check.listLocalAccounts()
+                  as MailSuccess<List<MailLocalAccountRecord>>)
+              .value;
+      expect(rows.map((row) => row.id), contains('redirected-id'));
+      expect(rows, hasLength(2));
+      await check.close();
     },
   );
 

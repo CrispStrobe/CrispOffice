@@ -152,6 +152,7 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
   bool _showCompactMessage = false;
   String? _error;
   String? _notice;
+  String? _localAccountWarning;
   String? _credentialError;
 
   @override
@@ -562,7 +563,10 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
   ) async {
     if (!_currentSession(client, generation)) return false;
     if (_draftStore != null) return true;
-    setState(() => _busy = true);
+    setState(() {
+      _busy = true;
+      _localAccountWarning = null;
+    });
     StudioMailDraftStore? candidate;
     try {
       await _draftStoreClosing;
@@ -619,7 +623,8 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
         } on Object {
           if (_currentSession(client, generation)) {
             setState(
-              () => _notice = widget.strings.mailLocalAccountsSaveFailed,
+              () => _localAccountWarning =
+                  widget.strings.mailLocalAccountsSaveFailed,
             );
           }
         }
@@ -2710,6 +2715,14 @@ class _StudioMailDialogState extends State<StudioMailDialog> {
         if (_busy) const LinearProgressIndicator(minHeight: 2),
         _folderArchiveAction(),
         if (_credentialError != null) _credentialFeedback(context),
+        if (_localAccountWarning case final warning?)
+          Material(
+            color: Theme.of(context).colorScheme.errorContainer,
+            child: Padding(
+              padding: const EdgeInsets.all(12),
+              child: Text(warning),
+            ),
+          ),
         if (_error != null || _notice != null)
           Material(
             color: _error == null

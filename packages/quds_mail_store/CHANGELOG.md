@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+- Add a bounded non-secret local account directory with additive schema-v4
+  migration, immutable route identities, monotonic connection revisions and
+  compare-and-set shortcut removal. Preserve existing draft, Outbox, blob,
+  cache and search state; reject corrupt metadata and storage failures.
+
 - Atomically cancel a safely editable Outbox entry and create a distinct revision-zero draft, with full source compare-and-set, draft admission, blob ownership and quota rollback. Persist explicit uncertain closure without inventing provider acceptance.
 
 - Add bounded, account-scoped draft metadata pages without resolving attachment

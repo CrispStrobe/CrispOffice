@@ -22,6 +22,27 @@ binds these workflows and the incoming draft/account/layout continuations to the
 combined source. Undo-send, scheduling, provider Sent reconciliation, background
 execution and live-provider/installed-platform gates remain open.
 
+## Verified offline account entry
+
+The [offline account continuation](offline-accounts.md) persists the exact local
+draft identity after successful native connection and catalog open. **Drafts for
+connected accounts** opens save-only local drafts for IMAP (including discovered
+custom ports/logins), EWS, Gmail and Microsoft 365 without provider construction,
+discovery, credential access or renewed OAuth authorization. Existing account
+fingerprints and stored drafts are preserved. Confirmed shortcut removal leaves
+mail, drafts, Outbox and credentials intact; stale removal snapshots, corrupt
+metadata, ownership conflicts and storage failures are refused explicitly.
+
+An additive schema-v4 directory stores non-secret metadata separately from
+credentials and message content, with a 100-account limit and monotonic
+connection revisions. Its local files are not encrypted. EN/DE/AR controls and
+provider workflow fixtures are covered by the
+[local qualification](../../validation/mail-offline-accounts-20261120/README.md).
+Older accounts need one successful reconnect to establish missing metadata.
+Provider Drafts synchronization, cached/offline mailbox sessions, installed
+platforms and live-provider qualification remain open; this does not close
+M04W, M06 or M07.
+
 ## Multiple local drafts and offline composition
 
 The [multiple-draft continuation](multiple-drafts.md) adds a bounded,
@@ -34,9 +55,10 @@ the chosen draft. The previous single-slot draft remains recoverable.
 Remembered explicit-server and preset IMAP accounts additionally offer **Local
 drafts** before connecting. This save-only workspace never creates a provider or
 invokes discovery; it releases its store lease before returning to connection
-setup. Historical autodiscovery records lack enough verified metadata for this
-offline entry. EWS/cloud offline sessions, provider Drafts synchronization and
-the repository-driven offline inbox remain future work. See the
+setup. The later verified-account continuation above adds offline draft entry for
+autodiscovered IMAP, EWS and cloud accounts after one successful reconnect.
+Provider Drafts synchronization and the repository-driven offline inbox remain
+future work. See the
 [source and validation record](../../validation/mail-multiple-drafts-20261120/README.md).
 
 ## Durable foreground Outbox

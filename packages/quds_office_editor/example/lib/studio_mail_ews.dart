@@ -150,6 +150,7 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
   bool _needsRefresh = false;
   String? _error;
   String? _notice;
+  String? _localAccountWarning;
   String _sender = '';
   int _serial = 0;
 
@@ -586,7 +587,10 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
     final identity = _draftIdentity;
     if (identity == null) return false;
     StudioMailDraftStore? candidate;
-    setState(() => _busy = true);
+    setState(() {
+      _busy = true;
+      _localAccountWarning = null;
+    });
     try {
       await _draftStoreClosing;
       if (!_current(provider, lease)) return false;
@@ -628,7 +632,8 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
         } on Object {
           if (_current(provider, lease)) {
             setState(
-              () => _notice = widget.strings.mailLocalAccountsSaveFailed,
+              () => _localAccountWarning =
+                  widget.strings.mailLocalAccountsSaveFailed,
             );
           }
         }
@@ -1868,6 +1873,14 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
     children: [
       if (_busy) const LinearProgressIndicator(minHeight: 2),
       _folderArchiveAction(),
+      if (_localAccountWarning case final warning?)
+        Material(
+          color: Theme.of(context).colorScheme.errorContainer,
+          child: Padding(
+            padding: const EdgeInsets.all(12),
+            child: Text(warning),
+          ),
+        ),
       if (_error != null || _notice != null)
         Material(
           color: _error == null
