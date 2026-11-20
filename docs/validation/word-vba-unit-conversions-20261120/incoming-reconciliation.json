@@ -1,0 +1,118 @@
+{
+  "schema_version": 1,
+  "reviewer": "independent intake/source review agent",
+  "status": "reviewed_manual_merge_resolution",
+  "historical_intake": {
+    "path": "docs/validation/word-vba-unit-conversions-20261120/intake.json",
+    "checkpoint": "e938eebba6ee1b52868acdcd3a1f9d69b5af6891",
+    "policy": "Keep the initial snapshot unchanged. This addendum updates its one preserved/excluded branch disposition for a checkpoint that includes the reviewed merge parent."
+  },
+  "initial_main": "c954d00d2fc85604ae394674bca91ea8a1dede0e",
+  "feature_checkpoint": "dd8e73a7d6252b336b2e7a437c4931addc42d491",
+  "incoming_ref": "refs/heads/fix/main-green-20261120",
+  "incoming_head": "332d7b26a320ca560f4f2214e1e63da9392269ab",
+  "merge_base": "1e723bd4bc96e07b1b790daf9b82897a846c6096",
+  "ancestry_proof": {
+    "incoming_commit_parent_shas": [
+      "1e723bd4bc96e07b1b790daf9b82897a846c6096"
+    ],
+    "merge_base_is_in_complete_initial_main_graph": true,
+    "initial_main_parents": [
+      "2c9341ae929c162d7e690e1678641166b08fecca",
+      "1e723bd4bc96e07b1b790daf9b82897a846c6096"
+    ],
+    "initial_main_subject": "Merge main CI repair without the temporary golden workflow",
+    "initial_main_to_feature": [
+      "e938eebba6ee1b52868acdcd3a1f9d69b5af6891",
+      "dd8e73a7d6252b336b2e7a437c4931addc42d491"
+    ],
+    "incoming_commits_since_merge_base": 1
+  },
+  "incoming_delta": [
+    {
+      "path": ".github/workflows/tmp-regenerate-editor-goldens.yml",
+      "status": "modified",
+      "blob": "89a9036c547326cdff4c6ced301b35780f781b8b",
+      "additions": 1,
+      "deletions": 1,
+      "patch": "@@ -10,7 +10,7 @@ jobs:\n     strategy:\n       fail-fast: false\n       matrix:\n-        sha: [6d7c696e, 5d1f4f1e, 102b55f7, 35829317, f0b9c738, 3dcf9494, 03a28d58, 2dbd1c58, ab84bc1a, a3caf4ad]\n+        sha: [e86b9921, 8b760e6c, cbf00bac, 8c6acd04, 3e5f44ae, 88905c56, 5675d3e0, 1de104be, 46bb0898, 48123bf7, 50ae1754]\n     steps:\n       - uses: actions/checkout@v4\n         with:"
+    }
+  ],
+  "main_side_delta": {
+    "base": "1e723bd4bc96e07b1b790daf9b82897a846c6096",
+    "head": "c954d00d2fc85604ae394674bca91ea8a1dede0e",
+    "status": "ahead",
+    "ahead_by": 46,
+    "behind_by": 0,
+    "workflow_change": {
+      "filename": ".github/workflows/tmp-regenerate-editor-goldens.yml",
+      "status": "removed",
+      "additions": 0,
+      "deletions": 37,
+      "changes": 37,
+      "previous_filename": null
+    },
+    "workflow_absent_from_captured_main_directory": true
+  },
+  "conflict": {
+    "kind": "modify/delete",
+    "path": ".github/workflows/tmp-regenerate-editor-goldens.yml",
+    "reason": "The incoming head modifies only one matrix row in a temporary workflow present at the merge base. Current main removes the entire workflow. The feature checkpoint changes no workflow path.",
+    "resolution": "Keep the existing deletion of the temporary workflow.",
+    "discarded_content": "The incoming attribution-matrix row edit is deliberately not restored. No other incoming content exists in this one-commit delta."
+  },
+  "checkpoint_contract": {
+    "required_ordered_merge_parents": [
+      "dd8e73a7d6252b336b2e7a437c4931addc42d491",
+      "332d7b26a320ca560f4f2214e1e63da9392269ab"
+    ],
+    "allowed_tree_changes_beyond_feature": "Only the reviewed Word unit-conversion files and continuation evidence; the temporary workflow must remain absent.",
+    "history": "The incoming head becomes an actual ancestor. Its source branch remains preserved; no force update or history rewrite is required.",
+    "content": "Incorporated ancestry does not imply preservation of the conflicting temporary-workflow matrix edit."
+  },
+  "resulting_initial_snapshot_dispositions": {
+    "fork_branches": {
+      "captured": 33,
+      "ancestor": 24,
+      "squash_same_tree": 8,
+      "squash_changed_files_identical": 1,
+      "excluded": 0,
+      "unclassified": 0
+    },
+    "fork_pr_heads": {
+      "captured": 270,
+      "ancestor": 256,
+      "squash_same_tree": 13,
+      "squash_changed_files_identical": 1,
+      "excluded": 0,
+      "unclassified": 0
+    },
+    "upstream_branches": {
+      "captured": 4,
+      "ancestor": 4,
+      "excluded": 0,
+      "unclassified": 0
+    },
+    "upstream_pr_heads": {
+      "captured": 4,
+      "ancestor": 4,
+      "excluded": 0,
+      "unclassified": 0
+    },
+    "total_captured_references": 311,
+    "total_actual_ancestors": 288,
+    "total_equivalent_references": 23,
+    "total_excluded": 0,
+    "total_unclassified": 0
+  },
+  "publication_checks_required": [
+    "Verify the first checkpoint applying this resolution has the required ordered parents.",
+    "Verify the temporary workflow is absent from that checkpoint tree.",
+    "Verify all later continuation checkpoints and final main descend from both parents.",
+    "Verify source changes are confined to the reviewed Word conversion increment and evidence.",
+    "Refresh remote main before final publication; this addendum concerns the fixed initial snapshot."
+  ],
+  "review_limits": "This proof covers ancestry and the explicit single-file manual merge resolution. It does not claim runtime qualification or survival of the discarded workflow content.",
+  "github_actions_queried": false,
+  "github_actions_waited": false
+}

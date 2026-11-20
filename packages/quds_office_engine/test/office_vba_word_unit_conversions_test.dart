@@ -252,6 +252,17 @@ End If
     });
   }
 
+  test('large scalar conversions do not overflow grid intermediates', () {
+    expect(
+      _value('CentimetersToPoints(200000000000000)'),
+      closeTo(200000000000000 * 3600 / 127, 1),
+    );
+    expect(
+      _value('PointsToCentimeters(9007199254740991)'),
+      closeTo(9007199254740991 * 127 / 3600, 0.125),
+    );
+  });
+
   test('omitted Optional Variant cannot silently become a zero measurement', () {
     expect(
       () => _source('''

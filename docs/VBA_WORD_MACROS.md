@@ -896,8 +896,14 @@ ActiveDocument.Paragraphs(1).Format.LeftIndent = _
     CLng(CentimetersToPoints(1) * 20) / 20
 ~~~
 
-This writes 28.35 points. The source explicitly requests rounding; the
-conversion itself does not change the destination's precision contract.
+That example writes 28.35 points. The compiler does not silently add rounding,
+change a destination property's range limits, or emulate VBA `Single`
+coercion. Microsoft's API documentation identifies Single arguments/results
+and gives rounded metric conversion factors; the exact physical ratios above
+are the explicit Quds numeric contract, not a claim of observed Word binary32
+parity. They follow the exact ratios in Microsoft's
+[Office coordinate specification](https://learn.microsoft.com/en-us/openspecs/office_standards/ms-oi29500/afb7e140-b259-4901-8af4-d4a514f50db9)
+and [native unit definitions](https://learn.microsoft.com/en-us/windows/win32/vml/basic-vml-types).
 
 The concurrently developed
 [word_unit_conversions.bas](../packages/quds_office_engine/example/macros/word_unit_conversions.bas)

@@ -11,5 +11,10 @@
       "incoming_blob": "07dc3c5737661abaf3b17db24439c71482de22ed",
       "resolution": "Preserve the incoming main named-argument checker/evaluator and inverse-tested ratio implementation. The only local-vs-base change was formatting in the superseded evaluator."
     }
-  ]
+  ],
+  "compatibility_merge": {
+    "incoming": "8ca1958d9eb737beb88269bb962a2418f7a3a44a",
+    "source_resolution": "Retain main named-argument evaluator and ratio map; double promotion already present. Preserve incoming large-scalar conversion regression and all evidence files.",
+    "documentation_resolution": "Retain the incoming exact-ratio specification citations and explicit Quds numeric-contract qualification; preserve all main named-argument documentation."
+  }
 }
