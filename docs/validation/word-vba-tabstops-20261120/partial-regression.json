@@ -1,0 +1,24 @@
+{
+  "source_commit": "b5410b107a83f213e27c1476e766551b3f6cd6a4",
+  "partial": true,
+  "completed_files": 24,
+  "passing_cases": 881,
+  "groups": [
+    {
+      "log": "tabstops-gate/group-01.jsonl",
+      "passing_cases": 437,
+      "sha256": "5e9d771f156c39b24f5b5397589c9ef77a1c6eb1de2bbc7514c95ab6ccb8c157"
+    },
+    {
+      "log": "tabstops-gate/group-02.jsonl",
+      "passing_cases": 196,
+      "sha256": "f211c86ec568ad591afc9d3d8de3393b352e9338dce1d745a11febd971fdedde"
+    },
+    {
+      "log": "tabstops-parallel-gate/lane-a/group-03.jsonl",
+      "passing_cases": 248,
+      "sha256": "0853b3df86945ddba19f21b72da4d141a68863039edb208c3690c17d34d5adb7"
+    }
+  ],
+  "scope": "Durable checkpoint of completed groups only; final qualification will count each case once and excludes empty/interrupted scheduling handoff output."
+}
