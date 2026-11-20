@@ -1,23 +1,23 @@
 // Execute original suites with their original hooks and assertions.
 import 'package:test/test.dart';
 
-import '../../test/office_vba_word_measurements_test.dart' as suite0;
-import '../../test/office_vba_word_measurements_integration_test.dart'
-    as suite1;
-import '../../test/office_vba_word_measurements_positional_test.dart' as suite2;
-import '../../test/office_vba_word_measurements_positional_integration_test.dart'
-    as suite3;
-import '../../test/office_vba_word_unit_conversions_test.dart' as suite4;
-import '../../test/office_vba_word_unit_conversions_integration_test.dart'
-    as suite5;
-import '../../test/office_vba_word_line_spacing_test.dart' as suite6;
-import '../../test/office_vba_word_line_spacing_integration_test.dart'
-    as suite7;
-import '../../test/office_vba_word_named_measurements_test.dart' as suite8;
-import '../../test/office_vba_word_named_measurements_integration_test.dart'
-    as suite9;
 import '../../test/office_vba_word_bulk_intake_conversions_test.dart'
     as suite10;
+import '../../test/office_vba_word_line_spacing_integration_test.dart'
+    as suite7;
+import '../../test/office_vba_word_line_spacing_test.dart' as suite6;
+import '../../test/office_vba_word_measurements_integration_test.dart'
+    as suite1;
+import '../../test/office_vba_word_measurements_positional_integration_test.dart'
+    as suite3;
+import '../../test/office_vba_word_measurements_positional_test.dart' as suite2;
+import '../../test/office_vba_word_measurements_test.dart' as suite0;
+import '../../test/office_vba_word_named_measurements_integration_test.dart'
+    as suite9;
+import '../../test/office_vba_word_named_measurements_test.dart' as suite8;
+import '../../test/office_vba_word_unit_conversions_integration_test.dart'
+    as suite5;
+import '../../test/office_vba_word_unit_conversions_test.dart' as suite4;
 
 void main() {
   group('office_vba_word_measurements_test.dart', suite0.main);

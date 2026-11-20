@@ -63,6 +63,12 @@ def main():
                    str(Path(os.environ["PUB_CACHE"]) / "hosted/pub.dev/test-1.31.1/bin/test.dart"),
                    "--reporter=json", "--concurrency=1"]
     command.append("tool/zotero/" + target)
+    if args.suite == "editor":
+        # Preserve normal file isolation for baseline font-sensitive tests.
+        # Studio font registration in the aggregate is intentionally global.
+        command.extend(["test/embed_test.dart",
+                        "test/word_header_footer_navigation_test.dart",
+                        "test/office_system_fonts_test.dart"])
     before = sources()
     before_path = output / (args.suite + "-sources-before.json")
     write(before_path, before)

@@ -31,6 +31,8 @@ def count(path):
     starts = {row["test"]["id"]: row["test"] for row in events
               if row["type"] == "testStart"}
     assert starts, (path, "no test starts")
+    suite_paths = {row["suite"]["id"]: row["suite"]["path"] for row in events
+                   if row["type"] == "suite"}
     completed = set()
     counts = collections.Counter()
     suites = {}
@@ -47,7 +49,10 @@ def count(path):
         if (row.get("hidden") or name.startswith("loading ")
                 or name.endswith("(setUpAll)") or name.endswith("(tearDownAll)")):
             continue
-        suite = name.split(".dart", 1)[0] + ".dart" if ".dart" in name else name.split(" ", 1)[0]
+        if ".dart" in name:
+            suite = name.split(".dart", 1)[0] + ".dart"
+        else:
+            suite = Path(suite_paths[starts[test_id]["suiteID"]]).name
         outcome = "skipped" if row.get("skipped") else row["result"]
         counts[outcome] += 1
         suites.setdefault(suite, collections.Counter())[outcome] += 1
