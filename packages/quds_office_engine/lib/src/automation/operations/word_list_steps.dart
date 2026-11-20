@@ -739,10 +739,41 @@ bool _listNum(String? instruction) =>
 class _FieldScan {
   _FieldScan(this.touches);
   bool touches;
+  bool separated = false;
   final instruction = StringBuffer();
 }
 
+bool _opaqueFields(String source) {
+  final reader = XmlPullReader(
+    '<w:opaqueContext xmlns:w="$_w">$source</w:opaqueContext>',
+  );
+  while (reader.next()) {
+    if (reader.eventType == XmlEventType.startElement &&
+        reader.namespaceUri == _w &&
+        const {
+          'instrText',
+          'fldSimple',
+          'fldChar',
+        }.contains(reader.localName)) {
+      return true;
+    }
+  }
+  return false;
+}
+
 void _checkListNumFields(WmlDocument document, WmlParagraph target) {
+  // An opaque container can hold a field's opening or closing boundary while
+  // its result spans an ordinary selected paragraph. Inspect every body block,
+  // including containers outside the selector, before scanning modeled fields.
+  for (final block in WordTree.descendants(
+    document.sections.expand((section) => section.blocks),
+  )) {
+    if (block is WmlOpaqueBlock && _opaqueFields(block.xml)) {
+      throw UnsupportedError(
+        'RemoveNumbers all cannot determine field spans through opaque body blocks.',
+      );
+    }
+  }
   final open = <_FieldScan>[];
   void check(_FieldScan field) {
     if (field.touches && _listNum(field.instruction.toString())) {
@@ -769,6 +800,11 @@ void _checkListNumFields(WmlDocument document, WmlParagraph target) {
             open.add(_FieldScan(selected));
           case WmlFieldBoundaryKind.instruction:
             if (open.isNotEmpty) {
+              if (open.last.separated && selected) {
+                throw UnsupportedError(
+                  'Field instruction follows its separator in the selected paragraph.',
+                );
+              }
               open.last.instruction.write(inline.text);
             } else if (selected) {
               throw UnsupportedError(
@@ -776,9 +812,27 @@ void _checkListNumFields(WmlDocument document, WmlParagraph target) {
               );
             }
           case WmlFieldBoundaryKind.separate:
-            if (open.isNotEmpty) check(open.last);
+            if (open.isNotEmpty) {
+              if (open.last.separated && selected) {
+                throw UnsupportedError(
+                  'Repeated field separator in the selected paragraph.',
+                );
+              }
+              open.last.separated = true;
+              check(open.last);
+            } else if (selected) {
+              throw UnsupportedError(
+                'Unbalanced field separator in the selected paragraph.',
+              );
+            }
           case WmlFieldBoundaryKind.end:
-            if (open.isNotEmpty) check(open.removeLast());
+            if (open.isNotEmpty) {
+              check(open.removeLast());
+            } else if (selected) {
+              throw UnsupportedError(
+                'Unbalanced field end in the selected paragraph.',
+              );
+            }
         }
       } else if (selected &&
           inline is WmlRun &&
@@ -786,13 +840,10 @@ void _checkListNumFields(WmlDocument document, WmlParagraph target) {
         throw UnsupportedError(
           'RemoveNumbers all cannot remove an inline LISTNUM field.',
         );
-      } else if (selected && inline is WmlOpaqueInline) {
-        final raw = inline.content.xml;
-        if (raw.contains('instrText') ||
-            raw.contains('fldSimple') ||
-            raw.contains('fldChar')) {
+      } else if (inline is WmlOpaqueInline) {
+        if (_opaqueFields(inline.content.xml)) {
           throw UnsupportedError(
-            'RemoveNumbers all cannot interpret opaque native field content.',
+            'RemoveNumbers all cannot determine field spans through opaque body inlines.',
           );
         }
       }

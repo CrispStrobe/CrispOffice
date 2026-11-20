@@ -360,6 +360,133 @@ End Sub
   };
 }
 
+List<String> _nativeFieldTokens(Uint8List bytes) {
+  final xml = OpcPackage.openBytes(
+    bytes,
+  ).getPart('/word/document.xml')!.readText();
+  final tokens = <String>[];
+  void visit(XmlElement node) {
+    if (node.namespaceUri == OfficeNamespaces.w) {
+      if (node.localName == 'fldChar') {
+        tokens.add(
+          'boundary:${node.getAttribute('fldCharType', namespaceUri: OfficeNamespaces.w)}',
+        );
+      } else if (node.localName == 'instrText') {
+        tokens.add('instruction:${node.text}');
+      }
+    }
+    for (final child in node.childElements) {
+      visit(child);
+    }
+  }
+
+  visit(XmlDocument.parse(xml).root!);
+  return tokens;
+}
+
+Future<Map<String, Object?>> _opaqueFieldBoundaryGuards() async {
+  var cases = 0;
+  for (final wrapper in ['customXml', 'smartTag']) {
+    for (final opaqueEnd in [false, true]) {
+      final template = wordListInput();
+      final bullet = WordDeserializer()
+          .readBytes(template)
+          .paragraphs
+          .elementAt(3)
+          .properties
+          .numId;
+      final package = OpcPackage.openBytes(template);
+      const end = '<w:r><w:fldChar w:fldCharType="end"/></w:r>';
+      final close = opaqueEnd
+          ? '<w:$wrapper w:uri="urn:list-test" w:element="end"><w:p>$end</w:p></w:$wrapper>'
+          : '';
+      package.getPart('/word/document.xml')!.writeText('''
+<w:document xmlns:w="${OfficeNamespaces.w}"><w:body>
+  <w:p><w:r><w:t>First paragraph</w:t></w:r></w:p>
+  <w:$wrapper w:uri="urn:list-test" w:element="start"><w:p>
+    <w:r><w:fldChar w:fldCharType="begin"/></w:r>
+    <w:r><w:instrText xml:space="preserve"> LISTNUM LegalDefault </w:instrText></w:r>
+    <w:r><w:fldChar w:fldCharType="separate"/></w:r>
+    <w:r><w:t>Start</w:t></w:r>
+  </w:p></w:$wrapper>
+  <w:p><w:pPr><w:numPr><w:ilvl w:val="0"/><w:numId w:val="$bullet"/></w:numPr></w:pPr>
+    <w:r><w:t>Selected result</w:t></w:r>${opaqueEnd ? '' : end}
+  </w:p>$close
+  <w:p><w:r><w:t>Last paragraph</w:t></w:r></w:p><w:sectPr/>
+</w:body></w:document>
+''');
+      final input = package.save();
+      final original = base64Encode(input);
+      final expectedFields = jsonEncode(_nativeFieldTokens(input));
+      final session = OfficeMacroSession(input, format: OfficeMacroFormat.docx);
+      session.startRecording('Opaque field boundary must not publish');
+      final plan = _compile('''
+Sub Main()
+  ActiveDocument.Paragraphs(1).Range.ListFormat.ApplyNumberDefault
+  ActiveDocument.Paragraphs(2).Range.ListFormat.RemoveNumbers
+End Sub
+''');
+      for (final validateOnly in [true, false]) {
+        try {
+          if (validateOnly) {
+            await session.validate(plan);
+          } else {
+            await session.run(plan);
+          }
+          throw StateError('Opaque LISTNUM boundary unexpectedly published');
+        } on OfficeMacroException catch (error) {
+          if (error.code != 'operation_failed' ||
+              error.stepIndex != 1 ||
+              error.tool != 'docx.removeNumbers') {
+            rethrow;
+          }
+        }
+      }
+      if (session.revision != 0 ||
+          base64Encode(session.bytes) != original ||
+          session.stopRecording().steps.isNotEmpty) {
+        throw StateError(
+          'Opaque field refusal did not roll back the complete plan',
+        );
+      }
+      await session.run(
+        _compile('''
+Sub Main()
+  ActiveDocument.Paragraphs(2).Range.ListFormat.RemoveNumbers wdNumberParagraph
+End Sub
+'''),
+      );
+      if (session.revision != 1) {
+        throw StateError('Paragraph removal did not publish once');
+      }
+      var saved = session.bytes;
+      for (var cycle = 0; cycle < 3; cycle++) {
+        final document = WordDeserializer().readBytes(saved);
+        final paragraphs = document.paragraphs.toList();
+        if (paragraphs.length != 3 ||
+            paragraphs[1].text != 'Selected result' ||
+            paragraphs[1].properties.numId != null ||
+            !paragraphs[1].properties.numberingSuppressed ||
+            paragraphs.first.text != 'First paragraph' ||
+            paragraphs.last.text != 'Last paragraph' ||
+            jsonEncode(_nativeFieldTokens(saved)) != expectedFields) {
+          throw StateError(
+            'Paragraph-only removal changed an opaque field span',
+          );
+        }
+        saved = WordSerializer().writeBytes(document);
+      }
+      cases++;
+    }
+  }
+  return {
+    'cases': cases,
+    'allModeRollback': true,
+    'paragraphModePreservesFields': true,
+    'additionalReopens': 2,
+  };
+}
+
 int _refusals() {
   const invalid = [
     'ActiveDocument.Paragraphs(1).Range.ListFormat.ApplyBulletDefault 1',
@@ -390,12 +517,14 @@ Future<void> main() async {
   final transitions = await _toggleAndChangeKind();
   await _rollback();
   final guards = await _fieldAndPolicyGuards();
+  final opaqueBoundaries = await _opaqueFieldBoundaryGuards();
   print(
     jsonEncode({
       'example': example,
       'toggleAndChangeKind': transitions,
       'lateFailureRollback': true,
       'fieldAndPolicyGuards': guards,
+      'opaqueBoundaryGuards': opaqueBoundaries,
       'refusedSources': _refusals(),
     }),
   );

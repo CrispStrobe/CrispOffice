@@ -297,8 +297,8 @@ Supported numeric formats are `decimal`, `decimalZero`, `upperRoman`, `lowerRoma
 label. Native `bullet` selects the bullet kind regardless of its glyph. Missing
 or ambiguous native identities and unsupported linked/picture/outline numbering
 are refused by the apply methods. A selected level override must supply a complete
-supported level; partial-override fallback is not introduced here. Duplicate or
-partial numbering properties without an explicit ID, foreign/misbound numbering
+supported level; partial-override fallback is not introduced here. Duplicate
+numbering properties, partial `numPr` without an explicit ID, foreign/misbound numbering
 lookalikes, tracked numbering, and numbering-bearing markup-compatibility alternatives are refused
 before mutation. Some source guards conservatively apply across the document,
 including its styles and alternative XML branches. `RemoveNumbers` does not
@@ -313,8 +313,10 @@ the requested removal without editing such fields. This includes split complex
 field instructions and fields spanning the selected paragraph. It never silently
 leaves a selected `LISTNUM` field behind while reporting an all-numbers removal.
 All-number removal also conservatively refuses any field-bearing alternative
-XML branch anywhere in stored Word parts and selected opaque/unbalanced fields
-whose removal cannot be determined. Paragraph-only removal preserves ordinary
+XML branch anywhere in stored Word parts, field-bearing opaque body blocks or
+inlines even outside the selected paragraph, and selected unbalanced fields
+whose removal cannot be determined. Opaque content can hide a field boundary
+that overlaps the target paragraph. Paragraph-only removal preserves ordinary
 modeled fields and does not attempt to repair malformed field source.
 `wdNumberListNum = 2` is recognized but refused at compilation. The source adapter
 does not expose live list reads, `ListLevelNumber`, list templates/galleries,

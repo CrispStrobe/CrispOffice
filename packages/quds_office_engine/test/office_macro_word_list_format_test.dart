@@ -533,4 +533,151 @@ void main() {
       },
     );
   }
+
+  for (final wrapper in ['customXml', 'smartTag']) {
+    for (final opaqueEnd in [false, true]) {
+      test(
+        'all removal refuses $wrapper field spans with ${opaqueEnd ? 'opaque' : 'modeled'} end atomically',
+        () async {
+          final input = _fixture(
+            body:
+                '<w:$wrapper w:uri="urn:example" w:element="wrapped"><w:p>'
+                '<w:r><w:fldChar w:fldCharType="begin"/></w:r>'
+                '<w:r><w:instrText xml:space="preserve"> LISTNUM LegalDefault </w:instrText></w:r>'
+                '<w:r><w:fldChar w:fldCharType="separate"/></w:r>'
+                '<w:r><w:t>Start</w:t></w:r></w:p></w:$wrapper>'
+                '<w:p><w:r><w:t>Selected result</w:t></w:r>'
+                '${opaqueEnd ? '' : '<w:r><w:fldChar w:fldCharType="end"/></w:r>'}</w:p>'
+                '${opaqueEnd ? '<w:$wrapper w:uri="urn:example" w:element="wrapped"><w:p><w:r><w:fldChar w:fldCharType="end"/></w:r></w:p></w:$wrapper>' : ''}',
+          );
+          final doc = _read(input);
+          expect(doc.sections.single.blocks.first, isA<WmlOpaqueBlock>());
+          final properties = doc.paragraphs.single.properties;
+          final parts = {
+            for (final part in doc.package!.parts)
+              part.uri: Uint8List.fromList(part.readBytes()),
+          };
+          expect(
+            () =>
+                native.applyStep(doc, {'op': 'removeNumbers', 'paragraph': 0}),
+            throwsUnsupportedError,
+          );
+          expect(
+            identical(doc.paragraphs.single.properties, properties),
+            isTrue,
+          );
+          expect({
+            for (final part in doc.package!.parts) part.uri: part.readBytes(),
+          }, parts);
+
+          final session = OfficeMacroSession(
+            input,
+            format: OfficeMacroFormat.docx,
+          );
+          session.startRecording('Rejected opaque field removal');
+          final macro = _plan([_default(true), _remove()]);
+          for (final action in [session.validate, session.run]) {
+            await expectLater(
+              action(macro),
+              throwsA(
+                isA<OfficeMacroException>().having(
+                  (error) => error.stepIndex,
+                  'stepIndex',
+                  1,
+                ),
+              ),
+            );
+            expect(session.bytes, input);
+            expect(session.revision, 0);
+          }
+          expect(session.stopRecording().steps, isEmpty);
+
+          await session.run(_plan([_remove(type: 'paragraph')]));
+          expect(
+            _read(session.bytes).paragraphs.single.text,
+            'Selected result',
+          );
+          expect(
+            OpcPackage.openBytes(
+              session.bytes,
+            ).getPart('/word/document.xml')!.readText(),
+            contains('LISTNUM LegalDefault'),
+          );
+        },
+      );
+    }
+  }
+
+  test('all removal checks field-bearing opaque inlines outside selector', () {
+    final doc = _read(
+      _fixture(
+        body:
+            '<w:p><w:r><w:t>Earlier</w:t></w:r></w:p><w:p><w:r><w:t>Selected</w:t></w:r></w:p>',
+      ),
+    );
+    final paragraphs = doc.paragraphs.toList();
+    paragraphs.first.inlines.add(
+      WmlOpaqueInline(
+        content: WmlOpaqueBlock(
+          xml:
+              '<w:customXml xmlns:w="$_w"><w:r><w:fldChar w:fldCharType="begin"/></w:r>'
+              '<w:r><w:instrText> LISTNUM LegalDefault </w:instrText></w:r>'
+              '<w:r><w:fldChar w:fldCharType="separate"/></w:r></w:customXml>',
+          sourcePartUri: '/word/document.xml',
+          relationships: const [],
+        ),
+      ),
+    );
+    final properties = paragraphs.last.properties;
+    expect(
+      () => native.applyStep(doc, {'op': 'removeNumbers', 'paragraph': 1}),
+      throwsUnsupportedError,
+    );
+    expect(identical(paragraphs.last.properties, properties), isTrue);
+    native.applyStep(doc, {
+      'op': 'removeNumbers',
+      'paragraph': 1,
+      'numberType': 'paragraph',
+    });
+    expect(paragraphs.last.properties.numberingSuppressed, isTrue);
+    expect(paragraphs.first.inlines.last, isA<WmlOpaqueInline>());
+  });
+
+  for (final kind in [
+    WmlFieldBoundaryKind.separate,
+    WmlFieldBoundaryKind.end,
+  ]) {
+    test('all removal refuses selected orphan ${kind.name}', () {
+      final doc = _read(_fixture());
+      doc.paragraphs.single.inlines.add(WmlFieldBoundary(kind: kind));
+      final properties = doc.paragraphs.single.properties;
+      expect(
+        () => native.applyStep(doc, {'op': 'removeNumbers', 'paragraph': 0}),
+        throwsUnsupportedError,
+      );
+      expect(identical(doc.paragraphs.single.properties, properties), isTrue);
+    });
+  }
+
+  test(
+    'all removal retains ordinary opaque body content without fields',
+    () async {
+      final session = OfficeMacroSession(
+        _fixture(
+          body:
+              '<w:customXml w:uri="urn:example" w:element="wrapped"><w:p><w:r><w:t>Opaque text</w:t></w:r></w:p></w:customXml>'
+              '<w:p><w:r><w:t>Selected</w:t></w:r></w:p>',
+        ),
+        format: OfficeMacroFormat.docx,
+      );
+      await session.run(_plan([_remove()]));
+      expect(_read(session.bytes).paragraphs.single.text, 'Selected');
+      expect(
+        OpcPackage.openBytes(
+          session.bytes,
+        ).getPart('/word/document.xml')!.readText(),
+        contains('Opaque text'),
+      );
+    },
+  );
 }
