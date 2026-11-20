@@ -2218,7 +2218,7 @@ abstract final class OfficePdfExport {
           : (paragraph.defaultFontSizePt > 0
                 ? paragraph.defaultFontSizePt
                 : fallbackSize);
-      final double size = unscaledSize * fitScale;
+      final double size = unscaledSize * fitScale * shape.textScale;
       final bool bold =
           (run?.bold ?? false) &&
           !(run?.fontFamily.toLowerCase().contains('microsoft sans serif') ??
@@ -2236,7 +2236,16 @@ abstract final class OfficePdfExport {
             );
       total +=
           paragraph.spaceBeforePt +
-          lines * size * 1.25 +
+          lines *
+              sink.lineHeight(
+                size,
+                bold: bold,
+                italic: run?.italic ?? false,
+                family: (run?.fontFamily ?? '').isEmpty
+                    ? null
+                    : run!.fontFamily,
+              ) *
+              (1 - shape.lineSpacingReduction) +
           paragraph.spaceAfterPt;
     }
     double cy = switch (shape.textAnchor) {
@@ -2253,7 +2262,7 @@ abstract final class OfficePdfExport {
           : (paragraph.defaultFontSizePt > 0
                 ? paragraph.defaultFontSizePt
                 : fallbackSize);
-      final double size = unscaledSize * fitScale;
+      final double size = unscaledSize * fitScale * shape.textScale;
       final String color = (run?.color ?? '').isNotEmpty
           ? run!.color
           : fallbackColor;
@@ -2308,7 +2317,9 @@ abstract final class OfficePdfExport {
           final double next = ((offset / tab).floor() + 1) * tab;
           cx = math.min(px + maxWidth, tabBase + next);
         }
-        cy += size * 1.25;
+        cy +=
+            sink.lineHeight(size, bold: bold, italic: italic, family: family) *
+            (1 - shape.lineSpacingReduction);
       } else if (_hasMixedRichStyles(paragraph)) {
         cy += _paintStyledParagraph(
           sink,
@@ -2319,7 +2330,7 @@ abstract final class OfficePdfExport {
           align,
           size,
           fallbackColor,
-          fitScale,
+          fitScale * shape.textScale,
         );
       } else {
         sink.drawText(
@@ -2344,7 +2355,10 @@ abstract final class OfficePdfExport {
           family: family,
           baseLevel: paragraph.rightToLeft ? 1 : 0,
         );
-        cy += lines * size * 1.25;
+        cy +=
+            lines *
+            sink.lineHeight(size, bold: bold, italic: italic, family: family) *
+            (1 - shape.lineSpacingReduction);
       }
       cy += paragraph.spaceAfterPt;
     }
@@ -3343,6 +3357,24 @@ class _PageSink {
           justificationRatio: line.justificationRatio,
         ),
     ];
+  }
+
+  double lineHeight(
+    double size, {
+    bool bold = false,
+    bool italic = false,
+    String? family,
+  }) {
+    final SfntFont? font = pack.fontFor(
+      65,
+      family: family,
+      weight: bold ? 700 : 400,
+      italic: italic,
+    );
+    if (font == null || font.unitsPerEm <= 0) return size * 1.25;
+    final double ratio =
+        (font.ascender - font.descender + font.lineGap) / font.unitsPerEm;
+    return size * math.max(1.0, ratio);
   }
 
   /// Number of laid-out lines for [text] at [size].
