@@ -1,0 +1,120 @@
+{
+  "snapshot_utc": "2026-11-20T14:08:40.863633+00:00",
+  "base_main": "4df939eeed1bda9f9dbde8c8d2cbf0a4fe91b5b0",
+  "incoming_zotero_head": "a2b87ee3f471da500423055e86ba2614fc053cae",
+  "earlier_captured_zotero": "93dc987cf993787bd613018b3028e7ad60d5472a",
+  "resolved_to_accepted_main": [
+    "packages/quds_office_editor/CHANGELOG.md",
+    "packages/quds_office_engine/lib/src/word/layout/word_incremental_layout.dart",
+    "packages/quds_office_engine/lib/src/word/layout/word_layout.dart"
+  ],
+  "resolution_reason": "Incoming layout production blobs are unchanged from the previously integrated Zotero checkpoint. Keep main cache invalidation semantics/comments and its additional prefix line/frame count convergence guards; retain combined editor changelog. New wrapping regression was already byte-identical in main.",
+  "independent_machine_reviewers": [
+    "integration_audit",
+    "mail_gap_audit"
+  ],
+  "net_incoming_paths": [
+    "docs/validation/zotero-research-tables-20261120/checkpoint-231bd-replay-evidence.json",
+    "docs/validation/zotero-research-tables-20261120/checkpoint-231bd-replay-evidence.tar.xz",
+    "docs/validation/zotero-research-tables-20261120/checkpoint-231bd-replay-summary.json",
+    "docs/validation/zotero-research-tables-20261120/checkpoint-reconciled-engine-summary.json",
+    "docs/validation/zotero-research-tables-20261120/latest-main-outbox-preservation.json",
+    "docs/validation/zotero-research-tables-20261120/latest-main-outbox-reconciliation.json",
+    "packages/quds_office_editor/example/tool/incoming_reconciliation_acceptance.dart"
+  ],
+  "existing_outbox_files_added_to_runner": [
+    "studio_mail_outbox_cloud_test.dart",
+    "studio_mail_outbox_dialog_test.dart",
+    "studio_mail_outbox_host_test.dart",
+    "studio_mail_outbox_store_test.dart",
+    "studio_mail_outbox_submission_test.dart"
+  ],
+  "all_862_accepted_source_test_hashes_unchanged": true,
+  "checks": [
+    {
+      "name": "late-runner-format",
+      "command": [
+        "dart",
+        "format",
+        "--output=none",
+        "--set-exit-if-changed",
+        "tool/incoming_reconciliation_acceptance.dart"
+      ],
+      "cwd": "packages/quds_office_editor/example",
+      "exit_code": 0,
+      "log": "late-runner-format.log",
+      "log_sha256": "ebf8691cd9669b02dd9d748aaf543551b337b2beb44f2d128dc7ffbfa0318f03"
+    },
+    {
+      "name": "late-runner-analysis",
+      "command": [
+        "dart",
+        "analyze",
+        "--fatal-infos",
+        "tool/incoming_reconciliation_acceptance.dart"
+      ],
+      "cwd": "packages/quds_office_editor/example",
+      "exit_code": 0,
+      "log": "late-runner-analysis.log",
+      "log_sha256": "24988276ca1d458e92e9a7d460d4308a1d072510bf5b7170895acd48a7e5b10e"
+    },
+    {
+      "name": "late-runner-help",
+      "command": [
+        "dart",
+        "--disable-dart-dev",
+        "tool/incoming_reconciliation_acceptance.dart",
+        "--help"
+      ],
+      "cwd": "packages/quds_office_editor/example",
+      "exit_code": 0,
+      "log": "late-runner-help.log",
+      "log_sha256": "e3028f5b05d781d35b531b88cb9d2e8bf8793ec64dfeafd56d3cdee3d65fe411"
+    }
+  ],
+  "scope": "Retain six new Zotero evidence files and an eleven-line group selecting five existing Outbox files in the qualification runner. No production or test file changes; no full test replay needed for this metadata/runner selection delta.",
+  "github_actions_used_or_awaited": false,
+  "retained_accepted_test_results": [
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_outbox_cloud_test.dart",
+      "passed": 4,
+      "failed": 0,
+      "skipped": 0,
+      "source_sha256": "48fbebb3a52c6125693aac0485639d98c578a939aa2a0fe7cf045401a69a2ef2",
+      "qualification": "unchanged broad-run result"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_outbox_dialog_test.dart",
+      "passed": 10,
+      "failed": 0,
+      "skipped": 0,
+      "source_sha256": "0cde807cd09a97f2f701e04ee7466325d826120dc72c8339ddc974c795ea2380",
+      "qualification": "unchanged broad-run result"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_outbox_host_test.dart",
+      "passed": 7,
+      "failed": 0,
+      "skipped": 0,
+      "source_sha256": "5e4b3e369a2920811408b0e7d996dbfc38ea49ecf037c198fc595ffe94c67d48",
+      "qualification": "unchanged broad-run result"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_outbox_store_test.dart",
+      "passed": 18,
+      "failed": 0,
+      "skipped": 0,
+      "source_sha256": "7486d4a8dd5714858cc403cafd05ab9c6a64e64afa591272807e510502980b3c",
+      "qualification": "unchanged broad-run result"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_outbox_submission_test.dart",
+      "passed": 18,
+      "failed": 0,
+      "skipped": 0,
+      "source_sha256": "59d5fa8704176132e16d0a662f2181f16a091e0ddbf8b29bf9a7fd8b5eedfd3d",
+      "qualification": "unchanged broad-run result"
+    }
+  ],
+  "separate_audit": "late-zotero-audit.json"
+}

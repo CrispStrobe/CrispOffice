@@ -40,6 +40,18 @@ branch. The ten additional paths are validation documentation and evidence only;
 product, test, dependency and runtime files match the accepted source checkpoint.
 See [final-main-reconciliation.json](final-main-reconciliation.json).
 
+After the Mail merge (PR #253), the final PR-state check found Zotero head
+`a2b87ee3`, published concurrently after the earlier snapshot. Its final
+reconciliation preserves the qualified main Word sources, including both prefix
+line/frame convergence guards, and retains six new evidence files plus an
+Outbox group in the acceptance runner. All 862 source/test hashes in the
+accepted UI receipt still match. The five selected Outbox files already passed
+57 tests within the existing Studio cohort; these are not additional runs.
+The runner passes strict analysis, formatting and its compiled help path.
+See [late-zotero-reconciliation.json](late-zotero-reconciliation.json) and the
+[independent overlap audit](late-zotero-audit.json). Historical incoming replays
+remain attributed to their original source checkpoints.
+
 ## Local qualification
 
 | Scope | Result |

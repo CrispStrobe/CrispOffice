@@ -111,5 +111,6 @@
     "Existing unencrypted native-store policy remains; unsaved edits are not guaranteed durable.",
     "Advances recoverable composition; does not claim full desktop-client parity."
   ],
-  "publication_reconciliation": "final-main-reconciliation.json"
+  "publication_reconciliation": "final-main-reconciliation.json",
+  "late_zotero_reconciliation": "late-zotero-reconciliation.json"
 }

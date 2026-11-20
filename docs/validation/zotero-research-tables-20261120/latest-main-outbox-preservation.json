@@ -1,0 +1,149 @@
+{
+  "schema": 1,
+  "date": "2026-11-20",
+  "source_continuity": {
+    "qualified_word_source": "231bd0403a3d2855dc23bf8dacefaedba01f2aab",
+    "incoming_standalone_source": "13be50464d1b43e9f2100fb9ccc12f8fe22eb55e",
+    "combined_source": "70e69c8854ab30f83d8711d3f4bf270385ed27b4",
+    "word": [
+      {
+        "path": "packages/quds_office_engine/lib",
+        "before": "6f9f65afab69e263589a207ef9033bf11e951b69",
+        "after": "6f9f65afab69e263589a207ef9033bf11e951b69",
+        "identical": true
+      },
+      {
+        "path": "packages/quds_office_editor/lib",
+        "before": "04624fc265256822da18ce01cc5984093c36f924",
+        "after": "04624fc265256822da18ce01cc5984093c36f924",
+        "identical": true
+      },
+      {
+        "path": "packages/quds_office_editor/test",
+        "before": "9f0be411d93db9b2bce11e5b2f25e7cc32558c26",
+        "after": "9f0be411d93db9b2bce11e5b2f25e7cc32558c26",
+        "identical": true
+      },
+      {
+        "path": "packages/quds_office_editor/tool/zotero",
+        "before": "0a8fa1a0e3123461e8e27efbfa40ee75c5969d07",
+        "after": "0a8fa1a0e3123461e8e27efbfa40ee75c5969d07",
+        "identical": true
+      },
+      {
+        "path": "packages/quds_office_editor/example/lib/suite_workspace.dart",
+        "before": "780aeb41d872df31e19d7b4b8bb7df1835dfb6e2",
+        "after": "780aeb41d872df31e19d7b4b8bb7df1835dfb6e2",
+        "identical": true
+      },
+      {
+        "path": "packages/quds_office_editor/example/test/studio_word_chrome_settle_test.dart",
+        "before": "89e1d0d02cb084cecb3165cd2217a002b073cfbf",
+        "after": "89e1d0d02cb084cecb3165cd2217a002b073cfbf",
+        "identical": true
+      },
+      {
+        "path": "packages/quds_office_editor/example/lib/studio_mail_credentials.dart",
+        "before": "a1d46c62cb798a7b0d306d3b839e2692753e56fc",
+        "after": "a1d46c62cb798a7b0d306d3b839e2692753e56fc",
+        "identical": true
+      },
+      {
+        "path": "packages/quds_office_editor/example/lib/studio_credential_storage.dart",
+        "before": "e6d159e45bfce3a76cb11c8d812ab3de1bc04c13",
+        "after": "e6d159e45bfce3a76cb11c8d812ab3de1bc04c13",
+        "identical": true
+      },
+      {
+        "path": "packages/quds_office_editor/example/lib/studio_credential_settings.dart",
+        "before": "9bebe73783ebb49d138789cbd2abbef61186579d",
+        "after": "9bebe73783ebb49d138789cbd2abbef61186579d",
+        "identical": true
+      },
+      {
+        "path": "pubspec.yaml",
+        "before": "ba34bf9e2c1b0eb583e5f9e2d9ba9f236a660f96",
+        "after": "ba34bf9e2c1b0eb583e5f9e2d9ba9f236a660f96",
+        "identical": true
+      },
+      {
+        "path": "pubspec.lock",
+        "before": "c677b8fbc9de6607a1c0af2608bec1c2d32fca6d",
+        "after": "c677b8fbc9de6607a1c0af2608bec1c2d32fca6d",
+        "identical": true
+      },
+      {
+        "path": "analysis_options.yaml",
+        "before": "e40c961c5eda58a8470527fb768f093aa7dbbfff",
+        "after": "e40c961c5eda58a8470527fb768f093aa7dbbfff",
+        "identical": true
+      },
+      {
+        "path": "packages/quds_office_editor/analysis_options.yaml",
+        "before": "d0114d8fe4f50cce7222023450ae8253e70a8d99",
+        "after": "d0114d8fe4f50cce7222023450ae8253e70a8d99",
+        "identical": true
+      },
+      {
+        "path": "packages/quds_office_editor/example/analysis_options.yaml",
+        "before": "6be99ebf1c04294573572bb9c075e7ca2953ca88",
+        "after": "6be99ebf1c04294573572bb9c075e7ca2953ca88",
+        "identical": true
+      }
+    ],
+    "standalone": [
+      {
+        "path": "packages/quds_mail_core",
+        "before": "cbcba643041357fff00a4e2995ae3a4e17182df9",
+        "after": "cbcba643041357fff00a4e2995ae3a4e17182df9",
+        "identical": true
+      },
+      {
+        "path": "packages/quds_mail_store",
+        "before": "da66654e838aef8dbfe1f940a09fbbb288217e48",
+        "after": "da66654e838aef8dbfe1f940a09fbbb288217e48",
+        "identical": true
+      },
+      {
+        "path": "pubspec.yaml",
+        "before": "ba34bf9e2c1b0eb583e5f9e2d9ba9f236a660f96",
+        "after": "ba34bf9e2c1b0eb583e5f9e2d9ba9f236a660f96",
+        "identical": true
+      },
+      {
+        "path": "pubspec.lock",
+        "before": "c677b8fbc9de6607a1c0af2608bec1c2d32fca6d",
+        "after": "c677b8fbc9de6607a1c0af2608bec1c2d32fca6d",
+        "identical": true
+      },
+      {
+        "path": "analysis_options.yaml",
+        "before": "e40c961c5eda58a8470527fb768f093aa7dbbfff",
+        "after": "e40c961c5eda58a8470527fb768f093aa7dbbfff",
+        "identical": true
+      }
+    ],
+    "qualification": "Exact compared subtree/blob identity; modified example Mail imports are covered separately. Incoming core/store counts retain their original author/source attribution."
+  },
+  "native_patch_control": {
+    "hunks": 8,
+    "control_matches_incoming": true,
+    "feature_plus_exact_patch_matches_merged": true,
+    "source": {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_native.dart",
+      "base": "ecb7464b0b13927e7cb258951775a1975a91c29e",
+      "ours": "45c83b75e2c9e42004131f509677a0364ad3d4c4",
+      "incoming": "9ae96e5b7c2b087bcf133ec3164c47018ef0a324",
+      "merged": "45d68cddf5fc43b108d6e7582bdebc5bad9fdb2f",
+      "method": "All8 incoming unified hunks applied uniquely with exact context to our source. Same patch applied to b42 reconstructed13be byte-for-byte. Feature native read directly at93dc and matched45c. All pre-existing credential guards and the earlier2 sourceStatus arguments remain."
+    }
+  },
+  "replay_helper": {
+    "previous": "1d0fe0c0aabf7b393b00af64dfa1d116c36abc20",
+    "current": "55dc70ad3bd15b3cfb910c6a07e49f5c3dbb6534",
+    "only_change": "One five-file Mail Outbox group added; all completion logic byte-identical.",
+    "groups": 9,
+    "files": 23
+  },
+  "qualification": "Source and Git-tree review only. Earlier runtime results retain their own source attribution; fresh combined-host gates are recorded separately."
+}
