@@ -1,0 +1,114 @@
+[
+  {
+    "name": "calibri-auto-240",
+    "font": "/Applications/Microsoft Word.app/Contents/Resources/DFonts/Calibri.ttf",
+    "family": "Calibri",
+    "rule": "auto",
+    "line": 240
+  },
+  {
+    "name": "calibri-auto-360",
+    "font": "/Applications/Microsoft Word.app/Contents/Resources/DFonts/Calibri.ttf",
+    "family": "Calibri",
+    "rule": "auto",
+    "line": 360
+  },
+  {
+    "name": "calibri-exact-360",
+    "font": "/Applications/Microsoft Word.app/Contents/Resources/DFonts/Calibri.ttf",
+    "family": "Calibri",
+    "rule": "exact",
+    "line": 360
+  },
+  {
+    "name": "calibri-atLeast-240",
+    "font": "/Applications/Microsoft Word.app/Contents/Resources/DFonts/Calibri.ttf",
+    "family": "Calibri",
+    "rule": "atLeast",
+    "line": 240
+  },
+  {
+    "name": "aptos-auto-240",
+    "font": "/Applications/Microsoft Word.app/Contents/Resources/DFonts/Aptos.ttf",
+    "family": "Aptos",
+    "rule": "auto",
+    "line": 240
+  },
+  {
+    "name": "aptos-auto-360",
+    "font": "/Applications/Microsoft Word.app/Contents/Resources/DFonts/Aptos.ttf",
+    "family": "Aptos",
+    "rule": "auto",
+    "line": 360
+  },
+  {
+    "name": "aptos-exact-360",
+    "font": "/Applications/Microsoft Word.app/Contents/Resources/DFonts/Aptos.ttf",
+    "family": "Aptos",
+    "rule": "exact",
+    "line": 360
+  },
+  {
+    "name": "aptos-atLeast-240",
+    "font": "/Applications/Microsoft Word.app/Contents/Resources/DFonts/Aptos.ttf",
+    "family": "Aptos",
+    "rule": "atLeast",
+    "line": 240
+  },
+  {
+    "name": "arial-auto-240",
+    "font": "/System/Library/Fonts/Supplemental/Arial.ttf",
+    "family": "Arial",
+    "rule": "auto",
+    "line": 240
+  },
+  {
+    "name": "arial-auto-360",
+    "font": "/System/Library/Fonts/Supplemental/Arial.ttf",
+    "family": "Arial",
+    "rule": "auto",
+    "line": 360
+  },
+  {
+    "name": "arial-exact-360",
+    "font": "/System/Library/Fonts/Supplemental/Arial.ttf",
+    "family": "Arial",
+    "rule": "exact",
+    "line": 360
+  },
+  {
+    "name": "arial-atLeast-240",
+    "font": "/System/Library/Fonts/Supplemental/Arial.ttf",
+    "family": "Arial",
+    "rule": "atLeast",
+    "line": 240
+  },
+  {
+    "name": "times-auto-240",
+    "font": "/System/Library/Fonts/Supplemental/Times New Roman.ttf",
+    "family": "Times New Roman",
+    "rule": "auto",
+    "line": 240
+  },
+  {
+    "name": "times-auto-360",
+    "font": "/System/Library/Fonts/Supplemental/Times New Roman.ttf",
+    "family": "Times New Roman",
+    "rule": "auto",
+    "line": 360
+  },
+  {
+    "name": "times-exact-360",
+    "font": "/System/Library/Fonts/Supplemental/Times New Roman.ttf",
+    "family": "Times New Roman",
+    "rule": "exact",
+    "line": 360
+  },
+  {
+    "name": "times-atLeast-240",
+    "font": "/System/Library/Fonts/Supplemental/Times New Roman.ttf",
+    "family": "Times New Roman",
+    "rule": "atLeast",
+    "line": 240
+  }
+]
