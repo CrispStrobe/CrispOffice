@@ -22,6 +22,10 @@ on:
         description: Required SHA-256 of the built libcrispembed-spacy.so (empty = record only)
         type: string
         default: ''
+      replay:
+        description: Run the grammar replay (the planner must list the built library's digest)
+        type: boolean
+        default: true
       gate:
         description: Also build all five libraries and run mobile_native_proofing_test.dart
         type: boolean
@@ -116,7 +120,8 @@ jobs:
         if: inputs.gate
         run: |
           case "$ABI" in arm64-v8a) triple=aarch64-linux-android ;; x86_64) triple=x86_64-linux-android ;; esac
-          rustup target add "$triple"
+          # Inside the crate, so the target lands in its pinned rust-toolchain.toml toolchain.
+          (cd packages/quds_proofing_harper/native && rustup target add "$triple")
           for p in quds_proofing_hunspell quds_arabic_morph quds_language_id quds_proofing_harper; do
             python3 packages/$p/tool/build.py --android --android-abi "$ABI" \
               --output "build/$p-android" --install-android "$JNI/$ABI"
@@ -138,8 +143,10 @@ jobs:
           set -euo pipefail
           adb reverse tcp:8765 tcp:8765
           cd "$GITHUB_WORKSPACE/packages/quds_office_editor/example"
-          flutter test integration_test/mobile_spacy_grammar_replay_test.dart -d emulator-5554 \
-            --dart-define=QUDS_GRAMMAR_REPLAY_URL=http://127.0.0.1:8765 2>&1 | tee "$GITHUB_WORKSPACE/replay.log"
+          if [ "$RUN_REPLAY" = "true" ]; then
+            flutter test integration_test/mobile_spacy_grammar_replay_test.dart -d emulator-5554 \
+              --dart-define=QUDS_GRAMMAR_REPLAY_URL=http://127.0.0.1:8765 2>&1 | tee "$GITHUB_WORKSPACE/replay.log"
+          fi
           if [ "$RUN_GATE" = "true" ]; then
             flutter test integration_test/mobile_native_proofing_test.dart -d emulator-5554 2>&1 \
               | tee "$GITHUB_WORKSPACE/gate.log"
@@ -149,6 +156,7 @@ jobs:
         uses: reactivecircus/android-emulator-runner@v2
         env:
           RUN_GATE: ${{ inputs.gate }}
+          RUN_REPLAY: ${{ inputs.replay }}
         with:
           api-level: ${{ env.API_LEVEL }}
           arch: ${{ inputs.abi }}
