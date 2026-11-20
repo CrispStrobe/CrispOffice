@@ -144,10 +144,19 @@ class PmlSlideTransition {
 
 /// Immutable import snapshot for per-property transition serialization.
 class PmlTransitionSource {
-  const PmlTransitionSource({required this.xml, required this.value});
+  const PmlTransitionSource({
+    required this.xml,
+    required this.value,
+    this.isOpaqueContainer = false,
+  });
 
   final String xml;
   final PmlSlideTransition value;
+
+  /// A root markup-compatibility container whose choice semantics are not
+  /// projected into the editable transition model. Preserve it on unrelated
+  /// saves, and refuse explicit transition changes.
+  final bool isOpaqueContainer;
 }
 
 /// Class PmlShapeAnimation.

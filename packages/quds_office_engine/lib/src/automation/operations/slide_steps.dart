@@ -157,6 +157,11 @@ void applySlideStep(
       final at = s.integer('to', max: deck.slides.length - 1);
       PmlSections.reorderSlide(deck, deck.slides.indexOf(slide), at);
     case 'slideTransition':
+      if (slide.transition.source?.isOpaqueContainer ?? false) {
+        throw UnsupportedError(
+          'Transition changes do not support markup-compatibility containers',
+        );
+      }
       slide.transition = PmlSlideTransition(
         kind: PmlTransitionKind.values.byName(
           s.string('kind', fallback: slide.transition.kind.name),

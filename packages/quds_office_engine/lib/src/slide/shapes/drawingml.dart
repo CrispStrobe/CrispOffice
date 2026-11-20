@@ -372,7 +372,7 @@ List<PmlShape> parseSlideShapes(
         _ => PmlShapePreset.rect,
       };
     } else if (reader.localName == 'bodyPr' && current != null) {
-      current.textAnchor = switch (reader.getAttribute('anchor')) {
+      current.textAnchor = switch (reader.getAttribute('anchor', namespaceUri: '')) {
         'ctr' => PmlTextAnchor.center,
         'b' => PmlTextAnchor.bottom,
         _ => PmlTextAnchor.top,
@@ -1415,7 +1415,7 @@ void _writeShapeText(XmlWriter writer, PmlShape shape) {
     body.addChild(_textElement('lstStyle'));
   }
   final properties = body.firstChild('bodyPr', namespaceUri: OfficeNamespaces.a);
-  final importedAnchor = switch (properties?.getAttribute('anchor')) {
+  final importedAnchor = switch (properties?.getAttribute('anchor', namespaceUri: '')) {
     'ctr' => PmlTextAnchor.center,
     'b' => PmlTextAnchor.bottom,
     _ => PmlTextAnchor.top,
@@ -1426,11 +1426,17 @@ void _writeShapeText(XmlWriter writer, PmlShape shape) {
       anchorProperties.parent = body;
       body.children.insert(0, anchorProperties);
     }
-    anchorProperties.setAttribute('anchor', switch (shape.textAnchor) {
-      PmlTextAnchor.top => 't',
-      PmlTextAnchor.center => 'ctr',
-      PmlTextAnchor.bottom => 'b',
-    });
+    anchorProperties.removeAttribute('anchor', namespaceUri: '');
+    anchorProperties.attributes.add(
+      XmlAttribute(
+        localName: 'anchor',
+        value: switch (shape.textAnchor) {
+          PmlTextAnchor.top => 't',
+          PmlTextAnchor.center => 'ctr',
+          PmlTextAnchor.bottom => 'b',
+        },
+      ),
+    );
   }
   _writeAutofit(body, shape);
   final bool replace =
