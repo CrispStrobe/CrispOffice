@@ -37,7 +37,8 @@ void main() {
     test('explicit and implicit AND preserve cross-field matching', () {
       for (final input in [
         'from:alice subject:report to:team cc:finance is:unread',
-        'from:alice AND subject:report AND to:team AND cc:finance AND is:unread',
+        'from:alice AND subject:report AND to:team '
+        'AND cc:finance AND is:unread',
       ]) {
         expect(_matches(input, _header()), isTrue);
         expect(_matches(input, _header(read: true)), isFalse);
@@ -95,7 +96,7 @@ void main() {
       );
     });
 
-    test('minus negates a phrase or field without changing embedded hyphens', () {
+    test('minus negates phrases and fields, preserving embedded hyphens', () {
       final document = _header(subject: 'Follow-up planning');
       expect(_matches('follow-up -subject:urgent', document), isTrue);
       expect(_matches('-"follow-up planning"', document), isFalse);
@@ -143,14 +144,14 @@ void main() {
             'is:flagged AND is:read',
           ]) {
             expect(_matches(operands, document), bothTrue);
-            expect(_matches('NOT (' + operands + ')', document), eitherFalse);
+            expect(_matches('NOT ($operands)', document), eitherFalse);
           }
           for (final operands in [
             'is:read OR is:flagged',
             'is:flagged OR is:read',
           ]) {
             expect(_matches(operands, document), eitherTrue);
-            expect(_matches('NOT (' + operands + ')', document), bothFalse);
+            expect(_matches('NOT ($operands)', document), bothFalse);
           }
           expect(_matches('NOT is:read', document), read == false);
           expect(_matches('-is:unread', document), read == true);
@@ -193,7 +194,7 @@ void main() {
       final document = _header();
       for (final field in ['before', 'after', 'on']) {
         for (final prefix in ['NOT ', '-', 'NOT NOT ']) {
-          final input = prefix + field + ':2026-11-20';
+          final input = '$prefix$field:2026-11-20';
           expect(_matches(input, document), isFalse, reason: input);
         }
       }
@@ -320,7 +321,7 @@ void main() {
       }
     });
 
-    test('a matching OR branch cannot hide invalid syntax or unknown fields', () {
+    test('matching OR branches cannot hide errors or unknown fields', () {
       expect(
         () => MailHeaderSearchQuery.parse('subject:report OR body:secret'),
         throwsA(_error(MailHeaderSearchError.unknownField, 18)),
@@ -333,7 +334,7 @@ void main() {
 
     test('new error messages do not disclose query values', () {
       const secret = 'sensitive-recipient@example.test';
-      final input = 'from:' + secret + ' OR';
+      const input = 'from:$secret OR';
       try {
         MailHeaderSearchQuery.parse(input);
         fail('A trailing OR must be rejected.');
@@ -348,32 +349,39 @@ void main() {
 
   group('bounded Boolean grammar', () {
     test('OR cannot bypass the total 32-leaf budget', () {
-      final maximum = List.filled(MailHeaderSearchQuery.maxTerms, 'x').join(' OR ');
-      expect(MailHeaderSearchQuery.parse('(' + maximum + ')').termCount, 32);
-      final oversized = maximum + ' OR x';
+      final maximum = List.filled(
+        MailHeaderSearchQuery.maxTerms,
+        'x',
+      ).join(' OR ');
+      expect(MailHeaderSearchQuery.parse('($maximum)').termCount, 32);
+      final oversized = '$maximum OR x';
       expect(
         () => MailHeaderSearchQuery.parse(oversized),
-        throwsA(_error(MailHeaderSearchError.tooManyTerms, oversized.length - 1)),
+        throwsA(
+          _error(MailHeaderSearchError.tooManyTerms, oversized.length - 1),
+        ),
       );
     });
 
     test('eight nested groups are accepted and a ninth is rejected', () {
-      final maximum = '(' * MailHeaderSearchQuery.maxNestingDepth +
-          'x' +
-          ')' * MailHeaderSearchQuery.maxNestingDepth;
+      final maximum =
+          '${'(' * MailHeaderSearchQuery.maxNestingDepth}'
+          'x'
+          '${')' * MailHeaderSearchQuery.maxNestingDepth}';
       expect(MailHeaderSearchQuery.parse(maximum).termCount, 1);
       expect(_matches(maximum, _header(subject: 'x')), isTrue);
       expect(
-        () => MailHeaderSearchQuery.parse('(' + maximum + ')'),
+        () => MailHeaderSearchQuery.parse('($maximum)'),
         throwsA(_error(MailHeaderSearchError.nestingTooDeep, 8)),
       );
     });
 
     test('unary chains are bounded independently of parenthesis nesting', () {
       for (final operator in ['NOT ', '-']) {
-        final maximum = operator * MailHeaderSearchQuery.maxOperators + 'x';
+        final maximum =
+            '${operator * MailHeaderSearchQuery.maxOperators}x';
         expect(_matches(maximum, _header(subject: 'x')), isTrue);
-        final oversized = operator + maximum;
+        final oversized = '$operator$maximum';
         expect(
           () => MailHeaderSearchQuery.parse(oversized),
           throwsA(
@@ -384,31 +392,37 @@ void main() {
           ),
         );
       }
-      final bothLimits = 'NOT ' * MailHeaderSearchQuery.maxOperators +
-          '(' * MailHeaderSearchQuery.maxNestingDepth +
-          'x' +
-          ')' * MailHeaderSearchQuery.maxNestingDepth;
+      final bothLimits =
+          '${'NOT ' * MailHeaderSearchQuery.maxOperators}'
+          '${'(' * MailHeaderSearchQuery.maxNestingDepth}'
+          'x'
+          '${')' * MailHeaderSearchQuery.maxNestingDepth}';
       expect(_matches(bothLimits, _header(subject: 'x')), isTrue);
     });
 
     test('binary and unary operators share the explicit-operator budget', () {
-      final maximum = 'NOT ' * (MailHeaderSearchQuery.maxOperators - 1) + 'x OR y';
+      final prefix = 'NOT ' * (MailHeaderSearchQuery.maxOperators - 1);
+      final maximum = '${prefix}x OR y';
       expect(MailHeaderSearchQuery.parse(maximum).termCount, 2);
-      final oversized = 'NOT ' + maximum;
+      final oversized = 'NOT $maximum';
       expect(
         () => MailHeaderSearchQuery.parse(oversized),
         throwsA(
-          _error(MailHeaderSearchError.invalidExpression, oversized.indexOf('OR')),
+          _error(
+            MailHeaderSearchError.invalidExpression,
+            oversized.indexOf('OR'),
+          ),
         ),
       );
     });
 
     test('the UTF-16 length budget includes all grouping punctuation', () {
-      final maximum = '(' + '😀' * 511 + ')';
+      final astral = '😀' * 511;
+      final maximum = '($astral)';
       expect(maximum.length, MailHeaderSearchQuery.maxCodeUnits);
       expect(MailHeaderSearchQuery.parse(maximum).termCount, 1);
       expect(
-        () => MailHeaderSearchQuery.parse(maximum + 'x'),
+        () => MailHeaderSearchQuery.parse('${maximum}x'),
         throwsA(_error(MailHeaderSearchError.queryTooLong, 1024)),
       );
     });
