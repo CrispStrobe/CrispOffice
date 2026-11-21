@@ -1,0 +1,147 @@
+{
+  "schema": "quds-main-publication-followup/v1",
+  "qualified_at_utc": "2026-11-21T19:20:55.091374+00:00",
+  "qualified_source_commit": "6426d8877d5a7a2405bdd9060a1b6c443a731cb0",
+  "qualified_tree": "01152f796d3e1bcc0b7a128433661f2f0d4fc33d",
+  "source_input_count": 1251,
+  "source_manifest": "editor-source-before.json",
+  "all_final_command_source_snapshots_identical": true,
+  "all_source_inputs_match_qualified_git_blobs": true,
+  "main_continuations_beyond_finite380_snapshot": [
+    {
+      "main": "a97295f9734eca570392dfead123bebcc93747cd",
+      "incoming_commit": "d7c44360304f9f2bb96e021d36da4db4906b4307",
+      "pr": 335,
+      "scope": "One editor renderer file: bounded proofing and selection path caches."
+    },
+    {
+      "main": "3440c90bc63f9d43edb7e64172bfec3d82036fee",
+      "scope": "Documentation-only typing performance continuation, no additional renderer source."
+    }
+  ],
+  "all_main_continuation_heads_are_ancestors": true,
+  "capture_boundary": "No rescan of other remote branches or PR refs; these are explicit main-lease continuations beyond the separate finite380-ref publication snapshot.",
+  "source_continuity": {
+    "previous_qualified_source": "964783488cfa8079464e7dc80c1df6bb139323f5",
+    "changed_inputs": [
+      "packages/quds_office_editor/lib/src/editor_word/render_word_canvas.dart"
+    ],
+    "added_inputs": [
+      "packages/quds_office_editor/test/word_selection_path_cache_test.dart"
+    ],
+    "removed_inputs": []
+  },
+  "cache_regression": {
+    "initial_source_commit": "d4aa0709f811846cf04a98a99800975a82a92600",
+    "source_path": "packages/quds_office_editor/lib/src/editor_word/render_word_canvas.dart",
+    "initial_source_sha256": "bb65bf05e63e6f07ac3b96e48ccb2e0d9187fe012480507b2b80f59cee31bf88",
+    "regression_test_path": "packages/quds_office_editor/test/word_selection_path_cache_test.dart",
+    "regression_test_sha256": "9e8486dcd10462403b7d7057404b6815e3ecf5431a6688bf44d3e1bc86ff57ff",
+    "initial_exit_code": 1,
+    "corrected_exit_code": 0,
+    "initial_failure": "Warm retained canvas differs from fresh canvas after a table-band selection change while page and caret stay fixed; first differing byte108080 (31 versus36).",
+    "initial_logs": [
+      "cache-reproduction.stdout",
+      "cache-reproduction.stderr"
+    ],
+    "corrected_logs": [
+      "cache-corrected.stdout",
+      "cache-corrected.stderr"
+    ],
+    "correction": "Use selectedTableBand?.table as selection geometry cache dependency instead of the redundant allowsSelection flag (the method already returns when selection is disallowed).",
+    "corrected_source_sha256": "f1645453fca387748ae4b120e2eac782f212ba4845df2d2ad1e98775fcd7ba7e"
+  },
+  "correction": "Selection-path geometry depends on selectedTableBand.table. Replace redundant allowsSelection boolean cache component with the active table identity, retaining the bounded cache and main implementation.",
+  "checks": {
+    "editor": {
+      "mode": "editor",
+      "cwd": "/workspace/scratch/faef92d47725/quds_office_suite/packages/quds_office_editor",
+      "command": [
+        "flutter",
+        "test",
+        "--no-pub",
+        "--reporter=json",
+        "--concurrency=1",
+        "test/word_selection_paint_test.dart",
+        "test/word_selection_path_cache_test.dart",
+        "test/word_proofing_geometry_test.dart",
+        "test/word_proofing_navigation_test.dart",
+        "test/word_header_footer_navigation_test.dart",
+        "test/word_hyphenation_paint_test.dart",
+        "test/word_hyphenation_caret_test.dart",
+        "test/word_underline_paint_test.dart",
+        "test/word_live_review_selection_test.dart",
+        "test/word_table_grid_history_test.dart"
+      ],
+      "started_utc": "2026-11-21T19:19:11Z",
+      "source_input_count": 1251,
+      "editor_suites": 10,
+      "incoming_main": "a97295f9734eca570392dfead123bebcc93747cd",
+      "initial_merge_checkpoint": "d4aa0709f811846cf04a98a99800975a82a92600",
+      "exit_code": 0,
+      "finished_utc": "2026-11-21T19:19:32Z",
+      "source_unchanged": true,
+      "test_summary": {
+        "total": 76,
+        "success": 76,
+        "skipped": 0,
+        "failure": 0,
+        "error": 0
+      }
+    },
+    "analyze": {
+      "mode": "analyze",
+      "cwd": "/workspace/scratch/faef92d47725/quds_office_suite/packages/quds_office_editor",
+      "command": [
+        "dart",
+        "analyze",
+        "--fatal-infos",
+        "lib/src/editor_word/render_word_canvas.dart",
+        "test/word_selection_path_cache_test.dart"
+      ],
+      "started_utc": "2026-11-21T19:19:12Z",
+      "source_input_count": 1251,
+      "editor_suites": 10,
+      "incoming_main": "a97295f9734eca570392dfead123bebcc93747cd",
+      "initial_merge_checkpoint": "d4aa0709f811846cf04a98a99800975a82a92600",
+      "exit_code": 0,
+      "finished_utc": "2026-11-21T19:19:31Z",
+      "source_unchanged": true
+    },
+    "format": {
+      "mode": "format",
+      "cwd": "/workspace/scratch/faef92d47725/quds_office_suite/packages/quds_office_editor",
+      "command": [
+        "dart",
+        "format",
+        "--output=none",
+        "--set-exit-if-changed",
+        "lib/src/editor_word/render_word_canvas.dart",
+        "test/word_selection_path_cache_test.dart"
+      ],
+      "started_utc": "2026-11-21T19:19:31Z",
+      "source_input_count": 1251,
+      "editor_suites": 10,
+      "incoming_main": "a97295f9734eca570392dfead123bebcc93747cd",
+      "initial_merge_checkpoint": "d4aa0709f811846cf04a98a99800975a82a92600",
+      "exit_code": 0,
+      "finished_utc": "2026-11-21T19:19:32Z",
+      "source_unchanged": true
+    }
+  },
+  "final_editor_tests": 76,
+  "final_editor_suites": 10,
+  "strict_analyzed_dart_paths": 2,
+  "formatted_dart_paths": 2,
+  "runtime": {
+    "flutter": "3.47.8",
+    "dart": "3.13.7"
+  },
+  "boundaries": [
+    "Prior1725-engine/19ODT-editor gate is retained and engine inputs are byte-identical, so it was not repeated.",
+    "The76-case gate includes existing Linux selection goldens, proofing pixels, header/footer navigation, hyphenation, underline, selection and table-history cases.",
+    "No GitHub Actions were queried or awaited.",
+    "Runtime agent performs final Studio Mail qualification separately after this isolated renderer run.",
+    "The focused regression pass overlaps the final76-case run; do not count it twice."
+  ]
+}

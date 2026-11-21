@@ -774,8 +774,8 @@ class RenderWordCanvas extends RenderBox implements MouseTrackerAnnotation {
       <_RunPaintKey, TextPainter>{};
   final Map<(int, int, int, int), Path> _proofingPaths =
       <(int, int, int, int), Path>{};
-  final Map<(LaidOutPage, int, int, int, int, int), Path> _selectionPaths =
-      <(LaidOutPage, int, int, int, int, int), Path>{};
+  final Map<(LaidOutPage, int, int, int, int, WmlTable?), Path>
+  _selectionPaths = <(LaidOutPage, int, int, int, int, WmlTable?), Path>{};
 
   @override
   void dispose() {
@@ -4021,7 +4021,8 @@ class RenderWordCanvas extends RenderBox implements MouseTrackerAnnotation {
       caret.selectionAnchor,
       caret.paragraphIndex,
       caret.logicalIndex,
-      config.allowsSelection ? 1 : 0,
+      // A table band suppresses that table's text fill without moving the caret.
+      selectedTableBand?.table,
     );
     var band = _selectionPaths[key];
     if (band == null) {
