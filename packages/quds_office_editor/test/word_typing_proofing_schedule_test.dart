@@ -295,6 +295,43 @@ void main() {
     await _drain(tester, h);
   });
 
+  testWidgets('other marks in the paragraph being typed do not blink', (
+    tester,
+  ) async {
+    final h = _setup();
+    await _settle(tester, h.controller);
+    // Paragraph 0: "Absatz 0 hat einen Feler und und mehr."
+    expect(h.painted(0, 'spelling'), isTrue);
+    expect(h.painted(0, 'repeat'), isTrue);
+    h.caret(0, 0);
+    var notifications = 0;
+    void count() => notifications++;
+    h.session.addListener(count);
+    addTearDown(() => h.session.removeListener(count));
+    // Typing before the marks moves them; they stay painted throughout.
+    for (final char in 'Neu '.split('')) {
+      h.controller.insertText(char);
+      await tester.pump(const Duration(milliseconds: 100));
+      expect(h.painted(0, 'spelling'), isTrue);
+      expect(h.painted(0, 'repeat'), isTrue);
+    }
+    final marks = h.session.findingsByParagraph[h.paragraph(0)]!;
+    expect(
+      marks.map((m) => h.paragraph(0).text.substring(m.start, m.end)),
+      containsAll(<String>['Feler', 'und und']),
+    );
+    await tester.pump(_afterWord);
+    expect(h.session.passCountsByTrigger['word'], 1);
+    expect(notifications, 0, reason: 'the word check changed no mark');
+    // Extending a flagged word drops its mark until it is checked again.
+    h.caret(0, 'Neu Absatz 0 hat einen Feler'.length);
+    h.controller.insertText('n');
+    await tester.pump();
+    expect(h.painted(0, 'spelling'), isFalse);
+    expect(h.painted(0, 'repeat'), isTrue);
+    await _drain(tester, h);
+  });
+
   testWidgets('continuous typing never forces a pass', (tester) async {
     final h = _setup();
     await _settle(tester, h.controller);
