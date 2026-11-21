@@ -4,6 +4,14 @@ All notable changes to `quds_office_editor` are documented here.
 
 ## Unreleased
 
+- Saved-mail search adds **Refresh results** and opt-in 30-second foreground
+  updates. Replace bounded multi-account results atomically, preserve the
+  opened reader when its account/message identity survives, and pause updates
+  on incomplete coverage, failure or app suspension. Query/scope changes and
+  Close fence and drain pending work. Refresh reads saved headers only; it
+  never downloads mail or reloads a retained body implicitly. EN/DE/AR controls
+  explain local coverage and recovery.
+
 - Retain native Word font baseline positions when grouping painted glyphs and
   fingerprinting document/history/proofing state. Raised and lowered text keep
   separate painting groups and a position-only change invalidates stale work.

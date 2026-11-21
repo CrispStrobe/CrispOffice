@@ -93,6 +93,11 @@ final class StudioMailCachedSearchSession {
 
   bool get hasMore => !_closed && _index < _accounts.length;
 
+  /// Whether this session still owns its query/scope and accepts work. Unlike
+  /// the host's [isCurrent] callback, this also fences an explicitly closed
+  /// session, including one closed after its final page.
+  bool get isActive => _current;
+
   List<StudioMailCachedSearchCoverage> get coverage => List.unmodifiable([
     for (final record in _accounts) ?_coverage[record.id],
   ]);

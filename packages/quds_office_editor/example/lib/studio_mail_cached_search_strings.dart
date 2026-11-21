@@ -27,6 +27,48 @@ extension StudioMailCachedSearchStrings on StudioStrings {
   String get mailCachedSearchStart => _text('Search', 'Suchen', 'بحث');
   String get mailCachedSearchMore =>
       _text('Search more', 'Weitersuchen', 'متابعة البحث');
+  String get mailCachedSearchRefresh =>
+      _text('Refresh results', 'Ergebnisse aktualisieren', 'تحديث النتائج');
+  String get mailCachedSearchAutoRefresh => _text(
+    'Refresh every 30 seconds',
+    'Alle 30 Sekunden aktualisieren',
+    'تحديث كل 30 ثانية',
+  );
+  String get mailCachedSearchRefreshAbout => _text(
+    'Updates saved headers while this search is open and the app is active. No mail is downloaded.',
+    'Aktualisiert gespeicherte Nachrichtenköpfe, solange diese Suche geöffnet und die App aktiv ist. Es werden keine E-Mails heruntergeladen.',
+    'يحدّث الرؤوس المحفوظة أثناء فتح هذا البحث ونشاط التطبيق. لا يتم تنزيل أي بريد.',
+  );
+  String get mailCachedSearchRefreshIncomplete => _text(
+    'Complete the search before enabling automatic updates. Refresh results checks the selected saved mail again.',
+    'Schließen Sie die Suche ab, bevor Sie automatische Aktualisierungen aktivieren. „Ergebnisse aktualisieren“ prüft die ausgewählten gespeicherten E-Mails erneut.',
+    'أكمل البحث قبل تفعيل التحديث التلقائي. يفحص «تحديث النتائج» البريد المحفوظ المحدد مجددًا.',
+  );
+  String get mailCachedSearchRefreshSuspended => _text(
+    'Updates are paused while the app is inactive.',
+    'Aktualisierungen sind pausiert, während die App inaktiv ist.',
+    'التحديثات متوقفة مؤقتًا أثناء عدم نشاط التطبيق.',
+  );
+  String get mailCachedSearchRefreshed => _text(
+    'Results refreshed from saved mail.',
+    'Ergebnisse aus gespeicherten E-Mails aktualisiert.',
+    'تم تحديث النتائج من البريد المحفوظ.',
+  );
+  String get mailCachedSearchRefreshPartial => _text(
+    'Some accounts could not be checked. Automatic updates are off; review coverage and refresh to retry.',
+    'Einige Konten konnten nicht geprüft werden. Automatische Aktualisierungen sind ausgeschaltet; prüfen Sie den Suchumfang und versuchen Sie die Aktualisierung erneut.',
+    'تعذر فحص بعض الحسابات. التحديث التلقائي متوقف؛ راجع نطاق البحث وحدّث للمحاولة مجددًا.',
+  );
+  String get mailCachedSearchRefreshLimited => _text(
+    'The refresh reached its local search limit. Automatic updates are off. Search more or narrow the query to finish.',
+    'Die Aktualisierung hat ihre lokale Suchgrenze erreicht. Automatische Aktualisierungen sind ausgeschaltet. Setzen Sie die Suche fort oder grenzen Sie die Abfrage ein.',
+    'بلغ التحديث حد البحث المحلي. التحديث التلقائي متوقف. تابع البحث أو حدّد العبارة بدقة أكبر لإكماله.',
+  );
+  String get mailCachedSearchSelectionRemoved => _text(
+    'The opened message is no longer in these results. Choose another message to continue reading.',
+    'Die geöffnete Nachricht ist nicht mehr in diesen Ergebnissen enthalten. Wählen Sie eine andere Nachricht zum Weiterlesen.',
+    'لم تعد الرسالة المفتوحة ضمن هذه النتائج. اختر رسالة أخرى لمتابعة القراءة.',
+  );
   String get mailCachedSearchStop =>
       _text('Cancel search', 'Suche abbrechen', 'إلغاء البحث');
   String get mailCachedSearchHelp => _text(
