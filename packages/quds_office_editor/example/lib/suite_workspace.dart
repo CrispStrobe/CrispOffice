@@ -522,12 +522,20 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     };
   }
 
+  /// Editor labels in the Studio language; German also switches the
+  /// editor's review, proofing and notes chrome to German.
+  OfficeStrings get _officeStrings => switch (_language) {
+    StudioLanguage.en => OfficeStrings.english,
+    StudioLanguage.de => OfficeStrings.german,
+    StudioLanguage.ar => OfficeStrings.arabic,
+  };
+
   OfficeSurfaceConfig get _config {
     final Object key = (
       _app,
       _look,
       _mode,
-      _arabic,
+      _language,
       _wordRulers,
       _sheetGridlines,
       _sheetHeaders,
@@ -549,7 +557,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
       showSlideHandles: _slideHandles,
       lengthUnit: _lengthUnit,
       textDirection: _arabic ? TextDirection.rtl : TextDirection.ltr,
-      strings: _arabic ? OfficeStrings.arabic : OfficeStrings.english,
+      strings: _officeStrings,
       formFactor: OfficeFormFactor.automatic,
       density: OfficeDensity.comfortable,
       adaptiveChrome: true,
@@ -7325,9 +7333,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   }
 
   StudioRibbonGroup _clipboardGroup() {
-    final OfficeStrings strings = _arabic
-        ? OfficeStrings.arabic
-        : OfficeStrings.english;
+    final OfficeStrings strings = _officeStrings;
     return StudioRibbonGroup(
       id: 'clipboard',
       title: _t('Clipboard', StudioStrings.de('Clipboard'), 'الحافظة'),
@@ -7361,9 +7367,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   }
 
   Widget _pasteOptionsBar(bool dark) {
-    final OfficeStrings strings = _arabic
-        ? OfficeStrings.arabic
-        : OfficeStrings.english;
+    final OfficeStrings strings = _officeStrings;
     return Material(
       color: dark ? const Color(0xFF333333) : const Color(0xFFF3F3F3),
       child: SizedBox(
