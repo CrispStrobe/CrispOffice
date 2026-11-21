@@ -916,6 +916,9 @@ class _QudsWordEditorState extends State<QudsWordEditor>
       return KeyEventResult.handled;
     }
     if (event.logicalKey == LogicalKeyboardKey.f7) _dismissContextMenu();
+    if (node.hasPrimaryFocus && (_c.onShortcutKeyEvent?.call(event) ?? false)) {
+      return KeyEventResult.handled;
+    }
     if (officeHandleDocumentShortcut(_c, event)) {
       return KeyEventResult.handled;
     }
@@ -1716,6 +1719,9 @@ class _QudsSheetEditorState extends State<QudsSheetEditor> {
     if (event is! KeyDownEvent && !repeat) {
       return KeyEventResult.ignored;
     }
+    if (node.hasPrimaryFocus && (_c.onShortcutKeyEvent?.call(event) ?? false)) {
+      return KeyEventResult.handled;
+    }
     if (repeat) {
       if (_isSheetNavKey(event.logicalKey)) {
         _stopNavRepeat();
@@ -2458,6 +2464,11 @@ class _QudsSlideEditorState extends State<QudsSlideEditor>
   }
 
   KeyEventResult _onSlideKey(FocusNode node, KeyEvent event) {
+    if ((event is KeyDownEvent || event is KeyRepeatEvent) &&
+        node.hasPrimaryFocus &&
+        (_c.onShortcutKeyEvent?.call(event) ?? false)) {
+      return KeyEventResult.handled;
+    }
     if (event is! KeyDownEvent) {
       return KeyEventResult.ignored;
     }

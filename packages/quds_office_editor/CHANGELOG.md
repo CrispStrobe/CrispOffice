@@ -4,6 +4,14 @@ All notable changes to `quds_office_editor` are documented here.
 
 ## Unreleased
 
+- Give Studio's configured keyboard shortcuts priority at the focused Word,
+  Sheet and Slide surfaces through the optional
+  `OfficeController.onShortcutKeyEvent` host hook. Retire replaced defaults and
+  aliases, dispatch conflicting overrides once, and preserve native text-field
+  editing, composition guards, reserved Zotero commands and standalone editor
+  defaults. Qualify the combined incoming Mail/Zotero changes with 252 Flutter
+  tests; see `docs/validation/word-vba-comparison-colors-20261121/README.md`.
+
 - Add English, German and Arabic help for shared Mail range selection. Search
   synchronized loaded From/To/Cc headers by both display names and mailbox
   addresses, retaining multiple-address and empty-name behavior without

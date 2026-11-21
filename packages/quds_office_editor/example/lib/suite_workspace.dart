@@ -651,7 +651,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
             onAbout: () => _showNativeDialog(_showAbout),
             onSettings: () => _showNativeDialog(_openSettings),
             child: CallbackShortcuts(
-              bindings: _withShortcutOverrides(_baseShortcutBindings()),
+              bindings: _reservedShortcutBindings(),
               child: StudioWindowScope(
                 onCloseRequested: _confirmCloseWorkspace,
                 onChanged: () {
@@ -661,7 +661,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
                 },
                 child: Focus(
                   autofocus: true,
-                  onKeyEvent: _onWorkspaceDirectionKey,
+                  onKeyEvent: _onWorkspaceKey,
                   child: Directionality(
                     textDirection: _arabic
                         ? TextDirection.rtl
@@ -828,80 +828,43 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     }
   }
 
-  Map<ShortcutActivator, VoidCallback> _baseShortcutBindings() =>
-      <ShortcutActivator, VoidCallback>{
-    if (StudioWindow
-        .isDesktop) ...<ShortcutActivator, VoidCallback>{
+  Map<ShortcutActivator, VoidCallback>
+  _baseShortcutBindings() => <ShortcutActivator, VoidCallback>{
+    if (StudioWindow.isDesktop) ...<ShortcutActivator, VoidCallback>{
       _fileShortcut(LogicalKeyboardKey.keyN): _newActiveFile,
       _fileShortcut(LogicalKeyboardKey.keyO): _openFile,
       _fileShortcut(LogicalKeyboardKey.keyW): StudioWindow.close,
     },
-    const SingleActivator(
-      LogicalKeyboardKey.keyS,
-      control: true,
-      shift: true,
-    ): _saveFileAs,
-    const SingleActivator(
-      LogicalKeyboardKey.keyS,
-      meta: true,
-      shift: true,
-    ): _saveFileAs,
-    const SingleActivator(LogicalKeyboardKey.keyZ, control: true):
-        _undo,
-    const SingleActivator(LogicalKeyboardKey.keyZ, meta: true):
-        _undo,
-    const SingleActivator(LogicalKeyboardKey.keyY, control: true):
+    const SingleActivator(LogicalKeyboardKey.keyS, control: true, shift: true):
+        _saveFileAs,
+    const SingleActivator(LogicalKeyboardKey.keyS, meta: true, shift: true):
+        _saveFileAs,
+    const SingleActivator(LogicalKeyboardKey.keyZ, control: true): _undo,
+    const SingleActivator(LogicalKeyboardKey.keyZ, meta: true): _undo,
+    const SingleActivator(LogicalKeyboardKey.keyY, control: true): _redo,
+    const SingleActivator(LogicalKeyboardKey.keyY, meta: true): _redo,
+    const SingleActivator(LogicalKeyboardKey.keyZ, control: true, shift: true):
         _redo,
-    const SingleActivator(LogicalKeyboardKey.keyY, meta: true):
+    const SingleActivator(LogicalKeyboardKey.keyZ, meta: true, shift: true):
         _redo,
-    const SingleActivator(
-      LogicalKeyboardKey.keyZ,
-      control: true,
-      shift: true,
-    ): _redo,
-    const SingleActivator(
-      LogicalKeyboardKey.keyZ,
-      meta: true,
-      shift: true,
-    ): _redo,
-    const SingleActivator(LogicalKeyboardKey.keyA, control: true):
-        _selectAll,
-    const SingleActivator(LogicalKeyboardKey.keyA, meta: true):
-        _selectAll,
-    const SingleActivator(LogicalKeyboardKey.keyC, control: true):
-        _copy,
-    const SingleActivator(LogicalKeyboardKey.keyC, meta: true):
-        _copy,
+    const SingleActivator(LogicalKeyboardKey.keyA, control: true): _selectAll,
+    const SingleActivator(LogicalKeyboardKey.keyA, meta: true): _selectAll,
+    const SingleActivator(LogicalKeyboardKey.keyC, control: true): _copy,
+    const SingleActivator(LogicalKeyboardKey.keyC, meta: true): _copy,
     if (studioZoteroDesktopAvailable) ...{
-      const SingleActivator(
-        LogicalKeyboardKey.keyC,
-        control: true,
-        alt: true,
-      ): _addEditZoteroCitation,
-      const SingleActivator(
-        LogicalKeyboardKey.keyC,
-        meta: true,
-        alt: true,
-      ): _addEditZoteroCitation,
-      const SingleActivator(
-        LogicalKeyboardKey.keyR,
-        control: true,
-        alt: true,
-      ): _refreshZoteroCitations,
-      const SingleActivator(
-        LogicalKeyboardKey.keyR,
-        meta: true,
-        alt: true,
-      ): _refreshZoteroCitations,
+      const SingleActivator(LogicalKeyboardKey.keyC, control: true, alt: true):
+          _addEditZoteroCitation,
+      const SingleActivator(LogicalKeyboardKey.keyC, meta: true, alt: true):
+          _addEditZoteroCitation,
+      const SingleActivator(LogicalKeyboardKey.keyR, control: true, alt: true):
+          _refreshZoteroCitations,
+      const SingleActivator(LogicalKeyboardKey.keyR, meta: true, alt: true):
+          _refreshZoteroCitations,
     },
-    const SingleActivator(LogicalKeyboardKey.keyX, control: true):
-        _cut,
-    const SingleActivator(LogicalKeyboardKey.keyX, meta: true):
-        _cut,
-    const SingleActivator(LogicalKeyboardKey.keyV, control: true):
-        _paste,
-    const SingleActivator(LogicalKeyboardKey.keyV, meta: true):
-        _paste,
+    const SingleActivator(LogicalKeyboardKey.keyX, control: true): _cut,
+    const SingleActivator(LogicalKeyboardKey.keyX, meta: true): _cut,
+    const SingleActivator(LogicalKeyboardKey.keyV, control: true): _paste,
+    const SingleActivator(LogicalKeyboardKey.keyV, meta: true): _paste,
     const SingleActivator(
       LogicalKeyboardKey.keyV,
       control: true,
@@ -914,71 +877,52 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
       shift: true,
     ): () =>
         _pasteMode(OfficePasteMode.keepTextOnly),
-    const SingleActivator(LogicalKeyboardKey.f5):
-        _slideShowFromStart,
+    const SingleActivator(LogicalKeyboardKey.f5): _slideShowFromStart,
     const SingleActivator(LogicalKeyboardKey.f5, shift: true):
         _slideShowFromCurrent,
-    const SingleActivator(LogicalKeyboardKey.escape):
-        _workspaceEscape,
-    const SingleActivator(LogicalKeyboardKey.keyF, control: true):
-        _openFind,
-    const SingleActivator(LogicalKeyboardKey.keyF, meta: true):
-        _openFind,
-    const SingleActivator(LogicalKeyboardKey.keyH, control: true):
-        _openReplace,
-    const SingleActivator(LogicalKeyboardKey.keyH, meta: true):
-        _openReplace,
-    const SingleActivator(LogicalKeyboardKey.keyP, control: true):
-        _exportPdf,
-    const SingleActivator(LogicalKeyboardKey.keyP, meta: true):
-        _exportPdf,
+    const SingleActivator(LogicalKeyboardKey.escape): _workspaceEscape,
+    const SingleActivator(LogicalKeyboardKey.keyF, control: true): _openFind,
+    const SingleActivator(LogicalKeyboardKey.keyF, meta: true): _openFind,
+    const SingleActivator(LogicalKeyboardKey.keyH, control: true): _openReplace,
+    const SingleActivator(LogicalKeyboardKey.keyH, meta: true): _openReplace,
+    const SingleActivator(LogicalKeyboardKey.keyP, control: true): _exportPdf,
+    const SingleActivator(LogicalKeyboardKey.keyP, meta: true): _exportPdf,
     const SingleActivator(LogicalKeyboardKey.f3): _findNext,
-    const SingleActivator(LogicalKeyboardKey.f3, shift: true):
-        _findPrevious,
-    const SingleActivator(LogicalKeyboardKey.f1):
-        _openPdfSampleGallery,
+    const SingleActivator(LogicalKeyboardKey.f3, shift: true): _findPrevious,
+    const SingleActivator(LogicalKeyboardKey.f1): _openPdfSampleGallery,
     const SingleActivator(LogicalKeyboardKey.f7): _showSpelling,
     const SingleActivator(LogicalKeyboardKey.f7, shift: true):
         _word.requestThesaurus,
-    const SingleActivator(LogicalKeyboardKey.keyB, control: true):
-        _toggleBold,
-    const SingleActivator(LogicalKeyboardKey.keyB, meta: true):
-        _toggleBold,
+    const SingleActivator(LogicalKeyboardKey.keyB, control: true): _toggleBold,
+    const SingleActivator(LogicalKeyboardKey.keyB, meta: true): _toggleBold,
     const SingleActivator(LogicalKeyboardKey.keyI, control: true):
         _toggleItalic,
-    const SingleActivator(LogicalKeyboardKey.keyI, meta: true):
-        _toggleItalic,
+    const SingleActivator(LogicalKeyboardKey.keyI, meta: true): _toggleItalic,
     const SingleActivator(LogicalKeyboardKey.keyU, control: true):
         _toggleUnderline,
     const SingleActivator(LogicalKeyboardKey.keyU, meta: true):
         _toggleUnderline,
-    const SingleActivator(LogicalKeyboardKey.keyS, control: true):
-        _saveFile,
-    const SingleActivator(LogicalKeyboardKey.keyS, meta: true):
-        _saveFile,
+    const SingleActivator(LogicalKeyboardKey.keyS, control: true): _saveFile,
+    const SingleActivator(LogicalKeyboardKey.keyS, meta: true): _saveFile,
     const SingleActivator(LogicalKeyboardKey.equal, control: true):
         _shortcutZoomIn,
     const SingleActivator(LogicalKeyboardKey.equal, meta: true):
         _shortcutZoomIn,
-    const SingleActivator(
-      LogicalKeyboardKey.numpadAdd,
-      control: true,
-    ): _shortcutZoomIn,
+    const SingleActivator(LogicalKeyboardKey.numpadAdd, control: true):
+        _shortcutZoomIn,
     const SingleActivator(LogicalKeyboardKey.add, control: true):
         _shortcutZoomIn,
     const SingleActivator(LogicalKeyboardKey.minus, control: true):
         _shortcutZoomOut,
     const SingleActivator(LogicalKeyboardKey.minus, meta: true):
         _shortcutZoomOut,
-    const SingleActivator(
-      LogicalKeyboardKey.numpadSubtract,
-      control: true,
-    ): _shortcutZoomOut,
+    const SingleActivator(LogicalKeyboardKey.numpadSubtract, control: true):
+        _shortcutZoomOut,
     const SingleActivator(LogicalKeyboardKey.digit0, control: true):
         _shortcutZoomReset,
     const SingleActivator(LogicalKeyboardKey.digit0, meta: true):
         _shortcutZoomReset,
-      };
+  };
 
   static String _shortcutCode(SingleActivator key) => StudioShortcutBinding(
     keyId: key.trigger.keyId,
@@ -1031,8 +975,9 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   }
 
   Map<ShortcutActivator, VoidCallback> _withShortcutOverrides(
-    Map<ShortcutActivator, VoidCallback> base,
-  ) {
+    Map<ShortcutActivator, VoidCallback> base, {
+    void Function(String id, VoidCallback callback)? onMatch,
+  }) {
     // Mail owns its focused key handlers. Keep the incoming empty shortcut map
     // so native text editing can reach Flutter's default text shortcuts.
     if (_mailOpen) return const <ShortcutActivator, VoidCallback>{};
@@ -1042,8 +987,8 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
         for (final alias in aliases) _shortcutCode(alias),
     };
     base.removeWhere(
-      (key, _) => key is SingleActivator &&
-          aliasCodes.contains(_shortcutCode(key)),
+      (key, _) =>
+          key is SingleActivator && aliasCodes.contains(_shortcutCode(key)),
     );
     final callbacks = _shortcutCallbacks();
     if (!StudioWindow.isDesktop) {
@@ -1054,7 +999,11 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     final guarded = <String, VoidCallback>{
       for (final entry in callbacks.entries)
         entry.key: () {
-          if (_shortcutAllowed(entry.key)) entry.value();
+          if (onMatch != null) {
+            onMatch(entry.key, entry.value);
+          } else if (_shortcutAllowed(entry.key)) {
+            entry.value();
+          }
         },
     };
     final merged = StudioShortcutCatalog.mergeBindings(
@@ -1079,6 +1028,122 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     return merged;
   }
 
+  Map<ShortcutActivator, VoidCallback> _reservedShortcutBindings() {
+    if (_mailOpen) return const <ShortcutActivator, VoidCallback>{};
+    final base = _baseShortcutBindings();
+    final reserved = _reservedShortcutCodes(base);
+    return {
+      for (final entry in base.entries)
+        if (entry.key is! SingleActivator ||
+            reserved.contains(_shortcutCode(entry.key as SingleActivator)))
+          entry.key: entry.value,
+    };
+  }
+
+  Set<String> _managedShortcutCodes(Map<ShortcutActivator, VoidCallback> base) {
+    final overrides = _acceptedShortcutOverrides(base);
+    final callbacks = _shortcutCallbacks();
+    if (!StudioWindow.isDesktop) {
+      callbacks.remove('file.new');
+      callbacks.remove('file.open');
+      callbacks.remove('file.close');
+    }
+    return {
+      for (final action in StudioShortcutCatalog.actions)
+        if (callbacks.containsKey(action.id)) ...{
+          for (final mac in [false, true])
+            if (action.defaultBinding(mac: mac) case final binding?)
+              binding.encode(),
+          if (overrides[action.id] case final stored?)
+            StudioShortcutBinding.tryParse(stored)!.encode(),
+          for (final alias
+              in _shortcutAliases[action.id] ?? <SingleActivator>[])
+            _shortcutCode(alias),
+        },
+    };
+  }
+
+  KeyEventResult _dispatchConfiguredShortcut(
+    KeyEvent event, {
+    OfficeController? document,
+  }) {
+    if (event is! KeyDownEvent && event is! KeyRepeatEvent) {
+      return KeyEventResult.ignored;
+    }
+    final keyboard = HardwareKeyboard.instance;
+    final code = StudioShortcutBinding(
+      keyId: event.logicalKey.keyId,
+      control: keyboard.isControlPressed,
+      shift: keyboard.isShiftPressed,
+      alt: keyboard.isAltPressed,
+      meta: keyboard.isMetaPressed,
+    ).encode();
+    final base = _baseShortcutBindings();
+    if (!_managedShortcutCodes(base).contains(code)) {
+      return KeyEventResult.ignored;
+    }
+    // A document must not fall back to an old default after its host retired
+    // the chord. Native text fields, however, retain their own default keys.
+    final declined = document == null
+        ? KeyEventResult.ignored
+        : KeyEventResult.handled;
+    if (document != null) _workspaceDirectionChord.reset();
+    if (_mailOpen ||
+        !mounted ||
+        !_wordRouteIsCurrent ||
+        (document != null &&
+            (_app == SuiteApp.pdf || !identical(document, _active)))) {
+      return declined;
+    }
+    if (document != null) {
+      final composing = switch (document) {
+        WordEditorController controller => controller.input.composing,
+        SheetEditorController controller =>
+          controller.cellEditor.bridge.composing,
+        SlideEditorController controller =>
+          controller.textEditor.bridge.composing,
+        _ => TextRange.empty,
+      };
+      if (composing.isValid && !composing.isCollapsed) return declined;
+    }
+    var dispatched = false;
+    final bindings = _withShortcutOverrides(
+      base,
+      onMatch: (id, callback) {
+        if (_shortcutAllowed(id)) {
+          dispatched = true;
+          callback();
+        }
+      },
+    );
+    for (final entry in bindings.entries) {
+      if (entry.key.accepts(event, keyboard)) {
+        entry.value();
+        break;
+      }
+    }
+    if (dispatched) _workspaceDirectionChord.reset();
+    return dispatched ? KeyEventResult.handled : declined;
+  }
+
+  EditableText? get _focusedTextInput {
+    final focusContext = FocusManager.instance.primaryFocus?.context;
+    final widget = focusContext?.widget;
+    return widget is EditableText
+        ? widget
+        : focusContext?.findAncestorWidgetOfExactType<EditableText>();
+  }
+
+  KeyEventResult _onWorkspaceKey(FocusNode node, KeyEvent event) {
+    final shortcut = _dispatchConfiguredShortcut(event);
+    if (shortcut != KeyEventResult.ignored) return shortcut;
+    if (_focusedTextInput != null) {
+      _workspaceDirectionChord.reset();
+      return KeyEventResult.ignored;
+    }
+    return _onWorkspaceDirectionKey(node, event);
+  }
+
   bool _shortcutAllowed(String id) {
     if (!mounted) return false;
     // Native text Actions remain valid in Mail or a dialog. Their fallback
@@ -1086,10 +1151,9 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     if (id.startsWith('edit.')) return true;
     if (_mailOpen || !_wordRouteIsCurrent) return false;
     if (id.startsWith('file.')) return _fileActionsAvailable;
-    final focusContext = FocusManager.instance.primaryFocus?.context;
-    final textInput = focusContext?.widget is EditableText ||
-        focusContext?.findAncestorWidgetOfExactType<EditableText>() != null;
-    final commentFormatting = id == 'format.bold' ||
+    final textInput = _focusedTextInput != null;
+    final commentFormatting =
+        id == 'format.bold' ||
         id == 'format.italic' ||
         id == 'format.underline';
     if (id.startsWith('format.') ||
@@ -1124,8 +1188,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
       const CopySelectionTextIntent.cut(SelectionChangedCause.keyboard),
       _cut,
     ),
-    'edit.copy': () =>
-        _dispatchTextAction(CopySelectionTextIntent.copy, _copy),
+    'edit.copy': () => _dispatchTextAction(CopySelectionTextIntent.copy, _copy),
     'edit.paste': () => _dispatchTextAction(
       const PasteTextIntent(SelectionChangedCause.keyboard),
       _paste,
@@ -1860,7 +1923,10 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
                   return ListTile(
                     dense: true,
                     title: Text(action.label),
-                    subtitle: Text(binding?.label ?? _t('Not assigned', 'Nicht zugewiesen', 'غير معيّن')),
+                    subtitle: Text(
+                      binding?.label ??
+                          _t('Not assigned', 'Nicht zugewiesen', 'غير معيّن'),
+                    ),
                     trailing: Wrap(
                       spacing: 4,
                       children: [
@@ -1925,13 +1991,15 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
       action: action,
       current: current,
       validate: (binding) =>
-          _reservedShortcutCodes(_baseShortcutBindings()).contains(binding.encode())
-              ? _t(
-                  'This shortcut is reserved for another workspace command.',
-                  'Dieses Kürzel ist für einen anderen Arbeitsbereichsbefehl reserviert.',
-                  'هذا الاختصار محجوز لأمر آخر في مساحة العمل.',
-                )
-              : null,
+          _reservedShortcutCodes(
+            _baseShortcutBindings(),
+          ).contains(binding.encode())
+          ? _t(
+              'This shortcut is reserved for another workspace command.',
+              'Dieses Kürzel ist für einen anderen Arbeitsbereichsbefehl reserviert.',
+              'هذا الاختصار محجوز لأمر آخر في مساحة العمل.',
+            )
+          : null,
     ),
   );
 
@@ -3979,8 +4047,8 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
         localTransport: transport.supportsLocal ? transport.send : null,
         initialCommand: command,
         closeAfterCommand: command != null,
-        isCurrent: () => _zoteroHostIsCurrent &&
-            hostGeneration == _zoteroHostGeneration,
+        isCurrent: () =>
+            _zoteroHostIsCurrent && hostGeneration == _zoteroHostGeneration,
       );
     } finally {
       transport.dispose();
@@ -7405,6 +7473,9 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   }
 
   void _bindHostActions(OfficeController controller) {
+    controller.onShortcutKeyEvent = (event) =>
+        _dispatchConfiguredShortcut(event, document: controller) !=
+        KeyEventResult.ignored;
     if (controller is WordEditorController) {
       // Harper remains local and initializes only for an English request.
       // Missing optional native/web artifacts are reported in the review UI.
