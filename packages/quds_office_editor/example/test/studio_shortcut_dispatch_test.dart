@@ -393,8 +393,8 @@ void main() {
     final select = _bindings(tester, LogicalKeyboardKey.keyA).single;
     final cite = _bindings(tester, LogicalKeyboardKey.keyC, alt: true).single;
     word.caret
-      ..collapseSelection()
-      ..logicalIndex = 2;
+      ..logicalIndex = 2
+      ..collapseSelection();
     word.refresh();
     final before = (
       word.caret.selectionAnchorParagraph,
@@ -467,9 +467,15 @@ void main() {
     final word = await _studio(tester);
     final select = _bindings(tester, LogicalKeyboardKey.keyA).single;
     word.caret
-      ..collapseSelection()
-      ..logicalIndex = 2;
+      ..logicalIndex = 2
+      ..collapseSelection();
     word.refresh();
+    final before = (
+      word.caret.selectionAnchorParagraph,
+      word.caret.selectionAnchor,
+      word.caret.paragraphIndex,
+      word.caret.logicalIndex,
+    );
     final text = TextEditingController(text: 'Dialog text');
     addTearDown(text.dispose);
     final context = tester.element(find.byType(SuiteWorkspace));
@@ -485,7 +491,13 @@ void main() {
       const TextSelection(baseOffset: 0, extentOffset: 11),
     );
     expect(word.caret.logicalIndex, 2);
-    expect(word.caret.selectionAnchor, isNull);
+    expect((
+      word.caret.selectionAnchorParagraph,
+      word.caret.selectionAnchor,
+      word.caret.paragraphIndex,
+      word.caret.logicalIndex,
+    ), before);
+    expect(word.caret.isCollapsed, isTrue);
     Navigator.of(tester.element(find.byType(AlertDialog))).pop();
     await dialog;
     await _frames(tester);
