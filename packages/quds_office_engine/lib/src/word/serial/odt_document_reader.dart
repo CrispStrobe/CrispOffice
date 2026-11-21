@@ -24,7 +24,7 @@ const _xml = 'http://www.w3.org/XML/1998/namespace';
 /// Converts a bounded native ODT into an editable Word document.
 ///
 /// This is an explicit conversion boundary, not a lossless ODF round trip.
-/// Supported paragraphs, styles, hyperlinks, simple lists, unmerged tables and
+/// Supported paragraphs, styles, hyperlinks, simple lists, bounded merged tables and
 /// authored notes keep their native structure. Canonical Zotero fields use the
 /// inventory's exact paragraph identities and UTF-16 positions. Unsupported
 /// content or ambiguous fields refuse the whole import before publication.
@@ -562,11 +562,9 @@ final class _OdtReader {
         }
       }
     }
-    var columnsSeen = false;
-    var rowsSeen = false;
+    final sourceRows = <({XmlElement source, List<XmlElement> cells})>[];
     for (final child in element.childElements) {
-      if (_is(child, odfTableNamespace, 'table-column') && !rowsSeen) {
-        columnsSeen = true;
+      if (_is(child, odfTableNamespace, 'table-column') && sourceRows.isEmpty) {
         _attributes(child, {
           odfTableNamespace: {'style-name', 'number-columns-repeated'},
         });
@@ -603,99 +601,101 @@ final class _OdtReader {
         explicitWidths.addAll(List<bool>.filled(count, explicitWidth));
       } else if (_is(child, odfTableNamespace, 'table-row')) {
         _structuralText(child);
-        rowsSeen = true;
-        if (table.rows.length >= 256) {
+        if (sourceRows.length >= 256) {
           throw const OdfZoteroLimitException('table rows');
         }
         _attributes(child, {
           odfTableNamespace: {'style-name'},
         });
-        final row = WmlTableRow();
-        for (final style in styles.styleChain(
-          'table-row',
-          _attr(child, 'style-name', odfTableNamespace),
-        )) {
-          for (final props in style.childElements) {
-            if (!_is(props, _style, 'table-row-properties')) {
-              _unsupported(props);
-            }
-            _attributes(props, {
-              _style: {'min-row-height'},
-              _fo: {'keep-together'},
-            });
-            _empty(props);
-            final height = _attr(props, 'min-row-height', _style);
-            if (height != null) row.height = _length(height);
-            final keep = _attr(props, 'keep-together', _fo);
-            if (keep != null && keep != 'auto' && keep != 'always') {
-              _unsupported(props);
-            }
-            if (keep != null) row.cantSplit = keep == 'always';
-          }
+        final cells = child.childElements.toList();
+        if (cells.isEmpty) _unsupported(child);
+        if (cells.length > 32) {
+          throw const OdfZoteroLimitException('table cells');
         }
-        for (final sourceCell in child.childElements) {
-          if (!_is(sourceCell, odfTableNamespace, 'table-cell')) {
-            _unsupported(sourceCell);
-          }
-          if (++_cellCount > 4096 || row.cells.length >= 32) {
-            throw const OdfZoteroLimitException('table cells');
-          }
-          _attributes(sourceCell, {
-            odfTableNamespace: {'style-name'},
-            odfOfficeNamespace: {'value-type'},
-          });
-          final valueType = _attr(sourceCell, 'value-type', odfOfficeNamespace);
-          if (valueType != null && valueType != 'string') {
-            _unsupported(sourceCell);
-          }
-          final cell = WmlTableCell(
-            blocks: _blocks(sourceCell, inNote: inNote, tableDepth: depth),
-          );
-          for (final style in styles.styleChain(
-            'table-cell',
-            _attr(sourceCell, 'style-name', odfTableNamespace),
-          )) {
-            for (final props in style.childElements) {
-              if (!_is(props, _style, 'table-cell-properties')) {
-                _unsupported(props);
-              }
-              _attributes(props, {
-                _fo: {'background-color'},
-              });
-              _empty(props);
-              final fill = _attr(props, 'background-color', _fo);
-              if (fill != null) {
-                if (fill == 'transparent') {
-                  cell.fillColor = null;
-                } else {
-                  if (!RegExp(r'^#[0-9a-fA-F]{6}$').hasMatch(fill)) {
-                    _unsupported(props);
-                  }
-                  cell.fillColor = fill.substring(1).toUpperCase();
-                }
-              }
-            }
-          }
-          if (cell.blocks.isEmpty || cell.blocks.last is! WmlParagraph) {
-            if (paragraphs.length + ++_generatedParagraphs >
-                limits.maxParagraphs) {
-              throw const OdfZoteroLimitException('native paragraphs');
-            }
-            cell.blocks.add(WmlParagraph());
-          }
-          row.cells.add(cell);
-        }
-        if (row.cells.isEmpty) _unsupported(child);
-        if (!columnsSeen && table.rows.isEmpty) {
-          table.grid.addAll(List<double>.filled(row.cells.length, 120));
-          explicitWidths.addAll(List<bool>.filled(row.cells.length, false));
-        }
-        if (row.cells.length != table.grid.length) {
-          _unsupported(child);
-        }
-        table.rows.add(row);
+        sourceRows.add((source: child, cells: cells));
       } else {
         _unsupported(child);
+      }
+    }
+    if (sourceRows.isEmpty) _unsupported(element);
+    if (table.grid.isEmpty) {
+      final columns = sourceRows.first.cells.length;
+      table.grid.addAll(List<double>.filled(columns, 120));
+      explicitWidths.addAll(List<bool>.filled(columns, false));
+    }
+    final columns = table.grid.length;
+    final coverage = [
+      for (final _ in sourceRows)
+        List<_OdtTableCell?>.filled(columns, null),
+    ];
+    // ODF 1.3 section 9.1.5 requires an explicit covered cell at every
+    // occupied position. Validate this source grid before parsing rich content
+    // or creating native continuation cells. Covered cells may legally store
+    // hidden content in ODF; this bounded conversion refuses it rather than
+    // silently discarding or duplicating it into an editable Word cell.
+    for (var rowIndex = 0; rowIndex < sourceRows.length; rowIndex++) {
+      final sourceRow = sourceRows[rowIndex];
+      if (sourceRow.cells.length != columns) _unsupported(sourceRow.source);
+      for (var column = 0; column < columns; column++) {
+        final sourceCell = sourceRow.cells[column];
+        final origin = coverage[rowIndex][column];
+        if (_is(sourceCell, odfTableNamespace, 'covered-table-cell')) {
+          if (origin == null) _unsupported(sourceCell);
+          _attributes(sourceCell, {
+            odfTableNamespace: {'style-name'},
+          });
+          _emptyCoveredCell(sourceCell);
+          final style = _tableCellStyle(sourceCell);
+          // An empty style contributes no appearance. An explicit effective
+          // background must agree with the one retained by the merged owner;
+          // do not discard a distinct covered-cell override, even transparent.
+          if (style.hasFill && style.fill != origin.fill) {
+            _unsupported(sourceCell);
+          }
+          continue;
+        }
+        if (!_is(sourceCell, odfTableNamespace, 'table-cell') ||
+            origin != null) {
+          _unsupported(sourceCell);
+        }
+        _attributes(sourceCell, {
+          odfTableNamespace: {
+            'style-name',
+            'number-columns-spanned',
+            'number-rows-spanned',
+          },
+          odfOfficeNamespace: {'value-type'},
+        });
+        final valueType = _attr(sourceCell, 'value-type', odfOfficeNamespace);
+        if (valueType != null && valueType != 'string') {
+          _unsupported(sourceCell);
+        }
+        final columnSpan = _tableSpan(sourceCell, 'number-columns-spanned', 32);
+        final rowSpan = _tableSpan(sourceCell, 'number-rows-spanned', 256);
+        if (column + columnSpan > columns ||
+            rowIndex + rowSpan > sourceRows.length) {
+          _unsupported(sourceCell);
+        }
+        // Reserve every native owner/continuation before descending into
+        // nested tables. The shared bound includes all tables and generated
+        // cells in the complete document, rather than restarting per table.
+        _cellCount += rowSpan;
+        if (_cellCount > 4096) {
+          throw const OdfZoteroLimitException('table cells');
+        }
+        final cell = _OdtTableCell(
+          source: sourceCell,
+          row: rowIndex,
+          columnSpan: columnSpan,
+          rowSpan: rowSpan,
+          fill: _tableCellStyle(sourceCell).fill,
+        );
+        for (var row = rowIndex; row < rowIndex + rowSpan; row++) {
+          for (var col = column; col < column + columnSpan; col++) {
+            if (coverage[row][col] != null) _unsupported(sourceCell);
+            coverage[row][col] = cell;
+          }
+        }
       }
     }
     if (tableWidth != null) {
@@ -721,16 +721,130 @@ final class _OdtReader {
         }
       }
     }
-    if (table.rows.isEmpty ||
-        table.grid.fold<double>(0, (sum, width) => sum + width) > 4000) {
+    if (table.grid.fold<double>(0, (sum, width) => sum + width) > 4000) {
       _unsupported(element);
     }
-    for (final row in table.rows) {
-      for (var column = 0; column < row.cells.length; column++) {
-        row.cells[column].width = table.grid[column];
+    for (var rowIndex = 0; rowIndex < sourceRows.length; rowIndex++) {
+      final row = _tableRow(sourceRows[rowIndex].source);
+      var column = 0;
+      while (column < columns) {
+        final owner = coverage[rowIndex][column]!;
+        final blocks = owner.row == rowIndex
+            ? _blocks(owner.source, inNote: inNote, tableDepth: depth)
+            : <WmlBlock>[];
+        if (blocks.isEmpty || blocks.last is! WmlParagraph) {
+          if (paragraphs.length + ++_generatedParagraphs >
+              limits.maxParagraphs) {
+            throw const OdfZoteroLimitException('native paragraphs');
+          }
+          blocks.add(WmlParagraph());
+        }
+        var width = 0.0;
+        for (var offset = 0; offset < owner.columnSpan; offset++) {
+          width += table.grid[column + offset];
+        }
+        row.cells.add(
+          WmlTableCell(
+            blocks: blocks,
+            gridSpan: owner.columnSpan,
+            vMerge: owner.rowSpan == 1
+                ? WmlVMerge.none
+                : owner.row == rowIndex
+                ? WmlVMerge.restart
+                : WmlVMerge.cont,
+            fillColor: owner.fill,
+            width: width,
+          ),
+        );
+        column += owner.columnSpan;
       }
+      table.rows.add(row);
     }
     return table;
+  }
+
+  WmlTableRow _tableRow(XmlElement element) {
+    final row = WmlTableRow();
+    for (final style in styles.styleChain(
+      'table-row',
+      _attr(element, 'style-name', odfTableNamespace),
+    )) {
+      for (final props in style.childElements) {
+        if (!_is(props, _style, 'table-row-properties')) _unsupported(props);
+        _attributes(props, {
+          _style: {'min-row-height'},
+          _fo: {'keep-together'},
+        });
+        _empty(props);
+        final height = _attr(props, 'min-row-height', _style);
+        if (height != null) row.height = _length(height);
+        final keep = _attr(props, 'keep-together', _fo);
+        if (keep != null && keep != 'auto' && keep != 'always') {
+          _unsupported(props);
+        }
+        if (keep != null) row.cantSplit = keep == 'always';
+      }
+    }
+    return row;
+  }
+
+  ({String? fill, bool hasFill}) _tableCellStyle(XmlElement element) {
+    String? fill;
+    var hasFill = false;
+    for (final style in styles.styleChain(
+      'table-cell',
+      _attr(element, 'style-name', odfTableNamespace),
+    )) {
+      for (final props in style.childElements) {
+        if (!_is(props, _style, 'table-cell-properties')) _unsupported(props);
+        _attributes(props, {
+          _fo: {'background-color'},
+        });
+        _empty(props);
+        final value = _attr(props, 'background-color', _fo);
+        if (value == null) continue;
+        hasFill = true;
+        if (value == 'transparent') {
+          fill = null;
+        } else {
+          if (!RegExp(r'^#[0-9a-fA-F]{6}$').hasMatch(value)) {
+            _unsupported(props);
+          }
+          fill = value.substring(1).toUpperCase();
+        }
+      }
+    }
+    return (fill: fill, hasFill: hasFill);
+  }
+
+  int _tableSpan(XmlElement element, String name, int maximum) {
+    final raw = _attr(element, name, odfTableNamespace);
+    if (raw == null) return 1;
+    // Positive-integer XML values may carry a plus sign, leading zeros and
+    // XML whitespace. Validate the original value before String.trim can
+    // remove non-XML Unicode spaces; hexadecimal syntax is not an ODF span.
+    if (!RegExp(r'^[ \t\r\n]*\+?[0-9]+[ \t\r\n]*$').hasMatch(raw)) {
+      _unsupported(element);
+    }
+    final value = int.tryParse(raw.trim());
+    if (value == null || value < 1 || value > maximum) _unsupported(element);
+    return value;
+  }
+
+  void _emptyCoveredCell(XmlElement element) {
+    if (element.childElements.isNotEmpty) _unsupported(element);
+    for (final node in element.children) {
+      final text = node is XmlText
+          ? node.text
+          : node is XmlCdata
+          ? node.text
+          : '';
+      // XML indentation is inert. Other Unicode spaces and zero-width text
+      // are authored content, even when String.trim would remove them.
+      if (text.codeUnits.any((unit) => !_whitespace(unit))) {
+        _unsupported(element);
+      }
+    }
   }
 
   List<WmlBlock> _list(
@@ -1074,6 +1188,24 @@ final class _OdtReader {
       }
     }
   }
+}
+
+/// A single source owner occupying a bounded rectangular ODF cell range.
+/// Covered positions never acquire the source owner's paragraphs or fields.
+final class _OdtTableCell {
+  const _OdtTableCell({
+    required this.source,
+    required this.row,
+    required this.columnSpan,
+    required this.rowSpan,
+    required this.fill,
+  });
+
+  final XmlElement source;
+  final int row;
+  final int columnSpan;
+  final int rowSpan;
+  final String? fill;
 }
 
 final class _RichText {

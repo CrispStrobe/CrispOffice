@@ -48,7 +48,7 @@ results retain their original source and platform attribution.
 | DOCX persistence | Active fields/preferences, native notes, rich bibliography structure, tables and embedded pictures use supported save/reopen paths | Local tests are separate from actual Word/LibreOffice application round trips |
 | Cross-word-processor transfer | Native export/import handshake, temporary metadata hyperlinks, DOCX import/save/reopen and ODT carrier export; complete native formatting before import publication | The qualified DOCX carrier route and native ODT conversion have separate envelopes; installed Zotero/Word/LibreOffice plugin acceptance remains open and actual converter findings are retained |
 | Native ODT inspection | Read-only inventory of citation ReferenceMarks, bibliography TextSections, exact story/paragraph/cell ownership, cached text and original preferences; JSON diagnostic CLI | Inspection reports eligibility and findings without publishing an editable document |
-| Native ODT import | Bounded rich paragraphs/styles, hyperlinks, authored notes, simple lists and unmerged/nested tables; canonical Zotero fields and preferences convert to an editable Word document; retained LibreOffice prose with independent script formatting; asynchronous editor/Studio opening and DOCX save/reopen | Used unsupported structure/formatting refuses atomically; content-sensitive guards limit dormant defaults; native editable ODT output and installed-plugin acceptance remain open |
+| Native ODT import | Bounded rich paragraphs/styles, hyperlinks, authored notes, simple lists and supported merged/nested tables; canonical Zotero fields and preferences convert to an editable Word document; retained LibreOffice prose with independent script formatting; asynchronous editor/Studio opening and DOCX save/reopen | Used unsupported structure/formatting refuses atomically; content-sensitive guards limit dormant defaults; native editable ODT output and installed-plugin acceptance remain open |
 
 The native controls use Zotero's own CSL processor. The separate basic/offline
 citation and single-item preview/export paths retain their narrower formatting
@@ -373,9 +373,31 @@ separators remain explicit refusals. This conversion does not retain a complete
 ODF style engine for later content changes. The source review and local checks
 are separate from an installed Word/LibreOffice/Zotero interoperability session.
 
+## Implemented increment: native ODT merged tables
+
+The native reader now validates horizontal/vertical spans against explicit
+ODF covered cells and maps the originating rich content into the existing Word
+table model. Supported combined spans, widths, row properties and inherited
+shading retain their physical cell ownership. Native vertical continuations
+contain no duplicate text or Zotero fields. Nested tables have separate
+coverage grids and share the complete document's resource limits.
+
+The conversion refuses missing/orphan/overlapping coverage, out-of-range
+spans, repeated rows/cells, hidden covered content and unsupported covered
+styles. ODF permits stored covered-cell content; this refusal is a deliberate
+supported-subset boundary. The original ODT is unchanged, and active citations
+continue to save as DOCX.
+
+The [merged-table work record](../../validation/zotero-odt-merged-tables-20261121/README.md)
+records incremental remote preservation and independent source review.
+Formatting, analysis and runtime tests for this increment remain pending
+because the shared executor exhausted disk space during SDK setup. Earlier
+qualified results retain their original sources and are not relabeled.
+
 ## Next implementation and acceptance steps
 
-1. **Qualify production ODT formatting and installed-application transfer.**
+1. **Execute the pending merged-table regression checks, then qualify production
+   ODT formatting and installed-application transfer.**
    Use the implemented carrier and retained synthetic fixtures with current
    Word/LibreOffice and their actual Zotero plugins. Resolve any converter findings
    against identified release versions. Check citations, rich bibliographies,
