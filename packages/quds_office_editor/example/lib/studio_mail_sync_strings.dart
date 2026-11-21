@@ -26,9 +26,75 @@ extension StudioMailSyncStrings on StudioStrings {
       _text('Next page', 'Nächste Seite', 'الصفحة التالية');
 
   String get mailSyncScope => _text(
-    'Sync saves message headers for offline browsing. Message bodies are available here only if previously opened and saved. Saved counts describe this device and may differ from the server.',
-    'Die Synchronisierung speichert Nachrichtenkopfzeilen zum Offline-Lesen. Nachrichteninhalte sind hier nur verfügbar, wenn sie zuvor geöffnet und gespeichert wurden. Die Anzahl bezieht sich auf dieses Gerät und kann vom Server abweichen.',
-    'تحفظ المزامنة عناوين الرسائل لتصفحها دون اتصال. لا تتوفر محتويات الرسائل هنا إلا إذا فُتحت وحُفظت سابقًا. تخص الأعداد المحفوظة هذا الجهاز وقد تختلف عن الخادم.',
+    'Sync saves message headers. Offline reading needs a saved body and attachments. Opening a message here reads only this device. Saved counts may differ from the server.',
+    'Die Synchronisierung speichert Nachrichtenkopfzeilen. Zum Offline-Lesen müssen Inhalt und Anhänge gespeichert sein. Das Öffnen einer Nachricht hier liest nur von diesem Gerät. Die Anzahl kann vom Server abweichen.',
+    'تحفظ المزامنة عناوين الرسائل. تتطلب القراءة دون اتصال حفظ المحتوى والمرفقات. فتح رسالة هنا يقرأ من هذا الجهاز فقط. قد تختلف الأعداد المحفوظة عن الخادم.',
+  );
+
+  String get mailDownloadPage => _text(
+    'Download this page',
+    'Diese Seite herunterladen',
+    'تنزيل هذه الصفحة',
+  );
+  String get mailDownloadMessage => _text(
+    'Download for offline reading',
+    'Zum Offline-Lesen herunterladen',
+    'تنزيل للقراءة دون اتصال',
+  );
+  String get mailDownloadScope => _text(
+    'Download this page saves bodies and attachments for up to 100 headers on this page, including rows hidden by filters. Each run saves up to 64 MiB of message content. Already saved messages are skipped. Downloads do not mark messages as read.',
+    '„Diese Seite herunterladen“ speichert Inhalte und Anhänge für bis zu 100 Kopfzeilen dieser Seite, auch für ausgefilterte Zeilen. Pro Durchlauf werden bis zu 64 MiB Nachrichteninhalt gespeichert. Bereits gespeicherte Nachrichten werden übersprungen. Downloads markieren Nachrichten nicht als gelesen.',
+    'يحفظ تنزيل هذه الصفحة المحتوى والمرفقات لما يصل إلى 100 عنوان في هذه الصفحة، بما في ذلك الصفوف المخفية بالفلاتر. يحفظ كل تشغيل ما يصل إلى 64 ميبيبايت من محتوى الرسائل. تُتخطى الرسائل المحفوظة مسبقًا. لا يغيّر التنزيل حالة الرسائل إلى مقروءة.',
+  );
+  String get mailDownloadFinished => _text(
+    'This download request is complete. These messages are available offline.',
+    'Dieser Downloadauftrag ist abgeschlossen. Diese Nachrichten sind offline verfügbar.',
+    'اكتمل طلب التنزيل هذا. هذه الرسائل متاحة دون اتصال.',
+  );
+  String get mailDownloadPaused => _text(
+    'The download reached its batch limit. Download this page again to continue; saved messages will be skipped.',
+    'Das Downloadlimit dieses Durchlaufs wurde erreicht. Laden Sie diese Seite erneut herunter, um fortzufahren. Gespeicherte Nachrichten werden übersprungen.',
+    'وصل التنزيل إلى حد هذا التشغيل. نزّل هذه الصفحة مجددًا للمتابعة؛ ستُتخطى الرسائل المحفوظة.',
+  );
+  String get mailDownloadCancelled => _text(
+    'Download stopped. Completed downloads remain saved. Download again to continue.',
+    'Download angehalten. Abgeschlossene Downloads bleiben gespeichert. Laden Sie erneut herunter, um fortzufahren.',
+    'أُوقف التنزيل. تبقى التنزيلات المكتملة محفوظة. نزّل مجددًا للمتابعة.',
+  );
+  String get mailDownloadFailed => _text(
+    'The download could not finish. Completed downloads remain saved. Check the connection and try again.',
+    'Der Download konnte nicht abgeschlossen werden. Abgeschlossene Downloads bleiben gespeichert. Prüfen Sie die Verbindung und versuchen Sie es erneut.',
+    'تعذر إكمال التنزيل. تبقى التنزيلات المكتملة محفوظة. تحقق من الاتصال وحاول مجددًا.',
+  );
+  String get mailDownloadAuthentication => _text(
+    'Reconnect to this account before downloading again. Completed downloads remain saved.',
+    'Verbinden Sie sich erneut mit diesem Konto, bevor Sie wieder herunterladen. Abgeschlossene Downloads bleiben gespeichert.',
+    'أعد الاتصال بهذا الحساب قبل التنزيل مجددًا. تبقى التنزيلات المكتملة محفوظة.',
+  );
+  String get mailDownloadConflict => _text(
+    'The account or message changed. Reopen the synchronized folder before downloading again.',
+    'Das Konto oder die Nachricht wurde geändert. Öffnen Sie den synchronisierten Ordner erneut, bevor Sie wieder herunterladen.',
+    'تغيّر الحساب أو الرسالة. أعد فتح المجلد المتزامن قبل التنزيل مجددًا.',
+  );
+  String get mailDownloadQuota => _text(
+    'A message or local storage limit stopped this download. Completed downloads remain saved. Free local cache space or download another message.',
+    'Ein Nachrichten- oder Speicherlimit hat den Download angehalten. Abgeschlossene Downloads bleiben gespeichert. Geben Sie lokalen Cache-Speicher frei oder laden Sie eine andere Nachricht herunter.',
+    'أوقف حد الرسالة أو التخزين المحلي هذا التنزيل. تبقى التنزيلات المكتملة محفوظة. حرر مساحة في الذاكرة المحلية أو نزّل رسالة أخرى.',
+  );
+  String get mailDownloadUnsupported => _text(
+    'This account cannot download the requested message. Completed downloads remain saved.',
+    'Dieses Konto kann die angeforderte Nachricht nicht herunterladen. Abgeschlossene Downloads bleiben gespeichert.',
+    'لا يستطيع هذا الحساب تنزيل الرسالة المطلوبة. تبقى التنزيلات المكتملة محفوظة.',
+  );
+
+  String mailDownloadProgress(
+    int downloaded,
+    int cached,
+    int remaining,
+  ) => _text(
+    'This request: downloaded $downloaded · already saved $cached · remaining $remaining',
+    'Dieser Auftrag: heruntergeladen $downloaded · bereits gespeichert $cached · verbleibend $remaining',
+    'هذا الطلب: نُزّل $downloaded · محفوظ مسبقًا $cached · متبقٍ $remaining',
   );
 
   String get mailSyncForeground => _text(
@@ -119,9 +185,9 @@ extension StudioMailSyncStrings on StudioStrings {
     'اختر رسالة محفوظة لقراءتها دون اتصال.',
   );
   String get mailSyncMissingBody => _text(
-    'Only this message’s header is saved. Reconnect and open the message in its mailbox to save its body for offline reading.',
-    'Nur die Kopfzeile dieser Nachricht ist gespeichert. Verbinden Sie sich erneut und öffnen Sie die Nachricht im Postfach, um ihren Inhalt zum Offline-Lesen zu speichern.',
-    'حُفظ عنوان هذه الرسالة فقط. أعد الاتصال وافتح الرسالة في صندوق بريدها لحفظ محتواها للقراءة دون اتصال.',
+    'Only this message’s header is saved. Connect to this account and choose Download for offline reading in Synchronized mail to save its body and attachments.',
+    'Nur die Kopfzeile dieser Nachricht ist gespeichert. Verbinden Sie sich mit diesem Konto und wählen Sie im synchronisierten Postfach „Zum Offline-Lesen herunterladen“, um Inhalt und Anhänge zu speichern.',
+    'حُفظ عنوان هذه الرسالة فقط. اتصل بهذا الحساب واختر التنزيل للقراءة دون اتصال في البريد المتزامن لحفظ المحتوى والمرفقات.',
   );
 
   String mailSyncSaved(DateTime updatedAt, int count) {

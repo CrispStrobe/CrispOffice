@@ -56,6 +56,19 @@ abstract interface class StudioMailMailboxSynchronizer {
   });
 }
 
+/// Explicit body retention for headers saved by the same account's sync.
+/// Reader-only and older host adapters need not expose this capability.
+abstract interface class StudioMailBodyDownloader {
+  Future<MailBodyDownloadReport> downloadMessages(
+    mail.Mailbox selectedMailbox, {
+    required List<MailHeaderRecord> headers,
+    required MailBodyDownloadCache cache,
+    required MailCancellationToken cancellation,
+    required void Function(MailBodyDownloadProgress) onProgress,
+    required bool Function() isCurrent,
+  });
+}
+
 /// Immutable provider observations for durable cached views. This optional
 /// port never derives an identity from a mutable high-level message after a
 /// fetch. Older reader-only host adapters remain valid without local caching.
@@ -117,12 +130,11 @@ abstract interface class StudioMailMailboxArchiver {
 
 /// An injection seam for deterministic tests; production uses the bounded IMAP
 /// provider, including its TLS verification, literal quotas and MIME budgets.
-typedef StudioMailProviderFactory =
-    MailProvider Function({
-      required MailImapConfiguration configuration,
-      required MailCredentialStore credentialStore,
-      required MailTransportLimits limits,
-    });
+typedef StudioMailProviderFactory = MailProvider Function({
+  required MailImapConfiguration configuration,
+  required MailCredentialStore credentialStore,
+  required MailTransportLimits limits,
+});
 
 /// Fixed explanations never include server replies, message data or secrets.
 final class StudioMailMessageLoadException implements Exception {
@@ -151,8 +163,7 @@ final class StudioMailMessageLoadException implements Exception {
       'The message exceeds the supported reading limits.',
     MailProblemCode.invalidInput =>
       'The account or message identity is incomplete or invalid.',
-    MailProblemCode.conflict =>
-      'The mailbox changed. Refresh its message list before opening this message.',
+    MailProblemCode.conflict => 'The mailbox changed. Refresh its message list before opening this message.',
     MailProblemCode.providerFailure || MailProblemCode.storageFailure =>
       'The message could not be loaded. Try again.',
   };
@@ -174,6 +185,7 @@ final class NativeStudioMailMessageLoader
         StudioMailMessageLoader,
         StudioMailMailboxBrowser,
         StudioMailMailboxSynchronizer,
+        StudioMailBodyDownloader,
         StudioMailMailboxRecords,
         StudioMailMessageActions,
         StudioMailBulkMessageActions,
@@ -291,6 +303,44 @@ final class NativeStudioMailMessageLoader
         pageSize: limits.maxPageSize < 100 ? limits.maxPageSize : 100,
         cancellation: cancellation,
         onProgress: onProgress,
+      );
+    } finally {
+      if (identical(_active, operation)) _active = null;
+    }
+  }
+
+  @override
+  Future<MailBodyDownloadReport> downloadMessages(
+    mail.Mailbox selectedMailbox, {
+    required List<MailHeaderRecord> headers,
+    required MailBodyDownloadCache cache,
+    required MailCancellationToken cancellation,
+    required void Function(MailBodyDownloadProgress) onProgress,
+    required bool Function() isCurrent,
+  }) async {
+    final (mailbox, _) = _selectedMailbox(selectedMailbox);
+    if (_active != null) {
+      throw const StudioMailMessageLoadException(MailProblemCode.unavailable);
+    }
+    final operation = _MessageOperation();
+    _active = operation;
+    try {
+      final provider = _providerFactory(
+        configuration: _configuration,
+        credentialStore: _credentials,
+        limits: limits,
+      );
+      return await MailBodyDownloadRunner(
+        provider: provider,
+        cache: cache,
+        session: _session,
+        budget: budget,
+      ).run(
+        mailbox: mailbox,
+        headers: headers,
+        cancellation: cancellation,
+        onProgress: onProgress,
+        isCurrent: () => identical(_active, operation) && isCurrent(),
       );
     } finally {
       if (identical(_active, operation)) _active = null;

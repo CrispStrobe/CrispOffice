@@ -1,5 +1,12 @@
 ## Unreleased
 
+- Add explicit bounded `MailBodyDownloadRunner` and an atomic complete-message
+  cache port. Freeze canonical header identities, retain raw/body/attachment
+  snapshots sequentially, skip existing complete cache entries on resume, and
+  report immutable downloaded/cached/byte counts. Per-message and cumulative
+  payload limits, account/folder guards and cancellation preserve acknowledged
+  saves without retrying, mutating provider mail or advancing sync cursors.
+
 - Add bounded foreground `MailSyncRunner` with immutable partial-progress
   receipts, persisted-cursor resume, cancellation across an entire run and
   explicit completed/paused/cancelled/failed outcomes. Reuse atomic sync-page

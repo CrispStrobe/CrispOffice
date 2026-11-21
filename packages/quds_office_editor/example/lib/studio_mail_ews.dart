@@ -10,6 +10,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 import 'studio_mail_archive_action.dart';
 import 'studio_mail_bulk_status.dart';
+import 'studio_mail_body_download.dart';
 import 'studio_mail_flag_journal.dart';
 import 'studio_mail_journal_dialog.dart';
 import 'studio_mail_journal_strings.dart';
@@ -38,11 +39,10 @@ import 'studio_mail_sync_strings.dart';
 import 'studio_strings.dart';
 import 'studio_mail_reader_labels.dart';
 
-typedef StudioEwsProviderFactory =
-    MailEwsProvider Function(
-      MailEwsConfiguration configuration,
-      MailCredentialStore credentials,
-    );
+typedef StudioEwsProviderFactory = MailEwsProvider Function(
+  MailEwsConfiguration configuration,
+  MailCredentialStore credentials,
+);
 
 typedef StudioCloudAuthorizer =
     Future<MailResult<MailCloudTokenSource>> Function({
@@ -53,12 +53,11 @@ typedef StudioCloudAuthorizer =
       MailCloudLogSink? log,
     });
 
-typedef StudioCloudProviderFactory =
-    MailCloudProvider Function({
-      required MailCloudConfiguration configuration,
-      required MailCloudTokenSource tokenSource,
-      MailCloudLogSink? log,
-    });
+typedef StudioCloudProviderFactory = MailCloudProvider Function({
+  required MailCloudConfiguration configuration,
+  required MailCloudTokenSource tokenSource,
+  MailCloudLogSink? log,
+});
 
 /// Foreground Exchange Server or cloud mailbox host. Credentials belong to the
 /// session; drafts, visited views and explicitly opened messages use optional
@@ -659,30 +658,26 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
       candidate = await (widget.draftStoreFactory ?? openStudioMailDraftStore)(
         identity,
       );
-      if (candidate case StudioMailOutboxStore(
-        :final account,
-      ) when account != identity.account) {
+      if (candidate case StudioMailOutboxStore(:final account)
+          when account != identity.account) {
         throw const StudioMailDraftStoreException(
           MailProblemCode.permissionDenied,
         );
       }
-      if (candidate case StudioMailDraftCatalog(
-        :final account,
-      ) when account != identity.account) {
+      if (candidate case StudioMailDraftCatalog(:final account)
+          when account != identity.account) {
         throw const StudioMailDraftStoreException(
           MailProblemCode.permissionDenied,
         );
       }
-      if (candidate case StudioMailMailboxStoreOwner(
-        :final mailboxStore,
-      ) when mailboxStore.account != identity.account) {
+      if (candidate case StudioMailMailboxStoreOwner(:final mailboxStore)
+          when mailboxStore.account != identity.account) {
         throw const StudioMailDraftStoreException(
           MailProblemCode.permissionDenied,
         );
       }
-      if (candidate case StudioMailFlagJournalOwner(
-        :final flagJournal,
-      ) when flagJournal.account != identity.account) {
+      if (candidate case StudioMailFlagJournalOwner(:final flagJournal)
+          when flagJournal.account != identity.account) {
         throw const StudioMailDraftStoreException(
           MailProblemCode.permissionDenied,
         );
@@ -1942,6 +1937,23 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
           syncStore: syncStore,
           mailbox: mailbox,
           isCurrent: current,
+          download:
+              ({
+                required headers,
+                required cancellation,
+                required onProgress,
+              }) =>
+                  MailBodyDownloadRunner(
+                    provider: provider,
+                    cache: StudioMailBodyDownloadCache(store),
+                    session: session,
+                  ).run(
+                    mailbox: mailbox.id,
+                    headers: headers,
+                    cancellation: cancellation,
+                    onProgress: onProgress,
+                    isCurrent: current,
+                  ),
           run: ({required cancellation, required onProgress}) async {
             lease.checkCurrent();
             if (!current()) {

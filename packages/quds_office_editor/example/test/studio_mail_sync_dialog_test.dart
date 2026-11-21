@@ -327,6 +327,7 @@ Future<void> _show(
   WidgetTester tester,
   _Store store, {
   StudioMailSyncRun? run,
+  StudioMailBodyDownloadRun? download,
   StudioMailSyncStore? syncStore,
   bool Function()? isCurrent,
   VoidCallback? onClosed,
@@ -359,9 +360,8 @@ Future<void> _show(
               : const ['SyncLatin', 'SyncArabic'],
         ),
         builder: (context, child) => MediaQuery(
-          data: MediaQuery.of(
-            context,
-          ).copyWith(textScaler: TextScaler.linear(scale)),
+          data: MediaQuery.of(context)
+              .copyWith(textScaler: TextScaler.linear(scale)),
           child: child!,
         ),
         home: Scaffold(
@@ -382,6 +382,7 @@ Future<void> _show(
                       isCurrent: isCurrent ?? () => true,
                       mailbox: run == null ? null : _inbox,
                       run: run,
+                      download: download,
                     ),
                   ),
                 );
@@ -404,6 +405,229 @@ void _openFirst(WidgetTester tester) {
 }
 
 void main() {
+  MailBodyDownloadReport downloaded(
+    int total, {
+    int? saved,
+    int cached = 0,
+    MailBodyDownloadStatus status = MailBodyDownloadStatus.completed,
+    MailProblem? problem,
+  }) => MailBodyDownloadReport(
+    status: status,
+    progress: MailBodyDownloadProgress(
+      mailbox: _inbox.id,
+      total: total,
+      downloaded: saved ?? total - cached,
+      alreadyCached: cached,
+      retainedBytes: (saved ?? total - cached) * 100,
+    ),
+    problem: problem,
+  );
+
+  Future<MailSyncRunReport> idleSync({
+    required MailCancellationToken cancellation,
+    required void Function(MailSyncRunProgress) onProgress,
+  }) async => _report(MailSyncRunStatus.completed);
+
+  testWidgets('connected reader downloads only after explicit message action', (
+    tester,
+  ) async {
+    final header = _header(1);
+    final store = _Store()..save([header, _header(2)]);
+    var downloads = 0;
+    await _show(
+      tester,
+      store,
+      run: idleSync,
+      download:
+          ({
+            required headers,
+            required cancellation,
+            required onProgress,
+          }) async {
+            downloads++;
+            expect(headers, hasLength(1));
+            expect(headers.single.remote, header.remote);
+            store.bodies[header.id] = _message(header);
+            final report = downloaded(1);
+            onProgress(report.progress);
+            return report;
+          },
+    );
+    expect(downloads, 0);
+    expect(store.bodyReads, 0);
+    _openFirst(tester);
+    await _pump(tester);
+    expect(downloads, 0);
+    expect(find.text(_strings.mailSyncMissingBody), findsOneWidget);
+    await tester.tap(_key('studio-mail-download-message'));
+    await _pump(tester);
+    expect(downloads, 1);
+    expect(find.byType(MailMessageView), findsOneWidget);
+    expect(find.text(_strings.mailDownloadProgress(1, 0, 0)), findsOneWidget);
+    expect(find.text(_strings.mailDownloadFinished), findsOneWidget);
+    expect(store.bodies, hasLength(1));
+    expect(tester.takeException(), isNull);
+    await _capture(tester, 'offline-download-message-en');
+  });
+
+  testWidgets('page download freezes 100 rows and Stop waits for completion', (
+    tester,
+  ) async {
+    final store = _Store()
+      ..save(List.generate(101, (index) => _header(index + 1)));
+    final completion = Completer<MailBodyDownloadReport>();
+    MailCancellationToken? token;
+    List<MailHeaderRecord>? captured;
+    await _show(
+      tester,
+      store,
+      run: idleSync,
+      download:
+          ({required headers, required cancellation, required onProgress}) {
+            captured = headers;
+            token = cancellation;
+            onProgress(downloaded(100, saved: 2, cached: 3).progress);
+            return completion.future;
+          },
+    );
+    await tester.tap(_key('studio-mail-download-page'));
+    await _pump(tester);
+    expect(captured, hasLength(100));
+    expect(captured!.first.id, _header(1).id);
+    expect(captured!.last.id, _header(100).id);
+    expect(
+      tester.widget<IconButton>(_key('studio-mail-sync-next')).onPressed,
+      isNull,
+    );
+    expect(_key('studio-mail-sync-start'), findsNothing);
+    expect(find.text(_strings.mailDownloadProgress(2, 3, 95)), findsOneWidget);
+    await tester.tap(_key('studio-mail-sync-stop'));
+    await _pump(tester);
+    expect(token!.isCancelled, isTrue);
+    expect(find.text(_strings.mailSyncStopping), findsOneWidget);
+    completion.complete(
+      downloaded(
+        100,
+        saved: 2,
+        cached: 3,
+        status: MailBodyDownloadStatus.cancelled,
+      ),
+    );
+    await _pump(tester);
+    expect(find.text(_strings.mailDownloadCancelled), findsOneWidget);
+    expect(
+      tester.widget<IconButton>(_key('studio-mail-sync-next')).onPressed,
+      isNotNull,
+    );
+    expect(tester.takeException(), isNull);
+  });
+
+  testWidgets(
+    'closing cancels body downloads and drains them before owner release',
+    (tester) async {
+      final store = _Store()..save([_header(1)]);
+      final completion = Completer<MailBodyDownloadReport>();
+      MailCancellationToken? token;
+      var closed = false;
+      await _show(
+        tester,
+        store,
+        run: idleSync,
+        onClosed: () => closed = true,
+        download:
+            ({required headers, required cancellation, required onProgress}) {
+              token = cancellation;
+              return completion.future;
+            },
+      );
+      await tester.tap(_key('studio-mail-download-page'));
+      await _pump(tester);
+      await tester.tap(_key('studio-mail-sync-close'));
+      await _pump(tester);
+      expect(token!.isCancelled, isTrue);
+      expect(closed, isFalse);
+      completion.complete(
+        downloaded(1, saved: 0, status: MailBodyDownloadStatus.cancelled),
+      );
+      await _pump(tester);
+      expect(closed, isTrue);
+      expect(tester.takeException(), isNull);
+    },
+  );
+
+  testWidgets('membership replacement cancels a frozen body download', (
+    tester,
+  ) async {
+    final store = _Store()..save([_header(1)]);
+    final completion = Completer<MailBodyDownloadReport>();
+    MailCancellationToken? token;
+    await _show(
+      tester,
+      store,
+      run: idleSync,
+      download:
+          ({required headers, required cancellation, required onProgress}) {
+            token = cancellation;
+            return completion.future;
+          },
+    );
+    await tester.tap(_key('studio-mail-download-page'));
+    await _pump(tester);
+    store.save([_header(2)], revision: 2);
+    await _pump(tester);
+    expect(token!.reason, MailCancellationReason.accountChanged);
+    completion.complete(
+      downloaded(
+        1,
+        saved: 0,
+        status: MailBodyDownloadStatus.failed,
+        problem: const MailProblem(MailProblemCode.staleOperation),
+      ),
+    );
+    await _pump(tester);
+    expect(find.text(_strings.mailDownloadConflict), findsOneWidget);
+    expect(tester.takeException(), isNull);
+  });
+
+  for (final language in StudioLanguage.values) {
+    testWidgets(
+      'download limits and recovery remain usable in ${language.name}',
+      (tester) async {
+        final strings = StudioStrings(language);
+        final store = _Store()..save([_header(1)]);
+        await _show(
+          tester,
+          store,
+          run: idleSync,
+          language: language,
+          size: const Size(480, 800),
+          scale: 1.3,
+          download:
+              ({
+                required headers,
+                required cancellation,
+                required onProgress,
+              }) async => downloaded(
+                1,
+                saved: 0,
+                status: MailBodyDownloadStatus.failed,
+                problem: const MailProblem(MailProblemCode.quotaExceeded),
+              ),
+        );
+        await tester.ensureVisible(_key('studio-mail-download-page'));
+        await tester.tap(_key('studio-mail-download-page'));
+        await _pump(tester);
+        expect(find.text(strings.mailDownloadQuota), findsOneWidget);
+        expect(
+          find.text(strings.mailDownloadProgress(0, 0, 1)),
+          findsOneWidget,
+        );
+        expect(tester.takeException(), isNull);
+        await _capture(tester, 'offline-download-limit-${language.name}');
+      },
+    );
+  }
+
   testWidgets('offline catalog reads only saved headers and reports scope', (
     tester,
   ) async {
@@ -414,6 +638,8 @@ void main() {
     expect(find.text(_strings.mailSyncSaved(_savedAt, 2)), findsOneWidget);
     expect(find.text(_strings.mailSyncPartial), findsOneWidget);
     expect(_key('studio-mail-sync-start'), findsNothing);
+    expect(_key('studio-mail-download-page'), findsNothing);
+    expect(_key('studio-mail-download-message'), findsNothing);
     expect(store.reads, [(_inbox.id, 100, 0)]);
     expect(store.bodyReads, 0);
     expect(tester.takeException(), isNull);
