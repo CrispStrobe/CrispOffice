@@ -233,6 +233,8 @@ void main() {
     (tester) async {
       await tester.binding.setSurfaceSize(const Size(1440, 1000));
       addTearDown(() => tester.binding.setSurfaceSize(null));
+      final previousTranslation = WordLayoutEngine.translateParagraphs;
+      final previousCoalescing = OfficeController.coalesceEditNotifications;
       // QUDS_TYPING_BENCHMARK_BASELINE=1: the same build with paragraph
       // translation and edit-notification coalescing switched off (an A/B
       // that does not depend on --dart-define reaching a cached test kernel).
@@ -241,8 +243,8 @@ void main() {
         OfficeController.coalesceEditNotifications = false;
       }
       addTearDown(() {
-        WordLayoutEngine.translateParagraphs = true;
-        OfficeController.coalesceEditNotifications = true;
+        WordLayoutEngine.translateParagraphs = previousTranslation;
+        OfficeController.coalesceEditNotifications = previousCoalescing;
       });
       // Time every controller listener (named) and keystroke phase.
       WordEditorController.debugTimeListeners = true;
