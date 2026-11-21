@@ -35,6 +35,8 @@ are neither consulted nor awaited.
 | `1360ead9e080fcf884ccac6cbc87bd6a58efdb5b` | Final whole-scope authority recheck, regression and latest landed main `511df2a0` |
 | `d30c473102fddf422413440eda46e184190cb649` | Compact EN/DE/AR controls, actual-font visual test and finite local qualification runner |
 | `1dd6912549c473b1d31f35d7cc00b28bae7acf3d` | Report and pause cancelled cleanup failures, explicit recovery regression, and lazy-list test navigation correction |
+| `2af7b938ff2bbb44e865ee970df1583bb7d4f3ef` | Complete accepted Mail qualification, raw execution archive and twelve visual captures |
+| `3d49a13d9e3d01db2a273d43affd36140475b467` | Later landed main `e5940c79`, including completed Word numeric authoring and its independent evidence |
 
 The final scope recheck closes an independently reproduced design gap: account
 A can be retired after its last page while account B is still being scanned.
@@ -55,12 +57,21 @@ advanced after the initial intake and remain active independent work:
 | `f6236ff5588441a24f9c8cc9c1dd4370d77eaddb` — Zotero note layout | Draft PR #342, explicitly work in progress; completion qualification pending |
 | `4b33109aa85e077e2798265efa045d640e6ead4e` — Zotero ODT continuation | Draft PR #333; new position guard has no fresh qualification record at capture |
 
-Those later heads remain on their remote branches and are recorded exactly.
-Their unfinished source is not promoted by this mail increment. This does not
-change the complete ancestry coverage of the initial 163-ref inventory. The
-canonical upstream's four heads and sixteen tags were rechecked unchanged.
-Only subsequent landed-main changes are reconciled before final publication;
-this finite intake does not chase independent draft development indefinitely.
+These are states at that capture. Word numeric authoring subsequently completed
+its qualification and landed on main as `e5940c79`. The Mail branch incorporates
+that exact main and its Word head in `3d49a13d`; its only new production change
+is the bounded numeric-intrinsic dispatch. The two later Zotero draft heads
+remain independent and were not promoted by this Mail increment.
+
+The [final main reconciliation](main-reconciliation.json) replays all 163
+initial observations with zero uncovered heads, preserves the complete engine
+tree from landed main, and verifies that all Mail/editor production and active
+dependency manifests are unchanged from the accepted Mail source. The only
+merge conflict was the order of identical complete sections in the Zotero
+README; every heading and section was compared before retaining main's order.
+The canonical upstream's four heads and sixteen tags were rechecked unchanged.
+This finite intake reconciles landed main without chasing independent draft
+development indefinitely.
 
 ## Delivered increment
 
@@ -113,6 +124,29 @@ retain 360 × 600 at 1.4× text and sender-direction assertions. These are local
 widget/renderer/store checks; no live provider credentials, real server
 downloads, platform installation or background-delivery qualification is
 claimed by this increment.
+
+### Later main integration gate
+
+After main advanced to `e5940c79`, the combined checkpoint `3d49a13d` passed
+all **204 cases across the three incoming numeric VBA suites**: 133 intrinsic,
+59 conformance and 12 integration cases. These are additional distinct cases,
+separate from the accepted 200 Mail/store/renderer cases above. Strict analysis
+and formatting were repeated on the combined tree for 13 Mail/numeric Dart
+paths and passed. All 5,980 captured source inputs remained unchanged, with
+zero failed/skipped cases, runtime error events or stderr.
+
+The [main integration receipt](main-integration.json) records this finite
+merged-source acceptance and exact unchanged Mail applicability. The
+[archive index](main-integration-index.json) verifies every entry in the
+[main integration archive](main-integration.tar.xz), including the runner,
+raw streams, SDK receipts and complete before/after source inventories. The
+imported broader Word qualification stays in its own record; its historical
+cases are not added to this task's totals.
+
+Across these explicitly scoped local runs, **404 distinct automated regression
+cases and four visual configurations passed**. Source identities and earlier
+failed attempts remain separate; this is not a claim of one uninterrupted full
+repository test run.
 
 ### Evidence
 

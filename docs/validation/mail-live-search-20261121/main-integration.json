@@ -1,0 +1,57 @@
+{
+  "accepted": true,
+  "checks": {
+    "analysis": {
+      "accepted": true,
+      "exit_code": 0,
+      "stderr_bytes": 0
+    },
+    "format": {
+      "accepted": true,
+      "exit_code": 0,
+      "stderr_bytes": 0
+    }
+  },
+  "engine_receipt_sha256": "9980fe74cf4ad413167fb8cf8bc96f9e724407da75aa08d12295cd6f5a9b5fb8",
+  "qualification_limits": "204 new numeric cases are separate from the previously accepted 200 Mail/Store/Editor cases. This finite gate does not claim a full engine/repository regression, installed Office acceptance, or a new execution of the earlier cohorts.",
+  "qualified_source_commit": "3d49a13d9e3d01db2a273d43affd36140475b467",
+  "schema": "quds-mail-live-search-main-integration-acceptance/v1",
+  "source_applicability": {
+    "mail_editor_core_store_package_sources_unchanged": true,
+    "prior_qualified_head": "1dd6912549c473b1d31f35d7cc00b28bae7acf3d",
+    "production_delta": [
+      "packages/quds_office_engine/lib/src/automation/office_vba_language.dart"
+    ],
+    "root_and_package_dependency_manifests_unchanged": true,
+    "scope": "The only production change is the isolated engine VBA-language extension. This finite three-suite engine gate qualifies that incoming increment on the merged tree. It does not represent a new execution of the prior Mail/Store/Editor cohorts.",
+    "source_delta": [
+      "packages/quds_office_engine/CHANGELOG.md",
+      "packages/quds_office_engine/example/macros/word_numeric_report.bas",
+      "packages/quds_office_engine/lib/src/automation/office_vba_language.dart",
+      "packages/quds_office_engine/test/fixtures/vba_conformance/word_numeric_intrinsics_v1.json",
+      "packages/quds_office_engine/test/office_vba_numeric_conformance_test.dart",
+      "packages/quds_office_engine/test/office_vba_numeric_intrinsics_integration_test.dart",
+      "packages/quds_office_engine/test/office_vba_numeric_intrinsics_test.dart",
+      "packages/quds_office_engine/tool/macros/web_vba_word_numeric_smoke.dart"
+    ]
+  },
+  "source_input_count": 5980,
+  "source_manifest_sha256": {
+    "after": "dac31adb96dad948516dff1d93d073418166e05079af121a44ebfdcd3152597f",
+    "before": "dac31adb96dad948516dff1d93d073418166e05079af121a44ebfdcd3152597f"
+  },
+  "summary_sha256": "c08526c77bd1a0078a61c3f295e71acedf69992e694bc293cf6cef7d58362719",
+  "tests": {
+    "complete_lifecycle": true,
+    "failed": 0,
+    "passed": 204,
+    "runtime_error_events": 0,
+    "skipped": 0,
+    "stderr_bytes": 0,
+    "suites": {
+      "packages/quds_office_engine/test/office_vba_numeric_conformance_test.dart": 59,
+      "packages/quds_office_engine/test/office_vba_numeric_intrinsics_integration_test.dart": 12,
+      "packages/quds_office_engine/test/office_vba_numeric_intrinsics_test.dart": 133
+    }
+  }
+}

@@ -32,7 +32,7 @@ account-scoped grouping, expand/collapse and observed unread/flag counts for
 explicitly linked, already loaded mailbox headers. It preserves individual
 visible-message actions. [Saved searches](saved-searches.md) persist named
 queries and fixed account scopes, reopening against current retained headers.
-Full threaded inboxes, continuous search refresh, background synchronization
+Full threaded inboxes, event-driven shared search views, background synchronization
 and cross-folder conversation indexing remain open.
 
 Outlook, Thunderbird and eM Client are comparison targets for complete workflows,
