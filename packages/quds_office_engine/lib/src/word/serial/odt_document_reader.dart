@@ -625,8 +625,7 @@ final class _OdtReader {
     }
     final columns = table.grid.length;
     final coverage = [
-      for (final _ in sourceRows)
-        List<_OdtTableCell?>.filled(columns, null),
+      for (final _ in sourceRows) List<_OdtTableCell?>.filled(columns, null),
     ];
     // ODF 1.3 section 9.1.5 requires an explicit covered cell at every
     // occupied position. Validate this source grid before parsing rich content

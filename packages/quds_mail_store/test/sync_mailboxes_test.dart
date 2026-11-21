@@ -606,6 +606,8 @@ void main() {
         await store.close();
         // Reconstruct the actual old schema, including removal of every
         // additive table/column introduced after v7.
+        database.execute('DROP TABLE account_quick_texts');
+        database.execute('DROP TABLE account_compose_settings');
         database.execute('DROP TABLE saved_header_search_accounts');
         database.execute('DROP TABLE saved_header_searches');
         database.execute(

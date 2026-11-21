@@ -156,15 +156,12 @@ void main() {
           expect(_paragraphs(controller), before);
           expect(controller.contentRevision, revision);
           expect(controller.isDirty, isFalse);
-          expect(
-            (
-              paragraph: controller.caret.paragraphIndex,
-              index: controller.caret.logicalIndex,
-              anchorParagraph: controller.caret.selectionAnchorParagraph,
-              anchor: controller.caret.selectionAnchor,
-            ),
-            selection,
-          );
+          expect((
+            paragraph: controller.caret.paragraphIndex,
+            index: controller.caret.logicalIndex,
+            anchorParagraph: controller.caret.selectionAnchorParagraph,
+            anchor: controller.caret.selectionAnchor,
+          ), selection);
           expect(controller.canUndo, isTrue);
           expect(controller.canRedo, isFalse);
           controller.undo();
@@ -237,20 +234,23 @@ void main() {
     OfficeInteractionMode.viewing,
     OfficeInteractionMode.selecting,
   ]) {
-    test('${mode.name} refuses plain-text insertion without history changes', () {
-      final controller = _controller(
-        text: 'Body',
-        config: OfficeSurfaceConfig(mode: mode),
-      );
-      final revision = controller.contentRevision;
+    test(
+      '${mode.name} refuses plain-text insertion without history changes',
+      () {
+        final controller = _controller(
+          text: 'Body',
+          config: OfficeSurfaceConfig(mode: mode),
+        );
+        final revision = controller.contentRevision;
 
-      expect(controller.insertPlainText('blocked\ntext'), isFalse);
+        expect(controller.insertPlainText('blocked\ntext'), isFalse);
 
-      expect(_paragraphs(controller), ['Body']);
-      expect(controller.contentRevision, revision);
-      expect(controller.isDirty, isFalse);
-      expect(controller.canUndo, isFalse);
-    });
+        expect(_paragraphs(controller), ['Body']);
+        expect(controller.contentRevision, revision);
+        expect(controller.isDirty, isFalse);
+        expect(controller.canUndo, isFalse);
+      },
+    );
   }
 
   test('document protection remains effective for plain-text insertion', () {
@@ -305,14 +305,16 @@ void main() {
       'unsupported control split fails before ${selection ? 'replacement' : 'insertion'}',
       () {
         final package = OpcPackage.create(OpcPackageKind.word);
-        package.getPart('/word/document.xml')!.writeText(
-          '<w:document xmlns:w="${OfficeNamespaces.w}">'
-          '<w:body><w:p><w:r><w:t>ab</w:t></w:r>'
-          '<w:sdt><w:sdtPr><w:id w:val="42"/></w:sdtPr>'
-          '<w:sdtContent><w:r><w:t>XYZ</w:t></w:r></w:sdtContent>'
-          '</w:sdt><w:r><w:t>cd</w:t></w:r></w:p>'
-          '<w:sectPr/></w:body></w:document>',
-        );
+        package
+            .getPart('/word/document.xml')!
+            .writeText(
+              '<w:document xmlns:w="${OfficeNamespaces.w}">'
+              '<w:body><w:p><w:r><w:t>ab</w:t></w:r>'
+              '<w:sdt><w:sdtPr><w:id w:val="42"/></w:sdtPr>'
+              '<w:sdtContent><w:r><w:t>XYZ</w:t></w:r></w:sdtContent>'
+              '</w:sdt><w:r><w:t>cd</w:t></w:r></w:p>'
+              '<w:sectPr/></w:body></w:document>',
+            );
         final controller = _controller(
           document: WordDeserializer().read(package),
         );

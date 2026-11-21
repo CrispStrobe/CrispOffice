@@ -183,9 +183,10 @@ extension MailComposeSettingsStorage on SqliteMailRepository {
         saved.signatureForReplies ? 1 : 0,
       ],
     );
-    await _db.customStatement('DELETE FROM account_quick_texts WHERE account=?', [
-      saved.account.value,
-    ]);
+    await _db.customStatement(
+      'DELETE FROM account_quick_texts WHERE account=?',
+      [saved.account.value],
+    );
     for (var index = 0; index < saved.quickTexts.length; index++) {
       final item = saved.quickTexts[index];
       await _db.customStatement(

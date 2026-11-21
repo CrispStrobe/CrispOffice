@@ -1767,14 +1767,13 @@ class _StudioMailDialogState extends State<StudioMailDialog>
           store,
           initial,
           replyOrForward: true,
-          isCurrent: () => _currentSession(client, generation) && identical(store, _draftStore),
+          isCurrent: () =>
+              _currentSession(client, generation) &&
+              identical(store, _draftStore),
         );
         if (!_currentSession(client, generation)) return;
         final created = catalog == null
-            ? StudioMailStoredDraft(
-                draft: prepared,
-                submissionUncertain: false,
-              )
+            ? StudioMailStoredDraft(draft: prepared, submissionUncertain: false)
             : await catalog.createDraft(prepared);
         if (!_currentSession(client, generation)) return;
         setState(() {

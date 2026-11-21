@@ -14,8 +14,7 @@ extension StudioMailComposeToolsStrings on StudioStrings {
     'Speichern Sie eine Klartextsignatur und wiederverwendbare Texte für dieses Konto auf diesem Gerät. Alle Änderungen werden gemeinsam mit „Speichern“ übernommen.',
     'احفظ توقيعًا نصيًا ونصوصًا قابلة لإعادة الاستخدام لهذا الحساب على هذا الجهاز. تُحفظ جميع التغييرات معًا عند اختيار حفظ.',
   );
-  String get mailComposeSignature =>
-      _text('Signature', 'Signatur', 'التوقيع');
+  String get mailComposeSignature => _text('Signature', 'Signatur', 'التوقيع');
   String get mailComposeSignatureForNew => _text(
     'Add to new messages',
     'Bei neuen Nachrichten einfügen',
@@ -40,14 +39,12 @@ extension StudioMailComposeToolsStrings on StudioStrings {
   );
   String get mailComposeQuickTextAdd =>
       _text('Add Quick Text', 'Schnelltext hinzufügen', 'إضافة نص سريع');
-  String get mailComposeQuickTextEdit =>
-      _text('Edit', 'Bearbeiten', 'تحرير');
+  String get mailComposeQuickTextEdit => _text('Edit', 'Bearbeiten', 'تحرير');
   String get mailComposeQuickTextDelete =>
       _text('Remove', 'Entfernen', 'إزالة');
   String get mailComposeQuickTextApply =>
       _text('Apply text', 'Text übernehmen', 'اعتماد النص');
-  String get mailComposeQuickTextName =>
-      _text('Name', 'Name', 'الاسم');
+  String get mailComposeQuickTextName => _text('Name', 'Name', 'الاسم');
   String get mailComposeQuickTextText =>
       _text('Text to insert', 'Einzufügender Text', 'النص المراد إدراجه');
   String get mailComposeQuickTextInvalid => _text(
@@ -75,21 +72,30 @@ extension StudioMailComposeToolsStrings on StudioStrings {
     'Dieses Konto ist nicht mehr aktiv. Schließen Sie die Schreibhilfen und öffnen Sie sie für das aktuelle Konto erneut.',
     'لم يعد هذا الحساب نشطًا. أغلق أدوات الكتابة وافتحها مجددًا للحساب الحالي.',
   );
-  String get mailComposeToolsSaving =>
-      _text('Saving writing tools…', 'Schreibhilfen werden gespeichert…', 'جارٍ حفظ أدوات الكتابة…');
+  String get mailComposeToolsSaving => _text(
+    'Saving writing tools…',
+    'Schreibhilfen werden gespeichert…',
+    'جارٍ حفظ أدوات الكتابة…',
+  );
   String get mailComposeInsertSignature =>
       _text('Insert signature', 'Signatur einfügen', 'إدراج التوقيع');
   String get mailComposeInsertQuickText =>
       _text('Insert Quick Text', 'Schnelltext einfügen', 'إدراج نص سريع');
-  String get mailComposeToolsLoading =>
-      _text('Loading writing tools…', 'Schreibhilfen werden geladen…', 'جارٍ تحميل أدوات الكتابة…');
+  String get mailComposeToolsLoading => _text(
+    'Loading writing tools…',
+    'Schreibhilfen werden geladen…',
+    'جارٍ تحميل أدوات الكتابة…',
+  );
   String get mailComposeToolsLoadFailed => _text(
     'Could not load writing tools. Retry to load your saved signature and Quick Text.',
     'Schreibhilfen konnten nicht geladen werden. Versuchen Sie es erneut, um Ihre gespeicherte Signatur und Schnelltexte zu laden.',
     'تعذر تحميل أدوات الكتابة. أعد المحاولة لتحميل توقيعك ونصوصك السريعة المحفوظة.',
   );
-  String get mailComposeToolsReload =>
-      _text('Reload writing tools', 'Schreibhilfen neu laden', 'إعادة تحميل أدوات الكتابة');
+  String get mailComposeToolsReload => _text(
+    'Reload writing tools',
+    'Schreibhilfen neu laden',
+    'إعادة تحميل أدوات الكتابة',
+  );
   String get mailComposeToolsSelectionFailed => _text(
     'Place the cursor in one paragraph, or select the whole message, before inserting writing tools.',
     'Setzen Sie den Cursor in einen Absatz oder wählen Sie die gesamte Nachricht aus, bevor Sie Schreibhilfen einfügen.',

@@ -54,11 +54,7 @@ Future<void> _press(WidgetTester tester, String suffix) async {
   await tester.pump(const Duration(milliseconds: 350));
 }
 
-Future<void> _enter(
-  WidgetTester tester,
-  String suffix,
-  String text,
-) async {
+Future<void> _enter(WidgetTester tester, String suffix, String text) async {
   final finder = _key(suffix);
   await tester.ensureVisible(finder);
   await tester.pump();
@@ -224,11 +220,7 @@ void main() {
   ) async {
     final host = _Host(_settings(signature: 'Original'));
     await _show(tester, host);
-    await _enter(
-      tester,
-      'compose-signature',
-      List.filled(8193, '😀').join(),
-    );
+    await _enter(tester, 'compose-signature', List.filled(8193, '😀').join());
     expect(
       tester.widget<TextField>(_key('compose-signature')).controller!.text,
       'Original',
@@ -260,10 +252,7 @@ void main() {
       ),
     );
     await _show(tester, host);
-    expect(
-      tester.widget<TextButton>(_key('quick-text-add')).onPressed,
-      isNull,
-    );
+    expect(tester.widget<TextButton>(_key('quick-text-add')).onPressed, isNull);
     await _press(tester, 'quick-text-remove-text-0');
     expect(
       tester.widget<TextButton>(_key('quick-text-add')).onPressed,
@@ -352,7 +341,10 @@ void main() {
       isNull,
     );
     expect(host.writes, hasLength(1));
-    expect(host.writes.single.quickTexts.single.text, 'Keep this whole snippet');
+    expect(
+      host.writes.single.quickTexts.single.text,
+      'Keep this whole snippet',
+    );
     expect(host.result, isNull);
     expect(host.closes, 0);
     await _press(tester, 'compose-tools-close');
@@ -441,7 +433,10 @@ void main() {
           scale: 1.5,
         );
         expect(find.text(strings.mailComposeTools), findsOneWidget);
-        expect(find.text(strings.mailComposeSignatureForReplies), findsOneWidget);
+        expect(
+          find.text(strings.mailComposeSignatureForReplies),
+          findsOneWidget,
+        );
         await _press(tester, 'quick-text-add');
         expect(
           tester.widget<TextField>(_key('quick-text-name')).focusNode!.hasFocus,

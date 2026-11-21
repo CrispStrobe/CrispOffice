@@ -41,6 +41,7 @@ import 'word_settings_io.dart';
 import 'word_table_property_io.dart';
 
 part 'word_style_cascade.dart';
+part 'word_paragraph_style_edit.dart';
 
 enum _SdtBreakLayout { none, liftLast, opaque }
 
@@ -1574,7 +1575,8 @@ class WordDeserializer {
       if (reader.eventType != XmlEventType.startElement) {
         continue;
       }
-      if ((reader.localName == 'spacing' ||
+      if ((reader.localName == 'pStyle' ||
+              reader.localName == 'spacing' ||
               reader.localName == 'bidi' ||
               reader.localName == 'tabs' ||
               reader.localName == 'suppressAutoHyphens') &&
@@ -4034,6 +4036,21 @@ class WordDeserializer {
     replacement: replacement,
     properties: paragraphProperties,
   );
+
+  /// Assign an existing native paragraph style by primary name or a supported
+  /// Word built-in constant, preserving sparse direct formatting. The selected
+  /// paragraph must have one owner. Active numbering and changes to effective
+  /// numbering are refused because numbering labels/indents need a story-wide
+  /// update. Preparation is detached; failure leaves the live model unchanged.
+  void editParagraphStyle(
+    WmlDocument document,
+    WmlParagraph paragraph, {
+    String? name,
+    int? builtin,
+  }) => _ParagraphStyleEdit(
+    this,
+    document,
+  ).apply(paragraph, name: name, builtin: builtin);
 
   /// Recompute effective formatting after editing a source style definition.
   void refreshStyles(WmlDocument document) {

@@ -111,10 +111,7 @@ Uint8List _package(String body, {String styles = _styles}) {
   );
   final preferences = jsonEncode({
     'dataVersion': 4,
-    'style': {
-      'styleID': 'http://www.zotero.org/styles/apa',
-      'locale': 'de-DE',
-    },
+    'style': {'styleID': 'http://www.zotero.org/styles/apa', 'locale': 'de-DE'},
     'prefs': {'fieldType': 'ReferenceMark', 'noteType': 0},
     'futurePreferences': {'preserve': true, 'opaque': 'x' * 350},
   });
@@ -151,20 +148,16 @@ const _covered = '<table:covered-table-cell/>';
 
 String _combinedTable({String? origin}) => _tableXml(
   _row(
-    _cell(
-      origin ?? '<text:p>Before ${_mark('origin')} after</text:p>',
-      attributes:
-          'table:number-columns-spanned="2" table:number-rows-spanned="2" '
-          'table:style-name="Fill"',
-    ) +
-        _covered +
-        _cell('<text:p>${_mark('right')}</text:p>'),
-  ) +
-      _row(
-        _covered +
+        _cell(
+              origin ?? '<text:p>Before ${_mark('origin')} after</text:p>',
+              attributes:
+                  'table:number-columns-spanned="2" table:number-rows-spanned="2" '
+                  'table:style-name="Fill"',
+            ) +
             _covered +
-            _cell('<text:p>${_mark('lower')}</text:p>'),
+            _cell('<text:p>${_mark('right')}</text:p>'),
       ) +
+      _row(_covered + _covered + _cell('<text:p>${_mark('lower')}</text:p>')) +
       _row(
         _cell(
               '<text:p>${_mark('wide')}</text:p>',
@@ -188,15 +181,13 @@ WmlTable _bodyTable(WmlDocument document) =>
 WmlParagraph _paragraph(WmlTableCell cell) =>
     cell.blocks.whereType<WmlParagraph>().single;
 
-WmlZoteroField _field(WmlDocument document, String id) =>
-    WordZotero.fields(document).singleWhere(
-      (field) => field.citation?.citationId == id,
-    );
+WmlZoteroField _field(WmlDocument document, String id) => WordZotero.fields(
+  document,
+).singleWhere((field) => field.citation?.citationId == id);
 
-WmlRun _runContaining(WmlParagraph paragraph, String text) =>
-    paragraph.inlines.whereType<WmlRun>().singleWhere(
-      (run) => run.text.contains(text),
-    );
+WmlRun _runContaining(WmlParagraph paragraph, String text) => paragraph.inlines
+    .whereType<WmlRun>()
+    .singleWhere((run) => run.text.contains(text));
 
 Object? _call(
   WordZoteroCitingSession session,
@@ -286,7 +277,10 @@ void main() {
           'lower',
           'wide',
         ]);
-        expect(fields.map((field) => field.cachedText), List.filled(4, '(Same)'));
+        expect(
+          fields.map((field) => field.cachedText),
+          List.filled(4, '(Same)'),
+        );
         for (final entry in expectedOwners.entries) {
           final field = _field(document, entry.key);
           expect(identical(field.paragraph, entry.value), isTrue);
@@ -304,7 +298,10 @@ void main() {
           );
         }
         expect(_field(document, 'origin').start, 7);
-        expect(_field(document, 'origin').paragraph.text, 'Before (Same) after');
+        expect(
+          _field(document, 'origin').paragraph.text,
+          'Before (Same) after',
+        );
         final session = WordZoteroCitingSession(
           document: document,
           documentId: 'merged-odt',
@@ -409,9 +406,9 @@ void main() {
           _citationData(id)['futureRoot'],
         );
       }
-      final bibliographyField = WordZotero.fields(document).singleWhere(
-        (field) => field.kind == ZoteroFieldKind.bibliography,
-      );
+      final bibliographyField = WordZotero.fields(
+        document,
+      ).singleWhere((field) => field.kind == ZoteroFieldKind.bibliography);
       expect(bibliographyField.metadata, _bibliographyData);
       expect(bibliographyField.cachedText, 'Updated Book.\nSecond Book.');
       expect(bibliographyField.paragraphs, hasLength(2));
@@ -438,7 +435,10 @@ void main() {
       WordZotero.unlink(_field(document, 'origin'));
       document = _reopen(document);
       _checkCombinedGeometry(_bodyTable(document));
-      expect(_paragraph(_bodyTable(document).rows[0].cells[0]).text, unlinkedText);
+      expect(
+        _paragraph(_bodyTable(document).rows[0].cells[0]).text,
+        unlinkedText,
+      );
       expect(
         WordZotero.fields(document)
             .where((field) => field.kind == ZoteroFieldKind.citation)
@@ -533,7 +533,12 @@ void main() {
             insertionParagraph: body,
           );
           final wire = _wireFields(session);
-          expect(wire.map(_wireCitationId), ['before', 'note', 'nested', 'after']);
+          expect(wire.map(_wireCitationId), [
+            'before',
+            'note',
+            'nested',
+            'after',
+          ]);
           expect(wire.map((field) => field['noteIndex']), [0, 1, 1, 0]);
           expect(
             WordZotero.fields(current).every((field) => field.canEdit),
@@ -545,31 +550,33 @@ void main() {
     );
   }
 
-  test('matching covered fill and XML whitespace do not add an owner', () async {
-    final document = await OdtDocumentReader.readBytes(
-      _package(
-        _tableXml(
-          _row(
-            _cell(
-                  '<text:p>${_mark('filled')}</text:p>',
-                  attributes:
-                      'table:number-columns-spanned="2" table:style-name="Fill"',
-                ) +
-                '<table:covered-table-cell table:style-name="SameFill">'
-                ' \n\t\r </table:covered-table-cell>',
+  test(
+    'matching covered fill and XML whitespace do not add an owner',
+    () async {
+      final filled = _cell(
+        '<text:p>${_mark('filled')}</text:p>',
+        attributes: 'table:number-columns-spanned="2" table:style-name="Fill"',
+      );
+      final document = await OdtDocumentReader.readBytes(
+        _package(
+          _tableXml(
+            _row(
+              '$filled<table:covered-table-cell table:style-name="SameFill">'
+              ' \n\t\r </table:covered-table-cell>',
+            ),
           ),
         ),
-      ),
-    );
-    for (final current in [document, _reopen(document)]) {
-      final table = _bodyTable(current);
-      expect(table.rows.single.cells, hasLength(1));
-      expect(table.rows.single.cells.single.gridSpan, 2);
-      expect(table.rows.single.cells.single.fillColor, 'FFEEDD');
-      expect(WordZotero.fields(current), hasLength(1));
-      expect(_field(current, 'filled').canEdit, isTrue);
-    }
-  });
+      );
+      for (final current in [document, _reopen(document)]) {
+        final table = _bodyTable(current);
+        expect(table.rows.single.cells, hasLength(1));
+        expect(table.rows.single.cells.single.gridSpan, 2);
+        expect(table.rows.single.cells.single.fillColor, 'FFEEDD');
+        expect(WordZotero.fields(current), hasLength(1));
+        expect(_field(current, 'filled').canEdit, isTrue);
+      }
+    },
+  );
 
   final ordinary = _cell('<text:p>Cell</text:p>');
   final wide = _cell(
@@ -579,6 +586,14 @@ void main() {
   final tall = _cell(
     '<text:p>Tall</text:p>',
     attributes: 'table:number-rows-spanned="2"',
+  );
+  final filledWide = _cell(
+    '<text:p>Cell</text:p>',
+    attributes: 'table:number-columns-spanned="2" table:style-name="Fill"',
+  );
+  final threeWide = _cell(
+    '<text:p>Cell</text:p>',
+    attributes: 'table:number-columns-spanned="3"',
   );
   final invalidCoverage = <String, String>{
     'missing covered position': _tableXml(_row(wide)),
@@ -602,12 +617,7 @@ void main() {
     ),
     'covered fill conflicts with origin': _tableXml(
       _row(
-        _cell(
-              '<text:p>Cell</text:p>',
-              attributes:
-                  'table:number-columns-spanned="2" table:style-name="Fill"',
-            ) +
-            '<table:covered-table-cell table:style-name="OtherFill"/>',
+        '$filledWide<table:covered-table-cell table:style-name="OtherFill"/>',
       ),
     ),
     'repeated origin': _tableXml(
@@ -620,11 +630,7 @@ void main() {
     ),
     'repeated covered positions': _tableXml(
       _row(
-        _cell(
-              '<text:p>Cell</text:p>',
-              attributes: 'table:number-columns-spanned="3"',
-            ) +
-            '<table:covered-table-cell table:number-columns-repeated="2"/>',
+        '$threeWide<table:covered-table-cell table:number-columns-repeated="2"/>',
       ),
     ),
     'repeated row': _tableXml(
@@ -655,9 +661,8 @@ void main() {
       final bytes = _package(
         _tableXml(
           _row(
-            wide +
-                '<table:covered-table-cell>'
-                '${entry.value}</table:covered-table-cell>',
+            '$wide<table:covered-table-cell>'
+            '${entry.value}</table:covered-table-cell>',
           ),
         ),
       );
@@ -667,24 +672,33 @@ void main() {
     });
   }
 
-  test('citation cannot end in a covered cell with a different owner', () async {
-    final bytes = _package(
-      _tableXml(
-        _row(
-          _cell(
-                '<text:p>${_start('crossing')}Citation</text:p>',
-                attributes: 'table:number-columns-spanned="2"',
-              ) +
-              '<table:covered-table-cell><text:p>${_end('crossing')}'
-              '</text:p></table:covered-table-cell>',
+  test(
+    'citation cannot end in a covered cell with a different owner',
+    () async {
+      final origin = _cell(
+        '<text:p>${_start('crossing')}Citation</text:p>',
+        attributes: 'table:number-columns-spanned="2"',
+      );
+      final bytes = _package(
+        _tableXml(
+          _row(
+            '$origin<table:covered-table-cell><text:p>${_end('crossing')}'
+            '</text:p></table:covered-table-cell>',
+          ),
         ),
-      ),
-    );
-    await expectLater(OdtDocumentReader.readBytes(bytes), _refused);
-  });
+      );
+      await expectLater(OdtDocumentReader.readBytes(bytes), _refused);
+    },
+  );
 
   for (final dimension in ['columns', 'rows']) {
-    for (final value in ['0', '-1', '1.5', 'NaN', '99999999999999999999999999']) {
+    for (final value in [
+      '0',
+      '-1',
+      '1.5',
+      'NaN',
+      '99999999999999999999999999',
+    ]) {
       test('refuses $dimension span $value', () async {
         final bytes = _package(
           _tableXml(
@@ -741,9 +755,7 @@ void main() {
         isTrue,
       );
       expect(
-        table.rows.last.cells.every(
-          (cell) => cell.vMerge == WmlVMerge.cont,
-        ),
+        table.rows.last.cells.every((cell) => cell.vMerge == WmlVMerge.cont),
         isTrue,
       );
       await expectLater(
@@ -753,40 +765,34 @@ void main() {
     },
   );
 
-  test(
-    'nested table cells share the parent continuation budget',
-    () async {
-      final nested = _tableXml(_row(ordinary));
-      await expectLater(
-        OdtDocumentReader.readBytes(
-          _package(
-            _verticalTable(
-              128,
-              32,
-              firstContents: '<text:p>Outer</text:p>$nested',
-            ),
+  test('nested table cells share the parent continuation budget', () async {
+    final nested = _tableXml(_row(ordinary));
+    await expectLater(
+      OdtDocumentReader.readBytes(
+        _package(
+          _verticalTable(
+            128,
+            32,
+            firstContents: '<text:p>Outer</text:p>$nested',
           ),
         ),
-        throwsA(isA<OdfZoteroLimitException>()),
-      );
-    },
-  );
+      ),
+      throwsA(isA<OdfZoteroLimitException>()),
+    );
+  });
 
-  test(
-    'row budget permits 256 actual rows and refuses the 257th',
-    () async {
-      final document = await OdtDocumentReader.readBytes(
-        _package(_verticalTable(256, 1)),
-      );
-      expect(_bodyTable(document).rows, hasLength(256));
-      final tooMany = _verticalTable(256, 1).replaceFirst(
-        '</table:table>',
-        '${_row(ordinary)}</table:table>',
-      );
-      await expectLater(
-        OdtDocumentReader.readBytes(_package(tooMany)),
-        throwsA(isA<OdfZoteroLimitException>()),
-      );
-    },
-  );
+  test('row budget permits 256 actual rows and refuses the 257th', () async {
+    final document = await OdtDocumentReader.readBytes(
+      _package(_verticalTable(256, 1)),
+    );
+    expect(_bodyTable(document).rows, hasLength(256));
+    final tooMany = _verticalTable(
+      256,
+      1,
+    ).replaceFirst('</table:table>', '${_row(ordinary)}</table:table>');
+    await expectLater(
+      OdtDocumentReader.readBytes(_package(tooMany)),
+      throwsA(isA<OdfZoteroLimitException>()),
+    );
+  });
 }

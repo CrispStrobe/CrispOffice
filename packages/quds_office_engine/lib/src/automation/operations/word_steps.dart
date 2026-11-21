@@ -16,6 +16,7 @@ const wordOperations = <String, List<String>>{
   'replaceText': ['paragraph', 'text', 'start', 'end', ..._storyFields],
   'heading': ['paragraph', 'level', ..._storyFields],
   'applyStyle': ['paragraph', 'style', ..._storyFields],
+  'paragraphStyle': ['paragraph', 'name', 'builtin', ..._storyFields],
   'characterStyle': ['paragraph', 'run', 'style', ..._storyFields],
   'tableStyle': ['table', 'style'],
   'styleDefinition': ['style', 'type', 'rPr', 'pPr', 'tblPr', 'tcPr'],
@@ -158,6 +159,18 @@ void applyStep(
         throw ArgumentError('Unknown paragraph style: $style');
       }
       WordStyles.apply(paragraph(), style, document: doc);
+    case 'paragraphStyle':
+      if (s.has('name') == s.has('builtin')) {
+        throw ArgumentError('Provide exactly one style name or builtin.');
+      }
+      WordDeserializer().editParagraphStyle(
+        doc,
+        paragraph(),
+        name: s.has('name') ? s.string('name') : null,
+        builtin: s.has('builtin')
+            ? s.integer('builtin', min: -75, max: -1)
+            : null,
+      );
     case 'characterStyle':
       final id = s.string('style');
       _sourceStyle(doc, id, 'character');

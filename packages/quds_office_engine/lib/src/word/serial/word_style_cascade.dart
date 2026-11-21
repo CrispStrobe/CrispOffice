@@ -3,7 +3,8 @@ part of 'word_deserializer.dart';
 /// Resolve only declared properties, from defaults through table/paragraph/
 /// character styles to direct formatting. Missing values never reset a parent.
 class _StyleCascade {
-  _StyleCascade(this.reader, this.document);
+  _StyleCascade(this.reader, this.document, {this.nativeOnly = false});
+  final bool nativeOnly;
   final WordDeserializer reader;
   final WmlDocument document;
   final Map<String, XmlElement> styles = {};
@@ -741,6 +742,34 @@ class _StyleCascade {
     return result;
   }
 
+  /// Effective projections contain native properties only; opaque XML stays in
+  /// the sparse source. Used for a targeted style edit, where inherited layers
+  /// may introduce aliases and extension metadata not present on the old style.
+  static XmlElement _nativeProjection(XmlElement source) {
+    final result = XmlElement(
+      localName: source.localName,
+      prefix: 'w',
+      namespaceUri: OfficeNamespaces.w,
+    )..setAttribute('w', OfficeNamespaces.w, prefix: 'xmlns');
+    for (final attribute in source.attributes) {
+      if (attribute.namespaceUri == OfficeNamespaces.w ||
+          (attribute.namespaceUri.isEmpty && attribute.prefix == 'w')) {
+        result.setAttribute(
+          attribute.localName,
+          attribute.value,
+          prefix: 'w',
+          namespaceUri: OfficeNamespaces.w,
+        );
+      }
+    }
+    for (final child in source.childElements) {
+      if (_word(child, child.localName)) {
+        result.addChild(_nativeProjection(child));
+      }
+    }
+    return result;
+  }
+
   XmlElement merged(
     String name,
     Iterable<XmlElement?> layers, {
@@ -750,7 +779,14 @@ class _StyleCascade {
       ..setAttribute('w', OfficeNamespaces.w, prefix: 'xmlns');
     for (final layer in layers) {
       if (layer == null) continue;
-      for (final incoming in layer.childElements) {
+      for (final source in layer.childElements) {
+        if (nativeOnly && !_word(source, source.localName)) continue;
+        final incoming = nativeOnly ? _nativeProjection(source) : source;
+        if (name == 'pPr' &&
+            incoming.localName == 'pStyle' &&
+            !_word(incoming, 'pStyle')) {
+          continue;
+        }
         final scalarControl =
             (name == 'rPr' &&
                 (incoming.localName == 'kern' ||
@@ -766,6 +802,8 @@ class _StyleCascade {
         final child = scalarControl
             ? _scalarControlProjection(incoming)
             : runAttributes
+            ? _layoutAttributeProjection(incoming)
+            : name == 'pPr' && _word(incoming, 'pStyle')
             ? _layoutAttributeProjection(incoming)
             : name == 'pPr' && _word(incoming, 'numPr')
             ? _numberingProjection(incoming)
@@ -1003,10 +1041,10 @@ class _StyleCascade {
       }
     }
     p.properties.sourcePropertiesXml = source ?? '';
-    final markerStyles = [for (final s in paragraphChain) s.firstChild('rPr')];
+    final markerStyles = [for (final s in paragraphChain) _wordChild(s, 'rPr')];
     final markerXml = merged('rPr', [
-      defaults?.firstChild('rPrDefault')?.firstChild('rPr'),
-      for (final t in tableLayers) t.firstChild('rPr'),
+      _wordChild(_wordChild(defaults, 'rPrDefault'), 'rPr'),
+      for (final t in tableLayers) _wordChild(t, 'rPr'),
       ...markerStyles,
       pp.firstChild('rPr'),
     ], toggleLayers: markerStyles.whereType<XmlElement>().toSet());
@@ -1028,12 +1066,12 @@ class _StyleCascade {
       }
       final direct = WordPropertyIo.parse(props.sourcePropertiesXml, 'rPr');
       final styleRuns = [
-        for (final s in paragraphChain) s.firstChild('rPr'),
-        for (final s in chain(props.styleId)) s.firstChild('rPr'),
+        for (final s in paragraphChain) _wordChild(s, 'rPr'),
+        for (final s in chain(props.styleId)) _wordChild(s, 'rPr'),
       ];
       final rp = merged('rPr', [
-        defaults?.firstChild('rPrDefault')?.firstChild('rPr'),
-        for (final t in tableLayers) t.firstChild('rPr'),
+        _wordChild(_wordChild(defaults, 'rPrDefault'), 'rPr'),
+        for (final t in tableLayers) _wordChild(t, 'rPr'),
         ...styleRuns,
         direct,
       ], toggleLayers: styleRuns.whereType<XmlElement>().toSet());
@@ -1047,7 +1085,7 @@ class _StyleCascade {
       // The document default remains live: changing it must affect runs that
       // do not override it without stamping direct formatting onto every run.
       final inheritedLanguage = merged('rPr', [
-        for (final t in tableLayers) t.firstChild('rPr'),
+        for (final t in tableLayers) _wordChild(t, 'rPr'),
         ...styleRuns,
         direct,
       ]).firstChild('lang');
