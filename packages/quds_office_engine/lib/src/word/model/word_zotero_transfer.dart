@@ -355,8 +355,9 @@ abstract final class WordZoteroTransfer {
         if (inline.kind == WmlFieldBoundaryKind.begin) fieldDepth++;
         if (inline.kind == WmlFieldBoundaryKind.end) fieldDepth--;
       }
-      if (inline is WmlContentControlBoundary)
+      if (inline is WmlContentControlBoundary) {
         controlDepth += inline.start ? 1 : -1;
+      }
       if (fieldDepth < 0 || controlDepth < 0) {
         throw UnsupportedError(
           'A Zotero transfer link has unbalanced native boundaries.',
@@ -382,7 +383,9 @@ abstract final class WordZoteroTransfer {
     final result = <String>[];
     var at = 0;
     while (at < text.length) {
-      while (at < text.length && _space(text.codeUnitAt(at))) at++;
+      while (at < text.length && _space(text.codeUnitAt(at))) {
+        at++;
+      }
       if (at == text.length) break;
       final start = at;
       final citation = text.startsWith(_citationPrefix, at);
@@ -390,7 +393,9 @@ abstract final class WordZoteroTransfer {
         throw const FormatException('Malformed Zotero transfer field code.');
       }
       at += citation ? _citationPrefix.length : _bibliographyPrefix.length;
-      while (at < text.length && _space(text.codeUnitAt(at))) at++;
+      while (at < text.length && _space(text.codeUnitAt(at))) {
+        at++;
+      }
       if (at == text.length || text.codeUnitAt(at) != 0x7b) {
         throw const FormatException('Missing Zotero transfer field metadata.');
       }
@@ -411,8 +416,9 @@ abstract final class WordZoteroTransfer {
           quoted = true;
         } else if (unit == 0x7b || unit == 0x5b) {
           stack.add(unit == 0x7b ? 0x7d : 0x5d);
-          if (stack.length > 64)
+          if (stack.length > 64) {
             throw const FormatException('Excessive Zotero field nesting.');
+          }
         } else if (unit == 0x7d || unit == 0x5d) {
           if (stack.isEmpty || stack.removeLast() != unit) {
             throw const FormatException(
@@ -428,7 +434,9 @@ abstract final class WordZoteroTransfer {
       }
       if (!citation) {
         final suffixAt = at;
-        while (at < text.length && _space(text.codeUnitAt(at))) at++;
+        while (at < text.length && _space(text.codeUnitAt(at))) {
+          at++;
+        }
         if (text.startsWith('CSL_BIBLIOGRAPHY', at)) {
           at += 'CSL_BIBLIOGRAPHY'.length;
         } else {
@@ -446,8 +454,9 @@ abstract final class WordZoteroTransfer {
       if (citation) ZoteroCitation.fromJson(metadata);
       result.add(code);
     }
-    if (result.isEmpty)
+    if (result.isEmpty) {
       throw const FormatException('Empty Zotero transfer field.');
+    }
     return result;
   }
 
@@ -522,8 +531,9 @@ final class _TransferLink {
 final class WordZoteroTransferPlan {
   WordZoteroTransferPlan._(this._source)
     : _guard = _TransferModelGuard(_source) {
-    if (_source.sections.isEmpty)
+    if (_source.sections.isEmpty) {
       throw const FormatException('The document has no body section.');
+    }
     final sections = [
       for (final section in _source.sections) WmlClone.section(section),
     ];
@@ -605,10 +615,14 @@ final class WordZoteroTransferPlan {
     // introduced by an unsupported caller of the detached model.
     _TransferModelGuard(document);
     for (final section in document.sections) {
-      for (final block in section.blocks) _validatePublish(block);
+      for (final block in section.blocks) {
+        _validatePublish(block);
+      }
     }
     for (final note in [...document.footnotes, ...document.endnotes]) {
-      for (final block in note.blocks) _validatePublish(block);
+      for (final block in note.blocks) {
+        _validatePublish(block);
+      }
     }
     for (var i = 0; i < document.sections.length; i++) {
       _publishList(_source.sections[i].blocks, document.sections[i].blocks);
@@ -636,7 +650,9 @@ final class WordZoteroTransferPlan {
       }
       final from = WordTree.childLists(original).toList();
       final to = WordTree.childLists(copy).toList();
-      for (var c = 0; c < from.length; c++) _pairBlocks(from[c], to[c]);
+      for (var c = 0; c < from.length; c++) {
+        _pairBlocks(from[c], to[c]);
+      }
     }
   }
 
@@ -655,7 +671,9 @@ final class WordZoteroTransferPlan {
       throw StateError('A transfer changed an existing container structure.');
     }
     for (final list in children) {
-      for (final block in list) _validatePublish(block);
+      for (final block in list) {
+        _validatePublish(block);
+      }
     }
   }
 
@@ -684,7 +702,9 @@ final class WordZoteroTransferPlan {
       if (from.length != to.length) {
         throw StateError('A transfer changed an existing container structure.');
       }
-      for (var i = 0; i < from.length; i++) _publishList(to[i], from[i]);
+      for (var i = 0; i < from.length; i++) {
+        _publishList(to[i], from[i]);
+      }
       return original;
     }
     return WmlClone.block(staged);
@@ -754,9 +774,13 @@ final class _TransferModelGuard {
         section.evenFooter,
       ]) {
         _list(() => list);
-        for (final paragraph in list) _paragraph(paragraph, false);
+        for (final paragraph in list) {
+          _paragraph(paragraph, false);
+        }
       }
-      for (final opaque in section.preservedStories.values) _opaque(opaque.xml);
+      for (final opaque in section.preservedStories.values) {
+        _opaque(opaque.xml);
+      }
     }
     final body = Set<WmlParagraph>.identity()..addAll(supported);
     final anchors = <(bool, int), int>{};
@@ -769,8 +793,9 @@ final class _TransferModelGuard {
     }
     for (final bucket in [document.footnotes, document.endnotes]) {
       final ids = <int, int>{};
-      for (final note in bucket)
+      for (final note in bucket) {
         ids.update(note.id, (n) => n + 1, ifAbsent: () => 1);
+      }
       for (final note in bucket) {
         final id = note.id;
         final referenceProperties = note.referencePropertiesXml;
@@ -791,7 +816,9 @@ final class _TransferModelGuard {
     }
     for (final comment in document.comments) {
       _list(() => comment.paragraphs);
-      for (final paragraph in comment.paragraphs) _paragraph(paragraph, false);
+      for (final paragraph in comment.paragraphs) {
+        _paragraph(paragraph, false);
+      }
     }
   }
 
@@ -817,24 +844,27 @@ final class _TransferModelGuard {
   }
 
   void _blocks(List<WmlBlock> Function() read, bool allowed, int depth) {
-    if (depth > 64)
+    if (depth > 64) {
       throw const FormatException(
         'The Word story nesting exceeds the transfer limit.',
       );
+    }
     _list(read);
     for (final block in read()) {
-      if (!_seen.add(block))
+      if (!_seen.add(block)) {
         throw UnsupportedError(
           'A Word block has repeated or cyclic ownership.',
         );
+      }
       if (block is WmlParagraph) {
         _paragraph(block, allowed, registered: true);
       } else if (block is WmlTable) {
         _list(() => block.rows);
         for (final row in block.rows) {
           _list(() => row.cells);
-          for (final cell in row.cells)
+          for (final cell in row.cells) {
             _blocks(() => cell.blocks, allowed, depth + 1);
+          }
         }
       } else if (block is WmlContentControlBlock) {
         _opaque(block.control.xml);
@@ -843,8 +873,9 @@ final class _TransferModelGuard {
         _blocks(() => block.blocks, false, depth + 1);
       } else if (block is WmlToc) {
         _paragraph(block.titleParagraph, false);
-        for (final paragraph in block.itemParagraphs)
+        for (final paragraph in block.itemParagraphs) {
           _paragraph(paragraph, false);
+        }
       } else if (block is WmlOpaqueBlock) {
         _opaque(block.xml);
       }
@@ -861,8 +892,9 @@ final class _TransferModelGuard {
         'A Word paragraph has repeated or cyclic ownership.',
       );
     }
-    if (paragraphs.length >= 100000)
+    if (paragraphs.length >= 100000) {
       throw const FormatException('Too many paragraphs for Zotero transfer.');
+    }
     paragraphs.add(paragraph);
     if (allowed) supported.add(paragraph);
     _list(() => paragraph.inlines);

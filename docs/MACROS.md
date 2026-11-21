@@ -505,8 +505,9 @@ modes emit `docx.sectionStart`. Live reads, collection-wide page setup and
 `PaperSize` remain unsupported. The
 [section contract](VBA_WORD_MACROS.md#section-page-setup) states source numeric
 bounds, sparse native ownership and the custom-paper side effect. The
-[local qualification record](validation/word-vba-paragraph-pagination-20261121/README.md)
-separates executed engine checks from unexecuted Office and Flutter hosts.
+[geometry qualification](validation/word-vba-paragraph-pagination-20261121/README.md)
+and [section-controls qualification](validation/word-vba-sections-20261121/README.md)
+separate executed engine checks from unexecuted Office hosts.
 `InsertBefore`
 uses the empty range at paragraph offset zero, preserving the paragraph mark.
 Word and Excel retain separate typed object members and native output formats;
