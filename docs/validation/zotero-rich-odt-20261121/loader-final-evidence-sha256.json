@@ -1,0 +1,25 @@
+{
+  "archive_sha256": "40c1039556872e564a5eb6f422a363a58955a77d943d68c2f5fb45f38655dcfa",
+  "archive_bytes": 116356,
+  "member_sha256": {
+    "loader-final/README.md": "ea49c3e54608008ffd0813bbc0d60e54342b36b3f68e044d3ad5b0885480017e",
+    "loader-final/coverage.json": "b2387dc2987a2c79a1e9137465908c8100a2121c440ad2ae90be6c8e358d84fa",
+    "loader-final/editor/command.json": "c45adecf70b0080177f1f18613da74340c534c84278920cead53fb9a6ee805ae",
+    "loader-final/editor/events.jsonl": "8d7e322e7c50c77e1cf297fd8073b79af2ce065a8bc38258bfed0c756c7b0c94",
+    "loader-final/editor/result.json": "fb4423f92b5a24ae36480c5a7420a0402ebf3394fd08cacff620c06bad9f360e",
+    "loader-final/editor/stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "loader-final/inputs-after.json": "4d14ea6238a558eaa3742868a512433a9eeed4d13f665174f0bb313cc2d3affd",
+    "loader-final/inputs-before.json": "4d14ea6238a558eaa3742868a512433a9eeed4d13f665174f0bb313cc2d3affd",
+    "loader-final/runtime-after.json": "b146bd99dd3c039fdb31cfe736446b1b3e560ca2a60a65ad5e986226cd9a581b",
+    "loader-final/runtime-before.json": "b146bd99dd3c039fdb31cfe736446b1b3e560ca2a60a65ad5e986226cd9a581b",
+    "loader-final/studio/command.json": "4161f3beb6d8c1c4472fd60c664da0c7b1b87061dd96318ea8accbf1525b6b76",
+    "loader-final/studio/events.jsonl": "1eb08e2cdc23af4a48a11789db3829e21f46f82fea72f429db6d8544f069878a",
+    "loader-final/studio/result.json": "3e474b0e7f9ae142b35299d72d6416fff12da954d084ba59713859d93f9d6edd",
+    "loader-final/studio/stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "loader-final/summary.json": "db2d8b698b49dc19a20f5f63ba7cd16ca6c56d96e5f163533ee998fe09c1afa1",
+    "run_loader_final.py": "e529c29655f5121b4787bc70b85744d5b93eebca1d81e4e86c2e7c3ee7dcc438",
+    "run_editor_gate.py": "744ab9878f276ebca541b6f4e7d853e4d167f369100cfa072cb1eea37dd6a5af",
+    "loader-final-plan.json": "c7522fd8034eec5a061a9cd2e274e314bc59db72aecc78cf5915b2ddf89c366b"
+  },
+  "reopened_crc_and_member_hashes_verified": true
+}

@@ -1,0 +1,104 @@
+{
+  "started_at_utc": "2026-11-21T12:22:37.970654+00:00",
+  "source_head_at_start": "77c4ef27008a1a2468b94c3b67423c43ac28438d",
+  "source_tree_at_start": "eef0df8702570d307e670fc35f5451c844109cb1",
+  "scoped_environment": {
+    "PUB_CACHE": "/workspace/scratch/1e8f5be6b406/runtime/pub-cache",
+    "TMPDIR": "/workspace/scratch/1e8f5be6b406/runtime/tmp",
+    "XDG_CONFIG_HOME": "/workspace/scratch/1e8f5be6b406/runtime/xdg-config",
+    "XDG_CACHE_HOME": "/workspace/scratch/1e8f5be6b406/runtime/xdg-cache",
+    "BOT": "true",
+    "CI": "true",
+    "DASH__SUPPRESS_ANALYTICS": "true",
+    "FLUTTER_SUPPRESS_ANALYTICS": "true"
+  },
+  "runtime": {
+    "flutter": "3.47.8",
+    "dart": "3.13.7"
+  },
+  "cohorts": {
+    "editor": {
+      "counts": {
+        "success": 8
+      },
+      "by_suite": {
+        "packages/quds_office_editor/test/word_odt_load_test.dart": {
+          "success": 8
+        }
+      },
+      "done": [
+        {
+          "success": true,
+          "type": "done",
+          "time": 13599
+        }
+      ],
+      "errors": [],
+      "non_json_lines": [],
+      "skips": [],
+      "failures": [],
+      "exit_code": 0,
+      "elapsed_seconds": 15.941512189001514,
+      "events_sha256": "8d7e322e7c50c77e1cf297fd8073b79af2ce065a8bc38258bfed0c756c7b0c94",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "studio": {
+      "counts": {
+        "success": 7
+      },
+      "by_suite": {
+        "packages/quds_office_editor/example/test/studio_odt_open_test.dart": {
+          "success": 3
+        },
+        "packages/quds_office_editor/example/test/studio_file_menu_test.dart": {
+          "success": 4
+        }
+      },
+      "done": [
+        {
+          "success": true,
+          "type": "done",
+          "time": 45279
+        }
+      ],
+      "errors": [],
+      "non_json_lines": [],
+      "skips": [],
+      "failures": [],
+      "exit_code": 0,
+      "elapsed_seconds": 53.636990809000054,
+      "events_sha256": "1eb08e2cdc23af4a48a11789db3829e21f46f82fea72f429db6d8544f069878a",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "input_count": 1062,
+  "github_actions_queried": false,
+  "github_actions_awaited": false,
+  "counting_note": "These cases are already included in the accepted 1043 editor and 40 Studio aggregate cases. This replay is separate evidence, never an additive coverage count.",
+  "finished_at_utc": "2026-11-21T12:23:47.978747+00:00",
+  "source_head_at_end": "77c4ef27008a1a2468b94c3b67423c43ac28438d",
+  "inputs_changed": [],
+  "runtime_changed": [],
+  "input_manifest_sha256": {
+    "before": "4d14ea6238a558eaa3742868a512433a9eeed4d13f665174f0bb313cc2d3affd",
+    "after": "4d14ea6238a558eaa3742868a512433a9eeed4d13f665174f0bb313cc2d3affd"
+  },
+  "accepted": true,
+  "scope": "Focused final-source ODT loader/editor/Studio replay after incoming duplicate-used-property-container refusal and token-equivalent formatting.",
+  "selection_coverage": {
+    "editor": {
+      "selected_files": 1,
+      "executed_files": 1,
+      "missing": [],
+      "unexpected": []
+    },
+    "studio": {
+      "selected_files": 2,
+      "executed_files": 2,
+      "missing": [],
+      "unexpected": []
+    }
+  },
+  "archive_sha256": "40c1039556872e564a5eb6f422a363a58955a77d943d68c2f5fb45f38655dcfa",
+  "archive_bytes": 116356
+}

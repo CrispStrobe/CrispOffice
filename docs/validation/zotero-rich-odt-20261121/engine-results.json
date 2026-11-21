@@ -1,0 +1,408 @@
+{
+  "counts": {
+    "success": 2576
+  },
+  "by_suite": {
+    "test/note_chrome_fidelity_test.dart": {
+      "success": 20
+    },
+    "test/note_edit_test.dart": {
+      "success": 4
+    },
+    "test/note_marker_fidelity_test.dart": {
+      "success": 19
+    },
+    "test/note_marker_legacy_fidelity_test.dart": {
+      "success": 8
+    },
+    "test/note_marker_merge_test.dart": {
+      "success": 16
+    },
+    "test/note_separator_fidelity_test.dart": {
+      "success": 27
+    },
+    "test/odf_annotation_extraction_test.dart": {
+      "success": 11
+    },
+    "test/odf_export_text_fidelity_test.dart": {
+      "success": 19
+    },
+    "test/odf_covered_cell_extraction_test.dart": {
+      "success": 12
+    },
+    "test/odf_frame_extraction_test.dart": {
+      "success": 12
+    },
+    "test/odf_text_box_extraction_test.dart": {
+      "success": 18
+    },
+    "test/odf_zotero_preferences_test.dart": {
+      "success": 60
+    },
+    "test/odf_revision_extraction_test.dart": {
+      "success": 8
+    },
+    "test/odf_zotero_reference_marks_test.dart": {
+      "success": 38
+    },
+    "test/odf_zotero_ownership_test.dart": {
+      "success": 38
+    },
+    "test/odf_zotero_resource_test.dart": {
+      "success": 13
+    },
+    "test/odt_bookmark_name_ambiguity_test.dart": {
+      "success": 1
+    },
+    "test/odt_bookmark_end_fidelity_test.dart": {
+      "success": 7
+    },
+    "test/odt_bookmark_range_fidelity_test.dart": {
+      "success": 3
+    },
+    "test/odt_column_break_style_fidelity_test.dart": {
+      "success": 12
+    },
+    "test/odt_columns_breaks_fidelity_test.dart": {
+      "success": 7
+    },
+    "test/odt_columns_schema_fidelity_test.dart": {
+      "success": 2
+    },
+    "test/odt_comment_fidelity_test.dart": {
+      "success": 35
+    },
+    "test/odt_complex_field_fidelity_test.dart": {
+      "success": 25
+    },
+    "test/odt_document_writer_test.dart": {
+      "success": 18
+    },
+    "test/odt_document_reader_test.dart": {
+      "success": 42
+    },
+    "test/odt_frame_common_style_test.dart": {
+      "success": 2
+    },
+    "test/odt_header_footer_fidelity_test.dart": {
+      "success": 9
+    },
+    "test/odt_header_variant_comment_fidelity_test.dart": {
+      "success": 4
+    },
+    "test/odt_header_variant_order_test.dart": {
+      "success": 4
+    },
+    "test/odt_hyperlink_range_fidelity_test.dart": {
+      "success": 5
+    },
+    "test/odt_imported_field_fidelity_test.dart": {
+      "success": 21
+    },
+    "test/odt_inline_column_break_fidelity_test.dart": {
+      "success": 9
+    },
+    "test/odt_inline_field_fidelity_test.dart": {
+      "success": 29
+    },
+    "test/odt_list_fidelity_test.dart": {
+      "success": 40
+    },
+    "test/odt_open_test.dart": {
+      "success": 7
+    },
+    "test/odt_page_field_fidelity_test.dart": {
+      "success": 34
+    },
+    "test/odt_note_fidelity_test.dart": {
+      "success": 26
+    },
+    "test/odt_page_marker_column_break_test.dart": {
+      "success": 12
+    },
+    "test/odt_paragraph_decoration_resume_test.dart": {
+      "success": 2
+    },
+    "test/odt_paragraph_break_style_test.dart": {
+      "success": 8
+    },
+    "test/odt_paragraph_decoration_test.dart": {
+      "success": 22
+    },
+    "test/odt_paragraph_properties_test.dart": {
+      "success": 18
+    },
+    "test/odt_reader_guards_test.dart": {
+      "success": 12
+    },
+    "test/odt_paragraph_decoration_fidelity_test.dart": {
+      "success": 20
+    },
+    "test/odt_reader_styles_test.dart": {
+      "success": 46
+    },
+    "test/odt_section_columns_test.dart": {
+      "success": 14
+    },
+    "test/odt_section_fidelity_test.dart": {
+      "success": 39
+    },
+    "test/odt_reader_table_preservation_test.dart": {
+      "success": 23
+    },
+    "test/odt_section_continuation_test.dart": {
+      "success": 14
+    },
+    "test/odt_section_integration_test.dart": {
+      "success": 14
+    },
+    "test/odt_story_visual_fidelity_test.dart": {
+      "success": 6
+    },
+    "test/odt_structure_fidelity_test.dart": {
+      "success": 4
+    },
+    "test/odt_tab_stop_fidelity_test.dart": {
+      "success": 8
+    },
+    "test/odt_tab_style_fidelity_test.dart": {
+      "success": 2
+    },
+    "test/odt_table_merge_test.dart": {
+      "success": 26
+    },
+    "test/odt_table_tab_fidelity_test.dart": {
+      "success": 11
+    },
+    "test/odt_table_tab_gector_fidelity_test.dart": {
+      "success": 37
+    },
+    "test/odt_tab_style_cache_test.dart": {
+      "success": 5
+    },
+    "test/odt_table_tab_qualification_test.dart": {
+      "success": 10
+    },
+    "test/odt_table_tab_consolidation_test.dart": {
+      "success": 37
+    },
+    "test/office_isolate_open_test.dart": {
+      "success": 4
+    },
+    "test/odt_vba_language_roundtrip_test.dart": {
+      "success": 2
+    },
+    "test/odt_table_tab_resume_test.dart": {
+      "success": 10
+    },
+    "test/office_isolate_save_test.dart": {
+      "success": 4
+    },
+    "test/office_macro_word_language_controls_test.dart": {
+      "success": 59
+    },
+    "test/office_vba_word_language_controls_test.dart": {
+      "success": 110
+    },
+    "test/style_cascade_test.dart": {
+      "success": 11
+    },
+    "test/rich_note_test.dart": {
+      "success": 8
+    },
+    "test/word_note_bookmark_edit_test.dart": {
+      "success": 9
+    },
+    "test/word_note_numbering_test.dart": {
+      "success": 22
+    },
+    "test/word_footnote_reference_test.dart": {
+      "success": 1
+    },
+    "test/word_note_script_break_test.dart": {
+      "success": 4
+    },
+    "test/word_package_preservation_test.dart": {
+      "success": 32
+    },
+    "test/word_proofing_inheritance_test.dart": {
+      "success": 16
+    },
+    "test/word_proofing_language_test.dart": {
+      "success": 13
+    },
+    "test/word_small_caps_test.dart": {
+      "success": 12
+    },
+    "test/word_zotero_add_note_test.dart": {
+      "success": 35
+    },
+    "test/word_zotero_adjacent_citations_test.dart": {
+      "success": 23
+    },
+    "test/office_vba_word_language_controls_integration_test.dart": {
+      "success": 11
+    },
+    "test/word_zotero_bibliography_style_fidelity_test.dart": {
+      "success": 6
+    },
+    "test/word_zotero_bibliography_layout_test.dart": {
+      "success": 14
+    },
+    "test/word_zotero_caret_test.dart": {
+      "success": 9
+    },
+    "test/word_zotero_document_data_test.dart": {
+      "success": 49
+    },
+    "test/word_zotero_citing_test.dart": {
+      "success": 59
+    },
+    "test/word_zotero_formatted_bibliography_test.dart": {
+      "success": 11
+    },
+    "test/word_zotero_multiparagraph_test.dart": {
+      "success": 59
+    },
+    "test/word_zotero_nested_note_tables_test.dart": {
+      "success": 11
+    },
+    "test/word_zotero_nested_table_test.dart": {
+      "success": 20
+    },
+    "test/word_zotero_nested_tables_integration_test.dart": {
+      "success": 6
+    },
+    "test/word_zotero_note_image_test.dart": {
+      "success": 30
+    },
+    "test/word_zotero_note_images_integration_test.dart": {
+      "success": 10
+    },
+    "test/word_zotero_note_insertion_test.dart": {
+      "success": 41
+    },
+    "test/word_zotero_note_list_test.dart": {
+      "success": 38
+    },
+    "test/word_zotero_note_table_test.dart": {
+      "success": 118
+    },
+    "test/word_zotero_note_tables_integration_test.dart": {
+      "success": 32
+    },
+    "test/word_zotero_preference_flow_test.dart": {
+      "success": 11
+    },
+    "test/word_zotero_research_target_test.dart": {
+      "success": 35
+    },
+    "test/word_zotero_rich_edit_test.dart": {
+      "success": 30
+    },
+    "test/word_zotero_scaling_test.dart": {
+      "success": 5
+    },
+    "test/word_zotero_source_identity_test.dart": {
+      "success": 14
+    },
+    "test/word_zotero_simple_field_test.dart": {
+      "success": 19
+    },
+    "test/word_zotero_table_cell_replacement_test.dart": {
+      "success": 62
+    },
+    "test/word_zotero_style_preferences_review_test.dart": {
+      "success": 20
+    },
+    "test/word_zotero_test.dart": {
+      "success": 16
+    },
+    "test/word_zotero_transfer_test.dart": {
+      "success": 81
+    },
+    "test/zotero_add_note_protocol_test.dart": {
+      "success": 15
+    },
+    "test/word_zotero_transfer_session_test.dart": {
+      "success": 8
+    },
+    "test/zotero_backoff_state_test.dart": {
+      "success": 7
+    },
+    "test/zotero_catalog_query_test.dart": {
+      "success": 18
+    },
+    "test/zotero_citing_test.dart": {
+      "success": 49
+    },
+    "test/zotero_formatted_text_test.dart": {
+      "success": 21
+    },
+    "test/zotero_client_test.dart": {
+      "success": 34
+    },
+    "test/zotero_identity_client_test.dart": {
+      "success": 19
+    },
+    "test/zotero_item_children_test.dart": {
+      "success": 40
+    },
+    "test/zotero_item_details_test.dart": {
+      "success": 23
+    },
+    "test/zotero_paragraph_runs_test.dart": {
+      "success": 4
+    },
+    "test/zotero_saved_search_test.dart": {
+      "success": 8
+    },
+    "test/zotero_tag_filter_test.dart": {
+      "success": 14
+    },
+    "test/zotero_metadata_batch_test.dart": {
+      "success": 20
+    },
+    "test/zotero_transfer_protocol_test.dart": {
+      "success": 22
+    },
+    "test/zotero_tag_catalog_test.dart": {
+      "success": 27
+    }
+  },
+  "done": [
+    {
+      "success": true,
+      "type": "done",
+      "time": 144693
+    }
+  ],
+  "errors": [],
+  "non_json_lines": [],
+  "skips": [],
+  "failures": [],
+  "accepted": true,
+  "exit_code": 0,
+  "source_head_at_start": "4386cba498f5b4411dc7598bbc94c706005d04db",
+  "source_head_at_end": "4386cba498f5b4411dc7598bbc94c706005d04db",
+  "source_tree_at_start": "a16dfd32bcf8670f7329e2380da949d030c7cb58",
+  "started_at_utc": "2026-11-21T12:30:49.372762+00:00",
+  "finished_at_utc": "2026-11-21T12:33:43.517766+00:00",
+  "elapsed_seconds": 173.26030202900074,
+  "test_file_count": 122,
+  "input_count": 1296,
+  "inputs_changed": [],
+  "runtime_changed": [],
+  "runtime": {
+    "flutter": "3.47.8",
+    "dart": "3.13.7"
+  },
+  "events_sha256": "2f56665ad247a147f638c585f0d134d20f99cf182123bcb519c81f5385bd4971",
+  "input_manifest_sha256": {
+    "before": "d09f83faf75c7677de3767be0a454813a65eb04c3f25b714842a9a99c26b4171",
+    "after": "d09f83faf75c7677de3767be0a454813a65eb04c3f25b714842a9a99c26b4171"
+  },
+  "github_actions_queried": false,
+  "github_actions_awaited": false,
+  "counting_note": "One final engine process. Development and overlapping scoped counts are excluded."
+}
