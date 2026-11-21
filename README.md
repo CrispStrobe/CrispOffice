@@ -36,6 +36,9 @@ paragraph/range bindings, paragraph-prefix insertion, all 18 underline styles,
 strikethrough, and paragraph alignment, spacing, indentation and pagination.
 Section page setup includes explicit geometry, portrait/landscape orientation,
 orientation toggling and continuous/new-page/even-page/odd-page section starts.
+Explicit paragraph ranges also expose proofing inclusion, automatic-hyphenation
+inclusion and exact half-point kerning thresholds, including independent
+header/footer paragraphs; see [proofing controls](docs/VBA_WORD_MACROS.md#proofing-and-kerning-controls).
 The [PowerPoint VBA subset](docs/VBA_POWERPOINT_MACROS.md) adds explicit slide
 and shape selectors, text/font/alignment edits and shape geometry, with guarded
 top-level collection identity and preserved rich text. All three adapters use

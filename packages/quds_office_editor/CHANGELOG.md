@@ -18,6 +18,10 @@ All notable changes to `quds_office_editor` are documented here.
 - Honor composer save guards during native Quit, drain closed routes before
   closing their storage owner, and keep failed or pending draft saves open.
 
+- Correct localized Mail list dates across daylight-saving changes and supplied
+  UTC clocks: compare local calendar dates so yesterday, recent weekdays and
+  future dates keep their intended labels.
+
 - Add native **Synchronized mail** for IMAP, EWS, Gmail and Microsoft 365:
   explicit bounded Start/Continue/Check for changes, Stop, persistent page
   checkpoints and offline synchronized-header browsing. Reuse existing cached

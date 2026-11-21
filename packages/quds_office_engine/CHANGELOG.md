@@ -11,6 +11,16 @@ All notable changes to `quds_office_engine` are documented here.
   paragraphs before final index mapping for stable DOCX round trips. Retain
   main-flow destination and unsupported-structure guards.
 
+- Extend bounded Word VBA with `Range.NoProofing`,
+  `ParagraphFormat.Hyphenation`, and `Font.Kerning`, including typed helpers
+  and explicit independent header/footer paragraphs. Add corresponding native
+  formatting fields with exact half-point validation, sparse attribute writes,
+  explicit inheritance overrides and preserved foreign XML. Include a runnable
+  BAS example and source, native, layout, CLI/MCP and portable qualification.
+  See the [proofing contract](../../docs/VBA_WORD_MACROS.md#proofing-and-kerning-controls).
+- Prevent incremental line translation from reusing stale page/column identity
+  when an inline page break becomes active after an earlier typing edit.
+
 - Extend Word VBA with section `Headers` / `Footers`, typed `HeadersFooters`
   and `HeaderFooter` aliases, and primary/first-page/even-page paragraph
   selection through `Range.Paragraphs`. Reuse insertion, font/paragraph

@@ -103,6 +103,8 @@ geometry has its separate mapping below.
 | `range.Font.Bold = value` | `docx.runFormat` | `bold: value` |
 | `range.Font.Italic = value` | `docx.runFormat` | `italic: value` |
 | `range.Font.Size = value` | `docx.runFormat` | `size: value` in points |
+| `range.Font.Kerning = value` | `docx.runFormat` | `kerning: value`, a minimum font-size threshold in points |
+| `range.NoProofing = value` | `docx.runFormat` | `noProof: value` |
 | `range.Font.Name = value` | `docx.runFormat` | `font: value` |
 | `range.Font.Color = value` | `docx.runFormat` | `color` as six uppercase RGB hexadecimal digits |
 | `range.Font.Underline = value` | `docx.runFormat` | `underline`, one of the 18 documented `WdUnderline` styles |
@@ -119,6 +121,7 @@ geometry has its separate mapping below.
 | `range.ParagraphFormat.FirstLineIndent = value` | `docx.paragraphFormat` | nonnegative `firstLine`/`hanging` in points, always clearing the opposite value |
 | `range.ParagraphFormat.KeepTogether = value` | `docx.paragraphFormat` | `keepTogether: value` |
 | `range.ParagraphFormat.PageBreakBefore = value` | `docx.paragraphFormat` | `pageBreakBefore: value` |
+| `range.ParagraphFormat.Hyphenation = value` | `docx.paragraphFormat` | `suppressAutoHyphens: !value` |
 | `range.ParagraphFormat.ReadingOrder = value` | `docx.paragraphFormat` | `rtl: true` for RTL, `false` for LTR |
 | `range.ParagraphFormat.LineSpacingRule = value` | `docx.paragraphFormat` | `lineSpacingRule: auto`, `lineSpacing: 1`, `1.5`, or `2` |
 | Custom `LineSpacingRule` followed by `LineSpacing = points` | `docx.lineSpacing` | One paired edit with `rule: atLeast`, `exact`, or `multiple`, and `points` |
@@ -1411,6 +1414,76 @@ text cannot be emitted to the Word plan. Invalid selectors, values, or source
 features report the ordinary positioned `OfficeVbaCompileException`; a failed
 compilation returns no partial macro.
 
+### Proofing and kerning controls
+
+Explicit paragraph ranges now support three additional write-only properties:
+
+| Source property | Accepted values | Meaning |
+| --- | --- | --- |
+| `Range.NoProofing` | `True` or `False` | Exclude/include the selected current text in spelling and grammar checking. |
+| `ParagraphFormat.Hyphenation` | `True` or `False` | Allow/suppress automatic hyphenation for the selected paragraph. |
+| `Font.Kerning` | Exact half-points in `0..1638` | Minimum font size for kerning; zero disables it in the bounded native model. |
+
+`NoProofing` and `Kerning` use the same nonempty current-text range contract as
+the other font operations. They do not modify a paragraph mark or establish an
+insertion format for future typing. `Hyphenation` applies to paragraph
+properties, including an empty paragraph. Allowing hyphenation leaves the
+document-wide `autoHyphenation` setting unchanged; actual breaks still depend
+on that setting and the existing language/hyphenation support. `NoProofing`
+changes eligibility metadata; it does not invoke or install a proofing provider.
+Kerning is a size threshold, not character spacing or a font-size assignment.
+
+```vb
+Sub Configure(ByVal target As Range, Optional ByVal threshold As Double = 12)
+    target.NoProofing = False
+    target.ParagraphFormat.Hyphenation = True
+    target.Font.Kerning = threshold
+End Sub
+
+Sub Main()
+    Configure threshold:=12.5, target:=ActiveDocument.Paragraphs(1).Range
+    With ActiveDocument.Paragraphs(2).Range
+        .NoProofing = True
+        .ParagraphFormat.Hyphenation = False
+        .Font.Kerning = 0
+    End With
+End Sub
+```
+
+The [complete BAS example](../packages/quds_office_engine/example/macros/word_proofing_controls.bas)
+also edits an independent primary header paragraph. Its template needs two
+nonempty body paragraphs and one existing nonempty primary header paragraph.
+The existing `compile-word-vba`, `validate-word-vba`, and `run-word-vba`
+commands accept it unchanged.
+
+All supported document aliases, `Paragraph.Format`, typed `Range`, `Font`,
+and `ParagraphFormat` bindings, named helper arguments, required `ByVal`
+object parameters, nested `With`, and independent header/footer paragraph
+selectors retain their current identity and safety checks. Every setter emits
+one native operation in source order and cannot interrupt a pending custom
+line-spacing pair. Document reads and whole-story writes remain unavailable.
+
+Native operations validate inputs before splitting runs or publishing edits.
+Explicit false/zero and same-value assignments override inherited values.
+Sparse serialization owns only `w:noProof/@w:val`,
+`w:suppressAutoHyphens/@w:val`, or `w:kern/@w:val`; other formatting, language
+slots, foreign metadata, namespace aliases and opaque DOCM project parts are
+retained. Duplicate native property identities or values are refused.
+The guarded setters also conservatively refuse their owned native controls in
+markup-compatibility alternatives or processed content anywhere in the Word
+package, because a retained alternative could disagree with the edited value.
+Source validation covers the complete normalized native range, including a
+complex citation span expanded by the existing formatting boundary rules.
+The ordinary allowlists, mutation/step limits, detached validation, recording
+and atomic whole-plan publication apply.
+
+These properties extend the explicit Quds dialect. Although Word exposes
+Long/Single properties and mixed-value reads, this source contract does not
+accept numeric Boolean aliases, `wdUndefined`, implicit coercions, or property
+reads. The kerning ceiling and exact half-point checks are deliberate native
+bounds, without emulation of VBA Single rounding or installed Word host
+qualification. See the [local evidence](validation/word-vba-proofing-20261121/README.md).
+
 ## Runnable report example
 
 [`word_report.bas`](../packages/quds_office_engine/example/macros/word_report.bas)
@@ -1531,6 +1604,7 @@ the explicit restrictions above. They do not certify this implementation:
 - [Range.InsertBefore](https://learn.microsoft.com/en-us/office/vba/api/word.range.insertbefore): insertion before a range and range expansion; full Word also supports structural characters excluded here.
 - [Range.InsertAfter](https://learn.microsoft.com/en-us/office/vba/api/word.range.insertafter): the ending paragraph mark and insertion boundary.
 - [Font.Size](https://learn.microsoft.com/en-us/office/vba/api/word.font.size) and [Font.Name](https://learn.microsoft.com/en-us/office/vba/api/word.font.name): point units and the named font property.
+- [Range.NoProofing](https://learn.microsoft.com/en-us/office/vba/api/word.range.noproofing), [ParagraphFormat.Hyphenation](https://learn.microsoft.com/en-us/office/vba/api/word.paragraphformat.hyphenation), and [Font.Kerning](https://learn.microsoft.com/en-us/office/vba/api/word.font.kerning): proofing inclusion, automatic-hyphenation inclusion and minimum font-size threshold. Boolean-only writes and exact half-point bounds are the Quds source contract.
 - [WdParagraphAlignment](https://learn.microsoft.com/en-us/office/vba/api/word.wdparagraphalignment): numeric alignment constants.
 - [WdUnderline](https://learn.microsoft.com/en-us/office/vba/api/word.wdunderline) and [Font.StrikeThrough](https://learn.microsoft.com/en-us/office/vba/api/word.font.strikethrough): underline enum values and strike formatting.
 - [Font.SmallCaps](https://learn.microsoft.com/en-us/office/vba/api/word.font.smallcaps), [Superscript](https://learn.microsoft.com/en-us/office/vba/api/word.font.superscript), and [Subscript](https://learn.microsoft.com/en-us/office/vba/api/word.font.subscript): formatting flags and mutual exclusion; these checks contain no installed Word-host observations.
