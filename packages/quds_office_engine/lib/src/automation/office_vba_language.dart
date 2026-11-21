@@ -60,11 +60,11 @@ class OfficeVbaMacroLanguage implements OfficeMacroLanguage {
   }
 }
 
-/// Compiles explicit paragraph and section writes from the bounded Word dialect.
+/// Compiles explicit paragraph, section and cell writes from the Word dialect.
 ///
 /// The language and resource limits are shared with [OfficeVbaMacroLanguage].
-/// Word bindings select body or explicit header/footer paragraphs and sections
-/// without reading them.
+/// Word bindings select body or explicit header/footer paragraphs, sections
+/// and direct main-story table cells without reading them.
 /// Native plans retain the ordinary runtime policy and atomic save boundary.
 class OfficeVbaWordMacroLanguage implements OfficeMacroLanguage {
   const OfficeVbaWordMacroLanguage();

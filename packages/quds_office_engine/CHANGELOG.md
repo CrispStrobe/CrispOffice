@@ -4,6 +4,14 @@ All notable changes to `quds_office_engine` are documented here.
 
 ## Unreleased
 
+- Fill existing Word table templates from the bounded VBA dialect using typed
+  `Tables`, `Table`, `Cell` and cell-range aliases, `With` and `ByVal` helpers.
+  `Cell.Range.Text` emits guarded `docx.tableCellRangeText` operations for plain
+  single-paragraph cells in unmerged rectangular main-story tables. Preserve
+  structure and formatting, refuse ambiguous native ownership and unsupported
+  rich content, and retain the atomic CLI/MCP/recording transaction boundary.
+  Add a runnable table-report BAS and portable source/native conformance checks.
+
 - Honor each table's uniform cell margin in native measurement, wrapping,
   pagination and note/nested-table layout instead of a fixed inset. Preserve
   accumulated ancestor margins when fitting pictures and splitting tall rows.

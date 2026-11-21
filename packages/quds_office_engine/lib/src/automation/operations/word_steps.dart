@@ -10,6 +10,7 @@ import 'word_shading_steps.dart';
 import 'word_spacing_steps.dart';
 import 'word_structure_steps.dart';
 import 'word_style_steps.dart';
+import 'word_table_cell_text_steps.dart';
 import 'word_text_columns_steps.dart';
 
 const _storyFields = <String>['story', 'section', 'note', 'comment'];
@@ -95,6 +96,7 @@ const wordOperations = <String, List<String>>{
   'removeNumbers': ['paragraph', 'numberType'],
   'hyperlink': ['paragraph', 'run', 'target', ..._storyFields],
   'tableCellText': ['table', 'row', 'column', 'gridColumn', 'text'],
+  'tableCellRangeText': ['table', 'row', 'column', 'text'],
   'headerFooterText': ['section', 'story', 'paragraph', 'text'],
   'sectionFormat': [
     'section',
@@ -741,6 +743,8 @@ void applyStep(
       cell.blocks
         ..clear()
         ..add(WmlParagraph(inlines: <WmlInline>[WmlRun(text: text)]));
+    case 'tableCellRangeText':
+      setWordTableCellRangeText(doc, s);
     case 'headerFooterText':
       final story = s.string('story');
       if (!_headerStories.contains(story)) {

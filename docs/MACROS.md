@@ -25,7 +25,11 @@ and height, four margins, and header/footer distances. Its ranges retain
 the native paragraph boundaries. Word formatting includes all underline styles,
 strikethrough, indentation and pagination. The continuation adds small caps,
 superscript/subscript, fixed-palette highlighting, explicit active-document
-aliases and `Paragraphs.Item`. The PowerPoint adapter targets explicit top-level
+aliases and `Paragraphs.Item`. Explicit `Tables`/`Table`/`Cell` selectors also
+fill existing supported table cells through `Cell.Range.Text`, with one-based
+VBA indexes and guarded native structure/formatting preservation. See the
+[table-cell contract](VBA_WORD_MACROS.md#filling-existing-table-cells).
+The PowerPoint adapter targets explicit top-level
 slide shapes for text, font, alignment and geometry edits, with source-preserving
 formatting and a strict native collection identity guard. Its continuation adds
 text-frame anchors, typed formatting helpers and bounded slideshow transitions.
@@ -559,6 +563,13 @@ Named worksheets are resolved by the shared
 handler during validation or execution. The compiler receives no workbook and
 cannot read document values; [the complete dialect contract](VBA_MACROS.md)
 documents supported types, syntax, members, and limits.
+
+Word `Table.Cell(row, column).Range.Text` assignments emit
+`docx.tableCellRangeText` with zero-based `table`, `row`, `column` and `text`.
+This operation resolves main-story tables independently of recursive inspection
+indexes and refuses cells whose structure or metadata cannot be preserved.
+The [exact table-cell contract](VBA_WORD_MACROS.md#filling-existing-table-cells)
+defines its supported grid, content and native source envelope.
 
 The Word adapter lowers explicit `ThisDocument.Paragraphs(i).Range` operations
 to `docx.replaceText`, `docx.runFormat` and `docx.paragraphFormat`, and custom-tab

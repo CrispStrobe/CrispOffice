@@ -90,6 +90,78 @@ Variant states and conversions described in [the shared language
 contract](VBA_MACROS.md). Excel object members are unavailable in `vba-word`.
 Word object members are unavailable in `vba-excel`.
 
+## Filling existing table cells
+
+Word source can fill a table template using `Document.Tables(i)`,
+`Document.Tables.Item(i)`, `Table.Cell(row, column)` and `Cell.Range.Text`:
+
+```vb
+Option Explicit
+Sub Main()
+    Dim report As Table
+    Dim selected As Cell
+    Dim text As Range
+    Set report = ActiveDocument.Tables(1)
+    Set selected = report.Cell(2, 1)
+    Set text = selected.Range
+    text.Text = "Total: " & CStr(Abs(-42))
+    report.Cell(2, 2).Range.Text = "Ready"
+End Sub
+```
+
+These selectors address existing main-story tables. Source indexes are
+one-based exact integers in `1..2147483647`; existence is checked during native
+validation or execution. `Tables`, `Table` and `Cell` declarations, `With`,
+aliases and required `ByVal` object helpers are supported. A `Range` alias
+retains its selected cell when the original cell or a helper parameter is
+rebound. Module helpers retain named arguments; the `Tables`, `Item` and `Cell`
+selectors themselves take positional arguments only.
+
+Each text assignment emits one `docx.tableCellRangeText` operation with
+zero-based `table`, `row`, `column` and String `text`. Its main-story table
+collection is independent of the recursive indexes used by the older native
+`docx.tableCellText` tool. The new operation admits unmerged rectangular tables
+and a selected cell containing one plain paragraph with ordinary text runs.
+It preserves table, row, cell and paragraph structure and formatting;
+replacement text retains the first effective run formatting. Empty text clears
+the content while retaining the structural paragraph. Tabs, XML-escaped
+characters and valid supplementary Unicode are supported. Line breaks,
+cell/end-of-paragraph markers and invalid XML/UTF-16 text are refused.
+
+The native guard refuses ambiguous collections, merged or irregular grids,
+nested/unsupported target content and source structures it cannot preserve.
+For imported packages, it conservatively checks the native structural packets
+of every main-story table; an unsupported neighboring table can also refuse
+the write. Selected fields, hyperlinks, note markers, bookmarks, comments and
+revision metadata are refused. The complete target is checked before editing; a later
+invalid cell rolls back a multi-step run. Validation, tool allowlists, mutation
+grants, step budgets, recording, replay, CLI and MCP use the ordinary transaction
+boundary. Existing native `docx.tableCellText` behavior remains unchanged.
+
+Cell ranges expose the supported `Text` setter only. Text reads, `Count`,
+table/row/cell enumeration, `Rows`/`Columns`, table creation or merging, arbitrary
+range offsets and cell-range formatting remain unsupported. Paragraph or
+whole-story `Range.Text` assignment is still refused because those ranges have
+different structural delimiters. Embedded VBA projects remain inert and
+preserved.
+
+The [runnable table report](../packages/quds_office_engine/example/macros/word_table_report.bas)
+fills a 2×2 table and a second one-cell table using local arrays, a loop, typed
+aliases and a named helper call. Each selected cell needs one supported plain
+paragraph. Run it through `compile-word-vba`, `validate-word-vba` and
+`run-word-vba`. The [versioned corpus](../packages/quds_office_engine/test/fixtures/vba_conformance/word_table_cells_v1.json)
+contains independently authored source-to-plan expectations. The
+[local qualification record](validation/word-vba-table-cells-20261121/README.md)
+separates executed checks from broader Word compatibility claims.
+
+The API shape follows Microsoft's [Document.Tables](https://learn.microsoft.com/en-us/office/vba/api/word.document.tables),
+[Table.Cell](https://learn.microsoft.com/en-us/office/vba/api/word.table.cell),
+[Cell.Range](https://learn.microsoft.com/en-us/office/vba/api/word.cell.range)
+and [Range.Text](https://learn.microsoft.com/en-us/office/vba/api/word.range.text)
+contracts. These restrictions describe the bounded Quds dialect, and do not
+claim that Microsoft Word rejects the same broader inputs. Installed Word
+differential qualification remains separate work.
+
 ## Calculating Word layout values
 
 Word source macros share the bounded `Abs`, `Int`, `Fix`, and `Sgn` functions.

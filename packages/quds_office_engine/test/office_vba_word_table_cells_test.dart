@@ -395,6 +395,20 @@ End If
       });
     }
 
+    test('unused helper still checks the table object shape', () {
+      expect(
+        () => _source('''
+Sub Main()
+End Sub
+Sub Unused(ByVal selected As Table)
+Dim count As Long
+count = selected.Rows.Count
+End Sub
+'''),
+        throwsA(_error('vba_unsupported')),
+      );
+    });
+
     test('Tables does not enumerate or admit objects as Variant scalars', () {
       expect(
         () => _compile('''
@@ -521,6 +535,30 @@ Set selected = ActiveDocument.Tables(1)
         throwsA(_error('vba_type_error')),
       );
     });
+  });
+
+  group('dialect-scoped Word names', () {
+    for (final language in <String>['vba-excel', 'vba-powerpoint']) {
+      test('Tables/Table/Cell remain ordinary identifiers in $language', () {
+        final plan = OfficeMacroLanguages().compile(
+          OfficeMacroSource(
+            language: language,
+            format: language == 'vba-excel'
+                ? OfficeMacroFormat.xlsx
+                : OfficeMacroFormat.pptx,
+            source: '''
+Sub Main()
+Dim Tables As Long, Table As Long, Cell As Long
+Tables = 1
+Table = 2
+Cell = Tables + Table
+End Sub
+''',
+          ),
+        );
+        expect(plan.steps, isEmpty);
+      });
+    }
   });
 
   group('shared native emission boundaries', () {
