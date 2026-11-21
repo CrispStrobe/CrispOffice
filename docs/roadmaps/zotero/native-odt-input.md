@@ -58,8 +58,11 @@ range. Neither property makes an editable document or validates a full ODF
 formatting model. `toJson()` explicitly reports `editable: false`.
 
 Paths contain zero-based element-child indexes, independent of XML prefixes.
-Each endpoint retains its part, story identity, structural owner chain,
-paragraph path/index and UTF-16 offset. Deferred collapsed spaces are resolved
+Each endpoint retains its part, story identity and structural owner chain.
+An endpoint inside a paragraph also retains its paragraph path/index and
+UTF-16 offset; section boundaries can have null paragraph coordinates, with
+their paragraph ranges retaining those coordinates separately. Deferred
+collapsed spaces are resolved
 before final offsets are published. Bibliographies retain separate paragraph
 ranges, including empty paragraphs. Unknown, protected, linked, repeated and
 overlapping ownership stays ineligible. Source bytes and properties are never
@@ -154,7 +157,7 @@ semantics rather than rejecting a valid omitted type attribute by assumption.
 Preserve the original preference string and unrelated properties. A later
 native-ODT import boundary may normalize `ReferenceMark` preferences only
 after it has constructed the corresponding fields. Reuse the existing
-256 KiB preference bound; do not weaken `WordZoteroDocumentData.toHttp`
+256 Ki UTF-16-unit preference bound; do not weaken `WordZoteroDocumentData.toHttp`
 to make an unconverted ODT document appear valid.
 
 ### Whitespace, offsets and resource bounds
