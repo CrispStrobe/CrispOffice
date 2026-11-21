@@ -131,6 +131,16 @@ final class StudioStrings {
     'الشفرة المصدرية (GitHub)',
   );
   String get website => _t('Website', 'Webseite', 'الموقع الإلكتروني');
+  String get privacyPolicy =>
+      _t('Privacy Policy', 'Datenschutzerklärung', 'سياسة الخصوصية');
+
+  /// The app's privacy policy on crispstro.be (German page for a German UI,
+  /// English otherwise; there is no Arabic page).
+  String get privacyPolicyUrl => _t(
+    'https://www.crispstro.be/en/crispoffice-privacy/',
+    'https://www.crispstro.be/de/crispoffice-datenschutz/',
+    'https://www.crispstro.be/en/crispoffice-privacy/',
+  );
   String get compose => _t('Compose', 'Verfassen', 'إنشاء');
   String get refresh => _t('Refresh', 'Aktualisieren', 'تحديث');
   String get disconnect => _t('Disconnect', 'Trennen', 'قطع الاتصال');
