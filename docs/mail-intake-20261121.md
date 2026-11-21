@@ -20,7 +20,7 @@ Upstream `MohammedAsaadAsaad/quds_office_suite` main was
 zero upstream-only commits and 3,047 fork-only commits. No upstream main
 integration was needed.
 
-STATUS: Benchmark intake is saved; bounded CLI test-runner intake is the next checkpoint.
+STATUS: Both intake checkpoints are saved. The benchmark change and reviewed bounded CLI test-runner migration are included; the WIP shared cache and generated working files are explicitly excluded.
 
 ## Reviewed integration decisions
 
@@ -46,6 +46,9 @@ Retain the useful test migration and the per-file setup from the first commit.
 Apply its exact context hunks to the captured main files so subsequent
 main changes outside those hunks remain intact. Keep the existing bounded
 child-process termination and per-file temporary-kernel cleanup.
+The existing Word and PowerPoint CLI test files also receive the same
+five-minute library timeout: their existing per-test timeouts do not cover
+shared setup, and moving compilation into setup must not shorten its deadline.
 
 Do not adopt the WIP shared cache. Its key uses path/size/mtime rather than
 content and excludes the SDK and dependency contents; concurrent stale-lock
