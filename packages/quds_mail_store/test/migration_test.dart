@@ -82,7 +82,7 @@ void main() {
       expect(_snapshot(file), before);
       final database = sqlite.sqlite3.open(file.path);
       try {
-        expect(database.userVersion, 6);
+        expect(database.userVersion, 7);
         expect(database.select('PRAGMA foreign_key_check'), isEmpty);
         expect(
           database.select('SELECT count(*) AS n FROM mail_fts').single['n'],
@@ -169,7 +169,7 @@ void main() {
 
       final database = sqlite.sqlite3.open(file.path);
       try {
-        expect(database.userVersion, 6);
+        expect(database.userVersion, 7);
         expect(database.select('PRAGMA foreign_key_check'), isEmpty);
         for (final invalid in <Object?>[-1, 32, 0.5, 'invalid']) {
           expect(
@@ -327,7 +327,7 @@ void main() {
       expect(_snapshot(file), before);
       final upgraded = sqlite.sqlite3.open(file.path);
       try {
-        expect(upgraded.userVersion, 6);
+        expect(upgraded.userVersion, 7);
       } finally {
         upgraded.close();
       }
@@ -403,7 +403,7 @@ void main() {
         await repository.close();
         expect(_snapshot(file), before);
         final current = sqlite.sqlite3.open(file.path);
-        expect(current.userVersion, 6);
+        expect(current.userVersion, 7);
         expect(current.select('PRAGMA foreign_key_check'), isEmpty);
         expect(
           current
@@ -554,7 +554,7 @@ void main() {
         expect(original(), before);
         final current = sqlite.sqlite3.open(file.path);
         try {
-          expect(current.userVersion, 6);
+          expect(current.userVersion, 7);
           expect(current.select('PRAGMA foreign_key_check'), isEmpty);
           expect(
             current.select(
@@ -618,7 +618,9 @@ void main() {
               ])
                 table: [
                   for (final row in database.select(
-                    'SELECT * FROM $table ORDER BY rowid',
+                    table == 'store_profile'
+                        ? 'SELECT singleton,host_id,profile_id,removed,local_account_revision,mailbox_view_revision FROM store_profile ORDER BY rowid'
+                        : 'SELECT * FROM $table ORDER BY rowid',
                   ))
                     [
                       for (final Object? value in row.values)
@@ -681,7 +683,7 @@ void main() {
         expect(original(), before);
         final check = sqlite.sqlite3.open(file.path);
         try {
-          expect(check.userVersion, 6);
+          expect(check.userVersion, 7);
           expect(check.select('PRAGMA foreign_key_check'), isEmpty);
         } finally {
           check.close();
@@ -690,7 +692,7 @@ void main() {
     );
   }
 
-  for (final version in [7, 9]) {
+  for (final version in [8, 9]) {
     test(
       'future schema $version is rejected without changing existing data',
       () async {

@@ -2,6 +2,17 @@
 
 ## Unreleased
 
+- Add schema-v7 read-only reconciliation of completed uncertain flag receipts.
+  Retain the original uncertain outcomes and problems while recording one
+  immutable matches/differs/missing/identity-changed observation per item.
+  Bind checks to the exact account, provider identity, repository owner, lease,
+  batch revision and a persisted epoch fencing newer commands, cache writes
+  and account transitions. Host scope checks and cancellation roll back late
+  commits. Update only the observed requested bit of a known cache snapshot;
+  missing or replaced identities never evict cached content. Definitively
+  resolved batches release unresolved capacity and become eligible for clean
+  history pruning. Preserve released schema definitions and migrate atomically.
+
 - Add schema-v6 durable bulk flag journals with frozen selections/subjects,
   sequential dispatch markers, typed outcomes, owner-bound revision checks,
   history paging and bounded completed-history cleanup. Exclusive reopen and

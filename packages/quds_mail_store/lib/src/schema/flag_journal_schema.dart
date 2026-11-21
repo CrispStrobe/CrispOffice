@@ -27,3 +27,34 @@ const schemaV6 = <String>[
   )''',
   'CREATE INDEX flag_batch_history ON flag_batches(account,created_at DESC,id DESC)',
 ];
+
+/// Additive observation evidence and a persisted fence for late provider reads.
+/// Epoch triggers include cache writes, commands and authentication transitions;
+/// an unrelated mutation may conservatively require another foreground check.
+final schemaV7 = List<String>.unmodifiable([
+  '''ALTER TABLE store_profile ADD COLUMN flag_observation_epoch INTEGER NOT NULL DEFAULT 0
+    CHECK(typeof(flag_observation_epoch)='integer' AND flag_observation_epoch BETWEEN 0 AND 9007199254740991)''',
+  '''CREATE TABLE flag_item_resolutions (
+    account TEXT NOT NULL, batch TEXT NOT NULL,
+    position INTEGER NOT NULL CHECK(position BETWEEN 0 AND 999),
+    kind TEXT NOT NULL CHECK(kind IN ('matches','differs','missing','identityChanged')),
+    checked_at INTEGER NOT NULL CHECK(checked_at BETWEEN 0 AND 8640000000000000),
+    PRIMARY KEY(account,batch,position),
+    FOREIGN KEY(account,batch,position) REFERENCES flag_batch_items(account,batch,position) ON DELETE CASCADE
+  )''',
+  for (final table in [
+    'accounts',
+    'local_accounts',
+    'messages',
+    'mailbox_views',
+    'pending_operations',
+    'flag_batches',
+    'flag_batch_items',
+    'flag_item_resolutions',
+  ])
+    for (final event in ['INSERT', 'UPDATE', 'DELETE'])
+      'CREATE TRIGGER flag_observation_${table}_${event.toLowerCase()} '
+          'AFTER $event ON $table BEGIN '
+          'UPDATE store_profile SET flag_observation_epoch=flag_observation_epoch+1; '
+          'END',
+]);
