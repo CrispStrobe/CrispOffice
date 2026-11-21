@@ -4342,6 +4342,28 @@ class WordEditorController extends OfficeController {
     );
   }
 
+  /// Inserts literal plain text at the text caret as one undoable operation.
+  ///
+  /// Replaces the text selection using the same preflight and story ownership
+  /// as plain-text paste. CRLF, CR and LF become paragraph boundaries, including
+  /// empty and trailing lines. Destination formatting is retained; HTML is not
+  /// interpreted and the clipboard is neither read nor changed.
+  ///
+  /// Empty input, read-only surfaces and non-text object selections are no-ops.
+  /// Unsupported content-control edits throw before any text is changed.
+  void insertPlainText(String text) {
+    if (!config.allowsMutation ||
+        text.isEmpty ||
+        selectedVisual != null ||
+        selectedEquation != null ||
+        (selectedFrame != null && !editingFrame) ||
+        selectedTable != null ||
+        selectedTableBand != null) {
+      return;
+    }
+    _coalescingNotifications(() => _pasteWordPlain(text));
+  }
+
   /// insertText API.
   void insertText(String text) =>
       _coalescingNotifications(() => _insertText(text));

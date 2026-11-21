@@ -813,6 +813,8 @@ extension MailStoreLocalOperations on SqliteMailRepository {
   Future<MailResult<MailUnit>> removeProfile() => _write(() async {
     await _db.customStatement('DELETE FROM local_accounts');
     await _db.customStatement('DELETE FROM saved_header_searches');
+    await _db.customStatement('DELETE FROM account_quick_texts');
+    await _db.customStatement('DELETE FROM account_compose_settings');
     for (final row in await _rows('SELECT id FROM accounts')) {
       await _removeLocalAccount(
         MailAccountId(row.read<String>('id'), profile: profile),

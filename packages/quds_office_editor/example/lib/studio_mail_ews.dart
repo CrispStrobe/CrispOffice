@@ -16,6 +16,7 @@ import 'studio_mail_journal_dialog.dart';
 import 'studio_mail_journal_strings.dart';
 import 'studio_mail_archive_folder_action.dart';
 import 'studio_mail_compose.dart';
+import 'studio_mail_compose_tools.dart';
 import 'studio_mail_outbox.dart';
 import 'studio_mail_outbox_dialog.dart';
 import 'studio_mail_outbox_strings.dart';
@@ -661,6 +662,13 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
         identity,
       );
       if (candidate case StudioMailOutboxStore(
+        :final account,
+      ) when account != identity.account) {
+        throw const StudioMailDraftStoreException(
+          MailProblemCode.permissionDenied,
+        );
+      }
+      if (candidate case StudioMailComposeToolsStore(
         :final account,
       ) when account != identity.account) {
         throw const StudioMailDraftStoreException(
@@ -1676,7 +1684,14 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
           await store.save(retained, submissionUncertain: _submissionUncertain);
         }
         if (!_current(provider, lease)) return;
-        final created = await catalog.createDraft(initial);
+        final prepared = await prepareStudioMailComposeDraft(
+          store,
+          initial,
+          replyOrForward: true,
+          isCurrent: () => _current(provider, lease) && identical(store, _draftStore),
+        );
+        if (!_current(provider, lease)) return;
+        final created = await catalog.createDraft(prepared);
         if (!_current(provider, lease)) return;
         setState(() {
           _draft = created.draft;
@@ -1716,8 +1731,13 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
         strings: widget.strings,
         from: _sender,
         canSend: _canSend,
-        initialDraft: initial ?? _draft,
+        initialDraft: _draft ?? initial,
         previousSubmissionUncertain: _submissionUncertain,
+        composeToolsStore: switch (store) {
+          StudioMailComposeToolsStore value => value,
+          _ => null,
+        },
+        isComposeToolsCurrent: currentDraft,
         onClearMailCache: mailbox == null
             ? null
             : () async {

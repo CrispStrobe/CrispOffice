@@ -4,6 +4,11 @@ All notable changes to `quds_office_editor` are documented here.
 
 ## Unreleased
 
+- Add `WordEditorController.insertPlainText` for literal multiline insertion
+  at the text selection without touching the clipboard. Reuse plain-paste
+  preflight, paragraph ownership and a single undo step, with read-only and
+  selected-object guards for composer signatures and reusable text.
+
 - Open supported native ODT through `WordEditorController.loadBytesAsync` and
   Studio Open, retaining active Zotero fields, notes and supported rich
   structure. Refuse stale publication after edits, another open, document

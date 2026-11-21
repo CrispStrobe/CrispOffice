@@ -318,7 +318,7 @@ const schemaV9 = <String>[
 /// account is explicitly removed. Existing schemas and mail payloads are intact.
 const schemaV10 = <String>[
   '''CREATE TABLE account_compose_settings (
-    account TEXT PRIMARY KEY REFERENCES accounts(id) ON DELETE CASCADE,
+    account TEXT NOT NULL PRIMARY KEY REFERENCES accounts(id) ON DELETE CASCADE,
     revision INTEGER NOT NULL CHECK(typeof(revision) = 'integer' AND
       revision BETWEEN 1 AND 9007199254740991),
     signature TEXT NOT NULL CHECK(typeof(signature) = 'text'),

@@ -346,6 +346,20 @@ void main() {
     await _expectLocalWork(store, _other);
   });
 
+  test('schema rejects NULL and missing account ownership', () {
+    for (final owner in [null, 'unknown-account']) {
+      expect(
+        () => database.execute(
+          'INSERT INTO account_compose_settings(account,revision,signature,'
+          'signature_new,signature_replies) VALUES(?,1,?,?,?)',
+          [owner, 'Detached signature', 0, 0],
+        ),
+        throwsA(isA<sqlite.SqliteException>()),
+      );
+    }
+    expect(database.select('SELECT * FROM account_compose_settings'), isEmpty);
+  });
+
   test('profile removal deletes all compose text and retires every owner', () async {
     await _register(store, _other);
     for (final account in [_account, _other]) {

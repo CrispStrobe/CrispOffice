@@ -1,13 +1,18 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:quds_mail_core/quds_mail_core.dart';
 import 'package:quds_mail_store/quds_mail_store.dart'
     show MailCacheCleanupReport;
 import 'package:quds_office_editor/quds_office_editor.dart';
 
 import 'studio_mail_attachment_loader.dart';
 import 'studio_mail_cached_strings.dart';
+import 'studio_mail_compose_tools.dart';
+import 'studio_mail_compose_tools_dialog.dart';
+import 'studio_mail_compose_tools_strings.dart';
 import 'studio_mail_draft.dart';
 import 'studio_mail_drafts_strings.dart';
 import 'studio_mail_outbox_strings.dart';
@@ -30,6 +35,8 @@ class StudioMailComposeDialog extends StatefulWidget {
     this.onQueueDraft,
     this.onClearMailCache,
     this.canSend = true,
+    this.composeToolsStore,
+    this.isComposeToolsCurrent,
   });
 
   final StudioStrings strings;
@@ -41,6 +48,10 @@ class StudioMailComposeDialog extends StatefulWidget {
   /// The finish handler also checks this, so a retained callback cannot send
   /// after the host has disabled submission.
   final bool canSend;
+
+  /// Account-owned writing tools, independent of the draft's immutable text.
+  final StudioMailComposeToolsStore? composeToolsStore;
+  final bool Function()? isComposeToolsCurrent;
 
   /// Persists an immutable editor snapshot, including unfinished recipients.
   /// A failed save keeps the composer open and prevents submission.
@@ -85,6 +96,15 @@ class _StudioMailComposeDialogState extends State<StudioMailComposeDialog> {
   MailCacheCleanupReport? _cacheCleanupReport;
   bool _finishing = false;
   bool _allowPop = false;
+  StudioMailComposeToolsStore? _toolsOwner;
+  MailAccountId? _toolsAccount;
+  MailComposeSettings? _composeSettings;
+  int _toolsEpoch = 0;
+  bool _loadingTools = false;
+  bool _initialToolsPending = false;
+  bool _editingTools = false;
+  bool _toolsLoadFailed = false;
+  bool _toolsInsertionFailed = false;
 
   @override
   void initState() {
@@ -126,6 +146,11 @@ class _StudioMailComposeDialogState extends State<StudioMailComposeDialog> {
     for (final controller in [_to, _cc, _bcc, _subject, _body]) {
       controller.addListener(_edited);
     }
+    _toolsOwner = widget.composeToolsStore;
+    _toolsAccount = _toolsOwner?.account;
+    _initialToolsPending =
+        _toolsOwner != null && widget.initialDraft == null;
+    if (_toolsOwner != null) unawaited(_loadComposeTools());
     // A new reply/forward is already meaningful work before the first edit.
     if (widget.onSaveDraft != null && widget.initialDraft != null) {
       _editRevision++;
@@ -135,6 +160,7 @@ class _StudioMailComposeDialogState extends State<StudioMailComposeDialog> {
 
   @override
   void dispose() {
+    _toolsEpoch++;
     _autosave?.cancel();
     _attachmentLoader?.cancel();
     for (final controller in [_to, _cc, _bcc, _subject, _body]) {
@@ -228,7 +254,13 @@ class _StudioMailComposeDialogState extends State<StudioMailComposeDialog> {
 
   Future<void> _finish({required bool send, bool queue = false}) async {
     if ((send || queue) && !widget.canSend) return;
-    if (_finishing || _recoveringCache || (send && _pickingAttachments)) return;
+    if (_finishing ||
+        _recoveringCache ||
+        _initialToolsPending ||
+        _editingTools ||
+        (send && _pickingAttachments)) {
+      return;
+    }
     if (send && widget.previousSubmissionUncertain && !_retryAcknowledged) {
       return;
     }
@@ -440,6 +472,240 @@ class _StudioMailComposeDialogState extends State<StudioMailComposeDialog> {
     _edited();
   }
 
+  bool get _toolsCurrent =>
+      mounted &&
+      identical(_toolsOwner, widget.composeToolsStore) &&
+      _toolsOwner != null &&
+      _toolsOwner!.account == _toolsAccount &&
+      (widget.isComposeToolsCurrent?.call() ?? true);
+
+  bool get _canUseTools =>
+      _toolsCurrent &&
+      !_loadingTools &&
+      !_editingTools &&
+      !_finishing &&
+      !_recoveringCache;
+
+  Future<void> _loadComposeTools() async {
+    final owner = _toolsOwner;
+    if (!_toolsCurrent || owner == null) return;
+    final epoch = ++_toolsEpoch;
+    setState(() {
+      _loadingTools = true;
+      _toolsLoadFailed = false;
+      _composeSettings = null;
+    });
+    try {
+      final settings = await owner.loadComposeSettings();
+      if (!_toolsCurrent || epoch != _toolsEpoch) return;
+      if (settings.account != _toolsAccount || !settings.isValid) {
+        throw const StudioMailComposeToolsException();
+      }
+      setState(() {
+        _composeSettings = settings;
+        _loadingTools = false;
+      });
+      // The primary Compose route initially has no saved draft. Catalog-created
+      // messages and replies already received defaults before being persisted.
+      // Resuming a draft, editing an Outbox copy, or reloading tools never
+      // changes saved text or adds another automatic signature.
+      if (_initialToolsPending && _editRevision == 0) {
+        final prepared = applyStudioMailDefaultSignature(
+          _snapshot(),
+          settings,
+          replyOrForward: false,
+        );
+        if (prepared.body != _snapshot().body) {
+          _insertComposeText(prepared.body, requestFocus: false);
+          _body.jumpToParagraph(0);
+        }
+      }
+    } on Object {
+      if (_toolsCurrent && epoch == _toolsEpoch) {
+        setState(() {
+          _composeSettings = null;
+          _toolsLoadFailed = true;
+        });
+      }
+    } finally {
+      if (mounted && epoch == _toolsEpoch) {
+        setState(() {
+          _loadingTools = false;
+          _initialToolsPending = false;
+        });
+      }
+    }
+  }
+
+  Future<void> _manageComposeTools() async {
+    final settings = _composeSettings;
+    final owner = _toolsOwner;
+    if (!_canUseTools || settings == null || owner == null) return;
+    final epoch = _toolsEpoch;
+    _body.commitPendingEdits();
+    _edited();
+    FocusScope.of(context).unfocus();
+    setState(() => _editingTools = true);
+    bool current() =>
+        _toolsCurrent &&
+        epoch == _toolsEpoch &&
+        identical(owner, _toolsOwner) &&
+        settings.account == _toolsAccount;
+    try {
+      await showDialog<MailComposeSettings>(
+        context: context,
+        barrierDismissible: false,
+        builder: (context) => Directionality(
+          textDirection: widget.strings.language == StudioLanguage.ar
+              ? TextDirection.rtl
+              : TextDirection.ltr,
+          child: StudioMailComposeToolsDialog(
+            strings: widget.strings,
+            initialSettings: settings,
+            isCurrent: current,
+            onSave: (next) async {
+              if (!current() || next.account != _toolsAccount) {
+                throw const StudioMailComposeToolsException();
+              }
+              return owner.saveComposeSettings(next);
+            },
+          ),
+        ),
+      );
+      // A failed/uncertain write must be read back before another edit. Settings
+      // only affect later drafts; this draft changes through explicit insertion.
+      if (current()) await _loadComposeTools();
+    } finally {
+      if (mounted) setState(() => _editingTools = false);
+    }
+  }
+
+  void _insertComposeText(String value, {bool requestFocus = true}) {
+    if (!_canUseTools) return;
+    final text = studioMailComposeText(value);
+    if (text.isEmpty) return;
+    _body.commitPendingEdits();
+    final paragraphs = _body.document.paragraphs.toList();
+    final range = _body.caret.normalizedRange;
+    if (range.startPara < 0 ||
+        range.endPara >= paragraphs.length ||
+        range.startIdx < 0 ||
+        range.endIdx < 0 ||
+        range.startIdx > paragraphs[range.startPara].text.length ||
+        range.endIdx > paragraphs[range.endPara].text.length) {
+      return;
+    }
+    var start = range.startIdx;
+    var end = range.endIdx;
+    for (var i = 0; i < range.endPara; i++) {
+      final length = paragraphs[i].text.length + 1;
+      end += length;
+      if (i < range.startPara) start += length;
+    }
+    final body = _snapshot().body;
+    final next = body.replaceRange(start, end, text);
+    if (next.length > StudioMailDraft.maxBodyBytes ||
+        utf8.encode(next).length > StudioMailDraft.maxBodyBytes) {
+      setState(() => _toolsInsertionFailed = true);
+      return;
+    }
+    _body.insertPlainText(text);
+    _edited();
+    setState(() => _toolsInsertionFailed = false);
+    if (requestFocus) _bodyFocus.requestFocus();
+  }
+
+  Widget _composeToolsToolbar() {
+    final strings = widget.strings;
+    final settings = _composeSettings;
+    final epoch = _toolsEpoch;
+    final available = _canUseTools && settings != null;
+    bool currentMenu() =>
+        _canUseTools &&
+        epoch == _toolsEpoch &&
+        identical(settings, _composeSettings);
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        Wrap(
+          spacing: 8,
+          runSpacing: 4,
+          crossAxisAlignment: WrapCrossAlignment.center,
+          children: [
+            TextButton.icon(
+              key: const ValueKey('studio-mail-compose-tools'),
+              onPressed: available ? _manageComposeTools : null,
+              icon: const Icon(Icons.edit_note),
+              label: Text(strings.mailComposeTools),
+            ),
+            TextButton.icon(
+              key: const ValueKey('studio-mail-insert-signature'),
+              onPressed: available && settings != null && settings.signature.isNotEmpty
+                  ? () {
+                      if (currentMenu()) {
+                        _insertComposeText(
+                          studioMailSignatureText(settings.signature),
+                        );
+                      }
+                    }
+                  : null,
+              icon: const Icon(Icons.draw_outlined),
+              label: Text(strings.mailComposeInsertSignature),
+            ),
+            PopupMenuButton<MailQuickText>(
+              key: const ValueKey('studio-mail-insert-quick-text'),
+              enabled: available && settings != null && settings.quickTexts.isNotEmpty,
+              tooltip: strings.mailComposeInsertQuickText,
+              onSelected: (item) {
+                if (settings != null && currentMenu() && settings.quickTexts.contains(item)) {
+                  _insertComposeText(item.text);
+                }
+              },
+              itemBuilder: (_) => [
+                for (final item in settings?.quickTexts ?? <MailQuickText>[])
+                  PopupMenuItem(
+                    value: item,
+                    child: Text(item.name, maxLines: 2),
+                  ),
+              ],
+              child: Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 12,
+                  vertical: 8,
+                ),
+                child: Text(strings.mailComposeInsertQuickText),
+              ),
+            ),
+          ],
+        ),
+        if (_loadingTools)
+          Semantics(
+            liveRegion: true,
+            child: Text(strings.mailComposeToolsLoading),
+          ),
+        if (_toolsLoadFailed) ...[
+          Text(
+            strings.mailComposeToolsLoadFailed,
+            style: TextStyle(color: Theme.of(context).colorScheme.error),
+          ),
+          Align(
+            alignment: AlignmentDirectional.centerStart,
+            child: TextButton(
+              key: const ValueKey('studio-mail-reload-compose-tools'),
+              onPressed: _canUseTools ? _loadComposeTools : null,
+              child: Text(strings.mailComposeToolsReload),
+            ),
+          ),
+        ],
+        if (_toolsInsertionFailed)
+          Text(
+            strings.mailComposeToolsInsertionFailed,
+            style: TextStyle(color: Theme.of(context).colorScheme.error),
+          ),
+      ],
+    );
+  }
+
   void _fitBodyToWidth(double width) {
     // The shared Word canvas reserves 64 logical pixels on each side and a
     // 14-pixel scrollbar. Reflow this disposable plain-text mail document at
@@ -472,14 +738,17 @@ class _StudioMailComposeDialogState extends State<StudioMailComposeDialog> {
       null => null,
     };
     return PopScope<StudioMailDraft>(
-      canPop: !_recoveringCache && (widget.onSaveDraft == null || _allowPop),
+      canPop: !_recoveringCache &&
+          !_initialToolsPending &&
+          !_editingTools &&
+          (widget.onSaveDraft == null || _allowPop),
       onPopInvokedWithResult: (didPop, _) {
         if (!didPop) unawaited(_finish(send: false));
       },
       child: Dialog(
         insetPadding: const EdgeInsets.all(12),
         child: AbsorbPointer(
-          absorbing: _finishing || _recoveringCache,
+          absorbing: _finishing || _recoveringCache || _initialToolsPending,
           child: SizedBox(
             width: 720,
             height: 680,
@@ -630,6 +899,10 @@ class _StudioMailComposeDialogState extends State<StudioMailComposeDialog> {
                           ),
                         ),
                       const SizedBox(height: 12),
+                      if (_toolsOwner != null) ...[
+                        _composeToolsToolbar(),
+                        const SizedBox(height: 8),
+                      ],
                       Text(strings.mailPlainTextBody),
                       const SizedBox(height: 4),
                       SizedBox(
