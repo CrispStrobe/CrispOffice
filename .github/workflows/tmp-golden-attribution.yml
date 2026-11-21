@@ -1,0 +1,74 @@
+# TEMPORARY: attributes Linux word_selection golden changes. Removed before merge.
+name: tmp golden attribution
+on:
+  push:
+    branches: ['ci/golden-attrib-*']
+  workflow_dispatch:
+jobs:
+  attribute:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          flutter-version: 3.47.8
+      - name: Bisect word_selection goldens (first parent)
+        run: |
+          set -u
+          git config user.email ci@example.invalid; git config user.name ci
+          OUT=$RUNNER_TEMP/out; mkdir -p $OUT; export OUT
+          BASE=$(git rev-parse 07ba3cf1)
+          MAIN=$(git rev-parse origin/main)
+          echo "base=$BASE main=$MAIN" | tee $OUT/summary.txt
+          cat > $RUNNER_TEMP/render.sh <<'SH'
+          #!/bin/bash
+          # render.sh SHA -> $OUT/SHA/word_selection_*.png ; exit 125 when it cannot render
+          sha=$(git rev-parse HEAD)
+          if [ ! -f "$OUT/$sha/word_selection_macOS.png" ]; then
+            flutter pub get > "$OUT/pubget_$sha.txt" 2>&1 || { git reset -q --hard; exit 125; }
+            ( cd packages/quds_office_editor && flutter test test/word_selection_paint_test.dart --update-goldens ) > "$OUT/render_$sha.txt" 2>&1
+            mkdir -p "$OUT/$sha"
+            cp packages/quds_office_editor/test/goldens/linux/word_selection_*.png "$OUT/$sha/" 2>/dev/null
+            git reset -q --hard
+            [ -f "$OUT/$sha/word_selection_macOS.png" ] || { rm -rf "$OUT/$sha"; exit 125; }
+          fi
+          if [ -n "${BASEDIR:-}" ]; then
+            cmp -s "$OUT/$sha/word_selection_macOS.png" "$BASEDIR/word_selection_macOS.png" && \
+            cmp -s "$OUT/$sha/word_selection_windows.png" "$BASEDIR/word_selection_windows.png" && exit 0
+            exit 1
+          fi
+          exit 0
+          SH
+          chmod +x $RUNNER_TEMP/render.sh
+          for s in $BASE $MAIN; do git checkout -q --force $s; $RUNNER_TEMP/render.sh; done
+          git checkout -q --force $BASE
+          for f in macOS windows; do
+            if cmp -s $OUT/$BASE/word_selection_$f.png packages/quds_office_editor/test/goldens/linux/word_selection_$f.png; then
+              echo "base render reproduces committed $f golden" | tee -a $OUT/summary.txt
+            else echo "base render DIFFERS from committed $f golden" | tee -a $OUT/summary.txt; fi
+          done
+          cur=$BASE; n=0
+          while ! { cmp -s $OUT/$MAIN/word_selection_macOS.png $OUT/$cur/word_selection_macOS.png && cmp -s $OUT/$MAIN/word_selection_windows.png $OUT/$cur/word_selection_windows.png; }; do
+            n=$((n+1)); [ $n -gt 6 ] && { echo "too many change points" | tee -a $OUT/summary.txt; break; }
+            git bisect start --first-parent $MAIN $cur
+            BASEDIR=$OUT/$cur git bisect run $RUNNER_TEMP/render.sh > $OUT/bisect_$n.txt 2>&1
+            first=$(git rev-parse refs/bisect/bad)
+            git bisect reset -q
+            parent=$(git rev-parse $first^1)
+            git checkout -q --force $parent; $RUNNER_TEMP/render.sh
+            echo "change point $n: $first (first parent $parent) $(git log -1 --format=%s $first)" | tee -a $OUT/summary.txt
+            cur=$first
+          done
+          git checkout -q --force $MAIN
+          ( cd packages/quds_office_editor && flutter test test/word_shaped_wrap_test.dart ) > $OUT/word_shaped_wrap_main.txt 2>&1; echo "word_shaped_wrap at main exit $?" | tee -a $OUT/summary.txt
+          git reset -q --hard
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: golden-attribution
+          path: ${{ runner.temp }}/out/
+          retention-days: 7
