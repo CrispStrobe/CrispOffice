@@ -160,9 +160,16 @@ back-to-back run moved upward because the machine was under higher load during
 the second run; they are not attributed to this change. The next measurement
 must be taken with the load recorded and the benchmark run twice.
 
+### Item 3 — IME composition suppression (implemented)
+
+`WordEditorController.notifyListeners` no longer forwards proofing observation
+while a non-collapsed IME composition is active. The commit notification
+observes the final text and schedules the normal check. This prevents provider
+work against intermediate composition text.
+
 ### Next
 
-Item 3 (suppress proofing while IME composition is active) and item 6
+Item 6
 (status-line trailing throttle) are the next low-risk changes. Item 4 is an
 audit because the native providers already use worker transports. Item 5 is a
 larger renderer change.
