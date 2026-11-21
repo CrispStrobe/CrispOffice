@@ -233,6 +233,23 @@ execution. See the [exact contract](VBA_WORD_MACROS.md#existing-header-and-foote
 [BAS example](../packages/quds_office_engine/example/macros/word_headers_footers.bas),
 and [local qualification record](validation/word-vba-compatibility-20261121/README.md).
 
+### Word proofing and kerning controls
+
+The next source slice adds write-only `Range.NoProofing`,
+`ParagraphFormat.Hyphenation`, and `Font.Kerning` through the existing paragraph
+selectors. It reuses native proofing/hyphenation/kerning models, preserves
+explicit false/zero inheritance overrides and foreign source metadata, and
+retains detached validation and whole-run rollback. Hyphenation controls
+paragraph inclusion without enabling the document setting. Run controls affect
+selected current text, not paragraph-mark insertion formatting.
+
+The source contract requires actual Booleans and exact half-point kerning
+thresholds in `0..1638`. No document-dependent reads, mixed-value results,
+general coercions, installed Word differential validation or new proofing
+provider are implied. See the [exact contract](VBA_WORD_MACROS.md#proofing-and-kerning-controls),
+[BAS example](../packages/quds_office_engine/example/macros/word_proofing_controls.bas),
+and [local record](validation/word-vba-proofing-20261121/README.md).
+
 ### Next shared-language increments
 
 Keep multidimensional arrays and array parameter passing as separate increments
