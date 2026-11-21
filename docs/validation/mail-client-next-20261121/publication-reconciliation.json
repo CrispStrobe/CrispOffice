@@ -1,0 +1,22 @@
+{
+  "qualifiedSource": "3a8d466fac738973dcffdae58c3d7ac0fd594e86",
+  "publishedEvidenceCheckpoint": "e5a83a5045f7b1b107c916ee4d053d4d4bc84f84",
+  "integratedMain": "49adcd6b693712b9e82f9fdefd2fdf09d0db4ee2",
+  "incomingPR": 311,
+  "incomingNetPaths": [
+    "docs/validation/word-vba-all-caps-20261121/README.md",
+    "docs/validation/word-vba-all-caps-20261121/acceptance.json",
+    "docs/validation/word-vba-all-caps-20261121/combined-evidence-manifest.json",
+    "docs/validation/word-vba-all-caps-20261121/combined-evidence.tar.xz",
+    "docs/validation/word-vba-all-caps-20261121/combined-qualification.json",
+    "docs/validation/word-vba-all-caps-20261121/engine-suites.txt",
+    "docs/validation/word-vba-all-caps-20261121/evidence-manifest.json",
+    "docs/validation/word-vba-all-caps-20261121/evidence.tar.xz",
+    "docs/validation/word-vba-all-caps-20261121/final-intake.json",
+    "docs/validation/word-vba-all-caps-20261121/runtime-provenance.json"
+  ],
+  "incomingProductionAndTestChanges": false,
+  "resolution": "Clean merge with original parents retained. Ten Word validation documentation/evidence paths added or updated; no production or test inputs changed. Existing local qualification remains applicable.",
+  "actionsQueried": false,
+  "actionsAwaited": false
+}

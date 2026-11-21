@@ -1,0 +1,121 @@
+{
+  "recorded_at_utc": "2026-11-21T14:56:01.085533+00:00",
+  "purpose": "Qualify captured incoming Zotero/ODT changes together with already integrated Word AllCaps after clean branch merges.",
+  "captured_incoming_tip": "2e3280a175814dab7fccf14363f8dd1785acc78e",
+  "captured_word_tip": "0fe00b18fef6b79a435817c99714f987329d5f3c",
+  "head_before": "50929af0f093bbb31e5b6f3eaa37b6bc4f85cb9a",
+  "head_after": "3a8d466fac738973dcffdae58c3d7ac0fd594e86",
+  "source_manifest_phase": "before and after focused suites plus combined real-fixture probe",
+  "relevant_files": 948,
+  "changed_relevant_files": [],
+  "runtime": "Repository-pinned genuine Flutter 3.47.8 / Dart 3.13.7; existing locked package configuration; no dependency resolve.",
+  "cwd": "/workspace/scratch/9b6ad165714c/quds_office_suite/packages/quds_office_engine",
+  "command": "source /workspace/scratch/9b6ad165714c/mail-runtime/env.sh\ndart --packages=/workspace/scratch/9b6ad165714c/quds_office_suite/.dart_tool/package_config.json /workspace/scratch/9b6ad165714c/mail-runtime/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart --reporter json --concurrency 2 test/odt_libreoffice_fixture_test.dart test/odt_reader_libreoffice_defaults_test.dart test/odt_reader_script_styles_test.dart test/odt_reader_styles_test.dart test/odt_document_reader_test.dart test/odt_reader_guards_test.dart test/odt_document_writer_test.dart test/office_vba_word_all_caps_test.dart test/word_all_caps_test.dart test/zotero_all_caps_test.dart",
+  "process_exit_code": 0,
+  "terminal": [
+    {
+      "success": true,
+      "type": "done",
+      "time": 8931
+    }
+  ],
+  "suite_totals": {
+    "test/odt_reader_libreoffice_defaults_test.dart": {
+      "passed": 30,
+      "failed": 0,
+      "skipped": 0
+    },
+    "test/odt_libreoffice_fixture_test.dart": {
+      "passed": 6,
+      "failed": 0,
+      "skipped": 0
+    },
+    "test/odt_reader_script_styles_test.dart": {
+      "passed": 6,
+      "failed": 0,
+      "skipped": 0
+    },
+    "test/odt_reader_styles_test.dart": {
+      "passed": 46,
+      "failed": 0,
+      "skipped": 0
+    },
+    "test/odt_document_reader_test.dart": {
+      "passed": 42,
+      "failed": 0,
+      "skipped": 0
+    },
+    "test/odt_reader_guards_test.dart": {
+      "passed": 12,
+      "failed": 0,
+      "skipped": 0
+    },
+    "test/odt_document_writer_test.dart": {
+      "passed": 18,
+      "failed": 0,
+      "skipped": 0
+    },
+    "test/office_vba_word_all_caps_test.dart": {
+      "passed": 32,
+      "failed": 0,
+      "skipped": 0
+    },
+    "test/word_all_caps_test.dart": {
+      "passed": 13,
+      "failed": 0,
+      "skipped": 0
+    },
+    "test/zotero_all_caps_test.dart": {
+      "passed": 5,
+      "failed": 0,
+      "skipped": 0
+    }
+  },
+  "totals": {
+    "passed": 210,
+    "failed": 0,
+    "skipped": 0
+  },
+  "coexistence_probe": {
+    "command": "dart --packages=/workspace/scratch/9b6ad165714c/quds_office_suite/.dart_tool/package_config.json /workspace/scratch/9b6ad165714c/intake-audit/incoming-zotero-allcaps-coexistence.dart",
+    "process_exit_code": 0,
+    "result": {
+      "success": true,
+      "fixture_sha256": "9fd4e0d23bf9cd2be0248bd5e9cfb496dfe512ec1226c456f324f2171705e1bd",
+      "docx_roundtrips": 4,
+      "all_caps_transitions": [
+        true,
+        true,
+        false,
+        false
+      ],
+      "verified": [
+        "typed AllCaps and native caps retained together",
+        "script font size, weight and italic synchronized",
+        "complex font and authored language preserved",
+        "UTF-16 source text and fixture bytes unchanged"
+      ]
+    },
+    "counted_in_suite_totals": false
+  },
+  "review_findings": [
+    "Merged WordPropertyIo retains caps snapshot, metadata-preserving native caps writes, and canonical caps ordering.",
+    "ODT script projection is namespace-scoped and only synchronizes importer-owned script controls; ordinary or foreign-lookalike DOCX properties remain independent.",
+    "All three new ODT suites pass, including the combined Unicode/hyperlink/citation ownership case described as unresolved in the incoming checkpoint README; that provisional note is superseded by this merged-source qualification.",
+    "Real retained LibreOffice ODT bytes pass four DOCX roundtrips after simultaneous AllCaps and complex-script scalar edits, including explicit caps false; authored text and original fixture bytes are unchanged."
+  ],
+  "scope_limitations": [
+    "No installed Word, LibreOffice, Zotero plugin or external live interoperability session.",
+    "These 210 cases are a focused merge gate; repeated AllCaps cases overlap the earlier 179 engine qualification and should not be counted as distinct feature coverage."
+  ],
+  "evidence_sha256": {
+    "incoming-zotero-source-before.json": "ea7481c191b4ff5994e30881b2e904babd902caf50e4007b9321a1a28a0fe452",
+    "incoming-zotero-source-after.json": "d9dbbf1eb15f9dfe87d4eba69210d22c434435e0b086198fd20e5eec306bbc67",
+    "incoming-zotero-tests.jsonl": "c85689749303be5413897233b837c48bea9bdfedbf4a14b6cde066ae6d44e666",
+    "incoming-zotero-tests.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "incoming-zotero-allcaps-coexistence.dart": "f57c8e8e022a0efd964cffc7c60d8efe9e02e9c26e771a57b59943878b3075ea",
+    "incoming-zotero-allcaps-coexistence.json": "78cb932bf8afcc060b42bba02a57100b8ca5efcc652ba297971e0689746ed9d3",
+    "incoming-zotero-allcaps-coexistence.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "github_actions_queries": 0
+}

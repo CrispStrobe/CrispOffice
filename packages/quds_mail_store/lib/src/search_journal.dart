@@ -810,6 +810,7 @@ extension MailStoreLocalOperations on SqliteMailRepository {
   /// can finish secure-store deletion even after a crash during profile removal.
   Future<MailResult<MailUnit>> removeProfile() => _write(() async {
     await _db.customStatement('DELETE FROM local_accounts');
+    await _db.customStatement('DELETE FROM saved_header_searches');
     for (final row in await _rows('SELECT id FROM accounts')) {
       await _removeLocalAccount(
         MailAccountId(row.read<String>('id'), profile: profile),

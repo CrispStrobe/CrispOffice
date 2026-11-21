@@ -1,15 +1,56 @@
 # Mail implementation status — 21 November 2026
 
-## Loaded conversation ordering — source checkpointed, tests not executed
+## Persistent saved-header searches
 
-The shared mailbox list has an opt-in **Conversations** chip for explicitly
-threaded loaded headers across native IMAP, EWS/cloud, cached and synchronized
-views. It groups by strict account-scoped Message-ID/In-Reply-To/References
-links without guessing from subjects, fetching missing mail or changing row
-identities. Search and bulk actions remain visible-row-only. The core and
-widget regressions were committed remotely but are **not claimed passing**:
-this execution environment has neither Dart nor Flutter, and CI is not a
-blocking gate. [Scope, limitations and validation commands](conversations.md).
+Native **Search saved mail** now supports named queries with fixed account
+scopes. Users can save, reopen, rename, update and delete definitions; opening
+starts a fresh bounded search over current retained headers. Saving all listed
+accounts captures that exact set, so a later account does not silently join it.
+Missing or provider-filtered accounts remain visibly unavailable. Definition
+deletion leaves messages, retained bodies, drafts and queued Outbox data intact.
+
+Core exposes a typed immutable definition and the shared SQLite repository
+persists its ordered scope through additive schema 9 migration. Monotonic
+revisions prevent stale updates/deletions, including deletion followed by
+recreation. Invalid metadata and malformed UTF-16 are refused before storage
+can silently replace characters. Native Studio validates account ownership,
+drains pending saves on close, and reports uncertain writes by requesting a
+reload rather than claiming a commit outcome. English, German and Arabic host
+controls support enlarged text. See [the saved-search contract](saved-searches.md)
+and [this continuation's local qualification](../../validation/mail-client-next-20261121/README.md).
+
+Continuous refresh, arbitrary saved folder sets, indexed body/server discovery
+and shared unified navigation remain open. The delivered search is explicit
+and local; it does not acquire credentials or contact a provider.
+
+## Loaded conversations — folding and local qualification completed
+
+The shared mailbox list offers **Conversations** for explicitly threaded loaded
+headers across native IMAP, EWS/cloud, cached and synchronized views. Groups
+start expanded; users can collapse them with an accessible disclosure or
+Left/Right keys, mirrored in RTL. The remaining visible row still represents
+one message. Collapsing immediately removes hidden children from checked
+selection, and stale row/disclosure/bulk-menu callbacks cannot target them.
+
+Groups show filtered **loaded**, observed **unread** and **flagged** counts,
+with unknown states reported separately. Folding follows stable account/member
+identities through sorting, filtering, refresh and added replies within the
+same scope, and resets when the host changes account/folder scope. Controls and
+counts are available in English, German and Arabic. Thread links remain strict
+account-scoped Message-ID/In-Reply-To/References relationships; subjects never
+invent a conversation and no provider request is made by this view.
+
+The current continuation executed the previously unrun conversation suites
+using genuine Flutter 3.47.8 / Dart 3.13.7 and locked dependencies: **10 core
+conversation cases**, **18 conversation widget cases**, and **108 shared-list
+widget cases including those 18** passed, with zero failures/skips. The three
+EN/DE/AR conversation-localization cases also passed within a six-case locale
+run. These are overlapping cohorts, not additive totals. Changed Dart paths
+passed analysis and formatting. See the [workflow and remaining boundaries](conversations.md)
+and [current local qualification](../../validation/mail-client-next-20261121/README.md).
+Persistent account-wide conversation indexes, cross-folder discovery and server
+threading remain future work; local fixture tests do not establish live-account
+or installed-platform acceptance. GitHub Actions are not an acceptance gate.
 
 ## Unified cached-header search
 
@@ -26,8 +67,9 @@ completed local scan. Queries never fetch a body or contact a provider. Selectin
 a result explicitly opens retained bytes; query/account edits and close fence
 stale work and drain owned profiles. See [the workflow](unified-cached-search.md)
 and [local qualification](../../validation/mail-unified-cache-20261121/README.md).
-Saved live views, indexed account-wide body/server search, conversation grouping
-and the complete shared unified workspace remain open.
+Continuously refreshed shared saved views, indexed account-wide body/server search, persistent
+account-wide conversation indexing and the complete shared unified workspace
+remain open. Loaded conversation folding is qualified above.
 
 ## Boolean header search — local runtime qualification completed
 
@@ -51,8 +93,9 @@ retains exact results separately from that original static-only evidence.
 The [51-branch intake](../../mail-intake-20261121.md) preserves all recent mail
 work, integrates the missing benchmark fields and reviewed CLI runner changes,
 and records squash-equivalent branches and excluded WIP cache/artifacts.
-Account-wide/unified cached-header discovery is described above; saved live
-views, broader body/server discovery and conversations remain open.
+Account-wide/unified cached-header discovery and persistent saved queries are
+described above; continuous refresh, broader body/server discovery and persistent account-wide conversations
+remain open. Loaded conversation folding is qualified above.
 
 ## Explicit offline downloads and guarded native Quit
 

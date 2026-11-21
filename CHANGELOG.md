@@ -5,6 +5,20 @@ This repository is a Dart workspace. Each published package keeps its own change
 - [`packages/quds_office_engine/CHANGELOG.md`](packages/quds_office_engine/CHANGELOG.md)
 - [`packages/quds_office_editor/CHANGELOG.md`](packages/quds_office_editor/CHANGELOG.md)
 
+## Unreleased — Mail organization
+
+- Studio's **Search saved mail** now saves, reopens, renames, updates and
+  deletes named header queries with a fixed account scope. Definitions survive
+  restart; opening or searching again uses current retained headers. Missing
+  accounts remain explicit, conflicting edits are refused, and deleting a
+  search leaves mail and Outbox data intact.
+- Shared loaded conversations can expand and collapse with accessible mouse
+  and keyboard controls, observed unread/flag counts, and English/German/Arabic
+  host text. Hidden children are excluded from visible-selection bulk actions.
+- Mail store schema 9 adds bounded saved-search definitions through additive,
+  transactional migration; existing account, mail, draft and Outbox data remain
+  preserved. Background refresh and full server-wide conversations remain open.
+
 ## 1.5.0 / 1.6.0
 
 Engine **1.5.0**, reports **1.5.0**, editor **1.6.0**, and Report Studio **1.5.0**.

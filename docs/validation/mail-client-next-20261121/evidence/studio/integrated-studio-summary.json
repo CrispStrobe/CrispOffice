@@ -1,0 +1,62 @@
+{
+  "startedAt": "2026-11-21T14:53:55.734781+00:00",
+  "head": "3a8d466fac738973dcffdae58c3d7ac0fd594e86",
+  "tree": "da9fefbbc10bdd20f35ae034403a2ca6c20b00ea",
+  "inputCount": 1052,
+  "command": "flutter test --no-pub --concurrency=2 --reporter json test/studio_mail_saved_search_dialog_test.dart test/studio_mail_saved_search_store_test.dart",
+  "cwd": "packages/quds_office_editor/example",
+  "endedAt": "2026-11-21T14:56:36.445671+00:00",
+  "processExitCode": 0,
+  "results": {
+    "passed": 32,
+    "failed": 0,
+    "skipped": 0,
+    "errors": 0,
+    "terminal": {
+      "success": true,
+      "type": "done",
+      "time": 39925
+    },
+    "log": "integrated-studio-tests.jsonl",
+    "logSHA256": "bd26dd76559ab7aa8024c8f08225b2bb9d4c7cbcb6965031b7bc84c006021ab4"
+  },
+  "changedInputs": [],
+  "allInputsUnchanged": true,
+  "cohorts": [
+    "13 saved-search dialog cases",
+    "19 native saved-search storage cases"
+  ],
+  "previousRuns": {
+    "broad": {
+      "passed": 298,
+      "failed": 0,
+      "skipped": 0,
+      "errors": 0,
+      "terminal": {
+        "success": true,
+        "type": "done",
+        "time": 128124
+      },
+      "log": "mail-studio-regression.jsonl",
+      "logSHA256": "40f39c025f84721a42ee4a49dab25c5622002102b3c8ed2384e0ae64d002fb4f"
+    },
+    "earlierFocused": {
+      "passed": 32,
+      "failed": 0,
+      "skipped": 0,
+      "errors": 0,
+      "terminal": {
+        "success": true,
+        "type": "done",
+        "time": 37033
+      },
+      "log": "final-studio-tests.jsonl",
+      "logSHA256": "deb3aa824edddce02783187195955946b8634ce955f1638f2c07f73287d7dcf7"
+    }
+  },
+  "scopeNotes": [
+    "The 13 dialog cases are included in the earlier broad 298-case run. Do not add overlapping counts.",
+    "The broad regression run did not capture a complete pre/post source manifest; this final focused run did.",
+    "Incoming engine/editor/localization changes have separate focused qualification receipts."
+  ]
+}

@@ -14,6 +14,7 @@ part 'local_accounts.dart';
 part 'mailbox_views.dart';
 part 'sync_mailboxes.dart';
 part 'cached_header_search.dart';
+part 'saved_header_searches.dart';
 part 'flag_journal.dart';
 part 'flag_reconciliation.dart';
 

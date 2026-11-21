@@ -1,12 +1,17 @@
 import '../../odf/odf_text.dart';
 import '../../xml/xml_node.dart';
 import '../model/wml_document.dart';
+import '../model/word_proofing_language.dart';
 import '../properties/wml_properties.dart';
+import 'odt_reader_text_style.dart';
 
 const _style = 'urn:oasis:names:tc:opendocument:xmlns:style:1.0';
 const _fo = 'urn:oasis:names:tc:opendocument:xmlns:xsl-fo-compatible:1.0';
 const _svg = 'urn:oasis:names:tc:opendocument:xmlns:svg-compatible:1.0';
 const _xml = 'http://www.w3.org/XML/1998/namespace';
+const _draw = 'urn:oasis:names:tc:opendocument:xmlns:drawing:1.0';
+const _loext =
+    'urn:org:documentfoundation:names:experimental:office:xmlns:loext:1.0';
 
 /// Resolves the bounded style subset supported by the rich ODT reader.
 ///
@@ -31,6 +36,7 @@ final class OdtReaderStyles {
   final _noteConfigurations = <XmlElement>[];
   final _outlineStyles = <XmlElement>[];
   final _chains = <String, List<XmlElement>>{};
+  final _paragraphContexts = <String, _OdtParagraphContext>{};
   final _usedMasters = <String>{};
   bool _implicitMasterUsed = false;
   int _definitionCount = 0;
@@ -228,8 +234,8 @@ final class OdtReaderStyles {
     }
   }
 
-  WmlRunProps paragraphRunProperties(String? styleName) {
-    final result = WmlRunProps(kerningHalfPoints: 0);
+  OdtReaderTextStyle paragraphRunProperties(String? styleName) {
+    final result = OdtReaderTextStyle.from(WmlRunProps(kerningHalfPoints: 0));
     for (final definition in styleChain('paragraph', styleName)) {
       _checkDefinition(definition, 'paragraph');
       final properties = _singleChild(definition, _style, 'text-properties');
@@ -238,8 +244,13 @@ final class OdtReaderStyles {
     return result;
   }
 
-  WmlRunProps runProperties(String? styleName, {WmlRunProps? inherited}) {
-    final result = inherited?.copy() ?? paragraphRunProperties(null);
+  OdtReaderTextStyle runProperties(
+    String? styleName, {
+    WmlRunProps? inherited,
+  }) {
+    final result = inherited == null
+        ? paragraphRunProperties(null)
+        : OdtReaderTextStyle.from(inherited);
     for (final definition in styleChain('text', styleName)) {
       // A span inherits its paragraph. The text-family default is a fallback,
       // not a replacement for explicitly resolved paragraph formatting.
@@ -452,17 +463,117 @@ final class OdtReaderStyles {
     if (autoIndent != null && _boolean(autoIndent)) {
       throw UnsupportedError('Automatic ODT text indent.');
     }
+    // These settings are evaluated after inheritance. Only inactive values or
+    // values whose actual text use can be checked below are accepted. This is
+    // deliberately not a general allowlist for a producer's style attributes.
+    for (final (namespace, name) in [
+      (_style, 'contextual-spacing'),
+      (_style, 'justify-single-word'),
+      (_loext, 'paragraph-composer'),
+    ]) {
+      final value = take(namespace, name);
+      if (value != null && _boolean(value)) {
+        throw UnsupportedError('Active ODT paragraph setting: $name');
+      }
+    }
+    for (final (namespace, name, supported) in [
+      (_fo, 'hyphenation-ladder-count', 'no-limit'),
+      (_fo, 'hyphenation-keep', 'auto'),
+      (_loext, 'hyphenation-keep-type', 'column'),
+    ]) {
+      final value = take(namespace, name);
+      if (value != null && value != supported) {
+        throw UnsupportedError('Unsupported ODT hyphenation setting: $name');
+      }
+    }
+    final hyphenationKeepLine = take(_loext, 'hyphenation-keep-line');
+    if (hyphenationKeepLine != null && _boolean(hyphenationKeepLine)) {
+      throw UnsupportedError('Active ODT hyphenation keep-line.');
+    }
+    final autospace = take(_style, 'text-autospace');
+    if (autospace != null && !{'none', 'ideograph-alpha'}.contains(autospace)) {
+      throw UnsupportedError('Unsupported ODT text autospace: $autospace');
+    }
+    final punctuation = take(_style, 'punctuation-wrap');
+    if (punctuation != null && !{'simple', 'hanging'}.contains(punctuation)) {
+      throw UnsupportedError('Unsupported ODT punctuation wrap: $punctuation');
+    }
+    final lineBreak = take(_style, 'line-break');
+    if (lineBreak != null && !{'normal', 'strict'}.contains(lineBreak)) {
+      throw UnsupportedError('Unsupported ODT line-break rule: $lineBreak');
+    }
+    final tabDistance = take(_style, 'tab-stop-distance');
+    final tabPoints = tabDistance == null ? null : lengthPoints(tabDistance);
+    if (tabPoints != null && tabPoints <= 0) {
+      throw const FormatException('ODT default tab distance must be positive.');
+    }
+    _paragraphContexts[styleName ?? ''] = _OdtParagraphContext(
+      asianTypography:
+          autospace == 'ideograph-alpha' ||
+          punctuation == 'hanging' ||
+          lineBreak != null,
+      requiresKnownBreakLocale: punctuation == 'hanging' || lineBreak != null,
+      defaultTabDistance: tabPoints,
+    );
     _requireEmpty(values, 'paragraph');
     if (tabs != null) result.tabs = _tabs(tabs);
     final mark = paragraphRunProperties(styleName);
     if (heading != null) validateHeadingConfiguration();
-    result.importedParagraphMark = mark;
+    result.importedParagraphMark = mark.nativeProperties();
     result.proofingLanguage = mark.proofingLanguage;
     return result;
   }
 
+  /// Qualifies conditional defaults against this paragraph's actual text.
+  /// Asian typography and nonstandard implicit tabs are not represented by the
+  /// native model. They may be dormant in a source style, but must not silently
+  /// change an active paragraph. Explicit tab stops retain their own contract.
+  void validateParagraphContent(String? styleName, WmlParagraph paragraph) {
+    final context = _paragraphContexts[styleName ?? ''];
+    if (context == null) return;
+    final text = paragraph.text;
+    // LibreOffice's CJK line-break iterator can hang ASCII punctuation too.
+    // Its dispatch follows the effective language as well as the text script;
+    // checking only for Han/Kana/Hangul characters would drop active behavior.
+    var asianLocale = false;
+    for (final run in paragraph.inlines.whereType<WmlRun>()) {
+      if (run.text.isEmpty) continue;
+      final normal =
+          run.properties.proofingLanguage ??
+          paragraph.properties.proofingLanguage;
+      final complex = run.properties.complexScriptLanguage ?? normal;
+      final languages = <String?>{
+        if (wordRunUsesLatinScriptLanguage(run)) normal,
+        if (wordRunUsesComplexScriptLanguage(run)) complex,
+      };
+      if (context.requiresKnownBreakLocale && languages.contains(null)) {
+        throw UnsupportedError(
+          'ODT paragraph typography requires an explicit supported break locale.',
+        );
+      }
+      asianLocale = asianLocale || languages.any(_isAsianBreakLanguage);
+    }
+    if (context.asianTypography &&
+        (_asianTypographyText.hasMatch(text) || asianLocale)) {
+      throw UnsupportedError(
+        'Active ODT Asian paragraph typography is not supported.',
+      );
+    }
+    final distance = context.defaultTabDistance;
+    // The native Word layout uses a 36 pt implicit interval. A source interval
+    // differing from it needs a separate model/layout implementation, including
+    // positions beyond the last explicit stop.
+    if (distance != null &&
+        (distance - 36).abs() > 0.00001 &&
+        text.contains('\t')) {
+      throw UnsupportedError(
+        'Active ODT nonstandard default tab distance is not supported.',
+      );
+    }
+  }
+
   /// Applies the single compatible layout after the body has resolved styles.
-  void applyPageLayout(WmlSection section) {
+  void applyPageLayout(WmlSection section, {bool hasFootnotes = false}) {
     final names = <String>{..._usedMasters};
     if (_masters.isNotEmpty && (_implicitMasterUsed || names.isEmpty)) {
       names.add(_masters.keys.first);
@@ -477,6 +588,7 @@ final class OdtReaderStyles {
       }
       _checkAttributes(master, {
         _style: {'name', 'display-name', 'page-layout-name', 'next-style-name'},
+        _draw: {'style-name'},
       });
       if (master.childElements.isNotEmpty) {
         throw UnsupportedError('ODT master-page stories are not supported.');
@@ -487,12 +599,14 @@ final class OdtReaderStyles {
           'Alternating ODT master pages are not supported.',
         );
       }
+      final drawingStyle = _attr(master, _draw, 'style-name');
+      if (drawingStyle != null) _validateDrawingPage(drawingStyle);
       final layoutName = _attr(master, _style, 'page-layout-name');
       final layout = _layouts[layoutName];
       if (layout == null) {
         throw FormatException('Missing ODT page layout: $layoutName');
       }
-      final candidate = _pageLayout(layout);
+      final candidate = _pageLayout(layout, hasFootnotes: hasFootnotes);
       final candidateSignature = [
         candidate.pageSize.width,
         candidate.pageSize.height,
@@ -517,6 +631,34 @@ final class OdtReaderStyles {
       section.columnCount = resolved.columnCount;
       section.columnSpace = resolved.columnSpace;
     }
+  }
+
+  void _validateDrawingPage(String name) {
+    if (name.isEmpty) {
+      throw const FormatException('Empty ODT drawing-page style reference.');
+    }
+    final values = <String, String>{};
+    for (final definition in styleChain('drawing-page', name)) {
+      final properties = _singleChild(
+        definition,
+        _style,
+        'drawing-page-properties',
+      );
+      if (properties == null) continue;
+      if (properties.childElements.isNotEmpty) {
+        throw UnsupportedError('ODT drawing-page background content.');
+      }
+      _mergeProperties(values, properties);
+    }
+    final fill = values.remove('$_draw/fill');
+    if (fill != null && fill != 'none') {
+      throw UnsupportedError('ODT page drawing background.');
+    }
+    final size = values.remove('$_draw/background-size');
+    if (size != null && !{'full', 'border'}.contains(size)) {
+      throw UnsupportedError('Unsupported ODT background size.');
+    }
+    _requireEmpty(values, 'drawing-page');
   }
 
   /// Converts an absolute ODF length. Relative and non-finite values reject.
@@ -668,6 +810,7 @@ final class OdtReaderStyles {
         'table-row' => const {'table-row-properties'},
         'table-cell' => const {'table-cell-properties'},
         'section' => const {'section-properties'},
+        'drawing-page' => const {'drawing-page-properties'},
         _ => const <String>{},
       };
       if (child.namespaceUri != _style || !allowed.contains(child.localName)) {
@@ -681,13 +824,16 @@ final class OdtReaderStyles {
     }
   }
 
-  void _applyRun(WmlRunProps result, XmlElement element) {
+  void _applyRun(OdtReaderTextStyle result, XmlElement element) {
     if (element.childElements.isNotEmpty) {
       throw UnsupportedError('Nested ODT text properties.');
     }
     final values = <String, String>{};
     _mergeProperties(values, element);
     String? take(String ns, String name) => values.remove('$ns/$name');
+    final inheritedSize = result.fontSizeHalfPoints;
+    final inheritedComplexSize = result.complex.size ?? inheritedSize;
+    final inheritedAsianSize = result.asian.size ?? inheritedSize;
     final font = take(_fo, 'font-family');
     final alias = take(_style, 'font-name');
     if (font != null) result.asciiFont = _fontFamily(font);
@@ -701,35 +847,46 @@ final class OdtReaderStyles {
     if (font != null || alias != null) {
       result.explicitProperties.add('asciiFont');
     }
-    final csAlias = take(_style, 'font-name-complex');
-    if (csAlias != null) {
-      final declared = _resolveFont(csAlias);
-      result.csFont = declared;
-      result.explicitProperties.add('csFont');
-    } else if ((font != null || alias != null) &&
+    _fontHints(
+      take(_style, 'font-family-generic'),
+      take(_style, 'font-pitch'),
+      named: result.explicitProperties.contains('asciiFont'),
+    );
+    for (final entry in {
+      'complex': result.complex,
+      'asian': result.asian,
+    }.entries) {
+      final script = entry.key;
+      final slot = entry.value;
+      final family = take(_style, 'font-family-$script');
+      final scriptAlias = take(_style, 'font-name-$script');
+      if (family != null) slot.font = _fontFamily(family);
+      if (scriptAlias != null) {
+        final declared = _resolveFont(scriptAlias);
+        if (family != null && slot.font != declared) {
+          throw FormatException(
+            'Conflicting ODT $script font family and alias.',
+          );
+        }
+        slot.font = declared;
+      }
+      if (script == 'complex' && slot.font != null) {
+        result.csFont = slot.font!;
+        result.explicitProperties.add('csFont');
+      }
+      _fontHints(
+        take(_style, 'font-family-generic-$script'),
+        take(_style, 'font-pitch-$script'),
+        named: slot.font != null,
+      );
+    }
+    if ((font != null || alias != null) &&
         !result.explicitProperties.contains('csFont')) {
       result.csFont = result.asciiFont;
     }
-    final asian = take(_style, 'font-name-asian');
-    if (asian != null && _resolveFont(asian) != result.asciiFont) {
-      throw UnsupportedError('Distinct ODT Asian font.');
-    }
     final size = take(_fo, 'font-size');
     if (size != null) {
-      final points = size.endsWith('%')
-          ? result.fontSizePoints *
-                _positiveNumber(size.substring(0, size.length - 1)) /
-                100
-          : lengthPoints(size);
-      final halfPoints = points * 2;
-      if (halfPoints < 1 ||
-          halfPoints > 3276 ||
-          (halfPoints - halfPoints.round()).abs() > 0.00001) {
-        throw UnsupportedError(
-          'ODT font size is outside exact half-point representation: $size',
-        );
-      }
-      result.fontSizeHalfPoints = halfPoints.round();
+      result.fontSizeHalfPoints = _fontSize(size, inheritedSize);
       result.explicitProperties.add('fontSizeHalfPoints');
     }
     final weight = take(_fo, 'font-weight');
@@ -742,20 +899,23 @@ final class OdtReaderStyles {
       result.italic = _italic(italic);
       result.explicitProperties.add('italic');
     }
-    for (final script in ['complex', 'asian']) {
+    for (final entry in {
+      'complex': result.complex,
+      'asian': result.asian,
+    }.entries) {
+      final script = entry.key;
+      final slot = entry.value;
       final scriptSize = take(_style, 'font-size-$script');
-      if (scriptSize != null &&
-          (lengthPoints(scriptSize) - result.fontSizePoints).abs() > 0.00001) {
-        throw UnsupportedError('Distinct ODT $script font size.');
+      if (scriptSize != null) {
+        slot.size = _fontSize(
+          scriptSize,
+          script == 'complex' ? inheritedComplexSize : inheritedAsianSize,
+        );
       }
       final scriptWeight = take(_style, 'font-weight-$script');
-      if (scriptWeight != null && _weight(scriptWeight) != result.bold) {
-        throw UnsupportedError('Distinct ODT $script font weight.');
-      }
+      if (scriptWeight != null) slot.bold = _weight(scriptWeight);
       final scriptItalic = take(_style, 'font-style-$script');
-      if (scriptItalic != null && _italic(scriptItalic) != result.italic) {
-        throw UnsupportedError('Distinct ODT $script font style.');
-      }
+      if (scriptItalic != null) slot.italic = _italic(scriptItalic);
     }
     final caps = take(_fo, 'font-variant');
     if (caps != null) {
@@ -769,7 +929,33 @@ final class OdtReaderStyles {
     final color = take(_fo, 'color');
     if (color != null) {
       result.color = _color(color);
+      // LibreOffice maps explicit color and use-window-font-color to the
+      // same CharColor property. A child color replaces inherited automatic.
+      result.automaticColor = false;
       result.explicitProperties.add('color');
+    }
+    final automaticColor = take(_style, 'use-window-font-color');
+    if (automaticColor != null) {
+      result.automaticColor = _boolean(automaticColor);
+    }
+    final opacity = take(_loext, 'opacity');
+    if (opacity != null) {
+      if (!RegExp(r'^(?:\d+(?:\.\d+)?|\.\d+)%$').hasMatch(opacity)) {
+        throw const FormatException('Invalid ODT text opacity.');
+      }
+      final number = double.parse(opacity.substring(0, opacity.length - 1));
+      if (!number.isFinite || number > 100) {
+        throw const FormatException('Invalid ODT text opacity.');
+      }
+      result.opacity = number;
+    }
+    final transform = take(_fo, 'text-transform');
+    if (transform != null && transform != 'none') {
+      throw UnsupportedError('ODT text transformation is not supported.');
+    }
+    final opticalSizing = take(_loext, 'font-optical-sizing');
+    if (opticalSizing != null && opticalSizing != 'auto') {
+      throw UnsupportedError('Explicit ODT optical sizing is not supported.');
     }
     final background = take(_fo, 'background-color');
     if (background != null) {
@@ -856,25 +1042,24 @@ final class OdtReaderStyles {
         csCountry,
         result.complexScriptLanguage,
       );
+      result.complex
+        ..language = result.complexScriptLanguage
+        ..languageSpecified = true;
+      if (csLanguage != null) result.complex.noProof = csLanguage == 'none';
       result.explicitProperties.add('complexScriptLanguage');
-    }
-    if ((csLanguage == 'none' && result.noProof != true) ||
-        (result.noProof == true && result.complexScriptLanguage != null)) {
-      throw UnsupportedError(
-        'Independent ODT script proofing suppression is not supported.',
-      );
     }
     final asianLanguage = take(_style, 'language-asian');
     final asianCountry = take(_style, 'country-asian');
-    if (asianLanguage == 'none' && result.noProof != true) {
-      throw UnsupportedError(
-        'Independent ODT Asian proofing suppression is not supported.',
+    if (asianLanguage != null || asianCountry != null) {
+      result.asian.language = _language(
+        asianLanguage,
+        asianCountry,
+        result.asian.languageSpecified
+            ? result.asian.language
+            : result.proofingLanguage,
       );
-    }
-    if ((asianLanguage != null || asianCountry != null) &&
-        _language(asianLanguage, asianCountry, result.proofingLanguage) !=
-            result.proofingLanguage) {
-      throw UnsupportedError('Distinct ODT Asian proofing language.');
+      result.asian.languageSpecified = true;
+      if (asianLanguage != null) result.asian.noProof = asianLanguage == 'none';
     }
     final kern = take(_style, 'letter-kerning');
     if (kern != null) {
@@ -887,7 +1072,66 @@ final class OdtReaderStyles {
         lengthPoints(spacing, allowNegative: true) != 0) {
       throw UnsupportedError('ODT character spacing.');
     }
+    final hyphenate = take(_fo, 'hyphenate');
+    if (hyphenate != null) result.hyphenate = _boolean(hyphenate);
+    // These parameters are dormant when effective automatic hyphenation is
+    // off. Validate their values even though no native layout setting is made.
+    for (final entry in {
+      _fo: ['hyphenation-remain-char-count', 'hyphenation-push-char-count'],
+      _loext: [
+        'hyphenation-word-char-count',
+        'hyphenation-compound-remain-char-count',
+        'hyphenation-compound-push-char-count',
+      ],
+    }.entries) {
+      for (final name in entry.value) {
+        final value = take(entry.key, name);
+        if (value == null) continue;
+        if (!RegExp(r'^\d+$').hasMatch(value) || int.tryParse(value) == null) {
+          throw FormatException('Invalid ODT $name.');
+        }
+      }
+    }
+    for (final name in ['hyphenation-no-caps', 'hyphenation-no-last-word']) {
+      final value = take(_loext, name);
+      if (value != null) _boolean(value);
+    }
+    final zone = take(_loext, 'hyphenation-zone');
+    if (zone != null && zone != 'no-limit') lengthPoints(zone);
     _requireEmpty(values, 'text');
+  }
+
+  static int _fontSize(String value, int inheritedHalfPoints) {
+    final halfPoints = value.endsWith('%')
+        ? inheritedHalfPoints *
+              _positiveNumber(value.substring(0, value.length - 1)) /
+              100
+        : lengthPoints(value) * 2;
+    if (halfPoints < 1 ||
+        halfPoints > 3276 ||
+        (halfPoints - halfPoints.round()).abs() > 0.00001) {
+      throw UnsupportedError(
+        'ODT font size is outside exact half-point representation: $value',
+      );
+    }
+    return halfPoints.round();
+  }
+
+  static void _fontHints(String? family, String? pitch, {required bool named}) {
+    if (family == null && pitch == null) return;
+    if (!named ||
+        (family != null &&
+            !{
+              'decorative',
+              'modern',
+              'roman',
+              'script',
+              'swiss',
+              'system',
+            }.contains(family)) ||
+        (pitch != null && !{'fixed', 'variable'}.contains(pitch))) {
+      throw UnsupportedError('ODT font matching hints require a named family.');
+    }
   }
 
   static WmlUnderline _underline(
@@ -948,7 +1192,10 @@ final class OdtReaderStyles {
     WmlUnderline.wavyDouble => 'wave',
   };
 
-  static WmlSection _pageLayout(XmlElement layout) {
+  static WmlSection _pageLayout(
+    XmlElement layout, {
+    required bool hasFootnotes,
+  }) {
     _checkAttributes(layout, {
       _style: {'name', 'page-usage'},
     });
@@ -956,10 +1203,24 @@ final class OdtReaderStyles {
     if (usage != null && usage != 'all') {
       throw UnsupportedError('ODT mirrored/parity page layout.');
     }
+    final containers = <String>{};
     for (final child in layout.childElements) {
       if (child.namespaceUri != _style ||
-          child.localName != 'page-layout-properties') {
+          !{
+            'page-layout-properties',
+            'header-style',
+            'footer-style',
+          }.contains(child.localName)) {
         throw UnsupportedError('Unsupported ODT page layout child.');
+      }
+      if (!containers.add(child.localName)) {
+        throw const FormatException('Duplicate ODT page-layout container.');
+      }
+      if (child.localName != 'page-layout-properties') {
+        _checkAttributes(child, const {});
+        if (child.childElements.isNotEmpty || child.text.trim().isNotEmpty) {
+          throw UnsupportedError('ODT header/footer layout content.');
+        }
       }
     }
     final properties = _singleChild(layout, _style, 'page-layout-properties');
@@ -1008,11 +1269,81 @@ final class OdtReaderStyles {
     if (background != null && background != 'transparent') {
       throw UnsupportedError('ODT page background.');
     }
+    final pageNumberFormat = take(_style, 'num-format');
+    if (pageNumberFormat != null && pageNumberFormat != '1') {
+      throw UnsupportedError('ODT page numbering format.');
+    }
+    final gutter = take(_loext, 'margin-gutter');
+    if (gutter != null && lengthPoints(gutter) != 0) {
+      throw UnsupportedError('ODT page gutter.');
+    }
+    final noteHeight = take(_style, 'footnote-max-height');
+    if (noteHeight != null && lengthPoints(noteHeight) != 0) {
+      throw UnsupportedError('ODT maximum footnote height.');
+    }
+    final grid = take(_style, 'layout-grid-mode');
+    if (grid != null && grid != 'none') {
+      throw UnsupportedError('Active ODT page layout grid.');
+    }
+    final gridColor = take(_style, 'layout-grid-color');
+    if (gridColor != null) {
+      if (grid != 'none') {
+        throw UnsupportedError('ODT grid metadata without a disabled grid.');
+      }
+      _color(gridColor);
+    }
+    final gridLines = take(_style, 'layout-grid-lines');
+    if (gridLines != null) {
+      if (grid != 'none') {
+        throw UnsupportedError('ODT grid metadata without a disabled grid.');
+      }
+      final count = int.tryParse(gridLines);
+      if (count == null || count < 1 || count > 1000000) {
+        throw const FormatException('Invalid ODT layout-grid line count.');
+      }
+    }
+    for (final name in [
+      'layout-grid-base-height',
+      'layout-grid-base-width',
+      'layout-grid-ruby-height',
+    ]) {
+      final value = take(_style, name);
+      if (value != null) {
+        if (grid != 'none') {
+          throw UnsupportedError('ODT grid metadata without a disabled grid.');
+        }
+        lengthPoints(value);
+      }
+    }
+    for (final name in [
+      'layout-grid-ruby-below',
+      'layout-grid-print',
+      'layout-grid-display',
+      'layout-grid-snap-to',
+      'layout-grid-standard-mode',
+    ]) {
+      final value = take(_style, name);
+      if (value != null) {
+        if (grid != 'none') {
+          throw UnsupportedError('ODT grid metadata without a disabled grid.');
+        }
+        _boolean(value);
+      }
+    }
     _requireEmpty(values, 'page layout');
     if (properties.childrenNamed('columns', namespaceUri: _style).length > 1) {
       throw const FormatException('Ambiguous ODT page columns.');
     }
+    var hasSeparator = false;
     for (final child in properties.childElements) {
+      if (child.namespaceUri == _style && child.localName == 'footnote-sep') {
+        if (hasSeparator) {
+          throw const FormatException('Duplicate ODT footnote separator.');
+        }
+        hasSeparator = true;
+        _validateDormantFootnoteSeparator(child, hasFootnotes: hasFootnotes);
+        continue;
+      }
       if (child.namespaceUri != _style || child.localName != 'columns') {
         throw UnsupportedError('Unsupported ODT page-layout content.');
       }
@@ -1031,6 +1362,52 @@ final class OdtReaderStyles {
       if (gap != null) result.columnSpace = lengthPoints(gap);
     }
     return result;
+  }
+
+  static void _validateDormantFootnoteSeparator(
+    XmlElement separator, {
+    required bool hasFootnotes,
+  }) {
+    if (hasFootnotes) {
+      throw UnsupportedError('Active ODT footnote separator is not supported.');
+    }
+    _checkAttributes(separator, {
+      _style: {
+        'width',
+        'distance-before-sep',
+        'distance-after-sep',
+        'line-style',
+        'adjustment',
+        'rel-width',
+        'color',
+      },
+    });
+    if (separator.childElements.isNotEmpty ||
+        separator.text.trim().isNotEmpty) {
+      throw UnsupportedError('ODT footnote separator content.');
+    }
+    for (final name in ['width', 'distance-before-sep', 'distance-after-sep']) {
+      final value = _attr(separator, _style, name);
+      if (value != null) lengthPoints(value);
+    }
+    final line = _attr(separator, _style, 'line-style');
+    if (line != null && !{'none', 'solid', 'dotted', 'dash'}.contains(line)) {
+      throw UnsupportedError('Unsupported ODT footnote separator line.');
+    }
+    final alignment = _attr(separator, _style, 'adjustment');
+    if (alignment != null && !{'left', 'center', 'right'}.contains(alignment)) {
+      throw UnsupportedError('Unsupported ODT footnote separator alignment.');
+    }
+    final width = _attr(separator, _style, 'rel-width');
+    if (width != null) {
+      final match = RegExp(r'^(\d+(?:\.\d+)?)%$').firstMatch(width);
+      final percent = match == null ? null : double.tryParse(match[1]!);
+      if (percent == null || !percent.isFinite || percent > 100) {
+        throw const FormatException('Invalid ODT footnote separator width.');
+      }
+    }
+    final color = _attr(separator, _style, 'color');
+    if (color != null) _color(color);
   }
 
   static List<WmlTabStop> _tabs(XmlElement element) {
@@ -1228,4 +1605,28 @@ final class OdtReaderStyles {
     }
     return '${base.toLowerCase()}-${region.toUpperCase()}';
   }
+}
+
+final _asianTypographyText = RegExp(
+  r'[\p{Script=Han}\p{Script=Hiragana}\p{Script=Katakana}'
+  r'\p{Script=Hangul}\p{Script=Bopomofo}'
+  r'\p{Script=Yi}\p{Script=Tangut}\p{Script=Khitan_Small_Script}'
+  r'\u2e80-\u33ff\ufe10-\ufe1f\ufe30-\ufe4f\uff00-\uffef]',
+  unicode: true,
+);
+
+bool _isAsianBreakLanguage(String? language) =>
+    language != null &&
+    {'zh', 'ja', 'ko'}.contains(language.split('-').first.toLowerCase());
+
+final class _OdtParagraphContext {
+  const _OdtParagraphContext({
+    required this.asianTypography,
+    required this.requiresKnownBreakLocale,
+    required this.defaultTabDistance,
+  });
+
+  final bool asianTypography;
+  final bool requiresKnownBreakLocale;
+  final double? defaultTabDistance;
 }

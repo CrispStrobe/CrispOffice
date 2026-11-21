@@ -1,0 +1,60 @@
+{
+  "recorded_at_utc": "2026-11-21T14:46:54.082885+00:00",
+  "incoming_tip": "0fe00b18fef6b79a435817c99714f987329d5f3c",
+  "head_before": "64612755213ee1290310f33d5191c2350f95fd38",
+  "head_after": "64612755213ee1290310f33d5191c2350f95fd38",
+  "source_manifest": "incoming-word-source-before.json",
+  "source_paths_checked": 1252,
+  "changed_source_paths": [],
+  "reports": [
+    {
+      "log": "incoming-word-engine.jsonl",
+      "passed": 179,
+      "failed": 0,
+      "skipped": 0,
+      "done": [
+        {
+          "success": true,
+          "type": "done",
+          "time": 32969
+        }
+      ],
+      "by_suite": {
+        "test/office_vba_word_all_caps_test.dart": 32,
+        "test/office_macro_word_all_caps_test.dart": 37,
+        "test/word_all_caps_test.dart": 13,
+        "test/zotero_all_caps_test.dart": 5,
+        "test/office_vba_word_typography_test.dart": 48,
+        "test/word_small_caps_test.dart": 12,
+        "test/office_vba_word_all_caps_integration_test.dart": 11,
+        "test/zotero_formatted_text_test.dart": 21
+      },
+      "stderr_bytes": 0,
+      "process_exit": 0
+    },
+    {
+      "log": "incoming-word-editor.jsonl",
+      "passed": 12,
+      "failed": 0,
+      "skipped": 0,
+      "done": [
+        {
+          "success": true,
+          "type": "done",
+          "time": 41099
+        }
+      ],
+      "by_suite": {
+        "/workspace/scratch/9b6ad165714c/quds_office_suite/packages/quds_office_editor/test/word_all_caps_editor_test.dart": 7,
+        "/workspace/scratch/9b6ad165714c/quds_office_suite/packages/quds_office_editor/test/word_small_caps_test.dart": 5
+      },
+      "stderr_bytes": 0,
+      "process_exit": 0
+    }
+  ],
+  "commands": {
+    "engine": "dart --packages=/workspace/scratch/9b6ad165714c/quds_office_suite/.dart_tool/package_config.json /workspace/scratch/9b6ad165714c/mail-runtime/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart --reporter json --concurrency 2 test/office_vba_word_all_caps_test.dart test/office_macro_word_all_caps_test.dart test/office_vba_word_all_caps_integration_test.dart test/word_all_caps_test.dart test/zotero_all_caps_test.dart test/office_vba_word_typography_test.dart test/word_small_caps_test.dart test/zotero_formatted_text_test.dart",
+    "editor": "flutter test --no-pub --reporter json --concurrency 2 test/word_all_caps_editor_test.dart test/word_small_caps_test.dart"
+  },
+  "limits": "Synthetic local fixtures; no Microsoft Word differential run or installed platform smoke test. No GitHub Actions queries."
+}
