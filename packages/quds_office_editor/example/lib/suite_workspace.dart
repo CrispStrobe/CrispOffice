@@ -12092,21 +12092,13 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
                       flex: 5,
                       // Caret paragraph and page change while typing without
                       // a workspace rebuild (see _rebuildWord).
-                      child: ListenableBuilder(
+                      child: _ThrottledStatusText(
                         listenable: _word,
-                        builder: (BuildContext context, Widget? _) => Text(
-                          _opening
-                              ? _openStatusLabel
-                              : (_isSaving
-                                    ? _saveStatusLabel
-                                    : '$_modeLabel · ${_statusDetail()}'),
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 11,
-                          ),
-                          overflow: TextOverflow.ellipsis,
-                          maxLines: 1,
-                        ),
+                        label: () => _opening
+                            ? _openStatusLabel
+                            : (_isSaving
+                                  ? _saveStatusLabel
+                                  : '$_modeLabel · ${_statusDetail()}'),
                       ),
                     ),
                     if (_app == SuiteApp.word)
@@ -12808,4 +12800,60 @@ class _DraftProofingTextController extends TextEditingController {
             OfficeProofingCategory.style => const Color(0xFFAD6800),
           },
         );
+}
+
+/// The footer's caret/page/word detail is allowed to trail typing by a frame.
+/// Rebuilding it on every controller notification made the status row one of
+/// the highest-frequency widget rebuilds in the Studio.
+class _ThrottledStatusText extends StatefulWidget {
+  const _ThrottledStatusText({required this.listenable, required this.label});
+
+  final Listenable listenable;
+  final String Function() label;
+
+  @override
+  State<_ThrottledStatusText> createState() => _ThrottledStatusTextState();
+}
+
+class _ThrottledStatusTextState extends State<_ThrottledStatusText> {
+  Timer? _timer;
+
+  @override
+  void initState() {
+    super.initState();
+    widget.listenable.addListener(_schedule);
+  }
+
+  @override
+  void didUpdateWidget(_ThrottledStatusText oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (!identical(oldWidget.listenable, widget.listenable)) {
+      oldWidget.listenable.removeListener(_schedule);
+      widget.listenable.addListener(_schedule);
+    }
+  }
+
+  void _schedule() {
+    if (_timer != null || !mounted) return;
+    _timer = Timer(const Duration(milliseconds: 90), () {
+      _timer = null;
+      if (mounted) setState(() {});
+    });
+  }
+
+  @override
+  void dispose() {
+    widget.listenable.removeListener(_schedule);
+    _timer?.cancel();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) => Text(
+    widget.label(),
+    key: const ValueKey<String>('studio-word-status-text'),
+    style: const TextStyle(color: Colors.white, fontSize: 11),
+    overflow: TextOverflow.ellipsis,
+    maxLines: 1,
+  );
 }
