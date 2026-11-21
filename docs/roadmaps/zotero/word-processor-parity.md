@@ -426,6 +426,15 @@ convention. Editable table exports use physical alignment with fixed widths,
 preventing LibreOffice from expanding them to the page margins. Unknown used
 formatting and unrepresented protection remain explicit refusals.
 
+Intervening DOCX saves retain complete uniform table margins, including zero,
+without flattening unsupported imported margin XML. Native editable notes use
+distinct 65-percent symbol/anchor styles per note class and the final regular
+endnote master; reopening validates their effective formatting and compatible
+page geometry. Optional soft-page hints are recomputed. Actual acceptance now
+follows three fixtures and eleven fields through two external LibreOffice saves
+with a native/DOCX/native cycle between them. Fixed table-screen padding, active
+footnote separators and installed release-host/plugin acceptance remain open.
+
 The work record separates local native update/save regressions, actual converter
 cycles, and installed-plugin acceptance. In particular, active LibreOffice
 footnote separator geometry still needs a native model/layout/persistence
