@@ -1,6 +1,6 @@
 # Word VBA numeric authoring continuation
 
-## Implementation checkpoint
+## Delivered capability
 
 This continuation adds shared source-known `Abs`, `Int`, `Fix` and `Sgn`
 calculations to the Word, Excel and PowerPoint VBA adapters. No native operation,
@@ -16,12 +16,54 @@ It emits nine ordinary native operations through typed helpers and computed
 selectors, preserves unrelated rich text and inert VBA project bytes, and keeps
 the existing validation, recording, rollback and permission boundaries.
 
-The first remote implementation checkpoint is
-`f3e93e7ba7a847f6e90ed7afbf8b618ddee19867`. Its focused compiler and canonical
-corpus suites pass 192 cases. The completed DOCX/DOCM/CLI/MCP integration suite
-passes another 12 cases. The actual BAS produces identical VM/JavaScript
-receipts. These development results will be superseded by the final source-bound
-regression and portability qualification below; they are not added twice.
+The implementation was saved incrementally at
+`f3e93e7ba7a847f6e90ed7afbf8b618ddee19867`, then the complete report/integration
+work at `97538d025b260bd67c559962be9e9f159a6de06e`. The latter is the source
+checkpoint for the qualification below. Early focused/compiler/corpus and
+integration passes are included in the broader coverage and are not added twice.
+
+## Executed acceptance
+
+| Cohort | Accepted result |
+| --- | --- |
+| Complete selected macro/command regression scope | **6,019 cases across 119 suites** |
+| Strict analysis of the engine | Passed, no diagnostics |
+| Formatting of all five changed Dart files and whitespace | Passed |
+| Actual nine-operation BAS on VM and JavaScript | Identical successful receipts |
+| Numeric corpus on VM and JavaScript | 58 cases, identical receipts |
+| Existing Variant composition/conversion corpora on both runtimes | 38 + 120 cases, identical receipts |
+| Independent numeric review | 81 supplemental checks on each runtime, identical receipts |
+
+The regression scope includes every `office_vba*_test.dart` and
+`office_macro*_test.dart` suite, plus eight existing operation, preservation,
+style, structural and position suites. Each accepted test passes; none is
+skipped. **This is a combined clean-suite qualification, not an uninterrupted
+single run.** The initial run encountered 15 `ENOSPC` directory-creation errors
+in 13 suites. Its 106 fully clean suites contribute 5,832 cases. All 13 affected
+suites were rerun serially and passed 187 cases with exit zero, no error events
+and empty stderr. The 27 earlier passes inside those affected suites are
+discarded from the combined count. Every selected suite has exactly one
+accepted complete execution. Parameterized tests with identical display names
+retain separate runner identifiers and occurrence numbers.
+
+All **3,134 captured source/fixture inputs** match across the original run,
+retry, analysis and portable cohorts. The source manifest is checked again
+after the interrupted run and after the clean retry. SDK/package-config
+identities, exact suite paths, processes and accepted case identities are
+retained in [qualification.json](qualification.json), `results/`, and the
+indexed `execution.tar.gz`. The separate independent archive manifest also
+verifies all 24 retained review/runtime files, including the exact resolved
+harness lock.
+
+`execution.tar.gz` preserves the interrupted run, serial retry, all successful
+portable receipts and earlier rejected development attempts. The initial
+failures in newly authored tests were expectation mistakes (existing Null
+concatenation, native PowerPoint field names, default indentation, and lazy OPC
+parts); their corrections did not change production code. The one initial
+corpus expectation was corrected to the established `vba_arithmetic_error`
+diagnostic for division by zero. No rejected run is represented as a passing
+gate. Run `python3 docs/validation/word-vba-numeric-20261121/verify_evidence.py`
+to verify every archived member and independent evidence file.
 
 ## Preserved intake
 
@@ -57,7 +99,8 @@ python3 docs/validation/word-vba-numeric-20261121/run_local.py \
   --dart /path/to/dart-sdk/bin/dart --phase portable --output /path/to/results/portable
 ```
 
-The runner retains process exits, compressed raw stdout/stderr, case identities,
+The runner defaults to serial execution and supports `--files` for an explicit
+retained retry. It retains process exits, compressed raw stdout/stderr, case identities,
 source snapshots before/after, SDK/package-config identities and complete native
 receipts. The portability phase uses the exact BAS and fixture bytes, checks
 VM/JavaScript equality, and includes the existing Variant composition/conversion

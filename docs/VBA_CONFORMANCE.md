@@ -178,8 +178,9 @@ missing paragraph. See the [Word dialect contract](VBA_WORD_MACROS.md).
 The original three Excel fixture files and canonical receipt bytes remain
 unchanged by the Word extension. The portable harness checks their previously
 accepted receipt hashes as well as VM/JavaScript equality. The fourth suite
-adds 44 Word cases. The PowerPoint suite adds 20 cases and the text-intrinsic
-continuation adds 95, for **386 canonical cases per runtime**. The receipt shape
+adds 44 Word cases. The PowerPoint suite adds 20 cases, the text-intrinsic
+continuation adds 95, Word positioning adds 12, and numeric intrinsics add 58,
+for **456 canonical cases across eight suites per runtime**. The receipt shape
 is unchanged: its existing `dialect` field identifies the selected adapter.
 
 The PowerPoint suite independently specifies explicit presentation/slide/shape

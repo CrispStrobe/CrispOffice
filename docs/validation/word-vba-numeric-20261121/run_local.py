@@ -22,6 +22,8 @@ def main():
     parser.add_argument('--dart', type=Path, required=True)
     parser.add_argument('--output', type=Path, required=True)
     parser.add_argument('--phase', choices=['regression', 'static', 'portable'], required=True)
+    parser.add_argument('--files', nargs='+', help='Explicit regression suite paths for a retained retry')
+    parser.add_argument('--concurrency', type=int, choices=[1, 2], default=1)
     args = parser.parse_args()
     repo, dart, output = args.repo.resolve(), args.dart.resolve(), args.output.resolve()
     engine = repo / 'packages/quds_office_engine'
@@ -73,8 +75,10 @@ def main():
     if args.phase == 'regression':
         files = {p.relative_to(engine).as_posix() for pattern in ['office_vba*_test.dart', 'office_macro*_test.dart'] for p in (engine / 'test').glob(pattern)}
         files.update('test/' + name for name in ['office_operations_test.dart', 'office_steps_test.dart', 'word_step_atomicity_test.dart', 'word_steps_vocabulary_test.dart', 'word_structure_steps_test.dart', 'word_position_test.dart', 'sheet_macro_preservation_test.dart', 'style_cascade_test.dart'])
+        if args.files:
+            files = set(args.files)
         summary['suiteFiles'] = sorted(files)
-        run('macro-regressions', common + [str(test_root / 'bin/test.dart'), '--reporter=json', '--concurrency=2', *sorted(files)], tests=True)
+        run('macro-regressions', common + [str(test_root / 'bin/test.dart'), '--reporter=json', '--concurrency=' + str(args.concurrency), *sorted(files)], tests=True)
     elif args.phase == 'static':
         run('analysis', [str(dart), 'analyze', '--fatal-infos'])
         run('format', [str(dart), 'format', '--output=none', '--set-exit-if-changed', 'lib/src/automation/office_vba_language.dart', 'test/office_vba_numeric_intrinsics_test.dart', 'test/office_vba_numeric_intrinsics_integration_test.dart', 'test/office_vba_numeric_conformance_test.dart', 'tool/macros/web_vba_word_numeric_smoke.dart'])
