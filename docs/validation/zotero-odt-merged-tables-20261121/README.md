@@ -47,3 +47,30 @@ The planned checks use synthetic ODT and controlled Zotero callbacks. They do
 not establish an installed Zotero/Word/LibreOffice plugin session or legacy
 Apache OpenOffice compatibility. Native editable ODT output remains separate
 work; imported active citations save as DOCX.
+
+## Development checkpoint: execution environment blocked
+
+The merged-table reader and its focused engine/editor regression sources have
+been preserved in a remote development checkpoint. They are not yet qualified.
+The reader validates explicit ODF coverage before reconstructing rich content,
+retains origin ownership, and generates bounded native vertical continuations.
+
+SDK setup downloaded the official Flutter 3.47.8 archive and verified SHA-256
+`baf7dcc5a3dbba60fe863bf493a6cf203195621f7786eaa5a1bba02cd0d87dd2`.
+The shared executor ran out of disk during extraction, before a usable runtime
+or dependency graph was available. New shell and file-edit tool processes then
+failed during sandbox startup with `No space left on device`. No Dart formatter,
+analyzer, engine test or Flutter test result is claimed for this increment.
+
+The implementation checkpoint was reconstructed from exact remote baseline
+files and logged edits because a fresh filesystem read was unavailable. The
+covered-cell XML-whitespace check is a further reviewed source edit; the editor
+test source was preserved directly from its prepared content. Their published
+blob identities, rather than an unavailable local-state assertion, identify
+the checkpoint. Runtime validation and final integration remain pending.
+
+ODF 1.3 permits stored content in covered cells. This reader deliberately
+refuses such content instead of discarding it; that refusal describes Quds'
+supported subset, not a claim that the source is invalid ODF. See OASIS Part 3
+sections 9.1.5, 19.680 and 19.682:
+https://docs.oasis-open.org/office/OpenDocument/v1.3/os/part3-schema/OpenDocument-v1.3-os-part3-schema.html
