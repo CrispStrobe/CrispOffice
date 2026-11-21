@@ -782,8 +782,24 @@ class WordEditorController extends OfficeController {
       },
       vocabulary: _initialProofingVocabulary,
       service: _initialProofingService,
+      visibleParagraphs: _proofingVisibleParagraphs,
     )..addListener(_onProofingChanged);
     return _proofing!;
+  }
+
+  /// Body paragraphs on the visible page and its neighbours, from the
+  /// current layout; background proofing checks them first.
+  Iterable<WmlParagraph> _proofingVisibleParagraphs() sync* {
+    final pages = documentLaidOut.pages;
+    if (pages.isEmpty) return;
+    final visible = visiblePageIndex.clamp(0, pages.length - 1);
+    final last = visible + 1 < pages.length ? visible + 1 : pages.length - 1;
+    for (var index = visible > 0 ? visible - 1 : 0; index <= last; index++) {
+      for (final line in pages[index].lines) {
+        final paragraph = line.sourceParagraph;
+        if (paragraph != null) yield paragraph;
+      }
+    }
   }
 
   // Inspect existing text only: checking must not materialize empty comment,

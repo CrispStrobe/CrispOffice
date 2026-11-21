@@ -129,6 +129,23 @@ final class _Choice extends StudioSettingSpec {
       value is String && allowed.contains(value) ? value : null;
 }
 
+/// A whole number in [min]..[max] (for example milliseconds).
+final class _Integer extends StudioSettingSpec {
+  const _Integer(this.min, this.max, this.fallback);
+  final int min;
+  final int max;
+  @override
+  final int fallback;
+  @override
+  Object? accept(Object? value) {
+    if (value is! num || !value.isFinite || value != value.roundToDouble()) {
+      return null;
+    }
+    final whole = value.toInt();
+    return whole < min || whole > max ? null : whole;
+  }
+}
+
 /// Personal dictionary words by proofing language (`de-DE`: [...]).
 final class _Words extends StudioSettingSpec {
   const _Words();
@@ -189,6 +206,12 @@ abstract final class StudioSettingKeys {
   static const pdfFitPolicy = 'pdf.fitPolicy';
 
   static const checkAsYouType = 'proofing.checkAsYouType';
+  static const checkingMode = 'proofing.checkingMode';
+  static const checkSpellingWhileTyping = 'proofing.checkSpellingWhileTyping';
+  static const checkGrammarWhileTyping = 'proofing.checkGrammarWhileTyping';
+  static const pauseMilliseconds = 'proofing.pauseMilliseconds';
+  static const backgroundCheck = 'proofing.backgroundCheck';
+  static const hideTypingErrors = 'proofing.hideTypingErrors';
   static const detectLanguage = 'proofing.detectLanguage';
   static const arabicContext = 'proofing.arabicContextReading';
   static const personalWords = 'proofing.personalWords';
@@ -243,6 +266,26 @@ final class StudioSettings {
           for (final value in PdfFitPolicy.values) value.name,
         ], PdfFitPolicy.width.name),
         StudioSettingKeys.checkAsYouType: const _Flag(true),
+        StudioSettingKeys.checkingMode: _Choice([
+          for (final value in WordProofingMode.values) value.name,
+        ], const WordProofingSchedule().mode.name),
+        StudioSettingKeys.checkSpellingWhileTyping: _Flag(
+          const WordProofingSchedule().checkSpelling,
+        ),
+        StudioSettingKeys.checkGrammarWhileTyping: _Flag(
+          const WordProofingSchedule().checkGrammar,
+        ),
+        StudioSettingKeys.pauseMilliseconds: _Integer(
+          WordProofingSchedule.minPause.inMilliseconds,
+          WordProofingSchedule.maxPause.inMilliseconds,
+          const WordProofingSchedule().pause.inMilliseconds,
+        ),
+        StudioSettingKeys.backgroundCheck: _Flag(
+          const WordProofingSchedule().backgroundCheck,
+        ),
+        StudioSettingKeys.hideTypingErrors: _Flag(
+          const WordProofingSchedule().hideTypingErrors,
+        ),
         StudioSettingKeys.detectLanguage: const _Flag(true),
         StudioSettingKeys.arabicContext: const _Flag(true),
         StudioSettingKeys.personalWords: const _Words(),
@@ -254,6 +297,36 @@ final class StudioSettings {
   final Map<String, Object?> unknown;
 
   bool flag(String key) => _values[key]! as bool;
+  int integer(String key) => _values[key]! as int;
+
+  /// The stored as-you-type proofing schedule.
+  WordProofingSchedule get proofingSchedule => WordProofingSchedule(
+    mode: choiceOf(
+      StudioSettingKeys.checkingMode,
+      WordProofingMode.values,
+      WordProofingMode.whileTyping,
+    ),
+    checkSpelling: flag(StudioSettingKeys.checkSpellingWhileTyping),
+    checkGrammar: flag(StudioSettingKeys.checkGrammarWhileTyping),
+    pause: Duration(milliseconds: integer(StudioSettingKeys.pauseMilliseconds)),
+    backgroundCheck: flag(StudioSettingKeys.backgroundCheck),
+    hideTypingErrors: flag(StudioSettingKeys.hideTypingErrors),
+  );
+
+  /// The settings entries of [schedule] (the idle time is not a setting).
+  static Map<String, Object> proofingScheduleJson(
+    WordProofingSchedule schedule,
+  ) => <String, Object>{
+    StudioSettingKeys.checkingMode: schedule.mode.name,
+    StudioSettingKeys.checkSpellingWhileTyping: schedule.checkSpelling,
+    StudioSettingKeys.checkGrammarWhileTyping: schedule.checkGrammar,
+    StudioSettingKeys.pauseMilliseconds: schedule.pause.inMilliseconds.clamp(
+      WordProofingSchedule.minPause.inMilliseconds,
+      WordProofingSchedule.maxPause.inMilliseconds,
+    ),
+    StudioSettingKeys.backgroundCheck: schedule.backgroundCheck,
+    StudioSettingKeys.hideTypingErrors: schedule.hideTypingErrors,
+  };
   String choice(String key) => _values[key]! as String;
 
   /// The enum value named by [key], or [fallback] for a name [values] lacks.
