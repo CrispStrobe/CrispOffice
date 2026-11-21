@@ -1870,7 +1870,11 @@ final class WordProofingSession extends ChangeNotifier {
         _backgroundTimer = null;
     }
     final kinds = _kindsFor(trigger);
-    if (kinds.isEmpty) return _summary;
+    // No configured provider belongs to the requested groups (for example
+    // no spelling-only provider for a word check): nothing to run.
+    if (kinds.isEmpty || (!explicit && _available(kinds).isEmpty)) {
+      return _summary;
+    }
     // Nothing checked yet (a document was loaded or the configuration
     // changed): the first pause checks the whole document, like idle time.
     final loading =
@@ -1990,6 +1994,9 @@ final class WordProofingSession extends ChangeNotifier {
       final wanted = _available(kinds);
       final missing = reusable ? wanted.difference(previous.kinds) : wanted;
       final paragraphReports = <OfficeProofingReport>[];
+      // Every available group already has settled results (an empty
+      // provider selection must never be sent or cached).
+      if (!useManual && missing.isEmpty) continue;
       for (var index = 0; index < snapshot.segments.length; index++) {
         final request = _request(
           snapshot,

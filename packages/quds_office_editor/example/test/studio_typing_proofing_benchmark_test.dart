@@ -44,6 +44,13 @@ final class _CountingProvider extends OfficeProofingProvider {
   @override
   bool supportsLanguage(String language) => inner.supportsLanguage(language);
 
+  /// Forwards the wrapped provider's categories (they decide when it runs).
+  /// Dynamic, and without `@override`, so the benchmark also compiles
+  /// against revisions whose providers have no categories.
+  // ignore: annotate_overrides
+  Set<OfficeProofingCategory> get categories =>
+      (inner as dynamic).categories as Set<OfficeProofingCategory>;
+
   @override
   Future<OfficeProofingResult> check(OfficeProofingRequest request) async {
     stats.providerCalls++;
