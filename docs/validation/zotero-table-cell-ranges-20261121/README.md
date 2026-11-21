@@ -1,6 +1,25 @@
 # Zotero research-content replacement within a table cell
 
-## Current publication reconciliation
+## Final publication
+
+The final qualified source is `4034c7e7d384ed1f947d1702b4c2cf5231b7d3d1`.
+It also incorporates completed Word main
+`9f23cbd2be72c527829b3990f22b356e5237ed96`. That last update changes the
+header/footer guard and its own macro test while preserving our saved-Mail
+regression. The two affected Word fidelity suites passed all **39 repeated
+cases** on this final source; all other recorded inputs remained identical to
+the accepted 151-case combined run. Both Node test closures and the Studio
+closures remain unchanged by that last delta.
+
+[PR #293](https://github.com/CrispStrobe/quds_office_suite/pull/293) publishes the
+remaining reconciliation and evidence after the original implementation PR
+was incorporated through Mail. Its publication receipt records the final
+merge and remote-main readback. See the [final Word reconciliation](final-word/README.md)
+for the latest source map and verification command. All **341 captured external
+heads** are covered, with 317 ancestors, 24 verified historical equivalents and
+zero uncovered heads.
+
+## Combined Word/Mail checkpoint
 
 Remote main subsequently advanced to `4a1eaa69e7a068e354bdd851ec9b0323b89ae300`
 through qualified Mail PR #291, which also incorporates the captured Word VBA
@@ -52,12 +71,15 @@ The remote branch is `codex/zotero-parity-20261121-next`. Incremental checkpoint
 | Qualification evidence and final intake dispositions | `149a8ae46d6dad02d21040c3587389f3c954a577` |
 | Incorporation of screenshot main | `b45703affe7249b0cfe6ae16c4f9017f8cd0f378` |
 | Incorporation of qualified Mail/Word main and the captured Close fix | `5289b90a83ce9042a4f4cfb73ba8115fe501513a` |
-| Completed combined-source qualification and evidence | The subsequent documentation/evidence checkpoint containing this final record |
+| Completed combined-source qualification and evidence | `53957cbd0e79b1b3c7ab49ae5f3f3d4e7e34e838` |
+| Incorporation of completed Word main; final source | `4034c7e7d384ed1f947d1702b4c2cf5231b7d3d1` |
+| Final 39-case repeat and publication evidence | The subsequent documentation/evidence checkpoint published by PR #293 |
 
 [PR #289](https://github.com/CrispStrobe/quds_office_suite/pull/289) records the
 implementation and was automatically closed when PR #291 incorporated its
 head. Later branch checkpoints and the final main readback are published in a
-separate reconciliation PR. The starting main was
+separate [reconciliation PR #293](https://github.com/CrispStrobe/quds_office_suite/pull/293).
+The starting main was
 `e2abbcda6d19f932bfbacc85e0dafd41a3c478f8`. The initial observation was
 `fcb3ff13537eb31c2cabead033a50723124682c5`; the newer main includes PR #285's
 final two performance documentation files. Its runtime implementation was

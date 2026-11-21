@@ -1,0 +1,77 @@
+{
+  "actual_cases": 39,
+  "added_or_removed_inputs": [],
+  "affected_selected_suites": [
+    "packages/quds_office_engine/test/word_bookmark_fidelity_test.dart",
+    "packages/quds_office_engine/test/word_table_grid_addressing_test.dart"
+  ],
+  "all_119_selected_test_sources_unchanged": true,
+  "all_before_after_source_maps_equal": true,
+  "all_recorded_sources_match_frozen_commit_and_current_bytes_modes": true,
+  "both_node_repository_closures_unchanged": true,
+  "both_previous_combination_and_incoming_main_are_ancestors": true,
+  "captured_inventory_covered_external_heads": 341,
+  "captured_inventory_dispositions": {
+    "ancestor": 317,
+    "verified_historical_equivalent": 24
+  },
+  "case_counts": {
+    "packages/quds_office_engine/test/word_bookmark_fidelity_test.dart": 17,
+    "packages/quds_office_engine/test/word_table_grid_addressing_test.dart": 22
+  },
+  "changed_inputs_since_5289b90": [
+    "packages/quds_office_engine/lib/src/automation/operations/word_header_footer_guard.dart",
+    "packages/quds_office_engine/test/office_macro_word_headers_footers_test.dart"
+  ],
+  "changed_production_dynamic_loader_matches": [],
+  "dependency_helper_sha256": "b2bc1b5b1f7297904b40f99e31e9d065a74d0aedb6ea36b5c1936eb1a4ff3cae",
+  "directive_completeness_issues": {
+    "4034c7e7d384ed1f947d1702b4c2cf5231b7d3d1": [],
+    "5289b90a83ce9042a4f4cfb73ba8115fe501513a": []
+  },
+  "exit_code": 0,
+  "impact_receipt_sha256": "d52052ac6649bea59afeeeb921816b7c03cc01efd8b09b52d09c6e69fc3e0a30",
+  "impact_replay_matches_recorded_json": true,
+  "impact_replay_script_sha256": "e8b210611d83ac1a8b83a363f04677b07e52341d4919e2e996dd21fd1afd85e8",
+  "independent_event_parser_sha256": "e4f999fe672c0f11eef0d18d4b6488434ba02737e34f30dc2d1f86459b3610fb",
+  "intermediate_case_identity_overlap": 39,
+  "new_distinct_cases": 0,
+  "no_new_test_execution_by_reviewer": true,
+  "no_product_or_ref_mutations_by_reviewer": true,
+  "original_archive_unchanged": true,
+  "original_case_identity_overlap": 39,
+  "prior_reviewed_loader_sources_unchanged": true,
+  "recorded_runtime_files": 33,
+  "recorded_runtime_unchanged_from_previous_run": true,
+  "reviewed_commit": "4034c7e7d384ed1f947d1702b4c2cf5231b7d3d1",
+  "reviewed_tree": "1e21f3c97cc7e37ff55f8302f668e05276fe9d6d",
+  "runner_sha256": "47c2396f497581562fdde1885ce0536a20d5b915d97069d6291309c6a81dafa3",
+  "saved_mail_regression_and_native_close_preserved_exactly": true,
+  "scope": "Bounded acceptance of the two-source-path delta and 39 repeated cases on 4034c7e only; no future remote head, full-suite repeat, new Node run, installed-plugin acceptance or live Mail behavior is claimed.",
+  "source_bound_raw_runtime_audit": {
+    "excluded": {
+      "loading": 2
+    },
+    "failures": 0,
+    "passed": 39,
+    "raw_event_count": 89,
+    "runtime_errors": 0,
+    "skips": 0,
+    "stderr_bytes": 0,
+    "stdout_sha256": "276b8f0cd1ec73f5008ddb7c95d7f5b081ea7d2b165404aa41ddbc814f565d74",
+    "suites": 2,
+    "terminal": {
+      "success": true,
+      "time": 2079,
+      "type": "done"
+    }
+  },
+  "source_inputs": 2994,
+  "source_map_sha256": "9ce3a43c7b6708a6f2be62843fc4eb037208a01ec8e2e5d24075eaf1bfb19c42",
+  "status": "accepted",
+  "suites": 2,
+  "supporting_framework": "../combined-main/independent-review/audit_qualification.py provides the unchanged independent raw-event parser; final-word/replay.py uses the hashed previously reviewed dependency helper. Prior independent AST and runtime evidence remain in combined-main.",
+  "two_changed_files_exactly_match_incoming_main": true,
+  "unchanged_inputs_since_5289b90": 2992,
+  "unchanged_selected_dependency_closures": 117
+}
