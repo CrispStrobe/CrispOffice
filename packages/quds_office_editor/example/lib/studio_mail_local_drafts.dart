@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:quds_mail_core/quds_mail_core.dart';
 
 import 'studio_mail_compose.dart';
+import 'studio_mail_compose_tools.dart';
 import 'studio_mail_draft_store.dart';
 import 'studio_mail_draft_store_native.dart';
 import 'studio_mail_drafts_dialog.dart';
@@ -194,6 +195,11 @@ class _StudioMailLocalDraftsDialogState
             initialDraft: selected.draft,
             previousSubmissionUncertain: selected.submissionUncertain,
             canSend: false,
+            composeToolsStore: switch (store) {
+              StudioMailComposeToolsStore value => value,
+              _ => null,
+            },
+            isComposeToolsCurrent: currentDraft,
             onClearMailCache: mailbox == null
                 ? null
                 : () async {

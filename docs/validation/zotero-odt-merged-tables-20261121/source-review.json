@@ -1,0 +1,48 @@
+{
+  "status": "source-review-only; runtime-qualification-pending",
+  "baseline": "115f1c20131bf0157d047dfe2e9d704ddffb22a2",
+  "files": [
+    {
+      "path": "packages/quds_office_engine/lib/src/word/serial/odt_document_reader.dart",
+      "blob": "1d66c6da7075e73abfdff26e036ca8f8542e4c52"
+    },
+    {
+      "path": "packages/quds_office_engine/test/odt_document_reader_test.dart",
+      "blob": "d94b7cded1f5753169b558a11c8b6265d2b1e8a3"
+    },
+    {
+      "path": "packages/quds_office_engine/test/odt_merged_table_zotero_test.dart",
+      "blob": "2509cb9eeaa9600ee598ef6892dacedb07fb0501"
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_odt_merged_table_load_test.dart",
+      "blob": "74d95da4be0dc6e96e9451251744b2ba88cd1b23"
+    }
+  ],
+  "source_checks": [
+    "Native model constructors and types checked against exact baseline",
+    "Coverage origin/continuation reasoning reviewed independently",
+    "Shared table/native-cell/generated-paragraph budgets reviewed",
+    "Span lexical control corrected to XML whitespace",
+    "Nested-note test oracle corrected for required trailing paragraph",
+    "Final explicit decoded collection casts typed"
+  ],
+  "executed_feature_tests": 0,
+  "executed_analyzer": false,
+  "executed_formatter": false,
+  "runtime": {
+    "flutter": "3.47.8",
+    "dart": "3.13.7",
+    "archive_sha256": "baf7dcc5a3dbba60fe863bf493a6cf203195621f7786eaa5a1bba02cd0d87dd2",
+    "archive_verified": true,
+    "usable_installation": false,
+    "failure": "Shared executor ENOSPC before SDK extraction completed; new sandbox processes cannot start."
+  },
+  "limits": [
+    "No runtime result established",
+    "No rendered layout qualification",
+    "No installed Zotero, Word or LibreOffice acceptance",
+    "Covered style acceptance deliberately narrow"
+  ],
+  "reconstruction": "Reader and focused suite reconstructed from exact remote baseline and logged edits; independent/editor test sources prepared remotely. Remote blobs authoritative; no fresh local-byte equality claim."
+}

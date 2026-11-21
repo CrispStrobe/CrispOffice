@@ -101,3 +101,18 @@ The portable harness uses only this public package entry. Focused tests cover
 immutable byte aliases, profile/account/mailbox isolation, stale callbacks,
 all-or-abort recipient outcomes, interrupted and uncertain outbox attempts, and
 cursor/data transaction failure. JavaScript compilation is a separate real gate.
+
+## Account compose tools
+
+`MailComposeSettings` is an immutable account-owned snapshot containing a plain-text
+signature, separate defaults for new messages and replies, and up to 32 named
+`MailQuickText` snippets. Signatures and snippets remain literal text; hosts choose
+when to insert them and persist the resulting draft independently. Changing
+settings never rewrites an existing draft.
+
+Each text is limited to 16,384 UTF-16 code units, snippet names to 80, and the
+whole snapshot (including ownership, IDs, names and normalized name keys) to
+131,072. IDs are bounded to 1,024 units. Names must already be trimmed and are
+unique using locale-independent `toLowerCase()` keys; no accent folding or Unicode
+normalization is implied. Validation rejects malformed UTF-16 and control
+characters, allowing TAB/CR/LF only in authored bodies.

@@ -1,15 +1,16 @@
 # Native ODT Zotero input: implementation contract
 
-Status: **Increment 3 implemented: retained LibreOffice style qualification on
-top of bounded rich ODT import, active Zotero field conversion and asynchronous
-editor/Studio opening. Installed-host acceptance and editable native ODT output
-remain separate work.**
+Status: **Increment 4 implemented: bounded horizontal/vertical merged-table
+input with source review and regression sources. Runtime qualification of this
+increment is pending after executor disk exhaustion. Earlier rich-import and
+LibreOffice style results retain their original sources. Installed-host
+acceptance and editable native ODT output remain separate work.**
 
 `OdtDocumentReader.readBytes` builds an editable `WmlDocument` from the supported
 ODT subset below. The asynchronous Word loader and Studio Open use this reader;
 the resulting active document saves as DOCX. The
 [style continuation record](../../validation/zotero-libreoffice-styles-20261121/README.md)
-records the current source, remote checkpoints, local execution and exact
+records its qualified source, remote checkpoints, local execution and exact
 untouched LibreOfficeDev fixture. The earlier
 [rich-import validation record](../../validation/zotero-rich-odt-20261121/README.md)
 retains its original source and then-observed style refusal.
@@ -248,7 +249,7 @@ after source-range reconstruction, preserving editor and DOCX offsets.
 | Formatting and page layout | Supported fonts, exact half-point sizes, bold/italic, underline/strike, small capitals, semantic superscript/subscript, colors, language, explicit paragraph direction/alignment, indents, spacing and supported tab stops. One compatible page layout may supply page size, margins and equal-width columns. Used unsupported properties reject the import. |
 | Zotero fields | Canonical citation ReferenceMarks and bibliography ReferenceMarks/TextSections become active native fields. Multi-item options, unknown citation/bibliography metadata, rich cache, empty bibliography paragraphs and distinct adjacent/identical-looking fields survive DOCX reopening. |
 | Authored notes | Footnotes/endnotes with supported blocks, ordinary document-wide decimal numbering and live body anchors; citations retain their actual note story. Custom numbering/styles, nested notes and citations enclosing note anchors are refused. |
-| Tables | Rectangular, unmerged tables nested up to eight levels, bounded rows/cells/columns, supported widths/alignment, row minimum height/keep behavior and cell shading. Citations retain physical cell ownership. |
+| Tables | Rectangular tables with bounded horizontal/vertical merges and explicit covered cells, nested up to eight levels; supported widths/alignment, row minimum height/keep behavior and inherited shading. Citations retain their originating cell. Hidden covered content, conflicting effective shading, repeated rows/cells and ambiguous coverage refuse. Increment 4 runtime checks are pending. |
 | Lists | Simple decimal or supported depth-specific bullets, up to nine levels, explicit starts/restarts and multiple paragraphs per item. Independent sequences, nested continuations and source paragraph margins are retained. Continuation references/consecutive numbering, bullet affixes, conflicting first-line geometry and tables inside list items are refused. |
 | Preferences and metadata | Explicit `WordZoteroDocumentData.fromOdt` converts valid `ReferenceMark` storage to native `Field` after reconstruction; ordinary Word/HTTP callbacks remain strict. Style/locale/note mode and unknown XML/JSON preferences survive. Standard document properties are mapped; the exact original `meta.xml`, including unrelated/future properties, is archived in DOCX custom XML. |
 
@@ -326,7 +327,44 @@ native editable ODT output and complete release-host behavior remain open.
 See the [current work record](../../validation/zotero-libreoffice-styles-20261121/README.md)
 for exact executed checks and the pinned-source typography rationale.
 
-## Increment 4: installed-host acceptance
+## Increment 4: bounded native merged-table input
+
+The importer accepts column spans from 1 to 32 and row spans from 1 to 256,
+within the actual rectangular table. Each logical covered position must have
+its own `table:covered-table-cell`. It validates the source occupancy grid
+before parsing rich origin content. Native `gridSpan` and vertical
+restart/continuation cells retain the existing Word geometry and logical
+addressing model; continuations are empty and never duplicate source citations.
+
+Column widths are summed for each native merged cell. Existing table/row style
+handling remains in force. Supported cell backgrounds resolve through
+inheritance, including default styles. A covered cell without an effective fill
+declaration is inert; an effective fill must match its originating cell.
+Unsupported properties and conflicting backgrounds, including a distinct
+transparent override, refuse the import.
+
+ODF permits stored content inside covered cells. This bounded conversion
+refuses all child elements and non-XML whitespace there rather than discarding
+hidden content. Missing, orphaned or overlapping covered positions, out-of-grid
+spans, repeated row/cell owners and invalid span syntax also refuse atomically.
+Span syntax accepts decimal positive integers with optional plus signs and XML
+whitespace; hexadecimal lookalikes and nonbreaking-space padding refuse.
+
+The existing eight-level/64-table bound remains. All origins, generated
+vertical continuations and nested cells share the 4,096-native-cell limit.
+Generated empty cell paragraphs share `maxParagraphs` with source paragraphs.
+Covered horizontal positions do not create independent Word cells or fields.
+
+The [work record](../../validation/zotero-odt-merged-tables-20261121/README.md)
+contains source-review findings and the prepared engine/editor regression
+scope. Local formatter, analyzer and runtime execution remain pending after
+shared disk exhaustion during official SDK setup. The new source does not
+inherit earlier test totals or establish real LibreOffice table acceptance.
+
+Primary format contract: OASIS ODF 1.3 Part 3
+[section 9.1.5 and span attributes 19.680/19.682](https://docs.oasis-open.org/office/OpenDocument/v1.3/os/part3-schema/OpenDocument-v1.3-os-part3-schema.html).
+
+## Increment 5: installed-host acceptance
 
 Run an actual current Zotero session with identified Word and LibreOffice
 versions and synthetic library data. Exercise native-file input separately
@@ -352,8 +390,9 @@ Zotero and plugin versions. Current LibreOffice acceptance cannot establish it.
    branch are integrated by this continuation; keep their recorded cutoffs.
 2. Expand the documented rich-document envelope from additional retained real
    files. The exact prose fixture and supported script/default mapping above
-   provide the next baseline. Add active Asian typography, drawings, merged
-   tables, further note/list configurations and native ODT output with matching
+   provide the next baseline. Execute the pending merged-table checks, then add
+   active Asian typography, drawings, further note/list configurations and
+   native ODT output with matching
    ownership, rendering and persistence checks; keep remaining refusals visible.
 3. Save each working increment on a remote branch with an expected-head lease.
 4. Review the integrated diff, rerun checks affected by incoming changes, then
@@ -362,7 +401,7 @@ Zotero and plugin versions. Current LibreOffice acceptance cannot establish it.
 5. Do not query or wait on GitHub Actions as the acceptance path. Preserve
    concrete local results and state any installed-host limits separately.
 
-Increment 1 remains a read-only capability. Increments 2 and 3 convert a bounded
+Increment 1 remains a read-only capability. Increments 2 through 4 convert a bounded
 native ODT subset into an editable Word document that saves as DOCX. These
 increments do not change ordinary ODT export or establish complete plugin parity or
 installed-host acceptance for Zotero, Word, LibreOffice or legacy Apache

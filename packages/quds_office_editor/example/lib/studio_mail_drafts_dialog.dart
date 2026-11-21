@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'studio_mail_compose_tools.dart';
 import 'studio_mail_draft.dart';
 import 'studio_mail_draft_store.dart';
 import 'studio_mail_drafts_strings.dart';
@@ -77,11 +78,19 @@ class _StudioMailDraftsDialogState extends State<StudioMailDraftsDialog> {
       _error = null;
     });
     try {
-      final draft = summary == null
-          ? await widget.catalog.createDraft(
-              const StudioMailDraft(to: '', subject: '', body: ''),
-            )
-          : await widget.catalog.selectDraft(summary);
+      final StudioMailStoredDraft draft;
+      if (summary == null) {
+        final initial = await prepareStudioMailComposeDraft(
+          widget.catalog,
+          const StudioMailDraft(to: '', subject: '', body: ''),
+          replyOrForward: false,
+          isCurrent: () => _current,
+        );
+        if (!_current) return;
+        draft = await widget.catalog.createDraft(initial);
+      } else {
+        draft = await widget.catalog.selectDraft(summary);
+      }
       if (mounted && widget.isCurrent()) Navigator.pop(context, draft);
     } on Object {
       if (mounted) {

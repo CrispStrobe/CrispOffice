@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+- Add schema-v10 account-owned compose settings and ordered Quick Text with
+  atomic revision-guarded saves, bounded corruption reads and strict UTF-8
+  decoding. Preserve settings on logout, clear them on account/profile removal,
+  include them in account quotas, and leave drafts and frozen Outbox unchanged.
+
 - Add schema-v9 saved header-search definitions with fixed cross-profile account
   scopes, case-insensitive unique names, bounded metadata, monotonic revisions
   and atomic create/update/delete. Preserve all earlier schemas, reject stale
