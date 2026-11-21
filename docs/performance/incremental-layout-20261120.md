@@ -326,8 +326,10 @@ separately on main); Studio: 5 before, 1 after (`dump_gallery_shots_test`).
 
 ## Remaining work
 
-- The first IME keystroke in the Studio benchmark still costs ~200 ms outside
-  layout (see above).
+- The first IME keystroke in the Studio benchmark still cost ~200 ms: traced
+  and fixed in [keystroke-trace-20261121.md](keystroke-trace-20261121.md) (the
+  benchmark assigned a new document without a relayout; the first keystroke
+  was that document's first, full layout).
 - Paint fitting still runs over the whole document after formatting changes;
   fitting only changed lines would make those edits cheaper as well.
 - A future keep-with-next/widow rule across top-level blocks must extend the
