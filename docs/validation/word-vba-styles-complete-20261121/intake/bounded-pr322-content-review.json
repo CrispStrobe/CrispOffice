@@ -1,0 +1,481 @@
+{
+  "observed_at": "2026-11-21T17:44:08.587614+00:00",
+  "reviewed_feature_head": "8876bc0e63469c34a8f28a0f978e72355e21302e",
+  "feature_cutoff_base": "cf12544df1a7965615f38eab8d22dae5cfa0d7c0",
+  "checked_current_head": "13e16187180d349601f0af464698706b2693d95e",
+  "merge_parents": [
+    {
+      "sha": "cf12544df1a7965615f38eab8d22dae5cfa0d7c0",
+      "is_ancestor": true
+    },
+    {
+      "sha": "ce90d6db8c28797a79b63ff1dfda8586faf74ff9",
+      "is_ancestor": true
+    },
+    {
+      "sha": "cb27581214e00b8cf58cafb65193ee85561c6eb4",
+      "is_ancestor": true
+    }
+  ],
+  "all_merge_parents_included": true,
+  "changed_file_count": 39,
+  "merge_created_blob_paths": [
+    "docs/validation/mail-compose-tools-20261121/README.md",
+    "packages/quds_office_editor/CHANGELOG.md",
+    "packages/quds_office_editor/example/lib/studio_mail_native.dart",
+    "packages/quds_office_engine/CHANGELOG.md",
+    "packages/quds_office_engine/test/office_macro_word_paragraph_style_test.dart",
+    "packages/quds_office_engine/test/office_vba_word_styles_alternate_integration_test.dart"
+  ],
+  "content_comparison": [
+    {
+      "path": "docs/roadmaps/mail/README.md",
+      "blob": "ccd857dabf089cfc13594bf58e3d7e1c76907a5b",
+      "identical_in_current_head": true,
+      "identical_parent_blobs": [
+        {
+          "parent": "ce90d6db8c28797a79b63ff1dfda8586faf74ff9",
+          "path": "docs/roadmaps/mail/README.md"
+        },
+        {
+          "parent": "cb27581214e00b8cf58cafb65193ee85561c6eb4",
+          "path": "docs/roadmaps/mail/README.md"
+        }
+      ]
+    },
+    {
+      "path": "docs/roadmaps/mail/compose-tools.md",
+      "blob": "6d955c4b140c0c427955b3a1de5ad46995b72b9e",
+      "identical_in_current_head": false,
+      "identical_parent_blobs": [
+        {
+          "parent": "ce90d6db8c28797a79b63ff1dfda8586faf74ff9",
+          "path": "docs/roadmaps/mail/compose-tools.md"
+        },
+        {
+          "parent": "cb27581214e00b8cf58cafb65193ee85561c6eb4",
+          "path": "docs/roadmaps/mail/compose-tools.md"
+        }
+      ]
+    },
+    {
+      "path": "docs/roadmaps/mail/implementation-plan.md",
+      "blob": "f1be3be4bf8de235d18b3ca8e65b13ce0a1ad000",
+      "identical_in_current_head": true,
+      "identical_parent_blobs": [
+        {
+          "parent": "ce90d6db8c28797a79b63ff1dfda8586faf74ff9",
+          "path": "docs/roadmaps/mail/implementation-plan.md"
+        },
+        {
+          "parent": "cb27581214e00b8cf58cafb65193ee85561c6eb4",
+          "path": "docs/roadmaps/mail/implementation-plan.md"
+        }
+      ]
+    },
+    {
+      "path": "docs/roadmaps/mail/status.md",
+      "blob": "80a406a00e3d94dc0f3a4cd6af934c86cafedb88",
+      "identical_in_current_head": false,
+      "identical_parent_blobs": [
+        {
+          "parent": "ce90d6db8c28797a79b63ff1dfda8586faf74ff9",
+          "path": "docs/roadmaps/mail/status.md"
+        },
+        {
+          "parent": "cb27581214e00b8cf58cafb65193ee85561c6eb4",
+          "path": "docs/roadmaps/mail/status.md"
+        }
+      ]
+    },
+    {
+      "path": "docs/roadmaps/zotero/native-odt-input.md",
+      "blob": "2431f653e7667d03d87c7b933da4fc16bbcbbcbe",
+      "identical_in_current_head": true,
+      "identical_parent_blobs": [
+        {
+          "parent": "cb27581214e00b8cf58cafb65193ee85561c6eb4",
+          "path": "docs/roadmaps/zotero/native-odt-input.md"
+        }
+      ]
+    },
+    {
+      "path": "docs/roadmaps/zotero/native-odt-output.md",
+      "blob": "05f4051e00a8aac4ba1ac468f95db0ae037c5806",
+      "identical_in_current_head": true,
+      "identical_parent_blobs": [
+        {
+          "parent": "cb27581214e00b8cf58cafb65193ee85561c6eb4",
+          "path": "docs/roadmaps/zotero/native-odt-output.md"
+        }
+      ]
+    },
+    {
+      "path": "docs/roadmaps/zotero/word-processor-parity.md",
+      "blob": "0463c51dda88d0d2b6390891a5650d9c724cad21",
+      "identical_in_current_head": false,
+      "identical_parent_blobs": [
+        {
+          "parent": "cb27581214e00b8cf58cafb65193ee85561c6eb4",
+          "path": "docs/roadmaps/zotero/word-processor-parity.md"
+        }
+      ]
+    },
+    {
+      "path": "docs/validation/mail-compose-tools-20261121/README.md",
+      "blob": "0495d763ba04ffff8193694aa2e1ea1562bac136",
+      "identical_in_current_head": false,
+      "identical_parent_blobs": []
+    },
+    {
+      "path": "docs/validation/mail-compose-tools-20261121/source-review.json",
+      "blob": "6a584c16e60bf5b9bff293715f0e4a1197db53ac",
+      "identical_in_current_head": true,
+      "identical_parent_blobs": [
+        {
+          "parent": "ce90d6db8c28797a79b63ff1dfda8586faf74ff9",
+          "path": "docs/validation/mail-compose-tools-20261121/source-review.json"
+        },
+        {
+          "parent": "cb27581214e00b8cf58cafb65193ee85561c6eb4",
+          "path": "docs/validation/mail-compose-tools-20261121/source-review.json"
+        }
+      ]
+    },
+    {
+      "path": "docs/validation/zotero-editable-odt-20261121/README.md",
+      "blob": "c9ac7168876d8cc519bc5b4b590c0c659d95da90",
+      "identical_in_current_head": false,
+      "identical_parent_blobs": [
+        {
+          "parent": "cb27581214e00b8cf58cafb65193ee85561c6eb4",
+          "path": "docs/validation/zotero-editable-odt-20261121/README.md"
+        }
+      ]
+    },
+    {
+      "path": "docs/validation/zotero-editable-odt-20261121/baseline/README.md",
+      "blob": "117247f8d4140cc5a67669d325261bd128914c77",
+      "identical_in_current_head": true,
+      "identical_parent_blobs": [
+        {
+          "parent": "ce90d6db8c28797a79b63ff1dfda8586faf74ff9",
+          "path": "docs/validation/zotero-editable-odt-20261121/baseline/README.md"
+        },
+        {
+          "parent": "cb27581214e00b8cf58cafb65193ee85561c6eb4",
+          "path": "docs/validation/zotero-editable-odt-20261121/baseline/README.md"
+        }
+      ]
+    },
+    {
+      "path": "docs/validation/zotero-editable-odt-20261121/baseline/execution.tar.gz",
+      "blob": "2b0a255ea6f4fd6c0be45f1dedc4e81a6bcd23a5",
+      "identical_in_current_head": true,
+      "identical_parent_blobs": [
+        {
+          "parent": "ce90d6db8c28797a79b63ff1dfda8586faf74ff9",
+          "path": "docs/validation/zotero-editable-odt-20261121/baseline/execution.tar.gz"
+        },
+        {
+          "parent": "cb27581214e00b8cf58cafb65193ee85561c6eb4",
+          "path": "docs/validation/zotero-editable-odt-20261121/baseline/execution.tar.gz"
+        }
+      ]
+    },
+    {
+      "path": "docs/validation/zotero-editable-odt-20261121/baseline/receipt.json",
+      "blob": "a0b87f6684b2326ee79705fb82d009a04bcd06f8",
+      "identical_in_current_head": true,
+      "identical_parent_blobs": [
+        {
+          "parent": "ce90d6db8c28797a79b63ff1dfda8586faf74ff9",
+          "path": "docs/validation/zotero-editable-odt-20261121/baseline/receipt.json"
+        },
+        {
+          "parent": "cb27581214e00b8cf58cafb65193ee85561c6eb4",
+          "path": "docs/validation/zotero-editable-odt-20261121/baseline/receipt.json"
+        }
+      ]
+    },
+    {
+      "path": "docs/validation/zotero-editable-odt-20261121/initial-intake.json",
+      "blob": "8fbb8288dec1297bc30f03ce99289e883d4ad272",
+      "identical_in_current_head": true,
+      "identical_parent_blobs": [
+        {
+          "parent": "ce90d6db8c28797a79b63ff1dfda8586faf74ff9",
+          "path": "docs/validation/zotero-editable-odt-20261121/initial-intake.json"
+        },
+        {
+          "parent": "cb27581214e00b8cf58cafb65193ee85561c6eb4",
+          "path": "docs/validation/zotero-editable-odt-20261121/initial-intake.json"
+        }
+      ]
+    },
+    {
+      "path": "docs/validation/zotero-editable-odt-20261121/publication-intake.json",
+      "blob": "9210770648c632b40f3761dd0ff97d00fd37bedc",
+      "identical_in_current_head": true,
+      "identical_parent_blobs": [
+        {
+          "parent": "cb27581214e00b8cf58cafb65193ee85561c6eb4",
+          "path": "docs/validation/zotero-editable-odt-20261121/publication-intake.json"
+        }
+      ]
+    },
+    {
+      "path": "docs/validation/zotero-editable-odt-20261121/runtime-dependencies.json.gz",
+      "blob": "0325d6f21abc6ea406e550770c4728c6e6fe421f",
+      "identical_in_current_head": true,
+      "identical_parent_blobs": [
+        {
+          "parent": "ce90d6db8c28797a79b63ff1dfda8586faf74ff9",
+          "path": "docs/validation/zotero-editable-odt-20261121/runtime-dependencies.json.gz"
+        },
+        {
+          "parent": "cb27581214e00b8cf58cafb65193ee85561c6eb4",
+          "path": "docs/validation/zotero-editable-odt-20261121/runtime-dependencies.json.gz"
+        }
+      ]
+    },
+    {
+      "path": "docs/validation/zotero-editable-odt-20261121/runtime.json",
+      "blob": "18f7c6a6bd85b753e2e58dd89c24aefdb58c552d",
+      "identical_in_current_head": true,
+      "identical_parent_blobs": [
+        {
+          "parent": "ce90d6db8c28797a79b63ff1dfda8586faf74ff9",
+          "path": "docs/validation/zotero-editable-odt-20261121/runtime.json"
+        },
+        {
+          "parent": "cb27581214e00b8cf58cafb65193ee85561c6eb4",
+          "path": "docs/validation/zotero-editable-odt-20261121/runtime.json"
+        }
+      ]
+    },
+    {
+      "path": "docs/zotero-support.md",
+      "blob": "6ef7f19642deeceee7e680a7e53b35a8a17d5097",
+      "identical_in_current_head": true,
+      "identical_parent_blobs": [
+        {
+          "parent": "cb27581214e00b8cf58cafb65193ee85561c6eb4",
+          "path": "docs/zotero-support.md"
+        }
+      ]
+    },
+    {
+      "path": "packages/quds_office_editor/CHANGELOG.md",
+      "blob": "9ccd283131b46dda9cc7b588fbd36e7a413f83ff",
+      "identical_in_current_head": true,
+      "identical_parent_blobs": []
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_files.dart",
+      "blob": "55e08909e734d2ca4bb6e48fed2aa8fbfb91b1e6",
+      "identical_in_current_head": true,
+      "identical_parent_blobs": [
+        {
+          "parent": "cb27581214e00b8cf58cafb65193ee85561c6eb4",
+          "path": "packages/quds_office_editor/example/lib/studio_files.dart"
+        }
+      ]
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_native.dart",
+      "blob": "3c602d2512f791877a981fe5c275cdd87eb95225",
+      "identical_in_current_head": false,
+      "identical_parent_blobs": []
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_web.dart",
+      "blob": "a014525aa3f0c0b25c13712a100eb1d46eb04917",
+      "identical_in_current_head": true,
+      "identical_parent_blobs": [
+        {
+          "parent": "cb27581214e00b8cf58cafb65193ee85561c6eb4",
+          "path": "packages/quds_office_editor/example/lib/studio_mail_web.dart"
+        }
+      ]
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_saved_mail.dart",
+      "blob": "396597d38c97d7c0eb33d7c809c3329c4db333a1",
+      "identical_in_current_head": true,
+      "identical_parent_blobs": [
+        {
+          "parent": "cb27581214e00b8cf58cafb65193ee85561c6eb4",
+          "path": "packages/quds_office_editor/example/lib/studio_saved_mail.dart"
+        }
+      ]
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/suite_workspace.dart",
+      "blob": "5571d910070be30b1efd7db2f1b16658b7ce3ed9",
+      "identical_in_current_head": true,
+      "identical_parent_blobs": [
+        {
+          "parent": "cb27581214e00b8cf58cafb65193ee85561c6eb4",
+          "path": "packages/quds_office_editor/example/lib/suite_workspace.dart"
+        }
+      ]
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_web_test.dart",
+      "blob": "85ca329bd0e5747e35a7fb40229644636e5b55b2",
+      "identical_in_current_head": true,
+      "identical_parent_blobs": [
+        {
+          "parent": "cb27581214e00b8cf58cafb65193ee85561c6eb4",
+          "path": "packages/quds_office_editor/example/test/studio_mail_web_test.dart"
+        }
+      ]
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_zotero_odt_export_test.dart",
+      "blob": "a574aa52a0a87a326b23baaea9bba4087f17bac5",
+      "identical_in_current_head": true,
+      "identical_parent_blobs": [
+        {
+          "parent": "cb27581214e00b8cf58cafb65193ee85561c6eb4",
+          "path": "packages/quds_office_editor/example/test/studio_zotero_odt_export_test.dart"
+        }
+      ]
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_odt_merged_table_load_test.dart",
+      "blob": "700a24436e47a22370d18a23e7e230c07b74d619",
+      "identical_in_current_head": true,
+      "identical_parent_blobs": [
+        {
+          "parent": "ce90d6db8c28797a79b63ff1dfda8586faf74ff9",
+          "path": "packages/quds_office_editor/test/word_odt_merged_table_load_test.dart"
+        },
+        {
+          "parent": "cb27581214e00b8cf58cafb65193ee85561c6eb4",
+          "path": "packages/quds_office_editor/test/word_odt_merged_table_load_test.dart"
+        }
+      ]
+    },
+    {
+      "path": "packages/quds_office_engine/CHANGELOG.md",
+      "blob": "3ce3f03b57317ed24df3c4a5e9dcc8d94c1cdf4f",
+      "identical_in_current_head": false,
+      "identical_parent_blobs": []
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/model/word_zotero_data.dart",
+      "blob": "383977781c74c1117d8994e1f28a880f5eca3582",
+      "identical_in_current_head": true,
+      "identical_parent_blobs": [
+        {
+          "parent": "cb27581214e00b8cf58cafb65193ee85561c6eb4",
+          "path": "packages/quds_office_engine/lib/src/word/model/word_zotero_data.dart"
+        }
+      ]
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/serial/odt_document_reader.dart",
+      "blob": "30caf347d273dda402e60e46cb983270dfa6c3f9",
+      "identical_in_current_head": true,
+      "identical_parent_blobs": [
+        {
+          "parent": "cb27581214e00b8cf58cafb65193ee85561c6eb4",
+          "path": "packages/quds_office_engine/lib/src/word/serial/odt_document_reader.dart"
+        }
+      ]
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart",
+      "blob": "8a2150295193cacbd54f8ed394c325b707c2d52a",
+      "identical_in_current_head": true,
+      "identical_parent_blobs": [
+        {
+          "parent": "cb27581214e00b8cf58cafb65193ee85561c6eb4",
+          "path": "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart"
+        }
+      ]
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/serial/odt_writer_zotero.dart",
+      "blob": "96853b3752c32a45ed511efec69ad31aac6dc69f",
+      "identical_in_current_head": true,
+      "identical_parent_blobs": [
+        {
+          "parent": "cb27581214e00b8cf58cafb65193ee85561c6eb4",
+          "path": "packages/quds_office_engine/lib/src/word/serial/odt_writer_zotero.dart"
+        }
+      ]
+    },
+    {
+      "path": "packages/quds_office_engine/test/odt_document_reader_test.dart",
+      "blob": "105ffcd950aff4e8ae14ce7d6e3816ae55ba7e69",
+      "identical_in_current_head": true,
+      "identical_parent_blobs": [
+        {
+          "parent": "cb27581214e00b8cf58cafb65193ee85561c6eb4",
+          "path": "packages/quds_office_engine/test/odt_document_reader_test.dart"
+        }
+      ]
+    },
+    {
+      "path": "packages/quds_office_engine/test/odt_zotero_export_lifecycle_test.dart",
+      "blob": "cb9b11e5eb75c77f9438ed90559149302dcec30a",
+      "identical_in_current_head": true,
+      "identical_parent_blobs": [
+        {
+          "parent": "cb27581214e00b8cf58cafb65193ee85561c6eb4",
+          "path": "packages/quds_office_engine/test/odt_zotero_export_lifecycle_test.dart"
+        }
+      ]
+    },
+    {
+      "path": "packages/quds_office_engine/test/odt_zotero_writer_test.dart",
+      "blob": "fa6e448f7dcf4f089fe9ae5b1243cd008eae99f7",
+      "identical_in_current_head": true,
+      "identical_parent_blobs": [
+        {
+          "parent": "cb27581214e00b8cf58cafb65193ee85561c6eb4",
+          "path": "packages/quds_office_engine/test/odt_zotero_writer_test.dart"
+        }
+      ]
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_macro_word_paragraph_style_test.dart",
+      "blob": "78e196f8399d69ef38b5aa3972130a653ad072f5",
+      "identical_in_current_head": false,
+      "identical_parent_blobs": []
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_vba_word_styles_alternate_integration_test.dart",
+      "blob": "f8e1ab861a20b9ff71ba4358fcd2e9f23993ccc9",
+      "identical_in_current_head": false,
+      "identical_parent_blobs": []
+    },
+    {
+      "path": "packages/quds_office_engine/tool/macros/web_vba_word_styles_alternate_smoke.dart",
+      "blob": "52a359eff4127cbebf0ec1492b4b2279c32209c1",
+      "identical_in_current_head": false,
+      "identical_parent_blobs": [
+        {
+          "parent": "ce90d6db8c28797a79b63ff1dfda8586faf74ff9",
+          "path": "packages/quds_office_engine/tool/macros/web_vba_word_styles_smoke.dart"
+        }
+      ]
+    },
+    {
+      "path": "packages/quds_office_engine/tool/zotero/odt_export_acceptance.dart",
+      "blob": "7c0907cc3ac965ff2f6099aef28f6827cde7ea3f",
+      "identical_in_current_head": true,
+      "identical_parent_blobs": [
+        {
+          "parent": "cb27581214e00b8cf58cafb65193ee85561c6eb4",
+          "path": "packages/quds_office_engine/tool/zotero/odt_export_acceptance.dart"
+        }
+      ]
+    }
+  ],
+  "method": "GitHub compare API after-file blob IDs matched against local Git trees for all three merge parents and current integrated HEAD; renamed copies also checked by blob identity.",
+  "git_index_mutations": false
+}

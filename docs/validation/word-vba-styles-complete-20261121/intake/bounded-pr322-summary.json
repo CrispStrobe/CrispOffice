@@ -1,0 +1,44 @@
+{
+  "observed_at": "2026-11-21T17:45:24.582706+00:00",
+  "reviewed_range": {
+    "base": "cf12544df1a7965615f38eab8d22dae5cfa0d7c0",
+    "head": "8876bc0e63469c34a8f28a0f978e72355e21302e"
+  },
+  "checked_integrated_head": "13e16187180d349601f0af464698706b2693d95e",
+  "tested_tree_supplied_by_root": "d25991879e4e84b4364ea7756945806e94bc2b51",
+  "all_three_merge_parents_already_included": true,
+  "merge_parents": [
+    {
+      "sha": "cf12544df1a7965615f38eab8d22dae5cfa0d7c0",
+      "is_ancestor": true
+    },
+    {
+      "sha": "ce90d6db8c28797a79b63ff1dfda8586faf74ff9",
+      "is_ancestor": true
+    },
+    {
+      "sha": "cb27581214e00b8cf58cafb65193ee85561c6eb4",
+      "is_ancestor": true
+    }
+  ],
+  "changed_paths_vs_cf12544d": 39,
+  "unique_authored_production_behavior_missing_from_integrated_source": false,
+  "unique_test_coverage_missing_from_integrated_source": false,
+  "findings": [
+    "8876bc0e is a reconciliation merge of cf12544d, our ce90d6db checkpoint, and cb275812 editable ODT export. The raw comparison is not documentation-only.",
+    "All ODT production and test additions in that comparison have exactly the same Git blob IDs as integrated HEAD.",
+    "The sole differing production path, studio_mail_native.dart, differs only in multiline object-pattern formatting and trailing commas; its saved-account restore behavior is already integrated through PR #324.",
+    "office_macro_word_paragraph_style_test.dart is a subset of the integrated suite. Integrated source additionally covers retained native marker metadata, style-linked numbering without an effective numId, and aliased effective-property refusal, plus the current typed failure for a shared paragraph properties object.",
+    "office_vba_word_styles_alternate_integration_test.dart differs from the integrated integration test only by the smoke import name.",
+    "web_vba_word_styles_alternate_smoke.dart is a copy of the smoke blob from already-included ce90d6db under an alternate name.",
+    "Other merge-created blobs are documentation/changelog reconciliation. They introduce no unreviewed production behavior."
+  ],
+  "recommendation": "Retain the tested integrated tree and preserve captured 8876bc0e as an additional checkpoint parent; no source adoption or additional tests required for this snapshot.",
+  "method": "Read-only GitHub comparisons and exact snapshot files, Git tree/blob comparison against all merge parents and integrated HEAD, focused source/test diff inspection.",
+  "feature_heads_refetched": false,
+  "git_index_mutations": false,
+  "evidence": [
+    "bounded-pr322-file-snapshot.json",
+    "bounded-pr322-content-review.json"
+  ]
+}

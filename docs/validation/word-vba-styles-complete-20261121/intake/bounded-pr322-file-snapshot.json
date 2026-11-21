@@ -1,0 +1,286 @@
+{
+  "repository": "CrispStrobe/quds_office_suite",
+  "base": "cf12544df1a7965615f38eab8d22dae5cfa0d7c0",
+  "head": "8876bc0e63469c34a8f28a0f978e72355e21302e",
+  "source_url": "https://api.github.com/repos/CrispStrobe/quds_office_suite/compare/cf12544df1a7965615f38eab8d22dae5cfa0d7c0...8876bc0e63469c34a8f28a0f978e72355e21302e?per_page=100",
+  "merge_parents": [
+    "cf12544df1a7965615f38eab8d22dae5cfa0d7c0",
+    "ce90d6db8c28797a79b63ff1dfda8586faf74ff9",
+    "cb27581214e00b8cf58cafb65193ee85561c6eb4"
+  ],
+  "files": [
+    {
+      "path": "docs/roadmaps/mail/README.md",
+      "blob_sha": "ccd857dabf089cfc13594bf58e3d7e1c76907a5b",
+      "status": "modified",
+      "additions": 6,
+      "deletions": 1
+    },
+    {
+      "path": "docs/roadmaps/mail/compose-tools.md",
+      "blob_sha": "6d955c4b140c0c427955b3a1de5ad46995b72b9e",
+      "status": "added",
+      "additions": 115,
+      "deletions": 0
+    },
+    {
+      "path": "docs/roadmaps/mail/implementation-plan.md",
+      "blob_sha": "f1be3be4bf8de235d18b3ca8e65b13ce0a1ad000",
+      "status": "modified",
+      "additions": 8,
+      "deletions": 0
+    },
+    {
+      "path": "docs/roadmaps/mail/status.md",
+      "blob_sha": "80a406a00e3d94dc0f3a4cd6af934c86cafedb88",
+      "status": "modified",
+      "additions": 27,
+      "deletions": 0
+    },
+    {
+      "path": "docs/roadmaps/zotero/native-odt-input.md",
+      "blob_sha": "2431f653e7667d03d87c7b933da4fc16bbcbbcbe",
+      "status": "modified",
+      "additions": 17,
+      "deletions": 14
+    },
+    {
+      "path": "docs/roadmaps/zotero/native-odt-output.md",
+      "blob_sha": "05f4051e00a8aac4ba1ac468f95db0ae037c5806",
+      "status": "added",
+      "additions": 127,
+      "deletions": 0
+    },
+    {
+      "path": "docs/roadmaps/zotero/word-processor-parity.md",
+      "blob_sha": "0463c51dda88d0d2b6390891a5650d9c724cad21",
+      "status": "modified",
+      "additions": 28,
+      "deletions": 8
+    },
+    {
+      "path": "docs/validation/mail-compose-tools-20261121/README.md",
+      "blob_sha": "0495d763ba04ffff8193694aa2e1ea1562bac136",
+      "status": "modified",
+      "additions": 181,
+      "deletions": 23
+    },
+    {
+      "path": "docs/validation/mail-compose-tools-20261121/source-review.json",
+      "blob_sha": "6a584c16e60bf5b9bff293715f0e4a1197db53ac",
+      "status": "added",
+      "additions": 65,
+      "deletions": 0
+    },
+    {
+      "path": "docs/validation/zotero-editable-odt-20261121/README.md",
+      "blob_sha": "c9ac7168876d8cc519bc5b4b590c0c659d95da90",
+      "status": "added",
+      "additions": 94,
+      "deletions": 0
+    },
+    {
+      "path": "docs/validation/zotero-editable-odt-20261121/baseline/README.md",
+      "blob_sha": "117247f8d4140cc5a67669d325261bd128914c77",
+      "status": "added",
+      "additions": 13,
+      "deletions": 0
+    },
+    {
+      "path": "docs/validation/zotero-editable-odt-20261121/baseline/execution.tar.gz",
+      "blob_sha": "2b0a255ea6f4fd6c0be45f1dedc4e81a6bcd23a5",
+      "status": "added",
+      "additions": 0,
+      "deletions": 0
+    },
+    {
+      "path": "docs/validation/zotero-editable-odt-20261121/baseline/receipt.json",
+      "blob_sha": "a0b87f6684b2326ee79705fb82d009a04bcd06f8",
+      "status": "added",
+      "additions": 214,
+      "deletions": 0
+    },
+    {
+      "path": "docs/validation/zotero-editable-odt-20261121/initial-intake.json",
+      "blob_sha": "8fbb8288dec1297bc30f03ce99289e883d4ad272",
+      "status": "added",
+      "additions": 3095,
+      "deletions": 0
+    },
+    {
+      "path": "docs/validation/zotero-editable-odt-20261121/publication-intake.json",
+      "blob_sha": "9210770648c632b40f3761dd0ff97d00fd37bedc",
+      "status": "added",
+      "additions": 378,
+      "deletions": 0
+    },
+    {
+      "path": "docs/validation/zotero-editable-odt-20261121/runtime-dependencies.json.gz",
+      "blob_sha": "0325d6f21abc6ea406e550770c4728c6e6fe421f",
+      "status": "added",
+      "additions": 0,
+      "deletions": 0
+    },
+    {
+      "path": "docs/validation/zotero-editable-odt-20261121/runtime.json",
+      "blob_sha": "18f7c6a6bd85b753e2e58dd89c24aefdb58c552d",
+      "status": "added",
+      "additions": 90,
+      "deletions": 0
+    },
+    {
+      "path": "docs/zotero-support.md",
+      "blob_sha": "6ef7f19642deeceee7e680a7e53b35a8a17d5097",
+      "status": "modified",
+      "additions": 37,
+      "deletions": 7
+    },
+    {
+      "path": "packages/quds_office_editor/CHANGELOG.md",
+      "blob_sha": "9ccd283131b46dda9cc7b588fbd36e7a413f83ff",
+      "status": "modified",
+      "additions": 16,
+      "deletions": 0
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_files.dart",
+      "blob_sha": "55e08909e734d2ca4bb6e48fed2aa8fbfb91b1e6",
+      "status": "modified",
+      "additions": 11,
+      "deletions": 1
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_native.dart",
+      "blob_sha": "3c602d2512f791877a981fe5c275cdd87eb95225",
+      "status": "modified",
+      "additions": 35,
+      "deletions": 4
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_web.dart",
+      "blob_sha": "a014525aa3f0c0b25c13712a100eb1d46eb04917",
+      "status": "modified",
+      "additions": 3,
+      "deletions": 0
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_saved_mail.dart",
+      "blob_sha": "396597d38c97d7c0eb33d7c809c3329c4db333a1",
+      "status": "modified",
+      "additions": 5,
+      "deletions": 1
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/suite_workspace.dart",
+      "blob_sha": "5571d910070be30b1efd7db2f1b16658b7ce3ed9",
+      "status": "modified",
+      "additions": 79,
+      "deletions": 0
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_web_test.dart",
+      "blob_sha": "85ca329bd0e5747e35a7fb40229644636e5b55b2",
+      "status": "modified",
+      "additions": 23,
+      "deletions": 0
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_zotero_odt_export_test.dart",
+      "blob_sha": "a574aa52a0a87a326b23baaea9bba4087f17bac5",
+      "status": "added",
+      "additions": 275,
+      "deletions": 0
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_odt_merged_table_load_test.dart",
+      "blob_sha": "700a24436e47a22370d18a23e7e230c07b74d619",
+      "status": "modified",
+      "additions": 86,
+      "deletions": 80
+    },
+    {
+      "path": "packages/quds_office_engine/CHANGELOG.md",
+      "blob_sha": "3ce3f03b57317ed24df3c4a5e9dcc8d94c1cdf4f",
+      "status": "modified",
+      "additions": 10,
+      "deletions": 2
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/model/word_zotero_data.dart",
+      "blob_sha": "383977781c74c1117d8994e1f28a880f5eca3582",
+      "status": "modified",
+      "additions": 4,
+      "deletions": 0
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/serial/odt_document_reader.dart",
+      "blob_sha": "30caf347d273dda402e60e46cb983270dfa6c3f9",
+      "status": "modified",
+      "additions": 15,
+      "deletions": 2
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart",
+      "blob_sha": "8a2150295193cacbd54f8ed394c325b707c2d52a",
+      "status": "modified",
+      "additions": 141,
+      "deletions": 25
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/serial/odt_writer_zotero.dart",
+      "blob_sha": "96853b3752c32a45ed511efec69ad31aac6dc69f",
+      "status": "added",
+      "additions": 637,
+      "deletions": 0
+    },
+    {
+      "path": "packages/quds_office_engine/test/odt_document_reader_test.dart",
+      "blob_sha": "105ffcd950aff4e8ae14ce7d6e3816ae55ba7e69",
+      "status": "modified",
+      "additions": 78,
+      "deletions": 59
+    },
+    {
+      "path": "packages/quds_office_engine/test/odt_zotero_export_lifecycle_test.dart",
+      "blob_sha": "cb9b11e5eb75c77f9438ed90559149302dcec30a",
+      "status": "added",
+      "additions": 816,
+      "deletions": 0
+    },
+    {
+      "path": "packages/quds_office_engine/test/odt_zotero_writer_test.dart",
+      "blob_sha": "fa6e448f7dcf4f089fe9ae5b1243cd008eae99f7",
+      "status": "added",
+      "additions": 563,
+      "deletions": 0
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_macro_word_paragraph_style_test.dart",
+      "blob_sha": "78e196f8399d69ef38b5aa3972130a653ad072f5",
+      "status": "added",
+      "additions": 668,
+      "deletions": 0
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_vba_word_styles_alternate_integration_test.dart",
+      "blob_sha": "f8e1ab861a20b9ff71ba4358fcd2e9f23993ccc9",
+      "status": "added",
+      "additions": 295,
+      "deletions": 0
+    },
+    {
+      "path": "packages/quds_office_engine/tool/macros/web_vba_word_styles_alternate_smoke.dart",
+      "blob_sha": "52a359eff4127cbebf0ec1492b4b2279c32209c1",
+      "status": "added",
+      "additions": 344,
+      "deletions": 0
+    },
+    {
+      "path": "packages/quds_office_engine/tool/zotero/odt_export_acceptance.dart",
+      "blob_sha": "7c0907cc3ac965ff2f6099aef28f6827cde7ea3f",
+      "status": "added",
+      "additions": 210,
+      "deletions": 0
+    }
+  ]
+}
