@@ -450,7 +450,9 @@ void main() {
           final payload = MailStoreCodec.encodeOutbox(entry);
           final old = _json(payload.data)
             ..['version'] = 1
-            ..remove('priorSubmissionUncertain');
+            ..remove('priorSubmissionUncertain')
+            ..remove('sendNotBefore')
+            ..remove('scheduleRevision');
           final restored = _decodeOutbox(payload, data: jsonEncode(old));
           expect(restored.priorSubmissionUncertain, isFalse);
           expect(restored.state, entry.state);
@@ -473,7 +475,7 @@ void main() {
           (value) => value['priorSubmissionUncertain'] = 1,
           (value) => value['priorSubmissionUncertain'] = 'true',
           (value) => value['version'] = 1,
-          (value) => value['version'] = 3,
+          (value) => value['version'] = 4,
         ]) {
           final data = _json(payload.data);
           mutate(data);
@@ -929,6 +931,8 @@ MailOutboxEntry _copy(
   result: result ?? entry.result,
   priorSubmissionUncertain:
       priorSubmissionUncertain ?? entry.priorSubmissionUncertain,
+  sendNotBefore: entry.sendNotBefore,
+  scheduleRevision: entry.scheduleRevision,
 );
 
 MailDraft _decodeDraft(
