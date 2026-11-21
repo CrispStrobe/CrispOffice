@@ -1,0 +1,597 @@
+{
+  "format": 1,
+  "digest": "sha256",
+  "archive_encoding": "Deterministic gzip and tar; raw member bytes retained; no extraction is required for verification.",
+  "archives": {
+    "historical-qualification.tar.gz": {
+      "role": "Earlier source-bound execution, diagnostic failures and initial incoming checks; final acceptance must use the qualification receipt rather than sum every run.",
+      "sha256": "06ad20ce4cc9a7e01b4ea796d2584cb1cfcc1ee5e88f508d74fe1d444999f62b",
+      "bytes": 1422453,
+      "member_count": 86,
+      "uncompressed_bytes": 5076845,
+      "verified_by_reopening": true,
+      "members": {
+        "incoming-local-checks/editor-localization.jsonl": {
+          "sha256": "158da1870c8640006292b9b48cec5c40d56217c05bbf245e15a998fc08788059",
+          "bytes": 12321
+        },
+        "incoming-local-checks/final-read-only-review.json": {
+          "sha256": "8ac565133cd7f68192fc929f6410689db86ae9412a60ca9998ab1c4ef4424533",
+          "bytes": 2254
+        },
+        "incoming-local-checks/inputs-start.json": {
+          "sha256": "5a831b0121c8c380244c5f019b2e50cda9cffc852077661bc8c39e7102ba34a9",
+          "bytes": 316678
+        },
+        "incoming-local-checks/mail-ui.jsonl": {
+          "sha256": "6fec8bcfc7f6924d741676b5a3b04f37003d4fcdf3c9a1341af2e30aba4413c7",
+          "bytes": 26637
+        },
+        "incoming-local-checks/nested-parser-review.json": {
+          "sha256": "b5ab0aad374ecdf1665eaa9ec765f851e274ed4411473a32c0075c81e3596dfc",
+          "bytes": 4181
+        },
+        "incoming-local-checks/results.json": {
+          "sha256": "d0d741e016080cfd3b69d9c7c1ff8d86fa0e91f91f405ea0a1e769e8ca3b212f",
+          "bytes": 3251
+        },
+        "incoming-local-checks/studio-localization-credentials.jsonl": {
+          "sha256": "169b0f382d458ff43ff47548420d90177ce78d3c32b33175cee15d3b7bc52862",
+          "bytes": 30993
+        },
+        "zotero-local-results/editor-composed-acceptance.json": {
+          "sha256": "3f87892be2a61b9d28c03b8fa0de448a63631f6fb5d39e244fa70378422da42f",
+          "bytes": 94838
+        },
+        "zotero-local-results/editor-zotero-regression-01/receipt.json": {
+          "sha256": "2cdd98dd542a075f410388d1d1fcc45f20ac020a8e3d643195075be184be3f76",
+          "bytes": 1399
+        },
+        "zotero-local-results/editor-zotero-regression-01/source-after.json": {
+          "sha256": "56807ce4932fc06a680315c24048247759358d53d0eec4e3cf150593102c1d15",
+          "bytes": 83059
+        },
+        "zotero-local-results/editor-zotero-regression-01/source-before.json": {
+          "sha256": "56807ce4932fc06a680315c24048247759358d53d0eec4e3cf150593102c1d15",
+          "bytes": 83059
+        },
+        "zotero-local-results/editor-zotero-regression-01/stderr.log": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        "zotero-local-results/editor-zotero-regression-01/stdout.jsonl": {
+          "sha256": "82494bfe2a4fce6cfd865a1a105725be2af7f62f68b245911507c29bcb9b7e8e",
+          "bytes": 202781
+        },
+        "zotero-local-results/engine-regression-final/analyze-exit-code.txt": {
+          "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+          "bytes": 2
+        },
+        "zotero-local-results/engine-regression-final/analyze.log": {
+          "sha256": "02d44b439e38f6756d23c560853f7ebcb8cbfe07e507270c1d498e95bd2c7f80",
+          "bytes": 153
+        },
+        "zotero-local-results/engine-regression-final/events.jsonl": {
+          "sha256": "12ead49000edbe8fb7165fef56edbde164fcb59f479dd1658657e437f1398ebf",
+          "bytes": 585337
+        },
+        "zotero-local-results/engine-regression-final/exit-code.txt": {
+          "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+          "bytes": 2
+        },
+        "zotero-local-results/engine-regression-final/source-after.json": {
+          "sha256": "abcec300a3088a54c4a181a629d4dff5030df260f02f543751ffc4020a02edc2",
+          "bytes": 56393
+        },
+        "zotero-local-results/engine-regression-final/source-before.json": {
+          "sha256": "24a2c1cb1e5a7f0fa6dccd2232245d2eca108d8873e158b8ac28553d15646490",
+          "bytes": 59505
+        },
+        "zotero-local-results/engine-regression-final/summary.json": {
+          "sha256": "00a91f7968d9009099fb75978addaa88471a838fc59d1ded694ef55fe8f06efb",
+          "bytes": 198
+        },
+        "zotero-local-results/engine-regression-final/test-files.txt": {
+          "sha256": "ec186ce63ca560901ea20c733926f4a48ee1b525b156b465e7b8e36f5ef489e9",
+          "bytes": 1893
+        },
+        "zotero-local-results/final-intake-coverage.json": {
+          "sha256": "0519c4a42178d5cb0b7f465975bb4f89d0cc20b08b23647d874f62e2301b85c5",
+          "bytes": 71068
+        },
+        "zotero-local-results/final-source-review.json": {
+          "sha256": "77093ba8354ccca8963b21873d8322c09b7ea2375a54b0fbb29720e27f1cc614",
+          "bytes": 1490
+        },
+        "zotero-local-results/formatting-only-test-review.json": {
+          "sha256": "5151c576948650a06d7411dd95c7381f7457278d1a28d223b4c1897a04d65b89",
+          "bytes": 3976
+        },
+        "zotero-local-results/frozen-intake-at-dc87bf94.json": {
+          "sha256": "0d59dd012c0738050b45a7afb4168fed5bdfefd9de24b8472a3519d87d5e3c3e",
+          "bytes": 71117
+        },
+        "zotero-local-results/incoming-perf-editor-01/receipt.json": {
+          "sha256": "0b19a08196be825cc1d771c10fd222f28253d2e0d4f6d4d223bbe9e0f1905f80",
+          "bytes": 1816
+        },
+        "zotero-local-results/incoming-perf-editor-01/source-after.json": {
+          "sha256": "cec65abdad3330e6bffdc8a417e22a2a53f1257838214d482951357fe15792be",
+          "bytes": 82305
+        },
+        "zotero-local-results/incoming-perf-editor-01/source-before.json": {
+          "sha256": "cec65abdad3330e6bffdc8a417e22a2a53f1257838214d482951357fe15792be",
+          "bytes": 82305
+        },
+        "zotero-local-results/incoming-perf-editor-01/stderr.log": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        "zotero-local-results/incoming-perf-editor-01/stdout.jsonl": {
+          "sha256": "33f3d86e8ec35de3f18d54936df4eddc306f140fcd30007ee51c08d464b6b3cd",
+          "bytes": 44796
+        },
+        "zotero-local-results/incoming-perf-engine-01/receipt.json": {
+          "sha256": "92cfa0584c946a4f0b741bfdc3b764645b9eec96c869494569869ec07d0c6277",
+          "bytes": 776
+        },
+        "zotero-local-results/incoming-perf-engine-01/source-after.json": {
+          "sha256": "81c7a7ecc5471ef8829017ceb315358fbff1706f2319cb23b73d5e5f6e0c0384",
+          "bytes": 82019
+        },
+        "zotero-local-results/incoming-perf-engine-01/source-before.json": {
+          "sha256": "81c7a7ecc5471ef8829017ceb315358fbff1706f2319cb23b73d5e5f6e0c0384",
+          "bytes": 82019
+        },
+        "zotero-local-results/incoming-perf-engine-01/stderr.log": {
+          "sha256": "efdf0396205de6ed7bc4ec45ec5c79e79816dcdc8a9656258c9d7c57eabd343c",
+          "bytes": 1235
+        },
+        "zotero-local-results/incoming-perf-engine-01/stdout.jsonl": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        "zotero-local-results/late-mail/core/command.json": {
+          "sha256": "a72241fc5fd3940ea7c1b95add085e38fe3b620ec8539281331cd020597b720e",
+          "bytes": 591
+        },
+        "zotero-local-results/late-mail/core/events.jsonl": {
+          "sha256": "abf4f23dcdedbf77f072d68a1375cda11c83b2f14d5f1678f3fa7a3925022741",
+          "bytes": 27216
+        },
+        "zotero-local-results/late-mail/core/exit-code.txt": {
+          "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+          "bytes": 2
+        },
+        "zotero-local-results/late-mail/core/source-after.json": {
+          "sha256": "4d40e90829cc744ae2e0e91e6b5cda943890818087fbde71aed72de6113265b0",
+          "bytes": 339768
+        },
+        "zotero-local-results/late-mail/core/source-before.json": {
+          "sha256": "80d32741500c02fb9eaddbc45b77442b03bdd6951ae395b1c2cc33e49cc19ef8",
+          "bytes": 344804
+        },
+        "zotero-local-results/late-mail/core/summary.json": {
+          "sha256": "9aa50a955b0c74e68e06c87ce1ecada6e3a721724f986f4a71a1056a948b6dcf",
+          "bytes": 447
+        },
+        "zotero-local-results/late-mail/studio/command.json": {
+          "sha256": "ca2725a6b70a9fef79e793236bef2ddfaa3e3baddf190d02b173a3e17bb3a820",
+          "bytes": 895
+        },
+        "zotero-local-results/late-mail/studio/events.jsonl": {
+          "sha256": "db4283f7b990b34bc435db32d3d92612157045629b296346ce56a00b6990c6f3",
+          "bytes": 182557
+        },
+        "zotero-local-results/late-mail/studio/exit-code.txt": {
+          "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+          "bytes": 2
+        },
+        "zotero-local-results/late-mail/studio/source-after.json": {
+          "sha256": "4d40e90829cc744ae2e0e91e6b5cda943890818087fbde71aed72de6113265b0",
+          "bytes": 339768
+        },
+        "zotero-local-results/late-mail/studio/source-before.json": {
+          "sha256": "72fbc2aca121e2523fbe32f4bbf6bf352cd631f9313cc64bf00edebee912d97a",
+          "bytes": 345451
+        },
+        "zotero-local-results/late-mail/studio/summary.json": {
+          "sha256": "19ddfb55cfc2c4855792b9d6f7e4485837f3a8c89343e4bd3f73172619bbe899",
+          "bytes": 1115
+        },
+        "zotero-local-results/nested-controller-01/receipt.json": {
+          "sha256": "cd5d345854c63691f6aa83a57011b5795437da7be7f5247261aaf34233b0b61e",
+          "bytes": 614
+        },
+        "zotero-local-results/nested-controller-01/source-after.json": {
+          "sha256": "9c87d0cb4a5137780af4225f16eeb8ed7648fac60b2b613592ea1eb8e235fbfb",
+          "bytes": 209364
+        },
+        "zotero-local-results/nested-controller-01/source-before.json": {
+          "sha256": "9c87d0cb4a5137780af4225f16eeb8ed7648fac60b2b613592ea1eb8e235fbfb",
+          "bytes": 209364
+        },
+        "zotero-local-results/nested-controller-01/stderr.log": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        "zotero-local-results/nested-controller-01/stdout.jsonl": {
+          "sha256": "87b2b3734962eec7161eae92ddff5a19cada1884670b3dae70669097475e7028",
+          "bytes": 11416
+        },
+        "zotero-local-results/nested-controller-02/receipt.json": {
+          "sha256": "b3139e88e838e159cc6af5e52dae37f48cd3da8c0862dc49e4f3de7112d2680f",
+          "bytes": 1735
+        },
+        "zotero-local-results/nested-controller-02/source-after.json": {
+          "sha256": "43f45006fc3676e5b10750505ff347fd2a57fc13af0d2aec356ef9426f90c906",
+          "bytes": 81731
+        },
+        "zotero-local-results/nested-controller-02/source-before.json": {
+          "sha256": "43f45006fc3676e5b10750505ff347fd2a57fc13af0d2aec356ef9426f90c906",
+          "bytes": 81731
+        },
+        "zotero-local-results/nested-controller-02/stderr.log": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        "zotero-local-results/nested-controller-02/stdout.jsonl": {
+          "sha256": "6473edb1fd7b13ff43c7accfec1eb652e638b4a5c056a291a61ddc7a1c2f166e",
+          "bytes": 2569
+        },
+        "zotero-local-results/nested-controller-and-schedule-03/receipt.json": {
+          "sha256": "32a65dd01186216caade4339bfebb498e36a255c8892d923403e234c0be6f173",
+          "bytes": 1112
+        },
+        "zotero-local-results/nested-controller-and-schedule-03/render/cycle-0-layout.txt": {
+          "sha256": "64a1e4cee364c5b889cc5e7e9e0f7877f5f3caf78dd320e93d3911848b52530a",
+          "bytes": 41964
+        },
+        "zotero-local-results/nested-controller-and-schedule-03/render/cycle-0.png": {
+          "sha256": "2f97ab707e4700de6003ad86d8e630a4be622e19f224902a59e1470f9d78ca82",
+          "bytes": 37039
+        },
+        "zotero-local-results/nested-controller-and-schedule-03/render/cycle-1-difference.json": {
+          "sha256": "87ec484d3712ac4c107d63274281aeb121265471528a28e52d53f2315b2ba449",
+          "bytes": 68
+        },
+        "zotero-local-results/nested-controller-and-schedule-03/render/cycle-1-layout.txt": {
+          "sha256": "64a1e4cee364c5b889cc5e7e9e0f7877f5f3caf78dd320e93d3911848b52530a",
+          "bytes": 41964
+        },
+        "zotero-local-results/nested-controller-and-schedule-03/render/cycle-1.png": {
+          "sha256": "2f97ab707e4700de6003ad86d8e630a4be622e19f224902a59e1470f9d78ca82",
+          "bytes": 37039
+        },
+        "zotero-local-results/nested-controller-and-schedule-03/render/cycle-2-difference.json": {
+          "sha256": "87ec484d3712ac4c107d63274281aeb121265471528a28e52d53f2315b2ba449",
+          "bytes": 68
+        },
+        "zotero-local-results/nested-controller-and-schedule-03/render/cycle-2-layout.txt": {
+          "sha256": "64a1e4cee364c5b889cc5e7e9e0f7877f5f3caf78dd320e93d3911848b52530a",
+          "bytes": 41964
+        },
+        "zotero-local-results/nested-controller-and-schedule-03/render/cycle-2.png": {
+          "sha256": "2f97ab707e4700de6003ad86d8e630a4be622e19f224902a59e1470f9d78ca82",
+          "bytes": 37039
+        },
+        "zotero-local-results/nested-controller-and-schedule-03/render/cycle-3-difference.json": {
+          "sha256": "87ec484d3712ac4c107d63274281aeb121265471528a28e52d53f2315b2ba449",
+          "bytes": 68
+        },
+        "zotero-local-results/nested-controller-and-schedule-03/render/cycle-3-layout.txt": {
+          "sha256": "64a1e4cee364c5b889cc5e7e9e0f7877f5f3caf78dd320e93d3911848b52530a",
+          "bytes": 41964
+        },
+        "zotero-local-results/nested-controller-and-schedule-03/render/cycle-3.png": {
+          "sha256": "2f97ab707e4700de6003ad86d8e630a4be622e19f224902a59e1470f9d78ca82",
+          "bytes": 37039
+        },
+        "zotero-local-results/nested-controller-and-schedule-03/render/summary.json": {
+          "sha256": "ae19145eaf9b55e4f023e2ff462d7fdb4f62ccde8a1831b69bcb61ea5404f68a",
+          "bytes": 1403
+        },
+        "zotero-local-results/nested-controller-and-schedule-03/source-after.json": {
+          "sha256": "33c45c867e31aec3a8a06fd06766ded616edbfd068ae84f67a51dd109f0f8de8",
+          "bytes": 81877
+        },
+        "zotero-local-results/nested-controller-and-schedule-03/source-before.json": {
+          "sha256": "33c45c867e31aec3a8a06fd06766ded616edbfd068ae84f67a51dd109f0f8de8",
+          "bytes": 81877
+        },
+        "zotero-local-results/nested-controller-and-schedule-03/stderr.log": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        "zotero-local-results/nested-controller-and-schedule-03/stdout.jsonl": {
+          "sha256": "9569a94d38246e6ea8a0670be225e924774b025f65c852b38694fedc078f2de6",
+          "bytes": 20471
+        },
+        "zotero-local-results/nested-engine-analyze.log": {
+          "sha256": "859d56dde778ec8018df8c0c9532d1e8b00b7f24baf3ac5de3e00160ee0cb633",
+          "bytes": 171
+        },
+        "zotero-local-results/nested-engine-focused-final.jsonl": {
+          "sha256": "84ba6931349b5953fbf6cde2a6243de30306062f7a6d29998bfa8bd6489e3d82",
+          "bytes": 68145
+        },
+        "zotero-local-results/nested-engine-focused.jsonl": {
+          "sha256": "d957338cafb6160252298a81e07de13a84c2d2e0b1208f125efd79a85eb52448",
+          "bytes": 69156
+        },
+        "zotero-local-results/nested-engine-layout.jsonl": {
+          "sha256": "330051fca87400bf2bd579038649ff1c0b6bc90cb91c89a03bf56d42d110daac",
+          "bytes": 3339
+        },
+        "zotero-local-results/nested-parser-initial.jsonl": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        "zotero-local-results/nested-render-diagnostic/cycle-0-layout.txt": {
+          "sha256": "c81dda048637376d35106f644abfb18219c338829c199a98dac18093c1a020d1",
+          "bytes": 41960
+        },
+        "zotero-local-results/nested-render-diagnostic/cycle-0.png": {
+          "sha256": "6fd0cd8d56828d1239c9c8b9c98a0aa1230bc961a7c1bedfa1312b113248af5c",
+          "bytes": 36962
+        },
+        "zotero-local-results/nested-render-diagnostic/cycle-1-difference.json": {
+          "sha256": "eba96ae39eecdc9ab97f1a08df73e102f2c053414553551f9503f625551f790e",
+          "bytes": 72
+        },
+        "zotero-local-results/nested-render-diagnostic/cycle-1-layout.txt": {
+          "sha256": "f8b5343ae05d32cff482f843656a07496c9994a283298591cb6d80d68c0cbdbe",
+          "bytes": 42003
+        },
+        "zotero-local-results/nested-render-diagnostic/cycle-1.png": {
+          "sha256": "ad940322fde026f3fd051e15fea66cb0bd1d252e743b063d32690aa23007b15a",
+          "bytes": 37050
+        },
+        "zotero-local-results/nested-render-diagnostic/stderr.log": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        "zotero-local-results/nested-render-diagnostic/stdout.jsonl": {
+          "sha256": "3cad4f16d7e62bb5f082a5967627e9adea75d58026f7b1144f019632d9c05ec9",
+          "bytes": 4035
+        }
+      }
+    },
+    "converter-qualification.tar.gz": {
+      "role": "Synthetic carrier files, actual converter output, strict route outcomes and numbering control; isolated application profile excluded.",
+      "sha256": "61efd1f95a7cbb9f67cafcfdd58eb68244b670cbac143b79c243e57cbb601353",
+      "bytes": 125388,
+      "member_count": 40,
+      "uncompressed_bytes": 272011,
+      "verified_by_reopening": true,
+      "members": {
+        "zotero-local-results/nested-converter/docx-odt-docx/nested-transfer.docx": {
+          "sha256": "9b46621fcc257853d6696912ac6b3acaf8a7b29911edbad126bf4acc4f8afdd3",
+          "bytes": 8826
+        },
+        "zotero-local-results/nested-converter/docx-odt-docx/nested-transfer.docx.restored-1.docx": {
+          "sha256": "626b29fcd9a46d455e07dbf970096171297f86866f697aed26269a67f65186cd",
+          "bytes": 10462
+        },
+        "zotero-local-results/nested-converter/docx-odt-docx/nested-transfer.docx.restored-2.docx": {
+          "sha256": "d72622944abf67d1d0905d8f15bc6ac7e9d29c56bdbd5154fca6148a4a2ee7b3",
+          "bytes": 10487
+        },
+        "zotero-local-results/nested-converter/docx-odt-docx/nested-transfer.docx.restored-3.docx": {
+          "sha256": "bba10a84f6b8b2934dd06da51769be7f9c3cfb821628c58482750e1cacf6befd",
+          "bytes": 10487
+        },
+        "zotero-local-results/nested-converter/docx-to-odt/nested-transfer.odt": {
+          "sha256": "eaed5f09b7466d39c04f50190228da084a4fc47eebf8702f25cf1c5242bcc7ea",
+          "bytes": 26919
+        },
+        "zotero-local-results/nested-converter/final-source-verification.json": {
+          "sha256": "4b0f0ede1afd54561cc9866f4d56dd77e9afd8b10c10455a864ba0bf9bcdda6b",
+          "bytes": 61221
+        },
+        "zotero-local-results/nested-converter/flat-control/converter-commands.json": {
+          "sha256": "7e4bca4e3b072ca6dca80b9f4e4897857ec0630929f030fc02a6a40e97747f1d",
+          "bytes": 1099
+        },
+        "zotero-local-results/nested-converter/flat-control/docx/flat-list.docx": {
+          "sha256": "c9e6f75da8b8d941b018e33aa5ad1af4dd2cb23a88843d538b8e6e553964923a",
+          "bytes": 6660
+        },
+        "zotero-local-results/nested-converter/flat-control/input/flat-list.docx": {
+          "sha256": "5aacb37a7d6c76a304e71e453cf0ab4bb7b52c89fb65710a21fa5002b0576bd7",
+          "bytes": 4703
+        },
+        "zotero-local-results/nested-converter/flat-control/odt/flat-list.odt": {
+          "sha256": "e09550e16e3c592961a9bc3006772b2853d8652c085a57f0e994b657239be1c9",
+          "bytes": 9748
+        },
+        "zotero-local-results/nested-converter/flat-control/provenance.json": {
+          "sha256": "a0470e40066c9cbbc2b3cb3c7dcc1dfe17f4be697a5be8082a8952a7af12693a",
+          "bytes": 788
+        },
+        "zotero-local-results/nested-converter/generated/nested-active.docx": {
+          "sha256": "6e1d88cf780e09189ceb4424ae7861d1b61bc3c0a7122a0edee52f15649fab75",
+          "bytes": 7106
+        },
+        "zotero-local-results/nested-converter/generated/nested-transfer.docx": {
+          "sha256": "978afe93096acd2f8774cf293e6cf9b4c8cfe846874f5a7d3ee603557fd1faf0",
+          "bytes": 7414
+        },
+        "zotero-local-results/nested-converter/generated/nested-transfer.docx.restored-1.docx": {
+          "sha256": "a48ee90e2ebe2075aeffc5c6259204d07872beabb46b0fec77ac40487588223e",
+          "bytes": 7228
+        },
+        "zotero-local-results/nested-converter/generated/nested-transfer.docx.restored-2.docx": {
+          "sha256": "50f4f14a5c356d7b0149db934e60dc4cfe9999d02f7dadca3d8f0a57508dc354",
+          "bytes": 7228
+        },
+        "zotero-local-results/nested-converter/generated/nested-transfer.docx.restored-3.docx": {
+          "sha256": "e56a6e8fce13f96c1db7afb05bc4c7cb2c061078b8695b126f0d67ee8bea793c",
+          "bytes": 7228
+        },
+        "zotero-local-results/nested-converter/generated/nested-transfer.odt": {
+          "sha256": "0f9cd936b2b5c67906735c92c372aa590a92869874303b9d99ad0d361e8d220d",
+          "bytes": 4516
+        },
+        "zotero-local-results/nested-converter/initial-tool.dart": {
+          "sha256": "55d28db7fb1c557e4e88d22224222aad2a0400a1ff9c8e7d304753e2f56f88ad",
+          "bytes": 13304
+        },
+        "zotero-local-results/nested-converter/inspect_numbering.dart": {
+          "sha256": "72551c73a8f63fd72610b7acfcd811819439196ef7e5744af6fa58b1493766e6",
+          "bytes": 713
+        },
+        "zotero-local-results/nested-converter/logs/baseline-verify-final.log": {
+          "sha256": "b33cbf32c7a437d6928b0bd9f5a3b4ce907b10e26f4944e8a4a240cf64e60e5d",
+          "bytes": 607
+        },
+        "zotero-local-results/nested-converter/logs/baseline-verify.log": {
+          "sha256": "7e1ae8e2d34a67aa8bac1b7f97f901240ad89b11c186f609785668cd9d5c2e7d",
+          "bytes": 531
+        },
+        "zotero-local-results/nested-converter/logs/docx-odt-docx-diagnose.log": {
+          "sha256": "1651a216af44ef678bb7435f8af707ba50f38bee584ed96aa46858578746da45",
+          "bytes": 1887
+        },
+        "zotero-local-results/nested-converter/logs/docx-odt-docx-verify.log": {
+          "sha256": "d0501846749838d54b6b3663dab010b81bb6b5c7274e477187309dfa6390c34d",
+          "bytes": 737
+        },
+        "zotero-local-results/nested-converter/logs/docx-odt-docx.log": {
+          "sha256": "892fa347c0656ccf11ae58660a2576b22b740ce57807b435477d2634f9691cd4",
+          "bytes": 275
+        },
+        "zotero-local-results/nested-converter/logs/docx-to-odt.log": {
+          "sha256": "159c59357ef544c12ee2d0662c46eb033b8633a075676796d239136aa6c96288",
+          "bytes": 258
+        },
+        "zotero-local-results/nested-converter/logs/final-source-odt-docx-verify.log": {
+          "sha256": "5092f029b0b6bbe301e6bcd81e03510c92b4656124ad66577858e9429c1dc394",
+          "bytes": 606
+        },
+        "zotero-local-results/nested-converter/logs/flat-docx-to-odt.log": {
+          "sha256": "4aa8aa4791b57f719d6c45b6dd220304613e592f0c1294827427e0c80eb4dc4f",
+          "bytes": 260
+        },
+        "zotero-local-results/nested-converter/logs/flat-odt-to-docx.log": {
+          "sha256": "03c390b024a9451b677903334002bb2dfc090f0eaeb7dc079e9cc27c29ab7317",
+          "bytes": 272
+        },
+        "zotero-local-results/nested-converter/logs/generate.log": {
+          "sha256": "118af8306226bbddaf3b61d639e81aca8054a26ed0f943aa40158ca836795d2c",
+          "bytes": 276
+        },
+        "zotero-local-results/nested-converter/logs/libreoffice-version.log": {
+          "sha256": "6d49d29516f9fb3b3f02bf33238f0beae9980c1743128ce831deddcfb69bce89",
+          "bytes": 73
+        },
+        "zotero-local-results/nested-converter/logs/numbering-observations.jsonl": {
+          "sha256": "83417eafec719106f123ed8cf6ab4de4f99d01d7e75acbf79634ef09688f000a",
+          "bytes": 966
+        },
+        "zotero-local-results/nested-converter/logs/odt-docx-verify.log": {
+          "sha256": "5092f029b0b6bbe301e6bcd81e03510c92b4656124ad66577858e9429c1dc394",
+          "bytes": 606
+        },
+        "zotero-local-results/nested-converter/logs/odt-docx.log": {
+          "sha256": "7f606b5975063b8e9a368ea86cf2d35e5cfaa980b3c11c0f6caed16c7811327d",
+          "bytes": 268
+        },
+        "zotero-local-results/nested-converter/numbering-evidence.json": {
+          "sha256": "1df1b6588de3bad53ff44ecf1b4cee1c5bbe8ab4f2131b704cccd603b03dfde6",
+          "bytes": 6442
+        },
+        "zotero-local-results/nested-converter/odt-docx/nested-transfer.docx": {
+          "sha256": "3e92d1549c9791baf717fd990371641116155c05483c91b5a012993b9ab65f2b",
+          "bytes": 7939
+        },
+        "zotero-local-results/nested-converter/odt-docx/nested-transfer.docx.restored-1.docx": {
+          "sha256": "b2daf7abed87f699bcafc3097b85efbcaac3460dccc4be77bf208cc06e2aebfc",
+          "bytes": 10154
+        },
+        "zotero-local-results/nested-converter/odt-docx/nested-transfer.docx.restored-2.docx": {
+          "sha256": "2d451377a8b3ee242ee93123b6938d9af8a7e03c73c033dfe2aaab4f9e972cac",
+          "bytes": 10178
+        },
+        "zotero-local-results/nested-converter/odt-docx/nested-transfer.docx.restored-3.docx": {
+          "sha256": "0700f0a4f8c15f32bc85949d5645158ce3ed42a70b5820f9532e2a4aa3b09f93",
+          "bytes": 10178
+        },
+        "zotero-local-results/nested-converter/summary.json": {
+          "sha256": "bc5aa30253eea8ca9260d87ac7efa3a0843ae604d0102597ec518b877e49a3df",
+          "bytes": 11381
+        },
+        "zotero-local-results/nested-converter/verify-commands.json": {
+          "sha256": "58127879ae63bba3cb3d0d3ec2a6e738d7c700a57e409f45e579e8032ee7477b",
+          "bytes": 1980
+        }
+      }
+    },
+    "runtime-provenance.tar.gz": {
+      "role": "Pinned runtime and locked-dependency integrity, resolution output and documented disk pruning; runtime binaries and package cache excluded.",
+      "sha256": "20b54dc4a8d2168f99d80e041bedd779e7bdefbaae1569524d74c74f0fc0579f",
+      "bytes": 24374,
+      "member_count": 14,
+      "uncompressed_bytes": 116780,
+      "verified_by_reopening": true,
+      "members": {
+        "zotero-toolchain/archive-receipt.json": {
+          "sha256": "be07e717cea0d83d95af81ba47ecc986a1cdcd08aafde13171e749f1a1958cb3",
+          "bytes": 991
+        },
+        "zotero-toolchain/env.sh": {
+          "sha256": "4f65412f35efb97ec2ab9a237847c44b5294ba7becf5110a59c42987eb84cca6",
+          "bytes": 464
+        },
+        "zotero-toolchain/logs/dart-workspace-pub-get.log": {
+          "sha256": "784f41545b0183dd7ce2a4ce85a565561d05a3c4d740cf16564235fb87612ca4",
+          "bytes": 26
+        },
+        "zotero-toolchain/logs/flutter-tools-pub-get-offline.log": {
+          "sha256": "02fa75724402b24471acf377d84b742c9eae00d6816deeec2ba75b57ac24117e",
+          "bytes": 1281
+        },
+        "zotero-toolchain/logs/prefetch.log": {
+          "sha256": "121472d6eb4a85aac934701f709ad34c56b2df0ef566eeb530200cd5b27fda23",
+          "bytes": 3444
+        },
+        "zotero-toolchain/logs/workspace-pub-get-offline.log": {
+          "sha256": "3640d48177b802767785e357f56651162d2250e124b566cffdc2cb88ce7e7f9c",
+          "bytes": 214
+        },
+        "zotero-toolchain/logs/workspace-pub-get.log": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        "zotero-toolchain/manifest-before.json": {
+          "sha256": "ccbea31214e2c94a0197c183ecf58ec3556b69197e4412fb0a5330e5e639a0e0",
+          "bytes": 3241
+        },
+        "zotero-toolchain/prefetch-receipt.json": {
+          "sha256": "515fe1648358f91a73ae280cb7ad208b593dcad3128a469d881d633bd10bccb7",
+          "bytes": 71487
+        },
+        "zotero-toolchain/prefetch.py": {
+          "sha256": "d77d3d2a6b7541694a631b6f233f7f03d144e1432d604f31b9270b87756ba28c",
+          "bytes": 3345
+        },
+        "zotero-toolchain/pub-cache-pruning.json": {
+          "sha256": "fa0ad5e1f5ac38b8a8b1aee1020869ce6d24187f1f28aedc1ec39bfd2d1d7ea5",
+          "bytes": 26917
+        },
+        "zotero-toolchain/runtime-pruning.json": {
+          "sha256": "681f69368b61483907230997f701124da9923257d978492159b5e52687e35d05",
+          "bytes": 1031
+        },
+        "zotero-toolchain/runtime-ready.json": {
+          "sha256": "dd31b445b574ef64562927c676978115ccda18b7bf44725d6c94910f8473c0e0",
+          "bytes": 3870
+        },
+        "zotero-toolchain/shallow-sdk-receipt.json": {
+          "sha256": "ebde5229881c7119cb79dea6fdf133425b0f4904d7987f2ffa2d1f497d7df6ca",
+          "bytes": 469
+        }
+      }
+    }
+  }
+}

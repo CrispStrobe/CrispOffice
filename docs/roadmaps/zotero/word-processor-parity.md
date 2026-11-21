@@ -283,6 +283,13 @@ replacement remain separate work. The
 [work record](../../validation/zotero-nested-tables-20261121/README.md) records
 local qualification separately from installed-application acceptance.
 
+The retained converter fixture qualifies the direct Quds ODT carrier →
+LibreOffice DOCX → Quds import route, including three further saves. On the
+identified LibreOffice development build, the DOCX → ODT → DOCX route changes
+a continued numbered list from `4., 5.` to `4., 1.`. A flat-list control reproduces
+the change without nested tables. The strict verifier keeps that route failed;
+no reader heuristic conflates separate numbering instances to conceal it.
+
 ## Next implementation and acceptance steps
 
 1. **Finish installed-application transfer acceptance and native ODT input.**
