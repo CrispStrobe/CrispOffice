@@ -842,6 +842,7 @@ class WordEditorController extends OfficeController {
   void dispose() {
     _proofing?.removeListener(_onProofingChanged);
     _proofing?.dispose();
+    _timedListeners.clear();
     super.dispose();
   }
 
@@ -1500,12 +1501,27 @@ class WordEditorController extends OfficeController {
   /// layout again ([WordLayoutEngine.incrementalLayout]); the result equals a
   /// full layout without field updates.
   void relayout({bool localEdit = false, Iterable<WmlParagraph>? dirty}) {
-    if (_documentReplaced) {
+    final bool replaced = _documentReplaced;
+    if (replaced) {
       // The previous layout belongs to another document: nothing in it can
       // be reused, so lay the new one out in full.
       _documentReplaced = false;
       localEdit = false;
     }
+    try {
+      _relayoutCurrentDocument(localEdit: localEdit, dirty: dirty);
+    } catch (_) {
+      // A failed replacement must never make the old document's layout
+      // appear current. Keep both lazy reads and explicit relayouts retryable.
+      if (replaced) _documentReplaced = true;
+      rethrow;
+    }
+  }
+
+  void _relayoutCurrentDocument({
+    required bool localEdit,
+    Iterable<WmlParagraph>? dirty,
+  }) {
     _syncEmptyParagraphDirection();
     // Header/footer text is chrome, not section body content. The incremental
     // layout path reuses page chrome, so edits there would never reach the
