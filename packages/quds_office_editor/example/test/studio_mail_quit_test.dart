@@ -156,10 +156,11 @@ final class _DraftOwner {
   bool disposed = false;
 
   Future<void> save(StudioMailDraft draft) async {
-    expect(disposed, isFalse);
+    // Native callbacks can complete while a test pump owns its async guard.
+    expectSync(disposed, isFalse);
     events.add('save started');
     await gate?.future;
-    expect(
+    expectSync(
       disposed,
       isFalse,
       reason: 'The account must outlive its draft write.',

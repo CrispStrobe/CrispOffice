@@ -11,16 +11,18 @@ import 'studio_mail_workspace_strings.dart';
 import 'studio_strings.dart';
 import 'studio_mail_reader_labels.dart';
 
-typedef StudioMailSyncRun = Future<MailSyncRunReport> Function({
-  required MailCancellationToken cancellation,
-  required void Function(MailSyncRunProgress) onProgress,
-});
+typedef StudioMailSyncRun =
+    Future<MailSyncRunReport> Function({
+      required MailCancellationToken cancellation,
+      required void Function(MailSyncRunProgress) onProgress,
+    });
 
-typedef StudioMailBodyDownloadRun = Future<MailBodyDownloadReport> Function({
-  required List<MailHeaderRecord> headers,
-  required MailCancellationToken cancellation,
-  required void Function(MailBodyDownloadProgress) onProgress,
-});
+typedef StudioMailBodyDownloadRun =
+    Future<MailBodyDownloadReport> Function({
+      required List<MailHeaderRecord> headers,
+      required MailCancellationToken cancellation,
+      required void Function(MailBodyDownloadProgress) onProgress,
+    });
 
 /// An explicit foreground sync controller and repository-only offline reader.
 /// The caller keeps ownership of both stores until this route has closed.

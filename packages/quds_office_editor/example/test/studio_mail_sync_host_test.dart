@@ -258,11 +258,9 @@ final class _Harness {
                 expect(lease.account, account);
                 return MailSuccess(_Tokens());
               },
-          providerFactory: ({
-            required configuration,
-            required tokenSource,
-            log,
-          }) => create(configuration.account),
+          providerFactory:
+              ({required configuration, required tokenSource, log}) =>
+                  create(configuration.account),
         );
 }
 
@@ -455,6 +453,8 @@ void main() {
 
         // Reopen with no provider or credential source. Only the owned local
         // repository and production sync dialog/reader are involved.
+        await tester.pumpWidget(const SizedBox.shrink());
+        await tester.pump();
         final owner = await awaitOutboxOperation(
           tester,
           harness.open(identity),
