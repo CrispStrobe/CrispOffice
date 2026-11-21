@@ -41,11 +41,25 @@ final class MailReaderPresentation {
     this.rejected = false,
     this.usedHtml = false,
     this.blockedResourceCount = 0,
-    List<Uri> remoteImageUrls = const [],
+    List<Uri>? remoteImageUrls,
+    List<Uri>? remoteImageUris,
   }) : runs = List.unmodifiable(runs),
        images = List.unmodifiable(images),
        diagnostics = List.unmodifiable(diagnostics),
-       remoteImageUrls = List.unmodifiable(remoteImageUrls);
+       remoteImageUrls = List.unmodifiable(
+         remoteImageUrls ?? remoteImageUris ?? const [],
+       ) {
+    if (remoteImageUris != null && remoteImageUrls != null) {
+      if (remoteImageUris.length != remoteImageUrls.length) {
+        throw ArgumentError('Remote image candidate aliases must agree.');
+      }
+      for (var index = 0; index < remoteImageUris.length; index++) {
+        if (remoteImageUris[index] != remoteImageUrls[index]) {
+          throw ArgumentError('Remote image candidate aliases must agree.');
+        }
+      }
+    }
+  }
   final String text;
 
   /// The bounded body projection, without envelope or attachment summaries.
@@ -64,6 +78,9 @@ final class MailReaderPresentation {
   /// Active elements, comments, CSS, credentials and relative URLs are excluded.
   /// At most eight distinct URLs are offered for an explicit host action.
   final List<Uri> remoteImageUrls;
+
+  /// Compatibility spelling for the same bounded, immutable candidates.
+  List<Uri> get remoteImageUris => remoteImageUrls;
 }
 
 /// Width and height of an admitted static PNG/JPEG attachment, or null.

@@ -19,7 +19,9 @@ omitted lower bounds. String intrinsics, explicit Variant `Empty`/`Null`,
 state predicates and bounded conversions operate on source values. Empty cell
 writes clear values/formulas; Null publication fails before a plan is returned.
 The Word adapter targets explicit body paragraphs, inserts text before their
-content, and applies supported font and paragraph formatting. Its ranges retain
+content, and applies supported font and paragraph formatting. It also targets
+explicit existing sections for eight `PageSetup` geometry setters: page width
+and height, four margins, and header/footer distances. Its ranges retain
 the native paragraph boundaries. Word formatting includes all underline styles,
 strikethrough, indentation and pagination. The continuation adds small caps,
 superscript/subscript, fixed-palette highlighting, explicit active-document
@@ -117,7 +119,7 @@ Parameter values containing quotes, dollar signs, or JSON-looking text remain
 literal values. Use `{ "$literal": value }` to include a parameter-looking
 object literally. Parameter values themselves are never interpreted again.
 
-Numeric document indexes follow the existing command runner: sheets, paragraphs,
+Numeric document indexes follow the existing command runner: sheets, sections, paragraphs,
 slides, runs, rows, and columns are **zero-based**. Spreadsheet cell and range
 addresses use A1 notation. Spreadsheet `sheet` arguments also accept a worksheet
 name, matched case-insensitively against the document at the time of each step.
@@ -181,10 +183,10 @@ dart run tool/macros/office_macro.dart run-word-vba \
 ```
 
 They have the same optional entry-point argument and output-preservation rules.
-The input must contain the explicitly selected paragraphs. Word macro-enabled
+The input must contain the explicitly selected paragraphs and sections. Word macro-enabled
 and template extensions retain the same-extension requirement; embedded projects
 remain inert. The [Word dialect contract](VBA_WORD_MACROS.md) describes paragraph
-selection, text boundaries, point units and supported formatting. For MCP,
+and section selection, text boundaries, point units and supported formatting. For MCP,
 use a source envelope with `language: "vba-word"` and `format: "docx"`, then
 validate or execute the returned native plan through the same management tools.
 
@@ -225,11 +227,26 @@ in `-1584..1584`. Native `docx.clearTabStops` clears the selected paragraph's
 currently effective explicit custom-tab definitions resolved by Quds, including inherited stops,
 using native position-specific clear records. It preserves default-tab interval
 settings and indentation. Both operations accept the usual explicit story
-selectors; `vba-word` emits only body-paragraph selectors. Partial tab edits
+selectors; VBA tab-stop methods emit only body-paragraph selectors. Partial tab edits
 preserve unrelated source XML and inheritance. Table inheritance uses the
 existing whole-table, horizontal-band and first-row layers; other conditional
 table regions remain unmodeled. Ambiguous source definitions
 are rejected before mutation; see the [Word contract](VBA_WORD_MACROS.md#custom-paragraph-tab-stops).
+
+Native `docx.pageSetup` sets one section measurement with three required fields:
+`section` is a zero-based index; `property` is exactly `width`, `height`, `top`,
+`bottom`, `left`, `right`, `header`, or `footer`; and `points` is a finite number
+in exact `0.05`-point increments, bounded by `2147483647` native twips.
+Dimensions require at least one point; margins and header/footer distances
+require nonnegative values. Each step checks the current detached page body
+and uniform-column text width, so reduce margins before shrinking a page if
+needed. Failed geometry or source guards roll back the complete macro.
+The handler preserves unrelated sparse XML, namespace aliases and opaque macro
+parts. Width/height setters also clear native paper-size code, including on
+same-value writes. Unsupported native measurements, gutters, ambiguous geometry,
+custom columns, alternate section properties, `mc:ProcessContent` markup, and mirrored/book-fold settings
+are refused. See the [complete section contract](VBA_WORD_MACROS.md#section-page-setup)
+and [runnable example](../packages/quds_office_engine/example/macros/word_page_setup.bas).
 
 Native `docx.listDefault` takes `paragraph` and Boolean `numbered`. It toggles
 off matching native paragraph numbering or applies a deterministic Quds
@@ -462,6 +479,15 @@ The native toggle resolves current supported before spacing after earlier
 transaction steps; it remains an action when recorded and replayed. These
 methods own only before spacing and conservatively refuse automatic/line-based
 or ambiguous source definitions. See the [spacing-control contract](VBA_WORD_MACROS.md#opening-closing-and-toggling-paragraph-spacing).
+Typed `Section` and `PageSetup` bindings select `Sections(i)` or
+`Sections.Item(i)`. Their eight geometry setters emit `docx.pageSetup`, with
+one explicit section, native property name and point value per operation.
+They support aliases, `With` and required `ByVal` helpers while refusing live
+reads, collection-wide page setup, `Orientation`, and `PaperSize`. The
+[section contract](VBA_WORD_MACROS.md#section-page-setup) states source numeric
+bounds, sparse native ownership and the custom-paper side effect. The
+[local qualification record](validation/word-vba-paragraph-pagination-20261121/README.md)
+separates executed engine checks from unexecuted Office and Flutter hosts.
 `InsertBefore`
 uses the empty range at paragraph offset zero, preserving the paragraph mark.
 Word and Excel retain separate typed object members and native output formats;

@@ -274,6 +274,297 @@ final class _Harness {
 }
 
 void main() {
+  group('read-only flag observation', () {
+    for (final service in MailCloudService.values) {
+      test(
+        '${service.name} reads exact fresh flags using metadata only',
+        () async {
+          final h = _Harness(service);
+          var read = false;
+          var flagged = true;
+          h.transport.handler = (request) {
+            expect(request.method, 'GET');
+            expect(request.body, isEmpty);
+            expect(request.uri.path, endsWith('/messages/message-1'));
+            if (service == MailCloudService.gmail) {
+              expect(request.uri.queryParameters, {
+                'format': 'minimal',
+                'fields': 'id,labelIds',
+              });
+              return _json({
+                'id': 'message-1',
+                'labelIds': [if (!read) 'UNREAD', if (flagged) 'STARRED'],
+              });
+            }
+            expect(request.uri.queryParameters, {
+              r'$select': 'id,isRead,isDraft,flag',
+            });
+            return _json({
+              'id': 'message-1',
+              'isRead': read,
+              'isDraft': false,
+              'flag': {'flagStatus': flagged ? 'flagged' : 'complete'},
+            });
+          };
+          final first = _value(
+            await h.provider.observeFlags(h.identity(), lease: h.lease),
+          );
+          expect(first.identity, h.identity());
+          expect(first.kind, MailFlagObservationKind.present);
+          expect(first.flags, const MailMessageFlags(isFlagged: true));
+          expect(
+            h.transport.lastResponseLimit,
+            h.provider.limits.maxHeaderBytes,
+          );
+          read = true;
+          flagged = false;
+          final second = _value(
+            await h.provider.observeFlags(h.identity(), lease: h.lease),
+          );
+          expect(second.flags, const MailMessageFlags(isRead: true));
+          expect(h.transport.mailRequests, hasLength(2));
+          expect(h.transport.requests.where(h.transport.profile), hasLength(2));
+          expect(h.tokens.calls, [false, false]);
+        },
+      );
+
+      test(
+        '${service.name} exact message 404 is absence, other statuses fail',
+        () async {
+          final h = _Harness(service);
+          h.transport.handler = (_) => _error(404);
+          final missing = _value(
+            await h.provider.observeFlags(h.identity(), lease: h.lease),
+          );
+          expect(missing.identity, h.identity());
+          expect(missing.kind, MailFlagObservationKind.missing);
+          expect(missing.flags, isNull);
+          for (final (status, expected) in [
+            (401, MailProblemCode.authenticationRequired),
+            (403, MailProblemCode.permissionDenied),
+            (410, MailProblemCode.conflict),
+            (429, MailProblemCode.quotaExceeded),
+            (503, MailProblemCode.unavailable),
+          ]) {
+            h.transport.handler = (_) => _error(status);
+            final problem = _problem(
+              await h.provider.observeFlags(h.identity(), lease: h.lease),
+              expected,
+            );
+            expect(problem.mutationMayHaveOccurred, isFalse);
+          }
+          expect(
+            h.transport.requests.every(
+              (request) => request.method == 'GET' && request.body.isEmpty,
+            ),
+            isTrue,
+          );
+        },
+      );
+
+      test(
+        '${service.name} account verification 404 is not message absence',
+        () async {
+          final h = _Harness(service);
+          h.transport.profileHandler = (_) => _error(404);
+          _problem(
+            await h.provider.observeFlags(h.identity(), lease: h.lease),
+            MailProblemCode.conflict,
+          );
+          expect(h.transport.mailRequests, isEmpty);
+        },
+      );
+
+      test(
+        '${service.name} mismatched returned identity is rejected',
+        () async {
+          final h = _Harness(service);
+          h.transport.handler = (_) => _json(
+            service == MailCloudService.gmail
+                ? {'id': 'another-message', 'labelIds': <String>[]}
+                : {
+                    'id': 'another-message',
+                    'isRead': false,
+                    'isDraft': false,
+                    'flag': {'flagStatus': 'notFlagged'},
+                  },
+          );
+          _problem(
+            await h.provider.observeFlags(h.identity(), lease: h.lease),
+            MailProblemCode.providerFailure,
+          );
+        },
+      );
+
+      test(
+        '${service.name} malformed or omitted flags are not known false',
+        () async {
+          final h = _Harness(service);
+          final malformed = service == MailCloudService.gmail
+              ? <Map<String, Object?>>[
+                  {'id': 'message-1'},
+                  {'id': 'message-1', 'labelIds': null},
+                  {'id': 'message-1', 'labelIds': 'UNREAD'},
+                  {
+                    'id': 'message-1',
+                    'labelIds': [true],
+                  },
+                ]
+              : <Map<String, Object?>>[
+                  {'id': 'message-1', 'isRead': false, 'isDraft': false},
+                  {
+                    'id': 'message-1',
+                    'isRead': false,
+                    'isDraft': false,
+                    'flag': {},
+                  },
+                  {
+                    'id': 'message-1',
+                    'isRead': false,
+                    'isDraft': false,
+                    'flag': {'flagStatus': 'unknown'},
+                  },
+                  {
+                    'id': 'message-1',
+                    'isRead': 'false',
+                    'isDraft': false,
+                    'flag': {'flagStatus': 'notFlagged'},
+                  },
+                  {
+                    'id': 'message-1',
+                    'isRead': false,
+                    'flag': {'flagStatus': 'notFlagged'},
+                  },
+                ];
+          for (final data in malformed) {
+            h.transport.handler = (_) => _json(data);
+            _problem(
+              await h.provider.observeFlags(h.identity(), lease: h.lease),
+              MailProblemCode.providerFailure,
+            );
+          }
+        },
+      );
+
+      test(
+        '${service.name} invalid scope and stale/cancelled leases avoid tokens',
+        () async {
+          final h = _Harness(service);
+          _problem(
+            await h.provider.observeFlags(
+              MailOpaqueIdentity(
+                account: _other,
+                provider: h.identity().provider,
+                value: 'message-1',
+              ),
+              lease: h.lease,
+            ),
+            MailProblemCode.invalidInput,
+          );
+          _problem(
+            await h.provider.observeFlags(
+              MailOpaqueIdentity(
+                account: _account,
+                provider: service == MailCloudService.gmail
+                    ? MailProviderKind.graph
+                    : MailProviderKind.gmail,
+                value: 'message-1',
+              ),
+              lease: h.lease,
+            ),
+            MailProblemCode.invalidInput,
+          );
+          _problem(
+            await h.provider.observeFlags(
+              h.identity(),
+              lease: MailAccountSession(_other).begin(),
+            ),
+            MailProblemCode.invalidInput,
+          );
+          final stale = h.lease;
+          h.session.invalidate();
+          _problem(
+            await h.provider.observeFlags(h.identity(), lease: stale),
+            MailProblemCode.staleOperation,
+          );
+          final cancellation = MailCancellationSource();
+          final cancelled = h.session.begin(cancellation: cancellation.token);
+          cancellation.cancel();
+          _problem(
+            await h.provider.observeFlags(h.identity(), lease: cancelled),
+            MailProblemCode.cancelled,
+          );
+          expect(h.tokens.calls, isEmpty);
+          expect(h.transport.requests, isEmpty);
+        },
+      );
+
+      test(
+        '${service.name} late flags cannot revive a retired account',
+        () async {
+          final h = _Harness(service);
+          final started = Completer<void>();
+          final released = Completer<MailCloudHttpResponse>();
+          h.transport.handler = (_) {
+            started.complete();
+            return released.future;
+          };
+          final pending = h.provider.observeFlags(h.identity(), lease: h.lease);
+          await started.future;
+          h.session.invalidate();
+          _problem(await pending, MailProblemCode.staleOperation);
+          released.complete(
+            _json(
+              service == MailCloudService.gmail
+                  ? {
+                      'id': 'message-1',
+                      'labelIds': ['STARRED'],
+                    }
+                  : {
+                      'id': 'message-1',
+                      'isRead': false,
+                      'isDraft': false,
+                      'flag': {'flagStatus': 'flagged'},
+                    },
+            ),
+          );
+          await Future<void>.delayed(Duration.zero);
+          expect(h.transport.mailRequests, hasLength(1));
+          expect(h.transport.mailRequests.single.method, 'GET');
+        },
+      );
+
+      test(
+        '${service.name} oversized metadata cannot settle history',
+        () async {
+          final h = _Harness(
+            service,
+            limits: const MailCloudLimits(maxHeaderBytes: 128),
+          );
+          h.transport.handler = (_) => _json(
+            service == MailCloudService.gmail
+                ? {
+                    'id': 'message-1',
+                    'labelIds': ['UNREAD'],
+                    'unexpected': 'x' * 256,
+                  }
+                : {
+                    'id': 'message-1',
+                    'isRead': false,
+                    'isDraft': false,
+                    'flag': {'flagStatus': 'notFlagged'},
+                    'unexpected': 'x' * 256,
+                  },
+          );
+          _problem(
+            await h.provider.observeFlags(h.identity(), lease: h.lease),
+            MailProblemCode.quotaExceeded,
+          );
+        },
+      );
+    }
+  });
+
   for (final service in MailCloudService.values) {
     for (final status in [429, 499, 410]) {
       test(
