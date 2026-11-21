@@ -1,0 +1,86 @@
+{
+  "checked_at": "2026-11-21T07:34:29.606656+00:00",
+  "head": "278fa78d59f219965a50f025dbdb11d1b7b98676",
+  "source_unchanged_since_final_host_run": true,
+  "source_file_count": 981,
+  "format": {
+    "command": [
+      "dart",
+      "format",
+      "--output=none",
+      "--set-exit-if-changed",
+      "packages/quds_mail_core/lib/quds_mail_core.dart",
+      "packages/quds_mail_core/lib/src/sync/runner.dart",
+      "packages/quds_mail_core/test/sync_runner_test.dart",
+      "packages/quds_mail_store/lib/src/models.dart",
+      "packages/quds_mail_store/lib/src/repository.dart",
+      "packages/quds_mail_store/lib/src/schema/database.dart",
+      "packages/quds_mail_store/lib/src/search_journal.dart",
+      "packages/quds_mail_store/lib/src/sync_mailboxes.dart",
+      "packages/quds_mail_store/test/flag_reconciliation_test.dart",
+      "packages/quds_mail_store/test/migration_test.dart",
+      "packages/quds_mail_store/test/sync_mailboxes_test.dart",
+      "packages/quds_office_editor/example/lib/studio_mail_cached_mail.dart",
+      "packages/quds_office_editor/example/lib/studio_mail_ews.dart",
+      "packages/quds_office_editor/example/lib/studio_mail_mailbox_store.dart",
+      "packages/quds_office_editor/example/lib/studio_mail_message_loader.dart",
+      "packages/quds_office_editor/example/lib/studio_mail_native.dart",
+      "packages/quds_office_editor/example/lib/studio_mail_sync_dialog.dart",
+      "packages/quds_office_editor/example/lib/studio_mail_sync_strings.dart",
+      "packages/quds_office_editor/example/test/studio_mail_sync_dialog_test.dart",
+      "packages/quds_office_editor/example/test/studio_mail_sync_host_test.dart",
+      "packages/quds_office_editor/example/test/studio_mail_sync_native_test.dart",
+      "packages/quds_office_editor/example/test/studio_mail_sync_store_test.dart"
+    ],
+    "exit_code": 0
+  },
+  "whitespace": {
+    "command": [
+      "git",
+      "diff",
+      "--check"
+    ],
+    "exit_code": 0
+  },
+  "analysis": {
+    "command": [
+      "dart",
+      "analyze",
+      "--fatal-infos",
+      "packages/quds_mail_core",
+      "packages/quds_mail_store",
+      "packages/quds_office_editor/example/lib/studio_mail_mailbox_store.dart",
+      "packages/quds_office_editor/example/lib/studio_mail_message_loader.dart",
+      "packages/quds_office_editor/example/lib/studio_mail_native.dart",
+      "packages/quds_office_editor/example/lib/studio_mail_ews.dart",
+      "packages/quds_office_editor/example/lib/studio_mail_cached_mail.dart",
+      "packages/quds_office_editor/example/lib/studio_mail_sync_dialog.dart",
+      "packages/quds_office_editor/example/lib/studio_mail_sync_strings.dart",
+      "packages/quds_office_editor/example/test/studio_mail_sync_store_test.dart",
+      "packages/quds_office_editor/example/test/studio_mail_sync_native_test.dart",
+      "packages/quds_office_editor/example/test/studio_mail_sync_host_test.dart",
+      "packages/quds_office_editor/example/test/studio_mail_sync_dialog_test.dart"
+    ],
+    "exit_code": 0,
+    "result": "No issues found; actual tool completion verified before this receipt was written."
+  },
+  "store_browser_compile": {
+    "command": [
+      "dart",
+      "compile",
+      "js",
+      "-O1",
+      "packages/quds_mail_store/tool/browser_compile_probe.dart",
+      "-o",
+      "/workspace/scratch/1fa88bd5b735/final-mail-validation/store-browser-probe.js"
+    ],
+    "exit_code": 0,
+    "scope": "Actual compilation succeeded; this does not claim browser execution, OPFS/worker behavior, or a complete Flutter web build."
+  },
+  "raw_log_sha256": {
+    "analyze.log": "4308bf9a15c83769ddf3a1add5c5c1a7dc5e88db7ef2885e8266324251365eab",
+    "diff-check.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "store-browser-compile.log": "574f6b01bb953d8f483b95ac364aa20f11c392c827bc3c1dc0d26fa1054d84ff",
+    "format.log": "a8fce6cea6dc3ff299103d7a35be21893a7d1758c7aeb16a3ae79cb4ee2acfa2"
+  }
+}

@@ -1,0 +1,273 @@
+00:00 +0: [VM, Kernel] loading test/sync_coordinator_test.dart
+00:00 +0: [VM, Kernel] test/sync_coordinator_test.dart: fixture pages apply real upserts/tombstones and advance cursor atomically
+00:00 +1: [VM, Kernel] test/sync_coordinator_test.dart: transaction failure leaves both old content and cursor unchanged
+00:00 +2: [VM, Kernel] test/sync_coordinator_test.dart: out-of-order concurrent pulls cannot regress the stored cursor
+00:00 +3: [VM, Kernel] test/header_search_test.dart: loaded header matching empty and whitespace queries match without inventing observations
+00:00 +4: [VM, Kernel] test/header_search_test.dart: loaded header matching empty and whitespace queries match without inventing observations
+00:00 +5: [VM, Kernel] test/header_search_test.dart: loaded header matching empty and whitespace queries match without inventing observations
+00:00 +6: [VM, Kernel] test/header_search_test.dart: loaded header matching empty and whitespace queries match without inventing observations
+00:00 +7: [VM, Kernel] test/header_search_test.dart: loaded header matching empty and whitespace queries match without inventing observations
+00:00 +8: [VM, Kernel] test/header_search_test.dart: loaded header matching empty and whitespace queries match without inventing observations
+00:00 +9: [VM, Kernel] test/header_search_test.dart: loaded header matching empty and whitespace queries match without inventing observations
+00:00 +10: [VM, Kernel] test/header_search_test.dart: loaded header matching unqualified terms search only subject and sender
+00:00 +11: [VM, Kernel] test/header_search_test.dart: loaded header matching all terms must match and may match different visible headers
+00:00 +12: [VM, Kernel] test/header_search_test.dart: loaded header matching phrases preserve order and whitespace inside a substring
+00:00 +13: [VM, Kernel] test/header_search_test.dart: loaded header matching field names and text are case-insensitive Unicode substrings
+00:00 +14: [VM, Kernel] test/header_search_test.dart: loaded header matching each address group is searched independently
+00:00 +15: [VM, Kernel] test/header_search_test.dart: loaded header matching quoted values decode only escaped quote and backslash
+00:00 +16: [VM, Kernel] test/header_search_test.dart: loaded header matching quoted literals allow reserved punctuation and operator words
+00:00 +17: [VM, Kernel] test/header_search_test.dart: loaded header matching a compiled query can be reused against independent rows
+00:00 +18: [VM, Kernel] test/header_search_test.dart: observed flag predicates every read/flag truth-table state preserves unknown values
+00:00 +19: [VM, Kernel] test/header_search_test.dart: observed flag predicates states are case-insensitive and contradictory states match none
+00:00 +20: [VM, Kernel] test/header_search_test.dart: local calendar dates before and after are exclusive of the complete named day
+00:00 +21: [VM, Kernel] test/header_search_test.dart: local calendar dates UTC instants use the same local day as their display date
+00:00 +22: [VM, Kernel] test/header_search_test.dart: local calendar dates explicit-offset input is converted before comparing calendar days
+00:00 +23: [VM, Kernel] test/header_search_test.dart: local calendar dates missing dates match no date predicate
+00:00 +24: [VM, Kernel] test/header_search_test.dart: local calendar dates valid leap days and four-digit edge years are accepted
+00:00 +25: [VM, Kernel] test/header_search_test.dart: local calendar dates normalized, ambiguous and invalid date values are rejected
+00:00 +26: [VM, Kernel] test/header_search_test.dart: bounded and explicit grammar accepts exactly the code-unit budget and rejects one more
+00:00 +27: [VM, Kernel] test/header_search_test.dart: bounded and explicit grammar accepts exactly 32 terms, including trailing whitespace
+00:00 +28: [VM, Kernel] test/header_search_test.dart: bounded and explicit grammar unknown fields cannot become silent literal searches
+00:00 +29: [VM, Kernel] test/header_search_test.dart: bounded and explicit grammar fields require an adjacent nonempty value
+00:00 +30: [VM, Kernel] test/header_search_test.dart: bounded and explicit grammar unsupported operators, negation, groups and wildcards are explicit
+00:00 +31: [VM, Kernel] test/header_search_test.dart: bounded and explicit grammar invalid states have a typed failure at the value offset
+00:00 +32: [VM, Kernel] test/header_search_test.dart: bounded and explicit grammar quotes cannot be concatenated with bare terms or field keys
+00:00 +33: [VM, Kernel] test/header_search_test.dart: bounded and explicit grammar unsupported and incomplete escapes are rejected
+00:00 +34: [VM, Kernel] test/header_search_test.dart: bounded and explicit grammar control characters cannot hide in bare or quoted values
+00:00 +35: [VM, Kernel] test/header_search_test.dart: bounded and explicit grammar exception strings omit query and message content
+00:00 +36: [VM, Kernel] test/bulk_flags_coordinator_test.dart: frozen bulk flag plan copies selection and rejects subsequent caller mutation
+00:00 +37: [VM, Kernel] test/bulk_flags_coordinator_test.dart: frozen bulk flag plan accepts the exact selection bound and refuses empty/oversized input
+00:00 +38: [VM, Kernel] test/bulk_flags_coordinator_test.dart: frozen bulk flag plan rejects invalid batch IDs without exposing the supplied ID
+00:00 +39: [VM, Kernel] test/bulk_flags_coordinator_test.dart: frozen bulk flag plan rejects structurally equal duplicate remote identities
+00:00 +40: [VM, Kernel] test/bulk_flags_coordinator_test.dart: frozen bulk flag plan does not merge account IDs belonging to different host profiles
+00:00 +41: [VM, Kernel] test/bulk_flags_coordinator_test.dart: frozen bulk flag plan rejects mixed providers and a local provider plan
+00:00 +42: [VM, Kernel] test/bulk_flags_coordinator_test.dart: frozen bulk flag plan IMAP freezes UIDVALIDITY and never accepts another folder
+00:00 +43: [VM, Kernel] test/bulk_flags_coordinator_test.dart: frozen bulk flag plan graph keeps its opaque identity namespace
+00:00 +44: [VM, Kernel] test/bulk_flags_coordinator_test.dart: frozen bulk flag plan gmail keeps its opaque identity namespace
+00:00 +45: [VM, Kernel] test/bulk_flags_coordinator_test.dart: frozen bulk flag plan ews keeps its opaque identity namespace
+00:00 +46: [VM, Kernel] test/bulk_flags_coordinator_test.dart: frozen bulk flag plan jmap keeps its opaque identity namespace
+00:00 +47: [VM, Kernel] test/bulk_flags_coordinator_test.dart: frozen bulk flag plan each action assigns exactly one flag without reading old flags
+00:00 +48: [VM, Kernel] test/bulk_flags_coordinator_test.dart: foreground outcome accounting dispatches sequentially in frozen order and retains the exact lease
+00:00 +49: [VM, Kernel] test/bulk_flags_coordinator_test.dart: foreground outcome accounting definite rejection is retained and does not stop other messages
+00:00 +50: [VM, Kernel] test/bulk_flags_coordinator_test.dart: foreground outcome accounting uncertainty stops immediately and accounts for the remaining selection
+00:00 +51: [VM, Kernel] test/bulk_flags_coordinator_test.dart: foreground outcome accounting an uncertain last reply is never reported as a completed batch
+00:00 +52: [VM, Kernel] test/bulk_flags_coordinator_test.dart: foreground outcome accounting synchronous adapter exceptions are uncertain and omit raw error text
+00:00 +53: [VM, Kernel] test/bulk_flags_coordinator_test.dart: foreground outcome accounting asynchronous failure after dispatch is uncertain without retry
+00:00 +54: [VM, Kernel] test/bulk_flags_coordinator_test.dart: foreground outcome accounting MailCancelled from an invoked adapter cannot prove non-delivery
+00:00 +55: [VM, Kernel] test/bulk_flags_coordinator_test.dart: foreground outcome accounting a coordinator rejects overlap and later replay
+00:00 +56: [VM, Kernel] test/bulk_flags_coordinator_test.dart: scope and cancellation boundaries a foreign account lease dispatches nothing
+00:00 +57: [VM, Kernel] test/bulk_flags_coordinator_test.dart: scope and cancellation boundaries a stale folder before dispatch leaves every identity unattempted
+00:00 +58: [VM, Kernel] test/bulk_flags_coordinator_test.dart: scope and cancellation boundaries a failing scope check before dispatch fails closed
+00:00 +59: [VM, Kernel] test/bulk_flags_coordinator_test.dart: scope and cancellation boundaries invalidation and disposal make a previously captured lease stale
+00:00 +60: [VM, Kernel] test/bulk_flags_coordinator_test.dart: scope and cancellation boundaries a cancelled separate token prevents dispatch without invalidating lease
+00:00 +61: [VM, Kernel] test/bulk_flags_coordinator_test.dart: scope and cancellation boundaries lease cancellation reasons preserve user versus obsolete scope
+00:00 +62: [VM, Kernel] test/bulk_flags_coordinator_test.dart: scope and cancellation boundaries stop waits for the current reply and retains its confirmation
+00:00 +63: [VM, Kernel] test/bulk_flags_compatibility_test.dart: explicit provider checks rather than changes the frozen namespace
+00:00 +64: [VM, Kernel] test/bulk_flags_compatibility_test.dart: explicit provider checks rather than changes the frozen namespace
+00:00 +65: [VM, Kernel] test/bulk_flags_compatibility_test.dart: explicit provider checks rather than changes the frozen namespace
+00:00 +66: [VM, Kernel] test/bulk_flags_compatibility_test.dart: explicit provider checks rather than changes the frozen namespace
+00:00 +67: [VM, Kernel] test/bulk_flags_compatibility_test.dart: explicit provider checks rather than changes the frozen namespace
+00:00 +68: [VM, Kernel] test/bulk_flags_compatibility_test.dart: provider runner receipt retains exact dispatched operations and problem evidence
+00:00 +69: [VM, Kernel] test/bulk_flags_compatibility_test.dart: provider runner uncertainty dominates simultaneous stop and stale scope
+00:00 +70: [VM, Kernel] test/bulk_flags_compatibility_test.dart: provider runner quota evidence false stops the pending tail
+00:00 +71: [VM, Kernel] test/bulk_flags_compatibility_test.dart: provider runner quota evidence true stops the pending tail
+00:00 +72: [VM, Kernel] test/bulk_flags_compatibility_test.dart: provider runner quota evidence null stops the pending tail
+00:00 +73: [VM, Kernel] test/bulk_flags_compatibility_test.dart: provider runner stop from progress retains confirmation even if display throws
+00:00 +74: [VM, Kernel] test/bulk_flags_compatibility_test.dart: provider runner certified MailProblemCode.cancelled failure still stops further dispatch
+00:00 +75: [VM, Kernel] test/bulk_flags_compatibility_test.dart: provider runner certified MailProblemCode.staleOperation failure still stops further dispatch
+00:00 +76: [VM, Kernel] test/bulk_flags_compatibility_test.dart: provider runner certified MailProblemCode.quotaExceeded failure still stops further dispatch
+00:00 +77: [VM, Kernel] test/bulk_flags_compatibility_test.dart: provider runner reentrant lease retirement in guard cannot dispatch (true)
+00:00 +78: [VM, Kernel] test/bulk_flags_compatibility_test.dart: provider runner reentrant lease retirement in guard cannot dispatch (false)
+00:00 +79: [VM, Kernel] test/bulk_flags_compatibility_test.dart: certified coordinator receipt retains exact dispatched operations and problem evidence
+00:00 +80: [VM, Kernel] test/bulk_flags_compatibility_test.dart: certified coordinator uncertainty dominates simultaneous stop and stale scope
+00:00 +81: [VM, Kernel] test/bulk_flags_compatibility_test.dart: certified coordinator quota evidence false stops the pending tail
+00:00 +82: [VM, Kernel] test/bulk_flags_compatibility_test.dart: certified coordinator quota evidence true stops the pending tail
+00:00 +83: [VM, Kernel] test/bulk_flags_compatibility_test.dart: certified coordinator quota evidence null stops the pending tail
+00:00 +84: [VM, Kernel] test/bulk_flags_compatibility_test.dart: certified coordinator stop from progress retains confirmation even if display throws
+00:00 +85: [VM, Kernel] test/bulk_flags_compatibility_test.dart: certified coordinator certified MailProblemCode.cancelled failure still stops further dispatch
+00:00 +86: [VM, Kernel] test/bulk_flags_compatibility_test.dart: certified coordinator certified MailProblemCode.staleOperation failure still stops further dispatch
+00:00 +87: [VM, Kernel] test/bulk_flags_compatibility_test.dart: certified coordinator certified MailProblemCode.quotaExceeded failure still stops further dispatch
+00:00 +88: [VM, Kernel] test/bulk_flags_compatibility_test.dart: certified coordinator reentrant lease retirement in guard cannot dispatch (true)
+00:00 +89: [VM, Kernel] test/bulk_flags_compatibility_test.dart: certified coordinator reentrant lease retirement in guard cannot dispatch (false)
+00:00 +90: [VM, Kernel] test/bulk_flags_compatibility_test.dart: contradictory failed certificate never hides possible mutation
+00:00 +91: [VM, Kernel] test/bulk_flags_compatibility_test.dart: a predispatch scope rejection consumes the single-use coordinator
+00:00 +92: [VM, Kernel] test/bulk_flags_compatibility_test.dart: MailBulkFlagStopReason.staleScope requires a fresh observation even without a dispatched write
+00:00 +93: [VM, Kernel] test/bulk_flags_compatibility_test.dart: MailBulkFlagStopReason.invalidScope requires a fresh observation even without a dispatched write
+00:00 +94: [VM, Kernel] test/bulk_flags_compatibility_test.dart: MailBulkFlagStopReason.scopeCheckFailed requires a fresh observation even without a dispatched write
+00:00 +95: [VM, Kernel] test/ews_identity_test.dart: EWS item IDs retain exact case and opaque punctuation
+00:00 +96: [VM, Kernel] test/ews_identity_test.dart: equal server IDs remain isolated by host, account and provider
+00:00 +97: [VM, Kernel] test/ews_identity_test.dart: an Exchange move can replace the server identity
+00:00 +98: [VM, Kernel] test/ews_identity_test.dart: EWS identities reject empty values and control characters
+00:00 +99: [VM, Kernel] test/ews_identity_test.dart: cross-account Exchange moves fail before provider work
+00:00 +100: [VM, Kernel] test/outbox_test.dart: queued revision, wire and envelope remain frozen through submission
+00:00 +101: [VM, Kernel] test/outbox_test.dart: mixed 250/550 RCPT responses abort every recipient before DATA
+00:00 +102: [VM, Kernel] test/outbox_test.dart: aggregate response does not fabricate recipient-level acceptance
+00:00 +103: [VM, Kernel] test/outbox_test.dart: missing recipient responses stay unknown on aggregate failure
+00:00 +104: [VM, Kernel] test/outbox_test.dart: connection loss after possible acceptance is uncertain and cannot retry
+00:00 +105: [VM, Kernel] test/outbox_test.dart: interrupted submitting state recovers as uncertain, never queued
+00:00 +106: [VM, Kernel] test/outbox_test.dart: definite non-acceptance retries with a fresh attempt identity only
+00:00 +107: [VM, Kernel] test/outbox_test.dart: validated restoration preserves a pending attempt and recovers uncertain
+00:00 +108: [VM, Kernel] test/outbox_test.dart: legacy draft uncertainty requires acknowledgement before queue send
+00:00 +109: [VM, Kernel] test/outbox_test.dart: acknowledged retry preserves older uncertainty after accepted
+00:00 +110: [VM, Kernel] test/outbox_test.dart: acknowledged retry preserves older uncertainty after rejected
+00:00 +111: [VM, Kernel] test/outbox_test.dart: acknowledged retry preserves older uncertainty after retryableFailure
+00:00 +112: [VM, Kernel] test/outbox_test.dart: acknowledged retry preserves older uncertainty after uncertain
+00:00 +113: [VM, Kernel] test/outbox_test.dart: acknowledgement cannot restart ordinary or accepted work
+00:00 +114: [VM, Kernel] test/outbox_test.dart: undo send only cancels work before submission
+00:00 +115: [VM, Kernel] test/outbox_test.dart: unrelated/duplicate recipient results and control injection are rejected
+00:00 +116: [VM, Kernel] test/bulk_flags_test.dart: plan freezes stable identities and rejects list mutation
+00:00 +117: [VM, Kernel] test/bulk_flags_test.dart: plan bounds the selection and operation IDs before work
+00:00 +118: [VM, Kernel] test/bulk_flags_test.dart: duplicate value identities are rejected even in different objects
+00:00 +119: [VM, Kernel] test/bulk_flags_test.dart: wrong account, folder and mixed IMAP generations are rejected
+00:00 +120: [VM, Kernel] test/bulk_flags_test.dart: opaque provider namespaces cannot mix in one selected mailbox
+00:00 +121: [VM, Kernel] test/bulk_flags_test.dart: explicit markRead freezes desired state and ordered IDs
+00:00 +122: [VM, Kernel] test/bulk_flags_test.dart: explicit markUnread freezes desired state and ordered IDs
+00:00 +123: [VM, Kernel] test/bulk_flags_test.dart: explicit flag freezes desired state and ordered IDs
+00:00 +124: [VM, Kernel] test/bulk_flags_test.dart: explicit unflag freezes desired state and ordered IDs
+00:00 +125: [VM, Kernel] test/bulk_flags_test.dart: dispatch is sequential and progress snapshots remain immutable
+00:00 +126: [VM, Kernel] test/bulk_flags_test.dart: certified no-write failure permits independent later commands
+00:00 +127: [VM, Kernel] test/bulk_flags_test.dart: mutation evidence true stops at uncertainty without replay
+00:00 +128: [VM, Kernel] test/bulk_flags_test.dart: mutation evidence null stops at uncertainty without replay
+00:00 +129: [VM, Kernel] test/bulk_flags_test.dart: conflict code with certified no-write evidence is definite
+00:00 +130: [VM, Kernel] test/bulk_flags_test.dart: provider MailProblemCode.cancelled stops even when no mutation occurred
+00:00 +131: [VM, Kernel] test/bulk_flags_test.dart: provider MailProblemCode.staleOperation stops even when no mutation occurred
+00:00 +132: [VM, Kernel] test/bulk_flags_test.dart: callback exception after possible dispatch is uncertain
+00:00 +133: [VM, Kernel] test/bulk_flags_test.dart: wrong-account lease cannot dispatch
+00:00 +134: [VM, Kernel] test/bulk_flags_test.dart: cancellation before dispatch leaves all identities unattempted
+00:00 +135: [VM, Kernel] test/bulk_flags_test.dart: stale account lease cannot dispatch
+00:00 +136: [VM, Kernel] test/bulk_flags_test.dart: disposed account session cannot dispatch
+00:00 +137: [VM, Kernel] test/bulk_flags_test.dart: stale folder predicate (throws=false) rejects selection
+00:00 +138: [VM, Kernel] test/bulk_flags_test.dart: stale folder predicate (throws=true) rejects selection
+00:00 +139: [VM, Kernel] test/bulk_flags_test.dart: successful in-flight result survives scope change but stops next write
+00:00 +140: [VM, Kernel] test/bulk_flags_test.dart: in-flight cancellation cannot erase confirmed acknowledgement
+00:00 +141: [VM, Kernel] test/bulk_flags_test.dart: scope retirement in progress callback prevents next command
+00:00 +142: [VM, Kernel] test/bulk_flags_test.dart: display observer exceptions cannot change command outcomes
+00:00 +143: [VM, Kernel] test/bulk_flags_test.dart: Stop after current preserves acknowledgement without cancelling lease
+00:00 +144: [VM, Kernel] test/bulk_flags_test.dart: Stop before dispatch (throws=false) leaves all unattempted
+00:00 +145: [VM, Kernel] test/bulk_flags_test.dart: Stop before dispatch (throws=true) leaves all unattempted
+00:00 +146: [VM, Kernel] test/imap_sync_range_test.dart: inclusive ranges support the full IMAP UID space and single UIDs
+00:00 +147: [VM, Kernel] test/imap_sync_range_test.dart: range rejects zero UIDVALIDITY
+00:00 +148: [VM, Kernel] test/imap_sync_range_test.dart: range rejects negative UIDVALIDITY
+00:00 +149: [VM, Kernel] test/imap_sync_range_test.dart: range rejects overflow UIDVALIDITY
+00:00 +150: [VM, Kernel] test/imap_sync_range_test.dart: range rejects zero first UID
+00:00 +151: [VM, Kernel] test/imap_sync_range_test.dart: range rejects negative first UID
+00:00 +152: [VM, Kernel] test/imap_sync_range_test.dart: range rejects overflow first UID
+00:00 +153: [VM, Kernel] test/imap_sync_range_test.dart: range rejects zero last UID
+00:00 +154: [VM, Kernel] test/imap_sync_range_test.dart: range rejects negative last UID
+00:00 +155: [VM, Kernel] test/imap_sync_range_test.dart: range rejects overflow last UID
+00:00 +156: [VM, Kernel] test/imap_sync_range_test.dart: range rejects reversed UIDs
+00:00 +157: [VM, Kernel] test/imap_sync_range_test.dart: range scope must match the page even when the page is empty
+00:00 +158: [VM, Kernel] test/imap_sync_range_test.dart: authoritative range rejects HTTPS identity in upserts and tombstones
+00:00 +159: [VM, Kernel] test/imap_sync_range_test.dart: authoritative range rejects different UIDVALIDITY in upserts and tombstones
+00:00 +160: [VM, Kernel] test/imap_sync_range_test.dart: authoritative range rejects UID below range in upserts and tombstones
+00:00 +161: [VM, Kernel] test/imap_sync_range_test.dart: authoritative range rejects UID above range in upserts and tombstones
+00:00 +162: [VM, Kernel] test/imap_sync_range_test.dart: authoritative range rejects different mailbox in upserts and tombstones
+00:00 +163: [VM, Kernel] test/imap_sync_range_test.dart: range pages retain immutable survivor and tombstone snapshots
+00:00 +164: [VM, Kernel] test/cancellation_test.dart: invalidate rejects old callbacks but allows a new generation
+00:00 +165: [VM, Kernel] test/cancellation_test.dart: dispose invalidates all callbacks and cannot reopen a session
+00:00 +166: [VM, Kernel] test/cancellation_test.dart: explicit cancellation is typed and keeps the first reason
+00:00 +167: [VM, Kernel] test/bulk_flags_journal_test.dart: intent and every applying marker commit before the matching provider call
+00:00 +168: [VM, Kernel] test/bulk_flags_journal_test.dart: prepare failure prevents every provider dispatch
+00:00 +169: [VM, Kernel] test/bulk_flags_journal_test.dart: begin:0 failure prevents every provider dispatch
+00:00 +170: [VM, Kernel] test/bulk_flags_journal_test.dart: cancellation during prepare prevents dispatch and retains an unattempted receipt
+00:00 +171: [VM, Kernel] test/bulk_flags_journal_test.dart: cancellation during begin:0 prevents dispatch and retains an unattempted receipt
+00:00 +172: [VM, Kernel] test/bulk_flags_journal_test.dart: scope retirement during prepare prevents dispatch
+00:00 +173: [VM, Kernel] test/bulk_flags_journal_test.dart: scope retirement during begin:0 prevents dispatch
+00:00 +174: [VM, Kernel] test/bulk_flags_journal_test.dart: receipt write failure retains confirmed knowledge and stops later dispatch
+00:00 +175: [VM, Kernel] test/bulk_flags_journal_test.dart: a thrown persistence exception is sanitized and cannot authorize dispatch
+00:00 +176: [VM, Kernel] test/bulk_flags_journal_test.dart: finish failure never discards settled acknowledgements
+00:00 +177: [VM, Kernel] test/bulk_flags_journal_test.dart: a late acknowledgement is persisted even after its view and lease retire
+00:00 +178: [VM, Kernel] test/bulk_flags_journal_test.dart: uncertainty retains precedence and still exposes failed persistence
+00:00 +179: [VM, Kernel] test/bulk_flags_journal_test.dart: a contradictory failed certificate is normalized before persistence
+00:00 +180: [VM, Kernel] test/bulk_flags_journal_test.dart: provider-result runner uses the same durable lifecycle
+00:00 +181: [VM, Kernel] test/bulk_flags_journal_test.dart: restoring receipt cannot change identity, order, desired state or count
+00:00 +182: [VM, Kernel] test/bulk_flags_journal_test.dart: restoration rejects contradictory failure evidence and keeps storage refresh requirement
+00:00 +183: [VM, Kernel] test/sync_runner_test.dart: commits multiple pages and immutable progress including resets
+00:00 +184: [VM, Kernel] test/sync_runner_test.dart: page budget pauses and a later run resumes the persisted cursor
+00:00 +185: [VM, Kernel] test/sync_runner_test.dart: empty continuation pages still commit and consume the budget
+00:00 +186: [VM, Kernel] test/sync_runner_test.dart: second-page provider failure retains the first page without retry
+00:00 +187: [VM, Kernel] test/sync_runner_test.dart: second-page storage failure preserves data and cursor atomically
+00:00 +188: [VM, Kernel] test/sync_runner_test.dart: cancelled before start never reads storage or calls the provider
+00:00 +189: [VM, Kernel] test/sync_runner_test.dart: cancellation while provider awaits prevents a late page commit
+00:00 +190: [VM, Kernel] test/sync_runner_test.dart: account invalidation while provider awaits prevents a late commit
+00:00 +191: [VM, Kernel] test/sync_runner_test.dart: cancelled raw provider failure is classified as cancellation
+00:00 +192: [VM, Kernel] test/sync_runner_test.dart: session invalidation in progress does not start a fresh page lease
+00:00 +193: [VM, Kernel] test/sync_runner_test.dart: cancel during a storage transaction cannot commit the page
+00:00 +194: [VM, Kernel] test/sync_runner_test.dart: cancellation after commit retains its receipt without stale progress
+00:00 +195: [VM, Kernel] test/sync_runner_test.dart: observer cancellation on the terminal page is not completed
+00:00 +196: [VM, Kernel] test/sync_runner_test.dart: observer exceptions do not alter commits or stop later pages
+00:00 +197: [VM, Kernel] test/sync_runner_test.dart: mismatched account fails without storage or provider calls
+00:00 +198: [VM, Kernel] test/sync_runner_test.dart: mismatched mailbox account fails before storage access
+00:00 +199: [VM, Kernel] test/sync_runner_test.dart: disposed session returns stale operation before accessing storage
+00:00 +200: [VM, Kernel] test/sync_runner_test.dart: invalid pageSize -1 has no side effects
+00:00 +201: [VM, Kernel] test/bulk_flags_provider_results_test.dart: provider result adaptation preserves evidence, not just error codes
+00:00 +202: [VM, Kernel] test/bulk_flags_provider_results_test.dart: provider result adaptation preserves evidence, not just error codes
+00:00 +203: [VM, Kernel] test/bulk_flags_provider_results_test.dart: provider result adaptation preserves evidence, not just error codes
+00:00 +204: [VM, Kernel] test/bulk_flags_provider_results_test.dart: provider result adaptation preserves evidence, not just error codes
+00:00 +205: [VM, Kernel] test/bulk_flags_provider_results_test.dart: provider result adaptation preserves evidence, not just error codes
+00:00 +206: [VM, Kernel] test/bulk_flags_provider_results_test.dart: provider result adaptation preserves evidence, not just error codes
+00:00 +207: [VM, Kernel] test/bulk_flags_provider_results_test.dart: provider result adaptation preserves evidence, not just error codes
+00:00 +208: [VM, Kernel] test/bulk_flags_provider_results_test.dart: provider result adaptation preserves evidence, not just error codes
+00:00 +209: [VM, Kernel] test/bulk_flags_provider_results_test.dart: provider result adaptation preserves evidence, not just error codes
+00:00 +210: [VM, Kernel] test/bulk_flags_provider_results_test.dart: provider result adaptation preserves evidence, not just error codes
+00:00 +211: [VM, Kernel] test/bulk_flags_provider_results_test.dart: provider result adaptation preserves evidence, not just error codes
+00:00 +212: [VM, Kernel] test/bulk_flags_provider_results_test.dart: provider result adaptation preserves evidence, not just error codes
+00:00 +213: [VM, Kernel] test/sync_runner_test.dart: cursor change between pages stops before another provider fetch
+00:00 +214: [VM, Kernel] test/bulk_flags_provider_results_test.dart: plan freezes stable identities and rejects list mutation
+00:00 +215: [VM, Kernel] test/bulk_flags_provider_results_test.dart: plan freezes stable identities and rejects list mutation
+00:00 +216: [VM, Kernel] test/bulk_flags_provider_results_test.dart: plan freezes stable identities and rejects list mutation
+00:00 +217: [VM, Kernel] test/bulk_flags_provider_results_test.dart: plan freezes stable identities and rejects list mutation
+00:00 +218: [VM, Kernel] test/bulk_flags_provider_results_test.dart: plan freezes stable identities and rejects list mutation
+00:00 +219: [VM, Kernel] test/bulk_flags_provider_results_test.dart: plan freezes stable identities and rejects list mutation
+00:00 +220: [VM, Kernel] test/bulk_flags_provider_results_test.dart: plan freezes stable identities and rejects list mutation
+00:00 +221: [VM, Kernel] test/bulk_flags_provider_results_test.dart: plan bounds the selection and operation IDs before work
+00:00 +222: [VM, Kernel] test/bulk_flags_provider_results_test.dart: duplicate value identities are rejected even in different objects
+00:00 +223: [VM, Kernel] test/bulk_flags_provider_results_test.dart: wrong account, folder and mixed IMAP generations are rejected
+00:00 +224: [VM, Kernel] test/bulk_flags_provider_results_test.dart: opaque provider namespaces cannot mix in one selected mailbox
+00:00 +225: [VM, Kernel] test/bulk_flags_provider_results_test.dart: explicit markRead freezes desired state and ordered IDs
+00:00 +226: [VM, Kernel] test/bulk_flags_provider_results_test.dart: explicit markUnread freezes desired state and ordered IDs
+00:00 +227: [VM, Kernel] test/bulk_flags_provider_results_test.dart: explicit flag freezes desired state and ordered IDs
+00:00 +228: [VM, Kernel] test/bulk_flags_provider_results_test.dart: explicit unflag freezes desired state and ordered IDs
+00:00 +229: [VM, Kernel] test/bulk_flags_provider_results_test.dart: dispatch is sequential and progress snapshots remain immutable
+00:00 +230: [VM, Kernel] test/bulk_flags_provider_results_test.dart: certified no-write failure permits independent later commands
+00:00 +231: [VM, Kernel] test/bulk_flags_provider_results_test.dart: mutation evidence true stops at uncertainty without replay
+00:00 +232: [VM, Kernel] test/bulk_flags_provider_results_test.dart: mutation evidence null stops at uncertainty without replay
+00:00 +233: [VM, Kernel] test/bulk_flags_provider_results_test.dart: conflict code with certified no-write evidence is definite
+00:00 +234: [VM, Kernel] test/bulk_flags_provider_results_test.dart: quota evidence false stops without retry or later dispatch
+00:00 +235: [VM, Kernel] test/bulk_flags_provider_results_test.dart: quota evidence true stops without retry or later dispatch
+00:00 +236: [VM, Kernel] test/bulk_flags_provider_results_test.dart: quota evidence null stops without retry or later dispatch
+00:00 +237: [VM, Kernel] test/bulk_flags_provider_results_test.dart: provider MailProblemCode.cancelled stops even when no mutation occurred
+00:00 +238: [VM, Kernel] test/bulk_flags_provider_results_test.dart: provider MailProblemCode.staleOperation stops even when no mutation occurred
+00:00 +239: [VM, Kernel] test/bulk_flags_provider_results_test.dart: callback exception after possible dispatch is uncertain
+00:00 +240: [VM, Kernel] test/bulk_flags_provider_results_test.dart: wrong-account lease cannot dispatch
+00:00 +241: [VM, Kernel] test/bulk_flags_provider_results_test.dart: cancellation before dispatch leaves all identities unattempted
+00:00 +242: [VM, Kernel] test/bulk_flags_provider_results_test.dart: stale account lease cannot dispatch
+00:00 +243: [VM, Kernel] test/bulk_flags_provider_results_test.dart: disposed account session cannot dispatch
+00:00 +244: [VM, Kernel] test/bulk_flags_provider_results_test.dart: stale folder predicate (throws=false) rejects selection
+00:00 +245: [VM, Kernel] test/bulk_flags_provider_results_test.dart: stale folder predicate (throws=true) rejects selection
+00:00 +246: [VM, Kernel] test/bulk_flags_provider_results_test.dart: successful in-flight result survives scope change but stops next write
+00:00 +247: [VM, Kernel] test/bulk_flags_provider_results_test.dart: in-flight cancellation cannot erase confirmed acknowledgement
+00:00 +248: [VM, Kernel] test/bulk_flags_provider_results_test.dart: scope retirement in progress callback prevents next command
+00:00 +249: [VM, Kernel] test/bulk_flags_provider_results_test.dart: display observer exceptions cannot change command outcomes
+00:00 +250: [VM, Kernel] test/bulk_flags_provider_results_test.dart: initial progress observer can retire scope before any dispatch
+00:00 +251: [VM, Kernel] test/bulk_flags_provider_results_test.dart: last progress observer cannot make a retired scope current
+00:00 +252: [VM, Kernel] test/bulk_flags_provider_results_test.dart: Stop after current preserves acknowledgement without cancelling lease
+00:00 +253: [VM, Kernel] test/bulk_flags_provider_results_test.dart: Stop before dispatch (throws=false) leaves all unattempted
+00:00 +254: [VM, Kernel] test/bulk_flags_provider_results_test.dart: Stop before dispatch (throws=true) leaves all unattempted
+00:00 +255: [VM, Kernel] test/models_test.dart: observed standard flags have value equality and an empty snapshot
+00:00 +256: [VM, Kernel] test/models_test.dart: snapshots own bytes, including buffer views and export copies
+00:00 +257: [VM, Kernel] test/models_test.dart: message headers and attachments do not alias mutable input lists
+00:00 +258: [VM, Kernel] test/models_test.dart: parse result cannot claim success without a message
+00:00 +259: [VM, Kernel] test/models_test.dart: full and preview budgets preserve planned resource bounds
+00:00 +260: [VM, Kernel] test/models_test.dart: profile and account identities cannot alias between products
+00:00 +261: [VM, Kernel] test/outbox_management_test.dart: closing first uncertainty retains the unknown actual result
+00:00 +262: [VM, Kernel] test/outbox_management_test.dart: closing first uncertainty retains the unknown actual result
+00:00 +263: [VM, Kernel] test/outbox_management_test.dart: closing first uncertainty retains the unknown actual result
+00:00 +264: [VM, Kernel] test/outbox_management_test.dart: closing first uncertainty retains the unknown actual result
+00:00 +265: [VM, Kernel] test/outbox_management_test.dart: inherited uncertainty closes without inventing an attempt
+00:00 +266: [VM, Kernel] test/outbox_management_test.dart: closing later rejected preserves older uncertainty
+00:00 +267: [VM, Kernel] test/outbox_management_test.dart: closing later retryableFailure preserves older uncertainty
+00:00 +268: [VM, Kernel] test/outbox_management_test.dart: closing later uncertain preserves older uncertainty
+00:00 +269: [VM, Kernel] test/outbox_management_test.dart: ordinary queued, active, accepted and cancelled work cannot close
+00:00 +270: [VM, Kernel] test/outbox_management_test.dart: restoration rejects closure without retained uncertain history
+00:00 +271: All tests passed!

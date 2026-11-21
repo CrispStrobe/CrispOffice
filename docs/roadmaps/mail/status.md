@@ -1,5 +1,25 @@
 # Mail implementation status — 21 November 2026
 
+## Resumable foreground folder synchronization
+
+Native IMAP, EWS, Gmail and Microsoft 365 now expose **Synchronized mail** with
+explicit Start/Continue/Check for changes, bounded ten-page runs, Stop, durable
+checkpoints and a local paginated header view. Reconnecting to the same account
+resumes its stored cursor under a fresh session lease. **Cached mail** can reopen
+these synchronized folders and previously retained bodies without credentials.
+No known checkpoint, partial scan and completed observation remain distinct.
+
+Schema v8 commits sync state together with each page and preserves older cursors
+without fabricating completion. Canonical cached IDs retain existing bodies;
+reset/deletion preserves drafts and command receipts. Close drains active work
+before the shared owner is released. English, German and Arabic controls retain
+the distinction between local saved counts and current server state.
+
+See the [durable-sync contract](durable-sync.md) and
+[local qualification](../../validation/mail-sync-foundation-20261121/README.md).
+Background scheduling, automatic body retention, unified account queries,
+server Drafts and the complete reusable workspace remain open.
+
 ## Repository-observed foreground and cached sessions
 
 The [repository session continuation](repository-sessions.md) adds bounded
@@ -13,9 +33,10 @@ subscriptions before the shared owner closes.
 
 Failures retain the last valid saved view with an error; connected online
 fallback remains explicit when persistence or observation fails. This advances
-the repository session boundary but does not provide authoritative/background
-synchronization, a unified inbox, account-wide search or the complete shared
-`QudsMailWorkspace`. See the
+the repository session boundary. The explicit synchronization continuation above
+adds a separate durable membership view; background synchronization, a unified
+inbox, account-wide search and the complete shared
+`QudsMailWorkspace` remain open. See the
 [local qualification record](../../validation/mail-repository-sessions-20261121/README.md)
 for actual source checkpoints and checks without waiting for GitHub Actions.
 

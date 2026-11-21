@@ -1,0 +1,257 @@
+00:00 +0: [VM, Kernel] loading test/native_provider_test.dart
+00:00 +0: [VM, Kernel] test/native_provider_test.dart: bulk IMAP failures distinguish stale generation from uncertain STORE
+00:00 +1: [VM, Kernel] test/uid_discovery_test.dart: sparse unordered discovery pages near the 32-bit UID ceiling
+00:00 +2: [VM, Kernel] test/uid_discovery_test.dart: sparse unordered discovery pages near the 32-bit UID ceiling
+00:00 +3: [VM, Kernel] test/uid_discovery_test.dart: sparse unordered discovery pages near the 32-bit UID ceiling
+00:00 +4: [VM, Kernel] test/uid_discovery_test.dart: sparse unordered discovery pages near the 32-bit UID ceiling
+00:00 +5: [VM, Kernel] test/uid_discovery_test.dart: sparse unordered discovery pages near the 32-bit UID ceiling
+00:00 +6: [VM, Kernel] test/uid_discovery_test.dart: sparse unordered discovery pages near the 32-bit UID ceiling
+00:00 +7: [VM, Kernel] test/uid_discovery_test.dart: sparse unordered discovery pages near the 32-bit UID ceiling
+00:00 +8: [VM, Kernel] test/uid_discovery_test.dart: sparse unordered discovery pages near the 32-bit UID ceiling
+00:00 +9: [VM, Kernel] test/uid_discovery_test.dart: sparse unordered discovery pages near the 32-bit UID ceiling
+00:00 +10: [VM, Kernel] test/uid_discovery_test.dart: sparse unordered discovery pages near the 32-bit UID ceiling
+00:00 +11: [VM, Kernel] test/uid_discovery_test.dart: sparse unordered discovery pages near the 32-bit UID ceiling
+00:00 +12: [VM, Kernel] test/native_provider_test.dart: capabilities do not promise SMTP, calendar or missing MOVE extension
+00:00 +13: [VM, Kernel] test/native_provider_test.dart: capabilities do not promise SMTP, calendar or missing MOVE extension
+00:00 +14: [VM, Kernel] test/native_provider_test.dart: capabilities do not promise SMTP, calendar or missing MOVE extension
+00:00 +15: [VM, Kernel] test/uid_discovery_test.dart: a never-populated mailbox has no invalid zero-UID search range
+00:00 +16: [VM, Kernel] test/uid_discovery_test.dart: a never-populated mailbox has no invalid zero-UID search range
+00:00 +17: [VM, Kernel] test/native_provider_test.dart: missing and rejected credentials are typed and never reused from cache
+00:00 +18: [VM, Kernel] test/uid_discovery_test.dart: new arrivals beyond the frozen ceiling enter the next sweep
+00:00 +19: [VM, Kernel] test/uid_discovery_test.dart: new arrivals beyond the frozen ceiling enter the next sweep
+00:00 +20: [VM, Kernel] test/native_provider_test.dart: discovered UID pages retain flags and reconcile gaps with scoped ranges
+00:00 +21: [VM, Kernel] test/native_provider_test.dart: discovered UID pages retain flags and reconcile gaps with scoped ranges
+00:00 +22: [VM, Kernel] test/native_provider_test.dart: discovered UID pages retain flags and reconcile gaps with scoped ranges
+00:00 +23: [VM, Kernel] test/native_provider_test.dart: discovered UID pages retain flags and reconcile gaps with scoped ranges
+00:00 +24: [VM, Kernel] test/uid_discovery_test.dart: revision exhaustion fails before protocol work without wrapping
+00:00 +25: [VM, Kernel] test/uid_discovery_test.dart: revision exhaustion fails before protocol work without wrapping
+00:00 +26: [VM, Kernel] test/native_provider_test.dart: ordinary multipart source synchronizes only requested envelope headers
+00:00 +27: [VM, Kernel] test/uid_discovery_test.dart: UIDVALIDITY rollover discards an old high-UID continuation
+00:00 +28: [VM, Kernel] test/uid_discovery_test.dart: UIDVALIDITY rollover discards an old high-UID continuation
+00:00 +29: [VM, Kernel] test/ews_provider_test.dart: read-only flag observation reads exact current flags without envelope, MIME or mutation
+00:00 +30: [VM, Kernel] test/ews_provider_test.dart: read-only flag observation reads exact current flags without envelope, MIME or mutation
+00:00 +31: [VM, Kernel] test/ews_provider_test.dart: read-only flag observation reads exact current flags without envelope, MIME or mutation
+00:00 +32: [VM, Kernel] test/ews_provider_test.dart: read-only flag observation reads exact current flags without envelope, MIME or mutation
+00:00 +33: [VM, Kernel] test/ews_provider_test.dart: read-only flag observation reads exact current flags without envelope, MIME or mutation
+00:00 +34: [VM, Kernel] test/ews_provider_test.dart: read-only flag observation reads exact current flags without envelope, MIME or mutation
+00:00 +35: [VM, Kernel] test/ews_provider_test.dart: read-only flag observation reads exact current flags without envelope, MIME or mutation
+00:00 +36: [VM, Kernel] test/ews_provider_test.dart: read-only flag observation reads exact current flags without envelope, MIME or mutation
+00:00 +37: [VM, Kernel] test/ews_provider_test.dart: read-only flag observation reads exact current flags without envelope, MIME or mutation
+00:00 +38: [VM, Kernel] test/ews_provider_test.dart: read-only flag observation reads exact current flags without envelope, MIME or mutation
+00:00 +39: [VM, Kernel] test/ews_provider_test.dart: read-only flag observation reads exact current flags without envelope, MIME or mutation
+00:00 +40: [VM, Kernel] test/ews_provider_test.dart: read-only flag observation reads exact current flags without envelope, MIME or mutation
+00:00 +41: [VM, Kernel] test/ews_provider_test.dart: read-only flag observation reads exact current flags without envelope, MIME or mutation
+00:00 +42: [VM, Kernel] test/ews_provider_test.dart: read-only flag observation reads exact current flags without envelope, MIME or mutation
+00:00 +43: [VM, Kernel] test/ews_provider_test.dart: read-only flag observation reads exact current flags without envelope, MIME or mutation
+00:00 +44: [VM, Kernel] test/ews_provider_test.dart: read-only flag observation reads exact current flags without envelope, MIME or mutation
+00:00 +45: [VM, Kernel] test/ews_provider_test.dart: read-only flag observation reads exact current flags without envelope, MIME or mutation
+00:00 +46: [VM, Kernel] test/ews_provider_test.dart: read-only flag observation reads exact current flags without envelope, MIME or mutation
+00:00 +47: [VM, Kernel] test/ews_provider_test.dart: read-only flag observation reads exact current flags without envelope, MIME or mutation
+00:00 +48: [VM, Kernel] test/ews_provider_test.dart: read-only flag observation reads exact current flags without envelope, MIME or mutation
+00:00 +49: [VM, Kernel] test/ews_provider_test.dart: read-only flag observation reads exact current flags without envelope, MIME or mutation
+00:00 +50: [VM, Kernel] test/ews_provider_test.dart: read-only flag observation reads exact current flags without envelope, MIME or mutation
+00:00 +51: [VM, Kernel] test/ews_provider_test.dart: read-only flag observation reads exact current flags without envelope, MIME or mutation
+00:00 +52: [VM, Kernel] test/ews_provider_test.dart: read-only flag observation reads exact current flags without envelope, MIME or mutation
+00:00 +53: [VM, Kernel] test/ews_provider_test.dart: read-only flag observation reads exact current flags without envelope, MIME or mutation
+00:00 +54: [VM, Kernel] test/native_provider_test.dart: malformed notification with duplicate UID fails atomically
+00:00 +55: [VM, Kernel] test/uid_discovery_test.dart: SEARCH status prose and mixed-case data preserve valid discovery
+00:00 +56: [VM, Kernel] test/ews_provider_test.dart: read-only flag observation explicit item-not-found is current absence only
+00:00 +57: [VM, Kernel] test/ews_provider_test.dart: read-only flag observation explicit item-not-found is current absence only
+00:00 +58: [VM, Kernel] test/native_provider_test.dart: malformed notification with duplicate flags fails atomically
+00:00 +59: [VM, Kernel] test/uid_discovery_test.dart: discovery count limits fail atomically and release the provider
+00:00 +60: [VM, Kernel] test/uid_discovery_test.dart: discovery count limits fail atomically and release the provider
+00:00 +61: [VM, Kernel] test/ews_provider_test.dart: read-only flag observation omitted <t:IsRead>false</t:IsRead> does not fabricate a known false
+00:00 +62: [VM, Kernel] test/ews_provider_test.dart: read-only flag observation omitted <t:IsRead>false</t:IsRead> does not fabricate a known false
+00:00 +63: [VM, Kernel] test/uid_discovery_test.dart: discovery obeys the protocol line budget before parsing a prefix
+00:00 +64: [VM, Kernel] test/uid_discovery_test.dart: discovery obeys the protocol line budget before parsing a prefix
+00:00 +65: [VM, Kernel] test/uid_discovery_test.dart: discovery obeys the protocol line budget before parsing a prefix
+00:00 +66: [VM, Kernel] test/ews_provider_test.dart: read-only flag observation omitted <t:Flag><t:FlagStatus>NotFlagged</t:FlagStatus></t:Flag> does not fabricate a known false
+00:00 +67: [VM, Kernel] test/ews_provider_test.dart: read-only flag observation omitted <t:Flag><t:FlagStatus>NotFlagged</t:FlagStatus></t:Flag> does not fabricate a known false
+00:00 +68: [VM, Kernel] test/native_provider_test.dart: late sequence flag update prevents false STORE confirmation
+00:00 +69: [VM, Kernel] test/uid_discovery_test.dart: cancelling stalled SEARCH prevents FETCH and allows a fresh operation
+00:00 +70: [VM, Kernel] test/uid_discovery_test.dart: cancelling stalled SEARCH prevents FETCH and allows a fresh operation
+00:00 +71: [VM, Kernel] test/uid_discovery_test.dart: cancelling stalled SEARCH prevents FETCH and allows a fresh operation
+00:00 +72: [VM, Kernel] test/uid_discovery_test.dart: cancelling stalled SEARCH prevents FETCH and allows a fresh operation
+00:00 +73: [VM, Kernel] test/uid_discovery_test.dart: cancelling stalled SEARCH prevents FETCH and allows a fresh operation
+00:00 +74: [VM, Kernel] test/uid_discovery_test.dart: cancelling stalled SEARCH prevents FETCH and allows a fresh operation
+00:00 +75: [VM, Kernel] test/uid_discovery_test.dart: cancelling stalled SEARCH prevents FETCH and allows a fresh operation
+00:00 +76: [VM, Kernel] test/uid_discovery_test.dart: cancelling stalled SEARCH prevents FETCH and allows a fresh operation
+00:00 +77: [VM, Kernel] test/uid_discovery_test.dart: cancelling stalled SEARCH prevents FETCH and allows a fresh operation
+00:00 +78: [VM, Kernel] test/uid_discovery_test.dart: cancelling stalled SEARCH prevents FETCH and allows a fresh operation
+00:00 +79: [VM, Kernel] test/ews_provider_test.dart: read-only flag observation late observation cannot survive cancellation or account retirement
+00:00 +80: [VM, Kernel] test/ews_provider_test.dart: read-only flag observation late observation cannot survive cancellation or account retirement
+00:00 +81: [VM, Kernel] test/native_provider_test.dart: on-demand literal retains bare LF and non-UTF8 octets without reserialization
+00:00 +82: [VM, Kernel] test/cloud_provider_test.dart: read-only flag observation gmail reads exact fresh flags using metadata only
+00:00 +83: [VM, Kernel] test/cloud_provider_test.dart: read-only flag observation gmail reads exact fresh flags using metadata only
+00:00 +84: [VM, Kernel] test/cloud_provider_test.dart: read-only flag observation gmail reads exact fresh flags using metadata only
+00:00 +85: [VM, Kernel] test/cloud_provider_test.dart: read-only flag observation gmail reads exact fresh flags using metadata only
+00:00 +86: [VM, Kernel] test/cloud_provider_test.dart: read-only flag observation gmail reads exact fresh flags using metadata only
+00:00 +87: [VM, Kernel] test/cloud_provider_test.dart: read-only flag observation gmail reads exact fresh flags using metadata only
+00:00 +88: [VM, Kernel] test/cloud_provider_test.dart: read-only flag observation gmail reads exact fresh flags using metadata only
+00:00 +89: [VM, Kernel] test/cloud_provider_test.dart: read-only flag observation gmail reads exact fresh flags using metadata only
+00:00 +90: [VM, Kernel] test/cloud_provider_test.dart: read-only flag observation gmail reads exact fresh flags using metadata only
+00:00 +91: [VM, Kernel] test/cloud_provider_test.dart: read-only flag observation gmail reads exact fresh flags using metadata only
+00:00 +92: [VM, Kernel] test/cloud_provider_test.dart: read-only flag observation gmail reads exact fresh flags using metadata only
+00:00 +93: [VM, Kernel] test/cloud_provider_test.dart: read-only flag observation gmail reads exact fresh flags using metadata only
+00:00 +94: [VM, Kernel] test/cloud_provider_test.dart: read-only flag observation gmail reads exact fresh flags using metadata only
+00:00 +95: [VM, Kernel] test/cloud_provider_test.dart: read-only flag observation gmail reads exact fresh flags using metadata only
+00:00 +96: [VM, Kernel] test/cloud_provider_test.dart: read-only flag observation gmail reads exact fresh flags using metadata only
+00:00 +97: [VM, Kernel] test/cloud_provider_test.dart: read-only flag observation gmail reads exact fresh flags using metadata only
+00:00 +98: [VM, Kernel] test/cloud_provider_test.dart: read-only flag observation gmail reads exact fresh flags using metadata only
+00:00 +99: [VM, Kernel] test/cloud_provider_test.dart: read-only flag observation gmail reads exact fresh flags using metadata only
+00:00 +100: [VM, Kernel] test/cloud_provider_test.dart: read-only flag observation gmail reads exact fresh flags using metadata only
+00:00 +101: [VM, Kernel] test/cloud_provider_test.dart: read-only flag observation gmail reads exact fresh flags using metadata only
+00:00 +102: [VM, Kernel] test/cloud_provider_test.dart: read-only flag observation gmail reads exact fresh flags using metadata only
+00:00 +103: [VM, Kernel] test/cloud_provider_test.dart: read-only flag observation gmail reads exact fresh flags using metadata only
+00:00 +104: [VM, Kernel] test/cloud_provider_test.dart: read-only flag observation gmail reads exact fresh flags using metadata only
+00:00 +105: [VM, Kernel] test/ews_provider_test.dart: repeated empty SyncState advances durable revision
+00:00 +106: [VM, Kernel] test/native_provider_test.dart: timeout destroys the connection and rejects a delayed completion
+00:00 +107: [VM, Kernel] test/native_provider_test.dart: timeout destroys the connection and rejects a delayed completion
+00:00 +108: [VM, Kernel] test/native_provider_test.dart: timeout destroys the connection and rejects a delayed completion
+00:00 +109: [VM, Kernel] test/native_provider_test.dart: timeout destroys the connection and rejects a delayed completion
+00:00 +110: [VM, Kernel] test/native_provider_test.dart: timeout destroys the connection and rejects a delayed completion
+00:00 +111: [VM, Kernel] test/native_provider_test.dart: timeout destroys the connection and rejects a delayed completion
+00:00 +112: [VM, Kernel] test/native_provider_test.dart: timeout destroys the connection and rejects a delayed completion
+00:00 +113: [VM, Kernel] test/native_provider_test.dart: timeout destroys the connection and rejects a delayed completion
+00:00 +114: [VM, Kernel] test/native_provider_test.dart: timeout destroys the connection and rejects a delayed completion
+00:00 +115: [VM, Kernel] test/native_provider_test.dart: timeout destroys the connection and rejects a delayed completion
+00:00 +116: [VM, Kernel] test/native_provider_test.dart: timeout destroys the connection and rejects a delayed completion
+00:00 +117: [VM, Kernel] test/native_provider_test.dart: timeout destroys the connection and rejects a delayed completion
+00:00 +118: [VM, Kernel] test/native_provider_test.dart: timeout destroys the connection and rejects a delayed completion
+00:00 +119: [VM, Kernel] test/native_provider_test.dart: timeout destroys the connection and rejects a delayed completion
+00:00 +120: [VM, Kernel] test/native_provider_test.dart: timeout destroys the connection and rejects a delayed completion
+00:00 +121: [VM, Kernel] test/native_provider_test.dart: timeout destroys the connection and rejects a delayed completion
+00:00 +122: [VM, Kernel] test/native_provider_test.dart: timeout destroys the connection and rejects a delayed completion
+00:00 +123: [VM, Kernel] test/native_provider_test.dart: timeout destroys the connection and rejects a delayed completion
+00:00 +124: [VM, Kernel] test/native_provider_test.dart: timeout destroys the connection and rejects a delayed completion
+00:00 +125: [VM, Kernel] test/native_provider_test.dart: timeout destroys the connection and rejects a delayed completion
+00:00 +126: [VM, Kernel] test/native_provider_test.dart: timeout destroys the connection and rejects a delayed completion
+00:00 +127: [VM, Kernel] test/native_provider_test.dart: timeout destroys the connection and rejects a delayed completion
+00:00 +128: [VM, Kernel] test/native_provider_test.dart: timeout destroys the connection and rejects a delayed completion
+00:00 +129: [VM, Kernel] test/native_provider_test.dart: timeout destroys the connection and rejects a delayed completion
+00:00 +130: [VM, Kernel] test/native_provider_test.dart: timeout destroys the connection and rejects a delayed completion
+00:00 +131: [VM, Kernel] test/native_provider_test.dart: timeout destroys the connection and rejects a delayed completion
+00:00 +132: [VM, Kernel] test/native_provider_test.dart: timeout destroys the connection and rejects a delayed completion
+00:00 +133: [VM, Kernel] test/native_provider_test.dart: timeout destroys the connection and rejects a delayed completion
+00:00 +134: [VM, Kernel] test/native_provider_test.dart: timeout destroys the connection and rejects a delayed completion
+00:00 +135: [VM, Kernel] test/native_provider_test.dart: timeout destroys the connection and rejects a delayed completion
+00:00 +136: [VM, Kernel] test/native_provider_test.dart: timeout destroys the connection and rejects a delayed completion
+00:00 +137: [VM, Kernel] test/native_provider_test.dart: timeout destroys the connection and rejects a delayed completion
+00:00 +138: [VM, Kernel] test/native_provider_test.dart: timeout destroys the connection and rejects a delayed completion
+00:00 +139: [VM, Kernel] test/native_provider_test.dart: timeout destroys the connection and rejects a delayed completion
+00:00 +140: [VM, Kernel] test/native_provider_test.dart: timeout destroys the connection and rejects a delayed completion
+00:00 +141: [VM, Kernel] test/native_provider_test.dart: timeout destroys the connection and rejects a delayed completion
+00:00 +142: [VM, Kernel] test/native_provider_test.dart: timeout destroys the connection and rejects a delayed completion
+00:00 +143: [VM, Kernel] test/native_provider_test.dart: timeout destroys the connection and rejects a delayed completion
+00:00 +144: [VM, Kernel] test/native_provider_test.dart: timeout destroys the connection and rejects a delayed completion
+00:00 +145: [VM, Kernel] test/native_provider_test.dart: timeout destroys the connection and rejects a delayed completion
+00:00 +146: [VM, Kernel] test/cloud_provider_test.dart: gmail transport failure preserves mutation evidence true
+00:00 +147: [VM, Kernel] test/ews_provider_test.dart: timeout aborts pending request and provider accepts fresh work
+00:00 +148: [VM, Kernel] test/ews_provider_test.dart: timeout aborts pending request and provider accepts fresh work
+00:00 +149: [VM, Kernel] test/ews_provider_test.dart: timeout aborts pending request and provider accepts fresh work
+00:00 +150: [VM, Kernel] test/ews_provider_test.dart: timeout aborts pending request and provider accepts fresh work
+00:00 +151: [VM, Kernel] test/ews_provider_test.dart: timeout aborts pending request and provider accepts fresh work
+00:00 +152: [VM, Kernel] test/ews_provider_test.dart: timeout aborts pending request and provider accepts fresh work
+00:00 +153: [VM, Kernel] test/ews_provider_test.dart: timeout aborts pending request and provider accepts fresh work
+00:00 +154: [VM, Kernel] test/ews_provider_test.dart: timeout aborts pending request and provider accepts fresh work
+00:00 +155: [VM, Kernel] test/ews_provider_test.dart: timeout aborts pending request and provider accepts fresh work
+00:00 +156: [VM, Kernel] test/ews_provider_test.dart: timeout aborts pending request and provider accepts fresh work
+00:00 +157: [VM, Kernel] test/ews_provider_test.dart: timeout aborts pending request and provider accepts fresh work
+00:00 +158: [VM, Kernel] test/ews_provider_test.dart: timeout aborts pending request and provider accepts fresh work
+00:00 +159: [VM, Kernel] test/ews_provider_test.dart: timeout aborts pending request and provider accepts fresh work
+00:00 +160: [VM, Kernel] test/ews_provider_test.dart: timeout aborts pending request and provider accepts fresh work
+00:00 +161: [VM, Kernel] test/ews_provider_test.dart: timeout aborts pending request and provider accepts fresh work
+00:00 +162: [VM, Kernel] test/ews_provider_test.dart: timeout aborts pending request and provider accepts fresh work
+00:00 +163: [VM, Kernel] test/native_provider_test.dart: vault completion after cancellation cannot open a connection
+00:00 +164: [VM, Kernel] test/cloud_provider_test.dart: gmail bounded operation timeout prevents later mailbox work
+00:00 +165: [VM, Kernel] test/cloud_provider_test.dart: gmail bounded operation timeout prevents later mailbox work
+00:00 +166: [VM, Kernel] test/cloud_provider_test.dart: gmail bounded operation timeout prevents later mailbox work
+00:00 +167: [VM, Kernel] test/cloud_provider_test.dart: gmail bounded operation timeout prevents later mailbox work
+00:00 +168: [VM, Kernel] test/native_provider_test.dart: MOVE requires capability and verifies source absence without global EXPUNGE
+00:00 +169: [VM, Kernel] test/cloud_provider_test.dart: gmail parallel operations fail safely and disposal closes only transport
+00:00 +170: [VM, Kernel] test/cloud_provider_test.dart: gmail parallel operations fail safely and disposal closes only transport
+00:00 +171: [VM, Kernel] test/cloud_provider_test.dart: gmail parallel operations fail safely and disposal closes only transport
+00:00 +172: [VM, Kernel] test/cloud_provider_test.dart: gmail parallel operations fail safely and disposal closes only transport
+00:00 +173: [VM, Kernel] test/cloud_provider_test.dart: gmail HTTP errors carry useful safe classifications and retry delay
+00:00 +174: [VM, Kernel] test/cloud_provider_test.dart: gmail malformed and oversized success responses are never empty success
+00:00 +175: [VM, Kernel] test/cloud_provider_test.dart: gmail request budget prevents unbounded service traversal
+00:00 +176: [VM, Kernel] test/cloud_provider_test.dart: gmail raw MIME retrieval reuses bounded codec and stable scoped identity
+00:00 +177: [VM, Kernel] test/cloud_provider_test.dart: gmail successful API sends restore hidden recipients without modifying frozen wire
+00:00 +178: [VM, Kernel] test/cloud_provider_test.dart: gmail sender mismatch and unapproved visible recipient cannot send
+00:00 +179: [VM, Kernel] test/cloud_provider_test.dart: gmail potentially accepted send is uncertain and is attempted exactly once
+00:00 +180: [VM, Kernel] test/cloud_provider_test.dart: gmail definite send rejection is distinguished from a lost response
+00:00 +181: [VM, Kernel] test/cloud_provider_test.dart: gmail unfamiliar explicit send rejection retains submission policy
+00:00 +182: [VM, Kernel] test/cloud_provider_test.dart: gmail definite send 404 is rejected without uncertainty or replay
+00:00 +183: [VM, Kernel] test/cloud_provider_test.dart: gmail definite send 409 is rejected without uncertainty or replay
+00:00 +184: [VM, Kernel] test/cloud_provider_test.dart: gmail definite send 410 is rejected without uncertainty or replay
+00:00 +185: [VM, Kernel] test/cloud_provider_test.dart: gmail definite send 412 is rejected without uncertainty or replay
+00:00 +186: [VM, Kernel] test/cloud_provider_test.dart: gmail profile 404 before submission is a definite unsent failure
+00:00 +187: [VM, Kernel] test/cloud_provider_test.dart: gmail cancellation after send starts is uncertain
+00:00 +188: [VM, Kernel] test/cloud_provider_test.dart: gmail unconfirmed mutation is conflict, never success
+00:00 +189: [VM, Kernel] test/cloud_provider_test.dart: microsoft365 capabilities verifies mailbox and reports only implemented operations
+00:00 +190: [VM, Kernel] test/cloud_provider_test.dart: microsoft365 wrong signed-in account is rejected before any mailbox operation
+00:00 +191: [VM, Kernel] test/cloud_provider_test.dart: microsoft365 profile authentication refresh is bounded and verifies refreshed identity
+00:00 +192: [VM, Kernel] test/cloud_provider_test.dart: microsoft365 repeated profile 401 stops after one refresh
+00:00 +193: [VM, Kernel] test/cloud_provider_test.dart: microsoft365 token-source failure and stale tokens never reach transport
+00:00 +194: [VM, Kernel] test/cloud_provider_test.dart: microsoft365 unexpected host errors are normalized and logs contain no sensitive text
+00:00 +195: [VM, Kernel] test/cloud_provider_test.dart: microsoft365 throwing logger cannot fail a successful operation
+00:00 +196: [VM, Kernel] test/cloud_provider_test.dart: microsoft365 account lease and cancellation are checked before acquiring credentials
+00:00 +197: [VM, Kernel] test/cloud_provider_test.dart: microsoft365 invalid identity, mailbox and page bounds do not touch credentials
+00:00 +198: [VM, Kernel] test/cloud_provider_test.dart: microsoft365 bounded operation timeout prevents later mailbox work
+00:00 +199: [VM, Kernel] test/cloud_provider_test.dart: microsoft365 parallel operations fail safely and disposal closes only transport
+00:00 +200: [VM, Kernel] test/cloud_provider_test.dart: microsoft365 HTTP errors carry useful safe classifications and retry delay
+00:00 +201: [VM, Kernel] test/cloud_provider_test.dart: microsoft365 malformed and oversized success responses are never empty success
+00:00 +202: [VM, Kernel] test/cloud_provider_test.dart: microsoft365 request budget prevents unbounded service traversal
+00:00 +203: [VM, Kernel] test/cloud_provider_test.dart: microsoft365 raw MIME retrieval reuses bounded codec and stable scoped identity
+00:00 +204: [VM, Kernel] test/cloud_provider_test.dart: microsoft365 successful API sends restore hidden recipients without modifying frozen wire
+00:00 +205: [VM, Kernel] test/cloud_provider_test.dart: microsoft365 sender mismatch and unapproved visible recipient cannot send
+00:00 +206: [VM, Kernel] test/cloud_provider_test.dart: microsoft365 potentially accepted send is uncertain and is attempted exactly once
+00:00 +207: [VM, Kernel] test/cloud_provider_test.dart: microsoft365 definite send rejection is distinguished from a lost response
+00:00 +208: [VM, Kernel] test/cloud_provider_test.dart: microsoft365 unfamiliar explicit send rejection retains submission policy
+00:00 +209: [VM, Kernel] test/cloud_provider_test.dart: microsoft365 definite send 404 is rejected without uncertainty or replay
+00:00 +210: [VM, Kernel] test/cloud_provider_test.dart: microsoft365 definite send 409 is rejected without uncertainty or replay
+00:00 +211: [VM, Kernel] test/cloud_provider_test.dart: microsoft365 definite send 410 is rejected without uncertainty or replay
+00:00 +212: [VM, Kernel] test/cloud_provider_test.dart: microsoft365 definite send 412 is rejected without uncertainty or replay
+00:00 +213: [VM, Kernel] test/cloud_provider_test.dart: microsoft365 profile 404 before submission is a definite unsent failure
+00:00 +214: [VM, Kernel] test/cloud_provider_test.dart: microsoft365 cancellation after send starts is uncertain
+00:00 +215: [VM, Kernel] test/cloud_provider_test.dart: microsoft365 unconfirmed mutation is conflict, never success
+00:00 +216: [VM, Kernel] test/cloud_provider_test.dart: cloud boundary regressions gmail rejects duplicate or resent delivery headers
+00:00 +217: [VM, Kernel] test/cloud_provider_test.dart: cloud boundary regressions gmail pending send timeout remains uncertain after late response
+00:00 +218: [VM, Kernel] test/cloud_provider_test.dart: cloud boundary regressions gmail corrupt cursor is rejected before account lookup
+00:00 +219: [VM, Kernel] test/cloud_provider_test.dart: cloud boundary regressions gmail successful verbose logs expose only structured counters
+00:00 +220: [VM, Kernel] test/cloud_provider_test.dart: cloud boundary regressions microsoft365 rejects duplicate or resent delivery headers
+00:00 +221: [VM, Kernel] test/cloud_provider_test.dart: cloud boundary regressions microsoft365 pending send timeout remains uncertain after late response
+00:01 +222: [VM, Kernel] test/cloud_provider_test.dart: cloud boundary regressions microsoft365 corrupt cursor is rejected before account lookup
+00:01 +223: [VM, Kernel] test/cloud_provider_test.dart: cloud boundary regressions microsoft365 successful verbose logs expose only structured counters
+00:01 +224: [VM, Kernel] test/cloud_provider_test.dart: cloud boundary regressions Gmail metadata requests only projection headers and accepts legal folding
+00:01 +225: [VM, Kernel] test/cloud_provider_test.dart: cloud boundary regressions Gmail no-label messages produce membership tombstones after removal
+00:01 +226: [VM, Kernel] test/cloud_provider_test.dart: cloud boundary regressions Gmail history pagination retains start checkpoint until final page
+00:01 +227: [VM, Kernel] test/cloud_provider_test.dart: cloud boundary regressions Gmail repeated browse token is rejected without claiming completion
+00:01 +228: [VM, Kernel] test/cloud_provider_test.dart: cloud boundary regressions Gmail history overlarge pending cursor fails without committing a partial page
+00:01 +229: [VM, Kernel] test/cloud_provider_test.dart: cloud boundary regressions Graph canonical user links are bound to verified profile identity
+00:01 +230: [VM, Kernel] test/cloud_provider_test.dart: cloud boundary regressions Graph delta page preference stays bounded across continuations
+00:01 +231: [VM, Kernel] test/cloud_provider_test.dart: cloud boundary regressions Graph detects recursive folder cycles with no truncated success
+00:01 +232: [VM, Kernel] test/cloud_provider_test.dart: Gmail semantics labels retain provider IDs and reject duplicates or oversize collections
+00:01 +233: [VM, Kernel] test/cloud_provider_test.dart: Gmail semantics headers page metadata, observe flags and reject foreign cursors
+00:01 +234: [VM, Kernel] test/cloud_provider_test.dart: Gmail semantics forged metadata header injection and mismatched message IDs fail closed
+00:01 +235: [VM, Kernel] test/cloud_provider_test.dart: Gmail semantics a disappeared listed message is not a fabricated header
+00:01 +236: [VM, Kernel] test/cloud_provider_test.dart: Gmail semantics move is explicitly unsupported and makes no request
+00:01 +237: [VM, Kernel] test/cloud_provider_test.dart: Gmail semantics read, star and trash use exact targeted changes and require confirmation
+00:01 +238: [VM, Kernel] test/cloud_provider_test.dart: Gmail semantics snapshot checkpoint starts before listing and catches concurrent changes
+00:01 +239: [VM, Kernel] test/cloud_provider_test.dart: Gmail semantics snapshot paging only resets membership on first page
+00:01 +240: [VM, Kernel] test/cloud_provider_test.dart: Gmail semantics history changes deduplicate IDs and persist bounded pending detail work
+00:01 +241: [VM, Kernel] test/cloud_provider_test.dart: Gmail semantics expired history resets from a new profile baseline and revision advances
+00:01 +242: [VM, Kernel] test/cloud_provider_test.dart: Gmail semantics empty history advances local revision without inventing deletions
+00:01 +243: [VM, Kernel] test/cloud_provider_test.dart: Gmail semantics 403 quota reason maps to retryable quota without exposing provider text
+00:01 +244: [VM, Kernel] test/cloud_provider_test.dart: Graph semantics nested folder traversal follows pages and retains immutable ID preference
+00:01 +245: [VM, Kernel] test/cloud_provider_test.dart: Graph semantics headers and cursor preserve ID case and page URLs
+00:01 +246: [VM, Kernel] test/cloud_provider_test.dart: Graph semantics foreign-host, foreign-folder and fragment continuation URLs are refused
+00:01 +247: [VM, Kernel] test/cloud_provider_test.dart: Graph semantics OData parenthesized same-folder continuations are accepted
+00:01 +248: [VM, Kernel] test/cloud_provider_test.dart: Graph semantics read, flag, move and recoverable delete require observed confirmation
+00:01 +249: [VM, Kernel] test/cloud_provider_test.dart: Graph semantics delta applies updates and membership tombstones across complete pages
+00:01 +250: [VM, Kernel] test/cloud_provider_test.dart: Graph semantics partial delta update retrieves full selected metadata before upsert
+00:01 +251: [VM, Kernel] test/cloud_provider_test.dart: Graph semantics explicit expired delta state resets, unrelated failures do not
+00:01 +252: [VM, Kernel] test/cloud_provider_test.dart: Graph semantics delta requires exactly one terminal or continuation link
+00:01 +253: [VM, Kernel] test/cloud_provider_test.dart: Graph semantics unchanged delta state still advances the local CAS revision
+00:01 +254: [VM, Kernel] test/cloud_provider_test.dart: Graph semantics wrong message ID in confirmed move remains uncertain conflict
+00:01 +255: All tests passed!

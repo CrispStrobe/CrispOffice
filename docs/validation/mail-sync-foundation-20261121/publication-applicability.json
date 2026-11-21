@@ -1,0 +1,50 @@
+{
+  "checked_at": "2026-11-21T07:38:05.106179+00:00",
+  "tested_source_head": "278fa78d59f219965a50f025dbdb11d1b7b98676",
+  "additional_main_parent": "eb286fb7254d6850c9f33b46e8aa65e2ea32f7f0",
+  "additional_main_pull_request": 290,
+  "local_merge_tree": "449d2dd3f28c01c49e8a4478090ece481bd2ab93",
+  "changed_tracked_paths_since_tested_source": [
+    "docs/release/app-store-screenshots/01-word-english-arabic.png",
+    "docs/release/app-store-screenshots/02-german-grammar.png",
+    "docs/release/app-store-screenshots/03-excel.png",
+    "docs/release/app-store-screenshots/04-powerpoint.png",
+    "docs/release/app-store-screenshots/05-mail.png",
+    "docs/release/app-store-screenshots/06-downloads.png",
+    "packages/quds_office_editor/example/test/app_store_screenshots_gate.dart"
+  ],
+  "production_dart_changes": [],
+  "final_host_receipt_preserved": true,
+  "final_host_receipt_sha256": "16dc7c2f141d3fb66c486e06205ffea16d601002e482c31915fdeb675912e531",
+  "final_host_fingerprints": {
+    "recorded": 981,
+    "matching": 980,
+    "differences": [
+      {
+        "path": "packages/quds_office_editor/example/test/app_store_screenshots_gate.dart",
+        "tested_sha256": "0f6251901f611a8ce83474a0d5b8c2be7a7086dffe2ad98c1c8c2508edaccf91",
+        "published_sha256": "752600587362d2e3bc9a6c5bc2533aa643cfe4461331acec96eafbbad1819581"
+      }
+    ]
+  },
+  "screenshot_gate_dependency_check": {
+    "in_selected_test_arguments": false,
+    "automatic_test_suffix": false,
+    "tracked_dart_reference_search": {
+      "command": [
+        "git",
+        "grep",
+        "-n",
+        "-F",
+        "app_store_screenshots_gate",
+        "a16b8053e5d86f3eb9cba15c403f9c88e434c574",
+        "--",
+        "*.dart"
+      ],
+      "output": "a16b8053e5d86f3eb9cba15c403f9c88e434c574:packages/quds_office_editor/example/test/app_store_screenshots_gate.dart:11://     test/app_store_screenshots_gate.dart\n"
+    },
+    "assessment": "The only Dart delta is a separately invoked screenshot gate. It is neither selected by the final host test command nor referenced by other tracked Dart source. Its hash was included by an intentionally broad example/test inventory. The other 980 recorded paths and all production source remain identical."
+  },
+  "review": "Read-only review of PR290 found no concrete must-fix issue; it adjusts screenshot-only layout, native proofing readiness checks and window chrome rendering. No additional test result is claimed.",
+  "remaining_tree_changes": "Final roadmap and evidence publication changes only documentation/evidence paths."
+}
