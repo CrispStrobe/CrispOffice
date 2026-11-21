@@ -44,8 +44,10 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--repo', type=Path, default=Path(__file__).resolve().parents[3])
     parser.add_argument('--archive-only', action='store_true')
+    parser.add_argument('--bundle', type=Path,
+                        help='Evidence directory; defaults to this original qualification bundle')
     args = parser.parse_args()
-    directory = Path(__file__).resolve().parent
+    directory = args.bundle.resolve() if args.bundle else Path(__file__).resolve().parent
     index = json.loads((directory / 'evidence-index.json').read_text())
     archive_path = directory / index['archive']
     require(digest(archive_path.read_bytes()) == index['archive_sha256'], 'Archive checksum mismatch')

@@ -12,10 +12,21 @@ historical evidence, superseded by this later reconciliation.
 
 A meaningful saved-Mail regression now asserts exactly one localized Close
 action across saved and account views, then verifies dismissal and reader
-disposal. Targeted qualification of this combined source is in progress.
+disposal. The combined source is preserved at
+`5289b90a83ce9042a4f4cfb73ba8115fe501513a` and passed **151 actual cases across
+six original suites**: 72 repeated Zotero/Word cases and 79 Mail UI cases.
+There were no failures, skips, error events or stderr bytes. All 2,994 recorded
+source inputs matched that checkpoint before and after execution.
+
+Replaying the initial and later captured inventories against this combined
+checkpoint covers **338/338** and **341/341** external heads, respectively.
+The later result has 317 ancestors, 24 verified historical equivalents and zero
+uncovered heads. The immutable earlier three-uncovered result is retained.
+
 The frozen 2,551-case result below remains bound to `a6095c30`; source additions
-and changed shared Word/Mail dependencies require the explicit impact review
-and targeted repeat receipt, rather than an identical-source claim.
+and changed shared Word/Mail dependencies are accounted for by the explicit
+impact review and targeted repeats. See the [combined-main record](combined-main/README.md)
+for the current verification command, source mapping and separate test counts.
 
 ## Result and publication
 
@@ -40,10 +51,13 @@ The remote branch is `codex/zotero-parity-20261121-next`. Incremental checkpoint
 | Complete implementation, tests and user-facing documentation; frozen qualification source | `a6095c304ad2d6935f2ae6f8b74412038d19f142` |
 | Qualification evidence and final intake dispositions | `149a8ae46d6dad02d21040c3587389f3c954a577` |
 | Incorporation of screenshot main | `b45703affe7249b0cfe6ae16c4f9017f8cd0f378` |
-| Incorporation of qualified Mail/Word main and the captured Close fix | The subsequent combined-source checkpoint |
+| Incorporation of qualified Mail/Word main and the captured Close fix | `5289b90a83ce9042a4f4cfb73ba8115fe501513a` |
+| Completed combined-source qualification and evidence | The subsequent documentation/evidence checkpoint containing this final record |
 
-[PR #289](https://github.com/CrispStrobe/quds_office_suite/pull/289) records final
-publication and main readback. The starting main was
+[PR #289](https://github.com/CrispStrobe/quds_office_suite/pull/289) records the
+implementation and was automatically closed when PR #291 incorporated its
+head. Later branch checkpoints and the final main readback are published in a
+separate reconciliation PR. The starting main was
 `e2abbcda6d19f932bfbacc85e0dafd41a3c478f8`. The initial observation was
 `fcb3ff13537eb31c2cabead033a50723124682c5`; the newer main includes PR #285's
 final two performance documentation files. Its runtime implementation was
@@ -227,7 +241,7 @@ python3 docs/validation/zotero-table-cell-ranges-20261121/verify_main_applicabil
 The original strict verifier intentionally rejects that checkpoint's changed
 screenshot gate unless `--archive-only` is selected. Neither verifier silently
 accepts further source drift. Ancestry, merge tree and remote main readback are
-recorded separately in PR #289's publication receipt. This historical verifier
+recorded separately in the final reconciliation PR. This historical verifier
 also rejects the later combined Word/Mail source, whose broader delta and new
 targeted runs have their own reconciliation record.
 
