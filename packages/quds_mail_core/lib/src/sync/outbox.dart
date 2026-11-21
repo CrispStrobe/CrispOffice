@@ -230,6 +230,8 @@ final class MailOutboxEntry {
     required this.updatedAt,
     required this.attemptNumber,
     required this.priorSubmissionUncertain,
+    this.sendNotBefore,
+    this.scheduleRevision = 0,
     this.attemptId,
     this.result,
   });
@@ -264,12 +266,27 @@ final class MailOutboxEntry {
     String? attemptId,
     MailSubmissionResult? result,
     bool priorSubmissionUncertain = false,
+    DateTime? sendNotBefore,
+    int scheduleRevision = 0,
   }) {
     if (id.isEmpty ||
         attemptNumber < 0 ||
         (attemptNumber == 0 && (attemptId != null || result != null)) ||
         (attemptNumber > 0 && (attemptId == null || attemptId.isEmpty))) {
       throw ArgumentError('Invalid persisted outbox attempt identity.');
+    }
+    if (scheduleRevision < 0 ||
+        scheduleRevision > maxScheduleRevision ||
+        (sendNotBefore != null &&
+            (scheduleRevision == 0 ||
+                !sendNotBefore.isAfter(createdAt) ||
+                (state == MailOutboxState.queued &&
+                    !sendNotBefore.isAfter(updatedAt)) ||
+                (attemptNumber > 0 && sendNotBefore.isAfter(updatedAt)))) ||
+        (scheduleRevision > 0 &&
+            attemptNumber == 0 &&
+            priorSubmissionUncertain)) {
+      throw ArgumentError('Invalid persisted outbox schedule.');
     }
     final needsAttempt =
         state != MailOutboxState.queued &&
@@ -322,6 +339,8 @@ final class MailOutboxEntry {
       attemptId: attemptId,
       result: result,
       priorSubmissionUncertain: priorSubmissionUncertain,
+      sendNotBefore: sendNotBefore?.toUtc(),
+      scheduleRevision: scheduleRevision,
     );
   }
 
@@ -333,6 +352,18 @@ final class MailOutboxEntry {
   final int attemptNumber;
   final String? attemptId;
   final MailSubmissionResult? result;
+
+  /// Earliest permitted submission instant. Stored in UTC; null is unscheduled.
+  /// Keeping the deadline after an attempt records the original send intent,
+  /// but does not grant permission to retry that attempt automatically.
+  final DateTime? sendNotBefore;
+
+  /// Monotonic compare-and-set token, retained even after clearing a deadline.
+  /// This prevents a stale timer or editor from acting after schedule changes.
+  final int scheduleRevision;
+
+  /// Largest exact integer supported by every host, including JavaScript.
+  static const int maxScheduleRevision = 0x1fffffffffffff;
 
   /// An older attempt may have been accepted, even if the latest attempt was
   /// definitely rejected. This survives explicit retries and their outcomes.
@@ -353,6 +384,48 @@ final class MailOutboxEntry {
 
   bool get canCancel => canBeginAttempt;
 
+  /// Only work that has never reached a provider can receive a new schedule.
+  bool get canSchedule =>
+      state == MailOutboxState.queued &&
+      attemptNumber == 0 &&
+      !priorSubmissionUncertain;
+
+  /// Eligibility for an ordinary attempt at [now], including its deadline.
+  /// Automated scheduling must additionally require [canSchedule] and a
+  /// nonnull [sendNotBefore]; retryable failures remain manual-only work.
+  bool isDueAt(DateTime now) =>
+      canBeginAttempt &&
+      (sendNotBefore == null || !now.isBefore(sendNotBefore!));
+
+  /// Set, replace or clear a deadline without changing the frozen message.
+  /// Every call increments the revision, including a repeat or clear, so a
+  /// schedule changed away and back cannot revive a stale submission decision.
+  MailOutboxEntry schedule({
+    required DateTime? sendNotBefore,
+    required DateTime now,
+  }) {
+    if (!canSchedule || scheduleRevision == maxScheduleRevision) {
+      throw StateError('This outbox entry cannot be scheduled.');
+    }
+    if (now.isBefore(updatedAt) ||
+        (sendNotBefore != null && !sendNotBefore.isAfter(now))) {
+      throw ArgumentError('A send deadline must be in the future.');
+    }
+    return MailOutboxEntry._(
+      id: id,
+      prepared: prepared,
+      state: state,
+      createdAt: createdAt,
+      updatedAt: now,
+      attemptNumber: attemptNumber,
+      attemptId: attemptId,
+      result: result,
+      priorSubmissionUncertain: priorSubmissionUncertain,
+      sendNotBefore: sendNotBefore?.toUtc(),
+      scheduleRevision: scheduleRevision + 1,
+    );
+  }
+
   /// Explicitly stopping retries records no new provider result. This is also
   /// available for a definite later failure with unresolved earlier acceptance.
   bool get canCloseUncertain => canBeginAcknowledgedAttempt;
@@ -368,7 +441,7 @@ final class MailOutboxEntry {
     required String attemptId,
     required DateTime now,
   }) {
-    if (!canBeginAttempt) {
+    if (!isDueAt(now)) {
       throw StateError('This outbox state cannot be submitted automatically.');
     }
     return _beginAttempt(attemptId: attemptId, now: now, uncertain: false);
@@ -406,6 +479,8 @@ final class MailOutboxEntry {
       attemptNumber: attemptNumber + 1,
       attemptId: attemptId,
       priorSubmissionUncertain: uncertain,
+      sendNotBefore: sendNotBefore,
+      scheduleRevision: scheduleRevision,
     );
   }
 
@@ -440,6 +515,8 @@ final class MailOutboxEntry {
       attemptId: attemptId,
       result: result,
       priorSubmissionUncertain: priorSubmissionUncertain,
+      sendNotBefore: sendNotBefore,
+      scheduleRevision: scheduleRevision,
     );
   }
 
@@ -471,6 +548,8 @@ final class MailOutboxEntry {
       attemptId: attemptId,
       result: result,
       priorSubmissionUncertain: priorSubmissionUncertain,
+      sendNotBefore: sendNotBefore,
+      scheduleRevision: scheduleRevision,
     );
   }
 
@@ -493,6 +572,8 @@ final class MailOutboxEntry {
       attemptId: attemptId,
       result: result,
       priorSubmissionUncertain: priorSubmissionUncertain,
+      sendNotBefore: sendNotBefore,
+      scheduleRevision: scheduleRevision,
     );
   }
 }

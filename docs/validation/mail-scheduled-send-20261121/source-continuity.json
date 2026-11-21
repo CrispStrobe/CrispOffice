@@ -1,0 +1,25 @@
+{
+  "qualified_publication_source": "6426d8877d5a7a2405bdd9060a1b6c443a731cb0",
+  "mail_core_store": {
+    "original_qualified_commit": "55825a375c6acd875f7bb2d408b6069795f10b48",
+    "entire_package_paths_unchanged": true,
+    "changed_paths": [],
+    "selected_sources_match": true,
+    "receipt": "evidence/core-store-evidence.tar.xz"
+  },
+  "visual": {
+    "all_selected_inputs_match": true,
+    "receipt": "evidence/visual-evidence.tar.xz",
+    "scope": "Actual Flutter widget rendering with real SQLite queued entry, deterministic clocks and a provider callback that throws if invoked; not an installed-platform/provider acceptance run."
+  },
+  "late_main_followup": {
+    "prior_source": "964783488cfa8079464e7dc80c1df6bb139323f5",
+    "final_source": "6426d8877d5a7a2405bdd9060a1b6c443a731cb0",
+    "complete_engine_mail_core_mail_store_trees_unchanged": true,
+    "changed_source_paths": [
+      "packages/quds_office_editor/lib/src/editor_word/render_word_canvas.dart",
+      "packages/quds_office_editor/test/word_selection_path_cache_test.dart"
+    ],
+    "qualification": "Renderer and final Studio receipts cover the late source changes; prior cohorts retain their original scope."
+  }
+}

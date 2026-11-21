@@ -41,8 +41,32 @@ The same test file mutates separate in-memory copies to activate CJK typography,
 the native default tab grid, a page grid and footnote separator. Those controls
 must refuse when their layout semantics are not represented. Neither the source
 fixtures nor their styles are modified by the test run. The synthetic footnote
-control changes only that copy's zero-based footnote counter to the currently
-supported one-based value so the test reaches the separator-specific refusal.
+control retains the original LibreOffice producer declaration and zero-based
+note offset. The reader qualifies that producer convention against the cached
+decimal note label before reaching the separator-specific refusal.
 
 [receipt]: https://github.com/CrispStrobe/quds_office_suite/blob/01517de8886ef7bd24947894be5dc823d0328869/docs/validation/zotero-rich-odt-20261121/converter-development.json
 [record]: https://github.com/CrispStrobe/quds_office_suite/blob/01517de8886ef7bd24947894be5dc823d0328869/docs/validation/zotero-rich-odt-20261121/README.md#actual-libreoffice-converter-boundary
+
+## Native bibliography after a LibreOffice save
+
+`libreoffice-bibliography.odt` is the untouched `body-bibliography.odt` saved by
+the same identified LibreOfficeDev build in the editable ODT exporter milestone.
+It was recovered from that milestone's evidence archive, without changing any
+XML, style or metadata. Its SHA-256 is
+`f2e940184bfe599a646ee9ff7931643f487767af6f0a6690dbcc8a4ad3c0d05f`.
+
+The synthetic Quds input contains two active citations and a three-paragraph
+bibliography (including an empty entry), rich cached text, locators and Unicode
+preferences with unknown extension data. LibreOffice saved the native
+ReferenceMarks and TextSection; it also assigned a section style to the
+bibliography. This is an actual converter artifact, not installed Zotero-plugin
+output.
+
+`odt_libreoffice_bibliography_test.dart` verifies its digest, native editable
+reopening, exact identities and rich bibliography ownership, repeated DOCX/ODT
+saves, staged native callback updates and unlinking. Separate modified in-memory
+copies exercise inherited section protection/formatting and malformed metadata
+refusals. The source artifact remains unchanged. Current-run converter results
+and additional table/endnote fixtures are recorded in
+`docs/validation/zotero-odt-roundtrip-20261121`.

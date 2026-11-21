@@ -414,14 +414,13 @@ abstract final class OdtDocumentWriter {
 
   static String _storyKey(String xml, WmlSection section, _OdtLayout layout) {
     final root = _storyRoot(xml);
+    const drawing = 'urn:oasis:names:tc:opendocument:xmlns:drawing:1.0';
     // Annotation emission is deliberately shared across all stories. Its
     // bookkeeping must not turn repeated authored headers into new pages;
     // compare their reference positions below instead of emitted bodies.
     _removeAnnotations(root);
     void normalize(XmlElement element) {
-      if (element.localName == 'image' &&
-          element.namespaceUri ==
-              'urn:oasis:names:tc:opendocument:xmlns:drawing:1.0') {
+      if (element.localName == 'image' && element.namespaceUri == drawing) {
         final path = element.getAttribute(
           'href',
           namespaceUri: 'http://www.w3.org/1999/xlink',
@@ -1209,6 +1208,8 @@ abstract final class OdtDocumentWriter {
           );
         }
         if (inline.inlineVisual case final visual?) {
+          // Comment links already carry the run style. Unlinked pictures,
+          // including annotation pictures, preserve it on their own span.
           if (!commentLink) {
             w.writeStartElement('span', prefix: 'text');
             w.writeAttribute('text:style-name', style);
@@ -1466,7 +1467,11 @@ abstract final class OdtDocumentWriter {
     w.writeAttribute('table:name', 'Table${layout.tableCount++}');
     w.writeAttribute(
       'table:style-name',
-      layout.tableStyle(sectionStart: sectionStart, width: zoteroWidth),
+      layout.tableStyle(
+        sectionStart: sectionStart,
+        width: zoteroWidth,
+        alignment: layout.zotero == null ? null : table.properties.alignment,
+      ),
     );
     for (final width in table.grid) {
       w.writeStartElement('table-column', prefix: 'table');
@@ -2406,7 +2411,11 @@ class _OdtLayout {
     return decimal.contains('e') ? null : decimal;
   }
 
-  String tableStyle({_OdtSectionStart? sectionStart, double? width}) {
+  String tableStyle({
+    _OdtSectionStart? sectionStart,
+    double? width,
+    WmlJustification? alignment,
+  }) {
     final name = 'Tab${tableCount + 1}';
     String styleXml() {
       final buffer = StringBuffer(
@@ -2424,7 +2433,20 @@ class _OdtLayout {
             ? ' style:rel-width="100%"'
             : ' style:width="${absoluteWidth}pt"',
       );
-      buffer.write(' table:align="margins"');
+      // ODF 1.3 section 20.414 gives `margins` a fill-width meaning. Keeping
+      // it beside an absolute width makes Writer rescale the native columns.
+      // The explicit editable path supplies its physical model alignment;
+      // ordinary cached-text exports retain their established fill behavior.
+      final align = switch (alignment) {
+        null => 'margins',
+        WmlJustification.left => 'left',
+        WmlJustification.center => 'center',
+        WmlJustification.right => 'right',
+        _ => throw UnsupportedError(
+          'Editable Zotero ODT needs left, center or right table alignment.',
+        ),
+      };
+      buffer.write(' table:align="$align"');
       if (sectionStart?.breakBefore == true) {
         buffer.write(' fo:break-before="page"');
       }

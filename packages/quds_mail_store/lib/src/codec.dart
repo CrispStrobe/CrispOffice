@@ -279,9 +279,15 @@ abstract final class MailStoreCodec {
       result: object['result'] == null
           ? null
           : _resultFromJson(object['result']),
-      priorSubmissionUncertain: object['version'] == 2
+      priorSubmissionUncertain: object['version'] != 1
           ? _boolean(object['priorSubmissionUncertain'])
           : false,
+      sendNotBefore: object['version'] == 3 && object['sendNotBefore'] != null
+          ? _scheduleDateFromJson(object['sendNotBefore'])
+          : null,
+      scheduleRevision: object['version'] == 3
+          ? _nonnegative(object['scheduleRevision'])
+          : 0,
     );
     _validateOutbox(entry);
     return entry;
@@ -299,6 +305,8 @@ abstract final class MailStoreCodec {
       _validateOutbox(next);
       if (previous == null) {
         return next.state == MailOutboxState.queued &&
+            next.scheduleRevision == 0 &&
+            next.sendNotBefore == null &&
             _sameDate(next.createdAt, next.updatedAt);
       }
       _validateOutbox(previous);
@@ -309,11 +317,26 @@ abstract final class MailStoreCodec {
         return false;
       }
       if (previous.state == next.state) {
-        return jsonEncode(_outboxToJson(previous)) ==
-            jsonEncode(_outboxToJson(next));
+        if (jsonEncode(_outboxToJson(previous)) ==
+            jsonEncode(_outboxToJson(next))) {
+          return true;
+        }
+        return previous.canSchedule &&
+            next.canSchedule &&
+            next.scheduleRevision == previous.scheduleRevision + 1 &&
+            next.attemptNumber == previous.attemptNumber &&
+            next.attemptId == previous.attemptId &&
+            next.priorSubmissionUncertain ==
+                previous.priorSubmissionUncertain &&
+            jsonEncode(_nullableResult(previous.result)) ==
+                jsonEncode(_nullableResult(next.result));
+      }
+      if (previous.scheduleRevision != next.scheduleRevision ||
+          !_sameNullableDate(previous.sendNotBefore, next.sendNotBefore)) {
+        return false;
       }
       if (next.state == MailOutboxState.submitting) {
-        final ordinary = previous.canBeginAttempt;
+        final ordinary = previous.isDueAt(next.updatedAt);
         final acknowledged = previous.canBeginAcknowledgedAttempt;
         return (ordinary || acknowledged) &&
             next.attemptNumber == previous.attemptNumber + 1 &&
@@ -587,8 +610,8 @@ MailBytes _blobFromJson(Object? value, Map<String, MailBytes> blobs) {
 
 _JsonObject _outboxObject(Object? value) {
   if (value is! _JsonObject) _invalid();
-  final version = value['version'];
-  if (version != 1 && version != 2) _invalid();
+  final version = _integer(value['version']);
+  if (version != 1 && version != 2 && version != 3) _invalid();
   return _object(value, [
     'version',
     'draftId',
@@ -601,12 +624,13 @@ _JsonObject _outboxObject(Object? value) {
     'attemptNumber',
     'attemptId',
     'result',
-    if (version == 2) 'priorSubmissionUncertain',
+    if (version >= 2) 'priorSubmissionUncertain',
+    if (version == 3) ...['sendNotBefore', 'scheduleRevision'],
   ]);
 }
 
 _JsonObject _outboxToJson(MailOutboxEntry entry) => {
-  'version': 2,
+  'version': 3,
   'draftId': entry.prepared.draftId,
   'draftRevision': entry.prepared.draftRevision,
   'wire': _blobToJson(entry.prepared.wire),
@@ -620,6 +644,10 @@ _JsonObject _outboxToJson(MailOutboxEntry entry) => {
   'attemptNumber': entry.attemptNumber,
   'attemptId': entry.attemptId,
   'priorSubmissionUncertain': entry.priorSubmissionUncertain,
+  'sendNotBefore': entry.sendNotBefore == null
+      ? null
+      : _dateToJson(entry.sendNotBefore!),
+  'scheduleRevision': entry.scheduleRevision,
   'result': _nullableResult(entry.result),
 };
 
@@ -706,6 +734,8 @@ void _validateOutbox(MailOutboxEntry entry) {
     attemptId: entry.attemptId,
     result: entry.result,
     priorSubmissionUncertain: entry.priorSubmissionUncertain,
+    sendNotBefore: entry.sendNotBefore,
+    scheduleRevision: entry.scheduleRevision,
   );
   if (entry.updatedAt.isBefore(entry.createdAt) ||
       (entry.result?.problem?.retryAfter?.isNegative ?? false) ||
@@ -736,6 +766,9 @@ bool _sameStrings(List<String> a, List<String> b) {
 bool _sameDate(DateTime a, DateTime b) =>
     a.isUtc == b.isUtc && a.isAtSameMomentAs(b);
 
+bool _sameNullableDate(DateTime? a, DateTime? b) =>
+    a == null || b == null ? a == null && b == null : _sameDate(a, b);
+
 _JsonObject _dateToJson(DateTime date) => {
   'instant': date.toUtc().toIso8601String(),
   'utc': date.isUtc,
@@ -750,6 +783,12 @@ DateTime _dateFromJson(Object? value) {
   // accepted. Store an absolute instant even when the original used local time.
   if (!parsed.isUtc || parsed.toIso8601String() != instant) _invalid();
   return utc ? parsed : parsed.toLocal();
+}
+
+DateTime _scheduleDateFromJson(Object? value) {
+  final date = _dateFromJson(value);
+  if (!date.isUtc) _invalid();
+  return date;
 }
 
 Object? _parse(String data) {

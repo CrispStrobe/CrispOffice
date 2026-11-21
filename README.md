@@ -580,7 +580,11 @@ storage-layer capabilities; the foreground Studio composer now uses them for
 [multiple durable local drafts](docs/roadmaps/mail/multiple-drafts.md), a
 [durable Outbox](docs/roadmaps/mail/outbox.md), and
 [message review, export and safe editing](docs/roadmaps/mail/outbox-management.md),
-including explicit management of interrupted-send uncertainty. Its separately
+including explicit management of interrupted-send uncertainty. The
+[scheduled-send workflow](docs/roadmaps/mail/scheduled-send.md) now saves UTC
+deadlines and offers a ten-second Undo window. It sends only while explicitly
+armed in an active Outbox, with Pause/Resume after reopening and guarded
+lifecycle, clock and stale-revision handling. Its separately
 configured browser entry compiles, but actual browser storage, quota and reload
 behavior remain unqualified. Native Studio now also uses a
 [durable command journal](docs/roadmaps/mail/command-journal.md) for single/bulk

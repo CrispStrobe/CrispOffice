@@ -10,6 +10,8 @@ separate lane.
 The later [management continuation](outbox-management.md) adds local message
 review/export, atomic edit-copy and explicit stop-retrying while delivery remains
 unknown. The original sending contracts below remain in force.
+The [scheduling continuation](scheduled-send.md) adds **Send later** and a
+ten-second Undo window, each explicitly armed within an active Outbox session.
 
 ## User workflow
 
@@ -21,7 +23,9 @@ unknown. The original sending contracts below remain in force.
    sender, attempt count and state. Expand **Envelope recipients (includes Bcc)**
    to inspect the complete saved transport recipient list.
 4. Choose **Send now** on a queued item. A definite retryable rejection offers
-   **Retry**. No timer, refresh, reconnect or application restart starts a send.
+   **Retry**. Refresh, reconnect and application restart never start a send.
+   An explicitly armed **Send later** or Undo timer follows the separate
+   [foreground scheduling contract](scheduled-send.md).
 5. An uncertain attempt requires **Check delivery and retry**, a warning and a
    new unchecked acknowledgement. Confirming sends the same frozen message and
    may create a duplicate. An earlier uncertainty remains guarded even if that
@@ -126,8 +130,9 @@ production native SQLite adapter supplies the durable outbox capability.
   validated To/Cc/Bcc recipients.
 - Native application-data storage is local and unencrypted. Credentials and
   tokens do not enter the outbox. No server-side Drafts synchronization is added.
-- There is no scheduled send, undo-send timer, background worker, automatic
-  reconnect sending, offline account browser or message recall. The management
+- The [scheduling continuation](scheduled-send.md) adds foreground Send later
+  and Undo. There is no background worker, automatic reconnect sending or
+  message recall. The management
   continuation atomically cancels a safely editable item and opens a new draft.
 - Review/exact export, editing a queued copy and explicit local uncertain
   closure are implemented in the management continuation. Provider-specific Sent
@@ -145,7 +150,7 @@ accepted tests and final integration. It records the exact runtime and source.
 GitHub Actions are not an acceptance dependency.
 
 The [management increment](outbox-management.md) completes the review/export,
-edit-copy and local uncertain-closure loop. Next add durable undo-send and
-explicit scheduling on the same frozen-entry foundation. Multiple local drafts
-are available; rich composition, signatures/templates and provider Drafts
+edit-copy and local uncertain-closure loop. The [scheduling increment](scheduled-send.md)
+adds foreground deadlines and Undo on the same frozen-entry foundation. Multiple
+drafts, signatures and Quick Text are available; rich composition, templates and provider Drafts
 synchronization remain ordered milestones in the [parity roadmap](README.md).

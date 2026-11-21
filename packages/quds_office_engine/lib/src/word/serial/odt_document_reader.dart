@@ -22,6 +22,7 @@ const _style = 'urn:oasis:names:tc:opendocument:xmlns:style:1.0';
 const _fo = 'urn:oasis:names:tc:opendocument:xmlns:xsl-fo-compatible:1.0';
 const _xlink = 'http://www.w3.org/1999/xlink';
 const _xml = 'http://www.w3.org/XML/1998/namespace';
+const _meta = 'urn:oasis:names:tc:opendocument:xmlns:meta:1.0';
 
 /// Converts a bounded native ODT into an editable Word document.
 ///
@@ -95,7 +96,14 @@ abstract final class OdtDocumentReader {
     final content = (await parts.xml('content.xml'))!.root!;
     final styles = (await parts.xml('styles.xml'))?.root;
     final metadata = (await parts.xml('meta.xml'))?.root;
-    final reader = _OdtReader(content, styles, inventory, limits, zip);
+    final reader = _OdtReader(
+      content,
+      styles,
+      inventory,
+      limits,
+      zip,
+      libreOfficeNoteOffsets: _usesLibreOfficeNoteOffsets(metadata),
+    );
     final document = reader.read();
     reader.readMetadata(metadata);
     if (metadata != null) {
@@ -150,6 +158,37 @@ abstract final class OdtDocumentReader {
         utf8.decode(zip.read('mimetype', maxBytes: 128)) ==
             'application/vnd.oasis.opendocument.text';
   }
+
+  /// LibreOffice's ODF exporter stores a zero-based note offset where ODF
+  /// describes an initial number. Use that convention only for an unambiguous
+  /// stock producer declaration; note import still verifies the visible labels.
+  static bool _usesLibreOfficeNoteOffsets(XmlElement? root) {
+    if (root == null || !_is(root, odfOfficeNamespace, 'document-meta')) {
+      return false;
+    }
+    final containers = root
+        .childrenNamed('meta', namespaceUri: odfOfficeNamespace)
+        .toList();
+    if (containers.length != 1) return false;
+    final generators = containers.single
+        .childrenNamed('generator', namespaceUri: _meta)
+        .toList();
+    if (generators.length != 1) return false;
+    final generator = generators.single;
+    if (generator.childElements.isNotEmpty ||
+        generator.attributes.any(
+          (attribute) =>
+              attribute.prefix != 'xmlns' && attribute.qualifiedName != 'xmlns',
+        )) {
+      return false;
+    }
+    final match = RegExp(
+      r'^LibreOffice(?:Dev)?/[0-9]+(?:\.[0-9]+){1,3}'
+      r'(?:\.(?:alpha|beta|rc)[0-9]+)?\$[A-Za-z0-9_]+'
+      r' LibreOffice_project/[0-9a-f]{40}$',
+    ).firstMatch(generator.text);
+    return match != null && match.end == generator.text.length;
+  }
 }
 
 final class _OdtReader {
@@ -158,9 +197,10 @@ final class _OdtReader {
     XmlElement? styleRoot,
     this.inventory,
     this.limits,
-    ZipReader zip,
-  ) : styles = OdtReaderStyles(content, styles: styleRoot),
-      textBudget = OdfTextBudget(limits.maxTextBytes) {
+    ZipReader zip, {
+    required this.libreOfficeNoteOffsets,
+  }) : styles = OdtReaderStyles(content, styles: styleRoot),
+       textBudget = OdfTextBudget(limits.maxTextBytes) {
     images = OdtReaderImages(zip, styles);
     _index(content, '/0');
   }
@@ -168,6 +208,7 @@ final class _OdtReader {
   final XmlElement content;
   final OdfZoteroInventory inventory;
   final OdfZoteroLimits limits;
+  final bool libreOfficeNoteOffsets;
   final OdtReaderStyles styles;
   late final OdtReaderImages images;
   final OdfTextBudget textBudget;
@@ -235,7 +276,23 @@ final class _OdtReader {
         .childrenNamed('text', namespaceUri: odfOfficeNamespace)
         .single;
     if (body.childElements.length != 1) _unsupported(body);
-    _attributes(text, {});
+    _attributes(text, {
+      odfTextNamespace: {'use-soft-page-breaks'},
+    });
+    final softPageBreaks = _attr(
+      text,
+      'use-soft-page-breaks',
+      odfTextNamespace,
+    );
+    if (softPageBreaks != null &&
+        !RegExp(
+          r'^[ \t\r\n]*(?:true|false|1|0)[ \t\r\n]*$',
+        ).hasMatch(softPageBreaks)) {
+      throw const FormatException('Invalid ODT soft-page-break hint.');
+    }
+    // ODF 1.3 19.903 makes these cached pagination hints optional. The native
+    // layout recomputes pagination; authored hard breaks retain their separate
+    // paragraph/run properties. The writer does not export stale soft hints.
     final section = WmlSection();
     document.sections.add(section);
     section.blocks.addAll(_blocks(text));
@@ -334,17 +391,64 @@ final class _OdtReader {
         );
       } else if (_is(node, odfTextNamespace, 'section')) {
         _attributes(node, {
-          odfTextNamespace: {'name'},
+          odfTextNamespace: {'name', 'style-name', 'protected'},
         });
         final name = _attr(node, 'name', odfTextNamespace);
         if (!_bibliographySections.contains(name)) _unsupported(node);
+        final protection = _attr(node, 'protected', odfTextNamespace);
+        if (protection != null && protection != 'false' && protection != '0') {
+          _unsupported(node);
+        }
+        styles.validateBibliographySection(
+          _attr(node, 'style-name', odfTextNamespace),
+        );
         result.addAll(_blocks(node, inNote: inNote, tableDepth: tableDepth));
       } else if (_is(node, odfTextNamespace, 'sequence-decls')) {
         // Inert declarations generated by LibreOffice do not author content.
         // A later sequence field is rejected by the inline parser.
+        _attributes(node, {});
+        final names = <String>{};
+        if (node.children.any(
+          (child) =>
+              (child is XmlText || child is XmlCdata) &&
+              !(child is XmlText ? child.text : (child as XmlCdata).text)
+                  .codeUnits
+                  .every(_whitespace),
+        )) {
+          _unsupported(node);
+        }
         for (final declaration in node.childElements) {
           if (!_is(declaration, odfTextNamespace, 'sequence-decl') ||
-              declaration.childElements.isNotEmpty) {
+              declaration.childElements.isNotEmpty ||
+              !declaration.text.codeUnits.every(_whitespace)) {
+            _unsupported(declaration);
+          }
+          _attributes(declaration, {
+            odfTextNamespace: {
+              'name',
+              'display-outline-level',
+              'separation-character',
+            },
+          });
+          final name = _attr(declaration, 'name', odfTextNamespace);
+          final level = _attr(
+            declaration,
+            'display-outline-level',
+            odfTextNamespace,
+          );
+          final separator = _attr(
+            declaration,
+            'separation-character',
+            odfTextNamespace,
+          );
+          if (name == null ||
+              name.isEmpty ||
+              !names.add(name) ||
+              level == null ||
+              !RegExp(
+                r'^[ \t\r\n]*(?:\+?[0-9]+|-0+)[ \t\r\n]*$',
+              ).hasMatch(level) ||
+              (separator != null && separator.runes.length != 1)) {
             _unsupported(declaration);
           }
         }
@@ -534,7 +638,10 @@ final class _OdtReader {
     }
     final kind = _attr(element, 'note-class', odfTextNamespace) ?? 'footnote';
     if (kind != 'footnote' && kind != 'endnote') _unsupported(element);
-    styles.validateNoteConfiguration(kind == 'endnote');
+    final verifyCachedOrdinal = styles.validateNoteConfiguration(
+      kind == 'endnote',
+      libreOfficeNoteOffsets: libreOfficeNoteOffsets,
+    );
     final children = element.childElements.toList();
     if (children.length != 2 ||
         !_is(children[0], odfTextNamespace, 'note-citation') ||
@@ -547,8 +654,9 @@ final class _OdtReader {
     final notes = kind == 'endnote' ? document.endnotes : document.footnotes;
     if (notes.length >= 10000) throw const OdfZoteroLimitException('notes');
     final id = notes.length + 1;
-    final label = children[0].text.trim();
-    if (label.isNotEmpty && label != '$id') {
+    final rawLabel = children[0].text;
+    final label = verifyCachedOrdinal ? rawLabel : rawLabel.trim();
+    if ((verifyCachedOrdinal || label.isNotEmpty) && label != '$id') {
       throw UnsupportedError('Custom ODT note numbering is not supported.');
     }
     final blocks = _blocks(children[1], inNote: true);
@@ -607,11 +715,20 @@ final class _OdtReader {
       for (final props in style.childElements) {
         if (!_is(props, _style, 'table-properties')) _unsupported(props);
         _attributes(props, {
-          odfTableNamespace: {'align'},
+          odfTableNamespace: {'align', 'border-model'},
           _fo: {'margin-left', 'margin-right'},
           _style: {'width'},
         });
         _empty(props);
+        final borderModel = _attr(props, 'border-model', odfTableNamespace);
+        if (borderModel != null &&
+            borderModel != 'separating' &&
+            borderModel != 'collapsing') {
+          _unsupported(props);
+        }
+        // Both ODF border models are inert in this bounded borderless reader.
+        // Used table/row/cell border and padding properties remain rejected,
+        // including inherited defaults and covered-cell styles below.
         final width = _attr(props, 'width', _style);
         if (width != null) tableWidth = _length(width);
         final align = _attr(props, 'align', odfTableNamespace);

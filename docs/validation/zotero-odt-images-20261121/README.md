@@ -7,7 +7,7 @@ followed by **30 focused passes** after the last editor-only main update. An act
 LibreOfficeDev conversion retained both pictures and both active citations in
 each PNG/JPEG fixture through three subsequent DOCX/ODT cycles.
 
-Final qualified source: [`7086ad80266981d612615710610d66bf3fcfb5cf`](https://github.com/CrispStrobe/quds_office_suite/commit/7086ad80266981d612615710610d66bf3fcfb5cf),
+Last directly qualified image-branch source: [`7086ad80266981d612615710610d66bf3fcfb5cf`](https://github.com/CrispStrobe/quds_office_suite/commit/7086ad80266981d612615710610d66bf3fcfb5cf),
 tree `b76107b64e496820f5550b11d1f6b684f34aa5d3`.
 The broad main-integration gate is bound to
 `ef05b99ec9bbf1d539181c8519eb41455d182603`, tree
@@ -20,6 +20,27 @@ Remote checkpoint branch: `codex/zotero-roundtrip-20261121`.
 This record adds evidence and documentation to that qualified source. It does
 not claim installed Zotero-plugin, stable release-host, or Apache OpenOffice
 acceptance. GitHub Actions were neither queried nor awaited.
+
+## Final publication reconciliation
+
+Before the final merge, remote main advanced to
+`2058a434b2bcc76e7fc7e8a449ff6ce31488eb25`, the completed Mail integration.
+It already contains this milestone's production commits `fac61ecd`, `81e478ca`
+and `58fe5b97`, the subsequent Word and rendering work, and the other Zotero
+ODT implementation through `3eac83d1`.
+
+The final reconciliation retains that complete main tree. Its only differences
+from `2058a434` are this milestone's documentation/evidence and the engine
+changelog entry; **no production or test file differs from that main**. See
+[the exact reconciliation](publication-reconciliation.json). The incoming
+[Mail qualification](../mail-scheduled-send-20261121/README.md) and
+[final renderer/Studio follow-up](../mail-scheduled-send-20261121/main-followup.md)
+remain preserved with their own sources and results.
+
+The receipts below remain attributed to the commits actually executed. The
+then-pending Mail/Zotero observations in older intake records are historical
+cutoffs; the completed incoming work is now retained by this reconciliation.
+No runtime rerun is needed for the remaining documentation-only PR delta.
 
 ## Final editor-only main update
 
@@ -230,10 +251,10 @@ change.
 
 The immutable starting-source converter probe documents bibliography section
 and table-default refusals. Those retained files were never repaired or
-normalized. The separately advancing `codex/zotero-odt-roundtrip-20261121`
-contains later section/note/table work, with final combined qualification still
-pending at the recorded cutoff. Reconcile that implementation with this picture
-work when qualified.
+normalized. Later section/note/table work through `3eac83d1` subsequently entered
+main in the completed Mail reconciliation. Its original continuation records
+and the incoming qualification above retain their own scope; the older
+plan/pending observations are not descriptions of the final main tree.
 
 Next priorities are those retained real-document cases, followed by identified
 release versions of Zotero and actual Word/LibreOffice plugins: citation and
