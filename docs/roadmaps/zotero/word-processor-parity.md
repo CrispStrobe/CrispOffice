@@ -36,7 +36,7 @@ results retain their original source and platform attribution.
 | Library/source discovery | Local/online catalogs, collections, saved searches, tags, source details, cited-source reuse and occurrence navigation | Local and online catalog APIs have different connection/version requirements |
 | Research materials | Read-only direct-child note previews and attachment metadata | No separate attachment-file download or Zotero library write workflow |
 | DOCX persistence | Active fields/preferences, native notes, rich bibliography structure, tables and embedded pictures use supported save/reopen paths | Local tests are separate from actual Word/LibreOffice application round trips |
-| Cross-word-processor transfer | Explicit transfer limitations remain documented | Active ODT field transfer and Zotero export/import handshakes need a dedicated qualified implementation |
+| Cross-word-processor transfer | Native export/import handshake, temporary metadata hyperlinks, DOCX import/save/reopen and ODT carrier export; complete native formatting before import publication | Direct native ODT reference marks and installed Zotero/Word/LibreOffice plugin acceptance remain separate; actual converter findings are recorded explicitly |
 
 The native controls use Zotero's own CSL processor. The separate basic/offline
 citation and single-item preview/export paths retain their narrower formatting
@@ -216,12 +216,37 @@ range milestone; it does not establish active ODT transfer or installed
 Word/LibreOffice acceptance. The [work record](../../validation/zotero-multiparagraph-20261121/README.md)
 separates fresh execution from historical evidence and records all remote saves.
 
+## Delivered increment: active-document transfer protocol
+
+Quds now advertises Zotero's import/export capability, invokes its native
+`exportDocument` command and implements the matching document callbacks.
+Transfer preparation retains the canonical marker, instructions, raw citation
+and bibliography codes and serialized preferences. Import recognizes the modern
+and legacy markers, reconstructs validated fields and lets Zotero reformat every
+remaining imported field before the staged result can be applied.
+
+The editor exposes **Prepare document for transfer…** and changes Refresh into
+**Import transferred references…** for a pending carrier. Cancellation, malformed
+metadata, incomplete formatting and stale document state leave the source
+untouched. Successful import/export is one undo/redo step. The model preserves
+existing paragraph, table-cell and authored-note identities, handles adjacent or
+formatted link fragments, and recognizes narrowly verified Google Docs URLs.
+
+The [transfer work record](../../validation/zotero-transfer-20261121/README.md)
+records pinned upstream contracts, local tests, converter artifacts and exact
+limitations. DOCX is the incoming format for Quds. ODT export uses the temporary
+hyperlink carrier; direct native ODT `ReferenceMark` import is not implemented.
+Installed native-plugin acceptance remains a separate gate.
+
 ## Next implementation and acceptance steps
 
-1. **Qualify active document transfer.** Establish Word/LibreOffice fixtures
-   containing active citations, rich bibliographies, authored notes, tables and
-   images. Verify the actual Zotero transfer/import/export protocol and ODT field
-   representation before advertising cross-format editing parity.
+1. **Finish installed-application transfer acceptance and native ODT input.**
+   Use the implemented carrier and retained synthetic fixtures with current
+   Word/LibreOffice and their actual Zotero plugins. Resolve any converter findings
+   against identified release versions. Check citations, rich bibliographies,
+   authored notes, tables, images and repeated transfers. Implement native ODT
+   reference-mark/preference ownership in the ODF reader before claiming direct
+   active-ODT editing; the current Quds import path is DOCX.
 2. **Extend table structure and formatting.** Improve merged-row height distribution and map nested tables,
    header/footer row groups and custom styles to native structures with explicit
    ownership. Qualify their citation order, geometry, save/reopen behavior and

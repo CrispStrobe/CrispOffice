@@ -62,6 +62,7 @@ PORTABLE = (
 )
 IGNORED = {'.dart_tool', 'build', '__pycache__'}
 ENGINE_LOCK = 'packages/quds_office_engine/pubspec.lock'
+EXAMPLE_LOCK = 'packages/quds_office_engine/example/pubspec.lock'
 
 
 def digest(path):
@@ -168,7 +169,8 @@ def main():
     receipt = {'status': 'running', 'python': sys.version, 'commands': records,
                'portable': portable, 'workspace_directives_removed': adapted}
     tests = sorted({str(path.relative_to(engine))
-                    for pattern in ('office_macro*_test.dart', 'office_vba*_test.dart')
+                    for pattern in ('office_macro*_test.dart', 'office_vba*_test.dart',
+                                    'word_zotero*_test.dart', 'zotero*_test.dart')
                     for path in (engine / 'test').glob(pattern)} |
                    {'test/' + name for name in NATIVE_TESTS})
     receipt['test_files'] = tests
@@ -240,7 +242,31 @@ def main():
         write_json(output / 'source-after.json', after)
         write_json(output / 'copied-source-after.json', copy_after)
         source_changed = changes(original, after)
-        copy_changed = changes(copied, copy_after)
+        comparable_copy_after = dict(copy_after)
+        # Real CLI subprocesses may resolve the copied example package on first
+        # use. Its new lock is a generated dependency receipt, not a changed
+        # source input. Verify every hosted identity against the captured root
+        # lock before excluding that one known output from source comparison.
+        if EXAMPLE_LOCK not in copied and EXAMPLE_LOCK in copy_after:
+            generated = hosted_lock(output / EXAMPLE_LOCK)
+            root_locked = hosted_lock(output / 'root-pubspec.lock')
+            generated_mismatches = {
+                name: {'root': root_locked.get(name), 'generated': fields}
+                for name, fields in generated.items()
+                if fields != root_locked.get(name)
+            }
+            receipt['generated_example_lock'] = {
+                'sha256': digest(output / EXAMPLE_LOCK),
+                'hosted_packages': len(generated),
+                'mismatches': generated_mismatches,
+            }
+            shutil.copy2(output / EXAMPLE_LOCK,
+                         output / 'generated-example-pubspec.lock')
+            if generated and not generated_mismatches:
+                comparable_copy_after.pop(EXAMPLE_LOCK)
+            else:
+                failed = failed or 'Generated example dependencies differ from the root lock'
+        copy_changed = changes(copied, comparable_copy_after)
         lock_changed = effective_lock is not None and effective_lock != digest(engine / 'pubspec.lock')
         receipt.update(source_changed_during_run=source_changed,
                        copied_source_changed_during_run=copy_changed,

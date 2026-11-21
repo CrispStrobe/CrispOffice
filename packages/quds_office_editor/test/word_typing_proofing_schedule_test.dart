@@ -243,6 +243,58 @@ void main() {
     },
   );
 
+  testWidgets('without a spelling-only provider words wait for the pause', (
+    tester,
+  ) async {
+    // A provider declaring every category runs on the grammar schedule.
+    final rules = _Provider(
+      'rules-test',
+      OfficeProofingCategory.values.toSet(),
+      (request, id) => _spelling().find(request, id),
+    );
+    final controller = WordEditorController(
+      document: _document(),
+      proofingService: OfficeProofingService(providers: [rules]),
+    );
+    addTearDown(controller.dispose);
+    controller.proofing.enabled = true;
+    final h = _Harness(controller, rules, _grammar());
+    await _settle(tester, controller);
+    expect(h.session.summary.complete, isTrue);
+    rules.requests.clear();
+    h.caretAtEnd(1);
+    await h.type(tester, ' ein Feler ');
+    expect(rules.requests, isEmpty);
+    await tester.pump(WordProofingTiming.idle);
+    await _settle(tester, controller);
+    expect(rules.requests, ['Paragraph 1 is clean. ein Feler ']);
+    expect(h.flagged(1, 'spelling'), isTrue);
+    expect(h.session.summary.complete, isTrue);
+  });
+
+  testWidgets('a word check that changes no mark does not notify', (
+    tester,
+  ) async {
+    final h = _setup();
+    await _settle(tester, h.controller);
+    h.caret(1, 0);
+    var notifications = 0;
+    void count() => notifications++;
+    h.session.addListener(count);
+    addTearDown(() => h.session.removeListener(count));
+    await h.type(tester, 'Gut ');
+    await tester.pump(_afterWord);
+    expect(h.session.passCountsByTrigger['word'], 1);
+    expect(h.session.silentPassCount, 1);
+    expect(notifications, 0);
+    // A new mark notifies.
+    await h.type(tester, 'Feler ');
+    await tester.pump(_afterWord);
+    expect(h.flagged(1, 'spelling'), isTrue);
+    expect(notifications, 1);
+    await _drain(tester, h);
+  });
+
   testWidgets('continuous typing never forces a pass', (tester) async {
     final h = _setup();
     await _settle(tester, h.controller);

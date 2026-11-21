@@ -335,6 +335,8 @@ results instead of applying them at another location.
 | **Bibliography in Zotero…** | Adds or edits a bibliography through the same document processor |
 | **Add note from Zotero…** | Inserts a supported research note with active citation fields at the body/Notes caret, or replaces ordinary text across consecutive paragraphs in one body section or authored note |
 | **Add annotation from Zotero…** | Opens Zotero 9+'s annotation picker and inserts selected text, image/ink annotations and comments with active citations |
+| **Prepare document for transfer…** | Uses Zotero's native transfer command to replace active fields with a temporary transferable representation |
+| **Import transferred references…** | Appears for a pending transfer; asks Zotero to rebuild and format its active citations and bibliography |
 | Existing citation menu → **Edit in Zotero…** | Opens that citation in Zotero's native picker |
 | Library selection → **Insert with Zotero…** | Seeds the native picker with selected linked catalog sources, then applies Zotero's result |
 
@@ -353,6 +355,52 @@ The **Preview / export style ID** and locale fields belong to the older
 individual-preview/export workflow; changing them does not switch the
 document's native CSL style. Zotero document preferences are saved as native
 `ZOTERO_PREF_*` custom properties and restored when the DOCX is reopened.
+
+### Move an active document between word processors
+
+Use **Prepare document for transfer…** with desktop Zotero connected. Zotero
+confirms the operation and supplies the instructions placed at the beginning
+of the document. Quds replaces supported active citations and bibliography
+fields with temporary links containing their complete metadata, and appends
+the document preferences. This is the official
+[Zotero transfer workflow](https://www.zotero.org/support/kb/moving_documents_between_word_processors).
+The transfer copy intentionally shows raw field data until the destination
+word processor imports it.
+
+Save a copy as **DOCX for Word** or **ODT for LibreOffice**, open it in the
+destination, and use that application's **Zotero Refresh** command. Keep the
+original document until the destination has restored and checked the active
+references. Do not edit the transfer marker, metadata links or final preferences
+paragraph. Merely saving ordinary active fields as another file format does
+not perform this workflow.
+
+To bring a prepared transfer into Quds, open its **DOCX** copy and choose
+**Import transferred references…** or the existing **Refresh citations** command.
+The leading transfer marker takes precedence over stored DOCX preferences.
+Quds reconstructs fields in a detached document, then lets Zotero format every
+imported field and the bibliography before applying the result. The entire
+operation is one undo step. Cancelling, incomplete native formatting, changed
+document state or damaged transfer data leaves the original document intact.
+Other native citation-editing controls remain unavailable while import is
+pending.
+
+Supported carriers include citations in ordinary body paragraphs, table cells
+and uniquely anchored authored footnotes/endnotes; complete native bibliography
+ranges; surrounding rich text and inline images; XML/JSON preferences and unknown
+metadata members. Formatted fragments of a link and touching citation links are
+reassembled without splitting JSON titles or locators. The modern and legacy
+markers and the verified Google Docs transfer-link variants are recognized.
+Mixed active fields and transfer links, protected or ambiguous ownership, lost
+links, duplicate preferences and oversized payloads are refused explicitly.
+Temporary hyperlink appearance is removed when rebuilding native fields.
+
+This increment implements the transfer protocol and file carriers. Quds does
+not yet import native ODT `ReferenceMark` fields or provide full ODT document
+editing; incoming transfers use DOCX. The
+[transfer qualification record](validation/zotero-transfer-20261121/README.md)
+distinguishes local callback/model/editor checks, actual LibreOffice file
+conversion, and the remaining installed Zotero/Word/LibreOffice plugin tests.
+Those scopes must not be treated as complete application parity.
 
 ### Combine directly adjacent citations during Refresh
 
@@ -1055,6 +1103,7 @@ document tools above use the separate HTTP Citing Protocol.
 | Refresh | Fetch metadata for at most 1,000 distinct linked sources in verified batches of at most 50 per library, and atomically refresh Quds basic author–year citations | Local identities require the matching desktop connection; imported/custom style caches are not automatically replaced |
 | Existing DOCX fields | Preserve Zotero codes, unknown JSON members, source data and rich cached text, including multi-run simple fields | Nested, locked and opaque replacement is refused; multi-paragraph replacement is limited to complete native bibliography ranges |
 | Native Zotero document preferences | Read and write Zotero's XML/JSON preferences in chunked `ZOTERO_PREF_*` custom properties; translate native `Field` and wire `Http` types | Unknown preferences and unrelated properties are retained; malformed, duplicate, incomplete or ambiguously owned data is refused |
+| Document transfer | Native export/import callbacks, temporary metadata hyperlinks, DOCX save/reopen and ODT carrier export; native reformatting before applying an import | Incoming Quds transfer uses DOCX; direct native ODT fields and installed-plugin acceptance remain separate; see the current transfer work record |
 
 New citations use complex Word fields with `ADDIN ZOTERO_ITEM CSL_CITATION`
 codes, durable Zotero item URIs, and embedded CSL item snapshots. New linked
@@ -1079,9 +1128,9 @@ The new desktop adapter delegates complete CSL processing to Zotero. Basic
 formatting and individual previews remain available when the desktop is not
 connected, and remain explicitly identified. A citation processed by native
 Zotero is marked separately so **Refresh basic citations** cannot overwrite
-its CSL result. Active citation transfer through ODT and opening the exported
-file in Microsoft Word or LibreOffice remain outside the executed acceptance
-scope.
+its CSL result. The transfer workflow above extends this with explicit temporary
+carriers. Its qualification record identifies exactly which file-converter paths
+were exercised and which installed-application paths remain unqualified.
 
 ### Rich bibliography review and imported citation preservation
 
@@ -1311,8 +1360,13 @@ to each new client. Clients sharing that state must use the same clock.
 
 ## Current and previous qualification evidence
 
+The [document-transfer work record](validation/zotero-transfer-20261121/README.md)
+tracks the current handshake, carrier implementation, complete remote intake
+and fresh local qualification. It keeps file conversion and controlled callback
+tests separate from a live native Zotero plugin session.
+
 The [multi-paragraph replacement work record](validation/zotero-multiparagraph-20261121/README.md)
-tracks the latest implementation, complete remote intake and local qualification.
+retains the preceding implementation, complete remote intake and local qualification.
 The preceding [vertical-table work record](validation/zotero-vertical-tables-20261120/README.md)
 retains its own source and evidence. The earlier
 [horizontal-merge and Refresh work record](validation/zotero-merged-cells-20261120/README.md)
