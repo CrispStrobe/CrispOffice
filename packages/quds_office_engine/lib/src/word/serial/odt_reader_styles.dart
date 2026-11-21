@@ -43,6 +43,8 @@ final class OdtReaderStyles {
 
   bool hasParagraphStyle(String name) => _styles.containsKey('paragraph/$name');
 
+  bool hasTextStyle(String name) => _styles.containsKey('text/$name');
+
   /// Returns default and named ancestor definitions, in inheritance order.
   /// The immutable list refers to the caller's already bounded input DOM.
   List<XmlElement> styleChain(String family, String? name) {
@@ -96,9 +98,16 @@ final class OdtReaderStyles {
   }
 
   /// Rejects note numbering and styling not represented by the reader.
-  /// ODF 1.3 section 19.874.5 defines the initial note number as one.
-  /// A producer's zero-based offset is not silently interpreted as that value.
-  void validateNoteConfiguration(bool endnote) {
+  ///
+  /// ODF 1.3 section 19.874.5 describes an initial number, defaulting to one.
+  /// LibreOffice writes its zero-based StartAt offset instead. The caller may
+  /// opt into that producer convention only after qualifying the metadata, and
+  /// must require a nonempty cached label matching each native ordinal when
+  /// this returns true. Unknown producers retain the normative interpretation.
+  bool validateNoteConfiguration(
+    bool endnote, {
+    bool libreOfficeNoteOffsets = false,
+  }) {
     final kind = endnote ? 'endnote' : 'footnote';
     final matching = <XmlElement>[];
     for (final configuration in _noteConfigurations) {
@@ -115,7 +124,7 @@ final class OdtReaderStyles {
     if (matching.length > 1) {
       throw const FormatException('Duplicate ODT note configuration.');
     }
-    if (matching.isEmpty) return;
+    if (matching.isEmpty) return false;
     final configuration = matching.single;
     _checkAttributes(configuration, {
       odfTextNamespace: {
@@ -147,9 +156,9 @@ final class OdtReaderStyles {
       );
     }
     final start = _attr(configuration, odfTextNamespace, 'start-value');
-    if (start != null && start != '1') {
+    if (start != null && start != (libreOfficeNoteOffsets ? '0' : '1')) {
       throw UnsupportedError(
-        'Noncanonical ODT note start values are not supported.',
+        'Noncanonical ODT $kind start values are not supported.',
       );
     }
     final restart = _attr(
@@ -196,6 +205,7 @@ final class OdtReaderStyles {
         );
       }
     }
+    return libreOfficeNoteOffsets;
   }
 
   /// Validates a document-wide outline before importing any heading.
@@ -574,6 +584,83 @@ final class OdtReaderStyles {
     }
   }
 
+  /// Qualifies a native bibliography's section wrapper before flattening it.
+  ///
+  /// LibreOffice assigns even an ordinary Zotero TextSection an automatic
+  /// section style. Only effective properties with no nested-region layout or
+  /// protection effect are admitted. Page geometry is not a substitute for
+  /// section-local margins, columns, background or note configuration.
+  void validateBibliographySection(String? styleName) {
+    if (styleName != null && styleName.isEmpty) {
+      throw const FormatException('Empty ODT bibliography section style.');
+    }
+    final values = <String, String>{};
+    XmlElement? columns;
+    for (final definition in styleChain('section', styleName)) {
+      if (!RegExp(r'^[ \t\r\n]*$').hasMatch(definition.text)) {
+        throw UnsupportedError('ODT section style contains authored text.');
+      }
+      final properties = _singleChild(definition, _style, 'section-properties');
+      if (properties == null) continue;
+      _mergeProperties(values, properties);
+      for (final child in properties.childElements) {
+        if (child.namespaceUri != _style || child.localName != 'columns') {
+          throw UnsupportedError(
+            'Unsupported ODT bibliography section content.',
+          );
+        }
+      }
+      final ownColumns = _singleChild(properties, _style, 'columns');
+      if (ownColumns != null) columns = ownColumns;
+    }
+    String? take(String ns, String name) => values.remove('$ns/$name');
+    for (final name in ['editable', 'protect']) {
+      final value = take(_style, name);
+      if (value != null && _boolean(value)) {
+        // ODF 1.3 20.265: editable means EditInReadonly, not IsProtected.
+        // Neither an editing exception nor actual protection is represented.
+        throw UnsupportedError(
+          'Active ODT bibliography section setting: $name',
+        );
+      }
+    }
+    for (final name in ['margin-left', 'margin-right']) {
+      final value = take(_fo, name);
+      if (value != null && lengthPoints(value, allowNegative: true) != 0) {
+        throw UnsupportedError(
+          'ODT bibliography section margins are not supported.',
+        );
+      }
+    }
+    final background = take(_fo, 'background-color');
+    if (background != null && background != 'transparent') {
+      throw UnsupportedError(
+        'ODT bibliography section backgrounds are not supported.',
+      );
+    }
+    _requireEmpty(values, 'bibliography section');
+    if (columns == null) return;
+    _checkAttributes(columns, {
+      _fo: {'column-count', 'column-gap'},
+    });
+    if (columns.childElements.isNotEmpty ||
+        !RegExp(r'^[ \t\r\n]*$').hasMatch(columns.text)) {
+      throw UnsupportedError('ODT bibliography section column content.');
+    }
+    final count = _attr(columns, _fo, 'column-count');
+    // fo:column-count is required by the ODF schema when columns is present.
+    if (count == null ||
+        !RegExp(r'^[ \t\r\n]*\+?0*1[ \t\r\n]*$').hasMatch(count)) {
+      throw UnsupportedError('ODT bibliography sections require one column.');
+    }
+    final gap = _attr(columns, _fo, 'column-gap');
+    if (gap != null && lengthPoints(gap) != 0) {
+      throw UnsupportedError(
+        'ODT bibliography section column gaps are not supported.',
+      );
+    }
+  }
+
   /// Applies the single compatible layout after the body has resolved styles.
   void applyPageLayout(WmlSection section, {bool hasFootnotes = false}) {
     final names = <String>{..._usedMasters};
@@ -813,6 +900,11 @@ final class OdtReaderStyles {
         'table-cell' => const {'table-cell-properties'},
         'section' => const {'section-properties'},
         'drawing-page' => const {'drawing-page-properties'},
+        'graphic' => const {
+          'graphic-properties',
+          'paragraph-properties',
+          'text-properties',
+        },
         _ => const <String>{},
       };
       if (child.namespaceUri != _style || !allowed.contains(child.localName)) {
