@@ -1,0 +1,212 @@
+{
+  "accepted": true,
+  "earlier_source_commit": "d30c473102fddf422413440eda46e184190cb649",
+  "excluded_from_final_totals": {
+    "cohort": "studio",
+    "evidence_directory": "/workspace/scratch/8eb34dc8ced9/runtime/final",
+    "failed": 2,
+    "passed": 124,
+    "reason": "Superseded by corrected Studio cohort; original failed execution remains preserved."
+  },
+  "final_qualified_source_commit": "1dd6912549c473b1d31f35d7cc00b28bae7acf3d",
+  "gate_summary_sha256": {
+    "corrected": "666e494b9abfd9de90ca4e5991105f95d6437a65367d85f18be9fbc7cdca7848",
+    "original": "bf7008493ffed41a629a7444ed65b0166d7707530fa159fa88345e0ce12ff9a5"
+  },
+  "schema": "quds-mail-live-search-final-applicability/v1",
+  "selected_checks": [
+    {
+      "accepted": true,
+      "exit_code": 0,
+      "receipt": "/workspace/scratch/8eb34dc8ced9/runtime/final-corrected/analysis.receipt.json",
+      "receipt_sha256": "89b5e95192210fe218b1d5a661798892e8860a7917c49bac93a6c7e50099a2a9",
+      "source_commit": "1dd6912549c473b1d31f35d7cc00b28bae7acf3d",
+      "stderr_bytes": 0,
+      "step": "analysis"
+    },
+    {
+      "accepted": true,
+      "exit_code": 0,
+      "receipt": "/workspace/scratch/8eb34dc8ced9/runtime/final-corrected/format.receipt.json",
+      "receipt_sha256": "2c45f021ae5c5a0f0c9faf3a5269c694a589b94f521313fbd1bf5ecf02bd40f3",
+      "source_commit": "1dd6912549c473b1d31f35d7cc00b28bae7acf3d",
+      "stderr_bytes": 0,
+      "step": "format"
+    }
+  ],
+  "selected_test_cohorts": [
+    {
+      "accepted": true,
+      "cohort": "studio",
+      "complete_lifecycle": true,
+      "evidence_directory": "/workspace/scratch/8eb34dc8ced9/runtime/final-corrected",
+      "failed": 0,
+      "passed": 127,
+      "receipt": "studio.receipt.json",
+      "receipt_sha256": "efb17866d070f2d0e98f418ac9f770917d5379938b63beacb14f027505b9eb32",
+      "runtime_error_events": 0,
+      "skipped": 0,
+      "source_commit": "1dd6912549c473b1d31f35d7cc00b28bae7acf3d",
+      "stderr_bytes": 0,
+      "suites": [
+        {
+          "accepted": true,
+          "failed": 0,
+          "passed": 23,
+          "skipped": 0,
+          "suite": "packages/quds_office_editor/example/test/studio_mail_cached_search_dialog_test.dart"
+        },
+        {
+          "accepted": true,
+          "failed": 0,
+          "passed": 14,
+          "skipped": 0,
+          "suite": "packages/quds_office_editor/example/test/studio_mail_cached_search_refresh_dialog_test.dart"
+        },
+        {
+          "accepted": true,
+          "failed": 0,
+          "passed": 19,
+          "skipped": 0,
+          "suite": "packages/quds_office_editor/example/test/studio_mail_cached_search_refresh_test.dart"
+        },
+        {
+          "accepted": true,
+          "failed": 0,
+          "passed": 21,
+          "skipped": 0,
+          "suite": "packages/quds_office_editor/example/test/studio_mail_cached_search_test.dart"
+        },
+        {
+          "accepted": true,
+          "failed": 0,
+          "passed": 18,
+          "skipped": 0,
+          "suite": "packages/quds_office_editor/example/test/studio_mail_local_accounts_dialog_test.dart"
+        },
+        {
+          "accepted": true,
+          "failed": 0,
+          "passed": 13,
+          "skipped": 0,
+          "suite": "packages/quds_office_editor/example/test/studio_mail_saved_search_dialog_test.dart"
+        },
+        {
+          "accepted": true,
+          "failed": 0,
+          "passed": 19,
+          "skipped": 0,
+          "suite": "packages/quds_office_editor/example/test/studio_mail_saved_search_store_test.dart"
+        }
+      ]
+    },
+    {
+      "accepted": true,
+      "cohort": "store",
+      "complete_lifecycle": true,
+      "evidence_directory": "/workspace/scratch/8eb34dc8ced9/runtime/final",
+      "failed": 0,
+      "passed": 57,
+      "receipt": "store.receipt.json",
+      "receipt_sha256": "3730013c48a1bd846e36e85440c5fcf4e5c8c9367794b76b415a12207f3b4a35",
+      "runtime_error_events": 0,
+      "skipped": 0,
+      "source_commit": "d30c473102fddf422413440eda46e184190cb649",
+      "stderr_bytes": 0,
+      "suites": [
+        {
+          "accepted": true,
+          "failed": 0,
+          "passed": 19,
+          "skipped": 0,
+          "suite": "packages/quds_mail_store/test/cached_header_search_test.dart"
+        },
+        {
+          "accepted": true,
+          "failed": 0,
+          "passed": 38,
+          "skipped": 0,
+          "suite": "packages/quds_mail_store/test/saved_header_searches_test.dart"
+        }
+      ]
+    },
+    {
+      "accepted": true,
+      "cohort": "editor",
+      "complete_lifecycle": true,
+      "evidence_directory": "/workspace/scratch/8eb34dc8ced9/runtime/final",
+      "failed": 0,
+      "passed": 16,
+      "receipt": "editor.receipt.json",
+      "receipt_sha256": "40fa7f940f947244cf74a2a695fed833bd2940ed520141f8472290c95cac47da",
+      "runtime_error_events": 0,
+      "skipped": 0,
+      "source_commit": "d30c473102fddf422413440eda46e184190cb649",
+      "stderr_bytes": 0,
+      "suites": [
+        {
+          "accepted": true,
+          "failed": 0,
+          "passed": 3,
+          "skipped": 0,
+          "suite": "packages/quds_office_editor/test/office_frame_wrap_golden_test.dart"
+        },
+        {
+          "accepted": true,
+          "failed": 0,
+          "passed": 8,
+          "skipped": 0,
+          "suite": "packages/quds_office_editor/test/word_page_text_cache_test.dart"
+        },
+        {
+          "accepted": true,
+          "failed": 0,
+          "passed": 5,
+          "skipped": 0,
+          "suite": "packages/quds_office_editor/test/word_page_text_picture_cache_test.dart"
+        }
+      ]
+    }
+  ],
+  "source_applicability": {
+    "all_source_inventory_paths_outside_studio_example_unchanged": true,
+    "changed_dependency_manifests_or_root_configuration": [],
+    "changed_paths_between_qualified_commits": [
+      "packages/quds_office_editor/example/lib/studio_mail_cached_search_dialog.dart",
+      "packages/quds_office_editor/example/test/studio_mail_cached_search_dialog_test.dart",
+      "packages/quds_office_editor/example/test/studio_mail_cached_search_refresh_dialog_test.dart"
+    ],
+    "changed_paths_in_retained_store_editor_scopes": {
+      "editor_production_library": [],
+      "editor_tests_and_fixtures": [],
+      "mail_core_package": [],
+      "mail_store_package": [],
+      "office_engine_package": [],
+      "third_party_sources": []
+    },
+    "dependency_manifest_and_root_configuration_count": 23,
+    "rationale": "Only Studio example implementation and two Studio tests changed. The corrected Studio cohort and checks were rerun. Store/editor package sources, selected tests and fixtures, all other source-inventory dependencies, and root/package dependency manifests are byte-identical, so their earlier successful cohorts retain applicability. This does not claim a full repository regression or a new execution of the retained cohorts.",
+    "runtime_versions_unchanged": {
+      "dartSdkVersion": "3.13.7",
+      "engineContentHash": "dfd2e6cb7d319db05e3bf1503f3e2ac60f6288a2",
+      "engineRevision": "cf636b1dfb818dd6a3ff16e390e93b1a036969c8",
+      "frameworkRevision": "737ba8f885dc774b53b442759999a312c9461e4e",
+      "frameworkVersion": "3.47.8"
+    },
+    "source_input_count_after_correction": 5974,
+    "source_input_count_before_correction": 5974
+  },
+  "source_manifest_sha256": {
+    "corrected_after": "a9cd901444403fecadaaae3a890c2b033f15747454c481267475cd6d746e94b0",
+    "corrected_before": "a9cd901444403fecadaaae3a890c2b033f15747454c481267475cd6d746e94b0",
+    "original_after": "66f3c0c27cf53d66e33c71ed77d3102c50a31561700082acefd41f8f3de33fe5",
+    "original_before": "66f3c0c27cf53d66e33c71ed77d3102c50a31561700082acefd41f8f3de33fe5"
+  },
+  "totals": {
+    "distinct_suite_and_case_identities": 200,
+    "failed": 0,
+    "passed": 200,
+    "skipped": 0,
+    "suites": 12
+  }
+}

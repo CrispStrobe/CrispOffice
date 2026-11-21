@@ -34,6 +34,7 @@ are neither consulted nor awaited.
 | `b80f5c27a67ece5692dfd8dc916ab5a57736976f` | Refresh collector, foreground UI, localizations, focused regressions and roadmap |
 | `1360ead9e080fcf884ccac6cbc87bd6a58efdb5b` | Final whole-scope authority recheck, regression and latest landed main `511df2a0` |
 | `d30c473102fddf422413440eda46e184190cb649` | Compact EN/DE/AR controls, actual-font visual test and finite local qualification runner |
+| `1dd6912549c473b1d31f35d7cc00b28bae7acf3d` | Report and pause cancelled cleanup failures, explicit recovery regression, and lazy-list test navigation correction |
 
 The final scope recheck closes an independently reproduced design gap: account
 A can be retired after its last page while account B is still being scanned.
@@ -61,7 +62,7 @@ canonical upstream's four heads and sixteen tags were rechecked unchanged.
 Only subsequent landed-main changes are reconciled before final publication;
 this finite intake does not chase independent draft development indefinitely.
 
-## Increment under qualification
+## Delivered increment
 
 The [workflow contract](../../roadmaps/mail/live-saved-search.md) describes
 explicit refresh, opt-in foreground intervals, staged results, fixed scope,
@@ -85,4 +86,71 @@ epoch. The corrective checkpoint reports failed retired-owner closure while
 the route remains current, pauses automatic work even during suspension, and
 retains ownership for explicit Refresh or Close. A new regression covers the
 failed closure, no retry after resume, and successful explicit recovery.
-Qualification of these affected Studio changes is pending at this checkpoint.
+The affected Studio changes passed the corrected gate at `1dd69125`.
+
+## Accepted local qualification
+
+| Cohort | Accepted cases | Executed source | Applicability |
+| --- | ---: | --- | --- |
+| Studio cached search, refresh, saved searches and account chooser — seven suites | 127 | `1dd69125` | Final corrected source; includes native SQLite, cancellation, account revocation, selected reader retention, timing, close failure and explicit recovery |
+| Mail store header search and saved definitions — two suites | 57 | `d30c4731` | Store source, tests, dependencies and lockfile unchanged by the final dialog-only correction |
+| Word text/picture cache and frame-wrap regression — three suites | 16 | `d30c4731` | Incoming renderer source and its tests unchanged by the final dialog-only correction |
+| Actual-font EN desktop, EN/DE/AR compact visual cases | 4 | `d30c4731` | Twelve result/reader/partial captures; final correction changes cleanup handling only, with no layout, strings, theme, fonts or visual fixture changes |
+
+**200 automated regression cases plus four visual cases passed.** There are no
+skips, unfinished accepted cases, runtime error events or stderr in the accepted
+automated cohorts. Strict analysis (`--fatal-infos --fatal-warnings`) and format
+verification pass for all eight changed/test/visual Dart files. Both finite
+execution attempts capture 5,974 source inputs before and after each step; each
+attempt's inputs stayed unchanged. The original failed Studio attempt is kept
+separately and contributes no passing cases to this accepted total.
+
+The visual gate uses the actual bundled fonts, Studio theme and native SQLite
+adapter. At 360 × 640 with 1.3× text it checks for overflow, requires at least
+180 logical pixels of reader viewport, and verifies that the first body
+paragraph fits after normal reader scrolling. Existing compact tests also
+retain 360 × 600 at 1.4× text and sender-direction assertions. These are local
+widget/renderer/store checks; no live provider credentials, real server
+downloads, platform installation or background-delivery qualification is
+claimed by this increment.
+
+### Evidence
+
+- [Qualification and source applicability](qualification.json) selects the
+  accepted attempts, exact counts and unchanged dependency scopes.
+- [Runtime provenance](runtime-provenance.json) records the official SDK archive
+  digest, Flutter/Dart/native SQLite versions and unchanged locked resolution.
+- [Evidence index](evidence-index.json) hashes every archived raw record and
+  explains visual-source applicability without relabelling an earlier run.
+- [Local execution archive](local-execution.tar.xz) retains raw event streams,
+  command/exit receipts, source inventories, earlier failed attempts and the
+  corrected accepted attempt. Archive contents were re-read and hash-verified.
+- [Visual receipt](visual/visual-receipt.json) retains exact invocation, actual
+  configurations, post-run source hashes and the twelve PNG hashes. The hashes
+  are explicitly post-run; an uncaptured absolute execution timestamp is not
+  invented.
+
+Representative captures: [English results](visual/en-desktop-results.png),
+[German compact reader](visual/de-compact-reader.png),
+[Arabic compact reader](visual/ar-compact-reader.png), and
+[German partial coverage](visual/de-compact-partial.png).
+
+### Reproduce
+
+Use the repository's pinned Flutter 3.47.8 / Dart 3.13.7 and existing lockfile.
+Set `CI=true`, `FLUTTER_SUPPRESS_ANALYTICS=true` and
+`DART_SUPPRESS_ANALYTICS=true` before starting Flutter. These supported SDK
+settings keep the local runner out of cloud-metadata startup detection and
+analytics. Resolve dependencies with `flutter pub get --enforce-lockfile`,
+then from the repository root run:
+
+```sh
+python docs/validation/mail-live-search-20261121/run_local.py \
+  --output /absolute/path/to/a-new-evidence-directory
+```
+
+The runner refuses to overwrite an existing evidence directory, executes the
+selected finite suites serially with `--no-pub`, audits visible test lifecycles,
+and records commands, SDK versions, stderr, source changes and output hashes.
+It never waits for GitHub Actions. See the visual receipt for the separately
+executed screenshot command.
