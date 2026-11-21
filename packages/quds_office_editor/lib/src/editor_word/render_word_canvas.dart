@@ -465,6 +465,15 @@ typedef _RunPaintKey = ({
   String? themeFamily,
 });
 
+typedef _BodyTextInkContext = ({
+  bool editingHeader,
+  bool editingFooter,
+  List<WmlParagraph>? storyParagraphs,
+  WmlTable? selectedTable,
+  ({WmlTable table, bool column, int from, int to})? selectedTableBand,
+  (int, int)? selectedParagraphs,
+});
+
 class RenderWordCanvas extends RenderBox implements MouseTrackerAnnotation {
   /// RenderWordCanvas API.
   RenderWordCanvas({
@@ -785,6 +794,7 @@ class RenderWordCanvas extends RenderBox implements MouseTrackerAnnotation {
   _selectionPaths = <(LaidOutPage, int, int, int, int, WmlTable?), Path>{};
   final Map<(LaidOutPage, int?), ui.Picture> _bodyTextPictures =
       <(LaidOutPage, int?), ui.Picture>{};
+  _BodyTextInkContext? _bodyTextInkContext;
 
   @override
   void dispose() {
@@ -807,6 +817,7 @@ class RenderWordCanvas extends RenderBox implements MouseTrackerAnnotation {
       picture.dispose();
     }
     _bodyTextPictures.clear();
+    _bodyTextInkContext = null;
   }
 
   LaidOutDocument? _fittedLayout;
@@ -4766,6 +4777,39 @@ class RenderWordCanvas extends RenderBox implements MouseTrackerAnnotation {
     LaidOutPage page,
     Map<int, WmlFrame> frameOwners,
   ) {
+    // Adaptive ink depends on the actual cell/story background. Snapshot the
+    // effective selection: CaretEngine is mutable and may already contain the
+    // new range when updateRenderObject receives the same instance. Ordinary
+    // collapsed caret moves and in-paragraph selections leave cell ink alone.
+    final _BodyTextInkContext? inkContext = _theme.adaptDocumentColors
+        ? (
+            editingHeader: editingHeader,
+            editingFooter: editingFooter,
+            storyParagraphs: storyParagraphs,
+            selectedTable: _editingHeaderFooter ? null : selectedTable,
+            selectedTableBand: _editingHeaderFooter ? null : selectedTableBand,
+            selectedParagraphs:
+                !_editingHeaderFooter &&
+                    !caret.isCollapsed &&
+                    caret.selectionAnchorParagraph != caret.paragraphIndex
+                ? (
+                    math.min(
+                      caret.selectionAnchorParagraph,
+                      caret.paragraphIndex,
+                    ),
+                    math.max(
+                      caret.selectionAnchorParagraph,
+                      caret.paragraphIndex,
+                    ),
+                  )
+                : null,
+          )
+        : null;
+    if (_bodyTextInkContext != inkContext) {
+      // Replace old pictures instead of retaining one for every selection.
+      _clearBodyTextPictures();
+      _bodyTextInkContext = inkContext;
+    }
     final key = (page, selectedCommentId);
     final cached = _bodyTextPictures[key];
     if (cached != null) return cached;

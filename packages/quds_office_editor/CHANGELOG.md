@@ -4,6 +4,12 @@ All notable changes to `quds_office_editor` are documented here.
 
 ## Unreleased
 
+- Invalidate cached page text when table-cell selection or header/footer editing
+  changes adaptive ink contrast. Snapshot effective mutable caret selection
+  state while retaining cached text for ordinary collapsed/in-paragraph moves.
+  Cover retained-versus-fresh pixels for table bands, whole tables, shared caret
+  ranges and header/footer transitions.
+
 - Native Mail Outbox adds **Send later**, saved UTC deadlines, explicit Resume
   after reopening and a ten-second pre-submission Undo window. Pause on app
   suspension, account change or Outbox close; fence stale timing edits and
