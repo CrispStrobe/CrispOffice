@@ -32,6 +32,7 @@ import 'studio_mail_ews.dart';
 import 'studio_mail_local_drafts.dart';
 import 'studio_mail_message_loader.dart';
 import 'studio_mail_mailbox_store.dart';
+import 'studio_mail_mailbox_session.dart';
 import 'studio_mail_operation.dart';
 import 'studio_mail_outbox.dart';
 import 'studio_mail_outbox_dialog.dart';
@@ -123,6 +124,7 @@ class _StudioMailDialogState extends State<StudioMailDialog>
   final _usedHeaderCursors = <String>{};
   final _confirmedFlags =
       Map<mail.MimeMessage, ({bool? read, bool? flagged})>.identity();
+  final _repositoryFlags = Map<mail.MimeMessage, MailMessageFlags?>.identity();
   MailCursor? _nextHeaders;
   bool _needsRefresh = false;
   int _mailboxGeneration = 0;
@@ -167,6 +169,9 @@ class _StudioMailDialogState extends State<StudioMailDialog>
   StudioMailDraft? _draft;
   StudioMailDraftStore? _draftStore;
   StudioMailMailboxCapture? _mailboxCapture;
+  StudioMailMailboxSession? _mailboxViewSession;
+  StreamSubscription<StudioMailMailboxSnapshot>? _mailboxViewSubscription;
+  Future<void> _mailboxViewClosing = Future<void>.value();
   Future<void> _draftStoreClosing = Future<void>.value();
   bool _submissionUncertain = false;
   bool _busy = false;
@@ -629,6 +634,7 @@ class _StudioMailDialogState extends State<StudioMailDialog>
     _bulkCancellation?.cancel(MailCancellationReason.disposed);
     _remoteImageLoader?.cancel();
     _sessionGeneration++;
+    unawaited(_stopCachedView());
     _mailboxCapture?.dispose();
     _credentialGeneration++;
     _email.dispose();
@@ -655,11 +661,16 @@ class _StudioMailDialogState extends State<StudioMailDialog>
   Future<void> _closeDraftStore(StudioMailDraftStore? store) async {
     // Keep the owner alive until an in-flight server reply has a durable receipt.
     // Cancelling the connection still prevents every subsequent dispatch.
-    await _pendingFlagWrite;
     final mailboxStore = switch (store) {
       StudioMailMailboxStoreOwner owner => owner.mailboxStore,
       _ => null,
     };
+    if (mailboxStore != null &&
+        identical(_mailboxViewSession?.store, mailboxStore)) {
+      await _stopCachedView();
+    }
+    await _mailboxViewClosing;
+    await _pendingFlagWrite;
     if (mailboxStore != null &&
         identical(_mailboxCapture?.store, mailboxStore)) {
       _mailboxCapture?.dispose();
@@ -757,6 +768,11 @@ class _StudioMailDialogState extends State<StudioMailDialog>
       };
       if (mailboxOwner != null && records != null) {
         final owner = candidate;
+        await _stopCachedView();
+        if (!_currentSession(client, generation) ||
+            !identical(owner, _draftStore)) {
+          return false;
+        }
         _mailboxCapture?.dispose();
         _mailboxCapture = StudioMailMailboxCapture(
           store: mailboxOwner.mailboxStore,
@@ -817,26 +833,159 @@ class _StudioMailDialogState extends State<StudioMailDialog>
         !_currentSession(client, generation)) {
       return;
     }
+    final mailboxGeneration = _mailboxGeneration;
+    bool current() =>
+        _currentSession(client, generation) &&
+        mailboxGeneration == _mailboxGeneration &&
+        identical(capture, _mailboxCapture) &&
+        identical(mailbox, _messageMailbox) &&
+        identical(loader, _messageLoader);
     try {
-      await capture.saveView(
+      final records = [
+        for (final message in _messages)
+          _capturedHeader(loader.observedHeader(mailbox, message), message),
+      ];
+      final messages = <MailMessageId, mail.MimeMessage>{
+        for (var i = 0; i < records.length; i++) records[i].id: _messages[i],
+      };
+      await _stopCachedView(retainMetadata: true);
+      if (!current()) return;
+      final saved = await capture.saveView(
         MailMailbox(
           id: MailMailboxId(mailbox.path, account: loader.account),
           displayName: mailbox.name,
         ),
-        [
-          for (final message in _messages)
-            loader.observedHeader(mailbox, message),
-        ],
+        records,
         hasMore: _nextHeaders != null,
       );
-      if (_currentSession(client, generation)) {
-        setState(() => _cacheViewWarning = null);
+      if (!current()) return;
+      final session = StudioMailMailboxSession(
+        store: capture.store,
+        provider: capture.provider,
+      );
+      _mailboxViewSession = session;
+      void accept(StudioMailMailboxSnapshot snapshot) {
+        if (!current() || !identical(session, _mailboxViewSession)) return;
+        if (snapshot.phase == StudioMailMailboxPhase.loading) return;
+        try {
+          final view = snapshot.view;
+          if (snapshot.phase != StudioMailMailboxPhase.ready || view == null) {
+            throw const StudioMailMailboxStoreException(
+              MailProblemCode.storageFailure,
+            );
+          }
+          final projected = capture.projectView(view);
+          final ordered = <mail.MimeMessage>[];
+          final flags = Map<mail.MimeMessage, MailMessageFlags?>.identity();
+          for (final header in projected) {
+            final message = messages[header.id];
+            if (message == null ||
+                loader.observedHeader(mailbox, message).remote !=
+                    header.remote) {
+              throw const StudioMailMailboxStoreException(
+                MailProblemCode.conflict,
+              );
+            }
+            ordered.add(message);
+            flags[message] = header.flags;
+          }
+          setState(() {
+            _messages = ordered;
+            for (final entry in flags.entries) {
+              final observed = entry.value;
+              final previous = _repositoryFlags[entry.key];
+              final hadPrevious = _repositoryFlags.containsKey(entry.key);
+              final confirmed = _confirmedFlags[entry.key];
+              if (observed != null && confirmed != null) {
+                final read =
+                    confirmed.read == observed.isRead ||
+                        hadPrevious && previous?.isRead != observed.isRead
+                    ? null
+                    : confirmed.read;
+                final flagged =
+                    confirmed.flagged == observed.isFlagged ||
+                        hadPrevious && previous?.isFlagged != observed.isFlagged
+                    ? null
+                    : confirmed.flagged;
+                if (read == null && flagged == null) {
+                  _confirmedFlags.remove(entry.key);
+                } else {
+                  _confirmedFlags[entry.key] = (read: read, flagged: flagged);
+                }
+              }
+            }
+            _repositoryFlags
+              ..clear()
+              ..addAll(flags);
+            _cacheViewWarning = null;
+          });
+        } on Object {
+          setState(
+            () => _cacheViewWarning = widget.strings.mailCacheSaveFailed,
+          );
+        }
       }
+
+      _mailboxViewSubscription = session.changes.listen(accept);
+      await session.select(saved.mailbox.id);
     } on Object {
-      if (_currentSession(client, generation)) {
+      if (current()) {
         setState(() => _cacheViewWarning = widget.strings.mailCacheSaveFailed);
       }
     }
+  }
+
+  MailHeaderRecord _capturedHeader(
+    MailHeaderRecord observed,
+    mail.MimeMessage message,
+  ) {
+    final snapshot = _repositoryFlags.containsKey(message)
+        ? _repositoryFlags[message]
+        : observed.flags;
+    final confirmed = _confirmedFlags[message];
+    return MailHeaderRecord(
+      id: observed.id,
+      remote: observed.remote,
+      envelope: observed.envelope,
+      // A per-flag confirmation must never invent the remaining unknown bits.
+      flags: snapshot == null
+          ? null
+          : MailMessageFlags(
+              isRead: confirmed?.read ?? snapshot.isRead,
+              isFlagged: confirmed?.flagged ?? snapshot.isFlagged,
+              isAnswered: snapshot.isAnswered,
+              isDraft: snapshot.isDraft,
+              isDeleted: snapshot.isDeleted,
+            ),
+    );
+  }
+
+  Future<void> _stopCachedView({bool retainMetadata = false}) {
+    final session = _mailboxViewSession;
+    final subscription = _mailboxViewSubscription;
+    _mailboxViewSession = null;
+    _mailboxViewSubscription = null;
+    if (!retainMetadata) _repositoryFlags.clear();
+    _mailboxCapture?.invalidateView();
+    final closing = session?.close();
+    final previous = _mailboxViewClosing;
+    return _mailboxViewClosing = () async {
+      try {
+        await previous;
+      } on Object {
+        // Continue retiring all independent subscriptions.
+      }
+      try {
+        await subscription?.cancel();
+      } on Object {
+        // Identity fencing already rejects late callbacks.
+      }
+      try {
+        await closing;
+      } on Object {
+        // The owner still closes after every cancellation has settled.
+      }
+    }();
   }
 
   Future<void> _disconnectQuietly(
@@ -1118,6 +1267,9 @@ class _StudioMailDialogState extends State<StudioMailDialog>
         final generation = _sessionGeneration;
         final previous = more ? null : _reader;
         final cursor = more ? _nextHeaders : null;
+        setState(() => _busy = true);
+        await _stopCachedView(retainMetadata: more);
+        if (!_currentSession(client, generation)) return;
         setState(() {
           _busy = true;
           _error = null;
@@ -1184,6 +1336,9 @@ class _StudioMailDialogState extends State<StudioMailDialog>
             final retained = Set<mail.MimeMessage>.identity()
               ..addAll(_messages);
             _confirmedFlags.removeWhere(
+              (message, _) => !retained.contains(message),
+            );
+            _repositoryFlags.removeWhere(
               (message, _) => !retained.contains(message),
             );
             if (more && _selected != null) {
@@ -2312,6 +2467,7 @@ class _StudioMailDialogState extends State<StudioMailDialog>
     _bulkCancellation?.cancel(MailCancellationReason.accountChanged);
     _bulkCancellation = null;
     _sessionGeneration++;
+    unawaited(_stopCachedView());
     _mailboxCapture?.dispose();
     _mailboxCapture = null;
     final draftStore = _draftStore;
@@ -3593,18 +3749,20 @@ class _StudioMailDialogState extends State<StudioMailDialog>
 
   bool? _observedRead(mail.MimeMessage message) {
     final confirmed = _confirmedFlags[message];
-    return confirmed != null
-        ? confirmed.read
-        : message.flags == null
-        ? null
-        : message.isSeen;
+    if (confirmed?.read case final read?) return read;
+    if (_repositoryFlags.containsKey(message)) {
+      return _repositoryFlags[message]?.isRead;
+    }
+    return confirmed != null || message.flags == null ? null : message.isSeen;
   }
 
   bool? _observedFlagged(mail.MimeMessage message) {
     final confirmed = _confirmedFlags[message];
-    return confirmed != null
-        ? confirmed.flagged
-        : message.flags == null
+    if (confirmed?.flagged case final flagged?) return flagged;
+    if (_repositoryFlags.containsKey(message)) {
+      return _repositoryFlags[message]?.isFlagged;
+    }
+    return confirmed != null || message.flags == null
         ? null
         : message.isFlagged;
   }

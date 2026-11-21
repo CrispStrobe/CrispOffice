@@ -129,8 +129,9 @@ synchronization or the reusable multi-account workspace milestone.
 
 ## Next acceptance boundaries
 
-The next workspace increment should connect repository streams to foreground
-lists and durable synchronization commands, with provider-specific reset,
+The [repository session continuation](repository-sessions.md) now observes saved
+folder/catalog streams in foreground and cached views. The next workspace
+increment should add durable synchronization commands, with provider-specific reset,
 reconciliation, retry and cancellation behavior. It then needs a unified
 multi-account inbox, durable remote read/flag/move/delete commands and consistent
 bulk workflows. Provider-side Drafts synchronization remains a separate
