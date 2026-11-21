@@ -765,7 +765,8 @@ void main() {
               for (final table in tables.entries)
                 table.key: [
                   for (final row in database.select(
-                    'SELECT ${table.value.map((name) => '"$name"').join(',')} FROM "${table.key}" ORDER BY rowid',
+                    'SELECT ${table.value.map((name) => '"$name"').join(',')} FROM "${table.key}" '
+                    'ORDER BY ${table.value.map((name) => '"$name"').join(',')}',
                   ))
                     [
                       for (final value in row.values)

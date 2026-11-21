@@ -55,6 +55,8 @@ final class _TransferProbe extends QueryInterceptor {
 }
 
 void main() {
+  // Test databases deliberately use independent executors for reopen/quota cases.
+  driftRuntimeOptions.dontWarnAboutMultipleDatabases = true;
   late SqliteMailRepository store;
   var failCommit = false;
   setUp(() async {

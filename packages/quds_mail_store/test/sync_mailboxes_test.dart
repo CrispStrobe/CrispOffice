@@ -604,6 +604,13 @@ void main() {
         );
         final prior = snapshot()..remove('mailbox_sync_state');
         await store.close();
+        // Reconstruct the actual old schema, including removal of every
+        // additive table/column introduced after v7.
+        database.execute('DROP TABLE saved_header_search_accounts');
+        database.execute('DROP TABLE saved_header_searches');
+        database.execute(
+          'ALTER TABLE store_profile DROP COLUMN saved_header_search_revision',
+        );
         database.execute('DROP TABLE mailbox_sync_state');
         database.userVersion = 7;
         if (interrupted) {
