@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 
@@ -6,21 +7,55 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:path/path.dart' as p;
 
+import 'credentials/biometric_secret_store.dart';
 import 'credentials/secure_storage_service.dart';
+import 'credentials/secure_storage_web.dart';
 import 'credentials/utils/async_lock.dart';
 import 'credentials/secure_storage_file_io.dart';
 import 'credentials/secure_storage_macos_keychain.dart';
 
 enum StudioCredentialMode { system, customKeychain, encryptedVault, session }
 
+/// Outcome of trying to open the encrypted vault with biometry.
+enum StudioVaultBiometricUnlock {
+  /// The vault is open; no password was needed.
+  unlocked,
+
+  /// Biometric unlock is not turned on for this vault.
+  notEnabled,
+
+  /// Turned on, but biometry or the keychain cannot be used right now.
+  unavailable,
+
+  /// The user dismissed the system sheet.
+  cancelled,
+
+  /// Authentication or the vault/keychain operation failed.
+  failed,
+
+  /// The stored key is gone or no longer opens the vault (fingerprints
+  /// changed, vault replaced). Biometric unlock has been turned off; offer
+  /// it again after the next master-password unlock.
+  invalidated,
+}
+
 /// Non-secret selection. A failed selected store never falls back to another.
 class StudioCredentialStorage extends ChangeNotifier {
   StudioCredentialStorage({
     Future<SecureStorage> Function()? systemStorageFactory,
-  }) : _systemStorageFactory = systemStorageFactory ?? _createSystemStorage;
+    BiometricSecretStore? biometrics,
+    @visibleForTesting this._vaultFactory,
+  }) : _systemStorageFactory = systemStorageFactory ?? _createSystemStorage,
+       biometrics = biometrics ?? const MethodChannelBiometricSecretStore();
 
   static final instance = StudioCredentialStorage();
   static const preferenceKey = 'crispoffice.credentials.selection.v1';
+
+  /// Non-secret flag: a biometry-protected vault key was stored. The key
+  /// itself lives only in the OS keychain item ([biometrics]).
+  static const biometricPreferenceKey =
+      'crispoffice.credentials.vault-biometric.v1';
+  static const _biometricPayloadVersion = 1;
   StudioCredentialMode mode = StudioCredentialMode.system;
   String? customPath;
   final _stores = <String, SecureStorage>{};
@@ -28,6 +63,13 @@ class StudioCredentialStorage extends ChangeNotifier {
   bool _loaded = false;
   int _selectionGeneration = 0;
   final Future<SecureStorage> Function() _systemStorageFactory;
+  final Future<WebEncryptedStorage> Function()? _vaultFactory;
+  final BiometricSecretStore biometrics;
+  final _biometricOperations = AsyncLock();
+
+  /// Set when a stored biometric key was invalidated, so the next
+  /// master-password unlock explains why biometric unlock is offered again.
+  bool biometricReenrolmentSuggested = false;
 
   /// Changes only after a selected backend is successfully committed.
   int get revision => _selectionGeneration;
@@ -61,7 +103,22 @@ class StudioCredentialStorage extends ChangeNotifier {
       }
     }
     _loaded = true;
+    if (mode != StudioCredentialMode.encryptedVault) {
+      // Finish a removal that failed when the storage mode last changed.
+      unawaited(_clearStaleBiometricSecret());
+    }
   }
+
+  Future<void> _clearStaleBiometricSecret() =>
+      _biometricOperations.synchronized(() async {
+        try {
+          if (await biometricUnlockEnabled()) {
+            await _removeBiometricSecret(bestEffort: true);
+          }
+        } on Object {
+          // Preferences unavailable: retried on the next start.
+        }
+      });
 
   Future<File> get vaultFile async => File(
     p.join(
@@ -69,13 +126,189 @@ class StudioCredentialStorage extends ChangeNotifier {
       'credential-vault.json',
     ),
   );
-  Future<bool> vaultExists() async =>
-      EncryptedFileStorage(await vaultFile).hasVault();
+  Future<WebEncryptedStorage> _openVaultHandle() async =>
+      await _vaultFactory?.call() ?? EncryptedFileStorage(await vaultFile);
+  static final _vaultIdentity = '${StudioCredentialMode.encryptedVault.name}:';
+  Future<bool> vaultExists() async => (await _openVaultHandle()).hasVault();
+
+  /// Whether this process currently holds an unlocked vault handle.
+  bool get vaultUnlocked => _stores.containsKey(_vaultIdentity);
+
   Future<void> unlockVault(String password, {required bool create}) async {
     if (password.isEmpty) throw ArgumentError('Enter a master password.');
-    final vault = EncryptedFileStorage(await vaultFile);
+    final vault = await _openVaultHandle();
     await vault.initialize(password, expectedExisting: !create);
-    _stores['${StudioCredentialMode.encryptedVault.name}:'] = vault;
+    _stores[_vaultIdentity] = vault;
+    if (create) {
+      // A new vault replaces a removed or reset one; a key stored for the old
+      // vault must never linger in the keychain.
+      await _removeBiometricSecret(bestEffort: true);
+    }
+  }
+
+  // ---- Biometric (Touch ID) unlock of the encrypted vault ----------------
+  //
+  // The derived 256-bit vault key, not the master password, is stored: the
+  // native vault (pure-Dart PBKDF2/AES-GCM) can be opened directly with that
+  // key via WebEncryptedStorage.initializeWithKey. A key is bound to the
+  // vault's salt, so a vault created again or re-keyed under another password
+  // rejects it and the item is deleted. The master password never leaves the
+  // unlock dialog. Neither key nor payload is ever logged.
+
+  Future<BiometricUnlockAvailability> biometricAvailability() async {
+    try {
+      return await biometrics.availability();
+    } on Object {
+      return BiometricUnlockAvailability.error;
+    }
+  }
+
+  Future<bool> biometricUnlockEnabled() async =>
+      (await SharedPreferences.getInstance()).getBool(biometricPreferenceKey) ??
+      false;
+
+  Future<void> _setBiometricFlag(bool enabled) async {
+    final prefs = await SharedPreferences.getInstance();
+    final saved = enabled
+        ? await prefs.setBool(biometricPreferenceKey, true)
+        : await prefs.remove(biometricPreferenceKey);
+    if (!saved) {
+      throw StateError('Could not save the biometric unlock setting.');
+    }
+  }
+
+  /// Stores the key of the currently unlocked vault behind biometry. The
+  /// vault must have been unlocked in this process (normally just now, with
+  /// its master password).
+  Future<void> enableBiometricUnlock() =>
+      _biometricOperations.synchronized(() async {
+        final vault = _stores[_vaultIdentity];
+        if (vault is! WebEncryptedStorage) {
+          throw StateError('Unlock the encrypted credential vault first.');
+        }
+        if (await biometricAvailability() !=
+            BiometricUnlockAvailability.available) {
+          throw StateError('Biometric unlock is not available.');
+        }
+        final key = await vault.exportUnlockKey();
+        if (key == null) {
+          throw StateError('This vault cannot be unlocked with a stored key.');
+        }
+        final payload = jsonEncode({
+          'v': _biometricPayloadVersion,
+          'key': base64.encode(key),
+        });
+        key.fillRange(0, key.length, 0);
+        await biometrics.store(payload);
+        try {
+          await _setBiometricFlag(true);
+        } on Object {
+          await _deleteBiometricItemQuietly();
+          rethrow;
+        }
+        biometricReenrolmentSuggested = false;
+      });
+
+  /// Turns biometric unlock off and deletes the keychain item.
+  Future<void> disableBiometricUnlock() =>
+      _biometricOperations.synchronized(() => _removeBiometricSecret());
+
+  Future<void> _removeBiometricSecret({bool bestEffort = false}) async {
+    try {
+      await biometrics.delete();
+      await _setBiometricFlag(false);
+    } on Object {
+      // Keep the flag when deletion failed, so cleanup is retried later.
+      if (!bestEffort) rethrow;
+    }
+  }
+
+  Future<void> _deleteBiometricItemQuietly() async {
+    try {
+      await biometrics.delete();
+    } on Object {
+      // The flag is not set, so a later enable or mode change retries.
+    }
+  }
+
+  Future<void> _invalidateBiometricUnlock() async {
+    biometricReenrolmentSuggested = true;
+    await _removeBiometricSecret(bestEffort: true);
+  }
+
+  /// Opens the encrypted vault with the biometry-protected key. Anything but
+  /// [StudioVaultBiometricUnlock.unlocked] leaves the vault locked; callers
+  /// then fall back to the master-password prompt.
+  Future<StudioVaultBiometricUnlock> unlockVaultWithBiometrics({
+    required String reason,
+    String? cancelTitle,
+    String? fallbackTitle,
+  }) => _biometricOperations.synchronized(() async {
+    if (!await biometricUnlockEnabled()) {
+      return StudioVaultBiometricUnlock.notEnabled;
+    }
+    if (await biometricAvailability() !=
+        BiometricUnlockAvailability.available) {
+      return StudioVaultBiometricUnlock.unavailable;
+    }
+    final BiometricSecretRead read;
+    try {
+      read = await biometrics.read(
+        reason: reason,
+        cancelTitle: cancelTitle,
+        fallbackTitle: fallbackTitle,
+      );
+    } on Object {
+      return StudioVaultBiometricUnlock.failed;
+    }
+    switch (read.status) {
+      case BiometricSecretReadStatus.success:
+        break;
+      case BiometricSecretReadStatus.cancelled:
+        return StudioVaultBiometricUnlock.cancelled;
+      case BiometricSecretReadStatus.unavailable:
+        return StudioVaultBiometricUnlock.unavailable;
+      case BiometricSecretReadStatus.failed:
+        return StudioVaultBiometricUnlock.failed;
+      case BiometricSecretReadStatus.notFound:
+        await _invalidateBiometricUnlock();
+        return StudioVaultBiometricUnlock.invalidated;
+    }
+    final key = _decodeBiometricPayload(read.secret!);
+    if (key == null) {
+      await _invalidateBiometricUnlock();
+      return StudioVaultBiometricUnlock.invalidated;
+    }
+    final vault = await _openVaultHandle();
+    try {
+      await vault.initializeWithKey(key);
+    } on CredentialVaultKeyRejected {
+      await _invalidateBiometricUnlock();
+      return StudioVaultBiometricUnlock.invalidated;
+    } on Object {
+      // Missing/damaged vault, lock contention or I/O: the key may still be
+      // valid, so keep it and let the password path report the problem.
+      return StudioVaultBiometricUnlock.failed;
+    } finally {
+      key.fillRange(0, key.length, 0);
+    }
+    _stores[_vaultIdentity] = vault;
+    return StudioVaultBiometricUnlock.unlocked;
+  });
+
+  static Uint8List? _decodeBiometricPayload(String payload) {
+    try {
+      final value = jsonDecode(payload);
+      if (value is! Map<String, Object?> ||
+          value['v'] != _biometricPayloadVersion ||
+          value['key'] is! String) {
+        return null;
+      }
+      final key = base64.decode(value['key'] as String);
+      return key.length == 32 ? key : null;
+    } on FormatException {
+      return null;
+    }
   }
 
   Future<SecureStorage> get storage async {
@@ -145,5 +378,9 @@ class StudioCredentialStorage extends ChangeNotifier {
         mode = next;
         customPath = next == StudioCredentialMode.customKeychain ? path : null;
         notifyListeners();
+        if (next != StudioCredentialMode.encryptedVault) {
+          // Leaving the vault: its biometric key must not outlive the choice.
+          await _clearStaleBiometricSecret();
+        }
       });
 }

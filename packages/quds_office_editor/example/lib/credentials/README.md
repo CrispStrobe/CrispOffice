@@ -6,3 +6,9 @@ PBKDF2-HMAC-SHA256 codec. Local imports and the custom keychain namespace are
 adapted for this independent host. The native vault uses the existing pure Dart
 provider; browser storage and legacy plaintext migration are excluded. Secrets
 are never stored in preferences. Explicit store failures never redirect writes.
+
+Touch ID unlock of the encrypted vault (`biometric_secret_store.dart`,
+`macos/Runner/BiometricVaultKeychain.swift`) stores the derived vault key, not
+the master password, in a data protection keychain item protected by
+`.biometryCurrentSet`; the OS enforces biometry when the item is read. Only a
+non-secret on/off flag lives in preferences.

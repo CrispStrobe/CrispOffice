@@ -54,6 +54,8 @@ class AppDelegate: FlutterAppDelegate {
     )
     channel.invokeMethod("show", arguments: nil)
   }
+  // Touch ID unlock of the encrypted credential vault (see its file).
+  let biometricVaultKeychain = BiometricVaultKeychain()
   private let customKeychainStore = CustomKeychainStore()
   private var customKeychainChannel: FlutterMethodChannel?
 
