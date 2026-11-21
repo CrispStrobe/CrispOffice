@@ -219,6 +219,21 @@ mode. `smallCaps: true` writes an explicit AllCaps-off override. Highlighting
 uses the existing `highlight` field with a palette RGB color or `null` to clear.
 These operations retain the ordinary nonempty text-range requirement.
 
+`docx.runFormat` also accepts `language` for the normal proofing-language slot
+and `csFont` for the independent complex-script font. Both require nonempty
+Strings. Language tags use a conservative canonical BCP47-shaped syntax:
+2–3 lowercase language letters, optional Titlecase script, uppercase two-letter
+or three-digit region, and optional unique lowercase variants, up to 63
+characters. Extensions/private-use and noncanonical casing are refused;
+syntactic acceptance does not verify the IANA registry or installed proofing
+providers. Font names require XML-safe text without control whitespace.
+These writes preserve other language/font slots and foreign metadata, make
+same-value assignments direct, and reject ambiguous native source before
+mutation. An explicit complex font clears only its own `w:cstheme` theme
+selection. Existing `font` writes independently own ASCII/high-ANSI values
+and their themes. See the [Word language contract](VBA_WORD_MACROS.md#proofing-language-and-complex-script-font-controls)
+for the narrower source-level enum set, slot semantics and example.
+
 Generic native paragraph operations also accept `story: "header"`, `"footer"`,
 `"firstHeader"`, `"firstFooter"`, `"evenHeader"` or `"evenFooter"`, with a
 zero-based `section` and story-local `paragraph`. These selectors require an

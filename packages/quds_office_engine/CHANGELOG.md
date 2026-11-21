@@ -4,6 +4,35 @@ All notable changes to `quds_office_engine` are documented here.
 
 ## Unreleased
 
+- Add bounded `OdtDocumentReader.readBytes` and byte-based asynchronous Word
+  opening for supported native ODT. Preserve rich paragraphs/styles, absolute
+  external links, authored notes, simple lists and unmerged nested tables;
+  reconstruct canonical Zotero citations/bibliographies by exact source
+  ownership. Retain rich caches and unknown metadata through DOCX save/reopen,
+  normalize ReferenceMark preferences only at the explicit import boundary,
+  and archive original `meta.xml` in DOCX custom XML. Keep resource limits and
+  refuse unsupported used formatting/structure before publication. Qualify
+  controlled refresh/placement transactions separately from installed hosts;
+  the untouched LibreOfficeDev 26.8 sample still refuses an active paragraph
+  property. Ordinary ODT export remains a cached-result path. See the
+  [rich-import record](../../docs/validation/zotero-rich-odt-20261121/README.md).
+
+- Extend bounded Word VBA with 30 normal-slot `LanguageID` / `LanguageIDOther`
+  values and independent `Font.NameBi` writes. Retain unedited language/font
+  slots, theme metadata, explicit same-value inheritance overrides and inert
+  DOCM contents. Correct native font ownership and namespace-aware direct/style
+  projection; refuse ambiguous input before mutation. Add a runnable multilingual
+  BAS module, native/compiler/transaction tests and portable VM/JavaScript
+  qualification. See the [language/font contract](../../docs/VBA_WORD_MACROS.md#proofing-language-and-complex-script-font-controls).
+
+- Qualify the incoming bounded ODT reader's table-style inheritance. Preserve
+  inherited alignment and row keep-together, honor explicit transparent cell
+  fills, and refuse unsupported authored widths or used structural-style
+  metadata instead of silently dropping them. Reconcile declared-width
+  allocation and guarded asynchronous Word/Studio opening from the concurrent
+  ODT branch. Add 23 preservation regressions; installed-host parity remains
+  outside this headless qualification.
+
 - Add `OdfZotero.inspect`, a bounded read-only native ODT Zotero inventory.
   Retain canonical citation ReferenceMarks, bibliography TextSections, exact
   paragraph/story/cell ownership, UTF-16 offsets, cached results and original

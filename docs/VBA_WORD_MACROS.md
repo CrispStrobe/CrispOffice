@@ -144,7 +144,9 @@ geometry has its separate mapping below.
 | `range.Font.Size = value` | `docx.runFormat` | `size: value` in points |
 | `range.Font.Kerning = value` | `docx.runFormat` | `kerning: value`, a minimum font-size threshold in points |
 | `range.NoProofing = value` | `docx.runFormat` | `noProof: value` |
+| `range.LanguageID = value` or `range.LanguageIDOther = value` | `docx.runFormat` | `language`: the supported normal-slot BCP47 tag below |
 | `range.Font.Name = value` | `docx.runFormat` | `font: value` |
+| `range.Font.NameBi = value` | `docx.runFormat` | `csFont: value`; owns the complex-script font independently |
 | `range.Font.Color = value` | `docx.runFormat` | `color` as six uppercase RGB hexadecimal digits |
 | `range.Font.Underline = value` | `docx.runFormat` | `underline`, one of the 18 documented `WdUnderline` styles |
 | `range.Font.StrikeThrough = value` | `docx.runFormat` | `strike: value` |
@@ -1031,7 +1033,7 @@ Paragraph-format operations can target an empty paragraph.
 | `Font.Bold`, `Font.Italic`, `Font.StrikeThrough`, `Font.SmallCaps`, `Font.Superscript`, `Font.Subscript`, `KeepTogether`, `PageBreakBefore` | Actual `Boolean`; numeric `-1`/`0` and Strings require explicit conversion |
 | `Font.Underline` | Exact numeric member of `WdUnderline`, including all 18 named constants; `True` is not an underline enum |
 | `Font.Size` | Actual finite number from `0.5` through `1638`, in exact half-point increments |
-| `Font.Name` | Nonempty XML-safe String; control whitespace in font names is unsupported |
+| `Font.Name`, `Font.NameBi` | Nonempty XML-safe String; control whitespace in font names is unsupported |
 | `Font.Color` | Exact integer from `0` through `16777215`, using VBA's packed RGB representation; `RGB(r, g, b)` is supported |
 | `ParagraphFormat.Alignment` | Exact integer `0`, `1`, `2`, or `3`, including the named constants below |
 | `Range.HighlightColorIndex` | Exact integer `0..16`, including the named `WdColorIndex` constants; `0` removes highlighting |
@@ -1442,10 +1444,10 @@ style cascade, with `w:szCs` as a compatibility fallback only when no regular
 size exists. A separate complex-script `w:szCs` remains preserved as source
 XML; this dialect does not expose Word's
 [`Font.SizeBi`](https://learn.microsoft.com/en-us/office/vba/api/word.font.sizebi)
-property. `Font.Name` sets the native ASCII font family;
-independent East Asian and complex-script font selection is not implemented
-by this source operation. Requested font availability and rendering fallback
-remain the document host's responsibility.
+property. `Font.Name` sets the native ASCII/high-ANSI font family.
+`Font.NameBi` independently sets the complex-script font as described below;
+East Asian font selection remains unsupported. Requested font availability
+and rendering fallback remain the document host's responsibility.
 
 Publication checks apply after expression evaluation. A String may contain
 surrogate slices internally for the existing string intrinsics, but malformed
@@ -1522,6 +1524,113 @@ accept numeric Boolean aliases, `wdUndefined`, implicit coercions, or property
 reads. The kerning ceiling and exact half-point checks are deliberate native
 bounds, without emulation of VBA Single rounding or installed Word host
 qualification. See the [local evidence](validation/word-vba-proofing-20261121/README.md).
+
+### Proofing-language and complex-script font controls
+
+`Range.LanguageID` and `Range.LanguageIDOther` accept the following 30
+`WdLanguageID` constants, or their exact numeric values. Both setters own only
+the normal proofing-language slot, `w:lang/@w:val`, in this bounded dialect.
+They preserve complex-script `w:bidi` and East Asian `w:eastAsia` metadata.
+In particular, `LanguageIDOther` is the Latin-text language property in
+right-to-left Word; it is **not** an alias for the bidi slot.
+
+| Constant | Value | Native language |
+| --- | ---: | --- |
+| `wdEnglishUS` | 1033 | `en-US` |
+| `wdEnglishUK` | 2057 | `en-GB` |
+| `wdEnglishAUS` | 3081 | `en-AU` |
+| `wdEnglishCanadian` | 4105 | `en-CA` |
+| `wdEnglishNewZealand` | 5129 | `en-NZ` |
+| `wdEnglishIreland` | 6153 | `en-IE` |
+| `wdEnglishSouthAfrica` | 7177 | `en-ZA` |
+| `wdGerman` | 1031 | `de-DE` |
+| `wdGermanAustria` | 3079 | `de-AT` |
+| `wdSwissGerman` | 2055 | `de-CH` |
+| `wdFrench` | 1036 | `fr-FR` |
+| `wdBelgianFrench` | 2060 | `fr-BE` |
+| `wdFrenchCanadian` | 3084 | `fr-CA` |
+| `wdSwissFrench` | 4108 | `fr-CH` |
+| `wdItalian` | 1040 | `it-IT` |
+| `wdSwissItalian` | 2064 | `it-CH` |
+| `wdDutch` | 1043 | `nl-NL` |
+| `wdBelgianDutch` | 2067 | `nl-BE` |
+| `wdPortuguese` | 2070 | `pt-PT` |
+| `wdPortugueseBrazil` | 1046 | `pt-BR` |
+| `wdSpanishModernSort` | 3082 | `es-ES` |
+| `wdMexicanSpanish` | 2058 | `es-MX` |
+| `wdDanish` | 1030 | `da-DK` |
+| `wdSwedish` | 1053 | `sv-SE` |
+| `wdSwedishFinland` | 2077 | `sv-FI` |
+| `wdNorwegianBokmol` | 1044 | `nb-NO` |
+| `wdNorwegianNynorsk` | 2068 | `nn-NO` |
+| `wdFinnish` | 1035 | `fi-FI` |
+| `wdIcelandic` | 1039 | `is-IS` |
+| `wdTurkish` | 1055 | `tr-TR` |
+
+The supported IDs are an explicit metadata contract. Setting a language does
+not install a dictionary, select a proofing provider, enable proofing, translate
+text, or change paragraph reading direction. Existing `NoProofing`, document
+defaults and paragraph-mark formatting remain unchanged. Use an explicit
+`NoProofing = False` when that change is also wanted. Numeric strings,
+Booleans, Empty, Null and fractional numbers are not implicitly converted.
+Unsupported IDs, including `wdLanguageNone`, `wdNoProofing`, `wdUndefined`,
+Arabic/Hebrew and East Asian language routing, are refused. Use the existing
+`NoProofing` property for proofing exclusion. `LanguageIDFarEast`, language
+reads and automatic mixed-script routing remain outside this source slice.
+
+`Font.NameBi` accepts the same nonempty XML-safe String contract as `Font.Name`
+and writes only the complex-script `w:rFonts/@w:cs` value. An explicit font
+choice removes its owned `w:cstheme` selection, retaining ASCII/high-ANSI,
+East Asian font and theme attributes, font hints and foreign metadata.
+`Font.Name` owns the ASCII/high-ANSI pair and their themes independently;
+the two setters compose in either order. Explicit same-value writes become
+direct formatting even when the previous value was inherited. Separate
+complex-script size/bold/italic setters are not included.
+
+```vb
+Sub Main()
+    With ActiveDocument.Paragraphs(1).Range
+        .LanguageID = wdGerman
+        .NoProofing = False
+        .Font.NameBi = "Amiri"
+    End With
+End Sub
+```
+
+These properties operate on the selected paragraph's existing nonempty text,
+including independent header/footer paragraphs through the established
+selectors. They do not set paragraph-mark or future-insertion formatting.
+Typed aliases, named required `ByVal` object parameters, optional scalar
+language parameters and nested `With` retain selector identity. Each assignment
+emits one ordinary native operation and cannot interrupt a pending custom
+line-spacing pair. Whole-story targets and live property reads remain refused.
+
+Native validation covers every run in the normalized formatting range before
+splitting or mutation. Duplicate owned native elements/attributes and relevant
+markup-compatibility alternatives are refused. Namespace aliases, foreign
+same-name metadata and nested lookalikes remain opaque; they cannot override
+the edited live fields on reopen. Sparse language/font writes preserve all
+unowned attributes, including when combined with small-caps formatting.
+The same policy, cancellation, detached validation, recording and all-run
+rollback rules apply. Opaque DOCM project bytes remain inert and unchanged.
+
+The [complete language-controls module](../packages/quds_office_engine/example/macros/word_language_controls.bas)
+uses German body text, the normal English language slot in mixed-script text,
+independent complex-script fonts and a French header. It requires two nonempty
+body paragraphs and an independent primary header paragraph, and emits seven
+operations. Run it using `compile-word-vba`, `validate-word-vba` and
+`run-word-vba` as for the examples below. The
+[local qualification record](validation/word-vba-language-controls-20261121/README.md)
+distinguishes compiler/native acceptance from installed Microsoft Word and
+Flutter host checks.
+
+Primary references: Microsoft's [Range.LanguageID](https://learn.microsoft.com/en-us/office/vba/api/word.range.languageid),
+[LanguageIDOther remarks](https://learn.microsoft.com/en-us/dotnet/api/microsoft.office.interop.word.range.languageidother),
+[WdLanguageID](https://learn.microsoft.com/en-us/office/vba/api/word.wdlanguageid),
+[Font.NameBi](https://learn.microsoft.com/en-us/office/vba/api/word.font.namebi)
+and [Open XML RunFonts](https://learn.microsoft.com/en-us/dotnet/api/documentformat.openxml.wordprocessing.runfonts).
+The explicit ID subset, no-read boundaries and normal-slot projection are the
+Quds contract; no installed Office differential result is claimed.
 
 ## Runnable report example
 

@@ -1,0 +1,24 @@
+{
+  "archive_sha256": "8f639115d6f45074c5723382a00ab5c80e53ee654aeedccb5e216638280be875",
+  "archive_bytes": 194612,
+  "member_sha256": {
+    "editor-gate/README.md": "200aa3b08676fa99cccd8d380fb5e228379efdf63cd7a843b0e9b5c51751880f",
+    "editor-gate/coverage.json": "d86c5f40d1b8d23e0a90b853262cf55bcb6b46a85c815d7bf5043ce52cb00b7d",
+    "editor-gate/editor/command.json": "4c2f85c9cd205b256fe21dd4524a59ba64fe317582bc919e956ad2951e9890b0",
+    "editor-gate/editor/events.jsonl": "cf87b7ea5751bc9b955b1623e4b3049b60ccd22b1e1d1884e72516e2df3a47cd",
+    "editor-gate/editor/result.json": "4e7bdf1e94cdde11ddff1327a30b33976443e141c273d77af312524b53f33d5a",
+    "editor-gate/editor/stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "editor-gate/inputs-after.json": "ae3e1d4c847754fffb3756796e4c5e102a08a8ef66efb254592b62059e2b358c",
+    "editor-gate/inputs-before.json": "ae3e1d4c847754fffb3756796e4c5e102a08a8ef66efb254592b62059e2b358c",
+    "editor-gate/runtime-after.json": "b146bd99dd3c039fdb31cfe736446b1b3e560ca2a60a65ad5e986226cd9a581b",
+    "editor-gate/runtime-before.json": "b146bd99dd3c039fdb31cfe736446b1b3e560ca2a60a65ad5e986226cd9a581b",
+    "editor-gate/studio/command.json": "564a40996ffdedbd1df32eb4a9dc5088deee446a97ed6fc6471f6aaccd94e3a0",
+    "editor-gate/studio/events.jsonl": "5da00595854fff52e8ad62d95f32d79e0f277581ca366bf89a915c69df0ed3c3",
+    "editor-gate/studio/result.json": "ad8c84fb62eed71a2158696497fcd28899dc227514f21d8221476e4c61c7db82",
+    "editor-gate/studio/stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "editor-gate/summary.json": "756d2665e3091795f5f62e1e276acb9fcdec063d3dff6d3c190a2b9338ab442b",
+    "run_editor_gate.py": "744ab9878f276ebca541b6f4e7d853e4d167f369100cfa072cb1eea37dd6a5af",
+    "editor-plan.json": "52db61e41635637eb47f77e10b6ba706b4c395e45f1c90cecd4667fc9f7e31ae"
+  },
+  "reopened_crc_and_member_hashes_verified": true
+}

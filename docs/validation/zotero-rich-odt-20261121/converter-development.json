@@ -1,0 +1,58 @@
+{
+  "converter": "LibreOfficeDev 26.8.0.0.alpha0 2c87e51eeaa2b413ff4ae097b2705eea1995d8e5",
+  "route": "Quds-generated DOCX -> installed LibreOfficeDev ODT -> attempted Quds native ODT import",
+  "command": [
+    "soffice",
+    "--headless",
+    "-env:UserInstallation=file:///workspace/scratch/1e8f5be6b406/runtime/lo-prose-profile",
+    "--norestore",
+    "--convert-to",
+    "odt",
+    "--outdir",
+    "/workspace/scratch/1e8f5be6b406/runtime/lo-prose",
+    "/workspace/scratch/1e8f5be6b406/runtime/lo-prose/native-prose.docx"
+  ],
+  "fixture_kind": "Synthetic ordinary rich prose: two paragraphs, bold and italic runs, Arabic and supplementary Unicode; no citations, macros, external links or Zotero session.",
+  "files_sha256": {
+    "native-prose.docx": "2572f8964c08b4f9bf9087ed0a8e68c54d4b9899797c37d30bd42c7800c37d74",
+    "native-prose.odt": "9fd4e0d23bf9cd2be0248bd5e9cfb496dfe512ec1226c456f324f2171705e1bd",
+    "content.xml": "9066ce83497a371dbda201e20c720fb16c239c1c90adaaf5889e014e46da0b6b",
+    "styles.xml": "547d33c963f19a93fd95acc382cb9150a1182b7017648e8ac24135f3f82b4264"
+  },
+  "first_refusal": {
+    "success": false,
+    "error": "Unsupported operation: Native ODT import does not yet support office:scripts with these properties. The document was not opened.",
+    "type": "UnsupportedError",
+    "stack": "#0      _unsupported (package:quds_office_engine/src/word/serial/odt_document_reader.dart:1054:43)\n#1      _OdtReader.read (package:quds_office_engine/src/word/serial/odt_document_reader.dart:173:9)\n#2      OdtDocumentReader.readBytes (package:quds_office_engine/src/word/serial/odt_document_reader.dart:89:29)\n<asynchronous suspension>\n#3      main (file:///workspace/scratch/1e8f5be6b406/runtime/lo_prose_probe.dart:30:22)\n<asynchronous suspension>\n"
+  },
+  "limits": "Converter-only probe on a development host. It is not installed Zotero, Word, LibreOffice plugin, or Apache OpenOffice acceptance. The untouched native fixture was refused instead of silently losing unsupported formatting.",
+  "final_attempt": {
+    "command": [
+      "/workspace/scratch/1e8f5be6b406/runtime/flutter-sdk/bin/dart",
+      "--packages=/workspace/scratch/1e8f5be6b406/quds_office_suite/.dart_tool/package_config.json",
+      "/workspace/scratch/1e8f5be6b406/runtime/lo_prose_probe.dart",
+      "import"
+    ],
+    "exit_code": 1,
+    "elapsed_seconds": 18.935110260999863,
+    "result": {
+      "success": false,
+      "error": "Unsupported operation: Unsupported ODT paragraph property: urn:oasis:names:tc:opendocument:xmlns:xsl-fo-compatible:1.0/hyphenation-ladder-count",
+      "type": "UnsupportedError",
+      "stack": "#0      OdtReaderStyles._requireEmpty (package:quds_office_engine/src/word/serial/odt_reader_styles.dart:1135:7)\n#1      OdtReaderStyles.paragraphProperties (package:quds_office_engine/src/word/serial/odt_reader_styles.dart:455:5)\n#2      _OdtReader._paragraph (package:quds_office_engine/src/word/serial/odt_document_reader.dart:320:31)\n#3      _OdtReader._blocks (package:quds_office_engine/src/word/serial/odt_document_reader.dart:275:20)\n#4      _OdtReader.read (package:quds_office_engine/src/word/serial/odt_document_reader.dart:220:27)\n#5      OdtDocumentReader.readBytes (package:quds_office_engine/src/word/serial/odt_document_reader.dart:90:29)\n<asynchronous suspension>\n#6      main (file:///workspace/scratch/1e8f5be6b406/runtime/lo_prose_probe.dart:30:22)\n<asynchronous suspension>\n"
+    },
+    "input_unchanged": true,
+    "source_before": {
+      "packages/quds_office_engine/lib/src/word/serial/odt_document_reader.dart": "2dc97650bb27f72ce0894aac1723ab3a2e25c15cce8e81fd437ec722a86f79dc",
+      "packages/quds_office_engine/lib/src/word/serial/odt_reader_styles.dart": "791f97bbbfe7e155d8de7ceaf39afcd896a810439f80de6054f86328e58a8e61",
+      "packages/quds_office_engine/lib/src/word/model/word_zotero_data.dart": "eb2b68b152d8b8c79494d36afaf39e2b0c653d6c69a7f1ea43f53d20332a2b61"
+    },
+    "source_after": {
+      "packages/quds_office_engine/lib/src/word/serial/odt_document_reader.dart": "2dc97650bb27f72ce0894aac1723ab3a2e25c15cce8e81fd437ec722a86f79dc",
+      "packages/quds_office_engine/lib/src/word/serial/odt_reader_styles.dart": "791f97bbbfe7e155d8de7ceaf39afcd896a810439f80de6054f86328e58a8e61",
+      "packages/quds_office_engine/lib/src/word/model/word_zotero_data.dart": "eb2b68b152d8b8c79494d36afaf39e2b0c653d6c69a7f1ea43f53d20332a2b61"
+    },
+    "source_changed": [],
+    "stdout_sha256": "3ad63f2d7d259d8a7ffd683081c3b637041a1bab51f4960e80c666dc8439c126"
+  }
+}

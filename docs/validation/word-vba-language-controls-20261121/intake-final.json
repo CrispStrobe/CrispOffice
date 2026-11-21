@@ -1,0 +1,468 @@
+{
+  "captured_at": "2026-11-21T12:20:48.080Z",
+  "repository": "CrispStrobe/quds_office_suite",
+  "qualified_head": "e254d17f065200701dbeb92e59cd25a5461ead40",
+  "branches": [
+    {
+      "name": "codex/word-vba-compatibility-20261121",
+      "sha": "38b07e58b7c0e2a5b04a823a7251805cea60fb77",
+      "qualified_head_coverage": "ancestor"
+    },
+    {
+      "name": "codex/word-vba-language-controls-20261121",
+      "sha": "e254d17f065200701dbeb92e59cd25a5461ead40",
+      "qualified_head_coverage": "ancestor"
+    },
+    {
+      "name": "codex/word-vba-paragraph-flow-20261121",
+      "sha": "13fa9ad5b9d140f1d7c085e46b4d0ce395000c49",
+      "qualified_head_coverage": "ancestor"
+    },
+    {
+      "name": "codex/word-vba-paragraph-pagination-20261121",
+      "sha": "1581229f0e5aea24b5242c33a1e92f02d70b4c7e",
+      "qualified_head_coverage": "ancestor"
+    },
+    {
+      "name": "codex/word-vba-sections-20261121",
+      "sha": "49665e51f9eacefc180748c3d0ed7851ef5da5d1",
+      "qualified_head_coverage": "ancestor"
+    },
+    {
+      "name": "codex/word-vba-text-intrinsics-20261121",
+      "sha": "4357f196507ca38a2f51409a981b8621d419b6d9",
+      "qualified_head_coverage": "ancestor"
+    },
+    {
+      "name": "codex/word-vba-unit-conversions-20261120",
+      "sha": "bbccae1bdead10951e2d7a23b33cf14c55382e02",
+      "qualified_head_coverage": "ancestor"
+    },
+    {
+      "name": "codex/zotero-multiparagraph-20261121",
+      "sha": "589ccd33243eabe57ce3074c92112e1fdf1325f1",
+      "qualified_head_coverage": "ancestor"
+    },
+    {
+      "name": "codex/zotero-native-odt-20261121",
+      "sha": "d9bfa44022781f0dd4493a923ca9f20316dc59f0",
+      "qualified_head_coverage": "ancestor"
+    },
+    {
+      "name": "codex/zotero-odt-inventory-20261121",
+      "sha": "fb386d6e42a2336f1431e38bf6d713552edd0978",
+      "qualified_head_coverage": "ancestor"
+    },
+    {
+      "name": "codex/zotero-parity-2026-11-21",
+      "sha": "ec656412511369446804d9fb287d4e11890ad871",
+      "qualified_head_coverage": "not_ancestor",
+      "new_commits": [
+        "ec6564125 docs(zotero): checkpoint import contract and local editor qualification [skip ci]"
+      ],
+      "direct_diff_paths": [
+        "M\tdocs/roadmaps/zotero/native-odt-input.md",
+        "M\tdocs/roadmaps/zotero/word-processor-parity.md",
+        "M\tdocs/validation/word-vba-language-controls-20261121/README.md",
+        "A\tdocs/validation/zotero-rich-odt-20261121/converter-development.json",
+        "A\tdocs/validation/zotero-rich-odt-20261121/editor-evidence-sha256.json",
+        "A\tdocs/validation/zotero-rich-odt-20261121/editor-results.json",
+        "A\tdocs/validation/zotero-rich-odt-20261121/frontier-intake.json",
+        "A\tdocs/validation/zotero-rich-odt-20261121/loader-development-results.json",
+        "A\tdocs/validation/zotero-rich-odt-20261121/runtime-setup.json",
+        "M\tdocs/zotero-support.md",
+        "M\tdocs/zotero-validation.md",
+        "M\tpackages/quds_office_editor/CHANGELOG.md",
+        "M\tpackages/quds_office_engine/CHANGELOG.md",
+        "M\tpackages/quds_office_engine/lib/src/opc/office_open_decode.dart",
+        "M\tpackages/quds_office_engine/lib/src/word/serial/odt_document_reader.dart",
+        "M\tpackages/quds_office_engine/lib/src/word/serial/odt_reader_styles.dart",
+        "M\tpackages/quds_office_engine/test/odt_document_reader_test.dart",
+        "M\tpackages/quds_office_engine/test/odt_open_test.dart",
+        "M\tpackages/quds_office_engine/test/odt_reader_guards_test.dart",
+        "M\tpackages/quds_office_engine/test/odt_reader_styles_test.dart",
+        "D\tpackages/quds_office_engine/test/odt_reader_table_preservation_test.dart",
+        "A\tpackages/quds_office_engine/test/odt_vba_language_roundtrip_test.dart"
+      ]
+    },
+    {
+      "name": "codex/zotero-parity-20261121-continuation",
+      "sha": "9942eb76f0ac818e464ad1b3bcec2cc4513d3e3f",
+      "qualified_head_coverage": "ancestor"
+    },
+    {
+      "name": "codex/zotero-parity-20261121-next",
+      "sha": "d4470bab1095593739ddf87fdb9f249bbc948b65",
+      "qualified_head_coverage": "ancestor"
+    },
+    {
+      "name": "codex/zotero-transfer-20261121",
+      "sha": "a1995c9154357e603b89947654cf95f8bcba6a83",
+      "qualified_head_coverage": "ancestor"
+    },
+    {
+      "name": "codex/zotero-vertical-tables-20261120",
+      "sha": "a7d9f37ecbaaf70544f4866d7d9e572696948184",
+      "qualified_head_coverage": "ancestor"
+    },
+    {
+      "name": "docs/app-store-submission-20261120",
+      "sha": "b08e0a55b629ac22b33c54146b56438862965022",
+      "qualified_head_coverage": "ancestor"
+    },
+    {
+      "name": "main",
+      "sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+      "qualified_head_coverage": "ancestor"
+    },
+    {
+      "name": "work/mail-boolean-core-20261121",
+      "sha": "3e6374115c10a92fdb4b82734c1bc2b009210794",
+      "qualified_head_coverage": "ancestor"
+    },
+    {
+      "name": "work/mail-command-journal-20261121",
+      "sha": "33ce2428ebab825a844895a767e0f9f1a4077d62",
+      "qualified_head_coverage": "ancestor"
+    },
+    {
+      "name": "work/mail-intake-20261121",
+      "sha": "4191be02ac9c7117e05ff4a052a5c92fbcfbf4b4",
+      "qualified_head_coverage": "ancestor"
+    },
+    {
+      "name": "work/mail-offline-retention-20261121",
+      "sha": "9eb68b9f048d3c08274ece5d7f964f1249004485",
+      "qualified_head_coverage": "ancestor"
+    },
+    {
+      "name": "work/mail-parity-20261121",
+      "sha": "fa59496840a36709fe3a6d867bdfe96ab99d72ab",
+      "qualified_head_coverage": "ancestor"
+    },
+    {
+      "name": "work/mail-parity-next-20261121",
+      "sha": "59866ce7c983869b16baa3f386b1f55dbb218833",
+      "qualified_head_coverage": "ancestor"
+    },
+    {
+      "name": "work/mail-repository-sessions-20261121",
+      "sha": "0491492d8622ad2ef09fb84e07d3dbba462f9320",
+      "qualified_head_coverage": "ancestor"
+    },
+    {
+      "name": "work/mail-sync-foundation-20261121",
+      "sha": "4a1eaa69e7a068e354bdd851ec9b0323b89ae300",
+      "qualified_head_coverage": "ancestor"
+    },
+    {
+      "name": "work/mail-triage-20261121",
+      "sha": "575e671de665dc918886285dab2e3628f4309965",
+      "qualified_head_coverage": "ancestor"
+    },
+    {
+      "name": "work/mail-unified-cache-20261121",
+      "sha": "93404525ef245df6a98654710e352e78f85a987c",
+      "qualified_head_coverage": "ancestor"
+    }
+  ],
+  "pull_requests_since_305": [
+    {
+      "number": 309,
+      "title": "Mail: add account-scoped conversation ordering in loaded mailbox views [skip ci]",
+      "state": "closed",
+      "draft": false,
+      "updated_at": "2026-11-21T11:56:45Z",
+      "merged_at": "2026-11-21T11:56:45Z",
+      "merge_commit_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+      "head_ref": "work/mail-parity-next-20261121",
+      "head_sha": "59866ce7c983869b16baa3f386b1f55dbb218833",
+      "head_repo": "CrispStrobe/quds_office_suite",
+      "base_sha": "dd9e63995c76683a01d4a10ac57a3de5cffd8c69",
+      "qualified_head_coverage": "ancestor"
+    },
+    {
+      "number": 308,
+      "title": "Extend Word VBA language controls and preserve independent font slots [skip ci]",
+      "state": "open",
+      "draft": true,
+      "updated_at": "2026-11-21T12:19:56Z",
+      "merged_at": null,
+      "merge_commit_sha": "fc73b0b70e96ecd58000067e068fbbef0456e7a0",
+      "head_ref": "codex/word-vba-language-controls-20261121",
+      "head_sha": "e254d17f065200701dbeb92e59cd25a5461ead40",
+      "head_repo": "CrispStrobe/quds_office_suite",
+      "base_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+      "qualified_head_coverage": "ancestor"
+    },
+    {
+      "number": 307,
+      "title": "Probe the data-protection keychain write path before selecting it",
+      "state": "closed",
+      "draft": false,
+      "updated_at": "2026-11-21T11:54:52Z",
+      "merged_at": "2026-11-21T11:54:50Z",
+      "merge_commit_sha": "dd9e63995c76683a01d4a10ac57a3de5cffd8c69",
+      "head_ref": "fix/system-keychain-write-probe-20261121",
+      "head_sha": "3307415dcc0d059cce960b3bce7a5279c7230859",
+      "head_repo": "CrispStrobe/quds_office_suite",
+      "base_sha": "995947e35f76bbb34dc16169b7352872631d092f",
+      "qualified_head_coverage": "ancestor"
+    },
+    {
+      "number": 306,
+      "title": "Prefer clean mail bodies and compact loaded-message controls",
+      "state": "closed",
+      "draft": false,
+      "updated_at": "2026-11-21T11:52:56Z",
+      "merged_at": "2026-11-21T11:52:53Z",
+      "merge_commit_sha": "995947e35f76bbb34dc16169b7352872631d092f",
+      "head_ref": "fix/mail-compact-reader-20261121",
+      "head_sha": "ca5be88293949b49942bdc3c45338243d5416e8b",
+      "head_repo": "CrispStrobe/quds_office_suite",
+      "base_sha": "2f90a0c8f21499d5a1113943971cb7379183885c",
+      "qualified_head_coverage": "ancestor"
+    }
+  ],
+  "open_pull_requests": [
+    {
+      "number": 308,
+      "title": "Extend Word VBA language controls and preserve independent font slots [skip ci]",
+      "state": "open",
+      "draft": true,
+      "updated_at": "2026-11-21T12:19:56Z",
+      "merged_at": null,
+      "merge_commit_sha": "fc73b0b70e96ecd58000067e068fbbef0456e7a0",
+      "head_ref": "codex/word-vba-language-controls-20261121",
+      "head_sha": "e254d17f065200701dbeb92e59cd25a5461ead40",
+      "head_repo": "CrispStrobe/quds_office_suite",
+      "base_sha": "fcb2128884768553141f41c02bf804e2267f9dbb"
+    }
+  ],
+  "upstream": {
+    "repository": "MohammedAsaadAsaad/quds_office_suite",
+    "branches": [
+      {
+        "name": "ci/flutter-workspace",
+        "sha": "aca2f66941832bd0b19b436baeab1656a1b7de98",
+        "qualified_head_coverage": "ancestor"
+      },
+      {
+        "name": "cursor/class-certificates-2db8",
+        "sha": "f45099688e7a3f67a1302efdb442830d052f2240",
+        "qualified_head_coverage": "ancestor"
+      },
+      {
+        "name": "cursor/cloud-agent-1790580069020-0rk1h",
+        "sha": "9930be8df44ffe117fb22778c514eea0ee73ce21",
+        "qualified_head_coverage": "ancestor"
+      },
+      {
+        "name": "main",
+        "sha": "15c5d29b63fb17a93c7fb3426a8fd4d95a32f1ba",
+        "qualified_head_coverage": "ancestor"
+      }
+    ],
+    "pull_requests": [
+      {
+        "number": 7,
+        "title": "Class certificates: one page per student",
+        "state": "closed",
+        "draft": false,
+        "updated_at": "2026-10-12T18:08:30Z",
+        "merged_at": "2026-10-12T18:08:30Z",
+        "merge_commit_sha": "58b7a6c9cbf03bed727b7894aa9ea219f1185f96",
+        "head_ref": "cursor/class-certificates-2db8",
+        "head_sha": "f45099688e7a3f67a1302efdb442830d052f2240",
+        "head_repo": "MohammedAsaadAsaad/quds_office_suite",
+        "base_sha": "26a8fcc25c2a3721842a26eeecb1f9971e3638f0",
+        "qualified_head_coverage": "ancestor"
+      },
+      {
+        "number": 6,
+        "title": "CI: resolve the workspace with Flutter and test Report Studio",
+        "state": "closed",
+        "draft": false,
+        "updated_at": "2026-10-10T19:22:04Z",
+        "merged_at": "2026-10-10T19:22:03Z",
+        "merge_commit_sha": "e1a830961b8dc23cccdf17dd991b0eaa9f11e6e1",
+        "head_ref": "ci/flutter-workspace",
+        "head_sha": "aca2f66941832bd0b19b436baeab1656a1b7de98",
+        "head_repo": "MohammedAsaadAsaad/quds_office_suite",
+        "base_sha": "f6630b450e7fc60e7bd432bfe1a131efb8d96fdc",
+        "qualified_head_coverage": "ancestor"
+      },
+      {
+        "number": 5,
+        "title": "Release engine 0.6.0 and editor 0.6.0: band reports, designer, Report Studio",
+        "state": "closed",
+        "draft": false,
+        "updated_at": "2026-10-10T19:13:47Z",
+        "merged_at": "2026-10-10T19:13:47Z",
+        "merge_commit_sha": "f6630b450e7fc60e7bd432bfe1a131efb8d96fdc",
+        "head_ref": "cursor/cloud-agent-1790580069020-0rk1h",
+        "head_sha": "9930be8df44ffe117fb22778c514eea0ee73ce21",
+        "head_repo": "MohammedAsaadAsaad/quds_office_suite",
+        "base_sha": "53e347eb23d4e738c7bbd697a0eaa7effd99fc2a",
+        "qualified_head_coverage": "ancestor"
+      },
+      {
+        "number": 1,
+        "title": "Engine 0.6.0: five fidelity waves (GPOS, AP, graft, AcroForm, JBIG2/CMS)",
+        "state": "closed",
+        "draft": false,
+        "updated_at": "2026-09-28T08:36:17Z",
+        "merged_at": "2026-09-28T08:36:16Z",
+        "merge_commit_sha": "53e347eb23d4e738c7bbd697a0eaa7effd99fc2a",
+        "head_ref": "cursor/cloud-agent-1790580069020-0rk1h",
+        "head_sha": "48c5156f459597ce3f8ec486b3c9a20fc5543807",
+        "head_repo": "MohammedAsaadAsaad/quds_office_suite",
+        "base_sha": "6ac50c12f99ced6456897dec390111797cfe2157",
+        "qualified_head_coverage": "ancestor"
+      }
+    ]
+  },
+  "prior_inventory": "intake_audit.json",
+  "notes": [
+    "No root files/index changes; source frozen.",
+    "No Actions/workflow/check/status endpoints queried.",
+    "Bounded snapshot; remote refs may advance after capture."
+  ],
+  "summary": {
+    "branches": {
+      "counts": {
+        "ancestor": 26,
+        "not_ancestor": 1
+      },
+      "uncovered": [
+        {
+          "name": "codex/zotero-parity-2026-11-21",
+          "sha": "ec656412511369446804d9fb287d4e11890ad871",
+          "qualified_head_coverage": "not_ancestor",
+          "new_commits": [
+            "ec6564125 docs(zotero): checkpoint import contract and local editor qualification [skip ci]"
+          ],
+          "direct_diff_paths": [
+            "M\tdocs/roadmaps/zotero/native-odt-input.md",
+            "M\tdocs/roadmaps/zotero/word-processor-parity.md",
+            "M\tdocs/validation/word-vba-language-controls-20261121/README.md",
+            "A\tdocs/validation/zotero-rich-odt-20261121/converter-development.json",
+            "A\tdocs/validation/zotero-rich-odt-20261121/editor-evidence-sha256.json",
+            "A\tdocs/validation/zotero-rich-odt-20261121/editor-results.json",
+            "A\tdocs/validation/zotero-rich-odt-20261121/frontier-intake.json",
+            "A\tdocs/validation/zotero-rich-odt-20261121/loader-development-results.json",
+            "A\tdocs/validation/zotero-rich-odt-20261121/runtime-setup.json",
+            "M\tdocs/zotero-support.md",
+            "M\tdocs/zotero-validation.md",
+            "M\tpackages/quds_office_editor/CHANGELOG.md",
+            "M\tpackages/quds_office_engine/CHANGELOG.md",
+            "M\tpackages/quds_office_engine/lib/src/opc/office_open_decode.dart",
+            "M\tpackages/quds_office_engine/lib/src/word/serial/odt_document_reader.dart",
+            "M\tpackages/quds_office_engine/lib/src/word/serial/odt_reader_styles.dart",
+            "M\tpackages/quds_office_engine/test/odt_document_reader_test.dart",
+            "M\tpackages/quds_office_engine/test/odt_open_test.dart",
+            "M\tpackages/quds_office_engine/test/odt_reader_guards_test.dart",
+            "M\tpackages/quds_office_engine/test/odt_reader_styles_test.dart",
+            "D\tpackages/quds_office_engine/test/odt_reader_table_preservation_test.dart",
+            "A\tpackages/quds_office_engine/test/odt_vba_language_roundtrip_test.dart"
+          ],
+          "parent": "5647e457b9419fa90f302e196ddbeeac8585ccfb",
+          "merge_base_with_qualified_head": "5647e457b9419fa90f302e196ddbeeac8585ccfb",
+          "incoming_commit_paths": [
+            {
+              "status": "M",
+              "path": "docs/roadmaps/zotero/native-odt-input.md"
+            },
+            {
+              "status": "M",
+              "path": "docs/roadmaps/zotero/word-processor-parity.md"
+            },
+            {
+              "status": "A",
+              "path": "docs/validation/zotero-rich-odt-20261121/converter-development.json"
+            },
+            {
+              "status": "A",
+              "path": "docs/validation/zotero-rich-odt-20261121/editor-evidence-sha256.json"
+            },
+            {
+              "status": "A",
+              "path": "docs/validation/zotero-rich-odt-20261121/editor-results.json"
+            },
+            {
+              "status": "A",
+              "path": "docs/validation/zotero-rich-odt-20261121/frontier-intake.json"
+            },
+            {
+              "status": "A",
+              "path": "docs/validation/zotero-rich-odt-20261121/loader-development-results.json"
+            },
+            {
+              "status": "A",
+              "path": "docs/validation/zotero-rich-odt-20261121/runtime-setup.json"
+            },
+            {
+              "status": "M",
+              "path": "docs/zotero-support.md"
+            },
+            {
+              "status": "M",
+              "path": "docs/zotero-validation.md"
+            },
+            {
+              "status": "M",
+              "path": "packages/quds_office_editor/CHANGELOG.md"
+            },
+            {
+              "status": "M",
+              "path": "packages/quds_office_engine/CHANGELOG.md"
+            },
+            {
+              "status": "A",
+              "path": "packages/quds_office_engine/test/odt_vba_language_roundtrip_test.dart"
+            }
+          ],
+          "incoming_change_classification": "documentation/evidence/changelogs plus one new regression test; no production-source or dependency changes",
+          "incoming_production_paths": [],
+          "direct_diff_caution": "The direct qualified_head-to-branch diff includes qualified_head changes absent from the older branch. It is not the incoming commit delta; normal merge preserves the qualified_head production fixes.",
+          "new_test": {
+            "path": "packages/quds_office_engine/test/odt_vba_language_roundtrip_test.dart",
+            "test_cases": 2,
+            "coverage": "Native ODT Zotero citation -> DOCX -> public vba-word language or complex-script font edit -> three DOCX open/save cycles; retains other font/language slot, field metadata, cached text, formatting and untouched paragraphs; validation leaves session unchanged.",
+            "execution_by_this_audit": "not run; parent owns frozen-source local qualification"
+          },
+          "incoming_editor_evidence": {
+            "path": "docs/validation/zotero-rich-odt-20261121/editor-results.json",
+            "source_head_at_start": "5647e457b9419fa90f302e196ddbeeac8585ccfb",
+            "source_head_at_end": "5647e457b9419fa90f302e196ddbeeac8585ccfb",
+            "accepted_recorded": true,
+            "scope_caution": "Upstream evidence pertains to 5647e457, not the newer qualified_head; this audit does not independently certify those results."
+          }
+        }
+      ]
+    },
+    "pull_requests_since_305": {
+      "counts": {
+        "ancestor": 4
+      },
+      "uncovered": []
+    },
+    "upstream_branches": {
+      "counts": {
+        "ancestor": 4
+      },
+      "uncovered": []
+    },
+    "upstream_pull_requests": {
+      "counts": {
+        "ancestor": 4
+      },
+      "uncovered": []
+    },
+    "current_main": "fcb2128884768553141f41c02bf804e2267f9dbb",
+    "only_uncovered_incoming_commit": "ec656412511369446804d9fb287d4e11890ad871",
+    "source_mutations_by_audit": false,
+    "actions_or_ci_queries": false
+  },
+  "final_audit_completed_at": "2026-11-21T12:23:33.560568+00:00"
+}

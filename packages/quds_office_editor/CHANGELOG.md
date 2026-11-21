@@ -4,6 +4,18 @@ All notable changes to `quds_office_editor` are documented here.
 
 ## Unreleased
 
+- Open supported native ODT through `WordEditorController.loadBytesAsync` and
+  Studio Open, retaining active Zotero fields, notes and supported rich
+  structure. Refuse stale publication after edits, another open, document
+  replacement or disposal; failed imports leave the active document intact.
+  Direct synchronous ODT callers to the asynchronous API. Detect ODT package
+  bytes on the Word open path, clear the original ODT save path in Studio and
+  propose a new `.docx` destination so active fields survive without overwriting
+  the source. Unsupported used formatting remains an explicit refusal; this
+  does not qualify general LibreOffice files or installed Zotero/Word/LibreOffice
+  plugin interoperability. See the
+  [rich-import record](../../docs/validation/zotero-rich-odt-20261121/README.md).
+
 - Add optional Touch ID unlocking for the encrypted credential vault on macOS
   while retaining the master-password route. Recover incomplete key enrollment
   and cleanup after restart or backend changes, reject stale enrollment for a
