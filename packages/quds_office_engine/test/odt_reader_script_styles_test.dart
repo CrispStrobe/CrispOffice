@@ -662,7 +662,8 @@ void main() {
       'fo:hyphenate="maybe"',
       'style:font-size-complex="10.1pt"',
       'style:font-family-generic="roman"',
-      'fo:text-transform="uppercase"',
+      'fo:text-transform="lowercase"',
+      'fo:text-transform="capitalize"',
       'loext:font-optical-sizing="none"',
     ]) {
       expect(

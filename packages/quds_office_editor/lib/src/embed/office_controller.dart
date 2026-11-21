@@ -10435,6 +10435,7 @@ class WordEditorController extends OfficeController {
         run.properties.asciiFont,
         run.properties.csFont,
         run.properties.vertAlign.name,
+        run.properties.positionHalfPoints,
         run.properties.sourcePropertiesXml,
         run.properties.importedValues,
         run.properties.explicitProperties.toList(),

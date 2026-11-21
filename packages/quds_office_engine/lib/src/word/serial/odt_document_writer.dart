@@ -1231,8 +1231,8 @@ abstract final class OdtDocumentWriter {
           );
         }
         if (inline.inlineVisual case final visual?) {
-          // Comment links already carry the run style. Unlinked pictures,
-          // including annotation pictures, preserve it on their own span.
+          // Annotation links carry the style directly. Other inline pictures,
+          // including unlinked annotation pictures, retain their run style.
           if (!commentLink) {
             w.writeStartElement('span', prefix: 'text');
             w.writeAttribute('text:style-name', style);

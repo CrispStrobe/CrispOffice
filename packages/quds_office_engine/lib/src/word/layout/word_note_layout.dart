@@ -76,6 +76,8 @@ class _NoteStory {
     final WmlDocument story = WmlDocument(
       proofingLanguage: owner._layoutDoc?.proofingLanguage,
       autoHyphenation: owner._layoutDoc?.autoHyphenation ?? false,
+      sourceNoSpaceRaiseLower:
+          owner._layoutDoc?.sourceNoSpaceRaiseLower ?? false,
       sections: <WmlSection>[
         WmlSection(
           blocks: blocks,
@@ -235,12 +237,13 @@ LaidOutLine _noteLine(
         highlight: g.highlight,
         fontFamily: g.fontFamily,
         vertAlign: g.vertAlign,
+        positionHalfPoints: g.positionHalfPoints,
         hyperlink: g.hyperlink,
         commentIds: g.commentIds,
         advance: g.advance,
         paintDx: g.paintDx,
         paintDy: g.paintDy,
-      ),
+      ).._baselineShift = g._baselineShift,
   ],
   x: line.x + dx,
   y: line.y + dy,

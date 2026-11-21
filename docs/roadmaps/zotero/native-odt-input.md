@@ -378,7 +378,7 @@ do not establish broad real LibreOffice table acceptance.
 Primary format contract: OASIS ODF 1.3 Part 3
 [section 9.1.5 and span attributes 19.680/19.682](https://docs.oasis-open.org/office/OpenDocument/v1.3/os/part3-schema/OpenDocument-v1.3-os-part3-schema.html).
 
-## Increment 5a: bounded inline pictures
+## Increment 5: bounded inline pictures
 
 The [picture continuation](../../validation/zotero-odt-images-20261121/README.md)
 extends the reader to complete `draw:frame` elements explicitly anchored
@@ -417,7 +417,7 @@ frame without duplicating the native object placeholder as literal text. The
 picture record separates local edit/save/undo tests from untouched output of
 the identified LibreOffice converter and from installed-plugin acceptance.
 
-## Increment 5b: native reopening after LibreOffice saves
+## Increment 6: native reopening after LibreOffice saves
 
 The reader accepts the ordinary section style LibreOffice assigns to a native
 Zotero bibliography. It resolves section-family defaults and parents before
@@ -464,7 +464,7 @@ Endnote-only and table-only files have separate acceptance scopes. The
 unmodified converter files, controlled native field updates, repeat-save
 checks, source manifests and the exact remaining limits.
 
-## Increment 6: installed-host acceptance
+## Increment 7: installed-host acceptance
 
 Run an actual current Zotero session with identified Word and LibreOffice
 versions and synthetic library data. Exercise native-file input separately

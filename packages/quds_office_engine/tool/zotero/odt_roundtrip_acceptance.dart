@@ -4,7 +4,7 @@
 // create ORIGINAL
 // verify SAVED ORIGINAL
 // reexport SAVED ORIGINAL REEXPORTED
-// Append --fixture=NAME to select one of the three named fixtures explicitly.
+// Append --fixture=NAME to select one of the named fixtures explicitly.
 //
 // After create, use LibreOffice to save ORIGINAL/*.odt into SAVED. After
 // reexport, save REEXPORTED/*.odt into a second directory and verify it against
@@ -18,8 +18,13 @@ import 'dart:typed_data';
 
 import 'package:quds_office_engine/quds_office_engine.dart';
 
-const _names = ['body-bibliography', 'table-only', 'endnote-only'];
-const _fieldCounts = [3, 6, 2];
+const _names = [
+  'body-bibliography',
+  'table-only',
+  'endnote-only',
+  'uppercase-citations',
+];
+const _fieldCounts = [3, 6, 2, 2];
 const _textNamespace = 'urn:oasis:names:tc:opendocument:xmlns:text:1.0';
 const _styleNamespace = 'urn:oasis:names:tc:opendocument:xmlns:style:1.0';
 
@@ -125,6 +130,30 @@ WmlDocument _bodyBibliography() {
     ],
   );
 }
+
+// The text includes Unicode characters whose uppercase presentation expands.
+// Raw text and citation offsets must survive each real converter save. A
+// normal-case suffix exercises the explicit override beside uppercase runs.
+WmlDocument _uppercaseCitations() => WmlDocument(
+  zoteroDocumentData: _preferences(),
+  sections: [
+    WmlSection(
+      blocks: [
+        for (final id in ['first', 'second'])
+          () {
+            final paragraph = _cited('caps-$id', 'Before 😀 straße ﬃ');
+            final runs = paragraph.inlines.whereType<WmlRun>().toList();
+            for (final run in runs) {
+              run.properties.allCaps = true;
+              run.properties.explicitProperties.add('allCaps');
+            }
+            runs.last.properties.allCaps = false;
+            return paragraph;
+          }(),
+      ],
+    ),
+  ],
+);
 
 WmlDocument _tableOnly() => WmlDocument(
   zoteroDocumentData: _preferences(),
@@ -605,7 +634,12 @@ Future<void> main(List<String> args) async {
   final input = Directory(args[1]);
   if (args.first == 'create') {
     input.createSync(recursive: true);
-    final documents = [_bodyBibliography(), _tableOnly(), _endnoteOnly()];
+    final documents = [
+      _bodyBibliography(),
+      _tableOnly(),
+      _endnoteOnly(),
+      _uppercaseCitations(),
+    ];
     for (var index = 0; index < _names.length; index++) {
       final name = _names[index];
       if (!selected.contains(name)) continue;
