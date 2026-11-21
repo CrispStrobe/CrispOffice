@@ -93,6 +93,7 @@ class StudioMailDialog extends StatefulWidget {
     super.key,
     required this.strings,
     this.chromeBuilder,
+    this.onClose,
     this.clientFactory,
     this.messageLoaderFactory,
     this.autoConnectSavedAccount,
@@ -108,6 +109,9 @@ class StudioMailDialog extends StatefulWidget {
 
   final StudioStrings strings;
   final WidgetBuilder? chromeBuilder;
+
+  /// Closes an embedded Mail pane. A pushed route falls back to Navigator.pop.
+  final VoidCallback? onClose;
 
   /// Tests supply the keychain boundary without reading a platform credential.
   final StudioMailCredentialStore? credentialStore;
@@ -3120,7 +3124,8 @@ class _StudioMailDialogState extends State<StudioMailDialog>
             command(
               icon: Icons.close,
               tooltip: widget.strings.close,
-              onPressed: () => Navigator.of(context).maybePop(),
+              onPressed:
+                  widget.onClose ?? () => Navigator.of(context).maybePop(),
             ),
         ],
       ),

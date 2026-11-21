@@ -212,6 +212,8 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   var _printPreview = false;
   static const MethodChannel _aboutChannel = MethodChannel('crispoffice/about');
   bool _nativeDialogOpen = false;
+  bool _mailOpen = false;
+  bool _mailEverOpened = false;
 
   @override
   void initState() {
@@ -828,14 +830,24 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
                             backgroundColor: dark
                                 ? const Color(0xFF1B1B1B)
                                 : const Color(0xFFE8E8E8),
-                            body: Column(
+                            body: IndexedStack(
+                              index: _mailOpen ? 1 : 0,
                               children: <Widget>[
-                                _titleBar(),
-                                _tabStrip(dark),
-                                _ribbon(dark),
-                                if (_showPasteOptions) _pasteOptionsBar(dark),
-                                Expanded(child: _body(dark)),
-                                _statusBar(),
+                                Column(
+                                  children: <Widget>[
+                                    _titleBar(),
+                                    _tabStrip(dark),
+                                    _ribbon(dark),
+                                    if (_showPasteOptions)
+                                      _pasteOptionsBar(dark),
+                                    Expanded(child: _body(dark)),
+                                    _statusBar(),
+                                  ],
+                                ),
+                                if (_mailEverOpened)
+                                  _mailPane()
+                                else
+                                  const SizedBox.shrink(),
                               ],
                             ),
                           ),
@@ -1240,6 +1252,16 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
       if (route is TransitionRoute<dynamic>) await route.completed;
       if (!mounted || !navigator.mounted) return false;
     }
+    // Mail is cached inline while switching apps. Quit is terminal, so dispose
+    // it now and let its draft owner flush before approving the native close.
+    if (_mailEverOpened) {
+      setState(() {
+        _mailOpen = false;
+        _mailEverOpened = false;
+      });
+      await WidgetsBinding.instance.endOfFrame;
+      if (!mounted) return false;
+    }
     final SuiteApp previous = _app;
     for (final SuiteApp app in SuiteApp.values) {
       final bool dirty = switch (app) {
@@ -1257,9 +1279,13 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     return true;
   }
 
-  Widget _titleBar({BuildContext? mailContext}) {
+  Widget _titleBar({BuildContext? mailContext, VoidCallback? onCloseMail}) {
     void switchFromMail(SuiteApp app) {
-      if (mailContext != null) Navigator.of(mailContext).pop();
+      if (onCloseMail != null) {
+        onCloseMail();
+      } else if (mailContext != null) {
+        Navigator.of(mailContext).pop();
+      }
       _switchApp(app);
     }
 
@@ -1840,27 +1866,36 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   }
 
   Future<void> _openMail() async {
-    final theme = _materialTheme;
     await StudioWindow.setTitle('${_strings.mailTitle} — CrispOffice');
     if (!mounted) return;
-    await Navigator.of(_themedContext).push<void>(
-      MaterialPageRoute<void>(
-        builder: (mailContext) => Theme(
-          data: theme,
-          child:
-              widget.mailBuilder?.call(
-                _strings,
-                (_) => _titleBar(mailContext: mailContext),
-              ) ??
-              StudioMailDialog(
-                strings: _strings,
-                chromeBuilder: (_) => _titleBar(mailContext: mailContext),
-              ),
-        ),
-      ),
-    );
-    if (mounted) await StudioWindow.setTitle('$_chromeTitle — CrispOffice');
+    setState(() {
+      _mailEverOpened = true;
+      _mailOpen = true;
+    });
   }
+
+  void _closeMail() {
+    if (!_mailOpen) return;
+    setState(() => _mailOpen = false);
+    unawaited(StudioWindow.setTitle('$_chromeTitle — CrispOffice'));
+  }
+
+  Widget _mailPane() => Builder(
+    builder: (mailContext) {
+      Widget chrome() =>
+          _titleBar(mailContext: mailContext, onCloseMail: _closeMail);
+      return Theme(
+        data: _materialTheme,
+        child:
+            widget.mailBuilder?.call(_strings, (_) => chrome()) ??
+            StudioMailDialog(
+              strings: _strings,
+              onClose: _closeMail,
+              chromeBuilder: (_) => chrome(),
+            ),
+      );
+    },
+  );
 
   void _cycleLanguage() {
     setState(() {
