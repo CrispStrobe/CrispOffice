@@ -22,9 +22,29 @@ extension StudioMailWorkspaceStrings on StudioStrings {
     flagged: _text('Flagged', 'Gekennzeichnet', 'المعلّمة'),
     groupConversations: _text('Conversations', 'Unterhaltungen', 'المحادثات'),
     conversationCount: (count) => _text(
-      '$count messages in conversation',
-      '$count Nachrichten in einer Unterhaltung',
-      '$count رسالة في المحادثة',
+      '$count loaded messages in conversation',
+      '$count geladene Nachrichten in einer Unterhaltung',
+      '$count رسالة محمّلة في المحادثة',
+    ),
+    collapseConversation: _text(
+      'Collapse conversation',
+      'Unterhaltung einklappen',
+      'طيّ المحادثة',
+    ),
+    expandConversation: _text(
+      'Expand conversation',
+      'Unterhaltung ausklappen',
+      'توسيع المحادثة',
+    ),
+    conversationSummary: (loaded, unread, flagged) => _text(
+      '$loaded loaded · $unread unread · $flagged flagged',
+      '$loaded geladen · $unread ungelesen · $flagged gekennzeichnet',
+      '$loaded محمّلة · $unread غير مقروءة · $flagged معلّمة',
+    ),
+    conversationUnknown: (unknownRead, unknownFlagged) => _text(
+      'Read state unknown: $unknownRead · Flag state unknown: $unknownFlagged',
+      'Lesestatus unbekannt: $unknownRead · Kennzeichnungsstatus unbekannt: $unknownFlagged',
+      'حالة القراءة غير معروفة: $unknownRead · حالة العلامة غير معروفة: $unknownFlagged',
     ),
     noMessages: noMessages,
     noMatches: _text(

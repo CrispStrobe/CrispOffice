@@ -14,7 +14,7 @@ final class MailStoreDatabase extends GeneratedDatabase {
   final MailStoreFaultInjector? faultInjector;
 
   @override
-  int get schemaVersion => 8;
+  int get schemaVersion => 9;
 
   @override
   Iterable<TableInfo<Table, Object?>> get allTables => const [];
@@ -47,11 +47,14 @@ final class MailStoreDatabase extends GeneratedDatabase {
       for (final statement in schemaV8) {
         await customStatement(statement);
       }
+      for (final statement in schemaV9) {
+        await customStatement(statement);
+      }
       // Include the version in the same transaction as schema creation.
-      await customStatement('PRAGMA user_version = 8');
+      await customStatement('PRAGMA user_version = 9');
     }),
     onUpgrade: (_, from, to) async {
-      if (from < 1 || from > 7 || to != 8) {
+      if (from < 1 || from > 8 || to != 9) {
         throw const MailStoreStorageException(MailProblemCode.unsupported);
       }
       await transaction(() async {
@@ -85,11 +88,16 @@ final class MailStoreDatabase extends GeneratedDatabase {
             await customStatement(statement);
           }
         }
-        for (final statement in schemaV8) {
+        if (from < 8) {
+          for (final statement in schemaV8) {
+            await customStatement(statement);
+          }
+        }
+        for (final statement in schemaV9) {
           await customStatement(statement);
         }
         await faultInjector?.call(MailStoreCheckpoint.migrationCreated);
-        await customStatement('PRAGMA user_version = 8');
+        await customStatement('PRAGMA user_version = 9');
       });
     },
     beforeOpen: (_) async {
@@ -273,5 +281,26 @@ const schemaV8 = <String>[
     PRIMARY KEY(account,mailbox),
     FOREIGN KEY(account,mailbox) REFERENCES mailboxes(account,id)
       ON DELETE CASCADE
+  )''',
+];
+
+/// Saved header-search definitions belong to the host directory profile. Their
+/// fixed account IDs can refer to separately owned account databases, so they
+/// intentionally have no foreign key into this database's account rows.
+const schemaV9 = <String>[
+  '''ALTER TABLE store_profile ADD COLUMN saved_header_search_revision INTEGER
+    NOT NULL DEFAULT 0 CHECK(typeof(saved_header_search_revision) = 'integer' AND
+    saved_header_search_revision BETWEEN 0 AND 9007199254740991)''',
+  '''CREATE TABLE saved_header_searches (
+    id TEXT PRIMARY KEY, name TEXT NOT NULL, name_key TEXT NOT NULL UNIQUE,
+    query TEXT NOT NULL,
+    revision INTEGER NOT NULL CHECK(typeof(revision) = 'integer' AND
+      revision BETWEEN 1 AND 9007199254740991)
+  )''',
+  '''CREATE TABLE saved_header_search_accounts (
+    search TEXT NOT NULL REFERENCES saved_header_searches(id) ON DELETE CASCADE,
+    position INTEGER NOT NULL CHECK(typeof(position) = 'integer' AND
+      position BETWEEN 0 AND 99), account_id TEXT NOT NULL,
+    PRIMARY KEY(search,position), UNIQUE(search,account_id)
   )''',
 ];

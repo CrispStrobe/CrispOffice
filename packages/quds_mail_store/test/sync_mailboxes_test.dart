@@ -604,6 +604,13 @@ void main() {
         );
         final prior = snapshot()..remove('mailbox_sync_state');
         await store.close();
+        // Reconstruct the actual old schema, including removal of every
+        // additive table/column introduced after v7.
+        database.execute('DROP TABLE saved_header_search_accounts');
+        database.execute('DROP TABLE saved_header_searches');
+        database.execute(
+          'ALTER TABLE store_profile DROP COLUMN saved_header_search_revision',
+        );
         database.execute('DROP TABLE mailbox_sync_state');
         database.userVersion = 7;
         if (interrupted) {
@@ -619,7 +626,7 @@ void main() {
           failAt = null;
         }
         store = _value(await open());
-        expect(database.userVersion, 8);
+        expect(database.userVersion, 9);
         expect(snapshot()..remove('mailbox_sync_state'), prior);
         expect(_value(await store.loadSyncMailbox(_mailbox)), isNull);
         expect(_value(await store.listSyncMailboxes(_account)), isEmpty);

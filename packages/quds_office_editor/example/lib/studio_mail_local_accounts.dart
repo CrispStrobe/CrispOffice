@@ -6,6 +6,7 @@ import 'package:quds_mail_store/quds_mail_store_native.dart';
 
 import 'credentials/utils/async_lock.dart';
 import 'studio_mail_draft_store.dart';
+import 'studio_mail_saved_searches.dart';
 
 /// Indexes successful connections without retaining authentication material.
 /// Custom draft stores opt in by supplying a matching directory implementation.
@@ -38,7 +39,7 @@ StudioMailDraftAccount studioMailLocalAccountIdentity(
 /// profile. Like local drafts, this non-secret directory is not encrypted.
 /// The directory never contains message content, passwords or OAuth tokens.
 final class NativeStudioMailLocalAccountStore
-    implements StudioMailLocalAccountStore {
+    implements StudioMailLocalAccountStore, StudioMailSavedSearchStore {
   NativeStudioMailLocalAccountStore({
     this.appDirectory,
     DateTime Function()? clock,
@@ -96,6 +97,53 @@ final class NativeStudioMailLocalAccountStore
     }
     return rows;
   });
+
+  @override
+  Future<List<MailSavedHeaderSearch>> loadSavedSearches() =>
+      _withStore((repository) async {
+        return _value(await repository.listSavedHeaderSearches());
+      });
+
+  @override
+  Future<MailSavedHeaderSearch> saveSavedSearch(
+    MailSavedHeaderSearch search, {
+    int? expectedRevision,
+  }) => _withStore((repository) async {
+    if (!search.isValid) {
+      throw const StudioMailDraftStoreException(MailProblemCode.invalidInput);
+    }
+    // The account directory owns definitions spanning the separate account
+    // profiles. Validate every selected identity in the same serialized store
+    // operation before committing, without acquiring credentials or providers.
+    final rows = _value(await repository.listLocalAccounts());
+    final known = <String>{};
+    for (final row in rows) {
+      studioMailLocalAccountIdentity(row);
+      if (!known.add(row.id)) {
+        throw const StudioMailDraftStoreException(MailProblemCode.conflict);
+      }
+    }
+    if (search.accountIds.any((id) => !known.contains(id))) {
+      throw const StudioMailDraftStoreException(MailProblemCode.conflict);
+    }
+    return _value(
+      await repository.saveSavedHeaderSearch(
+        search,
+        expectedRevision: expectedRevision,
+      ),
+    );
+  });
+
+  @override
+  Future<void> deleteSavedSearch(String id, {required int expectedRevision}) =>
+      _withStore((repository) async {
+        _value(
+          await repository.deleteSavedHeaderSearch(
+            id,
+            expectedRevision: expectedRevision,
+          ),
+        );
+      });
 
   @override
   Future<void> remember(StudioMailDraftAccount identity) {

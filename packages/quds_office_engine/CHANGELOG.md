@@ -4,6 +4,17 @@ All notable changes to `quds_office_engine` are documented here.
 
 ## Unreleased
 
+- Extend bounded native ODT import with independently inherited Latin,
+  complex-script and Asian text formatting, materialized as editable native
+  runs without changing field offsets. Preserve imported script slots through
+  DOCX saves and synchronize later edits only on importer-owned projections.
+  Interpret supported LibreOffice defaults after inheritance and guard dormant
+  paragraph/page settings against active text, language, tabs and footnotes.
+  Retain the original LibreOfficeDev fixture and a separately identified
+  synthetic Zotero extension. See the
+  [style continuation record](../../docs/validation/zotero-libreoffice-styles-20261121/README.md)
+  for qualification and the remaining native-output/installed-host boundaries.
+
 - Add bounded `OdtDocumentReader.readBytes` and byte-based asynchronous Word
   opening for supported native ODT. Preserve rich paragraphs/styles, absolute
   external links, authored notes, simple lists and unmerged nested tables;

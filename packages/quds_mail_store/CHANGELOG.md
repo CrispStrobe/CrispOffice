@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+- Add schema-v9 saved header-search definitions with fixed cross-profile account
+  scopes, case-insensitive unique names, bounded metadata, monotonic revisions
+  and atomic create/update/delete. Preserve all earlier schemas, reject stale
+  or corrupt definitions, and never store cursors, results or credentials.
+
 - Add bounded account-wide cached-header search across synchronized memberships
   and saved browse windows. Reuse the Boolean query contract, deduplicate label
   memberships, retain folder provenance and body availability without loading

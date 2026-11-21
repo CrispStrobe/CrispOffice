@@ -1,0 +1,111 @@
+{
+  "sourceCommit": "3a8d466fac738973dcffdae58c3d7ac0fd594e86",
+  "sourceTree": "da9fefbbc10bdd20f35ae034403a2ca6c20b00ea",
+  "branch": "work/mail-client-next-20261121",
+  "runtime": {
+    "flutter": "3.47.8",
+    "dart": "3.13.7"
+  },
+  "actionsQueried": false,
+  "actionsAwaited": false,
+  "cohorts": [
+    {
+      "name": "complete_mail_core_vm",
+      "passed": 449,
+      "unchangedInputs": 44
+    },
+    {
+      "name": "saved_search_conversations_node",
+      "passed": 42,
+      "unchangedInputs": 25,
+      "overlaps": [
+        "complete_mail_core_vm"
+      ]
+    },
+    {
+      "name": "complete_mail_store_vm",
+      "passed": 884,
+      "unchangedInputs": 129
+    },
+    {
+      "name": "targeted_model_store_migrations",
+      "passed": 87,
+      "overlaps": [
+        "complete_mail_core_vm",
+        "complete_mail_store_vm"
+      ]
+    },
+    {
+      "name": "shared_message_list_widgets",
+      "passed": 108,
+      "includesConversationCases": 18
+    },
+    {
+      "name": "studio_conversation_boolean_locales",
+      "passed": 6
+    },
+    {
+      "name": "studio_search_mailbox_regression",
+      "passed": 298,
+      "fullInputManifest": false
+    },
+    {
+      "name": "integrated_saved_search_host",
+      "passed": 32,
+      "dialogCases": 13,
+      "nativeCases": 19,
+      "unchangedInputs": 1052,
+      "overlaps": [
+        "studio_search_mailbox_regression"
+      ]
+    },
+    {
+      "name": "incoming_word_engine",
+      "passed": 179,
+      "unchangedInputs": 1252
+    },
+    {
+      "name": "incoming_word_editor",
+      "passed": 12,
+      "unchangedInputs": 1252
+    },
+    {
+      "name": "incoming_localization_engine",
+      "passed": 64,
+      "unchangedInputs": 395
+    },
+    {
+      "name": "incoming_localization_editor",
+      "passed": 75,
+      "unchangedInputs": 505
+    },
+    {
+      "name": "incoming_localization_host",
+      "passed": 58,
+      "unchangedInputs": 886
+    },
+    {
+      "name": "incoming_zotero_merge",
+      "passed": 210,
+      "unchangedInputs": 948,
+      "repeatsIncomingWordCases": 50
+    }
+  ],
+  "allListedCompletedGates": {
+    "exitCode": 0,
+    "failed": 0,
+    "skipped": 0
+  },
+  "counting": "No grand total; cohorts overlap. Count non-hidden testDone events, excluding suite-load events.",
+  "capturedIntake": {
+    "forkHeads": 31,
+    "upstreamHeads": 4,
+    "updatedPRs": 100,
+    "prHeadAncestry": 91,
+    "prMergeAncestry": 9,
+    "uncovered": 0
+  },
+  "evidenceIndex": "evidence/evidence-index.json",
+  "checkpoints": "checkpoints.json",
+  "publicationReconciliation": "publication-reconciliation.json"
+}

@@ -113,7 +113,11 @@ class _StudioMailComposeDialogState extends State<StudioMailComposeDialog> {
       config: OfficeSurfaceConfig(
         showRulers: false,
         textDirection: arabic ? TextDirection.rtl : TextDirection.ltr,
-        strings: arabic ? OfficeStrings.arabic : OfficeStrings.english,
+        strings: switch (widget.strings.language) {
+          StudioLanguage.en => OfficeStrings.english,
+          StudioLanguage.de => OfficeStrings.german,
+          StudioLanguage.ar => OfficeStrings.arabic,
+        },
       ),
       proofingService: OfficeProofingService(providers: const []),
     );
