@@ -782,6 +782,7 @@ enum _Kind {
   wordSections,
   wordSection,
   wordPageSetup,
+  wordTextColumns,
   wordHeadersFooters,
   wordHeaderFooter,
   wordStoryRange,
@@ -816,6 +817,7 @@ enum _Declared {
   document,
   wordSection,
   wordPageSetup,
+  wordTextColumns,
   wordHeadersFooters,
   wordHeaderFooter,
   paragraph,
@@ -839,6 +841,7 @@ bool _objectType(_Declared type) =>
     type == _Declared.document ||
     type == _Declared.wordSection ||
     type == _Declared.wordPageSetup ||
+    type == _Declared.wordTextColumns ||
     type == _Declared.wordHeadersFooters ||
     type == _Declared.wordHeaderFooter ||
     type == _Declared.paragraph ||
@@ -883,6 +886,7 @@ _Kind _kindOf(_Declared type) => switch (type) {
   _Declared.document => _Kind.document,
   _Declared.wordSection => _Kind.wordSection,
   _Declared.wordPageSetup => _Kind.wordPageSetup,
+  _Declared.wordTextColumns => _Kind.wordTextColumns,
   _Declared.wordHeadersFooters => _Kind.wordHeadersFooters,
   _Declared.wordHeaderFooter => _Kind.wordHeaderFooter,
   _Declared.paragraph => _Kind.paragraph,
@@ -1044,6 +1048,11 @@ class _WordParagraphControl extends _Statement {
 
 class _WordPageSetupOperation extends _Statement {
   const _WordPageSetupOperation(super.token, this.target);
+  final _Member target;
+}
+
+class _WordTextColumnsOperation extends _Statement {
+  const _WordTextColumnsOperation(super.token, this.target);
   final _Member target;
 }
 
@@ -1432,6 +1441,14 @@ class _Parser {
           } else if (target is _Member &&
               target.token.lower == 'toggleportrait') {
             result.add(_WordPageSetupOperation(target.token, target));
+          } else if (target is _Member && target.token.lower == 'setcount') {
+            if (target.arguments == null) {
+              context.unsupported(
+                target.token,
+                'Call TextColumns.SetCount requires parenthesized arguments.',
+              );
+            }
+            result.add(_WordTextColumnsOperation(target.token, target));
           } else if (target is _Call) {
             result.add(_Invoke(target.token, target.arguments));
           } else if (target is _Name) {
@@ -1677,6 +1694,7 @@ class _Parser {
               ..._wordSpacingMethods,
               ..._wordParagraphControls,
               'toggleportrait',
+              'setcount',
             }.contains(target.token.lower)) {
           final arguments = target.arguments ?? <_Expr>[];
           if (target.arguments == null &&
@@ -1707,6 +1725,8 @@ class _Parser {
                 ? _WordParagraphControl(target.token, call)
                 : target.token.lower == 'toggleportrait'
                 ? _WordPageSetupOperation(target.token, call)
+                : target.token.lower == 'setcount'
+                ? _WordTextColumnsOperation(target.token, call)
                 : _WordTabOperation(target.token, call),
           );
         } else if (!isSet &&
@@ -1849,6 +1869,7 @@ class _Parser {
       'document' when context.isWord => _Declared.document,
       'section' when context.isWord => _Declared.wordSection,
       'pagesetup' when context.isWord => _Declared.wordPageSetup,
+      'textcolumns' when context.isWord => _Declared.wordTextColumns,
       'headersfooters' when context.isWord => _Declared.wordHeadersFooters,
       'headerfooter' when context.isWord => _Declared.wordHeaderFooter,
       'paragraph' when context.isWord => _Declared.paragraph,
@@ -1871,7 +1892,7 @@ class _Parser {
         context.isPowerPoint
             ? 'Supported declarations are Long, Double, String, Boolean, Variant, Presentation, Slide, Shape, TextFrame, TextRange, Font, ParagraphFormat, and SlideShowTransition.'
             : context.isWord
-            ? 'Supported declarations are Long, Double, String, Boolean, Variant, Document, Section, PageSetup, HeadersFooters, HeaderFooter, Paragraph, Range, Font, ParagraphFormat, TabStops, and ListFormat.'
+            ? 'Supported declarations are Long, Double, String, Boolean, Variant, Document, Section, PageSetup, TextColumns, HeadersFooters, HeaderFooter, Paragraph, Range, Font, ParagraphFormat, TabStops, and ListFormat.'
             : 'Supported declarations are Long, Double, String, Boolean, Variant, Worksheet, and Range.',
       ),
     };
@@ -2671,6 +2692,8 @@ class _Checker {
             statement.target.arguments ?? const <_Expr>[],
             0,
           );
+        case _WordTextColumnsOperation():
+          _wordTextColumnsCall(statement.target);
         case _For():
           final counter = _symbol(statement.counter);
           if (counter.isConst ||
@@ -2770,6 +2793,7 @@ class _Checker {
                   kind == _Kind.wordSections ||
                   kind == _Kind.wordSection ||
                   kind == _Kind.wordPageSetup ||
+                  kind == _Kind.wordTextColumns ||
                   kind == _Kind.wordHeadersFooters ||
                   kind == _Kind.wordHeaderFooter ||
                   kind == _Kind.wordStoryRange ||
@@ -2790,7 +2814,7 @@ class _Checker {
               context.isPowerPoint
                   ? 'With requires an explicitly bound PowerPoint object.'
                   : context.isWord
-                  ? 'With requires a Document, Section, PageSetup, HeadersFooters, HeaderFooter, Paragraph, Range, Font, ParagraphFormat, TabStops, or ListFormat.'
+                  ? 'With requires a Document, Section, PageSetup, TextColumns, HeadersFooters, HeaderFooter, Paragraph, Range, Font, ParagraphFormat, TabStops, or ListFormat.'
                   : 'With requires a Worksheet or Range.',
             );
           }
@@ -2824,6 +2848,32 @@ class _Checker {
           }
       }
     }
+  }
+
+  void _wordTextColumnsCall(_Member member) {
+    if (_expression(member.receiver) != _Kind.wordTextColumns) {
+      context.type(member.token, 'SetCount requires Word TextColumns.');
+    }
+    final arguments = member.arguments ?? const <_Expr>[];
+    if (arguments.length != 1) {
+      context.type(member.token, 'SetCount requires one NumColumns argument.');
+    }
+    final argument = arguments.single;
+    if (argument is _NamedArgument && argument.token.lower != 'numcolumns') {
+      context.fail(
+        argument.token,
+        'vba_name_error',
+        'Unknown named argument ${argument.token.text} for TextColumns.SetCount.',
+      );
+    }
+    final value = argument is _NamedArgument ? argument.value : argument;
+    if (value is _OmittedArgument) {
+      context.type(
+        value.token,
+        'Required argument NumColumns cannot be omitted.',
+      );
+    }
+    _compatible(_Kind.number, _expression(value), value.token);
   }
 
   void _wordListCall(_Member member) {
@@ -3074,6 +3124,10 @@ class _Checker {
       );
     }
     if (context.isWord) {
+      if (receiver == _Kind.wordTextColumns) {
+        if (property == 'spacing') return _Kind.number;
+        if (property == 'linebetween') return _Kind.boolean;
+      }
       if (receiver == _Kind.wordPageSetup &&
           (_wordPageSetupFields.containsKey(property) ||
               property == 'orientation' ||
@@ -3337,6 +3391,10 @@ class _Checker {
           if (receiver == _Kind.wordSection && name == 'pagesetup') {
             _arguments(expression, 0, allowProperty: true);
             return _Kind.wordPageSetup;
+          }
+          if (receiver == _Kind.wordPageSetup && name == 'textcolumns') {
+            _arguments(expression, 0, allowProperty: true);
+            return _Kind.wordTextColumns;
           }
           if (receiver == _Kind.wordSection &&
               (name == 'headers' || name == 'footers')) {
@@ -3708,6 +3766,7 @@ class _Checker {
             expected == _Kind.document ||
             expected == _Kind.wordSection ||
             expected == _Kind.wordPageSetup ||
+            expected == _Kind.wordTextColumns ||
             expected == _Kind.wordHeadersFooters ||
             expected == _Kind.wordHeaderFooter ||
             expected == _Kind.wordStoryRange ||
@@ -3827,6 +3886,11 @@ class _WordSection {
 class _WordPageSetup {
   const _WordPageSetup(this.section);
   final _WordSection section;
+}
+
+class _WordTextColumns {
+  const _WordTextColumns(this.page);
+  final _WordPageSetup page;
 }
 
 class _WordHeadersFooters {
@@ -4335,6 +4399,23 @@ class _Evaluator {
             _emitWordSection(page, 'pageOrientation', <String, Object?>{
               'orientation': 'toggle',
             }, statement.target.token);
+          case _WordTextColumnsOperation():
+            final columns =
+                _evaluate(statement.target.receiver) as _WordTextColumns;
+            final argument = statement.target.arguments!.single;
+            final value = argument is _NamedArgument
+                ? argument.value
+                : argument;
+            final count = _integer(_evaluate(value), value.token);
+            if (count < 1 || count > 45) {
+              context.type(
+                value.token,
+                'SetCount requires an exact integer NumColumns in 1..45.',
+              );
+            }
+            _emitWordSection(columns.page, 'textColumns', <String, Object?>{
+              'count': count,
+            }, statement.target.token);
           case _With():
             withValues.add(_evaluate(statement.target));
             frames.add(_WithFrame());
@@ -4644,6 +4725,9 @@ class _Evaluator {
                     arguments.single,
                     expression.token,
                   );
+          }
+          if (receiver is _WordPageSetup) {
+            return _WordTextColumns(receiver);
           }
           if (receiver is _WordHeadersFooters) {
             return _wordHeaderFooter(
@@ -5135,6 +5219,11 @@ class _Evaluator {
       case _Declared.wordPageSetup:
         if (value is! _WordPageSetup) {
           context.type(token, 'Set requires a Word PageSetup.');
+        }
+        return value;
+      case _Declared.wordTextColumns:
+        if (value is! _WordTextColumns) {
+          context.type(token, 'Set requires Word TextColumns.');
         }
         return value;
       case _Declared.wordHeadersFooters:
@@ -6243,6 +6332,26 @@ class _Evaluator {
     Object value,
     _Token token,
   ) {
+    if (receiver is _WordTextColumns) {
+      if (property == 'linebetween') {
+        _emitWordSection(receiver.page, 'textColumns', <String, Object?>{
+          'lineBetween': _boolean(value, token),
+        }, token);
+      } else {
+        final points = _number(value, token);
+        final twips = points * 20;
+        if (points < 0 || twips > 2147483647 || twips.round() / 20 != points) {
+          context.type(
+            token,
+            'TextColumns.Spacing requires nonnegative exact twentieth-points within signed Long twips.',
+          );
+        }
+        _emitWordSection(receiver.page, 'textColumns', <String, Object?>{
+          'spacing': points,
+        }, token);
+      }
+      return;
+    }
     if (receiver is _WordPageSetup) {
       if (property == 'orientation') {
         final orientation = _integer(value, token);

@@ -3113,9 +3113,9 @@ class WordDeserializer {
           if (space != null) {
             section.columnSpace = _measurePoints(space);
           }
-          section.columnSep =
-              reader.getAttribute('sep', namespaceUri: OfficeNamespaces.w) ==
-              '1';
+          section.columnSep = const {'1', 'true', 'on'}.contains(
+            reader.getAttribute('sep', namespaceUri: OfficeNamespaces.w),
+          );
         } else if (reader.localName == 'headerReference') {
           final String? rid = _relationshipId(reader);
           final String type =

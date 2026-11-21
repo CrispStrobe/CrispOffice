@@ -48,15 +48,15 @@ Sub Main()
 End Sub
 ```
 
-`Document`, `Section`, `PageSetup`, `HeadersFooters`, `HeaderFooter`, `Paragraph`, `Range`, `Font`,
+`Document`, `Section`, `PageSetup`, `TextColumns`, `HeadersFooters`, `HeaderFooter`, `Paragraph`, `Range`, `Font`,
 `ParagraphFormat`, `TabStops`, and `ListFormat` declarations support explicit
 `Set` bindings and `ByVal` helper parameters. `With` may target these supported
 objects or the range's `Font` and `ParagraphFormat`. All bindings remain
 document-independent selectors; they never expose text or formatting reads.
 
 `Document.Sections(i)` and `.Sections.Item(i)` select an existing section.
-Its `PageSetup` supports the eight explicit geometry writes and the orientation
-and section-start controls documented below.
+Its `PageSetup` supports the eight explicit geometry writes, orientation,
+section-start controls and uniform `TextColumns` settings documented below.
 Section geometry is independent of paragraph selection. A section's `Headers`
 and `Footers` expose the explicit paragraph selectors described below; its
 whole body `Range` remains unavailable.
@@ -81,7 +81,8 @@ object parameters may be passed by name; optional object parameters remain
 unsupported. `TabStops.Add` and the supported `ListFormat` methods also accept
 named optional arguments as described below. The measurement conversion
 functions accept their one required argument by position or by its official
-name; other Word members retain their positional-only contract.
+name. `TextColumns.SetCount` accepts its required `NumColumns` argument by
+position or name; other Word members retain their positional-only contract.
 
 The common source language includes the existing local procedures and scalar
 functions, bounded control flow, typed arrays, string intrinsics, and explicit
@@ -421,6 +422,109 @@ custom paragraph line-spacing pair must complete before either operation.
 The [local section-controls qualification](validation/word-vba-sections-20261121/README.md)
 records the source snapshots, native/source/integration checks and VM/JavaScript
 example results, separately from the unexecuted Office and Flutter hosts.
+
+### Uniform section text columns
+
+`Section.PageSetup.TextColumns` exposes the existing section's uniform text
+columns through a typed `TextColumns` selector. It supports the following
+write-only members:
+
+| Word source operation | Native operation | Native fields |
+| --- | --- | --- |
+| `columns.SetCount NumColumns:=n` | `docx.textColumns` | `section: i - 1`, `count: n` |
+| `columns.Spacing = points` | `docx.textColumns` | `section: i - 1`, `spacing: points` |
+| `columns.LineBetween = enabled` | `docx.textColumns` | `section: i - 1`, `lineBetween: enabled` |
+
+```vb
+Option Explicit
+
+Sub Configure(ByVal columns As TextColumns, Optional ByVal gap As Double = 18)
+    With columns
+        .SetCount NumColumns:=2
+        .Spacing = gap
+        .LineBetween = True
+    End With
+End Sub
+
+Sub Main()
+    Configure columns:=ActiveDocument.Sections(1).PageSetup.TextColumns
+End Sub
+```
+
+`SetCount` accepts one exact integer in `1..45`; the selected document must
+also have enough usable width for that count. Positional statement calls,
+parenthesized calls and `Call columns.SetCount(NumColumns:=2)` are supported.
+The official parameter name is case-insensitive. Missing, repeated, unknown
+or omitted parameters are refused. `Spacing` accepts a finite nonnegative
+number in exact `0.05`-point increments, bounded by `2147483647` native twips.
+Existing physical conversion functions can supply that value.
+`LineBetween` accepts actual Booleans; numeric `0`/`-1`, `wdUndefined`, strings,
+Empty and Null are not implicitly converted.
+
+Typed aliases, required `ByVal TextColumns` helpers, named helper arguments,
+optional scalar helper arguments and nested `With` preserve the selected
+section. Rebinding a helper parameter does not retarget the caller's alias.
+The source compiler never reads a document: each write emits one operation
+in execution order, and native execution resolves current geometry after
+earlier operations in the same detached transaction. A pending custom
+paragraph line-spacing pair must finish before any column write.
+
+**Uniform-column contract.** The count and gap apply to equal-width columns;
+the count setter retains the current gap and separator setting. The spacing
+setter retains the current count and separator. Setting either is supported
+only for an already modeled uniform section, consistent with Word's
+equal-width `SetCount` and `Spacing` behavior. A separator write retains the
+count and gap. This increment does not convert authored unequal-width columns.
+All resulting columns require at least 12 points of text width, matching the
+native layout's minimum, with a positive page body in both model and serialized
+twip geometry. Reduce the gap before increasing the count when necessary.
+An invalid intermediate step fails the complete transaction even if a later
+step would repair it.
+
+Native serialization owns only the requested `w:cols` attribute (`num`,
+`space` or `sep`), plus pending modeled column edits from earlier operations.
+It preserves unrelated section geometry, printer paper codes, header/footer
+references, foreign attributes/children and namespace aliases. Same-value
+writes still create an explicit native attribute; untouched omitted attributes
+remain omitted. All three values are materialized when the section has no
+native column group. Native separator values `1`, `true` and `on` import as
+enabled; `0`, `false` and `off` import as disabled.
+
+The operation refuses custom `w:col` definitions, `equalWidth=false`, ambiguous
+or duplicate native identities, unsupported measurements, nonzero gutters,
+vertical/right-to-left section layout, and mirrored/book-fold page settings.
+Markup-compatibility alternatives and processed content that make section
+identity ambiguous remain guarded. Unselected custom-column sections are
+preserved. Validation and all source preparation precede mutation; failures
+leave session bytes, revision and recorder unchanged. Ordinary mutation
+permissions, tool allowlists, resource limits and inert DOCM preservation apply.
+
+Individual `TextColumn` objects, indexing, `Add`, `Count`, `Width`, `SpaceAfter`,
+`EvenlySpaced` assignments, collection iteration, property reads and
+document-wide `ActiveDocument.PageSetup` remain unsupported. These are explicit
+dialect boundaries, without emulation of VBA Single rounding or an installed
+Microsoft Word differential result.
+
+The [complete two-section example](../packages/quds_office_engine/example/macros/word_text_columns.bas)
+emits six operations and requires two existing uniform sections. The first
+becomes two columns with 18-point gaps and separators; the second becomes
+three columns with 18-point gaps and no separators.
+
+```sh
+dart run tool/macros/office_macro.dart compile-word-vba \
+  example/macros/word_text_columns.bas columns.qudsmacro.json
+dart run tool/macros/office_macro.dart validate-word-vba \
+  two-section-template.docm example/macros/word_text_columns.bas
+dart run tool/macros/office_macro.dart run-word-vba \
+  two-section-template.docm example/macros/word_text_columns.bas columns.docm
+```
+
+Primary references: Microsoft's [PageSetup.TextColumns](https://learn.microsoft.com/en-us/office/vba/api/word.pagesetup.textcolumns),
+[TextColumns.SetCount](https://learn.microsoft.com/en-us/office/vba/api/word.textcolumns.setcount),
+[TextColumns.Spacing](https://learn.microsoft.com/en-us/office/vba/api/word.textcolumns.spacing)
+and [TextColumns.LineBetween](https://learn.microsoft.com/en-us/office/vba/api/word.textcolumns.linebetween).
+See the [local qualification record](validation/word-vba-text-columns-20261121/README.md)
+for executed checks and their scope.
 
 ### Existing header and footer paragraphs
 

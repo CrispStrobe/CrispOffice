@@ -1,0 +1,191 @@
+{
+  "head": "d8157d58a9d623fb118ed83cbee48195ee82c252",
+  "commands": [
+    {
+      "stage": "generate",
+      "command": [
+        "/workspace/scratch/d35306a381f8/runtime/flutter/bin/cache/dart-sdk/bin/dart",
+        "run",
+        "test:test",
+        "test/native_presentation_test.dart",
+        "test/native_spreadsheet_test.dart",
+        "--reporter",
+        "expanded"
+      ],
+      "exitCode": 0,
+      "seconds": 6.231
+    },
+    {
+      "stage": "oracle",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "tool/fidelity/native_oracle.py"
+      ],
+      "exitCode": 0,
+      "seconds": 0.947
+    }
+  ],
+  "inputsUnchanged": true,
+  "inputSha256": {
+    "packages/quds_office_engine/test/native_presentation_test.dart": "af7a29f3aa311531b8901e2a92f6de31cc0f0ce2b2f9f5e9d25e5bbf7785f8f4",
+    "packages/quds_office_engine/test/native_spreadsheet_test.dart": "638e4dabbb8a39b8ef08a8c9f8d9603ea98422abc6256d665a05860e8a52bd06",
+    "packages/quds_office_engine/tool/fidelity/native_oracle.py": "d759b466d0a2de1ad9073029238f7566c555a7e4de58cc4fadef3766b04591f4",
+    "packages/quds_office_engine/test/fixtures/fidelity/native.pptx": "3badf8c5c56685c9247f907a6d81f4735968bf9f05c303a7507c1c4486a9ee58",
+    "packages/quds_office_engine/test/fixtures/fidelity/native.xlsx": "9cc8a4baa68ead3020038b6c8012aad2b92148d3f1f668d2fedac99016f12ffa",
+    "packages/quds_office_engine/lib/src/xml/xml_node.dart": "69e08937e050fa51fbc7ade2f04dc8fdeb3eaaa8c1faf4e78501ab9cbd9f72b9",
+    "packages/quds_office_engine/lib/src/xml/xml_reader.dart": "9d5ceccfb68169ae4a8c933fedc965a6713411e9bac99e400d3380162818e1c6"
+  },
+  "oracle": {
+    "files": 15,
+    "failures": []
+  },
+  "outputSha256": {
+    "packages/quds_office_engine/build/fidelity-native/created-pivot-1.xlsx": "e1bd55ddeec2d2c90c4b35aff2c8459c18cdac9a98547503f535f1a2a95efa5a",
+    "packages/quds_office_engine/build/fidelity-native/created-pivot-2.xlsx": "af74601ef4ca04a1c1b2f30f9e4f980886705b7e2772b3b4f1af349136182b09",
+    "packages/quds_office_engine/build/fidelity-native/created-pivot-3.xlsx": "1012679d19f24a06474c9f6ad2e8da1588edafcb6c4c0517326b0c772405cf7d",
+    "packages/quds_office_engine/build/fidelity-native/native-sheet-edited-1.xlsx": "034fb53c10957e8da21f3464a58dea1dacd85b17eb69b54205b9252c181704d9",
+    "packages/quds_office_engine/build/fidelity-native/native-sheet-edited-2.xlsx": "635a8c6710f9b7185e0a79f2082b1a5e3a1b917a8fdfe7ebde7fa0d240925889",
+    "packages/quds_office_engine/build/fidelity-native/native-sheet-edited-3.xlsx": "bf72d36d7d9ab8155098ae9193cb74b8d53063d7a3e77cb781a0bd029f0a20c1",
+    "packages/quds_office_engine/build/fidelity-native/native-sheet-imported-1.xlsx": "5d37701c02cc9f78554255342218e4e3e6c220bf926ce77e6ec87afc08a992a2",
+    "packages/quds_office_engine/build/fidelity-native/native-sheet-imported-2.xlsx": "82d3e91040665e4df99e4d3e4f2f92e21e6fd44e21bb12d6c4eea76a5d401324",
+    "packages/quds_office_engine/build/fidelity-native/native-sheet-imported-3.xlsx": "d7b63063d705b33b0dab7782bf1728f3f618af18180a49fa4b311340f785775e",
+    "packages/quds_office_engine/build/fidelity-native/native-slides-1.pptx": "da20188133cb5218523a5e77bc66da98eab54bd43ebfb804bffef2b7245e2b25",
+    "packages/quds_office_engine/build/fidelity-native/native-slides-2.pptx": "21a2a5ece0f30869e012a8efdbb5914432c9545e8921edad502cded14930b924",
+    "packages/quds_office_engine/build/fidelity-native/native-slides-3.pptx": "9d67552c2d67207d29136a3831aa340439d6c5c552594210341cf2fa7b5cb314",
+    "packages/quds_office_engine/build/fidelity-native/native-slides-edited-1.pptx": "1b7302ad73af184e3fceaf9e244c332bcb8577b4a4fe4d7fc56720b1f737b89e",
+    "packages/quds_office_engine/build/fidelity-native/native-slides-edited-2.pptx": "5e4b9901a7ce2950e18117afbc01f177716e2c1b49ab8915c3f1fc26a1bcdd15",
+    "packages/quds_office_engine/build/fidelity-native/native-slides-edited-3.pptx": "5581b474a5180ec75e9a184b40cdb941a2401a3d299bf56527c49b98a7ab4013"
+  },
+  "slideTransitions": [
+    {
+      "file": "native-slides-1.pptx",
+      "edited": false,
+      "transitions": [
+        {
+          "owner": "ppt/slides/slide1.xml",
+          "kind": "fade",
+          "speed": "slow",
+          "duration": null
+        },
+        {
+          "owner": "ppt/slides/slide2.xml",
+          "kind": "fade",
+          "speed": "slow",
+          "duration": null
+        }
+      ]
+    },
+    {
+      "file": "native-slides-2.pptx",
+      "edited": false,
+      "transitions": [
+        {
+          "owner": "ppt/slides/slide1.xml",
+          "kind": "fade",
+          "speed": "slow",
+          "duration": null
+        },
+        {
+          "owner": "ppt/slides/slide2.xml",
+          "kind": "fade",
+          "speed": "slow",
+          "duration": null
+        }
+      ]
+    },
+    {
+      "file": "native-slides-3.pptx",
+      "edited": false,
+      "transitions": [
+        {
+          "owner": "ppt/slides/slide1.xml",
+          "kind": "fade",
+          "speed": "slow",
+          "duration": null
+        },
+        {
+          "owner": "ppt/slides/slide2.xml",
+          "kind": "fade",
+          "speed": "slow",
+          "duration": null
+        }
+      ]
+    },
+    {
+      "file": "native-slides-edited-1.pptx",
+      "edited": true,
+      "transitions": [
+        {
+          "owner": "ppt/slides/slide1.xml",
+          "kind": "wipe",
+          "speed": "med",
+          "duration": "900"
+        },
+        {
+          "owner": "ppt/slides/slide2.xml",
+          "kind": "wipe",
+          "speed": "med",
+          "duration": "900"
+        }
+      ]
+    },
+    {
+      "file": "native-slides-edited-2.pptx",
+      "edited": true,
+      "transitions": [
+        {
+          "owner": "ppt/slides/slide1.xml",
+          "kind": "wipe",
+          "speed": "med",
+          "duration": "900"
+        },
+        {
+          "owner": "ppt/slides/slide2.xml",
+          "kind": "wipe",
+          "speed": "med",
+          "duration": "900"
+        }
+      ]
+    },
+    {
+      "file": "native-slides-edited-3.pptx",
+      "edited": true,
+      "transitions": [
+        {
+          "owner": "ppt/slides/slide1.xml",
+          "kind": "wipe",
+          "speed": "med",
+          "duration": "900"
+        },
+        {
+          "owner": "ppt/slides/slide2.xml",
+          "kind": "wipe",
+          "speed": "med",
+          "duration": "900"
+        }
+      ]
+    }
+  ],
+  "corruptionRejections": [
+    {
+      "case": "changed authored speed",
+      "rejected": true,
+      "error": "ppt/slides/slide1.xml: transition without p14:dur differs from the authored one"
+    },
+    {
+      "case": "changed authored kind",
+      "rejected": true,
+      "error": "ppt/slides/slide1.xml: transition without p14:dur differs from the authored one"
+    },
+    {
+      "case": "unexpected authored attribute",
+      "rejected": true,
+      "error": "ppt/slides/slide1.xml: transition without p14:dur differs from the authored one"
+    },
+    {
+      "case": "zero edited duration",
+      "rejected": true,
+      "error": ""
+    }
+  ]
+}

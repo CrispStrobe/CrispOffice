@@ -8,6 +8,7 @@ import 'word_page_setup_steps.dart';
 import 'word_section_start_steps.dart';
 import 'word_spacing_steps.dart';
 import 'word_structure_steps.dart';
+import 'word_text_columns_steps.dart';
 
 const _storyFields = <String>['story', 'section', 'note', 'comment'];
 const wordOperations = <String, List<String>>{
@@ -25,6 +26,7 @@ const wordOperations = <String, List<String>>{
   'pageSetup': ['section', 'property', 'points'],
   'pageOrientation': ['section', 'orientation'],
   'sectionStart': ['section', 'kind'],
+  'textColumns': ['section', 'count', 'spacing', 'lineBetween'],
   'paragraphFormat': [
     'paragraph',
     'alignment',
@@ -735,6 +737,19 @@ void applyStep(
         doc,
         s.item('section', doc.sections),
         kind: s.string('kind'),
+      );
+    case 'textColumns':
+      if (['count', 'spacing', 'lineBetween'].where(s.has).length != 1) {
+        throw ArgumentError(
+          'Text columns require exactly one of count, spacing, or lineBetween.',
+        );
+      }
+      setWordTextColumns(
+        doc,
+        s.item('section', doc.sections),
+        count: s.has('count') ? s.integer('count', min: 1, max: 45) : null,
+        spacing: s.has('spacing') ? s.number('spacing', min: 0) : null,
+        lineBetween: s.has('lineBetween') ? s.boolean('lineBetween') : null,
       );
     case 'sectionFormat':
       final sec = section();

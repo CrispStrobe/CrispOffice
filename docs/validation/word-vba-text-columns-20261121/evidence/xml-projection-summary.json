@@ -1,0 +1,44 @@
+{
+  "scope": "Per-visible-node namespace repair for projected Choice/Fallback wrappers",
+  "xmlAndWordCompatibilityTests": {
+    "visiblePasses": 27,
+    "failures": [],
+    "done": [
+      {
+        "success": true,
+        "type": "done",
+        "time": 22739
+      }
+    ],
+    "sha256": "7974554a5d32274c49352ddf773eb13f093e91b0713b78ca9aada9229a2daa3b"
+  },
+  "nativePageLayout": {
+    "visiblePasses": 10,
+    "failures": [],
+    "done": [
+      {
+        "success": true,
+        "type": "done",
+        "time": 10176
+      }
+    ],
+    "sha256": "1239bbddea002a8c030d82c3f92dfc80803570b148facd55509ed64aafc6bb5c"
+  },
+  "beforeProbe": {
+    "capturedChildNamespace": "urn:choice-only",
+    "restoredChildNamespace": "",
+    "xml": "<w:fragment xmlns:w=\"http://schemas.openxmlformats.org/wordprocessingml/2006/main\" xmlns:mc=\"http://schemas.openxmlformats.org/markup-compatibility/2006\"><p:item p:id=\"retained\"/></w:fragment>"
+  },
+  "afterProbe": {
+    "capturedChildNamespace": "urn:choice-only",
+    "restoredChildNamespace": "urn:choice-only",
+    "xml": "<w:fragment xmlns:w=\"http://schemas.openxmlformats.org/wordprocessingml/2006/main\" xmlns:mc=\"http://schemas.openxmlformats.org/markup-compatibility/2006\"><p:item p:id=\"retained\" xmlns:p=\"urn:choice-only\"/></w:fragment>"
+  },
+  "sourceFiles": {
+    "packages/quds_office_engine/lib/src/xml/xml_node.dart": "69e08937e050fa51fbc7ade2f04dc8fdeb3eaaa8c1faf4e78501ab9cbd9f72b9",
+    "packages/quds_office_engine/lib/src/xml/xml_reader.dart": "9d5ceccfb68169ae4a8c933fedc965a6713411e9bac99e400d3380162818e1c6",
+    "packages/quds_office_engine/test/xml_namespace_capture_test.dart": "81133115df1dca53d47a4e2d6adab4ddc2b772b6e2abf8d26ae6521431cf0d52"
+  },
+  "sourceEditsCommittedByAgent": false,
+  "review": "word_gap_review independently inspected per-visible-node scope repair and found no further actionable issue."
+}

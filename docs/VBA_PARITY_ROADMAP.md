@@ -216,6 +216,26 @@ See the [exact contract](VBA_WORD_MACROS.md#section-orientation-and-start-contro
 [BAS example](../packages/quds_office_engine/example/macros/word_sections.bas),
 and [local qualification](validation/word-vba-sections-20261121/README.md).
 
+### Uniform section text columns
+
+The Word adapter extends explicit section page setup with typed `TextColumns`
+selectors and `SetCount`, `Spacing` and `LineBetween` writes. Native execution
+resolves each operation against the detached section, validates usable column
+geometry and preserves unrelated sparse section XML, namespace aliases and
+inert DOCM parts. Existing uniform layout and separator rendering consume the
+updated model. Custom unequal columns remain guarded and unselected sections
+remain untouched.
+
+Typed aliases, required `ByVal` helpers, named `NumColumns`, nested `With` and
+physical unit conversions are supported. The source contract requires exact
+numeric counts/spacing and actual Booleans, without property reads, collection
+iteration or a document-wide page-setup binding. This remains a Stage 4
+source-to-plan increment; Stage 3 execution and installed Word differential
+qualification are separate. See the
+[exact contract](VBA_WORD_MACROS.md#uniform-section-text-columns),
+[two-section example](../packages/quds_office_engine/example/macros/word_text_columns.bas)
+and [local qualification](validation/word-vba-text-columns-20261121/README.md).
+
 ### Independent header/footer paragraphs
 
 The next Word adapter slice adds explicit section `Headers` / `Footers`, typed

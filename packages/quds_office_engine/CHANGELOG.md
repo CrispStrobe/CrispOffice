@@ -4,6 +4,21 @@ All notable changes to `quds_office_engine` are documented here.
 
 ## Unreleased
 
+- Preserve namespace scope when capturing XML fragments: retain inherited
+  prefixes, including QName-only extension references, without allowing a
+  descendant's prefix shadow to overwrite the captured root's identity.
+  Expose an immutable `XmlPullReader.inScopeNamespaces` snapshot and retain
+  local/default namespace declarations through repeated document saves.
+
+- Extend bounded Word VBA with typed section `TextColumns`, named/positional
+  `SetCount`, exact point `Spacing` and Boolean `LineBetween` writes. Add guarded
+  native uniform-column edits with sparse section ownership, geometry checks,
+  explicit same-value assignments and whole-run rollback. Preserve unrelated
+  native metadata, namespace aliases and inert DOCM parts; recognize native
+  separator Boolean spellings. Include a runnable two-section BAS module and
+  source, native, CLI/MCP and portable regression coverage. See the
+  [text-column contract](../../docs/VBA_WORD_MACROS.md#uniform-section-text-columns).
+
 - Extend bounded native ODT import with independently inherited Latin,
   complex-script and Asian text formatting, materialized as editable native
   runs without changing field offsets. Preserve imported script slots through

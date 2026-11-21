@@ -283,6 +283,19 @@ custom columns, alternate section properties, `mc:ProcessContent` markup, and mi
 are refused. See the [complete section contract](VBA_WORD_MACROS.md#section-page-setup)
 and [runnable example](../packages/quds_office_engine/example/macros/word_page_setup.bas).
 
+Native `docx.textColumns` requires a zero-based `section` and exactly one of
+`count` (integer `1..45`), `spacing` (finite nonnegative exact twentieth-points,
+at most `2147483647` twips), or `lineBetween` (Boolean). It edits one existing
+uniform section, retains other column settings, and checks at least 12 points
+of usable text width per column against current model and serialized geometry.
+Ordered writes resolve after earlier transaction edits; an invalid intermediate
+state rolls back the whole plan. Sparse `w:cols` ownership retains unrelated
+section metadata and opaque macro parts. Custom/unequal source columns,
+ambiguous native identity, unsupported page geometry and mirrored/book-fold
+settings are refused. See the
+[TextColumns contract](VBA_WORD_MACROS.md#uniform-section-text-columns) and
+[runnable example](../packages/quds_office_engine/example/macros/word_text_columns.bas).
+
 Native `docx.pageOrientation` requires zero-based `section` and `orientation`
 (`portrait`, `landscape`, or `toggle`). A change swaps the section's dimensions
 while retaining named margins, header/footer distances, column settings and

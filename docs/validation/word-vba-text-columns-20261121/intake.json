@@ -1,0 +1,281 @@
+{
+  "initial_main": "08fe271f945dfc915dc817febb756ca111baed73",
+  "reconciled_main": "f3a0a64a8ea2995221e262d65950283a6049dfb4",
+  "checkpoint": "1995fb753cebffb818ba3123f23719e6149f9314",
+  "initial_branches": [
+    {
+      "name": "ci/golden-attrib-20261121",
+      "sha": "3bae324bbc56d7fa49089100eace3dd3c4798153"
+    },
+    {
+      "name": "codex/word-vba-compatibility-20261121",
+      "sha": "38b07e58b7c0e2a5b04a823a7251805cea60fb77"
+    },
+    {
+      "name": "codex/word-vba-formatting-20261121",
+      "sha": "700ca3da8c6db0d837bbbefc374a7a7f17f8626e"
+    },
+    {
+      "name": "codex/word-vba-language-controls-20261121",
+      "sha": "46f20b19193e474bed772fe99b0f602a50fa54db"
+    },
+    {
+      "name": "codex/word-vba-paragraph-flow-20261121",
+      "sha": "13fa9ad5b9d140f1d7c085e46b4d0ce395000c49"
+    },
+    {
+      "name": "codex/word-vba-paragraph-pagination-20261121",
+      "sha": "1581229f0e5aea24b5242c33a1e92f02d70b4c7e"
+    },
+    {
+      "name": "codex/word-vba-sections-20261121",
+      "sha": "49665e51f9eacefc180748c3d0ed7851ef5da5d1"
+    },
+    {
+      "name": "codex/word-vba-text-intrinsics-20261121",
+      "sha": "4357f196507ca38a2f51409a981b8621d419b6d9"
+    },
+    {
+      "name": "codex/word-vba-unit-conversions-20261120",
+      "sha": "bbccae1bdead10951e2d7a23b33cf14c55382e02"
+    },
+    {
+      "name": "codex/zotero-libreoffice-styles-20261121",
+      "sha": "b6c8eb26e219d1f7607fe943b3c91e9bfc4feb55"
+    },
+    {
+      "name": "codex/zotero-multiparagraph-20261121",
+      "sha": "589ccd33243eabe57ce3074c92112e1fdf1325f1"
+    },
+    {
+      "name": "codex/zotero-native-odt-20261121",
+      "sha": "d9bfa44022781f0dd4493a923ca9f20316dc59f0"
+    },
+    {
+      "name": "codex/zotero-odt-inventory-20261121",
+      "sha": "fb386d6e42a2336f1431e38bf6d713552edd0978"
+    },
+    {
+      "name": "codex/zotero-parity-2026-11-21",
+      "sha": "a91dcea1e07181457c07bedde57bf0119002b627"
+    },
+    {
+      "name": "codex/zotero-parity-20261121-continuation",
+      "sha": "9942eb76f0ac818e464ad1b3bcec2cc4513d3e3f"
+    },
+    {
+      "name": "codex/zotero-parity-20261121-next",
+      "sha": "d4470bab1095593739ddf87fdb9f249bbc948b65"
+    },
+    {
+      "name": "codex/zotero-transfer-20261121",
+      "sha": "a1995c9154357e603b89947654cf95f8bcba6a83"
+    },
+    {
+      "name": "codex/zotero-vertical-tables-20261120",
+      "sha": "a7d9f37ecbaaf70544f4866d7d9e572696948184"
+    },
+    {
+      "name": "docs/app-store-submission-20261120",
+      "sha": "b08e0a55b629ac22b33c54146b56438862965022"
+    },
+    {
+      "name": "fix/goldens-about-20261121",
+      "sha": "3f17ac423be4bccd30afca8d5bcc7011716dbe7f"
+    },
+    {
+      "name": "fix/studio-mail-tests-20261121",
+      "sha": "7934a34c795327aa23d891048f068a230eac623c"
+    },
+    {
+      "name": "main",
+      "sha": "08fe271f945dfc915dc817febb756ca111baed73"
+    },
+    {
+      "name": "work/mail-boolean-core-20261121",
+      "sha": "3e6374115c10a92fdb4b82734c1bc2b009210794"
+    },
+    {
+      "name": "work/mail-client-next-20261121",
+      "sha": "4af5a00a906a82473d653a6b11a3a6e1c88c866f"
+    },
+    {
+      "name": "work/mail-command-journal-20261121",
+      "sha": "33ce2428ebab825a844895a767e0f9f1a4077d62"
+    },
+    {
+      "name": "work/mail-intake-20261121",
+      "sha": "4191be02ac9c7117e05ff4a052a5c92fbcfbf4b4"
+    },
+    {
+      "name": "work/mail-offline-retention-20261121",
+      "sha": "9eb68b9f048d3c08274ece5d7f964f1249004485"
+    },
+    {
+      "name": "work/mail-parity-20261121",
+      "sha": "fa59496840a36709fe3a6d867bdfe96ab99d72ab"
+    },
+    {
+      "name": "work/mail-parity-next-20261121",
+      "sha": "59866ce7c983869b16baa3f386b1f55dbb218833"
+    },
+    {
+      "name": "work/mail-repository-sessions-20261121",
+      "sha": "0491492d8622ad2ef09fb84e07d3dbba462f9320"
+    },
+    {
+      "name": "work/mail-sync-foundation-20261121",
+      "sha": "4a1eaa69e7a068e354bdd851ec9b0323b89ae300"
+    },
+    {
+      "name": "work/mail-triage-20261121",
+      "sha": "575e671de665dc918886285dab2e3628f4309965"
+    },
+    {
+      "name": "work/mail-unified-cache-20261121",
+      "sha": "93404525ef245df6a98654710e352e78f85a987c"
+    }
+  ],
+  "latest_branches": [
+    {
+      "name": "ci/golden-attrib-20261121",
+      "sha": "3bae324bbc56d7fa49089100eace3dd3c4798153"
+    },
+    {
+      "name": "codex/word-vba-compatibility-20261121",
+      "sha": "38b07e58b7c0e2a5b04a823a7251805cea60fb77"
+    },
+    {
+      "name": "codex/word-vba-formatting-20261121",
+      "sha": "700ca3da8c6db0d837bbbefc374a7a7f17f8626e"
+    },
+    {
+      "name": "codex/word-vba-language-controls-20261121",
+      "sha": "46f20b19193e474bed772fe99b0f602a50fa54db"
+    },
+    {
+      "name": "codex/word-vba-next-20261121",
+      "sha": "d8157d58a9d623fb118ed83cbee48195ee82c252"
+    },
+    {
+      "name": "codex/word-vba-paragraph-flow-20261121",
+      "sha": "13fa9ad5b9d140f1d7c085e46b4d0ce395000c49"
+    },
+    {
+      "name": "codex/word-vba-paragraph-pagination-20261121",
+      "sha": "1581229f0e5aea24b5242c33a1e92f02d70b4c7e"
+    },
+    {
+      "name": "codex/word-vba-sections-20261121",
+      "sha": "49665e51f9eacefc180748c3d0ed7851ef5da5d1"
+    },
+    {
+      "name": "codex/word-vba-text-intrinsics-20261121",
+      "sha": "4357f196507ca38a2f51409a981b8621d419b6d9"
+    },
+    {
+      "name": "codex/word-vba-unit-conversions-20261120",
+      "sha": "bbccae1bdead10951e2d7a23b33cf14c55382e02"
+    },
+    {
+      "name": "codex/zotero-libreoffice-styles-20261121",
+      "sha": "b6c8eb26e219d1f7607fe943b3c91e9bfc4feb55"
+    },
+    {
+      "name": "codex/zotero-multiparagraph-20261121",
+      "sha": "589ccd33243eabe57ce3074c92112e1fdf1325f1"
+    },
+    {
+      "name": "codex/zotero-native-odt-20261121",
+      "sha": "d9bfa44022781f0dd4493a923ca9f20316dc59f0"
+    },
+    {
+      "name": "codex/zotero-odt-inventory-20261121",
+      "sha": "fb386d6e42a2336f1431e38bf6d713552edd0978"
+    },
+    {
+      "name": "codex/zotero-parity-2026-11-21",
+      "sha": "a91dcea1e07181457c07bedde57bf0119002b627"
+    },
+    {
+      "name": "codex/zotero-parity-20261121-continuation",
+      "sha": "9942eb76f0ac818e464ad1b3bcec2cc4513d3e3f"
+    },
+    {
+      "name": "codex/zotero-parity-20261121-next",
+      "sha": "d4470bab1095593739ddf87fdb9f249bbc948b65"
+    },
+    {
+      "name": "codex/zotero-transfer-20261121",
+      "sha": "a1995c9154357e603b89947654cf95f8bcba6a83"
+    },
+    {
+      "name": "codex/zotero-vertical-tables-20261120",
+      "sha": "a7d9f37ecbaaf70544f4866d7d9e572696948184"
+    },
+    {
+      "name": "docs/app-store-submission-20261120",
+      "sha": "b08e0a55b629ac22b33c54146b56438862965022"
+    },
+    {
+      "name": "fix/goldens-about-20261121",
+      "sha": "90736bdcf07feb64b8e1c2a76c8a80d9decf0ccb"
+    },
+    {
+      "name": "main",
+      "sha": "f3a0a64a8ea2995221e262d65950283a6049dfb4"
+    },
+    {
+      "name": "work/mail-boolean-core-20261121",
+      "sha": "3e6374115c10a92fdb4b82734c1bc2b009210794"
+    },
+    {
+      "name": "work/mail-client-next-20261121",
+      "sha": "4af5a00a906a82473d653a6b11a3a6e1c88c866f"
+    },
+    {
+      "name": "work/mail-command-journal-20261121",
+      "sha": "33ce2428ebab825a844895a767e0f9f1a4077d62"
+    },
+    {
+      "name": "work/mail-intake-20261121",
+      "sha": "4191be02ac9c7117e05ff4a052a5c92fbcfbf4b4"
+    },
+    {
+      "name": "work/mail-offline-retention-20261121",
+      "sha": "9eb68b9f048d3c08274ece5d7f964f1249004485"
+    },
+    {
+      "name": "work/mail-parity-20261121",
+      "sha": "fa59496840a36709fe3a6d867bdfe96ab99d72ab"
+    },
+    {
+      "name": "work/mail-parity-next-20261121",
+      "sha": "59866ce7c983869b16baa3f386b1f55dbb218833"
+    },
+    {
+      "name": "work/mail-repository-sessions-20261121",
+      "sha": "0491492d8622ad2ef09fb84e07d3dbba462f9320"
+    },
+    {
+      "name": "work/mail-sync-foundation-20261121",
+      "sha": "4a1eaa69e7a068e354bdd851ec9b0323b89ae300"
+    },
+    {
+      "name": "work/mail-triage-20261121",
+      "sha": "575e671de665dc918886285dab2e3628f4309965"
+    },
+    {
+      "name": "work/mail-unified-cache-20261121",
+      "sha": "93404525ef245df6a98654710e352e78f85a987c"
+    }
+  ],
+  "latest_open_pull_requests": [],
+  "temporary_workflow": {
+    "branch": "ci/golden-attrib-20261121",
+    "sha": "3bae324bbc56d7fa49089100eace3dd3c4798153",
+    "ancestry_retained": true,
+    "workflow_retained": false,
+    "reason": "Workflow header says temporary and removed before merge."
+  }
+}

@@ -1,0 +1,127 @@
+{
+  "source": "example/macros/word_text_columns.bas",
+  "sha256": "0abed44bdc0f5d71eac1fee6d4ec9b868a4860c27944d386f6942658a247b7b9",
+  "headBefore": "d8157d58a9d623fb118ed83cbee48195ee82c252",
+  "headAfter": "1995fb753cebffb818ba3123f23719e6149f9314",
+  "inputSha256": {
+    "lib/src/xml/xml_node.dart": "69e08937e050fa51fbc7ade2f04dc8fdeb3eaaa8c1faf4e78501ab9cbd9f72b9",
+    "lib/src/xml/xml_reader.dart": "9d5ceccfb68169ae4a8c933fedc965a6713411e9bac99e400d3380162818e1c6",
+    "lib/src/word/serial/word_markup_compatibility.dart": "24558ff5c518ffa2cb22f35e887fcab1622d2631a1f1f1ef82ecd12960783c87",
+    "lib/src/word/serial/word_deserializer.dart": "e89c1dbbdcb792dce58aab4b44136d98e099376b8a850efd10c4f16b6a8b736e",
+    "lib/src/automation/office_vba_language.dart": "b945bac8b92f27c42208198521161a4f45b2d04d59f5fa4cac06bb6a2acac454",
+    "lib/src/automation/operations/word_text_columns_steps.dart": "42676146df77ceb41c117dc8302b92d273d0f14821745deae36af4fc35cabc6c",
+    "lib/src/automation/operations/word_steps.dart": "08d2c716b03d2de21793a8efa48b3dd863002be1d52d1045a3b5328c8559896a",
+    "tool/macros/web_vba_word_text_columns_smoke.dart": "591c1d1be84a7f62ecfcb405314274cfb7b6bce9b589f00de8f51704995ae3ef",
+    "tool/macros/web_vba_word_page_setup_smoke.dart": "35333f32fa546d9f4fb332f063d7e5b23d972d3156927cf9ad410d820989f429",
+    "example/macros/word_text_columns.bas": "0abed44bdc0f5d71eac1fee6d4ec9b868a4860c27944d386f6942658a247b7b9"
+  },
+  "inputsUnchanged": true,
+  "hosts": [
+    {
+      "host": "vm",
+      "exitCode": 0,
+      "seconds": 12.86,
+      "command": [
+        "/workspace/scratch/d35306a381f8/runtime/flutter/bin/cache/dart-sdk/bin/dart",
+        "-DWORD_TEXT_COLUMNS_BAS_BASE64=<complete committed BAS base64>",
+        "tool/macros/web_vba_word_text_columns_smoke.dart"
+      ]
+    },
+    {
+      "host": "compile_js",
+      "exitCode": 0,
+      "seconds": 17.854,
+      "command": [
+        "/workspace/scratch/d35306a381f8/runtime/flutter/bin/cache/dart-sdk/bin/dart",
+        "compile",
+        "js",
+        "-O2",
+        "-DWORD_TEXT_COLUMNS_BAS_BASE64=<complete committed BAS base64>",
+        "tool/macros/web_vba_word_text_columns_smoke.dart",
+        "-o",
+        "/workspace/scratch/d35306a381f8/runtime/logs/text-columns-final-smoke.js"
+      ]
+    },
+    {
+      "host": "js",
+      "exitCode": 0,
+      "seconds": 0.918,
+      "command": [
+        "node",
+        "-e",
+        "global.self=global; require(process.argv[1]);",
+        "/workspace/scratch/d35306a381f8/runtime/logs/text-columns-final-smoke.js"
+      ]
+    }
+  ],
+  "vmJsEquivalent": true,
+  "result": {
+    "example": {
+      "operations": 6,
+      "firstRunRevision": 1,
+      "repeatedRevision": 2,
+      "additionalReopens": 2,
+      "opaquePayloadsPreserved": true,
+      "sections": [
+        {
+          "text": "First section",
+          "width": 612,
+          "height": 792,
+          "top": 72,
+          "bottom": 72,
+          "left": 72,
+          "right": 72,
+          "header": 36,
+          "footer": 36,
+          "columnCount": 2,
+          "columnSpace": 18,
+          "columnSep": true,
+          "break": "nextPage"
+        },
+        {
+          "text": "Second section",
+          "width": 600,
+          "height": 800,
+          "top": 50,
+          "bottom": 60,
+          "left": 70,
+          "right": 80,
+          "header": 25,
+          "footer": 30,
+          "columnCount": 3,
+          "columnSpace": 18,
+          "columnSep": false,
+          "break": "continuous"
+        },
+        {
+          "text": "Untouched section",
+          "width": 700,
+          "height": 900,
+          "top": 45,
+          "bottom": 50,
+          "left": 55,
+          "right": 60,
+          "header": 20,
+          "footer": 25,
+          "columnCount": 2,
+          "columnSpace": 24,
+          "columnSep": false,
+          "break": "nextPage"
+        }
+      ]
+    },
+    "rollback": {
+      "failedStep": 1,
+      "validateAndRunRollback": true
+    },
+    "recording": {
+      "recordedSteps": 3,
+      "failedCallExcluded": true,
+      "replayRevision": 1
+    },
+    "policy": {
+      "atomicDenials": 6,
+      "allowedSteps": 3
+    }
+  }
+}
