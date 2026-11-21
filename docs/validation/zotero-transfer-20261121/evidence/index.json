@@ -1,6 +1,399 @@
 {
   "archives": [
     {
+      "bytes": 164596,
+      "canonical_archive": true,
+      "case_events": "editor-combined-01/stdout.jsonl",
+      "cases": "editor-combined-01/cases.json.gz",
+      "environment_id": "execution-environment-v5",
+      "expected": {
+        "failed": 0,
+        "passed": 36,
+        "skipped": 0
+      },
+      "expected_skip_manifest_member": "editor-combined-01/expected-skips.json",
+      "id": "editor-combined-01",
+      "kind": "dart-test-cohort",
+      "members": {
+        "editor-combined-01/cases.json.gz": {
+          "bytes": 1593,
+          "sha256": "c9f3a6730d57fa9e0171eda6cf9b84876d311db8978e6db9c6ae206fcb00c9e6"
+        },
+        "editor-combined-01/expected-skips.json": {
+          "bytes": 1715,
+          "sha256": "94b0af85487f06ea2e36abbc24c39c54affbbe7851b261f680b520bc37c8999d"
+        },
+        "editor-combined-01/process.json": {
+          "bytes": 301,
+          "sha256": "8a118fdc60548610d9281bde50a16dc810726b5d7c2bd150b47ea298b3820e2a"
+        },
+        "editor-combined-01/source-after.json.gz": {
+          "bytes": 78756,
+          "sha256": "3592e07fa4029a6848b9ca736f5863d98ea46a8d5109c9857354c8aa89955e1e"
+        },
+        "editor-combined-01/source-before.json.gz": {
+          "bytes": 78756,
+          "sha256": "3592e07fa4029a6848b9ca736f5863d98ea46a8d5109c9857354c8aa89955e1e"
+        },
+        "editor-combined-01/stderr.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "editor-combined-01/stdout.jsonl": {
+          "bytes": 18976,
+          "sha256": "2be9e73aab1e5d7d45fe3d41825e0955e91dc49191ba0333ef944baad2b76ce2"
+        },
+        "editor-combined-01/summary.json": {
+          "bytes": 4819,
+          "sha256": "1323cc7af3f34f50eb407794639976465d168edc56792cfcc1d86998a0f285c9"
+        }
+      },
+      "path": "editor-combined-01.tar.gz",
+      "receipt": "editor-combined-01/summary.json",
+      "sha256": "3df011420b3d6c516e156c70ecd7d5a29904e0e1ba693e8557d6d50cdbe414a5",
+      "source_revision": "24165f5ca6aff2d2a0c371ea473d82eba1e10f16",
+      "source_snapshots": {
+        "after": "editor-combined-01/source-after.json.gz",
+        "before": "editor-combined-01/source-before.json.gz"
+      },
+      "status": "accepted"
+    },
+    {
+      "bytes": 182469,
+      "canonical_archive": true,
+      "case_events": "editor-combined-02/stdout.jsonl",
+      "cases": "editor-combined-02/cases.json.gz",
+      "environment_id": "execution-environment-v5",
+      "expected": {
+        "failed": 0,
+        "passed": 217,
+        "skipped": 8
+      },
+      "expected_skip_manifest_member": "editor-combined-02/expected-skips.json",
+      "id": "editor-combined-02",
+      "kind": "dart-test-cohort",
+      "members": {
+        "editor-combined-02/cases.json.gz": {
+          "bytes": 7259,
+          "sha256": "6ef05b5bda1713a11b50506a8272186ce7f8a0aaea97a1c062f3b232be2c2ce0"
+        },
+        "editor-combined-02/expected-skips.json": {
+          "bytes": 1715,
+          "sha256": "94b0af85487f06ea2e36abbc24c39c54affbbe7851b261f680b520bc37c8999d"
+        },
+        "editor-combined-02/process-observations.json": {
+          "bytes": 28866,
+          "sha256": "3c5bcfc0e8a84e54422cd3c7b3e912a24e9d91b27bffc530ae809d67b157cd16"
+        },
+        "editor-combined-02/process.json": {
+          "bytes": 981,
+          "sha256": "39003d0d70fa423cffc0d71d31ca1d178f6efa9eb2da8ae99d20aff72394a7c2"
+        },
+        "editor-combined-02/source-after.json.gz": {
+          "bytes": 78756,
+          "sha256": "3592e07fa4029a6848b9ca736f5863d98ea46a8d5109c9857354c8aa89955e1e"
+        },
+        "editor-combined-02/source-before.json.gz": {
+          "bytes": 78756,
+          "sha256": "3592e07fa4029a6848b9ca736f5863d98ea46a8d5109c9857354c8aa89955e1e"
+        },
+        "editor-combined-02/stderr.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "editor-combined-02/stdout.jsonl": {
+          "bytes": 123143,
+          "sha256": "1e82b8f9a362862d8b9d6084762af47902fd999c421277617b68bbd843cebb8d"
+        },
+        "editor-combined-02/summary.json": {
+          "bytes": 8281,
+          "sha256": "bc5c6bf7dda99a151eae1d25a424ed94e3c9e5771866af3226cb9014c052647e"
+        }
+      },
+      "path": "editor-combined-02.tar.gz",
+      "receipt": "editor-combined-02/summary.json",
+      "sha256": "b719bf56462ffdaf2f043db57e8ee378ab17dc7e7b27308a99a6c6f55f5805ee",
+      "source_revision": "24165f5ca6aff2d2a0c371ea473d82eba1e10f16",
+      "source_snapshots": {
+        "after": "editor-combined-02/source-after.json.gz",
+        "before": "editor-combined-02/source-before.json.gz"
+      },
+      "status": "accepted"
+    },
+    {
+      "bytes": 189824,
+      "canonical_archive": true,
+      "case_events": "editor-combined-03/stdout.jsonl",
+      "cases": "editor-combined-03/cases.json.gz",
+      "environment_id": "execution-environment-v5",
+      "expected": {
+        "failed": 0,
+        "passed": 376,
+        "skipped": 0
+      },
+      "expected_skip_manifest_member": "editor-combined-03/expected-skips.json",
+      "id": "editor-combined-03",
+      "kind": "dart-test-cohort",
+      "members": {
+        "editor-combined-03/cases.json.gz": {
+          "bytes": 11568,
+          "sha256": "192397c338464a14d134fd81159309a89f21bf03610aad29027cfb458462e59d"
+        },
+        "editor-combined-03/expected-skips.json": {
+          "bytes": 1715,
+          "sha256": "94b0af85487f06ea2e36abbc24c39c54affbbe7851b261f680b520bc37c8999d"
+        },
+        "editor-combined-03/process.json": {
+          "bytes": 941,
+          "sha256": "36d95c468ae1ca7619e8d4518b04de04ae733c2dd3c68a7f7ea463bac7fd59a2"
+        },
+        "editor-combined-03/source-after.json.gz": {
+          "bytes": 78756,
+          "sha256": "3592e07fa4029a6848b9ca736f5863d98ea46a8d5109c9857354c8aa89955e1e"
+        },
+        "editor-combined-03/source-before.json.gz": {
+          "bytes": 78756,
+          "sha256": "3592e07fa4029a6848b9ca736f5863d98ea46a8d5109c9857354c8aa89955e1e"
+        },
+        "editor-combined-03/stderr.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "editor-combined-03/stdout.jsonl": {
+          "bytes": 197223,
+          "sha256": "7c7cc019a183d1b75f2b72b03077630df9c5dbcc6f4dcf5b06ab22bce51a41c5"
+        },
+        "editor-combined-03/summary.json": {
+          "bytes": 6093,
+          "sha256": "50426760d02ee2766e494ed69765fddcdbdf8c11efc4f73533edc9b6f1508748"
+        }
+      },
+      "path": "editor-combined-03.tar.gz",
+      "receipt": "editor-combined-03/summary.json",
+      "sha256": "58410e85b9cd388b9ebeb18f13b6c50a5c481cc5f566482f657724b0f52b72c0",
+      "source_revision": "24165f5ca6aff2d2a0c371ea473d82eba1e10f16",
+      "source_snapshots": {
+        "after": "editor-combined-03/source-after.json.gz",
+        "before": "editor-combined-03/source-before.json.gz"
+      },
+      "status": "accepted"
+    },
+    {
+      "bytes": 184141,
+      "canonical_archive": true,
+      "case_events": "editor-combined-04/stdout.jsonl",
+      "cases": "editor-combined-04/cases.json.gz",
+      "environment_id": "execution-environment-v5",
+      "expected": {
+        "failed": 0,
+        "passed": 228,
+        "skipped": 0
+      },
+      "expected_skip_manifest_member": "editor-combined-04/expected-skips.json",
+      "id": "editor-combined-04",
+      "kind": "dart-test-cohort",
+      "members": {
+        "editor-combined-04/cases.json.gz": {
+          "bytes": 8114,
+          "sha256": "f01c743ec5f68695983cc7eb8cbf23db5c114c4733833b8b1cb81cfc1c6c1cb4"
+        },
+        "editor-combined-04/expected-skips.json": {
+          "bytes": 1715,
+          "sha256": "94b0af85487f06ea2e36abbc24c39c54affbbe7851b261f680b520bc37c8999d"
+        },
+        "editor-combined-04/process-observations.json": {
+          "bytes": 19097,
+          "sha256": "dd6a3ad6cee2044ebc08d297eaea15e9824a4d3dcaab10922cc42c419381c7b5"
+        },
+        "editor-combined-04/process.json": {
+          "bytes": 946,
+          "sha256": "51adecf330811eda75a5fa15dcaa4390651b827900e9311d7c0a1e3d44cddbae"
+        },
+        "editor-combined-04/source-after.json.gz": {
+          "bytes": 78756,
+          "sha256": "3592e07fa4029a6848b9ca736f5863d98ea46a8d5109c9857354c8aa89955e1e"
+        },
+        "editor-combined-04/source-before.json.gz": {
+          "bytes": 78756,
+          "sha256": "3592e07fa4029a6848b9ca736f5863d98ea46a8d5109c9857354c8aa89955e1e"
+        },
+        "editor-combined-04/stderr.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "editor-combined-04/stdout.jsonl": {
+          "bytes": 132916,
+          "sha256": "7aab8b3601ef0f615949b39ff8158b43d1fb069a76589db5bd071068c468d3d2"
+        },
+        "editor-combined-04/summary.json": {
+          "bytes": 6204,
+          "sha256": "b6a11c2136b2001f2d0b4558998daaa3ef10643621adca03a1c12322c556df03"
+        }
+      },
+      "path": "editor-combined-04.tar.gz",
+      "receipt": "editor-combined-04/summary.json",
+      "sha256": "408bfec8cf618065894186d475fa8342c8a5ad70b679b16329378a1625f2592b",
+      "source_revision": "338bdd4c23462be7420ebf1613258bc89c46cb6b",
+      "source_snapshots": {
+        "after": "editor-combined-04/source-after.json.gz",
+        "before": "editor-combined-04/source-before.json.gz"
+      },
+      "status": "accepted"
+    },
+    {
+      "bytes": 186831,
+      "canonical_archive": true,
+      "case_events": "editor-combined-05/stdout.jsonl",
+      "cases": "editor-combined-05/cases.json.gz",
+      "environment_id": "execution-environment-v5",
+      "expected": {
+        "failed": 0,
+        "passed": 302,
+        "skipped": 0
+      },
+      "expected_skip_manifest_member": "editor-combined-05/expected-skips.json",
+      "id": "editor-combined-05",
+      "kind": "dart-test-cohort",
+      "members": {
+        "editor-combined-05/cases.json.gz": {
+          "bytes": 9135,
+          "sha256": "f3cc81e8e7f1c3011d1fdd96b3517673a9985a0192b1b5d3a158c9cbe63709ea"
+        },
+        "editor-combined-05/expected-skips.json": {
+          "bytes": 1715,
+          "sha256": "94b0af85487f06ea2e36abbc24c39c54affbbe7851b261f680b520bc37c8999d"
+        },
+        "editor-combined-05/process-observations.json": {
+          "bytes": 9583,
+          "sha256": "51096702036a431b72fd9340d8e00a581116b6d0aed1cc7330d9085ef5ab9a01"
+        },
+        "editor-combined-05/process.json": {
+          "bytes": 963,
+          "sha256": "178f11c2dbd531bb48ee4a954c170ab452bda2d308fc5fa14559248144b5878e"
+        },
+        "editor-combined-05/source-after.json.gz": {
+          "bytes": 78756,
+          "sha256": "3592e07fa4029a6848b9ca736f5863d98ea46a8d5109c9857354c8aa89955e1e"
+        },
+        "editor-combined-05/source-before.json.gz": {
+          "bytes": 78756,
+          "sha256": "3592e07fa4029a6848b9ca736f5863d98ea46a8d5109c9857354c8aa89955e1e"
+        },
+        "editor-combined-05/stderr.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "editor-combined-05/stdout.jsonl": {
+          "bytes": 161718,
+          "sha256": "ba9cae67a999d04897f407b3f321c7f6bc8c7327cf9b84028ed7f69cec11bfee"
+        },
+        "editor-combined-05/summary.json": {
+          "bytes": 6238,
+          "sha256": "03ffadebf50f2b8548a49fc48eaf0be74988a2ed2e09b856a46c031633862caf"
+        }
+      },
+      "path": "editor-combined-05.tar.gz",
+      "receipt": "editor-combined-05/summary.json",
+      "sha256": "97313ac869bf7e1c89a562caa58d43bd2bdb56e963eab49e640b873779ce3620",
+      "source_revision": "338bdd4c23462be7420ebf1613258bc89c46cb6b",
+      "source_snapshots": {
+        "after": "editor-combined-05/source-after.json.gz",
+        "before": "editor-combined-05/source-before.json.gz"
+      },
+      "status": "accepted"
+    },
+    {
+      "bytes": 179853,
+      "canonical_archive": true,
+      "case_events": "editor-combined-06/stdout.jsonl",
+      "cases": "editor-combined-06/cases.json.gz",
+      "environment_id": "execution-environment-v5",
+      "expected": {
+        "failed": 0,
+        "passed": 212,
+        "skipped": 0
+      },
+      "expected_skip_manifest_member": "editor-combined-06/expected-skips.json",
+      "id": "editor-combined-06",
+      "kind": "dart-test-cohort",
+      "members": {
+        "editor-combined-06/cases.json.gz": {
+          "bytes": 6491,
+          "sha256": "3039e249609359337e7ff5a52117ae84f8a706e9f0ab17100a07d3f5d612b512"
+        },
+        "editor-combined-06/expected-skips.json": {
+          "bytes": 1715,
+          "sha256": "94b0af85487f06ea2e36abbc24c39c54affbbe7851b261f680b520bc37c8999d"
+        },
+        "editor-combined-06/process-observations.json": {
+          "bytes": 9594,
+          "sha256": "bfd7d0259d9ba0eb7ca559e6d8e1e680848149a12aa9fb6a29bbdadc1c7035f7"
+        },
+        "editor-combined-06/process.json": {
+          "bytes": 968,
+          "sha256": "a05440501c1337f6f12363ebd8adb828b740efea633148393d12421af92cd79d"
+        },
+        "editor-combined-06/source-after.json.gz": {
+          "bytes": 78756,
+          "sha256": "3592e07fa4029a6848b9ca736f5863d98ea46a8d5109c9857354c8aa89955e1e"
+        },
+        "editor-combined-06/source-before.json.gz": {
+          "bytes": 78756,
+          "sha256": "3592e07fa4029a6848b9ca736f5863d98ea46a8d5109c9857354c8aa89955e1e"
+        },
+        "editor-combined-06/stderr.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "editor-combined-06/stdout.jsonl": {
+          "bytes": 117374,
+          "sha256": "eba46ecb88f5feda482e0a3208d3c2512d2979686f79a317147d91613445d87a"
+        },
+        "editor-combined-06/summary.json": {
+          "bytes": 6248,
+          "sha256": "fedb7a17322851713ffe730d8c7648408e303908b77d11b0a957b9efebe72d2a"
+        }
+      },
+      "path": "editor-combined-06.tar.gz",
+      "receipt": "editor-combined-06/summary.json",
+      "sha256": "d5a44582f1140495c4f2c6cc9cfaf37795c150abbf980a7c2b2aa966064627c5",
+      "source_revision": "5bcb90f909cec039a09c6ef8c97b002b003a8dbb",
+      "source_snapshots": {
+        "after": "editor-combined-06/source-after.json.gz",
+        "before": "editor-combined-06/source-before.json.gz"
+      },
+      "status": "accepted"
+    },
+    {
+      "bytes": 1567,
+      "canonical_archive": true,
+      "dependencies": [
+        "editor-combined-01",
+        "editor-combined-02",
+        "editor-combined-03",
+        "editor-combined-04",
+        "editor-combined-05",
+        "editor-combined-06"
+      ],
+      "expected": {
+        "failed": 0,
+        "passed": 1371,
+        "skipped": 8
+      },
+      "id": "editor-combined-aggregate",
+      "kind": "cohort-aggregate",
+      "members": {
+        "editor-combined-aggregate/summary.json": {
+          "bytes": 8667,
+          "sha256": "91661c558f4c9ce71010581f7e5b463fecb6a757a8d035fc0c664ffaf1a0e1e9"
+        }
+      },
+      "path": "editor-combined-aggregate.tar.gz",
+      "receipt": "editor-combined-aggregate/summary.json",
+      "sha256": "7f7317f64d94d5a52b51748f10ea40a2c15bc6494336d3dcb826b0ca68101593",
+      "status": "accepted"
+    },
+    {
       "bytes": 189971,
       "canonical_archive": true,
       "case_events": "editor-final-77/stdout.jsonl",
@@ -1740,6 +2133,63 @@
       "status": "rejected"
     },
     {
+      "bytes": 172808,
+      "canonical_archive": true,
+      "case_events": "studio-transfer-combined-24165f5c/stdout.jsonl",
+      "cases": "studio-transfer-combined-24165f5c/cases.json.gz",
+      "environment_id": "execution-environment-v5",
+      "expected": {
+        "failed": 0,
+        "passed": 189,
+        "skipped": 0
+      },
+      "id": "studio-transfer-combined-24165f5c",
+      "kind": "dart-test-cohort",
+      "members": {
+        "studio-transfer-combined-24165f5c/cases.json.gz": {
+          "bytes": 5736,
+          "sha256": "55324f0651e923869c5a3a8faa238f0208c6f4dc20a5b0b0fd5031d58aaa9fee"
+        },
+        "studio-transfer-combined-24165f5c/process-observations.json": {
+          "bytes": 21998,
+          "sha256": "e7294ebfeddbd18c9d0d71e63b6e478f2ffcc3233c086532a235782ca320f84c"
+        },
+        "studio-transfer-combined-24165f5c/process.json": {
+          "bytes": 593,
+          "sha256": "779578cf22217ff66ceeba32361a0a6b91a0529afd0f71c70909e8df2c022708"
+        },
+        "studio-transfer-combined-24165f5c/source-after.json.gz": {
+          "bytes": 75733,
+          "sha256": "1d418267ee2f604133b7487bf329f7bce659331cc0afa27dc9df2d7ebe2b0022"
+        },
+        "studio-transfer-combined-24165f5c/source-before.json.gz": {
+          "bytes": 75733,
+          "sha256": "1d418267ee2f604133b7487bf329f7bce659331cc0afa27dc9df2d7ebe2b0022"
+        },
+        "studio-transfer-combined-24165f5c/stderr.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "studio-transfer-combined-24165f5c/stdout.jsonl": {
+          "bytes": 109076,
+          "sha256": "934409b1d0e76997d057a3939848b5d50c358b679ab393290dd1a12cf3bd7ddd"
+        },
+        "studio-transfer-combined-24165f5c/summary.json": {
+          "bytes": 3417,
+          "sha256": "0df04c674d48cfb83fc0da34a5f07912dbb91f6faf8a0ed9f69a777fe1442e7d"
+        }
+      },
+      "path": "studio-transfer-combined-24165f5c.tar.gz",
+      "receipt": "studio-transfer-combined-24165f5c/summary.json",
+      "sha256": "046e5aea5b76a6e37efcc6892ec317fefb2bd617b6d1bf54b6054f8911521ec3",
+      "source_revision": "24165f5ca6aff2d2a0c371ea473d82eba1e10f16",
+      "source_snapshots": {
+        "after": "studio-transfer-combined-24165f5c/source-after.json.gz",
+        "before": "studio-transfer-combined-24165f5c/source-before.json.gz"
+      },
+      "status": "accepted"
+    },
+    {
       "bytes": 169878,
       "canonical_archive": true,
       "id": "studio-transfer-freeze-9228cb58",
@@ -1912,7 +2362,7 @@
         "packages/quds_office_editor/test/word_typing_proofing_schedule_test.dart"
       ],
       "reason": "Historical passing scope superseded by changed editor proofing/Studio fixture inputs in publication-main merge 24165f5c. Original archive and hashes remain intact.",
-      "replacement_scope": null
+      "replacement_scope": "editor-combined-01"
     },
     "editor-serial-02": {
       "changed_inputs": [
@@ -1920,7 +2370,7 @@
         "packages/quds_office_editor/test/word_typing_proofing_schedule_test.dart"
       ],
       "reason": "Historical passing scope superseded by changed editor proofing/Studio fixture inputs in publication-main merge 24165f5c. Original archive and hashes remain intact.",
-      "replacement_scope": null
+      "replacement_scope": "editor-combined-02"
     },
     "editor-serial-03": {
       "changed_inputs": [
@@ -1928,7 +2378,7 @@
         "packages/quds_office_editor/test/word_typing_proofing_schedule_test.dart"
       ],
       "reason": "Historical passing scope superseded by changed editor proofing/Studio fixture inputs in publication-main merge 24165f5c. Original archive and hashes remain intact.",
-      "replacement_scope": null
+      "replacement_scope": "editor-combined-03"
     },
     "editor-serial-04": {
       "changed_inputs": [
@@ -1936,7 +2386,7 @@
         "packages/quds_office_editor/test/word_typing_proofing_schedule_test.dart"
       ],
       "reason": "Historical passing scope superseded by changed editor proofing/Studio fixture inputs in publication-main merge 24165f5c. Original archive and hashes remain intact.",
-      "replacement_scope": null
+      "replacement_scope": "editor-combined-04"
     },
     "editor-serial-05": {
       "changed_inputs": [
@@ -1944,7 +2394,7 @@
         "packages/quds_office_editor/test/word_typing_proofing_schedule_test.dart"
       ],
       "reason": "Historical passing scope superseded by changed editor proofing/Studio fixture inputs in publication-main merge 24165f5c. Original archive and hashes remain intact.",
-      "replacement_scope": null
+      "replacement_scope": "editor-combined-05"
     },
     "editor-serial-06": {
       "changed_inputs": [
@@ -1952,12 +2402,12 @@
         "packages/quds_office_editor/test/word_typing_proofing_schedule_test.dart"
       ],
       "reason": "Historical passing scope superseded by changed editor proofing/Studio fixture inputs in publication-main merge 24165f5c. Original archive and hashes remain intact.",
-      "replacement_scope": null
+      "replacement_scope": "editor-combined-06"
     },
     "editor-serial-aggregate": {
       "changed_inputs": [],
       "reason": "Historical passing scope superseded by changed editor proofing/Studio fixture inputs in publication-main merge 24165f5c. Original archive and hashes remain intact.",
-      "replacement_scope": null
+      "replacement_scope": "editor-combined-aggregate"
     },
     "source-gates": {
       "changed_inputs": [
@@ -1989,7 +2439,7 @@
         "packages/quds_office_editor/lib/src/proofing/word_proofing.dart"
       ],
       "reason": "Historical passing scope superseded by changed editor proofing/Studio fixture inputs in publication-main merge 24165f5c. Original archive and hashes remain intact.",
-      "replacement_scope": null
+      "replacement_scope": "studio-transfer-combined-24165f5c"
     }
   },
   "verification": "python docs/validation/zotero-transfer-20261121/verify_qualification.py",

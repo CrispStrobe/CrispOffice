@@ -8,6 +8,21 @@ hyperlinks, DOCX transfer import and ODT carrier export. Native formatting must
 complete before an import is applied. The editor exposes preparation and import
 controls with one undo/redo step and retains cancellation and stale-state guards.
 
+Combined product source `24165f5c` preserves current main `290dfa43`. The final
+local qualification covers **7,225 distinct VM/editor/Studio cases**, zero
+failures or runtime errors and eight preexisting layout exclusions. All 892
+Zotero editor cases execute. Another 171 targeted JavaScript executions overlap
+the VM cases and are counted separately. All 60 changed Dart files pass strict
+analysis and formatting. Three real LibreOffice converter routes each restore
+five active citations and a bibliography through controlled Zotero callbacks.
+
+The [qualification receipt](validation/zotero-transfer-20261121/qualification.json)
+and 32 independently verified archives retain exact inputs, raw output,
+rejected attempts and source-specific replacements. The frozen 338-head intake
+has 314 ancestors, 24 verified historical equivalents and zero uncovered refs;
+the later Word/Mail publication main is also preserved. No old or repeated run
+inflates the final count.
+
 The work record separates source-bound local execution, actual LibreOffice file
 conversion and controlled formatting callbacks from installed Zotero/Word/
 LibreOffice plugin acceptance. Direct native ODT reference marks and legacy

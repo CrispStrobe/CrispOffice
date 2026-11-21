@@ -1,0 +1,228 @@
+{
+  "schema_version": 1,
+  "qualification_complete": true,
+  "scope": "Source-bound local acceptance for Zotero document transfer and reconciled Office work; installed Zotero/Word/LibreOffice plugin sessions remain unqualified.",
+  "source": {
+    "initial_main": "84046975f286407e3c62e5e5352bc16bc89c0d26",
+    "transfer_product_freeze": "9228cb58e960ed9a6c0e91f2531e539c58689364",
+    "transfer_product_tree": "89dd9e06a44540bb408ad4e52aa7f243a1ad844f",
+    "reconciled_remote_main": "290dfa43e3bcf410d9bf1bd8194c997c4ee613ae",
+    "combined_product_freeze": "24165f5ca6aff2d2a0c371ea473d82eba1e10f16",
+    "combined_product_tree": "f77b5ffa3ba463587ad0e71672d45040e522be72",
+    "evidence_checkpoint_at_assembly": "5bcb90f909cec039a09c6ef8c97b002b003a8dbb",
+    "later_checkpoint_changes": "Documentation/evidence only; no package, test, tool, asset or manifest changes.",
+    "branch": "codex/zotero-transfer-20261121"
+  },
+  "distinct_test_cases": {
+    "passed": 7225,
+    "failed": 0,
+    "expected_skips": 8,
+    "suite_files": 230,
+    "engine_suites_disjoint": true,
+    "editor_suites_missing_extra_or_duplicate": 0
+  },
+  "cohorts": [
+    {
+      "id": "engine-zotero-final",
+      "evidence_archive": "engine-zotero-final.tar.gz",
+      "sha256": "6144749b9b0052189fa84ea961604cebac42c529f20d55178644b61347c9fd25",
+      "receipt_member": "engine-zotero-final/summary.json",
+      "counts": {
+        "failed": 0,
+        "passed": 1378,
+        "skipped": 0
+      },
+      "counts_once": true,
+      "dependencies": [
+        "publication-main-24165f5c"
+      ]
+    },
+    {
+      "id": "incoming-word-engine-final",
+      "evidence_archive": "incoming-word-engine-final.tar.gz",
+      "sha256": "0187b792a389ca1edb6bbefc3787290670a07e4b84e6c3179782d7fd31761825",
+      "receipt_member": "incoming-word-engine-final/summary.json",
+      "counts": {
+        "failed": 0,
+        "passed": 4287,
+        "skipped": 0
+      },
+      "counts_once": true,
+      "dependencies": [
+        "publication-main-24165f5c"
+      ]
+    },
+    {
+      "id": "editor-combined-aggregate",
+      "evidence_archive": "editor-combined-aggregate.tar.gz",
+      "sha256": "7f7317f64d94d5a52b51748f10ea40a2c15bc6494336d3dcb826b0ca68101593",
+      "receipt_member": "editor-combined-aggregate/summary.json",
+      "counts": {
+        "failed": 0,
+        "passed": 1371,
+        "skipped": 8
+      },
+      "counts_once": true,
+      "dependencies": [
+        "editor-combined-01",
+        "editor-combined-02",
+        "editor-combined-03",
+        "editor-combined-04",
+        "editor-combined-05",
+        "editor-combined-06"
+      ]
+    },
+    {
+      "id": "studio-transfer-combined-24165f5c",
+      "evidence_archive": "studio-transfer-combined-24165f5c.tar.gz",
+      "sha256": "046e5aea5b76a6e37efcc6892ec317fefb2bd617b6d1bf54b6054f8911521ec3",
+      "receipt_member": "studio-transfer-combined-24165f5c/summary.json",
+      "counts": {
+        "failed": 0,
+        "passed": 189,
+        "skipped": 0
+      },
+      "counts_once": true,
+      "dependencies": []
+    }
+  ],
+  "overlapping_platform_execution": {
+    "id": "engine-transfer-node-final",
+    "platform": "node",
+    "passed": 171,
+    "failed": 0,
+    "skipped": 0,
+    "included_in_distinct_total": false,
+    "evidence_archive": "engine-transfer-node-final.tar.gz",
+    "sha256": "9a828d497e021378575d0a16309c56599eee23fbcc21ec3c2a2c2de15fdebc99",
+    "receipt_member": "engine-transfer-node-final/summary.json"
+  },
+  "verifier_execution_total_including_node": {
+    "passed": 7396,
+    "failed": 0,
+    "skipped": 8
+  },
+  "editor_breakdown": {
+    "zotero": {
+      "suites": 49,
+      "passed": 892,
+      "skipped": 0
+    },
+    "proofing_spelling_language": {
+      "suites": 27,
+      "passed": 409,
+      "skipped": 0
+    },
+    "layout": {
+      "suites": 1,
+      "passed": 70,
+      "skipped": 8
+    }
+  },
+  "skip_reason": "Eight preexisting image-only layout cases have no paragraphs to edit. Exact names/reasons are retained in the editor cohort archive.",
+  "runtime": {
+    "flutter": "3.47.8",
+    "dart": "3.13.7",
+    "framework_revision": "737ba8f885dc774b53b442759999a312c9461e4e",
+    "format_language_version": "3.12",
+    "dependency_workspace": "Isolated; repository manifests and root lockfile unchanged.",
+    "raw_diagnostic_gate": "Final Flutter cohorts use runner5; earlier accepted engine logs independently pass the same fatal/unhandled diagnostic audit.",
+    "historical_harness_limit": "Original runner3 bytes were not snapshotted; exact commands, raw events, case identities, runtime and inputs are retained. Later reference runners are separately identified."
+  },
+  "source_gate": {
+    "id": "source-gates-combined-24165f5c",
+    "changed_dart_files": 60,
+    "fatal_info_analysis_exit": 0,
+    "format_check_exit": 0,
+    "scoped_diff_check_exit": 0,
+    "inputs_unchanged": true,
+    "evidence_archive": "source-gates-combined-24165f5c.tar.gz",
+    "sha256": "2d9138dff72cebfb684a0851449da5ef007d56e708cc6d6e19c8d1cfb5075737"
+  },
+  "source_applicability": {
+    "engine_broad_snapshot_inputs": 1967,
+    "engine_broad_snapshot_matching": 1966,
+    "only_changed_non_dependency": "packages/quds_office_editor/lib/src/proofing/word_proofing.dart",
+    "dependency_proof_files": 915,
+    "exception_limit": "Bound to exact path and recorded old/new hashes; dependency inventory and import restrictions independently verified. No broader difference is accepted.",
+    "proof": "publication-main/applicability.json",
+    "portable_inputs_exact": 1580,
+    "converter_inputs_exact": 357,
+    "final_editor_inputs_exact_per_cohort": 1723,
+    "final_studio_inputs_exact": 1665
+  },
+  "converter": {
+    "accepted": true,
+    "version": "LibreOfficeDev 26.8.0.0.alpha0 2c87e51eeaa2b413ff4ae097b2705eea1995d8e5",
+    "routes": [
+      "Quds transfer DOCX directly",
+      "Quds transfer DOCX -> LibreOffice ODT -> LibreOffice DOCX",
+      "Quds transfer ODT -> LibreOffice DOCX"
+    ],
+    "restored_per_route": {
+      "active_citations": 5,
+      "bibliography": 1
+    },
+    "receipt": "converter-qualification/frozen-replay/receipt.json",
+    "receipt_sha256": "7b6570eda85909008a499faca80b4748874b948c7a54912bf1b7a5dbd248f961",
+    "formatting_callbacks": "Controlled synthetic Zotero responses; no live Zotero client/plugin.",
+    "inputs_unchanged": true
+  },
+  "intake": {
+    "initial_ref_count": 334,
+    "publication_ref_count": 338,
+    "snapshot_at": "2026-11-21T06:06:59.608453+00:00",
+    "ancestors": 314,
+    "verified_exact_historical_equivalents": 24,
+    "uncovered": 0,
+    "qualified_replay": "qualified-intake.json",
+    "qualified_replay_sha256": "4bfe5b4c7ff9fce24fbe28fc7d0c1821a81ad32a0df87a8bc544610b9664049c",
+    "main_supplement": "publication-main/review.md",
+    "all_preserving_merges": true
+  },
+  "evidence": {
+    "index": "evidence/index.json",
+    "index_sha256": "dde7a5a074b3374beeea9c4a28886d4bf55d3fd49eef794a2147768ec5877f13",
+    "archive_count": 32,
+    "archive_bytes": 4609614,
+    "verifier": "verify_qualification.py",
+    "verifier_sha256": "bf3faccc5a0694c676db46b4e17d8a1619789c2845026938bd9edbd35e5e13f2",
+    "root_independent_integrity_repack_current_input_check": "passed",
+    "superseded_scopes_have_replacements": true
+  },
+  "excluded_attempts": [
+    {
+      "id": "editor-final-77",
+      "reason": "Interrupted loader stall;641 passes and8skips excluded and replaced by complete serial cohorts."
+    },
+    {
+      "id": "studio-transfer-freeze-9228cb58",
+      "reason": "Native fixture fake-clock timeout and stalled benchmark loader; incomplete and excluded."
+    },
+    {
+      "id": "studio-transfer-serial-final",
+      "reason": "185 JSON successes but4raw unhandled SQLite shutdown exceptions; rejected, regardless of original JSON-only accepted_process flag."
+    },
+    {
+      "id": "incoming-word-engine-analysis-path-rejected",
+      "reason": "Duplicate library identity from symlinked analyzer paths; excluded, replaced by exact-path changed-source gate."
+    },
+    {
+      "id": "incoming-word-engine-analysis-symlink-rejected",
+      "reason": "Duplicate library identity from symlinked analyzer paths; excluded, replaced by exact-path changed-source gate."
+    }
+  ],
+  "superseded_or_overlapping_runs_counted": false,
+  "remaining_boundaries": [
+    "Live Word and Zotero plugin acceptance",
+    "Live LibreOffice and Zotero plugin acceptance",
+    "Other LibreOffice releases beyond the identified converter",
+    "Direct native ODT ReferenceMark and preference ingestion",
+    "Versioned legacy Apache OpenOffice acceptance",
+    "Broader research-content and table-layout limits in the parity roadmap"
+  ],
+  "github_actions": {
+    "queried": false,
+    "awaited": false
+  }
+}

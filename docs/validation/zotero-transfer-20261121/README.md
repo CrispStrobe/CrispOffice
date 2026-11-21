@@ -7,11 +7,15 @@ operation detached until it can apply the complete result as one undoable edit.
 This is a delivered step toward Word/LibreOffice plugin parity. Installed-plugin
 acceptance and direct native ODT field import remain separate milestones.
 
-**Publication status:** combined source is saved remotely at
-`24165f5ca6aff2d2a0c371ea473d82eba1e10f16`; the final Studio rerun passes all
-189 cases with no raw runtime errors, and the final editor rerun is in progress.
-Strict analysis and formatting of all 60 changed Dart files pass. The final
-qualification receipt will record the completed accepted populations.
+**Qualification is complete:** **7,225 distinct local VM/editor/Studio cases
+passed**, with zero failures or runtime errors and eight identified preexisting
+layout exclusions. **171 overlapping JavaScript cases** and three real
+LibreOffice conversion routes pass separately. All 60 changed Dart files pass
+strict analysis and formatting. Combined product source is
+`24165f5ca6aff2d2a0c371ea473d82eba1e10f16`; subsequent changes retain evidence
+and documentation. The [qualification receipt](qualification.json) and
+[evidence index](evidence/index.json) contain exact source identities, counts,
+hashes and acceptance limits.
 
 ## Delivered behavior
 
@@ -89,6 +93,7 @@ both the complete incoming API/research contract and the transfer findings.
 | `9e78bd86` | Real converter evidence and native test-I/O wait correction |
 | `1cad8c01` | Host-owned test fixture shutdown and four disposal regressions |
 | `24165f5c` | Current-main reconciliation before the final combined-source gates |
+| `338bdd4c`, `5bcb90f9` | Studio raw evidence, reproducible archives and exact current-main applicability proofs |
 
 The branch is `codex/zotero-transfer-20261121`. Existing histories are preserved;
 no branch is force-updated. GitHub Actions, check/status endpoints and queues
@@ -100,9 +105,15 @@ were neither queried nor awaited. All acceptance described here is local.
 | --- | ---: | ---: | --- |
 | Zotero/ODT/style/proofing-service engine VM, 55 suites | 1,378 | 0 | Frozen transfer/engine source and unchanged engine dependencies |
 | Incoming Word/VBA/layout engine VM, 90 disjoint suites | 4,287 | 0 | Same unchanged engine dependencies |
-| Final combined editor, 77 suites | Pending | Pending | Replacing the earlier six serial cohorts after current-main reconciliation |
+| Final combined editor, 77 suites | 1,371 | 8 | Six disjoint version-5 cohorts; all 1,723 inputs match combined source `24165f5c` |
 | Final combined Studio, 8 suites | 189 | 0 | Directly qualified on combined source `24165f5c`, including all three optional benchmark cases |
 | Targeted engine JavaScript, 6 suites | 171 | 0 | Additional platform execution; overlaps engine VM and is not added to the distinct total |
+
+The four nonoverlapping VM/editor/Studio populations total **7,225 passes** in
+230 suites, with zero failures and eight exclusions. Editor coverage consists
+of all 892 Zotero cases, 409 proofing/spelling/language cases and 70 layout cases.
+The 171 additional Node executions overlap the engine VM population; the
+verifier reports 7,396 executions when that platform repeat is included.
 
 Each accepted test process requires normal exit, a successful terminal event,
 zero failed cases and runtime errors, identified expected skips and unchanged
@@ -214,7 +225,10 @@ silently overwritten or included in final totals.
 
 ## Reproduce and inspect
 
-The evidence index records SHA-256 hashes for archives, member files, source
+The **32 immutable archives** total 4,609,614 bytes. Every superseded scope has
+an identified replacement, and independent final verification passes with no
+unresolved accepted-source mismatch. The evidence index records SHA-256 hashes
+for archives, member files, source
 snapshots, environment information and exact command vectors. The verifier uses
 only Python's standard library, reads archives without extracting them, derives
 case totals independently and compares applicable inputs against this checkout:
