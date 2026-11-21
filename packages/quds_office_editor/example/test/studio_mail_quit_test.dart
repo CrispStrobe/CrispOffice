@@ -147,6 +147,37 @@ void main() {
     },
     variant: TargetPlatformVariant.only(TargetPlatform.macOS),
   );
+  testWidgets(
+    'Mail stays mounted and opens directly after switching to Documents',
+    (tester) async {
+      final owner = _DraftOwner();
+      await _openMail(tester, owner);
+      final state = tester.state(find.byType(_MailPage));
+
+      await tester.tap(
+        find.byWidgetPredicate(
+          (widget) =>
+              widget is StudioAppSwitcher && widget.label == _strings.documents,
+        ),
+      );
+      await _finishRoutes(tester);
+      expect(find.byType(_MailPage), findsNothing);
+      expect(find.byType(_MailPage, skipOffstage: false), findsOneWidget);
+
+      await tester.tap(
+        find.byWidgetPredicate(
+          (widget) =>
+              widget is StudioAppSwitcher && widget.label == _strings.mail,
+        ),
+      );
+      await _finishRoutes(tester);
+      expect(find.byType(_MailPage), findsOneWidget);
+      expect(identical(tester.state(find.byType(_MailPage)), state), isTrue);
+      expect(owner.disposed, isFalse);
+      expect(tester.takeException(), isNull);
+    },
+    variant: TargetPlatformVariant.only(TargetPlatform.macOS),
+  );
 }
 
 final class _DraftOwner {
