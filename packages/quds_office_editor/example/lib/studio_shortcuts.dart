@@ -1,7 +1,7 @@
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 
-/// A user-visible Word/Writer command and its default shortcut.
+/// A user-visible Word/Writer command and its optional default shortcut.
 ///
 /// Settings store only the actions a user changed. Unknown action ids are
 /// retained in the settings document but ignored by this catalog, which keeps
@@ -10,7 +10,7 @@ final class StudioShortcutAction {
   const StudioShortcutAction({
     required this.id,
     required this.label,
-    required this.key,
+    this.key,
     this.shift = false,
     this.alt = false,
     this.primary = true,
@@ -18,19 +18,22 @@ final class StudioShortcutAction {
 
   final String id;
   final String label;
-  final LogicalKeyboardKey key;
+  final LogicalKeyboardKey? key;
   final bool shift;
   final bool alt;
   final bool primary;
 
-  StudioShortcutBinding defaultBinding({required bool mac}) =>
-      StudioShortcutBinding(
-        keyId: key.keyId,
-        meta: primary && mac,
-        control: primary && !mac,
-        shift: shift,
-        alt: alt,
-      );
+  StudioShortcutBinding? defaultBinding({required bool mac}) {
+    final trigger = key;
+    if (trigger == null) return null;
+    return StudioShortcutBinding(
+      keyId: trigger.keyId,
+      meta: primary && mac,
+      control: primary && !mac,
+      shift: shift,
+      alt: alt,
+    );
+  }
 }
 
 /// A persistable key combination. Key ids are Flutter's stable logical ids.
@@ -101,7 +104,10 @@ final class StudioShortcutBinding {
     }
     final keyId = int.tryParse(parts.last);
     final key = keyId == null ? null : LogicalKeyboardKey.findKeyByKeyId(keyId);
+    // SingleActivator rejects modifier keys as triggers, including the
+    // platform-independent synonyms. Validate persisted input first.
     if (key == null ||
+        _modifierKeys.contains(key) ||
         !(control || shift || alt || meta) &&
             (key.keyId < LogicalKeyboardKey.f1.keyId ||
                 key.keyId > LogicalKeyboardKey.f24.keyId)) {
@@ -115,6 +121,21 @@ final class StudioShortcutBinding {
       meta: meta,
     );
   }
+
+  static const _modifierKeys = <LogicalKeyboardKey>[
+    LogicalKeyboardKey.control,
+    LogicalKeyboardKey.controlLeft,
+    LogicalKeyboardKey.controlRight,
+    LogicalKeyboardKey.shift,
+    LogicalKeyboardKey.shiftLeft,
+    LogicalKeyboardKey.shiftRight,
+    LogicalKeyboardKey.alt,
+    LogicalKeyboardKey.altLeft,
+    LogicalKeyboardKey.altRight,
+    LogicalKeyboardKey.meta,
+    LogicalKeyboardKey.metaLeft,
+    LogicalKeyboardKey.metaRight,
+  ];
 }
 
 /// Word and Writer shortcuts. The list is deliberately focused on commands the
@@ -199,11 +220,7 @@ abstract final class StudioShortcutCatalog {
       key: LogicalKeyboardKey.equal,
       shift: true,
     ),
-    StudioShortcutAction(
-      id: 'format.subscript',
-      label: 'Subscript',
-      key: LogicalKeyboardKey.equal,
-    ),
+    StudioShortcutAction(id: 'format.subscript', label: 'Subscript'),
     StudioShortcutAction(
       id: 'format.alignLeft',
       label: 'Align left',
@@ -336,9 +353,10 @@ abstract final class StudioShortcutCatalog {
     final result = <String, StudioShortcutBinding>{};
     for (final action in actions) {
       final stored = overrides[action.id];
-      result[action.id] =
+      final binding =
           (stored == null ? null : StudioShortcutBinding.tryParse(stored)) ??
           action.defaultBinding(mac: mac);
+      if (binding != null) result[action.id] = binding;
     }
     return result;
   }
@@ -361,8 +379,10 @@ abstract final class StudioShortcutCatalog {
     };
     final active = actions.where((action) => callbacks.containsKey(action.id));
     for (final action in active) {
-      merged.remove(_bindingKey(action.defaultBinding(mac: true).activator));
-      merged.remove(_bindingKey(action.defaultBinding(mac: false).activator));
+      for (final platform in [false, true]) {
+        final binding = action.defaultBinding(mac: platform);
+        if (binding != null) merged.remove(_bindingKey(binding.activator));
+      }
     }
 
     final explicit = <MapEntry<ShortcutActivator, VoidCallback>>[];
@@ -371,8 +391,10 @@ abstract final class StudioShortcutCatalog {
       final override = stored == null
           ? null
           : StudioShortcutBinding.tryParse(stored);
+      final binding = override ?? action.defaultBinding(mac: mac);
+      if (binding == null) continue;
       final entry = MapEntry<ShortcutActivator, VoidCallback>(
-        (override ?? action.defaultBinding(mac: mac)).activator,
+        binding.activator,
         callbacks[action.id]!,
       );
       if (override == null) {
