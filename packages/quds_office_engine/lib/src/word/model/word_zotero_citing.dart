@@ -13,6 +13,7 @@ import 'word_tree.dart';
 import 'word_zotero.dart';
 import 'word_zotero_data.dart';
 import 'word_zotero_note.dart';
+import 'word_zotero_transfer.dart';
 
 /// A staged implementation of Zotero's HTTP document/field interface.
 ///
@@ -37,7 +38,11 @@ final class WordZoteroCitingSession {
         'Turn off Track changes and use an editable document before citing with Zotero.',
       );
     }
-    _nativeData = WordZoteroDocumentData.read(document);
+    _startedAsTransfer = WordZoteroTransfer.isTransferDocument(document);
+    _originalDataOverride = document.zoteroDocumentData;
+    _nativeData = _startedAsTransfer
+        ? ''
+        : WordZoteroDocumentData.read(document);
     _originalData = _nativeData;
     _body.addAll(_flowParagraphs(document.sections.expand((s) => s.blocks)));
     _bodyParagraphs.addAll(_body);
@@ -190,6 +195,11 @@ final class WordZoteroCitingSession {
       );
     }
     if (seedCitation != null) {
+      if (_startedAsTransfer) {
+        throw UnsupportedError(
+          'Import transferred references with Refresh before inserting a citation.',
+        );
+      }
       _seedCitation(seedCitation);
     }
   }
@@ -219,6 +229,8 @@ final class WordZoteroCitingSession {
   final _sourceTexts = <WmlParagraph, String>{};
   final formattingWarnings = <String>{};
   late final String _originalData;
+  late final bool _startedAsTransfer;
+  late final String? _originalDataOverride;
   late String _nativeData;
   _CitingField? _selected;
   _CitingField? _stagedInsertion;
@@ -228,6 +240,8 @@ final class WordZoteroCitingSession {
   final _noteTextFields = <_CitingField, WordZoteroNotePlaceholder>{};
   bool _complete = false;
   bool _applied = false;
+  WordZoteroTransferPlan? _transferPlan;
+  WordZoteroCitingSession? _importSession;
   _BibliographyStyle? _bibliographyStyle;
   WmlParagraph? _insertedParagraph;
   WmlNote? _insertedNote;
@@ -237,8 +251,15 @@ final class WordZoteroCitingSession {
   ({WmlParagraph paragraph, int offset})? get caretAfter => _caretAfter;
 
   bool get isComplete => _complete;
-  bool get hasInsertedNoteText => _noteText != null;
-  String get documentData => _nativeData;
+  bool get hasInsertedNoteText =>
+      _importSession?.hasInsertedNoteText ?? (_noteText != null);
+  String get documentData => _importSession?.documentData ?? _nativeData;
+
+  /// A transfer remains detached until Zotero has finished recreating and
+  /// formatting every imported field and the editor commits the transaction.
+  bool get hasImportedDocument => _importSession != null;
+  bool get hasExportedDocument =>
+      _transferPlan != null && _importSession == null;
   bool get hasAcceptedSeedCitation => _fields.any(
     (field) =>
         field.seeded &&
@@ -247,15 +268,22 @@ final class WordZoteroCitingSession {
         (field.codeWasSet || field.textWasSet),
   );
   bool get hasChanges =>
+      _transferPlan != null ||
       _nativeData != _originalData ||
       _bibliographyStyle != null ||
       _noteText != null ||
       _fields.any((f) => f.changed);
-  int get changedFieldCount => _fields.where((f) => f.changed).length;
-  List<String> get previewTexts => List.unmodifiable(<String>[
-    if (_noteText != null) _noteText!.plainText,
-    ..._ordered().where((f) => !f.deleted && f.changed).map((f) => f.text),
-  ]);
+  int get changedFieldCount =>
+      _importSession?.changedFieldCount ??
+      (hasExportedDocument
+          ? _fields.length
+          : _fields.where((f) => f.changed).length);
+  List<String> get previewTexts =>
+      _importSession?.previewTexts ??
+      List.unmodifiable(<String>[
+        if (_noteText != null) _noteText!.plainText,
+        ..._ordered().where((f) => !f.deleted && f.changed).map((f) => f.text),
+      ]);
 
   /// All original paragraphs whose model state might be changed by [apply].
   /// The editor also snapshots the owning block lists and note buckets.
@@ -267,7 +295,7 @@ final class WordZoteroCitingSession {
   /// seed is placed, without saving preferences or changing the document if
   /// the following citation picker is cancelled or fails.
   void continueWithCitation(ZoteroCitation citation) {
-    if (!_complete || _applied) {
+    if (!_complete || _applied || _transferPlan != null) {
       throw StateError('Finish choosing the Zotero document style first.');
     }
     assertUnchanged();
@@ -310,14 +338,59 @@ final class WordZoteroCitingSession {
         'documentID': documentId,
         'outputFormat': 'html',
         'supportedNotes': <String>['footnotes', 'endnotes'],
-        'supportsImportExport': false,
-        'supportsTextInsertion': canInsertNoteText,
+        'supportsImportExport': true,
+        'supportsTextInsertion':
+            !WordZoteroTransfer.isTransferDocument(document) &&
+            canInsertNoteText,
         'supportsCitationMerging': true,
         'processorName': 'CrispOffice',
       };
     }
     if (args.isEmpty || args.first != documentId) {
       throw const FormatException('Zotero addressed another document.');
+    }
+    final imported = _importSession;
+    if (imported != null) {
+      if (command == 'Document.importDocument' ||
+          command == 'Document.exportDocument') {
+        throw UnsupportedError(
+          'Finish this Zotero transfer before starting another.',
+        );
+      }
+      if (command == 'Document.complete' &&
+          imported._fields.any(
+            (field) =>
+                field.original != null &&
+                !field.deleted &&
+                !field.unlinked &&
+                !field.textWasSet,
+          )) {
+        throw const FormatException(
+          'Zotero did not finish formatting every transferred reference. The transfer document was kept.',
+        );
+      }
+      final result = imported.handle(command, args);
+      if (command == 'Document.complete') _complete = true;
+      return result;
+    }
+    if (hasExportedDocument &&
+        command != 'Document.complete' &&
+        command != 'Document.activate' &&
+        command != 'Document.getDocumentData' &&
+        command != 'Document.setDocumentData') {
+      throw UnsupportedError(
+        'The document has already been prepared for transfer.',
+      );
+    }
+    if (_startedAsTransfer &&
+        command != 'Document.activate' &&
+        command != 'Document.getDocumentData' &&
+        command != 'Document.importDocument' &&
+        command != 'Document.canInsertField' &&
+        command != 'Document.complete') {
+      throw UnsupportedError(
+        'Import the transferred references before changing this document.',
+      );
     }
     switch (command) {
       case 'Document.activate':
@@ -326,9 +399,13 @@ final class WordZoteroCitingSession {
       case 'Document.canInsertField':
         _arity(args, 2);
         _httpType(args[1]);
-        return _canInsert || _selected != null;
+        return !_startedAsTransfer && (_canInsert || _selected != null);
       case 'Document.getDocumentData':
         _arity(args, 1);
+        if (hasExportedDocument ||
+            WordZoteroTransfer.isTransferDocument(document)) {
+          return 'ZOTERO_TRANSFER_DOCUMENT';
+        }
         // Earlier Quds versions accepted the callback but simplified its
         // values. Ask Zotero to send the style again when no applied native
         // paragraph layout is present, including a newly added bibliography.
@@ -346,8 +423,55 @@ final class WordZoteroCitingSession {
         );
       case 'Document.setDocumentData':
         _arity(args, 2);
-        _nativeData = WordZoteroDocumentData.toNative(_string(args[1]));
+        final data = WordZoteroDocumentData.toNative(_string(args[1]));
+        // Zotero writes its session data once more after every command. The
+        // exported carrier already contains that data; a different late value
+        // would make the carrier and persistent preferences disagree.
+        if (hasExportedDocument && data != _nativeData) {
+          throw StateError(
+            'Zotero changed document preferences after preparing the transfer.',
+          );
+        }
+        _nativeData = data;
         return null;
+      case 'Document.exportDocument':
+        _arity(args, 3);
+        _httpType(args[1]);
+        if (_fields.any((field) => field.changed) ||
+            _noteText != null ||
+            _bibliographyStyle != null ||
+            WordZoteroTransfer.isTransferDocument(document)) {
+          throw UnsupportedError(
+            'Finish formatting citations before preparing a separate Zotero transfer.',
+          );
+        }
+        assertUnchanged();
+        _transferPlan = WordZoteroTransfer.prepareExport(
+          document,
+          instructions: _string(args[2]),
+          documentData: _nativeData,
+        );
+        return null;
+      case 'Document.importDocument':
+        _arity(args, 2);
+        _httpType(args[1]);
+        if (!WordZoteroTransfer.isTransferDocument(document)) return false;
+        if (_fields.isNotEmpty ||
+            _noteText != null ||
+            _bibliographyStyle != null) {
+          throw UnsupportedError(
+            'This document mixes active citations and transfer data.',
+          );
+        }
+        assertUnchanged();
+        final plan = WordZoteroTransfer.prepareImport(document);
+        final importedSession = WordZoteroCitingSession(
+          document: plan.document,
+          documentId: documentId,
+        );
+        _transferPlan = plan;
+        _importSession = importedSession;
+        return true;
       case 'Document.cursorInField':
         _arity(args, 2);
         _httpType(args[1]);
@@ -533,6 +657,13 @@ final class WordZoteroCitingSession {
     if (!_complete) {
       throw StateError('Zotero has not completed this operation.');
     }
+    final imported = _importSession;
+    if (imported != null) {
+      imported.prepareReview();
+      formattingWarnings.addAll(imported.formattingWarnings);
+      return;
+    }
+    if (hasExportedDocument) return;
     for (final field in _fields.where((f) => !f.deleted && !f.unlinked)) {
       if (_bibliographyStyle != null &&
           _kind(field) == ZoteroFieldKind.bibliography &&
@@ -566,11 +697,15 @@ final class WordZoteroCitingSession {
   /// Rechecks original field identity and text. The editor additionally checks
   /// its monotonic revision, selection, mutation permissions and lifecycle.
   void assertUnchanged() {
+    _transferPlan?.assertUnchanged();
     if (_applied ||
         document.restrictEditing ||
         document.trackRevisions ||
         document.revisions.any((revision) => revision.accepted == null) ||
-        WordZoteroDocumentData.read(document) != _originalData) {
+        (_startedAsTransfer
+            ? (!WordZoteroTransfer.isTransferDocument(document) ||
+                  document.zoteroDocumentData != _originalDataOverride)
+            : WordZoteroDocumentData.read(document) != _originalData)) {
       throw StateError('The Zotero document changed while formatting.');
     }
     final body = _flowParagraphs(
@@ -684,6 +819,15 @@ final class WordZoteroCitingSession {
       throw StateError('Zotero has not completed this operation.');
     }
     assertUnchanged();
+    final transfer = _transferPlan;
+    if (transfer != null) {
+      prepareReview();
+      _importSession?.apply();
+      transfer.apply();
+      _caretAfter = null;
+      _applied = true;
+      return;
+    }
     if (_noteText != null) assertCanInsertNoteText();
     prepareReview();
     // Descending source positions keep the original handles/offsets valid.

@@ -22,13 +22,13 @@ step. Qualify DOCX carrier round trips and ODT export separately from installed
 Word/LibreOffice/Zotero interoperability. Direct native ODT reference-mark
 import remains a separate milestone.
 
-The pinned HTTP client also exposes an existing Add Note compatibility error:
-its callback is `(documentId, codes, placeholderIDs, noteType)`, while the old
-Quds contract expected `(documentId, placeholderIDs, noteType, Http)`. Both the
-previously cited upstream revision and the current revision use the former
-shape. This continuation accepts the actual upstream form and retains the old
-Quds form for compatibility. `upstream-sources.json` records exact source
-commit and blob identities.
+`upstream-sources.json` records exact upstream commit and blob identities.
+An initial hypothesis of an Add Note callback mismatch was rejected after tracing
+the caller as well as the wrapper: the wrapper parameter names are stale, but
+its actual positional arguments match the existing Quds implementation. The
+speculative compatibility change in checkpoint `fb692a7f` is removed in the next
+checkpoint; it is not part of the delivered behavior. The original callback
+contract and regression tests remain intact.
 
 ## Validation status
 

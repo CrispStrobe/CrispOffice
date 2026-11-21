@@ -383,13 +383,10 @@ class ZoteroCitingClient {
         valid =
             arguments.length == 4 &&
             arguments[1] is List<Object?> &&
-            ((arguments[2] is List<Object?> && _isNoteType(arguments[3])) ||
-                (_isNoteType(arguments[2]) && arguments[3] == 'Http'));
+            _isNoteType(arguments[2]) &&
+            arguments[3] == 'Http';
         if (valid) {
-          // Current Zotero sends codes, placeholder IDs, note type. Retain the
-          // older Quds adapter shape (IDs, note type, Http) for existing hosts.
-          final hasCodes = arguments[2] is List<Object?>;
-          final ids = arguments[hasCodes ? 2 : 1] as List<Object?>;
+          final ids = arguments[1] as List<Object?>;
           valid =
               ids.length <= 10000 &&
               ids.toSet().length == ids.length &&
@@ -398,13 +395,6 @@ class ZoteroCitingClient {
                     id is String &&
                     RegExp(r'^[A-Za-z0-9]{1,128}$').hasMatch(id),
               );
-          if (hasCodes) {
-            final codes = arguments[1] as List<Object?>;
-            valid =
-                valid &&
-                codes.length == ids.length &&
-                codes.every((code) => code is String);
-          }
         }
       case 'Document.convert':
         valid =
@@ -525,8 +515,7 @@ class ZoteroCitingClient {
         }
         knownFields.addAll(ids);
       case 'Document.convertPlaceholdersToFields':
-        final placeholders =
-            arguments[arguments[2] is List<Object?> ? 2 : 1] as List<Object?>;
+        final placeholders = arguments[1] as List<Object?>;
         if (result is! List<Object?> || result.length != placeholders.length) {
           throw _invalid();
         }

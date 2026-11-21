@@ -114,6 +114,16 @@ void main() {
           result: null,
         ),
         (
+          command: 'Document.setDocumentData',
+          arguments: <Object?>[_doc, _preferences],
+          result: null,
+        ),
+        (
+          command: 'Document.activate',
+          arguments: <Object?>[_doc],
+          result: null,
+        ),
+        (
           command: 'Document.complete',
           arguments: <Object?>[_doc],
           result: null,
