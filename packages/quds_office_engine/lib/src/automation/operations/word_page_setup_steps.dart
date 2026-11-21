@@ -104,7 +104,7 @@ void setWordPageSetup(
     final modeled = current[key]!.split('|');
     if (element == null) {
       element = XmlElement(localName: key, prefix: 'w', namespaceUri: _w);
-      element.setAttribute('w', _w, prefix: 'xmlns', namespaceUri: _xmlns);
+      _declareWordPrefix(element, 'w');
       root.addChild(element);
       // A newly created native group needs the complete modeled geometry;
       // imported groups, by contrast, retain their existing sparse shape.
@@ -195,8 +195,27 @@ void _setWordAttribute(XmlElement element, String name, String value) {
       prefix = 'qudsWord${index++}';
     } while (used.contains(prefix));
   }
-  element.setAttribute(prefix, _w, prefix: 'xmlns', namespaceUri: _xmlns);
+  _declareWordPrefix(element, prefix);
   element.setAttribute(name, value, prefix: prefix, namespaceUri: _w);
+}
+
+void _declareWordPrefix(XmlElement element, String prefix) {
+  // The XML reader retains xmlns declarations with an empty namespace URI.
+  // Match their qualified name explicitly, never the native w:w attribute.
+  for (final attribute in element.attributes) {
+    if (attribute.prefix == 'xmlns' && attribute.localName == prefix) {
+      attribute.value = _w;
+      return;
+    }
+  }
+  element.attributes.add(
+    XmlAttribute(
+      localName: prefix,
+      prefix: 'xmlns',
+      namespaceUri: _xmlns,
+      value: _w,
+    ),
+  );
 }
 
 void _validateSource(XmlElement root) {

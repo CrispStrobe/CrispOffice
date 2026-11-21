@@ -1,0 +1,181 @@
+{
+  "qualified_commit": "72aa0ed9f447d1239763f0fbaa9ca9f7f78088c7",
+  "original_capture_head": "e3d3d6a09d217ec6196a70d6b8ed9f8168cec33e",
+  "capture_included_unstaged_native_fixes": true,
+  "source_input_count": 3019,
+  "worktree_mismatches": [],
+  "isolated_copy_mismatches": [],
+  "qualified_commit_blob_mismatches": [],
+  "all_source_hashes_unchanged": true,
+  "scratch_manifest_adjustments": [
+    "packages/quds_office_engine/pubspec.yaml",
+    "packages/quds_office_engine/example/pubspec.yaml",
+    "packages/legacy_doc_parser/pubspec.yaml"
+  ],
+  "complete_regression": {
+    "test_files": 79,
+    "passed": 3996,
+    "failed": 0,
+    "skipped": 0,
+    "source_inputs_unchanged": true,
+    "terminal": {
+      "success": true,
+      "type": "done",
+      "time": 237782
+    },
+    "commands": [
+      {
+        "label": "analysis",
+        "command": [
+          "/workspace/scratch/8df90910f867/engine-final-page-setup-validation/validation/run-engine.sh",
+          "analyze",
+          "--fatal-infos",
+          "lib",
+          "tool/macros",
+          "test/office_macro_word_page_setup_test.dart",
+          "test/office_vba_word_page_setup_test.dart",
+          "test/office_vba_word_page_setup_integration_test.dart"
+        ],
+        "exit_code": 0,
+        "seconds": 8.85
+      },
+      {
+        "label": "regression",
+        "command": [
+          "/workspace/scratch/8df90910f867/engine-final-page-setup-validation/validation/run-engine.sh",
+          "test",
+          "test/office_macro_cli_test.dart",
+          "test/office_macro_expansion_test.dart",
+          "test/office_macro_language_test.dart",
+          "test/office_macro_mcp_test.dart",
+          "test/office_macro_runtime_test.dart",
+          "test/office_macro_slide_format_test.dart",
+          "test/office_macro_word_line_spacing_test.dart",
+          "test/office_macro_word_list_format_test.dart",
+          "test/office_macro_word_list_levels_test.dart",
+          "test/office_macro_word_page_setup_test.dart",
+          "test/office_macro_word_paragraph_controls_test.dart",
+          "test/office_macro_word_revision_guard_test.dart",
+          "test/office_macro_word_tab_stops_test.dart",
+          "test/office_vba_arguments_integration_test.dart",
+          "test/office_vba_arguments_test.dart",
+          "test/office_vba_arrays_boundaries_test.dart",
+          "test/office_vba_arrays_integration_test.dart",
+          "test/office_vba_arrays_test.dart",
+          "test/office_vba_conformance_test.dart",
+          "test/office_vba_control_flow_boundaries_test.dart",
+          "test/office_vba_control_flow_integration_test.dart",
+          "test/office_vba_control_flow_test.dart",
+          "test/office_vba_dynamic_arrays_integration_test.dart",
+          "test/office_vba_dynamic_arrays_test.dart",
+          "test/office_vba_integration_test.dart",
+          "test/office_vba_language_test.dart",
+          "test/office_vba_powerpoint_cli_test.dart",
+          "test/office_vba_powerpoint_conformance_test.dart",
+          "test/office_vba_powerpoint_integration_test.dart",
+          "test/office_vba_powerpoint_layout_integration_test.dart",
+          "test/office_vba_powerpoint_layout_test.dart",
+          "test/office_vba_powerpoint_margins_integration_test.dart",
+          "test/office_vba_powerpoint_margins_test.dart",
+          "test/office_vba_powerpoint_test.dart",
+          "test/office_vba_procedure_boundaries_test.dart",
+          "test/office_vba_procedures_integration_test.dart",
+          "test/office_vba_procedures_test.dart",
+          "test/office_vba_string_intrinsics_integration_test.dart",
+          "test/office_vba_string_intrinsics_test.dart",
+          "test/office_vba_variant_conformance_test.dart",
+          "test/office_vba_variant_conversions_integration_test.dart",
+          "test/office_vba_variant_conversions_test.dart",
+          "test/office_vba_word_argument_shapes_test.dart",
+          "test/office_vba_word_bulk_intake_conversions_test.dart",
+          "test/office_vba_word_cli_test.dart",
+          "test/office_vba_word_conformance_test.dart",
+          "test/office_vba_word_extensions_test.dart",
+          "test/office_vba_word_format_integration_test.dart",
+          "test/office_vba_word_integration_test.dart",
+          "test/office_vba_word_language_test.dart",
+          "test/office_vba_word_line_spacing_integration_test.dart",
+          "test/office_vba_word_line_spacing_test.dart",
+          "test/office_vba_word_list_levels_integration_test.dart",
+          "test/office_vba_word_list_levels_test.dart",
+          "test/office_vba_word_lists_integration_test.dart",
+          "test/office_vba_word_lists_test.dart",
+          "test/office_vba_word_measurements_integration_test.dart",
+          "test/office_vba_word_measurements_positional_integration_test.dart",
+          "test/office_vba_word_measurements_positional_test.dart",
+          "test/office_vba_word_measurements_test.dart",
+          "test/office_vba_word_named_measurements_integration_test.dart",
+          "test/office_vba_word_named_measurements_test.dart",
+          "test/office_vba_word_page_setup_integration_test.dart",
+          "test/office_vba_word_page_setup_test.dart",
+          "test/office_vba_word_paragraph_controls_integration_test.dart",
+          "test/office_vba_word_paragraph_controls_test.dart",
+          "test/office_vba_word_paragraph_layout_integration_test.dart",
+          "test/office_vba_word_paragraph_layout_test.dart",
+          "test/office_vba_word_tabstops_integration_test.dart",
+          "test/office_vba_word_tabstops_test.dart",
+          "test/office_vba_word_typography_integration_test.dart",
+          "test/office_vba_word_typography_test.dart",
+          "test/office_vba_word_unit_conversions_integration_test.dart",
+          "test/office_vba_word_unit_conversions_test.dart",
+          "test/office_steps_test.dart",
+          "test/word_section_clone_fidelity_test.dart",
+          "test/word_header_picture_identity_test.dart",
+          "test/word_structure_steps_test.dart",
+          "test/fidelity_waves_test.dart",
+          "--reporter",
+          "json",
+          "--concurrency",
+          "4"
+        ],
+        "exit_code": 0,
+        "seconds": 238.618
+      }
+    ]
+  },
+  "targeted": {
+    "passed": 198,
+    "failed": 0,
+    "skipped": 0,
+    "exit_code": 0
+  },
+  "portable": {
+    "vm_js_byte_identical": true,
+    "actual_bas_sha256": "92cc0edc359f2d31813c2266a8e55cb6153f27d8b630ed7d0f008221d62c6493",
+    "receipt_sha256": "c79926eba214a4f1e9458e60a9ee147d618ec6232f6148e3a00d680e92cf0f23",
+    "commands": [
+      {
+        "command": "vm",
+        "exit_code": 0,
+        "seconds": 6.986991275000037
+      },
+      {
+        "command": "compile",
+        "exit_code": 0,
+        "seconds": 11.425982852000288
+      },
+      {
+        "command": "js",
+        "exit_code": 0,
+        "seconds": 0.7943562440000278
+      }
+    ]
+  },
+  "mail_alias": {
+    "exit_code": 0,
+    "actual_source_path": "/workspace/scratch/8df90910f867/quds_office_suite/packages/quds_mail_ui/lib/src/reader/presentation.dart",
+    "source_sha256": "7c8a9b6fee1fea1004e8fad59444f0e156b3cc2ee6eb3061b9246c1694c23639",
+    "source_unchanged": true,
+    "cases": 2,
+    "errors": [],
+    "terminal": [
+      {
+        "success": true,
+        "type": "done",
+        "time": 376
+      }
+    ],
+    "scope": "Actual root presentation.dart and copied actual root core sources; pure Dart aliases only, no Flutter widgets."
+  },
+  "scope": "Actual corrected source, original package:test suites, real CLI/MCP engine paths, Dart VM and compiled JavaScript. No Flutter widgets or installed Microsoft Office host. Prior failed gate preserved outside this separate final evidence directory."
+}
