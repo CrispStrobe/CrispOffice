@@ -24,6 +24,8 @@ enforces its existing 1,024-unit and expression limits. An empty query searches
 all retained headers in the fixed scope. The repository metadata allowance
 additionally bounds the complete catalog. Stored size/type checks precede text
 transfer; invalid definitions fail explicitly without being overwritten.
+Names, queries and identities require well-formed UTF-16 so SQLite's UTF-8
+encoding preserves them exactly, including valid supplementary characters.
 
 Schema v9 preserves versions 1–8. Definition and ordered scope updates commit
 together, and a monotonic persisted counter prevents a stale callback from

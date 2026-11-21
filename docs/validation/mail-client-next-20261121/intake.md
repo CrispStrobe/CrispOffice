@@ -16,4 +16,3 @@ Every comparison returned `ahead_by: 0` and `behind` or `identical`. Thus no cap
 Upstream parent/source is `MohammedAsaadAsaad/quds_office_suite`; upstream main `15c5d29b63fb17a93c7fb3426a8fd4d95a32f1ba` is already an ancestor. No GitHub Actions run, job, check, or status was queried or awaited.
 
 Refresh before final publication to detect later concurrent changes. This audit did not change branches, PRs, comments, or settings.
-

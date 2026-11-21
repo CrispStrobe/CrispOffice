@@ -2,6 +2,8 @@
 
 - Add immutable, bounded saved-header-search definitions with validated Boolean
   queries, fixed exact account scopes, stable IDs and explicit revisions.
+  Reject unpaired UTF-16 surrogates before UTF-8 storage can silently replace
+  query, display-name or identity characters; preserve valid pairs unchanged.
 
 - Extend loaded-header search with uppercase AND/OR/NOT, implicit AND,
   leading-minus negation and bounded parenthesis groups. Preserve literal

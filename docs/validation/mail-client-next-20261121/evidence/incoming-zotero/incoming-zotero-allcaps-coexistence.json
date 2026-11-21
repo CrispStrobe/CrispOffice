@@ -1,0 +1,1 @@
+{"success":true,"fixture_sha256":"9fd4e0d23bf9cd2be0248bd5e9cfb496dfe512ec1226c456f324f2171705e1bd","docx_roundtrips":4,"all_caps_transitions":[true,true,false,false],"verified":["typed AllCaps and native caps retained together","script font size, weight and italic synchronized","complex font and authored language preserved","UTF-16 source text and fixture bytes unchanged"]}

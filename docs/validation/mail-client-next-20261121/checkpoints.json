@@ -1,0 +1,78 @@
+{
+  "branch": "work/mail-client-next-20261121",
+  "initialMain": "01517de8886ef7bd24947894be5dc823d0328869",
+  "qualifiedSource": "3a8d466fac738973dcffdae58c3d7ac0fd594e86",
+  "note": "Local git commits were mirrored through the authorized GitHub Git data API because the shell had no GitHub push credential. Every created remote tree was compared with the local tree before a non-forced expected-head ref update. Local and remote commit SHAs differ because GitHub supplies commit metadata; file trees match exactly. Existing merge parents are preserved.",
+  "checkpoints": [
+    {
+      "localCommit": "f09e6a2802851dd606857978a45f6cb3361f7291",
+      "remoteCommit": "9c0243d9d1b2fea133a1b29959b79e3c4326f4ce",
+      "tree": "74439d501a366e22dfc49b8401195580ee4064b2",
+      "message": "docs(mail): record reconciled intake and next parity increment [skip ci]"
+    },
+    {
+      "localCommit": "cd304e1f08c58b6f7b7c668547a687e9053492eb",
+      "remoteCommit": "46429a0bf4ce2f06694abf1cd15afd0b9a4eb632",
+      "tree": "149ead51fbb816ce61ca49e680efea971e17f0d5",
+      "message": "feat(mail): persist scoped saved header searches with guarded revisions [skip ci]"
+    },
+    {
+      "localCommit": "b1bfdf8a45df130ab1a20eb94f27de1a53a913ac",
+      "remoteCommit": "c9a3475541a58778b0db26f4d1b4516e9e51e20a",
+      "tree": "f9a45387be34963214216919f5145eeb3be71179",
+      "message": "feat(mail): fold loaded conversations with visible-only triage [skip ci]"
+    },
+    {
+      "localCommit": "06a6adf377bf6d94b87c2cf539209a2ca5e4971a",
+      "remoteCommit": "bc21088d43a1dd8980cd5a1aabc1c20e08c059fe",
+      "tree": "7bde3d5c1e70d9f9caee4589b56ce485b5cbd2c1",
+      "message": "feat(mail): manage reusable saved searches from native Studio [skip ci]"
+    },
+    {
+      "localCommit": "3eb066b932e017691b0ff3b659a54b2d1033764b",
+      "remoteCommit": "6b7ef00b0d752f372977fd76e7659165bc5dfc7f",
+      "tree": "8b7ff67a30a5cbbfcf74163c43fcd3d49650d3d9",
+      "message": "fix(mail): preserve exact saved-search text and document workflows [skip ci]"
+    },
+    {
+      "localCommit": "ec9763bbf0c73ef0eabfdf5ad2b75b6d936b1e4d",
+      "remoteCommit": "4266e08b9c13e7b9e575845b3db3e1c39c36d5f4",
+      "tree": "f89d731806e422c95575587825ccd7396c08c264",
+      "additionalParents": [
+        "0fe00b18fef6b79a435817c99714f987329d5f3c"
+      ]
+    },
+    {
+      "localCommit": "aced956f79253eb96ae24956833115ba84273b85",
+      "remoteCommit": "64612755213ee1290310f33d5191c2350f95fd38",
+      "tree": "fb948119bf35f3100fbb8187cb2ffb667f65a8ad",
+      "additionalParents": [
+        "2aa7833239ec4507a4a9db1c7f23c84bd01b4028"
+      ]
+    },
+    {
+      "localCommit": "29b0d3f52cd2fe7a101106b60781b1a67cafbd2b",
+      "remoteCommit": "dcc6a139c88314c4b5f2a331a7eac05a12513dc7",
+      "tree": "97fc30a16ea3ef64990294290e4961f6d676000f",
+      "additionalParents": [
+        "3f6b9a2b9209693aa32bbad402bb7d093cf8b4db"
+      ]
+    },
+    {
+      "localCommit": "b895482338e6d8c3331354452c747c225c77dcde",
+      "remoteCommit": "2a07a3b5c24c22691c142accbad0d7b1259e91cf",
+      "tree": "bff005293bc43781d79c2e7117d4f99e26f05693",
+      "additionalParents": [
+        "d86d0d1325cb3c663970f5d52e7386b0b0c775b8"
+      ]
+    },
+    {
+      "localCommit": "50929af0f093bbb31e5b6f3eaa37b6bc4f85cb9a",
+      "remoteCommit": "3a8d466fac738973dcffdae58c3d7ac0fd594e86",
+      "tree": "da9fefbbc10bdd20f35ae034403a2ca6c20b00ea",
+      "additionalParents": [
+        "2e3280a175814dab7fccf14363f8dd1785acc78e"
+      ]
+    }
+  ]
+}
