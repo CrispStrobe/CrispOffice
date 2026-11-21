@@ -4,6 +4,13 @@ All notable changes to `quds_office_editor` are documented here.
 
 ## Unreleased
 
+- Add native **Synchronized mail** for IMAP, EWS, Gmail and Microsoft 365:
+  explicit bounded Start/Continue/Check for changes, Stop, persistent page
+  checkpoints and offline synchronized-header browsing. Reuse existing cached
+  body identities across reconnects, keep account leases separate from stable
+  storage identity, and drain work before close. Include English/German/Arabic
+  controls; full-body retention and background synchronization remain separate.
+
 - Integrate configurable proofing modes for word/sentence completion, typing
   pauses, background checking and explicit checks. Persist the Studio schedule,
   distinguish spelling-only providers, prioritize visible paragraphs and retain
