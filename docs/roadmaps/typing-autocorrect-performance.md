@@ -202,3 +202,10 @@ a normal typing edit already re-lays only a handful of blocks.
   from 309 to 213. The caret/squiggle paint-layer split is still open.
 - Worker audit: native providers already use workers; deterministic rule/report
   work remains on the UI isolate.
+
+### Item 5b — proofing/selection path cache (implemented)
+
+`RenderWordCanvas` now caches immutable proofing-wave paths and text-selection
+band paths for unchanged geometry. A repaint caused by a caret blink, a
+proofing notification, scrolling or another page no longer rebuilds those
+paths. `TextPainter` shaping remains cached independently.
