@@ -18,10 +18,21 @@ The canonical fixtures are:
 | [`word_paragraphs_v1.json`](../packages/quds_office_engine/test/fixtures/vba_conformance/word_paragraphs_v1.json) | 44 | Word object bindings, prefix insertion, font/paragraph formatting, shared language behavior and deliberate refusals |
 | [`word_font_position_v1.json`](../packages/quds_office_engine/test/fixtures/vba_conformance/word_font_position_v1.json) | 12 | Signed point displacement, explicit zero, typed/named helpers, header/footer identity, dialect bounds and positioned read/fraction refusals |
 | [`word_numeric_intrinsics_v1.json`](../packages/quds_office_engine/test/fixtures/vba_conformance/word_numeric_intrinsics_v1.json) | 58 | Abs/Int/Fix/Sgn arithmetic, Word plans, Empty/Null composition, strict conversions, negative zero, subnormals, numeric bounds and positioned refusals |
+| [`word_comparison_colors_v1.json`](../packages/quds_office_engine/test/fixtures/vba_conformance/word_comparison_colors_v1.json) | 30 | Binary StrComp, UTF-16 ordering, Empty/Null, strict arguments, every fixed font palette entry, automatic versus packed RGB, helpers and independent footer targeting |
 | [`powerpoint_shapes_v1.json`](../packages/quds_office_engine/test/fixtures/vba_conformance/powerpoint_shapes_v1.json) | 20 | PowerPoint selectors and typed bindings, text/font/alignment/geometry mappings, explicit collection guards and positioned refusals |
 
 The same fixture bytes are consumed by each VM test and the portable
 JavaScript runner; there is no separately maintained copy of expected results.
+
+The comparison/color suite checks complete Word plans and positioned refusals.
+Its expectations were independently authored from Microsoft contracts and
+explicit Quds restrictions, including source-only binary comparison, strict
+coercion, and automatic color identity. It uses the common portable runner;
+native document fidelity, CLI/MCP execution, policy and rollback are tested
+separately by `office_vba_word_comparison_colors_integration_test.dart` and the
+actual [BAS example](../packages/quds_office_engine/example/macros/word_comparison_colors.bas).
+See its [local qualification](validation/word-vba-comparison-colors-20261121/README.md)
+for the executed source and runtime evidence.
 
 The numeric suite uses the same portable runner, with its exact JSON bytes
 supplied through `VBA_CONFORMANCE_BASE64`. Arithmetic expectations come from

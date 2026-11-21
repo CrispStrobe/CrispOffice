@@ -4,6 +4,18 @@ All notable changes to `quds_office_engine` are documented here.
 
 ## Unreleased
 
+- Add shared binary `StrComp` to Word, Excel and PowerPoint VBA macros, with
+  exact comparison results, explicit Empty/Null handling, strict argument
+  contracts and metered UTF-16 work. Word additionally supports the complete
+  fixed `Font.ColorIndex` palette and automatic foreground through `wdAuto`
+  or `Font.Color = wdColorAutomatic`. Preserve native automatic identity,
+  sparse theme overrides, foreign metadata and transaction rollback. Include
+  a runnable report/template BAS, versioned source cases, CLI/MCP coverage,
+  native save/reopen regressions and matching VM/JavaScript checks. See the
+  [comparison](../../docs/VBA_MACROS.md#binary-string-comparison) and
+  [foreground](../../docs/VBA_WORD_MACROS.md#font-palette-and-automatic-foreground)
+  contracts.
+
 - Fill existing Word table templates from the bounded VBA dialect using typed
   `Tables`, `Table`, `Cell` and cell-range aliases, `With` and `ByVal` helpers.
   `Cell.Range.Text` emits guarded `docx.tableCellRangeText` operations for plain

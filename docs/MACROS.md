@@ -252,6 +252,18 @@ Highlighting
 uses the existing `highlight` field with a palette RGB color or `null` to clear.
 These operations retain the ordinary nonempty text-range requirement.
 
+`docx.runFormat.color` accepts a six-digit RGB String or the exact String `auto`.
+Automatic foreground is retained as a native `w:color/@w:val` override, distinct
+from fixed black and from removing direct ownership. Explicit same-value writes
+override inherited colors. Native themeColor/themeShade/themeTint selectors are
+removed for the written foreground, while foreign attributes/children,
+namespace aliases and unrelated properties remain intact. Duplicate color
+ownership, ambiguous run-property containers and relevant markup-compatibility
+alternatives are refused before mutation; the package guard is intentionally
+conservative. This contract is specific to Word foreground and does not change
+the RGB-only inputs on other operation fields. See the
+[Word font-color contract](VBA_WORD_MACROS.md#font-palette-and-automatic-foreground).
+
 `docx.runFormat.position` accepts signed point values in `-1584..1584`, exactly
 representable in half-points. Positive values raise text; negative values lower
 it without changing its font size. Zero is a direct override of inherited

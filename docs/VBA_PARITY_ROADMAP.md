@@ -43,7 +43,24 @@ and [the native macro contract](MACROS.md).
 
 ## Ordered milestones and acceptance
 
-The latest Word object-model continuation adds explicit `Tables`, `Table`,
+The latest source-language continuation adds binary `StrComp` with exact
+comparison results, explicit Empty/Null semantics and metered UTF-16 scans in
+all three adapters. Word gains the fixed `Font.ColorIndex` palette and both
+automatic foreground setters, retaining native automatic identity, explicit
+style/theme overrides and sparse source metadata. This advances Stage 2 and
+the bounded Stage 4 adapter together: a complete report/template example uses
+source-data comparisons to choose paragraph/header/footer colors and fill
+existing table cells through the current native transaction.
+
+The [comparison contract](VBA_MACROS.md#binary-string-comparison),
+[foreground contract](VBA_WORD_MACROS.md#font-palette-and-automatic-foreground)
+and [local qualification](validation/word-vba-comparison-colors-20261121/README.md)
+record supported cases and refusals. Locale comparison, implicit coercion,
+live document reads, cell formatting and installed Office differential runs
+remain separate milestones. No new rendering policy or embedded VBA host is
+introduced.
+
+The preceding Word object-model continuation adds explicit `Tables`, `Table`,
 `Cell` and cell-range bindings with `Cell.Range.Text` assignment. Existing
 plain, single-paragraph cells in supported unmerged main-story tables can be
 filled using local arrays, loops and typed helpers. A separate guarded native

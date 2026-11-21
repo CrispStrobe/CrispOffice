@@ -723,6 +723,56 @@ choices. In particular, combined empty-input/empty-needle/start/count boundary
 precedence is recorded as a dialect contract pending Office differential
 observation. No installed Office host was run.
 
+### Binary String comparison
+
+`StrComp(left, right[, compare])` is shared by the Word, Excel and PowerPoint
+adapters. It compares source values in UTF-16 code-unit order and returns exactly
+`-1`, `0`, or `1` for less-than, equal, or greater-than. Comparison is binary by
+default; the only explicit mode is an actual exact numeric `0`, including
+`vbBinaryCompare` or a Variant carrying that number.
+
+String operands may be actual Strings or scalar Variants holding Strings,
+`Empty`, or `Null`. `Empty` is compared as the zero-length String. If either
+operand is `Null`, the result is `Null`, after both text operands and the supplied
+comparison mode have been validated. Numeric and Boolean text operands require
+explicit `CStr`; this restriction also applies when the other operand is Null.
+The result has Variant type so a caller can handle Null with `IsNull` before
+using it in a numeric condition or a native document write.
+
+```vb
+StrComp("ABCD", "abcd")                  ' -1
+StrComp("report", "report", vbBinaryCompare) ' 0
+StrComp("report2", "report")             ' 1
+StrComp(Empty, "")                       ' 0
+IsNull(StrComp(Null, "report"))           ' True
+```
+
+All supplied arguments evaluate exactly once in source order. A Null Compare
+raises `vba_invalid_use_of_null`, even with Null text. Empty, String, Boolean,
+fractional, locale/LCID, database and `vbUseCompareOption` modes are refused.
+Named arguments, omitted interior arguments, `StrComp$`, qualification with
+`VBA.`, and `Option Compare` remain unsupported. Arity and statically invalid
+types are checked in unused procedures and inactive branches too.
+
+The comparison stops at the first differing code unit. Each inspected pair
+costs two units of the existing shared work budget before either unit is read;
+long common prefixes and repeated comparisons cannot bypass that budget.
+Empty/prefix results do not allocate a copied String. Unicode normalization,
+locale collation and case folding are not performed. Isolated surrogate units
+can be compared in source values, while the existing native text publication
+guard still rejects malformed UTF-16 output.
+
+The [Word comparison/color example](../packages/quds_office_engine/example/macros/word_comparison_colors.bas)
+uses these results to select font colors and fill existing table cells. The
+[versioned corpus](../packages/quds_office_engine/test/fixtures/vba_conformance/word_comparison_colors_v1.json)
+and [local qualification record](validation/word-vba-comparison-colors-20261121/README.md)
+separate tested dialect behavior from installed-Office observations. Microsoft
+documents the result values and Null behavior in the
+[StrComp reference](https://learn.microsoft.com/en-us/office/vba/language/reference/user-interface-help/strcomp-function)
+and [MS-VBAL StrComp contract](https://learn.microsoft.com/en-us/openspecs/microsoft_general_purpose_programming_languages/ms-vbal/9541f02a-e173-47a7-8c0f-4d91813c1c88).
+The explicit coercion restrictions and work accounting are Quds dialect limits;
+no installed Microsoft Office differential run is claimed.
+
 ### Text construction and Unicode code units
 
 The shared source layer supports `Space`, `Space$`, `String`, `String$`,
@@ -950,6 +1000,7 @@ dart run tool/macros/office_macro.dart run-vba \
 | Numeric intrinsics | `Abs`, `Int`, `Fix`, `Sgn`; one positional numeric/Variant argument, explicit Empty/Null behavior and bounded portable arithmetic |
 | Text | Double-quoted literals with doubled embedded quotes and `&` concatenation of scalar values |
 | String intrinsics | `Len`, `Left$`, `Right$`, `Mid$`, binary `InStr` / `InStrRev` / `Replace`, and Trim/LTrim/RTrim with their `$` forms; actual Strings, UTF-16 units, bounded exact integer arguments, no implicit coercion |
+| String comparison | Binary `StrComp(left, right[, compare])`, exact `-1`/`0`/`1` results, explicit Empty/Null behavior, strict types and metered UTF-16 comparison |
 | Comparisons | `=`, `<>`, `<`, `>`, `<=`, `>=` between matching scalar types, contextual `Empty`, or propagating `Null`; strings use binary ordering |
 | Boolean logic | `Not`, `And`, `Or`, `Xor` on Boolean/Null values; operands are evaluated eagerly; numeric/Empty bitwise forms are unsupported |
 | Conditions | Block `If … Then`, `ElseIf`, `Else`, `End If`; actual Booleans or false `Empty`/`Null`, known from source |
