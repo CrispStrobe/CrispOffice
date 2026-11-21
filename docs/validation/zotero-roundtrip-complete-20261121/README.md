@@ -2,16 +2,22 @@
 
 This increment reconciles the pending native ODT bibliography, image and note
 work with accepted Office main, adds semantic uppercase import, and qualifies
-the combined result locally. **3,444 distinct accepted test cases pass.** Four
+the combined result locally. The native-file checkpoint passed **3,444 distinct
+accepted test cases**. The [final delivery followup](final-delivery/README.md)
+incorporates subsequent accepted main work, corrects its adaptive page-text
+cache and brings the nonoverlapping total to **3,452 passing cases**. Four
 synthetic document fixtures survive two actual LibreOffice saves with an
 intervening native DOCX/ODT cycle. PNG and JPEG fixtures separately retain their
 pictures and active citations through three further native save cycles.
 
 Checkpoint branch: `codex/zotero-roundtrip-complete-20261121`.
-Final product checkpoint:
+Native-file checkpoint:
 [`5a829066238b94685db5145ff14420e7e7f0928a`](https://github.com/CrispStrobe/quds_office_suite/commit/5a829066238b94685db5145ff14420e7e7f0928a),
-tree `faf0d91961b145e5358f0fd3909a9489933b3e2b`. Later delivery changes contain
-documentation and evidence only. The publication PR records the remote main
+tree `faf0d91961b145e5358f0fd3909a9489933b3e2b`. The final qualified product is
+[`78d1f8db5374a6b2739451834708c8fe9f703ed8`](https://github.com/CrispStrobe/quds_office_suite/commit/78d1f8db5374a6b2739451834708c8fe9f703ed8),
+tree `3ccb17f6ec1c0543c7cc93b0b84a5832ddda28f7`. Engine, Mail and Studio sources
+remain unchanged; the final renderer has a separate source-bound gate. Later
+delivery changes contain documentation and evidence only. The publication PR records the remote main
 merge and readback. GitHub Actions, workflow checks and status queues were
 neither queried nor awaited. No repository protections or remote history were
 rewritten.
@@ -93,7 +99,7 @@ source bytes were retained.
 | `0692e06203d19b89025f63615ba71abd309c9438` | Updated malformed-style regression assertion; production unchanged |
 | `5a829066238b94685db5145ff14420e7e7f0928a` | Latest accepted main and selection-cache correction |
 
-## Accepted local qualification
+## Native-file checkpoint qualification: 3,444 cases
 
 Runtime: **Flutter 3.47.8 / Dart 3.13.7**. The official SDK archive and 204
 unique locked Pub archives were hash-verified. Enforced offline resolution
