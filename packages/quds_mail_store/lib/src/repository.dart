@@ -13,6 +13,7 @@ part 'search_journal.dart';
 part 'local_accounts.dart';
 part 'mailbox_views.dart';
 part 'sync_mailboxes.dart';
+part 'cached_header_search.dart';
 part 'flag_journal.dart';
 part 'flag_reconciliation.dart';
 
@@ -31,6 +32,8 @@ final class SqliteMailRepository implements MailRepository {
   final DateTime Function() _clock;
   final Map<(String, String), String> _interrupted = {};
   final Object _flagJournalOwner = Object();
+  final Object _cachedSearchOwner = Object();
+  Object _cachedSearchRevision = Object();
   bool _closed = false;
 
   static Future<MailResult<SqliteMailRepository>> open({
@@ -199,7 +202,10 @@ final class SqliteMailRepository implements MailRepository {
     return rows.single;
   }
 
-  void _notify() => _db.notifyUpdates({const TableUpdate('mail_domain')});
+  void _notify() {
+    _cachedSearchRevision = Object();
+    _db.notifyUpdates({const TableUpdate('mail_domain')});
+  }
 
   /// Registration is explicit. Removed IDs are permanently retired, preventing
   /// stale callbacks from attaching to a newly created account with the same ID.
