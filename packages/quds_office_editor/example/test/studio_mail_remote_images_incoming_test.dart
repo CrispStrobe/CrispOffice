@@ -333,6 +333,11 @@ void main() {
       expect(reader.presentation.remoteImageUrls, [
         Uri.parse('https://images.example/second.png'),
       ]);
+      expect(
+        utf8.encode(html).length +
+            reader.presentation.images.single.attachment.content.length,
+        lessThanOrEqualTo(reader.budget.maxDecodedBytes),
+      );
       expect(harness.requests, hasLength(2));
       harness.expectClosed();
     },

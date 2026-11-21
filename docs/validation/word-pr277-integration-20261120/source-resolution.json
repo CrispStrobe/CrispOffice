@@ -1,0 +1,82 @@
+{
+  "ours": "0e4e999a08996a6b8696ca3adba11e303331b73e",
+  "incoming": "383c0c0c5d3b4b1a6edccc8d09ffd1ca64029537",
+  "owned_resolutions": {
+    "docs/VBA_WORD_MACROS.md": {
+      "before_sha256": "4185d7bfb6f2b45be28d33856d0d4fc069b1d927b89ce3c5337b4f3376c93aff",
+      "resolved_sha256": "dee261f564237158742e4a8cb9853020d3739e318e2e1c73d46d8986d2a5b373",
+      "same_as_ours": false
+    },
+    "packages/quds_office_engine/CHANGELOG.md": {
+      "before_sha256": "70f6a053adf490b7e1914b930ea6b88deb10b2489524d652556d36472481fc1c",
+      "resolved_sha256": "7cf29f1ae7657d543b99b8aae812349c518675d3699ac53e1e298d4e288d0e80",
+      "same_as_ours": false
+    },
+    "packages/quds_office_editor/CHANGELOG.md": {
+      "before_sha256": "918feb1c57491b088f4d5add9dc5a0d782d168d22652706778fdb262708b181f",
+      "resolved_sha256": "5e6f65aea05e55928d543eeeda111f50f640449bb0ce1504ac4cb5952750d49c",
+      "same_as_ours": false,
+      "coordinated_mail_entry": "Queued autoconnect retirement guards, shared bounded remote-image API and cumulative decoded-byte limits, contradictory UI compatibility aliases; requested by Mail owner."
+    },
+    "packages/quds_office_engine/test/word_header_picture_identity_test.dart": {
+      "before_sha256": "d33eff02bfe54cb13263ce28ddee3cd5e3389365334aecdddbc718e8fbf2fb5f",
+      "resolved_sha256": "afae2a679af7095c68d86d028472cc6a13fd80eed1952fece3553d2f4b5be3d3",
+      "same_as_ours": true
+    }
+  },
+  "production_inputs": {
+    "packages/quds_office_engine/lib/src/word/layout/word_layout.dart": {
+      "sha256": "3060ff99393720875c27149acc79408e77aeb4bb84ff4187cb4c0963bcfa629b",
+      "exact_incoming": true
+    },
+    "packages/quds_office_engine/lib/src/word/layout/word_note_layout.dart": {
+      "sha256": "86f8ad84f1120b2ddb61e1a14a4c44d2a46414555ce11e2e7b28845e3b44ca73",
+      "exact_incoming": true
+    },
+    "packages/quds_office_engine/lib/src/word/layout/word_table_row_layout.dart": {
+      "sha256": "93e4e6fc2d95f9e3a8515d3414970ac24189a6bfd7ecc772a94305cc13bb7037",
+      "exact_incoming": true
+    },
+    "packages/quds_office_engine/lib/src/word/model/word_zotero_note.dart": {
+      "sha256": "dee9163fe712cf7b36f75532481d8229bf8a2835041f29973a8bd293d6ec8dc8",
+      "exact_incoming": true
+    },
+    "packages/quds_office_engine/lib/src/word/serial/word_serializer.dart": {
+      "sha256": "c0a82cdcbc4d65aa5b9f6a162511e2b62a9a17993e9070a656c9dfdc5858bbe8",
+      "exact_incoming": true
+    },
+    "packages/quds_office_editor/lib/src/editor_word/render_word_canvas.dart": {
+      "sha256": "28f6754d5833ce82585193f369157e749d05a8b173f79f3a6435fb3404a7992b",
+      "exact_incoming": true
+    },
+    "packages/quds_office_editor/lib/src/embed/office_controller.dart": {
+      "sha256": "2a2145be89e90eec652052c06855fcd1bb18ca7494a55b9c18750ccc2f378ea5",
+      "exact_incoming": true
+    }
+  },
+  "protected_inputs": {
+    "packages/quds_office_engine/lib/src/automation/office_vba_language.dart": {
+      "sha256": "41de865411b884d18c1097e9a80d68cd6bf1fb245e1844a46f72af05636f5ecd",
+      "same_as_ours": true,
+      "same_as_incoming": true
+    },
+    "packages/quds_office_engine/example/macros/word_measurements.bas": {
+      "sha256": "dd62cd308c0517ef34ffc7567ffcfa102bc17b7d408b1acfd00ed77e237c0fbd",
+      "same_as_ours": true,
+      "same_as_incoming": true
+    },
+    "packages/quds_office_engine/example/macros/word_unit_conversions.bas": {
+      "sha256": "960cdc52c5fa2ef9a54fc943b19539d1ad96f3f260d2c225cd299a0f577f283e",
+      "same_as_ours": true,
+      "same_as_incoming": true
+    },
+    "packages/quds_office_engine/example/macros/word_named_measurements.bas": {
+      "sha256": "8255788a75f6ea75f193c3c58c717d0f0f743575ae9506374607a936106d2ccf",
+      "same_as_ours": true,
+      "same_as_incoming": true
+    }
+  },
+  "header_identity_resolution": "Keep all thirteen prior cases and their original bytes. Incoming shared-node fixture is equivalent; retaining ours also preserves two distinct-node/shared-asset/same-placement cases absent in incoming.",
+  "no_production_edits": true,
+  "no_index_or_ref_mutations": true
+}

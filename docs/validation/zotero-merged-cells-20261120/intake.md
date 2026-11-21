@@ -105,7 +105,7 @@ hashes remained stable before/after execution.
 
 The earlier `6a00886f2c7f2ceddf859fcc1ccb99fbfcbb989a` editor run also had 378
 passes and eight skips; its initial tally incorrectly included skipped success
-events as passes. The [continuation report](README.md) identifies those fixtures
+events as passes. The [historical continuation report](incoming-main-698-checkpoint.md) identifies those fixtures
 and the corrected classification. Publication targets remote `main` through
 the continuation pull request.
 Repeated populations are not added together, and historical incoming branch

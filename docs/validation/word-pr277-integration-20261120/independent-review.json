@@ -1,0 +1,81 @@
+{
+  "accepted_actual_execution_identities": {
+    "files": 70,
+    "passed": 2381,
+    "skipped": 8
+  },
+  "accepted_canonical_identities": {
+    "files": 68,
+    "passed": 2178,
+    "skipped": 8
+  },
+  "accepted_source_head": "5c7b76a6137bc9373276ce2e7fccc6ed48903998",
+  "accepted_source_tree": "c3ac8ba4f302e6d4057e49d989ce3b81cd1dcd3c",
+  "actionable_findings": [],
+  "all_started_raw_tests_completed_once": true,
+  "auditor_sha256": "a956caed8ba06be99de202569a3480e6653f446050b14e27e1087eb18560a3a8",
+  "case_exports": {
+    "pr277-word-accepted-canonical-cases.json": {
+      "bytes": 744749,
+      "sha256": "4d3fc83cd4f24336ef03c392f085a4b6e8a8d7feeab978715bbb81b5c28972e3"
+    },
+    "pr277-word-accepted-execution-cases.json": {
+      "bytes": 814727,
+      "sha256": "5209dfdcf5a2547006f255d729cb7c7e3ea3c0f1e443eec2be986cd97131c6bd"
+    }
+  },
+  "conditional_ledger_sha256": "08d5bae84d34053e25886b5cb6637393768d859a7b3d909df67f246c01c5af37",
+  "fresh_header": {
+    "exact_prior_case_identities": true,
+    "failed": 0,
+    "files": 1,
+    "incoming11_superseded_as_complete_file": true,
+    "passed": 13,
+    "skipped": 0
+  },
+  "historical_macro_corpus": {
+    "cases": 3598,
+    "compiler_unchanged": true,
+    "files": 69,
+    "not_a_whole_corpus_rerun": true
+  },
+  "incoming_audit_sha256": "dcb5b589e7910339fb3a55edf9b5c8659a44aa1e433bf3939279cddf0bacb101",
+  "incoming_seven_word_libraries_retained_exactly": true,
+  "limits": [
+    "No new tests, captures, source/config/ref edits, CI calls, or remote refresh.",
+    "Incoming runs retain their actual520 execution source/runtime; only13 header cases ran freshly at5c7.",
+    "Canonical deduplication removes the two proved positional alias files; totals must not be added to overlapping historical macro, Word, or Mail populations.",
+    "Incoming16 shared-Studio-shell cases remain excluded from exact-current acceptance.",
+    "Incoming package-config content and one unrelated old Mail Git blob are unavailable, as disclosed in the original audit."
+  ],
+  "macro_attribution": {
+    "canonical_identities": 771,
+    "incoming_execution_identities": 974,
+    "new_cases_added_to_historical3598": 0,
+    "positional_alias_executions": 203
+  },
+  "qualification_sha256": "c6f55346d14ce328ba63dbd229450359454aa66c6f79f3144d5d760035aca7c5",
+  "retained_actual_execution_identities": {
+    "files": 69,
+    "passed": 2368,
+    "skipped": 8
+  },
+  "retained_canonical_identities": {
+    "files": 67,
+    "passed": 2165,
+    "skipped": 8
+  },
+  "runtime_inputs_verified_unchanged": 14,
+  "schema": 1,
+  "source_inputs_git_and_working_bytes_verified": 2877,
+  "source_parents": [
+    "0e4e999a08996a6b8696ca3adba11e303331b73e",
+    "383c0c0c5d3b4b1a6edccc8d09ffd1ca64029537"
+  ],
+  "static_scope": {
+    "fresh": "one stronger header file, fatal-info analysis and no-write format",
+    "retained": "30 exact Word paths from incoming75-file strict static gate"
+  },
+  "success": true,
+  "three_command_exits_and_six_log_hashes_verified": true
+}

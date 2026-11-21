@@ -1,0 +1,111 @@
+{
+  "audited_expected_cases_sha256": "f85d94f7a5a2f55a29185b9e346d0fbafc6f0e5b3c847d8440033cb518e3556b",
+  "commands": [
+    {
+      "command": [
+        "/workspace/scratch/03cd41fa0e7e/runtime/toolchain/dart-sdk/bin/dart",
+        "--old_gen_heap_size=768",
+        "--packages=/workspace/scratch/03cd41fa0e7e/quds_merge_final/.dart_tool/package_config.json",
+        "/workspace/scratch/03cd41fa0e7e/runtime/toolchain/test-runner/test-runner.dill",
+        "--compiler",
+        "source",
+        "--concurrency=1",
+        "--timeout=4x",
+        "--reporter=json",
+        "test/word_header_picture_identity_test.dart"
+      ],
+      "cwd": "/workspace/scratch/03cd41fa0e7e/quds_merge_final/packages/quds_office_engine",
+      "exit_code": 0,
+      "finished_utc": "2026-11-20T23:44:35.184526+00:00",
+      "name": "header-identity",
+      "seconds": 8.471,
+      "started_utc": "2026-11-20T23:44:26.713810+00:00",
+      "stderr": "header-identity.stderr.log",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "header-identity.stdout.log",
+      "stdout_sha256": "ee0cd135c6ddae970b7bf971832b8672b6b4cc41ddf408d53771628124360862"
+    },
+    {
+      "command": [
+        "/workspace/scratch/03cd41fa0e7e/runtime/toolchain/dart-sdk/bin/dart",
+        "analyze",
+        "--fatal-infos",
+        "test/word_header_picture_identity_test.dart"
+      ],
+      "cwd": "/workspace/scratch/03cd41fa0e7e/quds_merge_final/packages/quds_office_engine",
+      "exit_code": 0,
+      "finished_utc": "2026-11-20T23:44:38.480148+00:00",
+      "name": "header-analysis",
+      "seconds": 3.295,
+      "started_utc": "2026-11-20T23:44:35.185623+00:00",
+      "stderr": "header-analysis.stderr.log",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "header-analysis.stdout.log",
+      "stdout_sha256": "b401d816640ef62b061bd7440d9cd127a6b16ab9fd696af01e29e302dc81fae2"
+    },
+    {
+      "command": [
+        "/workspace/scratch/03cd41fa0e7e/runtime/flutter-toolchain/flutter/bin/cache/dart-sdk/bin/dart",
+        "format",
+        "--output=none",
+        "--set-exit-if-changed",
+        "packages/quds_office_engine/test/word_header_picture_identity_test.dart"
+      ],
+      "cwd": "/workspace/scratch/03cd41fa0e7e/quds_merge_final",
+      "exit_code": 0,
+      "finished_utc": "2026-11-20T23:44:38.501974+00:00",
+      "name": "header-format",
+      "seconds": 0.021,
+      "started_utc": "2026-11-20T23:44:38.480676+00:00",
+      "stderr": "header-format.stderr.log",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "header-format.stdout.log",
+      "stdout_sha256": "1685974b88bd671112e17334bdc2abb8ef350e01ae026547459ec7a8307375ec"
+    }
+  ],
+  "compiler_sha256": "41de865411b884d18c1097e9a80d68cd6bf1fb245e1844a46f72af05636f5ecd",
+  "dart_version": "Dart SDK version: 3.14.1 (stable) (Tue Nov 17 00:01:24 2026 -0800) on \"linux_x64\"",
+  "finished_utc": "2026-11-20T23:44:38.646911+00:00",
+  "github_actions_used": false,
+  "head_unchanged": true,
+  "incoming_audit_sha256": "dcb5b589e7910339fb3a55edf9b5c8659a44aa1e433bf3939279cddf0bacb101",
+  "incoming_production_byte_identical": true,
+  "incoming_production_hashes": {
+    "packages/quds_office_editor/lib/src/editor_word/render_word_canvas.dart": "28f6754d5833ce82585193f369157e749d05a8b173f79f3a6435fb3404a7992b",
+    "packages/quds_office_editor/lib/src/embed/office_controller.dart": "2a2145be89e90eec652052c06855fcd1bb18ca7494a55b9c18750ccc2f378ea5",
+    "packages/quds_office_engine/lib/src/word/layout/word_layout.dart": "3060ff99393720875c27149acc79408e77aeb4bb84ff4187cb4c0963bcfa629b",
+    "packages/quds_office_engine/lib/src/word/layout/word_note_layout.dart": "86f8ad84f1120b2ddb61e1a14a4c44d2a46414555ce11e2e7b28845e3b44ca73",
+    "packages/quds_office_engine/lib/src/word/layout/word_table_row_layout.dart": "93e4e6fc2d95f9e3a8515d3414970ac24189a6bfd7ecc772a94305cc13bb7037",
+    "packages/quds_office_engine/lib/src/word/model/word_zotero_note.dart": "dee9163fe712cf7b36f75532481d8229bf8a2835041f29973a8bd293d6ec8dc8",
+    "packages/quds_office_engine/lib/src/word/serial/word_serializer.dart": "c0a82cdcbc4d65aa5b9f6a162511e2b62a9a17993e9070a656c9dfdc5858bbe8"
+  },
+  "incoming_retention_ledger_sha256": "08d5bae84d34053e25886b5cb6637393768d859a7b3d909df67f246c01c5af37",
+  "incoming_source": "383c0c0c5d3b4b1a6edccc8d09ffd1ca64029537",
+  "runtime_files_hashed": 14,
+  "runtime_unchanged": true,
+  "selection": {
+    "packages/quds_office_engine/test/word_header_picture_identity_test.dart": 13
+  },
+  "selection_rationale": "Retain all thirteen independent header/footer visual-node cases, including the two distinct-node/shared-asset/same-placement cases absent from incoming PR277. Run the complete retained file against the exact incoming vertical-table libraries; other incoming executions retain their own source/runtime attribution.",
+  "source_files_hashed": 2877,
+  "source_head": "5c7b76a6137bc9373276ce2e7fccc6ed48903998",
+  "source_parents": [
+    "0e4e999a08996a6b8696ca3adba11e303331b73e",
+    "383c0c0c5d3b4b1a6edccc8d09ffd1ca64029537"
+  ],
+  "source_tree": "c3ac8ba4f302e6d4057e49d989ce3b81cd1dcd3c",
+  "source_unchanged": true,
+  "started_utc": "2026-11-20T23:44:26.710519+00:00",
+  "success": true,
+  "tests": {
+    "every_started_test_completed_once": true,
+    "exact_prior_case_identities": true,
+    "failed": 0,
+    "malformed_reporter_lines": [],
+    "passed": 13,
+    "reporter_errors": 0,
+    "skipped": 0,
+    "terminal_success": true
+  },
+  "worktree_clean": true
+}
