@@ -1,0 +1,15 @@
+00:00 +0: loading test/office_vba_word_text_integration_test.dart
+00:00 +0: (setUpAll)
+00:05 +0: committed text report preserves rich body/header text and DOCM
+00:06 +1: late missing target rolls back prepared text and all formatting
+00:06 +2: source failure cannot publish an earlier insertion: Replace("a", "a", "b", 1, -1, vbTextCompare)
+00:06 +3: source failure cannot publish an earlier insertion: InStrRev("a", "a", 0)
+00:06 +4: source failure cannot publish an earlier insertion: Trim$(Null)
+00:06 +5: prepared text retains native mutation policy: Instance of 'OfficeMacroPolicy'
+00:06 +6: prepared text retains native mutation policy: Instance of 'OfficeMacroPolicy'
+00:06 +7: prepared text retains native mutation policy: Instance of 'OfficeMacroPolicy'
+00:06 +8: MCP compiles, validates and runs the complete text report
+00:06 +9: CLI compiles and publishes the report with original input intact
+00:08 +10: CLI text diagnostic preserves an existing output file
+00:08 +11: (tearDownAll)
+00:08 +11: All tests passed!

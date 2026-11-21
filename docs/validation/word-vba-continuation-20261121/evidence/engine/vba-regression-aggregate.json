@@ -1,0 +1,543 @@
+{
+  "status": "passed-with-environmental-retry",
+  "testFiles": 85,
+  "uniqueSummary": {
+    "passed": 4543,
+    "failure": 0,
+    "error": 0,
+    "skipped": 0
+  },
+  "originalBatch": "vba-regression.jsonl",
+  "originalReceipt": "vba-regression-receipt.json",
+  "retry": "native-line-spacing-retry.jsonl",
+  "retryReceipt": "native-line-spacing-retry-receipt.json",
+  "retryReason": "Original pure-Dart scaffold omitted editor font asset path; added a symlink to exact repository fonts. All 96 tests in affected file passed without production/test edits. Its initial 92 successes and four missing-file errors are replaced, not added, in uniqueSummary.",
+  "supersededFileResults": {
+    "test/office_macro_word_line_spacing_test.dart": {
+      "passed": 92,
+      "failure": 0,
+      "error": 4,
+      "skipped": 0
+    }
+  },
+  "compilerAndHarnessStable": true,
+  "qualifiedSources": {
+    "packages/quds_office_engine/lib/src/automation/office_vba_language.dart": "4f969f9de6259dd6362440f939a931be7e647be5001ce002525af188f8242b94",
+    "packages/quds_office_engine/test/support/office_macro_cli.dart": "a99c9fa6df165eb5fe864104a92d971af3ebc1595bde8504e04b704524078c3a",
+    "packages/quds_office_engine/test/office_vba_text_intrinsics_test.dart": "39d101b57b0985289b67bb5d9e31c74f25d44013fba51bb4fe319bd3af4f1cf6"
+  },
+  "currentHead": "801ad67ba8bf98083af79bcf4acb79757cf0f351",
+  "fontSha256": "075e71be4c58beda172ecb574a799308f04c3d054c6a5b7434954d3b0f1b28d8",
+  "suites": {
+    "test/office_macro_cli_test.dart": {
+      "passed": 5,
+      "failure": 0,
+      "error": 0,
+      "skipped": 0
+    },
+    "test/office_macro_expansion_test.dart": {
+      "passed": 5,
+      "failure": 0,
+      "error": 0,
+      "skipped": 0
+    },
+    "test/office_macro_language_test.dart": {
+      "passed": 11,
+      "failure": 0,
+      "error": 0,
+      "skipped": 0
+    },
+    "test/office_macro_mcp_test.dart": {
+      "passed": 15,
+      "failure": 0,
+      "error": 0,
+      "skipped": 0
+    },
+    "test/office_macro_runtime_test.dart": {
+      "passed": 25,
+      "failure": 0,
+      "error": 0,
+      "skipped": 0
+    },
+    "test/office_macro_slide_format_test.dart": {
+      "passed": 19,
+      "failure": 0,
+      "error": 0,
+      "skipped": 0
+    },
+    "test/office_macro_word_headers_footers_test.dart": {
+      "passed": 72,
+      "failure": 0,
+      "error": 0,
+      "skipped": 0
+    },
+    "test/office_macro_word_line_spacing_test.dart": {
+      "passed": 96,
+      "failure": 0,
+      "error": 0,
+      "skipped": 0
+    },
+    "test/office_macro_word_list_format_test.dart": {
+      "passed": 67,
+      "failure": 0,
+      "error": 0,
+      "skipped": 0
+    },
+    "test/office_macro_word_list_levels_test.dart": {
+      "passed": 101,
+      "failure": 0,
+      "error": 0,
+      "skipped": 0
+    },
+    "test/office_macro_word_orientation_test.dart": {
+      "passed": 43,
+      "failure": 0,
+      "error": 0,
+      "skipped": 0
+    },
+    "test/office_macro_word_page_setup_test.dart": {
+      "passed": 44,
+      "failure": 0,
+      "error": 0,
+      "skipped": 0
+    },
+    "test/office_macro_word_paragraph_controls_test.dart": {
+      "passed": 118,
+      "failure": 0,
+      "error": 0,
+      "skipped": 0
+    },
+    "test/office_macro_word_revision_guard_test.dart": {
+      "passed": 2,
+      "failure": 0,
+      "error": 0,
+      "skipped": 0
+    },
+    "test/office_macro_word_section_start_test.dart": {
+      "passed": 26,
+      "failure": 0,
+      "error": 0,
+      "skipped": 0
+    },
+    "test/office_macro_word_tab_stops_test.dart": {
+      "passed": 40,
+      "failure": 0,
+      "error": 0,
+      "skipped": 0
+    },
+    "test/office_macro_word_text_controls_test.dart": {
+      "passed": 40,
+      "failure": 0,
+      "error": 0,
+      "skipped": 0
+    },
+    "test/office_vba_arguments_integration_test.dart": {
+      "passed": 16,
+      "failure": 0,
+      "error": 0,
+      "skipped": 0
+    },
+    "test/office_vba_arguments_test.dart": {
+      "passed": 68,
+      "failure": 0,
+      "error": 0,
+      "skipped": 0
+    },
+    "test/office_vba_arrays_boundaries_test.dart": {
+      "passed": 144,
+      "failure": 0,
+      "error": 0,
+      "skipped": 0
+    },
+    "test/office_vba_arrays_integration_test.dart": {
+      "passed": 11,
+      "failure": 0,
+      "error": 0,
+      "skipped": 0
+    },
+    "test/office_vba_arrays_test.dart": {
+      "passed": 32,
+      "failure": 0,
+      "error": 0,
+      "skipped": 0
+    },
+    "test/office_vba_conformance_test.dart": {
+      "passed": 115,
+      "failure": 0,
+      "error": 0,
+      "skipped": 0
+    },
+    "test/office_vba_control_flow_boundaries_test.dart": {
+      "passed": 42,
+      "failure": 0,
+      "error": 0,
+      "skipped": 0
+    },
+    "test/office_vba_control_flow_integration_test.dart": {
+      "passed": 9,
+      "failure": 0,
+      "error": 0,
+      "skipped": 0
+    },
+    "test/office_vba_control_flow_test.dart": {
+      "passed": 35,
+      "failure": 0,
+      "error": 0,
+      "skipped": 0
+    },
+    "test/office_vba_dynamic_arrays_integration_test.dart": {
+      "passed": 11,
+      "failure": 0,
+      "error": 0,
+      "skipped": 0
+    },
+    "test/office_vba_dynamic_arrays_test.dart": {
+      "passed": 50,
+      "failure": 0,
+      "error": 0,
+      "skipped": 0
+    },
+    "test/office_vba_integration_test.dart": {
+      "passed": 12,
+      "failure": 0,
+      "error": 0,
+      "skipped": 0
+    },
+    "test/office_vba_language_test.dart": {
+      "passed": 55,
+      "failure": 0,
+      "error": 0,
+      "skipped": 0
+    },
+    "test/office_vba_powerpoint_cli_test.dart": {
+      "passed": 2,
+      "failure": 0,
+      "error": 0,
+      "skipped": 0
+    },
+    "test/office_vba_powerpoint_conformance_test.dart": {
+      "passed": 24,
+      "failure": 0,
+      "error": 0,
+      "skipped": 0
+    },
+    "test/office_vba_powerpoint_integration_test.dart": {
+      "passed": 7,
+      "failure": 0,
+      "error": 0,
+      "skipped": 0
+    },
+    "test/office_vba_powerpoint_layout_integration_test.dart": {
+      "passed": 46,
+      "failure": 0,
+      "error": 0,
+      "skipped": 0
+    },
+    "test/office_vba_powerpoint_layout_test.dart": {
+      "passed": 41,
+      "failure": 0,
+      "error": 0,
+      "skipped": 0
+    },
+    "test/office_vba_powerpoint_margins_integration_test.dart": {
+      "passed": 16,
+      "failure": 0,
+      "error": 0,
+      "skipped": 0
+    },
+    "test/office_vba_powerpoint_margins_test.dart": {
+      "passed": 27,
+      "failure": 0,
+      "error": 0,
+      "skipped": 0
+    },
+    "test/office_vba_powerpoint_test.dart": {
+      "passed": 63,
+      "failure": 0,
+      "error": 0,
+      "skipped": 0
+    },
+    "test/office_vba_procedure_boundaries_test.dart": {
+      "passed": 19,
+      "failure": 0,
+      "error": 0,
+      "skipped": 0
+    },
+    "test/office_vba_procedures_integration_test.dart": {
+      "passed": 10,
+      "failure": 0,
+      "error": 0,
+      "skipped": 0
+    },
+    "test/office_vba_procedures_test.dart": {
+      "passed": 26,
+      "failure": 0,
+      "error": 0,
+      "skipped": 0
+    },
+    "test/office_vba_string_intrinsics_integration_test.dart": {
+      "passed": 11,
+      "failure": 0,
+      "error": 0,
+      "skipped": 0
+    },
+    "test/office_vba_string_intrinsics_test.dart": {
+      "passed": 102,
+      "failure": 0,
+      "error": 0,
+      "skipped": 0
+    },
+    "test/office_vba_text_intrinsics_test.dart": {
+      "passed": 156,
+      "failure": 0,
+      "error": 0,
+      "skipped": 0
+    },
+    "test/office_vba_variant_conformance_test.dart": {
+      "passed": 162,
+      "failure": 0,
+      "error": 0,
+      "skipped": 0
+    },
+    "test/office_vba_variant_conversions_integration_test.dart": {
+      "passed": 9,
+      "failure": 0,
+      "error": 0,
+      "skipped": 0
+    },
+    "test/office_vba_variant_conversions_test.dart": {
+      "passed": 239,
+      "failure": 0,
+      "error": 0,
+      "skipped": 0
+    },
+    "test/office_vba_word_argument_shapes_test.dart": {
+      "passed": 8,
+      "failure": 0,
+      "error": 0,
+      "skipped": 0
+    },
+    "test/office_vba_word_bulk_intake_conversions_test.dart": {
+      "passed": 63,
+      "failure": 0,
+      "error": 0,
+      "skipped": 0
+    },
+    "test/office_vba_word_cli_test.dart": {
+      "passed": 5,
+      "failure": 0,
+      "error": 0,
+      "skipped": 0
+    },
+    "test/office_vba_word_conformance_test.dart": {
+      "passed": 46,
+      "failure": 0,
+      "error": 0,
+      "skipped": 0
+    },
+    "test/office_vba_word_extensions_test.dart": {
+      "passed": 30,
+      "failure": 0,
+      "error": 0,
+      "skipped": 0
+    },
+    "test/office_vba_word_format_integration_test.dart": {
+      "passed": 2,
+      "failure": 0,
+      "error": 0,
+      "skipped": 0
+    },
+    "test/office_vba_word_headers_footers_integration_test.dart": {
+      "passed": 15,
+      "failure": 0,
+      "error": 0,
+      "skipped": 0
+    },
+    "test/office_vba_word_headers_footers_test.dart": {
+      "passed": 94,
+      "failure": 0,
+      "error": 0,
+      "skipped": 0
+    },
+    "test/office_vba_word_integration_test.dart": {
+      "passed": 14,
+      "failure": 0,
+      "error": 0,
+      "skipped": 0
+    },
+    "test/office_vba_word_language_test.dart": {
+      "passed": 156,
+      "failure": 0,
+      "error": 0,
+      "skipped": 0
+    },
+    "test/office_vba_word_line_spacing_integration_test.dart": {
+      "passed": 23,
+      "failure": 0,
+      "error": 0,
+      "skipped": 0
+    },
+    "test/office_vba_word_line_spacing_test.dart": {
+      "passed": 103,
+      "failure": 0,
+      "error": 0,
+      "skipped": 0
+    },
+    "test/office_vba_word_list_levels_integration_test.dart": {
+      "passed": 44,
+      "failure": 0,
+      "error": 0,
+      "skipped": 0
+    },
+    "test/office_vba_word_list_levels_test.dart": {
+      "passed": 88,
+      "failure": 0,
+      "error": 0,
+      "skipped": 0
+    },
+    "test/office_vba_word_lists_integration_test.dart": {
+      "passed": 22,
+      "failure": 0,
+      "error": 0,
+      "skipped": 0
+    },
+    "test/office_vba_word_lists_test.dart": {
+      "passed": 95,
+      "failure": 0,
+      "error": 0,
+      "skipped": 0
+    },
+    "test/office_vba_word_measurements_integration_test.dart": {
+      "passed": 6,
+      "failure": 0,
+      "error": 0,
+      "skipped": 0
+    },
+    "test/office_vba_word_measurements_positional_integration_test.dart": {
+      "passed": 6,
+      "failure": 0,
+      "error": 0,
+      "skipped": 0
+    },
+    "test/office_vba_word_measurements_positional_test.dart": {
+      "passed": 197,
+      "failure": 0,
+      "error": 0,
+      "skipped": 0
+    },
+    "test/office_vba_word_measurements_test.dart": {
+      "passed": 197,
+      "failure": 0,
+      "error": 0,
+      "skipped": 0
+    },
+    "test/office_vba_word_named_measurements_integration_test.dart": {
+      "passed": 11,
+      "failure": 0,
+      "error": 0,
+      "skipped": 0
+    },
+    "test/office_vba_word_named_measurements_test.dart": {
+      "passed": 160,
+      "failure": 0,
+      "error": 0,
+      "skipped": 0
+    },
+    "test/office_vba_word_page_setup_integration_test.dart": {
+      "passed": 15,
+      "failure": 0,
+      "error": 0,
+      "skipped": 0
+    },
+    "test/office_vba_word_page_setup_test.dart": {
+      "passed": 88,
+      "failure": 0,
+      "error": 0,
+      "skipped": 0
+    },
+    "test/office_vba_word_paragraph_controls_integration_test.dart": {
+      "passed": 34,
+      "failure": 0,
+      "error": 0,
+      "skipped": 0
+    },
+    "test/office_vba_word_paragraph_controls_test.dart": {
+      "passed": 148,
+      "failure": 0,
+      "error": 0,
+      "skipped": 0
+    },
+    "test/office_vba_word_paragraph_layout_integration_test.dart": {
+      "passed": 17,
+      "failure": 0,
+      "error": 0,
+      "skipped": 0
+    },
+    "test/office_vba_word_paragraph_layout_test.dart": {
+      "passed": 37,
+      "failure": 0,
+      "error": 0,
+      "skipped": 0
+    },
+    "test/office_vba_word_proofing_integration_test.dart": {
+      "passed": 10,
+      "failure": 0,
+      "error": 0,
+      "skipped": 0
+    },
+    "test/office_vba_word_proofing_test.dart": {
+      "passed": 42,
+      "failure": 0,
+      "error": 0,
+      "skipped": 0
+    },
+    "test/office_vba_word_sections_integration_test.dart": {
+      "passed": 27,
+      "failure": 0,
+      "error": 0,
+      "skipped": 0
+    },
+    "test/office_vba_word_sections_test.dart": {
+      "passed": 70,
+      "failure": 0,
+      "error": 0,
+      "skipped": 0
+    },
+    "test/office_vba_word_tabstops_integration_test.dart": {
+      "passed": 10,
+      "failure": 0,
+      "error": 0,
+      "skipped": 0
+    },
+    "test/office_vba_word_tabstops_test.dart": {
+      "passed": 85,
+      "failure": 0,
+      "error": 0,
+      "skipped": 0
+    },
+    "test/office_vba_word_typography_integration_test.dart": {
+      "passed": 30,
+      "failure": 0,
+      "error": 0,
+      "skipped": 0
+    },
+    "test/office_vba_word_typography_test.dart": {
+      "passed": 48,
+      "failure": 0,
+      "error": 0,
+      "skipped": 0
+    },
+    "test/office_vba_word_unit_conversions_integration_test.dart": {
+      "passed": 6,
+      "failure": 0,
+      "error": 0,
+      "skipped": 0
+    },
+    "test/office_vba_word_unit_conversions_test.dart": {
+      "passed": 202,
+      "failure": 0,
+      "error": 0,
+      "skipped": 0
+    }
+  }
+}

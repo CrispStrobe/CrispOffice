@@ -1,0 +1,14 @@
+{
+  "command": [
+    "dart",
+    "analyze",
+    "--fatal-infos",
+    "lib",
+    "test/office_vba_text_intrinsics_test.dart"
+  ],
+  "cwd": "/workspace/scratch/dca92fad5f00/quds_office_suite/packages/quds_office_engine",
+  "exitCode": 0,
+  "result": "No issues found!",
+  "head": "801ad67ba8bf98083af79bcf4acb79757cf0f351",
+  "compilerSha256": "4f969f9de6259dd6362440f939a931be7e647be5001ce002525af188f8242b94"
+}

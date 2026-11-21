@@ -1,0 +1,17 @@
+{
+  "command": [
+    "dart",
+    "test",
+    "--reporter=json",
+    "test/office_macro_word_line_spacing_test.dart"
+  ],
+  "cwd": "/workspace/scratch/dca92fad5f00/validation/packages/quds_office_engine",
+  "exitCode": 0,
+  "passed": 96,
+  "failed": 0,
+  "skipped": 0,
+  "reason": "Added exact checkout editor/fonts symlink to pure-Dart validation workspace; initial four missing font asset errors were environmental. No production or test source changed.",
+  "head": "801ad67ba8bf98083af79bcf4acb79757cf0f351",
+  "compilerSha256": "4f969f9de6259dd6362440f939a931be7e647be5001ce002525af188f8242b94",
+  "sourceSha256": "ca9ab4e691b5803d3f36466c63c9446e66407c6eeb9d011891d37d9682f9511d"
+}

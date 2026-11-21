@@ -180,11 +180,12 @@
     ]
    },
    "provenance": {
-    "kind": "spec-derived",
+    "kind": "dialect-contract",
     "references": [
-     "https://learn.microsoft.com/en-us/office/vba/language/reference/user-interface-help/instr-function"
+     "https://learn.microsoft.com/en-us/office/vba/language/reference/user-interface-help/instr-function",
+     "https://github.com/CrispStrobe/quds_office_suite/blob/main/docs/VBA_MACROS.md"
     ],
-    "note": "Empty haystacks produce zero. For a nonempty haystack, the documented empty-needle result is the supplied start; these are independent expectations, not Office-host observations."
+    "note": "Quds resolves combined empty-haystack, empty-needle and out-of-range Start conditions explicitly: an empty haystack yields zero; otherwise an empty needle yields Start. Microsoft lists these returns without unambiguously ordering all combined conditions. This bounded contract is not an Office-host observation."
    }
   },
   {
@@ -550,11 +551,12 @@
     ]
    },
    "provenance": {
-    "kind": "spec-derived",
+    "kind": "dialect-contract",
     "references": [
-     "https://learn.microsoft.com/en-us/office/vba/language/reference/user-interface-help/instrrev-function"
+     "https://learn.microsoft.com/en-us/office/vba/language/reference/user-interface-help/instrrev-function",
+     "https://github.com/CrispStrobe/quds_office_suite/blob/main/docs/VBA_MACROS.md"
     ],
-    "note": "Hand-authored expected values derived from Microsoft's published function contract; no Office host was executed."
+    "note": "Quds resolves combined empty strings and Start boundaries explicitly: an empty haystack or Start beyond its end yields zero; otherwise an empty needle yields the resolved Start. Microsoft lists these boundary returns without completely specifying their combined precedence. No Office differential observation is claimed."
    }
   },
   {
@@ -808,11 +810,12 @@
     ]
    },
    "provenance": {
-    "kind": "spec-derived",
+    "kind": "dialect-contract",
     "references": [
-     "https://learn.microsoft.com/en-us/office/vba/language/reference/user-interface-help/replace-function"
+     "https://learn.microsoft.com/en-us/office/vba/language/reference/user-interface-help/replace-function",
+     "https://github.com/CrispStrobe/quds_office_suite/blob/main/docs/VBA_MACROS.md"
     ],
-    "note": "The returned string begins at Start, including count-zero and empty-find cases. Expected suffixes follow the Replace start parameter and remarks; no Office host was executed."
+    "note": "Quds follows the published Start parameter and suffix-return remarks even when Find is empty or Count is zero. The return table also says copy of Expression for those no-op conditions, so their combination with Start is recorded as an explicit bounded dialect contract pending Office differential observation."
    }
   },
   {
