@@ -43,7 +43,14 @@ and [the native macro contract](MACROS.md).
 
 ## Ordered milestones and acceptance
 
-The latest bounded continuation adds typed Word `Shading` objects for selected
+The latest bounded continuation adds Word `Font.Position` writes, native signed
+half-point DOCX ownership, automatic/minimum line extents and independent
+baseline rendering through editor and PDF paths. It retains the existing
+typed aliases, helpers, explicit story selectors and atomic plan boundary.
+See the [position contract](VBA_WORD_MACROS.md#baseline-position-without-resizing-text)
+and [local qualification](validation/word-vba-typography-20261121/README.md).
+
+The preceding formatting continuation adds typed Word `Shading` objects for selected
 paragraph backgrounds, two background-color setters and named `WdColor`
 constants, with sparse native ownership and explicit automatic overrides.
 The shared source language adds `Space`/`String` construction and
