@@ -104,8 +104,10 @@ $_range.Style = chosenStyle
     ]);
   });
 
-  test('typed aliases and named ByVal helpers retain their selected target', () {
-    final macro = _source('''
+  test(
+    'typed aliases and named ByVal helpers retain their selected target',
+    () {
+      final macro = _source('''
 Option Explicit
 Sub Configure(ByVal para As Paragraph, ByVal target As Range, Optional ByVal name As String = "Report Body")
   para.Style = name
@@ -125,15 +127,16 @@ Sub Main()
   r.Style = "Body final"
 End Sub
 ''');
-    expect(macro.steps.map((step) => step.arguments), [
-      {'paragraph': 0, 'name': 'Report Body'},
-      {'paragraph': 1, 'builtin': -75},
-      {'paragraph': 2, 'builtin': -3},
-      {'paragraph': 3, 'builtin': -35},
-      {'paragraph': 0, 'builtin': -1},
-      {'paragraph': 1, 'name': 'Body final'},
-    ]);
-  });
+      expect(macro.steps.map((step) => step.arguments), [
+        {'paragraph': 0, 'name': 'Report Body'},
+        {'paragraph': 1, 'builtin': -75},
+        {'paragraph': 2, 'builtin': -3},
+        {'paragraph': 3, 'builtin': -35},
+        {'paragraph': 0, 'builtin': -1},
+        {'paragraph': 1, 'name': 'Body final'},
+      ]);
+    },
+  );
 
   test('nested With and repeated style assignments retain operation order', () {
     final macro = _compile('''
@@ -190,10 +193,7 @@ End With
 ActiveDocument.Paragraphs(4).Range.Paragraphs.Item(1).Style = wdStyleHeading3
 ''');
     expect(macro.steps.single.arguments, {'paragraph': 3, 'builtin': -4});
-    _reject(
-      '$_range.Paragraphs(2).Style = wdStyleNormal',
-      'vba_unsupported',
-    );
+    _reject('$_range.Paragraphs(2).Style = wdStyleNormal', 'vba_unsupported');
   });
 
   for (final expression in [
@@ -205,9 +205,12 @@ ActiveDocument.Paragraphs(4).Range.Paragraphs.Item(1).Style = wdStyleHeading3
     '-181',
     '-2147483648',
   ]) {
-    test('unsupported numeric style value $expression is not a collection index', () {
-      _reject('$_paragraph.Style = $expression', 'vba_unsupported');
-    });
+    test(
+      'unsupported numeric style value $expression is not a collection index',
+      () {
+        _reject('$_paragraph.Style = $expression', 'vba_unsupported');
+      },
+    );
   }
 
   for (final expression in [
@@ -234,18 +237,21 @@ ActiveDocument.Paragraphs(4).Range.Paragraphs.Item(1).Style = wdStyleHeading3
   });
 
   for (final expression in ['True', 'Null', 'Empty']) {
-    test('a Variant still requires an actual name or numeric constant: $expression', () {
-      _reject('''
+    test(
+      'a Variant still requires an actual name or numeric constant: $expression',
+      () {
+        _reject('''
 Dim name As Variant
 name = $expression
 $_paragraph.Style = name
 ''', 'vba_type_error');
-    });
+      },
+    );
   }
 
   for (final expression in [
     'True',
-    '$_paragraph',
+    _paragraph,
     _range,
     '$_range.Font',
     '$_paragraph.Format',
@@ -335,7 +341,10 @@ story.Style = wdStyleNormal
 
   test('an unbound Paragraph or Range cannot be styled', () {
     for (final type in ['Paragraph', 'Range']) {
-      _reject('Dim target As $type\ntarget.Style = wdStyleNormal', 'vba_unsupported');
+      _reject(
+        'Dim target As $type\ntarget.Style = wdStyleNormal',
+        'vba_unsupported',
+      );
     }
   });
 
@@ -358,7 +367,8 @@ Next i
           OfficeMacroSource(
             language: language,
             format: format,
-            source: 'Sub Main()\nDim name As Long\nname = wdStyleNormal\nEnd Sub',
+            source:
+                'Sub Main()\nDim name As Long\nname = wdStyleNormal\nEnd Sub',
           ),
         ),
         throwsA(isA<OfficeVbaCompileException>()),
@@ -367,7 +377,9 @@ Next i
   });
 
   test('the complete BAS example retains its five intended operations', () {
-    final macro = _source(File('example/macros/word_styles.bas').readAsStringSync());
+    final macro = _source(
+      File('example/macros/word_styles.bas').readAsStringSync(),
+    );
     expect(macro.steps.map((step) => step.tool), [
       'docx.runFormat',
       'docx.paragraphStyle',
