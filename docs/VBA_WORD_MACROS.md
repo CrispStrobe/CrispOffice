@@ -59,7 +59,7 @@ document supplied to the macro session. They never search for another file.
 | `Document.Tables(i)` / `Table.Cell(row, column)` | Existing main-story table cells |
 | `Document.Sections(i)` | Existing sections |
 | `Section.PageSetup` | Page geometry, orientation and section start |
-| `Section.TextColumns` | Uniform text columns |
+| `Section.PageSetup.TextColumns` | Uniform text columns |
 | `Section.Headers` / `.Footers` | Existing header/footer paragraphs |
 | `Range.Font` / `ParagraphFormat` | Formatting of the selected text |
 | `ListFormat` / `TabStops` | Supported paragraph list and tab settings |
@@ -140,7 +140,7 @@ parameterless `Sub`; the default is `Main`.
 - No document discovery, external file opening or application automation.
 - The same permissions, tool allowlists, step limits, cancellation and save
   guards as native JSON macros apply.
-- Forms, events, COM, macro recording and the complete Word object model are
+- Forms, events, COM, source-level VBA recording and the complete Word object model are
   out of scope.
 - Indexes and formatting values are validated against a real detached document.
 - Source-bound local tests do not establish compatibility with every Microsoft
