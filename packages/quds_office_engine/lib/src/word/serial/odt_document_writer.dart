@@ -414,14 +414,21 @@ abstract final class OdtDocumentWriter {
 
   static String _storyKey(String xml, WmlSection section, _OdtLayout layout) {
     final root = _storyRoot(xml);
+    const drawing = 'urn:oasis:names:tc:opendocument:xmlns:drawing:1.0';
     // Annotation emission is deliberately shared across all stories. Its
     // bookkeeping must not turn repeated authored headers into new pages;
     // compare their reference positions below instead of emitted bodies.
     _removeAnnotations(root);
     void normalize(XmlElement element) {
-      if (element.localName == 'image' &&
-          element.namespaceUri ==
-              'urn:oasis:names:tc:opendocument:xmlns:drawing:1.0') {
+      if (element.localName == 'frame' &&
+          element.namespaceUri == drawing &&
+          element.firstChild('image', namespaceUri: drawing) != null) {
+        // Package-wide picture identities must be unique, even for visually
+        // equal headers. Ignore allocated names only in this comparison copy;
+        // their suffixes must not force a continuous section onto a new page.
+        element.removeAttribute('name', namespaceUri: drawing);
+      }
+      if (element.localName == 'image' && element.namespaceUri == drawing) {
         final path = element.getAttribute(
           'href',
           namespaceUri: 'http://www.w3.org/1999/xlink',
@@ -1186,12 +1193,14 @@ abstract final class OdtDocumentWriter {
           );
         }
         if (inline.inlineVisual case final visual?) {
-          if (!commentLink) {
+          // Annotation pictures retain their established direct paragraph/link
+          // structure. Ordinary pictures carry the native run style on a span.
+          if (!layout.inCommentBody) {
             w.writeStartElement('span', prefix: 'text');
             w.writeAttribute('text:style-name', style);
           }
           _writeVisual(w, visual.visual, layout, inline: true);
-          if (!commentLink) w.writeEndElement();
+          if (!layout.inCommentBody) w.writeEndElement();
         }
         if (ownLink) w.writeEndElement();
         if (layout.commentsAllowed) {

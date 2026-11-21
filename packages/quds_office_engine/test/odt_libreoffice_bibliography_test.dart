@@ -83,7 +83,7 @@ void _expectOriginal(WmlDocument document) {
     containsPair('futureBibliography', {'keep': true}),
   );
   expect(
-    bibliography.paragraphs.first.properties.indent?.hanging,
+    bibliography.paragraphs.first.properties.indent.hanging,
     closeTo(36, 0.02),
   );
   expect(
