@@ -437,20 +437,42 @@ abstract final class OdtDocumentWriter {
 
   static String _storyKey(String xml, WmlSection section, _OdtLayout layout) {
     final root = _storyRoot(xml);
+    const drawing = 'urn:oasis:names:tc:opendocument:xmlns:drawing:1.0';
     // Annotation emission is deliberately shared across all stories. Its
     // bookkeeping must not turn repeated authored headers into new pages;
     // compare their reference positions below instead of emitted bodies.
     _removeAnnotations(root);
     void normalize(XmlElement element) {
-      if (element.localName == 'image' &&
-          element.namespaceUri ==
-              'urn:oasis:names:tc:opendocument:xmlns:drawing:1.0') {
+      if (element.localName == 'image' && element.namespaceUri == drawing) {
         final path = element.getAttribute(
           'href',
           namespaceUri: 'http://www.w3.org/1999/xlink',
         );
         final bytes = layout.mediaBytes[path];
         if (bytes != null) {
+          final frame = element.parent;
+          if (frame != null &&
+              frame.localName == 'frame' &&
+              frame.namespaceUri ==
+                  'urn:oasis:names:tc:opendocument:xmlns:drawing:1.0') {
+            final name = frame.getAttribute(
+              'name',
+              namespaceUri: 'urn:oasis:names:tc:opendocument:xmlns:drawing:1.0',
+            );
+            final sourceName = layout._pictureNames[name];
+            if (sourceName != null) {
+              // Allocation names distinguish emitted objects, not authored
+              // story content. Compare their original names so equal headers
+              // still share a continuous master without hiding real edits.
+              frame.setAttribute(
+                'name',
+                sourceName,
+                prefix: 'draw',
+                namespaceUri:
+                    'urn:oasis:names:tc:opendocument:xmlns:drawing:1.0',
+              );
+            }
+          }
           // This is only a comparison key, never an emitted package URL.
           element.setAttribute(
             'href',
@@ -1195,6 +1217,11 @@ abstract final class OdtDocumentWriter {
             // Missing or ambiguous definitions must not erase cached text.
             _writeStyledText(w, inline.text, style, styleOnParent: commentLink);
           }
+        } else if (inline.inlineVisual?.visual.imageBytes?.isNotEmpty == true &&
+            inline.text == '\uFFFC') {
+          // The native run's object character is represented by draw:frame.
+          // Emitting both the literal U+FFFC and frame duplicates its position
+          // when a document processor opens this ODT.
         } else {
           _writeStyledText(
             w,
@@ -1204,7 +1231,14 @@ abstract final class OdtDocumentWriter {
           );
         }
         if (inline.inlineVisual case final visual?) {
+          // Comment links already carry the run style. Unlinked pictures,
+          // including annotation pictures, preserve it on their own span.
+          if (!commentLink) {
+            w.writeStartElement('span', prefix: 'text');
+            w.writeAttribute('text:style-name', style);
+          }
           _writeVisual(w, visual.visual, layout, inline: true);
+          if (!commentLink) w.writeEndElement();
         }
         if (ownLink) w.writeEndElement();
         if (layout.commentsAllowed) {
@@ -1648,7 +1682,7 @@ abstract final class OdtDocumentWriter {
       final path = layout.addMedia(bytes);
       w.writeStartElement('frame', prefix: 'draw');
       w.writeAttribute('text:anchor-type', 'as-char');
-      w.writeAttribute('draw:name', visual.title);
+      w.writeAttribute('draw:name', layout.pictureName(visual.title));
       w.writeAttribute('svg:width', '${visual.width.toStringAsFixed(2)}pt');
       w.writeAttribute('svg:height', '${visual.height.toStringAsFixed(2)}pt');
       w.writeEmptyElement(
@@ -1656,6 +1690,16 @@ abstract final class OdtDocumentWriter {
         prefix: 'draw',
         attributes: {'xlink:href': path, 'xlink:type': 'simple'},
       );
+      if (visual.picture.altTitle.isNotEmpty) {
+        w.writeStartElement('title', prefix: 'svg');
+        w.writeText(visual.picture.altTitle);
+        w.writeEndElement();
+      }
+      if (visual.picture.altDescription.isNotEmpty) {
+        w.writeStartElement('desc', prefix: 'svg');
+        w.writeText(visual.picture.altDescription);
+        w.writeEndElement();
+      }
       w.writeEndElement();
     } else if (inline) {
       writeOdfText(w, visual.title);
@@ -2062,6 +2106,9 @@ class _OdtLayout {
            : document.sections,
        media = sharedMedia?.media ?? <String>[],
        _mediaBytes = sharedMedia?._mediaBytes ?? <String, Uint8List>{},
+       _pictureNames = sharedMedia?._pictureNames ?? <String, String>{},
+       _pictureNameCounters =
+           sharedMedia?._pictureNameCounters ?? <String, int>{},
        notes = sharedMedia?.notes ?? _OdtNotes(document),
        comments = sharedMedia?.comments ?? _OdtComments(document),
        bookmarks = sharedMedia?.bookmarks ?? _OdtBookmarks(document),
@@ -2075,6 +2122,8 @@ class _OdtLayout {
       _OdtSectionStart(index, sections[index].breakKind),
   ];
   final List<String> media;
+  final Map<String, String> _pictureNames;
+  final Map<String, int> _pictureNameCounters;
   final _OdtNotes notes;
   final _OdtComments comments;
   final _OdtBookmarks bookmarks;
@@ -2096,6 +2145,23 @@ class _OdtLayout {
   final List<String> _styleBuffers = <String>[];
   final List<String Function()> _deferredStyleBuffers = [];
   int tableCount = 0;
+
+  String pictureName(String title) {
+    // ODF drawing names identify objects, independently of their alt titles.
+    // Writer can drop a later image when two frames reuse the same name.
+    // Allocate across every story without mutating the native visual titles.
+    final base = title.isEmpty ? 'Picture' : title;
+    var name = base;
+    if (_pictureNames.containsKey(name)) {
+      var suffix = _pictureNameCounters[base] ?? 1;
+      do {
+        name = '$base ${++suffix}';
+      } while (_pictureNames.containsKey(name));
+      _pictureNameCounters[base] = suffix;
+    }
+    _pictureNames[name] = title;
+    return name;
+  }
 
   String addMedia(Uint8List bytes) {
     final ext = _extension(bytes);

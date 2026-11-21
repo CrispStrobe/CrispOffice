@@ -424,9 +424,10 @@ M07 or the document-snapshot work in M08.
 - [x] Implement account-scoped plain-text signatures, independent new/reply defaults
   and literal Quick Text with additive schema 10 persistence, revision guards
   and connected/offline composer integration. See [compose-tools.md](compose-tools.md).
-- [ ] Execute and qualify the writing-tools model, migration, adapter and widget
-  regressions on the pinned toolchain; source review and authored tests are
-  recorded, but the current executor could not run them.
+- [x] Execute and qualify the writing-tools model, migration, adapter and widget
+  regressions on the pinned toolchain. Subsequent Word integration and the
+  scheduled-send continuation retain the successful local results separately
+  from the original executor failure.
 - [ ] Add multiple sender identities/alias routing and full-message templates;
   saved writing tools do not change transport identities or recipient fields.
 - [ ] Initial canonical body supports paragraphs, line breaks, emphasis, lists and links; add tables/inline images only with serializer/round-trip tests.
@@ -436,7 +437,7 @@ M07 or the document-snapshot work in M08.
 - [ ] Use the DATA submission path initially. Preserve the current all-or-abort RCPT policy and add typed recipient-attempt outcomes in the adapter/fork where the library exposes only an aggregate error. A failed RCPT followed by RSET must leave every recipient marked not submitted, never delivered. BDAT or partial-recipient delivery requires separate qualification before enabling it.
 - [x] Freeze the saved draft revision, MIME and complete envelope together; atomically clear the source draft; expose native account-scoped queued/submitting/accepted/failed/uncertain/cancelled states, restart recovery, explicit send/retry/cancel and guarded terminal cleanup. No automatic uncertain retry or reconnect sending.
 - [x] Add bounded Outbox review, exact EML/private-envelope export, atomic edit into a new draft and explicit local closure of uncertain records without resending or fabricating delivery. See [outbox-management.md](outbox-management.md).
-- [ ] Add durable undo-send delay and explicit scheduling on the frozen-entry foundation, with persistent eligibility, clock/restart handling and cancellation before provider invocation.
+- [x] Add durable undo-send delay and explicit foreground scheduling on the frozen-entry foundation, with persistent UTC eligibility, clock/restart handling, explicit resume and cancellation before provider invocation. See [scheduled-send.md](scheduled-send.md); server/OS background execution remains separate.
 - [ ] Complete partial-recipient results, live SMTP transcript qualification and provider-specific Sent-folder reconciliation. Background execution requires its own ownership/lifecycle acceptance.
 - [ ] Do not send imported arbitrary raw MIME through a text path and call it byte-exact. Byte-stream SMTP is a separate extension.
 

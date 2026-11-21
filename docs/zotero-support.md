@@ -9,6 +9,8 @@ Supported native ODT files can also be converted into editable Word documents
 with active citations and saved as DOCX.
 The separate **File → Export Zotero ODT…** action creates an ODT copy with
 supported native Zotero marks and preferences for LibreOffice.
+Supported embedded inline pictures from Zotero notes and annotations now also
+survive native ODT reopening and subsequent DOCX saves.
 
 ## Native Zotero document formatting
 
@@ -1525,6 +1527,18 @@ headers/controls/note tables, partial bibliographies, and ambiguous note owners.
 Choose a document style with Zotero first if the document has active fields but
 no saved preferences.
 
+Supported inline PNG and upright RGB JPEG pictures keep their raster bytes,
+physical size, links, accessible titles and alternative descriptions in the
+editable ODT copy. Duplicate or empty drawing-object names receive deterministic
+unique names; the accessible metadata and original document objects are retained.
+Reopening the supported subset retains one picture at each original position
+and keeps adjacent citations editable. The document-wide limit is 32 pictures
+and 4 MiB of image-file bytes, with the same raster bounds as Add Zotero Note.
+Adjusted/floating pictures, shared picture owners and pictures inside citation
+or bibliography results are outside this export contract and refuse before
+saving. The [picture work record](validation/zotero-odt-images-20261121/README.md)
+describes the tested conversions and remaining host-application boundaries.
+
 Ordinary ODT export still writes visible citation caches. This explicit action
 adds native Zotero metadata within the existing writer's formatting envelope;
 it does not promise arbitrary Word formatting preservation or that every
@@ -1567,6 +1581,10 @@ The importer accepts a bounded subset:
   converts `ReferenceMark` storage to Word `Field` only after reconstruction.
   Standard document properties are mapped; the exact original `meta.xml` is
   also retained as archival DOCX custom XML, including unrelated properties.
+- Embedded character-anchored PNG and upright RGB JPEG pictures, including
+  their size, supported run formatting, title, alternative description and
+  ordinary links. Pictures occupy one native position; citations before or
+  after them retain their original ownership and offsets.
 
 Merged tables require an explicit ODT covered-cell element at every covered
 logical position. Column spans are bounded to 32 and row spans to 256, within
@@ -1587,12 +1605,14 @@ executes those engine/editor regressions and preserves the actual results.
 Imported decimal endnotes now retain their numbering through DOCX reopening.
 
 Unsupported used formatting or structure rejects the whole import before it
-replaces the active document. Examples include drawings/images, comments,
+replaces the active document. Examples include floating or adjusted drawings, comments,
 revisions, protected/linked sections, repeated table owners, custom note
 numbering, unsupported list continuation/affixes, relative/internal links and
 ambiguous citation ranges. A citation cache containing a hyperlink is outside
 the current editable field contract; external hyperlinks outside citations are
-preserved. A field cannot enclose a note anchor. Package, XML,
+preserved. A field cannot enclose a note anchor or picture. Unsupported raster
+formats, external image URLs, missing media and picture resource exhaustion
+also refuse the whole import. Package, XML,
 text and structural budgets apply throughout. The
 [native-input contract](roadmaps/zotero/native-odt-input.md) gives the exact
 envelope and remaining work.

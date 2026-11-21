@@ -43,6 +43,8 @@ final class OdtReaderStyles {
 
   bool hasParagraphStyle(String name) => _styles.containsKey('paragraph/$name');
 
+  bool hasTextStyle(String name) => _styles.containsKey('text/$name');
+
   /// Returns default and named ancestor definitions, in inheritance order.
   /// The immutable list refers to the caller's already bounded input DOM.
   List<XmlElement> styleChain(String family, String? name) {
@@ -944,6 +946,11 @@ final class OdtReaderStyles {
         'table-cell' => const {'table-cell-properties'},
         'section' => const {'section-properties'},
         'drawing-page' => const {'drawing-page-properties'},
+        'graphic' => const {
+          'graphic-properties',
+          'paragraph-properties',
+          'text-properties',
+        },
         _ => const <String>{},
       };
       if (child.namespaceUri != _style || !allowed.contains(child.localName)) {
