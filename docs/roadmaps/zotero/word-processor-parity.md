@@ -420,13 +420,16 @@ in the [qualification record](../../validation/zotero-editable-odt-20261121/READ
 The [picture continuation](../../validation/zotero-odt-images-20261121/README.md)
 closes a gap between existing Zotero note/annotation insertion and native ODT
 reopening. Supported embedded inline PNG and upright RGB/YCbCr JPEG pictures
-retain their bytes, dimensions, links, title/alternative descriptions and
+retain their bytes, physical size, links, accessible titles/descriptions and
 supported run properties. Exact picture positions keep adjacent citation
 offsets and owners stable through native reopening, controlled refresh/unlink,
 undo/redo and further DOCX saves.
 
 The exporter emits one frame per picture without duplicating its internal
-placeholder as visible text. The importer qualifies each consumed frame/image
+placeholder as visible text. It assigns unique drawing-object names across
+stories so LibreOffice does not drop pictures with duplicate names. Accessible
+titles/descriptions remain independent of those assigned names. The importer
+qualifies each consumed frame/image
 path rather than clearing all drawing findings. It reuses the bounded raster
 decoder across the whole document and refuses unsupported ownership, image
 adjustments and pictures inside field caches. The [input](native-odt-input.md)
