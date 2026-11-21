@@ -81,6 +81,14 @@ final class OdtReaderTextStyle extends WmlRunProps {
   OdtReaderTextStyle copy() => OdtReaderTextStyle.from(this);
 
   void validateEffective() {
+    // ODF 1.4 section 20.227 leaves a simultaneous non-default font variant
+    // and text transform undefined. Check after inheritance so an explicit
+    // child normal/none can resolve the conflict before text is materialized.
+    if (allCaps && smallCaps) {
+      throw UnsupportedError(
+        'Combined ODT uppercase and small capitals are not supported.',
+      );
+    }
     if (opacity != 100) {
       throw UnsupportedError('Effective ODT text opacity is not supported.');
     }

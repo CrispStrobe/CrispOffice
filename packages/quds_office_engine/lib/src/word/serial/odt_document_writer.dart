@@ -420,14 +420,6 @@ abstract final class OdtDocumentWriter {
     // compare their reference positions below instead of emitted bodies.
     _removeAnnotations(root);
     void normalize(XmlElement element) {
-      if (element.localName == 'frame' &&
-          element.namespaceUri == drawing &&
-          element.firstChild('image', namespaceUri: drawing) != null) {
-        // Package-wide picture identities must be unique, even for visually
-        // equal headers. Ignore allocated names only in this comparison copy;
-        // their suffixes must not force a continuous section onto a new page.
-        element.removeAttribute('name', namespaceUri: drawing);
-      }
       if (element.localName == 'image' && element.namespaceUri == drawing) {
         final path = element.getAttribute(
           'href',

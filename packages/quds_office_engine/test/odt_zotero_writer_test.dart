@@ -539,8 +539,8 @@ void main() {
         isTrue,
       );
 
-      // Full uppercase is emitted as a native ODF transform. The rich ODT reader
-      // deliberately retains its separate transformation refusal boundary.
+      // Full uppercase stays display formatting through native ODT import;
+      // citation metadata and authored text keep their original casing.
       run.properties
         ..smallCaps = false
         ..allCaps = true;
@@ -553,9 +553,19 @@ void main() {
         (await OdfZotero.inspect(caps)).fields.single.cachedText,
         'Latin العربية',
       );
-      await expectLater(
-        OdtDocumentReader.readBytes(caps),
-        throwsUnsupportedError,
+      final capsImported = await OdtDocumentReader.readBytes(caps);
+      expect(
+        WordZotero.fields(capsImported).single.cachedText,
+        'Latin العربية',
+      );
+      expect(
+        capsImported.paragraphs.single.inlines
+            .whereType<WmlRun>()
+            .where((r) => r.text.contains('Latin'))
+            .single
+            .properties
+            .allCaps,
+        isTrue,
       );
       expect(run.text, 'Latin العربية');
     },

@@ -1044,8 +1044,18 @@ final class OdtReaderStyles {
       result.opacity = number;
     }
     final transform = take(_fo, 'text-transform');
-    if (transform != null && transform != 'none') {
-      throw UnsupportedError('ODT text transformation is not supported.');
+    if (transform != null) {
+      // ODF uppercase is presentation formatting, like Word's w:caps. Keep
+      // authored Unicode and the native citation's UTF-16 endpoints intact;
+      // transforming the string would move fields after expanding characters.
+      result.allCaps = switch (transform) {
+        'none' => false,
+        'uppercase' => true,
+        _ => throw UnsupportedError(
+          'Unsupported ODT text transformation: $transform',
+        ),
+      };
+      result.explicitProperties.add('allCaps');
     }
     final opticalSizing = take(_loext, 'font-optical-sizing');
     if (opticalSizing != null && opticalSizing != 'auto') {
