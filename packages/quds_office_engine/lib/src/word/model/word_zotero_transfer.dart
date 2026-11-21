@@ -364,7 +364,13 @@ abstract final class WordZoteroTransfer {
             directColor == null && source.styleId == null);
     final styledLinkColor =
         linkStyle &&
-        const {'0563C1', '0000FF', '954F72', '800080'}.contains(color);
+        const {
+          '0563C1',
+          '0000FF',
+          '000080',
+          '954F72',
+          '800080',
+        }.contains(color);
     if (linkStyle) {
       result.styleId = null;
       result.explicitProperties.remove('rStyle');
@@ -730,21 +736,18 @@ final class WordZoteroTransferPlan {
     // Validate before touching the source, including cycles/duplicate owners
     // introduced by an unsupported caller of the detached model.
     _TransferModelGuard(document);
-    for (final section in document.sections) {
-      for (final block in section.blocks) {
-        _validatePublish(block);
-      }
-    }
-    for (final note in [...document.footnotes, ...document.endnotes]) {
-      for (final block in note.blocks) {
-        _validatePublish(block);
-      }
-    }
+    final publication = _TransferPublication();
     for (var i = 0; i < document.sections.length; i++) {
-      _publishList(_source.sections[i].blocks, document.sections[i].blocks);
+      _prepareList(
+        _source.sections[i].blocks,
+        document.sections[i].blocks,
+        publication,
+      );
     }
-    _publishNotes(_source.footnotes, document.footnotes);
-    _publishNotes(_source.endnotes, document.endnotes);
+    _prepareNotes(_source.footnotes, document.footnotes, publication);
+    _prepareNotes(_source.endnotes, document.endnotes, publication);
+    publication.apply();
+    _published.addAll(publication.paragraphs);
     _source.zoteroDocumentData = document.zoteroDocumentData;
     _applied = true;
   }
@@ -772,32 +775,21 @@ final class WordZoteroTransferPlan {
     }
   }
 
-  void _publishList(List<WmlBlock> target, List<WmlBlock> staged) {
-    final blocks = [for (final block in staged) _publishBlock(block)];
-    target
-      ..clear()
-      ..addAll(blocks);
+  void _prepareList(
+    List<WmlBlock> target,
+    List<WmlBlock> staged,
+    _TransferPublication publication,
+  ) {
+    publication.replace(target, [
+      for (final block in staged) _prepareBlock(block, publication),
+    ]);
   }
 
-  void _validatePublish(WmlBlock staged) {
-    final original = _originals[staged];
-    final children = WordTree.childLists(staged).toList();
-    if (original != null &&
-        children.length != WordTree.childLists(original).length) {
-      throw StateError('A transfer changed an existing container structure.');
-    }
-    for (final list in children) {
-      for (final block in list) {
-        _validatePublish(block);
-      }
-    }
-  }
-
-  WmlBlock _publishBlock(WmlBlock staged) {
+  WmlBlock _prepareBlock(WmlBlock staged, _TransferPublication publication) {
     final original = _originals[staged];
     if (staged is WmlParagraph) {
       final target = original is WmlParagraph ? original : WmlParagraph();
-      target.properties = staged.properties.copy();
+      final properties = staged.properties.copy();
       final inlines = WmlClone.inlines(staged.inlines);
       for (var i = 0; i < inlines.length; i++) {
         final run = inlines[i];
@@ -806,10 +798,9 @@ final class WordZoteroTransferPlan {
           run.inlineVisual = _visuals[source.inlineVisual] ?? run.inlineVisual;
         }
       }
-      target.inlines
-        ..clear()
-        ..addAll(inlines);
-      _published[staged] = target;
+      publication.replace(target.inlines, inlines);
+      publication.changes.add(() => target.properties = properties);
+      publication.paragraphs[staged] = target;
       return target;
     }
     if (original != null) {
@@ -819,19 +810,23 @@ final class WordZoteroTransferPlan {
         throw StateError('A transfer changed an existing container structure.');
       }
       for (var i = 0; i < from.length; i++) {
-        _publishList(to[i], from[i]);
+        _prepareList(to[i], from[i], publication);
       }
       return original;
     }
     return WmlClone.block(staged);
   }
 
-  void _publishNotes(List<WmlNote> target, List<WmlNote> staged) {
+  void _prepareNotes(
+    List<WmlNote> target,
+    List<WmlNote> staged,
+    _TransferPublication publication,
+  ) {
     final notes = <WmlNote>[];
     for (final note in staged) {
       final original = _notes[note];
       if (original != null) {
-        _publishList(original.blocks, note.blocks);
+        _prepareList(original.blocks, note.blocks, publication);
         notes.add(original);
       } else {
         final added = WmlNote(
@@ -842,13 +837,57 @@ final class WordZoteroTransferPlan {
           referencePropertiesXml: note.referencePropertiesXml,
           blocks: [],
         );
-        _publishList(added.blocks, note.blocks);
+        _prepareList(added.blocks, note.blocks, publication);
         notes.add(added);
       }
     }
-    target
-      ..clear()
-      ..addAll(notes);
+    publication.replace(target, notes);
+  }
+}
+
+/// Prepares every source write before publication. Public model constructors
+/// retain caller-owned lists, which can have narrower runtime element types
+/// (for example `List<WmlParagraph>` used as section blocks).
+final class _TransferPublication {
+  final changes = <void Function()>[];
+  final paragraphs = Map<WmlParagraph, WmlParagraph>.identity();
+
+  void replace<T>(List<T> target, List<T> values) {
+    if (target.length == values.length &&
+        values.indexed.every(
+          (entry) => identical(target[entry.$1], entry.$2),
+        )) {
+      return;
+    }
+    try {
+      // A sublist keeps the owner's runtime element type without changing its
+      // contents. Check actual outgoing objects, including reused identities.
+      final probe = target.sublist(0, 0);
+      for (final value in values) {
+        probe.add(value);
+      }
+      // Standard fixed-length and unmodifiable lists reject even this no-op.
+      // Refuse them before any previously prepared paragraph/list is changed.
+      target.length = target.length;
+    } on Object {
+      throw UnsupportedError(
+        'Zotero transfer needs growable containers that accept the updated content.',
+      );
+    }
+    changes.add(() {
+      target.clear();
+      // addAll checks the iterable's runtime type before checking its values;
+      // individual writes also support valid covariant paragraph/run lists.
+      for (final value in values) {
+        target.add(value);
+      }
+    });
+  }
+
+  void apply() {
+    for (final change in changes) {
+      change();
+    }
   }
 }
 

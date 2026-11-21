@@ -8203,6 +8203,7 @@ class WordEditorController extends OfficeController {
     }
     if (!session.hasChanges) return;
     final before = _ZoteroDocumentSnapshot.capture(document);
+    before.assertRestorable(document);
     late final _ZoteroDocumentSnapshot after;
     try {
       session.apply();
@@ -16339,24 +16340,61 @@ final class _ZoteroDocumentSnapshot {
   final String? data;
   final WordListNumberingSnapshot numbering;
 
+  void assertRestorable(WmlDocument document) {
+    for (final entry in blocks.entries) {
+      _assertRestorableList(entry.key, entry.value);
+    }
+    for (final entry in paragraphs.entries) {
+      _assertRestorableList(entry.key.inlines, entry.value.inlines);
+    }
+    _assertRestorableList(document.footnotes, footnotes);
+    _assertRestorableList(document.endnotes, endnotes);
+  }
+
+  static void _assertRestorableList<T>(List<T> target, Iterable<T> values) {
+    try {
+      // No content changes: reject fixed/unmodifiable containers and retain
+      // the runtime element type when checking covariant owners.
+      target.length = target.length;
+      final probe = target.sublist(0, 0);
+      for (final value in values) {
+        probe.add(value);
+      }
+    } on UnsupportedError {
+      throw UnsupportedError(
+        'Zotero edits require mutable document containers.',
+      );
+    } on TypeError {
+      throw UnsupportedError(
+        'Zotero edits require compatible document containers.',
+      );
+    }
+  }
+
   void restore(WmlDocument document) {
     for (final entry in blocks.entries) {
-      entry.key
-        ..clear()
-        ..addAll(entry.value);
+      entry.key.clear();
+      // Owners may retain a covariant List<WmlParagraph>. Adding each saved
+      // value preserves that valid element type without an Iterable cast.
+      for (final block in entry.value) {
+        entry.key.add(block);
+      }
     }
     for (final entry in paragraphs.entries) {
       entry.key.properties = entry.value.properties.copy();
-      entry.key.inlines
-        ..clear()
-        ..addAll(WmlClone.inlines(entry.value.inlines));
+      entry.key.inlines.clear();
+      for (final inline in WmlClone.inlines(entry.value.inlines)) {
+        entry.key.inlines.add(inline);
+      }
     }
-    document.footnotes
-      ..clear()
-      ..addAll(footnotes);
-    document.endnotes
-      ..clear()
-      ..addAll(endnotes);
+    document.footnotes.clear();
+    for (final note in footnotes) {
+      document.footnotes.add(note);
+    }
+    document.endnotes.clear();
+    for (final note in endnotes) {
+      document.endnotes.add(note);
+    }
     document.zoteroDocumentData = data;
     numbering.restore(document);
   }

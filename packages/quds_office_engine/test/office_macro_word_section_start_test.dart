@@ -156,8 +156,9 @@ void main() {
     final reopened = WordDeserializer().readBytes(
       WordSerializer().writeBytes(document),
     );
-    final start = _source(reopened.sections.single)
-        .firstChild('type', namespaceUri: _w)!;
+    final start = _source(
+      reopened.sections.single,
+    ).firstChild('type', namespaceUri: _w)!;
     expect(start.getAttribute('val', namespaceUri: _w), 'nextPage');
     expect(start.getAttribute('val', namespaceUri: _x), 'foreign');
   });
@@ -227,8 +228,9 @@ void main() {
         document = WordDeserializer().readBytes(
           WordSerializer().writeBytes(document),
         );
-        final type = _source(document.sections.single)
-            .firstChild('type', namespaceUri: _w)!;
+        final type = _source(
+          document.sections.single,
+        ).firstChild('type', namespaceUri: _w)!;
         expect(type.getAttribute('val', namespaceUri: _w), 'oddPage');
         expect(type.getAttribute('val', namespaceUri: _x), 'foreign');
         expect(type.firstChild('opaque', namespaceUri: _x), isNotNull);
@@ -301,26 +303,29 @@ void main() {
     });
   }
 
-  test('original alternative section properties are rejected after projection', () {
-    final document = _document();
-    final part = document.package!.getPart('/word/document.xml')!;
-    part.writeText(
-      part
-          .readText()
-          .replaceFirst(
-            '<w:sectPr>',
-            '<mc:AlternateContent><mc:Choice Requires="x"><w:sectPr>',
-          )
-          .replaceFirst(
-            '</w:sectPr>',
-            '</w:sectPr></mc:Choice>'
-                '<mc:Fallback><w:sectPr/></mc:Fallback></mc:AlternateContent>',
-          ),
-    );
-    // The captured model still resolves one section. Admission must also
-    // inspect the original package, not only that projected source fragment.
-    _refuses(document, 'oddPage', throwsUnsupportedError);
-  });
+  test(
+    'original alternative section properties are rejected after projection',
+    () {
+      final document = _document();
+      final part = document.package!.getPart('/word/document.xml')!;
+      part.writeText(
+        part
+            .readText()
+            .replaceFirst(
+              '<w:sectPr>',
+              '<mc:AlternateContent><mc:Choice Requires="x"><w:sectPr>',
+            )
+            .replaceFirst(
+              '</w:sectPr>',
+              '</w:sectPr></mc:Choice>'
+                  '<mc:Fallback><w:sectPr/></mc:Fallback></mc:AlternateContent>',
+            ),
+      );
+      // The captured model still resolves one section. Admission must also
+      // inspect the original package, not only that projected source fragment.
+      _refuses(document, 'oddPage', throwsUnsupportedError);
+    },
+  );
 
   test('a malformed section source is rejected before changing the break', () {
     final document = _document();

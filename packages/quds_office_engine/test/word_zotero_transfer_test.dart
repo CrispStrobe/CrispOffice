@@ -138,6 +138,28 @@ void _refreshImported(
 }
 
 void main() {
+  test('removes observed LibreOffice navy only from its hyperlink style', () {
+    final styled = _linked(_code('first'));
+    (styled.inlines.single as WmlRun).properties = WmlRunProps(
+      styleId: 'Hyperlink',
+      color: '000080',
+      underline: WmlUnderline.single,
+    );
+    final authored = _linked(_code('second'));
+    (authored.inlines.single as WmlRun).properties = WmlRunProps(
+      color: '000080',
+      underline: WmlUnderline.single,
+    );
+    final source = _reopen(_carrier(content: [styled, authored]));
+    final plan = WordZoteroTransfer.prepareImport(source);
+    _refreshImported(plan);
+    plan.apply();
+    final fields = WordZotero.fields(_reopen(source));
+    expect(fields[0].run!.properties.styleId, isNull);
+    expect(fields[0].run!.properties.color, '000000');
+    expect(fields[1].run!.properties.color, '000080');
+  });
+
   for (final style in ['Hyperlink', 'FollowedHyperlink']) {
     test('removes $style carrier appearance while retaining rich output', () {
       final carrier = _linked(_code('first'));
@@ -1029,4 +1051,116 @@ void main() {
       expect(WordZoteroTransfer.isTransferDocument(source), isTrue);
     },
   );
+
+  test('publishes into covariant paragraph and run lists without widening', () {
+    final source = _active();
+    final paragraph = source.paragraphs.single;
+    final blocks = <WmlParagraph>[paragraph];
+    final inlines = List<WmlRun>.of(paragraph.inlines.whereType<WmlRun>());
+    source.sections.single.blocks = blocks;
+    paragraph.inlines = inlines;
+    // Untouched empty note buckets need no mutation during publication.
+    source.footnotes = const <WmlNote>[];
+    source.endnotes = const <WmlNote>[];
+    _export(source).apply();
+    expect(source.sections.single.blocks, same(blocks));
+    expect(paragraph.inlines, same(inlines));
+    expect(WordZoteroTransfer.isTransferDocument(source), isTrue);
+    final imported = WordZoteroTransfer.prepareImport(source);
+    _refreshImported(imported);
+    imported.apply();
+    expect(source.sections.single.blocks, same(blocks));
+    expect(blocks, [same(paragraph)]);
+    expect(paragraph.inlines, same(inlines));
+    expect(WordZotero.fields(source).single.cachedText, '(Updated)');
+  });
+
+  test('incompatible final section refuses publication before any edit', () {
+    final source = _active();
+    final first = source.paragraphs.single;
+    final originalText = first.text;
+    final originalInlines = List<WmlInline>.of(first.inlines);
+    final originalProperties = first.properties;
+    final originalData = source.zoteroDocumentData;
+    final cellParagraph = _p('Untouched cell');
+    final table = WmlTable(
+      rows: [
+        WmlTableRow(
+          cells: [
+            WmlTableCell(blocks: <WmlParagraph>[cellParagraph]),
+          ],
+        ),
+      ],
+    );
+    final narrow = <WmlTable>[table];
+    source.sections.add(WmlSection(blocks: narrow));
+    final plan = _export(source);
+    expect(() => plan.apply(), throwsUnsupportedError);
+    expect(source.sections.first.blocks, [same(first)]);
+    expect(source.sections.last.blocks, same(narrow));
+    expect(narrow, [same(table)]);
+    expect(first.text, originalText);
+    expect(first.inlines, originalInlines);
+    expect(first.properties, same(originalProperties));
+    expect(cellParagraph.text, 'Untouched cell');
+    expect(source.zoteroDocumentData, originalData);
+    expect(WordZotero.fields(source), hasLength(1));
+    plan.assertUnchanged();
+  });
+
+  for (final immutable in [false, true]) {
+    for (final owner in ['blocks', 'inlines']) {
+      test(
+        '${immutable ? 'unmodifiable' : 'fixed-length'} $owner refuse before publication',
+        () {
+          final source = _active();
+          final paragraph = source.paragraphs.single;
+          if (owner == 'blocks') {
+            source.sections.single.blocks = immutable
+                ? List<WmlBlock>.unmodifiable([paragraph])
+                : List<WmlBlock>.of([paragraph], growable: false);
+          } else {
+            paragraph.inlines = immutable
+                ? List<WmlInline>.unmodifiable(paragraph.inlines)
+                : List<WmlInline>.of(paragraph.inlines, growable: false);
+          }
+          final originalInlines = List<WmlInline>.of(paragraph.inlines);
+          final originalProperties = paragraph.properties;
+          final originalData = source.zoteroDocumentData;
+          final plan = _export(source);
+          expect(() => plan.apply(), throwsUnsupportedError);
+          expect(source.sections.single.blocks, [same(paragraph)]);
+          expect(paragraph.inlines, originalInlines);
+          expect(paragraph.properties, same(originalProperties));
+          expect(source.zoteroDocumentData, originalData);
+          expect(WordZotero.fields(source), hasLength(1));
+          plan.assertUnchanged();
+        },
+      );
+    }
+  }
+
+  test('incompatible nested cell owner is checked before any publication', () {
+    final paragraph = _linked(_code('first'));
+    final cellParagraph = _p('Cell');
+    final narrow = <WmlParagraph>[cellParagraph];
+    final table = WmlTable(
+      rows: [
+        WmlTableRow(cells: [WmlTableCell(blocks: narrow)]),
+      ],
+    );
+    final source = _carrier(content: [paragraph, table]);
+    final originalText = paragraph.text;
+    final plan = WordZoteroTransfer.prepareImport(source);
+    final stagedTable = plan.document.sections.single.blocks
+        .whereType<WmlTable>()
+        .single;
+    stagedTable.rows.single.cells.single.blocks.add(WmlTable());
+    expect(() => plan.apply(), throwsUnsupportedError);
+    expect(WordZoteroTransfer.isTransferDocument(source), isTrue);
+    expect(paragraph.text, originalText);
+    expect(narrow, [same(cellParagraph)]);
+    expect(cellParagraph.text, 'Cell');
+    plan.assertUnchanged();
+  });
 }

@@ -1,0 +1,88 @@
+{
+  "checked": "2026-11-21",
+  "googleDocs": {
+    "commit": "69b4b901630239ca6de3197d9175d98ee21f491a",
+    "sources": [
+      {
+        "path": "src/connector/googleDocs.js",
+        "blob": "46a513a068ff723a52f2ab6a7feb55adf8241947"
+      },
+      {
+        "path": "src/connector/document.js",
+        "blob": "19ee4166c4d20e2ff2b698a92c312b6fa10f9c33"
+      }
+    ]
+  },
+  "utilities": {
+    "commit": "4051881d59c6c12d34417d4c226f37218051be90",
+    "blob": "0cf67a0da9b8d33ae195b1346ea209608a557c15",
+    "path": "utilities.js"
+  },
+  "locales": {
+    "commit": "ebdf94eda5257292967ebe39ea06a9a5ed31d15c",
+    "count": 49,
+    "names": [
+      "af-ZA",
+      "ar",
+      "bg-BG",
+      "br",
+      "ca-AD",
+      "cs-CZ",
+      "da-DK",
+      "de",
+      "el-GR",
+      "en-GB",
+      "en-US",
+      "es-ES",
+      "et-EE",
+      "eu-ES",
+      "fa",
+      "fi-FI",
+      "fr-FR",
+      "gl-ES",
+      "he-IL",
+      "hr-HR",
+      "hu-HU",
+      "id-ID",
+      "is-IS",
+      "it-IT",
+      "ja-JP",
+      "km",
+      "ko-KR",
+      "lt-LT",
+      "mn-MN",
+      "nb-NO",
+      "nl-NL",
+      "nn-NO",
+      "pl-PL",
+      "pt-BR",
+      "pt-PT",
+      "ro-RO",
+      "ru-RU",
+      "sk-SK",
+      "sl-SI",
+      "sr-Latn-RS",
+      "sr-RS",
+      "sv-SE",
+      "ta",
+      "th-TH",
+      "tr-TR",
+      "uk-UA",
+      "vi-VN",
+      "zh-CN",
+      "zh-TW"
+    ],
+    "enUSBlob": "cc2b993eebaede9d4c3cd2b9a800ed6b4182cadd",
+    "arabicBlob": "217e56be0e472942af901429a12f67439baab384"
+  },
+  "historical": {
+    "libreOffice": {
+      "commit": "0ec6e8d3658ffdddbaec44624f2747500ff6d258",
+      "blob": "8e19e9db8ced518bf87a2c210932bff3964b1bcc"
+    },
+    "word": {
+      "commit": "711cd55683962a3a6025b8aa3d5c71deb955b981",
+      "blob": "d18ddd0cfa7de05ed67abc1c742ddaa071ec930f"
+    }
+  }
+}

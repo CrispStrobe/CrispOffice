@@ -26,13 +26,44 @@ import remains a separate milestone.
 An initial hypothesis of an Add Note callback mismatch was rejected after tracing
 the caller as well as the wrapper: the wrapper parameter names are stale, but
 its actual positional arguments match the existing Quds implementation. The
-speculative compatibility change in checkpoint `fb692a7f` is removed in the next
-checkpoint; it is not part of the delivered behavior. The original callback
+speculative compatibility change in checkpoint `fb692a7f` was removed in
+`3da241d5`; it is not part of the delivered behavior. The original callback
 contract and regression tests remain intact.
+
+## Publication intake and implementation findings
+
+A second frozen inventory at 2026-11-21 06:06:59 UTC captured 338 branch and PR
+heads. It identified four new incoming heads: Word section controls
+`81b76200`, Mail repository sessions `4d435f81`, proofing scheduling `ef30d540`
+and keystroke harness improvements `1460876e`. The respective preserving merge
+checkpoints are `d480d31e`, `43fb2e1a`, `d24240ee` and `f4c493d9`. Both package
+changelog conflicts retain the complete entries. The replay on `f4c493d9`
+accounts for 314 ancestors and 24 freshly verified historical equivalents,
+with zero uncovered refs. `publication-intake/` retains the captured refs,
+immutable-SHA fetch receipts, deltas, reviews and replay.
+
+Transfer/model/UI checkpoint `3da241d5` and carrier/appearance checkpoint
+`c21b6d51` preserve the implementation before the final integrated gate.
+Development qualification found and fixed three file-format issues: adjacent
+ODT links could lose the second citation's Unicode suffix in LibreOffice;
+undefined generated Bibliography styles caused the tested converter to append
+an extra character; and imported temporary links could leave active citations
+with hyperlink color/style. The fixes coalesce equal-target ordinary ODT link
+runs, provide the missing referenced bibliography style without replacing
+custom styles, and remove only recognized carrier appearance.
+
+A programmatic covariant block list also exposed a publication atomicity defect.
+Transfer now preflights every outgoing container before any source mutation and
+publishes individual compatible elements. Incompatible, fixed and immutable
+owners fail before mutation; editor snapshots retain covariant undo/redo and
+check restorability before entering the application/rollback sequence.
 
 ## Validation status
 
-This first implementation checkpoint contains the wire protocol and regression
-tests. Model, editor and interoperability qualification are still in progress.
-Final commands, counts, source binding and remaining boundaries will be recorded
-before publication to main. Intermediate runs are not final acceptance.
+The final combined-source gate is pending. Focused development runs are retained
+separately; they are not final acceptance totals. Final commands, exact input
+hashes, raw case events, counts, converter artifacts and remaining boundaries
+will be recorded before the authorized merge to main. Installed Zotero/Word/
+LibreOffice plugin sessions and direct native ODT input remain unqualified.
+See `installed-application-acceptance.md` for the next versioned acceptance
+matrix.
