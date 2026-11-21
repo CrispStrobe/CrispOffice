@@ -47,6 +47,7 @@ final class OdtReaderTextStyle extends WmlRunProps {
         italic: source.italic,
         underline: source.underline,
         strike: source.strike,
+        allCaps: source.allCaps,
         smallCaps: source.smallCaps,
         color: source.color,
         highlight: source.highlight,

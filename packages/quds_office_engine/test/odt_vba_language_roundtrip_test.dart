@@ -96,6 +96,7 @@ void _expectDocument(
   WmlDocument document, {
   String targetLanguage = _normalLanguage,
   String targetComplexFont = _complexFont,
+  bool targetAllCaps = false,
 }) {
   final paragraphs = document.paragraphs.toList();
   expect(paragraphs.map((paragraph) => paragraph.text), [
@@ -131,6 +132,8 @@ void _expectDocument(
       expect(properties.complexScriptLanguage, _complexLanguage);
       expect(properties.fontSizeHalfPoints, 24);
       expect(properties.noProof, isFalse);
+      expect(properties.allCaps, index == 1 && targetAllCaps);
+      expect(properties.smallCaps, isFalse);
       final emphasisStart = _prefix.length + 1;
       final emphasisEnd = emphasisStart + 'Book العربية'.length;
       final emphasized =
@@ -163,12 +166,21 @@ void main() {
       statement: 'LanguageID = wdGerman',
       language: 'de-DE',
       complexFont: _complexFont,
+      allCaps: false,
     ),
     (
       name: 'complex font',
       statement: 'Font.NameBi = "Noto Naskh Arabic"',
       language: _normalLanguage,
       complexFont: 'Noto Naskh Arabic',
+      allCaps: false,
+    ),
+    (
+      name: 'all capitals',
+      statement: 'Font.AllCaps = True',
+      language: _normalLanguage,
+      complexFont: _complexFont,
+      allCaps: true,
     ),
   ]) {
     test(
@@ -211,6 +223,7 @@ End Sub
             reopened,
             targetLanguage: change.language,
             targetComplexFont: change.complexFont,
+            targetAllCaps: change.allCaps,
           );
           if (cycle < 2) saved = WordSerializer().writeBytes(reopened);
         }
