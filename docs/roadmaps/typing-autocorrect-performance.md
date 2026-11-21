@@ -198,7 +198,7 @@ a normal typing edit already re-lays only a handful of blocks.
 ### Remaining
 
 - Caret/selection and proofing-squiggle overlays: separate paint layers.
-- Status-line trailing throttle (currently rebuilds on every controller
-  notification; measured as `rebuilds.statusLine`).
+- Status-line trailing throttle: implemented at 90 ms; benchmark rebuilds fell
+  from 309 to 213. The caret/squiggle paint-layer split is still open.
 - Worker audit: native providers already use workers; deterministic rule/report
   work remains on the UI isolate.
