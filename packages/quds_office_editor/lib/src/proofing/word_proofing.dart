@@ -180,8 +180,8 @@ abstract final class WordProofingTiming {
   /// background. The default of [WordProofingSchedule.backgroundIdle].
   static const Duration backgroundIdle = Duration(seconds: 3);
 
-  /// Status chrome shows "Checking…" only for background or explicit passes
-  /// that run this long. Checks of the text being typed never show it.
+  /// Status chrome shows "Checking…" for background, initial document-wide
+  /// or explicit passes that run this long. Local typing checks never show it.
   static const Duration checkingIndicatorDelay = Duration(milliseconds: 1000);
 
   /// Main-isolate time a pass may use before yielding to input and frames.
@@ -514,6 +514,10 @@ final class WordProofingSession extends ChangeNotifier {
   int passCount = 0;
   int checkedParagraphCount = 0;
   final Map<String, int> passCountsByTrigger = {};
+
+  /// Passes over the typed text whose results changed nothing on screen and
+  /// therefore did not notify listeners.
+  int silentPassCount = 0;
 
   WordProofingSummary get _summary {
     final pending = _pendingPublish;
@@ -1842,9 +1846,9 @@ final class WordProofingSession extends ChangeNotifier {
   }
 
   /// Runs one pass. Each trigger has its own providers ([_kindsFor]),
-  /// scope ([_scope]) and visibility: only background and explicit passes
-  /// publish progress and may show "Checking…"; checks of the text being
-  /// typed publish once, when they finish.
+  /// scope ([_scope]) and visibility: background, initial document-wide and
+  /// explicit passes publish progress and may show "Checking…"; local typing
+  /// checks publish their results once, when they finish.
   Future<WordProofingSummary> _runPass(
     _Trigger trigger, {
     bool includeManual = false,
@@ -1870,7 +1874,11 @@ final class WordProofingSession extends ChangeNotifier {
         _backgroundTimer = null;
     }
     final kinds = _kindsFor(trigger);
-    if (kinds.isEmpty) return _summary;
+    // No configured provider belongs to the requested groups (for example
+    // no spelling-only provider for a word check): nothing to run.
+    if (kinds.isEmpty || (!explicit && _available(kinds).isEmpty)) {
+      return _summary;
+    }
     // Nothing checked yet (a document was loaded or the configuration
     // changed): the first pause checks the whole document, like idle time.
     final loading =
@@ -1990,6 +1998,9 @@ final class WordProofingSession extends ChangeNotifier {
       final wanted = _available(kinds);
       final missing = reusable ? wanted.difference(previous.kinds) : wanted;
       final paragraphReports = <OfficeProofingReport>[];
+      // Every available group already has settled results (an empty
+      // provider selection must never be sent or cached).
+      if (!useManual && missing.isEmpty) continue;
       for (var index = 0; index < snapshot.segments.length; index++) {
         final request = _request(
           snapshot,
@@ -2051,6 +2062,14 @@ final class WordProofingSession extends ChangeNotifier {
       refresh();
       return _summary;
     }
+    // What the canvas paints for the checked text right now.
+    final painted = showProgress
+        ? null
+        : [
+            for (final snapshot in checkOrder)
+              findingsByParagraph[snapshot.paragraph],
+          ];
+    final hadResults = _pendingPublish != null || _published.hasResults;
     _publishCached(
       captured,
       documentId: documentId,
@@ -2058,9 +2077,44 @@ final class WordProofingSession extends ChangeNotifier {
       useManual: useManual,
       finished: true,
     );
-    notifyListeners();
+    // A check of the text being typed that changes no mark on screen does
+    // not notify: listeners (and the host's whole chrome) would rebuild for
+    // nothing. Readers still get the new summary; status has its own notifier.
+    if (painted == null ||
+        !hadResults ||
+        !_sameMarks(painted, [
+          for (final snapshot in checkOrder) _findings[snapshot.paragraph],
+        ])) {
+      notifyListeners();
+    } else {
+      silentPassCount++;
+    }
     _finishAutomatic(trigger, captured, document);
     return _summary;
+  }
+
+  static bool _sameMarks(
+    List<List<OfficeProofingFinding>?> before,
+    List<List<OfficeProofingFinding>?> after,
+  ) {
+    for (var index = 0; index < before.length; index++) {
+      final left = before[index] ?? const <OfficeProofingFinding>[];
+      final right = after[index] ?? const <OfficeProofingFinding>[];
+      if (left.length != right.length) return false;
+      for (var i = 0; i < left.length; i++) {
+        final a = left[i];
+        final b = right[i];
+        if (a.start != b.start ||
+            a.end != b.end ||
+            a.category != b.category ||
+            a.ruleId != b.ruleId ||
+            a.providerId != b.providerId ||
+            a.originalText != b.originalText) {
+          return false;
+        }
+      }
+    }
+    return true;
   }
 
   void _finishAutomatic(

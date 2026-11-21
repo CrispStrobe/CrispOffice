@@ -1,0 +1,78 @@
+{
+  "runtime_receipt": "incoming-editor-validation.json",
+  "runtime": "Official Flutter3.47.8 with bundled Dart3.13.7 and the previously verified pinned dependency workspace.",
+  "zotero": {
+    "incoming": "3da241d5f1f3e43d7be47f00bcf7fbe62bd8272b",
+    "three_way_current": "81b762008dfca9a8ab8d32cd9159a8d93ec3c6f2",
+    "three_way_merge_base": "2cd11ced136a30354169fd0043e002079bcabfa3",
+    "controller_preserves_c375_lazy_retry_and_listener_cleanup": true,
+    "source_sha256": {
+      "packages/quds_office_editor/lib/src/embed/office_controller.dart": "10899e87c8f27f258b19f842152957cb94fb595e762d4604d190bd5066df8356",
+      "packages/quds_office_editor/lib/src/embed/word_zotero_dialog.dart": "fb3d44f6c30bfac04d8c45e100201d5c0c21a3b12ed9d65cb0bad41f8906aabc",
+      "packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart": "076e06e7d2618bc19cf10acdc301aa0ea76711fae6f8797dfd66d42bb55ab9cc",
+      "packages/quds_office_editor/test/word_zotero_transfer_dialog_test.dart": "9b75eefd3e6ad1db78b0af10bb3fbfa6c72fc52246b8a2fb48af25f0aa4f803c",
+      "packages/quds_office_engine/lib/quds_office_engine.dart": "2d21f087a4f283e89cdb28de94b8fa621a24c46463effcd0f5330526f563296a",
+      "packages/quds_office_engine/lib/src/word/model/word_zotero_citing.dart": "1eb15bb89c3461d134b984499f1374ca4e11e08e3ea48c760b26b3720921dbbe",
+      "packages/quds_office_engine/lib/src/word/model/word_zotero_data.dart": "68502cb6ed65a521ebc3505c43369fcab603b1157d2dfe03fe845f44e9a9fc8c",
+      "packages/quds_office_engine/lib/src/word/model/word_zotero_transfer.dart": "d5ee062c5f3bd2f5275e35db8f560283dd901f9eaf08064bd1c7e1f6bf32c2af",
+      "packages/quds_office_engine/lib/src/zotero/zotero_citing.dart": "bd2acce4bb23af14783cf70f78c3dcb6a534243892ef8dbdb2b16440b19d69ce",
+      "packages/quds_office_engine/test/word_zotero_citing_test.dart": "5198947823928eb1a0cb344a4c73dcd664bbb7e45254850dac656352dfd998fc",
+      "packages/quds_office_engine/test/word_zotero_transfer_session_test.dart": "34a569d6368dd5ce1183f565e6a031d990ab99a3900cdd278298b2c2dad733a1",
+      "packages/quds_office_engine/test/zotero_citing_test.dart": "c1e8a95be64c0dba01e5b93b9a0221e0363a77bc6d38b41115eed1b9ad520707",
+      "packages/quds_office_engine/test/zotero_transfer_protocol_test.dart": "cc2a89bd83e285a6ce3227e16522361ddc8ebf5b0a4487e9b96b96f01f8b7e50"
+    },
+    "test_files": [
+      "test/word_zotero_transfer_controller_test.dart",
+      "test/word_zotero_transfer_dialog_test.dart",
+      "test/word_zotero_citing_controller_test.dart",
+      "test/word_zotero_citing_dialog_test.dart",
+      "test/word_zotero_direct_command_test.dart"
+    ],
+    "passed": 97,
+    "failed": 0,
+    "skipped": 0,
+    "strict_analysis_exit_code": 0,
+    "source_changes_during_run": [],
+    "exhaustive_switch_blocker": "Resolved in3da: WordZoteroDialog handles ZoteroCitingCommand.exportDocument; both new widget/controller suites compile and pass.",
+    "initial_analyzer_environment_attempt": "Flutter analyze wrapper stopped before source analysis because the selectively extracted official SDK omits its dev directory; accepted analysis uses the same bundled Dart analyzer directly. No substitute framework or stub package was introduced."
+  },
+  "mail": {
+    "incoming": "6ec90c8a3acdc8fb5878f1decef0131e478e6b1d",
+    "repository_stream_prerequisite": "c375becb51939dcca5c145bf1bcdb14a4febe041 (inherited unchanged by incoming)",
+    "source_sha256": {
+      "packages/quds_mail_store/lib/src/mailbox_views.dart": "3f466009ca6113a2c34b7654f5693389aa4ec7cac34eba8783da786878e4d35f",
+      "packages/quds_office_editor/example/lib/studio_mail_mailbox_session.dart": "6713567d7d54d9d7a3177278d58d1b0951a53de86991f5a21064eec3a7047280",
+      "packages/quds_office_editor/example/lib/studio_mail_mailbox_store.dart": "f83fc9d5cdc2bd2e8521e1905a27fce09ce4f74f9986eeee013895b8c1ba39a3",
+      "packages/quds_office_editor/example/lib/studio_mail_native.dart": "4bcdc60936de241a9be5dbdd51d530ab578075665f55974b4c68f3f3b88336e4",
+      "packages/quds_office_editor/example/lib/studio_mail_ews.dart": "09a59eafb2a191ffd5fe6566a2f764a13e189089852726e8b337ad8d214cc058",
+      "packages/quds_office_editor/example/test/studio_mail_mailbox_session_test.dart": "136e25a59dca6376a74ac5a01685dd874aef6155c8316c2611e7d26853ad7bfa",
+      "packages/quds_office_editor/example/test/studio_mail_capture_projection_test.dart": "c8eaf3db0e3f15b011b99f70e792d25e0e7ff524cdaba8a1b53bcabaf3bbfa34",
+      "packages/quds_office_editor/example/test/studio_mail_mailbox_store_test.dart": "7963244b185540276d088bc0a2c48d9b646c78df57f1c037191f06997967e5f7"
+    },
+    "test_files": [
+      "test/studio_mail_mailbox_session_test.dart",
+      "test/studio_mail_capture_projection_test.dart",
+      "test/studio_mail_mailbox_store_test.dart"
+    ],
+    "passed": 58,
+    "failed": 0,
+    "skipped": 0,
+    "strict_analysis_exit_code": 0,
+    "analysis_includes": "Mailbox session/store and native/Exchange callers plus all three selected suites.",
+    "source_changes_during_run": []
+  },
+  "later_zotero_style_correction": {
+    "path": "packages/quds_office_engine/lib/src/word/model/word_zotero_transfer.dart",
+    "flutter_tested_sha256": "d5ee062c5f3bd2f5275e35db8f560283dd901f9eaf08064bd1c7e1f6bf32c2af",
+    "later_candidate_sha256": "9daac5af7a548a972618d5bed1920c966aa5914b70cd4f1121e6647815dcaf84",
+    "scope": "21 curly_braces_in_flow_control_structures lint corrections; separately reviewed and qualified by the incoming engine validation.",
+    "applicability": "This Flutter receipt binds to the exact uncorrected3da helper. It does not claim these Flutter tests executed after the later style-only correction; the separate engine receipt supplies its strict analysis and native rerun."
+  },
+  "limits": [
+    "Original in-process HTTP/provider and UI fixtures were used. No live Zotero desktop or Mail-provider account was exercised.",
+    "Native headless Flutter debug/JIT tests; no desktop/profile-mode performance qualification.",
+    "No original checkout source, final Word validation workspace, Git branch or Git ref changed during these runs."
+  ],
+  "evidence_archive": "late-incoming-flutter-evidence.tar.gz",
+  "evidence_manifest": "late-incoming-flutter-evidence-manifest.json"
+}

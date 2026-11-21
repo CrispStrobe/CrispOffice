@@ -1204,7 +1204,10 @@ void main() {
         subject: 'Preserve new work',
         body: 'x' * 5000,
       );
-      final quotaFailure = await awaitOutboxOperation(tester, () async {
+      // This setup performs real file I/O in a background SQLite isolate and
+      // does not update widgets. Run it in the real event loop: a fixed number
+      // of fake-clock pump turns is not a deadline for isolate scheduling.
+      final quotaFailure = await tester.runAsync(() async {
         final seed = await open(identity);
         final store = (seed as StudioMailMailboxStoreOwner).mailboxStore;
         final view = _view(identity, headers: [_header(identity, 1)]);
@@ -1236,7 +1239,7 @@ void main() {
         }
         await seed.close();
         return failure;
-      }());
+      });
       expect(quotaFailure, MailProblemCode.quotaExceeded);
       await _show(tester, identity, open);
       for (

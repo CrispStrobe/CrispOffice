@@ -1062,10 +1062,17 @@ checking starts disabled. The exported `showWordProofingDialog` commits pending
 edits, opens the review UI and runs an explicit check. The example's F7/Spelling
 action uses this dialog; its **Check while typing** switch enables debounced
 background checks. A manual check works with that switch off.
-Background passes start after a 600 ms typing pause or at most 2.5 s after the
-first unchecked edit, recheck only changed paragraphs, and leave a settled
-status on screen while they wait; see
-[typing-proofing-20261120](performance/typing-proofing-20261120.md).
+While typing, spelling runs when a word is completed (edited paragraph only),
+grammar and style when a sentence is completed or after a 1.5 s pause, and the
+rest of the document in idle time (3 s without input), visible pages first. The
+word being typed is never flagged, and there are no forced passes during
+continuous typing. `WordProofingSession.schedule` (`WordProofingSchedule`)
+selects the mode (while typing, when I pause, manual only), the provider groups,
+the pause and background checking; the Studio persists them in Settings. See
+[proofing/scheduling](proofing/scheduling.md) for the comparison with other
+editors and the measurements, and
+[typing-proofing-20261120](performance/typing-proofing-20261120.md) for the
+earlier typing work.
 
 The review shows findings, explanations, offered replacements and availability
 or coverage messages. Each finding includes a bounded source excerpt centered

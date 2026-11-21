@@ -1,0 +1,165 @@
+{
+  "source_head_before": "4d435f81493c88e8fd4fb90a62558a1cc8a7ec22",
+  "source_head_after": "4d435f81493c88e8fd4fb90a62558a1cc8a7ec22",
+  "test_inventory": [
+    "test/studio_mail_cached_host_test.dart",
+    "test/studio_mail_capture_projection_test.dart",
+    "test/studio_mail_mailbox_store_test.dart",
+    "test/studio_mail_cached_mail_test.dart",
+    "test/studio_mail_mailbox_session_test.dart",
+    "test/studio_mail_journal_host_test.dart",
+    "test/studio_mail_flag_reconciliation_test.dart",
+    "test/studio_mail_workspace_test.dart",
+    "test/studio_mail_lifecycle_test.dart",
+    "test/studio_mail_session_test.dart"
+  ],
+  "checks": [
+    {
+      "name": "tests",
+      "command": [
+        "flutter",
+        "test",
+        "--no-pub",
+        "--concurrency=2",
+        "--reporter",
+        "expanded",
+        "--file-reporter",
+        "json:/workspace/scratch/1a7ed08f64fe/mail-validation/final-studio/tests.jsonl",
+        "test/studio_mail_cached_host_test.dart",
+        "test/studio_mail_capture_projection_test.dart",
+        "test/studio_mail_mailbox_store_test.dart",
+        "test/studio_mail_cached_mail_test.dart",
+        "test/studio_mail_mailbox_session_test.dart",
+        "test/studio_mail_journal_host_test.dart",
+        "test/studio_mail_flag_reconciliation_test.dart",
+        "test/studio_mail_workspace_test.dart",
+        "test/studio_mail_lifecycle_test.dart",
+        "test/studio_mail_session_test.dart"
+      ],
+      "cwd": "/workspace/scratch/1a7ed08f64fe/quds_office_suite/packages/quds_office_editor/example",
+      "started_at_utc": "2026-11-21T06:05:01.771090+00:00",
+      "status": "PASS",
+      "exit_code": 0,
+      "elapsed_seconds": 64.00469644899931,
+      "finished_at_utc": "2026-11-21T06:06:05.776379+00:00",
+      "stdout_sha256": "df9dc3ec094abea72886749fff732ae873165e8ab664493d2cef50602ba91cf9",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "tests": {
+        "passed": 285,
+        "skipped": 0,
+        "failed": 0,
+        "errors": 0,
+        "all_failed": 0,
+        "all_skipped": 0,
+        "excluded_failed": 0,
+        "excluded_skipped": 0,
+        "terminal_success": true,
+        "start_events": 1,
+        "terminal_events": 1,
+        "incomplete": 0,
+        "protocol_errors": 0,
+        "protocol_issues": [],
+        "valid": true
+      }
+    },
+    {
+      "name": "analysis",
+      "command": [
+        "dart",
+        "analyze",
+        "--fatal-infos",
+        "lib/studio_mail_mailbox_session.dart",
+        "lib/studio_mail_mailbox_store.dart",
+        "lib/studio_mail_cached_mail.dart",
+        "lib/studio_mail_cached_strings.dart",
+        "lib/studio_mail_native.dart",
+        "lib/studio_mail_ews.dart",
+        "test/studio_mail_cached_host_test.dart",
+        "test/studio_mail_capture_projection_test.dart",
+        "test/studio_mail_mailbox_store_test.dart",
+        "test/studio_mail_cached_mail_test.dart",
+        "test/studio_mail_mailbox_session_test.dart",
+        "test/studio_mail_journal_host_test.dart",
+        "test/studio_mail_flag_reconciliation_test.dart",
+        "test/studio_mail_workspace_test.dart",
+        "test/studio_mail_lifecycle_test.dart",
+        "test/studio_mail_session_test.dart"
+      ],
+      "cwd": "/workspace/scratch/1a7ed08f64fe/quds_office_suite/packages/quds_office_editor/example",
+      "started_at_utc": "2026-11-21T06:05:01.771398+00:00",
+      "status": "PASS",
+      "exit_code": 0,
+      "elapsed_seconds": 13.285182684000574,
+      "finished_at_utc": "2026-11-21T06:05:15.057213+00:00",
+      "stdout_sha256": "683d2dff1e2ddc532ef91d6078e89474da95d6ec5b2db64a7e151d7e7d7b3fc2",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "source_input_count": 1029,
+  "changed_inputs": [],
+  "changed_runtime_inputs": [],
+  "github_actions": "Not queried or awaited.",
+  "scope": "Actual Linux Flutter execution; controlled provider and storage fixtures plus native SQLite. No live-provider or installed-platform acceptance claim.",
+  "accepted": true,
+  "by_suite": {
+    "test/studio_mail_capture_projection_test.dart": {
+      "passed": 21,
+      "skipped": 0,
+      "failed": 0
+    },
+    "test/studio_mail_mailbox_store_test.dart": {
+      "passed": 23,
+      "skipped": 0,
+      "failed": 0
+    },
+    "test/studio_mail_cached_host_test.dart": {
+      "passed": 56,
+      "skipped": 0,
+      "failed": 0
+    },
+    "test/studio_mail_cached_mail_test.dart": {
+      "passed": 37,
+      "skipped": 0,
+      "failed": 0
+    },
+    "test/studio_mail_mailbox_session_test.dart": {
+      "passed": 14,
+      "skipped": 0,
+      "failed": 0
+    },
+    "test/studio_mail_journal_host_test.dart": {
+      "passed": 24,
+      "skipped": 0,
+      "failed": 0
+    },
+    "test/studio_mail_flag_reconciliation_test.dart": {
+      "passed": 24,
+      "skipped": 0,
+      "failed": 0
+    },
+    "test/studio_mail_workspace_test.dart": {
+      "passed": 64,
+      "skipped": 0,
+      "failed": 0
+    },
+    "test/studio_mail_lifecycle_test.dart": {
+      "passed": 1,
+      "skipped": 0,
+      "failed": 0
+    },
+    "test/studio_mail_session_test.dart": {
+      "passed": 21,
+      "skipped": 0,
+      "failed": 0
+    }
+  },
+  "logs_archive": {
+    "file": "studio-validation.tar.xz",
+    "bytes": 86400,
+    "sha256": "305e5f51a7a4c0c55f73d868e38fc64b912054501c97a0d5d8ecafa74ea2b470"
+  },
+  "fixture_corrections": [
+    "Pinned SDK stream cancellation callbacks can complete outside widget fake time. Cached-reader fixtures now drain both real and fake queues while preserving every close/ownership assertion; an isolated SDK probe is retained.",
+    "The first combined run had 284 passes and one native SQLite fixture setup failure after 1,000 zero-delay fake-clock turns elapsed in about 300 ms. Native background-isolate setup now runs in tester.runAsync; the focused regression and final full 285-case cohort both passed without weakened quota/cleanup assertions. The first run is retained only as diagnostic evidence."
+  ]
+}

@@ -67,3 +67,25 @@ will be recorded before the authorized merge to main. Installed Zotero/Word/
 LibreOffice plugin sessions and direct native ODT input remain unqualified.
 See `installed-application-acceptance.md` for the next versioned acceptance
 matrix.
+
+## Qualification of the integrated `3da241d5` snapshot
+
+The status above describes the original implementation checkpoint. The Word
+section-macro integration subsequently qualified and included commit
+`3da241d5f1f3e43d7be47f00bcf7fbe62bd8272b`: 798 native Word/Zotero cases and
+97 Flutter editor cases passed. A reviewed brace-only helper cleanup then
+passed strict analysis and 30 native transfer cases. Exact source identities,
+logs and limits are retained in the
+[combined local acceptance record](../word-vba-sections-20261121/README.md) and
+[incoming review](../word-vba-sections-20261121/incoming-zotero-engine-review.json).
+This applies to that captured source, not later work on the advancing Zotero
+branch. Installed Word, LibreOffice and Zotero interoperability remains
+unexecuted.
+
+## Current-main reconciliation
+
+Remote main advanced to `290dfa43e3bcf410d9bf1bd8194c997c4ee613ae`
+with the Word and Mail publication merges. This continuation preserves that
+ancestry, the later proofing scheduling changes and native-I/O fixture fixes.
+The earlier local receipts remain source-attributed; affected editor and Studio
+cohorts are rerun on the combined source before the final merge.

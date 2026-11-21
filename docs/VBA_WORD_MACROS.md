@@ -341,7 +341,7 @@ serialization and reopening.
 For imported source, `w:pgSz/@w:orient` determines the current orientation,
 with absent orientation meaning portrait. Unrecognized orientation values or
 non-square dimensions inconsistent with that state are refused. Authored
-sections without source use their exact dimensions to establish the initial
+sections without source use their canonical dimensions to establish the initial
 state. A preceding general native `docx.sectionFormat` dimension change retains
 the established serializer behavior before the new orientation operation;
 near-square pending geometry is refused when the general serializer's

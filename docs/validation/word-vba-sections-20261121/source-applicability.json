@@ -1,0 +1,9 @@
+{
+  "qualified_code_commit": "47660815c429e15aa280005dc6d76bb36c53eca4",
+  "qualified_tree": "82d40c175d7aafb588dcb0f241c876fe5233dd73",
+  "captured_inputs": 3032,
+  "capture_sha256": "8a016f01bd4d4d05bab67d4a1ae21c791c5c532f0a5db79c9b57fcb72151e948",
+  "all_captured_inputs_match_git_blobs": true,
+  "mismatches": [],
+  "method": "Compare each captured SHA-256 to the unchanged current input and independently compute its Git blob identity against the complete qualified commit tree."
+}

@@ -1,0 +1,52 @@
+{
+  "schema": 1,
+  "record_type": "transcribed_from_original_tool_output",
+  "provenance": "The inline command and exit/output below were transcribed from the earlier functions.exec -> exec_command execution in this conversation. No original receipt file existed. No execution timestamp was recorded here.",
+  "reproduction_file": "perf-reporter-smoke.py",
+  "reproduction_status": "The same inline body was formatted for readability and persisted after execution. The smoke was not rerun while creating these files.",
+  "source": {
+    "repository": "CrispStrobe/quds_office_suite",
+    "commit": "1460876e70fcf3da49644e232e9942b7ee042d8d",
+    "path": "tool/perf/keystroke_trace_report.py",
+    "sha256": "9ebd74e4144c333007862aff75b831f9123b66f354b3a5a3e8b5b719759bc474",
+    "hash_method": "SHA-256 of the UTF-8 encoded source returned by git show with Python text=True, as computed in the executed command."
+  },
+  "execution": {
+    "working_directory": "/workspace/scratch/1be64193e422/quds_office_suite",
+    "command": "python - <<'PY'\nimport subprocess,json,io,contextlib,hashlib\nfrom unittest.mock import patch\nsha='1460876e70fcf3da49644e232e9942b7ee042d8d'\nsource=subprocess.check_output(['git','show',sha+':tool/perf/keystroke_trace_report.py'],text=True)\nmodule={'__name__':'audit_report'}\nexec(compile(source,'keystroke_trace_report.py','exec'),module)\ndef run(events):\n data={'keys':[{'handlerMs':10,'phases':{'layout':3}}], 'timeline':{'traceEvents':[{'name':'KEY_HANDLER','ph':'b','id':1,'ts':0,'args':{'key':'0'}},{'name':'KEY_HANDLER','ph':'e','id':1,'ts':10000},*events]},'frames':[{'buildMs':1,'rasterMs':2}]}\n out=io.StringIO()\n with patch('builtins.open',return_value=io.StringIO(json.dumps(data))),contextlib.redirect_stdout(out):module['main']('fixture.json')\n return out.getvalue()\noutput=run([{'cat':'GC','name':'Scavenge','ph':'X','ts':1000,'dur':2000,'tid':1},{'cat':'GC','name':'MarkSweep','ph':'B','ts':4000,'tid':1},{'cat':'GC','name':'MarkSweep','ph':'E','ts':6000,'tid':1},{'cat':'GC','name':'NotifyIdle','ph':'B','ts':20000,'tid':1},{'cat':'GC','name':'NotifyIdle','ph':'E','ts':25000,'tid':1}])\nassert 'GC events 2, total 4.0 ms; GC inside handlers 4.0 ms' in output,output\nassert 'idle-time GC (NotifyIdle, between frames) 5.0 ms' in output,output\noutput2=run([{'cat':'GC','name':'Scavenge','ph':'B','ts':1000,'tid':1},{'cat':'GC','name':'Scavenge','ph':'B','ts':2000,'tid':2},{'cat':'GC','name':'Scavenge','ph':'E','ts':5000,'tid':1},{'cat':'GC','name':'Scavenge','ph':'E','ts':8000,'tid':2}])\nassert 'GC events 2, total 10.0 ms; GC inside handlers 10.0 ms' in output2,output2\nprint(json.dumps({'source_sha256':hashlib.sha256(source.encode()).hexdigest(),'checks':['Python syntax compile','complete and named begin/end GC events','separate idle NotifyIdle total','per-thread GC pairing','handler overlap','frame totals'],'passed':True}))\nPY",
+    "exit_code": 0,
+    "output": "{\"source_sha256\": \"9ebd74e4144c333007862aff75b831f9123b66f354b3a5a3e8b5b719759bc474\", \"checks\": [\"Python syntax compile\", \"complete and named begin/end GC events\", \"separate idle NotifyIdle total\", \"per-thread GC pairing\", \"handler overlap\", \"frame totals\"], \"passed\": true}\n",
+    "source_read_method": "git show; no checkout or ref changes",
+    "fixture_count": 2,
+    "fixture_storage": "Synthetic JSON held entirely in memory; builtins.open patched to return StringIO",
+    "implementation_executed": "The actual reporter source was compiled and executed, then its main function was called for each fixture."
+  },
+  "assertions": [
+    {
+      "fixture": 1,
+      "expression": "'GC events 2, total 4.0 ms; GC inside handlers 4.0 ms' in output",
+      "meaning": "One complete event and one named begin/end pair produce two GC events totaling 4.0 ms, wholly inside the synthetic handler."
+    },
+    {
+      "fixture": 1,
+      "expression": "'idle-time GC (NotifyIdle, between frames) 5.0 ms' in output",
+      "meaning": "A separate NotifyIdle begin/end pair contributes 5.0 ms to the idle total."
+    },
+    {
+      "fixture": 2,
+      "expression": "'GC events 2, total 10.0 ms; GC inside handlers 10.0 ms' in output2",
+      "meaning": "Interleaved same-name events on two threads pair independently and total 10.0 ms, wholly inside the synthetic handler."
+    }
+  ],
+  "exercised_without_separate_numeric_assertions": [
+    "Frame-reporting output with synthetic buildMs=1 and rasterMs=2.",
+    "Phase-reporting output with synthetic layout=3.",
+    "The original output label 'frame totals' denotes exercising that branch without exceptions; it does not denote an independent assertion of its numerical output."
+  ],
+  "limitations": [
+    "The Flutter profile harness received read-only source review and was not executed.",
+    "No real typing trace, frame timing, garbage-collection measurement, or benchmark result was obtained.",
+    "No partial-boundary handler-overlap case was asserted.",
+    "No Actions endpoint was queried or awaited."
+  ]
+}

@@ -1048,9 +1048,10 @@ void main() {
             ['Message one'],
           );
           expect(find.byType(MailMessageView), findsNothing);
-          await awaitOutboxOperation(
-            tester,
-            owner.save(
+          // This unrelated native draft commit needs the real isolate/I/O
+          // event loop, independently of the host's fake widget clock.
+          await tester.runAsync(
+            () => owner.save(
               StudioMailDraft(to: '', subject: 'After delete', body: ''),
               submissionUncertain: false,
             ),

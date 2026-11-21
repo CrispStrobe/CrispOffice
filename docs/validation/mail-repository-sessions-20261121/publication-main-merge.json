@@ -1,0 +1,40 @@
+{
+  "head": "dbe48121625a2f72ef4f6fb3fc8dc7a4cf7703a0",
+  "tree": "2570bbd94bfb560a225e0b9a3eff8e8418ffcf72",
+  "parents": [
+    "721ad2c74a5d81d54c2eaa2af084e82ba5077991",
+    "e1ebcb0cd65716a2a78d2ea1114d9ee37a3017ec"
+  ],
+  "merged_main": "e1ebcb0cd65716a2a78d2ea1114d9ee37a3017ec",
+  "frozen_source_tree": "c6e320878ceffb5ba640e62e4f0046988c86dfbe",
+  "ancestor_checks": {
+    "721ad2c74a5d81d54c2eaa2af084e82ba5077991": true,
+    "e1ebcb0cd65716a2a78d2ea1114d9ee37a3017ec": true,
+    "49665e51f9eacefc180748c3d0ed7851ef5da5d1": true
+  },
+  "all_changes_vs_frozen_tree": [
+    "docs/validation/word-vba-sections-20261121/README.md",
+    "docs/validation/word-vba-sections-20261121/acceptance-summary.json",
+    "docs/validation/word-vba-sections-20261121/archive-manifest.json",
+    "docs/validation/word-vba-sections-20261121/local-evidence-manifest.json",
+    "docs/validation/word-vba-sections-20261121/local-qualification-evidence.tar.gz",
+    "docs/validation/word-vba-sections-20261121/perf-reporter-smoke.json",
+    "docs/validation/word-vba-sections-20261121/perf-reporter-smoke.py",
+    "docs/validation/word-vba-sections-20261121/publication-intake.json",
+    "docs/validation/word-vba-sections-20261121/publication-intake.md",
+    "docs/validation/word-vba-sections-20261121/qualification.json",
+    "docs/validation/word-vba-sections-20261121/source-applicability.json",
+    "docs/validation/zotero-transfer-20261121/README.md"
+  ],
+  "changes_outside_validation_docs": [],
+  "production_tests_tools_manifests_locks_unchanged": true,
+  "conflict_resolution": {
+    "path": "docs/validation/word-vba-sections-20261121/README.md",
+    "decision": "Retain full main qualification record, scope its historical source binding, add Mail integration provenance; all evidence retained.",
+    "git_blob": "15f688f8deae46896f671e781eef0099cbc91a05",
+    "sha256": "72ffc9bd07320e10c5670b054daefaad8ee5b9bd0d22b83c60ac2848571d5ce6"
+  },
+  "status": "",
+  "qualification_applicability": "All source-bound tests and analysis against frozen c6e32087 remain applicable because only validation documentation/evidence changed. No additional product gates warranted by this merge.",
+  "remote_writes": false
+}
