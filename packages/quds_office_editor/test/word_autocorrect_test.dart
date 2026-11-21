@@ -1,3 +1,4 @@
+import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:quds_office_editor/quds_office_editor.dart';
 import 'package:quds_office_editor/src/embed/word_autocorrect.dart';
@@ -114,6 +115,70 @@ void main() {
         word.applyImeText('${word.document.paragraphs.first.text}$char');
       }
       expect(word.document.paragraphs.first.text, 'Hallo „Welt“ – ');
+    });
+
+    test('committed corrections are synchronized with the input bridge', () {
+      final word = WordEditorController();
+      addTearDown(word.dispose);
+      word.document.proofingLanguage = 'de-DE';
+      for (final char in 'Hallo "Welt" -- '.split('')) {
+        final next = '${word.input.value.text}$char';
+        word.input.updateEditingValue(
+          TextEditingValue(
+            text: next,
+            selection: TextSelection.collapsed(offset: next.length),
+          ),
+        );
+        expect(word.input.value.text, word.document.paragraphs.first.text);
+        expect(
+          word.input.value.selection.extentOffset,
+          word.caret.logicalIndex,
+        );
+      }
+      expect(word.document.paragraphs.first.text, 'Hallo „Welt“ – ');
+    });
+
+    test('IME bridge keeps autocorrection on the following keystroke', () {
+      final word = WordEditorController();
+      addTearDown(word.dispose);
+      word.document.proofingLanguage = 'de-DE';
+      word.input.updateEditingValue(
+        const TextEditingValue(
+          text: '"',
+          selection: TextSelection.collapsed(offset: 1),
+        ),
+      );
+      final correctedParagraph = word.document.paragraphs.first.text;
+      final correctedInput = word.input.value;
+
+      // The next platform value extends the bridge's editing state, which
+      // must already contain the correction sent back to the IME.
+      final nextText = '${word.input.value.text}a';
+      word.input.updateEditingValue(
+        TextEditingValue(
+          text: nextText,
+          selection: TextSelection.collapsed(offset: nextText.length),
+        ),
+      );
+
+      expect(
+        [
+          correctedParagraph,
+          correctedInput.text,
+          word.document.paragraphs.first.text,
+          word.input.value.text,
+        ],
+        ['„', '„', '„a', '„a'],
+      );
+      expect(
+        correctedInput.selection,
+        const TextSelection.collapsed(offset: 1),
+      );
+      expect(
+        word.input.value.selection,
+        const TextSelection.collapsed(offset: 2),
+      );
+      expect(word.caret.logicalIndex, 2);
     });
   });
 }

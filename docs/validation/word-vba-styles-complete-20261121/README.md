@@ -11,10 +11,12 @@
 
 The previously compiler-only Word style increment now has a guarded native
 implementation, preservation regressions, end-to-end execution and local
-qualification. The qualified combined source is remote checkpoint
+qualification. The qualified combined Word engine source is remote checkpoint
 [`b11c8b1a9a2c0fa58a45f9893b4c86834ec276b2`](https://github.com/CrispStrobe/quds_office_suite/commit/b11c8b1a9a2c0fa58a45f9893b4c86834ec276b2),
-with tree `d25991879e4e84b4364ea7756945806e94bc2b51`. This evidence-only
-continuation does not change that qualified production source.
+with tree `d25991879e4e84b4364ea7756945806e94bc2b51`. The Word engine
+remains byte-identical through the later editor-only main refresh described below.
+
+Integration pull request: [#329](https://github.com/CrispStrobe/quds_office_suite/pull/329).
 
 Development checkpoints are retained on
 [`codex/word-vba-styles-complete-20261121`](https://github.com/CrispStrobe/quds_office_suite/tree/codex/word-vba-styles-complete-20261121).
@@ -64,8 +66,10 @@ Initial main was `3dbaa8429b14ac43721e165b4d50d3f6d2845309` (PR #323).
 The initial open Word draft and unmerged Mail work were incorporated before
 completion. Subsequent intake preserved main's PR #324 saved-Mail restore view,
 PR #325 account signatures/Quick Text, and PR #326 editable Zotero ODT export.
-The last captured main integrated here is
-`c7380f53a55b47a5b7672eb3f7afee32d92def6e`.
+That main snapshot was `c7380f53a55b47a5b7672eb3f7afee32d92def6e`.
+The final editor-only refresh also preserves PR #327 autocorrect/adaptive
+proofing and PR #328 IME composition gating from main
+`0172df91adeb4a1abb2f43346621e10999937572`.
 
 The [captured ancestry audit](intake/captured-head-ancestry.json) checks 36 fork
 heads and four upstream heads. Its original audit snapshot predates the last
@@ -89,6 +93,7 @@ latest main, without reverting the unified style implementation.
 | `ba510fef7b119bf4823447df387f0fa40ad0c9ad` | Concurrent Word native tests and Notes insertion ownership fix |
 | `2fb916c70eb469c69e7d401c2bc553a8ad9225d7` | Unified live-identity, ownership, native-packet and numbering guards |
 | `b11c8b1a9a2c0fa58a45f9893b4c86834ec276b2` | Latest main/ODT export and captured Word reconciliation ancestry |
+| `0cf5b2c4295b303d15d11a92faeee2063f6b33c7` | Source-bound Word completion record and full execution evidence |
 
 Remote writes created immutable Git objects and advanced the branch using the
 observed head and `force: false`. No branch was force-pushed or deleted. Local
@@ -108,7 +113,8 @@ offline dependency resolution enforced the unchanged lockfile. The
 | --- | ---: | --- |
 | Complete reconciled Word cohort | **3,716 tests / 73 files** | [Summary](word/summary.json); 509 captured inputs unchanged; zero failures/skips |
 | Post-main combined Word/ODT integration | **315 tests / 11 files** | [Summary](post-main/summary.json); 448 inputs unchanged; zero failures/skips |
-| Final changed-Dart formatting and fatal-info analysis | **53 files** | [Receipt](static/receipt.json); zero formatting changes and no analyzer issues |
+| Combined Word/ODT changed-Dart formatting and fatal-info analysis | **53 files** | [Receipt](static/receipt.json); zero formatting changes and no analyzer issues |
+| Final editor/autocorrect/Notes integration | **122 tests / 7 files** | [Summary](editor/summary.json); 481 inputs unchanged, zero failures/skips; separate strict analysis and formatting on 10 files |
 | Actual committed BAS on Dart VM and JavaScript | **Identical reports** | [Receipt](portable/receipt.json); stable source hashes, repeated DOCM reopen, recording, rollback and policy denials |
 | Incoming complete Mail core package | **476 tests / 20 files** | [Incoming receipt](incoming/qualification.json) |
 | Incoming complete Mail store package | **924 tests / 38 files** | Includes real SQLite SIGKILL crash recovery and schema migration |
@@ -136,6 +142,34 @@ The incoming PR #326 retains its own separately attributed
 [631-case qualification and converter evidence](../zotero-editable-odt-20261121/README.md).
 It is preserved as incoming evidence; it is not added to this continuation's
 execution totals or represented as a new installed-host test.
+
+## Final editor-only main refresh
+
+Before publication, main advanced again through PR #327 autocorrect/adaptive
+proofing and PR #328 IME composition gating. The integration retained their
+editor changes and the existing Notes insertion ownership guard. The entire
+engine package is byte-identical to the qualified Word source; this update
+does not invalidate the full Word, post-ODT or portable results.
+
+The initial seven-suite editor gate passed 121 cases. Focused review then found
+a real input-bridge regression in the incoming autocorrect path: typing a quote
+changed the document to a typographic quote while leaving the bridge's text
+uncorrected. A following keystroke could restore the uncorrected text. A new
+regression reproduced this using actual `input.updateEditingValue` calls.
+
+The minimal correction publishes the corrected `TextEditingValue` through
+`input.setValue(value)` only after the document and caret edit succeeds. It
+preserves the ordinary input path, active-composition guard and Notes guard;
+no timer/provider policy was changed. All **122 cases across seven suites** now
+pass, including the new bridge text, selection and caret assertions. Strict
+analysis and pinned formatting also pass on the ten scoped editor files.
+
+The [editor receipt](editor/receipt.json.gz), [source binding](editor/source-binding.json)
+and [execution archive](editor/execution.tar.gz) retain the final run, initial
+121-case run and failing focused reproduction separately. All 481 final input
+hashes remained unchanged during the accepted run. This final editor gate covers
+the later controller changes; the earlier 53-file static receipt continues to
+refer specifically to its qualified Word/ODT snapshot.
 
 ## Review findings and reconciliation
 

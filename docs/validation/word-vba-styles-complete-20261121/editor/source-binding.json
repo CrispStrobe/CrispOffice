@@ -1,0 +1,15 @@
+{
+  "incoming_main": "0172df91adeb4a1abb2f43346621e10999937572",
+  "qualified_word_source": "b11c8b1a9a2c0fa58a45f9893b4c86834ec276b2",
+  "whole_engine_unchanged": true,
+  "final_editor_inputs_checked": 481,
+  "mismatches": [],
+  "binding_manifest": "source-manifest.json",
+  "retained_guard": "insertPlainText refuses active Notes selection ownership before body-caret mutation",
+  "integration_fix": "Publish autocorrected TextEditingValue to the input bridge only after successful model and caret update",
+  "final_source_git_blobs": {
+    "packages/quds_office_editor/lib/src/embed/office_controller.dart": "4c27899b208f0d78383571e1e4f4921ceaf24bb7",
+    "packages/quds_office_editor/test/word_autocorrect_test.dart": "54f3194fa610c396a945c08a022b1de68a1adf7d"
+  },
+  "earlier_static_scope": "The 53-file receipt covers its b11c8b1a snapshot; the final editor gate separately analyzes/formats 10 files after this controller change."
+}

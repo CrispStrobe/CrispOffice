@@ -879,6 +879,7 @@ class WordEditorController extends OfficeController {
     // against the intermediate IME value; the commit notification observes
     // the final text and schedules the normal check.
     if (input.composing.isValid && !input.composing.isCollapsed) {
+      _proofing?.suspendForComposition();
       super.notifyListeners();
       return;
     }
@@ -5124,7 +5125,9 @@ class WordEditorController extends OfficeController {
     }
     final WmlParagraph para = _activeParagraph;
     final String old = para.text;
-    value = _autocorrectImeValue(value, old);
+    final corrected = _autocorrectImeValue(value, old);
+    final autocorrected = corrected.text != value.text;
+    value = corrected;
     final void Function(String, int)? phase = debugEditPhase;
     final Stopwatch? watch = phase == null ? null : (Stopwatch()..start());
     void lap(String name) {
@@ -5166,6 +5169,7 @@ class WordEditorController extends OfficeController {
     caret.resetBlink();
     _imeValueTarget = _imeEditingTarget;
     lap('caret');
+    if (autocorrected) input.setValue(value);
     notifyListeners();
     lap('notify');
   }

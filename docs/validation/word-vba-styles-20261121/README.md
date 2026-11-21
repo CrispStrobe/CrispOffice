@@ -76,12 +76,15 @@ Subsequent intake incorporated:
   `1078372da9213c1ef4cdd362ca2285db9acb8d7b`.
 - The concurrent Word style implementation through
   `2fb916c70eb469c69e7d401c2bc553a8ad9225d7`, with its final independent
-  qualification preserved at `0cf5b2c4295b303d15d11a92faeee2063f6b33c7`.
+  qualification preserved at `0cf5b2c4295b303d15d11a92faeee2063f6b33c7`
+  and its last input-bridge regression at
+  `f086214c9e99bca547957d8ba9f6ee3ab15321dc`.
 - Editable Zotero ODT export and its qualification through
   `b699f88501a10818e0f71bfd9c53cde53866cdf6`, merged in main
   `c7380f53a55b47a5b7672eb3f7afee32d92def6e`.
 - The subsequent autocorrect and IME-aware proofing PRs through main
-  `0172df91adeb4a1abb2f43346621e10999937572`.
+  `0172df91adeb4a1abb2f43346621e10999937572`, followed by the final concurrent
+  Word PR #329 merge at `4760902b654e3af5e4d3f0a83d28ac65a387c8f8`.
 
 The two Word implementations were reconciled into one native implementation.
 Distinct incoming native and integration fixtures were retained; duplicate
@@ -116,6 +119,8 @@ Tracked dependency manifests and lockfiles were not changed.
 | Incoming ODT/Zotero | 132 combined engine tests passed; after the decimal-note correction, the focused writer/lifecycle/ordinary-writer gate passed 48 |
 | Incoming editor/Studio ODT | Three merged-table loading and five export widget tests passed |
 | Real Writer save | Two editable Zotero acceptance fixtures retained seven field records, preferences and decimal note labels after the correction |
+| Latest-main editor interactions | 48 passed: five autocorrect, 22 typing/proofing and 21 insertion tests, plus strict analysis of the affected paths |
+| Final concurrent-main regression | Six autocorrect tests passed, including one additional independent empty-paragraph/next-keystroke regression; test analysis and formatting passed |
 
 Counts overlap across gates; they must not be added into a unique-test total.
 The broad 3,301-case run was not repeated after the final narrow guards.
@@ -152,6 +157,18 @@ mixed numbering that it cannot preserve. Ordinary cached ODT export remains
 unchanged. The [supplemental note](../zotero-decimal-endnotes-20261121/README.md)
 preserves the failing examples, correction, exact consumer version and
 after-check evidence. This is not installed Zotero-plugin acceptance.
+
+The final main intake also introduced autocorrect and IME-aware proofing.
+Reconciliation fixed two demonstrated interactions: corrected text now reaches
+the input bridge/system IME, and active composition suspends already pending
+automatic proofing work until commit. The original 46-case affected gate passed;
+two added regressions then failed before correction, and the final gate passed
+all 48 cases. Exact commands, logs and source bindings are in
+[editor-proofing-validation.json](editor-proofing-validation.json).
+The last concurrent main merge independently fixed the same input-bridge issue.
+Its additional boundary regression was retained alongside ours and the resulting
+six-case autocorrect file passed. Production editor source remained identical to
+the source qualified by the 48-case gate. Those two gates overlap by five cases.
 
 ## Reproduction
 

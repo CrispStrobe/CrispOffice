@@ -1,0 +1,494 @@
+{
+  "schemaVersion": 1,
+  "recordedAt": "2026-11-21T18:06:35.390531+00:00",
+  "repository": "CrispStrobe/quds_office_suite",
+  "branch": "codex/word-vba-extensions-20261121",
+  "lastRemoteCheckpoint": "09cd0a2c2de7eb8960f6e779c1f00442076256e2",
+  "runtime": {
+    "flutter": "3.47.8",
+    "dart": "3.13.7",
+    "flutterArchiveSha256": "baf7dcc5a3dbba60fe863bf493a6cf203195621f7786eaa5a1bba02cd0d87dd2",
+    "dependencies": "offline --enforce-lockfile; tracked manifests/locks unchanged"
+  },
+  "gates": {
+    "broadWord": {
+      "checkpoint": "cf12544df1a7965615f38eab8d22dae5cfa0d7c0",
+      "suites": 71,
+      "passed": 3301,
+      "failed": 0,
+      "skipped": 0,
+      "success": true
+    },
+    "earlierStyleFocused": {
+      "passed": 149,
+      "failed": 0,
+      "skipped": 0,
+      "success": true
+    },
+    "reconciledStyleCompilerAndIntegration": {
+      "passed": 100,
+      "failed": 0,
+      "skipped": 0,
+      "success": true
+    },
+    "finalNative": {
+      "passed": 138,
+      "failed": 0,
+      "suites": {
+        "original": 64,
+        "alternate": 74
+      },
+      "receipt": "native-validation.json",
+      "finalSourceHashesVerified": true
+    },
+    "fullEngineAnalysis": {
+      "command": [
+        "dart",
+        "analyze",
+        "--fatal-infos"
+      ],
+      "exitCode": 0,
+      "seconds": 16.44
+    },
+    "changedDartFormatting": {
+      "checked": 57,
+      "exitCode": 0,
+      "fiveWhitespaceOnlyCorrections": true
+    },
+    "mail": {
+      "corePassed": 476,
+      "composeSettingsAdapterPassed": 37,
+      "earlierHostPassed": 56,
+      "finalHostPassed": 63,
+      "finalAutomaticConnectionPassed": 14,
+      "notesInsertionPassed": 21,
+      "initialStorePassed": 922,
+      "initialStoreFixtureFailures": 2,
+      "correctedSyncFilePassed": 23,
+      "secondFullStoreRun": false
+    },
+    "odtZotero": {
+      "initialCombinedEnginePassed": 132,
+      "finalFocusedEnginePassed": 48,
+      "editorMergedTablePassed": 3,
+      "studioExportPassed": 5,
+      "converterFixtures": 2,
+      "preservedFieldRecords": 7,
+      "receipt": "../zotero-decimal-endnotes-20261121/receipt.json",
+      "finalSourceHashesVerified": true
+    },
+    "latestMainEditor": {
+      "baselinePassed": 46,
+      "regressionsFailedBeforeFix": 2,
+      "finalPassed": 48,
+      "failed": 0,
+      "strictAnalysis": "clean",
+      "receipt": "editor-proofing-validation.json"
+    },
+    "lateMainAutocorrect": {
+      "incomingCommit": "f086214c9e99bca547957d8ba9f6ee3ab15321dc",
+      "mainCommit": "4760902b654e3af5e4d3f0a83d28ac65a387c8f8",
+      "productionSourceUnchangedFrom48CaseGate": true,
+      "strictTestAnalysis": "clean",
+      "formatChanged": false,
+      "passed": 6,
+      "failed": 0,
+      "success": true
+    }
+  },
+  "portable": {
+    "web_vba_word_styles_smoke": {
+      "vmEqualsJavaScript": true,
+      "result": {
+        "example": {
+          "operations": 5,
+          "revision": 2,
+          "additionalReopens": 2,
+          "opaquePayloadsPreserved": true
+        },
+        "rollback": {
+          "failedStep": 1,
+          "validateAndRunRollback": true
+        },
+        "recording": {
+          "recordedSteps": 2,
+          "failedCallExcluded": true,
+          "replayRevision": 1
+        },
+        "policy": {
+          "atomicDenials": 6,
+          "allowedSteps": 2
+        }
+      }
+    },
+    "web_vba_word_styles_alternate_smoke": {
+      "vmEqualsJavaScript": true,
+      "result": {
+        "example": {
+          "operations": 5,
+          "firstRunRevision": 1,
+          "repeatedRevision": 2,
+          "additionalReopens": 2,
+          "opaquePayloadsPreserved": true,
+          "paragraphs": [
+            {
+              "text": "Report title",
+              "style": "ReportHeadingOne",
+              "before": 12,
+              "after": 9,
+              "alignment": "right",
+              "runs": [
+                {
+                  "bold": true,
+                  "italic": false,
+                  "color": "112233",
+                  "size": 11,
+                  "characterStyle": null
+                }
+              ]
+            },
+            {
+              "text": "Report body",
+              "style": "ReportBody",
+              "before": 3,
+              "after": 12,
+              "alignment": "left",
+              "runs": [
+                {
+                  "bold": false,
+                  "italic": true,
+                  "color": "654321",
+                  "size": 10,
+                  "characterStyle": "Emphasis"
+                }
+              ]
+            },
+            {
+              "text": "Figure caption",
+              "style": "CaptionStyle",
+              "before": 4,
+              "after": 5,
+              "alignment": "left",
+              "runs": [
+                {
+                  "bold": false,
+                  "italic": true,
+                  "color": "000000",
+                  "size": 10,
+                  "characterStyle": null
+                }
+              ]
+            },
+            {
+              "text": "Untouched paragraph",
+              "style": "Legacy",
+              "before": 2,
+              "after": 3,
+              "alignment": "left",
+              "runs": [
+                {
+                  "bold": false,
+                  "italic": true,
+                  "color": "AA0000",
+                  "size": 10,
+                  "characterStyle": null
+                }
+              ]
+            }
+          ]
+        },
+        "rollback": {
+          "failedStep": 2,
+          "validateAndRunRollback": true
+        },
+        "recording": {
+          "recordedSteps": 2,
+          "failedCallExcluded": true,
+          "replayRevision": 1
+        },
+        "policy": {
+          "atomicDenials": 6,
+          "allowedSteps": 2
+        }
+      }
+    }
+  },
+  "archive": {
+    "path": "execution.tar.gz",
+    "bytes": 124121,
+    "sha256": "0ff0bea2d5541fe28bb2c559538d890d6bc3bd425a3f3f7e1428472241d5eb20",
+    "members": [
+      {
+        "path": "root/word-regression-command.json",
+        "bytes": 3862,
+        "sha256": "b410037f3c9a49e4be5677b7ed76ab82719d5a595653bf8438a7fa4d7d66bd18"
+      },
+      {
+        "path": "root/word-regression.jsonl",
+        "bytes": 1620924,
+        "sha256": "cc83c89208eb79eb1b31d93fd9db408e9ee233eb54c856b8d2a6eced1f9d5dad"
+      },
+      {
+        "path": "root/word-regression.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "root/word-styles-final.jsonl",
+        "bytes": 69858,
+        "sha256": "7c1931b7ea147141fb6027956d418241c156dc530204ef8bd163144e7f4f0012"
+      },
+      {
+        "path": "root/word-styles-final.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "root/word-reconciled-integration-command.json",
+        "bytes": 484,
+        "sha256": "ad65b1fa6d81e491fea2d9c5921dcbcbfcd61aff95205d98e73bec274f5627a8"
+      },
+      {
+        "path": "root/word-reconciled-integration.jsonl",
+        "bytes": 48994,
+        "sha256": "938f441c413d783ab375d04197e90b755b580ac563dc6976575e38b86dd3e222"
+      },
+      {
+        "path": "root/word-reconciled-integration.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "root/word-reconciled-portable-commands.json",
+        "bytes": 5735,
+        "sha256": "b507567d3eff48824b38dd4756b4ebfd0eed54090a570841119ce4b65c0ba7aa"
+      },
+      {
+        "path": "root/reconciled-engine-analysis.log",
+        "bytes": 49,
+        "sha256": "c557a0c697cdb937104f1423d3c02d6a1062917cb0bcb2830d91db8cf6192af0"
+      },
+      {
+        "path": "root/reconciled-engine-analysis-command.json",
+        "bytes": 107,
+        "sha256": "6ac19f30cb124674422c9d74d366da348f7b5601488087d4a968be5bd059f353"
+      },
+      {
+        "path": "root/reconciled-format.log",
+        "bytes": 48,
+        "sha256": "6f13caa0ce26ce07d84003e03c61784c5833193ca1c893d211e92eb61199de83"
+      },
+      {
+        "path": "root/reconciled-format-applied.log",
+        "bytes": 454,
+        "sha256": "90ec8b2929284523a29b954d64bf72ccde0777c6803f15710003a253bcf263be"
+      },
+      {
+        "path": "root/web_vba_word_styles_smoke-reconciled-0.stdout",
+        "bytes": 276,
+        "sha256": "8d9d69661c093d763dd3d61814ed8f63054f75ca8e1c0e15f77cbd6882fb9c02"
+      },
+      {
+        "path": "root/web_vba_word_styles_smoke-reconciled-0.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "root/web_vba_word_styles_smoke-reconciled-1.stdout",
+        "bytes": 114,
+        "sha256": "bf31c88af5a2116d9a71b200d4aaf48c8fdd24f374da0fcecdde516772847546"
+      },
+      {
+        "path": "root/web_vba_word_styles_smoke-reconciled-1.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "root/web_vba_word_styles_smoke-reconciled-2.stdout",
+        "bytes": 276,
+        "sha256": "8d9d69661c093d763dd3d61814ed8f63054f75ca8e1c0e15f77cbd6882fb9c02"
+      },
+      {
+        "path": "root/web_vba_word_styles_smoke-reconciled-2.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "root/web_vba_word_styles_smoke-reconciled-result.json",
+        "bytes": 457,
+        "sha256": "63ad4579b2ef245fb1ce7fd24deef01ab070d4c02788234b3fece466a148440f"
+      },
+      {
+        "path": "root/web_vba_word_styles_alternate_smoke-reconciled-0.stdout",
+        "bytes": 1029,
+        "sha256": "0f961ce358822a8ced95379e92e95863358e0e4aae53f55cda206aa602c3fcf0"
+      },
+      {
+        "path": "root/web_vba_word_styles_alternate_smoke-reconciled-0.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "root/web_vba_word_styles_alternate_smoke-reconciled-1.stdout",
+        "bytes": 114,
+        "sha256": "5d426ea5e7ff9d5acbfee07be0b551e8c63b244ffe0d6a10070e93ce02f088dd"
+      },
+      {
+        "path": "root/web_vba_word_styles_alternate_smoke-reconciled-1.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "root/web_vba_word_styles_alternate_smoke-reconciled-2.stdout",
+        "bytes": 1029,
+        "sha256": "0f961ce358822a8ced95379e92e95863358e0e4aae53f55cda206aa602c3fcf0"
+      },
+      {
+        "path": "root/web_vba_word_styles_alternate_smoke-reconciled-2.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "root/web_vba_word_styles_alternate_smoke-reconciled-result.json",
+        "bytes": 2061,
+        "sha256": "6164e6720096ed6e21b2204e5bd7a586436489fdef7b1c06cbc34f995b2ecb0f"
+      },
+      {
+        "path": "editor/reconcile-mail-baseline.log",
+        "bytes": 27806,
+        "sha256": "1036eb78a2e9577c849f8b26f4349596f047f9c8b4c29449b8e377fd2246b0d5"
+      },
+      {
+        "path": "editor/reconcile-mail-fixed.log",
+        "bytes": 23890,
+        "sha256": "ed7985269fad6063705738f74932001df8252d4983a4988754c50bd952c24d8c"
+      },
+      {
+        "path": "editor/reconcile-mail-autoconnect.log",
+        "bytes": 1201,
+        "sha256": "094c1e5955d24416790484d01f98c2b5c6693d557376cbac312a22f83fce7e18"
+      },
+      {
+        "path": "editor/reconcile-mail-notes.log",
+        "bytes": 1828,
+        "sha256": "259d6f07605bb43b882d4cbf47ec36ace7814aebee855b85a52a5fd161e2919c"
+      },
+      {
+        "path": "editor/reconcile-mail-analyze.log",
+        "bytes": 254,
+        "sha256": "c8cbfb285232c428ab514d736c370e0e47b649dc1efc93a8947fdd19fe7be7da"
+      },
+      {
+        "path": "editor/reconcile-autocorrect-proofing-fixed.log",
+        "bytes": 9521,
+        "sha256": "16204d89a436a87c1ac9ab4eae010b452e5d74f378f6d30478c956ca6884dd89"
+      },
+      {
+        "path": "editor/reconcile-autocorrect-proofing-fixed-analyze.log",
+        "bytes": 202,
+        "sha256": "6f6e7fd69932f2ce61ddc64a52ca90361ccefaf84054274d1166647965758295"
+      },
+      {
+        "path": "editor/reconcile-autocorrect-ime-regressions-before.log",
+        "bytes": 4696,
+        "sha256": "7e4bbced5f1b0da52505ab941a6543c2216e9861e9ea4449244a6e818cf36d4a"
+      },
+      {
+        "path": "root/final-autocorrect.jsonl",
+        "bytes": 3824,
+        "sha256": "a763f42a9121b11ae9ad8acf18ba046b00900ce1457a6d27a1e5fa47bbd7f948"
+      },
+      {
+        "path": "root/final-autocorrect.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "root/final-autocorrect-analyze.log",
+        "bytes": 57,
+        "sha256": "da3f4349c61253f7e20ec17f08a51a6f6fd2e6961f141bd3da5521bcbec390de"
+      },
+      {
+        "path": "root/final-autocorrect-command.json",
+        "bytes": 591,
+        "sha256": "625dd3e06ce087766dc1c8b7c022384ad9fc485c120b76f7c8f28495d7fbebe9"
+      }
+    ]
+  },
+  "finalChangedSourceSha256": {
+    "packages/quds_mail_core/lib/quds_mail_core.dart": "06c34e81073f4cdbb564680897067ac20381ab8a8974a0f3601df0c6614c4991",
+    "packages/quds_mail_core/lib/src/model/compose_settings.dart": "a4c35100879c0a3dc790a349a1a75f8fc45d3a1ad7fb6328066febe402fb230d",
+    "packages/quds_mail_core/test/compose_settings_test.dart": "85bf5740445e185557b87b52764c6e8c9407615efdae02cf8e65a17efa06a38f",
+    "packages/quds_mail_store/lib/src/compose_settings.dart": "94240ee6514a082e8b534c8eda850792298e6ae8624dea92913f05c99aa6c295",
+    "packages/quds_mail_store/lib/src/repository.dart": "fa48dceac484ddc12fbcfebfd921c886d357e00b6b91faf820691c888d868a29",
+    "packages/quds_mail_store/lib/src/schema/database.dart": "a532bab49f92eb20e875d699fc51aed2101af218febef18daf631afb2b362574",
+    "packages/quds_mail_store/lib/src/search_journal.dart": "aeb14f974f476b6a194771f991be7d533954e14e7b2de1a36cbfa6f9d5ce9df2",
+    "packages/quds_mail_store/test/compose_settings_test.dart": "8305d4ab1a58c738e9b77f62cfa9262d8eb21fc814c5a123015b65f4f32ab099",
+    "packages/quds_mail_store/test/flag_reconciliation_test.dart": "fe501bc8131bd6c96dbad0bfda00e738a38985cf75f47576eb89a54e7b58ce67",
+    "packages/quds_mail_store/test/migration_test.dart": "0b39e36d701264d5d7d9b939c9504470303fc07445e2738552c29777783cc0de",
+    "packages/quds_mail_store/test/sync_mailboxes_test.dart": "20d390e6f39700c3816e03f17193bd6f4a3252952a76b77f88196816714bd234",
+    "packages/quds_office_editor/example/lib/studio_files.dart": "0571ecd7fd7e14235094d94bcd73d75aea43ad7cb6047b135d553b1b0e36e431",
+    "packages/quds_office_editor/example/lib/studio_mail_compose.dart": "df1103315fd8a38ef74776843c1e6b8847b5b8177c807f137520160d8a03d814",
+    "packages/quds_office_editor/example/lib/studio_mail_compose_tools.dart": "99d7618e8c961d446f316b1aa2d302083e8486b4096bb2fb46a7b150b249a660",
+    "packages/quds_office_editor/example/lib/studio_mail_compose_tools_dialog.dart": "81294141602575379b7264f111700387ab57658053e075747044babece832f2b",
+    "packages/quds_office_editor/example/lib/studio_mail_compose_tools_strings.dart": "3c284f56b92a4f09a360cc89790482c493035e8cf109aa7bf309e2f86ec6ae81",
+    "packages/quds_office_editor/example/lib/studio_mail_draft_store.dart": "1c149be136fb03b105f2c07153631d40856bf78a2420e442f18d8d566186fb3d",
+    "packages/quds_office_editor/example/lib/studio_mail_drafts_dialog.dart": "3a8e153185da4dae1887f8a54e372bf84814252d9c99db0ae24a830f6cd96618",
+    "packages/quds_office_editor/example/lib/studio_mail_ews.dart": "98b6a98f0a6f3c0454606eb6d12783541b391f8fce579c748fb1a5158e7f087e",
+    "packages/quds_office_editor/example/lib/studio_mail_local_drafts.dart": "5ea58bdf3a8038060aabdda06ab529e772c0e02de2eaaf50edf387b42838993c",
+    "packages/quds_office_editor/example/lib/studio_mail_native.dart": "116e772e26b80797a54577800d966b961b014f987de90eca21baf9441aa3f73c",
+    "packages/quds_office_editor/example/lib/studio_mail_web.dart": "145be59ac02f1f38bea8ca9aea9c70badf55c36c977ace56a73e6ad5e3f467fc",
+    "packages/quds_office_editor/example/lib/studio_saved_mail.dart": "cd9d3e4843b52b65572e4ad0d99fe414ab2dbbd7fd0368af3caa2bf7e7a70105",
+    "packages/quds_office_editor/example/lib/suite_workspace.dart": "7102cbb5569cbf52bb4d3f3df31f9d11cf258c1367efb921ae6653d4c02e9fb9",
+    "packages/quds_office_editor/example/test/studio_mail_accounts_test.dart": "eae76f930539a0502442aedf980000ca99b00bfc5a3de5ad941bc23496bcf026",
+    "packages/quds_office_editor/example/test/studio_mail_autoconnect_test.dart": "70dcc2c054989b876a14f360b30ad718a2a816a639758d5e12ab6a8851382ac0",
+    "packages/quds_office_editor/example/test/studio_mail_compose_tools_dialog_test.dart": "b17070ed64bcbaa97f390e158d97e6c875c373ae724552748ca37cfd413af342",
+    "packages/quds_office_editor/example/test/studio_mail_compose_tools_store_test.dart": "bd929a7aaec2a9269058e164e8c00cd40dd47dee51bcfa387e8f927501319036",
+    "packages/quds_office_editor/example/test/studio_mail_compose_tools_test.dart": "ab188843fa229035ba76bfd98cf69862028f6bf26a3fcd4c2a2d5328cbe99484",
+    "packages/quds_office_editor/example/test/studio_mail_web_test.dart": "2f5871485e9a5e305438789024af09e4d07b1ea0fd0ff398652dd7e0728ee553",
+    "packages/quds_office_editor/example/test/studio_saved_mail_test.dart": "9891c8363f471b8cbeaf150941f127a0959492e7abed8866bd8910cc6b8cd725",
+    "packages/quds_office_editor/example/test/studio_zotero_odt_export_test.dart": "054b610c0d38191483beaa1991f24ce49c8a7236fe996278d0701dd09cdd6b16",
+    "packages/quds_office_editor/lib/src/embed/office_controller.dart": "d4751cce007d9feecde5b359277eaffde96e94129172d98b5d528159f8098d6b",
+    "packages/quds_office_editor/lib/src/embed/word_autocorrect.dart": "76b9aac15bdebd195f8545dcd4327b1c6cc264f07ad374af5e1dd3534ae47781",
+    "packages/quds_office_editor/lib/src/proofing/word_proofing.dart": "b9e0049f784027815c44c279113237a80ca70fc94e93885e9d19f04e586a8c2f",
+    "packages/quds_office_editor/test/word_autocorrect_test.dart": "66c84b4333ab4650e608937ab8344c8c63e5a5ab234754c0ffefcb79792d81f4",
+    "packages/quds_office_editor/test/word_odt_merged_table_load_test.dart": "68c47a36fdb0c9763dfd22033be3599e23d5ca5c2a3d484e27a09d8bfcb80ffd",
+    "packages/quds_office_editor/test/word_plain_text_insertion_test.dart": "99b0ccf1efe339c5ca43c823802089b0f9f118a69edcd9330e3e2a4fde8c9479",
+    "packages/quds_office_editor/test/word_typing_proofing_schedule_test.dart": "daa91f8da1eb2f7c82dbb8eef520446da66f643156531d5c957c5b936b35262f",
+    "packages/quds_office_engine/example/macros/word_styles.bas": "b747b5e6664e68c49579e871f0916be77fee52a7988e52d80b125916721ba366",
+    "packages/quds_office_engine/lib/src/automation/office_vba_language.dart": "46cd805a1684834dd3b6dad725b6876ba247b39c4b459ce03e5ec017b713f7ba",
+    "packages/quds_office_engine/lib/src/automation/operations/word_steps.dart": "b466ffcb953df868576022a4c6d2229f61e009ccb5337f47843645f0d3424f50",
+    "packages/quds_office_engine/lib/src/automation/operations/word_style_steps.dart": "83fca4ce3babd09535251e47b21d22219e50657979f9cad85f301bd221beae15",
+    "packages/quds_office_engine/lib/src/word/model/word_zotero_data.dart": "5e173c833a44e490dbdde1a5cf0442dfcac4ecb3cd97af0ade905b14ce513484",
+    "packages/quds_office_engine/lib/src/word/serial/odt_document_reader.dart": "4e124914d477a4446cb85f68933c359989510cce1396ac191d871e86f884c36b",
+    "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart": "6547606b91f97dc14d59da3f812556156850ba08c77c8624e1af11bb693d5243",
+    "packages/quds_office_engine/lib/src/word/serial/odt_writer_zotero.dart": "b143f0ed491e001360d192da1e805b164b04f76bda8bd374e160b4f0cfeb69d1",
+    "packages/quds_office_engine/lib/src/word/serial/word_deserializer.dart": "531ff4c1b63d17a0b8832b3ba8159e0fb9256cf095b97c912253e5d44e1a5827",
+    "packages/quds_office_engine/lib/src/word/serial/word_paragraph_style.dart": "e6d29579150acf270819a31a99027a8386b2f15c35fb83621a3008904705a6c5",
+    "packages/quds_office_engine/lib/src/word/serial/word_style_cascade.dart": "60ea3d1ed3e108b87ec17c282e483c35d1ddf50334f4076671a36e08a1bb60fa",
+    "packages/quds_office_engine/test/odt_document_reader_test.dart": "f28d7a783807bc7baced46895b0484e6ab4387f332fad6a8fc58230e904c3727",
+    "packages/quds_office_engine/test/odt_merged_table_zotero_test.dart": "2f785104b14e3c4e0c12f93dc0890ac3d0bd10fb6c44d19123a33f2e763e351a",
+    "packages/quds_office_engine/test/odt_zotero_export_lifecycle_test.dart": "d62721a7b1e683f17d71c90a79e03dcc7067e2d22d5004d6f934ec258840f06d",
+    "packages/quds_office_engine/test/odt_zotero_writer_test.dart": "8943c6eddd591bffdb300fec7e72b3cc8b6ea87614bb573f1978509981f3faa8",
+    "packages/quds_office_engine/test/office_macro_word_paragraph_style_test.dart": "5dbbd8ea13c4b6b47b3f34dae43054c7f7db751282edc693566b29273de1196c",
+    "packages/quds_office_engine/test/office_vba_word_styles_alternate_integration_test.dart": "e4e0f6e2f0d803aa308a25e90d94aafcec7e54a7f7bad5b1377161b00c8ae23b",
+    "packages/quds_office_engine/test/office_vba_word_styles_integration_test.dart": "7a47a1ee43cc7ada67c0f075f436d89375dddd4b1d470a6884dace8ce728f4e8",
+    "packages/quds_office_engine/test/office_vba_word_styles_test.dart": "30f4d51dd55eab93aa161659d16aae412306392630eaad81e775f7283330a3c6",
+    "packages/quds_office_engine/test/word_paragraph_style_assignment_test.dart": "b0431737b86366ffcd6af60a2965585a5a9422368cafa83b0d42ce5a41459522",
+    "packages/quds_office_engine/tool/macros/web_vba_word_styles_alternate_smoke.dart": "0b7268501a04a9d38b4bae6c2c5c37ae9cd6b4a8c0baf9ef9eb480301611cee3",
+    "packages/quds_office_engine/tool/macros/web_vba_word_styles_smoke.dart": "a843d0ba342ad5a6e1908148ca399fdfed6dd54e14b098b2478170a02828e1e9",
+    "packages/quds_office_engine/tool/zotero/odt_export_acceptance.dart": "63a512a4eac208a32acdd220919995e879b01afe22bca31b30046ac3de369146"
+  },
+  "scopeNotes": [
+    "Counts overlap; do not add them into a unique-test total.",
+    "The 3301-case broad run preceded final narrow reconciliation guards; the138-case native run covers those guards.",
+    "The100-case compiler/integration and both portable runs preceded the final retained-TOC-cache guard, which is covered by the138-case native run.",
+    "The final engine analysis ran after the native and decimal-note corrections; subsequent main intake changed only editor code and evidence, with the48-case editor gate qualifying its affected behavior.",
+    "The final formatter changed layout only in five files.",
+    "Native raw output was emitted directly to the tool and is identified in native-validation.json; no raw native log file is invented.",
+    "Source hashes describe final files; historical command/source scopes are stated separately.",
+    "GitHub Actions were not awaited, and branch protection/workflow gates were not weakened.",
+    "The last concurrent main merge retained an additional independent autocorrect regression. The final six-case autocorrect file passed; its production source is unchanged from the48-case editor gate, and five tests overlap. The earlier editor receipt preserves its original test-file source binding."
+  ],
+  "integratedMain": "4760902b654e3af5e4d3f0a83d28ac65a387c8f8"
+}

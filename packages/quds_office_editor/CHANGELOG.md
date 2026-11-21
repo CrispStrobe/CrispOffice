@@ -4,6 +4,10 @@ All notable changes to `quds_office_editor` are documented here.
 
 ## Unreleased
 
+- Keep committed smart-quote and dash corrections synchronized with the system
+  input value so subsequent keystrokes retain them. Cancel pending automatic
+  proofing during active IME composition and resume checking after commit.
+
 - Keep manual Mail account editing available during catalog operations while
   showing progress for automatic restoration. Forward native saved-message
   closing to the embedded host callback, matching the browser Mail pane.

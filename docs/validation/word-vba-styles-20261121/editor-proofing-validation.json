@@ -1,0 +1,118 @@
+{
+  "schema": 1,
+  "captured_at_utc": "2026-11-21T18:00:49.617771+00:00",
+  "repository": "CrispStrobe/quds_office_suite",
+  "base_head": "09cd0a2c2de7eb8960f6e779c1f00442076256e2",
+  "validated_state": "working-tree source bytes bound by SHA-256 below",
+  "incoming_scope": "PR #327 autocorrect/adaptive proofing and PR #328 IME guard, through main 0172df91",
+  "runtime": {
+    "flutter": "3.47.8",
+    "dart": "3.13.7",
+    "dependencies": "unchanged locked workspace dependencies"
+  },
+  "corrections": [
+    "Synchronize committed smart-quote and dash corrections back to OfficeInputBridge and the attached system IME after successful document mutation.",
+    "Suspend already pending automatic proofing during active IME composition, invalidate in-flight results, and resume scheduling on the commit observation."
+  ],
+  "checks": [
+    {
+      "name": "incoming affected editor baseline",
+      "cwd": "/workspace/scratch/41f814a8b629/quds_reconcile/packages/quds_office_editor",
+      "command": "source /workspace/scratch/41f814a8b629/runtime/flutter-env.sh\ndart \"$FLUTTER_ROOT/bin/cache/flutter_tools.snapshot\" test --no-pub --concurrency=1 test/word_autocorrect_test.dart test/word_typing_proofing_schedule_test.dart test/word_plain_text_insertion_test.dart --reporter expanded > /workspace/scratch/41f814a8b629/runtime/reconcile-autocorrect-proofing.log 2>&1",
+      "exit_code": 0,
+      "passed": 46,
+      "log": {
+        "path": "/workspace/scratch/41f814a8b629/runtime/reconcile-autocorrect-proofing.log",
+        "bytes": 10385,
+        "sha256": "e6dbc805933d8075237d98c6689de94b5901ea5ba0b0422a7e2d1087c0151e04"
+      }
+    },
+    {
+      "name": "new regressions before production corrections",
+      "cwd": "/workspace/scratch/41f814a8b629/quds_reconcile/packages/quds_office_editor",
+      "command": "source /workspace/scratch/41f814a8b629/runtime/flutter-env.sh\ndart \"$FLUTTER_ROOT/bin/cache/flutter_tools.snapshot\" test --no-pub --concurrency=1 test/word_autocorrect_test.dart test/word_typing_proofing_schedule_test.dart --name 'committed corrections|pending automatic checks' --reporter expanded > /workspace/scratch/41f814a8b629/runtime/reconcile-autocorrect-ime-regressions-before.log 2>&1",
+      "passed": 0,
+      "failed": 2,
+      "failures": [
+        "Input bridge retained an ASCII quote while the document held the corrected quote.",
+        "Two proofing provider calls ran against active, uncommitted composition."
+      ],
+      "log": {
+        "path": "/workspace/scratch/41f814a8b629/runtime/reconcile-autocorrect-ime-regressions-before.log",
+        "bytes": 4696,
+        "sha256": "7e4bbced5f1b0da52505ab941a6543c2216e9861e9ea4449244a6e818cf36d4a"
+      }
+    },
+    {
+      "name": "final affected editor gate",
+      "cwd": "/workspace/scratch/41f814a8b629/quds_reconcile/packages/quds_office_editor",
+      "command": "source /workspace/scratch/41f814a8b629/runtime/flutter-env.sh\ndart \"$FLUTTER_ROOT/bin/cache/flutter_tools.snapshot\" test --no-pub --concurrency=1 test/word_autocorrect_test.dart test/word_typing_proofing_schedule_test.dart test/word_plain_text_insertion_test.dart --reporter expanded > /workspace/scratch/41f814a8b629/runtime/reconcile-autocorrect-proofing-fixed.log 2>&1",
+      "exit_code": 0,
+      "passed": 48,
+      "failed": 0,
+      "suites": {
+        "word_autocorrect_test.dart": 5,
+        "word_typing_proofing_schedule_test.dart": 22,
+        "word_plain_text_insertion_test.dart": 21
+      },
+      "log": {
+        "path": "/workspace/scratch/41f814a8b629/runtime/reconcile-autocorrect-proofing-fixed.log",
+        "bytes": 9521,
+        "sha256": "16204d89a436a87c1ac9ab4eae010b452e5d74f378f6d30478c956ca6884dd89"
+      }
+    },
+    {
+      "name": "affected-path strict analysis",
+      "cwd": "/workspace/scratch/41f814a8b629/quds_reconcile/packages/quds_office_editor",
+      "command": "source /workspace/scratch/41f814a8b629/runtime/flutter-env.sh\ndart analyze --fatal-infos lib/src/embed/office_controller.dart lib/src/embed/word_autocorrect.dart lib/src/proofing/word_proofing.dart test/word_autocorrect_test.dart test/word_typing_proofing_schedule_test.dart test/word_plain_text_insertion_test.dart > /workspace/scratch/41f814a8b629/runtime/reconcile-autocorrect-proofing-fixed-analyze.log 2>&1",
+      "exit_code": 0,
+      "result": "No issues found!",
+      "log": {
+        "path": "/workspace/scratch/41f814a8b629/runtime/reconcile-autocorrect-proofing-fixed-analyze.log",
+        "bytes": 202,
+        "sha256": "6f6e7fd69932f2ce61ddc64a52ca90361ccefaf84054274d1166647965758295"
+      }
+    },
+    {
+      "name": "whitespace validation",
+      "cwd": "/workspace/scratch/41f814a8b629/quds_reconcile",
+      "command": "git diff --check",
+      "exit_code": 0
+    }
+  ],
+  "sources": {
+    "packages/quds_office_editor/lib/src/embed/office_controller.dart": {
+      "bytes": 508397,
+      "sha256": "d4751cce007d9feecde5b359277eaffde96e94129172d98b5d528159f8098d6b"
+    },
+    "packages/quds_office_editor/lib/src/embed/word_autocorrect.dart": {
+      "bytes": 2766,
+      "sha256": "76b9aac15bdebd195f8545dcd4327b1c6cc264f07ad374af5e1dd3534ae47781"
+    },
+    "packages/quds_office_editor/lib/src/proofing/word_proofing.dart": {
+      "bytes": 108992,
+      "sha256": "b9e0049f784027815c44c279113237a80ca70fc94e93885e9d19f04e586a8c2f"
+    },
+    "packages/quds_office_editor/test/word_autocorrect_test.dart": {
+      "bytes": 3801,
+      "sha256": "2ebe0cd32c6a35c1d8e737e32deeefc68c9680756deb18a03e4cfa100237f09f"
+    },
+    "packages/quds_office_editor/test/word_typing_proofing_schedule_test.dart": {
+      "bytes": 24472,
+      "sha256": "daa91f8da1eb2f7c82dbb8eef520446da66f643156531d5c957c5b936b35262f"
+    },
+    "packages/quds_office_editor/test/word_plain_text_insertion_test.dart": {
+      "bytes": 14317,
+      "sha256": "99b0ccf1efe339c5ca43c823802089b0f9f118a69edcd9330e3e2a4fde8c9479"
+    },
+    "packages/quds_office_editor/CHANGELOG.md": {
+      "bytes": 69234,
+      "sha256": "1ae4bb79f3e116df3322ab12bc8f76f4cc3ca32feeb220384a7320ad1d29cec4"
+    }
+  },
+  "limits": [
+    "Focused local editor gates only; no additional broad Mail rerun.",
+    "No installed platform IME test or live proofing-provider service was used.",
+    "GitHub Actions were neither queried nor awaited."
+  ]
+}

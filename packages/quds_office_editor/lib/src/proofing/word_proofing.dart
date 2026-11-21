@@ -462,6 +462,7 @@ final class WordProofingSession extends ChangeNotifier {
   bool _disposed = false;
   bool _enabled = false;
   bool _enabledPreferenceSet = false;
+  bool _compositionSuspended = false;
   int _draftEnabledRevision = 0;
   bool _draftCheckRunning = false;
   _DraftProofingRequest? _pendingDraftCheck;
@@ -974,10 +975,21 @@ final class WordProofingSession extends ChangeNotifier {
     }
   }
 
+  /// Cancels pending automatic work while the host previews unfinished IME
+  /// text. Cached findings remain available. The next [observeDocument] call
+  /// resumes scheduling after composition commits, even without a text change.
+  void suspendForComposition() {
+    if (_disposed || _compositionSuspended) return;
+    _compositionSuspended = true;
+    _invalidate();
+  }
+
   /// Called for controller-observed content changes. Selection and scroll
   /// notifications do not repeatedly cancel work or schedule new checks.
   void observeDocument() {
     if (_disposed) return;
+    final resumedComposition = _compositionSuspended;
+    _compositionSuspended = false;
     final document = _document();
     final revision = _revision();
     final configuration = _configurationKey;
@@ -987,7 +999,8 @@ final class WordProofingSession extends ChangeNotifier {
       _touched.clear();
       _typing = null;
     }
-    if (identical(document, _observedDocument) &&
+    if (!resumedComposition &&
+        identical(document, _observedDocument) &&
         revision == _observedRevision &&
         configuration == _observedConfiguration) {
       _releaseTypingPosition();
@@ -1179,7 +1192,8 @@ final class WordProofingSession extends ChangeNotifier {
     notifyListeners();
   }
 
-  bool get _automatic => _enabled && _schedule.automatic;
+  bool get _automatic =>
+      !_compositionSuspended && _enabled && _schedule.automatic;
 
   /// The provider groups an automatic pass of [trigger] runs.
   Set<_Kind> _kindsFor(_Trigger trigger) => switch (trigger) {
