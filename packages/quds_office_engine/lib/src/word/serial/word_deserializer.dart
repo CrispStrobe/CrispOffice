@@ -78,9 +78,8 @@ class WordDeserializer {
       if (index >= 0) {
         final range = ranges.removeAt(index);
         if (range.revisions.isNotEmpty) {
-          range.revisions.last.moveEndXml = XmlDocument(
-            root: node,
-          ).toXmlString(declaration: false);
+          range.revisions.last.moveEndXml = XmlDocument(root: node)
+              .toXmlString(declaration: false);
         }
       }
     }
@@ -1252,9 +1251,8 @@ class WordDeserializer {
           _flushFieldText(inlines, run);
           final boundary = WmlFieldBoundary(
             kind: kind,
-            sourceXml: XmlDocument(
-              root: fldChar,
-            ).toXmlString(declaration: false),
+            sourceXml: XmlDocument(root: fldChar)
+                .toXmlString(declaration: false),
             runPropertiesXml: run.properties.sourcePropertiesXml,
           );
           inlines.add(boundary);
@@ -1535,9 +1533,8 @@ class WordDeserializer {
     );
     if (move != null) {
       if (move.revisions.isEmpty) {
-        revision.moveStartXml = XmlDocument(
-          root: move.start,
-        ).toXmlString(declaration: false);
+        revision.moveStartXml = XmlDocument(root: move.start)
+            .toXmlString(declaration: false);
       }
       move.revisions.add(revision);
     }
@@ -1556,9 +1553,8 @@ class WordDeserializer {
       node.children.remove(change);
       _paragraphFormatChanges[props] = change;
     }
-    props.sourcePropertiesXml = XmlDocument(
-      root: node,
-    ).toXmlString(declaration: false);
+    props.sourcePropertiesXml = XmlDocument(root: node)
+        .toXmlString(declaration: false);
     final XmlPullReader source = WordMarkupCompatibilityReader(
       props.sourcePropertiesXml!,
     )..next();
@@ -2064,9 +2060,8 @@ class WordDeserializer {
         ),
       );
       props
-        ..sourcePropertiesXml = XmlDocument(
-          root: source,
-        ).toXmlString(declaration: false)
+        ..sourcePropertiesXml = XmlDocument(root: source)
+            .toXmlString(declaration: false)
         ..asciiFont = font
         ..csFont = font;
     }
@@ -2444,9 +2439,8 @@ class WordDeserializer {
       namespaceUri: OfficeNamespaces.w,
     );
     if (change != null) node.children.remove(change);
-    props.sourcePropertiesXml = XmlDocument(
-      root: node,
-    ).toXmlString(declaration: false);
+    props.sourcePropertiesXml = XmlDocument(root: node)
+        .toXmlString(declaration: false);
     final XmlPullReader source = WordMarkupCompatibilityReader(
       props.sourcePropertiesXml!,
     )..next();
@@ -2468,7 +2462,13 @@ class WordDeserializer {
       if (reader.eventType != XmlEventType.startElement) {
         continue;
       }
-      if ((reader.localName == 'kern' || reader.localName == 'noProof') &&
+      if (const {
+            'kern',
+            'noProof',
+            'smallCaps',
+            'lang',
+            'rFonts',
+          }.contains(reader.localName) &&
           (reader.depth != depth + 1 ||
               (reader.namespaceUri != OfficeNamespaces.w &&
                   !(reader.namespaceUri.isEmpty && reader.prefix == 'w')))) {
@@ -2482,7 +2482,25 @@ class WordDeserializer {
         XmlDocument.readElement(reader);
         continue;
       }
-      props.explicitProperties.add(reader.localName);
+      if (reader.localName == 'rFonts') {
+        for (final group in const <String, Set<String>>{
+          'ascii': {'ascii', 'hAnsi', 'asciiTheme', 'hAnsiTheme'},
+          'cs': {'cs', 'cstheme'},
+        }.entries) {
+          if (group.value.any(
+            (attribute) =>
+                reader.getAttribute(
+                  attribute,
+                  namespaceUri: OfficeNamespaces.w,
+                ) !=
+                null,
+          )) {
+            props.explicitProperties.add('rFonts:${group.key}');
+          }
+        }
+      } else {
+        props.explicitProperties.add(reader.localName);
+      }
       switch (reader.localName) {
         case 'lang':
           props.proofingLanguage = reader.getAttribute(
@@ -2590,9 +2608,8 @@ class WordDeserializer {
       }
       if (reader.localName == 'tblPr') {
         final XmlElement source = XmlDocument.readElement(reader);
-        final String xml = XmlDocument(
-          root: source,
-        ).toXmlString(declaration: false);
+        final String xml = XmlDocument(root: source)
+            .toXmlString(declaration: false);
         table.properties.sourcePropertiesXml = xml;
         _readTableProperties(WordMarkupCompatibilityReader(xml)..next(), table);
       } else if (reader.localName == 'gridCol') {
@@ -2942,9 +2959,8 @@ class WordDeserializer {
           );
         }
         final source = XmlDocument.readElement(reader);
-        cell.sourceWidthXml = XmlDocument(
-          root: source,
-        ).toXmlString(declaration: false);
+        cell.sourceWidthXml = XmlDocument(root: source)
+            .toXmlString(declaration: false);
         final type =
             source.getAttribute('type', namespaceUri: OfficeNamespaces.w) ??
             'dxa';
@@ -3041,9 +3057,8 @@ class WordDeserializer {
     String docUri,
   ) {
     final XmlElement source = XmlDocument.readElement(reader);
-    final String sourceXml = XmlDocument(
-      root: source,
-    ).toXmlString(declaration: false);
+    final String sourceXml = XmlDocument(root: source)
+        .toXmlString(declaration: false);
     reader = WordMarkupCompatibilityReader(sourceXml)..next();
     String? headerRid;
     String? footerRid;
@@ -3615,9 +3630,8 @@ class WordDeserializer {
     final PackagePart? part = package.getPart('/word/watermark.xml');
     if (part != null) {
       final String xml = part.readText();
-      final Match? match = RegExp(
-        r'<w:watermark[^>]*>([^<]*)</w:watermark>',
-      ).firstMatch(xml);
+      final Match? match = RegExp(r'<w:watermark[^>]*>([^<]*)</w:watermark>')
+          .firstMatch(xml);
       if (match != null) {
         document.watermark = match
             .group(1)!

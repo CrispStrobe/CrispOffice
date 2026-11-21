@@ -163,8 +163,83 @@ const _variantIntrinsics = <String>{
   'cstr',
   'cvar',
 };
+// The initial language-write contract owns the ordinary w:lang/@w:val
+// slot only. These WdLanguageID values have unambiguous normal-slot tags;
+// complex-script/East Asian routing and sentinel side effects are separate.
+const _wordLanguageConstants = <String, int>{
+  'wdenglishus': 1033,
+  'wdenglishuk': 2057,
+  'wdenglishaus': 3081,
+  'wdenglishcanadian': 4105,
+  'wdenglishnewzealand': 5129,
+  'wdenglishireland': 6153,
+  'wdenglishsouthafrica': 7177,
+  'wdgerman': 1031,
+  'wdgermanaustria': 3079,
+  'wdswissgerman': 2055,
+  'wdfrench': 1036,
+  'wdbelgianfrench': 2060,
+  'wdfrenchcanadian': 3084,
+  'wdswissfrench': 4108,
+  'wditalian': 1040,
+  'wdswissitalian': 2064,
+  'wddutch': 1043,
+  'wdbelgiandutch': 2067,
+  'wdportuguese': 2070,
+  'wdportuguesebrazil': 1046,
+  'wdspanishmodernsort': 3082,
+  'wdmexicanspanish': 2058,
+  'wddanish': 1030,
+  'wdswedish': 1053,
+  'wdswedishfinland': 2077,
+  'wdnorwegianbokmol': 1044,
+  'wdnorwegiannynorsk': 2068,
+  'wdfinnish': 1035,
+  'wdicelandic': 1039,
+  'wdturkish': 1055,
+  // Recognized solely to issue precise unsupported-value diagnostics.
+  'wdlanguagenone': 0,
+  'wdnoproofing': 1024,
+  'wdarabic': 1025,
+  'wdhebrew': 1037,
+  'wdjapanese': 1041,
+  'wdundefined': 9999999,
+};
+const _wordNormalLanguages = <int, String>{
+  1033: 'en-US',
+  2057: 'en-GB',
+  3081: 'en-AU',
+  4105: 'en-CA',
+  5129: 'en-NZ',
+  6153: 'en-IE',
+  7177: 'en-ZA',
+  1031: 'de-DE',
+  3079: 'de-AT',
+  2055: 'de-CH',
+  1036: 'fr-FR',
+  2060: 'fr-BE',
+  3084: 'fr-CA',
+  4108: 'fr-CH',
+  1040: 'it-IT',
+  2064: 'it-CH',
+  1043: 'nl-NL',
+  2067: 'nl-BE',
+  2070: 'pt-PT',
+  1046: 'pt-BR',
+  3082: 'es-ES',
+  2058: 'es-MX',
+  1030: 'da-DK',
+  1053: 'sv-SE',
+  2077: 'sv-FI',
+  1044: 'nb-NO',
+  2068: 'nn-NO',
+  1035: 'fi-FI',
+  1039: 'is-IS',
+  1055: 'tr-TR',
+};
 const _wordConstants = <String, int>{
   ..._stringComparisonConstants,
+  ..._wordLanguageConstants,
   'wdheaderfooterprimary': 1,
   'wdheaderfooterfirstpage': 2,
   'wdheaderfooterevenpages': 3,
@@ -3011,6 +3086,10 @@ class _Checker {
       if (receiver == _Kind.range && property == 'noproofing') {
         return _Kind.boolean;
       }
+      if (receiver == _Kind.range &&
+          (property == 'languageid' || property == 'languageidother')) {
+        return _Kind.number;
+      }
       if (receiver == _Kind.wordListFormat && property == 'listlevelnumber') {
         return _Kind.number;
       }
@@ -3029,7 +3108,7 @@ class _Checker {
             property == 'underline') {
           return _Kind.number;
         }
-        if (property == 'name') return _Kind.string;
+        if (property == 'name' || property == 'namebi') return _Kind.string;
       } else if (receiver == _Kind.paragraphFormat) {
         if (property == 'keeptogether' ||
             property == 'pagebreakbefore' ||
@@ -6232,6 +6311,19 @@ class _Evaluator {
       );
     }
     if (receiver is _WordRange) {
+      if (property == 'languageid' || property == 'languageidother') {
+        final language = _wordNormalLanguages[_integer(value, token)];
+        if (language == null) {
+          context.unsupported(
+            token,
+            'Word language writes require a supported normal-slot WdLanguageID; complex-script/East Asian routing, wdLanguageNone, wdNoProofing and mixed-state values are unsupported. Use NoProofing for proofing exclusion.',
+          );
+        }
+        _emitWord(receiver, 'runFormat', <String, Object?>{
+          'language': language,
+        }, token);
+        return;
+      }
       if (property == 'noproofing') {
         _emitWord(receiver, 'runFormat', <String, Object?>{
           'noProof': _boolean(value, token),
@@ -6272,8 +6364,8 @@ class _Evaluator {
           context.unsupported(token, 'Unsupported WdUnderline value.');
         }
         normalized = underline;
-      } else if (property == 'name') {
-        field = 'font';
+      } else if (property == 'name' || property == 'namebi') {
+        field = property == 'namebi' ? 'csFont' : 'font';
         normalized = _wordText(value, token, fontName: true);
       } else if (property == 'kerning') {
         field = 'kerning';
@@ -6450,7 +6542,7 @@ class _Evaluator {
     _charge(text.length, token);
     _nativeString(text, token);
     if (fontName && text.isEmpty) {
-      context.type(token, 'Font.Name requires a nonempty String.');
+      context.type(token, 'Word font names require a nonempty String.');
     }
     for (var index = 0; index < text.length; index++) {
       final unit = text.codeUnitAt(index);
@@ -6461,7 +6553,7 @@ class _Evaluator {
         context.type(
           token,
           fontName
-              ? 'Font.Name requires XML-safe text without tabs or line breaks.'
+              ? 'Word font names require XML-safe text without tabs or line breaks.'
               : 'InsertBefore requires XML-safe single-paragraph text; tabs are allowed but line breaks are unsupported.',
         );
       }

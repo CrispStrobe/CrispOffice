@@ -252,6 +252,22 @@ provider are implied. See the [exact contract](VBA_WORD_MACROS.md#proofing-and-k
 [BAS example](../packages/quds_office_engine/example/macros/word_proofing_controls.bas),
 and [local record](validation/word-vba-proofing-20261121/README.md).
 
+### Word proofing-language and complex-script font controls
+
+The Word adapter also supports `Range.LanguageID` / `LanguageIDOther` for
+30 explicitly mapped normal-slot language IDs and independent `Font.NameBi`
+writes. Native language/font ownership is sparse per attribute group, including
+theme removal for explicit font choices, same-value inheritance overrides and
+preserved foreign metadata. Direct/style import ignores foreign or nested
+lookalikes, and guarded operations refuse ambiguous source before mutation.
+The existing transactional source-to-plan boundary remains unchanged.
+
+This slice does not add complex-script/East Asian language routing, language
+reads, installed dictionaries, complex-script size/bold/italic models or Stage 3
+document-aware execution. See the [language/font contract](VBA_WORD_MACROS.md#proofing-language-and-complex-script-font-controls),
+[BAS example](../packages/quds_office_engine/example/macros/word_language_controls.bas)
+and [local qualification](validation/word-vba-language-controls-20261121/README.md).
+
 ### Binary source text processing
 
 The text continuation adds `InStr`, `InStrRev`, `Replace`, and the

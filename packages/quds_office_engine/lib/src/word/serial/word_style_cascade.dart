@@ -430,9 +430,8 @@ class _StyleCascade {
         props,
       );
     }
-    props.sourcePropertiesXml = XmlDocument(
-      root: direct,
-    ).toXmlString(declaration: false);
+    props.sourcePropertiesXml = XmlDocument(root: direct)
+        .toXmlString(declaration: false);
     props.importedValues = WordPropertyIo.paragraphValues(props);
     target.properties = props;
   }
@@ -571,9 +570,8 @@ class _StyleCascade {
         updated[key] = '$inherited';
       }
       if (updated.isEmpty) return;
-      props.sourcePropertiesXml = XmlDocument(
-        root: direct,
-      ).toXmlString(declaration: false);
+      props.sourcePropertiesXml = XmlDocument(root: direct)
+          .toXmlString(declaration: false);
       props.importedValues = hasSparseSource
           ? {...imported, ...updated}
           : WordPropertyIo.runValues(props);
@@ -684,7 +682,7 @@ class _StyleCascade {
   }
 
   static XmlElement _layoutAttributeProjection(XmlElement source) {
-    // Only effective indentation/spacing attributes are projected here. Source
+    // Only native layout, font, or language attributes are projected here. Source
     // prefixes on copied attributes can become unbound, or a later layer rebinds
     // an earlier layer's prefix. Normalize native attributes in this detached
     // projection; the full direct/style XML retains all extension metadata.
@@ -754,11 +752,18 @@ class _StyleCascade {
         final scalarControl =
             (name == 'rPr' &&
                 (incoming.localName == 'kern' ||
-                    incoming.localName == 'noProof')) ||
+                    incoming.localName == 'noProof' ||
+                    incoming.localName == 'smallCaps')) ||
             (name == 'pPr' && incoming.localName == 'suppressAutoHyphens');
         if (scalarControl && !_word(incoming, incoming.localName)) continue;
+        final runAttributes =
+            name == 'rPr' &&
+            const {'lang', 'rFonts'}.contains(incoming.localName);
+        if (runAttributes && !_word(incoming, incoming.localName)) continue;
         final child = scalarControl
             ? _scalarControlProjection(incoming)
+            : runAttributes
+            ? _layoutAttributeProjection(incoming)
             : name == 'pPr' && _word(incoming, 'numPr')
             ? _numberingProjection(incoming)
             : name == 'pPr' &&

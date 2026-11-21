@@ -4,6 +4,14 @@ All notable changes to `quds_office_engine` are documented here.
 
 ## Unreleased
 
+- Extend bounded Word VBA with 30 normal-slot `LanguageID` / `LanguageIDOther`
+  values and independent `Font.NameBi` writes. Retain unedited language/font
+  slots, theme metadata, explicit same-value inheritance overrides and inert
+  DOCM contents. Correct native font ownership and namespace-aware direct/style
+  projection; refuse ambiguous input before mutation. Add a runnable multilingual
+  BAS module, native/compiler/transaction tests and portable VM/JavaScript
+  qualification. See the [language/font contract](../../docs/VBA_WORD_MACROS.md#proofing-language-and-complex-script-font-controls).
+
 - Add `OdfZotero.inspect`, a bounded read-only native ODT Zotero inventory.
   Retain canonical citation ReferenceMarks, bibliography TextSections, exact
   paragraph/story/cell ownership, UTF-16 offsets, cached results and original
