@@ -64,6 +64,12 @@ void main() {
           value: 'message',
         );
         unsupported(await provider.capabilities(lease));
+        unsupported(
+          await (provider as MailFlagObserver).observeFlags(
+            identity,
+            lease: lease,
+          ),
+        );
         unsupported(await provider.listMailboxes(lease));
         unsupported(
           await provider.fetchHeaders(folder, limit: 1, lease: lease),

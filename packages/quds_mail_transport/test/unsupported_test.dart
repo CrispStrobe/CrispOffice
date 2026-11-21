@@ -35,6 +35,12 @@ void main() {
       expect(provider.account, _account);
       final lease = MailAccountSession(_account).begin();
       _unsupported(await provider.capabilities(lease));
+      _unsupported(
+        await (provider as MailFlagObserver).observeFlags(
+          _identity,
+          lease: lease,
+        ),
+      );
       _unsupported(await provider.listMailboxes(lease));
       _unsupported(
         await provider.fetchHeaders(_mailbox, limit: 1, lease: lease),
