@@ -2,6 +2,8 @@ import 'dart:typed_data';
 
 import 'package:quds_mail_core/quds_mail_core.dart';
 
+import 'labels.dart';
+
 /// Static text styling. No source HTML or CSS reaches the rendering surface.
 final class MailTextRun {
   const MailTextRun({
@@ -96,6 +98,7 @@ final class MailReaderPresentation {
 MailReaderPresentation buildMailPresentation(
   MailParseResult result, {
   MailReadBudget budget = const MailReadBudget(),
+  MailReaderLabels labels = const MailReaderLabels(),
   bool preferHtml = true,
   bool externalImagePlaceholders = true,
   Iterable<MailInlineImage> externalImages = const [],
@@ -252,7 +255,7 @@ MailReaderPresentation buildMailPresentation(
   try {
     builder.add(
       message.envelope.subject.isEmpty
-          ? '(No subject)\n'
+          ? '${labels.noSubject}\n'
           : '${_headerText(message.envelope.subject)}\n',
       bold: true,
     );
@@ -271,27 +274,31 @@ MailReaderPresentation buildMailPresentation(
       builder.add('\n');
     }
 
-    addresses('From', message.envelope.from);
-    addresses('To', message.envelope.to);
-    addresses('Cc', message.envelope.cc);
-    addresses('Bcc', message.envelope.bcc);
-    addresses('Reply-To', message.envelope.replyTo);
+    addresses(labels.from, message.envelope.from);
+    addresses(labels.to, message.envelope.to);
+    addresses(labels.cc, message.envelope.cc);
+    addresses(labels.bcc, message.envelope.bcc);
+    addresses(labels.replyTo, message.envelope.replyTo);
     final date = message.envelope.sentAt;
-    if (date != null) builder.add('Date: ${date.toIso8601String()}\n');
+    if (date != null) {
+      builder.add('${labels.date}: ', bold: true);
+      builder.add('${labels.formatDate(date)}\n');
+    }
     builder.add('\n');
     final bodyStart = builder.text.length;
     if (useHtml) {
       builder.html(body.html!);
     } else {
-      builder.add(body.plainText ?? '(No supported decoded body)');
+      builder.add(body.plainText ?? labels.noBody);
     }
     final bodyEnd = builder.text.length;
     if (message.attachments.isNotEmpty) {
-      builder.add('\nAttachments:\n', bold: true);
+      builder.add('\n${labels.attachments}:\n', bold: true);
       for (final attachment in message.attachments) {
         builder.add(
           '${_headerText(attachment.displayName)} · '
-          '${_headerText(attachment.mediaType)} · ${attachment.observedSize} bytes\n',
+          '${_headerText(attachment.mediaType)} · '
+          '${labels.formatSize(attachment.observedSize)}\n',
         );
       }
     }

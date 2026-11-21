@@ -168,6 +168,21 @@ void main() {
     expect(loads, 0);
   });
 
+  testWidgets('a fully loaded folder hides the loaded-scope line', (
+    tester,
+  ) async {
+    await tester.pumpWidget(_app(_list()));
+    expect(find.byKey(const ValueKey('mail-list-scope')), findsNothing);
+    await tester.enterText(
+      find.byKey(const ValueKey('mail-list-search')),
+      'planning',
+    );
+    await tester.pump();
+    // Filters hiding rows still show the count, without the loaded scope.
+    expect(find.text('2 shown · 4 loaded'), findsOneWidget);
+    expect(find.textContaining(_strings.loadedScope), findsNothing);
+  });
+
   testWidgets('search matches subject and sender without network work', (
     tester,
   ) async {

@@ -736,15 +736,20 @@ class _MailMessageListState extends State<MailMessageList> {
             ],
           ),
         ),
-        Padding(
-          padding: const EdgeInsets.fromLTRB(10, 0, 10, 8),
-          child: Text(
-            '${strings.count(visible.length, widget.items.length)}\n'
-            '${strings.loadedScope}',
-            key: const ValueKey('mail-list-scope'),
-            style: Theme.of(context).textTheme.bodySmall,
+        // The counts and the loaded-only scope matter only when the folder
+        // has more headers than are loaded, or when filters hide some.
+        if (widget.hasMore || visible.length != widget.items.length)
+          Padding(
+            padding: const EdgeInsets.fromLTRB(10, 0, 10, 8),
+            child: Text(
+              widget.hasMore
+                  ? '${strings.count(visible.length, widget.items.length)}\n'
+                        '${strings.loadedScope}'
+                  : strings.count(visible.length, widget.items.length),
+              key: const ValueKey('mail-list-scope'),
+              style: Theme.of(context).textTheme.bodySmall,
+            ),
           ),
-        ),
         if (widget.onBulkAction != null)
           Padding(
             padding: const EdgeInsets.fromLTRB(10, 0, 10, 8),

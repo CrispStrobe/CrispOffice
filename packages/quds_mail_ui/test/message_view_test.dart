@@ -341,7 +341,8 @@ void main() {
     );
     await tester.pumpAndSettle();
     expect(tester.takeException(), isNull);
-    expect(find.textContaining('preview reader'), findsOneWidget);
+    // A completely decoded message has no status line, in any reader mode.
+    expect(find.byKey(const ValueKey('mail-reader-status')), findsNothing);
     expect(find.byType(MailSelectionSurface), findsOneWidget);
     await tester.pumpWidget(const SizedBox());
     controller.dispose();

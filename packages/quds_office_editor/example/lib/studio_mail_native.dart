@@ -45,6 +45,7 @@ import 'studio_mail_workspace_strings.dart';
 import 'studio_mail_submission.dart';
 import 'studio_saved_mail.dart';
 import 'studio_strings.dart';
+import 'studio_mail_reader_labels.dart';
 
 /// IMAP/SMTP client with optional host-managed account persistence.
 ///
@@ -1414,6 +1415,7 @@ class _StudioMailDialogState extends State<StudioMailDialog>
           final reader = MailReaderController.fromBytes(
             raw,
             codec: const QudsMimeCodec(),
+            labels: StudioMailReaderLabels(widget.strings.language),
           );
           final previous = _reader;
           setState(() {
@@ -3857,7 +3859,10 @@ class _StudioMailDialogState extends State<StudioMailDialog>
                     .join(', ') ??
                 '',
             date: message.decodeDate(),
-            dateLabel: message.decodeDate()?.toLocal().toString(),
+            dateLabel: studioMailListDate(
+              message.decodeDate(),
+              widget.strings.language,
+            ),
             isRead: _observedRead(message),
             isFlagged: _observedFlagged(message),
           ),
