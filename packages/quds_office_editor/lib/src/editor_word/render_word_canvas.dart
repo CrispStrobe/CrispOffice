@@ -445,6 +445,19 @@ class WordCanvas extends LeafRenderObjectWidget {
 }
 
 /// Class RenderWordCanvas.
+typedef _RunPaintKey = ({
+  String text,
+  String? family,
+  double fontSize,
+  bool bold,
+  bool italic,
+  bool kerning,
+  int bidiLevel,
+  WmlUnderline underline,
+  Color ink,
+  String? themeFamily,
+});
+
 class RenderWordCanvas extends RenderBox implements MouseTrackerAnnotation {
   /// RenderWordCanvas API.
   RenderWordCanvas({
@@ -757,9 +770,16 @@ class RenderWordCanvas extends RenderBox implements MouseTrackerAnnotation {
   /// VisualImageCache API.
   final VisualImageCache _images = VisualImageCache();
 
+  final Map<_RunPaintKey, TextPainter> _runPainters =
+      <_RunPaintKey, TextPainter>{};
+
   @override
   void dispose() {
     _images.dispose();
+    for (final painter in _runPainters.values) {
+      painter.dispose();
+    }
+    _runPainters.clear();
     super.dispose();
   }
 
@@ -4809,7 +4829,60 @@ class RenderWordCanvas extends RenderBox implements MouseTrackerAnnotation {
       _colorFromHex(first.color),
       glyph: first,
     );
-    final TextPainter painter = PaintRunText.painterFor(
+    final TextPainter painter = _runPainterFor(
+      text: text,
+      first: first,
+      ink: ink,
+    );
+    final double paintX = PaintRunText.runPaintOrigin(
+      run,
+      painter,
+      text,
+      paragraph,
+    );
+    // Layout already positions the baseline, including mixed-size runs,
+    // inline pictures and superscripts. TextPainter's top is not that
+    // baseline: height:1 redistributes leading differently for each face.
+    // Align to the model baseline instead of hanging every face from y.
+    final top =
+        first.y -
+        painter.computeDistanceToActualBaseline(TextBaseline.alphabetic);
+    if (first.underline == WmlUnderline.single ||
+        first.underline == WmlUnderline.thick) {
+      PaintRunText.paintUnderlined(
+        canvas,
+        Offset(paintX, top),
+        decorated: painter,
+        text: text,
+        first: first,
+        themeFamily: _theme.fontFamily,
+        color: ink,
+      );
+    } else {
+      painter.paint(canvas, Offset(paintX, top));
+    }
+  }
+
+  TextPainter _runPainterFor({
+    required String text,
+    required LaidOutGlyph first,
+    required Color ink,
+  }) {
+    final key = (
+      text: text,
+      family: first.fontFamily,
+      fontSize: first.fontSize,
+      bold: first.bold,
+      italic: first.italic,
+      kerning: first.kerning,
+      bidiLevel: first.glyph.level,
+      underline: first.underline,
+      ink: ink,
+      themeFamily: _theme.fontFamily,
+    );
+    final cached = _runPainters[key];
+    if (cached != null) return cached;
+    final painter = PaintRunText.painterFor(
       text: text,
       first: first,
       themeFamily: _theme.fontFamily,
@@ -4819,39 +4892,13 @@ class RenderWordCanvas extends RenderBox implements MouseTrackerAnnotation {
           : TextDecoration.underline,
       decorationStyle: underlineStyleFor(first.underline),
       decorationThickness: first.underline.isHeavy ? 2 : null,
-    );
-    try {
-      painter.layout();
-      final double paintX = PaintRunText.runPaintOrigin(
-        run,
-        painter,
-        text,
-        paragraph,
-      );
-      // Layout already positions the baseline, including mixed-size runs,
-      // inline pictures and superscripts. TextPainter's top is not that
-      // baseline: height:1 redistributes leading differently for each face.
-      // Align to the model baseline instead of hanging every face from y.
-      final top =
-          first.y -
-          painter.computeDistanceToActualBaseline(TextBaseline.alphabetic);
-      if (first.underline == WmlUnderline.single ||
-          first.underline == WmlUnderline.thick) {
-        PaintRunText.paintUnderlined(
-          canvas,
-          Offset(paintX, top),
-          decorated: painter,
-          text: text,
-          first: first,
-          themeFamily: _theme.fontFamily,
-          color: ink,
-        );
-      } else {
-        painter.paint(canvas, Offset(paintX, top));
-      }
-    } finally {
-      painter.dispose();
+    )..layout();
+    if (_runPainters.length >= 512) {
+      final oldest = _runPainters.keys.first;
+      _runPainters.remove(oldest)?.dispose();
     }
+    _runPainters[key] = painter;
+    return painter;
   }
 
   Color _documentInk(LaidOutLine line, Color authored, {LaidOutGlyph? glyph}) {
