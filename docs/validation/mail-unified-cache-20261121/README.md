@@ -198,3 +198,13 @@ discovery, conversation grouping and the shared synchronized workspace, durable
 archive/move/delete and rules, richer authoring/sending workflows, and provider/
 platform release qualification. Each needs a usable route, bounded failure and
 recovery behavior, actual local qualification and a remote checkpoint.
+
+## Final publication refresh
+
+Main subsequently merged Touch ID PR #302 at
+`a85e5cc3f6d6acf9cb939f13081945d3ec085550`. Its original feature head was already
+an ancestor of the qualified Mail branch. Reconciling that main merge produced
+an identical complete tree to checkpoint `fa9aad3d` before adding this note:
+all credential corrections, Mail source and evidence remained unchanged.
+[publication-refresh.json](publication-refresh.json) records this final history
+reconciliation. The runtime files still exactly match tested `62e9f1af`.

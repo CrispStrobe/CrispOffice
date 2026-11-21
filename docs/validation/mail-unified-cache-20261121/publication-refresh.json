@@ -1,0 +1,15 @@
+{
+  "captured_utc": "2026-11-21T11:11:47.823271+00:00",
+  "incoming_main": "a85e5cc3f6d6acf9cb939f13081945d3ec085550",
+  "incoming_pr": 302,
+  "incoming_feature_head": "38b0dae033e50bd6409ad3a4930b083fb8b5b7c5",
+  "previous_delivery_checkpoint": "fa9aad3db77afefa1edc5d349021868b1edea08d",
+  "qualified_runtime_checkpoint": "62e9f1af15f2cb00ee67a339cdc6dea48d882aab",
+  "merge_tree_before_this_note": "ce15bd9d3711b4119f46fa4c9082cc10e36deac6",
+  "previous_delivery_tree": "ce15bd9d3711b4119f46fa4c9082cc10e36deac6",
+  "incoming_feature_already_ancestor": true,
+  "merge_changed_existing_files": [],
+  "runtime_changes_from_qualified_checkpoint": [],
+  "credential_corrections_preserved": true,
+  "github_actions_queried_or_awaited": false
+}
