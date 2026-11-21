@@ -11,6 +11,12 @@ archive, Studio workflows and remaining MailStore parity work.
 
 ## Desktop mail parity: ordered increments
 
+The [saved-search refresh increment](live-saved-search.md) adds an explicit
+replacement scan and opt-in 30-second foreground updates over retained headers.
+It preserves an opened reader when its result survives, reports incomplete
+coverage and pauses on failure or app suspension. Repository-event-driven
+shared views and a continuously synchronized unified inbox remain open.
+
 The [scheduled-send increment](scheduled-send.md) adds saved UTC deadlines and
 a ten-second pre-submission Undo window to native Outbox. Scheduling and Resume
 explicitly arm one foreground attempt; reopening and refreshing never send.
@@ -38,7 +44,7 @@ plan rather than treating provider connectivity as full product parity.
 | 1 | Recoverable composition | Multiple account-scoped local drafts, independent reply/forward drafts, attachment/reply recovery and interrupted-send warnings; offline draft entry for verified IMAP (including discovery), EWS, Gmail and Microsoft 365 accounts | Provider-side Drafts synchronization with explicit conflicts and repository-backed offline sessions |
 | 2 | Everyday mailbox workspace (M04W/M06) | Repository-observed loaded/cached sessions, durable single/bulk flag receipts, fresh uncertainty checks, resumable folder-header synchronization and explicit bounded offline body/attachment downloads across IMAP, EWS, Gmail and Microsoft 365 | Complete shared synchronized workspace, durable retention policy/background scheduling, unified inbox and consistent move/delete |
 | 3 | Sending and outbox (M07) | Native durable Outbox, atomic draft transfer/edit-copy, frozen MIME/envelopes, review/export, restart recovery, explicit send/retry/cancel, saved UTC schedules and a ten-second Undo window with explicit foreground resume across SMTP/EWS/Gmail/Microsoft 365 | Account-owned background execution, provider-specific Sent reconciliation and installed/live-provider qualification |
-| 4 | Efficient discovery and organization | Independent archive FTS, saved archive searches, Boolean header queries, bounded saved-header discovery, persistent named searches with fixed account scopes, expandable loaded conversations and observed counts, stable local sorting and journaled visible-selection read/flag commands | Continuously refreshed shared saved views, indexed body/server search, persistent cross-folder conversations, tags/categories, broader durable bulk commands and ordered rule execution with preview/recovery |
+| 4 | Efficient discovery and organization | Independent archive FTS, saved archive searches, Boolean header queries, bounded saved-header discovery, persistent named searches with fixed account scopes and optional foreground refresh, expandable loaded conversations and observed counts, stable local sorting and journaled visible-selection read/flag commands | Repository-event-driven shared saved views, indexed body/server search, persistent cross-folder conversations, tags/categories, broader durable bulk commands and ordered rule execution with preview/recovery |
 | 5 | Rich authoring and Office workflows (M07/M08) | Word-based plain text, To/Cc/Bcc, reply all, inert text quotes, attachments, locally qualified account signatures and reusable Quick Text | Identity routing/full-message templates, HTML alternatives, inline images, attach current document/PDF and edit a copy of a received attachment |
 | 6 | Integrated productivity and release (M09–M13) | Provider adapters and shared foundations available | Calendar/People, invitation workflows, provider-specific shared mailboxes, encryption/signatures where supported, installed-platform and live-provider qualification |
 

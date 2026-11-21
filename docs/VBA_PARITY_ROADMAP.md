@@ -43,7 +43,18 @@ and [the native macro contract](MACROS.md).
 
 ## Ordered milestones and acceptance
 
-The latest bounded continuation adds Word `Font.Position` writes, native signed
+The latest shared-language continuation adds `Abs`, `Int`, `Fix` and `Sgn`
+for source-known numeric calculations in Word, Excel and PowerPoint. It advances
+Stage 2 with explicit Empty/Null behavior, negative-floor versus truncation
+semantics, strict coercion limits and portable numeric bounds. Word macros can
+use these results in existing paragraph selectors, typography and indentation
+operations. The runnable numeric report and versioned corpus exercise the
+existing atomic native transaction; this does not introduce document reads,
+VBA numeric subtype identity or installed-Office differential qualification.
+See the [numeric contract](VBA_MACROS.md#numeric-intrinsics) and
+[local qualification](validation/word-vba-numeric-20261121/README.md).
+
+The preceding bounded continuation adds Word `Font.Position` writes, native signed
 half-point DOCX ownership, automatic/minimum line extents and independent
 baseline rendering through editor and PDF paths. It retains the existing
 typed aliases, helpers, explicit story selectors and atomic plan boundary.
