@@ -88,6 +88,19 @@ files differ only by pinned formatting with identical parsed Dart output; the
 one executable difference is the duplicate-property guard qualified by the
 final engine and focused loader runs.
 
+## Closing main reconciliation
+
+After the fixed publication cutoff, PR #308 merged to main at
+`d572de0bcfb9d1a033fd16f073db439e869057e6`. Its delta from the already
+preserved `05c14895` is seven VBA validation documentation/evidence files;
+the complete `packages` tree is identical. The final main was merged normally
+into evidence checkpoint `7ab5a0c7f21182925254f5d8a2f39acba6f1276c`. All
+1,296 qualified inputs remain byte-identical after that reconciliation.
+`closing-main-reconciliation.json` records the exact parents, paths and check.
+The final PR retains both this completed main history and the independently
+qualified ODT source, with no additional test execution claimed for unchanged
+inputs.
+
 ### Incremental remote checkpoints
 
 | Commit | Preserved work |

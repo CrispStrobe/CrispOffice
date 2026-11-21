@@ -1,0 +1,94 @@
+{
+  "qualifiedSourceCheckpoint": "05c14895c44054ca92a3f3c6671749ea2c7aa69c",
+  "combinedGate": {
+    "gitHead": "05c14895c44054ca92a3f3c6671749ea2c7aa69c",
+    "exitCode": 0,
+    "elapsedSeconds": 193.021,
+    "testFiles": 110,
+    "passed": 5322,
+    "failed": 0,
+    "skipped": 0,
+    "errorEvents": 0,
+    "success": true,
+    "sourceUnchanged": true,
+    "changedSource": [],
+    "runnerDone": [
+      {
+        "success": true,
+        "type": "done",
+        "time": 188202
+      }
+    ]
+  },
+  "sourceAndFixtureCount": 602,
+  "static": {
+    "gitHead": "05c14895c44054ca92a3f3c6671749ea2c7aa69c",
+    "dartFiles": 24,
+    "sourceUnchanged": true,
+    "results": {
+      "format": {
+        "exitCode": 0,
+        "elapsedSeconds": 0.925
+      },
+      "analyze": {
+        "exitCode": 0,
+        "elapsedSeconds": 15.127
+      }
+    },
+    "success": true
+  },
+  "portable": {
+    "executedAtCheckpoint": "e254d17f065200701dbeb92e59cd25a5461ead40",
+    "verifiedIdenticalInputsAtCheckpoint": "05c14895c44054ca92a3f3c6671749ea2c7aa69c",
+    "sourceFiles": 428,
+    "rawReceiptsIdentical": true,
+    "canonicalReceiptsIdentical": true,
+    "canonicalReceiptSha256": "f2d904a881ed42bd206dee3f4a57e4765cda0f638306e8558bbbfd0fbb349319",
+    "exampleSha256": "8bf6a6a382ce7bf602064e9b1a47286a5ee781625e6bf02797fe134faa3b421b",
+    "dartVersion": "Dart SDK version: 3.13.7 (stable) (Thu Oct 22 14:28:57 2026 -0700) on \"linux_x64\"",
+    "nodeVersion": "v24.22.3",
+    "nodeCompilerTests": {
+      "priorEvidence": "/workspace/scratch/7839f72e56c1/.runtime/word-language-portability/node-compiler-tests.jsonl",
+      "priorEvidenceSha256": "9de0220511d18f27f490ca4ca0dd1f401958721af08766711deb7675254cc919",
+      "visibleCompleted": 110,
+      "succeeded": 110,
+      "doneEvents": [
+        {
+          "success": true,
+          "type": "done",
+          "time": 19025
+        }
+      ],
+      "compilerAndTestSourceCount": 19,
+      "changedCompilerAndTestSourcesSinceNodeTest": []
+    }
+  },
+  "mailCore": {
+    "source_commit": "0dd22723cbe2589b2d5009d9c077d18a1326716f",
+    "tests": 110,
+    "passed": 110,
+    "failed": 0,
+    "skipped": 0,
+    "by_suite": {
+      "test/conversations_test.dart": 10,
+      "test/header_search_test.dart": 27,
+      "test/header_search_boolean_regression_test.dart": 47,
+      "test/header_search_boolean_test.dart": 26
+    },
+    "done": [
+      {
+        "success": true,
+        "type": "done",
+        "time": 4954
+      }
+    ],
+    "errors": [],
+    "analysis": "No issues found",
+    "locked_packages": 50
+  },
+  "scope": [
+    "Final combined test counts are unique within the110-file gate; earlier feature and ODT cohorts overlap.",
+    "Node compiler110 cases are the same cases on another backend, not110 additional distinct scenarios.",
+    "No GitHub Actions or CI queues awaited. Flutter/editor/Studio, macOS keychain and installed-host tests were not executed by this work."
+  ]
+}

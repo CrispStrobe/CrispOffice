@@ -1308,5 +1308,8 @@
   "static_binding": "local-validation.zip/static/result.json",
   "broad_editor_binding": "editor-results.json",
   "production_identical_to": "77c4ef27008a1a2468b94c3b67423c43ac28438d",
-  "accepted": true
+  "accepted": true,
+  "closing_main_reconciliation": "closing-main-reconciliation.json",
+  "closing_incoming_main": "d572de0bcfb9d1a033fd16f073db439e869057e6",
+  "closing_input_check_unchanged": true
 }

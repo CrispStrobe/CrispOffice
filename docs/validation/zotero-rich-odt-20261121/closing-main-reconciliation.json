@@ -1,0 +1,23 @@
+{
+  "observed_at_utc": "2026-11-21T12:38:15.185541+00:00",
+  "checkpoint_parent": "7ab5a0c7f21182925254f5d8a2f39acba6f1276c",
+  "incoming_main": "d572de0bcfb9d1a033fd16f073db439e869057e6",
+  "qualified_source": "4386cba498f5b4411dc7598bbc94c706005d04db",
+  "incoming_delta_since_captured_vba_head": [
+    "docs/validation/word-vba-language-controls-20261121/README.md",
+    "docs/validation/word-vba-language-controls-20261121/evidence-manifest.json",
+    "docs/validation/word-vba-language-controls-20261121/intake-acceptance.json",
+    "docs/validation/word-vba-language-controls-20261121/intake-final.json",
+    "docs/validation/word-vba-language-controls-20261121/intake-frontier.json",
+    "docs/validation/word-vba-language-controls-20261121/local-evidence.tar.gz",
+    "docs/validation/word-vba-language-controls-20261121/summary.json"
+  ],
+  "incoming_packages_tree": "eb4e04cf93f91299f91c267041fd0b91c9610140",
+  "captured_vba_packages_tree": "eb4e04cf93f91299f91c267041fd0b91c9610140",
+  "qualified_inputs_checked": 1296,
+  "qualified_inputs_changed": [],
+  "merge_conflicts": [],
+  "github_actions_queried": false,
+  "github_actions_awaited": false,
+  "result": "Merge completed VBA main qualification additively; all qualified production/test/dependency input bytes remain unchanged."
+}
