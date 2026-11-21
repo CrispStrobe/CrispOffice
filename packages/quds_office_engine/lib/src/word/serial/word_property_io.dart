@@ -5,6 +5,12 @@ import '../properties/wml_properties.dart';
 /// Sparse source properties and effective values must remain separate: writing
 /// inherited values as direct formatting would prevent subsequent style edits.
 abstract final class WordPropertyIo {
+  /// Private, ignorable provenance for runs whose ODF script formatting was
+  /// flattened into the editor's scalar controls. Ordinary DOCX properties
+  /// retain their independent native slots and never acquire this ownership.
+  static const odtScriptProjectionNamespace =
+      'urn:quds:office:odt-script-projection:1';
+
   static Map<String, String> runValues(WmlRunProps r) => {
     'rStyle': '${r.styleId}',
     'rFonts': '${r.asciiFont}|${r.csFont}',
@@ -178,6 +184,9 @@ abstract final class WordPropertyIo {
         );
       }
     }
+    if (generated.localName == 'rPr') {
+      _preserveOdtScriptProjection(result, generated, imported, current);
+    }
     if (generated.localName == 'pPr') {
       result.children.removeWhere(
         (n) =>
@@ -191,6 +200,55 @@ abstract final class WordPropertyIo {
     }
     orderChildren(result);
     return result;
+  }
+
+  static void _preserveOdtScriptProjection(
+    XmlElement result,
+    XmlElement generated,
+    Map<String, String> imported,
+    Map<String, String> current,
+  ) {
+    final projection = result.getAttribute(
+      'script',
+      namespaceUri: odtScriptProjectionNamespace,
+    );
+    if (projection == 'complex' || projection == 'shared') {
+      for (final entry in const {
+        'b': 'bCs',
+        'i': 'iCs',
+        'sz': 'szCs',
+      }.entries) {
+        if (current[entry.key] == imported[entry.key]) continue;
+        final value = generated.firstChild(entry.key)?.getAttribute('val');
+        if (value != null) {
+          _mergeWordAttributes(
+            result,
+            entry.value,
+            const {'val'},
+            {'val': value},
+          );
+        }
+      }
+    } else if (projection == 'asian') {
+      if (current['rFonts:ascii'] != imported['rFonts:ascii']) {
+        final font = generated.firstChild('rFonts')?.getAttribute('ascii');
+        _mergeWordAttributes(
+          result,
+          'rFonts',
+          const {'eastAsia', 'eastAsiaTheme'},
+          {'eastAsia': ?font},
+        );
+      }
+      if (current['lang'] != imported['lang']) {
+        final language = generated.firstChild('lang')?.getAttribute('val');
+        _mergeWordAttributes(
+          result,
+          'lang',
+          const {'eastAsia'},
+          {'eastAsia': ?language},
+        );
+      }
+    }
   }
 
   static void _preserveRunFonts(
