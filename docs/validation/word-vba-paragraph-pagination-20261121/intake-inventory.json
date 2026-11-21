@@ -1,0 +1,2679 @@
+{
+  "schema": 1,
+  "captured_scope": "Initial intake before the Word Sections/PageSetup extension; no GitHub Actions, checks, status, or workflow endpoints were queried.",
+  "fork": "CrispStrobe/quds_office_suite",
+  "upstream": "MohammedAsaadAsaad/quds_office_suite",
+  "base_main": "bf761552d22dcd1eb8cbb0ab00ddab6507e1d572",
+  "incoming_branch": "codex/word-vba-unit-conversions-20261120",
+  "incoming_head": "bbccae1bdead10951e2d7a23b33cf14c55382e02",
+  "collection_pages": {
+    "fork_branches": [
+      40,
+      0
+    ],
+    "fork_pull_requests": [
+      100,
+      100,
+      80
+    ],
+    "upstream_branches": [
+      4
+    ],
+    "upstream_pull_requests": [
+      4
+    ]
+  },
+  "branches": [
+    {
+      "name": "codex/odt-field-continuation-20261117",
+      "sha": "c34945761e7991f5fe49037d79529acdd260b31c"
+    },
+    {
+      "name": "codex/word-powerpoint-vba-expansion-20261120",
+      "sha": "0f6239396ff3328473a5f57c280b982d57e33a08"
+    },
+    {
+      "name": "codex/word-vba-compat-20261120-next",
+      "sha": "650afb7d117337bab943af05d63a250a7e90c058"
+    },
+    {
+      "name": "codex/word-vba-compatibility-20261120-continuation",
+      "sha": "8c54d5283804099f9c9023540921f2410b878eb1"
+    },
+    {
+      "name": "codex/word-vba-list-levels-20261120",
+      "sha": "fff4a4afda2beecdd20ae0bd1f3c31622e8c0b37"
+    },
+    {
+      "name": "codex/word-vba-measurements-20261120",
+      "sha": "cd306bdea352c6f6400b5d1af7cc33e737004462"
+    },
+    {
+      "name": "codex/word-vba-paragraph-controls-20261120",
+      "sha": "90ecd41c8a3ef2a6f35967f1219223022e2b0d32"
+    },
+    {
+      "name": "codex/word-vba-paragraph-spacing-20261120",
+      "sha": "d30299dd91634ad7e20c32db5c39a6687fcef4aa"
+    },
+    {
+      "name": "codex/word-vba-ranges-20261120",
+      "sha": "22e5960e99915e81a1b5997058cac44dac27ba1a"
+    },
+    {
+      "name": "codex/word-vba-unit-conversions-20261120",
+      "sha": "bbccae1bdead10951e2d7a23b33cf14c55382e02"
+    },
+    {
+      "name": "codex/zotero-parity-20261120-next",
+      "sha": "0da1b048546f36c658a7ddfb899117b73c5d3e7c"
+    },
+    {
+      "name": "codex/zotero-research-tables-20261120",
+      "sha": "34491bca22a2989dd89d9da3c853f5e57de5464f"
+    },
+    {
+      "name": "codex/zotero-vertical-tables-20261120",
+      "sha": "a7d9f37ecbaaf70544f4866d7d9e572696948184"
+    },
+    {
+      "name": "docs/app-store-submission-20261120",
+      "sha": "b08e0a55b629ac22b33c54146b56438862965022"
+    },
+    {
+      "name": "docs/ods-color-scale",
+      "sha": "58fdddfbcf198a8c0e38e32f6fcc9d6604e95283"
+    },
+    {
+      "name": "docs/ods-data-bar",
+      "sha": "69d14f84cabd3931b7640c1654b401c89faba766"
+    },
+    {
+      "name": "feat/app-store-screenshots-20261120",
+      "sha": "3c6637b6e5585de5fb4b8d27a0ceda6f96edb95f"
+    },
+    {
+      "name": "feat/arabic-web-context-20261120",
+      "sha": "be47bed22a88382f016d823e526bae49590bd0eb"
+    },
+    {
+      "name": "feat/ods-color-scale",
+      "sha": "74ce9ffb816c70c0d2ae50b91ec52a614f26d688"
+    },
+    {
+      "name": "feat/ods-data-bar",
+      "sha": "0a53b8a70128870f3e1df6d18cdb177bb64290ee"
+    },
+    {
+      "name": "feat/ods-dynamic-validation-links",
+      "sha": "68a0db23408e4c95d6d283219504c79aea33a6fe"
+    },
+    {
+      "name": "feat/ods-icon-sets",
+      "sha": "005c708e9f747cb46cf02e12c869b0a2f85ac824"
+    },
+    {
+      "name": "feat/ods-time-period-conditions",
+      "sha": "7ef09f2408f467c65427700e65907531ecb26acb"
+    },
+    {
+      "name": "feat/settings-arweb-20261120",
+      "sha": "e8db6b3f21401f8c6ac4dae4c2934edde8699f4b"
+    },
+    {
+      "name": "fix/mail-credential-stores-chrome-20261120",
+      "sha": "a652a205e6daf6b4b8e3baec04db1c1b52fabd0d"
+    },
+    {
+      "name": "fix/main-green-20261120",
+      "sha": "15271321a9f4550c1ab796a2cf9eaed910824574"
+    },
+    {
+      "name": "integrate/office-union-148",
+      "sha": "3abf8f43b0e79c10271bbd046f391e462b8fe6b9"
+    },
+    {
+      "name": "integrate/recent-pptx",
+      "sha": "ec70b9423febefcb9b104629d2ad48b0c96e9082"
+    },
+    {
+      "name": "main",
+      "sha": "bf761552d22dcd1eb8cbb0ab00ddab6507e1d572"
+    },
+    {
+      "name": "work/mail-accounts-20261120",
+      "sha": "86e44e87f829b0309ea7b84fd5d390f596fe7f26"
+    },
+    {
+      "name": "work/mail-bulk-actions-20261120",
+      "sha": "1584a2da8b23128c113d95c3b05b6a12d2d3861e"
+    },
+    {
+      "name": "work/mail-bulk-flags-20261120",
+      "sha": "bf0effdcc8f690972d762c5b53079e8847a5e65e"
+    },
+    {
+      "name": "work/mail-cached-workspace-20261120",
+      "sha": "c7e721b7703766491fd4459b69de30bf68d9010d"
+    },
+    {
+      "name": "work/mail-command-journal-20261121",
+      "sha": "33ce2428ebab825a844895a767e0f9f1a4077d62"
+    },
+    {
+      "name": "work/mail-multiple-drafts-20261120",
+      "sha": "b3abdf3b4628a8a703857d69b8f11cd21bc502e1"
+    },
+    {
+      "name": "work/mail-offline-accounts-20261120",
+      "sha": "44855ab24c2c7fd34953e879fba571381cce0bc3"
+    },
+    {
+      "name": "work/mail-outbox-20261120",
+      "sha": "9443612b024114c424ba2f8146e04050d6e049b0"
+    },
+    {
+      "name": "work/mail-outbox-management-20261120",
+      "sha": "79e11935e16ea1d2fa576ead0712c83f22e15c28"
+    },
+    {
+      "name": "work/mail-parity-20261120",
+      "sha": "540eb7a41554620e1405807ac1db9dc38bd62148"
+    },
+    {
+      "name": "work/mail-parity-20261121",
+      "sha": "bf761552d22dcd1eb8cbb0ab00ddab6507e1d572"
+    }
+  ],
+  "pull_requests": [
+    {
+      "number": 280,
+      "state": "closed",
+      "merged": true,
+      "head": "fix/bookmark-typing-20261120",
+      "sha": "45245b086fce889aff9a54291083d55d40ba3cb4",
+      "updated_at": "2026-11-21T00:00:38Z"
+    },
+    {
+      "number": 279,
+      "state": "closed",
+      "merged": true,
+      "head": "work/mail-command-journal-20261121",
+      "sha": "33ce2428ebab825a844895a767e0f9f1a4077d62",
+      "updated_at": "2026-11-20T23:41:47Z"
+    },
+    {
+      "number": 278,
+      "state": "closed",
+      "merged": true,
+      "head": "codex/word-vba-unit-conversions-20261120",
+      "sha": "0e4e999a08996a6b8696ca3adba11e303331b73e",
+      "updated_at": "2026-11-20T23:41:49Z"
+    },
+    {
+      "number": 277,
+      "state": "closed",
+      "merged": true,
+      "head": "codex/zotero-vertical-tables-20261120",
+      "sha": "a7d9f37ecbaaf70544f4866d7d9e572696948184",
+      "updated_at": "2026-11-20T23:21:39Z"
+    },
+    {
+      "number": 276,
+      "state": "closed",
+      "merged": true,
+      "head": "codex/zotero-parity-20261120-next",
+      "sha": "0da1b048546f36c658a7ddfb899117b73c5d3e7c",
+      "updated_at": "2026-11-20T21:29:27Z"
+    },
+    {
+      "number": 275,
+      "state": "closed",
+      "merged": true,
+      "head": "work/mail-bulk-flags-20261120",
+      "sha": "bf0effdcc8f690972d762c5b53079e8847a5e65e",
+      "updated_at": "2026-11-20T22:28:07Z"
+    },
+    {
+      "number": 274,
+      "state": "closed",
+      "merged": true,
+      "head": "codex/word-vba-measurements-20261120",
+      "sha": "cd306bdea352c6f6400b5d1af7cc33e737004462",
+      "updated_at": "2026-11-20T20:49:22Z"
+    },
+    {
+      "number": 273,
+      "state": "closed",
+      "merged": true,
+      "head": "work/mail-bulk-actions-20261120",
+      "sha": "1584a2da8b23128c113d95c3b05b6a12d2d3861e",
+      "updated_at": "2026-11-20T22:00:48Z"
+    },
+    {
+      "number": 272,
+      "state": "closed",
+      "merged": true,
+      "head": "codex/word-vba-measurements-20261120",
+      "sha": "6d370884cd2b62ae83e627d9e71809ae9d795684",
+      "updated_at": "2026-11-20T20:42:57Z"
+    },
+    {
+      "number": 271,
+      "state": "closed",
+      "merged": true,
+      "head": "codex/word-vba-compatibility-20261120-continuation",
+      "sha": "8c54d5283804099f9c9023540921f2410b878eb1",
+      "updated_at": "2026-11-20T20:57:56Z"
+    },
+    {
+      "number": 270,
+      "state": "closed",
+      "merged": true,
+      "head": "work/mail-parity-20261120",
+      "sha": "540eb7a41554620e1405807ac1db9dc38bd62148",
+      "updated_at": "2026-11-20T19:33:10Z"
+    },
+    {
+      "number": 269,
+      "state": "closed",
+      "merged": true,
+      "head": "feat/settings-arweb-20261120",
+      "sha": "e8db6b3f21401f8c6ac4dae4c2934edde8699f4b",
+      "updated_at": "2026-11-20T20:30:59Z"
+    },
+    {
+      "number": 268,
+      "state": "closed",
+      "merged": true,
+      "head": "codex/word-vba-paragraph-controls-20261120",
+      "sha": "90ecd41c8a3ef2a6f35967f1219223022e2b0d32",
+      "updated_at": "2026-11-20T20:01:23Z"
+    },
+    {
+      "number": 267,
+      "state": "closed",
+      "merged": true,
+      "head": "feat/arabic-web-context-20261120",
+      "sha": "be47bed22a88382f016d823e526bae49590bd0eb",
+      "updated_at": "2026-11-20T19:13:50Z"
+    },
+    {
+      "number": 266,
+      "state": "closed",
+      "merged": true,
+      "head": "docs/app-store-submission-20261120",
+      "sha": "b08e0a55b629ac22b33c54146b56438862965022",
+      "updated_at": "2026-11-20T19:32:25Z"
+    },
+    {
+      "number": 265,
+      "state": "closed",
+      "merged": true,
+      "head": "chore/macos-13-minimum-20261120",
+      "sha": "a51c20737b1932d9c6475ea6dddc33fbd50b2c17",
+      "updated_at": "2026-11-20T20:24:01Z"
+    },
+    {
+      "number": 264,
+      "state": "closed",
+      "merged": true,
+      "head": "fix/main-green-20261120",
+      "sha": "1e723bd4bc96e07b1b790daf9b82897a846c6096",
+      "updated_at": "2026-11-20T20:01:23Z"
+    },
+    {
+      "number": 263,
+      "state": "closed",
+      "merged": true,
+      "head": "codex/word-vba-paragraph-spacing-20261120",
+      "sha": "d30299dd91634ad7e20c32db5c39a6687fcef4aa",
+      "updated_at": "2026-11-20T19:20:36Z"
+    },
+    {
+      "number": 262,
+      "state": "closed",
+      "merged": true,
+      "head": "work/mail-cached-workspace-20261120",
+      "sha": "c7e721b7703766491fd4459b69de30bf68d9010d",
+      "updated_at": "2026-11-20T17:55:16Z"
+    },
+    {
+      "number": 261,
+      "state": "closed",
+      "merged": true,
+      "head": "codex/word-vba-list-levels-20261120",
+      "sha": "fff4a4afda2beecdd20ae0bd1f3c31622e8c0b37",
+      "updated_at": "2026-11-20T17:17:30Z"
+    },
+    {
+      "number": 260,
+      "state": "closed",
+      "merged": true,
+      "head": "work/mail-offline-accounts-20261120",
+      "sha": "44855ab24c2c7fd34953e879fba571381cce0bc3",
+      "updated_at": "2026-11-20T16:16:15Z"
+    },
+    {
+      "number": 259,
+      "state": "closed",
+      "merged": true,
+      "head": "codex/word-vba-compat-20261120-next",
+      "sha": "650afb7d117337bab943af05d63a250a7e90c058",
+      "updated_at": "2026-11-20T15:59:20Z"
+    },
+    {
+      "number": 258,
+      "state": "closed",
+      "merged": true,
+      "head": "work/mail-offline-accounts-20261120",
+      "sha": "fee58398c80ec811f4adfbbaef7ae08598abdda0",
+      "updated_at": "2026-11-20T15:59:22Z"
+    },
+    {
+      "number": 257,
+      "state": "closed",
+      "merged": true,
+      "head": "codex/word-vba-ranges-20261120",
+      "sha": "22e5960e99915e81a1b5997058cac44dac27ba1a",
+      "updated_at": "2026-11-20T14:47:58Z"
+    },
+    {
+      "number": 256,
+      "state": "closed",
+      "merged": true,
+      "head": "codex/zotero-research-tables-20261120",
+      "sha": "34491bca22a2989dd89d9da3c853f5e57de5464f",
+      "updated_at": "2026-11-20T14:28:06Z"
+    },
+    {
+      "number": 255,
+      "state": "closed",
+      "merged": true,
+      "head": "work/mail-multiple-drafts-20261120",
+      "sha": "b3abdf3b4628a8a703857d69b8f11cd21bc502e1",
+      "updated_at": "2026-11-20T14:11:35Z"
+    },
+    {
+      "number": 254,
+      "state": "closed",
+      "merged": true,
+      "head": "work/mail-outbox-management-20261120",
+      "sha": "79e11935e16ea1d2fa576ead0712c83f22e15c28",
+      "updated_at": "2026-11-20T15:59:22Z"
+    },
+    {
+      "number": 253,
+      "state": "closed",
+      "merged": true,
+      "head": "work/mail-multiple-drafts-20261120",
+      "sha": "4b6bc01be2c95008c320b5a26615828191cf1d9e",
+      "updated_at": "2026-11-20T14:05:16Z"
+    },
+    {
+      "number": 252,
+      "state": "closed",
+      "merged": true,
+      "head": "codex/word-powerpoint-vba-expansion-20261120",
+      "sha": "0f6239396ff3328473a5f57c280b982d57e33a08",
+      "updated_at": "2026-11-20T14:05:18Z"
+    },
+    {
+      "number": 251,
+      "state": "closed",
+      "merged": true,
+      "head": "work/mail-accounts-20261120",
+      "sha": "86e44e87f829b0309ea7b84fd5d390f596fe7f26",
+      "updated_at": "2026-11-20T14:04:45Z"
+    },
+    {
+      "number": 250,
+      "state": "closed",
+      "merged": true,
+      "head": "work/mail-outbox-20261120",
+      "sha": "9443612b024114c424ba2f8146e04050d6e049b0",
+      "updated_at": "2026-11-20T13:33:08Z"
+    },
+    {
+      "number": 249,
+      "state": "closed",
+      "merged": true,
+      "head": "codex/zotero-research-tables-20261120",
+      "sha": "a2b87ee3f471da500423055e86ba2614fc053cae",
+      "updated_at": "2026-11-20T14:28:07Z"
+    },
+    {
+      "number": 248,
+      "state": "closed",
+      "merged": true,
+      "head": "work/mail-reply-forward-20261120",
+      "sha": "56d5fdf15a20ced764561a1ac2429c2c37a6e780",
+      "updated_at": "2026-11-20T13:09:58Z"
+    },
+    {
+      "number": 247,
+      "state": "closed",
+      "merged": true,
+      "head": "perf/incremental-layout-20261120",
+      "sha": "baf6d1bc53b611e9fb37082ca69c409e5f8d6381",
+      "updated_at": "2026-11-20T13:09:42Z"
+    },
+    {
+      "number": 246,
+      "state": "closed",
+      "merged": true,
+      "head": "fix/font-pack-stub-packs-20261120",
+      "sha": "d0c9007480ba518022836e017802875614e6205c",
+      "updated_at": "2026-11-20T11:17:22Z"
+    },
+    {
+      "number": 245,
+      "state": "closed",
+      "merged": true,
+      "head": "codex/word-powerpoint-vba-continuation-20261120",
+      "sha": "d46d4ef394ed7cafd40bc266c793f8c0df6ec57f",
+      "updated_at": "2026-11-20T13:09:49Z"
+    },
+    {
+      "number": 244,
+      "state": "closed",
+      "merged": true,
+      "head": "perf/typing-proofing-results-20261120",
+      "sha": "2fd61c3353dc22ee36ed1bc1a69df470a9423230",
+      "updated_at": "2026-11-20T11:02:28Z"
+    },
+    {
+      "number": 243,
+      "state": "closed",
+      "merged": true,
+      "head": "work/mail-accounts-20261120",
+      "sha": "a059c0249a25bef602640c8b8d504bd8da41c619",
+      "updated_at": "2026-11-20T13:43:10Z"
+    },
+    {
+      "number": 242,
+      "state": "closed",
+      "merged": true,
+      "head": "feat/downloads-manager-redesign-20261120",
+      "sha": "84d02025fade09c80f3f58942b466f4522eb4434",
+      "updated_at": "2026-11-20T11:46:32Z"
+    },
+    {
+      "number": 241,
+      "state": "closed",
+      "merged": true,
+      "head": "work/mail-workspace-20261120",
+      "sha": "aad737dd79c034b831a8957daa4165c6c64e35e5",
+      "updated_at": "2026-11-20T10:50:58Z"
+    },
+    {
+      "number": 240,
+      "state": "closed",
+      "merged": true,
+      "head": "codex/zotero-note-targets-20261120",
+      "sha": "6c23d94472f741aceff6aef0de0e6ef847195afe",
+      "updated_at": "2026-11-20T13:09:50Z"
+    },
+    {
+      "number": 239,
+      "state": "closed",
+      "merged": true,
+      "head": "codex/word-powerpoint-vba-20261120",
+      "sha": "06f119566235aa3765445526f5ffab48832b1a31",
+      "updated_at": "2026-11-20T10:50:57Z"
+    },
+    {
+      "number": 238,
+      "state": "closed",
+      "merged": true,
+      "head": "codex/zotero-parity-continuation-20261120",
+      "sha": "40a8f8eb76bd9bf51205fa0cb9f576ba497ad76b",
+      "updated_at": "2026-11-20T13:09:52Z"
+    },
+    {
+      "number": 237,
+      "state": "closed",
+      "merged": true,
+      "head": "perf/typing-proofing-20261120",
+      "sha": "712d0ea558a01cabff25a83294a29b8d57ec25d4",
+      "updated_at": "2026-11-20T11:01:18Z"
+    },
+    {
+      "number": 236,
+      "state": "closed",
+      "merged": true,
+      "head": "feat/android-spacy-grammar-20261120",
+      "sha": "7319b220ab2e64b440e6f63d299eb747366a24d3",
+      "updated_at": "2026-11-20T09:31:52Z"
+    },
+    {
+      "number": 235,
+      "state": "closed",
+      "merged": true,
+      "head": "ci/android-spacy-grammar-workflow",
+      "sha": "596fb68f64c447177ed202a40f890c20205a0270",
+      "updated_at": "2026-11-20T09:31:52Z"
+    },
+    {
+      "number": 234,
+      "state": "closed",
+      "merged": true,
+      "head": "feat/crispoffice-rename-20261120",
+      "sha": "228d13d949859c66c58cf51addfbb03b09c7365d",
+      "updated_at": "2026-11-20T10:50:28Z"
+    },
+    {
+      "number": 233,
+      "state": "closed",
+      "merged": true,
+      "head": "work/mail-draft-recovery-20261120",
+      "sha": "20b2ecf572f8fd5663a728529da7bf5c7ebbda1d",
+      "updated_at": "2026-11-20T10:50:58Z"
+    },
+    {
+      "number": 232,
+      "state": "closed",
+      "merged": true,
+      "head": "feat/mobile-proofing-native-20261120",
+      "sha": "8b09e0ca6667c00db81b613c40b6d275bc20471a",
+      "updated_at": "2026-11-20T06:59:54Z"
+    },
+    {
+      "number": 231,
+      "state": "closed",
+      "merged": true,
+      "head": "feat/arabic-morph-disambig-20261120",
+      "sha": "754d30d199b6f7dfd52b2772a27cc37a3f8d3dd8",
+      "updated_at": "2026-11-20T06:43:26Z"
+    },
+    {
+      "number": 230,
+      "state": "closed",
+      "merged": true,
+      "head": "docs/glotlid-feasibility-20261120",
+      "sha": "3c137a66e8a434f5a90e80f5094bfaa25354067a",
+      "updated_at": "2026-11-20T06:59:52Z"
+    },
+    {
+      "number": 229,
+      "state": "closed",
+      "merged": true,
+      "head": "feat/web-proofing-persistence-20261120",
+      "sha": "0c12d087e1d21b710c9fe224a06a93d526f0721e",
+      "updated_at": "2026-11-20T06:03:05Z"
+    },
+    {
+      "number": 228,
+      "state": "closed",
+      "merged": true,
+      "head": "fix/macos-ci-portable-20261120",
+      "sha": "f3ed8d74a016bc1e826dbaf056397e887d765b43",
+      "updated_at": "2026-11-20T06:02:57Z"
+    },
+    {
+      "number": 227,
+      "state": "closed",
+      "merged": true,
+      "head": "codex/vba-variant-conversions-20261120",
+      "sha": "1ceae221d37e733f0195d35622a05f896a2d13a1",
+      "updated_at": "2026-11-20T10:50:57Z"
+    },
+    {
+      "number": 226,
+      "state": "closed",
+      "merged": true,
+      "head": "fix/comment-draft-language-test-20261120",
+      "sha": "a56397df5f53b991f5016f3cc8e1ab53b7ce12f1",
+      "updated_at": "2026-11-20T06:03:06Z"
+    },
+    {
+      "number": 225,
+      "state": "closed",
+      "merged": true,
+      "head": "feat/spacy-grammar-v2-20261120",
+      "sha": "4973e712045bdcf45fd36dcfe37d380c52265d3c",
+      "updated_at": "2026-11-20T05:13:51Z"
+    },
+    {
+      "number": 224,
+      "state": "closed",
+      "merged": true,
+      "head": "feat/macos-signing-ci-20261120",
+      "sha": "38c9c297c12fca3422b8f758e7b1afbdabbf064c",
+      "updated_at": "2026-11-20T05:14:11Z"
+    },
+    {
+      "number": 223,
+      "state": "closed",
+      "merged": true,
+      "head": "codex/zotero-research-materials-20261120",
+      "sha": "a31616d3567a43307251e13a9728cf92fd8690c6",
+      "updated_at": "2026-11-20T10:50:57Z"
+    },
+    {
+      "number": 222,
+      "state": "closed",
+      "merged": true,
+      "head": "codex/vba-string-conformance-20261120",
+      "sha": "7be53768501bb6df426eeb9d05c921e393ded02f",
+      "updated_at": "2026-11-20T04:41:44Z"
+    },
+    {
+      "number": 221,
+      "state": "closed",
+      "merged": true,
+      "head": "work/mail-attachments-20261120",
+      "sha": "177f29d3f9450a58f41189b462b0814aad37e45c",
+      "updated_at": "2026-11-20T10:50:58Z"
+    },
+    {
+      "number": 220,
+      "state": "closed",
+      "merged": true,
+      "head": "feat/spacy-macos-bundled-qualification-20261119",
+      "sha": "1441665236401e94ccf03ffa694c7434bb227ef3",
+      "updated_at": "2026-11-19T23:08:21Z"
+    },
+    {
+      "number": 219,
+      "state": "closed",
+      "merged": true,
+      "head": "codex/vba-dynamic-arrays-20261119",
+      "sha": "3003272fc2bc1f77bdb1355aa7cb27356dfbc61b",
+      "updated_at": "2026-11-19T22:45:45Z"
+    },
+    {
+      "number": 218,
+      "state": "closed",
+      "merged": true,
+      "head": "codex/zotero-workflow-20261119",
+      "sha": "6626ad430a54122e4514cc2870fdcee18760682f",
+      "updated_at": "2026-11-19T22:45:46Z"
+    },
+    {
+      "number": 217,
+      "state": "closed",
+      "merged": true,
+      "head": "work/mail-continuation-20261119",
+      "sha": "fd17f6c4e0ffc22b71e52dcc7859fd95f72f30c7",
+      "updated_at": "2026-11-19T22:45:46Z"
+    },
+    {
+      "number": 216,
+      "state": "closed",
+      "merged": true,
+      "head": "work/mail-next-20261119",
+      "sha": "ab833975409abfb207f3a6a1a146183a4a5198fd",
+      "updated_at": "2026-11-19T22:45:46Z"
+    },
+    {
+      "number": 215,
+      "state": "closed",
+      "merged": true,
+      "head": "fix/spacy-open-refresh-20261119",
+      "sha": "cc061e72bd167cdaf4a99d3c0b714f27cb93b2c8",
+      "updated_at": "2026-11-19T19:53:18Z"
+    },
+    {
+      "number": 214,
+      "state": "closed",
+      "merged": true,
+      "head": "fix/spacy-bundled-ner-20261119",
+      "sha": "dc93a176f8efc98feff9c25565fb036175793a54",
+      "updated_at": "2026-11-19T19:43:15Z"
+    },
+    {
+      "number": 213,
+      "state": "closed",
+      "merged": true,
+      "head": "fix/app-gaps-20261119",
+      "sha": "0e03878b028ec25ed3d84a790633433eafc3bede",
+      "updated_at": "2026-11-19T19:43:15Z"
+    },
+    {
+      "number": 212,
+      "state": "closed",
+      "merged": true,
+      "head": "codex/mail-archive-resume-20261119",
+      "sha": "482fbd99dd8d3d5aff7d773fa87454f4d324028d",
+      "updated_at": "2026-11-19T22:45:45Z"
+    },
+    {
+      "number": 211,
+      "state": "closed",
+      "merged": true,
+      "head": "codex/crispoffice-layout-theme-20261119",
+      "sha": "cacae8569814e4cb81f58d358734d31431f102be",
+      "updated_at": "2026-11-19T22:45:45Z"
+    },
+    {
+      "number": 210,
+      "state": "closed",
+      "merged": true,
+      "head": "codex/vba-arrays-foreach-20261119",
+      "sha": "3abffb94dcf33a2766a4579d296d0ef09c9e35cd",
+      "updated_at": "2026-11-19T22:45:45Z"
+    },
+    {
+      "number": 209,
+      "state": "closed",
+      "merged": true,
+      "head": "codex/mail-archive-restore-20261119",
+      "sha": "6275d21246040e03f6264b27171992c88d1474a2",
+      "updated_at": "2026-11-19T19:43:14Z"
+    },
+    {
+      "number": 208,
+      "state": "closed",
+      "merged": true,
+      "head": "integrate/macbook-build-20261119",
+      "sha": "de9d21f9014060c14263ce17fe323d5fdb063d11",
+      "updated_at": "2026-11-19T17:40:45Z"
+    },
+    {
+      "number": 207,
+      "state": "closed",
+      "merged": true,
+      "head": "codex/vba-control-flow-20261119",
+      "sha": "dde2b56066746223b2b313cbfb0ce8dba55dc6bd",
+      "updated_at": "2026-11-19T19:43:14Z"
+    },
+    {
+      "number": 206,
+      "state": "closed",
+      "merged": true,
+      "head": "codex/crispoffice-gui-20261119",
+      "sha": "bba11ff1b23b2e8c0cdc0d872ce31394ada83bf2",
+      "updated_at": "2026-11-19T19:43:14Z"
+    },
+    {
+      "number": 205,
+      "state": "closed",
+      "merged": true,
+      "head": "codex/mail-archive-portability-20261119",
+      "sha": "82b20dc8b52d0b95efeff590c6023ed84704fa7a",
+      "updated_at": "2026-11-19T17:40:21Z"
+    },
+    {
+      "number": 204,
+      "state": "closed",
+      "merged": true,
+      "head": "codex/vba-procedures-20261119",
+      "sha": "3db248be978b24d0693d1133505d9be200fd1256",
+      "updated_at": "2026-11-19T17:40:22Z"
+    },
+    {
+      "number": 203,
+      "state": "closed",
+      "merged": true,
+      "head": "codex/mail-archive-search-20261119",
+      "sha": "aa9fb9de14347ed69182be90f13c99a443a0ecbb",
+      "updated_at": "2026-11-19T17:40:21Z"
+    },
+    {
+      "number": 202,
+      "state": "closed",
+      "merged": false,
+      "head": "codex/vba-excel-macros",
+      "sha": "d98c8ae020a60715fbb02f5332b2f3414fb6805b",
+      "updated_at": "2026-11-19T17:40:22Z"
+    },
+    {
+      "number": 201,
+      "state": "closed",
+      "merged": true,
+      "head": "codex/mcp-aligned-macros",
+      "sha": "3c1764f5ff8bf9f89e090ef4e04e3142c4ccf90a",
+      "updated_at": "2026-11-19T17:40:21Z"
+    },
+    {
+      "number": 200,
+      "state": "closed",
+      "merged": true,
+      "head": "codex/mail-providers-20261119",
+      "sha": "4b2ad7995c1ddff052232c21749d847701d77f96",
+      "updated_at": "2026-11-19T14:55:59Z"
+    },
+    {
+      "number": 199,
+      "state": "closed",
+      "merged": true,
+      "head": "feat/paragraph-language-id-20261119",
+      "sha": "107155216505590e2eabfb93fc67cb908ad6173d",
+      "updated_at": "2026-11-19T14:56:01Z"
+    },
+    {
+      "number": 198,
+      "state": "closed",
+      "merged": true,
+      "head": "codex/office-validation-recovery-20261119",
+      "sha": "623057111a9179552eb02b21a753a1728de9905d",
+      "updated_at": "2026-11-19T17:40:21Z"
+    },
+    {
+      "number": 197,
+      "state": "closed",
+      "merged": true,
+      "head": "feat/ews-on-premises",
+      "sha": "f20b3c61d28918cd75526c64852c41fae943acf3",
+      "updated_at": "2026-11-19T17:40:22Z"
+    },
+    {
+      "number": 196,
+      "state": "closed",
+      "merged": true,
+      "head": "feat/arabic-morph-binary-20261119",
+      "sha": "555fc99fdeb8ef7f3043513203cb16b243a4a9d7",
+      "updated_at": "2026-11-19T17:40:22Z"
+    },
+    {
+      "number": 195,
+      "state": "closed",
+      "merged": true,
+      "head": "codex/office-final-union-20261119",
+      "sha": "d42626a4c0742a955ab27b700c7138fd69d99298",
+      "updated_at": "2026-11-19T13:04:56Z"
+    },
+    {
+      "number": 194,
+      "state": "closed",
+      "merged": false,
+      "head": "codex/office-finish-20261119",
+      "sha": "e77d0dab229bc0ea4c195a164771d3c44809f0f0",
+      "updated_at": "2026-11-19T13:27:43Z"
+    },
+    {
+      "number": 193,
+      "state": "closed",
+      "merged": true,
+      "head": "codex/office-continuation-20261119",
+      "sha": "4cf5831d01ace0ae804a176ec82ff2d27ce7fac3",
+      "updated_at": "2026-11-19T13:27:31Z"
+    },
+    {
+      "number": 192,
+      "state": "closed",
+      "merged": true,
+      "head": "codex/office-resume-main-20261119",
+      "sha": "0601d2790c7636bc02d53430f6e99f471e8ac83e",
+      "updated_at": "2026-11-19T13:27:58Z"
+    },
+    {
+      "number": 191,
+      "state": "closed",
+      "merged": true,
+      "head": "codex/office-mail-continuation-20261119",
+      "sha": "1d762d4c369795175b55a4ecb9c44efd29f041b1",
+      "updated_at": "2026-11-19T12:55:23Z"
+    },
+    {
+      "number": 190,
+      "state": "closed",
+      "merged": true,
+      "head": "feat/arabic-rules-t2-20261119",
+      "sha": "13d87f0f151a1f20e81402788c54beb9ada8f030",
+      "updated_at": "2026-11-19T13:29:43Z"
+    },
+    {
+      "number": 189,
+      "state": "closed",
+      "merged": true,
+      "head": "feat/arabic-morph-integration-20261119",
+      "sha": "37b8a738d7701b5e61ed282c0d9a25e6a73f97f9",
+      "updated_at": "2026-11-19T13:29:34Z"
+    },
+    {
+      "number": 188,
+      "state": "closed",
+      "merged": true,
+      "head": "feat/arabic-morph-interface-20261119",
+      "sha": "d2ec54dbfc6e42ea929b872fd0b36c751d4a7a33",
+      "updated_at": "2026-11-19T13:29:36Z"
+    },
+    {
+      "number": 187,
+      "state": "closed",
+      "merged": true,
+      "head": "feat/arabic-lists-20261119",
+      "sha": "217f2abb07eb690d52fd0d4cc513032aaa7f4105",
+      "updated_at": "2026-11-19T13:29:32Z"
+    },
+    {
+      "number": 186,
+      "state": "closed",
+      "merged": true,
+      "head": "fix/studio-example-tests-20261119",
+      "sha": "98f7044252015e1d6a3bcddeb4e0133f6c88dbc6",
+      "updated_at": "2026-11-19T13:31:41Z"
+    },
+    {
+      "number": 185,
+      "state": "closed",
+      "merged": true,
+      "head": "feat/arabic-host-wiring-20261119",
+      "sha": "e42ca64ba0dd4c687a56947ba0122cf53a15b843",
+      "updated_at": "2026-11-19T13:29:31Z"
+    },
+    {
+      "number": 184,
+      "state": "closed",
+      "merged": true,
+      "head": "feat/arabic-rules-t1-20261119",
+      "sha": "c19ac32d1e443ce277ccc80f7c80107e33fb40c3",
+      "updated_at": "2026-11-19T13:29:41Z"
+    },
+    {
+      "number": 183,
+      "state": "closed",
+      "merged": true,
+      "head": "codex/mail-uid-pagination-20261119",
+      "sha": "f2b0769cf5533fd4e7ee335adab532c98c677857",
+      "updated_at": "2026-11-19T13:27:13Z"
+    },
+    {
+      "number": 182,
+      "state": "closed",
+      "merged": true,
+      "head": "docs/arabic-rule-spec-20261119",
+      "sha": "0cee7ea9701e2d75e1385f5e16ded69cbaf0e387",
+      "updated_at": "2026-11-19T13:28:49Z"
+    },
+    {
+      "number": 181,
+      "state": "closed",
+      "merged": true,
+      "head": "feat/hunspell-engine-20261119",
+      "sha": "906296bad785daaf7be85ec838361bee18ca88a9",
+      "updated_at": "2026-11-19T13:30:04Z"
+    },
+    {
+      "number": 180,
+      "state": "closed",
+      "merged": true,
+      "head": "feat/arabic-rules-20261119",
+      "sha": "8717d8515f0f07875e0d7ed7a0ad73fa319cb594",
+      "updated_at": "2026-11-19T13:29:39Z"
+    },
+    {
+      "number": 179,
+      "state": "closed",
+      "merged": true,
+      "head": "codex/office-main-integration-20261119",
+      "sha": "5ec15bdd4c5016b320f0fe8edff36b1da69fa44f",
+      "updated_at": "2026-11-19T07:58:17Z"
+    },
+    {
+      "number": 178,
+      "state": "closed",
+      "merged": false,
+      "head": "codex/office-main-sync-20261119",
+      "sha": "2122066f0eccf06a6f2c3c523c5715a7233bb95d",
+      "updated_at": "2026-11-19T08:02:06Z"
+    },
+    {
+      "number": 177,
+      "state": "closed",
+      "merged": true,
+      "head": "codex/office-current-reconciliation-20261119",
+      "sha": "3f0277c8c4d317c3607e3bd6a2bf0e9aaf73bd3d",
+      "updated_at": "2026-11-19T07:58:17Z"
+    },
+    {
+      "number": 176,
+      "state": "closed",
+      "merged": true,
+      "head": "feat/arabic-proofing-20261119",
+      "sha": "16cbbebdcf7781564658cc7636473c7d04846b38",
+      "updated_at": "2026-11-19T13:29:37Z"
+    },
+    {
+      "number": 175,
+      "state": "closed",
+      "merged": true,
+      "head": "codex/document-review-notes-20261118",
+      "sha": "c320f28347f1cd292b848be2cf72998d41f8a6ac",
+      "updated_at": "2026-11-19T13:27:06Z"
+    },
+    {
+      "number": 174,
+      "state": "closed",
+      "merged": true,
+      "head": "codex/offline-thesaurus-20261118",
+      "sha": "59e0a7c232e7380021a8bda4477999205da0f8ae",
+      "updated_at": "2026-11-19T13:28:03Z"
+    },
+    {
+      "number": 173,
+      "state": "closed",
+      "merged": true,
+      "head": "codex/zotero-word-parity-20261118",
+      "sha": "b0a9bd3f1b46ac89021d1b7e49c32980ca4d181e",
+      "updated_at": "2026-11-19T13:28:43Z"
+    },
+    {
+      "number": 172,
+      "state": "closed",
+      "merged": true,
+      "head": "codex/mail-reader-20261118",
+      "sha": "0dc05c17844249b479357ea0ec5f8f02252a530f",
+      "updated_at": "2026-11-19T13:27:12Z"
+    },
+    {
+      "number": 171,
+      "state": "closed",
+      "merged": true,
+      "head": "integrate/spacy-en-fr-20261118",
+      "sha": "637b67c58482e40a3244c590ce77c08b9fc2740e",
+      "updated_at": "2026-11-19T13:31:57Z"
+    },
+    {
+      "number": 170,
+      "state": "closed",
+      "merged": true,
+      "head": "codex/zotero-note-workflow-20261118",
+      "sha": "ff1518517dd9f67e214ff56fe7eef06349f5223a",
+      "updated_at": "2026-11-18T19:26:47Z"
+    },
+    {
+      "number": 169,
+      "state": "closed",
+      "merged": true,
+      "head": "codex/offline-thesaurus-20261118",
+      "sha": "4600c0ebc9ac5e6acabd92935821d1c15315f2c1",
+      "updated_at": "2026-11-18T20:49:23Z"
+    },
+    {
+      "number": 168,
+      "state": "closed",
+      "merged": true,
+      "head": "codex/zotero-wordlike-20261118",
+      "sha": "6c993f7406037ba462c6aea32e7e6afeebd28c03",
+      "updated_at": "2026-11-19T13:28:44Z"
+    },
+    {
+      "number": 167,
+      "state": "closed",
+      "merged": true,
+      "head": "codex/zotero-citation-workflow-20261118",
+      "sha": "a40a26663f7a2c6b7fb8de91540fd04b9875ed9c",
+      "updated_at": "2026-11-19T13:28:29Z"
+    },
+    {
+      "number": 166,
+      "state": "closed",
+      "merged": true,
+      "head": "codex/zotero-citation-workflow-20261118",
+      "sha": "3668ed92829dfa012ec5b129943a86738ebb7992",
+      "updated_at": "2026-11-18T17:01:06Z"
+    },
+    {
+      "number": 165,
+      "state": "closed",
+      "merged": false,
+      "head": "codex/zotero-offline-workflow-20261118",
+      "sha": "8d74db5da2992e60c7f17b58cd354b874a1ce33a",
+      "updated_at": "2026-11-19T13:28:33Z"
+    },
+    {
+      "number": 164,
+      "state": "closed",
+      "merged": true,
+      "head": "codex/zotero-continuation-20261118",
+      "sha": "fb1fd4dc3edda824c3e043c035dbfad1f0fe0869",
+      "updated_at": "2026-11-19T13:28:30Z"
+    },
+    {
+      "number": 163,
+      "state": "closed",
+      "merged": true,
+      "head": "integrate/spacy-ner-macos-followup-20261118",
+      "sha": "ce4d3d19a21eae96a473291ffb9f47ac3be6a74c",
+      "updated_at": "2026-11-19T13:31:59Z"
+    },
+    {
+      "number": 162,
+      "state": "closed",
+      "merged": true,
+      "head": "codex/document-review-20261118",
+      "sha": "4600c0ebc9ac5e6acabd92935821d1c15315f2c1",
+      "updated_at": "2026-11-19T13:27:03Z"
+    },
+    {
+      "number": 161,
+      "state": "closed",
+      "merged": true,
+      "head": "codex/zotero-workspace-20261118",
+      "sha": "acfa3c2bf543debd2fff518304ab514ab677418b",
+      "updated_at": "2026-11-19T13:28:46Z"
+    },
+    {
+      "number": 160,
+      "state": "closed",
+      "merged": true,
+      "head": "codex/native-spelling-continuation-20261118",
+      "sha": "8cbdb9d9a05ff7f0e795efe0ee7848b196f424a3",
+      "updated_at": "2026-11-19T13:27:17Z"
+    },
+    {
+      "number": 159,
+      "state": "closed",
+      "merged": true,
+      "head": "integrate/native-spacy-distribution-20261118",
+      "sha": "2292548eb69de2dbb5240ab9da59256f362137c6",
+      "updated_at": "2026-11-18T12:33:57Z"
+    },
+    {
+      "number": 158,
+      "state": "closed",
+      "merged": true,
+      "head": "codex/zotero-tags-20261118",
+      "sha": "5dd3eb7c1434f0c1063290d5698fa5c760c201e2",
+      "updated_at": "2026-11-19T13:28:41Z"
+    },
+    {
+      "number": 157,
+      "state": "closed",
+      "merged": true,
+      "head": "codex/native-spelling-quality-20261118",
+      "sha": "9fc211f6c72be9495767bd7cacfd8df51abf2fad",
+      "updated_at": "2026-11-19T13:27:19Z"
+    },
+    {
+      "number": 156,
+      "state": "closed",
+      "merged": true,
+      "head": "codex/zotero-capabilities-20261118",
+      "sha": "f4aa218c87293527b3e2b7514500a28d13bd8f70",
+      "updated_at": "2026-11-19T13:28:27Z"
+    },
+    {
+      "number": 155,
+      "state": "closed",
+      "merged": true,
+      "head": "codex/native-spelling-20261118",
+      "sha": "536ee2086ce46ab629d4d77144d1ca22a43e3c19",
+      "updated_at": "2026-11-19T13:27:15Z"
+    },
+    {
+      "number": 154,
+      "state": "closed",
+      "merged": true,
+      "head": "codex/office-local-qualification-20261118",
+      "sha": "295752ff93b24bafc510e60197b62faa647e2aa3",
+      "updated_at": "2026-11-19T13:27:46Z"
+    },
+    {
+      "number": 153,
+      "state": "closed",
+      "merged": false,
+      "head": "feat/native-spacy-w7-20261118",
+      "sha": "2e013f26c7d4db54ecabe2c955117cbce5379408",
+      "updated_at": "2026-11-19T13:30:07Z"
+    },
+    {
+      "number": 152,
+      "state": "closed",
+      "merged": true,
+      "head": "integrate/office-union-150",
+      "sha": "da9c956ec5d65c0e5a9f9ea84c2b0bca98e824a0",
+      "updated_at": "2026-11-19T13:31:55Z"
+    },
+    {
+      "number": 151,
+      "state": "closed",
+      "merged": true,
+      "head": "feat/ods-time-period-conditions",
+      "sha": "7ef09f2408f467c65427700e65907531ecb26acb",
+      "updated_at": "2026-11-17T22:05:17Z"
+    },
+    {
+      "number": 150,
+      "state": "closed",
+      "merged": false,
+      "head": "codex/office-union-resume-20261118",
+      "sha": "6d97fedccde17244a917ee7d3372adebe5494089",
+      "updated_at": "2026-11-19T13:28:01Z"
+    },
+    {
+      "number": 149,
+      "state": "closed",
+      "merged": true,
+      "head": "integrate/office-union-148",
+      "sha": "3abf8f43b0e79c10271bbd046f391e462b8fe6b9",
+      "updated_at": "2026-11-17T21:32:16Z"
+    },
+    {
+      "number": 148,
+      "state": "closed",
+      "merged": false,
+      "head": "codex/office-union-qualification-20261117",
+      "sha": "e3831cdde529aa0c2368845cd72c1b9b65154665",
+      "updated_at": "2026-11-17T21:32:27Z"
+    },
+    {
+      "number": 147,
+      "state": "closed",
+      "merged": true,
+      "head": "integrate/odt-column-boundary-144",
+      "sha": "cee6e2632f891a3fe21c5c02d6bf508805973051",
+      "updated_at": "2026-11-19T13:31:53Z"
+    },
+    {
+      "number": 146,
+      "state": "closed",
+      "merged": true,
+      "head": "docs/ods-icon-sets",
+      "sha": "a7f144cc983f2df7c16d88f8644ad67a9254c3d0",
+      "updated_at": "2026-11-19T13:29:11Z"
+    },
+    {
+      "number": 145,
+      "state": "closed",
+      "merged": true,
+      "head": "feat/ods-icon-sets",
+      "sha": "005c708e9f747cb46cf02e12c869b0a2f85ac824",
+      "updated_at": "2026-11-17T21:23:29Z"
+    },
+    {
+      "number": 144,
+      "state": "closed",
+      "merged": false,
+      "head": "codex/odt-column-boundary-followup-20261117",
+      "sha": "a1e026b496f91b54bbd3017aae54717bf25a5586",
+      "updated_at": "2026-11-19T13:27:25Z"
+    },
+    {
+      "number": 143,
+      "state": "closed",
+      "merged": false,
+      "head": "codex/office-reconciled-20261117",
+      "sha": "83f8c380f9271b6bf34a300c3aedc19442cb61f1",
+      "updated_at": "2026-11-19T13:27:54Z"
+    },
+    {
+      "number": 142,
+      "state": "closed",
+      "merged": true,
+      "head": "docs/ods-data-bar",
+      "sha": "69d14f84cabd3931b7640c1654b401c89faba766",
+      "updated_at": "2026-11-17T20:14:26Z"
+    },
+    {
+      "number": 141,
+      "state": "closed",
+      "merged": true,
+      "head": "feat/ods-data-bar",
+      "sha": "0a53b8a70128870f3e1df6d18cdb177bb64290ee",
+      "updated_at": "2026-11-17T20:13:20Z"
+    },
+    {
+      "number": 140,
+      "state": "closed",
+      "merged": true,
+      "head": "codex/odt-field-continuation-20261117",
+      "sha": "c34945761e7991f5fe49037d79529acdd260b31c",
+      "updated_at": "2026-11-17T20:14:56Z"
+    },
+    {
+      "number": 139,
+      "state": "closed",
+      "merged": true,
+      "head": "feat/native-spacy-reference-20261117",
+      "sha": "6df76a0dff0051312faa04317af41d479dd94162",
+      "updated_at": "2026-11-19T13:30:05Z"
+    },
+    {
+      "number": 138,
+      "state": "closed",
+      "merged": true,
+      "head": "docs/ods-dynamic-validation",
+      "sha": "b8ddaaeb581e010467de304c828764d353149102",
+      "updated_at": "2026-11-19T13:29:06Z"
+    },
+    {
+      "number": 137,
+      "state": "closed",
+      "merged": true,
+      "head": "feat/ods-dynamic-validation-links",
+      "sha": "68a0db23408e4c95d6d283219504c79aea33a6fe",
+      "updated_at": "2026-11-17T20:01:17Z"
+    },
+    {
+      "number": 136,
+      "state": "closed",
+      "merged": true,
+      "head": "docs/ods-color-scale",
+      "sha": "58fdddfbcf198a8c0e38e32f6fcc9d6604e95283",
+      "updated_at": "2026-11-17T19:47:40Z"
+    },
+    {
+      "number": 135,
+      "state": "closed",
+      "merged": true,
+      "head": "feat/ods-color-scale",
+      "sha": "74ce9ffb816c70c0d2ae50b91ec52a614f26d688",
+      "updated_at": "2026-11-17T19:45:42Z"
+    },
+    {
+      "number": 134,
+      "state": "closed",
+      "merged": true,
+      "head": "docs/aot-removal",
+      "sha": "128a187d69555db80890c2a1945a442b951f9c74",
+      "updated_at": "2026-11-19T13:28:47Z"
+    },
+    {
+      "number": 133,
+      "state": "closed",
+      "merged": true,
+      "head": "feat/odt-first-even-headers",
+      "sha": "f87533cdbf9f98e5cfc11d21d8903f8501212ab8",
+      "updated_at": "2026-11-19T13:31:03Z"
+    },
+    {
+      "number": 132,
+      "state": "closed",
+      "merged": true,
+      "head": "feat/odf-story-fidelity",
+      "sha": "0ecd1615b96d7b90156c1e913e105d467efe9a39",
+      "updated_at": "2026-11-19T13:30:11Z"
+    },
+    {
+      "number": 131,
+      "state": "closed",
+      "merged": true,
+      "head": "docs/native-spacy-handoff-20261117",
+      "sha": "f965fce6a54141b753a22f1e1b6c2fabba44e389",
+      "updated_at": "2026-11-19T13:29:02Z"
+    },
+    {
+      "number": 130,
+      "state": "closed",
+      "merged": true,
+      "head": "fix/odt-inline-fields",
+      "sha": "84076f8ec8e4604a631cbaad9b88b030e508f0bc",
+      "updated_at": "2026-11-19T13:31:35Z"
+    },
+    {
+      "number": 129,
+      "state": "closed",
+      "merged": true,
+      "head": "integrate/aot-then-remove-20261117",
+      "sha": "bb5a97a8d7c5f9ffa261e64753f53a3c044b610f",
+      "updated_at": "2026-11-19T13:31:47Z"
+    },
+    {
+      "number": 128,
+      "state": "closed",
+      "merged": false,
+      "head": "codex/office-fidelity-improvements-20261117-e1978379",
+      "sha": "814f165cb24a5b719dde65495f64d85f86563328",
+      "updated_at": "2026-11-19T13:27:39Z"
+    },
+    {
+      "number": 127,
+      "state": "closed",
+      "merged": true,
+      "head": "feat/odt-toc",
+      "sha": "8b70fdb42fb2d974587c75437b3adb5018190159",
+      "updated_at": "2026-11-19T13:31:22Z"
+    },
+    {
+      "number": 126,
+      "state": "closed",
+      "merged": true,
+      "head": "feat/odp-preset-shapes",
+      "sha": "8fae38da39c3c45344e723abca92c9330f15a791",
+      "updated_at": "2026-11-19T13:30:15Z"
+    },
+    {
+      "number": 125,
+      "state": "closed",
+      "merged": true,
+      "head": "integrate/codex-office-continuation-20261117",
+      "sha": "af2a61862d23572b108bd7ef7719c7f575348d83",
+      "updated_at": "2026-11-19T13:31:50Z"
+    },
+    {
+      "number": 124,
+      "state": "closed",
+      "merged": true,
+      "head": "feat/odt-fields",
+      "sha": "b005a46b32c8b3ec92d60bb99147f2aa3af51f06",
+      "updated_at": "2026-11-19T13:31:01Z"
+    },
+    {
+      "number": 123,
+      "state": "closed",
+      "merged": false,
+      "head": "codex/office-consolidation-20261117",
+      "sha": "1138cffdc4a1c909b2b149db80312037c21909d8",
+      "updated_at": "2026-11-19T13:27:27Z"
+    },
+    {
+      "number": 122,
+      "state": "closed",
+      "merged": true,
+      "head": "feat/odt-paragraph-breaks",
+      "sha": "54a3a8593bdb34dd7c1f737960aa732d401fc2da",
+      "updated_at": "2026-11-19T13:31:15Z"
+    },
+    {
+      "number": 121,
+      "state": "closed",
+      "merged": true,
+      "head": "feat/odp-chart-data",
+      "sha": "a86a4ec6a231ed66cd868ea1ece3acc3aea2bb8f",
+      "updated_at": "2026-11-19T13:30:12Z"
+    },
+    {
+      "number": 120,
+      "state": "closed",
+      "merged": false,
+      "head": "codex/aot-daemon-free-20261117",
+      "sha": "e37ccdb47c047f6a0250585cf5cb20efc17573b4",
+      "updated_at": "2026-11-19T13:27:00Z"
+    },
+    {
+      "number": 119,
+      "state": "closed",
+      "merged": true,
+      "head": "feat/odt-columns",
+      "sha": "2c7d58d2e83e542655db7e9bbcc04b6bade44902",
+      "updated_at": "2026-11-19T13:30:57Z"
+    },
+    {
+      "number": 118,
+      "state": "closed",
+      "merged": true,
+      "head": "feat/odt-tab-stops",
+      "sha": "4391669c881cbcba372c742d2300c24cdc465a2f",
+      "updated_at": "2026-11-19T13:31:19Z"
+    },
+    {
+      "number": 117,
+      "state": "closed",
+      "merged": false,
+      "head": "codex/aot-proofing-analysis-20261117",
+      "sha": "8b19ead89800f81ed9743ffbaf3279ac88fdd06d",
+      "updated_at": "2026-11-19T13:27:02Z"
+    },
+    {
+      "number": 116,
+      "state": "closed",
+      "merged": false,
+      "head": "codex/office-qualified-resume-20261117",
+      "sha": "6a32a919325d71c121c63e3879cfd1b28d64312e",
+      "updated_at": "2026-11-17T19:15:04Z"
+    },
+    {
+      "number": 115,
+      "state": "closed",
+      "merged": true,
+      "head": "feat/odt-table-borders",
+      "sha": "b54ef7d2955f44266a87d9067d0e4c332e868c54",
+      "updated_at": "2026-11-19T13:31:21Z"
+    },
+    {
+      "number": 114,
+      "state": "closed",
+      "merged": false,
+      "head": "codex/german-morphology-20261117",
+      "sha": "867df7f257eac69adfe3355c051cdb2f773c53ac",
+      "updated_at": "2026-11-19T13:27:09Z"
+    },
+    {
+      "number": 113,
+      "state": "closed",
+      "merged": false,
+      "head": "codex/office-continuation-20261117",
+      "sha": "93c832f53982a9f5956f19ae0cb9418f55fac8c0",
+      "updated_at": "2026-11-19T13:27:29Z"
+    },
+    {
+      "number": 112,
+      "state": "closed",
+      "merged": true,
+      "head": "feat/odt-paragraph-shading",
+      "sha": "12601a41b6785dcd1d617adba8e13297d9af4bc0",
+      "updated_at": "2026-11-19T13:31:16Z"
+    },
+    {
+      "number": 111,
+      "state": "closed",
+      "merged": true,
+      "head": "codex/office-fidelity-20261117",
+      "sha": "d1738017afd3696adbd2e895678b1fa7d26065ec",
+      "updated_at": "2026-11-19T13:27:38Z"
+    },
+    {
+      "number": 110,
+      "state": "closed",
+      "merged": true,
+      "head": "feat/odt-page-fields",
+      "sha": "35ae6328a884975c23d2aa5001bf0df05a436f91",
+      "updated_at": "2026-11-19T13:31:13Z"
+    },
+    {
+      "number": 109,
+      "state": "closed",
+      "merged": true,
+      "head": "feat/odf-metadata",
+      "sha": "b842ae4b4df892ec5f058f6207589953f3e9dae9",
+      "updated_at": "2026-11-19T13:30:09Z"
+    },
+    {
+      "number": 108,
+      "state": "closed",
+      "merged": true,
+      "head": "feat/odp-shape-links",
+      "sha": "3ec638bd7de5cb6648774abbf14da1c315f5e418",
+      "updated_at": "2026-11-19T13:30:17Z"
+    },
+    {
+      "number": 107,
+      "state": "closed",
+      "merged": true,
+      "head": "feat/odt-links-bookmarks",
+      "sha": "8471633ed09e2a49ba35ff162a2bac5eb04073c9",
+      "updated_at": "2026-11-19T13:31:07Z"
+    },
+    {
+      "number": 106,
+      "state": "closed",
+      "merged": true,
+      "head": "feat/odt-nested-lists",
+      "sha": "7686ec52876288e6799023fd686af79228236826",
+      "updated_at": "2026-11-19T13:31:10Z"
+    },
+    {
+      "number": 105,
+      "state": "closed",
+      "merged": true,
+      "head": "codex/german-morphology-20261117",
+      "sha": "6f1abf273bd10d7ebe5641661dd307c492f897c2",
+      "updated_at": "2026-11-17T15:44:29Z"
+    },
+    {
+      "number": 104,
+      "state": "closed",
+      "merged": true,
+      "head": "feat/odt-sections2",
+      "sha": "2a6f3a94ce1d4a5ba6cddc1687a075191448da3d",
+      "updated_at": "2026-11-19T13:31:18Z"
+    },
+    {
+      "number": 103,
+      "state": "closed",
+      "merged": true,
+      "head": "feat/odt-comments",
+      "sha": "e15205c97f0fe0c7fcc5c3441e72cb0e9a3bdc01",
+      "updated_at": "2026-11-19T13:30:58Z"
+    },
+    {
+      "number": 102,
+      "state": "closed",
+      "merged": true,
+      "head": "codex/zotero-recovery-20261116",
+      "sha": "1549a9c7884eb688732262398b5d9859a68103eb",
+      "updated_at": "2026-11-19T13:28:36Z"
+    },
+    {
+      "number": 101,
+      "state": "closed",
+      "merged": true,
+      "head": "codex/office-fidelity-20261117",
+      "sha": "cf60a17bcd825dc9b4ecdf840d54e6a0271d3647",
+      "updated_at": "2026-11-17T15:48:20Z"
+    },
+    {
+      "number": 100,
+      "state": "closed",
+      "merged": true,
+      "head": "feat/odt-footnotes",
+      "sha": "946942a1e30332892aaf19a068ca5a29470d682a",
+      "updated_at": "2026-11-19T13:31:04Z"
+    },
+    {
+      "number": 99,
+      "state": "closed",
+      "merged": true,
+      "head": "docs/odp-transitions",
+      "sha": "434a26933501eb288a1b16ffd9f971a5fe3b3bc7",
+      "updated_at": "2026-11-19T13:29:05Z"
+    },
+    {
+      "number": 98,
+      "state": "closed",
+      "merged": true,
+      "head": "feat/odp-transitions",
+      "sha": "a920b13aef776e0fb8a2ce3cc32848c2e7c0166a",
+      "updated_at": "2026-11-19T13:30:19Z"
+    },
+    {
+      "number": 97,
+      "state": "closed",
+      "merged": true,
+      "head": "feat/odt-ordered-lists",
+      "sha": "8e94cf878cfbdeb13482f37f7848ef5a400425f3",
+      "updated_at": "2026-11-19T13:31:11Z"
+    },
+    {
+      "number": 96,
+      "state": "closed",
+      "merged": true,
+      "head": "docs/odt-odp-rows",
+      "sha": "a733c9f3367b9833f242100fcda0cff9e92767ff",
+      "updated_at": "2026-11-19T13:29:19Z"
+    },
+    {
+      "number": 95,
+      "state": "closed",
+      "merged": true,
+      "head": "feat/odt-lists",
+      "sha": "f862fe550bc8b7d3afcdb74016ccfefd7477fd20",
+      "updated_at": "2026-11-19T13:31:08Z"
+    },
+    {
+      "number": 94,
+      "state": "closed",
+      "merged": true,
+      "head": "docs/odp-presentation-writer",
+      "sha": "8221b0081b02af33101ca7f58438e69e487d2bf6",
+      "updated_at": "2026-11-19T13:29:03Z"
+    },
+    {
+      "number": 93,
+      "state": "closed",
+      "merged": true,
+      "head": "feat/odp-presentation-writer",
+      "sha": "5088f3ab7e81f353593f16fcaa86d1467d4e1af9",
+      "updated_at": "2026-11-19T13:30:14Z"
+    },
+    {
+      "number": 92,
+      "state": "closed",
+      "merged": true,
+      "head": "feat/odt-document-writer",
+      "sha": "e8cb60efc2360be9bb72db7af8e4c675edf5b76f",
+      "updated_at": "2026-11-19T13:31:00Z"
+    },
+    {
+      "number": 91,
+      "state": "closed",
+      "merged": true,
+      "head": "codex/proofing-en-de-20261117",
+      "sha": "5cff80ce4ba85e645f21a31efb4fa4d9043b7e79",
+      "updated_at": "2026-11-19T13:28:10Z"
+    },
+    {
+      "number": 90,
+      "state": "closed",
+      "merged": true,
+      "head": "docs/odt-frame-size",
+      "sha": "6da74faa9160275df9c10a864c758033c92f114d",
+      "updated_at": "2026-11-19T13:29:16Z"
+    },
+    {
+      "number": 89,
+      "state": "closed",
+      "merged": true,
+      "head": "feat/conditional-dxf-styles",
+      "sha": "31a26383639dc7f751cfb0ea543ec7454a537ff6",
+      "updated_at": "2026-11-19T13:29:50Z"
+    },
+    {
+      "number": 88,
+      "state": "closed",
+      "merged": true,
+      "head": "docs/conditional-top-bottom",
+      "sha": "5fb8762e771fe68be8bc8025fe26e159d14eda8e",
+      "updated_at": "2026-11-19T13:28:52Z"
+    },
+    {
+      "number": 87,
+      "state": "closed",
+      "merged": true,
+      "head": "codex/proofing-en-de-20261116",
+      "sha": "7dfcfe9fcbf7e6d0d0abc14de7ed1ed901fa99c2",
+      "updated_at": "2026-11-19T13:28:08Z"
+    },
+    {
+      "number": 86,
+      "state": "closed",
+      "merged": true,
+      "head": "feat/conditional-top-bottom",
+      "sha": "001367e89cb0034cf33467783d7258bb0800deb9",
+      "updated_at": "2026-11-19T13:29:56Z"
+    },
+    {
+      "number": 85,
+      "state": "closed",
+      "merged": true,
+      "head": "codex/zotero-recovery-20261116",
+      "sha": "9f2dbd81c2289a2285521e1491a9c860c4b59646",
+      "updated_at": "2026-11-17T09:36:10Z"
+    },
+    {
+      "number": 84,
+      "state": "closed",
+      "merged": true,
+      "head": "docs/ods-header-footer",
+      "sha": "846c15f0de92a17bb2720e295b9a40412ebcb6fb",
+      "updated_at": "2026-11-19T13:29:10Z"
+    },
+    {
+      "number": 83,
+      "state": "closed",
+      "merged": true,
+      "head": "feat/ods-header-footer",
+      "sha": "331be9688e2de1feb52635490b534042dea10c27",
+      "updated_at": "2026-11-19T13:30:33Z"
+    },
+    {
+      "number": 82,
+      "state": "closed",
+      "merged": true,
+      "head": "docs/page-setup-fix",
+      "sha": "4497c737623c1339d2422487d53941c20472bac9",
+      "updated_at": "2026-11-19T13:29:21Z"
+    },
+    {
+      "number": 81,
+      "state": "closed",
+      "merged": true,
+      "head": "docs/sheet-page-setup",
+      "sha": "eb95211e4d82933ba5b1db23ea7b79938b77909f",
+      "updated_at": "2026-11-19T13:29:26Z"
+    },
+    {
+      "number": 80,
+      "state": "closed",
+      "merged": true,
+      "head": "feat/sheet-page-setup",
+      "sha": "5aa16674e64cc01b89aec017c85afd3899cd96d5",
+      "updated_at": "2026-11-19T13:31:29Z"
+    },
+    {
+      "number": 79,
+      "state": "closed",
+      "merged": true,
+      "head": "docs/ods-row-groups",
+      "sha": "06828a5e63365495c86a4a0e1c68ecd113f891e5",
+      "updated_at": "2026-11-19T13:29:13Z"
+    },
+    {
+      "number": 78,
+      "state": "closed",
+      "merged": true,
+      "head": "feat/ods-row-groups",
+      "sha": "27137499f8cc1a946bfcdd7446f43945ea81d2be",
+      "updated_at": "2026-11-19T13:30:42Z"
+    },
+    {
+      "number": 77,
+      "state": "closed",
+      "merged": true,
+      "head": "docs/ods-filter-predicates",
+      "sha": "bb9866d25bf98e5aa42c10ce4679835dbc8617f1",
+      "updated_at": "2026-11-19T13:29:08Z"
+    },
+    {
+      "number": 76,
+      "state": "closed",
+      "merged": true,
+      "head": "feat/ods-filter-conditions",
+      "sha": "1deb61cf78add61f5d26bea36ff596d769d06a87",
+      "updated_at": "2026-11-19T13:30:28Z"
+    },
+    {
+      "number": 75,
+      "state": "closed",
+      "merged": true,
+      "head": "docs/odt-image-registry",
+      "sha": "f27e9b0e7ee9b1db8f6b7393abd752dab67d1ca5",
+      "updated_at": "2026-11-19T13:29:18Z"
+    },
+    {
+      "number": 74,
+      "state": "closed",
+      "merged": true,
+      "head": "docs/current-office-capabilities",
+      "sha": "1675bbbb7c03090a87b6df783e3741e2cbc1768f",
+      "updated_at": "2026-11-19T13:28:54Z"
+    },
+    {
+      "number": 73,
+      "state": "closed",
+      "merged": true,
+      "head": "fix/ods-writer-page-layout",
+      "sha": "8a0107cbca4b00766a2a76d43a1db244c006e976",
+      "updated_at": "2026-11-19T13:31:34Z"
+    },
+    {
+      "number": 72,
+      "state": "closed",
+      "merged": true,
+      "head": "codex/text-rendering-20261116",
+      "sha": "57bc0f98eb94997b73f22cc267bd8d61dccaee59",
+      "updated_at": "2026-11-19T13:28:22Z"
+    },
+    {
+      "number": 71,
+      "state": "closed",
+      "merged": true,
+      "head": "docs/ods-writer-images",
+      "sha": "108b4087c15f5640dbc906ad243f3030b7592f3f",
+      "updated_at": "2026-11-19T13:29:14Z"
+    },
+    {
+      "number": 70,
+      "state": "closed",
+      "merged": true,
+      "head": "feat/ods-writer-images",
+      "sha": "9ad9ba92133932b0a3824619168f07dd218c2b26",
+      "updated_at": "2026-11-19T13:30:53Z"
+    },
+    {
+      "number": 69,
+      "state": "closed",
+      "merged": true,
+      "head": "feat/ods-writer-conditional",
+      "sha": "ec94795114d11c73bd8fc689fde364cc110b5cd3",
+      "updated_at": "2026-11-19T13:30:52Z"
+    },
+    {
+      "number": 68,
+      "state": "closed",
+      "merged": true,
+      "head": "feat/ods-writer-metadata",
+      "sha": "82215309dc64ef8c473fec3c4892cf0c9884bc91",
+      "updated_at": "2026-11-19T13:30:55Z"
+    },
+    {
+      "number": 67,
+      "state": "closed",
+      "merged": true,
+      "head": "feat/ods-writer",
+      "sha": "0ee0a8320875248adac9718cae2e67875b6b932c",
+      "updated_at": "2026-11-19T13:30:51Z"
+    },
+    {
+      "number": 66,
+      "state": "closed",
+      "merged": true,
+      "head": "docs/filter-operators",
+      "sha": "379fa8663c81f32b4328415f56c776746ccc23bc",
+      "updated_at": "2026-11-19T13:28:55Z"
+    },
+    {
+      "number": 65,
+      "state": "closed",
+      "merged": true,
+      "head": "feat/ods-filter-operators",
+      "sha": "3bb505ce5fea00236238e37c450ace8b18e4e34e",
+      "updated_at": "2026-11-19T13:30:30Z"
+    },
+    {
+      "number": 64,
+      "state": "closed",
+      "merged": true,
+      "head": "docs/filters-closed",
+      "sha": "4a122b3b71ddc539f8ffda5541b7e6ab0f1dce8f",
+      "updated_at": "2026-11-19T13:28:57Z"
+    },
+    {
+      "number": 63,
+      "state": "closed",
+      "merged": true,
+      "head": "codex/zotero-capabilities-20261116",
+      "sha": "2480f0988167068d9aeddf6573b9c2c6871a8481",
+      "updated_at": "2026-11-19T13:28:26Z"
+    },
+    {
+      "number": 62,
+      "state": "closed",
+      "merged": true,
+      "head": "feat/ods-filter-predicates",
+      "sha": "089e53fce443ca2169fc44f3700e1b23780d2c95",
+      "updated_at": "2026-11-19T13:30:31Z"
+    },
+    {
+      "number": 61,
+      "state": "closed",
+      "merged": true,
+      "head": "docs/metadata-complete",
+      "sha": "b23ee557ea121774833c7a188a49189e4f80ce70",
+      "updated_at": "2026-11-19T13:29:00Z"
+    },
+    {
+      "number": 60,
+      "state": "closed",
+      "merged": true,
+      "head": "feat/ods-outline",
+      "sha": "988f423b9b95037d8f5273ee368b58ceedab0667",
+      "updated_at": "2026-11-19T13:30:41Z"
+    },
+    {
+      "number": 59,
+      "state": "closed",
+      "merged": true,
+      "head": "feat/ods-hyperlinks",
+      "sha": "e5daa20587e10971e8cb97d82a5495584b5c1553",
+      "updated_at": "2026-11-19T13:30:34Z"
+    },
+    {
+      "number": 58,
+      "state": "closed",
+      "merged": true,
+      "head": "feat/ods-named-expressions",
+      "sha": "864e674795eb422855df2b26ccc375d3255e61a2",
+      "updated_at": "2026-11-19T13:30:39Z"
+    },
+    {
+      "number": 57,
+      "state": "closed",
+      "merged": true,
+      "head": "feat/ods-tab-color",
+      "sha": "0dd9dd9763c2eb6bdc4f6b6e30fb7726035e7d4b",
+      "updated_at": "2026-11-19T13:30:44Z"
+    },
+    {
+      "number": 56,
+      "state": "closed",
+      "merged": true,
+      "head": "codex/zotero-optimization-20261116",
+      "sha": "ca9e4f052d988d77f9ded3a6b13f840f76a26159",
+      "updated_at": "2026-11-19T13:28:35Z"
+    },
+    {
+      "number": 55,
+      "state": "closed",
+      "merged": true,
+      "head": "docs/validation-complete",
+      "sha": "f5b67cc296b7d27e4f3a480dc46160f472d78694",
+      "updated_at": "2026-11-19T13:29:28Z"
+    },
+    {
+      "number": 54,
+      "state": "closed",
+      "merged": true,
+      "head": "feat/ods-validation-messages",
+      "sha": "49ba086251ba61032f15b3e7b726fc921874fd12",
+      "updated_at": "2026-11-19T13:30:46Z"
+    },
+    {
+      "number": 53,
+      "state": "closed",
+      "merged": true,
+      "head": "feat/ods-custom-validation",
+      "sha": "2e3074c8e1860f9503b059a87870911afc3eee7d",
+      "updated_at": "2026-11-19T13:30:22Z"
+    },
+    {
+      "number": 52,
+      "state": "closed",
+      "merged": true,
+      "head": "docs/validation-operators",
+      "sha": "01f62eb1812ca54827cc14e074e03abd82f963d7",
+      "updated_at": "2026-11-19T13:29:29Z"
+    },
+    {
+      "number": 51,
+      "state": "closed",
+      "merged": true,
+      "head": "feat/ods-validation-operators",
+      "sha": "8769019fb8be5483939edd4655dd88005e2515c4",
+      "updated_at": "2026-11-19T13:30:47Z"
+    },
+    {
+      "number": 50,
+      "state": "closed",
+      "merged": true,
+      "head": "codex/zotero-support-20261116",
+      "sha": "428679a33381f943a8ae63117d4207f01dd15462",
+      "updated_at": "2026-11-19T13:28:40Z"
+    },
+    {
+      "number": 49,
+      "state": "closed",
+      "merged": true,
+      "head": "docs/metadata-closed",
+      "sha": "a5febc3362d2fccdb979f012a5296af72e465797",
+      "updated_at": "2026-11-19T13:28:59Z"
+    },
+    {
+      "number": 48,
+      "state": "closed",
+      "merged": true,
+      "head": "feat/ods-metadata",
+      "sha": "d6d6866c0f4ddbbaa196e1a5eb7ff9e31007fdea",
+      "updated_at": "2026-11-19T13:30:37Z"
+    },
+    {
+      "number": 47,
+      "state": "closed",
+      "merged": true,
+      "head": "codex/zotero-support-20261115",
+      "sha": "fc37658c907edf6687eccb9564d3046283b49a3a",
+      "updated_at": "2026-11-19T13:28:38Z"
+    },
+    {
+      "number": 46,
+      "state": "closed",
+      "merged": true,
+      "head": "docs/readme-remaining-gaps",
+      "sha": "e6fdd16849aaf7ccbaf50f2593d7a92b6a82e630",
+      "updated_at": "2026-11-19T13:29:23Z"
+    },
+    {
+      "number": 45,
+      "state": "closed",
+      "merged": true,
+      "head": "docs/remaining-gaps",
+      "sha": "0a26be7f136ad3e57dbe894b0bc4cdb0602addd0",
+      "updated_at": "2026-11-19T13:29:24Z"
+    },
+    {
+      "number": 44,
+      "state": "closed",
+      "merged": true,
+      "head": "fix/sdt-multi-section-control",
+      "sha": "866c14f0b3a876e11732bc544dc25a05d8f10524",
+      "updated_at": "2026-11-19T13:31:37Z"
+    },
+    {
+      "number": 43,
+      "state": "closed",
+      "merged": true,
+      "head": "feat/conditional-affix",
+      "sha": "20681b8658392212c128f51b4c91f0b638942448",
+      "updated_at": "2026-11-19T13:29:45Z"
+    },
+    {
+      "number": 42,
+      "state": "closed",
+      "merged": true,
+      "head": "fix/sdt-trailing-section-break",
+      "sha": "8fc3d06be36da5c2176feb107c14245f61650d75",
+      "updated_at": "2026-11-19T13:31:39Z"
+    },
+    {
+      "number": 41,
+      "state": "closed",
+      "merged": true,
+      "head": "feat/conditional-between",
+      "sha": "b69bad50fb235118a5334b325683cd1524b3e3d1",
+      "updated_at": "2026-11-19T13:29:47Z"
+    },
+    {
+      "number": 40,
+      "state": "closed",
+      "merged": true,
+      "head": "codex/zotero-support-20261115",
+      "sha": "8855b88a96b5c94349e3b5278c339228a1688c3e",
+      "updated_at": "2026-11-15T22:12:58Z"
+    },
+    {
+      "number": 39,
+      "state": "closed",
+      "merged": true,
+      "head": "feat/ods-validations",
+      "sha": "b85501b2810e537e21040d82528d8dbaa6fdcf15",
+      "updated_at": "2026-11-19T13:30:49Z"
+    },
+    {
+      "number": 38,
+      "state": "closed",
+      "merged": true,
+      "head": "feat/conditional-text",
+      "sha": "752a94dfddf69522429f3025f9d25702499cb6da",
+      "updated_at": "2026-11-19T13:29:54Z"
+    },
+    {
+      "number": 37,
+      "state": "closed",
+      "merged": true,
+      "head": "feat/conditional-dxf",
+      "sha": "b0efe6c661009ffa463f2bf6d7945216ce1dae4c",
+      "updated_at": "2026-11-19T13:29:48Z"
+    },
+    {
+      "number": 36,
+      "state": "closed",
+      "merged": true,
+      "head": "feat/conditional-operators",
+      "sha": "21de3c3963b0334068b87fb1c25c787660cb17cf",
+      "updated_at": "2026-11-19T13:29:52Z"
+    },
+    {
+      "number": 35,
+      "state": "closed",
+      "merged": true,
+      "head": "feat/ods-conditional",
+      "sha": "e59751246a200e7477657d0e4835bf77b153422c",
+      "updated_at": "2026-11-19T13:30:20Z"
+    },
+    {
+      "number": 34,
+      "state": "closed",
+      "merged": true,
+      "head": "fix/utf16-custom-xml",
+      "sha": "09a05d7d60d2a2e1d2547487ad4545c50472834b",
+      "updated_at": "2026-11-19T13:31:42Z"
+    },
+    {
+      "number": 33,
+      "state": "closed",
+      "merged": true,
+      "head": "feat/sheet-hidden-sheets",
+      "sha": "4c8036bbf16ac224c3fc102b5c44d8913a512b18",
+      "updated_at": "2026-11-19T13:31:26Z"
+    },
+    {
+      "number": 32,
+      "state": "closed",
+      "merged": true,
+      "head": "feat/sheet-hidden-state",
+      "sha": "46850ae47e0241733750decb22417a0150e4b0e4",
+      "updated_at": "2026-11-19T13:31:27Z"
+    },
+    {
+      "number": 31,
+      "state": "closed",
+      "merged": true,
+      "head": "feat/ods-default-geometry",
+      "sha": "912f26f21446ef9bdbf4f542535438dae0ded9a9",
+      "updated_at": "2026-11-19T13:30:24Z"
+    },
+    {
+      "number": 30,
+      "state": "closed",
+      "merged": true,
+      "head": "feat/ods-default-style",
+      "sha": "49b447324159595c59e64d8425b54a09f79ec736",
+      "updated_at": "2026-11-19T13:30:26Z"
+    },
+    {
+      "number": 29,
+      "state": "closed",
+      "merged": true,
+      "head": "feat/ods-images",
+      "sha": "7fe296e29e2e1b173580f6854507fc060cb4f080",
+      "updated_at": "2026-11-19T13:30:36Z"
+    },
+    {
+      "number": 28,
+      "state": "closed",
+      "merged": true,
+      "head": "test/xlsm-preservation",
+      "sha": "a8cd28d8af8ca966e8c4259862587ecc9aade2f4",
+      "updated_at": "2026-11-15T14:59:45Z"
+    },
+    {
+      "number": 27,
+      "state": "closed",
+      "merged": true,
+      "head": "fix/linux-goldens",
+      "sha": "cde05b85bcd00c26d519d43283fcc6b55a1884e7",
+      "updated_at": "2026-11-15T14:59:43Z"
+    },
+    {
+      "number": 26,
+      "state": "closed",
+      "merged": true,
+      "head": "fix/odf-legacy-spreadsheets",
+      "sha": "5b9ac71db1934252c4b8ae48ac03d4cd976e15ae",
+      "updated_at": "2026-11-15T14:59:43Z"
+    },
+    {
+      "number": 25,
+      "state": "closed",
+      "merged": true,
+      "head": "fix/word-steps-vocabulary",
+      "sha": "b6d27c84a72d622f670a7e646e36ba4bd920cfc8",
+      "updated_at": "2026-11-15T14:59:44Z"
+    },
+    {
+      "number": 24,
+      "state": "closed",
+      "merged": true,
+      "head": "fix/odf-legacy-spreadsheets",
+      "sha": "9cc8c6e91ff9acf0f52a68aea7c0da69934a2661",
+      "updated_at": "2026-11-15T11:30:45Z"
+    },
+    {
+      "number": 23,
+      "state": "closed",
+      "merged": true,
+      "head": "fix/odf-legacy-spreadsheets",
+      "sha": "e002b9584bead9761fac8c7cf818431966d1b1c3",
+      "updated_at": "2026-11-15T08:57:54Z"
+    },
+    {
+      "number": 22,
+      "state": "closed",
+      "merged": true,
+      "head": "fix/word-inline-pictures",
+      "sha": "4637ddce4154f4b50105c7322fedc1c75fd02193",
+      "updated_at": "2026-11-15T14:59:44Z"
+    },
+    {
+      "number": 21,
+      "state": "closed",
+      "merged": true,
+      "head": "fix/word-heading-like-word",
+      "sha": "1f30a823b30678e3684c98fee6a2cd5c4945c4f2",
+      "updated_at": "2026-11-15T14:59:44Z"
+    },
+    {
+      "number": 20,
+      "state": "closed",
+      "merged": true,
+      "head": "fix/word-shape-no-textbox",
+      "sha": "5278aafd512640608fe06b8f7d357c4cffe8520a",
+      "updated_at": "2026-11-15T14:59:44Z"
+    },
+    {
+      "number": 19,
+      "state": "closed",
+      "merged": true,
+      "head": "feat/word-like-selection",
+      "sha": "e8227569a3b90fb21db598483690bd13fe74ddef",
+      "updated_at": "2026-11-15T14:59:43Z"
+    },
+    {
+      "number": 18,
+      "state": "closed",
+      "merged": true,
+      "head": "codex/office-recovery-20261115",
+      "sha": "f31cf308013ceb4527e3f4de677785894bb1bfc0",
+      "updated_at": "2026-11-15T14:59:43Z"
+    },
+    {
+      "number": 17,
+      "state": "closed",
+      "merged": true,
+      "head": "fix/word-header-controls",
+      "sha": "89c7f06c592edde0c67774e9c7e087d96f52184b",
+      "updated_at": "2026-11-15T06:20:55Z"
+    },
+    {
+      "number": 16,
+      "state": "closed",
+      "merged": true,
+      "head": "fix/excel-legacy-import",
+      "sha": "78a7b6f4e613c7d18d4bcc6434cda12b50ed184e",
+      "updated_at": "2026-11-15T08:51:16Z"
+    },
+    {
+      "number": 15,
+      "state": "closed",
+      "merged": true,
+      "head": "fix/word-revision-quadratic",
+      "sha": "448eff5aac55054a34eccd4f8a1e79e754909a05",
+      "updated_at": "2026-11-15T06:20:56Z"
+    },
+    {
+      "number": 14,
+      "state": "closed",
+      "merged": true,
+      "head": "fix/word-field-loss",
+      "sha": "d4e2a0fcf1fe18e0e5158ac7d86b1f71bf3b70da",
+      "updated_at": "2026-11-15T06:20:55Z"
+    },
+    {
+      "number": 13,
+      "state": "closed",
+      "merged": true,
+      "head": "fix/word-preserve-vml-pict",
+      "sha": "73b354efdf0f2e7fbe0e87bc67f332a9dfb4903e",
+      "updated_at": "2026-11-15T06:20:55Z"
+    },
+    {
+      "number": 12,
+      "state": "closed",
+      "merged": true,
+      "head": "integration/crispcloud-storage-reconcile-20261114",
+      "sha": "579f2105cf7fca61536f7e3f9b59004929bdb6c5",
+      "updated_at": "2026-11-14T22:37:41Z"
+    },
+    {
+      "number": 11,
+      "state": "closed",
+      "merged": true,
+      "head": "fix/word-media-dedupe",
+      "sha": "5c1ab430c6911bb11f71d29efa35027ead5ac1d5",
+      "updated_at": "2026-11-14T22:37:40Z"
+    },
+    {
+      "number": 10,
+      "state": "closed",
+      "merged": true,
+      "head": "fix/word-textbox-nesting",
+      "sha": "1b1bac125f426b05f868d482e9fbd657d4ffb73a",
+      "updated_at": "2026-11-14T22:37:41Z"
+    },
+    {
+      "number": 9,
+      "state": "closed",
+      "merged": true,
+      "head": "fix/word-sym-chars",
+      "sha": "58de54567d45e38c05dd77064b7607c577374b9d",
+      "updated_at": "2026-11-14T22:37:41Z"
+    },
+    {
+      "number": 8,
+      "state": "closed",
+      "merged": true,
+      "head": "fix/word-block-bookmarks",
+      "sha": "a86a360bf9bd45c729e00b31dd9a97492e23f2e7",
+      "updated_at": "2026-11-14T22:37:40Z"
+    },
+    {
+      "number": 7,
+      "state": "closed",
+      "merged": true,
+      "head": "feature/document-fonts-20261113",
+      "sha": "e82c997b6df8746fe86fb83b9f416a89bb3e3b80",
+      "updated_at": "2026-11-13T21:24:42Z"
+    },
+    {
+      "number": 6,
+      "state": "closed",
+      "merged": true,
+      "head": "feature/legacy-doc-fidelity-continuation-20261112",
+      "sha": "78ed85f5fd19d44f672dee11420fed261c974f4a",
+      "updated_at": "2026-11-13T00:08:18Z"
+    },
+    {
+      "number": 5,
+      "state": "closed",
+      "merged": true,
+      "head": "feature/legacy-doc-fidelity-continuation-20261112",
+      "sha": "da0979a5c6c4273ea68f360ce9a079bfa747384f",
+      "updated_at": "2026-11-12T20:10:12Z"
+    },
+    {
+      "number": 4,
+      "state": "closed",
+      "merged": true,
+      "head": "feature/legacy-doc-fidelity-20261112",
+      "sha": "09f5ec4b8eba290ff4d65678179854fb6ff6a468",
+      "updated_at": "2026-11-12T20:12:31Z"
+    },
+    {
+      "number": 3,
+      "state": "closed",
+      "merged": false,
+      "head": "feature/office-fidelity-expansion-20261112",
+      "sha": "e550723b0f2a7cd849970f58820d260c36857502",
+      "updated_at": "2026-11-12T18:16:22Z"
+    },
+    {
+      "number": 2,
+      "state": "closed",
+      "merged": true,
+      "head": "feature/office-fidelity-followup-20261112",
+      "sha": "08b09485588d2b6270f594a07c983689c087587d",
+      "updated_at": "2026-11-12T18:16:24Z"
+    },
+    {
+      "number": 1,
+      "state": "closed",
+      "merged": true,
+      "head": "feature/office-fidelity-gap-closure-20261112",
+      "sha": "54f0f8de01416640560519aa9d732f668f603709",
+      "updated_at": "2026-11-12T15:28:23Z"
+    }
+  ],
+  "upstream_branches": [
+    {
+      "name": "ci/flutter-workspace",
+      "sha": "aca2f66941832bd0b19b436baeab1656a1b7de98"
+    },
+    {
+      "name": "cursor/class-certificates-2db8",
+      "sha": "f45099688e7a3f67a1302efdb442830d052f2240"
+    },
+    {
+      "name": "cursor/cloud-agent-1790580069020-0rk1h",
+      "sha": "9930be8df44ffe117fb22778c514eea0ee73ce21"
+    },
+    {
+      "name": "main",
+      "sha": "15c5d29b63fb17a93c7fb3426a8fd4d95a32f1ba"
+    }
+  ],
+  "upstream_pull_requests": [
+    {
+      "number": 7,
+      "state": "closed",
+      "merged": true,
+      "head": "cursor/class-certificates-2db8",
+      "sha": "f45099688e7a3f67a1302efdb442830d052f2240",
+      "updated_at": "2026-10-12T18:08:30Z"
+    },
+    {
+      "number": 6,
+      "state": "closed",
+      "merged": true,
+      "head": "ci/flutter-workspace",
+      "sha": "aca2f66941832bd0b19b436baeab1656a1b7de98",
+      "updated_at": "2026-10-10T19:22:04Z"
+    },
+    {
+      "number": 5,
+      "state": "closed",
+      "merged": true,
+      "head": "cursor/cloud-agent-1790580069020-0rk1h",
+      "sha": "9930be8df44ffe117fb22778c514eea0ee73ce21",
+      "updated_at": "2026-10-10T19:13:47Z"
+    },
+    {
+      "number": 1,
+      "state": "closed",
+      "merged": true,
+      "head": "cursor/cloud-agent-1790580069020-0rk1h",
+      "sha": "48c5156f459597ce3f8ec486b3c9a20fc5543807",
+      "updated_at": "2026-09-28T08:36:17Z"
+    }
+  ],
+  "historical_proof_source": "docs/validation/mail-command-journal-20261121/final-intake.json",
+  "historical_equivalences": {
+    "005c708e9f747cb46cf02e12c869b0a2f85ac824": {
+      "replacement": "c84d5e16024c502f6c451fd04b9807b1e65f20d3",
+      "replacement_is_ancestor": true,
+      "comparison_base": "16e2477ff93f7a1ec5c6ed78491f2716ce4d1658",
+      "changed_path_count": 7,
+      "historical_tree": "097bb5511b2ddf2e00a398da7055b310693fe054",
+      "accepted_tree": "097bb5511b2ddf2e00a398da7055b310693fe054",
+      "full_tree_equal": true,
+      "exact_changed_paths": true,
+      "proof_source": "docs/validation/word-vba-list-levels-20261120/final-intake.json"
+    },
+    "0a53b8a70128870f3e1df6d18cdb177bb64290ee": {
+      "replacement": "b3f41eb4b4bca8ca13676b4114891ea6d9185043",
+      "replacement_is_ancestor": true,
+      "comparison_base": "d754bf15b07a24c8a86c8dce339ca749fecd9531",
+      "changed_path_count": 8,
+      "historical_tree": "b3345f76c2e3cd8e1bad13b554f2d24555aea9ce",
+      "accepted_tree": "b3345f76c2e3cd8e1bad13b554f2d24555aea9ce",
+      "full_tree_equal": true,
+      "exact_changed_paths": true,
+      "proof_source": "docs/validation/word-vba-list-levels-20261120/final-intake.json"
+    },
+    "128a187d69555db80890c2a1945a442b951f9c74": {
+      "replacement": "d790bca444eef0e160a75ce3d8cb555af541004f",
+      "replacement_is_ancestor": true,
+      "comparison_base": "fdec8c24fde94fbffee212a7541b0cb236f682e4",
+      "changed_path_count": 1,
+      "historical_tree": "cc9dd97799056d82ee604ca071c023cd4a7d63c1",
+      "accepted_tree": "cc9dd97799056d82ee604ca071c023cd4a7d63c1",
+      "full_tree_equal": true,
+      "exact_changed_paths": true,
+      "proof_source": "docs/validation/word-vba-list-levels-20261120/final-intake.json"
+    },
+    "3abf8f43b0e79c10271bbd046f391e462b8fe6b9": {
+      "replacement": "4b2b4e78839d2997a583b7ab1346e2fa537a8ac4",
+      "replacement_is_ancestor": true,
+      "comparison_base": "bb5556e8cc4cb73e2c668b5319a2844a20c6c50c",
+      "changed_path_count": 221,
+      "historical_tree": "e3adc9e259c6120b4b1e3e03177391f880243e13",
+      "accepted_tree": "e3adc9e259c6120b4b1e3e03177391f880243e13",
+      "full_tree_equal": true,
+      "exact_changed_paths": true,
+      "proof_source": "docs/validation/word-vba-list-levels-20261120/final-intake.json"
+    },
+    "58fdddfbcf198a8c0e38e32f6fcc9d6604e95283": {
+      "replacement": "4eaca83b192897edad82658107dfeb5bcbed0920",
+      "replacement_is_ancestor": true,
+      "comparison_base": "4584d5f319aab198f1d705f48b4d6647e6cbabea",
+      "changed_path_count": 1,
+      "historical_tree": "3d828f3e1779b08ae84dc526e0c7236882d69a26",
+      "accepted_tree": "3d828f3e1779b08ae84dc526e0c7236882d69a26",
+      "full_tree_equal": true,
+      "exact_changed_paths": true,
+      "proof_source": "docs/validation/word-vba-list-levels-20261120/final-intake.json"
+    },
+    "68a0db23408e4c95d6d283219504c79aea33a6fe": {
+      "replacement": "d754bf15b07a24c8a86c8dce339ca749fecd9531",
+      "replacement_is_ancestor": true,
+      "comparison_base": "4eaca83b192897edad82658107dfeb5bcbed0920",
+      "changed_path_count": 4,
+      "historical_tree": "aea95c000855820c5ecf205d3833298539f01753",
+      "accepted_tree": "aea95c000855820c5ecf205d3833298539f01753",
+      "full_tree_equal": true,
+      "exact_changed_paths": true,
+      "proof_source": "docs/validation/word-vba-list-levels-20261120/final-intake.json"
+    },
+    "69d14f84cabd3931b7640c1654b401c89faba766": {
+      "replacement": "52c73ae4dbadf2ca00a5d619144350ccc353b31a",
+      "replacement_is_ancestor": true,
+      "comparison_base": "b3f41eb4b4bca8ca13676b4114891ea6d9185043",
+      "changed_path_count": 1,
+      "historical_tree": "fcceef2418d7463f2a566623f22f8f0862dd1d01",
+      "accepted_tree": "fcceef2418d7463f2a566623f22f8f0862dd1d01",
+      "full_tree_equal": true,
+      "exact_changed_paths": true,
+      "proof_source": "docs/validation/word-vba-list-levels-20261120/final-intake.json"
+    },
+    "74ce9ffb816c70c0d2ae50b91ec52a614f26d688": {
+      "replacement": "4584d5f319aab198f1d705f48b4d6647e6cbabea",
+      "replacement_is_ancestor": true,
+      "comparison_base": "e3a38789359adaa33b2da1345c952fa1c2d8aebb",
+      "changed_path_count": 7,
+      "historical_tree": "8eaa993960d6fb6b6b484326d825a550f969ea0a",
+      "accepted_tree": "8eaa993960d6fb6b6b484326d825a550f969ea0a",
+      "full_tree_equal": true,
+      "exact_changed_paths": true,
+      "proof_source": "docs/validation/word-vba-list-levels-20261120/final-intake.json"
+    },
+    "7ef09f2408f467c65427700e65907531ecb26acb": {
+      "replacement": "34dc6b6806869570e9ec342e4d7ee0d6951c0ba6",
+      "replacement_is_ancestor": true,
+      "comparison_base": "4b2b4e78839d2997a583b7ab1346e2fa537a8ac4",
+      "changed_path_count": 7,
+      "historical_tree": "072bded0da30965ac975f9a8a3c08c7a46829460",
+      "accepted_tree": "072bded0da30965ac975f9a8a3c08c7a46829460",
+      "full_tree_equal": true,
+      "exact_changed_paths": true,
+      "proof_source": "docs/validation/word-vba-list-levels-20261120/final-intake.json"
+    },
+    "a7f144cc983f2df7c16d88f8644ad67a9254c3d0": {
+      "replacement": "0ff7d23929e4640af6c1d57f87c7ac71b73d2ed4",
+      "replacement_is_ancestor": true,
+      "comparison_base": "c84d5e16024c502f6c451fd04b9807b1e65f20d3",
+      "changed_path_count": 1,
+      "historical_tree": "955a0d933240e0cc62eceff0ee11fd89e0f0caa2",
+      "accepted_tree": "955a0d933240e0cc62eceff0ee11fd89e0f0caa2",
+      "full_tree_equal": true,
+      "exact_changed_paths": true,
+      "proof_source": "docs/validation/word-vba-list-levels-20261120/final-intake.json"
+    },
+    "b8ddaaeb581e010467de304c828764d353149102": {
+      "replacement": "d6010059644b34accd6f188e0e2a4863ab63e318",
+      "replacement_is_ancestor": true,
+      "comparison_base": "d754bf15b07a24c8a86c8dce339ca749fecd9531",
+      "changed_path_count": 1,
+      "historical_tree": "7654a8905c705a04136e37a5271eb95d8a9a4e21",
+      "accepted_tree": "7654a8905c705a04136e37a5271eb95d8a9a4e21",
+      "full_tree_equal": true,
+      "exact_changed_paths": true,
+      "proof_source": "docs/validation/word-vba-list-levels-20261120/final-intake.json"
+    },
+    "c34945761e7991f5fe49037d79529acdd260b31c": {
+      "replacement": "2c47165d01d01cc883135a434ac9f6591ce6e770",
+      "replacement_is_ancestor": true,
+      "comparison_base": "e3a38789359adaa33b2da1345c952fa1c2d8aebb",
+      "changed_path_count": 37,
+      "historical_tree": "ab5ed01d0693ddbb3121ea9ca45721eb2a09f1a6",
+      "accepted_tree": "01df63630b58d6a4c578b2f12f5e68204d37eb9b",
+      "full_tree_equal": false,
+      "exact_changed_paths": true,
+      "proof_source": "docs/validation/word-vba-list-levels-20261120/final-intake.json"
+    },
+    "cee6e2632f891a3fe21c5c02d6bf508805973051": {
+      "replacement": "bb5556e8cc4cb73e2c668b5319a2844a20c6c50c",
+      "replacement_is_ancestor": true,
+      "comparison_base": "0ff7d23929e4640af6c1d57f87c7ac71b73d2ed4",
+      "changed_path_count": 105,
+      "historical_tree": "a30201059a62b8034ac747367c1af8de054a2afb",
+      "accepted_tree": "a30201059a62b8034ac747367c1af8de054a2afb",
+      "full_tree_equal": true,
+      "exact_changed_paths": true,
+      "proof_source": "docs/validation/word-vba-list-levels-20261120/final-intake.json"
+    },
+    "da9c956ec5d65c0e5a9f9ea84c2b0bca98e824a0": {
+      "replacement": "23f3b4204fce45d38a103e3159bdc7f1e8d37c4e",
+      "replacement_is_ancestor": true,
+      "comparison_base": "34dc6b6806869570e9ec342e4d7ee0d6951c0ba6",
+      "changed_path_count": 79,
+      "historical_tree": "b73ebcc6f72c49a2883c5749f6450d497c647324",
+      "accepted_tree": "b73ebcc6f72c49a2883c5749f6450d497c647324",
+      "full_tree_equal": true,
+      "exact_changed_paths": true,
+      "proof_source": "docs/validation/word-vba-list-levels-20261120/final-intake.json"
+    },
+    "ec70b9423febefcb9b104629d2ad48b0c96e9082": {
+      "replacement": "e975cec13b289fe067ef406cd3044701ecc44744",
+      "replacement_is_ancestor": true,
+      "comparison_base": "c954d00d2fc85604ae394674bca91ea8a1dede0e",
+      "replacement_base": "b6657785b9de0943d2008b4883187a94f05bc514",
+      "changed_path_count": 3,
+      "exact_changed_paths": true,
+      "before_and_after_entries_equal": true,
+      "binary_git_diff_equal": true,
+      "patch_sha256": "870d0ec6062caa8f249e46b55f92bf49f5d514433a85d7ecd704ca758b8ca777",
+      "historical_tree": "ce00a18e7a0f5184482944974d038f58d289fd9f",
+      "accepted_tree": "71ead1cb32c03d962240a9ab16ad8847c82d64ed",
+      "full_tree_equal": false,
+      "entries": [
+        {
+          "path": "packages/quds_office_editor/lib/src/embed/office_system_fonts_io.dart",
+          "before_mode_type_object": "100644 blob 39ebd9d2533e462e736e3de2432dbc2e5898bd44",
+          "after_mode_type_object": "100644 blob dc68414500242c074a7ce5403496cfbda5499e0d"
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/word/layout/word_layout.dart",
+          "before_mode_type_object": "100644 blob 1424c99d245adad895a1b43b8606aab21380e8b6",
+          "after_mode_type_object": "100644 blob 2bc032449fa03a1efd9adf901e8d06b7c4f8f482"
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/word/serial/word_deserializer.dart",
+          "before_mode_type_object": "100644 blob 3f2f015d8459e41c5926e53f86abb0ed0325a357",
+          "after_mode_type_object": "100644 blob 0d15a684ea9569f9ef0740df4b24381f501b23cf"
+        }
+      ]
+    },
+    "37148e37736a4134bba1d3c07b0ad847c2e1447d": {
+      "replacement": "e219e25772a109f7e1edc9af3608dcd6b92de5a6",
+      "replacement_is_ancestor": true,
+      "historical_tree": "6c29a093730b12cfaf9e98822183d35dd842956c",
+      "accepted_tree": "6c29a093730b12cfaf9e98822183d35dd842956c",
+      "full_tree_equal": true,
+      "exact_changed_paths": true,
+      "reason": "Concurrent merges of the same PR277 and main heads produced identical complete trees."
+    }
+  }
+}

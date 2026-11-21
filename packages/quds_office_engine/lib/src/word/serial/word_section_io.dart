@@ -139,8 +139,18 @@ abstract final class WordSectionIo {
   }
 
   static XmlElement _selfContained(XmlElement element) => element.copy()
-    ..setAttribute('w', OfficeNamespaces.w, prefix: 'xmlns')
-    ..setAttribute('r', OfficeNamespaces.r, prefix: 'xmlns');
+    ..setAttribute(
+      'w',
+      OfficeNamespaces.w,
+      prefix: 'xmlns',
+      namespaceUri: 'http://www.w3.org/2000/xmlns/',
+    )
+    ..setAttribute(
+      'r',
+      OfficeNamespaces.r,
+      prefix: 'xmlns',
+      namespaceUri: 'http://www.w3.org/2000/xmlns/',
+    );
 
   static void _mergeModeledAttributes(
     XmlElement original,
@@ -164,9 +174,36 @@ abstract final class WordSectionIo {
               .map((XmlAttribute a) => a.prefix)
               .where((String p) => p.isNotEmpty)
               .firstOrNull ??
-          'w';
+          '';
+      if (prefix.isEmpty) {
+        // A default-namespace native group may already use w for an extension.
+        // Reserve a fresh prefix across the subtree before adding declarations,
+        // so untouched extension attributes and children keep their identity.
+        final used = <String>{};
+        void collect(XmlElement node) {
+          used.add(node.prefix);
+          for (final attribute in node.attributes) {
+            used.add(attribute.prefix);
+            if (attribute.prefix == 'xmlns') used.add(attribute.localName);
+          }
+          for (final child in node.childElements) {
+            collect(child);
+          }
+        }
+
+        collect(original);
+        var index = 0;
+        do {
+          prefix = 'qudsWord${index++}';
+        } while (used.contains(prefix));
+      }
     }
-    original.setAttribute(prefix, OfficeNamespaces.w, prefix: 'xmlns');
+    original.setAttribute(
+      prefix,
+      OfficeNamespaces.w,
+      prefix: 'xmlns',
+      namespaceUri: 'http://www.w3.org/2000/xmlns/',
+    );
     for (final String attribute in attributes) {
       original.removeAttribute(attribute, namespaceUri: OfficeNamespaces.w);
       final String? value = replacement.getAttribute(attribute);
