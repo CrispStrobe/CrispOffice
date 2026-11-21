@@ -1,0 +1,55 @@
+{
+  "accepted": true,
+  "qualified_source": "7086ad80266981d612615710610d66bf3fcfb5cf",
+  "qualified_tree": "b76107b64e496820f5550b11d1f6b684f34aa5d3",
+  "integrated_main": "3440c90bc63f9d43edb7e64172bfec3d82036fee",
+  "focused_tests": {
+    "passed": 30,
+    "failed": 0,
+    "skipped": 0,
+    "errors": 0,
+    "terminal": [
+      {
+        "success": true,
+        "type": "done",
+        "time": 9347
+      }
+    ],
+    "skipped_cases": [],
+    "per_suite": {
+      "test/word_proofing_geometry_test.dart": {
+        "passed": 13,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/word_selection_paint_test.dart": {
+        "passed": 10,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/word_odt_image_load_test.dart": {
+        "passed": 7,
+        "failed": 0,
+        "skipped": 0
+      }
+    }
+  },
+  "format_and_fatal_info_analysis": "passed",
+  "captured_inputs": 2329,
+  "tracked_input_blobs_matched": 2328,
+  "runtime_inputs": 1,
+  "sole_delta_from_ef05": [
+    "packages/quds_office_editor/lib/src/editor_word/render_word_canvas.dart"
+  ],
+  "converter_input_count": 367,
+  "all_converter_inputs_byte_identical": true,
+  "earlier_engine_and_converter_evidence": "../integration/summary.json",
+  "counts_overlap_earlier_gate": true,
+  "archive": {
+    "archive": "execution.tar.gz",
+    "bytes": 663621,
+    "sha256": "70e46e5324337adcf57ca870ffe54073cba8a5d5013d34a99a14888cec4d6693",
+    "member_count": 20
+  },
+  "ci_actions_queried_or_awaited": false
+}
