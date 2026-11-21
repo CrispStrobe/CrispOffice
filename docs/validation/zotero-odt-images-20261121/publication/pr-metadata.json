@@ -1,0 +1,194 @@
+{
+  "observed_at_utc": "2026-11-21T18:56:31.171Z",
+  "queries": [
+    {
+      "url": "https://api.github.com/repos/CrispStrobe/quds_office_suite/pulls?state=open&per_page=100",
+      "records": []
+    },
+    {
+      "url": "https://api.github.com/repos/CrispStrobe/quds_office_suite/pulls?state=all&sort=updated&direction=desc&per_page=10",
+      "records": [
+        {
+          "number": 332,
+          "title": "Throttle the Word status detail while typing",
+          "state": "closed",
+          "draft": false,
+          "merged_at": "2026-11-21T18:31:42Z",
+          "merge_commit_sha": "8246255f68550425f2fe1757966a83b2b11af79e",
+          "head": {
+            "ref": "perf/status-throttle",
+            "sha": "a2373a577181510899381ab3a294205e76e31597"
+          },
+          "base": {
+            "ref": "main",
+            "sha": "c85e9ee773535d9d4e89d6679f1b314e03994fb0"
+          },
+          "updated_at": "2026-11-21T18:31:44Z",
+          "html_url": "https://github.com/CrispStrobe/quds_office_suite/pull/332"
+        },
+        {
+          "number": 331,
+          "title": "Record typing performance roadmap measurements",
+          "state": "closed",
+          "draft": false,
+          "merged_at": "2026-11-21T18:11:54Z",
+          "merge_commit_sha": "c85e9ee773535d9d4e89d6679f1b314e03994fb0",
+          "head": {
+            "ref": "docs/typing-roadmap-update",
+            "sha": "947781484a006ec33f39b3cec83ea8ae2897505b"
+          },
+          "base": {
+            "ref": "main",
+            "sha": "9ef26f12ff48c80bb40d875262ef1854cc9ce16d"
+          },
+          "updated_at": "2026-11-21T18:11:56Z",
+          "html_url": "https://github.com/CrispStrobe/quds_office_suite/pull/331"
+        },
+        {
+          "number": 330,
+          "title": "Cache laid-out text painters across Word repaints",
+          "state": "closed",
+          "draft": false,
+          "merged_at": "2026-11-21T18:11:07Z",
+          "merge_commit_sha": "9ef26f12ff48c80bb40d875262ef1854cc9ce16d",
+          "head": {
+            "ref": "perf/text-painter-cache",
+            "sha": "b8e788b74af7694fb596ef14f1ec6837beb7fb03"
+          },
+          "base": {
+            "ref": "main",
+            "sha": "ae3738ed2d338351ed28f273e577df29264e7180"
+          },
+          "updated_at": "2026-11-21T18:11:09Z",
+          "html_url": "https://github.com/CrispStrobe/quds_office_suite/pull/330"
+        },
+        {
+          "number": 322,
+          "title": "Complete and reconcile Word VBA style compatibility [skip ci]",
+          "state": "closed",
+          "draft": false,
+          "merged_at": "2026-11-21T18:08:17Z",
+          "merge_commit_sha": "ae3738ed2d338351ed28f273e577df29264e7180",
+          "head": {
+            "ref": "codex/word-vba-extensions-20261121",
+            "sha": "03cdfc9be130ccca0a72db1b2d761917e2e090f7"
+          },
+          "base": {
+            "ref": "main",
+            "sha": "4760902b654e3af5e4d3f0a83d28ac65a387c8f8"
+          },
+          "updated_at": "2026-11-21T18:08:17Z",
+          "html_url": "https://github.com/CrispStrobe/quds_office_suite/pull/322"
+        },
+        {
+          "number": 329,
+          "title": "Complete Word VBA paragraph style assignment and integration qualification [skip ci]",
+          "state": "closed",
+          "draft": false,
+          "merged_at": "2026-11-21T17:55:48Z",
+          "merge_commit_sha": "4760902b654e3af5e4d3f0a83d28ac65a387c8f8",
+          "head": {
+            "ref": "codex/word-vba-styles-complete-20261121",
+            "sha": "f086214c9e99bca547957d8ba9f6ee3ab15321dc"
+          },
+          "base": {
+            "ref": "main",
+            "sha": "0172df91adeb4a1abb2f43346621e10999937572"
+          },
+          "updated_at": "2026-11-21T17:55:48Z",
+          "html_url": "https://github.com/CrispStrobe/quds_office_suite/pull/329"
+        },
+        {
+          "number": 328,
+          "title": "Skip proofing observation during active IME composition",
+          "state": "closed",
+          "draft": false,
+          "merged_at": "2026-11-21T17:46:54Z",
+          "merge_commit_sha": "0172df91adeb4a1abb2f43346621e10999937572",
+          "head": {
+            "ref": "fix/ime-proofing-gate-20261121",
+            "sha": "ebd3c09740418084d61dde51d30adf2502a1f6af"
+          },
+          "base": {
+            "ref": "main",
+            "sha": "39edc21d79d96a19083732090227b28c8d3689e7"
+          },
+          "updated_at": "2026-11-21T17:46:57Z",
+          "html_url": "https://github.com/CrispStrobe/quds_office_suite/pull/328"
+        },
+        {
+          "number": 327,
+          "title": "Add Word autocorrect and adaptive trailing proofing",
+          "state": "closed",
+          "draft": false,
+          "merged_at": "2026-11-21T17:45:06Z",
+          "merge_commit_sha": "39edc21d79d96a19083732090227b28c8d3689e7",
+          "head": {
+            "ref": "feat/word-autocorrect-adaptive-proofing",
+            "sha": "b57ad955311c67cbb8cd72ac41f0415e274fdfc7"
+          },
+          "base": {
+            "ref": "main",
+            "sha": "c7380f53a55b47a5b7672eb3f7afee32d92def6e"
+          },
+          "updated_at": "2026-11-21T17:45:09Z",
+          "html_url": "https://github.com/CrispStrobe/quds_office_suite/pull/327"
+        },
+        {
+          "number": 326,
+          "title": "Preserve editable Zotero fields in native ODT exports [skip ci]",
+          "state": "closed",
+          "draft": false,
+          "merged_at": "2026-11-21T17:37:59Z",
+          "merge_commit_sha": "c7380f53a55b47a5b7672eb3f7afee32d92def6e",
+          "head": {
+            "ref": "codex/zotero-editable-odt-20261121",
+            "sha": "b699f88501a10818e0f71bfd9c53cde53866cdf6"
+          },
+          "base": {
+            "ref": "main",
+            "sha": "1078372da9213c1ef4cdd362ca2285db9acb8d7b"
+          },
+          "updated_at": "2026-11-21T17:37:59Z",
+          "html_url": "https://github.com/CrispStrobe/quds_office_suite/pull/326"
+        },
+        {
+          "number": 325,
+          "title": "Mail: add account signatures and reusable Quick Text",
+          "state": "closed",
+          "draft": false,
+          "merged_at": "2026-11-21T17:20:26Z",
+          "merge_commit_sha": "1078372da9213c1ef4cdd362ca2285db9acb8d7b",
+          "head": {
+            "ref": "work/mail-compose-tools-20261121",
+            "sha": "36d65c43f8981ed7cea00589ff8272d96ea7073d"
+          },
+          "base": {
+            "ref": "main",
+            "sha": "50aeb50765b2ce4c586df19755fcae8f31481921"
+          },
+          "updated_at": "2026-11-21T17:21:08Z",
+          "html_url": "https://github.com/CrispStrobe/quds_office_suite/pull/325"
+        },
+        {
+          "number": 324,
+          "title": "Show restore progress instead of the login form while saved Mail loads",
+          "state": "closed",
+          "draft": false,
+          "merged_at": "2026-11-21T17:18:27Z",
+          "merge_commit_sha": "50aeb50765b2ce4c586df19755fcae8f31481921",
+          "head": {
+            "ref": "fix/mail-restore-view-20261121",
+            "sha": "e05056dcbe3260b77916dd9255664a8c62e98bf0"
+          },
+          "base": {
+            "ref": "main",
+            "sha": "3dbaa8429b14ac43721e165b4d50d3f6d2845309"
+          },
+          "updated_at": "2026-11-21T17:18:29Z",
+          "html_url": "https://github.com/CrispStrobe/quds_office_suite/pull/324"
+        }
+      ]
+    }
+  ]
+}

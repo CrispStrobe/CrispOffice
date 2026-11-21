@@ -20,6 +20,15 @@ All notable changes to `quds_office_engine` are documented here.
   [round-trip record](../../docs/validation/zotero-odt-roundtrip-20261121/README.md)
   for executed scope and remaining active-footnote/installed-plugin acceptance.
 
+- Preserve bounded embedded inline PNG/JPEG pictures through native editable
+  Zotero ODT import/export and further DOCX saves, including raster bytes,
+  accessible titles/descriptions, links and adjacent citation ownership.
+  Emit one frame per picture with unique drawing names, preserve image-run
+  styling, and keep identical headers continuous after name allocation.
+  Retain guarded graphic styles, raster budgets and atomic refusals for
+  unsupported pictures. See the
+  [qualified image work](../../docs/validation/zotero-odt-images-20261121/README.md).
+
 - Extend Word VBA with typed `Shading` bindings on selected Paragraph/Range
   objects, RGB/automatic and fixed-palette background assignments, and all 60
   named `WdColor` constants. Add guarded native `docx.paragraphShading` with

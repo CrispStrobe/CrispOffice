@@ -1,0 +1,129 @@
+{
+  "started_at_utc": "2026-11-21T19:20:27.516761+00:00",
+  "head": "7086ad80266981d612615710610d66bf3fcfb5cf",
+  "tree": "b76107b64e496820f5550b11d1f6b684f34aa5d3",
+  "expected_head": "7086ad80266981d612615710610d66bf3fcfb5cf",
+  "expected_tree": "b76107b64e496820f5550b11d1f6b684f34aa5d3",
+  "prior_head": "ef05b99ec9bbf1d539181c8519eb41455d182603",
+  "clean_before": true,
+  "accepted": true,
+  "input_count": 2329,
+  "changed_from_ef05": [
+    "packages/quds_office_editor/lib/src/editor_word/render_word_canvas.dart"
+  ],
+  "converter_input_count": 367,
+  "converter_input_mismatches": [],
+  "all_converter_inputs_unchanged_from_ef05": true,
+  "other_input_git_blob_changes": [],
+  "all_other_input_blobs_unchanged_from_ef05": true,
+  "engine_input_count": 1172,
+  "environment_setup": "source /workspace/scratch/81e9cddb3100/runtime/env.sh",
+  "gates": [
+    {
+      "name": "flutter-tests",
+      "argv": [
+        "/workspace/scratch/81e9cddb3100/runtime/bin/flutter",
+        "test",
+        "--no-pub",
+        "--reporter",
+        "json",
+        "--concurrency=2",
+        "test/word_proofing_geometry_test.dart",
+        "test/word_selection_paint_test.dart",
+        "test/word_odt_image_load_test.dart"
+      ],
+      "cwd": "/workspace/scratch/81e9cddb3100/quds_office_suite/packages/quds_office_editor",
+      "started_at_utc": "2026-11-21T19:20:27.521713+00:00",
+      "stdout": "flutter-tests.stdout.log",
+      "stderr": "flutter-tests.stderr.log",
+      "finished_at_utc": "2026-11-21T19:20:38.195874+00:00",
+      "exit_status": 0,
+      "stdout_sha256": "3f508093836f344cea156e9621c0e7fa285845aed7f670bed0bdd57030f02265",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_bytes": 0,
+      "accepted": true,
+      "tests": {
+        "passed": 30,
+        "failed": 0,
+        "skipped": 0,
+        "errors": 0,
+        "terminal": [
+          {
+            "success": true,
+            "type": "done",
+            "time": 9347
+          }
+        ],
+        "skipped_cases": [],
+        "per_suite": {
+          "test/word_proofing_geometry_test.dart": {
+            "passed": 13,
+            "failed": 0,
+            "skipped": 0
+          },
+          "test/word_selection_paint_test.dart": {
+            "passed": 10,
+            "failed": 0,
+            "skipped": 0
+          },
+          "test/word_odt_image_load_test.dart": {
+            "passed": 7,
+            "failed": 0,
+            "skipped": 0
+          }
+        }
+      }
+    },
+    {
+      "name": "format",
+      "argv": [
+        "/workspace/scratch/81e9cddb3100/runtime/bin/dart",
+        "format",
+        "--output=none",
+        "--set-exit-if-changed",
+        "packages/quds_office_editor/lib/src/editor_word/render_word_canvas.dart"
+      ],
+      "cwd": "/workspace/scratch/81e9cddb3100/quds_office_suite",
+      "started_at_utc": "2026-11-21T19:20:27.522010+00:00",
+      "stdout": "format.stdout.log",
+      "stderr": "format.stderr.log",
+      "finished_at_utc": "2026-11-21T19:20:27.888785+00:00",
+      "exit_status": 0,
+      "stdout_sha256": "9ef1244e615ce195aeeb8fa18ed76dea89fb3591ce2b8b8ebc4199f8f33fc712",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_bytes": 0,
+      "accepted": true
+    },
+    {
+      "name": "analyze",
+      "argv": [
+        "/workspace/scratch/81e9cddb3100/runtime/bin/dart",
+        "analyze",
+        "--fatal-infos",
+        "packages/quds_office_editor/lib/src/editor_word/render_word_canvas.dart"
+      ],
+      "cwd": "/workspace/scratch/81e9cddb3100/quds_office_suite",
+      "started_at_utc": "2026-11-21T19:20:27.522327+00:00",
+      "stdout": "analyze.stdout.log",
+      "stderr": "analyze.stderr.log",
+      "finished_at_utc": "2026-11-21T19:20:44.396949+00:00",
+      "exit_status": 0,
+      "stdout_sha256": "de8fbb4b1ba8504a9ab7586495ebec9d0d897f9feac7bf291926d297e3ec1b35",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_bytes": 0,
+      "accepted": true
+    }
+  ],
+  "source_unchanged": true,
+  "changed_during_run": [],
+  "source_binding_matches": true,
+  "source_binding_mismatches": {
+    "before": [],
+    "after": []
+  },
+  "clean_after": true,
+  "head_unchanged": true,
+  "converter_inputs_unchanged_during_run": true,
+  "finished_at_utc": "2026-11-21T19:20:44.626949+00:00",
+  "case_attribution": "Each nonhidden testDone is joined to testStart by testID, then to the suite event path by suiteID. Derived from unchanged raw JSON logs without rerunning tests."
+}
