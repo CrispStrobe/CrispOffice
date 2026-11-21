@@ -378,7 +378,46 @@ do not establish broad real LibreOffice table acceptance.
 Primary format contract: OASIS ODF 1.3 Part 3
 [section 9.1.5 and span attributes 19.680/19.682](https://docs.oasis-open.org/office/OpenDocument/v1.3/os/part3-schema/OpenDocument-v1.3-os-part3-schema.html).
 
-## Increment 5: native reopening after LibreOffice saves
+## Increment 5: bounded inline pictures
+
+The [picture continuation](../../validation/zotero-odt-images-20261121/README.md)
+extends the reader to complete `draw:frame` elements explicitly anchored
+`as-char`, each containing one embedded `draw:image`. Frame names, `svg:title`,
+`svg:desc`, native physical dimensions, supported text-span properties and
+ordinary image hyperlinks become independently owned native picture runs.
+No file or network retrieval occurs. Package paths must resolve inside
+`Pictures/` without traversal, external authority or ambiguous separators.
+
+The read-only inventory remains conservative about drawings. Only findings at
+the exact frame/image paths that the rich reader fully validates and consumes
+may be discharged. Unsupported drawing stories and descendants remain errors.
+Rich field anchors include the picture's one U+FFFC position; source order
+distinguishes adjacent fields from fields enclosing a picture. Pictures inside
+citation or bibliography caches refuse, including otherwise empty ranges.
+
+The complete document shares the existing note-image decoder's limits: 32
+pictures, 4 MiB total encoded raster bytes, 8192 pixels per dimension, 16 Mi
+pixels per picture, 32 Mi pixels in total, 32 MiB PNG scanline expansion per
+picture and 64 MiB total decoded-image budget. Displayed dimensions must be
+between 1 and 4000 points. The reader validates actual raster streams and
+preserves accepted bytes; filename extensions do not select the decoder.
+Animated PNG, SVG, external images, unsupported JPEG orientation/color modes,
+OLE, text boxes, alternative image representations and active image
+transformations retain explicit refusals.
+
+Effective picture styling is checked after inheritance. Only supported or
+inactive properties under the validated inline-bitmap content model can pass;
+unknown or active crop, color, opacity, border, shadow and transformation
+settings refuse. Visited-link glyph styling can be inactive for a link whose
+entire content is validated pictures; mixed or authored text links keep their
+existing guard. This does not implement a general ODF drawing/style engine.
+
+The matching explicit ODT output preserves picture metadata and emits one
+frame without duplicating the native object placeholder as literal text. The
+picture record separates local edit/save/undo tests from untouched output of
+the identified LibreOffice converter and from installed-plugin acceptance.
+
+## Increment 6: native reopening after LibreOffice saves
 
 The reader accepts the ordinary section style LibreOffice assigns to a native
 Zotero bibliography. It resolves section-family defaults and parents before
@@ -424,45 +463,6 @@ Endnote-only and table-only files have separate acceptance scopes. The
 [work record](../../validation/zotero-odt-roundtrip-20261121/README.md) retains
 unmodified converter files, controlled native field updates, repeat-save
 checks, source manifests and the exact remaining limits.
-
-## Increment 6: bounded inline pictures
-
-The [picture continuation](../../validation/zotero-odt-images-20261121/README.md)
-extends the reader to complete `draw:frame` elements explicitly anchored
-`as-char`, each containing one embedded `draw:image`. Frame names, `svg:title`,
-`svg:desc`, native physical dimensions, supported text-span properties and
-ordinary image hyperlinks become independently owned native picture runs.
-No file or network retrieval occurs. Package paths must resolve inside
-`Pictures/` without traversal, external authority or ambiguous separators.
-
-The read-only inventory remains conservative about drawings. Only findings at
-the exact frame/image paths that the rich reader fully validates and consumes
-may be discharged. Unsupported drawing stories and descendants remain errors.
-Rich field anchors include the picture's one U+FFFC position; source order
-distinguishes adjacent fields from fields enclosing a picture. Pictures inside
-citation or bibliography caches refuse, including otherwise empty ranges.
-
-The complete document shares the existing note-image decoder's limits: 32
-pictures, 4 MiB total encoded raster bytes, 8192 pixels per dimension, 16 Mi
-pixels per picture, 32 Mi pixels in total, 32 MiB PNG scanline expansion per
-picture and 64 MiB total decoded-image budget. Displayed dimensions must be
-between 1 and 4000 points. The reader validates actual raster streams and
-preserves accepted bytes; filename extensions do not select the decoder.
-Animated PNG, SVG, external images, unsupported JPEG orientation/color modes,
-OLE, text boxes, alternative image representations and active image
-transformations retain explicit refusals.
-
-Effective picture styling is checked after inheritance. Only supported or
-inactive properties under the validated inline-bitmap content model can pass;
-unknown or active crop, color, opacity, border, shadow and transformation
-settings refuse. Visited-link glyph styling can be inactive for a link whose
-entire content is validated pictures; mixed or authored text links keep their
-existing guard. This does not implement a general ODF drawing/style engine.
-
-The matching explicit ODT output preserves picture metadata and emits one
-frame without duplicating the native object placeholder as literal text. The
-picture record separates local edit/save/undo tests from untouched output of
-the identified LibreOffice converter and from installed-plugin acceptance.
 
 ## Increment 7: semantic uppercase text
 

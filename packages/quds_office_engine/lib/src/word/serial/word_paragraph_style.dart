@@ -711,6 +711,15 @@ void _styleCheckProperties(XmlElement? node, {bool style = false}) {
         throw UnsupportedError('Invalid native ${child.localName} value.');
       }
     }
+    if (child.localName == 'position') {
+      final number =
+          val == null || !RegExp(r'^[+-]?[0-9]+$').hasMatch(val.trim())
+          ? null
+          : int.tryParse(val.trim());
+      if (number == null || number < -2147483648 || number > 2147483647) {
+        throw UnsupportedError('Invalid native position value.');
+      }
+    }
     if (child.localName == 'spacing' || child.localName == 'ind') {
       for (final attribute in child.attributes.where(
         (value) => value.namespaceUri == OfficeNamespaces.w,

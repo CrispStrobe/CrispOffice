@@ -415,23 +415,6 @@ passed 513 engine, 93 editor and 25 Studio cases (631 unique passes, no failures
 or skips), with exact published-source binding and retained converter fixtures
 in the [qualification record](../../validation/zotero-editable-odt-20261121/README.md).
 
-## Delivered increment: reopening LibreOffice-saved native references
-
-The [native round-trip continuation](../../validation/zotero-odt-roundtrip-20261121/README.md)
-starts from actual saved ODT files that previously passed inventory checks but
-failed editable reopening. Native bibliography sections now admit their inert
-inherited LibreOffice styles, preserving complete rich/empty entry ownership.
-Strict decimal note labels qualify the identified LibreOffice zero-offset
-convention. Editable table exports use physical alignment with fixed widths,
-preventing LibreOffice from expanding them to the page margins. Unknown used
-formatting and unrepresented protection remain explicit refusals.
-
-The work record separates local native update/save regressions, actual converter
-cycles, and installed-plugin acceptance. In particular, active LibreOffice
-footnote separator geometry still needs a native model/layout/persistence
-implementation. Endnote-only and table-only acceptance cannot establish that
-footnote behavior or full Word/LibreOffice parity.
-
 ## Delivered increment: inline pictures through native ODT
 
 The [picture continuation](../../validation/zotero-odt-images-20261121/README.md)
@@ -456,6 +439,32 @@ Actual converter evidence and unresolved general LibreOffice section/table
 defaults are retained separately in the work record. This increment does not
 establish installed Zotero plugin acceptance or historical Apache OpenOffice
 compatibility.
+
+## Delivered increment: reopening LibreOffice-saved native references
+
+The [native round-trip continuation](../../validation/zotero-odt-roundtrip-20261121/README.md)
+starts from actual saved ODT files that previously passed inventory checks but
+failed editable reopening. Native bibliography sections now admit their inert
+inherited LibreOffice styles, preserving complete rich/empty entry ownership.
+Strict decimal note labels qualify the identified LibreOffice zero-offset
+convention. Editable table exports use physical alignment with fixed widths,
+preventing LibreOffice from expanding them to the page margins. Unknown used
+formatting and unrepresented protection remain explicit refusals.
+
+Intervening DOCX saves retain complete uniform table margins, including zero,
+without flattening unsupported imported margin XML. Native editable notes use
+distinct 65-percent symbol/anchor styles per note class and the final regular
+endnote master; reopening validates their effective formatting and compatible
+page geometry. Optional soft-page hints are recomputed. Actual acceptance now
+follows three fixtures and eleven fields through two external LibreOffice saves
+with a native/DOCX/native cycle between them. Fixed table-screen padding, active
+footnote separators and installed release-host/plugin acceptance remain open.
+
+The work record separates local native update/save regressions, actual converter
+cycles, and installed-plugin acceptance. In particular, active LibreOffice
+footnote separator geometry still needs a native model/layout/persistence
+implementation. Endnote-only and table-only acceptance cannot establish that
+footnote behavior or full Word/LibreOffice parity.
 
 ## Next implementation and acceptance steps
 

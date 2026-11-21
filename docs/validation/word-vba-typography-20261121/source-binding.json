@@ -1,0 +1,59 @@
+{
+  "change_dispositions": {
+    "packages/quds_office_editor/lib/src/editor_word/render_word_canvas.dart": "Incoming page text cache plus reviewed mutable-ink/proofing correction; final editor cohort and retained-versus-fresh pixel tests cover the changed renderer.",
+    "packages/quds_office_engine/test/odt_reader_styles_test.dart": "Incoming explanatory name/comments and equivalent FormatException matcher; all 46 cases rerun successfully.",
+    "packages/quds_office_engine/test/office_vba_word_position_test.dart": "Pinned formatter only: line wrapping and optional trailing comma; affected 33-case suite and strict analysis rerun successfully."
+  },
+  "core_qualified_tree": "479bfb1adc542c5f46be270e6d35c3f5c0be1b4d",
+  "engine_production_unchanged_since_core_gate": true,
+  "final_code_checkpoint": {
+    "local": "bd0cd5de8112f26feb6bb12a006b5ab1904ddfac",
+    "remote": "0705336aa52b299e06cf7efabc61228e8e22d662",
+    "tree": "416ff798516bbaf51cb07f790bfd0915073d6b0f"
+  },
+  "final_editor_all_inputs_match_worktree": true,
+  "final_editor_source_manifest_sha256": "0608c2d6cffbdbaf0a9f2c83d2d4ff533b460712cead0ed325933e40d95b6490",
+  "incoming_gate_input_changes": [
+    {
+      "current_sha256": "65085d0584a8287a46847ca7e99d997d7cb67c6298b885b004b63843c4a13946",
+      "path": "packages/quds_office_engine/test/odt_reader_styles_test.dart",
+      "qualified_sha256": "ab89b9c42ffaf21e252675ec7e509651746c0728836fb13f28002c2585093335"
+    },
+    {
+      "current_sha256": "380524a82300fd6c00685b9d2ecdf83edfb30af2bf41428162fca433cdceedca",
+      "path": "packages/quds_office_engine/test/office_vba_word_position_test.dart",
+      "qualified_sha256": "f86ecdff11b3030db228f2385b8b615a43d82d7b272ebbe2db46f8d0d05c4e71"
+    }
+  ],
+  "portable_inventory_changes": [
+    {
+      "current_sha256": "3dd94a16261d930009da2d3afb474392b499d7d39cd26844204a2c87c70e7de7",
+      "path": "packages/quds_office_editor/lib/src/editor_word/render_word_canvas.dart",
+      "qualified_sha256": "f1645453fca387748ae4b120e2eac782f212ba4845df2d2ad1e98775fcd7ba7e"
+    }
+  ],
+  "publication_follow_up": {
+    "additional_test_execution_required": false,
+    "all_584_final_editor_inputs_identical": true,
+    "changes_since_code_checkpoint": [
+      "docs/roadmaps/typing-autocorrect-performance.md"
+    ],
+    "integrated_main_head": "0de92d6f42b3b2d1f2df43ef56a7af8e0f49d059",
+    "publication_parent_head": "8e6622791d344b294cca4bf19f08ca035cb7260e",
+    "qualified_code_head": "0705336aa52b299e06cf7efabc61228e8e22d662",
+    "reason": "Only a documentation note describing the already integrated text cache arrived after final code qualification."
+  },
+  "record_creation_changes": "Only documentation/evidence additions after the final code checkpoint: this record and the incoming main typing-performance note at 0de92d6f.",
+  "word_gate_input_changes": [
+    {
+      "current_sha256": "65085d0584a8287a46847ca7e99d997d7cb67c6298b885b004b63843c4a13946",
+      "path": "packages/quds_office_engine/test/odt_reader_styles_test.dart",
+      "qualified_sha256": "ab89b9c42ffaf21e252675ec7e509651746c0728836fb13f28002c2585093335"
+    },
+    {
+      "current_sha256": "380524a82300fd6c00685b9d2ecdf83edfb30af2bf41428162fca433cdceedca",
+      "path": "packages/quds_office_engine/test/office_vba_word_position_test.dart",
+      "qualified_sha256": "f86ecdff11b3030db228f2385b8b615a43d82d7b272ebbe2db46f8d0d05c4e71"
+    }
+  ]
+}

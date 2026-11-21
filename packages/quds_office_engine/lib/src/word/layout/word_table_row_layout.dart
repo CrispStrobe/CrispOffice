@@ -28,6 +28,7 @@ part of 'word_layout.dart';
   final storyDocument = WmlDocument(
     proofingLanguage: owner._layoutDoc?.proofingLanguage,
     autoHyphenation: owner._layoutDoc?.autoHyphenation ?? false,
+    sourceNoSpaceRaiseLower: owner._layoutDoc?.sourceNoSpaceRaiseLower ?? false,
     sections: [
       WmlSection(
         blocks: [rowTable],

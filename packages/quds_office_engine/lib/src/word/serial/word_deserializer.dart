@@ -2480,6 +2480,7 @@ class WordDeserializer {
       }
       if (const {
             'kern',
+            'position',
             'noProof',
             'caps',
             'smallCaps',
@@ -2581,6 +2582,20 @@ class WordDeserializer {
           props.kerningHalfPoints = int.tryParse(
             reader.getAttribute('val', namespaceUri: OfficeNamespaces.w) ?? '',
           );
+        case 'position':
+          final raw = reader.getAttribute(
+            'val',
+            namespaceUri: OfficeNamespaces.w,
+          );
+          final value =
+              raw == null || !RegExp(r'^[+-]?[0-9]+$').hasMatch(raw.trim())
+              ? null
+              : int.tryParse(raw.trim());
+          // Keep unsupported measurements opaque rather than inventing a
+          // rounded baseline. Native macro writes validate the retained source.
+          if (value != null && value >= -2147483648 && value <= 2147483647) {
+            props.positionHalfPoints = value;
+          }
         case 'sz':
         case 'szCs':
           final regularSize = reader.localName == 'sz';
@@ -4175,6 +4190,7 @@ class WordDeserializer {
     final settings = WordSettingsIo.read(part.readText());
     document
       ..autoHyphenation = settings.autoHyphenation
+      ..sourceNoSpaceRaiseLower = settings.noSpaceRaiseLower
       ..trackRevisions = settings.tracking
       ..restrictEditing = settings.protection
       ..restrictMode = settings.restrictMode

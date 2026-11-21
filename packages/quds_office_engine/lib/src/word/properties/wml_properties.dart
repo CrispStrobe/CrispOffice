@@ -665,6 +665,7 @@ class WmlRunProps {
     this.asciiFont = 'Arial',
     this.csFont = 'Arial',
     this.vertAlign = WmlVertAlign.baseline,
+    this.positionHalfPoints = 0,
     this.proofingLanguage,
     this.noProof,
     this.complexScriptLanguage,
@@ -718,6 +719,16 @@ class WmlRunProps {
   /// vertAlign API.
   WmlVertAlign vertAlign;
 
+  /// Native `w:position`: positive half-points raise the text, negative values
+  /// lower it, without changing its font size or horizontal advances. This is
+  /// independent of superscript/subscript; zero overrides inherited position
+  /// when `position` is present in [explicitProperties].
+  int positionHalfPoints;
+
+  /// Baseline displacement in the layout's downward-positive coordinates.
+  double get baselineShift =>
+      vertAlign.baselineShift(fontSizePoints) - positionHalfPoints / 2.0;
+
   /// Latin-script proofing language (`w:lang/@w:val`).
   String? proofingLanguage;
 
@@ -754,6 +765,7 @@ class WmlRunProps {
           asciiFont: asciiFont,
           csFont: csFont,
           vertAlign: vertAlign,
+          positionHalfPoints: positionHalfPoints,
           proofingLanguage: proofingLanguage,
           noProof: noProof,
           complexScriptLanguage: complexScriptLanguage,

@@ -16,6 +16,7 @@ The canonical fixtures are:
 | [`variant_conversions_v1.json`](../packages/quds_office_engine/test/fixtures/vba_conformance/variant_conversions_v1.json) | 120 | Empty/Null lifecycle, operators, explicit conversions and deliberate limits |
 | [`variant_composition_v1.json`](../packages/quds_office_engine/test/fixtures/vba_conformance/variant_composition_v1.json) | 38 | Nested nullable results, unchanged strict operands and static scalar/object boundaries |
 | [`word_paragraphs_v1.json`](../packages/quds_office_engine/test/fixtures/vba_conformance/word_paragraphs_v1.json) | 44 | Word object bindings, prefix insertion, font/paragraph formatting, shared language behavior and deliberate refusals |
+| [`word_font_position_v1.json`](../packages/quds_office_engine/test/fixtures/vba_conformance/word_font_position_v1.json) | 12 | Signed point displacement, explicit zero, typed/named helpers, header/footer identity, dialect bounds and positioned read/fraction refusals |
 | [`powerpoint_shapes_v1.json`](../packages/quds_office_engine/test/fixtures/vba_conformance/powerpoint_shapes_v1.json) | 20 | PowerPoint selectors and typed bindings, text/font/alignment/geometry mappings, explicit collection guards and positioned refusals |
 
 The same fixture bytes are consumed by each VM test and the portable

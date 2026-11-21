@@ -1169,6 +1169,7 @@ List<Object?> _runProperties(WmlRunProps p) => [
   p.asciiFont,
   p.csFont,
   p.vertAlign.name,
+  p.positionHalfPoints,
   p.proofingLanguage,
   p.noProof,
   p.complexScriptLanguage,

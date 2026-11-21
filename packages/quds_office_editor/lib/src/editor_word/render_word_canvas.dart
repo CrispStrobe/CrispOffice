@@ -1,7 +1,7 @@
 import 'dart:math' as math;
 import 'dart:ui' as ui;
 
-import 'package:flutter/foundation.dart' show defaultTargetPlatform, listEquals;
+import 'package:flutter/foundation.dart' show defaultTargetPlatform;
 import 'package:flutter/gestures.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
@@ -465,6 +465,27 @@ typedef _RunPaintKey = ({
   String? themeFamily,
 });
 
+// Snapshots only values that can change recorded body ink without a new layout.
+// Adaptive-color inputs stay absent when authored document colors are used.
+typedef _BodyTextInkState = ({
+  int? selectedCommentId,
+  ({
+    WmlTable? selectedTable,
+    ({WmlTable table, bool column, int from, int to})? selectedTableBand,
+    ({int from, int to})? spanningSelection,
+    Color selectionFill,
+    bool editingHeader,
+    bool editingFooter,
+    bool pageUsesActiveStory,
+  })?
+  adaptive,
+});
+
+typedef _CachedBodyTextPicture = ({
+  _BodyTextInkState inkState,
+  ui.Picture picture,
+});
+
 class RenderWordCanvas extends RenderBox implements MouseTrackerAnnotation {
   /// RenderWordCanvas API.
   RenderWordCanvas({
@@ -783,9 +804,8 @@ class RenderWordCanvas extends RenderBox implements MouseTrackerAnnotation {
       <(int, int, int, int), Path>{};
   final Map<(LaidOutPage, int, int, int, int, WmlTable?), Path>
   _selectionPaths = <(LaidOutPage, int, int, int, int, WmlTable?), Path>{};
-  final Map<(LaidOutPage, int?), ui.Picture> _bodyTextPictures =
-      <(LaidOutPage, int?), ui.Picture>{};
-  List<Object?>? _bodyTextInkState;
+  final Map<LaidOutPage, _CachedBodyTextPicture> _bodyTextPictures =
+      <LaidOutPage, _CachedBodyTextPicture>{};
 
   @override
   void dispose() {
@@ -796,51 +816,18 @@ class RenderWordCanvas extends RenderBox implements MouseTrackerAnnotation {
     _runPainters.clear();
     _proofingPaths.clear();
     _selectionPaths.clear();
-    for (final picture in _bodyTextPictures.values) {
-      picture.dispose();
+    for (final cached in _bodyTextPictures.values) {
+      cached.picture.dispose();
     }
     _bodyTextPictures.clear();
     super.dispose();
   }
 
   void _clearBodyTextPictures() {
-    for (final picture in _bodyTextPictures.values) {
-      picture.dispose();
+    for (final cached in _bodyTextPictures.values) {
+      cached.picture.dispose();
     }
     _bodyTextPictures.clear();
-    _bodyTextInkState = null;
-  }
-
-  void _syncBodyTextInkState() {
-    // Adaptive ink uses the current cell-selection and story backgrounds.
-    // Snapshot their values at paint time: pointer gestures can mutate the
-    // existing caret without updating the widget or replacing the layout.
-    final selectsBodyCells = config.allowsSelection && !_editingHeaderFooter;
-    final selection =
-        selectsBodyCells &&
-            caret.selectionAnchorParagraph != caret.paragraphIndex
-        ? (
-            math.min(caret.selectionAnchorParagraph, caret.paragraphIndex),
-            math.max(caret.selectionAnchorParagraph, caret.paragraphIndex),
-          )
-        : null;
-    final state = _theme.adaptDocumentColors
-        ? <Object?>[
-            editingHeader,
-            editingFooter,
-            selectsBodyCells ? selectedTable : null,
-            selectsBodyCells ? selectedTableBand : null,
-            selection,
-            selectsBodyCells ? _textSelectionFill : null,
-            if (_editingHeaderFooter) ...?storyParagraphs,
-          ]
-        : const <Object?>[];
-    // Positions within one paragraph and caret visibility cannot change
-    // whole-cell ink, so ordinary caret moves/blinks retain the text layer.
-    if (!listEquals(_bodyTextInkState, state)) {
-      _clearBodyTextPictures();
-      _bodyTextInkState = state;
-    }
   }
 
   LaidOutDocument? _fittedLayout;
@@ -3636,7 +3623,6 @@ class RenderWordCanvas extends RenderBox implements MouseTrackerAnnotation {
       return;
     }
 
-    _syncBodyTextInkState();
     final double scale = _viewScale;
     final double pageLeft = _pageLeftPx();
     canvas.save();
@@ -3738,6 +3724,18 @@ class RenderWordCanvas extends RenderBox implements MouseTrackerAnnotation {
             _paintFindHits(canvas, line);
           }
           _paintProofing(canvas, line);
+          if (line.overlayText?.isNotEmpty == true &&
+              proofingFindings[line.sourceParagraph]?.isNotEmpty == true) {
+            final painter = _overlayPainter(line);
+            final x = _overlayOrigin(
+              line,
+              painter,
+              pageWidth: page.width,
+              marginRight: _marginRightOf(page),
+            );
+            _paintProofingOverlay(canvas, line, painter, x);
+            painter.dispose();
+          }
           if (cell != null) canvas.restore();
         }
       }
@@ -4757,6 +4755,7 @@ class RenderWordCanvas extends RenderBox implements MouseTrackerAnnotation {
     LaidOutLine line, {
     double? pageWidth,
     double? marginRight,
+    bool paintProofing = true,
   }) {
     if (line.overlayText == null || line.overlayText!.isEmpty) return;
     final painter = _overlayPainter(line);
@@ -4793,17 +4792,53 @@ class RenderWordCanvas extends RenderBox implements MouseTrackerAnnotation {
       }
     }
     painter.paint(canvas, Offset(x, line.y));
-    _paintProofingOverlay(canvas, line, painter, x);
+    if (paintProofing) _paintProofingOverlay(canvas, line, painter, x);
     painter.dispose();
+  }
+
+  _BodyTextInkState _bodyTextInkState(LaidOutPage page) {
+    if (!_theme.adaptDocumentColors) {
+      return (selectedCommentId: selectedCommentId, adaptive: null);
+    }
+    final selectsCells = config.allowsSelection && !_editingHeaderFooter;
+    final band = selectsCells ? selectedTableBand : null;
+    final anchor = caret.selectionAnchorParagraph;
+    final current = caret.paragraphIndex;
+    return (
+      selectedCommentId: selectedCommentId,
+      adaptive: (
+        selectedTable: selectsCells ? selectedTable : null,
+        selectedTableBand: band == null
+            ? null
+            : (
+                table: band.table,
+                column: band.column,
+                from: math.min(band.from, band.to),
+                to: math.max(band.from, band.to),
+              ),
+        // Only a cross-paragraph selection can select a whole cell. Offsets,
+        // ordinary caret movement, and blinking leave recorded ink unchanged.
+        spanningSelection:
+            selectsCells && !caret.isCollapsed && anchor != current
+            ? (from: math.min(anchor, current), to: math.max(anchor, current))
+            : null,
+        selectionFill: _textSelectionFill,
+        editingHeader: editingHeader,
+        editingFooter: editingFooter,
+        pageUsesActiveStory: _pageUsesHeaderFooterStory(page),
+      ),
+    );
   }
 
   ui.Picture _bodyTextPicture(
     LaidOutPage page,
     Map<int, WmlFrame> frameOwners,
   ) {
-    final key = (page, selectedCommentId);
-    final cached = _bodyTextPictures[key];
-    if (cached != null) return cached;
+    final inkState = _bodyTextInkState(page);
+    final cached = _bodyTextPictures[page];
+    if (cached != null && cached.inkState == inkState) return cached.picture;
+    // Retain one picture per page, not one per selection or active story.
+    _bodyTextPictures.remove(page)?.picture.dispose();
     final recorder = ui.PictureRecorder();
     final canvas = Canvas(recorder);
     canvas.clipRect(Rect.fromLTWH(0, 0, page.width, page.height));
@@ -4828,7 +4863,7 @@ class RenderWordCanvas extends RenderBox implements MouseTrackerAnnotation {
       if (cell != null) canvas.restore();
     }
     final picture = recorder.endRecording();
-    _bodyTextPictures[key] = picture;
+    _bodyTextPictures[page] = (inkState: inkState, picture: picture);
     return picture;
   }
 
@@ -4869,6 +4904,7 @@ class RenderWordCanvas extends RenderBox implements MouseTrackerAnnotation {
         line,
         pageWidth: pageWidth,
         marginRight: marginRight,
+        paintProofing: paintProofing,
       );
       return;
     }
@@ -4944,6 +4980,7 @@ class RenderWordCanvas extends RenderBox implements MouseTrackerAnnotation {
         line,
         pageWidth: pageWidth,
         marginRight: marginRight,
+        paintProofing: paintProofing,
       );
     }
   }

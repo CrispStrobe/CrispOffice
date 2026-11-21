@@ -20,8 +20,10 @@ The [current round-trip record](validation/zotero-odt-roundtrip-20261121/README.
 records a frozen-main reproduction, implementation checkpoints, pinned local
 checks and unmodified LibreOffice-saved files. It extends the earlier inventory
 checks to actual editable reopening, repeated saves and native field updates.
-Inert bibliography section styles, strict decimal note-offset compatibility and
-fixed table export geometry have explicit scopes. Used footnote separator
+Inert bibliography section styles, strict decimal note-offset compatibility,
+native marker/master formatting and fixed table export geometry have explicit
+scopes. Intervening DOCX saves retain uniform table margins, including zero.
+Used footnote separator
 geometry remains unsupported, and the identified development converter does
 not establish supported-release or installed Zotero-plugin acceptance.
 
