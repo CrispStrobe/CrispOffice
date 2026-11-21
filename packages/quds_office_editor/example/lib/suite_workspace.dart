@@ -239,13 +239,11 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     );
     _word.onFollowExternalLink = _openExternalLink;
     _sheet = SheetEditorController(
-      workbook:
-          widget.initialWorkbook?.workbook ?? SampleLibrary.excelBudget(),
+      workbook: widget.initialWorkbook?.workbook ?? SampleLibrary.excelBudget(),
     );
     _slides = SlideEditorController(
       presentation:
-          widget.initialPresentation?.presentation ??
-          SampleLibrary.slideDeck(),
+          widget.initialPresentation?.presentation ?? SampleLibrary.slideDeck(),
     );
     _wordName = widget.initialWord?.name ?? _wordName;
     _sheetName = widget.initialWorkbook?.name ?? _sheetName;
@@ -1680,6 +1678,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
                           onChanged: (value) =>
                               changed(() => _showNotes = value),
                         ),
+                        ..._proofingScheduleSettings(changed),
                         SwitchListTile(
                           key: const ValueKey<String>(
                             'studio-setting-detect-language',
@@ -4476,8 +4475,10 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
               StudioStrings.de('Check as you type'),
               'تدقيق أثناء الكتابة',
             ),
-            () => _word.proofing.enabled = !_word.proofing.enabled,
-            selected: _word.proofing.enabled,
+            _toggleCheckAsYouType,
+            selected:
+                _word.proofing.enabled &&
+                _word.proofing.schedule.mode != WordProofingMode.manual,
           ),
         ],
       ),
