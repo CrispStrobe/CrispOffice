@@ -96,6 +96,50 @@ String _generatorMetadata(String xml, String producer) => xml.replaceFirst(
 
 void main() {
   test(
+    'supported dormant settings survive ODT before a later footnote insertion',
+    () async {
+      var document = WmlDocument(footnoteSeparator: _separator);
+      document.sections.single.blocks.add(_paragraph('Body without notes'));
+      for (var cycle = 0; cycle < 2; cycle++) {
+        document = await OdtDocumentReader.readBytes(
+          OdtDocumentWriter.writeEditableZoteroBytes(document),
+        );
+        expect(document.footnotes, isEmpty);
+        expect(document.footnoteSeparator, _separator);
+      }
+      WordNotes.insert(
+        document,
+        document.paragraphs.first,
+        endnote: false,
+        text: 'Later footnote',
+      );
+      document = await OdtDocumentReader.readBytes(
+        OdtDocumentWriter.writeEditableZoteroBytes(document),
+      );
+      expect(document.footnotes, hasLength(1));
+      expect(document.footnoteSeparator, _separator);
+    },
+  );
+
+  test(
+    'unsupported dormant line presets keep their validation-only contract',
+    () async {
+      final document = WmlDocument(footnoteSeparator: _separator);
+      document.sections.single.blocks.add(_paragraph('No footnotes'));
+      final bytes = _rewrite(
+        OdtDocumentWriter.writeEditableZoteroBytes(document),
+        styles: (xml) => xml.replaceFirst(
+          'style:line-style="solid"',
+          'style:line-style="dash"',
+        ),
+      );
+      final reopened = await OdtDocumentReader.readBytes(bytes);
+      expect(reopened.footnoteSeparator, isNull);
+      expect(reopened.paragraphs.single.text, 'No footnotes');
+    },
+  );
+
+  test(
     'ODT export refuses geometry exhausted only by emitted page precision',
     () {
       const separator = WmlFootnoteSeparator(

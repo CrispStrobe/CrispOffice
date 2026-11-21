@@ -50,6 +50,7 @@ results retain their original source and platform attribution.
 | Research materials | Read-only direct-child note previews and attachment metadata | No separate attachment-file download or Zotero library write workflow |
 | DOCX persistence | Active fields/preferences, native notes, rich bibliography structure, tables and embedded pictures use supported save/reopen paths | Local tests are separate from actual Word/LibreOffice application round trips |
 | Table margins | Native measurement, wrapping, pagination, ruler insets and nested picture fitting use each table's modeled uniform margin; explicit editable ODT preserves bounded uniform padding through style inheritance and merged/nested ownership | Asymmetric/per-cell ODT padding and visible borders remain unsupported; ODT/DOCX geometry rounds to format precision, and exhausted final scaled widths refuse |
+| Footnote separators | Explicit solid/hidden rules retain independent gaps, nominal thickness, relative width, physical alignment and color; matching native pagination, continuation-page layout, editor/PDF rendering, ODT persistence and bounded native DOCX persistence | One compatible document-wide geometry; dashed/dotted active rules and richer separator stories remain unsupported; LibreOffice normalizes custom DOCX separator paragraphs, so that converter route remains a recorded limitation |
 | Cross-word-processor transfer | Native export/import handshake, temporary metadata hyperlinks, DOCX import/save/reopen and ODT carrier export; complete native formatting before import publication | The qualified DOCX carrier route and native ODT conversion have separate envelopes; installed Zotero/Word/LibreOffice plugin acceptance remains open and actual converter findings are retained |
 | Native ODT inspection | Read-only inventory of citation ReferenceMarks, bibliography TextSections, exact story/paragraph/cell ownership, cached text and original preferences; JSON diagnostic CLI | Inspection reports eligibility and findings without publishing an editable document |
 | Native ODT import | Bounded rich paragraphs/styles, hyperlinks, authored notes, simple lists, supported merged/nested tables and embedded inline PNG/upright RGB JPEG pictures; canonical Zotero fields and preferences convert to an editable Word document; asynchronous editor/Studio opening and DOCX save/reopen | Used unsupported structure/formatting refuses atomically; content-sensitive guards limit dormant defaults; installed-plugin acceptance remains open |
@@ -514,11 +515,15 @@ annotation-picture formatting. Its qualification records four real converter
 fixture routes, separate PNG/JPEG cycles, bounded intake and the exact source.
 Installed Zotero/Word/LibreOffice acceptance remains a separate next step.
 
-1. **Model and preserve active footnote separators.** Add native separator
-   geometry, matching note reservation/pagination and rendering, ODT parsing and
-   emission, and an interoperable DOCX mapping. Qualify those together before
-   admitting active LibreOffice separators. Retaining opaque DOCX definitions
-   or accepting ODT attributes alone does not provide editable layout fidelity.
+1. **Complete cross-application separator acceptance.** The
+   [active-separator increment](../../validation/zotero-footnote-separators-20261121/README.md)
+   delivers the native model, note reservation/pagination, editor/PDF rendering,
+   explicit ODT import/export and bounded native DOCX persistence. Direct
+   LibreOffice ODT saves preserve the tested geometry and active references.
+   Its custom-DOCX separator normalization remains a retained failed route;
+   installed Word rendering and live Zotero plugin acceptance are still open.
+   A broader DOCX mapping or host-specific workaround requires separate
+   evidence before this route can be called interoperable.
 2. **Qualify release-host editable ODT workflows and production formatting.**
    Use the implemented carrier and retained synthetic fixtures with current
    Word/LibreOffice and their actual Zotero plugins. Resolve any converter findings

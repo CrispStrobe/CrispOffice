@@ -721,6 +721,8 @@ final class OdtReaderStyles {
     String? signature;
     WmlSection? resolved;
     WmlFootnoteSeparator? resolvedSeparator;
+    var separatorInitialized = false;
+    var compatibleSeparator = true;
     for (final name in names) {
       final master = _masters[name];
       if (master == null) {
@@ -763,13 +765,15 @@ final class OdtReaderStyles {
         candidate.margins.bottom,
         candidate.columnCount,
         candidate.columnSpace,
-        separator?.beforeSpacing,
-        separator?.thickness,
-        separator?.afterSpacing,
-        separator?.relativeWidth,
-        separator?.alignment,
-        separator?.color,
-        separator?.lineStyle,
+        if (hasFootnotes) ...[
+          separator?.beforeSpacing,
+          separator?.thickness,
+          separator?.afterSpacing,
+          separator?.relativeWidth,
+          separator?.alignment,
+          separator?.color,
+          separator?.lineStyle,
+        ],
       ].join('/');
       if (signature != null && candidateSignature != signature) {
         throw UnsupportedError(
@@ -778,7 +782,12 @@ final class OdtReaderStyles {
       }
       signature = candidateSignature;
       resolved = candidate;
-      resolvedSeparator = separator;
+      if (!separatorInitialized) {
+        resolvedSeparator = separator;
+        separatorInitialized = true;
+      } else if (resolvedSeparator != separator) {
+        compatibleSeparator = false;
+      }
     }
     if (resolved != null) {
       section.pageSize = resolved.pageSize;
@@ -786,7 +795,10 @@ final class OdtReaderStyles {
       section.columnCount = resolved.columnCount;
       section.columnSpace = resolved.columnSpace;
     }
-    return resolvedSeparator;
+    // Dormant presets outside the single native geometry retain the existing
+    // validation-only behavior. Fully supported uniform presets survive even
+    // when the last footnote has been deleted and a later edit may add one.
+    return compatibleSeparator ? resolvedSeparator : null;
   }
 
   void _validateDrawingPage(String name) {
@@ -1515,11 +1527,13 @@ final class OdtReaderStyles {
         }
         hasSeparator = true;
         _validateDormantFootnoteSeparator(child);
-        if (hasFootnotes) {
+        try {
           separator = _activeFootnoteSeparator(
             child,
             libreOfficeZeroLengths: libreOfficeZeroSeparatorLengths,
           );
+        } on UnsupportedError {
+          if (hasFootnotes) rethrow;
         }
         continue;
       }
@@ -1540,7 +1554,9 @@ final class OdtReaderStyles {
       final gap = _attr(child, _fo, 'column-gap');
       if (gap != null) result.columnSpace = lengthPoints(gap);
     }
-    if (separator != null && separator.reservedHeight >= result.contentHeight) {
+    if (hasFootnotes &&
+        separator != null &&
+        separator.reservedHeight >= result.contentHeight) {
       throw UnsupportedError('ODT footnote separator consumes the page.');
     }
     return (section: result, separator: separator);

@@ -35,7 +35,8 @@ abstract final class WordFootnoteSeparatorIo {
     try {
       final source = _source(document, package);
       if (source?.localName != 'footnotes' ||
-          source?.namespaceUri != OfficeNamespaces.w) {
+          source?.namespaceUri != OfficeNamespaces.w ||
+          !_uniqueAttributes(source!)) {
         return null;
       }
       final definitions = _definitions(source);
@@ -58,7 +59,7 @@ abstract final class WordFootnoteSeparatorIo {
           secondId > 2147483647) {
         return null;
       }
-      final allIds = source!
+      final allIds = source
           .childrenNamed('footnote', namespaceUri: OfficeNamespaces.w)
           .map((node) => int.tryParse(_attr(node, 'id') ?? ''))
           .toList();
@@ -157,7 +158,8 @@ abstract final class WordFootnoteSeparatorIo {
     final source = package == null ? null : _source(document, package);
     if (source != null &&
         (source.localName != 'footnotes' ||
-            source.namespaceUri != OfficeNamespaces.w)) {
+            source.namespaceUri != OfficeNamespaces.w ||
+            !_uniqueAttributes(source))) {
       throw const FormatException('Invalid native footnote part.');
     }
     final definitions = _definitions(source);
@@ -335,10 +337,11 @@ abstract final class WordFootnoteSeparatorIo {
     if (settings == null) return [];
     final root = XmlDocument.parse(settings.readText()).root;
     if (root?.localName != 'settings' ||
-        root?.namespaceUri != OfficeNamespaces.w) {
+        root?.namespaceUri != OfficeNamespaces.w ||
+        !_uniqueAttributes(root!)) {
       throw const FormatException('Invalid native Word settings.');
     }
-    final groups = root!.childrenNamed(
+    final groups = root.childrenNamed(
       'footnotePr',
       namespaceUri: OfficeNamespaces.w,
     );
@@ -347,9 +350,10 @@ abstract final class WordFootnoteSeparatorIo {
     }
     if (groups.isEmpty) return [];
     final properties = groups.single;
-    if (properties.attributes.any(
-      (attr) => attr.prefix != 'xmlns' && attr.qualifiedName != 'xmlns',
-    )) {
+    if (!_uniqueAttributes(properties) ||
+        properties.attributes.any(
+          (attr) => attr.prefix != 'xmlns' && attr.qualifiedName != 'xmlns',
+        )) {
       throw const FormatException(
         'Unsupported native footnote settings attributes.',
       );
@@ -384,13 +388,31 @@ abstract final class WordFootnoteSeparatorIo {
   static String? _attr(XmlElement node, String name) =>
       node.getAttribute(name, namespaceUri: OfficeNamespaces.w);
 
+  // The shared preservation parser retains malformed duplicate attributes.
+  // Such XML may be kept opaque, but must never become a single modeled value
+  // merely because getAttribute returns its first occurrence. Prefix aliases
+  // still name the same expanded attribute; declarations use their QName.
+  static bool _uniqueAttributes(XmlElement node) {
+    final expanded = <(String, String)>{};
+    final declarations = <String>{};
+    for (final attribute in node.attributes) {
+      if (attribute.prefix == 'xmlns' || attribute.qualifiedName == 'xmlns') {
+        if (!declarations.add(attribute.qualifiedName)) return false;
+      } else if (!expanded.add((attribute.namespaceUri, attribute.localName))) {
+        return false;
+      }
+    }
+    return true;
+  }
+
   static bool _shape(
     XmlElement node,
     Set<String> attrs,
     List<String> children,
   ) {
     if (node.namespaceUri != OfficeNamespaces.w ||
-        node.text.trim().isNotEmpty) {
+        node.text.trim().isNotEmpty ||
+        !_uniqueAttributes(node)) {
       return false;
     }
     if (node.attributes.any(

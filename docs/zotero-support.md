@@ -1670,17 +1670,20 @@ identifies its exact bytes and distinguishes it from the synthetic Zotero field
 extension. Supported default settings are resolved after inheritance; dormant
 Asian typography requires non-Asian current text and known supported break
 languages. Active Asian typography, nonstandard default tab spacing used by
-actual tabs, an active page grid and a used custom footnote separator still
-refuse explicitly.
+actual tabs, an active page grid and unsupported active footnote separator
+styles still refuse explicitly.
 
 Editable Zotero ODT export preserves fixed table widths with left, center or
 right alignment. This prevents LibreOffice from expanding those tables to fill
 page margins. Returned table-only, bibliography and endnote-only documents are
 checked independently through native reopening and further saves in the
 [round-trip work record](validation/zotero-odt-roundtrip-20261121/README.md).
-Actual footnotes using a LibreOffice separator remain outside the reader's
-current formatting subset; accepting the note-numbering metadata does not
-remove that layout restriction.
+The [active-separator continuation](validation/zotero-footnote-separators-20261121/README.md)
+also opens supported solid or hidden LibreOffice footnote separators. Their
+color, relative width, physical alignment, independent gaps and nominal
+thickness remain part of the document, with matching pagination and editor/PDF
+rendering on ordinary and continuation pages. Hidden rules still reserve their
+nominal thickness. Supported settings survive removal of the final footnote.
 
 Complete uniform DOCX table margins, including zero, survive intervening saves
 and supported table-style inheritance. Unsupported imported margin forms remain
@@ -1702,10 +1705,16 @@ file compatibility, a lossless native ODT editing round trip, full plugin parity
 and installed Zotero acceptance remain separate work. The original ODT bytes
 are unchanged by either successful or failed conversion.
 
-The next dedicated note-formatting milestone is a native footnote-separator
-model, matching pagination/rendering and interoperable DOCX/ODT mapping before
-admitting active LibreOffice separators. Actual installed Zotero workflows in
-Word and supported LibreOffice releases still require separate validation.
+Direct editable ODT saves preserve the tested separator geometry through the
+identified LibreOffice converter and subsequent Quds refresh/save/reopen.
+Quds also preserves a bounded canonical representation through its own DOCX
+saves. LibreOffice normalizes custom DOCX separator paragraphs, so that route
+does not yet preserve arbitrary separator appearance. Keep the source ODT and
+use **Export Zotero ODT** for the qualified direct ODT exchange. Native DOCX
+spacing/indents round to 0.05 points and line thickness to eighths of a point;
+the supported nonzero thickness is 0.25–12 points, with uniform body width.
+Installed Word rendering and actual Zotero workflows in Word and supported
+LibreOffice releases still require separate validation.
 
 Engine hosts can explicitly convert and save supported input:
 

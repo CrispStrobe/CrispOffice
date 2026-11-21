@@ -48,6 +48,42 @@ void _rewrite(OpcPackage package, String path, void Function(XmlElement) edit) {
 void _attribute(XmlElement element, String name, String value) => element
     .setAttribute(name, value, prefix: 'w', namespaceUri: OfficeNamespaces.w);
 
+void _duplicateAttribute(
+  XmlElement element,
+  String name,
+  String value, {
+  bool alias = false,
+}) {
+  if (alias) element.setAttribute('q', OfficeNamespaces.w, prefix: 'xmlns');
+  element.attributes.add(
+    XmlAttribute(
+      localName: name,
+      value: value,
+      prefix: alias ? 'q' : 'w',
+      namespaceUri: OfficeNamespaces.w,
+    ),
+  );
+}
+
+Iterable<String> _duplicateSnapshot(XmlElement node) sync* {
+  final groups = <String, List<String>>{};
+  for (final attribute in node.attributes) {
+    final key =
+        attribute.prefix == 'xmlns' || attribute.qualifiedName == 'xmlns'
+        ? 'xmlns|${attribute.qualifiedName}'
+        : '${attribute.namespaceUri}|${attribute.localName}';
+    groups.putIfAbsent(key, () => []).add(attribute.value);
+  }
+  for (final entry in groups.entries) {
+    if (entry.value.length > 1) {
+      yield '${node.localName}|${entry.key}|${jsonEncode(entry.value)}';
+    }
+  }
+  for (final child in node.childElements) {
+    yield* _duplicateSnapshot(child);
+  }
+}
+
 Object _snapshot(XmlElement node) => [
   node.namespaceUri,
   node.localName,
@@ -349,7 +385,127 @@ void main() {
     },
   );
 
+  test(
+    'canonical separators accept a namespace alias without duplicate attributes',
+    () {
+      const separator = WmlFootnoteSeparator(
+        relativeWidth: 1,
+        beforeSpacing: 2,
+      );
+      final package = WordSerializer().write(_document(separator));
+      final part = package.getPart('/word/footnotes.xml')!;
+      part.writeText(
+        part
+            .readText()
+            .replaceAll('w:', 'q:')
+            .replaceAll('xmlns:w=', 'xmlns:q='),
+      );
+      final document = WordDeserializer().read(package);
+      expect(document.footnoteSeparator, separator);
+      expect(
+        WordDeserializer()
+            .readBytes(WordSerializer().writeBytes(document))
+            .footnoteSeparator,
+        separator,
+      );
+    },
+  );
+
   final corruptions = <String, void Function(OpcPackage)>{
+    'duplicate separator color': (package) =>
+        _rewrite(package, '/word/footnotes.xml', (root) {
+          final border = root
+              .childrenNamed('footnote')
+              .first
+              .firstChild('p')!
+              .firstChild('pPr')!
+              .firstChild('pBdr')!
+              .firstChild('bottom')!;
+          _duplicateAttribute(border, 'color', 'FF0000');
+        }),
+    'aliased duplicate separator size': (package) =>
+        _rewrite(package, '/word/footnotes.xml', (root) {
+          final border = root
+              .childrenNamed('footnote')
+              .first
+              .firstChild('p')!
+              .firstChild('pPr')!
+              .firstChild('pBdr')!
+              .firstChild('bottom')!;
+          _duplicateAttribute(border, 'sz', '16', alias: true);
+        }),
+    'duplicate separator spacing': (package) =>
+        _rewrite(package, '/word/footnotes.xml', (root) {
+          final spacing = root
+              .childrenNamed('footnote')
+              .first
+              .firstChild('p')!
+              .firstChild('pPr')!
+              .firstChild('spacing')!;
+          _duplicateAttribute(spacing, 'line', '900');
+        }),
+    'aliased duplicate special note ID': (package) =>
+        _rewrite(package, '/word/footnotes.xml', (root) {
+          _duplicateAttribute(
+            root.childrenNamed('footnote').first,
+            'id',
+            '900',
+            alias: true,
+          );
+        }),
+    'duplicate special note type': (package) =>
+        _rewrite(package, '/word/footnotes.xml', (root) {
+          _duplicateAttribute(
+            root.childrenNamed('footnote').first,
+            'type',
+            'continuationNotice',
+          );
+        }),
+    'aliased duplicate special-reference ID': (package) =>
+        _rewrite(package, '/word/settings.xml', (root) {
+          _duplicateAttribute(
+            root.firstChild('footnotePr')!.childrenNamed('footnote').first,
+            'id',
+            '900',
+            alias: true,
+          );
+        }),
+    'duplicate separator namespace declaration': (package) =>
+        _rewrite(package, '/word/footnotes.xml', (root) {
+          final properties = root
+              .childrenNamed('footnote')
+              .first
+              .firstChild('p')!
+              .firstChild('pPr')!;
+          properties.attributes.addAll([
+            XmlAttribute(
+              localName: 'q',
+              prefix: 'xmlns',
+              value: OfficeNamespaces.w,
+            ),
+            XmlAttribute(
+              localName: 'q',
+              prefix: 'xmlns',
+              value: OfficeNamespaces.w,
+            ),
+          ]);
+        }),
+    'duplicate settings namespace declaration': (package) =>
+        _rewrite(package, '/word/settings.xml', (root) {
+          final properties = root.firstChild('footnotePr')!;
+          properties.attributes.addAll([
+            XmlAttribute(
+              localName: 'q',
+              prefix: 'xmlns',
+              value: OfficeNamespaces.w,
+            ),
+            XmlAttribute(
+              localName: 'q',
+              prefix: 'xmlns',
+              value: OfficeNamespaces.w,
+            ),
+          ]);
+        }),
     'missing special reference': (package) =>
         _rewrite(package, '/word/settings.xml', (root) {
           final properties = root.firstChild('footnotePr')!;
@@ -457,11 +613,25 @@ void main() {
       );
       corrupt(package);
       final expected = _definitions(package).map(_snapshot).toList();
+      final expectedDuplicates = _definitions(
+        package,
+      ).expand(_duplicateSnapshot).toList();
+      final expectedSettings = package
+          .getPart('/word/settings.xml')!
+          .readText();
       final document = WordDeserializer().read(package);
       expect(document.footnoteSeparator, isNull);
       expect(
         _definitions(WordSerializer().write(document)).map(_snapshot).toList(),
         expected,
+      );
+      expect(
+        _definitions(package).expand(_duplicateSnapshot).toList(),
+        expectedDuplicates,
+      );
+      expect(
+        package.getPart('/word/settings.xml')!.readText(),
+        expectedSettings,
       );
       final before = {
         for (final part in package.parts) part.uri: part.readBytes(),
