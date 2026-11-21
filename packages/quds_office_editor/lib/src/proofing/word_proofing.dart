@@ -472,6 +472,8 @@ final class WordProofingSession extends ChangeNotifier {
   /// A pending word- or sentence-completion check and its trigger.
   Timer? _completionTimer;
   _Trigger? _completionTrigger;
+  DateTime? _lastTypingAt;
+  Duration _typingGap = const Duration(milliseconds: 1000);
   Timer? _backgroundTimer;
   Timer? _checkingIndicatorTimer;
 
@@ -1065,6 +1067,7 @@ final class WordProofingSession extends ChangeNotifier {
     final delta = after.length - before.length;
     if (delta == 0 || after.offset - before.offset != delta) return null;
     _typing = (paragraph: after.paragraph, offset: after.offset);
+    _noteTypingCadence();
     _touched.add(after.paragraph);
     // Deleting is not finishing anything.
     if (delta < 0) return null;
@@ -1075,17 +1078,49 @@ final class WordProofingSession extends ChangeNotifier {
     return _Trigger.word;
   }
 
+  void _noteTypingCadence() {
+    final now = DateTime.now();
+    final previous = _lastTypingAt;
+    _lastTypingAt = now;
+    if (previous == null) return;
+    final gap = now.difference(previous);
+    if (gap <= Duration.zero || gap > const Duration(seconds: 2)) return;
+    // An exponential moving average tolerates a single hesitation without
+    // making the next burst look slow.
+    _typingGap = Duration(
+      microseconds: (_typingGap.inMicroseconds * 3 + gap.inMicroseconds) ~/ 4,
+    );
+  }
+
+  Duration get _wordCompletionDelay {
+    if (_typingGap < const Duration(milliseconds: 180)) {
+      return const Duration(milliseconds: 350);
+    }
+    if (_typingGap < const Duration(milliseconds: 300)) {
+      return const Duration(milliseconds: 250);
+    }
+    return WordProofingTiming.wordCompletion;
+  }
+
   void _scheduleCompletion(_Trigger trigger) {
     if (!_automatic || _schedule.mode != WordProofingMode.whileTyping) return;
     final kinds = _kindsFor(trigger);
     if (kinds.isEmpty) return;
     if (_completionTimer != null) {
-      // A pending word check becomes a sentence check; never postponed.
-      if (trigger == _Trigger.sentence) _completionTrigger = trigger;
-      return;
+      // A pending word check becomes a sentence check. A word check is a
+      // trailing debounce: while the user keeps typing, postpone it instead
+      // of running a provider pass in the middle of a burst.
+      if (trigger == _Trigger.sentence) {
+        _completionTrigger = trigger;
+        return;
+      }
+      _completionTimer!.cancel();
     }
     _completionTrigger = trigger;
-    _completionTimer = Timer(WordProofingTiming.wordCompletion, () {
+    final delay = trigger == _Trigger.word
+        ? _wordCompletionDelay
+        : WordProofingTiming.wordCompletion;
+    _completionTimer = Timer(delay, () {
       final fired = _completionTrigger ?? _Trigger.word;
       _completionTimer = null;
       _completionTrigger = null;
