@@ -52,6 +52,18 @@ import 'studio_saved_mail.dart';
 import 'studio_strings.dart';
 import 'studio_mail_reader_labels.dart';
 
+/// Never salvage a partial or oversized References header from an IMAP page.
+/// The shared conversation index validates every token before creating a link.
+List<String> _studioMailLoadedReferences(String? raw) {
+  if (raw == null || raw.length > 8192) return const <String>[];
+  final value = raw.trim();
+  if (value.isEmpty) return const <String>[];
+  final tokens = value.split(RegExp(r'\s+'));
+  return tokens.length <= MailConversationEntry.maxReferences
+      ? tokens
+      : const <String>[];
+}
+
 StudioMailDraftAccount _imapLocalIdentity(mail.MailAccount account) {
   final incoming = account.incoming.serverConfig;
   final authentication = account.incoming.authentication;
@@ -1437,6 +1449,8 @@ class _StudioMailDialogState extends State<StudioMailDialog>
           final reader = MailReaderController.fromBytes(
             raw,
             codec: const QudsMimeCodec(),
+            preferHtml: false,
+            includeHeaders: false,
             labels: StudioMailReaderLabels(widget.strings.language),
           );
           final previous = _reader;
@@ -4044,6 +4058,12 @@ class _StudioMailDialogState extends State<StudioMailDialog>
           MailMessageListItem(
             id: _messageKey(message),
             subject: message.decodeSubject() ?? '(no subject)',
+            accountId: 'imap-session-$_sessionGeneration',
+            messageId: message.getHeaderValue('Message-ID'),
+            inReplyTo: message.getHeaderValue('In-Reply-To'),
+            references: _studioMailLoadedReferences(
+              message.getHeaderValue('References'),
+            ),
             sender:
                 message.from
                     ?.map(

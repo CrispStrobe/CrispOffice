@@ -11,6 +11,11 @@ archive, Studio workflows and remaining MailStore parity work.
 
 ## Desktop mail parity: ordered increments
 
+The [loaded-conversation continuation](conversations.md) adds opt-in
+account-scoped grouping of explicitly linked, already loaded mailbox headers.
+It preserves individual message actions and does not claim full threaded
+inboxes, background synchronization or cross-folder conversation search.
+
 Outlook, Thunderbird and eM Client are comparison targets for complete workflows,
 reliability and usability. The following order extends the existing M00–M14
 plan rather than treating provider connectivity as full product parity.

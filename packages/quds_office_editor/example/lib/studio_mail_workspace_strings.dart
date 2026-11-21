@@ -20,6 +20,12 @@ extension StudioMailWorkspaceStrings on StudioStrings {
     ),
     unread: _text('Unread', 'Ungelesen', 'غير مقروءة'),
     flagged: _text('Flagged', 'Gekennzeichnet', 'المعلّمة'),
+    groupConversations: _text('Conversations', 'Unterhaltungen', 'المحادثات'),
+    conversationCount: (count) => _text(
+      '$count messages in conversation',
+      '$count Nachrichten in einer Unterhaltung',
+      '$count رسالة في المحادثة',
+    ),
     noMessages: noMessages,
     noMatches: _text(
       'No loaded messages match these filters.',

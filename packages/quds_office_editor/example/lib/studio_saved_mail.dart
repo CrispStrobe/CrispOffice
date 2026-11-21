@@ -47,6 +47,8 @@ class _StudioSavedMailViewState extends State<StudioSavedMailView> {
         bytes,
         codec: const QudsMimeCodec(),
         mode: _mode,
+        preferHtml: false,
+        includeHeaders: false,
         labels: StudioMailReaderLabels(widget.strings.language),
       );
 
@@ -102,6 +104,8 @@ class _StudioSavedMailViewState extends State<StudioSavedMailView> {
       _controller = MailReaderController(
         result: previous.result,
         mode: mode,
+        preferHtml: false,
+        includeHeaders: false,
         labels: previous.labels,
       );
     });
