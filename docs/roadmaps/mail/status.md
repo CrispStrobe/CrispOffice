@@ -16,13 +16,16 @@ unsaved settings on failure and require readback after uncertain writes.
 
 Independent source review corrected an initially stale loading barrier, the
 optional no-catalog reply path, and a mismatch with Word's structured selection
-deletion. After the original executor failure, Word style integration ran the
-complete Mail core/store suites (476 and 924 passes), all 37 composer/settings/
-adapter tests, and 21 Word insertion tests with the genuine pinned SDK. The
-latest insertion guards refuse retained body-caret edits while a footnote or
-endnote owns the active selection. A further 89-case integration run covers those
-guards, strengthened migration assertions and native draft-host recovery. The
-old-schema migration fixture was corrected and strict analysis/formatting passed.
+deletion. After the original executor failure, Word style integration passed all
+476 Mail core tests, 37 composer/settings/adapter tests and 21 Word insertion
+tests with the pinned SDK. The initial full store run passed 922 tests and found
+two obsolete migration fixtures; the corrected sync file then passed all 23
+cases. This was not a second complete store-suite run. The insertion guards
+refuse retained body-caret edits while a footnote or endnote owns the selection.
+Final reconciliation also passed 77 account/session/browser/saved-message/
+automatic-connection tests after preserving manual account editing during
+asynchronous catalog operations and forwarding embedded native close callbacks.
+Strict analysis and formatting passed for the changed paths.
 GitHub Actions were not awaited.
 
 See [the workflow and limits](compose-tools.md) and

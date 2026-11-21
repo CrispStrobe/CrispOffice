@@ -245,6 +245,25 @@ abstract final class OdtDocumentWriter {
       prefix: 'style',
       attributes: {'style:name': 'Standard', 'style:family': 'paragraph'},
     );
+    if (layout.zotero != null) {
+      // Automatic notes must declare the qualified decimal sequence. Writer's
+      // default endnote format is Roman and otherwise replaces the exported
+      // decimal cache during a save. Fixed labels remain explicitly authored.
+      for (final endnote in [false, true]) {
+        if (!layout.notes.emitted.keys.any((key) => key.$1 == endnote)) {
+          continue;
+        }
+        w.writeEmptyElement(
+          'notes-configuration',
+          prefix: 'text',
+          attributes: {
+            'text:note-class': endnote ? 'endnote' : 'footnote',
+            'style:num-format': '1',
+            if (!endnote) 'text:start-numbering-at': 'document',
+          },
+        );
+      }
+    }
     if (layout._pageFrameStyleWritten || stories._pageFrameStyleWritten) {
       // Desktop consumers need a common graphic parent to retain text-box
       // bookmark ranges when converting floating frames to DOCX.
@@ -1318,10 +1337,13 @@ abstract final class OdtDocumentWriter {
     // LibreOffice treats an empty fixed label as automatic numbering. Keep
     // empty character data, using only a nonprinting metadata label to suppress
     // the extra numeral beside an independently authored custom mark.
+    // Fixed ODF labels do not advance the automatic sequence. Counting all
+    // emitted definitions would accept a cited decimal note after an uncited
+    // Roman/custom note and let the consumer silently renumber it.
+    final automaticNumber =
+        (layout.notes.automaticCounts[reference.noteRefEndnote] ?? 0) + 1;
     final automaticLabel =
-        !reference.noteRefCustomMark &&
-        label ==
-            '${layout.notes.emitted.keys.where((key) => key.$1 == reference.noteRefEndnote).length}';
+        !reference.noteRefCustomMark && label == '$automaticNumber';
     if (layout.zotero?.hasFieldsInNote(note) == true && !automaticLabel) {
       throw UnsupportedError(
         'Editable Zotero ODT requires ordinary decimal numbering for cited notes.',
@@ -1329,6 +1351,8 @@ abstract final class OdtDocumentWriter {
     }
     if (layout.zotero == null || !automaticLabel) {
       w.writeAttribute('text:label', label.isEmpty ? '\u2060' : label);
+    } else {
+      layout.notes.automaticCounts[reference.noteRefEndnote] = automaticNumber;
     }
     w.writeText(label);
     w.writeEndElement();
@@ -1852,6 +1876,7 @@ class _OdtNotes {
   final WmlDocument document;
   final definitions = <(bool, int), WmlNote?>{};
   final emitted = <(bool, int), _OdtNoteRecord>{};
+  final automaticCounts = <bool, int>{};
   late final numbering = WordNoteNumbering(
     document,
     emptyReferencesAreAutomatic: true,

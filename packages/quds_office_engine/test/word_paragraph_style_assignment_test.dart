@@ -133,6 +133,47 @@ void main() {
     }
   });
 
+  for (final packet in ['pPr', 'rPr']) {
+    test('$packet preserves a foreign w binding on a native alias root', () {
+      final properties =
+          '<s:$packet xmlns:s="$_w" xmlns:w="$_x" w:token="root">'
+          '${packet == 'pPr' ? '<s:pStyle s:val="Base"/>' : '<s:rStyle s:val="Emphasis"/>'}'
+          '<w:extension w:token="child"/></s:$packet>';
+      var document = WordDeserializer().read(
+        _package(
+          body:
+              '<w:p>${packet == 'pPr' ? properties : ''}'
+              '<w:r>${packet == 'rPr' ? properties : ''}'
+              '<w:t>Selected</w:t></w:r></w:p>',
+        ),
+      );
+      for (var cycle = 0; cycle < 3; cycle++) {
+        _assign(document);
+        final target = document.paragraphs.single;
+        final run = target.inlines.single as WmlRun;
+        expect(target.properties.styleId, 'Target');
+        expect(run.properties.bold, isTrue);
+        expect(run.properties.italic, packet == 'rPr');
+        final source = packet == 'pPr'
+            ? target.properties.sourcePropertiesXml!
+            : run.properties.sourcePropertiesXml!;
+        final root = XmlDocument.parse(source).root!;
+        expect(root.namespaceUri, _w);
+        expect(root.getAttribute('token', namespaceUri: _x), 'root');
+        expect(
+          root
+              .firstChild('extension', namespaceUri: _x)!
+              .getAttribute('token', namespaceUri: _x),
+          'child',
+        );
+        expect(root.firstChild('extension', namespaceUri: _w), isNull);
+        document = WordDeserializer().readBytes(
+          WordSerializer().writeBytes(document),
+        );
+      }
+    });
+  }
+
   const builtins = <int, String>{
     -1: 'Normal',
     -2: 'heading 1',
@@ -184,7 +225,7 @@ void main() {
 
   for (final prefix in ['w', 'word']) {
     test(
-      'native prefix $prefix preserves import identities and refuses ambiguous restyling',
+      'native prefix $prefix preserves foreign and nested style lookalikes',
       () {
         var document = WordDeserializer().read(
           _package(
@@ -205,37 +246,17 @@ void main() {
               .styleId,
           'Emphasis',
         );
-        final originalColor =
-            (document.paragraphs.single.inlines.single as WmlRun)
-                .properties
-                .color;
-        // Native import must ignore foreign/nested references. The bounded
-        // setter still refuses these ambiguous source packets atomically;
-        // the original imported references and opaque XML remain round-trippable.
-        _refusesWithoutMutation(document);
+        _assign(document);
         for (var cycle = 0; cycle < 3; cycle++) {
           final paragraph = document.paragraphs.single;
           final run = paragraph.inlines.single as WmlRun;
-          expect(paragraph.properties.styleId, 'Base');
+          expect(paragraph.properties.styleId, 'Target');
           expect(paragraph.properties.spacingBefore, 3);
-          expect(paragraph.properties.spacingAfter, 0);
-          expect(run.properties.styleId, 'Emphasis');
-          expect(run.properties.fontSizePoints, 11);
+          expect(paragraph.properties.spacingAfter, 9);
+          expect(run.properties.fontSizePoints, 16);
           expect(run.properties.italic, isTrue);
-          expect(run.properties.bold, isFalse);
-          // Ordinary import has narrower alias support than this fixture's
-          // source XML. A refused edit preserves that original projection and
-          // the exact native color declaration rather than asserting repair.
-          expect(run.properties.color, originalColor);
-          final directRun = XmlDocument.parse(
-            run.properties.sourcePropertiesXml!,
-          ).root!;
-          expect(
-            directRun
-                .firstChild('color', namespaceUri: _w)!
-                .getAttribute('val', namespaceUri: _w),
-            'AABBCC',
-          );
+          expect(run.properties.bold, isTrue);
+          expect(run.properties.color, 'AABBCC');
           final direct = XmlDocument.parse(
             paragraph.properties.sourcePropertiesXml!,
           ).root!;
@@ -463,24 +484,25 @@ void main() {
       document.paragraphs.last.inlines = [
         document.paragraphs.first.inlines.single,
       ];
-      _refusesWithoutMutation(document);
+      _refusesWithoutMutation(document, matcher: isA<StateError>());
     },
   );
 
-  test('shared property objects on distinct runs are refused atomically', () {
-    final document = WordDeserializer().read(_package());
-    final first = document.paragraphs.first.inlines.single as WmlRun;
-    final other = document.paragraphs.last.inlines.single as WmlRun;
-    other.properties = first.properties;
-    final original = other.properties;
-    // This bounded setter requires independent mutable property ownership.
-    // Refuse rather than choosing which host reference should be detached.
-    _refusesWithoutMutation(document);
-    expect(other.properties, same(original));
-    expect(first.properties, same(original));
-    expect(other.properties.fontSizePoints, 11);
-    expect(first.properties.fontSizePoints, 11);
-  });
+  test(
+    'shared property objects on distinct runs stay independent after assignment',
+    () {
+      final document = WordDeserializer().read(_package());
+      final first = document.paragraphs.first.inlines.single as WmlRun;
+      final other = document.paragraphs.last.inlines.single as WmlRun;
+      other.properties = first.properties;
+      final original = other.properties;
+      _assign(document);
+      expect(other.properties, same(original));
+      expect(first.properties, isNot(same(original)));
+      expect(other.properties.fontSizePoints, 11);
+      expect(first.properties.fontSizePoints, 16);
+    },
+  );
 
   test(
     'effective numbering changes are refused and existing list metadata stays untouched',
@@ -494,8 +516,8 @@ void main() {
     },
   );
 
-  test('active direct numbering is refused with labels and metadata intact', () {
-    final document = WordDeserializer().read(
+  test('unchanged direct numbering preserves labels and restart metadata', () {
+    var document = WordDeserializer().read(
       _package(
         body: _body.replaceFirst(
           '<w:pStyle w:val="Base"/>',
@@ -504,19 +526,15 @@ void main() {
       ),
     );
     final originalLabel = document.paragraphs.first.properties.listLabel;
-    final originalSource =
-        document.paragraphs.first.properties.sourcePropertiesXml;
-    // Even unchanged numId/ilvl can interact with style-linked numbering.
-    // Active numbering remains outside the supported style assignment subset.
-    _refusesWithoutMutation(document);
-    expect(document.paragraphs.first.properties.styleId, 'Base');
+    _assign(document);
     expect(document.paragraphs.first.properties.numId, 7);
     expect(document.paragraphs.first.properties.ilvl, 1);
     expect(document.paragraphs.first.properties.listLabel, originalLabel);
-    expect(
-      document.paragraphs.first.properties.sourcePropertiesXml,
-      originalSource,
+    document = WordDeserializer().readBytes(
+      WordSerializer().writeBytes(document),
     );
+    expect(document.paragraphs.first.properties.styleId, 'Target');
+    expect(document.paragraphs.first.properties.listLabel, originalLabel);
   });
 
   test(
@@ -557,7 +575,41 @@ void main() {
     final toc = WmlToc();
     toc.titleParagraph.inlines = [document.paragraphs.first.inlines.single];
     document.sections.first.blocks.add(toc);
-    _refusesWithoutMutation(document);
+    _refusesWithoutMutation(document, matcher: isA<StateError>());
+  });
+
+  test('a body run shared with a native TOC cache is refused', () {
+    final document = WordDeserializer().read(_package());
+    final source = WmlParagraph(
+      inlines: [document.paragraphs.first.inlines.single],
+    );
+    final toc = WmlToc(
+      sourcePresentation: WmlTocPresentation(
+        configuration: (1, 3, true, null, null, null),
+        paragraphs: [WmlTocSourceParagraph(paragraph: source)],
+      ),
+    );
+    document.sections.first.blocks.add(toc);
+    final original = (source.inlines.single as WmlRun).properties;
+    _refusesWithoutMutation(document, matcher: isA<StateError>());
+    expect((source.inlines.single as WmlRun).properties, same(original));
+  });
+
+  test('an independent native TOC cache does not block body restyling', () {
+    final document = WordDeserializer().read(_package());
+    final source = WmlParagraph(inlines: [WmlRun(text: 'Cached result')]);
+    final toc = WmlToc(
+      sourcePresentation: WmlTocPresentation(
+        configuration: (1, 3, true, null, null, null),
+        paragraphs: [WmlTocSourceParagraph(paragraph: source)],
+      ),
+    );
+    document.sections.first.blocks.add(toc);
+    final original = (source.inlines.single as WmlRun).properties;
+    _assign(document);
+    expect(document.paragraphs.first.properties.styleId, 'Target');
+    expect((source.inlines.single as WmlRun).properties, same(original));
+    expect(source.text, 'Cached result');
   });
 
   test('generated TOC paragraph targets are explicitly refused', () {

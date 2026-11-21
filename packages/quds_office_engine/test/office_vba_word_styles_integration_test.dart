@@ -13,283 +13,190 @@ const _example = 'example/macros/word_styles.bas';
 Map<String, Object?> _structured(Map<String, Object?> result) =>
     result['structuredContent']! as Map<String, Object?>;
 
-Map<String, Object?> _sourceArguments(String source) => {
-  'source': {
-    'language': 'vba-word',
-    'format': 'docx',
-    'moduleName': 'WordStylesIntegration',
-    'source': source,
-  },
-};
-
-Matcher _failure({required int step}) => isA<OfficeMacroException>()
-    .having((error) => error.code, 'code', 'operation_failed')
-    .having((error) => error.stepIndex, 'step', step)
-    .having((error) => error.tool, 'tool', 'docx.paragraphStyle');
-
 void main() {
   registerOfficeMacroCliCleanup();
 
   test(
-    'committed BAS applies native styles, preserves DOCM and reopens',
+    'committed BAS preserves formatting, opaque DOCM and repeated reopens',
     () async {
       final result = await portable.runWordStylesExample(
         File(_example).readAsStringSync(),
       );
-      expect(result['operations'], 5);
-      expect(result['firstRunRevision'], 1);
-      expect(result['repeatedRevision'], 2);
-      expect(result['additionalReopens'], 2);
-      expect(result['opaquePayloadsPreserved'], isTrue);
+      expect(result, {
+        'operations': 5,
+        'revision': 2,
+        'additionalReopens': 2,
+        'opaquePayloadsPreserved': true,
+      });
     },
   );
 
   test(
-    'pending text and direct formatting survive repeated style changes',
+    'late missing style rolls back execution, validation and recording',
     () async {
-      final input = portable.wordStylesInput();
-      final session = OfficeMacroSession(input, format: OfficeMacroFormat.docx);
-      final plan = portable.wordStylesPlan('''
-With ActiveDocument.Paragraphs(1).Range
-  .InsertBefore "Revised "
-  .Font.Bold = False
-  .ParagraphFormat.SpaceBefore = 7
-  .Style = wdStyleHeading1
-  .Style = "Report Body"
-  .ParagraphFormat.SpaceAfter = 8
-End With
-''');
-      await session.validate(plan);
-      expect(session.bytes, input);
-      expect(session.revision, 0);
-      await session.run(plan);
-      final document = WordDeserializer().readBytes(session.bytes);
-      final first = document.paragraphs.first;
-      expect(first.text, 'Revised Report title');
-      expect(first.properties.styleId, 'ReportBody');
-      expect(first.properties.spacingBefore, 7);
-      expect(first.properties.spacingAfter, 8);
-      expect(
-        first.inlines.whereType<WmlRun>().every((run) => !run.properties.bold),
-        isTrue,
-      );
-      final reopened = WordSerializer().writeBytes(document);
-      expect(
-        portable.wordStylesState(reopened),
-        portable.wordStylesState(session.bytes),
-      );
-      expect(session.revision, 1);
+      expect(await portable.runWordStylesRollback(), {
+        'failedStep': 1,
+        'validateAndRunRollback': true,
+      });
     },
   );
 
-  test(
-    'ByVal paragraph and Range aliases retain their caller selectors',
-    () async {
-      final session = OfficeMacroSession(
-        portable.wordStylesInput(),
-        format: OfficeMacroFormat.docx,
-      );
-      final plan = portable.wordStylesSource('''
-Sub Change(ByVal para As Paragraph, ByVal target As Range)
-  para.Style = "Report Body"
+  test('native style recording excludes failed calls and replays', () async {
+    expect(await portable.runWordStylesRecording(), {
+      'recordedSteps': 2,
+      'failedCallExcluded': true,
+      'replayRevision': 1,
+    });
+  });
+
+  test('style permissions, allowlists and step limits remain atomic', () async {
+    expect(await portable.runWordStylesPolicy(), {
+      'atomicDenials': 6,
+      'allowedSteps': 2,
+    });
+  });
+
+  test('helper rebinding retains the caller header selector', () async {
+    final input = portable.wordStylesInput();
+    final session = OfficeMacroSession(input, format: OfficeMacroFormat.docx);
+    final macro = portable.wordStylesSource('''
+Sub Configure(ByVal target As Range)
+  target.Style = wdStyleCaption
+  Set target = ActiveDocument.Paragraphs(1).Range
   target.Style = wdStyleHeading1
-  Set para = ActiveDocument.Paragraphs(3)
-  Set target = ActiveDocument.Paragraphs(4).Range
-  para.Style = wdStyleCaption
-  target.Style = wdStyleNormal
 End Sub
 Sub Main()
-  Dim p As Paragraph
-  Dim r As Range
-  Set p = ActiveDocument.Paragraphs(1)
-  Set r = ActiveDocument.Paragraphs(2).Range
-  Change target:=r, para:=p
-  p.Style = wdStyleHeading1
-  r.Style = "Report Body"
+  Dim head As Range
+  Set head = ThisDocument.Sections(1).Headers(wdHeaderFooterPrimary).Range.Paragraphs(1).Range
+  Configure target:=head
+  head.Style = "Report Body"
 End Sub
 ''');
-      await session.run(plan);
+    await session.validate(macro);
+    expect(session.bytes, input);
+    await session.run(macro);
+    var document = WordDeserializer().readBytes(session.bytes);
+    for (var cycle = 0; cycle < 2; cycle++) {
       expect(
-        WordDeserializer()
-            .readBytes(session.bytes)
-            .paragraphs
-            .map((paragraph) => paragraph.properties.styleId),
-        ['ReportHeadingOne', 'ReportBody', 'CaptionStyle', 'Normal'],
+        document.sections.first.header.single.properties.styleId,
+        'BodyCustom',
       );
-    },
-  );
-
-  test(
-    'late failure rolls back native styles, direct edits and recording',
-    () async {
-      final result = await portable.runWordStylesRollback();
-      expect(result['failedStep'], 2);
-      expect(result['validateAndRunRollback'], isTrue);
-    },
-  );
-
-  test(
-    'a failed later transaction retains the previous accepted revision',
-    () async {
-      final session = OfficeMacroSession(
-        portable.wordStylesInput(),
-        format: OfficeMacroFormat.docx,
+      expect(document.paragraphs.first.properties.styleId, 'HeadingNative');
+      expect(document.paragraphs.elementAt(1).properties.styleId, isNull);
+      expect(document.paragraphs.elementAt(2).properties.styleId, isNull);
+      document = WordDeserializer().readBytes(
+        WordSerializer().writeBytes(document),
       );
-      session.startRecording('Accepted style plus rejected transaction');
-      await session.callTool('docx.paragraphStyle', {
-        'paragraph': 0,
-        'builtin': -2,
-      });
-      final before = session.bytes;
-      final plan = portable.wordStylesPlan('''
-ActiveDocument.Paragraphs(2).Style = "Report Body"
-ActiveDocument.Paragraphs(3).Style = "Does not exist"
-''');
-      for (final action in [session.validate, session.run]) {
-        await expectLater(action(plan), throwsA(_failure(step: 1)));
-        expect(session.bytes, before);
-        expect(session.revision, 1);
-      }
-      final recording = session.stopRecording();
-      expect(recording.steps, hasLength(1));
-      expect(recording.steps.single.arguments, {'paragraph': 0, 'builtin': -2});
-    },
-  );
-
-  test(
-    'style calls record and replay without recording failed calls',
-    () async {
-      final result = await portable.runWordStylesRecording();
-      expect(result['recordedSteps'], 2);
-      expect(result['failedCallExcluded'], isTrue);
-      expect(result['replayRevision'], 1);
-    },
-  );
-
-  test('mutation permissions and native step budgets remain atomic', () async {
-    final result = await portable.runWordStylesPolicy();
-    expect(result['atomicDenials'], 6);
-    expect(result['allowedSteps'], 2);
+    }
   });
 
   test(
-    'MCP exposes paragraphStyle and compiles, validates and runs BAS',
+    'later missing header keeps earlier committed bytes and revision',
     () async {
-      final input = portable.wordStylesInput();
-      final session = OfficeMacroSession(input, format: OfficeMacroFormat.docx);
-      final adapter = OfficeMacroMcp(session);
-      final compiled = await adapter.callTool(
-        'office_macro_compile',
-        _sourceArguments(File(_example).readAsStringSync()),
+      final session = OfficeMacroSession(
+        portable.wordStylesInput(),
+        format: OfficeMacroFormat.docx,
       );
-      expect(compiled['isError'], isFalse, reason: '$compiled');
-      final arguments = <String, Object?>{
-        'macro': _structured(compiled)['macro'],
-      };
-      final validated = await adapter.callTool(
-        'office_macro_validate',
-        arguments,
-      );
-      expect(validated['isError'], isFalse, reason: '$validated');
-      expect(_structured(validated)['completedSteps'], 5);
-      expect(_structured(validated)['validatedOnly'], isTrue);
-      expect(session.bytes, input);
-      expect(session.revision, 0);
-      final run = await adapter.callTool('office_macro_run', arguments);
-      expect(run['isError'], isFalse, reason: '$run');
-      expect(_structured(run)['completedSteps'], 5);
-      expect(session.revision, 1);
-      portable.assertWordStylesExample(session.bytes);
+      await session.callTool('docx.paragraphStyle', {
+        'paragraph': 1,
+        'name': 'Report Body',
+      });
+      final before = session.bytes;
+      final macro = portable.wordStylesPlan('''
+ActiveDocument.Paragraphs(1).Style = wdStyleHeading1
+ActiveDocument.Sections(2).Headers(1).Range.Paragraphs(1).Style = wdStyleCaption
+''');
+      for (final action in [session.validate, session.run]) {
+        await expectLater(
+          action(macro),
+          throwsA(
+            isA<OfficeMacroException>().having(
+              (error) => error.stepIndex,
+              'failed step',
+              1,
+            ),
+          ),
+        );
+        expect(session.bytes, before);
+        expect(session.revision, 1);
+      }
     },
   );
 
-  test(
-    'MCP unsupported Style reads expose no prefix plan or mutation',
-    () async {
-      final input = portable.wordStylesInput();
-      final session = OfficeMacroSession(input, format: OfficeMacroFormat.docx);
-      final result = await OfficeMacroMcp(session).callTool(
-        'office_macro_compile',
-        _sourceArguments('''
+  test('MCP compiles, validates and runs the same style source', () async {
+    final input = portable.wordStylesInput();
+    final session = OfficeMacroSession(input, format: OfficeMacroFormat.docx);
+    final adapter = OfficeMacroMcp(session);
+    final compiled = await adapter.callTool('office_macro_compile', {
+      'source': {
+        'language': 'vba-word',
+        'format': 'docx',
+        'source': File(_example).readAsStringSync(),
+      },
+    });
+    expect(compiled['isError'], isFalse, reason: '$compiled');
+    final arguments = <String, Object?>{
+      'macro': _structured(compiled)['macro'],
+    };
+    final validation = await adapter.callTool(
+      'office_macro_validate',
+      arguments,
+    );
+    expect(validation['isError'], isFalse, reason: '$validation');
+    expect(_structured(validation)['completedSteps'], 5);
+    expect(session.bytes, input);
+    expect(session.revision, 0);
+    final result = await adapter.callTool('office_macro_run', arguments);
+    expect(result['isError'], isFalse, reason: '$result');
+    portable.assertWordStylesExample(session.bytes);
+    expect(session.revision, 1);
+  });
+
+  test('CLI executes committed BAS without mutating its input', () async {
+    final directory = Directory.systemTemp.createTempSync('quds-style-cli-');
+    addTearDown(() => directory.deleteSync(recursive: true));
+    final input = File('${directory.path}/input.docm')
+      ..writeAsBytesSync(portable.wordStylesInput());
+    final before = input.readAsBytesSync();
+    final output = File('${directory.path}/output.docm');
+    final result = await runOfficeMacroCli([
+      'run-word-vba',
+      input.path,
+      File(_example).absolute.path,
+      output.path,
+    ]);
+    expect(result.exitCode, 0, reason: '${result.stdout}\n${result.stderr}');
+    expect(input.readAsBytesSync(), before);
+    portable.assertWordStylesExample(output.readAsBytesSync());
+  }, timeout: officeMacroCliTestTimeout);
+
+  test('CLI late style failure creates no output file', () async {
+    final directory = Directory.systemTemp.createTempSync('quds-style-fail-');
+    addTearDown(() => directory.deleteSync(recursive: true));
+    final input = File('${directory.path}/input.docm')
+      ..writeAsBytesSync(portable.wordStylesInput());
+    final before = input.readAsBytesSync();
+    final source = File('${directory.path}/missing.bas')
+      ..writeAsStringSync('''
 Sub Main()
   ActiveDocument.Paragraphs(1).Style = wdStyleHeading1
-  Dim name As Variant
-  name = ActiveDocument.Paragraphs(2).Style
-End Sub
-'''),
-      );
-      expect(result['isError'], isTrue);
-      expect(_structured(result).containsKey('macro'), isFalse);
-      final error = _structured(result)['error']! as Map<String, Object?>;
-      expect(error['moduleName'], 'WordStylesIntegration');
-      expect(error['line'], greaterThan(0));
-      expect(error['column'], greaterThan(0));
-      expect(session.bytes, input);
-      expect(session.revision, 0);
-    },
-  );
-
-  test(
-    'CLI executes actual BAS without changing input or opaque DOCM parts',
-    () async {
-      final directory = Directory.systemTemp.createTempSync('quds-styles-cli-');
-      addTearDown(() => directory.deleteSync(recursive: true));
-      final input = File('${directory.path}/input.docm')
-        ..writeAsBytesSync(portable.wordStylesInput());
-      final before = input.readAsBytesSync();
-      final output = File('${directory.path}/output.docm');
-      final result = await runOfficeMacroCli([
-        'run-word-vba',
-        input.path,
-        File(_example).absolute.path,
-        output.path,
-      ]);
-      expect(result.exitCode, 0, reason: '${result.stdout}\n${result.stderr}');
-      expect(
-        (jsonDecode(result.stdout as String) as Map)['language'],
-        'vba-word',
-      );
-      expect(input.readAsBytesSync(), before);
-      final saved = output.readAsBytesSync();
-      portable.assertWordStylesExample(saved);
-      final guard = (await WordPackagePreservation.capture(
-        before,
-        input.path,
-      ))!;
-      await guard.validateSaved(saved);
-    },
-    timeout: officeMacroCliTestTimeout,
-  );
-
-  test(
-    'CLI missing later style retains input and existing output bytes',
-    () async {
-      final directory = Directory.systemTemp.createTempSync(
-        'quds-styles-fail-',
-      );
-      addTearDown(() => directory.deleteSync(recursive: true));
-      final input = File('${directory.path}/input.docm')
-        ..writeAsBytesSync(portable.wordStylesInput());
-      final before = input.readAsBytesSync();
-      final output = File('${directory.path}/output.docm')
-        ..writeAsStringSync('Keep existing output');
-      final source = File('${directory.path}/invalid.bas')
-        ..writeAsStringSync('''
-Sub Main()
-  ActiveDocument.Paragraphs(1).Style = wdStyleHeading1
-  ActiveDocument.Paragraphs(2).Style = "Missing style"
+  ActiveDocument.Paragraphs(2).Style = "No such style"
 End Sub
 ''');
-      final result = await runOfficeMacroCli([
-        'run-word-vba',
-        input.path,
-        source.path,
-        output.path,
-      ]);
-      expect(result.exitCode, isNot(0));
-      expect(input.readAsBytesSync(), before);
-      expect(output.readAsStringSync(), 'Keep existing output');
-    },
-    timeout: officeMacroCliTestTimeout,
-  );
+    final output = File('${directory.path}/output.docm');
+    final result = await runOfficeMacroCli([
+      'run-word-vba',
+      input.path,
+      source.path,
+      output.path,
+    ]);
+    expect(result.exitCode, isNot(0));
+    final report = jsonDecode(result.stderr as String) as Map<String, Object?>;
+    final error = report['error']! as Map<String, Object?>;
+    expect(error['code'], 'operation_failed');
+    expect(error['stepIndex'], 1);
+    expect(error['tool'], 'docx.paragraphStyle');
+    expect(input.readAsBytesSync(), before);
+    expect(output.existsSync(), isFalse);
+  }, timeout: officeMacroCliTestTimeout);
 }

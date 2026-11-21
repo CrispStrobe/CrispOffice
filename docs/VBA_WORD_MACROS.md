@@ -140,8 +140,7 @@ geometry has its separate mapping below.
 | Word source operation | Native operation | Arguments in addition to `paragraph: p` |
 | --- | --- | --- |
 | `range.InsertBefore text` | `docx.replaceText` | `start: 0`, `end: 0`, `text` |
-| `paragraph.Style = name` or `range.Style = name` | `docx.paragraphStyle` | `name`: an existing primary paragraph-style name |
-| `paragraph.Style = wdStyleHeading1` or another supported built-in | `docx.paragraphStyle` | `builtin`: the documented negative style constant |
+| `paragraph.Style = value` or `range.Style = value` | `docx.paragraphStyle` | Exactly one primary style `name` or supported `builtin` constant |
 | `range.Font.Bold = value` | `docx.runFormat` | `bold: value` |
 | `range.Font.Italic = value` | `docx.runFormat` | `italic: value` |
 | `range.Font.Size = value` | `docx.runFormat` | `size: value` in points |
@@ -204,6 +203,80 @@ rule/amount operation. Repeated
 `InsertBefore` calls act on the paragraph as it exists at each step: inserting
 `"A"` and then `"B"` before `"tail"` produces `"BAtail"`. A later font operation
 formats the paragraph's current text, including text inserted by earlier steps.
+
+### Existing paragraph styles
+
+An explicitly selected `Paragraph` or its `Range` accepts a `Style` assignment:
+
+```vb
+Sub Main()
+    ActiveDocument.Paragraphs(1).Style = wdStyleHeading1
+    With ActiveDocument.Paragraphs(2).Range
+        .Font.Bold = True
+        .Style = "Report Body"
+    End With
+End Sub
+```
+
+Typed aliases, nested `With`, required `ByVal Paragraph` / `ByVal Range`
+helpers, named helper arguments, String expressions and scalar Variant values
+retain the selected paragraph. Independent header/footer paragraphs use the
+same existing story-ownership checks. Each assignment emits one
+`docx.paragraphStyle` operation with the ordinary zero-based paragraph/story
+selector and exactly one of `name: String` or `builtin: int`.
+
+| Source constant | Numeric value | Existing native primary name |
+| --- | --- | --- |
+| `wdStyleNormal` | `-1` | Normal |
+| `wdStyleHeading1` through `wdStyleHeading9` | `-2` through `-10` | heading 1 through heading 9 |
+| `wdStyleCaption` | `-35` | caption |
+| `wdStyleTitle` | `-63` | Title |
+| `wdStyleSubtitle` | `-75` | Subtitle |
+
+Names are matched case-insensitively against the primary name of a unique
+existing paragraph style in the document's active native styles part. Spaces
+are significant. The style's ID may differ from its name. Numeric built-ins
+also require a noncustom native definition with the corresponding English
+primary name; they do not guess localized names or use arbitrary style IDs.
+A String such as `"-2"` remains a name. This operation never creates a missing
+style or falls back to the engine's built-in style catalog.
+
+The bounded native contract changes the selected paragraph's style reference
+and refreshes its inherited paragraph/run properties while preserving direct
+formatting, explicit same-value overrides, character styles, table context,
+pending earlier plan edits and unrelated XML metadata. Unselected paragraphs
+are not recascaded. An assignment of the currently inherited style still
+creates an explicit native `pStyle` reference. Existing `docx.applyStyle`
+retains its separate catalog/application behavior.
+
+Malformed or ambiguous style relationships, duplicate identities/names,
+unresolved or cyclic inheritance, unsynchronized edits to the modeled style
+catalog, unsupported property ownership and changes to effective numbering
+are refused before publication. Existing foreign namespace bindings and inert
+metadata remain intact, including when native properties use an aliased prefix.
+Failed later operations
+roll back the complete macro, including any earlier style assignment. The
+ordinary mutation policy, tool allowlist, step budget, validation-only mode,
+recording and DOCM preservation rules apply.
+
+Style reads, `Styles` collections, Style objects, numeric collection indices,
+style creation, generated TOC/result paragraphs, multi-paragraph or whole-story
+`Range.Style`, and embedded VBA execution remain unsupported. Names must be
+nonempty XML-safe strings without tabs or line breaks; Boolean, array and object
+values are not style selectors.
+This is a bounded source-to-plan feature, without installed Microsoft Word
+differential qualification of direct-format semantics.
+
+The [complete example](../packages/quds_office_engine/example/macros/word_styles.bas)
+uses three existing body paragraphs and existing Heading 1, Report Body and
+Caption definitions. Its five operations demonstrate typed helpers and direct
+formatting before and after a style assignment. The
+[qualification record](validation/word-vba-styles-20261121/README.md) describes
+the local checks and reproducible portable smoke test.
+
+Primary references: Microsoft's [Paragraph.Style](https://learn.microsoft.com/en-us/office/vba/api/word.paragraph.style),
+[Range.Style](https://learn.microsoft.com/en-us/office/vba/api/word.range.style)
+and [WdBuiltinStyle](https://learn.microsoft.com/en-us/office/vba/api/word.wdbuiltinstyle).
 
 ### Section page setup
 
@@ -657,100 +730,6 @@ Primary references: Microsoft Word's
 and [HeaderFooter.LinkToPrevious](https://learn.microsoft.com/en-us/office/vba/api/word.headerfooter.linktoprevious).
 These establish source vocabulary and explain the linkage boundary. Local
 engine checks do not constitute differential testing against installed Word.
-
-### Assigning existing paragraph styles
-
-`Paragraph.Style` and a selected paragraph's `Range.Style` now accept an
-existing primary paragraph-style name or one of these 13 `WdBuiltinStyle`
-constants. The compiler preserves the selector; native execution resolves it
-against the document's operative styles part.
-
-| Built-in constant | Value | Existing primary name |
-| --- | --- | --- |
-| `wdStyleNormal` | -1 | Normal |
-| `wdStyleHeading1` through `wdStyleHeading9` | -2 through -10 | Heading 1 through Heading 9 |
-| `wdStyleCaption` | -35 | Caption |
-| `wdStyleTitle` | -63 | Title |
-| `wdStyleSubtitle` | -75 | Subtitle |
-
-```vb
-Sub ApplyBody(ByVal target As Paragraph)
-    target.Style = "Report Body"
-End Sub
-
-Sub Main()
-    Dim title As Range
-    Set title = ActiveDocument.Paragraphs(1).Range
-    title.Font.Bold = True
-    title.Style = wdStyleHeading1
-    ApplyBody target:=ActiveDocument.Paragraphs(2)
-End Sub
-```
-
-The named styles must already exist. Names preserve spelling and spaces and
-compare case-insensitively. The source requires a nonempty XML-safe String
-without control characters, or an exact supported numeric constant. A numeric
-String such as `"-2"` is a name, not a numeric selector. Scalar Variants are
-checked when evaluated; Boolean, object and array assignments are rejected
-statically even inside unused helpers. Typed Paragraph/Range aliases, required
-`ByVal` helpers, named helper arguments and nested `With` blocks retain their
-selected paragraph. Rebinding a helper parameter does not rebind its caller.
-
-Each assignment emits one native `docx.paragraphStyle` step with the ordinary
-zero-based `paragraph`/story selector and exactly one `name` or `builtin`.
-Explicit independent header/footer paragraphs use their existing section and
-story guards. Body traversal retains table and nested-table context. A pending
-custom line-spacing pair must be completed before a style assignment.
-
-The operation changes the selected paragraph's native `pStyle` reference and
-recomputes inherited formatting in that paragraph only. It first flushes earlier
-text and direct-format writes into detached source properties, preserving
-explicit false/default values, character-style overrides, sparse paragraph
-formatting, foreign attributes and children, and namespace aliases. An
-assignment to the same effective style still writes an explicit reference.
-It preserves style definitions, inline identities and unselected paragraphs;
-the normal serializer
-may normalize XML declarations and insignificant whitespace. Opaque DOCM VBA
-projects and signature payloads remain inert and preserved.
-
-Resolution requires unique native style IDs and case-insensitive primary names,
-an unambiguous internal document/styles relationship, and resolved acyclic
-`basedOn` chains of matching type. Built-in selectors match the canonical
-primary names above and refuse custom styles; they do not guess localized
-translations. Missing styles are not created. Native source validation refuses
-ambiguous property packets and property lookalikes, nested native style
-selectors, style-bearing markup compatibility alternatives, shared mutable
-target models, cyclic/duplicate block ownership, generated TOC/result targets,
-unbalanced field boundaries and unsaved replacements/deletions
-of the document's style-model definitions. A detached consistency check refuses
-effective-property alias shapes that the ordinary reopen cascade cannot retain;
-the tested native `pStyle` alias and its foreign metadata are preserved.
-Conservative checks can reject an ambiguous unrelated style or story.
-The native table cascade retains its existing supported conditional
-regions; this does not add full conditional-table-style parity.
-
-This increment refuses actively numbered paragraphs and style changes that
-alter effective numbering. Recomputing list labels, restarts and numbering
-indentation under a new style is separate work. Style reads, Style objects,
-the Styles collection, positive ordinal style indices, collection-wide or
-whole-story setters, arbitrary text subranges and `ParagraphFormat.Style`
-remain unsupported. The documented preservation behavior is a bounded Quds
-contract, not an installed Microsoft Word differential result.
-
-The complete [word_styles.bas](../packages/quds_office_engine/example/macros/word_styles.bas)
-example requires three existing body paragraphs and Heading 1, Report Body and
-Caption styles. Its five native operations are exercised through source
-compilation, validation, execution, recording/replay, CLI, MCP and portable VM
-and JavaScript checks. See the
-[completion record](validation/word-vba-styles-complete-20261121/README.md).
-
-Primary references: Microsoft's
-[Paragraph.Style](https://learn.microsoft.com/en-us/office/vba/api/word.paragraph.style),
-[Range.Style](https://learn.microsoft.com/en-us/office/vba/api/word.range.style),
-[Style object](https://learn.microsoft.com/en-us/office/vba/api/word.style),
-[Style.BuiltIn](https://learn.microsoft.com/en-us/office/vba/api/word.style.builtin),
-and [WdBuiltinStyle](https://learn.microsoft.com/en-us/office/vba/api/word.wdbuiltinstyle).
-Those APIs are broader than this implemented subset.
 
 ### Opening, closing and toggling paragraph spacing
 

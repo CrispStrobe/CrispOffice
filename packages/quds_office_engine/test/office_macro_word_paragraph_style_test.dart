@@ -6,7 +6,7 @@ import 'package:quds_office_engine/src/automation/operations/word_steps.dart'
 import 'package:test/test.dart';
 
 import '../tool/macros/web_vba_word_headers_footers_smoke.dart' as stories;
-import '../tool/macros/web_vba_word_styles_smoke.dart' as portable;
+import '../tool/macros/web_vba_word_styles_alternate_smoke.dart' as portable;
 
 const _w = OfficeNamespaces.w;
 const _x = 'urn:style-test';
@@ -81,8 +81,8 @@ void main() {
     final run = inlines.first;
     paragraph.properties.styleId = 'ReportBody';
     native.applyStep(document, _step(builtin: -2));
-    expect(identical(paragraph.inlines, inlines), isTrue);
-    expect(identical(paragraph.inlines.first, run), isTrue);
+    expect(paragraph.inlines, same(inlines));
+    expect(paragraph.inlines.first, same(run));
     final properties = XmlDocument.parse(
       paragraph.properties.sourcePropertiesXml!,
     ).root!;
@@ -101,6 +101,7 @@ void main() {
       isNotNull,
     );
   });
+
   test('style-linked numbering refuses even without an effective numId', () {
     final package = OpcPackage.openBytes(_fixture());
     (package.getPart('/word/numbering.xml') ??
@@ -124,15 +125,23 @@ void main() {
     expect(document.paragraphs.first.properties.numId, isNull);
     _refuses(document, _step(builtin: -2));
   });
-  test(
-    'unresolved effective property aliases refuse before live/reopen divergence',
-    () {
-      final definitions =
-          '$_styles<w:style xmlns:s="$_w" w:styleId="Aliased" w:type="paragraph">'
-          '<w:name w:val="Aliased"/><s:rPr><s:b/><s:sz s:val="50"/></s:rPr></w:style>';
-      _refuses(_read(_fixture(styles: definitions)), _step(name: 'Aliased'));
-    },
-  );
+
+  test('effective property aliases remain consistent across native reopens', () {
+    final definitions =
+        '$_styles<w:style xmlns:s="$_w" w:styleId="Aliased" w:type="paragraph">'
+        '<w:name w:val="Aliased"/><s:rPr><s:b/><s:sz s:val="50"/></s:rPr></w:style>';
+    var document = _read(_fixture(styles: definitions));
+    native.applyStep(document, _step(name: 'Aliased'));
+    for (var cycle = 0; cycle < 3; cycle++) {
+      final target = document.paragraphs.first;
+      expect(target.properties.styleId, 'Aliased');
+      final properties = (target.inlines.single as WmlRun).properties;
+      expect(properties.bold, isTrue);
+      expect(properties.fontSizeHalfPoints, 50);
+      document = _read(WordSerializer().writeBytes(document));
+    }
+  });
+
   test('synchronized native style edits remain usable in the same plan', () {
     final document = _read(_fixture());
     native.applyStep(document, {
@@ -169,17 +178,45 @@ void main() {
       50,
     );
   });
-  for (final (label, properties) in [
-    ('foreign bold', '<w:rPr><x:b/></w:rPr>'),
-    ('foreign toggle value', '<w:rPr><w:b x:val="0"/></w:rPr>'),
-    ('foreign outline', '<w:pPr><x:outlineLvl w:val="0"/></w:pPr>'),
-    ('nested bold', '<w:rPr><x:metadata><w:b/></x:metadata></w:rPr>'),
+  for (final (label, properties, bold) in [
+    ('foreign bold', '<w:rPr><x:b/></w:rPr>', false),
+    ('foreign toggle value', '<w:rPr><w:b x:val="0"/></w:rPr>', true),
+    ('foreign outline', '<w:pPr><x:outlineLvl w:val="0"/></w:pPr>', false),
+    ('nested bold', '<w:rPr><x:metadata><w:b/></x:metadata></w:rPr>', false),
   ]) {
-    test('$label cannot create live/reopen style differences', () {
+    test('$label stays opaque with consistent live/reopened formatting', () {
       final definitions =
-          '$_styles<w:style w:styleId="Unsafe" w:type="paragraph">'
-          '<w:name w:val="Unsafe"/>$properties</w:style>';
-      _refuses(_read(_fixture(styles: definitions)), _step(name: 'Unsafe'));
+          '$_styles<w:style w:styleId="Metadata" w:type="paragraph">'
+          '<w:name w:val="Metadata"/>$properties</w:style>';
+      var document = _read(_fixture(styles: definitions));
+      final source = XmlDocument.parse(
+        document.package!.getPart('/word/styles.xml')!.readText(),
+      ).toXmlString(declaration: false);
+      final other = document.paragraphs.last;
+      final otherProperties = other.properties;
+      final otherRun = (other.inlines.single as WmlRun).properties;
+      native.applyStep(document, _step(name: 'Metadata'));
+      expect(other.properties, same(otherProperties));
+      expect((other.inlines.single as WmlRun).properties, same(otherRun));
+      for (var cycle = 0; cycle < 3; cycle++) {
+        final paragraph = document.paragraphs.first;
+        expect(paragraph.properties.styleId, 'Metadata');
+        expect(paragraph.properties.headingLevel, isNull);
+        expect((paragraph.inlines.single as WmlRun).properties.bold, bold);
+        expect(document.paragraphs.last.properties.headingLevel, isNull);
+        expect(
+          (document.paragraphs.last.inlines.single as WmlRun).properties.bold,
+          isFalse,
+        );
+        final bytes = WordSerializer().writeBytes(document);
+        expect(
+          XmlDocument.parse(
+            OpcPackage.openBytes(bytes).getPart('/word/styles.xml')!.readText(),
+          ).toXmlString(declaration: false),
+          source,
+        );
+        document = _read(bytes);
+      }
     });
   }
   for (final kind in ['replace', 'remove']) {
@@ -625,7 +662,6 @@ void main() {
       'duplicate pStyle',
       '<w:pStyle w:val="Normal"/><w:pStyle w:val="Normal"/>',
     ),
-    ('nested pStyle', '<x:extension><w:pStyle w:val="Normal"/></x:extension>'),
     (
       'alternative pStyle',
       '<mc:AlternateContent><mc:Choice Requires="x"><w:pStyle w:val="Normal"/></mc:Choice><mc:Fallback><w:pStyle w:val="Normal"/></mc:Fallback></mc:AlternateContent>',
@@ -635,6 +671,38 @@ void main() {
       _refuses(_read(_fixture(properties: properties)), _step(builtin: -2));
     });
   }
+
+  test('nested pStyle remains opaque while the direct native style changes', () {
+    var document = _read(
+      _fixture(
+        properties:
+            '<x:extension x:token="keep"><w:pStyle w:val="Normal"/></x:extension>',
+      ),
+    );
+    native.applyStep(document, _step(builtin: -2));
+    for (var cycle = 0; cycle < 3; cycle++) {
+      expect(document.paragraphs.first.properties.styleId, 'ReportHeading');
+      final bytes = WordSerializer().writeBytes(document);
+      final properties = portable
+          .wordStylesParagraphXml(bytes, 0)
+          .firstChild('pPr', namespaceUri: _w)!;
+      expect(
+        properties
+            .firstChild('pStyle', namespaceUri: _w)!
+            .getAttribute('val', namespaceUri: _w),
+        'ReportHeading',
+      );
+      final metadata = properties.firstChild('extension', namespaceUri: _x)!;
+      expect(metadata.getAttribute('token', namespaceUri: _x), 'keep');
+      expect(
+        metadata
+            .firstChild('pStyle', namespaceUri: _w)!
+            .getAttribute('val', namespaceUri: _w),
+        'Normal',
+      );
+      document = _read(bytes);
+    }
+  });
 
   test('foreign pStyle cannot become effective through same local name', () {
     final document = _read(
@@ -676,50 +744,147 @@ void main() {
     _refuses(_read(package.save()), _step(builtin: -1));
   });
 
-  for (final kind in [
-    'paragraph',
-    'properties',
-    'inlines',
-    'run',
-    'run properties',
-  ]) {
+  for (final kind in ['paragraph', 'inlines', 'run']) {
     test('shared mutable $kind cannot alias selected target', () {
       final document = _read(_fixture());
       final paragraphs = document.paragraphs.toList();
       switch (kind) {
         case 'paragraph':
           document.sections.first.blocks.add(paragraphs.first);
-        case 'properties':
-          paragraphs.last.properties = paragraphs.first.properties;
         case 'inlines':
           paragraphs.last.inlines = paragraphs.first.inlines;
         case 'run':
           paragraphs.last.inlines[0] = paragraphs.first.inlines[0];
-        case 'run properties':
-          (paragraphs.last.inlines[0] as WmlRun).properties =
-              (paragraphs.first.inlines[0] as WmlRun).properties;
       }
-      _refuses(
-        document,
-        _step(builtin: -2),
-        matcher: kind == 'paragraph' ? throwsStateError : null,
+      _refuses(document, _step(builtin: -2), matcher: throwsStateError);
+    });
+  }
+  for (final kind in ['properties', 'run properties']) {
+    test('shared $kind are detached without changing the other paragraph', () {
+      final document = _read(_fixture());
+      final target = document.paragraphs.first;
+      final other = document.paragraphs.last;
+      final targetRun = target.inlines.single as WmlRun;
+      final otherRun = other.inlines.single as WmlRun;
+      if (kind == 'properties') {
+        other.properties = target.properties;
+      } else {
+        otherRun.properties = targetRun.properties;
+      }
+      final otherProperties = other.properties;
+      final otherRunProperties = otherRun.properties;
+      final otherSource = otherProperties.sourcePropertiesXml;
+      final otherRunSource = otherRunProperties.sourcePropertiesXml;
+      final otherImported = Map<String, String>.of(
+        otherProperties.importedValues ?? {},
+      );
+      final otherRunImported = Map<String, String>.of(
+        otherRunProperties.importedValues ?? {},
+      );
+      native.applyStep(document, _step(builtin: -2));
+      expect(target.properties.styleId, 'ReportHeading');
+      expect(targetRun.properties.bold, isTrue);
+      expect(other.properties, same(otherProperties));
+      expect(otherRun.properties, same(otherRunProperties));
+      expect(target.properties, isNot(same(otherProperties)));
+      expect(targetRun.properties, isNot(same(otherRunProperties)));
+      expect(otherProperties.sourcePropertiesXml, otherSource);
+      expect(otherRunProperties.sourcePropertiesXml, otherRunSource);
+      expect(otherProperties.importedValues ?? {}, otherImported);
+      expect(otherRunProperties.importedValues ?? {}, otherRunImported);
+      expect(otherProperties.styleId, isNull);
+      expect(otherRunProperties.bold, isFalse);
+      final reopened = _read(WordSerializer().writeBytes(document));
+      expect(reopened.paragraphs.first.properties.styleId, 'ReportHeading');
+      expect(reopened.paragraphs.last.properties.styleId, isNull);
+      expect(
+        (reopened.paragraphs.last.inlines.single as WmlRun).properties.bold,
+        isFalse,
       );
     });
   }
-  test('active numbering refusal retains pending direct formatting', () {
-    final document = _read(
+  test('unchanged numbering retains labels and pending direct formatting', () {
+    final package = OpcPackage.openBytes(
       _fixture(
         properties:
             '<w:numPr><w:ilvl w:val="0"/><w:numId w:val="1"/></w:numPr>',
       ),
     );
+    final numbering =
+        package.getPart('/word/numbering.xml') ??
+        package.createPart(
+          '/word/numbering.xml',
+          OfficeContentTypes.wordNumbering,
+        );
+    numbering.writeText(
+      '<w:numbering xmlns:w="$_w"><w:abstractNum w:abstractNumId="0">'
+      '<w:lvl w:ilvl="0"><w:start w:val="3"/><w:numFmt w:val="decimal"/>'
+      '<w:lvlText w:val="%1."/></w:lvl></w:abstractNum>'
+      '<w:num w:numId="1"><w:abstractNumId w:val="0"/></w:num></w:numbering>',
+    );
+    final relationships = package.relationshipsFor('/word/document.xml');
+    if (relationships.byType(RelationshipTypes.numbering).isEmpty) {
+      relationships.add(
+        type: RelationshipTypes.numbering,
+        target: 'numbering.xml',
+      );
+    }
+    String xml(XmlElement node) =>
+        XmlDocument(root: node.copy()).toXmlString(declaration: false);
+    final sourceNumbering = XmlDocument.parse(numbering.readText()).root!;
+    final sourceDefinition = xml(
+      sourceNumbering.firstChild('abstractNum', namespaceUri: _w)!,
+    );
+    final sourceInstance = xml(
+      sourceNumbering.firstChild('num', namespaceUri: _w)!,
+    );
+    var document = _read(package.save());
+    expect(document.paragraphs.first.properties.listLabel, '3. ');
+    final other = document.paragraphs.last.properties;
     native.applyStep(document, {
       'op': 'paragraphFormat',
       'paragraph': 0,
       'after': 7,
     });
-    _refuses(document, _step(builtin: -2));
-    expect(document.paragraphs.first.properties.spacingAfter, 7);
+    native.applyStep(document, _step(builtin: -2));
+    expect(document.paragraphs.last.properties, same(other));
+    for (var cycle = 0; cycle < 3; cycle++) {
+      final properties = document.paragraphs.first.properties;
+      expect(properties.styleId, 'ReportHeading');
+      expect(properties.spacingAfter, 7);
+      expect(properties.numId, 1);
+      expect(properties.ilvl, 0);
+      expect(properties.listLabel, '3. ');
+      expect(document.paragraphs.last.properties.listLabel, isNull);
+      final bytes = WordSerializer().writeBytes(document);
+      final savedNumbering = XmlDocument.parse(
+        OpcPackage.openBytes(bytes).getPart('/word/numbering.xml')!.readText(),
+      ).root!;
+      // The ordinary exporter may add its unused fallback list definitions.
+      // The selected native instance and its operative definition stay intact.
+      expect(
+        xml(
+          savedNumbering
+              .childrenNamed('abstractNum', namespaceUri: _w)
+              .singleWhere(
+                (node) =>
+                    node.getAttribute('abstractNumId', namespaceUri: _w) == '0',
+              ),
+        ),
+        sourceDefinition,
+      );
+      expect(
+        xml(
+          savedNumbering
+              .childrenNamed('num', namespaceUri: _w)
+              .singleWhere(
+                (node) => node.getAttribute('numId', namespaceUri: _w) == '1',
+              ),
+        ),
+        sourceInstance,
+      );
+      document = _read(bytes);
+    }
   });
   test('style introducing numbering is refused before publication', () {
     final styles = _styles.replaceFirst(

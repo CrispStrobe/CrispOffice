@@ -23,8 +23,7 @@ preserved as opaque package parts and are never executed on document open.
 The `vba-word` adapter shares that language implementation and adds explicit
 `ThisDocument`/paragraph/range bindings, paragraph-prefix insertion, supported
 font properties, all 18 underline styles, strikethrough, paragraph
-alignment/spacing, signed indentation, pagination and existing paragraph-style
-assignment by primary name or 13 built-in constants. Explicit `Section` and
+alignment/spacing, signed indentation and pagination. Explicit `Section` and
 `PageSetup` selectors additionally set page width/height, four margins and
 header/footer distances on one existing section, plus portrait/landscape
 orientation, toggling and four section-start modes. It emits native Word
@@ -43,15 +42,6 @@ macro UI, or general VBA runtime. See the exact [Excel](VBA_MACROS.md) and
 and [the native macro contract](MACROS.md).
 
 ## Ordered milestones and acceptance
-
-The paragraph-style continuation completes the previously saved compiler-only
-draft with native execution, sparse direct-format preservation, exact
-paragraph/story ownership, and atomic failure. It supports `Paragraph.Style`
-and paragraph-selected `Range.Style`, including typed aliases and `ByVal`
-helpers. Style reads/objects/collections, ordinal indices, localized built-in
-name inference and numbered-paragraph restyling remain outside this increment.
-See the [style contract](VBA_WORD_MACROS.md#assigning-existing-paragraph-styles)
-and [local completion record](validation/word-vba-styles-complete-20261121/README.md).
 
 | Stage | Concrete deliverable | Acceptance required before claiming support |
 | --- | --- | --- |
@@ -234,15 +224,13 @@ Native execution resolves primary style names or 13 supported built-ins from
 the active document styles part and updates a sparse paragraph style reference.
 Direct formatting, character/table inheritance, previous plan edits, independent
 header/footer ownership and transaction rollback are preserved. Missing or
-ambiguous definitions, actively numbered targets and effective numbering
-changes are explicitly refused. Generated TOC/result paragraphs and unsupported
-property namespaces are also guarded before publication.
+ambiguous definitions and effective numbering changes are explicitly refused.
 
 This is a Stage 4 source-to-plan increment. It does not add live style reads,
 Style objects, collection enumeration, style creation or an embedded VBA host.
-See the [contract](VBA_WORD_MACROS.md#assigning-existing-paragraph-styles),
+See the [contract](VBA_WORD_MACROS.md#existing-paragraph-styles),
 [BAS example](../packages/quds_office_engine/example/macros/word_styles.bas)
-and [local qualification](validation/word-vba-styles-complete-20261121/README.md).
+and [local qualification](validation/word-vba-styles-20261121/README.md).
 
 ### Uniform section text columns
 

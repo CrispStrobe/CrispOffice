@@ -8,6 +8,7 @@ import 'word_page_setup_steps.dart';
 import 'word_section_start_steps.dart';
 import 'word_spacing_steps.dart';
 import 'word_structure_steps.dart';
+import 'word_style_steps.dart';
 import 'word_text_columns_steps.dart';
 
 const _storyFields = <String>['story', 'section', 'note', 'comment'];
@@ -160,17 +161,7 @@ void applyStep(
       }
       WordStyles.apply(paragraph(), style, document: doc);
     case 'paragraphStyle':
-      if (s.has('name') == s.has('builtin')) {
-        throw ArgumentError('Provide exactly one style name or builtin.');
-      }
-      WordDeserializer().editParagraphStyle(
-        doc,
-        paragraph(),
-        name: s.has('name') ? s.string('name') : null,
-        builtin: s.has('builtin')
-            ? s.integer('builtin', min: -75, max: -1)
-            : null,
-      );
+      setWordParagraphStyle(doc, paragraph(), s);
     case 'characterStyle':
       final id = s.string('style');
       _sourceStyle(doc, id, 'character');

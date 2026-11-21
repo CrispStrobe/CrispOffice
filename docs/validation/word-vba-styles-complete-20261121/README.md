@@ -1,5 +1,12 @@
 # Word VBA paragraph-style assignment — 21 November 2026
 
+> Historical parallel qualification: this record and its source bindings describe
+> the concurrent completion branch. The final combined contract, retained
+> fixtures and subsequent ownership/namespace/numbering safeguards are documented
+> in [the reconciled qualification](../word-vba-styles-20261121/README.md).
+> The evidence below is preserved without treating its older refusal boundaries
+> as the current public API contract.
+
 ## Outcome
 
 The previously compiler-only Word style increment now has a guarded native

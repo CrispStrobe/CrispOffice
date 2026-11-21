@@ -10,9 +10,19 @@ import 'package:quds_mail_ui/quds_mail_ui.dart';
 import 'package:quds_office_editor/quds_office_editor.dart';
 import 'package:quds_office_studio/main.dart';
 import 'package:quds_office_studio/studio_chrome.dart';
-import 'package:quds_office_studio/studio_mail.dart';
+import 'package:quds_office_studio/studio_mail_credentials.dart';
+import 'package:quds_office_studio/studio_mail_native.dart';
 import 'package:quds_office_studio/studio_saved_mail.dart';
 import 'package:quds_office_studio/studio_strings.dart';
+
+final class _EmptyAccounts extends Fake
+    implements StudioMailCredentialStore, StudioMailAccountCatalogStore {
+  @override
+  Future<StudioMailAccountCatalogResult> loadAccounts() async =>
+      StudioMailAccountCatalogResult.success(
+        StudioMailAccountCatalog(accounts: []),
+      );
+}
 
 class _DeferredPicker extends FilePicker {
   late final result = Completer<FilePickerResult?>();
@@ -117,7 +127,10 @@ Future<void> _openDialog(
           body: TextButton(
             onPressed: () => showDialog<void>(
               context: context,
-              builder: (_) => StudioMailDialog(strings: strings),
+              builder: (_) => StudioMailDialog(
+                strings: strings,
+                credentialStore: _EmptyAccounts(),
+              ),
             ),
             child: const Text('Launch Mail'),
           ),
@@ -162,6 +175,37 @@ void main() {
   });
 
   tearDown(() => FilePicker.platform = FilePickerIO());
+
+  testWidgets('embedded native saved Mail closes through its host callback', (
+    tester,
+  ) async {
+    const strings = StudioStrings(StudioLanguage.en);
+    var closes = 0;
+    await tester.binding.setSurfaceSize(const Size(1440, 900));
+    addTearDown(() => tester.binding.setSurfaceSize(null));
+    await tester.pumpWidget(
+      MaterialApp(
+        home: StudioMailDialog(
+          strings: strings,
+          credentialStore: _EmptyAccounts(),
+          onClose: () => closes++,
+        ),
+      ),
+    );
+    await _pump(tester);
+    await tester.tap(find.byTooltip(strings.savedMessages));
+    await _pump(tester);
+    final reader = _reader(tester);
+    await _closeSavedMail(tester, strings: strings);
+    await _pump(tester);
+    expect(closes, 1);
+    expect(find.byType(StudioMailDialog), findsOneWidget);
+    expect(reader.isDisposed, isFalse);
+    expect(tester.takeException(), isNull);
+    await tester.pumpWidget(const SizedBox.shrink());
+    await _pump(tester);
+    expect(reader.isDisposed, isTrue);
+  });
 
   testWidgets('saved and account Mail views each expose one localized Close', (
     tester,

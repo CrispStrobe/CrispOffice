@@ -4,22 +4,22 @@ All notable changes to `quds_office_engine` are documented here.
 
 ## Unreleased
 
-- Complete bounded Word VBA paragraph-style assignment: `Paragraph.Style` and
-  paragraph-selected `Range.Style`, primary style names and 13 built-in
-  constants, typed aliases and `ByVal` helpers. Add guarded native
-  `docx.paragraphStyle` with detached target-only cascade refresh, sparse direct
-  formatting and foreign metadata preservation, repeated DOCM save/reopen and
-  transactional rollback. Include source/native, CLI/MCP and VM/JavaScript
-  regressions plus a runnable BAS example. Active numbering, style reads and
-  full Word style-object parity remain outside this increment. See the
-  [style contract](../../docs/VBA_WORD_MACROS.md#assigning-existing-paragraph-styles).
+- Extend bounded Word VBA with `Paragraph.Style` and selected `Range.Style`
+  assignments by primary name or 13 built-in constants. Add guarded native
+  `docx.paragraphStyle` with targeted inheritance refresh, preserved direct
+  formatting and sparse source metadata, explicit same-value references and
+  atomic refusal of ambiguous styles or changed numbering. Include a runnable
+  BAS example and source, native, CLI/MCP, rollback and VM/JavaScript coverage.
+  See the [style contract](../../docs/VBA_WORD_MACROS.md#existing-paragraph-styles).
 
 - Add explicit `OdtDocumentWriter.writeEditableZoteroBytes` copy export with
   native citation ReferenceMarks, complete bibliography TextSections and
   Unicode-safe ReferenceMark preferences. Preserve supported body, table-cell
   and decimal-note ownership, rich caches and unknown metadata; refuse active
   fields that would be lost. Keep ordinary cached ODT export unchanged.
-  Preserve decimal imported endnote numbering through DOCX reopening. See the
+  Preserve decimal imported endnote numbering through DOCX reopening and
+  editable ODT saves; declare decimal native note configurations and refuse
+  mixed fixed/automatic note numbering that cannot retain cited labels. See the
   [native-output contract](../../docs/roadmaps/zotero/native-odt-output.md).
 
 - Extend bounded native ODT input with horizontal/vertical merged tables.
@@ -28,10 +28,6 @@ All notable changes to `quds_office_engine` are documented here.
   Keep existing styles and shared table/cell/paragraph budgets; refuse hidden
   covered content, ambiguous coverage, conflicting shading and repeated owners.
   Engine/editor regression sources and independent source review are preserved.
-  Subsequent reader, Zotero and editor runtime qualification passed with the
-  pinned SDK during Word style integration; see the
-  [work record](../../docs/validation/zotero-odt-merged-tables-20261121/README.md).
-
   The [editable-output continuation](../../docs/validation/zotero-editable-odt-20261121/README.md)
   executes the previously blocked local qualification and records its results.
 

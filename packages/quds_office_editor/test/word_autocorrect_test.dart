@@ -117,6 +117,27 @@ void main() {
       expect(word.document.paragraphs.first.text, 'Hallo „Welt“ – ');
     });
 
+    test('committed corrections are synchronized with the input bridge', () {
+      final word = WordEditorController();
+      addTearDown(word.dispose);
+      word.document.proofingLanguage = 'de-DE';
+      for (final char in 'Hallo "Welt" -- '.split('')) {
+        final next = '${word.input.value.text}$char';
+        word.input.updateEditingValue(
+          TextEditingValue(
+            text: next,
+            selection: TextSelection.collapsed(offset: next.length),
+          ),
+        );
+        expect(word.input.value.text, word.document.paragraphs.first.text);
+        expect(
+          word.input.value.selection.extentOffset,
+          word.caret.logicalIndex,
+        );
+      }
+      expect(word.document.paragraphs.first.text, 'Hallo „Welt“ – ');
+    });
+
     test('IME bridge keeps autocorrection on the following keystroke', () {
       final word = WordEditorController();
       addTearDown(word.dispose);

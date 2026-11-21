@@ -1,0 +1,170 @@
+{
+  "recorded_at": "2026-11-21T17:49:36.713025+00:00",
+  "base_head": "9dc74c7fb7acbdbd2a0e9873bdd13209d14f3584",
+  "original_export_checkpoint": "cb27581214e00b8cf58cafb65193ee85561c6eb4",
+  "runtime": {
+    "flutter": "3.47.8",
+    "dart": "3.13.7",
+    "dependencies": "offline --enforce-lockfile"
+  },
+  "consumer": "LibreOfficeDev 26.8.0.0.alpha0 2c87e51eeaa2b413ff4ae097b2705eea1995d8e5",
+  "source_sha256": {
+    "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart": "6547606b91f97dc14d59da3f812556156850ba08c77c8624e1af11bb693d5243",
+    "packages/quds_office_engine/test/odt_zotero_export_lifecycle_test.dart": "d62721a7b1e683f17d71c90a79e03dcc7067e2d22d5004d6f934ec258840f06d",
+    "packages/quds_office_engine/tool/zotero/odt_export_acceptance.dart": "63a512a4eac208a32acdd220919995e879b01afe22bca31b30046ac3de369146"
+  },
+  "commands": {
+    "environment": "source /workspace/scratch/41f814a8b629/runtime/flutter-env.sh",
+    "engine_before": "dart --packages=/workspace/scratch/41f814a8b629/quds_reconcile/.dart_tool/package_config.json /workspace/scratch/41f814a8b629/runtime/test-runner/flutter-test-runner.dill --compiler source --concurrency=1 --timeout=4x test/odt_zotero_writer_test.dart test/odt_zotero_export_lifecycle_test.dart test/odt_document_reader_test.dart test/odt_document_writer_test.dart test/odt_merged_table_zotero_test.dart --reporter json",
+    "engine_after": "dart --packages=/workspace/scratch/41f814a8b629/quds_reconcile/.dart_tool/package_config.json /workspace/scratch/41f814a8b629/runtime/test-runner/flutter-test-runner.dill --compiler source --concurrency=1 --timeout=4x test/odt_zotero_writer_test.dart test/odt_zotero_export_lifecycle_test.dart test/odt_document_writer_test.dart --reporter json",
+    "regression_before": "dart --packages=/workspace/scratch/41f814a8b629/quds_reconcile/.dart_tool/package_config.json /workspace/scratch/41f814a8b629/runtime/test-runner/flutter-test-runner.dill --compiler source --concurrency=1 --timeout=4x test/odt_zotero_export_lifecycle_test.dart --name \"same numeric footnote and endnote IDs\" --reporter json",
+    "studio_export": "dart \"$FLUTTER_ROOT/bin/cache/flutter_tools.snapshot\" test --no-pub test/studio_zotero_odt_export_test.dart --reporter json",
+    "editor_merged_table": "dart \"$FLUTTER_ROOT/bin/cache/flutter_tools.snapshot\" test --no-pub test/word_odt_merged_table_load_test.dart --reporter json",
+    "analysis_after": "dart analyze --fatal-infos lib/src/word/serial/odt_document_writer.dart test/odt_zotero_export_lifecycle_test.dart tool/zotero/odt_export_acceptance.dart",
+    "converter_create": "dart --packages=/workspace/scratch/41f814a8b629/quds_reconcile/.dart_tool/package_config.json tool/zotero/odt_export_acceptance.dart create /workspace/scratch/41f814a8b629/odt_reconcile_validation/after",
+    "converter_save": "soffice --headless --convert-to odt --outdir /workspace/scratch/41f814a8b629/odt_reconcile_validation/after_converted /workspace/scratch/41f814a8b629/odt_reconcile_validation/after/*.odt",
+    "converter_verify": "dart --packages=/workspace/scratch/41f814a8b629/quds_reconcile/.dart_tool/package_config.json tool/zotero/odt_export_acceptance.dart verify /workspace/scratch/41f814a8b629/odt_reconcile_validation/after_converted /workspace/scratch/41f814a8b629/odt_reconcile_validation/after"
+  },
+  "working_directories": {
+    "engine": "/workspace/scratch/41f814a8b629/quds_reconcile/packages/quds_office_engine",
+    "studio": "/workspace/scratch/41f814a8b629/quds_reconcile/packages/quds_office_editor/example",
+    "editor": "/workspace/scratch/41f814a8b629/quds_reconcile/packages/quds_office_editor"
+  },
+  "gates": {
+    "engine.jsonl": {
+      "success": true,
+      "cases": [
+        {
+          "suite": "test/odt_zotero_writer_test.dart",
+          "result": "success",
+          "skipped": false,
+          "count": 11
+        },
+        {
+          "suite": "test/odt_zotero_export_lifecycle_test.dart",
+          "result": "success",
+          "skipped": false,
+          "count": 18
+        },
+        {
+          "suite": "test/odt_document_reader_test.dart",
+          "result": "success",
+          "skipped": false,
+          "count": 45
+        },
+        {
+          "suite": "test/odt_document_writer_test.dart",
+          "result": "success",
+          "skipped": false,
+          "count": 18
+        },
+        {
+          "suite": "test/odt_merged_table_zotero_test.dart",
+          "result": "success",
+          "skipped": false,
+          "count": 40
+        }
+      ],
+      "errors": []
+    },
+    "decimal_endnote_before.jsonl": {
+      "success": false,
+      "cases": [
+        {
+          "suite": "test/odt_zotero_export_lifecycle_test.dart",
+          "result": "failure",
+          "skipped": false,
+          "count": 1
+        }
+      ],
+      "errors": [
+        "Expected: {'footnote': '1', 'endnote': '1'}\n  Actual: {}\n   Which: has different length and is missing map key 'footnote'\nAutomatic note labels need an explicit decimal format; Writer otherwise changes the endnote label to Roman.\n"
+      ]
+    },
+    "after_tests.jsonl": {
+      "success": true,
+      "cases": [
+        {
+          "suite": "test/odt_zotero_writer_test.dart",
+          "result": "success",
+          "skipped": false,
+          "count": 11
+        },
+        {
+          "suite": "test/odt_zotero_export_lifecycle_test.dart",
+          "result": "success",
+          "skipped": false,
+          "count": 19
+        },
+        {
+          "suite": "test/odt_document_writer_test.dart",
+          "result": "success",
+          "skipped": false,
+          "count": 18
+        }
+      ],
+      "errors": []
+    },
+    "flutter_export_retry.jsonl": {
+      "success": true,
+      "cases": [
+        {
+          "suite": "/workspace/scratch/41f814a8b629/quds_reconcile/packages/quds_office_editor/example/test/studio_zotero_odt_export_test.dart",
+          "result": "success",
+          "skipped": false,
+          "count": 5
+        }
+      ],
+      "errors": []
+    },
+    "flutter_merged_table.jsonl": {
+      "success": true,
+      "cases": [
+        {
+          "suite": "/workspace/scratch/41f814a8b629/quds_reconcile/packages/quds_office_editor/test/word_odt_merged_table_load_test.dart",
+          "result": "success",
+          "skipped": false,
+          "count": 3
+        }
+      ],
+      "errors": []
+    }
+  },
+  "analysis": {
+    "engine_analyze.log": "Analyzing odt_writer_zotero.dart, odt_document_writer.dart, odt_document_reader.dart, word_zotero_data.dart, odt_zotero_writer_test.dart, odt_zotero_export_lifecycle_test.dart, odt_document_reader_test.dart, odt_merged_table_zotero_test.dart, odt_export_acceptance.dart...\nNo issues found!\n",
+    "flutter_analyze.log": "Analyzing studio_files.dart, suite_workspace.dart, studio_zotero_odt_export_test.dart...\nNo issues found!\n",
+    "after_analyze.log": "Analyzing odt_document_writer.dart, odt_zotero_export_lifecycle_test.dart, odt_export_acceptance.dart...\nNo issues found!\n"
+  },
+  "converter": {
+    "before_labels": [
+      "1",
+      "i"
+    ],
+    "required_labels": [
+      "1",
+      "1"
+    ],
+    "after_labels": [
+      "1",
+      "1"
+    ],
+    "mixed_before_required": [
+      "i",
+      "2"
+    ],
+    "mixed_before_saved": [
+      "i",
+      "1"
+    ],
+    "mixed_after": "refused unchanged by lifecycle test",
+    "final_log": "{\"created\":[\"body-bibliography\",\"table-notes\"]}\nconvert /workspace/scratch/41f814a8b629/odt_reconcile_validation/after/body-bibliography.odt as a Writer document -> /workspace/scratch/41f814a8b629/odt_reconcile_validation/after_converted/body-bibliography.odt using filter : writer8\nconvert /workspace/scratch/41f814a8b629/odt_reconcile_validation/after/table-notes.odt as a Writer document -> /workspace/scratch/41f814a8b629/odt_reconcile_validation/after_converted/table-notes.odt using filter : writer8\n{\"file\":\"body-bibliography\",\"matched\":true}\n{\"file\":\"table-notes\",\"matched\":true}\n"
+  },
+  "limitations": [
+    "Consumer is a development LibreOffice build, not stable-release acceptance.",
+    "No installed Zotero-plugin session was exercised.",
+    "Initial concurrent Studio compiler terminated before assertions; direct-tools retry passed.",
+    "The 48-case after gate overlaps the 132-case before gate; counts are not additive.",
+    "Flutter assertions ran before the final engine-only note-configuration correction."
+  ],
+  "execution_archive_sha256": "cd4512e1bb75828dbc455cb762c76ec2959f62e6c4d2ccf77e462862b90aaec2"
+}

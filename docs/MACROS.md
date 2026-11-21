@@ -212,6 +212,16 @@ including automatic advance timing, retain their current values. Source-level
 `SlideShowTransition.Duration` is expressed in seconds and compiles to exact
 integer milliseconds. Slide visibility uses the existing `pptx.slideHidden`.
 
+Native `docx.paragraphStyle` requires an explicit zero-based `paragraph`
+selector, optional ordinary story fields, and exactly one `name: String` or
+`builtin: int`. It selects an existing unique native paragraph style and
+preserves direct formatting while refreshing only that paragraph's inherited
+properties. Names use the document's primary style names, case-insensitively;
+the 13 supported numeric built-ins require their noncustom definitions.
+Missing/ambiguous styles, unresolved inheritance and effective numbering changes
+are refused atomically. See the [style contract](VBA_WORD_MACROS.md#existing-paragraph-styles)
+and `example/macros/word_styles.bas` for the exact bounded behavior.
+
 Native `docx.runFormat` additionally accepts Boolean `allCaps`, `smallCaps`,
 `superscript`, and `subscript` fields. A single native call must not provide both
 script-mode fields. Enabling a mode selects it; disabling it preserves an
@@ -252,17 +262,6 @@ The separate native `headerFooterText` creation/replacement
 operation retains its existing contract. The source adapter uses the generic
 paragraph operations; it does not create stories. See the
 [Word header/footer contract](VBA_WORD_MACROS.md#existing-header-and-footer-paragraphs).
-
-Native `docx.paragraphStyle` assigns one existing paragraph style using the
-ordinary zero-based `paragraph`/story selector and exactly one `name: String`
-or `builtin: int`. Names match unique native primary names case-insensitively;
-the 13 supported negative built-in constants require a non-custom style with
-the documented canonical name. The edit preserves direct formatting and
-foreign property metadata while recomputing only the selected paragraph's
-inherited properties. It refuses missing/ambiguous styles, unsafe ownership,
-unsupported numbering changes and actively numbered targets. This differs from
-the older authoring-oriented `docx.applyStyle` operation, which applies catalog
-formatting. See the [paragraph-style contract](VBA_WORD_MACROS.md#assigning-existing-paragraph-styles).
 
 Native `docx.tabStop` upserts one custom stop on an explicit `paragraph`, with
 required `position` in points and optional `alignment` (`left`, `center`,

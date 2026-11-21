@@ -550,33 +550,25 @@ void main() {
     );
   }
 
-  test(
-    'matching covered fill and XML whitespace do not add an owner',
-    () async {
-      final filled = _cell(
-        '<text:p>${_mark('filled')}</text:p>',
-        attributes: 'table:number-columns-spanned="2" table:style-name="Fill"',
-      );
-      final document = await OdtDocumentReader.readBytes(
-        _package(
-          _tableXml(
-            _row(
-              '$filled<table:covered-table-cell table:style-name="SameFill">'
-              ' \n\t\r </table:covered-table-cell>',
-            ),
+  test('matching covered fill and XML whitespace do not add an owner', () async {
+    final document = await OdtDocumentReader.readBytes(
+      _package(
+        _tableXml(
+          _row(
+            '${_cell('<text:p>${_mark('filled')}</text:p>', attributes: 'table:number-columns-spanned="2" table:style-name="Fill"')}<table:covered-table-cell table:style-name="SameFill"> \n\t\r </table:covered-table-cell>',
           ),
         ),
-      );
-      for (final current in [document, _reopen(document)]) {
-        final table = _bodyTable(current);
-        expect(table.rows.single.cells, hasLength(1));
-        expect(table.rows.single.cells.single.gridSpan, 2);
-        expect(table.rows.single.cells.single.fillColor, 'FFEEDD');
-        expect(WordZotero.fields(current), hasLength(1));
-        expect(_field(current, 'filled').canEdit, isTrue);
-      }
-    },
-  );
+      ),
+    );
+    for (final current in [document, _reopen(document)]) {
+      final table = _bodyTable(current);
+      expect(table.rows.single.cells, hasLength(1));
+      expect(table.rows.single.cells.single.gridSpan, 2);
+      expect(table.rows.single.cells.single.fillColor, 'FFEEDD');
+      expect(WordZotero.fields(current), hasLength(1));
+      expect(_field(current, 'filled').canEdit, isTrue);
+    }
+  });
 
   final ordinary = _cell('<text:p>Cell</text:p>');
   final wide = _cell(
@@ -586,14 +578,6 @@ void main() {
   final tall = _cell(
     '<text:p>Tall</text:p>',
     attributes: 'table:number-rows-spanned="2"',
-  );
-  final filledWide = _cell(
-    '<text:p>Cell</text:p>',
-    attributes: 'table:number-columns-spanned="2" table:style-name="Fill"',
-  );
-  final threeWide = _cell(
-    '<text:p>Cell</text:p>',
-    attributes: 'table:number-columns-spanned="3"',
   );
   final invalidCoverage = <String, String>{
     'missing covered position': _tableXml(_row(wide)),
@@ -617,7 +601,7 @@ void main() {
     ),
     'covered fill conflicts with origin': _tableXml(
       _row(
-        '$filledWide<table:covered-table-cell table:style-name="OtherFill"/>',
+        '${_cell('<text:p>Cell</text:p>', attributes: 'table:number-columns-spanned="2" table:style-name="Fill"')}<table:covered-table-cell table:style-name="OtherFill"/>',
       ),
     ),
     'repeated origin': _tableXml(
@@ -630,7 +614,7 @@ void main() {
     ),
     'repeated covered positions': _tableXml(
       _row(
-        '$threeWide<table:covered-table-cell table:number-columns-repeated="2"/>',
+        '${_cell('<text:p>Cell</text:p>', attributes: 'table:number-columns-spanned="3"')}<table:covered-table-cell table:number-columns-repeated="2"/>',
       ),
     ),
     'repeated row': _tableXml(
@@ -661,8 +645,7 @@ void main() {
       final bytes = _package(
         _tableXml(
           _row(
-            '$wide<table:covered-table-cell>'
-            '${entry.value}</table:covered-table-cell>',
+            '$wide<table:covered-table-cell>${entry.value}</table:covered-table-cell>',
           ),
         ),
       );
@@ -672,24 +655,16 @@ void main() {
     });
   }
 
-  test(
-    'citation cannot end in a covered cell with a different owner',
-    () async {
-      final origin = _cell(
-        '<text:p>${_start('crossing')}Citation</text:p>',
-        attributes: 'table:number-columns-spanned="2"',
-      );
-      final bytes = _package(
-        _tableXml(
-          _row(
-            '$origin<table:covered-table-cell><text:p>${_end('crossing')}'
-            '</text:p></table:covered-table-cell>',
-          ),
+  test('citation cannot end in a covered cell with a different owner', () async {
+    final bytes = _package(
+      _tableXml(
+        _row(
+          '${_cell('<text:p>${_start('crossing')}Citation</text:p>', attributes: 'table:number-columns-spanned="2"')}<table:covered-table-cell><text:p>${_end('crossing')}</text:p></table:covered-table-cell>',
         ),
-      );
-      await expectLater(OdtDocumentReader.readBytes(bytes), _refused);
-    },
-  );
+      ),
+    );
+    await expectLater(OdtDocumentReader.readBytes(bytes), _refused);
+  });
 
   for (final dimension in ['columns', 'rows']) {
     for (final value in [

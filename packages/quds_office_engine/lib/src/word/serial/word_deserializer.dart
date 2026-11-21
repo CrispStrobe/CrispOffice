@@ -41,8 +41,8 @@ import 'word_serializer.dart';
 import 'word_settings_io.dart';
 import 'word_table_property_io.dart';
 
+part 'word_paragraph_style.dart';
 part 'word_style_cascade.dart';
-part 'word_paragraph_style_edit.dart';
 
 enum _SdtBreakLayout { none, liftLast, opaque }
 
@@ -1576,8 +1576,8 @@ class WordDeserializer {
       if (reader.eventType != XmlEventType.startElement) {
         continue;
       }
-      if ((reader.localName == 'pStyle' ||
-              reader.localName == 'spacing' ||
+      if ((reader.localName == 'spacing' ||
+              reader.localName == 'pStyle' ||
               reader.localName == 'bidi' ||
               reader.localName == 'tabs' ||
               reader.localName == 'suppressAutoHyphens') &&
@@ -2472,13 +2472,13 @@ class WordDeserializer {
         continue;
       }
       if (const {
-            'rStyle',
             'kern',
             'noProof',
             'caps',
             'smallCaps',
             'lang',
             'rFonts',
+            'rStyle',
           }.contains(reader.localName) &&
           (reader.depth != depth + 1 ||
               (reader.namespaceUri != OfficeNamespaces.w &&
@@ -4039,20 +4039,20 @@ class WordDeserializer {
     properties: paragraphProperties,
   );
 
-  /// Assign an existing native paragraph style by primary name or a supported
-  /// Word built-in constant, preserving sparse direct formatting. The selected
-  /// paragraph must have one owner. Active numbering and changes to effective
-  /// numbering are refused because numbering labels/indents need a story-wide
-  /// update. Preparation is detached; failure leaves the live model unchanged.
+  /// Assign an existing native paragraph style by its primary [name] or a
+  /// supported Word [builtin] constant. Exactly one selector is required.
+  /// Direct paragraph/run properties and opaque style metadata are preserved.
+  /// The selected paragraph is prepared privately and only published after
+  /// source ownership, style inheritance, and numbering checks succeed.
   void editParagraphStyle(
     WmlDocument document,
     WmlParagraph paragraph, {
     String? name,
     int? builtin,
-  }) => _ParagraphStyleEdit(
+  }) => _StyleCascade(
     this,
     document,
-  ).apply(paragraph, name: name, builtin: builtin);
+  ).assignParagraphStyle(paragraph, name: name, builtin: builtin);
 
   /// Recompute effective formatting after editing a source style definition.
   void refreshStyles(WmlDocument document) {
