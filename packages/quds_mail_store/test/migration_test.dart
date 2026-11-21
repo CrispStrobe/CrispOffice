@@ -10,7 +10,9 @@ import 'package:quds_mail_core/quds_mail_core.dart';
 import 'package:quds_mail_store/quds_mail_store.dart';
 import 'package:quds_mail_store/src/codec.dart';
 import 'package:quds_mail_store/src/schema/database.dart'
-    show schemaV1, schemaV2, schemaV3, schemaV4, schemaV5;
+    show schemaV1, schemaV2, schemaV3, schemaV4, schemaV5, schemaV8;
+import 'package:quds_mail_store/src/schema/flag_journal_schema.dart'
+    show schemaV6, schemaV7;
 import 'package:sqlite3/sqlite3.dart' as sqlite;
 import 'package:test/test.dart';
 
@@ -82,7 +84,7 @@ void main() {
       expect(_snapshot(file), before);
       final database = sqlite.sqlite3.open(file.path);
       try {
-        expect(database.userVersion, 8);
+        expect(database.userVersion, 9);
         expect(database.select('PRAGMA foreign_key_check'), isEmpty);
         expect(
           database.select('SELECT count(*) AS n FROM mail_fts').single['n'],
@@ -169,7 +171,7 @@ void main() {
 
       final database = sqlite.sqlite3.open(file.path);
       try {
-        expect(database.userVersion, 8);
+        expect(database.userVersion, 9);
         expect(database.select('PRAGMA foreign_key_check'), isEmpty);
         for (final invalid in <Object?>[-1, 32, 0.5, 'invalid']) {
           expect(
@@ -327,7 +329,7 @@ void main() {
       expect(_snapshot(file), before);
       final upgraded = sqlite.sqlite3.open(file.path);
       try {
-        expect(upgraded.userVersion, 8);
+        expect(upgraded.userVersion, 9);
       } finally {
         upgraded.close();
       }
@@ -403,7 +405,7 @@ void main() {
         await repository.close();
         expect(_snapshot(file), before);
         final current = sqlite.sqlite3.open(file.path);
-        expect(current.userVersion, 8);
+        expect(current.userVersion, 9);
         expect(current.select('PRAGMA foreign_key_check'), isEmpty);
         expect(
           current
@@ -554,7 +556,7 @@ void main() {
         expect(original(), before);
         final current = sqlite.sqlite3.open(file.path);
         try {
-          expect(current.userVersion, 8);
+          expect(current.userVersion, 9);
           expect(current.select('PRAGMA foreign_key_check'), isEmpty);
           expect(
             current.select(
@@ -683,7 +685,7 @@ void main() {
         expect(original(), before);
         final check = sqlite.sqlite3.open(file.path);
         try {
-          expect(check.userVersion, 8);
+          expect(check.userVersion, 9);
           expect(check.select('PRAGMA foreign_key_check'), isEmpty);
         } finally {
           check.close();
@@ -692,7 +694,185 @@ void main() {
     );
   }
 
-  for (final version in [9, 10]) {
+  for (final interrupted in [false, true]) {
+    test(
+      'v8 saved-search migration preserves all existing tables; interrupted=$interrupted',
+      () async {
+        _upgradeFixtureV2(file);
+        final old = sqlite.sqlite3.open(file.path);
+        try {
+          for (final statement in [
+            ...schemaV3,
+            ...schemaV4,
+            ...schemaV5,
+            ...schemaV6,
+            ...schemaV7,
+            ...schemaV8,
+          ]) {
+            old.execute(statement);
+          }
+          old.execute('UPDATE messages SET flags=3');
+          old.execute(
+            'UPDATE store_profile SET local_account_revision=7,mailbox_view_revision=17',
+          );
+          old.execute(
+            'INSERT INTO local_accounts(id,provider,endpoint,login,sender,connected_at,revision) VALUES(?,?,?,?,?,?,?)',
+            [
+              'verified',
+              'imap',
+              'imaps://imap.example.test:993',
+              'login',
+              'me@example.test',
+              1234,
+              7,
+            ],
+          );
+          old.execute(
+            'INSERT INTO mailbox_views(account,mailbox,revision,captured_at,header_count,has_more) VALUES(?,?,?,?,?,?)',
+            [_account.value, _mailbox.value, 17, 1234, 1, 1],
+          );
+          old.execute(
+            'INSERT INTO mailbox_view_members(account,mailbox,position,message) VALUES(?,?,0,?)',
+            [_account.value, _mailbox.value, 'message-1'],
+          );
+          old.execute(
+            'INSERT INTO mailbox_sync_state(account,mailbox,revision,updated_at,has_more) VALUES(?,?,?,?,?)',
+            [_account.value, _mailbox.value, 29, 5678, 1],
+          );
+          old.userVersion = 8;
+        } finally {
+          old.close();
+        }
+        final tables = <String, List<String>>{};
+        final initial = sqlite.sqlite3.open(file.path);
+        try {
+          for (final row in initial.select(
+            "SELECT name FROM sqlite_master WHERE type='table' AND name NOT LIKE 'sqlite_%' ORDER BY name",
+          )) {
+            final name = row['name']! as String;
+            tables[name] = [
+              for (final column in initial.select('PRAGMA table_info("$name")'))
+                column['name']! as String,
+            ];
+          }
+        } finally {
+          initial.close();
+        }
+        Map<String, List<List<Object?>>> snapshotV8() {
+          final database = sqlite.sqlite3.open(file.path);
+          try {
+            return {
+              for (final table in tables.entries)
+                table.key: [
+                  for (final row in database.select(
+                    'SELECT ${table.value.map((name) => '"$name"').join(',')} FROM "${table.key}" ORDER BY rowid',
+                  ))
+                    [
+                      for (final value in row.values)
+                        value is Uint8List ? Uint8List.fromList(value) : value,
+                    ],
+                ],
+            };
+          } finally {
+            database.close();
+          }
+        }
+
+        final before = snapshotV8();
+        if (interrupted) {
+          final failed = await _open(
+            file,
+            faultInjector: (point) {
+              if (point == MailStoreCheckpoint.migrationCreated) {
+                throw const MailStoreStorageException(
+                  MailProblemCode.storageFailure,
+                );
+              }
+            },
+          );
+          expect(_problem(failed), MailProblemCode.storageFailure);
+          final check = sqlite.sqlite3.open(file.path);
+          try {
+            expect(check.userVersion, 8);
+            expect(
+              check.select(
+                "SELECT name FROM sqlite_master WHERE name LIKE 'saved_header_search%'",
+              ),
+              isEmpty,
+            );
+            expect(
+              check
+                  .select('PRAGMA table_info(store_profile)')
+                  .map((row) => row['name']),
+              isNot(contains('saved_header_search_revision')),
+            );
+          } finally {
+            check.close();
+          }
+          expect(snapshotV8(), before);
+        }
+        final repository = _value(await _open(file));
+        try {
+          expect(_value(await repository.listSavedHeaderSearches()), isEmpty);
+          final saved = _value(
+            await repository.saveSavedHeaderSearch(
+              MailSavedHeaderSearch(
+                id: 'view',
+                name: 'Saved unread',
+                query: 'is:unread',
+                accountIds: ['verified'],
+              ),
+            ),
+          );
+          expect(saved.revision, 1);
+          expect(
+            _value(await repository.listLocalAccounts()).single.revision,
+            7,
+          );
+          expect(
+            _value(await repository.readCursor(_mailbox))!.value,
+            'original-cursor',
+          );
+          expect(
+            _value(
+              await repository.loadDraft(_account, _draft.id),
+            )!.attachments.first.content.bytes,
+            _attachmentA.bytes,
+          );
+          expect(
+            _value(
+              await repository.recoverOutbox(_account),
+            ).single.prepared.wireHash,
+            _queued.prepared.wireHash,
+          );
+        } finally {
+          await repository.close();
+        }
+        expect(snapshotV8(), before);
+        final current = sqlite.sqlite3.open(file.path);
+        try {
+          expect(current.userVersion, 9);
+          expect(current.select('PRAGMA foreign_key_check'), isEmpty);
+          expect(
+            current
+                .select('SELECT revision FROM mailbox_sync_state')
+                .single['revision'],
+            29,
+          );
+          expect(
+            current
+                .select('SELECT account_id FROM saved_header_search_accounts')
+                .single['account_id'],
+            'verified',
+          );
+        } finally {
+          current.close();
+        }
+      },
+    );
+  }
+
+  for (final version in [10, 11]) {
     test(
       'future schema $version is rejected without changing existing data',
       () async {

@@ -1,5 +1,8 @@
 ## Unreleased
 
+- Add immutable, bounded saved-header-search definitions with validated Boolean
+  queries, fixed exact account scopes, stable IDs and explicit revisions.
+
 - Extend loaded-header search with uppercase AND/OR/NOT, implicit AND,
   leading-minus negation and bounded parenthesis groups. Preserve literal
   field/quoted values, strict parsing and unknown flag/date observations
