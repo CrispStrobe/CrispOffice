@@ -2471,6 +2471,7 @@ class WordDeserializer {
       if (const {
             'kern',
             'noProof',
+            'caps',
             'smallCaps',
             'lang',
             'rFonts',
@@ -2551,6 +2552,10 @@ class WordDeserializer {
           );
         case 'smallCaps':
           props.smallCaps = _onOff(
+            reader.getAttribute('val', namespaceUri: OfficeNamespaces.w),
+          );
+        case 'caps':
+          props.allCaps = _onOff(
             reader.getAttribute('val', namespaceUri: OfficeNamespaces.w),
           );
         case 'color':

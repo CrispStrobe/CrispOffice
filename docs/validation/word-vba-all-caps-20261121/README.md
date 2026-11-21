@@ -22,9 +22,11 @@ increment.
 
 ## Checkpoint status
 
-Initial intake and implementation plan are saved. Implementation and local
-qualification are in progress; this checkpoint makes no passing-test claim.
-The final record will identify executed commands, results and residual limits.
+Initial intake and the first implementation are saved. Source compilation,
+native formatting, model import/export and display mapping are implemented;
+local qualification and integration regressions are in progress. Development
+compiler and display checks have executed, but this is not the final qualified
+source. The final record will identify executed commands, results and limits.
 
 GitHub Actions, workflow runs and CI status queues are not queried or awaited.
 

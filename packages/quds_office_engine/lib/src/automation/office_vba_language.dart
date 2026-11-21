@@ -3098,6 +3098,7 @@ class _Checker {
             property == 'italic' ||
             property == 'strikethrough' ||
             property == 'smallcaps' ||
+            property == 'allcaps' ||
             property == 'superscript' ||
             property == 'subscript') {
           return _Kind.boolean;
@@ -6349,11 +6350,13 @@ class _Evaluator {
           property == 'italic' ||
           property == 'strikethrough' ||
           property == 'smallcaps' ||
+          property == 'allcaps' ||
           property == 'superscript' ||
           property == 'subscript') {
         field = switch (property) {
           'strikethrough' => 'strike',
           'smallcaps' => 'smallCaps',
+          'allcaps' => 'allCaps',
           _ => property,
         };
         normalized = _boolean(value, token);

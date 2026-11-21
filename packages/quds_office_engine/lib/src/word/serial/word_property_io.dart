@@ -16,6 +16,7 @@ abstract final class WordPropertyIo {
     'b': '${r.bold}',
     'i': '${r.italic}',
     'strike': '${r.strike}',
+    'caps': '${r.allCaps}',
     'smallCaps': '${r.smallCaps}',
     'color': r.color,
     'sz': '${r.fontSizeHalfPoints}',
@@ -99,7 +100,10 @@ abstract final class WordPropertyIo {
         continue;
       }
       if ((generated.localName == 'rPr' &&
-              (key == 'kern' || key == 'noProof' || key == 'smallCaps')) ||
+              (key == 'kern' ||
+                  key == 'noProof' ||
+                  key == 'caps' ||
+                  key == 'smallCaps')) ||
           (generated.localName == 'pPr' && key == 'suppressAutoHyphens')) {
         final value = generated.firstChild(key)?.getAttribute('val');
         if (value != null) {
@@ -286,13 +290,6 @@ abstract final class WordPropertyIo {
       }
     }
     target.addChild(inserted);
-  }
-
-  /// Small capitals explicitly disable all capitals without rebinding source
-  /// prefixes or replacing opaque attributes and children on the caps property.
-  static void writeAllCapsOff(XmlElement runProperties) {
-    _mergeWordAttributes(runProperties, 'caps', const {'val'}, {'val': '0'});
-    orderChildren(runProperties);
   }
 
   /// Change one native tab stop while retaining unowned attributes, children,
