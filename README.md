@@ -1,748 +1,151 @@
 # Quds Office Suite
 
-<p align="center">
-  <strong>A production-grade Office stack for Dart and Flutter.</strong><br/>
-  Pure Dart engine. Custom RenderBox editors. Word · Excel · PowerPoint · PDF · Band reports.
-</p>
+**A pure-Dart Office engine with Flutter editors for Word, spreadsheets,
+presentations, PDF and band reports.**
+
+This is the CrispStrobe fork used by **CrispOffice Studio** and
+[CrispCloud](https://github.com/CrispStrobe/CrispCloud). The engine has no
+Flutter dependency; the editor surfaces are custom `RenderBox` canvases rather
+than wrapped text fields.
 
 <p align="center">
   <a href="https://pub.dev/packages/quds_office_engine"><img alt="engine" src="https://img.shields.io/pub/v/quds_office_engine.svg?label=quds_office_engine&color=2B579A"/></a>
-  <a href="https://pub.dev/packages/quds_reports"><img alt="reports" src="https://img.shields.io/pub/v/quds_reports.svg?label=quds_reports&color=C9A227"/></a>
   <a href="https://pub.dev/packages/quds_office_editor"><img alt="editor" src="https://img.shields.io/pub/v/quds_office_editor.svg?label=quds_office_editor&color=217346"/></a>
   <a href="LICENSE"><img alt="license" src="https://img.shields.io/badge/license-MIT-0B1F3A"/></a>
-  <img alt="sdk" src="https://img.shields.io/badge/Dart-3.12+-0175C2?logo=dart&logoColor=white"/>
-  <img alt="i18n" src="https://img.shields.io/badge/languages%20%26%20directions-LTR%20·%20RTL%20·%20BiDi-C9A227"/>
 </p>
 
----
+## What it does
 
-The core suite has an engine, reports library, Flutter editor and desktop app. This fork also carries the maintained standalone legacy DOC parser.
+| Area | Capabilities |
+| --- | --- |
+| **Word** | DOCX/DOCM/DOTX editing, paginated layout, BiDi/RTL, comments, tracked changes, review workspace, styles, tables, fields, headers/footers, Zotero citations, proofing, autocorrect and configurable Word/Writer shortcuts |
+| **Spreadsheets** | XLSX/XLSM editing, formula engine, charts, conditional formats, validation, frozen panes, undo/redo, XLS import and ODS import/export |
+| **Presentations** | PPTX editing, slide/shape layout, rich text, animations and Morph |
+| **PDF** | Viewer/editor, annotations, forms, page organisation and export |
+| **Reports** | `.qrep` band reports rendered by the engine to PDF, XLSX and DOCX |
+| **Mail** | IMAP, Exchange EWS, Gmail and Microsoft 365; durable drafts, Outbox, cached mail, search and flag journal in the native Studio |
+| **Automation** | Native macros/MCP bridge and bounded Excel/Word/PowerPoint VBA subsets |
 
-The engine now supports [native macros and MCP](docs/MACROS.md): record and replay
-parameterized calls across shared Word, spreadsheet, and presentation
-operations, with complete-output publication and a local MCP stdio bridge.
-The bundled [Excel VBA subset](docs/VBA_MACROS.md) compiles explicitly selected
-`.bas` source into the same bounded command plan, including reusable procedures
-and scalar functions, fixed and dynamic scalar arrays, `For`/`For Each`/`Do`/`While` loops,
-`Select Case`, worksheet/range bindings, cell writes, formulas, and formatting.
-Arrays support indexed access, `LBound`/`UBound`, `ReDim`/`Preserve`, `Erase`,
-and `Option Base`; explicit ranges support
-cell enumeration and read-only row/column coordinates. String intrinsics
-`Len`, `Left$`, `Right$`, and `Mid$` use strict types and UTF-16 units.
-Shared binary `InStr` / `InStrRev` searches, bounded `Replace`, and the
-`Trim` / `LTrim` / `RTrim` families now prepare source text for all three
-adapters; the [Word text report](packages/quds_office_engine/example/macros/word_text_report.bas)
-demonstrates body and header edits through the existing transactional runtime.
-Variants distinguish `Empty`/`Null`, with state predicates and explicit bounded
-`CVar`, `CBool`, `CDbl`, `CLng`, and `CStr` conversions. The
-[Word VBA subset](docs/VBA_WORD_MACROS.md) shares that language and adds explicit
-paragraph/range bindings, paragraph-prefix insertion, all 18 underline styles,
-strikethrough, and paragraph alignment, spacing, indentation and pagination.
-Section page setup includes explicit geometry, portrait/landscape orientation,
-orientation toggling and continuous/new-page/even-page/odd-page section starts.
-Explicit paragraph ranges also expose proofing inclusion, automatic-hyphenation
-inclusion and exact half-point kerning thresholds, including independent
-header/footer paragraphs; see [proofing controls](docs/VBA_WORD_MACROS.md#proofing-and-kerning-controls).
-The [PowerPoint VBA subset](docs/VBA_POWERPOINT_MACROS.md) adds explicit slide
-and shape selectors, text/font/alignment edits and shape geometry, with guarded
-top-level collection identity and preserved rich text. All three adapters use
-[versioned conformance cases](docs/VBA_CONFORMANCE.md) shared across VM and JavaScript. Source logic uses values
-known during compilation; worksheet formulas run against the detached workbook.
-VBA projects remain inert and preserved; full VBA execution and macro ribbon
-UI are not included. The [VBA parity roadmap](docs/VBA_PARITY_ROADMAP.md) tracks
-the remaining language/runtime work and broader Word/PowerPoint objects.
-
-Word now includes an [offline English/German thesaurus](docs/roadmaps/thesaurus/README.md)
-with full OEWN 2025 and OpenThesaurus packs, alternatives grouped by meaning,
-language override and source notices. Use Review, the context menu or Shift+F7;
-select an alternative and choose Replace for one undoable, source-validated
-change. The [data notices](docs/roadmaps/thesaurus/licensing-and-notices.md)
-retain each corpus's license. Local native qualification and the outstanding
-installed-desktop/offline-browser release checks are recorded in the
-[continuation report](docs/validation/thesaurus-20261118/continuation/README.md).
-
-The current fork imports supported BIFF8 `.xls` files and Excel HTML tables into
-editable XLSX workbooks, including shared-formula groups, palettes, font families
-and HTML captions/header emphasis. Worksheet navigation commits valid drafts
-on their original sheet and blocks navigation when a draft is invalid. Word
-selection uses platform-specific bands; heading changes respect document styles
-and theme colours. Shapes without text retain that distinction on export.
-Complex Word fields keep their spans, and unsupported header/footer structures
-retain their original XML and related payloads. Tracked-change import/save now
-avoids repeated full scans. Preserved headers remain outside the editable model;
-unsupported legacy spreadsheet formats, encryption and full native rendering
-remain outside these guarantees.
-
-The current ODS importer bounds expanded cells, XML, style and merge work;
-it preserves supported column geometry, authored date/time formats, quoted
-formula literals and cell/row/column style precedence. Bounded annotations retain
-their coordinates and authors without becoming cell text. Unsupported repeated or
-matrix formulas and ambiguous merged data are declined rather than clipped.
-ODS pictures with supported local image references are carried into worksheet
-drawings with bounded geometry; external resources are not fetched. Macro-enabled
-and template spreadsheet saves preserve their original package type and opaque
-VBA parts without executing macros.
-Word step commands accept OOXML alignment/underline names; all 18 underline
-styles survive serialization and a paragraph split retains its character style.
-These are bounded import/edit contracts, not certification of native Word or
-LibreOffice layout for every file.
-
-Legacy VML pictures, rules and shapes are retained as opaque source content with relationship integrity checks; this preserves export bytes without claiming native rendering or editing of those objects.
-
-The fork now deduplicates byte-identical Word media on export, reads supported symbol characters, and keeps sibling text boxes independent during import. Legacy DOC conversion writes canonical built-in style names and offers explicit recovery for damaged auxiliary features; recovery reports degraded output and remains opt-in.
-
-The current fork also preserves spreadsheet comments, supported formula caches and frozen-pane anchors on save. Sheet sorting participates in undo/redo without losing cell locks or PDF borders; speaker-note edits participate in slide history and save revisions. Native fill regression fixtures are schema-valid and checked against independently authored expected files. See [the current capability and acceptance record](docs/office-capabilities-20261114.md) for tested behavior and [the remaining office-format backlog](docs/office-remaining-gaps.md) for open work.
-
-Worksheet direction, frozen panes, row/column grid edits and selection formatting now participate in save revisions and undo/redo on their owning worksheet. Grid history preserves cell identity so earlier text and formatting commands remain usable after sorting or structural edits. DOCX import accepts block-level bookmark markers, repairs unpaired endpoints within their story, and retains duplicate content-control IDs already present in the source while rejecting additional duplicates. Decimal/unit measurements use finite fallbacks for malformed overflow values. Unsupported Word constructs and font/layout fallbacks remain fidelity boundaries.
-
-
-Hosts can register their actual font families and styles for shared Word
-layout, painting and PDF export. Unloaded families retain their names in the
-document but paint with an explicit bundled fallback; they do not claim
-unrelated font metrics. Font substitution, unsupported table topology and
-unmodeled legacy DOC constructs remain fidelity boundaries, not guarantees of
-pixel-identical Microsoft Office rendering. The parser mirror includes the
-current compound-file, Unicode, field, embedded-object and numbering audits.
-
-> **1.0 is out.** Both packages are stable and follow semantic versioning.
-> See *What 1.0 brings* in the [engine](packages/quds_office_engine#what-10-brings)
-> and [editor](packages/quds_office_editor#what-10-brings) READMEs.
-
-| Package | Runtime | What it is | pub.dev |
-| --- | --- | --- | --- |
-| **[`quds_office_engine`](packages/quds_office_engine)** | Pure Dart | OOXML + OPC/ZIP + formulas + PDF 1.7 | [pub.dev/packages/quds_office_engine](https://pub.dev/packages/quds_office_engine) |
-| **[`quds_reports`](packages/quds_reports)** | Pure Dart | `.qrep` band reports: templates, expressions, PDF / XLSX / DOCX | [pub.dev/packages/quds_reports](https://pub.dev/packages/quds_reports) |
-| **[`quds_office_editor`](packages/quds_office_editor)** | Flutter | Interactive Word / Sheet / Slide / PDF surfaces and the report designer | [pub.dev/packages/quds_office_editor](https://pub.dev/packages/quds_office_editor) |
-| **[`quds_report_studio`](apps/quds_report_studio)** | Flutter desktop app | Standalone report editor: open, design, preview, export `.qrep` | [Windows and Linux installers](https://github.com/MohammedAsaadAsaad/quds_office_suite/releases/tag/studio-v1.5.0) |
-
-```text
-┌─────────────────────────────────────────────────────────────┐
-│                     your Flutter / Dart app                 │
-├──────────────────────────────┬──────────────────────────────┤
-│     quds_office_editor       │     quds_office_engine       │
-│  QudsWordEditor              │  Docx / Xlsx / Pptx builders │
-│  QudsSheetEditor             │  Wml / Sml / Pml models      │
-│  QudsSlideEditor             │  Formula engine              │
-│  QudsPdfViewer / Editor      │  PdfFile + OfficePdfExport   │
-│  QudsReportDesigner          │  quds_reports (.qrep → PDF,  │
-│  custom RenderBox canvases   │    XLSX, DOCX)               │
-│         │                    │  OfficeIsolateOpen / Save    │
-│         └────────────────────┤  OPC · ZIP · OLE · XML       │
-│                              │  BiDi · shaping · fonts      │
-└──────────────────────────────┴──────────────────────────────┘
-```
-
-The engine **never** imports `dart:ui` or Flutter. The editor **never** uses
-`TextField`, `ListView`, or `InteractiveViewer` for the document surface.
-
-![Quds Report Studio: designer, chart element, and inspector](apps/quds_report_studio/screenshots/studio_chart.png)
+## Screenshots
 
 <table>
   <tr>
-    <td width="50%"><img src="packages/quds_office_editor/example/screenshots/word.png" alt="Word"/><br/><b>Word</b>: paginated canvas, BiDi caret, outline, comments</td>
-    <td width="50%"><img src="packages/quds_office_editor/example/screenshots/excel.png" alt="Excel"/><br/><b>Excel</b>: virtualized grid, formula engine, charts</td>
+    <td width="50%"><img src="packages/quds_office_editor/example/screenshots/word.png" alt="Word editor"/><br/><b>Writer</b></td>
+    <td width="50%"><img src="packages/quds_office_editor/example/screenshots/excel.png" alt="Sheet editor"/><br/><b>Spreadsheet</b></td>
   </tr>
   <tr>
-    <td><img src="packages/quds_office_editor/example/screenshots/powerpoint.png" alt="PowerPoint"/><br/><b>PowerPoint</b>: stage, animations, Morph, reverse playback</td>
-    <td><img src="packages/quds_office_editor/example/screenshots/pdf.png" alt="PDF"/><br/><b>PDF</b>: open real files, find, annotate, forms</td>
-  </tr>
-  <tr>
-    <td><img src="apps/quds_report_studio/screenshots/studio_preview.png" alt="Report preview"/><br/><b>Report preview</b>: engine pagination, vector charts</td>
-    <td><img src="apps/quds_report_studio/screenshots/studio_rtl_invoice.png" alt="Arabic report"/><br/><b>RTL reports</b>: Arabic invoice with tafqeet and QR</td>
+    <td><img src="packages/quds_office_editor/example/screenshots/powerpoint.png" alt="Presentation editor"/><br/><b>Presentation</b></td>
+    <td><img src="packages/quds_office_editor/example/screenshots/pdf.png" alt="PDF editor"/><br/><b>PDF</b></td>
   </tr>
 </table>
 
-<table>
-  <tr>
-    <td width="33%"><img src="packages/quds_office_engine/example/screenshots/report_chart_gallery.png" alt="Chart gallery"/></td>
-    <td width="33%"><img src="packages/quds_office_engine/example/screenshots/report_chart_extruded.png" alt="Extruded charts"/></td>
-    <td width="33%"><img src="packages/quds_office_engine/example/screenshots/report_shape_map.png" alt="Country shape map"/></td>
-  </tr>
-</table>
+## Packages
 
-Chart gallery and a country shape map, rendered by the engine.
-
-### Report output (rendered by the engine, no Flutter)
-
-<table>
-  <tr>
-    <td width="33%"><img src="packages/quds_office_engine/example/screenshots/report_sales_performance.png" alt="Sales dashboard"/></td>
-    <td width="33%"><img src="packages/quds_office_engine/example/screenshots/report_sales_invoice_ar.png" alt="Arabic invoice"/></td>
-    <td width="33%"><img src="packages/quds_office_engine/example/screenshots/report_inventory_ar.png" alt="Inventory"/></td>
-  </tr>
-</table>
-
-### Files from other suites
-
-A DOCX written in LibreOffice Writer. On the left is LibreOffice's own PDF.
-On the right is the engine's, made in pure Dart.
-
-![LibreOffice's PDF next to quds_office_engine's for the same DOCX](packages/quds_office_engine/example/screenshots/office_fidelity_word.png)
-
----
-
-## About this fork (CrispStrobe)
-
-The [19 November continuation](docs/validation/office-mail-continuation-20261119/README.md)
-reconciles the current Mail, Arabic morphology, proofing and Studio work with
-the earlier source-qualified evidence. Mail retains its account mailbox and
-saved-message reader; Word language changes preserve the inactive language
-setting. The report records the exact source, preserved local checks and remaining
-acceptance boundaries. The latest combined qualification is incomplete after
-local filesystem exhaustion; earlier passing results retain their own sources.
-
-The Word editor now has a [document review workspace](docs/document-review.md):
-reviewer attribution, filtered pending changes, undoable batch accept/reject,
-original/final paragraph previews, and read-only comparison of two Word
-documents. Studio accepts independently picked originals and revisions, shows
-inline or side-by-side differences, and exports a JSON report. The comparison
-covers modeled text, formatting and structure with explicit scope and work
-limits; it preserves both source documents.
-
-The fork includes [Zotero reference support](docs/zotero-support.md): online
-personal/group libraries, native desktop access without an API key, offline CSL
-JSON, linked DOCX citation fields, bibliographies and undoable reference editing.
-Unsynced desktop references support identity-checked metadata refresh and
-individual previews; selected exports and formatted bibliographies require
-Zotero 10+ database/version verification. The shared editor exposes the same
-workflow to CrispCloud. Native desktop tools now open Zotero's citation picker
-and document preferences, insert selected catalog sources, and refresh the
-complete supported citation sequence through Zotero's CSL processor, including
-style-dependent numbering, disambiguation and German *Ebd.* with locators.
-Results apply atomically with undo/redo and native preference persistence.
-Basic author-year text and individual previews remain explicit fallbacks.
-Mixed inline formatting, note preview numbering and unsupported bibliography
-layout have documented limits. Local tests and pinned real-processor fixtures
-pass; live Zotero/Word acceptance and full native builds remain pending.
-
-ODS imports include print areas, titles, names, auto-filters and same-workbook
-range-source validation snapshots. Validation expansion has a shared two-million
-source-cell work limit, checked before iteration and multiplication. Quoted sheet
-names retain their spaces. Dynamic validation-source links remain a separate
-fidelity boundary.
-
-This fork is integrated with [CrispCloud](https://github.com/CrispStrobe/CrispCloud). Current shared features include source-preserving spreadsheet font geometry, explicit style-zero handling, guarded logical addressing for merged Word tables, custom tab controls, and feature-directed editing/validation workflows. The [follow-up report](docs/office-fidelity-followup-20261112.md) and [fidelity ledger](docs/office-fidelity-gaps.json) retain the tested contracts and remaining limits. Native receipts describe their exact original source trees.
-
-Spelling, automatic German hyphenation and grammar work is tracked in the
-[proofing roadmap](docs/PROOFING.md). It records the existing callback-only
-spelling baseline, the MIT/BSD/Apache/MPL component and language-data policy,
-implementation order, and the checks required before claiming each feature.
-
-The optional German spaCy backend uses C++/ggml in CrispEmbed, without a Python
-runtime or daemon in the app, and separate guarded grammar rules. The
-[completed local W7 package and worker evidence](docs/validation/native-spacy-w7-20261118/README.md)
-records immutable installation, exact Python/Dart consumer results and their
-Linux x86-64/AVX2 dependency limits. The
-[native spaCy handoff](docs/roadmaps/native-spacy/README.md) retains source/model
-pins, licensing decisions and earlier qualification boundaries. The manual
-provider stays disabled by default, with no automatic Studio registration;
-hosted distribution, other targets and production activation remain separate.
-Platform status for manual German grammar: it is qualified per exact native
-library, on Linux x86-64/AVX2, in the Studio macOS arm64 app and, since
-20 November 2026, in the Studio Android arm64 APK
-([Android evidence](docs/validation/native-spacy-android-grammar-20261120/README.md)).
-Studio offers the opt-in **Manual German grammar suggestions** only there. On
-iOS, analysis runs but grammar is refused, because the device library has no
-recorded run.
-
-Legacy `.doc`/`.dot` parsing and separate DOCX/DOCM conversion are maintained in [legacy-doc-parser](https://github.com/CrispStrobe/legacy-doc-parser). The engine exposes compatibility exports from the pinned workspace copy in `packages/legacy_doc_parser`; its `UPSTREAM.json` records the source and workspace-only patches. The suite's MIT license does not replace that dependency's MPL-2.0 license or its third-party notices.
-
-Use Flutter **3.47.8**, pinned in `.fvmrc` and CI, and resolve dependencies from this workspace. This fork marks its modified engine/editor packages as source-only (`publish_to: none`) and records their sibling package dependencies explicitly. Use the complete workspace or its matching source checkout. Pub.dev badges describe published upstream packages; they do not imply that this fork's additions have been published.
-
-This is the CrispStrobe fork of
-[MohammedAsaadAsaad/quds_office_suite](https://github.com/MohammedAsaadAsaad/quds_office_suite).
-
-### Why it exists
-
-[CrispCloud](https://github.com/CrispStrobe/CrispCloud) opens, edits and saves
-Word, Excel and PowerPoint files that live in users' cloud accounts. It uses
-`quds_office_engine` and `quds_office_editor` from this repository through
-local path overrides (`packages/` in CrispCloud, pinned to a commit of this
-fork by a file-hash manifest). Two consequences drove the work here:
-
-- **One fix, two places.** A fix made only in CrispCloud would never come back
-  here, and a fix made only here would never reach the app. Every change lands
-  in this fork first; CrispCloud then syncs the exact files and its hash guard
-  fails if the copies drift.
-- **Saving must not damage a user's file.** A cloud file manager that silently
-  rewrites styles, drops notes or breaks a deck on save destroys data the user
-  did not ask it to touch. So the goal was not "more features" but "what goes
-  in comes out", proven by checks that do not trust our own serializer.
-
-### What we changed
-
-- **Native spreadsheet fills.** Unchanged fill XML is retained when other cell
-  formatting changes. Explicit fill replacement and its undo/redo history are
-  tracked separately, preserving native solid, pattern and gradient definitions
-  that are outside the editor's simple colour controls.
-- **Office preservation and edit admission.** Unsupported spreadsheet formulas
-  retain typed caches through dependent calculations; formatting edits preserve
-  imported SpreadsheetML style namespaces and properties. Word keeps native
-  restriction modes and password metadata, with undoable tracking/protection
-  changes. Signed XLSX/PPTX packages are refused for editing so a save cannot
-  silently discard their signatures. Password verification and independent
-  first-save rendering acceptance remain outside this increment; see
-  [the recovery record](docs/office-recovery-20261114.md).
-- **Word round-trip fidelity.** Footnote/endnote identity, source styles,
-  numbering definitions, table styles and borders, hyperlinks in notes and
-  headers, and explicit direct formatting (black / 11pt / zero spacing / left)
-  are preserved instead of regenerated or flattened on save.
-- **Notes layout.** Mixed and multiple notes per paragraph, multiline bodies
-  and notes with styled runs, tables, drawings and links render. The note band
-  is reserved during body layout, and long or rich notes paginate onto extra
-  pages in source order instead of disappearing or overlapping the body.
-- **Lists.** List commands allocate document-local definitions, so they no
-  longer collide with imported list IDs; imported start values and Roman,
-  alphabetic and padded-decimal formats are honored; list edits undo/redo.
-- **Editable footnotes and endnotes.** The Word notes pane edits each note
-  in place with minimal changes, so untouched runs keep their formatting,
-  links, tables and pictures; typing in a note is one undo step; notes can be
-  added and deleted from the pane (deleting also removes the mark in the body,
-  and undo restores both). Before, editing a note replaced its whole body with
-  unformatted text.
-- **Editing and history.** Footnote insertion follows the caret, paragraph
-  splits keep rich runs, and repeated undo/redo no longer mutates history
-  snapshots.
-- **PowerPoint templates and media.** Exported decks keep the imported slide
-  masters, layouts and theme, and gain any missing master/layout/theme and
-  notes-size parts PowerPoint requires. Pictures and charts are namespaced to
-  the slide that owns them, so editing or reordering one slide can no longer
-  overwrite another slide's media.
-- **Word style cascade.** Sparse style definitions resolve through document
-  defaults, `basedOn` chains, theme fonts and colours, and character and
-  table-region styles, without freezing the inherited values into direct
-  formatting, so they stay editable and the saved file keeps its styles.
-- **Spreadsheet fidelity.** Source cell style records, pivot tables and live
-  chart formulas are kept on save instead of being regenerated or flattened
-  to values.
-- **Fixes merged back from CrispCloud.** Imported footnote references render
-  as superscript, visible Word selection and header/footer relayout, rotated
-  PDF watermarks, and report-designer font and template-band fixes.
-- **Lint clean.** Engine and reports analysis passes with `--fatal-infos`.
-
-### How it is verified
-
-Expected values are authored by hand (XML/JSON) or produced by other tools,
-never by blessing our own output:
-
-- A Python oracle reads exported ZIP/XML directly and compares it with the
-  authored expectations; negative tests confirm it rejects damaged files.
-- Import fixtures `native.pptx` and `native.xlsx` are produced by independent
-  libraries (python-pptx, openpyxl; versions in `native-producers.json`), so
-  import is tested against files our code did not write.
-- A .NET tool (`tool/office-validation`) validates every exported package with
-  the Open XML SDK.
-- Save/reopen exports across DOCX, XLSX and PPTX, scripted edits, and a
-  reviewed full-page visual goldens.
-- The `office-fidelity` CI workflow runs the engine suite, semantic and negative
-  controls, editor goldens, SDK validation and independent rendering. Current
-  counts belong to the exact source checkpoint in the validation evidence.
-
-Run it locally from `packages/quds_office_engine`: `dart test`, then
-`bash tool/fidelity/check.sh`. Start with the
-[current consolidation and validation report](docs/office-fidelity-consolidation-20261112.md)
-and [bounded gap ledger](docs/office-fidelity-gaps.json). The
-[operation guide](packages/quds_office_engine/tool/fidelity/README.md) documents
-all import/edit/export commands. The historical
-[coverage-branch guide](docs/office-fidelity-coverage-20261112.md) and its
-[source-hashed coverage inventory](docs/office-coverage-gaps.json) record the
-earlier `31add779` source snapshot. The
-[11 November audit](docs/office-fidelity-audit.md) is a historical checkpoint,
-not a measurement of the current branch.
-
-### Known limits
-
-- The goldens are reviewed on Linux with the suite's pinned Flutter 3.44.0.
-  A prior single-page cross-platform comparison differed by about 0.6% of
-  pixels; that observation is not a tolerance for the expanded corpus. Do not
-  regenerate reviewed images from another platform to conceal a difference.
-- Coverage reports measure executed instrumented lines and list absent source
-  files; they do not measure branch coverage or establish correctness.
-- Each closed gap names a bounded regression and its evidence. Partial and
-  unsupported format/layout behaviors remain explicit in the current ledger;
-  native Microsoft Office pixel equivalence is not certified.
-
----
-
-## Why this suite
-
-Most Dart “Office” libraries stop at writing a simple DOCX. Quds goes further:
-
-- **Round-trip real files** — open Microsoft Office / LibreOffice packages, mutate the model, write them back.
-- **Own the stack** — ZIP, Deflate, CFBF/OLE, XML, fonts, BiDi, and PDF are implemented here. Fewer mystery dependencies.
-- **Many languages, many directions** — UAX #9 BiDi, Arabic shaping, mixed LTR/RTL, and logical caret movement live in the engine; the editor paints them.
-- **Editors that look like Office** — paginated Word, virtualized Excel, a slide stage with Morph, wipe, push, and **reverse** slideshow playback.
-- **Band reports** — `.qrep` templates with bands, groups, expressions, typed variables, charts, barcodes, and Arabic amount-in-words (`TAFQEET`), exported to PDF, XLSX, and DOCX. A detail band can print one page per table row, the report form of a mail merge (class certificates). A visual designer and a desktop app come with it.
-- **100+ PDF report templates** — classified by domain, direction-aware, with distinct `SheetSkin` layouts (not text-only clones).
-- **Server or UI** — generate reports on a CLI/server with the engine; embed the same models in Flutter with the editor.
-
----
-
-## Install
-
-### Engine only (CLI, server, isolates, Flutter)
-
-```yaml
-dependencies:
-  quds_office_engine: ^1.5.0
-```
-
-### Reports only (CLI, server, isolates, Flutter)
-
-```yaml
-dependencies:
-  quds_reports: ^1.5.0
-```
-
-```dart
-import 'package:quds_reports/quds_reports.dart';
-```
-
-`QudsReportEngine` from that import is the engine's report engine. PDF, XLSX,
-DOCX, expressions, `.qrep` packages, charts, and shape maps are all on it.
-The designer is `package:quds_office_editor/quds_reports.dart`.
-
-### Editor (pulls the engine and quds_reports)
-
-```yaml
-dependencies:
-  quds_office_editor: ^1.5.0
-```
-
-This repository is a [Dart workspace](https://dart.dev/tools/pub/workspaces). From the root:
-
-```bash
-dart pub get
-```
-
----
-
-## 60-second engine tour
-
-```dart
-import 'dart:io';
-import 'package:quds_office_engine/quds_office_engine.dart';
-
-void main() {
-  final theme = OfficeDocumentTheme.custom(
-    palette: const OfficePalette(primary: '2B579A', accent: '217346'),
-    rtl: true,
-  );
-
-  final docx = (DocxDocumentBuilder(theme: theme)
-        ..heading('Quarterly report')
-        ..paragraph('A pure Dart Office engine for many languages and directions.')
-        ..table([
-          ['Item', 'Value'],
-          ['Files', '3'],
-        ]))
-      .build();
-
-  final xlsx = (XlsxWorkbookBuilder(theme: theme)
-        ..addSheet('Summary')
-            .addRow(['Quarter', 'Revenue']))
-      .build();
-
-  final pptx = (PptxDeckBuilder(theme: theme)
-        ..addCoverSlide(title: 'Quds Office', subtitle: 'Engine + Editor'))
-      .build();
-
-  File('report.docx').writeAsBytesSync(docx);
-  File('book.xlsx').writeAsBytesSync(xlsx);
-  File('deck.pptx').writeAsBytesSync(pptx);
-
-  File('report.pdf').writeAsBytesSync(
-    OfficePdfExport.fromBytes(docx, title: 'Quarterly report'),
-  );
-}
-```
-
-Full walkthrough: [`packages/quds_office_engine/README.md`](packages/quds_office_engine/README.md).
-
----
-
-## 60-second editor tour
-
-```dart
-import 'package:flutter/widgets.dart';
-import 'package:quds_office_editor/quds_office_editor.dart';
-
-class WordHost extends StatefulWidget {
-  const WordHost({super.key});
-  @override
-  State<WordHost> createState() => _WordHostState();
-}
-
-class _WordHostState extends State<WordHost> {
-  late final WordEditorController controller = WordEditorController(
-    config: const OfficeSurfaceConfig(
-      textDirection: TextDirection.rtl,
-      strings: OfficeStrings.english,
-    ),
-  );
-
-  @override
-  void initState() {
-    super.initState();
-    controller.insertHeading(text: 'New document');
-  }
-
-  @override
-  void dispose() {
-    controller.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return QudsWordEditor(controller: controller);
-  }
-}
-```
-
-Same pattern for `SheetEditorController` + `QudsSheetEditor`,
-`SlideEditorController` + `QudsSlideEditor`, `PdfViewerController` +
-`QudsPdfViewer`, and `ReportDesignerController` + `QudsReportDesigner`.
-
----
-
-## 60-second report tour
-
-```dart
-import 'dart:io';
-import 'package:quds_office_engine/quds_reports.dart';
-
-Future<void> main() async {
-  // A ready-made template file from packages/quds_office_editor/templates/.
-  final ReportTemplateInfo info = ReportTemplateInfo.decode(
-    File('sales_performance.qrep').readAsBytesSync(),
-  );
-  // Pass `fonts:` (a ReportFontRegistry) to embed faces; Arabic needs one.
-  final QudsReportEngine engine = QudsReportEngine.fromXml(info.xml);
-  final Map<String, Object?> data = info.sampleData(); // or your own Map
-
-  File('sales.pdf').writeAsBytesSync(await engine.exportToPdf(data));
-  File('sales.xlsx').writeAsBytesSync(await engine.exportToExcel(data));
-  File('sales.docx').writeAsBytesSync(await engine.exportToWord(data));
-}
-```
-
-Design the same template visually with `QudsReportDesigner` (Flutter) or
-in **Quds Report Studio**:
-
-<table>
-  <tr>
-    <td width="50%"><img src="apps/quds_report_studio/screenshots/studio_text_inspector.png" alt="Inspector"/><br/>Inspector: steppers, segmented icons, switches, B/I/U</td>
-    <td width="50%"><img src="apps/quds_report_studio/screenshots/studio_autocomplete.png" alt="Autocomplete"/><br/><code>{{ }}</code> autocomplete from data, functions, and formats</td>
-  </tr>
-</table>
-
-Format, expressions, charts, templates: [engine README → Band reports](packages/quds_office_engine/README.md#band-reports-quds_reportsdart).
-Designer and inspector: [editor README → Report designer](packages/quds_office_editor/README.md#report-designer).
-
-Full walkthrough: [`packages/quds_office_editor/README.md`](packages/quds_office_editor/README.md).
-
----
-
-## Mail reader and standalone Office roadmap
-
-The [Mail scope](docs/roadmaps/mail/README.md) and
-[coding plan / TODO](docs/roadmaps/mail/implementation-plan.md) specify a
-shared Dart/Flutter saved-message reader and mail client, CrispCloud host
-integration, and a new standalone Office app with documents, Mail, Calendar
-and People. MPL-2.0 dependencies are allowed with matching source and notices;
-new independent Quds code remains MIT.
-
-The plan preserves CrispCloud's existing EML/MSG/MBOX workflows without
-importing its AGPL implementation into Quds. Standalone and CrispCloud
-distribution/App Store gates are tracked separately.
-
-The implementation now provides [typed Mail core](packages/quds_mail_core),
-[bounded EML parsing](packages/quds_mail_mime), an
-[account-free Flutter reader](packages/quds_mail_ui) with a real MIME preview
-harness, [Drift/SQLite storage and recovery](packages/quds_mail_store), and an
-initial [native IMAP transport](packages/quds_mail_transport).
-
-CrispOffice now also includes a native [durable mail archive](docs/roadmaps/mail/archive-search.md):
-import EML or MBOX, archive selected messages or connected folders, search indexed
-headers/body/attachment names with saved filters, export original EML, and verify
-or rebuild the index. Explicit archived copies survive account disconnection and
-cache removal. The guide records supported text-attachment extraction and the
-remaining MailStore parity work; [local validation](docs/validation/mail-archive-search-20261119/README.md)
-includes transactional failures, cancellation and actual process-crash recovery.
-Original message and attachment bytes remain immutable. The reviewed
-MPL fork exposes a portable public MIME entry without socket/filesystem imports.
-The native store persists drafts, frozen outgoing payloads, mailbox changes,
-nullable standard flags and cursors transactionally, with schema-v3 migration,
-local full-text search and explicit interrupted-send recovery. File-backed
-migration and Linux process-crash tests exercise data preservation. These are
-storage-layer capabilities; the foreground Studio composer now uses them for
-[multiple durable local drafts](docs/roadmaps/mail/multiple-drafts.md), a
-[durable Outbox](docs/roadmaps/mail/outbox.md), and
-[message review, export and safe editing](docs/roadmaps/mail/outbox-management.md),
-including explicit management of interrupted-send uncertainty. The
-[scheduled-send workflow](docs/roadmaps/mail/scheduled-send.md) now saves UTC
-deadlines and offers a ten-second Undo window. It sends only while explicitly
-armed in an active Outbox, with Pause/Resume after reopening and guarded
-lifecycle, clock and stale-revision handling. Its separately
-configured browser entry compiles, but actual browser storage, quota and reload
-behavior remain unqualified. Native Studio now also uses a
-[durable command journal](docs/roadmaps/mail/command-journal.md) for single/bulk
-read and flag changes across IMAP, EWS, Gmail and Microsoft 365. Intent precedes
-dispatch, exact cached target flags update transactionally, and connected or
-offline **Mail activity** retains restart evidence without replaying commands.
-[Check current status](docs/roadmaps/mail/flag-recovery.md) explicitly records
-fresh provider observations beside uncertain receipts while preserving the
-original outcomes. Repository-driven sessions are the next
-[desktop-mail parity increment](docs/roadmaps/mail/README.md#desktop-mail-parity-ordered-increments). The database is
-unencrypted, and process-crash tests do not establish power-loss durability.
-
-The [Office synchronization report](docs/validation/office-main-sync-20261119/README.md)
-records **1,372 application executions and 90 separate Python controls** at
-`0669ac11`, covering sparse UID discovery, cursor freshness, real loopback TLS,
-Mail consumers, Arabic rules and Word proofing. It retains strict analysis,
-formatting and independent source/runtime audits. Later concurrent main
-additions receive separate checks in the same report. The earlier
-[632-execution record](docs/validation/office-main-integration-20261119/README.md)
-and [836-execution checkpoint](docs/validation/office-main-completion-20261119/README.md)
-retain their original source identities and are not added.
-
-The initial IMAP adapter provides bounded UID-window synchronization, exact
-message retrieval and guarded flag/move operations with required TLS. Real Linux
-loopback checks cover TLS cancellation, deadlines, trust and hostname refusal,
-encrypted transfers and write lifecycle. External-provider and other-OS
-interoperability, host OAuth/refresh, large or sparse
-mailbox pagination and the shared mailbox workspace remain
-open. See the [implementation status and local checks](docs/roadmaps/mail/status.md).
-Studio provides a foreground account session and plain-text composer with
-[To/Cc/Bcc and Reply all](docs/roadmaps/mail/recipients-and-reply-all.md) and
-[file attachments](docs/roadmaps/mail/attachments.md) for native SMTP, Exchange
-EWS, Gmail and Microsoft 365. Select up to ten files totaling 10 MiB; the draft
-retains immutable attachment bytes through an acknowledged uncertain-send retry.
-Canonical MIME excludes Bcc; the separate envelope retains hidden recipients,
-and cloud adapters add them only to a private API request copy. The
-[attachment qualification](docs/validation/mail-attachments-20261120/README.md)
-records local checks, not real-provider delivery or recipient-facing privacy.
-Confirmed acceptance is distinguished from later cleanup failure. Drafts now
-autosave locally and recover after reconnect, including unfinished recipients,
-reply headers and attachments. Close/Send flush the latest revision; uncertain
-submissions remain guarded after restart. No automatic retry is introduced.
-Attach-current-document/PDF commands and Office/VBA mail APIs remain later work.
-The standalone Office host and CrispCloud migration remain later tasks; these
-packages do not qualify an application release.
-
----
-
-## Run the apps
-
-**Quds Report Studio**: the standalone report editor (open, design, preview, export).
-Download it:
-
-| Platform | Installer | Portable |
+| Package | Runtime | Purpose |
 | --- | --- | --- |
-| Windows 10/11 (x64) | [setup.exe](https://github.com/MohammedAsaadAsaad/quds_office_suite/releases/download/studio-v1.5.0/QudsReportStudio-1.5.0-windows-x64-setup.exe) | [zip](https://github.com/MohammedAsaadAsaad/quds_office_suite/releases/download/studio-v1.5.0/QudsReportStudio-1.5.0-windows-x64-portable.zip) |
-| Debian / Ubuntu (x64) | [.deb](https://github.com/MohammedAsaadAsaad/quds_office_suite/releases/download/studio-v1.5.0/quds-report-studio_1.5.0_amd64.deb) | [tar.gz](https://github.com/MohammedAsaadAsaad/quds_office_suite/releases/download/studio-v1.5.0/QudsReportStudio-1.5.0-linux-x64.tar.gz) |
+| [`quds_office_engine`](packages/quds_office_engine) | Pure Dart | OOXML, OPC/ZIP, OLE, formulas, layout, BiDi, PDF, reports |
+| [`quds_office_editor`](packages/quds_office_editor) | Flutter | Word, sheet, slide, PDF and report-design surfaces |
+| [`quds_reports`](packages/quds_reports) | Pure Dart | `.qrep` templates and PDF/XLSX/DOCX export |
+| [`quds_report_studio`](apps/quds_report_studio) | Flutter desktop | Standalone report designer |
+| [`quds_mail_*`](packages) | Dart/Flutter | Mail core, MIME, store, transport and reader UI |
 
-It becomes the app for `.qrep` files on its first run. Install and
-uninstall steps are in the
-[studio README](apps/quds_report_studio/README.md#download). Or run it from
-source:
-
-```bash
-cd apps/quds_report_studio
-flutter run -d linux     # or windows, macos
-```
-
-**CrispOffice Studio**: the editor example, a desktop workspace with ribbons, samples, and OS window chrome:
+## Quick start
 
 ```bash
+git clone https://github.com/CrispStrobe/quds_office_suite.git
+cd quds_office_suite
+dart pub get
+
+# CrispOffice Studio
 cd packages/quds_office_editor/example
-flutter run
-```
+flutter run -d macos        # or linux / windows
 
-The engine example writes a gallery of Word / Excel / PowerPoint files **and** their PDFs:
-
-```bash
-cd packages/quds_office_engine
+# Engine gallery: DOCX, XLSX, PPTX and PDF output
+cd ../../quds_office_engine
 dart run example/rich_export_gallery.dart
 ```
 
----
+Engine-only consumers need `quds_office_engine`. Editor consumers should depend
+on `quds_office_editor`, which brings the engine and report packages with it.
+Publishing instructions are in [docs/PUBLISHING.md](docs/PUBLISHING.md).
 
 ## Architecture
 
-```mermaid
-flowchart LR
-  subgraph Host["Your app"]
-    UI[Material / Cupertino chrome]
-  end
-  subgraph Editor["quds_office_editor"]
-    W[QudsWordEditor]
-    X[QudsSheetEditor]
-    P[QudsSlideEditor]
-    D[QudsReportDesigner]
-    C[Controllers + IME + undo]
-  end
-  subgraph Engine["quds_office_engine"]
-    M[WmlDocument / SmlWorkbook / PmlPresentation]
-    F[Formula + layout + BiDi]
-    IO[OPC ZIP OLE XML]
-    PDF[OfficePdfExport]
-    R[quds_reports .qrep]
-  end
-  UI --> W & X & P & D
-  W & X & P --> C --> M
-  M --> F --> IO
-  M --> PDF
-  D --> R --> PDF
-```
-
-| Layer | Lives in | Rule |
-| --- | --- | --- |
-| Models, IO, layout, formulas, PDF | `quds_office_engine` | No Flutter |
-| Painting, hit-testing, IME, gestures | `quds_office_editor` | `RenderBox` / `LeafRenderObjectWidget` only |
-| Ribbons, file dialogs, window buttons | **your** host (or the studio example) | Material is allowed here |
-
----
-
-## Repository map
-
 ```text
-quds_office_suite/
-├── packages/
-│   ├── quds_office_engine/     ← publish this to pub.dev
-│   ├── quds_reports/           ← publish this to pub.dev
-│   └── quds_office_editor/     ← publish this to pub.dev
-│       └── example/            CrispOffice Studio (not published)
-├── apps/
-│   └── quds_report_studio/     standalone report editor (not published)
-├── docs/                       MISSION, STANDARDS (limits), PDF, PUBLISHING,
-│                               office-fidelity-audit, coverage gaps
-├── tool/office-validation/     Open XML SDK validator used by CI
-└── LICENSE                     MIT
+Host app / ribbon / dialogs
+          │
+   quds_office_editor      Flutter RenderBox, IME, hit-testing
+          │
+   quds_office_engine      models, OOXML, layout, formulas, PDF
+          │
+   OPC / ZIP / OLE / XML   portable package and file IO
 ```
 
----
+Rules:
 
-## Publishing
+- The engine never imports Flutter or `dart:ui`.
+- Document surfaces use custom `RenderBox`/`LeafRenderObjectWidget` canvases,
+  not `TextField`, `ListView` or `InteractiveViewer`.
+- Host chrome may use Material.
 
-Packages are published **separately**, engine first, then reports, then the editor:
+## Notable capabilities
+
+- **CrispOffice Studio** is the reference desktop host: ribbons, window chrome,
+  Mail workspace, downloads/font packs and Office editors.
+- **Proofing** supports German, English and Arabic paths, with Hunspell, Harper,
+  spaCy and deterministic rule engines. Adaptive scheduling keeps provider work
+  out of active typing.
+- **Zotero** supports local/online libraries, native desktop hand-off, citation
+  fields, bibliographies and undoable edits.
+- **Legacy and ODF** paths include structured DOC conversion, XLS import and
+  bounded ODS/ODT reading and export. Original files are not silently rewritten.
+- **Fonts** can come from the host, installed Office fonts or reviewed open-font
+  packs. Missing faces use explicit fallbacks rather than invented metrics.
+- **Macros** are inert and preserved unless explicitly executed through the
+  documented native/MCP or VBA pathways.
+
+## Verification
+
+Use the repository checks after shared-source changes:
 
 ```bash
-cd packages/quds_office_engine && dart pub publish
-cd packages/quds_reports && dart pub publish
-cd packages/quds_office_editor && flutter pub publish
+dart pub get
+cd packages/quds_office_engine && dart test
+cd ../quds_office_editor && flutter test
+cd ../../packages/quds_office_editor/example && flutter test
+cd ../.. && flutter analyze
 ```
 
-Step-by-step, dry-run, and versioning: [`docs/PUBLISHING.md`](docs/PUBLISHING.md).
+The typing benchmark lives in
+`packages/quds_office_editor/example/test/studio_typing_proofing_benchmark_test.dart`
+and runs with `QUDS_TYPING_BENCHMARK=1`.
 
----
+Detailed records:
 
-## Contributing
+- [Office capability record](docs/office-capabilities-20261114.md)
+- [Remaining format gaps](docs/office-remaining-gaps.md)
+- [Document review](docs/document-review.md)
+- [Proofing roadmap](docs/PROOFING.md)
+- [Zotero support](docs/zotero-support.md)
+- [Mail roadmap](docs/roadmaps/mail/README.md)
+- [VBA parity](docs/VBA_PARITY_ROADMAP.md)
+- [Typing/autocorrect performance roadmap](docs/roadmaps/typing-autocorrect-performance.md)
 
-See [`CONTRIBUTING.md`](CONTRIBUTING.md). Issues and pull requests are welcome.
+## Known limits
 
-## License
+- Rendering is high-fidelity but not pixel-identical to Microsoft Office or
+  LibreOffice for every document.
+- Unsupported OOXML/ODF constructs are preserved where the package model allows,
+  or rejected explicitly; they are not silently rewritten.
+- Macro execution is bounded to the documented subsets. Signed packages are
+  refused rather than modified.
+- Live provider interoperability, native mounts and some mobile/browser paths
+  remain platform-specific or unqualified.
 
-[MIT](LICENSE) © Mohammed Asaad Asaad. Fork changes © CrispStrobe, same license.
+## Contributing and licence
 
+See [CONTRIBUTING.md](CONTRIBUTING.md). Keep engine and editor changes
+separable, add tests beside changed behaviour, and update package changelogs for
+public behaviour changes.
+
+[MIT](LICENSE) © Mohammed Asaad Asaad. Fork changes © CrispStrobe, same licence.
