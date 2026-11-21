@@ -1,0 +1,553 @@
+{
+  "scope": "Bounded read-only native ODT Zotero inventory; no editable ODT import or installed-host acceptance",
+  "qualified_source_checkpoint": "ce4eca72da1698f1b1ce9d2d494f345dbad32827",
+  "qualified_source_tree": "d3ea0686b6d793d6f6f5c4cd1d4706da7a65cda1",
+  "runtime": {
+    "flutter": "3.47.8",
+    "flutter_commit": "737ba8f885dc774b53b442759999a312c9461e4e",
+    "dart": "Dart SDK version: 3.13.7 (stable) (Thu Oct 22 14:28:57 2026 -0700) on \"linux_x64\"",
+    "node": "v24.22.3",
+    "dependencies": "flutter pub get --enforce-lockfile; pubspec.yaml and pubspec.lock unchanged"
+  },
+  "engine_regression": {
+    "command": [
+      "/workspace/scratch/cbbfa2f59b19/flutter-sdk/bin/dart",
+      "test",
+      "--reporter=json",
+      "--concurrency=4",
+      "test/odf_annotation_extraction_test.dart",
+      "test/odf_covered_cell_extraction_test.dart",
+      "test/odf_export_text_fidelity_test.dart",
+      "test/odf_frame_extraction_test.dart",
+      "test/odf_revision_extraction_test.dart",
+      "test/odf_text_box_extraction_test.dart",
+      "test/odf_zotero_ownership_test.dart",
+      "test/odf_zotero_preferences_test.dart",
+      "test/odf_zotero_reference_marks_test.dart",
+      "test/odf_zotero_resource_test.dart",
+      "test/odt_bookmark_end_fidelity_test.dart",
+      "test/odt_bookmark_name_ambiguity_test.dart",
+      "test/odt_bookmark_range_fidelity_test.dart",
+      "test/odt_column_break_style_fidelity_test.dart",
+      "test/odt_columns_breaks_fidelity_test.dart",
+      "test/odt_columns_schema_fidelity_test.dart",
+      "test/odt_comment_fidelity_test.dart",
+      "test/odt_complex_field_fidelity_test.dart",
+      "test/odt_document_writer_test.dart",
+      "test/odt_frame_common_style_test.dart",
+      "test/odt_header_footer_fidelity_test.dart",
+      "test/odt_header_variant_comment_fidelity_test.dart",
+      "test/odt_header_variant_order_test.dart",
+      "test/odt_hyperlink_range_fidelity_test.dart",
+      "test/odt_imported_field_fidelity_test.dart",
+      "test/odt_inline_column_break_fidelity_test.dart",
+      "test/odt_inline_field_fidelity_test.dart",
+      "test/odt_list_fidelity_test.dart",
+      "test/odt_note_fidelity_test.dart",
+      "test/odt_page_field_fidelity_test.dart",
+      "test/odt_page_marker_column_break_test.dart",
+      "test/odt_paragraph_break_style_test.dart",
+      "test/odt_paragraph_decoration_fidelity_test.dart",
+      "test/odt_paragraph_decoration_resume_test.dart",
+      "test/odt_paragraph_decoration_test.dart",
+      "test/odt_paragraph_properties_test.dart",
+      "test/odt_section_columns_test.dart",
+      "test/odt_section_continuation_test.dart",
+      "test/odt_section_fidelity_test.dart",
+      "test/odt_section_integration_test.dart",
+      "test/odt_story_visual_fidelity_test.dart",
+      "test/odt_structure_fidelity_test.dart",
+      "test/odt_tab_stop_fidelity_test.dart",
+      "test/odt_tab_style_cache_test.dart",
+      "test/odt_tab_style_fidelity_test.dart",
+      "test/odt_table_merge_test.dart",
+      "test/odt_table_tab_consolidation_test.dart",
+      "test/odt_table_tab_fidelity_test.dart",
+      "test/odt_table_tab_gector_fidelity_test.dart",
+      "test/odt_table_tab_qualification_test.dart",
+      "test/odt_table_tab_resume_test.dart",
+      "test/office_vba_text_conformance_test.dart",
+      "test/office_vba_text_intrinsics_test.dart",
+      "test/office_vba_word_text_integration_test.dart",
+      "test/word_zotero_add_note_test.dart",
+      "test/word_zotero_adjacent_citations_test.dart",
+      "test/word_zotero_bibliography_layout_test.dart",
+      "test/word_zotero_bibliography_style_fidelity_test.dart",
+      "test/word_zotero_caret_test.dart",
+      "test/word_zotero_citing_test.dart",
+      "test/word_zotero_document_data_test.dart",
+      "test/word_zotero_formatted_bibliography_test.dart",
+      "test/word_zotero_multiparagraph_test.dart",
+      "test/word_zotero_nested_note_tables_test.dart",
+      "test/word_zotero_nested_table_test.dart",
+      "test/word_zotero_nested_tables_integration_test.dart",
+      "test/word_zotero_note_image_test.dart",
+      "test/word_zotero_note_images_integration_test.dart",
+      "test/word_zotero_note_insertion_test.dart",
+      "test/word_zotero_note_list_test.dart",
+      "test/word_zotero_note_table_test.dart",
+      "test/word_zotero_note_tables_integration_test.dart",
+      "test/word_zotero_preference_flow_test.dart",
+      "test/word_zotero_research_target_test.dart",
+      "test/word_zotero_rich_edit_test.dart",
+      "test/word_zotero_scaling_test.dart",
+      "test/word_zotero_simple_field_test.dart",
+      "test/word_zotero_source_identity_test.dart",
+      "test/word_zotero_style_preferences_review_test.dart",
+      "test/word_zotero_table_cell_replacement_test.dart",
+      "test/word_zotero_test.dart",
+      "test/word_zotero_transfer_session_test.dart",
+      "test/word_zotero_transfer_test.dart",
+      "test/zotero_add_note_protocol_test.dart",
+      "test/zotero_backoff_state_test.dart",
+      "test/zotero_catalog_query_test.dart",
+      "test/zotero_citing_test.dart",
+      "test/zotero_client_test.dart",
+      "test/zotero_formatted_text_test.dart",
+      "test/zotero_identity_client_test.dart",
+      "test/zotero_item_children_test.dart",
+      "test/zotero_item_details_test.dart",
+      "test/zotero_metadata_batch_test.dart",
+      "test/zotero_paragraph_runs_test.dart",
+      "test/zotero_saved_search_test.dart",
+      "test/zotero_tag_catalog_test.dart",
+      "test/zotero_tag_filter_test.dart",
+      "test/zotero_transfer_protocol_test.dart"
+    ],
+    "cwd": "/workspace/scratch/cbbfa2f59b19/quds_office_suite/packages/quds_office_engine",
+    "exit_code": 0,
+    "seconds": 112.434,
+    "test_files": 98,
+    "passed": 2297,
+    "failed": 0,
+    "skipped": 0,
+    "error_events": [],
+    "sources_unchanged": true,
+    "changed_inputs": [],
+    "input_count": 627,
+    "dart_version": "Dart SDK version: 3.13.7 (stable) (Thu Oct 22 14:28:57 2026 -0700) on \"linux_x64\"",
+    "done_events": [
+      {
+        "success": true,
+        "type": "done",
+        "time": 95048
+      }
+    ]
+  },
+  "new_inventory_cases": [
+    {
+      "path": "test/odf_zotero_ownership_test.dart",
+      "results": {
+        "success": 38
+      }
+    },
+    {
+      "path": "test/odf_zotero_preferences_test.dart",
+      "results": {
+        "success": 60
+      }
+    },
+    {
+      "path": "test/odf_zotero_reference_marks_test.dart",
+      "results": {
+        "success": 38
+      }
+    },
+    {
+      "path": "test/odf_zotero_resource_test.dart",
+      "results": {
+        "success": 13
+      }
+    }
+  ],
+  "new_inventory_case_count": 149,
+  "portable": {
+    "native_plugin_commit": "0a31b434371eb21a1297c5bce8ca4978cb9ab425",
+    "fixture_kind": "synthetic-native-odt",
+    "vm_node_bytes_equal": true,
+    "cli_matches_portable_inventory": true,
+    "native_input_unchanged": true,
+    "malformed_input_unchanged": true,
+    "native_fixture_sha256": "2b555cd52f4c6f9ce3f2f55556f974bf69ee216d176a416c9b4c90c10d9d9e81",
+    "malformed_fixture_sha256": "52d79351962d81bb21110a67e0b4109c8626352d6b381ceb08d9aab75701b6a1",
+    "field_count": 4,
+    "paragraph_count": 7,
+    "preferences_chunks": 5,
+    "guards": {
+      "cross_cell_ineligible": true,
+      "malformed_xml_rejected": true,
+      "field_budget_rejected": true
+    },
+    "source_changes": [],
+    "commands": [
+      {
+        "label": "dart-version",
+        "command": [
+          "/workspace/scratch/cbbfa2f59b19/flutter-sdk/bin/dart",
+          "--version"
+        ],
+        "cwd": "/workspace/scratch/cbbfa2f59b19/quds_office_suite/packages/quds_office_engine",
+        "exit_code": 0,
+        "expected_exit_code": 0,
+        "elapsed_seconds": 0.131,
+        "stdout_sha256": "945e6a359e53647f8fd753347245ed78bc06c2808919b2d7749817181d010ff4",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "label": "analyze",
+        "command": [
+          "/workspace/scratch/cbbfa2f59b19/flutter-sdk/bin/dart",
+          "analyze",
+          "--fatal-infos",
+          "/workspace/scratch/cbbfa2f59b19/quds_office_suite/packages/quds_office_engine/tool/zotero/odt_inventory_acceptance.dart"
+        ],
+        "cwd": "/workspace/scratch/cbbfa2f59b19/quds_office_suite/packages/quds_office_engine",
+        "exit_code": 0,
+        "expected_exit_code": 0,
+        "elapsed_seconds": 7.292,
+        "stdout_sha256": "509e6c1b7538da2a2e7b25878dad28569ae43a6ee4c50e38232d26894a93a9c4",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "label": "vm",
+        "command": [
+          "/workspace/scratch/cbbfa2f59b19/flutter-sdk/bin/dart",
+          "--packages=/workspace/scratch/cbbfa2f59b19/quds_office_suite/.dart_tool/package_config.json",
+          "/workspace/scratch/cbbfa2f59b19/quds_office_suite/packages/quds_office_engine/tool/zotero/odt_inventory_acceptance.dart"
+        ],
+        "cwd": "/workspace/scratch/cbbfa2f59b19/quds_office_suite/packages/quds_office_engine",
+        "exit_code": 0,
+        "expected_exit_code": 0,
+        "elapsed_seconds": 11.764,
+        "stdout_sha256": "23b2a755388b0a665db33d20235a8f0ce6f155572d3cb781f5217921337c40b7",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "label": "compile-js",
+        "command": [
+          "/workspace/scratch/cbbfa2f59b19/flutter-sdk/bin/dart",
+          "compile",
+          "js",
+          "-O1",
+          "--packages=/workspace/scratch/cbbfa2f59b19/quds_office_suite/.dart_tool/package_config.json",
+          "/workspace/scratch/cbbfa2f59b19/quds_office_suite/packages/quds_office_engine/tool/zotero/odt_inventory_acceptance.dart",
+          "-o",
+          "/workspace/scratch/cbbfa2f59b19/odt-portable-validation-final/odt-inventory.js"
+        ],
+        "cwd": "/workspace/scratch/cbbfa2f59b19/quds_office_suite/packages/quds_office_engine",
+        "exit_code": 0,
+        "expected_exit_code": 0,
+        "elapsed_seconds": 7.956,
+        "stdout_sha256": "a05a271dee8633b9d1061dc62113db21aa697177736436437612ec5fec04f532",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "label": "node",
+        "command": [
+          "node",
+          "-e",
+          "globalThis.self=globalThis; require(process.argv[1]);",
+          "/workspace/scratch/cbbfa2f59b19/odt-portable-validation-final/odt-inventory.js"
+        ],
+        "cwd": "/workspace/scratch/cbbfa2f59b19/quds_office_suite/packages/quds_office_engine",
+        "exit_code": 0,
+        "expected_exit_code": 0,
+        "elapsed_seconds": 0.266,
+        "stdout_sha256": "23b2a755388b0a665db33d20235a8f0ce6f155572d3cb781f5217921337c40b7",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "label": "fixture-writer",
+        "command": [
+          "/workspace/scratch/cbbfa2f59b19/flutter-sdk/bin/dart",
+          "--packages=/workspace/scratch/cbbfa2f59b19/quds_office_suite/.dart_tool/package_config.json",
+          "/workspace/scratch/cbbfa2f59b19/odt-portable-validation-final/write_fixture.dart",
+          "/workspace/scratch/cbbfa2f59b19/odt-portable-validation-final"
+        ],
+        "cwd": "/workspace/scratch/cbbfa2f59b19/quds_office_suite/packages/quds_office_engine",
+        "exit_code": 0,
+        "expected_exit_code": 0,
+        "elapsed_seconds": 12.134,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "label": "cli-native",
+        "command": [
+          "/workspace/scratch/cbbfa2f59b19/flutter-sdk/bin/dart",
+          "--packages=/workspace/scratch/cbbfa2f59b19/quds_office_suite/.dart_tool/package_config.json",
+          "/workspace/scratch/cbbfa2f59b19/quds_office_suite/packages/quds_office_engine/tool/zotero/odt_inventory.dart",
+          "/workspace/scratch/cbbfa2f59b19/odt-portable-validation-final/native-inventory.odt"
+        ],
+        "cwd": "/workspace/scratch/cbbfa2f59b19/quds_office_suite/packages/quds_office_engine",
+        "exit_code": 0,
+        "expected_exit_code": 0,
+        "elapsed_seconds": 11.822,
+        "stdout_sha256": "b74482f0ab23926d85320951b66af7dffa56fe7f8510c688696241215068fe5f",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "label": "cli-malformed",
+        "command": [
+          "/workspace/scratch/cbbfa2f59b19/flutter-sdk/bin/dart",
+          "--packages=/workspace/scratch/cbbfa2f59b19/quds_office_suite/.dart_tool/package_config.json",
+          "/workspace/scratch/cbbfa2f59b19/quds_office_suite/packages/quds_office_engine/tool/zotero/odt_inventory.dart",
+          "/workspace/scratch/cbbfa2f59b19/odt-portable-validation-final/malformed-inventory.odt"
+        ],
+        "cwd": "/workspace/scratch/cbbfa2f59b19/quds_office_suite/packages/quds_office_engine",
+        "exit_code": 65,
+        "expected_exit_code": 65,
+        "elapsed_seconds": 10.678,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_sha256": "f3fa9c8fb4bcdc0819b9d29b9616efb5cffb92969a7000625c51e0ebd541319b"
+      }
+    ]
+  },
+  "static": {
+    "scope": "aggregate final static qualification for native ODT Zotero inventory",
+    "head": "ce4eca72da1698f1b1ce9d2d494f345dbad32827",
+    "analyzer": {
+      "command": "dart analyze --fatal-infos <10 selected Dart files>",
+      "exit_code": 0,
+      "result": "No issues found",
+      "log": "analyze.log"
+    },
+    "formatter": {
+      "command": "dart format --output=none --set-exit-if-changed <10 selected Dart files>",
+      "exit_code": 0,
+      "changed": 0,
+      "log": "format.log"
+    },
+    "source_inputs_unchanged": true,
+    "source_sha256": {
+      "packages/quds_office_engine/lib/src/odf/odf_zotero.dart": "55abdf71750455b64b2471ef1a541a62ae4bf03efe0ecc35f6bdd24a9050ce34",
+      "packages/quds_office_engine/lib/src/odf/odf_zotero_models.dart": "3f8f10f20e39919be297b1648ca7a6490bea81967ed17ebb010113fe2b27e3f5",
+      "packages/quds_office_engine/lib/src/odf/odf_zotero_preferences.dart": "1a930c4d71393f55feba9b10b37214c2b3990775fdc6aefe5a31fe25a965c8d5",
+      "packages/quds_office_engine/test/odf_zotero_reference_marks_test.dart": "2e6ee38c0c36b7ca76827fb46dece02c5e532c52db363f613601970116d34f7a",
+      "packages/quds_office_engine/test/odf_zotero_preferences_test.dart": "d550608b1c7bad7531951d2568ffff60e0aba18a089443f79e60abbd8ee71477",
+      "packages/quds_office_engine/test/odf_zotero_ownership_test.dart": "4823bd9432b5f8c0fb4ab3fb686142796587fff6ad2272328a311d241a46f429",
+      "packages/quds_office_engine/test/odf_zotero_resource_test.dart": "970d26d15a304f8de0dea11196142cd953c27eb5e8941082ebb6dbd61d085ca8",
+      "packages/quds_office_engine/tool/zotero/odt_inventory.dart": "c0e962f7ccea96960c3c1cca2a067427d38b3fb9a33cd0bbb83b1f2178e6793d",
+      "packages/quds_office_engine/tool/zotero/odt_inventory_acceptance.dart": "b11b5a0ff7e8a67061ec58d9ec8e49598b7361f0785bf404cb60566407bed641",
+      "packages/quds_office_engine/lib/quds_office_engine.dart": "528f9c5b9a4a43103b8211c89a74400c94b5e32f6c2f5104f9ae5f0a649d3ddd"
+    },
+    "runtime_tests": "Not rerun; this task only ran the requested static gate. Parent owns broad-gate results.",
+    "documentation_review": {
+      "paths": [
+        "docs/roadmaps/zotero/native-odt-input.md",
+        "docs/roadmaps/zotero/word-processor-parity.md",
+        "docs/zotero-support.md"
+      ],
+      "concerns": [],
+      "scope_note": "Read-only inventory, editable ODT loading, and installed-host acceptance are kept distinct; no new test-count claims found in the reviewed sections.",
+      "source_sha256": {
+        "docs/roadmaps/zotero/native-odt-input.md": "2cdf1a8202652f548537b31de80a7d818d472a3c39be475c7f9bc473c7e413cc",
+        "docs/roadmaps/zotero/word-processor-parity.md": "395c008d3739305f165a8be122cfa0d6decd920adeb4157d19a39add7802bf54",
+        "docs/zotero-support.md": "a1b37d7615bb87a0b870c55d61f31c6bbc20de035984dcb81111a4ef5586bb5b"
+      }
+    }
+  },
+  "final_mail_boolean": {
+    "suites": [
+      {
+        "path": "test/header_search_boolean_regression_test.dart",
+        "results": {
+          "success": 47
+        }
+      },
+      {
+        "path": "test/header_search_boolean_test.dart",
+        "results": {
+          "success": 26
+        }
+      }
+    ],
+    "done": [
+      {
+        "success": true,
+        "type": "done",
+        "time": 1187
+      }
+    ],
+    "raw_sha256": "18452f9e20808e64877dddcf90eb124c9632e2bbdc740af58f91e17127975967"
+  },
+  "incoming_mail_repository": {
+    "suites": [
+      {
+        "path": "test/cached_header_search_test.dart",
+        "results": {
+          "success": 19
+        }
+      },
+      {
+        "path": "test/mailbox_view_streams_test.dart",
+        "results": {
+          "success": 11
+        }
+      },
+      {
+        "path": "test/mailbox_views_test.dart",
+        "results": {
+          "success": 38
+        }
+      },
+      {
+        "path": "test/repository_test.dart",
+        "results": {
+          "success": 19
+        }
+      },
+      {
+        "path": "test/sync_mailboxes_test.dart",
+        "results": {
+          "success": 23
+        }
+      }
+    ],
+    "done": [
+      {
+        "success": true,
+        "type": "done",
+        "time": 4858
+      }
+    ],
+    "raw_sha256": "3ed7afb51a30156c7223210123a9f58e66725af395d497ca4fae6eafc580bf13"
+  },
+  "incoming_mail_isolated_host": {
+    "frozen_incoming_head": "833ddd05ff8cdecb202d6db414e66b91f2332544",
+    "isolated": true,
+    "commands": [
+      {
+        "label": "host-tests",
+        "command": [
+          "/workspace/scratch/cbbfa2f59b19/flutter-sdk/bin/flutter",
+          "--no-version-check",
+          "test",
+          "--no-pub",
+          "--reporter=json",
+          "test/studio_mail_cached_search_test.dart",
+          "test/studio_mail_mailbox_store_test.dart",
+          "test/studio_mail_mailbox_session_test.dart"
+        ],
+        "cwd": "/workspace/scratch/cbbfa2f59b19/quds_office_suite/packages/quds_office_editor/example",
+        "scoped_environment": {
+          "BOT": "true",
+          "CI": "true",
+          "FLUTTER_SUPPRESS_ANALYTICS": "true",
+          "TMPDIR": "/workspace/scratch/cbbfa2f59b19/runtime-tmp",
+          "PUB_CACHE": "/workspace/scratch/cbbfa2f59b19/pub-cache"
+        },
+        "exit_code": 0,
+        "elapsed_seconds": 35.817,
+        "stdout_sha256": "0480e75d8ed89a9710edd5d08908c35fb7c5d4d7b6eba8876eb0f2ef89223c68",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "label": "store-analysis",
+        "command": [
+          "/workspace/scratch/cbbfa2f59b19/flutter-sdk/bin/dart",
+          "analyze",
+          "--fatal-infos",
+          "lib/src/cached_header_search.dart",
+          "lib/src/repository.dart",
+          "test/cached_header_search_test.dart"
+        ],
+        "cwd": "/workspace/scratch/cbbfa2f59b19/quds_office_suite/packages/quds_mail_store",
+        "scoped_environment": {
+          "BOT": "true",
+          "CI": "true",
+          "FLUTTER_SUPPRESS_ANALYTICS": "true",
+          "TMPDIR": "/workspace/scratch/cbbfa2f59b19/runtime-tmp",
+          "PUB_CACHE": "/workspace/scratch/cbbfa2f59b19/pub-cache"
+        },
+        "exit_code": 0,
+        "elapsed_seconds": 3.144,
+        "stdout_sha256": "2d1a84380d6736df0839b4d35baebb99eb5b87fc2eaf86648b77b75bdb2e6580",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "label": "host-analysis",
+        "command": [
+          "/workspace/scratch/cbbfa2f59b19/flutter-sdk/bin/dart",
+          "analyze",
+          "--fatal-infos",
+          "lib/studio_mail_cached_search.dart",
+          "lib/studio_mail_mailbox_store.dart",
+          "test/studio_mail_cached_search_test.dart"
+        ],
+        "cwd": "/workspace/scratch/cbbfa2f59b19/quds_office_suite/packages/quds_office_editor/example",
+        "scoped_environment": {
+          "BOT": "true",
+          "CI": "true",
+          "FLUTTER_SUPPRESS_ANALYTICS": "true",
+          "TMPDIR": "/workspace/scratch/cbbfa2f59b19/runtime-tmp",
+          "PUB_CACHE": "/workspace/scratch/cbbfa2f59b19/pub-cache"
+        },
+        "exit_code": 0,
+        "elapsed_seconds": 14.37,
+        "stdout_sha256": "903a34db15f72ad9f3b52200481ca0c69b7d8a873f7a1d7b087ec1826012d1dc",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "label": "format",
+        "command": [
+          "/workspace/scratch/cbbfa2f59b19/flutter-sdk/bin/dart",
+          "format",
+          "--output=none",
+          "--set-exit-if-changed",
+          "/workspace/scratch/cbbfa2f59b19/quds_office_suite/packages/quds_mail_store/lib/src/cached_header_search.dart",
+          "/workspace/scratch/cbbfa2f59b19/quds_office_suite/packages/quds_mail_store/lib/src/repository.dart",
+          "/workspace/scratch/cbbfa2f59b19/quds_office_suite/packages/quds_mail_store/test/cached_header_search_test.dart",
+          "/workspace/scratch/cbbfa2f59b19/quds_office_suite/packages/quds_office_editor/example/lib/studio_mail_cached_search.dart",
+          "/workspace/scratch/cbbfa2f59b19/quds_office_suite/packages/quds_office_editor/example/lib/studio_mail_mailbox_store.dart",
+          "/workspace/scratch/cbbfa2f59b19/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_cached_search_test.dart"
+        ],
+        "cwd": "/workspace/scratch/cbbfa2f59b19/quds_office_suite",
+        "scoped_environment": {
+          "BOT": "true",
+          "CI": "true",
+          "FLUTTER_SUPPRESS_ANALYTICS": "true",
+          "TMPDIR": "/workspace/scratch/cbbfa2f59b19/runtime-tmp",
+          "PUB_CACHE": "/workspace/scratch/cbbfa2f59b19/pub-cache"
+        },
+        "exit_code": 0,
+        "elapsed_seconds": 0.316,
+        "stdout_sha256": "e7ef019decd411c978bd04811872b0dc34136161a3c7f441020b882f9e7526d7",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    ],
+    "host": {
+      "suites": {
+        "/workspace/scratch/cbbfa2f59b19/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_mailbox_session_test.dart": {
+          "success": 14
+        },
+        "/workspace/scratch/cbbfa2f59b19/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_cached_search_test.dart": {
+          "success": 21
+        },
+        "/workspace/scratch/cbbfa2f59b19/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_mailbox_store_test.dart": {
+          "success": 23
+        }
+      },
+      "errors": [],
+      "done": [
+        {
+          "success": true,
+          "type": "done",
+          "time": 26955
+        }
+      ]
+    },
+    "input_count": 217,
+    "source_changes": []
+  },
+  "counting_note": "149 new inventory cases are included in the 2,297-test final gate. Earlier focused and baseline runs overlap and must not be added to this total.",
+  "github_actions": {
+    "queried": false,
+    "awaited": false
+  },
+  "limitations": [
+    "Synthetic ODT fixtures follow the pinned native plugin storage contract; they are not outputs captured from an installed Zotero/LibreOffice session.",
+    "No rich ODT reader, active-field import, changed ordinary ODT export, or installed Word/LibreOffice/OpenOffice acceptance is claimed.",
+    "The historical DOCX to ODT to DOCX continued-list converter finding remains open."
+  ]
+}

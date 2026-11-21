@@ -1,85 +1,206 @@
-# Native ODT Zotero inventory — local qualification
+# Native ODT Zotero inventory: implementation and qualification
 
-This record covers the read-only inventory implementation captured at
-`60e212b0d62f55054a1e77e5b8721564656eaf57` and preserved through
-`ce4eca72da1698f1b1ce9d2d494f345dbad32827`. It was independently qualified during
-the [Mail integration](../mail-unified-cache-20261121/README.md) and integrated
-at `8e62c444feea8afb20a1621858bad899bc7c1d23`.
+This continuation implements the read-only inventory prerequisite specified by
+the [native ODT input contract](../../roadmaps/zotero/native-odt-input.md).
+`OdfZotero.inspect` and its diagnostic CLI now recognize native citation
+ReferenceMarks, bibliography TextSections and document preferences while
+retaining their original data and structural ownership. They do not publish
+an editable ODT document or start a Zotero session.
 
-The older [native-ODT record](../zotero-native-odt-20261121/README.md) describes
-its own earlier blocked documentation checkpoint. Its unexecuted status is
-historical; it is not a description of the inventory implementation below.
+## Delivered behavior
 
-## Actual scope
+- The public engine API inspects the actual ODT ZIP package, checks its MIME
+  type, and reads namespace-qualified `content.xml`, optional `styles.xml` and
+  optional `meta.xml` with explicit cumulative limits.
+- Canonical Zotero names retain their complete native identity, logical field
+  code and terminal random suffix. Existing bounded metadata codecs preserve
+  supported unknown citation data. Legacy or malformed names remain findings.
+- Every endpoint retains the package part, prefix-independent element path,
+  story identity and structural owner chain. Endpoints inside a paragraph also
+  retain its identity and UTF-16 offset; section boundary endpoints can have
+  null paragraph coordinates. Bibliography paragraph ranges retain their own
+  exact paragraph coordinates and cached visible text.
+- Body, note and cell owners remain distinct. Duplicate, missing, crossed,
+  nested, cross-story, repeated, protected, linked and unsupported ownership
+  cannot become an eligible field by matching visible text.
+- Numbered `ZOTERO_PREF_*` and `CSL_PREF_*` properties retain the original
+  preference string, chunks and unrelated metadata. Numeric ordering, empty
+  cleanup chunks and ODF's default string type are covered. Conflicting or
+  malformed families are reported explicitly.
+- The reader bounds archive/XML size, elements, depth, endpoints, paragraphs,
+  field names, decoded/cached text, preference collection, range work and range
+  objects. Empty or nested sections cannot evade the work/allocation limits.
+  Exhaustion rejects the inspection instead of returning partial success.
 
-`OdfZotero.inspect` performs bounded, read-only inspection of native ODT citation
-ReferenceMarks, bibliography ReferenceMarks and TextSections, cached text and
-original Zotero preferences. It preserves namespace-aware part, story and
-structural ownership, paragraph boundaries, UTF-16 offsets and metadata.
-Authored footnotes/endnotes and table-cell identities are represented explicitly.
+`isValid` concerns canonical name/metadata validity. `isImportCandidate` also
+requires an unambiguous supported physical range. Neither property establishes
+rich ODF formatting support or active editing. The JSON result explicitly says
+`editable: false`. Ordinary ODT export and normal Word/HTTP Zotero callbacks
+retain their existing behavior.
 
-Ambiguous, duplicate, overlapping, protected, linked, repeated or unsupported
-structures remain visible with findings and cannot silently become import
-candidates. Cumulative paragraph-range work and materialized range records are
-bounded, including empty and overlapping content. Unmodeled ODF owners and
-ambiguous expanded XML attributes are guarded explicitly.
+From `packages/quds_office_engine`:
 
-Inspection preserves its input bytes. It does not activate citation fields,
-normalize native preferences into Word fields, contact Zotero or enable editable
-ODT loading. Output explicitly reports `editable: false`.
+```bash
+dart run tool/zotero/odt_inventory.dart /path/to/document.odt
+```
 
-## Executed checks
+The CLI reads the input and emits the inventory as JSON. A malformed package
+returns exit code 65 with no success JSON. The input bytes remain unchanged.
 
-Runtime: the repository-pinned Flutter **3.47.8**, Dart **3.13.7** and Node
-**24.22.3**. Dependencies resolved offline against the unchanged lockfile.
+## Remote intake and preservation
 
-| Check | Result |
+The initial intake captured main at
+`f50c4f23392ccb0ac9f486541ffae6a65a691b99`, all 24 advertised fork branches,
+the 100 most recently updated pull requests, and four upstream heads.
+Twenty-three fork heads and all upstream heads were already ancestors. All
+100 captured PRs were merged; historical nonancestor PR heads have their
+inherited equivalence dispositions in [intake-initial.json](intake-initial.json).
+
+The outstanding Word text branch at
+`2714483aafe059065b00dac23032023f9ddf7aac` was merged while preserving current
+main's Mail UI/localization and both independent Boolean test cohorts. The
+incoming Word source, fixtures, example and tests retain their original
+ancestry. Main subsequently advanced to
+`64ebfc1bbc1daf9d3e9fc8a03ff8bf95f9973e04`; that reconciliation includes the
+two Boolean cohorts in separate files and provenance-only fixture corrections.
+The final engine gate ran after this incoming main was integrated.
+
+The late intake also captured the new Mail cache branch at
+`833ddd05ff8cdecb202d6db414e66b91f2332544`. Its nine-path additive cache-search
+change was independently reviewed and integrated without conflicts. The
+recorded cutoff is bounded; it is not a claim about future active branch heads.
+[intake-final.json](intake-final.json) records the final intake and disposition.
+
+A subsequent [discovery snapshot](premerge-discovery.json) found main unchanged
+and three concurrent heads created or advanced after those cutoffs: Touch ID
+PR #302 (`38b0dae0`), wrap-chrome performance (`d76c705b`) and further Mail cache
+work (`4ecf9850`). Those later heads remain on their original remote branches
+for their own review and qualification. They are not counted as integrated by
+this bounded intake, and no branch was deleted or rewritten.
+
+All checkpoints were saved on
+[`codex/zotero-odt-inventory-20261121`](https://github.com/CrispStrobe/quds_office_suite/tree/codex/zotero-odt-inventory-20261121)
+using non-forced updates with an expected previous head. The branch is retained.
+
+| Checkpoint | Purpose |
 | --- | --- |
-| Reference-mark, ownership, preferences and resource suites | **149 tests passed** |
-| Strict analysis of ten changed Dart files | No issues |
-| Strict formatting of those ten files | Zero changes |
-| Portable inventory acceptance on Dart VM and compiled Node | Successful; byte-identical JSON |
-| Portable fixture | Four fields; stable repeated inventory; source bytes preserved; malformed/budget cases rejected; cross-cell range ineligible |
-| Tracked manifests and lockfiles | All 23 unchanged |
+| [`465ded3282`](https://github.com/CrispStrobe/quds_office_suite/commit/465ded3282ce03c636a9f0c17547fa5b94634de4) | Reconcile the initially outstanding Word branch and preserve both test cohorts. |
+| [`0ad43b78ef`](https://github.com/CrispStrobe/quds_office_suite/commit/0ad43b78ef43d26bc2c97b8b75ad58ca20914617) | Preserve the first executable native ODT inventory and regressions. |
+| [`60e212b0d6`](https://github.com/CrispStrobe/quds_office_suite/commit/60e212b0d62f55054a1e77e5b8721564656eaf57) | Preserve reviewed ownership/resource fixes, portable acceptance driver and documentation. |
+| [`aa72fa6b52`](https://github.com/CrispStrobe/quds_office_suite/commit/aa72fa6b52c58168d943181e1201ab5ef8ef321b) | Reconcile updated main while retaining the Zotero implementation. |
+| [`ce4eca72da`](https://github.com/CrispStrobe/quds_office_suite/commit/ce4eca72da1698f1b1ce9d2d494f345dbad32827) | Preserve the frozen incoming Mail cache branch and its ancestry. |
 
-The original `0ad43b78` checkpoint passed 134 tests before the additional resource
-and ownership cases. The final 149 supersedes that historical count. Portable
-execution supplies runtime coverage, not another 149 distinct tests.
+The commit containing this record adds the final evidence and a documentation
+unit correction. Its source manifest binds the executed checks to the exact
+qualified implementation; evidence-only changes do not alter that source.
 
-All thirteen entries in the focused source/manifest binding remain byte-identical
-between qualified `60e212b0` and the captured `ce4eca72` integration head. Every
-later changed path in that range was attributed to an exact previously captured
-main or Mail blob; there was no new unqualified Zotero implementation delta.
+## Executed local qualification
+
+Runtime: repository-pinned Flutter **3.47.8**
+(`737ba8f885dc774b53b442759999a312c9461e4e`), Dart **3.13.7**, locked workspace
+dependencies. Dependency resolution used `flutter pub get --enforce-lockfile`;
+`pubspec.yaml` and `pubspec.lock` were unchanged. GitHub Actions were neither
+queried nor awaited.
+
+| Gate | Observed result |
+| --- | --- |
+| Final engine regression: 98 selected Zotero, ODF/ODT and incoming Word text test files | **2,297 passed; 0 failed; 0 skipped.** All 627 captured inputs unchanged before/after. |
+| New native ODT inventory cases, included in that final total | **149:** 38 mark/section cases, 60 preferences, 38 ownership/adversarial cases, 13 resource/unsupported-owner cases. |
+| Final aggregate static gate: public entry point, three production files, four test files and two tools | `dart analyze --fatal-infos`: no issues. Formatting: 10 files, zero changes. All ten inputs unchanged. |
+| Native ODT portable acceptance | Dart VM and compiled JavaScript/Node receipts byte-identical. Four fields, seven paragraphs and five preference chunks; Unicode, ownership and malformed/budget guards passed. |
+| Read-only diagnostic CLI | Valid fixture exit 0 and exact API inventory; malformed fixture exit 65 and no success JSON. Both input files unchanged. |
+| Reconciled Mail Boolean cohorts | **73 passed:** 26 original cases and 47 independent regression cases; no failures or skips. |
+| Frozen incoming Mail cache repository and related local mailbox/sync suites | **110 passed** across five files; no failures or skips. |
+| Frozen incoming Mail host cached-search, mailbox-store and mailbox-session suites | **58 passed** across three files; no failures or skips. Scoped store/host analysis clean; six formatted files unchanged. All 217 captured inputs unchanged. |
+
+The 149 new cases are a subset of 2,297, not an additional total. Focused
+development runs and the initial 336-case Word/Mail baseline overlap these
+checks. Their original receipts are retained without inflating the final count.
+
+The first broad run had 2,284 passing cases, but production resource fixes were
+being completed during its source-capture interval. That run is retained under
+`odt-validation/pre-resource-run/` as development evidence. The final 2,297-case
+run includes all 13 new resource cases and has unchanged input manifests.
+
+The original Flutter host-test startup was rejected by automatic approval
+review citing possible cloud metadata access; it produced no qualifying host
+test result. Local SDK review identified Flutter's pre-run Azure bot detector
+as a matching request path. The rejected process was not resumed. A fresh host
+gate ran in a new user/network namespace with only loopback and no external
+route, with `BOT=true`, `CI=true`, `FLUTTER_SUPPRESS_ANALYTICS=true`,
+`--no-version-check` and `--no-pub`. Namespace evidence was captured before and
+after. This removed the offending startup path and confined the entire check.
+The saved blocked-execution record remains separate from the successful
+isolated results. The incoming Mail code independently reviewed here adds
+local database behavior, with no network or credential-acquisition changes.
 
 ## Evidence and reproduction
 
-The [local evidence archive](../mail-unified-cache-20261121/local-evidence.tar.gz)
-contains exact commands, timestamps, exit codes, source hashes, raw logs, CLI
-fixtures and portable outputs under `zotero-incoming-20261121/60e212b0/`.
-`zotero-incoming-20261121/ce4eca72-audit.json` records the later preservation
-proof. Earlier unsuccessful analysis attempts and the superseded test-only
-lint patch are retained separately and are not counted as final passes.
+- [results.json](results.json): machine-readable final engine counts, per-suite
+  inventory counts, portable/CLI receipts, runtime and static results.
+- [qualified-source-sha256.json](qualified-source-sha256.json): the engine
+  regression inputs and new public API/test/tool hashes.
+- [local-validation.zip](local-validation.zip): raw logs, exact commands,
+  before/after manifests, acceptance receipts, synthetic native/malformed ODT
+  fixtures and local runner scripts. Generated JavaScript files are omitted;
+  compile commands and captured compiler, VM and Node stdout receipts and
+  hashes are retained.
+- [evidence-sha256.json](evidence-sha256.json): archive and member hashes. The
+  archive was reopened, CRC-checked and each extracted member hash verified.
+- [intake-initial.json](intake-initial.json) and
+  [intake-final.json](intake-final.json): captured refs, incoming-history
+  decisions and relevant qualification limits.
+- [premerge-discovery.json](premerge-discovery.json): subsequent concurrent work
+  observed after the frozen integration cutoff, with explicit dispositions.
 
-With the pinned SDK and locked dependencies available, run from
-`packages/quds_office_engine`:
+To run the four focused parser suites from `packages/quds_office_engine`:
 
-```sh
-dart test --reporter expanded \
+```bash
+dart test \
   test/odf_zotero_reference_marks_test.dart \
-  test/odf_zotero_ownership_test.dart \
   test/odf_zotero_preferences_test.dart \
+  test/odf_zotero_ownership_test.dart \
   test/odf_zotero_resource_test.dart
-dart run tool/zotero/odt_inventory_acceptance.dart
 ```
 
-The archived portable receipt includes the exact compiler and Node invocations.
-GitHub Actions, check/status queues and workflow runs were neither consulted
-nor awaited for this qualification.
+The deterministic acceptance driver is
+`tool/zotero/odt_inventory_acceptance.dart`. Run it with Dart, compile that same
+file with `dart compile js -O1`, then run the emitted script using Node with
+`globalThis.self = globalThis`. Compare the two complete stdout receipts.
+The archived commands show the exact package configuration used here.
 
-## Remaining acceptance boundaries
+## Remaining parity work
 
-Rich ODT import/editing, preservation of the complete formatting envelope,
-explicit activation and editable round trips remain separate work. Installed
-LibreOffice/Zotero acceptance and version-specific interoperability were not
-executed here. Current fixtures are synthetic and source-contract-based; they
-do not establish installed-host acceptance.
+The fixtures follow the pinned
+[Zotero LibreOffice integration storage contract](https://github.com/zotero/zotero-libreoffice-integration/commit/0a31b434371eb21a1297c5bce8ca4978cb9ab425).
+They are synthetic, not files captured from an installed Office/Zotero session.
+No new live Zotero, Word, LibreOffice or legacy Apache OpenOffice acceptance is
+claimed by these local results.
+
+The next implementation is a bounded rich ODT-to-`WmlDocument` reader. It must
+preserve paragraph/run formatting, notes, lists, tables and resource ownership
+before converting inventory identities into active fields. Then qualify DOCX
+save/reopen, citation editing, style conversion and bibliography refresh using
+actual plugin-produced documents. Publish editable ODT loading only through
+the existing detached staging, stale-document and single-transaction guards.
+
+The earlier DOCX → ODT → DOCX continued-list converter finding remains open.
+The [parity roadmap](../../roadmaps/zotero/word-processor-parity.md) retains
+that finding and the other rendering, structural and installed-host gates.
+
+## Subsequent Mail integration
+
+The later Mail continuation preserved this complete record and its evidence,
+and incorporated the Touch ID and typing-benchmark heads observed after the
+Zotero cutoff above. Credential enrollment/cleanup and unlock error recovery
+were corrected before publication. The combined Mail/credential source at
+`62e9f1af15f2cb00ee67a339cdc6dea48d882aab` passed 178 focused Studio tests and
+407 Mail core tests, with unchanged source and dependency fingerprints.
+
+The [Mail continuation record](../mail-unified-cache-20261121/README.md)
+records the later intake, corrections and final source bindings. Its
+[independent ODT qualification](../mail-unified-cache-20261121/zotero-independent-qualification.md)
+records a separate 149-case inventory run and VM/Node acceptance. Those
+inventory cases overlap the engine counts above and are not additional unique
+coverage. This appendix does not change the original record's captured cutoff
+or recast inherited results as newly executed Mail tests.
