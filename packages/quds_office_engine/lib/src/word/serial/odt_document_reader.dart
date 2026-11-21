@@ -6,6 +6,7 @@ import '../../odf/odf_zotero.dart';
 import '../../opc/office_package_parts.dart';
 import '../../opc/opc_archive.dart';
 import '../../opc/zip/zip_reader.dart';
+import '../../xml/namespaces.dart';
 import '../../xml/xml_node.dart';
 import '../model/wml_document.dart';
 import '../model/word_lists.dart';
@@ -226,6 +227,19 @@ final class _OdtReader {
       section,
       hasFootnotes: document.footnotes.isNotEmpty,
     );
+    if (document.endnotes.isNotEmpty) {
+      // This reader admits only automatic decimal notes starting at one and
+      // continuing through the document. Word defaults endnotes to lower
+      // Roman, so preserve the qualified ODT numbering explicitly in its new
+      // native section rather than changing labels on the next DOCX save.
+      section.sourceProperties = WmlSectionSource(
+        xml:
+            '<w:sectPr xmlns:w="${OfficeNamespaces.w}">'
+            '<w:endnotePr><w:numFmt w:val="decimal"/>'
+            '</w:endnotePr></w:sectPr>',
+        values: const <String, String>{},
+      );
+    }
     _attachFields();
     // Source ODF offsets exclude the visible note number. After reconstruction,
     // use the same numbered anchor representation as the DOCX reader/layout.

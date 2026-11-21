@@ -9,10 +9,12 @@ class StudioMailDialog extends StatelessWidget {
     super.key,
     required this.strings,
     this.chromeBuilder,
+    this.onClose,
   });
 
   final StudioStrings strings;
   final WidgetBuilder? chromeBuilder;
+  final VoidCallback? onClose;
 
   @override
   Widget build(BuildContext context) => Dialog.fullscreen(
@@ -23,6 +25,7 @@ class StudioMailDialog extends StatelessWidget {
           child: StudioSavedMailView(
             strings: strings,
             accountNotice: strings.mailAccountsUnavailable,
+            onClose: onClose,
           ),
         ),
       ],

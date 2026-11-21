@@ -53,6 +53,10 @@ abstract final class WordZoteroDocumentData {
   static String fromOdt(String data) =>
       _convert(data, 'Field', nativeOdt: true);
 
+  /// Adapts validated Word/HTTP preferences for explicit native ODT export.
+  /// This does not relax the input storage types accepted by desktop callbacks.
+  static String toOdt(String data) => _convert(data, 'ReferenceMark');
+
   /// Requests a fresh native bibliography layout without changing the chosen
   /// style or any unrelated preference. Earlier simplified results must not
   /// permanently advertise that their paragraph layout was already applied.

@@ -26,7 +26,7 @@ At intake, two additional fork heads were preserved as unfinished independent wo
 
 - `codex/word-vba-extensions-20261121` at
   `870e0ff97c9c6290bfe14bb6a137d46c54f2e697`: draft PR #322 compiles a new
-  paragraph-style operation whose native implementation is still absent.
+  paragraph-style operation whose native implementation was absent at that snapshot.
 - `work/mail-compose-tools-20261121` at
   `32a6dcd4e56584b5af34625b44a845eb15ba44bd`: account signatures and Quick Text
   remain under implementation and qualification; no completed PR was present.
@@ -41,8 +41,12 @@ During this continuation, Mail PRs #324 and #325 landed on main at
 are now included by remote checkpoint
 `2cf5055db72e229b10bf27735ba92e72e996ff84`. That intake preserves the Mail
 work record's own explicit outstanding qualification; it does not borrow Zotero
-test results. The Word style continuation remains independently advancing.
-Remote refs will be refreshed again before publication.
+test results. The [later read-only intake](publication-intake.json) records
+two independently advancing Word style implementations. The original draft
+now includes a native operation, while the competing `styles-complete` branch
+explicitly leaves final preservation qualification pending. Neither is treated
+as completed solely from its branch name. Remote refs will be refreshed again
+before publication.
 
 ## Executed baseline qualification
 
@@ -66,3 +70,25 @@ Push each meaningful checkpoint to the remote topic branch. The user explicitly
 authorized final integration into remote main without waiting for the starved
 GitHub Actions queue. Checkpoint and merge messages use `[skip ci]`; Actions
 will not be queried, rerun, or awaited, and repository protection is unchanged.
+
+
+## Implemented export checkpoint
+
+The engine API and Studio action are implemented. The
+[native-output contract](../../roadmaps/zotero/native-odt-output.md) specifies
+canonical names, preferences, supported ownership, limits and refusals.
+Independent review identified and resolved explicit covered-cell output,
+opaque-XML guard ordering, and decimal endnote persistence. Initial executed
+gates passed 78 writer/preferences cases, 63 lifecycle/reader cases and 23
+Studio export/open/shortcut cases. These overlap other gates and are not an
+additive unique total. Final frozen-source regression is in progress.
+
+The actual LibreOfficeDev 26.8.0.0.alpha0 save/reopen check preserved all seven
+field records across two synthetic fixtures, including exact native names,
+metadata, cached paragraph boundaries, preferences, note stories and table-cell
+ownership counts. Installed Zotero plugin behavior is not inferred from it.
+
+Strict Studio analysis also exposed an existing conditional browser Mail
+constructor mismatch: the shared workspace passed `onClose` but the browser
+implementation lacked it. The browser dialog and saved-message view now route
+that callback consistently, with a focused embedded-close regression.
