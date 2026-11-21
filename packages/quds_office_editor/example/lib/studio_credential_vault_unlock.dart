@@ -23,15 +23,26 @@ Future<StudioVaultUnlockOutcome> unlockStudioCredentialVault(
   required StudioCredentialStorage manager,
   required StudioStrings strings,
 }) async {
-  final biometric = await manager.unlockVaultWithBiometrics(
-    reason: strings.vaultTouchIdReason,
-    fallbackTitle: strings.vaultTouchIdUsePassword,
-  );
+  var biometric = StudioVaultBiometricUnlock.failed;
+  try {
+    biometric = await manager.unlockVaultWithBiometrics(
+      reason: strings.vaultTouchIdReason,
+      fallbackTitle: strings.vaultTouchIdUsePassword,
+    );
+  } on Object {
+    // A failed preference/backend read must still offer the master password.
+  }
   if (biometric == StudioVaultBiometricUnlock.unlocked) {
     return StudioVaultUnlockOutcome.unlocked;
   }
-  final availability = await manager.biometricAvailability();
-  final enabled = await manager.biometricUnlockEnabled();
+  var availability = BiometricUnlockAvailability.error;
+  var enabled = false;
+  try {
+    availability = await manager.biometricAvailability();
+    enabled = await manager.biometricUnlockEnabled();
+  } on Object {
+    availability = BiometricUnlockAvailability.error;
+  }
   if (!context.mounted) return StudioVaultUnlockOutcome.cancelled;
   final usable = availability == BiometricUnlockAvailability.available;
   return await showDialog<StudioVaultUnlockOutcome>(
@@ -131,25 +142,32 @@ class _StudioVaultUnlockDialogState extends State<StudioVaultUnlockDialog> {
       _busy = true;
       _error = null;
     });
-    final result = await widget.manager.unlockVaultWithBiometrics(
-      reason: widget.strings.vaultTouchIdReason,
-      fallbackTitle: widget.strings.vaultTouchIdUsePassword,
-    );
-    if (!mounted) return;
-    if (result == StudioVaultBiometricUnlock.unlocked) {
-      Navigator.of(context).pop(StudioVaultUnlockOutcome.unlocked);
-      return;
-    }
-    setState(() {
-      _busy = false;
-      if (result == StudioVaultBiometricUnlock.invalidated) {
-        _retryTouchId = false;
-        _offerTouchId = true;
-        _notice = widget.strings.vaultTouchIdInvalidated;
-      } else if (result != StudioVaultBiometricUnlock.cancelled) {
-        _notice = widget.strings.vaultTouchIdFailed;
+    try {
+      final result = await widget.manager.unlockVaultWithBiometrics(
+        reason: widget.strings.vaultTouchIdReason,
+        fallbackTitle: widget.strings.vaultTouchIdUsePassword,
+      );
+      if (!mounted) return;
+      if (result == StudioVaultBiometricUnlock.unlocked) {
+        Navigator.of(context).pop(StudioVaultUnlockOutcome.unlocked);
+        return;
       }
-    });
+      setState(() {
+        if (result == StudioVaultBiometricUnlock.invalidated) {
+          _retryTouchId = false;
+          _offerTouchId = true;
+          _notice = widget.strings.vaultTouchIdInvalidated;
+        } else if (result != StudioVaultBiometricUnlock.cancelled) {
+          _notice = widget.strings.vaultTouchIdFailed;
+        }
+      });
+    } on Object {
+      if (mounted) {
+        setState(() => _notice = widget.strings.vaultTouchIdFailed);
+      }
+    } finally {
+      if (mounted) setState(() => _busy = false);
+    }
   }
 
   @override

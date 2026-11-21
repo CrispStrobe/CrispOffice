@@ -66,6 +66,12 @@ class StudioCredentialStorage extends ChangeNotifier {
   final Future<WebEncryptedStorage> Function()? _vaultFactory;
   final BiometricSecretStore biometrics;
   final _biometricOperations = AsyncLock();
+  bool _biometricCleanupPending = false;
+
+  /// A protected item or its preference still needs removal. No secret is
+  /// exposed, and biometric unlock stays disabled until cleanup or enrolment
+  /// completes successfully.
+  bool get biometricCleanupPending => _biometricCleanupPending;
 
   /// Set when a stored biometric key was invalidated, so the next
   /// master-password unlock explains why biometric unlock is offered again.
@@ -103,16 +109,17 @@ class StudioCredentialStorage extends ChangeNotifier {
       }
     }
     _loaded = true;
-    if (mode != StudioCredentialMode.encryptedVault) {
-      // Finish a removal that failed when the storage mode last changed.
-      unawaited(_clearStaleBiometricSecret());
-    }
+    // Also remove a key left by failed enrolment while the vault is selected:
+    // its durable disabled preference deliberately does not authorize reads.
+    unawaited(_clearStaleBiometricSecret());
   }
 
   Future<void> _clearStaleBiometricSecret() =>
       _biometricOperations.synchronized(() async {
         try {
-          if (await biometricUnlockEnabled()) {
+          if (mode != StudioCredentialMode.encryptedVault ||
+              _biometricCleanupPending ||
+              !await biometricUnlockEnabled()) {
             await _removeBiometricSecret(bestEffort: true);
           }
         } on Object {
@@ -164,16 +171,30 @@ class StudioCredentialStorage extends ChangeNotifier {
   }
 
   Future<bool> biometricUnlockEnabled() async =>
-      (await SharedPreferences.getInstance()).getBool(biometricPreferenceKey) ??
-      false;
+      !_biometricCleanupPending &&
+      ((await SharedPreferences.getInstance()).getBool(
+            biometricPreferenceKey,
+          ) ??
+          false);
 
   Future<void> _setBiometricFlag(bool enabled) async {
     final prefs = await SharedPreferences.getInstance();
-    final saved = enabled
-        ? await prefs.setBool(biometricPreferenceKey, true)
-        : await prefs.remove(biometricPreferenceKey);
-    if (!saved) {
-      throw StateError('Could not save the biometric unlock setting.');
+    try {
+      final saved = enabled
+          ? await prefs.setBool(biometricPreferenceKey, true)
+          : await prefs.remove(biometricPreferenceKey);
+      if (!saved) {
+        throw StateError('Could not save the biometric unlock setting.');
+      }
+    } on Object {
+      // SharedPreferences mutates its cache before the platform confirms a
+      // write. A rejected enable must not look successful in this process.
+      try {
+        await prefs.reload();
+      } on Object {
+        // The pending-cleanup guard still prevents using the uncommitted key.
+      }
+      rethrow;
     }
   }
 
@@ -182,28 +203,58 @@ class StudioCredentialStorage extends ChangeNotifier {
   /// its master password).
   Future<void> enableBiometricUnlock() =>
       _biometricOperations.synchronized(() async {
+        await loadSelection();
+        if (mode != StudioCredentialMode.encryptedVault) {
+          throw StateError('Select the encrypted credential vault first.');
+        }
+        final generation = _selectionGeneration;
         final vault = _stores[_vaultIdentity];
         if (vault is! WebEncryptedStorage) {
           throw StateError('Unlock the encrypted credential vault first.');
         }
-        if (await biometricAvailability() !=
-            BiometricUnlockAvailability.available) {
+        void checkContext() {
+          if (mode != StudioCredentialMode.encryptedVault ||
+              generation != _selectionGeneration ||
+              !identical(_stores[_vaultIdentity], vault)) {
+            throw StateError(
+              'Credential storage changed during biometric enrolment.',
+            );
+          }
+        }
+
+        final availability = await biometricAvailability();
+        checkContext();
+        if (availability != BiometricUnlockAvailability.available) {
           throw StateError('Biometric unlock is not available.');
         }
         final key = await vault.exportUnlockKey();
         if (key == null) {
           throw StateError('This vault cannot be unlocked with a stored key.');
         }
-        final payload = jsonEncode({
-          'v': _biometricPayloadVersion,
-          'key': base64.encode(key),
-        });
-        key.fillRange(0, key.length, 0);
-        await biometrics.store(payload);
+        final String payload;
         try {
+          checkContext();
+          payload = jsonEncode({
+            'v': _biometricPayloadVersion,
+            'key': base64.encode(key),
+          });
+        } finally {
+          key.fillRange(0, key.length, 0);
+        }
+        _biometricCleanupPending = true;
+        try {
+          // Write the disabled state first. A crash or rejected enable after
+          // storing the key then leaves durable evidence that startup must
+          // remove it, even when the vault remains the selected backend.
+          await _setBiometricFlag(false);
+          checkContext();
+          await biometrics.store(payload);
+          checkContext();
           await _setBiometricFlag(true);
+          checkContext();
+          _biometricCleanupPending = false;
         } on Object {
-          await _deleteBiometricItemQuietly();
+          await _removeBiometricSecret(bestEffort: true);
           rethrow;
         }
         biometricReenrolmentSuggested = false;
@@ -214,20 +265,27 @@ class StudioCredentialStorage extends ChangeNotifier {
       _biometricOperations.synchronized(() => _removeBiometricSecret());
 
   Future<void> _removeBiometricSecret({bool bestEffort = false}) async {
+    _biometricCleanupPending = true;
+    Object? failure;
+    StackTrace? failureStack;
     try {
-      await biometrics.delete();
+      // Persist the disabled state before deleting. If the OS refuses removal,
+      // next startup retries even while the encrypted vault remains selected.
       await _setBiometricFlag(false);
-    } on Object {
-      // Keep the flag when deletion failed, so cleanup is retried later.
-      if (!bestEffort) rethrow;
+    } on Object catch (error, stack) {
+      failure = error;
+      failureStack = stack;
     }
-  }
-
-  Future<void> _deleteBiometricItemQuietly() async {
     try {
       await biometrics.delete();
-    } on Object {
-      // The flag is not set, so a later enable or mode change retries.
+    } on Object catch (error, stack) {
+      failure ??= error;
+      failureStack ??= stack;
+    }
+    if (failure == null) {
+      _biometricCleanupPending = false;
+    } else if (!bestEffort) {
+      Error.throwWithStackTrace(failure, failureStack!);
     }
   }
 
@@ -244,8 +302,12 @@ class StudioCredentialStorage extends ChangeNotifier {
     String? cancelTitle,
     String? fallbackTitle,
   }) => _biometricOperations.synchronized(() async {
-    if (!await biometricUnlockEnabled()) {
-      return StudioVaultBiometricUnlock.notEnabled;
+    try {
+      if (!await biometricUnlockEnabled()) {
+        return StudioVaultBiometricUnlock.notEnabled;
+      }
+    } on Object {
+      return StudioVaultBiometricUnlock.failed;
     }
     if (await biometricAvailability() !=
         BiometricUnlockAvailability.available) {
@@ -274,13 +336,15 @@ class StudioCredentialStorage extends ChangeNotifier {
         await _invalidateBiometricUnlock();
         return StudioVaultBiometricUnlock.invalidated;
     }
-    final key = _decodeBiometricPayload(read.secret!);
+    final secret = read.secret;
+    final key = secret == null ? null : _decodeBiometricPayload(secret);
     if (key == null) {
       await _invalidateBiometricUnlock();
       return StudioVaultBiometricUnlock.invalidated;
     }
-    final vault = await _openVaultHandle();
+    final WebEncryptedStorage vault;
     try {
+      vault = await _openVaultHandle();
       await vault.initializeWithKey(key);
     } on CredentialVaultKeyRejected {
       await _invalidateBiometricUnlock();

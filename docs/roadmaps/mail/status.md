@@ -1,6 +1,24 @@
 # Mail implementation status — 21 November 2026
 
-## Boolean header search — implemented, runtime qualification pending
+## Unified cached-header search
+
+The native local-account chooser now offers **Search saved mail** for all listed
+accounts or one selected account. It searches retained browse and synchronization
+memberships beyond the currently loaded folder page, using the same bounded
+Boolean evaluator. Results retain account/folder provenance and body availability;
+several labels do not duplicate one canonical message. Equal local/RFC IDs in
+different accounts remain distinct.
+
+Explicit continuation bounds scanning and retained UI results. Coverage keeps
+saved-folder times, provider continuation and account failures distinct from a
+completed local scan. Queries never fetch a body or contact a provider. Selecting
+a result explicitly opens retained bytes; query/account edits and close fence
+stale work and drain owned profiles. See [the workflow](unified-cached-search.md)
+and [local qualification](../../validation/mail-unified-cache-20261121/README.md).
+Saved live views, indexed account-wide body/server search, conversation grouping
+and the complete shared unified workspace remain open.
+
+## Boolean header search — local runtime qualification completed
 
 Connected and cached mailbox lists now accept uppercase AND/OR/NOT, implicit
 AND, leading-minus negation and parenthesis groups. Existing fields, phrases,
@@ -12,15 +30,18 @@ English, German and Arabic help describes precedence and the 1,024-code-unit,
 32-term, 32-explicit-operator and eight-group-depth limits. Parenthesized and
 negated examples keep LTR syntax within Arabic prose. See the
 [workflow](boolean-search.md) and [validation record](../../validation/mail-boolean-search-20261121/README.md).
-The source includes 26 new core test registrations and seven new widget/locale
-registrations; **they have not been executed in this session**. Independent
-static review is complete, but local Dart/Flutter analysis, formatting and tests
-remain blocked by the exhausted workspace/runtime.
+The original checkpoint included 26 new core test registrations and seven new
+widget/locale registrations but could not execute them because its workspace
+was exhausted. The later unified cached-search continuation freshly executes
+the complete core and shared UI suites, including the incoming complementary
+Boolean truth-table suite. Its [qualification record](../../validation/mail-unified-cache-20261121/README.md)
+retains exact results separately from that original static-only evidence.
 
 The [51-branch intake](../../mail-intake-20261121.md) preserves all recent mail
 work, integrates the missing benchmark fields and reviewed CLI runner changes,
 and records squash-equivalent branches and excluded WIP cache/artifacts.
-Account-wide/unified search, saved live views and conversations remain open.
+Account-wide/unified cached-header discovery is described above; saved live
+views, broader body/server discovery and conversations remain open.
 
 ## Explicit offline downloads and guarded native Quit
 
@@ -986,9 +1007,10 @@ harness, not the standalone Office application.
 2. Build repository-driven foreground sessions and the durable remote-command
    journal following the [bulk contract](bulk-flags.md). Persist intent before
    dispatch; retain uncertainty across restart; qualify cancellation, conflicts,
-   UIDVALIDITY and offline/reconnect recovery. Account-wide/unified search,
-   conversations and broader archive/move/delete/rule workflows then build on
-   explicit cache completeness and the durable command boundary.
+   UIDVALIDITY and offline/reconnect recovery. The explicit unified cached-header
+   search is now implemented. Saved live views, broader body/server search,
+   conversations and archive/move/delete/rule workflows build on explicit cache
+   coverage and the durable command boundary.
 3. Continue the remaining M06 work: scalable discovery beyond the configured
    simple-SEARCH count/byte budgets, host OAuth/refresh and lifecycle scheduling,
    other-OS TLS coverage and authorized disposable-account interoperability. Generic browser

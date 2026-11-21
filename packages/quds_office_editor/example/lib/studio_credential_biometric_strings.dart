@@ -57,6 +57,16 @@ extension StudioCredentialBiometricStrings on StudioStrings {
     'Die Entsperrung mit Touch ID konnte nicht ausgeschaltet werden. Erneut versuchen.',
     'تعذّر إيقاف الفتح باستخدام Touch ID. حاول مجددًا.',
   );
+  String get vaultTouchIdCleanupPending => _text(
+    'Removal of the Touch ID vault key is incomplete. Retry removal in Credential storage.',
+    'Der Touch-ID-Tresorschlüssel konnte nicht vollständig entfernt werden. Entfernen unter „Zugangsdaten-Speicher“ erneut versuchen.',
+    'لم تكتمل إزالة مفتاح الخزنة الخاص بـTouch ID. أعد محاولة الإزالة من تخزين بيانات الاعتماد.',
+  );
+  String get vaultTouchIdRetryCleanup => _text(
+    'Retry key removal',
+    'Schlüssel erneut entfernen',
+    'إعادة محاولة إزالة المفتاح',
+  );
   String get vaultTouchIdFailed => _text(
     'Touch ID did not unlock the vault. Enter the master password.',
     'Touch ID hat den Tresor nicht entsperrt. Master-Passwort eingeben.',

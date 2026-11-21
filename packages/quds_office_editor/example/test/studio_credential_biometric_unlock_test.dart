@@ -181,6 +181,7 @@ void main() {
       final manager = h.manager();
       await expectLater(manager.enableBiometricUnlock(), throwsStateError);
       await manager.unlockVault(_password, create: true);
+      await manager.select(StudioCredentialMode.encryptedVault);
       h.native.availability = 'keychainUnavailable';
       await expectLater(manager.enableBiometricUnlock(), throwsStateError);
       expect(h.native.count('store'), 0);
@@ -310,7 +311,12 @@ void main() {
             },
           );
       await manager.select(StudioCredentialMode.session);
-      expect(await _flag(), isTrue, reason: 'kept so cleanup is retried');
+      expect(
+        await _flag(),
+        isFalse,
+        reason: 'disabled before removal is retried',
+      );
+      expect(manager.biometricCleanupPending, isTrue);
       h.dispose();
       h = _Harness()..native.item = 'stale';
       final restarted = h.manager();
@@ -360,6 +366,7 @@ void main() {
 
     Future<void> open(WidgetTester tester) async {
       outcome = null;
+      await manager.loadSelection();
       await tester.pumpWidget(
         MaterialApp(
           home: Builder(
@@ -440,7 +447,9 @@ void main() {
     }, variant: macOS);
 
     testWidgets('opt-in is offered after a password unlock', (tester) async {
-      await h.manager().unlockVault(_password, create: true);
+      final selected = h.manager();
+      await selected.unlockVault(_password, create: true);
+      await selected.select(StudioCredentialMode.encryptedVault);
       manager = h.manager();
       await open(tester);
       expect(h.native.count('read'), 0);
@@ -455,7 +464,9 @@ void main() {
     }, variant: macOS);
 
     testWidgets('declining the opt-in stores nothing', (tester) async {
-      await h.manager().unlockVault(_password, create: true);
+      final selected = h.manager();
+      await selected.unlockVault(_password, create: true);
+      await selected.select(StudioCredentialMode.encryptedVault);
       manager = h.manager();
       await open(tester);
       await enterPassword(tester);
@@ -485,7 +496,9 @@ void main() {
     }, variant: macOS);
 
     testWidgets('no opt-in without the protected keychain', (tester) async {
-      await h.manager().unlockVault(_password, create: true);
+      final selected = h.manager();
+      await selected.unlockVault(_password, create: true);
+      await selected.select(StudioCredentialMode.encryptedVault);
       h.native.availability = 'keychainUnavailable';
       manager = h.manager();
       await open(tester);

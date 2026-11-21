@@ -12,3 +12,9 @@ Touch ID unlock of the encrypted vault (`biometric_secret_store.dart`,
 the master password, in a data protection keychain item protected by
 `.biometryCurrentSet`; the OS enforces biometry when the item is read. Only a
 non-secret on/off flag lives in preferences.
+
+Enrolment requires the selected, unlocked vault and is fenced when the storage
+selection changes. The disabled state is saved before writing or removing a
+protected key; failed removal stays visible and can be retried. Startup also
+cleans disabled enrolments whose key survived an earlier failure. Biometric
+failures leave the master-password fallback and dialog controls usable.

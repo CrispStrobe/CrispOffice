@@ -78,12 +78,14 @@ This increment includes focused core regression tests, mailbox widget tests,
 bulk-selection regressions and EN/DE/AR help/error checks. The implementation
 and test expectations received independent static review.
 
-**Dart/Flutter runtime tests, analysis and formatting were not run for this
-increment.** The initial repository checkout filled the workspace disk; the
-sandbox then failed before launching any further command. An escalation to
-remove only the newly checked-out artifacts was rejected by the environment's
-approval policy. The feature and its tests were saved incrementally through
-GitHub. No historical pass is presented as validation of this source.
+**The original checkpoint had no Dart/Flutter runtime qualification.** Its
+checkout exhausted disk space before commands could run. That original record
+is retained without relabeling it as a pass. The later
+[unified cached-search continuation](../../validation/mail-unified-cache-20261121/README.md)
+executes the complete Mail core and shared Mail UI suites with the pinned
+Flutter 3.47.8 / Dart 3.13.7 runtime, including both preserved Boolean regression
+suites and the existing locale/selection tests. Its source-bound results are
+fresh execution, separate from the original static review.
 
 See [the validation record](../../validation/mail-boolean-search-20261121/README.md)
 for the exact scope and reproduction commands. GitHub Actions are neither a
@@ -94,8 +96,9 @@ dependency of this work nor evidence of a passing local run.
 This is a bounded discovery improvement, not full desktop-client parity.
 The next broader work remains:
 
-1. Account-wide and unified repository queries with explicit cache completeness.
-2. Saved live views and conversation grouping over stable message identities.
+1. Extend the [account-wide/unified cached-header workflow](unified-cached-search.md)
+   with saved live views and broader indexed body/server coverage.
+2. Conversation grouping over stable message identities and the shared workspace.
 3. Durable archive/move/delete and rules using the existing command journal.
 4. Rich composition, signatures/templates, scheduling and provider Sent
    reconciliation, each with provider and installed-platform acceptance.

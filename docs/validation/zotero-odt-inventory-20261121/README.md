@@ -187,3 +187,20 @@ the existing detached staging, stale-document and single-transaction guards.
 The earlier DOCX → ODT → DOCX continued-list converter finding remains open.
 The [parity roadmap](../../roadmaps/zotero/word-processor-parity.md) retains
 that finding and the other rendering, structural and installed-host gates.
+
+## Subsequent Mail integration
+
+The later Mail continuation preserved this complete record and its evidence,
+and incorporated the Touch ID and typing-benchmark heads observed after the
+Zotero cutoff above. Credential enrollment/cleanup and unlock error recovery
+were corrected before publication. The combined Mail/credential source at
+`62e9f1af15f2cb00ee67a339cdc6dea48d882aab` passed 178 focused Studio tests and
+407 Mail core tests, with unchanged source and dependency fingerprints.
+
+The [Mail continuation record](../mail-unified-cache-20261121/README.md)
+records the later intake, corrections and final source bindings. Its
+[independent ODT qualification](../mail-unified-cache-20261121/zotero-independent-qualification.md)
+records a separate 149-case inventory run and VM/Node acceptance. Those
+inventory cases overlap the engine counts above and are not additional unique
+coverage. This appendix does not change the original record's captured cutoff
+or recast inherited results as newly executed Mail tests.

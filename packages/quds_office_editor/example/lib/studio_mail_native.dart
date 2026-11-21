@@ -2914,7 +2914,9 @@ class _StudioMailDialogState extends State<StudioMailDialog>
     if (mounted &&
         outcome == StudioVaultUnlockOutcome.unlockedTouchIdNotEnabled) {
       setState(
-        () => _credentialError = widget.strings.vaultTouchIdEnableFailed,
+        () => _credentialError = manager.biometricCleanupPending
+            ? widget.strings.vaultTouchIdCleanupPending
+            : widget.strings.vaultTouchIdEnableFailed,
       );
     }
   }
