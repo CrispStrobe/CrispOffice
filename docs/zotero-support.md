@@ -1636,6 +1636,15 @@ Actual footnotes using a LibreOffice separator remain outside the reader's
 current formatting subset; accepting the note-numbering metadata does not
 remove that layout restriction.
 
+Complete uniform DOCX table margins, including zero, survive intervening saves
+and supported table-style inheritance. Unsupported imported margin forms remain
+in their original source XML. Quds' existing table renderer still uses fixed
+padding, so this file-preservation work does not promise identical screen layout.
+Native editable notes declare exact superscript marker styles and the final
+endnote page master; reopening refuses changed marker scaling or incompatible
+page geometry. Optional soft-page caches are recomputed while authored hard
+breaks are preserved.
+
 Conversion preserves supported current content, rather than a complete live
 ODF style engine for future typing or Zotero replacements. General LibreOffice
 file compatibility, a lossless native ODT editing round trip, full plugin parity

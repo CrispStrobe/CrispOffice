@@ -21,6 +21,7 @@ import 'package:quds_office_engine/quds_office_engine.dart';
 const _names = ['body-bibliography', 'table-only', 'endnote-only'];
 const _fieldCounts = [3, 6, 2];
 const _textNamespace = 'urn:oasis:names:tc:opendocument:xmlns:text:1.0';
+const _styleNamespace = 'urn:oasis:names:tc:opendocument:xmlns:style:1.0';
 
 ZoteroCitation _citation(String id, {int noteIndex = 0}) =>
     ZoteroCitation.fromJson({
@@ -243,6 +244,20 @@ Object? _canonical(Object? value) {
 
 String _json(Object? value) => jsonEncode(_canonical(value));
 
+Map<String, Object?> _runStyle(WmlRunProps p) => {
+  'bold': p.bold,
+  'italic': p.italic,
+  'underline': p.underline.name,
+  'strike': p.strike,
+  'allCaps': p.allCaps,
+  'smallCaps': p.smallCaps,
+  'color': p.color.toUpperCase(),
+  'fontSizeHalfPoints': p.fontSizeHalfPoints,
+  'asciiFont': p.asciiFont,
+  'csFont': p.csFont,
+  'verticalAlignment': p.vertAlign.name,
+};
+
 Map<String, Object?> _model(WmlDocument document) {
   final numbering = WordNoteNumbering(
     document,
@@ -254,7 +269,14 @@ Map<String, Object?> _model(WmlDocument document) {
     owners[paragraph] = path;
     final segments = <Map<String, Object?>>[];
     for (final inline in paragraph.inlines) {
-      if (inline is WmlFieldBoundary || inline is WmlNoteMarker) continue;
+      if (inline is WmlFieldBoundary) continue;
+      if (inline is WmlNoteMarker) {
+        segments.add({
+          'kind': inline.endnote ? 'endnoteMarker' : 'footnoteMarker',
+          'style': _runStyle(inline.properties),
+        });
+        continue;
+      }
       if (inline is! WmlRun) {
         throw StateError('Unexpected acceptance-fixture inline at $path.');
       }
@@ -266,24 +288,12 @@ Map<String, Object?> _model(WmlDocument document) {
               ? 'endnoteReference'
               : 'footnoteReference',
           'label': label,
+          'style': _runStyle(inline.properties),
         });
         continue;
       }
       if (inline.text.isEmpty) continue;
-      final p = inline.properties;
-      final style = <String, Object?>{
-        'bold': p.bold,
-        'italic': p.italic,
-        'underline': p.underline.name,
-        'strike': p.strike,
-        'allCaps': p.allCaps,
-        'smallCaps': p.smallCaps,
-        'color': p.color.toUpperCase(),
-        'fontSizeHalfPoints': p.fontSizeHalfPoints,
-        'asciiFont': p.asciiFont,
-        'csFont': p.csFont,
-        'verticalAlignment': p.vertAlign.name,
-      };
+      final style = _runStyle(inline.properties);
       if (segments.isNotEmpty &&
           segments.last['kind'] == 'text' &&
           _json(segments.last['style']) == _json(style)) {
@@ -353,7 +363,19 @@ Map<String, Object?> _model(WmlDocument document) {
 
   final body = [
     for (var index = 0; index < document.sections.length; index++)
-      blocks(document.sections[index].blocks, 'body$index'),
+      {
+        'pageWidthTwips': _twips(document.sections[index].pageSize.width),
+        'pageHeightTwips': _twips(document.sections[index].pageSize.height),
+        'marginTwips': {
+          'left': _twips(document.sections[index].margins.left),
+          'right': _twips(document.sections[index].margins.right),
+          'top': _twips(document.sections[index].margins.top),
+          'bottom': _twips(document.sections[index].margins.bottom),
+        },
+        'columns': document.sections[index].columnCount,
+        'columnSpaceTwips': _twips(document.sections[index].columnSpace),
+        'blocks': blocks(document.sections[index].blocks, 'body$index'),
+      },
   ];
   final notes = [
     for (var index = 0; index < numbering.notes.length; index++)
@@ -394,6 +416,94 @@ Iterable<XmlElement> _elements(XmlElement root) sync* {
   }
 }
 
+List<Object?> _noteStyleInventory(XmlElement root, XmlElement styles) {
+  final noteClasses = <String>{
+    for (final element in _elements(root))
+      if (element.namespaceUri == _textNamespace && element.localName == 'note')
+        element.getAttribute('note-class', namespaceUri: _textNamespace)!,
+  };
+
+  String? position(String? name, [Set<String> seen = const <String>{}]) {
+    if (name == null || name.isEmpty) return null;
+    if (seen.length > 16 || seen.contains(name)) {
+      throw StateError('Cyclic fixture note character style.');
+    }
+    final matches = <XmlElement>[
+      for (final tree in [styles, root])
+        for (final element in _elements(tree))
+          if (element.namespaceUri == _styleNamespace &&
+              element.localName == 'style' &&
+              element.getAttribute('family', namespaceUri: _styleNamespace) ==
+                  'text' &&
+              element.getAttribute('name', namespaceUri: _styleNamespace) ==
+                  name)
+            element,
+    ];
+    if (matches.length != 1) {
+      throw StateError(
+        'Missing or ambiguous fixture note character style: $name.',
+      );
+    }
+    final style = matches.single;
+    var result = position(
+      style.getAttribute('parent-style-name', namespaceUri: _styleNamespace),
+      {...seen, name},
+    );
+    for (final properties in style.childrenNamed(
+      'text-properties',
+      namespaceUri: _styleNamespace,
+    )) {
+      result =
+          properties.getAttribute(
+            'text-position',
+            namespaceUri: _styleNamespace,
+          ) ??
+          result;
+    }
+    return result;
+  }
+
+  return [
+    for (final kind in noteClasses.toList()..sort())
+      () {
+        final matches = <XmlElement>[
+          for (final tree in [styles, root])
+            for (final element in _elements(tree))
+              if (element.namespaceUri == _textNamespace &&
+                  element.localName == 'notes-configuration' &&
+                  element.getAttribute(
+                        'note-class',
+                        namespaceUri: _textNamespace,
+                      ) ==
+                      kind)
+                element,
+        ];
+        if (matches.length != 1) {
+          throw StateError('Ambiguous fixture note configuration.');
+        }
+        final configuration = matches.single;
+        final positions = {
+          for (final attribute in [
+            'citation-style-name',
+            'citation-body-style-name',
+          ])
+            attribute: position(
+              configuration.getAttribute(
+                attribute,
+                namespaceUri: _textNamespace,
+              ),
+            ),
+        };
+        if (positions.values.any((value) => value != 'super 65%')) {
+          throw StateError(
+            'The canonical note fixture must retain both 65% superscript styles.',
+          );
+        }
+        return {'kind': kind, 'positions': positions};
+      }(),
+  ];
+}
+
 Future<Map<String, Object?>> _inventory(Uint8List bytes) async {
   final inventory = await OdfZotero.inspect(bytes);
   if (inventory.issues.isNotEmpty ||
@@ -401,8 +511,12 @@ Future<Map<String, Object?>> _inventory(Uint8List bytes) async {
       inventory.fields.any((field) => !field.isImportCandidate)) {
     throw StateError('The ODT native Zotero inventory is not complete.');
   }
+  final package = OpcPackage.openBytes(bytes);
   final root = XmlDocument.parse(
-    OpcPackage.openBytes(bytes).getPart('/content.xml')!.readText(),
+    package.getPart('/content.xml')!.readText(),
+  ).root!;
+  final styles = XmlDocument.parse(
+    package.getPart('/styles.xml')!.readText(),
   ).root!;
   return {
     'preferences': jsonDecode(inventory.preferences.rawData!),
@@ -434,6 +548,7 @@ Future<Map<String, Object?>> _inventory(Uint8List bytes) async {
                 .text,
           },
     ],
+    'noteConfigurations': _noteStyleInventory(root, styles),
   };
 }
 
