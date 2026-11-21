@@ -4,6 +4,12 @@ All notable changes to `quds_office_engine` are documented here.
 
 ## Unreleased
 
+- Replace Zotero research-content selections across consecutive ordinary
+  paragraphs in one body section or authored note. Preserve rich prefix/suffix
+  content, active citation order, native note separators and DOCX reopening;
+  reject ambiguous ownership and selected structural/protected content before
+  mutation. Add optional `insertionEndParagraph` to the staged native session.
+
 - Extend Word VBA with explicit `Sections(i)` / `Sections.Item(i)`, typed
   `Section` and `PageSetup` aliases, `With`, and required `ByVal` helpers. Add
   eight write-only page geometry setters for dimensions, margins and

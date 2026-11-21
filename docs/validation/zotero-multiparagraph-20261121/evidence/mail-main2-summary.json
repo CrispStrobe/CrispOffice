@@ -1,0 +1,125 @@
+{
+  "applicable_population": {
+    "calculation": "314 unchanged package cases retained by exact inputs + 191 freshly executed Studio cases. The earlier 18 Studio cases are replaced, never added again. Historical 332 remains a source-specific record.",
+    "combined_case_index": "studio-mail-delta-combined-cases.json",
+    "errors": 0,
+    "failed": 0,
+    "passed": 505,
+    "skipped_test_cases": 0,
+    "unique_cases": 505,
+    "unique_original_files": 18
+  },
+  "diagnostics": [
+    {
+      "accepted": false,
+      "detail": "Scratch runner initially named a nonexistent dartdev snapshot while sealing inputs. It failed before analyzer/formatter execution; corrected to actual AOT snapshot. Original runner and error preserved, no product or test edits.",
+      "path": "studio-mail-delta-diagnostics/static-preflight"
+    }
+  ],
+  "fresh_tests": {
+    "all_started_tests_completed": true,
+    "bound_source_and_runtime_inputs": 5692,
+    "errors": 0,
+    "failed": 0,
+    "immutable_export_all_git_blobs_verified": true,
+    "inputs_unchanged_during_run": true,
+    "original_files": [
+      "packages/quds_office_editor/example/test/studio_mail_flag_reconciliation_test.dart",
+      "packages/quds_office_editor/example/test/studio_mail_flag_recovery_dialog_test.dart",
+      "packages/quds_office_editor/example/test/studio_mail_journal_host_test.dart",
+      "packages/quds_office_editor/example/test/studio_mail_message_loader_test.dart",
+      "packages/quds_office_editor/example/test/studio_mail_remote_images_incoming_test.dart"
+    ],
+    "passed": 191,
+    "process_exit_code": 0,
+    "receipt": "studio-mail-delta-receipt.json",
+    "skipped": 0,
+    "source_manifest_sha256": "64736750b9d66e00f9b9d3ffbb9c59dce44219a62681f3e102e52c429485f60c",
+    "suite_counts": {
+      "test/studio_mail_flag_reconciliation_test.dart": 24,
+      "test/studio_mail_flag_recovery_dialog_test.dart": 14,
+      "test/studio_mail_journal_host_test.dart": 24,
+      "test/studio_mail_message_loader_test.dart": 111,
+      "test/studio_mail_remote_images_incoming_test.dart": 18
+    },
+    "terminal_success": true,
+    "unique_cases": 191
+  },
+  "head": "a5dc721dd8e519dde4f019b82a89572fe9f570f4",
+  "limits": "Provider responses are synthetic. Native SQLite is real. This is an affected-scope qualification, not the unrelated full repository suite or a live network/account test. No GitHub Actions used.",
+  "native_sqlite": {
+    "fts5_probe": "ready",
+    "library_sha256": "0a65852703763619a7a34633b4959b3b86c4103804a4dfe4e8b27b5de1c0647b",
+    "readiness_process_exit_code": 0,
+    "receipt": "studio-mail-delta-native-readiness.json",
+    "uses_official_sqlite3_3_9_1_default_hook_asset": true,
+    "version": "Version(libVersion: 3.54.1, sourceId: 2026-10-16 14:45:20 555e07ef33f69a0957d24d8e555b702464a131d6f1607f4c3c1e4551e8e6ca76, number: 3054001)"
+  },
+  "qualification_passed": true,
+  "retained_tests": {
+    "exact_input_count": 499,
+    "gate_passes": {
+      "core": 28,
+      "store": 83,
+      "transport_vm": 163,
+      "ui": 34,
+      "unsupported_js": 6
+    },
+    "historical_raw_evidence_archive": "incoming-mail-qualification.tar.xz",
+    "historical_raw_evidence_archive_sha256": "124a355260b85903fc50c2aa8b9462b9861f6a971a49781d3ca870a9a102a9db",
+    "input_manifest_sha256": "a2d8776b6e802425acf214070561ea28b51f5d5caec1b4db59f8b2142a8c932c",
+    "proof": "studio-mail-delta-retained-packages.json",
+    "qualified_commit": "6c180d7e805b49663fda32fcf9c5c92e0ae2d86e",
+    "repository_inputs": 491,
+    "runtime_inputs": 8,
+    "scope_equal": true,
+    "unique_cases": 314
+  },
+  "runtime": {
+    "channel": "stable",
+    "dartSdkVersion": "3.13.7",
+    "devToolsVersion": "2.60.0",
+    "engineBuildDate": "2026-10-22 20:34:48.330",
+    "engineCommitDate": "2026-10-23 02:13:38.000Z",
+    "engineContentHash": "dfd2e6cb7d319db05e3bf1503f3e2ac60f6288a2",
+    "engineRevision": "cf636b1dfb818dd6a3ff16e390e93b1a036969c8",
+    "flutterRoot": "/workspace/scratch/b3c425a3b090/runtime/flutter",
+    "flutterVersion": "3.47.8",
+    "frameworkCommitDate": "2026-10-22 21:37:31 -0700",
+    "frameworkRevision": "737ba8f885dc774b53b442759999a312c9461e4e",
+    "frameworkVersion": "3.47.8",
+    "repositoryUrl": "https://github.com/flutter/flutter.git"
+  },
+  "scope": "Incoming Studio Mail uncertain-action recovery UI and its changed consumers, plus scope-bound retention of unchanged Mail package qualifications.",
+  "static_checks": {
+    "analysis_exit_code": 0,
+    "analysis_fatal_infos": true,
+    "analysis_output_bytes": 0,
+    "bound_source_and_runtime_inputs": 5691,
+    "file_count": 12,
+    "format_declared_language_version": "3.12",
+    "format_unchanged_files": 12,
+    "format_writes": false,
+    "inputs_stable": true,
+    "original_changed_files": [
+      "packages/quds_office_editor/example/lib/studio_mail_bulk_status.dart",
+      "packages/quds_office_editor/example/lib/studio_mail_ews.dart",
+      "packages/quds_office_editor/example/lib/studio_mail_flag_journal.dart",
+      "packages/quds_office_editor/example/lib/studio_mail_flag_reconciliation.dart",
+      "packages/quds_office_editor/example/lib/studio_mail_journal_dialog.dart",
+      "packages/quds_office_editor/example/lib/studio_mail_journal_strings.dart",
+      "packages/quds_office_editor/example/lib/studio_mail_message_loader.dart",
+      "packages/quds_office_editor/example/lib/studio_mail_native.dart",
+      "packages/quds_office_editor/example/test/studio_mail_flag_reconciliation_test.dart",
+      "packages/quds_office_editor/example/test/studio_mail_flag_recovery_dialog_test.dart",
+      "packages/quds_office_editor/example/test/studio_mail_journal_host_test.dart",
+      "packages/quds_office_editor/example/test/studio_mail_message_loader_test.dart"
+    ],
+    "receipt": "studio-mail-delta-static-receipt.json"
+  },
+  "tree": "b3c010249b88c1ae29bce6d901f5c983adf1acf4",
+  "visual_review": {
+    "inspection_record": "studio-mail-delta-visual-review.json",
+    "raw_pngs": 6
+  }
+}

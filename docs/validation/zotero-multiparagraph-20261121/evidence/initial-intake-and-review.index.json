@@ -1,0 +1,52 @@
+[
+  {
+    "path": "runtime/logs/intake-mail-cases.json",
+    "bytes": 15226,
+    "sha256": "e874142c37b42826373e67e9421b47957d5bd9b242cbb659af71972feb916a3e"
+  },
+  {
+    "path": "runtime/logs/intake-mail-receipt.json",
+    "bytes": 2772,
+    "sha256": "6e05d997c4443aa209ce79315d74c6c16cb10912e1ffcbdd6b86dbc9f39546ed"
+  },
+  {
+    "path": "runtime/logs/intake-mail-run.log",
+    "bytes": 2366,
+    "sha256": "03d75ab443f3f8573d4f5f2f77c61be1626476ad32aecbeac520a7f7556ef3d0"
+  },
+  {
+    "path": "runtime/logs/intake-mail-sources-after.json",
+    "bytes": 45815,
+    "sha256": "c825450ff425796fe3eaa75f297762b71764644a64917fd0b4d7a8614bd6ebf5"
+  },
+  {
+    "path": "runtime/logs/intake-mail-sources-before.json",
+    "bytes": 45815,
+    "sha256": "c825450ff425796fe3eaa75f297762b71764644a64917fd0b4d7a8614bd6ebf5"
+  },
+  {
+    "path": "runtime/logs/intake-mail.jsonl",
+    "bytes": 30367,
+    "sha256": "af4178f63f8f9a853d4c4271011a1f9e984c8a27eeaa03e727cd0523fc182a3d"
+  },
+  {
+    "path": "runtime/logs/intake-mail.stderr",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "runtime/run_intake_mail.py",
+    "bytes": 3567,
+    "sha256": "90a36375a40935cfd99da34140b872266e98dd51160343c29b57a79803060de7"
+  },
+  {
+    "path": "review/research_ranges.dart",
+    "bytes": 2630,
+    "sha256": "21934f3d82879f88640b88b8cf8a5baa169a922585bbdcbc7f47cc961b23f5e4"
+  },
+  {
+    "path": "review/citation_endpoints.dart",
+    "bytes": 2316,
+    "sha256": "e9b2090a65a0de5114af74e903d30126c6e4a097020ff86cb426de7ed56925cd"
+  }
+]

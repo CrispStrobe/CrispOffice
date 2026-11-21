@@ -1,0 +1,51 @@
+{
+  "schema": "quds-zotero-multiparagraph-independent-review/v1",
+  "review": "Independent source review and scratch reproductions; no product edits by reviewer",
+  "source_commit": "6ac854de0583b7955470648916c53c76b67c0fff",
+  "source_tree": "5bd40fb467d6710987e06634934e84c3dc513bfa",
+  "source_file": "packages/quds_office_engine/lib/src/word/model/word_zotero_citing.dart",
+  "source_file_sha256": "a56e47ec5a40b6ce2f47193edb86631ca11ccc609d28df36c9db766f3533cc47",
+  "status": "No remaining engine correctness or data-loss blocker found after fixes",
+  "findings": [
+    {
+      "id": "paragraph-metadata",
+      "initial_problem": "Multi-paragraph removal could discard paragraph-owned bookmarks or unrepresented legacy field boundaries.",
+      "resolution": "Reject bookmarkName/sourceBookmarkName and legacy boundary flags without matching modeled inline boundaries. Represented fields use the complete story scan.",
+      "verification": "Independent bookmark/source-bookmark/field-end refusals leave all paragraphs and metadata unchanged."
+    },
+    {
+      "id": "shared-paragraph-ownership",
+      "initial_problem": "A last paragraph reused in another section was split destructively at both positions, changing unselected OLD suffix to OLD.",
+      "resolution": "Count selected paragraph identity occurrences across body/container/auxiliary/note/comment stories, under a one-million-occurrence bound, and require exactly one.",
+      "verification": "Independent shared-end reproduction now refuses and preserves the other section text."
+    },
+    {
+      "id": "note-reference-separator",
+      "initial_problem": "At raw offset zero, multi-paragraph replacement could remove the authored-note separator; leading table insertion could then consume the unselected suffix leading space as the separator.",
+      "resolution": "Capture an effective insertion offset before joining the suffix, preserving the original reference separator independently.",
+      "verification": "Footnotes/endnotes with explicit markers retain marker, separator and suffix whitespace with plain, heading and table payloads."
+    },
+    {
+      "id": "untouched-endpoint-citations",
+      "initial_problem": "Untouched explicit complex packets at exact prefix/suffix endpoints, and a nonempty citation at last offset zero, were refused where equivalent simple packets could succeed.",
+      "resolution": "Permit untouched nonempty endpoint packets; retain overlap and zero-width-citation refusal and full-story generic/nested/malformed field checks.",
+      "verification": "Eight simple/explicit-complex by in-memory/reopened by prefix/suffix reproductions apply successfully with changed-length refreshed fields in correct order. Last-offset-zero simple and complex capability checks accept."
+    }
+  ],
+  "reviewed_guarantees": [
+    "Descending field application refreshes suffix fields before the splice and prefix fields afterward.",
+    "Source/current-range checks repeat before mutation; the controller additionally owns revision, selection, lifecycle and undo/rollback protection.",
+    "Suffix markup is moved from the live refreshed paragraph, not reconstructed from captured plain text.",
+    "Zero-text citations on consumed boundaries remain guarded because split affinity would otherwise leave their packet in a removed paragraph."
+  ],
+  "reproduction_runtime": {
+    "flutter": "3.47.8",
+    "dart": "3.13.7",
+    "platform": "Linux x64",
+    "commands": "Direct bin/cache/dart-sdk/bin/dart with isolated runtime workspace package configuration"
+  },
+  "qualification_boundary": "These are independently inspected focused reproductions, not additional cases to add to the project acceptance test counts. They do not establish installed Zotero/Word/LibreOffice or cross-platform interoperability.",
+  "source_diff_check": "Passed",
+  "diagnostics": "One concurrent Flutter dart-wrapper engine.stamp race was rerun successfully using the direct Dart SDK binary; not a product failure.",
+  "github_actions": "Neither queried nor awaited"
+}

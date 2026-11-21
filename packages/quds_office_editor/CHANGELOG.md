@@ -4,6 +4,12 @@ All notable changes to `quds_office_editor` are documented here.
 
 ## Unreleased
 
+- Let Zotero Add Note and Add Annotation replace ordinary text spanning several
+  paragraphs in one body section, footnote or endnote. Map both Notes-pane
+  selection endpoints, retain one undo/redo step and original selection direction,
+  and preserve cancellation, composition and stale-document guards. Tables,
+  controls and protected ranges keep explicit selection limits.
+
 - Add explicit **Check current status** to native Mail activity for uncertain
   read/flag actions across IMAP, EWS, Gmail and Microsoft 365. Keep original
   outcomes alongside durable later observations; reject stale/cancelled results

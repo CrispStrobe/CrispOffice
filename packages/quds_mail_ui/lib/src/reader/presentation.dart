@@ -49,12 +49,12 @@ final class MailReaderPresentation {
        remoteImageUrls = List.unmodifiable(
          remoteImageUrls ?? remoteImageUris ?? const [],
        ) {
-    if (remoteImageUris != null && remoteImageUrls != null) {
-      if (remoteImageUris.length != remoteImageUrls.length) {
+    if (remoteImageUrls != null && remoteImageUris != null) {
+      if (remoteImageUrls.length != remoteImageUris.length) {
         throw ArgumentError('Remote image candidate aliases must agree.');
       }
-      for (var index = 0; index < remoteImageUris.length; index++) {
-        if (remoteImageUris[index] != remoteImageUrls[index]) {
+      for (var index = 0; index < remoteImageUrls.length; index++) {
+        if (remoteImageUrls[index] != remoteImageUris[index]) {
           throw ArgumentError('Remote image candidate aliases must agree.');
         }
       }

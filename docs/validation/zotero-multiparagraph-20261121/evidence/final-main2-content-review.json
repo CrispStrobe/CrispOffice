@@ -1,0 +1,246 @@
+{
+  "accepted_gate_counts_verified": {
+    "incoming_mail_packages_retained": 314,
+    "incoming_mail_studio_refresh": 191,
+    "incoming_word": 156,
+    "incoming_word_compatibility_fidelity": 5,
+    "studio_citing_transport": 18,
+    "studio_shortcuts": 15,
+    "zotero_editor": 400,
+    "zotero_engine_node_targeted": 148,
+    "zotero_engine_vm": 977
+  },
+  "archive_count": 8,
+  "archive_file_members_verified": 450,
+  "archives": [
+    {
+      "archive_sha256": "33604f671dc6857df220c655a64a8d67028bcf597cf739d8af2d1d256ded6690",
+      "files": 65,
+      "index_sha256": "cda0fe3efcd9c0938e07ce0b90926db58e036ce526b61b98263b487960a138de",
+      "indexed_payloads_verified": 65,
+      "name": "engine",
+      "self_manifest_verified": false
+    },
+    {
+      "archive_sha256": "56c4e9678aee3901e54914f17f2bd2af8fe7c1993631634d602ed219dcf09a20",
+      "files": 91,
+      "index_sha256": "d628c2e8728fc929264af2564e262ceea7b42a2feceaad68a925d68d866ac001",
+      "indexed_payloads_verified": 90,
+      "name": "editor_studio",
+      "self_manifest_verified": true
+    },
+    {
+      "archive_sha256": "124a355260b85903fc50c2aa8b9462b9861f6a971a49781d3ca870a9a102a9db",
+      "files": 70,
+      "index_sha256": "19d7f0fc8785607ffbd5680586854d00b14c2df71334432eb57521e5a6d21526",
+      "indexed_payloads_verified": 70,
+      "name": "incoming_mail",
+      "self_manifest_verified": false
+    },
+    {
+      "archive_sha256": "f1a301da7d22c0d134fe85af953d64f6564f7018df6dc27545c773f2a41899a3",
+      "files": 71,
+      "index_sha256": "d7574a4704b6a047b94a52ca838c8b4113f6cd933da28a424a3d973709f905d5",
+      "indexed_payloads_verified": 71,
+      "name": "incoming_word",
+      "self_manifest_verified": false
+    },
+    {
+      "archive_sha256": "5add65c687df780406721db4e63a225ea04811a730b2f4110f87a3d439d7effa",
+      "files": 10,
+      "index_sha256": "3b216c52d6a322d4399dc4de2d695d9f1edded4a42b680930bf0ea94c23ffd65",
+      "indexed_payloads_verified": 10,
+      "name": "initial_intake_and_review",
+      "self_manifest_verified": false
+    },
+    {
+      "archive_sha256": "4f6a8cec5f41d6ccd153dd2489f63c5c45ec37059a630662a1c5f469ff9b1547",
+      "files": 40,
+      "index_sha256": "4d8642015b9c955eb4692d76a75c90b0c8c0315624369b10bca3c73bb15160fe",
+      "indexed_payloads_verified": 39,
+      "name": "studio_main2",
+      "self_manifest_verified": true
+    },
+    {
+      "archive_sha256": "36d19734d826c6420be717ad0655f388d00f4b8dcf9057f12c6cc27cc332c350",
+      "files": 36,
+      "index_sha256": "f05e600754b1dc420aec00f92f8f672c2ec6ccc6f0850eb53cebe75a33824ad3",
+      "indexed_payloads_verified": 36,
+      "name": "word_main2",
+      "self_manifest_verified": false
+    },
+    {
+      "archive_sha256": "3dd1acf2115e824cade4fc47a3d88078254fd3f76a79f3646c88822b5b4a7a57",
+      "files": 67,
+      "index_sha256": "c520ee5ba4dcdd06d02ff42e0dbc24ed4d3017bd0edf305ed232fedc45edfaaa",
+      "indexed_payloads_verified": 67,
+      "name": "mail_studio_main2",
+      "self_manifest_verified": false
+    }
+  ],
+  "findings": [],
+  "intake_and_checkpoint_records_match": true,
+  "local_links": [
+    {
+      "anchor_exists": null,
+      "exists": true,
+      "source": "docs/validation/zotero-multiparagraph-20261121/README.md",
+      "target": "../../roadmaps/zotero/word-processor-parity.md"
+    },
+    {
+      "anchor_exists": null,
+      "exists": true,
+      "source": "docs/validation/zotero-multiparagraph-20261121/README.md",
+      "target": "qualification.json"
+    },
+    {
+      "anchor_exists": null,
+      "exists": true,
+      "source": "docs/validation/zotero-multiparagraph-20261121/README.md",
+      "target": "remote-checkpoints.json"
+    },
+    {
+      "anchor_exists": null,
+      "exists": true,
+      "source": "docs/validation/zotero-multiparagraph-20261121/README.md",
+      "target": "../../zotero-support.md"
+    },
+    {
+      "anchor_exists": null,
+      "exists": true,
+      "source": "docs/validation/zotero-multiparagraph-20261121/README.md",
+      "target": "review.json"
+    },
+    {
+      "anchor_exists": null,
+      "exists": true,
+      "source": "docs/validation/zotero-multiparagraph-20261121/README.md",
+      "target": "intake/README.md"
+    },
+    {
+      "anchor_exists": null,
+      "exists": true,
+      "source": "docs/validation/zotero-multiparagraph-20261121/README.md",
+      "target": "publication-intake/README.md"
+    },
+    {
+      "anchor_exists": null,
+      "exists": true,
+      "source": "docs/validation/zotero-multiparagraph-20261121/README.md",
+      "target": "publication-intake/final-audit.json"
+    },
+    {
+      "anchor_exists": null,
+      "exists": true,
+      "source": "docs/validation/zotero-multiparagraph-20261121/README.md",
+      "target": "evidence/studio-main2-scoped-retention.json"
+    },
+    {
+      "anchor_exists": true,
+      "exists": true,
+      "source": "docs/validation/zotero-multiparagraph-20261121/README.md",
+      "target": "../../roadmaps/zotero/word-processor-parity.md#next-implementation-and-acceptance-steps"
+    },
+    {
+      "anchor_exists": null,
+      "exists": true,
+      "source": "docs/validation/zotero-multiparagraph-20261121/publication-intake/README.md",
+      "target": "final-audit.json"
+    },
+    {
+      "anchor_exists": null,
+      "exists": true,
+      "source": "docs/validation/zotero-multiparagraph-20261121/publication-intake/README.md",
+      "target": "../README.md"
+    },
+    {
+      "anchor_exists": null,
+      "exists": true,
+      "source": "docs/zotero-validation.md",
+      "target": "validation/zotero-multiparagraph-20261121/README.md"
+    }
+  ],
+  "mail_population": {
+    "accepted_unique": 505,
+    "fresh": 191,
+    "old18_studio_population_replaced": true,
+    "original_files": 18,
+    "retained": 314
+  },
+  "named_case_inventory_review": {
+    "cross_gate_distinct_named_cases_excluding_node": 2076,
+    "engine_editor_studio_word_mail_case_identities_disjoint_excluding_node": true,
+    "inventory_sha256": {
+      "isolated/main2-fidelity-da066/delta-logs/fidelity-cases.json": "dec769fd3f18b88c92198c6d95674aea128bc0e91fc27b14c0a90347d942cbae",
+      "isolated/word-final-5c45/logs/page-setup-tests-cases.json": "75887f002652cabd243dacc1df7034122c08f36b9a87a204781c8cc4036feff6",
+      "isolated/word-final-5c45/logs/section-clone-cases.json": "14344c9f4a4505b8ded2e06f1063c824a42e48673af716957bb2c53ce70c7d32",
+      "isolated/word-final-5c45/logs/section-roundtrip-cases.json": "ba9343ce00f7ca5ca0953d56910c415156d5a2c4b392934338eec26c17790f4d",
+      "logs/combined-engine-vm-cases.json": "733ab51d8780c1dd585db2ed6b6a2ceafbc867c46a50b94a8059524f3d22ddc0",
+      "logs/final-editor-combined-cases.json": "0e31259db45ce3dedd30a628e54fb98cb0d430c613728ee72788b9932f8ff0b9",
+      "logs/final-studio-citing_transport-combined-cases.json": "bd27fd541d4de63b1e5a9fed9f8cb0597479404ec6693dae6b0082ecf6600fdc",
+      "logs/final-studio-citing_transport-main2-cases.json": "bd27fd541d4de63b1e5a9fed9f8cb0597479404ec6693dae6b0082ecf6600fdc",
+      "logs/final-studio-shortcuts-combined-cases.json": "9931fad802bb72d99c87ed9cdb7e03d7e7cce18dba1d3b8c776d83d985e4c3aa",
+      "logs/final-studio-shortcuts-main2-cases.json": "9931fad802bb72d99c87ed9cdb7e03d7e7cce18dba1d3b8c776d83d985e4c3aa",
+      "logs/incoming-mail-studio-cases.json": "ec5984301ad449a4c33e0157301a9b444677dfbedf81bcf8d7c0b6e14d5e4a13",
+      "logs/studio-mail-delta-cases.json": "a0f8ca683e02b9eb2c8fe04e687e9b7fd28827fae191e7daaef561867331c88e",
+      "logs/studio-mail-delta-combined-cases.json": "9f8036249f4703584aff0835d35328a7ab67fdeead09f1dccbb0ecec90399c2a",
+      "logs/studio-mail-delta-retained-cases.json": "175694f434ff96efbd43488857f9d8e84cbc0402c4c369a4148c38e93ddda009"
+    },
+    "mail_old18_exactly_represented_in_fresh_population_and_excluded_from_retention": true,
+    "mail_retained314_and_fresh191_disjoint": true,
+    "method": "Distinct repository-relative suite/file path plus original case name; all selected events successful and not skipped. No test execution.",
+    "studio_old33_and_fresh33_same_named_cases": true,
+    "word_retained156_and_fresh5_disjoint": true
+  },
+  "no_product_or_ref_edits": true,
+  "no_tests_run": true,
+  "node148_semantic_overlap_not_added": true,
+  "qualification_limits_preserved": [
+    "Retained c5 engine/editor runs are not represented as rerun at a5.",
+    "Historical failures and superseded Studio populations remain retained but excluded from current totals.",
+    "Word formatting equivalence is separated from the namespace-aware test-helper change.",
+    "Current targeted Node148 does not imply a fresh complete Node run.",
+    "Live external Zotero and installed Word/LibreOffice/OpenOffice acceptance are excluded."
+  ],
+  "retention_inputs": {
+    "all_prior_inputs_identical_claim": false,
+    "editor_added": 3,
+    "editor_changed": 13,
+    "editor_original": 2884,
+    "editor_unchanged": 2871,
+    "engine_changed": 4,
+    "engine_original": 2853,
+    "engine_unchanged": 2849
+  },
+  "review_passed": true,
+  "review_scope": "Final main2 narrative, qualification populations, retained/new-source attribution, local links, archive/index hashes and source-applicability sidecars; no tests rerun.",
+  "reviewed_file_sha256": {
+    "docs/validation/zotero-multiparagraph-20261121/README.md": "fc0b00ccafeab686cd688cccb0000fd85a2d4c03560c48e990eba7937d4078d7",
+    "docs/validation/zotero-multiparagraph-20261121/publication-intake/README.md": "8599c4de8ef9d977e174ae2255a9c6feb36bfb471e8d0ce9f0a1f8a09d288ec3",
+    "docs/validation/zotero-multiparagraph-20261121/publication-intake/final-audit.json": "6d6342934fe28e9e972ada60c7498e80590d422ee503263cc00d8718628dc713",
+    "docs/validation/zotero-multiparagraph-20261121/qualification.json": "209df509487b0fb3ea5da263def1b6e8e35f81045b7345a9a7491257167e3556",
+    "docs/validation/zotero-multiparagraph-20261121/remote-checkpoints.json": "986c0cf13c6525ec2a25a1830cdb23931104f16fd97b208e723857ee6139b826",
+    "docs/zotero-validation.md": "14aad7301fd8f0332b9d95ca516dc5710477ac44b267ad8849e60a748abc8df6"
+  },
+  "reviewed_product_checkpoint": {
+    "commit": "a5dc721dd8e519dde4f019b82a89572fe9f570f4",
+    "tree": "b3c010249b88c1ae29bce6d901f5c983adf1acf4"
+  },
+  "sha256sums_disposition": "Parent will regenerate the checksum ledger after copying this separate review; every archive/index referenced by qualification.json has already been independently verified.",
+  "source_applicability_sidecars_resolve": true,
+  "static_files": {
+    "studio_mail": 12,
+    "word_distinct": 6,
+    "zotero": 9
+  },
+  "studio_zotero_population": {
+    "fresh": 33,
+    "old33_population_replaced": true,
+    "source": "a5dc721dd8e519dde4f019b82a89572fe9f570f4"
+  },
+  "word_population": {
+    "accepted_unique": 161,
+    "fresh_disjoint": 5,
+    "retained": 156
+  }
+}

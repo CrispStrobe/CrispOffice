@@ -54,7 +54,7 @@ unchanged composing draft.
 ### Insert text and image annotations directly from Zotero
 
 With **Zotero 9 or later** running, place the caret or select ordinary text
-within one paragraph of the body or an authored footnote/endnote, outside
+across consecutive paragraphs in one body section or authored footnote/endnote, outside
 existing fields, and choose **Insert → References → Add Zotero
 annotation**, or **Document → Add annotation from Zotero…** in the references
 workspace. Zotero opens its annotation picker, where you can browse or search
@@ -90,8 +90,8 @@ Zotero. The command dialog and workspace tooltip identify the version requiremen
 
 ### Insert a Zotero research note
 
-Place the caret or select ordinary text within one paragraph of the body or
-an authored footnote/endnote, outside existing fields, and
+Place the caret or select ordinary text across consecutive paragraphs in one
+body section or authored footnote/endnote, outside existing fields, and
 choose **Insert → References → Add Zotero note**, or **Document → Add note from
 Zotero…** in the references workspace. Select a research note in Zotero's native
 note picker. This imports the research content of a Zotero library note. When
@@ -131,9 +131,21 @@ document parts and relationships remain intact after saving and undo/redo.
 Cancelling the note picker before it supplies any text also discards temporary
 fields and staged preference changes.
 
-Selections must stay within one editable paragraph. Cross-paragraph selections,
-existing fields, note references, pictures, commented text, protected
-ranges and structural selections are refused. This includes ordinary complex
+Selections can span up to 10,000 consecutive ordinary main-flow paragraphs in
+one body section or authored note. The selected text and intervening paragraph
+breaks are replaced; unselected prefix/suffix runs, links and active citations
+remain intact. A separate surviving suffix keeps its original paragraph
+formatting. A single inserted ordinary paragraph joins the prefix and suffix
+under the starting paragraph's formatting. The automatic note marker and its
+separator stay before the imported content. Forward and backward selections,
+empty paragraphs and a selection containing only a paragraph break are supported.
+
+A multi-paragraph selection cannot cross a section, table, frame or content
+control, or start inside one of those containers. Paragraph-owned bookmarks and
+unrepresented field boundaries are guarded, as are paragraphs shared by more
+than one document position. Existing fields, note references, pictures, commented
+text, protected ranges and structural markers inside the selected range are
+refused. This includes ordinary complex
 Word fields such as DATE or REF, even when only their cached text is visible.
 Selections touching bookmark boundaries or empty atomic field tokens are also
 refused. Finish active text composition
@@ -321,7 +333,7 @@ results instead of applying them at another location.
 | **Document style…** | Opens Zotero's native document preferences, including the installed CSL style, language and note placement offered by that style |
 | **Refresh all with Zotero** | Lets Zotero process the document's complete supported citation sequence and bibliography together |
 | **Bibliography in Zotero…** | Adds or edits a bibliography through the same document processor |
-| **Add note from Zotero…** | Inserts a supported research note with active citation fields at the body/Notes caret, or replaces a selection within one paragraph |
+| **Add note from Zotero…** | Inserts a supported research note with active citation fields at the body/Notes caret, or replaces ordinary text across consecutive paragraphs in one body section or authored note |
 | **Add annotation from Zotero…** | Opens Zotero 9+'s annotation picker and inserts selected text, image/ink annotations and comments with active citations |
 | Existing citation menu → **Edit in Zotero…** | Opens that citation in Zotero's native picker |
 | Library selection → **Insert with Zotero…** | Seeds the native picker with selected linked catalog sources, then applies Zotero's result |
@@ -1223,12 +1235,21 @@ fallback to a different picker.
 
 For a session constructed without the editor controller, `insertionParagraph`
 may be an anchored body or note paragraph. `insertionOffset` is the start of the
-insertion or replacement; the optional `insertionEndOffset` defaults to the start
-and must stay within that paragraph. The range uses native paragraph offsets,
-including any hidden note-reference separator. The controller maps the Notes
-pane's visible selection to those offsets. A nonempty range applies only to
-research-content insertion; ordinary citation commands keep their existing
-caret/field behavior. The surrounding rollback boundary is still required.
+insertion or replacement. Optional `insertionEndParagraph` defaults to the start
+paragraph; `insertionEndOffset` defaults to the start offset and is measured
+within that end paragraph. Both offsets must be valid UTF-16 text boundaries.
+Distinct endpoint paragraphs must be ordered, exclusively owned, consecutive
+ordinary blocks in the same body-section or authored-note block list, subject
+to the limits above. An end offset of zero selects the preceding paragraph
+break without selecting text from the last paragraph.
+
+The range uses native paragraph offsets, including any hidden note-reference
+separator. The controller maps the Notes pane's visible selection to those
+offsets. A raw offset of zero at the start of an authored note also preserves
+its existing automatic reference separator during multi-paragraph replacement.
+A nonempty range applies only to research-content insertion; ordinary citation
+commands keep their existing caret/field behavior. The surrounding rollback
+boundary is still required.
 
 `WordZoteroNoteText.blocks` retains table ownership. Its `paragraphs` view
 contains those same paragraph objects in row-major order, and citation/list
@@ -1290,8 +1311,10 @@ to each new client. Clients sharing that state must use the same clock.
 
 ## Current and previous qualification evidence
 
-The [vertical-table work record](validation/zotero-vertical-tables-20261120/README.md)
-tracks the latest implementation and qualification. The preceding
+The [multi-paragraph replacement work record](validation/zotero-multiparagraph-20261121/README.md)
+tracks the latest implementation, complete remote intake and local qualification.
+The preceding [vertical-table work record](validation/zotero-vertical-tables-20261120/README.md)
+retains its own source and evidence. The earlier
 [horizontal-merge and Refresh work record](validation/zotero-merged-cells-20261120/README.md)
 records its incoming-work reconciliation, remote checkpoints,
 exact-source checks and remaining application acceptance. Its qualified source,

@@ -1,0 +1,282 @@
+{
+  "logs/flutter-version.json": {
+    "bytes": 628,
+    "sha256": "bb8411db9fc556a9d86afb0e3e026b9f287d1019d15f83cbf817ca2e89825be6"
+  },
+  "logs/incoming-mail-core-cases.json": {
+    "bytes": 6403,
+    "sha256": "db71bff882c897b48d72cc8b86a565f7c2f4cd659851b11516e296d3928795cb"
+  },
+  "logs/incoming-mail-core-process.json": {
+    "bytes": 61,
+    "sha256": "bcc1b66e33156b6c5cd91851ae82e1d726a5add4b5b668f438897fcba0299df4"
+  },
+  "logs/incoming-mail-core-receipt.json": {
+    "bytes": 3554,
+    "sha256": "afc206b22725285cae05ac6c492a2a8e4f5a88103f252ed25d403b696d691a79"
+  },
+  "logs/incoming-mail-core-run.log": {
+    "bytes": 585,
+    "sha256": "fd6e3c1128b9d995a1e93c15c780d627736e17408778ca38422ee6a3f101336e"
+  },
+  "logs/incoming-mail-core-sources-after.json": {
+    "bytes": 65208,
+    "sha256": "b86dd44afbac8c349b5cd6580cbd12fae34f24a8f60d00325ac94d3f358e7b47"
+  },
+  "logs/incoming-mail-core-sources-before.json": {
+    "bytes": 65208,
+    "sha256": "b86dd44afbac8c349b5cd6580cbd12fae34f24a8f60d00325ac94d3f358e7b47"
+  },
+  "logs/incoming-mail-core-started.json": {
+    "bytes": 2839,
+    "sha256": "2c793d113019808806a6f1bf857cb8704d20677f7e8ca4e301f84ff7be3eb29c"
+  },
+  "logs/incoming-mail-core.jsonl": {
+    "bytes": 14232,
+    "sha256": "354cc647cdc82632c01101b14495aa188336ac205676e6b0f27eb97c3b216848"
+  },
+  "logs/incoming-mail-core.stderr": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "logs/incoming-mail-pub-get.log": {
+    "bytes": 214,
+    "sha256": "3640d48177b802767785e357f56651162d2250e124b566cffdc2cb88ce7e7f9c"
+  },
+  "logs/incoming-mail-sqlite-probe.log": {
+    "bytes": 170,
+    "sha256": "6e28872a863ad519c16b9face33b0e6ae156657713400f39d3bd164add10a213"
+  },
+  "logs/incoming-mail-sqlite-probe.stderr": {
+    "bytes": 44,
+    "sha256": "dd35d399349c10aa3a96d7b290940c947560d0a57270cc0c46cfa73c85128ef6"
+  },
+  "logs/incoming-mail-sqlite-readiness.json": {
+    "bytes": 957,
+    "sha256": "b98378f8998c9cd6ac599f28d5f00e6904df88320a3b6a1592ae915b8804923c"
+  },
+  "logs/incoming-mail-store-cases.json": {
+    "bytes": 17593,
+    "sha256": "d3e3e5b22b124bd1d3f573fbeeb83243f2c2dead8fae9291aa4e36db3a0a6574"
+  },
+  "logs/incoming-mail-store-process.json": {
+    "bytes": 62,
+    "sha256": "2fd079f43a6f37f1a82d5ddde8d25f1f32da79cc408909c7e55b369fe2b1f10d"
+  },
+  "logs/incoming-mail-store-receipt.json": {
+    "bytes": 3854,
+    "sha256": "6d344335d9619cf3d65836fc19cda4bf3448d50c1d9d6a80e4ccad6d77d9d50b"
+  },
+  "logs/incoming-mail-store-run.log": {
+    "bytes": 588,
+    "sha256": "50de9386e8e859569b5646eaa66195561693bf9a33ca353421a9f58014babf71"
+  },
+  "logs/incoming-mail-store-sources-after.json": {
+    "bytes": 65208,
+    "sha256": "b86dd44afbac8c349b5cd6580cbd12fae34f24a8f60d00325ac94d3f358e7b47"
+  },
+  "logs/incoming-mail-store-sources-before.json": {
+    "bytes": 65208,
+    "sha256": "b86dd44afbac8c349b5cd6580cbd12fae34f24a8f60d00325ac94d3f358e7b47"
+  },
+  "logs/incoming-mail-store-started.json": {
+    "bytes": 3016,
+    "sha256": "a0825d4854ea5ae50f7b2ca0fc3f1dfdb7f479b8ec6ba628ef9318870b652e2a"
+  },
+  "logs/incoming-mail-store.jsonl": {
+    "bytes": 38729,
+    "sha256": "ccae03cfaf1de0f883e079ed48a367956fed865288049ca50f99ad9242331611"
+  },
+  "logs/incoming-mail-store.stderr": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "logs/incoming-mail-studio-cases.json": {
+    "bytes": 4266,
+    "sha256": "ec5984301ad449a4c33e0157301a9b444677dfbedf81bcf8d7c0b6e14d5e4a13"
+  },
+  "logs/incoming-mail-studio-process.json": {
+    "bytes": 61,
+    "sha256": "18ef9a61542ceb85cc1cae2d6f5bf421ac47e448c1a705d220bc5b500376341d"
+  },
+  "logs/incoming-mail-studio-receipt.json": {
+    "bytes": 3543,
+    "sha256": "2140a7a69af832cad49d4bd104c7f67d6084f03378b02a2bee6c7bb91440a016"
+  },
+  "logs/incoming-mail-studio-run.log": {
+    "bytes": 589,
+    "sha256": "808eed7492b7a251473ffc29eaa4d0482b01bc21bd8f04fcdb489fcfe2acc42c"
+  },
+  "logs/incoming-mail-studio-sources-after.json": {
+    "bytes": 65208,
+    "sha256": "b86dd44afbac8c349b5cd6580cbd12fae34f24a8f60d00325ac94d3f358e7b47"
+  },
+  "logs/incoming-mail-studio-sources-before.json": {
+    "bytes": 65208,
+    "sha256": "b86dd44afbac8c349b5cd6580cbd12fae34f24a8f60d00325ac94d3f358e7b47"
+  },
+  "logs/incoming-mail-studio-started.json": {
+    "bytes": 2804,
+    "sha256": "a9ce5a2331fa5c53267f1625ac4623b206796ec413f57ef1ba99d0e8664e8845"
+  },
+  "logs/incoming-mail-studio.jsonl": {
+    "bytes": 9367,
+    "sha256": "93db60ad23b3aacb77ba5d6d24b8a6296a1f17f4e5b29bc614b3c08ec7d7b8a4"
+  },
+  "logs/incoming-mail-studio.stderr": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "logs/incoming-mail-summary.json": {
+    "bytes": 4509,
+    "sha256": "cc66d4e0b5d521a9d1e301ab30d7e81d9439c1dab11a4de5ae78180ebb819d43"
+  },
+  "logs/incoming-mail-transport-cases.json": {
+    "bytes": 35508,
+    "sha256": "88e12f1d198772eaf75fbe1be2d96fa6b577757b10a7743b374a85a0e4cf5f37"
+  },
+  "logs/incoming-mail-transport-process.json": {
+    "bytes": 62,
+    "sha256": "b8959d337a7ee5a2773b3c12902379b0c2a4895ee064772a9c8875e263652c42"
+  },
+  "logs/incoming-mail-transport-receipt.json": {
+    "bytes": 5097,
+    "sha256": "22cafba96cd0a4f67e1521c1894f13b51a2d834ef9aaeaced4554c43bde753be"
+  },
+  "logs/incoming-mail-transport-run.log": {
+    "bytes": 594,
+    "sha256": "f2f5a6235609d1e3887612a558d1aa0da346b912e1cec537f34e29f1784ba5c3"
+  },
+  "logs/incoming-mail-transport-sources-after.json": {
+    "bytes": 65208,
+    "sha256": "b86dd44afbac8c349b5cd6580cbd12fae34f24a8f60d00325ac94d3f358e7b47"
+  },
+  "logs/incoming-mail-transport-sources-before.json": {
+    "bytes": 65208,
+    "sha256": "b86dd44afbac8c349b5cd6580cbd12fae34f24a8f60d00325ac94d3f358e7b47"
+  },
+  "logs/incoming-mail-transport-started.json": {
+    "bytes": 3365,
+    "sha256": "7dee745863d03f1ec89a4b8c4f6ea227dab6eaac1f4083af809675e3c72229f3"
+  },
+  "logs/incoming-mail-transport.jsonl": {
+    "bytes": 77989,
+    "sha256": "7d6094bf048033456cec8245cbca6db0523ebbd473ae26c80f876f697697859e"
+  },
+  "logs/incoming-mail-transport.stderr": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "logs/incoming-mail-ui-cases.json": {
+    "bytes": 6876,
+    "sha256": "28529a6d6540b50947a64c53347ca21e1a3c58549814b54d03b101ea7fc74444"
+  },
+  "logs/incoming-mail-ui-process.json": {
+    "bytes": 61,
+    "sha256": "59f3e6a25d219dac3fbde7d9e7cbc6c0c19e76bdc5db67a566ea7296722549ce"
+  },
+  "logs/incoming-mail-ui-receipt.json": {
+    "bytes": 3779,
+    "sha256": "228a9c68215c86fc60348c706bc1e401eb08f26fd5a8918d19a5f228803ee1ba"
+  },
+  "logs/incoming-mail-ui-run.log": {
+    "bytes": 584,
+    "sha256": "e30d197e6bdd196679968d9fbc44b1eb0757093c85fd108ae59c0f5bfd09f367"
+  },
+  "logs/incoming-mail-ui-sources-after.json": {
+    "bytes": 65208,
+    "sha256": "b86dd44afbac8c349b5cd6580cbd12fae34f24a8f60d00325ac94d3f358e7b47"
+  },
+  "logs/incoming-mail-ui-sources-before.json": {
+    "bytes": 65208,
+    "sha256": "b86dd44afbac8c349b5cd6580cbd12fae34f24a8f60d00325ac94d3f358e7b47"
+  },
+  "logs/incoming-mail-ui-started.json": {
+    "bytes": 2942,
+    "sha256": "3f7522c576af28e63ae6c1f28eed5bee6a60f42f1a09cbee15ef1859788818f2"
+  },
+  "logs/incoming-mail-ui.jsonl": {
+    "bytes": 17198,
+    "sha256": "8259d8c6b97323091fa4df859b9cd8284ceeec7cc711b8a0b4c6398f05646b64"
+  },
+  "logs/incoming-mail-ui.stderr": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "logs/incoming-mail-unsupported-cases.json": {
+    "bytes": 1277,
+    "sha256": "f0d52d3ab1a7c2a6f4e108a024fce50a4fc906c507940f1597ff25d68e847100"
+  },
+  "logs/incoming-mail-unsupported-process.json": {
+    "bytes": 61,
+    "sha256": "a80b0b495a5a0171ee9271004e9a0fea62ff1984e0c8b5ffb657e8fb5e464eba"
+  },
+  "logs/incoming-mail-unsupported-receipt.json": {
+    "bytes": 3893,
+    "sha256": "c8c52d6b075eecc2cebce6b8db4ec25418d80144dfa603fff85c8ad131484169"
+  },
+  "logs/incoming-mail-unsupported-run.log": {
+    "bytes": 592,
+    "sha256": "2ba5eb377b35ca77e04400f9a8cf9068de76f09649cf46d530ed7addc7271327"
+  },
+  "logs/incoming-mail-unsupported-sources-after.json": {
+    "bytes": 65208,
+    "sha256": "b86dd44afbac8c349b5cd6580cbd12fae34f24a8f60d00325ac94d3f358e7b47"
+  },
+  "logs/incoming-mail-unsupported-sources-before.json": {
+    "bytes": 65208,
+    "sha256": "b86dd44afbac8c349b5cd6580cbd12fae34f24a8f60d00325ac94d3f358e7b47"
+  },
+  "logs/incoming-mail-unsupported-started.json": {
+    "bytes": 3046,
+    "sha256": "f34cae5df803f1624bf2849f02a83da5ba80a92e5889f72f7dedff05440cb49a"
+  },
+  "logs/incoming-mail-unsupported.jsonl": {
+    "bytes": 5559,
+    "sha256": "88de633802aa218fb2bde9b8fb23f9b1f3fd4ddf8224c47c1e4817e94ec29bbb"
+  },
+  "logs/incoming-mail-unsupported.stderr": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "package_incoming_mail.py": {
+    "bytes": 4850,
+    "sha256": "7af4f9c1db2a2c293350f3a5f458d4bbe63a00f9ee48f18b21fe013c7f25c54e"
+  },
+  "run_incoming_mail.py": {
+    "bytes": 6642,
+    "sha256": "62d12963738a9b5bdef912ca147cbcb207182017eae30d9b726ba9e248118695"
+  },
+  "run_incoming_mail_initial.py": {
+    "bytes": 6484,
+    "sha256": "7c24cd3b4fe5674911439d439d629d000c3c2c38caa1f874499f5ced3dc42138"
+  },
+  "runtime-configuration/native_assets.yaml": {
+    "bytes": 374,
+    "sha256": "3bbd0039e3bb93493cbd72dc9f6f005c54c0eb14f521643eb448843f7f500960"
+  },
+  "runtime-configuration/package_config.json": {
+    "bytes": 34472,
+    "sha256": "592398df3d903bd8895be62a37b1be7230b93155ab6013eb22a0ff5f7413f728"
+  },
+  "runtime-configuration/pubspec.lock": {
+    "bytes": 33203,
+    "sha256": "0d64a732cd7f6c7cc4e1e01255276f081b59e6f43039636c3d36f6785a958ce2"
+  },
+  "setup/mail-export.json": {
+    "bytes": 1375904,
+    "sha256": "4933a70c27a26d009da201ff43203165d54268ea8937fa6ba8784f5a3eb5ddf4"
+  },
+  "setup/native/sqlite_probe.dart": {
+    "bytes": 606,
+    "sha256": "a4b3477221f443491fab6ba4011e9248ff28e2fc2d703f3ca70bc60b38d4a3d3"
+  },
+  "setup/sdk.json": {
+    "bytes": 289,
+    "sha256": "720cf835bb8fefe02f201a0c9e2a3bbbd3fa6c17211548e99fac7357c6ca92cc"
+  },
+  "setup/sqlite-download.json": {
+    "bytes": 319,
+    "sha256": "dda45553fbba5482a8b2ef25217926ba008183fd194d4f1e430de5b5a746c189"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "schema": "quds-zotero-open-pr-intake/v1",
+  "scope": "Open pull request metadata only; no CI, status, check or workflow endpoints",
+  "collections": [
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "url": "https://api.github.com/repos/CrispStrobe/quds_office_suite/pulls?state=open&sort=updated&direction=desc&per_page=100",
+      "page": 1,
+      "per_page": 100,
+      "count": 0,
+      "complete": true,
+      "pull_requests": []
+    },
+    {
+      "repository": "MohammedAsaadAsaad/quds_office_suite",
+      "url": "https://api.github.com/repos/MohammedAsaadAsaad/quds_office_suite/pulls?state=open&sort=updated&direction=desc&per_page=100",
+      "page": 1,
+      "per_page": 100,
+      "count": 0,
+      "complete": true,
+      "pull_requests": []
+    }
+  ]
+}
