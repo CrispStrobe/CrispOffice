@@ -1,0 +1,84 @@
+{
+  "schema": "quds.zotero.publication-reconciliation.v1",
+  "observed_utc": "2026-11-21T15:30:22.348339+00:00",
+  "runtime_qualified_source": "9a3e5021bd9dd6468f5e8f37334d5a02bd9c174e",
+  "publication_source": "39dd5fb85901ead1dad9f6b82ed9590a35b26aa7",
+  "publication_tree": "342dbfbd0f08f9030599e24e70938668a56e26c4",
+  "parents": [
+    "9a3e5021bd9dd6468f5e8f37334d5a02bd9c174e",
+    "089d11cd073520208f27a09b2914d57615cef7ff"
+  ],
+  "incorporated_main": "089d11cd073520208f27a09b2914d57615cef7ff",
+  "qualified_manifest_sha256": "567af486375e4ded9404e76d4e569b35aa7264f9871a8bfa73bd69ac71fc3b9d",
+  "qualified_manifest_files": 1638,
+  "changed_manifest_inputs": [
+    {
+      "path": "packages/quds_office_editor/test/office_dark_slide_test.dart",
+      "qualified_sha256": "80d1e959bebc3a14296aa52496f343fa557bb35045767278c7fbc04120f4454a",
+      "publication_sha256": "f5e16e2d5f79fe9767db486a66549d9baa7d5eb112386188e7a7f02441f6648c"
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_shaped_wrap_test.dart",
+      "qualified_sha256": "1ccf247deda19fd8e5adc79732d123e139f1fe41211f1a19f8a21196a2331405",
+      "publication_sha256": "5e7e8bbccd4dd4416a99bb3cc44ef384b51d0a19aee8b39993be7e9a1c4eb581"
+    }
+  ],
+  "changed_paths": [
+    "packages/quds_office_editor/test/goldens/macos/columns_sections_1.png",
+    "packages/quds_office_editor/test/goldens/macos/columns_sections_2.png",
+    "packages/quds_office_editor/test/goldens/macos/columns_sections_3.png",
+    "packages/quds_office_editor/test/goldens/macos/continued_notes_1.png",
+    "packages/quds_office_editor/test/goldens/macos/continued_notes_2.png",
+    "packages/quds_office_editor/test/goldens/macos/continued_notes_3.png",
+    "packages/quds_office_editor/test/goldens/macos/frame_wrap_none.png",
+    "packages/quds_office_editor/test/goldens/macos/frame_wrap_square.png",
+    "packages/quds_office_editor/test/goldens/macos/frame_wrap_topBottom.png",
+    "packages/quds_office_editor/test/goldens/macos/nested_table_content.png",
+    "packages/quds_office_editor/test/goldens/macos/office_fidelity_word.png",
+    "packages/quds_office_editor/test/goldens/macos/office_stories_page_1.png",
+    "packages/quds_office_editor/test/goldens/macos/office_stories_page_2.png",
+    "packages/quds_office_editor/test/goldens/macos/office_stories_page_3.png",
+    "packages/quds_office_editor/test/goldens/macos/provenance.json",
+    "packages/quds_office_editor/test/goldens/macos/rtl_1.png",
+    "packages/quds_office_editor/test/goldens/macos/structure_create_1.png",
+    "packages/quds_office_editor/test/goldens/macos/structure_edit_1.png",
+    "packages/quds_office_editor/test/goldens/macos/structure_edit_2.png",
+    "packages/quds_office_editor/test/goldens/macos/structure_remove_1.png",
+    "packages/quds_office_editor/test/goldens/macos/table_grid_format.png",
+    "packages/quds_office_editor/test/goldens/macos/table_grid_replace.png",
+    "packages/quds_office_editor/test/goldens/macos/table_grid_unchanged.png",
+    "packages/quds_office_editor/test/goldens/macos/table_grid_unmerge.png",
+    "packages/quds_office_editor/test/goldens/macos/tall_table_1.png",
+    "packages/quds_office_editor/test/goldens/macos/tall_table_2.png",
+    "packages/quds_office_editor/test/goldens/macos/tall_table_3.png",
+    "packages/quds_office_editor/test/goldens/macos/tall_table_4.png",
+    "packages/quds_office_editor/test/goldens/macos/word_selection_macOS.png",
+    "packages/quds_office_editor/test/goldens/macos/word_selection_windows.png",
+    "packages/quds_office_editor/test/office_dark_slide_test.dart",
+    "packages/quds_office_editor/test/word_shaped_wrap_test.dart"
+  ],
+  "selected_qualification_tests": 198,
+  "selected_qualification_tests_changed": [],
+  "production_sources_changed": [],
+  "dependency_files_changed": [],
+  "incoming_paths_match_main_exactly": true,
+  "ancestry": [
+    {
+      "ancestor": "9a3e5021bd9dd6468f5e8f37334d5a02bd9c174e",
+      "descendant": "39dd5fb85901ead1dad9f6b82ed9590a35b26aa7",
+      "is_ancestor": true
+    },
+    {
+      "ancestor": "089d11cd073520208f27a09b2914d57615cef7ff",
+      "descendant": "39dd5fb85901ead1dad9f6b82ed9590a35b26aa7",
+      "is_ancestor": true
+    },
+    {
+      "ancestor": "01517de8886ef7bd24947894be5dc823d0328869",
+      "descendant": "39dd5fb85901ead1dad9f6b82ed9590a35b26aa7",
+      "is_ancestor": true
+    }
+  ],
+  "interpretation": "The publication merge adds only inherited macOS golden assets/provenance and two unrelated editor tests. Production code, dependencies, retained fixtures, and every selected qualification test remain identical to the runtime-qualified source. Existing completed gates are not relabeled as runs on this publication commit. No additional runtime or CI acceptance claim is made.",
+  "github_actions_queried_or_awaited": false
+}
