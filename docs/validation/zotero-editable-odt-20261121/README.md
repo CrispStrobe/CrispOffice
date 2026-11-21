@@ -14,8 +14,7 @@ keeps its existing visible-cache contract. The opt-in path must refuse a
 document if it cannot preserve the active Zotero fields it claims to export.
 
 Engine serialization, editor export and actual installed Zotero/LibreOffice
-interoperability are separate acceptance boundaries. No passing runtime result
-or installed-plugin result is claimed by this initial checkpoint.
+interoperability are separate acceptance boundaries. Installed-plugin acceptance remains separate from local runtime verification.
 
 ## Initial intake
 
@@ -23,7 +22,7 @@ All advertised fork branches and all 323 pull-request heads were fetched, along
 with all four upstream branch heads. At the initial snapshot, 31 fork topic
 heads and all four upstream heads were already ancestors of starting main.
 
-Two additional fork heads are preserved as unfinished independent work:
+At intake, two additional fork heads were preserved as unfinished independent work:
 
 - `codex/word-vba-extensions-20261121` at
   `870e0ff97c9c6290bfe14bb6a137d46c54f2e697`: draft PR #322 compiles a new
@@ -32,10 +31,29 @@ Two additional fork heads are preserved as unfinished independent work:
   `32a6dcd4e56584b5af34625b44a845eb15ba44bd`: account signatures and Quick Text
   remain under implementation and qualification; no completed PR was present.
 
-Neither is silently merged as completed work. Both remain on their remote
-branches and their fetched local refs. Historical nonancestor PR heads are
-being rechecked against current main. Remote refs will be refreshed before
-publication to account for concurrent work.
+The [fresh intake](initial-intake.json) accounts for all 361 fetched refs:
+344 actual ancestors, ten reverified patch equivalents, two empty nonmerge
+patch histories, two API-confirmed squash integrations and three refs for the
+two unfinished heads. No ref was unaccounted.
+
+During this continuation, Mail PRs #324 and #325 landed on main at
+`1078372da9213c1ef4cdd362ca2285db9acb8d7b`. Their source and original ancestry
+are now included by remote checkpoint
+`2cf5055db72e229b10bf27735ba92e72e996ff84`. That intake preserves the Mail
+work record's own explicit outstanding qualification; it does not borrow Zotero
+test results. The Word style continuation remains independently advancing.
+Remote refs will be refreshed again before publication.
+
+## Executed baseline qualification
+
+The [baseline receipt](baseline/receipt.json) and [work record](baseline/README.md)
+record 219 passing engine cases and 93 passing editor cases, with no failures
+or skips. All four pending #323 files pass formatting and fatal-info analysis.
+Only formatting and five automatic test-string interpolation fixes were needed;
+reader behavior is unchanged. The original failures, successful logs and source
+snapshots are retained in [the execution archive](baseline/execution.tar.gz).
+Concurrent new export work is explicitly identified in that receipt; the final
+combined export source will be qualified separately.
 
 ## Validation plan
 

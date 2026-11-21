@@ -958,34 +958,48 @@ void main() {
     },
   );
 
-  test('horizontal merged owner retains active citation and logical width', () async {
-    final document = await OdtDocumentReader.readBytes(
-      _package(
-        '<table:table><table:table-column table:number-columns-repeated="3"/>'
-        '<table:table-row>'
-        '<table:table-cell table:number-columns-spanned="+02">'
-        '<text:p>${_mark(_citation(), '(Source)')}</text:p>'
-        '</table:table-cell><table:covered-table-cell/>'
-        '<table:table-cell><text:p>Neighbor</text:p></table:table-cell>'
-        '</table:table-row></table:table>',
-      ),
-    );
-    for (final current in [document, _reopen(document)]) {
-      final table = current.sections.single.blocks.whereType<WmlTable>().single;
-      expect(table.grid, [120, 120, 120]);
-      expect(table.rows.single.cells.map((cell) => cell.gridSpan), [2, 1]);
-      expect(table.rows.single.cells.map((cell) => cell.width), [240, 120]);
-      expect(table.rows.single.cells.map((cell) => cell.vMerge), [
-        WmlVMerge.none,
-        WmlVMerge.none,
-      ]);
-      final field = WordZotero.fields(current).single;
-      expect(field.cachedText, '(Source)');
-      expect(field.canEdit, isTrue);
-      expect(identical(field.paragraph, table.rows.single.cells.first.blocks.single), isTrue);
-      expect((table.rows.single.cells.last.blocks.single as WmlParagraph).text, 'Neighbor');
-    }
-  });
+  test(
+    'horizontal merged owner retains active citation and logical width',
+    () async {
+      final document = await OdtDocumentReader.readBytes(
+        _package(
+          '<table:table><table:table-column table:number-columns-repeated="3"/>'
+          '<table:table-row>'
+          '<table:table-cell table:number-columns-spanned="+02">'
+          '<text:p>${_mark(_citation(), '(Source)')}</text:p>'
+          '</table:table-cell><table:covered-table-cell/>'
+          '<table:table-cell><text:p>Neighbor</text:p></table:table-cell>'
+          '</table:table-row></table:table>',
+        ),
+      );
+      for (final current in [document, _reopen(document)]) {
+        final table = current.sections.single.blocks
+            .whereType<WmlTable>()
+            .single;
+        expect(table.grid, [120, 120, 120]);
+        expect(table.rows.single.cells.map((cell) => cell.gridSpan), [2, 1]);
+        expect(table.rows.single.cells.map((cell) => cell.width), [240, 120]);
+        expect(table.rows.single.cells.map((cell) => cell.vMerge), [
+          WmlVMerge.none,
+          WmlVMerge.none,
+        ]);
+        final field = WordZotero.fields(current).single;
+        expect(field.cachedText, '(Source)');
+        expect(field.canEdit, isTrue);
+        expect(
+          identical(
+            field.paragraph,
+            table.rows.single.cells.first.blocks.single,
+          ),
+          isTrue,
+        );
+        expect(
+          (table.rows.single.cells.last.blocks.single as WmlParagraph).text,
+          'Neighbor',
+        );
+      }
+    },
+  );
 
   test('combined spans inherit fill and emit empty native continuations', () async {
     final document = await OdtDocumentReader.readBytes(
@@ -1053,38 +1067,41 @@ void main() {
     }
   });
 
-  test('malformed span values refuse instead of using Dart integer syntax', () async {
-    for (final (name, invalid) in [
-      ('number-columns-spanned', '0'),
-      ('number-columns-spanned', '33'),
-      ('number-columns-spanned', '0x2'),
-      ('number-columns-spanned', '\u00a02'),
-      ('number-columns-spanned', '2\u00a0'),
-      ('number-columns-spanned', '1.0'),
-      ('number-rows-spanned', '-1'),
-      ('number-rows-spanned', '257'),
-      ('number-rows-spanned', '1e0'),
-      ('number-rows-spanned', ''),
-    ]) {
-      // Supply valid two-column coverage for numeric-looking values, so
-      // refusal proves the lexical guard rather than a separate overhang.
-      final covered =
-          invalid == '0x2' || invalid == '\u00a02' || invalid == '2\u00a0'
-          ? '<table:covered-table-cell/>'
-          : '';
-      await expectLater(
-        OdtDocumentReader.readBytes(
-          _package(
-            '<table:table><table:table-row><table:table-cell table:$name="$invalid">'
-            '<text:p>${_mark(_citation(), 'Citation')}</text:p>'
-            '</table:table-cell>$covered</table:table-row></table:table>',
+  test(
+    'malformed span values refuse instead of using Dart integer syntax',
+    () async {
+      for (final (name, invalid) in [
+        ('number-columns-spanned', '0'),
+        ('number-columns-spanned', '33'),
+        ('number-columns-spanned', '0x2'),
+        ('number-columns-spanned', '\u00a02'),
+        ('number-columns-spanned', '2\u00a0'),
+        ('number-columns-spanned', '1.0'),
+        ('number-rows-spanned', '-1'),
+        ('number-rows-spanned', '257'),
+        ('number-rows-spanned', '1e0'),
+        ('number-rows-spanned', ''),
+      ]) {
+        // Supply valid two-column coverage for numeric-looking values, so
+        // refusal proves the lexical guard rather than a separate overhang.
+        final covered =
+            invalid == '0x2' || invalid == '\u00a02' || invalid == '2\u00a0'
+            ? '<table:covered-table-cell/>'
+            : '';
+        await expectLater(
+          OdtDocumentReader.readBytes(
+            _package(
+              '<table:table><table:table-row><table:table-cell table:$name="$invalid">'
+              '<text:p>${_mark(_citation(), 'Citation')}</text:p>'
+              '</table:table-cell>$covered</table:table-row></table:table>',
+            ),
           ),
-        ),
-        _refused,
-        reason: '$name=$invalid',
-      );
-    }
-  });
+          _refused,
+          reason: '$name=$invalid',
+        );
+      }
+    },
+  );
 
   test(
     'JSON preferences normalize at explicit import and preserve extensions',
