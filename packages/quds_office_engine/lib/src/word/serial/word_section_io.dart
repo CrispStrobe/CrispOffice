@@ -139,8 +139,18 @@ abstract final class WordSectionIo {
   }
 
   static XmlElement _selfContained(XmlElement element) => element.copy()
-    ..setAttribute('w', OfficeNamespaces.w, prefix: 'xmlns')
-    ..setAttribute('r', OfficeNamespaces.r, prefix: 'xmlns');
+    ..setAttribute(
+      'w',
+      OfficeNamespaces.w,
+      prefix: 'xmlns',
+      namespaceUri: 'http://www.w3.org/2000/xmlns/',
+    )
+    ..setAttribute(
+      'r',
+      OfficeNamespaces.r,
+      prefix: 'xmlns',
+      namespaceUri: 'http://www.w3.org/2000/xmlns/',
+    );
 
   static void _mergeModeledAttributes(
     XmlElement original,
@@ -166,7 +176,12 @@ abstract final class WordSectionIo {
               .firstOrNull ??
           'w';
     }
-    original.setAttribute(prefix, OfficeNamespaces.w, prefix: 'xmlns');
+    original.setAttribute(
+      prefix,
+      OfficeNamespaces.w,
+      prefix: 'xmlns',
+      namespaceUri: 'http://www.w3.org/2000/xmlns/',
+    );
     for (final String attribute in attributes) {
       original.removeAttribute(attribute, namespaceUri: OfficeNamespaces.w);
       final String? value = replacement.getAttribute(attribute);
