@@ -48,7 +48,7 @@
 00:00 +45: test/word_zotero_note_table_test.dart: invalid row span syntax or bound refuses: 01
 00:00 +46: test/word_zotero_note_table_test.dart: invalid row span syntax or bound refuses: 1e2
 00:00 +47: test/word_zotero_note_table_test.dart: invalid row span syntax or bound refuses: +1
-00:00 +48: test/word_zotero_note_table_test.dart: invalid row span syntax or bound refuses: 
+00:00 +48: test/word_zotero_note_table_test.dart: invalid row span syntax or bound refuses:
 00:00 +49: test/word_zotero_note_table_test.dart: invalid row span syntax or bound refuses: NaN
 00:00 +50: test/word_zotero_note_table_test.dart: invalid row span syntax or bound refuses: 257
 00:00 +51: test/word_zotero_note_table_test.dart: invalid row span syntax or bound refuses: 999999999999999999999
