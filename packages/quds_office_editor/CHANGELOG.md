@@ -4,6 +4,10 @@ All notable changes to `quds_office_editor` are documented here.
 
 ## Unreleased
 
+- Align Word's table-cell ruler fallback with the actual table margin, including
+  zero and narrow cells. Native layout now honors persisted margins throughout
+  research tables, merged/nested cells and authored-note tables.
+
 - Saved-mail search adds **Refresh results** and opt-in 30-second foreground
   updates. Replace bounded multi-account results atomically, preserve the
   opened reader when its account/message identity survives, and pause updates

@@ -1141,6 +1141,8 @@ class WordDeserializer {
   ) {
     final List<WmlInline> inlines = <WmlInline>[];
     XmlElement? formattingChange;
+    var hasOrdinaryRunIdentity = false;
+    var hasNonTextContent = false;
     final WmlRun run = WmlRun()..properties.sourcePropertiesXml = '';
     if (reader.isEmptyElement) {
       return inlines;
@@ -1149,6 +1151,13 @@ class WordDeserializer {
     while (reader.next() && reader.depth >= depth) {
       if (reader.eventType != XmlEventType.startElement) {
         continue;
+      }
+      if (reader.depth == depth + 1) {
+        final ordinary =
+            reader.namespaceUri == OfficeNamespaces.w &&
+            const {'rPr', 't', 'delText'}.contains(reader.localName);
+        hasOrdinaryRunIdentity |= ordinary;
+        hasNonTextContent |= !ordinary;
       }
       if (reader.localName == 'rPr') {
         formattingChange = _readRPr(reader, run.properties);
@@ -1367,8 +1376,15 @@ class WordDeserializer {
         }
       }
     }
+    // An authored empty text/property packet still owns its insertion style.
+    // Keep it through save/reopen, including an empty rPr inheriting a style.
+    // Bare runs and structural-only field, note, drawing or comment markers
+    // must not acquire an extra ordinary run beside their existing model node.
+    final emptyOrdinaryRun =
+        hasOrdinaryRunIdentity && !hasNonTextContent && inlines.isEmpty;
     if (run.text.isNotEmpty ||
         run.noteRefId != null ||
+        emptyOrdinaryRun ||
         formattingChange != null && inlines.isEmpty) {
       run.commentIds.addAll(_openCommentIds);
       inlines.add(run);

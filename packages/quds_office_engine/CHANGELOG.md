@@ -4,6 +4,29 @@ All notable changes to `quds_office_engine` are documented here.
 
 ## Unreleased
 
+- Fill existing Word table templates from the bounded VBA dialect using typed
+  `Tables`, `Table`, `Cell` and cell-range aliases, `With` and `ByVal` helpers.
+  `Cell.Range.Text` emits guarded `docx.tableCellRangeText` operations for plain
+  single-paragraph cells in unmerged rectangular main-story tables. Preserve
+  structure and formatting, refuse ambiguous native ownership and unsupported
+  rich content, and retain the atomic CLI/MCP/recording transaction boundary.
+  Add a runnable table-report BAS and portable source/native conformance checks.
+  Retain explicit empty ordinary text runs during DOCX import so clearing,
+  saving, reopening and refilling a cell preserves insertion formatting;
+  structural markers do not acquire additional empty runs.
+
+- Honor each table's uniform cell margin in native measurement, wrapping,
+  pagination and note/nested-table layout instead of a fixed inset. Preserve
+  accumulated ancestor margins when fitting pictures and splitting tall rows.
+  Editable Zotero ODT exports explicit padding; native import resolves bounded
+  style inheritance and retains uniform padding through DOCX saves. Admit
+  LibreOffice's explicit borderless declarations, while rejecting asymmetric,
+  conflicting or unrepresentable padding and visible unsupported borders.
+  Check serialized content widths with exact decimal arithmetic, including
+  merged spans and margins that exhaust a cell only after rounding. Render
+  uniquely defined, body-referenced image-only endnotes without promoting
+  orphan, duplicate or frame-only note references.
+
 - Refuse editable Zotero ODT export when effective native text, paragraph-mark
   or note-marker formatting raises or lowers the baseline by an absolute
   amount. Check inherited positions before writing, preserve explicit zero

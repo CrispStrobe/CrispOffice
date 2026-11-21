@@ -275,7 +275,8 @@ void main() {
     'covered cell border': () => _independentOdt(
       coveredCellProperties: 'fo:border-left="1pt solid #000000"',
     ),
-    'cell padding': () => _independentOdt(cellProperties: 'fo:padding="2pt"'),
+    'asymmetric cell padding': () =>
+        _independentOdt(cellProperties: 'fo:padding-left="2pt"'),
     'covered cell padding': () =>
         _independentOdt(coveredCellProperties: 'fo:padding="2pt"'),
     'table border': () =>

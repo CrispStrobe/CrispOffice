@@ -29,7 +29,7 @@ header/footer distances on one existing section, plus portrait/landscape
 orientation, toggling and four section-start modes. It emits native Word
 operations and keeps paragraph marks structural. This is a bounded write-only
 Word object-model slice. Explicit independent header/footer paragraphs now reuse
-its insertion and formatting operations; linked stories, tables, arbitrary text
+its insertion and formatting operations; linked stories, arbitrary text
 ranges and live reads remain separate work. The `vba-powerpoint` adapter adds explicit presentation,
 slide, shape and text-range bindings, one-based/index-or-name selection,
 whole-shape text, font/alignment writes and geometry. Native collection guards
@@ -43,7 +43,17 @@ and [the native macro contract](MACROS.md).
 
 ## Ordered milestones and acceptance
 
-The latest shared-language continuation adds `Abs`, `Int`, `Fix` and `Sgn`
+The latest Word object-model continuation adds explicit `Tables`, `Table`,
+`Cell` and cell-range bindings with `Cell.Range.Text` assignment. Existing
+plain, single-paragraph cells in supported unmerged main-story tables can be
+filled using local arrays, loops and typed helpers. A separate guarded native
+operation preserves structural ownership and formatting while retaining atomic
+validation/publication. This advances Stage 4 without introducing document
+reads, arbitrary range mutation, merged/nested-table semantics or embedded
+project execution. See the [table-cell contract](VBA_WORD_MACROS.md#filling-existing-table-cells)
+and [local qualification](validation/word-vba-table-cells-20261121/README.md).
+
+The preceding shared-language continuation adds `Abs`, `Int`, `Fix` and `Sgn`
 for source-known numeric calculations in Word, Excel and PowerPoint. It advances
 Stage 2 with explicit Empty/Null behavior, negative-floor versus truncation
 semantics, strict coercion limits and portable numeric bounds. Word macros can

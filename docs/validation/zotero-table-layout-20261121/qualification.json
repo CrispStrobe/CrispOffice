@@ -1,0 +1,90 @@
+{
+  "archives": [
+    {
+      "bytes": 221676,
+      "members": 69,
+      "path": "engine-evidence.tar.xz",
+      "sha256": "332231a0e43632400bc9fa9e8099b09f1d7b46cfa58d715937a04a4d98a5673e"
+    },
+    {
+      "bytes": 548328,
+      "members": 47,
+      "path": "editor-evidence.tar.xz",
+      "sha256": "c54c5a40bfebf02def9c3fcc2ecb515a1d41551335566d3fc2c879355af17341"
+    }
+  ],
+  "cohorts": [
+    {
+      "name": "Engine Zotero",
+      "passed": 1456,
+      "suites": 55
+    },
+    {
+      "name": "Engine other ODT",
+      "passed": 1080,
+      "suites": 58
+    },
+    {
+      "name": "Engine Word tables, layout and notes",
+      "passed": 621,
+      "suites": 42
+    },
+    {
+      "name": "Engine Word/PDF",
+      "passed": 77,
+      "suites": 8
+    },
+    {
+      "name": "Incoming numeric VBA",
+      "passed": 204,
+      "suites": 3
+    },
+    {
+      "name": "Zotero/ODT editor",
+      "passed": 963,
+      "suites": 53
+    },
+    {
+      "name": "Zotero/ODT Studio",
+      "passed": 41,
+      "suites": 4
+    },
+    {
+      "name": "Table/ruler/rendering editor",
+      "passed": 85,
+      "suites": 10
+    },
+    {
+      "name": "Incoming Mail refresh/search",
+      "passed": 108,
+      "suites": 6
+    }
+  ],
+  "converter": {
+    "active_fields": 9,
+    "actual_libreoffice_saves": 2,
+    "all_exits_zero": true,
+    "commands": 6,
+    "fixture": "table-padding",
+    "intervening_docx_cycle": true,
+    "renderer_exercised": false,
+    "source_unchanged": true,
+    "version": "LibreOfficeDev 26.8.0.0.alpha0 2c87e51eeaa2b413ff4ae097b2705eea1995d8e5"
+  },
+  "errors": 0,
+  "failures": 0,
+  "github_actions": "Neither queried nor awaited.",
+  "passed": 4635,
+  "production_commit": "d1125df123c68ff4bedcc0d163e6d4fb06bb0e18",
+  "production_tree": "eba5a73fb140a33425d1a3a6a5b45615cee39040",
+  "scope": "Selected source-bound local qualification; full repository, installed Zotero plugins, Microsoft Word application and supported-release LibreOffice acceptance are not claimed.",
+  "skipped": 0,
+  "static": {
+    "dart_files": 29,
+    "diff_check": true,
+    "fatal_info_analysis": true,
+    "format": true
+  },
+  "suites": 239,
+  "tracked_source_inputs": 1527
+}
