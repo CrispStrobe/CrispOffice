@@ -22,11 +22,13 @@ increment.
 
 ## Checkpoint status
 
-Initial intake and the first implementation are saved. Source compilation,
-native formatting, model import/export and display mapping are implemented;
-local qualification and integration regressions are in progress. Development
-compiler and display checks have executed, but this is not the final qualified
-source. The final record will identify executed commands, results and limits.
+Initial intake and implementation checkpoints are saved. Source compilation,
+native formatting, model import/export, Unicode display mapping, editor
+regressions and CLI/MCP integration are implemented. Independent review found
+and corrected an existing CSL small-capital interaction with inherited
+AllCaps; plain spans keep host formatting and explicit small capitals clear
+AllCaps sparsely. Targeted development checks pass. The complete source-bound
+local gate is in progress; its commands, results and limits will follow here.
 
 GitHub Actions, workflow runs and CI status queues are not queried or awaited.
 
