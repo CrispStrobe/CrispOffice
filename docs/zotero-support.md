@@ -1142,7 +1142,7 @@ document tools above use the separate HTTP Citing Protocol.
 | Existing DOCX fields | Preserve Zotero codes, unknown JSON members, source data and rich cached text, including multi-run simple fields | Nested, locked and opaque replacement is refused; multi-paragraph replacement is limited to complete native bibliography ranges |
 | Native Zotero document preferences | Read and write Zotero's XML/JSON preferences in chunked `ZOTERO_PREF_*` custom properties; translate native `Field` and wire `Http` types | Unknown preferences and unrelated properties are retained; malformed, duplicate, incomplete or ambiguously owned data is refused |
 | Document transfer | Native export/import callbacks, temporary metadata hyperlinks, DOCX save/reopen and ODT carrier export; native reformatting before applying an import | The qualified incoming carrier route uses DOCX; direct native ODT conversion has the separate envelope below; installed-plugin acceptance remains open |
-| Native ODT import | Supported paragraphs/styles, external links, authored notes, simple lists and unmerged/nested tables become an editable Word document; canonical Zotero citations/bibliographies and preferences remain active through DOCX saves | All-or-nothing bounded conversion; unsupported used structure/formatting refuses, including the retained untouched LibreOfficeDev sample; ordinary ODT export still writes cached results |
+| Native ODT import | Supported paragraphs/styles, external links, authored notes, simple lists and unmerged/nested tables become an editable Word document; independent script formatting in retained LibreOffice prose; canonical Zotero citations/bibliographies and preferences remain active through DOCX saves | All-or-nothing bounded conversion; unsupported used structure/formatting and active content-sensitive defaults refuse; ordinary ODT export still writes cached results |
 
 New citations use complex Word fields with `ADDIN ZOTERO_ITEM CSL_CITATION`
 codes, durable Zotero item URIs, and embedded CSL item snapshots. New linked
@@ -1405,11 +1405,14 @@ to each new client. Clients sharing that state must use the same clock.
 
 ## Current and previous qualification evidence
 
-The [rich ODT import record](validation/zotero-rich-odt-20261121/README.md)
-tracks the current reader, style mapping, active-field conversion, asynchronous
-editor/Studio opening and DOCX save routing. It retains exact local evidence
-and the untouched LibreOfficeDev 26.8 sample's refusal at active
-`fo:hyphenation-ladder-count`. Other script-specific defaults remain unqualified.
+The [LibreOffice style record](validation/zotero-libreoffice-styles-20261121/README.md)
+tracks current script/default mapping, the exact untouched LibreOfficeDev 26.8
+prose fixture and a separately identified synthetic Zotero extension using the
+same style envelope. The earlier
+[rich ODT import record](validation/zotero-rich-odt-20261121/README.md)
+retains its original reader, active-field conversion, asynchronous editor/Studio
+opening, DOCX save routing and then-observed style refusal. The continuation
+addresses that exact fixture without editing its input bytes.
 Synthetic import and controlled Zotero transaction tests do not establish an
 installed Word/LibreOffice/Zotero round trip or legacy Apache OpenOffice parity.
 The earlier [ODT inventory record](validation/zotero-odt-inventory-20261121/README.md)
@@ -1516,7 +1519,9 @@ The importer accepts a bounded subset:
 
 - Paragraphs and unnumbered headings with supported inherited character and
   paragraph formatting, explicit whitespace, external absolute hyperlinks and
-  a compatible page layout.
+  a compatible page layout. Supported Latin, complex-script and Asian font,
+  size, weight, italic and language differences become native runs while
+  retaining text and field positions.
 - Canonical Zotero citation ReferenceMarks and bibliography ReferenceMarks or
   TextSections, including rich bibliography entries, empty paragraphs,
   multi-item options, adjacent fields and identical-looking citations with
@@ -1534,18 +1539,28 @@ Unsupported used formatting or structure rejects the whole import before it
 replaces the active document. Examples include drawings/images, comments,
 revisions, protected/linked sections, merged/repeated table owners, custom note
 numbering, unsupported list continuation/affixes, relative/internal links and
-ambiguous citation ranges. A field cannot enclose a note anchor. Package, XML,
+ambiguous citation ranges. A citation cache containing a hyperlink is outside
+the current editable field contract; external hyperlinks outside citations are
+preserved. A field cannot enclose a note anchor. Package, XML,
 text and structural budgets apply throughout. The
 [native-input contract](roadmaps/zotero/native-odt-input.md) gives the exact
 envelope and remaining work.
 
-The untouched LibreOfficeDev 26.8 sample retained in the
-[validation record](validation/zotero-rich-odt-20261121/README.md) still refuses
-the active `fo:hyphenation-ladder-count` paragraph property. Other script-specific
-defaults remain unqualified. This release therefore does not claim general
-LibreOffice-file compatibility, a lossless native ODT editing round trip, full
-Word/LibreOffice plugin parity or installed Zotero acceptance for this path.
-The original ODT bytes are unchanged by either successful or failed conversion.
+The untouched LibreOfficeDev 26.8 prose fixture now opens with its Latin 11-point
+and Arabic 10-point formatting intact. The
+[style qualification record](validation/zotero-libreoffice-styles-20261121/README.md)
+identifies its exact bytes and distinguishes it from the synthetic Zotero field
+extension. Supported default settings are resolved after inheritance; dormant
+Asian typography requires non-Asian current text and known supported break
+languages. Active Asian typography, nonstandard default tab spacing used by
+actual tabs, an active page grid and a used custom footnote separator still
+refuse explicitly.
+
+Conversion preserves supported current content, rather than a complete live
+ODF style engine for future typing or Zotero replacements. General LibreOffice
+file compatibility, a lossless native ODT editing round trip, full plugin parity
+and installed Zotero acceptance remain separate work. The original ODT bytes
+are unchanged by either successful or failed conversion.
 
 Engine hosts can explicitly convert and save supported input:
 

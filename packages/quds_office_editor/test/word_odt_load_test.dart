@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:flutter_test/flutter_test.dart';
@@ -44,6 +45,81 @@ WordEditorController _controller() {
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
+
+  test(
+    'untouched LibreOffice prose publishes script formatting and saves as DOCX',
+    () async {
+      final fixture = File(
+        '../quds_office_engine/test/fixtures/zotero/odt/native-prose.odt',
+      );
+      final bytes = fixture.readAsBytesSync();
+      final originalBytes = Uint8List.fromList(bytes);
+
+      void expectProse(WmlDocument document) {
+        final paragraphs = document.paragraphs.toList();
+        expect(paragraphs.map((paragraph) => paragraph.text), [
+          'Research bold and italic prose.',
+          'Second paragraph العربية 😀.',
+        ]);
+        final firstRuns = paragraphs.first.inlines.whereType<WmlRun>();
+        expect(
+          firstRuns.singleWhere((run) => run.text == 'bold').properties.bold,
+          isTrue,
+        );
+        expect(
+          firstRuns
+              .singleWhere((run) => run.text == 'italic')
+              .properties
+              .italic,
+          isTrue,
+        );
+        final secondRuns = paragraphs[1].inlines.whereType<WmlRun>();
+        final latin = secondRuns
+            .singleWhere((run) => run.text.contains('Second paragraph'))
+            .properties;
+        expect(latin.fontSizeHalfPoints, 22);
+        expect(latin.asciiFont, 'Arial');
+        expect(latin.proofingLanguage, 'en-US');
+        final arabic = secondRuns
+            .singleWhere((run) => run.text.contains('العربية'))
+            .properties;
+        expect(arabic.fontSizeHalfPoints, 20);
+        expect(arabic.csFont, 'Arial');
+        // The native source's language slot is independent of its glyphs.
+        expect(arabic.complexScriptLanguage, 'hi-IN');
+        expect(WordZotero.fields(document), isEmpty);
+      }
+
+      final controller = _controller()..insertText('Draft ');
+      final previousDocument = controller.document;
+      final stages = <String>[];
+      final loading = controller.loadBytesAsync(
+        bytes,
+        onProgress: (progress) {
+          stages.add(progress.stage);
+          // Publication happens only after the complete import/layout result.
+          expect(controller.document, same(previousDocument));
+        },
+      );
+      expect(controller.document, same(previousDocument));
+      await loading;
+      expect(stages, contains('archive'));
+      expect(controller.document, isNot(same(previousDocument)));
+      expect(controller.isDirty, isFalse);
+      expect(controller.canUndo, isFalse);
+      expectProse(controller.document);
+
+      final saved = controller.saveBytes();
+      expect(OdtDocumentReader.isOdt(saved), isFalse);
+      final reopened = _controller();
+      await reopened.loadBytesAsync(saved);
+      expectProse(reopened.document);
+      expect(reopened.isDirty, isFalse);
+      expect(reopened.canUndo, isFalse);
+      expect(bytes, originalBytes);
+      expect(fixture.readAsBytesSync(), originalBytes);
+    },
+  );
 
   test(
     'native ODT load publishes active citations and clears old file history',

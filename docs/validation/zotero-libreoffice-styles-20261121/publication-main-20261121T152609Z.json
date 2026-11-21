@@ -1,0 +1,447 @@
+{
+  "schema": "quds.zotero.publication-main-observation.v2",
+  "observed_utc": "2026-11-21T15:26:09Z",
+  "scope": "Small publication observation only: main ref, PR314 merge metadata, and the requested Studio Mail WIP test branch. The newly discovered main advance is examined at exact SHAs. The earlier complete branch/PR snapshots are not replaced or rerun.",
+  "github_actions_queried_or_awaited": false,
+  "source_method": "Read-only GitHub ref/PR/commit/compare APIs and git merge-base/show on existing local objects, with implicit lazy fetch disabled. No code, README, runtime, local ref, remote ref, or PR metadata changes.",
+  "requested_known_main": "3397ead3752f65bb3fa0e764c5da1bc2dd0af485",
+  "observed_main": {
+    "ref": "refs/heads/main",
+    "sha": "089d11cd073520208f27a09b2914d57615cef7ff",
+    "url": "https://api.github.com/repos/CrispStrobe/quds_office_suite/git/refs/heads/main"
+  },
+  "pr314": {
+    "number": 314,
+    "title": "Mail: saved searches and expandable conversations [skip ci]",
+    "state": "closed",
+    "draft": false,
+    "merged": true,
+    "merged_at": "2026-11-21T15:07:28Z",
+    "merge_commit_sha": "3397ead3752f65bb3fa0e764c5da1bc2dd0af485",
+    "head_sha": "4af5a00a906a82473d653a6b11a3a6e1c88c866f",
+    "base_sha": "49adcd6b693712b9e82f9fdefd2fdf09d0db4ee2",
+    "url": "https://github.com/CrispStrobe/quds_office_suite/pull/314"
+  },
+  "local_ancestry_proofs": [
+    {
+      "ancestor": "49adcd6b693712b9e82f9fdefd2fdf09d0db4ee2",
+      "descendant": "3397ead3752f65bb3fa0e764c5da1bc2dd0af485",
+      "exit_code": 0,
+      "is_ancestor": true,
+      "stderr": ""
+    },
+    {
+      "ancestor": "2e3280a175814dab7fccf14363f8dd1785acc78e",
+      "descendant": "3397ead3752f65bb3fa0e764c5da1bc2dd0af485",
+      "exit_code": 0,
+      "is_ancestor": true,
+      "stderr": ""
+    },
+    {
+      "ancestor": "3397ead3752f65bb3fa0e764c5da1bc2dd0af485",
+      "descendant": "9a3e5021bd9dd6468f5e8f37334d5a02bd9c174e",
+      "exit_code": 0,
+      "is_ancestor": true,
+      "stderr": ""
+    }
+  ],
+  "pr314_merge_commit": {
+    "sha": "3397ead3752f65bb3fa0e764c5da1bc2dd0af485",
+    "exit_code": 0,
+    "metadata": "3397ead3752f65bb3fa0e764c5da1bc2dd0af485\n49adcd6b693712b9e82f9fdefd2fdf09d0db4ee2 4af5a00a906a82473d653a6b11a3a6e1c88c866f\n6de4b2c396bb3f96e8e9ff67a47f359c94a3bbd4\nMerge Mail saved searches and expandable conversations (#314) [skip ci]",
+    "stderr": ""
+  },
+  "current_qualified_branch_source": {
+    "sha": "9a3e5021bd9dd6468f5e8f37334d5a02bd9c174e",
+    "parents": [
+      "fb596c25d2b6ff86102c88e334f128d67377031d",
+      "3397ead3752f65bb3fa0e764c5da1bc2dd0af485"
+    ],
+    "tree": "d3735995e30c2325ea689a1e78829f6a99013932",
+    "subject": "Reconcile completed Mail and German editor proofing work [skip ci]",
+    "includes_pr314_main": true,
+    "interpretation": "This source has the completed Mail/German integration and its existing qualification. It predates the newly observed main089d11cd; the audit itself makes no new runtime acceptance claim."
+  },
+  "additional_completed_main_change": {
+    "sha": "089d11cd073520208f27a09b2914d57615cef7ff",
+    "parents": [
+      "3397ead3752f65bb3fa0e764c5da1bc2dd0af485",
+      "5e2aee335c35bd3c49d46601dfc751e75b2eb044"
+    ],
+    "commit_message": "Merge pull request #315 from CrispStrobe/fix/de-proofing-l10n-20261121\n\nFix German proofing suite pollution, add German review strings, fix macOS editor tests and goldens",
+    "committed_utc": "2026-11-21T15:19:30Z",
+    "url": "https://github.com/CrispStrobe/quds_office_suite/commit/089d11cd073520208f27a09b2914d57615cef7ff",
+    "pr_number_from_merge_commit": 315,
+    "metadata_basis": "Merge commit metadata; a separate PR315 API read was unnecessary for this small observation.",
+    "comparison": {
+      "base": "3397ead3752f65bb3fa0e764c5da1bc2dd0af485",
+      "head": "089d11cd073520208f27a09b2914d57615cef7ff",
+      "status": "ahead",
+      "ahead_by": 6,
+      "behind_by": 0,
+      "merge_base_commit": {
+        "sha": "3397ead3752f65bb3fa0e764c5da1bc2dd0af485",
+        "url": "https://api.github.com/repos/CrispStrobe/quds_office_suite/commits/3397ead3752f65bb3fa0e764c5da1bc2dd0af485",
+        "html_url": "https://github.com/CrispStrobe/quds_office_suite/commit/3397ead3752f65bb3fa0e764c5da1bc2dd0af485"
+      }
+    },
+    "changed_path_count": 32,
+    "changed_paths": [
+      {
+        "filename": "packages/quds_office_editor/test/goldens/macos/columns_sections_1.png",
+        "status": "modified",
+        "additions": 0,
+        "deletions": 0,
+        "changes": 0,
+        "previous_filename": null
+      },
+      {
+        "filename": "packages/quds_office_editor/test/goldens/macos/columns_sections_2.png",
+        "status": "modified",
+        "additions": 0,
+        "deletions": 0,
+        "changes": 0,
+        "previous_filename": null
+      },
+      {
+        "filename": "packages/quds_office_editor/test/goldens/macos/columns_sections_3.png",
+        "status": "modified",
+        "additions": 0,
+        "deletions": 0,
+        "changes": 0,
+        "previous_filename": null
+      },
+      {
+        "filename": "packages/quds_office_editor/test/goldens/macos/continued_notes_1.png",
+        "status": "modified",
+        "additions": 0,
+        "deletions": 0,
+        "changes": 0,
+        "previous_filename": null
+      },
+      {
+        "filename": "packages/quds_office_editor/test/goldens/macos/continued_notes_2.png",
+        "status": "modified",
+        "additions": 0,
+        "deletions": 0,
+        "changes": 0,
+        "previous_filename": null
+      },
+      {
+        "filename": "packages/quds_office_editor/test/goldens/macos/continued_notes_3.png",
+        "status": "modified",
+        "additions": 0,
+        "deletions": 0,
+        "changes": 0,
+        "previous_filename": null
+      },
+      {
+        "filename": "packages/quds_office_editor/test/goldens/macos/frame_wrap_none.png",
+        "status": "modified",
+        "additions": 0,
+        "deletions": 0,
+        "changes": 0,
+        "previous_filename": null
+      },
+      {
+        "filename": "packages/quds_office_editor/test/goldens/macos/frame_wrap_square.png",
+        "status": "modified",
+        "additions": 0,
+        "deletions": 0,
+        "changes": 0,
+        "previous_filename": null
+      },
+      {
+        "filename": "packages/quds_office_editor/test/goldens/macos/frame_wrap_topBottom.png",
+        "status": "modified",
+        "additions": 0,
+        "deletions": 0,
+        "changes": 0,
+        "previous_filename": null
+      },
+      {
+        "filename": "packages/quds_office_editor/test/goldens/macos/nested_table_content.png",
+        "status": "modified",
+        "additions": 0,
+        "deletions": 0,
+        "changes": 0,
+        "previous_filename": null
+      },
+      {
+        "filename": "packages/quds_office_editor/test/goldens/macos/office_fidelity_word.png",
+        "status": "modified",
+        "additions": 0,
+        "deletions": 0,
+        "changes": 0,
+        "previous_filename": null
+      },
+      {
+        "filename": "packages/quds_office_editor/test/goldens/macos/office_stories_page_1.png",
+        "status": "modified",
+        "additions": 0,
+        "deletions": 0,
+        "changes": 0,
+        "previous_filename": null
+      },
+      {
+        "filename": "packages/quds_office_editor/test/goldens/macos/office_stories_page_2.png",
+        "status": "modified",
+        "additions": 0,
+        "deletions": 0,
+        "changes": 0,
+        "previous_filename": null
+      },
+      {
+        "filename": "packages/quds_office_editor/test/goldens/macos/office_stories_page_3.png",
+        "status": "modified",
+        "additions": 0,
+        "deletions": 0,
+        "changes": 0,
+        "previous_filename": null
+      },
+      {
+        "filename": "packages/quds_office_editor/test/goldens/macos/provenance.json",
+        "status": "modified",
+        "additions": 29,
+        "deletions": 30,
+        "changes": 59,
+        "previous_filename": null
+      },
+      {
+        "filename": "packages/quds_office_editor/test/goldens/macos/rtl_1.png",
+        "status": "modified",
+        "additions": 0,
+        "deletions": 0,
+        "changes": 0,
+        "previous_filename": null
+      },
+      {
+        "filename": "packages/quds_office_editor/test/goldens/macos/structure_create_1.png",
+        "status": "modified",
+        "additions": 0,
+        "deletions": 0,
+        "changes": 0,
+        "previous_filename": null
+      },
+      {
+        "filename": "packages/quds_office_editor/test/goldens/macos/structure_edit_1.png",
+        "status": "modified",
+        "additions": 0,
+        "deletions": 0,
+        "changes": 0,
+        "previous_filename": null
+      },
+      {
+        "filename": "packages/quds_office_editor/test/goldens/macos/structure_edit_2.png",
+        "status": "modified",
+        "additions": 0,
+        "deletions": 0,
+        "changes": 0,
+        "previous_filename": null
+      },
+      {
+        "filename": "packages/quds_office_editor/test/goldens/macos/structure_remove_1.png",
+        "status": "modified",
+        "additions": 0,
+        "deletions": 0,
+        "changes": 0,
+        "previous_filename": null
+      },
+      {
+        "filename": "packages/quds_office_editor/test/goldens/macos/table_grid_format.png",
+        "status": "modified",
+        "additions": 0,
+        "deletions": 0,
+        "changes": 0,
+        "previous_filename": null
+      },
+      {
+        "filename": "packages/quds_office_editor/test/goldens/macos/table_grid_replace.png",
+        "status": "modified",
+        "additions": 0,
+        "deletions": 0,
+        "changes": 0,
+        "previous_filename": null
+      },
+      {
+        "filename": "packages/quds_office_editor/test/goldens/macos/table_grid_unchanged.png",
+        "status": "modified",
+        "additions": 0,
+        "deletions": 0,
+        "changes": 0,
+        "previous_filename": null
+      },
+      {
+        "filename": "packages/quds_office_editor/test/goldens/macos/table_grid_unmerge.png",
+        "status": "modified",
+        "additions": 0,
+        "deletions": 0,
+        "changes": 0,
+        "previous_filename": null
+      },
+      {
+        "filename": "packages/quds_office_editor/test/goldens/macos/tall_table_1.png",
+        "status": "modified",
+        "additions": 0,
+        "deletions": 0,
+        "changes": 0,
+        "previous_filename": null
+      },
+      {
+        "filename": "packages/quds_office_editor/test/goldens/macos/tall_table_2.png",
+        "status": "modified",
+        "additions": 0,
+        "deletions": 0,
+        "changes": 0,
+        "previous_filename": null
+      },
+      {
+        "filename": "packages/quds_office_editor/test/goldens/macos/tall_table_3.png",
+        "status": "modified",
+        "additions": 0,
+        "deletions": 0,
+        "changes": 0,
+        "previous_filename": null
+      },
+      {
+        "filename": "packages/quds_office_editor/test/goldens/macos/tall_table_4.png",
+        "status": "removed",
+        "additions": 0,
+        "deletions": 0,
+        "changes": 0,
+        "previous_filename": null
+      },
+      {
+        "filename": "packages/quds_office_editor/test/goldens/macos/word_selection_macOS.png",
+        "status": "modified",
+        "additions": 0,
+        "deletions": 0,
+        "changes": 0,
+        "previous_filename": null
+      },
+      {
+        "filename": "packages/quds_office_editor/test/goldens/macos/word_selection_windows.png",
+        "status": "modified",
+        "additions": 0,
+        "deletions": 0,
+        "changes": 0,
+        "previous_filename": null
+      },
+      {
+        "filename": "packages/quds_office_editor/test/office_dark_slide_test.dart",
+        "status": "modified",
+        "additions": 37,
+        "deletions": 1,
+        "changes": 38,
+        "previous_filename": null
+      },
+      {
+        "filename": "packages/quds_office_editor/test/word_shaped_wrap_test.dart",
+        "status": "modified",
+        "additions": 9,
+        "deletions": 3,
+        "changes": 12,
+        "previous_filename": null
+      }
+    ],
+    "production_source_paths": [],
+    "interpretation": "The delta from main3397 to main089d11cd contains macOS golden PNGs/provenance and two editor test files. No production source path is changed."
+  },
+  "remaining_studio_mail_test_branch": {
+    "ref": "refs/heads/fix/studio-mail-tests-20261121",
+    "sha": "be539f3d94228b649595084758cc7d665186e57d",
+    "url": "https://api.github.com/repos/CrispStrobe/quds_office_suite/git/refs/heads/fix/studio-mail-tests-20261121",
+    "exact_head_commit": {
+      "sha": "be539f3d94228b649595084758cc7d665186e57d",
+      "message": "WIP: update Studio Mail tests for stable account ids, plain-first reader and compact list [skip ci]\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>",
+      "committed_utc": "2026-11-21T14:50:59Z",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/commit/be539f3d94228b649595084758cc7d665186e57d"
+    },
+    "readiness": "Explicit WIP in the exact, unchanged head commit message. No completed readiness statement is inferred.",
+    "included_in_observed_main": false,
+    "ancestry_evidence": {
+      "method": "GitHub compare at exact immutable SHAs",
+      "base": "089d11cd073520208f27a09b2914d57615cef7ff",
+      "head": "be539f3d94228b649595084758cc7d665186e57d",
+      "status": "diverged",
+      "ahead_by": 1,
+      "behind_by": 34,
+      "merge_base_commit": {
+        "sha": "01517de8886ef7bd24947894be5dc823d0328869",
+        "url": "https://api.github.com/repos/CrispStrobe/quds_office_suite/commits/01517de8886ef7bd24947894be5dc823d0328869",
+        "html_url": "https://github.com/CrispStrobe/quds_office_suite/commit/01517de8886ef7bd24947894be5dc823d0328869"
+      }
+    },
+    "changed_paths": [
+      {
+        "filename": "packages/quds_office_editor/example/test/studio_mail_bulk_provider_test.dart",
+        "status": "modified",
+        "additions": 5,
+        "deletions": 1,
+        "changes": 6,
+        "previous_filename": null
+      },
+      {
+        "filename": "packages/quds_office_editor/example/test/studio_mail_ews_test.dart",
+        "status": "modified",
+        "additions": 12,
+        "deletions": 2,
+        "changes": 14,
+        "previous_filename": null
+      },
+      {
+        "filename": "packages/quds_office_editor/example/test/studio_mail_journal_host_test.dart",
+        "status": "modified",
+        "additions": 8,
+        "deletions": 1,
+        "changes": 9,
+        "previous_filename": null
+      },
+      {
+        "filename": "packages/quds_office_editor/example/test/studio_mail_lifecycle_test.dart",
+        "status": "modified",
+        "additions": 3,
+        "deletions": 1,
+        "changes": 4,
+        "previous_filename": null
+      },
+      {
+        "filename": "packages/quds_office_editor/example/test/studio_mail_outbox_cloud_test.dart",
+        "status": "modified",
+        "additions": 16,
+        "deletions": 4,
+        "changes": 20,
+        "previous_filename": null
+      },
+      {
+        "filename": "packages/quds_office_editor/example/test/studio_mail_outbox_host_test.dart",
+        "status": "modified",
+        "additions": 4,
+        "deletions": 3,
+        "changes": 7,
+        "previous_filename": null
+      },
+      {
+        "filename": "packages/quds_office_editor/example/test/studio_mail_remote_images_host_test.dart",
+        "status": "modified",
+        "additions": 8,
+        "deletions": 0,
+        "changes": 8,
+        "previous_filename": null
+      }
+    ],
+    "local_object_note": "This branch commit was not present locally; the API compare supplies the ancestry evidence without a fetch."
+  },
+  "conclusion": {
+    "pr314_completed_and_reconciled_in_current_qualified_source": true,
+    "previous_main49adcd_and_our_earlier2e328_included_in_pr314_main": true,
+    "latest_main_requires_reconciliation": true,
+    "remaining_wip_test_branch_is_unmerged": true,
+    "recommended_next_step": "Normally reconcile main089d11cd and verify the affected test/assets delta before publication; retain the WIP Studio Mail test branch separately."
+  },
+  "limits": [
+    "This observes only the requested publication surfaces, not every remote branch or PR.",
+    "Remote refs can advance after the observation.",
+    "This audit executed no tests and queried no CI."
+  ]
+}
