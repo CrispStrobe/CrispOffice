@@ -1,5 +1,8 @@
 ## Unreleased
 
+- Declare the Hunspell provider's spelling-only `categories` so Word can check
+  completed words without invoking grammar providers.
+
 - Honor cancellation requested by the final download-progress callback before
   committing a dictionary installation on native and web hosts.
 

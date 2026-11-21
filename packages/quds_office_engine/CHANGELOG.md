@@ -4,6 +4,12 @@ All notable changes to `quds_office_engine` are documented here.
 
 ## Unreleased
 
+- Add `OfficeProofingProvider.categories` and the optional
+  `OfficeProofingService.check(only: ...)` provider filter for category-aware
+  scheduling. Providers default to all categories; the bundled German spelling
+  provider declares spelling only. Existing timeout, result-validation and
+  provider-ownership behavior applies to filtered checks.
+
 - Extend section-scoped Word VBA `PageSetup` with `Orientation`, zero-argument
   `TogglePortrait`, and four `SectionStart` modes. Add guarded native
   `docx.pageOrientation` and `docx.sectionStart` operations, preserving aliases,
