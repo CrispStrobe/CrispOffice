@@ -125,6 +125,93 @@ extension MailCachedMailboxViews on SqliteMailRepository {
     }),
   );
 
+  /// Watches the bounded catalog of saved browse windows, without loading
+  /// message bodies or treating those windows as synchronized memberships.
+  ///
+  /// The initial snapshot and subsequent successful domain commits use the
+  /// same validation and [limit] as [listMailboxViews]. Failed reads are typed
+  /// events; a later commit can produce a valid snapshot again. Intermediate
+  /// commits can coalesce while a read is running or the listener is paused.
+  Stream<MailResult<List<MailCachedMailboxSummary>>> watchMailboxViews(
+    MailAccountId account, {
+    int limit = maxMailboxViews,
+  }) => _watchMailboxSnapshot(() => listMailboxViews(account, limit: limit));
+
+  /// Watches one saved browse window in its retained order and scope.
+  ///
+  /// A successful null value means there is no saved view, including after
+  /// confirmed cache cleanup. A saved empty folder has a non-null view with
+  /// no headers. Journal confirmations and later flag observations are seen
+  /// after their transaction commits, preserving the original capture time.
+  /// Neither subscription nor refresh contacts a provider or downloads bodies.
+  ///
+  /// Active streams complete when this repository closes. A subscription made
+  /// after close emits [MailProblemCode.unavailable] and completes. Cancelling
+  /// a subscription drains its current read and suppresses late results.
+  Stream<MailResult<MailCachedMailboxView?>> watchMailboxView(
+    MailMailboxId mailbox,
+  ) => _watchMailboxSnapshot(() => loadMailboxView(mailbox));
+
+  Stream<MailResult<T>> _watchMailboxSnapshot<T>(
+    Future<MailResult<T>> Function() read,
+  ) => Stream.multi((events) {
+    if (_closed) {
+      events.add(const MailFailure(MailProblem(MailProblemCode.unavailable)));
+      events.close();
+      return;
+    }
+    var stopped = false;
+    var paused = false;
+    var dirty = false;
+    Future<void>? reading;
+
+    Future<void> refresh() async {
+      while (dirty && !stopped && !paused) {
+        dirty = false;
+        final snapshot = await read();
+        if (stopped || _closed) return;
+        if (paused) {
+          dirty = true;
+        } else {
+          events.add(snapshot);
+        }
+      }
+    }
+
+    void requestRefresh() {
+      dirty = true;
+      if (reading != null || stopped || paused) return;
+      reading = refresh().whenComplete(() {
+        reading = null;
+        if (dirty && !stopped && !paused) requestRefresh();
+      });
+    }
+
+    final subscription = _db
+        .tableUpdates(const TableUpdateQuery.onTableName('mail_domain'))
+        .listen(
+          (_) => requestRefresh(),
+          onDone: () {
+            stopped = true;
+            events.close();
+          },
+          onError: (Object error) {
+            if (!stopped) events.add(MailFailure(mailStoreProblem(error)));
+          },
+        );
+    events.onPause = () => paused = true;
+    events.onResume = () {
+      paused = false;
+      if (dirty) requestRefresh();
+    };
+    events.onCancel = () async {
+      stopped = true;
+      await subscription.cancel();
+      await reading;
+    };
+    requestRefresh();
+  });
+
   Future<MailCachedMailboxView?> _loadMailboxView(MailMailboxId mailbox) async {
     final account = mailbox.account;
     final accountRow = await _account(account);
