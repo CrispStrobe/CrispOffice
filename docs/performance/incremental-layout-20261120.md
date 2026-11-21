@@ -284,15 +284,24 @@ cost (layout included, no widgets) in the 180-paragraph benchmark document:
 10 rounds of fit → first keystroke, 5 more keystrokes, bold toggle → first
 keystroke; then 100 keystrokes in the same document with six footnotes and
 two endnotes (21 pages). Three runs per job, p50 / p95 in ms.
-"before" = `5ad4461a` (branch point), "after" = `81691cde`.
+"before" = `5ad4461a` (branch point), "after" = `81691cde`; run 44793468103,
+except macOS "before", which comes from run 44818807443 (`base=5ad4461a`):
+the first run's macOS "before" job started after main had integrated this
+branch, so its merge base was the branch itself.
 
 | Runner | Variant | First after fit | First after formatting | Following keys | Notes document | Notes, first key |
 |---|---|---|---|---|---|---|
 | ubuntu-latest | before | 153.5 / 231.2 · 149.5 / 222.8 · 154.5 / 219.5 | 152.4 / 226.9 · 150.7 / 208.5 · 149.8 / 205.6 | 2.8 / 6.7 · 2.7 / 7.5 · 2.7 / 6.3 | 161.2 / 243.0 · 159.3 / 233.4 · 159.8 / 230.8 | 161.6 · 161.0 · 154.4 |
 | ubuntu-latest | after | **3.8 / 7.1 · 2.7 / 6.6 · 2.6 / 6.8** | **3.6 / 5.2 · 2.8 / 5.1 · 2.8 / 5.7** | 1.6 / 3.2 · 1.6 / 6.2 · 1.7 / 2.6 | **1.7 / 3.6 · 1.6 / 3.5 · 1.8 / 3.3** | **6.2 · 7.6 · 8.6** |
+| macos-latest | before | 168.3 / 264.4 · 252.2 / 311.0 · 212.5 / 270.6 | 157.2 / 278.7 · 212.3 / 421.8 · 183.8 / 256.1 | 2.7 / 4.1 · 3.3 / 9.2 · 2.9 / 6.2 | 175.5 / 285.6 · 217.7 / 342.4 · 203.9 / 312.5 | 124.6 · 170.6 · 208.2 |
 | macos-latest | after | 4.0 / 11.9 · 2.9 / 6.3 · 3.2 / 8.2 | 3.6 / 5.3 · 2.7 / 4.7 · 2.7 / 4.8 | 2.0 / 3.3 · 1.8 / 3.0 · 1.8 / 2.6 | 2.5 / 3.9 · 2.6 / 4.1 · 2.3 / 3.5 | 7.7 · 6.4 · 6.0 |
 
-MACOS_BEFORE_ROW
+Second run (44818807443, "before" `5ad4461a`, "after" the branch with
+current main merged), p50 of the three runs: ubuntu first-after-fit
+135.0 · 138.3 · 138.4 → **3.2 · 3.5 · 3.3**, first-after-formatting
+132.2 · 136.4 · 136.5 → **3.2 · 2.6 · 2.8**, notes document 137.9 · 140.3 ·
+141.0 → **1.7 · 1.6 · 1.7**; macOS first-after-fit 3.5 · 5.0 · 4.8,
+first-after-formatting 4.3 · 4.2 · 6.1, notes document 3.4 · 3.6 · 5.5 (after).
 
 Studio typing benchmark (300 keystrokes through the IME, handler p50 / p95 /
 max ms, keystrokes over 16.7 ms):
@@ -301,6 +310,7 @@ max ms, keystrokes over 16.7 ms):
 |---|---|---|---|
 | ubuntu-latest | before | 5.3 / 9.4 / 351.9 · 4.9 / 8.3 / 360.9 · 5.0 / 8.6 / 353.8 | 57 · 35 · 39 |
 | ubuntu-latest | after | 3.6 / 7.8 / 243.2 · 3.5 / 6.8 / 201.5 · 3.9 / 7.8 / 202.6 | 27 · 24 · 26 |
+| macos-latest | before (44818807443) | 6.1 / 14.2 / 483.6 · 6.7 / 18.4 / 403.2 · 5.9 / 15.5 / 457.8 | 157 · 206 · 149 |
 | macos-latest | after | 4.9 / 11.7 / 303.6 · 3.7 / 5.6 / 232.7 · 4.4 / 8.2 / 282.6 | 79 · 17 · 43 |
 
 The remaining Studio maximum (one keystroke of ~200 ms) is not layout: the
