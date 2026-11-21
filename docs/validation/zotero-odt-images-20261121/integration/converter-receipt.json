@@ -1,0 +1,160 @@
+{
+  "started_at_utc": "2026-11-21T19:08:49.522400+00:00",
+  "cwd": "/workspace/scratch/81e9cddb3100/quds_office_suite",
+  "environment_setup": "source /workspace/scratch/81e9cddb3100/runtime/env.sh",
+  "environment": {
+    "FLUTTER_ROOT": "/workspace/scratch/81e9cddb3100/runtime/flutter",
+    "PUB_CACHE": "/workspace/scratch/81e9cddb3100/runtime/pub-cache",
+    "TMPDIR": "/workspace/scratch/81e9cddb3100/runtime/tmp",
+    "XDG_CONFIG_HOME": "/workspace/scratch/81e9cddb3100/runtime/config",
+    "XDG_DATA_HOME": "/workspace/scratch/81e9cddb3100/runtime/data",
+    "XDG_CACHE_HOME": "/workspace/scratch/81e9cddb3100/runtime/cache",
+    "CI": "true",
+    "DART_SUPPRESS_ANALYTICS": "true",
+    "FLUTTER_SUPPRESS_ANALYTICS": "true"
+  },
+  "commands": [
+    {
+      "label": "converter-version",
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/bin/override/soffice",
+        "--version"
+      ],
+      "shell_quoted_argv": "/opt/codex/runtimes/codex-primary-runtime/dependencies/bin/override/soffice --version",
+      "cwd": "/workspace/scratch/81e9cddb3100/quds_office_suite",
+      "started_at_utc": "2026-11-21T19:08:49.567493+00:00",
+      "stdout": "converter-version.stdout.log",
+      "stderr": "converter-version.stderr.log",
+      "exit_status": 0,
+      "finished_at_utc": "2026-11-21T19:08:49.783082+00:00"
+    },
+    {
+      "label": "dart-version",
+      "argv": [
+        "/workspace/scratch/81e9cddb3100/runtime/bin/dart",
+        "--version"
+      ],
+      "shell_quoted_argv": "/workspace/scratch/81e9cddb3100/runtime/bin/dart --version",
+      "cwd": "/workspace/scratch/81e9cddb3100/quds_office_suite",
+      "started_at_utc": "2026-11-21T19:08:49.783816+00:00",
+      "stdout": "dart-version.stdout.log",
+      "stderr": "dart-version.stderr.log",
+      "exit_status": 0,
+      "finished_at_utc": "2026-11-21T19:08:49.787872+00:00"
+    },
+    {
+      "label": "create",
+      "argv": [
+        "/workspace/scratch/81e9cddb3100/runtime/bin/dart",
+        "--packages=/workspace/scratch/81e9cddb3100/quds_office_suite/.dart_tool/package_config.json",
+        "/workspace/scratch/81e9cddb3100/quds_office_suite/packages/quds_office_engine/tool/zotero/odt_image_acceptance.dart",
+        "create",
+        "/workspace/scratch/81e9cddb3100/image-converter/integrated/original"
+      ],
+      "shell_quoted_argv": "/workspace/scratch/81e9cddb3100/runtime/bin/dart --packages=/workspace/scratch/81e9cddb3100/quds_office_suite/.dart_tool/package_config.json /workspace/scratch/81e9cddb3100/quds_office_suite/packages/quds_office_engine/tool/zotero/odt_image_acceptance.dart create /workspace/scratch/81e9cddb3100/image-converter/integrated/original",
+      "cwd": "/workspace/scratch/81e9cddb3100/quds_office_suite",
+      "started_at_utc": "2026-11-21T19:08:49.788362+00:00",
+      "stdout": "create.stdout.log",
+      "stderr": "create.stderr.log",
+      "exit_status": 0,
+      "finished_at_utc": "2026-11-21T19:09:02.951899+00:00"
+    },
+    {
+      "label": "soffice-save",
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/bin/override/soffice",
+        "--headless",
+        "-env:UserInstallation=file:///workspace/scratch/81e9cddb3100/image-converter/integrated/profile",
+        "--convert-to",
+        "odt",
+        "--outdir",
+        "/workspace/scratch/81e9cddb3100/image-converter/integrated/saved",
+        "/workspace/scratch/81e9cddb3100/image-converter/integrated/original/png-citations.odt",
+        "/workspace/scratch/81e9cddb3100/image-converter/integrated/original/jpeg-citations.odt"
+      ],
+      "shell_quoted_argv": "/opt/codex/runtimes/codex-primary-runtime/dependencies/bin/override/soffice --headless -env:UserInstallation=file:///workspace/scratch/81e9cddb3100/image-converter/integrated/profile --convert-to odt --outdir /workspace/scratch/81e9cddb3100/image-converter/integrated/saved /workspace/scratch/81e9cddb3100/image-converter/integrated/original/png-citations.odt /workspace/scratch/81e9cddb3100/image-converter/integrated/original/jpeg-citations.odt",
+      "cwd": "/workspace/scratch/81e9cddb3100/quds_office_suite",
+      "started_at_utc": "2026-11-21T19:09:02.952666+00:00",
+      "stdout": "soffice-save.stdout.log",
+      "stderr": "soffice-save.stderr.log",
+      "exit_status": 0,
+      "finished_at_utc": "2026-11-21T19:09:04.251834+00:00"
+    },
+    {
+      "label": "verify",
+      "argv": [
+        "/workspace/scratch/81e9cddb3100/runtime/bin/dart",
+        "--packages=/workspace/scratch/81e9cddb3100/quds_office_suite/.dart_tool/package_config.json",
+        "/workspace/scratch/81e9cddb3100/quds_office_suite/packages/quds_office_engine/tool/zotero/odt_image_acceptance.dart",
+        "verify",
+        "/workspace/scratch/81e9cddb3100/image-converter/integrated/saved",
+        "/workspace/scratch/81e9cddb3100/image-converter/integrated/original",
+        "/workspace/scratch/81e9cddb3100/image-converter/integrated/cycles"
+      ],
+      "shell_quoted_argv": "/workspace/scratch/81e9cddb3100/runtime/bin/dart --packages=/workspace/scratch/81e9cddb3100/quds_office_suite/.dart_tool/package_config.json /workspace/scratch/81e9cddb3100/quds_office_suite/packages/quds_office_engine/tool/zotero/odt_image_acceptance.dart verify /workspace/scratch/81e9cddb3100/image-converter/integrated/saved /workspace/scratch/81e9cddb3100/image-converter/integrated/original /workspace/scratch/81e9cddb3100/image-converter/integrated/cycles",
+      "cwd": "/workspace/scratch/81e9cddb3100/quds_office_suite",
+      "started_at_utc": "2026-11-21T19:09:04.253098+00:00",
+      "stdout": "verify.stdout.log",
+      "stderr": "verify.stderr.log",
+      "exit_status": 0,
+      "finished_at_utc": "2026-11-21T19:09:19.116554+00:00"
+    }
+  ],
+  "accepted": true,
+  "converter_executables": {
+    "invoked_wrapper": {
+      "path": "/opt/codex/runtimes/codex-primary-runtime/dependencies/bin/override/soffice",
+      "sha256": "35c5a2736f68e6370a7b9fe5082e66bc438c1a8de11261d6c4bc847073ced45b",
+      "size": 570
+    },
+    "launcher": {
+      "path": "/opt/codex/runtimes/codex-primary-runtime/dependencies/native/libreoffice-headless/libreoffice/program/soffice",
+      "sha256": "d14c5c8aa975640aafc8a62474a23a67fb46cd5fa95fae3771f76b7399a04c50",
+      "size": 382
+    },
+    "binary": {
+      "path": "/opt/codex/runtimes/codex-primary-runtime/dependencies/native/libreoffice-headless/libreoffice/program/soffice.bin",
+      "sha256": "d905a74dc92eaccb22481ba2de1345666a074a5f0d48322aaad1b6dc8a9e1e40",
+      "size": 16072
+    }
+  },
+  "converter_version": "LibreOfficeDev 26.8.0.0.alpha0 2c87e51eeaa2b413ff4ae097b2705eea1995d8e5",
+  "dart_version": "Dart SDK version: 3.13.7 (stable) (Thu Oct 22 14:28:57 2026 -0700) on \"linux_x64\"",
+  "create_results": [
+    {
+      "created": [
+        "png-citations",
+        "jpeg-citations"
+      ],
+      "nativeImportMatched": true
+    }
+  ],
+  "actual_saved_odt_files": [
+    "jpeg-citations.odt",
+    "png-citations.odt"
+  ],
+  "verify_results": [
+    {
+      "file": "png-citations",
+      "inputSha256": "8f33bccb88a1f6ea1dda8fb6e7b89ba4eae6fa83739dca596a1ae68518d98c80",
+      "pictures": 2,
+      "activeCitations": 2,
+      "cycles": 3,
+      "matched": true
+    },
+    {
+      "file": "jpeg-citations",
+      "inputSha256": "a462005bcec5bd03b2c197a742927718b68f07ea30535b054947bd27bea36746",
+      "pictures": 2,
+      "activeCitations": 2,
+      "cycles": 3,
+      "matched": true
+    }
+  ],
+  "both_verifier_lines_matched": true,
+  "saved_bytes_untouched": true,
+  "source_unchanged": true,
+  "source_file_count": 367,
+  "artifact_count": 24,
+  "finished_at_utc": "2026-11-21T19:09:19.256331+00:00"
+}

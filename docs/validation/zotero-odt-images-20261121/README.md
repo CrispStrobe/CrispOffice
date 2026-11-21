@@ -2,17 +2,83 @@
 
 **Qualified increment:** bounded inline pictures from Zotero notes/annotations
 can reopen as editable native ODT content and survive further ODT/DOCX saves.
-The final local gate passed **1,350 tests, with no failures or skips**. An actual
+The main-integration gate passed **1,688 tests, with no failures or skips**,
+followed by **30 focused passes** after the last editor-only main update. An actual
 LibreOfficeDev conversion retained both pictures and both active citations in
 each PNG/JPEG fixture through three subsequent DOCX/ODT cycles.
 
-Qualified source: [`58fe5b978f63af282ccd3f3406f86e431e440030`](https://github.com/CrispStrobe/quds_office_suite/commit/58fe5b978f63af282ccd3f3406f86e431e440030),
-tree `a2d9f9663c35caf6896a27c917384bfdf9bde7a4`.
+Final qualified source: [`7086ad80266981d612615710610d66bf3fcfb5cf`](https://github.com/CrispStrobe/quds_office_suite/commit/7086ad80266981d612615710610d66bf3fcfb5cf),
+tree `b76107b64e496820f5550b11d1f6b684f34aa5d3`.
+The broad main-integration gate is bound to
+`ef05b99ec9bbf1d539181c8519eb41455d182603`, tree
+`ecbdd52a92fcba1f6bc1daf842faa8040ae9b380`.
+The earlier image-only qualification remains bound to
+`58fe5b978f63af282ccd3f3406f86e431e440030`, tree
+`a2d9f9663c35caf6896a27c917384bfdf9bde7a4`.
 Starting main: `4970f71f983535d045ce263e86835b499db4fda9`.
 Remote checkpoint branch: `codex/zotero-roundtrip-20261121`.
 This record adds evidence and documentation to that qualified source. It does
 not claim installed Zotero-plugin, stable release-host, or Apache OpenOffice
 acceptance. GitHub Actions were neither queried nor awaited.
+
+## Final editor-only main update
+
+Remote main then advanced to `3440c90bc63f9d43edb7e64172bfec3d82036fee`,
+including PR #335's proofing/selection path cache and its roadmap note. A normal
+merge retained both changes. The sole new production file is
+`packages/quds_office_editor/lib/src/editor_word/render_word_canvas.dart`.
+
+On the clean `7086ad80` source, the affected checks passed: **13 proofing geometry,
+10 selection painting and 7 ODT image-loading cases**; zero failures, skips or
+errors. Both platform-variant selection golden cases executed. Renderer-only
+format and fatal-info analysis also passed.
+
+All **2,329 captured inputs** remained unchanged during these checks; **2,328
+tracked blobs** match the published source. The renderer is the sole captured
+delta from `ef05b99e`. Every other captured tracked blob and all **367 converter
+inputs** are identical, so the retained engine and converter results still
+apply. The 30 focused cases include overlap with the earlier gate and are not
+summed into a new distinct-test total.
+
+See the [publication summary](publication-paint/summary.json),
+[receipt](publication-paint/receipt.json), and
+[raw execution archive](publication-paint/execution.tar.gz) with its
+[hash index](publication-paint/archive-contents.json).
+
+## Earlier full current-main integration
+
+During publication, remote main advanced to
+`5c59a062e86e24d043ba06cfe8f0a69074c44f62`, containing the completed Word VBA
+paragraph shading and Unicode text construction work. A normal two-parent
+merge incorporated it without conflicts or changes to the incoming blobs.
+The image history and all incoming main history remain ancestors of `ef05b99e`.
+
+The combined-source checks include all earlier suites plus the four incoming
+Word shading/text-construction suites:
+
+| Gate | Final combined result |
+|---|---:|
+| Engine, including incoming Word suites | 1,603 passed |
+| Editor | 44 passed |
+| Studio | 41 passed |
+| **Distinct test cases** | **1,688 passed; 0 failed; 0 skipped** |
+| Formatter and fatal-info analyzer | Clean |
+
+All 2,123 captured broad-gate inputs remained unchanged. A focused repeat of the
+same 338 incoming Word cases additionally captures their BAS examples, portable
+tool imports and CLI entry point; these cases overlap the broad gate and are
+not counted twice. The combined manifests are checked against the published
+Git blobs. The fresh converter run on this merged source again retains both
+pictures/citations through three cycles, with all 367 converter inputs unchanged.
+
+See the [integration summary](integration/summary.json),
+[local receipts](integration/local-summary.json),
+[supplemental Word receipt](integration/supplemental-word-receipt.json),
+[compressed source binding](integration/source-binding.json.gz),
+[converter receipt](integration/converter-receipt.json), and
+[execution archive](integration/execution.tar.gz) with its
+[hash index](integration/archive-contents.json). Earlier image-only results
+below remain intact and separately attributable.
 
 ## Why this increment
 
@@ -58,7 +124,7 @@ One existing comment assertion was updated to verify the intentional styled
 `text:span` around an inline frame, including preserved 18 pt bold properties.
 Detached comment pictures still require direct paragraph ownership.
 
-## Final local qualification
+## Image checkpoint qualification
 
 The [summary](final/summary.json), [command receipts](final/local-summary.json),
 [source binding](final/source-binding.json) and
@@ -74,7 +140,7 @@ events, suite selection, timestamps, exit codes and source manifests.
 | Formatter | Clean |
 | Fatal-info analyzer | Clean |
 
-The final gate ran on a clean checkout of the qualified commit. All **2,118
+This image-only gate ran on a clean checkout of `58fe5b97`. All **2,118
 execution inputs** were unchanged before/after: **2,117 tracked inputs** match
 the saved Git blobs; the remaining runtime input is the recorded
 `.dart_tool/package_config.json`. All **366 converter inputs** independently
@@ -115,8 +181,9 @@ drawing-object names or every run property.
 | `png-citations.odt` | 2 | 2 | 3 | Matched |
 | `jpeg-citations.odt` | 2 | 2 | 3 | Matched |
 
-All 24 original, returned and cycle artifacts are hashed and retained in the
-final archive. Verification left the returned ODT bytes unchanged.
+All 24 original, returned and cycle artifacts are hashed and retained in each
+source-specific archive. Verification left the returned ODT bytes unchanged.
+The integration archive repeats this converter qualification on `ef05b99e`.
 
 The reusable generator/verifier is
 [`odt_image_acceptance.dart`](../../../packages/quds_office_engine/tool/zotero/odt_image_acceptance.dart).
@@ -199,6 +266,10 @@ snapshot does not predict future heads.
 | `fac61ecd02829e617c60787d289233327213c044` | Image reader/exporter, lifecycle/editor tests and converter harness |
 | `81e478ca0ffe249a908362cd233790b8920d439c` | LibreOffice style guards, unique names and independent tests |
 | `58fe5b978f63af282ccd3f3406f86e431e440030` | Continuous-header correction, collision regression and precise contracts |
+| `3c54b4f73fbcaf46dff8217c0410209f40848d58` | Source-bound image qualification, raw logs, untouched converter artifacts and diagnostic history |
+| `ef05b99ec9bbf1d539181c8519eb41455d182603` | Normal merge of the completed current-main Word shading/Unicode work |
+| `7a830c71a91e414b2fe02f64d6bc9422d6b41211` | Combined 1,688-case qualification, supplemental dependency binding and fresh converter evidence |
+| `7086ad80266981d612615710610d66bf3fcfb5cf` | Normal merge of current-main proofing/selection paint caching |
 
 Every update used the expected old remote head and verified Git blob/tree
 identity. Implementation history is retained for the final main merge.
