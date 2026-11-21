@@ -63,9 +63,30 @@ void main() {
   test(
     'bare function keys round-trip while ordinary letters need modifiers',
     () {
-      for (final key in [
+      for (final key in const [
         LogicalKeyboardKey.f1,
+        LogicalKeyboardKey.f2,
+        LogicalKeyboardKey.f3,
+        LogicalKeyboardKey.f4,
+        LogicalKeyboardKey.f5,
+        LogicalKeyboardKey.f6,
         LogicalKeyboardKey.f7,
+        LogicalKeyboardKey.f8,
+        LogicalKeyboardKey.f9,
+        LogicalKeyboardKey.f10,
+        LogicalKeyboardKey.f11,
+        LogicalKeyboardKey.f12,
+        LogicalKeyboardKey.f13,
+        LogicalKeyboardKey.f14,
+        LogicalKeyboardKey.f15,
+        LogicalKeyboardKey.f16,
+        LogicalKeyboardKey.f17,
+        LogicalKeyboardKey.f18,
+        LogicalKeyboardKey.f19,
+        LogicalKeyboardKey.f20,
+        LogicalKeyboardKey.f21,
+        LogicalKeyboardKey.f22,
+        LogicalKeyboardKey.f23,
         LogicalKeyboardKey.f24,
       ]) {
         final binding = StudioShortcutBinding(keyId: key.keyId);
@@ -74,13 +95,72 @@ void main() {
           binding.encode(),
         );
       }
-      expect(
-        StudioShortcutBinding.tryParse('${LogicalKeyboardKey.keyF.keyId}'),
-        isNull,
-      );
+      for (final key in const [
+        LogicalKeyboardKey.keyF,
+        LogicalKeyboardKey.keyA,
+        LogicalKeyboardKey.fn,
+        LogicalKeyboardKey.fnLock,
+        LogicalKeyboardKey.enter,
+      ]) {
+        expect(StudioShortcutBinding.tryParse('${key.keyId}'), isNull);
+      }
       expect(StudioShortcutBinding.tryParse(''), isNull);
     },
   );
+
+  test('modifier-only triggers are refused before creating an activator', () {
+    for (final key in const [
+      LogicalKeyboardKey.control,
+      LogicalKeyboardKey.controlLeft,
+      LogicalKeyboardKey.controlRight,
+      LogicalKeyboardKey.shift,
+      LogicalKeyboardKey.shiftLeft,
+      LogicalKeyboardKey.shiftRight,
+      LogicalKeyboardKey.alt,
+      LogicalKeyboardKey.altLeft,
+      LogicalKeyboardKey.altRight,
+      LogicalKeyboardKey.meta,
+      LogicalKeyboardKey.metaLeft,
+      LogicalKeyboardKey.metaRight,
+    ]) {
+      for (final prefix in ['', 'ctrl+', 'shift+alt+meta+']) {
+        expect(
+          StudioShortcutBinding.tryParse('$prefix${key.keyId}'),
+          isNull,
+          reason: '$prefix${key.keyLabel}',
+        );
+      }
+    }
+  });
+
+  test('defaults are unique and subscript leaves the zoom key available', () {
+    final subscript = StudioShortcutCatalog.actions.singleWhere(
+      (action) => action.id == 'format.subscript',
+    );
+    for (final mac in [false, true]) {
+      final bindings = StudioShortcutCatalog.resolve(const {}, mac: mac);
+      expect(subscript.defaultBinding(mac: mac), isNull);
+      expect(bindings.containsKey(subscript.id), isFalse);
+      final zoom = bindings['view.zoomIn']!;
+      expect(zoom.keyId, LogicalKeyboardKey.equal.keyId);
+      expect(zoom.meta, mac);
+      expect(zoom.control, !mac);
+      expect(
+        bindings.values.map((binding) => binding.encode()).toSet(),
+        hasLength(bindings.length),
+      );
+      final override = StudioShortcutBinding(
+        keyId: LogicalKeyboardKey.digit9.keyId,
+        control: true,
+        alt: true,
+      );
+      final configured = StudioShortcutCatalog.resolve({
+        subscript.id: override.encode(),
+      }, mac: mac);
+      expect(configured[subscript.id]!.encode(), override.encode());
+      expect(configured['view.zoomIn']!.encode(), zoom.encode());
+    }
+  });
 
   test('catalog defaults use Command on macOS and Ctrl elsewhere', () {
     final mac = StudioShortcutCatalog.resolve(const {}, mac: true);
@@ -207,7 +287,7 @@ void main() {
     expect(calls, ['bold', 'print']);
   });
 
-  testWidgets('default collision retains zoom and preserves its keypad alias', (
+  testWidgets('unassigned subscript keeps zoom and its keypad alias', (
     tester,
   ) async {
     final calls = <String>[];

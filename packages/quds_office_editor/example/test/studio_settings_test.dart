@@ -1,13 +1,14 @@
 import 'dart:convert';
 import 'dart:io';
-import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:quds_office_editor/quds_office_editor.dart';
 import 'package:quds_office_studio/studio_ribbon_preferences.dart';
 import 'package:quds_office_studio/studio_settings.dart';
 import 'package:quds_office_studio/studio_settings_backend_io.dart';
+import 'package:quds_office_studio/studio_shortcuts.dart';
 import 'package:quds_office_studio/studio_web_data_store.dart';
 import 'package:quds_office_studio/suite_workspace.dart';
 
@@ -68,6 +69,42 @@ void main() {
       StudioSettingsStore(backend: FileStudioSettingsBackend(file));
 
   group('round trip', () {
+    test(
+      'function-key and modified shortcut overrides survive file saves',
+      () async {
+        final overrides = {
+          'format.bold': '${LogicalKeyboardKey.f7.keyId}',
+          'review.thesaurus': 'shift+${LogicalKeyboardKey.f7.keyId}',
+          'future.command': '${LogicalKeyboardKey.f24.keyId}',
+        };
+        final settings = StudioSettings.defaults().copyWith({
+          StudioSettingKeys.shortcuts: overrides,
+        });
+        final first = store();
+        await first.load();
+        await first.save(settings);
+        expect(first.saveError, isNull);
+        final loaded = await store().load();
+        expect(loaded.shortcuts, overrides);
+        for (final mac in [false, true]) {
+          final resolved = StudioShortcutCatalog.resolve(
+            loaded.shortcuts,
+            mac: mac,
+          );
+          expect(
+            resolved['format.bold']!.activator.trigger,
+            LogicalKeyboardKey.f7,
+          );
+          expect(resolved['format.bold']!.control, isFalse);
+          expect(resolved['format.bold']!.meta, isFalse);
+          expect(resolved['review.thesaurus']!.shift, isTrue);
+          expect(resolved.containsKey('future.command'), isFalse);
+        }
+        await first.save(loaded.copyWith({StudioSettingKeys.language: 'de'}));
+        expect((await store().load()).shortcuts, overrides);
+      },
+    );
+
     test('a fresh install loads defaults and writes nothing', () async {
       final settings = await store().load();
       expect(settings, StudioSettings.defaults());
@@ -202,6 +239,68 @@ void main() {
   });
 
   group('corrupt or unknown values', () {
+    test(
+      'stored shortcut sanitization removes unsafe triggers and keeps valid overrides',
+      () async {
+        final valid = {
+          'review.thesaurus': 'shift+${LogicalKeyboardKey.f7.keyId}',
+          'future.command': '${LogicalKeyboardKey.f24.keyId}',
+        };
+        file.parent.createSync(recursive: true);
+        file.writeAsStringSync(
+          jsonEncode({
+            'format': StudioSettingsStore.format,
+            'version': StudioSettingsStore.version,
+            'settings': {
+              StudioSettingKeys.language: 'de',
+              StudioSettingKeys.shortcuts: {
+                ...valid,
+                'format.bold': 'ctrl+${LogicalKeyboardKey.controlLeft.keyId}',
+                'format.italic': 'meta+${LogicalKeyboardKey.meta.keyId}',
+                'format.subscript':
+                    'shift+${LogicalKeyboardKey.shiftRight.keyId}',
+                'review.spelling': '${LogicalKeyboardKey.keyF.keyId}',
+                'future.unknownKey': 'ctrl+999999',
+                'future.invalidValue': 7,
+              },
+            },
+          }),
+        );
+        final settings = store();
+        final loaded = await settings.load();
+        expect(settings.source, StudioSettingsSource.stored);
+        expect(loaded.shortcuts, valid);
+        expect(loaded.choice(StudioSettingKeys.language), 'de');
+        for (final mac in [false, true]) {
+          final bindings = StudioShortcutCatalog.resolve(
+            loaded.shortcuts,
+            mac: mac,
+          );
+          expect(
+            bindings['format.bold']!.activator.trigger,
+            LogicalKeyboardKey.keyB,
+          );
+          expect(
+            bindings['format.italic']!.activator.trigger,
+            LogicalKeyboardKey.keyI,
+          );
+          expect(
+            bindings['review.spelling']!.activator.trigger,
+            LogicalKeyboardKey.f7,
+          );
+          expect(bindings.containsKey('format.subscript'), isFalse);
+          for (final binding in bindings.values) {
+            expect(() => binding.activator, returnsNormally);
+          }
+        }
+        await settings.save(loaded);
+        final saved =
+            (jsonDecode(file.readAsStringSync()) as Map)['settings'] as Map;
+        expect(saved[StudioSettingKeys.shortcuts], valid);
+        expect((await store().load()).shortcuts, valid);
+      },
+    );
+
     for (final (name, bytes) in <(String, List<int>)>[
       ('not JSON', utf8.encode('{"format": "crispoffice-studio')),
       ('not an object', utf8.encode('[1, 2, 3]')),
