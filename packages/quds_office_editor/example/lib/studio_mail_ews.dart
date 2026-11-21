@@ -1041,6 +1041,8 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
           status: MailParseStatus.complete,
           message: message,
         ),
+        preferHtml: false,
+        includeHeaders: false,
         labels: StudioMailReaderLabels(widget.strings.language),
       );
       final old = _reader;
