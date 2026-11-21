@@ -135,7 +135,7 @@ List<MailConversationGroup> groupMailConversations(
 // Preserve the local-part spelling, which may be case-sensitive. Refuse
 // comments, quoted atoms, whitespace, domain literals and obsolete syntax;
 // a false split is safer than an incorrect merge of unrelated mail.
-final _atom = RegExp(r"^[A-Za-z0-9.!#$%&'*+/=?^_\`{|}~-]+$");
+final _atom = RegExp(r"^[A-Za-z0-9.!#$%&'*+/=?^_`{|}~-]+$");
 
 String? _canonicalMessageId(String? value) {
   if (value == null ||
@@ -159,7 +159,7 @@ String? _canonicalMessageId(String? value) {
 }
 
 bool _validDotAtom(String value) =>
-    !_atom.hasMatch(value) ? false :
+    _atom.hasMatch(value) &&
     !value.startsWith('.') &&
     !value.endsWith('.') &&
     !value.contains('..');
