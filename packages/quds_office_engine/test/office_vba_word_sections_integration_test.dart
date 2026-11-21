@@ -56,6 +56,12 @@ Matcher _failure({int? step, String? tool, String code = 'operation_failed'}) {
 void main() {
   registerOfficeMacroCliCleanup();
 
+  test('native fractional geometry stays stable and fails atomically', () {
+    final result = portable.runWordSectionsPrecision();
+    expect(result['cases'], hasLength(3));
+    expect(result['atomicRoundedBodyFailures'], 2);
+  });
+
   test(
     'actual BAS preserves selected sections and DOCM across reopens',
     () async {

@@ -3,6 +3,8 @@ import 'dart:typed_data';
 
 import 'package:quds_office_engine/quds_office_automation.dart';
 import 'package:quds_office_engine/quds_office_engine.dart';
+import 'package:quds_office_engine/src/automation/operations/word_steps.dart'
+    as native;
 
 import 'web_vba_word_page_setup_smoke.dart' as fixture;
 
@@ -284,6 +286,101 @@ ActiveDocument.Sections(2).PageSetup.SectionStart = wdSectionEvenPage
   return {'bothNativeAllowlistsEnforced': true, 'denialsPublishNothing': true};
 }
 
+/// Exercise authored fractional geometry before serialization can round it.
+Map<String, Object?> runWordSectionsPrecision() {
+  num number(double value) =>
+      value == value.truncateToDouble() ? value.toInt() : value;
+  void orient(WmlDocument document, String value) => native.applyStep(
+    document,
+    {'op': 'pageOrientation', 'section': 0, 'orientation': value},
+  );
+  final receipts = <Map<String, Object?>>[];
+  for (final (name, dimensions, orientation, width, height)
+      in <(String, WmlPageSize?, String, double, double)>[
+        ('authored A4 default', null, 'landscape', 841.9, 595.3),
+        (
+          'fractional dimensions become square',
+          const WmlPageSize(width: 600.01, height: 600.02),
+          'landscape',
+          600,
+          600,
+        ),
+        (
+          'near-square exact landscape',
+          const WmlPageSize(width: 600.05, height: 600),
+          'portrait',
+          600,
+          600.05,
+        ),
+      ]) {
+    var document = WmlDocument.empty(text: 'Native precision');
+    if (dimensions != null) document.sections.single.pageSize = dimensions;
+    final margins = document.sections.single.margins;
+    orient(document, orientation);
+    _check(
+      identical(document.sections.single.margins, margins),
+      '$name changed the named margins',
+    );
+    for (var cycle = 0; cycle < 3; cycle++) {
+      final section = document.sections.single;
+      final size = XmlDocument.parse(section.sourceProperties!.xml).root!
+          .firstChild('pgSz', namespaceUri: _w)!;
+      _check(
+        section.pageSize.width == width &&
+            section.pageSize.height == height &&
+            size.getAttribute('orient', namespaceUri: _w) == orientation,
+        '$name lost normalized dimensions or explicit orientation',
+      );
+      orient(document, 'toggle');
+      orient(document, 'toggle');
+      document = WordDeserializer().readBytes(
+        WordSerializer().writeBytes(document),
+      );
+    }
+    _check(
+      document.sections.single.pageSize.width == width &&
+          document.sections.single.pageSize.height == height,
+      '$name changed after the final reopen',
+    );
+    receipts.add({
+      'case': name,
+      'width': number(width),
+      'height': number(height),
+      'orientation': orientation,
+      'roundTrips': 3,
+    });
+  }
+  for (final dimensionRounding in [true, false]) {
+    final document = WmlDocument.empty(text: 'Atomic precision failure');
+    final section = document.sections.single;
+    section
+      ..pageSize = WmlPageSize(
+        width: dimensionRounding ? 600.01 : 600,
+        height: 800,
+      )
+      ..margins = WmlPageMargins(
+        left: dimensionRounding ? 300 : 299.98,
+        right: dimensionRounding ? 300 : 299.98,
+      );
+    final size = section.pageSize;
+    final margins = section.margins;
+    final source = section.sourceProperties;
+    try {
+      orient(document, 'portrait');
+      throw StateError('Rounded geometry unexpectedly erased the page body');
+    } on ArgumentError {
+      _check(
+        identical(section.pageSize, size) &&
+            identical(section.margins, margins) &&
+            identical(section.sourceProperties, source) &&
+            document.paragraphs.single.text == 'Atomic precision failure',
+        'Rejected rounded geometry partially changed the native model',
+      );
+    }
+  }
+  return {'cases': receipts, 'atomicRoundedBodyFailures': 2};
+}
+
 Future<void> main() async {
   _check(
     _example.isNotEmpty,
@@ -296,6 +393,7 @@ Future<void> main() async {
       'rollback': await runWordSectionsRollback(),
       'recording': await runWordSectionsRecording(),
       'policy': await runWordSectionsPolicy(),
+      'nativePrecision': runWordSectionsPrecision(),
     }),
   );
 }

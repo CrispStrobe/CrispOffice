@@ -1,0 +1,77 @@
+{
+  "schema_version": 1,
+  "reviewed_at_utc": "2026-11-21T05:57:54Z",
+  "repository": "CrispStrobe/quds_office_suite",
+  "initial_intake": {
+    "inventory": "intake-inventory.json",
+    "report": "intake.md",
+    "captured_refs": 335,
+    "status": "all captured refs reconciled",
+    "main_at_intake": "84046975f286407e3c62e5e5352bc16bc89c0d26",
+    "integrated_base": "2cd11ced136a30354169fd0043e002079bcabfa3"
+  },
+  "later_branches": [
+    {
+      "branch": "work/mail-repository-sessions-20261121",
+      "sha": "c375becb51939dcca5c145bf1bcdb14a4febe041",
+      "disposition": "selected_for_integration",
+      "reason": "Bounded cached-mailbox streams and replacement-layout retry correction have source-bound local evidence and focused regressions.",
+      "dependency": "2cd11ced136a30354169fd0043e002079bcabfa3",
+      "source_overlap_with_word_vba_increment": false,
+      "prior_validation": [
+        {
+          "receipt": "docs/validation/mail-repository-sessions-20261121/store-validation.json",
+          "reported_passed": 117,
+          "reported_new_stream_scenarios": 11,
+          "reported_analysis": "pass",
+          "independently_verified_source_hashes": 8,
+          "hash_mismatches": []
+        },
+        {
+          "receipt": "docs/validation/mail-repository-sessions-20261121/incoming-word-validation.json",
+          "reported_passed": 70,
+          "reported_skipped": 8,
+          "reported_failed": 0,
+          "reported_analysis": "pass",
+          "skip_reason": "Existing image-only fixtures have no editable paragraphs.",
+          "independently_verified_source_hashes": 3,
+          "hash_mismatches": []
+        }
+      ],
+      "review_execution_scope": "Git diff, receipt and exact blob-hash verification; prior tests were not rerun by this review.",
+      "publication_requirement": "Retain this commit and receipts in final ancestry; verify again against final head."
+    },
+    {
+      "branch": "codex/zotero-transfer-20261121",
+      "sha": "fb692a7fdee8020470eb772f7bb0adc4fa28545e",
+      "disposition": "deferred_active_incomplete_checkpoint",
+      "branch_record": "docs/validation/zotero-transfer-20261121/README.md",
+      "blockers": [
+        {
+          "path": "packages/quds_office_editor/lib/src/embed/word_zotero_dialog.dart",
+          "issue": "Exhaustive ZoteroCitingCommand switch lacks new exportDocument enum value."
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/word/model/word_zotero_citing.dart",
+          "issue": "Model placeholder handler still expects documentId, IDs, noteType, Http while revised protocol admits documentId, codes, IDs, noteType; host transfer implementation remains incomplete."
+        }
+      ],
+      "next_step": "Refresh and assess a completed successor before integration."
+    },
+    {
+      "branch": "feat/proofing-scheduling-20261121",
+      "sha": "0b6b44a631ddceb52dc7ec0dfbdd7143ee1c3d1e",
+      "disposition": "deferred_active_wip_checkpoint",
+      "commit_title": "WIP: proofing scheduler on word/sentence completion, pause and idle [skip ci]",
+      "changed_source_files": 6,
+      "additions": 777,
+      "deletions": 192,
+      "new_tests_in_commit": 0,
+      "qualification_receipt_in_commit": false,
+      "next_step": "Refresh and review completed scheduler behavior and local qualification."
+    }
+  ],
+  "github_actions": "Not queried or awaited.",
+  "publication_follow_up": "Refresh main and active branches before publication; capture any newly reviewed successor separately.",
+  "destructive_git_actions": []
+}
