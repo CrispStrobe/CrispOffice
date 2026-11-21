@@ -1539,7 +1539,9 @@ Unsupported used formatting or structure rejects the whole import before it
 replaces the active document. Examples include drawings/images, comments,
 revisions, protected/linked sections, merged/repeated table owners, custom note
 numbering, unsupported list continuation/affixes, relative/internal links and
-ambiguous citation ranges. A field cannot enclose a note anchor. Package, XML,
+ambiguous citation ranges. A citation cache containing a hyperlink is outside
+the current editable field contract; external hyperlinks outside citations are
+preserved. A field cannot enclose a note anchor. Package, XML,
 text and structural budgets apply throughout. The
 [native-input contract](roadmaps/zotero/native-odt-input.md) gives the exact
 envelope and remaining work.

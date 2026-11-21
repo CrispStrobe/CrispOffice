@@ -256,7 +256,10 @@ The import is all-or-nothing. Invalid/ambiguous marks, crossed owners, protected
 or linked sections, ordinary unsupported sections, bookmarks, drawings/images,
 annotations, revisions, embedded objects, unsupported used styles and resource
 exhaustion refuse before publication. Relative/internal hyperlinks and distinct
-visited-link styles require further ownership/formatting support. Unused style
+visited-link styles require further ownership/formatting support. A citation
+whose cached runs contain a hyperlink also remains outside the native editable
+field contract; ordinary external hyperlinks outside citations are preserved.
+Unused style
 definitions do not expand the accepted content envelope. The inventory's shared
 package/XML/text/field bounds remain in force; the rich reader adds explicit
 table, cell, list, note and style-definition limits. Script materialization also
