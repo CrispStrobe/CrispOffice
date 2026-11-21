@@ -4,6 +4,10 @@ All notable changes to `quds_office_editor` are documented here.
 
 ## Unreleased
 
+- Correct localized Mail list dates across daylight-saving changes and supplied
+  UTC clocks: compare local calendar dates so yesterday, recent weekdays and
+  future dates keep their intended labels.
+
 - Add native **Synchronized mail** for IMAP, EWS, Gmail and Microsoft 365:
   explicit bounded Start/Continue/Check for changes, Stop, persistent page
   checkpoints and offline synchronized-header browsing. Reuse existing cached

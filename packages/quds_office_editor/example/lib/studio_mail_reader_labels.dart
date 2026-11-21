@@ -33,10 +33,12 @@ String? studioMailListDate(
   if (sent == null) return null;
   final locale = studioIntlLocale(language);
   final local = sent.toLocal();
-  final today = now ?? DateTime.now();
-  final day = DateTime(local.year, local.month, local.day);
-  final current = DateTime(today.year, today.month, today.day);
-  final days = current.difference(day).inHours ~/ 24;
+  final today = (now ?? DateTime.now()).toLocal();
+  // Compare local calendar dates in UTC so a 23- or 25-hour daylight-saving
+  // day still counts as exactly one day, including dates in the future.
+  final day = DateTime.utc(local.year, local.month, local.day);
+  final current = DateTime.utc(today.year, today.month, today.day);
+  final days = current.difference(day).inDays;
   if (days == 0) return DateFormat.Hm(locale).format(local);
   if (days == 1) {
     return switch (language) {
@@ -110,9 +112,8 @@ class StudioMailReaderLabels extends MailReaderLabels {
       );
     }
     if (bytes < 1024 * 1024) {
-      final kb = NumberFormat.decimalPattern(
-        locale,
-      ).format((bytes / 1024).round());
+      final kb = NumberFormat.decimalPattern(locale)
+          .format((bytes / 1024).round());
       return _t('$kb KB', '$kb KB', '$kb ك.ب');
     }
     final mb = NumberFormat('0.0', locale).format(bytes / (1024 * 1024));
