@@ -21,7 +21,8 @@ recipient envelope remain unchanged. An uncertain result never authorizes an
 automatic retry, and Undo does not recall an already submitted message.
 
 The qualified publication-source checkpoint is
-`964783488cfa8079464e7dc80c1df6bb139323f5`. Final evidence-only publication
+`6426d8877d5a7a2405bdd9060a1b6c443a731cb0`, which also preserves the concurrent
+main renderer optimization and its cache correction. Evidence publication
 commits preserve that source. The executions below are bound to
 their recorded source hashes and scopes; this is not a claim that the entire
 repository or every installed platform was tested. GitHub Actions runs, checks
@@ -33,10 +34,11 @@ and status queues were neither queried nor awaited.
 | --- | --- | --- |
 | Full `quds_mail_core` VM suite | 482 passed | [Core/store archive](evidence/core-store-evidence.tar.xz) |
 | Full `quds_mail_store` VM suite | 934 passed, including migrations, archive consumers and real subprocess crash recovery | [Core/store archive](evidence/core-store-evidence.tar.xz) |
-| Combined Studio Mail cohort | 143 passed across 13 suites: 66 existing Outbox, 40 scheduling and 37 compose-tools cases | [Studio archive](evidence/studio-evidence.tar.xz) |
+| Combined Studio Mail cohort | 143 passed across 13 suites: 66 existing Outbox, 40 scheduling and 37 compose-tools cases | [Final Studio archive](evidence/main-studio-evidence.tar.xz) |
 | Earlier Word shading and shared VBA cohort | 933 passed across 12 suites; two portable workflows compile to JavaScript and produce matching VM/Node JSON | [Word archive](evidence/word-evidence.tar.gz) |
 | Publication ODT and affected Word engine cohort | 1,725 passed across 86 suites: 64 ODT/ODF-Zotero and 22 affected Word table/style suites | [Publication archive](evidence/publication-evidence.tar.xz) |
 | Publication ODT editor cohort | 19 passed across 3 suites | [Publication archive](evidence/publication-evidence.tar.xz) |
+| Final renderer and selection cohort | 76 passed across 10 suites, including existing Linux goldens and retained-canvas pixel regression | [Renderer archive](evidence/main-renderer-evidence.tar.xz) |
 | Localized visual qualification | 3 passing rendering cases; 7 reviewed EN/DE/AR images, including narrow Arabic controls | [Visual archive](evidence/visual-evidence.tar.xz) |
 
 All accepted test cohorts have zero failures and zero skips. Earlier focused
@@ -50,10 +52,11 @@ archives retain exact commands, working directories, JSON test events,
 stdout/stderr, source manifests and result receipts. Core/store selected source
 hashes and the dependency lock stayed unchanged across their final executions;
 the receipt records the local Git HEAD before and after concurrent checkpoint
-creation. The publication Studio receipt also audits all 13 selected suites and their
-complete event stream. Its 6,093 workspace inputs, 6,211 dependency inputs and
-11 selected paths match before and after execution on the publication source.
-The engine/editor publication checks share 1,250 unchanged source inputs.
+creation. The Studio receipts also audit all 13 selected suites and their complete event
+stream. The final run preserves identical before/after maps for 6,094 workspace
+files, 6,211 dependency inputs and 11 selected paths. The final
+renderer checks share 1,251 unchanged source inputs. The earlier ODT/table
+publication checks share 1,250 unchanged source inputs.
 [Source continuity](source-continuity.json) verifies that both complete Mail
 package trees and the selected visual inputs remain identical to their earlier
 qualified versions. The earlier 933-case VBA cohort predates the latest ODT/table
@@ -120,6 +123,21 @@ regression assertion. Native round-trip continuation adds guarded DOCX table
 margins and ODT cached-pagination hints. The combined publication run passes
 1,725 engine and 19 editor cases without further source repairs.
 
+The final main refresh brought PR #335 and a documentation continuation. The
+new renderer selection cache omitted the selected table from its key. A retained
+canvas kept stale text tint after switching to a table band, while a fresh
+canvas did not. The pixel regression fails on that incoming source and passes
+after replacing the always-true permission key with selected table identity.
+The correction retains both new bounded caches. All 76 targeted editor cases,
+including existing selection goldens, pass. The
+[main follow-up](main-followup.md) records the exact scope and original failure.
+
+The first concurrent Studio attempt after that main update timed out opening
+SQLite and was cancelled while the source was changing. It is rejected
+evidence, not a passing run; its raw events are retained in the
+[rejected-run archive](evidence/main-studio-rejected-evidence.tar.xz). The final Studio check runs after the editor checks finish on the
+corrected frozen source and passes all 143 cases with zero failures or skips.
+
 ## Intake and incremental remote checkpoints
 
 Initial remote main was `4970f71f983535d045ce263e86835b499db4fda9`.
@@ -145,6 +163,9 @@ note-offset handling. Details and proofs are in
 | `74c2550412508b90ba649d68c7c92784395f646d` | Scheduling regressions, workflow documentation and reconciled Office heads |
 | `e9a95d7795812a8322c3a0c1d508cf05553bfe82` | Narrow ODT integration corrections after complete local qualification |
 | `964783488cfa8079464e7dc80c1df6bb139323f5` | Reconcile refreshed main, completed Word qualification and latest image/table continuations |
+| `917f7ea13425b2c078cc8f0e6e73d4e59b7e4608` | Preserve initial complete qualification archives, previews and finite intake |
+| `d4aa0709f811846cf04a98a99800975a82a92600` | Preserve concurrent main PR #335 renderer cache optimization |
+| `6426d8877d5a7a2405bdd9060a1b6c443a731cb0` | Preserve subsequent main documentation and correct stale table-selection cache with pixel regression |
 
 Remote main and active branches advanced after the frozen inventory. The
 separate [publication intake](publication-intake.md) accounts for **380 captured
@@ -156,9 +177,11 @@ already merged), Zotero images `58fe5b97`, and native round-trip `3eac83d1`
 no force push or destructive replacement was used. This is a finite capture,
 not a claim about branches that continue to advance afterward.
 
-The publication PR records its merge commit and remote-main readback. Main is
-checked again immediately before merging; the work branch and incremental
-checkpoints are retained.
+The later main commits `a97295f9` (PR #335) and `3440c90b` were preserved after
+the finite 380-ref capture. They are additional ancestors rather than a claim
+that the historical inventory was captured again. [PR #338](https://github.com/CrispStrobe/quds_office_suite/pull/338)
+records the final merge and remote-main readback. Main is checked again
+immediately before merging; the work branch and incremental checkpoints remain.
 
 ## Reviewing the retained evidence
 
