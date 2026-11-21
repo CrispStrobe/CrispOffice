@@ -11,6 +11,7 @@ import 'odt_reader_styles.dart';
 const _draw = 'urn:oasis:names:tc:opendocument:xmlns:drawing:1.0';
 const _svg = 'urn:oasis:names:tc:opendocument:xmlns:svg-compatible:1.0';
 const _style = 'urn:oasis:names:tc:opendocument:xmlns:style:1.0';
+const _fo = 'urn:oasis:names:tc:opendocument:xmlns:xsl-fo-compatible:1.0';
 const _xlink = 'http://www.w3.org/1999/xlink';
 const _xml = 'http://www.w3.org/XML/1998/namespace';
 
@@ -80,6 +81,7 @@ final class OdtInlineImageValidator {
         picture.transparency != 0 ||
         picture.borderColor.isNotEmpty ||
         picture.borderWidth != 0 ||
+        !picture.lockAspect ||
         picture.flipH ||
         picture.flipV ||
         picture.shadow) {
@@ -107,6 +109,37 @@ final class OdtReaderImages {
   final OdtReaderStyles styles;
   final _rasters = OdtInlineImageValidator();
 
+  /// Character styles for a link's visited state do not paint glyphs when
+  /// its entire content is pictures. Actual frames/styles are still validated
+  /// by [read]; this predicate never licenses an unsupported frame or story.
+  static bool isImageOnlyLink(XmlElement link) {
+    var frames = 0;
+    bool content(XmlElement owner) {
+      for (final child in owner.children) {
+        if (child is XmlText || child is XmlCdata) {
+          final value = child is XmlText
+              ? child.text
+              : (child as XmlCdata).text;
+          // Literal XML whitespace can become an authored underlined space.
+          // This exemption therefore requires no text between the pictures.
+          if (value.isNotEmpty) return false;
+        } else if (child is XmlElement) {
+          if (child.namespaceUri == _draw && child.localName == 'frame') {
+            frames++;
+          } else if (child.namespaceUri == odfTextNamespace &&
+              child.localName == 'span') {
+            if (!content(child)) return false;
+          } else {
+            return false;
+          }
+        }
+      }
+      return true;
+    }
+
+    return content(link) && frames > 0;
+  }
+
   OfficeVisual read(XmlElement frame) {
     _attributes(frame, {
       odfTextNamespace: {'anchor-type'},
@@ -129,7 +162,7 @@ final class OdtReaderImages {
     for (final child in frame.children) {
       if (child is XmlText || child is XmlCdata) {
         final value = child is XmlText ? child.text : (child as XmlCdata).text;
-        if (value.trim().isNotEmpty) _unsupported();
+        if (!_xmlWhitespace(value)) _unsupported();
       } else if (child is XmlElement) {
         if (child.namespaceUri == _draw && child.localName == 'image') {
           if (image != null) _unsupported();
@@ -155,7 +188,7 @@ final class OdtReaderImages {
       _xlink: {'href', 'type', 'show', 'actuate'},
       _draw: {'mime-type'},
     });
-    if (image.childElements.isNotEmpty || image.text.trim().isNotEmpty) {
+    if (image.childElements.isNotEmpty || !_xmlWhitespace(image.text)) {
       _unsupported();
     }
     for (final entry in {
@@ -194,21 +227,135 @@ final class OdtReaderImages {
   }
 
   void _graphicStyle(String? name) {
-    // Effective graphic values need explicit mappings before they can be
-    // accepted. Empty inherited graphic styles carry no presentation changes.
+    final values = <String, String>{};
     for (final definition in styles.styleChain('graphic', name)) {
       for (final properties in definition.childElements) {
-        if (properties.namespaceUri != _style ||
-            properties.localName != 'graphic-properties') {
-          _unsupported();
-        }
-        _attributes(properties, {});
-        if (properties.childElements.isNotEmpty ||
-            properties.text.trim().isNotEmpty) {
-          _unsupported();
+        if (properties.localName == 'graphic-properties') {
+          if (properties.childElements.isNotEmpty ||
+              !_xmlWhitespace(properties.text)) {
+            _unsupported();
+          }
+          for (final attribute in properties.attributes) {
+            if (attribute.prefix == 'xmlns' ||
+                attribute.qualifiedName == 'xmlns') {
+              continue;
+            }
+            values['${attribute.namespaceUri}/${attribute.localName}'] =
+                attribute.value;
+          }
+        } else {
+          // These properties format text inside the drawing object. This
+          // parser admits exactly one image and metadata, never a text box.
+          // Only the observed empty paragraph/tab and text-property shapes
+          // are inert; embedded children are not silently dropped.
+          if (!_xmlWhitespace(_directText(properties))) _unsupported();
+          for (final child in properties.childElements) {
+            if (properties.localName != 'paragraph-properties' ||
+                child.namespaceUri != _style ||
+                child.localName != 'tab-stops' ||
+                child.childElements.isNotEmpty ||
+                !_xmlWhitespace(child.text)) {
+              _unsupported();
+            }
+            _attributes(child, {});
+          }
         }
       }
     }
+    String? take(String namespace, String local) =>
+        values.remove('$namespace/$local');
+    void oneOf(String namespace, String local, Set<String> accepted) {
+      final value = take(namespace, local);
+      if (value != null && !accepted.contains(value)) _unsupported();
+    }
+
+    void zeroLength(String namespace, String local) {
+      final value = take(namespace, local);
+      if (value != null && !_isZeroLength(value)) _unsupported();
+    }
+
+    // No explicit paint/effect may be enabled. Stored fill colours require an
+    // explicit no-fill setting: ODF otherwise leaves that fallback to the
+    // consumer. Inactive raster-frame stroke/shadow defaults are bounded below.
+    oneOf(_draw, 'stroke', {'none'});
+    final fill = take(_draw, 'fill');
+    if (fill != null && fill != 'none') _unsupported();
+    oneOf(_draw, 'shadow', {'hidden'});
+    for (final key in [(_svg, 'stroke-color'), (_draw, 'fill-color')]) {
+      final color = take(key.$1, key.$2);
+      if (key.$2 == 'fill-color' && color != null && fill != 'none') {
+        _unsupported();
+      }
+      if (color != null && !RegExp(r'^#[0-9a-fA-F]{6}$').hasMatch(color)) {
+        _unsupported();
+      }
+    }
+    for (final key in [
+      'shadow-offset-x',
+      'shadow-offset-y',
+      'start-line-spacing-horizontal',
+      'start-line-spacing-vertical',
+      'end-line-spacing-horizontal',
+      'end-line-spacing-vertical',
+    ]) {
+      final value = take(_draw, key);
+      if (value != null && !_boundedLength(value)) _unsupported();
+    }
+
+    // Explicit text:anchor-type="as-char" on the frame is authoritative.
+    // Writer inherits the following floating-frame defaults even for inline
+    // images. Nondefault inline positioning, spacing or contour effects are
+    // still outside the native baseline-picture contract.
+    final inheritedAnchor = take(odfTextNamespace, 'anchor-type');
+    if (inheritedAnchor != null &&
+        inheritedAnchor != 'paragraph' &&
+        inheritedAnchor != 'as-char') {
+      _unsupported();
+    }
+    zeroLength(_svg, 'x');
+    zeroLength(_svg, 'y');
+    final horizontal = take(_style, 'horizontal-pos');
+    final horizontalRelative = take(_style, 'horizontal-rel');
+    final vertical = take(_style, 'vertical-pos');
+    final verticalRelative = take(_style, 'vertical-rel');
+    if ((horizontal != null || horizontalRelative != null) &&
+        !(inheritedAnchor == 'paragraph' &&
+            horizontal == 'center' &&
+            horizontalRelative == 'paragraph')) {
+      _unsupported();
+    }
+    if ((vertical != null || verticalRelative != null) &&
+        !(inheritedAnchor == 'paragraph' &&
+            vertical == 'top' &&
+            verticalRelative == 'paragraph')) {
+      _unsupported();
+    }
+    oneOf(_style, 'wrap', {'dynamic', 'none'});
+    oneOf(_style, 'number-wrapped-paragraphs', {'no-limit'});
+    oneOf(_style, 'wrap-contour', {'false'});
+    oneOf(_style, 'flow-with-text', {'false'});
+    oneOf(_fo, 'wrap-option', {'no-wrap'});
+    for (final side in ['top', 'bottom', 'left', 'right']) {
+      zeroLength(_fo, 'margin-$side');
+    }
+
+    oneOf(_style, 'mirror', {'none'});
+    final clip = take(_fo, 'clip');
+    if (clip != null) {
+      final match = RegExp(r'^rect\(([^()]*)\)$').firstMatch(clip);
+      final parts = match?.group(1)?.trim().split(RegExp(r'[ ,]+'));
+      if (parts == null || parts.length != 4 || !parts.every(_isZeroLength)) {
+        _unsupported();
+      }
+    }
+    for (final channel in ['luminance', 'contrast', 'red', 'green', 'blue']) {
+      oneOf(_draw, channel, {'0%'});
+    }
+    oneOf(_draw, 'gamma', {'100%'});
+    oneOf(_draw, 'image-opacity', {'100%'});
+    oneOf(_draw, 'color-inversion', {'false'});
+    oneOf(_draw, 'color-mode', {'standard'});
+    if (values.isNotEmpty) _unsupported();
   }
 
   static String _packagePath(String? href) {
@@ -272,6 +419,28 @@ void _attributes(XmlElement element, Map<String, Set<String>> allowed) {
       _unsupported();
     }
   }
+}
+
+bool _xmlWhitespace(String value) => value.codeUnits.every(
+  (unit) => unit == 0x20 || unit == 0x09 || unit == 0x0a || unit == 0x0d,
+);
+
+String _directText(XmlElement element) => element.children
+    .where((node) => node is XmlText || node is XmlCdata)
+    .map((node) => node is XmlText ? node.text : (node as XmlCdata).text)
+    .join();
+
+bool _isZeroLength(String value) =>
+    RegExp(r'^[+-]?0+(?:\.0*)?(?:pt|in|cm|mm|pc)$').hasMatch(value);
+
+bool _boundedLength(String value) {
+  if (value.length > 32) return false;
+  final match = RegExp(
+    r'^([+-]?(?:\d+(?:\.\d*)?|\.\d+))(pt|in|cm|mm|pc)$',
+  ).firstMatch(value);
+  if (match == null) return false;
+  final number = double.tryParse(match.group(1)!);
+  return number != null && number.isFinite && number.abs() <= 4000;
 }
 
 Never _unsupported() => throw UnsupportedError(

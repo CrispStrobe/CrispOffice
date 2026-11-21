@@ -268,6 +268,7 @@ void main() {
     ),
     'image href behavior': _image(imageAttributes: 'xlink:show="new"'),
     'MIME mismatch': _image(imageAttributes: 'draw:mime-type="image/jpeg"'),
+    'authored nonbreaking space in frame': _image(children: '&#160;'),
   };
   for (final entry in invalidFrames.entries) {
     test(
@@ -369,6 +370,206 @@ void main() {
           _odt('<text:p>${List.filled(33, _image()).join()}</text:p>'),
         ),
         throwsA(isA<FormatException>()),
+      );
+    },
+  );
+
+  WmlRun nativePicture() => WmlRun(
+    text: '\uFFFC',
+    inlineVisual: WmlVisual(
+      visual: OfficeVisual(
+        kind: OfficeVisualKind.picture,
+        title: 'Object',
+        imageBytes: Uint8List.fromList(_png),
+        width: 24,
+        height: 36,
+        picture: PictureAdjust(
+          altTitle: 'Title',
+          altDescription: 'Description',
+        ),
+      ),
+    ),
+  );
+
+  WmlDocument nativeDocument(WmlRun picture) => WmlDocument(
+    sections: [
+      WmlSection(
+        blocks: [
+          WmlParagraph(
+            inlines: [
+              WmlRun(text: 'Before'),
+              picture,
+              WmlRun(text: 'After'),
+            ],
+          ),
+        ],
+      ),
+    ],
+  );
+
+  for (final mutation in <String, void Function(WmlRun)>{
+    'mixed placeholder text': (run) => run.text = 'Before\uFFFC',
+    'missing picture bytes': (run) =>
+        run.inlineVisual!.visual.imageBytes = null,
+    'floating wrapping': (run) =>
+        run.inlineVisual!.visual.picture.wrap = PictureWrap.square,
+    'rotation': (run) => run.inlineVisual!.visual.picture.rotationDeg = 90,
+    'crop': (run) => run.inlineVisual!.visual.picture.cropLeft = 0.1,
+    'aspect unlocking': (run) =>
+        run.inlineVisual!.visual.picture.lockAspect = false,
+    'transparency': (run) =>
+        run.inlineVisual!.visual.picture.transparency = 0.5,
+    'nonpicture kind': (run) =>
+        run.inlineVisual!.visual.kind = OfficeVisualKind.chartBar,
+    'unpaired alt title surrogate': (run) =>
+        run.inlineVisual!.visual.picture.altTitle = String.fromCharCode(0xd800),
+    'invalid XML alt description': (run) =>
+        run.inlineVisual!.visual.picture.altDescription = '\u0000',
+  }.entries) {
+    test('explicit output refuses ${mutation.key} atomically', () {
+      final run = nativePicture();
+      mutation.value(run);
+      final document = nativeDocument(run);
+      final paragraph = document.paragraphs.single;
+      final before = paragraph.text;
+      final inlines = [...paragraph.inlines];
+      final imageBytes = run.inlineVisual!.visual.imageBytes;
+      final byteCopy = imageBytes == null ? null : [...imageBytes];
+      expect(
+        () => OdtDocumentWriter.writeEditableZoteroBytes(document),
+        throwsA(anyOf(isA<UnsupportedError>(), isA<FormatException>())),
+      );
+      expect(document.paragraphs.single, same(paragraph));
+      expect(paragraph.inlines, orderedEquals(inlines));
+      expect(paragraph.text, before);
+      expect(run.inlineVisual!.visual.imageBytes, same(imageBytes));
+      if (byteCopy != null) expect(imageBytes, orderedEquals(byteCopy));
+      expect(document.package, isNull);
+    });
+  }
+
+  test('explicit output refuses shared picture owners', () {
+    for (final shareWrapper in [false, true]) {
+      final first = nativePicture();
+      final second = WmlRun(
+        text: '\uFFFC',
+        inlineVisual: shareWrapper
+            ? first.inlineVisual
+            : WmlVisual(visual: first.inlineVisual!.visual),
+      );
+      final document = nativeDocument(first);
+      document.paragraphs.single.inlines.add(second);
+      expect(
+        () => OdtDocumentWriter.writeEditableZoteroBytes(document),
+        throwsA(isA<UnsupportedError>()),
+      );
+      expect(document.paragraphs.single.inlines.last, same(second));
+    }
+  });
+
+  test('explicit output refuses unsupported picture story ownership', () {
+    final picture = nativePicture();
+    final document = WmlDocument(
+      sections: [
+        WmlSection(
+          header: [
+            WmlParagraph(inlines: [picture]),
+          ],
+        ),
+      ],
+    );
+    expect(
+      () => OdtDocumentWriter.writeEditableZoteroBytes(document),
+      throwsA(isA<UnsupportedError>()),
+    );
+    expect(
+      document.sections.single.header.single.inlines.single,
+      same(picture),
+    );
+  });
+
+  test(
+    'ordinary output writes one object position and accessibility metadata',
+    () async {
+      final document = nativeDocument(nativePicture());
+      final bytes = OdtDocumentWriter.writeBytes(document);
+      final package = OpcPackage.openBytes(bytes);
+      final content = package.getPart('/content.xml')!.readText();
+      expect(content, isNot(contains('\uFFFC')));
+      expect(content, contains('<svg:title>Title</svg:title>'));
+      expect(content, contains('<svg:desc>Description</svg:desc>'));
+      final reopened = await OdtDocumentReader.readBytes(bytes);
+      expect(reopened.paragraphs.single.text, 'Before\uFFFCAfter');
+      expect(
+        _pictures(reopened).single.inlineVisual!.visual.picture.altDescription,
+        'Description',
+      );
+    },
+  );
+
+  test(
+    'native picture run character properties survive editable ODT output',
+    () async {
+      final picture = nativePicture();
+      picture.properties
+        ..fontSizeHalfPoints = 88
+        ..bold = true
+        ..italic = true
+        ..vertAlign = WmlVertAlign.superscript
+        ..color = '123456';
+      final document = nativeDocument(picture);
+      final reopened = await OdtDocumentReader.readBytes(
+        OdtDocumentWriter.writeEditableZoteroBytes(document),
+      );
+      final properties = _pictures(reopened).single.properties;
+      expect(properties.fontSizeHalfPoints, 88);
+      expect(properties.bold, isTrue);
+      expect(properties.italic, isTrue);
+      expect(properties.vertAlign, WmlVertAlign.superscript);
+      expect(properties.color, '123456');
+    },
+  );
+
+  test(
+    'equal picture titles produce distinct drawing identities across stories',
+    () async {
+      final first = nativePicture();
+      final second = nativePicture();
+      final third = nativePicture()..inlineVisual!.visual.title = 'Object 2';
+      final unnamed = nativePicture()..inlineVisual!.visual.title = '';
+      final document = nativeDocument(first);
+      document.paragraphs.single.inlines.addAll([second, third, unnamed]);
+      final header = nativePicture();
+      document.sections.single.header.add(WmlParagraph(inlines: [header]));
+      final package = OpcPackage.openBytes(
+        OdtDocumentWriter.writeBytes(document),
+      );
+      final names = <String>[];
+      for (final part in ['/content.xml', '/styles.xml']) {
+        names.addAll(
+          RegExp(r'draw:name="([^"]*)"')
+              .allMatches(package.getPart(part)!.readText())
+              .map((match) => match.group(1)!),
+        );
+      }
+      expect(names.length, 5);
+      expect(names.toSet().length, 5);
+      expect(names, everyElement(isNotEmpty));
+      expect(first.inlineVisual!.visual.title, 'Object');
+      expect(second.inlineVisual!.visual.title, 'Object');
+      expect(third.inlineVisual!.visual.title, 'Object 2');
+      expect(unnamed.inlineVisual!.visual.title, isEmpty);
+      expect(header.inlineVisual!.visual.title, 'Object');
+      document.sections.single.header.clear();
+      final reopened = await OdtDocumentReader.readBytes(
+        OdtDocumentWriter.writeEditableZoteroBytes(document),
+      );
+      expect(_pictures(reopened).length, 4);
+      expect(
+        _pictures(
+          reopened,
+        ).map((run) => run.inlineVisual!.visual.picture.altTitle),
+        everyElement('Title'),
       );
     },
   );

@@ -101,7 +101,7 @@ WmlDocument _document(bool jpeg) {
 }
 
 Map<String, Object?> _summary(WmlDocument document) => {
-  'preferences': jsonDecode(document.zoteroDocumentData!),
+  'preferences': jsonDecode(WordZoteroDocumentData.read(document)),
   'paragraphs': document.paragraphs.map((p) => p.text).toList(),
   'fields': [
     for (final field in WordZotero.fields(document))

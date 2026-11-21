@@ -459,9 +459,20 @@ final class _OdtReader {
           final styleName = _attr(node, 'style-name', odfTextNamespace);
           final visited = _attr(node, 'visited-style-name', odfTextNamespace);
           if (visited != null && visited.isNotEmpty && visited != styleName) {
-            throw UnsupportedError(
-              'Distinct visited ODT hyperlink styles are not supported.',
-            );
+            if (!OdtReaderImages.isImageOnlyLink(node)) {
+              throw UnsupportedError(
+                'Distinct visited ODT hyperlink styles are not supported.',
+              );
+            }
+            // No authored glyphs or text boxes use the visited character
+            // style. Writer can reference an undefined built-in visited style
+            // for such an image link. Validate a supplied definition, but do
+            // not invent one or widen the ordinary text-link contract.
+            if (styles.hasTextStyle(visited)) {
+              styles
+                  .runProperties(visited, inherited: properties)
+                  .validateEffective();
+            }
           }
           final resolved = styles.runProperties(
             styleName,

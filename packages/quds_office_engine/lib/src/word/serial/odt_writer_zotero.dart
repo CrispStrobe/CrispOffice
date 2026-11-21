@@ -45,6 +45,8 @@ final class OdtWriterZoteroPlan {
           );
         }
         _xmlText(picture.visual.title);
+        _xmlText(picture.visual.picture.altTitle);
+        _xmlText(picture.visual.picture.altDescription);
         images.validateVisual(picture.visual);
       }
     }

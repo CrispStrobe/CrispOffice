@@ -84,6 +84,26 @@ path refuses active Zotero fields inside those tables. A file that preserves
 native metadata may contain formatting outside Quds' bounded native ODT reader;
 the tests distinguish metadata inventory from full editable reopening.
 
+### Inline note and annotation pictures
+
+The [picture continuation](../../validation/zotero-odt-images-20261121/README.md)
+preserves bounded embedded inline PNG and upright RGB/YCbCr JPEG pictures
+alongside active citations. Each picture is an independently owned canonical
+one-character run. Its accepted raster bytes, width/height, image link, frame
+name, title, alternative description and supported run styling survive the
+qualified native ODT/DOCX paths. `svg:title` and `svg:desc` carry the accessible
+metadata. The writer emits the picture frame once, without writing an extra
+literal U+FFFC placeholder beside it.
+
+The explicit exporter validates the complete document against the same raster
+budgets as native picture input: at most 32 pictures and 4 MiB of raster bytes
+in total, with the decoder's pixel and expansion limits. Shared visual owners,
+noncanonical picture runs, unsupported stories and pictures in bibliography or
+citation caches refuse. Cropping, rotation, color adjustments, transparency,
+borders, shadows, flipping and unlocked aspect-ratio behavior are outside this
+initial inline-picture contract. Ordinary cached-result export retains its
+existing metadata behavior while receiving the placeholder/accessibility fix.
+
 ## Refusals and bounds
 
 Export refuses incomplete, malformed, locked, nested or overlapping Zotero
@@ -122,6 +142,6 @@ compatibility claim.
 Next, use supported release versions of LibreOffice and Zotero to refresh,
 change styles, edit citations/bibliographies and repeat saves on these fixtures.
 Then qualify Word transfer and additional native documents, especially notes
-with richer numbering, fields in note tables, images and styles beyond the
+with richer numbering, fields in note tables, additional image behavior and styles beyond the
 current reader. Legacy Apache OpenOffice requires its own identified versions
 and acceptance evidence.

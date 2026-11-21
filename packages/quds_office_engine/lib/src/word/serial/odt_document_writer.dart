@@ -1186,7 +1186,12 @@ abstract final class OdtDocumentWriter {
           );
         }
         if (inline.inlineVisual case final visual?) {
+          if (!commentLink) {
+            w.writeStartElement('span', prefix: 'text');
+            w.writeAttribute('text:style-name', style);
+          }
           _writeVisual(w, visual.visual, layout, inline: true);
+          if (!commentLink) w.writeEndElement();
         }
         if (ownLink) w.writeEndElement();
         if (layout.commentsAllowed) {
@@ -1626,7 +1631,7 @@ abstract final class OdtDocumentWriter {
       final path = layout.addMedia(bytes);
       w.writeStartElement('frame', prefix: 'draw');
       w.writeAttribute('text:anchor-type', 'as-char');
-      w.writeAttribute('draw:name', visual.title);
+      w.writeAttribute('draw:name', layout.pictureName(visual.title));
       w.writeAttribute('svg:width', '${visual.width.toStringAsFixed(2)}pt');
       w.writeAttribute('svg:height', '${visual.height.toStringAsFixed(2)}pt');
       w.writeEmptyElement(
@@ -2050,6 +2055,9 @@ class _OdtLayout {
            : document.sections,
        media = sharedMedia?.media ?? <String>[],
        _mediaBytes = sharedMedia?._mediaBytes ?? <String, Uint8List>{},
+       _pictureNames = sharedMedia?._pictureNames ?? <String>{},
+       _pictureNameCounters =
+           sharedMedia?._pictureNameCounters ?? <String, int>{},
        notes = sharedMedia?.notes ?? _OdtNotes(document),
        comments = sharedMedia?.comments ?? _OdtComments(document),
        bookmarks = sharedMedia?.bookmarks ?? _OdtBookmarks(document),
@@ -2063,6 +2071,8 @@ class _OdtLayout {
       _OdtSectionStart(index, sections[index].breakKind),
   ];
   final List<String> media;
+  final Set<String> _pictureNames;
+  final Map<String, int> _pictureNameCounters;
   final _OdtNotes notes;
   final _OdtComments comments;
   final _OdtBookmarks bookmarks;
@@ -2084,6 +2094,21 @@ class _OdtLayout {
   final List<String> _styleBuffers = <String>[];
   final List<String Function()> _deferredStyleBuffers = [];
   int tableCount = 0;
+
+  String pictureName(String title) {
+    // ODF drawing names identify objects, independently of their alt titles.
+    // Writer can drop a later image when two frames reuse the same name.
+    // Allocate across every story without mutating the native visual titles.
+    final base = title.isEmpty ? 'Picture' : title;
+    if (_pictureNames.add(base)) return base;
+    var suffix = _pictureNameCounters[base] ?? 1;
+    String name;
+    do {
+      name = '$base ${++suffix}';
+    } while (!_pictureNames.add(name));
+    _pictureNameCounters[base] = suffix;
+    return name;
+  }
 
   String addMedia(Uint8List bytes) {
     final ext = _extension(bytes);
