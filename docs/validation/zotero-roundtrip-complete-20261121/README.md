@@ -1,5 +1,10 @@
 # Zotero native round-trip completion — 21 November 2026
 
+The subsequent [table-layout continuation](../zotero-table-layout-20261121/README.md)
+delivers the uniform-margin layout followup and qualifies its reconciled Office
+source with 4,635 fresh local cases. The historical counts and source identities
+below remain specific to this earlier completion record.
+
 This increment reconciles the pending native ODT bibliography, image and note
 work with accepted Office main, adds semantic uppercase import, and qualifies
 the combined result locally. The native-file checkpoint passed **3,444 distinct
