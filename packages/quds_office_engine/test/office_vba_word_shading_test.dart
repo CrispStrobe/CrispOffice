@@ -49,10 +49,9 @@ void main() {
   ]) {
     test('packed RGB and automatic: $expression', () {
       expect(
-        _compile('$_shade.BackgroundPatternColor = $expression')
-            .steps
-            .single
-            .arguments,
+        _compile(
+          '$_shade.BackgroundPatternColor = $expression',
+        ).steps.single.arguments,
         {'paragraph': 0, 'color': color},
       );
     });

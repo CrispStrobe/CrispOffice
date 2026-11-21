@@ -1,0 +1,182 @@
+{
+  "repository": "CrispStrobe/quds_office_suite",
+  "inspectedAt": "2026-11-21 18:52:20 UTC",
+  "base": "4970f71f983535d045ce263e86835b499db4fda9",
+  "openPullRequests": 0,
+  "branches": [
+    {
+      "branch": "codex/word-vba-tables-20261121",
+      "sha": "4970f71f983535d045ce263e86835b499db4fda9",
+      "compare": {
+        "status": "identical",
+        "ahead_by": 0,
+        "behind_by": 0
+      },
+      "readiness": "empty baseline branch",
+      "recommendation": "already contained"
+    },
+    {
+      "branch": "codex/zotero-odt-roundtrip-20261121",
+      "sha": "bf54a8e7d976670af87dd3d36f3afc26c1821d3b",
+      "compare": {
+        "status": "ahead",
+        "ahead_by": 2,
+        "behind_by": 0,
+        "changedPaths": [
+          "docs/validation/zotero-odt-roundtrip-20261121/README.md",
+          "docs/validation/zotero-odt-roundtrip-20261121/initial-intake.json",
+          "docs/validation/zotero-odt-roundtrip-20261121/intake-equivalence.json",
+          "docs/validation/zotero-odt-roundtrip-20261121/intake-equivalence.md",
+          "packages/quds_office_engine/lib/src/word/serial/odt_document_reader.dart",
+          "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart",
+          "packages/quds_office_engine/lib/src/word/serial/odt_reader_styles.dart",
+          "packages/quds_office_engine/test/fixtures/zotero/odt/README.md",
+          "packages/quds_office_engine/test/fixtures/zotero/odt/libreoffice-bibliography.odt",
+          "packages/quds_office_engine/test/odt_libreoffice_bibliography_test.dart",
+          "packages/quds_office_engine/test/odt_libreoffice_fixture_test.dart",
+          "packages/quds_office_engine/test/odt_libreoffice_note_offsets_test.dart",
+          "packages/quds_office_engine/test/odt_zotero_table_geometry_test.dart"
+        ]
+      },
+      "readiness": "WIP: final combined validation and external repeat-cycle checks pending",
+      "recommendation": "preserve separately until owner qualifies implementation"
+    },
+    {
+      "branch": "codex/zotero-roundtrip-20261121",
+      "sha": "fac61ecd02829e617c60787d289233327213c044",
+      "compare": {
+        "status": "ahead",
+        "ahead_by": 2,
+        "behind_by": 0,
+        "changedPaths": [
+          "docs/validation/zotero-odt-images-20261121/README.md",
+          "docs/validation/zotero-odt-images-20261121/intake/intake-accounting.json",
+          "docs/validation/zotero-odt-images-20261121/intake/pr-squash-metadata.json",
+          "docs/validation/zotero-odt-images-20261121/intake/review.md",
+          "packages/quds_office_editor/test/word_odt_image_load_test.dart",
+          "packages/quds_office_engine/lib/src/word/serial/odt_document_reader.dart",
+          "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart",
+          "packages/quds_office_engine/lib/src/word/serial/odt_reader_images.dart",
+          "packages/quds_office_engine/lib/src/word/serial/odt_reader_styles.dart",
+          "packages/quds_office_engine/lib/src/word/serial/odt_writer_zotero.dart",
+          "packages/quds_office_engine/test/odt_reader_images_test.dart",
+          "packages/quds_office_engine/test/odt_zotero_image_lifecycle_test.dart",
+          "packages/quds_office_engine/tool/zotero/odt_image_acceptance.dart"
+        ]
+      },
+      "readiness": "WIP: implementation in progress; no new runtime/interoperability result claimed",
+      "recommendation": "preserve separately until owner qualifies implementation"
+    },
+    {
+      "branch": "work/mail-scheduled-send-20261121",
+      "sha": "71dc9cc0e3696096248b28b02b276dcc14c97f93",
+      "compare": {
+        "status": "ahead",
+        "ahead_by": 5,
+        "behind_by": 0,
+        "changedPaths": [
+          "docs/validation/word-vba-format-controls-20261121/README.md",
+          "docs/validation/word-vba-format-controls-20261121/intake.json",
+          "docs/validation/word-vba-format-controls-20261121/remote-intake.json",
+          "docs/validation/zotero-odt-images-20261121/README.md",
+          "docs/validation/zotero-odt-images-20261121/intake/intake-accounting.json",
+          "docs/validation/zotero-odt-images-20261121/intake/pr-squash-metadata.json",
+          "docs/validation/zotero-odt-images-20261121/intake/review.md",
+          "docs/validation/zotero-odt-roundtrip-20261121/README.md",
+          "docs/validation/zotero-odt-roundtrip-20261121/initial-intake.json",
+          "packages/quds_office_engine/example/macros/word_shading.bas",
+          "packages/quds_office_engine/example/macros/word_text_construction.bas",
+          "packages/quds_office_engine/lib/src/automation/office_vba_language.dart",
+          "packages/quds_office_engine/test/office_vba_text_construction_test.dart",
+          "packages/quds_office_engine/test/office_vba_word_shading_integration_test.dart",
+          "packages/quds_office_engine/test/office_vba_word_shading_test.dart",
+          "packages/quds_office_engine/tool/macros/web_vba_text_construction_smoke.dart",
+          "packages/quds_office_engine/tool/macros/web_vba_word_shading_smoke.dart"
+        ]
+      },
+      "readiness": "ancestry and intake documentation only; no unique Mail source; native qualification described as pending",
+      "recommendation": "normal merge may preserve ancestry and six intake docs; keep newer Word source"
+    }
+  ],
+  "mailRelativeToWordCheckpoint": {
+    "repository_full_name": "CrispStrobe/quds_office_suite",
+    "base": "655b2722",
+    "head": "71dc9cc0e3696096248b28b02b276dcc14c97f93",
+    "status": "diverged",
+    "ahead_by": 3,
+    "behind_by": 1,
+    "total_commits": 3,
+    "too_large": null,
+    "base_commit": {
+      "sha": "655b2722e9a11df4da129e2de36016f2f60b9c0b",
+      "url": "https://api.github.com/repos/CrispStrobe/quds_office_suite/commits/655b2722e9a11df4da129e2de36016f2f60b9c0b",
+      "html_url": "https://github.com/CrispStrobe/quds_office_suite/commit/655b2722e9a11df4da129e2de36016f2f60b9c0b"
+    },
+    "merge_base_commit": {
+      "sha": "85033b80f7e37a6562a4b86b486badc96ba84153",
+      "url": "https://api.github.com/repos/CrispStrobe/quds_office_suite/commits/85033b80f7e37a6562a4b86b486badc96ba84153",
+      "html_url": "https://github.com/CrispStrobe/quds_office_suite/commit/85033b80f7e37a6562a4b86b486badc96ba84153"
+    },
+    "files": [
+      {
+        "filename": "docs/validation/zotero-odt-images-20261121/README.md",
+        "status": "added",
+        "additions": 40,
+        "deletions": 0,
+        "changes": 40,
+        "previous_filename": null
+      },
+      {
+        "filename": "docs/validation/zotero-odt-images-20261121/intake/intake-accounting.json",
+        "status": "added",
+        "additions": 2626,
+        "deletions": 0,
+        "changes": 2626,
+        "previous_filename": null
+      },
+      {
+        "filename": "docs/validation/zotero-odt-images-20261121/intake/pr-squash-metadata.json",
+        "status": "added",
+        "additions": 53,
+        "deletions": 0,
+        "changes": 53,
+        "previous_filename": null
+      },
+      {
+        "filename": "docs/validation/zotero-odt-images-20261121/intake/review.md",
+        "status": "added",
+        "additions": 26,
+        "deletions": 0,
+        "changes": 26,
+        "previous_filename": null
+      },
+      {
+        "filename": "docs/validation/zotero-odt-roundtrip-20261121/README.md",
+        "status": "added",
+        "additions": 34,
+        "deletions": 0,
+        "changes": 34,
+        "previous_filename": null
+      },
+      {
+        "filename": "docs/validation/zotero-odt-roundtrip-20261121/initial-intake.json",
+        "status": "added",
+        "additions": 1904,
+        "deletions": 0,
+        "changes": 1904,
+        "previous_filename": null
+      }
+    ]
+  },
+  "collisionRisk": {
+    "zoteroBranchesOverlap": [
+      "packages/quds_office_engine/lib/src/word/serial/odt_document_reader.dart",
+      "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart",
+      "packages/quds_office_engine/lib/src/word/serial/odt_reader_styles.dart"
+    ],
+    "directOverlapWithWordNativeShading": false,
+    "integrationRisk": "ODT reader/writer changes require their own combined-source roundtrip qualification before merge."
+  },
+  "actionsQueried": false,
+  "mutations": false
+}

@@ -229,8 +229,9 @@ void _validateInheritedShading(
   void visit(Iterable<WmlBlock> blocks, List<WmlTable> tables) {
     for (final block in blocks) {
       if (identical(block, target)) {
-        for (final table in tables)
+        for (final table in tables) {
           chain(table.properties.styleId, table: true);
+        }
       }
       for (final children in WordTree.childLists(block)) {
         visit(children, block is WmlTable ? [...tables, block] : tables);
@@ -240,9 +241,12 @@ void _validateInheritedShading(
 
   // Headers/footers/comments are paragraph-only model stories. Body and note
   // paragraphs can inherit a table context, including nested tables/controls.
-  for (final section in document.sections) visit(section.blocks, []);
-  for (final note in [...document.footnotes, ...document.endnotes])
+  for (final section in document.sections) {
+    visit(section.blocks, []);
+  }
+  for (final note in [...document.footnotes, ...document.endnotes]) {
     visit(note.blocks, []);
+  }
 }
 
 XmlElement? _activeStyles(WmlDocument document) {
@@ -331,8 +335,9 @@ Map<String, String> _styleTypes(XmlElement root) {
         !const {'0', '1', 'true', 'false', 'on', 'off'}.contains(flag)) {
       _refuse('refuses malformed native default-style flags.');
     }
-    if (type == 'paragraph' && const {'1', 'true', 'on'}.contains(flag))
+    if (type == 'paragraph' && const {'1', 'true', 'on'}.contains(flag)) {
       defaults++;
+    }
     final base = _child(style, 'basedOn');
     final baseId = base == null ? null : _attribute(base, 'val');
     if (base != null && (baseId == null || baseId.isEmpty)) {
@@ -437,14 +442,16 @@ void _checkShading(XmlElement shading) {
   for (final attribute in shading.attributes.where(
     (value) => value.namespaceUri == _w,
   )) {
-    if (!names.add(attribute.localName))
+    if (!names.add(attribute.localName)) {
       _refuse('refuses duplicate native shading attributes.');
+    }
     if (!const {'val', 'color', 'fill'}.contains(attribute.localName)) {
       _refuse('does not resolve themed or unsupported shading attributes.');
     }
     if (attribute.localName == 'val') {
-      if (attribute.value != 'clear')
+      if (attribute.value != 'clear') {
         _refuse('supports only existing clear (solid background) shading.');
+      }
     } else if (attribute.value != 'auto' &&
         !RegExp(r'^[0-9a-fA-F]{6}$').hasMatch(attribute.value)) {
       _refuse('requires valid native RGB or automatic shading colors.');
