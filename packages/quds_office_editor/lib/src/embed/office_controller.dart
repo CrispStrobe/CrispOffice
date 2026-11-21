@@ -875,6 +875,13 @@ class WordEditorController extends OfficeController {
       _thesaurusTarget = null;
       _thesaurusLookup = null;
     }
+    // An active composition is not committed text. Do not schedule proofing
+    // against the intermediate IME value; the commit notification observes
+    // the final text and schedules the normal check.
+    if (input.composing.isValid && !input.composing.isCollapsed) {
+      super.notifyListeners();
+      return;
+    }
     _proofing?.observeDocument();
     super.notifyListeners();
   }
