@@ -131,8 +131,11 @@ document parts and relationships remain intact after saving and undo/redo.
 Cancelling the note picker before it supplies any text also discards temporary
 fields and staged preference changes.
 
-Selections can span up to 10,000 consecutive ordinary main-flow paragraphs in
-one body section or authored note. The selected text and intervening paragraph
+Selections can span up to 10,000 consecutive ordinary paragraphs in one body
+section, authored note or body table cell. In a table, select text entirely
+inside one cell before using **Add Note** or **Add Annotation**. This includes
+the originating cell of a merged region and a cell in an existing nested table.
+The selected text and intervening paragraph
 breaks are replaced; unselected prefix/suffix runs, links and active citations
 remain intact. A separate surviving suffix keeps its original paragraph
 formatting. A single inserted ordinary paragraph joins the prefix and suffix
@@ -140,8 +143,10 @@ under the starting paragraph's formatting. The automatic note marker and its
 separator stay before the imported content. Forward and backward selections,
 empty paragraphs and a selection containing only a paragraph break are supported.
 
-A multi-paragraph selection cannot cross a section, table, frame or content
-control, or start inside one of those containers. Paragraph-owned bookmarks and
+A multi-paragraph selection cannot cross a section, cell, nested table, frame
+or content control. A cell range must contain consecutive ordinary paragraphs
+in that exact cell's block list. Content-control/drawing ancestors and hidden
+vertical-merge continuation cells are refused. Paragraph-owned bookmarks and
 unrepresented field boundaries are guarded, as are paragraphs shared by more
 than one document position. Existing fields, note references, pictures, commented
 text, protected ranges and structural markers inside the selected range are
@@ -150,7 +155,9 @@ Word fields such as DATE or REF, even when only their cached text is visible.
 Selections touching bookmark boundaries or empty atomic field tokens are also
 refused. Finish active text composition
 first; moving the selection or editing the destination while Zotero is open
-invalidates the staged result. Headers, footers, comments and text frames remain
+invalidates the staged result. Replacing a cell, row, table or owning block
+list while the picker is open also invalidates a multi-paragraph result, even
+when its visible text is unchanged. Headers, footers, comments and text frames remain
 unsupported destinations. Notes containing tables require a paragraph in the
 main flow of the body or authored note, outside an existing table. Lists deeper
 than nine levels, custom or reversed list markers, and unsupported custom
@@ -180,8 +187,9 @@ commands include that sequence. Lists in separate cells retain independent
 counters and starting numbers. The tables, cell content, native fields and
 supported formatting remain part of DOCX saving and reopening.
 
-Place the caret or select text within one main-flow paragraph of the body or
-an authored footnote/endnote. A result containing a table cannot be inserted
+Place the caret in ordinary main-flow text, or select consecutive ordinary
+main-flow paragraphs within one body section or authored footnote/endnote.
+A result containing a table cannot be inserted
 into an existing table cell. Surrounding prose stays in paragraphs outside the
 new table. A leading table in an authored note leaves the automatic note marker
 and separator before the table; citations inside it retain that note's
@@ -1288,8 +1296,14 @@ insertion or replacement. Optional `insertionEndParagraph` defaults to the start
 paragraph; `insertionEndOffset` defaults to the start offset and is measured
 within that end paragraph. Both offsets must be valid UTF-16 text boundaries.
 Distinct endpoint paragraphs must be ordered, exclusively owned, consecutive
-ordinary blocks in the same body-section or authored-note block list, subject
-to the limits above. An end offset of zero selects the preceding paragraph
+ordinary blocks in the same body-section, authored-note or table-cell block
+list, subject to the limits above. The session pins the original owning
+section/note, table/row/cell chain and actual block list. Shared paragraphs,
+replaced owners, protected structural ancestors and continuation-cell targets
+are refused before publication. Native engine sessions can address cells in
+authored notes; the standard Notes pane continues to expose only main-flow
+note text, so it does not provide this cell-editing surface.
+An end offset of zero selects the preceding paragraph
 break without selecting text from the last paragraph.
 
 The range uses native paragraph offsets, including any hidden note-reference
@@ -1359,6 +1373,11 @@ Custom hosts that replace online clients can pass the same `ZoteroBackoffState`
 to each new client. Clients sharing that state must use the same clock.
 
 ## Current and previous qualification evidence
+
+The [table-cell range work record](validation/zotero-table-cell-ranges-20261121/README.md)
+tracks cell ownership, rich replacement, cancellation/history and DOCX reopening
+for the latest increment. Its local checks are distinct from installed
+Word/LibreOffice plugin acceptance.
 
 The [document-transfer work record](validation/zotero-transfer-20261121/README.md)
 tracks the current handshake, carrier implementation, complete remote intake

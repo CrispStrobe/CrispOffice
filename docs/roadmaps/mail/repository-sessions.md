@@ -5,6 +5,11 @@ Mail sessions. It advances M04W after [uncertain-action recovery](flag-recovery.
 without changing the distinction between a saved browsing window and a fully
 synchronized mailbox.
 
+The subsequent [durable-sync increment](durable-sync.md) adds a separate
+resumable synchronized-membership view with persistent checkpoints. Statements
+below about saved browsing windows retain their original scope; those windows
+are still distinct from synchronized memberships.
+
 ## User-visible behavior
 
 Native IMAP, Exchange EWS, Gmail and Microsoft 365 continue to load their existing
@@ -109,11 +114,11 @@ close M04W or M06. In particular:
 
 ## Next ordered acceptance boundaries
 
-1. Connect foreground fetching to durable synchronization state: retain scoped
-   cursors, reconcile provider resets/deletions and local pending work, and
-   represent offline, synchronizing, authentication and capability failures.
-   Qualify restart, interrupted paging and concurrent remote edits before
-   enabling background work.
+1. The [durable-sync continuation](durable-sync.md) now connects explicit
+   foreground runs to scoped persistent cursors, provider reset/deletion
+   reconciliation and offline checkpoint views. Next integrate that path into
+   the complete shared workspace, with body-retention controls and bounded
+   automatic scheduling before enabling background work.
 2. Add a repository query across selected accounts/folders, with stable
    pagination, explicit partial-cache coverage, deduplication and saved views.
    Build the unified inbox and conversations on that query boundary.

@@ -202,6 +202,14 @@ final class WordZoteroCitingSession {
       }
       _seedCitation(seedCitation);
     }
+    // Flat paragraph order does not identify a table cell: the same objects
+    // can be moved into another cell, row or table without changing that view.
+    // Capture the exact ownership chain when the transaction starts, before
+    // Zotero opens a picker or stages any research content.
+    _originalNoteTextOwner =
+        identical(insertionParagraph, this.insertionEndParagraph)
+        ? null
+        : _findNoteTextOwner();
   }
 
   final WmlDocument document;
@@ -211,7 +219,7 @@ final class WordZoteroCitingSession {
 
   /// End paragraph of a deliberate research-content replacement, defaulting
   /// to [insertionParagraph]. Multi-paragraph ranges must consist of consecutive
-  /// ordinary main-flow paragraphs in one body section or authored note.
+  /// ordinary paragraphs in one body section, authored note or table cell.
   final WmlParagraph? insertionEndParagraph;
 
   /// Exclusive end offset in [insertionEndParagraph]. Other citing commands
@@ -235,6 +243,7 @@ final class WordZoteroCitingSession {
   _CitingField? _selected;
   _CitingField? _stagedInsertion;
   WordZoteroNoteText? _noteText;
+  late final _ResearchRangeOwner? _originalNoteTextOwner;
   bool _notePlaceholdersConverted = false;
   int? _noteTextCaretTailLength;
   final _noteTextFields = <_CitingField, WordZoteroNotePlaceholder>{};
@@ -1194,16 +1203,16 @@ final class WordZoteroCitingSession {
         (paragraph: first, start: insertionOffset, end: insertionEndOffset),
       ];
     }
-    final roots = _insertionNote == null
-        ? document.sections.map((section) => section.blocks)
-        : [_insertionNote!.note.blocks];
-    final owners = roots.where((blocks) => blocks.contains(first)).toList();
-    if (owners.length != 1) {
+    final owner = _findNoteTextOwner();
+    if (owner == null || _originalNoteTextOwner == null) {
       throw UnsupportedError(
-        'Select consecutive ordinary paragraphs in one document section or authored note, outside tables and content controls.',
+        'Select consecutive ordinary paragraphs in one document section, authored note or table cell, outside content controls and drawings.',
       );
     }
-    final blocks = owners.single;
+    if (!_originalNoteTextOwner.matches(owner)) {
+      throw StateError('The Zotero research-content container changed.');
+    }
+    final blocks = owner.blocks;
     final from = blocks.indexOf(first);
     final to = blocks.indexOf(last);
     if (to <= from ||
@@ -1211,7 +1220,7 @@ final class WordZoteroCitingSession {
         blocks.lastIndexOf(last) != to ||
         to - from >= 10000) {
       throw UnsupportedError(
-        'Select an ordered range of at most 10,000 paragraphs in one document section or authored note.',
+        'Select an ordered range of at most 10,000 paragraphs in one document section, authored note or table cell.',
       );
     }
     final selected = blocks.sublist(from, to + 1);
@@ -1258,6 +1267,75 @@ final class WordZoteroCitingSession {
               : paragraph.text.length,
         ),
     ];
+  }
+
+  /// An eligible range owns one actual block list. Only table-cell ancestry
+  /// extends the ordinary section/note flow; controls and drawing stories do
+  /// not become editable just because their descendants are plain paragraphs.
+  _ResearchRangeOwner? _findNoteTextOwner() {
+    final first = insertionParagraph;
+    final last = insertionEndParagraph;
+    if (first == null || last == null) return null;
+    final owners = <_ResearchRangeOwner>[];
+    var visited = 0;
+    bool visit(List<WmlBlock> blocks, List<Object> ancestors, int depth) {
+      if (depth > 64 || ++visited > 1000000) return false;
+      final path = <Object>[...ancestors, blocks];
+      final from = blocks.indexOf(first);
+      if (from >= 0) {
+        final to = blocks.indexOf(last);
+        // Pin an initially eligible ownership range too: moving an endpoint
+        // from an adjacent cell must not create eligibility after the picker
+        // was opened, even when the flattened paragraph order is unchanged.
+        if (to <= from ||
+            to - from >= 10000 ||
+            blocks.lastIndexOf(first) != from ||
+            blocks.lastIndexOf(last) != to ||
+            blocks
+                .skip(from)
+                .take(to - from + 1)
+                .any((block) => block is! WmlParagraph)) {
+          return false;
+        }
+        owners.add(_ResearchRangeOwner(blocks, path));
+        if (owners.length > 1) return false;
+      }
+      for (final block in blocks) {
+        if (++visited > 1000000) return false;
+        if (block is! WmlTable) continue;
+        for (final row in block.rows) {
+          if (++visited > 1000000) return false;
+          for (final cell in row.cells) {
+            if (++visited > 1000000) return false;
+            // Continuations belong to the originating merged cell and must
+            // never expose a separate replacement range, even when malformed
+            // source content puts ordinary paragraphs inside them.
+            if (cell.vMerge == WmlVMerge.cont) continue;
+            if (!visit(cell.blocks, [
+              ...path,
+              block,
+              block.rows,
+              row,
+              row.cells,
+              cell,
+            ], depth + 1)) {
+              return false;
+            }
+          }
+        }
+      }
+      return true;
+    }
+
+    if (_insertionNote == null) {
+      for (final section in document.sections) {
+        if (!visit(section.blocks, [section], 0)) return null;
+      }
+    } else {
+      final note = _insertionNote!.note;
+      if (!visit(note.blocks, [note], 0)) return null;
+    }
+    return owners.length == 1 ? owners.single : null;
   }
 
   Iterable<WmlParagraph> _allParagraphOccurrences() sync* {
@@ -1674,7 +1752,12 @@ final class WordZoteroCitingSession {
       // and separator in the original main-flow paragraph, outside the cells.
       if (emptyPrefix) slot.parent.removeAt(slot.index);
       final insertedAt = slot.index + (emptyPrefix ? 0 : 1);
-      slot.parent.insertAll(insertedAt, blocks);
+      // Public model owners can retain a valid List<WmlParagraph>. Bulk
+      // insertion checks the iterable's wider runtime type before its values;
+      // each actual paragraph must instead be checked against that owner.
+      for (var index = 0; index < blocks.length; index++) {
+        slot.parent.insert(insertedAt + index, blocks[index]);
+      }
       if (blocks.last is WmlParagraph) {
         final last = blocks.last as WmlParagraph;
         _caretAfter = (paragraph: last, offset: last.text.length);
@@ -2217,6 +2300,18 @@ final class WordZoteroCitingSession {
       }
     }
   }
+}
+
+final class _ResearchRangeOwner {
+  _ResearchRangeOwner(this.blocks, this.path);
+
+  final List<WmlBlock> blocks;
+  final List<Object> path;
+
+  bool matches(_ResearchRangeOwner other) =>
+      identical(blocks, other.blocks) &&
+      path.length == other.path.length &&
+      path.indexed.every((entry) => identical(entry.$2, other.path[entry.$1]));
 }
 
 final class _CitingField {

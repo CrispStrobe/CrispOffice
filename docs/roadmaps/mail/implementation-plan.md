@@ -248,11 +248,16 @@ inspection receipt, not a complete dependency or runtime certification.
   saved-view unread/unknown counts, retain original provider action identities,
   reject stale account/folder and queued events, and drain subscriptions before
   owner close. See [repository-sessions.md](repository-sessions.md).
+- [x] Connect native provider sync to the owned repository through explicit
+  bounded resumable folder runs. Persist checkpoint state with each atomic page,
+  preserve stable account/cache IDs across reconnects, distinguish partial from
+  completed observations, and expose local paginated headers/cached bodies in
+  connected and credential-free offline dialogs. See [durable-sync.md](durable-sync.md).
 - [ ] Implement QudsMailWorkspace with account/folder or label navigation, paginated/virtualized message and conversation lists, stable selection and coordinated reader/composer sessions.
 - [ ] Extend repository-observed browsing to authoritative synchronized lists,
   unread counts and full account search in the shared workspace; keep loading,
   empty, offline, synchronizing, failed credentials and unsupported capabilities
-  distinct. Saved-window streams and counts do not complete this requirement.
+  distinct. The separate foreground sync dialog does not complete this requirement.
 - [ ] Extend the durable read/unread/flag foundation to archive, move, delete and broader bulk actions; expose failure/reconciliation status without discarding local state.
 - [ ] Provide responsive single-pane mobile and multi-pane desktop layouts, keyboard actions and accessible focus movement. Lists/navigation are host chrome, not replacement document editors.
 - [ ] Switch accounts/profiles without retaining the previous account's selection, attachment handles, credentials or callbacks. Restore draft sessions under their owning identity.
@@ -323,7 +328,10 @@ distinct from encryption. M06 is partially implemented; M07 and M04W remain open
 - [x] Implement an explicitly bounded full-sweep fallback that revisits old flags and expunges. Advertise no IDLE/CONDSTORE/QRESYNC behavior that is not implemented.
 - [ ] Add IDLE/CONDSTORE/QRESYNC only with genuine adapter/server support and independent qualification; retain a correct fallback.
 - [x] Enforce finite operation timeouts, account-lease cancellation and typed credential-revocation/ambiguous-mutation outcomes. Do not automatically retry operations.
-- [ ] Add host foreground/resume scheduling and bounded provider rate/backoff policy with recovery controls.
+- [x] Add explicit native foreground folder synchronization and user-requested
+  continuation across restart/reconnect, with bounded pages, cancellation,
+  cursor-loop detection and persistent partial/completed observations.
+- [ ] Add automatic foreground/resume scheduling and bounded provider rate/backoff policy with recovery controls.
 - [x] Provide a conditional browser entry returning typed unsupported for generic socket transport without accessing the vault/codec or importing the native socket implementation. The unsupported entry passed three Node cases in the integrated gate; this does not qualify browser socket transport.
 
 **Implemented foundation and limits:**

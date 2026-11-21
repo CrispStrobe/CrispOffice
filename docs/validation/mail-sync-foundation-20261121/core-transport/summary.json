@@ -1,0 +1,107 @@
+{
+  "timestamp_utc": "2026-11-21T07:26:17.748243+00:00",
+  "source_tree_sha256": "b45d6795479418b3592bf3a63eeede702a9dc2ff5951bb11922344ae5173fb70",
+  "source_stable_for_all_commands": true,
+  "provider_tests_passed": 255,
+  "provider_store_tests_passed": 10,
+  "transport_total_passed": 265,
+  "core_javascript_compile_exit": 0,
+  "core_node_execution_exit": 0,
+  "core_node_output": "core portable fixture: 2b32c10408a8c9c7bcf0c050e6da00385fcefb18b81d221df04e88ce9f1b6c7a",
+  "dart_version": "Dart SDK version: 3.13.7 (stable) (Thu Oct 22 14:28:57 2026 -0700) on \"linux_x64\"",
+  "node_version": "v24.22.3",
+  "commands": [
+    {
+      "label": "provider_sync_tests",
+      "argv": [
+        "dart",
+        "--disable-dart-dev",
+        "--packages=/workspace/scratch/1fa88bd5b735/quds_office_suite/.dart_tool/package_config.json",
+        "/workspace/scratch/1fa88bd5b735/toolchains/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+        "--compiler=kernel",
+        "--platform",
+        "vm",
+        "--reporter",
+        "expanded",
+        "test/native_provider_test.dart",
+        "test/uid_discovery_test.dart",
+        "test/cursor_test.dart",
+        "test/ews_provider_test.dart",
+        "test/cloud_provider_test.dart"
+      ],
+      "cwd": "/workspace/scratch/1fa88bd5b735/quds_office_suite/packages/quds_mail_transport",
+      "start_utc": "2026-11-21T07:25:04.311452+00:00",
+      "end_utc": "2026-11-21T07:25:19.176679+00:00",
+      "elapsed_seconds": 14.865,
+      "exit_code": 0,
+      "passed": 255,
+      "log": "/workspace/scratch/1fa88bd5b735/core-transport-validation/provider_sync_tests.log",
+      "log_sha256": "a36fbef55ba3adea5665d7b8ac9323d55477777dbde210470644997e22801101"
+    },
+    {
+      "label": "provider_store_sync_tests",
+      "argv": [
+        "dart",
+        "--disable-dart-dev",
+        "--packages=/workspace/scratch/1fa88bd5b735/quds_office_suite/.dart_tool/package_config.json",
+        "/workspace/scratch/1fa88bd5b735/toolchains/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+        "--compiler=kernel",
+        "--platform",
+        "vm",
+        "--reporter",
+        "expanded",
+        "test/cloud_store_test.dart",
+        "test/host_store_integration_test.dart"
+      ],
+      "cwd": "/workspace/scratch/1fa88bd5b735/quds_office_suite/packages/quds_mail_transport",
+      "start_utc": "2026-11-21T07:25:04.314204+00:00",
+      "end_utc": "2026-11-21T07:25:19.505752+00:00",
+      "elapsed_seconds": 15.192,
+      "exit_code": 0,
+      "passed": 10,
+      "log": "/workspace/scratch/1fa88bd5b735/core-transport-validation/provider_store_sync_tests.log",
+      "log_sha256": "08870657c02d8e5d26a0f6fb7ca9a023508c09142ca52665e1dfb55802ad1b95"
+    },
+    {
+      "label": "core_js_compile",
+      "argv": [
+        "dart",
+        "compile",
+        "js",
+        "-O1",
+        "--no-source-maps",
+        "--packages=/workspace/scratch/1fa88bd5b735/quds_office_suite/.dart_tool/package_config.json",
+        "-o",
+        "/workspace/scratch/1fa88bd5b735/core-transport-validation/core_portable_import.js",
+        "packages/quds_mail_core/test/compile/portable_import.dart"
+      ],
+      "cwd": "/workspace/scratch/1fa88bd5b735/quds_office_suite",
+      "start_utc": "2026-11-21T07:25:04.310364+00:00",
+      "end_utc": "2026-11-21T07:25:05.625401+00:00",
+      "elapsed_seconds": 1.315,
+      "exit_code": 0,
+      "passed": null,
+      "log": "/workspace/scratch/1fa88bd5b735/core-transport-validation/core_js_compile.log",
+      "log_sha256": "b867eda505bb532fd25e3357ef0f22a823cb7ac626479489c5c54f53c22ba651"
+    },
+    {
+      "label": "core_js_node",
+      "argv": [
+        "node",
+        "-e",
+        "globalThis.self = globalThis; require(process.argv[1]);",
+        "/workspace/scratch/1fa88bd5b735/core-transport-validation/core_portable_import.js"
+      ],
+      "cwd": "/workspace/scratch/1fa88bd5b735/quds_office_suite",
+      "start_utc": "2026-11-21T07:25:05.625532+00:00",
+      "end_utc": "2026-11-21T07:25:05.821193+00:00",
+      "elapsed_seconds": 0.196,
+      "exit_code": 0,
+      "passed": null,
+      "log": "/workspace/scratch/1fa88bd5b735/core-transport-validation/core_js_node.log",
+      "log_sha256": "60968dfae89e53c809acd34d1c62d589023d58b261f0259cb06f4b0f2401cc8a"
+    }
+  ],
+  "ui_review": "ui-review.json",
+  "must_fix_findings": []
+}

@@ -1,0 +1,692 @@
+00:00 +0: [VM, Kernel] loading test/office_macro_word_headers_footers_test.dart
+00:00 +0: [VM, Kernel] test/office_macro_word_headers_footers_test.dart: header edits one independent dormant story through DOCM reopens
+00:00 +1: [VM, Kernel] test/office_macro_word_headers_footers_test.dart: footer edits one independent dormant story through DOCM reopens
+00:00 +2: [VM, Kernel] test/office_macro_word_headers_footers_test.dart: firstHeader edits one independent dormant story through DOCM reopens
+00:00 +3: [VM, Kernel] test/office_vba_word_headers_footers_test.dart: Headers(wdHeaderFooterPrimary) emits the explicit header target
+00:00 +4: [VM, Kernel] test/office_macro_word_headers_footers_test.dart: firstFooter edits one independent dormant story through DOCM reopens
+00:00 +5: [VM, Kernel] test/office_macro_word_headers_footers_test.dart: firstFooter edits one independent dormant story through DOCM reopens
+00:00 +6: [VM, Kernel] test/office_macro_word_headers_footers_test.dart: firstFooter edits one independent dormant story through DOCM reopens
+00:00 +7: [VM, Kernel] test/office_macro_word_headers_footers_test.dart: firstFooter edits one independent dormant story through DOCM reopens
+00:00 +8: [VM, Kernel] test/office_macro_word_headers_footers_test.dart: firstFooter edits one independent dormant story through DOCM reopens
+00:00 +9: [VM, Kernel] test/office_macro_word_headers_footers_test.dart: firstFooter edits one independent dormant story through DOCM reopens
+00:00 +10: [VM, Kernel] test/office_macro_word_headers_footers_test.dart: firstFooter edits one independent dormant story through DOCM reopens
+00:00 +11: [VM, Kernel] test/office_macro_word_headers_footers_test.dart: firstFooter edits one independent dormant story through DOCM reopens
+00:00 +12: [VM, Kernel] test/office_macro_word_headers_footers_test.dart: firstFooter edits one independent dormant story through DOCM reopens
+00:00 +13: [VM, Kernel] test/office_macro_word_headers_footers_test.dart: firstFooter edits one independent dormant story through DOCM reopens
+00:00 +14: [VM, Kernel] test/office_macro_word_headers_footers_test.dart: firstFooter edits one independent dormant story through DOCM reopens
+00:00 +15: [VM, Kernel] test/office_macro_word_headers_footers_test.dart: firstFooter edits one independent dormant story through DOCM reopens
+00:00 +16: [VM, Kernel] test/office_macro_word_headers_footers_test.dart: firstFooter edits one independent dormant story through DOCM reopens
+00:00 +17: [VM, Kernel] test/office_macro_word_headers_footers_test.dart: firstFooter edits one independent dormant story through DOCM reopens
+00:00 +18: [VM, Kernel] test/office_macro_word_headers_footers_test.dart: firstFooter edits one independent dormant story through DOCM reopens
+00:00 +19: [VM, Kernel] test/office_macro_word_headers_footers_test.dart: firstFooter edits one independent dormant story through DOCM reopens
+00:00 +20: [VM, Kernel] test/office_macro_word_headers_footers_test.dart: firstFooter edits one independent dormant story through DOCM reopens
+00:00 +21: [VM, Kernel] test/office_macro_word_headers_footers_test.dart: firstFooter edits one independent dormant story through DOCM reopens
+00:00 +22: [VM, Kernel] test/office_macro_word_headers_footers_test.dart: firstFooter edits one independent dormant story through DOCM reopens
+00:00 +23: [VM, Kernel] test/office_macro_word_headers_footers_test.dart: firstFooter edits one independent dormant story through DOCM reopens
+00:00 +24: [VM, Kernel] test/office_macro_word_headers_footers_test.dart: firstFooter edits one independent dormant story through DOCM reopens
+00:00 +25: [VM, Kernel] test/office_macro_word_headers_footers_test.dart: firstFooter edits one independent dormant story through DOCM reopens
+00:00 +26: [VM, Kernel] test/office_vba_word_headers_footers_test.dart: all supported paragraph writes retain the selected story
+00:00 +27: [VM, Kernel] test/office_macro_word_headers_footers_test.dart: evenHeader edits one independent dormant story through DOCM reopens
+00:00 +28: [VM, Kernel] test/office_macro_word_headers_footers_test.dart: evenHeader edits one independent dormant story through DOCM reopens
+00:00 +29: [VM, Kernel] test/office_macro_word_headers_footers_test.dart: evenHeader edits one independent dormant story through DOCM reopens
+00:00 +30: [VM, Kernel] test/office_macro_word_headers_footers_test.dart: evenHeader edits one independent dormant story through DOCM reopens
+00:00 +31: [VM, Kernel] test/office_macro_word_headers_footers_test.dart: evenHeader edits one independent dormant story through DOCM reopens
+00:00 +32: [VM, Kernel] test/office_macro_word_headers_footers_test.dart: evenHeader edits one independent dormant story through DOCM reopens
+00:00 +33: [VM, Kernel] test/office_macro_word_headers_footers_test.dart: evenHeader edits one independent dormant story through DOCM reopens
+00:00 +34: [VM, Kernel] test/office_macro_word_headers_footers_test.dart: evenHeader edits one independent dormant story through DOCM reopens
+00:00 +35: [VM, Kernel] test/office_macro_word_headers_footers_test.dart: evenHeader edits one independent dormant story through DOCM reopens
+00:00 +36: [VM, Kernel] test/office_macro_word_headers_footers_test.dart: evenHeader edits one independent dormant story through DOCM reopens
+00:00 +37: [VM, Kernel] test/office_macro_word_headers_footers_test.dart: evenHeader edits one independent dormant story through DOCM reopens
+00:00 +38: [VM, Kernel] test/office_macro_word_headers_footers_test.dart: evenHeader edits one independent dormant story through DOCM reopens
+00:00 +39: [VM, Kernel] test/office_macro_word_headers_footers_test.dart: evenHeader edits one independent dormant story through DOCM reopens
+00:00 +40: [VM, Kernel] test/office_macro_word_headers_footers_test.dart: evenHeader edits one independent dormant story through DOCM reopens
+00:00 +41: [VM, Kernel] test/office_macro_word_headers_footers_test.dart: evenHeader edits one independent dormant story through DOCM reopens
+00:00 +42: [VM, Kernel] test/office_macro_word_headers_footers_test.dart: evenHeader edits one independent dormant story through DOCM reopens
+00:00 +43: [VM, Kernel] test/office_macro_word_headers_footers_test.dart: evenHeader edits one independent dormant story through DOCM reopens
+00:00 +44: [VM, Kernel] test/office_macro_word_headers_footers_test.dart: evenHeader edits one independent dormant story through DOCM reopens
+00:00 +45: [VM, Kernel] test/office_macro_word_headers_footers_test.dart: evenHeader edits one independent dormant story through DOCM reopens
+00:00 +46: [VM, Kernel] test/office_macro_word_headers_footers_test.dart: evenHeader edits one independent dormant story through DOCM reopens
+00:00 +47: [VM, Kernel] test/office_macro_word_headers_footers_test.dart: evenHeader edits one independent dormant story through DOCM reopens
+00:00 +48: [VM, Kernel] test/office_macro_word_headers_footers_test.dart: evenHeader edits one independent dormant story through DOCM reopens
+00:00 +49: [VM, Kernel] test/office_macro_word_headers_footers_test.dart: evenHeader edits one independent dormant story through DOCM reopens
+00:00 +50: [VM, Kernel] test/office_macro_word_headers_footers_test.dart: evenHeader edits one independent dormant story through DOCM reopens
+00:00 +51: [VM, Kernel] test/office_macro_word_headers_footers_test.dart: evenHeader edits one independent dormant story through DOCM reopens
+00:00 +52: [VM, Kernel] test/office_macro_word_headers_footers_test.dart: evenHeader edits one independent dormant story through DOCM reopens
+00:00 +53: [VM, Kernel] test/office_macro_word_headers_footers_test.dart: evenHeader edits one independent dormant story through DOCM reopens
+00:00 +54: [VM, Kernel] test/office_macro_word_headers_footers_test.dart: evenHeader edits one independent dormant story through DOCM reopens
+00:00 +55: [VM, Kernel] test/office_macro_word_headers_footers_test.dart: evenHeader edits one independent dormant story through DOCM reopens
+00:00 +56: [VM, Kernel] test/office_macro_word_headers_footers_test.dart: evenHeader edits one independent dormant story through DOCM reopens
+00:00 +57: [VM, Kernel] test/office_macro_word_headers_footers_test.dart: evenHeader edits one independent dormant story through DOCM reopens
+00:00 +58: [VM, Kernel] test/office_macro_word_headers_footers_test.dart: evenHeader edits one independent dormant story through DOCM reopens
+00:00 +59: [VM, Kernel] test/office_macro_word_headers_footers_test.dart: evenHeader edits one independent dormant story through DOCM reopens
+00:00 +60: [VM, Kernel] test/office_macro_word_headers_footers_test.dart: evenHeader edits one independent dormant story through DOCM reopens
+00:00 +61: [VM, Kernel] test/office_macro_word_headers_footers_test.dart: evenHeader edits one independent dormant story through DOCM reopens
+00:00 +62: [VM, Kernel] test/office_macro_word_headers_footers_test.dart: evenHeader edits one independent dormant story through DOCM reopens
+00:00 +63: [VM, Kernel] test/office_macro_word_headers_footers_test.dart: evenHeader edits one independent dormant story through DOCM reopens
+00:00 +64: [VM, Kernel] test/office_macro_word_headers_footers_test.dart: evenHeader edits one independent dormant story through DOCM reopens
+00:00 +65: [VM, Kernel] test/office_macro_word_headers_footers_test.dart: evenHeader edits one independent dormant story through DOCM reopens
+00:00 +66: [VM, Kernel] test/office_macro_word_headers_footers_test.dart: evenHeader edits one independent dormant story through DOCM reopens
+00:00 +67: [VM, Kernel] test/office_macro_word_headers_footers_test.dart: evenHeader edits one independent dormant story through DOCM reopens
+00:00 +68: [VM, Kernel] test/office_macro_word_headers_footers_test.dart: evenHeader edits one independent dormant story through DOCM reopens
+00:00 +69: [VM, Kernel] test/office_macro_word_headers_footers_test.dart: evenHeader edits one independent dormant story through DOCM reopens
+00:00 +70: [VM, Kernel] test/office_macro_word_headers_footers_test.dart: evenHeader edits one independent dormant story through DOCM reopens
+00:00 +71: [VM, Kernel] test/office_macro_word_headers_footers_test.dart: evenHeader edits one independent dormant story through DOCM reopens
+00:00 +72: [VM, Kernel] test/office_macro_word_headers_footers_test.dart: evenHeader edits one independent dormant story through DOCM reopens
+00:00 +73: [VM, Kernel] test/office_macro_word_headers_footers_test.dart: evenHeader edits one independent dormant story through DOCM reopens
+00:00 +74: [VM, Kernel] test/office_macro_word_headers_footers_test.dart: evenHeader edits one independent dormant story through DOCM reopens
+00:00 +75: [VM, Kernel] test/office_macro_word_headers_footers_test.dart: evenHeader edits one independent dormant story through DOCM reopens
+00:00 +76: [VM, Kernel] test/office_macro_word_headers_footers_test.dart: evenHeader edits one independent dormant story through DOCM reopens
+00:00 +77: [VM, Kernel] test/office_macro_word_headers_footers_test.dart: evenHeader edits one independent dormant story through DOCM reopens
+00:00 +78: [VM, Kernel] test/office_macro_word_headers_footers_test.dart: evenHeader edits one independent dormant story through DOCM reopens
+00:00 +79: [VM, Kernel] test/office_macro_word_headers_footers_test.dart: evenHeader edits one independent dormant story through DOCM reopens
+00:00 +80: [VM, Kernel] test/office_macro_word_headers_footers_test.dart: evenHeader edits one independent dormant story through DOCM reopens
+00:00 +81: [VM, Kernel] test/office_macro_word_headers_footers_test.dart: evenHeader edits one independent dormant story through DOCM reopens
+00:00 +82: [VM, Kernel] test/office_macro_word_headers_footers_test.dart: evenHeader edits one independent dormant story through DOCM reopens
+00:00 +83: [VM, Kernel] test/office_macro_word_headers_footers_test.dart: evenHeader edits one independent dormant story through DOCM reopens
+00:00 +84: [VM, Kernel] test/office_macro_word_headers_footers_test.dart: evenHeader edits one independent dormant story through DOCM reopens
+00:00 +85: [VM, Kernel] test/office_macro_word_headers_footers_test.dart: evenHeader edits one independent dormant story through DOCM reopens
+00:00 +86: [VM, Kernel] test/office_macro_word_headers_footers_test.dart: evenHeader edits one independent dormant story through DOCM reopens
+00:00 +87: [VM, Kernel] test/office_vba_word_headers_footers_test.dart: object kinds and unbound objects remain checked: Dim target As HeadersFooters
+target.Item(1).Range.Paragraphs(1).Range.Font.Bold = True
+00:00 +88: [VM, Kernel] test/office_macro_word_headers_footers_test.dart: evenFooter edits one independent dormant story through DOCM reopens
+00:00 +89: [VM, Kernel] test/office_macro_word_headers_footers_test.dart: evenFooter edits one independent dormant story through DOCM reopens
+00:00 +90: [VM, Kernel] test/office_macro_word_headers_footers_test.dart: evenFooter edits one independent dormant story through DOCM reopens
+00:00 +91: [VM, Kernel] test/office_macro_word_headers_footers_test.dart: evenFooter edits one independent dormant story through DOCM reopens
+00:00 +92: [VM, Kernel] test/office_macro_word_headers_footers_test.dart: evenFooter edits one independent dormant story through DOCM reopens
+00:00 +93: [VM, Kernel] test/office_macro_word_headers_footers_test.dart: evenFooter edits one independent dormant story through DOCM reopens
+00:00 +94: [VM, Kernel] test/office_macro_word_headers_footers_test.dart: evenFooter edits one independent dormant story through DOCM reopens
+00:00 +95: [VM, Kernel] test/office_macro_word_headers_footers_test.dart: evenFooter edits one independent dormant story through DOCM reopens
+00:00 +96: [VM, Kernel] test/office_macro_word_headers_footers_test.dart: evenFooter edits one independent dormant story through DOCM reopens
+00:00 +97: [VM, Kernel] test/office_macro_word_headers_footers_test.dart: evenFooter edits one independent dormant story through DOCM reopens
+00:00 +98: [VM, Kernel] test/office_macro_word_headers_footers_test.dart: evenFooter edits one independent dormant story through DOCM reopens
+00:00 +99: [VM, Kernel] test/office_macro_word_headers_footers_test.dart: evenFooter edits one independent dormant story through DOCM reopens
+00:00 +100: [VM, Kernel] test/office_macro_word_headers_footers_test.dart: native namespace aliases select the same independent story
+00:00 +101: [VM, Kernel] test/office_macro_word_headers_footers_test.dart: new source-free native stories remain editable
+00:00 +102: [VM, Kernel] test/office_macro_word_headers_footers_test.dart: a new in-memory native story is independent when no source family exists
+00:00 +103: [VM, Kernel] test/office_macro_word_headers_footers_test.dart: header refuses later implicit inheritance before mutation
+00:00 +104: [VM, Kernel] test/office_macro_word_headers_footers_test.dart: header refuses a missing selected reference before mutation
+00:00 +105: [VM, Kernel] test/office_macro_word_headers_footers_test.dart: footer refuses later implicit inheritance before mutation
+00:00 +106: [VM, Kernel] test/office_macro_word_headers_footers_test.dart: footer refuses a missing selected reference before mutation
+00:00 +107: [VM, Kernel] test/office_macro_word_headers_footers_test.dart: firstHeader refuses later implicit inheritance before mutation
+00:00 +108: [VM, Kernel] test/office_macro_word_headers_footers_test.dart: firstHeader refuses a missing selected reference before mutation
+00:00 +109: [VM, Kernel] test/office_macro_word_headers_footers_test.dart: firstFooter refuses later implicit inheritance before mutation
+00:00 +110: [VM, Kernel] test/office_macro_word_headers_footers_test.dart: firstFooter refuses a missing selected reference before mutation
+00:00 +111: [VM, Kernel] test/office_macro_word_headers_footers_test.dart: evenHeader refuses later implicit inheritance before mutation
+00:00 +112: [VM, Kernel] test/office_macro_word_headers_footers_test.dart: evenHeader refuses a missing selected reference before mutation
+00:00 +113: [VM, Kernel] test/office_macro_word_headers_footers_test.dart: evenFooter refuses later implicit inheritance before mutation
+00:00 +114: [VM, Kernel] test/office_macro_word_headers_footers_test.dart: evenFooter refuses a missing selected reference before mutation
+00:00 +115: [VM, Kernel] test/office_macro_word_headers_footers_test.dart: shared part ownership refuses duplicate direct targets
+00:00 +116: [VM, Kernel] test/office_macro_word_headers_footers_test.dart: shared part ownership refuses canonical target aliases
+00:00 +117: [VM, Kernel] test/office_macro_word_headers_footers_test.dart: a direct part shared by two variants is refused
+00:00 +118: [VM, Kernel] test/office_macro_word_headers_footers_test.dart: duplicate reference is refused without changing native content
+00:00 +119: [VM, Kernel] test/office_macro_word_headers_footers_test.dart: duplicate type is refused without changing native content
+00:00 +120: [VM, Kernel] test/office_macro_word_headers_footers_test.dart: missing type is refused without changing native content
+00:00 +121: [VM, Kernel] test/office_macro_word_headers_footers_test.dart: foreign id is refused without changing native content
+00:00 +122: [VM, Kernel] test/office_macro_word_headers_footers_test.dart: unknown type is refused without changing native content
+00:00 +123: [VM, Kernel] test/office_macro_word_headers_footers_test.dart: missing relationship is refused before paragraph mutation
+00:00 +124: [VM, Kernel] test/office_macro_word_headers_footers_test.dart: wrong type relationship is refused before paragraph mutation
+00:00 +125: [VM, Kernel] test/office_macro_word_headers_footers_test.dart: external relationship is refused before paragraph mutation
+00:00 +126: [VM, Kernel] test/office_macro_word_headers_footers_test.dart: duplicate ID relationship is refused before paragraph mutation
+00:00 +127: [VM, Kernel] test/office_macro_word_headers_footers_test.dart: escaped target relationship is refused before paragraph mutation
+00:00 +128: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: committed BAS routes all six variants and preserves DOCM through reopens
+00:00 +129: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: committed BAS routes all six variants and preserves DOCM through reopens
+00:00 +130: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: committed BAS routes all six variants and preserves DOCM through reopens
+00:00 +131: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: committed BAS routes all six variants and preserves DOCM through reopens
+00:00 +132: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: committed BAS routes all six variants and preserves DOCM through reopens
+00:00 +133: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: committed BAS routes all six variants and preserves DOCM through reopens
+00:00 +134: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: committed BAS routes all six variants and preserves DOCM through reopens
+00:01 +135: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: committed BAS routes all six variants and preserves DOCM through reopens
+00:01 +136: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: committed BAS routes all six variants and preserves DOCM through reopens
+00:01 +137: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: committed BAS routes all six variants and preserves DOCM through reopens
+00:01 +138: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: committed BAS routes all six variants and preserves DOCM through reopens
+00:01 +139: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: committed BAS routes all six variants and preserves DOCM through reopens
+00:01 +140: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: typed HeaderFooter, story Range and paragraph aliases retain identity across ByVal helpers
+00:01 +141: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: ordered prefix edits, font reset, custom spacing and tab clearing resolve the selected story
+00:01 +142: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: ordered prefix edits, font reset, custom spacing and tab clearing resolve the selected story
+00:01 +143: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: ordered prefix edits, font reset, custom spacing and tab clearing resolve the selected story
+00:01 +144: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: ordered prefix edits, font reset, custom spacing and tab clearing resolve the selected story
+00:01 +145: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: ordered prefix edits, font reset, custom spacing and tab clearing resolve the selected story
+00:01 +146: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: ordered prefix edits, font reset, custom spacing and tab clearing resolve the selected story
+00:01 +147: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: ordered prefix edits, font reset, custom spacing and tab clearing resolve the selected story
+00:01 +148: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: ordered prefix edits, font reset, custom spacing and tab clearing resolve the selected story
+00:01 +149: [VM, Kernel] test/office_vba_word_language_test.dart: explicit Word dialect shared Variant, dynamic arrays, iteration and helpers remain available
+00:01 +150: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: missing story paragraph rolls back preceding body edits and recording
+00:01 +151: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: missing story paragraph rolls back preceding body edits and recording
+00:01 +152: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: missing story paragraph rolls back preceding body edits and recording
+00:01 +153: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: missing story paragraph rolls back preceding body edits and recording
+00:01 +154: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: missing story paragraph rolls back preceding body edits and recording
+00:01 +155: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: missing story paragraph rolls back preceding body edits and recording
+00:01 +156: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: missing story paragraph rolls back preceding body edits and recording
+00:01 +157: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: missing story paragraph rolls back preceding body edits and recording
+00:01 +158: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: missing story paragraph rolls back preceding body edits and recording
+00:01 +159: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: missing story paragraph rolls back preceding body edits and recording
+00:01 +160: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: missing story paragraph rolls back preceding body edits and recording
+00:01 +161: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: missing story paragraph rolls back preceding body edits and recording
+00:01 +162: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: missing story paragraph rolls back preceding body edits and recording
+00:01 +163: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: missing story paragraph rolls back preceding body edits and recording
+00:01 +164: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: missing story paragraph rolls back preceding body edits and recording
+00:01 +165: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: missing story paragraph rolls back preceding body edits and recording
+00:01 +166: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: missing story paragraph rolls back preceding body edits and recording
+00:01 +167: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: missing story paragraph rolls back preceding body edits and recording
+00:01 +168: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: missing story paragraph rolls back preceding body edits and recording
+00:01 +169: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: missing story paragraph rolls back preceding body edits and recording
+00:01 +170: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: missing story paragraph rolls back preceding body edits and recording
+00:01 +171: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: missing story paragraph rolls back preceding body edits and recording
+00:01 +172: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: missing story paragraph rolls back preceding body edits and recording
+00:01 +173: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: missing story paragraph rolls back preceding body edits and recording
+00:01 +174: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: missing story paragraph rolls back preceding body edits and recording
+00:01 +175: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: missing story paragraph rolls back preceding body edits and recording
+00:01 +176: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: missing story paragraph rolls back preceding body edits and recording
+00:01 +177: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: missing story paragraph rolls back preceding body edits and recording
+00:01 +178: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: missing story paragraph rolls back preceding body edits and recording
+00:01 +179: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: missing story paragraph rolls back preceding body edits and recording
+00:01 +180: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: missing story paragraph rolls back preceding body edits and recording
+00:01 +181: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: missing story paragraph rolls back preceding body edits and recording
+00:01 +182: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: missing story paragraph rolls back preceding body edits and recording
+00:01 +183: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: missing story paragraph rolls back preceding body edits and recording
+00:01 +184: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: missing story paragraph rolls back preceding body edits and recording
+00:01 +185: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: missing story paragraph rolls back preceding body edits and recording
+00:01 +186: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: missing story paragraph rolls back preceding body edits and recording
+00:01 +187: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: missing story paragraph rolls back preceding body edits and recording
+00:01 +188: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: missing story paragraph rolls back preceding body edits and recording
+00:01 +189: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: missing story paragraph rolls back preceding body edits and recording
+00:01 +190: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: missing story paragraph rolls back preceding body edits and recording
+00:01 +191: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: missing story paragraph rolls back preceding body edits and recording
+00:01 +192: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: missing story paragraph rolls back preceding body edits and recording
+00:01 +193: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: missing story paragraph rolls back preceding body edits and recording
+00:01 +194: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: missing story paragraph rolls back preceding body edits and recording
+00:01 +195: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: missing story paragraph rolls back preceding body edits and recording
+00:01 +196: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: missing story paragraph rolls back preceding body edits and recording
+00:01 +197: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: missing story paragraph rolls back preceding body edits and recording
+00:01 +198: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: missing story paragraph rolls back preceding body edits and recording
+00:01 +199: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: missing story paragraph rolls back preceding body edits and recording
+00:01 +200: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: missing story paragraph rolls back preceding body edits and recording
+00:01 +201: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: missing story paragraph rolls back preceding body edits and recording
+00:01 +202: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: missing story paragraph rolls back preceding body edits and recording
+00:01 +203: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: missing story paragraph rolls back preceding body edits and recording
+00:01 +204: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: missing story paragraph rolls back preceding body edits and recording
+00:01 +205: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: missing story paragraph rolls back preceding body edits and recording
+00:01 +206: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: missing story paragraph rolls back preceding body edits and recording
+00:01 +207: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: missing story paragraph rolls back preceding body edits and recording
+00:01 +208: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: missing story paragraph rolls back preceding body edits and recording
+00:01 +209: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: missing story paragraph rolls back preceding body edits and recording
+00:01 +210: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: missing story paragraph rolls back preceding body edits and recording
+00:01 +211: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: missing story paragraph rolls back preceding body edits and recording
+00:01 +212: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: missing story paragraph rolls back preceding body edits and recording
+00:01 +213: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: missing story paragraph rolls back preceding body edits and recording
+00:01 +214: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: missing story paragraph rolls back preceding body edits and recording
+00:01 +215: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: missing story paragraph rolls back preceding body edits and recording
+00:01 +216: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: missing story paragraph rolls back preceding body edits and recording
+00:01 +217: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: missing story paragraph rolls back preceding body edits and recording
+00:01 +218: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: missing story paragraph rolls back preceding body edits and recording
+00:01 +219: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: missing story paragraph rolls back preceding body edits and recording
+00:01 +220: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: missing story paragraph rolls back preceding body edits and recording
+00:01 +221: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: missing story paragraph rolls back preceding body edits and recording
+00:01 +222: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: missing story paragraph rolls back preceding body edits and recording
+00:01 +223: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: missing story paragraph rolls back preceding body edits and recording
+00:01 +224: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: missing story paragraph rolls back preceding body edits and recording
+00:01 +225: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: missing story paragraph rolls back preceding body edits and recording
+00:01 +226: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: missing story paragraph rolls back preceding body edits and recording
+00:01 +227: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: missing story paragraph rolls back preceding body edits and recording
+00:01 +228: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: missing story paragraph rolls back preceding body edits and recording
+00:01 +229: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: missing story paragraph rolls back preceding body edits and recording
+00:01 +230: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: missing story paragraph rolls back preceding body edits and recording
+00:01 +231: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: missing story paragraph rolls back preceding body edits and recording
+00:01 +232: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: missing story paragraph rolls back preceding body edits and recording
+00:01 +233: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: missing story paragraph rolls back preceding body edits and recording
+00:01 +234: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: missing story paragraph rolls back preceding body edits and recording
+00:01 +235: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: missing story paragraph rolls back preceding body edits and recording
+00:01 +236: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: missing story paragraph rolls back preceding body edits and recording
+00:01 +237: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: missing story paragraph rolls back preceding body edits and recording
+00:01 +238: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: missing story paragraph rolls back preceding body edits and recording
+00:01 +239: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: missing story paragraph rolls back preceding body edits and recording
+00:01 +240: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: missing story paragraph rolls back preceding body edits and recording
+00:01 +241: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: missing story paragraph rolls back preceding body edits and recording
+00:01 +242: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: missing story paragraph rolls back preceding body edits and recording
+00:01 +243: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: missing story paragraph rolls back preceding body edits and recording
+00:01 +244: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: missing story paragraph rolls back preceding body edits and recording
+00:01 +245: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: missing story paragraph rolls back preceding body edits and recording
+00:01 +246: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: missing story paragraph rolls back preceding body edits and recording
+00:01 +247: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: missing story paragraph rolls back preceding body edits and recording
+00:01 +248: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: missing story paragraph rolls back preceding body edits and recording
+00:01 +249: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: missing story paragraph rolls back preceding body edits and recording
+00:01 +250: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: missing story paragraph rolls back preceding body edits and recording
+00:01 +251: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: missing story paragraph rolls back preceding body edits and recording
+00:01 +252: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: missing story paragraph rolls back preceding body edits and recording
+00:01 +253: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: missing story paragraph rolls back preceding body edits and recording
+00:01 +254: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: missing story paragraph rolls back preceding body edits and recording
+00:01 +255: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: missing story paragraph rolls back preceding body edits and recording
+00:01 +256: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: missing story paragraph rolls back preceding body edits and recording
+00:01 +257: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: missing story paragraph rolls back preceding body edits and recording
+00:01 +258: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: missing story paragraph rolls back preceding body edits and recording
+00:01 +259: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: missing story paragraph rolls back preceding body edits and recording
+00:01 +260: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: missing story paragraph rolls back preceding body edits and recording
+00:01 +261: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: missing story paragraph rolls back preceding body edits and recording
+00:01 +262: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: missing story paragraph rolls back preceding body edits and recording
+00:01 +263: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: missing story paragraph rolls back preceding body edits and recording
+00:01 +264: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: missing story paragraph rolls back preceding body edits and recording
+00:01 +265: [VM, Kernel] test/office_vba_word_language_test.dart: Word object boundaries Paragraph cannot receive scalar "x" through Set even in dead code
+00:01 +266: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: inherited selected story refuses complete source transaction without touching body
+00:01 +267: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: inherited selected story refuses complete source transaction without touching body
+00:01 +268: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: inherited selected story refuses complete source transaction without touching body
+00:01 +269: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: inherited selected story refuses complete source transaction without touching body
+00:01 +270: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: inherited selected story refuses complete source transaction without touching body
+00:01 +271: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: inherited selected story refuses complete source transaction without touching body
+00:01 +272: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: inherited selected story refuses complete source transaction without touching body
+00:01 +273: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: inherited selected story refuses complete source transaction without touching body
+00:01 +274: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: inherited selected story refuses complete source transaction without touching body
+00:01 +275: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: inherited selected story refuses complete source transaction without touching body
+00:01 +276: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: inherited selected story refuses complete source transaction without touching body
+00:01 +277: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: inherited selected story refuses complete source transaction without touching body
+00:01 +278: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: inherited selected story refuses complete source transaction without touching body
+00:01 +279: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: inherited selected story refuses complete source transaction without touching body
+00:01 +280: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: inherited selected story refuses complete source transaction without touching body
+00:01 +281: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: inherited selected story refuses complete source transaction without touching body
+00:01 +282: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: inherited selected story refuses complete source transaction without touching body
+00:01 +283: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: inherited selected story refuses complete source transaction without touching body
+00:01 +284: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: inherited selected story refuses complete source transaction without touching body
+00:01 +285: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: inherited selected story refuses complete source transaction without touching body
+00:01 +286: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: inherited selected story refuses complete source transaction without touching body
+00:01 +287: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: inherited selected story refuses complete source transaction without touching body
+00:01 +288: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: inherited selected story refuses complete source transaction without touching body
+00:01 +289: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: inherited selected story refuses complete source transaction without touching body
+00:01 +290: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: inherited selected story refuses complete source transaction without touching body
+00:01 +291: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: inherited selected story refuses complete source transaction without touching body
+00:01 +292: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: inherited selected story refuses complete source transaction without touching body
+00:01 +293: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: inherited selected story refuses complete source transaction without touching body
+00:01 +294: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: inherited selected story refuses complete source transaction without touching body
+00:01 +295: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: inherited selected story refuses complete source transaction without touching body
+00:01 +296: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: inherited selected story refuses complete source transaction without touching body
+00:01 +297: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: inherited selected story refuses complete source transaction without touching body
+00:01 +298: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: inherited selected story refuses complete source transaction without touching body
+00:01 +299: [VM, Kernel] test/office_vba_word_language_test.dart: shared resource limits Word emission cannot exceed the shared operation limit
+00:01 +300: [VM, Kernel] test/office_vba_word_language_test.dart: shared resource limits Word emission cannot exceed the shared operation limit
+00:01 +301: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: later implicit inheritance refuses complete source transaction without touching body
+00:01 +302: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: opaque table story refuses complete source transaction without touching body
+00:01 +303: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: late missing section preserves an accepted revision and recording
+00:01 +304: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: permissions, allowlists and step limits govern story validation and playback
+00:01 +305: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: cancellation between story operations rolls back and allows a later run
+00:01 +306: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: MCP source envelope compiles and validates/runs the actual BAS
+00:02 +307: [VM, Kernel] test/office_vba_word_sections_test.dart: Orientation=wdOrientPortrait emits an explicit section operation
+00:02 +308: [VM, Kernel] test/office_vba_word_sections_test.dart: Orientation=wdOrientPortrait emits an explicit section operation
+00:02 +309: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI validates and runs committed BAS without modifying its DOCM input
+00:02 +310: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI validates and runs committed BAS without modifying its DOCM input
+00:02 +311: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI validates and runs committed BAS without modifying its DOCM input
+00:02 +312: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI validates and runs committed BAS without modifying its DOCM input
+00:02 +313: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI validates and runs committed BAS without modifying its DOCM input
+00:02 +314: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI validates and runs committed BAS without modifying its DOCM input
+00:02 +315: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI validates and runs committed BAS without modifying its DOCM input
+00:02 +316: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI validates and runs committed BAS without modifying its DOCM input
+00:02 +317: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI validates and runs committed BAS without modifying its DOCM input
+00:02 +318: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI validates and runs committed BAS without modifying its DOCM input
+00:02 +319: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI validates and runs committed BAS without modifying its DOCM input
+00:02 +320: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI validates and runs committed BAS without modifying its DOCM input
+00:02 +321: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI validates and runs committed BAS without modifying its DOCM input
+00:02 +322: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI validates and runs committed BAS without modifying its DOCM input
+00:02 +323: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI validates and runs committed BAS without modifying its DOCM input
+00:02 +324: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI validates and runs committed BAS without modifying its DOCM input
+00:02 +325: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI validates and runs committed BAS without modifying its DOCM input
+00:02 +326: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI validates and runs committed BAS without modifying its DOCM input
+00:02 +327: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI validates and runs committed BAS without modifying its DOCM input
+00:02 +328: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI validates and runs committed BAS without modifying its DOCM input
+00:02 +329: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI validates and runs committed BAS without modifying its DOCM input
+00:02 +330: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI validates and runs committed BAS without modifying its DOCM input
+00:02 +331: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI validates and runs committed BAS without modifying its DOCM input
+00:02 +332: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI validates and runs committed BAS without modifying its DOCM input
+00:02 +333: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI validates and runs committed BAS without modifying its DOCM input
+00:02 +334: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI validates and runs committed BAS without modifying its DOCM input
+00:02 +335: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI validates and runs committed BAS without modifying its DOCM input
+00:02 +336: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI validates and runs committed BAS without modifying its DOCM input
+00:02 +337: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI validates and runs committed BAS without modifying its DOCM input
+00:02 +338: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI validates and runs committed BAS without modifying its DOCM input
+00:02 +339: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI validates and runs committed BAS without modifying its DOCM input
+00:02 +340: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI validates and runs committed BAS without modifying its DOCM input
+00:02 +341: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI validates and runs committed BAS without modifying its DOCM input
+00:02 +342: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI validates and runs committed BAS without modifying its DOCM input
+00:02 +343: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI validates and runs committed BAS without modifying its DOCM input
+00:02 +344: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI validates and runs committed BAS without modifying its DOCM input
+00:02 +345: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI validates and runs committed BAS without modifying its DOCM input
+00:02 +346: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI validates and runs committed BAS without modifying its DOCM input
+00:02 +347: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI validates and runs committed BAS without modifying its DOCM input
+00:02 +348: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI validates and runs committed BAS without modifying its DOCM input
+00:02 +349: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI validates and runs committed BAS without modifying its DOCM input
+00:02 +350: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI validates and runs committed BAS without modifying its DOCM input
+00:02 +351: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI validates and runs committed BAS without modifying its DOCM input
+00:02 +352: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI validates and runs committed BAS without modifying its DOCM input
+00:02 +353: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI validates and runs committed BAS without modifying its DOCM input
+00:02 +354: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI validates and runs committed BAS without modifying its DOCM input
+00:02 +355: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI validates and runs committed BAS without modifying its DOCM input
+00:02 +356: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI validates and runs committed BAS without modifying its DOCM input
+00:02 +357: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI validates and runs committed BAS without modifying its DOCM input
+00:02 +358: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI validates and runs committed BAS without modifying its DOCM input
+00:02 +359: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI validates and runs committed BAS without modifying its DOCM input
+00:02 +360: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI validates and runs committed BAS without modifying its DOCM input
+00:02 +361: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI validates and runs committed BAS without modifying its DOCM input
+00:02 +362: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI validates and runs committed BAS without modifying its DOCM input
+00:02 +363: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI validates and runs committed BAS without modifying its DOCM input
+00:02 +364: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI validates and runs committed BAS without modifying its DOCM input
+00:02 +365: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI validates and runs committed BAS without modifying its DOCM input
+00:02 +366: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI validates and runs committed BAS without modifying its DOCM input
+00:02 +367: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI validates and runs committed BAS without modifying its DOCM input
+00:02 +368: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI validates and runs committed BAS without modifying its DOCM input
+00:02 +369: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI validates and runs committed BAS without modifying its DOCM input
+00:02 +370: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI validates and runs committed BAS without modifying its DOCM input
+00:02 +371: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI validates and runs committed BAS without modifying its DOCM input
+00:02 +372: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI validates and runs committed BAS without modifying its DOCM input
+00:02 +373: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI validates and runs committed BAS without modifying its DOCM input
+00:02 +374: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI validates and runs committed BAS without modifying its DOCM input
+00:02 +375: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI validates and runs committed BAS without modifying its DOCM input
+00:02 +376: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI validates and runs committed BAS without modifying its DOCM input
+00:02 +377: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI validates and runs committed BAS without modifying its DOCM input
+00:02 +378: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI validates and runs committed BAS without modifying its DOCM input
+00:03 +379: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI validates and runs committed BAS without modifying its DOCM input
+00:03 +380: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI validates and runs committed BAS without modifying its DOCM input
+00:03 +381: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI validates and runs committed BAS without modifying its DOCM input
+00:03 +382: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI validates and runs committed BAS without modifying its DOCM input
+00:03 +383: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI validates and runs committed BAS without modifying its DOCM input
+00:03 +384: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI validates and runs committed BAS without modifying its DOCM input
+00:03 +385: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI validates and runs committed BAS without modifying its DOCM input
+00:03 +386: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI validates and runs committed BAS without modifying its DOCM input
+00:03 +387: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI validates and runs committed BAS without modifying its DOCM input
+00:03 +388: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI validates and runs committed BAS without modifying its DOCM input
+00:03 +389: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI validates and runs committed BAS without modifying its DOCM input
+00:03 +390: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI validates and runs committed BAS without modifying its DOCM input
+00:03 +391: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI validates and runs committed BAS without modifying its DOCM input
+00:03 +392: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI validates and runs committed BAS without modifying its DOCM input
+00:03 +393: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI validates and runs committed BAS without modifying its DOCM input
+00:03 +394: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI validates and runs committed BAS without modifying its DOCM input
+00:03 +395: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI validates and runs committed BAS without modifying its DOCM input
+00:03 +396: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI validates and runs committed BAS without modifying its DOCM input
+00:03 +397: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI validates and runs committed BAS without modifying its DOCM input
+00:03 +398: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI validates and runs committed BAS without modifying its DOCM input
+00:03 +399: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI validates and runs committed BAS without modifying its DOCM input
+00:03 +400: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI validates and runs committed BAS without modifying its DOCM input
+00:03 +401: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI validates and runs committed BAS without modifying its DOCM input
+00:03 +402: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI validates and runs committed BAS without modifying its DOCM input
+00:03 +403: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI validates and runs committed BAS without modifying its DOCM input
+00:10 +404: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI validates and runs committed BAS without modifying its DOCM input
+00:15 +405: [VM, Kernel] test/office_vba_word_sections_integration_test.dart: CLI late missing section creates no output and leaves input unchanged
+00:17 +406: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI late missing story paragraph creates no output or input mutation
+00:17 +407: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI late missing story paragraph creates no output or input mutation
+00:17 +408: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI late missing story paragraph creates no output or input mutation
+00:17 +409: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI late missing story paragraph creates no output or input mutation
+00:17 +410: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI late missing story paragraph creates no output or input mutation
+00:17 +411: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI late missing story paragraph creates no output or input mutation
+00:17 +412: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI late missing story paragraph creates no output or input mutation
+00:17 +413: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI late missing story paragraph creates no output or input mutation
+00:17 +414: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI late missing story paragraph creates no output or input mutation
+00:17 +415: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI late missing story paragraph creates no output or input mutation
+00:17 +416: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI late missing story paragraph creates no output or input mutation
+00:17 +417: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI late missing story paragraph creates no output or input mutation
+00:17 +418: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI late missing story paragraph creates no output or input mutation
+00:17 +419: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI late missing story paragraph creates no output or input mutation
+00:17 +420: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI late missing story paragraph creates no output or input mutation
+00:17 +421: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI late missing story paragraph creates no output or input mutation
+00:17 +422: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI late missing story paragraph creates no output or input mutation
+00:17 +423: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI late missing story paragraph creates no output or input mutation
+00:17 +424: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI late missing story paragraph creates no output or input mutation
+00:17 +425: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI late missing story paragraph creates no output or input mutation
+00:17 +426: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI late missing story paragraph creates no output or input mutation
+00:17 +427: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI late missing story paragraph creates no output or input mutation
+00:17 +428: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI late missing story paragraph creates no output or input mutation
+00:17 +429: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI late missing story paragraph creates no output or input mutation
+00:17 +430: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI late missing story paragraph creates no output or input mutation
+00:17 +431: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI late missing story paragraph creates no output or input mutation
+00:17 +432: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI late missing story paragraph creates no output or input mutation
+00:17 +433: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI late missing story paragraph creates no output or input mutation
+00:17 +434: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI late missing story paragraph creates no output or input mutation
+00:17 +435: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI late missing story paragraph creates no output or input mutation
+00:17 +436: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI late missing story paragraph creates no output or input mutation
+00:17 +437: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI late missing story paragraph creates no output or input mutation
+00:17 +438: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI late missing story paragraph creates no output or input mutation
+00:17 +439: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI late missing story paragraph creates no output or input mutation
+00:17 +440: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI late missing story paragraph creates no output or input mutation
+00:17 +441: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI late missing story paragraph creates no output or input mutation
+00:17 +442: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI late missing story paragraph creates no output or input mutation
+00:17 +443: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI late missing story paragraph creates no output or input mutation
+00:17 +444: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI late missing story paragraph creates no output or input mutation
+00:17 +445: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI late missing story paragraph creates no output or input mutation
+00:17 +446: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI late missing story paragraph creates no output or input mutation
+00:17 +447: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI late missing story paragraph creates no output or input mutation
+00:17 +448: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI late missing story paragraph creates no output or input mutation
+00:17 +449: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI late missing story paragraph creates no output or input mutation
+00:17 +450: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI late missing story paragraph creates no output or input mutation
+00:17 +451: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI late missing story paragraph creates no output or input mutation
+00:17 +452: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI late missing story paragraph creates no output or input mutation
+00:17 +453: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI late missing story paragraph creates no output or input mutation
+00:17 +454: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI late missing story paragraph creates no output or input mutation
+00:17 +455: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI late missing story paragraph creates no output or input mutation
+00:17 +456: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI late missing story paragraph creates no output or input mutation
+00:17 +457: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI late missing story paragraph creates no output or input mutation
+00:17 +458: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI late missing story paragraph creates no output or input mutation
+00:17 +459: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI late missing story paragraph creates no output or input mutation
+00:17 +460: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI late missing story paragraph creates no output or input mutation
+00:17 +461: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI late missing story paragraph creates no output or input mutation
+00:17 +462: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI late missing story paragraph creates no output or input mutation
+00:17 +463: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI late missing story paragraph creates no output or input mutation
+00:17 +464: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI late missing story paragraph creates no output or input mutation
+00:17 +465: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI late missing story paragraph creates no output or input mutation
+00:17 +466: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI late missing story paragraph creates no output or input mutation
+00:17 +467: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI late missing story paragraph creates no output or input mutation
+00:17 +468: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI late missing story paragraph creates no output or input mutation
+00:17 +469: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI late missing story paragraph creates no output or input mutation
+00:17 +470: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI late missing story paragraph creates no output or input mutation
+00:17 +471: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI late missing story paragraph creates no output or input mutation
+00:17 +472: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI late missing story paragraph creates no output or input mutation
+00:17 +473: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI late missing story paragraph creates no output or input mutation
+00:17 +474: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI late missing story paragraph creates no output or input mutation
+00:17 +475: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI late missing story paragraph creates no output or input mutation
+00:17 +476: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI late missing story paragraph creates no output or input mutation
+00:17 +477: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI late missing story paragraph creates no output or input mutation
+00:17 +478: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI late missing story paragraph creates no output or input mutation
+00:17 +479: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI late missing story paragraph creates no output or input mutation
+00:17 +480: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI late missing story paragraph creates no output or input mutation
+00:17 +481: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI late missing story paragraph creates no output or input mutation
+00:17 +482: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI late missing story paragraph creates no output or input mutation
+00:17 +483: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI late missing story paragraph creates no output or input mutation
+00:17 +484: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI late missing story paragraph creates no output or input mutation
+00:17 +485: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI late missing story paragraph creates no output or input mutation
+00:17 +486: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI late missing story paragraph creates no output or input mutation
+00:17 +487: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI late missing story paragraph creates no output or input mutation
+00:17 +488: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI late missing story paragraph creates no output or input mutation
+00:17 +489: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI late missing story paragraph creates no output or input mutation
+00:17 +490: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI late missing story paragraph creates no output or input mutation
+00:17 +491: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI late missing story paragraph creates no output or input mutation
+00:17 +492: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI late missing story paragraph creates no output or input mutation
+00:17 +493: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI late missing story paragraph creates no output or input mutation
+00:17 +494: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI late missing story paragraph creates no output or input mutation
+00:17 +495: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI late missing story paragraph creates no output or input mutation
+00:17 +496: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI late missing story paragraph creates no output or input mutation
+00:17 +497: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI late missing story paragraph creates no output or input mutation
+00:17 +498: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI late missing story paragraph creates no output or input mutation
+00:17 +499: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI late missing story paragraph creates no output or input mutation
+00:17 +500: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI late missing story paragraph creates no output or input mutation
+00:17 +501: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI late missing story paragraph creates no output or input mutation
+00:17 +502: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI late missing story paragraph creates no output or input mutation
+00:17 +503: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI late missing story paragraph creates no output or input mutation
+00:17 +504: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI late missing story paragraph creates no output or input mutation
+00:17 +505: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI late missing story paragraph creates no output or input mutation
+00:17 +506: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI late missing story paragraph creates no output or input mutation
+00:17 +507: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI late missing story paragraph creates no output or input mutation
+00:17 +508: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI late missing story paragraph creates no output or input mutation
+00:17 +509: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI late missing story paragraph creates no output or input mutation
+00:18 +510: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI late missing story paragraph creates no output or input mutation
+00:18 +511: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI late missing story paragraph creates no output or input mutation
+00:18 +512: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI late missing story paragraph creates no output or input mutation
+00:18 +513: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI late missing story paragraph creates no output or input mutation
+00:18 +514: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI late missing story paragraph creates no output or input mutation
+00:18 +515: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI late missing story paragraph creates no output or input mutation
+00:18 +516: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI late missing story paragraph creates no output or input mutation
+00:18 +517: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI late missing story paragraph creates no output or input mutation
+00:18 +518: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI late missing story paragraph creates no output or input mutation
+00:18 +519: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI late missing story paragraph creates no output or input mutation
+00:18 +520: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI late missing story paragraph creates no output or input mutation
+00:19 +521: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI late missing story paragraph creates no output or input mutation
+00:19 +522: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI late missing story paragraph creates no output or input mutation
+00:19 +523: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI late missing story paragraph creates no output or input mutation
+00:19 +524: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI late missing story paragraph creates no output or input mutation
+00:19 +525: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI late missing story paragraph creates no output or input mutation
+00:19 +526: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI late missing story paragraph creates no output or input mutation
+00:19 +527: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI late missing story paragraph creates no output or input mutation
+00:19 +528: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI late missing story paragraph creates no output or input mutation
+00:19 +529: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI late missing story paragraph creates no output or input mutation
+00:19 +530: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI late missing story paragraph creates no output or input mutation
+00:19 +531: [VM, Kernel] test/office_vba_word_headers_footers_integration_test.dart: CLI late missing story paragraph creates no output or input mutation
+00:25 +532: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:26 +533: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:26 +534: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:26 +535: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:26 +536: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:26 +537: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:26 +538: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:26 +539: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:26 +540: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:26 +541: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:26 +542: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:26 +543: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:26 +544: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:26 +545: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:26 +546: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:26 +547: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:26 +548: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:26 +549: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:26 +550: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:26 +551: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:26 +552: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:26 +553: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:26 +554: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:26 +555: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:26 +556: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:26 +557: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:26 +558: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:26 +559: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:26 +560: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:26 +561: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:26 +562: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:26 +563: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:26 +564: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:26 +565: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:26 +566: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:26 +567: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:26 +568: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:26 +569: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:27 +570: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:27 +571: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:27 +572: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:27 +573: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:27 +574: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:27 +575: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:27 +576: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:27 +577: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:27 +578: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:27 +579: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:27 +580: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:27 +581: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:27 +582: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:27 +583: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:27 +584: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:27 +585: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:27 +586: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:27 +587: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:27 +588: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:27 +589: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:27 +590: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:27 +591: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:27 +592: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:27 +593: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:27 +594: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:27 +595: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:27 +596: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:27 +597: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:27 +598: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:27 +599: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:27 +600: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:27 +601: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:28 +602: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:28 +603: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:28 +604: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:28 +605: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:28 +606: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:28 +607: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:28 +608: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:28 +609: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:28 +610: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:28 +611: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:28 +612: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:28 +613: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:28 +614: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:28 +615: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:28 +616: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:28 +617: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:28 +618: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:28 +619: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:28 +620: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:28 +621: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:28 +622: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:28 +623: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:28 +624: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:28 +625: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:28 +626: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:28 +627: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:28 +628: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:28 +629: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:28 +630: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:28 +631: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:28 +632: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:28 +633: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:28 +634: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:28 +635: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:28 +636: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:28 +637: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:28 +638: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:28 +639: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:28 +640: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:28 +641: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:28 +642: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:28 +643: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:28 +644: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:28 +645: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:28 +646: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:28 +647: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:28 +648: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:28 +649: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:28 +650: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:28 +651: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:28 +652: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:28 +653: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:28 +654: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:28 +655: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:28 +656: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:28 +657: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:29 +658: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:29 +659: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:29 +660: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:29 +661: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:29 +662: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:29 +663: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:29 +664: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:29 +665: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:29 +666: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:29 +667: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:29 +668: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:29 +669: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:29 +670: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:29 +671: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:29 +672: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:29 +673: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:29 +674: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:29 +675: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:29 +676: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:29 +677: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:29 +678: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:29 +679: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:29 +680: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:29 +681: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:29 +682: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:29 +683: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:29 +684: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:29 +685: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:29 +686: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:29 +687: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:29 +688: [VM, Kernel] test/office_vba_word_line_spacing_integration_test.dart: actual CLI executes committed spacing BAS into a preserved DOCM
+00:30 +689: All tests passed!
