@@ -213,12 +213,17 @@ paths. `TextPainter` shaping remains cached independently.
 ### Item 5c — cached page text layer (implemented)
 
 Body line text, list labels, revision markup and selected-comment backgrounds
-are recorded into a per-page `ui.Picture`. Selection, find hits, proofing waves
-and the caret are painted dynamically over it. The picture is invalidated only
-when the layout, theme/config or selected comment changes; caret moves,
-selection changes, proofing updates and unrelated repaints reuse it. Header and
-footer editing uses the same body text layer, with its own dynamic caret and
-header/footer overlay.
+are recorded into a per-page `ui.Picture`. Selection, find hits and proofing
+waves are painted dynamically beneath the text; the caret is painted above it.
+The picture is invalidated when layout, theme/config or the selected comment
+changes. Adaptive document colors also track table selection and active
+header/footer backgrounds at paint time, including in-place caret mutations.
+Ordinary collapsed-caret movement, blinking, proofing updates and unrelated
+repaints reuse the text layer. Header/footer editing retains its dynamic caret
+and background overlay.
 
 Tests: header/footer navigation, embed rendering and incremental layout suites
-pass.
+pass. The [final Zotero delivery gate](../validation/zotero-roundtrip-complete-20261121/final-delivery/README.md)
+adds five noncompact retained-versus-fresh raster regressions for entering and
+leaving table-band, whole-table, cross-cell and header/footer editing states;
+all 36 selected renderer/dark-document cases and strict static checks pass.

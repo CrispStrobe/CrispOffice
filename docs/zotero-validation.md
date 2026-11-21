@@ -1,5 +1,19 @@
 # Zotero validation
 
+## 21 November 2026 — combined native round-trip completion
+
+The [combined completion record](validation/zotero-roundtrip-complete-20261121/README.md)
+qualifies semantic uppercase import and reconciled bibliography/image/note
+interchange on the accepted Office main. It records **3,452 distinct accepted
+test cases**, strict analysis, four fixtures through two actual LibreOffice
+saves, separate PNG/JPEG cycles, source identities, bounded remote intake,
+rejected attempts and incremental remote checkpoints. Its separate final
+delivery gate qualifies the subsequently accepted page-text renderer and
+corrects adaptive ink when table selections or edited stories change.
+Full native-plugin and
+stable-release acceptance remain separate. Earlier milestones below retain
+their original scopes and are not added to the current count.
+
 ## 21 November 2026 — native LibreOffice reopening continuation
 
 The [current round-trip record](validation/zotero-odt-roundtrip-20261121/README.md)
