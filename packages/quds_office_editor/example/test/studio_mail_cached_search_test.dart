@@ -60,12 +60,13 @@ final class _Owner
   _Owner(this.delegate);
 
   final StudioMailDraftStore delegate;
+  StudioMailMailboxStore? mailboxOverride;
   int closeCalls = 0;
   bool failClose = false;
 
   @override
   StudioMailMailboxStore get mailboxStore =>
-      (delegate as StudioMailMailboxStoreOwner).mailboxStore;
+      mailboxOverride ?? (delegate as StudioMailMailboxStoreOwner).mailboxStore;
 
   @override
   Future<void> close() async {
@@ -92,6 +93,84 @@ final class _Owner
   @override
   Future<void> clear() => throw StateError('Search must never clear drafts');
 }
+
+/// Mutates only a returned typed page; all ownership, headers, cursors and
+/// folder/cache operations still use the real native SQLite adapter.
+final class _SearchMailbox
+    implements StudioMailMailboxStore, StudioMailCachedHeaderSearchStore {
+  _SearchMailbox(this.delegate, this.rewrite);
+
+  final StudioMailMailboxStore delegate;
+  final MailCachedHeaderSearchPage Function(
+    MailCachedHeaderSearchPage page,
+    int call,
+  )
+  rewrite;
+  int _calls = 0;
+
+  @override
+  MailAccountId get account => delegate.account;
+
+  @override
+  Future<MailCachedHeaderSearchPage> searchCachedHeaders(
+    String query, {
+    MailCachedHeaderSearchCursor? cursor,
+    int limit = 100,
+    int scanLimit = 500,
+  }) async => rewrite(
+    await (delegate as StudioMailCachedHeaderSearchStore).searchCachedHeaders(
+      query,
+      cursor: cursor,
+      limit: limit,
+      scanLimit: scanLimit,
+    ),
+    ++_calls,
+  );
+
+  @override
+  Future<List<MailCachedMailboxSummary>> listViews() => delegate.listViews();
+
+  @override
+  Future<MailCachedMailboxView?> loadView(MailMailboxId mailbox) =>
+      delegate.loadView(mailbox);
+
+  @override
+  Future<MailCachedMailboxView> saveView(
+    MailMailbox mailbox,
+    List<MailHeaderRecord> headers, {
+    required bool hasMore,
+    required MailOperationLease lease,
+  }) => delegate.saveView(mailbox, headers, hasMore: hasMore, lease: lease);
+
+  @override
+  Future<void> cacheMessage(
+    MailHeaderRecord header,
+    MailMessage message, {
+    required MailOperationLease lease,
+  }) => delegate.cacheMessage(header, message, lease: lease);
+
+  @override
+  Future<MailMessage?> loadMessage(MailHeaderRecord header) =>
+      delegate.loadMessage(header);
+
+  @override
+  Future<MailCacheCleanupReport> clearCache() => delegate.clearCache();
+}
+
+MailCachedHeaderSearchPage _pageWith(
+  MailCachedHeaderSearchPage page, {
+  List<MailCachedHeaderSearchHit>? hits,
+  int? scannedCount,
+  int? totalCount,
+  bool dropContinuation = false,
+}) => MailCachedHeaderSearchPage(
+  hits: hits ?? page.hits,
+  scannedCount: scannedCount ?? page.scannedCount,
+  totalCount: totalCount ?? page.totalCount,
+  nextCursor: dropContinuation ? null : page.nextCursor,
+  browsed: page.browsed,
+  synchronized: page.synchronized,
+);
 
 void main() {
   late Directory files;
@@ -184,6 +263,20 @@ void main() {
     sessions.add(value);
     return value;
   }
+
+  Future<StudioMailCachedSearchSession> rewrittenSession(
+    MailCachedHeaderSearchPage Function(MailCachedHeaderSearchPage, int)
+    rewrite, {
+    String? onlyAccount,
+  }) => session(
+    factory: (identity) async {
+      final owner = await open(identity) as _Owner;
+      if (onlyAccount == null || onlyAccount == identity.account.value) {
+        owner.mailboxOverride = _SearchMailbox(owner.mailboxStore, rewrite);
+      }
+      return owner;
+    },
+  );
 
   for (final provider in ['imap', 'ews', 'gmail', 'graph']) {
     test('$provider saved search and body survive native reopen', () async {
@@ -285,6 +378,147 @@ void main() {
     );
     expect(owners, isEmpty);
   });
+
+  test('premature empty completion is an incomplete account failure', () async {
+    final identity = _identity('imap', 'malformed-empty@example.test');
+    await seed(identity, [_header(identity, 1), _header(identity, 2)]);
+    final search = await rewrittenSession(
+      (page, _) => _pageWith(page, hits: const [], scannedCount: 0),
+    );
+    expect(await search.nextPage(), isEmpty);
+    expect(search.hasMore, isFalse);
+    expect(search.coverage.single.complete, isFalse);
+    expect(search.coverage.single.problem, MailProblemCode.conflict);
+    expect(search.coverage.single.scannedCount, 0);
+    expect(owners.single.closeCalls, 1);
+  });
+
+  test(
+    'premature continuation end preserves prior progress without new hits',
+    () async {
+      final identity = _identity('imap', 'malformed-end@example.test');
+      await seed(identity, [
+        for (var index = 1; index <= 3; index++) _header(identity, index),
+      ]);
+      final search = await rewrittenSession(
+        (page, call) =>
+            call == 2 ? _pageWith(page, dropContinuation: true) : page,
+      );
+      expect(await search.nextPage(limit: 1), hasLength(1));
+      expect(await search.nextPage(limit: 1), isEmpty);
+      expect(search.hasMore, isFalse);
+      expect(search.coverage.single.complete, isFalse);
+      expect(search.coverage.single.problem, MailProblemCode.conflict);
+      expect(search.coverage.single.scannedCount, 1);
+      expect(search.coverage.single.totalCount, 3);
+      expect(owners.single.closeCalls, 1);
+    },
+  );
+
+  test(
+    'continuation cannot remain after the claimed population is exhausted',
+    () async {
+      final identity = _identity('imap', 'malformed-more@example.test');
+      await seed(identity, [_header(identity, 1), _header(identity, 2)]);
+      final search = await rewrittenSession(
+        (page, _) => _pageWith(page, totalCount: 1),
+      );
+      expect(await search.nextPage(limit: 1), isEmpty);
+      expect(search.hasMore, isFalse);
+      expect(search.coverage.single.problem, MailProblemCode.conflict);
+      expect(search.coverage.single.complete, isFalse);
+      expect(owners.single.closeCalls, 1);
+    },
+  );
+
+  for (final changedTotal in [3, 5]) {
+    test(
+      'continuation rejects changed total $changedTotal instead of 4',
+      () async {
+        final identity = _identity(
+          'imap',
+          'malformed-total-$changedTotal@example.test',
+        );
+        await seed(identity, [
+          for (var index = 1; index <= 4; index++) _header(identity, index),
+        ]);
+        final search = await rewrittenSession(
+          (page, call) =>
+              call == 2 ? _pageWith(page, totalCount: changedTotal) : page,
+        );
+        expect(await search.nextPage(limit: 1), hasLength(1));
+        expect(await search.nextPage(limit: 1), isEmpty);
+        expect(search.hasMore, isFalse);
+        expect(search.coverage.single.problem, MailProblemCode.conflict);
+        expect(search.coverage.single.complete, isFalse);
+        expect(search.coverage.single.scannedCount, 1);
+        expect(search.coverage.single.totalCount, 4);
+        expect(owners.single.closeCalls, 1);
+      },
+    );
+  }
+
+  test('cumulative overrun follows the caught account failure path', () async {
+    final identity = _identity('imap', 'malformed-count@example.test');
+    await seed(identity, [
+      for (var index = 1; index <= 3; index++) _header(identity, index),
+    ]);
+    final search = await rewrittenSession(
+      (page, call) => call == 2 ? _pageWith(page, scannedCount: 3) : page,
+    );
+    expect(await search.nextPage(limit: 1), hasLength(1));
+    expect(await search.nextPage(limit: 1), isEmpty);
+    expect(search.coverage.single.problem, MailProblemCode.conflict);
+    expect(search.coverage.single.complete, isFalse);
+    expect(search.coverage.single.scannedCount, 1);
+    expect(search.coverage.single.totalCount, 3);
+    expect(owners.single.closeCalls, 1);
+  });
+
+  test(
+    'invalid page emits no hits while a later healthy account continues',
+    () async {
+      final one = _identity('imap', 'malformed-first@example.test');
+      final two = _identity('graph', 'healthy-second@example.test');
+      await seed(one, [_header(one, 1), _header(one, 2)]);
+      await seed(two, [_header(two, 1), _header(two, 2)]);
+      final ids = (await directory.load()).map((record) => record.id).toList()
+        ..sort();
+      final invalidAccount = ids.first;
+      final search = await rewrittenSession(
+        (page, _) => _pageWith(page, hits: const [], scannedCount: 0),
+        onlyAccount: invalidAccount,
+      );
+      expect(await search.nextPage(), isEmpty);
+      expect(search.hasMore, isTrue);
+      final hits = await search.nextPage();
+      expect(hits, hasLength(2));
+      expect(hits.every((hit) => hit.account.id != invalidAccount), isTrue);
+      expect(search.hasMore, isFalse);
+      expect(search.coverage.first.complete, isFalse);
+      expect(search.coverage.first.problem, MailProblemCode.conflict);
+      expect(search.coverage.last.complete, isTrue);
+    },
+  );
+
+  test(
+    'search uses the local directory account bound before opening owners',
+    () async {
+      final identity = _identity('imap', 'account-limit@example.test');
+      await seed(identity, [_header(identity, 1)]);
+      final record = (await directory.load()).single;
+      await expectLater(
+        session(
+          accounts: List.filled(
+            MailLocalAccountDirectory.maxAccounts + 1,
+            record,
+          ),
+        ),
+        throwsA(_problem(MailProblemCode.quotaExceeded)),
+      );
+      expect(owners, isEmpty);
+    },
+  );
 
   test(
     'failed account remains in coverage while other accounts continue',

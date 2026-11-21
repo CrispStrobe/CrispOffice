@@ -63,7 +63,9 @@ final class StudioMailCachedSearchSession {
     required this.isCurrent,
   }) : _accounts = List.of(accounts) {
     MailHeaderSearchQuery.parse(query);
-    if (_accounts.length > 1000) _fail(MailProblemCode.quotaExceeded);
+    if (_accounts.length > MailLocalAccountDirectory.maxAccounts) {
+      _fail(MailProblemCode.quotaExceeded);
+    }
     final ids = <String>{};
     for (final record in _accounts) {
       studioMailLocalAccountIdentity(record);
@@ -126,7 +128,9 @@ final class StudioMailCachedSearchSession {
     _check();
     final records = await directory.load();
     _check();
-    if (records.length > 1000) _fail(MailProblemCode.quotaExceeded);
+    if (records.length > MailLocalAccountDirectory.maxAccounts) {
+      _fail(MailProblemCode.quotaExceeded);
+    }
     final ids = <String>{};
     for (final record in records) {
       studioMailLocalAccountIdentity(record);
@@ -195,6 +199,7 @@ final class StudioMailCachedSearchSession {
     if (!hasMore) return const [];
     final record = _accounts[_index];
     MailCachedHeaderSearchPage page;
+    final int scanned;
     try {
       final identity = await _verify(record);
       if (_owner == null) {
@@ -216,6 +221,17 @@ final class StudioMailCachedSearchSession {
       _check();
       await _verify(record);
       _validatePage(page, identity, limit, scanLimit);
+      final previous = _coverage[record.id];
+      scanned = (previous?.scannedCount ?? 0) + page.scannedCount;
+      // A continuation is one unchanged local scan. A malformed optional
+      // host adapter must not turn missing candidates into completed coverage
+      // or publish hits from a page whose population changed mid-search.
+      if ((previous != null && previous.totalCount != page.totalCount) ||
+          scanned > page.totalCount ||
+          (page.nextCursor == null && scanned != page.totalCount) ||
+          (page.nextCursor != null && scanned >= page.totalCount)) {
+        _fail(MailProblemCode.conflict);
+      }
     } on Object catch (error) {
       // A failed close prevents advancing to another profile. Keep ownership
       // so Close can be retried without acquiring a competing lease.
@@ -235,9 +251,6 @@ final class StudioMailCachedSearchSession {
       _cursor = null;
       return const [];
     }
-    final scanned =
-        (_coverage[record.id]?.scannedCount ?? 0) + page.scannedCount;
-    if (scanned > page.totalCount) _fail(MailProblemCode.conflict);
     if (page.nextCursor == null) {
       await _releaseOwner();
       _check();
