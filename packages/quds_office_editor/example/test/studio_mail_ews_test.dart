@@ -1143,12 +1143,8 @@ void main() {
       await _pump(tester);
       expect(_field('ews-message-one'), findsNothing);
       expect(_field('ews-message-two'), findsOneWidget);
-      expect(
-        find.text(
-          '1 shown · 2 loaded\n${_strings.mailMessageListStrings.loadedScope}',
-        ),
-        findsOneWidget,
-      );
+      // The last page is loaded: only the filter count remains.
+      expect(find.text('1 shown · 2 loaded'), findsOneWidget);
       expect(provider.cursors.map((cursor) => cursor?.value), [
         null,
         'next-page',

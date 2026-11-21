@@ -162,6 +162,7 @@ class _StudioMailDialogState extends State<StudioMailDialog>
   bool _remember = true;
   StudioMailCredentials? _lastCredentialSnapshot;
   bool _credentialSettingsOpen = false;
+  bool _vaultUnlockPromptOpen = false;
   bool _credentialStoreChangePending = false;
   int _credentialStoreRevision = 0;
   bool _startTls = false;
@@ -383,6 +384,7 @@ class _StudioMailDialogState extends State<StudioMailDialog>
     }
     if (!mounted || generation != _credentialGeneration) return;
     var adopted = false;
+    var unlockVault = false;
     setState(() {
       _credentialPending = false;
       final current =
@@ -391,7 +393,14 @@ class _StudioMailDialogState extends State<StudioMailDialog>
           !_connecting &&
           _client == null;
       if (!result.isSuccess) {
-        if (current) _credentialError = widget.strings.mailAccountsLoadFailed;
+        if (current) {
+          _credentialError = widget.strings.mailAccountsLoadFailed;
+          // An encrypted vault is intentionally locked on process start.
+          // Offer its master password instead of presenting a permanently
+          // unavailable catalog; the user can still cancel and set up a new
+          // account manually.
+          unlockVault = true;
+        }
         return;
       }
       _accountCatalog = result.catalog!;
@@ -404,6 +413,7 @@ class _StudioMailDialogState extends State<StudioMailDialog>
         }
       }
     });
+    if (unlockVault) _scheduleVaultUnlockPrompt();
     if (adopted) _scheduleAutoConnect();
   }
 
@@ -2779,6 +2789,11 @@ class _StudioMailDialogState extends State<StudioMailDialog>
   bool get _hasCredentialSettings =>
       widget.credentialStore == null || widget.credentialSettingsOpener != null;
 
+  bool get _vaultUnlockAvailable =>
+      widget.credentialStore == null &&
+      StudioCredentialStorage.instance.mode ==
+          StudioCredentialMode.encryptedVault;
+
   bool get _canChangeCredentialStorage =>
       _hasCredentialSettings &&
       !_credentialPending &&
@@ -2815,6 +2830,70 @@ class _StudioMailDialogState extends State<StudioMailDialog>
           : null;
     });
     await _loadCredentials();
+  }
+
+  void _scheduleVaultUnlockPrompt() {
+    if (!mounted) return;
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (mounted) unawaited(_promptVaultUnlock());
+    });
+  }
+
+  /// Unlocks the selected encrypted vault after the password-protected catalog
+  /// could not be read. The selection is never changed and no fallback store is
+  /// used; cancelling leaves the explicit manual-account path available.
+  Future<void> _promptVaultUnlock() async {
+    if (!mounted ||
+        _vaultUnlockPromptOpen ||
+        _dialogOpen ||
+        _credentialPending ||
+        _connecting ||
+        _busy ||
+        _client != null ||
+        widget.credentialStore != null) {
+      return;
+    }
+    final manager = StudioCredentialStorage.instance;
+    try {
+      await manager.loadSelection();
+    } on Object {
+      return;
+    }
+    if (!mounted || manager.mode != StudioCredentialMode.encryptedVault) {
+      return;
+    }
+    final bool exists;
+    try {
+      exists = await manager.vaultExists();
+    } on Object {
+      return;
+    }
+    if (!exists || !mounted) return;
+    // If another path already unlocked the vault, the load failure is not a
+    // lock problem. Do not retry in a loop or ask for the password.
+    try {
+      await manager.storage;
+      return;
+    } on Object {
+      // Locked, as expected. Continue with the prompt.
+    }
+    if (!mounted || _dialogOpen || _credentialPending) return;
+    _vaultUnlockPromptOpen = true;
+    setState(() => _dialogOpen = true);
+    bool unlocked = false;
+    try {
+      unlocked =
+          await showDialog<bool>(
+            context: context,
+            barrierDismissible: false,
+            builder: (_) => _StudioMailVaultUnlockDialog(manager: manager),
+          ) ??
+          false;
+    } finally {
+      _vaultUnlockPromptOpen = false;
+      if (mounted) setState(() => _dialogOpen = false);
+    }
+    if (unlocked && mounted) await _loadCredentials();
   }
 
   Future<void> _openCredentialStorage() async {
@@ -3575,6 +3654,19 @@ class _StudioMailDialogState extends State<StudioMailDialog>
               icon: const Icon(Icons.save_outlined),
               label: const Text('Retry saving account'),
             ),
+          if (_client == null && _vaultUnlockAvailable)
+            TextButton.icon(
+              key: const ValueKey('studio-mail-unlock-vault'),
+              onPressed:
+                  _credentialPending ||
+                      _credentialSettingsOpen ||
+                      _vaultUnlockPromptOpen ||
+                      _dialogOpen
+                  ? null
+                  : _promptVaultUnlock,
+              icon: const Icon(Icons.lock_open),
+              label: const Text('Unlock saved accounts'),
+            ),
         ],
       ),
     ),
@@ -4066,5 +4158,102 @@ class _StudioMailDialogState extends State<StudioMailDialog>
           ],
         ),
     ],
+  );
+}
+
+class _StudioMailVaultUnlockDialog extends StatefulWidget {
+  const _StudioMailVaultUnlockDialog({required this.manager});
+
+  final StudioCredentialStorage manager;
+
+  @override
+  State<_StudioMailVaultUnlockDialog> createState() =>
+      _StudioMailVaultUnlockDialogState();
+}
+
+class _StudioMailVaultUnlockDialogState
+    extends State<_StudioMailVaultUnlockDialog> {
+  final _password = TextEditingController();
+  bool _busy = false;
+  String? _error;
+
+  @override
+  void dispose() {
+    _password.dispose();
+    super.dispose();
+  }
+
+  Future<void> _unlock() async {
+    if (_busy) return;
+    final password = _password.text;
+    if (password.isEmpty) {
+      setState(() => _error = 'Enter the master password.');
+      return;
+    }
+    setState(() {
+      _busy = true;
+      _error = null;
+    });
+    try {
+      await widget.manager.unlockVault(password, create: false);
+      if (mounted) Navigator.of(context).pop(true);
+    } on Object {
+      if (mounted) {
+        setState(() => _error = 'Incorrect master password or damaged vault.');
+      }
+    } finally {
+      if (mounted) setState(() => _busy = false);
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) => PopScope<bool>(
+    canPop: !_busy,
+    child: AlertDialog(
+      title: const Text('Unlock saved accounts'),
+      content: ConstrainedBox(
+        constraints: const BoxConstraints(maxWidth: 420),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            const Text(
+              'Saved mail accounts use the encrypted credential vault. '
+              'Enter its master password. Wrong passwords or damaged vaults '
+              'leave the saved accounts untouched.',
+            ),
+            const SizedBox(height: 12),
+            TextField(
+              key: const ValueKey('studio-mail-vault-password'),
+              controller: _password,
+              obscureText: true,
+              autofocus: true,
+              enabled: !_busy,
+              onSubmitted: (_) => _unlock(),
+              decoration: const InputDecoration(labelText: 'Master password'),
+            ),
+            if (_error != null)
+              Padding(
+                padding: const EdgeInsets.only(top: 12),
+                child: Text(
+                  _error!,
+                  style: TextStyle(color: Theme.of(context).colorScheme.error),
+                ),
+              ),
+          ],
+        ),
+      ),
+      actions: [
+        TextButton(
+          onPressed: _busy ? null : () => Navigator.of(context).pop(false),
+          child: const Text('Cancel'),
+        ),
+        FilledButton(
+          key: const ValueKey('studio-mail-vault-unlock'),
+          onPressed: _busy ? null : _unlock,
+          child: Text(_busy ? 'Unlocking…' : 'Unlock'),
+        ),
+      ],
+    ),
   );
 }
