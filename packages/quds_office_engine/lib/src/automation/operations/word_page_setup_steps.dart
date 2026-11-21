@@ -2,7 +2,6 @@ import 'package:quds_office_engine/quds_office_engine.dart';
 import 'package:quds_office_engine/src/word/serial/word_section_io.dart';
 
 const _w = OfficeNamespaces.w;
-const _xmlns = 'http://www.w3.org/2000/xmlns/';
 const _geometry = <String, List<String>>{
   'pgSz': ['w', 'h'],
   'pgMar': ['top', 'bottom', 'left', 'right', 'header', 'footer'],
@@ -104,7 +103,7 @@ void setWordPageSetup(
     final modeled = current[key]!.split('|');
     if (element == null) {
       element = XmlElement(localName: key, prefix: 'w', namespaceUri: _w);
-      element.setAttribute('w', _w, prefix: 'xmlns', namespaceUri: _xmlns);
+      WordSectionIo.setNamespaceDeclaration(element, 'w', _w);
       root.addChild(element);
       // A newly created native group needs the complete modeled geometry;
       // imported groups, by contrast, retain their existing sparse shape.
@@ -195,7 +194,7 @@ void _setWordAttribute(XmlElement element, String name, String value) {
       prefix = 'qudsWord${index++}';
     } while (used.contains(prefix));
   }
-  element.setAttribute(prefix, _w, prefix: 'xmlns', namespaceUri: _xmlns);
+  WordSectionIo.setNamespaceDeclaration(element, prefix, _w);
   element.setAttribute(name, value, prefix: prefix, namespaceUri: _w);
 }
 
