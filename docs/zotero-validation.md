@@ -1,5 +1,22 @@
 # Zotero validation
 
+## 21 November 2026 — host ownership and shortcut continuity
+
+The [host-ownership follow-up](validation/zotero-host-ownership-20261121/README.md)
+qualifies 232 distinct passing cases across 17 suites on
+source `22dd2a4d474a59ad231f24a61dcb8046b029e993`, with no failures, errors or skips.
+It prevents delayed Zotero publication after leaving Word, protects reserved
+citation chords and preserves focused native text editing. Two pre-fix
+regressions reproduce the metadata mutation; both pass in the accepted source.
+Seven changed Dart files pass strict static checks. All 6,131 tracked
+package/application inputs remain unchanged during the accepted run.
+
+Earlier totals below retain their recorded source scopes and are not added to
+this follow-up. The new source-continuity audit separately verifies incoming
+Word/Mail evidence and identifies exactly which older inputs changed. No
+GitHub Actions queue or external converter replay is claimed by this increment.
+
+
 ## 21 November 2026 — table margins and complete captured intake
 
 The [table-layout qualification](validation/zotero-table-layout-20261121/README.md)
