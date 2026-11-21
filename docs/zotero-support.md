@@ -420,6 +420,18 @@ distinguishes local callback/model/editor checks, actual LibreOffice file
 conversion, and the remaining installed Zotero/Word/LibreOffice plugin tests.
 Those scopes must not be treated as complete application parity.
 
+The nested-table qualification used LibreOfficeDev 26.8.0.0.alpha0
+(`2c87e51e`). A direct Quds ODT carrier converted to DOCX preserved three
+nested tables, four active citations, merged cells, an image and list labels
+`4., 5.` through import and three further Quds saves. The separate
+DOCX → ODT → DOCX route changed those list labels to `4., 1.`; a flat-list
+control reproduced the same change. This is a recorded limit of that converter
+route and version, not an accepted numbering result. The
+[nested-table work record](validation/zotero-nested-tables-20261121/README.md)
+retains both outcomes and the exact synthetic fixtures. Use the direct ODT
+carrier when reproducing the passing route; installed-plugin and release-version
+acceptance still need their own checks.
+
 ### Combine directly adjacent citations during Refresh
 
 **Refresh citations** and **Refresh all with Zotero** let Zotero combine citation

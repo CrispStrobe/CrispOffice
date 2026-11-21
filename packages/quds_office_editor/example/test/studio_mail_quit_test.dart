@@ -157,10 +157,15 @@ final class _DraftOwner {
   bool disposed = false;
 
   Future<void> save(StudioMailDraft draft) async {
+    // Native callbacks can complete while a test pump owns its async guard.
+    expectSync(disposed, isFalse);
     events.add('save started');
-    if (disposed) throw StateError('Draft owner is already closed');
     await gate?.future;
-    if (disposed) throw StateError('Draft owner closed during a write');
+    expectSync(
+      disposed,
+      isFalse,
+      reason: 'The account must outlive its draft write.',
+    );
     if (fail) {
       events.add('save failed');
       throw StateError('Draft store unavailable');

@@ -453,6 +453,8 @@ void main() {
 
         // Reopen with no provider or credential source. Only the owned local
         // repository and production sync dialog/reader are involved.
+        await tester.pumpWidget(const SizedBox.shrink());
+        await tester.pump();
         final owner = await awaitOutboxOperation(
           tester,
           harness.open(identity),
@@ -462,8 +464,6 @@ void main() {
         });
         final cache = (owner as StudioMailMailboxStoreOwner).mailboxStore;
         final sync = cache as StudioMailSyncStore;
-        await tester.pumpWidget(const SizedBox.shrink());
-        await tester.pump();
         await tester.pumpWidget(
           MaterialApp(
             home: Builder(
