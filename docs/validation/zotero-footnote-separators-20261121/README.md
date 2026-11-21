@@ -1,0 +1,72 @@
+# Zotero active footnote separators — implementation and qualification
+
+This continuation advances the first remaining milestone in the
+[Zotero parity roadmap](../../roadmaps/zotero/word-processor-parity.md): modeled
+active footnote separators, consistent pagination and rendering, and native
+file persistence. The implementation and its qualification are in progress at
+this checkpoint. No completed-test or installed-plugin acceptance is implied.
+
+## Reconciled starting point
+
+The starting remote main was `52e72ca0b5677549f31742faae457f08df05759b`.
+The captured inventory covers nine fork branches, all 346 PR heads, and four
+canonical upstream branches. After merging the captured Mail keyboard-triage
+planning head, the 359 observations resolve to **345 ancestors and 14 verified
+historical replacements**, with zero uncovered observations. The replacements
+were rechecked against their full trees or exact changed paths using the
+existing reproducible intake verifier; they are not treated as ordinary
+ancestry. All recent Zotero, Word, editor and Mail implementation heads are
+already represented.
+
+The raw advertised fork/upstream refs, bounded inventory and fresh replay are
+under `intake/`. The replay is reproducible with:
+
+```sh
+python3 docs/validation/word-vba-numeric-20261121/intake/replay_intake.py \
+  --repo . \
+  --inventory docs/validation/zotero-footnote-separators-20261121/intake/remote-inventory.json \
+  --proofs docs/validation/word-vba-numeric-20261121/intake/historical-proofs.json \
+  --head HEAD --output /path/to/replay.json
+```
+
+The durable work branch is `codex/zotero-footnote-separators-20261121`.
+Its first remote reconciliation checkpoint is
+`efabe221abc781c05073b209051e3a1e380b5c05`. Local Git has no write credential;
+checkpoints use the authenticated GitHub connector with expected-head,
+non-forced ref updates, followed by local fetch/read-back. Ordinary merge
+parents preserve incoming ancestry. No remote branch is deleted or rewritten.
+
+## Scope and qualification plan
+
+- A document-wide separator model records both gaps, line thickness, relative
+  width, physical alignment, RGB color and solid/hidden line style.
+- Native layout reserves exactly the modeled height on pages with footnotes,
+  including continuation pages. Editor and PDF draw the supplied geometry.
+- The bounded ODT reader accepts explicit supported active geometry and rejects
+  unsupported or incompatible used page layouts. Native ODT output emits it.
+- DOCX has a separate bounded canonical persistence mapping. Arbitrary imported
+  special-note contents retain their existing opaque preservation behavior.
+- Focused engine/editor checks, repeated Zotero file lifecycles, strict scoped
+  analysis and actual local LibreOffice conversions will be recorded with
+  source and runtime identity before publication.
+
+The pinned runtime is Flutter 3.47.8 / Dart 3.13.7. Its official archive and
+locked hosted dependencies were verified by SHA-256; the existing workspace
+lockfile was enforced without modification. GitHub Actions, checks and status
+queues are not part of the acceptance path and are not awaited.
+
+## Observed interoperability boundary
+
+Independent initial LibreOfficeDev 26.8 probes normalize custom DOCX separator
+paragraph borders and spacing to the converter's own default rule. This failed
+route is retained separately from native DOCX persistence and direct editable
+ODT round trips. It cannot establish general Word/LibreOffice parity. Installed
+Microsoft Word and live Zotero plugin workflows require their own identified
+host qualification; no such run is claimed here.
+
+## Primary format references
+
+- [OASIS OpenDocument 1.4 schema](https://docs.oasis-open.org/office/OpenDocument/v1.4/os/part3-schema/OpenDocument-v1.4-os-part3-schema.html),
+  `style:footnote-sep` and its geometry attributes.
+- [OOXML special footnote references](https://learn.microsoft.com/en-us/dotnet/api/documentformat.openxml.wordprocessing.footnotespecialreference?view=openxml-3.0.1).
+- [LibreOffice DOCX footnote export](https://github.com/LibreOffice/core/blob/master/sw/source/filter/ww8/docxattributeoutput.cxx).

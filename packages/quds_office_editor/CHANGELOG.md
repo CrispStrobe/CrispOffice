@@ -4,6 +4,11 @@ All notable changes to `quds_office_editor` are documented here.
 
 ## Unreleased
 
+- Add English, German and Arabic help for shared Mail range selection. Search
+  synchronized loaded From/To/Cc headers by both display names and mailbox
+  addresses, retaining multiple-address and empty-name behavior without
+  including Bcc or triggering body reads or provider work.
+
 - Align Word's table-cell ruler fallback with the actual table margin, including
   zero and narrow cells. Native layout now honors persisted margins throughout
   research tables, merged/nested cells and authored-note tables.

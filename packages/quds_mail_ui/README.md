@@ -30,7 +30,16 @@ remains available when filtering hides every loaded row. Rows are virtualized.
 
 Arrow Up/Down and Home/End move list focus; Enter explicitly activates
 the focused row. Space activates it when bulk selection is unavailable, or
-checks it when a bulk-action callback is supplied. Editing the search field
+checks it when a bulk-action callback is supplied. With bulk actions available,
+Shift+Up/Down/Home/End extends or contracts a visible checked range.
+Shift+Space and Shift+click on a row or checkbox use the same stable anchor.
+A normal cursor move or checkbox/Space toggle starts a new range; independent
+checks remain selected when that range contracts. Query, sort, conversation
+folding and host updates reset the anchor. Hidden or unloaded messages never
+join the range. The keyboard help button explains selection in host-localized
+text. Checking a range does not open mail or submit any operation.
+
+Editing the search field
 keeps its normal editing keys.
 Focus and opened-message selection are separate stable identities. Changing
 `scopeId` resets query, filters, focus and scrolling. Hosts can retain the

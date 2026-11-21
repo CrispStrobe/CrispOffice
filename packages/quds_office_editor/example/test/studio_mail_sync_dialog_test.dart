@@ -689,6 +689,104 @@ void main() {
     expect(tester.takeException(), isNull);
   });
 
+  for (final connected in [false, true]) {
+    testWidgets(
+      '${connected ? 'connected' : 'offline'} sync searches '
+      'complete visible addresses',
+      (tester) async {
+        final original = _header(1);
+        final target = MailHeaderRecord(
+          id: original.id,
+          remote: original.remote,
+          envelope: MailEnvelope(
+            subject: 'Address search target',
+            from: const [
+              MailAddress('writer@example.test', displayName: 'Alice Author'),
+              MailAddress('second-writer@example.test', displayName: ''),
+            ],
+            to: const [
+              MailAddress('team@example.test', displayName: 'Project Team'),
+              MailAddress('recipient@example.test'),
+            ],
+            cc: const [
+              MailAddress('reviewer@example.test', displayName: 'Review Board'),
+              MailAddress('copy@example.test', displayName: ''),
+            ],
+            bcc: const [
+              MailAddress('hidden@example.test', displayName: 'Hidden Person'),
+            ],
+            sentAt: _savedAt,
+          ),
+          flags: original.flags,
+        );
+        final store = _Store()..save([target, _header(2)], hasMore: false);
+        var syncs = 0;
+        var downloads = 0;
+        await _show(
+          tester,
+          store,
+          run: connected
+              ? ({required cancellation, required onProgress}) async {
+                  syncs++;
+                  return _report(MailSyncRunStatus.completed);
+                }
+              : null,
+          download: connected
+              ? ({
+                  required headers,
+                  required cancellation,
+                  required onProgress,
+                }) async {
+                  downloads++;
+                  return downloaded(headers.length);
+                }
+              : null,
+        );
+        final initialReads = List<(MailMailboxId, int, int)>.of(store.reads);
+        for (final query in [
+          'from:writer@example.test',
+          'from:"Alice Author"',
+          'from:second-writer@example.test',
+          'to:team@example.test',
+          'to:"Project Team"',
+          'to:recipient@example.test',
+          'cc:reviewer@example.test',
+          'cc:"Review Board"',
+          'cc:copy@example.test',
+          'from:writer@example.test AND to:"Project Team" AND cc:"Review Board"',
+        ]) {
+          await tester.enterText(_key('mail-list-search'), query);
+          await tester.pump();
+          expect(_key(target.id.value), findsOneWidget, reason: query);
+          expect(_key('saved-2'), findsNothing, reason: query);
+          expect(_key('mail-list-search-error'), findsNothing);
+        }
+        for (final query in [
+          'hidden@example.test',
+          '"Hidden Person"',
+          'from:hidden@example.test',
+          'to:hidden@example.test',
+          'cc:hidden@example.test',
+        ]) {
+          await tester.enterText(_key('mail-list-search'), query);
+          await tester.pump();
+          expect(_key(target.id.value), findsNothing, reason: query);
+          expect(_key('saved-2'), findsNothing, reason: query);
+          expect(_key('mail-list-search-error'), findsNothing);
+        }
+        await tester.enterText(_key('mail-list-search'), '');
+        await tester.pump();
+        expect(_key(target.id.value), findsOneWidget);
+        expect(_key('saved-2'), findsOneWidget);
+        expect(store.reads, initialReads);
+        expect(store.bodyReads, 0);
+        expect(syncs, 0);
+        expect(downloads, 0);
+        expect(tester.takeException(), isNull);
+      },
+    );
+  }
+
   testWidgets('connected folder starts only explicitly and shows saved state', (
     tester,
   ) async {

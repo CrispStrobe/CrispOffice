@@ -667,6 +667,16 @@ class _StudioMailSyncDialogState extends State<StudioMailSyncDialog> {
     };
   }
 
+  // Keep visible names and mailbox addresses searchable in every header group.
+  // Callers supply only From, To and Cc, never private envelope recipients.
+  static String _visibleAddresses(List<MailAddress> addresses) => addresses
+      .map(
+        (address) => address.displayName?.isNotEmpty == true
+            ? '${address.displayName} <${address.address}>'
+            : address.address,
+      )
+      .join(', ');
+
   Widget _messages() => MailMessageList(
     key: _listKey,
     scopeId: '${_mailbox?.id.value}:$_offset',
@@ -686,11 +696,9 @@ class _StudioMailSyncDialogState extends State<StudioMailSyncDialog> {
           messageId: header.envelope.messageId,
           inReplyTo: header.envelope.inReplyTo,
           references: header.envelope.references,
-          sender: header.envelope.from
-              .map((address) => address.displayName ?? address.address)
-              .join(', '),
-          to: header.envelope.to.map((address) => address.address).join(', '),
-          cc: header.envelope.cc.map((address) => address.address).join(', '),
+          sender: _visibleAddresses(header.envelope.from),
+          to: _visibleAddresses(header.envelope.to),
+          cc: _visibleAddresses(header.envelope.cc),
           date: header.envelope.sentAt,
           dateLabel: studioMailListDate(
             header.envelope.sentAt,
