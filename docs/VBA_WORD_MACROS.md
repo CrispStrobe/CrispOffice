@@ -151,6 +151,7 @@ geometry has its separate mapping below.
 | `range.Font.Underline = value` | `docx.runFormat` | `underline`, one of the 18 documented `WdUnderline` styles |
 | `range.Font.StrikeThrough = value` | `docx.runFormat` | `strike: value` |
 | `range.Font.SmallCaps = value` | `docx.runFormat` | `smallCaps: value`; `True` also writes an explicit native AllCaps-off override |
+| `range.Font.AllCaps = value` | `docx.runFormat` | `allCaps: value`; `True` also writes an explicit native SmallCaps-off override |
 | `range.Font.Superscript = value` | `docx.runFormat` | `superscript: value` |
 | `range.Font.Subscript = value` | `docx.runFormat` | `subscript: value` |
 | `range.HighlightColorIndex = value` | `docx.runFormat` | `highlight`: the fixed palette RGB color, or `null` for `wdNoHighlight` |
@@ -1030,7 +1031,7 @@ Paragraph-format operations can target an empty paragraph.
 
 | Property | Accepted value |
 | --- | --- |
-| `Font.Bold`, `Font.Italic`, `Font.StrikeThrough`, `Font.SmallCaps`, `Font.Superscript`, `Font.Subscript`, `KeepTogether`, `PageBreakBefore` | Actual `Boolean`; numeric `-1`/`0` and Strings require explicit conversion |
+| `Font.Bold`, `Font.Italic`, `Font.StrikeThrough`, `Font.SmallCaps`, `Font.AllCaps`, `Font.Superscript`, `Font.Subscript`, `KeepTogether`, `PageBreakBefore` | Actual `Boolean`; numeric `-1`/`0` and Strings require explicit conversion |
 | `Font.Underline` | Exact numeric member of `WdUnderline`, including all 18 named constants; `True` is not an underline enum |
 | `Font.Size` | Actual finite number from `0.5` through `1638`, in exact half-point increments |
 | `Font.Name`, `Font.NameBi` | Nonempty XML-safe String; control whitespace in font names is unsupported |
@@ -1386,8 +1387,8 @@ and [NIST's exact inch definition](https://www.nist.gov/pml/owm/si-units-length)
 Setting it to `True` explicitly clears native `w:caps`, including a value
 inherited from a style, because Word makes small capitals and all capitals
 mutually exclusive. Setting it to `False` changes only small-cap formatting;
-an unrelated native all-cap property is preserved. `Font.AllCaps` remains
-unsupported because the current live model does not render that property.
+an unrelated native all-cap property is preserved. `Font.AllCaps` now selects
+full-size capital display with the reciprocal behavior described below.
 
 `Superscript = True` selects native superscript and clears subscript;
 `Subscript = True` does the reverse. A `False` assignment clears only the named
@@ -1454,6 +1455,70 @@ surrogate slices internally for the existing string intrinsics, but malformed
 text cannot be emitted to the Word plan. Invalid selectors, values, or source
 features report the ordinary positioned `OfficeVbaCompileException`; a failed
 compilation returns no partial macro.
+
+### All-capital display without changing source text
+
+`Font.AllCaps` accepts `True` or `False` on the same explicit paragraph text
+ranges, typed Font aliases, named ByVal helpers and independent header/footer
+selectors as the existing font properties. It emits one `docx.runFormat`
+operation with Boolean `allCaps`. The current text must be nonempty; the
+paragraph mark and future insertion formatting remain outside the selected
+text range.
+
+```vb
+Sub Main()
+    With ActiveDocument.Paragraphs(1).Range.Font
+        .AllCaps = True
+    End With
+    ThisDocument.Paragraphs(2).Range.Font.AllCaps = False
+End Sub
+```
+
+An explicit true assignment turns the other capitalization mode off:
+`AllCaps = True` clears SmallCaps, and `SmallCaps = True` clears AllCaps.
+An explicit false assignment clears only its own mode. Both same-value and
+false assignments become direct native overrides, so an inherited style
+cannot revive the cleared flag after save/reopen. Omitted properties retain
+their inheritance. The native operation permits consistent explicit pairs but
+refuses a single call requesting both modes true before mutating any run.
+
+The live model now imports `w:caps`, including document defaults and paragraph
+or character style chains. Sparse DOCX export owns only its native `w:val`,
+preserving unrelated attributes, foreign namespace lookalikes and style XML.
+Existing package and normalized-range guards reject ambiguous duplicates or
+relevant markup-compatibility alternatives before a run can split. Failed
+plans leave saved bytes, document revision and recording unchanged.
+
+Layout uses the existing full Unicode uppercase mapping at the original font
+size. For example, authored `Straße` displays as `STRASSE`; its source remains
+six UTF-16 units. Expansions, supplementary characters and combining clusters
+retain their original source spans for selection, caret placement, editing,
+clipboard and PDF logical text. PDF painting uses the capital glyphs while
+text extraction keeps the authored letters. Graphemes spanning runs with
+different properties retain the existing conservative display behavior rather
+than being partially transformed. Contradictory imported flags use full-size
+capitals for display until an explicit edit resolves the selected mode.
+
+The [complete BAS example](../packages/quds_office_engine/example/macros/word_all_caps.bas)
+demonstrates typed/named helpers, mode switching and an independent primary
+header. It needs two nonempty body paragraphs and one nonempty primary header
+paragraph and emits seven operations. Use the existing `compile-word-vba`,
+`validate-word-vba` and `run-word-vba` commands. Native DOCM VBA-project parts
+remain opaque and inert.
+
+Existing Zotero rich-text output that explicitly requests SmallCaps clears an
+inherited AllCaps flag, so citation Refresh still displays its requested small
+capitals. Ordinary spans retain host AllCaps. This does not add AllCaps markup
+to CSL/HTML or new ODT/RTF capitalization interchange.
+
+This is a Boolean setter and display contract, with Unicode default casing
+rather than locale-specific casing or font-specific OpenType capital features.
+Numeric toggles, `wdUndefined`, property reads and arbitrary text ranges remain
+unsupported. It does not claim installed Microsoft Word differential or exact
+font-metric parity. See [local qualification](validation/word-vba-all-caps-20261121/README.md)
+and Microsoft's [AllCaps](https://learn.microsoft.com/en-us/office/vba/api/word.font.allcaps)
+and [SmallCaps](https://learn.microsoft.com/en-us/office/vba/api/word.font.smallcaps)
+contracts.
 
 ### Proofing and kerning controls
 

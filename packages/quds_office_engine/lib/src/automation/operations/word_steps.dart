@@ -63,6 +63,7 @@ const wordOperations = <String, List<String>>{
     'noProof',
     'underline',
     'strike',
+    'allCaps',
     'smallCaps',
     'superscript',
     'subscript',
@@ -344,7 +345,13 @@ void applyStep(
       final bold = s.has('bold') ? s.boolean('bold') : null;
       final italic = s.has('italic') ? s.boolean('italic') : null;
       final strike = s.has('strike') ? s.boolean('strike') : null;
+      final allCaps = s.has('allCaps') ? s.boolean('allCaps') : null;
       final smallCaps = s.has('smallCaps') ? s.boolean('smallCaps') : null;
+      if (allCaps == true && smallCaps == true) {
+        throw ArgumentError(
+          'allCaps and smallCaps cannot both be enabled in one runFormat operation',
+        );
+      }
       if (s.has('superscript') && s.has('subscript')) {
         throw ArgumentError(
           'Set only one of superscript or subscript per runFormat operation',
@@ -380,6 +387,7 @@ void applyStep(
       final noProof = s.has('noProof') ? s.boolean('noProof') : null;
       if (kerning != null ||
           noProof != null ||
+          allCaps != null ||
           smallCaps != null ||
           font != null ||
           csFont != null ||
@@ -387,8 +395,8 @@ void applyStep(
         _validateScalarPackageSource(doc, {
           if (kerning != null) 'kern',
           if (noProof != null) 'noProof',
-          if (smallCaps != null) 'smallCaps',
-          if (smallCaps == true) 'caps',
+          if (smallCaps != null || allCaps == true) 'smallCaps',
+          if (allCaps != null || smallCaps == true) 'caps',
           if (font != null || csFont != null) 'rFonts',
           if (language != null) 'lang',
         });
@@ -432,17 +440,17 @@ void applyStep(
                 'lang',
               );
             }
-            if (smallCaps != null) {
+            if (smallCaps != null || allCaps == true) {
               _validateScalarPropertySource(
                 run.properties.sourcePropertiesXml,
                 'smallCaps',
               );
-              if (smallCaps) {
-                _validateScalarPropertySource(
-                  run.properties.sourcePropertiesXml,
-                  'caps',
-                );
-              }
+            }
+            if (allCaps != null || smallCaps == true) {
+              _validateScalarPropertySource(
+                run.properties.sourcePropertiesXml,
+                'caps',
+              );
             }
           }
           offset = end;
@@ -463,26 +471,24 @@ void applyStep(
             r.importedValues = WordPropertyIo.runValues(r);
           }
         }
+        // Word enabling either capitalization mode explicitly disables the
+        // other, including an inherited true value. A false assignment owns
+        // only its named property and retains the other mode unchanged.
         if (smallCaps == true) {
-          // Word SmallCaps=True explicitly turns AllCaps off. caps is an
-          // opaque property in the current live model, so preserve all other
-          // source/direct properties and add a native false override, including
-          // when caps was inherited from a character or paragraph style.
-          final source = WordPropertyIo.parse(
-            WordSerializer().runPropertiesXml(r),
-            'rPr',
-          );
-          WordPropertyIo.writeAllCapsOff(source);
-          r.sourcePropertiesXml = XmlDocument(
-            root: source,
-          ).toXmlString(declaration: false);
-          r.importedValues = WordPropertyIo.runValues(r);
+          r.allCaps = false;
+          r.importedValues?.remove('caps');
           r.explicitProperties.add('caps');
+        }
+        if (allCaps == true) {
+          r.smallCaps = false;
+          r.importedValues?.remove('smallCaps');
+          r.explicitProperties.add('smallCaps');
         }
         for (final entry in <String, String>{
           'bold': 'b',
           'italic': 'i',
           'strike': 'strike',
+          'allCaps': 'caps',
           'smallCaps': 'smallCaps',
           'superscript': 'vertAlign',
           'subscript': 'vertAlign',
@@ -504,6 +510,7 @@ void applyStep(
         if (bold != null) r.bold = bold;
         if (italic != null) r.italic = italic;
         if (strike != null) r.strike = strike;
+        if (allCaps != null) r.allCaps = allCaps;
         if (smallCaps != null) r.smallCaps = smallCaps;
         if (superscript != null) {
           if (superscript) {
