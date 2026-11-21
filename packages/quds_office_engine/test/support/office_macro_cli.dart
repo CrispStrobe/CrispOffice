@@ -67,7 +67,9 @@ Future<String> _compile() async {
   final result = await _run(_dartExecutable(), <String>[
     'compile',
     'kernel',
-    ..._packagesArgument(),
+    // `dart compile` takes a file path here, not the VM's file: URI.
+    if (Platform.packageConfig case final String config)
+      '--packages=${Uri.parse(config).toFilePath()}',
     _script,
     '-o',
     kernel,

@@ -11,7 +11,7 @@ session because none could be started.**
 - Captured main: `1ef5f7f88705e05bb2ebd2f5b639460dab52c3d0`.
 - Reviewed incoming-work checkpoint: `4191be02ac9c7117e05ff4a052a5c92fbcfbf4b4`.
 - Initial integrated search checkpoint: `580da80ca0f4e67a34490eb1817e5b105edc7a9c`.
-- Final executable-source/test checkpoint: `c2b8138df334d1145003ef62bc8e395d901fd3ba`.
+- Final Mail feature source/test checkpoint: `c2b8138df334d1145003ef62bc8e395d901fd3ba`.
 - Preserved final core branch head: `3e6374115c10a92fdb4b82734c1bc2b009210794`.
 - Remote implementation branch: `work/mail-triage-20261121`.
 
@@ -33,6 +33,14 @@ appropriate setup timeouts. Generated test directories were omitted. The WIP
 cross-test kernel cache was replaced by the reviewed per-file implementation
 because its key, cleanup and lock behavior could reuse or remove another
 test's kernel. Both incoming branch heads remain in commit ancestry.
+
+A later publication check also captured the compile-only package-config path
+fix at `41c363f40cdcdfbcc22a8932ea325ce87872f5a0` and documentation-only Zotero
+PR #299 at `d9bfa44022781f0dd4493a923ca9f20316dc59f0`. The path fix is applied
+to the safe helper; all four Zotero documentation files are preserved without
+claiming native ODT implementation. Their original heads remain in ancestry.
+The final-cutoff section of the intake report records this later snapshot.
+Mail feature source and test blob IDs below remain unchanged.
 
 ## What changed
 

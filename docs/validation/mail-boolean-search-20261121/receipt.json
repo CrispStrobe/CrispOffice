@@ -115,5 +115,20 @@
     "exec-server rejected request (-32603): No such file or directory (os error 2)"
   ],
   "recovery": "Removal of newly cloned docs/apps could not launch in the sandbox. Escalation was rejected by the configured approval policy. No existing user work was deleted.",
-  "github_actions": "not queried, awaited, or rerun; checkpoints use [skip ci]"
+  "github_actions": "not queried, awaited, or rerun; checkpoints use [skip ci]",
+  "late_intake": {
+    "main": "1ef5f7f88705e05bb2ebd2f5b639460dab52c3d0",
+    "live_branches": 24,
+    "open_pull_requests": [
+      {
+        "number": 299,
+        "head": "d9bfa44022781f0dd4493a923ca9f20316dc59f0",
+        "disposition": "preserve four documentation-only files; no native ODT capability claimed"
+      }
+    ],
+    "updated_cli_head": "41c363f40cdcdfbcc22a8932ea325ce87872f5a0",
+    "cli_resolution": "apply compile-only package config URI to path fix to the reviewed per-file helper",
+    "unchanged_word_branch": "1ef5f7f88705e05bb2ebd2f5b639460dab52c3d0",
+    "runtime_validation": "not_run"
+  }
 }

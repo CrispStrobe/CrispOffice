@@ -196,3 +196,30 @@ Read endpoints used for the audit:
 - `GET /repos/CrispStrobe/quds_office_suite/pulls?state=open&per_page=100`
 - `GET /repos/CrispStrobe/quds_office_suite/pulls?state=all&sort=updated&direction=desc&per_page=100`
 - Commit-pinned comparisons, individual PRs, commits and file contents.
+
+
+## Final cutoff: concurrent work reconciled
+
+The publication check observed main still at
+`1ef5f7f88705e05bb2ebd2f5b639460dab52c3d0`.
+The live branch collection had 24 entries after concurrent branch housekeeping.
+This continuation did not delete or force-update any branch.
+
+| Newly observed work | Exact head | Disposition |
+| --- | --- | --- |
+| `fix/main-green-20261120` | `41c363f40cdcdfbcc22a8932ea325ce87872f5a0` | Apply its sole new compile-only package-config URI/path correction to our reviewed per-file helper. Retain all earlier safe runner/test changes and WIP/generated-artifact exclusions. Preserve the new head as a parent. |
+| `codex/zotero-native-odt-20261121` / PR #299 | `d9bfa44022781f0dd4493a923ca9f20316dc59f0` | Preserve all four documentation files and their three incremental commits. These specify future native ODT work and retain a 353-reference historical intake; they contain no new application code or tests. Native ODT implementation and qualification remain pending. |
+| `codex/word-vba-text-intrinsics-20261121` | `1ef5f7f88705e05bb2ebd2f5b639460dab52c3d0` | Identical to captured main; no additional content at cutoff. |
+
+The initial zero-open-PR count above belongs to the first capture. PR #299 was
+the single open draft at this later cutoff. Its documentation is integrated as
+documentation, without representing it as a delivered Zotero implementation.
+Its original blocker and earlier unmerged-head observations remain a dated
+record; this section supplies the subsequent reviewed intake disposition.
+
+The package-config correction changes only the arguments to
+`dart compile kernel`: it converts the VM's file URI into a file path. Source
+execution retains the existing VM argument behavior. Independent review
+confirmed the patch context matched exactly once and that no other new files
+were present on that branch. Runtime checks remain unexecuted for the reasons
+recorded above.
