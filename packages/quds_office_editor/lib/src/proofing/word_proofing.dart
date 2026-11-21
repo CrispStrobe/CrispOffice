@@ -4,6 +4,7 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 import 'package:quds_office_engine/quds_office_engine.dart';
+
 import '../l10n/office_plural.dart';
 
 /// A finding together with its exact paragraph, story and input snapshot.
@@ -1703,6 +1704,7 @@ final class WordProofingSession extends ChangeNotifier {
           inline.properties.underline.name,
           inline.properties.strike,
           inline.properties.smallCaps,
+          inline.properties.allCaps,
           inline.properties.color,
           inline.properties.highlight,
           inline.properties.fontSizeHalfPoints,

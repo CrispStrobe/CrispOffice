@@ -95,8 +95,9 @@ results. Source hashes remain unchanged through qualification. Earlier disk
 failures are retained separately. This qualifies the bounded headless engine;
 Flutter UI and installed Office hosts remain unexecuted. See the
 [continuation record](validation/office-vba-continuation-20261120/README.md).
-Full AllCaps rendering, paint provenance for Fill/Line writes, baseline text
-anchors and broader slideshow behavior remain separate work.
+Full AllCaps rendering was subsequently added in the continuation below.
+Paint provenance for Fill/Line writes, baseline text anchors and broader
+slideshow behavior remain separate work.
 
 ### Named helpers and further Word/PowerPoint formatting
 
@@ -267,6 +268,23 @@ reads, installed dictionaries, complex-script size/bold/italic models or Stage 3
 document-aware execution. See the [language/font contract](VBA_WORD_MACROS.md#proofing-language-and-complex-script-font-controls),
 [BAS example](../packages/quds_office_engine/example/macros/word_language_controls.bas)
 and [local qualification](validation/word-vba-language-controls-20261121/README.md).
+
+### Word AllCaps source and display
+
+The Word adapter adds Boolean `Font.AllCaps` assignments, with reciprocal
+SmallCaps exclusion, typed Font aliases, named helpers and independent
+header/footer targets. The native model now imports, resolves, copies and
+sparsely exports `w:caps`. Full-size uppercase display preserves authored text,
+UTF-16 selection ranges and PDF logical text, including Unicode expansions.
+Run equality, comparison and stale Zotero/proofing guards recognize the flag;
+explicit CSL small capitals clear inherited all-capital formatting.
+
+This is another bounded Stage 4 write-only capability. Property reads, numeric
+toggles, locale-specific casing, new ODT/RTF capitalization interchange and
+installed Word-host differential acceptance remain separate work. See the
+[exact contract](VBA_WORD_MACROS.md#all-capital-display-without-changing-source-text),
+[BAS example](../packages/quds_office_engine/example/macros/word_all_caps.bas)
+and [local qualification](validation/word-vba-all-caps-20261121/README.md).
 
 ### Binary source text processing
 
