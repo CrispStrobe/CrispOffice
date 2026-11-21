@@ -4,6 +4,12 @@ All notable changes to `quds_office_engine` are documented here.
 
 ## Unreleased
 
+- Preserve namespace scope when capturing XML fragments: retain inherited
+  prefixes, including QName-only extension references, without allowing a
+  descendant's prefix shadow to overwrite the captured root's identity.
+  Expose an immutable `XmlPullReader.inScopeNamespaces` snapshot and retain
+  local/default namespace declarations through repeated document saves.
+
 - Extend bounded Word VBA with typed section `TextColumns`, named/positional
   `SetCount`, exact point `Spacing` and Boolean `LineBetween` writes. Add guarded
   native uniform-column edits with sparse section ownership, geometry checks,

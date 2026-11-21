@@ -399,7 +399,11 @@ class XmlDocument {
     }
     final List<XmlElement> stack = [];
     XmlElement? root;
-    final Map<String, String> namespaces = {};
+    // Only the capture root's inherited scope belongs on its root. Descendant
+    // declarations remain on their original nodes and must never overwrite
+    // an outer binding. Include QName-only prefixes, not just names encountered
+    // while walking the fragment, so opaque extension markup stays standalone.
+    final namespaces = reader.inScopeNamespaces;
     do {
       switch (reader.eventType) {
         case XmlEventType.startElement:
@@ -408,9 +412,6 @@ class XmlDocument {
             prefix: reader.prefix,
             namespaceUri: reader.namespaceUri,
           );
-          if (reader.namespaceUri.isNotEmpty) {
-            namespaces[reader.prefix] = reader.namespaceUri;
-          }
           for (int i = 0; i < reader.attributeCount; i++) {
             node.attributes.add(
               XmlAttribute(
@@ -420,13 +421,6 @@ class XmlDocument {
                 namespaceUri: reader.attributeNamespace(i),
               ),
             );
-            final prefix = reader.attributePrefix(i);
-            if (prefix.isNotEmpty &&
-                prefix != 'xmlns' &&
-                prefix != 'xml' &&
-                reader.attributeNamespace(i).isNotEmpty) {
-              namespaces[prefix] = reader.attributeNamespace(i);
-            }
           }
           if (stack.isEmpty) {
             root = node;
@@ -444,9 +438,7 @@ class XmlDocument {
               final existing = root!.attributes.where(
                 (attribute) => attribute.qualifiedName == qualifiedName,
               );
-              if (existing.isNotEmpty) {
-                existing.first.value = ns.value;
-              } else {
+              if (existing.isEmpty) {
                 // A declaration's local name can equal a real attribute's
                 // local name, e.g. xmlns:w and w:w on a preferred cell width.
                 // Match its qualified name rather than overwriting w:w.
