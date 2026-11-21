@@ -9,8 +9,10 @@ import 'package:quds_mail_transport/quds_mail_transport.dart';
 import 'package:quds_mail_ui/quds_mail_ui.dart';
 
 import 'studio_chrome.dart';
+import 'studio_credential_biometric_strings.dart';
 import 'studio_credential_settings.dart';
 import 'studio_credential_storage.dart';
+import 'studio_credential_vault_unlock.dart';
 import 'studio_mail_archive_action.dart';
 import 'studio_mail_bulk_status.dart';
 import 'studio_mail_body_download.dart';
@@ -733,26 +735,30 @@ class _StudioMailDialogState extends State<StudioMailDialog>
       candidate = await (widget.draftStoreFactory ?? openStudioMailDraftStore)(
         identity,
       );
-      if (candidate case StudioMailOutboxStore(:final account)
-          when account != identity.account) {
+      if (candidate case StudioMailOutboxStore(
+        :final account,
+      ) when account != identity.account) {
         throw const StudioMailDraftStoreException(
           MailProblemCode.permissionDenied,
         );
       }
-      if (candidate case StudioMailDraftCatalog(:final account)
-          when account != identity.account) {
+      if (candidate case StudioMailDraftCatalog(
+        :final account,
+      ) when account != identity.account) {
         throw const StudioMailDraftStoreException(
           MailProblemCode.permissionDenied,
         );
       }
-      if (candidate case StudioMailMailboxStoreOwner(:final mailboxStore)
-          when mailboxStore.account != identity.account) {
+      if (candidate case StudioMailMailboxStoreOwner(
+        :final mailboxStore,
+      ) when mailboxStore.account != identity.account) {
         throw const StudioMailDraftStoreException(
           MailProblemCode.permissionDenied,
         );
       }
-      if (candidate case StudioMailFlagJournalOwner(:final flagJournal)
-          when flagJournal.account != identity.account) {
+      if (candidate case StudioMailFlagJournalOwner(
+        :final flagJournal,
+      ) when flagJournal.account != identity.account) {
         throw const StudioMailDraftStoreException(
           MailProblemCode.permissionDenied,
         );
@@ -2891,20 +2897,26 @@ class _StudioMailDialogState extends State<StudioMailDialog>
     if (!mounted || _dialogOpen || _credentialPending) return;
     _vaultUnlockPromptOpen = true;
     setState(() => _dialogOpen = true);
-    bool unlocked = false;
+    var outcome = StudioVaultUnlockOutcome.cancelled;
     try {
-      unlocked =
-          await showDialog<bool>(
-            context: context,
-            barrierDismissible: false,
-            builder: (_) => _StudioMailVaultUnlockDialog(manager: manager),
-          ) ??
-          false;
+      // Touch ID first when turned on; the master password otherwise.
+      outcome = await unlockStudioCredentialVault(
+        context,
+        manager: manager,
+        strings: widget.strings,
+      );
     } finally {
       _vaultUnlockPromptOpen = false;
       if (mounted) setState(() => _dialogOpen = false);
     }
-    if (unlocked && mounted) await _loadCredentials();
+    if (outcome == StudioVaultUnlockOutcome.cancelled || !mounted) return;
+    await _loadCredentials();
+    if (mounted &&
+        outcome == StudioVaultUnlockOutcome.unlockedTouchIdNotEnabled) {
+      setState(
+        () => _credentialError = widget.strings.vaultTouchIdEnableFailed,
+      );
+    }
   }
 
   Future<void> _openCredentialStorage() async {
@@ -2916,7 +2928,9 @@ class _StudioMailDialogState extends State<StudioMailDialog>
     var changed = false;
     try {
       final open =
-          widget.credentialSettingsOpener ?? showStudioCredentialSettings;
+          widget.credentialSettingsOpener ??
+          (context) =>
+              showStudioCredentialSettings(context, strings: widget.strings);
       changed = await open(context);
     } on Object {
       if (mounted) {
@@ -4169,102 +4183,5 @@ class _StudioMailDialogState extends State<StudioMailDialog>
           ],
         ),
     ],
-  );
-}
-
-class _StudioMailVaultUnlockDialog extends StatefulWidget {
-  const _StudioMailVaultUnlockDialog({required this.manager});
-
-  final StudioCredentialStorage manager;
-
-  @override
-  State<_StudioMailVaultUnlockDialog> createState() =>
-      _StudioMailVaultUnlockDialogState();
-}
-
-class _StudioMailVaultUnlockDialogState
-    extends State<_StudioMailVaultUnlockDialog> {
-  final _password = TextEditingController();
-  bool _busy = false;
-  String? _error;
-
-  @override
-  void dispose() {
-    _password.dispose();
-    super.dispose();
-  }
-
-  Future<void> _unlock() async {
-    if (_busy) return;
-    final password = _password.text;
-    if (password.isEmpty) {
-      setState(() => _error = 'Enter the master password.');
-      return;
-    }
-    setState(() {
-      _busy = true;
-      _error = null;
-    });
-    try {
-      await widget.manager.unlockVault(password, create: false);
-      if (mounted) Navigator.of(context).pop(true);
-    } on Object {
-      if (mounted) {
-        setState(() => _error = 'Incorrect master password or damaged vault.');
-      }
-    } finally {
-      if (mounted) setState(() => _busy = false);
-    }
-  }
-
-  @override
-  Widget build(BuildContext context) => PopScope<bool>(
-    canPop: !_busy,
-    child: AlertDialog(
-      title: const Text('Unlock saved accounts'),
-      content: ConstrainedBox(
-        constraints: const BoxConstraints(maxWidth: 420),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            const Text(
-              'Saved mail accounts use the encrypted credential vault. '
-              'Enter its master password. Wrong passwords or damaged vaults '
-              'leave the saved accounts untouched.',
-            ),
-            const SizedBox(height: 12),
-            TextField(
-              key: const ValueKey('studio-mail-vault-password'),
-              controller: _password,
-              obscureText: true,
-              autofocus: true,
-              enabled: !_busy,
-              onSubmitted: (_) => _unlock(),
-              decoration: const InputDecoration(labelText: 'Master password'),
-            ),
-            if (_error != null)
-              Padding(
-                padding: const EdgeInsets.only(top: 12),
-                child: Text(
-                  _error!,
-                  style: TextStyle(color: Theme.of(context).colorScheme.error),
-                ),
-              ),
-          ],
-        ),
-      ),
-      actions: [
-        TextButton(
-          onPressed: _busy ? null : () => Navigator.of(context).pop(false),
-          child: const Text('Cancel'),
-        ),
-        FilledButton(
-          key: const ValueKey('studio-mail-vault-unlock'),
-          onPressed: _busy ? null : _unlock,
-          child: Text(_busy ? 'Unlocking…' : 'Unlock'),
-        ),
-      ],
-    ),
   );
 }

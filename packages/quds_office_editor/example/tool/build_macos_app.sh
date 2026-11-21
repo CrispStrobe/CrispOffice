@@ -338,13 +338,18 @@ if [[ "$SIGN_MODE" == adhoc ]]; then
   fi
 else
   SIGN_ARGS=(--force --sign "$SIGN_IDENTITY" --options runtime --timestamp)
-  # Release entitlements plus the identifiers the profile authorizes (the
-  # data protection keychain used for mail credentials needs them).
+  # Release entitlements plus the identifiers and keychain group the profile
+  # authorizes (the data protection keychain used for mail credentials and
+  # Touch ID vault unlock needs them). The group lives only here, not in the
+  # Runner entitlements: Xcode refuses to ad hoc sign an app that claims a
+  # keychain group, and macOS kills such an app without an embedded profile.
   ENTITLEMENTS="$SIGN_OUTPUT/entitlements.plist"
   cp "$EXAMPLE/macos/Runner/Release.entitlements" "$ENTITLEMENTS"
   /usr/libexec/PlistBuddy \
     -c "Add :com.apple.application-identifier string $TEAM_ID.$BUNDLE_ID" \
-    -c "Add :com.apple.developer.team-identifier string $TEAM_ID" "$ENTITLEMENTS"
+    -c "Add :com.apple.developer.team-identifier string $TEAM_ID" \
+    -c "Add :keychain-access-groups array" \
+    -c "Add :keychain-access-groups:0 string $TEAM_ID.$BUNDLE_ID" "$ENTITLEMENTS"
 fi
 for library in "${LIBRARIES[@]}"; do
   # The pinned spaCy library already carries the ad hoc signature it was
@@ -532,6 +537,8 @@ done
 if [[ "$SIGN_MODE" != adhoc ]]; then
   grep -q "$TEAM_ID.$BUNDLE_ID" <<<"$entitlements" \
     || { echo "application identifier entitlement missing" >&2; exit 1; }
+  grep -q "keychain-access-groups" <<<"$entitlements" \
+    || { echo "keychain access group entitlement missing" >&2; exit 1; }
   signature="$(codesign -dvv "$SIGNED_APP" 2>&1)"
   grep -q "flags=0x10000(runtime)" <<<"$signature" \
     || { echo "hardened runtime missing" >&2; exit 1; }

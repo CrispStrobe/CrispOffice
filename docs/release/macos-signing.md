@@ -27,9 +27,33 @@ spaCy library. Signed modes copy the built app to `QUDS_SIGN_OUTPUT`
 Xcode project),
 embed the provisioning profile and sign inside out: each dylib, each
 framework, then the app with `Release.entitlements` plus
-`com.apple.application-identifier` and `com.apple.developer.team-identifier`
-taken from the profile. Hardened runtime and secure timestamps are on in both
+`com.apple.application-identifier`, `com.apple.developer.team-identifier` and
+`keychain-access-groups` (`TEAM_ID.<bundle id>`) taken from the profile.
+Hardened runtime and secure timestamps are on in both
 signed modes; App Sandbox stays on in every mode.
+
+### Keychain access group (Touch ID vault unlock)
+
+Touch ID unlock of the encrypted credential vault keeps the vault key in the
+data protection keychain, which needs a team-signed, profile-backed build. The
+keychain group is therefore added only by the signed modes above (Mac App
+Store and Developer ID profiles authorize `keychain-access-groups: TEAM_ID.*`).
+It is deliberately not in `Runner/*.entitlements`:
+
+- Xcode refuses to build the default ad hoc ("Sign to Run Locally")
+  configuration with it ("Runner has entitlements that require signing with a
+  development certificate"), which would break every `flutter build macos`;
+- macOS kills an app that claims a keychain group without an embedded
+  provisioning profile (measured on macOS 26 for ad hoc and for Apple
+  Development signatures), so `build_macos_local.sh` and the ad hoc CI
+  workflow must not add it either.
+
+Ad hoc and profile-less builds get errSecMissingEntitlement (-34018) from the
+data protection keychain; the app detects this with a write probe and hides
+Touch ID unlock with an explanation. To try Touch ID from Xcode, select a
+development team for the Runner target and add the Keychain Sharing
+capability locally (Xcode then provisions a development profile); do not
+commit that change.
 
 Pass `--build-name X.Y.Z --build-number N` through to Flutter for releases. App
 Store Connect rejects a repeated `CFBundleVersion` and a repeated
