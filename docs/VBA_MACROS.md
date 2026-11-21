@@ -512,7 +512,8 @@ ranges, and default members are not translated into approximate operations.
 These case-insensitive functions operate on source String values, including a
 supported scalar `Variant` currently containing a String. They can be nested,
 used with array elements, passed to helpers, or used to compute an explicit
-worksheet/range selector. They do not read workbook values.
+worksheet/range selector. All three VBA adapters share these functions. They
+operate on source-known values and do not read document contents.
 
 | Signature | Result and bounds |
 | --- | --- |
@@ -561,10 +562,11 @@ evaluated. Wrong arity and statically incompatible types produce `vba_type_error
 including in unused code. Value-dependent
 errors in unexecuted branches are not evaluated.
 
-Only these four signatures are added. Unsuffixed `Left`, `Right`, and `Mid`,
+The original substring slice provides these four signatures; the binary text
+functions below extend it. Unsuffixed `Left`, `Right`, and `Mid`,
 `LenB`/byte variants, `Len$`, named arguments, VBA qualification, and the
 assignable `Mid$` statement remain unsupported. The `$` suffix is recognized
-only for the three implemented intrinsic names; arbitrary variable and
+only for the implemented substring and Trim-family names; arbitrary variable and
 procedure type suffixes are not enabled. Builtin names cannot be shadowed.
 Function calls remain disallowed in constants and fixed-array bounds.
 
@@ -590,6 +592,87 @@ dart run tool/macros/office_macro.dart compile-vba \
 behavior, intentional dialect restrictions, and separately recorded Office
 host observations. The current string corpus has no Office host execution
 provenance; VM/JavaScript agreement establishes portability of this subset.
+
+### Binary search, replacement, and trimming
+
+The shared language also accepts the following case-insensitive names. Optional
+arguments can be omitted from the **end** of a call; supply explicit defaults
+to reach a later argument. Named arguments and interior omitted positions are
+not supported for these intrinsics.
+
+| Signature | Result |
+| --- | --- |
+| `InStr(text, find)` | One-based position of the first binary match, or zero |
+| `InStr(start, text, find[, compare])` | Forward search beginning at one-based `start` |
+| `InStrRev(text, find[, start[, compare]])` | Last match whose final code unit is at or before `start`; default `start = -1` means the end |
+| `Replace(text, find, replacement[, start[, count[, compare]]])` | Suffix beginning at `start`, with nonoverlapping matches replaced; defaults are `start = 1`, `count = -1` (all) |
+| `Trim(text)` / `Trim$(text)` | Remove U+0020 spaces from both ends |
+| `LTrim(text)` / `LTrim$(text)` | Remove U+0020 spaces from the beginning |
+| `RTrim(text)` / `RTrim$(text)` | Remove U+0020 spaces from the end |
+
+Comparison defaults to binary and accepts only `0` or `vbBinaryCompare`.
+`vbTextCompare` (`1`), `vbDatabaseCompare` (`2`) and `vbUseCompareOption` (`-1`)
+are recognized constants but are refused as comparison modes. The dialect
+does not implement locale-sensitive comparison, LCIDs, `Option Compare`,
+`InStrB`, `InStr$`, `Replace$`, or numeric/Boolean-to-String coercion. Trim's
+unsuffixed forms retain the same actual-String contract as its `$` forms;
+they do not propagate `Null`. An explicit `CStr` may be used where its own
+conversion contract permits it.
+
+Search positions and returned offsets count UTF-16 code units. Forward search
+and replacement starts are exact integers in `1..2147483647`. Reverse start
+is `-1` or an exact integer in that positive range. Replacement count is `-1`
+or an exact integer in `0..2147483647`. Actual integral numeric values are
+accepted; fractional values, Strings, Booleans, Empty and Null are refused.
+All arguments evaluate exactly once in source order before value checks,
+including optional arguments on empty-input and no-op paths. Wrong arity and
+statically incompatible types are diagnosed even in unused helpers or inactive
+branches; value-dependent errors are diagnosed when evaluated.
+
+These examples show details that matter when porting a macro:
+
+```vb
+InStr("A😀B😀C", "😀")                    ' 2
+InStrRev("A😀B😀C", "😀", 5)              ' 2: the later match ends at 6
+Replace("abcabc", "a", "X", 4)           ' "Xbc": the prefix is excluded
+Replace("abcabc", "a", "X", 2, 0)        ' "bcabc": count zero still returns the suffix
+Replace("aaaa", "aa", "X")              ' "XX": matches do not overlap
+Trim$("  Annual report  ")               ' "Annual report"
+```
+
+Both searches return zero for an empty haystack or a missing match. For a
+nonempty haystack, `InStr` with an empty needle returns the supplied start,
+including a start beyond the end. `InStrRev` returns zero when an explicit
+start is beyond the end; otherwise an empty needle returns its resolved start.
+`Replace` returns an empty String when its start is beyond the input, and the
+unchanged suffix for an empty needle or zero count. Empty replacement text
+deletes matches. Replacement text is not searched again. Trimming preserves
+tabs, nonbreaking spaces, other Unicode whitespace, and interior spaces.
+The existing well-formed-UTF-16 publication check still applies to every String
+emitted into a native operation.
+
+Search uses a linear, metered code-unit matcher. Pattern storage, inspected
+units, retained matches, and copied output consume the shared 100,000-work
+budget, including discarded results and unsuccessful repeated searches.
+Replacement computes the complete result length and checks the 32,767-unit
+String limit and remaining work before constructing output. Exhaustion yields
+a positioned diagnostic and no partial plan.
+
+The complete [Word text report](../packages/quds_office_engine/example/macros/word_text_report.bas)
+uses these functions to clean a title and extract a filename, then emits six
+existing native operations against two body paragraphs and an independent
+header paragraph. It is qualified through native transactions, CLI/MCP,
+record/replay, DOCM preservation and VM/JavaScript execution in the
+[local validation record](validation/word-vba-continuation-20261121/README.md).
+The separate [versioned text corpus](VBA_CONFORMANCE.md) retains authored
+expectations and explicit subset restrictions.
+
+Primary contracts: [InStr](https://learn.microsoft.com/en-us/office/vba/language/reference/user-interface-help/instr-function),
+[InStrRev](https://learn.microsoft.com/en-us/office/vba/language/reference/user-interface-help/instrrev-function),
+[Replace](https://learn.microsoft.com/en-us/office/vba/language/reference/user-interface-help/replace-function),
+[Trim family](https://learn.microsoft.com/en-us/office/vba/language/reference/user-interface-help/ltrim-rtrim-and-trim-functions),
+and [String-returning `$` forms](https://learn.microsoft.com/en-us/office/vba/language/concepts/getting-started/returning-strings-from-functions).
+These are specification-derived contracts; no installed Office host was run.
 
 ## Variant states and explicit conversions
 
@@ -762,7 +845,7 @@ dart run tool/macros/office_macro.dart run-vba \
 | Assignment | Scalar assignment, optional `Let`, and explicitly supported writable object properties |
 | Arithmetic | Decimal/exponent literals, parentheses, unary `+`/`-`, and binary `+`, `-`, `*`, `/` |
 | Text | Double-quoted literals with doubled embedded quotes and `&` concatenation of scalar values |
-| String intrinsics | `Len`, `Left$`, `Right$`, and `Mid$` on actual Strings; UTF-16 units, exact integral signed-Long arguments, no implicit coercion |
+| String intrinsics | `Len`, `Left$`, `Right$`, `Mid$`, binary `InStr` / `InStrRev` / `Replace`, and Trim/LTrim/RTrim with their `$` forms; actual Strings, UTF-16 units, bounded exact integer arguments, no implicit coercion |
 | Comparisons | `=`, `<>`, `<`, `>`, `<=`, `>=` between matching scalar types, contextual `Empty`, or propagating `Null`; strings use binary ordering |
 | Boolean logic | `Not`, `And`, `Or`, `Xor` on Boolean/Null values; operands are evaluated eagerly; numeric/Empty bitwise forms are unsupported |
 | Conditions | Block `If … Then`, `ElseIf`, `Else`, `End If`; actual Booleans or false `Empty`/`Null`, known from source |
