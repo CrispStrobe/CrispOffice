@@ -464,7 +464,25 @@ frame without duplicating the native object placeholder as literal text. The
 picture record separates local edit/save/undo tests from untouched output of
 the identified LibreOffice converter and from installed-plugin acceptance.
 
-## Increment 7: installed-host acceptance
+## Increment 7: semantic uppercase text
+
+Supported `fo:text-transform="uppercase"` maps to native display-only capitals.
+The original Unicode text, citation caches, metadata and UTF-16 field positions
+remain unchanged, including characters whose displayed uppercase form expands.
+Explicit `none` overrides inherited capitals; subsequent styles can enable it
+again. Latin, complex-script and Asian formatting retain their separate slots.
+The native renderer and repeated ODT/DOCX saves use the same semantic property.
+
+Lowercase and capitalization transforms remain unsupported. A simultaneous
+effective non-default text transform and font variant has undefined behavior in
+[ODF 1.4 section 20.227](https://docs.oasis-open.org/office/OpenDocument/v1.4/OpenDocument-v1.4-part3-schema.html),
+so uppercase combined with small capitals refuses after inheritance. A child
+style can resolve that combination with explicit `normal` or `none` before use.
+The [combined work record](../../validation/zotero-roundtrip-complete-20261121/README.md)
+distinguishes native regression tests, actual converter saves and remaining
+installed-plugin acceptance.
+
+## Increment 8: installed-host acceptance
 
 Run an actual current Zotero session with identified Word and LibreOffice
 versions and synthetic library data. Exercise native-file input separately

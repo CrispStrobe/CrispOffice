@@ -1,0 +1,87 @@
+{
+  "final_main_integration_commit": "fb605bd929df92f2e8ec0c7a4e456274e1042665",
+  "final_main_integration_tree": "faf0d91961b145e5358f0fd3909a9489933b3e2b",
+  "executed_local_to_remote_checkpoints": [
+    {
+      "executed_local_commit": "5b4a4c766369b75ce0bac3bfd174b62c10252f6c",
+      "remote_checkpoint": "538d002ab9da5a8a12ef6adbb66c8062b0560810",
+      "tree": "aa821898a0ddb3a579daef4ddad04087ce8cbf83",
+      "whole_tree_identical": true
+    },
+    {
+      "executed_local_commit": "917f0fbcb6158de6dc27154ea02614c1fb3e3613",
+      "remote_checkpoint": "a9839a97ba5645fcaf36e34729e011074d6a868b",
+      "tree": "408361e8e58523f76d87647d8c4f1928f689a60f",
+      "whole_tree_identical": true
+    },
+    {
+      "executed_local_commit": "7350559973dd1dd9637f0169e8838df818b2b8be",
+      "remote_checkpoint": "0692e06203d19b89025f63615ba71abd309c9438",
+      "tree": "9d582f6f57928ad38d26e32a23ac31e8012ea50d",
+      "whole_tree_identical": true
+    },
+    {
+      "executed_local_commit": "fb605bd929df92f2e8ec0c7a4e456274e1042665",
+      "remote_checkpoint": "5a829066238b94685db5145ff14420e7e7f0928a",
+      "tree": "faf0d91961b145e5358f0fd3909a9489933b3e2b",
+      "whole_tree_identical": true
+    }
+  ],
+  "corrected_test_commit": "7350559973dd1dd9637f0169e8838df818b2b8be",
+  "test_correction_vs_previous": [
+    "packages/quds_office_engine/test/odt_reader_styles_test.dart"
+  ],
+  "all_production_files_unchanged_by_test_correction": true,
+  "engine_final_main_equivalence": [
+    {
+      "path": "packages/quds_office_engine/lib",
+      "tested_tree": "e615436a529f8ade5412002bbaaa33f33bb21e06",
+      "final_main_tree": "e615436a529f8ade5412002bbaaa33f33bb21e06",
+      "identical": true
+    },
+    {
+      "path": "packages/quds_office_engine/tool",
+      "tested_tree": "9f59ecc032a844692053db174c3058eed1ac877c",
+      "final_main_tree": "9f59ecc032a844692053db174c3058eed1ac877c",
+      "identical": true
+    },
+    {
+      "path": "packages/quds_office_engine/test",
+      "tested_tree": "492e1bbcc7396ad394e690a873593462eaa5d016",
+      "final_main_tree": "492e1bbcc7396ad394e690a873593462eaa5d016",
+      "identical": true
+    }
+  ],
+  "other_subtree_comparisons": [
+    {
+      "path": "packages/quds_office_engine",
+      "tested_tree": "237a2454d117d28a206de514503803e861edff66",
+      "final_main_tree": "237a2454d117d28a206de514503803e861edff66",
+      "identical": true
+    },
+    {
+      "path": "packages/quds_mail_core",
+      "tested_tree": "407fa086fe7ae6a7d7bf5b33906a98f1de0e53c6",
+      "final_main_tree": "407fa086fe7ae6a7d7bf5b33906a98f1de0e53c6",
+      "identical": true
+    },
+    {
+      "path": "packages/quds_mail_store",
+      "tested_tree": "78b0a62a3d649858abd69b763ac1164412a6b8b6",
+      "final_main_tree": "78b0a62a3d649858abd69b763ac1164412a6b8b6",
+      "identical": true
+    },
+    {
+      "path": "packages/quds_office_editor/example",
+      "tested_tree": "06088b975eff41db66905f8f1e9f508deb472964",
+      "final_main_tree": "06088b975eff41db66905f8f1e9f508deb472964",
+      "identical": true
+    }
+  ],
+  "new_final_main_dart_changes": [
+    "packages/quds_office_editor/lib/src/editor_word/render_word_canvas.dart",
+    "packages/quds_office_editor/test/word_selection_path_cache_test.dart"
+  ],
+  "applicability": "Final engine replay applies unchanged to final-main engine lib/tool/test. Earlier editor499 must be read with the dedicated final-main renderer followup for the two newly changed renderer/test paths. Mail205 and Studio41 sources remain identical.",
+  "final_remote_source_checkpoint": "5a829066238b94685db5145ff14420e7e7f0928a"
+}

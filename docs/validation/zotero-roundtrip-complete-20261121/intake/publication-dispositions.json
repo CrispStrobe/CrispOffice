@@ -1,0 +1,62 @@
+{
+  "captured_at": "2026-11-21T19:15:48.233042+00:00",
+  "reviewed_at": "2026-11-21T19:18:54.958262+00:00",
+  "qualified_start": "5b4a4c766369b75ce0bac3bfd174b62c10252f6c",
+  "snapshot_ref_count": 386,
+  "excluded_own_continuation": [
+    {
+      "remote": "fork",
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/codex/zotero-roundtrip-complete-20261121",
+      "sha": "538d002ab9da5a8a12ef6adbb66c8062b0560810"
+    }
+  ],
+  "recommended_intake": [
+    {
+      "sha": "3440c90bc63f9d43edb7e64172bfec3d82036fee",
+      "kind": "current_main",
+      "source_change": [
+        "packages/quds_office_editor/lib/src/editor_word/render_word_canvas.dart"
+      ],
+      "assessment": "Ready to reconcile: merged PR335 proofing-wave/selection-band path caches plus roadmap; merge-tree clean against qualified_start. Needs focused editor/render/proofing verification on combination."
+    },
+    {
+      "sha": "9b4323500d476558a13af8194a65cec165d45da6",
+      "kind": "existing_zotero_pr_continuation",
+      "feature_commit": "e48b1b617f76823ec4fefd7ce17c0bb4c848aa65",
+      "source_change": [
+        "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart",
+        "packages/quds_office_engine/lib/src/word/serial/odt_reader_styles.dart"
+      ],
+      "assessment": "Direct correction for observed actual-LibreOffice endnote rejection. Exports distinct note role/class marker styles at explicit super65% and final-section endnote master; reader validates exact marker styles and compatible layouts. New59-case suite and expanded actual-converter harness. Merge-tree conflicts only in CHANGELOG; combine both entries and run current notes/ODT/converter checks."
+    },
+    {
+      "sha": "ef05b99ec9bbf1d539181c8519eb41455d182603",
+      "kind": "existing_image_branch_continuation",
+      "assessment": "Final evidence commit3c54b4f7 and merge of already-included Word work; preserve ancestry/evidence. No newly identified product feature beyond accepted initial image head."
+    },
+    {
+      "sha": "917f7ea13425b2c078cc8f0e6e73d4e59b7e4608",
+      "kind": "existing_mail_branch_continuation",
+      "assessment": "Final evidence commit917f7ea1 and reconciliation of already accepted initial source. Full Mail core, store, and editor/example subtree hashes equal qualified_start, preserving applicability of fresh205-test Mail execution."
+    }
+  ],
+  "deferred_new_draft": {
+    "sha": "a646cf761f7eafe7915988a1d84f90ca6dbe5793",
+    "pr": 336,
+    "branch": "codex/word-vba-typography-20261121",
+    "refs": [
+      "refs/heads/codex/word-vba-typography-20261121",
+      "refs/pull/336/head"
+    ],
+    "assessment": "New post-initial-cutoff25-file Font.Position baseline-position feature, spanning native model/properties, DOCX read/write, text layout/note copying, painting, state fingerprints, VBA dialect and4 new test suites. PR is draft and explicitly reports frozen-source qualification, portable VM/JavaScript checks and pinned Flutter editor checks still in progress. Implementation source exists; completed cross-layer acceptance is not established. Preserve remote tip and document outside this Zotero publication rather than treating it as accepted or silently omitting it.",
+    "public_url": "https://github.com/CrispStrobe/quds_office_suite/pull/336"
+  },
+  "predicted_after_recommended_intake": {
+    "ancestor": 370,
+    "verified_equivalent": 14,
+    "deferred_new_draft": 2
+  },
+  "github_actions": "Neither queried nor awaited",
+  "mutations": "No tracked files, branches, index or remote refs changed by this review. Exact incoming objects fetched without writing FETCH_HEAD; merge-tree created temporary Git objects only."
+}

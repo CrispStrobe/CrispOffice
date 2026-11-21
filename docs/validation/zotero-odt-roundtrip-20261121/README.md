@@ -1,5 +1,16 @@
 # Zotero native ODT round-trip continuation
 
+## Combined-source completion
+
+The [round-trip completion record](../zotero-roundtrip-complete-20261121/README.md)
+reconciles this branch, the inline-image continuation, scheduled Mail and the
+latest accepted main. It retains the earlier converter failure and separately
+qualifies newly exported explicit note-marker styles, semantic uppercase text,
+native reference metadata, repeated file saves and current editor workflows.
+Its source, fresh local results, exact remote intake and installed-plugin
+boundaries are recorded independently. The historical checkpoint status below
+describes the original work and is not a substitute for that combined gate.
+
 ## Goal
 
 Continue the Word/LibreOffice Zotero parity roadmap by reopening actual
