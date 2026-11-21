@@ -310,7 +310,7 @@ class _MailMessageListState extends State<MailMessageList> {
         // Without an explicit account, refuse to group this row with others.
         accountId: item.accountId?.isNotEmpty == true
             ? item.accountId!
-            : item.id,
+            : '\u0000unscoped:' + item.id,
         messageId: item.messageId,
         inReplyTo: item.inReplyTo,
         references: item.references,
