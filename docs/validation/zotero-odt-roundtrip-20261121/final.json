@@ -1,0 +1,275 @@
+{
+  "acceptance_boundaries": [
+    "Actual file save used the identified LibreOffice development build; supported stable releases have not been qualified here.",
+    "Installed Zotero plugin command flows and the Microsoft Word application are not exercised by this evidence.",
+    "Mixed footnote/endnote export is qualified; native active-footnote separator import remains unsupported.",
+    "Native file preservation does not establish matching on-screen table padding.",
+    "Legacy Apache OpenOffice is a separate unqualified host/plugin target."
+  ],
+  "actual_converter": {
+    "binary_sha256": "d905a74dc92eaccb22481ba2de1345666a074a5f0d48322aaad1b6dc8a9e1e40",
+    "build": "2c87e51eeaa2b413ff4ae097b2705eea1995d8e5",
+    "product": "LibreOfficeDev",
+    "runs": {
+      "mixed_note_export_inventory": {
+        "active_fields": 7,
+        "all_command_exit_codes_zero": true,
+        "commands": 6,
+        "fixtures": {
+          "body-bibliography": 3,
+          "table-notes": 4
+        },
+        "input_preservation": {
+          "originals_unchanged": true
+        },
+        "native_footnote_reopen_claimed": false,
+        "receipt": {
+          "archive": "execution.tar.gz",
+          "member": "converters/mixed-post-merge/receipt.json",
+          "sha256": "330e519c9e5d4e9d9bd23381027e003e20aa742180c65a40c48ad5daff45200c",
+          "size_bytes": 10373
+        },
+        "recorded_source_commit": "2287f1e504fe1e9aead36e04304438057719e728",
+        "scope": "Export and exact inventories/labels after one actual save, including all four distinct 65-percent note symbol/anchor styles.",
+        "source_unchanged": true,
+        "status": "passed"
+      },
+      "three_fixture_two_save": {
+        "active_fields": 11,
+        "all_command_exit_codes_zero": true,
+        "commands": 9,
+        "cycle": [
+          "authored model",
+          "editable ODT",
+          "actual LibreOffice save",
+          "native reopen",
+          "DOCX save/reopen",
+          "editable ODT reexport",
+          "second actual LibreOffice save",
+          "native reopen"
+        ],
+        "fixtures": {
+          "body-bibliography": 3,
+          "endnote-only": 2,
+          "table-only": 6
+        },
+        "input_preservation": {
+          "original_fixtures_unchanged": true,
+          "reexported_fixtures_unchanged": true
+        },
+        "model_oracle": "Authored source model; exact metadata, cached text, editability, offsets, ownership, rich styles, tables, note markers/anchors/labels and page geometry. Geometry expressed in Word twips.",
+        "receipt": {
+          "archive": "execution.tar.gz",
+          "member": "converters/post-merge/receipt.json",
+          "sha256": "641dcca9b798a6ce648d0998ccb444d8ddf33f87f8124789811e399ea158af5f",
+          "size_bytes": 16846
+        },
+        "recorded_source_commit": "2287f1e504fe1e9aead36e04304438057719e728",
+        "source_unchanged": true,
+        "status": "passed"
+      }
+    },
+    "version": "26.8.0.0.alpha0"
+  },
+  "evidence_archive": {
+    "all_archive_members_verified": true,
+    "all_inputs_unchanged_during_packaging": true,
+    "deterministic_rebuild_matched": true,
+    "file": "execution.tar.gz",
+    "manifest_file": "archive-contents.json",
+    "manifest_sha256": "c878e2e371339730345fe8d9efa095a0e55a8ec983a22817f31a0786c3cb7300",
+    "members": 510,
+    "sha256": "0cda5b93c032ca4a0dc539e31733cff4cf6162e1c0dc08a380094e401ed4ab0a",
+    "size_bytes": 2470145,
+    "uncompressed_bytes": 11490771
+  },
+  "github_actions": {
+    "awaited": false,
+    "queried": false
+  },
+  "intake": {
+    "final_refs": {
+      "archive": "execution.tar.gz",
+      "member": "intake/final-refs.txt",
+      "sha256": "0d47cd286bff5229a4deeb66023cac42de7b7e6619a1426931c8553984e5c25d",
+      "size_bytes": 25708
+    },
+    "final_snapshot": {
+      "archive": "execution.tar.gz",
+      "member": "intake/final-intake.json",
+      "sha256": "e3b05f146739ab8d2caa3f941f19fe5e6984b43ad880bea93b17b5be965bc18b",
+      "size_bytes": 246581
+    },
+    "scope": "Captured inventory at this milestone, with later concurrent work identified explicitly; not a claim that every future main commit is included."
+  },
+  "local_tests": {
+    "counting": "One final run per scope; initial, development and independent probe runs are excluded from totals. Converter fixtures are reported separately.",
+    "errors": 0,
+    "failed": 0,
+    "gates": {
+      "editor": {
+        "cases": {
+          "archive": "execution.tar.gz",
+          "member": "qualification/editor/cases.json",
+          "sha256": "d1b70d90fe0a51d6ec09359c57711f3a31de17c176d7f3869649a12a9a489b37",
+          "size_bytes": 40551
+        },
+        "elapsed_seconds": 176.9942218670003,
+        "errors": [],
+        "events": {
+          "archive": "execution.tar.gz",
+          "member": "qualification/editor/events.jsonl",
+          "sha256": "4bda3c8240b5dacae41d09b3fee39abfaf60ac3bf67fc097d12cb304845f5776",
+          "size_bytes": 72861
+        },
+        "exit_code": 0,
+        "failed": 0,
+        "inputs_unchanged": true,
+        "passed": 139,
+        "receipt": {
+          "archive": "execution.tar.gz",
+          "member": "qualification/editor/receipt.json",
+          "sha256": "c9cb7c74012d10b5e6544e6655deaac5ef3017e47d96fd85ecde00516a36801a",
+          "size_bytes": 1079
+        },
+        "skipped": 0,
+        "source_checkpoint_before_run": "d743c1b3e0791f7e73e5bd87638f8cd43a10fba2",
+        "test_file_count": 9
+      },
+      "engine": {
+        "cases": {
+          "archive": "execution.tar.gz",
+          "member": "qualification/engine/cases.json",
+          "sha256": "5fb7797d58ca27610effe212dd5a2b8dfef11b0c3962f9d378d8431202cbd565",
+          "size_bytes": 569777
+        },
+        "elapsed_seconds": 137.22195126499992,
+        "errors": [],
+        "events": {
+          "archive": "execution.tar.gz",
+          "member": "qualification/engine/events.jsonl",
+          "sha256": "5495b6d0dcc906a812f5bb32e0a4118940c0f318147e2d702d43fb93a30c05ae",
+          "size_bytes": 945607
+        },
+        "exit_code": 0,
+        "failed": 0,
+        "inputs_unchanged": true,
+        "passed": 1913,
+        "receipt": {
+          "archive": "execution.tar.gz",
+          "member": "qualification/engine/receipt.json",
+          "sha256": "20a7591a93d7c3ccb9c97f9e70562f082f74f467a1ae65f841b232f613b182db",
+          "size_bytes": 4665
+        },
+        "skipped": 0,
+        "source_checkpoint_before_run": "9b4323500d476558a13af8194a65cec165d45da6",
+        "test_file_count": 81
+      },
+      "studio": {
+        "cases": {
+          "archive": "execution.tar.gz",
+          "member": "qualification/studio/cases.json",
+          "sha256": "b0b100e5f902a10ad142a2a86aa2b09dea618a802d95b1f30f11d873e25c61f9",
+          "size_bytes": 7981
+        },
+        "elapsed_seconds": 23.314728076000392,
+        "errors": [],
+        "events": {
+          "archive": "execution.tar.gz",
+          "member": "qualification/studio/events.jsonl",
+          "sha256": "bda8731d49e9780bbee7c1d62385c6c69dc4822565bb6f60b4cb775bd52908fd",
+          "size_bytes": 15047
+        },
+        "exit_code": 0,
+        "failed": 0,
+        "inputs_unchanged": true,
+        "passed": 26,
+        "receipt": {
+          "archive": "execution.tar.gz",
+          "member": "qualification/studio/receipt.json",
+          "sha256": "acff874ecde3253ae0e49b1ff31dee3737ff80389124e12736e17344fe287b0a",
+          "size_bytes": 792
+        },
+        "skipped": 0,
+        "source_checkpoint_before_run": "d743c1b3e0791f7e73e5bd87638f8cd43a10fba2",
+        "test_file_count": 3
+      }
+    },
+    "passed": 2078,
+    "skipped": 0,
+    "suites": 93
+  },
+  "qualified_source": {
+    "all_binding_checks_passed": true,
+    "binding_checks_passed": 12,
+    "binding_file": "source-binding.json",
+    "binding_sha256": "ba02035589ddd6566a6479bd40aaf1f9c46abe26e7d595da3748e03f8fc36ea0",
+    "binding_size_bytes": 1943178,
+    "commit": "d743c1b3e0791f7e73e5bd87638f8cd43a10fba2",
+    "source_binding_limit": "Engine and converter bytes are independently bound to the qualified tree. An incidental editor observer changed after the engine run; editor and Studio were rerun. This is not a fresh whole-repository test run.",
+    "tree": "c94e0fb95ca1897b845527a3cc8898f80c8796f8"
+  },
+  "recorded_at_utc": "2026-11-21T19:33:45.605161+00:00",
+  "runtime": {
+    "dart": "3.13.7",
+    "flutter": "3.47.8",
+    "locked_hosted_archives_verified": 204,
+    "receipt": {
+      "archive": "execution.tar.gz",
+      "member": "runtime/runtime.json",
+      "sha256": "28732fa1c983cc5ce0378263de0a1a389841b69d8fb544ca41b92383f946b83a",
+      "size_bytes": 3896
+    },
+    "sdk_archive_sha256": "baf7dcc5a3dbba60fe863bf493a6cf203195621f7786eaa5a1bba02cd0d87dd2",
+    "tracked_lockfile_sha256": "2231cacd6ab548da8f0d94020201a29f07f54a20c1682c0e8ae0079967b720eb"
+  },
+  "schema": "quds-zotero-odt-roundtrip-milestone-v1",
+  "scope": "Completed d743 milestone. Later concurrent main changes require their own fresh combined-source qualification; this record and its archive/proof are preserved unchanged.",
+  "static_checks": [
+    {
+      "commands": [
+        {
+          "exit_code": 0,
+          "name": "format"
+        },
+        {
+          "exit_code": 0,
+          "name": "analyze"
+        },
+        {
+          "exit_code": 0,
+          "name": "whitespace"
+        }
+      ],
+      "receipt": {
+        "archive": "execution.tar.gz",
+        "member": "qualification/static/receipt.json",
+        "sha256": "41924f7f8c35225ef71fa48f385fe66e4da632c7865429853324e4e0790bff10",
+        "size_bytes": 6801
+      },
+      "scope": "static",
+      "source_checkpoint": "9b4323500d476558a13af8194a65cec165d45da6"
+    },
+    {
+      "commands": [
+        {
+          "exit_code": 0,
+          "name": "format"
+        },
+        {
+          "exit_code": 0,
+          "name": "analyze"
+        }
+      ],
+      "receipt": {
+        "archive": "execution.tar.gz",
+        "member": "qualification/static-performance/receipt.json",
+        "sha256": "0b5dceb4805427df4d250eebd93601d4b0dec7fb282f4d11834fb318eb24334d",
+        "size_bytes": 991
+      },
+      "scope": "static-performance",
+      "source_checkpoint": "d743c1b3e0791f7e73e5bd87638f8cd43a10fba2"
+    }
+  ],
+  "status": "passed_for_qualified_checkpoint"
+}

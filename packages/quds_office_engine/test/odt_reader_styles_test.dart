@@ -465,7 +465,7 @@ ${_paragraphStyle('Child', '', parent: 'Parent', text: 'fo:font-style="italic"')
     );
 
     test(
-      'does not ignore configured note marker or default paragraph styles',
+      'rejects missing note marker styles and unsupported paragraph/master settings',
       () {
         for (final name in [
           'citation-style-name',
@@ -477,7 +477,12 @@ ${_paragraphStyle('Child', '', parent: 'Parent', text: 'fo:font-style="italic"')
             () => configured(
               '<text:notes-configuration text:note-class="footnote" text:$name="Custom"/>',
             ).validateNoteConfiguration(false),
-            throwsUnsupportedError,
+            // Marker styles now have a supported, validated form. An absent
+            // referenced definition is malformed; paragraph/master settings
+            // outside this footnote model remain unsupported capabilities.
+            name.startsWith('citation-')
+                ? throwsFormatException
+                : throwsUnsupportedError,
           );
         }
       },

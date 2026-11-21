@@ -1,0 +1,27 @@
+{
+  "bounded_publication_snapshot": "publication-snapshot.json",
+  "bounded_ref_count": 386,
+  "followup_main": "2058a434b2bcc76e7fc7e8a449ff6ce31488eb25",
+  "previous_captured_main": "3440c90bc63f9d43edb7e64172bfec3d82036fee",
+  "mail_head": "dcceffda5377fc4cf51ed31e9ed22919f6cee5bb",
+  "main_parents": [
+    "3440c90bc63f9d43edb7e64172bfec3d82036fee",
+    "dcceffda5377fc4cf51ed31e9ed22919f6cee5bb"
+  ],
+  "integration_commit": "fb605bd929df92f2e8ec0c7a4e456274e1042665",
+  "integration_tree": "faf0d91961b145e5358f0fd3909a9489933b3e2b",
+  "delta_from_accepted_mail_source": [
+    "packages/quds_office_editor/lib/src/editor_word/render_word_canvas.dart",
+    "packages/quds_office_editor/test/word_selection_path_cache_test.dart"
+  ],
+  "description": "A final current-main followup preserved newly merged Mail history and7-line selection-path invalidation plus its regression suite. This supplements, and does not replace or expand, the original383 or publication386 inventories. DraftPR336 remains a documented later boundary.",
+  "renderer_validation": {
+    "accepted": true,
+    "executions": 28,
+    "unchanged_inputs": true,
+    "additional_distinct_editor_case": 1,
+    "repeated_editor_cases": 27,
+    "receipt_archive": "../evidence/renderer-followup.tar.gz"
+  },
+  "remote_source_checkpoint": "5a829066238b94685db5145ff14420e7e7f0928a"
+}

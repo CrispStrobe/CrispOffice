@@ -378,7 +378,7 @@ do not establish broad real LibreOffice table acceptance.
 Primary format contract: OASIS ODF 1.3 Part 3
 [section 9.1.5 and span attributes 19.680/19.682](https://docs.oasis-open.org/office/OpenDocument/v1.3/os/part3-schema/OpenDocument-v1.3-os-part3-schema.html).
 
-## Increment 5a: bounded inline pictures
+## Increment 5: bounded inline pictures
 
 The [picture continuation](../../validation/zotero-odt-images-20261121/README.md)
 extends the reader to complete `draw:frame` elements explicitly anchored
@@ -417,7 +417,7 @@ frame without duplicating the native object placeholder as literal text. The
 picture record separates local edit/save/undo tests from untouched output of
 the identified LibreOffice converter and from installed-plugin acceptance.
 
-## Increment 5b: native reopening after LibreOffice saves
+## Increment 6: native reopening after LibreOffice saves
 
 The reader accepts the ordinary section style LibreOffice assigns to a native
 Zotero bibliography. It resolves section-family defaults and parents before
@@ -436,6 +436,19 @@ are accepted; independent footnote/endnote sequences survive DOCX conversion.
 Unknown or ambiguous producers retain the existing ODF convention. Other note
 formats, restarts, custom labels and unsupported note styling remain refused.
 
+Configured note-marker and main-flow anchor styles are admitted only when their
+effective default/parent chain specifies exactly superscript at 65 percent and
+adds no unrepresented formatting. Bare consumer-selected superscript, 58-percent
+scaling and custom marker fonts/colors remain refused. An endnote page master
+must resolve to the same supported geometry as every used body master; it cannot
+silently replace a different note-page layout. The explicit writer declares
+these native styles and the final section's regular master before a host save.
+Configured note paragraph styles remain outside the editing envelope.
+
+Optional `text:use-soft-page-breaks` flags and empty cached soft-page markers are
+validated and recomputed by native layout. Authored hard page breaks retain
+their distinct paragraph/run properties; reexport does not copy stale hints.
+
 Known separating/collapsing table border-model defaults are inert only within
 the existing borderless reader: actual border/padding properties remain guarded.
 Editable export now pairs absolute widths with physical left/center/right
@@ -451,7 +464,25 @@ Endnote-only and table-only files have separate acceptance scopes. The
 unmodified converter files, controlled native field updates, repeat-save
 checks, source manifests and the exact remaining limits.
 
-## Increment 6: installed-host acceptance
+## Increment 7: semantic uppercase text
+
+Supported `fo:text-transform="uppercase"` maps to native display-only capitals.
+The original Unicode text, citation caches, metadata and UTF-16 field positions
+remain unchanged, including characters whose displayed uppercase form expands.
+Explicit `none` overrides inherited capitals; subsequent styles can enable it
+again. Latin, complex-script and Asian formatting retain their separate slots.
+The native renderer and repeated ODT/DOCX saves use the same semantic property.
+
+Lowercase and capitalization transforms remain unsupported. A simultaneous
+effective non-default text transform and font variant has undefined behavior in
+[ODF 1.4 section 20.227](https://docs.oasis-open.org/office/OpenDocument/v1.4/OpenDocument-v1.4-part3-schema.html),
+so uppercase combined with small capitals refuses after inheritance. A child
+style can resolve that combination with explicit `normal` or `none` before use.
+The [combined work record](../../validation/zotero-roundtrip-complete-20261121/README.md)
+distinguishes native regression tests, actual converter saves and remaining
+installed-plugin acceptance.
+
+## Increment 8: installed-host acceptance
 
 Run an actual current Zotero session with identified Word and LibreOffice
 versions and synthetic library data. Exercise native-file input separately

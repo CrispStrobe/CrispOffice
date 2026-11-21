@@ -1549,6 +1549,14 @@ are separate from installed Zotero plugin acceptance on a release host.
 
 ## Open a native LibreOffice ODT
 
+Supported uppercase character formatting now remains editable through native
+ODT opening and later DOCX/ODT saves. The visible capitals do not rewrite the
+underlying text or move citation boundaries. Explicit normal-case spans inside
+uppercase paragraphs retain their authored case. Other case transformations
+and an effective combination of uppercase with small capitals still refuse.
+See the [combined round-trip qualification](validation/zotero-roundtrip-complete-20261121/README.md)
+for the actual file-conversion scope and remaining native-plugin checks.
+
 Studio **Open** accepts `.odt` files. A supported file opens in Writer with
 editable paragraphs and active Zotero fields. The normal Zotero document tools
 can then edit or refresh those fields with desktop Zotero running. The first
@@ -1635,6 +1643,15 @@ checked independently through native reopening and further saves in the
 Actual footnotes using a LibreOffice separator remain outside the reader's
 current formatting subset; accepting the note-numbering metadata does not
 remove that layout restriction.
+
+Complete uniform DOCX table margins, including zero, survive intervening saves
+and supported table-style inheritance. Unsupported imported margin forms remain
+in their original source XML. Quds' existing table renderer still uses fixed
+padding, so this file-preservation work does not promise identical screen layout.
+Native editable notes declare exact superscript marker styles and the final
+endnote page master; reopening refuses changed marker scaling or incompatible
+page geometry. Optional soft-page caches are recomputed while authored hard
+breaks are preserved.
 
 Conversion preserves supported current content, rather than a complete live
 ODF style engine for future typing or Zotero replacements. General LibreOffice

@@ -4,6 +4,40 @@ All notable changes to `quds_office_engine` are documented here.
 
 ## Unreleased
 
+- Add bounded Word VBA `Font.Position` assignments through typed aliases,
+  helpers and independent header/footer selectors. Native run formatting,
+  DOCX inheritance and sparse serialization retain signed half-point positions
+  and explicit zero overrides. Headless/PDF layout moves the baseline without
+  resizing text, including incremental and note-copy paths; logical text,
+  comparison and stale-operation identity remain intact. Include an executable
+  BAS example, versioned source corpus, native/layout and CLI/MCP tests. See the
+  [position contract](../../docs/VBA_WORD_MACROS.md#baseline-position-without-resizing-text).
+
+- Preserve semantic uppercase text when importing native Zotero ODT files.
+  Resolve inherited uppercase and explicit normal-case overrides without
+  changing authored Unicode, citation caches, JSON or UTF-16 endpoints. Retain
+  mixed-script formatting and inline images through repeated ODT/DOCX saves.
+  Reject unsupported transforms and ambiguous uppercase/small-cap combinations.
+  Preserve authored picture-title distinctions in continuous header comparison
+  and character styles on inline annotation pictures. See the
+  [combined qualification](../../docs/validation/zotero-roundtrip-complete-20261121/README.md).
+
+- Reopen supported native Zotero bibliographies saved by LibreOffice, including
+  inherited inert section styles and rich/empty entries. Validate unused
+  sequence declarations and retain protection/layout refusals. Qualify the
+  identified LibreOffice decimal zero-offset note convention against exact
+  visible ordinals. Preserve absolute editable-ODT table widths with physical
+  left/center/right alignment and admit inert border-model defaults only within
+  the bounded borderless reader. Preserve complete uniform DOCX table margins,
+  including zero, through direct properties and bounded style inheritance while
+  retaining unsupported source XML. Recompute optional soft-page hints and
+  declare exact native note marker styles and the final endnote page master;
+  validate their effective formatting and compatible geometry on reopening.
+  Retain actual converter fixtures and controlled
+  native refresh/edit/unlink regressions. See the
+  [round-trip record](../../docs/validation/zotero-odt-roundtrip-20261121/README.md)
+  for executed scope and remaining active-footnote/installed-plugin acceptance.
+
 - Preserve bounded embedded inline PNG/JPEG pictures through native editable
   Zotero ODT import/export and further DOCX saves, including raster bytes,
   accessible titles/descriptions, links and adjacent citation ownership.
@@ -28,17 +62,6 @@ All notable changes to `quds_office_engine` are documented here.
   code-page String operands remain unsupported. Include a runnable Word BAS
   module and source/transaction/portable tests. See the
   [construction contract](../../docs/VBA_MACROS.md#text-construction-and-unicode-code-units).
-
-- Reopen supported native Zotero bibliographies saved by LibreOffice, including
-  inherited inert section styles and rich/empty entries. Validate unused
-  sequence declarations and retain protection/layout refusals. Qualify the
-  identified LibreOffice decimal zero-offset note convention against exact
-  visible ordinals. Preserve absolute editable-ODT table widths with physical
-  left/center/right alignment and admit inert border-model defaults only within
-  the bounded borderless reader. Retain actual converter fixtures and controlled
-  native refresh/edit/unlink regressions. See the
-  [round-trip record](../../docs/validation/zotero-odt-roundtrip-20261121/README.md)
-  for executed scope and remaining active-footnote/installed-plugin acceptance.
 
 - Extend bounded Word VBA with `Paragraph.Style` and selected `Range.Style`
   assignments by primary name or 13 built-in constants. Add guarded native

@@ -248,6 +248,16 @@ Highlighting
 uses the existing `highlight` field with a palette RGB color or `null` to clear.
 These operations retain the ordinary nonempty text-range requirement.
 
+`docx.runFormat.position` accepts signed point values in `-1584..1584`, exactly
+representable in half-points. Positive values raise text; negative values lower
+it without changing its font size. Zero is a direct override of inherited
+positioning. The model stores signed `positionHalfPoints`, retains independent
+superscript/subscript behavior, and sparsely owns `w:position/@w:val` while
+preserving unrelated native/foreign metadata. Unsupported or ambiguous selected
+source is refused before mutation. The `vba-word` setter requires integral
+points because Microsoft's `Font.Position` API is a Long; see the
+[complete contract](VBA_WORD_MACROS.md#baseline-position-without-resizing-text).
+
 `docx.runFormat` also accepts `language` for the normal proofing-language slot
 and `csFont` for the independent complex-script font. Both require nonempty
 Strings. Language tags use a conservative canonical BCP47-shaped syntax:

@@ -1,0 +1,23 @@
+{
+  "kind": "file-conversion-acceptance",
+  "installed_zotero_plugin_tested": false,
+  "converter_version": "LibreOfficeDev 26.8.0.0.alpha0 2c87e51eeaa2b413ff4ae097b2705eea1995d8e5",
+  "source_before_sha256": "eba0401e77a82d7e3cb8425a322fbb48310e14d1ec6ef38fd7a86ae902149de8",
+  "source_after_sha256": "eba0401e77a82d7e3cb8425a322fbb48310e14d1ec6ef38fd7a86ae902149de8",
+  "source_unchanged": true,
+  "original_inputs_unchanged": true,
+  "roundtrip_fixtures": [
+    "body-bibliography",
+    "table-only",
+    "endnote-only",
+    "uppercase-citations"
+  ],
+  "roundtrip_matched": true,
+  "image_fixtures": [
+    "png-citations",
+    "jpeg-citations"
+  ],
+  "image_three_native_cycles_matched": true,
+  "failures": [],
+  "success": true
+}

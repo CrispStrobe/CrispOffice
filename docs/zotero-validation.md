@@ -1,13 +1,31 @@
 # Zotero validation
 
+## 21 November 2026 — combined native round-trip completion
+
+The [combined completion record](validation/zotero-roundtrip-complete-20261121/README.md)
+qualifies semantic uppercase import and reconciled bibliography/image/note
+interchange on the accepted Office main. It records **3,467 distinct accepted
+test cases**, strict analysis, four fixtures through two actual LibreOffice
+saves, separate PNG/JPEG cycles, source identities, bounded remote intake,
+rejected attempts and incremental remote checkpoints. Its separate final
+delivery gates qualify the subsequently accepted page-text renderer, adaptive
+ink, live proofing and Word positioning. The total is a union across documented
+checkpoints; the final source has a fresh 51-case renderer gate, a current native
+file-conversion replay and independently verified incoming engine qualification.
+Full native-plugin and
+stable-release acceptance remain separate. Earlier milestones below retain
+their original scopes and are not added to the current count.
+
 ## 21 November 2026 — native LibreOffice reopening continuation
 
 The [current round-trip record](validation/zotero-odt-roundtrip-20261121/README.md)
 records a frozen-main reproduction, implementation checkpoints, pinned local
 checks and unmodified LibreOffice-saved files. It extends the earlier inventory
 checks to actual editable reopening, repeated saves and native field updates.
-Inert bibliography section styles, strict decimal note-offset compatibility and
-fixed table export geometry have explicit scopes. Used footnote separator
+Inert bibliography section styles, strict decimal note-offset compatibility,
+native marker/master formatting and fixed table export geometry have explicit
+scopes. Intervening DOCX saves retain uniform table margins, including zero.
+Used footnote separator
 geometry remains unsupported, and the identified development converter does
 not establish supported-release or installed Zotero-plugin acceptance.
 

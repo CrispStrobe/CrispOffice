@@ -43,7 +43,14 @@ and [the native macro contract](MACROS.md).
 
 ## Ordered milestones and acceptance
 
-The latest bounded continuation adds typed Word `Shading` objects for selected
+The latest bounded continuation adds Word `Font.Position` writes, native signed
+half-point DOCX ownership, automatic/minimum line extents and independent
+baseline rendering through editor and PDF paths. It retains the existing
+typed aliases, helpers, explicit story selectors and atomic plan boundary.
+See the [position contract](VBA_WORD_MACROS.md#baseline-position-without-resizing-text)
+and [local qualification](validation/word-vba-typography-20261121/README.md).
+
+The preceding formatting continuation adds typed Word `Shading` objects for selected
 paragraph backgrounds, two background-color setters and named `WdColor`
 constants, with sparse native ownership and explicit automatic overrides.
 The shared source language adds `Space`/`String` construction and
@@ -351,6 +358,24 @@ and reuses the existing Stage 4 adapters; it does not add Stage 3 document reads
 locale comparison, general VBA coercion or installed Office qualification.
 See the [exact contract](VBA_MACROS.md#binary-search-replacement-and-trimming)
 and [intake and local evidence](validation/word-vba-continuation-20261121/README.md).
+
+### Independent Word baseline positioning
+
+The Word adapter supports `Font.Position` on the existing explicit paragraph
+and independent header/footer selectors, including typed aliases and named
+`ByVal` helpers. Source writes use signed whole points; native JSON accepts
+exact half-points. The native model imports, inherits, copies and sparsely
+exports `w:position`, including an explicit zero that overrides a style.
+Font size and logical text remain independent from the baseline displacement.
+
+Headless layout, incremental translation, note copies, PDF text order, editor
+paint grouping, comparison and stale-document fingerprints retain positioning.
+This remains a bounded Stage 4 write-only extension, without Stage 3 reads,
+embedded VBA execution, general ODT/RTF position interchange or installed Word
+differential qualification. See the
+[exact contract](VBA_WORD_MACROS.md#baseline-position-without-resizing-text),
+[BAS example](../packages/quds_office_engine/example/macros/word_font_position.bas)
+and [local qualification](validation/word-vba-typography-20261121/README.md).
 
 ### Next shared-language increments
 
