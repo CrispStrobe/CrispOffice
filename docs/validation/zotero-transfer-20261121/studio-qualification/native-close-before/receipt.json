@@ -1,0 +1,21 @@
+{
+  "command": [
+    "/workspace/scratch/11a0888870d6/runtime/flutter-sdk/bin/flutter",
+    "test",
+    "--no-pub",
+    "--reporter",
+    "json",
+    "--concurrency",
+    "1",
+    "--name",
+    "^imap (failed initial view save|view and body save warnings)",
+    "test/studio_mail_cached_host_test.dart"
+  ],
+  "exit_code": 0,
+  "duration_seconds": 14.889318215000458,
+  "source_sha256": "8f0a04840d8366e4989edeb0a25515612fb799e967a7c986558684926ea3f656",
+  "raw_error_lines": [
+    "Shell: [ERROR:flutter/runtime/dart_isolate.cc(1403)] Unhandled exception:"
+  ],
+  "raw_error_count": 1
+}

@@ -1,0 +1,19 @@
+{
+  "command": [
+    "/workspace/scratch/11a0888870d6/runtime/flutter-sdk/bin/flutter",
+    "test",
+    "--no-pub",
+    "--reporter",
+    "json",
+    "--concurrency",
+    "1",
+    "--name",
+    "^imap (failed initial view save|view and body save warnings|widget disposal drains)",
+    "test/studio_mail_cached_host_test.dart"
+  ],
+  "exit_code": 0,
+  "duration_seconds": 12.580526239999017,
+  "source_sha256": "07996ae914ef08cc9da723264b51f321a6716d07474af6669426ec445b7b856c",
+  "raw_error_lines": [],
+  "raw_error_count": 0
+}

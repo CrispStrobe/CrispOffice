@@ -1,0 +1,7 @@
+{
+  "path": "packages/quds_office_editor/example/test/support/mail_outbox_store.dart",
+  "before_sha256": "a2e55bddc9ba76cab998ee005608d688b85b54e1973a9eef508d8736bc6801fd",
+  "after_sha256": "f593aac49a0e42d3007c05366b2d933bc5f8c31cdd6641d6c87c59da8734b5ec",
+  "correction": "Replace 1000 fake-clock turns with a bounded 15-second Stopwatch deadline. Keep pumping one fake millisecond per turn, and yield one actual millisecond through tester.runAsync so native file I/O can progress. Preserve future result/error and every quota/assertion.",
+  "authorization": "Root authorized this narrow test helper correction after the original native setup future exhausted 1000 turns after only 238 ms. No product source edits."
+}

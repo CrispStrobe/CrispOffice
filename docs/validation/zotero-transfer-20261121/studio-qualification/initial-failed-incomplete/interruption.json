@@ -1,0 +1,39 @@
+{
+  "status": "interrupted_incomplete_failed_run",
+  "observed_exec_exit_code": 130,
+  "reason": "Single remaining benchmark suite loader emitted no progress for more than seven minutes; another concurrently running package had a corresponding loader stall. Run interrupted to qualify sequentially with a bounded watchdog. No test timeout or assertion was relaxed.",
+  "source_head_after": "9228cb58e960ed9a6c0e91f2531e539c58689364",
+  "source_inputs_unchanged": true,
+  "source_input_count": 1665,
+  "passed": 181,
+  "failed": 1,
+  "skipped": 0,
+  "pending": [
+    {
+      "id": 177,
+      "name": "loading /workspace/scratch/11a0888870d6/validation-workspace/packages/quds_office_editor/example/test/studio_typing_proofing_benchmark_test.dart",
+      "suiteID": 176,
+      "groupIDs": [],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": null,
+      "column": null,
+      "url": null
+    }
+  ],
+  "errors": [
+    {
+      "testID": 87,
+      "error": "Test failed. See exception logs above.\nThe test description was: confirmed native cleanup restores quota-blocked draft admission after reopen",
+      "stackTrace": "",
+      "isFailure": false,
+      "type": "error",
+      "time": 26081
+    }
+  ],
+  "terminal_success": false,
+  "benchmark_environment_issue": "QUDS_TYPING_BENCHMARK was not set in this initial launch, so even successful suite load would have skipped the three optional benchmark tests. The retry must set it to 1.",
+  "receipt_generated_after_interrupt": true
+}

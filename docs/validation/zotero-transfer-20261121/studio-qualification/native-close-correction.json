@@ -1,0 +1,18 @@
+{
+  "source_path": "packages/quds_office_editor/example/test/studio_mail_cached_host_test.dart",
+  "before_sha256": "8f0a04840d8366e4989edeb0a25515612fb799e967a7c986558684926ea3f656",
+  "after_sha256": "07996ae914ef08cc9da723264b51f321a6716d07474af6669426ec445b7b856c",
+  "cause": "Test teardown directly called owner.close after widget removal, while production host disposal was still draining live repository read transactions through subscription cancellation. These reads run outside the draft owner serialization queue. The direct fixture close bypassed the production drain and let Drift abandon/rollback a transaction after SQLite had closed.",
+  "change": "Observe the actual host-owned close completion through _Owner.whenClosed. Release test cancellation gates, remove the widget, then await that completion; do not start a competing owner.close. Preserve delegate close errors through the same future.",
+  "regressions": "Four provider widget-disposal cases hold cancellation and assert the owner remains open, then release and await completed cancellation and close.",
+  "minimal_before": {
+    "json_case_count": 2,
+    "raw_flutter_unhandled_errors": 1
+  },
+  "minimal_after": {
+    "json_case_count": 3,
+    "raw_flutter_unhandled_errors": 0
+  },
+  "accepted_full_gate": "accepted-clean189/summary.json",
+  "production_files_changed": []
+}
