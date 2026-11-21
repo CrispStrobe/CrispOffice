@@ -1,5 +1,29 @@
 # Zotero validation
 
+## 21 November 2026 — active separators and combined-main qualification
+
+The [separator increment](validation/zotero-footnote-separators-20261121/README.md)
+delivers native active footnote separator geometry, consistent continuation-page
+reservation/rendering, bounded DOCX persistence and editable ODT interchange.
+Fourteen direct geometry probes and three active-citation routes retain their
+identified LibreOffice converter results; custom DOCX separator normalization
+remains a recorded failed route.
+
+The [combined-main record](validation/zotero-footnote-separators-20261121/integration/README.md)
+qualifies published merge `ad577ea82695231b5932d6b973f92b5156b1d2d6`, which preserves
+both the separator and concurrent host-ownership work. It records **1,117 fresh
+editor/Studio/golden passes** and retains **2,677 engine passes through an exact
+source/dependency-continuity proof**: 3,794 distinct qualified cases, with zero
+failures, errors or skips. Strict analysis and formatting pass for all 29
+changed Dart files. All fresh captured inputs match the combined source.
+
+The original 3,738-case separator qualification and the earlier host-ownership
+counts retain their own source attribution; overlapping runs are not added to
+the combined total. The final read-back detected the concurrent main update and
+triggered fresh affected-scope execution. Installed Word/live Zotero and
+supported-release LibreOffice acceptance remain separate. GitHub Actions were
+neither queried nor awaited.
+
 ## 21 November 2026 — host ownership and shortcut continuity
 
 The [host-ownership follow-up](validation/zotero-host-ownership-20261121/README.md)

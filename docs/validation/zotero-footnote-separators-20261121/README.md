@@ -7,15 +7,24 @@ qualification are recorded below. Delivery is tracked in
 [PR #348](https://github.com/CrispStrobe/quds_office_suite/pull/348); its merge
 commit identifies publication to remote main.
 
-## Final qualification and publication
+The final read-back detected that concurrent PR #347 had reached main before
+the separator merge. Published source `ad577ea82695231b5932d6b973f92b5156b1d2d6`
+therefore contains both increments. The
+[combined-main qualification](integration/README.md) records the exact source
+difference, engine continuity and fresh editor/Studio qualification. The
+original results below retain their original source attribution.
+
+## Original separator-source qualification
 
 The accepted sequential gates ran against commit
 `a1b555979b25c5586f27915cf219a95e886febd7`, tree
 `5bc178760195f03e809211913822fa6fac00ca04`. The
 [qualification receipt](checks/qualification.json) and
 [independent audit](checks/independent-audit.json) bind every accepted run to
-the same unchanged source inputs. Later publication changes add documentation
-and evidence only; the captured inputs were rechecked before publication.
+the same unchanged source inputs. The final separator-branch checkpoint
+`a70c0e7a` adds documentation and evidence only. The subsequent main merge also
+retains the concurrent host-ownership change, whose separate qualification is
+linked above; the original complete manifest is not relabeled as that source.
 
 The strengthened local runner snapshots **6,319 workspace inputs** (approximately
 216 MiB), including tracked code, tests, fixtures, assets, examples, local

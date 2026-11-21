@@ -142,8 +142,12 @@ The external converter was not rerun after the incoming Word deserializer
 change or this follow-up; the earlier development-converter results retain
 their original attribution.
 
-Active footnote separator modeling/layout/interchange remains the next
-document-fidelity milestone. Asymmetric or per-cell ODT padding, unsupported
+At this source checkpoint, active footnote separator modeling/layout/interchange
+was the next document-fidelity milestone. The later
+[separator increment](../zotero-footnote-separators-20261121/README.md) delivers
+that bounded capability; its
+[combined-main qualification](../zotero-footnote-separators-20261121/integration/README.md)
+checks the integration with these host safeguards. Asymmetric or per-cell ODT padding, unsupported
 table styles/borders and arbitrary native ODF rewriting remain outside the
 bounded editable profile. Installed Word/Zotero and Writer/Zotero interchange
 must be qualified separately before claiming full plugin parity.
