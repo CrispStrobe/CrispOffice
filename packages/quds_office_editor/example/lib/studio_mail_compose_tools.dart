@@ -24,7 +24,7 @@ String studioMailComposeText(String text) =>
     text.replaceAll('\r\n', '\n').replaceAll('\r', '\n');
 
 String studioMailSignatureText(String signature) =>
-    '\n\n-- \n' + studioMailComposeText(signature);
+    '\n\n-- \n${studioMailComposeText(signature)}';
 
 /// Applies defaults only at a new-draft boundary. Resume, outgoing-message
 /// recovery and settings changes never call this on an existing saved draft.
@@ -45,8 +45,10 @@ StudioMailDraft applyStudioMailDefaultSignature(
   // quoted content. New-message defaults follow any initial text.
   final body = replyOrForward
       ? signature +
-          (draft.body.isEmpty || draft.body.startsWith('\n\n') ? '' : '\n\n') +
-          draft.body
+            (draft.body.isEmpty || draft.body.startsWith('\n\n')
+                ? ''
+                : '\n\n') +
+            draft.body
       : draft.body + signature;
   if (body.length > StudioMailDraft.maxBodyBytes ||
       utf8.encode(body).length > StudioMailDraft.maxBodyBytes) {

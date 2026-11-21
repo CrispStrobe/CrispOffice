@@ -86,7 +86,8 @@ class _StudioMailComposeToolsDialogState
 
   void _edit([MailQuickText? entry]) {
     if (!_canEdit || _editing) return;
-    if (entry == null && _quickTexts.length >= MailComposeSettings.maxQuickTexts) {
+    if (entry == null &&
+        _quickTexts.length >= MailComposeSettings.maxQuickTexts) {
       return;
     }
     setState(() {
@@ -170,7 +171,9 @@ class _StudioMailComposeToolsDialogState
 
   Future<void> _save() async {
     if (!_current) {
-      if (mounted) setState(() => _error = widget.strings.mailComposeToolsStale);
+      if (mounted) {
+        setState(() => _error = widget.strings.mailComposeToolsStale);
+      }
       return;
     }
     if (!_canEdit || _editing) return;

@@ -149,8 +149,7 @@ class _StudioMailComposeDialogState extends State<StudioMailComposeDialog> {
     }
     _toolsOwner = widget.composeToolsStore;
     _toolsAccount = _toolsOwner?.account;
-    _initialToolsPending =
-        _toolsOwner != null && widget.initialDraft == null;
+    _initialToolsPending = _toolsOwner != null && widget.initialDraft == null;
     if (_toolsOwner != null) unawaited(_loadComposeTools());
     // A new reply/forward is already meaningful work before the first edit.
     if (widget.onSaveDraft != null && widget.initialDraft != null) {
@@ -605,7 +604,8 @@ class _StudioMailComposeDialogState extends State<StudioMailComposeDialog> {
         range.endIdx > paragraphs[range.endPara].text.length) {
       return;
     }
-    final wholeMessage = range.startPara == 0 &&
+    final wholeMessage =
+        range.startPara == 0 &&
         range.startIdx == 0 &&
         range.endPara == paragraphs.length - 1 &&
         range.endIdx == paragraphs.last.text.length;
@@ -683,7 +683,7 @@ class _StudioMailComposeDialogState extends State<StudioMailComposeDialog> {
             ),
             TextButton.icon(
               key: const ValueKey('studio-mail-insert-signature'),
-              onPressed: available && settings != null && settings.signature.isNotEmpty
+              onPressed: available && settings.signature.isNotEmpty
                   ? () {
                       if (currentMenu()) {
                         _insertComposeText(
@@ -697,10 +697,12 @@ class _StudioMailComposeDialogState extends State<StudioMailComposeDialog> {
             ),
             PopupMenuButton<MailQuickText>(
               key: const ValueKey('studio-mail-insert-quick-text'),
-              enabled: available && settings != null && settings.quickTexts.isNotEmpty,
+              enabled: available && settings.quickTexts.isNotEmpty,
               tooltip: strings.mailComposeInsertQuickText,
               onSelected: (item) {
-                if (settings != null && currentMenu() && settings.quickTexts.contains(item)) {
+                if (settings != null &&
+                    currentMenu() &&
+                    settings.quickTexts.contains(item)) {
                   _insertComposeText(item.text);
                 }
               },
@@ -786,7 +788,8 @@ class _StudioMailComposeDialogState extends State<StudioMailComposeDialog> {
       null => null,
     };
     return PopScope<StudioMailDraft>(
-      canPop: !_recoveringCache &&
+      canPop:
+          !_recoveringCache &&
           !_initialToolsPending &&
           !_editingTools &&
           (widget.onSaveDraft == null || _allowPop),

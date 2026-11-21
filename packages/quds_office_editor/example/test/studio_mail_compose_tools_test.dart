@@ -28,11 +28,7 @@ MailComposeSettings _settings({
   signatureForNewMessages: automatic,
   signatureForReplies: automatic,
   quickTexts: const [
-    MailQuickText(
-      id: 'steps',
-      name: 'Steps',
-      text: 'First\r\nSecond\rThird',
-    ),
+    MailQuickText(id: 'steps', name: 'Steps', text: 'First\r\nSecond\rThird'),
   ],
 );
 
@@ -175,25 +171,26 @@ Future<void> _insertSteps(WidgetTester tester) async {
 }
 
 void main() {
-  testWidgets('new message defaults leave the caret above the saved signature', (
-    tester,
-  ) async {
-    final tools = _Tools(_settings());
-    final host = _Host(tools: tools);
-    await _open(tester, host);
-    final body = _body(tester);
-    expect(_text(body), '\n\n-- \nRegards\nWriter');
-    expect(body.caret.paragraphIndex, 0);
-    expect(body.caret.logicalIndex, 0);
-    expect(tools.loads, 1);
-    expect(tools.saves, 0);
-    await _flush(tester);
-    expect(host.drafts, hasLength(1));
-    expect(host.drafts.single.body, '\n\n-- \nRegards\nWriter');
-    expect(host.queued, isEmpty);
-    expect(host.returned, isFalse);
-    await _close(tester, host);
-  });
+  testWidgets(
+    'new message defaults leave the caret above the saved signature',
+    (tester) async {
+      final tools = _Tools(_settings());
+      final host = _Host(tools: tools);
+      await _open(tester, host);
+      final body = _body(tester);
+      expect(_text(body), '\n\n-- \nRegards\nWriter');
+      expect(body.caret.paragraphIndex, 0);
+      expect(body.caret.logicalIndex, 0);
+      expect(tools.loads, 1);
+      expect(tools.saves, 0);
+      await _flush(tester);
+      expect(host.drafts, hasLength(1));
+      expect(host.drafts.single.body, '\n\n-- \nRegards\nWriter');
+      expect(host.queued, isEmpty);
+      expect(host.returned, isFalse);
+      await _close(tester, host);
+    },
+  );
 
   testWidgets('resuming saved mail never injects or replaces its signature', (
     tester,
@@ -238,10 +235,11 @@ void main() {
 
     await _insertSteps(tester);
     expect(_text(body), inserted);
-    expect(
-      body.document.paragraphs.map((paragraph) => paragraph.text),
-      ['Left First', 'Second', 'Third right'],
-    );
+    expect(body.document.paragraphs.map((paragraph) => paragraph.text), [
+      'Left First',
+      'Second',
+      'Third right',
+    ]);
     await _flush(tester);
     expect(host.drafts.last.body, inserted);
 
@@ -327,9 +325,7 @@ void main() {
     final selectText = tester
         .widget<PopupMenuButton<MailQuickText>>(_key('insert-quick-text'))
         .onSelected!;
-    final manage = tester
-        .widget<TextButton>(_key('compose-tools'))
-        .onPressed!;
+    final manage = tester.widget<TextButton>(_key('compose-tools')).onPressed!;
     host.current = false;
     insertSignature();
     selectText(tools.settings.quickTexts.single);
@@ -386,31 +382,32 @@ void main() {
     expect(host.drafts, isEmpty);
   });
 
-  testWidgets('reload after load failure leaves intervening body edits intact', (
-    tester,
-  ) async {
-    final tools = _Tools(_settings())..failLoad = true;
-    final host = _Host(tools: tools);
-    await _open(tester, host);
-    expect(find.text(_strings.mailComposeToolsLoadFailed), findsOneWidget);
-    expect(_text(_body(tester)), isEmpty);
-    _body(tester).insertText('Handwritten message');
-    await tester.pump();
-    tools.failLoad = false;
-    await _tap(tester, _key('reload-compose-tools'));
-    expect(find.text(_strings.mailComposeToolsLoadFailed), findsNothing);
-    expect(_text(_body(tester)), 'Handwritten message');
-    expect(tools.loads, 2);
-    expect(
-      tester.widget<TextButton>(_key('insert-signature')).onPressed,
-      isNotNull,
-    );
-    await _flush(tester);
-    expect(host.drafts.last.body, 'Handwritten message');
-    expect(host.returned, isFalse);
-    expect(tools.saves, 0);
-    await _close(tester, host);
-  });
+  testWidgets(
+    'reload after load failure leaves intervening body edits intact',
+    (tester) async {
+      final tools = _Tools(_settings())..failLoad = true;
+      final host = _Host(tools: tools);
+      await _open(tester, host);
+      expect(find.text(_strings.mailComposeToolsLoadFailed), findsOneWidget);
+      expect(_text(_body(tester)), isEmpty);
+      _body(tester).insertText('Handwritten message');
+      await tester.pump();
+      tools.failLoad = false;
+      await _tap(tester, _key('reload-compose-tools'));
+      expect(find.text(_strings.mailComposeToolsLoadFailed), findsNothing);
+      expect(_text(_body(tester)), 'Handwritten message');
+      expect(tools.loads, 2);
+      expect(
+        tester.widget<TextButton>(_key('insert-signature')).onPressed,
+        isNotNull,
+      );
+      await _flush(tester);
+      expect(host.drafts.last.body, 'Handwritten message');
+      expect(host.returned, isFalse);
+      expect(tools.saves, 0);
+      await _close(tester, host);
+    },
+  );
 
   testWidgets('uncertain manager saves are reloaded before another edit', (
     tester,
@@ -480,10 +477,7 @@ void main() {
       body.selectAll();
       await _insertSteps(tester);
       expect(_text(body), 'First\nSecond\nThird');
-      expect(
-        find.text(_strings.mailComposeToolsSelectionFailed),
-        findsNothing,
-      );
+      expect(find.text(_strings.mailComposeToolsSelectionFailed), findsNothing);
       await _flush(tester);
       expect(host.drafts.last.body, 'First\nSecond\nThird');
       body.undo();

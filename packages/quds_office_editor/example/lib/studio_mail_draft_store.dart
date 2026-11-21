@@ -166,8 +166,9 @@ final class StudioMailDraftStoreException implements Exception {
   String toString() => 'StudioMailDraftStoreException(${code.name})';
 }
 
-typedef StudioMailDraftStoreFactory =
-    Future<StudioMailDraftStore> Function(StudioMailDraftAccount account);
+typedef StudioMailDraftStoreFactory = Future<StudioMailDraftStore> Function(
+  StudioMailDraftAccount account,
+);
 
 /// One selected foreground draft per scoped account, never an automatic sender.
 /// Hosts may additionally expose [StudioMailDraftCatalog] when implemented.

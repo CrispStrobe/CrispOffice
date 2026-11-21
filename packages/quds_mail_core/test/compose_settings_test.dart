@@ -13,49 +13,63 @@ MailQuickText _text({
 }) => MailQuickText(id: id, name: name, text: text);
 
 void main() {
-  test('owns snapshots and retains account identity through independent edits', () {
-    final texts = [_text()];
-    final original = MailComposeSettings(account: _account, quickTexts: texts);
-    texts.clear();
-    expect(original.quickTexts.single.text, 'Thank you!\nشكراً 📨');
-    expect(() => original.quickTexts.clear(), throwsUnsupportedError);
-    final edited = original.copyWith(
-      revision: 7,
-      signature: 'Best wishes',
-      signatureForNewMessages: true,
-      quickTexts: [original.quickTexts.single.copyWith(text: 'Changed')],
-    );
-    expect(identical(edited.account, original.account), isTrue);
-    expect(edited.revision, 7);
-    expect(edited.signatureForNewMessages, isTrue);
-    expect(edited.signatureForReplies, isFalse);
-    expect(edited.quickTexts.single.id, 'thanks');
-    expect(original.revision, 0);
-    expect(original.signature, isEmpty);
-    expect(original.quickTexts.single.text, 'Thank you!\nشكراً 📨');
-  });
+  test(
+    'owns snapshots and retains account identity through independent edits',
+    () {
+      final texts = [_text()];
+      final original = MailComposeSettings(
+        account: _account,
+        quickTexts: texts,
+      );
+      texts.clear();
+      expect(original.quickTexts.single.text, 'Thank you!\nشكراً 📨');
+      expect(() => original.quickTexts.clear(), throwsUnsupportedError);
+      final edited = original.copyWith(
+        revision: 7,
+        signature: 'Best wishes',
+        signatureForNewMessages: true,
+        quickTexts: [original.quickTexts.single.copyWith(text: 'Changed')],
+      );
+      expect(identical(edited.account, original.account), isTrue);
+      expect(edited.revision, 7);
+      expect(edited.signatureForNewMessages, isTrue);
+      expect(edited.signatureForReplies, isFalse);
+      expect(edited.quickTexts.single.id, 'thanks');
+      expect(original.revision, 0);
+      expect(original.signature, isEmpty);
+      expect(original.quickTexts.single.text, 'Thank you!\nشكراً 📨');
+    },
+  );
 
-  test('defaults are valid and leave automatic signature insertion disabled', () {
-    final settings = MailComposeSettings(account: _account);
-    expect(settings.isValid, isTrue);
-    expect(settings.signature, isEmpty);
-    expect(settings.quickTexts, isEmpty);
-    expect(settings.signatureForNewMessages, isFalse);
-    expect(settings.signatureForReplies, isFalse);
-    expect(settings.toString(), 'MailComposeSettings(redacted)');
-    expect(_text().toString(), 'MailQuickText(redacted)');
-  });
+  test(
+    'defaults are valid and leave automatic signature insertion disabled',
+    () {
+      final settings = MailComposeSettings(account: _account);
+      expect(settings.isValid, isTrue);
+      expect(settings.signature, isEmpty);
+      expect(settings.quickTexts, isEmpty);
+      expect(settings.signatureForNewMessages, isFalse);
+      expect(settings.signatureForReplies, isFalse);
+      expect(settings.toString(), 'MailComposeSettings(redacted)');
+      expect(_text().toString(), 'MailQuickText(redacted)');
+    },
+  );
 
-  test('retains literal markup and international text without substitution', () {
-    final settings = MailComposeSettings(
-      account: _account,
-      signature: 'مرحبا 📨\t& <b>literal</b>\r\n' r'$name',
-      quickTexts: [_text(id: 'سريع-📨', name: 'ÄRGER 📨')],
-    );
-    expect(settings.isValid, isTrue);
-    expect(settings.quickTexts.single.nameKey, 'ärger 📨');
-    expect(settings.signature, contains(r'$name'));
-  });
+  test(
+    'retains literal markup and international text without substitution',
+    () {
+      final settings = MailComposeSettings(
+        account: _account,
+        signature:
+            'مرحبا 📨\t& <b>literal</b>\r\n'
+            r'$name',
+        quickTexts: [_text(id: 'سريع-📨', name: 'ÄRGER 📨')],
+      );
+      expect(settings.isValid, isTrue);
+      expect(settings.quickTexts.single.nameKey, 'ärger 📨');
+      expect(settings.signature, contains(r'$name'));
+    },
+  );
 
   test('requires unique IDs and case-insensitive trimmed names', () {
     for (final texts in [
@@ -101,7 +115,7 @@ void main() {
       isFalse,
     );
     expect(
-      settings.copyWith(signature: settings.signature + 'x').isValid,
+      settings.copyWith(signature: '${settings.signature}x').isValid,
       isFalse,
     );
   });
@@ -117,10 +131,7 @@ void main() {
     final exact = base.copyWith(signature: 's' * remaining);
     expect(exact.metadataCodeUnits, MailComposeSettings.maxMetadataCodeUnits);
     expect(exact.isValid, isTrue);
-    expect(
-      exact.copyWith(signature: exact.signature + 'x').isValid,
-      isFalse,
-    );
+    expect(exact.copyWith(signature: '${exact.signature}x').isValid, isFalse);
   });
 
   for (final revision in [-1, MailComposeSettings.maxRevision + 1]) {
@@ -133,13 +144,18 @@ void main() {
   }
 
   for (final control in [
-    '\u0000', '\u0001', '\u000b', '\u007f', '\u0085', '\u009f',
+    '\u0000',
+    '\u0001',
+    '\u000b',
+    '\u007f',
+    '\u0085',
+    '\u009f',
   ]) {
     final code = control.codeUnitAt(0).toRadixString(16);
     test('rejects non-compose control U+$code', () {
-      expect(_text(id: 'a' + control + 'b').isValid, isFalse);
-      expect(_text(name: 'a' + control + 'b').isValid, isFalse);
-      expect(_text(text: 'a' + control + 'b').isValid, isFalse);
+      expect(_text(id: 'a${control}b').isValid, isFalse);
+      expect(_text(name: 'a${control}b').isValid, isFalse);
+      expect(_text(text: 'a${control}b').isValid, isFalse);
       expect(
         MailComposeSettings(account: _account, signature: control).isValid,
         isFalse,
@@ -148,8 +164,10 @@ void main() {
   }
 
   for (final (label, malformed) in [
-    ('high', '\uD800'), ('low', '\uDC00'),
-    ('unpaired', '\uD800a'), ('reversed', '\uDC00\uD800'),
+    ('high', '\uD800'),
+    ('low', '\uDC00'),
+    ('unpaired', '\uD800a'),
+    ('reversed', '\uDC00\uD800'),
   ]) {
     test('rejects $label UTF-16 in text and every ownership component', () {
       expect(_text(id: malformed).isValid, isFalse);
