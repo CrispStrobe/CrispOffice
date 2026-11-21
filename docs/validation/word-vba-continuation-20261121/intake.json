@@ -1,0 +1,712 @@
+{
+  "schema_version": 1,
+  "captured_at_utc": "2026-11-21T09:53:16.248263+00:00",
+  "repository": "CrispStrobe/quds_office_suite",
+  "captured_main": "1ef5f7f88705e05bb2ebd2f5b639460dab52c3d0",
+  "captured_main_tree": "6167ba3499df3f06ec531e7a8c7143dda58c9143",
+  "scope": "Frozen initial fork branch inventory, open PR query, recent PR review, upstream main comparison, and exact historical-equivalence revalidation before new Word VBA implementation. This record proposes integration; it does not claim that pending heads are merged or runtime-qualified.",
+  "counts": {
+    "fork_branches": 55,
+    "dispositions": {
+      "verified_historical_equivalent": 10,
+      "ancestor": 38,
+      "new_intake_document": 1,
+      "retain_compile_path_fix_without_shared_cache": 1,
+      "captured_main": 1,
+      "included_in_mail_intake": 1,
+      "new_product_work_needs_companion_fixes": 1,
+      "new_reconciled_cli_and_benchmark_work": 1,
+      "same_head_as_mail_intake": 1
+    },
+    "open_pull_requests": 0,
+    "historical_equivalent_branches": 10,
+    "all_previous_equivalence_proofs_reverified": 15
+  },
+  "branches": [
+    {
+      "branch": "codex/odt-field-continuation-20261117",
+      "sha": "c34945761e7991f5fe49037d79529acdd260b31c",
+      "ahead_of_captured_main": 2,
+      "behind_captured_main": 1912,
+      "disposition": "verified_historical_equivalent",
+      "replacement": "2c47165d01d01cc883135a434ac9f6591ce6e770"
+    },
+    {
+      "branch": "codex/word-powerpoint-vba-expansion-20261120",
+      "sha": "0f6239396ff3328473a5f57c280b982d57e33a08",
+      "ahead_of_captured_main": 0,
+      "behind_captured_main": 435,
+      "disposition": "ancestor"
+    },
+    {
+      "branch": "codex/word-vba-compat-20261120-next",
+      "sha": "650afb7d117337bab943af05d63a250a7e90c058",
+      "ahead_of_captured_main": 0,
+      "behind_captured_main": 379,
+      "disposition": "ancestor"
+    },
+    {
+      "branch": "codex/word-vba-compatibility-20261120-continuation",
+      "sha": "8c54d5283804099f9c9023540921f2410b878eb1",
+      "ahead_of_captured_main": 0,
+      "behind_captured_main": 279,
+      "disposition": "ancestor"
+    },
+    {
+      "branch": "codex/word-vba-compatibility-20261121",
+      "sha": "38b07e58b7c0e2a5b04a823a7251805cea60fb77",
+      "ahead_of_captured_main": 0,
+      "behind_captured_main": 49,
+      "disposition": "ancestor"
+    },
+    {
+      "branch": "codex/word-vba-list-levels-20261120",
+      "sha": "fff4a4afda2beecdd20ae0bd1f3c31622e8c0b37",
+      "ahead_of_captured_main": 0,
+      "behind_captured_main": 365,
+      "disposition": "ancestor"
+    },
+    {
+      "branch": "codex/word-vba-measurements-20261120",
+      "sha": "cd306bdea352c6f6400b5d1af7cc33e737004462",
+      "ahead_of_captured_main": 0,
+      "behind_captured_main": 282,
+      "disposition": "ancestor"
+    },
+    {
+      "branch": "codex/word-vba-paragraph-controls-20261120",
+      "sha": "90ecd41c8a3ef2a6f35967f1219223022e2b0d32",
+      "ahead_of_captured_main": 0,
+      "behind_captured_main": 342,
+      "disposition": "ancestor"
+    },
+    {
+      "branch": "codex/word-vba-paragraph-flow-20261121",
+      "sha": "13fa9ad5b9d140f1d7c085e46b4d0ce395000c49",
+      "ahead_of_captured_main": 0,
+      "behind_captured_main": 18,
+      "disposition": "ancestor"
+    },
+    {
+      "branch": "codex/word-vba-paragraph-pagination-20261121",
+      "sha": "1581229f0e5aea24b5242c33a1e92f02d70b4c7e",
+      "ahead_of_captured_main": 0,
+      "behind_captured_main": 159,
+      "disposition": "ancestor"
+    },
+    {
+      "branch": "codex/word-vba-paragraph-spacing-20261120",
+      "sha": "d30299dd91634ad7e20c32db5c39a6687fcef4aa",
+      "ahead_of_captured_main": 0,
+      "behind_captured_main": 336,
+      "disposition": "ancestor"
+    },
+    {
+      "branch": "codex/word-vba-ranges-20261120",
+      "sha": "22e5960e99915e81a1b5997058cac44dac27ba1a",
+      "ahead_of_captured_main": 0,
+      "behind_captured_main": 394,
+      "disposition": "ancestor"
+    },
+    {
+      "branch": "codex/word-vba-sections-20261121",
+      "sha": "49665e51f9eacefc180748c3d0ed7851ef5da5d1",
+      "ahead_of_captured_main": 0,
+      "behind_captured_main": 115,
+      "disposition": "ancestor"
+    },
+    {
+      "branch": "codex/word-vba-unit-conversions-20261120",
+      "sha": "bbccae1bdead10951e2d7a23b33cf14c55382e02",
+      "ahead_of_captured_main": 0,
+      "behind_captured_main": 191,
+      "disposition": "ancestor"
+    },
+    {
+      "branch": "codex/zotero-multiparagraph-20261121",
+      "sha": "589ccd33243eabe57ce3074c92112e1fdf1325f1",
+      "ahead_of_captured_main": 0,
+      "behind_captured_main": 136,
+      "disposition": "ancestor"
+    },
+    {
+      "branch": "codex/zotero-native-odt-20261121",
+      "sha": "54f287b893ea704816c6cd8de8421996b5b2d1fb",
+      "ahead_of_captured_main": 1,
+      "behind_captured_main": 0,
+      "disposition": "new_intake_document"
+    },
+    {
+      "branch": "codex/zotero-parity-20261120-next",
+      "sha": "0da1b048546f36c658a7ddfb899117b73c5d3e7c",
+      "ahead_of_captured_main": 0,
+      "behind_captured_main": 267,
+      "disposition": "ancestor"
+    },
+    {
+      "branch": "codex/zotero-parity-20261121-continuation",
+      "sha": "9942eb76f0ac818e464ad1b3bcec2cc4513d3e3f",
+      "ahead_of_captured_main": 0,
+      "behind_captured_main": 1,
+      "disposition": "ancestor"
+    },
+    {
+      "branch": "codex/zotero-parity-20261121-next",
+      "sha": "d4470bab1095593739ddf87fdb9f249bbc948b65",
+      "ahead_of_captured_main": 0,
+      "behind_captured_main": 42,
+      "disposition": "ancestor"
+    },
+    {
+      "branch": "codex/zotero-research-tables-20261120",
+      "sha": "34491bca22a2989dd89d9da3c853f5e57de5464f",
+      "ahead_of_captured_main": 0,
+      "behind_captured_main": 408,
+      "disposition": "ancestor"
+    },
+    {
+      "branch": "codex/zotero-transfer-20261121",
+      "sha": "a1995c9154357e603b89947654cf95f8bcba6a83",
+      "ahead_of_captured_main": 0,
+      "behind_captured_main": 84,
+      "disposition": "ancestor"
+    },
+    {
+      "branch": "codex/zotero-vertical-tables-20261120",
+      "sha": "a7d9f37ecbaaf70544f4866d7d9e572696948184",
+      "ahead_of_captured_main": 0,
+      "behind_captured_main": 204,
+      "disposition": "ancestor"
+    },
+    {
+      "branch": "docs/app-store-submission-20261120",
+      "sha": "b08e0a55b629ac22b33c54146b56438862965022",
+      "ahead_of_captured_main": 0,
+      "behind_captured_main": 347,
+      "disposition": "ancestor"
+    },
+    {
+      "branch": "docs/ods-color-scale",
+      "sha": "58fdddfbcf198a8c0e38e32f6fcc9d6604e95283",
+      "ahead_of_captured_main": 1,
+      "behind_captured_main": 1911,
+      "disposition": "verified_historical_equivalent",
+      "replacement": "4eaca83b192897edad82658107dfeb5bcbed0920"
+    },
+    {
+      "branch": "docs/ods-data-bar",
+      "sha": "69d14f84cabd3931b7640c1654b401c89faba766",
+      "ahead_of_captured_main": 1,
+      "behind_captured_main": 1907,
+      "disposition": "verified_historical_equivalent",
+      "replacement": "52c73ae4dbadf2ca00a5d619144350ccc353b31a"
+    },
+    {
+      "branch": "feat/arabic-web-context-20261120",
+      "sha": "be47bed22a88382f016d823e526bae49590bd0eb",
+      "ahead_of_captured_main": 0,
+      "behind_captured_main": 347,
+      "disposition": "ancestor"
+    },
+    {
+      "branch": "feat/ods-color-scale",
+      "sha": "74ce9ffb816c70c0d2ae50b91ec52a614f26d688",
+      "ahead_of_captured_main": 1,
+      "behind_captured_main": 1912,
+      "disposition": "verified_historical_equivalent",
+      "replacement": "4584d5f319aab198f1d705f48b4d6647e6cbabea"
+    },
+    {
+      "branch": "feat/ods-data-bar",
+      "sha": "0a53b8a70128870f3e1df6d18cdb177bb64290ee",
+      "ahead_of_captured_main": 2,
+      "behind_captured_main": 1909,
+      "disposition": "verified_historical_equivalent",
+      "replacement": "b3f41eb4b4bca8ca13676b4114891ea6d9185043"
+    },
+    {
+      "branch": "feat/ods-dynamic-validation-links",
+      "sha": "68a0db23408e4c95d6d283219504c79aea33a6fe",
+      "ahead_of_captured_main": 1,
+      "behind_captured_main": 1910,
+      "disposition": "verified_historical_equivalent",
+      "replacement": "d754bf15b07a24c8a86c8dce339ca749fecd9531"
+    },
+    {
+      "branch": "feat/ods-icon-sets",
+      "sha": "005c708e9f747cb46cf02e12c869b0a2f85ac824",
+      "ahead_of_captured_main": 1,
+      "behind_captured_main": 1896,
+      "disposition": "verified_historical_equivalent",
+      "replacement": "c84d5e16024c502f6c451fd04b9807b1e65f20d3"
+    },
+    {
+      "branch": "feat/ods-time-period-conditions",
+      "sha": "7ef09f2408f467c65427700e65907531ecb26acb",
+      "ahead_of_captured_main": 1,
+      "behind_captured_main": 1892,
+      "disposition": "verified_historical_equivalent",
+      "replacement": "34dc6b6806869570e9ec342e4d7ee0d6951c0ba6"
+    },
+    {
+      "branch": "feat/settings-arweb-20261120",
+      "sha": "e8db6b3f21401f8c6ac4dae4c2934edde8699f4b",
+      "ahead_of_captured_main": 0,
+      "behind_captured_main": 342,
+      "disposition": "ancestor"
+    },
+    {
+      "branch": "fix/mail-credential-stores-chrome-20261120",
+      "sha": "a652a205e6daf6b4b8e3baec04db1c1b52fabd0d",
+      "ahead_of_captured_main": 0,
+      "behind_captured_main": 490,
+      "disposition": "ancestor"
+    },
+    {
+      "branch": "fix/main-green-20261120",
+      "sha": "41c363f40cdcdfbcc22a8932ea325ce87872f5a0",
+      "ahead_of_captured_main": 4,
+      "behind_captured_main": 39,
+      "disposition": "retain_compile_path_fix_without_shared_cache"
+    },
+    {
+      "branch": "integrate/office-union-148",
+      "sha": "3abf8f43b0e79c10271bbd046f391e462b8fe6b9",
+      "ahead_of_captured_main": 1,
+      "behind_captured_main": 1708,
+      "disposition": "verified_historical_equivalent",
+      "replacement": "4b2b4e78839d2997a583b7ab1346e2fa537a8ac4"
+    },
+    {
+      "branch": "integrate/recent-pptx",
+      "sha": "ec70b9423febefcb9b104629d2ad48b0c96e9082",
+      "ahead_of_captured_main": 1,
+      "behind_captured_main": 296,
+      "disposition": "verified_historical_equivalent",
+      "replacement": "698209aaa6e7f1350b6541df5eb192b7b233443d"
+    },
+    {
+      "branch": "main",
+      "sha": "1ef5f7f88705e05bb2ebd2f5b639460dab52c3d0",
+      "ahead_of_captured_main": 0,
+      "behind_captured_main": 0,
+      "disposition": "captured_main"
+    },
+    {
+      "branch": "perf/wrap-chrome-20261121",
+      "sha": "8716057f80c4c18b72c5a43a708beefd70bc7588",
+      "ahead_of_captured_main": 1,
+      "behind_captured_main": 73,
+      "disposition": "included_in_mail_intake"
+    },
+    {
+      "branch": "work/mail-accounts-20261120",
+      "sha": "86e44e87f829b0309ea7b84fd5d390f596fe7f26",
+      "ahead_of_captured_main": 0,
+      "behind_captured_main": 455,
+      "disposition": "ancestor"
+    },
+    {
+      "branch": "work/mail-boolean-core-20261121",
+      "sha": "a7d2aadb997d44d0cc3ceda0f664678d1c061b6d",
+      "ahead_of_captured_main": 1,
+      "behind_captured_main": 0,
+      "disposition": "new_product_work_needs_companion_fixes"
+    },
+    {
+      "branch": "work/mail-bulk-actions-20261120",
+      "sha": "1584a2da8b23128c113d95c3b05b6a12d2d3861e",
+      "ahead_of_captured_main": 0,
+      "behind_captured_main": 240,
+      "disposition": "ancestor"
+    },
+    {
+      "branch": "work/mail-bulk-flags-20261120",
+      "sha": "bf0effdcc8f690972d762c5b53079e8847a5e65e",
+      "ahead_of_captured_main": 0,
+      "behind_captured_main": 229,
+      "disposition": "ancestor"
+    },
+    {
+      "branch": "work/mail-cached-workspace-20261120",
+      "sha": "c7e721b7703766491fd4459b69de30bf68d9010d",
+      "ahead_of_captured_main": 0,
+      "behind_captured_main": 351,
+      "disposition": "ancestor"
+    },
+    {
+      "branch": "work/mail-command-journal-20261121",
+      "sha": "33ce2428ebab825a844895a767e0f9f1a4077d62",
+      "ahead_of_captured_main": 0,
+      "behind_captured_main": 176,
+      "disposition": "ancestor"
+    },
+    {
+      "branch": "work/mail-intake-20261121",
+      "sha": "4191be02ac9c7117e05ff4a052a5c92fbcfbf4b4",
+      "ahead_of_captured_main": 6,
+      "behind_captured_main": 0,
+      "disposition": "new_reconciled_cli_and_benchmark_work"
+    },
+    {
+      "branch": "work/mail-multiple-drafts-20261120",
+      "sha": "b3abdf3b4628a8a703857d69b8f11cd21bc502e1",
+      "ahead_of_captured_main": 0,
+      "behind_captured_main": 411,
+      "disposition": "ancestor"
+    },
+    {
+      "branch": "work/mail-offline-accounts-20261120",
+      "sha": "44855ab24c2c7fd34953e879fba571381cce0bc3",
+      "ahead_of_captured_main": 0,
+      "behind_captured_main": 374,
+      "disposition": "ancestor"
+    },
+    {
+      "branch": "work/mail-offline-retention-20261121",
+      "sha": "9eb68b9f048d3c08274ece5d7f964f1249004485",
+      "ahead_of_captured_main": 0,
+      "behind_captured_main": 6,
+      "disposition": "ancestor"
+    },
+    {
+      "branch": "work/mail-outbox-20261120",
+      "sha": "9443612b024114c424ba2f8146e04050d6e049b0",
+      "ahead_of_captured_main": 0,
+      "behind_captured_main": 466,
+      "disposition": "ancestor"
+    },
+    {
+      "branch": "work/mail-outbox-management-20261120",
+      "sha": "79e11935e16ea1d2fa576ead0712c83f22e15c28",
+      "ahead_of_captured_main": 0,
+      "behind_captured_main": 391,
+      "disposition": "ancestor"
+    },
+    {
+      "branch": "work/mail-parity-20261120",
+      "sha": "540eb7a41554620e1405807ac1db9dc38bd62148",
+      "ahead_of_captured_main": 0,
+      "behind_captured_main": 303,
+      "disposition": "ancestor"
+    },
+    {
+      "branch": "work/mail-parity-20261121",
+      "sha": "fa59496840a36709fe3a6d867bdfe96ab99d72ab",
+      "ahead_of_captured_main": 0,
+      "behind_captured_main": 148,
+      "disposition": "ancestor"
+    },
+    {
+      "branch": "work/mail-repository-sessions-20261121",
+      "sha": "0491492d8622ad2ef09fb84e07d3dbba462f9320",
+      "ahead_of_captured_main": 0,
+      "behind_captured_main": 93,
+      "disposition": "ancestor"
+    },
+    {
+      "branch": "work/mail-sync-foundation-20261121",
+      "sha": "4a1eaa69e7a068e354bdd851ec9b0323b89ae300",
+      "ahead_of_captured_main": 0,
+      "behind_captured_main": 58,
+      "disposition": "ancestor"
+    },
+    {
+      "branch": "work/mail-triage-20261121",
+      "sha": "4191be02ac9c7117e05ff4a052a5c92fbcfbf4b4",
+      "ahead_of_captured_main": 6,
+      "behind_captured_main": 0,
+      "disposition": "same_head_as_mail_intake"
+    }
+  ],
+  "open_pull_requests": [],
+  "recent_merged_pull_requests": [
+    {
+      "number": 296,
+      "head": "9942eb76f0ac818e464ad1b3bcec2cc4513d3e3f",
+      "merge": "1ef5f7f88705e05bb2ebd2f5b639460dab52c3d0",
+      "title": "Zotero: qualify nested research tables and reconcile Office updates",
+      "merged_at_utc": "2026-11-21T09:31:18Z"
+    },
+    {
+      "number": 298,
+      "head": "9eb68b9f048d3c08274ece5d7f964f1249004485",
+      "merge": "c10416d39894031164be68313253db5bbb3a5ad2",
+      "title": "Mail: durable offline downloads and reconciled Office integration",
+      "merged_at_utc": "2026-11-21T09:10:28Z"
+    },
+    {
+      "number": 297,
+      "head": "13fa9ad5b9d140f1d7c085e46b4d0ce395000c49",
+      "merge": "f92c0d24f0513c5e13e61ae58507c36e9cf4f1c1",
+      "title": "Extend Word VBA proofing controls and reconcile recent Office work",
+      "merged_at_utc": "2026-11-21T08:55:20Z"
+    }
+  ],
+  "upstream_main": {
+    "repository": "MohammedAsaadAsaad/quds_office_suite",
+    "sha": "15c5d29b63fb17a93c7fb3426a8fd4d95a32f1ba",
+    "comparison": "behind",
+    "upstream_only_commits": 0,
+    "fork_only_commits": 3047,
+    "disposition": "already_ancestor"
+  },
+  "historical_branch_equivalence_proofs": [
+    {
+      "source": "c34945761e7991f5fe49037d79529acdd260b31c",
+      "replacement": "2c47165d01d01cc883135a434ac9f6591ce6e770",
+      "kind": "changed_paths",
+      "replacement_is_ancestor_of_captured_main": true,
+      "changed_paths": [
+        "docs/odf-export-fidelity.md",
+        "docs/validation/german-proofing-recovery-20261117/README.md",
+        "docs/validation/odt-field-continuation-20261117/README.md",
+        "docs/validation/odt-field-continuation-20261117/audit-portability.json",
+        "docs/validation/odt-field-continuation-20261117/audit_recovery.py",
+        "docs/validation/odt-field-continuation-20261117/evidence-index.json",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-analysis.inputs.json.gz",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-analysis.json",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-analysis.stderr.gz",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-analysis.stdout.gz",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-baseline.inputs.json.gz",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-baseline.json",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-baseline.stderr.gz",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-baseline.stdout.gz",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-node.inputs.json.gz",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-node.json",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-node.stderr.gz",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-node.stdout.gz",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-vm.inputs.json.gz",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-vm.json",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-vm.stderr.gz",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-vm.stdout.gz",
+        "docs/validation/odt-field-continuation-20261117/package-config.json",
+        "docs/validation/odt-field-continuation-20261117/pull-request-draft.md",
+        "docs/validation/odt-field-continuation-20261117/recovered-original-source.commit",
+        "docs/validation/odt-field-continuation-20261117/recovery-audit.json",
+        "docs/validation/odt-field-continuation-20261117/resolved-pubspec.lock",
+        "docs/validation/odt-field-continuation-20261117/run_logged.py",
+        "docs/validation/odt-field-continuation-20261117/runtime.json",
+        "docs/validation/odt-field-continuation-20261117/source-recovery.json",
+        "docs/validation/odt-field-continuation-20261117/test-workspace-pubspec.yaml",
+        "docs/validation/odt-field-continuation-20261117/verification.json",
+        "docs/validation/odt-field-continuation-20261117/verify_evidence.py",
+        "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart",
+        "packages/quds_office_engine/lib/src/word/serial/word_deserializer.dart",
+        "packages/quds_office_engine/test/odt_imported_field_fidelity_test.dart",
+        "packages/quds_office_engine/test/odt_page_field_fidelity_test.dart"
+      ],
+      "exact_equal": true
+    },
+    {
+      "source": "58fdddfbcf198a8c0e38e32f6fcc9d6604e95283",
+      "replacement": "4eaca83b192897edad82658107dfeb5bcbed0920",
+      "kind": "full_tree",
+      "replacement_is_ancestor_of_captured_main": true,
+      "source_tree": "3d828f3e1779b08ae84dc526e0c7236882d69a26",
+      "replacement_tree": "3d828f3e1779b08ae84dc526e0c7236882d69a26",
+      "exact_equal": true
+    },
+    {
+      "source": "69d14f84cabd3931b7640c1654b401c89faba766",
+      "replacement": "52c73ae4dbadf2ca00a5d619144350ccc353b31a",
+      "kind": "full_tree",
+      "replacement_is_ancestor_of_captured_main": true,
+      "source_tree": "fcceef2418d7463f2a566623f22f8f0862dd1d01",
+      "replacement_tree": "fcceef2418d7463f2a566623f22f8f0862dd1d01",
+      "exact_equal": true
+    },
+    {
+      "source": "74ce9ffb816c70c0d2ae50b91ec52a614f26d688",
+      "replacement": "4584d5f319aab198f1d705f48b4d6647e6cbabea",
+      "kind": "full_tree",
+      "replacement_is_ancestor_of_captured_main": true,
+      "source_tree": "8eaa993960d6fb6b6b484326d825a550f969ea0a",
+      "replacement_tree": "8eaa993960d6fb6b6b484326d825a550f969ea0a",
+      "exact_equal": true
+    },
+    {
+      "source": "0a53b8a70128870f3e1df6d18cdb177bb64290ee",
+      "replacement": "b3f41eb4b4bca8ca13676b4114891ea6d9185043",
+      "kind": "full_tree",
+      "replacement_is_ancestor_of_captured_main": true,
+      "source_tree": "b3345f76c2e3cd8e1bad13b554f2d24555aea9ce",
+      "replacement_tree": "b3345f76c2e3cd8e1bad13b554f2d24555aea9ce",
+      "exact_equal": true
+    },
+    {
+      "source": "68a0db23408e4c95d6d283219504c79aea33a6fe",
+      "replacement": "d754bf15b07a24c8a86c8dce339ca749fecd9531",
+      "kind": "full_tree",
+      "replacement_is_ancestor_of_captured_main": true,
+      "source_tree": "aea95c000855820c5ecf205d3833298539f01753",
+      "replacement_tree": "aea95c000855820c5ecf205d3833298539f01753",
+      "exact_equal": true
+    },
+    {
+      "source": "005c708e9f747cb46cf02e12c869b0a2f85ac824",
+      "replacement": "c84d5e16024c502f6c451fd04b9807b1e65f20d3",
+      "kind": "full_tree",
+      "replacement_is_ancestor_of_captured_main": true,
+      "source_tree": "097bb5511b2ddf2e00a398da7055b310693fe054",
+      "replacement_tree": "097bb5511b2ddf2e00a398da7055b310693fe054",
+      "exact_equal": true
+    },
+    {
+      "source": "7ef09f2408f467c65427700e65907531ecb26acb",
+      "replacement": "34dc6b6806869570e9ec342e4d7ee0d6951c0ba6",
+      "kind": "full_tree",
+      "replacement_is_ancestor_of_captured_main": true,
+      "source_tree": "072bded0da30965ac975f9a8a3c08c7a46829460",
+      "replacement_tree": "072bded0da30965ac975f9a8a3c08c7a46829460",
+      "exact_equal": true
+    },
+    {
+      "source": "3abf8f43b0e79c10271bbd046f391e462b8fe6b9",
+      "replacement": "4b2b4e78839d2997a583b7ab1346e2fa537a8ac4",
+      "kind": "full_tree",
+      "replacement_is_ancestor_of_captured_main": true,
+      "source_tree": "e3adc9e259c6120b4b1e3e03177391f880243e13",
+      "replacement_tree": "e3adc9e259c6120b4b1e3e03177391f880243e13",
+      "exact_equal": true
+    },
+    {
+      "source": "ec70b9423febefcb9b104629d2ad48b0c96e9082",
+      "replacement": "698209aaa6e7f1350b6541df5eb192b7b233443d",
+      "kind": "changed_paths",
+      "replacement_is_ancestor_of_captured_main": true,
+      "changed_paths": [
+        "packages/quds_office_editor/lib/src/embed/office_system_fonts_io.dart",
+        "packages/quds_office_engine/lib/src/word/layout/word_layout.dart",
+        "packages/quds_office_engine/lib/src/word/serial/word_deserializer.dart"
+      ],
+      "exact_equal": true
+    }
+  ],
+  "additional_historical_pr_proofs_reverified": [
+    {
+      "source": "128a187d69555db80890c2a1945a442b951f9c74",
+      "replacement": "d790bca444eef0e160a75ce3d8cb555af541004f",
+      "kind": "full_tree",
+      "replacement_is_ancestor_of_captured_main": true,
+      "source_tree": "cc9dd97799056d82ee604ca071c023cd4a7d63c1",
+      "replacement_tree": "cc9dd97799056d82ee604ca071c023cd4a7d63c1",
+      "exact_equal": true
+    },
+    {
+      "source": "a7f144cc983f2df7c16d88f8644ad67a9254c3d0",
+      "replacement": "0ff7d23929e4640af6c1d57f87c7ac71b73d2ed4",
+      "kind": "full_tree",
+      "replacement_is_ancestor_of_captured_main": true,
+      "source_tree": "955a0d933240e0cc62eceff0ee11fd89e0f0caa2",
+      "replacement_tree": "955a0d933240e0cc62eceff0ee11fd89e0f0caa2",
+      "exact_equal": true
+    },
+    {
+      "source": "b8ddaaeb581e010467de304c828764d353149102",
+      "replacement": "d6010059644b34accd6f188e0e2a4863ab63e318",
+      "kind": "full_tree",
+      "replacement_is_ancestor_of_captured_main": true,
+      "source_tree": "7654a8905c705a04136e37a5271eb95d8a9a4e21",
+      "replacement_tree": "7654a8905c705a04136e37a5271eb95d8a9a4e21",
+      "exact_equal": true
+    },
+    {
+      "source": "cee6e2632f891a3fe21c5c02d6bf508805973051",
+      "replacement": "bb5556e8cc4cb73e2c668b5319a2844a20c6c50c",
+      "kind": "full_tree",
+      "replacement_is_ancestor_of_captured_main": true,
+      "source_tree": "a30201059a62b8034ac747367c1af8de054a2afb",
+      "replacement_tree": "a30201059a62b8034ac747367c1af8de054a2afb",
+      "exact_equal": true
+    },
+    {
+      "source": "da9c956ec5d65c0e5a9f9ea84c2b0bca98e824a0",
+      "replacement": "23f3b4204fce45d38a103e3159bdc7f1e8d37c4e",
+      "kind": "full_tree",
+      "replacement_is_ancestor_of_captured_main": true,
+      "source_tree": "b73ebcc6f72c49a2883c5749f6450d497c647324",
+      "replacement_tree": "b73ebcc6f72c49a2883c5749f6450d497c647324",
+      "exact_equal": true
+    }
+  ],
+  "recommended_integrations": [
+    {
+      "order": 1,
+      "source": "4191be02ac9c7117e05ff4a052a5c92fbcfbf4b4",
+      "branches": [
+        "work/mail-intake-20261121",
+        "work/mail-triage-20261121"
+      ],
+      "action": "Merge the captured reconciled CLI test-runner and benchmark tree; preserve genuine ancestry. This also includes typing benchmark head 8716057f80c4c18b72c5a43a708beefd70bc7588. Run its CLI tests locally."
+    },
+    {
+      "order": 2,
+      "source": "41c363f40cdcdfbcc22a8932ea325ce87872f5a0",
+      "branch": "fix/main-green-20261120",
+      "action": "Preserve new ancestry while transplanting the compile-only --packages file-path correction into the retained per-file helper. Keep the VM source invocation URI. Do not restore the rejected WIP shared cache or generated test output files."
+    },
+    {
+      "order": 3,
+      "source": "a7d2aadb997d44d0cc3ceda0f664678d1c061b6d",
+      "branch": "work/mail-boolean-core-20261121",
+      "action": "Merge bounded Boolean header-search implementation only with companion exhaustive-switch/localization fixes and meaningful parser tests in the integration branch; otherwise the UI does not compile."
+    },
+    {
+      "order": 4,
+      "source": "54f287b893ea704816c6cd8de8421996b5b2d1fb",
+      "branch": "codex/zotero-native-odt-20261121",
+      "action": "Preserve additive Zotero intake JSON. The captured commit contains no ODT reader implementation."
+    }
+  ],
+  "cli_overlap_review": {
+    "retained_design_commit": "4191be02ac9c7117e05ff4a052a5c92fbcfbf4b4",
+    "shared_cache_parent_already_preserved": "0e14940e0e1521c7eb143f83f0abc18b8f65e1c9",
+    "shared_cache_parent_is_ancestor_of_intake": true,
+    "remaining_new_fix_commit": "41c363f40cdcdfbcc22a8932ea325ce87872f5a0",
+    "new_fix_parent": "0e14940e0e1521c7eb143f83f0abc18b8f65e1c9",
+    "new_fix_changed_paths": [
+      "packages/quds_office_engine/test/support/office_macro_cli.dart"
+    ],
+    "new_fix_semantics": "dart compile kernel receives Uri.parse(Platform.packageConfig).toFilePath() instead of the VM file: URI. The correction is independently useful in the per-file implementation.",
+    "rejected_shared_cache_reasons": [
+      "key uses path/size/mtime rather than contents and omits SDK/dependency content",
+      "stale-lock deletion can race",
+      "pruning cached kernels can invalidate another test entry",
+      "compiler lifetime remains tied to a test file"
+    ],
+    "generated_paths_to_keep_excluded": [
+      "packages/quds_office_engine/arguments-cli-BW4wg7/helpers.bas",
+      "packages/quds_office_engine/arguments-cli-BW4wg7/input.xlsx",
+      "packages/quds_office_engine/arguments-cli-BW4wg7/output.xlsx",
+      "packages/quds_office_engine/arguments-cli-wnJkho/helpers.bas",
+      "packages/quds_office_engine/arguments-cli-wnJkho/input.pptx",
+      "packages/quds_office_engine/arguments-cli-wnJkho/output.pptx",
+      "packages/quds_office_engine/vba-cli-test-uwCN84/monthly.xlsx"
+    ]
+  },
+  "mail_boolean_compile_risks": {
+    "new_enum_cases": [
+      "MailHeaderSearchError.invalidExpression",
+      "MailHeaderSearchError.nestingTooDeep"
+    ],
+    "unupdated_exhaustive_switches": [
+      "packages/quds_mail_ui/lib/src/workspace/message_list.dart:_defaultSearchError",
+      "packages/quds_office_editor/example/lib/studio_mail_workspace_strings.dart:_mailHeaderSearchError"
+    ],
+    "test_gap": "Incoming test diff only removes unsupported-expression cases; new Boolean behavior, precedence, unknown observations, syntax rejection, limits and legacy compatibility need qualification."
+  },
+  "verification": {
+    "method": "GitHub connector branch/PR/commit comparisons and local Git graph, tree identity, changed-path diff equality; no source execution claimed by intake audit.",
+    "historical_proof_source": "docs/validation/zotero-nested-tables-20261121/intake-final.json at 1ef5f7f88705e05bb2ebd2f5b639460dab52c3d0",
+    "historical_proofs_reexecuted": true,
+    "github_actions_queried": false,
+    "github_actions_awaited": false,
+    "mutated_remote_refs": false
+  },
+  "limitations": [
+    "Remote branches can advance after this snapshot. Root integration must refresh current main immediately before final publication.",
+    "No runtime test or analyzer result is claimed by this read-only intake audit.",
+    "Historical equivalent branch heads remain preserved remotely; replaying them over current source would overwrite later work."
+  ]
+}

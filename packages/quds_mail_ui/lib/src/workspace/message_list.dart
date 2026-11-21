@@ -63,14 +63,18 @@ final class MailMessageListStrings {
     this.searchHelp = 'Search help',
     this.searchHelpTitle = 'Search loaded message headers',
     this.searchHelpText =
-        'Combine terms to require every match. Use from:, to:, cc:, subject:, '
+        'Separate terms with spaces to require every match. Use uppercase '
+        'AND, OR and NOT, or a leading minus for NOT. Parentheses group terms; '
+        'NOT applies first, then AND, then OR. Use from:, to:, cc:, subject:, '
         'is:read, is:unread, is:flagged or is:unflagged. '
         'Use before:YYYY-MM-DD, after:YYYY-MM-DD or on:YYYY-MM-DD for dates. '
-        'Before and after exclude the specified date. '
+        'Before and after exclude the specified date. A missing date or flag '
+        'does not match its filter, even when negated. '
         'Put phrases in double quotes and keep values next to the colon. '
-        'Only loaded message headers are searched. '
-        'Body text, attachments, OR/NOT/AND, wildcards and grouping are not '
-        'supported.',
+        'Use spaces between adjacent terms and groups. Only loaded message '
+        'headers are searched, excluding body text and attachments. '
+        'Up to 1,024 characters, 32 terms, 32 operators and eight nested groups. '
+        'Wildcards, square brackets, && and || are not supported.',
     this.close = 'Close',
     this.sort = 'Sort loaded messages',
     this.providerOrder = 'Provider order',
@@ -150,7 +154,11 @@ String _defaultSearchError(MailHeaderSearchError error) => switch (error) {
     'Use is:read, is:unread, is:flagged or is:unflagged.',
   MailHeaderSearchError.invalidDate => 'Enter a valid date as YYYY-MM-DD.',
   MailHeaderSearchError.unsupportedOperator =>
-    'Use separate terms to match all. Search operators are not supported.',
+    'Use AND, OR or NOT. Wildcards, square brackets, && and || are not supported.',
+  MailHeaderSearchError.invalidExpression =>
+    'Check the search terms, operators and parentheses; use at most 32 operators.',
+  MailHeaderSearchError.nestingTooDeep =>
+    'Use no more than eight nested groups of parentheses.',
 };
 
 final _searchExampleLine = RegExp(
