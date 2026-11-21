@@ -87,4 +87,33 @@ void main() {
       isTrue,
     );
   });
+
+  for (final (kind, surrogate) in [('high', '\uD800'), ('low', '\uDC00')]) {
+    for (final field in ['id', 'name', 'query', 'account']) {
+      test('refuses lone $kind surrogate in $field before persistence', () {
+        final broken = 'prefix${surrogate}suffix';
+        final search = _search(
+          id: field == 'id' ? broken : 'view',
+          name: field == 'name' ? broken : 'Saved search',
+          query: field == 'query' ? broken : '',
+          accountIds: [field == 'account' ? broken : 'account'],
+        );
+        expect(search.isValid, isFalse);
+      });
+    }
+  }
+
+  test('valid surrogate pairs remain exact in every definition field', () {
+    final search = _search(
+      id: 'view-📨',
+      name: 'رسائل 📨',
+      query: 'subject:"📨"',
+      accountIds: ['account-📨'],
+    );
+    expect(search.isValid, isTrue);
+    expect(search.id, 'view-\uD83D\uDCE8');
+    expect(search.name, 'رسائل \uD83D\uDCE8');
+    expect(search.query, 'subject:"\uD83D\uDCE8"');
+    expect(search.accountIds, ['account-\uD83D\uDCE8']);
+  });
 }

@@ -37,7 +37,8 @@ final class MailSavedHeaderSearch {
       value.isNotEmpty &&
       value.length <= maxIdCodeUnits &&
       value == value.trim() &&
-      !_controls.hasMatch(value);
+      !_controls.hasMatch(value) &&
+      _hasWellFormedUtf16(value);
 
   bool get isValid {
     if (!isValidId(id) ||
@@ -45,6 +46,9 @@ final class MailSavedHeaderSearch {
         name.length > maxNameCodeUnits ||
         name != name.trim() ||
         _controls.hasMatch(name) ||
+        !_hasWellFormedUtf16(name) ||
+        query.length > MailHeaderSearchQuery.maxCodeUnits ||
+        !_hasWellFormedUtf16(query) ||
         accountIds.isEmpty ||
         accountIds.length > maxAccountIds ||
         revision < 0 ||
@@ -81,3 +85,20 @@ final class MailSavedHeaderSearch {
 }
 
 final _controls = RegExp(r'[\x00-\x1f\x7f]');
+
+// SQLite text uses UTF-8. Reject malformed UTF-16 before an encoder can replace
+// an unpaired surrogate and silently change an ID, account scope or query.
+// Valid supplementary characters retain their exact original pair of units.
+bool _hasWellFormedUtf16(String value) {
+  for (var index = 0; index < value.length; index++) {
+    final unit = value.codeUnitAt(index);
+    if (unit >= 0xd800 && unit <= 0xdbff) {
+      if (++index == value.length) return false;
+      final low = value.codeUnitAt(index);
+      if (low < 0xdc00 || low > 0xdfff) return false;
+    } else if (unit >= 0xdc00 && unit <= 0xdfff) {
+      return false;
+    }
+  }
+  return true;
+}

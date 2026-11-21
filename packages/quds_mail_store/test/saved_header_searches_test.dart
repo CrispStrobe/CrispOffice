@@ -523,6 +523,87 @@ void main() {
     },
   );
 
+  for (final (kind, surrogate) in [('high', '\uD800'), ('low', '\uDC00')]) {
+    for (final field in ['id', 'name', 'query', 'account']) {
+      test(
+        'refuses lone $kind surrogate in $field without changing scope',
+        () async {
+          final broken = 'prefix${surrogate}suffix';
+          final search = _search(
+            id: field == 'id' ? broken : 'view',
+            name: field == 'name' ? broken : 'Saved search',
+            query: field == 'query' ? broken : '',
+            accountIds: [field == 'account' ? broken : 'account'],
+          );
+          _problem(
+            await store.saveSavedHeaderSearch(search),
+            MailProblemCode.invalidInput,
+          );
+          expect(_value(await store.listSavedHeaderSearches()), isEmpty);
+          expect(
+            _value(await store.saveSavedHeaderSearch(_search())).revision,
+            1,
+          );
+        },
+      );
+    }
+  }
+
+  test(
+    'valid surrogate pairs round-trip unchanged through SQLite restart',
+    () async {
+      final directory = await Directory.systemTemp.createTemp(
+        'saved-header-search-unicode-',
+      );
+      final file = File('${directory.path}/mail.sqlite3');
+      Future<SqliteMailRepository> open() async => _value(
+        await SqliteMailRepository.open(
+          executor: NativeDatabase(file),
+          profile: _profile,
+        ),
+      );
+      final original = _search(
+        id: 'view-📨',
+        name: 'رسائل 📨',
+        query: 'subject:"📨"',
+        accountIds: ['account-📨'],
+      );
+      try {
+        var disk = await open();
+        try {
+          _value(await disk.saveSavedHeaderSearch(original));
+        } finally {
+          await disk.close();
+        }
+        disk = await open();
+        try {
+          final restored = _value(await disk.listSavedHeaderSearches()).single;
+          expect(restored.id.codeUnits, original.id.codeUnits);
+          expect(restored.name.codeUnits, original.name.codeUnits);
+          expect(restored.query.codeUnits, original.query.codeUnits);
+          expect(
+            restored.accountIds.single.codeUnits,
+            original.accountIds.single.codeUnits,
+          );
+          _value(
+            await disk.saveSavedHeaderSearch(
+              restored.copyWith(name: 'Updated 📨'),
+              expectedRevision: restored.revision,
+            ),
+          );
+          expect(
+            _value(await disk.listSavedHeaderSearches()).single.name,
+            'Updated 📨',
+          );
+        } finally {
+          await disk.close();
+        }
+      } finally {
+        await directory.delete(recursive: true);
+      }
+    },
+  );
+
   for (final (label, sql, arguments) in <(String, String, List<Object?>)>[
     (
       'oversized query',
