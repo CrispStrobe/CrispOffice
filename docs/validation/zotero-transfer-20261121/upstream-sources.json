@@ -1,0 +1,103 @@
+[
+  {
+    "repository": "zotero/zotero",
+    "commit": "ebdf94eda5257292967ebe39ea06a9a5ed31d15c",
+    "path": "chrome/content/zotero/xpcom/httpIntegrationClient.js",
+    "blob_sha": "611911bbfce0a7656eab8e4a322588863976aa34",
+    "url": "https://github.com/zotero/zotero/blob/ebdf94eda5257292967ebe39ea06a9a5ed31d15c/chrome/content/zotero/xpcom/httpIntegrationClient.js",
+    "ranges": [
+      [
+        58,
+        82
+      ],
+      [
+        88,
+        100
+      ],
+      [
+        145,
+        159
+      ],
+      [
+        170,
+        185
+      ]
+    ]
+  },
+  {
+    "repository": "zotero/zotero",
+    "commit": "ebdf94eda5257292967ebe39ea06a9a5ed31d15c",
+    "path": "chrome/content/zotero/xpcom/integration.js",
+    "blob_sha": "19deafdfc35ea25d7e9f82ab2e9afad83d0c28a0",
+    "url": "https://github.com/zotero/zotero/blob/ebdf94eda5257292967ebe39ea06a9a5ed31d15c/chrome/content/zotero/xpcom/integration.js",
+    "ranges": [
+      [
+        2086,
+        2098
+      ],
+      [
+        2136,
+        2156
+      ]
+    ]
+  },
+  {
+    "repository": "zotero/zotero-word-for-windows-integration",
+    "commit": "d35757038a4bbb323a706ab6dc6b69c1c94c3dc7",
+    "path": "build/zoteroWinWordIntegration/document.cpp",
+    "blob_sha": "a362d202ad88afc55b4bdd730fe659539bb976e1",
+    "url": "https://github.com/zotero/zotero-word-for-windows-integration/blob/d35757038a4bbb323a706ab6dc6b69c1c94c3dc7/build/zoteroWinWordIntegration/document.cpp",
+    "ranges": [
+      [
+        38,
+        44
+      ],
+      [
+        827,
+        870
+      ],
+      [
+        877,
+        894
+      ],
+      [
+        928,
+        960
+      ]
+    ]
+  },
+  {
+    "repository": "zotero/zotero-libreoffice-integration",
+    "commit": "0a31b434371eb21a1297c5bce8ca4978cb9ab425",
+    "path": "build/source/org/zotero/integration/ooo/comp/Document.java",
+    "blob_sha": "551402ec9ea02f23648a5360daaebd0e6ba1cbab",
+    "url": "https://github.com/zotero/zotero-libreoffice-integration/blob/0a31b434371eb21a1297c5bce8ca4978cb9ab425/build/source/org/zotero/integration/ooo/comp/Document.java",
+    "ranges": [
+      [
+        117,
+        135
+      ],
+      [
+        213,
+        241
+      ],
+      [
+        544,
+        561
+      ]
+    ]
+  },
+  {
+    "repository": "zotero/zotero-google-docs-integration",
+    "commit": "69b4b901630239ca6de3197d9175d98ee21f491a",
+    "path": "src/connector/document.js",
+    "blob_sha": "19ee4166c4d20e2ff2b698a92c312b6fa10f9c33",
+    "url": "https://github.com/zotero/zotero-google-docs-integration/blob/69b4b901630239ca6de3197d9175d98ee21f491a/src/connector/document.js",
+    "ranges": [
+      [
+        190,
+        241
+      ]
+    ]
+  }
+]

@@ -13,7 +13,10 @@ enum ZoteroCitingCommand {
   addAnnotation,
   refresh,
   setDocPrefs,
-  removeCodes;
+  removeCodes,
+
+  /// Converts active fields to Zotero's transfer format for another editor.
+  exportDocument;
 
   /// These commands must insert research content before staged preferences or
   /// temporary fields can be applied. A cancelled picker supplies no text.
@@ -362,7 +365,13 @@ class ZoteroCitingClient {
         valid = arguments.length == 2 && arguments[1] is String;
       case 'Document.cursorInField':
       case 'Document.getFields':
+      case 'Document.importDocument':
         valid = arguments.length == 2 && arguments[1] == 'Http';
+      case 'Document.exportDocument':
+        valid =
+            arguments.length == 3 &&
+            arguments[1] == 'Http' &&
+            arguments[2] is String;
       case 'Document.insertField':
         valid =
             arguments.length == 3 &&
@@ -374,10 +383,13 @@ class ZoteroCitingClient {
         valid =
             arguments.length == 4 &&
             arguments[1] is List<Object?> &&
-            _isNoteType(arguments[2]) &&
-            arguments[3] == 'Http';
+            ((arguments[2] is List<Object?> && _isNoteType(arguments[3])) ||
+                (_isNoteType(arguments[2]) && arguments[3] == 'Http'));
         if (valid) {
-          final ids = arguments[1] as List<Object?>;
+          // Current Zotero sends codes, placeholder IDs, note type. Retain the
+          // older Quds adapter shape (IDs, note type, Http) for existing hosts.
+          final hasCodes = arguments[2] is List<Object?>;
+          final ids = arguments[hasCodes ? 2 : 1] as List<Object?>;
           valid =
               ids.length <= 10000 &&
               ids.toSet().length == ids.length &&
@@ -386,6 +398,13 @@ class ZoteroCitingClient {
                     id is String &&
                     RegExp(r'^[A-Za-z0-9]{1,128}$').hasMatch(id),
               );
+          if (hasCodes) {
+            final codes = arguments[1] as List<Object?>;
+            valid =
+                valid &&
+                codes.length == ids.length &&
+                codes.every((code) => code is String);
+          }
         }
       case 'Document.convert':
         valid =
@@ -468,12 +487,8 @@ class ZoteroCitingClient {
             !notes.every(const <String>{'footnotes', 'endnotes'}.contains)) {
           throw _invalid();
         }
-        if (result.containsKey('supportsImportExport') &&
-            result['supportsImportExport'] != false) {
-          // Document transfer commands remain outside this driver's contract.
-          throw _invalid();
-        }
         for (final key in <String>[
+          'supportsImportExport',
           'supportsTextInsertion',
           'supportsCitationMerging',
         ]) {
@@ -486,6 +501,12 @@ class ZoteroCitingClient {
         if (result is! String) throw _invalid();
       case 'Document.canInsertField':
         if (result is! bool) throw _invalid();
+      case 'Document.importDocument':
+        if (result is! bool) throw _invalid();
+        // A successful import replaces transfer links with new field objects.
+        // Zotero enumerates those fields before updating them; an old identity
+        // must not authorize an update against the imported document.
+        if (result) knownFields.clear();
       case 'Document.displayAlert':
         final buttons = arguments[3] as int;
         if (!_isIntBetween(
@@ -504,7 +525,8 @@ class ZoteroCitingClient {
         }
         knownFields.addAll(ids);
       case 'Document.convertPlaceholdersToFields':
-        final placeholders = arguments[1] as List<Object?>;
+        final placeholders =
+            arguments[arguments[2] is List<Object?> ? 2 : 1] as List<Object?>;
         if (result is! List<Object?> || result.length != placeholders.length) {
           throw _invalid();
         }
@@ -523,6 +545,10 @@ class ZoteroCitingClient {
         if (result != null) throw _invalid();
         if (name == 'Field.delete') {
           knownFields.remove(arguments[1]);
+        } else if (name == 'Document.exportDocument') {
+          // Export removes the native fields while preserving their codes as
+          // linked text. No former field identity remains valid afterwards.
+          knownFields.clear();
         }
     }
   }
