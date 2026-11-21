@@ -42,6 +42,9 @@ def main():
                  canonical / "example/macros", repo / "packages/legacy_doc_parser/lib"]
         paths = {p for root in roots for p in root.rglob("*")
                  if p.is_file() and p.suffix in {".dart", ".json", ".bas"}}
+        paths.update(p for p in (canonical / "test/fixtures").rglob("*") if p.is_file())
+        paths.update(p for p in (repo / "packages/quds_office_editor/fonts").glob("*")
+                     if p.is_file())
         paths.update(repo / name for name in ["pubspec.lock", "pubspec.yaml", ".fvmrc",
                      "analysis_options.yaml", ".github/workflows/office-macros.yml"])
         return {str(p.relative_to(repo)): digest(p) for p in sorted(paths)}
@@ -102,8 +105,15 @@ def main():
             "word_steps_vocabulary", "word_structure_steps", "table_grid_steps",
             "word_table_grid_addressing", "sheet_macro_preservation",
             "word_empty_formatted_run"])
-        command("macro-regressions", [args.dart, "test", "--reporter=json", "--concurrency=2",
-                *(str(p.relative_to(canonical)) for p in sorted(tests))], reporter=True)
+        ordered = sorted(tests)
+        write(out / "scope.json", [str(p.relative_to(canonical)) for p in ordered])
+        # The Dart test loader keeps a kernel copy per suite. Small independent
+        # batches bound scratch storage without dropping any selected suite.
+        for start in range(0, len(ordered), 10):
+            command(f"macro-batch-{start // 10 + 1:02d}",
+                    [args.dart, "test", "--reporter=json", "--concurrency=2",
+                     *(str(p.relative_to(canonical)) for p in ordered[start:start + 10])],
+                    reporter=True)
     elif args.phase == "incoming":
         names = ["word_table_cell_margin_layout", "odt_table_padding",
                  "odt_zotero_position_guard", "odt_zotero_table_geometry",

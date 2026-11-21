@@ -11,6 +11,9 @@ All notable changes to `quds_office_engine` are documented here.
   structure and formatting, refuse ambiguous native ownership and unsupported
   rich content, and retain the atomic CLI/MCP/recording transaction boundary.
   Add a runnable table-report BAS and portable source/native conformance checks.
+  Retain explicit empty ordinary text runs during DOCX import so clearing,
+  saving, reopening and refilling a cell preserves insertion formatting;
+  structural markers do not acquire additional empty runs.
 
 - Honor each table's uniform cell margin in native measurement, wrapping,
   pagination and note/nested-table layout instead of a fixed inset. Preserve

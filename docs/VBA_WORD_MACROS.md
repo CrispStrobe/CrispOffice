@@ -6,7 +6,7 @@ adapter by default. Select language **`vba-word`** and format **`docx`**; the
 separate `vba-excel` adapter and its spreadsheet contract remain available.
 
 Compilation evaluates the supplied source without opening or reading a
-document. The supported Word objects describe explicit paragraph and section
+document. The supported Word objects describe explicit paragraph, section and table-cell
 selectors. The ordinary native runtime resolves those selectors against a detached Word
 document, applies the ordered operations, and publishes saved bytes only after
 the complete plan succeeds. The same mutation permissions, tool allowlists,

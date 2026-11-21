@@ -1,0 +1,55 @@
+{
+  "capturedForkHeads": [
+    {
+      "ancestorOfIntegrationHead": true,
+      "branch": "codex/word-vba-authoring-20261121",
+      "sha": "cf06b018ec125ce3b5abfda41a7fbbdcf7d30a47"
+    },
+    {
+      "ancestorOfIntegrationHead": true,
+      "branch": "codex/word-vba-compatibility-20261121",
+      "sha": "9d6fc334c6df86262cc5086caa253765b1b5fe86"
+    },
+    {
+      "ancestorOfIntegrationHead": true,
+      "branch": "codex/zotero-note-layout-20261121",
+      "sha": "2089e1e35a8ba81ea7f0a077b348f93ca70953c8"
+    },
+    {
+      "ancestorOfIntegrationHead": true,
+      "branch": "codex/zotero-odt-roundtrip-20261121",
+      "sha": "05072dc2d59d0fa4ea97de4d6a842700ef333fab"
+    },
+    {
+      "ancestorOfIntegrationHead": true,
+      "branch": "main",
+      "sha": "b5f6cc4135c6de2cb52bab63015cae0f1a7339ee"
+    },
+    {
+      "ancestorOfIntegrationHead": true,
+      "branch": "work/mail-live-search-20261121",
+      "sha": "c3d55be30d91694b1a427d261cddbe47b1dd5eec"
+    }
+  ],
+  "featureCheckpoint": "e65ce54c5301839c1c012092c13f1997afec127e",
+  "initialMain": "e5940c79120859dbbeb99be0907f3443e696f10a",
+  "integrationHead": "9d6fc334c6df86262cc5086caa253765b1b5fe86",
+  "integrationNotes": [
+    "Preserved new shortcut main, Zotero ODT safeguard/evidence, latest Mail refresh and shortcut fixes, and Zotero table-layout work with ordinary merge parents.",
+    "Latest published main includes Mail PR345 and ODT PR333; latest note-layout PR342 head is an explicit merge parent.",
+    "Final note-layout merge resolved only a README heading and the changelog insertion, keeping the new Word capability entry. Its resolved tree equals its first parent.",
+    "No force push, ref deletion, GitHub Actions polling, or CI waiting was used."
+  ],
+  "integrationTree": "5f4057eb277586fa955e87aca534db423b9fb2f4",
+  "upstreamInitialAudit": {
+    "allCapturedHeadsAlreadyAncestorsOfInitialMain": true,
+    "heads": {
+      "ci/flutter-workspace": "aca2f66941832bd0b19b436baeab1656a1b7de98",
+      "cursor/class-certificates-2db8": "f45099688e7a3f67a1302efdb442830d052f2240",
+      "cursor/cloud-agent-1790580069020-0rk1h": "9930be8df44ffe117fb22778c514eea0ee73ce21",
+      "main": "15c5d29b63fb17a93c7fb3426a8fd4d95a32f1ba"
+    },
+    "openPullRequestsObserved": 0,
+    "repository": "MohammedAsaadAsaad/quds_office_suite"
+  }
+}

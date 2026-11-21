@@ -1,0 +1,502 @@
+{
+  "additionalHistoricalUiChecks": "Initial 97-case integration cohort is retained separately and not added to final-source totals.",
+  "archive": {
+    "bytes": 445360,
+    "file": "execution.tar.xz",
+    "members": 265,
+    "sha256": "ebb59ee9ebac462aba3a7af83ee4737feb9921060ac207839d8e2388859d2799"
+  },
+  "enginePassingCases": 6665,
+  "engineSuites": 141,
+  "featureCheckpoint": "e65ce54c5301839c1c012092c13f1997afec127e",
+  "finalSourceUi": {
+    "passed": 73,
+    "rulerAndShaping": {
+      "case_counts": {
+        "word_ruler_cell_margin_test.dart": 9,
+        "word_shaped_wrap_test.dart": 8
+      },
+      "command": {
+        "args": [
+          "/workspace/scratch/1ba3887906e6/sdk-runtime/flutter/bin/flutter",
+          "test",
+          "--no-pub",
+          "--concurrency=1",
+          "--reporter",
+          "expanded",
+          "test/word_ruler_cell_margin_test.dart",
+          "test/word_shaped_wrap_test.dart"
+        ],
+        "cwd": "/workspace/scratch/1ba3887906e6/workspace-validation-runtime/packages/quds_office_editor",
+        "head_at_start": "e65ce54c5301839c1c012092c13f1997afec127e",
+        "pubspec_lock_sha256": "2231cacd6ab548da8f0d94020201a29f07f54a20c1682c0e8ae0079967b720eb",
+        "sdk": "Flutter 3.47.8 / Dart 3.13.7",
+        "started_utc": "2026-11-21T21:03:32Z"
+      },
+      "passed": 17,
+      "purpose": "Recheck incoming editor ruler and shaping behavior after the empty-run deserializer change",
+      "result": {
+        "elapsed_seconds": 19.998,
+        "exit_code": 0,
+        "head_at_end": "e65ce54c5301839c1c012092c13f1997afec127e",
+        "selected_editor_and_studio_source_changes": [],
+        "selected_source_scope": "All canonical quds_office_editor lib, Studio lib and explicitly executed test files",
+        "sources_changed_during_run": []
+      },
+      "runtime_provenance": "../setup/runtime-receipt.json"
+    },
+    "shortcutsAndFocus": {
+      "editor": {
+        "case_counts": {
+          "word_input_focus_test.dart": 5,
+          "word_keyboard_review_test.dart": 16
+        },
+        "command": {
+          "args": [
+            "/workspace/scratch/1ba3887906e6/sdk-runtime/flutter/bin/flutter",
+            "test",
+            "--no-pub",
+            "--concurrency=1",
+            "--reporter",
+            "expanded",
+            "test/word_input_focus_test.dart",
+            "test/word_keyboard_review_test.dart"
+          ],
+          "cwd": "/workspace/scratch/1ba3887906e6/workspace-validation-runtime/packages/quds_office_editor",
+          "head_at_start": "e65ce54c5301839c1c012092c13f1997afec127e",
+          "pubspec_lock_sha256": "2231cacd6ab548da8f0d94020201a29f07f54a20c1682c0e8ae0079967b720eb",
+          "sdk": "Flutter 3.47.8 / Dart 3.13.7",
+          "started_utc": "2026-11-21T21:01:08Z"
+        },
+        "passed": 21,
+        "result": {
+          "elapsed_seconds": 25.443,
+          "exit_code": 0,
+          "head_at_end": "e65ce54c5301839c1c012092c13f1997afec127e",
+          "selected_editor_and_studio_source_changes": [],
+          "selected_source_scope": "All canonical quds_office_editor lib, Studio lib and explicitly executed test files",
+          "sources_changed_during_run": []
+        }
+      },
+      "failed_attempt": {
+        "cases_executed": 0,
+        "directory": "editor-attempt-1-disk-full",
+        "reason": "Environment ENOSPC before executing test cases; interrupted then retried successfully with dedicated TMPDIR"
+      },
+      "runtime_provenance": "../setup/runtime-receipt.json",
+      "studio": {
+        "case_counts": {
+          "studio_comment_keyboard_review_test.dart": 9,
+          "studio_shortcuts_test.dart": 10,
+          "studio_zotero_shortcuts_test.dart": 15,
+          "suite_workspace_mail_shortcuts_test.dart": 1
+        },
+        "command": {
+          "args": [
+            "/workspace/scratch/1ba3887906e6/sdk-runtime/flutter/bin/flutter",
+            "test",
+            "--no-pub",
+            "--concurrency=1",
+            "--reporter",
+            "expanded",
+            "test/studio_shortcuts_test.dart",
+            "test/suite_workspace_mail_shortcuts_test.dart",
+            "test/studio_zotero_shortcuts_test.dart",
+            "test/studio_comment_keyboard_review_test.dart"
+          ],
+          "cwd": "/workspace/scratch/1ba3887906e6/workspace-validation-runtime/packages/quds_office_editor/example",
+          "head_at_start": "ab8a56b0dbaa443777fd18c78ec031542b4f0224",
+          "pubspec_lock_sha256": "2231cacd6ab548da8f0d94020201a29f07f54a20c1682c0e8ae0079967b720eb",
+          "sdk": "Flutter 3.47.8 / Dart 3.13.7",
+          "started_utc": "2026-11-21T20:58:17Z"
+        },
+        "passed": 35,
+        "result": {
+          "elapsed_seconds": 74.979,
+          "exit_code": 0,
+          "head_at_end": "e65ce54c5301839c1c012092c13f1997afec127e",
+          "selected_editor_and_studio_source_changes": [],
+          "selected_source_scope": "All canonical quds_office_editor lib, Studio lib and explicitly executed test files",
+          "sources_changed_during_run": []
+        }
+      },
+      "total_passed": 56
+    }
+  },
+  "incomingEngine": [
+    {
+      "cases": 376,
+      "exitCode": 0,
+      "failed": 0,
+      "name": "incoming-engine",
+      "passed": 376,
+      "seconds": 13.412,
+      "skipped": 0,
+      "sourceFileCount": 1154,
+      "sourceUnchanged": true,
+      "suites": 17
+    }
+  ],
+  "integrationHead": "9d6fc334c6df86262cc5086caa253765b1b5fe86",
+  "macroRegressions": [
+    {
+      "cases": 344,
+      "exitCode": 0,
+      "failed": 0,
+      "name": "macro-batch-01",
+      "passed": 344,
+      "seconds": 49.174,
+      "skipped": 0,
+      "sourceFileCount": 1154,
+      "sourceUnchanged": true,
+      "suites": 10
+    },
+    {
+      "cases": 570,
+      "exitCode": 0,
+      "failed": 0,
+      "name": "macro-batch-02",
+      "passed": 570,
+      "seconds": 10.636,
+      "skipped": 0,
+      "sourceFileCount": 1154,
+      "sourceUnchanged": true,
+      "suites": 10
+    },
+    {
+      "cases": 520,
+      "exitCode": 0,
+      "failed": 0,
+      "name": "macro-batch-03",
+      "passed": 520,
+      "seconds": 17.366,
+      "skipped": 0,
+      "sourceFileCount": 1154,
+      "sourceUnchanged": true,
+      "suites": 10
+    },
+    {
+      "cases": 420,
+      "exitCode": 0,
+      "failed": 0,
+      "name": "macro-batch-04",
+      "passed": 420,
+      "seconds": 21.505,
+      "skipped": 0,
+      "sourceFileCount": 1154,
+      "sourceUnchanged": true,
+      "suites": 10
+    },
+    {
+      "cases": 371,
+      "exitCode": 0,
+      "failed": 0,
+      "name": "macro-batch-05",
+      "passed": 371,
+      "seconds": 14.408,
+      "skipped": 0,
+      "sourceFileCount": 1154,
+      "sourceUnchanged": true,
+      "suites": 10
+    },
+    {
+      "cases": 744,
+      "exitCode": 0,
+      "failed": 0,
+      "name": "macro-batch-06",
+      "passed": 744,
+      "seconds": 23.042,
+      "skipped": 0,
+      "sourceFileCount": 1154,
+      "sourceUnchanged": true,
+      "suites": 10
+    },
+    {
+      "cases": 451,
+      "exitCode": 0,
+      "failed": 0,
+      "name": "macro-batch-07",
+      "passed": 451,
+      "seconds": 22.476,
+      "skipped": 0,
+      "sourceFileCount": 1154,
+      "sourceUnchanged": true,
+      "suites": 10
+    },
+    {
+      "cases": 665,
+      "exitCode": 0,
+      "failed": 0,
+      "name": "macro-batch-08",
+      "passed": 665,
+      "seconds": 15.711,
+      "skipped": 0,
+      "sourceFileCount": 1154,
+      "sourceUnchanged": true,
+      "suites": 10
+    },
+    {
+      "cases": 809,
+      "exitCode": 0,
+      "failed": 0,
+      "name": "macro-batch-09",
+      "passed": 809,
+      "seconds": 22.806,
+      "skipped": 0,
+      "sourceFileCount": 1154,
+      "sourceUnchanged": true,
+      "suites": 10
+    },
+    {
+      "cases": 401,
+      "exitCode": 0,
+      "failed": 0,
+      "name": "macro-batch-10",
+      "passed": 401,
+      "seconds": 21.145,
+      "skipped": 0,
+      "sourceFileCount": 1154,
+      "sourceUnchanged": true,
+      "suites": 10
+    },
+    {
+      "cases": 462,
+      "exitCode": 0,
+      "failed": 0,
+      "name": "macro-batch-11",
+      "passed": 462,
+      "seconds": 23.533,
+      "skipped": 0,
+      "sourceFileCount": 1154,
+      "sourceUnchanged": true,
+      "suites": 10
+    },
+    {
+      "cases": 455,
+      "exitCode": 0,
+      "failed": 0,
+      "name": "macro-batch-12",
+      "passed": 455,
+      "seconds": 13.37,
+      "skipped": 0,
+      "sourceFileCount": 1154,
+      "sourceUnchanged": true,
+      "suites": 10
+    },
+    {
+      "cases": 77,
+      "exitCode": 0,
+      "failed": 0,
+      "name": "macro-batch-13",
+      "passed": 77,
+      "seconds": 3.391,
+      "skipped": 0,
+      "sourceFileCount": 1154,
+      "sourceUnchanged": true,
+      "suites": 4
+    }
+  ],
+  "newRegressionCases": 231,
+  "notExecuted": [
+    "Installed Microsoft Word differential tests",
+    "Whole Flutter application suite",
+    "Fresh external LibreOffice/Zotero converter qualification",
+    "GitHub Actions"
+  ],
+  "portableParity": [
+    {
+      "equal": true,
+      "inputSha256": "496ba13d667dec5f620af572a2b1f63ce49a905dd72169e08e0b17699e12a7fc",
+      "javascriptSha256": "39845ee66c2017e323078885aa8fee101ccbc948ce3a7b8ee06ebe8a2afb0834",
+      "name": "table-report",
+      "outputSha256": "65e971f53f286aa37ace9c87d616ffb9fced9864ab10add00e74773366097526"
+    },
+    {
+      "equal": true,
+      "inputSha256": "c751d830c3a50c6659690d9a4866f7706498bda004d885d778b45fa5a0e60743",
+      "javascriptSha256": "1b5c38d0f6c9de72fdde9a0d62810b82755d18c5f6dcefda770dadf18f7f2c9f",
+      "name": "word_table_cells_v1",
+      "outputSha256": "f6958e4bf1845d2c2212eacef6313d9a78cc533dce92c441dc64ef18c4b4bbde"
+    },
+    {
+      "equal": true,
+      "inputSha256": "53e4d4d5099778b4386b24f4ad9306c3a322bfb68801987825f79a75b8b4b37e",
+      "javascriptSha256": "2dd250bd815a03de7a0fb9b29ad2b1c5a9ae74eeeac3276cd6286dc51fdf625a",
+      "name": "word_paragraphs_v1",
+      "outputSha256": "ebe5980e850477a79c6d3749303eae4d97c35dde61cb8e1d7b31b29c800c5f6d"
+    },
+    {
+      "equal": true,
+      "inputSha256": "af521544e836caad03a61960dbfa0386b18023421d7afe7efb655f3ea080fb1d",
+      "javascriptSha256": "1048085aeaefdd549a9a38f62e1fa3910c1ba87711a9b6f58a4dac0b7d92e41b",
+      "name": "word_numeric_intrinsics_v1",
+      "outputSha256": "d25042125917480df38ead7aa811cfa510b5177bcacafe92bfe9bf649a151eb9"
+    }
+  ],
+  "preservedAttempts": [
+    "Unbatched macro run: missing sparse fidelity fixtures/harness fonts, followed by ENOSPC from retained test kernels. No successful qualification credit.",
+    "Initial incoming engine run: 375 passes, one missing Zotero fixture failure. Replaced by complete 376-case successful rerun.",
+    "Initial editor shortcut-followup attempt: ENOSPC before any case. Replaced by successful dedicated-temp retry."
+  ],
+  "runnerSha256": "7c4c3eb274876ab3fd420bc8ddc3624b74a28f79481e31f0392e15e1a1761ac3",
+  "runtime": {
+    "canonical_manifest_comparisons": [
+      {
+        "identical": true,
+        "path": "pubspec.yaml",
+        "sha256": "453a1f8ab62db1c5577c424b058b50033a8d3b49b99c83862ab58a7e1108f74f"
+      },
+      {
+        "identical": true,
+        "path": "pubspec.lock",
+        "sha256": "2231cacd6ab548da8f0d94020201a29f07f54a20c1682c0e8ae0079967b720eb"
+      },
+      {
+        "identical": true,
+        "path": "packages/quds_mail_core/pubspec.yaml",
+        "sha256": "9ecb33312a62c29481def03efd177e8da0186b9627fe2d804d38c9d5db05fb21"
+      },
+      {
+        "identical": true,
+        "path": "packages/quds_mail_mime/pubspec.yaml",
+        "sha256": "7a2d759c76e945e6e7503ce62c7a32bfae0473ae6ac58d249f40910fc3124b81"
+      },
+      {
+        "identical": true,
+        "path": "packages/quds_mail_store/pubspec.yaml",
+        "sha256": "c19f88e29dc3f530505d992e9f79c287336f9ee0310b081c6cfa0017a5c626b6"
+      },
+      {
+        "identical": true,
+        "path": "packages/quds_mail_transport/pubspec.yaml",
+        "sha256": "c470b33a51a06e9a4366cf0e4000d48b495fd069c43752acb5346057c3252ba2"
+      },
+      {
+        "identical": true,
+        "path": "packages/quds_mail_ui/pubspec.yaml",
+        "sha256": "1ae476502a8b02982d63954494c1eb4165f697fe27a7f1962c946b7f449c7653"
+      },
+      {
+        "identical": true,
+        "path": "packages/quds_mail_ui/example/pubspec.yaml",
+        "sha256": "215440d5c99478c7bfe1d5aa37d57e36471f7613c76f75619867ad1e006fd1f3"
+      },
+      {
+        "identical": true,
+        "path": "packages/legacy_doc_parser/pubspec.yaml",
+        "sha256": "150af8d89562635bf5a876c0a539c20ae48b58ea3666db071b5e4ebd3addf153"
+      },
+      {
+        "identical": true,
+        "path": "packages/quds_office_engine/pubspec.yaml",
+        "sha256": "225773e48bab7333652a4098e5747f37eab2aac9fc6a14de1e814590ab03fb7a"
+      },
+      {
+        "identical": true,
+        "path": "packages/quds_proofing_harper/pubspec.yaml",
+        "sha256": "e94200003c36cc9047685b145f16b85915e8ca80fe347d3e3733c38a9ad5f63e"
+      },
+      {
+        "identical": true,
+        "path": "packages/quds_proofing_gector/pubspec.yaml",
+        "sha256": "26074a4688212904b95e3cb24fa934ffb94a1881c41d8d98074e38d586ea63b1"
+      },
+      {
+        "identical": true,
+        "path": "packages/quds_proofing_spacy/pubspec.yaml",
+        "sha256": "eaa01aa5b7410e785ed9171b1cfd5073cb619663a900403119e3bb02f93d57f5"
+      },
+      {
+        "identical": true,
+        "path": "packages/quds_proofing_hunspell/pubspec.yaml",
+        "sha256": "4d803e1eb286500a2c1c88ea97b5f3a1afa4211a1cfe5919c0f4b4c48e7b5a59"
+      },
+      {
+        "identical": true,
+        "path": "packages/quds_arabic_morph/pubspec.yaml",
+        "sha256": "fc88256a998232198ac4e8e2f6daa9fb2a2d14a27f3df7ae4560019153efab2c"
+      },
+      {
+        "identical": true,
+        "path": "packages/quds_language_id/pubspec.yaml",
+        "sha256": "6f17ec3cb01c9ce17499a796dc3972b4c91c55fa57d90af539b7e9a5cf922cc5"
+      },
+      {
+        "identical": true,
+        "path": "packages/quds_office_engine/example/pubspec.yaml",
+        "sha256": "9f1b07bb8665c2125d92074aef74f2892963e34171ab0ea381df7a1cf798fb6c"
+      },
+      {
+        "identical": true,
+        "path": "packages/quds_reports/pubspec.yaml",
+        "sha256": "5e4bc0d98b2ed07463fede914e41d6536a985ede6746741df85a0bc743dbb98a"
+      },
+      {
+        "identical": true,
+        "path": "packages/quds_office_editor/pubspec.yaml",
+        "sha256": "536da824dbe7ade3c70080fb6fd5d507186021ca7052869dc47a41fffd82b272"
+      },
+      {
+        "identical": true,
+        "path": "packages/quds_office_editor/example/pubspec.yaml",
+        "sha256": "97671571d22a1358d6be697cd5e63f39d693cd16e47bad9507afe3aa30b29bc9"
+      },
+      {
+        "identical": true,
+        "path": "apps/quds_report_studio/pubspec.yaml",
+        "sha256": "4a6624ee8d31222409dca9cea01daa28231ae477ac81369a2226540837a8179a"
+      }
+    ],
+    "dart_archive": {
+      "bytes": 238850892,
+      "official_storage_md5": "82744663318b537eb49804f14b50efc4",
+      "sha256": "eb99aed266efbcb615c6ae21c12f52cfe935b9f208bccc5fea7f64c21e867229",
+      "source": "https://storage.googleapis.com/dart-archive/channels/stable/release/3.13.7/sdk/dartsdk-linux-x64-release.zip",
+      "version": "3.13.7"
+    },
+    "dependency_packages": 146,
+    "flutter": {
+      "channel": "[user-branch]",
+      "dartSdkVersion": "3.13.7",
+      "devToolsVersion": "2.60.0",
+      "engineBuildDate": "2026-10-23 05:34:48.330",
+      "engineCommitDate": "2026-10-23 02:13:38.000Z",
+      "engineContentHash": "dfd2e6cb7d319db05e3bf1503f3e2ac60f6288a2",
+      "engineRevision": "cf636b1dfb818dd6a3ff16e390e93b1a036969c8",
+      "flutterVersion": "3.47.8",
+      "frameworkCommitDate": "2026-10-22 21:37:31 -0700",
+      "frameworkRevision": "737ba8f885dc774b53b442759999a312c9461e4e",
+      "frameworkVersion": "3.47.8",
+      "repositoryUrl": "https://github.com/flutter/flutter.git"
+    },
+    "setup_command": "flutter pub get --enforce-lockfile",
+    "setup_exit_code": 0,
+    "source_mode": "Unchanged canonical lib/test/tool source symlinks, exact workspace manifests and enforced repository lock in scratch"
+  },
+  "sourceInputCount": 1154,
+  "sourceInputsChangedAfterQualification": [],
+  "sourceInputsSha256": "ef8c3f10a56deb3190065334c4d761880b74b61f3b54019601af10341466823e",
+  "strictStaticChecks": [
+    {
+      "exitCode": 0,
+      "name": "format",
+      "seconds": 0.455,
+      "sourceFileCount": 1154,
+      "sourceUnchanged": true
+    },
+    {
+      "exitCode": 0,
+      "name": "analysis",
+      "seconds": 7.065,
+      "sourceFileCount": 1154,
+      "sourceUnchanged": true
+    },
+    {
+      "exitCode": 0,
+      "name": "whitespace",
+      "seconds": 0.088,
+      "sourceFileCount": 1154,
+      "sourceUnchanged": true
+    }
+  ]
+}
