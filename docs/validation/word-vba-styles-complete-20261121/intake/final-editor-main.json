@@ -1,0 +1,19 @@
+{
+  "integrated_main": "0172df91adeb4a1abb2f43346621e10999937572",
+  "local_reconciliation_commit": "725860613e28a713cdb29a0e484da690a5272877",
+  "preceding_remote_checkpoint": "0cf5b2c4295b303d15d11a92faeee2063f6b33c7",
+  "incoming_prs": [
+    {
+      "number": 327,
+      "feature": "Word autocorrect and adaptive trailing proofing"
+    },
+    {
+      "number": 328,
+      "feature": "Skip proofing observation during active IME composition"
+    }
+  ],
+  "engine_diff_from_qualified_source": [],
+  "controller_delta_from_incoming_main": "diff --git a/packages/quds_office_editor/lib/src/embed/office_controller.dart b/packages/quds_office_editor/lib/src/embed/office_controller.dart\nindex ae7d8401..4c27899b 100644\n--- a/packages/quds_office_editor/lib/src/embed/office_controller.dart\n+++ b/packages/quds_office_editor/lib/src/embed/office_controller.dart\n@@ -4358,12 +4358,15 @@ class WordEditorController extends OfficeController {\n   /// retained; HTML is not interpreted and the clipboard is not accessed.\n   ///\n   /// Returns false without changes for empty input, read-only surfaces,\n-  /// non-text object selections or partial selections spanning paragraphs.\n+  /// active Notes-pane targets, non-text object selections or partial selections\n+  /// spanning paragraphs. Notes retain a separate selection, so this operation\n+  /// must not fall through to the inactive body caret.\n   /// Returns true after insertion. Unsupported content-control edits throw\n   /// before any text is changed.\n   bool insertPlainText(String text) {\n     if (!config.allowsMutation ||\n         text.isEmpty ||\n+        noteEditingTarget != null ||\n         selectedVisual != null ||\n         selectedEquation != null ||\n         (selectedFrame != null && !editingFrame) ||\n@@ -5121,7 +5124,9 @@ class WordEditorController extends OfficeController {\n     }\n     final WmlParagraph para = _activeParagraph;\n     final String old = para.text;\n+    final String incomingText = value.text;\n     value = _autocorrectImeValue(value, old);\n+    final bool autocorrected = value.text != incomingText;\n     final void Function(String, int)? phase = debugEditPhase;\n     final Stopwatch? watch = phase == null ? null : (Stopwatch()..start());\n     void lap(String name) {\n@@ -5162,6 +5167,11 @@ class WordEditorController extends OfficeController {\n     }\n     caret.resetBlink();\n     _imeValueTarget = _imeEditingTarget;\n+    if (autocorrected) {\n+      // The next IME update starts from the bridge's value. Publish the\n+      // correction after the edit succeeds so it survives the next keystroke.\n+      input.setValue(value);\n+    }\n     lap('caret');\n     notifyListeners();\n     lap('notify');\n",
+  "integration_method": "Normal two-parent merge; no conflicts. Whole engine identical to qualified remote source; incoming editor paths retained with Notes insertion guard.",
+  "followup_correction": "Autocorrect bridge synchronization, reproduced and qualified by 122 final editor tests"
+}

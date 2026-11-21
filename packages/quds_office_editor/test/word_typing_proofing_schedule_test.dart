@@ -190,7 +190,8 @@ List<String> _findings(WordEditorController controller) {
   ];
 }
 
-const _afterWord = Duration(milliseconds: 200);
+// Adaptive word completion trails up to 350 ms during fast typing.
+const _afterWord = Duration(milliseconds: 400);
 
 /// Lets pending pause and idle-time checks finish before teardown.
 Future<void> _drain(WidgetTester tester, _Harness h) async {

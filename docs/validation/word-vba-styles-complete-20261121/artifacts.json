@@ -1,10 +1,36 @@
 {
-  "qualified_source": "b11c8b1a9a2c0fa58a45f9893b4c86834ec276b2",
+  "qualified_word_source": "b11c8b1a9a2c0fa58a45f9893b4c86834ec276b2",
+  "final_editor_source_binding": "editor/source-binding.json",
   "files": [
     {
       "path": "README.md",
-      "bytes": 13550,
-      "sha256": "7c6f361d8361e8ffe0dee43f7ed3ef14892d70e72144794ad68d9c26e0d77b73"
+      "bytes": 15866,
+      "sha256": "f5ae5207b554bd70efde79123f1604dfe3f1fa094a3e42f99a91c12810763f69"
+    },
+    {
+      "path": "editor/execution.tar.gz",
+      "bytes": 110489,
+      "sha256": "bee639bac2b484293000bab270e818c4743a698db671929466a561504f9cd032"
+    },
+    {
+      "path": "editor/receipt.json.gz",
+      "bytes": 48386,
+      "sha256": "f0115caa03129dbc77fc4b5f9d17f6213b83656f0dfc7bed8c776724374f8d08"
+    },
+    {
+      "path": "editor/source-binding.json",
+      "bytes": 939,
+      "sha256": "fe2faa91bdeb3186297761c50ea936961bcda34f94ebe0f97bf1e3644971ef0b"
+    },
+    {
+      "path": "editor/source-manifest.json",
+      "bytes": 137388,
+      "sha256": "82d4211840ee0677e4d8b70834913ea064b5b9509688b1b137c8532ed1228ea2"
+    },
+    {
+      "path": "editor/summary.json",
+      "bytes": 3367,
+      "sha256": "148db70f11b7a8abcb11aff0c689e0157d96159b07157b552228f5972fb2e509"
     },
     {
       "path": "execution.tar.gz",
@@ -40,6 +66,11 @@
       "path": "intake/captured-head-ancestry.json",
       "bytes": 9191,
       "sha256": "eba1b373944b2736619975433ca73180891a89832efa4c86f8803beb6886b021"
+    },
+    {
+      "path": "intake/final-editor-main.json",
+      "bytes": 3023,
+      "sha256": "48ac84c4d862eaa345c3aca2685f55b3bfbc5d2ae675d60d11e85560c6775375"
     },
     {
       "path": "intake/remote-audit.json",
