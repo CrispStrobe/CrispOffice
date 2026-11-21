@@ -164,6 +164,7 @@ final class NativeStudioMailMessageLoader
         StudioMailMailboxRecords,
         StudioMailMessageActions,
         StudioMailBulkMessageActions,
+        MailFlagObserver,
         StudioMailMailboxArchiver {
   factory NativeStudioMailMessageLoader(
     mail.MailAccount account, {
@@ -613,6 +614,67 @@ final class NativeStudioMailMessageLoader
       );
     } on Object {
       return failure(MailProblemCode.providerFailure, dispatched);
+    } finally {
+      if (identical(_active, operation)) _active = null;
+    }
+  }
+
+  /// Reads an exact historical UID without requiring it to remain in the
+  /// currently loaded page. The provider verifies its original UIDVALIDITY.
+  @override
+  Future<MailResult<MailFlagObservation>> observeFlags(
+    MailRemoteIdentity identity, {
+    required MailOperationLease lease,
+  }) async {
+    if (identity is! MailImapIdentity ||
+        identity.account != account ||
+        lease.account != account) {
+      return const MailFailure(MailProblem(MailProblemCode.invalidInput));
+    }
+    if (_active != null) {
+      return const MailFailure(MailProblem(MailProblemCode.unavailable));
+    }
+    final operation = _MessageOperation();
+    _active = operation;
+    try {
+      lease.checkCurrent();
+      final localLease = _session.begin(cancellation: lease.cancellation);
+      final provider = _providerFactory(
+        configuration: _configuration,
+        credentialStore: _credentials,
+        limits: limits,
+      );
+      if (provider.account != account) {
+        return const MailFailure(MailProblem(MailProblemCode.invalidInput));
+      }
+      if (provider is! MailFlagObserver) {
+        return const MailFailure(MailProblem(MailProblemCode.unsupported));
+      }
+      localLease.checkCurrent();
+      lease.checkCurrent();
+      final result = await Future.any<MailResult<MailFlagObservation>>([
+        (provider as MailFlagObserver).observeFlags(
+          identity,
+          lease: localLease,
+        ),
+        operation.cancelled.future.then(
+          (code) => MailFailure(MailProblem(code)),
+        ),
+      ]);
+      localLease.checkCurrent();
+      lease.checkCurrent();
+      return result;
+    } on MailCancelled catch (error) {
+      return MailFailure(
+        MailProblem(
+          error.reason == MailCancellationReason.user ||
+                  error.reason == MailCancellationReason.budgetExpired
+              ? MailProblemCode.cancelled
+              : MailProblemCode.staleOperation,
+        ),
+      );
+    } on Object {
+      return const MailFailure(MailProblem(MailProblemCode.providerFailure));
     } finally {
       if (identical(_active, operation)) _active = null;
     }
