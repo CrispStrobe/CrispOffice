@@ -1,0 +1,27 @@
+{
+  "observed_utc": "2026-11-21T22:30:04.957881+00:00",
+  "qualified_source": "9ed8cc2667a0d441f193915417a5662ad2793d50",
+  "prior_main": "613c0ba130c538f18670be69dd6617b6560c0760",
+  "publication_base": "b8a836ca647227155db45a7806c2077b82c8d4c3",
+  "changed_paths": [
+    "docs/validation/mail-keyboard-triage-20261121/README.md",
+    "docs/validation/mail-keyboard-triage-20261121/checks/evidence-carry-forward.json",
+    "docs/validation/mail-keyboard-triage-20261121/checks/publication-main-continuity.json",
+    "docs/validation/mail-keyboard-triage-20261121/checks/publication-merge-analysis.json",
+    "docs/validation/mail-keyboard-triage-20261121/checks/publication-merge-analysis.log",
+    "docs/validation/mail-keyboard-triage-20261121/checks/publication-merge-format.json",
+    "docs/validation/mail-keyboard-triage-20261121/checks/publication-merge-format.log",
+    "docs/validation/mail-keyboard-triage-20261121/checks/publication-word-integration.json",
+    "docs/validation/mail-keyboard-triage-20261121/checks/publication-word-integration.log",
+    "docs/validation/mail-keyboard-triage-20261121/checks/publication-word-source-after.json",
+    "docs/validation/mail-keyboard-triage-20261121/checks/publication-word-source-before.json",
+    "docs/validation/mail-keyboard-triage-20261121/checks/publication-word-test-identities.json",
+    "docs/validation/mail-keyboard-triage-20261121/checks/publication-word-test-summary.json",
+    "docs/validation/mail-keyboard-triage-20261121/checks/qualification.json"
+  ],
+  "documentation_only": true,
+  "input_count": 6333,
+  "input_manifest_sha256": "8943d1163a5196f6cbbe82c51f6b077475248defa1a39246ad0884018c9ce4cd",
+  "all_qualified_inputs_unchanged": true,
+  "additional_execution_required": false
+}
