@@ -407,6 +407,8 @@ class _StudioMailSyncDialogState extends State<StudioMailSyncDialog> {
             status: MailParseStatus.complete,
             message: message,
           ),
+          preferHtml: false,
+          includeHeaders: false,
           labels: StudioMailReaderLabels(widget.strings.language),
         );
         setState(() => _reader = reader);

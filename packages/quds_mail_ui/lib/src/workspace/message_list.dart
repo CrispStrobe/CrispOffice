@@ -157,9 +157,8 @@ String _defaultSearchError(MailHeaderSearchError error) => switch (error) {
     'Wildcards, brackets and symbolic operators are not supported.',
   MailHeaderSearchError.invalidExpression =>
     'Complete each AND, OR or NOT expression and balance parentheses. '
-    'Use at most 32 explicit operators.',
-  MailHeaderSearchError.nestingTooDeep =>
-    'Use no more than 8 nested groups.',
+        'Use at most 32 explicit operators.',
+  MailHeaderSearchError.nestingTooDeep => 'Use no more than 8 nested groups.',
 };
 
 final _searchExampleLine = RegExp(
@@ -662,28 +661,55 @@ class _MailMessageListState extends State<MailMessageList> {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         Padding(
-          padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
-          child: TextField(
-            key: const ValueKey('mail-list-search'),
-            controller: _query,
-            onChanged: (_) => _filterChanged(_compileQuery),
-            decoration: InputDecoration(
-              isDense: true,
-              prefixIcon: const Icon(Icons.search, size: 18),
-              hintText: strings.searchLoaded,
-              suffixIcon: _query.text.isEmpty
-                  ? null
-                  : IconButton(
-                      key: const ValueKey('mail-list-clear-search'),
-                      tooltip: strings.clearSearch,
-                      icon: const Icon(Icons.clear, size: 18),
-                      onPressed: () => _filterChanged(() {
-                        _query.clear();
-                        _compileQuery();
-                      }),
+          padding: const EdgeInsets.fromLTRB(8, 8, 8, 0),
+          child: Row(
+            children: [
+              Expanded(
+                child: TextField(
+                  key: const ValueKey('mail-list-search'),
+                  controller: _query,
+                  onChanged: (_) => _filterChanged(_compileQuery),
+                  style: Theme.of(context).textTheme.bodyMedium,
+                  decoration: InputDecoration(
+                    isDense: true,
+                    contentPadding: const EdgeInsets.symmetric(
+                      horizontal: 8,
+                      vertical: 8,
                     ),
-              border: const OutlineInputBorder(),
-            ),
+                    prefixIcon: const Icon(Icons.search, size: 18),
+                    prefixIconConstraints: const BoxConstraints(
+                      minWidth: 32,
+                      minHeight: 32,
+                    ),
+                    hintText: strings.searchLoaded,
+                    suffixIcon: _query.text.isEmpty
+                        ? null
+                        : IconButton(
+                            key: const ValueKey('mail-list-clear-search'),
+                            tooltip: strings.clearSearch,
+                            visualDensity: VisualDensity.compact,
+                            icon: const Icon(Icons.clear, size: 18),
+                            onPressed: () => _filterChanged(() {
+                              _query.clear();
+                              _compileQuery();
+                            }),
+                          ),
+                    suffixIconConstraints: const BoxConstraints(
+                      minWidth: 32,
+                      minHeight: 32,
+                    ),
+                    border: const OutlineInputBorder(),
+                  ),
+                ),
+              ),
+              IconButton(
+                key: const ValueKey('mail-list-search-help'),
+                tooltip: strings.searchHelp,
+                visualDensity: VisualDensity.compact,
+                icon: const Icon(Icons.help_outline, size: 18),
+                onPressed: _showSearchHelp,
+              ),
+            ],
           ),
         ),
         if (_queryError case final error?)
@@ -699,23 +725,41 @@ class _MailMessageListState extends State<MailMessageList> {
             ),
           ),
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-          child: Wrap(
-            spacing: 8,
-            runSpacing: 4,
+          padding: const EdgeInsets.fromLTRB(8, 4, 8, 4),
+          child: Row(
             children: [
-              FilterChip(
-                key: const ValueKey('mail-list-unread'),
-                label: Text(strings.unread),
-                selected: _unread,
-                onSelected: (value) => _filterChanged(() => _unread = value),
+              Tooltip(
+                message: strings.unread,
+                child: FilterChip(
+                  key: const ValueKey('mail-list-unread'),
+                  label: const Icon(Icons.mark_email_unread_outlined, size: 18),
+                  tooltip: strings.unread,
+                  showCheckmark: false,
+                  visualDensity: VisualDensity.compact,
+                  materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                  labelPadding: EdgeInsets.zero,
+                  padding: const EdgeInsets.all(6),
+                  selected: _unread,
+                  onSelected: (value) => _filterChanged(() => _unread = value),
+                ),
               ),
-              FilterChip(
-                key: const ValueKey('mail-list-flagged'),
-                label: Text(strings.flagged),
-                selected: _flagged,
-                onSelected: (value) => _filterChanged(() => _flagged = value),
+              const SizedBox(width: 4),
+              Tooltip(
+                message: strings.flagged,
+                child: FilterChip(
+                  key: const ValueKey('mail-list-flagged'),
+                  label: const Icon(Icons.outlined_flag, size: 18),
+                  tooltip: strings.flagged,
+                  showCheckmark: false,
+                  visualDensity: VisualDensity.compact,
+                  materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                  labelPadding: EdgeInsets.zero,
+                  padding: const EdgeInsets.all(6),
+                  selected: _flagged,
+                  onSelected: (value) => _filterChanged(() => _flagged = value),
+                ),
               ),
+              const Spacer(),
               PopupMenuButton<MailMessageListSort>(
                 key: const ValueKey('mail-list-sort'),
                 tooltip: strings.sort,
@@ -729,122 +773,114 @@ class _MailMessageListState extends State<MailMessageList> {
                       child: Text(_sortLabel(sort), textScaler: scaler),
                     ),
                 ],
-                child: Chip(
-                  avatar: const Icon(Icons.sort, size: 18),
-                  label: Text(
-                    _sortLabel(_sort),
-                    overflow: TextOverflow.ellipsis,
-                  ),
+                child: const Padding(
+                  padding: EdgeInsets.all(8),
+                  child: Icon(Icons.sort, size: 20),
                 ),
-              ),
-              IconButton(
-                key: const ValueKey('mail-list-search-help'),
-                tooltip: strings.searchHelp,
-                icon: const Icon(Icons.help_outline, size: 20),
-                onPressed: _showSearchHelp,
               ),
             ],
           ),
         ),
-        // The counts and the loaded-only scope matter only when the folder
-        // has more headers than are loaded (more pages or the host's limit),
-        // or when filters hide some.
         if (notAllLoaded || visible.length != widget.items.length)
-          Padding(
-            padding: const EdgeInsets.fromLTRB(10, 0, 10, 8),
-            child: Text(
-              notAllLoaded
-                  ? '${strings.count(visible.length, widget.items.length)}\n'
-                        '${strings.loadedScope}'
-                  : strings.count(visible.length, widget.items.length),
-              key: const ValueKey('mail-list-scope'),
-              style: Theme.of(context).textTheme.bodySmall,
+          Tooltip(
+            message: strings.loadedScope,
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(12, 0, 12, 2),
+              child: Align(
+                alignment: AlignmentDirectional.centerEnd,
+                child: Text(
+                  strings.count(visible.length, widget.items.length),
+                  key: const ValueKey('mail-list-scope'),
+                  style: Theme.of(context).textTheme.labelSmall,
+                ),
+              ),
             ),
           ),
         if (widget.onBulkAction != null)
           Padding(
-            padding: const EdgeInsets.fromLTRB(10, 0, 10, 8),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
+            padding: const EdgeInsets.fromLTRB(8, 0, 8, 6),
+            child: Wrap(
+              spacing: 4,
+              runSpacing: 0,
+              crossAxisAlignment: WrapCrossAlignment.center,
               children: [
                 Semantics(
                   liveRegion: true,
                   child: Text(
                     strings.selectedCount(_checkedIds.length),
                     key: const ValueKey('mail-list-selected-count'),
-                    style: Theme.of(context).textTheme.bodySmall,
+                    style: Theme.of(context).textTheme.labelSmall,
                   ),
                 ),
-                Wrap(
-                  spacing: 4,
-                  runSpacing: 4,
-                  crossAxisAlignment: WrapCrossAlignment.center,
-                  children: [
-                    TextButton(
-                      key: const ValueKey('mail-list-select-shown'),
-                      onPressed: _canBulk && visible.isNotEmpty
-                          ? () => _selectShown(generation)
-                          : null,
-                      child: Text(strings.selectShown),
-                    ),
-                    TextButton(
-                      key: const ValueKey('mail-list-clear-selection'),
-                      onPressed: _canBulk && _checkedIds.isNotEmpty
-                          ? () => _clearSelection(generation)
-                          : null,
-                      child: Text(strings.clearSelection),
-                    ),
-                    PopupMenuButton<_BulkChoice>(
-                      key: const ValueKey('mail-list-bulk-actions'),
-                      tooltip: strings.bulkActions,
-                      enabled: _canBulk && _checkedIds.isNotEmpty,
-                      onSelected: _runBulk,
-                      itemBuilder: (context) {
-                        if (!_acceptBulkCallback(generation)) return [];
-                        // Freeze when the menu opens, not when it later closes:
-                        // PopupMenuButton may receive an updated onSelected.
-                        final ids = List<String>.unmodifiable([
-                          for (final row in _visible)
-                            if (_checkedIds.contains(row.id)) row.id,
-                        ]);
-                        final menuGeneration = _interactionGeneration;
-                        return [
-                          for (final action in MailBulkFlagAction.values)
-                            PopupMenuItem(
-                              key: ValueKey('mail-list-bulk-${action.name}'),
-                              value: _BulkChoice(action, ids, menuGeneration),
-                              child: Directionality(
-                                textDirection: direction,
-                                child: Text(
-                                  _bulkLabel(action),
-                                  textScaler: scaler,
-                                ),
-                              ),
-                            ),
-                        ];
-                      },
-                      child: Chip(
-                        avatar: const Icon(Icons.checklist, size: 18),
-                        label: Text(
-                          strings.bulkActions,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                        labelStyle: _canBulk && _checkedIds.isNotEmpty
-                            ? null
-                            : TextStyle(color: Theme.of(context).disabledColor),
-                      ),
-                    ),
-                    if (widget.onCancelBulk case final cancel?) ...[
-                      Text(strings.bulkWorking),
-                      TextButton.icon(
-                        key: const ValueKey('mail-list-stop-bulk'),
-                        onPressed: cancel,
-                        icon: const Icon(Icons.stop_circle_outlined, size: 18),
-                        label: Text(strings.stopBulk),
-                      ),
-                    ],
-                  ],
+                TextButton(
+                  key: const ValueKey('mail-list-select-shown'),
+                  style: TextButton.styleFrom(
+                    visualDensity: VisualDensity.compact,
+                    padding: const EdgeInsets.symmetric(horizontal: 6),
+                    minimumSize: const Size(0, 30),
+                  ),
+                  onPressed: _canBulk && visible.isNotEmpty
+                      ? () => _selectShown(generation)
+                      : null,
+                  child: Text(strings.selectShown),
                 ),
+                TextButton(
+                  key: const ValueKey('mail-list-clear-selection'),
+                  style: TextButton.styleFrom(
+                    visualDensity: VisualDensity.compact,
+                    padding: const EdgeInsets.symmetric(horizontal: 6),
+                    minimumSize: const Size(0, 30),
+                  ),
+                  onPressed: _canBulk && _checkedIds.isNotEmpty
+                      ? () => _clearSelection(generation)
+                      : null,
+                  child: Text(strings.clearSelection),
+                ),
+                PopupMenuButton<_BulkChoice>(
+                  key: const ValueKey('mail-list-bulk-actions'),
+                  tooltip: strings.bulkActions,
+                  enabled: _canBulk && _checkedIds.isNotEmpty,
+                  onSelected: _runBulk,
+                  itemBuilder: (context) {
+                    if (!_acceptBulkCallback(generation)) return [];
+                    // Freeze when the menu opens, not when it later closes:
+                    // PopupMenuButton may receive an updated onSelected.
+                    final ids = List<String>.unmodifiable([
+                      for (final row in _visible)
+                        if (_checkedIds.contains(row.id)) row.id,
+                    ]);
+                    final menuGeneration = _interactionGeneration;
+                    return [
+                      for (final action in MailBulkFlagAction.values)
+                        PopupMenuItem(
+                          key: ValueKey('mail-list-bulk-${action.name}'),
+                          value: _BulkChoice(action, ids, menuGeneration),
+                          child: Directionality(
+                            textDirection: direction,
+                            child: Text(_bulkLabel(action), textScaler: scaler),
+                          ),
+                        ),
+                    ];
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.all(6),
+                    child: Icon(
+                      Icons.checklist,
+                      size: 20,
+                      color: _canBulk && _checkedIds.isNotEmpty
+                          ? null
+                          : Theme.of(context).disabledColor,
+                    ),
+                  ),
+                ),
+                if (widget.onCancelBulk case final cancel?)
+                  IconButton(
+                    key: const ValueKey('mail-list-stop-bulk'),
+                    tooltip: strings.stopBulk,
+                    visualDensity: VisualDensity.compact,
+                    onPressed: cancel,
+                    icon: const Icon(Icons.stop_circle_outlined, size: 20),
+                  ),
               ],
             ),
           ),
