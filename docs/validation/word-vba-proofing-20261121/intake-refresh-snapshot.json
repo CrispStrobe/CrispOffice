@@ -1,0 +1,527 @@
+{
+  "schema_version": 1,
+  "captured_utc": "2026-11-21 08:45:06 UTC",
+  "repository": "CrispStrobe/quds_office_suite",
+  "main": "97cfb09b277e0808f9228a4fb638a55748c6268f",
+  "branches": [
+    {
+      "name": "codex/odt-field-continuation-20261117",
+      "sha": "c34945761e7991f5fe49037d79529acdd260b31c",
+      "protected": false
+    },
+    {
+      "name": "codex/word-powerpoint-vba-expansion-20261120",
+      "sha": "0f6239396ff3328473a5f57c280b982d57e33a08",
+      "protected": false
+    },
+    {
+      "name": "codex/word-vba-compat-20261120-next",
+      "sha": "650afb7d117337bab943af05d63a250a7e90c058",
+      "protected": false
+    },
+    {
+      "name": "codex/word-vba-compatibility-20261120-continuation",
+      "sha": "8c54d5283804099f9c9023540921f2410b878eb1",
+      "protected": false
+    },
+    {
+      "name": "codex/word-vba-compatibility-20261121",
+      "sha": "38b07e58b7c0e2a5b04a823a7251805cea60fb77",
+      "protected": false
+    },
+    {
+      "name": "codex/word-vba-list-levels-20261120",
+      "sha": "fff4a4afda2beecdd20ae0bd1f3c31622e8c0b37",
+      "protected": false
+    },
+    {
+      "name": "codex/word-vba-measurements-20261120",
+      "sha": "cd306bdea352c6f6400b5d1af7cc33e737004462",
+      "protected": false
+    },
+    {
+      "name": "codex/word-vba-paragraph-controls-20261120",
+      "sha": "90ecd41c8a3ef2a6f35967f1219223022e2b0d32",
+      "protected": false
+    },
+    {
+      "name": "codex/word-vba-paragraph-flow-20261121",
+      "sha": "9dbc4aa363bf3251527890ed36f046dbbee4e2ca",
+      "protected": false
+    },
+    {
+      "name": "codex/word-vba-paragraph-pagination-20261121",
+      "sha": "1581229f0e5aea24b5242c33a1e92f02d70b4c7e",
+      "protected": false
+    },
+    {
+      "name": "codex/word-vba-paragraph-spacing-20261120",
+      "sha": "d30299dd91634ad7e20c32db5c39a6687fcef4aa",
+      "protected": false
+    },
+    {
+      "name": "codex/word-vba-ranges-20261120",
+      "sha": "22e5960e99915e81a1b5997058cac44dac27ba1a",
+      "protected": false
+    },
+    {
+      "name": "codex/word-vba-sections-20261121",
+      "sha": "49665e51f9eacefc180748c3d0ed7851ef5da5d1",
+      "protected": false
+    },
+    {
+      "name": "codex/word-vba-unit-conversions-20261120",
+      "sha": "bbccae1bdead10951e2d7a23b33cf14c55382e02",
+      "protected": false
+    },
+    {
+      "name": "codex/zotero-multiparagraph-20261121",
+      "sha": "589ccd33243eabe57ce3074c92112e1fdf1325f1",
+      "protected": false
+    },
+    {
+      "name": "codex/zotero-parity-20261120-next",
+      "sha": "0da1b048546f36c658a7ddfb899117b73c5d3e7c",
+      "protected": false
+    },
+    {
+      "name": "codex/zotero-parity-20261121-continuation",
+      "sha": "2914fd3bd3e799e08ebe280102cc835d122ec95d",
+      "protected": false
+    },
+    {
+      "name": "codex/zotero-parity-20261121-next",
+      "sha": "d4470bab1095593739ddf87fdb9f249bbc948b65",
+      "protected": false
+    },
+    {
+      "name": "codex/zotero-research-tables-20261120",
+      "sha": "34491bca22a2989dd89d9da3c853f5e57de5464f",
+      "protected": false
+    },
+    {
+      "name": "codex/zotero-transfer-20261121",
+      "sha": "a1995c9154357e603b89947654cf95f8bcba6a83",
+      "protected": false
+    },
+    {
+      "name": "codex/zotero-vertical-tables-20261120",
+      "sha": "a7d9f37ecbaaf70544f4866d7d9e572696948184",
+      "protected": false
+    },
+    {
+      "name": "docs/app-store-submission-20261120",
+      "sha": "b08e0a55b629ac22b33c54146b56438862965022",
+      "protected": false
+    },
+    {
+      "name": "docs/ods-color-scale",
+      "sha": "58fdddfbcf198a8c0e38e32f6fcc9d6604e95283",
+      "protected": false
+    },
+    {
+      "name": "docs/ods-data-bar",
+      "sha": "69d14f84cabd3931b7640c1654b401c89faba766",
+      "protected": false
+    },
+    {
+      "name": "feat/arabic-web-context-20261120",
+      "sha": "be47bed22a88382f016d823e526bae49590bd0eb",
+      "protected": false
+    },
+    {
+      "name": "feat/ods-color-scale",
+      "sha": "74ce9ffb816c70c0d2ae50b91ec52a614f26d688",
+      "protected": false
+    },
+    {
+      "name": "feat/ods-data-bar",
+      "sha": "0a53b8a70128870f3e1df6d18cdb177bb64290ee",
+      "protected": false
+    },
+    {
+      "name": "feat/ods-dynamic-validation-links",
+      "sha": "68a0db23408e4c95d6d283219504c79aea33a6fe",
+      "protected": false
+    },
+    {
+      "name": "feat/ods-icon-sets",
+      "sha": "005c708e9f747cb46cf02e12c869b0a2f85ac824",
+      "protected": false
+    },
+    {
+      "name": "feat/ods-time-period-conditions",
+      "sha": "7ef09f2408f467c65427700e65907531ecb26acb",
+      "protected": false
+    },
+    {
+      "name": "feat/settings-arweb-20261120",
+      "sha": "e8db6b3f21401f8c6ac4dae4c2934edde8699f4b",
+      "protected": false
+    },
+    {
+      "name": "fix/mail-credential-stores-chrome-20261120",
+      "sha": "a652a205e6daf6b4b8e3baec04db1c1b52fabd0d",
+      "protected": false
+    },
+    {
+      "name": "fix/main-green-20261120",
+      "sha": "9cfad3920f9afb3ca1620df429fa41e33f3db8e6",
+      "protected": false
+    },
+    {
+      "name": "integrate/office-union-148",
+      "sha": "3abf8f43b0e79c10271bbd046f391e462b8fe6b9",
+      "protected": false
+    },
+    {
+      "name": "integrate/recent-pptx",
+      "sha": "ec70b9423febefcb9b104629d2ad48b0c96e9082",
+      "protected": false
+    },
+    {
+      "name": "main",
+      "sha": "97cfb09b277e0808f9228a4fb638a55748c6268f",
+      "protected": false
+    },
+    {
+      "name": "perf/wrap-chrome-20261121",
+      "sha": "5332c5ff4d3e72dffcd6fa78444dca22787be88e",
+      "protected": false
+    },
+    {
+      "name": "work/mail-accounts-20261120",
+      "sha": "86e44e87f829b0309ea7b84fd5d390f596fe7f26",
+      "protected": false
+    },
+    {
+      "name": "work/mail-bulk-actions-20261120",
+      "sha": "1584a2da8b23128c113d95c3b05b6a12d2d3861e",
+      "protected": false
+    },
+    {
+      "name": "work/mail-bulk-flags-20261120",
+      "sha": "bf0effdcc8f690972d762c5b53079e8847a5e65e",
+      "protected": false
+    },
+    {
+      "name": "work/mail-cached-workspace-20261120",
+      "sha": "c7e721b7703766491fd4459b69de30bf68d9010d",
+      "protected": false
+    },
+    {
+      "name": "work/mail-command-journal-20261121",
+      "sha": "33ce2428ebab825a844895a767e0f9f1a4077d62",
+      "protected": false
+    },
+    {
+      "name": "work/mail-multiple-drafts-20261120",
+      "sha": "b3abdf3b4628a8a703857d69b8f11cd21bc502e1",
+      "protected": false
+    },
+    {
+      "name": "work/mail-offline-accounts-20261120",
+      "sha": "44855ab24c2c7fd34953e879fba571381cce0bc3",
+      "protected": false
+    },
+    {
+      "name": "work/mail-offline-retention-20261121",
+      "sha": "f0c2599bf685a599e5bb0aa00f9f1e898e42bf43",
+      "protected": false
+    },
+    {
+      "name": "work/mail-outbox-20261120",
+      "sha": "9443612b024114c424ba2f8146e04050d6e049b0",
+      "protected": false
+    },
+    {
+      "name": "work/mail-outbox-management-20261120",
+      "sha": "79e11935e16ea1d2fa576ead0712c83f22e15c28",
+      "protected": false
+    },
+    {
+      "name": "work/mail-parity-20261120",
+      "sha": "540eb7a41554620e1405807ac1db9dc38bd62148",
+      "protected": false
+    },
+    {
+      "name": "work/mail-parity-20261121",
+      "sha": "fa59496840a36709fe3a6d867bdfe96ab99d72ab",
+      "protected": false
+    },
+    {
+      "name": "work/mail-repository-sessions-20261121",
+      "sha": "0491492d8622ad2ef09fb84e07d3dbba462f9320",
+      "protected": false
+    },
+    {
+      "name": "work/mail-sync-foundation-20261121",
+      "sha": "4a1eaa69e7a068e354bdd851ec9b0323b89ae300",
+      "protected": false
+    }
+  ],
+  "recent_pull_requests": [
+    {
+      "number": 295,
+      "title": "Localize mail dates, plural counts and reader text; polish App Store screenshots",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "head": "fix/app-store-screenshot-polish-20261121",
+      "head_sha": "7b3e45b4eb5f2aafedd4b40886e7b3acddde2f0e",
+      "base": "main",
+      "base_sha": "f2025d3275c8b5ac8313f788286b17c657894567",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/295",
+      "updated_at": "2026-11-21T08:37:58Z"
+    },
+    {
+      "number": 294,
+      "title": "Unlock saved Mail vaults and restore native menu actions",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "head": "fix/mail-vault-native-menus-20261121",
+      "head_sha": "7b2d3f3f422edd21258fee2533085b9065aff883",
+      "base": "main",
+      "base_sha": "4090feb56f308cd3657c5edd1d045ff1197ff79b",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/294",
+      "updated_at": "2026-11-21T08:36:39Z"
+    },
+    {
+      "number": 293,
+      "title": "Finalize Zotero table-cell integration on reconciled Office main [skip ci]",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "head": "codex/zotero-parity-20261121-next",
+      "head_sha": "d4470bab1095593739ddf87fdb9f249bbc948b65",
+      "base": "main",
+      "base_sha": "9f23cbd2be72c527829b3990f22b356e5237ed96",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/293",
+      "updated_at": "2026-11-21T08:18:27Z"
+    },
+    {
+      "number": 292,
+      "title": "Complete Word VBA header/footer compatibility and preservation guards",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "head": "codex/word-vba-compatibility-20261121",
+      "head_sha": "38b07e58b7c0e2a5b04a823a7251805cea60fb77",
+      "base": "main",
+      "base_sha": "4a1eaa69e7a068e354bdd851ec9b0323b89ae300",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/292",
+      "updated_at": "2026-11-21T07:54:39Z"
+    },
+    {
+      "number": 291,
+      "title": "Add durable resumable folder mail synchronization and offline browsing [skip ci]",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "head": "work/mail-sync-foundation-20261121",
+      "head_sha": "66c98e8e6b303f11dd167305424b9c2f6a820342",
+      "base": "main",
+      "base_sha": "eb286fb7254d6850c9f33b46e8aa65e2ea32f7f0",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/291",
+      "updated_at": "2026-11-21T07:40:30Z"
+    },
+    {
+      "number": 290,
+      "title": "Add Mac App Store screenshots of CrispOffice",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "head": "feat/app-store-screenshots-20261120",
+      "head_sha": "e8d23a3a770037f7309e239e3ef6fe3bf570039a",
+      "base": "main",
+      "base_sha": "e2abbcda6d19f932bfbacc85e0dafd41a3c478f8",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/290",
+      "updated_at": "2026-11-21T07:33:31Z"
+    },
+    {
+      "number": 289,
+      "title": "Extend Zotero research-content replacement within table cells [skip ci]",
+      "state": "closed",
+      "merged": true,
+      "draft": true,
+      "head": "codex/zotero-parity-20261121-next",
+      "head_sha": "a6095c304ad2d6935f2ae6f8b74412038d19f142",
+      "base": "main",
+      "base_sha": "e2abbcda6d19f932bfbacc85e0dafd41a3c478f8",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/289",
+      "updated_at": "2026-11-21T07:40:32Z"
+    },
+    {
+      "number": 288,
+      "title": "Implement Zotero document transfer with qualified Office reconciliation",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "head": "codex/zotero-transfer-20261121",
+      "head_sha": "a1995c9154357e603b89947654cf95f8bcba6a83",
+      "base": "main",
+      "base_sha": "290dfa43e3bcf410d9bf1bd8194c997c4ee613ae",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/288",
+      "updated_at": "2026-11-21T07:02:09Z"
+    },
+    {
+      "number": 287,
+      "title": "Proofing: check at word/sentence completion, pause and idle time, with settings",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "head": "feat/proofing-scheduling-20261121",
+      "head_sha": "ada16de93d75c67011399727d10a32d1025f7edb",
+      "base": "main",
+      "base_sha": "17dde2e62cf3d23ae3d089e284ed3d8e1f8b2a5f",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/287",
+      "updated_at": "2026-11-21T07:11:27Z"
+    },
+    {
+      "number": 286,
+      "title": "Extend Word VBA section controls and reconcile Office updates [skip ci]",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "head": "codex/word-vba-sections-20261121",
+      "head_sha": "49665e51f9eacefc180748c3d0ed7851ef5da5d1",
+      "base": "main",
+      "base_sha": "84046975f286407e3c62e5e5352bc16bc89c0d26",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/286",
+      "updated_at": "2026-11-21T06:20:22Z"
+    },
+    {
+      "number": 285,
+      "title": "Word: trace and fix the slowest Studio keystroke (layout of a replaced document)",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "head": "perf/keystroke-trace-20261121",
+      "head_sha": "cb7ab4f7a41fa15414f6dd5ac229bda6e57cb0cd",
+      "base": "main",
+      "base_sha": "84046975f286407e3c62e5e5352bc16bc89c0d26",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/285",
+      "updated_at": "2026-11-21T07:13:26Z"
+    },
+    {
+      "number": 284,
+      "title": "Mail: repository-backed sessions and reconciled Office updates [skip ci]",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "head": "work/mail-repository-sessions-20261121",
+      "head_sha": "0491492d8622ad2ef09fb84e07d3dbba462f9320",
+      "base": "main",
+      "base_sha": "e1ebcb0cd65716a2a78d2ea1114d9ee37a3017ec",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/284",
+      "updated_at": "2026-11-21T06:27:29Z"
+    },
+    {
+      "number": 283,
+      "title": "Complete Zotero paragraph-range integration and local qualification [skip ci]",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "head": "codex/zotero-multiparagraph-20261121",
+      "head_sha": "589ccd33243eabe57ce3074c92112e1fdf1325f1",
+      "base": "main",
+      "base_sha": "ce1c37c6af1e2306d2c24231758f10ef6213f7dd",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/283",
+      "updated_at": "2026-11-21T05:22:06Z"
+    },
+    {
+      "number": 282,
+      "title": "Mail: recover uncertain actions and reconcile incoming Office work [skip ci]",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "head": "work/mail-parity-20261121",
+      "head_sha": "fa59496840a36709fe3a6d867bdfe96ab99d72ab",
+      "base": "main",
+      "base_sha": "3d01815908aeded5862d131109341365de637242",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/282",
+      "updated_at": "2026-11-21T05:02:18Z"
+    },
+    {
+      "number": 281,
+      "title": "Extend Word VBA with section PageSetup and reconcile recent work",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "head": "codex/word-vba-paragraph-pagination-20261121",
+      "head_sha": "1581229f0e5aea24b5242c33a1e92f02d70b4c7e",
+      "base": "main",
+      "base_sha": "bf761552d22dcd1eb8cbb0ab00ddab6507e1d572",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/281",
+      "updated_at": "2026-11-21T04:47:42Z"
+    },
+    {
+      "number": 280,
+      "title": "Word: clamp bookmarks on cross-paragraph delete; incremental layout after fitting and with notes",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "head": "fix/bookmark-typing-20261120",
+      "head_sha": "45245b086fce889aff9a54291083d55d40ba3cb4",
+      "base": "main",
+      "base_sha": "383c0c0c5d3b4b1a6edccc8d09ffd1ca64029537",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/280",
+      "updated_at": "2026-11-21T00:00:38Z"
+    },
+    {
+      "number": 279,
+      "title": "Persist mail flag commands and activity history",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "head": "work/mail-command-journal-20261121",
+      "head_sha": "33ce2428ebab825a844895a767e0f9f1a4077d62",
+      "base": "main",
+      "base_sha": "383c0c0c5d3b4b1a6edccc8d09ffd1ca64029537",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/279",
+      "updated_at": "2026-11-20T23:41:47Z"
+    },
+    {
+      "number": 278,
+      "title": "Complete Word VBA measurements and reconcile current Office work [skip ci]",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "head": "codex/word-vba-unit-conversions-20261120",
+      "head_sha": "0e4e999a08996a6b8696ca3adba11e303331b73e",
+      "base": "main",
+      "base_sha": "329d03914808589d3e7650fa870df15a2408afe2",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/278",
+      "updated_at": "2026-11-20T23:41:49Z"
+    },
+    {
+      "number": 277,
+      "title": "Zotero: vertical research tables and reconciled Office work [skip ci]",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "head": "codex/zotero-vertical-tables-20261120",
+      "head_sha": "a7d9f37ecbaaf70544f4866d7d9e572696948184",
+      "base": "main",
+      "base_sha": "329d03914808589d3e7650fa870df15a2408afe2",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/277",
+      "updated_at": "2026-11-20T23:21:39Z"
+    },
+    {
+      "number": 276,
+      "title": "Zotero: merged research-table cells and adjacent-citation Refresh [skip ci]",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "head": "codex/zotero-parity-20261120-next",
+      "head_sha": "0da1b048546f36c658a7ddfb899117b73c5d3e7c",
+      "base": "main",
+      "base_sha": "e975cec13b289fe067ef406cd3044701ecc44744",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/276",
+      "updated_at": "2026-11-20T21:29:27Z"
+    }
+  ],
+  "open_pull_requests": [],
+  "scope": "One immutable refresh; no ongoing branch polling."
+}

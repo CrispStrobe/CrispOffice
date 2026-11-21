@@ -2986,6 +2986,9 @@ class _Checker {
       if (receiver == _Kind.range && property == 'highlightcolorindex') {
         return _Kind.number;
       }
+      if (receiver == _Kind.range && property == 'noproofing') {
+        return _Kind.boolean;
+      }
       if (receiver == _Kind.wordListFormat && property == 'listlevelnumber') {
         return _Kind.number;
       }
@@ -2999,13 +3002,16 @@ class _Checker {
           return _Kind.boolean;
         }
         if (property == 'size' ||
+            property == 'kerning' ||
             property == 'color' ||
             property == 'underline') {
           return _Kind.number;
         }
         if (property == 'name') return _Kind.string;
       } else if (receiver == _Kind.paragraphFormat) {
-        if (property == 'keeptogether' || property == 'pagebreakbefore') {
+        if (property == 'keeptogether' ||
+            property == 'pagebreakbefore' ||
+            property == 'hyphenation') {
           return _Kind.boolean;
         }
         if (const <String>{
@@ -5946,6 +5952,12 @@ class _Evaluator {
       );
     }
     if (receiver is _WordRange) {
+      if (property == 'noproofing') {
+        _emitWord(receiver, 'runFormat', <String, Object?>{
+          'noProof': _boolean(value, token),
+        }, token);
+        return;
+      }
       final index = _integer(value, token);
       if (index < 0 || index >= _wordHighlights.length) {
         context.unsupported(
@@ -5983,6 +5995,19 @@ class _Evaluator {
       } else if (property == 'name') {
         field = 'font';
         normalized = _wordText(value, token, fontName: true);
+      } else if (property == 'kerning') {
+        field = 'kerning';
+        final points = _number(value, token);
+        final halfPoints = points * 2;
+        if (points < 0 ||
+            points > 1638 ||
+            halfPoints != halfPoints.truncateToDouble()) {
+          context.type(
+            token,
+            'Word Font.Kerning requires exact half-points in 0..1638; zero disables kerning.',
+          );
+        }
+        normalized = points;
       } else if (property == 'size') {
         field = 'size';
         final size = _number(value, token);
@@ -6006,6 +6031,12 @@ class _Evaluator {
       return;
     }
     final format = receiver as _WordParagraphFormat;
+    if (property == 'hyphenation') {
+      _emitWord(format.range, 'paragraphFormat', <String, Object?>{
+        'suppressAutoHyphens': !_boolean(value, token),
+      }, token);
+      return;
+    }
     if (property == 'readingorder') {
       final order = _integer(value, token);
       if (order != 0 && order != 1) {
