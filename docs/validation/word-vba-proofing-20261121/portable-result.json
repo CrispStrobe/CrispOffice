@@ -1,0 +1,40 @@
+{
+  "vmEqualsJavaScript": true,
+  "operations": 9,
+  "revision": 1,
+  "recordedSteps": 9,
+  "additionalReopens": 2,
+  "opaqueVbaPreserved": true,
+  "state": [
+    {
+      "text": "Silbentrennung",
+      "suppressAutoHyphens": false,
+      "noProof": [
+        false
+      ],
+      "kerningHalfPoints": [
+        25
+      ]
+    },
+    {
+      "text": "Product ID",
+      "suppressAutoHyphens": true,
+      "noProof": [
+        true
+      ],
+      "kerningHalfPoints": [
+        0
+      ]
+    },
+    {
+      "text": "Report header",
+      "suppressAutoHyphens": true,
+      "noProof": [
+        true
+      ],
+      "kerningHalfPoints": [
+        19
+      ]
+    }
+  ]
+}
