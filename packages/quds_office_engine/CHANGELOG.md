@@ -10,7 +10,12 @@ All notable changes to `quds_office_engine` are documented here.
   identified LibreOffice decimal zero-offset note convention against exact
   visible ordinals. Preserve absolute editable-ODT table widths with physical
   left/center/right alignment and admit inert border-model defaults only within
-  the bounded borderless reader. Retain actual converter fixtures and controlled
+  the bounded borderless reader. Preserve complete uniform DOCX table margins,
+  including zero, through direct properties and bounded style inheritance while
+  retaining unsupported source XML. Recompute optional soft-page hints and
+  declare exact native note marker styles and the final endnote page master;
+  validate their effective formatting and compatible geometry on reopening.
+  Retain actual converter fixtures and controlled
   native refresh/edit/unlink regressions. See the
   [round-trip record](../../docs/validation/zotero-odt-roundtrip-20261121/README.md)
   for executed scope and remaining active-footnote/installed-plugin acceptance.

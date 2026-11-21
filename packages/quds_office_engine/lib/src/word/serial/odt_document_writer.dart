@@ -253,12 +253,35 @@ abstract final class OdtDocumentWriter {
         if (!layout.notes.emitted.keys.any((key) => key.$1 == endnote)) {
           continue;
         }
+        // Writer associates each note class/role with a distinct style pool
+        // identity. Reusing one style lets a later role reset the earlier one
+        // to its built-in 58% anchor or baseline symbol during an actual save.
+        final prefix = endnote ? 'QudsEndnote' : 'QudsFootnote';
+        for (final role in ['Symbol', 'Anchor']) {
+          w.writeStartElement('style', prefix: 'style');
+          w.writeAttribute('style:name', '$prefix$role');
+          w.writeAttribute('style:family', 'text');
+          w.writeEmptyElement(
+            'text-properties',
+            prefix: 'style',
+            attributes: {'style:text-position': 'super 65%'},
+          );
+          w.writeEndElement();
+        }
         w.writeEmptyElement(
           'notes-configuration',
           prefix: 'text',
           attributes: {
             'text:note-class': endnote ? 'endnote' : 'footnote',
             'style:num-format': '1',
+            'text:citation-style-name': '${prefix}Symbol',
+            'text:citation-body-style-name': '${prefix}Anchor',
+            // Native endnotes use the final section's regular page geometry,
+            // including when that section entered on an odd/even start master.
+            if (endnote)
+              'text:master-page-name': layout.sections.length == 1
+                  ? 'Standard'
+                  : 'mp${layout.sections.length - 1}',
             if (!endnote) 'text:start-numbering-at': 'document',
           },
         );

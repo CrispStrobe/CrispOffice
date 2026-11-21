@@ -250,7 +250,9 @@ void main() {
                   '<text:notes-configuration text:note-class="footnote" $attribute/>',
             ),
           ),
-          throwsUnsupportedError,
+          attribute.contains('citation-style-name')
+              ? throwsA(isA<FormatException>())
+              : throwsUnsupportedError,
         );
       },
     );

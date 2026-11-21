@@ -393,6 +393,19 @@ are accepted; independent footnote/endnote sequences survive DOCX conversion.
 Unknown or ambiguous producers retain the existing ODF convention. Other note
 formats, restarts, custom labels and unsupported note styling remain refused.
 
+Configured note-marker and main-flow anchor styles are admitted only when their
+effective default/parent chain specifies exactly superscript at 65 percent and
+adds no unrepresented formatting. Bare consumer-selected superscript, 58-percent
+scaling and custom marker fonts/colors remain refused. An endnote page master
+must resolve to the same supported geometry as every used body master; it cannot
+silently replace a different note-page layout. The explicit writer declares
+these native styles and the final section's regular master before a host save.
+Configured note paragraph styles remain outside the editing envelope.
+
+Optional `text:use-soft-page-breaks` flags and empty cached soft-page markers are
+validated and recomputed by native layout. Authored hard page breaks retain
+their distinct paragraph/run properties; reexport does not copy stale hints.
+
 Known separating/collapsing table border-model defaults are inert only within
 the existing borderless reader: actual border/padding properties remain guarded.
 Editable export now pairs absolute widths with physical left/center/right
