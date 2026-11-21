@@ -252,13 +252,14 @@ after source-range reconstruction, preserving editor and DOCX offsets.
 | Authored notes | Footnotes/endnotes with supported blocks, ordinary document-wide decimal numbering and live body anchors; citations retain their actual note story. Custom numbering/styles, nested notes and citations enclosing note anchors are refused. |
 | Tables | Rectangular tables with bounded horizontal/vertical merges and explicit covered cells, nested up to eight levels; supported widths/alignment, row minimum height/keep behavior and inherited shading. Citations retain their originating cell. Hidden covered content, conflicting effective shading, repeated rows/cells and ambiguous coverage refuse. Increment 4 runtime checks are recorded in the editable-output continuation. |
 | Lists | Simple decimal or supported depth-specific bullets, up to nine levels, explicit starts/restarts and multiple paragraphs per item. Independent sequences, nested continuations and source paragraph margins are retained. Continuation references/consecutive numbering, bullet affixes, conflicting first-line geometry and tables inside list items are refused. |
+| Inline pictures | Embedded static PNG and upright RGB/YCbCr JPEG in character-anchored frames; original bytes, physical dimensions, title/description, supported run properties and ordinary hyperlinks. Pictures own one native character; adjacent Zotero ranges retain exact offsets. The picture continuation below defines the bounds. |
 | Preferences and metadata | Explicit `WordZoteroDocumentData.fromOdt` converts valid `ReferenceMark` storage to native `Field` after reconstruction; ordinary Word/HTTP callbacks remain strict. Style/locale/note mode and unknown XML/JSON preferences survive. Standard document properties are mapped; the exact original `meta.xml`, including unrelated/future properties, is archived in DOCX custom XML. |
 
 The import is all-or-nothing. Invalid/ambiguous marks, crossed owners, protected
-or linked sections, ordinary unsupported sections, bookmarks, drawings/images,
+or linked sections, ordinary unsupported sections, bookmarks, unsupported drawings,
 annotations, revisions, embedded objects, unsupported used styles and resource
 exhaustion refuse before publication. Relative/internal hyperlinks and distinct
-visited-link styles require further ownership/formatting support. A citation
+visited-link styles on authored text require further ownership/formatting support. A citation
 whose cached runs contain a hyperlink also remains outside the native editable
 field contract; ordinary external hyperlinks outside citations are preserved.
 Unused style
@@ -368,7 +369,46 @@ do not establish broad real LibreOffice table acceptance.
 Primary format contract: OASIS ODF 1.3 Part 3
 [section 9.1.5 and span attributes 19.680/19.682](https://docs.oasis-open.org/office/OpenDocument/v1.3/os/part3-schema/OpenDocument-v1.3-os-part3-schema.html).
 
-## Increment 5: installed-host acceptance
+## Increment 5: bounded inline pictures
+
+The [picture continuation](../../validation/zotero-odt-images-20261121/README.md)
+extends the reader to complete `draw:frame` elements explicitly anchored
+`as-char`, each containing one embedded `draw:image`. Frame names, `svg:title`,
+`svg:desc`, native physical dimensions, supported text-span properties and
+ordinary image hyperlinks become independently owned native picture runs.
+No file or network retrieval occurs. Package paths must resolve inside
+`Pictures/` without traversal, external authority or ambiguous separators.
+
+The read-only inventory remains conservative about drawings. Only findings at
+the exact frame/image paths that the rich reader fully validates and consumes
+may be discharged. Unsupported drawing stories and descendants remain errors.
+Rich field anchors include the picture's one U+FFFC position; source order
+distinguishes adjacent fields from fields enclosing a picture. Pictures inside
+citation or bibliography caches refuse, including otherwise empty ranges.
+
+The complete document shares the existing note-image decoder's limits: 32
+pictures, 4 MiB total encoded raster bytes, 8192 pixels per dimension, 16 Mi
+pixels per picture, 32 Mi pixels in total, 32 MiB PNG scanline expansion per
+picture and 64 MiB total decoded-image budget. Displayed dimensions must be
+between 1 and 4000 points. The reader validates actual raster streams and
+preserves accepted bytes; filename extensions do not select the decoder.
+Animated PNG, SVG, external images, unsupported JPEG orientation/color modes,
+OLE, text boxes, alternative image representations and active image
+transformations retain explicit refusals.
+
+Effective picture styling is checked after inheritance. Only supported or
+inactive properties under the validated inline-bitmap content model can pass;
+unknown or active crop, color, opacity, border, shadow and transformation
+settings refuse. Visited-link glyph styling can be inactive for a link whose
+entire content is validated pictures; mixed or authored text links keep their
+existing guard. This does not implement a general ODF drawing/style engine.
+
+The matching explicit ODT output preserves picture metadata and emits one
+frame without duplicating the native object placeholder as literal text. The
+picture record separates local edit/save/undo tests from untouched output of
+the identified LibreOffice converter and from installed-plugin acceptance.
+
+## Increment 6: installed-host acceptance
 
 Run an actual current Zotero session with identified Word and LibreOffice
 versions and synthetic library data. Exercise native-file input separately
@@ -394,7 +434,7 @@ Zotero and plugin versions. Current LibreOffice acceptance cannot establish it.
    branch are integrated by this continuation; keep their recorded cutoffs.
 2. Expand the documented rich-document envelope from additional retained real
    files. The exact prose fixture and supported script/default mapping above
-   provide the next baseline. Extend active Asian typography, drawings and
+   provide the next baseline. Extend active Asian typography, additional drawings and
    further note/list configurations, and qualify the explicit native ODT output with matching
    ownership, rendering and persistence checks; keep remaining refusals visible.
 3. Save each working increment on a remote branch with an expected-head lease.
@@ -404,7 +444,7 @@ Zotero and plugin versions. Current LibreOffice acceptance cannot establish it.
 5. Do not query or wait on GitHub Actions as the acceptance path. Preserve
    concrete local results and state any installed-host limits separately.
 
-Increment 1 remains a read-only capability. Increments 2 through 4 convert a bounded
+Increment 1 remains a read-only capability. Increments 2 through 5 convert a bounded
 native ODT subset into an editable Word document that saves as DOCX. These
 increments do not change ordinary ODT export or establish complete plugin parity or
 installed-host acceptance for Zotero, Word, LibreOffice or legacy Apache

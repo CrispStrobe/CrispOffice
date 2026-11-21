@@ -93,19 +93,19 @@ write. Only a same-account acknowledgement at the next revision is accepted.
 
 This is one part of M07 authoring. It does not supply multiple SMTP identities
 or aliases, full-message templates, HTML alternatives/inline images, provider
-Drafts synchronization, scheduled/undo send, rules, encryption or full desktop
+Drafts synchronization, rules, encryption or full desktop
 mail parity.
+The later [scheduled-send increment](scheduled-send.md) supplies foreground
+Send later and Undo through the same durable Outbox.
 
 The next sequence remains:
 
-1. Execute the focused authoring/storage/migration regressions on the pinned
-   toolchain and qualify the affected connected/offline host paths.
-2. Finish the shared synchronized workspace, unified inbox and durable
+1. Finish the shared synchronized workspace, unified inbox and durable
    move/delete operations.
-3. Add durable send scheduling/undo delay and provider-specific Sent
-   reconciliation, preserving uncertain-submission handling.
-4. Add ordered rules and richer authoring/Office attachment workflows.
-5. Extend provider/productivity features and qualify installed platforms.
+2. Extend foreground scheduling with background execution and provider-specific
+   Sent reconciliation, preserving uncertain-submission handling.
+3. Add identity routing, ordered rules and richer authoring/Office attachments.
+4. Extend provider/productivity features and qualify installed platforms.
 
 Comparison references:
 [Outlook signatures](https://support.microsoft.com/en-us/outlook/mail/how-to-add-and-change-an-email-signature-in-outlook),

@@ -488,13 +488,9 @@ void main() {
     (
       name: 'footnote activates the native separator layout',
       bytes: () => _rewriteNative(
-        // Isolate the separator boundary from the independently unsupported
-        // zero-based native note counter. This is a synthetic control only.
-        styles: (xml) => _replaceOnce(
-          xml,
-          'text:note-class="footnote" style:num-format="1" text:start-value="0"',
-          'text:note-class="footnote" style:num-format="1" text:start-value="1"',
-        ),
+        // The original LibreOffice producer and zero-based note offset are
+        // qualified together. Keep them intact so this synthetic control
+        // specifically reaches the unsupported active separator layout.
         content: (xml) => _replaceOnce(
           xml,
           'Research ',

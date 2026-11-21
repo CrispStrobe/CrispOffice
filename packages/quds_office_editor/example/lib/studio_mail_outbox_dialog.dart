@@ -610,7 +610,11 @@ class _StudioMailOutboxDialogState extends State<StudioMailOutboxDialog>
                                         context,
                                       ).textTheme.titleMedium,
                                     ),
-                                    Text(strings.mailOutboxState(entry.state)),
+                                    if (entry.sendNotBefore == null ||
+                                        entry.state != MailOutboxState.queued)
+                                      Text(
+                                        strings.mailOutboxState(entry.state),
+                                      ),
                                     if (entry.sendNotBefore != null)
                                       _scheduleStatus(entry),
                                     Text(
